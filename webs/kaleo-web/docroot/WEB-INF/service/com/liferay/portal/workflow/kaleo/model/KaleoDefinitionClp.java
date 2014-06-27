@@ -641,15 +641,15 @@ public class KaleoDefinitionClp extends BaseModelImpl<KaleoDefinition>
 	}
 
 	@Override
-	public boolean hasIncompleteKaleoInstances() {
+	public com.liferay.portal.workflow.kaleo.model.KaleoNode getKaleoStartNode() {
 		try {
-			String methodName = "hasIncompleteKaleoInstances";
+			String methodName = "getKaleoStartNode";
 
 			Class<?>[] parameterTypes = new Class<?>[] {  };
 
 			Object[] parameterValues = new Object[] {  };
 
-			Boolean returnObj = (Boolean)invokeOnRemoteModel(methodName,
+			com.liferay.portal.workflow.kaleo.model.KaleoNode returnObj = (com.liferay.portal.workflow.kaleo.model.KaleoNode)invokeOnRemoteModel(methodName,
 					parameterTypes, parameterValues);
 
 			return returnObj;
@@ -660,15 +660,15 @@ public class KaleoDefinitionClp extends BaseModelImpl<KaleoDefinition>
 	}
 
 	@Override
-	public com.liferay.portal.workflow.kaleo.model.KaleoNode getKaleoStartNode() {
+	public boolean hasIncompleteKaleoInstances() {
 		try {
-			String methodName = "getKaleoStartNode";
+			String methodName = "hasIncompleteKaleoInstances";
 
 			Class<?>[] parameterTypes = new Class<?>[] {  };
 
 			Object[] parameterValues = new Object[] {  };
 
-			com.liferay.portal.workflow.kaleo.model.KaleoNode returnObj = (com.liferay.portal.workflow.kaleo.model.KaleoNode)invokeOnRemoteModel(methodName,
+			Boolean returnObj = (Boolean)invokeOnRemoteModel(methodName,
 					parameterTypes, parameterValues);
 
 			return returnObj;

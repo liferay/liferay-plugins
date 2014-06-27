@@ -787,21 +787,18 @@ public class KaleoTimerInstanceTokenWrapper implements KaleoTimerInstanceToken,
 
 	@Override
 	public com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken getKaleoInstanceToken()
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _kaleoTimerInstanceToken.getKaleoInstanceToken();
 	}
 
 	@Override
-	public com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken getKaleoTaskInstanceToken()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken getKaleoTaskInstanceToken() {
 		return _kaleoTimerInstanceToken.getKaleoTaskInstanceToken();
 	}
 
 	@Override
 	public com.liferay.portal.workflow.kaleo.model.KaleoTimer getKaleoTimer()
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _kaleoTimerInstanceToken.getKaleoTimer();
 	}
 

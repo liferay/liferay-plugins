@@ -239,18 +239,14 @@ public interface KaleoConditionLocalService extends BaseLocalService,
 		long kaleoDefinitionId, long kaleoNodeId,
 		com.liferay.portal.workflow.kaleo.definition.Condition condition,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.portal.kernel.exception.PortalException;
 
-	public void deleteCompanyKaleoConditions(long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public void deleteCompanyKaleoConditions(long companyId);
 
-	public void deleteKaleoDefinitionKaleoCondition(long kaleoDefinitionId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public void deleteKaleoDefinitionKaleoCondition(long kaleoDefinitionId);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.portal.workflow.kaleo.model.KaleoCondition getKaleoNodeKaleoCondition(
 		long kaleoNodeId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.portal.kernel.exception.PortalException;
 }

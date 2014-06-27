@@ -273,8 +273,7 @@ public class KaleoTimerInstanceTokenLocalServiceUtil {
 		long kaleoTimerId, java.lang.String kaleoTimerName,
 		java.util.Map<java.lang.String, java.io.Serializable> workflowContext,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService()
 				   .addKaleoTimerInstanceToken(kaleoInstanceTokenId,
 			kaleoTaskInstanceTokenId, kaleoTimerId, kaleoTimerName,
@@ -287,8 +286,7 @@ public class KaleoTimerInstanceTokenLocalServiceUtil {
 		java.util.Collection<com.liferay.portal.workflow.kaleo.model.KaleoTimer> kaleoTimers,
 		java.util.Map<java.lang.String, java.io.Serializable> workflowContext,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService()
 				   .addKaleoTimerInstanceTokens(kaleoInstanceToken,
 			kaleoTaskInstanceToken, kaleoTimers, workflowContext, serviceContext);
@@ -297,8 +295,7 @@ public class KaleoTimerInstanceTokenLocalServiceUtil {
 	public static com.liferay.portal.workflow.kaleo.model.KaleoTimerInstanceToken completeKaleoTimerInstanceToken(
 		long kaleoTimerInstanceTokenId,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService()
 				   .completeKaleoTimerInstanceToken(kaleoTimerInstanceTokenId,
 			serviceContext);
@@ -307,8 +304,7 @@ public class KaleoTimerInstanceTokenLocalServiceUtil {
 	public static void completeKaleoTimerInstanceTokens(
 		java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTimerInstanceToken> kaleoTimerInstanceTokens,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		getService()
 			.completeKaleoTimerInstanceTokens(kaleoTimerInstanceTokens,
 			serviceContext);
@@ -317,8 +313,7 @@ public class KaleoTimerInstanceTokenLocalServiceUtil {
 	public static void completeKaleoTimerInstanceTokens(
 		long kaleoInstanceTokenId,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		getService()
 			.completeKaleoTimerInstanceTokens(kaleoInstanceTokenId,
 			serviceContext);
@@ -326,21 +321,18 @@ public class KaleoTimerInstanceTokenLocalServiceUtil {
 
 	public static void deleteKaleoTimerInstanceToken(
 		long kaleoInstanceTokenId, long kaleoTimerId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		getService()
 			.deleteKaleoTimerInstanceToken(kaleoInstanceTokenId, kaleoTimerId);
 	}
 
-	public static void deleteKaleoTimerInstanceTokens(long kaleoInstanceId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static void deleteKaleoTimerInstanceTokens(long kaleoInstanceId) {
 		getService().deleteKaleoTimerInstanceTokens(kaleoInstanceId);
 	}
 
 	public static com.liferay.portal.workflow.kaleo.model.KaleoTimerInstanceToken getKaleoTimerInstanceToken(
 		long kaleoInstanceTokenId, long kaleoTimerId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService()
 				   .getKaleoTimerInstanceToken(kaleoInstanceTokenId,
 			kaleoTimerId);
@@ -348,8 +340,7 @@ public class KaleoTimerInstanceTokenLocalServiceUtil {
 
 	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTimerInstanceToken> getKaleoTimerInstanceTokens(
 		long kaleoInstanceTokenId, boolean completed, boolean blocking,
-		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.service.ServiceContext serviceContext) {
 		return getService()
 				   .getKaleoTimerInstanceTokens(kaleoInstanceTokenId,
 			completed, blocking, serviceContext);
@@ -357,8 +348,7 @@ public class KaleoTimerInstanceTokenLocalServiceUtil {
 
 	public static int getKaleoTimerInstanceTokensCount(
 		long kaleoInstanceTokenId, boolean completed, boolean blocking,
-		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.service.ServiceContext serviceContext) {
 		return getService()
 				   .getKaleoTimerInstanceTokensCount(kaleoInstanceTokenId,
 			completed, blocking, serviceContext);

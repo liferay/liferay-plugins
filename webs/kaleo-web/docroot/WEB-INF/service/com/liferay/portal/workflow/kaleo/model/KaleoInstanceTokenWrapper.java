@@ -647,49 +647,42 @@ public class KaleoInstanceTokenWrapper implements KaleoInstanceToken,
 	}
 
 	@Override
-	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken> getChildrenKaleoInstanceTokens()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken> getChildrenKaleoInstanceTokens() {
 		return _kaleoInstanceToken.getChildrenKaleoInstanceTokens();
 	}
 
 	@Override
 	public com.liferay.portal.workflow.kaleo.model.KaleoNode getCurrentKaleoNode()
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _kaleoInstanceToken.getCurrentKaleoNode();
 	}
 
 	@Override
-	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken> getIncompleteChildrenKaleoInstanceTokens()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken> getIncompleteChildrenKaleoInstanceTokens() {
 		return _kaleoInstanceToken.getIncompleteChildrenKaleoInstanceTokens();
 	}
 
 	@Override
 	public com.liferay.portal.workflow.kaleo.model.KaleoInstance getKaleoInstance()
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _kaleoInstanceToken.getKaleoInstance();
 	}
 
 	@Override
 	public com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken getParentKaleoInstanceToken()
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _kaleoInstanceToken.getParentKaleoInstanceToken();
 	}
 
 	@Override
-	public boolean hasIncompleteChildrenKaleoInstanceToken()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public boolean hasIncompleteChildrenKaleoInstanceToken() {
 		return _kaleoInstanceToken.hasIncompleteChildrenKaleoInstanceToken();
 	}
 
 	@Override
 	public void setCurrentKaleoNode(
 		com.liferay.portal.workflow.kaleo.model.KaleoNode kaleoNode)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		_kaleoInstanceToken.setCurrentKaleoNode(kaleoNode);
 	}
 

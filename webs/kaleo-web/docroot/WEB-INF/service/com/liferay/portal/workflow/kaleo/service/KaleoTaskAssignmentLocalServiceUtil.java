@@ -268,51 +268,43 @@ public class KaleoTaskAssignmentLocalServiceUtil {
 		long kaleoDefinitionId,
 		com.liferay.portal.workflow.kaleo.definition.Assignment assignment,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService()
 				   .addKaleoTaskAssignment(kaleoClassName, kaleoClassPK,
 			kaleoDefinitionId, assignment, serviceContext);
 	}
 
-	public static void deleteCompanyKaleoTaskAssignments(long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static void deleteCompanyKaleoTaskAssignments(long companyId) {
 		getService().deleteCompanyKaleoTaskAssignments(companyId);
 	}
 
 	public static void deleteKaleoDefinitionKaleoTaskAssignments(
-		long kaleoDefinitionId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long kaleoDefinitionId) {
 		getService().deleteKaleoDefinitionKaleoTaskAssignments(kaleoDefinitionId);
 	}
 
 	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment> getKaleoTaskAssignments(
-		long kaleoTaskId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long kaleoTaskId) {
 		return getService().getKaleoTaskAssignments(kaleoTaskId);
 	}
 
 	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment> getKaleoTaskAssignments(
-		long kaleoTaskId, java.lang.String assigneeClassName)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long kaleoTaskId, java.lang.String assigneeClassName) {
 		return getService()
 				   .getKaleoTaskAssignments(kaleoTaskId, assigneeClassName);
 	}
 
 	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment> getKaleoTaskAssignments(
-		java.lang.String kaleoClassName, long kaleoClassPK)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		java.lang.String kaleoClassName, long kaleoClassPK) {
 		return getService().getKaleoTaskAssignments(kaleoClassName, kaleoClassPK);
 	}
 
-	public static int getKaleoTaskAssignmentsCount(long kaleoTaskId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static int getKaleoTaskAssignmentsCount(long kaleoTaskId) {
 		return getService().getKaleoTaskAssignmentsCount(kaleoTaskId);
 	}
 
 	public static int getKaleoTaskAssignmentsCount(long kaleoTaskId,
-		java.lang.String assigneeClassName)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		java.lang.String assigneeClassName) {
 		return getService()
 				   .getKaleoTaskAssignmentsCount(kaleoTaskId, assigneeClassName);
 	}

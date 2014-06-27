@@ -283,24 +283,21 @@ public class KaleoTimerLocalServiceWrapper implements KaleoTimerLocalService,
 		long kaleoDefinitionId,
 		com.liferay.portal.workflow.kaleo.definition.Timer timer,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _kaleoTimerLocalService.addKaleoTimer(kaleoClassName,
 			kaleoClassPK, kaleoDefinitionId, timer, serviceContext);
 	}
 
 	@Override
 	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTimer> getKaleoTimers(
-		java.lang.String kaleoClassName, long kaleoClassPK)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		java.lang.String kaleoClassName, long kaleoClassPK) {
 		return _kaleoTimerLocalService.getKaleoTimers(kaleoClassName,
 			kaleoClassPK);
 	}
 
 	@Override
 	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTimer> getKaleoTimers(
-		java.lang.String kaleoClassName, long kaleoClassPK, boolean blocking)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		java.lang.String kaleoClassName, long kaleoClassPK, boolean blocking) {
 		return _kaleoTimerLocalService.getKaleoTimers(kaleoClassName,
 			kaleoClassPK, blocking);
 	}

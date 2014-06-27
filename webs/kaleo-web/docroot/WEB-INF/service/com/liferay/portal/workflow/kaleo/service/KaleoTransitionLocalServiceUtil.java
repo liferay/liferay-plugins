@@ -269,52 +269,44 @@ public class KaleoTransitionLocalServiceUtil {
 		com.liferay.portal.workflow.kaleo.model.KaleoNode sourceKaleoNode,
 		com.liferay.portal.workflow.kaleo.model.KaleoNode targetKaleoNode,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService()
 				   .addKaleoTransition(kaleoDefinitionId, kaleoNodeId,
 			transition, sourceKaleoNode, targetKaleoNode, serviceContext);
 	}
 
-	public static void deleteCompanyKaleoTransitions(long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static void deleteCompanyKaleoTransitions(long companyId) {
 		getService().deleteCompanyKaleoTransitions(companyId);
 	}
 
 	public static void deleteKaleoDefinitionKaleoTransitions(
-		long kaleoDefinitionId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long kaleoDefinitionId) {
 		getService().deleteKaleoDefinitionKaleoTransitions(kaleoDefinitionId);
 	}
 
 	public static com.liferay.portal.workflow.kaleo.model.KaleoTransition getDefaultKaleoTransition(
 		long kaleoNodeId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().getDefaultKaleoTransition(kaleoNodeId);
 	}
 
 	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTransition> getKaleoDefinitionKaleoTransitions(
-		long kaleoDefinitionId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long kaleoDefinitionId) {
 		return getService().getKaleoDefinitionKaleoTransitions(kaleoDefinitionId);
 	}
 
 	public static com.liferay.portal.workflow.kaleo.model.KaleoTransition getKaleoTransition(
 		long kaleoNodeId, java.lang.String name)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().getKaleoTransition(kaleoNodeId, name);
 	}
 
 	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTransition> getKaleoTransitions(
-		long kaleoNodeId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long kaleoNodeId) {
 		return getService().getKaleoTransitions(kaleoNodeId);
 	}
 
-	public static int getKaleoTransitionsCount(long kaleoNodeId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static int getKaleoTransitionsCount(long kaleoNodeId) {
 		return getService().getKaleoTransitionsCount(kaleoNodeId);
 	}
 

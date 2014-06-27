@@ -537,16 +537,16 @@ public class KaleoNodeClp extends BaseModelImpl<KaleoNode> implements KaleoNode 
 	}
 
 	@Override
-	public com.liferay.portal.workflow.kaleo.model.KaleoTransition getKaleoTransition(
-		java.lang.String name) {
+	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTransition> getKaleoTransitions() {
 		try {
-			String methodName = "getKaleoTransition";
+			String methodName = "getKaleoTransitions";
 
-			Class<?>[] parameterTypes = new Class<?>[] { java.lang.String.class };
+			Class<?>[] parameterTypes = new Class<?>[] {  };
 
-			Object[] parameterValues = new Object[] { name };
+			Object[] parameterValues = new Object[] {  };
 
-			com.liferay.portal.workflow.kaleo.model.KaleoTransition returnObj = (com.liferay.portal.workflow.kaleo.model.KaleoTransition)invokeOnRemoteModel(methodName,
+			java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTransition> returnObj =
+				(java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTransition>)invokeOnRemoteModel(methodName,
 					parameterTypes, parameterValues);
 
 			return returnObj;
@@ -595,16 +595,16 @@ public class KaleoNodeClp extends BaseModelImpl<KaleoNode> implements KaleoNode 
 	}
 
 	@Override
-	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTransition> getKaleoTransitions() {
+	public com.liferay.portal.workflow.kaleo.model.KaleoTransition getKaleoTransition(
+		java.lang.String name) {
 		try {
-			String methodName = "getKaleoTransitions";
+			String methodName = "getKaleoTransition";
 
-			Class<?>[] parameterTypes = new Class<?>[] {  };
+			Class<?>[] parameterTypes = new Class<?>[] { java.lang.String.class };
 
-			Object[] parameterValues = new Object[] {  };
+			Object[] parameterValues = new Object[] { name };
 
-			java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTransition> returnObj =
-				(java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTransition>)invokeOnRemoteModel(methodName,
+			com.liferay.portal.workflow.kaleo.model.KaleoTransition returnObj = (com.liferay.portal.workflow.kaleo.model.KaleoTransition)invokeOnRemoteModel(methodName,
 					parameterTypes, parameterValues);
 
 			return returnObj;

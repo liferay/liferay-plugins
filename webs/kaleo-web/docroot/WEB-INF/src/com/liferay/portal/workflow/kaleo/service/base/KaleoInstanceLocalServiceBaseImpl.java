@@ -114,12 +114,11 @@ public abstract class KaleoInstanceLocalServiceBaseImpl
 	 * @param kaleoInstanceId the primary key of the kaleo instance
 	 * @return the kaleo instance that was removed
 	 * @throws PortalException if a kaleo instance with the primary key could not be found
-	 * @throws SystemException
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
 	public KaleoInstance deleteKaleoInstance(long kaleoInstanceId)
-		throws PortalException, SystemException {
+		throws PortalException {
 		return kaleoInstancePersistence.remove(kaleoInstanceId);
 	}
 

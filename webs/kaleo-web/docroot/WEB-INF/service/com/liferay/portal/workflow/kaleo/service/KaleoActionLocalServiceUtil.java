@@ -268,33 +268,28 @@ public class KaleoActionLocalServiceUtil {
 		long kaleoDefinitionId, java.lang.String kaleoNodeName,
 		com.liferay.portal.workflow.kaleo.definition.Action action,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService()
 				   .addKaleoAction(kaleoClassName, kaleoClassPK,
 			kaleoDefinitionId, kaleoNodeName, action, serviceContext);
 	}
 
-	public static void deleteCompanyKaleoActions(long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static void deleteCompanyKaleoActions(long companyId) {
 		getService().deleteCompanyKaleoActions(companyId);
 	}
 
-	public static void deleteKaleoDefinitionKaleoActions(long kaleoDefinitionId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static void deleteKaleoDefinitionKaleoActions(long kaleoDefinitionId) {
 		getService().deleteKaleoDefinitionKaleoActions(kaleoDefinitionId);
 	}
 
 	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoAction> getKaleoActions(
-		java.lang.String kaleoClassName, long kaleoClassPK)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		java.lang.String kaleoClassName, long kaleoClassPK) {
 		return getService().getKaleoActions(kaleoClassName, kaleoClassPK);
 	}
 
 	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoAction> getKaleoActions(
 		java.lang.String kaleoClassName, long kaleoClassPK,
-		java.lang.String executionType)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		java.lang.String executionType) {
 		return getService()
 				   .getKaleoActions(kaleoClassName, kaleoClassPK, executionType);
 	}

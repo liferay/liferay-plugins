@@ -437,16 +437,15 @@ public class KaleoTaskClp extends BaseModelImpl<KaleoTask> implements KaleoTask 
 	}
 
 	@Override
-	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment> getKaleoTaskAssignments() {
+	public com.liferay.portal.workflow.kaleo.model.KaleoNode getKaleoNode() {
 		try {
-			String methodName = "getKaleoTaskAssignments";
+			String methodName = "getKaleoNode";
 
 			Class<?>[] parameterTypes = new Class<?>[] {  };
 
 			Object[] parameterValues = new Object[] {  };
 
-			java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment> returnObj =
-				(java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment>)invokeOnRemoteModel(methodName,
+			com.liferay.portal.workflow.kaleo.model.KaleoNode returnObj = (com.liferay.portal.workflow.kaleo.model.KaleoNode)invokeOnRemoteModel(methodName,
 					parameterTypes, parameterValues);
 
 			return returnObj;
@@ -457,15 +456,16 @@ public class KaleoTaskClp extends BaseModelImpl<KaleoTask> implements KaleoTask 
 	}
 
 	@Override
-	public com.liferay.portal.workflow.kaleo.model.KaleoNode getKaleoNode() {
+	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment> getKaleoTaskAssignments() {
 		try {
-			String methodName = "getKaleoNode";
+			String methodName = "getKaleoTaskAssignments";
 
 			Class<?>[] parameterTypes = new Class<?>[] {  };
 
 			Object[] parameterValues = new Object[] {  };
 
-			com.liferay.portal.workflow.kaleo.model.KaleoNode returnObj = (com.liferay.portal.workflow.kaleo.model.KaleoNode)invokeOnRemoteModel(methodName,
+			java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment> returnObj =
+				(java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment>)invokeOnRemoteModel(methodName,
 					parameterTypes, parameterValues);
 
 			return returnObj;

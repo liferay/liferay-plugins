@@ -748,21 +748,18 @@ public class KaleoTaskInstanceTokenWrapper implements KaleoTaskInstanceToken,
 
 	@Override
 	public com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken getKaleoInstanceToken()
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _kaleoTaskInstanceToken.getKaleoInstanceToken();
 	}
 
 	@Override
 	public com.liferay.portal.workflow.kaleo.model.KaleoTask getKaleoTask()
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _kaleoTaskInstanceToken.getKaleoTask();
 	}
 
 	@Override
-	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignmentInstance> getKaleoTaskAssignmentInstances()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignmentInstance> getKaleoTaskAssignmentInstances() {
 		return _kaleoTaskInstanceToken.getKaleoTaskAssignmentInstances();
 	}
 

@@ -60,15 +60,13 @@ public class KaleoDefinitionServiceWrapper implements KaleoDefinitionService,
 
 	@Override
 	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoDefinition> getKaleoDefinitions(
-		int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		int start, int end) {
 		return _kaleoDefinitionService.getKaleoDefinitions(start, end);
 	}
 
 	@Override
 	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoDefinition> getKaleoDefinitions(
-		long companyId, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long companyId, int start, int end) {
 		return _kaleoDefinitionService.getKaleoDefinitions(companyId, start, end);
 	}
 

@@ -622,6 +622,45 @@ public class KaleoInstanceTokenClp extends BaseModelImpl<KaleoInstanceToken>
 	}
 
 	@Override
+	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken> getIncompleteChildrenKaleoInstanceTokens() {
+		try {
+			String methodName = "getIncompleteChildrenKaleoInstanceTokens";
+
+			Class<?>[] parameterTypes = new Class<?>[] {  };
+
+			Object[] parameterValues = new Object[] {  };
+
+			java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken> returnObj =
+				(java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken>)invokeOnRemoteModel(methodName,
+					parameterTypes, parameterValues);
+
+			return returnObj;
+		}
+		catch (Exception e) {
+			throw new UnsupportedOperationException(e);
+		}
+	}
+
+	@Override
+	public com.liferay.portal.workflow.kaleo.model.KaleoNode getCurrentKaleoNode() {
+		try {
+			String methodName = "getCurrentKaleoNode";
+
+			Class<?>[] parameterTypes = new Class<?>[] {  };
+
+			Object[] parameterValues = new Object[] {  };
+
+			com.liferay.portal.workflow.kaleo.model.KaleoNode returnObj = (com.liferay.portal.workflow.kaleo.model.KaleoNode)invokeOnRemoteModel(methodName,
+					parameterTypes, parameterValues);
+
+			return returnObj;
+		}
+		catch (Exception e) {
+			throw new UnsupportedOperationException(e);
+		}
+	}
+
+	@Override
 	public com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken getParentKaleoInstanceToken() {
 		try {
 			String methodName = "getParentKaleoInstanceToken";
@@ -661,26 +700,6 @@ public class KaleoInstanceTokenClp extends BaseModelImpl<KaleoInstanceToken>
 	}
 
 	@Override
-	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken> getChildrenKaleoInstanceTokens() {
-		try {
-			String methodName = "getChildrenKaleoInstanceTokens";
-
-			Class<?>[] parameterTypes = new Class<?>[] {  };
-
-			Object[] parameterValues = new Object[] {  };
-
-			java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken> returnObj =
-				(java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken>)invokeOnRemoteModel(methodName,
-					parameterTypes, parameterValues);
-
-			return returnObj;
-		}
-		catch (Exception e) {
-			throw new UnsupportedOperationException(e);
-		}
-	}
-
-	@Override
 	public com.liferay.portal.workflow.kaleo.model.KaleoInstance getKaleoInstance() {
 		try {
 			String methodName = "getKaleoInstance";
@@ -700,9 +719,9 @@ public class KaleoInstanceTokenClp extends BaseModelImpl<KaleoInstanceToken>
 	}
 
 	@Override
-	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken> getIncompleteChildrenKaleoInstanceTokens() {
+	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken> getChildrenKaleoInstanceTokens() {
 		try {
-			String methodName = "getIncompleteChildrenKaleoInstanceTokens";
+			String methodName = "getChildrenKaleoInstanceTokens";
 
 			Class<?>[] parameterTypes = new Class<?>[] {  };
 
@@ -710,25 +729,6 @@ public class KaleoInstanceTokenClp extends BaseModelImpl<KaleoInstanceToken>
 
 			java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken> returnObj =
 				(java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken>)invokeOnRemoteModel(methodName,
-					parameterTypes, parameterValues);
-
-			return returnObj;
-		}
-		catch (Exception e) {
-			throw new UnsupportedOperationException(e);
-		}
-	}
-
-	@Override
-	public com.liferay.portal.workflow.kaleo.model.KaleoNode getCurrentKaleoNode() {
-		try {
-			String methodName = "getCurrentKaleoNode";
-
-			Class<?>[] parameterTypes = new Class<?>[] {  };
-
-			Object[] parameterValues = new Object[] {  };
-
-			com.liferay.portal.workflow.kaleo.model.KaleoNode returnObj = (com.liferay.portal.workflow.kaleo.model.KaleoNode)invokeOnRemoteModel(methodName,
 					parameterTypes, parameterValues);
 
 			return returnObj;

@@ -734,14 +734,12 @@ public class KaleoDefinitionWrapper implements KaleoDefinition,
 
 	@Override
 	public com.liferay.portal.workflow.kaleo.model.KaleoNode getKaleoStartNode()
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _kaleoDefinition.getKaleoStartNode();
 	}
 
 	@Override
-	public boolean hasIncompleteKaleoInstances()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public boolean hasIncompleteKaleoInstances() {
 		return _kaleoDefinition.hasIncompleteKaleoInstances();
 	}
 

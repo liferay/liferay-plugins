@@ -647,15 +647,13 @@ public class KaleoTransitionWrapper implements KaleoTransition,
 
 	@Override
 	public com.liferay.portal.workflow.kaleo.model.KaleoNode getSourceKaleoNode()
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _kaleoTransition.getSourceKaleoNode();
 	}
 
 	@Override
 	public com.liferay.portal.workflow.kaleo.model.KaleoNode getTargetKaleoNode()
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _kaleoTransition.getTargetKaleoNode();
 	}
 

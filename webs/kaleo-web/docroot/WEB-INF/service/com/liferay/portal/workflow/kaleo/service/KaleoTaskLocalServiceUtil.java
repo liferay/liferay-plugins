@@ -267,27 +267,23 @@ public class KaleoTaskLocalServiceUtil {
 		long kaleoDefinitionId, long kaleoNodeId,
 		com.liferay.portal.workflow.kaleo.definition.Task task,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService()
 				   .addKaleoTask(kaleoDefinitionId, kaleoNodeId, task,
 			serviceContext);
 	}
 
-	public static void deleteCompanyKaleoTasks(long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static void deleteCompanyKaleoTasks(long companyId) {
 		getService().deleteCompanyKaleoTasks(companyId);
 	}
 
-	public static void deleteKaleoDefinitionKaleoTasks(long kaleoDefinitionId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static void deleteKaleoDefinitionKaleoTasks(long kaleoDefinitionId) {
 		getService().deleteKaleoDefinitionKaleoTasks(kaleoDefinitionId);
 	}
 
 	public static com.liferay.portal.workflow.kaleo.model.KaleoTask getKaleoNodeKaleoTask(
 		long kaleoNodeId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().getKaleoNodeKaleoTask(kaleoNodeId);
 	}
 

@@ -267,24 +267,20 @@ public class KaleoNodeLocalServiceUtil {
 		long kaleoDefinitionId,
 		com.liferay.portal.workflow.kaleo.definition.Node node,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().addKaleoNode(kaleoDefinitionId, node, serviceContext);
 	}
 
-	public static void deleteCompanyKaleoNodes(long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static void deleteCompanyKaleoNodes(long companyId) {
 		getService().deleteCompanyKaleoNodes(companyId);
 	}
 
-	public static void deleteKaleoDefinitionKaleoNodes(long kaleoDefinitionId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static void deleteKaleoDefinitionKaleoNodes(long kaleoDefinitionId) {
 		getService().deleteKaleoDefinitionKaleoNodes(kaleoDefinitionId);
 	}
 
 	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoNode> getKaleoDefinitionKaleoNodes(
-		long kaleoDefinitionId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long kaleoDefinitionId) {
 		return getService().getKaleoDefinitionKaleoNodes(kaleoDefinitionId);
 	}
 

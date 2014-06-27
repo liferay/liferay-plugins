@@ -600,28 +600,24 @@ public class KaleoNodeWrapper implements KaleoNode, ModelWrapper<KaleoNode> {
 
 	@Override
 	public com.liferay.portal.workflow.kaleo.model.KaleoTransition getDefaultKaleoTransition()
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _kaleoNode.getDefaultKaleoTransition();
 	}
 
 	@Override
 	public com.liferay.portal.workflow.kaleo.model.KaleoTransition getKaleoTransition(
 		java.lang.String name)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _kaleoNode.getKaleoTransition(name);
 	}
 
 	@Override
-	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTransition> getKaleoTransitions()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTransition> getKaleoTransitions() {
 		return _kaleoNode.getKaleoTransitions();
 	}
 
 	@Override
-	public boolean hasKaleoTransition()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public boolean hasKaleoTransition() {
 		return _kaleoNode.hasKaleoTransition();
 	}
 
