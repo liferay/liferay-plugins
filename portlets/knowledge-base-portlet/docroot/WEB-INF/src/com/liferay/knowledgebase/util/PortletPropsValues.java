@@ -67,4 +67,8 @@ public class PortletPropsValues {
 		PortletProps.get(
 			PortletPropsKeys.KNOWLEDGE_BASE_SOCIAL_BOOKMARKS_DISPLAY_STYLE);
 
+	public static final String[] MARKDOWN_IMPORTER_IMAGE_FILE_EXTENSIONS =
+		PortletProps.getArray(
+			PortletPropsKeys.MARKDOWN_IMPORTER_IMAGE_FILE_EXTENSIONS);
+
 }

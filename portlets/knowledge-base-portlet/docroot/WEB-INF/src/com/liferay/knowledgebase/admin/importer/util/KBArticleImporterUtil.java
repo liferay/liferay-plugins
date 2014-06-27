@@ -15,6 +15,7 @@
 package com.liferay.knowledgebase.admin.importer.util;
 
 import com.liferay.knowledgebase.KBArticleImportException;
+import com.liferay.knowledgebase.util.PortletPropsValues;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.repository.model.FileEntry;
@@ -22,12 +23,10 @@ import com.liferay.portal.kernel.repository.model.Folder;
 import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
-import com.liferay.portal.kernel.util.SystemProperties;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.zip.ZipReader;
 import com.liferay.portal.service.ServiceContext;
 
-import java.io.File;
 import java.io.IOException;
 
 import java.util.Map;
@@ -106,32 +105,17 @@ public class KBArticleImporterUtil {
 			ServiceContext serviceContext)
 		throws IOException, KBArticleImportException {
 
-		if (fileName.contains(StringPool.PERIOD)) {
-			fileName = fileName.substring(
-				0, fileName.lastIndexOf(StringPool.PERIOD));
-		}
+		String folderName = FileUtil.stripExtension(fileName);
 
-		File tempDir = new File(_TMP_DIR);
-
-		tempDir.mkdir();
-
-		String dirPath = _TMP_DIR + StringPool.SLASH + fileName;
-
-		File fileTempDir = new File(dirPath);
-		File fileImagesTempDir = new File(dirPath + StringPool.SLASH + _IMAGES);
-
-		fileTempDir.mkdir();
-		fileImagesTempDir.mkdir();
-
-		String namespaceFolderName = StringUtil.toLowerCase(fileName);
+		folderName = StringUtil.toLowerCase(folderName);
 
 		Folder imagesFolder = null;
 
 		try {
-			KBArticleDLUtil.deleteFolder(namespaceFolderName, serviceContext);
+			KBArticleDLUtil.deleteFolder(folderName, serviceContext);
 
 			imagesFolder = KBArticleDLUtil.addFolder(
-				namespaceFolderName, serviceContext);
+				folderName, serviceContext);
 		}
 		catch (Exception e) {
 			throw new KBArticleImportException(e);
@@ -144,12 +128,10 @@ public class KBArticleImporterUtil {
 
 			String zipEntryLower = StringUtil.toLowerCase(zipEntry);
 
-			if (!zipEntryLower.endsWith(".bmp") &&
-				!zipEntryLower.endsWith(".gif") &&
-				!zipEntryLower.endsWith(".jpeg") &&
-				!zipEntryLower.endsWith(".jpg") &&
-				!zipEntryLower.endsWith(".png")) {
-
+			try {
+				validateImageFileExtension(zipEntryLower);
+			}
+			catch (KBArticleImportException kbaie) {
 				if (_log.isWarnEnabled()) {
 					_log.warn(
 						"Unsupported image file suffix used in ZIP file: " +
@@ -159,23 +141,18 @@ public class KBArticleImporterUtil {
 				continue;
 			}
 
-			File picturesFile = new File(dirPath + StringPool.SLASH + zipEntry);
-
-			if (picturesFile.isDirectory()) {
-				continue;
-			}
-
 			try {
-				FileUtil.write(
-					picturesFile, zipReader.getEntryAsInputStream(zipEntry));
+				int pos = zipEntry.lastIndexOf(StringPool.SLASH);
 
 				KBArticleDLUtil.addFile(
-					imagesFolder, picturesFile, fileEntriesMap, serviceContext);
+					imagesFolder, zipEntry.substring(pos + 1),
+					zipReader.getEntryAsInputStream(zipEntry), fileEntriesMap,
+					serviceContext);
 			}
 			catch (Exception e) {
-				StringBuffer sb = new StringBuffer(
-					"Unable to import image file: ");
+				StringBuilder sb = new StringBuilder(4);
 
+				sb.append("Unable to import image file: ");
 				sb.append(zipEntry);
 				sb.append(". ");
 				sb.append(e.getLocalizedMessage());
@@ -183,17 +160,31 @@ public class KBArticleImporterUtil {
 				throw new KBArticleImportException(sb.toString());
 			}
 		}
+	}
 
-		fileImagesTempDir.delete();
-		fileTempDir.delete();
+	public static void validateImageFileExtension(String fileName)
+		throws KBArticleImportException {
 
-		tempDir.delete();
+		boolean validImageFileExtension = false;
+
+		for (String fileExtension :
+				PortletPropsValues.MARKDOWN_IMPORTER_IMAGE_FILE_EXTENSIONS) {
+
+			if (StringPool.STAR.equals(fileExtension) ||
+				StringUtil.endsWith(fileName, fileExtension)) {
+
+				validImageFileExtension = true;
+
+				break;
+			}
+		}
+
+		if (!validImageFileExtension) {
+			throw new KBArticleImportException(fileName);
+		}
 	}
 
 	private static final String _IMAGES = "images";
-
-	private static final String _TMP_DIR =
-		SystemProperties.get(SystemProperties.TMP_DIR) + "/kb";
 
 	private static Log _log = LogFactoryUtil.getLog(
 		KBArticleImporterUtil.class);

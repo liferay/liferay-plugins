@@ -17,17 +17,14 @@ package com.liferay.knowledgebase.admin.importer.util;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.repository.model.Folder;
+import com.liferay.portal.kernel.util.MimeTypesUtil;
 import com.liferay.portal.kernel.util.StringPool;
-import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.service.ServiceContext;
-import com.liferay.portlet.documentlibrary.DuplicateFolderNameException;
 import com.liferay.portlet.documentlibrary.NoSuchFolderException;
 import com.liferay.portlet.documentlibrary.model.DLFolderConstants;
 import com.liferay.portlet.documentlibrary.service.DLAppServiceUtil;
 
-import java.io.File;
-
-import java.rmi.RemoteException;
+import java.io.InputStream;
 
 import java.util.Map;
 
@@ -37,22 +34,19 @@ import java.util.Map;
 public class KBArticleDLUtil {
 
 	public static FileEntry addFile(
-			Folder folder, File file, Map<String, FileEntry> fileEntriesMap,
+			Folder folder, String fileName, InputStream inputStream,
+			Map<String, FileEntry> fileEntriesMap,
 			ServiceContext serviceContext)
 		throws PortalException {
 
-		String name = file.getName();
-		String fileName = file.getName();
-
-		if (Validator.isNull(name)) {
-			name = fileName;
-		}
+		String mimeType = MimeTypesUtil.getContentType(fileName);
 
 		FileEntry fileEntry = DLAppServiceUtil.addFileEntry(
-			folder.getRepositoryId(), folder.getFolderId(), name, fileName,
-			name, StringPool.BLANK, StringPool.BLANK, file, serviceContext);
+			folder.getRepositoryId(), folder.getFolderId(), fileName, mimeType,
+			fileName, StringPool.BLANK, StringPool.BLANK, inputStream, 0,
+			serviceContext);
 
-		fileEntriesMap.put(name, fileEntry);
+		fileEntriesMap.put(fileName, fileEntry);
 
 		return fileEntry;
 	}
@@ -60,23 +54,14 @@ public class KBArticleDLUtil {
 	public static Folder addFolder(String name, ServiceContext serviceContext)
 		throws PortalException {
 
-		Folder folder = null;
-
-		try {
-			folder = DLAppServiceUtil.addFolder(
-				serviceContext.getScopeGroupId(),
-				DLFolderConstants.DEFAULT_PARENT_FOLDER_ID, name,
-				StringPool.BLANK, serviceContext);
-		}
-		catch (DuplicateFolderNameException dfne) {
-			throw new DuplicateFolderNameException();
-		}
-
-		return folder;
+		return DLAppServiceUtil.addFolder(
+			serviceContext.getScopeGroupId(),
+			DLFolderConstants.DEFAULT_PARENT_FOLDER_ID, name, StringPool.BLANK,
+			serviceContext);
 	}
 
 	public static void deleteFolder(String name, ServiceContext serviceContext)
-		throws PortalException, RemoteException {
+		throws PortalException {
 
 		try {
 			Folder imageFolder = DLAppServiceUtil.getFolder(
