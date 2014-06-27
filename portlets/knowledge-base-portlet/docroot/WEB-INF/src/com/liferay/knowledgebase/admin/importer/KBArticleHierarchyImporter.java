@@ -60,14 +60,16 @@ public class KBArticleHierarchyImporter {
 	 * Processes the ZIP file's content and pictures, importing them as kb
 	 * articles and document library files respectively.
 	 *
+	 * @param userId
+	 * @param groupId
 	 * @param fileName
 	 * @param inputStream a inputStream containing a folder of image files to
- *        add to the document library and folders of Markdown files to be
- *        processed into a hierarchy of kb articles
+*        add to the document library and folders of Markdown files to be
+*        processed into a hierarchy of kb articles
 	 * @param serviceContext
 	 */
 	public void processZipFile(
-			String fileName, InputStream inputStream,
+			long userId, long groupId, String fileName, InputStream inputStream,
 			Map<String, FileEntry> fileEntriesMap,
 			ServiceContext serviceContext)
 		throws IOException, KBArticleImportException {
@@ -79,21 +81,23 @@ public class KBArticleHierarchyImporter {
 		ZipReader zipReader = ZipReaderFactoryUtil.getZipReader(inputStream);
 
 		KBArticleImporterUtil.processImageFiles(
-			fileName, zipReader, fileEntriesMap, serviceContext);
+			groupId, fileName, zipReader, fileEntriesMap, serviceContext);
 
-		processArticleFiles(zipReader, fileEntriesMap, serviceContext);
+		processArticleFiles(
+			userId, groupId, zipReader, fileEntriesMap, serviceContext);
 	}
 
 	protected KBArticle applyContentToKBArticle(
-			long parentResourcePimaryKey, String title, String urlTitle,
-			String html, ServiceContext serviceContext)
+			long userId, long groupId, long parentResourcePrimaryKey,
+			String title, String urlTitle, String html,
+			ServiceContext serviceContext)
 		throws PortalException {
 
 		KBArticle article = null;
 
 		try {
 			article = KBArticleLocalServiceUtil.getKBArticleByUrlTitle(
-				serviceContext.getScopeGroupId(), urlTitle);
+				groupId, urlTitle);
 		}
 		catch (PortalException pe) {
 			if (_log.isDebugEnabled()) {
@@ -107,22 +111,22 @@ public class KBArticleHierarchyImporter {
 
 		if (Validator.isNotNull(article)) {
 			article = KBArticleLocalServiceUtil.updateKBArticle(
-				serviceContext.getUserId(), article.getResourcePrimKey(), title,
-				html, article.getDescription(), sections, attachmentDirName,
+				userId, article.getResourcePrimKey(), title, html,
+				article.getDescription(), sections, attachmentDirName,
 				serviceContext);
 		}
 		else {
 			article = KBArticleLocalServiceUtil.addKBArticle(
-				serviceContext.getUserId(), parentResourcePimaryKey, title,
-				urlTitle, html, description, sections, attachmentDirName,
-				serviceContext);
+				userId, parentResourcePrimaryKey, title, urlTitle, html,
+				description, sections, attachmentDirName, serviceContext);
 		}
 
 		return article;
 	}
 
 	protected KBArticle createKBArticleFromMarkdown(
-			long parentResourcePrimaryKey, String markdown, String fileEntry,
+			long userId, long groupId, long parentResourcePrimaryKey,
+			String markdown, String fileEntry,
 			Map<String, FileEntry> fileEntriesMap,
 			ServiceContext serviceContext)
 		throws KBArticleImportException {
@@ -174,7 +178,7 @@ public class KBArticleHierarchyImporter {
 		KBArticle article;
 		try {
 			article = applyContentToKBArticle(
-				parentResourcePrimaryKey, title, urlTitle, html,
+				userId, groupId, parentResourcePrimaryKey, title, urlTitle, html,
 				serviceContext);
 		}
 		catch (Exception e) {
@@ -256,7 +260,8 @@ public class KBArticleHierarchyImporter {
 	}
 
 	protected void processArticleFiles(
-			ZipReader zipReader, Map<String, FileEntry> fileEntriesMap,
+			long userId, long groupId, ZipReader zipReader,
+			Map<String, FileEntry> fileEntriesMap,
 			ServiceContext serviceContext)
 		throws IOException, KBArticleImportException {
 
@@ -298,6 +303,7 @@ public class KBArticleHierarchyImporter {
 		}
 
 		KBArticle rootHomeKBArticle = createKBArticleFromMarkdown(
+			userId, groupId,
 			KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY,
 			rootHomeMarkdown, _HOME_MARKDOWN, fileEntriesMap, serviceContext);
 
@@ -336,8 +342,9 @@ public class KBArticleHierarchyImporter {
 				chapterHomeFileEntry);
 
 			KBArticle chapterIntroKBArticle = createKBArticleFromMarkdown(
-				rootHomeKBArticle.getResourcePrimKey(), chapterIntroMarkdown,
-				chapterHomeFileEntry, fileEntriesMap, serviceContext);
+				userId, groupId, rootHomeKBArticle.getResourcePrimKey(),
+				chapterIntroMarkdown, chapterHomeFileEntry, fileEntriesMap,
+				serviceContext);
 
 			for (String tutorialFileEntry : chapterMarkdownFileEntries) {
 				String tutorialMarkdown = zipReader.getEntryAsString(
@@ -345,6 +352,7 @@ public class KBArticleHierarchyImporter {
 
 				if (Validator.isNotNull(tutorialMarkdown)) {
 					createKBArticleFromMarkdown(
+						userId, groupId,
 						chapterIntroKBArticle.getResourcePrimKey(),
 						tutorialMarkdown, tutorialFileEntry, fileEntriesMap,
 						serviceContext);
