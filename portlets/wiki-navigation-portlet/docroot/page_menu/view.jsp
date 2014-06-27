@@ -59,8 +59,9 @@ PortletURL portletURL = renderResponse.createRenderURL();
 			</liferay-portlet:renderURL>
 
 			<liferay-ui:icon
-				image="edit"
+				iconCssClass="icon-edit"
 				label="<%= true %>"
+				message="edit"
 				url="<%= editURL %>"
 			/>
 		</c:if>
