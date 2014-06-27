@@ -27,7 +27,7 @@ String backURL = PortalUtil.getCurrentURL(request);
 			constrain: true,
 			items: [
 				{
-					caption: '<liferay-ui:message key="add-calendar" />',
+					caption: '<i class="icon-plus"></i><liferay-ui:message key="add-calendar" />',
 					fn: function(event) {
 						var instance = this;
 
@@ -77,7 +77,7 @@ String backURL = PortalUtil.getCurrentURL(request);
 					id: 'add'
 				},
 				{
-					caption: '<liferay-ui:message key="manage-calendars" />',
+					caption: '<i class="icon-calendar"></i> <liferay-ui:message key="manage-calendars" />',
 					fn: function(event) {
 						var instance = this;
 
@@ -110,7 +110,7 @@ String backURL = PortalUtil.getCurrentURL(request);
 	window.<portlet:namespace />calendarsMenu = {
 		items: [
 			{
-				caption: '<liferay-ui:message key="add-calendar-booking" />',
+				caption: '<i class="icon-plus"></i> <liferay-ui:message key="add-calendar-booking" />',
 				fn: function(event) {
 					var instance = this;
 
@@ -149,7 +149,7 @@ String backURL = PortalUtil.getCurrentURL(request);
 				id: 'addEvent'
 			},
 			{
-				caption: '<liferay-ui:message key="hide-calendar" />',
+				caption: '<i class="icon-remove"></i> <liferay-ui:message key="hide-calendar" />',
 				fn: function(event) {
 					var instance = this;
 
@@ -164,7 +164,7 @@ String backURL = PortalUtil.getCurrentURL(request);
 				id: 'hide'
 			},
 			{
-				caption: '<liferay-ui:message key="calendar-settings" />',
+				caption: '<i class="icon-edit"></i> <liferay-ui:message key="calendar-settings" />',
 				fn: function(event) {
 					var instance = this;
 
@@ -213,7 +213,7 @@ String backURL = PortalUtil.getCurrentURL(request);
 				id: 'settings'
 			},
 			{
-				caption: '<liferay-ui:message key="permissions" />',
+				caption: '<i class="icon-lock"></i> <liferay-ui:message key="permissions" />',
 				fn: function(event) {
 					var instance = this;
 
@@ -258,7 +258,7 @@ String backURL = PortalUtil.getCurrentURL(request);
 				id: 'permissions'
 			},
 			{
-				caption: '<liferay-ui:message key="delete" />',
+				caption: '<i class="icon-remove"></i> <liferay-ui:message key="delete" />',
 				fn: function(event) {
 					var instance = this;
 
