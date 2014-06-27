@@ -17,6 +17,7 @@ package com.liferay.compat.hook.service.impl;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.lar.ExportImportThreadLocal;
+import com.liferay.portal.kernel.transaction.TransactionCommitCallbackRegistryUtil;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.Layout;
 import com.liferay.portal.model.User;
@@ -33,6 +34,7 @@ import com.liferay.portlet.social.service.SocialActivityLocalServiceWrapper;
 import com.liferay.portlet.social.service.persistence.SocialActivityUtil;
 
 import java.util.Date;
+import java.util.concurrent.Callable;
 
 /**
  * @author Matthew Kong
@@ -70,7 +72,7 @@ public class CompatSocialActivityLocalServiceImpl
 			}
 		}
 
-		SocialActivity activity = SocialActivityUtil.create(0);
+		final SocialActivity activity = SocialActivityUtil.create(0);
 
 		activity.setGroupId(groupId);
 		activity.setCompanyId(user.getCompanyId());
@@ -104,7 +106,21 @@ public class CompatSocialActivityLocalServiceImpl
 			mirrorActivity.setAssetEntry(assetEntry);
 		}
 
-		SocialActivityLocalServiceUtil.addActivity(activity, mirrorActivity);
+		final SocialActivity finalMirrorActivity = mirrorActivity;
+
+		Callable<Void> callable = new Callable<Void>() {
+
+			@Override
+			public Void call() throws Exception {
+				SocialActivityLocalServiceUtil.addActivity(
+					activity, finalMirrorActivity);
+
+				return null;
+			}
+
+		};
+
+		TransactionCommitCallbackRegistryUtil.registerCallback(callable);
 	}
 
 	@Override
