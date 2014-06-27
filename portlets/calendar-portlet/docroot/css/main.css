@@ -341,10 +341,6 @@
 	}
 }
 
-.calendar-subscribe-link {
-	background: url(@theme_image_path@/common/rss.png) 8px center no-repeat;
-}
-
 .dialog-iframe-popup .calendar-portlet .fieldset {
 	margin-bottom: 2em;
 }
@@ -437,6 +433,12 @@
 		border-width: 1px 0;
 		padding-bottom: 5px;
 		padding-top: 5px;
+	}
+
+	i {
+		float: left;
+		margin-left: -1.4em;
+		padding-top: 7px;
 	}
 }
 

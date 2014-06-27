@@ -289,8 +289,7 @@ String backURL = PortalUtil.getCurrentURL(request);
 
 			<c:if test="<%= enableRSS %>">
 				{
-					caption: '<liferay-ui:message key="rss" />',
-					cssClass: 'calendar-subscribe-link',
+					caption: '<i class="icon-rss"></i> <liferay-ui:message key="rss" />',
 					fn: function(event) {
 						var instance = this;
 
