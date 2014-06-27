@@ -30,7 +30,7 @@
 
 	<p>
 		<liferay-ui:icon
-			image="../common/user_icon"
+			iconCssClass="icon-user"
 			message="owner"
 		/>
 
@@ -48,7 +48,7 @@
 			<br />
 
 			<liferay-ui:icon
-				image="../common/organization_icon"
+				iconCssClass="icon-globe"
 				message="resources"
 			/>
 
@@ -71,7 +71,7 @@
 			<br /><br />
 
 			<liferay-ui:icon
-				image="../common/site_template"
+				iconCssClass="icon-list-alt"
 				message="recurring"
 			/>
 
@@ -81,7 +81,7 @@
 		<br /><br />
 
 		<liferay-ui:icon
-			image="../common/revision"
+			iconCssClass="icon-calendar"
 			message="start-date"
 		/>
 
@@ -94,7 +94,7 @@
 		<br />
 
 		<liferay-ui:icon
-			image="../common/revision"
+			iconCssClass="icon-calendar"
 			message="end-date"
 		/>
 
@@ -108,7 +108,7 @@
 			<br /><br />
 
 			<liferay-ui:icon
-				image="../common/view_locations"
+				iconCssClass="icon-location-arrow"
 				message="location"
 			/>
 

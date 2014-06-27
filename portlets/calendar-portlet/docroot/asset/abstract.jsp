@@ -19,7 +19,7 @@
 <div>
 	<p>
 		<liferay-ui:icon
-			image="../common/user_icon"
+			iconCssClass="icon-user"
 			message=""
 		/>
 
@@ -39,7 +39,7 @@
 			<br />
 
 			<liferay-ui:icon
-				image="../common/organization_icon"
+				iconCssClass="icon-globe"
 				message="resources"
 			/>
 
@@ -62,7 +62,7 @@
 		<br />
 
 		<liferay-ui:icon
-			image="../common/revision"
+			iconCssClass="icon-calendar"
 			message="start-date"
 		/>
 
@@ -75,7 +75,7 @@
 		<br />
 
 		<liferay-ui:icon
-			image="../common/revision"
+			iconCssClass="icon-calendar"
 			message="end-date"
 		/>
 

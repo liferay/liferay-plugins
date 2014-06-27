@@ -22,7 +22,7 @@ ResultRow row = (ResultRow)request.getAttribute(WebKeys.SEARCH_CONTAINER_RESULT_
 User curUser = (User)row.getObject();
 %>
 
-<liferay-ui:icon-menu>
+<liferay-ui:icon-menu icon="<%= StringPool.BLANK %>" message="<%= StringPool.BLANK %>">
 	<portlet:renderURL var="calendarsURL">
 		<portlet:param name="mvcPath" value="/view_calendars.jsp" />
 		<portlet:param name="redirect" value="<%= currentURL %>" />
@@ -31,7 +31,7 @@ User curUser = (User)row.getObject();
 	</portlet:renderURL>
 
 	<liferay-ui:icon
-		image="calendar"
+		iconCssClass="icon-calendar"
 		message="view-calendars"
 		url="<%= calendarsURL %>"
 	/>
