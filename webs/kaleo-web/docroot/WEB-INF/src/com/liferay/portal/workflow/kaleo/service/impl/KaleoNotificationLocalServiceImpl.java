@@ -116,7 +116,8 @@ public class KaleoNotificationLocalServiceImpl
 	}
 
 	@Override
-	public void deleteKaleoDefinitionKaleoNotifications(long kaleoDefinitionId) {
+	public void deleteKaleoDefinitionKaleoNotifications(
+		long kaleoDefinitionId) {
 
 		// Kaleo notifications
 

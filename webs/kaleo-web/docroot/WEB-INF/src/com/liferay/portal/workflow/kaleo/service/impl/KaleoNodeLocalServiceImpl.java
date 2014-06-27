@@ -147,7 +147,9 @@ public class KaleoNodeLocalServiceImpl extends KaleoNodeLocalServiceBaseImpl {
 	}
 
 	@Override
-	public List<KaleoNode> getKaleoDefinitionKaleoNodes(long kaleoDefinitionId) {
+	public List<KaleoNode> getKaleoDefinitionKaleoNodes(
+		long kaleoDefinitionId) {
+
 		return kaleoNodePersistence.findByKaleoDefinitionId(kaleoDefinitionId);
 	}
 

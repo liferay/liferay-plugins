@@ -121,7 +121,9 @@ public class KaleoInstanceTokenLocalServiceImpl
 	}
 
 	@Override
-	public void deleteKaleoDefinitionKaleoInstanceTokens(long kaleoDefinitionId) {
+	public void deleteKaleoDefinitionKaleoInstanceTokens(
+		long kaleoDefinitionId) {
+
 		kaleoInstanceTokenPersistence.removeByKaleoDefinitionId(
 			kaleoDefinitionId);
 	}

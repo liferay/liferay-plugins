@@ -136,7 +136,9 @@ public abstract class BaseNodeBuilder
 		}
 	}
 
-	protected Set<Action> buildActions(String kaleoClassName, long kaleoClassPK) {
+	protected Set<Action> buildActions(
+		String kaleoClassName, long kaleoClassPK) {
+
 		List<KaleoAction> kaleoActions =
 			kaleoActionLocalService.getKaleoActions(
 				kaleoClassName, kaleoClassPK);

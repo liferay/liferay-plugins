@@ -205,7 +205,8 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 	}
 
 	@Override
-	public void deleteKaleoInstanceKaleoTaskInstanceTokens(long kaleoInstanceId) {
+	public void deleteKaleoInstanceKaleoTaskInstanceTokens(
+		long kaleoInstanceId) {
 
 		// Kaleo task instance tokens
 
