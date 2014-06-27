@@ -24,7 +24,7 @@ Subscription subscription = (Subscription)row.getObject();
 AssetRenderer assetRenderer = MySubscriptionsUtil.getAssetRenderer(subscription.getClassName(), subscription.getClassPK());
 %>
 
-<liferay-ui:icon-menu>
+<liferay-ui:icon-menu icon="<%= StringPool.BLANK %>" message="<%= StringPool.BLANK %>">
 
 	<%
 	String viewURL = null;
@@ -39,7 +39,8 @@ AssetRenderer assetRenderer = MySubscriptionsUtil.getAssetRenderer(subscription.
 
 	<c:if test="<%= viewURL != null %>">
 		<liferay-ui:icon
-			image="view"
+			iconCssClass="icon-search"
+			message="view"
 			url="<%= viewURL %>"
 		/>
 	</c:if>
@@ -68,8 +69,8 @@ AssetRenderer assetRenderer = MySubscriptionsUtil.getAssetRenderer(subscription.
 
 	<c:if test="<%= displayPopupHREF != null %>">
 		<liferay-ui:icon
+			iconCssClass="icon-list-alt"
 			message="view-in-popup"
-			src='<%= themeDisplay.getPathThemeImages() + "/portlet/pop_up.png" %>'
 			url="<%= displayPopupHREF %>"
 		/>
 	</c:if>
@@ -80,8 +81,9 @@ AssetRenderer assetRenderer = MySubscriptionsUtil.getAssetRenderer(subscription.
 	</portlet:actionURL>
 
 	<liferay-ui:icon
-		image="unsubscribe"
+		iconCssClass="icon-remove-sign"
 		label="<%= true %>"
+		message="unsubscribe"
 		url="<%= unsubscribeURL %>"
 	/>
 </liferay-ui:icon-menu>
