@@ -18,7 +18,6 @@ import com.liferay.mail.model.Folder;
 import com.liferay.mail.model.Message;
 import com.liferay.mail.service.base.FolderLocalServiceBaseImpl;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.search.Indexer;
 import com.liferay.portal.kernel.search.IndexerRegistryUtil;
 import com.liferay.portal.model.User;
@@ -34,7 +33,7 @@ public class FolderLocalServiceImpl extends FolderLocalServiceBaseImpl {
 	public Folder addFolder(
 			long userId, long accountId, String fullName, String displayName,
 			int remoteMessageCount)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		User user = userPersistence.findByPrimaryKey(userId);
 		Date now = new Date();
@@ -59,8 +58,7 @@ public class FolderLocalServiceImpl extends FolderLocalServiceBaseImpl {
 	}
 
 	@Override
-	public Folder deleteFolder(Folder folder)
-		throws PortalException, SystemException {
+	public Folder deleteFolder(Folder folder) throws PortalException {
 
 		// Folder
 
@@ -80,17 +78,13 @@ public class FolderLocalServiceImpl extends FolderLocalServiceBaseImpl {
 	}
 
 	@Override
-	public Folder deleteFolder(long folderId)
-		throws PortalException, SystemException {
-
+	public Folder deleteFolder(long folderId) throws PortalException {
 		Folder folder = folderPersistence.findByPrimaryKey(folderId);
 
 		return deleteFolder(folder);
 	}
 
-	public void deleteFolders(long accountId)
-		throws PortalException, SystemException {
-
+	public void deleteFolders(long accountId) throws PortalException {
 		List<Folder> folders = folderPersistence.findByAccountId(accountId);
 
 		for (Folder folder : folders) {
@@ -99,26 +93,22 @@ public class FolderLocalServiceImpl extends FolderLocalServiceBaseImpl {
 	}
 
 	public Folder getFolder(long accountId, String fullName)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		return folderPersistence.findByA_F(accountId, fullName);
 	}
 
-	public List<Folder> getFolders(long accountId) throws SystemException {
+	public List<Folder> getFolders(long accountId) {
 		return folderPersistence.findByAccountId(accountId);
 	}
 
-	public int getLocalPageCount(long folderId, int messagesPerPage)
-		throws SystemException {
-
+	public int getLocalPageCount(long folderId, int messagesPerPage) {
 		int localMessageCount = messagePersistence.countByFolderId(folderId);
 
 		return (int)Math.ceil(localMessageCount / (double)messagesPerPage);
 	}
 
-	public int getPercentDownloaded(long folderId)
-		throws PortalException, SystemException {
-
+	public int getPercentDownloaded(long folderId) throws PortalException {
 		Folder folder = folderPersistence.findByPrimaryKey(folderId);
 
 		int remoteMessageCount = folder.getRemoteMessageCount();
@@ -133,7 +123,7 @@ public class FolderLocalServiceImpl extends FolderLocalServiceBaseImpl {
 	}
 
 	public int getRemotePageCount(long folderId, int messagesPerPage)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		Folder folder = folderPersistence.findByPrimaryKey(folderId);
 
@@ -145,7 +135,7 @@ public class FolderLocalServiceImpl extends FolderLocalServiceBaseImpl {
 	public Folder updateFolder(
 			long folderId, String fullName, String displayName,
 			int remoteMessageCount)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		Folder folder = folderPersistence.findByPrimaryKey(folderId);
 

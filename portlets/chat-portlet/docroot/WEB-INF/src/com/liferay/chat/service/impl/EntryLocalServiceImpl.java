@@ -19,7 +19,6 @@ import com.liferay.chat.model.Entry;
 import com.liferay.chat.service.base.EntryLocalServiceBaseImpl;
 import com.liferay.portal.kernel.dao.db.DB;
 import com.liferay.portal.kernel.dao.db.DBFactoryUtil;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 
@@ -32,8 +31,7 @@ public class EntryLocalServiceImpl extends EntryLocalServiceBaseImpl {
 
 	@Override
 	public Entry addEntry(
-			long createDate, long fromUserId, long toUserId, String content)
-		throws SystemException {
+		long createDate, long fromUserId, long toUserId, String content) {
 
 		List<Entry> entries = entryFinder.findByEmptyContent(
 			fromUserId, toUserId, 0, 5);
@@ -80,32 +78,27 @@ public class EntryLocalServiceImpl extends EntryLocalServiceBaseImpl {
 	}
 
 	@Override
-	public Entry addEntry(long fromUserId, long toUserId, String content)
-		throws SystemException {
-
+	public Entry addEntry(long fromUserId, long toUserId, String content) {
 		long createDate = System.currentTimeMillis();
 
 		return addEntry(createDate, fromUserId, toUserId, content);
 	}
 
 	@Override
-	public void deleteEntries(long userId) throws SystemException {
+	public void deleteEntries(long userId) {
 		entryPersistence.removeByFromUserId(userId);
 		entryPersistence.removeByToUserId(userId);
 	}
 
 	@Override
 	public List<Entry> getNewEntries(
-			long userId, long createDate, int start, int end)
-		throws SystemException {
+		long userId, long createDate, int start, int end) {
 
 		return entryFinder.findByNew(userId, createDate, start, end);
 	}
 
 	@Override
-	public List<Entry> getOldEntries(long createDate, int start, int end)
-		throws SystemException {
-
+	public List<Entry> getOldEntries(long createDate, int start, int end) {
 		return entryFinder.findByOld(createDate, start, end);
 	}
 

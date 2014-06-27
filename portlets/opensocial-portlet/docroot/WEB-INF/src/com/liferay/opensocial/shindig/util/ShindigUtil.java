@@ -23,7 +23,6 @@ import com.liferay.opensocial.service.OAuthConsumerLocalServiceUtil;
 import com.liferay.opensocial.util.PortletPropsValues;
 import com.liferay.portal.kernel.concurrent.ConcurrentHashSet;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.repository.model.Folder;
 import com.liferay.portal.kernel.util.ArrayUtil;
@@ -146,7 +145,7 @@ public class ShindigUtil {
 	}
 
 	public static String getFileEntryURL(String portalURL, long fileEntryId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		FileEntry fileEntry = DLAppServiceUtil.getFileEntry(fileEntryId);
 
@@ -311,9 +310,7 @@ public class ShindigUtil {
 		return oAuthSpec.getServices();
 	}
 
-	public static String getOwnerId(Layout layout)
-		throws PortalException, SystemException {
-
+	public static String getOwnerId(Layout layout) throws PortalException {
 		Group group = layout.getGroup();
 
 		long classPK = group.getClassPK();

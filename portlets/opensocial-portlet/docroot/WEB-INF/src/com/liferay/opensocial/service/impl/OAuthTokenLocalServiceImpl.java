@@ -17,7 +17,6 @@ package com.liferay.opensocial.service.impl;
 import com.liferay.opensocial.model.OAuthToken;
 import com.liferay.opensocial.service.base.OAuthTokenLocalServiceBaseImpl;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.UserLocalServiceUtil;
 
@@ -33,7 +32,7 @@ public class OAuthTokenLocalServiceImpl extends OAuthTokenLocalServiceBaseImpl {
 			long userId, String gadgetKey, String serviceName, long moduleId,
 			String accessToken, String tokenName, String tokenSecret,
 			String sessionHandle, long expiration)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		User user = UserLocalServiceUtil.getUser(userId);
 		Date now = new Date();
@@ -64,22 +63,19 @@ public class OAuthTokenLocalServiceImpl extends OAuthTokenLocalServiceBaseImpl {
 	public void deleteOAuthToken(
 			long userId, String gadgetKey, String serviceName, long moduleId,
 			String tokenName)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		oAuthTokenPersistence.removeByU_G_S_M_T(
 			userId, gadgetKey, serviceName, moduleId, tokenName);
 	}
 
-	public void deleteOAuthTokens(String gadgetKey, String serviceName)
-		throws SystemException {
-
+	public void deleteOAuthTokens(String gadgetKey, String serviceName) {
 		oAuthTokenPersistence.removeByG_S(gadgetKey, serviceName);
 	}
 
 	public OAuthToken fetchOAuthToken(
-			long userId, String gadgetKey, String serviceName, long moduleId,
-			String tokenName)
-		throws SystemException {
+		long userId, String gadgetKey, String serviceName, long moduleId,
+		String tokenName) {
 
 		return oAuthTokenPersistence.fetchByU_G_S_M_T(
 			userId, gadgetKey, serviceName, moduleId, tokenName);
@@ -88,15 +84,13 @@ public class OAuthTokenLocalServiceImpl extends OAuthTokenLocalServiceBaseImpl {
 	public OAuthToken getOAuthToken(
 			long userId, String gadgetKey, String serviceName, long moduleId,
 			String tokenName)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		return oAuthTokenPersistence.findByU_G_S_M_T(
 			userId, gadgetKey, serviceName, moduleId, tokenName);
 	}
 
-	public List<OAuthToken> getOAuthTokens(String gadgetKey, String serviceName)
-		throws SystemException {
-
+	public List<OAuthToken> getOAuthTokens(String gadgetKey, String serviceName) {
 		return oAuthTokenPersistence.findByG_S(gadgetKey, serviceName);
 	}
 

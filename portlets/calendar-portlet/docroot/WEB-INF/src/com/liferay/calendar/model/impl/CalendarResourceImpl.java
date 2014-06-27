@@ -17,7 +17,6 @@ package com.liferay.calendar.model.impl;
 import com.liferay.calendar.model.Calendar;
 import com.liferay.calendar.model.CalendarResource;
 import com.liferay.calendar.service.CalendarLocalServiceUtil;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.lar.StagedModelType;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.User;
@@ -32,7 +31,7 @@ import java.util.List;
 public class CalendarResourceImpl extends CalendarResourceBaseImpl {
 
 	@Override
-	public List<Calendar> getCalendars() throws SystemException {
+	public List<Calendar> getCalendars() {
 		List<Calendar> calendars =
 			CalendarLocalServiceUtil.getCalendarResourceCalendars(
 				getGroupId(), getCalendarResourceId());
@@ -41,7 +40,7 @@ public class CalendarResourceImpl extends CalendarResourceBaseImpl {
 	}
 
 	@Override
-	public Calendar getDefaultCalendar() throws SystemException {
+	public Calendar getDefaultCalendar() {
 		List<Calendar> calendars =
 			CalendarLocalServiceUtil.getCalendarResourceCalendars(
 				getGroupId(), getCalendarResourceId(), true);
@@ -54,7 +53,7 @@ public class CalendarResourceImpl extends CalendarResourceBaseImpl {
 	}
 
 	@Override
-	public long getDefaultCalendarId() throws SystemException {
+	public long getDefaultCalendarId() {
 		Calendar calendar = getDefaultCalendar();
 
 		if (calendar != null) {

@@ -14,9 +14,6 @@
 
 package com.liferay.socialcoding.service.persistence.impl;
 
-import com.liferay.socialcoding.service.persistence.JIRAChangeGroupFinder;
-import com.liferay.socialcoding.service.persistence.JIRAChangeGroupUtil;
-
 import com.liferay.portal.kernel.dao.orm.QueryPos;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.dao.orm.SQLQuery;
@@ -27,6 +24,7 @@ import com.liferay.portal.kernel.util.CalendarUtil;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 import com.liferay.socialcoding.model.JIRAChangeGroup;
 import com.liferay.socialcoding.model.impl.JIRAChangeGroupImpl;
+import com.liferay.socialcoding.service.persistence.JIRAChangeGroupFinder;
 import com.liferay.util.dao.orm.CustomSQLUtil;
 
 import java.sql.Timestamp;
@@ -48,9 +46,7 @@ public class JIRAChangeGroupFinderImpl
 	public static final String FIND_BY_CD_P =
 		JIRAChangeGroupFinder.class.getName() + ".findByCD_P";
 
-	public int countByCD_P(Date createDate, long projectId)
-		throws SystemException {
-
+	public int countByCD_P(Date createDate, long projectId) {
 		Timestamp createDate_TS = CalendarUtil.getTimestamp(createDate);
 
 		Session session = null;
@@ -89,16 +85,13 @@ public class JIRAChangeGroupFinderImpl
 		}
 	}
 
-	public List<JIRAChangeGroup> findByCD_P(Date createDate, long projectId)
-		throws SystemException {
-
+	public List<JIRAChangeGroup> findByCD_P(Date createDate, long projectId) {
 		return findByCD_P(
 			createDate, projectId, QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 	}
 
 	public List<JIRAChangeGroup> findByCD_P(
-			Date createDate, long projectId, int start, int end)
-		throws SystemException {
+		Date createDate, long projectId, int start, int end) {
 
 		Timestamp createDate_TS = CalendarUtil.getTimestamp(createDate);
 

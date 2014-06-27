@@ -23,7 +23,6 @@ import com.liferay.calendar.service.permission.CalendarPermission;
 import com.liferay.calendar.util.comparator.CalendarNameComparator;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
@@ -52,9 +51,8 @@ import java.util.TimeZone;
 public class CalendarUtil {
 
 	public static JSONObject getCalendarRenderingRules(
-			ThemeDisplay themeDisplay, long[] calendarIds, int[] statuses,
-			long startTime, long endTime, String ruleName)
-		throws SystemException {
+		ThemeDisplay themeDisplay, long[] calendarIds, int[] statuses,
+		long startTime, long endTime, String ruleName) {
 
 		List<CalendarBooking> calendarBookings =
 			CalendarBookingLocalServiceUtil.search(
@@ -135,7 +133,7 @@ public class CalendarUtil {
 
 	public static Collection<CalendarResource> getCalendarResources(
 			List<CalendarBooking> calendarBookings)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		Set<CalendarResource> calendarResources =
 			new HashSet<CalendarResource>();
@@ -211,9 +209,8 @@ public class CalendarUtil {
 	}
 
 	public static JSONObject toCalendarBookingJSONObject(
-			ThemeDisplay themeDisplay, CalendarBooking calendarBooking,
-			TimeZone timeZone)
-		throws SystemException {
+		ThemeDisplay themeDisplay, CalendarBooking calendarBooking,
+		TimeZone timeZone) {
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
@@ -260,7 +257,7 @@ public class CalendarUtil {
 
 	public static JSONArray toCalendarBookingsJSONArray(
 			ThemeDisplay themeDisplay, List<CalendarBooking> calendarBookings)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
 
@@ -281,7 +278,7 @@ public class CalendarUtil {
 	public static JSONArray toCalendarBookingsJSONArray(
 			ThemeDisplay themeDisplay, List<CalendarBooking> calendarBookings,
 			TimeZone timeZone)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
 
@@ -296,8 +293,7 @@ public class CalendarUtil {
 	}
 
 	public static JSONObject toCalendarJSONObject(
-			ThemeDisplay themeDisplay, Calendar calendar)
-		throws SystemException {
+		ThemeDisplay themeDisplay, Calendar calendar) {
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
@@ -347,8 +343,7 @@ public class CalendarUtil {
 	}
 
 	public static JSONArray toCalendarsJSONArray(
-			ThemeDisplay themeDisplay, List<Calendar> calendars)
-		throws SystemException {
+		ThemeDisplay themeDisplay, List<Calendar> calendars) {
 
 		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
 

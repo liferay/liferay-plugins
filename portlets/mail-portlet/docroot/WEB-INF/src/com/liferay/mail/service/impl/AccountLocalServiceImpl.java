@@ -18,7 +18,6 @@ import com.liferay.mail.model.Account;
 import com.liferay.mail.model.Message;
 import com.liferay.mail.service.base.AccountLocalServiceBaseImpl;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.search.Indexer;
 import com.liferay.portal.kernel.search.IndexerRegistryUtil;
 import com.liferay.portal.kernel.util.StringPool;
@@ -41,7 +40,7 @@ public class AccountLocalServiceImpl extends AccountLocalServiceBaseImpl {
 			String signature, boolean useSignature, String folderPrefix,
 			long inboxFolderId, long draftFolderId, long sentFolderId,
 			long trashFolderId, boolean defaultSender)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		User user = userPersistence.findByPrimaryKey(userId);
 		Date now = new Date();
@@ -89,8 +88,7 @@ public class AccountLocalServiceImpl extends AccountLocalServiceBaseImpl {
 	}
 
 	@Override
-	public Account deleteAccount(Account account)
-		throws PortalException, SystemException {
+	public Account deleteAccount(Account account) throws PortalException {
 
 		// Account
 
@@ -110,17 +108,13 @@ public class AccountLocalServiceImpl extends AccountLocalServiceBaseImpl {
 	}
 
 	@Override
-	public Account deleteAccount(long accountId)
-		throws PortalException, SystemException {
-
+	public Account deleteAccount(long accountId) throws PortalException {
 		Account account = accountPersistence.findByPrimaryKey(accountId);
 
 		return deleteAccount(account);
 	}
 
-	public void deleteAccounts(long userId)
-		throws PortalException, SystemException {
-
+	public void deleteAccounts(long userId) throws PortalException {
 		List<Account> accounts = accountPersistence.findByUserId(userId);
 
 		for (Account account : accounts) {
@@ -129,12 +123,12 @@ public class AccountLocalServiceImpl extends AccountLocalServiceBaseImpl {
 	}
 
 	public Account getAccount(long userId, String address)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		return accountPersistence.findByU_A(userId, address);
 	}
 
-	public List<Account> getAccounts(long userId) throws SystemException {
+	public List<Account> getAccounts(long userId) {
 		return accountPersistence.findByUserId(userId);
 	}
 
@@ -142,7 +136,7 @@ public class AccountLocalServiceImpl extends AccountLocalServiceBaseImpl {
 			long accountId, String personalName, String password,
 			boolean savePassword, String signature, boolean useSignature,
 			String folderPrefix, boolean defaultSender)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		Account account = accountPersistence.findByPrimaryKey(accountId);
 
@@ -170,7 +164,7 @@ public class AccountLocalServiceImpl extends AccountLocalServiceBaseImpl {
 	public Account updateFolders(
 			long accountId, long inboxFolderId, long draftFolderId,
 			long sentFolderId, long trashFolderId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		Account account = accountPersistence.findByPrimaryKey(accountId);
 

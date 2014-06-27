@@ -20,7 +20,6 @@ import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.Property;
 import com.liferay.portal.kernel.dao.orm.PropertyFactoryUtil;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.messaging.BaseMessageListener;
 import com.liferay.portal.kernel.messaging.Message;
 import com.liferay.portal.kernel.util.PortalClassLoaderUtil;
@@ -44,7 +43,7 @@ public class UpdateWikiPagesListener extends BaseMessageListener {
 		}
 	}
 
-	protected void updateWikiPages(long companyId) throws SystemException {
+	protected void updateWikiPages(long companyId) {
 		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
 			WikiPage.class, PortalClassLoaderUtil.getClassLoader());
 

@@ -21,7 +21,6 @@ import com.liferay.akismet.util.AkismetUtil;
 import com.liferay.akismet.util.PortletPropsKeys;
 import com.liferay.akismet.util.PrefsPortletPropsUtil;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.servlet.HttpHeaders;
 import com.liferay.portal.kernel.util.NotificationThreadLocal;
 import com.liferay.portal.kernel.util.StringBundler;
@@ -55,7 +54,7 @@ public class AkismetWikiPageLocalServiceImpl
 			String content, String summary, boolean minorEdit, String format,
 			boolean head, String parentTitle, String redirectTitle,
 			ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		int workflowAction = serviceContext.getWorkflowAction();
 
@@ -122,7 +121,7 @@ public class AkismetWikiPageLocalServiceImpl
 			String content, String summary, boolean minorEdit, String format,
 			String parentTitle, String redirectTitle,
 			ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		int workflowAction = serviceContext.getWorkflowAction();
 
@@ -208,7 +207,7 @@ public class AkismetWikiPageLocalServiceImpl
 
 	protected boolean isWikiEnabled(
 			long userId, long nodeId, ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		if (!AkismetUtil.hasRequiredInfo(serviceContext)) {
 			return false;
@@ -236,8 +235,7 @@ public class AkismetWikiPageLocalServiceImpl
 	}
 
 	protected AkismetData updateAkismetData(
-			WikiPage page, ServiceContext serviceContext)
-		throws SystemException {
+		WikiPage page, ServiceContext serviceContext) {
 
 		if (!AkismetUtil.hasRequiredInfo(serviceContext)) {
 			return null;

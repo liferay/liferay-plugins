@@ -52,7 +52,7 @@ import java.util.TreeMap;
 public class BBBAPIUtil {
 
 	public static BBBMeeting endMeeting(long bbbMeetingId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		BBBMeeting bbbMeeting = BBBMeetingLocalServiceUtil.getBBBMeeting(
 			bbbMeetingId);
@@ -77,7 +77,7 @@ public class BBBAPIUtil {
 
 	public static String getJoinURL(
 			BBBParticipant bbbParticipant, String userName)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		if (!userName.equals(bbbParticipant.getName())) {
 			bbbParticipant = BBBParticipantLocalServiceUtil.addBBBParticipant(
@@ -121,7 +121,7 @@ public class BBBAPIUtil {
 	}
 
 	public static Document getMeetingInfoDocument(long bbbMeetingId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		BBBMeeting bbbMeeting = BBBMeetingLocalServiceUtil.getBBBMeeting(
 			bbbMeetingId);
@@ -153,7 +153,7 @@ public class BBBAPIUtil {
 	}
 
 	public static List<String> getMeetingRecordings(long bbbMeetingId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		BBBMeeting bbbMeeting = BBBMeetingLocalServiceUtil.getBBBMeeting(
 			bbbMeetingId);
@@ -213,7 +213,7 @@ public class BBBAPIUtil {
 	}
 
 	public static boolean isServerActive(BBBServer bbbServer)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		try {
 			Document document = execute(
@@ -237,7 +237,7 @@ public class BBBAPIUtil {
 
 	public static BBBMeeting startMeeting(
 			long bbbMeetingId, boolean recordMeeting)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		BBBMeeting bbbMeeting = BBBMeetingLocalServiceUtil.getBBBMeeting(
 			bbbMeetingId);
@@ -299,7 +299,7 @@ public class BBBAPIUtil {
 
 	protected static Document execute(
 			BBBMeeting bbbMeeting, String methodName, String queryString)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		BBBServer bbbServer = BBBServerLocalServiceUtil.getBBBServer(
 			bbbMeeting.getBbbServerId());
@@ -309,7 +309,7 @@ public class BBBAPIUtil {
 
 	protected static Document execute(
 			BBBServer bbbServer, String methodName, String queryString)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		try {
 			String url = getURL(bbbServer, methodName, queryString);
@@ -326,9 +326,7 @@ public class BBBAPIUtil {
 		}
 	}
 
-	protected static long getBbbServerId()
-		throws PortalException, SystemException {
-
+	protected static long getBbbServerId() throws PortalException {
 		TreeMap<Integer, Long> bbbServersMap = new TreeMap<Integer, Long>();
 
 		BBBServerLocalServiceUtil.checkBBBServers();
@@ -365,7 +363,7 @@ public class BBBAPIUtil {
 
 	protected static String getURL(
 			BBBServer bbbServer, String methodName, String queryString)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		StringBundler sb = new StringBundler(6);
 

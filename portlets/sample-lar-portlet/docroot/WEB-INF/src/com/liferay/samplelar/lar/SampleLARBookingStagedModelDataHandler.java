@@ -14,7 +14,6 @@
 
 package com.liferay.samplelar.lar;
 
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.lar.BaseStagedModelDataHandler;
 import com.liferay.portal.kernel.lar.ExportImportPathUtil;
 import com.liferay.portal.kernel.lar.PortletDataContext;
@@ -34,8 +33,7 @@ public class SampleLARBookingStagedModelDataHandler
 
 	@Override
 	public void deleteStagedModel(
-			String uuid, long groupId, String className, String extraData)
-		throws SystemException {
+		String uuid, long groupId, String className, String extraData) {
 
 		SampleLARBooking sampleLARBooking =
 			SampleLARBookingLocalServiceUtil.

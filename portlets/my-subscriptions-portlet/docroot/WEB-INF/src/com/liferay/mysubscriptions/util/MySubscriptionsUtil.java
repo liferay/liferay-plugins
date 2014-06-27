@@ -16,7 +16,6 @@ package com.liferay.mysubscriptions.util;
 
 import com.liferay.knowledgebase.util.PortletKeys;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.repository.model.Folder;
 import com.liferay.portal.kernel.util.LocaleUtil;
@@ -71,7 +70,7 @@ public class MySubscriptionsUtil {
 
 	public static String getAssetURLViewInContext(
 			ThemeDisplay themeDisplay, String className, long classPK)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		if (className.equals(BlogsEntry.class.getName())) {
 			return PortalUtil.getLayoutFullURL(classPK, PortletKeys.BLOGS);
@@ -127,7 +126,7 @@ public class MySubscriptionsUtil {
 
 	public static String getTitleText(
 			Locale locale, String className, long classPK, String title)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		if (Validator.isNotNull(title)) {
 			return title;

@@ -19,7 +19,6 @@ import com.liferay.mail.mailbox.MailboxFactoryUtil;
 import com.liferay.portal.kernel.events.ActionException;
 import com.liferay.portal.kernel.events.SimpleAction;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 
 import java.util.List;
 
@@ -38,9 +37,7 @@ public class StartupAction extends SimpleAction {
 		}
 	}
 
-	protected void initializeMailboxFactories()
-		throws PortalException, SystemException {
-
+	protected void initializeMailboxFactories() throws PortalException {
 		List<MailboxFactory> mailboxFactories =
 			MailboxFactoryUtil.getMailboxFactories();
 

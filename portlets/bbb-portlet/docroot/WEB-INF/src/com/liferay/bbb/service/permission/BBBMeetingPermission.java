@@ -17,7 +17,6 @@ package com.liferay.bbb.service.permission;
 import com.liferay.bbb.model.BBBMeeting;
 import com.liferay.bbb.service.BBBMeetingLocalServiceUtil;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.security.auth.PrincipalException;
 import com.liferay.portal.security.permission.PermissionChecker;
 
@@ -39,7 +38,7 @@ public class BBBMeetingPermission {
 	public static void check(
 			PermissionChecker permissionChecker, long bbbMeetingId,
 			String actionId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		if (!contains(permissionChecker, bbbMeetingId, actionId)) {
 			throw new PrincipalException();
@@ -66,7 +65,7 @@ public class BBBMeetingPermission {
 	public static boolean contains(
 			PermissionChecker permissionChecker, long bbbMeetingId,
 			String actionId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		BBBMeeting bbbMeeting = BBBMeetingLocalServiceUtil.getBBBMeeting(
 			bbbMeetingId);

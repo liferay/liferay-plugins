@@ -17,7 +17,6 @@ package com.liferay.chat.util;
 import com.liferay.chat.jabber.JabberUtil;
 import com.liferay.chat.service.StatusLocalServiceUtil;
 import com.liferay.chat.util.comparator.BuddyComparator;
-import com.liferay.portal.kernel.exception.SystemException;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -30,9 +29,7 @@ import java.util.List;
 public class DefaultBuddyFinderImpl implements BuddyFinder {
 
 	@Override
-	public List<Object[]> getBuddies(long companyId, long userId)
-		throws SystemException {
-
+	public List<Object[]> getBuddies(long companyId, long userId) {
 		long modifiedDate =
 			System.currentTimeMillis() - ChatConstants.ONLINE_DELTA;
 

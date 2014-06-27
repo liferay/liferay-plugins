@@ -15,7 +15,6 @@
 package com.liferay.pushnotifications.service.impl;
 
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.pushnotifications.model.PushNotificationsDevice;
 import com.liferay.pushnotifications.service.base.PushNotificationsDeviceLocalServiceBaseImpl;
 
@@ -32,8 +31,7 @@ public class PushNotificationsDeviceLocalServiceImpl
 
 	@Override
 	public PushNotificationsDevice addPushNotificationsDevice(
-			long userId, String platform, String token)
-		throws SystemException {
+		long userId, String platform, String token) {
 
 		long pushNotificationsDeviceId = counterLocalService.increment();
 
@@ -53,7 +51,7 @@ public class PushNotificationsDeviceLocalServiceImpl
 
 	@Override
 	public PushNotificationsDevice deletePushNotificationsDevice(String token)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		PushNotificationsDevice pushNotificationsDevice =
 			pushNotificationsDevicePersistence.findByToken(token);
@@ -65,8 +63,7 @@ public class PushNotificationsDeviceLocalServiceImpl
 
 	@Override
 	public List<String> getTokens(
-			long userId, String platform, int start, int end)
-		throws SystemException {
+		long userId, String platform, int start, int end) {
 
 		List<String> tokens = new ArrayList<String>();
 

@@ -17,7 +17,6 @@ package com.liferay.ddlform.portlet;
 import com.liferay.ddlform.DuplicateSubmissionException;
 import com.liferay.ddlform.util.DDLFormUtil;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.upload.UploadPortletRequest;
 import com.liferay.portal.kernel.util.ParamUtil;
@@ -100,7 +99,7 @@ public class DDLFormPortlet extends MVCPortlet {
 
 	protected void validate(
 			long recordSetId, UploadPortletRequest uploadPortletRequest)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		boolean multipleSubmissions = ParamUtil.getBoolean(
 			uploadPortletRequest, "multipleSubmissions");

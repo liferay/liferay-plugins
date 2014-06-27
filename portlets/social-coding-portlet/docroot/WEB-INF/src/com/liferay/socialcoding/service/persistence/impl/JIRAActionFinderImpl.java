@@ -14,9 +14,6 @@
 
 package com.liferay.socialcoding.service.persistence.impl;
 
-import com.liferay.socialcoding.service.persistence.JIRAActionFinder;
-import com.liferay.socialcoding.service.persistence.JIRAActionUtil;
-
 import com.liferay.portal.kernel.dao.orm.QueryPos;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.dao.orm.SQLQuery;
@@ -27,6 +24,7 @@ import com.liferay.portal.kernel.util.CalendarUtil;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 import com.liferay.socialcoding.model.JIRAAction;
 import com.liferay.socialcoding.model.impl.JIRAActionImpl;
+import com.liferay.socialcoding.service.persistence.JIRAActionFinder;
 import com.liferay.util.dao.orm.CustomSQLUtil;
 
 import java.sql.Timestamp;
@@ -47,9 +45,7 @@ public class JIRAActionFinderImpl
 	public static final String FIND_BY_CD_P =
 		JIRAActionFinder.class.getName() + ".findByCD_P";
 
-	public int countByCD_P(Date createDate, long projectId)
-		throws SystemException {
-
+	public int countByCD_P(Date createDate, long projectId) {
 		Timestamp createDate_TS = CalendarUtil.getTimestamp(createDate);
 
 		Session session = null;
@@ -88,16 +84,13 @@ public class JIRAActionFinderImpl
 		}
 	}
 
-	public List<JIRAAction> findByCD_P(Date createDate, long projectId)
-		throws SystemException {
-
+	public List<JIRAAction> findByCD_P(Date createDate, long projectId) {
 		return findByCD_P(
 			createDate, projectId, QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 	}
 
 	public List<JIRAAction> findByCD_P(
-			Date createDate, long projectId, int start, int end)
-		throws SystemException {
+		Date createDate, long projectId, int start, int end) {
 
 		Timestamp createDate_TS = CalendarUtil.getTimestamp(createDate);
 

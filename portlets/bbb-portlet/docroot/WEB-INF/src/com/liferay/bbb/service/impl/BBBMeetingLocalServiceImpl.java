@@ -53,7 +53,7 @@ public class BBBMeetingLocalServiceImpl extends BBBMeetingLocalServiceBaseImpl {
 			String description, String attendeePassword,
 			String moderatorPassword, int status,
 			List<BBBParticipant> bbbParticipants, ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		// BBB meeting
 
@@ -93,7 +93,7 @@ public class BBBMeetingLocalServiceImpl extends BBBMeetingLocalServiceBaseImpl {
 
 	@Override
 	public BBBMeeting deleteBBBMeeting(BBBMeeting bbbMeeting)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		// BBB meeting
 
@@ -119,7 +119,7 @@ public class BBBMeetingLocalServiceImpl extends BBBMeetingLocalServiceBaseImpl {
 
 	@Override
 	public BBBMeeting deleteBBBMeeting(long bbbMeetingId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		BBBMeeting bbbMeeting = bbbMeetingPersistence.findByPrimaryKey(
 			bbbMeetingId);
@@ -128,31 +128,27 @@ public class BBBMeetingLocalServiceImpl extends BBBMeetingLocalServiceBaseImpl {
 	}
 
 	@Override
-	public BBBMeeting getBBBMeeting(long bbbMeetingId)
-		throws PortalException, SystemException {
-
+	public BBBMeeting getBBBMeeting(long bbbMeetingId) throws PortalException {
 		return bbbMeetingPersistence.findByPrimaryKey(bbbMeetingId);
 	}
 
 	@Override
-	public List<BBBMeeting> getBBBMeetings(int status) throws SystemException {
+	public List<BBBMeeting> getBBBMeetings(int status) {
 		return bbbMeetingPersistence.findByStatus(status);
 	}
 
 	@Override
 	public List<BBBMeeting> getBBBMeetings(
-			long groupId, int start, int end, OrderByComparator obc)
-		throws SystemException {
+		long groupId, int start, int end, OrderByComparator obc) {
 
 		return bbbMeetingPersistence.findByGroupId(groupId, start, end, obc);
 	}
 
 	@Override
 	public List<BBBMeeting> getBBBMeetings(
-			long groupId, long userId, String name, String description,
-			int status, boolean andSearch, int start, int end,
-			String orderByField, String orderByType)
-		throws SystemException {
+		long groupId, long userId, String name, String description, int status,
+		boolean andSearch, int start, int end, String orderByField,
+		String orderByType) {
 
 		DynamicQuery dynamicQuery = buildDynamicQuery(
 			groupId, userId, name, description, status, andSearch);
@@ -168,22 +164,19 @@ public class BBBMeetingLocalServiceImpl extends BBBMeetingLocalServiceBaseImpl {
 	}
 
 	@Override
-	public int getBBBMeetingsCount(long groupId) throws SystemException {
+	public int getBBBMeetingsCount(long groupId) {
 		return bbbMeetingPersistence.countByGroupId(groupId);
 	}
 
 	@Override
-	public int getBBBMeetingsCount(long bbbServerId, int status)
-		throws SystemException {
-
+	public int getBBBMeetingsCount(long bbbServerId, int status) {
 		return bbbMeetingPersistence.countByBSI_S(bbbServerId, status);
 	}
 
 	@Override
 	public int getBBBMeetingsCount(
-			long groupId, long userId, String name, String description,
-			int status, boolean andSearch)
-		throws SystemException {
+		long groupId, long userId, String name, String description, int status,
+		boolean andSearch) {
 
 		DynamicQuery dynamicQuery = buildDynamicQuery(
 			groupId, userId, name, description, status, andSearch);
@@ -197,7 +190,7 @@ public class BBBMeetingLocalServiceImpl extends BBBMeetingLocalServiceBaseImpl {
 			String description, String attendeePassword,
 			String moderatorPassword, List<BBBParticipant> bbbParticipants,
 			ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		// BBB meeting
 
@@ -232,7 +225,7 @@ public class BBBMeetingLocalServiceImpl extends BBBMeetingLocalServiceBaseImpl {
 
 	@Override
 	public BBBMeeting updateStatus(long bbbMeetingId, int status)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		BBBMeeting bbbMeeting = bbbMeetingPersistence.findByPrimaryKey(
 			bbbMeetingId);
@@ -302,7 +295,7 @@ public class BBBMeetingLocalServiceImpl extends BBBMeetingLocalServiceBaseImpl {
 	protected void updateBBBParticipants(
 			long userId, long groupId, long bbbMeetingId,
 			List<BBBParticipant> bbbParticipants, ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		Set<Long> bbbParticipantIds = new HashSet<Long>();
 

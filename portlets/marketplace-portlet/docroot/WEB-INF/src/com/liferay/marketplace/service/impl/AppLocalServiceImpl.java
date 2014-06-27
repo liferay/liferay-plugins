@@ -24,7 +24,6 @@ import com.liferay.marketplace.util.comparator.AppTitleComparator;
 import com.liferay.portal.kernel.deploy.DeployManagerUtil;
 import com.liferay.portal.kernel.deploy.auto.context.AutoDeploymentContext;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.plugin.PluginPackage;
@@ -74,7 +73,7 @@ public class AppLocalServiceImpl extends AppLocalServiceBaseImpl {
 	}
 
 	@Override
-	public App deleteApp(App app) throws SystemException {
+	public App deleteApp(App app) {
 
 		// App
 
@@ -106,19 +105,19 @@ public class AppLocalServiceImpl extends AppLocalServiceBaseImpl {
 	}
 
 	@Override
-	public App deleteApp(long appId) throws PortalException, SystemException {
+	public App deleteApp(long appId) throws PortalException {
 		App app = appPersistence.findByPrimaryKey(appId);
 
 		return deleteApp(app);
 	}
 
 	@Override
-	public App fetchRemoteApp(long remoteAppId) throws SystemException {
+	public App fetchRemoteApp(long remoteAppId) {
 		return appPersistence.fetchByRemoteAppId(remoteAppId);
 	}
 
 	@Override
-	public List<App> getApps(String category) throws SystemException {
+	public List<App> getApps(String category) {
 		return appPersistence.findByCategory(category);
 	}
 
@@ -171,7 +170,7 @@ public class AppLocalServiceImpl extends AppLocalServiceBaseImpl {
 	}
 
 	@Override
-	public List<App> getInstalledApps() throws SystemException {
+	public List<App> getInstalledApps() {
 		if (_installedApps != null) {
 			return _installedApps;
 		}
@@ -244,9 +243,7 @@ public class AppLocalServiceImpl extends AppLocalServiceBaseImpl {
 	}
 
 	@Override
-	public void installApp(long remoteAppId)
-		throws PortalException, SystemException {
-
+	public void installApp(long remoteAppId) throws PortalException {
 		App app = appPersistence.findByRemoteAppId(remoteAppId);
 
 		if (!DLStoreUtil.hasFile(
@@ -372,7 +369,7 @@ public class AppLocalServiceImpl extends AppLocalServiceBaseImpl {
 
 	@Override
 	public void processMarketplaceProperties(Properties properties)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		long[] supersedesRemoteAppIds = StringUtil.split(
 			properties.getProperty("supersedes-remote-app-ids"), 0L);
@@ -388,9 +385,7 @@ public class AppLocalServiceImpl extends AppLocalServiceBaseImpl {
 	}
 
 	@Override
-	public void uninstallApp(long remoteAppId)
-		throws PortalException, SystemException {
-
+	public void uninstallApp(long remoteAppId) throws PortalException {
 		clearInstalledAppsCache();
 
 		App app = appPersistence.findByRemoteAppId(remoteAppId);
@@ -416,7 +411,7 @@ public class AppLocalServiceImpl extends AppLocalServiceBaseImpl {
 	@Override
 	public App updateApp(
 			long userId, long remoteAppId, String version, File file)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		Properties properties = getMarketplaceProperties(file);
 
@@ -439,7 +434,7 @@ public class AppLocalServiceImpl extends AppLocalServiceBaseImpl {
 	public App updateApp(
 			long userId, long remoteAppId, String title, String description,
 			String category, String iconURL, String version, File file)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		// App
 
@@ -551,9 +546,7 @@ public class AppLocalServiceImpl extends AppLocalServiceBaseImpl {
 		}
 	}
 
-	protected boolean hasDependentApp(Module module)
-		throws PortalException, SystemException {
-
+	protected boolean hasDependentApp(Module module) throws PortalException {
 		List<Module> modules = modulePersistence.findByContextName(
 			module.getContextName());
 
@@ -573,7 +566,7 @@ public class AppLocalServiceImpl extends AppLocalServiceBaseImpl {
 	}
 
 	protected void validate(String title, String version)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		if (Validator.isNull(title)) {
 			throw new AppTitleException();

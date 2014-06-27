@@ -19,7 +19,6 @@ import com.liferay.calendar.model.CalendarResource;
 import com.liferay.calendar.service.CalendarLocalServiceUtil;
 import com.liferay.calendar.service.CalendarResourceLocalServiceUtil;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.lar.BaseStagedModelDataHandler;
 import com.liferay.portal.kernel.lar.ExportImportPathUtil;
 import com.liferay.portal.kernel.lar.PortletDataContext;
@@ -53,7 +52,7 @@ public class CalendarResourceStagedModelDataHandler
 	@Override
 	public void deleteStagedModel(
 			String uuid, long groupId, String className, String extraData)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		CalendarResource calendarResource =
 			CalendarResourceLocalServiceUtil.
@@ -244,10 +243,9 @@ public class CalendarResourceStagedModelDataHandler
 	}
 
 	protected void updateCalendars(
-			PortletDataContext portletDataContext,
-			CalendarResource calendarResource,
-			CalendarResource importedCalendarResource)
-		throws SystemException {
+		PortletDataContext portletDataContext,
+		CalendarResource calendarResource,
+		CalendarResource importedCalendarResource) {
 
 		Map<Long, Long> calendarIds =
 			(Map<Long, Long>)portletDataContext.getNewPrimaryKeysMap(

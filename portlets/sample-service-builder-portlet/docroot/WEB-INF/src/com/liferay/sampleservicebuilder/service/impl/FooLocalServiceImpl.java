@@ -16,7 +16,6 @@ package com.liferay.sampleservicebuilder.service.impl;
 
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.InstanceFactory;
 import com.liferay.portal.kernel.util.OrderByComparator;
@@ -37,7 +36,7 @@ public class FooLocalServiceImpl extends FooLocalServiceBaseImpl {
 	public void addFoo(
 			String field1, boolean field2, int field3, Date field4,
 			String field5, ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		// Foo
 
@@ -72,7 +71,7 @@ public class FooLocalServiceImpl extends FooLocalServiceBaseImpl {
 	}
 
 	@Override
-	public Foo deleteFoo(Foo foo) throws SystemException {
+	public Foo deleteFoo(Foo foo) {
 		try {
 			assetEntryLocalService.deleteEntry(
 				Foo.class.getName(), foo.getFooId());
@@ -84,7 +83,7 @@ public class FooLocalServiceImpl extends FooLocalServiceBaseImpl {
 	}
 
 	@Override
-	public Foo deleteFoo(long fooId) throws SystemException {
+	public Foo deleteFoo(long fooId) {
 		Foo foo = fooPersistence.fetchByPrimaryKey(fooId);
 
 		if (foo == null) {
@@ -94,13 +93,11 @@ public class FooLocalServiceImpl extends FooLocalServiceBaseImpl {
 		return deleteFoo(foo);
 	}
 
-	public List<Foo> getFoos(int start, int end, OrderByComparator obc)
-		throws SystemException {
-
+	public List<Foo> getFoos(int start, int end, OrderByComparator obc) {
 		return fooPersistence.findAll(start, end, obc);
 	}
 
-	public List<Foo> getFoos(OrderByComparator obc) throws SystemException {
+	public List<Foo> getFoos(OrderByComparator obc) {
 		return getFoos(QueryUtil.ALL_POS, QueryUtil.ALL_POS, obc);
 	}
 
@@ -116,7 +113,7 @@ public class FooLocalServiceImpl extends FooLocalServiceBaseImpl {
 	public void updateAsset(
 			long userId, Foo foo, long[] assetCategoryIds,
 			String[] assetTagNames)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		assetEntryLocalService.updateEntry(
 			userId, foo.getGroupId(), Foo.class.getName(), foo.getFooId(),
@@ -128,7 +125,7 @@ public class FooLocalServiceImpl extends FooLocalServiceBaseImpl {
 	public void updateFoo(
 			long fooId, String field1, boolean field2, int field3, Date field4,
 			String field5, ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		User user = userPersistence.findByPrimaryKey(
 			serviceContext.getUserId());

@@ -17,7 +17,6 @@ package com.liferay.bbb.service.impl;
 import com.liferay.bbb.model.BBBParticipant;
 import com.liferay.bbb.service.base.BBBParticipantLocalServiceBaseImpl;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.ServiceContext;
@@ -36,7 +35,7 @@ public class BBBParticipantLocalServiceImpl
 			long userId, long groupId, long bbbMeetingId, String name,
 			String emailAddress, int type, int status,
 			ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		User user = userPersistence.findByPrimaryKey(userId);
 		Date now = new Date();
@@ -64,32 +63,25 @@ public class BBBParticipantLocalServiceImpl
 	}
 
 	@Override
-	public BBBParticipant deleteBBBParticipant(BBBParticipant bbbParticipant)
-		throws SystemException {
-
+	public BBBParticipant deleteBBBParticipant(BBBParticipant bbbParticipant) {
 		return bbbParticipantPersistence.remove(bbbParticipant);
 	}
 
 	@Override
 	public BBBParticipant fetchBBBParticipant(
-			long bbbMeetingId, String emailAddress)
-		throws SystemException {
+		long bbbMeetingId, String emailAddress) {
 
 		return bbbParticipantPersistence.fetchByBMI_EA(
 			bbbMeetingId, emailAddress);
 	}
 
 	@Override
-	public List<BBBParticipant> getBBBParticipants(long bbbMeetingId)
-		throws SystemException {
-
+	public List<BBBParticipant> getBBBParticipants(long bbbMeetingId) {
 		return bbbParticipantPersistence.findByBbbMeetingId(bbbMeetingId);
 	}
 
 	@Override
-	public int getBBBParticipantsCount(long bbbMeetingId)
-		throws SystemException {
-
+	public int getBBBParticipantsCount(long bbbMeetingId) {
 		return bbbParticipantPersistence.countByBbbMeetingId(bbbMeetingId);
 	}
 
@@ -97,7 +89,7 @@ public class BBBParticipantLocalServiceImpl
 	public BBBParticipant updateBBBParticipant(
 			long bbbParticipantId, long bbbMeetingId, String name,
 			String emailAddress, int type, ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		BBBParticipant bbbParticipant =
 			bbbParticipantPersistence.findByPrimaryKey(bbbParticipantId);
@@ -121,7 +113,7 @@ public class BBBParticipantLocalServiceImpl
 
 	@Override
 	public BBBParticipant updateStatus(long bbbParticipantId, int status)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		BBBParticipant bbbParticipant =
 			bbbParticipantPersistence.findByPrimaryKey(bbbParticipantId);

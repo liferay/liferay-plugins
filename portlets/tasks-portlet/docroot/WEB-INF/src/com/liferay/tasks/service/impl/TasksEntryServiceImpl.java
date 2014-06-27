@@ -18,7 +18,6 @@
 package com.liferay.tasks.service.impl;
 
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.security.permission.ActionKeys;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.tasks.model.TasksEntry;
@@ -35,7 +34,7 @@ public class TasksEntryServiceImpl extends TasksEntryServiceBaseImpl {
 			String title, int priority, long assigneeUserId, int dueDateMonth,
 			int dueDateDay, int dueDateYear, int dueDateHour, int dueDateMinute,
 			boolean neverDue, ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		TasksPermission.check(
 			getPermissionChecker(), serviceContext.getScopeGroupId(),
@@ -47,9 +46,7 @@ public class TasksEntryServiceImpl extends TasksEntryServiceBaseImpl {
 			serviceContext);
 	}
 
-	public TasksEntry getTasksEntry(long tasksEntryId)
-		throws PortalException, SystemException {
-
+	public TasksEntry getTasksEntry(long tasksEntryId) throws PortalException {
 		TasksEntryPermission.check(
 			getPermissionChecker(), tasksEntryId, ActionKeys.VIEW);
 
@@ -61,7 +58,7 @@ public class TasksEntryServiceImpl extends TasksEntryServiceBaseImpl {
 			long resolverUserId, int dueDateMonth, int dueDateDay,
 			int dueDateYear, int dueDateHour, int dueDateMinute,
 			boolean neverDue, int status, ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		TasksEntryPermission.check(
 			getPermissionChecker(), tasksEntryId, ActionKeys.UPDATE);

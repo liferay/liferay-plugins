@@ -18,7 +18,6 @@ import com.liferay.marketplace.model.Module;
 import com.liferay.marketplace.service.ModuleLocalServiceUtil;
 import com.liferay.portal.kernel.deploy.DeployManagerUtil;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.CompanyConstants;
@@ -48,7 +47,7 @@ public class AppImpl extends AppBaseImpl {
 	}
 
 	@Override
-	public String[] getContextNames() throws SystemException {
+	public String[] getContextNames() {
 		if (_contextNames != null) {
 			return _contextNames;
 		}
@@ -84,14 +83,14 @@ public class AppImpl extends AppBaseImpl {
 	}
 
 	@Override
-	public boolean isDownloaded() throws PortalException, SystemException {
+	public boolean isDownloaded() throws PortalException {
 		return DLStoreUtil.hasFile(
 			getCompanyId(), CompanyConstants.SYSTEM, getFilePath(),
 			Store.VERSION_DEFAULT);
 	}
 
 	@Override
-	public boolean isInstalled() throws SystemException {
+	public boolean isInstalled() {
 		String[] contextNames = getContextNames();
 
 		if (contextNames.length == 0) {

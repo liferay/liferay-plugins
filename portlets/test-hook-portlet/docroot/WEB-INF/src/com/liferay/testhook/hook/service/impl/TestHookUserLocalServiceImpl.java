@@ -15,7 +15,6 @@
 package com.liferay.testhook.hook.service.impl;
 
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.UserLocalService;
 import com.liferay.portal.service.UserLocalServiceWrapper;
@@ -32,7 +31,7 @@ public class TestHookUserLocalServiceImpl extends UserLocalServiceWrapper {
 
 	@Override
 	public User getUserByEmailAddress(long companyId, String emailAddress)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		System.out.println(
 			"Called TestHookUserLocalServiceImpl.getUserByEmailAddress(" +
@@ -44,9 +43,7 @@ public class TestHookUserLocalServiceImpl extends UserLocalServiceWrapper {
 	}
 
 	@Override
-	public User getUserById(long userId)
-		throws PortalException, SystemException {
-
+	public User getUserById(long userId) throws PortalException {
 		System.out.println(
 			"Called TestHookUserLocalServiceImpl.getUserById(" + userId + ")");
 

@@ -20,7 +20,6 @@ import com.liferay.calendar.service.CalendarResourceServiceUtil;
 import com.liferay.calendar.util.comparator.CalendarResourceCodeComparator;
 import com.liferay.calendar.util.comparator.CalendarResourceNameComparator;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.model.Group;
@@ -47,7 +46,7 @@ public class CalendarResourceUtil {
 
 	public static CalendarResource getCalendarResource(
 			PortletRequest portletRequest, long classNameId, long classPK)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		long groupClassNameId = PortalUtil.getClassNameId(Group.class);
 
@@ -69,7 +68,7 @@ public class CalendarResourceUtil {
 
 	public static CalendarResource getGroupCalendarResource(
 			long groupId, ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		Group group = GroupLocalServiceUtil.getGroup(groupId);
 
@@ -101,7 +100,7 @@ public class CalendarResourceUtil {
 
 	public static CalendarResource getGroupCalendarResource(
 			PortletRequest portletRequest, long groupId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		ServiceContext serviceContext = ServiceContextFactory.getInstance(
 			portletRequest);
@@ -132,7 +131,7 @@ public class CalendarResourceUtil {
 
 	public static CalendarResource getScopeGroupCalendarResource(
 			long groupId, ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		Group group = GroupLocalServiceUtil.getGroup(groupId);
 
@@ -146,7 +145,7 @@ public class CalendarResourceUtil {
 
 	public static CalendarResource getScopeGroupCalendarResource(
 			PortletRequest portletRequest, long groupId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		ServiceContext serviceContext = ServiceContextFactory.getInstance(
 			portletRequest);
@@ -156,7 +155,7 @@ public class CalendarResourceUtil {
 
 	public static CalendarResource getUserCalendarResource(
 			long userId, ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		long classNameId = PortalUtil.getClassNameId(User.class);
 
@@ -199,7 +198,7 @@ public class CalendarResourceUtil {
 
 	public static CalendarResource getUserCalendarResource(
 			PortletRequest portletRequest, long userId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		ServiceContext serviceContext = ServiceContextFactory.getInstance(
 			portletRequest);

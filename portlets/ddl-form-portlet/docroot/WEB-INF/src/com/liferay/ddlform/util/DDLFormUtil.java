@@ -14,7 +14,6 @@
 
 package com.liferay.ddlform.util;
 
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
@@ -33,8 +32,7 @@ import javax.servlet.http.HttpServletRequest;
 public class DDLFormUtil {
 
 	public static boolean hasSubmitted(
-			ActionRequest actionRequest, long recordSetId)
-		throws SystemException {
+		ActionRequest actionRequest, long recordSetId) {
 
 		HttpServletRequest request = PortalUtil.getHttpServletRequest(
 			actionRequest);
@@ -43,8 +41,7 @@ public class DDLFormUtil {
 	}
 
 	public static boolean hasSubmitted(
-			HttpServletRequest request, long recordSetId)
-		throws SystemException {
+		HttpServletRequest request, long recordSetId) {
 
 		ThemeDisplay themeDisplay = (ThemeDisplay)request.getAttribute(
 			WebKeys.THEME_DISPLAY);

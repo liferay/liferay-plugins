@@ -18,7 +18,6 @@ import com.liferay.opensocial.model.OAuthConsumer;
 import com.liferay.opensocial.model.OAuthConsumerConstants;
 import com.liferay.opensocial.service.base.OAuthConsumerLocalServiceBaseImpl;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.StringPool;
 
 import java.util.Date;
@@ -31,9 +30,8 @@ public class OAuthConsumerLocalServiceImpl
 	extends OAuthConsumerLocalServiceBaseImpl {
 
 	public OAuthConsumer addOAuthConsumer(
-			long companyId, String gadgetKey, String serviceName,
-			String consumerKey, String consumerSecret, String keyType)
-		throws SystemException {
+		long companyId, String gadgetKey, String serviceName,
+		String consumerKey, String consumerSecret, String keyType) {
 
 		if (keyType.equals(OAuthConsumerConstants.KEY_TYPE_RSA_PRIVATE)) {
 			consumerSecret = StringPool.BLANK;
@@ -62,7 +60,7 @@ public class OAuthConsumerLocalServiceImpl
 
 	@Override
 	public OAuthConsumer deleteOAuthConsumer(long oAuthConsumerId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		OAuthConsumer oAuthConsumer = oAuthConsumerPersistence.findByPrimaryKey(
 			oAuthConsumerId);
@@ -71,8 +69,7 @@ public class OAuthConsumerLocalServiceImpl
 	}
 
 	@Override
-	public OAuthConsumer deleteOAuthConsumer(OAuthConsumer oAuthConsumer)
-		throws SystemException {
+	public OAuthConsumer deleteOAuthConsumer(OAuthConsumer oAuthConsumer) {
 
 		// OAuth consumer
 
@@ -86,7 +83,7 @@ public class OAuthConsumerLocalServiceImpl
 		return oAuthConsumer;
 	}
 
-	public void deleteOAuthConsumers(String gadgetKey) throws SystemException {
+	public void deleteOAuthConsumers(String gadgetKey) {
 		List<OAuthConsumer> oAuthConsumers =
 			oAuthConsumerPersistence.findByGadgetKey(gadgetKey);
 
@@ -96,39 +93,35 @@ public class OAuthConsumerLocalServiceImpl
 	}
 
 	public OAuthConsumer fetchOAuthConsumer(
-			String gadgetKey, String serviceName)
-		throws SystemException {
+		String gadgetKey, String serviceName) {
 
 		return oAuthConsumerPersistence.fetchByG_S(gadgetKey, serviceName);
 	}
 
 	public OAuthConsumer getOAuthConsumer(String gadgetKey, String serviceName)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		return oAuthConsumerPersistence.findByG_S(gadgetKey, serviceName);
 	}
 
-	public List<OAuthConsumer> getOAuthConsumers(String gadgetKey)
-		throws SystemException {
-
+	public List<OAuthConsumer> getOAuthConsumers(String gadgetKey) {
 		return oAuthConsumerPersistence.findByGadgetKey(gadgetKey);
 	}
 
 	public List<OAuthConsumer> getOAuthConsumers(
-			String gadgetKey, int start, int end)
-		throws SystemException {
+		String gadgetKey, int start, int end) {
 
 		return oAuthConsumerPersistence.findByGadgetKey(gadgetKey, start, end);
 	}
 
-	public int getOAuthConsumersCount(String gadgetKey) throws SystemException {
+	public int getOAuthConsumersCount(String gadgetKey) {
 		return oAuthConsumerPersistence.countByGadgetKey(gadgetKey);
 	}
 
 	public OAuthConsumer updateOAuthConsumer(
 			long oAuthConsumerId, String consumerKey, String consumerSecret,
 			String keyType, String keyName, String callbackURL)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		if (keyType.equals(OAuthConsumerConstants.KEY_TYPE_RSA_PRIVATE)) {
 			consumerSecret = StringPool.BLANK;

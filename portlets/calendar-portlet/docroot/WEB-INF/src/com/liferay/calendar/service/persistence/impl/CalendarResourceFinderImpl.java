@@ -52,9 +52,8 @@ public class CalendarResourceFinderImpl
 
 	@Override
 	public int countByKeywords(
-			long companyId, long[] groupIds, long[] classNameIds,
-			String keywords, boolean active)
-		throws SystemException {
+		long companyId, long[] groupIds, long[] classNameIds, String keywords,
+		boolean active) {
 
 		String[] codes = null;
 		String[] names = null;
@@ -77,10 +76,8 @@ public class CalendarResourceFinderImpl
 
 	@Override
 	public int countByC_G_C_C_N_D_A(
-			long companyId, long[] groupIds, long[] classNameIds, String code,
-			String name, String description, boolean active,
-			boolean andOperator)
-		throws SystemException {
+		long companyId, long[] groupIds, long[] classNameIds, String code,
+		String name, String description, boolean active, boolean andOperator) {
 
 		String[] codes = CustomSQLUtil.keywords(code);
 		String[] names = CustomSQLUtil.keywords(name);
@@ -93,10 +90,9 @@ public class CalendarResourceFinderImpl
 
 	@Override
 	public int countByC_G_C_C_N_D_A(
-			long companyId, long[] groupIds, long[] classNameIds,
-			String[] codes, String[] names, String[] descriptions,
-			boolean active, boolean andOperator)
-		throws SystemException {
+		long companyId, long[] groupIds, long[] classNameIds, String[] codes,
+		String[] names, String[] descriptions, boolean active,
+		boolean andOperator) {
 
 		return doCountByC_G_C_C_N_D_A(
 			companyId, groupIds, classNameIds, codes, names, descriptions,
@@ -105,9 +101,8 @@ public class CalendarResourceFinderImpl
 
 	@Override
 	public int filterCountByKeywords(
-			long companyId, long[] groupIds, long[] classNameIds,
-			String keywords, boolean active)
-		throws SystemException {
+		long companyId, long[] groupIds, long[] classNameIds, String keywords,
+		boolean active) {
 
 		String[] codes = null;
 		String[] names = null;
@@ -130,10 +125,8 @@ public class CalendarResourceFinderImpl
 
 	@Override
 	public int filterCountByC_G_C_C_N_D_A(
-			long companyId, long[] groupIds, long[] classNameIds, String code,
-			String name, String description, boolean active,
-			boolean andOperator)
-		throws SystemException {
+		long companyId, long[] groupIds, long[] classNameIds, String code,
+		String name, String description, boolean active, boolean andOperator) {
 
 		String[] codes = CustomSQLUtil.keywords(code);
 		String[] names = CustomSQLUtil.keywords(name);
@@ -146,10 +139,9 @@ public class CalendarResourceFinderImpl
 
 	@Override
 	public int filterCountByC_G_C_C_N_D_A(
-			long companyId, long[] groupIds, long[] classNameIds,
-			String[] codes, String[] names, String[] descriptions,
-			boolean active, boolean andOperator)
-		throws SystemException {
+		long companyId, long[] groupIds, long[] classNameIds, String[] codes,
+		String[] names, String[] descriptions, boolean active,
+		boolean andOperator) {
 
 		return doCountByC_G_C_C_N_D_A(
 			companyId, groupIds, classNameIds, codes, names, descriptions,
@@ -158,10 +150,9 @@ public class CalendarResourceFinderImpl
 
 	@Override
 	public List<CalendarResource> filterFindByKeywords(
-			long companyId, long[] groupIds, long[] classNameIds,
-			String keywords, boolean active, int start, int end,
-			OrderByComparator orderByComparator)
-		throws SystemException {
+		long companyId, long[] groupIds, long[] classNameIds, String keywords,
+		boolean active, int start, int end,
+		OrderByComparator orderByComparator) {
 
 		String[] codes = null;
 		String[] names = null;
@@ -184,11 +175,9 @@ public class CalendarResourceFinderImpl
 
 	@Override
 	public List<CalendarResource> filterFindByC_G_C_C_N_D_A(
-			long companyId, long[] groupIds, long[] classNameIds, String code,
-			String name, String description, boolean active,
-			boolean andOperator, int start, int end,
-			OrderByComparator orderByComparator)
-		throws SystemException {
+		long companyId, long[] groupIds, long[] classNameIds, String code,
+		String name, String description, boolean active, boolean andOperator,
+		int start, int end, OrderByComparator orderByComparator) {
 
 		String[] codes = CustomSQLUtil.keywords(code);
 		String[] names = CustomSQLUtil.keywords(name);
@@ -201,11 +190,10 @@ public class CalendarResourceFinderImpl
 
 	@Override
 	public List<CalendarResource> filterFindByC_G_C_C_N_D_A(
-			long companyId, long[] groupIds, long[] classNameIds,
-			String[] codes, String[] names, String[] descriptions,
-			boolean active, boolean andOperator, int start, int end,
-			OrderByComparator orderByComparator)
-		throws SystemException {
+		long companyId, long[] groupIds, long[] classNameIds, String[] codes,
+		String[] names, String[] descriptions, boolean active,
+		boolean andOperator, int start, int end,
+		OrderByComparator orderByComparator) {
 
 		return doFindByC_G_C_C_N_D_A(
 			companyId, groupIds, classNameIds, codes, names, descriptions,
@@ -214,10 +202,9 @@ public class CalendarResourceFinderImpl
 
 	@Override
 	public List<CalendarResource> findByKeywords(
-			long companyId, long[] groupIds, long[] classNameIds,
-			String keywords, boolean active, int start, int end,
-			OrderByComparator orderByComparator)
-		throws SystemException {
+		long companyId, long[] groupIds, long[] classNameIds, String keywords,
+		boolean active, int start, int end,
+		OrderByComparator orderByComparator) {
 
 		String[] codes = null;
 		String[] names = null;
@@ -240,11 +227,9 @@ public class CalendarResourceFinderImpl
 
 	@Override
 	public List<CalendarResource> findByC_G_C_C_N_D_A(
-			long companyId, long[] groupIds, long[] classNameIds, String code,
-			String name, String description, boolean active,
-			boolean andOperator, int start, int end,
-			OrderByComparator orderByComparator)
-		throws SystemException {
+		long companyId, long[] groupIds, long[] classNameIds, String code,
+		String name, String description, boolean active, boolean andOperator,
+		int start, int end, OrderByComparator orderByComparator) {
 
 		String[] codes = CustomSQLUtil.keywords(code);
 		String[] names = CustomSQLUtil.keywords(name);
@@ -257,11 +242,10 @@ public class CalendarResourceFinderImpl
 
 	@Override
 	public List<CalendarResource> findByC_G_C_C_N_D_A(
-			long companyId, long[] groupIds, long[] classNameIds,
-			String[] codes, String[] names, String[] descriptions,
-			boolean active, boolean andOperator, int start, int end,
-			OrderByComparator orderByComparator)
-		throws SystemException {
+		long companyId, long[] groupIds, long[] classNameIds, String[] codes,
+		String[] names, String[] descriptions, boolean active,
+		boolean andOperator, int start, int end,
+		OrderByComparator orderByComparator) {
 
 		return doFindByC_G_C_C_N_D_A(
 			companyId, groupIds, classNameIds, codes, names, descriptions,
@@ -269,10 +253,9 @@ public class CalendarResourceFinderImpl
 	}
 
 	protected int doCountByC_G_C_C_N_D_A(
-			long companyId, long[] groupIds, long[] classNameIds,
-			String[] codes, String[] names, String[] descriptions,
-			boolean active, boolean andOperator, boolean inlineSQLHelper)
-		throws SystemException {
+		long companyId, long[] groupIds, long[] classNameIds, String[] codes,
+		String[] names, String[] descriptions, boolean active,
+		boolean andOperator, boolean inlineSQLHelper) {
 
 		codes = CustomSQLUtil.keywords(codes);
 		names = CustomSQLUtil.keywords(names);
@@ -342,11 +325,10 @@ public class CalendarResourceFinderImpl
 	}
 
 	protected List<CalendarResource> doFindByC_G_C_C_N_D_A(
-			long companyId, long[] groupIds, long[] classNameIds,
-			String[] codes, String[] names, String[] descriptions,
-			boolean active, boolean andOperator, int start, int end,
-			OrderByComparator orderByComparator, boolean inlineSQLHelper)
-		throws SystemException {
+		long companyId, long[] groupIds, long[] classNameIds, String[] codes,
+		String[] names, String[] descriptions, boolean active,
+		boolean andOperator, int start, int end,
+		OrderByComparator orderByComparator, boolean inlineSQLHelper) {
 
 		codes = CustomSQLUtil.keywords(codes);
 		names = CustomSQLUtil.keywords(names);

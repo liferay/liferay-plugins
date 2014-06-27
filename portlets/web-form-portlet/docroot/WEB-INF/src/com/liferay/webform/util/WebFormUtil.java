@@ -16,7 +16,6 @@ package com.liferay.webform.util;
 
 import com.liferay.counter.service.CounterLocalServiceUtil;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.HtmlUtil;
@@ -56,7 +55,7 @@ import org.mozilla.javascript.ScriptableObject;
 public class WebFormUtil {
 
 	public static ExpandoTable addTable(long companyId, String tableName)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		try {
 			ExpandoTableLocalServiceUtil.deleteTable(
@@ -109,33 +108,27 @@ public class WebFormUtil {
 	}
 
 	public static String getEmailFromAddress(
-			PortletPreferences preferences, long companyId)
-		throws SystemException {
+		PortletPreferences preferences, long companyId) {
 
 		return PortalUtil.getEmailFromAddress(
 			preferences, companyId, PortletPropsValues.EMAIL_FROM_ADDRESS);
 	}
 
 	public static String getEmailFromName(
-			PortletPreferences preferences, long companyId)
-		throws SystemException {
+		PortletPreferences preferences, long companyId) {
 
 		return PortalUtil.getEmailFromName(
 			preferences, companyId, PortletPropsValues.EMAIL_FROM_NAME);
 	}
 
-	public static String getNewDatabaseTableName(String portletId)
-		throws SystemException {
-
+	public static String getNewDatabaseTableName(String portletId) {
 		long formId = CounterLocalServiceUtil.increment(
 			WebFormUtil.class.getName());
 
 		return portletId + StringPool.UNDERLINE + formId;
 	}
 
-	public static int getTableRowsCount(long companyId, String tableName)
-		throws SystemException {
-
+	public static int getTableRowsCount(long companyId, String tableName) {
 		return ExpandoRowLocalServiceUtil.getRowsCount(
 			companyId, WebFormUtil.class.getName(), tableName);
 	}

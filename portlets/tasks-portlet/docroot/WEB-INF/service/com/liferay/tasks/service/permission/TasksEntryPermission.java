@@ -18,7 +18,6 @@
 package com.liferay.tasks.service.permission;
 
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.security.auth.PrincipalException;
 import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.tasks.model.TasksEntry;
@@ -32,7 +31,7 @@ public class TasksEntryPermission {
 	public static void check(
 			PermissionChecker permissionChecker, long tasksEntryId,
 			String actionId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		if (!contains(permissionChecker, tasksEntryId, actionId)) {
 			throw new PrincipalException();
@@ -52,7 +51,7 @@ public class TasksEntryPermission {
 	public static boolean contains(
 			PermissionChecker permissionChecker, long tasksEntryId,
 			String actionId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		TasksEntry tasksEntry = TasksEntryLocalServiceUtil.getTasksEntry(
 			tasksEntryId);

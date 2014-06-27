@@ -30,7 +30,6 @@ import com.liferay.mail.service.AttachmentLocalServiceUtil;
 import com.liferay.mail.service.FolderLocalServiceUtil;
 import com.liferay.mail.service.MessageLocalServiceUtil;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.language.LanguageUtil;
@@ -64,7 +63,7 @@ import javax.servlet.http.HttpServletRequest;
 public class MailManager {
 
 	public static MailManager getInstance(HttpServletRequest request)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		User user = PortalUtil.getUser(request);
 
@@ -95,7 +94,7 @@ public class MailManager {
 			String login, String password, boolean savePassword,
 			String signature, boolean useSignature, String folderPrefix,
 			boolean defaultSender)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		try {
 			Mailbox mailbox = MailboxFactoryUtil.getMailbox(
@@ -135,9 +134,7 @@ public class MailManager {
 		}
 	}
 
-	public Message addDraft(long accountId)
-		throws PortalException, SystemException {
-
+	public Message addDraft(long accountId) throws PortalException {
 		Account account = AccountLocalServiceUtil.getAccount(accountId);
 
 		Message message = MessageLocalServiceUtil.addMessage(
@@ -149,7 +146,7 @@ public class MailManager {
 	}
 
 	public JSONObject addFolder(long accountId, String displayName)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		try {
 			Mailbox mailbox = MailboxFactoryUtil.getMailbox(
@@ -173,7 +170,7 @@ public class MailManager {
 	}
 
 	public JSONObject checkMessages(long accountId, long folderId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		try {
 			Mailbox mailbox = MailboxFactoryUtil.getMailbox(
@@ -193,9 +190,7 @@ public class MailManager {
 		}
 	}
 
-	public JSONObject deleteAccount(long accountId)
-		throws PortalException, SystemException {
-
+	public JSONObject deleteAccount(long accountId) throws PortalException {
 		try {
 			Mailbox mailbox = MailboxFactoryUtil.getMailbox(
 				_user.getUserId(), accountId,
@@ -215,7 +210,7 @@ public class MailManager {
 	}
 
 	public JSONObject deleteAttachment(long attachmentId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		try {
 			Attachment attachment = AttachmentLocalServiceUtil.getAttachment(
@@ -236,9 +231,7 @@ public class MailManager {
 		}
 	}
 
-	public JSONObject deleteFolder(long folderId)
-		throws PortalException, SystemException {
-
+	public JSONObject deleteFolder(long folderId) throws PortalException {
 		try {
 			Folder folder = FolderLocalServiceUtil.getFolder(folderId);
 
@@ -268,9 +261,7 @@ public class MailManager {
 		}
 	}
 
-	public JSONObject deleteMessages(long[] messageIds)
-		throws PortalException, SystemException {
-
+	public JSONObject deleteMessages(long[] messageIds) throws PortalException {
 		try {
 			if (messageIds.length == 0) {
 				return createJSONResult("failure", "no-messages-selected");
@@ -308,7 +299,7 @@ public class MailManager {
 	}
 
 	public JSONObject flagMessages(long[] messageIds, int flag, boolean value)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		try {
 			if (messageIds.length == 0) {
@@ -337,18 +328,16 @@ public class MailManager {
 		}
 	}
 
-	public List<Account> getAccounts() throws SystemException {
+	public List<Account> getAccounts() {
 		return AccountLocalServiceUtil.getAccounts(_user.getUserId());
 	}
 
-	public long getAccountUnreadMessagesCount(long accountId)
-		throws SystemException {
-
+	public long getAccountUnreadMessagesCount(long accountId) {
 		return MessageLocalServiceUtil.getAccountUnreadMessagesCount(accountId);
 	}
 
 	public AttachmentHandler getAttachment(long attachmentId)
-		throws IOException, PortalException, SystemException {
+		throws IOException, PortalException {
 
 		Attachment attachment = AttachmentLocalServiceUtil.getAttachment(
 			attachmentId);
@@ -363,7 +352,7 @@ public class MailManager {
 	public List<Folder> getFolders(
 			long accountId, boolean includeRequiredFolders,
 			boolean includeNonRequiredFolders)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		List<Folder> folders = FolderLocalServiceUtil.getFolders(accountId);
 
@@ -400,13 +389,11 @@ public class MailManager {
 		}
 	}
 
-	public long getFolderUnreadMessagesCount(long folderId)
-		throws SystemException {
-
+	public long getFolderUnreadMessagesCount(long folderId) {
 		return MessageLocalServiceUtil.getFolderUnreadMessagesCount(folderId);
 	}
 
-	public Account getInitialAccount() throws SystemException {
+	public Account getInitialAccount() {
 		List<Account> accounts = AccountLocalServiceUtil.getAccounts(
 			_user.getUserId());
 
@@ -419,7 +406,7 @@ public class MailManager {
 	}
 
 	public MessageDisplay getMessageDisplay(long messageId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		Message message = MessageLocalServiceUtil.getMessage(messageId);
 
@@ -442,7 +429,7 @@ public class MailManager {
 	public MessageDisplay getMessageDisplay(
 			long folderId, int messageNumber, String orderByField,
 			String orderByType, String keywords)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		if (folderId <= 0) {
 			return null;
@@ -465,7 +452,7 @@ public class MailManager {
 	public MessagesDisplay getMessagesDisplay(
 			long folderId, int pageNumber, int messagesPerPage,
 			String orderByField, String orderByType, String keywords)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		Folder folder = FolderLocalServiceUtil.getFolder(folderId);
 
@@ -483,14 +470,12 @@ public class MailManager {
 			new ArrayList<Message>(), pageNumber, messagesPerPage, 0);
 	}
 
-	public String getPassword(long accountId)
-		throws PortalException, SystemException {
-
+	public String getPassword(long accountId) throws PortalException {
 		return _passwordRetriever.getPassword(accountId);
 	}
 
 	public void markAsRead(long accountId, long folderId, long messageId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		com.liferay.portal.kernel.messaging.Message message =
 			new com.liferay.portal.kernel.messaging.Message();
@@ -509,7 +494,7 @@ public class MailManager {
 	}
 
 	public JSONObject moveMessages(long folderId, long[] messageIds)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		try {
 			if (messageIds.length == 0) {
@@ -551,7 +536,7 @@ public class MailManager {
 	}
 
 	public JSONObject renameFolder(long folderId, String displayName)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		Folder folder = FolderLocalServiceUtil.getFolder(folderId);
 
@@ -583,7 +568,7 @@ public class MailManager {
 	public JSONObject saveDraft(
 			long accountId, long messageId, String to, String cc, String bcc,
 			String subject, String body, List<MailFile> mailFiles)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		try {
 			Mailbox mailbox = MailboxFactoryUtil.getMailbox(
@@ -619,7 +604,7 @@ public class MailManager {
 	public JSONObject sendMessage(
 			long accountId, long messageId, String to, String cc, String bcc,
 			String subject, String body, List<MailFile> mailFiles)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		try {
 			Mailbox mailbox = MailboxFactoryUtil.getMailbox(
@@ -656,7 +641,7 @@ public class MailManager {
 	}
 
 	public JSONObject storePassword(long accountId, String password)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		Account account = AccountLocalServiceUtil.getAccount(accountId);
 
@@ -686,23 +671,17 @@ public class MailManager {
 		}
 	}
 
-	public void synchronizeAccount(long accountId)
-		throws PortalException, SystemException {
-
+	public void synchronizeAccount(long accountId) throws PortalException {
 		synchronize(accountId, 0, 0, 0, 0);
 	}
 
-	public void synchronizeFolder(long folderId)
-		throws PortalException, SystemException {
-
+	public void synchronizeFolder(long folderId) throws PortalException {
 		Folder folder = FolderLocalServiceUtil.getFolder(folderId);
 
 		synchronize(folder.getAccountId(), folderId, 0, 0, 0);
 	}
 
-	public void synchronizeMessage(long messageId)
-		throws PortalException, SystemException {
-
+	public void synchronizeMessage(long messageId) throws PortalException {
 		Message message = MessageLocalServiceUtil.getMessage(messageId);
 
 		synchronize(message.getAccountId(), 0, messageId, 0, 0);
@@ -710,7 +689,7 @@ public class MailManager {
 
 	public void synchronizePage(
 			long folderId, int pageNumber, int messagesPerPage)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		Folder folder = FolderLocalServiceUtil.getFolder(folderId);
 
@@ -722,7 +701,7 @@ public class MailManager {
 			long accountId, String personalName, String password,
 			boolean savePassword, String signature, boolean useSignature,
 			String folderPrefix, boolean defaultSender)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		return updateAccount(
 			accountId, personalName, password, savePassword, signature,
@@ -734,7 +713,7 @@ public class MailManager {
 			boolean savePassword, String signature, boolean useSignature,
 			String folderPrefix, boolean defaultSender, long inboxFolderId,
 			long draftFolderId, long sentFolderId, long trashFolderId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		try {
 			if (savePassword) {
@@ -814,7 +793,7 @@ public class MailManager {
 	protected void synchronize(
 			long accountId, long folderId, long messageId, int pageNumber,
 			int messagesPerPage)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		String password = _passwordRetriever.getPassword(accountId);
 

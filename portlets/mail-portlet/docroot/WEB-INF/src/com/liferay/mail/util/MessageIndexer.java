@@ -22,7 +22,6 @@ import com.liferay.mail.service.persistence.MessageActionableDynamicQuery;
 import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.search.BaseIndexer;
 import com.liferay.portal.kernel.search.BooleanQuery;
 import com.liferay.portal.kernel.search.BooleanQueryFactoryUtil;
@@ -185,9 +184,7 @@ public class MessageIndexer extends BaseIndexer {
 		return PORTLET_ID;
 	}
 
-	protected void reindexMessages(long companyId)
-		throws PortalException, SystemException {
-
+	protected void reindexMessages(long companyId) throws PortalException {
 		ActionableDynamicQuery actionableDynamicQuery =
 			new MessageActionableDynamicQuery() {
 

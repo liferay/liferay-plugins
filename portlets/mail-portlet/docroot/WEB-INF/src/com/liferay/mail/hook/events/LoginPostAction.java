@@ -19,7 +19,6 @@ import com.liferay.mail.util.MailManager;
 import com.liferay.portal.kernel.events.Action;
 import com.liferay.portal.kernel.events.ActionException;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 
 import java.util.List;
 
@@ -44,7 +43,7 @@ public class LoginPostAction extends Action {
 	}
 
 	protected void initiateSynchronization(HttpServletRequest request)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		MailManager mailManager = MailManager.getInstance(request);
 

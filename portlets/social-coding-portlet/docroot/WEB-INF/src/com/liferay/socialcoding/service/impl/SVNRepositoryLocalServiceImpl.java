@@ -15,7 +15,6 @@
 package com.liferay.socialcoding.service.impl;
 
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.socialcoding.model.SVNRepository;
@@ -40,20 +39,16 @@ public class SVNRepositoryLocalServiceImpl
 
 	@Override
 	public SVNRepository getSVNRepository(long svnRepositoryId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		return svnRepositoryPersistence.findByPrimaryKey(svnRepositoryId);
 	}
 
-	public SVNRepository getSVNRepository(String url)
-		throws PortalException, SystemException {
-
+	public SVNRepository getSVNRepository(String url) throws PortalException {
 		return svnRepositoryPersistence.findByUrl(url);
 	}
 
-	public void updateSVNRepository(String url)
-		throws PortalException, SystemException {
-
+	public void updateSVNRepository(String url) throws PortalException {
 		SVNRepository svnRepository = svnRepositoryPersistence.fetchByUrl(url);
 
 		if (svnRepository == null) {

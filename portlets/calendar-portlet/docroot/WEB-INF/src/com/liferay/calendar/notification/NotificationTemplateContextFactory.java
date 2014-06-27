@@ -20,7 +20,6 @@ import com.liferay.calendar.model.CalendarNotificationTemplate;
 import com.liferay.calendar.service.CalendarNotificationTemplateLocalServiceUtil;
 import com.liferay.calendar.util.PortletKeys;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.util.FastDateFormatFactoryUtil;
 import com.liferay.portal.kernel.util.HttpUtil;
@@ -148,7 +147,7 @@ public class NotificationTemplateContextFactory {
 
 	private static String _getCalendarBookingURL(
 			User user, long calendarBookingId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		Group group = user.getGroup();
 
@@ -177,7 +176,7 @@ public class NotificationTemplateContextFactory {
 	}
 
 	private static String _getPortalURL(long companyId, long groupId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		Company company = CompanyLocalServiceUtil.getCompany(companyId);
 

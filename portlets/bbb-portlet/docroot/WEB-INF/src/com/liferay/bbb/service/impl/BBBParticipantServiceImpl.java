@@ -19,7 +19,6 @@ import com.liferay.bbb.service.base.BBBParticipantServiceBaseImpl;
 import com.liferay.bbb.service.permission.BBBMeetingPermission;
 import com.liferay.bbb.util.ActionKeys;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.service.ServiceContext;
 
 import java.util.List;
@@ -31,7 +30,7 @@ public class BBBParticipantServiceImpl extends BBBParticipantServiceBaseImpl {
 
 	@Override
 	public BBBParticipant deleteBBBParticipant(BBBParticipant bbbParticipant)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		BBBMeetingPermission.check(
 			getPermissionChecker(), bbbParticipant.getBbbMeetingId(),
@@ -42,7 +41,7 @@ public class BBBParticipantServiceImpl extends BBBParticipantServiceBaseImpl {
 
 	@Override
 	public List<BBBParticipant> getBBBParticipants(long bbbMeetingId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		BBBMeetingPermission.check(
 			getPermissionChecker(), bbbMeetingId, ActionKeys.VIEW);
@@ -52,7 +51,7 @@ public class BBBParticipantServiceImpl extends BBBParticipantServiceBaseImpl {
 
 	@Override
 	public int getBBBParticipantsCount(long bbbMeetingId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		BBBMeetingPermission.check(
 			getPermissionChecker(), bbbMeetingId, ActionKeys.VIEW);
@@ -64,7 +63,7 @@ public class BBBParticipantServiceImpl extends BBBParticipantServiceBaseImpl {
 	public BBBParticipant updateBBBParticipant(
 			long bbbParticipantId, long bbbMeetingId, String name,
 			String emailAddress, int type, ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		BBBMeetingPermission.check(
 			getPermissionChecker(), bbbMeetingId, ActionKeys.UPDATE);

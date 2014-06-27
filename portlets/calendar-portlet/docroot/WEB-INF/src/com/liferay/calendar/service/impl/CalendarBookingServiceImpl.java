@@ -74,7 +74,7 @@ public class CalendarBookingServiceImpl extends CalendarBookingServiceBaseImpl {
 			String recurrence, long firstReminder, String firstReminderType,
 			long secondReminder, String secondReminderType,
 			ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		TimeZone timeZone = TimeZoneUtil.getTimeZone(timeZoneId);
 
@@ -105,7 +105,7 @@ public class CalendarBookingServiceImpl extends CalendarBookingServiceBaseImpl {
 			long endTime, boolean allDay, String recurrence, long firstReminder,
 			String firstReminderType, long secondReminder,
 			String secondReminderType, ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		CalendarPermission.check(
 			getPermissionChecker(), calendarId, ActionKeys.MANAGE_BOOKINGS);
@@ -119,7 +119,7 @@ public class CalendarBookingServiceImpl extends CalendarBookingServiceBaseImpl {
 
 	@Override
 	public CalendarBooking deleteCalendarBooking(long calendarBookingId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		CalendarBooking calendarBooking =
 			calendarBookingPersistence.findByPrimaryKey(calendarBookingId);
@@ -135,7 +135,7 @@ public class CalendarBookingServiceImpl extends CalendarBookingServiceBaseImpl {
 	@Override
 	public void deleteCalendarBookingInstance(
 			long calendarBookingId, long startTime, boolean allFollowing)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		CalendarBooking calendarBooking =
 			calendarBookingPersistence.findByPrimaryKey(calendarBookingId);
@@ -165,7 +165,7 @@ public class CalendarBookingServiceImpl extends CalendarBookingServiceBaseImpl {
 
 	@Override
 	public CalendarBooking fetchCalendarBooking(long calendarBookingId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		CalendarBooking calendarBooking =
 			calendarBookingPersistence.fetchByPrimaryKey(calendarBookingId);
@@ -179,7 +179,7 @@ public class CalendarBookingServiceImpl extends CalendarBookingServiceBaseImpl {
 
 	@Override
 	public CalendarBooking getCalendarBooking(long calendarBookingId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		CalendarBooking calendarBooking =
 			calendarBookingPersistence.findByPrimaryKey(calendarBookingId);
@@ -190,7 +190,7 @@ public class CalendarBookingServiceImpl extends CalendarBookingServiceBaseImpl {
 	@Override
 	public CalendarBooking getCalendarBooking(
 			long calendarId, long parentCalendarBookingId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		CalendarPermission.check(
 			getPermissionChecker(), calendarId, ActionKeys.MANAGE_BOOKINGS);
@@ -202,7 +202,7 @@ public class CalendarBookingServiceImpl extends CalendarBookingServiceBaseImpl {
 	@Override
 	public List<CalendarBooking> getCalendarBookings(
 			long calendarId, long startTime, long endTime)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		return getCalendarBookings(
 			calendarId, startTime, endTime, QueryUtil.ALL_POS);
@@ -211,7 +211,7 @@ public class CalendarBookingServiceImpl extends CalendarBookingServiceBaseImpl {
 	@Override
 	public List<CalendarBooking> getCalendarBookings(
 			long calendarId, long startTime, long endTime, int max)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		List<CalendarBooking> calendarBookings =
 			calendarBookingLocalService.getCalendarBookings(
@@ -228,7 +228,7 @@ public class CalendarBookingServiceImpl extends CalendarBookingServiceBaseImpl {
 	public String getCalendarBookingsRSS(
 			long calendarId, long startTime, long endTime, int max, String type,
 			double version, String displayStyle, ThemeDisplay themeDisplay)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		Calendar calendar = calendarService.getCalendar(calendarId);
 
@@ -245,7 +245,7 @@ public class CalendarBookingServiceImpl extends CalendarBookingServiceBaseImpl {
 	@Override
 	public List<CalendarBooking> getChildCalendarBookings(
 			long parentCalendarBookingId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		List<CalendarBooking> calendarBookings =
 			calendarBookingLocalService.getChildCalendarBookings(
@@ -261,7 +261,7 @@ public class CalendarBookingServiceImpl extends CalendarBookingServiceBaseImpl {
 	@Override
 	public List<CalendarBooking> getChildCalendarBookings(
 			long parentCalendarBookingId, int status)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		List<CalendarBooking> calendarBookings =
 			calendarBookingLocalService.getChildCalendarBookings(
@@ -277,7 +277,7 @@ public class CalendarBookingServiceImpl extends CalendarBookingServiceBaseImpl {
 	@Override
 	public CalendarBooking getNewStartTimeAndDurationCalendarBooking(
 			long calendarBookingId, long offset, long duration)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		CalendarBooking calendarBooking =
 			calendarBookingPersistence.findByPrimaryKey(calendarBookingId);
@@ -297,7 +297,7 @@ public class CalendarBookingServiceImpl extends CalendarBookingServiceBaseImpl {
 
 	@Override
 	public boolean hasChildCalendarBookings(long parentCalendarBookingId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		int total = calendarBookingPersistence.countByParentCalendarBookingId(
 			parentCalendarBookingId);
@@ -312,7 +312,7 @@ public class CalendarBookingServiceImpl extends CalendarBookingServiceBaseImpl {
 	@Override
 	public void invokeTransition(
 			long calendarBookingId, int status, ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		CalendarBooking calendarBooking =
 			calendarBookingPersistence.findByPrimaryKey(calendarBookingId);
@@ -327,7 +327,7 @@ public class CalendarBookingServiceImpl extends CalendarBookingServiceBaseImpl {
 
 	@Override
 	public CalendarBooking moveCalendarBookingToTrash(long calendarBookingId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		CalendarBooking calendarBooking =
 			calendarBookingPersistence.findByPrimaryKey(calendarBookingId);
@@ -343,7 +343,7 @@ public class CalendarBookingServiceImpl extends CalendarBookingServiceBaseImpl {
 	@Override
 	public CalendarBooking restoreCalendarBookingFromTrash(
 			long calendarBookingId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		CalendarBooking calendarBooking =
 			calendarBookingPersistence.findByPrimaryKey(calendarBookingId);
@@ -364,7 +364,7 @@ public class CalendarBookingServiceImpl extends CalendarBookingServiceBaseImpl {
 			String keywords, long startTime, long endTime, boolean recurring,
 			int[] statuses, int start, int end,
 			OrderByComparator orderByComparator)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		List<CalendarBooking> calendarBookings =
 			calendarBookingLocalService.search(
@@ -383,7 +383,7 @@ public class CalendarBookingServiceImpl extends CalendarBookingServiceBaseImpl {
 			long endTime, boolean recurring, int[] statuses,
 			boolean andOperator, int start, int end,
 			OrderByComparator orderByComparator)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		List<CalendarBooking> calendarBookings =
 			calendarBookingLocalService.search(
@@ -402,7 +402,7 @@ public class CalendarBookingServiceImpl extends CalendarBookingServiceBaseImpl {
 			long[] calendarResourceIds, long parentCalendarBookingId,
 			String keywords, long startTime, long endTime, boolean recurring,
 			int[] statuses)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		List<CalendarBooking> calendarBookings = search(
 			companyId, groupIds, calendarIds, calendarResourceIds,
@@ -419,7 +419,7 @@ public class CalendarBookingServiceImpl extends CalendarBookingServiceBaseImpl {
 			String title, String description, String location, long startTime,
 			long endTime, boolean recurring, int[] statuses,
 			boolean andOperator)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		List<CalendarBooking> calendarBookings = search(
 			companyId, groupIds, calendarIds, calendarResourceIds,
@@ -438,7 +438,7 @@ public class CalendarBookingServiceImpl extends CalendarBookingServiceBaseImpl {
 			String recurrence, long firstReminder, String firstReminderType,
 			long secondReminder, String secondReminderType, int status,
 			ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		CalendarPermission.check(
 			getPermissionChecker(), calendarId, ActionKeys.MANAGE_BOOKINGS);
@@ -458,7 +458,7 @@ public class CalendarBookingServiceImpl extends CalendarBookingServiceBaseImpl {
 			String recurrence, long firstReminder, String firstReminderType,
 			long secondReminder, String secondReminderType, int status,
 			ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		CalendarPermission.check(
 			getPermissionChecker(), calendarId, ActionKeys.MANAGE_BOOKINGS);
@@ -479,7 +479,7 @@ public class CalendarBookingServiceImpl extends CalendarBookingServiceBaseImpl {
 			String firstReminderType, long secondReminder,
 			String secondReminderType, int status,
 			ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		CalendarPermission.check(
 			getPermissionChecker(), calendarId, ActionKeys.MANAGE_BOOKINGS);
@@ -503,7 +503,7 @@ public class CalendarBookingServiceImpl extends CalendarBookingServiceBaseImpl {
 			String firstReminderType, long secondReminder,
 			String secondReminderType, int status,
 			ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		TimeZone timeZone = TimeZoneUtil.getTimeZone(timeZoneId);
 
@@ -535,7 +535,7 @@ public class CalendarBookingServiceImpl extends CalendarBookingServiceBaseImpl {
 			String firstReminderType, long secondReminder,
 			String secondReminderType, int status,
 			ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		CalendarPermission.check(
 			getPermissionChecker(), calendarId, ActionKeys.MANAGE_BOOKINGS);
@@ -555,7 +555,7 @@ public class CalendarBookingServiceImpl extends CalendarBookingServiceBaseImpl {
 			String recurrence, long firstReminder, String firstReminderType,
 			long secondReminder, String secondReminderType, int status,
 			ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		CalendarBooking calendarBooking =
 			calendarBookingPersistence.fetchByPrimaryKey(calendarBookingId);
@@ -581,7 +581,7 @@ public class CalendarBookingServiceImpl extends CalendarBookingServiceBaseImpl {
 			String recurrence, long firstReminder, String firstReminderType,
 			long secondReminder, String secondReminderType, int status,
 			ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		long[] childCalendarIds =
 			calendarBookingLocalService.getChildCalendarIds(
@@ -595,10 +595,9 @@ public class CalendarBookingServiceImpl extends CalendarBookingServiceBaseImpl {
 	}
 
 	protected String exportToRSS(
-			String name, String description, String type, double version,
-			String displayStyle, String feedURL,
-			List<CalendarBooking> calendarBookings, ThemeDisplay themeDisplay)
-		throws SystemException {
+		String name, String description, String type, double version,
+		String displayStyle, String feedURL,
+		List<CalendarBooking> calendarBookings, ThemeDisplay themeDisplay) {
 
 		SyndFeed syndFeed = new SyndFeedImpl();
 
@@ -667,7 +666,7 @@ public class CalendarBookingServiceImpl extends CalendarBookingServiceBaseImpl {
 
 	protected CalendarBooking filterCalendarBooking(
 			CalendarBooking calendarBooking)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		if (!CalendarPermission.contains(
 				getPermissionChecker(), calendarBooking.getCalendarId(),
@@ -683,7 +682,7 @@ public class CalendarBookingServiceImpl extends CalendarBookingServiceBaseImpl {
 
 	protected List<CalendarBooking> filterCalendarBookings(
 			List<CalendarBooking> calendarBookings, String actionId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		calendarBookings = ListUtil.copy(calendarBookings);
 

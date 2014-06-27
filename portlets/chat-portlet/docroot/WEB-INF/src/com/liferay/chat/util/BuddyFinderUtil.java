@@ -14,8 +14,6 @@
 
 package com.liferay.chat.util;
 
-import com.liferay.portal.kernel.exception.SystemException;
-
 import java.util.List;
 
 /**
@@ -24,9 +22,7 @@ import java.util.List;
  */
 public class BuddyFinderUtil {
 
-	public static List<Object[]> getBuddies(long companyId, long userId)
-		throws SystemException {
-
+	public static List<Object[]> getBuddies(long companyId, long userId) {
 		return getBuddyFinder().getBuddies(companyId, userId);
 	}
 

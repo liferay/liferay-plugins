@@ -17,7 +17,6 @@ package com.liferay.akismet.service.impl;
 import com.liferay.akismet.model.AkismetData;
 import com.liferay.akismet.service.base.AkismetDataLocalServiceBaseImpl;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 
 import java.util.Date;
 
@@ -28,30 +27,27 @@ import java.util.Date;
 public class AkismetDataLocalServiceImpl
 	extends AkismetDataLocalServiceBaseImpl {
 
-	public void deleteAkismetData(Date modifiedDate) throws SystemException {
+	public void deleteAkismetData(Date modifiedDate) {
 		akismetDataPersistence.removeByLtModifiedDate(modifiedDate);
 	}
 
 	public void deleteAkismetData(String className, long classPK)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		long classNameId = classNameLocalService.getClassNameId(className);
 
 		akismetDataPersistence.removeByC_C(classNameId, classPK);
 	}
 
-	public AkismetData fetchAkismetData(String className, long classPK)
-		throws SystemException {
-
+	public AkismetData fetchAkismetData(String className, long classPK) {
 		long classNameId = classNameLocalService.getClassNameId(className);
 
 		return akismetDataPersistence.fetchByC_C(classNameId, classPK);
 	}
 
 	public AkismetData updateAkismetData(
-			String className, long classPK, String type, String permalink,
-			String referrer, String userAgent, String userIP, String userURL)
-		throws SystemException {
+		String className, long classPK, String type, String permalink,
+		String referrer, String userAgent, String userIP, String userURL) {
 
 		long classNameId = classNameLocalService.getClassNameId(className);
 

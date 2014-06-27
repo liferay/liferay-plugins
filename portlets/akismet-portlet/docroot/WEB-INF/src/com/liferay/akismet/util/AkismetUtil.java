@@ -22,7 +22,6 @@ import com.liferay.portal.kernel.dao.orm.OrderFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.Property;
 import com.liferay.portal.kernel.dao.orm.PropertyFactoryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.servlet.HttpHeaders;
@@ -58,9 +57,7 @@ import java.util.Map;
  */
 public class AkismetUtil {
 
-	public static Date getReportableTime(long companyId)
-		throws SystemException {
-
+	public static Date getReportableTime(long companyId) {
 		int reportableTime = PrefsPortletPropsUtil.getInteger(
 			companyId, PortletPropsKeys.AKISMET_REPORTABLE_TIME);
 
@@ -75,8 +72,7 @@ public class AkismetUtil {
 	}
 
 	public static WikiPage getWikiPage(
-			long nodeId, String title, double version, boolean previous)
-		throws SystemException {
+		long nodeId, String title, double version, boolean previous) {
 
 		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
 			WikiPage.class);
@@ -145,9 +141,7 @@ public class AkismetUtil {
 		return true;
 	}
 
-	public static boolean isDiscussionsEnabled(long companyId)
-		throws SystemException {
-
+	public static boolean isDiscussionsEnabled(long companyId) {
 		String apiKey = PrefsPortletPropsUtil.getString(
 			companyId, PortletPropsKeys.AKISMET_API_KEY);
 
@@ -159,9 +153,7 @@ public class AkismetUtil {
 			companyId, PortletPropsKeys.AKISMET_DISCUSSIONS_CHECK_ENABLED);
 	}
 
-	public static boolean isMessageBoardsEnabled(long companyId)
-		throws SystemException {
-
+	public static boolean isMessageBoardsEnabled(long companyId) {
 		String apiKey = PrefsPortletPropsUtil.getString(
 			companyId, PortletPropsKeys.AKISMET_API_KEY);
 
@@ -175,7 +167,7 @@ public class AkismetUtil {
 
 	public static boolean isSpam(
 			long userId, String content, AkismetData akismetData)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		User user = UserLocalServiceUtil.getUser(userId);
 
@@ -217,7 +209,7 @@ public class AkismetUtil {
 		return false;
 	}
 
-	public static boolean isWikiEnabled(long companyId) throws SystemException {
+	public static boolean isWikiEnabled(long companyId) {
 		String apiKey = PrefsPortletPropsUtil.getString(
 			companyId, PortletPropsKeys.AKISMET_API_KEY);
 
@@ -233,7 +225,7 @@ public class AkismetUtil {
 			long companyId, String ipAddress, String userAgent, String referrer,
 			String permalink, String commentType, String userName,
 			String emailAddress, String content)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		if (_log.isDebugEnabled()) {
 			_log.debug("Submitting message as ham: " + permalink);
@@ -260,9 +252,7 @@ public class AkismetUtil {
 		}
 	}
 
-	public static void submitHam(MBMessage mbMessage)
-		throws PortalException, SystemException {
-
+	public static void submitHam(MBMessage mbMessage) throws PortalException {
 		AkismetData akismetData = AkismetDataLocalServiceUtil.fetchAkismetData(
 			MBMessage.class.getName(), mbMessage.getMessageId());
 
@@ -281,9 +271,7 @@ public class AkismetUtil {
 			user.getFullName(), user.getEmailAddress(), content);
 	}
 
-	public static void submitHam(WikiPage wikiPage)
-		throws PortalException, SystemException {
-
+	public static void submitHam(WikiPage wikiPage) throws PortalException {
 		AkismetData akismetData = AkismetDataLocalServiceUtil.fetchAkismetData(
 			WikiPage.class.getName(), wikiPage.getPageId());
 
@@ -306,7 +294,7 @@ public class AkismetUtil {
 			long companyId, String ipAddress, String userAgent, String referrer,
 			String permalink, String commentType, String userName,
 			String emailAddress, String content)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		if (_log.isDebugEnabled()) {
 			_log.debug("Submitting message as spam: " + permalink);
@@ -333,9 +321,7 @@ public class AkismetUtil {
 		}
 	}
 
-	public static void submitSpam(MBMessage mbMessage)
-		throws PortalException, SystemException {
-
+	public static void submitSpam(MBMessage mbMessage) throws PortalException {
 		AkismetData akismetData = AkismetDataLocalServiceUtil.fetchAkismetData(
 			MBMessage.class.getName(), mbMessage.getMessageId());
 
@@ -354,9 +340,7 @@ public class AkismetUtil {
 			user.getFullName(), user.getEmailAddress(), content);
 	}
 
-	public static void submitSpam(WikiPage wikiPage)
-		throws PortalException, SystemException {
-
+	public static void submitSpam(WikiPage wikiPage) throws PortalException {
 		AkismetData akismetData = AkismetDataLocalServiceUtil.fetchAkismetData(
 			WikiPage.class.getName(), wikiPage.getPageId());
 
@@ -376,7 +360,7 @@ public class AkismetUtil {
 	}
 
 	public static boolean verifyApiKey(long companyId, String apiKey)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		String location =
 			Http.HTTP_WITH_SLASH + AkismetConstants.URL_REST +
@@ -397,9 +381,7 @@ public class AkismetUtil {
 		}
 	}
 
-	private static String _getPortalURL(long companyId)
-		throws PortalException, SystemException {
-
+	private static String _getPortalURL(long companyId) throws PortalException {
 		Company company = CompanyLocalServiceUtil.getCompany(companyId);
 
 		return PortalUtil.getPortalURL(
@@ -411,7 +393,7 @@ public class AkismetUtil {
 			String location, long companyId, String ipAddress, String userAgent,
 			String referrer, String permalink, String commentType,
 			String userName, String emailAddress, String content)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		Map<String, String> parts = new HashMap<String, String>();
 

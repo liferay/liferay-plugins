@@ -20,7 +20,6 @@ import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.Property;
 import com.liferay.portal.kernel.dao.orm.PropertyFactoryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.messaging.BaseMessageListener;
 import com.liferay.portal.kernel.messaging.Message;
 import com.liferay.portal.kernel.util.PortalClassLoaderUtil;
@@ -37,9 +36,7 @@ import java.util.List;
  */
 public class DeleteMBMessagesListener extends BaseMessageListener {
 
-	protected void deleteSpam(long companyId)
-		throws PortalException, SystemException {
-
+	protected void deleteSpam(long companyId) throws PortalException {
 		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
 			MBMessage.class, PortalClassLoaderUtil.getClassLoader());
 

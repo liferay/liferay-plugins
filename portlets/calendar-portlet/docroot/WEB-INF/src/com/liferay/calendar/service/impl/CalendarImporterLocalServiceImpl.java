@@ -27,7 +27,6 @@ import com.liferay.portal.kernel.cal.DayAndPosition;
 import com.liferay.portal.kernel.cal.TZSRecurrence;
 import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.Time;
 import com.liferay.portal.kernel.uuid.PortalUUIDUtil;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
@@ -69,8 +68,7 @@ public class CalendarImporterLocalServiceImpl
 	extends CalendarImporterLocalServiceBaseImpl {
 
 	@Override
-	public void importCalEvent(CalEvent calEvent)
-		throws PortalException, SystemException {
+	public void importCalEvent(CalEvent calEvent) throws PortalException {
 
 		// Calendar event
 
@@ -139,14 +137,12 @@ public class CalendarImporterLocalServiceImpl
 	}
 
 	@Override
-	public void importCalEvents() throws PortalException, SystemException {
+	public void importCalEvents() throws PortalException {
 		ActionableDynamicQuery actionableDynamicQuery =
 			new CalEventActionableDynamicQuery() {
 
 			@Override
-			protected void performAction(Object object)
-				throws PortalException, SystemException {
-
+			protected void performAction(Object object) throws PortalException {
 				CalEvent calEvent = (CalEvent)object;
 
 				importCalEvent(calEvent);
@@ -158,14 +154,13 @@ public class CalendarImporterLocalServiceImpl
 	}
 
 	protected void addAssetEntry(
-			long entryId, long groupId, long companyId, long userId,
-			String userName, Date createDate, Date modifiedDate,
-			long classNameId, long classPK, String classUuid, boolean visible,
-			Date startDate, Date endDate, Date publishDate, Date expirationDate,
-			String mimeType, String title, String description, String summary,
-			String url, String layoutUuid, int height, int width,
-			double priority, int viewCount)
-		throws SystemException {
+		long entryId, long groupId, long companyId, long userId,
+		String userName, Date createDate, Date modifiedDate, long classNameId,
+		long classPK, String classUuid, boolean visible, Date startDate,
+		Date endDate, Date publishDate, Date expirationDate, String mimeType,
+		String title, String description, String summary, String url,
+		String layoutUuid, int height, int width, double priority,
+		int viewCount) {
 
 		AssetEntry assetEntry = assetEntryPersistence.create(entryId);
 
@@ -198,9 +193,8 @@ public class CalendarImporterLocalServiceImpl
 	}
 
 	protected void addAssetLink(
-			long linkId, long companyId, long userId, String userName,
-			Date createDate, long entryId1, long entryId2, int type, int weight)
-		throws SystemException {
+		long linkId, long companyId, long userId, String userName,
+		Date createDate, long entryId1, long entryId2, int type, int weight) {
 
 		AssetLink assetLink = assetLinkPersistence.create(linkId);
 
@@ -217,14 +211,13 @@ public class CalendarImporterLocalServiceImpl
 	}
 
 	protected void addCalendarBooking(
-			String uuid, long calendarBookingId, long companyId, long groupId,
-			long userId, String userName, Date createDate, Date modifiedDate,
-			long calendarId, long calendarResourceId, String title,
-			String description, String location, long startTime, long endTime,
-			boolean allDay, String recurrence, int firstReminder,
-			NotificationType firstReminderType, int secondReminder,
-			NotificationType secondReminderType)
-		throws SystemException {
+		String uuid, long calendarBookingId, long companyId, long groupId,
+		long userId, String userName, Date createDate, Date modifiedDate,
+		long calendarId, long calendarResourceId, String title,
+		String description, String location, long startTime, long endTime,
+		boolean allDay, String recurrence, int firstReminder,
+		NotificationType firstReminderType, int secondReminder,
+		NotificationType secondReminderType) {
 
 		CalendarBooking calendarBooking = calendarBookingPersistence.create(
 			calendarBookingId);
@@ -259,10 +252,9 @@ public class CalendarImporterLocalServiceImpl
 	}
 
 	protected void addMBDiscussion(
-			String uuid, long discussionId, long groupId, long companyId,
-			long userId, String userName, Date createDate, Date modifiedDate,
-			long classNameId, long classPK, long threadId)
-		throws SystemException {
+		String uuid, long discussionId, long groupId, long companyId,
+		long userId, String userName, Date createDate, Date modifiedDate,
+		long classNameId, long classPK, long threadId) {
 
 		MBDiscussion mbDiscussion = mbDiscussionPersistence.create(
 			discussionId);
@@ -290,7 +282,7 @@ public class CalendarImporterLocalServiceImpl
 			boolean allowPingbacks, boolean answer, int status,
 			long statusByUserId, String statusByUserName, Date statusDate,
 			Map<Long, Long> mbMessageIds)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		if (parentMessageId == MBMessageConstants.DEFAULT_PARENT_MESSAGE_ID) {
 			rootMessageId = messageId;
@@ -334,13 +326,12 @@ public class CalendarImporterLocalServiceImpl
 	}
 
 	protected void addMBThread(
-			String uuid, long threadId, long groupId, long companyId,
-			long userId, String userName, Date createDate, Date modifiedDate,
-			long categoryId, long rootMessageId, long rootMessageUserId,
-			int messageCount, int viewCount, long lastPostByUserId,
-			Date lastPostDate, double priority, boolean question, int status,
-			long statusByUserId, String statusByUserName, Date statusDate)
-		throws SystemException {
+		String uuid, long threadId, long groupId, long companyId, long userId,
+		String userName, Date createDate, Date modifiedDate, long categoryId,
+		long rootMessageId, long rootMessageUserId, int messageCount,
+		int viewCount, long lastPostByUserId, Date lastPostDate,
+		double priority, boolean question, int status, long statusByUserId,
+		String statusByUserName, Date statusDate) {
 
 		MBThread mbThread = mbThreadPersistence.create(threadId);
 
@@ -369,10 +360,9 @@ public class CalendarImporterLocalServiceImpl
 	}
 
 	protected RatingsEntry addRatingsEntry(
-			long entryId, long companyId, long userId, String userName,
-			Date createDate, Date modifiedDate, long classNameId, long classPK,
-			double score)
-		throws SystemException {
+		long entryId, long companyId, long userId, String userName,
+		Date createDate, Date modifiedDate, long classNameId, long classPK,
+		double score) {
 
 		RatingsEntry ratingsEntry = ratingsEntryPersistence.create(entryId);
 
@@ -389,9 +379,8 @@ public class CalendarImporterLocalServiceImpl
 	}
 
 	protected RatingsStats addRatingsStats(
-			long statsId, long classNameId, long classPK, int totalEntries,
-			double totalScore, double averageScore)
-		throws SystemException {
+		long statsId, long classNameId, long classPK, int totalEntries,
+		double totalScore, double averageScore) {
 
 		RatingsStats ratingsStats = ratingsStatsPersistence.create(statsId);
 
@@ -405,10 +394,9 @@ public class CalendarImporterLocalServiceImpl
 	}
 
 	protected void addSocialActivity(
-			long activityId, long groupId, long companyId, long userId,
-			long createDate, long mirrorActivityId, long classNameId,
-			long classPK, int type, String extraData, long receiverUserId)
-		throws SystemException {
+		long activityId, long groupId, long companyId, long userId,
+		long createDate, long mirrorActivityId, long classNameId, long classPK,
+		int type, String extraData, long receiverUserId) {
 
 		SocialActivity socialActivity = socialActivityPersistence.create(
 			activityId);
@@ -428,10 +416,9 @@ public class CalendarImporterLocalServiceImpl
 	}
 
 	protected void addSubscription(
-			long subscriptionId, long companyId, long userId, String userName,
-			Date createDate, Date modifiedDate, long classNameId, long classPK,
-			String frequency)
-		throws SystemException {
+		long subscriptionId, long companyId, long userId, String userName,
+		Date createDate, Date modifiedDate, long classNameId, long classPK,
+		String frequency) {
 
 		Subscription subscription = subscriptionPersistence.create(
 			subscriptionId);
@@ -449,8 +436,7 @@ public class CalendarImporterLocalServiceImpl
 	}
 
 	protected long getActionId(
-			ResourceAction oldResourceAction, String newClassName)
-		throws SystemException {
+		ResourceAction oldResourceAction, String newClassName) {
 
 		ResourceAction newResourceAction = resourceActionPersistence.fetchByN_A(
 			newClassName, oldResourceAction.getActionId());
@@ -463,9 +449,8 @@ public class CalendarImporterLocalServiceImpl
 	}
 
 	protected long getActionIds(
-			ResourcePermission resourcePermission, String oldClassName,
-			String newClassName)
-		throws SystemException {
+		ResourcePermission resourcePermission, String oldClassName,
+		String newClassName) {
 
 		long actionIds = 0;
 
@@ -489,7 +474,7 @@ public class CalendarImporterLocalServiceImpl
 
 	protected AssetCategory getAssetCategory(
 			long userId, long groupId, String name)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		AssetVocabulary assetVocabulary = assetVocabularyPersistence.fetchByG_N(
 			groupId, _ASSET_VOCABULARY_NAME);
@@ -517,7 +502,7 @@ public class CalendarImporterLocalServiceImpl
 	}
 
 	protected CalendarResource getCalendarResource(long companyId, long groupId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		ServiceContext serviceContext = new ServiceContext();
 
@@ -593,7 +578,7 @@ public class CalendarImporterLocalServiceImpl
 
 	protected void importAssetLink(
 			AssetLink assetLink, long oldEntryId, long newEntryId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		long entryId1 = 0;
 		long entryId2 = 0;
@@ -650,7 +635,7 @@ public class CalendarImporterLocalServiceImpl
 	}
 
 	protected void importAssets(CalEvent calEvent, long calendarBookingId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		// Asset entry
 
@@ -716,7 +701,7 @@ public class CalendarImporterLocalServiceImpl
 
 	protected void importCalendarBookingResourcePermission(
 			ResourcePermission resourcePermission, long calendarBookingId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		CalendarBooking calendarBooking =
 			calendarBookingPersistence.findByPrimaryKey(calendarBookingId);
@@ -734,7 +719,7 @@ public class CalendarImporterLocalServiceImpl
 
 	protected void importCalendarBookingResourcePermissions(
 			CalEvent calEvent, long calendarBookingId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		List<ResourcePermission> resourcePermissions =
 			resourcePermissionPersistence.findByC_N_S_P(
@@ -749,7 +734,7 @@ public class CalendarImporterLocalServiceImpl
 	}
 
 	protected void importMBDiscussion(CalEvent calEvent, long calendarBookingId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		MBDiscussion mbDiscussion = mbDiscussionPersistence.fetchByC_C(
 			classNameLocalService.getClassNameId(CalEvent.class),
@@ -775,7 +760,7 @@ public class CalendarImporterLocalServiceImpl
 	protected long importMBMessage(
 			long messageId, long threadId, long calendarBookingId,
 			Map<Long, Long> mbMessageIds)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		MBMessage mbMessage = mbMessagePersistence.findByPrimaryKey(messageId);
 
@@ -786,7 +771,7 @@ public class CalendarImporterLocalServiceImpl
 	protected long importMBMessage(
 			MBMessage mbMessage, long threadId, long calendarBookingId,
 			Map<Long, Long> mbMessageIds)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		Long messageId = mbMessageIds.get(mbMessage.getMessageId());
 
@@ -825,7 +810,7 @@ public class CalendarImporterLocalServiceImpl
 	}
 
 	protected long importMBThread(long threadId, long calendarBookingId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		MBThread mbThread = mbThreadPersistence.findByPrimaryKey(threadId);
 
@@ -833,7 +818,7 @@ public class CalendarImporterLocalServiceImpl
 	}
 
 	protected long importMBThread(MBThread mbThread, long calendarBookingId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		long threadId = counterLocalService.increment();
 
@@ -866,9 +851,7 @@ public class CalendarImporterLocalServiceImpl
 	}
 
 	protected void importRatings(
-			long oldClassNameId, long oldClassPK, long classNameId,
-			long classPK)
-		throws SystemException {
+		long oldClassNameId, long oldClassPK, long classNameId, long classPK) {
 
 		List<RatingsEntry> ratingsEntries = ratingsEntryPersistence.findByC_C(
 			oldClassNameId, oldClassPK);
@@ -895,8 +878,7 @@ public class CalendarImporterLocalServiceImpl
 	}
 
 	protected void importSocialActivities(
-			CalEvent calEvent, long calendarBookingId)
-		throws SystemException {
+		CalEvent calEvent, long calendarBookingId) {
 
 		List<SocialActivity> socialActivities =
 			socialActivityPersistence.findByC_C(
@@ -909,8 +891,7 @@ public class CalendarImporterLocalServiceImpl
 	}
 
 	protected void importSocialActivity(
-			SocialActivity socialActivity, long calendarBookingId)
-		throws SystemException {
+		SocialActivity socialActivity, long calendarBookingId) {
 
 		addSocialActivity(
 			counterLocalService.increment(SocialActivity.class.getName()),
@@ -923,8 +904,7 @@ public class CalendarImporterLocalServiceImpl
 	}
 
 	protected void importSubscription(
-			Subscription subscription, long calendarBookingId)
-		throws SystemException {
+		Subscription subscription, long calendarBookingId) {
 
 		addSubscription(
 			counterLocalService.increment(), subscription.getCompanyId(),
@@ -935,8 +915,7 @@ public class CalendarImporterLocalServiceImpl
 	}
 
 	protected void importSubscriptions(
-			CalEvent calEvent, long calendarBookingId)
-		throws SystemException {
+		CalEvent calEvent, long calendarBookingId) {
 
 		List<Subscription> subscriptions = subscriptionPersistence.findByC_C_C(
 			calEvent.getCompanyId(),
@@ -948,9 +927,7 @@ public class CalendarImporterLocalServiceImpl
 		}
 	}
 
-	protected boolean isImported(CalEvent calEvent)
-		throws PortalException, SystemException {
-
+	protected boolean isImported(CalEvent calEvent) throws PortalException {
 		CalendarResource calendarResource = getCalendarResource(
 			calEvent.getCompanyId(), calEvent.getGroupId());
 
@@ -967,7 +944,7 @@ public class CalendarImporterLocalServiceImpl
 
 	protected void updateMBThreadRootMessageId(
 			long threadId, long rootMessageId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		MBThread mbThread = mbThreadPersistence.findByPrimaryKey(threadId);
 

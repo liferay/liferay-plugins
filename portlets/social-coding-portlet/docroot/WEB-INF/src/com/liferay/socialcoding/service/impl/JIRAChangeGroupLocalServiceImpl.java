@@ -15,7 +15,6 @@
 package com.liferay.socialcoding.service.impl;
 
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.socialcoding.model.JIRAChangeGroup;
 import com.liferay.socialcoding.service.base.JIRAChangeGroupLocalServiceBaseImpl;
 
@@ -27,7 +26,7 @@ public class JIRAChangeGroupLocalServiceImpl
 
 	@Override
 	public JIRAChangeGroup getJIRAChangeGroup(long jiraChangeGroupId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		return jiraChangeGroupPersistence.findByPrimaryKey(jiraChangeGroupId);
 	}

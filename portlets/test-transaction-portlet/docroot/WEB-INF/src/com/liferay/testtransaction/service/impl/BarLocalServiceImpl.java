@@ -28,28 +28,24 @@ import java.util.List;
  */
 public class BarLocalServiceImpl extends BarLocalServiceBaseImpl {
 
-	public void addBar_Rollback(String text) throws SystemException {
+	public void addBar_Rollback(String text) {
 		addBar(text);
 
 		throw new SystemException();
 	}
 
-	public Bar addBar_Success(String text) throws SystemException {
+	public Bar addBar_Success(String text) {
 		return addBar(text);
 	}
 
-	public void addBarAndClassName_PortalRollback(String text)
-		throws SystemException {
-
+	public void addBarAndClassName_PortalRollback(String text) {
 		addBar(text);
 
 		PortalServiceUtil.testAddClassName_Rollback(
 			BarLocalServiceImpl.class.getName());
 	}
 
-	public void addBarAndClassName_PortletRollback(String text)
-		throws SystemException {
-
+	public void addBarAndClassName_PortletRollback(String text) {
 		addBar(text);
 
 		PortalServiceUtil.testAddClassName_Success(
@@ -59,19 +55,17 @@ public class BarLocalServiceImpl extends BarLocalServiceBaseImpl {
 	}
 
 	@Override
-	public Bar deleteBar(Bar bar) throws SystemException {
+	public Bar deleteBar(Bar bar) {
 		return barPersistence.remove(bar);
 	}
 
-	public void deleteBarAndClassName(Bar bar)
-		throws PortalException, SystemException {
-
+	public void deleteBarAndClassName(Bar bar) throws PortalException {
 		barPersistence.remove(bar);
 
 		classNamePersistence.removeByValue(BarLocalServiceImpl.class.getName());
 	}
 
-	public Bar getBar(String text) throws PortalException, SystemException {
+	public Bar getBar(String text) throws PortalException {
 		List<Bar> bars = barPersistence.findByText(text);
 
 		if (bars.isEmpty()) {
@@ -81,7 +75,7 @@ public class BarLocalServiceImpl extends BarLocalServiceBaseImpl {
 		return bars.get(0);
 	}
 
-	public boolean hasBar(String text) throws SystemException {
+	public boolean hasBar(String text) {
 		int count = barPersistence.countByText(text);
 
 		if (count > 0) {
@@ -92,7 +86,7 @@ public class BarLocalServiceImpl extends BarLocalServiceBaseImpl {
 		}
 	}
 
-	public boolean hasClassName() throws SystemException {
+	public boolean hasClassName() {
 		int count = classNamePersistence.countByValue(
 			BarLocalServiceImpl.class.getName());
 
@@ -104,16 +98,14 @@ public class BarLocalServiceImpl extends BarLocalServiceBaseImpl {
 		}
 	}
 
-	public void testAddClassNameAndBar_Success(String text)
-		throws SystemException {
-
+	public void testAddClassNameAndBar_Success(String text) {
 		addBar(text);
 
 		PortalServiceUtil.testAddClassName_Success(
 			BarLocalServiceImpl.class.getName());
 	}
 
-	protected Bar addBar(String text) throws SystemException {
+	protected Bar addBar(String text) {
 		long barId = counterLocalService.increment();
 
 		Bar bar = barPersistence.create(barId);

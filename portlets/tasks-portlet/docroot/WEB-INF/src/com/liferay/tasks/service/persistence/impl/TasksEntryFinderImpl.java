@@ -57,9 +57,8 @@ public class TasksEntryFinderImpl
 		TasksEntryFinder.class.getName() + ".joinByNotAssetTags";
 
 	public int countByG_U_P_A_S_T_N(
-			long groupId, long userId, int priority, long assigneeUserId,
-			int status, long[] assetTagIds, long[] notAssetTagIds)
-		throws SystemException {
+		long groupId, long userId, int priority, long assigneeUserId,
+		int status, long[] assetTagIds, long[] notAssetTagIds) {
 
 		if ((priority <= 0) && (assetTagIds.length == 0) &&
 			(notAssetTagIds.length == 0)) {
@@ -154,10 +153,9 @@ public class TasksEntryFinderImpl
 	}
 
 	public List<TasksEntry> findByG_U_P_A_S_T_N(
-			long groupId, long userId, int priority, long assigneeUserId,
-			int status, long[] assetTagIds, long[] notAssetTagIds, int start,
-			int end)
-		throws SystemException {
+		long groupId, long userId, int priority, long assigneeUserId,
+		int status, long[] assetTagIds, long[] notAssetTagIds, int start,
+		int end) {
 
 		if ((priority <= 0) && (assetTagIds.length == 0) &&
 			(notAssetTagIds.length == 0)) {
@@ -242,9 +240,7 @@ public class TasksEntryFinderImpl
 		}
 	}
 
-	protected int countByG_U_S(long groupId, long userId, int status)
-		throws SystemException {
-
+	protected int countByG_U_S(long groupId, long userId, int status) {
 		if (status != TasksEntryConstants.STATUS_ALL) {
 			if (groupId > 0) {
 				return TasksEntryUtil.countByG_U_S(
@@ -261,9 +257,7 @@ public class TasksEntryFinderImpl
 		return TasksEntryUtil.countByUserId(userId);
 	}
 
-	protected int countByG_A_S(long groupId, long assigneeUserId, int status)
-		throws SystemException {
-
+	protected int countByG_A_S(long groupId, long assigneeUserId, int status) {
 		if (status != TasksEntryConstants.STATUS_ALL) {
 			if (groupId > 0) {
 				return TasksEntryUtil.countByG_A_S(
@@ -282,8 +276,7 @@ public class TasksEntryFinderImpl
 	}
 
 	protected List<TasksEntry> findByG_U_S(
-			long groupId, long userId, int status, int start, int end)
-		throws SystemException {
+		long groupId, long userId, int status, int start, int end) {
 
 		if (status != TasksEntryConstants.STATUS_ALL) {
 			if (groupId > 0) {
@@ -303,8 +296,7 @@ public class TasksEntryFinderImpl
 	}
 
 	protected List<TasksEntry> findByG_A_S(
-			long groupId, long assigneeUserId, int status, int start, int end)
-		throws SystemException {
+		long groupId, long assigneeUserId, int status, int start, int end) {
 
 		if (status != TasksEntryConstants.STATUS_ALL) {
 			if (groupId > 0) {

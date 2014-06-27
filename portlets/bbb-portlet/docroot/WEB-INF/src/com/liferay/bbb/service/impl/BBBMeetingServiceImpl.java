@@ -21,7 +21,6 @@ import com.liferay.bbb.service.permission.BBBMeetingPermission;
 import com.liferay.bbb.service.permission.MeetingsPermission;
 import com.liferay.bbb.util.ActionKeys;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.service.ServiceContext;
 
@@ -38,7 +37,7 @@ public class BBBMeetingServiceImpl extends BBBMeetingServiceBaseImpl {
 			String description, String attendeePassword,
 			String moderatorPassword, int status,
 			List<BBBParticipant> bbbParticipants, ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		MeetingsPermission.check(
 			getPermissionChecker(), groupId, ActionKeys.ADD_MEETING);
@@ -51,7 +50,7 @@ public class BBBMeetingServiceImpl extends BBBMeetingServiceBaseImpl {
 
 	@Override
 	public BBBMeeting deleteBBBMeeting(long bbbMeetingId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		BBBMeetingPermission.check(
 			getPermissionChecker(), bbbMeetingId, ActionKeys.DELETE);
@@ -60,9 +59,7 @@ public class BBBMeetingServiceImpl extends BBBMeetingServiceBaseImpl {
 	}
 
 	@Override
-	public BBBMeeting getBBBMeeting(long bbbMeetingId)
-		throws PortalException, SystemException {
-
+	public BBBMeeting getBBBMeeting(long bbbMeetingId) throws PortalException {
 		BBBMeetingPermission.check(
 			getPermissionChecker(), bbbMeetingId, ActionKeys.VIEW);
 
@@ -71,15 +68,14 @@ public class BBBMeetingServiceImpl extends BBBMeetingServiceBaseImpl {
 
 	@Override
 	public List<BBBMeeting> getBBBMeetings(
-			long groupId, int start, int end, OrderByComparator obc)
-		throws SystemException {
+		long groupId, int start, int end, OrderByComparator obc) {
 
 		return bbbMeetingPersistence.filterFindByGroupId(
 			groupId, start, end, obc);
 	}
 
 	@Override
-	public int getBBBMeetingsCount(long groupId) throws SystemException {
+	public int getBBBMeetingsCount(long groupId) {
 		return bbbMeetingPersistence.filterCountByGroupId(groupId);
 	}
 
@@ -89,7 +85,7 @@ public class BBBMeetingServiceImpl extends BBBMeetingServiceBaseImpl {
 			String description, String attendeePassword,
 			String moderatorPassword, List<BBBParticipant> bbbParticipants,
 			ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		BBBMeetingPermission.check(
 			getPermissionChecker(), bbbMeetingId, ActionKeys.UPDATE);

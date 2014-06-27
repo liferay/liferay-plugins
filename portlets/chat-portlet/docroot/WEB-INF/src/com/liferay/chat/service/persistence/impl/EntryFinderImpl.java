@@ -14,12 +14,10 @@
 
 package com.liferay.chat.service.persistence.impl;
 
-import com.liferay.chat.service.persistence.EntryFinder;
-import com.liferay.chat.service.persistence.EntryUtil;
-
 import com.liferay.chat.model.Entry;
 import com.liferay.chat.model.EntryConstants;
 import com.liferay.chat.model.impl.EntryImpl;
+import com.liferay.chat.service.persistence.EntryFinder;
 import com.liferay.portal.kernel.dao.orm.QueryPos;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.dao.orm.SQLQuery;
@@ -48,8 +46,7 @@ public class EntryFinderImpl
 
 	@Override
 	public List<Entry> findByEmptyContent(
-			long fromUserId, long toUserId, int start, int end)
-		throws SystemException {
+		long fromUserId, long toUserId, int start, int end) {
 
 		Session session = null;
 
@@ -79,8 +76,7 @@ public class EntryFinderImpl
 
 	@Override
 	public List<Entry> findByNew(
-			long userId, long createDate, int start, int end)
-		throws SystemException {
+		long userId, long createDate, int start, int end) {
 
 		Session session = null;
 
@@ -120,9 +116,7 @@ public class EntryFinderImpl
 	}
 
 	@Override
-	public List<Entry> findByOld(long createDate, int start, int end)
-		throws SystemException {
-
+	public List<Entry> findByOld(long createDate, int start, int end) {
 		Session session = null;
 
 		try {

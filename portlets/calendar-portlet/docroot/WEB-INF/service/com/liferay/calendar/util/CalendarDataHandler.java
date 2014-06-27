@@ -24,7 +24,6 @@ public interface CalendarDataHandler {
 	public String exportCalendarBooking(long calendarBookingId)
 		throws Exception;
 
-	public void importCalendar(long calendarId, String data)
-		throws Exception;
+	public void importCalendar(long calendarId, String data) throws Exception;
 
 }

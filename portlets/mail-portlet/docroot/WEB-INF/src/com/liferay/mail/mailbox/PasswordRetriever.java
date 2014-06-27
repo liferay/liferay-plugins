@@ -17,7 +17,6 @@ package com.liferay.mail.mailbox;
 import com.liferay.mail.model.Account;
 import com.liferay.mail.service.AccountLocalServiceUtil;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.StringPool;
 
 import javax.servlet.http.HttpServletRequest;
@@ -37,9 +36,7 @@ public class PasswordRetriever {
 		_request = request;
 	}
 
-	public String getPassword(long accountId)
-		throws PortalException, SystemException {
-
+	public String getPassword(long accountId) throws PortalException {
 		Account account = AccountLocalServiceUtil.getAccount(accountId);
 
 		if (account.isSavePassword()) {

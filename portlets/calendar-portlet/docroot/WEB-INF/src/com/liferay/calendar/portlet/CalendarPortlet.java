@@ -54,7 +54,6 @@ import com.liferay.calendar.workflow.CalendarBookingWorkflowConstants;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.dao.search.SearchContainer;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
@@ -483,7 +482,7 @@ public class CalendarPortlet extends MVCPortlet {
 	protected void addCalendarJSONObject(
 			PortletRequest portletRequest, JSONArray jsonArray,
 			long classNameId, long classPK)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		CalendarResource calendarResource =
 			CalendarResourceUtil.getCalendarResource(
@@ -825,8 +824,8 @@ public class CalendarPortlet extends MVCPortlet {
 	}
 
 	protected void serveCalendarBookingInvitees(
-		ResourceRequest resourceRequest, ResourceResponse resourceResponse)
-			throws Exception {
+			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
+		throws Exception {
 
 		ThemeDisplay themeDisplay = (ThemeDisplay)resourceRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
@@ -855,7 +854,7 @@ public class CalendarPortlet extends MVCPortlet {
 
 	protected void serveCalendarBookings(
 			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
-		throws IOException, PortalException, SystemException {
+		throws IOException, PortalException {
 
 		ThemeDisplay themeDisplay = (ThemeDisplay)resourceRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
@@ -926,8 +925,8 @@ public class CalendarPortlet extends MVCPortlet {
 	}
 
 	protected void serveCalendarRenderingRules(
-		ResourceRequest resourceRequest, ResourceResponse resourceResponse)
-			throws Exception {
+			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
+		throws Exception {
 
 		ThemeDisplay themeDisplay = (ThemeDisplay)resourceRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
@@ -1091,8 +1090,8 @@ public class CalendarPortlet extends MVCPortlet {
 	}
 
 	protected void serveResourceCalendars(
-		ResourceRequest resourceRequest, ResourceResponse resourceResponse)
-			throws Exception {
+			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
+		throws Exception {
 
 		ThemeDisplay themeDisplay = (ThemeDisplay)resourceRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);

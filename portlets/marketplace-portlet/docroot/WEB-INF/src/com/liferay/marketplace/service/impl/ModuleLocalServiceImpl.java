@@ -16,7 +16,6 @@ package com.liferay.marketplace.service.impl;
 
 import com.liferay.marketplace.model.Module;
 import com.liferay.marketplace.service.base.ModuleLocalServiceBaseImpl;
-import com.liferay.portal.kernel.exception.SystemException;
 
 import java.util.List;
 
@@ -26,9 +25,7 @@ import java.util.List;
 public class ModuleLocalServiceImpl extends ModuleLocalServiceBaseImpl {
 
 	@Override
-	public Module addModule(long userId, long appId, String contextName)
-		throws SystemException {
-
+	public Module addModule(long userId, long appId, String contextName) {
 		Module module = modulePersistence.fetchByA_C(appId, contextName);
 
 		if (module != null) {
@@ -49,14 +46,12 @@ public class ModuleLocalServiceImpl extends ModuleLocalServiceBaseImpl {
 	}
 
 	@Override
-	public Module fetchModule(long appId, String contextName)
-		throws SystemException {
-
+	public Module fetchModule(long appId, String contextName) {
 		return modulePersistence.fetchByA_C(appId, contextName);
 	}
 
 	@Override
-	public List<Module> getModules(long appId) throws SystemException {
+	public List<Module> getModules(long appId) {
 		return modulePersistence.findByAppId(appId);
 	}
 

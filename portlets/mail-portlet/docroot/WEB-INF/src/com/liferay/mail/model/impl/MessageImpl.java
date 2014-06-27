@@ -15,7 +15,6 @@
 package com.liferay.mail.model.impl;
 
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.model.Group;
@@ -30,7 +29,7 @@ public class MessageImpl extends MessageBaseImpl {
 	public MessageImpl() {
 	}
 
-	public long getGroupId() throws PortalException, SystemException {
+	public long getGroupId() throws PortalException {
 		User user = UserLocalServiceUtil.getUser(getUserId());
 
 		Group group = user.getGroup();

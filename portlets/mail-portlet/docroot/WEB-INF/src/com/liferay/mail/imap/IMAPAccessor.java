@@ -26,7 +26,6 @@ import com.liferay.mail.util.HtmlContentUtil;
 import com.liferay.mail.util.MailConstants;
 import com.liferay.mail.util.PortletPropsValues;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.ContentTypes;
@@ -136,9 +135,7 @@ public class IMAPAccessor {
 		}
 	}
 
-	public void deleteFolder(long folderId)
-		throws PortalException, SystemException {
-
+	public void deleteFolder(long folderId) throws PortalException {
 		try {
 			Folder jxFolder = getFolder(folderId);
 
@@ -158,7 +155,7 @@ public class IMAPAccessor {
 	}
 
 	public void deleteMessages(long folderId, long[] messageIds)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		Folder jxFolder = null;
 
@@ -184,7 +181,7 @@ public class IMAPAccessor {
 
 	public AttachmentHandler getAttachment(
 			long folderId, long messageId, String contentPath)
-		throws IOException, PortalException, SystemException {
+		throws IOException, PortalException {
 
 		Folder jxFolder = null;
 
@@ -254,7 +251,7 @@ public class IMAPAccessor {
 
 	public long[] getMessageUIDs(
 			long folderId, int pageNumber, int messagesPerPage)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		Folder jxFolder = null;
 
@@ -281,9 +278,7 @@ public class IMAPAccessor {
 		}
 	}
 
-	public boolean hasNewMessages(long folderId)
-		throws PortalException, SystemException {
-
+	public boolean hasNewMessages(long folderId) throws PortalException {
 		Folder jxFolder = null;
 
 		try {
@@ -318,7 +313,7 @@ public class IMAPAccessor {
 	public void moveMessages(
 			long sourceFolderId, long destinationFolderId, long[] messageIds,
 			boolean deleteMissingMessages)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		Folder sourceJxFolder = null;
 		Folder destinationJxFolder = null;
@@ -368,7 +363,7 @@ public class IMAPAccessor {
 	}
 
 	public String[] renameFolder(long folderId, String newDisplayName)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		try {
 			Folder jxFolder = getFolder(folderId);
@@ -407,7 +402,7 @@ public class IMAPAccessor {
 			String personalName, String sender, Address[] to, Address[] cc,
 			Address[] bcc, String subject, String body,
 			List<MailFile> mailFiles)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		Folder jxFolder = null;
 
@@ -440,7 +435,7 @@ public class IMAPAccessor {
 	}
 
 	public void storeContents(long folderId, long[] remoteMessageIds)
-		throws IOException, PortalException, SystemException {
+		throws IOException, PortalException {
 
 		Folder jxFolder = null;
 
@@ -510,7 +505,7 @@ public class IMAPAccessor {
 	}
 
 	public void storeEnvelopes(long folderId, boolean allMessages)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		Folder jxFolder = null;
 
@@ -611,7 +606,7 @@ public class IMAPAccessor {
 
 	public void storeEnvelopes(
 			long folderId, Folder jxFolder, Message[] jxMessages)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		StopWatch stopWatch = new StopWatch();
 
@@ -674,7 +669,7 @@ public class IMAPAccessor {
 	}
 
 	public void storeEnvelopes(long folderId, long[] remoteMessageIds)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		Folder jxFolder = null;
 
@@ -696,7 +691,7 @@ public class IMAPAccessor {
 	public void updateFlags(
 			long folderId, long[] messageIds, int flag, boolean value,
 			boolean deleteMissingMessages)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		Folder jxFolder = null;
 
@@ -790,7 +785,7 @@ public class IMAPAccessor {
 	}
 
 	protected Folder getFolder(long folderId)
-		throws MessagingException, PortalException, SystemException {
+		throws MessagingException, PortalException {
 
 		Store store = _imapConnection.getStore(true);
 
@@ -837,7 +832,7 @@ public class IMAPAccessor {
 	}
 
 	protected Message getMessage(long folderId, Folder jxFolder, boolean oldest)
-		throws MessagingException, PortalException, SystemException {
+		throws MessagingException, PortalException {
 
 		com.liferay.mail.model.Message message = null;
 
@@ -893,7 +888,7 @@ public class IMAPAccessor {
 
 	protected List<Message> getMessages(
 			Folder jxFolder, long[] messageIds, boolean deleteMissingMessages)
-		throws MessagingException, PortalException, SystemException {
+		throws MessagingException, PortalException {
 
 		long[] remoteMessageIds = new long[messageIds.length];
 
@@ -1004,7 +999,7 @@ public class IMAPAccessor {
 	}
 
 	protected InternetAddress[] getRecipients(long messageId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		try {
 			com.liferay.mail.model.Message message =
@@ -1028,7 +1023,7 @@ public class IMAPAccessor {
 
 	protected InternetAddress[] getRecipients(
 			long messageId, RecipientType recipientType)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		try {
 			com.liferay.mail.model.Message message =
@@ -1062,7 +1057,7 @@ public class IMAPAccessor {
 	}
 
 	protected Folder openFolder(long folderId)
-		throws MessagingException, PortalException, SystemException {
+		throws MessagingException, PortalException {
 
 		return openFolder(getFolder(folderId));
 	}

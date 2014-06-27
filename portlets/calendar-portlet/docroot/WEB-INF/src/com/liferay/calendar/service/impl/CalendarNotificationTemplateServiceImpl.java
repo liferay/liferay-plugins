@@ -21,7 +21,6 @@ import com.liferay.calendar.service.base.CalendarNotificationTemplateServiceBase
 import com.liferay.calendar.service.permission.CalendarPermission;
 import com.liferay.calendar.util.ActionKeys;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.service.ServiceContext;
 
 /**
@@ -36,7 +35,7 @@ public class CalendarNotificationTemplateServiceImpl
 			String notificationTypeSettings,
 			NotificationTemplateType notificationTemplateType, String subject,
 			String body, ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		CalendarPermission.check(
 			getPermissionChecker(), calendarId, ActionKeys.UPDATE);
@@ -53,7 +52,7 @@ public class CalendarNotificationTemplateServiceImpl
 			long calendarNotificationTemplateId,
 			String notificationTypeSettings, String subject, String body,
 			ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		CalendarNotificationTemplate calendarNotificationTemplate =
 			calendarNotificationTemplatePersistence.findByPrimaryKey(

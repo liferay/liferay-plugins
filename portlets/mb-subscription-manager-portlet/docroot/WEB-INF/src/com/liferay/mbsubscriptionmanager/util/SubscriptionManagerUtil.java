@@ -19,7 +19,6 @@ import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.OrderFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.Property;
 import com.liferay.portal.kernel.dao.orm.PropertyFactoryUtil;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.PortalClassLoaderUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
@@ -34,8 +33,7 @@ import java.util.List;
 public class SubscriptionManagerUtil {
 
 	public static List<MBCategory> getMBCategories(
-			long groupId, String name, int start, int end)
-		throws SystemException {
+		long groupId, String name, int start, int end) {
 
 		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
 			MBCategory.class, PortalClassLoaderUtil.getClassLoader());
@@ -58,9 +56,7 @@ public class SubscriptionManagerUtil {
 			dynamicQuery, start, end);
 	}
 
-	public static int getMBCategoriesCount(long groupId, String name)
-		throws SystemException {
-
+	public static int getMBCategoriesCount(long groupId, String name) {
 		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
 			MBCategory.class, PortalClassLoaderUtil.getClassLoader());
 

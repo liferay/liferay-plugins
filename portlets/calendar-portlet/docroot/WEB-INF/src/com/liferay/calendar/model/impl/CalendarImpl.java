@@ -17,7 +17,6 @@ package com.liferay.calendar.model.impl;
 import com.liferay.calendar.model.CalendarResource;
 import com.liferay.calendar.service.CalendarResourceLocalServiceUtil;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.TimeZoneUtil;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.UserLocalServiceUtil;
@@ -34,15 +33,13 @@ public class CalendarImpl extends CalendarBaseImpl {
 	}
 
 	@Override
-	public CalendarResource getCalendarResource()
-		throws PortalException, SystemException {
-
+	public CalendarResource getCalendarResource() throws PortalException {
 		return CalendarResourceLocalServiceUtil.getCalendarResource(
 			getCalendarResourceId());
 	}
 
 	@Override
-	public TimeZone getTimeZone() throws PortalException, SystemException {
+	public TimeZone getTimeZone() throws PortalException {
 		CalendarResource calendarResource = getCalendarResource();
 
 		if (calendarResource.getClassNameId() ==

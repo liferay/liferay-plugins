@@ -15,7 +15,6 @@
 package com.liferay.samplelar.service.impl;
 
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.systemevent.SystemEvent;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.SystemEventConstants;
@@ -38,7 +37,7 @@ public class SampleLARBookingLocalServiceImpl
 	public SampleLARBooking addSampleLARBooking(
 			long userId, long groupId, String bookingNumber,
 			ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		User user = userPersistence.findByPrimaryKey(userId);
 		Date now = new Date();
@@ -64,9 +63,7 @@ public class SampleLARBookingLocalServiceImpl
 	}
 
 	@Override
-	public SampleLARBooking deleteSampleLARBooking(long sampleLARBookingId)
-		throws SystemException {
-
+	public SampleLARBooking deleteSampleLARBooking(long sampleLARBookingId) {
 		SampleLARBooking sampleLARBooking =
 			sampleLARBookingPersistence.fetchByPrimaryKey(sampleLARBookingId);
 
@@ -77,14 +74,13 @@ public class SampleLARBookingLocalServiceImpl
 	@Override
 	@SystemEvent(type = SystemEventConstants.TYPE_DELETE)
 	public SampleLARBooking deleteSampleLARBooking(
-			SampleLARBooking sampleLARBooking)
-		throws SystemException {
+		SampleLARBooking sampleLARBooking) {
 
 		return sampleLARBookingPersistence.remove(sampleLARBooking);
 	}
 
 	@Override
-	public void deleteSampleLARBookings(long groupId) throws SystemException {
+	public void deleteSampleLARBookings(long groupId) {
 		List<SampleLARBooking> sampleLARBookings =
 			sampleLARBookingPersistence.findByGroupId(groupId);
 
@@ -96,14 +92,13 @@ public class SampleLARBookingLocalServiceImpl
 
 	@Override
 	public List<SampleLARBooking> getSampleLARBookings(
-			long groupId, int start, int end)
-		throws SystemException {
+		long groupId, int start, int end) {
 
 		return sampleLARBookingPersistence.findByGroupId(groupId, start, end);
 	}
 
 	@Override
-	public int getSampleLARBookingsCount(long groupId) throws SystemException {
+	public int getSampleLARBookingsCount(long groupId) {
 		return sampleLARBookingPersistence.countByGroupId(groupId);
 	}
 
@@ -111,7 +106,7 @@ public class SampleLARBookingLocalServiceImpl
 	public SampleLARBooking updateSampleLARBooking(
 			long userId, long sampleLARBookingId, String bookingNumber,
 			ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		User user = userPersistence.findByPrimaryKey(userId);
 

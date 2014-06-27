@@ -15,7 +15,6 @@
 package com.liferay.socialcoding.service.impl;
 
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
@@ -45,49 +44,43 @@ import java.util.List;
 public class JIRAIssueLocalServiceImpl extends JIRAIssueLocalServiceBaseImpl {
 
 	public List<JIRAIssue> getAssigneeJIRAIssues(
-			Date modifiedDate, long projectId, String assigneeJiraUserId,
-			int start, int end)
-		throws SystemException {
+		Date modifiedDate, long projectId, String assigneeJiraUserId, int start,
+		int end) {
 
 		return jiraIssuePersistence.findByMD_P_AJUI(
 			modifiedDate, projectId, assigneeJiraUserId);
 	}
 
 	public List<JIRAIssue> getAssigneeJIRAIssues(
-			long projectId, String assigneeJiraUserId, int start, int end)
-		throws SystemException {
+		long projectId, String assigneeJiraUserId, int start, int end) {
 
 		return jiraIssuePersistence.findByP_AJUI(projectId, assigneeJiraUserId);
 	}
 
 	public List<JIRAIssue> getAssigneeJIRAIssues(
-			long projectId, String assigneeJiraUserId, String status, int start,
-			int end)
-		throws SystemException {
+		long projectId, String assigneeJiraUserId, String status, int start,
+		int end) {
 
 		return jiraIssuePersistence.findByP_AJUI_S(
 			projectId, assigneeJiraUserId, status);
 	}
 
 	public int getAssigneeJIRAIssuesCount(
-			Date modifiedDate, long projectId, String assigneeJiraUserId)
-		throws SystemException {
+		Date modifiedDate, long projectId, String assigneeJiraUserId) {
 
 		return jiraIssuePersistence.countByMD_P_AJUI(
 			modifiedDate, projectId, assigneeJiraUserId);
 	}
 
 	public int getAssigneeJIRAIssuesCount(
-			long projectId, String assigneeJiraUserId)
-		throws SystemException {
+		long projectId, String assigneeJiraUserId) {
 
 		return jiraIssuePersistence.countByP_AJUI(
 			projectId, assigneeJiraUserId);
 	}
 
 	public int getAssigneeJIRAIssuesCount(
-			long projectId, String assigneeJiraUserId, String status)
-		throws SystemException {
+		long projectId, String assigneeJiraUserId, String status) {
 
 		return jiraIssuePersistence.countByP_AJUI_S(
 			projectId, assigneeJiraUserId, status);
@@ -95,7 +88,7 @@ public class JIRAIssueLocalServiceImpl extends JIRAIssueLocalServiceBaseImpl {
 
 	public JIRAIssue getFirstAssigneeJIRAIssue(
 			long projectId, String assigneeJiraUserId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		int count = jiraIssuePersistence.countByP_AJUI(
 			projectId, assigneeJiraUserId);
@@ -113,7 +106,7 @@ public class JIRAIssueLocalServiceImpl extends JIRAIssueLocalServiceBaseImpl {
 
 	public JIRAIssue getFirstReporterJIRAIssue(
 			long projectId, String reporterJiraUserId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		int count = jiraIssuePersistence.countByP_AJUI(
 			projectId, reporterJiraUserId);
@@ -130,21 +123,17 @@ public class JIRAIssueLocalServiceImpl extends JIRAIssueLocalServiceBaseImpl {
 	}
 
 	@Override
-	public JIRAIssue getJIRAIssue(long jiraIssueId)
-		throws PortalException, SystemException {
-
+	public JIRAIssue getJIRAIssue(long jiraIssueId) throws PortalException {
 		return jiraIssuePersistence.findByPrimaryKey(jiraIssueId);
 	}
 
-	public JIRAIssue getJIRAIssue(String key)
-		throws PortalException, SystemException {
-
+	public JIRAIssue getJIRAIssue(String key) throws PortalException {
 		return jiraIssuePersistence.findByKey(key);
 	}
 
 	public JIRAIssue getLastAssigneeJIRAIssue(
 			long projectId, String assigneeJiraUserId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		List<JIRAIssue> jiraIssues = jiraIssuePersistence.findByP_AJUI(
 			projectId, assigneeJiraUserId, 0, 1);
@@ -159,7 +148,7 @@ public class JIRAIssueLocalServiceImpl extends JIRAIssueLocalServiceBaseImpl {
 
 	public JIRAIssue getLastreporterJIRAIssue(
 			long projectId, String reporterJiraUserId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		List<JIRAIssue> jiraIssues = jiraIssuePersistence.findByP_RJUI(
 			projectId, reporterJiraUserId, 0, 1);
@@ -173,57 +162,49 @@ public class JIRAIssueLocalServiceImpl extends JIRAIssueLocalServiceBaseImpl {
 	}
 
 	public List<JIRAIssue> getReporterJIRAIssues(
-			Date modifiedDate, long projectId, String reporterJiraUserId,
-			int start, int end)
-		throws SystemException {
+		Date modifiedDate, long projectId, String reporterJiraUserId, int start,
+		int end) {
 
 		return jiraIssuePersistence.findByMD_P_RJUI(
 			modifiedDate, projectId, reporterJiraUserId);
 	}
 
 	public List<JIRAIssue> getReporterJIRAIssues(
-			long projectId, String reporterJiraUserId, int start, int end)
-		throws SystemException {
+		long projectId, String reporterJiraUserId, int start, int end) {
 
 		return jiraIssuePersistence.findByP_RJUI(projectId, reporterJiraUserId);
 	}
 
 	public List<JIRAIssue> getReporterJIRAIssues(
-			long projectId, String reporterJiraUserId, String status, int start,
-			int end)
-		throws SystemException {
+		long projectId, String reporterJiraUserId, String status, int start,
+		int end) {
 
 		return jiraIssuePersistence.findByP_RJUI_S(
 			projectId, reporterJiraUserId, status);
 	}
 
 	public int getReporterJIRAIssuesCount(
-			Date modifiedDate, long projectId, String reporterJiraUserId)
-		throws SystemException {
+		Date modifiedDate, long projectId, String reporterJiraUserId) {
 
 		return jiraIssuePersistence.countByMD_P_RJUI(
 			modifiedDate, projectId, reporterJiraUserId);
 	}
 
 	public int getReporterJIRAIssuesCount(
-			long projectId, String reporterJiraUserId)
-		throws SystemException {
+		long projectId, String reporterJiraUserId) {
 
 		return jiraIssuePersistence.countByP_RJUI(
 			projectId, reporterJiraUserId);
 	}
 
 	public int getReporterJIRAIssuesCount(
-			long projectId, String reporterJiraUserId, String status)
-		throws SystemException {
+		long projectId, String reporterJiraUserId, String status) {
 
 		return jiraIssuePersistence.countByP_RJUI_S(
 			projectId, reporterJiraUserId, status);
 	}
 
-	public void updateJIRAIssues(long projectId)
-		throws PortalException, SystemException {
-
+	public void updateJIRAIssues(long projectId) throws PortalException {
 		Date modifiedDate = getLastModifiedDate(projectId);
 
 		List<JIRAAction> jiraActions = jiraActionFinder.findByCD_P(
@@ -312,7 +293,7 @@ public class JIRAIssueLocalServiceImpl extends JIRAIssueLocalServiceBaseImpl {
 		}
 	}
 
-	protected Date getLastModifiedDate(long projectId) throws SystemException {
+	protected Date getLastModifiedDate(long projectId) {
 		Date modifiedDate = null;
 
 		List<SocialActivity> socialActivities =
@@ -332,7 +313,7 @@ public class JIRAIssueLocalServiceImpl extends JIRAIssueLocalServiceBaseImpl {
 		return modifiedDate;
 	}
 
-	protected long getUserId(String jiraUserId) throws SystemException {
+	protected long getUserId(String jiraUserId) {
 		List<ExpandoValue> expandoValues =
 			ExpandoValueLocalServiceUtil.getColumnValues(
 				PortalUtil.getDefaultCompanyId(), User.class.getName(), "SC",

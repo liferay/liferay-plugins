@@ -16,7 +16,6 @@ package com.liferay.akismet.akismet.messaging;
 
 import com.liferay.akismet.service.AkismetDataLocalServiceUtil;
 import com.liferay.akismet.util.AkismetUtil;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.messaging.BaseMessageListener;
 import com.liferay.portal.kernel.messaging.Message;
 import com.liferay.portal.util.PortalUtil;
@@ -26,7 +25,7 @@ import com.liferay.portal.util.PortalUtil;
  */
 public class DeleteAkismetDataMessageListener extends BaseMessageListener {
 
-	protected void deleteAkismetData(long companyId) throws SystemException {
+	protected void deleteAkismetData(long companyId) {
 		AkismetDataLocalServiceUtil.deleteAkismetData(
 			AkismetUtil.getReportableTime(companyId));
 	}

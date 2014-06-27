@@ -38,8 +38,7 @@ public class StatusLocalServiceImpl extends StatusLocalServiceBaseImpl {
 
 	@Override
 	public List<Object[]> getAllStatuses(
-			long companyId, long userId, long modifiedDate, int start, int end)
-		throws SystemException {
+		long companyId, long userId, long modifiedDate, int start, int end) {
 
 		return statusFinder.findByModifiedDate(
 			companyId, userId, modifiedDate, start, end);
@@ -47,9 +46,8 @@ public class StatusLocalServiceImpl extends StatusLocalServiceBaseImpl {
 
 	@Override
 	public List<Object[]> getGroupStatuses(
-			long userId, long modifiedDate, String[] groupNames, int start,
-			int end)
-		throws SystemException {
+		long userId, long modifiedDate, String[] groupNames, int start,
+		int end) {
 
 		return statusFinder.findByUsersGroups(
 			userId, modifiedDate, groupNames, start, end);
@@ -57,8 +55,7 @@ public class StatusLocalServiceImpl extends StatusLocalServiceBaseImpl {
 
 	@Override
 	public List<Object[]> getSocialStatuses(
-			long userId, int type, long modifiedDate, int start, int end)
-		throws SystemException {
+		long userId, int type, long modifiedDate, int start, int end) {
 
 		return getSocialStatuses(
 			userId, new int[] {type}, modifiedDate, start, end);
@@ -66,15 +63,14 @@ public class StatusLocalServiceImpl extends StatusLocalServiceBaseImpl {
 
 	@Override
 	public List<Object[]> getSocialStatuses(
-			long userId, int[] types, long modifiedDate, int start, int end)
-		throws SystemException {
+		long userId, int[] types, long modifiedDate, int start, int end) {
 
 		return statusFinder.findBySocialRelationTypes(
 			userId, types, modifiedDate, start, end);
 	}
 
 	@Override
-	public Status getUserStatus(long userId) throws SystemException {
+	public Status getUserStatus(long userId) {
 		Status status = statusPersistence.fetchByUserId(userId);
 
 		if (status == null) {
@@ -87,17 +83,14 @@ public class StatusLocalServiceImpl extends StatusLocalServiceBaseImpl {
 	}
 
 	@Override
-	public Status updateStatus(long userId, long modifiedDate)
-		throws SystemException {
-
+	public Status updateStatus(long userId, long modifiedDate) {
 		return updateStatus(userId, modifiedDate, -1, -1, null, null, -1);
 	}
 
 	@Override
 	public Status updateStatus(
-			long userId, long modifiedDate, int online, int awake,
-			String activePanelIds, String message, int playSound)
-		throws SystemException {
+		long userId, long modifiedDate, int online, int awake,
+		String activePanelIds, String message, int playSound) {
 
 		Status status = statusPersistence.fetchByUserId(userId);
 

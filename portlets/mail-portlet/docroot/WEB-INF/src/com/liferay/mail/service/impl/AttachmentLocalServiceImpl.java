@@ -46,7 +46,7 @@ public class AttachmentLocalServiceImpl extends AttachmentLocalServiceBaseImpl {
 	public Attachment addAttachment(
 			long userId, long messageId, String contentPath, String fileName,
 			long size, File file)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		// Attachment
 
@@ -102,7 +102,7 @@ public class AttachmentLocalServiceImpl extends AttachmentLocalServiceBaseImpl {
 
 	@Override
 	public Attachment deleteAttachment(long attachmentId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		// Attachment
 
@@ -135,7 +135,7 @@ public class AttachmentLocalServiceImpl extends AttachmentLocalServiceBaseImpl {
 	}
 
 	public void deleteAttachments(long companyId, long messageId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		// Attachments
 
@@ -161,15 +161,11 @@ public class AttachmentLocalServiceImpl extends AttachmentLocalServiceBaseImpl {
 		}
 	}
 
-	public List<Attachment> getAttachments(long messageId)
-		throws SystemException {
-
+	public List<Attachment> getAttachments(long messageId) {
 		return attachmentPersistence.findByMessageId(messageId);
 	}
 
-	public File getFile(long attachmentId)
-		throws PortalException, SystemException {
-
+	public File getFile(long attachmentId) throws PortalException {
 		try {
 			File file = FileUtil.createTempFile();
 
@@ -183,7 +179,7 @@ public class AttachmentLocalServiceImpl extends AttachmentLocalServiceBaseImpl {
 	}
 
 	public InputStream getInputStream(long attachmentId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		Attachment attachment = attachmentPersistence.findByPrimaryKey(
 			attachmentId);

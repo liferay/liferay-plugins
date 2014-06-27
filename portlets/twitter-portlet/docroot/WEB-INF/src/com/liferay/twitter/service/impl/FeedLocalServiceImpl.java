@@ -50,22 +50,19 @@ import java.util.List;
  */
 public class FeedLocalServiceImpl extends FeedLocalServiceBaseImpl {
 
-	public void updateFeed(long userId)
-		throws PortalException, SystemException {
-
+	public void updateFeed(long userId) throws PortalException {
 		User user = userLocalService.getUserById(userId);
 
 		updateFeed(user);
 	}
 
-	public void updateFeeds() throws SystemException {
+	public void updateFeeds() {
 		for (long companyId : PortalUtil.getCompanyIds()) {
 			updateFeeds(companyId);
 		}
 	}
 
-	public void updateFeeds(long companyId) throws SystemException {
-
+	public void updateFeeds(long companyId) {
 		ShardUtil.pushCompanyService(companyId);
 
 		try {
@@ -94,9 +91,7 @@ public class FeedLocalServiceImpl extends FeedLocalServiceBaseImpl {
 		}
 	}
 
-	protected void updateFeed(User user)
-		throws PortalException, SystemException {
-
+	protected void updateFeed(User user) throws PortalException {
 		Contact contact = user.getContact();
 
 		String twitterScreenName = contact.getTwitterSn();

@@ -24,7 +24,6 @@ import com.liferay.calendar.service.persistence.CalendarExportActionableDynamicQ
 import com.liferay.calendar.service.persistence.CalendarNotificationTemplateExportActionableDynamicQuery;
 import com.liferay.calendar.service.persistence.CalendarResourceExportActionableDynamicQuery;
 import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.lar.BasePortletDataHandler;
 import com.liferay.portal.kernel.lar.PortletDataContext;
 import com.liferay.portal.kernel.lar.PortletDataHandlerBoolean;
@@ -239,9 +238,8 @@ public class CalendarPortletDataHandler extends BasePortletDataHandler {
 	}
 
 	protected ActionableDynamicQuery getCalendarResourceActionableDynamicQuery(
-			final PortletDataContext portletDataContext,
-			final long referrerClassNameId)
-		throws SystemException {
+		final PortletDataContext portletDataContext,
+		final long referrerClassNameId) {
 
 		return new CalendarResourceExportActionableDynamicQuery(
 			portletDataContext) {

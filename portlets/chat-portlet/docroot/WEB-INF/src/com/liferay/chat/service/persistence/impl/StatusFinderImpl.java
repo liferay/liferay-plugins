@@ -14,10 +14,8 @@
 
 package com.liferay.chat.service.persistence.impl;
 
-import com.liferay.chat.service.persistence.StatusFinder;
-import com.liferay.chat.service.persistence.StatusUtil;
-
 import com.liferay.chat.model.Status;
+import com.liferay.chat.service.persistence.StatusFinder;
 import com.liferay.portal.kernel.dao.orm.QueryPos;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.dao.orm.SQLQuery;
@@ -50,8 +48,7 @@ public class StatusFinderImpl
 
 	@Override
 	public List<Object[]> findByModifiedDate(
-			long companyId, long userId, long modifiedDate, int start, int end)
-		throws SystemException {
+		long companyId, long userId, long modifiedDate, int start, int end) {
 
 		Session session = null;
 
@@ -88,8 +85,7 @@ public class StatusFinderImpl
 
 	@Override
 	public List<Object[]> findBySocialRelationTypes(
-			long userId, int[] types, long modifiedDate, int start, int end)
-		throws SystemException {
+		long userId, int[] types, long modifiedDate, int start, int end) {
 
 		Session session = null;
 
@@ -131,9 +127,8 @@ public class StatusFinderImpl
 
 	@Override
 	public List<Object[]> findByUsersGroups(
-			long userId, long modifiedDate, String[] groupNames, int start,
-			int end)
-		throws SystemException {
+		long userId, long modifiedDate, String[] groupNames, int start,
+		int end) {
 
 		Session session = null;
 

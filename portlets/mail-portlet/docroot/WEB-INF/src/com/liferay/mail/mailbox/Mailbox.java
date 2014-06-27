@@ -21,7 +21,6 @@ import com.liferay.mail.model.Message;
 import com.liferay.mail.model.MessagesDisplay;
 import com.liferay.mail.util.AttachmentHandler;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.model.User;
 
 import java.io.IOException;
@@ -42,96 +41,90 @@ public interface Mailbox {
 			String login, String password, boolean savePassword,
 			String signature, boolean useSignature, String folderPrefix,
 			boolean defaultSender)
-		throws PortalException, SystemException;
+		throws PortalException;
 
-	public Folder addFolder(String displayName)
-		throws PortalException, SystemException;
+	public Folder addFolder(String displayName) throws PortalException;
 
-	public void deleteAccount() throws PortalException, SystemException;
+	public void deleteAccount() throws PortalException;
 
-	public void deleteAttachment(long attachmentId)
-		throws PortalException, SystemException;
+	public void deleteAttachment(long attachmentId) throws PortalException;
 
-	public void deleteFolder(long folderId)
-		throws PortalException, SystemException;
+	public void deleteFolder(long folderId) throws PortalException;
 
 	public void deleteMessages(long folderId, long[] messageIds)
-		throws PortalException, SystemException;
+		throws PortalException;
 
 	public Account getAccount();
 
 	public AttachmentHandler getAttachment(long attachmentId)
-		throws IOException, PortalException, SystemException;
+		throws IOException, PortalException;
 
 	public Message getMessage(
 			long folderId, String keywords, int messageNumber,
 			String orderByField, String orderByType)
-		throws PortalException, SystemException;
+		throws PortalException;
 
 	public MessagesDisplay getMessagesDisplay(
 			long folderId, String keywords, int pageNumber, int messagesPerPage,
 			String orderByField, String orderByType)
-		throws PortalException, SystemException;
+		throws PortalException;
 
 	public User getUser();
 
-	public boolean hasNewMessages(long folderId)
-		throws PortalException, SystemException;
+	public boolean hasNewMessages(long folderId) throws PortalException;
 
 	public void moveMessages(long folderId, long[] messageIds)
-		throws PortalException, SystemException;
+		throws PortalException;
 
 	public InternetAddress[] parseAddresses(String addresses)
 		throws PortalException;
 
 	public void renameFolder(long folderId, String displayName)
-		throws PortalException, SystemException;
+		throws PortalException;
 
 	public Message saveDraft(
 			long accountId, long messageId, String to, String cc, String bcc,
 			String subject, String body, List<MailFile> mailFiles)
-		throws PortalException, SystemException;
+		throws PortalException;
 
 	public void sendMessage(long accountId, long messageId)
-		throws PortalException, SystemException;
+		throws PortalException;
 
 	public void setAccount(Account account);
 
 	public void setUser(User user);
 
-	public void synchronize() throws PortalException, SystemException;
+	public void synchronize() throws PortalException;
 
-	public void synchronizeFolder(long folderId)
-		throws PortalException, SystemException;
+	public void synchronizeFolder(long folderId) throws PortalException;
 
-	public void synchronizeMessage(long messageId)
-		throws PortalException, SystemException;
+	public void synchronizeMessage(long messageId) throws PortalException;
 
 	public void synchronizePage(
 			long folderId, int pageNumber, int messagesPerPage)
-		throws PortalException, SystemException;
+		throws PortalException;
 
 	public Account updateAccount(
 			long accountId, String personalName, String password,
 			boolean savePassword, String signature, boolean useSignature,
 			String folderPrefix, boolean defaultSender)
-		throws PortalException, SystemException;
+		throws PortalException;
 
 	public void updateFlags(
 			long folderId, long[] messageIds, int flag, boolean value)
-		throws PortalException, SystemException;
+		throws PortalException;
 
-	public void updateFolders() throws PortalException, SystemException;
+	public void updateFolders() throws PortalException;
 
 	public void updateFolders(
 			long inboxFolderId, long draftFolderId, long sentFolderId,
 			long trashFolderId)
-		throws PortalException, SystemException;
+		throws PortalException;
 
 	public void validateAccount(
 			String incomingHostName, int incomingPort, boolean incomingSecure,
 			String outgoingHostName, int outgoingPort, boolean outgoingSecure,
 			String login, String password)
-		throws PortalException, SystemException;
+		throws PortalException;
 
 }

@@ -67,7 +67,7 @@ public class GadgetLocalServiceImpl extends GadgetLocalServiceBaseImpl {
 	public Gadget addGadget(
 			long companyId, String url, String portletCategoryNames,
 			ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		Date now = new Date();
 
@@ -108,7 +108,7 @@ public class GadgetLocalServiceImpl extends GadgetLocalServiceBaseImpl {
 
 	@Override
 	@SystemEvent(type = SystemEventConstants.TYPE_DELETE)
-	public Gadget deleteGadget(Gadget gadget) throws SystemException {
+	public Gadget deleteGadget(Gadget gadget) {
 
 		// Gadget
 
@@ -128,16 +128,14 @@ public class GadgetLocalServiceImpl extends GadgetLocalServiceBaseImpl {
 	}
 
 	@Override
-	public Gadget deleteGadget(long gadgetId)
-		throws PortalException, SystemException {
-
+	public Gadget deleteGadget(long gadgetId) throws PortalException {
 		Gadget gadget = gadgetPersistence.findByPrimaryKey(gadgetId);
 
 		return deleteGadget(gadget);
 	}
 
 	@Override
-	public void deleteGadgets(long companyId) throws SystemException {
+	public void deleteGadgets(long companyId) {
 		List<Gadget> gadgets = gadgetPersistence.findByCompanyId(companyId);
 
 		for (Gadget gadget : gadgets) {
@@ -146,9 +144,7 @@ public class GadgetLocalServiceImpl extends GadgetLocalServiceBaseImpl {
 	}
 
 	@Clusterable
-	public void destroyGadget(String uuid, long companyId)
-		throws SystemException {
-
+	public void destroyGadget(String uuid, long companyId) {
 		try {
 			Portlet portlet = _portletsPool.remove(uuid);
 
@@ -167,7 +163,7 @@ public class GadgetLocalServiceImpl extends GadgetLocalServiceBaseImpl {
 		}
 	}
 
-	public void destroyGadgets() throws SystemException {
+	public void destroyGadgets() {
 		List<Gadget> gadgets = gadgetPersistence.findAll();
 
 		for (Gadget gadget : gadgets) {
@@ -175,20 +171,16 @@ public class GadgetLocalServiceImpl extends GadgetLocalServiceBaseImpl {
 		}
 	}
 
-	public Gadget fetchGadget(long companyId, String url)
-		throws SystemException {
-
+	public Gadget fetchGadget(long companyId, String url) {
 		return gadgetPersistence.fetchByC_U(companyId, url);
 	}
 
-	public Gadget getGadget(long companyId, String url)
-		throws PortalException, SystemException {
-
+	public Gadget getGadget(long companyId, String url) throws PortalException {
 		return gadgetPersistence.findByC_U(companyId, url);
 	}
 
 	public Gadget getGadget(String uuid, long companyId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		List<Gadget> gadgets = gadgetPersistence.findByUuid_C(uuid, companyId);
 
@@ -200,13 +192,11 @@ public class GadgetLocalServiceImpl extends GadgetLocalServiceBaseImpl {
 		return gadgets.get(0);
 	}
 
-	public List<Gadget> getGadgets(long companyId, int start, int end)
-		throws SystemException {
-
+	public List<Gadget> getGadgets(long companyId, int start, int end) {
 		return gadgetPersistence.findByCompanyId(companyId, start, end);
 	}
 
-	public int getGadgetsCount(long companyId) throws SystemException {
+	public int getGadgetsCount(long companyId) {
 		return gadgetPersistence.countByCompanyId(companyId);
 	}
 
@@ -214,7 +204,7 @@ public class GadgetLocalServiceImpl extends GadgetLocalServiceBaseImpl {
 	public void initGadget(
 			String uuid, long companyId, long gadgetId, String name,
 			String portletCategoryNames)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		try {
 			Portlet portlet = getPortlet(uuid, companyId, name);
@@ -236,7 +226,7 @@ public class GadgetLocalServiceImpl extends GadgetLocalServiceBaseImpl {
 		}
 	}
 
-	public void initGadgets() throws PortalException, SystemException {
+	public void initGadgets() throws PortalException {
 		List<Gadget> gadgets = gadgetPersistence.findAll();
 
 		for (Gadget gadget : gadgets) {
@@ -247,7 +237,7 @@ public class GadgetLocalServiceImpl extends GadgetLocalServiceBaseImpl {
 	}
 
 	public Gadget updateGadget(long gadgetId, String portletCategoryNames)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		validate(portletCategoryNames);
 
@@ -345,7 +335,7 @@ public class GadgetLocalServiceImpl extends GadgetLocalServiceBaseImpl {
 
 	protected void validate(
 			long companyId, String url, String portletCategoryNames)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		Gadget gadget = gadgetPersistence.fetchByC_U(companyId, url);
 
