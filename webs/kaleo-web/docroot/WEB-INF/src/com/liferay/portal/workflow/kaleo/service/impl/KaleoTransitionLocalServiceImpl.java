@@ -15,7 +15,6 @@
 package com.liferay.portal.workflow.kaleo.service.impl;
 
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.workflow.kaleo.definition.Timer;
@@ -38,7 +37,7 @@ public class KaleoTransitionLocalServiceImpl
 			long kaleoDefinitionId, long kaleoNodeId, Transition transition,
 			KaleoNode sourceKaleoNode, KaleoNode targetKaleoNode,
 			ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		// Kaleo transition
 
@@ -81,30 +80,25 @@ public class KaleoTransitionLocalServiceImpl
 	}
 
 	@Override
-	public void deleteCompanyKaleoTransitions(long companyId)
-		throws SystemException {
-
+	public void deleteCompanyKaleoTransitions(long companyId) {
 		kaleoTransitionPersistence.removeByCompanyId(companyId);
 	}
 
 	@Override
-	public void deleteKaleoDefinitionKaleoTransitions(long kaleoDefinitionId)
-		throws SystemException {
-
+	public void deleteKaleoDefinitionKaleoTransitions(long kaleoDefinitionId) {
 		kaleoTransitionPersistence.removeByKaleoDefinitionId(kaleoDefinitionId);
 	}
 
 	@Override
 	public KaleoTransition getDefaultKaleoTransition(long kaleoNodeId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		return kaleoTransitionPersistence.findByKNI_DT(kaleoNodeId, true);
 	}
 
 	@Override
 	public List<KaleoTransition> getKaleoDefinitionKaleoTransitions(
-			long kaleoDefinitionId)
-		throws SystemException {
+		long kaleoDefinitionId) {
 
 		return kaleoTransitionPersistence.findByKaleoDefinitionId(
 			kaleoDefinitionId);
@@ -112,22 +106,18 @@ public class KaleoTransitionLocalServiceImpl
 
 	@Override
 	public KaleoTransition getKaleoTransition(long kaleoNodeId, String name)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		return kaleoTransitionPersistence.findByKNI_N(kaleoNodeId, name);
 	}
 
 	@Override
-	public List<KaleoTransition> getKaleoTransitions(long kaleoNodeId)
-		throws SystemException {
-
+	public List<KaleoTransition> getKaleoTransitions(long kaleoNodeId) {
 		return kaleoTransitionPersistence.findByKaleoNodeId(kaleoNodeId);
 	}
 
 	@Override
-	public int getKaleoTransitionsCount(long kaleoNodeId)
-		throws SystemException {
-
+	public int getKaleoTransitionsCount(long kaleoNodeId) {
 		return kaleoTransitionPersistence.countByKaleoNodeId(kaleoNodeId);
 	}
 

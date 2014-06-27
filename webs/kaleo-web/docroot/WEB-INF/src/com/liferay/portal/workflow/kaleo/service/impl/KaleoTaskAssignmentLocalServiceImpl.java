@@ -15,7 +15,6 @@
 package com.liferay.portal.workflow.kaleo.service.impl;
 
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.ResourceAction;
 import com.liferay.portal.model.Role;
@@ -46,7 +45,7 @@ public class KaleoTaskAssignmentLocalServiceImpl
 	public KaleoTaskAssignment addKaleoTaskAssignment(
 			String kaleoClassName, long kaleoClassPK, long kaleoDefinitionId,
 			Assignment assignment, ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		User user = userPersistence.findByPrimaryKey(
 			serviceContext.getGuestOrUserId());
@@ -73,33 +72,27 @@ public class KaleoTaskAssignmentLocalServiceImpl
 	}
 
 	@Override
-	public void deleteCompanyKaleoTaskAssignments(long companyId)
-		throws SystemException {
-
+	public void deleteCompanyKaleoTaskAssignments(long companyId) {
 		kaleoTaskAssignmentPersistence.removeByCompanyId(companyId);
 	}
 
 	@Override
 	public void deleteKaleoDefinitionKaleoTaskAssignments(
-			long kaleoDefinitionId)
-		throws SystemException {
+		long kaleoDefinitionId) {
 
 		kaleoTaskAssignmentPersistence.removeByKaleoDefinitionId(
 			kaleoDefinitionId);
 	}
 
 	@Override
-	public List<KaleoTaskAssignment> getKaleoTaskAssignments(long kaleoTaskId)
-		throws SystemException {
-
+	public List<KaleoTaskAssignment> getKaleoTaskAssignments(long kaleoTaskId) {
 		return kaleoTaskAssignmentPersistence.findByKCN_KCPK(
 			KaleoTask.class.getName(), kaleoTaskId);
 	}
 
 	@Override
 	public List<KaleoTaskAssignment> getKaleoTaskAssignments(
-			long kaleoTaskId, String assigneeClassName)
-		throws SystemException {
+		long kaleoTaskId, String assigneeClassName) {
 
 		return kaleoTaskAssignmentPersistence.findByKCN_KCPK_ACN(
 			KaleoTask.class.getName(), kaleoTaskId, assigneeClassName);
@@ -107,25 +100,21 @@ public class KaleoTaskAssignmentLocalServiceImpl
 
 	@Override
 	public List<KaleoTaskAssignment> getKaleoTaskAssignments(
-			String kaleoClassName, long kaleoClassPK)
-		throws SystemException {
+		String kaleoClassName, long kaleoClassPK) {
 
 		return kaleoTaskAssignmentPersistence.findByKCN_KCPK(
 			kaleoClassName, kaleoClassPK);
 	}
 
 	@Override
-	public int getKaleoTaskAssignmentsCount(long kaleoTaskId)
-		throws SystemException {
-
+	public int getKaleoTaskAssignmentsCount(long kaleoTaskId) {
 		return kaleoTaskAssignmentPersistence.countByKCN_KCPK(
 			KaleoTask.class.getName(), kaleoTaskId);
 	}
 
 	@Override
 	public int getKaleoTaskAssignmentsCount(
-			long kaleoTaskId, String assigneeClassName)
-		throws SystemException {
+		long kaleoTaskId, String assigneeClassName) {
 
 		return kaleoTaskAssignmentPersistence.countByKCN_KCPK_ACN(
 			KaleoTask.class.getName(), kaleoTaskId, assigneeClassName);
@@ -134,7 +123,7 @@ public class KaleoTaskAssignmentLocalServiceImpl
 	protected void setAssignee(
 			KaleoTaskAssignment kaleoTaskAssignment, Assignment assignment,
 			ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		AssignmentType assignmentType = assignment.getAssignmentType();
 

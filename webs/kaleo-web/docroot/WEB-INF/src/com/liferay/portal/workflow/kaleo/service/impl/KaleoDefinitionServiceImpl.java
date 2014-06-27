@@ -14,7 +14,6 @@
 
 package com.liferay.portal.workflow.kaleo.service.impl;
 
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.workflow.kaleo.model.KaleoDefinition;
 import com.liferay.portal.workflow.kaleo.service.base.KaleoDefinitionServiceBaseImpl;
 
@@ -26,16 +25,13 @@ import java.util.List;
 public class KaleoDefinitionServiceImpl extends KaleoDefinitionServiceBaseImpl {
 
 	@Override
-	public List<KaleoDefinition> getKaleoDefinitions(int start, int end)
-		throws SystemException {
-
+	public List<KaleoDefinition> getKaleoDefinitions(int start, int end) {
 		return kaleoDefinitionPersistence.findAll(start, end);
 	}
 
 	@Override
 	public List<KaleoDefinition> getKaleoDefinitions(
-			long companyId, int start, int end)
-		throws SystemException {
+		long companyId, int start, int end) {
 
 		return kaleoDefinitionPersistence.findByCompanyId(
 			companyId, start, end);

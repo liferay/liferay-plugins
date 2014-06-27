@@ -21,7 +21,6 @@ import com.liferay.portal.kernel.dao.orm.Property;
 import com.liferay.portal.kernel.dao.orm.PropertyFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.RestrictionsFactoryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.User;
@@ -55,7 +54,7 @@ public class KaleoLogLocalServiceImpl extends KaleoLogLocalServiceBaseImpl {
 			KaleoInstanceToken kaleoInstanceToken, KaleoAction kaleoAction,
 			long startTime, long endTime, String comment,
 			ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		KaleoLog kaleoLog = createKaleoLog(
 			kaleoInstanceToken, LogType.ACTION_EXECUTION, serviceContext);
@@ -78,7 +77,7 @@ public class KaleoLogLocalServiceImpl extends KaleoLogLocalServiceBaseImpl {
 	public KaleoLog addNodeEntryKaleoLog(
 			KaleoInstanceToken kaleoInstanceToken, KaleoNode sourceKaleoNode,
 			KaleoNode targetKaleoNode, ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		KaleoLog kaleoLog = createKaleoLog(
 			kaleoInstanceToken, LogType.NODE_ENTRY, serviceContext);
@@ -105,7 +104,7 @@ public class KaleoLogLocalServiceImpl extends KaleoLogLocalServiceBaseImpl {
 	public KaleoLog addNodeExitKaleoLog(
 			KaleoInstanceToken kaleoInstanceToken, KaleoNode departingKaleoNode,
 			ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		KaleoLog kaleoLog = createKaleoLog(
 			kaleoInstanceToken, LogType.NODE_EXIT, serviceContext);
@@ -138,11 +137,11 @@ public class KaleoLogLocalServiceImpl extends KaleoLogLocalServiceBaseImpl {
 	@Override
 	public KaleoLog addTaskAssignmentKaleoLog(
 			List<KaleoTaskAssignmentInstance>
-			previousKaleoTaskAssignmentInstances,
+				previousKaleoTaskAssignmentInstances,
 			KaleoTaskInstanceToken kaleoTaskInstanceToken, String comment,
 			Map<String, Serializable> workflowContext,
 			ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		KaleoInstanceToken kaleoInstanceToken =
 			kaleoTaskInstanceToken.getKaleoInstanceToken();
@@ -199,7 +198,7 @@ public class KaleoLogLocalServiceImpl extends KaleoLogLocalServiceBaseImpl {
 			KaleoTaskInstanceToken kaleoTaskInstanceToken, String comment,
 			Map<String, Serializable> workflowContext,
 			ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		KaleoInstanceToken kaleoInstanceToken =
 			kaleoTaskInstanceToken.getKaleoInstanceToken();
@@ -244,7 +243,7 @@ public class KaleoLogLocalServiceImpl extends KaleoLogLocalServiceBaseImpl {
 			KaleoTaskInstanceToken kaleoTaskInstanceToken, String comment,
 			Map<String, Serializable> workflowContext,
 			ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		KaleoInstanceToken kaleoInstanceToken =
 			kaleoTaskInstanceToken.getKaleoInstanceToken();
@@ -278,7 +277,7 @@ public class KaleoLogLocalServiceImpl extends KaleoLogLocalServiceBaseImpl {
 	public KaleoLog addWorkflowInstanceEndKaleoLog(
 			KaleoInstanceToken kaleoInstanceToken,
 			ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		KaleoLog kaleoLog = createKaleoLog(
 			kaleoInstanceToken, LogType.WORKFLOW_INSTANCE_END, serviceContext);
@@ -307,7 +306,7 @@ public class KaleoLogLocalServiceImpl extends KaleoLogLocalServiceBaseImpl {
 	public KaleoLog addWorkflowInstanceStartKaleoLog(
 			KaleoInstanceToken kaleoInstanceToken,
 			ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		KaleoLog kaleoLog = createKaleoLog(
 			kaleoInstanceToken, LogType.WORKFLOW_INSTANCE_START,
@@ -325,29 +324,24 @@ public class KaleoLogLocalServiceImpl extends KaleoLogLocalServiceBaseImpl {
 	}
 
 	@Override
-	public void deleteCompanyKaleoLogs(long companyId) throws SystemException {
+	public void deleteCompanyKaleoLogs(long companyId) {
 		kaleoLogPersistence.removeByCompanyId(companyId);
 	}
 
 	@Override
-	public void deleteKaleoDefinitionKaleoLogs(long kaleoDefinitionId)
-		throws SystemException {
-
+	public void deleteKaleoDefinitionKaleoLogs(long kaleoDefinitionId) {
 		kaleoLogPersistence.removeByKaleoDefinitionId(kaleoDefinitionId);
 	}
 
 	@Override
-	public void deleteKaleoInstanceKaleoLogs(long kaleoInstanceId)
-		throws SystemException {
-
+	public void deleteKaleoInstanceKaleoLogs(long kaleoInstanceId) {
 		kaleoLogPersistence.removeByKaleoInstanceId(kaleoInstanceId);
 	}
 
 	@Override
 	public List<KaleoLog> getKaleoInstanceKaleoLogs(
-			long kaleoInstanceId, List<Integer> logTypes, int start, int end,
-			OrderByComparator orderByComparator)
-		throws SystemException {
+		long kaleoInstanceId, List<Integer> logTypes, int start, int end,
+		OrderByComparator orderByComparator) {
 
 		if ((logTypes == null) || logTypes.isEmpty()) {
 			return kaleoLogPersistence.findByKaleoInstanceId(
@@ -363,8 +357,7 @@ public class KaleoLogLocalServiceImpl extends KaleoLogLocalServiceBaseImpl {
 
 	@Override
 	public int getKaleoInstanceKaleoLogsCount(
-			long kaleoInstanceId, List<Integer> logTypes)
-		throws SystemException {
+		long kaleoInstanceId, List<Integer> logTypes) {
 
 		if ((logTypes == null) || logTypes.isEmpty()) {
 			return kaleoLogPersistence.countByKaleoInstanceId(kaleoInstanceId);
@@ -378,9 +371,8 @@ public class KaleoLogLocalServiceImpl extends KaleoLogLocalServiceBaseImpl {
 
 	@Override
 	public List<KaleoLog> getKaleoTaskInstanceTokenKaleoLogs(
-			long kaleoTaskInstanceTokenId, List<Integer> logTypes, int start,
-			int end, OrderByComparator orderByComparator)
-		throws SystemException {
+		long kaleoTaskInstanceTokenId, List<Integer> logTypes, int start,
+		int end, OrderByComparator orderByComparator) {
 
 		if ((logTypes == null) || logTypes.isEmpty()) {
 			return kaleoLogPersistence.findByKaleoTaskInstanceTokenId(
@@ -396,8 +388,7 @@ public class KaleoLogLocalServiceImpl extends KaleoLogLocalServiceBaseImpl {
 
 	@Override
 	public int getKaleoTaskInstanceTokenKaleoLogsCount(
-			long kaleoTaskInstanceTokenId, List<Integer> logTypes)
-		throws SystemException {
+		long kaleoTaskInstanceTokenId, List<Integer> logTypes) {
 
 		if ((logTypes == null) || logTypes.isEmpty()) {
 			return kaleoLogPersistence.countByKaleoTaskInstanceTokenId(
@@ -465,7 +456,7 @@ public class KaleoLogLocalServiceImpl extends KaleoLogLocalServiceBaseImpl {
 	protected KaleoLog createKaleoLog(
 			KaleoInstanceToken kaleoInstanceToken, LogType logType,
 			ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		User user = userPersistence.findByPrimaryKey(
 			serviceContext.getGuestOrUserId());
@@ -492,7 +483,7 @@ public class KaleoLogLocalServiceImpl extends KaleoLogLocalServiceBaseImpl {
 
 	protected KaleoLog getPreviousLog(
 			long kaleoInstanceTokenId, long kaleoNodeId, LogType logType)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		List<KaleoLog> kaleoLogEntries = null;
 

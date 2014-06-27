@@ -15,7 +15,6 @@
 package com.liferay.portal.workflow.kaleo.runtime.action;
 
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -38,7 +37,7 @@ public class ActionExecutorUtil {
 	public static void executeKaleoActions(
 			String kaleoClassName, long kaleoClassPK,
 			ExecutionType executionType, ExecutionContext executionContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		List<KaleoAction> kaleoActions =
 			KaleoActionLocalServiceUtil.getKaleoActions(

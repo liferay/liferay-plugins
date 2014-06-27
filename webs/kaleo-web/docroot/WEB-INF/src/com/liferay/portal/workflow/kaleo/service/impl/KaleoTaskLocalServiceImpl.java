@@ -15,7 +15,6 @@
 package com.liferay.portal.workflow.kaleo.service.impl;
 
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.workflow.kaleo.definition.Assignment;
@@ -35,7 +34,7 @@ public class KaleoTaskLocalServiceImpl extends KaleoTaskLocalServiceBaseImpl {
 	public KaleoTask addKaleoTask(
 			long kaleoDefinitionId, long kaleoNodeId, Task task,
 			ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		// Kaleo task
 
@@ -72,7 +71,7 @@ public class KaleoTaskLocalServiceImpl extends KaleoTaskLocalServiceBaseImpl {
 	}
 
 	@Override
-	public void deleteCompanyKaleoTasks(long companyId) throws SystemException {
+	public void deleteCompanyKaleoTasks(long companyId) {
 
 		// Kaleo tasks
 
@@ -85,8 +84,7 @@ public class KaleoTaskLocalServiceImpl extends KaleoTaskLocalServiceBaseImpl {
 	}
 
 	@Override
-	public void deleteKaleoDefinitionKaleoTasks(long kaleoDefinitionId)
-		throws SystemException {
+	public void deleteKaleoDefinitionKaleoTasks(long kaleoDefinitionId) {
 
 		// Kaleo tasks
 
@@ -100,7 +98,7 @@ public class KaleoTaskLocalServiceImpl extends KaleoTaskLocalServiceBaseImpl {
 
 	@Override
 	public KaleoTask getKaleoNodeKaleoTask(long kaleoNodeId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		return kaleoTaskPersistence.findByKaleoNodeId(kaleoNodeId);
 	}

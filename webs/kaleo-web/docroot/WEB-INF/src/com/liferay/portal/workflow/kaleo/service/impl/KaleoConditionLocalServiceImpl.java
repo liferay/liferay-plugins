@@ -15,7 +15,6 @@
 package com.liferay.portal.workflow.kaleo.service.impl;
 
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.workflow.kaleo.definition.Condition;
@@ -35,7 +34,7 @@ public class KaleoConditionLocalServiceImpl
 	public KaleoCondition addKaleoCondition(
 			long kaleoDefinitionId, long kaleoNodeId, Condition condition,
 			ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		User user = userPersistence.findByPrimaryKey(
 			serviceContext.getGuestOrUserId());
@@ -65,22 +64,18 @@ public class KaleoConditionLocalServiceImpl
 	}
 
 	@Override
-	public void deleteCompanyKaleoConditions(long companyId)
-		throws SystemException {
-
+	public void deleteCompanyKaleoConditions(long companyId) {
 		kaleoConditionPersistence.removeByCompanyId(companyId);
 	}
 
 	@Override
-	public void deleteKaleoDefinitionKaleoCondition(long kaleoDefinitionId)
-		throws SystemException {
-
+	public void deleteKaleoDefinitionKaleoCondition(long kaleoDefinitionId) {
 		kaleoConditionPersistence.removeByKaleoDefinitionId(kaleoDefinitionId);
 	}
 
 	@Override
 	public KaleoCondition getKaleoNodeKaleoCondition(long kaleoNodeId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		return kaleoConditionPersistence.findByKaleoNodeId(kaleoNodeId);
 	}

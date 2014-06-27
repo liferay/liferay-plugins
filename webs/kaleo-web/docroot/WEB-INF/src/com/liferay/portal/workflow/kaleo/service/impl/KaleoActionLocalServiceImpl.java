@@ -15,7 +15,6 @@
 package com.liferay.portal.workflow.kaleo.service.impl;
 
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.workflow.kaleo.definition.Action;
@@ -35,7 +34,7 @@ public class KaleoActionLocalServiceImpl
 	public KaleoAction addKaleoAction(
 			String kaleoClassName, long kaleoClassPK, long kaleoDefinitionId,
 			String kaleoNodeName, Action action, ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		User user = userPersistence.findByPrimaryKey(
 			serviceContext.getGuestOrUserId());
@@ -69,23 +68,18 @@ public class KaleoActionLocalServiceImpl
 	}
 
 	@Override
-	public void deleteCompanyKaleoActions(long companyId)
-		throws SystemException {
-
+	public void deleteCompanyKaleoActions(long companyId) {
 		kaleoActionPersistence.removeByCompanyId(companyId);
 	}
 
 	@Override
-	public void deleteKaleoDefinitionKaleoActions(long kaleoDefinitionId)
-		throws SystemException {
-
+	public void deleteKaleoDefinitionKaleoActions(long kaleoDefinitionId) {
 		kaleoActionPersistence.removeByKaleoDefinitionId(kaleoDefinitionId);
 	}
 
 	@Override
 	public List<KaleoAction> getKaleoActions(
-			String kaleoClassName, long kaleoClassPK)
-		throws SystemException {
+		String kaleoClassName, long kaleoClassPK) {
 
 		return kaleoActionPersistence.findByKCN_KCPK(
 			kaleoClassName, kaleoClassPK);
@@ -93,8 +87,7 @@ public class KaleoActionLocalServiceImpl
 
 	@Override
 	public List<KaleoAction> getKaleoActions(
-			String kaleoClassName, long kaleoClassPK, String executionType)
-		throws SystemException {
+		String kaleoClassName, long kaleoClassPK, String executionType) {
 
 		return kaleoActionPersistence.findByKCN_KCPK_ET(
 			kaleoClassName, kaleoClassPK, executionType);

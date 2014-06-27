@@ -43,9 +43,7 @@ public class XMLDefinitionExporter implements DefinitionExporter {
 	}
 
 	@Override
-	public String export(long kaleoDefinitionId)
-		throws PortalException, SystemException {
-
+	public String export(long kaleoDefinitionId) throws PortalException {
 		Definition definition = _definitionBuilder.buildDefinition(
 			kaleoDefinitionId);
 
@@ -54,7 +52,7 @@ public class XMLDefinitionExporter implements DefinitionExporter {
 
 	@Override
 	public String export(long companyId, String name, int version)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		Definition definition = _definitionBuilder.buildDefinition(
 			companyId, name, version);
@@ -70,7 +68,7 @@ public class XMLDefinitionExporter implements DefinitionExporter {
 		_version = version;
 	}
 
-	protected String doExport(Definition definition) throws SystemException {
+	protected String doExport(Definition definition) {
 		try {
 			Document document = SAXReaderUtil.createDocument();
 

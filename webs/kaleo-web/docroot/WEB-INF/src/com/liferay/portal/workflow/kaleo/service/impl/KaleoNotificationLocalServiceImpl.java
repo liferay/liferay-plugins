@@ -15,7 +15,6 @@
 package com.liferay.portal.workflow.kaleo.service.impl;
 
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.User;
@@ -41,7 +40,7 @@ public class KaleoNotificationLocalServiceImpl
 			String kaleoClassName, long kaleoClassPK, long kaleoDefinitionId,
 			String kaleoNodeName, Notification notification,
 			ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		// Kaleo notification
 
@@ -104,8 +103,7 @@ public class KaleoNotificationLocalServiceImpl
 	}
 
 	@Override
-	public void deleteCompanyKaleoNotifications(long companyId)
-		throws SystemException {
+	public void deleteCompanyKaleoNotifications(long companyId) {
 
 		// Kaleo notifications
 
@@ -118,8 +116,7 @@ public class KaleoNotificationLocalServiceImpl
 	}
 
 	@Override
-	public void deleteKaleoDefinitionKaleoNotifications(long kaleoDefinitionId)
-		throws SystemException {
+	public void deleteKaleoDefinitionKaleoNotifications(long kaleoDefinitionId) {
 
 		// Kaleo notifications
 
@@ -134,8 +131,7 @@ public class KaleoNotificationLocalServiceImpl
 
 	@Override
 	public List<KaleoNotification> getKaleoNotifications(
-			String kaleoClassName, long kaleoClassPK)
-		throws SystemException {
+		String kaleoClassName, long kaleoClassPK) {
 
 		return kaleoNotificationPersistence.findByKCN_KCPK(
 			kaleoClassName, kaleoClassPK);
@@ -143,8 +139,7 @@ public class KaleoNotificationLocalServiceImpl
 
 	@Override
 	public List<KaleoNotification> getKaleoNotifications(
-			String kaleoClassName, long kaleoClassPK, String executionType)
-		throws SystemException {
+		String kaleoClassName, long kaleoClassPK, String executionType) {
 
 		return kaleoNotificationPersistence.findByKCN_KCPK_ET(
 			kaleoClassName, kaleoClassPK, executionType);

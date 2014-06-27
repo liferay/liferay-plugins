@@ -15,7 +15,6 @@
 package com.liferay.portal.workflow.kaleo.runtime.util;
 
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.workflow.kaleo.runtime.ExecutionContext;
 
 import java.util.Map;
@@ -27,6 +26,6 @@ public interface ScriptingContextBuilder {
 
 	public Map<String, Object> buildScriptingContext(
 			ExecutionContext executionContext)
-		throws PortalException, SystemException;
+		throws PortalException;
 
 }

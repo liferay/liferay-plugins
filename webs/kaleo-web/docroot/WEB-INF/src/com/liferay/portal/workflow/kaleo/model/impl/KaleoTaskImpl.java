@@ -15,7 +15,6 @@
 package com.liferay.portal.workflow.kaleo.model.impl;
 
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.workflow.kaleo.model.KaleoNode;
 import com.liferay.portal.workflow.kaleo.model.KaleoTask;
 import com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment;
@@ -33,14 +32,12 @@ public class KaleoTaskImpl extends KaleoTaskBaseImpl {
 	}
 
 	@Override
-	public KaleoNode getKaleoNode() throws PortalException, SystemException {
+	public KaleoNode getKaleoNode() throws PortalException {
 		return KaleoNodeLocalServiceUtil.getKaleoNode(getKaleoNodeId());
 	}
 
 	@Override
-	public List<KaleoTaskAssignment> getKaleoTaskAssignments()
-		throws SystemException {
-
+	public List<KaleoTaskAssignment> getKaleoTaskAssignments() {
 		return KaleoTaskAssignmentLocalServiceUtil.getKaleoTaskAssignments(
 			KaleoTask.class.getName(), getKaleoTaskId());
 	}

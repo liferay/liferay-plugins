@@ -35,8 +35,7 @@ import java.util.Map;
 public class BaseKaleoUpgradeTableListener extends BaseUpgradeTableListener {
 
 	protected Map<Long, Long> getKeyValueMap(
-			String tableName, String keyColumnName, String valueColumnName)
-		throws SystemException {
+		String tableName, String keyColumnName, String valueColumnName) {
 
 		Map<Long, Long> keyValueMap = new HashMap<Long, Long>();
 

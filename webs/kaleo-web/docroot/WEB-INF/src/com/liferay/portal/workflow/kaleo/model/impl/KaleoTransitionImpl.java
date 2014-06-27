@@ -15,7 +15,6 @@
 package com.liferay.portal.workflow.kaleo.model.impl;
 
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.workflow.kaleo.model.KaleoNode;
 import com.liferay.portal.workflow.kaleo.service.KaleoNodeLocalServiceUtil;
 
@@ -28,16 +27,12 @@ public class KaleoTransitionImpl extends KaleoTransitionBaseImpl {
 	}
 
 	@Override
-	public KaleoNode getSourceKaleoNode()
-		throws PortalException, SystemException {
-
+	public KaleoNode getSourceKaleoNode() throws PortalException {
 		return KaleoNodeLocalServiceUtil.getKaleoNode(getSourceKaleoNodeId());
 	}
 
 	@Override
-	public KaleoNode getTargetKaleoNode()
-		throws PortalException, SystemException {
-
+	public KaleoNode getTargetKaleoNode() throws PortalException {
 		return KaleoNodeLocalServiceUtil.getKaleoNode(getTargetKaleoNodeId());
 	}
 

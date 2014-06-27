@@ -15,7 +15,6 @@
 package com.liferay.portal.workflow.kaleo.service.impl;
 
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.Role;
 import com.liferay.portal.model.User;
@@ -42,7 +41,7 @@ public class KaleoNotificationRecipientLocalServiceImpl
 	public KaleoNotificationRecipient addKaleoNotificationRecipient(
 			long kaleoDefinitionId, long kaleoNotificationId,
 			Recipient recipient, ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		User user = userPersistence.findByPrimaryKey(
 			serviceContext.getGuestOrUserId());
@@ -71,16 +70,13 @@ public class KaleoNotificationRecipientLocalServiceImpl
 	}
 
 	@Override
-	public void deleteCompanyKaleoNotificationRecipients(long companyId)
-		throws SystemException {
-
+	public void deleteCompanyKaleoNotificationRecipients(long companyId) {
 		kaleoNotificationRecipientPersistence.removeByCompanyId(companyId);
 	}
 
 	@Override
 	public void deleteKaleoDefinitionKaleoNotificationRecipients(
-			long kaleoDefinitionId)
-		throws SystemException {
+		long kaleoDefinitionId) {
 
 		kaleoNotificationRecipientPersistence.removeByKaleoDefinitionId(
 			kaleoDefinitionId);
@@ -88,8 +84,7 @@ public class KaleoNotificationRecipientLocalServiceImpl
 
 	@Override
 	public List<KaleoNotificationRecipient> getKaleoNotificationRecipients(
-			long kaleoNotificationId)
-		throws SystemException {
+		long kaleoNotificationId) {
 
 		return kaleoNotificationRecipientPersistence.findByKaleoNotificationId(
 			kaleoNotificationId);
@@ -98,7 +93,7 @@ public class KaleoNotificationRecipientLocalServiceImpl
 	protected void setRecipient(
 			KaleoNotificationRecipient kaleoNotificationRecipient,
 			Recipient recipient, ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		RecipientType recipientType = recipient.getRecipientType();
 

@@ -14,7 +14,6 @@
 
 package com.liferay.portal.workflow.kaleo.model.impl;
 
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment;
 import com.liferay.portal.workflow.kaleo.model.KaleoTimer;
@@ -31,9 +30,7 @@ public class KaleoTimerImpl extends KaleoTimerBaseImpl {
 	}
 
 	@Override
-	public List<KaleoTaskAssignment> getKaleoTaskReassignments()
-		throws SystemException {
-
+	public List<KaleoTaskAssignment> getKaleoTaskReassignments() {
 		return KaleoTaskAssignmentLocalServiceUtil.getKaleoTaskAssignments(
 			KaleoTimer.class.getName(), getKaleoTimerId());
 	}

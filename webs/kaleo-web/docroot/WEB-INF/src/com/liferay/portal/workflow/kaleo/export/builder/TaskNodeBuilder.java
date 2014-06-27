@@ -15,7 +15,6 @@
 package com.liferay.portal.workflow.kaleo.export.builder;
 
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.workflow.kaleo.definition.Assignment;
 import com.liferay.portal.workflow.kaleo.definition.Node;
 import com.liferay.portal.workflow.kaleo.definition.Task;
@@ -30,9 +29,7 @@ import java.util.Set;
 public class TaskNodeBuilder extends BaseNodeBuilder implements NodeBuilder {
 
 	@Override
-	protected Node createNode(KaleoNode kaleoNode)
-		throws PortalException, SystemException {
-
+	protected Node createNode(KaleoNode kaleoNode) throws PortalException {
 		KaleoTask kaleoTask = kaleoTaskLocalService.getKaleoNodeKaleoTask(
 			kaleoNode.getKaleoNodeId());
 

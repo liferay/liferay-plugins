@@ -15,7 +15,6 @@
 package com.liferay.portal.workflow.kaleo.service.impl;
 
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.staging.StagingUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
@@ -44,7 +43,7 @@ public class KaleoInstanceTokenLocalServiceImpl
 			long parentKaleoInstanceTokenId,
 			Map<String, Serializable> workflowContext,
 			ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		User user = userPersistence.findByPrimaryKey(
 			serviceContext.getGuestOrUserId());
@@ -102,7 +101,7 @@ public class KaleoInstanceTokenLocalServiceImpl
 	@Override
 	public KaleoInstanceToken completeKaleoInstanceToken(
 			long kaleoInstanceTokenId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		KaleoInstanceToken kaleoInstanceToken =
 			kaleoInstanceTokenPersistence.findByPrimaryKey(
@@ -117,32 +116,25 @@ public class KaleoInstanceTokenLocalServiceImpl
 	}
 
 	@Override
-	public void deleteCompanyKaleoInstanceTokens(long companyId)
-		throws SystemException {
-
+	public void deleteCompanyKaleoInstanceTokens(long companyId) {
 		kaleoInstanceTokenPersistence.removeByCompanyId(companyId);
 	}
 
 	@Override
-	public void deleteKaleoDefinitionKaleoInstanceTokens(long kaleoDefinitionId)
-		throws SystemException {
-
+	public void deleteKaleoDefinitionKaleoInstanceTokens(long kaleoDefinitionId) {
 		kaleoInstanceTokenPersistence.removeByKaleoDefinitionId(
 			kaleoDefinitionId);
 	}
 
 	@Override
-	public void deleteKaleoInstanceKaleoInstanceTokens(long kaleoInstanceId)
-		throws SystemException {
-
+	public void deleteKaleoInstanceKaleoInstanceTokens(long kaleoInstanceId) {
 		kaleoInstanceTokenPersistence.removeByKaleoInstanceId(kaleoInstanceId);
 	}
 
 	@Override
 	public List<KaleoInstanceToken> getKaleoInstanceTokens(
-			long parentKaleoInstanceTokenId, Date completionDate,
-			ServiceContext serviceContext)
-		throws SystemException {
+		long parentKaleoInstanceTokenId, Date completionDate,
+		ServiceContext serviceContext) {
 
 		return kaleoInstanceTokenPersistence.findByC_PKITI_CD(
 			serviceContext.getCompanyId(), parentKaleoInstanceTokenId,
@@ -151,8 +143,7 @@ public class KaleoInstanceTokenLocalServiceImpl
 
 	@Override
 	public List<KaleoInstanceToken> getKaleoInstanceTokens(
-			long parentKaleoInstanceTokenId, ServiceContext serviceContext)
-		throws SystemException {
+		long parentKaleoInstanceTokenId, ServiceContext serviceContext) {
 
 		return kaleoInstanceTokenPersistence.findByC_PKITI(
 			serviceContext.getCompanyId(), parentKaleoInstanceTokenId);
@@ -160,9 +151,8 @@ public class KaleoInstanceTokenLocalServiceImpl
 
 	@Override
 	public int getKaleoInstanceTokensCount(
-			long parentKaleoInstanceTokenId, Date completionDate,
-			ServiceContext serviceContext)
-		throws SystemException {
+		long parentKaleoInstanceTokenId, Date completionDate,
+		ServiceContext serviceContext) {
 
 		return kaleoInstanceTokenPersistence.countByC_PKITI_CD(
 			serviceContext.getCompanyId(), parentKaleoInstanceTokenId,
@@ -171,8 +161,7 @@ public class KaleoInstanceTokenLocalServiceImpl
 
 	@Override
 	public int getKaleoInstanceTokensCount(
-			long parentKaleoInstanceTokenId, ServiceContext serviceContext)
-		throws SystemException {
+		long parentKaleoInstanceTokenId, ServiceContext serviceContext) {
 
 		return kaleoInstanceTokenPersistence.countByC_PKITI(
 			serviceContext.getCompanyId(), parentKaleoInstanceTokenId);
@@ -182,7 +171,7 @@ public class KaleoInstanceTokenLocalServiceImpl
 	public KaleoInstanceToken getRootKaleoInstanceToken(
 			long kaleoInstanceId, Map<String, Serializable> workflowContext,
 			ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		KaleoInstance kaleoInstance = kaleoInstancePersistence.findByPrimaryKey(
 			kaleoInstanceId);
@@ -249,7 +238,7 @@ public class KaleoInstanceTokenLocalServiceImpl
 	@Override
 	public KaleoInstanceToken updateKaleoInstanceToken(
 			long kaleoInstanceTokenId, long currentKaleoNodeId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		KaleoInstanceToken kaleoInstanceToken =
 			kaleoInstanceTokenPersistence.findByPrimaryKey(
@@ -266,7 +255,7 @@ public class KaleoInstanceTokenLocalServiceImpl
 
 	protected void setCurrentKaleoNode(
 			KaleoInstanceToken kaleoInstanceToken, long currentKaleoNodeId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		kaleoInstanceToken.setCurrentKaleoNodeId(currentKaleoNodeId);
 

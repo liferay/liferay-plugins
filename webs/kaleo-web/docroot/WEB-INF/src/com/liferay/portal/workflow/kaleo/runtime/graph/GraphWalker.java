@@ -15,7 +15,6 @@
 package com.liferay.portal.workflow.kaleo.runtime.graph;
 
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.workflow.kaleo.model.KaleoNode;
 import com.liferay.portal.workflow.kaleo.runtime.ExecutionContext;
 
@@ -30,6 +29,6 @@ public interface GraphWalker {
 			KaleoNode sourceKaleoNode, KaleoNode targetKaleoNode,
 			List<PathElement> remainingPathElements,
 			ExecutionContext executionContext)
-		throws PortalException, SystemException;
+		throws PortalException;
 
 }

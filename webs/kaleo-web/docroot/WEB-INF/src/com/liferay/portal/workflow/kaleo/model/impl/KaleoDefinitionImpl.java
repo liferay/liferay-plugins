@@ -15,7 +15,6 @@
 package com.liferay.portal.workflow.kaleo.model.impl;
 
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.workflow.kaleo.model.KaleoNode;
 import com.liferay.portal.workflow.kaleo.service.KaleoInstanceLocalServiceUtil;
 import com.liferay.portal.workflow.kaleo.service.KaleoNodeLocalServiceUtil;
@@ -29,14 +28,12 @@ public class KaleoDefinitionImpl extends KaleoDefinitionBaseImpl {
 	}
 
 	@Override
-	public KaleoNode getKaleoStartNode()
-		throws PortalException, SystemException {
-
+	public KaleoNode getKaleoStartNode() throws PortalException {
 		return KaleoNodeLocalServiceUtil.getKaleoNode(getStartKaleoNodeId());
 	}
 
 	@Override
-	public boolean hasIncompleteKaleoInstances() throws SystemException {
+	public boolean hasIncompleteKaleoInstances() {
 		int count = KaleoInstanceLocalServiceUtil.getKaleoInstancesCount(
 			getKaleoDefinitionId(), false);
 

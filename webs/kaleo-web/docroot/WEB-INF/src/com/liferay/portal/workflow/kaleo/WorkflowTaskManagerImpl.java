@@ -16,7 +16,6 @@ package com.liferay.portal.workflow.kaleo;
 
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.PrimitiveLongSet;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
@@ -702,7 +701,7 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 
 	protected List<WorkflowTask> toWorkflowTasks(
 			List<KaleoTaskInstanceToken> kaleoTaskInstanceTokens)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		List<WorkflowTask> workflowTasks = new ArrayList<WorkflowTask>(
 			kaleoTaskInstanceTokens.size());

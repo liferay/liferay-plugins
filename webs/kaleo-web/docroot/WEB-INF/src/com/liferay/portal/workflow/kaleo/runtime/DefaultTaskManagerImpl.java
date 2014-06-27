@@ -15,7 +15,6 @@
 package com.liferay.portal.workflow.kaleo.runtime;
 
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.transaction.Isolation;
 import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
@@ -248,7 +247,7 @@ public class DefaultTaskManagerImpl
 	protected Map<String, Serializable> updateWorkflowContext(
 			Map<String, Serializable> workflowContext,
 			KaleoTaskInstanceToken kaleoTaskInstanceToken)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		KaleoInstance kaleoInstance =
 			kaleoInstanceLocalService.getKaleoInstance(

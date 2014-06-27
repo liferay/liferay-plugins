@@ -15,7 +15,6 @@
 package com.liferay.portal.workflow.kaleo.deployment;
 
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.workflow.WorkflowDefinition;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.workflow.kaleo.definition.Definition;
@@ -27,6 +26,6 @@ public interface WorkflowDeployer {
 
 	public WorkflowDefinition deploy(
 			String title, Definition definition, ServiceContext serviceContext)
-		throws PortalException, SystemException;
+		throws PortalException;
 
 }

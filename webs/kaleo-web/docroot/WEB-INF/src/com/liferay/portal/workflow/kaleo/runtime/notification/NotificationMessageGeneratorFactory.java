@@ -40,7 +40,7 @@ public class NotificationMessageGeneratorFactory {
 
 	public void setNotificationMessageGenerators(
 		Map<String, NotificationMessageGenerator>
-		notificationMessageGenerators) {
+			notificationMessageGenerators) {
 
 		_notificationMessageGenerators = notificationMessageGenerators;
 	}

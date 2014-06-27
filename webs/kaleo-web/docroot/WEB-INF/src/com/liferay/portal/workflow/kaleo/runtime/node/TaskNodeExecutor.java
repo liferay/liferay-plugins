@@ -15,7 +15,6 @@
 package com.liferay.portal.workflow.kaleo.runtime.node;
 
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.Organization;
@@ -70,9 +69,7 @@ public class TaskNodeExecutor extends BaseNodeExecutor {
 		_taskAssignmentSelector = taskAssignmentSelector;
 	}
 
-	protected Date calculateDueDate(KaleoTask kaleoTask)
-		throws SystemException {
-
+	protected Date calculateDueDate(KaleoTask kaleoTask) {
 		List<KaleoTimer> kaleoTimers = kaleoTimerLocalService.getKaleoTimers(
 			KaleoNode.class.getName(), kaleoTask.getKaleoNodeId());
 
@@ -102,7 +99,7 @@ public class TaskNodeExecutor extends BaseNodeExecutor {
 			ServiceContext serviceContext,
 			KaleoInstanceToken kaleoInstanceToken, KaleoTask kaleoTask,
 			Date dueDate)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		Collection<KaleoTaskAssignment> configuredKaleoTaskAssignments =
 			kaleoTask.getKaleoTaskAssignments();
@@ -145,7 +142,7 @@ public class TaskNodeExecutor extends BaseNodeExecutor {
 	@Override
 	protected boolean doEnter(
 			KaleoNode currentKaleoNode, ExecutionContext executionContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		Map<String, Serializable> workflowContext =
 			executionContext.getWorkflowContext();
@@ -190,7 +187,7 @@ public class TaskNodeExecutor extends BaseNodeExecutor {
 	protected void doExecuteTimer(
 			KaleoNode currentKaleoNode, KaleoTimer kaleoTimer,
 			ExecutionContext executionContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		List<KaleoTaskAssignment> kaleoTaskReassignments =
 			kaleoTimer.getKaleoTaskReassignments();
@@ -207,7 +204,7 @@ public class TaskNodeExecutor extends BaseNodeExecutor {
 	protected void doExit(
 			KaleoNode currentKaleoNode, ExecutionContext executionContext,
 			List<PathElement> remainingPathElements)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		String transitionName = executionContext.getTransitionName();
 
@@ -237,7 +234,7 @@ public class TaskNodeExecutor extends BaseNodeExecutor {
 			getOrganizationKaleoTaskAssignments(
 				Collection<KaleoTaskAssignment> kaleoTaskAssignments,
 				ExecutionContext executionContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		long userId = executionContext.getKaleoInstanceToken().getUserId();
 

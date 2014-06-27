@@ -15,7 +15,6 @@
 package com.liferay.portal.workflow.kaleo.service.impl;
 
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.workflow.WorkflowException;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.ServiceContext;
@@ -45,7 +44,7 @@ public class KaleoTaskAssignmentInstanceLocalServiceImpl
 			long groupId, KaleoTaskInstanceToken kaleoTaskInstanceToken,
 			String assigneeClassName, long assigneeClassPK,
 			ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		User user = userPersistence.findByPrimaryKey(
 			serviceContext.getGuestOrUserId());
@@ -103,7 +102,7 @@ public class KaleoTaskAssignmentInstanceLocalServiceImpl
 			Collection<KaleoTaskAssignment> kaleoTaskAssignments,
 			Map<String, Serializable> workflowContext,
 			ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		List<KaleoTaskAssignmentInstance> kaleoTaskAssignmentInstances =
 			new ArrayList<KaleoTaskAssignmentInstance>(
@@ -133,7 +132,7 @@ public class KaleoTaskAssignmentInstanceLocalServiceImpl
 			KaleoTaskInstanceToken kaleoTaskInstanceToken,
 			String assigneeClassName, long assigneeClassPK,
 			ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		deleteKaleoTaskAssignmentInstances(kaleoTaskInstanceToken);
 
@@ -148,7 +147,7 @@ public class KaleoTaskAssignmentInstanceLocalServiceImpl
 	@Override
 	public KaleoTaskAssignmentInstance completeKaleoTaskInstanceToken(
 			long kaleoTaskInstanceTokenId, ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		List<KaleoTaskAssignmentInstance> kaleoTaskAssignmentInstances =
 			kaleoTaskAssignmentInstancePersistence.
@@ -173,16 +172,13 @@ public class KaleoTaskAssignmentInstanceLocalServiceImpl
 	}
 
 	@Override
-	public void deleteCompanyKaleoTaskAssignmentInstances(long companyId)
-		throws SystemException {
-
+	public void deleteCompanyKaleoTaskAssignmentInstances(long companyId) {
 		kaleoTaskAssignmentInstancePersistence.removeByCompanyId(companyId);
 	}
 
 	@Override
 	public void deleteKaleoDefinitionKaleoTaskAssignmentInstances(
-			long kaleoDefintionId)
-		throws SystemException {
+		long kaleoDefintionId) {
 
 		kaleoTaskAssignmentInstancePersistence.removeByKaleoDefinitionId(
 			kaleoDefintionId);
@@ -190,8 +186,7 @@ public class KaleoTaskAssignmentInstanceLocalServiceImpl
 
 	@Override
 	public void deleteKaleoInstanceKaleoTaskAssignmentInstances(
-			long kaleoInstanceId)
-		throws SystemException {
+		long kaleoInstanceId) {
 
 		kaleoTaskAssignmentInstancePersistence.removeByKaleoInstanceId(
 			kaleoInstanceId);
@@ -199,8 +194,7 @@ public class KaleoTaskAssignmentInstanceLocalServiceImpl
 
 	@Override
 	public void deleteKaleoTaskAssignmentInstances(
-			KaleoTaskInstanceToken kaleoTaskInstanceToken)
-		throws SystemException {
+		KaleoTaskInstanceToken kaleoTaskInstanceToken) {
 
 		List<KaleoTaskAssignmentInstance> kaleoTaskAssignmentInstances =
 			kaleoTaskAssignmentInstancePersistence.
@@ -217,8 +211,7 @@ public class KaleoTaskAssignmentInstanceLocalServiceImpl
 
 	@Override
 	public List<KaleoTaskAssignmentInstance> getKaleoTaskAssignmentInstances(
-			long kaleoTaskInstanceTokenId)
-		throws SystemException {
+		long kaleoTaskInstanceTokenId) {
 
 		return kaleoTaskAssignmentInstancePersistence.
 			findBykaleoTaskInstanceTokenId(kaleoTaskInstanceTokenId);

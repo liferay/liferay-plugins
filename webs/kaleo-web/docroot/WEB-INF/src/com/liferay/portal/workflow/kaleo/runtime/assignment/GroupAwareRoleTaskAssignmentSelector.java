@@ -15,7 +15,6 @@
 package com.liferay.portal.workflow.kaleo.runtime.assignment;
 
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.Role;
@@ -40,7 +39,7 @@ public class GroupAwareRoleTaskAssignmentSelector
 	public Collection<KaleoTaskAssignment> calculateTaskAssignments(
 			KaleoTaskAssignment kaleoTaskAssignment,
 			ExecutionContext executionContext, ClassLoader... classLoaders)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		KaleoInstanceToken kaleoInstanceToken =
 			executionContext.getKaleoInstanceToken();
@@ -70,7 +69,7 @@ public class GroupAwareRoleTaskAssignmentSelector
 
 	protected boolean isValidAssignment(
 			KaleoTaskAssignment kaleoTaskAssignment, Group group)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		long roleId = kaleoTaskAssignment.getAssigneeClassPK();
 

@@ -15,7 +15,6 @@
 package com.liferay.portal.workflow.kaleo.runtime.node;
 
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.workflow.kaleo.model.KaleoNode;
 import com.liferay.portal.workflow.kaleo.runtime.ExecutionContext;
 import com.liferay.portal.workflow.kaleo.runtime.graph.PathElement;
@@ -29,20 +28,20 @@ public interface NodeExecutor {
 
 	public boolean enter(
 			KaleoNode currentKaleoNode, ExecutionContext executionContext)
-		throws PortalException, SystemException;
+		throws PortalException;
 
 	public void execute(
 			KaleoNode currentKaleoNode, ExecutionContext executionContext,
 			List<PathElement> remainingPathElements)
-		throws PortalException, SystemException;
+		throws PortalException;
 
 	public void executeTimer(
 			KaleoNode currentKaleoNode, ExecutionContext executionContext)
-		throws PortalException, SystemException;
+		throws PortalException;
 
 	public void exit(
 			KaleoNode currentKaleoNode, ExecutionContext executionContext,
 			List<PathElement> remainingPathElements)
-		throws PortalException, SystemException;
+		throws PortalException;
 
 }

@@ -35,7 +35,7 @@ public class KaleoCompanyLocalServiceImpl extends CompanyLocalServiceWrapper {
 
 	@Override
 	public Company checkCompany(String webId, String mx, String shardName)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		Company company = super.checkCompany(webId, mx, shardName);
 

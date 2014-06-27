@@ -15,7 +15,6 @@
 package com.liferay.portal.workflow.kaleo.runtime;
 
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.workflow.kaleo.model.KaleoNode;
 
 /**
@@ -25,14 +24,14 @@ public interface KaleoSignaler {
 
 	public void signalEntry(
 			String transitionName, ExecutionContext executionContext)
-		throws PortalException, SystemException;
+		throws PortalException;
 
 	public void signalExecute(
 			KaleoNode currentKaleoNode, ExecutionContext executionContext)
-		throws PortalException, SystemException;
+		throws PortalException;
 
 	public void signalExit(
 			String transitionName, ExecutionContext executionContext)
-		throws PortalException, SystemException;
+		throws PortalException;
 
 }

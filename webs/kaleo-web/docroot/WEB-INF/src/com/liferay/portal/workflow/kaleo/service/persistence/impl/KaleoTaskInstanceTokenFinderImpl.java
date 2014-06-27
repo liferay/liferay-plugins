@@ -14,10 +14,6 @@
 
 package com.liferay.portal.workflow.kaleo.service.persistence.impl;
 
-import com.liferay.portal.workflow.kaleo.service.persistence.KaleoTaskInstanceTokenFinder;
-import com.liferay.portal.workflow.kaleo.service.persistence.KaleoTaskInstanceTokenQuery;
-import com.liferay.portal.workflow.kaleo.service.persistence.KaleoTaskInstanceTokenUtil;
-
 import com.liferay.portal.kernel.dao.orm.QueryPos;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.dao.orm.SQLQuery;
@@ -44,6 +40,9 @@ import com.liferay.portal.service.UserGroupRoleLocalServiceUtil;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 import com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken;
+import com.liferay.portal.workflow.kaleo.service.persistence.KaleoTaskInstanceTokenFinder;
+import com.liferay.portal.workflow.kaleo.service.persistence.KaleoTaskInstanceTokenQuery;
+import com.liferay.portal.workflow.kaleo.service.persistence.KaleoTaskInstanceTokenUtil;
 import com.liferay.portal.workflow.kaleo.util.RoleUtil;
 import com.liferay.util.dao.orm.CustomSQLUtil;
 
@@ -69,8 +68,7 @@ public class KaleoTaskInstanceTokenFinderImpl
 
 	@Override
 	public int countKaleoTaskInstanceTokens(
-			KaleoTaskInstanceTokenQuery kaleoTaskInstanceTokenQuery)
-		throws SystemException {
+		KaleoTaskInstanceTokenQuery kaleoTaskInstanceTokenQuery) {
 
 		Session session = null;
 
@@ -102,8 +100,7 @@ public class KaleoTaskInstanceTokenFinderImpl
 
 	@Override
 	public List<KaleoTaskInstanceToken> findKaleoTaskInstanceTokens(
-			KaleoTaskInstanceTokenQuery kaleoTaskInstanceTokenQuery)
-		throws SystemException {
+		KaleoTaskInstanceTokenQuery kaleoTaskInstanceTokenQuery) {
 
 		Session session = null;
 

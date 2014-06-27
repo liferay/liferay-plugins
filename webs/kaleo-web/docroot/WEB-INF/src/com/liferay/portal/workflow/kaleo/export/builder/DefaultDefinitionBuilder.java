@@ -15,7 +15,6 @@
 package com.liferay.portal.workflow.kaleo.export.builder;
 
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.workflow.kaleo.BaseKaleoBean;
 import com.liferay.portal.workflow.kaleo.definition.Definition;
@@ -35,7 +34,7 @@ public class DefaultDefinitionBuilder
 
 	@Override
 	public Definition buildDefinition(long kaleoDefinitionId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		KaleoDefinition kaleoDefinition =
 			kaleoDefinitionLocalService.getKaleoDefinition(kaleoDefinitionId);
@@ -45,7 +44,7 @@ public class DefaultDefinitionBuilder
 
 	@Override
 	public Definition buildDefinition(long companyId, String name, int version)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		ServiceContext serviceContext = new ServiceContext();
 
@@ -59,7 +58,7 @@ public class DefaultDefinitionBuilder
 	}
 
 	protected Definition doBuildDefinition(KaleoDefinition kaleoDefinition)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		Definition definition = new Definition(
 			kaleoDefinition.getName(), kaleoDefinition.getDescription(),

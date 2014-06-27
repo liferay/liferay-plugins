@@ -16,7 +16,6 @@ package com.liferay.portal.workflow.kaleo.export.builder;
 
 import com.liferay.portal.kernel.bean.BeanReference;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
@@ -62,9 +61,7 @@ public abstract class BaseNodeBuilder
 	extends BaseKaleoBean implements NodeBuilder {
 
 	@Override
-	public Node buildNode(KaleoNode kaleoNode)
-		throws PortalException, SystemException {
-
+	public Node buildNode(KaleoNode kaleoNode) throws PortalException {
 		Node node = createNode(kaleoNode);
 
 		Set<Action> actions = buildActions(
@@ -89,7 +86,7 @@ public abstract class BaseNodeBuilder
 
 	protected void addNotificationRecipients(
 			KaleoNotification kaleoNotification, Notification notification)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		List<KaleoNotificationRecipient> kaleoNotificationRecipients =
 			kaleoNotificationRecipientLocalService.
@@ -139,9 +136,7 @@ public abstract class BaseNodeBuilder
 		}
 	}
 
-	protected Set<Action> buildActions(String kaleoClassName, long kaleoClassPK)
-		throws SystemException {
-
+	protected Set<Action> buildActions(String kaleoClassName, long kaleoClassPK) {
 		List<KaleoAction> kaleoActions =
 			kaleoActionLocalService.getKaleoActions(
 				kaleoClassName, kaleoClassPK);
@@ -164,7 +159,7 @@ public abstract class BaseNodeBuilder
 
 	protected Set<Assignment> buildAssigments(
 			String kaleoClassName, long kaleoClassPK)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		List<KaleoTaskAssignment> kaleoTaskAssignments =
 			kaleoTaskAssignmentLocalService.getKaleoTaskAssignments(
@@ -218,7 +213,7 @@ public abstract class BaseNodeBuilder
 
 	protected Set<Notification> buildNotifications(
 			String kaleoClassName, long kaleoClassPK)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		List<KaleoNotification> kaleoNotifications =
 			kaleoNotificationLocalService.getKaleoNotifications(
@@ -252,7 +247,7 @@ public abstract class BaseNodeBuilder
 	}
 
 	protected Set<Timer> buildTimers(String kaleoClassName, long kaleoClassPK)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		List<KaleoTimer> kaleoTimers = kaleoTimerLocalService.getKaleoTimers(
 			kaleoClassName, kaleoClassPK);
@@ -303,7 +298,7 @@ public abstract class BaseNodeBuilder
 	}
 
 	protected abstract Node createNode(KaleoNode kaleoNode)
-		throws PortalException, SystemException;
+		throws PortalException;
 
 	@BeanReference(type = RoleLocalService.class)
 	private RoleLocalService _roleLocalService;

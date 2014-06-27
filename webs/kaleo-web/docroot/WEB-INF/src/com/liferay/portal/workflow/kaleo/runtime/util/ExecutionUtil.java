@@ -15,7 +15,6 @@
 package com.liferay.portal.workflow.kaleo.runtime.util;
 
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.workflow.kaleo.model.KaleoInstance;
 import com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken;
 import com.liferay.portal.workflow.kaleo.model.KaleoTimerInstanceToken;
@@ -32,7 +31,7 @@ public class ExecutionUtil {
 
 	public static void checkKaleoInstanceComplete(
 			ExecutionContext executionContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		KaleoInstanceToken kaleoInstanceToken =
 			executionContext.getKaleoInstanceToken();
@@ -53,7 +52,7 @@ public class ExecutionUtil {
 
 	public static void completeKaleoTimerInstances(
 			ExecutionContext executionContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		KaleoInstanceToken kaleoInstanceToken =
 			executionContext.getKaleoInstanceToken();
@@ -69,8 +68,7 @@ public class ExecutionUtil {
 	}
 
 	public static boolean isKaleoInstanceBlocked(
-			ExecutionContext executionContext)
-		throws SystemException {
+		ExecutionContext executionContext) {
 
 		KaleoInstanceToken kaleoInstanceToken =
 			executionContext.getKaleoInstanceToken();

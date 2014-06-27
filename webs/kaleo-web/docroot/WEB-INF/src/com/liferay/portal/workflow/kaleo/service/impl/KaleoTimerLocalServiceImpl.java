@@ -15,7 +15,6 @@
 package com.liferay.portal.workflow.kaleo.service.impl;
 
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.workflow.kaleo.definition.Action;
@@ -39,7 +38,7 @@ public class KaleoTimerLocalServiceImpl extends KaleoTimerLocalServiceBaseImpl {
 	public KaleoTimer addKaleoTimer(
 			String kaleoClassName, long kaleoClassPK, long kaleoDefinitionId,
 			Timer timer, ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		// Kaleo timer
 
@@ -113,8 +112,7 @@ public class KaleoTimerLocalServiceImpl extends KaleoTimerLocalServiceBaseImpl {
 
 	@Override
 	public List<KaleoTimer> getKaleoTimers(
-			String kaleoClassName, long kaleoClassPK)
-		throws SystemException {
+		String kaleoClassName, long kaleoClassPK) {
 
 		return kaleoTimerPersistence.findByKCN_KCPK(
 			kaleoClassName, kaleoClassPK);
@@ -122,8 +120,7 @@ public class KaleoTimerLocalServiceImpl extends KaleoTimerLocalServiceBaseImpl {
 
 	@Override
 	public List<KaleoTimer> getKaleoTimers(
-			String kaleoClassName, long kaleoClassPK, boolean blocking)
-		throws SystemException {
+		String kaleoClassName, long kaleoClassPK, boolean blocking) {
 
 		return kaleoTimerPersistence.findByKCN_KCPK_Blocking(
 			kaleoClassName, kaleoClassPK, blocking);

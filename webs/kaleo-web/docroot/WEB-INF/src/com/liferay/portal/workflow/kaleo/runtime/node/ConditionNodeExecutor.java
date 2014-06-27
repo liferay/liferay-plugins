@@ -15,7 +15,6 @@
 package com.liferay.portal.workflow.kaleo.runtime.node;
 
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.workflow.kaleo.model.KaleoCondition;
 import com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken;
@@ -49,7 +48,7 @@ public class ConditionNodeExecutor extends BaseNodeExecutor {
 	protected void doExecute(
 			KaleoNode currentKaleoNode, ExecutionContext executionContext,
 			List<PathElement> remainingPathElements)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		KaleoInstanceToken kaleoInstanceToken =
 			executionContext.getKaleoInstanceToken();

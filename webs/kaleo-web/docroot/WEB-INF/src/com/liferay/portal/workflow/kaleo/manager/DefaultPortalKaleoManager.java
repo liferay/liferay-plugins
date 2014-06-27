@@ -16,7 +16,6 @@ package com.liferay.portal.workflow.kaleo.manager;
 
 import com.liferay.portal.NoSuchRoleException;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.FileUtil;
@@ -241,7 +240,7 @@ public class DefaultPortalKaleoManager
 	protected void deployDefaultDefinitionLink(
 			User defaultUser, Company company, Group companyGroup,
 			String assetClassName, String workflowDefinitionName)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		WorkflowDefinitionLink workflowDefinitionLink =
 			WorkflowDefinitionLinkLocalServiceUtil.

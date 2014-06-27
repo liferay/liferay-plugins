@@ -17,7 +17,6 @@ package com.liferay.portal.workflow.kaleo.util;
 import com.liferay.portal.DuplicateRoleException;
 import com.liferay.portal.NoSuchRoleException;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.model.Role;
 import com.liferay.portal.model.RoleConstants;
@@ -38,7 +37,7 @@ public class RoleUtil {
 	public static Role getRole(
 			String name, int roleType, boolean autoCreate,
 			ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		Role role = null;
 
@@ -70,9 +69,7 @@ public class RoleUtil {
 		return role;
 	}
 
-	public static List<Long> getRoleIds(ServiceContext serviceContext)
-		throws SystemException {
-
+	public static List<Long> getRoleIds(ServiceContext serviceContext) {
 		List<Role> roles = RoleLocalServiceUtil.getUserRoles(
 			serviceContext.getUserId());
 

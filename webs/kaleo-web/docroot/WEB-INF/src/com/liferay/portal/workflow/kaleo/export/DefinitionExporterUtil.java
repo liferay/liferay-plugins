@@ -15,21 +15,18 @@
 package com.liferay.portal.workflow.kaleo.export;
 
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 
 /**
  * @author Michael C. Han
  */
 public class DefinitionExporterUtil {
 
-	public static String export(long kaleoDefinitionId)
-		throws PortalException, SystemException {
-
+	public static String export(long kaleoDefinitionId) throws PortalException {
 		return getDefinitionExporter().export(kaleoDefinitionId);
 	}
 
 	public static String export(long companyId, String name, int version)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		return getDefinitionExporter().export(companyId, name, version);
 	}

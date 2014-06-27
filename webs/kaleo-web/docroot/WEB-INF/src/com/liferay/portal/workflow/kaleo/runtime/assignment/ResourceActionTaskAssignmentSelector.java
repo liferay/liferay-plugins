@@ -14,7 +14,6 @@
 
 package com.liferay.portal.workflow.kaleo.runtime.assignment;
 
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.ResourceConstants;
@@ -40,9 +39,8 @@ public class ResourceActionTaskAssignmentSelector
 
 	@Override
 	public Collection<KaleoTaskAssignment> calculateTaskAssignments(
-			KaleoTaskAssignment kaleoTaskAssignment,
-			ExecutionContext executionContext, ClassLoader... classLoaders)
-		throws SystemException {
+		KaleoTaskAssignment kaleoTaskAssignment,
+		ExecutionContext executionContext, ClassLoader... classLoaders) {
 
 		ServiceContext serviceContext = executionContext.getServiceContext();
 

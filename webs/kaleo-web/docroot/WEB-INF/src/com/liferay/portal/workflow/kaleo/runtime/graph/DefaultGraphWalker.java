@@ -15,7 +15,6 @@
 package com.liferay.portal.workflow.kaleo.runtime.graph;
 
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.transaction.Isolation;
 import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
@@ -41,7 +40,7 @@ public class DefaultGraphWalker extends BaseKaleoBean implements GraphWalker {
 			KaleoNode sourceKaleoNode, KaleoNode targetKaleoNode,
 			List<PathElement> remainingPathElements,
 			ExecutionContext executionContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		if (sourceKaleoNode != null) {
 			NodeExecutor nodeExecutor = NodeExecutorFactory.getNodeExecutor(

@@ -15,7 +15,6 @@
 package com.liferay.portal.workflow.kaleo.util;
 
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.Validator;
@@ -85,7 +84,7 @@ public class WorkflowModelUtil {
 
 	public static WorkflowInstance toWorkflowInstance(
 			KaleoInstance kaleoInstance, KaleoInstanceToken kaleoInstanceToken)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		return toWorkflowInstance(kaleoInstance, kaleoInstanceToken, null);
 	}
@@ -93,7 +92,7 @@ public class WorkflowModelUtil {
 	public static WorkflowInstance toWorkflowInstance(
 			KaleoInstance kaleoInstance, KaleoInstanceToken kaleoInstanceToken,
 			Map<String, Serializable> workflowContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		DefaultWorkflowInstance defaultWorkflowInstance =
 			new DefaultWorkflowInstance();
@@ -171,7 +170,7 @@ public class WorkflowModelUtil {
 	public static WorkflowTask toWorkflowTask(
 			KaleoTaskInstanceToken kaleoTaskInstanceToken,
 			Map<String, Serializable> workflowContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		DefaultWorkflowTask defaultWorkflowTask = new DefaultWorkflowTask();
 

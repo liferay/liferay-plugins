@@ -15,7 +15,6 @@
 package com.liferay.portal.workflow.kaleo.runtime.notification;
 
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.workflow.kaleo.definition.ExecutionType;
 import com.liferay.portal.workflow.kaleo.model.KaleoNotification;
@@ -34,7 +33,7 @@ public class NotificationUtil {
 	public static void sendKaleoNotifications(
 			String kaleoClassName, long kaleoClassPK,
 			ExecutionType executionType, ExecutionContext executionContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		List<KaleoNotification> kaleoNotifications =
 			KaleoNotificationLocalServiceUtil.getKaleoNotifications(
@@ -48,7 +47,7 @@ public class NotificationUtil {
 	private static void _sendKaleoNotification(
 			KaleoNotification kaleoNotification,
 			ExecutionContext executionContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		NotificationMessageGenerator notificationMessageGenerator =
 			NotificationMessageGeneratorFactory.getNotificationMessageGenerator(

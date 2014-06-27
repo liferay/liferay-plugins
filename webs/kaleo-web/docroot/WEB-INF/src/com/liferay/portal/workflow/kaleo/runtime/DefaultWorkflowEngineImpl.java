@@ -15,7 +15,6 @@
 package com.liferay.portal.workflow.kaleo.runtime;
 
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.transaction.Isolation;
 import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.TransactionCommitCallbackRegistryUtil;
@@ -555,7 +554,7 @@ public class DefaultWorkflowEngineImpl
 
 	protected List<WorkflowInstance> toWorkflowInstances(
 			List<KaleoInstance> kaleoInstances, ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		List<WorkflowInstance> workflowInstances =
 			new ArrayList<WorkflowInstance>(kaleoInstances.size());

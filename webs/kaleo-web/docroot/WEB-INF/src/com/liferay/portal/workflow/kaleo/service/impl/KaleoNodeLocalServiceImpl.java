@@ -15,7 +15,6 @@
 package com.liferay.portal.workflow.kaleo.service.impl;
 
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.workflow.kaleo.definition.Action;
@@ -39,7 +38,7 @@ public class KaleoNodeLocalServiceImpl extends KaleoNodeLocalServiceBaseImpl {
 	@Override
 	public KaleoNode addKaleoNode(
 			long kaleoDefinitionId, Node node, ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		// Kaleo node
 
@@ -113,7 +112,7 @@ public class KaleoNodeLocalServiceImpl extends KaleoNodeLocalServiceBaseImpl {
 	}
 
 	@Override
-	public void deleteCompanyKaleoNodes(long companyId) throws SystemException {
+	public void deleteCompanyKaleoNodes(long companyId) {
 
 		// Kaleo nodes
 
@@ -130,8 +129,7 @@ public class KaleoNodeLocalServiceImpl extends KaleoNodeLocalServiceBaseImpl {
 	}
 
 	@Override
-	public void deleteKaleoDefinitionKaleoNodes(long kaleoDefinitionId)
-		throws SystemException {
+	public void deleteKaleoDefinitionKaleoNodes(long kaleoDefinitionId) {
 
 		// Kaleo nodes
 
@@ -149,9 +147,7 @@ public class KaleoNodeLocalServiceImpl extends KaleoNodeLocalServiceBaseImpl {
 	}
 
 	@Override
-	public List<KaleoNode> getKaleoDefinitionKaleoNodes(long kaleoDefinitionId)
-		throws SystemException {
-
+	public List<KaleoNode> getKaleoDefinitionKaleoNodes(long kaleoDefinitionId) {
 		return kaleoNodePersistence.findByKaleoDefinitionId(kaleoDefinitionId);
 	}
 
