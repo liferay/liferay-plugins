@@ -54,7 +54,7 @@ public class KBArticleImporterUtil {
 
 		String imageSource = null;
 
-		String[] lines = StringUtil.split(html, "\"");
+		String[] lines = StringUtil.split(html, StringPool.QUOTE);
 
 		for (int i = 0; i < lines.length; i++) {
 			if (lines[i].endsWith("src=")) {
@@ -76,7 +76,7 @@ public class KBArticleImporterUtil {
 
 		String[] paths = StringUtil.split(imageSource, StringPool.SLASH);
 
-		if (paths.length < 0) {
+		if (paths.length < 1) {
 			if (_log.isWarnEnabled()) {
 				_log.warn(
 					"Expected image file path to contain a slash " + html);
