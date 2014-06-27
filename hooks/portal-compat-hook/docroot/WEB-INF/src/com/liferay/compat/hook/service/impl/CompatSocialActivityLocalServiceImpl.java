@@ -20,11 +20,17 @@ import com.liferay.portal.kernel.lar.ExportImportThreadLocal;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.Layout;
 import com.liferay.portal.model.User;
+import com.liferay.portal.service.GroupLocalServiceUtil;
+import com.liferay.portal.service.LayoutLocalServiceUtil;
+import com.liferay.portal.service.persistence.UserUtil;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.asset.model.AssetEntry;
+import com.liferay.portlet.asset.service.persistence.AssetEntryUtil;
 import com.liferay.portlet.social.model.SocialActivity;
 import com.liferay.portlet.social.service.SocialActivityLocalService;
+import com.liferay.portlet.social.service.SocialActivityLocalServiceUtil;
 import com.liferay.portlet.social.service.SocialActivityLocalServiceWrapper;
+import com.liferay.portlet.social.service.persistence.SocialActivityUtil;
 import com.liferay.portlet.social.util.SocialActivityHierarchyEntry;
 import com.liferay.portlet.social.util.SocialActivityHierarchyEntryThreadLocal;
 
@@ -52,21 +58,21 @@ public class CompatSocialActivityLocalServiceImpl
 			return;
 		}
 
-		User user = userPersistence.findByPrimaryKey(userId);
+		User user = UserUtil.findByPrimaryKey(userId);
 		long classNameId = PortalUtil.getClassNameId(className);
 
 		if (groupId > 0) {
-			Group group = groupLocalService.getGroup(groupId);
+			Group group = GroupLocalServiceUtil.getGroup(groupId);
 
 			if (group.isLayout()) {
-				Layout layout = layoutLocalService.getLayout(
+				Layout layout = LayoutLocalServiceUtil.getLayout(
 					group.getClassPK());
 
 				groupId = layout.getGroupId();
 			}
 		}
 
-		SocialActivity activity = socialActivityPersistence.create(0);
+		SocialActivity activity = SocialActivityUtil.create(0);
 
 		activity.setGroupId(groupId);
 		activity.setCompanyId(user.getCompanyId());
@@ -89,15 +95,14 @@ public class CompatSocialActivityLocalServiceImpl
 		activity.setExtraData(extraData);
 		activity.setReceiverUserId(receiverUserId);
 
-		AssetEntry assetEntry = assetEntryPersistence.fetchByC_C(
-			classNameId, classPK);
+		AssetEntry assetEntry = AssetEntryUtil.fetchByC_C(classNameId, classPK);
 
 		activity.setAssetEntry(assetEntry);
 
 		SocialActivity mirrorActivity = null;
 
 		if ((receiverUserId > 0) && (userId != receiverUserId)) {
-			mirrorActivity = socialActivityPersistence.create(0);
+			mirrorActivity = SocialActivityUtil.create(0);
 
 			mirrorActivity.setGroupId(groupId);
 			mirrorActivity.setCompanyId(user.getCompanyId());
@@ -119,7 +124,7 @@ public class CompatSocialActivityLocalServiceImpl
 			mirrorActivity.setAssetEntry(assetEntry);
 		}
 
-		socialActivityLocalService.addActivity(activity, mirrorActivity);
+		SocialActivityLocalServiceUtil.addActivity(activity, mirrorActivity);
 	}
 
 	@Override
@@ -138,7 +143,7 @@ public class CompatSocialActivityLocalServiceImpl
 
 		while (true) {
 			SocialActivity socialActivity =
-				socialActivityPersistence.fetchByG_U_CD_C_C_T_R(
+				SocialActivityUtil.fetchByG_U_CD_C_C_T_R(
 					groupId, userId, createDate.getTime(), classNameId, classPK,
 					type, receiverUserId);
 
@@ -164,7 +169,7 @@ public class CompatSocialActivityLocalServiceImpl
 		long classNameId = PortalUtil.getClassNameId(className);
 
 		SocialActivity socialActivity =
-			socialActivityPersistence.fetchByG_U_CD_C_C_T_R(
+			SocialActivityUtil.fetchByG_U_CD_C_C_T_R(
 				groupId, userId, createDate.getTime(), classNameId, classPK,
 				type, receiverUserId);
 
@@ -185,7 +190,7 @@ public class CompatSocialActivityLocalServiceImpl
 
 		long classNameId = PortalUtil.getClassNameId(className);
 
-		int count = socialActivityPersistence.countByG_U_C_C_T_R(
+		int count = SocialActivityUtil.countByG_U_C_C_T_R(
 			groupId, userId, classNameId, classPK, type, receiverUserId);
 
 		if (count > 0) {
