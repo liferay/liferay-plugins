@@ -30,7 +30,7 @@ Gadget gadget = (Gadget)renderRequest.getAttribute(WebKeys.GADGET);
 
 		<liferay-ui:icon
 			cssClass="portlet-configuration"
-			image="configuration"
+			iconCssClass="icon-cog"
 			message="configure-gadget"
 			method="get"
 			onClick="<%= portletDisplay.getURLConfigurationJS() %>"
