@@ -22,7 +22,7 @@ ResultRow row = (ResultRow)request.getAttribute(WebKeys.SEARCH_CONTAINER_RESULT_
 WSRPConsumerPortlet wsrpConsumerPortlet = (WSRPConsumerPortlet)row.getObject();
 %>
 
-<liferay-ui:icon-menu>
+<liferay-ui:icon-menu icon="<%= StringPool.BLANK %>" message="<%= StringPool.BLANK %>">
 	<%--<portlet:renderURL var="editURL">
 		<portlet:param name="mvcPath" value="/admin/edit_consumer_portlet.jsp" />
 		<portlet:param name="redirect" value="<%= currentURL %>" />
@@ -30,7 +30,8 @@ WSRPConsumerPortlet wsrpConsumerPortlet = (WSRPConsumerPortlet)row.getObject();
 	</portlet:renderURL>
 
 	<liferay-ui:icon
-		image="edit"
+		iconCssClass="icon-edit"
+		message="edit"
 		url="<%= editURL %>"
 	/>--%>
 

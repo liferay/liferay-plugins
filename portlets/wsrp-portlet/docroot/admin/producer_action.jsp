@@ -22,7 +22,7 @@ ResultRow row = (ResultRow)request.getAttribute(WebKeys.SEARCH_CONTAINER_RESULT_
 WSRPProducer wsrpProducer = (WSRPProducer)row.getObject();
 %>
 
-<liferay-ui:icon-menu>
+<liferay-ui:icon-menu icon="<%= StringPool.BLANK %>" message="<%= StringPool.BLANK %>">
 	<portlet:renderURL var="editURL">
 		<portlet:param name="mvcPath" value="/admin/edit_producer.jsp" />
 		<portlet:param name="redirect" value="<%= currentURL %>" />
@@ -30,7 +30,8 @@ WSRPProducer wsrpProducer = (WSRPProducer)row.getObject();
 	</portlet:renderURL>
 
 	<liferay-ui:icon
-		image="edit"
+		iconCssClass="icon-edit"
+		message="edit"
 		url="<%= editURL %>"
 	/>
 

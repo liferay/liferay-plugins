@@ -34,24 +34,24 @@ catch (Exception e) {
 
 <c:choose>
 	<c:when test="<%= serviceDescription == null %>">
-		<liferay-ui:icon-menu>
+		<liferay-ui:icon-menu icon="<%= StringPool.BLANK %>" message="<%= StringPool.BLANK %>">
+			<portlet:actionURL name="restartConsumer" var="restartConsumerURL">
+				<portlet:param name="redirect" value="<%= currentURL %>" />
+				<portlet:param name="wsrpConsumerId" value="<%= String.valueOf(wsrpConsumer.getWsrpConsumerId()) %>" />
+			</portlet:actionURL>
+
+			<liferay-ui:icon iconCssClass="icon-list-alt" message="restart-consumer" url="<%= restartConsumerURL %>" />
+
 			<portlet:actionURL name="deleteWSRPConsumer" var="deleteURL">
 				<portlet:param name="redirect" value="<%= currentURL %>" />
 				<portlet:param name="wsrpConsumerId" value="<%= String.valueOf(wsrpConsumer.getWsrpConsumerId()) %>" />
 			</portlet:actionURL>
 
 			<liferay-ui:icon-delete url="<%= deleteURL %>" />
-
-			<portlet:actionURL name="restartConsumer" var="restartConsumerURL">
-				<portlet:param name="redirect" value="<%= currentURL %>" />
-				<portlet:param name="wsrpConsumerId" value="<%= String.valueOf(wsrpConsumer.getWsrpConsumerId()) %>" />
-			</portlet:actionURL>
-
-			<liferay-ui:icon image="portlet" message="restart-consumer" url="<%= restartConsumerURL %>" />
 		</liferay-ui:icon-menu>
 	</c:when>
 	<c:otherwise>
-		<liferay-ui:icon-menu>
+		<liferay-ui:icon-menu icon="<%= StringPool.BLANK %>" message="<%= StringPool.BLANK %>">
 			<portlet:renderURL var="editURL">
 				<portlet:param name="mvcPath" value="/admin/edit_consumer.jsp" />
 				<portlet:param name="redirect" value="<%= currentURL %>" />
@@ -59,7 +59,8 @@ catch (Exception e) {
 			</portlet:renderURL>
 
 			<liferay-ui:icon
-				image="edit"
+				iconCssClass="icon-edit"
+				message="edit"
 				url="<%= editURL %>"
 			/>
 
@@ -71,7 +72,7 @@ catch (Exception e) {
 				</portlet:renderURL>
 
 				<liferay-ui:icon
-					image="edit"
+					iconCssClass="icon-edit"
 					message="edit-registration"
 					url="<%= editRegistrationURL %>"
 				/>
@@ -84,7 +85,7 @@ catch (Exception e) {
 				</portlet:renderURL>
 
 				<liferay-ui:icon
-					image="portlet"
+					iconCssClass="icon-list-alt"
 					message="manage-portlets"
 					url="<%= managePortletsURL %>"
 				/>
@@ -96,7 +97,7 @@ catch (Exception e) {
 			</portlet:actionURL>
 
 			<liferay-ui:icon
-				image="portlet"
+				iconCssClass="icon-list-alt"
 				message="update-service-description"
 				url="<%= updateServiceDescriptionURL %>"
 			/>
@@ -107,7 +108,7 @@ catch (Exception e) {
 			</portlet:actionURL>
 
 			<liferay-ui:icon
-				image="portlet"
+				iconCssClass="icon-list-alt"
 				message="restart-consumer"
 				url="<%= restartConsumerURL %>"
 			/>
