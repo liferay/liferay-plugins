@@ -35,8 +35,9 @@ User user2 = (User)row.getObject();
 		</portlet:actionURL>
 
 		<liferay-ui:icon
-			image="unsubscribe"
+			iconCssClass="icon-remove-sign"
 			label="<%= true %>"
+			message="unsubscribe"
 			url="<%= unsubscribeUsersURL %>"
 		/>
 	</c:when>
@@ -48,8 +49,9 @@ User user2 = (User)row.getObject();
 		</portlet:actionURL>
 
 		<liferay-ui:icon
-			image="subscribe"
+			iconCssClass="icon-ok-sign"
 			label="<%= true %>"
+			message="subscribe"
 			url="<%= subscribeUsersURL %>"
 		/>
 	</c:otherwise>
