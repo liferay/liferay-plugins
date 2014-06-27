@@ -16,60 +16,14 @@
 
 <%@ include file="/admin/init.jsp" %>
 
-<%
-request.setAttribute("toolbarItem", "import");
+<portlet:actionURL name="importFile" var="importFileURL" windowState="normal" />
 
-redirect = ParamUtil.getString(request, "redirect", currentURL);
-%>
-
-<portlet:actionURL name="addFile" var="addFileURL" windowState="normal" />
-
-<aui:form action="<%= addFileURL %>" class="uni-form" enctype="multipart/form-data" method="post" name="fm">
-	<aui:input id="uploadFileName" name="uploadFileName" type="hidden" />
-
-	Upload your ZIP file
+<aui:form action="<%= importFileURL %>" class="uni-form" enctype="multipart/form-data" method="post" name="fm">
+	<liferay-ui:message key="upload-your-zip-file" />
 
 	<aui:fieldset class="block-labels">
-
-		<%
-		String taglibOnChange = renderResponse.getNamespace() + "setUploadFileName(this.value);";
-		%>
-
-		<aui:input id="file" name="file" onchange="<%= taglibOnChange %>" size="50" type="file" />
-
+		<aui:input id="file" name="file" size="50" type="file" />
 	</aui:fieldset>
 
-	<%
-	String taglibOnSubmit = renderResponse.getNamespace() + "addFile();";
-	%>
-
-	<aui:button name="submit" onClick="<%= taglibOnSubmit %>" type="submit" value="submit" />
+	<aui:button name="submit" type="submit" />
 </aui:form>
-
-<aui:script>
-	function <portlet:namespace />setUploadFileName(fileName) {
-		document.<portlet:namespace />fm.<portlet:namespace />uploadFileName.value = fileName;
-
-		if (!document.<portlet:namespace />fm.<portlet:namespace />title) {
-			return;
-		}
-
-		var title = document.<portlet:namespace />fm.<portlet:namespace />title.value;
-
-		if (title == '') {
-			var pos = fileName.lastIndexOf(".");
-
-			if (pos > 0) {
-				fileName = fileName.substr(0, pos);
-			}
-
-			document.<portlet:namespace />fm.<portlet:namespace />title.value = fileName;
-		}
-	}
-</aui:script>
-
-<aui:script>
-	function <portlet:namespace />addFile() {
-		submitForm(document.<portlet:namespace />fm, '<liferay-portlet:actionURL name="addFile"></liferay-portlet:actionURL>');
-	}
-</aui:script>

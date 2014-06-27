@@ -20,6 +20,4 @@
 	<portlet:param name="mvcPath" value="/admin/import.jsp" />
 </portlet:renderURL>
 
-<span class="lfr-toolbar-button add-button <%= StringPool.BLANK %>">
-	<a href="<%= importURL %>"><liferay-ui:message key="import" /></a>
-</span>
+<aui:button href="<%= importURL %>" value="import" />

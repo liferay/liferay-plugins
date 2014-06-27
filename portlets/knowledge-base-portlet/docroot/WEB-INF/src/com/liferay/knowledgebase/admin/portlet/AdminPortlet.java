@@ -128,41 +128,44 @@ public class AdminPortlet extends MVCPortlet {
 		}
 	}
 
-	public void addFile(
+	public void importFile(
 			ActionRequest actionRequest, ActionResponse actionResponse)
-		throws PortalException, SystemException {
+		throws Exception {
 
 		UploadPortletRequest uploadPortletRequest =
 			PortalUtil.getUploadPortletRequest(actionRequest);
 
-		File file = uploadPortletRequest.getFile("file");
-
-		if (Validator.isNull(file)) {
-			throw new KBArticleImportException("Null import file");
-		}
-
-		String fileName = uploadPortletRequest.getParameter("uploadFileName");
+		String fileName = uploadPortletRequest.getFileName("file");
 
 		if (Validator.isNull(fileName)) {
 			throw new KBArticleImportException("No import filename");
 		}
 
-		ServiceContext serviceContext = ServiceContextFactory.getInstance(
-			AdminPortlet.class.getName(), actionRequest);
-
-		serviceContext.setGuestPermissions(new String[] {ActionKeys.VIEW});
-
-		KBArticleImporterContext importerContext = new KBArticleImporterContext(
-			fileName, serviceContext);
-
-		KBArticleHierarchyImporter importer = new KBArticleHierarchyImporter();
+		InputStream inputStream = null;
 
 		try {
-			importer.processZipFile(file, importerContext);
+			inputStream = uploadPortletRequest.getFileAsStream("file");
+
+			ServiceContext serviceContext = ServiceContextFactory.getInstance(
+				AdminPortlet.class.getName(), actionRequest);
+
+			serviceContext.setGuestPermissions(new String[] {ActionKeys.VIEW});
+
+			KBArticleImporterContext kbArticleImporterContext =
+				new KBArticleImporterContext(fileName, serviceContext);
+
+			KBArticleHierarchyImporter kbArticleHierarchyImporter =
+				new KBArticleHierarchyImporter();
+
+			kbArticleHierarchyImporter.processZipFile(
+				inputStream, kbArticleImporterContext);
 		}
 		catch (KBArticleImportException kbaie) {
 			SessionErrors.add(
 				actionRequest, kbaie.getClass(), kbaie);
+		}
+		finally {
+			StreamUtil.cleanUp(inputStream);
 		}
 	}
 

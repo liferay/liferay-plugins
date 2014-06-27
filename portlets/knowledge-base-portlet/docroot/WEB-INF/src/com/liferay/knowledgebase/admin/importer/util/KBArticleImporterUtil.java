@@ -26,10 +26,10 @@ import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.SystemProperties;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.zip.ZipReader;
-import com.liferay.portal.kernel.zip.ZipReaderFactoryUtil;
 import com.liferay.portal.service.ServiceContext;
 
 import java.io.File;
+import java.io.IOException;
 
 /**
  * @author James Hinkey
@@ -95,12 +95,12 @@ public class KBArticleImporterUtil {
 	 * Processes the ZIP file's image files, adding them to the document
 	 * library.
 	 *
-	 * @param zipFile a ZIP file containing a folder of image files
+	 * @param zipReader a zip reader containing a folder of image files
 	 * @param importerContext the importer context
 	 */
 	public static void processImageFiles(
-			File zipFile, KBArticleImporterContext importerContext)
-		throws KBArticleImportException {
+			ZipReader zipReader, KBArticleImporterContext importerContext)
+		throws KBArticleImportException, IOException {
 
 		String fileName = importerContext.getFileName();
 
@@ -136,8 +136,6 @@ public class KBArticleImporterUtil {
 		catch (Exception e) {
 			throw new KBArticleImportException(e);
 		}
-
-		ZipReader zipReader = ZipReaderFactoryUtil.getZipReader(zipFile);
 
 		for (String zipEntry : zipReader.getEntries()) {
 			if (!zipEntry.contains(_IMAGES)) {
