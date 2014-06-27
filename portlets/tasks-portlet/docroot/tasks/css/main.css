@@ -116,13 +116,13 @@
 		}
 	}
 
-	.due-date, .progress-indicator, .progress-selector, .progress-wrapper .new-progress {
+	.progress-wrapper .due-date, .progress-indicator, .progress-selector, .progress-wrapper .new-progress {
 		left: 0;
 		position: absolute;
 		top: 0;
 	}
 
-	.due-date, .progress-indicator {
+	.progress-wrapper .due-date, .progress-indicator {
 		text-align: center;
 	}
 
@@ -130,7 +130,7 @@
 		color: red;
 	}
 
-	.due-date {
+	.progress-wrapper .due-date {
 		z-index: 10;
 	}
 
