@@ -557,7 +557,14 @@ $defaultTextColor: #202020;
 
 			button {
 				margin-top: 0;
-				width: 50%;
+			}
+
+			.site-controls-double {
+				width:50%
+			}
+
+			.site-controls-single {
+				width: 100%;
 			}
 		}
 	}

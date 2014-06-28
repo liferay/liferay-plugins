@@ -108,8 +108,14 @@ pageContext.setAttribute("portletURL", portletURL);
 		var addSiteButton = new A.Toolbar(
 			{
 				children: [
-					<c:if test="<%= PortalPermissionUtil.contains(permissionChecker, ActionKeys.ADD_COMMUNITY) && (enableOpenSites || enablePublicRestrictedSites || enablePrivateRestrictedSites || enablePrivateSites) %>">
+
+					<%
+					boolean addSiteEnabled = PortalPermissionUtil.contains(permissionChecker, ActionKeys.ADD_COMMUNITY) && (enableOpenSites || enablePublicRestrictedSites || enablePrivateRestrictedSites || enablePrivateSites);
+					%>
+
+					<c:if test="<%= addSiteEnabled %>">
 						{
+							cssClass: 'site-controls-double',
 							icon: 'icon-plus',
 							label: '<liferay-ui:message key="add-site" unicode="<%= true %>" />',
 							on: {
@@ -124,6 +130,7 @@ pageContext.setAttribute("portletURL", portletURL);
 						},
 					</c:if>
 					{
+						cssClass: '<%= addSiteEnabled ? "site-controls-double" : "site-controls-single" %>',
 						icon: 'icon-reorder',
 						label: '<liferay-ui:message key="sites-directory" unicode="<%= true %>" />',
 						on: {
