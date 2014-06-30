@@ -35,7 +35,7 @@ boolean helpful = BeanParamUtil.getBoolean(kbComment, request, "helpful", true);
 %>
 
 <c:if test="<%= ((enableKBArticleKBComments && themeDisplay.isSignedIn()) || showKBArticleKBComments) && (kbArticle.isApproved() || !kbArticle.isFirstVersion()) %>">
-	<div class="kb-article-comments" id="<portlet:namespace />userFeedback">
+	<div class="kb-article-comments">
 		<liferay-portlet:actionURL name="updateKBComment" var="updateKBCommentURL" />
 
 		<aui:form action="<%= updateKBCommentURL %>" id="fm" method="post" name="fm">
