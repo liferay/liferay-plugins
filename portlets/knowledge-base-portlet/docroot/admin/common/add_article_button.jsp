@@ -18,10 +18,13 @@
 
 <%
 List<KBTemplate> kbTemplates = KBTemplateServiceUtil.getGroupKBTemplates(scopeGroupId, QueryUtil.ALL_POS, QueryUtil.ALL_POS, OrderByComparatorFactoryUtil.create("KBTemplate", "title", false));
+
+long parentResourcePrimKey = ParamUtil.getLong(request, "parentResourcePrimKey", KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY);
 %>
 
 <liferay-portlet:renderURL var="addBasicKBArticleURL">
 	<portlet:param name="mvcPath" value='<%= templatePath + "edit_article.jsp" %>' />
+	<portlet:param name="parentResourcePrimKey" value="<%= String.valueOf(parentResourcePrimKey) %>" />
 	<portlet:param name="redirect" value="<%= redirect %>" />
 </liferay-portlet:renderURL>
 
@@ -42,6 +45,7 @@ List<KBTemplate> kbTemplates = KBTemplateServiceUtil.getGroupKBTemplates(scopeGr
 
 				<liferay-portlet:renderURL var="addKBArticleURL">
 					<portlet:param name="mvcPath" value='<%= templatePath + "edit_article.jsp" %>' />
+					<portlet:param name="parentResourcePrimKey" value="<%= String.valueOf(parentResourcePrimKey) %>" />
 					<portlet:param name="redirect" value="<%= redirect %>" />
 					<portlet:param name="kbTemplateId" value="<%= String.valueOf(kbTemplate.getKbTemplateId()) %>" />
 				</liferay-portlet:renderURL>
