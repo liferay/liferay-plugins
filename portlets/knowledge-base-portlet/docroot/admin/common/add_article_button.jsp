@@ -24,8 +24,8 @@ long parentResourcePrimKey = ParamUtil.getLong(request, "parentResourcePrimKey",
 
 <liferay-portlet:renderURL var="addBasicKBArticleURL">
 	<portlet:param name="mvcPath" value='<%= templatePath + "edit_article.jsp" %>' />
-	<portlet:param name="parentResourcePrimKey" value="<%= String.valueOf(parentResourcePrimKey) %>" />
 	<portlet:param name="redirect" value="<%= redirect %>" />
+	<portlet:param name="parentResourcePrimKey" value="<%= String.valueOf(parentResourcePrimKey) %>" />
 </liferay-portlet:renderURL>
 
 <c:choose>
@@ -45,8 +45,8 @@ long parentResourcePrimKey = ParamUtil.getLong(request, "parentResourcePrimKey",
 
 				<liferay-portlet:renderURL var="addKBArticleURL">
 					<portlet:param name="mvcPath" value='<%= templatePath + "edit_article.jsp" %>' />
-					<portlet:param name="parentResourcePrimKey" value="<%= String.valueOf(parentResourcePrimKey) %>" />
 					<portlet:param name="redirect" value="<%= redirect %>" />
+					<portlet:param name="parentResourcePrimKey" value="<%= String.valueOf(parentResourcePrimKey) %>" />
 					<portlet:param name="kbTemplateId" value="<%= String.valueOf(kbTemplate.getKbTemplateId()) %>" />
 				</liferay-portlet:renderURL>
 
