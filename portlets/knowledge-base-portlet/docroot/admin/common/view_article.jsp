@@ -48,7 +48,7 @@ if (enableKBArticleViewCountIncrement && !kbArticle.isDraft()) {
 
 	<liferay-util:include page="/admin/article_icons.jsp" servletContext="<%= application %>" />
 
-	<div class="kb-article-body-<%= kbArticle.getResourcePrimKey() %>">
+	<div class="kb-article-body" id="<portlet:namespace /><%= kbArticle.getResourcePrimKey() %>">
 		<%= kbArticle.getContent() %>
 	</div>
 

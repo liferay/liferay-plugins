@@ -32,13 +32,8 @@ KBArticle kbArticle = (KBArticle)request.getAttribute(WebKeys.KNOWLEDGE_BASE_KB_
 </liferay-portlet:renderURL>
 
 <c:if test="<%= enableSocialBookmarks %>">
-
-	<%
-	String contentId = "kb-article-body" + kbArticle.getResourcePrimKey();
-	%>
-
 	<liferay-ui:social-bookmarks
-		contentId="<%= contentId %>"
+		contentId="<%= String.valueOf(kbArticle.getResourcePrimKey()) %>"
 		displayStyle="<%= PortletPropsValues.KNOWLEDGE_BASE_SOCIAL_BOOKMARKS_DISPLAY_STYLE %>"
 		target="_blank"
 		title="<%= kbArticle.getTitle() %>"
