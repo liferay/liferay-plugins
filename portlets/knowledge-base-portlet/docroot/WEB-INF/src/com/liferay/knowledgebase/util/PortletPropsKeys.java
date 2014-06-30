@@ -54,7 +54,22 @@ public class PortletPropsKeys {
 	public static final String KNOWLEDGE_BASE_SOCIAL_BOOKMARKS_DISPLAY_STYLE =
 		"knowledge.base.social.bookmarks.display.style";
 
+	public static final String MARKDOWN_IMPORTER_ARTICLE_EXTENSIONS =
+		"markdown.importer.article.extensions";
+
+	public static final String MARKDOWN_IMPORTER_ARTICLE_HOME =
+		"markdown.importer.article.home";
+
+	public static final String MARKDOWN_IMPORTER_ARTICLE_INTRO =
+		"markdown.importer.article.intro";
+
+	public static final String MARKDOWN_IMPORTER_ARTICLE_INTRODUCTION =
+		"markdown.importer.article.introduction";
+
 	public static final String MARKDOWN_IMPORTER_IMAGE_FILE_EXTENSIONS =
 		"markdown.importer.image.file.extensions";
+
+	public static final String MARKDOWN_IMPORTER_IMAGE_FOLDER =
+		"markdown.importer.image.folder";
 
 }

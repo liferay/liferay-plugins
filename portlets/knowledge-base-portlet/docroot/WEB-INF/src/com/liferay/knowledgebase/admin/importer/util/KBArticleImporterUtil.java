@@ -122,7 +122,9 @@ public class KBArticleImporterUtil {
 		}
 
 		for (String zipEntry : zipReader.getEntries()) {
-			if (!zipEntry.contains(_IMAGES)) {
+			if (!zipEntry.contains(
+					PortletPropsValues.MARKDOWN_IMPORTER_IMAGE_FOLDER)) {
+
 				continue;
 			}
 
@@ -183,8 +185,6 @@ public class KBArticleImporterUtil {
 			throw new KBArticleImportException(fileName);
 		}
 	}
-
-	private static final String _IMAGES = "images";
 
 	private static Log _log = LogFactoryUtil.getLog(
 		KBArticleImporterUtil.class);
