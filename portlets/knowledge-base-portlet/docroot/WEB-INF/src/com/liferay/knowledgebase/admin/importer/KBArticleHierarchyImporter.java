@@ -258,34 +258,25 @@ public class KBArticleHierarchyImporter {
 		// Create map of the ZIP files folders to Markdown files, extracting the
 		// root home page Markdown file along the way.
 
-		String rootHomeMarkdown = null;
+		String rootHomeMarkdown = zipReader.getEntryAsString(
+			PortletPropsValues.MARKDOWN_IMPORTER_ARTICLE_HOME);
 
 		for (String zipEntry : zipReader.getEntries()) {
 			String extension = FileUtil.getExtension(zipEntry);
 
 			if (!ArrayUtil.contains(
 					PortletPropsValues.MARKDOWN_IMPORTER_ARTICLE_EXTENSIONS,
-					StringPool.PERIOD.concat(extension))) {
+					StringPool.PERIOD.concat(extension)) ||
+				zipEntry.equals(
+					PortletPropsValues.MARKDOWN_IMPORTER_ARTICLE_HOME)) {
 
 				continue;
 			}
 
-			int lastSlash = zipEntry.lastIndexOf(StringPool.SLASH);
+			String folderName = zipEntry.substring(
+				0, zipEntry.lastIndexOf(StringPool.SLASH));
 
-			if (lastSlash == -1) {
-				if (zipEntry.equals(
-						PortletPropsValues.MARKDOWN_IMPORTER_ARTICLE_HOME)) {
-
-					rootHomeMarkdown = zipReader.getEntryAsString(
-						PortletPropsValues.MARKDOWN_IMPORTER_ARTICLE_HOME);
-				}
-
-				continue;
-			}
-
-			String folder = zipEntry.substring(0, lastSlash);
-
-			List<String> fileEntries = _folderFileEntryMap.get(folder);
+			List<String> fileEntries = _folderFileEntryMap.get(folderName);
 
 			if (fileEntries == null) {
 				fileEntries = new ArrayList<String>();
@@ -293,7 +284,7 @@ public class KBArticleHierarchyImporter {
 
 			fileEntries.add(zipEntry);
 
-			_folderFileEntryMap.put(folder, fileEntries);
+			_folderFileEntryMap.put(folderName, fileEntries);
 		}
 
 		if (Validator.isNull(rootHomeMarkdown)) {
