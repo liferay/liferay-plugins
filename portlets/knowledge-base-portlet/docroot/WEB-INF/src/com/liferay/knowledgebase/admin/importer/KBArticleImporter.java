@@ -194,9 +194,6 @@ public class KBArticleImporter {
 
 			for (String fileEntryName : fileEntryNames) {
 				if (fileEntryName.endsWith(
-						PortletPropsValues.
-							MARKDOWN_IMPORTER_ARTICLE_INTRODUCTION) ||
-					fileEntryName.endsWith(
 						PortletPropsValues.MARKDOWN_IMPORTER_ARTICLE_INTRO)) {
 
 					chapterIntroFileEntryName = fileEntryName;
