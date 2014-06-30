@@ -156,7 +156,7 @@ public class FindKBArticleAction extends BaseStrutsAction {
 
 		String portletId = getPortletId(plid);
 
-		PortletURL portletURL = getKBArticleURL(plid, portletId, request);
+		PortletURL portletURL = getKBArticleURL(plid, portletId, null, request);
 
 		if (status != WorkflowConstants.STATUS_APPROVED) {
 			portletURL.setParameter("status", String.valueOf(status));
@@ -225,7 +225,8 @@ public class FindKBArticleAction extends BaseStrutsAction {
 
 				if (rootPortletId.equals(PortletKeys.KNOWLEDGE_BASE_DISPLAY)) {
 					return getKBArticleURL(
-						layout.getPlid(), portlet.getPortletId(), request);
+						layout.getPlid(), portlet.getPortletId(), kbArticle,
+						request);
 				}
 
 				if (rootPortletId.equals(PortletKeys.KNOWLEDGE_BASE_SECTION)) {
@@ -257,7 +258,8 @@ public class FindKBArticleAction extends BaseStrutsAction {
 						}
 
 						return getKBArticleURL(
-							layout.getPlid(), portlet.getPortletId(), request);
+							layout.getPlid(), portlet.getPortletId(), kbArticle,
+							request);
 					}
 				}
 
@@ -288,7 +290,8 @@ public class FindKBArticleAction extends BaseStrutsAction {
 
 					if (rootResourcePrimKey == selRootResourcePrimKey) {
 						return getKBArticleURL(
-							layout.getPlid(), portlet.getPortletId(), request);
+							layout.getPlid(), portlet.getPortletId(), kbArticle,
+							request);
 					}
 				}
 			}
@@ -298,7 +301,8 @@ public class FindKBArticleAction extends BaseStrutsAction {
 	}
 
 	protected PortletURL getKBArticleURL(
-			long plid, String portletId, HttpServletRequest request)
+			long plid, String portletId, KBArticle kbArticle,
+			HttpServletRequest request)
 		throws Exception {
 
 		long resourcePrimKey = ParamUtil.getLong(request, "resourcePrimKey");
@@ -310,9 +314,6 @@ public class FindKBArticleAction extends BaseStrutsAction {
 		if (rootPortletId.equals(PortletKeys.KNOWLEDGE_BASE_ARTICLE)) {
 			mvcPath = "/article/view_article.jsp";
 		}
-		else if (rootPortletId.equals(PortletKeys.KNOWLEDGE_BASE_DISPLAY)) {
-			mvcPath = "/display/view_article.jsp";
-		}
 		else if (rootPortletId.equals(PortletKeys.KNOWLEDGE_BASE_SECTION)) {
 			mvcPath = "/section/view_article.jsp";
 		}
@@ -320,9 +321,19 @@ public class FindKBArticleAction extends BaseStrutsAction {
 		PortletURL portletURL = PortletURLFactoryUtil.create(
 			request, portletId, plid, PortletRequest.RENDER_PHASE);
 
-		portletURL.setParameter("mvcPath", mvcPath);
-		portletURL.setParameter(
-			"resourcePrimKey", String.valueOf(resourcePrimKey));
+		if (mvcPath != null) {
+			portletURL.setParameter("mvcPath", mvcPath);
+		}
+
+		if ((kbArticle == null) || (mvcPath != null) ||
+			Validator.isNull(kbArticle.getUrlTitle())) {
+
+			portletURL.setParameter(
+				"resourcePrimKey", String.valueOf(resourcePrimKey));
+		}
+		else {
+			portletURL.setParameter("urlTitle", kbArticle.getUrlTitle());
+		}
 
 		portletURL.setPortletMode(PortletMode.VIEW);
 
