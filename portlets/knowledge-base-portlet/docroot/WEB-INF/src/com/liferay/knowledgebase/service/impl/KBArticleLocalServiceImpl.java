@@ -18,7 +18,7 @@ import com.liferay.knowledgebase.KBArticleContentException;
 import com.liferay.knowledgebase.KBArticlePriorityException;
 import com.liferay.knowledgebase.KBArticleTitleException;
 import com.liferay.knowledgebase.NoSuchArticleException;
-import com.liferay.knowledgebase.admin.importer.KBArticleHierarchyImporter;
+import com.liferay.knowledgebase.admin.importer.KBArticleImporter;
 import com.liferay.knowledgebase.admin.social.AdminActivityKeys;
 import com.liferay.knowledgebase.admin.util.AdminSubscriptionSender;
 import com.liferay.knowledgebase.admin.util.AdminUtil;
@@ -265,10 +265,9 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			ServiceContext serviceContext)
 		throws PortalException, IOException {
 
-		KBArticleHierarchyImporter kbArticleHierarchyImporter =
-			new KBArticleHierarchyImporter();
+		KBArticleImporter kbArticleImporter = new KBArticleImporter();
 
-		kbArticleHierarchyImporter.processZipFile(
+		kbArticleImporter.processZipFile(
 			userId, groupId, fileName, inputStream,
 			new HashMap<String, FileEntry>(), serviceContext);
 	}

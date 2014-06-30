@@ -16,22 +16,18 @@ package com.liferay.knowledgebase.admin.importer;
 
 import com.liferay.knowledgebase.KBArticleImportException;
 import com.liferay.knowledgebase.admin.importer.util.KBArticleImporterUtil;
+import com.liferay.knowledgebase.admin.importer.util.KBArticleMarkdownConverter;
 import com.liferay.knowledgebase.model.KBArticle;
 import com.liferay.knowledgebase.model.KBArticleConstants;
 import com.liferay.knowledgebase.service.KBArticleLocalServiceUtil;
 import com.liferay.knowledgebase.util.PortletPropsValues;
-import com.liferay.markdown.converter.MarkdownConverter;
-import com.liferay.markdown.converter.factory.MarkdownConverterFactoryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.FileUtil;
-import com.liferay.portal.kernel.util.HtmlUtil;
-import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
-import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.zip.ZipReader;
 import com.liferay.portal.kernel.zip.ZipReaderFactoryUtil;
@@ -46,18 +42,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
-import java.util.TreeSet;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  * @author James Hinkey
  */
-public class KBArticleHierarchyImporter {
-
-	public KBArticleHierarchyImporter() {
-		super();
-	}
+public class KBArticleImporter {
 
 	/**
 	 * Processes the ZIP file's content and pictures, importing them as kb
@@ -113,7 +102,7 @@ public class KBArticleHierarchyImporter {
 		return article;
 	}
 
-	protected KBArticle createKBArticleFromMarkdown(
+	protected KBArticle addKBArticleMarkdown(
 			long userId, long groupId, long parentResourcePrimaryKey,
 			String markdown, String fileEntry,
 			Map<String, FileEntry> fileEntriesMap,
@@ -125,51 +114,15 @@ public class KBArticleHierarchyImporter {
 				"Null or empty Markdown in file entry: " + fileEntry);
 		}
 
-		String html = null;
+		KBArticleMarkdownConverter kbArticleMarkdownConverter =
+			new KBArticleMarkdownConverter(markdown, fileEntriesMap);
 
 		try {
-			html = _markdownConverter.convert(markdown);
-		}
-		catch (IOException ioe) {
-			StringBuilder sb = new StringBuilder(4);
-
-			sb.append("Unable to convert Markdown to HTML for file entry: ");
-			sb.append(fileEntry);
-			sb.append(". ");
-			sb.append(ioe.getLocalizedMessage());
-
-			throw new KBArticleImportException(sb.toString(), ioe);
-		}
-
-		String heading = getTitleLineFromHtml(html);
-
-		if (Validator.isNull(heading)) {
-			StringBuilder sb = new StringBuilder(5);
-
-			sb.append(
-				"Unable to extract heading from HTML of converted file entry:");
-			sb.append(StringPool.SPACE);
-			sb.append(fileEntry);
-			sb.append(", HTML: ");
-			sb.append(html);
-
-			throw new KBArticleImportException(sb.toString());
-		}
-
-		String urlTitle = getUrlTitleFromHeading(heading);
-
-		String title = stripIds(heading);
-
-		html = stripIds(html);
-
-		html = referToImageFileInDocLibrary(html, fileEntriesMap);
-
-		KBArticle article;
-
-		try {
-			article = applyContentToKBArticle(
-				userId, groupId, parentResourcePrimaryKey, title, urlTitle,
-				html, serviceContext);
+			return applyContentToKBArticle(
+				userId, groupId, parentResourcePrimaryKey,
+				kbArticleMarkdownConverter.getTitle(),
+				kbArticleMarkdownConverter.getUrlTitle(),
+				kbArticleMarkdownConverter.getHtml(), serviceContext);
 		}
 		catch (Exception e) {
 			StringBuilder sb = new StringBuilder(4);
@@ -180,72 +133,6 @@ public class KBArticleHierarchyImporter {
 			sb.append(e.getLocalizedMessage());
 
 			throw new KBArticleImportException(sb.toString(), e);
-		}
-
-		return article;
-	}
-
-	protected String getTitleLineFromHtml(String html) {
-		int beginHeaderTag = html.indexOf("<h1>");
-		int endHeaderTag = html.indexOf("</h1>");
-
-		if ((beginHeaderTag == -1) ||
-			(endHeaderTag == -1) ||
-			(beginHeaderTag > endHeaderTag)) {
-
-			return null;
-		}
-
-		String title = html.substring(beginHeaderTag + 4, endHeaderTag);
-
-		return title;
-	}
-
-	protected String getUrlTitleFromHeading(String title) {
-		String urlTitle = null;
-
-		int idIndex = title.indexOf("[](id=");
-		int closeParen = title.indexOf(")", idIndex);
-
-		if (closeParen > (idIndex + 1)) {
-			int equalsSign = title.indexOf("=", idIndex);
-
-			urlTitle = title.substring(equalsSign + 1, closeParen);
-
-			urlTitle = StringUtil.replace(
-				urlTitle, StringPool.SPACE, StringPool.DASH);
-
-			urlTitle = StringUtil.toLowerCase(urlTitle);
-		}
-
-		return urlTitle;
-	}
-
-	protected boolean isHeader(String text) {
-
-		// Extract the first line if the text consists of multiple lines
-
-		String firstLine = StringUtil.extractFirst(text, StringPool.NEW_LINE);
-
-		String currentLine = null;
-
-		if (firstLine != null) {
-			currentLine = firstLine;
-		}
-		else {
-
-			// Use entire text if it does not consist of multiple lines
-
-			currentLine = text;
-		}
-
-		Matcher matcher = _headerTagPattern.matcher(currentLine);
-
-		if (matcher.matches()) {
-			return true;
-		}
-		else {
-			return false;
 		}
 	}
 
@@ -258,7 +145,7 @@ public class KBArticleHierarchyImporter {
 		// Create map of the ZIP files folders to Markdown files, extracting the
 		// root home page Markdown file along the way.
 
-		String rootHomeMarkdown = zipReader.getEntryAsString(
+		String homeMarkdown = zipReader.getEntryAsString(
 			PortletPropsValues.MARKDOWN_IMPORTER_ARTICLE_HOME);
 
 		for (String zipEntry : zipReader.getEntries()) {
@@ -287,16 +174,16 @@ public class KBArticleHierarchyImporter {
 			_folderFileEntryMap.put(folderName, fileEntries);
 		}
 
-		if (Validator.isNull(rootHomeMarkdown)) {
+		if (Validator.isNull(homeMarkdown)) {
 			throw new KBArticleImportException(
 				"Missing file entry: " +
 					PortletPropsValues.MARKDOWN_IMPORTER_ARTICLE_HOME);
 		}
 
-		KBArticle rootHomeKBArticle = createKBArticleFromMarkdown(
+		KBArticle homeKBArticle = addKBArticleMarkdown(
 			userId, groupId,
 			KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY,
-			rootHomeMarkdown, PortletPropsValues.MARKDOWN_IMPORTER_ARTICLE_HOME,
+			homeMarkdown, PortletPropsValues.MARKDOWN_IMPORTER_ARTICLE_HOME,
 			fileEntriesMap, serviceContext);
 
 		// Create kb articles for each chapter home Markdown file and each
@@ -336,8 +223,8 @@ public class KBArticleHierarchyImporter {
 			String chapterIntroMarkdown = zipReader.getEntryAsString(
 				chapterHomeFileEntry);
 
-			KBArticle chapterIntroKBArticle = createKBArticleFromMarkdown(
-				userId, groupId, rootHomeKBArticle.getResourcePrimKey(),
+			KBArticle chapterIntroKBArticle = addKBArticleMarkdown(
+				userId, groupId, homeKBArticle.getResourcePrimKey(),
 				chapterIntroMarkdown, chapterHomeFileEntry, fileEntriesMap,
 				serviceContext);
 
@@ -346,7 +233,7 @@ public class KBArticleHierarchyImporter {
 					tutorialFileEntry);
 
 				if (Validator.isNotNull(tutorialMarkdown)) {
-					createKBArticleFromMarkdown(
+					addKBArticleMarkdown(
 						userId, groupId,
 						chapterIntroKBArticle.getResourcePrimKey(),
 						tutorialMarkdown, tutorialFileEntry, fileEntriesMap,
@@ -363,153 +250,10 @@ public class KBArticleHierarchyImporter {
 		}
 	}
 
-	protected String referToImageFileInDocLibrary(
-		String html, Map<String, FileEntry> fileEntriesMap) {
-
-		Set<Integer> indexes = new TreeSet<Integer>();
-
-		int index = 0;
-		while ((index = html.indexOf("<img", index)) > -1) {
-			indexes.add(index);
-
-			index += 4;
-		}
-
-		StringBundler sb = new StringBundler();
-
-		if (indexes.isEmpty()) {
-			sb.append(html);
-
-			return sb.toString();
-		}
-
-		int previousIndex = 0;
-
-		Iterator<Integer> iterator = indexes.iterator();
-
-		while (iterator.hasNext()) {
-			int currentIndex = iterator.next();
-
-			if (currentIndex < 0) {
-				break;
-			}
-
-			if (currentIndex > previousIndex) {
-
-				// Append text from previous position up to image tag
-
-				String text = html.substring(previousIndex, currentIndex);
-
-				sb.append(text);
-			}
-
-			int pos = html.indexOf("/>", currentIndex);
-
-			if (pos < 0 ) {
-				if (_log.isDebugEnabled()) {
-					_log.debug(
-						"Expected close tag for image " +
-							html.substring(currentIndex));
-				}
-
-				sb.append(html.substring(currentIndex));
-
-				previousIndex = currentIndex;
-
-				break;
-			}
-
-			String text = html.substring(currentIndex, pos);
-
-			FileEntry fileEntry = KBArticleImporterUtil.extractImageFileEntry(
-				text, fileEntriesMap);
-
-			if (fileEntry == null) {
-				if (_log.isWarnEnabled()) {
-					_log.warn("Unable to find image source " + text);
-				}
-
-				sb.append("<img alt=\"missing image\" src=\"\" ");
-			}
-			else {
-				sb.append("<img alt=\"");
-				sb.append(HtmlUtil.escapeAttribute(fileEntry.getTitle()));
-				sb.append("\" src=\"/c/document_library/get_file?groupId=");
-				sb.append(fileEntry.getGroupId());
-				sb.append("&uuid=");
-				sb.append(fileEntry.getUuid());
-				sb.append("\" ");
-			}
-
-			previousIndex = pos;
-		}
-
-		if (previousIndex < html.length()) {
-			String text = html.substring(previousIndex);
-
-			sb.append(text);
-		}
-
-		return sb.toString();
-	}
-
-	protected String stripIds(String content) {
-		int index = content.indexOf("[](id=");
-
-		if (index == -1) {
-			return content;
-		}
-
-		StringBundler sb = new StringBundler();
-
-		do {
-			int x = content.indexOf("=", index);
-			int y = content.indexOf(")", x);
-
-			if (y != -1) {
-				sb.append(StringUtil.trimTrailing(content.substring(0, index)));
-
-				content = content.substring(y + 1);
-			}
-			else {
-				if (_log.isWarnEnabled()) {
-					String msg = content.substring(index);
-
-					// Get the invalid id text from the content
-
-					int spaceIndex = content.indexOf(StringPool.SPACE);
-
-					if (spaceIndex != -1) {
-						msg = content.substring(index, spaceIndex);
-					}
-
-					_log.warn(
-						"Missing ')' for web content containing header id " +
-						msg);
-				}
-
-				// Since no close parenthesis remains in the content, stop
-				// stripping out IDs and simply include all of the remaining
-				// content.
-
-				break;
-			}
-		}
-		while ((index = content.indexOf("[](id=")) != -1);
-
-		sb.append(content);
-
-		return sb.toString();
-	}
-
 	private static Log _log = LogFactoryUtil.getLog(
-		KBArticleHierarchyImporter.class);
+		KBArticleImporter.class);
 
 	private Map<String, List<String>> _folderFileEntryMap =
 		new TreeMap<String, List<String>>();
-	private Pattern _headerTagPattern = Pattern.compile(
-		"^(<h\\d>.*)(.*</h\\d>).*");
-	private MarkdownConverter _markdownConverter =
-		MarkdownConverterFactoryUtil.create();
 
 }
