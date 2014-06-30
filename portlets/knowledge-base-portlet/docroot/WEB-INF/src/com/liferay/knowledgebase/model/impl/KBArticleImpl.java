@@ -18,6 +18,7 @@ import com.liferay.knowledgebase.article.util.KBArticleAttachmentsUtil;
 import com.liferay.knowledgebase.model.KBArticle;
 import com.liferay.knowledgebase.model.KBArticleConstants;
 import com.liferay.knowledgebase.service.KBArticleLocalServiceUtil;
+import com.liferay.knowledgebase.service.KBArticleServiceUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
@@ -114,6 +115,13 @@ public class KBArticleImpl extends KBArticleBaseImpl {
 	}
 
 	@Override
+	public KBArticle getNextKBArticle() throws PortalException {
+		return KBArticleServiceUtil.fetchSuccessorKBArticle(
+			getGroupId(), getParentResourcePrimKey(), getResourcePrimKey(),
+			getStatus());
+	}
+
+	@Override
 	public KBArticle getParentKBArticle()
 		throws PortalException, SystemException {
 
@@ -125,6 +133,13 @@ public class KBArticleImpl extends KBArticleBaseImpl {
 
 		return KBArticleLocalServiceUtil.getLatestKBArticle(
 			parentResourcePrimKey, WorkflowConstants.STATUS_APPROVED);
+	}
+
+	@Override
+	public KBArticle getPreviousKBArticle() throws PortalException {
+		return KBArticleServiceUtil.fetchPredecessorKBArticle(
+			getGroupId(), getParentResourcePrimKey(), getResourcePrimKey(),
+			getStatus());
 	}
 
 	@Override
