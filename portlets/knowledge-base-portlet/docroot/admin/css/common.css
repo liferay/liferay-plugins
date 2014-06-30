@@ -112,6 +112,26 @@
 		}
 	}
 
+	.kb-article-siblings {
+		padding: 1em 0;
+		overflow: auto;
+		width: 100%;
+
+		.kb-article-prev {
+			float: left;
+			text-align: left;
+		}
+
+		.kb-article-next {
+			float: right;
+			text-align: right;
+		}
+
+		.kb-article-sibling-title {
+			display: block;
+		}
+	}
+
 	.kb-attachments {
 		margin: 5px 0 0;
 	}
