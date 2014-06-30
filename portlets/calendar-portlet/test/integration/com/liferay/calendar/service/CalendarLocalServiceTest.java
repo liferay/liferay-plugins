@@ -14,11 +14,7 @@
 
 package com.liferay.calendar.service;
 
-import com.liferay.ant.arquilian.WebArchiveBuilder;
-
-import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
-import org.jboss.shrinkwrap.api.spec.WebArchive;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -29,11 +25,6 @@ import org.junit.runner.RunWith;
  */
 @RunWith(Arquillian.class)
 public class CalendarLocalServiceTest {
-
-	@Deployment
-	public static WebArchive createDeployment() {
-		return WebArchiveBuilder.build();
-	}
 
 	@Test
 	public void testGetCalendarsCount() {
