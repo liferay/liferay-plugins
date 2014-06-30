@@ -18,6 +18,7 @@
 
 <portlet:renderURL var="importURL" windowState="<%= WindowState.MAXIMIZED.toString() %>">
 	<portlet:param name="mvcPath" value="/admin/import.jsp" />
+	<portlet:param name="redirect" value="<%= redirect %>" />
 </portlet:renderURL>
 
 <aui:button href="<%= importURL %>" value="import" />
