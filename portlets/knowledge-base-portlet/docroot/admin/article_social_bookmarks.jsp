@@ -39,7 +39,7 @@ KBArticle kbArticle = (KBArticle)request.getAttribute(WebKeys.KNOWLEDGE_BASE_KB_
 
 	<liferay-ui:social-bookmarks
 		contentId="<%= contentId %>"
-		displayStyle="<%= PropsUtil.get(PropsKeys.BLOGS_SOCIAL_BOOKMARKS_DISPLAY_STYLE) %>"
+		displayStyle="<%= PortletPropsValues.KNOWLEDGE_BASE_SOCIAL_BOOKMARKS_DISPLAY_STYLE %>"
 		target="_blank"
 		title="<%= kbArticle.getTitle() %>"
 		url="<%= PortalUtil.getCanonicalURL(viewKBArticleURL.toString(), themeDisplay, layout) %>"

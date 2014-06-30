@@ -63,4 +63,8 @@ public class PortletPropsValues {
 	public static final String[] ADMIN_KB_ARTICLE_SECTIONS =
 		PortletProps.getArray(PortletPropsKeys.ADMIN_KB_ARTICLE_SECTIONS);
 
+	public static final String KNOWLEDGE_BASE_SOCIAL_BOOKMARKS_DISPLAY_STYLE =
+		PortletProps.get(
+			PortletPropsKeys.KNOWLEDGE_BASE_SOCIAL_BOOKMARKS_DISPLAY_STYLE);
+
 }
