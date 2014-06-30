@@ -21,7 +21,6 @@ import com.liferay.knowledgebase.service.KBArticleLocalServiceUtil;
 import com.liferay.knowledgebase.service.permission.KBArticlePermission;
 import com.liferay.knowledgebase.util.ActionKeys;
 import com.liferay.knowledgebase.util.PortletKeys;
-import com.liferay.portal.NoSuchLayoutException;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.portlet.LiferayWindowState;
 import com.liferay.portal.kernel.struts.BaseStrutsAction;
@@ -76,13 +75,17 @@ public class FindKBArticleAction extends BaseStrutsAction {
 		ThemeDisplay themeDisplay = (ThemeDisplay)request.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		long plid = ParamUtil.getLong(request, "plid", themeDisplay.getPlid());
+		long plid = ParamUtil.getLong(request, "plid");
 		long resourcePrimKey = ParamUtil.getLong(request, "resourcePrimKey");
 		int status = ParamUtil.getInteger(
 			request, "status", WorkflowConstants.STATUS_APPROVED);
 		boolean maximized = ParamUtil.getBoolean(request, "maximized");
 
 		KBArticle kbArticle = getKBArticle(resourcePrimKey, status);
+
+		if (!isValidPlid(plid)) {
+			plid = themeDisplay.getPlid();
+		}
 
 		PortletURL portletURL = null;
 
@@ -325,9 +328,7 @@ public class FindKBArticleAction extends BaseStrutsAction {
 			portletURL.setParameter("mvcPath", mvcPath);
 		}
 
-		if ((kbArticle == null) || (mvcPath != null) ||
-			Validator.isNull(kbArticle.getUrlTitle())) {
-
+		if ((kbArticle == null) || Validator.isNull(kbArticle.getUrlTitle())) {
 			portletURL.setParameter(
 				"resourcePrimKey", String.valueOf(resourcePrimKey));
 		}
@@ -360,10 +361,9 @@ public class FindKBArticleAction extends BaseStrutsAction {
 	}
 
 	protected boolean isValidPlid(long plid) throws PortalException {
-		try {
-			LayoutLocalServiceUtil.getLayout(plid);
-		}
-		catch (NoSuchLayoutException nsle) {
+		Layout layout = LayoutLocalServiceUtil.fetchLayout(plid);
+
+		if (layout == null) {
 			return false;
 		}
 
