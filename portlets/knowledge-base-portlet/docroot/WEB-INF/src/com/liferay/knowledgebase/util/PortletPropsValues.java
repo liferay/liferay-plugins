@@ -67,8 +67,29 @@ public class PortletPropsValues {
 		PortletProps.get(
 			PortletPropsKeys.KNOWLEDGE_BASE_SOCIAL_BOOKMARKS_DISPLAY_STYLE);
 
+	public static final String[] MARKDOWN_IMPORTER_ARTICLE_EXTENSIONS =
+		PortletProps.getArray(
+			PortletPropsKeys.MARKDOWN_IMPORTER_ARTICLE_EXTENSIONS);
+
+	public static final String MARKDOWN_IMPORTER_ARTICLE_HOME =
+		GetterUtil.getString(
+			PortletProps.get(PortletPropsKeys.MARKDOWN_IMPORTER_ARTICLE_HOME));
+
+	public static final String MARKDOWN_IMPORTER_ARTICLE_INTRO =
+		GetterUtil.getString(
+			PortletProps.get(PortletPropsKeys.MARKDOWN_IMPORTER_ARTICLE_INTRO));
+
+	public static final String MARKDOWN_IMPORTER_ARTICLE_INTRODUCTION =
+		GetterUtil.getString(
+			PortletProps.get(
+				PortletPropsKeys.MARKDOWN_IMPORTER_ARTICLE_INTRODUCTION));
+
 	public static final String[] MARKDOWN_IMPORTER_IMAGE_FILE_EXTENSIONS =
 		PortletProps.getArray(
 			PortletPropsKeys.MARKDOWN_IMPORTER_IMAGE_FILE_EXTENSIONS);
+
+	public static final String MARKDOWN_IMPORTER_IMAGE_FOLDER =
+		GetterUtil.getString(
+			PortletProps.get(PortletPropsKeys.MARKDOWN_IMPORTER_IMAGE_FOLDER));
 
 }

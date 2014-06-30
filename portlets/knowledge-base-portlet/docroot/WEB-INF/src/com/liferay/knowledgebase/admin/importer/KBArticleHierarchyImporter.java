@@ -19,12 +19,15 @@ import com.liferay.knowledgebase.admin.importer.util.KBArticleImporterUtil;
 import com.liferay.knowledgebase.model.KBArticle;
 import com.liferay.knowledgebase.model.KBArticleConstants;
 import com.liferay.knowledgebase.service.KBArticleLocalServiceUtil;
+import com.liferay.knowledgebase.util.PortletPropsValues;
 import com.liferay.markdown.converter.MarkdownConverter;
 import com.liferay.markdown.converter.factory.MarkdownConverterFactoryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.repository.model.FileEntry;
+import com.liferay.portal.kernel.util.ArrayUtil;
+import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
@@ -258,41 +261,52 @@ public class KBArticleHierarchyImporter {
 		String rootHomeMarkdown = null;
 
 		for (String zipEntry : zipReader.getEntries()) {
-			if (zipEntry.endsWith(".markdown") || zipEntry.endsWith(".md")) {
-				int lastSlash = zipEntry.lastIndexOf(StringPool.SLASH);
+			String extension = FileUtil.getExtension(zipEntry);
 
-				if (lastSlash == -1) {
-					if (zipEntry.equals(_HOME_MARKDOWN)) {
-						rootHomeMarkdown = zipReader.getEntryAsString(
-							_HOME_MARKDOWN);
-					}
+			if (!ArrayUtil.contains(
+					PortletPropsValues.MARKDOWN_IMPORTER_ARTICLE_EXTENSIONS,
+					StringPool.PERIOD.concat(extension))) {
 
-					continue;
-				}
-
-				String folder = zipEntry.substring(0, lastSlash);
-
-				List<String> fileEntries = _folderFileEntryMap.get(folder);
-
-				if (fileEntries == null) {
-					fileEntries = new ArrayList<String>();
-				}
-
-				fileEntries.add(zipEntry);
-
-				_folderFileEntryMap.put(folder, fileEntries);
+				continue;
 			}
+
+			int lastSlash = zipEntry.lastIndexOf(StringPool.SLASH);
+
+			if (lastSlash == -1) {
+				if (zipEntry.equals(
+						PortletPropsValues.MARKDOWN_IMPORTER_ARTICLE_HOME)) {
+
+					rootHomeMarkdown = zipReader.getEntryAsString(
+						PortletPropsValues.MARKDOWN_IMPORTER_ARTICLE_HOME);
+				}
+
+				continue;
+			}
+
+			String folder = zipEntry.substring(0, lastSlash);
+
+			List<String> fileEntries = _folderFileEntryMap.get(folder);
+
+			if (fileEntries == null) {
+				fileEntries = new ArrayList<String>();
+			}
+
+			fileEntries.add(zipEntry);
+
+			_folderFileEntryMap.put(folder, fileEntries);
 		}
 
 		if (Validator.isNull(rootHomeMarkdown)) {
 			throw new KBArticleImportException(
-				"Missing file entry: " + _HOME_MARKDOWN);
+				"Missing file entry: " +
+					PortletPropsValues.MARKDOWN_IMPORTER_ARTICLE_HOME);
 		}
 
 		KBArticle rootHomeKBArticle = createKBArticleFromMarkdown(
 			userId, groupId,
 			KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY,
-			rootHomeMarkdown, _HOME_MARKDOWN, fileEntriesMap, serviceContext);
+			rootHomeMarkdown, PortletPropsValues.MARKDOWN_IMPORTER_ARTICLE_HOME,
+			fileEntriesMap, serviceContext);
 
 		// Create kb articles for each chapter home Markdown file and each
 		// chapter's tutorial Markdown files.
@@ -310,8 +324,11 @@ public class KBArticleHierarchyImporter {
 			List<String> chapterMarkdownFileEntries = new ArrayList<String>();
 
 			for (String fileEntry : zipFileEntries) {
-				if (fileEntry.endsWith(_INTRODUCTION_MARKDOWN) ||
-					fileEntry.endsWith(_INTRO_MARKDOWN)) {
+				if (fileEntry.endsWith(
+						PortletPropsValues.
+							MARKDOWN_IMPORTER_ARTICLE_INTRODUCTION) ||
+					fileEntry.endsWith(
+						PortletPropsValues.MARKDOWN_IMPORTER_ARTICLE_INTRO)) {
 
 					chapterHomeFileEntry = fileEntry;
 				}
@@ -493,12 +510,6 @@ public class KBArticleHierarchyImporter {
 
 		return sb.toString();
 	}
-
-	private static final String _HOME_MARKDOWN = "home.markdown";
-
-	private static final String _INTRO_MARKDOWN = "intro.markdown";
-
-	private static final String _INTRODUCTION_MARKDOWN = "introduction.markdown";
 
 	private static Log _log = LogFactoryUtil.getLog(
 		KBArticleHierarchyImporter.class);
