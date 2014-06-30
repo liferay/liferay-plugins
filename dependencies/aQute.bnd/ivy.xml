@@ -8,6 +8,6 @@
 	<info module="com.liferay.sdk.dependencies.biz.aQute.bnd" organisation="com.liferay" />
 
 	<dependencies defaultconf="default">
-		<dependency name="aQute.bnd" org="com.liferay" rev="2.3.0" />
+		<dependency name="aQute.bnd" org="com.liferay" rev="2.3.0.20140225-161137" />
 	</dependencies>
 </ivy-module>
