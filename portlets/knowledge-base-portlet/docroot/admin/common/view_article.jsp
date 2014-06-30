@@ -52,6 +52,8 @@ if (enableKBArticleViewCountIncrement && !kbArticle.isDraft()) {
 		<%= kbArticle.getContent() %>
 	</div>
 
+	<liferay-util:include page="/admin/article_siblings.jsp" servletContext="<%= application %>" />
+
 	<liferay-util:include page="/admin/article_attachments.jsp" servletContext="<%= application %>" />
 
 	<liferay-util:include page="/admin/article_assets.jsp" servletContext="<%= application %>" />
