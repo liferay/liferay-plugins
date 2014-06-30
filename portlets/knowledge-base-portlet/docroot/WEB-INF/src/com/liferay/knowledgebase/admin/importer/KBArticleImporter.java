@@ -37,7 +37,6 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -145,8 +144,13 @@ public class KBArticleImporter {
 		// Create map of the ZIP files folders to Markdown files, extracting the
 		// root home page Markdown file along the way.
 
-		String homeMarkdown = zipReader.getEntryAsString(
-			PortletPropsValues.MARKDOWN_IMPORTER_ARTICLE_HOME);
+		KBArticle homeKBArticle = addKBArticleMarkdown(
+			userId, groupId,
+			KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY,
+			zipReader.getEntryAsString(
+				PortletPropsValues.MARKDOWN_IMPORTER_ARTICLE_HOME),
+			PortletPropsValues.MARKDOWN_IMPORTER_ARTICLE_HOME, fileEntriesMap,
+			serviceContext);
 
 		for (String zipEntry : zipReader.getEntries()) {
 			String extension = FileUtil.getExtension(zipEntry);
@@ -163,89 +167,66 @@ public class KBArticleImporter {
 			String folderName = zipEntry.substring(
 				0, zipEntry.lastIndexOf(StringPool.SLASH));
 
-			List<String> fileEntries = _folderFileEntryMap.get(folderName);
+			List<String> fileEntryNames = _folderNameFileEntryNamesMap.get(
+				folderName);
 
-			if (fileEntries == null) {
-				fileEntries = new ArrayList<String>();
+			if (fileEntryNames == null) {
+				fileEntryNames = new ArrayList<String>();
 			}
 
-			fileEntries.add(zipEntry);
+			fileEntryNames.add(zipEntry);
 
-			_folderFileEntryMap.put(folderName, fileEntries);
+			_folderNameFileEntryNamesMap.put(folderName, fileEntryNames);
 		}
-
-		if (Validator.isNull(homeMarkdown)) {
-			throw new KBArticleImportException(
-				"Missing file entry: " +
-					PortletPropsValues.MARKDOWN_IMPORTER_ARTICLE_HOME);
-		}
-
-		KBArticle homeKBArticle = addKBArticleMarkdown(
-			userId, groupId,
-			KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY,
-			homeMarkdown, PortletPropsValues.MARKDOWN_IMPORTER_ARTICLE_HOME,
-			fileEntriesMap, serviceContext);
 
 		// Create kb articles for each chapter home Markdown file and each
 		// chapter's tutorial Markdown files.
 
-		Set<String> folders = _folderFileEntryMap.keySet();
+		Set<String> folderNames = _folderNameFileEntryNamesMap.keySet();
 
-		Iterator<String> folderIter = folders.iterator();
-		while (folderIter.hasNext()) {
-			String folder = folderIter.next();
+		for (String folderName : folderNames) {
+			List<String> fileEntryNames = _folderNameFileEntryNamesMap.get(
+				folderName);
 
-			List<String> zipFileEntries = _folderFileEntryMap.get(folder);
+			String chapterIntroFileEntryName = null;
 
-			String chapterHomeFileEntry = null;
+			List<String> chapterFileEntryNames = new ArrayList<String>();
 
-			List<String> chapterMarkdownFileEntries = new ArrayList<String>();
-
-			for (String fileEntry : zipFileEntries) {
-				if (fileEntry.endsWith(
+			for (String fileEntryName : fileEntryNames) {
+				if (fileEntryName.endsWith(
 						PortletPropsValues.
 							MARKDOWN_IMPORTER_ARTICLE_INTRODUCTION) ||
-					fileEntry.endsWith(
+					fileEntryName.endsWith(
 						PortletPropsValues.MARKDOWN_IMPORTER_ARTICLE_INTRO)) {
 
-					chapterHomeFileEntry = fileEntry;
+					chapterIntroFileEntryName = fileEntryName;
 				}
 				else {
-					chapterMarkdownFileEntries.add(fileEntry);
+					chapterFileEntryNames.add(fileEntryName);
 				}
 			}
-
-			if (Validator.isNull(chapterHomeFileEntry)) {
-				throw new KBArticleImportException(
-					"Missing intro file entry in folder: " + folder);
-			}
-
-			String chapterIntroMarkdown = zipReader.getEntryAsString(
-				chapterHomeFileEntry);
 
 			KBArticle chapterIntroKBArticle = addKBArticleMarkdown(
 				userId, groupId, homeKBArticle.getResourcePrimKey(),
-				chapterIntroMarkdown, chapterHomeFileEntry, fileEntriesMap,
-				serviceContext);
+				zipReader.getEntryAsString(chapterIntroFileEntryName),
+				chapterIntroFileEntryName, fileEntriesMap, serviceContext);
 
-			for (String tutorialFileEntry : chapterMarkdownFileEntries) {
-				String tutorialMarkdown = zipReader.getEntryAsString(
-					tutorialFileEntry);
+			for (String chapterFileEntryName : chapterFileEntryNames) {
+				String chapterMarkdown = zipReader.getEntryAsString(
+					chapterFileEntryName);
 
-				if (Validator.isNotNull(tutorialMarkdown)) {
-					addKBArticleMarkdown(
-						userId, groupId,
-						chapterIntroKBArticle.getResourcePrimKey(),
-						tutorialMarkdown, tutorialFileEntry, fileEntriesMap,
-						serviceContext);
-				}
-				else {
+				if (Validator.isNull(chapterMarkdown)) {
 					if (_log.isWarnEnabled()) {
 						_log.warn(
 							"Missing Markdown in file entry: " +
-								tutorialFileEntry);
+								chapterFileEntryName);
 					}
 				}
+
+				addKBArticleMarkdown(
+					userId, groupId, chapterIntroKBArticle.getResourcePrimKey(),
+					chapterMarkdown, chapterFileEntryName, fileEntriesMap,
+					serviceContext);
 			}
 		}
 	}
@@ -253,7 +234,7 @@ public class KBArticleImporter {
 	private static Log _log = LogFactoryUtil.getLog(
 		KBArticleImporter.class);
 
-	private Map<String, List<String>> _folderFileEntryMap =
+	private Map<String, List<String>> _folderNameFileEntryNamesMap =
 		new TreeMap<String, List<String>>();
 
 }
