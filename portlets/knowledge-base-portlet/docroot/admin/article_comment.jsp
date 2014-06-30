@@ -61,9 +61,10 @@ KBComment kbComment = (KBComment)request.getAttribute("article_comment.jsp-kb_co
 			<c:if test="<%= KBCommentPermission.contains(permissionChecker, kbComment, ActionKeys.DELETE) %>">
 				<br />
 
-				<%
-				String deleteURL = "javascript:" + renderResponse.getNamespace() + "deleteKBComment(" + kbComment.getKbCommentId() + ");";
-				%>
+				<liferay-portlet:actionURL name="deleteKBComment" var="deleteURL">
+					<portlet:param name="kbCommentId" value="<%= String.valueOf(kbComment.getKbCommentId()) %>" />
+					<portlet:param name="redirect" value="<%= redirect %>" />
+				</liferay-portlet:actionURL>
 
 				<liferay-ui:icon-delete
 					label="<%= true %>"
