@@ -293,124 +293,128 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 
 		_methodParameterTypes52 = new String[] { "long", "long", "int" };
 
-		_methodName53 = "getKBArticleVersions";
+		_methodName53 = "getPreviousAndNextKBArticles";
 
-		_methodParameterTypes53 = new String[] {
+		_methodParameterTypes53 = new String[] { "long" };
+
+		_methodName54 = "getKBArticleVersions";
+
+		_methodParameterTypes54 = new String[] {
 				"long", "int", "int", "int",
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			};
 
-		_methodName54 = "getKBArticleVersionsCount";
-
-		_methodParameterTypes54 = new String[] { "long", "int" };
-
-		_methodName55 = "getLatestKBArticle";
+		_methodName55 = "getKBArticleVersionsCount";
 
 		_methodParameterTypes55 = new String[] { "long", "int" };
 
-		_methodName56 = "getLatestKBArticleByUrlTitle";
+		_methodName56 = "getLatestKBArticle";
 
-		_methodParameterTypes56 = new String[] { "long", "java.lang.String", "int" };
+		_methodParameterTypes56 = new String[] { "long", "int" };
 
-		_methodName57 = "getSectionsKBArticles";
+		_methodName57 = "getLatestKBArticleByUrlTitle";
 
-		_methodParameterTypes57 = new String[] {
+		_methodParameterTypes57 = new String[] { "long", "java.lang.String", "int" };
+
+		_methodName58 = "getSectionsKBArticles";
+
+		_methodParameterTypes58 = new String[] {
 				"long", "java.lang.String[][]", "int", "int", "int",
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			};
 
-		_methodName58 = "getSectionsKBArticlesCount";
+		_methodName59 = "getSectionsKBArticlesCount";
 
-		_methodParameterTypes58 = new String[] {
+		_methodParameterTypes59 = new String[] {
 				"long", "java.lang.String[][]", "int"
 			};
 
-		_methodName59 = "getSiblingKBArticles";
+		_methodName60 = "getSiblingKBArticles";
 
-		_methodParameterTypes59 = new String[] {
+		_methodParameterTypes60 = new String[] {
 				"long", "long", "int", "int", "int",
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			};
 
-		_methodName60 = "getSiblingKBArticlesCount";
+		_methodName61 = "getSiblingKBArticlesCount";
 
-		_methodParameterTypes60 = new String[] { "long", "long", "int" };
+		_methodParameterTypes61 = new String[] { "long", "long", "int" };
 
-		_methodName61 = "moveKBArticle";
+		_methodName62 = "moveKBArticle";
 
-		_methodParameterTypes61 = new String[] { "long", "long", "long", "double" };
+		_methodParameterTypes62 = new String[] { "long", "long", "long", "double" };
 
-		_methodName62 = "search";
+		_methodName63 = "search";
 
-		_methodParameterTypes62 = new String[] {
+		_methodParameterTypes63 = new String[] {
 				"long", "java.lang.String", "java.lang.String", "int",
 				"java.util.Date", "java.util.Date", "boolean", "int", "int",
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			};
 
-		_methodName63 = "subscribeGroupKBArticles";
+		_methodName64 = "subscribeGroupKBArticles";
 
-		_methodParameterTypes63 = new String[] { "long", "long" };
+		_methodParameterTypes64 = new String[] { "long", "long" };
 
-		_methodName64 = "subscribeKBArticle";
+		_methodName65 = "subscribeKBArticle";
 
-		_methodParameterTypes64 = new String[] { "long", "long", "long" };
+		_methodParameterTypes65 = new String[] { "long", "long", "long" };
 
-		_methodName65 = "unsubscribeGroupKBArticles";
-
-		_methodParameterTypes65 = new String[] { "long", "long" };
-
-		_methodName66 = "unsubscribeKBArticle";
+		_methodName66 = "unsubscribeGroupKBArticles";
 
 		_methodParameterTypes66 = new String[] { "long", "long" };
 
-		_methodName67 = "updateAttachments";
+		_methodName67 = "unsubscribeKBArticle";
 
-		_methodParameterTypes67 = new String[] {
+		_methodParameterTypes67 = new String[] { "long", "long" };
+
+		_methodName68 = "updateAttachments";
+
+		_methodParameterTypes68 = new String[] {
 				"long", "java.lang.String",
 				"com.liferay.portal.service.ServiceContext"
 			};
 
-		_methodName68 = "updateKBArticle";
+		_methodName69 = "updateKBArticle";
 
-		_methodParameterTypes68 = new String[] {
+		_methodParameterTypes69 = new String[] {
 				"long", "long", "java.lang.String", "java.lang.String",
 				"java.lang.String", "java.lang.String[][]", "java.lang.String",
 				"com.liferay.portal.service.ServiceContext"
 			};
 
-		_methodName69 = "updateKBArticleAsset";
+		_methodName70 = "updateKBArticleAsset";
 
-		_methodParameterTypes69 = new String[] {
+		_methodParameterTypes70 = new String[] {
 				"long", "com.liferay.knowledgebase.model.KBArticle", "long[][]",
 				"java.lang.String[][]", "long[][]"
 			};
 
-		_methodName70 = "updateKBArticleResources";
+		_methodName71 = "updateKBArticleResources";
 
-		_methodParameterTypes70 = new String[] {
+		_methodParameterTypes71 = new String[] {
 				"com.liferay.knowledgebase.model.KBArticle",
 				"java.lang.String[][]", "java.lang.String[][]"
 			};
 
-		_methodName71 = "updateKBArticlesPriorities";
+		_methodName72 = "updateKBArticlesPriorities";
 
-		_methodParameterTypes71 = new String[] { "java.util.Map" };
+		_methodParameterTypes72 = new String[] { "java.util.Map" };
 
-		_methodName72 = "updatePriority";
+		_methodName73 = "updatePriority";
 
-		_methodParameterTypes72 = new String[] { "long", "double" };
+		_methodParameterTypes73 = new String[] { "long", "double" };
 
-		_methodName73 = "updateStatus";
+		_methodName74 = "updateStatus";
 
-		_methodParameterTypes73 = new String[] {
+		_methodParameterTypes74 = new String[] {
 				"long", "long", "int",
 				"com.liferay.portal.service.ServiceContext"
 			};
 
-		_methodName74 = "updateViewCount";
+		_methodName75 = "updateViewCount";
 
-		_methodParameterTypes74 = new String[] { "long", "long", "int" };
+		_methodParameterTypes75 = new String[] { "long", "long", "int" };
 	}
 
 	@Override
@@ -1925,14 +1929,43 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 	}
 
 	@Override
+	public com.liferay.knowledgebase.model.KBArticle[] getPreviousAndNextKBArticles(
+		long kbArticleId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName53,
+					_methodParameterTypes53, new Object[] { kbArticleId });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.liferay.knowledgebase.model.KBArticle[])ClpSerializer.translateOutput(returnObj);
+	}
+
+	@Override
 	public java.util.List<com.liferay.knowledgebase.model.KBArticle> getKBArticleVersions(
 		long resourcePrimKey, int status, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName53,
-					_methodParameterTypes53,
+			returnObj = _invokableLocalService.invokeMethod(_methodName54,
+					_methodParameterTypes54,
 					new Object[] {
 						resourcePrimKey,
 						
@@ -1965,8 +1998,8 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName54,
-					_methodParameterTypes54,
+			returnObj = _invokableLocalService.invokeMethod(_methodName55,
+					_methodParameterTypes55,
 					new Object[] { resourcePrimKey, status });
 		}
 		catch (Throwable t) {
@@ -1991,8 +2024,8 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName55,
-					_methodParameterTypes55,
+			returnObj = _invokableLocalService.invokeMethod(_methodName56,
+					_methodParameterTypes56,
 					new Object[] { resourcePrimKey, status });
 		}
 		catch (Throwable t) {
@@ -2021,8 +2054,8 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName56,
-					_methodParameterTypes56,
+			returnObj = _invokableLocalService.invokeMethod(_methodName57,
+					_methodParameterTypes57,
 					new Object[] {
 						groupId,
 						
@@ -2058,8 +2091,8 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName57,
-					_methodParameterTypes57,
+			returnObj = _invokableLocalService.invokeMethod(_methodName58,
+					_methodParameterTypes58,
 					new Object[] {
 						groupId,
 						
@@ -2095,8 +2128,8 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName58,
-					_methodParameterTypes58,
+			returnObj = _invokableLocalService.invokeMethod(_methodName59,
+					_methodParameterTypes59,
 					new Object[] {
 						groupId,
 						
@@ -2128,8 +2161,8 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName59,
-					_methodParameterTypes59,
+			returnObj = _invokableLocalService.invokeMethod(_methodName60,
+					_methodParameterTypes60,
 					new Object[] {
 						groupId,
 						
@@ -2165,8 +2198,8 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName60,
-					_methodParameterTypes60,
+			returnObj = _invokableLocalService.invokeMethod(_methodName61,
+					_methodParameterTypes61,
 					new Object[] { groupId, parentResourcePrimKey, status });
 		}
 		catch (Throwable t) {
@@ -2189,8 +2222,8 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 		long parentResourcePrimKey, double priority)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		try {
-			_invokableLocalService.invokeMethod(_methodName61,
-				_methodParameterTypes61,
+			_invokableLocalService.invokeMethod(_methodName62,
+				_methodParameterTypes62,
 				new Object[] {
 					userId,
 					
@@ -2227,8 +2260,8 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName62,
-					_methodParameterTypes62,
+			returnObj = _invokableLocalService.invokeMethod(_methodName63,
+					_methodParameterTypes63,
 					new Object[] {
 						groupId,
 						
@@ -2270,8 +2303,8 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 	public void subscribeGroupKBArticles(long userId, long groupId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		try {
-			_invokableLocalService.invokeMethod(_methodName63,
-				_methodParameterTypes63, new Object[] { userId, groupId });
+			_invokableLocalService.invokeMethod(_methodName64,
+				_methodParameterTypes64, new Object[] { userId, groupId });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -2295,8 +2328,8 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 		long resourcePrimKey)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		try {
-			_invokableLocalService.invokeMethod(_methodName64,
-				_methodParameterTypes64,
+			_invokableLocalService.invokeMethod(_methodName65,
+				_methodParameterTypes65,
 				new Object[] { userId, groupId, resourcePrimKey });
 		}
 		catch (Throwable t) {
@@ -2320,8 +2353,8 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 	public void unsubscribeGroupKBArticles(long userId, long groupId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		try {
-			_invokableLocalService.invokeMethod(_methodName65,
-				_methodParameterTypes65, new Object[] { userId, groupId });
+			_invokableLocalService.invokeMethod(_methodName66,
+				_methodParameterTypes66, new Object[] { userId, groupId });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -2344,8 +2377,8 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 	public void unsubscribeKBArticle(long userId, long resourcePrimKey)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		try {
-			_invokableLocalService.invokeMethod(_methodName66,
-				_methodParameterTypes66,
+			_invokableLocalService.invokeMethod(_methodName67,
+				_methodParameterTypes67,
 				new Object[] { userId, resourcePrimKey });
 		}
 		catch (Throwable t) {
@@ -2373,8 +2406,8 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName67,
-					_methodParameterTypes67,
+			returnObj = _invokableLocalService.invokeMethod(_methodName68,
+					_methodParameterTypes68,
 					new Object[] {
 						resourcePrimKey,
 						
@@ -2412,8 +2445,8 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName68,
-					_methodParameterTypes68,
+			returnObj = _invokableLocalService.invokeMethod(_methodName69,
+					_methodParameterTypes69,
 					new Object[] {
 						userId,
 						
@@ -2458,8 +2491,8 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 		long[] assetLinkEntryIds)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		try {
-			_invokableLocalService.invokeMethod(_methodName69,
-				_methodParameterTypes69,
+			_invokableLocalService.invokeMethod(_methodName70,
+				_methodParameterTypes70,
 				new Object[] {
 					userId,
 					
@@ -2495,8 +2528,8 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 		java.lang.String[] groupPermissions, java.lang.String[] guestPermissions)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		try {
-			_invokableLocalService.invokeMethod(_methodName70,
-				_methodParameterTypes70,
+			_invokableLocalService.invokeMethod(_methodName71,
+				_methodParameterTypes71,
 				new Object[] {
 					ClpSerializer.translateInput(kbArticle),
 					
@@ -2527,8 +2560,8 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 		java.util.Map<java.lang.Long, java.lang.Double> resourcePrimKeyToPriorityMap)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		try {
-			_invokableLocalService.invokeMethod(_methodName71,
-				_methodParameterTypes71,
+			_invokableLocalService.invokeMethod(_methodName72,
+				_methodParameterTypes72,
 				new Object[] {
 					ClpSerializer.translateInput(resourcePrimKeyToPriorityMap)
 				});
@@ -2553,8 +2586,8 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 	@Override
 	public void updatePriority(long resourcePrimKey, double priority) {
 		try {
-			_invokableLocalService.invokeMethod(_methodName72,
-				_methodParameterTypes72,
+			_invokableLocalService.invokeMethod(_methodName73,
+				_methodParameterTypes73,
 				new Object[] { resourcePrimKey, priority });
 		}
 		catch (Throwable t) {
@@ -2578,8 +2611,8 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName73,
-					_methodParameterTypes73,
+			returnObj = _invokableLocalService.invokeMethod(_methodName74,
+					_methodParameterTypes74,
 					new Object[] {
 						userId,
 						
@@ -2613,8 +2646,8 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 	public void updateViewCount(long userId, long resourcePrimKey, int viewCount)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		try {
-			_invokableLocalService.invokeMethod(_methodName74,
-				_methodParameterTypes74,
+			_invokableLocalService.invokeMethod(_methodName75,
+				_methodParameterTypes75,
 				new Object[] { userId, resourcePrimKey, viewCount });
 		}
 		catch (Throwable t) {
@@ -2783,4 +2816,6 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 	private String[] _methodParameterTypes73;
 	private String _methodName74;
 	private String[] _methodParameterTypes74;
+	private String _methodName75;
+	private String[] _methodParameterTypes75;
 }
