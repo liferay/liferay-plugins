@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -29,6 +29,7 @@ import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portlet.documentlibrary.util.DLUtil;
 
 import java.io.IOException;
+
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
@@ -52,8 +53,8 @@ public class KBArticleMarkdownConverter {
 		}
 		catch (IOException ioe) {
 			throw new KBArticleImportException(
-				"Unable to convert Markdown to HTML."
-					+ ioe.getLocalizedMessage(),
+				"Unable to convert Markdown to HTML." +
+					ioe.getLocalizedMessage(),
 				ioe);
 		}
 

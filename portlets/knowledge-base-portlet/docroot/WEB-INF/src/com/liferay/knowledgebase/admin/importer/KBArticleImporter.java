@@ -79,29 +79,6 @@ public class KBArticleImporter {
 			userId, groupId, zipReader, fileEntriesMap, serviceContext);
 	}
 
-	protected KBArticle applyContentToKBArticle(
-			long userId, long groupId, long parentResourcePrimaryKey,
-			String title, String urlTitle, String html,
-			ServiceContext serviceContext)
-		throws PortalException {
-
-		KBArticle article = KBArticleLocalServiceUtil.fetchKBArticleByUrlTitle(
-			groupId, urlTitle);
-
-		if (article != null) {
-			article = KBArticleLocalServiceUtil.updateKBArticle(
-				userId, article.getResourcePrimKey(), title, html,
-				article.getDescription(), null, null, serviceContext);
-		}
-		else {
-			article = KBArticleLocalServiceUtil.addKBArticle(
-				userId, parentResourcePrimaryKey, title, urlTitle, html, null,
-				null, null, serviceContext);
-		}
-
-		return article;
-	}
-
 	protected KBArticle addKBArticleMarkdown(
 			long userId, long groupId, long parentResourcePrimaryKey,
 			String markdown, String fileEntry,
@@ -136,27 +113,27 @@ public class KBArticleImporter {
 		}
 	}
 
-	protected void processArticleFiles(
-			long userId, long groupId, ZipReader zipReader,
-			Map<String, FileEntry> fileEntriesMap,
+	protected KBArticle applyContentToKBArticle(
+			long userId, long groupId, long parentResourcePrimaryKey,
+			String title, String urlTitle, String html,
 			ServiceContext serviceContext)
-		throws IOException, KBArticleImportException {
+		throws PortalException {
 
-		// Create map of the ZIP files folders to Markdown files, extracting the
-		// root home page Markdown file along the way.
+		KBArticle article = KBArticleLocalServiceUtil.fetchKBArticleByUrlTitle(
+			groupId, urlTitle);
 
-		KBArticle homeKBArticle = addKBArticleMarkdown(
-			userId, groupId,
-			KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY,
-			zipReader.getEntryAsString(
-				PortletPropsValues.MARKDOWN_IMPORTER_ARTICLE_HOME),
-			PortletPropsValues.MARKDOWN_IMPORTER_ARTICLE_HOME, fileEntriesMap,
-			serviceContext);
+		if (article != null) {
+			article = KBArticleLocalServiceUtil.updateKBArticle(
+				userId, article.getResourcePrimKey(), title, html,
+				article.getDescription(), null, null, serviceContext);
+		}
+		else {
+			article = KBArticleLocalServiceUtil.addKBArticle(
+				userId, parentResourcePrimaryKey, title, urlTitle, html, null,
+				null, null, serviceContext);
+		}
 
-		processChapterKBArticleFiles(
-			userId, groupId, homeKBArticle.getResourcePrimKey(), zipReader,
-			fileEntriesMap, getFolderNameFileEntryNamesMap(zipReader),
-			serviceContext);
+		return article;
 	}
 
 	protected Map<String, List<String>> getFolderNameFileEntryNamesMap(
@@ -193,6 +170,26 @@ public class KBArticleImporter {
 		}
 
 		return folderNameFileEntryNamesMap;
+	}
+
+	protected void processArticleFiles(
+			long userId, long groupId, ZipReader zipReader,
+			Map<String, FileEntry> fileEntriesMap,
+			ServiceContext serviceContext)
+		throws IOException, KBArticleImportException {
+
+		KBArticle homeKBArticle = addKBArticleMarkdown(
+			userId, groupId,
+			KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY,
+			zipReader.getEntryAsString(
+				PortletPropsValues.MARKDOWN_IMPORTER_ARTICLE_HOME),
+			PortletPropsValues.MARKDOWN_IMPORTER_ARTICLE_HOME, fileEntriesMap,
+			serviceContext);
+
+		processChapterKBArticleFiles(
+			userId, groupId, homeKBArticle.getResourcePrimKey(), zipReader,
+			fileEntriesMap, getFolderNameFileEntryNamesMap(zipReader),
+			serviceContext);
 	}
 
 	protected void processChapterKBArticleFiles(
@@ -248,7 +245,6 @@ public class KBArticleImporter {
 		}
 	}
 
-	private static Log _log = LogFactoryUtil.getLog(
-		KBArticleImporter.class);
+	private static Log _log = LogFactoryUtil.getLog(KBArticleImporter.class);
 
 }

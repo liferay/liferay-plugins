@@ -263,7 +263,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 	public void addKBArticlesMarkdown(
 			long userId, long groupId, String fileName, InputStream inputStream,
 			ServiceContext serviceContext)
-		throws PortalException, IOException {
+		throws IOException, PortalException {
 
 		KBArticleImporter kbArticleImporter = new KBArticleImporter();
 
