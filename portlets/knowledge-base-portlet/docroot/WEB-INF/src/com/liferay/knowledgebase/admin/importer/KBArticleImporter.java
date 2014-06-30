@@ -44,6 +44,7 @@ import java.util.TreeMap;
 
 /**
  * @author James Hinkey
+ * @author Sergio González
  */
 public class KBArticleImporter {
 
@@ -152,6 +153,18 @@ public class KBArticleImporter {
 			PortletPropsValues.MARKDOWN_IMPORTER_ARTICLE_HOME, fileEntriesMap,
 			serviceContext);
 
+		processChapterKBArticleFiles(
+			userId, groupId, homeKBArticle.getResourcePrimKey(), zipReader,
+			fileEntriesMap, getFolderNameFileEntryNamesMap(zipReader),
+			serviceContext);
+	}
+
+	protected Map<String, List<String>> getFolderNameFileEntryNamesMap(
+		ZipReader zipReader) {
+
+		Map<String, List<String>> folderNameFileEntryNamesMap =
+			new TreeMap<String, List<String>>();
+
 		for (String zipEntry : zipReader.getEntries()) {
 			String extension = FileUtil.getExtension(zipEntry);
 
@@ -167,7 +180,7 @@ public class KBArticleImporter {
 			String folderName = zipEntry.substring(
 				0, zipEntry.lastIndexOf(StringPool.SLASH));
 
-			List<String> fileEntryNames = _folderNameFileEntryNamesMap.get(
+			List<String> fileEntryNames = folderNameFileEntryNamesMap.get(
 				folderName);
 
 			if (fileEntryNames == null) {
@@ -176,16 +189,23 @@ public class KBArticleImporter {
 
 			fileEntryNames.add(zipEntry);
 
-			_folderNameFileEntryNamesMap.put(folderName, fileEntryNames);
+			folderNameFileEntryNamesMap.put(folderName, fileEntryNames);
 		}
 
-		// Create kb articles for each chapter home Markdown file and each
-		// chapter's tutorial Markdown files.
+		return folderNameFileEntryNamesMap;
+	}
 
-		Set<String> folderNames = _folderNameFileEntryNamesMap.keySet();
+	protected void processChapterKBArticleFiles(
+			long userId, long groupId, long homeKBArticlePK,
+			ZipReader zipReader, Map<String, FileEntry> fileEntriesMap,
+			Map<String, List<String>> folderNameFileEntryNamesMap,
+			ServiceContext serviceContext)
+		throws KBArticleImportException {
+
+		Set<String> folderNames = folderNameFileEntryNamesMap.keySet();
 
 		for (String folderName : folderNames) {
-			List<String> fileEntryNames = _folderNameFileEntryNamesMap.get(
+			List<String> fileEntryNames = folderNameFileEntryNamesMap.get(
 				folderName);
 
 			String chapterIntroFileEntryName = null;
@@ -204,7 +224,7 @@ public class KBArticleImporter {
 			}
 
 			KBArticle chapterIntroKBArticle = addKBArticleMarkdown(
-				userId, groupId, homeKBArticle.getResourcePrimKey(),
+				userId, groupId, homeKBArticlePK,
 				zipReader.getEntryAsString(chapterIntroFileEntryName),
 				chapterIntroFileEntryName, fileEntriesMap, serviceContext);
 
@@ -230,8 +250,5 @@ public class KBArticleImporter {
 
 	private static Log _log = LogFactoryUtil.getLog(
 		KBArticleImporter.class);
-
-	private Map<String, List<String>> _folderNameFileEntryNamesMap =
-		new TreeMap<String, List<String>>();
 
 }
