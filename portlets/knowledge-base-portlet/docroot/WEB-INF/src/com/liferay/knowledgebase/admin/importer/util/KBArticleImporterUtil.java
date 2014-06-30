@@ -33,22 +33,10 @@ import java.util.Map;
 
 /**
  * @author James Hinkey
+ * @author Sergio González
  */
 public class KBArticleImporterUtil {
 
-	/**
-	 * Returns a file entry for the first <code>img</code> tag parsed from the
-	 * specified HTML text.
-	 *
-	 * <p>
-	 * The corresponding file entry must be imported into the document library
-	 * before calling this method
-	 * </p>
-	 *
-	 * @param  html the HTML text from which to extract an image file entry
-	 * @return a file entry for the first <code>img</code> tag parsed from the
-	 *         specified HTML text
-	 */
 	public static FileEntry extractImageFileEntry(
 		String html, Map<String, FileEntry> fileEntriesMap) {
 
@@ -90,15 +78,6 @@ public class KBArticleImporterUtil {
 		return fileEntriesMap.get(name);
 	}
 
-	/**
-	 * Processes the ZIP file's image files, adding them to the document
-	 * library.
-	 *
-	 * @param fileName
-	 * @param zipReader a zip reader containing a folder of image files
-	 * @param fileEntriesMap
-	 * @param serviceContext
-	 */
 	public static void processImageFiles(
 			long groupId, String fileName, ZipReader zipReader,
 			Map<String, FileEntry> fileEntriesMap,

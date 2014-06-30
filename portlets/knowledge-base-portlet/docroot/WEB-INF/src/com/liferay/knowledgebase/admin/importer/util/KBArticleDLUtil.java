@@ -30,6 +30,7 @@ import java.util.Map;
 
 /**
  * @author James Hinkey
+ * @author Sergio González
  */
 public class KBArticleDLUtil {
 
