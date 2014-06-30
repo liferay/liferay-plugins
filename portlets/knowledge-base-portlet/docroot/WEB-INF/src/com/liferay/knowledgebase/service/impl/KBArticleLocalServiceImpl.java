@@ -403,10 +403,6 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 	}
 
 	public KBArticle fetchKBArticleByUrlTitle(long groupId, String urlTitle) {
-
-		// Fetch the latest KB article that is approved, if none are approved,
-		// fetch the latest unapproved KB article
-
 		KBArticle kbArticle = fetchLatestKBArticleByUrlTitle(
 			groupId, urlTitle, WorkflowConstants.STATUS_APPROVED);
 
