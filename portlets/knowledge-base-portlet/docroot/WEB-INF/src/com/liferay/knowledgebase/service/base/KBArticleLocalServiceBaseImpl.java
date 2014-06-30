@@ -122,12 +122,11 @@ public abstract class KBArticleLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @param kbArticleId the primary key of the k b article
 	 * @return the k b article that was removed
 	 * @throws PortalException if a k b article with the primary key could not be found
-	 * @throws SystemException
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
 	public KBArticle deleteKBArticle(long kbArticleId)
-		throws PortalException, SystemException {
+		throws PortalException {
 		return kbArticlePersistence.remove(kbArticleId);
 	}
 
@@ -137,12 +136,11 @@ public abstract class KBArticleLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @param kbArticle the k b article
 	 * @return the k b article that was removed
 	 * @throws PortalException
-	 * @throws SystemException
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
 	public KBArticle deleteKBArticle(KBArticle kbArticle)
-		throws PortalException, SystemException {
+		throws PortalException {
 		return kbArticlePersistence.remove(kbArticle);
 	}
 
@@ -161,8 +159,7 @@ public abstract class KBArticleLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the matching rows
 	 */
 	@Override
-	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery) {
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery) {
 		return kbArticlePersistence.findWithDynamicQuery(dynamicQuery);
 	}
 
@@ -179,8 +176,8 @@ public abstract class KBArticleLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the range of matching rows
 	 */
 	@Override
-	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end) {
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
+		int end) {
 		return kbArticlePersistence.findWithDynamicQuery(dynamicQuery, start,
 			end);
 	}
@@ -199,9 +196,8 @@ public abstract class KBArticleLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the ordered range of matching rows
 	 */
 	@Override
-	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end,
-		OrderByComparator orderByComparator) {
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
+		int end, OrderByComparator<T> orderByComparator) {
 		return kbArticlePersistence.findWithDynamicQuery(dynamicQuery, start,
 			end, orderByComparator);
 	}

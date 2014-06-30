@@ -76,7 +76,7 @@ public interface KBCommentPersistence extends BasePersistence<KBComment> {
 	*/
 	public java.util.List<com.liferay.knowledgebase.model.KBComment> findByUuid(
 		java.lang.String uuid, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBComment> orderByComparator);
 
 	/**
 	* Returns the first k b comment in the ordered set where uuid = &#63;.
@@ -88,7 +88,7 @@ public interface KBCommentPersistence extends BasePersistence<KBComment> {
 	*/
 	public com.liferay.knowledgebase.model.KBComment findByUuid_First(
 		java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBComment> orderByComparator)
 		throws com.liferay.knowledgebase.NoSuchCommentException;
 
 	/**
@@ -100,7 +100,7 @@ public interface KBCommentPersistence extends BasePersistence<KBComment> {
 	*/
 	public com.liferay.knowledgebase.model.KBComment fetchByUuid_First(
 		java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBComment> orderByComparator);
 
 	/**
 	* Returns the last k b comment in the ordered set where uuid = &#63;.
@@ -112,7 +112,7 @@ public interface KBCommentPersistence extends BasePersistence<KBComment> {
 	*/
 	public com.liferay.knowledgebase.model.KBComment findByUuid_Last(
 		java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBComment> orderByComparator)
 		throws com.liferay.knowledgebase.NoSuchCommentException;
 
 	/**
@@ -124,7 +124,7 @@ public interface KBCommentPersistence extends BasePersistence<KBComment> {
 	*/
 	public com.liferay.knowledgebase.model.KBComment fetchByUuid_Last(
 		java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBComment> orderByComparator);
 
 	/**
 	* Returns the k b comments before and after the current k b comment in the ordered set where uuid = &#63;.
@@ -137,7 +137,7 @@ public interface KBCommentPersistence extends BasePersistence<KBComment> {
 	*/
 	public com.liferay.knowledgebase.model.KBComment[] findByUuid_PrevAndNext(
 		long kbCommentId, java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBComment> orderByComparator)
 		throws com.liferay.knowledgebase.NoSuchCommentException;
 
 	/**
@@ -250,7 +250,7 @@ public interface KBCommentPersistence extends BasePersistence<KBComment> {
 	*/
 	public java.util.List<com.liferay.knowledgebase.model.KBComment> findByUuid_C(
 		java.lang.String uuid, long companyId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBComment> orderByComparator);
 
 	/**
 	* Returns the first k b comment in the ordered set where uuid = &#63; and companyId = &#63;.
@@ -263,7 +263,7 @@ public interface KBCommentPersistence extends BasePersistence<KBComment> {
 	*/
 	public com.liferay.knowledgebase.model.KBComment findByUuid_C_First(
 		java.lang.String uuid, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBComment> orderByComparator)
 		throws com.liferay.knowledgebase.NoSuchCommentException;
 
 	/**
@@ -276,7 +276,7 @@ public interface KBCommentPersistence extends BasePersistence<KBComment> {
 	*/
 	public com.liferay.knowledgebase.model.KBComment fetchByUuid_C_First(
 		java.lang.String uuid, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBComment> orderByComparator);
 
 	/**
 	* Returns the last k b comment in the ordered set where uuid = &#63; and companyId = &#63;.
@@ -289,7 +289,7 @@ public interface KBCommentPersistence extends BasePersistence<KBComment> {
 	*/
 	public com.liferay.knowledgebase.model.KBComment findByUuid_C_Last(
 		java.lang.String uuid, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBComment> orderByComparator)
 		throws com.liferay.knowledgebase.NoSuchCommentException;
 
 	/**
@@ -302,7 +302,7 @@ public interface KBCommentPersistence extends BasePersistence<KBComment> {
 	*/
 	public com.liferay.knowledgebase.model.KBComment fetchByUuid_C_Last(
 		java.lang.String uuid, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBComment> orderByComparator);
 
 	/**
 	* Returns the k b comments before and after the current k b comment in the ordered set where uuid = &#63; and companyId = &#63;.
@@ -316,7 +316,7 @@ public interface KBCommentPersistence extends BasePersistence<KBComment> {
 	*/
 	public com.liferay.knowledgebase.model.KBComment[] findByUuid_C_PrevAndNext(
 		long kbCommentId, java.lang.String uuid, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBComment> orderByComparator)
 		throws com.liferay.knowledgebase.NoSuchCommentException;
 
 	/**
@@ -375,7 +375,7 @@ public interface KBCommentPersistence extends BasePersistence<KBComment> {
 	*/
 	public java.util.List<com.liferay.knowledgebase.model.KBComment> findByGroupId(
 		long groupId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBComment> orderByComparator);
 
 	/**
 	* Returns the first k b comment in the ordered set where groupId = &#63;.
@@ -387,7 +387,7 @@ public interface KBCommentPersistence extends BasePersistence<KBComment> {
 	*/
 	public com.liferay.knowledgebase.model.KBComment findByGroupId_First(
 		long groupId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBComment> orderByComparator)
 		throws com.liferay.knowledgebase.NoSuchCommentException;
 
 	/**
@@ -399,7 +399,7 @@ public interface KBCommentPersistence extends BasePersistence<KBComment> {
 	*/
 	public com.liferay.knowledgebase.model.KBComment fetchByGroupId_First(
 		long groupId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBComment> orderByComparator);
 
 	/**
 	* Returns the last k b comment in the ordered set where groupId = &#63;.
@@ -411,7 +411,7 @@ public interface KBCommentPersistence extends BasePersistence<KBComment> {
 	*/
 	public com.liferay.knowledgebase.model.KBComment findByGroupId_Last(
 		long groupId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBComment> orderByComparator)
 		throws com.liferay.knowledgebase.NoSuchCommentException;
 
 	/**
@@ -423,7 +423,7 @@ public interface KBCommentPersistence extends BasePersistence<KBComment> {
 	*/
 	public com.liferay.knowledgebase.model.KBComment fetchByGroupId_Last(
 		long groupId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBComment> orderByComparator);
 
 	/**
 	* Returns the k b comments before and after the current k b comment in the ordered set where groupId = &#63;.
@@ -436,7 +436,7 @@ public interface KBCommentPersistence extends BasePersistence<KBComment> {
 	*/
 	public com.liferay.knowledgebase.model.KBComment[] findByGroupId_PrevAndNext(
 		long kbCommentId, long groupId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBComment> orderByComparator)
 		throws com.liferay.knowledgebase.NoSuchCommentException;
 
 	/**
@@ -496,7 +496,7 @@ public interface KBCommentPersistence extends BasePersistence<KBComment> {
 	*/
 	public java.util.List<com.liferay.knowledgebase.model.KBComment> findByG_C(
 		long groupId, long classNameId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBComment> orderByComparator);
 
 	/**
 	* Returns the first k b comment in the ordered set where groupId = &#63; and classNameId = &#63;.
@@ -509,7 +509,7 @@ public interface KBCommentPersistence extends BasePersistence<KBComment> {
 	*/
 	public com.liferay.knowledgebase.model.KBComment findByG_C_First(
 		long groupId, long classNameId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBComment> orderByComparator)
 		throws com.liferay.knowledgebase.NoSuchCommentException;
 
 	/**
@@ -522,7 +522,7 @@ public interface KBCommentPersistence extends BasePersistence<KBComment> {
 	*/
 	public com.liferay.knowledgebase.model.KBComment fetchByG_C_First(
 		long groupId, long classNameId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBComment> orderByComparator);
 
 	/**
 	* Returns the last k b comment in the ordered set where groupId = &#63; and classNameId = &#63;.
@@ -535,7 +535,7 @@ public interface KBCommentPersistence extends BasePersistence<KBComment> {
 	*/
 	public com.liferay.knowledgebase.model.KBComment findByG_C_Last(
 		long groupId, long classNameId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBComment> orderByComparator)
 		throws com.liferay.knowledgebase.NoSuchCommentException;
 
 	/**
@@ -548,7 +548,7 @@ public interface KBCommentPersistence extends BasePersistence<KBComment> {
 	*/
 	public com.liferay.knowledgebase.model.KBComment fetchByG_C_Last(
 		long groupId, long classNameId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBComment> orderByComparator);
 
 	/**
 	* Returns the k b comments before and after the current k b comment in the ordered set where groupId = &#63; and classNameId = &#63;.
@@ -562,7 +562,7 @@ public interface KBCommentPersistence extends BasePersistence<KBComment> {
 	*/
 	public com.liferay.knowledgebase.model.KBComment[] findByG_C_PrevAndNext(
 		long kbCommentId, long groupId, long classNameId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBComment> orderByComparator)
 		throws com.liferay.knowledgebase.NoSuchCommentException;
 
 	/**
@@ -624,7 +624,7 @@ public interface KBCommentPersistence extends BasePersistence<KBComment> {
 	*/
 	public java.util.List<com.liferay.knowledgebase.model.KBComment> findByC_C(
 		long classNameId, long classPK, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBComment> orderByComparator);
 
 	/**
 	* Returns the first k b comment in the ordered set where classNameId = &#63; and classPK = &#63;.
@@ -637,7 +637,7 @@ public interface KBCommentPersistence extends BasePersistence<KBComment> {
 	*/
 	public com.liferay.knowledgebase.model.KBComment findByC_C_First(
 		long classNameId, long classPK,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBComment> orderByComparator)
 		throws com.liferay.knowledgebase.NoSuchCommentException;
 
 	/**
@@ -650,7 +650,7 @@ public interface KBCommentPersistence extends BasePersistence<KBComment> {
 	*/
 	public com.liferay.knowledgebase.model.KBComment fetchByC_C_First(
 		long classNameId, long classPK,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBComment> orderByComparator);
 
 	/**
 	* Returns the last k b comment in the ordered set where classNameId = &#63; and classPK = &#63;.
@@ -663,7 +663,7 @@ public interface KBCommentPersistence extends BasePersistence<KBComment> {
 	*/
 	public com.liferay.knowledgebase.model.KBComment findByC_C_Last(
 		long classNameId, long classPK,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBComment> orderByComparator)
 		throws com.liferay.knowledgebase.NoSuchCommentException;
 
 	/**
@@ -676,7 +676,7 @@ public interface KBCommentPersistence extends BasePersistence<KBComment> {
 	*/
 	public com.liferay.knowledgebase.model.KBComment fetchByC_C_Last(
 		long classNameId, long classPK,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBComment> orderByComparator);
 
 	/**
 	* Returns the k b comments before and after the current k b comment in the ordered set where classNameId = &#63; and classPK = &#63;.
@@ -690,7 +690,7 @@ public interface KBCommentPersistence extends BasePersistence<KBComment> {
 	*/
 	public com.liferay.knowledgebase.model.KBComment[] findByC_C_PrevAndNext(
 		long kbCommentId, long classNameId, long classPK,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBComment> orderByComparator)
 		throws com.liferay.knowledgebase.NoSuchCommentException;
 
 	/**
@@ -863,7 +863,7 @@ public interface KBCommentPersistence extends BasePersistence<KBComment> {
 	*/
 	public java.util.List<com.liferay.knowledgebase.model.KBComment> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBComment> orderByComparator);
 
 	/**
 	* Removes all the k b comments from the database.

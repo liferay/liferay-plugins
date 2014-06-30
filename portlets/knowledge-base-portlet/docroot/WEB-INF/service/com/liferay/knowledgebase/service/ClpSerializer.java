@@ -373,6 +373,12 @@ public class ClpSerializer {
 		}
 
 		if (className.equals(
+					"com.liferay.knowledgebase.KBArticleImportException")) {
+			return new com.liferay.knowledgebase.KBArticleImportException(throwable.getMessage(),
+				throwable.getCause());
+		}
+
+		if (className.equals(
 					"com.liferay.knowledgebase.KBArticlePriorityException")) {
 			return new com.liferay.knowledgebase.KBArticlePriorityException(throwable.getMessage(),
 				throwable.getCause());

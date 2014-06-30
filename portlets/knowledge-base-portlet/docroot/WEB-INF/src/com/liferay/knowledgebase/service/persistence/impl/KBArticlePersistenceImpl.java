@@ -156,7 +156,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public List<KBArticle> findByUuid(String uuid, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KBArticle> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -276,7 +276,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public KBArticle findByUuid_First(String uuid,
-		OrderByComparator orderByComparator) throws NoSuchArticleException {
+		OrderByComparator<KBArticle> orderByComparator)
+		throws NoSuchArticleException {
 		KBArticle kbArticle = fetchByUuid_First(uuid, orderByComparator);
 
 		if (kbArticle != null) {
@@ -304,7 +305,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public KBArticle fetchByUuid_First(String uuid,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KBArticle> orderByComparator) {
 		List<KBArticle> list = findByUuid(uuid, 0, 1, orderByComparator);
 
 		if (!list.isEmpty()) {
@@ -324,7 +325,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public KBArticle findByUuid_Last(String uuid,
-		OrderByComparator orderByComparator) throws NoSuchArticleException {
+		OrderByComparator<KBArticle> orderByComparator)
+		throws NoSuchArticleException {
 		KBArticle kbArticle = fetchByUuid_Last(uuid, orderByComparator);
 
 		if (kbArticle != null) {
@@ -352,7 +354,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public KBArticle fetchByUuid_Last(String uuid,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KBArticle> orderByComparator) {
 		int count = countByUuid(uuid);
 
 		if (count == 0) {
@@ -380,7 +382,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public KBArticle[] findByUuid_PrevAndNext(long kbArticleId, String uuid,
-		OrderByComparator orderByComparator) throws NoSuchArticleException {
+		OrderByComparator<KBArticle> orderByComparator)
+		throws NoSuchArticleException {
 		KBArticle kbArticle = findByPrimaryKey(kbArticleId);
 
 		Session session = null;
@@ -409,8 +412,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	protected KBArticle getByUuid_PrevAndNext(Session session,
-		KBArticle kbArticle, String uuid, OrderByComparator orderByComparator,
-		boolean previous) {
+		KBArticle kbArticle, String uuid,
+		OrderByComparator<KBArticle> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -935,7 +938,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public List<KBArticle> findByUuid_C(String uuid, long companyId, int start,
-		int end, OrderByComparator orderByComparator) {
+		int end, OrderByComparator<KBArticle> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -1065,7 +1068,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public KBArticle findByUuid_C_First(String uuid, long companyId,
-		OrderByComparator orderByComparator) throws NoSuchArticleException {
+		OrderByComparator<KBArticle> orderByComparator)
+		throws NoSuchArticleException {
 		KBArticle kbArticle = fetchByUuid_C_First(uuid, companyId,
 				orderByComparator);
 
@@ -1098,7 +1102,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public KBArticle fetchByUuid_C_First(String uuid, long companyId,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KBArticle> orderByComparator) {
 		List<KBArticle> list = findByUuid_C(uuid, companyId, 0, 1,
 				orderByComparator);
 
@@ -1120,7 +1124,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public KBArticle findByUuid_C_Last(String uuid, long companyId,
-		OrderByComparator orderByComparator) throws NoSuchArticleException {
+		OrderByComparator<KBArticle> orderByComparator)
+		throws NoSuchArticleException {
 		KBArticle kbArticle = fetchByUuid_C_Last(uuid, companyId,
 				orderByComparator);
 
@@ -1153,7 +1158,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public KBArticle fetchByUuid_C_Last(String uuid, long companyId,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KBArticle> orderByComparator) {
 		int count = countByUuid_C(uuid, companyId);
 
 		if (count == 0) {
@@ -1182,7 +1187,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public KBArticle[] findByUuid_C_PrevAndNext(long kbArticleId, String uuid,
-		long companyId, OrderByComparator orderByComparator)
+		long companyId, OrderByComparator<KBArticle> orderByComparator)
 		throws NoSuchArticleException {
 		KBArticle kbArticle = findByPrimaryKey(kbArticleId);
 
@@ -1213,7 +1218,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 	protected KBArticle getByUuid_C_PrevAndNext(Session session,
 		KBArticle kbArticle, String uuid, long companyId,
-		OrderByComparator orderByComparator, boolean previous) {
+		OrderByComparator<KBArticle> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -1490,7 +1495,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public List<KBArticle> findByResourcePrimKey(long resourcePrimKey,
-		int start, int end, OrderByComparator orderByComparator) {
+		int start, int end, OrderByComparator<KBArticle> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -1600,7 +1605,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public KBArticle findByResourcePrimKey_First(long resourcePrimKey,
-		OrderByComparator orderByComparator) throws NoSuchArticleException {
+		OrderByComparator<KBArticle> orderByComparator)
+		throws NoSuchArticleException {
 		KBArticle kbArticle = fetchByResourcePrimKey_First(resourcePrimKey,
 				orderByComparator);
 
@@ -1629,7 +1635,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public KBArticle fetchByResourcePrimKey_First(long resourcePrimKey,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KBArticle> orderByComparator) {
 		List<KBArticle> list = findByResourcePrimKey(resourcePrimKey, 0, 1,
 				orderByComparator);
 
@@ -1650,7 +1656,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public KBArticle findByResourcePrimKey_Last(long resourcePrimKey,
-		OrderByComparator orderByComparator) throws NoSuchArticleException {
+		OrderByComparator<KBArticle> orderByComparator)
+		throws NoSuchArticleException {
 		KBArticle kbArticle = fetchByResourcePrimKey_Last(resourcePrimKey,
 				orderByComparator);
 
@@ -1679,7 +1686,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public KBArticle fetchByResourcePrimKey_Last(long resourcePrimKey,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KBArticle> orderByComparator) {
 		int count = countByResourcePrimKey(resourcePrimKey);
 
 		if (count == 0) {
@@ -1707,7 +1714,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public KBArticle[] findByResourcePrimKey_PrevAndNext(long kbArticleId,
-		long resourcePrimKey, OrderByComparator orderByComparator)
+		long resourcePrimKey, OrderByComparator<KBArticle> orderByComparator)
 		throws NoSuchArticleException {
 		KBArticle kbArticle = findByPrimaryKey(kbArticleId);
 
@@ -1738,7 +1745,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 	protected KBArticle getByResourcePrimKey_PrevAndNext(Session session,
 		KBArticle kbArticle, long resourcePrimKey,
-		OrderByComparator orderByComparator, boolean previous) {
+		OrderByComparator<KBArticle> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -1977,7 +1984,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public List<KBArticle> findByR_G(long resourcePrimKey, long groupId,
-		int start, int end, OrderByComparator orderByComparator) {
+		int start, int end, OrderByComparator<KBArticle> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -2093,7 +2100,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public KBArticle findByR_G_First(long resourcePrimKey, long groupId,
-		OrderByComparator orderByComparator) throws NoSuchArticleException {
+		OrderByComparator<KBArticle> orderByComparator)
+		throws NoSuchArticleException {
 		KBArticle kbArticle = fetchByR_G_First(resourcePrimKey, groupId,
 				orderByComparator);
 
@@ -2126,7 +2134,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public KBArticle fetchByR_G_First(long resourcePrimKey, long groupId,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KBArticle> orderByComparator) {
 		List<KBArticle> list = findByR_G(resourcePrimKey, groupId, 0, 1,
 				orderByComparator);
 
@@ -2148,7 +2156,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public KBArticle findByR_G_Last(long resourcePrimKey, long groupId,
-		OrderByComparator orderByComparator) throws NoSuchArticleException {
+		OrderByComparator<KBArticle> orderByComparator)
+		throws NoSuchArticleException {
 		KBArticle kbArticle = fetchByR_G_Last(resourcePrimKey, groupId,
 				orderByComparator);
 
@@ -2181,7 +2190,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public KBArticle fetchByR_G_Last(long resourcePrimKey, long groupId,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KBArticle> orderByComparator) {
 		int count = countByR_G(resourcePrimKey, groupId);
 
 		if (count == 0) {
@@ -2210,7 +2219,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public KBArticle[] findByR_G_PrevAndNext(long kbArticleId,
-		long resourcePrimKey, long groupId, OrderByComparator orderByComparator)
+		long resourcePrimKey, long groupId,
+		OrderByComparator<KBArticle> orderByComparator)
 		throws NoSuchArticleException {
 		KBArticle kbArticle = findByPrimaryKey(kbArticleId);
 
@@ -2241,7 +2251,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 	protected KBArticle getByR_G_PrevAndNext(Session session,
 		KBArticle kbArticle, long resourcePrimKey, long groupId,
-		OrderByComparator orderByComparator, boolean previous) {
+		OrderByComparator<KBArticle> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -2396,7 +2406,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public List<KBArticle> filterFindByR_G(long resourcePrimKey, long groupId,
-		int start, int end, OrderByComparator orderByComparator) {
+		int start, int end, OrderByComparator<KBArticle> orderByComparator) {
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
 			return findByR_G(resourcePrimKey, groupId, start, end,
 				orderByComparator);
@@ -2492,7 +2502,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public KBArticle[] filterFindByR_G_PrevAndNext(long kbArticleId,
-		long resourcePrimKey, long groupId, OrderByComparator orderByComparator)
+		long resourcePrimKey, long groupId,
+		OrderByComparator<KBArticle> orderByComparator)
 		throws NoSuchArticleException {
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
 			return findByR_G_PrevAndNext(kbArticleId, resourcePrimKey, groupId,
@@ -2528,7 +2539,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 	protected KBArticle filterGetByR_G_PrevAndNext(Session session,
 		KBArticle kbArticle, long resourcePrimKey, long groupId,
-		OrderByComparator orderByComparator, boolean previous) {
+		OrderByComparator<KBArticle> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -3094,7 +3105,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public List<KBArticle> findByR_L(long resourcePrimKey, boolean latest,
-		int start, int end, OrderByComparator orderByComparator) {
+		int start, int end, OrderByComparator<KBArticle> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -3210,7 +3221,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public KBArticle findByR_L_First(long resourcePrimKey, boolean latest,
-		OrderByComparator orderByComparator) throws NoSuchArticleException {
+		OrderByComparator<KBArticle> orderByComparator)
+		throws NoSuchArticleException {
 		KBArticle kbArticle = fetchByR_L_First(resourcePrimKey, latest,
 				orderByComparator);
 
@@ -3243,7 +3255,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public KBArticle fetchByR_L_First(long resourcePrimKey, boolean latest,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KBArticle> orderByComparator) {
 		List<KBArticle> list = findByR_L(resourcePrimKey, latest, 0, 1,
 				orderByComparator);
 
@@ -3265,7 +3277,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public KBArticle findByR_L_Last(long resourcePrimKey, boolean latest,
-		OrderByComparator orderByComparator) throws NoSuchArticleException {
+		OrderByComparator<KBArticle> orderByComparator)
+		throws NoSuchArticleException {
 		KBArticle kbArticle = fetchByR_L_Last(resourcePrimKey, latest,
 				orderByComparator);
 
@@ -3298,7 +3311,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public KBArticle fetchByR_L_Last(long resourcePrimKey, boolean latest,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KBArticle> orderByComparator) {
 		int count = countByR_L(resourcePrimKey, latest);
 
 		if (count == 0) {
@@ -3328,7 +3341,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	@Override
 	public KBArticle[] findByR_L_PrevAndNext(long kbArticleId,
 		long resourcePrimKey, boolean latest,
-		OrderByComparator orderByComparator) throws NoSuchArticleException {
+		OrderByComparator<KBArticle> orderByComparator)
+		throws NoSuchArticleException {
 		KBArticle kbArticle = findByPrimaryKey(kbArticleId);
 
 		Session session = null;
@@ -3358,7 +3372,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 	protected KBArticle getByR_L_PrevAndNext(Session session,
 		KBArticle kbArticle, long resourcePrimKey, boolean latest,
-		OrderByComparator orderByComparator, boolean previous) {
+		OrderByComparator<KBArticle> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -3517,7 +3531,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public List<KBArticle> findByR_L(long[] resourcePrimKeies, boolean latest,
-		int start, int end, OrderByComparator orderByComparator) {
+		int start, int end, OrderByComparator<KBArticle> orderByComparator) {
 		if (resourcePrimKeies == null) {
 			resourcePrimKeies = new long[0];
 		}
@@ -3867,7 +3881,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public List<KBArticle> findByR_M(long resourcePrimKey, boolean main,
-		int start, int end, OrderByComparator orderByComparator) {
+		int start, int end, OrderByComparator<KBArticle> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -3983,7 +3997,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public KBArticle findByR_M_First(long resourcePrimKey, boolean main,
-		OrderByComparator orderByComparator) throws NoSuchArticleException {
+		OrderByComparator<KBArticle> orderByComparator)
+		throws NoSuchArticleException {
 		KBArticle kbArticle = fetchByR_M_First(resourcePrimKey, main,
 				orderByComparator);
 
@@ -4016,7 +4031,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public KBArticle fetchByR_M_First(long resourcePrimKey, boolean main,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KBArticle> orderByComparator) {
 		List<KBArticle> list = findByR_M(resourcePrimKey, main, 0, 1,
 				orderByComparator);
 
@@ -4038,7 +4053,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public KBArticle findByR_M_Last(long resourcePrimKey, boolean main,
-		OrderByComparator orderByComparator) throws NoSuchArticleException {
+		OrderByComparator<KBArticle> orderByComparator)
+		throws NoSuchArticleException {
 		KBArticle kbArticle = fetchByR_M_Last(resourcePrimKey, main,
 				orderByComparator);
 
@@ -4071,7 +4087,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public KBArticle fetchByR_M_Last(long resourcePrimKey, boolean main,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KBArticle> orderByComparator) {
 		int count = countByR_M(resourcePrimKey, main);
 
 		if (count == 0) {
@@ -4100,7 +4116,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public KBArticle[] findByR_M_PrevAndNext(long kbArticleId,
-		long resourcePrimKey, boolean main, OrderByComparator orderByComparator)
+		long resourcePrimKey, boolean main,
+		OrderByComparator<KBArticle> orderByComparator)
 		throws NoSuchArticleException {
 		KBArticle kbArticle = findByPrimaryKey(kbArticleId);
 
@@ -4131,7 +4148,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 	protected KBArticle getByR_M_PrevAndNext(Session session,
 		KBArticle kbArticle, long resourcePrimKey, boolean main,
-		OrderByComparator orderByComparator, boolean previous) {
+		OrderByComparator<KBArticle> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -4290,7 +4307,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public List<KBArticle> findByR_M(long[] resourcePrimKeies, boolean main,
-		int start, int end, OrderByComparator orderByComparator) {
+		int start, int end, OrderByComparator<KBArticle> orderByComparator) {
 		if (resourcePrimKeies == null) {
 			resourcePrimKeies = new long[0];
 		}
@@ -4638,7 +4655,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public List<KBArticle> findByR_S(long resourcePrimKey, int status,
-		int start, int end, OrderByComparator orderByComparator) {
+		int start, int end, OrderByComparator<KBArticle> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -4754,7 +4771,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public KBArticle findByR_S_First(long resourcePrimKey, int status,
-		OrderByComparator orderByComparator) throws NoSuchArticleException {
+		OrderByComparator<KBArticle> orderByComparator)
+		throws NoSuchArticleException {
 		KBArticle kbArticle = fetchByR_S_First(resourcePrimKey, status,
 				orderByComparator);
 
@@ -4787,7 +4805,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public KBArticle fetchByR_S_First(long resourcePrimKey, int status,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KBArticle> orderByComparator) {
 		List<KBArticle> list = findByR_S(resourcePrimKey, status, 0, 1,
 				orderByComparator);
 
@@ -4809,7 +4827,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public KBArticle findByR_S_Last(long resourcePrimKey, int status,
-		OrderByComparator orderByComparator) throws NoSuchArticleException {
+		OrderByComparator<KBArticle> orderByComparator)
+		throws NoSuchArticleException {
 		KBArticle kbArticle = fetchByR_S_Last(resourcePrimKey, status,
 				orderByComparator);
 
@@ -4842,7 +4861,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public KBArticle fetchByR_S_Last(long resourcePrimKey, int status,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KBArticle> orderByComparator) {
 		int count = countByR_S(resourcePrimKey, status);
 
 		if (count == 0) {
@@ -4871,7 +4890,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public KBArticle[] findByR_S_PrevAndNext(long kbArticleId,
-		long resourcePrimKey, int status, OrderByComparator orderByComparator)
+		long resourcePrimKey, int status,
+		OrderByComparator<KBArticle> orderByComparator)
 		throws NoSuchArticleException {
 		KBArticle kbArticle = findByPrimaryKey(kbArticleId);
 
@@ -4902,7 +4922,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 	protected KBArticle getByR_S_PrevAndNext(Session session,
 		KBArticle kbArticle, long resourcePrimKey, int status,
-		OrderByComparator orderByComparator, boolean previous) {
+		OrderByComparator<KBArticle> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -5061,7 +5081,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public List<KBArticle> findByR_S(long[] resourcePrimKeies, int status,
-		int start, int end, OrderByComparator orderByComparator) {
+		int start, int end, OrderByComparator<KBArticle> orderByComparator) {
 		if (resourcePrimKeies == null) {
 			resourcePrimKeies = new long[0];
 		}
@@ -5407,7 +5427,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public List<KBArticle> findByG_UT(long groupId, String urlTitle, int start,
-		int end, OrderByComparator orderByComparator) {
+		int end, OrderByComparator<KBArticle> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -5537,7 +5557,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public KBArticle findByG_UT_First(long groupId, String urlTitle,
-		OrderByComparator orderByComparator) throws NoSuchArticleException {
+		OrderByComparator<KBArticle> orderByComparator)
+		throws NoSuchArticleException {
 		KBArticle kbArticle = fetchByG_UT_First(groupId, urlTitle,
 				orderByComparator);
 
@@ -5570,7 +5591,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public KBArticle fetchByG_UT_First(long groupId, String urlTitle,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KBArticle> orderByComparator) {
 		List<KBArticle> list = findByG_UT(groupId, urlTitle, 0, 1,
 				orderByComparator);
 
@@ -5592,7 +5613,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public KBArticle findByG_UT_Last(long groupId, String urlTitle,
-		OrderByComparator orderByComparator) throws NoSuchArticleException {
+		OrderByComparator<KBArticle> orderByComparator)
+		throws NoSuchArticleException {
 		KBArticle kbArticle = fetchByG_UT_Last(groupId, urlTitle,
 				orderByComparator);
 
@@ -5625,7 +5647,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public KBArticle fetchByG_UT_Last(long groupId, String urlTitle,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KBArticle> orderByComparator) {
 		int count = countByG_UT(groupId, urlTitle);
 
 		if (count == 0) {
@@ -5654,7 +5676,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public KBArticle[] findByG_UT_PrevAndNext(long kbArticleId, long groupId,
-		String urlTitle, OrderByComparator orderByComparator)
+		String urlTitle, OrderByComparator<KBArticle> orderByComparator)
 		throws NoSuchArticleException {
 		KBArticle kbArticle = findByPrimaryKey(kbArticleId);
 
@@ -5685,7 +5707,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 	protected KBArticle getByG_UT_PrevAndNext(Session session,
 		KBArticle kbArticle, long groupId, String urlTitle,
-		OrderByComparator orderByComparator, boolean previous) {
+		OrderByComparator<KBArticle> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -5854,7 +5876,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public List<KBArticle> filterFindByG_UT(long groupId, String urlTitle,
-		int start, int end, OrderByComparator orderByComparator) {
+		int start, int end, OrderByComparator<KBArticle> orderByComparator) {
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
 			return findByG_UT(groupId, urlTitle, start, end, orderByComparator);
 		}
@@ -5963,7 +5985,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public KBArticle[] filterFindByG_UT_PrevAndNext(long kbArticleId,
-		long groupId, String urlTitle, OrderByComparator orderByComparator)
+		long groupId, String urlTitle,
+		OrderByComparator<KBArticle> orderByComparator)
 		throws NoSuchArticleException {
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
 			return findByG_UT_PrevAndNext(kbArticleId, groupId, urlTitle,
@@ -5999,7 +6022,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 	protected KBArticle filterGetByG_UT_PrevAndNext(Session session,
 		KBArticle kbArticle, long groupId, String urlTitle,
-		OrderByComparator orderByComparator, boolean previous) {
+		OrderByComparator<KBArticle> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -6380,7 +6403,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public List<KBArticle> findByG_L(long groupId, boolean latest, int start,
-		int end, OrderByComparator orderByComparator) {
+		int end, OrderByComparator<KBArticle> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -6496,7 +6519,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public KBArticle findByG_L_First(long groupId, boolean latest,
-		OrderByComparator orderByComparator) throws NoSuchArticleException {
+		OrderByComparator<KBArticle> orderByComparator)
+		throws NoSuchArticleException {
 		KBArticle kbArticle = fetchByG_L_First(groupId, latest,
 				orderByComparator);
 
@@ -6529,7 +6553,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public KBArticle fetchByG_L_First(long groupId, boolean latest,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KBArticle> orderByComparator) {
 		List<KBArticle> list = findByG_L(groupId, latest, 0, 1,
 				orderByComparator);
 
@@ -6551,7 +6575,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public KBArticle findByG_L_Last(long groupId, boolean latest,
-		OrderByComparator orderByComparator) throws NoSuchArticleException {
+		OrderByComparator<KBArticle> orderByComparator)
+		throws NoSuchArticleException {
 		KBArticle kbArticle = fetchByG_L_Last(groupId, latest, orderByComparator);
 
 		if (kbArticle != null) {
@@ -6583,7 +6608,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public KBArticle fetchByG_L_Last(long groupId, boolean latest,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KBArticle> orderByComparator) {
 		int count = countByG_L(groupId, latest);
 
 		if (count == 0) {
@@ -6612,7 +6637,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public KBArticle[] findByG_L_PrevAndNext(long kbArticleId, long groupId,
-		boolean latest, OrderByComparator orderByComparator)
+		boolean latest, OrderByComparator<KBArticle> orderByComparator)
 		throws NoSuchArticleException {
 		KBArticle kbArticle = findByPrimaryKey(kbArticleId);
 
@@ -6643,7 +6668,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 	protected KBArticle getByG_L_PrevAndNext(Session session,
 		KBArticle kbArticle, long groupId, boolean latest,
-		OrderByComparator orderByComparator, boolean previous) {
+		OrderByComparator<KBArticle> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -6798,7 +6823,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public List<KBArticle> filterFindByG_L(long groupId, boolean latest,
-		int start, int end, OrderByComparator orderByComparator) {
+		int start, int end, OrderByComparator<KBArticle> orderByComparator) {
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
 			return findByG_L(groupId, latest, start, end, orderByComparator);
 		}
@@ -6893,7 +6918,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public KBArticle[] filterFindByG_L_PrevAndNext(long kbArticleId,
-		long groupId, boolean latest, OrderByComparator orderByComparator)
+		long groupId, boolean latest,
+		OrderByComparator<KBArticle> orderByComparator)
 		throws NoSuchArticleException {
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
 			return findByG_L_PrevAndNext(kbArticleId, groupId, latest,
@@ -6929,7 +6955,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 	protected KBArticle filterGetByG_L_PrevAndNext(Session session,
 		KBArticle kbArticle, long groupId, boolean latest,
-		OrderByComparator orderByComparator, boolean previous) {
+		OrderByComparator<KBArticle> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -7266,7 +7292,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public List<KBArticle> findByG_M(long groupId, boolean main, int start,
-		int end, OrderByComparator orderByComparator) {
+		int end, OrderByComparator<KBArticle> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -7382,7 +7408,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public KBArticle findByG_M_First(long groupId, boolean main,
-		OrderByComparator orderByComparator) throws NoSuchArticleException {
+		OrderByComparator<KBArticle> orderByComparator)
+		throws NoSuchArticleException {
 		KBArticle kbArticle = fetchByG_M_First(groupId, main, orderByComparator);
 
 		if (kbArticle != null) {
@@ -7414,7 +7441,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public KBArticle fetchByG_M_First(long groupId, boolean main,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KBArticle> orderByComparator) {
 		List<KBArticle> list = findByG_M(groupId, main, 0, 1, orderByComparator);
 
 		if (!list.isEmpty()) {
@@ -7435,7 +7462,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public KBArticle findByG_M_Last(long groupId, boolean main,
-		OrderByComparator orderByComparator) throws NoSuchArticleException {
+		OrderByComparator<KBArticle> orderByComparator)
+		throws NoSuchArticleException {
 		KBArticle kbArticle = fetchByG_M_Last(groupId, main, orderByComparator);
 
 		if (kbArticle != null) {
@@ -7467,7 +7495,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public KBArticle fetchByG_M_Last(long groupId, boolean main,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KBArticle> orderByComparator) {
 		int count = countByG_M(groupId, main);
 
 		if (count == 0) {
@@ -7496,7 +7524,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public KBArticle[] findByG_M_PrevAndNext(long kbArticleId, long groupId,
-		boolean main, OrderByComparator orderByComparator)
+		boolean main, OrderByComparator<KBArticle> orderByComparator)
 		throws NoSuchArticleException {
 		KBArticle kbArticle = findByPrimaryKey(kbArticleId);
 
@@ -7527,7 +7555,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 	protected KBArticle getByG_M_PrevAndNext(Session session,
 		KBArticle kbArticle, long groupId, boolean main,
-		OrderByComparator orderByComparator, boolean previous) {
+		OrderByComparator<KBArticle> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -7682,7 +7710,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public List<KBArticle> filterFindByG_M(long groupId, boolean main,
-		int start, int end, OrderByComparator orderByComparator) {
+		int start, int end, OrderByComparator<KBArticle> orderByComparator) {
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
 			return findByG_M(groupId, main, start, end, orderByComparator);
 		}
@@ -7777,7 +7805,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public KBArticle[] filterFindByG_M_PrevAndNext(long kbArticleId,
-		long groupId, boolean main, OrderByComparator orderByComparator)
+		long groupId, boolean main,
+		OrderByComparator<KBArticle> orderByComparator)
 		throws NoSuchArticleException {
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
 			return findByG_M_PrevAndNext(kbArticleId, groupId, main,
@@ -7813,7 +7842,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 	protected KBArticle filterGetByG_M_PrevAndNext(Session session,
 		KBArticle kbArticle, long groupId, boolean main,
-		OrderByComparator orderByComparator, boolean previous) {
+		OrderByComparator<KBArticle> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -8150,7 +8179,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public List<KBArticle> findByG_S(long groupId, int status, int start,
-		int end, OrderByComparator orderByComparator) {
+		int end, OrderByComparator<KBArticle> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -8266,7 +8295,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public KBArticle findByG_S_First(long groupId, int status,
-		OrderByComparator orderByComparator) throws NoSuchArticleException {
+		OrderByComparator<KBArticle> orderByComparator)
+		throws NoSuchArticleException {
 		KBArticle kbArticle = fetchByG_S_First(groupId, status,
 				orderByComparator);
 
@@ -8299,7 +8329,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public KBArticle fetchByG_S_First(long groupId, int status,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KBArticle> orderByComparator) {
 		List<KBArticle> list = findByG_S(groupId, status, 0, 1,
 				orderByComparator);
 
@@ -8321,7 +8351,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public KBArticle findByG_S_Last(long groupId, int status,
-		OrderByComparator orderByComparator) throws NoSuchArticleException {
+		OrderByComparator<KBArticle> orderByComparator)
+		throws NoSuchArticleException {
 		KBArticle kbArticle = fetchByG_S_Last(groupId, status, orderByComparator);
 
 		if (kbArticle != null) {
@@ -8353,7 +8384,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public KBArticle fetchByG_S_Last(long groupId, int status,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KBArticle> orderByComparator) {
 		int count = countByG_S(groupId, status);
 
 		if (count == 0) {
@@ -8382,7 +8413,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public KBArticle[] findByG_S_PrevAndNext(long kbArticleId, long groupId,
-		int status, OrderByComparator orderByComparator)
+		int status, OrderByComparator<KBArticle> orderByComparator)
 		throws NoSuchArticleException {
 		KBArticle kbArticle = findByPrimaryKey(kbArticleId);
 
@@ -8413,7 +8444,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 	protected KBArticle getByG_S_PrevAndNext(Session session,
 		KBArticle kbArticle, long groupId, int status,
-		OrderByComparator orderByComparator, boolean previous) {
+		OrderByComparator<KBArticle> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -8568,7 +8599,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public List<KBArticle> filterFindByG_S(long groupId, int status, int start,
-		int end, OrderByComparator orderByComparator) {
+		int end, OrderByComparator<KBArticle> orderByComparator) {
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
 			return findByG_S(groupId, status, start, end, orderByComparator);
 		}
@@ -8663,7 +8694,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public KBArticle[] filterFindByG_S_PrevAndNext(long kbArticleId,
-		long groupId, int status, OrderByComparator orderByComparator)
+		long groupId, int status, OrderByComparator<KBArticle> orderByComparator)
 		throws NoSuchArticleException {
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
 			return findByG_S_PrevAndNext(kbArticleId, groupId, status,
@@ -8699,7 +8730,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 	protected KBArticle filterGetByG_S_PrevAndNext(Session session,
 		KBArticle kbArticle, long groupId, int status,
-		OrderByComparator orderByComparator, boolean previous) {
+		OrderByComparator<KBArticle> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -9036,7 +9067,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public List<KBArticle> findByC_L(long companyId, boolean latest, int start,
-		int end, OrderByComparator orderByComparator) {
+		int end, OrderByComparator<KBArticle> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -9152,7 +9183,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public KBArticle findByC_L_First(long companyId, boolean latest,
-		OrderByComparator orderByComparator) throws NoSuchArticleException {
+		OrderByComparator<KBArticle> orderByComparator)
+		throws NoSuchArticleException {
 		KBArticle kbArticle = fetchByC_L_First(companyId, latest,
 				orderByComparator);
 
@@ -9185,7 +9217,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public KBArticle fetchByC_L_First(long companyId, boolean latest,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KBArticle> orderByComparator) {
 		List<KBArticle> list = findByC_L(companyId, latest, 0, 1,
 				orderByComparator);
 
@@ -9207,7 +9239,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public KBArticle findByC_L_Last(long companyId, boolean latest,
-		OrderByComparator orderByComparator) throws NoSuchArticleException {
+		OrderByComparator<KBArticle> orderByComparator)
+		throws NoSuchArticleException {
 		KBArticle kbArticle = fetchByC_L_Last(companyId, latest,
 				orderByComparator);
 
@@ -9240,7 +9273,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public KBArticle fetchByC_L_Last(long companyId, boolean latest,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KBArticle> orderByComparator) {
 		int count = countByC_L(companyId, latest);
 
 		if (count == 0) {
@@ -9269,7 +9302,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public KBArticle[] findByC_L_PrevAndNext(long kbArticleId, long companyId,
-		boolean latest, OrderByComparator orderByComparator)
+		boolean latest, OrderByComparator<KBArticle> orderByComparator)
 		throws NoSuchArticleException {
 		KBArticle kbArticle = findByPrimaryKey(kbArticleId);
 
@@ -9300,7 +9333,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 	protected KBArticle getByC_L_PrevAndNext(Session session,
 		KBArticle kbArticle, long companyId, boolean latest,
-		OrderByComparator orderByComparator, boolean previous) {
+		OrderByComparator<KBArticle> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -9549,7 +9582,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public List<KBArticle> findByC_M(long companyId, boolean main, int start,
-		int end, OrderByComparator orderByComparator) {
+		int end, OrderByComparator<KBArticle> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -9665,7 +9698,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public KBArticle findByC_M_First(long companyId, boolean main,
-		OrderByComparator orderByComparator) throws NoSuchArticleException {
+		OrderByComparator<KBArticle> orderByComparator)
+		throws NoSuchArticleException {
 		KBArticle kbArticle = fetchByC_M_First(companyId, main,
 				orderByComparator);
 
@@ -9698,7 +9732,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public KBArticle fetchByC_M_First(long companyId, boolean main,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KBArticle> orderByComparator) {
 		List<KBArticle> list = findByC_M(companyId, main, 0, 1,
 				orderByComparator);
 
@@ -9720,7 +9754,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public KBArticle findByC_M_Last(long companyId, boolean main,
-		OrderByComparator orderByComparator) throws NoSuchArticleException {
+		OrderByComparator<KBArticle> orderByComparator)
+		throws NoSuchArticleException {
 		KBArticle kbArticle = fetchByC_M_Last(companyId, main, orderByComparator);
 
 		if (kbArticle != null) {
@@ -9752,7 +9787,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public KBArticle fetchByC_M_Last(long companyId, boolean main,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KBArticle> orderByComparator) {
 		int count = countByC_M(companyId, main);
 
 		if (count == 0) {
@@ -9781,7 +9816,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public KBArticle[] findByC_M_PrevAndNext(long kbArticleId, long companyId,
-		boolean main, OrderByComparator orderByComparator)
+		boolean main, OrderByComparator<KBArticle> orderByComparator)
 		throws NoSuchArticleException {
 		KBArticle kbArticle = findByPrimaryKey(kbArticleId);
 
@@ -9812,7 +9847,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 	protected KBArticle getByC_M_PrevAndNext(Session session,
 		KBArticle kbArticle, long companyId, boolean main,
-		OrderByComparator orderByComparator, boolean previous) {
+		OrderByComparator<KBArticle> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -10061,7 +10096,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public List<KBArticle> findByC_S(long companyId, int status, int start,
-		int end, OrderByComparator orderByComparator) {
+		int end, OrderByComparator<KBArticle> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -10177,7 +10212,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public KBArticle findByC_S_First(long companyId, int status,
-		OrderByComparator orderByComparator) throws NoSuchArticleException {
+		OrderByComparator<KBArticle> orderByComparator)
+		throws NoSuchArticleException {
 		KBArticle kbArticle = fetchByC_S_First(companyId, status,
 				orderByComparator);
 
@@ -10210,7 +10246,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public KBArticle fetchByC_S_First(long companyId, int status,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KBArticle> orderByComparator) {
 		List<KBArticle> list = findByC_S(companyId, status, 0, 1,
 				orderByComparator);
 
@@ -10232,7 +10268,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public KBArticle findByC_S_Last(long companyId, int status,
-		OrderByComparator orderByComparator) throws NoSuchArticleException {
+		OrderByComparator<KBArticle> orderByComparator)
+		throws NoSuchArticleException {
 		KBArticle kbArticle = fetchByC_S_Last(companyId, status,
 				orderByComparator);
 
@@ -10265,7 +10302,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public KBArticle fetchByC_S_Last(long companyId, int status,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KBArticle> orderByComparator) {
 		int count = countByC_S(companyId, status);
 
 		if (count == 0) {
@@ -10294,7 +10331,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public KBArticle[] findByC_S_PrevAndNext(long kbArticleId, long companyId,
-		int status, OrderByComparator orderByComparator)
+		int status, OrderByComparator<KBArticle> orderByComparator)
 		throws NoSuchArticleException {
 		KBArticle kbArticle = findByPrimaryKey(kbArticleId);
 
@@ -10325,7 +10362,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 	protected KBArticle getByC_S_PrevAndNext(Session session,
 		KBArticle kbArticle, long companyId, int status,
-		OrderByComparator orderByComparator, boolean previous) {
+		OrderByComparator<KBArticle> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -10578,7 +10615,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public List<KBArticle> findByP_L(long parentResourcePrimKey,
-		boolean latest, int start, int end, OrderByComparator orderByComparator) {
+		boolean latest, int start, int end,
+		OrderByComparator<KBArticle> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -10694,7 +10732,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public KBArticle findByP_L_First(long parentResourcePrimKey,
-		boolean latest, OrderByComparator orderByComparator)
+		boolean latest, OrderByComparator<KBArticle> orderByComparator)
 		throws NoSuchArticleException {
 		KBArticle kbArticle = fetchByP_L_First(parentResourcePrimKey, latest,
 				orderByComparator);
@@ -10728,7 +10766,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public KBArticle fetchByP_L_First(long parentResourcePrimKey,
-		boolean latest, OrderByComparator orderByComparator) {
+		boolean latest, OrderByComparator<KBArticle> orderByComparator) {
 		List<KBArticle> list = findByP_L(parentResourcePrimKey, latest, 0, 1,
 				orderByComparator);
 
@@ -10750,7 +10788,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public KBArticle findByP_L_Last(long parentResourcePrimKey, boolean latest,
-		OrderByComparator orderByComparator) throws NoSuchArticleException {
+		OrderByComparator<KBArticle> orderByComparator)
+		throws NoSuchArticleException {
 		KBArticle kbArticle = fetchByP_L_Last(parentResourcePrimKey, latest,
 				orderByComparator);
 
@@ -10783,7 +10822,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public KBArticle fetchByP_L_Last(long parentResourcePrimKey,
-		boolean latest, OrderByComparator orderByComparator) {
+		boolean latest, OrderByComparator<KBArticle> orderByComparator) {
 		int count = countByP_L(parentResourcePrimKey, latest);
 
 		if (count == 0) {
@@ -10813,7 +10852,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	@Override
 	public KBArticle[] findByP_L_PrevAndNext(long kbArticleId,
 		long parentResourcePrimKey, boolean latest,
-		OrderByComparator orderByComparator) throws NoSuchArticleException {
+		OrderByComparator<KBArticle> orderByComparator)
+		throws NoSuchArticleException {
 		KBArticle kbArticle = findByPrimaryKey(kbArticleId);
 
 		Session session = null;
@@ -10843,7 +10883,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 	protected KBArticle getByP_L_PrevAndNext(Session session,
 		KBArticle kbArticle, long parentResourcePrimKey, boolean latest,
-		OrderByComparator orderByComparator, boolean previous) {
+		OrderByComparator<KBArticle> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -11003,7 +11043,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public List<KBArticle> findByP_L(long[] parentResourcePrimKeies,
-		boolean latest, int start, int end, OrderByComparator orderByComparator) {
+		boolean latest, int start, int end,
+		OrderByComparator<KBArticle> orderByComparator) {
 		if (parentResourcePrimKeies == null) {
 			parentResourcePrimKeies = new long[0];
 		}
@@ -11353,7 +11394,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public List<KBArticle> findByP_M(long parentResourcePrimKey, boolean main,
-		int start, int end, OrderByComparator orderByComparator) {
+		int start, int end, OrderByComparator<KBArticle> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -11469,7 +11510,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public KBArticle findByP_M_First(long parentResourcePrimKey, boolean main,
-		OrderByComparator orderByComparator) throws NoSuchArticleException {
+		OrderByComparator<KBArticle> orderByComparator)
+		throws NoSuchArticleException {
 		KBArticle kbArticle = fetchByP_M_First(parentResourcePrimKey, main,
 				orderByComparator);
 
@@ -11502,7 +11544,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public KBArticle fetchByP_M_First(long parentResourcePrimKey, boolean main,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KBArticle> orderByComparator) {
 		List<KBArticle> list = findByP_M(parentResourcePrimKey, main, 0, 1,
 				orderByComparator);
 
@@ -11524,7 +11566,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public KBArticle findByP_M_Last(long parentResourcePrimKey, boolean main,
-		OrderByComparator orderByComparator) throws NoSuchArticleException {
+		OrderByComparator<KBArticle> orderByComparator)
+		throws NoSuchArticleException {
 		KBArticle kbArticle = fetchByP_M_Last(parentResourcePrimKey, main,
 				orderByComparator);
 
@@ -11557,7 +11600,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public KBArticle fetchByP_M_Last(long parentResourcePrimKey, boolean main,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KBArticle> orderByComparator) {
 		int count = countByP_M(parentResourcePrimKey, main);
 
 		if (count == 0) {
@@ -11587,7 +11630,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	@Override
 	public KBArticle[] findByP_M_PrevAndNext(long kbArticleId,
 		long parentResourcePrimKey, boolean main,
-		OrderByComparator orderByComparator) throws NoSuchArticleException {
+		OrderByComparator<KBArticle> orderByComparator)
+		throws NoSuchArticleException {
 		KBArticle kbArticle = findByPrimaryKey(kbArticleId);
 
 		Session session = null;
@@ -11617,7 +11661,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 	protected KBArticle getByP_M_PrevAndNext(Session session,
 		KBArticle kbArticle, long parentResourcePrimKey, boolean main,
-		OrderByComparator orderByComparator, boolean previous) {
+		OrderByComparator<KBArticle> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -11777,7 +11821,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public List<KBArticle> findByP_M(long[] parentResourcePrimKeies,
-		boolean main, int start, int end, OrderByComparator orderByComparator) {
+		boolean main, int start, int end,
+		OrderByComparator<KBArticle> orderByComparator) {
 		if (parentResourcePrimKeies == null) {
 			parentResourcePrimKeies = new long[0];
 		}
@@ -12127,7 +12172,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public List<KBArticle> findByP_S(long parentResourcePrimKey, int status,
-		int start, int end, OrderByComparator orderByComparator) {
+		int start, int end, OrderByComparator<KBArticle> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -12243,7 +12288,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public KBArticle findByP_S_First(long parentResourcePrimKey, int status,
-		OrderByComparator orderByComparator) throws NoSuchArticleException {
+		OrderByComparator<KBArticle> orderByComparator)
+		throws NoSuchArticleException {
 		KBArticle kbArticle = fetchByP_S_First(parentResourcePrimKey, status,
 				orderByComparator);
 
@@ -12276,7 +12322,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public KBArticle fetchByP_S_First(long parentResourcePrimKey, int status,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KBArticle> orderByComparator) {
 		List<KBArticle> list = findByP_S(parentResourcePrimKey, status, 0, 1,
 				orderByComparator);
 
@@ -12298,7 +12344,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public KBArticle findByP_S_Last(long parentResourcePrimKey, int status,
-		OrderByComparator orderByComparator) throws NoSuchArticleException {
+		OrderByComparator<KBArticle> orderByComparator)
+		throws NoSuchArticleException {
 		KBArticle kbArticle = fetchByP_S_Last(parentResourcePrimKey, status,
 				orderByComparator);
 
@@ -12331,7 +12378,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public KBArticle fetchByP_S_Last(long parentResourcePrimKey, int status,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KBArticle> orderByComparator) {
 		int count = countByP_S(parentResourcePrimKey, status);
 
 		if (count == 0) {
@@ -12361,7 +12408,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	@Override
 	public KBArticle[] findByP_S_PrevAndNext(long kbArticleId,
 		long parentResourcePrimKey, int status,
-		OrderByComparator orderByComparator) throws NoSuchArticleException {
+		OrderByComparator<KBArticle> orderByComparator)
+		throws NoSuchArticleException {
 		KBArticle kbArticle = findByPrimaryKey(kbArticleId);
 
 		Session session = null;
@@ -12391,7 +12439,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 	protected KBArticle getByP_S_PrevAndNext(Session session,
 		KBArticle kbArticle, long parentResourcePrimKey, int status,
-		OrderByComparator orderByComparator, boolean previous) {
+		OrderByComparator<KBArticle> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -12550,7 +12598,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public List<KBArticle> findByP_S(long[] parentResourcePrimKeies,
-		int status, int start, int end, OrderByComparator orderByComparator) {
+		int status, int start, int end,
+		OrderByComparator<KBArticle> orderByComparator) {
 		if (parentResourcePrimKeies == null) {
 			parentResourcePrimKeies = new long[0];
 		}
@@ -12915,7 +12964,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public List<KBArticle> findByR_G_L(long resourcePrimKey, long groupId,
-		boolean latest, int start, int end, OrderByComparator orderByComparator) {
+		boolean latest, int start, int end,
+		OrderByComparator<KBArticle> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -13037,7 +13087,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public KBArticle findByR_G_L_First(long resourcePrimKey, long groupId,
-		boolean latest, OrderByComparator orderByComparator)
+		boolean latest, OrderByComparator<KBArticle> orderByComparator)
 		throws NoSuchArticleException {
 		KBArticle kbArticle = fetchByR_G_L_First(resourcePrimKey, groupId,
 				latest, orderByComparator);
@@ -13075,7 +13125,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public KBArticle fetchByR_G_L_First(long resourcePrimKey, long groupId,
-		boolean latest, OrderByComparator orderByComparator) {
+		boolean latest, OrderByComparator<KBArticle> orderByComparator) {
 		List<KBArticle> list = findByR_G_L(resourcePrimKey, groupId, latest, 0,
 				1, orderByComparator);
 
@@ -13098,7 +13148,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public KBArticle findByR_G_L_Last(long resourcePrimKey, long groupId,
-		boolean latest, OrderByComparator orderByComparator)
+		boolean latest, OrderByComparator<KBArticle> orderByComparator)
 		throws NoSuchArticleException {
 		KBArticle kbArticle = fetchByR_G_L_Last(resourcePrimKey, groupId,
 				latest, orderByComparator);
@@ -13136,7 +13186,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public KBArticle fetchByR_G_L_Last(long resourcePrimKey, long groupId,
-		boolean latest, OrderByComparator orderByComparator) {
+		boolean latest, OrderByComparator<KBArticle> orderByComparator) {
 		int count = countByR_G_L(resourcePrimKey, groupId, latest);
 
 		if (count == 0) {
@@ -13167,7 +13217,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	@Override
 	public KBArticle[] findByR_G_L_PrevAndNext(long kbArticleId,
 		long resourcePrimKey, long groupId, boolean latest,
-		OrderByComparator orderByComparator) throws NoSuchArticleException {
+		OrderByComparator<KBArticle> orderByComparator)
+		throws NoSuchArticleException {
 		KBArticle kbArticle = findByPrimaryKey(kbArticleId);
 
 		Session session = null;
@@ -13197,7 +13248,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 	protected KBArticle getByR_G_L_PrevAndNext(Session session,
 		KBArticle kbArticle, long resourcePrimKey, long groupId,
-		boolean latest, OrderByComparator orderByComparator, boolean previous) {
+		boolean latest, OrderByComparator<KBArticle> orderByComparator,
+		boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -13362,7 +13414,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	@Override
 	public List<KBArticle> filterFindByR_G_L(long resourcePrimKey,
 		long groupId, boolean latest, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KBArticle> orderByComparator) {
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
 			return findByR_G_L(resourcePrimKey, groupId, latest, start, end,
 				orderByComparator);
@@ -13464,7 +13516,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	@Override
 	public KBArticle[] filterFindByR_G_L_PrevAndNext(long kbArticleId,
 		long resourcePrimKey, long groupId, boolean latest,
-		OrderByComparator orderByComparator) throws NoSuchArticleException {
+		OrderByComparator<KBArticle> orderByComparator)
+		throws NoSuchArticleException {
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
 			return findByR_G_L_PrevAndNext(kbArticleId, resourcePrimKey,
 				groupId, latest, orderByComparator);
@@ -13499,7 +13552,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 	protected KBArticle filterGetByR_G_L_PrevAndNext(Session session,
 		KBArticle kbArticle, long resourcePrimKey, long groupId,
-		boolean latest, OrderByComparator orderByComparator, boolean previous) {
+		boolean latest, OrderByComparator<KBArticle> orderByComparator,
+		boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -13699,7 +13753,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	@Override
 	public List<KBArticle> filterFindByR_G_L(long[] resourcePrimKeies,
 		long groupId, boolean latest, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KBArticle> orderByComparator) {
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
 			return findByR_G_L(resourcePrimKeies, groupId, latest, start, end,
 				orderByComparator);
@@ -13855,7 +13909,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public List<KBArticle> findByR_G_L(long[] resourcePrimKeies, long groupId,
-		boolean latest, int start, int end, OrderByComparator orderByComparator) {
+		boolean latest, int start, int end,
+		OrderByComparator<KBArticle> orderByComparator) {
 		if (resourcePrimKeies == null) {
 			resourcePrimKeies = new long[0];
 		}
@@ -14376,7 +14431,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public List<KBArticle> findByR_G_M(long resourcePrimKey, long groupId,
-		boolean main, int start, int end, OrderByComparator orderByComparator) {
+		boolean main, int start, int end,
+		OrderByComparator<KBArticle> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -14498,7 +14554,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public KBArticle findByR_G_M_First(long resourcePrimKey, long groupId,
-		boolean main, OrderByComparator orderByComparator)
+		boolean main, OrderByComparator<KBArticle> orderByComparator)
 		throws NoSuchArticleException {
 		KBArticle kbArticle = fetchByR_G_M_First(resourcePrimKey, groupId,
 				main, orderByComparator);
@@ -14536,7 +14592,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public KBArticle fetchByR_G_M_First(long resourcePrimKey, long groupId,
-		boolean main, OrderByComparator orderByComparator) {
+		boolean main, OrderByComparator<KBArticle> orderByComparator) {
 		List<KBArticle> list = findByR_G_M(resourcePrimKey, groupId, main, 0,
 				1, orderByComparator);
 
@@ -14559,7 +14615,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public KBArticle findByR_G_M_Last(long resourcePrimKey, long groupId,
-		boolean main, OrderByComparator orderByComparator)
+		boolean main, OrderByComparator<KBArticle> orderByComparator)
 		throws NoSuchArticleException {
 		KBArticle kbArticle = fetchByR_G_M_Last(resourcePrimKey, groupId, main,
 				orderByComparator);
@@ -14597,7 +14653,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public KBArticle fetchByR_G_M_Last(long resourcePrimKey, long groupId,
-		boolean main, OrderByComparator orderByComparator) {
+		boolean main, OrderByComparator<KBArticle> orderByComparator) {
 		int count = countByR_G_M(resourcePrimKey, groupId, main);
 
 		if (count == 0) {
@@ -14628,7 +14684,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	@Override
 	public KBArticle[] findByR_G_M_PrevAndNext(long kbArticleId,
 		long resourcePrimKey, long groupId, boolean main,
-		OrderByComparator orderByComparator) throws NoSuchArticleException {
+		OrderByComparator<KBArticle> orderByComparator)
+		throws NoSuchArticleException {
 		KBArticle kbArticle = findByPrimaryKey(kbArticleId);
 
 		Session session = null;
@@ -14658,7 +14715,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 	protected KBArticle getByR_G_M_PrevAndNext(Session session,
 		KBArticle kbArticle, long resourcePrimKey, long groupId, boolean main,
-		OrderByComparator orderByComparator, boolean previous) {
+		OrderByComparator<KBArticle> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -14823,7 +14880,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	@Override
 	public List<KBArticle> filterFindByR_G_M(long resourcePrimKey,
 		long groupId, boolean main, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KBArticle> orderByComparator) {
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
 			return findByR_G_M(resourcePrimKey, groupId, main, start, end,
 				orderByComparator);
@@ -14925,7 +14982,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	@Override
 	public KBArticle[] filterFindByR_G_M_PrevAndNext(long kbArticleId,
 		long resourcePrimKey, long groupId, boolean main,
-		OrderByComparator orderByComparator) throws NoSuchArticleException {
+		OrderByComparator<KBArticle> orderByComparator)
+		throws NoSuchArticleException {
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
 			return findByR_G_M_PrevAndNext(kbArticleId, resourcePrimKey,
 				groupId, main, orderByComparator);
@@ -14960,7 +15018,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 	protected KBArticle filterGetByR_G_M_PrevAndNext(Session session,
 		KBArticle kbArticle, long resourcePrimKey, long groupId, boolean main,
-		OrderByComparator orderByComparator, boolean previous) {
+		OrderByComparator<KBArticle> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -15160,7 +15218,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	@Override
 	public List<KBArticle> filterFindByR_G_M(long[] resourcePrimKeies,
 		long groupId, boolean main, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KBArticle> orderByComparator) {
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
 			return findByR_G_M(resourcePrimKeies, groupId, main, start, end,
 				orderByComparator);
@@ -15316,7 +15374,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public List<KBArticle> findByR_G_M(long[] resourcePrimKeies, long groupId,
-		boolean main, int start, int end, OrderByComparator orderByComparator) {
+		boolean main, int start, int end,
+		OrderByComparator<KBArticle> orderByComparator) {
 		if (resourcePrimKeies == null) {
 			resourcePrimKeies = new long[0];
 		}
@@ -15836,7 +15895,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public List<KBArticle> findByR_G_S(long resourcePrimKey, long groupId,
-		int status, int start, int end, OrderByComparator orderByComparator) {
+		int status, int start, int end,
+		OrderByComparator<KBArticle> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -15958,7 +16018,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public KBArticle findByR_G_S_First(long resourcePrimKey, long groupId,
-		int status, OrderByComparator orderByComparator)
+		int status, OrderByComparator<KBArticle> orderByComparator)
 		throws NoSuchArticleException {
 		KBArticle kbArticle = fetchByR_G_S_First(resourcePrimKey, groupId,
 				status, orderByComparator);
@@ -15996,7 +16056,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public KBArticle fetchByR_G_S_First(long resourcePrimKey, long groupId,
-		int status, OrderByComparator orderByComparator) {
+		int status, OrderByComparator<KBArticle> orderByComparator) {
 		List<KBArticle> list = findByR_G_S(resourcePrimKey, groupId, status, 0,
 				1, orderByComparator);
 
@@ -16019,7 +16079,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public KBArticle findByR_G_S_Last(long resourcePrimKey, long groupId,
-		int status, OrderByComparator orderByComparator)
+		int status, OrderByComparator<KBArticle> orderByComparator)
 		throws NoSuchArticleException {
 		KBArticle kbArticle = fetchByR_G_S_Last(resourcePrimKey, groupId,
 				status, orderByComparator);
@@ -16057,7 +16117,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public KBArticle fetchByR_G_S_Last(long resourcePrimKey, long groupId,
-		int status, OrderByComparator orderByComparator) {
+		int status, OrderByComparator<KBArticle> orderByComparator) {
 		int count = countByR_G_S(resourcePrimKey, groupId, status);
 
 		if (count == 0) {
@@ -16088,7 +16148,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	@Override
 	public KBArticle[] findByR_G_S_PrevAndNext(long kbArticleId,
 		long resourcePrimKey, long groupId, int status,
-		OrderByComparator orderByComparator) throws NoSuchArticleException {
+		OrderByComparator<KBArticle> orderByComparator)
+		throws NoSuchArticleException {
 		KBArticle kbArticle = findByPrimaryKey(kbArticleId);
 
 		Session session = null;
@@ -16118,7 +16179,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 	protected KBArticle getByR_G_S_PrevAndNext(Session session,
 		KBArticle kbArticle, long resourcePrimKey, long groupId, int status,
-		OrderByComparator orderByComparator, boolean previous) {
+		OrderByComparator<KBArticle> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -16283,7 +16344,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	@Override
 	public List<KBArticle> filterFindByR_G_S(long resourcePrimKey,
 		long groupId, int status, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KBArticle> orderByComparator) {
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
 			return findByR_G_S(resourcePrimKey, groupId, status, start, end,
 				orderByComparator);
@@ -16385,7 +16446,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	@Override
 	public KBArticle[] filterFindByR_G_S_PrevAndNext(long kbArticleId,
 		long resourcePrimKey, long groupId, int status,
-		OrderByComparator orderByComparator) throws NoSuchArticleException {
+		OrderByComparator<KBArticle> orderByComparator)
+		throws NoSuchArticleException {
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
 			return findByR_G_S_PrevAndNext(kbArticleId, resourcePrimKey,
 				groupId, status, orderByComparator);
@@ -16420,7 +16482,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 	protected KBArticle filterGetByR_G_S_PrevAndNext(Session session,
 		KBArticle kbArticle, long resourcePrimKey, long groupId, int status,
-		OrderByComparator orderByComparator, boolean previous) {
+		OrderByComparator<KBArticle> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -16620,7 +16682,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	@Override
 	public List<KBArticle> filterFindByR_G_S(long[] resourcePrimKeies,
 		long groupId, int status, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KBArticle> orderByComparator) {
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
 			return findByR_G_S(resourcePrimKeies, groupId, status, start, end,
 				orderByComparator);
@@ -16776,7 +16838,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public List<KBArticle> findByR_G_S(long[] resourcePrimKeies, long groupId,
-		int status, int start, int end, OrderByComparator orderByComparator) {
+		int status, int start, int end,
+		OrderByComparator<KBArticle> orderByComparator) {
 		if (resourcePrimKeies == null) {
 			resourcePrimKeies = new long[0];
 		}
@@ -17297,7 +17360,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	@Override
 	public List<KBArticle> findByG_P_L(long groupId,
 		long parentResourcePrimKey, boolean latest, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KBArticle> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -17420,7 +17483,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	@Override
 	public KBArticle findByG_P_L_First(long groupId,
 		long parentResourcePrimKey, boolean latest,
-		OrderByComparator orderByComparator) throws NoSuchArticleException {
+		OrderByComparator<KBArticle> orderByComparator)
+		throws NoSuchArticleException {
 		KBArticle kbArticle = fetchByG_P_L_First(groupId,
 				parentResourcePrimKey, latest, orderByComparator);
 
@@ -17458,7 +17522,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	@Override
 	public KBArticle fetchByG_P_L_First(long groupId,
 		long parentResourcePrimKey, boolean latest,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KBArticle> orderByComparator) {
 		List<KBArticle> list = findByG_P_L(groupId, parentResourcePrimKey,
 				latest, 0, 1, orderByComparator);
 
@@ -17481,7 +17545,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public KBArticle findByG_P_L_Last(long groupId, long parentResourcePrimKey,
-		boolean latest, OrderByComparator orderByComparator)
+		boolean latest, OrderByComparator<KBArticle> orderByComparator)
 		throws NoSuchArticleException {
 		KBArticle kbArticle = fetchByG_P_L_Last(groupId, parentResourcePrimKey,
 				latest, orderByComparator);
@@ -17520,7 +17584,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	@Override
 	public KBArticle fetchByG_P_L_Last(long groupId,
 		long parentResourcePrimKey, boolean latest,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KBArticle> orderByComparator) {
 		int count = countByG_P_L(groupId, parentResourcePrimKey, latest);
 
 		if (count == 0) {
@@ -17551,7 +17615,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	@Override
 	public KBArticle[] findByG_P_L_PrevAndNext(long kbArticleId, long groupId,
 		long parentResourcePrimKey, boolean latest,
-		OrderByComparator orderByComparator) throws NoSuchArticleException {
+		OrderByComparator<KBArticle> orderByComparator)
+		throws NoSuchArticleException {
 		KBArticle kbArticle = findByPrimaryKey(kbArticleId);
 
 		Session session = null;
@@ -17581,7 +17646,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 	protected KBArticle getByG_P_L_PrevAndNext(Session session,
 		KBArticle kbArticle, long groupId, long parentResourcePrimKey,
-		boolean latest, OrderByComparator orderByComparator, boolean previous) {
+		boolean latest, OrderByComparator<KBArticle> orderByComparator,
+		boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -17746,7 +17812,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	@Override
 	public List<KBArticle> filterFindByG_P_L(long groupId,
 		long parentResourcePrimKey, boolean latest, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KBArticle> orderByComparator) {
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
 			return findByG_P_L(groupId, parentResourcePrimKey, latest, start,
 				end, orderByComparator);
@@ -17848,7 +17914,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	@Override
 	public KBArticle[] filterFindByG_P_L_PrevAndNext(long kbArticleId,
 		long groupId, long parentResourcePrimKey, boolean latest,
-		OrderByComparator orderByComparator) throws NoSuchArticleException {
+		OrderByComparator<KBArticle> orderByComparator)
+		throws NoSuchArticleException {
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
 			return findByG_P_L_PrevAndNext(kbArticleId, groupId,
 				parentResourcePrimKey, latest, orderByComparator);
@@ -17885,7 +17952,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 	protected KBArticle filterGetByG_P_L_PrevAndNext(Session session,
 		KBArticle kbArticle, long groupId, long parentResourcePrimKey,
-		boolean latest, OrderByComparator orderByComparator, boolean previous) {
+		boolean latest, OrderByComparator<KBArticle> orderByComparator,
+		boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -18085,7 +18153,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	@Override
 	public List<KBArticle> filterFindByG_P_L(long groupId,
 		long[] parentResourcePrimKeies, boolean latest, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KBArticle> orderByComparator) {
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
 			return findByG_P_L(groupId, parentResourcePrimKeies, latest, start,
 				end, orderByComparator);
@@ -18243,7 +18311,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	@Override
 	public List<KBArticle> findByG_P_L(long groupId,
 		long[] parentResourcePrimKeies, boolean latest, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KBArticle> orderByComparator) {
 		if (parentResourcePrimKeies == null) {
 			parentResourcePrimKeies = new long[0];
 		}
@@ -18770,7 +18838,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	@Override
 	public List<KBArticle> findByG_P_M(long groupId,
 		long parentResourcePrimKey, boolean main, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KBArticle> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -18893,7 +18961,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	@Override
 	public KBArticle findByG_P_M_First(long groupId,
 		long parentResourcePrimKey, boolean main,
-		OrderByComparator orderByComparator) throws NoSuchArticleException {
+		OrderByComparator<KBArticle> orderByComparator)
+		throws NoSuchArticleException {
 		KBArticle kbArticle = fetchByG_P_M_First(groupId,
 				parentResourcePrimKey, main, orderByComparator);
 
@@ -18931,7 +19000,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	@Override
 	public KBArticle fetchByG_P_M_First(long groupId,
 		long parentResourcePrimKey, boolean main,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KBArticle> orderByComparator) {
 		List<KBArticle> list = findByG_P_M(groupId, parentResourcePrimKey,
 				main, 0, 1, orderByComparator);
 
@@ -18954,7 +19023,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public KBArticle findByG_P_M_Last(long groupId, long parentResourcePrimKey,
-		boolean main, OrderByComparator orderByComparator)
+		boolean main, OrderByComparator<KBArticle> orderByComparator)
 		throws NoSuchArticleException {
 		KBArticle kbArticle = fetchByG_P_M_Last(groupId, parentResourcePrimKey,
 				main, orderByComparator);
@@ -18993,7 +19062,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	@Override
 	public KBArticle fetchByG_P_M_Last(long groupId,
 		long parentResourcePrimKey, boolean main,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KBArticle> orderByComparator) {
 		int count = countByG_P_M(groupId, parentResourcePrimKey, main);
 
 		if (count == 0) {
@@ -19024,7 +19093,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	@Override
 	public KBArticle[] findByG_P_M_PrevAndNext(long kbArticleId, long groupId,
 		long parentResourcePrimKey, boolean main,
-		OrderByComparator orderByComparator) throws NoSuchArticleException {
+		OrderByComparator<KBArticle> orderByComparator)
+		throws NoSuchArticleException {
 		KBArticle kbArticle = findByPrimaryKey(kbArticleId);
 
 		Session session = null;
@@ -19054,7 +19124,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 	protected KBArticle getByG_P_M_PrevAndNext(Session session,
 		KBArticle kbArticle, long groupId, long parentResourcePrimKey,
-		boolean main, OrderByComparator orderByComparator, boolean previous) {
+		boolean main, OrderByComparator<KBArticle> orderByComparator,
+		boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -19219,7 +19290,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	@Override
 	public List<KBArticle> filterFindByG_P_M(long groupId,
 		long parentResourcePrimKey, boolean main, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KBArticle> orderByComparator) {
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
 			return findByG_P_M(groupId, parentResourcePrimKey, main, start,
 				end, orderByComparator);
@@ -19321,7 +19392,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	@Override
 	public KBArticle[] filterFindByG_P_M_PrevAndNext(long kbArticleId,
 		long groupId, long parentResourcePrimKey, boolean main,
-		OrderByComparator orderByComparator) throws NoSuchArticleException {
+		OrderByComparator<KBArticle> orderByComparator)
+		throws NoSuchArticleException {
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
 			return findByG_P_M_PrevAndNext(kbArticleId, groupId,
 				parentResourcePrimKey, main, orderByComparator);
@@ -19358,7 +19430,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 	protected KBArticle filterGetByG_P_M_PrevAndNext(Session session,
 		KBArticle kbArticle, long groupId, long parentResourcePrimKey,
-		boolean main, OrderByComparator orderByComparator, boolean previous) {
+		boolean main, OrderByComparator<KBArticle> orderByComparator,
+		boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -19558,7 +19631,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	@Override
 	public List<KBArticle> filterFindByG_P_M(long groupId,
 		long[] parentResourcePrimKeies, boolean main, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KBArticle> orderByComparator) {
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
 			return findByG_P_M(groupId, parentResourcePrimKeies, main, start,
 				end, orderByComparator);
@@ -19716,7 +19789,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	@Override
 	public List<KBArticle> findByG_P_M(long groupId,
 		long[] parentResourcePrimKeies, boolean main, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KBArticle> orderByComparator) {
 		if (parentResourcePrimKeies == null) {
 			parentResourcePrimKeies = new long[0];
 		}
@@ -20241,7 +20314,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	@Override
 	public List<KBArticle> findByG_P_S(long groupId,
 		long parentResourcePrimKey, int status, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KBArticle> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -20364,7 +20437,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	@Override
 	public KBArticle findByG_P_S_First(long groupId,
 		long parentResourcePrimKey, int status,
-		OrderByComparator orderByComparator) throws NoSuchArticleException {
+		OrderByComparator<KBArticle> orderByComparator)
+		throws NoSuchArticleException {
 		KBArticle kbArticle = fetchByG_P_S_First(groupId,
 				parentResourcePrimKey, status, orderByComparator);
 
@@ -20402,7 +20476,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	@Override
 	public KBArticle fetchByG_P_S_First(long groupId,
 		long parentResourcePrimKey, int status,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KBArticle> orderByComparator) {
 		List<KBArticle> list = findByG_P_S(groupId, parentResourcePrimKey,
 				status, 0, 1, orderByComparator);
 
@@ -20425,7 +20499,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public KBArticle findByG_P_S_Last(long groupId, long parentResourcePrimKey,
-		int status, OrderByComparator orderByComparator)
+		int status, OrderByComparator<KBArticle> orderByComparator)
 		throws NoSuchArticleException {
 		KBArticle kbArticle = fetchByG_P_S_Last(groupId, parentResourcePrimKey,
 				status, orderByComparator);
@@ -20464,7 +20538,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	@Override
 	public KBArticle fetchByG_P_S_Last(long groupId,
 		long parentResourcePrimKey, int status,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KBArticle> orderByComparator) {
 		int count = countByG_P_S(groupId, parentResourcePrimKey, status);
 
 		if (count == 0) {
@@ -20495,7 +20569,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	@Override
 	public KBArticle[] findByG_P_S_PrevAndNext(long kbArticleId, long groupId,
 		long parentResourcePrimKey, int status,
-		OrderByComparator orderByComparator) throws NoSuchArticleException {
+		OrderByComparator<KBArticle> orderByComparator)
+		throws NoSuchArticleException {
 		KBArticle kbArticle = findByPrimaryKey(kbArticleId);
 
 		Session session = null;
@@ -20525,7 +20600,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 	protected KBArticle getByG_P_S_PrevAndNext(Session session,
 		KBArticle kbArticle, long groupId, long parentResourcePrimKey,
-		int status, OrderByComparator orderByComparator, boolean previous) {
+		int status, OrderByComparator<KBArticle> orderByComparator,
+		boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -20690,7 +20766,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	@Override
 	public List<KBArticle> filterFindByG_P_S(long groupId,
 		long parentResourcePrimKey, int status, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KBArticle> orderByComparator) {
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
 			return findByG_P_S(groupId, parentResourcePrimKey, status, start,
 				end, orderByComparator);
@@ -20792,7 +20868,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	@Override
 	public KBArticle[] filterFindByG_P_S_PrevAndNext(long kbArticleId,
 		long groupId, long parentResourcePrimKey, int status,
-		OrderByComparator orderByComparator) throws NoSuchArticleException {
+		OrderByComparator<KBArticle> orderByComparator)
+		throws NoSuchArticleException {
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
 			return findByG_P_S_PrevAndNext(kbArticleId, groupId,
 				parentResourcePrimKey, status, orderByComparator);
@@ -20829,7 +20906,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 	protected KBArticle filterGetByG_P_S_PrevAndNext(Session session,
 		KBArticle kbArticle, long groupId, long parentResourcePrimKey,
-		int status, OrderByComparator orderByComparator, boolean previous) {
+		int status, OrderByComparator<KBArticle> orderByComparator,
+		boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -21029,7 +21107,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	@Override
 	public List<KBArticle> filterFindByG_P_S(long groupId,
 		long[] parentResourcePrimKeies, int status, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KBArticle> orderByComparator) {
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
 			return findByG_P_S(groupId, parentResourcePrimKeies, status, start,
 				end, orderByComparator);
@@ -21187,7 +21265,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	@Override
 	public List<KBArticle> findByG_P_S(long groupId,
 		long[] parentResourcePrimKeies, int status, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KBArticle> orderByComparator) {
 		if (parentResourcePrimKeies == null) {
 			parentResourcePrimKeies = new long[0];
 		}
@@ -21705,7 +21783,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public List<KBArticle> findByG_UT_ST(long groupId, String urlTitle,
-		int status, int start, int end, OrderByComparator orderByComparator) {
+		int status, int start, int end,
+		OrderByComparator<KBArticle> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -21841,7 +21920,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public KBArticle findByG_UT_ST_First(long groupId, String urlTitle,
-		int status, OrderByComparator orderByComparator)
+		int status, OrderByComparator<KBArticle> orderByComparator)
 		throws NoSuchArticleException {
 		KBArticle kbArticle = fetchByG_UT_ST_First(groupId, urlTitle, status,
 				orderByComparator);
@@ -21879,7 +21958,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public KBArticle fetchByG_UT_ST_First(long groupId, String urlTitle,
-		int status, OrderByComparator orderByComparator) {
+		int status, OrderByComparator<KBArticle> orderByComparator) {
 		List<KBArticle> list = findByG_UT_ST(groupId, urlTitle, status, 0, 1,
 				orderByComparator);
 
@@ -21902,7 +21981,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public KBArticle findByG_UT_ST_Last(long groupId, String urlTitle,
-		int status, OrderByComparator orderByComparator)
+		int status, OrderByComparator<KBArticle> orderByComparator)
 		throws NoSuchArticleException {
 		KBArticle kbArticle = fetchByG_UT_ST_Last(groupId, urlTitle, status,
 				orderByComparator);
@@ -21940,7 +22019,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public KBArticle fetchByG_UT_ST_Last(long groupId, String urlTitle,
-		int status, OrderByComparator orderByComparator) {
+		int status, OrderByComparator<KBArticle> orderByComparator) {
 		int count = countByG_UT_ST(groupId, urlTitle, status);
 
 		if (count == 0) {
@@ -21971,7 +22050,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	@Override
 	public KBArticle[] findByG_UT_ST_PrevAndNext(long kbArticleId,
 		long groupId, String urlTitle, int status,
-		OrderByComparator orderByComparator) throws NoSuchArticleException {
+		OrderByComparator<KBArticle> orderByComparator)
+		throws NoSuchArticleException {
 		KBArticle kbArticle = findByPrimaryKey(kbArticleId);
 
 		Session session = null;
@@ -22001,7 +22081,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 	protected KBArticle getByG_UT_ST_PrevAndNext(Session session,
 		KBArticle kbArticle, long groupId, String urlTitle, int status,
-		OrderByComparator orderByComparator, boolean previous) {
+		OrderByComparator<KBArticle> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -22178,7 +22258,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public List<KBArticle> filterFindByG_UT_ST(long groupId, String urlTitle,
-		int status, int start, int end, OrderByComparator orderByComparator) {
+		int status, int start, int end,
+		OrderByComparator<KBArticle> orderByComparator) {
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
 			return findByG_UT_ST(groupId, urlTitle, status, start, end,
 				orderByComparator);
@@ -22294,7 +22375,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	@Override
 	public KBArticle[] filterFindByG_UT_ST_PrevAndNext(long kbArticleId,
 		long groupId, String urlTitle, int status,
-		OrderByComparator orderByComparator) throws NoSuchArticleException {
+		OrderByComparator<KBArticle> orderByComparator)
+		throws NoSuchArticleException {
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
 			return findByG_UT_ST_PrevAndNext(kbArticleId, groupId, urlTitle,
 				status, orderByComparator);
@@ -22329,7 +22411,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 	protected KBArticle filterGetByG_UT_ST_PrevAndNext(Session session,
 		KBArticle kbArticle, long groupId, String urlTitle, int status,
-		OrderByComparator orderByComparator, boolean previous) {
+		OrderByComparator<KBArticle> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -22733,7 +22815,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	@Override
 	public List<KBArticle> findByG_P_S_L(long groupId,
 		long parentResourcePrimKey, String sections, boolean latest, int start,
-		int end, OrderByComparator orderByComparator) {
+		int end, OrderByComparator<KBArticle> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -22870,7 +22952,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	@Override
 	public KBArticle findByG_P_S_L_First(long groupId,
 		long parentResourcePrimKey, String sections, boolean latest,
-		OrderByComparator orderByComparator) throws NoSuchArticleException {
+		OrderByComparator<KBArticle> orderByComparator)
+		throws NoSuchArticleException {
 		KBArticle kbArticle = fetchByG_P_S_L_First(groupId,
 				parentResourcePrimKey, sections, latest, orderByComparator);
 
@@ -22912,7 +22995,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	@Override
 	public KBArticle fetchByG_P_S_L_First(long groupId,
 		long parentResourcePrimKey, String sections, boolean latest,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KBArticle> orderByComparator) {
 		List<KBArticle> list = findByG_P_S_L(groupId, parentResourcePrimKey,
 				sections, latest, 0, 1, orderByComparator);
 
@@ -22937,7 +23020,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	@Override
 	public KBArticle findByG_P_S_L_Last(long groupId,
 		long parentResourcePrimKey, String sections, boolean latest,
-		OrderByComparator orderByComparator) throws NoSuchArticleException {
+		OrderByComparator<KBArticle> orderByComparator)
+		throws NoSuchArticleException {
 		KBArticle kbArticle = fetchByG_P_S_L_Last(groupId,
 				parentResourcePrimKey, sections, latest, orderByComparator);
 
@@ -22979,7 +23063,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	@Override
 	public KBArticle fetchByG_P_S_L_Last(long groupId,
 		long parentResourcePrimKey, String sections, boolean latest,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KBArticle> orderByComparator) {
 		int count = countByG_P_S_L(groupId, parentResourcePrimKey, sections,
 				latest);
 
@@ -23012,7 +23096,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	@Override
 	public KBArticle[] findByG_P_S_L_PrevAndNext(long kbArticleId,
 		long groupId, long parentResourcePrimKey, String sections,
-		boolean latest, OrderByComparator orderByComparator)
+		boolean latest, OrderByComparator<KBArticle> orderByComparator)
 		throws NoSuchArticleException {
 		KBArticle kbArticle = findByPrimaryKey(kbArticleId);
 
@@ -23045,8 +23129,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 	protected KBArticle getByG_P_S_L_PrevAndNext(Session session,
 		KBArticle kbArticle, long groupId, long parentResourcePrimKey,
-		String sections, boolean latest, OrderByComparator orderByComparator,
-		boolean previous) {
+		String sections, boolean latest,
+		OrderByComparator<KBArticle> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -23233,7 +23317,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	@Override
 	public List<KBArticle> filterFindByG_P_S_L(long groupId,
 		long parentResourcePrimKey, String sections, boolean latest, int start,
-		int end, OrderByComparator orderByComparator) {
+		int end, OrderByComparator<KBArticle> orderByComparator) {
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
 			return findByG_P_S_L(groupId, parentResourcePrimKey, sections,
 				latest, start, end, orderByComparator);
@@ -23354,7 +23438,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	@Override
 	public KBArticle[] filterFindByG_P_S_L_PrevAndNext(long kbArticleId,
 		long groupId, long parentResourcePrimKey, String sections,
-		boolean latest, OrderByComparator orderByComparator)
+		boolean latest, OrderByComparator<KBArticle> orderByComparator)
 		throws NoSuchArticleException {
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
 			return findByG_P_S_L_PrevAndNext(kbArticleId, groupId,
@@ -23392,8 +23476,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 	protected KBArticle filterGetByG_P_S_L_PrevAndNext(Session session,
 		KBArticle kbArticle, long groupId, long parentResourcePrimKey,
-		String sections, boolean latest, OrderByComparator orderByComparator,
-		boolean previous) {
+		String sections, boolean latest,
+		OrderByComparator<KBArticle> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -23615,7 +23699,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	@Override
 	public List<KBArticle> filterFindByG_P_S_L(long groupId,
 		long parentResourcePrimKey, String[] sectionses, boolean latest,
-		int start, int end, OrderByComparator orderByComparator) {
+		int start, int end, OrderByComparator<KBArticle> orderByComparator) {
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
 			return findByG_P_S_L(groupId, parentResourcePrimKey, sectionses,
 				latest, start, end, orderByComparator);
@@ -23800,7 +23884,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	@Override
 	public List<KBArticle> findByG_P_S_L(long groupId,
 		long parentResourcePrimKey, String[] sectionses, boolean latest,
-		int start, int end, OrderByComparator orderByComparator) {
+		int start, int end, OrderByComparator<KBArticle> orderByComparator) {
 		if (sectionses == null) {
 			sectionses = new String[0];
 		}
@@ -24437,7 +24521,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	@Override
 	public List<KBArticle> findByG_P_S_M(long groupId,
 		long parentResourcePrimKey, String sections, boolean main, int start,
-		int end, OrderByComparator orderByComparator) {
+		int end, OrderByComparator<KBArticle> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -24574,7 +24658,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	@Override
 	public KBArticle findByG_P_S_M_First(long groupId,
 		long parentResourcePrimKey, String sections, boolean main,
-		OrderByComparator orderByComparator) throws NoSuchArticleException {
+		OrderByComparator<KBArticle> orderByComparator)
+		throws NoSuchArticleException {
 		KBArticle kbArticle = fetchByG_P_S_M_First(groupId,
 				parentResourcePrimKey, sections, main, orderByComparator);
 
@@ -24616,7 +24701,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	@Override
 	public KBArticle fetchByG_P_S_M_First(long groupId,
 		long parentResourcePrimKey, String sections, boolean main,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KBArticle> orderByComparator) {
 		List<KBArticle> list = findByG_P_S_M(groupId, parentResourcePrimKey,
 				sections, main, 0, 1, orderByComparator);
 
@@ -24641,7 +24726,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	@Override
 	public KBArticle findByG_P_S_M_Last(long groupId,
 		long parentResourcePrimKey, String sections, boolean main,
-		OrderByComparator orderByComparator) throws NoSuchArticleException {
+		OrderByComparator<KBArticle> orderByComparator)
+		throws NoSuchArticleException {
 		KBArticle kbArticle = fetchByG_P_S_M_Last(groupId,
 				parentResourcePrimKey, sections, main, orderByComparator);
 
@@ -24683,7 +24769,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	@Override
 	public KBArticle fetchByG_P_S_M_Last(long groupId,
 		long parentResourcePrimKey, String sections, boolean main,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KBArticle> orderByComparator) {
 		int count = countByG_P_S_M(groupId, parentResourcePrimKey, sections,
 				main);
 
@@ -24716,7 +24802,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	@Override
 	public KBArticle[] findByG_P_S_M_PrevAndNext(long kbArticleId,
 		long groupId, long parentResourcePrimKey, String sections,
-		boolean main, OrderByComparator orderByComparator)
+		boolean main, OrderByComparator<KBArticle> orderByComparator)
 		throws NoSuchArticleException {
 		KBArticle kbArticle = findByPrimaryKey(kbArticleId);
 
@@ -24749,8 +24835,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 	protected KBArticle getByG_P_S_M_PrevAndNext(Session session,
 		KBArticle kbArticle, long groupId, long parentResourcePrimKey,
-		String sections, boolean main, OrderByComparator orderByComparator,
-		boolean previous) {
+		String sections, boolean main,
+		OrderByComparator<KBArticle> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -24937,7 +25023,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	@Override
 	public List<KBArticle> filterFindByG_P_S_M(long groupId,
 		long parentResourcePrimKey, String sections, boolean main, int start,
-		int end, OrderByComparator orderByComparator) {
+		int end, OrderByComparator<KBArticle> orderByComparator) {
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
 			return findByG_P_S_M(groupId, parentResourcePrimKey, sections,
 				main, start, end, orderByComparator);
@@ -25058,7 +25144,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	@Override
 	public KBArticle[] filterFindByG_P_S_M_PrevAndNext(long kbArticleId,
 		long groupId, long parentResourcePrimKey, String sections,
-		boolean main, OrderByComparator orderByComparator)
+		boolean main, OrderByComparator<KBArticle> orderByComparator)
 		throws NoSuchArticleException {
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
 			return findByG_P_S_M_PrevAndNext(kbArticleId, groupId,
@@ -25096,8 +25182,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 	protected KBArticle filterGetByG_P_S_M_PrevAndNext(Session session,
 		KBArticle kbArticle, long groupId, long parentResourcePrimKey,
-		String sections, boolean main, OrderByComparator orderByComparator,
-		boolean previous) {
+		String sections, boolean main,
+		OrderByComparator<KBArticle> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -25319,7 +25405,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	@Override
 	public List<KBArticle> filterFindByG_P_S_M(long groupId,
 		long parentResourcePrimKey, String[] sectionses, boolean main,
-		int start, int end, OrderByComparator orderByComparator) {
+		int start, int end, OrderByComparator<KBArticle> orderByComparator) {
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
 			return findByG_P_S_M(groupId, parentResourcePrimKey, sectionses,
 				main, start, end, orderByComparator);
@@ -25504,7 +25590,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	@Override
 	public List<KBArticle> findByG_P_S_M(long groupId,
 		long parentResourcePrimKey, String[] sectionses, boolean main,
-		int start, int end, OrderByComparator orderByComparator) {
+		int start, int end, OrderByComparator<KBArticle> orderByComparator) {
 		if (sectionses == null) {
 			sectionses = new String[0];
 		}
@@ -26140,7 +26226,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	@Override
 	public List<KBArticle> findByG_P_S_S(long groupId,
 		long parentResourcePrimKey, String sections, int status, int start,
-		int end, OrderByComparator orderByComparator) {
+		int end, OrderByComparator<KBArticle> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -26277,7 +26363,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	@Override
 	public KBArticle findByG_P_S_S_First(long groupId,
 		long parentResourcePrimKey, String sections, int status,
-		OrderByComparator orderByComparator) throws NoSuchArticleException {
+		OrderByComparator<KBArticle> orderByComparator)
+		throws NoSuchArticleException {
 		KBArticle kbArticle = fetchByG_P_S_S_First(groupId,
 				parentResourcePrimKey, sections, status, orderByComparator);
 
@@ -26319,7 +26406,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	@Override
 	public KBArticle fetchByG_P_S_S_First(long groupId,
 		long parentResourcePrimKey, String sections, int status,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KBArticle> orderByComparator) {
 		List<KBArticle> list = findByG_P_S_S(groupId, parentResourcePrimKey,
 				sections, status, 0, 1, orderByComparator);
 
@@ -26344,7 +26431,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	@Override
 	public KBArticle findByG_P_S_S_Last(long groupId,
 		long parentResourcePrimKey, String sections, int status,
-		OrderByComparator orderByComparator) throws NoSuchArticleException {
+		OrderByComparator<KBArticle> orderByComparator)
+		throws NoSuchArticleException {
 		KBArticle kbArticle = fetchByG_P_S_S_Last(groupId,
 				parentResourcePrimKey, sections, status, orderByComparator);
 
@@ -26386,7 +26474,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	@Override
 	public KBArticle fetchByG_P_S_S_Last(long groupId,
 		long parentResourcePrimKey, String sections, int status,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KBArticle> orderByComparator) {
 		int count = countByG_P_S_S(groupId, parentResourcePrimKey, sections,
 				status);
 
@@ -26419,7 +26507,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	@Override
 	public KBArticle[] findByG_P_S_S_PrevAndNext(long kbArticleId,
 		long groupId, long parentResourcePrimKey, String sections, int status,
-		OrderByComparator orderByComparator) throws NoSuchArticleException {
+		OrderByComparator<KBArticle> orderByComparator)
+		throws NoSuchArticleException {
 		KBArticle kbArticle = findByPrimaryKey(kbArticleId);
 
 		Session session = null;
@@ -26451,8 +26540,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 	protected KBArticle getByG_P_S_S_PrevAndNext(Session session,
 		KBArticle kbArticle, long groupId, long parentResourcePrimKey,
-		String sections, int status, OrderByComparator orderByComparator,
-		boolean previous) {
+		String sections, int status,
+		OrderByComparator<KBArticle> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -26639,7 +26728,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	@Override
 	public List<KBArticle> filterFindByG_P_S_S(long groupId,
 		long parentResourcePrimKey, String sections, int status, int start,
-		int end, OrderByComparator orderByComparator) {
+		int end, OrderByComparator<KBArticle> orderByComparator) {
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
 			return findByG_P_S_S(groupId, parentResourcePrimKey, sections,
 				status, start, end, orderByComparator);
@@ -26760,7 +26849,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	@Override
 	public KBArticle[] filterFindByG_P_S_S_PrevAndNext(long kbArticleId,
 		long groupId, long parentResourcePrimKey, String sections, int status,
-		OrderByComparator orderByComparator) throws NoSuchArticleException {
+		OrderByComparator<KBArticle> orderByComparator)
+		throws NoSuchArticleException {
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
 			return findByG_P_S_S_PrevAndNext(kbArticleId, groupId,
 				parentResourcePrimKey, sections, status, orderByComparator);
@@ -26797,8 +26887,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 	protected KBArticle filterGetByG_P_S_S_PrevAndNext(Session session,
 		KBArticle kbArticle, long groupId, long parentResourcePrimKey,
-		String sections, int status, OrderByComparator orderByComparator,
-		boolean previous) {
+		String sections, int status,
+		OrderByComparator<KBArticle> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -27020,7 +27110,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	@Override
 	public List<KBArticle> filterFindByG_P_S_S(long groupId,
 		long parentResourcePrimKey, String[] sectionses, int status, int start,
-		int end, OrderByComparator orderByComparator) {
+		int end, OrderByComparator<KBArticle> orderByComparator) {
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
 			return findByG_P_S_S(groupId, parentResourcePrimKey, sectionses,
 				status, start, end, orderByComparator);
@@ -27205,7 +27295,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	@Override
 	public List<KBArticle> findByG_P_S_S(long groupId,
 		long parentResourcePrimKey, String[] sectionses, int status, int start,
-		int end, OrderByComparator orderByComparator) {
+		int end, OrderByComparator<KBArticle> orderByComparator) {
 		if (sectionses == null) {
 			sectionses = new String[0];
 		}
@@ -28884,7 +28974,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public List<KBArticle> findAll(int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KBArticle> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;

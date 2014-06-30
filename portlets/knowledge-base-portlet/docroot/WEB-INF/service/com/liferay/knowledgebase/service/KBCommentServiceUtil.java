@@ -65,15 +65,13 @@ public class KBCommentServiceUtil {
 
 	public static com.liferay.knowledgebase.model.KBComment deleteKBComment(
 		com.liferay.knowledgebase.model.KBComment kbComment)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().deleteKBComment(kbComment);
 	}
 
 	public static com.liferay.knowledgebase.model.KBComment deleteKBComment(
 		long kbCommentId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().deleteKBComment(kbCommentId);
 	}
 
@@ -81,8 +79,7 @@ public class KBCommentServiceUtil {
 		long kbCommentId, long classNameId, long classPK,
 		java.lang.String content, boolean helpful,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService()
 				   .updateKBComment(kbCommentId, classNameId, classPK, content,
 			helpful, serviceContext);

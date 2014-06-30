@@ -60,13 +60,11 @@ public class KBCommentLocalServiceWrapper implements KBCommentLocalService,
 	* @param kbCommentId the primary key of the k b comment
 	* @return the k b comment that was removed
 	* @throws PortalException if a k b comment with the primary key could not be found
-	* @throws SystemException
 	*/
 	@Override
 	public com.liferay.knowledgebase.model.KBComment deleteKBComment(
 		long kbCommentId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _kbCommentLocalService.deleteKBComment(kbCommentId);
 	}
 
@@ -76,13 +74,11 @@ public class KBCommentLocalServiceWrapper implements KBCommentLocalService,
 	* @param kbComment the k b comment
 	* @return the k b comment that was removed
 	* @throws PortalException
-	* @throws SystemException
 	*/
 	@Override
 	public com.liferay.knowledgebase.model.KBComment deleteKBComment(
 		com.liferay.knowledgebase.model.KBComment kbComment)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _kbCommentLocalService.deleteKBComment(kbComment);
 	}
 
@@ -98,8 +94,7 @@ public class KBCommentLocalServiceWrapper implements KBCommentLocalService,
 	* @return the matching rows
 	*/
 	@Override
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
 		return _kbCommentLocalService.dynamicQuery(dynamicQuery);
 	}
@@ -117,8 +112,7 @@ public class KBCommentLocalServiceWrapper implements KBCommentLocalService,
 	* @return the range of matching rows
 	*/
 	@Override
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) {
 		return _kbCommentLocalService.dynamicQuery(dynamicQuery, start, end);
@@ -138,11 +132,10 @@ public class KBCommentLocalServiceWrapper implements KBCommentLocalService,
 	* @return the ordered range of matching rows
 	*/
 	@Override
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<T> orderByComparator) {
 		return _kbCommentLocalService.dynamicQuery(dynamicQuery, start, end,
 			orderByComparator);
 	}
@@ -352,39 +345,34 @@ public class KBCommentLocalServiceWrapper implements KBCommentLocalService,
 		long classNameId, long classPK, java.lang.String content,
 		boolean helpful,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _kbCommentLocalService.addKBComment(userId, classNameId,
 			classPK, content, helpful, serviceContext);
 	}
 
 	@Override
 	public void deleteKBComments(java.lang.String className, long classPK)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		_kbCommentLocalService.deleteKBComments(className, classPK);
 	}
 
 	@Override
 	public com.liferay.knowledgebase.model.KBComment getKBComment(long userId,
 		java.lang.String className, long classPK)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _kbCommentLocalService.getKBComment(userId, className, classPK);
 	}
 
 	@Override
 	public java.util.List<com.liferay.knowledgebase.model.KBComment> getKBComments(
 		java.lang.String className, long classPK, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return _kbCommentLocalService.getKBComments(className, classPK, start,
 			end, orderByComparator);
 	}
 
 	@Override
-	public int getKBCommentsCount(java.lang.String className, long classPK)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public int getKBCommentsCount(java.lang.String className, long classPK) {
 		return _kbCommentLocalService.getKBCommentsCount(className, classPK);
 	}
 
@@ -393,8 +381,7 @@ public class KBCommentLocalServiceWrapper implements KBCommentLocalService,
 		long kbCommentId, long classNameId, long classPK,
 		java.lang.String content, boolean helpful,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _kbCommentLocalService.updateKBComment(kbCommentId, classNameId,
 			classPK, content, helpful, serviceContext);
 	}

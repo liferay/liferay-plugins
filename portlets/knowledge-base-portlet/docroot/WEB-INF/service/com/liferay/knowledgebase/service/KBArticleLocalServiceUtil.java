@@ -67,12 +67,10 @@ public class KBArticleLocalServiceUtil {
 	* @param kbArticleId the primary key of the k b article
 	* @return the k b article that was removed
 	* @throws PortalException if a k b article with the primary key could not be found
-	* @throws SystemException
 	*/
 	public static com.liferay.knowledgebase.model.KBArticle deleteKBArticle(
 		long kbArticleId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().deleteKBArticle(kbArticleId);
 	}
 
@@ -82,12 +80,10 @@ public class KBArticleLocalServiceUtil {
 	* @param kbArticle the k b article
 	* @return the k b article that was removed
 	* @throws PortalException
-	* @throws SystemException
 	*/
 	public static com.liferay.knowledgebase.model.KBArticle deleteKBArticle(
 		com.liferay.knowledgebase.model.KBArticle kbArticle)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().deleteKBArticle(kbArticle);
 	}
 
@@ -101,8 +97,7 @@ public class KBArticleLocalServiceUtil {
 	* @param dynamicQuery the dynamic query
 	* @return the matching rows
 	*/
-	@SuppressWarnings("rawtypes")
-	public static java.util.List dynamicQuery(
+	public static <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
 		return getService().dynamicQuery(dynamicQuery);
 	}
@@ -119,8 +114,7 @@ public class KBArticleLocalServiceUtil {
 	* @param end the upper bound of the range of model instances (not inclusive)
 	* @return the range of matching rows
 	*/
-	@SuppressWarnings("rawtypes")
-	public static java.util.List dynamicQuery(
+	public static <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) {
 		return getService().dynamicQuery(dynamicQuery, start, end);
@@ -139,11 +133,10 @@ public class KBArticleLocalServiceUtil {
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching rows
 	*/
-	@SuppressWarnings("rawtypes")
-	public static java.util.List dynamicQuery(
+	public static <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<T> orderByComparator) {
 		return getService()
 				   .dynamicQuery(dynamicQuery, start, end, orderByComparator);
 	}
@@ -329,8 +322,7 @@ public class KBArticleLocalServiceUtil {
 	public static void addAttachment(java.lang.String dirName,
 		java.lang.String shortFileName, java.io.InputStream inputStream,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		getService()
 			.addAttachment(dirName, shortFileName, inputStream, serviceContext);
 	}
@@ -341,8 +333,7 @@ public class KBArticleLocalServiceUtil {
 		java.lang.String description, java.lang.String[] sections,
 		java.lang.String dirName,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService()
 				   .addKBArticle(userId, parentResourcePrimKey, title,
 			urlTitle, content, description, sections, dirName, serviceContext);
@@ -351,8 +342,7 @@ public class KBArticleLocalServiceUtil {
 	public static void addKBArticleResources(
 		com.liferay.knowledgebase.model.KBArticle kbArticle,
 		boolean addGroupPermissions, boolean addGuestPermissions)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		getService()
 			.addKBArticleResources(kbArticle, addGroupPermissions,
 			addGuestPermissions);
@@ -361,16 +351,14 @@ public class KBArticleLocalServiceUtil {
 	public static void addKBArticleResources(
 		com.liferay.knowledgebase.model.KBArticle kbArticle,
 		java.lang.String[] groupPermissions, java.lang.String[] guestPermissions)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		getService()
 			.addKBArticleResources(kbArticle, groupPermissions, guestPermissions);
 	}
 
 	public static void addKBArticleResources(long kbArticleId,
 		boolean addGroupPermissions, boolean addGuestPermissions)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		getService()
 			.addKBArticleResources(kbArticleId, addGroupPermissions,
 			addGuestPermissions);
@@ -378,49 +366,63 @@ public class KBArticleLocalServiceUtil {
 
 	public static void addKBArticleResources(long kbArticleId,
 		java.lang.String[] groupPermissions, java.lang.String[] guestPermissions)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		getService()
 			.addKBArticleResources(kbArticleId, groupPermissions,
 			guestPermissions);
 	}
 
-	public static void checkAttachments()
+	public static void addKBArticlesMarkdown(long userId, long groupId,
+		java.lang.String fileName, java.io.InputStream inputStream,
+		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+			java.io.IOException {
+		getService()
+			.addKBArticlesMarkdown(userId, groupId, fileName, inputStream,
+			serviceContext);
+	}
+
+	public static void checkAttachments()
+		throws com.liferay.portal.kernel.exception.PortalException {
 		getService().checkAttachments();
 	}
 
 	public static void deleteAttachment(long companyId,
 		java.lang.String fileName)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		getService().deleteAttachment(companyId, fileName);
 	}
 
 	public static void deleteGroupKBArticles(long groupId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		getService().deleteGroupKBArticles(groupId);
 	}
 
 	public static void deleteKBArticles(long[] resourcePrimKeys)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		getService().deleteKBArticles(resourcePrimKeys);
+	}
+
+	public static com.liferay.knowledgebase.model.KBArticle fetchKBArticleByUrlTitle(
+		long groupId, java.lang.String urlTitle) {
+		return getService().fetchKBArticleByUrlTitle(groupId, urlTitle);
 	}
 
 	public static com.liferay.knowledgebase.model.KBArticle fetchLatestKBArticle(
 		long resourcePrimKey, int status)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().fetchLatestKBArticle(resourcePrimKey, status);
+	}
+
+	public static com.liferay.knowledgebase.model.KBArticle fetchLatestKBArticleByUrlTitle(
+		long groupId, java.lang.String urlTitle, int status) {
+		return getService()
+				   .fetchLatestKBArticleByUrlTitle(groupId, urlTitle, status);
 	}
 
 	public static java.util.List<com.liferay.knowledgebase.model.KBArticle> getAllDescendantKBArticles(
 		long resourcePrimKey, int status,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getService()
 				   .getAllDescendantKBArticles(resourcePrimKey, status,
 			orderByComparator);
@@ -428,50 +430,43 @@ public class KBArticleLocalServiceUtil {
 
 	public static java.io.File getAttachment(long companyId,
 		java.lang.String fileName)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().getAttachment(companyId, fileName);
 	}
 
 	public static java.util.List<com.liferay.knowledgebase.model.KBArticle> getCompanyKBArticles(
 		long companyId, int status, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getService()
 				   .getCompanyKBArticles(companyId, status, start, end,
 			orderByComparator);
 	}
 
-	public static int getCompanyKBArticlesCount(long companyId, int status)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static int getCompanyKBArticlesCount(long companyId, int status) {
 		return getService().getCompanyKBArticlesCount(companyId, status);
 	}
 
 	public static java.util.List<com.liferay.knowledgebase.model.KBArticle> getGroupKBArticles(
 		long groupId, int status, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getService()
 				   .getGroupKBArticles(groupId, status, start, end,
 			orderByComparator);
 	}
 
-	public static int getGroupKBArticlesCount(long groupId, int status)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static int getGroupKBArticlesCount(long groupId, int status) {
 		return getService().getGroupKBArticlesCount(groupId, status);
 	}
 
 	public static com.liferay.knowledgebase.model.KBArticle getKBArticle(
 		long resourcePrimKey, int version)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().getKBArticle(resourcePrimKey, version);
 	}
 
 	public static java.util.List<com.liferay.knowledgebase.model.KBArticle> getKBArticleAndAllDescendantKBArticles(
 		long resourcePrimKey, int status,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getService()
 				   .getKBArticleAndAllDescendantKBArticles(resourcePrimKey,
 			status, orderByComparator);
@@ -484,8 +479,7 @@ public class KBArticleLocalServiceUtil {
 	*/
 	public static java.util.List<com.liferay.knowledgebase.model.KBArticle> getKBArticleAndAllDescendants(
 		long resourcePrimKey, int status,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getService()
 				   .getKBArticleAndAllDescendants(resourcePrimKey, status,
 			orderByComparator);
@@ -493,16 +487,14 @@ public class KBArticleLocalServiceUtil {
 
 	public static com.liferay.knowledgebase.model.KBArticle getKBArticleByUrlTitle(
 		long groupId, java.lang.String urlTitle)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().getKBArticleByUrlTitle(groupId, urlTitle);
 	}
 
 	public static java.util.List<com.liferay.knowledgebase.model.KBArticle> getKBArticles(
 		long groupId, long parentResourcePrimKey, int status, int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getService()
 				   .getKBArticles(groupId, parentResourcePrimKey, status,
 			start, end, orderByComparator);
@@ -510,44 +502,38 @@ public class KBArticleLocalServiceUtil {
 
 	public static java.util.List<com.liferay.knowledgebase.model.KBArticle> getKBArticles(
 		long[] resourcePrimKeys, int status,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getService()
 				   .getKBArticles(resourcePrimKeys, status, orderByComparator);
 	}
 
 	public static int getKBArticlesCount(long groupId,
-		long parentResourcePrimKey, int status)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long parentResourcePrimKey, int status) {
 		return getService()
 				   .getKBArticlesCount(groupId, parentResourcePrimKey, status);
 	}
 
 	public static java.util.List<com.liferay.knowledgebase.model.KBArticle> getKBArticleVersions(
 		long resourcePrimKey, int status, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getService()
 				   .getKBArticleVersions(resourcePrimKey, status, start, end,
 			orderByComparator);
 	}
 
-	public static int getKBArticleVersionsCount(long resourcePrimKey, int status)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static int getKBArticleVersionsCount(long resourcePrimKey, int status) {
 		return getService().getKBArticleVersionsCount(resourcePrimKey, status);
 	}
 
 	public static com.liferay.knowledgebase.model.KBArticle getLatestKBArticle(
 		long resourcePrimKey, int status)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().getLatestKBArticle(resourcePrimKey, status);
 	}
 
 	public static com.liferay.knowledgebase.model.KBArticle getLatestKBArticleByUrlTitle(
 		long groupId, java.lang.String urlTitle, int status)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService()
 				   .getLatestKBArticleByUrlTitle(groupId, urlTitle, status);
 	}
@@ -555,16 +541,14 @@ public class KBArticleLocalServiceUtil {
 	public static java.util.List<com.liferay.knowledgebase.model.KBArticle> getSectionsKBArticles(
 		long groupId, java.lang.String[] sections, int status, int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getService()
 				   .getSectionsKBArticles(groupId, sections, status, start,
 			end, orderByComparator);
 	}
 
 	public static int getSectionsKBArticlesCount(long groupId,
-		java.lang.String[] sections, int status)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		java.lang.String[] sections, int status) {
 		return getService().getSectionsKBArticlesCount(groupId, sections, status);
 	}
 
@@ -576,8 +560,7 @@ public class KBArticleLocalServiceUtil {
 	public static java.util.List<com.liferay.knowledgebase.model.KBArticle> getSiblingKBArticles(
 		long groupId, long parentResourcePrimKey, int status, int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getService()
 				   .getSiblingKBArticles(groupId, parentResourcePrimKey,
 			status, start, end, orderByComparator);
@@ -588,8 +571,7 @@ public class KBArticleLocalServiceUtil {
 	long, int)}
 	*/
 	public static int getSiblingKBArticlesCount(long groupId,
-		long parentResourcePrimKey, int status)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long parentResourcePrimKey, int status) {
 		return getService()
 				   .getSiblingKBArticlesCount(groupId, parentResourcePrimKey,
 			status);
@@ -597,8 +579,7 @@ public class KBArticleLocalServiceUtil {
 
 	public static void moveKBArticle(long userId, long resourcePrimKey,
 		long parentResourcePrimKey, double priority)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		getService()
 			.moveKBArticle(userId, resourcePrimKey, parentResourcePrimKey,
 			priority);
@@ -608,43 +589,37 @@ public class KBArticleLocalServiceUtil {
 		long groupId, java.lang.String title, java.lang.String content,
 		int status, java.util.Date startDate, java.util.Date endDate,
 		boolean andOperator, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getService()
 				   .search(groupId, title, content, status, startDate, endDate,
 			andOperator, start, end, orderByComparator);
 	}
 
 	public static void subscribeGroupKBArticles(long userId, long groupId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		getService().subscribeGroupKBArticles(userId, groupId);
 	}
 
 	public static void subscribeKBArticle(long userId, long groupId,
 		long resourcePrimKey)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		getService().subscribeKBArticle(userId, groupId, resourcePrimKey);
 	}
 
 	public static void unsubscribeGroupKBArticles(long userId, long groupId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		getService().unsubscribeGroupKBArticles(userId, groupId);
 	}
 
 	public static void unsubscribeKBArticle(long userId, long resourcePrimKey)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		getService().unsubscribeKBArticle(userId, resourcePrimKey);
 	}
 
 	public static java.lang.String updateAttachments(long resourcePrimKey,
 		java.lang.String dirName,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService()
 				   .updateAttachments(resourcePrimKey, dirName, serviceContext);
 	}
@@ -654,8 +629,7 @@ public class KBArticleLocalServiceUtil {
 		java.lang.String content, java.lang.String description,
 		java.lang.String[] sections, java.lang.String dirName,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService()
 				   .updateKBArticle(userId, resourcePrimKey, title, content,
 			description, sections, dirName, serviceContext);
@@ -664,8 +638,7 @@ public class KBArticleLocalServiceUtil {
 	public static void updateKBArticleAsset(long userId,
 		com.liferay.knowledgebase.model.KBArticle kbArticle,
 		long[] assetCategoryIds, java.lang.String[] assetTagNames)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		getService()
 			.updateKBArticleAsset(userId, kbArticle, assetCategoryIds,
 			assetTagNames);
@@ -674,8 +647,7 @@ public class KBArticleLocalServiceUtil {
 	public static void updateKBArticleResources(
 		com.liferay.knowledgebase.model.KBArticle kbArticle,
 		java.lang.String[] groupPermissions, java.lang.String[] guestPermissions)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		getService()
 			.updateKBArticleResources(kbArticle, groupPermissions,
 			guestPermissions);
@@ -683,30 +655,26 @@ public class KBArticleLocalServiceUtil {
 
 	public static void updateKBArticlesPriorities(
 		java.util.Map<java.lang.Long, java.lang.Double> resourcePrimKeyToPriorityMap)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		getService().updateKBArticlesPriorities(resourcePrimKeyToPriorityMap);
 	}
 
 	public static void updatePriority(long resourcePrimKey, double priority)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		getService().updatePriority(resourcePrimKey, priority);
 	}
 
 	public static com.liferay.knowledgebase.model.KBArticle updateStatus(
 		long userId, long resourcePrimKey, int status,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService()
 				   .updateStatus(userId, resourcePrimKey, status, serviceContext);
 	}
 
 	public static void updateViewCount(long userId, long resourcePrimKey,
 		int viewCount)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		getService().updateViewCount(userId, resourcePrimKey, viewCount);
 	}
 

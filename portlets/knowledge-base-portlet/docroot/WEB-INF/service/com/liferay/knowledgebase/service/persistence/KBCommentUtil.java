@@ -85,7 +85,7 @@ public class KBCommentUtil {
 	 */
 	public static List<KBComment> findWithDynamicQuery(
 		DynamicQuery dynamicQuery, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KBComment> orderByComparator) {
 		return getPersistence()
 				   .findWithDynamicQuery(dynamicQuery, start, end,
 			orderByComparator);
@@ -149,7 +149,7 @@ public class KBCommentUtil {
 	*/
 	public static java.util.List<com.liferay.knowledgebase.model.KBComment> findByUuid(
 		java.lang.String uuid, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBComment> orderByComparator) {
 		return getPersistence().findByUuid(uuid, start, end, orderByComparator);
 	}
 
@@ -163,7 +163,7 @@ public class KBCommentUtil {
 	*/
 	public static com.liferay.knowledgebase.model.KBComment findByUuid_First(
 		java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBComment> orderByComparator)
 		throws com.liferay.knowledgebase.NoSuchCommentException {
 		return getPersistence().findByUuid_First(uuid, orderByComparator);
 	}
@@ -177,7 +177,7 @@ public class KBCommentUtil {
 	*/
 	public static com.liferay.knowledgebase.model.KBComment fetchByUuid_First(
 		java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBComment> orderByComparator) {
 		return getPersistence().fetchByUuid_First(uuid, orderByComparator);
 	}
 
@@ -191,7 +191,7 @@ public class KBCommentUtil {
 	*/
 	public static com.liferay.knowledgebase.model.KBComment findByUuid_Last(
 		java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBComment> orderByComparator)
 		throws com.liferay.knowledgebase.NoSuchCommentException {
 		return getPersistence().findByUuid_Last(uuid, orderByComparator);
 	}
@@ -205,7 +205,7 @@ public class KBCommentUtil {
 	*/
 	public static com.liferay.knowledgebase.model.KBComment fetchByUuid_Last(
 		java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBComment> orderByComparator) {
 		return getPersistence().fetchByUuid_Last(uuid, orderByComparator);
 	}
 
@@ -220,7 +220,7 @@ public class KBCommentUtil {
 	*/
 	public static com.liferay.knowledgebase.model.KBComment[] findByUuid_PrevAndNext(
 		long kbCommentId, java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBComment> orderByComparator)
 		throws com.liferay.knowledgebase.NoSuchCommentException {
 		return getPersistence()
 				   .findByUuid_PrevAndNext(kbCommentId, uuid, orderByComparator);
@@ -354,7 +354,7 @@ public class KBCommentUtil {
 	*/
 	public static java.util.List<com.liferay.knowledgebase.model.KBComment> findByUuid_C(
 		java.lang.String uuid, long companyId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBComment> orderByComparator) {
 		return getPersistence()
 				   .findByUuid_C(uuid, companyId, start, end, orderByComparator);
 	}
@@ -370,7 +370,7 @@ public class KBCommentUtil {
 	*/
 	public static com.liferay.knowledgebase.model.KBComment findByUuid_C_First(
 		java.lang.String uuid, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBComment> orderByComparator)
 		throws com.liferay.knowledgebase.NoSuchCommentException {
 		return getPersistence()
 				   .findByUuid_C_First(uuid, companyId, orderByComparator);
@@ -386,7 +386,7 @@ public class KBCommentUtil {
 	*/
 	public static com.liferay.knowledgebase.model.KBComment fetchByUuid_C_First(
 		java.lang.String uuid, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBComment> orderByComparator) {
 		return getPersistence()
 				   .fetchByUuid_C_First(uuid, companyId, orderByComparator);
 	}
@@ -402,7 +402,7 @@ public class KBCommentUtil {
 	*/
 	public static com.liferay.knowledgebase.model.KBComment findByUuid_C_Last(
 		java.lang.String uuid, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBComment> orderByComparator)
 		throws com.liferay.knowledgebase.NoSuchCommentException {
 		return getPersistence()
 				   .findByUuid_C_Last(uuid, companyId, orderByComparator);
@@ -418,7 +418,7 @@ public class KBCommentUtil {
 	*/
 	public static com.liferay.knowledgebase.model.KBComment fetchByUuid_C_Last(
 		java.lang.String uuid, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBComment> orderByComparator) {
 		return getPersistence()
 				   .fetchByUuid_C_Last(uuid, companyId, orderByComparator);
 	}
@@ -435,7 +435,7 @@ public class KBCommentUtil {
 	*/
 	public static com.liferay.knowledgebase.model.KBComment[] findByUuid_C_PrevAndNext(
 		long kbCommentId, java.lang.String uuid, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBComment> orderByComparator)
 		throws com.liferay.knowledgebase.NoSuchCommentException {
 		return getPersistence()
 				   .findByUuid_C_PrevAndNext(kbCommentId, uuid, companyId,
@@ -506,7 +506,7 @@ public class KBCommentUtil {
 	*/
 	public static java.util.List<com.liferay.knowledgebase.model.KBComment> findByGroupId(
 		long groupId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBComment> orderByComparator) {
 		return getPersistence()
 				   .findByGroupId(groupId, start, end, orderByComparator);
 	}
@@ -521,7 +521,7 @@ public class KBCommentUtil {
 	*/
 	public static com.liferay.knowledgebase.model.KBComment findByGroupId_First(
 		long groupId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBComment> orderByComparator)
 		throws com.liferay.knowledgebase.NoSuchCommentException {
 		return getPersistence().findByGroupId_First(groupId, orderByComparator);
 	}
@@ -535,7 +535,7 @@ public class KBCommentUtil {
 	*/
 	public static com.liferay.knowledgebase.model.KBComment fetchByGroupId_First(
 		long groupId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBComment> orderByComparator) {
 		return getPersistence().fetchByGroupId_First(groupId, orderByComparator);
 	}
 
@@ -549,7 +549,7 @@ public class KBCommentUtil {
 	*/
 	public static com.liferay.knowledgebase.model.KBComment findByGroupId_Last(
 		long groupId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBComment> orderByComparator)
 		throws com.liferay.knowledgebase.NoSuchCommentException {
 		return getPersistence().findByGroupId_Last(groupId, orderByComparator);
 	}
@@ -563,7 +563,7 @@ public class KBCommentUtil {
 	*/
 	public static com.liferay.knowledgebase.model.KBComment fetchByGroupId_Last(
 		long groupId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBComment> orderByComparator) {
 		return getPersistence().fetchByGroupId_Last(groupId, orderByComparator);
 	}
 
@@ -578,7 +578,7 @@ public class KBCommentUtil {
 	*/
 	public static com.liferay.knowledgebase.model.KBComment[] findByGroupId_PrevAndNext(
 		long kbCommentId, long groupId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBComment> orderByComparator)
 		throws com.liferay.knowledgebase.NoSuchCommentException {
 		return getPersistence()
 				   .findByGroupId_PrevAndNext(kbCommentId, groupId,
@@ -650,7 +650,7 @@ public class KBCommentUtil {
 	*/
 	public static java.util.List<com.liferay.knowledgebase.model.KBComment> findByG_C(
 		long groupId, long classNameId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBComment> orderByComparator) {
 		return getPersistence()
 				   .findByG_C(groupId, classNameId, start, end,
 			orderByComparator);
@@ -667,7 +667,7 @@ public class KBCommentUtil {
 	*/
 	public static com.liferay.knowledgebase.model.KBComment findByG_C_First(
 		long groupId, long classNameId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBComment> orderByComparator)
 		throws com.liferay.knowledgebase.NoSuchCommentException {
 		return getPersistence()
 				   .findByG_C_First(groupId, classNameId, orderByComparator);
@@ -683,7 +683,7 @@ public class KBCommentUtil {
 	*/
 	public static com.liferay.knowledgebase.model.KBComment fetchByG_C_First(
 		long groupId, long classNameId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBComment> orderByComparator) {
 		return getPersistence()
 				   .fetchByG_C_First(groupId, classNameId, orderByComparator);
 	}
@@ -699,7 +699,7 @@ public class KBCommentUtil {
 	*/
 	public static com.liferay.knowledgebase.model.KBComment findByG_C_Last(
 		long groupId, long classNameId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBComment> orderByComparator)
 		throws com.liferay.knowledgebase.NoSuchCommentException {
 		return getPersistence()
 				   .findByG_C_Last(groupId, classNameId, orderByComparator);
@@ -715,7 +715,7 @@ public class KBCommentUtil {
 	*/
 	public static com.liferay.knowledgebase.model.KBComment fetchByG_C_Last(
 		long groupId, long classNameId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBComment> orderByComparator) {
 		return getPersistence()
 				   .fetchByG_C_Last(groupId, classNameId, orderByComparator);
 	}
@@ -732,7 +732,7 @@ public class KBCommentUtil {
 	*/
 	public static com.liferay.knowledgebase.model.KBComment[] findByG_C_PrevAndNext(
 		long kbCommentId, long groupId, long classNameId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBComment> orderByComparator)
 		throws com.liferay.knowledgebase.NoSuchCommentException {
 		return getPersistence()
 				   .findByG_C_PrevAndNext(kbCommentId, groupId, classNameId,
@@ -806,7 +806,7 @@ public class KBCommentUtil {
 	*/
 	public static java.util.List<com.liferay.knowledgebase.model.KBComment> findByC_C(
 		long classNameId, long classPK, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBComment> orderByComparator) {
 		return getPersistence()
 				   .findByC_C(classNameId, classPK, start, end,
 			orderByComparator);
@@ -823,7 +823,7 @@ public class KBCommentUtil {
 	*/
 	public static com.liferay.knowledgebase.model.KBComment findByC_C_First(
 		long classNameId, long classPK,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBComment> orderByComparator)
 		throws com.liferay.knowledgebase.NoSuchCommentException {
 		return getPersistence()
 				   .findByC_C_First(classNameId, classPK, orderByComparator);
@@ -839,7 +839,7 @@ public class KBCommentUtil {
 	*/
 	public static com.liferay.knowledgebase.model.KBComment fetchByC_C_First(
 		long classNameId, long classPK,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBComment> orderByComparator) {
 		return getPersistence()
 				   .fetchByC_C_First(classNameId, classPK, orderByComparator);
 	}
@@ -855,7 +855,7 @@ public class KBCommentUtil {
 	*/
 	public static com.liferay.knowledgebase.model.KBComment findByC_C_Last(
 		long classNameId, long classPK,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBComment> orderByComparator)
 		throws com.liferay.knowledgebase.NoSuchCommentException {
 		return getPersistence()
 				   .findByC_C_Last(classNameId, classPK, orderByComparator);
@@ -871,7 +871,7 @@ public class KBCommentUtil {
 	*/
 	public static com.liferay.knowledgebase.model.KBComment fetchByC_C_Last(
 		long classNameId, long classPK,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBComment> orderByComparator) {
 		return getPersistence()
 				   .fetchByC_C_Last(classNameId, classPK, orderByComparator);
 	}
@@ -888,7 +888,7 @@ public class KBCommentUtil {
 	*/
 	public static com.liferay.knowledgebase.model.KBComment[] findByC_C_PrevAndNext(
 		long kbCommentId, long classNameId, long classPK,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBComment> orderByComparator)
 		throws com.liferay.knowledgebase.NoSuchCommentException {
 		return getPersistence()
 				   .findByC_C_PrevAndNext(kbCommentId, classNameId, classPK,
@@ -1102,7 +1102,7 @@ public class KBCommentUtil {
 	*/
 	public static java.util.List<com.liferay.knowledgebase.model.KBComment> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBComment> orderByComparator) {
 		return getPersistence().findAll(start, end, orderByComparator);
 	}
 

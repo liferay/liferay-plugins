@@ -110,12 +110,11 @@ public abstract class KBCommentLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @param kbCommentId the primary key of the k b comment
 	 * @return the k b comment that was removed
 	 * @throws PortalException if a k b comment with the primary key could not be found
-	 * @throws SystemException
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
 	public KBComment deleteKBComment(long kbCommentId)
-		throws PortalException, SystemException {
+		throws PortalException {
 		return kbCommentPersistence.remove(kbCommentId);
 	}
 
@@ -125,12 +124,11 @@ public abstract class KBCommentLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @param kbComment the k b comment
 	 * @return the k b comment that was removed
 	 * @throws PortalException
-	 * @throws SystemException
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
 	public KBComment deleteKBComment(KBComment kbComment)
-		throws PortalException, SystemException {
+		throws PortalException {
 		return kbCommentPersistence.remove(kbComment);
 	}
 
@@ -149,8 +147,7 @@ public abstract class KBCommentLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the matching rows
 	 */
 	@Override
-	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery) {
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery) {
 		return kbCommentPersistence.findWithDynamicQuery(dynamicQuery);
 	}
 
@@ -167,8 +164,8 @@ public abstract class KBCommentLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the range of matching rows
 	 */
 	@Override
-	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end) {
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
+		int end) {
 		return kbCommentPersistence.findWithDynamicQuery(dynamicQuery, start,
 			end);
 	}
@@ -187,9 +184,8 @@ public abstract class KBCommentLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the ordered range of matching rows
 	 */
 	@Override
-	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end,
-		OrderByComparator orderByComparator) {
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
+		int end, OrderByComparator<T> orderByComparator) {
 		return kbCommentPersistence.findWithDynamicQuery(dynamicQuery, start,
 			end, orderByComparator);
 	}

@@ -152,7 +152,7 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 	 */
 	@Override
 	public List<KBComment> findByUuid(String uuid, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KBComment> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -272,7 +272,8 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 	 */
 	@Override
 	public KBComment findByUuid_First(String uuid,
-		OrderByComparator orderByComparator) throws NoSuchCommentException {
+		OrderByComparator<KBComment> orderByComparator)
+		throws NoSuchCommentException {
 		KBComment kbComment = fetchByUuid_First(uuid, orderByComparator);
 
 		if (kbComment != null) {
@@ -300,7 +301,7 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 	 */
 	@Override
 	public KBComment fetchByUuid_First(String uuid,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KBComment> orderByComparator) {
 		List<KBComment> list = findByUuid(uuid, 0, 1, orderByComparator);
 
 		if (!list.isEmpty()) {
@@ -320,7 +321,8 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 	 */
 	@Override
 	public KBComment findByUuid_Last(String uuid,
-		OrderByComparator orderByComparator) throws NoSuchCommentException {
+		OrderByComparator<KBComment> orderByComparator)
+		throws NoSuchCommentException {
 		KBComment kbComment = fetchByUuid_Last(uuid, orderByComparator);
 
 		if (kbComment != null) {
@@ -348,7 +350,7 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 	 */
 	@Override
 	public KBComment fetchByUuid_Last(String uuid,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KBComment> orderByComparator) {
 		int count = countByUuid(uuid);
 
 		if (count == 0) {
@@ -376,7 +378,8 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 	 */
 	@Override
 	public KBComment[] findByUuid_PrevAndNext(long kbCommentId, String uuid,
-		OrderByComparator orderByComparator) throws NoSuchCommentException {
+		OrderByComparator<KBComment> orderByComparator)
+		throws NoSuchCommentException {
 		KBComment kbComment = findByPrimaryKey(kbCommentId);
 
 		Session session = null;
@@ -405,8 +408,8 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 	}
 
 	protected KBComment getByUuid_PrevAndNext(Session session,
-		KBComment kbComment, String uuid, OrderByComparator orderByComparator,
-		boolean previous) {
+		KBComment kbComment, String uuid,
+		OrderByComparator<KBComment> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -931,7 +934,7 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 	 */
 	@Override
 	public List<KBComment> findByUuid_C(String uuid, long companyId, int start,
-		int end, OrderByComparator orderByComparator) {
+		int end, OrderByComparator<KBComment> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -1061,7 +1064,8 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 	 */
 	@Override
 	public KBComment findByUuid_C_First(String uuid, long companyId,
-		OrderByComparator orderByComparator) throws NoSuchCommentException {
+		OrderByComparator<KBComment> orderByComparator)
+		throws NoSuchCommentException {
 		KBComment kbComment = fetchByUuid_C_First(uuid, companyId,
 				orderByComparator);
 
@@ -1094,7 +1098,7 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 	 */
 	@Override
 	public KBComment fetchByUuid_C_First(String uuid, long companyId,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KBComment> orderByComparator) {
 		List<KBComment> list = findByUuid_C(uuid, companyId, 0, 1,
 				orderByComparator);
 
@@ -1116,7 +1120,8 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 	 */
 	@Override
 	public KBComment findByUuid_C_Last(String uuid, long companyId,
-		OrderByComparator orderByComparator) throws NoSuchCommentException {
+		OrderByComparator<KBComment> orderByComparator)
+		throws NoSuchCommentException {
 		KBComment kbComment = fetchByUuid_C_Last(uuid, companyId,
 				orderByComparator);
 
@@ -1149,7 +1154,7 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 	 */
 	@Override
 	public KBComment fetchByUuid_C_Last(String uuid, long companyId,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KBComment> orderByComparator) {
 		int count = countByUuid_C(uuid, companyId);
 
 		if (count == 0) {
@@ -1178,7 +1183,7 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 	 */
 	@Override
 	public KBComment[] findByUuid_C_PrevAndNext(long kbCommentId, String uuid,
-		long companyId, OrderByComparator orderByComparator)
+		long companyId, OrderByComparator<KBComment> orderByComparator)
 		throws NoSuchCommentException {
 		KBComment kbComment = findByPrimaryKey(kbCommentId);
 
@@ -1209,7 +1214,7 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 
 	protected KBComment getByUuid_C_PrevAndNext(Session session,
 		KBComment kbComment, String uuid, long companyId,
-		OrderByComparator orderByComparator, boolean previous) {
+		OrderByComparator<KBComment> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -1483,7 +1488,7 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 	 */
 	@Override
 	public List<KBComment> findByGroupId(long groupId, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KBComment> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -1589,7 +1594,8 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 	 */
 	@Override
 	public KBComment findByGroupId_First(long groupId,
-		OrderByComparator orderByComparator) throws NoSuchCommentException {
+		OrderByComparator<KBComment> orderByComparator)
+		throws NoSuchCommentException {
 		KBComment kbComment = fetchByGroupId_First(groupId, orderByComparator);
 
 		if (kbComment != null) {
@@ -1617,7 +1623,7 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 	 */
 	@Override
 	public KBComment fetchByGroupId_First(long groupId,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KBComment> orderByComparator) {
 		List<KBComment> list = findByGroupId(groupId, 0, 1, orderByComparator);
 
 		if (!list.isEmpty()) {
@@ -1637,7 +1643,8 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 	 */
 	@Override
 	public KBComment findByGroupId_Last(long groupId,
-		OrderByComparator orderByComparator) throws NoSuchCommentException {
+		OrderByComparator<KBComment> orderByComparator)
+		throws NoSuchCommentException {
 		KBComment kbComment = fetchByGroupId_Last(groupId, orderByComparator);
 
 		if (kbComment != null) {
@@ -1665,7 +1672,7 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 	 */
 	@Override
 	public KBComment fetchByGroupId_Last(long groupId,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KBComment> orderByComparator) {
 		int count = countByGroupId(groupId);
 
 		if (count == 0) {
@@ -1693,7 +1700,7 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 	 */
 	@Override
 	public KBComment[] findByGroupId_PrevAndNext(long kbCommentId,
-		long groupId, OrderByComparator orderByComparator)
+		long groupId, OrderByComparator<KBComment> orderByComparator)
 		throws NoSuchCommentException {
 		KBComment kbComment = findByPrimaryKey(kbCommentId);
 
@@ -1723,8 +1730,8 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 	}
 
 	protected KBComment getByGroupId_PrevAndNext(Session session,
-		KBComment kbComment, long groupId, OrderByComparator orderByComparator,
-		boolean previous) {
+		KBComment kbComment, long groupId,
+		OrderByComparator<KBComment> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -1962,7 +1969,7 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 	 */
 	@Override
 	public List<KBComment> findByG_C(long groupId, long classNameId, int start,
-		int end, OrderByComparator orderByComparator) {
+		int end, OrderByComparator<KBComment> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -2078,7 +2085,8 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 	 */
 	@Override
 	public KBComment findByG_C_First(long groupId, long classNameId,
-		OrderByComparator orderByComparator) throws NoSuchCommentException {
+		OrderByComparator<KBComment> orderByComparator)
+		throws NoSuchCommentException {
 		KBComment kbComment = fetchByG_C_First(groupId, classNameId,
 				orderByComparator);
 
@@ -2111,7 +2119,7 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 	 */
 	@Override
 	public KBComment fetchByG_C_First(long groupId, long classNameId,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KBComment> orderByComparator) {
 		List<KBComment> list = findByG_C(groupId, classNameId, 0, 1,
 				orderByComparator);
 
@@ -2133,7 +2141,8 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 	 */
 	@Override
 	public KBComment findByG_C_Last(long groupId, long classNameId,
-		OrderByComparator orderByComparator) throws NoSuchCommentException {
+		OrderByComparator<KBComment> orderByComparator)
+		throws NoSuchCommentException {
 		KBComment kbComment = fetchByG_C_Last(groupId, classNameId,
 				orderByComparator);
 
@@ -2166,7 +2175,7 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 	 */
 	@Override
 	public KBComment fetchByG_C_Last(long groupId, long classNameId,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KBComment> orderByComparator) {
 		int count = countByG_C(groupId, classNameId);
 
 		if (count == 0) {
@@ -2195,7 +2204,7 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 	 */
 	@Override
 	public KBComment[] findByG_C_PrevAndNext(long kbCommentId, long groupId,
-		long classNameId, OrderByComparator orderByComparator)
+		long classNameId, OrderByComparator<KBComment> orderByComparator)
 		throws NoSuchCommentException {
 		KBComment kbComment = findByPrimaryKey(kbCommentId);
 
@@ -2226,7 +2235,7 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 
 	protected KBComment getByG_C_PrevAndNext(Session session,
 		KBComment kbComment, long groupId, long classNameId,
-		OrderByComparator orderByComparator, boolean previous) {
+		OrderByComparator<KBComment> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -2475,7 +2484,7 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 	 */
 	@Override
 	public List<KBComment> findByC_C(long classNameId, long classPK, int start,
-		int end, OrderByComparator orderByComparator) {
+		int end, OrderByComparator<KBComment> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -2591,7 +2600,8 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 	 */
 	@Override
 	public KBComment findByC_C_First(long classNameId, long classPK,
-		OrderByComparator orderByComparator) throws NoSuchCommentException {
+		OrderByComparator<KBComment> orderByComparator)
+		throws NoSuchCommentException {
 		KBComment kbComment = fetchByC_C_First(classNameId, classPK,
 				orderByComparator);
 
@@ -2624,7 +2634,7 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 	 */
 	@Override
 	public KBComment fetchByC_C_First(long classNameId, long classPK,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KBComment> orderByComparator) {
 		List<KBComment> list = findByC_C(classNameId, classPK, 0, 1,
 				orderByComparator);
 
@@ -2646,7 +2656,8 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 	 */
 	@Override
 	public KBComment findByC_C_Last(long classNameId, long classPK,
-		OrderByComparator orderByComparator) throws NoSuchCommentException {
+		OrderByComparator<KBComment> orderByComparator)
+		throws NoSuchCommentException {
 		KBComment kbComment = fetchByC_C_Last(classNameId, classPK,
 				orderByComparator);
 
@@ -2679,7 +2690,7 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 	 */
 	@Override
 	public KBComment fetchByC_C_Last(long classNameId, long classPK,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KBComment> orderByComparator) {
 		int count = countByC_C(classNameId, classPK);
 
 		if (count == 0) {
@@ -2708,7 +2719,8 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 	 */
 	@Override
 	public KBComment[] findByC_C_PrevAndNext(long kbCommentId,
-		long classNameId, long classPK, OrderByComparator orderByComparator)
+		long classNameId, long classPK,
+		OrderByComparator<KBComment> orderByComparator)
 		throws NoSuchCommentException {
 		KBComment kbComment = findByPrimaryKey(kbCommentId);
 
@@ -2739,7 +2751,7 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 
 	protected KBComment getByC_C_PrevAndNext(Session session,
 		KBComment kbComment, long classNameId, long classPK,
-		OrderByComparator orderByComparator, boolean previous) {
+		OrderByComparator<KBComment> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -3865,7 +3877,7 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 	 */
 	@Override
 	public List<KBComment> findAll(int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KBComment> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;

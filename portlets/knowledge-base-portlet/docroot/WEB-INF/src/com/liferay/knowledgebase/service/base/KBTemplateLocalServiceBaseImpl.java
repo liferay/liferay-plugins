@@ -110,12 +110,11 @@ public abstract class KBTemplateLocalServiceBaseImpl
 	 * @param kbTemplateId the primary key of the k b template
 	 * @return the k b template that was removed
 	 * @throws PortalException if a k b template with the primary key could not be found
-	 * @throws SystemException
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
 	public KBTemplate deleteKBTemplate(long kbTemplateId)
-		throws PortalException, SystemException {
+		throws PortalException {
 		return kbTemplatePersistence.remove(kbTemplateId);
 	}
 
@@ -125,12 +124,11 @@ public abstract class KBTemplateLocalServiceBaseImpl
 	 * @param kbTemplate the k b template
 	 * @return the k b template that was removed
 	 * @throws PortalException
-	 * @throws SystemException
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
 	public KBTemplate deleteKBTemplate(KBTemplate kbTemplate)
-		throws PortalException, SystemException {
+		throws PortalException {
 		return kbTemplatePersistence.remove(kbTemplate);
 	}
 
@@ -149,8 +147,7 @@ public abstract class KBTemplateLocalServiceBaseImpl
 	 * @return the matching rows
 	 */
 	@Override
-	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery) {
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery) {
 		return kbTemplatePersistence.findWithDynamicQuery(dynamicQuery);
 	}
 
@@ -167,8 +164,8 @@ public abstract class KBTemplateLocalServiceBaseImpl
 	 * @return the range of matching rows
 	 */
 	@Override
-	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end) {
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
+		int end) {
 		return kbTemplatePersistence.findWithDynamicQuery(dynamicQuery, start,
 			end);
 	}
@@ -187,9 +184,8 @@ public abstract class KBTemplateLocalServiceBaseImpl
 	 * @return the ordered range of matching rows
 	 */
 	@Override
-	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end,
-		OrderByComparator orderByComparator) {
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
+		int end, OrderByComparator<T> orderByComparator) {
 		return kbTemplatePersistence.findWithDynamicQuery(dynamicQuery, start,
 			end, orderByComparator);
 	}

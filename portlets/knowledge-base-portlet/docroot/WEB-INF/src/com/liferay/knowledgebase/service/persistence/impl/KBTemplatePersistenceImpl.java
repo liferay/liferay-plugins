@@ -154,7 +154,7 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 	 */
 	@Override
 	public List<KBTemplate> findByUuid(String uuid, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KBTemplate> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -274,7 +274,8 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 	 */
 	@Override
 	public KBTemplate findByUuid_First(String uuid,
-		OrderByComparator orderByComparator) throws NoSuchTemplateException {
+		OrderByComparator<KBTemplate> orderByComparator)
+		throws NoSuchTemplateException {
 		KBTemplate kbTemplate = fetchByUuid_First(uuid, orderByComparator);
 
 		if (kbTemplate != null) {
@@ -302,7 +303,7 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 	 */
 	@Override
 	public KBTemplate fetchByUuid_First(String uuid,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KBTemplate> orderByComparator) {
 		List<KBTemplate> list = findByUuid(uuid, 0, 1, orderByComparator);
 
 		if (!list.isEmpty()) {
@@ -322,7 +323,8 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 	 */
 	@Override
 	public KBTemplate findByUuid_Last(String uuid,
-		OrderByComparator orderByComparator) throws NoSuchTemplateException {
+		OrderByComparator<KBTemplate> orderByComparator)
+		throws NoSuchTemplateException {
 		KBTemplate kbTemplate = fetchByUuid_Last(uuid, orderByComparator);
 
 		if (kbTemplate != null) {
@@ -350,7 +352,7 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 	 */
 	@Override
 	public KBTemplate fetchByUuid_Last(String uuid,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KBTemplate> orderByComparator) {
 		int count = countByUuid(uuid);
 
 		if (count == 0) {
@@ -378,7 +380,8 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 	 */
 	@Override
 	public KBTemplate[] findByUuid_PrevAndNext(long kbTemplateId, String uuid,
-		OrderByComparator orderByComparator) throws NoSuchTemplateException {
+		OrderByComparator<KBTemplate> orderByComparator)
+		throws NoSuchTemplateException {
 		KBTemplate kbTemplate = findByPrimaryKey(kbTemplateId);
 
 		Session session = null;
@@ -408,7 +411,7 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 
 	protected KBTemplate getByUuid_PrevAndNext(Session session,
 		KBTemplate kbTemplate, String uuid,
-		OrderByComparator orderByComparator, boolean previous) {
+		OrderByComparator<KBTemplate> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -933,7 +936,7 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 	 */
 	@Override
 	public List<KBTemplate> findByUuid_C(String uuid, long companyId,
-		int start, int end, OrderByComparator orderByComparator) {
+		int start, int end, OrderByComparator<KBTemplate> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -1063,7 +1066,8 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 	 */
 	@Override
 	public KBTemplate findByUuid_C_First(String uuid, long companyId,
-		OrderByComparator orderByComparator) throws NoSuchTemplateException {
+		OrderByComparator<KBTemplate> orderByComparator)
+		throws NoSuchTemplateException {
 		KBTemplate kbTemplate = fetchByUuid_C_First(uuid, companyId,
 				orderByComparator);
 
@@ -1096,7 +1100,7 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 	 */
 	@Override
 	public KBTemplate fetchByUuid_C_First(String uuid, long companyId,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KBTemplate> orderByComparator) {
 		List<KBTemplate> list = findByUuid_C(uuid, companyId, 0, 1,
 				orderByComparator);
 
@@ -1118,7 +1122,8 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 	 */
 	@Override
 	public KBTemplate findByUuid_C_Last(String uuid, long companyId,
-		OrderByComparator orderByComparator) throws NoSuchTemplateException {
+		OrderByComparator<KBTemplate> orderByComparator)
+		throws NoSuchTemplateException {
 		KBTemplate kbTemplate = fetchByUuid_C_Last(uuid, companyId,
 				orderByComparator);
 
@@ -1151,7 +1156,7 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 	 */
 	@Override
 	public KBTemplate fetchByUuid_C_Last(String uuid, long companyId,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KBTemplate> orderByComparator) {
 		int count = countByUuid_C(uuid, companyId);
 
 		if (count == 0) {
@@ -1180,7 +1185,8 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 	 */
 	@Override
 	public KBTemplate[] findByUuid_C_PrevAndNext(long kbTemplateId,
-		String uuid, long companyId, OrderByComparator orderByComparator)
+		String uuid, long companyId,
+		OrderByComparator<KBTemplate> orderByComparator)
 		throws NoSuchTemplateException {
 		KBTemplate kbTemplate = findByPrimaryKey(kbTemplateId);
 
@@ -1211,7 +1217,7 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 
 	protected KBTemplate getByUuid_C_PrevAndNext(Session session,
 		KBTemplate kbTemplate, String uuid, long companyId,
-		OrderByComparator orderByComparator, boolean previous) {
+		OrderByComparator<KBTemplate> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -1485,7 +1491,7 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 	 */
 	@Override
 	public List<KBTemplate> findByGroupId(long groupId, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KBTemplate> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -1591,7 +1597,8 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 	 */
 	@Override
 	public KBTemplate findByGroupId_First(long groupId,
-		OrderByComparator orderByComparator) throws NoSuchTemplateException {
+		OrderByComparator<KBTemplate> orderByComparator)
+		throws NoSuchTemplateException {
 		KBTemplate kbTemplate = fetchByGroupId_First(groupId, orderByComparator);
 
 		if (kbTemplate != null) {
@@ -1619,7 +1626,7 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 	 */
 	@Override
 	public KBTemplate fetchByGroupId_First(long groupId,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KBTemplate> orderByComparator) {
 		List<KBTemplate> list = findByGroupId(groupId, 0, 1, orderByComparator);
 
 		if (!list.isEmpty()) {
@@ -1639,7 +1646,8 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 	 */
 	@Override
 	public KBTemplate findByGroupId_Last(long groupId,
-		OrderByComparator orderByComparator) throws NoSuchTemplateException {
+		OrderByComparator<KBTemplate> orderByComparator)
+		throws NoSuchTemplateException {
 		KBTemplate kbTemplate = fetchByGroupId_Last(groupId, orderByComparator);
 
 		if (kbTemplate != null) {
@@ -1667,7 +1675,7 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 	 */
 	@Override
 	public KBTemplate fetchByGroupId_Last(long groupId,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KBTemplate> orderByComparator) {
 		int count = countByGroupId(groupId);
 
 		if (count == 0) {
@@ -1695,7 +1703,7 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 	 */
 	@Override
 	public KBTemplate[] findByGroupId_PrevAndNext(long kbTemplateId,
-		long groupId, OrderByComparator orderByComparator)
+		long groupId, OrderByComparator<KBTemplate> orderByComparator)
 		throws NoSuchTemplateException {
 		KBTemplate kbTemplate = findByPrimaryKey(kbTemplateId);
 
@@ -1726,7 +1734,7 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 
 	protected KBTemplate getByGroupId_PrevAndNext(Session session,
 		KBTemplate kbTemplate, long groupId,
-		OrderByComparator orderByComparator, boolean previous) {
+		OrderByComparator<KBTemplate> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -1873,7 +1881,7 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 	 */
 	@Override
 	public List<KBTemplate> filterFindByGroupId(long groupId, int start,
-		int end, OrderByComparator orderByComparator) {
+		int end, OrderByComparator<KBTemplate> orderByComparator) {
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
 			return findByGroupId(groupId, start, end, orderByComparator);
 		}
@@ -1963,7 +1971,7 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 	 */
 	@Override
 	public KBTemplate[] filterFindByGroupId_PrevAndNext(long kbTemplateId,
-		long groupId, OrderByComparator orderByComparator)
+		long groupId, OrderByComparator<KBTemplate> orderByComparator)
 		throws NoSuchTemplateException {
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
 			return findByGroupId_PrevAndNext(kbTemplateId, groupId,
@@ -1999,7 +2007,7 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 
 	protected KBTemplate filterGetByGroupId_PrevAndNext(Session session,
 		KBTemplate kbTemplate, long groupId,
-		OrderByComparator orderByComparator, boolean previous) {
+		OrderByComparator<KBTemplate> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -2857,7 +2865,7 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 	 */
 	@Override
 	public List<KBTemplate> findAll(int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KBTemplate> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
