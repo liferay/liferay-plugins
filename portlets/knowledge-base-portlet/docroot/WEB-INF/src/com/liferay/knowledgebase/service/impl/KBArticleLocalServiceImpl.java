@@ -18,6 +18,7 @@ import com.liferay.knowledgebase.KBArticleContentException;
 import com.liferay.knowledgebase.KBArticlePriorityException;
 import com.liferay.knowledgebase.KBArticleTitleException;
 import com.liferay.knowledgebase.NoSuchArticleException;
+import com.liferay.knowledgebase.admin.importer.KBArticleHierarchyImporter;
 import com.liferay.knowledgebase.admin.social.AdminActivityKeys;
 import com.liferay.knowledgebase.admin.util.AdminSubscriptionSender;
 import com.liferay.knowledgebase.admin.util.AdminUtil;
@@ -83,6 +84,7 @@ import com.liferay.portlet.documentlibrary.NoSuchDirectoryException;
 import com.liferay.portlet.documentlibrary.store.DLStoreUtil;
 
 import java.io.File;
+import java.io.IOException;
 import java.io.InputStream;
 
 import java.util.ArrayList;
@@ -256,6 +258,19 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			kbArticleId);
 
 		addKBArticleResources(kbArticle, groupPermissions, guestPermissions);
+	}
+
+	public void addKBArticlesMarkdown(
+			long userId, long groupId, String fileName, InputStream inputStream,
+			ServiceContext serviceContext)
+		throws PortalException, IOException {
+
+		KBArticleHierarchyImporter kbArticleHierarchyImporter =
+			new KBArticleHierarchyImporter();
+
+		kbArticleHierarchyImporter.processZipFile(
+			userId, groupId, fileName, inputStream,
+			new HashMap<String, FileEntry>(), serviceContext);
 	}
 
 	public void checkAttachments() throws PortalException {

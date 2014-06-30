@@ -237,12 +237,8 @@ public class AdminPortlet extends MVCPortlet {
 
 			serviceContext.setGuestPermissions(new String[] {ActionKeys.VIEW});
 
-			KBArticleHierarchyImporter kbArticleHierarchyImporter =
-				new KBArticleHierarchyImporter();
-
-			kbArticleHierarchyImporter.processZipFile(
-				themeDisplay.getUserId(), themeDisplay.getScopeGroupId(),
-				fileName, inputStream, new HashMap<String, FileEntry>(),
+			KBArticleServiceUtil.addKBArticlesMarkdown(
+				themeDisplay.getScopeGroupId(), fileName, inputStream,
 				serviceContext);
 		}
 		catch (KBArticleImportException kbaie) {

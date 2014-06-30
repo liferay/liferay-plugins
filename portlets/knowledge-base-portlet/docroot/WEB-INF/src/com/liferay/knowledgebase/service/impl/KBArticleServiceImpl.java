@@ -56,6 +56,7 @@ import com.sun.syndication.feed.synd.SyndLinkImpl;
 import com.sun.syndication.io.FeedException;
 
 import java.io.File;
+import java.io.IOException;
 import java.io.InputStream;
 
 import java.util.ArrayList;
@@ -103,6 +104,18 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 		return kbArticleLocalService.addKBArticle(
 			getUserId(), parentResourcePrimKey, title, urlTitle, content,
 			description, sections, dirName, serviceContext);
+	}
+
+	public void addKBArticlesMarkdown(
+			long groupId, String fileName, InputStream inputStream,
+			ServiceContext serviceContext)
+		throws PortalException, IOException {
+
+		AdminPermission.check(
+			getPermissionChecker(), groupId, ActionKeys.ADD_KB_ARTICLE);
+
+		kbArticleLocalService.addKBArticlesMarkdown(
+			getUserId(), groupId, fileName, inputStream, serviceContext);
 	}
 
 	public void deleteAttachment(
