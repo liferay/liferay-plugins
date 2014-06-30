@@ -16,7 +16,7 @@
 
 <%@ include file="/admin/init.jsp" %>
 
-<portlet:renderURL var="importURL" windowState="<%= WindowState.MAXIMIZED.toString() %>">
+<portlet:renderURL var="importURL">
 	<portlet:param name="mvcPath" value="/admin/import.jsp" />
 	<portlet:param name="redirect" value="<%= redirect %>" />
 </portlet:renderURL>
