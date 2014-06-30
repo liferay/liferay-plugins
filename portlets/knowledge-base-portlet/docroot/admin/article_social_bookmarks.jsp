@@ -17,7 +17,7 @@
 <%@ include file="/admin/init.jsp" %>
 
 <%
-KBArticle kbArticle = (KBArticle)request.getAttribute("article_icons.jsp-kb_article");
+KBArticle kbArticle = (KBArticle)request.getAttribute(WebKeys.KNOWLEDGE_BASE_KB_ARTICLE);
 %>
 
 <liferay-portlet:renderURL var="viewKBArticleURL">
@@ -33,11 +33,10 @@ KBArticle kbArticle = (KBArticle)request.getAttribute("article_icons.jsp-kb_arti
 
 <c:if test="<%= enableSocialBookmarks %>">
 	<liferay-ui:social-bookmarks
-		contentId="<%= String.valueOf(kbArticle.getKbArticleId()) %>"
+		contentId="<%= String.valueOf(kbArticle.getResourcePrimKey()) %>"
 		displayStyle="<%= PropsUtil.get(PropsKeys.BLOGS_SOCIAL_BOOKMARKS_DISPLAY_STYLE) %>"
 		target="_blank"
 		title="<%= kbArticle.getTitle() %>"
-		types="<%= PropsUtil.get(PropsKeys.SOCIAL_BOOKMARK_TYPES) %>"
 		url="<%= PortalUtil.getCanonicalURL(viewKBArticleURL.toString(), themeDisplay, layout) %>"
 	/>
 </c:if>
