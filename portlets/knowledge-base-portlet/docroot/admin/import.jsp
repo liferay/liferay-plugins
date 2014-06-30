@@ -16,14 +16,18 @@
 
 <%@ include file="/admin/init.jsp" %>
 
-<portlet:actionURL name="importFile" var="importFileURL" windowState="normal" />
+<portlet:actionURL name="importFile" var="importFileURL" />
 
-<aui:form action="<%= importFileURL %>" class="uni-form" enctype="multipart/form-data" method="post" name="fm">
+<aui:form action="<%= importFileURL %>" class="lfr-dynamic-form" enctype="multipart/form-data" method="post" name="fm">
 	<liferay-ui:message key="upload-your-zip-file" />
 
-	<aui:fieldset class="block-labels">
-		<aui:input id="file" name="file" size="50" type="file" />
+	<aui:fieldset class="kb-block-labels">
+		<aui:input id="file" name="file" type="file" />
 	</aui:fieldset>
 
-	<aui:button name="submit" type="submit" />
+	<aui:button-row>
+		<aui:button name="submit" type="submit" />
+
+		<aui:button href="<%= redirect %>" type="cancel" />
+	</aui:button-row>
 </aui:form>

@@ -166,7 +166,7 @@ public class KBArticleHierarchyImporter {
 		try {
 			article = applyContentToKBArticle(
 				userId, groupId, parentResourcePrimaryKey, title, urlTitle,
-				html,serviceContext);
+				html, serviceContext);
 		}
 		catch (Exception e) {
 			StringBuilder sb = new StringBuilder(4);
