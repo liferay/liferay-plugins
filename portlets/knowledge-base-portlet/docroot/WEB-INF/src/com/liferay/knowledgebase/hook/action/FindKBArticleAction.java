@@ -140,13 +140,13 @@ public class FindKBArticleAction extends BaseStrutsAction {
 
 		candidateLayouts.addAll(layouts);
 
-		Layout selLayout = LayoutLocalServiceUtil.getLayout(plid);
+		Layout layout = LayoutLocalServiceUtil.getLayout(plid);
 
-		if ((selLayout.getGroupId() == kbArticle.getGroupId()) &&
-			selLayout.isTypePortlet()) {
+		if ((layout.getGroupId() == kbArticle.getGroupId()) &&
+			layout.isTypePortlet()) {
 
-			candidateLayouts.remove(selLayout);
-			candidateLayouts.add(0, selLayout);
+			candidateLayouts.remove(layout);
+			candidateLayouts.add(0, layout);
 		}
 
 		return candidateLayouts;
