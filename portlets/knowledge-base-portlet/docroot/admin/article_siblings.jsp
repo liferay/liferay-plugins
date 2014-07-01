@@ -39,9 +39,17 @@ KBArticle nextKBArticle = prevAndNext[2];
 				</c:choose>
 			</liferay-portlet:renderURL>
 
-			<aui:a cssClass="icon-circle-arrow-left" href="<%= previousKBArticleURL %>" label="previous" />
+			<aui:a cssClass="hidden-xs prev" href="<%= previousKBArticleURL %>">
+				<i class="icon icon-circle-arrow-left"></i>
 
-			<span class="kb-article-sibling-title"><%= previousKBArticle.getTitle() %></span>
+				<span class="title"><%= previousKBArticle.getTitle() %></span>
+			</aui:a>
+
+			<aui:a cssClass="visible-xs prev" href="<%= previousKBArticleURL %>">
+				<i class="icon icon-circle-arrow-left"></i>
+
+				<span class="title"><liferay-ui:message key="previous" /></span>
+			</aui:a>
 		</c:if>
 	</span>
 
@@ -58,11 +66,17 @@ KBArticle nextKBArticle = prevAndNext[2];
 				</c:choose>
 			</liferay-portlet:renderURL>
 
-			<aui:a cssClass="next" href="<%= nextKBArticleURL %>" label="next">
-				<i class="icon-circle-arrow-right"></i>
+			<aui:a cssClass="hidden-xs next" href="<%= nextKBArticleURL %>">
+				<span class="title"><%= nextKBArticle.getTitle() %></span>
+
+				<i class="icon icon-circle-arrow-right"></i>
 			</aui:a>
 
-			<span class="kb-article-sibling-title"><%= nextKBArticle.getTitle() %></span>
+			<aui:a cssClass="visible-xs next" href="<%= nextKBArticleURL %>">
+				<span class="title"><liferay-ui:message key="next" /></span>
+
+				<i class="icon icon-circle-arrow-right"></i>
+			</aui:a>
 		</c:if>
 	</span>
 </div>
