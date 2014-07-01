@@ -138,6 +138,13 @@ String dirName = ParamUtil.getString(request, "dirName");
 			</aui:fieldset>
 		</liferay-ui:panel>
 
+		<liferay-ui:panel collapsible="<%= true %>" defaultState="closed" extended="<%= false %>" persistState="<%= true %>" title="related-assets">
+			<liferay-ui:input-asset-links
+				className="<%= KBArticle.class.getName() %>"
+				classPK="<%= (kbArticle == null) ? KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY : kbArticle.getClassPK() %>"
+			/>
+		</liferay-ui:panel>
+
 		<aui:button-row cssClass="kb-submit-buttons">
 			<aui:button type="submit" value='<%= ((kbArticle == null) || kbArticle.isApproved() || kbArticle.isDraft()) ? "save-as-draft" : "save" %>' />
 
