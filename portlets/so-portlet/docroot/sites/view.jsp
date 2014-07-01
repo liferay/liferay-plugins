@@ -20,8 +20,9 @@
 <%@ include file="/sites/init.jsp" %>
 
 <%
-String name = ParamUtil.getString(request, "name");
 String tabs1 = ParamUtil.getString(request, "tabs1", userPortletPreferences.getValue("defaultSearchTab", "my-favorites"));
+
+String name = ParamUtil.getString(request, "name");
 
 List<Group> groups = null;
 int groupsCount = 0;
