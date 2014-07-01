@@ -4,5 +4,5 @@
 <project name="ip-geocoder-portlet" basedir="." default="deploy">
 	<property name="osgi.runtime.dependencies" value="com.liferay.ip.geocoder.jar" />
 
-	<import file="../build-common-portlet.xml" />
+	<import file="../../build-common-osgi-plugin.xml" />
 </project>
