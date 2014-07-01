@@ -834,11 +834,18 @@ Please find a solution that does not require portal-impl.jar.
 					</copy>
 
 					<ivy:settings file="${ivy.custom.settings.file}" />
+					
+					<ivy:resolve
+						conf="test"
+						file="${sdk.dir}/ivy.xml"
+						log="download-only"
+						transitive="${ivy.resolve.transitive.dependencies.test}" />
 
 					<ivy:resolve
-						file="${sdk.dir}/ivy-test.xml"
+						conf="test"
+						file="@{module.dir}/ivy.xml"
 						log="download-only"
-						transitive="true"
+						transitive="${ivy.resolve.transitive.dependencies.test}"
 					/>
 
 					<path id="plugin-test-type.classpath">
