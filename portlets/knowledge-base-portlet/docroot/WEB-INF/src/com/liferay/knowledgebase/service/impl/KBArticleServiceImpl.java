@@ -166,52 +166,6 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 		kbArticleLocalService.deleteKBArticles(resourcePrimKeys);
 	}
 
-	@Override
-	public KBArticle fetchPredecessorKBArticle(
-			long groupId, long parentResourcePrimKey, long resourcePrimKey,
-			int status)
-		throws PortalException {
-
-		KBArticlePermission.check(
-			getPermissionChecker(), resourcePrimKey, ActionKeys.VIEW);
-
-		KBArticle kbArticle = kbArticleLocalService.fetchPredecessorKBArticle(
-			groupId, parentResourcePrimKey, resourcePrimKey, status);
-
-		if (kbArticle == null) {
-			return null;
-		}
-
-		KBArticlePermission.check(
-			getPermissionChecker(), kbArticle.getResourcePrimKey(),
-			ActionKeys.VIEW);
-
-		return kbArticle;
-	}
-
-	@Override
-	public KBArticle fetchSuccessorKBArticle(
-			long groupId, long parentResourcePrimKey, long resourcePrimKey,
-			int status)
-		throws PortalException {
-
-		KBArticlePermission.check(
-			getPermissionChecker(), resourcePrimKey, ActionKeys.VIEW);
-
-		KBArticle kbArticle = kbArticleLocalService.fetchSuccessorKBArticle(
-			groupId, parentResourcePrimKey, resourcePrimKey, status);
-
-		if (kbArticle == null) {
-			return null;
-		}
-
-		KBArticlePermission.check(
-			getPermissionChecker(), kbArticle.getResourcePrimKey(),
-			ActionKeys.VIEW);
-
-		return kbArticle;
-	}
-
 	public File getAttachment(
 			long companyId, long groupId, String portletId,
 			long resourcePrimKey, String fileName)
@@ -293,7 +247,7 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 		OrderByComparator orderByComparator) {
 
 		List<KBArticle> kbArticles = getKBArticles(
-			groupId, new long[]{resourcePrimKey}, status, null);
+			groupId, new long[] {resourcePrimKey}, status, null);
 
 		kbArticles = ListUtil.copy(kbArticles);
 

@@ -464,24 +464,6 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		return kbArticles.get(0);
 	}
 
-	@Override
-	public KBArticle fetchPredecessorKBArticle(
-		long groupId, long parentResourcePrimKey, long resourcePrimKey,
-		int status) {
-
-		return fetchSibling(
-			groupId, parentResourcePrimKey, resourcePrimKey, status, true);
-	}
-
-	@Override
-	public KBArticle fetchSuccessorKBArticle(
-		long groupId, long parentResourcePrimKey, long resourcePrimKey,
-		int status) {
-
-		return fetchSibling(
-			groupId, parentResourcePrimKey, resourcePrimKey, status, false);
-	}
-
 	public List<KBArticle> getAllDescendantKBArticles(
 		long resourcePrimKey, int status, OrderByComparator orderByComparator) {
 
@@ -1510,40 +1492,6 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		for (Subscription subscription : subscriptions) {
 			unsubscribeKBArticle(
 				subscription.getUserId(), subscription.getClassPK());
-		}
-	}
-
-	protected KBArticle fetchSibling(
-		long groupId, long parentResourcePrimKey, long resourcePrimKey,
-		int status, boolean predecessor) {
-
-		List<KBArticle> siblings = getKBArticles(
-			groupId, parentResourcePrimKey, status, QueryUtil.ALL_POS,
-			QueryUtil.ALL_POS, new KBArticlePriorityComparator(true));
-
-		Iterator<KBArticle> iterator = siblings.iterator();
-
-		KBArticle sibling = null;
-
-		while (iterator.hasNext()) {
-			KBArticle kbArticle = iterator.next();
-
-			if (kbArticle.getResourcePrimKey() == resourcePrimKey) {
-				break;
-			}
-
-			sibling = kbArticle;
-		}
-
-		if (predecessor) {
-			return sibling;
-		}
-
-		if (iterator.hasNext()) {
-			return iterator.next();
-		}
-		else {
-			return null;
 		}
 	}
 
