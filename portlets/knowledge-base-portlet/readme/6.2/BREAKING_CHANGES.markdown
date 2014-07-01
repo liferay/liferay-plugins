@@ -1,4 +1,4 @@
-# What are the Breaking Changes for Liferay 7.0?
+# What are the Breaking Changes for Knowledge Base?
 
 This document presents a chronological list of changes that break existing
 functionality, APIs, or contracts with third party Liferay developers or users.
@@ -19,8 +19,6 @@ feature or API will be dropped in an upcoming version.
 * Recommendations: For example, recommending using a newly introduced API that
 replaces an old API, in spite of the old API being kept in Liferay Portal for
 backwards compatibility.
-
-*This document has been reviewed through commit `b62c5e4`.*
 
 ## Breaking Changes Contribution Guidelines
 
@@ -72,3 +70,29 @@ The remaining content of this document consists of the breaking changes listed
 in ascending chronological order.
 
 ## Breaking Changes List
+
+### Make Knowledge Base ratings consistent with the rest of the portal
+- **Date: 2014-Jul-1**
+- **JIRA Ticket: LPS-48146**
+
+#### What changed?
+
+The number of stars for the ratings has changed from a hardcoded value of `10` to
+the value of the `knowledge.base.knowledge.base.ratings.default.number.of.stars`
+property.
+
+#### Who is affected?
+
+Any installation where there are existing articles with a rating.
+
+#### How should I update my code?
+
+If you need to keep the former behaviour, you should change the value of the
+`knowledge.base.ratings.default.number.of.stars` property back to `10`.
+
+#### Why was this change made?
+
+To make ratings in Knowledge Base consistent with other components and to allow
+administrators to configure the number of stars if necessary.
+
+---------------------------------------
