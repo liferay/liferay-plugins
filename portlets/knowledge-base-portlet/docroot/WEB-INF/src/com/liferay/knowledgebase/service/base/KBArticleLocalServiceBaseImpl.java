@@ -62,6 +62,7 @@ import com.liferay.portal.service.persistence.WorkflowInstanceLinkPersistence;
 import com.liferay.portal.util.PortalUtil;
 
 import com.liferay.portlet.asset.service.persistence.AssetEntryPersistence;
+import com.liferay.portlet.asset.service.persistence.AssetLinkPersistence;
 import com.liferay.portlet.ratings.service.persistence.RatingsStatsPersistence;
 import com.liferay.portlet.social.service.persistence.SocialActivityPersistence;
 
@@ -1159,6 +1160,44 @@ public abstract class KBArticleLocalServiceBaseImpl extends BaseLocalServiceImpl
 	}
 
 	/**
+	 * Returns the asset link local service.
+	 *
+	 * @return the asset link local service
+	 */
+	public com.liferay.portlet.asset.service.AssetLinkLocalService getAssetLinkLocalService() {
+		return assetLinkLocalService;
+	}
+
+	/**
+	 * Sets the asset link local service.
+	 *
+	 * @param assetLinkLocalService the asset link local service
+	 */
+	public void setAssetLinkLocalService(
+		com.liferay.portlet.asset.service.AssetLinkLocalService assetLinkLocalService) {
+		this.assetLinkLocalService = assetLinkLocalService;
+	}
+
+	/**
+	 * Returns the asset link persistence.
+	 *
+	 * @return the asset link persistence
+	 */
+	public AssetLinkPersistence getAssetLinkPersistence() {
+		return assetLinkPersistence;
+	}
+
+	/**
+	 * Sets the asset link persistence.
+	 *
+	 * @param assetLinkPersistence the asset link persistence
+	 */
+	public void setAssetLinkPersistence(
+		AssetLinkPersistence assetLinkPersistence) {
+		this.assetLinkPersistence = assetLinkPersistence;
+	}
+
+	/**
 	 * Returns the ratings stats local service.
 	 *
 	 * @return the ratings stats local service
@@ -1416,6 +1455,10 @@ public abstract class KBArticleLocalServiceBaseImpl extends BaseLocalServiceImpl
 	protected com.liferay.portlet.asset.service.AssetEntryService assetEntryService;
 	@BeanReference(type = AssetEntryPersistence.class)
 	protected AssetEntryPersistence assetEntryPersistence;
+	@BeanReference(type = com.liferay.portlet.asset.service.AssetLinkLocalService.class)
+	protected com.liferay.portlet.asset.service.AssetLinkLocalService assetLinkLocalService;
+	@BeanReference(type = AssetLinkPersistence.class)
+	protected AssetLinkPersistence assetLinkPersistence;
 	@BeanReference(type = com.liferay.portlet.ratings.service.RatingsStatsLocalService.class)
 	protected com.liferay.portlet.ratings.service.RatingsStatsLocalService ratingsStatsLocalService;
 	@BeanReference(type = RatingsStatsPersistence.class)

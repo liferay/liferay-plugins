@@ -496,7 +496,8 @@ public interface KBArticleLocalService extends BaseLocalService,
 
 	public void updateKBArticleAsset(long userId,
 		com.liferay.knowledgebase.model.KBArticle kbArticle,
-		long[] assetCategoryIds, java.lang.String[] assetTagNames)
+		long[] assetCategoryIds, java.lang.String[] assetTagNames,
+		long[] assetLinkEntryIds)
 		throws com.liferay.portal.kernel.exception.PortalException;
 
 	public void updateKBArticleResources(

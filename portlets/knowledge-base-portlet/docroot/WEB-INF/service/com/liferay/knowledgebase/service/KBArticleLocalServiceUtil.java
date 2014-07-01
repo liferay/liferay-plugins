@@ -635,11 +635,12 @@ public class KBArticleLocalServiceUtil {
 
 	public static void updateKBArticleAsset(long userId,
 		com.liferay.knowledgebase.model.KBArticle kbArticle,
-		long[] assetCategoryIds, java.lang.String[] assetTagNames)
+		long[] assetCategoryIds, java.lang.String[] assetTagNames,
+		long[] assetLinkEntryIds)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		getService()
 			.updateKBArticleAsset(userId, kbArticle, assetCategoryIds,
-			assetTagNames);
+			assetTagNames, assetLinkEntryIds);
 	}
 
 	public static void updateKBArticleResources(
