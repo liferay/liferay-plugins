@@ -834,12 +834,13 @@ Please find a solution that does not require portal-impl.jar.
 					</copy>
 
 					<ivy:settings file="${ivy.custom.settings.file}" />
-					
+
 					<ivy:resolve
 						conf="test"
 						file="${sdk.dir}/ivy.xml"
 						log="download-only"
-						transitive="${ivy.resolve.transitive.dependencies.test}" />
+						transitive="${ivy.resolve.transitive.dependencies.test}"
+					/>
 
 					<ivy:resolve
 						conf="test"
@@ -850,13 +851,14 @@ Please find a solution that does not require portal-impl.jar.
 
 					<path id="plugin-test-type.classpath">
 						<pathelement location="@{module.dir}/test-classes/@{test.type}" />
-					
-						<!-- SDK dependencies -->
-						<ivy:resources module="com.liferay.sdk" />
-						
-						<!-- Module dependencies -->
-						<ivy:resources />
 
+						<!-- SDK dependencies -->
+
+						<ivy:resources module="com.liferay.sdk" />
+
+						<!-- Module dependencies -->
+
+						<ivy:resources />
 					</path>
 
 					<compile-java
