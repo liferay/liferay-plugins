@@ -122,6 +122,16 @@ public class KBArticleAssetRendererFactory extends BaseAssetRendererFactory {
 	}
 
 	@Override
+	public boolean isLinkable() {
+		return true;
+	}
+
+	@Override
+	public boolean isSelectable() {
+		return true;
+	}
+
+	@Override
 	protected String getIconPath(ThemeDisplay themeDisplay) {
 		return themeDisplay.getPathThemeImages() + "/trees/page.png";
 	}
