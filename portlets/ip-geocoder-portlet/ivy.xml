@@ -8,6 +8,6 @@
 	<info module="ip-geocoder-portlet" organisation="com.liferay" />
 
 	<dependencies defaultconf="default">
-		<dependency name="geoip" org="org.kohsuke" rev="1.2.8" />
+		<dependency name="com.liferay.ip.geocoder" org="com.liferay" rev="1.0.0-SNAPSHOT" />
 	</dependencies>
 </ivy-module>
