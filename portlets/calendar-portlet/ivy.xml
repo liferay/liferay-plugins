@@ -14,5 +14,6 @@
 
 		<dependency name="arquillian-junit-container" org="org.jboss.arquillian.junit" rev="1.1.3.Final" conf="test->default" />
 		<dependency name="arquillian-tomcat-remote-7" org="org.jboss.arquillian.container" rev="1.0.0.CR6" conf="test->default" />
+		<dependency name="com.liferay.ant.arquillian" org="com.liferay" rev="1.0.0-SNAPSHOT" conf="test->default" />
 	</dependencies>
 </ivy-module>
