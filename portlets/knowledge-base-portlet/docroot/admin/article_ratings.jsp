@@ -18,12 +18,18 @@
 
 <%
 KBArticle kbArticle = (KBArticle)request.getAttribute(WebKeys.KNOWLEDGE_BASE_KB_ARTICLE);
+
+int numberOfStars = PortletPropsValues.KNOWLEDGE_BASE_RATINGS_DEFAULT_NUMBER_OF_STARS;
+
+if (numberOfStars == 0) {
+	numberOfStars = PortletPropsValues.PORTAL_RATINGS_DEFAULT_NUMBER_OF_STARS;
+}
 %>
 
 <c:if test="<%= enableKBArticleRatings %>">
 	<liferay-ui:ratings
 		className="<%= KBArticle.class.getName() %>"
 		classPK="<%= kbArticle.getResourcePrimKey() %>"
-		numberOfStars="10"
+		numberOfStars="<%= numberOfStars %>"
 	/>
 </c:if>

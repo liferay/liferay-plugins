@@ -15,6 +15,8 @@
 package com.liferay.knowledgebase.util;
 
 import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.util.PropsKeys;
+import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.util.portlet.PortletProps;
 
 /**
@@ -92,5 +94,9 @@ public class PortletPropsValues {
 	public static final String MARKDOWN_IMPORTER_IMAGE_FOLDER =
 		GetterUtil.getString(
 			PortletProps.get(PortletPropsKeys.MARKDOWN_IMPORTER_IMAGE_FOLDER));
+
+	public static final int PORTAL_RATINGS_DEFAULT_NUMBER_OF_STARS =
+		GetterUtil.getInteger(
+			PropsUtil.get(PropsKeys.RATINGS_DEFAULT_NUMBER_OF_STARS));
 
 }
