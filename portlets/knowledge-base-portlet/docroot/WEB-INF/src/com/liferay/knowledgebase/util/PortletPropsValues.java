@@ -67,6 +67,12 @@ public class PortletPropsValues {
 		PortletProps.get(
 			PortletPropsKeys.KNOWLEDGE_BASE_SOCIAL_BOOKMARKS_DISPLAY_STYLE);
 
+	public static final int KNOWLEDGE_BASE_RATINGS_DEFAULT_NUMBER_OF_STARS =
+		GetterUtil.getInteger(
+			PortletProps.get(
+				PortletPropsKeys.
+					KNOWLEDGE_BASE_RATINGS_DEFAULT_NUMBER_OF_STARS));
+
 	public static final String[] MARKDOWN_IMPORTER_ARTICLE_EXTENSIONS =
 		PortletProps.getArray(
 			PortletPropsKeys.MARKDOWN_IMPORTER_ARTICLE_EXTENSIONS);
