@@ -2183,16 +2183,6 @@ Please find a solution that does not require portal-impl.jar.
 						test.type="@{test.type}"
 					/>
 
-					<path id="plugin-test-type.classpath">
-						<pathelement location="@{module.dir}/test-classes/@{test.type}" />
-
-						<ivy:resources
-							conf="test"
-							file="@{module.dir}/ivy-test.xml"
-							transitive="true"
-						/>
-					</path>
-
 					<if>
 						<available file="@{module.dir}/test/@{test.type}" type="dir" />
 						<then>
