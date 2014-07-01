@@ -20,9 +20,10 @@
 <%
 KBArticle kbArticle = (KBArticle)request.getAttribute(WebKeys.KNOWLEDGE_BASE_KB_ARTICLE);
 
-KBArticle previousKBArticle = kbArticle.getPreviousKBArticle();
+KBArticle[] prevAndNext = KBArticleLocalServiceUtil.getKBArticlesPrevAndNext(kbArticle.getKbArticleId());
 
-KBArticle nextKBArticle = kbArticle.getNextKBArticle();
+KBArticle previousKBArticle = prevAndNext[0];
+KBArticle nextKBArticle = prevAndNext[2];
 %>
 
 <div class="kb-article-siblings">
