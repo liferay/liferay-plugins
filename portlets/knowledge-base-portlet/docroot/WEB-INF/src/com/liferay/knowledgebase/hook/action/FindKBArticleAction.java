@@ -21,7 +21,6 @@ import com.liferay.knowledgebase.service.KBArticleLocalServiceUtil;
 import com.liferay.knowledgebase.service.permission.KBArticlePermission;
 import com.liferay.knowledgebase.util.ActionKeys;
 import com.liferay.knowledgebase.util.PortletKeys;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.portlet.LiferayWindowState;
 import com.liferay.portal.kernel.struts.BaseStrutsAction;
 import com.liferay.portal.kernel.struts.StrutsAction;
@@ -121,7 +120,7 @@ public class FindKBArticleAction extends BaseStrutsAction {
 
 	protected List<Layout> getCandidateLayouts(
 			long plid, boolean privateLayout, KBArticle kbArticle)
-		throws PortalException {
+		throws Exception {
 
 		List<Layout> candidateLayouts = new ArrayList<Layout>();
 
@@ -360,7 +359,7 @@ public class FindKBArticleAction extends BaseStrutsAction {
 		return PortletKeys.KNOWLEDGE_BASE_ARTICLE_DEFAULT_INSTANCE;
 	}
 
-	protected boolean isValidPlid(long plid) throws PortalException {
+	protected boolean isValidPlid(long plid) throws Exception {
 		Layout layout = LayoutLocalServiceUtil.fetchLayout(plid);
 
 		if (layout == null) {
