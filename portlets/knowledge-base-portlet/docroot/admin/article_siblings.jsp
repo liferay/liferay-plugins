@@ -39,9 +39,7 @@ KBArticle nextKBArticle = prevAndNext[2];
 				</c:choose>
 			</liferay-portlet:renderURL>
 
-			<a href="<%= previousKBArticleURL %>">
-				&laquo; <liferay-ui:message key="previous" />
-			</a>
+			<aui:a cssClass="icon-circle-arrow-left" href="<%= previousKBArticleURL %>" label="previous" />
 
 			<span class="kb-article-sibling-title"><%= previousKBArticle.getTitle() %></span>
 		</c:if>
@@ -60,9 +58,9 @@ KBArticle nextKBArticle = prevAndNext[2];
 				</c:choose>
 			</liferay-portlet:renderURL>
 
-			<a href="<%= nextKBArticleURL %>">
-				<liferay-ui:message key="next" /> &raquo;
-			</a>
+			<aui:a cssClass="next" href="<%= nextKBArticleURL %>" label="next">
+				<i class="icon-circle-arrow-right"></i>
+			</aui:a>
 
 			<span class="kb-article-sibling-title"><%= nextKBArticle.getTitle() %></span>
 		</c:if>
