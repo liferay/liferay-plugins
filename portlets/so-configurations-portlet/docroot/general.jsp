@@ -41,7 +41,7 @@ boolean enablePrivateSites = GetterUtil.getBoolean(portletPreferences.getValue("
 <aui:form action="<%= updateGeneralConfigurationsURL %>" method="post" name="fm">
 	<aui:input checked="<%= addSitePermission %>" label="social-office-users-can-add-sites" name="addSitePermission" type="checkbox" />
 
-	<liferay-ui:message key="select-which-type-of-sites-users-can-add-by-default-through-sites-portlet" />
+	<liferay-ui:message key="select-which-type-of-sites-users-can-add-by-default-through-the-sites-application" />
 
 	<liferay-ui:icon-help message="administrators-can-still-change-permissions-after-site-creation" />
 
