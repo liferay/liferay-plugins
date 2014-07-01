@@ -58,6 +58,10 @@ if (enableKBArticleViewCountIncrement && !kbArticle.isDraft()) {
 
 	<liferay-util:include page="/admin/article_assets.jsp" servletContext="<%= application %>" />
 
+	<liferay-util:include page="/admin/article_asset_entries.jsp" servletContext="<%= application %>" />
+
+	<liferay-util:include page="/admin/article_asset_links.jsp" servletContext="<%= application %>" />
+
 	<liferay-util:include page="/admin/article_ratings.jsp" servletContext="<%= application %>" />
 
 	<liferay-util:include page="/admin/article_social_bookmarks.jsp" servletContext="<%= application %>" />
@@ -65,6 +69,4 @@ if (enableKBArticleViewCountIncrement && !kbArticle.isDraft()) {
 	<liferay-util:include page="/admin/article_comments.jsp" servletContext="<%= application %>" />
 
 	<liferay-util:include page="/admin/article_child.jsp" servletContext="<%= application %>" />
-
-	<liferay-util:include page="/admin/article_asset_entries.jsp" servletContext="<%= application %>" />
 </div>
