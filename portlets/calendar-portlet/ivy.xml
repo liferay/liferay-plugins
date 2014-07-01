@@ -13,5 +13,6 @@
 		<dependency name="com.google.ical" org="com.liferay" rev="20110304" />
 
 		<dependency name="arquillian-junit-container" org="org.jboss.arquillian.junit" rev="1.1.3.Final" conf="test->default" />
+		<dependency name="arquillian-tomcat-remote-7" org="org.jboss.arquillian.container" rev="1.0.0.CR6" conf="test->default" />
 	</dependencies>
 </ivy-module>
