@@ -40,12 +40,12 @@ boolean helpful = BeanParamUtil.getBoolean(kbComment, request, "helpful", true);
 
 		<aui:form action="<%= updateKBCommentURL %>" id="fm" method="post" name="fm">
 			<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= (kbComment == null) ? Constants.ADD : Constants.UPDATE %>" />
-			<aui:input name="kbCommentId" type="hidden" value="<%= kbCommentId %>" />
-			<aui:input name="classNameId" type="hidden" value="<%= PortalUtil.getClassNameId(KBArticle.class) %>" />
-			<aui:input name="classPK" type="hidden" value="<%= kbArticle.getResourcePrimKey() %>" />
 			<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
 			<aui:input name="resourcePrimKey" type="hidden" value="<%= String.valueOf(kbArticle.getResourcePrimKey()) %>" />
 			<aui:input name="status" type="hidden" value="<%= String.valueOf(status) %>" />
+			<aui:input name="kbCommentId" type="hidden" value="<%= kbCommentId %>" />
+			<aui:input name="classNameId" type="hidden" value="<%= PortalUtil.getClassNameId(KBArticle.class) %>" />
+			<aui:input name="classPK" type="hidden" value="<%= kbArticle.getResourcePrimKey() %>" />
 
 			<liferay-ui:error exception="<%= KBCommentContentException.class %>" message="please-enter-valid-content" />
 
