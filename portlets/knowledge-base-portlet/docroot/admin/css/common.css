@@ -1,3 +1,5 @@
+@import "compass";
+
 /* ---------- Configuration ---------- */
 
 .portlet-configuration {
@@ -117,18 +119,48 @@
 		overflow: auto;
 		width: 100%;
 
-		.kb-article-prev {
-			float: left;
-			text-align: left;
+		.kb-article-next, .kb-article-prev {
+			position: relative;
+			width: 45%;
+
+			.icon {
+				line-height: inherit;
+				position: absolute;
+				text-decoration: none;
+				top: 0;
+
+				&.icon-circle-arrow-right {
+					right: 0;
+				}
+
+				&.icon-circle-arrow-left {
+					left: 0;
+				}
+			}
+
+			.title {
+				display: block;
+
+				@include ellipsis;
+			}
 		}
 
 		.kb-article-next {
 			float: right;
 			text-align: right;
+
+			.title {
+				padding-right: 15px;
+			}
 		}
 
-		.kb-article-sibling-title {
-			display: block;
+		.kb-article-prev {
+			float: left;
+			text-align: left;
+
+			.title {
+				padding-left: 15px;
+			}
 		}
 	}
 
