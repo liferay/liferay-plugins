@@ -662,6 +662,27 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 	}
 
 	@Override
+	public KBArticle[] getKBArticlesPrevAndNext(long kbArticleId)
+		throws PortalException {
+
+		KBArticle kbArticle = kbArticlePersistence.findByPrimaryKey(
+			kbArticleId);
+
+		KBArticle[] prevAndNext = kbArticlePersistence.findByG_P_L_PrevAndNext(
+			kbArticleId, kbArticle.getGroupId(),
+			kbArticle.getParentResourcePrimKey(), true,
+			new KBArticlePriorityComparator(true));
+
+		KBArticle prevKBArticle = getPrevKBArticle(kbArticle, prevAndNext);
+		KBArticle nextKBArticle = getNextKBArticle(kbArticle, prevAndNext);
+
+		KBArticle[] calculatedPrevAndNext =
+			new KBArticle[] {prevKBArticle, kbArticle, nextKBArticle};
+
+		return calculatedPrevAndNext;
+	}
+
+	@Override
 	public List<KBArticle> getKBArticleVersions(
 		long resourcePrimKey, int status, int start, int end,
 		OrderByComparator orderByComparator) {
@@ -1564,6 +1585,78 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		}
 
 		return emailKBArticleDiffs;
+	}
+
+	protected KBArticle getNextAntecessorKBArticle(
+			long kbArticleId, KBArticle[] prevAndNext)
+		throws PortalException {
+
+		KBArticle kbArticle = kbArticlePersistence.findByPrimaryKey(
+			kbArticleId);
+
+		KBArticle nextKBArticle = prevAndNext[2];
+
+		if (nextKBArticle != null) {
+			return nextKBArticle;
+		}
+
+		KBArticle parentKBArticle = kbArticle.getParentKBArticle();
+
+		if (parentKBArticle == null) {
+			return null;
+		}
+
+		prevAndNext = kbArticlePersistence.findByG_P_L_PrevAndNext(
+			parentKBArticle.getKbArticleId(), kbArticle.getGroupId(),
+			parentKBArticle.getParentResourcePrimKey(), true,
+			new KBArticlePriorityComparator(true));
+
+		return getNextAntecessorKBArticle(
+			parentKBArticle.getKbArticleId(), prevAndNext);
+	}
+
+	protected KBArticle getNextKBArticle(
+			KBArticle kbArticle, KBArticle[] prevAndNext)
+		throws PortalException {
+
+		KBArticle nextKBArticle = null;
+
+		KBArticle firstChildKBArticle = kbArticlePersistence.fetchByG_P_L_First(
+			kbArticle.getGroupId(), kbArticle.getResourcePrimKey(), true,
+			new KBArticlePriorityComparator(true));
+
+		if (firstChildKBArticle != null) {
+			nextKBArticle = firstChildKBArticle;
+		}
+		else {
+			nextKBArticle = getNextAntecessorKBArticle(
+				kbArticle.getKbArticleId(), prevAndNext);
+		}
+
+		return nextKBArticle;
+	}
+
+	protected KBArticle getPrevKBArticle(
+			KBArticle kbArticle, KBArticle[] prevAndNext)
+		throws PortalException {
+
+		KBArticle prevKBArticle = prevAndNext[0];
+
+		if (prevKBArticle != null) {
+			KBArticle lastSiblingChildKBArticle =
+				kbArticlePersistence.fetchByG_P_L_Last(
+					kbArticle.getGroupId(), prevKBArticle.getResourcePrimKey(),
+					true, new KBArticlePriorityComparator(true));
+
+			if (lastSiblingChildKBArticle != null) {
+				prevKBArticle = lastSiblingChildKBArticle;
+			}
+		}
+		else {
+			prevKBArticle = kbArticle.getParentKBArticle();
+		}
+
+		return prevKBArticle;
 	}
 
 	protected double getPriority(long groupId, long parentResourcePrimKey) {
