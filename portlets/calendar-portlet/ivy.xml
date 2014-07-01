@@ -11,5 +11,7 @@
 
 	<dependencies defaultconf="default">
 		<dependency name="com.google.ical" org="com.liferay" rev="20110304" />
+
+		<dependency name="arquillian-junit-container" org="org.jboss.arquillian.junit" rev="1.1.3.Final" conf="test->default" />
 	</dependencies>
 </ivy-module>
