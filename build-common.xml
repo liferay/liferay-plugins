@@ -850,12 +850,13 @@ Please find a solution that does not require portal-impl.jar.
 
 					<path id="plugin-test-type.classpath">
 						<pathelement location="@{module.dir}/test-classes/@{test.type}" />
+					
+						<!-- SDK dependencies -->
+						<ivy:resources module="com.liferay.sdk" />
+						
+						<!-- Module dependencies -->
+						<ivy:resources />
 
-						<ivy:resources
-							conf="test"
-							file="@{module.dir}/ivy-test.xml"
-							transitive="true"
-						/> 
 					</path>
 
 					<compile-java
