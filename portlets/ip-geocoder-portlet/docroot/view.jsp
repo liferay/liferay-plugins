@@ -18,22 +18,18 @@
 
 <%@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 
-<%@ page import="com.liferay.ipgeocoder.model.IPInfo" %>
-<%@ page import="com.liferay.ipgeocoder.util.IPGeocoderUtil" %>
-<%@ page import="com.liferay.portal.util.PortalUtil" %>
+<%@ page import="com.liferay.ip.geocoder.IPInfo" %>
 
 <%
-HttpServletRequest originalRequest = PortalUtil.getOriginalServletRequest(request);
-
-IPInfo ipInfo = IPGeocoderUtil.getIPInfo(originalRequest.getRemoteAddr());
+IPInfo ipInfo = (IPInfo)request.getAttribute("IPInfo");
 %>
 
 <c:choose>
 	<c:when test="<%= ipInfo != null %>">
+		IP: <strong><%= ipInfo.getIpAddress() %></strong><br />
 		City: <%= ipInfo.getCity() %><br />
 		Country Code: <%= ipInfo.getCountryCode() %><br />
 		Country Name: <%= ipInfo.getCountryName() %><br />
-		IP: <%= ipInfo.getIpAddress() %><br />
 		Latitude: <%= ipInfo.getLatitude() %><br />
 		Longitude: <%= ipInfo.getLongitude() %><br />
 		Postal Code: <%= ipInfo.getPostalCode() %><br />
@@ -41,7 +37,7 @@ IPInfo ipInfo = IPGeocoderUtil.getIPInfo(originalRequest.getRemoteAddr());
 	</c:when>
 	<c:otherwise>
 		<div class="alert alert-error">
-			<a href="http://www.maxmind.com/app/geolitecity" target="_blank"><liferay-ui:message key="install-and-configure-maxmind-geoip-city-or-geolite-city-to-enable-this-portlet" /></a>
+			<liferay-ui:message key="install-a-liferay-ip-geocoder-service-in-order-to-use-this-plugin" />
 		</div>
 	</c:otherwise>
 </c:choose>
