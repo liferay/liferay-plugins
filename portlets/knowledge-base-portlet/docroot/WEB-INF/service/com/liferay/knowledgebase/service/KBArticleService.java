@@ -81,6 +81,12 @@ public interface KBArticleService extends BaseService, InvokableService {
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
+	public void addKBArticlesMarkdown(long groupId, java.lang.String fileName,
+		java.io.InputStream inputStream,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
+
 	public void deleteAttachment(long companyId, long groupId,
 		java.lang.String portletId, long resourcePrimKey,
 		java.lang.String fileName)

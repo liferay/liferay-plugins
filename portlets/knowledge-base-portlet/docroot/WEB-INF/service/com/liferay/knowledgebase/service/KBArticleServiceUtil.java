@@ -87,6 +87,16 @@ public class KBArticleServiceUtil {
 			urlTitle, content, description, sections, dirName, serviceContext);
 	}
 
+	public static void addKBArticlesMarkdown(long groupId,
+		java.lang.String fileName, java.io.InputStream inputStream,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		getService()
+			.addKBArticlesMarkdown(groupId, fileName, inputStream,
+			serviceContext);
+	}
+
 	public static void deleteAttachment(long companyId, long groupId,
 		java.lang.String portletId, long resourcePrimKey,
 		java.lang.String fileName)

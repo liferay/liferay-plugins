@@ -82,6 +82,16 @@ public class KBArticleServiceWrapper implements KBArticleService,
 	}
 
 	@Override
+	public void addKBArticlesMarkdown(long groupId, java.lang.String fileName,
+		java.io.InputStream inputStream,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		_kbArticleService.addKBArticlesMarkdown(groupId, fileName, inputStream,
+			serviceContext);
+	}
+
+	@Override
 	public void deleteAttachment(long companyId, long groupId,
 		java.lang.String portletId, long resourcePrimKey,
 		java.lang.String fileName)
