@@ -42,6 +42,10 @@ public class KBArticleAssetRendererFactory extends BaseAssetRendererFactory {
 
 	public static final String TYPE = "article";
 
+	public KBArticleAssetRendererFactory() {
+		setLinkable(true);
+	}
+
 	@Override
 	public AssetRenderer getAssetRenderer(long classPK, int type)
 		throws PortalException {
@@ -125,16 +129,6 @@ public class KBArticleAssetRendererFactory extends BaseAssetRendererFactory {
 
 		return KBArticlePermission.contains(
 			permissionChecker, classPK, actionId);
-	}
-
-	@Override
-	public boolean isLinkable() {
-		return true;
-	}
-
-	@Override
-	public boolean isSelectable() {
-		return true;
 	}
 
 	@Override
