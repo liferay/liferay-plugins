@@ -34,7 +34,9 @@
 
 			var DEFAULT_ALIGN_POINTS = [A.WidgetPositionAlign.TL, A.WidgetPositionAlign.BL];
 
-			var TPL_SIMPLE_MENU_ITEM = '<li class="{cssClass}" data-id="{id}">{caption}</li>';
+			var TPL_ICON = '<i class="{iconClass}"></i>';
+
+			var TPL_SIMPLE_MENU_ITEM = '<li class="{cssClass}" data-id="{id}">{icon} {caption}</li>';
 
 			var getItemHandler = A.cached(
 				function(id, items) {
@@ -205,10 +207,22 @@
 											TPL_SIMPLE_MENU_ITEM,
 											{
 												cssClass: cssClass,
+												icon: icon,
 												id: id
 											}
 										)
 									);
+
+									if (item.icon) {
+										var icon = Lang.sub(
+											TPL_ICON,
+											{
+												iconClass: item.icon
+											}
+										);
+
+										caption = [icon, caption].join(STR_SPACE);
+									}
 
 									li.setContent(caption);
 
