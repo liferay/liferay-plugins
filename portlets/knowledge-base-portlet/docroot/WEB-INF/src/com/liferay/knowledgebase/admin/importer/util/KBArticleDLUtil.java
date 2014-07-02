@@ -15,6 +15,7 @@
 package com.liferay.knowledgebase.admin.importer.util;
 
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.repository.model.Folder;
 import com.liferay.portal.kernel.util.MimeTypesUtil;
@@ -38,7 +39,7 @@ public class KBArticleDLUtil {
 			Folder folder, String fileName, InputStream inputStream,
 			Map<String, FileEntry> fileEntriesMap,
 			ServiceContext serviceContext)
-		throws PortalException {
+		throws PortalException, SystemException {
 
 		String mimeType = MimeTypesUtil.getContentType(fileName);
 
@@ -54,7 +55,7 @@ public class KBArticleDLUtil {
 
 	public static Folder addFolder(
 			long groupId, String name, ServiceContext serviceContext)
-		throws PortalException {
+		throws PortalException, SystemException {
 
 		return DLAppServiceUtil.addFolder(
 			groupId, DLFolderConstants.DEFAULT_PARENT_FOLDER_ID, name,
@@ -62,7 +63,7 @@ public class KBArticleDLUtil {
 	}
 
 	public static void deleteFolder(long groupId, String name)
-		throws PortalException {
+		throws PortalException, SystemException {
 
 		try {
 			Folder folder = DLAppServiceUtil.getFolder(

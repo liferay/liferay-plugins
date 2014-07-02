@@ -261,7 +261,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 	public void addKBArticlesMarkdown(
 			long userId, long groupId, String fileName, InputStream inputStream,
 			ServiceContext serviceContext)
-		throws PortalException {
+		throws PortalException, SystemException {
 
 		KBArticleImporter kbArticleImporter = new KBArticleImporter();
 
@@ -398,7 +398,9 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		}
 	}
 
-	public KBArticle fetchKBArticleByUrlTitle(long groupId, String urlTitle) {
+	public KBArticle fetchKBArticleByUrlTitle(long groupId, String urlTitle)
+		throws SystemException {
+
 		KBArticle kbArticle = fetchLatestKBArticleByUrlTitle(
 			groupId, urlTitle, WorkflowConstants.STATUS_APPROVED);
 
@@ -424,7 +426,8 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 	}
 
 	public KBArticle fetchLatestKBArticleByUrlTitle(
-		long groupId, String urlTitle, int status) {
+			long groupId, String urlTitle, int status)
+		throws SystemException {
 
 		List<KBArticle> kbArticles = null;
 

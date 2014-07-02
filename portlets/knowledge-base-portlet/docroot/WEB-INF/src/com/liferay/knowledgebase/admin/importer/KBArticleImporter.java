@@ -22,6 +22,7 @@ import com.liferay.knowledgebase.model.KBArticleConstants;
 import com.liferay.knowledgebase.service.KBArticleLocalServiceUtil;
 import com.liferay.knowledgebase.util.PortletPropsValues;
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.repository.model.FileEntry;
@@ -52,7 +53,7 @@ public class KBArticleImporter {
 			long userId, long groupId, String fileName, InputStream inputStream,
 			Map<String, FileEntry> fileEntriesMap,
 			ServiceContext serviceContext)
-		throws KBArticleImportException {
+		throws KBArticleImportException, SystemException {
 
 		if (inputStream == null) {
 			throw new KBArticleImportException("Input stream is null");
@@ -78,7 +79,7 @@ public class KBArticleImporter {
 			String markdown, String fileEntryName,
 			Map<String, FileEntry> fileEntriesMap,
 			ServiceContext serviceContext)
-		throws KBArticleImportException {
+		throws KBArticleImportException, SystemException {
 
 		if (Validator.isNull(markdown)) {
 			throw new KBArticleImportException(
@@ -111,7 +112,7 @@ public class KBArticleImporter {
 			long userId, long groupId, long parentResourcePrimaryKey,
 			String title, String urlTitle, String html,
 			ServiceContext serviceContext)
-		throws PortalException {
+		throws PortalException, SystemException {
 
 		KBArticle kbArticle =
 			KBArticleLocalServiceUtil.fetchKBArticleByUrlTitle(
@@ -172,7 +173,7 @@ public class KBArticleImporter {
 			ZipReader zipReader, Map<String, FileEntry> fileEntriesMap,
 			Map<String, List<String>> folderNameFileEntryNamesMap,
 			ServiceContext serviceContext)
-		throws KBArticleImportException {
+		throws KBArticleImportException, SystemException {
 
 		Set<String> folderNames = folderNameFileEntryNamesMap.keySet();
 
@@ -224,7 +225,7 @@ public class KBArticleImporter {
 			long userId, long groupId, ZipReader zipReader,
 			Map<String, FileEntry> fileEntriesMap,
 			ServiceContext serviceContext)
-		throws KBArticleImportException {
+		throws KBArticleImportException, SystemException {
 
 		KBArticle homeKBArticle = addKBArticleMarkdown(
 			userId, groupId,

@@ -108,7 +108,7 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 	public void addKBArticlesMarkdown(
 			long groupId, String fileName, InputStream inputStream,
 			ServiceContext serviceContext)
-		throws PortalException {
+		throws PortalException, SystemException {
 
 		AdminPermission.check(
 			getPermissionChecker(), groupId, ActionKeys.ADD_KB_ARTICLE);

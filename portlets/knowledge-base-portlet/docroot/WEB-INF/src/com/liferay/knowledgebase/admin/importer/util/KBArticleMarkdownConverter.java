@@ -18,6 +18,7 @@ import com.liferay.knowledgebase.KBArticleImportException;
 import com.liferay.markdown.converter.MarkdownConverter;
 import com.liferay.markdown.converter.factory.MarkdownConverterFactoryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.repository.model.FileEntry;
@@ -41,7 +42,7 @@ public class KBArticleMarkdownConverter {
 
 	public KBArticleMarkdownConverter(
 			String markdown, Map<String, FileEntry> fileEntriesMap)
-		throws KBArticleImportException {
+		throws KBArticleImportException, SystemException {
 
 		MarkdownConverter markdownConverter =
 			MarkdownConverterFactoryUtil.create();
@@ -167,7 +168,8 @@ public class KBArticleMarkdownConverter {
 	}
 
 	protected String updateDocumentLibraryReferences(
-		String html, Map<String, FileEntry> fileEntriesMap) {
+			String html, Map<String, FileEntry> fileEntriesMap)
+		throws SystemException {
 
 		Set<Integer> indexes = new TreeSet<Integer>();
 
