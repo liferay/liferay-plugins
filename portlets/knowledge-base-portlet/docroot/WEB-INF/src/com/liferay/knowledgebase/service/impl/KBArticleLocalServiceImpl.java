@@ -1146,7 +1146,11 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		AssetEntry assetEntry = assetEntryLocalService.getEntry(
 			KBArticle.class.getName(), kbArticle.getKbArticleId());
 
-		long[] assetLinkEntryIds = getAssetLinksEntryIds(assetEntry);
+		List<AssetLink> assetLinks = assetLinkLocalService.getDirectLinks(
+			assetEntry.getEntryId(), AssetLinkConstants.TYPE_RELATED);
+
+		long[] assetLinkEntryIds = StringUtil.split(
+			ListUtil.toString(assetLinks, AssetLink.ENTRY_ID2_ACCESSOR), 0L);
 
 		updateKBArticleAsset(
 			userId, kbArticle, assetEntry.getCategoryIds(),
@@ -1539,21 +1543,6 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		}
 
 		return Collections.unmodifiableList(kbArticles);
-	}
-
-	protected long[] getAssetLinksEntryIds(AssetEntry assetEntry) {
-		List<AssetLink> assetLinks = assetLinkLocalService.getLinks(
-			assetEntry.getEntryId());
-
-		long[] assetLinkEntryIds = new long[assetLinks.size()];
-
-		int i = 0;
-
-		for (AssetLink assetLink : assetLinks) {
-			assetLinkEntryIds[i++] = assetLink.getEntryId2();
-		}
-
-		return assetLinkEntryIds;
 	}
 
 	protected Map<String, String> getEmailKBArticleDiffs(KBArticle kbArticle) {
