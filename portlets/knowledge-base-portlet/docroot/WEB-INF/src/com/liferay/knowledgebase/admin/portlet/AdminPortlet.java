@@ -223,7 +223,7 @@ public class AdminPortlet extends MVCPortlet {
 		String fileName = uploadPortletRequest.getFileName("file");
 
 		if (Validator.isNull(fileName)) {
-			throw new KBArticleImportException("No import filename");
+			throw new KBArticleImportException("File name is null");
 		}
 
 		InputStream inputStream = null;
