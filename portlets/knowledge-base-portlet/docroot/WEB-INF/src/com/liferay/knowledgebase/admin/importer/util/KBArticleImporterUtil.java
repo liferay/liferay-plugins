@@ -86,12 +86,12 @@ public class KBArticleImporterUtil {
 
 		folderName = StringUtil.toLowerCase(folderName);
 
-		Folder imagesFolder = null;
+		Folder folder = null;
 
 		try {
 			KBArticleDLUtil.deleteFolder(groupId, folderName);
 
-			imagesFolder = KBArticleDLUtil.addFolder(
+			folder = KBArticleDLUtil.addFolder(
 				groupId, folderName, serviceContext);
 		}
 		catch (Exception e) {
@@ -124,7 +124,7 @@ public class KBArticleImporterUtil {
 				int pos = zipEntry.lastIndexOf(StringPool.SLASH);
 
 				KBArticleDLUtil.addFile(
-					imagesFolder, zipEntry.substring(pos + 1),
+					folder, zipEntry.substring(pos + 1),
 					zipReader.getEntryAsInputStream(zipEntry), fileEntriesMap,
 					serviceContext);
 			}
