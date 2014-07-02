@@ -55,7 +55,7 @@ public class KBArticleImporter {
 		throws KBArticleImportException {
 
 		if (inputStream == null) {
-			throw new KBArticleImportException("Null import file");
+			throw new KBArticleImportException("Input stream is null");
 		}
 
 		try {
@@ -65,7 +65,7 @@ public class KBArticleImporter {
 			KBArticleImporterUtil.processImageFiles(
 				groupId, fileName, zipReader, fileEntriesMap, serviceContext);
 	
-			processArticleFiles(
+			processKBArticleFiles(
 				userId, groupId, zipReader, fileEntriesMap, serviceContext);
 		}
 		catch (IOException ioe) {
@@ -82,7 +82,7 @@ public class KBArticleImporter {
 
 		if (Validator.isNull(markdown)) {
 			throw new KBArticleImportException(
-				"Null or empty Markdown in file: " + fileEntryName);
+				"Markdown is null for file entry " + fileEntryName);
 		}
 
 		KBArticleMarkdownConverter kbArticleMarkdownConverter =
@@ -98,9 +98,9 @@ public class KBArticleImporter {
 		catch (Exception e) {
 			StringBuilder sb = new StringBuilder(4);
 
-			sb.append("Unable to create KBArticle for file entry: ");
+			sb.append("Unable to add KB article for file entry ");
 			sb.append(fileEntryName);
-			sb.append(". ");
+			sb.append(": ");
 			sb.append(e.getLocalizedMessage());
 
 			throw new KBArticleImportException(sb.toString(), e);
@@ -113,21 +113,22 @@ public class KBArticleImporter {
 			ServiceContext serviceContext)
 		throws PortalException {
 
-		KBArticle article = KBArticleLocalServiceUtil.fetchKBArticleByUrlTitle(
-			groupId, urlTitle);
+		KBArticle kbArticle =
+			KBArticleLocalServiceUtil.fetchKBArticleByUrlTitle(
+				groupId, urlTitle);
 
-		if (article != null) {
-			article = KBArticleLocalServiceUtil.updateKBArticle(
-				userId, article.getResourcePrimKey(), title, html,
-				article.getDescription(), null, null, serviceContext);
+		if (kbArticle != null) {
+			kbArticle = KBArticleLocalServiceUtil.updateKBArticle(
+				userId, kbArticle.getResourcePrimKey(), title, html,
+				kbArticle.getDescription(), null, null, serviceContext);
 		}
 		else {
-			article = KBArticleLocalServiceUtil.addKBArticle(
+			kbArticle = KBArticleLocalServiceUtil.addKBArticle(
 				userId, parentResourcePrimaryKey, title, urlTitle, html, null,
 				null, null, serviceContext);
 		}
 
-		return article;
+		return kbArticle;
 	}
 
 	protected Map<String, List<String>> getFolderNameFileEntryNamesMap(
@@ -166,7 +167,7 @@ public class KBArticleImporter {
 		return folderNameFileEntryNamesMap;
 	}
 
-	protected void processArticleFiles(
+	protected void processKBArticleFiles(
 			long userId, long groupId, ZipReader zipReader,
 			Map<String, FileEntry> fileEntriesMap,
 			ServiceContext serviceContext)
@@ -226,7 +227,7 @@ public class KBArticleImporter {
 				if (Validator.isNull(chapterMarkdown)) {
 					if (_log.isWarnEnabled()) {
 						_log.warn(
-							"Missing Markdown in file entry: " +
+							"Missing Markdown in file entry " +
 								chapterFileEntryName);
 					}
 				}
