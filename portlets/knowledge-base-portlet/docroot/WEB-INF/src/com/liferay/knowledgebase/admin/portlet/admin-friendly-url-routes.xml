@@ -13,6 +13,21 @@
 		<implicit-parameter name="p_p_state">normal</implicit-parameter>
 	</route>
 	<route>
+		<pattern>/feedback/in_progress/{p_p_state}</pattern>
+		<implicit-parameter name="mvcPath">/admin/view_feedback.jsp</implicit-parameter>
+		<implicit-parameter name="navItem">viewInProgressFeedback</implicit-parameter>
+	</route>
+	<route>
+		<pattern>/feedback/pending/{p_p_state}</pattern>
+		<implicit-parameter name="mvcPath">/admin/view_feedback.jsp</implicit-parameter>
+		<implicit-parameter name="navItem">viewPendingFeedback</implicit-parameter>
+	</route>
+	<route>
+		<pattern>/feedback/resolved/{p_p_state}</pattern>
+		<implicit-parameter name="mvcPath">/admin/view_feedback.jsp</implicit-parameter>
+		<implicit-parameter name="navItem">viewResolvedFeedback</implicit-parameter>
+	</route>
+	<route>
 		<pattern>/article/{resourcePrimKey:\d+}</pattern>
 		<implicit-parameter name="mvcPath">/admin/view_article.jsp</implicit-parameter>
 		<implicit-parameter name="p_p_state">normal</implicit-parameter>
@@ -42,6 +57,10 @@
 	<route>
 		<pattern>/articles/{p_p_state}</pattern>
 		<implicit-parameter name="mvcPath">/admin/view.jsp</implicit-parameter>
+	</route>
+	<route>
+		<pattern>/feedback/{p_p_state}</pattern>
+		<implicit-parameter name="mvcPath">/admin/view_feedback.jsp</implicit-parameter>
 	</route>
 	<route>
 		<pattern>/templates/{p_p_state}</pattern>
