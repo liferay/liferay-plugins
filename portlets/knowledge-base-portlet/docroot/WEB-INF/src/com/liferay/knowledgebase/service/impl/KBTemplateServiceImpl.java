@@ -39,6 +39,7 @@ import java.util.List;
  */
 public class KBTemplateServiceImpl extends KBTemplateServiceBaseImpl {
 
+	@Override
 	public KBTemplate addKBTemplate(
 			String portletId, String title, String content,
 			ServiceContext serviceContext)
@@ -59,6 +60,7 @@ public class KBTemplateServiceImpl extends KBTemplateServiceBaseImpl {
 			getUserId(), title, content, serviceContext);
 	}
 
+	@Override
 	public KBTemplate deleteKBTemplate(long kbTemplateId)
 		throws PortalException {
 
@@ -68,6 +70,7 @@ public class KBTemplateServiceImpl extends KBTemplateServiceBaseImpl {
 		return kbTemplateLocalService.deleteKBTemplate(kbTemplateId);
 	}
 
+	@Override
 	public void deleteKBTemplates(long groupId, long[] kbTemplateIds)
 		throws PortalException {
 
@@ -77,6 +80,7 @@ public class KBTemplateServiceImpl extends KBTemplateServiceBaseImpl {
 		kbTemplateLocalService.deleteKBTemplates(kbTemplateIds);
 	}
 
+	@Override
 	public List<KBTemplate> getGroupKBTemplates(
 		long groupId, int start, int end, OrderByComparator orderByComparator) {
 
@@ -84,10 +88,12 @@ public class KBTemplateServiceImpl extends KBTemplateServiceBaseImpl {
 			groupId, start, end, orderByComparator);
 	}
 
+	@Override
 	public int getGroupKBTemplatesCount(long groupId) {
 		return kbTemplatePersistence.filterCountByGroupId(groupId);
 	}
 
+	@Override
 	public KBTemplate getKBTemplate(long kbTemplateId) throws PortalException {
 		KBTemplatePermission.check(
 			getPermissionChecker(), kbTemplateId, ActionKeys.VIEW);
@@ -95,6 +101,7 @@ public class KBTemplateServiceImpl extends KBTemplateServiceBaseImpl {
 		return kbTemplateLocalService.getKBTemplate(kbTemplateId);
 	}
 
+	@Override
 	public KBTemplateSearchDisplay getKBTemplateSearchDisplay(
 			long groupId, String title, String content, Date startDate,
 			Date endDate, boolean andOperator, int[] curStartValues, int cur,
@@ -167,6 +174,7 @@ public class KBTemplateServiceImpl extends KBTemplateServiceBaseImpl {
 			kbTemplates, total, curStartValues);
 	}
 
+	@Override
 	public KBTemplate updateKBTemplate(
 			long kbTemplateId, String title, String content,
 			ServiceContext serviceContext)

@@ -32,26 +32,32 @@ public class KBArticleSearchDisplayImpl implements KBArticleSearchDisplay {
 		_curStartValues = curStartValues;
 	}
 
+	@Override
 	public int[] getCurStartValues() {
 		return _curStartValues;
 	}
 
+	@Override
 	public List<KBArticle> getResults() {
 		return _results;
 	}
 
+	@Override
 	public int getTotal() {
 		return _total;
 	}
 
+	@Override
 	public void setCurStartValues(int[] curStartValues) {
 		_curStartValues = curStartValues;
 	}
 
+	@Override
 	public void setResults(List<KBArticle> results) {
 		_results = results;
 	}
 
+	@Override
 	public void setTotal(int total) {
 		_total = total;
 	}

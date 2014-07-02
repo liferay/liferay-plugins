@@ -26,6 +26,7 @@ import com.liferay.portal.service.ServiceContext;
  */
 public class KBCommentServiceImpl extends KBCommentServiceBaseImpl {
 
+	@Override
 	public KBComment deleteKBComment(KBComment kbComment)
 		throws PortalException {
 
@@ -35,6 +36,7 @@ public class KBCommentServiceImpl extends KBCommentServiceBaseImpl {
 		return kbCommentLocalService.deleteKBComment(kbComment);
 	}
 
+	@Override
 	public KBComment deleteKBComment(long kbCommentId) throws PortalException {
 		KBComment kbComment = kbCommentPersistence.findByPrimaryKey(
 			kbCommentId);
@@ -42,6 +44,7 @@ public class KBCommentServiceImpl extends KBCommentServiceBaseImpl {
 		return deleteKBComment(kbComment);
 	}
 
+	@Override
 	public KBComment updateKBComment(
 			long kbCommentId, long classNameId, long classPK, String content,
 			boolean helpful, ServiceContext serviceContext)

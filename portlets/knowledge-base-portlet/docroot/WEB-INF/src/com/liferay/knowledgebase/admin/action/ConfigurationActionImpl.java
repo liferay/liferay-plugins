@@ -59,6 +59,7 @@ public class ConfigurationActionImpl extends DefaultConfigurationAction {
 		}
 	}
 
+	@Override
 	protected void validateEmailFrom(ActionRequest actionRequest) {
 		String emailFromName = getParameter(actionRequest, "emailFromName");
 		String emailFromAddress = getParameter(
