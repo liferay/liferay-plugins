@@ -28,6 +28,8 @@ AUI().use(
 					instance._previousPageNotificationsURL = instance._getRenderURL('/notifications/view_entries.jsp', config.filter, (config.start - config.delta).toString(), (config.end - config.delta).toString(), 'true');
 				}
 
+				instance._unreadCount = config.totalUnreadUserNotificationsCount;
+
 				instance._createMarkAllAsReadNode(config);
 
 				instance._bindUI();
@@ -188,6 +190,10 @@ AUI().use(
 				var userNotificationsSidebar = A.one('.user-notifications-sidebar');
 
 				if (userNotificationsSidebar) {
+					var allNotificationsNav = userNotificationsSidebar.one('.all-notifications');
+
+					instance._bindNavMenu(allNotificationsNav, instance._getRenderURL('/notifications/view_entries.jsp'), true, false, false);
+
 					var unreadActionableNav = userNotificationsSidebar.one('.unread-actionable');
 
 					instance._bindNavMenu(unreadActionableNav, instance._getRenderURL('/notifications/view_entries.jsp', 'unread-actionable'), false, true, false);
@@ -195,10 +201,6 @@ AUI().use(
 					var unreadNonActionableNav = userNotificationsSidebar.one('.unread-non-actionable');
 
 					instance._bindNavMenu(unreadNonActionableNav, instance._getRenderURL('/notifications/view_entries.jsp', 'unread-non-actionable'), false, false, true);
-
-					var allNotificationsNav = userNotificationsSidebar.one('.all-notifications');
-
-					instance._bindNavMenu(allNotificationsNav, instance._getRenderURL('/notifications/view_entries.jsp'), true, false, false);
 
 					var allNotificationsNav = userNotificationsSidebar.one('.all-notifications');
 
@@ -236,7 +238,7 @@ AUI().use(
 
 				if (config.userNotificationEventsCount > 0) {
 					var nodeHTML = '<a class="mark-all-as-read" href="' + instance._getActionURL('markAllAsRead', config.userNotificationEventIds) + '">' +
-						A.Lang.sub(Liferay.Language.get('mark-all-as-read-x'), [config.currentPageNotificationEventsCount]) + '</a>';
+						A.Lang.sub(Liferay.Language.get('mark-all-as-read-x'), [config.currentPageNotificationEventsCount, instance._unreadCount]) + '</a><hr class="separator" />';
 
 					var dockbarMarkAllAsRead = A.one('.dockbarMarkAllAsRead');
 
@@ -311,10 +313,10 @@ AUI().use(
 
 								instance.renderNotificationsList(instance._getDockbarNotificationsList(), dockbarURL);
 
-								if (instance._allNotifications) {
+								if (instance._allNotifications || ((typeof(instance._allNotifications) == 'undefined') && (typeof(instance._unreadActionable) == 'undefined') && (typeof(instance._unreadNonActionable) == 'undefined'))) {
 									instance.renderNotificationsList(instance._getFullViewNotificationsList(), instance._getRenderURL('/notifications/view_entries.jsp'));
 								}
-								else if (instance._unreadActionable || ((typeof(instance._allNotifications) == 'undefined') && (typeof(instance._unreadActionable) == 'undefined') && (typeof(instance._unreadNonActionable) == 'undefined'))) {
+								else if (instance._unreadActionable) {
 									instance.renderNotificationsList(instance._getFullViewNotificationsList(), instance._getRenderURL('/notifications/view_entries.jsp', 'unread-actionable'));
 								}
 								else if (instance._unreadNonActionable) {
@@ -557,6 +559,8 @@ AUI().use(
 						dockbarUserNotificationsCount.toggleClass('alert', (newUserNotificationsCount > 0));
 
 						dockbarUserNotificationsCount.setHTML(unreadUserNotificationsCount);
+
+						instance._unreadCount = unreadUserNotificationsCount;
 					}
 				}
 			},
@@ -596,6 +600,12 @@ AUI().use(
 												if (!dockbarMarkAllAsRead.hasClass('hide')) {
 													dockbarMarkAllAsRead.addClass('hide');
 												}
+
+												var separator = dockbarMarkAllAsRead.next('.separator');
+
+												if (separator) {
+													separator.addClass('hide');
+												}
 											}
 										}
 										else {
@@ -607,14 +617,9 @@ AUI().use(
 
 													dockbarMarkAllAsRead.setAttribute('href', instance._getActionURL('markAllAsRead', response['userNotificationEventIds']));
 
-													var html = A.Lang.sub(Liferay.Language.get('mark-all-as-read-x'), response['markAsReadCount'].toString());
+													var html = A.Lang.sub(Liferay.Language.get('mark-all-as-read-x'), [response['markAsReadCount'].toString(), instance._unreadCount]);
 
 													dockbarMarkAllAsRead.setHTML(html);
-												}
-												else {
-													if (!dockbarMarkAllAsRead.hasClass('hide')) {
-														dockbarMarkAllAsRead.addClass('hide');
-													}
 												}
 											}
 

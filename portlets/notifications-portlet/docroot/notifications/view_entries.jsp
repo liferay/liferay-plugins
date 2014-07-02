@@ -24,7 +24,10 @@ int end = ParamUtil.getInteger(request, "end", fullView ? fullViewDelta : dockba
 
 List<UserNotificationEvent> userNotificationEvents = null;
 
-int unreadActionableUserNotificationsCount = NotificationsUtil.getArchivedUserNotificationEventsCount(themeDisplay.getUserId(), true, false);
+int userNotificationEventsCount = 0;
+
+int totalUnreadUserNotificationEventsCount = UserNotificationEventLocalServiceUtil.getArchivedUserNotificationEventsCount(themeDisplay.getUserId(), false);
+int totalUserNotificationEventsCount = UserNotificationEventLocalServiceUtil.getUserNotificationEventsCount(themeDisplay.getUserId());
 int unreadNonActionableUserNotificationsCount = NotificationsUtil.getArchivedUserNotificationEventsCount(themeDisplay.getUserId(), false, false);
 int userNotificationEventsCount = UserNotificationEventLocalServiceUtil.getArchivedUserNotificationEventsCount(themeDisplay.getUserId(), false);
 
@@ -32,6 +35,7 @@ List<Long> userNotificationEventIds = new ArrayList<Long>();
 
 if (filter.equals("dockbar")) {
 	userNotificationEvents = UserNotificationEventLocalServiceUtil.getArchivedUserNotificationEvents(themeDisplay.getUserId(), false, start, end);
+	userNotificationEventsCount = totalUnreadUserNotificationEventsCount;
 }
 else if (filter.equals("unread-actionable")) {
 	userNotificationEvents = NotificationsUtil.getArchivedUserNotificationEvents(themeDisplay.getUserId(), true, false, start, end);
@@ -43,7 +47,7 @@ else if (filter.equals("unread-non-actionable")) {
 }
 else {
 	userNotificationEvents = UserNotificationEventLocalServiceUtil.getUserNotificationEvents(themeDisplay.getUserId(), start, end);
-	userNotificationEventsCount = UserNotificationEventLocalServiceUtil.getUserNotificationEventsCount(themeDisplay.getUserId());
+	userNotificationEventsCount = totalUserNotificationEventsCount;
 }
 %>
 
@@ -90,7 +94,7 @@ else {
 					if (unreadActionableUserNotificationsCount > 0) {
 			%>
 
-					<hr>
+					<hr class="seperator">
 
 					<%
 					}
@@ -130,14 +134,15 @@ else {
 
 		</div>
 
+		<li class="message">
+			<div class="dockbarMarkAllAsRead"></div>
+		</li>
 		<li class="bottom message">
 			<liferay-portlet:renderURL plid="<%= notificationsPlid %>" portletName="<%= PortletKeys.NOTIFICATIONS %>" var="viewAllNotifications" windowState="<%= LiferayWindowState.MAXIMIZED.toString() %>">
 				<portlet:param name="mvcPath" value="/notifications/view.jsp" />
 			</liferay-portlet:renderURL>
 
-			<a href="<%= viewAllNotifications %>"><liferay-ui:message key="view-all-notifications" /></a>
-
-			<div class="dockbarMarkAllAsRead"></div>
+			<a href="<%= viewAllNotifications %>"><liferay-ui:message key="view-all-notifications" arguments="<%= totalUserNotificationEventsCount %>" /></a>
 		</li>
 	</c:when>
 	<c:when test='<%= filter.equals("unread-actionable") %>'>
@@ -223,6 +228,7 @@ else {
 			filter: '<%= HtmlUtil.escape(filter) %>',
 			namespace: '<portlet:namespace />',
 			start: <%= start %>,
+			totalUnreadUserNotificationsCount: <%= totalUnreadUserNotificationEventsCount %>,
 			unreadActionableUserNotificationsCount: <%= unreadActionableUserNotificationsCount %>,
 			unreadNonActionableUserNotificationsCount: <%= unreadNonActionableUserNotificationsCount %>,
 			userNotificationEventsCount: <%= userNotificationEventsCount %>,

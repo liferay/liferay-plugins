@@ -20,7 +20,13 @@
 	<aui:row>
 		<aui:col cssClass="nav-bar user-notifications-sidebar" width="<%= 25 %>">
 			<div class="nav">
-				<a class="clearfix selected unread-actionable" href="javascript:;">
+				<a class="all-notifications clearfix selected" href="javascript:;">
+					<span class="title"><liferay-ui:message key="all-notifications" /></span>
+				</a>
+			</div>
+
+			<div class="nav">
+				<a class="clearfix unread-actionable" href="javascript:;">
 					<span class="title"><liferay-ui:message key="unread-actionable-notifications" /></span>
 
 					<%
@@ -44,12 +50,6 @@
 			</div>
 
 			<div class="nav">
-				<a class="all-notifications clearfix" href="javascript:;">
-					<span class="title"><liferay-ui:message key="all-notifications" /></span>
-				</a>
-			</div>
-
-			<div class="nav">
 				<a class="manage clearfix" href="javascript:;">
 					<span class="title"><liferay-ui:message key="notification-delivery" /></span>
 				</a>
@@ -67,10 +67,9 @@
 <aui:script use="aui-base">
 	var userNotificationsList = A.one('#portlet_<%= PortletKeys.NOTIFICATIONS %> .user-notifications-list-container .user-notifications-list');
 
-	<portlet:renderURL var="unreadURL" windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>">
+	<portlet:renderURL var="allNotificationsURL" windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>">
 		<portlet:param name="mvcPath" value="/notifications/view_entries.jsp" />
-		<portlet:param name="filter" value="unread-actionable" />
 	</portlet:renderURL>
 
-	Liferay.Notifications.renderNotificationsList(userNotificationsList, '<%= unreadURL %>');
+	Liferay.Notifications.renderNotificationsList(userNotificationsList, '<%= allNotificationsURL %>');
 </aui:script>
