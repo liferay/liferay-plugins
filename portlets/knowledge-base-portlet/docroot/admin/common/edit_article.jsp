@@ -70,7 +70,7 @@ String dirName = ParamUtil.getString(request, "dirName");
 	<aui:model-context bean="<%= kbArticle %>" model="<%= KBArticle.class %>" />
 
 	<c:if test="<%= kbArticle != null %>">
-		<aui:workflow-status id="<%= String.valueOf(resourcePrimKey) %>" status="<%= kbArticle.getStatus() %>" version="<%= String.valueOf(kbArticle.getVersion()) %>" />
+		<aui:workflow-status id="<%= String.valueOf(resourcePrimKey) %>" showIcon="<%= false %>" showLabel="<%= false %>" status="<%= kbArticle.getStatus() %>" version="<%= String.valueOf(kbArticle.getVersion()) %>" />
 	</c:if>
 
 	<aui:fieldset>
