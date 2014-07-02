@@ -65,10 +65,10 @@ public class KBArticleDLUtil {
 		throws PortalException {
 
 		try {
-			Folder imageFolder = DLAppServiceUtil.getFolder(
+			Folder folder = DLAppServiceUtil.getFolder(
 				groupId, DLFolderConstants.DEFAULT_PARENT_FOLDER_ID, name);
 
-			DLAppServiceUtil.deleteFolder(imageFolder.getFolderId());
+			DLAppServiceUtil.deleteFolder(folder.getFolderId());
 		}
 		catch (NoSuchFolderException nsfe) {
 		}
