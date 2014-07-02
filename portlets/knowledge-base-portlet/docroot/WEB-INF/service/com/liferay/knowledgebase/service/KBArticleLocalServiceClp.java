@@ -1466,8 +1466,7 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 
 	@Override
 	public com.liferay.knowledgebase.model.KBArticle fetchLatestKBArticle(
-		long resourcePrimKey, int status)
-		throws com.liferay.portal.kernel.exception.PortalException {
+		long resourcePrimKey, int status) {
 		Object returnObj = null;
 
 		try {
@@ -1477,10 +1476,6 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
-				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
 
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
@@ -2553,8 +2548,7 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 	}
 
 	@Override
-	public void updatePriority(long resourcePrimKey, double priority)
-		throws com.liferay.portal.kernel.exception.PortalException {
+	public void updatePriority(long resourcePrimKey, double priority) {
 		try {
 			_invokableLocalService.invokeMethod(_methodName72,
 				_methodParameterTypes72,
@@ -2562,10 +2556,6 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
-				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
 
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
