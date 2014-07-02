@@ -81,7 +81,7 @@ boolean helpful = BeanParamUtil.getBoolean(kbComment, request, "helpful", true);
 									<portlet:param name="redirect" value="<%= redirect %>" />
 								</liferay-portlet:actionURL>
 
-								<aui:button cssClass="kb-article-delete-feedback" onClick="<%= deleteFeedbackURL %>" type="button" value="delete-feedback" />
+								<aui:button cssClass="kb-article-delete-feedback" onClick="<%= deleteFeedbackURL %>" value="delete-feedback" />
 							</c:if>
 						</aui:button-row>
 					</div>
