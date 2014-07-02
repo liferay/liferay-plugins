@@ -44,6 +44,7 @@ import java.util.List;
  */
 public class KBCommentLocalServiceImpl extends KBCommentLocalServiceBaseImpl {
 
+	@Override
 	public KBComment addKBComment(
 			long userId, long classNameId, long classPK, String content,
 			boolean helpful, ServiceContext serviceContext)
@@ -116,6 +117,7 @@ public class KBCommentLocalServiceImpl extends KBCommentLocalServiceBaseImpl {
 		return kbCommentLocalService.deleteKBComment(kbComment);
 	}
 
+	@Override
 	public void deleteKBComments(String className, long classPK)
 		throws PortalException, SystemException {
 
@@ -129,6 +131,7 @@ public class KBCommentLocalServiceImpl extends KBCommentLocalServiceBaseImpl {
 		}
 	}
 
+	@Override
 	public KBComment getKBComment(long userId, String className, long classPK)
 		throws PortalException, SystemException {
 
@@ -137,6 +140,7 @@ public class KBCommentLocalServiceImpl extends KBCommentLocalServiceBaseImpl {
 		return kbCommentPersistence.findByU_C_C(userId, classNameId, classPK);
 	}
 
+	@Override
 	public List<KBComment> getKBComments(
 			String className, long classPK, int start, int end,
 			OrderByComparator orderByComparator)
@@ -148,6 +152,7 @@ public class KBCommentLocalServiceImpl extends KBCommentLocalServiceBaseImpl {
 			classNameId, classPK, start, end, orderByComparator);
 	}
 
+	@Override
 	public int getKBCommentsCount(String className, long classPK)
 		throws SystemException {
 
@@ -156,6 +161,7 @@ public class KBCommentLocalServiceImpl extends KBCommentLocalServiceBaseImpl {
 		return kbCommentPersistence.countByC_C(classNameId, classPK);
 	}
 
+	@Override
 	public KBComment updateKBComment(
 			long kbCommentId, long classNameId, long classPK, String content,
 			boolean helpful, ServiceContext serviceContext)

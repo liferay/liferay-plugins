@@ -55,6 +55,7 @@ import java.util.Map;
  */
 public class KBTemplateLocalServiceImpl extends KBTemplateLocalServiceBaseImpl {
 
+	@Override
 	public KBTemplate addKBTemplate(
 			long userId, String title, String content,
 			ServiceContext serviceContext)
@@ -102,6 +103,7 @@ public class KBTemplateLocalServiceImpl extends KBTemplateLocalServiceBaseImpl {
 		return kbTemplate;
 	}
 
+	@Override
 	public void deleteGroupKBTemplates(long groupId)
 		throws PortalException, SystemException {
 
@@ -153,6 +155,7 @@ public class KBTemplateLocalServiceImpl extends KBTemplateLocalServiceBaseImpl {
 		return kbTemplateLocalService.deleteKBTemplate(kbTemplate);
 	}
 
+	@Override
 	public void deleteKBTemplates(long[] kbTemplateIds)
 		throws PortalException, SystemException {
 
@@ -171,6 +174,7 @@ public class KBTemplateLocalServiceImpl extends KBTemplateLocalServiceBaseImpl {
 		}
 	}
 
+	@Override
 	public List<KBTemplate> getGroupKBTemplates(
 			long groupId, int start, int end,
 			OrderByComparator orderByComparator)
@@ -180,10 +184,12 @@ public class KBTemplateLocalServiceImpl extends KBTemplateLocalServiceBaseImpl {
 			groupId, start, end, orderByComparator);
 	}
 
+	@Override
 	public int getGroupKBTemplatesCount(long groupId) throws SystemException {
 		return kbTemplatePersistence.countByGroupId(groupId);
 	}
 
+	@Override
 	public List<KBTemplate> search(
 			long groupId, String title, String content, Date startDate,
 			Date endDate, boolean andOperator, int start, int end,
@@ -196,6 +202,7 @@ public class KBTemplateLocalServiceImpl extends KBTemplateLocalServiceBaseImpl {
 		return dynamicQuery(dynamicQuery, start, end, orderByComparator);
 	}
 
+	@Override
 	public KBTemplate updateKBTemplate(
 			long kbTemplateId, String title, String content,
 			ServiceContext serviceContext)
@@ -239,6 +246,7 @@ public class KBTemplateLocalServiceImpl extends KBTemplateLocalServiceBaseImpl {
 		return kbTemplate;
 	}
 
+	@Override
 	public void updateKBTemplateResources(
 			KBTemplate kbTemplate, String[] groupPermissions,
 			String[] guestPermissions)

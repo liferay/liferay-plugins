@@ -60,10 +60,12 @@ public class KBArticleImpl extends KBArticleBaseImpl {
 		return ancestorResourcePrimaryKeys;
 	}
 
+	@Override
 	public String getAttachmentsDirName() {
 		return KBArticleConstants.DIR_NAME_PREFIX + getClassPK();
 	}
 
+	@Override
 	public List<FileEntry> getAttachmentsFileEntries()
 		throws PortalException, SystemException {
 
@@ -72,6 +74,7 @@ public class KBArticleImpl extends KBArticleBaseImpl {
 			WorkflowConstants.STATUS_APPROVED);
 	}
 
+	@Override
 	public String[] getAttachmentsFileNames()
 		throws PortalException, SystemException {
 
@@ -87,6 +90,7 @@ public class KBArticleImpl extends KBArticleBaseImpl {
 		return new String[0];
 	}
 
+	@Override
 	public long getAttachmentsFolderId()
 		throws PortalException, SystemException {
 
@@ -100,6 +104,7 @@ public class KBArticleImpl extends KBArticleBaseImpl {
 		return _attachmentsFolderId;
 	}
 
+	@Override
 	public long getClassPK() {
 		if (isApproved()) {
 			return getResourcePrimKey();
@@ -122,6 +127,7 @@ public class KBArticleImpl extends KBArticleBaseImpl {
 			parentResourcePrimKey, WorkflowConstants.STATUS_APPROVED);
 	}
 
+	@Override
 	public boolean isFirstVersion() {
 		if (getVersion() == KBArticleConstants.DEFAULT_VERSION) {
 			return true;
@@ -135,6 +141,7 @@ public class KBArticleImpl extends KBArticleBaseImpl {
 		return isMain();
 	}
 
+	@Override
 	public boolean isRoot() {
 		if (getParentResourcePrimKey() ==
 				KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY) {
