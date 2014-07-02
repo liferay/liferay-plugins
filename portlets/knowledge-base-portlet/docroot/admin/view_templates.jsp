@@ -32,13 +32,10 @@
 		</liferay-portlet:renderURL>
 
 		<liferay-ui:search-container
+			id="kbTemplateAdminSearchContainer"
 			rowChecker="<%= AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.DELETE_KB_TEMPLATES) ? new RowChecker(renderResponse) : null %>"
 			searchContainer="<%= new KBTemplateSearch(renderRequest, iteratorURL) %>"
 		>
-			<liferay-ui:search-form
-				page="/admin/template_search.jsp"
-				servletContext="<%= application %>"
-			/>
 
 			<%
 			KBTemplateSearchTerms searchTerms = (KBTemplateSearchTerms)searchContainer.getSearchTerms();
@@ -85,15 +82,19 @@
 				/>
 			</liferay-ui:search-container-row>
 
-			<c:if test="<%= AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_KB_TEMPLATE) || (AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.PERMISSIONS) && GroupPermissionUtil.contains(permissionChecker, scopeGroupId, ActionKeys.PERMISSIONS)) %>">
-				<aui:button-row>
+			<aui:nav-bar>
+				<aui:nav cssClass="navbar-nav">
+					<c:if test="<%= (total > 0) && AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.DELETE_KB_TEMPLATES) %>">
+						<aui:nav-item cssClass="hide" id="deleteKBTemplates" label="delete" />
+					</c:if>
+
 					<c:if test="<%= AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_KB_TEMPLATE) %>">
 						<liferay-portlet:renderURL var="addKBTemplateURL">
 							<portlet:param name="mvcPath" value='<%= templatePath + "edit_template.jsp" %>' />
 							<portlet:param name="redirect" value="<%= redirect %>" />
 						</liferay-portlet:renderURL>
 
-						<aui:button href="<%= addKBTemplateURL %>" value="add-template" />
+						<aui:nav-item href="<%= addKBTemplateURL %>" label="add-template" />
 					</c:if>
 
 					<c:if test="<%= AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.PERMISSIONS) && GroupPermissionUtil.contains(permissionChecker, scopeGroupId, ActionKeys.PERMISSIONS) %>">
@@ -105,35 +106,53 @@
 							windowState="<%= LiferayWindowState.POP_UP.toString() %>"
 						/>
 
-						<aui:button href="<%= permissionsURL %>" useDialog="<%= true %>" value="permissions" />
+						<aui:nav-item href="<%= permissionsURL %>" useDialog="<%= true %>" label="permissions" />
 					</c:if>
-				</aui:button-row>
+				</aui:nav>
 
-				<div class="separator"><!-- --></div>
-			</c:if>
-
-			<c:if test="<%= (total > 0) && AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.DELETE_KB_TEMPLATES) %>">
-				<aui:button-row cssClass="kb-bulk-action-button-holder">
-					<aui:button onClick='<%= renderResponse.getNamespace() + "deleteKBTemplates();" %>' value="delete" />
-				</aui:button-row>
-			</c:if>
+				<aui:nav-bar-search
+					cssClass="navbar-search-advanced"
+				>
+					<liferay-ui:search-form
+						page="/admin/template_search.jsp"
+						servletContext="<%= application %>"
+					/>
+				</aui:nav-bar-search>
+			</aui:nav-bar>
 
 			<liferay-ui:search-iterator type='<%= searchTerms.hasSearchTerms() ? "more" : "regular" %>' />
 		</liferay-ui:search-container>
 	</aui:fieldset>
 </aui:form>
 
-<aui:script>
-	Liferay.provide(
-		window,
-		'<portlet:namespace />deleteKBTemplates',
+<aui:script use="aui-base,liferay-util-list-fields">
+	var deleteKBTemplates = A.one('#<portlet:namespace />deleteKBTemplates');
+
+	if (deleteKBTemplates) {
+		deleteKBTemplates.on(
+			'click',
+			function() {
+				if (confirm('<%= UnicodeLanguageUtil.get(request, "are-you-sure-you-want-to-delete-the-selected-templates") %>')) {
+					document.<portlet:namespace />fm.method = 'post';
+					document.<portlet:namespace />fm.<portlet:namespace />kbTemplateIds.value = Liferay.Util.listCheckedExcept(document.<portlet:namespace />fm, '<portlet:namespace />allRowIds');
+
+					submitForm(document.<portlet:namespace />fm, '<liferay-portlet:actionURL name="deleteKBTemplates"><portlet:param name="mvcPath" value="/admin/view_templates.jsp" /><portlet:param name="redirect" value="<%= redirect %>" /></liferay-portlet:actionURL>');
+				}
+			}
+		);
+	}
+
+	A.one('#<portlet:namespace />kbTemplateAdminSearchContainer').delegate(
+		'click',
 		function() {
-			if (confirm('<%= UnicodeLanguageUtil.get(request, "are-you-sure-you-want-to-delete-the-selected-templates") %>')) {
-				document.<portlet:namespace />fm.method = 'post';
-				document.<portlet:namespace />fm.<portlet:namespace />kbTemplateIds.value = Liferay.Util.listCheckedExcept(document.<portlet:namespace />fm, '<portlet:namespace />allRowIds');
-				submitForm(document.<portlet:namespace />fm, '<liferay-portlet:actionURL name="deleteKBTemplates"><portlet:param name="mvcPath" value="/admin/view_templates.jsp" /><portlet:param name="redirect" value="<%= redirect %>" /></liferay-portlet:actionURL>');
+			var hide = (Liferay.Util.listCheckedExcept(document.<portlet:namespace />fm, '<portlet:namespace /><%= RowChecker.ALL_ROW_IDS %>').length == 0);
+
+			var deleteKBTemplates = A.one('#<portlet:namespace />deleteKBTemplates');
+
+			if (deleteKBTemplates) {
+				deleteKBTemplates.toggle(!hide);
 			}
 		},
-		['liferay-util-list-fields']
+		'input[type=checkbox]'
 	);
 </aui:script>
