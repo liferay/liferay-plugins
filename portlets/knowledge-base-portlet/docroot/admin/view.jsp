@@ -180,8 +180,9 @@ long parentResourcePrimKey = ParamUtil.getLong(request, "parentResourcePrimKey",
 									</liferay-portlet:actionURL>
 
 									<liferay-ui:icon
-										image="unsubscribe"
+										iconCssClass="icon-remove-sign"
 										label="<%= true %>"
+										message="unsubscribe"
 										url="<%= unsubscribeGroupKBArticlesURL %>"
 									/>
 								</c:when>
@@ -191,8 +192,9 @@ long parentResourcePrimKey = ParamUtil.getLong(request, "parentResourcePrimKey",
 									</liferay-portlet:actionURL>
 
 									<liferay-ui:icon
-										image="subscribe"
+										iconCssClass="icon-ok-sign"
 										label="<%= true %>"
+										message="subscribe"
 										url="<%= subscribeGroupKBArticlesURL %>"
 									/>
 								</c:otherwise>

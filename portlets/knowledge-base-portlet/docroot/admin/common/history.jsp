@@ -161,7 +161,7 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 						%>
 
 						<liferay-ui:icon
-							image="undo"
+							iconCssClass="icon-undo"
 							label="<%= true %>"
 							message="revert"
 							url="<%= revertURL.toString() %>"
@@ -182,10 +182,9 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 					</liferay-portlet:renderURL>
 
 					<liferay-ui:icon
-						image="../common/page"
+						iconCssClass="icon-file-alt"
 						label="<%= true %>"
 						message="latest-version"
-						method="get"
 						url="<%= viewKBArticleURL %>"
 					/>
 				</div>

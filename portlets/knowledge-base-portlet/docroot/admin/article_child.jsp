@@ -45,10 +45,9 @@ List<KBArticle> childKBArticles = KBArticleServiceUtil.getKBArticles(scopeGroupI
 					</liferay-portlet:renderURL>
 
 					<liferay-ui:icon
-						image="../trees/page"
+						iconCssClass="icon-file-alt"
 						label="<%= true %>"
 						message="<%= childrenKBArticle.getTitle() %>"
-						method="get"
 						url="<%= viewKBArticleURL %>"
 					/>
 				</div>

@@ -37,10 +37,9 @@ long resourcePrimKey = ParamUtil.getLong(request, "resourcePrimKey");
 					</liferay-portlet:renderURL>
 
 					<liferay-ui:icon
-						image="add_article"
+						iconCssClass="icon-plus"
 						label="<%= true %>"
 						message="add-child-article"
-						method="get"
 						url="<%= addKBArticleURL %>"
 					/>
 				</td>
@@ -56,9 +55,9 @@ long resourcePrimKey = ParamUtil.getLong(request, "resourcePrimKey");
 					</liferay-portlet:renderURL>
 
 					<liferay-ui:icon
-						image="edit"
+						iconCssClass="icon-edit"
 						label="<%= true %>"
-						method="get"
+						message="edit"
 						url="<%= editURL %>"
 					/>
 				</td>
@@ -75,9 +74,9 @@ long resourcePrimKey = ParamUtil.getLong(request, "resourcePrimKey");
 					/>
 
 					<liferay-ui:icon
-						image="permissions"
+						iconCssClass="icon-lock"
 						label="<%= true %>"
-						method="get"
+						message="permissions"
 						url="<%= permissionsURL %>"
 						useDialog="<%= true %>"
 					/>
@@ -94,10 +93,9 @@ long resourcePrimKey = ParamUtil.getLong(request, "resourcePrimKey");
 					</liferay-portlet:renderURL>
 
 					<liferay-ui:icon
-						image="forward"
+						iconCssClass="icon-move"
 						label="<%= true %>"
 						message="move"
-						method="get"
 						url="<%= moveKBArticleURL %>"
 					/>
 				</td>
@@ -126,7 +124,7 @@ long resourcePrimKey = ParamUtil.getLong(request, "resourcePrimKey");
 			<td>
 				<aui:model-context bean="<%= kbArticle %>" model="<%= KBArticle.class %>" />
 
-				<aui:workflow-status status="<%= kbArticle.getStatus() %>" />
+				<aui:workflow-status showIcon="<%= false %>" showLabel="<%= false %>" status="<%= kbArticle.getStatus() %>" />
 			</td>
 		</tr>
 		</table>

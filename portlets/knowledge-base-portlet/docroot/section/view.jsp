@@ -65,10 +65,9 @@
 						</portlet:renderURL>
 
 						<liferay-ui:icon
-							image="../trees/page"
+							iconCssClass="icon-file-alt"
 							label="<%= true %>"
 							message="<%= kbArticle.getTitle() %>"
-							method="get"
 							url="<%= viewKBArticleURL %>"
 						/>
 					</div>

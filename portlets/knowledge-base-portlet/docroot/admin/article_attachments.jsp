@@ -39,10 +39,9 @@ if (kbArticle != null) {
 				</liferay-portlet:resourceURL>
 
 				<liferay-ui:icon
-					image="clip"
+					iconCssClass="icon-paper-clip"
 					label="<%= true %>"
 					message='<%= fileEntry.getTitle() + " (" + TextFormatter.formatStorageSize(fileEntry.getSize(), locale) + ")" %>'
-					method="get"
 					url="<%= clipURL %>"
 				/>
 			</div>

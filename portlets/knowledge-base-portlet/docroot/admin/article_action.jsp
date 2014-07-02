@@ -24,15 +24,15 @@ ResultRow row = (ResultRow)request.getAttribute(WebKeys.SEARCH_CONTAINER_RESULT_
 KBArticle kbArticle = (KBArticle)row.getObject();
 %>
 
-<liferay-ui:icon-menu cssClass="kb-article-action">
+<liferay-ui:icon-menu cssClass="kb-article-action" icon="<%= StringPool.BLANK %>" message="<%= StringPool.BLANK %>">
 	<liferay-portlet:renderURL var="viewURL">
 		<portlet:param name="mvcPath" value='<%= templatePath + "view_article.jsp" %>' />
 		<portlet:param name="resourcePrimKey" value="<%= String.valueOf(kbArticle.getResourcePrimKey()) %>" />
 	</liferay-portlet:renderURL>
 
 	<liferay-ui:icon
-		image="view"
-		method="get"
+		iconCssClass="icon-search"
+		message="view"
 		url="<%= viewURL %>"
 	/>
 
@@ -44,8 +44,8 @@ KBArticle kbArticle = (KBArticle)row.getObject();
 		</liferay-portlet:renderURL>
 
 		<liferay-ui:icon
-			image="edit"
-			method="get"
+			iconCssClass="icon-edit"
+			message="edit"
 			url="<%= editURL %>"
 		/>
 	</c:if>
@@ -60,8 +60,8 @@ KBArticle kbArticle = (KBArticle)row.getObject();
 		/>
 
 		<liferay-ui:icon
-			image="permissions"
-			method="get"
+			iconCssClass="icon-lock"
+			message="permissions"
 			url="<%= permissionsURL %>"
 			useDialog="<%= true %>"
 		/>
@@ -76,7 +76,8 @@ KBArticle kbArticle = (KBArticle)row.getObject();
 				</liferay-portlet:actionURL>
 
 				<liferay-ui:icon
-					image="unsubscribe"
+					iconCssClass="icon-remove-sign"
+					message="unsubscribe"
 					url="<%= unsubscribeKBArticleURL %>"
 				/>
 			</c:when>
@@ -87,7 +88,8 @@ KBArticle kbArticle = (KBArticle)row.getObject();
 				</liferay-portlet:actionURL>
 
 				<liferay-ui:icon
-					image="subscribe"
+					iconCssClass="icon-ok-sign"
+					message="subscribe"
 					url="<%= subscribeKBArticleURL %>"
 				/>
 			</c:otherwise>
@@ -102,9 +104,8 @@ KBArticle kbArticle = (KBArticle)row.getObject();
 		</liferay-portlet:renderURL>
 
 		<liferay-ui:icon
-			image="forward"
+			iconCssClass="icon-move"
 			message="move"
-			method="get"
 			url="<%= moveKBArticleURL %>"
 		/>
 	</c:if>

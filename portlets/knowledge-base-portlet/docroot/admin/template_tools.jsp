@@ -34,9 +34,9 @@ KBTemplate kbTemplate = (KBTemplate)request.getAttribute(WebKeys.KNOWLEDGE_BASE_
 			%>
 
 			<liferay-ui:icon
-				image="print"
+				iconCssClass="icon-print"
 				label="<%= true %>"
-				method="get"
+				message="print"
 				url="<%= taglibURL %>"
 			/>
 		</td>

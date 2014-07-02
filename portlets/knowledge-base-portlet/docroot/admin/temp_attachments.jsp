@@ -43,10 +43,9 @@ if (Validator.isNotNull(dirName) && DLStoreUtil.hasDirectory(company.getCompanyI
 			</liferay-portlet:resourceURL>
 
 			<liferay-ui:icon
-				image="clip"
+				iconCssClass="icon-paper-clip"
 				label="<%= true %>"
 				message='<%= FileUtil.getShortFileName(fileName) + " (" + TextFormatter.formatKB(DLStoreUtil.getFileSize(company.getCompanyId(), CompanyConstants.SYSTEM, fileName), locale) + "k)" %>'
-				method="get"
 				url="<%= clipURL %>"
 			/>
 		</div>

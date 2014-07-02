@@ -45,8 +45,9 @@ KBArticle kbArticle = (KBArticle)request.getAttribute(WebKeys.KNOWLEDGE_BASE_KB_
 				</liferay-portlet:actionURL>
 
 				<liferay-ui:icon
-					image="unsubscribe"
+					iconCssClass="icon-remove-sign"
 					label="<%= true %>"
+					message="unsubscribe"
 					url="<%= unsubscribeKBArticleURL %>"
 				/>
 			</c:when>
@@ -57,8 +58,9 @@ KBArticle kbArticle = (KBArticle)request.getAttribute(WebKeys.KNOWLEDGE_BASE_KB_
 				</liferay-portlet:actionURL>
 
 				<liferay-ui:icon
-					image="subscribe"
+					iconCssClass="icon-ok-sign"
 					label="<%= true %>"
+					message="subscribe"
 					url="<%= subscribeKBArticleURL %>"
 				/>
 			</c:otherwise>
@@ -73,10 +75,9 @@ KBArticle kbArticle = (KBArticle)request.getAttribute(WebKeys.KNOWLEDGE_BASE_KB_
 		</liferay-portlet:renderURL>
 
 		<liferay-ui:icon
-			image="recent_changes"
+			iconCssClass="icon-file-alt"
 			label="<%= true %>"
 			message="history"
-			method="get"
 			url="<%= historyURL %>"
 		/>
 	</c:if>
@@ -93,9 +94,9 @@ KBArticle kbArticle = (KBArticle)request.getAttribute(WebKeys.KNOWLEDGE_BASE_KB_
 		%>
 
 		<liferay-ui:icon
-			image="print"
+			iconCssClass="icon-print"
 			label="<%= true %>"
-			method="get"
+			message="print"
 			url="<%= taglibURL %>"
 		/>
 	</c:if>
