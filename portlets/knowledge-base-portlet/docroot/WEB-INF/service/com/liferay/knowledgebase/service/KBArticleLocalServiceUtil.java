@@ -439,8 +439,7 @@ public class KBArticleLocalServiceUtil {
 
 	public static com.liferay.knowledgebase.model.KBArticle fetchLatestKBArticle(
 		long resourcePrimKey, int status)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().fetchLatestKBArticle(resourcePrimKey, status);
 	}
 
@@ -723,8 +722,7 @@ public class KBArticleLocalServiceUtil {
 	}
 
 	public static void updatePriority(long resourcePrimKey, double priority)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		getService().updatePriority(resourcePrimKey, priority);
 	}
 

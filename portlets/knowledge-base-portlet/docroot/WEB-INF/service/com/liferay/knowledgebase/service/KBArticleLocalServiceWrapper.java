@@ -465,8 +465,7 @@ public class KBArticleLocalServiceWrapper implements KBArticleLocalService,
 	@Override
 	public com.liferay.knowledgebase.model.KBArticle fetchLatestKBArticle(
 		long resourcePrimKey, int status)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return _kbArticleLocalService.fetchLatestKBArticle(resourcePrimKey,
 			status);
 	}
@@ -771,8 +770,7 @@ public class KBArticleLocalServiceWrapper implements KBArticleLocalService,
 
 	@Override
 	public void updatePriority(long resourcePrimKey, double priority)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		_kbArticleLocalService.updatePriority(resourcePrimKey, priority);
 	}
 
