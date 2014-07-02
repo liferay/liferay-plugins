@@ -53,7 +53,7 @@ public class KBArticleMarkdownConverter {
 		}
 		catch (IOException ioe) {
 			throw new KBArticleImportException(
-				"Unable to convert Markdown to HTML." +
+				"Unable to convert Markdown to HTML: " +
 					ioe.getLocalizedMessage(),
 				ioe);
 		}
@@ -100,14 +100,14 @@ public class KBArticleMarkdownConverter {
 	protected String getUrlTitle(String heading) {
 		String urlTitle = null;
 
-		int idIndex = heading.indexOf("[](id=");
-		int closeParentheses = heading.indexOf(
-			StringPool.CLOSE_PARENTHESIS, idIndex);
+		int x = heading.indexOf("[](id=");
+		int y = heading.indexOf(
+			StringPool.CLOSE_PARENTHESIS, x);
 
-		if (closeParentheses > (idIndex + 1)) {
-			int equalsSign = heading.indexOf(StringPool.EQUAL, idIndex);
+		if (y > (x + 1)) {
+			int equalsSign = heading.indexOf(StringPool.EQUAL, x);
 
-			urlTitle = heading.substring(equalsSign + 1, closeParentheses);
+			urlTitle = heading.substring(equalsSign + 1, y);
 
 			urlTitle = StringUtil.replace(
 				urlTitle, StringPool.SPACE, StringPool.DASH);
@@ -155,7 +155,7 @@ public class KBArticleMarkdownConverter {
 
 				// Since no close parenthesis remains in the content, stop
 				// stripping out IDs and simply include all of the remaining
-				// content.
+				// content
 
 				break;
 			}
