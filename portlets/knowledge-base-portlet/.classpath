@@ -23,7 +23,16 @@
 	<classpathentry kind="lib" path="/portal-master/util-bridges/util-bridges.jar" />
 	<classpathentry kind="lib" path="/portal-master/util-java/util-java.jar" />
 	<classpathentry kind="lib" path="/portal-master/util-taglib/util-taglib.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/asm-analysis.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/asm-tree.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/asm-util.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/asm.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/com.liferay.markdown.converter.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/com.liferay.portal.log.bridge.jar" />
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/knowledge-base-shared.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/parboiled-core.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/parboiled-java.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/pegdown.jar" />
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/portal-compat-shared.jar" />
 	<classpathentry kind="output" path="bin" />
 </classpath>
