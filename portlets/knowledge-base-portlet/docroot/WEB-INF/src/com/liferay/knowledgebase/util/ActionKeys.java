@@ -36,6 +36,8 @@ public class ActionKeys
 	public static final String UPDATE_KB_ARTICLES_PRIORITIES =
 		"UPDATE_KB_ARTICLES_PRIORITIES";
 
+	public static final String VIEW_KB_FEEDBACK = "VIEW_KB_FEEDBACK";
+
 	public static final String VIEW_KB_TEMPLATES = "VIEW_KB_TEMPLATES";
 
 }
