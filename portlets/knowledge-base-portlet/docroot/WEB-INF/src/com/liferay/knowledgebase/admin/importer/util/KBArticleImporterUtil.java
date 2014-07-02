@@ -27,8 +27,6 @@ import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.zip.ZipReader;
 import com.liferay.portal.service.ServiceContext;
 
-import java.io.IOException;
-
 import java.util.Map;
 
 /**
@@ -82,7 +80,7 @@ public class KBArticleImporterUtil {
 			long groupId, String fileName, ZipReader zipReader,
 			Map<String, FileEntry> fileEntriesMap,
 			ServiceContext serviceContext)
-		throws IOException, KBArticleImportException {
+		throws KBArticleImportException {
 
 		String folderName = FileUtil.stripExtension(fileName);
 
