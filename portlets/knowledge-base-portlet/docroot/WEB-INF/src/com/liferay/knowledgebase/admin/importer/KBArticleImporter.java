@@ -69,14 +69,14 @@ public class KBArticleImporter {
 
 	protected KBArticle addKBArticleMarkdown(
 			long userId, long groupId, long parentResourcePrimaryKey,
-			String markdown, String fileEntry,
+			String markdown, String fileEntryName,
 			Map<String, FileEntry> fileEntriesMap,
 			ServiceContext serviceContext)
 		throws KBArticleImportException {
 
 		if (Validator.isNull(markdown)) {
 			throw new KBArticleImportException(
-				"Null or empty Markdown in file entry: " + fileEntry);
+				"Null or empty Markdown in file: " + fileEntryName);
 		}
 
 		KBArticleMarkdownConverter kbArticleMarkdownConverter =
@@ -93,7 +93,7 @@ public class KBArticleImporter {
 			StringBuilder sb = new StringBuilder(4);
 
 			sb.append("Unable to create KBArticle for file entry: ");
-			sb.append(fileEntry);
+			sb.append(fileEntryName);
 			sb.append(". ");
 			sb.append(e.getLocalizedMessage());
 
