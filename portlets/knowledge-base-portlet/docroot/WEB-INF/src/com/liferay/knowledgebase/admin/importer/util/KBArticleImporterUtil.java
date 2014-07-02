@@ -38,21 +38,21 @@ public class KBArticleImporterUtil {
 	public static FileEntry extractImageFileEntry(
 		String html, Map<String, FileEntry> fileEntriesMap) {
 
-		String imageSource = null;
+		String imageSrc = null;
 
 		String[] lines = StringUtil.split(html, StringPool.QUOTE);
 
 		for (int i = 0; i < lines.length; i++) {
 			if (lines[i].endsWith("src=")) {
 				if ((i + 1) < lines.length) {
-					imageSource = lines[i + 1];
+					imageSrc = lines[i + 1];
 				}
 
 				break;
 			}
 		}
 
-		if (Validator.isNull(imageSource)) {
+		if (Validator.isNull(imageSrc)) {
 			if (_log.isWarnEnabled()) {
 				_log.warn("Missing src attribute for image " + html);
 			}
@@ -60,7 +60,7 @@ public class KBArticleImporterUtil {
 			return null;
 		}
 
-		String[] paths = StringUtil.split(imageSource, StringPool.SLASH);
+		String[] paths = StringUtil.split(imageSrc, StringPool.SLASH);
 
 		if (paths.length < 1) {
 			if (_log.isWarnEnabled()) {
