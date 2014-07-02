@@ -61,10 +61,10 @@ public class KBArticleImporter {
 		try {
 			ZipReader zipReader = ZipReaderFactoryUtil.getZipReader(
 				inputStream);
-	
+
 			KBArticleImporterUtil.processImageFiles(
 				groupId, fileName, zipReader, fileEntriesMap, serviceContext);
-	
+
 			processKBArticleFiles(
 				userId, groupId, zipReader, fileEntriesMap, serviceContext);
 		}
@@ -167,26 +167,6 @@ public class KBArticleImporter {
 		return folderNameFileEntryNamesMap;
 	}
 
-	protected void processKBArticleFiles(
-			long userId, long groupId, ZipReader zipReader,
-			Map<String, FileEntry> fileEntriesMap,
-			ServiceContext serviceContext)
-		throws KBArticleImportException {
-
-		KBArticle homeKBArticle = addKBArticleMarkdown(
-			userId, groupId,
-			KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY,
-			zipReader.getEntryAsString(
-				PortletPropsValues.MARKDOWN_IMPORTER_ARTICLE_HOME),
-			PortletPropsValues.MARKDOWN_IMPORTER_ARTICLE_HOME, fileEntriesMap,
-			serviceContext);
-
-		processChapterKBArticleFiles(
-			userId, groupId, homeKBArticle.getResourcePrimKey(), zipReader,
-			fileEntriesMap, getFolderNameFileEntryNamesMap(zipReader),
-			serviceContext);
-	}
-
 	protected void processChapterKBArticleFiles(
 			long userId, long groupId, long homeKBArticlePK,
 			ZipReader zipReader, Map<String, FileEntry> fileEntriesMap,
@@ -238,6 +218,26 @@ public class KBArticleImporter {
 					serviceContext);
 			}
 		}
+	}
+
+	protected void processKBArticleFiles(
+			long userId, long groupId, ZipReader zipReader,
+			Map<String, FileEntry> fileEntriesMap,
+			ServiceContext serviceContext)
+		throws KBArticleImportException {
+
+		KBArticle homeKBArticle = addKBArticleMarkdown(
+			userId, groupId,
+			KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY,
+			zipReader.getEntryAsString(
+				PortletPropsValues.MARKDOWN_IMPORTER_ARTICLE_HOME),
+			PortletPropsValues.MARKDOWN_IMPORTER_ARTICLE_HOME, fileEntriesMap,
+			serviceContext);
+
+		processChapterKBArticleFiles(
+			userId, groupId, homeKBArticle.getResourcePrimKey(), zipReader,
+			fileEntriesMap, getFolderNameFileEntryNamesMap(zipReader),
+			serviceContext);
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(KBArticleImporter.class);

@@ -101,8 +101,7 @@ public class KBArticleMarkdownConverter {
 		String urlTitle = null;
 
 		int x = heading.indexOf("[](id=");
-		int y = heading.indexOf(
-			StringPool.CLOSE_PARENTHESIS, x);
+		int y = heading.indexOf(StringPool.CLOSE_PARENTHESIS, x);
 
 		if (y > (x + 1)) {
 			int equalsSign = heading.indexOf(StringPool.EQUAL, x);

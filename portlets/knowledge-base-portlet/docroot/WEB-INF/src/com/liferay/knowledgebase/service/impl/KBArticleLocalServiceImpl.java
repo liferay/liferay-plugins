@@ -84,7 +84,6 @@ import com.liferay.portlet.documentlibrary.NoSuchDirectoryException;
 import com.liferay.portlet.documentlibrary.store.DLStoreUtil;
 
 import java.io.File;
-import java.io.IOException;
 import java.io.InputStream;
 
 import java.util.ArrayList;
