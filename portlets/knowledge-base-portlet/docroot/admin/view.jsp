@@ -48,13 +48,10 @@ long parentResourcePrimKey = ParamUtil.getLong(request, "parentResourcePrimKey",
 		</liferay-portlet:renderURL>
 
 		<liferay-ui:search-container
+			id="kbArticlesAdminSearchContainer"
 			rowChecker="<%= AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.DELETE_KB_ARTICLES) ? new RowChecker(renderResponse) : null %>"
 			searchContainer="<%= new KBArticleSearch(renderRequest, iteratorURL) %>"
 		>
-			<liferay-ui:search-form
-				page="/admin/article_search.jsp"
-				servletContext="<%= application %>"
-			/>
 
 			<%
 			KBArticleSearchTerms searchTerms = (KBArticleSearchTerms)searchContainer.getSearchTerms();
@@ -151,8 +148,20 @@ long parentResourcePrimKey = ParamUtil.getLong(request, "parentResourcePrimKey",
 				/>
 			</liferay-ui:search-container-row>
 
-			<c:if test="<%= (AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_KB_ARTICLE) || (AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.PERMISSIONS) && GroupPermissionUtil.contains(permissionChecker, scopeGroupId, ActionKeys.PERMISSIONS)) || AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.SUBSCRIBE)) %>">
-				<aui:button-row cssClass="float-container">
+			<aui:nav-bar>
+				<aui:nav cssClass="navbar-nav">
+					<c:if test="<%= (total > 0) && (AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.DELETE_KB_ARTICLES) || AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.UPDATE_KB_ARTICLES_PRIORITIES)) %>">
+						<aui:nav-item cssClass="hide" dropdown="<%= true %>" id="actionsButton" label="actions">
+							<c:if test="<%= AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.UPDATE_KB_ARTICLES_PRIORITIES) %>">
+								<aui:nav-item iconCssClass="icon-save" id="updateKBArticlesPriorities" label="save" />
+							</c:if>
+
+							<c:if test="<%= AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.DELETE_KB_ARTICLES) %>">
+								<aui:nav-item cssClass="item-remove" id="deleteKBArticles" iconCssClass="icon-remove" label="delete" />
+							</c:if>
+						</aui:nav-item>
+					</c:if>
+
 					<c:if test="<%= AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_KB_ARTICLE) %>">
 						<liferay-util:include page="/admin/common/add_article_button.jsp" servletContext="<%= application %>" />
 
@@ -168,42 +177,49 @@ long parentResourcePrimKey = ParamUtil.getLong(request, "parentResourcePrimKey",
 							windowState="<%= LiferayWindowState.POP_UP.toString() %>"
 						/>
 
-						<aui:button href="<%= permissionsURL %>" useDialog="<%= true %>" value="permissions" />
+						<aui:nav-item href="<%= permissionsURL %>" label="permissions" useDialog="<%= true %>" />
 					</c:if>
+				</aui:nav>
 
-					<c:if test="<%= AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.SUBSCRIBE) %>">
-						<div class="kb-admin-tools">
-							<c:choose>
-								<c:when test="<%= SubscriptionLocalServiceUtil.isSubscribed(user.getCompanyId(), user.getUserId(), KBArticle.class.getName(), scopeGroupId) %>">
-									<liferay-portlet:actionURL name="unsubscribeGroupKBArticles" var="unsubscribeGroupKBArticlesURL">
-										<portlet:param name="redirect" value="<%= redirect %>" />
-									</liferay-portlet:actionURL>
+				<aui:nav-bar-search
+					cssClass="navbar-search-advanced"
+				>
+					<liferay-ui:search-form
+						page="/admin/article_search.jsp"
+						servletContext="<%= application %>"
+					/>
+				</aui:nav-bar-search>
+			</aui:nav-bar>
 
-									<liferay-ui:icon
-										iconCssClass="icon-remove-sign"
-										label="<%= true %>"
-										message="unsubscribe"
-										url="<%= unsubscribeGroupKBArticlesURL %>"
-									/>
-								</c:when>
-								<c:otherwise>
-									<liferay-portlet:actionURL name="subscribeGroupKBArticles" var="subscribeGroupKBArticlesURL">
-										<portlet:param name="redirect" value="<%= redirect %>" />
-									</liferay-portlet:actionURL>
+			<c:if test="<%= AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.SUBSCRIBE) %>">
+				<div class="kb-admin-tools">
+					<c:choose>
+						<c:when test="<%= SubscriptionLocalServiceUtil.isSubscribed(user.getCompanyId(), user.getUserId(), KBArticle.class.getName(), scopeGroupId) %>">
+							<liferay-portlet:actionURL name="unsubscribeGroupKBArticles" var="unsubscribeGroupKBArticlesURL">
+								<portlet:param name="redirect" value="<%= redirect %>" />
+							</liferay-portlet:actionURL>
 
-									<liferay-ui:icon
-										iconCssClass="icon-ok-sign"
-										label="<%= true %>"
-										message="subscribe"
-										url="<%= subscribeGroupKBArticlesURL %>"
-									/>
-								</c:otherwise>
-							</c:choose>
-						</div>
-					</c:if>
-				</aui:button-row>
+							<liferay-ui:icon
+								iconCssClass="icon-remove-sign"
+								label="<%= true %>"
+								message="unsubscribe"
+								url="<%= unsubscribeGroupKBArticlesURL %>"
+							/>
+						</c:when>
+						<c:otherwise>
+							<liferay-portlet:actionURL name="subscribeGroupKBArticles" var="subscribeGroupKBArticlesURL">
+								<portlet:param name="redirect" value="<%= redirect %>" />
+							</liferay-portlet:actionURL>
 
-				<div class="separator"><!-- --></div>
+							<liferay-ui:icon
+								iconCssClass="icon-ok-sign"
+								label="<%= true %>"
+								message="subscribe"
+								url="<%= subscribeGroupKBArticlesURL %>"
+							/>
+						</c:otherwise>
+					</c:choose>
+				</div>
 			</c:if>
 
 			<c:if test="<%= !searchTerms.hasSearchTerms() && (parentResourcePrimKey != KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY) %>">
@@ -239,39 +255,52 @@ long parentResourcePrimKey = ParamUtil.getLong(request, "parentResourcePrimKey",
 				</div>
 			</c:if>
 
-			<c:if test="<%= (total > 0) && (AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.DELETE_KB_ARTICLES) || AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.UPDATE_KB_ARTICLES_PRIORITIES)) %>">
-				<aui:button-row cssClass="kb-bulk-action-button-holder">
-					<c:if test="<%= AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.DELETE_KB_ARTICLES) %>">
-						<aui:button onClick='<%= renderResponse.getNamespace() + "deleteKBArticles();" %>' value="delete" />
-					</c:if>
-
-					<c:if test="<%= AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.UPDATE_KB_ARTICLES_PRIORITIES) %>">
-						<aui:button onClick='<%= renderResponse.getNamespace() + "updateKBArticlesPriorities();" %>' value="save" />
-					</c:if>
-				</aui:button-row>
-			</c:if>
-
 			<liferay-ui:search-iterator type='<%= searchTerms.hasSearchTerms() ? "more" : "regular" %>' />
 		</liferay-ui:search-container>
 	</aui:fieldset>
 </aui:form>
 
-<aui:script>
-	function <portlet:namespace />updateKBArticlesPriorities() {
-		document.<portlet:namespace />fm.method = 'post';
-		submitForm(document.<portlet:namespace />fm, '<liferay-portlet:actionURL name="updateKBArticlesPriorities"><portlet:param name="mvcPath" value="/admin/view.jsp" /><portlet:param name="redirect" value="<%= redirect %>" /></liferay-portlet:actionURL>');
+<aui:script use="aui-base,liferay-util-list-fields">
+	var updateKBArticlesPriorities = A.one('#<portlet:namespace />updateKBArticlesPriorities');
+
+	if (updateKBArticlesPriorities) {
+		updateKBArticlesPriorities.on(
+			'click',
+			function() {
+				document.<portlet:namespace />fm.method = 'post';
+
+				submitForm(document.<portlet:namespace />fm, '<liferay-portlet:actionURL name="updateKBArticlesPriorities"><portlet:param name="mvcPath" value="/admin/view.jsp" /><portlet:param name="redirect" value="<%= redirect %>" /></liferay-portlet:actionURL>');
+			}
+		);
 	}
 
-	Liferay.provide(
-		window,
-		'<portlet:namespace />deleteKBArticles',
+	var deleteKBArticles = A.one('#<portlet:namespace />deleteKBArticles');
+
+	if (deleteKBArticles) {
+		deleteKBArticles.on(
+			'click',
+			function() {
+				if (confirm('<%= UnicodeLanguageUtil.get(request, "are-you-sure-you-want-to-delete-the-selected-articles") %>')) {
+					document.<portlet:namespace />fm.method = 'post';
+					document.<portlet:namespace />fm.<portlet:namespace />resourcePrimKeys.value = Liferay.Util.listCheckedExcept(document.<portlet:namespace />fm, '<portlet:namespace />allRowIds');
+
+					submitForm(document.<portlet:namespace />fm, '<liferay-portlet:actionURL name="deleteKBArticles"><portlet:param name="mvcPath" value="/admin/view.jsp" /><portlet:param name="redirect" value="<%= redirect %>" /></liferay-portlet:actionURL>');
+				}
+			}
+		);
+	}
+
+	A.one('#<portlet:namespace />kbArticlesAdminSearchContainer').delegate(
+		'click',
 		function() {
-			if (confirm('<%= UnicodeLanguageUtil.get(request, "are-you-sure-you-want-to-delete-the-selected-articles") %>')) {
-				document.<portlet:namespace />fm.method = 'post';
-				document.<portlet:namespace />fm.<portlet:namespace />resourcePrimKeys.value = Liferay.Util.listCheckedExcept(document.<portlet:namespace />fm, '<portlet:namespace />allRowIds');
-				submitForm(document.<portlet:namespace />fm, '<liferay-portlet:actionURL name="deleteKBArticles"><portlet:param name="mvcPath" value="/admin/view.jsp" /><portlet:param name="redirect" value="<%= redirect %>" /></liferay-portlet:actionURL>');
+			var hide = (Liferay.Util.listCheckedExcept(document.<portlet:namespace />fm, '<portlet:namespace /><%= RowChecker.ALL_ROW_IDS %>').length == 0);
+
+			var actionsButton = A.one('#<portlet:namespace />actionsButton');
+
+			if (actionsButton) {
+				actionsButton.toggle(!hide);
 			}
 		},
-		['liferay-util-list-fields']
+		'input[type=checkbox]'
 	);
 </aui:script>

@@ -30,13 +30,13 @@ long parentResourcePrimKey = ParamUtil.getLong(request, "parentResourcePrimKey",
 
 <c:choose>
 	<c:when test="<%= kbTemplates.isEmpty() %>">
-		<aui:button href="<%= addBasicKBArticleURL %>" value="add-article" />
+		<aui:nav-item href="<%= addBasicKBArticleURL %>" label="add-article" />
 	</c:when>
 	<c:otherwise>
-		<liferay-ui:icon-menu direction="down" extended="<%= false %>" icon="<%= StringPool.BLANK %>" message="add-article" showWhenSingleIcon="<%= true %>" triggerCssClass="btn kb-add-article-button">
-			<liferay-ui:icon
-				message="basic-article"
-				url="<%= addBasicKBArticleURL %>"
+		<aui:nav-item dropdown="<%= true %>" label="add">
+			<aui:nav-item
+				href="<%= addBasicKBArticleURL %>"
+				label="basic-article"
 			/>
 
 			<%
@@ -50,15 +50,15 @@ long parentResourcePrimKey = ParamUtil.getLong(request, "parentResourcePrimKey",
 					<portlet:param name="kbTemplateId" value="<%= String.valueOf(kbTemplate.getKbTemplateId()) %>" />
 				</liferay-portlet:renderURL>
 
-				<liferay-ui:icon
-					message="<%= HtmlUtil.escape(kbTemplate.getTitle()) %>"
-					url="<%= addKBArticleURL %>"
+				<aui:nav-item
+					href="<%= addKBArticleURL %>"
+					label="<%= HtmlUtil.escape(kbTemplate.getTitle()) %>"
 				/>
 
 			<%
 			}
 			%>
 
-		</liferay-ui:icon-menu>
+		</aui:nav-item>
 	</c:otherwise>
 </c:choose>

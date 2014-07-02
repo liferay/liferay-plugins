@@ -12,8 +12,8 @@
 /* ---------- Portlet ---------- */
 
 .knowledge-base-portlet-admin .kb-admin-tools {
-	float: right;
 	padding: 5px 5px 0 0;
+	text-align: right;
 }
 
 .knowledge-base-portlet-admin .kb-search-toggle .kb-date-field {
