@@ -426,9 +426,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 	}
 
 	@Override
-	public KBArticle fetchLatestKBArticle(long resourcePrimKey, int status)
-		throws PortalException {
-
+	public KBArticle fetchLatestKBArticle(long resourcePrimKey, int status) {
 		if (status == WorkflowConstants.STATUS_ANY) {
 			return kbArticlePersistence.fetchByResourcePrimKey_First(
 				resourcePrimKey, new KBArticleVersionComparator());
@@ -1082,9 +1080,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 	}
 
 	@Override
-	public void updatePriority(long resourcePrimKey, double priority)
-		throws PortalException {
-
+	public void updatePriority(long resourcePrimKey, double priority) {
 		List<KBArticle> kbArticleVersions = getKBArticleVersions(
 			resourcePrimKey, WorkflowConstants.STATUS_ANY, QueryUtil.ALL_POS,
 			QueryUtil.ALL_POS, null);
