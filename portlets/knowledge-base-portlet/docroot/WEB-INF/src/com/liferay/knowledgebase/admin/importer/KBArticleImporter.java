@@ -48,18 +48,6 @@ import java.util.TreeMap;
  */
 public class KBArticleImporter {
 
-	/**
-	 * Processes the ZIP file's content and pictures, importing them as kb
-	 * articles and document library files respectively.
-	 *
-	 * @param userId
-	 * @param groupId
-	 * @param fileName
-	 * @param inputStream a inputStream containing a folder of image files to
-*        add to the document library and folders of Markdown files to be
-*        processed into a hierarchy of kb articles
-	 * @param serviceContext
-	 */
 	public void processZipFile(
 			long userId, long groupId, String fileName, InputStream inputStream,
 			Map<String, FileEntry> fileEntriesMap,
