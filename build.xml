@@ -5,6 +5,7 @@
 	<import file="build-common.xml" />
 
 	<path id="plugins.includes.path">
+		<dirset dir="apps/content-targeting" excludes="${plugins.excludes}" includes="${plugins.includes}" />
 		<dirset dir="hooks" excludes="${plugins.excludes}" includes="${plugins.includes}" />
 		<dirset dir="layouttpl" excludes="${plugins.excludes}" includes="${plugins.includes}" />
 		<dirset dir="portlets" excludes="${plugins.excludes}" includes="${plugins.includes}" />
