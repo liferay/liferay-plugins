@@ -27,7 +27,7 @@ String backURL = PortalUtil.getCurrentURL(request);
 			constrain: true,
 			items: [
 				{
-					caption: '<i class="icon-plus"></i><liferay-ui:message key="add-calendar" />',
+					caption: '<liferay-ui:message key="add-calendar" />',
 					fn: function(event) {
 						var instance = this;
 
@@ -74,10 +74,11 @@ String backURL = PortalUtil.getCurrentURL(request);
 							);
 						}
 					},
+					icon: 'icon-plus',
 					id: 'add'
 				},
 				{
-					caption: '<i class="icon-calendar"></i> <liferay-ui:message key="manage-calendars" />',
+					caption: '<liferay-ui:message key="manage-calendars" />',
 					fn: function(event) {
 						var instance = this;
 
@@ -98,6 +99,7 @@ String backURL = PortalUtil.getCurrentURL(request);
 							);
 						}
 					},
+					icon: 'icon-calendar',
 					id: 'manage'
 				}
 			],
@@ -110,7 +112,7 @@ String backURL = PortalUtil.getCurrentURL(request);
 	window.<portlet:namespace />calendarsMenu = {
 		items: [
 			{
-				caption: '<i class="icon-plus"></i> <liferay-ui:message key="add-calendar-booking" />',
+				caption: '<liferay-ui:message key="add-calendar-booking" />',
 				fn: function(event) {
 					var instance = this;
 
@@ -146,10 +148,11 @@ String backURL = PortalUtil.getCurrentURL(request);
 						}
 					);
 				},
+				icon: 'icon-plus',
 				id: 'addEvent'
 			},
 			{
-				caption: '<i class="icon-remove"></i> <liferay-ui:message key="hide-calendar" />',
+				caption: '<liferay-ui:message key="hide-calendar" />',
 				fn: function(event) {
 					var instance = this;
 
@@ -161,10 +164,11 @@ String backURL = PortalUtil.getCurrentURL(request);
 
 					instance.set('visible', false);
 				},
+				icon: 'icon-remove',
 				id: 'hide'
 			},
 			{
-				caption: '<i class="icon-edit"></i> <liferay-ui:message key="calendar-settings" />',
+				caption: '<liferay-ui:message key="calendar-settings" />',
 				fn: function(event) {
 					var instance = this;
 
@@ -210,10 +214,11 @@ String backURL = PortalUtil.getCurrentURL(request);
 						}
 					);
 				},
+				icon: 'icon-edit',
 				id: 'settings'
 			},
 			{
-				caption: '<i class="icon-lock"></i> <liferay-ui:message key="permissions" />',
+				caption: '<liferay-ui:message key="permissions" />',
 				fn: function(event) {
 					var instance = this;
 
@@ -255,10 +260,11 @@ String backURL = PortalUtil.getCurrentURL(request);
 						}
 					);
 				},
+				icon: 'icon-lock',
 				id: 'permissions'
 			},
 			{
-				caption: '<i class="icon-remove"></i> <liferay-ui:message key="delete" />',
+				caption: '<liferay-ui:message key="delete" />',
 				fn: function(event) {
 					var instance = this;
 
@@ -286,6 +292,7 @@ String backURL = PortalUtil.getCurrentURL(request);
 						);
 					}
 				},
+				icon: 'icon-remove',
 				id: 'delete'
 			},
 
@@ -315,6 +322,7 @@ String backURL = PortalUtil.getCurrentURL(request);
 
 						instance.set('visible', false);
 					},
+					icon: 'icon-rss',
 					id: 'subscribe'
 				},
 			</c:if>
