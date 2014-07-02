@@ -52,19 +52,25 @@ public class KBArticleImporter {
 			long userId, long groupId, String fileName, InputStream inputStream,
 			Map<String, FileEntry> fileEntriesMap,
 			ServiceContext serviceContext)
-		throws IOException, KBArticleImportException {
+		throws KBArticleImportException {
 
 		if (inputStream == null) {
 			throw new KBArticleImportException("Null import file");
 		}
 
-		ZipReader zipReader = ZipReaderFactoryUtil.getZipReader(inputStream);
-
-		KBArticleImporterUtil.processImageFiles(
-			groupId, fileName, zipReader, fileEntriesMap, serviceContext);
-
-		processArticleFiles(
-			userId, groupId, zipReader, fileEntriesMap, serviceContext);
+		try {
+			ZipReader zipReader = ZipReaderFactoryUtil.getZipReader(
+				inputStream);
+	
+			KBArticleImporterUtil.processImageFiles(
+				groupId, fileName, zipReader, fileEntriesMap, serviceContext);
+	
+			processArticleFiles(
+				userId, groupId, zipReader, fileEntriesMap, serviceContext);
+		}
+		catch (IOException ioe) {
+			throw new KBArticleImportException(ioe);
+		}
 	}
 
 	protected KBArticle addKBArticleMarkdown(
@@ -164,7 +170,7 @@ public class KBArticleImporter {
 			long userId, long groupId, ZipReader zipReader,
 			Map<String, FileEntry> fileEntriesMap,
 			ServiceContext serviceContext)
-		throws IOException, KBArticleImportException {
+		throws KBArticleImportException {
 
 		KBArticle homeKBArticle = addKBArticleMarkdown(
 			userId, groupId,
