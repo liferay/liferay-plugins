@@ -112,7 +112,7 @@ String htmlAttributes =
 					<%= description %>
 				</div>
 
-				<aui:input cssClass="lfr-textarea lfr-textarea-container" name="preferences--htmlAttributes--" onKeyDown="Liferay.Util.checkTab(this); Liferay.Util.disableEsc();" type="textarea" value="<%= htmlAttributes %>" wrap="soft" />
+				<aui:input cssClass="lfr-textarea" name="preferences--htmlAttributes--" onKeyDown="Liferay.Util.checkTab(this); Liferay.Util.disableEsc();" type="textarea" value="<%= htmlAttributes %>" wrap="soft" wrapperCssClass="lfr-textarea-container" />
 			</aui:fieldset>
 
 			<%

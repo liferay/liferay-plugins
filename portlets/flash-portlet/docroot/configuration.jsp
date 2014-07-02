@@ -57,9 +57,9 @@ flashVariables = ParamUtil.getString(request, "flashVariables", flashVariables);
 	<aui:fieldset>
 		<aui:input cssClass="lfr-input-text-container" name="preferences--movie--" type="text" value="<%= movie %>" />
 
-		<aui:input cssClass="lfr-textarea-container" name="preferences--flashAttributes--" onKeyDown="Liferay.Util.checkTab(this); disableEsc();" type="textarea" value="<%= flashAttributes %>" wrap="soft" />
+		<aui:input name="preferences--flashAttributes--" onKeyDown="Liferay.Util.checkTab(this); disableEsc();" type="textarea" value="<%= flashAttributes %>" wrap="soft" wrapperCssClass="lfr-textarea-container" />
 
-		<aui:input cssClass="lfr-textarea-container" name="preferences--flashVariables--" onKeyDown="Liferay.Util.checkTab(this); Liferay.Util.disableEsc();" type="textarea" value="<%= flashVariables %>" wrap="soft" />
+		<aui:input name="preferences--flashVariables--" onKeyDown="Liferay.Util.checkTab(this); Liferay.Util.disableEsc();" type="textarea" value="<%= flashVariables %>" wrap="soft" wrapperCssClass="lfr-textarea-container" />
 	</aui:fieldset>
 
 	<aui:button-row>

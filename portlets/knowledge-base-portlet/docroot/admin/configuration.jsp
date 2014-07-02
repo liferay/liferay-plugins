@@ -164,7 +164,7 @@ else if (tabs2.equals("article-updated-email")) {
 					</c:when>
 				</c:choose>
 
-				<aui:input cssClass="lfr-textarea-container" label="body" name='<%= "preferences--".concat(editorParam).concat("--") %>' type="textarea" value="<%= editorBody %>" />
+				<aui:input label="body" name='<%= "preferences--".concat(editorParam).concat("--") %>' type="textarea" value="<%= editorBody %>" wrapperCssClass="lfr-textarea-container" />
 
 				<div class="definition-of-terms">
 					<h4><liferay-ui:message key="definition-of-terms" /></h4>
