@@ -375,8 +375,7 @@ public class KBArticleLocalServiceUtil {
 	public static void addKBArticlesMarkdown(long userId, long groupId,
 		java.lang.String fileName, java.io.InputStream inputStream,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			java.io.IOException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		getService()
 			.addKBArticlesMarkdown(userId, groupId, fileName, inputStream,
 			serviceContext);

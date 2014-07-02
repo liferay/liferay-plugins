@@ -320,8 +320,7 @@ public interface KBArticleLocalService extends BaseLocalService,
 	public void addKBArticlesMarkdown(long userId, long groupId,
 		java.lang.String fileName, java.io.InputStream inputStream,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			java.io.IOException;
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	public void checkAttachments()
 		throws com.liferay.portal.kernel.exception.PortalException;

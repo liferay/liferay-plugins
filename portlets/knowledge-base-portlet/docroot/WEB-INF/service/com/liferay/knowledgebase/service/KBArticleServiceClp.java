@@ -381,8 +381,7 @@ public class KBArticleServiceClp implements KBArticleService {
 	public void addKBArticlesMarkdown(long groupId, java.lang.String fileName,
 		java.io.InputStream inputStream,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			java.io.IOException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		try {
 			_invokableService.invokeMethod(_methodName5,
 				_methodParameterTypes5,
@@ -401,10 +400,6 @@ public class KBArticleServiceClp implements KBArticleService {
 
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof java.io.IOException) {
-				throw (java.io.IOException)t;
 			}
 
 			if (t instanceof RuntimeException) {

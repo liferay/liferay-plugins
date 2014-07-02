@@ -83,8 +83,7 @@ public class KBArticleServiceWrapper implements KBArticleService,
 	public void addKBArticlesMarkdown(long groupId, java.lang.String fileName,
 		java.io.InputStream inputStream,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			java.io.IOException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		_kbArticleService.addKBArticlesMarkdown(groupId, fileName, inputStream,
 			serviceContext);
 	}
