@@ -21,6 +21,8 @@ import com.liferay.knowledgebase.util.ActionKeys;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.service.ServiceContext;
 
+import java.util.List;
+
 /**
  * @author Brian Wing Shun Chan
  */
@@ -52,6 +54,16 @@ public class KBCommentServiceImpl extends KBCommentServiceBaseImpl {
 			getPermissionChecker(), kbComment, ActionKeys.VIEW);
 
 		return kbComment;
+	}
+
+	public List<KBComment> getKBComments(
+		long groupId, int status, int start, int end) {
+
+		return kbCommentFinder.filterFindByG_S(groupId, status, start, end);
+	}
+
+	public int getKBCommentsCount(long groupId, int status) {
+		return kbCommentFinder.filterCountByG_S(groupId, status);
 	}
 
 	public KBComment updateKBComment(
