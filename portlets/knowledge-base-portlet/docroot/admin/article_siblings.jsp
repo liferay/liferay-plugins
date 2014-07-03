@@ -19,14 +19,14 @@
 <%
 KBArticle kbArticle = (KBArticle)request.getAttribute(WebKeys.KNOWLEDGE_BASE_KB_ARTICLE);
 
-KBArticle[] prevAndNext = KBArticleLocalServiceUtil.getKBArticlesPrevAndNext(kbArticle.getKbArticleId());
+KBArticle[] previousAndNextKBArticles = KBArticleLocalServiceUtil.getPreviousAndNextKBArticles(kbArticle.getKbArticleId());
 
-KBArticle previousKBArticle = prevAndNext[0];
-KBArticle nextKBArticle = prevAndNext[2];
+KBArticle previousKBArticle = previousAndNextKBArticles[0];
+KBArticle nextKBArticle = previousAndNextKBArticles[2];
 %>
 
 <div class="kb-article-siblings">
-	<span class="kb-article-prev">
+	<span class="kb-article-previous">
 		<c:if test="<%= previousKBArticle != null %>">
 			<liferay-portlet:renderURL var="previousKBArticleURL">
 				<c:choose>

@@ -113,7 +113,7 @@
 		overflow: auto;
 		width: 100%;
 
-		.kb-article-next, .kb-article-prev {
+		.kb-article-next, .kb-article-previous {
 			position: relative;
 			width: 45%;
 
@@ -147,7 +147,7 @@
 			}
 		}
 
-		.kb-article-prev {
+		.kb-article-previous {
 			float: left;
 			text-align: left;
 
@@ -327,7 +327,7 @@
 	}
 
 	.kb-article-siblings {
-		.kb-article-next, .kb-article-prev {
+		.kb-article-next, .kb-article-previous {
 			.icon {
 				text-decoration: none;
 			}
