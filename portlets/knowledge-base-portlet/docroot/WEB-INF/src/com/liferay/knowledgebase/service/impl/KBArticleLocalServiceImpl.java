@@ -464,6 +464,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		return kbArticles.get(0);
 	}
 
+	@Override
 	public List<KBArticle> getAllDescendantKBArticles(
 		long resourcePrimKey, int status, OrderByComparator orderByComparator) {
 
