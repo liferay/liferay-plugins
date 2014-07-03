@@ -16,5 +16,9 @@
 <!-- <service>
 		<service-type>com.liferay.portlet.blogs.service.BlogsEntryLocalService</service-type>
 		<service-impl>com.liferay.notifications.hook.service.impl.BlogsEntryLocalServiceImpl</service-impl>
+	</service>
+	<service>
+		<service-type>com.liferay.portlet.bookmarks.service.BookmarksEntryLocalService</service-type>
+		<service-impl>com.liferay.notifications.hook.service.impl.BookmarksEntryLocalServiceImpl</service-impl>
 	</service> -->
 </hook>
