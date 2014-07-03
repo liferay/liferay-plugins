@@ -166,6 +166,7 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 		kbArticleLocalService.deleteKBArticles(resourcePrimKeys);
 	}
 
+	@Override
 	public File getAttachment(
 			long companyId, long groupId, String portletId,
 			long resourcePrimKey, String fileName)
