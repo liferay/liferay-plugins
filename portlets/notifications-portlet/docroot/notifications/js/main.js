@@ -238,7 +238,7 @@ AUI().use(
 
 				if (config.userNotificationEventsCount > 0) {
 					var nodeHTML = '<a class="mark-all-as-read" href="' + instance._getActionURL('markAllAsRead', config.userNotificationEventIds) + '">' +
-						A.Lang.sub(Liferay.Language.get('mark-all-as-read-x'), [config.currentPageNotificationEventsCount, instance._unreadCount]) + '</a><hr class="separator" />';
+						A.Lang.sub(Liferay.Language.get('mark-all-as-read-x-of-x'), [config.currentPageNotificationEventsCount, instance._unreadCount]) + '</a><hr class="separator" />';
 
 					var dockbarMarkAllAsRead = A.one('.dockbarMarkAllAsRead');
 
@@ -460,13 +460,13 @@ AUI().use(
 					currentRow.hide().placeAfter(loadingRow);
 				}
 				else {
-					dockbarNotificationsList = A.one('.dockbar-user-notifications #' + instance._namespace + 'non-actionable-user-notifications-list');
+					dockbarNotificationsList = A.one('.dockbar-user-notifications .non-actionable-user-notifications-list');
 
 					if (dockbarNotificationsList) {
 						dockbarNotificationsList.hide().placeAfter(loadingRow);
 					}
 
-					fullViewNotificationsList = A.one('.user-notifications-list-container #' + instance._namespace + 'non-actionable-user-notifications-list');
+					fullViewNotificationsList = A.one('.user-notifications-list-container .non-actionable-user-notifications-list');
 
 					if (fullViewNotificationsList) {
 						fullViewNotificationsList.hide().placeAfter(loadingRow);
@@ -582,7 +582,7 @@ AUI().use(
 								var response = this.get('responseData');
 
 								if (response) {
-									var dockbarNotificationsList = A.one('.dockbar-user-notifications #' + instance._namespace + 'user-notifications-list');
+									var dockbarNotificationsList = A.one('.dockbar-user-notifications .dockbar-user-notifications-list');
 
 									if (dockbarNotificationsList) {
 										var dockbarMarkAllAsRead = A.one('.dockbar-user-notifications .mark-all-as-read');
@@ -596,30 +596,31 @@ AUI().use(
 												message.removeClass('hide');
 											}
 
-											if (dockbarMarkAllAsRead) {
-												if (!dockbarMarkAllAsRead.hasClass('hide')) {
-													dockbarMarkAllAsRead.addClass('hide');
-												}
+											if (!dockbarMarkAllAsRead.hasClass('hide')) {
+												dockbarMarkAllAsRead.addClass('hide');
+											}
 
-												var separator = dockbarMarkAllAsRead.next('.separator');
+											var separator = dockbarMarkAllAsRead.next('.separator');
 
-												if (separator) {
-													separator.addClass('hide');
-												}
+											if (separator) {
+												separator.addClass('hide');
 											}
 										}
 										else {
-											if (dockbarMarkAllAsRead) {
-												if (response['markAsReadCount']) {
-													if (dockbarMarkAllAsRead.hasClass('hide')) {
-														dockbarMarkAllAsRead.removeClass('hide');
-													}
+											if (response['markAsReadCount'] && response['markAsReadCount'] > 0 ) {
+												if (dockbarMarkAllAsRead.hasClass('hide')) {
+													dockbarMarkAllAsRead.removeClass('hide');
+												}
 
-													dockbarMarkAllAsRead.setAttribute('href', instance._getActionURL('markAllAsRead', response['userNotificationEventIds']));
+												dockbarMarkAllAsRead.setAttribute('href', instance._getActionURL('markAllAsRead', response['userNotificationEventIds']));
 
-													var html = A.Lang.sub(Liferay.Language.get('mark-all-as-read-x'), [response['markAsReadCount'].toString(), instance._unreadCount]);
+												var html = A.Lang.sub(Liferay.Language.get('mark-all-as-read-x-of-x'), [response['markAsReadCount'].toString(), instance._unreadCount]);
 
-													dockbarMarkAllAsRead.setHTML(html);
+												dockbarMarkAllAsRead.setHTML(html);
+											}
+											else {
+												if (!dockbarMarkAllAsRead.hasClass('hide')) {
+													dockbarMarkAllAsRead.addClass('hide');
 												}
 											}
 

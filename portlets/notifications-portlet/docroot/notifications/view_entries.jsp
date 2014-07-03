@@ -71,8 +71,7 @@ else {
 
 <c:choose>
 	<c:when test='<%= filter.equals("dockbar") %>'>
-
-		<div id="<portlet:namespace />user-notifications-list">
+		<div class="dockbar-user-notifications-list">
 
 			<%
 			List<UserNotificationEvent> actionableUserNotificationEvents = NotificationsUtil.getArchivedUserNotificationEvents(themeDisplay.getUserId(), true, false, start, end);
@@ -100,7 +99,7 @@ else {
 					}
 					%>
 
-					<div id="<portlet:namespace />non-actionable-user-notifications-list">
+					<div class="non-actionable-user-notifications-list">
 
 						<%
 						for (UserNotificationEvent userNotificationEvent : nonActionableUserNotificationEvents) {
@@ -133,7 +132,6 @@ else {
 			%>
 
 		</div>
-
 		<li class="message">
 			<div class="dockbarMarkAllAsRead"></div>
 		</li>
@@ -166,34 +164,30 @@ else {
 		</c:if>
 	</c:when>
 	<c:when test='<%= filter.equals("unread-non-actionable") %>'>
-		<div id="<portlet:namespace />user-notifications-list">
+		<c:if test="<%= userNotificationEventsCount > 0 %>">
+			<div class="fullViewMarkAllAsRead"></div>
 
-			<c:if test="<%= userNotificationEventsCount > 0 %>">
-				<div class="fullViewMarkAllAsRead"></div>
+			<div class="non-actionable-user-notifications-list">
 
-				<div id="<portlet:namespace />non-actionable-user-notifications-list">
+				<%
+				for (UserNotificationEvent userNotificationEvent : userNotificationEvents) {
+					userNotificationEventIds.add(userNotificationEvent.getUserNotificationEventId());
+				%>
 
-					<%
-					for (UserNotificationEvent userNotificationEvent : userNotificationEvents) {
-						userNotificationEventIds.add(userNotificationEvent.getUserNotificationEventId());
-					%>
+					<%@ include file="/notifications/notification_entry.jspf" %>
 
-						<%@ include file="/notifications/notification_entry.jspf" %>
+				<%
+				}
+				%>
 
-					<%
-					}
-					%>
+			</div>
 
-				</div>
-
-				<li class="clearfix message">
-					<span class="left-nav <%= start == 0 ? "disabled" : "previous" %>"><a href="javascript:;"><liferay-ui:message key="previous" /></a></span>
-					<span><liferay-ui:message arguments="<%= new Object[] {(start + 1), end <= userNotificationEventsCount ? end : userNotificationEventsCount, userNotificationEventsCount} %>" key="showing-x-x-of-x-results" translateArguments="<%= false %>" /></span>
-					<span class="right-nav <%= userNotificationEventsCount <= end ? "disabled" : "next" %>"><a href="javascript:;"><liferay-ui:message key="next" /></a></span>
-				</li>
-			</c:if>
-
-		</div>
+			<li class="clearfix message">
+				<span class="left-nav <%= start == 0 ? "disabled" : "previous" %>"><a href="javascript:;"><liferay-ui:message key="previous" /></a></span>
+				<span><liferay-ui:message arguments="<%= new Object[] {(start + 1), end <= userNotificationEventsCount ? end : userNotificationEventsCount, userNotificationEventsCount} %>" key="showing-x-x-of-x-results" translateArguments="<%= false %>" /></span>
+				<span class="right-nav <%= userNotificationEventsCount <= end ? "disabled" : "next" %>"><a href="javascript:;"><liferay-ui:message key="next" /></a></span>
+			</li>
+		</c:if>
 	</c:when>
 	<c:otherwise>
 
