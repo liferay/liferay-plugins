@@ -367,7 +367,7 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 
 		_methodParameterTypes66 = new String[] {
 				"long", "com.liferay.knowledgebase.model.KBArticle", "long[][]",
-				"java.lang.String[][]"
+				"java.lang.String[][]", "long[][]"
 			};
 
 		_methodName67 = "updateKBArticleResources";
@@ -2664,7 +2664,8 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 	@Override
 	public void updateKBArticleAsset(long userId,
 		com.liferay.knowledgebase.model.KBArticle kbArticle,
-		long[] assetCategoryIds, java.lang.String[] assetTagNames)
+		long[] assetCategoryIds, java.lang.String[] assetTagNames,
+		long[] assetLinkEntryIds)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		try {
@@ -2677,7 +2678,9 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 					
 				ClpSerializer.translateInput(assetCategoryIds),
 					
-				ClpSerializer.translateInput(assetTagNames)
+				ClpSerializer.translateInput(assetTagNames),
+					
+				ClpSerializer.translateInput(assetLinkEntryIds)
 				});
 		}
 		catch (Throwable t) {

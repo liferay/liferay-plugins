@@ -743,11 +743,12 @@ public class KBArticleLocalServiceWrapper implements KBArticleLocalService,
 	@Override
 	public void updateKBArticleAsset(long userId,
 		com.liferay.knowledgebase.model.KBArticle kbArticle,
-		long[] assetCategoryIds, java.lang.String[] assetTagNames)
+		long[] assetCategoryIds, java.lang.String[] assetTagNames,
+		long[] assetLinkEntryIds)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		_kbArticleLocalService.updateKBArticleAsset(userId, kbArticle,
-			assetCategoryIds, assetTagNames);
+			assetCategoryIds, assetTagNames, assetLinkEntryIds);
 	}
 
 	@Override
