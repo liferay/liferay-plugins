@@ -701,7 +701,7 @@ public class KBArticleLocalServiceClpInvoker {
 				Arrays.deepEquals(_methodParameterTypes138, parameterTypes)) {
 			return KBArticleLocalServiceUtil.getAllDescendantKBArticles(((Long)arguments[0]).longValue(),
 				((Integer)arguments[1]).intValue(),
-				(com.liferay.portal.kernel.util.OrderByComparator)arguments[2]);
+				(com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBArticle>)arguments[2]);
 		}
 
 		if (_methodName139.equals(name) &&
@@ -716,7 +716,7 @@ public class KBArticleLocalServiceClpInvoker {
 				((Integer)arguments[1]).intValue(),
 				((Integer)arguments[2]).intValue(),
 				((Integer)arguments[3]).intValue(),
-				(com.liferay.portal.kernel.util.OrderByComparator)arguments[4]);
+				(com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBArticle>)arguments[4]);
 		}
 
 		if (_methodName141.equals(name) &&
@@ -731,7 +731,7 @@ public class KBArticleLocalServiceClpInvoker {
 				((Integer)arguments[1]).intValue(),
 				((Integer)arguments[2]).intValue(),
 				((Integer)arguments[3]).intValue(),
-				(com.liferay.portal.kernel.util.OrderByComparator)arguments[4]);
+				(com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBArticle>)arguments[4]);
 		}
 
 		if (_methodName143.equals(name) &&
@@ -750,14 +750,14 @@ public class KBArticleLocalServiceClpInvoker {
 				Arrays.deepEquals(_methodParameterTypes145, parameterTypes)) {
 			return KBArticleLocalServiceUtil.getKBArticleAndAllDescendantKBArticles(((Long)arguments[0]).longValue(),
 				((Integer)arguments[1]).intValue(),
-				(com.liferay.portal.kernel.util.OrderByComparator)arguments[2]);
+				(com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBArticle>)arguments[2]);
 		}
 
 		if (_methodName146.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes146, parameterTypes)) {
 			return KBArticleLocalServiceUtil.getKBArticleAndAllDescendants(((Long)arguments[0]).longValue(),
 				((Integer)arguments[1]).intValue(),
-				(com.liferay.portal.kernel.util.OrderByComparator)arguments[2]);
+				(com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBArticle>)arguments[2]);
 		}
 
 		if (_methodName147.equals(name) &&
@@ -773,14 +773,14 @@ public class KBArticleLocalServiceClpInvoker {
 				((Integer)arguments[2]).intValue(),
 				((Integer)arguments[3]).intValue(),
 				((Integer)arguments[4]).intValue(),
-				(com.liferay.portal.kernel.util.OrderByComparator)arguments[5]);
+				(com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBArticle>)arguments[5]);
 		}
 
 		if (_methodName149.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes149, parameterTypes)) {
 			return KBArticleLocalServiceUtil.getKBArticles((long[])arguments[0],
 				((Integer)arguments[1]).intValue(),
-				(com.liferay.portal.kernel.util.OrderByComparator)arguments[2]);
+				(com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBArticle>)arguments[2]);
 		}
 
 		if (_methodName150.equals(name) &&
@@ -796,7 +796,7 @@ public class KBArticleLocalServiceClpInvoker {
 				((Integer)arguments[1]).intValue(),
 				((Integer)arguments[2]).intValue(),
 				((Integer)arguments[3]).intValue(),
-				(com.liferay.portal.kernel.util.OrderByComparator)arguments[4]);
+				(com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBArticle>)arguments[4]);
 		}
 
 		if (_methodName152.equals(name) &&
@@ -830,7 +830,7 @@ public class KBArticleLocalServiceClpInvoker {
 				((Integer)arguments[2]).intValue(),
 				((Integer)arguments[3]).intValue(),
 				((Integer)arguments[4]).intValue(),
-				(com.liferay.portal.kernel.util.OrderByComparator)arguments[5]);
+				(com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBArticle>)arguments[5]);
 		}
 
 		if (_methodName157.equals(name) &&
@@ -847,7 +847,7 @@ public class KBArticleLocalServiceClpInvoker {
 				((Integer)arguments[2]).intValue(),
 				((Integer)arguments[3]).intValue(),
 				((Integer)arguments[4]).intValue(),
-				(com.liferay.portal.kernel.util.OrderByComparator)arguments[5]);
+				(com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBArticle>)arguments[5]);
 		}
 
 		if (_methodName159.equals(name) &&
@@ -876,7 +876,7 @@ public class KBArticleLocalServiceClpInvoker {
 				((Boolean)arguments[6]).booleanValue(),
 				((Integer)arguments[7]).intValue(),
 				((Integer)arguments[8]).intValue(),
-				(com.liferay.portal.kernel.util.OrderByComparator)arguments[9]);
+				(com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBArticle>)arguments[9]);
 		}
 
 		if (_methodName162.equals(name) &&

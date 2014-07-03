@@ -338,7 +338,7 @@ public class KBTemplateLocalServiceUtil {
 
 	public static java.util.List<com.liferay.knowledgebase.model.KBTemplate> getGroupKBTemplates(
 		long groupId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBTemplate> orderByComparator) {
 		return getService()
 				   .getGroupKBTemplates(groupId, start, end, orderByComparator);
 	}
@@ -351,7 +351,7 @@ public class KBTemplateLocalServiceUtil {
 		long groupId, java.lang.String title, java.lang.String content,
 		java.util.Date startDate, java.util.Date endDate, boolean andOperator,
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBTemplate> orderByComparator) {
 		return getService()
 				   .search(groupId, title, content, startDate, endDate,
 			andOperator, start, end, orderByComparator);

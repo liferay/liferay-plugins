@@ -366,7 +366,7 @@ public class KBCommentLocalServiceWrapper implements KBCommentLocalService,
 	@Override
 	public java.util.List<com.liferay.knowledgebase.model.KBComment> getKBComments(
 		java.lang.String className, long classPK, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBComment> orderByComparator) {
 		return _kbCommentLocalService.getKBComments(className, classPK, start,
 			end, orderByComparator);
 	}
