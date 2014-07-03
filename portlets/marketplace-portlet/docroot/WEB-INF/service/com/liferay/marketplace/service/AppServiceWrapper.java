@@ -58,30 +58,26 @@ public class AppServiceWrapper implements AppService,
 
 	@Override
 	public com.liferay.marketplace.model.App deleteApp(long appId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _appService.deleteApp(appId);
 	}
 
 	@Override
 	public void installApp(long remoteAppId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		_appService.installApp(remoteAppId);
 	}
 
 	@Override
 	public void uninstallApp(long remoteAppId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		_appService.uninstallApp(remoteAppId);
 	}
 
 	@Override
 	public com.liferay.marketplace.model.App updateApp(long remoteAppId,
 		java.lang.String version, java.io.File file)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _appService.updateApp(remoteAppId, version, file);
 	}
 

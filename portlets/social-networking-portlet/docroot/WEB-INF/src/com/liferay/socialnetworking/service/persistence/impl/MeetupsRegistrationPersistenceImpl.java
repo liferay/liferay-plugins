@@ -157,7 +157,8 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 	 */
 	@Override
 	public List<MeetupsRegistration> findByMeetupsEntryId(long meetupsEntryId,
-		int start, int end, OrderByComparator orderByComparator) {
+		int start, int end,
+		OrderByComparator<MeetupsRegistration> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -267,7 +268,7 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 	 */
 	@Override
 	public MeetupsRegistration findByMeetupsEntryId_First(long meetupsEntryId,
-		OrderByComparator orderByComparator)
+		OrderByComparator<MeetupsRegistration> orderByComparator)
 		throws NoSuchMeetupsRegistrationException {
 		MeetupsRegistration meetupsRegistration = fetchByMeetupsEntryId_First(meetupsEntryId,
 				orderByComparator);
@@ -297,7 +298,8 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 	 */
 	@Override
 	public MeetupsRegistration fetchByMeetupsEntryId_First(
-		long meetupsEntryId, OrderByComparator orderByComparator) {
+		long meetupsEntryId,
+		OrderByComparator<MeetupsRegistration> orderByComparator) {
 		List<MeetupsRegistration> list = findByMeetupsEntryId(meetupsEntryId,
 				0, 1, orderByComparator);
 
@@ -318,7 +320,7 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 	 */
 	@Override
 	public MeetupsRegistration findByMeetupsEntryId_Last(long meetupsEntryId,
-		OrderByComparator orderByComparator)
+		OrderByComparator<MeetupsRegistration> orderByComparator)
 		throws NoSuchMeetupsRegistrationException {
 		MeetupsRegistration meetupsRegistration = fetchByMeetupsEntryId_Last(meetupsEntryId,
 				orderByComparator);
@@ -348,7 +350,7 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 	 */
 	@Override
 	public MeetupsRegistration fetchByMeetupsEntryId_Last(long meetupsEntryId,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<MeetupsRegistration> orderByComparator) {
 		int count = countByMeetupsEntryId(meetupsEntryId);
 
 		if (count == 0) {
@@ -377,7 +379,7 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 	@Override
 	public MeetupsRegistration[] findByMeetupsEntryId_PrevAndNext(
 		long meetupsRegistrationId, long meetupsEntryId,
-		OrderByComparator orderByComparator)
+		OrderByComparator<MeetupsRegistration> orderByComparator)
 		throws NoSuchMeetupsRegistrationException {
 		MeetupsRegistration meetupsRegistration = findByPrimaryKey(meetupsRegistrationId);
 
@@ -409,7 +411,8 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 
 	protected MeetupsRegistration getByMeetupsEntryId_PrevAndNext(
 		Session session, MeetupsRegistration meetupsRegistration,
-		long meetupsEntryId, OrderByComparator orderByComparator,
+		long meetupsEntryId,
+		OrderByComparator<MeetupsRegistration> orderByComparator,
 		boolean previous) {
 		StringBundler query = null;
 
@@ -885,7 +888,8 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 	 */
 	@Override
 	public List<MeetupsRegistration> findByME_S(long meetupsEntryId,
-		int status, int start, int end, OrderByComparator orderByComparator) {
+		int status, int start, int end,
+		OrderByComparator<MeetupsRegistration> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -1001,7 +1005,7 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 	 */
 	@Override
 	public MeetupsRegistration findByME_S_First(long meetupsEntryId,
-		int status, OrderByComparator orderByComparator)
+		int status, OrderByComparator<MeetupsRegistration> orderByComparator)
 		throws NoSuchMeetupsRegistrationException {
 		MeetupsRegistration meetupsRegistration = fetchByME_S_First(meetupsEntryId,
 				status, orderByComparator);
@@ -1035,7 +1039,7 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 	 */
 	@Override
 	public MeetupsRegistration fetchByME_S_First(long meetupsEntryId,
-		int status, OrderByComparator orderByComparator) {
+		int status, OrderByComparator<MeetupsRegistration> orderByComparator) {
 		List<MeetupsRegistration> list = findByME_S(meetupsEntryId, status, 0,
 				1, orderByComparator);
 
@@ -1057,7 +1061,7 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 	 */
 	@Override
 	public MeetupsRegistration findByME_S_Last(long meetupsEntryId, int status,
-		OrderByComparator orderByComparator)
+		OrderByComparator<MeetupsRegistration> orderByComparator)
 		throws NoSuchMeetupsRegistrationException {
 		MeetupsRegistration meetupsRegistration = fetchByME_S_Last(meetupsEntryId,
 				status, orderByComparator);
@@ -1091,7 +1095,7 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 	 */
 	@Override
 	public MeetupsRegistration fetchByME_S_Last(long meetupsEntryId,
-		int status, OrderByComparator orderByComparator) {
+		int status, OrderByComparator<MeetupsRegistration> orderByComparator) {
 		int count = countByME_S(meetupsEntryId, status);
 
 		if (count == 0) {
@@ -1121,7 +1125,7 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 	@Override
 	public MeetupsRegistration[] findByME_S_PrevAndNext(
 		long meetupsRegistrationId, long meetupsEntryId, int status,
-		OrderByComparator orderByComparator)
+		OrderByComparator<MeetupsRegistration> orderByComparator)
 		throws NoSuchMeetupsRegistrationException {
 		MeetupsRegistration meetupsRegistration = findByPrimaryKey(meetupsRegistrationId);
 
@@ -1152,7 +1156,8 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 
 	protected MeetupsRegistration getByME_S_PrevAndNext(Session session,
 		MeetupsRegistration meetupsRegistration, long meetupsEntryId,
-		int status, OrderByComparator orderByComparator, boolean previous) {
+		int status, OrderByComparator<MeetupsRegistration> orderByComparator,
+		boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -1932,7 +1937,7 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 	 */
 	@Override
 	public List<MeetupsRegistration> findAll(int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<MeetupsRegistration> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;

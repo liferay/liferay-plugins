@@ -150,7 +150,7 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 	 */
 	@Override
 	public List<KaleoTask> findByCompanyId(long companyId, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KaleoTask> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -256,7 +256,8 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 	 */
 	@Override
 	public KaleoTask findByCompanyId_First(long companyId,
-		OrderByComparator orderByComparator) throws NoSuchTaskException {
+		OrderByComparator<KaleoTask> orderByComparator)
+		throws NoSuchTaskException {
 		KaleoTask kaleoTask = fetchByCompanyId_First(companyId,
 				orderByComparator);
 
@@ -285,7 +286,7 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 	 */
 	@Override
 	public KaleoTask fetchByCompanyId_First(long companyId,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KaleoTask> orderByComparator) {
 		List<KaleoTask> list = findByCompanyId(companyId, 0, 1,
 				orderByComparator);
 
@@ -306,7 +307,8 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 	 */
 	@Override
 	public KaleoTask findByCompanyId_Last(long companyId,
-		OrderByComparator orderByComparator) throws NoSuchTaskException {
+		OrderByComparator<KaleoTask> orderByComparator)
+		throws NoSuchTaskException {
 		KaleoTask kaleoTask = fetchByCompanyId_Last(companyId, orderByComparator);
 
 		if (kaleoTask != null) {
@@ -334,7 +336,7 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 	 */
 	@Override
 	public KaleoTask fetchByCompanyId_Last(long companyId,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KaleoTask> orderByComparator) {
 		int count = countByCompanyId(companyId);
 
 		if (count == 0) {
@@ -362,7 +364,7 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 	 */
 	@Override
 	public KaleoTask[] findByCompanyId_PrevAndNext(long kaleoTaskId,
-		long companyId, OrderByComparator orderByComparator)
+		long companyId, OrderByComparator<KaleoTask> orderByComparator)
 		throws NoSuchTaskException {
 		KaleoTask kaleoTask = findByPrimaryKey(kaleoTaskId);
 
@@ -393,7 +395,7 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 
 	protected KaleoTask getByCompanyId_PrevAndNext(Session session,
 		KaleoTask kaleoTask, long companyId,
-		OrderByComparator orderByComparator, boolean previous) {
+		OrderByComparator<KaleoTask> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -628,7 +630,7 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 	 */
 	@Override
 	public List<KaleoTask> findByKaleoDefinitionId(long kaleoDefinitionId,
-		int start, int end, OrderByComparator orderByComparator) {
+		int start, int end, OrderByComparator<KaleoTask> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -738,7 +740,8 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 	 */
 	@Override
 	public KaleoTask findByKaleoDefinitionId_First(long kaleoDefinitionId,
-		OrderByComparator orderByComparator) throws NoSuchTaskException {
+		OrderByComparator<KaleoTask> orderByComparator)
+		throws NoSuchTaskException {
 		KaleoTask kaleoTask = fetchByKaleoDefinitionId_First(kaleoDefinitionId,
 				orderByComparator);
 
@@ -767,7 +770,7 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 	 */
 	@Override
 	public KaleoTask fetchByKaleoDefinitionId_First(long kaleoDefinitionId,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KaleoTask> orderByComparator) {
 		List<KaleoTask> list = findByKaleoDefinitionId(kaleoDefinitionId, 0, 1,
 				orderByComparator);
 
@@ -788,7 +791,8 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 	 */
 	@Override
 	public KaleoTask findByKaleoDefinitionId_Last(long kaleoDefinitionId,
-		OrderByComparator orderByComparator) throws NoSuchTaskException {
+		OrderByComparator<KaleoTask> orderByComparator)
+		throws NoSuchTaskException {
 		KaleoTask kaleoTask = fetchByKaleoDefinitionId_Last(kaleoDefinitionId,
 				orderByComparator);
 
@@ -817,7 +821,7 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 	 */
 	@Override
 	public KaleoTask fetchByKaleoDefinitionId_Last(long kaleoDefinitionId,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KaleoTask> orderByComparator) {
 		int count = countByKaleoDefinitionId(kaleoDefinitionId);
 
 		if (count == 0) {
@@ -845,7 +849,7 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 	 */
 	@Override
 	public KaleoTask[] findByKaleoDefinitionId_PrevAndNext(long kaleoTaskId,
-		long kaleoDefinitionId, OrderByComparator orderByComparator)
+		long kaleoDefinitionId, OrderByComparator<KaleoTask> orderByComparator)
 		throws NoSuchTaskException {
 		KaleoTask kaleoTask = findByPrimaryKey(kaleoTaskId);
 
@@ -876,7 +880,7 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 
 	protected KaleoTask getByKaleoDefinitionId_PrevAndNext(Session session,
 		KaleoTask kaleoTask, long kaleoDefinitionId,
-		OrderByComparator orderByComparator, boolean previous) {
+		OrderByComparator<KaleoTask> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -1827,7 +1831,7 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 	 */
 	@Override
 	public List<KaleoTask> findAll(int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KaleoTask> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;

@@ -84,7 +84,7 @@ public class KaleoConditionUtil {
 	 */
 	public static List<KaleoCondition> findWithDynamicQuery(
 		DynamicQuery dynamicQuery, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KaleoCondition> orderByComparator) {
 		return getPersistence()
 				   .findWithDynamicQuery(dynamicQuery, start, end,
 			orderByComparator);
@@ -148,7 +148,7 @@ public class KaleoConditionUtil {
 	*/
 	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoCondition> findByCompanyId(
 		long companyId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoCondition> orderByComparator) {
 		return getPersistence()
 				   .findByCompanyId(companyId, start, end, orderByComparator);
 	}
@@ -163,7 +163,7 @@ public class KaleoConditionUtil {
 	*/
 	public static com.liferay.portal.workflow.kaleo.model.KaleoCondition findByCompanyId_First(
 		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoCondition> orderByComparator)
 		throws com.liferay.portal.workflow.kaleo.NoSuchConditionException {
 		return getPersistence()
 				   .findByCompanyId_First(companyId, orderByComparator);
@@ -178,7 +178,7 @@ public class KaleoConditionUtil {
 	*/
 	public static com.liferay.portal.workflow.kaleo.model.KaleoCondition fetchByCompanyId_First(
 		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoCondition> orderByComparator) {
 		return getPersistence()
 				   .fetchByCompanyId_First(companyId, orderByComparator);
 	}
@@ -193,7 +193,7 @@ public class KaleoConditionUtil {
 	*/
 	public static com.liferay.portal.workflow.kaleo.model.KaleoCondition findByCompanyId_Last(
 		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoCondition> orderByComparator)
 		throws com.liferay.portal.workflow.kaleo.NoSuchConditionException {
 		return getPersistence()
 				   .findByCompanyId_Last(companyId, orderByComparator);
@@ -208,7 +208,7 @@ public class KaleoConditionUtil {
 	*/
 	public static com.liferay.portal.workflow.kaleo.model.KaleoCondition fetchByCompanyId_Last(
 		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoCondition> orderByComparator) {
 		return getPersistence()
 				   .fetchByCompanyId_Last(companyId, orderByComparator);
 	}
@@ -224,7 +224,7 @@ public class KaleoConditionUtil {
 	*/
 	public static com.liferay.portal.workflow.kaleo.model.KaleoCondition[] findByCompanyId_PrevAndNext(
 		long kaleoConditionId, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoCondition> orderByComparator)
 		throws com.liferay.portal.workflow.kaleo.NoSuchConditionException {
 		return getPersistence()
 				   .findByCompanyId_PrevAndNext(kaleoConditionId, companyId,
@@ -294,7 +294,7 @@ public class KaleoConditionUtil {
 	*/
 	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoCondition> findByKaleoDefinitionId(
 		long kaleoDefinitionId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoCondition> orderByComparator) {
 		return getPersistence()
 				   .findByKaleoDefinitionId(kaleoDefinitionId, start, end,
 			orderByComparator);
@@ -310,7 +310,7 @@ public class KaleoConditionUtil {
 	*/
 	public static com.liferay.portal.workflow.kaleo.model.KaleoCondition findByKaleoDefinitionId_First(
 		long kaleoDefinitionId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoCondition> orderByComparator)
 		throws com.liferay.portal.workflow.kaleo.NoSuchConditionException {
 		return getPersistence()
 				   .findByKaleoDefinitionId_First(kaleoDefinitionId,
@@ -326,7 +326,7 @@ public class KaleoConditionUtil {
 	*/
 	public static com.liferay.portal.workflow.kaleo.model.KaleoCondition fetchByKaleoDefinitionId_First(
 		long kaleoDefinitionId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoCondition> orderByComparator) {
 		return getPersistence()
 				   .fetchByKaleoDefinitionId_First(kaleoDefinitionId,
 			orderByComparator);
@@ -342,7 +342,7 @@ public class KaleoConditionUtil {
 	*/
 	public static com.liferay.portal.workflow.kaleo.model.KaleoCondition findByKaleoDefinitionId_Last(
 		long kaleoDefinitionId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoCondition> orderByComparator)
 		throws com.liferay.portal.workflow.kaleo.NoSuchConditionException {
 		return getPersistence()
 				   .findByKaleoDefinitionId_Last(kaleoDefinitionId,
@@ -358,7 +358,7 @@ public class KaleoConditionUtil {
 	*/
 	public static com.liferay.portal.workflow.kaleo.model.KaleoCondition fetchByKaleoDefinitionId_Last(
 		long kaleoDefinitionId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoCondition> orderByComparator) {
 		return getPersistence()
 				   .fetchByKaleoDefinitionId_Last(kaleoDefinitionId,
 			orderByComparator);
@@ -375,7 +375,7 @@ public class KaleoConditionUtil {
 	*/
 	public static com.liferay.portal.workflow.kaleo.model.KaleoCondition[] findByKaleoDefinitionId_PrevAndNext(
 		long kaleoConditionId, long kaleoDefinitionId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoCondition> orderByComparator)
 		throws com.liferay.portal.workflow.kaleo.NoSuchConditionException {
 		return getPersistence()
 				   .findByKaleoDefinitionId_PrevAndNext(kaleoConditionId,
@@ -577,7 +577,7 @@ public class KaleoConditionUtil {
 	*/
 	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoCondition> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoCondition> orderByComparator) {
 		return getPersistence().findAll(start, end, orderByComparator);
 	}
 

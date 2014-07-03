@@ -83,7 +83,7 @@ public class EntryUtil {
 	 * @see com.liferay.portal.service.persistence.BasePersistence#findWithDynamicQuery(DynamicQuery, int, int, OrderByComparator)
 	 */
 	public static List<Entry> findWithDynamicQuery(DynamicQuery dynamicQuery,
-		int start, int end, OrderByComparator orderByComparator) {
+		int start, int end, OrderByComparator<Entry> orderByComparator) {
 		return getPersistence()
 				   .findWithDynamicQuery(dynamicQuery, start, end,
 			orderByComparator);
@@ -146,7 +146,7 @@ public class EntryUtil {
 	*/
 	public static java.util.List<com.liferay.contacts.model.Entry> findByUserId(
 		long userId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.contacts.model.Entry> orderByComparator) {
 		return getPersistence()
 				   .findByUserId(userId, start, end, orderByComparator);
 	}
@@ -161,7 +161,7 @@ public class EntryUtil {
 	*/
 	public static com.liferay.contacts.model.Entry findByUserId_First(
 		long userId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.contacts.model.Entry> orderByComparator)
 		throws com.liferay.contacts.NoSuchEntryException {
 		return getPersistence().findByUserId_First(userId, orderByComparator);
 	}
@@ -175,7 +175,7 @@ public class EntryUtil {
 	*/
 	public static com.liferay.contacts.model.Entry fetchByUserId_First(
 		long userId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.contacts.model.Entry> orderByComparator) {
 		return getPersistence().fetchByUserId_First(userId, orderByComparator);
 	}
 
@@ -189,7 +189,7 @@ public class EntryUtil {
 	*/
 	public static com.liferay.contacts.model.Entry findByUserId_Last(
 		long userId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.contacts.model.Entry> orderByComparator)
 		throws com.liferay.contacts.NoSuchEntryException {
 		return getPersistence().findByUserId_Last(userId, orderByComparator);
 	}
@@ -203,7 +203,7 @@ public class EntryUtil {
 	*/
 	public static com.liferay.contacts.model.Entry fetchByUserId_Last(
 		long userId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.contacts.model.Entry> orderByComparator) {
 		return getPersistence().fetchByUserId_Last(userId, orderByComparator);
 	}
 
@@ -218,7 +218,7 @@ public class EntryUtil {
 	*/
 	public static com.liferay.contacts.model.Entry[] findByUserId_PrevAndNext(
 		long entryId, long userId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.contacts.model.Entry> orderByComparator)
 		throws com.liferay.contacts.NoSuchEntryException {
 		return getPersistence()
 				   .findByUserId_PrevAndNext(entryId, userId, orderByComparator);
@@ -420,7 +420,7 @@ public class EntryUtil {
 	*/
 	public static java.util.List<com.liferay.contacts.model.Entry> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.contacts.model.Entry> orderByComparator) {
 		return getPersistence().findAll(start, end, orderByComparator);
 	}
 

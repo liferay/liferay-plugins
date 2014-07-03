@@ -234,8 +234,7 @@ public class FooLocalServiceClp implements FooLocalService {
 
 	@Override
 	public com.liferay.sampleservicebuilder.model.Foo deleteFoo(long fooId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
 		try {
@@ -247,10 +246,6 @@ public class FooLocalServiceClp implements FooLocalService {
 
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
 
 			if (t instanceof RuntimeException) {
@@ -267,8 +262,7 @@ public class FooLocalServiceClp implements FooLocalService {
 
 	@Override
 	public com.liferay.sampleservicebuilder.model.Foo deleteFoo(
-		com.liferay.sampleservicebuilder.model.Foo foo)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.sampleservicebuilder.model.Foo foo) {
 		Object returnObj = null;
 
 		try {
@@ -278,10 +272,6 @@ public class FooLocalServiceClp implements FooLocalService {
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
 
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
@@ -319,8 +309,7 @@ public class FooLocalServiceClp implements FooLocalService {
 	}
 
 	@Override
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
 		Object returnObj = null;
 
@@ -341,12 +330,11 @@ public class FooLocalServiceClp implements FooLocalService {
 			}
 		}
 
-		return (java.util.List)ClpSerializer.translateOutput(returnObj);
+		return (java.util.List<T>)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) {
 		Object returnObj = null;
@@ -374,15 +362,14 @@ public class FooLocalServiceClp implements FooLocalService {
 			}
 		}
 
-		return (java.util.List)ClpSerializer.translateOutput(returnObj);
+		return (java.util.List<T>)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<T> orderByComparator) {
 		Object returnObj = null;
 
 		try {
@@ -410,7 +397,7 @@ public class FooLocalServiceClp implements FooLocalService {
 			}
 		}
 
-		return (java.util.List)ClpSerializer.translateOutput(returnObj);
+		return (java.util.List<T>)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override
@@ -865,8 +852,7 @@ public class FooLocalServiceClp implements FooLocalService {
 	public void addFoo(java.lang.String field1, boolean field2, int field3,
 		java.util.Date field4, java.lang.String field5,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		try {
 			_invokableLocalService.invokeMethod(_methodName26,
 				_methodParameterTypes26,
@@ -891,10 +877,6 @@ public class FooLocalServiceClp implements FooLocalService {
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
 			}
 
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
 			}
@@ -907,8 +889,7 @@ public class FooLocalServiceClp implements FooLocalService {
 
 	@Override
 	public java.util.List<com.liferay.sampleservicebuilder.model.Foo> getFoos(
-		int start, int end, com.liferay.portal.kernel.util.OrderByComparator obc)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		int start, int end, com.liferay.portal.kernel.util.OrderByComparator obc) {
 		Object returnObj = null;
 
 		try {
@@ -918,10 +899,6 @@ public class FooLocalServiceClp implements FooLocalService {
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
 
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
@@ -937,8 +914,7 @@ public class FooLocalServiceClp implements FooLocalService {
 
 	@Override
 	public java.util.List<com.liferay.sampleservicebuilder.model.Foo> getFoos(
-		com.liferay.portal.kernel.util.OrderByComparator obc)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator obc) {
 		Object returnObj = null;
 
 		try {
@@ -948,10 +924,6 @@ public class FooLocalServiceClp implements FooLocalService {
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
 
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
@@ -996,8 +968,7 @@ public class FooLocalServiceClp implements FooLocalService {
 	public void updateAsset(long userId,
 		com.liferay.sampleservicebuilder.model.Foo foo,
 		long[] assetCategoryIds, java.lang.String[] assetTagNames)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		try {
 			_invokableLocalService.invokeMethod(_methodName30,
 				_methodParameterTypes30,
@@ -1018,10 +989,6 @@ public class FooLocalServiceClp implements FooLocalService {
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
 			}
 
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
 			}
@@ -1036,8 +1003,7 @@ public class FooLocalServiceClp implements FooLocalService {
 	public void updateFoo(long fooId, java.lang.String field1, boolean field2,
 		int field3, java.util.Date field4, java.lang.String field5,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		try {
 			_invokableLocalService.invokeMethod(_methodName31,
 				_methodParameterTypes31,
@@ -1062,10 +1028,6 @@ public class FooLocalServiceClp implements FooLocalService {
 
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
 
 			if (t instanceof RuntimeException) {

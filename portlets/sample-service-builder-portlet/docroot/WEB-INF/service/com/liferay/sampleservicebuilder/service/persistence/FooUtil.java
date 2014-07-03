@@ -83,7 +83,7 @@ public class FooUtil {
 	 * @see com.liferay.portal.service.persistence.BasePersistence#findWithDynamicQuery(DynamicQuery, int, int, OrderByComparator)
 	 */
 	public static List<Foo> findWithDynamicQuery(DynamicQuery dynamicQuery,
-		int start, int end, OrderByComparator orderByComparator) {
+		int start, int end, OrderByComparator<Foo> orderByComparator) {
 		return getPersistence()
 				   .findWithDynamicQuery(dynamicQuery, start, end,
 			orderByComparator);
@@ -146,7 +146,7 @@ public class FooUtil {
 	*/
 	public static java.util.List<com.liferay.sampleservicebuilder.model.Foo> findByUuid(
 		java.lang.String uuid, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.sampleservicebuilder.model.Foo> orderByComparator) {
 		return getPersistence().findByUuid(uuid, start, end, orderByComparator);
 	}
 
@@ -160,7 +160,7 @@ public class FooUtil {
 	*/
 	public static com.liferay.sampleservicebuilder.model.Foo findByUuid_First(
 		java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.sampleservicebuilder.model.Foo> orderByComparator)
 		throws com.liferay.sampleservicebuilder.NoSuchFooException {
 		return getPersistence().findByUuid_First(uuid, orderByComparator);
 	}
@@ -174,7 +174,7 @@ public class FooUtil {
 	*/
 	public static com.liferay.sampleservicebuilder.model.Foo fetchByUuid_First(
 		java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.sampleservicebuilder.model.Foo> orderByComparator) {
 		return getPersistence().fetchByUuid_First(uuid, orderByComparator);
 	}
 
@@ -188,7 +188,7 @@ public class FooUtil {
 	*/
 	public static com.liferay.sampleservicebuilder.model.Foo findByUuid_Last(
 		java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.sampleservicebuilder.model.Foo> orderByComparator)
 		throws com.liferay.sampleservicebuilder.NoSuchFooException {
 		return getPersistence().findByUuid_Last(uuid, orderByComparator);
 	}
@@ -202,7 +202,7 @@ public class FooUtil {
 	*/
 	public static com.liferay.sampleservicebuilder.model.Foo fetchByUuid_Last(
 		java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.sampleservicebuilder.model.Foo> orderByComparator) {
 		return getPersistence().fetchByUuid_Last(uuid, orderByComparator);
 	}
 
@@ -217,7 +217,7 @@ public class FooUtil {
 	*/
 	public static com.liferay.sampleservicebuilder.model.Foo[] findByUuid_PrevAndNext(
 		long fooId, java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.sampleservicebuilder.model.Foo> orderByComparator)
 		throws com.liferay.sampleservicebuilder.NoSuchFooException {
 		return getPersistence()
 				   .findByUuid_PrevAndNext(fooId, uuid, orderByComparator);
@@ -351,7 +351,7 @@ public class FooUtil {
 	*/
 	public static java.util.List<com.liferay.sampleservicebuilder.model.Foo> findByUuid_C(
 		java.lang.String uuid, long companyId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.sampleservicebuilder.model.Foo> orderByComparator) {
 		return getPersistence()
 				   .findByUuid_C(uuid, companyId, start, end, orderByComparator);
 	}
@@ -367,7 +367,7 @@ public class FooUtil {
 	*/
 	public static com.liferay.sampleservicebuilder.model.Foo findByUuid_C_First(
 		java.lang.String uuid, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.sampleservicebuilder.model.Foo> orderByComparator)
 		throws com.liferay.sampleservicebuilder.NoSuchFooException {
 		return getPersistence()
 				   .findByUuid_C_First(uuid, companyId, orderByComparator);
@@ -383,7 +383,7 @@ public class FooUtil {
 	*/
 	public static com.liferay.sampleservicebuilder.model.Foo fetchByUuid_C_First(
 		java.lang.String uuid, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.sampleservicebuilder.model.Foo> orderByComparator) {
 		return getPersistence()
 				   .fetchByUuid_C_First(uuid, companyId, orderByComparator);
 	}
@@ -399,7 +399,7 @@ public class FooUtil {
 	*/
 	public static com.liferay.sampleservicebuilder.model.Foo findByUuid_C_Last(
 		java.lang.String uuid, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.sampleservicebuilder.model.Foo> orderByComparator)
 		throws com.liferay.sampleservicebuilder.NoSuchFooException {
 		return getPersistence()
 				   .findByUuid_C_Last(uuid, companyId, orderByComparator);
@@ -415,7 +415,7 @@ public class FooUtil {
 	*/
 	public static com.liferay.sampleservicebuilder.model.Foo fetchByUuid_C_Last(
 		java.lang.String uuid, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.sampleservicebuilder.model.Foo> orderByComparator) {
 		return getPersistence()
 				   .fetchByUuid_C_Last(uuid, companyId, orderByComparator);
 	}
@@ -432,7 +432,7 @@ public class FooUtil {
 	*/
 	public static com.liferay.sampleservicebuilder.model.Foo[] findByUuid_C_PrevAndNext(
 		long fooId, java.lang.String uuid, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.sampleservicebuilder.model.Foo> orderByComparator)
 		throws com.liferay.sampleservicebuilder.NoSuchFooException {
 		return getPersistence()
 				   .findByUuid_C_PrevAndNext(fooId, uuid, companyId,
@@ -503,7 +503,7 @@ public class FooUtil {
 	*/
 	public static java.util.List<com.liferay.sampleservicebuilder.model.Foo> findByField2(
 		boolean field2, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.sampleservicebuilder.model.Foo> orderByComparator) {
 		return getPersistence()
 				   .findByField2(field2, start, end, orderByComparator);
 	}
@@ -518,7 +518,7 @@ public class FooUtil {
 	*/
 	public static com.liferay.sampleservicebuilder.model.Foo findByField2_First(
 		boolean field2,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.sampleservicebuilder.model.Foo> orderByComparator)
 		throws com.liferay.sampleservicebuilder.NoSuchFooException {
 		return getPersistence().findByField2_First(field2, orderByComparator);
 	}
@@ -532,7 +532,7 @@ public class FooUtil {
 	*/
 	public static com.liferay.sampleservicebuilder.model.Foo fetchByField2_First(
 		boolean field2,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.sampleservicebuilder.model.Foo> orderByComparator) {
 		return getPersistence().fetchByField2_First(field2, orderByComparator);
 	}
 
@@ -546,7 +546,7 @@ public class FooUtil {
 	*/
 	public static com.liferay.sampleservicebuilder.model.Foo findByField2_Last(
 		boolean field2,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.sampleservicebuilder.model.Foo> orderByComparator)
 		throws com.liferay.sampleservicebuilder.NoSuchFooException {
 		return getPersistence().findByField2_Last(field2, orderByComparator);
 	}
@@ -560,7 +560,7 @@ public class FooUtil {
 	*/
 	public static com.liferay.sampleservicebuilder.model.Foo fetchByField2_Last(
 		boolean field2,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.sampleservicebuilder.model.Foo> orderByComparator) {
 		return getPersistence().fetchByField2_Last(field2, orderByComparator);
 	}
 
@@ -575,7 +575,7 @@ public class FooUtil {
 	*/
 	public static com.liferay.sampleservicebuilder.model.Foo[] findByField2_PrevAndNext(
 		long fooId, boolean field2,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.sampleservicebuilder.model.Foo> orderByComparator)
 		throws com.liferay.sampleservicebuilder.NoSuchFooException {
 		return getPersistence()
 				   .findByField2_PrevAndNext(fooId, field2, orderByComparator);
@@ -714,7 +714,7 @@ public class FooUtil {
 	*/
 	public static java.util.List<com.liferay.sampleservicebuilder.model.Foo> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.sampleservicebuilder.model.Foo> orderByComparator) {
 		return getPersistence().findAll(start, end, orderByComparator);
 	}
 

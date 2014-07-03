@@ -21,7 +21,7 @@ import com.liferay.portal.kernel.dao.orm.BaseActionableDynamicQuery;
 
 /**
  * @author Eduardo Lundgren
- * @deprecated As of 7.0.0, replaced by {@link CalendarNotificationTemplateLocalServiceUtil#getExportActionableDynamicQuery()}
+ * @deprecated As of 7.0.0, replaced by {@link CalendarNotificationTemplateLocalServiceUtil#getActionableDynamicQuery()}
  * @generated
  */
 @Deprecated

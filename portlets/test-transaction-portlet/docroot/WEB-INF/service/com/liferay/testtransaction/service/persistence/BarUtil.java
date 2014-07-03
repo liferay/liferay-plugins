@@ -83,7 +83,7 @@ public class BarUtil {
 	 * @see com.liferay.portal.service.persistence.BasePersistence#findWithDynamicQuery(DynamicQuery, int, int, OrderByComparator)
 	 */
 	public static List<Bar> findWithDynamicQuery(DynamicQuery dynamicQuery,
-		int start, int end, OrderByComparator orderByComparator) {
+		int start, int end, OrderByComparator<Bar> orderByComparator) {
 		return getPersistence()
 				   .findWithDynamicQuery(dynamicQuery, start, end,
 			orderByComparator);
@@ -146,7 +146,7 @@ public class BarUtil {
 	*/
 	public static java.util.List<com.liferay.testtransaction.model.Bar> findByText(
 		java.lang.String text, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.testtransaction.model.Bar> orderByComparator) {
 		return getPersistence().findByText(text, start, end, orderByComparator);
 	}
 
@@ -160,7 +160,7 @@ public class BarUtil {
 	*/
 	public static com.liferay.testtransaction.model.Bar findByText_First(
 		java.lang.String text,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.testtransaction.model.Bar> orderByComparator)
 		throws com.liferay.testtransaction.NoSuchBarException {
 		return getPersistence().findByText_First(text, orderByComparator);
 	}
@@ -174,7 +174,7 @@ public class BarUtil {
 	*/
 	public static com.liferay.testtransaction.model.Bar fetchByText_First(
 		java.lang.String text,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.testtransaction.model.Bar> orderByComparator) {
 		return getPersistence().fetchByText_First(text, orderByComparator);
 	}
 
@@ -188,7 +188,7 @@ public class BarUtil {
 	*/
 	public static com.liferay.testtransaction.model.Bar findByText_Last(
 		java.lang.String text,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.testtransaction.model.Bar> orderByComparator)
 		throws com.liferay.testtransaction.NoSuchBarException {
 		return getPersistence().findByText_Last(text, orderByComparator);
 	}
@@ -202,7 +202,7 @@ public class BarUtil {
 	*/
 	public static com.liferay.testtransaction.model.Bar fetchByText_Last(
 		java.lang.String text,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.testtransaction.model.Bar> orderByComparator) {
 		return getPersistence().fetchByText_Last(text, orderByComparator);
 	}
 
@@ -217,7 +217,7 @@ public class BarUtil {
 	*/
 	public static com.liferay.testtransaction.model.Bar[] findByText_PrevAndNext(
 		long barId, java.lang.String text,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.testtransaction.model.Bar> orderByComparator)
 		throws com.liferay.testtransaction.NoSuchBarException {
 		return getPersistence()
 				   .findByText_PrevAndNext(barId, text, orderByComparator);
@@ -355,7 +355,7 @@ public class BarUtil {
 	*/
 	public static java.util.List<com.liferay.testtransaction.model.Bar> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.testtransaction.model.Bar> orderByComparator) {
 		return getPersistence().findAll(start, end, orderByComparator);
 	}
 

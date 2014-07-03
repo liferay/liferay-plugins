@@ -85,7 +85,7 @@ public class MemberRequestUtil {
 	 */
 	public static List<MemberRequest> findWithDynamicQuery(
 		DynamicQuery dynamicQuery, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<MemberRequest> orderByComparator) {
 		return getPersistence()
 				   .findWithDynamicQuery(dynamicQuery, start, end,
 			orderByComparator);
@@ -207,7 +207,7 @@ public class MemberRequestUtil {
 	*/
 	public static java.util.List<com.liferay.so.model.MemberRequest> findByReceiverUserId(
 		long receiverUserId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.so.model.MemberRequest> orderByComparator) {
 		return getPersistence()
 				   .findByReceiverUserId(receiverUserId, start, end,
 			orderByComparator);
@@ -223,7 +223,7 @@ public class MemberRequestUtil {
 	*/
 	public static com.liferay.so.model.MemberRequest findByReceiverUserId_First(
 		long receiverUserId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.so.model.MemberRequest> orderByComparator)
 		throws com.liferay.so.NoSuchMemberRequestException {
 		return getPersistence()
 				   .findByReceiverUserId_First(receiverUserId, orderByComparator);
@@ -238,7 +238,7 @@ public class MemberRequestUtil {
 	*/
 	public static com.liferay.so.model.MemberRequest fetchByReceiverUserId_First(
 		long receiverUserId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.so.model.MemberRequest> orderByComparator) {
 		return getPersistence()
 				   .fetchByReceiverUserId_First(receiverUserId,
 			orderByComparator);
@@ -254,7 +254,7 @@ public class MemberRequestUtil {
 	*/
 	public static com.liferay.so.model.MemberRequest findByReceiverUserId_Last(
 		long receiverUserId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.so.model.MemberRequest> orderByComparator)
 		throws com.liferay.so.NoSuchMemberRequestException {
 		return getPersistence()
 				   .findByReceiverUserId_Last(receiverUserId, orderByComparator);
@@ -269,7 +269,7 @@ public class MemberRequestUtil {
 	*/
 	public static com.liferay.so.model.MemberRequest fetchByReceiverUserId_Last(
 		long receiverUserId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.so.model.MemberRequest> orderByComparator) {
 		return getPersistence()
 				   .fetchByReceiverUserId_Last(receiverUserId, orderByComparator);
 	}
@@ -285,7 +285,7 @@ public class MemberRequestUtil {
 	*/
 	public static com.liferay.so.model.MemberRequest[] findByReceiverUserId_PrevAndNext(
 		long memberRequestId, long receiverUserId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.so.model.MemberRequest> orderByComparator)
 		throws com.liferay.so.NoSuchMemberRequestException {
 		return getPersistence()
 				   .findByReceiverUserId_PrevAndNext(memberRequestId,
@@ -357,7 +357,7 @@ public class MemberRequestUtil {
 	*/
 	public static java.util.List<com.liferay.so.model.MemberRequest> findByR_S(
 		long receiverUserId, int status, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.so.model.MemberRequest> orderByComparator) {
 		return getPersistence()
 				   .findByR_S(receiverUserId, status, start, end,
 			orderByComparator);
@@ -374,7 +374,7 @@ public class MemberRequestUtil {
 	*/
 	public static com.liferay.so.model.MemberRequest findByR_S_First(
 		long receiverUserId, int status,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.so.model.MemberRequest> orderByComparator)
 		throws com.liferay.so.NoSuchMemberRequestException {
 		return getPersistence()
 				   .findByR_S_First(receiverUserId, status, orderByComparator);
@@ -390,7 +390,7 @@ public class MemberRequestUtil {
 	*/
 	public static com.liferay.so.model.MemberRequest fetchByR_S_First(
 		long receiverUserId, int status,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.so.model.MemberRequest> orderByComparator) {
 		return getPersistence()
 				   .fetchByR_S_First(receiverUserId, status, orderByComparator);
 	}
@@ -406,7 +406,7 @@ public class MemberRequestUtil {
 	*/
 	public static com.liferay.so.model.MemberRequest findByR_S_Last(
 		long receiverUserId, int status,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.so.model.MemberRequest> orderByComparator)
 		throws com.liferay.so.NoSuchMemberRequestException {
 		return getPersistence()
 				   .findByR_S_Last(receiverUserId, status, orderByComparator);
@@ -422,7 +422,7 @@ public class MemberRequestUtil {
 	*/
 	public static com.liferay.so.model.MemberRequest fetchByR_S_Last(
 		long receiverUserId, int status,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.so.model.MemberRequest> orderByComparator) {
 		return getPersistence()
 				   .fetchByR_S_Last(receiverUserId, status, orderByComparator);
 	}
@@ -439,7 +439,7 @@ public class MemberRequestUtil {
 	*/
 	public static com.liferay.so.model.MemberRequest[] findByR_S_PrevAndNext(
 		long memberRequestId, long receiverUserId, int status,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.so.model.MemberRequest> orderByComparator)
 		throws com.liferay.so.NoSuchMemberRequestException {
 		return getPersistence()
 				   .findByR_S_PrevAndNext(memberRequestId, receiverUserId,
@@ -654,7 +654,7 @@ public class MemberRequestUtil {
 	*/
 	public static java.util.List<com.liferay.so.model.MemberRequest> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.so.model.MemberRequest> orderByComparator) {
 		return getPersistence().findAll(start, end, orderByComparator);
 	}
 

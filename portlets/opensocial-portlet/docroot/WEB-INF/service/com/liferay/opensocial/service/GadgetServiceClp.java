@@ -107,8 +107,7 @@ public class GadgetServiceClp implements GadgetService {
 	public com.liferay.opensocial.model.Gadget addGadget(long companyId,
 		java.lang.String url, java.lang.String portletCategoryNames,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
 		try {
@@ -131,10 +130,6 @@ public class GadgetServiceClp implements GadgetService {
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
 			}
 
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
 			}
@@ -150,8 +145,7 @@ public class GadgetServiceClp implements GadgetService {
 	@Override
 	public void deleteGadget(long gadgetId,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		try {
 			_invokableService.invokeMethod(_methodName4,
 				_methodParameterTypes4,
@@ -168,10 +162,6 @@ public class GadgetServiceClp implements GadgetService {
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
 			}
 
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
 			}
@@ -186,8 +176,7 @@ public class GadgetServiceClp implements GadgetService {
 	public void updateGadget(long gadgetId,
 		java.lang.String portletCategoryNames,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		try {
 			_invokableService.invokeMethod(_methodName5,
 				_methodParameterTypes5,
@@ -204,10 +193,6 @@ public class GadgetServiceClp implements GadgetService {
 
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
 
 			if (t instanceof RuntimeException) {

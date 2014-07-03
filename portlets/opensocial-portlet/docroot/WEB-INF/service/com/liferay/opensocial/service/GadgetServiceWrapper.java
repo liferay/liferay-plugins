@@ -60,8 +60,7 @@ public class GadgetServiceWrapper implements GadgetService,
 	public com.liferay.opensocial.model.Gadget addGadget(long companyId,
 		java.lang.String url, java.lang.String portletCategoryNames,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _gadgetService.addGadget(companyId, url, portletCategoryNames,
 			serviceContext);
 	}
@@ -69,8 +68,7 @@ public class GadgetServiceWrapper implements GadgetService,
 	@Override
 	public void deleteGadget(long gadgetId,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		_gadgetService.deleteGadget(gadgetId, serviceContext);
 	}
 
@@ -78,8 +76,7 @@ public class GadgetServiceWrapper implements GadgetService,
 	public void updateGadget(long gadgetId,
 		java.lang.String portletCategoryNames,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		_gadgetService.updateGadget(gadgetId, portletCategoryNames,
 			serviceContext);
 	}

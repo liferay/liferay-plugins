@@ -89,8 +89,7 @@ public interface FooLocalService extends BaseLocalService, InvokableLocalService
 	* @param dynamicQuery the dynamic query
 	* @return the matching rows
 	*/
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery);
 
 	/**
@@ -105,8 +104,7 @@ public interface FooLocalService extends BaseLocalService, InvokableLocalService
 	* @param end the upper bound of the range of model instances (not inclusive)
 	* @return the range of matching rows
 	*/
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end);
 
@@ -123,11 +121,10 @@ public interface FooLocalService extends BaseLocalService, InvokableLocalService
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching rows
 	*/
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<T> orderByComparator);
 
 	/**
 	* Returns the number of rows that match the dynamic query.
@@ -234,37 +231,31 @@ public interface FooLocalService extends BaseLocalService, InvokableLocalService
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.portal.model.Company getCompanyPersistence_FindByPrimaryKey(
 		long companyId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.portal.model.Company getCompanyUtil_FindByPrimaryKey(
 		long companyId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.chat.model.Entry> getEntryLocalServiceUtil_GetEntries(
-		int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		int start, int end);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.chat.model.Entry getEntryLocalServiceUtil_GetEntry(
 		long entryId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.portal.model.Group getGroupPersistence_FindByPrimaryKey(
 		long groupId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.portal.model.Group getGroupUtil_FindByPrimaryKey(
 		long groupId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getPortalService_GetBuildNumber();
@@ -273,8 +264,7 @@ public interface FooLocalService extends BaseLocalService, InvokableLocalService
 	public int getPortalService_TestGetBuildNumber();
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public boolean getPortalService_TestHasClassName()
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public boolean getPortalService_TestHasClassName();
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getPortalServiceUtil_GetBuildNumber();
@@ -283,8 +273,7 @@ public interface FooLocalService extends BaseLocalService, InvokableLocalService
 	public int getPortalServiceUtil_TestGetBuildNumber();
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public boolean getPortalServiceUtil_TestHasClassName()
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public boolean getPortalServiceUtil_TestHasClassName();
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getReleaseInfo_GetBuildNumber();
@@ -292,23 +281,17 @@ public interface FooLocalService extends BaseLocalService, InvokableLocalService
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.chat.model.Status getStatusLocalServiceUtil_GetStatus(
 		long statusId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.chat.model.Status> getStatusLocalServiceUtil_GetStatuses(
-		int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		int start, int end);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.portal.model.User getUserPersistence_FindByPrimaryKey(
-		long userId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
+		long userId) throws com.liferay.portal.kernel.exception.PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.portal.model.User getUserUtil_FindByPrimaryKey(
-		long userId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
+		long userId) throws com.liferay.portal.kernel.exception.PortalException;
 }

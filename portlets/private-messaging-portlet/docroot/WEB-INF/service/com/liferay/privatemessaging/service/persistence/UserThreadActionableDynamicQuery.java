@@ -21,7 +21,7 @@ import com.liferay.privatemessaging.service.UserThreadLocalServiceUtil;
 
 /**
  * @author Brian Wing Shun Chan
- * @deprecated As of 7.0.0, replaced by {@link UserThreadLocalServiceUtil#getExportActionableDynamicQuery()}
+ * @deprecated As of 7.0.0, replaced by {@link UserThreadLocalServiceUtil#getActionableDynamicQuery()}
  * @generated
  */
 @Deprecated

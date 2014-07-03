@@ -126,8 +126,7 @@ public class BBBMeetingServiceClp implements BBBMeetingService {
 		java.lang.String moderatorPassword, int status,
 		java.util.List<com.liferay.bbb.model.BBBParticipant> bbbParticipants,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
 		try {
@@ -162,10 +161,6 @@ public class BBBMeetingServiceClp implements BBBMeetingService {
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
 			}
 
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
 			}
@@ -180,8 +175,7 @@ public class BBBMeetingServiceClp implements BBBMeetingService {
 
 	@Override
 	public com.liferay.bbb.model.BBBMeeting deleteBBBMeeting(long bbbMeetingId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
 		try {
@@ -193,10 +187,6 @@ public class BBBMeetingServiceClp implements BBBMeetingService {
 
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
 
 			if (t instanceof RuntimeException) {
@@ -213,8 +203,7 @@ public class BBBMeetingServiceClp implements BBBMeetingService {
 
 	@Override
 	public com.liferay.bbb.model.BBBMeeting getBBBMeeting(long bbbMeetingId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
 		try {
@@ -226,10 +215,6 @@ public class BBBMeetingServiceClp implements BBBMeetingService {
 
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
 
 			if (t instanceof RuntimeException) {
@@ -247,8 +232,7 @@ public class BBBMeetingServiceClp implements BBBMeetingService {
 	@Override
 	public java.util.List<com.liferay.bbb.model.BBBMeeting> getBBBMeetings(
 		long groupId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator obc)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator obc) {
 		Object returnObj = null;
 
 		try {
@@ -267,10 +251,6 @@ public class BBBMeetingServiceClp implements BBBMeetingService {
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
 
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
 			}
@@ -284,8 +264,7 @@ public class BBBMeetingServiceClp implements BBBMeetingService {
 	}
 
 	@Override
-	public int getBBBMeetingsCount(long groupId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public int getBBBMeetingsCount(long groupId) {
 		Object returnObj = null;
 
 		try {
@@ -294,10 +273,6 @@ public class BBBMeetingServiceClp implements BBBMeetingService {
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
 
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
@@ -318,8 +293,7 @@ public class BBBMeetingServiceClp implements BBBMeetingService {
 		java.lang.String moderatorPassword,
 		java.util.List<com.liferay.bbb.model.BBBParticipant> bbbParticipants,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
 		try {
@@ -348,10 +322,6 @@ public class BBBMeetingServiceClp implements BBBMeetingService {
 
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
 
 			if (t instanceof RuntimeException) {

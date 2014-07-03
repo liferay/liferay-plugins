@@ -157,7 +157,7 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 	 */
 	@Override
 	public List<OAuthConsumer> findByGadgetKey(String gadgetKey, int start,
-		int end, OrderByComparator orderByComparator) {
+		int end, OrderByComparator<OAuthConsumer> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -277,7 +277,7 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 	 */
 	@Override
 	public OAuthConsumer findByGadgetKey_First(String gadgetKey,
-		OrderByComparator orderByComparator)
+		OrderByComparator<OAuthConsumer> orderByComparator)
 		throws NoSuchOAuthConsumerException {
 		OAuthConsumer oAuthConsumer = fetchByGadgetKey_First(gadgetKey,
 				orderByComparator);
@@ -307,7 +307,7 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 	 */
 	@Override
 	public OAuthConsumer fetchByGadgetKey_First(String gadgetKey,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<OAuthConsumer> orderByComparator) {
 		List<OAuthConsumer> list = findByGadgetKey(gadgetKey, 0, 1,
 				orderByComparator);
 
@@ -328,7 +328,7 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 	 */
 	@Override
 	public OAuthConsumer findByGadgetKey_Last(String gadgetKey,
-		OrderByComparator orderByComparator)
+		OrderByComparator<OAuthConsumer> orderByComparator)
 		throws NoSuchOAuthConsumerException {
 		OAuthConsumer oAuthConsumer = fetchByGadgetKey_Last(gadgetKey,
 				orderByComparator);
@@ -358,7 +358,7 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 	 */
 	@Override
 	public OAuthConsumer fetchByGadgetKey_Last(String gadgetKey,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<OAuthConsumer> orderByComparator) {
 		int count = countByGadgetKey(gadgetKey);
 
 		if (count == 0) {
@@ -386,7 +386,7 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 	 */
 	@Override
 	public OAuthConsumer[] findByGadgetKey_PrevAndNext(long oAuthConsumerId,
-		String gadgetKey, OrderByComparator orderByComparator)
+		String gadgetKey, OrderByComparator<OAuthConsumer> orderByComparator)
 		throws NoSuchOAuthConsumerException {
 		OAuthConsumer oAuthConsumer = findByPrimaryKey(oAuthConsumerId);
 
@@ -417,7 +417,7 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 
 	protected OAuthConsumer getByGadgetKey_PrevAndNext(Session session,
 		OAuthConsumer oAuthConsumer, String gadgetKey,
-		OrderByComparator orderByComparator, boolean previous) {
+		OrderByComparator<OAuthConsumer> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -1475,7 +1475,7 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 	 */
 	@Override
 	public List<OAuthConsumer> findAll(int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<OAuthConsumer> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;

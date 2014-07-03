@@ -89,8 +89,7 @@ public class ModuleLocalServiceWrapper implements ModuleLocalService,
 	* @return the matching rows
 	*/
 	@Override
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
 		return _moduleLocalService.dynamicQuery(dynamicQuery);
 	}
@@ -108,8 +107,7 @@ public class ModuleLocalServiceWrapper implements ModuleLocalService,
 	* @return the range of matching rows
 	*/
 	@Override
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) {
 		return _moduleLocalService.dynamicQuery(dynamicQuery, start, end);
@@ -129,11 +127,10 @@ public class ModuleLocalServiceWrapper implements ModuleLocalService,
 	* @return the ordered range of matching rows
 	*/
 	@Override
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<T> orderByComparator) {
 		return _moduleLocalService.dynamicQuery(dynamicQuery, start, end,
 			orderByComparator);
 	}
@@ -272,21 +269,19 @@ public class ModuleLocalServiceWrapper implements ModuleLocalService,
 
 	@Override
 	public com.liferay.marketplace.model.Module addModule(long userId,
-		long appId, java.lang.String contextName)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long appId, java.lang.String contextName) {
 		return _moduleLocalService.addModule(userId, appId, contextName);
 	}
 
 	@Override
 	public com.liferay.marketplace.model.Module fetchModule(long appId,
-		java.lang.String contextName)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		java.lang.String contextName) {
 		return _moduleLocalService.fetchModule(appId, contextName);
 	}
 
 	@Override
 	public java.util.List<com.liferay.marketplace.model.Module> getModules(
-		long appId) throws com.liferay.portal.kernel.exception.SystemException {
+		long appId) {
 		return _moduleLocalService.getModules(appId);
 	}
 

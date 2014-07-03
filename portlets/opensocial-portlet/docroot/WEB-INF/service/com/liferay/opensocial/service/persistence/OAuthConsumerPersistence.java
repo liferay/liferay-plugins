@@ -76,7 +76,7 @@ public interface OAuthConsumerPersistence extends BasePersistence<OAuthConsumer>
 	*/
 	public java.util.List<com.liferay.opensocial.model.OAuthConsumer> findByGadgetKey(
 		java.lang.String gadgetKey, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.opensocial.model.OAuthConsumer> orderByComparator);
 
 	/**
 	* Returns the first o auth consumer in the ordered set where gadgetKey = &#63;.
@@ -88,7 +88,7 @@ public interface OAuthConsumerPersistence extends BasePersistence<OAuthConsumer>
 	*/
 	public com.liferay.opensocial.model.OAuthConsumer findByGadgetKey_First(
 		java.lang.String gadgetKey,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.opensocial.model.OAuthConsumer> orderByComparator)
 		throws com.liferay.opensocial.NoSuchOAuthConsumerException;
 
 	/**
@@ -100,7 +100,7 @@ public interface OAuthConsumerPersistence extends BasePersistence<OAuthConsumer>
 	*/
 	public com.liferay.opensocial.model.OAuthConsumer fetchByGadgetKey_First(
 		java.lang.String gadgetKey,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.opensocial.model.OAuthConsumer> orderByComparator);
 
 	/**
 	* Returns the last o auth consumer in the ordered set where gadgetKey = &#63;.
@@ -112,7 +112,7 @@ public interface OAuthConsumerPersistence extends BasePersistence<OAuthConsumer>
 	*/
 	public com.liferay.opensocial.model.OAuthConsumer findByGadgetKey_Last(
 		java.lang.String gadgetKey,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.opensocial.model.OAuthConsumer> orderByComparator)
 		throws com.liferay.opensocial.NoSuchOAuthConsumerException;
 
 	/**
@@ -124,7 +124,7 @@ public interface OAuthConsumerPersistence extends BasePersistence<OAuthConsumer>
 	*/
 	public com.liferay.opensocial.model.OAuthConsumer fetchByGadgetKey_Last(
 		java.lang.String gadgetKey,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.opensocial.model.OAuthConsumer> orderByComparator);
 
 	/**
 	* Returns the o auth consumers before and after the current o auth consumer in the ordered set where gadgetKey = &#63;.
@@ -137,7 +137,7 @@ public interface OAuthConsumerPersistence extends BasePersistence<OAuthConsumer>
 	*/
 	public com.liferay.opensocial.model.OAuthConsumer[] findByGadgetKey_PrevAndNext(
 		long oAuthConsumerId, java.lang.String gadgetKey,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.opensocial.model.OAuthConsumer> orderByComparator)
 		throws com.liferay.opensocial.NoSuchOAuthConsumerException;
 
 	/**
@@ -308,7 +308,7 @@ public interface OAuthConsumerPersistence extends BasePersistence<OAuthConsumer>
 	*/
 	public java.util.List<com.liferay.opensocial.model.OAuthConsumer> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.opensocial.model.OAuthConsumer> orderByComparator);
 
 	/**
 	* Removes all the o auth consumers from the database.

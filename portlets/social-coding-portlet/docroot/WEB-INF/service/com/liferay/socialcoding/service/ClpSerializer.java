@@ -239,7 +239,7 @@ public class ClpSerializer {
 				Method translateOutputMethod = newClpSerializerClass.getMethod("translateOutput",
 						BaseModel.class);
 
-				Class<?> oldModelModelClass = (Class<?>)oldModel.getModelClass();
+				Class<?> oldModelModelClass = oldModel.getModelClass();
 
 				Method getRemoteModelMethod = oldModelClass.getMethod("get" +
 						oldModelModelClass.getSimpleName() + "RemoteModel");
@@ -276,7 +276,7 @@ public class ClpSerializer {
 				Method translateOutputMethod = newClpSerializerClass.getMethod("translateOutput",
 						BaseModel.class);
 
-				Class<?> oldModelModelClass = (Class<?>)oldModel.getModelClass();
+				Class<?> oldModelModelClass = oldModel.getModelClass();
 
 				Method getRemoteModelMethod = oldModelClass.getMethod("get" +
 						oldModelModelClass.getSimpleName() + "RemoteModel");
@@ -313,7 +313,7 @@ public class ClpSerializer {
 				Method translateOutputMethod = newClpSerializerClass.getMethod("translateOutput",
 						BaseModel.class);
 
-				Class<?> oldModelModelClass = (Class<?>)oldModel.getModelClass();
+				Class<?> oldModelModelClass = oldModel.getModelClass();
 
 				Method getRemoteModelMethod = oldModelClass.getMethod("get" +
 						oldModelModelClass.getSimpleName() + "RemoteModel");
@@ -350,7 +350,7 @@ public class ClpSerializer {
 				Method translateOutputMethod = newClpSerializerClass.getMethod("translateOutput",
 						BaseModel.class);
 
-				Class<?> oldModelModelClass = (Class<?>)oldModel.getModelClass();
+				Class<?> oldModelModelClass = oldModel.getModelClass();
 
 				Method getRemoteModelMethod = oldModelClass.getMethod("get" +
 						oldModelModelClass.getSimpleName() + "RemoteModel");
@@ -387,7 +387,7 @@ public class ClpSerializer {
 				Method translateOutputMethod = newClpSerializerClass.getMethod("translateOutput",
 						BaseModel.class);
 
-				Class<?> oldModelModelClass = (Class<?>)oldModel.getModelClass();
+				Class<?> oldModelModelClass = oldModel.getModelClass();
 
 				Method getRemoteModelMethod = oldModelClass.getMethod("get" +
 						oldModelModelClass.getSimpleName() + "RemoteModel");
@@ -424,7 +424,7 @@ public class ClpSerializer {
 				Method translateOutputMethod = newClpSerializerClass.getMethod("translateOutput",
 						BaseModel.class);
 
-				Class<?> oldModelModelClass = (Class<?>)oldModel.getModelClass();
+				Class<?> oldModelModelClass = oldModel.getModelClass();
 
 				Method getRemoteModelMethod = oldModelClass.getMethod("get" +
 						oldModelModelClass.getSimpleName() + "RemoteModel");

@@ -312,8 +312,7 @@ public class FooLocalServiceClp implements FooLocalService {
 	}
 
 	@Override
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
 		Object returnObj = null;
 
@@ -334,12 +333,11 @@ public class FooLocalServiceClp implements FooLocalService {
 			}
 		}
 
-		return (java.util.List)ClpSerializer.translateOutput(returnObj);
+		return (java.util.List<T>)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) {
 		Object returnObj = null;
@@ -367,15 +365,14 @@ public class FooLocalServiceClp implements FooLocalService {
 			}
 		}
 
-		return (java.util.List)ClpSerializer.translateOutput(returnObj);
+		return (java.util.List<T>)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<T> orderByComparator) {
 		Object returnObj = null;
 
 		try {
@@ -403,7 +400,7 @@ public class FooLocalServiceClp implements FooLocalService {
 			}
 		}
 
-		return (java.util.List)ClpSerializer.translateOutput(returnObj);
+		return (java.util.List<T>)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override
@@ -720,8 +717,7 @@ public class FooLocalServiceClp implements FooLocalService {
 	@Override
 	public com.liferay.portal.model.Company getCompanyPersistence_FindByPrimaryKey(
 		long companyId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
 		try {
@@ -733,10 +729,6 @@ public class FooLocalServiceClp implements FooLocalService {
 
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
 
 			if (t instanceof RuntimeException) {
@@ -754,8 +746,7 @@ public class FooLocalServiceClp implements FooLocalService {
 	@Override
 	public com.liferay.portal.model.Company getCompanyUtil_FindByPrimaryKey(
 		long companyId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
 		try {
@@ -767,10 +758,6 @@ public class FooLocalServiceClp implements FooLocalService {
 
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
 
 			if (t instanceof RuntimeException) {
@@ -787,8 +774,7 @@ public class FooLocalServiceClp implements FooLocalService {
 
 	@Override
 	public java.util.List<com.liferay.chat.model.Entry> getEntryLocalServiceUtil_GetEntries(
-		int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		int start, int end) {
 		Object returnObj = null;
 
 		try {
@@ -797,10 +783,6 @@ public class FooLocalServiceClp implements FooLocalService {
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
 
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
@@ -817,8 +799,7 @@ public class FooLocalServiceClp implements FooLocalService {
 	@Override
 	public com.liferay.chat.model.Entry getEntryLocalServiceUtil_GetEntry(
 		long entryId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
 		try {
@@ -830,10 +811,6 @@ public class FooLocalServiceClp implements FooLocalService {
 
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
 
 			if (t instanceof RuntimeException) {
@@ -851,8 +828,7 @@ public class FooLocalServiceClp implements FooLocalService {
 	@Override
 	public com.liferay.portal.model.Group getGroupPersistence_FindByPrimaryKey(
 		long groupId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
 		try {
@@ -864,10 +840,6 @@ public class FooLocalServiceClp implements FooLocalService {
 
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
 
 			if (t instanceof RuntimeException) {
@@ -885,8 +857,7 @@ public class FooLocalServiceClp implements FooLocalService {
 	@Override
 	public com.liferay.portal.model.Group getGroupUtil_FindByPrimaryKey(
 		long groupId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
 		try {
@@ -898,10 +869,6 @@ public class FooLocalServiceClp implements FooLocalService {
 
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
 
 			if (t instanceof RuntimeException) {
@@ -963,8 +930,7 @@ public class FooLocalServiceClp implements FooLocalService {
 	}
 
 	@Override
-	public boolean getPortalService_TestHasClassName()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public boolean getPortalService_TestHasClassName() {
 		Object returnObj = null;
 
 		try {
@@ -973,10 +939,6 @@ public class FooLocalServiceClp implements FooLocalService {
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
 
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
@@ -1037,8 +999,7 @@ public class FooLocalServiceClp implements FooLocalService {
 	}
 
 	@Override
-	public boolean getPortalServiceUtil_TestHasClassName()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public boolean getPortalServiceUtil_TestHasClassName() {
 		Object returnObj = null;
 
 		try {
@@ -1047,10 +1008,6 @@ public class FooLocalServiceClp implements FooLocalService {
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
 
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
@@ -1090,8 +1047,7 @@ public class FooLocalServiceClp implements FooLocalService {
 	@Override
 	public com.liferay.chat.model.Status getStatusLocalServiceUtil_GetStatus(
 		long statusId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
 		try {
@@ -1103,10 +1059,6 @@ public class FooLocalServiceClp implements FooLocalService {
 
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
 
 			if (t instanceof RuntimeException) {
@@ -1123,8 +1075,7 @@ public class FooLocalServiceClp implements FooLocalService {
 
 	@Override
 	public java.util.List<com.liferay.chat.model.Status> getStatusLocalServiceUtil_GetStatuses(
-		int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		int start, int end) {
 		Object returnObj = null;
 
 		try {
@@ -1133,10 +1084,6 @@ public class FooLocalServiceClp implements FooLocalService {
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
 
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
@@ -1152,9 +1099,7 @@ public class FooLocalServiceClp implements FooLocalService {
 
 	@Override
 	public com.liferay.portal.model.User getUserPersistence_FindByPrimaryKey(
-		long userId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		long userId) throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
 		try {
@@ -1166,10 +1111,6 @@ public class FooLocalServiceClp implements FooLocalService {
 
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
 
 			if (t instanceof RuntimeException) {
@@ -1186,9 +1127,7 @@ public class FooLocalServiceClp implements FooLocalService {
 
 	@Override
 	public com.liferay.portal.model.User getUserUtil_FindByPrimaryKey(
-		long userId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		long userId) throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
 		try {
@@ -1200,10 +1139,6 @@ public class FooLocalServiceClp implements FooLocalService {
 
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
 
 			if (t instanceof RuntimeException) {

@@ -81,7 +81,7 @@ public interface OAuthTokenPersistence extends BasePersistence<OAuthToken> {
 	public java.util.List<com.liferay.opensocial.model.OAuthToken> findByG_S(
 		java.lang.String gadgetKey, java.lang.String serviceName, int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.opensocial.model.OAuthToken> orderByComparator);
 
 	/**
 	* Returns the first o auth token in the ordered set where gadgetKey = &#63; and serviceName = &#63;.
@@ -94,7 +94,7 @@ public interface OAuthTokenPersistence extends BasePersistence<OAuthToken> {
 	*/
 	public com.liferay.opensocial.model.OAuthToken findByG_S_First(
 		java.lang.String gadgetKey, java.lang.String serviceName,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.opensocial.model.OAuthToken> orderByComparator)
 		throws com.liferay.opensocial.NoSuchOAuthTokenException;
 
 	/**
@@ -107,7 +107,7 @@ public interface OAuthTokenPersistence extends BasePersistence<OAuthToken> {
 	*/
 	public com.liferay.opensocial.model.OAuthToken fetchByG_S_First(
 		java.lang.String gadgetKey, java.lang.String serviceName,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.opensocial.model.OAuthToken> orderByComparator);
 
 	/**
 	* Returns the last o auth token in the ordered set where gadgetKey = &#63; and serviceName = &#63;.
@@ -120,7 +120,7 @@ public interface OAuthTokenPersistence extends BasePersistence<OAuthToken> {
 	*/
 	public com.liferay.opensocial.model.OAuthToken findByG_S_Last(
 		java.lang.String gadgetKey, java.lang.String serviceName,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.opensocial.model.OAuthToken> orderByComparator)
 		throws com.liferay.opensocial.NoSuchOAuthTokenException;
 
 	/**
@@ -133,7 +133,7 @@ public interface OAuthTokenPersistence extends BasePersistence<OAuthToken> {
 	*/
 	public com.liferay.opensocial.model.OAuthToken fetchByG_S_Last(
 		java.lang.String gadgetKey, java.lang.String serviceName,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.opensocial.model.OAuthToken> orderByComparator);
 
 	/**
 	* Returns the o auth tokens before and after the current o auth token in the ordered set where gadgetKey = &#63; and serviceName = &#63;.
@@ -148,7 +148,7 @@ public interface OAuthTokenPersistence extends BasePersistence<OAuthToken> {
 	public com.liferay.opensocial.model.OAuthToken[] findByG_S_PrevAndNext(
 		long oAuthTokenId, java.lang.String gadgetKey,
 		java.lang.String serviceName,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.opensocial.model.OAuthToken> orderByComparator)
 		throws com.liferay.opensocial.NoSuchOAuthTokenException;
 
 	/**
@@ -338,7 +338,7 @@ public interface OAuthTokenPersistence extends BasePersistence<OAuthToken> {
 	*/
 	public java.util.List<com.liferay.opensocial.model.OAuthToken> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.opensocial.model.OAuthToken> orderByComparator);
 
 	/**
 	* Removes all the o auth tokens from the database.

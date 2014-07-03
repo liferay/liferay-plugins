@@ -264,8 +264,7 @@ public class ModuleLocalServiceClp implements ModuleLocalService {
 	}
 
 	@Override
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
 		Object returnObj = null;
 
@@ -286,12 +285,11 @@ public class ModuleLocalServiceClp implements ModuleLocalService {
 			}
 		}
 
-		return (java.util.List)ClpSerializer.translateOutput(returnObj);
+		return (java.util.List<T>)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) {
 		Object returnObj = null;
@@ -319,15 +317,14 @@ public class ModuleLocalServiceClp implements ModuleLocalService {
 			}
 		}
 
-		return (java.util.List)ClpSerializer.translateOutput(returnObj);
+		return (java.util.List<T>)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<T> orderByComparator) {
 		Object returnObj = null;
 
 		try {
@@ -355,7 +352,7 @@ public class ModuleLocalServiceClp implements ModuleLocalService {
 			}
 		}
 
-		return (java.util.List)ClpSerializer.translateOutput(returnObj);
+		return (java.util.List<T>)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override
@@ -671,8 +668,7 @@ public class ModuleLocalServiceClp implements ModuleLocalService {
 
 	@Override
 	public com.liferay.marketplace.model.Module addModule(long userId,
-		long appId, java.lang.String contextName)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long appId, java.lang.String contextName) {
 		Object returnObj = null;
 
 		try {
@@ -689,10 +685,6 @@ public class ModuleLocalServiceClp implements ModuleLocalService {
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
 
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
 			}
@@ -707,8 +699,7 @@ public class ModuleLocalServiceClp implements ModuleLocalService {
 
 	@Override
 	public com.liferay.marketplace.model.Module fetchModule(long appId,
-		java.lang.String contextName)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		java.lang.String contextName) {
 		Object returnObj = null;
 
 		try {
@@ -722,10 +713,6 @@ public class ModuleLocalServiceClp implements ModuleLocalService {
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
 
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
@@ -741,7 +728,7 @@ public class ModuleLocalServiceClp implements ModuleLocalService {
 
 	@Override
 	public java.util.List<com.liferay.marketplace.model.Module> getModules(
-		long appId) throws com.liferay.portal.kernel.exception.SystemException {
+		long appId) {
 		Object returnObj = null;
 
 		try {
@@ -750,10 +737,6 @@ public class ModuleLocalServiceClp implements ModuleLocalService {
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
 
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;

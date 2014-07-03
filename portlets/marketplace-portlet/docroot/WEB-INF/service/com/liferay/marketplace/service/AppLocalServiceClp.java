@@ -235,8 +235,7 @@ public class AppLocalServiceClp implements AppLocalService {
 
 	@Override
 	public com.liferay.marketplace.model.App deleteApp(long appId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
 		try {
@@ -248,10 +247,6 @@ public class AppLocalServiceClp implements AppLocalService {
 
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
 
 			if (t instanceof RuntimeException) {
@@ -268,8 +263,7 @@ public class AppLocalServiceClp implements AppLocalService {
 
 	@Override
 	public com.liferay.marketplace.model.App deleteApp(
-		com.liferay.marketplace.model.App app)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.marketplace.model.App app) {
 		Object returnObj = null;
 
 		try {
@@ -279,10 +273,6 @@ public class AppLocalServiceClp implements AppLocalService {
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
 
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
@@ -320,8 +310,7 @@ public class AppLocalServiceClp implements AppLocalService {
 	}
 
 	@Override
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
 		Object returnObj = null;
 
@@ -342,12 +331,11 @@ public class AppLocalServiceClp implements AppLocalService {
 			}
 		}
 
-		return (java.util.List)ClpSerializer.translateOutput(returnObj);
+		return (java.util.List<T>)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) {
 		Object returnObj = null;
@@ -375,15 +363,14 @@ public class AppLocalServiceClp implements AppLocalService {
 			}
 		}
 
-		return (java.util.List)ClpSerializer.translateOutput(returnObj);
+		return (java.util.List<T>)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<T> orderByComparator) {
 		Object returnObj = null;
 
 		try {
@@ -411,7 +398,7 @@ public class AppLocalServiceClp implements AppLocalService {
 			}
 		}
 
-		return (java.util.List)ClpSerializer.translateOutput(returnObj);
+		return (java.util.List<T>)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override
@@ -827,8 +814,7 @@ public class AppLocalServiceClp implements AppLocalService {
 	}
 
 	@Override
-	public com.liferay.marketplace.model.App fetchRemoteApp(long remoteAppId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public com.liferay.marketplace.model.App fetchRemoteApp(long remoteAppId) {
 		Object returnObj = null;
 
 		try {
@@ -837,10 +823,6 @@ public class AppLocalServiceClp implements AppLocalService {
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
 
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
@@ -856,8 +838,7 @@ public class AppLocalServiceClp implements AppLocalService {
 
 	@Override
 	public java.util.List<com.liferay.marketplace.model.App> getApps(
-		java.lang.String category)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		java.lang.String category) {
 		Object returnObj = null;
 
 		try {
@@ -867,10 +848,6 @@ public class AppLocalServiceClp implements AppLocalService {
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
 
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
@@ -908,8 +885,7 @@ public class AppLocalServiceClp implements AppLocalService {
 	}
 
 	@Override
-	public java.util.List<com.liferay.marketplace.model.App> getInstalledApps()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public java.util.List<com.liferay.marketplace.model.App> getInstalledApps() {
 		Object returnObj = null;
 
 		try {
@@ -918,10 +894,6 @@ public class AppLocalServiceClp implements AppLocalService {
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
 
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
@@ -937,8 +909,7 @@ public class AppLocalServiceClp implements AppLocalService {
 
 	@Override
 	public void installApp(long remoteAppId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		try {
 			_invokableLocalService.invokeMethod(_methodName29,
 				_methodParameterTypes29, new Object[] { remoteAppId });
@@ -948,10 +919,6 @@ public class AppLocalServiceClp implements AppLocalService {
 
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
 
 			if (t instanceof RuntimeException) {
@@ -966,8 +933,7 @@ public class AppLocalServiceClp implements AppLocalService {
 
 	@Override
 	public void processMarketplaceProperties(java.util.Properties properties)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		try {
 			_invokableLocalService.invokeMethod(_methodName30,
 				_methodParameterTypes30,
@@ -978,10 +944,6 @@ public class AppLocalServiceClp implements AppLocalService {
 
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
 
 			if (t instanceof RuntimeException) {
@@ -996,8 +958,7 @@ public class AppLocalServiceClp implements AppLocalService {
 
 	@Override
 	public void uninstallApp(long remoteAppId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		try {
 			_invokableLocalService.invokeMethod(_methodName31,
 				_methodParameterTypes31, new Object[] { remoteAppId });
@@ -1007,10 +968,6 @@ public class AppLocalServiceClp implements AppLocalService {
 
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
 
 			if (t instanceof RuntimeException) {
@@ -1026,8 +983,7 @@ public class AppLocalServiceClp implements AppLocalService {
 	@Override
 	public com.liferay.marketplace.model.App updateApp(long userId,
 		long remoteAppId, java.lang.String version, java.io.File file)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
 		try {
@@ -1050,10 +1006,6 @@ public class AppLocalServiceClp implements AppLocalService {
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
 			}
 
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
 			}
@@ -1071,8 +1023,7 @@ public class AppLocalServiceClp implements AppLocalService {
 		long remoteAppId, java.lang.String title, java.lang.String description,
 		java.lang.String category, java.lang.String iconURL,
 		java.lang.String version, java.io.File file)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
 		try {
@@ -1101,10 +1052,6 @@ public class AppLocalServiceClp implements AppLocalService {
 
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
 
 			if (t instanceof RuntimeException) {

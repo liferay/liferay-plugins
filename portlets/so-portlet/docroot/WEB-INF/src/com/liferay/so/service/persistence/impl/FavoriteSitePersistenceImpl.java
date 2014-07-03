@@ -149,7 +149,7 @@ public class FavoriteSitePersistenceImpl extends BasePersistenceImpl<FavoriteSit
 	 */
 	@Override
 	public List<FavoriteSite> findByUserId(long userId, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<FavoriteSite> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -255,7 +255,8 @@ public class FavoriteSitePersistenceImpl extends BasePersistenceImpl<FavoriteSit
 	 */
 	@Override
 	public FavoriteSite findByUserId_First(long userId,
-		OrderByComparator orderByComparator) throws NoSuchFavoriteSiteException {
+		OrderByComparator<FavoriteSite> orderByComparator)
+		throws NoSuchFavoriteSiteException {
 		FavoriteSite favoriteSite = fetchByUserId_First(userId,
 				orderByComparator);
 
@@ -284,7 +285,7 @@ public class FavoriteSitePersistenceImpl extends BasePersistenceImpl<FavoriteSit
 	 */
 	@Override
 	public FavoriteSite fetchByUserId_First(long userId,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<FavoriteSite> orderByComparator) {
 		List<FavoriteSite> list = findByUserId(userId, 0, 1, orderByComparator);
 
 		if (!list.isEmpty()) {
@@ -304,7 +305,8 @@ public class FavoriteSitePersistenceImpl extends BasePersistenceImpl<FavoriteSit
 	 */
 	@Override
 	public FavoriteSite findByUserId_Last(long userId,
-		OrderByComparator orderByComparator) throws NoSuchFavoriteSiteException {
+		OrderByComparator<FavoriteSite> orderByComparator)
+		throws NoSuchFavoriteSiteException {
 		FavoriteSite favoriteSite = fetchByUserId_Last(userId, orderByComparator);
 
 		if (favoriteSite != null) {
@@ -332,7 +334,7 @@ public class FavoriteSitePersistenceImpl extends BasePersistenceImpl<FavoriteSit
 	 */
 	@Override
 	public FavoriteSite fetchByUserId_Last(long userId,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<FavoriteSite> orderByComparator) {
 		int count = countByUserId(userId);
 
 		if (count == 0) {
@@ -360,7 +362,7 @@ public class FavoriteSitePersistenceImpl extends BasePersistenceImpl<FavoriteSit
 	 */
 	@Override
 	public FavoriteSite[] findByUserId_PrevAndNext(long favoriteSiteId,
-		long userId, OrderByComparator orderByComparator)
+		long userId, OrderByComparator<FavoriteSite> orderByComparator)
 		throws NoSuchFavoriteSiteException {
 		FavoriteSite favoriteSite = findByPrimaryKey(favoriteSiteId);
 
@@ -391,7 +393,7 @@ public class FavoriteSitePersistenceImpl extends BasePersistenceImpl<FavoriteSit
 
 	protected FavoriteSite getByUserId_PrevAndNext(Session session,
 		FavoriteSite favoriteSite, long userId,
-		OrderByComparator orderByComparator, boolean previous) {
+		OrderByComparator<FavoriteSite> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -1339,7 +1341,7 @@ public class FavoriteSitePersistenceImpl extends BasePersistenceImpl<FavoriteSit
 	 */
 	@Override
 	public List<FavoriteSite> findAll(int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<FavoriteSite> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;

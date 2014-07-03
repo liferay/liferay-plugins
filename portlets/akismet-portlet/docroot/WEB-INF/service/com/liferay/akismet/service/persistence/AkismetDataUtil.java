@@ -85,7 +85,7 @@ public class AkismetDataUtil {
 	 */
 	public static List<AkismetData> findWithDynamicQuery(
 		DynamicQuery dynamicQuery, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<AkismetData> orderByComparator) {
 		return getPersistence()
 				   .findWithDynamicQuery(dynamicQuery, start, end,
 			orderByComparator);
@@ -149,7 +149,7 @@ public class AkismetDataUtil {
 	*/
 	public static java.util.List<com.liferay.akismet.model.AkismetData> findByLtModifiedDate(
 		java.util.Date modifiedDate, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.akismet.model.AkismetData> orderByComparator) {
 		return getPersistence()
 				   .findByLtModifiedDate(modifiedDate, start, end,
 			orderByComparator);
@@ -165,7 +165,7 @@ public class AkismetDataUtil {
 	*/
 	public static com.liferay.akismet.model.AkismetData findByLtModifiedDate_First(
 		java.util.Date modifiedDate,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.akismet.model.AkismetData> orderByComparator)
 		throws com.liferay.akismet.NoSuchDataException {
 		return getPersistence()
 				   .findByLtModifiedDate_First(modifiedDate, orderByComparator);
@@ -180,7 +180,7 @@ public class AkismetDataUtil {
 	*/
 	public static com.liferay.akismet.model.AkismetData fetchByLtModifiedDate_First(
 		java.util.Date modifiedDate,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.akismet.model.AkismetData> orderByComparator) {
 		return getPersistence()
 				   .fetchByLtModifiedDate_First(modifiedDate, orderByComparator);
 	}
@@ -195,7 +195,7 @@ public class AkismetDataUtil {
 	*/
 	public static com.liferay.akismet.model.AkismetData findByLtModifiedDate_Last(
 		java.util.Date modifiedDate,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.akismet.model.AkismetData> orderByComparator)
 		throws com.liferay.akismet.NoSuchDataException {
 		return getPersistence()
 				   .findByLtModifiedDate_Last(modifiedDate, orderByComparator);
@@ -210,7 +210,7 @@ public class AkismetDataUtil {
 	*/
 	public static com.liferay.akismet.model.AkismetData fetchByLtModifiedDate_Last(
 		java.util.Date modifiedDate,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.akismet.model.AkismetData> orderByComparator) {
 		return getPersistence()
 				   .fetchByLtModifiedDate_Last(modifiedDate, orderByComparator);
 	}
@@ -226,7 +226,7 @@ public class AkismetDataUtil {
 	*/
 	public static com.liferay.akismet.model.AkismetData[] findByLtModifiedDate_PrevAndNext(
 		long akismetDataId, java.util.Date modifiedDate,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.akismet.model.AkismetData> orderByComparator)
 		throws com.liferay.akismet.NoSuchDataException {
 		return getPersistence()
 				   .findByLtModifiedDate_PrevAndNext(akismetDataId,
@@ -431,7 +431,7 @@ public class AkismetDataUtil {
 	*/
 	public static java.util.List<com.liferay.akismet.model.AkismetData> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.akismet.model.AkismetData> orderByComparator) {
 		return getPersistence().findAll(start, end, orderByComparator);
 	}
 

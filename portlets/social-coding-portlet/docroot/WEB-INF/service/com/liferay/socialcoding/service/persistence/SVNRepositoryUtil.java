@@ -85,7 +85,7 @@ public class SVNRepositoryUtil {
 	 */
 	public static List<SVNRepository> findWithDynamicQuery(
 		DynamicQuery dynamicQuery, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<SVNRepository> orderByComparator) {
 		return getPersistence()
 				   .findWithDynamicQuery(dynamicQuery, start, end,
 			orderByComparator);
@@ -281,7 +281,7 @@ public class SVNRepositoryUtil {
 	*/
 	public static java.util.List<com.liferay.socialcoding.model.SVNRepository> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialcoding.model.SVNRepository> orderByComparator) {
 		return getPersistence().findAll(start, end, orderByComparator);
 	}
 

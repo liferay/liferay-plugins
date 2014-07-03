@@ -152,7 +152,7 @@ public class AccountPersistenceImpl extends BasePersistenceImpl<Account>
 	 */
 	@Override
 	public List<Account> findByUserId(long userId, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<Account> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -258,7 +258,8 @@ public class AccountPersistenceImpl extends BasePersistenceImpl<Account>
 	 */
 	@Override
 	public Account findByUserId_First(long userId,
-		OrderByComparator orderByComparator) throws NoSuchAccountException {
+		OrderByComparator<Account> orderByComparator)
+		throws NoSuchAccountException {
 		Account account = fetchByUserId_First(userId, orderByComparator);
 
 		if (account != null) {
@@ -286,7 +287,7 @@ public class AccountPersistenceImpl extends BasePersistenceImpl<Account>
 	 */
 	@Override
 	public Account fetchByUserId_First(long userId,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<Account> orderByComparator) {
 		List<Account> list = findByUserId(userId, 0, 1, orderByComparator);
 
 		if (!list.isEmpty()) {
@@ -306,7 +307,8 @@ public class AccountPersistenceImpl extends BasePersistenceImpl<Account>
 	 */
 	@Override
 	public Account findByUserId_Last(long userId,
-		OrderByComparator orderByComparator) throws NoSuchAccountException {
+		OrderByComparator<Account> orderByComparator)
+		throws NoSuchAccountException {
 		Account account = fetchByUserId_Last(userId, orderByComparator);
 
 		if (account != null) {
@@ -334,7 +336,7 @@ public class AccountPersistenceImpl extends BasePersistenceImpl<Account>
 	 */
 	@Override
 	public Account fetchByUserId_Last(long userId,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<Account> orderByComparator) {
 		int count = countByUserId(userId);
 
 		if (count == 0) {
@@ -362,7 +364,8 @@ public class AccountPersistenceImpl extends BasePersistenceImpl<Account>
 	 */
 	@Override
 	public Account[] findByUserId_PrevAndNext(long accountId, long userId,
-		OrderByComparator orderByComparator) throws NoSuchAccountException {
+		OrderByComparator<Account> orderByComparator)
+		throws NoSuchAccountException {
 		Account account = findByPrimaryKey(accountId);
 
 		Session session = null;
@@ -391,7 +394,8 @@ public class AccountPersistenceImpl extends BasePersistenceImpl<Account>
 	}
 
 	protected Account getByUserId_PrevAndNext(Session session, Account account,
-		long userId, OrderByComparator orderByComparator, boolean previous) {
+		long userId, OrderByComparator<Account> orderByComparator,
+		boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -1390,7 +1394,7 @@ public class AccountPersistenceImpl extends BasePersistenceImpl<Account>
 	 */
 	@Override
 	public List<Account> findAll(int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<Account> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;

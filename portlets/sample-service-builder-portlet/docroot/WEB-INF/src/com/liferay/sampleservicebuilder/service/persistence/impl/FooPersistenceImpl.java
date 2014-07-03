@@ -152,7 +152,7 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 	 */
 	@Override
 	public List<Foo> findByUuid(String uuid, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<Foo> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -270,8 +270,8 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 	 * @throws com.liferay.sampleservicebuilder.NoSuchFooException if a matching foo could not be found
 	 */
 	@Override
-	public Foo findByUuid_First(String uuid, OrderByComparator orderByComparator)
-		throws NoSuchFooException {
+	public Foo findByUuid_First(String uuid,
+		OrderByComparator<Foo> orderByComparator) throws NoSuchFooException {
 		Foo foo = fetchByUuid_First(uuid, orderByComparator);
 
 		if (foo != null) {
@@ -299,7 +299,7 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 	 */
 	@Override
 	public Foo fetchByUuid_First(String uuid,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<Foo> orderByComparator) {
 		List<Foo> list = findByUuid(uuid, 0, 1, orderByComparator);
 
 		if (!list.isEmpty()) {
@@ -318,8 +318,8 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 	 * @throws com.liferay.sampleservicebuilder.NoSuchFooException if a matching foo could not be found
 	 */
 	@Override
-	public Foo findByUuid_Last(String uuid, OrderByComparator orderByComparator)
-		throws NoSuchFooException {
+	public Foo findByUuid_Last(String uuid,
+		OrderByComparator<Foo> orderByComparator) throws NoSuchFooException {
 		Foo foo = fetchByUuid_Last(uuid, orderByComparator);
 
 		if (foo != null) {
@@ -346,7 +346,8 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 	 * @return the last matching foo, or <code>null</code> if a matching foo could not be found
 	 */
 	@Override
-	public Foo fetchByUuid_Last(String uuid, OrderByComparator orderByComparator) {
+	public Foo fetchByUuid_Last(String uuid,
+		OrderByComparator<Foo> orderByComparator) {
 		int count = countByUuid(uuid);
 
 		if (count == 0) {
@@ -373,7 +374,7 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 	 */
 	@Override
 	public Foo[] findByUuid_PrevAndNext(long fooId, String uuid,
-		OrderByComparator orderByComparator) throws NoSuchFooException {
+		OrderByComparator<Foo> orderByComparator) throws NoSuchFooException {
 		Foo foo = findByPrimaryKey(fooId);
 
 		Session session = null;
@@ -402,7 +403,7 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 	}
 
 	protected Foo getByUuid_PrevAndNext(Session session, Foo foo, String uuid,
-		OrderByComparator orderByComparator, boolean previous) {
+		OrderByComparator<Foo> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -926,7 +927,7 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 	 */
 	@Override
 	public List<Foo> findByUuid_C(String uuid, long companyId, int start,
-		int end, OrderByComparator orderByComparator) {
+		int end, OrderByComparator<Foo> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -1055,7 +1056,7 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 	 */
 	@Override
 	public Foo findByUuid_C_First(String uuid, long companyId,
-		OrderByComparator orderByComparator) throws NoSuchFooException {
+		OrderByComparator<Foo> orderByComparator) throws NoSuchFooException {
 		Foo foo = fetchByUuid_C_First(uuid, companyId, orderByComparator);
 
 		if (foo != null) {
@@ -1087,7 +1088,7 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 	 */
 	@Override
 	public Foo fetchByUuid_C_First(String uuid, long companyId,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<Foo> orderByComparator) {
 		List<Foo> list = findByUuid_C(uuid, companyId, 0, 1, orderByComparator);
 
 		if (!list.isEmpty()) {
@@ -1108,7 +1109,7 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 	 */
 	@Override
 	public Foo findByUuid_C_Last(String uuid, long companyId,
-		OrderByComparator orderByComparator) throws NoSuchFooException {
+		OrderByComparator<Foo> orderByComparator) throws NoSuchFooException {
 		Foo foo = fetchByUuid_C_Last(uuid, companyId, orderByComparator);
 
 		if (foo != null) {
@@ -1140,7 +1141,7 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 	 */
 	@Override
 	public Foo fetchByUuid_C_Last(String uuid, long companyId,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<Foo> orderByComparator) {
 		int count = countByUuid_C(uuid, companyId);
 
 		if (count == 0) {
@@ -1169,7 +1170,7 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 	 */
 	@Override
 	public Foo[] findByUuid_C_PrevAndNext(long fooId, String uuid,
-		long companyId, OrderByComparator orderByComparator)
+		long companyId, OrderByComparator<Foo> orderByComparator)
 		throws NoSuchFooException {
 		Foo foo = findByPrimaryKey(fooId);
 
@@ -1199,7 +1200,7 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 	}
 
 	protected Foo getByUuid_C_PrevAndNext(Session session, Foo foo,
-		String uuid, long companyId, OrderByComparator orderByComparator,
+		String uuid, long companyId, OrderByComparator<Foo> orderByComparator,
 		boolean previous) {
 		StringBundler query = null;
 
@@ -1474,7 +1475,7 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 	 */
 	@Override
 	public List<Foo> findByField2(boolean field2, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<Foo> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -1579,7 +1580,7 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 	 */
 	@Override
 	public Foo findByField2_First(boolean field2,
-		OrderByComparator orderByComparator) throws NoSuchFooException {
+		OrderByComparator<Foo> orderByComparator) throws NoSuchFooException {
 		Foo foo = fetchByField2_First(field2, orderByComparator);
 
 		if (foo != null) {
@@ -1607,7 +1608,7 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 	 */
 	@Override
 	public Foo fetchByField2_First(boolean field2,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<Foo> orderByComparator) {
 		List<Foo> list = findByField2(field2, 0, 1, orderByComparator);
 
 		if (!list.isEmpty()) {
@@ -1627,7 +1628,7 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 	 */
 	@Override
 	public Foo findByField2_Last(boolean field2,
-		OrderByComparator orderByComparator) throws NoSuchFooException {
+		OrderByComparator<Foo> orderByComparator) throws NoSuchFooException {
 		Foo foo = fetchByField2_Last(field2, orderByComparator);
 
 		if (foo != null) {
@@ -1655,7 +1656,7 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 	 */
 	@Override
 	public Foo fetchByField2_Last(boolean field2,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<Foo> orderByComparator) {
 		int count = countByField2(field2);
 
 		if (count == 0) {
@@ -1683,7 +1684,7 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 	 */
 	@Override
 	public Foo[] findByField2_PrevAndNext(long fooId, boolean field2,
-		OrderByComparator orderByComparator) throws NoSuchFooException {
+		OrderByComparator<Foo> orderByComparator) throws NoSuchFooException {
 		Foo foo = findByPrimaryKey(fooId);
 
 		Session session = null;
@@ -1712,7 +1713,8 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 	}
 
 	protected Foo getByField2_PrevAndNext(Session session, Foo foo,
-		boolean field2, OrderByComparator orderByComparator, boolean previous) {
+		boolean field2, OrderByComparator<Foo> orderByComparator,
+		boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -2469,7 +2471,7 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 	 */
 	@Override
 	public List<Foo> findAll(int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<Foo> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;

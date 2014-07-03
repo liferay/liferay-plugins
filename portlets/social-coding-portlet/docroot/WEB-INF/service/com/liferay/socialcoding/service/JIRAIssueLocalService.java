@@ -91,8 +91,7 @@ public interface JIRAIssueLocalService extends BaseLocalService,
 	* @param dynamicQuery the dynamic query
 	* @return the matching rows
 	*/
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery);
 
 	/**
@@ -107,8 +106,7 @@ public interface JIRAIssueLocalService extends BaseLocalService,
 	* @param end the upper bound of the range of model instances (not inclusive)
 	* @return the range of matching rows
 	*/
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end);
 
@@ -125,11 +123,10 @@ public interface JIRAIssueLocalService extends BaseLocalService,
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching rows
 	*/
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<T> orderByComparator);
 
 	/**
 	* Returns the number of rows that match the dynamic query.
@@ -161,13 +158,11 @@ public interface JIRAIssueLocalService extends BaseLocalService,
 	* @param jiraIssueId the primary key of the j i r a issue
 	* @return the j i r a issue
 	* @throws PortalException if a j i r a issue with the primary key could not be found
-	* @throws SystemException
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.socialcoding.model.JIRAIssue getJIRAIssue(
 		long jiraIssueId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery();
@@ -240,98 +235,80 @@ public interface JIRAIssueLocalService extends BaseLocalService,
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.socialcoding.model.JIRAIssue> getAssigneeJIRAIssues(
 		java.util.Date modifiedDate, long projectId,
-		java.lang.String assigneeJiraUserId, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		java.lang.String assigneeJiraUserId, int start, int end);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.socialcoding.model.JIRAIssue> getAssigneeJIRAIssues(
-		long projectId, java.lang.String assigneeJiraUserId, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		long projectId, java.lang.String assigneeJiraUserId, int start, int end);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.socialcoding.model.JIRAIssue> getAssigneeJIRAIssues(
 		long projectId, java.lang.String assigneeJiraUserId,
-		java.lang.String status, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		java.lang.String status, int start, int end);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getAssigneeJIRAIssuesCount(java.util.Date modifiedDate,
-		long projectId, java.lang.String assigneeJiraUserId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		long projectId, java.lang.String assigneeJiraUserId);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getAssigneeJIRAIssuesCount(long projectId,
-		java.lang.String assigneeJiraUserId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		java.lang.String assigneeJiraUserId);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getAssigneeJIRAIssuesCount(long projectId,
-		java.lang.String assigneeJiraUserId, java.lang.String status)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		java.lang.String assigneeJiraUserId, java.lang.String status);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.socialcoding.model.JIRAIssue getFirstAssigneeJIRAIssue(
 		long projectId, java.lang.String assigneeJiraUserId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.socialcoding.model.JIRAIssue getFirstReporterJIRAIssue(
 		long projectId, java.lang.String reporterJiraUserId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.socialcoding.model.JIRAIssue getJIRAIssue(
 		java.lang.String key)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.socialcoding.model.JIRAIssue getLastAssigneeJIRAIssue(
 		long projectId, java.lang.String assigneeJiraUserId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.socialcoding.model.JIRAIssue getLastreporterJIRAIssue(
 		long projectId, java.lang.String reporterJiraUserId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.socialcoding.model.JIRAIssue> getReporterJIRAIssues(
 		java.util.Date modifiedDate, long projectId,
-		java.lang.String reporterJiraUserId, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		java.lang.String reporterJiraUserId, int start, int end);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.socialcoding.model.JIRAIssue> getReporterJIRAIssues(
-		long projectId, java.lang.String reporterJiraUserId, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		long projectId, java.lang.String reporterJiraUserId, int start, int end);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.socialcoding.model.JIRAIssue> getReporterJIRAIssues(
 		long projectId, java.lang.String reporterJiraUserId,
-		java.lang.String status, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		java.lang.String status, int start, int end);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getReporterJIRAIssuesCount(java.util.Date modifiedDate,
-		long projectId, java.lang.String reporterJiraUserId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		long projectId, java.lang.String reporterJiraUserId);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getReporterJIRAIssuesCount(long projectId,
-		java.lang.String reporterJiraUserId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		java.lang.String reporterJiraUserId);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getReporterJIRAIssuesCount(long projectId,
-		java.lang.String reporterJiraUserId, java.lang.String status)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		java.lang.String reporterJiraUserId, java.lang.String status);
 
 	public void updateJIRAIssues(long projectId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.portal.kernel.exception.PortalException;
 }

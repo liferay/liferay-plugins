@@ -107,11 +107,10 @@ public abstract class FooLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @param fooId the primary key of the foo
 	 * @return the foo that was removed
 	 * @throws PortalException if a foo with the primary key could not be found
-	 * @throws SystemException
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
-	public Foo deleteFoo(long fooId) throws PortalException, SystemException {
+	public Foo deleteFoo(long fooId) throws PortalException {
 		return fooPersistence.remove(fooId);
 	}
 
@@ -120,11 +119,10 @@ public abstract class FooLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 *
 	 * @param foo the foo
 	 * @return the foo that was removed
-	 * @throws SystemException
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
-	public Foo deleteFoo(Foo foo) throws SystemException {
+	public Foo deleteFoo(Foo foo) {
 		return fooPersistence.remove(foo);
 	}
 
@@ -143,8 +141,7 @@ public abstract class FooLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the matching rows
 	 */
 	@Override
-	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery) {
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery) {
 		return fooPersistence.findWithDynamicQuery(dynamicQuery);
 	}
 
@@ -161,8 +158,8 @@ public abstract class FooLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the range of matching rows
 	 */
 	@Override
-	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end) {
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
+		int end) {
 		return fooPersistence.findWithDynamicQuery(dynamicQuery, start, end);
 	}
 
@@ -180,9 +177,8 @@ public abstract class FooLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the ordered range of matching rows
 	 */
 	@Override
-	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end,
-		OrderByComparator orderByComparator) {
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
+		int end, OrderByComparator<T> orderByComparator) {
 		return fooPersistence.findWithDynamicQuery(dynamicQuery, start, end,
 			orderByComparator);
 	}

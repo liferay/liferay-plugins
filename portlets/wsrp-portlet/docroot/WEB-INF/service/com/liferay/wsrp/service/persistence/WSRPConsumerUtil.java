@@ -85,7 +85,7 @@ public class WSRPConsumerUtil {
 	 */
 	public static List<WSRPConsumer> findWithDynamicQuery(
 		DynamicQuery dynamicQuery, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<WSRPConsumer> orderByComparator) {
 		return getPersistence()
 				   .findWithDynamicQuery(dynamicQuery, start, end,
 			orderByComparator);
@@ -149,7 +149,7 @@ public class WSRPConsumerUtil {
 	*/
 	public static java.util.List<com.liferay.wsrp.model.WSRPConsumer> findByUuid(
 		java.lang.String uuid, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.wsrp.model.WSRPConsumer> orderByComparator) {
 		return getPersistence().findByUuid(uuid, start, end, orderByComparator);
 	}
 
@@ -163,7 +163,7 @@ public class WSRPConsumerUtil {
 	*/
 	public static com.liferay.wsrp.model.WSRPConsumer findByUuid_First(
 		java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.wsrp.model.WSRPConsumer> orderByComparator)
 		throws com.liferay.wsrp.NoSuchConsumerException {
 		return getPersistence().findByUuid_First(uuid, orderByComparator);
 	}
@@ -177,7 +177,7 @@ public class WSRPConsumerUtil {
 	*/
 	public static com.liferay.wsrp.model.WSRPConsumer fetchByUuid_First(
 		java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.wsrp.model.WSRPConsumer> orderByComparator) {
 		return getPersistence().fetchByUuid_First(uuid, orderByComparator);
 	}
 
@@ -191,7 +191,7 @@ public class WSRPConsumerUtil {
 	*/
 	public static com.liferay.wsrp.model.WSRPConsumer findByUuid_Last(
 		java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.wsrp.model.WSRPConsumer> orderByComparator)
 		throws com.liferay.wsrp.NoSuchConsumerException {
 		return getPersistence().findByUuid_Last(uuid, orderByComparator);
 	}
@@ -205,7 +205,7 @@ public class WSRPConsumerUtil {
 	*/
 	public static com.liferay.wsrp.model.WSRPConsumer fetchByUuid_Last(
 		java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.wsrp.model.WSRPConsumer> orderByComparator) {
 		return getPersistence().fetchByUuid_Last(uuid, orderByComparator);
 	}
 
@@ -220,7 +220,7 @@ public class WSRPConsumerUtil {
 	*/
 	public static com.liferay.wsrp.model.WSRPConsumer[] findByUuid_PrevAndNext(
 		long wsrpConsumerId, java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.wsrp.model.WSRPConsumer> orderByComparator)
 		throws com.liferay.wsrp.NoSuchConsumerException {
 		return getPersistence()
 				   .findByUuid_PrevAndNext(wsrpConsumerId, uuid,
@@ -292,7 +292,7 @@ public class WSRPConsumerUtil {
 	*/
 	public static java.util.List<com.liferay.wsrp.model.WSRPConsumer> findByUuid_C(
 		java.lang.String uuid, long companyId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.wsrp.model.WSRPConsumer> orderByComparator) {
 		return getPersistence()
 				   .findByUuid_C(uuid, companyId, start, end, orderByComparator);
 	}
@@ -308,7 +308,7 @@ public class WSRPConsumerUtil {
 	*/
 	public static com.liferay.wsrp.model.WSRPConsumer findByUuid_C_First(
 		java.lang.String uuid, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.wsrp.model.WSRPConsumer> orderByComparator)
 		throws com.liferay.wsrp.NoSuchConsumerException {
 		return getPersistence()
 				   .findByUuid_C_First(uuid, companyId, orderByComparator);
@@ -324,7 +324,7 @@ public class WSRPConsumerUtil {
 	*/
 	public static com.liferay.wsrp.model.WSRPConsumer fetchByUuid_C_First(
 		java.lang.String uuid, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.wsrp.model.WSRPConsumer> orderByComparator) {
 		return getPersistence()
 				   .fetchByUuid_C_First(uuid, companyId, orderByComparator);
 	}
@@ -340,7 +340,7 @@ public class WSRPConsumerUtil {
 	*/
 	public static com.liferay.wsrp.model.WSRPConsumer findByUuid_C_Last(
 		java.lang.String uuid, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.wsrp.model.WSRPConsumer> orderByComparator)
 		throws com.liferay.wsrp.NoSuchConsumerException {
 		return getPersistence()
 				   .findByUuid_C_Last(uuid, companyId, orderByComparator);
@@ -356,7 +356,7 @@ public class WSRPConsumerUtil {
 	*/
 	public static com.liferay.wsrp.model.WSRPConsumer fetchByUuid_C_Last(
 		java.lang.String uuid, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.wsrp.model.WSRPConsumer> orderByComparator) {
 		return getPersistence()
 				   .fetchByUuid_C_Last(uuid, companyId, orderByComparator);
 	}
@@ -373,7 +373,7 @@ public class WSRPConsumerUtil {
 	*/
 	public static com.liferay.wsrp.model.WSRPConsumer[] findByUuid_C_PrevAndNext(
 		long wsrpConsumerId, java.lang.String uuid, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.wsrp.model.WSRPConsumer> orderByComparator)
 		throws com.liferay.wsrp.NoSuchConsumerException {
 		return getPersistence()
 				   .findByUuid_C_PrevAndNext(wsrpConsumerId, uuid, companyId,
@@ -444,7 +444,7 @@ public class WSRPConsumerUtil {
 	*/
 	public static java.util.List<com.liferay.wsrp.model.WSRPConsumer> findByCompanyId(
 		long companyId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.wsrp.model.WSRPConsumer> orderByComparator) {
 		return getPersistence()
 				   .findByCompanyId(companyId, start, end, orderByComparator);
 	}
@@ -459,7 +459,7 @@ public class WSRPConsumerUtil {
 	*/
 	public static com.liferay.wsrp.model.WSRPConsumer findByCompanyId_First(
 		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.wsrp.model.WSRPConsumer> orderByComparator)
 		throws com.liferay.wsrp.NoSuchConsumerException {
 		return getPersistence()
 				   .findByCompanyId_First(companyId, orderByComparator);
@@ -474,7 +474,7 @@ public class WSRPConsumerUtil {
 	*/
 	public static com.liferay.wsrp.model.WSRPConsumer fetchByCompanyId_First(
 		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.wsrp.model.WSRPConsumer> orderByComparator) {
 		return getPersistence()
 				   .fetchByCompanyId_First(companyId, orderByComparator);
 	}
@@ -489,7 +489,7 @@ public class WSRPConsumerUtil {
 	*/
 	public static com.liferay.wsrp.model.WSRPConsumer findByCompanyId_Last(
 		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.wsrp.model.WSRPConsumer> orderByComparator)
 		throws com.liferay.wsrp.NoSuchConsumerException {
 		return getPersistence()
 				   .findByCompanyId_Last(companyId, orderByComparator);
@@ -504,7 +504,7 @@ public class WSRPConsumerUtil {
 	*/
 	public static com.liferay.wsrp.model.WSRPConsumer fetchByCompanyId_Last(
 		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.wsrp.model.WSRPConsumer> orderByComparator) {
 		return getPersistence()
 				   .fetchByCompanyId_Last(companyId, orderByComparator);
 	}
@@ -520,7 +520,7 @@ public class WSRPConsumerUtil {
 	*/
 	public static com.liferay.wsrp.model.WSRPConsumer[] findByCompanyId_PrevAndNext(
 		long wsrpConsumerId, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.wsrp.model.WSRPConsumer> orderByComparator)
 		throws com.liferay.wsrp.NoSuchConsumerException {
 		return getPersistence()
 				   .findByCompanyId_PrevAndNext(wsrpConsumerId, companyId,
@@ -661,7 +661,7 @@ public class WSRPConsumerUtil {
 	*/
 	public static java.util.List<com.liferay.wsrp.model.WSRPConsumer> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.wsrp.model.WSRPConsumer> orderByComparator) {
 		return getPersistence().findAll(start, end, orderByComparator);
 	}
 

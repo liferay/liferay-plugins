@@ -67,12 +67,10 @@ public class AttachmentLocalServiceUtil {
 	* @param attachmentId the primary key of the attachment
 	* @return the attachment that was removed
 	* @throws PortalException if a attachment with the primary key could not be found
-	* @throws SystemException
 	*/
 	public static com.liferay.mail.model.Attachment deleteAttachment(
 		long attachmentId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().deleteAttachment(attachmentId);
 	}
 
@@ -97,8 +95,7 @@ public class AttachmentLocalServiceUtil {
 	* @param dynamicQuery the dynamic query
 	* @return the matching rows
 	*/
-	@SuppressWarnings("rawtypes")
-	public static java.util.List dynamicQuery(
+	public static <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
 		return getService().dynamicQuery(dynamicQuery);
 	}
@@ -115,8 +112,7 @@ public class AttachmentLocalServiceUtil {
 	* @param end the upper bound of the range of model instances (not inclusive)
 	* @return the range of matching rows
 	*/
-	@SuppressWarnings("rawtypes")
-	public static java.util.List dynamicQuery(
+	public static <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) {
 		return getService().dynamicQuery(dynamicQuery, start, end);
@@ -135,11 +131,10 @@ public class AttachmentLocalServiceUtil {
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching rows
 	*/
-	@SuppressWarnings("rawtypes")
-	public static java.util.List dynamicQuery(
+	public static <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<T> orderByComparator) {
 		return getService()
 				   .dynamicQuery(dynamicQuery, start, end, orderByComparator);
 	}
@@ -268,34 +263,29 @@ public class AttachmentLocalServiceUtil {
 	public static com.liferay.mail.model.Attachment addAttachment(long userId,
 		long messageId, java.lang.String contentPath,
 		java.lang.String fileName, long size, java.io.File file)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService()
 				   .addAttachment(userId, messageId, contentPath, fileName,
 			size, file);
 	}
 
 	public static void deleteAttachments(long companyId, long messageId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		getService().deleteAttachments(companyId, messageId);
 	}
 
 	public static java.util.List<com.liferay.mail.model.Attachment> getAttachments(
-		long messageId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long messageId) {
 		return getService().getAttachments(messageId);
 	}
 
 	public static java.io.File getFile(long attachmentId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().getFile(attachmentId);
 	}
 
 	public static java.io.InputStream getInputStream(long attachmentId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().getInputStream(attachmentId);
 	}
 

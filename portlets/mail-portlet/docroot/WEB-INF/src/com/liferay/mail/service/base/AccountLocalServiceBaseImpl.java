@@ -101,12 +101,10 @@ public abstract class AccountLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @param accountId the primary key of the account
 	 * @return the account that was removed
 	 * @throws PortalException if a account with the primary key could not be found
-	 * @throws SystemException
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
-	public Account deleteAccount(long accountId)
-		throws PortalException, SystemException {
+	public Account deleteAccount(long accountId) throws PortalException {
 		return accountPersistence.remove(accountId);
 	}
 
@@ -116,12 +114,10 @@ public abstract class AccountLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @param account the account
 	 * @return the account that was removed
 	 * @throws PortalException
-	 * @throws SystemException
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
-	public Account deleteAccount(Account account)
-		throws PortalException, SystemException {
+	public Account deleteAccount(Account account) throws PortalException {
 		return accountPersistence.remove(account);
 	}
 
@@ -140,8 +136,7 @@ public abstract class AccountLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the matching rows
 	 */
 	@Override
-	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery) {
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery) {
 		return accountPersistence.findWithDynamicQuery(dynamicQuery);
 	}
 
@@ -158,8 +153,8 @@ public abstract class AccountLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the range of matching rows
 	 */
 	@Override
-	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end) {
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
+		int end) {
 		return accountPersistence.findWithDynamicQuery(dynamicQuery, start, end);
 	}
 
@@ -177,9 +172,8 @@ public abstract class AccountLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the ordered range of matching rows
 	 */
 	@Override
-	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end,
-		OrderByComparator orderByComparator) {
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
+		int end, OrderByComparator<T> orderByComparator) {
 		return accountPersistence.findWithDynamicQuery(dynamicQuery, start,
 			end, orderByComparator);
 	}

@@ -263,8 +263,7 @@ public class WSRPConsumerPortletLocalServiceClp
 	@Override
 	public com.liferay.wsrp.model.WSRPConsumerPortlet deleteWSRPConsumerPortlet(
 		long wsrpConsumerPortletId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
 		try {
@@ -277,10 +276,6 @@ public class WSRPConsumerPortletLocalServiceClp
 
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
 
 			if (t instanceof RuntimeException) {
@@ -298,8 +293,7 @@ public class WSRPConsumerPortletLocalServiceClp
 	@Override
 	public com.liferay.wsrp.model.WSRPConsumerPortlet deleteWSRPConsumerPortlet(
 		com.liferay.wsrp.model.WSRPConsumerPortlet wsrpConsumerPortlet)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
 		try {
@@ -314,10 +308,6 @@ public class WSRPConsumerPortletLocalServiceClp
 
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
 
 			if (t instanceof RuntimeException) {
@@ -356,8 +346,7 @@ public class WSRPConsumerPortletLocalServiceClp
 	}
 
 	@Override
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
 		Object returnObj = null;
 
@@ -378,12 +367,11 @@ public class WSRPConsumerPortletLocalServiceClp
 			}
 		}
 
-		return (java.util.List)ClpSerializer.translateOutput(returnObj);
+		return (java.util.List<T>)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) {
 		Object returnObj = null;
@@ -411,15 +399,14 @@ public class WSRPConsumerPortletLocalServiceClp
 			}
 		}
 
-		return (java.util.List)ClpSerializer.translateOutput(returnObj);
+		return (java.util.List<T>)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<T> orderByComparator) {
 		Object returnObj = null;
 
 		try {
@@ -447,7 +434,7 @@ public class WSRPConsumerPortletLocalServiceClp
 			}
 		}
 
-		return (java.util.List)ClpSerializer.translateOutput(returnObj);
+		return (java.util.List<T>)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override
@@ -854,8 +841,7 @@ public class WSRPConsumerPortletLocalServiceClp
 		long wsrpConsumerId, java.lang.String name,
 		java.lang.String portletHandle,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
 		try {
@@ -878,10 +864,6 @@ public class WSRPConsumerPortletLocalServiceClp
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
 			}
 
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
 			}
@@ -899,8 +881,7 @@ public class WSRPConsumerPortletLocalServiceClp
 		java.lang.String wsrpConsumerUuid, java.lang.String name,
 		java.lang.String portletHandle,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
 		try {
@@ -923,10 +904,6 @@ public class WSRPConsumerPortletLocalServiceClp
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
 			}
 
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
 			}
@@ -942,8 +919,7 @@ public class WSRPConsumerPortletLocalServiceClp
 	@Override
 	public void deleteWSRPConsumerPortlet(
 		java.lang.String wsrpConsumerPortletUuid)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		try {
 			_invokableLocalService.invokeMethod(_methodName26,
 				_methodParameterTypes26,
@@ -958,10 +934,6 @@ public class WSRPConsumerPortletLocalServiceClp
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
 			}
 
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
 			}
@@ -974,8 +946,7 @@ public class WSRPConsumerPortletLocalServiceClp
 
 	@Override
 	public void deleteWSRPConsumerPortlets(long wsrpConsumerId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		try {
 			_invokableLocalService.invokeMethod(_methodName27,
 				_methodParameterTypes27, new Object[] { wsrpConsumerId });
@@ -985,10 +956,6 @@ public class WSRPConsumerPortletLocalServiceClp
 
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
 
 			if (t instanceof RuntimeException) {
@@ -1030,8 +997,7 @@ public class WSRPConsumerPortletLocalServiceClp
 
 	@Override
 	public void destroyWSRPConsumerPortlets()
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		try {
 			_invokableLocalService.invokeMethod(_methodName29,
 				_methodParameterTypes29, new Object[] {  });
@@ -1041,10 +1007,6 @@ public class WSRPConsumerPortletLocalServiceClp
 
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
 
 			if (t instanceof RuntimeException) {
@@ -1060,8 +1022,7 @@ public class WSRPConsumerPortletLocalServiceClp
 	@Override
 	public com.liferay.wsrp.model.WSRPConsumerPortlet getWSRPConsumerPortlet(
 		long wsrpConsumerId, java.lang.String portletHandle)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
 		try {
@@ -1080,10 +1041,6 @@ public class WSRPConsumerPortletLocalServiceClp
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
 			}
 
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
 			}
@@ -1099,8 +1056,7 @@ public class WSRPConsumerPortletLocalServiceClp
 	@Override
 	public com.liferay.wsrp.model.WSRPConsumerPortlet getWSRPConsumerPortlet(
 		java.lang.String wsrpConsumerPortletUuid)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
 		try {
@@ -1117,10 +1073,6 @@ public class WSRPConsumerPortletLocalServiceClp
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
 			}
 
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
 			}
@@ -1135,8 +1087,7 @@ public class WSRPConsumerPortletLocalServiceClp
 
 	@Override
 	public java.util.List<com.liferay.wsrp.model.WSRPConsumerPortlet> getWSRPConsumerPortlets(
-		long wsrpConsumerId, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long wsrpConsumerId, int start, int end) {
 		Object returnObj = null;
 
 		try {
@@ -1146,10 +1097,6 @@ public class WSRPConsumerPortletLocalServiceClp
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
 
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
@@ -1164,8 +1111,7 @@ public class WSRPConsumerPortletLocalServiceClp
 	}
 
 	@Override
-	public int getWSRPConsumerPortletsCount(long wsrpConsumerId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public int getWSRPConsumerPortletsCount(long wsrpConsumerId) {
 		Object returnObj = null;
 
 		try {
@@ -1174,10 +1120,6 @@ public class WSRPConsumerPortletLocalServiceClp
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
 
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
@@ -1214,8 +1156,7 @@ public class WSRPConsumerPortletLocalServiceClp
 	public void initWSRPConsumerPortlet(long companyId, long wsrpConsumerId,
 		long wsrpConsumerPortletId, java.lang.String wsrpConsumerPortletUuid,
 		java.lang.String name, java.lang.String portletHandle)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		try {
 			_invokableLocalService.invokeMethod(_methodName35,
 				_methodParameterTypes35,
@@ -1240,10 +1181,6 @@ public class WSRPConsumerPortletLocalServiceClp
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
 			}
 
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
 			}
@@ -1255,18 +1192,13 @@ public class WSRPConsumerPortletLocalServiceClp
 	}
 
 	@Override
-	public void initWSRPConsumerPortlets()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public void initWSRPConsumerPortlets() {
 		try {
 			_invokableLocalService.invokeMethod(_methodName36,
 				_methodParameterTypes36, new Object[] {  });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
 
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
@@ -1281,8 +1213,7 @@ public class WSRPConsumerPortletLocalServiceClp
 	@Override
 	public com.liferay.wsrp.model.WSRPConsumerPortlet updateWSRPConsumerPortlet(
 		long wsrpConsumerPortletId, java.lang.String name)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
 		try {
@@ -1299,10 +1230,6 @@ public class WSRPConsumerPortletLocalServiceClp
 
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
 
 			if (t instanceof RuntimeException) {

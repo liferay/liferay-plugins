@@ -121,7 +121,7 @@ public interface StatusPersistence extends BasePersistence<Status> {
 	*/
 	public java.util.List<com.liferay.chat.model.Status> findByModifiedDate(
 		long modifiedDate, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.chat.model.Status> orderByComparator);
 
 	/**
 	* Returns the first status in the ordered set where modifiedDate = &#63;.
@@ -133,7 +133,7 @@ public interface StatusPersistence extends BasePersistence<Status> {
 	*/
 	public com.liferay.chat.model.Status findByModifiedDate_First(
 		long modifiedDate,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.chat.model.Status> orderByComparator)
 		throws com.liferay.chat.NoSuchStatusException;
 
 	/**
@@ -145,7 +145,7 @@ public interface StatusPersistence extends BasePersistence<Status> {
 	*/
 	public com.liferay.chat.model.Status fetchByModifiedDate_First(
 		long modifiedDate,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.chat.model.Status> orderByComparator);
 
 	/**
 	* Returns the last status in the ordered set where modifiedDate = &#63;.
@@ -157,7 +157,7 @@ public interface StatusPersistence extends BasePersistence<Status> {
 	*/
 	public com.liferay.chat.model.Status findByModifiedDate_Last(
 		long modifiedDate,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.chat.model.Status> orderByComparator)
 		throws com.liferay.chat.NoSuchStatusException;
 
 	/**
@@ -169,7 +169,7 @@ public interface StatusPersistence extends BasePersistence<Status> {
 	*/
 	public com.liferay.chat.model.Status fetchByModifiedDate_Last(
 		long modifiedDate,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.chat.model.Status> orderByComparator);
 
 	/**
 	* Returns the statuses before and after the current status in the ordered set where modifiedDate = &#63;.
@@ -182,7 +182,7 @@ public interface StatusPersistence extends BasePersistence<Status> {
 	*/
 	public com.liferay.chat.model.Status[] findByModifiedDate_PrevAndNext(
 		long statusId, long modifiedDate,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.chat.model.Status> orderByComparator)
 		throws com.liferay.chat.NoSuchStatusException;
 
 	/**
@@ -239,7 +239,7 @@ public interface StatusPersistence extends BasePersistence<Status> {
 	*/
 	public java.util.List<com.liferay.chat.model.Status> findByOnline(
 		boolean online, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.chat.model.Status> orderByComparator);
 
 	/**
 	* Returns the first status in the ordered set where online = &#63;.
@@ -250,7 +250,7 @@ public interface StatusPersistence extends BasePersistence<Status> {
 	* @throws com.liferay.chat.NoSuchStatusException if a matching status could not be found
 	*/
 	public com.liferay.chat.model.Status findByOnline_First(boolean online,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.chat.model.Status> orderByComparator)
 		throws com.liferay.chat.NoSuchStatusException;
 
 	/**
@@ -261,7 +261,7 @@ public interface StatusPersistence extends BasePersistence<Status> {
 	* @return the first matching status, or <code>null</code> if a matching status could not be found
 	*/
 	public com.liferay.chat.model.Status fetchByOnline_First(boolean online,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.chat.model.Status> orderByComparator);
 
 	/**
 	* Returns the last status in the ordered set where online = &#63;.
@@ -272,7 +272,7 @@ public interface StatusPersistence extends BasePersistence<Status> {
 	* @throws com.liferay.chat.NoSuchStatusException if a matching status could not be found
 	*/
 	public com.liferay.chat.model.Status findByOnline_Last(boolean online,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.chat.model.Status> orderByComparator)
 		throws com.liferay.chat.NoSuchStatusException;
 
 	/**
@@ -283,7 +283,7 @@ public interface StatusPersistence extends BasePersistence<Status> {
 	* @return the last matching status, or <code>null</code> if a matching status could not be found
 	*/
 	public com.liferay.chat.model.Status fetchByOnline_Last(boolean online,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.chat.model.Status> orderByComparator);
 
 	/**
 	* Returns the statuses before and after the current status in the ordered set where online = &#63;.
@@ -296,7 +296,7 @@ public interface StatusPersistence extends BasePersistence<Status> {
 	*/
 	public com.liferay.chat.model.Status[] findByOnline_PrevAndNext(
 		long statusId, boolean online,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.chat.model.Status> orderByComparator)
 		throws com.liferay.chat.NoSuchStatusException;
 
 	/**
@@ -356,7 +356,7 @@ public interface StatusPersistence extends BasePersistence<Status> {
 	*/
 	public java.util.List<com.liferay.chat.model.Status> findByM_O(
 		long modifiedDate, boolean online, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.chat.model.Status> orderByComparator);
 
 	/**
 	* Returns the first status in the ordered set where modifiedDate = &#63; and online = &#63;.
@@ -369,7 +369,7 @@ public interface StatusPersistence extends BasePersistence<Status> {
 	*/
 	public com.liferay.chat.model.Status findByM_O_First(long modifiedDate,
 		boolean online,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.chat.model.Status> orderByComparator)
 		throws com.liferay.chat.NoSuchStatusException;
 
 	/**
@@ -382,7 +382,7 @@ public interface StatusPersistence extends BasePersistence<Status> {
 	*/
 	public com.liferay.chat.model.Status fetchByM_O_First(long modifiedDate,
 		boolean online,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.chat.model.Status> orderByComparator);
 
 	/**
 	* Returns the last status in the ordered set where modifiedDate = &#63; and online = &#63;.
@@ -395,7 +395,7 @@ public interface StatusPersistence extends BasePersistence<Status> {
 	*/
 	public com.liferay.chat.model.Status findByM_O_Last(long modifiedDate,
 		boolean online,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.chat.model.Status> orderByComparator)
 		throws com.liferay.chat.NoSuchStatusException;
 
 	/**
@@ -408,7 +408,7 @@ public interface StatusPersistence extends BasePersistence<Status> {
 	*/
 	public com.liferay.chat.model.Status fetchByM_O_Last(long modifiedDate,
 		boolean online,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.chat.model.Status> orderByComparator);
 
 	/**
 	* Returns the statuses before and after the current status in the ordered set where modifiedDate = &#63; and online = &#63;.
@@ -422,7 +422,7 @@ public interface StatusPersistence extends BasePersistence<Status> {
 	*/
 	public com.liferay.chat.model.Status[] findByM_O_PrevAndNext(
 		long statusId, long modifiedDate, boolean online,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.chat.model.Status> orderByComparator)
 		throws com.liferay.chat.NoSuchStatusException;
 
 	/**
@@ -535,7 +535,7 @@ public interface StatusPersistence extends BasePersistence<Status> {
 	*/
 	public java.util.List<com.liferay.chat.model.Status> findAll(int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.chat.model.Status> orderByComparator);
 
 	/**
 	* Removes all the statuses from the database.

@@ -714,8 +714,7 @@ public class MessageWrapper implements Message, ModelWrapper<Message> {
 
 	@Override
 	public long getGroupId()
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _message.getGroupId();
 	}
 

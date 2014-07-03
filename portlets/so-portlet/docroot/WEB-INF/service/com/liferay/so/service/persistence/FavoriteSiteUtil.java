@@ -85,7 +85,7 @@ public class FavoriteSiteUtil {
 	 */
 	public static List<FavoriteSite> findWithDynamicQuery(
 		DynamicQuery dynamicQuery, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<FavoriteSite> orderByComparator) {
 		return getPersistence()
 				   .findWithDynamicQuery(dynamicQuery, start, end,
 			orderByComparator);
@@ -149,7 +149,7 @@ public class FavoriteSiteUtil {
 	*/
 	public static java.util.List<com.liferay.so.model.FavoriteSite> findByUserId(
 		long userId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.so.model.FavoriteSite> orderByComparator) {
 		return getPersistence()
 				   .findByUserId(userId, start, end, orderByComparator);
 	}
@@ -164,7 +164,7 @@ public class FavoriteSiteUtil {
 	*/
 	public static com.liferay.so.model.FavoriteSite findByUserId_First(
 		long userId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.so.model.FavoriteSite> orderByComparator)
 		throws com.liferay.so.NoSuchFavoriteSiteException {
 		return getPersistence().findByUserId_First(userId, orderByComparator);
 	}
@@ -178,7 +178,7 @@ public class FavoriteSiteUtil {
 	*/
 	public static com.liferay.so.model.FavoriteSite fetchByUserId_First(
 		long userId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.so.model.FavoriteSite> orderByComparator) {
 		return getPersistence().fetchByUserId_First(userId, orderByComparator);
 	}
 
@@ -192,7 +192,7 @@ public class FavoriteSiteUtil {
 	*/
 	public static com.liferay.so.model.FavoriteSite findByUserId_Last(
 		long userId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.so.model.FavoriteSite> orderByComparator)
 		throws com.liferay.so.NoSuchFavoriteSiteException {
 		return getPersistence().findByUserId_Last(userId, orderByComparator);
 	}
@@ -206,7 +206,7 @@ public class FavoriteSiteUtil {
 	*/
 	public static com.liferay.so.model.FavoriteSite fetchByUserId_Last(
 		long userId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.so.model.FavoriteSite> orderByComparator) {
 		return getPersistence().fetchByUserId_Last(userId, orderByComparator);
 	}
 
@@ -221,7 +221,7 @@ public class FavoriteSiteUtil {
 	*/
 	public static com.liferay.so.model.FavoriteSite[] findByUserId_PrevAndNext(
 		long favoriteSiteId, long userId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.so.model.FavoriteSite> orderByComparator)
 		throws com.liferay.so.NoSuchFavoriteSiteException {
 		return getPersistence()
 				   .findByUserId_PrevAndNext(favoriteSiteId, userId,
@@ -422,7 +422,7 @@ public class FavoriteSiteUtil {
 	*/
 	public static java.util.List<com.liferay.so.model.FavoriteSite> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.so.model.FavoriteSite> orderByComparator) {
 		return getPersistence().findAll(start, end, orderByComparator);
 	}
 

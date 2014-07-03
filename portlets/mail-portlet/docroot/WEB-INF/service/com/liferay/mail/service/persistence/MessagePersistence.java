@@ -76,7 +76,7 @@ public interface MessagePersistence extends BasePersistence<Message> {
 	*/
 	public java.util.List<com.liferay.mail.model.Message> findByCompanyId(
 		long companyId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.mail.model.Message> orderByComparator);
 
 	/**
 	* Returns the first message in the ordered set where companyId = &#63;.
@@ -88,7 +88,7 @@ public interface MessagePersistence extends BasePersistence<Message> {
 	*/
 	public com.liferay.mail.model.Message findByCompanyId_First(
 		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.mail.model.Message> orderByComparator)
 		throws com.liferay.mail.NoSuchMessageException;
 
 	/**
@@ -100,7 +100,7 @@ public interface MessagePersistence extends BasePersistence<Message> {
 	*/
 	public com.liferay.mail.model.Message fetchByCompanyId_First(
 		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.mail.model.Message> orderByComparator);
 
 	/**
 	* Returns the last message in the ordered set where companyId = &#63;.
@@ -111,7 +111,7 @@ public interface MessagePersistence extends BasePersistence<Message> {
 	* @throws com.liferay.mail.NoSuchMessageException if a matching message could not be found
 	*/
 	public com.liferay.mail.model.Message findByCompanyId_Last(long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.mail.model.Message> orderByComparator)
 		throws com.liferay.mail.NoSuchMessageException;
 
 	/**
@@ -123,7 +123,7 @@ public interface MessagePersistence extends BasePersistence<Message> {
 	*/
 	public com.liferay.mail.model.Message fetchByCompanyId_Last(
 		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.mail.model.Message> orderByComparator);
 
 	/**
 	* Returns the messages before and after the current message in the ordered set where companyId = &#63;.
@@ -136,7 +136,7 @@ public interface MessagePersistence extends BasePersistence<Message> {
 	*/
 	public com.liferay.mail.model.Message[] findByCompanyId_PrevAndNext(
 		long messageId, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.mail.model.Message> orderByComparator)
 		throws com.liferay.mail.NoSuchMessageException;
 
 	/**
@@ -193,7 +193,7 @@ public interface MessagePersistence extends BasePersistence<Message> {
 	*/
 	public java.util.List<com.liferay.mail.model.Message> findByFolderId(
 		long folderId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.mail.model.Message> orderByComparator);
 
 	/**
 	* Returns the first message in the ordered set where folderId = &#63;.
@@ -204,7 +204,7 @@ public interface MessagePersistence extends BasePersistence<Message> {
 	* @throws com.liferay.mail.NoSuchMessageException if a matching message could not be found
 	*/
 	public com.liferay.mail.model.Message findByFolderId_First(long folderId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.mail.model.Message> orderByComparator)
 		throws com.liferay.mail.NoSuchMessageException;
 
 	/**
@@ -215,7 +215,7 @@ public interface MessagePersistence extends BasePersistence<Message> {
 	* @return the first matching message, or <code>null</code> if a matching message could not be found
 	*/
 	public com.liferay.mail.model.Message fetchByFolderId_First(long folderId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.mail.model.Message> orderByComparator);
 
 	/**
 	* Returns the last message in the ordered set where folderId = &#63;.
@@ -226,7 +226,7 @@ public interface MessagePersistence extends BasePersistence<Message> {
 	* @throws com.liferay.mail.NoSuchMessageException if a matching message could not be found
 	*/
 	public com.liferay.mail.model.Message findByFolderId_Last(long folderId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.mail.model.Message> orderByComparator)
 		throws com.liferay.mail.NoSuchMessageException;
 
 	/**
@@ -237,7 +237,7 @@ public interface MessagePersistence extends BasePersistence<Message> {
 	* @return the last matching message, or <code>null</code> if a matching message could not be found
 	*/
 	public com.liferay.mail.model.Message fetchByFolderId_Last(long folderId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.mail.model.Message> orderByComparator);
 
 	/**
 	* Returns the messages before and after the current message in the ordered set where folderId = &#63;.
@@ -250,7 +250,7 @@ public interface MessagePersistence extends BasePersistence<Message> {
 	*/
 	public com.liferay.mail.model.Message[] findByFolderId_PrevAndNext(
 		long messageId, long folderId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.mail.model.Message> orderByComparator)
 		throws com.liferay.mail.NoSuchMessageException;
 
 	/**
@@ -412,7 +412,7 @@ public interface MessagePersistence extends BasePersistence<Message> {
 	*/
 	public java.util.List<com.liferay.mail.model.Message> findAll(int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.mail.model.Message> orderByComparator);
 
 	/**
 	* Removes all the messages from the database.

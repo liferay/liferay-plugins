@@ -75,7 +75,7 @@ public interface KaleoDefinitionPersistence extends BasePersistence<KaleoDefinit
 	*/
 	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoDefinition> findByCompanyId(
 		long companyId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoDefinition> orderByComparator);
 
 	/**
 	* Returns the first kaleo definition in the ordered set where companyId = &#63;.
@@ -87,7 +87,7 @@ public interface KaleoDefinitionPersistence extends BasePersistence<KaleoDefinit
 	*/
 	public com.liferay.portal.workflow.kaleo.model.KaleoDefinition findByCompanyId_First(
 		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoDefinition> orderByComparator)
 		throws com.liferay.portal.workflow.kaleo.NoSuchDefinitionException;
 
 	/**
@@ -99,7 +99,7 @@ public interface KaleoDefinitionPersistence extends BasePersistence<KaleoDefinit
 	*/
 	public com.liferay.portal.workflow.kaleo.model.KaleoDefinition fetchByCompanyId_First(
 		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoDefinition> orderByComparator);
 
 	/**
 	* Returns the last kaleo definition in the ordered set where companyId = &#63;.
@@ -111,7 +111,7 @@ public interface KaleoDefinitionPersistence extends BasePersistence<KaleoDefinit
 	*/
 	public com.liferay.portal.workflow.kaleo.model.KaleoDefinition findByCompanyId_Last(
 		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoDefinition> orderByComparator)
 		throws com.liferay.portal.workflow.kaleo.NoSuchDefinitionException;
 
 	/**
@@ -123,7 +123,7 @@ public interface KaleoDefinitionPersistence extends BasePersistence<KaleoDefinit
 	*/
 	public com.liferay.portal.workflow.kaleo.model.KaleoDefinition fetchByCompanyId_Last(
 		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoDefinition> orderByComparator);
 
 	/**
 	* Returns the kaleo definitions before and after the current kaleo definition in the ordered set where companyId = &#63;.
@@ -136,7 +136,7 @@ public interface KaleoDefinitionPersistence extends BasePersistence<KaleoDefinit
 	*/
 	public com.liferay.portal.workflow.kaleo.model.KaleoDefinition[] findByCompanyId_PrevAndNext(
 		long kaleoDefinitionId, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoDefinition> orderByComparator)
 		throws com.liferay.portal.workflow.kaleo.NoSuchDefinitionException;
 
 	/**
@@ -196,7 +196,7 @@ public interface KaleoDefinitionPersistence extends BasePersistence<KaleoDefinit
 	*/
 	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoDefinition> findByC_N(
 		long companyId, java.lang.String name, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoDefinition> orderByComparator);
 
 	/**
 	* Returns the first kaleo definition in the ordered set where companyId = &#63; and name = &#63;.
@@ -209,7 +209,7 @@ public interface KaleoDefinitionPersistence extends BasePersistence<KaleoDefinit
 	*/
 	public com.liferay.portal.workflow.kaleo.model.KaleoDefinition findByC_N_First(
 		long companyId, java.lang.String name,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoDefinition> orderByComparator)
 		throws com.liferay.portal.workflow.kaleo.NoSuchDefinitionException;
 
 	/**
@@ -222,7 +222,7 @@ public interface KaleoDefinitionPersistence extends BasePersistence<KaleoDefinit
 	*/
 	public com.liferay.portal.workflow.kaleo.model.KaleoDefinition fetchByC_N_First(
 		long companyId, java.lang.String name,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoDefinition> orderByComparator);
 
 	/**
 	* Returns the last kaleo definition in the ordered set where companyId = &#63; and name = &#63;.
@@ -235,7 +235,7 @@ public interface KaleoDefinitionPersistence extends BasePersistence<KaleoDefinit
 	*/
 	public com.liferay.portal.workflow.kaleo.model.KaleoDefinition findByC_N_Last(
 		long companyId, java.lang.String name,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoDefinition> orderByComparator)
 		throws com.liferay.portal.workflow.kaleo.NoSuchDefinitionException;
 
 	/**
@@ -248,7 +248,7 @@ public interface KaleoDefinitionPersistence extends BasePersistence<KaleoDefinit
 	*/
 	public com.liferay.portal.workflow.kaleo.model.KaleoDefinition fetchByC_N_Last(
 		long companyId, java.lang.String name,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoDefinition> orderByComparator);
 
 	/**
 	* Returns the kaleo definitions before and after the current kaleo definition in the ordered set where companyId = &#63; and name = &#63;.
@@ -262,7 +262,7 @@ public interface KaleoDefinitionPersistence extends BasePersistence<KaleoDefinit
 	*/
 	public com.liferay.portal.workflow.kaleo.model.KaleoDefinition[] findByC_N_PrevAndNext(
 		long kaleoDefinitionId, long companyId, java.lang.String name,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoDefinition> orderByComparator)
 		throws com.liferay.portal.workflow.kaleo.NoSuchDefinitionException;
 
 	/**
@@ -324,7 +324,7 @@ public interface KaleoDefinitionPersistence extends BasePersistence<KaleoDefinit
 	*/
 	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoDefinition> findByC_A(
 		long companyId, boolean active, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoDefinition> orderByComparator);
 
 	/**
 	* Returns the first kaleo definition in the ordered set where companyId = &#63; and active = &#63;.
@@ -337,7 +337,7 @@ public interface KaleoDefinitionPersistence extends BasePersistence<KaleoDefinit
 	*/
 	public com.liferay.portal.workflow.kaleo.model.KaleoDefinition findByC_A_First(
 		long companyId, boolean active,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoDefinition> orderByComparator)
 		throws com.liferay.portal.workflow.kaleo.NoSuchDefinitionException;
 
 	/**
@@ -350,7 +350,7 @@ public interface KaleoDefinitionPersistence extends BasePersistence<KaleoDefinit
 	*/
 	public com.liferay.portal.workflow.kaleo.model.KaleoDefinition fetchByC_A_First(
 		long companyId, boolean active,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoDefinition> orderByComparator);
 
 	/**
 	* Returns the last kaleo definition in the ordered set where companyId = &#63; and active = &#63;.
@@ -363,7 +363,7 @@ public interface KaleoDefinitionPersistence extends BasePersistence<KaleoDefinit
 	*/
 	public com.liferay.portal.workflow.kaleo.model.KaleoDefinition findByC_A_Last(
 		long companyId, boolean active,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoDefinition> orderByComparator)
 		throws com.liferay.portal.workflow.kaleo.NoSuchDefinitionException;
 
 	/**
@@ -376,7 +376,7 @@ public interface KaleoDefinitionPersistence extends BasePersistence<KaleoDefinit
 	*/
 	public com.liferay.portal.workflow.kaleo.model.KaleoDefinition fetchByC_A_Last(
 		long companyId, boolean active,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoDefinition> orderByComparator);
 
 	/**
 	* Returns the kaleo definitions before and after the current kaleo definition in the ordered set where companyId = &#63; and active = &#63;.
@@ -390,7 +390,7 @@ public interface KaleoDefinitionPersistence extends BasePersistence<KaleoDefinit
 	*/
 	public com.liferay.portal.workflow.kaleo.model.KaleoDefinition[] findByC_A_PrevAndNext(
 		long kaleoDefinitionId, long companyId, boolean active,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoDefinition> orderByComparator)
 		throws com.liferay.portal.workflow.kaleo.NoSuchDefinitionException;
 
 	/**
@@ -516,7 +516,7 @@ public interface KaleoDefinitionPersistence extends BasePersistence<KaleoDefinit
 	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoDefinition> findByC_N_A(
 		long companyId, java.lang.String name, boolean active, int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoDefinition> orderByComparator);
 
 	/**
 	* Returns the first kaleo definition in the ordered set where companyId = &#63; and name = &#63; and active = &#63;.
@@ -530,7 +530,7 @@ public interface KaleoDefinitionPersistence extends BasePersistence<KaleoDefinit
 	*/
 	public com.liferay.portal.workflow.kaleo.model.KaleoDefinition findByC_N_A_First(
 		long companyId, java.lang.String name, boolean active,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoDefinition> orderByComparator)
 		throws com.liferay.portal.workflow.kaleo.NoSuchDefinitionException;
 
 	/**
@@ -544,7 +544,7 @@ public interface KaleoDefinitionPersistence extends BasePersistence<KaleoDefinit
 	*/
 	public com.liferay.portal.workflow.kaleo.model.KaleoDefinition fetchByC_N_A_First(
 		long companyId, java.lang.String name, boolean active,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoDefinition> orderByComparator);
 
 	/**
 	* Returns the last kaleo definition in the ordered set where companyId = &#63; and name = &#63; and active = &#63;.
@@ -558,7 +558,7 @@ public interface KaleoDefinitionPersistence extends BasePersistence<KaleoDefinit
 	*/
 	public com.liferay.portal.workflow.kaleo.model.KaleoDefinition findByC_N_A_Last(
 		long companyId, java.lang.String name, boolean active,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoDefinition> orderByComparator)
 		throws com.liferay.portal.workflow.kaleo.NoSuchDefinitionException;
 
 	/**
@@ -572,7 +572,7 @@ public interface KaleoDefinitionPersistence extends BasePersistence<KaleoDefinit
 	*/
 	public com.liferay.portal.workflow.kaleo.model.KaleoDefinition fetchByC_N_A_Last(
 		long companyId, java.lang.String name, boolean active,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoDefinition> orderByComparator);
 
 	/**
 	* Returns the kaleo definitions before and after the current kaleo definition in the ordered set where companyId = &#63; and name = &#63; and active = &#63;.
@@ -588,7 +588,7 @@ public interface KaleoDefinitionPersistence extends BasePersistence<KaleoDefinit
 	public com.liferay.portal.workflow.kaleo.model.KaleoDefinition[] findByC_N_A_PrevAndNext(
 		long kaleoDefinitionId, long companyId, java.lang.String name,
 		boolean active,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoDefinition> orderByComparator)
 		throws com.liferay.portal.workflow.kaleo.NoSuchDefinitionException;
 
 	/**
@@ -710,7 +710,7 @@ public interface KaleoDefinitionPersistence extends BasePersistence<KaleoDefinit
 	*/
 	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoDefinition> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoDefinition> orderByComparator);
 
 	/**
 	* Removes all the kaleo definitions from the database.

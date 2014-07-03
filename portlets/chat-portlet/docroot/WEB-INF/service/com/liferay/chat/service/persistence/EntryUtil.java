@@ -83,7 +83,7 @@ public class EntryUtil {
 	 * @see com.liferay.portal.service.persistence.BasePersistence#findWithDynamicQuery(DynamicQuery, int, int, OrderByComparator)
 	 */
 	public static List<Entry> findWithDynamicQuery(DynamicQuery dynamicQuery,
-		int start, int end, OrderByComparator orderByComparator) {
+		int start, int end, OrderByComparator<Entry> orderByComparator) {
 		return getPersistence()
 				   .findWithDynamicQuery(dynamicQuery, start, end,
 			orderByComparator);
@@ -146,7 +146,7 @@ public class EntryUtil {
 	*/
 	public static java.util.List<com.liferay.chat.model.Entry> findByCreateDate(
 		long createDate, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.chat.model.Entry> orderByComparator) {
 		return getPersistence()
 				   .findByCreateDate(createDate, start, end, orderByComparator);
 	}
@@ -161,7 +161,7 @@ public class EntryUtil {
 	*/
 	public static com.liferay.chat.model.Entry findByCreateDate_First(
 		long createDate,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.chat.model.Entry> orderByComparator)
 		throws com.liferay.chat.NoSuchEntryException {
 		return getPersistence()
 				   .findByCreateDate_First(createDate, orderByComparator);
@@ -176,7 +176,7 @@ public class EntryUtil {
 	*/
 	public static com.liferay.chat.model.Entry fetchByCreateDate_First(
 		long createDate,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.chat.model.Entry> orderByComparator) {
 		return getPersistence()
 				   .fetchByCreateDate_First(createDate, orderByComparator);
 	}
@@ -191,7 +191,7 @@ public class EntryUtil {
 	*/
 	public static com.liferay.chat.model.Entry findByCreateDate_Last(
 		long createDate,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.chat.model.Entry> orderByComparator)
 		throws com.liferay.chat.NoSuchEntryException {
 		return getPersistence()
 				   .findByCreateDate_Last(createDate, orderByComparator);
@@ -206,7 +206,7 @@ public class EntryUtil {
 	*/
 	public static com.liferay.chat.model.Entry fetchByCreateDate_Last(
 		long createDate,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.chat.model.Entry> orderByComparator) {
 		return getPersistence()
 				   .fetchByCreateDate_Last(createDate, orderByComparator);
 	}
@@ -222,7 +222,7 @@ public class EntryUtil {
 	*/
 	public static com.liferay.chat.model.Entry[] findByCreateDate_PrevAndNext(
 		long entryId, long createDate,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.chat.model.Entry> orderByComparator)
 		throws com.liferay.chat.NoSuchEntryException {
 		return getPersistence()
 				   .findByCreateDate_PrevAndNext(entryId, createDate,
@@ -291,7 +291,7 @@ public class EntryUtil {
 	*/
 	public static java.util.List<com.liferay.chat.model.Entry> findByFromUserId(
 		long fromUserId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.chat.model.Entry> orderByComparator) {
 		return getPersistence()
 				   .findByFromUserId(fromUserId, start, end, orderByComparator);
 	}
@@ -306,7 +306,7 @@ public class EntryUtil {
 	*/
 	public static com.liferay.chat.model.Entry findByFromUserId_First(
 		long fromUserId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.chat.model.Entry> orderByComparator)
 		throws com.liferay.chat.NoSuchEntryException {
 		return getPersistence()
 				   .findByFromUserId_First(fromUserId, orderByComparator);
@@ -321,7 +321,7 @@ public class EntryUtil {
 	*/
 	public static com.liferay.chat.model.Entry fetchByFromUserId_First(
 		long fromUserId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.chat.model.Entry> orderByComparator) {
 		return getPersistence()
 				   .fetchByFromUserId_First(fromUserId, orderByComparator);
 	}
@@ -336,7 +336,7 @@ public class EntryUtil {
 	*/
 	public static com.liferay.chat.model.Entry findByFromUserId_Last(
 		long fromUserId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.chat.model.Entry> orderByComparator)
 		throws com.liferay.chat.NoSuchEntryException {
 		return getPersistence()
 				   .findByFromUserId_Last(fromUserId, orderByComparator);
@@ -351,7 +351,7 @@ public class EntryUtil {
 	*/
 	public static com.liferay.chat.model.Entry fetchByFromUserId_Last(
 		long fromUserId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.chat.model.Entry> orderByComparator) {
 		return getPersistence()
 				   .fetchByFromUserId_Last(fromUserId, orderByComparator);
 	}
@@ -367,7 +367,7 @@ public class EntryUtil {
 	*/
 	public static com.liferay.chat.model.Entry[] findByFromUserId_PrevAndNext(
 		long entryId, long fromUserId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.chat.model.Entry> orderByComparator)
 		throws com.liferay.chat.NoSuchEntryException {
 		return getPersistence()
 				   .findByFromUserId_PrevAndNext(entryId, fromUserId,
@@ -436,7 +436,7 @@ public class EntryUtil {
 	*/
 	public static java.util.List<com.liferay.chat.model.Entry> findByToUserId(
 		long toUserId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.chat.model.Entry> orderByComparator) {
 		return getPersistence()
 				   .findByToUserId(toUserId, start, end, orderByComparator);
 	}
@@ -451,7 +451,7 @@ public class EntryUtil {
 	*/
 	public static com.liferay.chat.model.Entry findByToUserId_First(
 		long toUserId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.chat.model.Entry> orderByComparator)
 		throws com.liferay.chat.NoSuchEntryException {
 		return getPersistence().findByToUserId_First(toUserId, orderByComparator);
 	}
@@ -465,7 +465,7 @@ public class EntryUtil {
 	*/
 	public static com.liferay.chat.model.Entry fetchByToUserId_First(
 		long toUserId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.chat.model.Entry> orderByComparator) {
 		return getPersistence()
 				   .fetchByToUserId_First(toUserId, orderByComparator);
 	}
@@ -480,7 +480,7 @@ public class EntryUtil {
 	*/
 	public static com.liferay.chat.model.Entry findByToUserId_Last(
 		long toUserId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.chat.model.Entry> orderByComparator)
 		throws com.liferay.chat.NoSuchEntryException {
 		return getPersistence().findByToUserId_Last(toUserId, orderByComparator);
 	}
@@ -494,7 +494,7 @@ public class EntryUtil {
 	*/
 	public static com.liferay.chat.model.Entry fetchByToUserId_Last(
 		long toUserId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.chat.model.Entry> orderByComparator) {
 		return getPersistence().fetchByToUserId_Last(toUserId, orderByComparator);
 	}
 
@@ -509,7 +509,7 @@ public class EntryUtil {
 	*/
 	public static com.liferay.chat.model.Entry[] findByToUserId_PrevAndNext(
 		long entryId, long toUserId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.chat.model.Entry> orderByComparator)
 		throws com.liferay.chat.NoSuchEntryException {
 		return getPersistence()
 				   .findByToUserId_PrevAndNext(entryId, toUserId,
@@ -581,7 +581,7 @@ public class EntryUtil {
 	*/
 	public static java.util.List<com.liferay.chat.model.Entry> findByC_F(
 		long createDate, long fromUserId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.chat.model.Entry> orderByComparator) {
 		return getPersistence()
 				   .findByC_F(createDate, fromUserId, start, end,
 			orderByComparator);
@@ -598,7 +598,7 @@ public class EntryUtil {
 	*/
 	public static com.liferay.chat.model.Entry findByC_F_First(
 		long createDate, long fromUserId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.chat.model.Entry> orderByComparator)
 		throws com.liferay.chat.NoSuchEntryException {
 		return getPersistence()
 				   .findByC_F_First(createDate, fromUserId, orderByComparator);
@@ -614,7 +614,7 @@ public class EntryUtil {
 	*/
 	public static com.liferay.chat.model.Entry fetchByC_F_First(
 		long createDate, long fromUserId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.chat.model.Entry> orderByComparator) {
 		return getPersistence()
 				   .fetchByC_F_First(createDate, fromUserId, orderByComparator);
 	}
@@ -630,7 +630,7 @@ public class EntryUtil {
 	*/
 	public static com.liferay.chat.model.Entry findByC_F_Last(long createDate,
 		long fromUserId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.chat.model.Entry> orderByComparator)
 		throws com.liferay.chat.NoSuchEntryException {
 		return getPersistence()
 				   .findByC_F_Last(createDate, fromUserId, orderByComparator);
@@ -646,7 +646,7 @@ public class EntryUtil {
 	*/
 	public static com.liferay.chat.model.Entry fetchByC_F_Last(
 		long createDate, long fromUserId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.chat.model.Entry> orderByComparator) {
 		return getPersistence()
 				   .fetchByC_F_Last(createDate, fromUserId, orderByComparator);
 	}
@@ -663,7 +663,7 @@ public class EntryUtil {
 	*/
 	public static com.liferay.chat.model.Entry[] findByC_F_PrevAndNext(
 		long entryId, long createDate, long fromUserId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.chat.model.Entry> orderByComparator)
 		throws com.liferay.chat.NoSuchEntryException {
 		return getPersistence()
 				   .findByC_F_PrevAndNext(entryId, createDate, fromUserId,
@@ -737,7 +737,7 @@ public class EntryUtil {
 	*/
 	public static java.util.List<com.liferay.chat.model.Entry> findByC_T(
 		long createDate, long toUserId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.chat.model.Entry> orderByComparator) {
 		return getPersistence()
 				   .findByC_T(createDate, toUserId, start, end,
 			orderByComparator);
@@ -754,7 +754,7 @@ public class EntryUtil {
 	*/
 	public static com.liferay.chat.model.Entry findByC_T_First(
 		long createDate, long toUserId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.chat.model.Entry> orderByComparator)
 		throws com.liferay.chat.NoSuchEntryException {
 		return getPersistence()
 				   .findByC_T_First(createDate, toUserId, orderByComparator);
@@ -770,7 +770,7 @@ public class EntryUtil {
 	*/
 	public static com.liferay.chat.model.Entry fetchByC_T_First(
 		long createDate, long toUserId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.chat.model.Entry> orderByComparator) {
 		return getPersistence()
 				   .fetchByC_T_First(createDate, toUserId, orderByComparator);
 	}
@@ -786,7 +786,7 @@ public class EntryUtil {
 	*/
 	public static com.liferay.chat.model.Entry findByC_T_Last(long createDate,
 		long toUserId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.chat.model.Entry> orderByComparator)
 		throws com.liferay.chat.NoSuchEntryException {
 		return getPersistence()
 				   .findByC_T_Last(createDate, toUserId, orderByComparator);
@@ -802,7 +802,7 @@ public class EntryUtil {
 	*/
 	public static com.liferay.chat.model.Entry fetchByC_T_Last(
 		long createDate, long toUserId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.chat.model.Entry> orderByComparator) {
 		return getPersistence()
 				   .fetchByC_T_Last(createDate, toUserId, orderByComparator);
 	}
@@ -819,7 +819,7 @@ public class EntryUtil {
 	*/
 	public static com.liferay.chat.model.Entry[] findByC_T_PrevAndNext(
 		long entryId, long createDate, long toUserId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.chat.model.Entry> orderByComparator)
 		throws com.liferay.chat.NoSuchEntryException {
 		return getPersistence()
 				   .findByC_T_PrevAndNext(entryId, createDate, toUserId,
@@ -893,7 +893,7 @@ public class EntryUtil {
 	*/
 	public static java.util.List<com.liferay.chat.model.Entry> findByF_T(
 		long fromUserId, long toUserId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.chat.model.Entry> orderByComparator) {
 		return getPersistence()
 				   .findByF_T(fromUserId, toUserId, start, end,
 			orderByComparator);
@@ -910,7 +910,7 @@ public class EntryUtil {
 	*/
 	public static com.liferay.chat.model.Entry findByF_T_First(
 		long fromUserId, long toUserId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.chat.model.Entry> orderByComparator)
 		throws com.liferay.chat.NoSuchEntryException {
 		return getPersistence()
 				   .findByF_T_First(fromUserId, toUserId, orderByComparator);
@@ -926,7 +926,7 @@ public class EntryUtil {
 	*/
 	public static com.liferay.chat.model.Entry fetchByF_T_First(
 		long fromUserId, long toUserId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.chat.model.Entry> orderByComparator) {
 		return getPersistence()
 				   .fetchByF_T_First(fromUserId, toUserId, orderByComparator);
 	}
@@ -942,7 +942,7 @@ public class EntryUtil {
 	*/
 	public static com.liferay.chat.model.Entry findByF_T_Last(long fromUserId,
 		long toUserId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.chat.model.Entry> orderByComparator)
 		throws com.liferay.chat.NoSuchEntryException {
 		return getPersistence()
 				   .findByF_T_Last(fromUserId, toUserId, orderByComparator);
@@ -958,7 +958,7 @@ public class EntryUtil {
 	*/
 	public static com.liferay.chat.model.Entry fetchByF_T_Last(
 		long fromUserId, long toUserId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.chat.model.Entry> orderByComparator) {
 		return getPersistence()
 				   .fetchByF_T_Last(fromUserId, toUserId, orderByComparator);
 	}
@@ -975,7 +975,7 @@ public class EntryUtil {
 	*/
 	public static com.liferay.chat.model.Entry[] findByF_T_PrevAndNext(
 		long entryId, long fromUserId, long toUserId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.chat.model.Entry> orderByComparator)
 		throws com.liferay.chat.NoSuchEntryException {
 		return getPersistence()
 				   .findByF_T_PrevAndNext(entryId, fromUserId, toUserId,
@@ -1053,7 +1053,7 @@ public class EntryUtil {
 	*/
 	public static java.util.List<com.liferay.chat.model.Entry> findByC_F_T(
 		long createDate, long fromUserId, long toUserId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.chat.model.Entry> orderByComparator) {
 		return getPersistence()
 				   .findByC_F_T(createDate, fromUserId, toUserId, start, end,
 			orderByComparator);
@@ -1071,7 +1071,7 @@ public class EntryUtil {
 	*/
 	public static com.liferay.chat.model.Entry findByC_F_T_First(
 		long createDate, long fromUserId, long toUserId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.chat.model.Entry> orderByComparator)
 		throws com.liferay.chat.NoSuchEntryException {
 		return getPersistence()
 				   .findByC_F_T_First(createDate, fromUserId, toUserId,
@@ -1089,7 +1089,7 @@ public class EntryUtil {
 	*/
 	public static com.liferay.chat.model.Entry fetchByC_F_T_First(
 		long createDate, long fromUserId, long toUserId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.chat.model.Entry> orderByComparator) {
 		return getPersistence()
 				   .fetchByC_F_T_First(createDate, fromUserId, toUserId,
 			orderByComparator);
@@ -1107,7 +1107,7 @@ public class EntryUtil {
 	*/
 	public static com.liferay.chat.model.Entry findByC_F_T_Last(
 		long createDate, long fromUserId, long toUserId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.chat.model.Entry> orderByComparator)
 		throws com.liferay.chat.NoSuchEntryException {
 		return getPersistence()
 				   .findByC_F_T_Last(createDate, fromUserId, toUserId,
@@ -1125,7 +1125,7 @@ public class EntryUtil {
 	*/
 	public static com.liferay.chat.model.Entry fetchByC_F_T_Last(
 		long createDate, long fromUserId, long toUserId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.chat.model.Entry> orderByComparator) {
 		return getPersistence()
 				   .fetchByC_F_T_Last(createDate, fromUserId, toUserId,
 			orderByComparator);
@@ -1144,7 +1144,7 @@ public class EntryUtil {
 	*/
 	public static com.liferay.chat.model.Entry[] findByC_F_T_PrevAndNext(
 		long entryId, long createDate, long fromUserId, long toUserId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.chat.model.Entry> orderByComparator)
 		throws com.liferay.chat.NoSuchEntryException {
 		return getPersistence()
 				   .findByC_F_T_PrevAndNext(entryId, createDate, fromUserId,
@@ -1228,7 +1228,7 @@ public class EntryUtil {
 	public static java.util.List<com.liferay.chat.model.Entry> findByF_T_C(
 		long fromUserId, long toUserId, java.lang.String content, int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.chat.model.Entry> orderByComparator) {
 		return getPersistence()
 				   .findByF_T_C(fromUserId, toUserId, content, start, end,
 			orderByComparator);
@@ -1246,7 +1246,7 @@ public class EntryUtil {
 	*/
 	public static com.liferay.chat.model.Entry findByF_T_C_First(
 		long fromUserId, long toUserId, java.lang.String content,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.chat.model.Entry> orderByComparator)
 		throws com.liferay.chat.NoSuchEntryException {
 		return getPersistence()
 				   .findByF_T_C_First(fromUserId, toUserId, content,
@@ -1264,7 +1264,7 @@ public class EntryUtil {
 	*/
 	public static com.liferay.chat.model.Entry fetchByF_T_C_First(
 		long fromUserId, long toUserId, java.lang.String content,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.chat.model.Entry> orderByComparator) {
 		return getPersistence()
 				   .fetchByF_T_C_First(fromUserId, toUserId, content,
 			orderByComparator);
@@ -1282,7 +1282,7 @@ public class EntryUtil {
 	*/
 	public static com.liferay.chat.model.Entry findByF_T_C_Last(
 		long fromUserId, long toUserId, java.lang.String content,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.chat.model.Entry> orderByComparator)
 		throws com.liferay.chat.NoSuchEntryException {
 		return getPersistence()
 				   .findByF_T_C_Last(fromUserId, toUserId, content,
@@ -1300,7 +1300,7 @@ public class EntryUtil {
 	*/
 	public static com.liferay.chat.model.Entry fetchByF_T_C_Last(
 		long fromUserId, long toUserId, java.lang.String content,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.chat.model.Entry> orderByComparator) {
 		return getPersistence()
 				   .fetchByF_T_C_Last(fromUserId, toUserId, content,
 			orderByComparator);
@@ -1319,7 +1319,7 @@ public class EntryUtil {
 	*/
 	public static com.liferay.chat.model.Entry[] findByF_T_C_PrevAndNext(
 		long entryId, long fromUserId, long toUserId, java.lang.String content,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.chat.model.Entry> orderByComparator)
 		throws com.liferay.chat.NoSuchEntryException {
 		return getPersistence()
 				   .findByF_T_C_PrevAndNext(entryId, fromUserId, toUserId,
@@ -1463,7 +1463,7 @@ public class EntryUtil {
 	*/
 	public static java.util.List<com.liferay.chat.model.Entry> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.chat.model.Entry> orderByComparator) {
 		return getPersistence().findAll(start, end, orderByComparator);
 	}
 

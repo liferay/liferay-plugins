@@ -564,7 +564,7 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 	 */
 	@Override
 	public List<Definition> findAll(int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<Definition> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;

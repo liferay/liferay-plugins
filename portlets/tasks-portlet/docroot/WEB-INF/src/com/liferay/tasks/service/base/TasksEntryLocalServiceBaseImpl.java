@@ -100,12 +100,11 @@ public abstract class TasksEntryLocalServiceBaseImpl
 	 * @param tasksEntryId the primary key of the tasks entry
 	 * @return the tasks entry that was removed
 	 * @throws PortalException if a tasks entry with the primary key could not be found
-	 * @throws SystemException
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
 	public TasksEntry deleteTasksEntry(long tasksEntryId)
-		throws PortalException, SystemException {
+		throws PortalException {
 		return tasksEntryPersistence.remove(tasksEntryId);
 	}
 
@@ -115,12 +114,11 @@ public abstract class TasksEntryLocalServiceBaseImpl
 	 * @param tasksEntry the tasks entry
 	 * @return the tasks entry that was removed
 	 * @throws PortalException
-	 * @throws SystemException
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
 	public TasksEntry deleteTasksEntry(TasksEntry tasksEntry)
-		throws PortalException, SystemException {
+		throws PortalException {
 		return tasksEntryPersistence.remove(tasksEntry);
 	}
 
@@ -139,8 +137,7 @@ public abstract class TasksEntryLocalServiceBaseImpl
 	 * @return the matching rows
 	 */
 	@Override
-	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery) {
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery) {
 		return tasksEntryPersistence.findWithDynamicQuery(dynamicQuery);
 	}
 
@@ -157,8 +154,8 @@ public abstract class TasksEntryLocalServiceBaseImpl
 	 * @return the range of matching rows
 	 */
 	@Override
-	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end) {
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
+		int end) {
 		return tasksEntryPersistence.findWithDynamicQuery(dynamicQuery, start,
 			end);
 	}
@@ -177,9 +174,8 @@ public abstract class TasksEntryLocalServiceBaseImpl
 	 * @return the ordered range of matching rows
 	 */
 	@Override
-	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end,
-		OrderByComparator orderByComparator) {
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
+		int end, OrderByComparator<T> orderByComparator) {
 		return tasksEntryPersistence.findWithDynamicQuery(dynamicQuery, start,
 			end, orderByComparator);
 	}
@@ -220,11 +216,10 @@ public abstract class TasksEntryLocalServiceBaseImpl
 	 * @param tasksEntryId the primary key of the tasks entry
 	 * @return the tasks entry
 	 * @throws PortalException if a tasks entry with the primary key could not be found
-	 * @throws SystemException
 	 */
 	@Override
 	public TasksEntry getTasksEntry(long tasksEntryId)
-		throws PortalException, SystemException {
+		throws PortalException {
 		return tasksEntryPersistence.findByPrimaryKey(tasksEntryId);
 	}
 

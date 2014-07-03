@@ -75,7 +75,7 @@ public interface KaleoInstancePersistence extends BasePersistence<KaleoInstance>
 	*/
 	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoInstance> findByCompanyId(
 		long companyId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoInstance> orderByComparator);
 
 	/**
 	* Returns the first kaleo instance in the ordered set where companyId = &#63;.
@@ -87,7 +87,7 @@ public interface KaleoInstancePersistence extends BasePersistence<KaleoInstance>
 	*/
 	public com.liferay.portal.workflow.kaleo.model.KaleoInstance findByCompanyId_First(
 		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoInstance> orderByComparator)
 		throws com.liferay.portal.workflow.kaleo.NoSuchInstanceException;
 
 	/**
@@ -99,7 +99,7 @@ public interface KaleoInstancePersistence extends BasePersistence<KaleoInstance>
 	*/
 	public com.liferay.portal.workflow.kaleo.model.KaleoInstance fetchByCompanyId_First(
 		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoInstance> orderByComparator);
 
 	/**
 	* Returns the last kaleo instance in the ordered set where companyId = &#63;.
@@ -111,7 +111,7 @@ public interface KaleoInstancePersistence extends BasePersistence<KaleoInstance>
 	*/
 	public com.liferay.portal.workflow.kaleo.model.KaleoInstance findByCompanyId_Last(
 		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoInstance> orderByComparator)
 		throws com.liferay.portal.workflow.kaleo.NoSuchInstanceException;
 
 	/**
@@ -123,7 +123,7 @@ public interface KaleoInstancePersistence extends BasePersistence<KaleoInstance>
 	*/
 	public com.liferay.portal.workflow.kaleo.model.KaleoInstance fetchByCompanyId_Last(
 		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoInstance> orderByComparator);
 
 	/**
 	* Returns the kaleo instances before and after the current kaleo instance in the ordered set where companyId = &#63;.
@@ -136,7 +136,7 @@ public interface KaleoInstancePersistence extends BasePersistence<KaleoInstance>
 	*/
 	public com.liferay.portal.workflow.kaleo.model.KaleoInstance[] findByCompanyId_PrevAndNext(
 		long kaleoInstanceId, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoInstance> orderByComparator)
 		throws com.liferay.portal.workflow.kaleo.NoSuchInstanceException;
 
 	/**
@@ -193,7 +193,7 @@ public interface KaleoInstancePersistence extends BasePersistence<KaleoInstance>
 	*/
 	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoInstance> findByKaleoDefinitionId(
 		long kaleoDefinitionId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoInstance> orderByComparator);
 
 	/**
 	* Returns the first kaleo instance in the ordered set where kaleoDefinitionId = &#63;.
@@ -205,7 +205,7 @@ public interface KaleoInstancePersistence extends BasePersistence<KaleoInstance>
 	*/
 	public com.liferay.portal.workflow.kaleo.model.KaleoInstance findByKaleoDefinitionId_First(
 		long kaleoDefinitionId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoInstance> orderByComparator)
 		throws com.liferay.portal.workflow.kaleo.NoSuchInstanceException;
 
 	/**
@@ -217,7 +217,7 @@ public interface KaleoInstancePersistence extends BasePersistence<KaleoInstance>
 	*/
 	public com.liferay.portal.workflow.kaleo.model.KaleoInstance fetchByKaleoDefinitionId_First(
 		long kaleoDefinitionId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoInstance> orderByComparator);
 
 	/**
 	* Returns the last kaleo instance in the ordered set where kaleoDefinitionId = &#63;.
@@ -229,7 +229,7 @@ public interface KaleoInstancePersistence extends BasePersistence<KaleoInstance>
 	*/
 	public com.liferay.portal.workflow.kaleo.model.KaleoInstance findByKaleoDefinitionId_Last(
 		long kaleoDefinitionId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoInstance> orderByComparator)
 		throws com.liferay.portal.workflow.kaleo.NoSuchInstanceException;
 
 	/**
@@ -241,7 +241,7 @@ public interface KaleoInstancePersistence extends BasePersistence<KaleoInstance>
 	*/
 	public com.liferay.portal.workflow.kaleo.model.KaleoInstance fetchByKaleoDefinitionId_Last(
 		long kaleoDefinitionId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoInstance> orderByComparator);
 
 	/**
 	* Returns the kaleo instances before and after the current kaleo instance in the ordered set where kaleoDefinitionId = &#63;.
@@ -254,7 +254,7 @@ public interface KaleoInstancePersistence extends BasePersistence<KaleoInstance>
 	*/
 	public com.liferay.portal.workflow.kaleo.model.KaleoInstance[] findByKaleoDefinitionId_PrevAndNext(
 		long kaleoInstanceId, long kaleoDefinitionId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoInstance> orderByComparator)
 		throws com.liferay.portal.workflow.kaleo.NoSuchInstanceException;
 
 	/**
@@ -314,7 +314,7 @@ public interface KaleoInstancePersistence extends BasePersistence<KaleoInstance>
 	*/
 	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoInstance> findByKDI_C(
 		long kaleoDefinitionId, boolean completed, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoInstance> orderByComparator);
 
 	/**
 	* Returns the first kaleo instance in the ordered set where kaleoDefinitionId = &#63; and completed = &#63;.
@@ -327,7 +327,7 @@ public interface KaleoInstancePersistence extends BasePersistence<KaleoInstance>
 	*/
 	public com.liferay.portal.workflow.kaleo.model.KaleoInstance findByKDI_C_First(
 		long kaleoDefinitionId, boolean completed,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoInstance> orderByComparator)
 		throws com.liferay.portal.workflow.kaleo.NoSuchInstanceException;
 
 	/**
@@ -340,7 +340,7 @@ public interface KaleoInstancePersistence extends BasePersistence<KaleoInstance>
 	*/
 	public com.liferay.portal.workflow.kaleo.model.KaleoInstance fetchByKDI_C_First(
 		long kaleoDefinitionId, boolean completed,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoInstance> orderByComparator);
 
 	/**
 	* Returns the last kaleo instance in the ordered set where kaleoDefinitionId = &#63; and completed = &#63;.
@@ -353,7 +353,7 @@ public interface KaleoInstancePersistence extends BasePersistence<KaleoInstance>
 	*/
 	public com.liferay.portal.workflow.kaleo.model.KaleoInstance findByKDI_C_Last(
 		long kaleoDefinitionId, boolean completed,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoInstance> orderByComparator)
 		throws com.liferay.portal.workflow.kaleo.NoSuchInstanceException;
 
 	/**
@@ -366,7 +366,7 @@ public interface KaleoInstancePersistence extends BasePersistence<KaleoInstance>
 	*/
 	public com.liferay.portal.workflow.kaleo.model.KaleoInstance fetchByKDI_C_Last(
 		long kaleoDefinitionId, boolean completed,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoInstance> orderByComparator);
 
 	/**
 	* Returns the kaleo instances before and after the current kaleo instance in the ordered set where kaleoDefinitionId = &#63; and completed = &#63;.
@@ -380,7 +380,7 @@ public interface KaleoInstancePersistence extends BasePersistence<KaleoInstance>
 	*/
 	public com.liferay.portal.workflow.kaleo.model.KaleoInstance[] findByKDI_C_PrevAndNext(
 		long kaleoInstanceId, long kaleoDefinitionId, boolean completed,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoInstance> orderByComparator)
 		throws com.liferay.portal.workflow.kaleo.NoSuchInstanceException;
 
 	/**
@@ -453,7 +453,7 @@ public interface KaleoInstancePersistence extends BasePersistence<KaleoInstance>
 		long companyId, java.lang.String kaleoDefinitionName,
 		int kaleoDefinitionVersion, java.util.Date completionDate, int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoInstance> orderByComparator);
 
 	/**
 	* Returns the first kaleo instance in the ordered set where companyId = &#63; and kaleoDefinitionName = &#63; and kaleoDefinitionVersion = &#63; and completionDate = &#63;.
@@ -469,7 +469,7 @@ public interface KaleoInstancePersistence extends BasePersistence<KaleoInstance>
 	public com.liferay.portal.workflow.kaleo.model.KaleoInstance findByC_KDN_KDV_CD_First(
 		long companyId, java.lang.String kaleoDefinitionName,
 		int kaleoDefinitionVersion, java.util.Date completionDate,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoInstance> orderByComparator)
 		throws com.liferay.portal.workflow.kaleo.NoSuchInstanceException;
 
 	/**
@@ -485,7 +485,7 @@ public interface KaleoInstancePersistence extends BasePersistence<KaleoInstance>
 	public com.liferay.portal.workflow.kaleo.model.KaleoInstance fetchByC_KDN_KDV_CD_First(
 		long companyId, java.lang.String kaleoDefinitionName,
 		int kaleoDefinitionVersion, java.util.Date completionDate,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoInstance> orderByComparator);
 
 	/**
 	* Returns the last kaleo instance in the ordered set where companyId = &#63; and kaleoDefinitionName = &#63; and kaleoDefinitionVersion = &#63; and completionDate = &#63;.
@@ -501,7 +501,7 @@ public interface KaleoInstancePersistence extends BasePersistence<KaleoInstance>
 	public com.liferay.portal.workflow.kaleo.model.KaleoInstance findByC_KDN_KDV_CD_Last(
 		long companyId, java.lang.String kaleoDefinitionName,
 		int kaleoDefinitionVersion, java.util.Date completionDate,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoInstance> orderByComparator)
 		throws com.liferay.portal.workflow.kaleo.NoSuchInstanceException;
 
 	/**
@@ -517,7 +517,7 @@ public interface KaleoInstancePersistence extends BasePersistence<KaleoInstance>
 	public com.liferay.portal.workflow.kaleo.model.KaleoInstance fetchByC_KDN_KDV_CD_Last(
 		long companyId, java.lang.String kaleoDefinitionName,
 		int kaleoDefinitionVersion, java.util.Date completionDate,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoInstance> orderByComparator);
 
 	/**
 	* Returns the kaleo instances before and after the current kaleo instance in the ordered set where companyId = &#63; and kaleoDefinitionName = &#63; and kaleoDefinitionVersion = &#63; and completionDate = &#63;.
@@ -535,7 +535,7 @@ public interface KaleoInstancePersistence extends BasePersistence<KaleoInstance>
 		long kaleoInstanceId, long companyId,
 		java.lang.String kaleoDefinitionName, int kaleoDefinitionVersion,
 		java.util.Date completionDate,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoInstance> orderByComparator)
 		throws com.liferay.portal.workflow.kaleo.NoSuchInstanceException;
 
 	/**
@@ -661,7 +661,7 @@ public interface KaleoInstancePersistence extends BasePersistence<KaleoInstance>
 	*/
 	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoInstance> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoInstance> orderByComparator);
 
 	/**
 	* Removes all the kaleo instances from the database.

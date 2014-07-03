@@ -76,7 +76,7 @@ public interface SVNRevisionPersistence extends BasePersistence<SVNRevision> {
 	*/
 	public java.util.List<com.liferay.socialcoding.model.SVNRevision> findBySVNUserId(
 		java.lang.String svnUserId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialcoding.model.SVNRevision> orderByComparator);
 
 	/**
 	* Returns the first s v n revision in the ordered set where svnUserId = &#63;.
@@ -88,7 +88,7 @@ public interface SVNRevisionPersistence extends BasePersistence<SVNRevision> {
 	*/
 	public com.liferay.socialcoding.model.SVNRevision findBySVNUserId_First(
 		java.lang.String svnUserId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialcoding.model.SVNRevision> orderByComparator)
 		throws com.liferay.socialcoding.NoSuchSVNRevisionException;
 
 	/**
@@ -100,7 +100,7 @@ public interface SVNRevisionPersistence extends BasePersistence<SVNRevision> {
 	*/
 	public com.liferay.socialcoding.model.SVNRevision fetchBySVNUserId_First(
 		java.lang.String svnUserId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialcoding.model.SVNRevision> orderByComparator);
 
 	/**
 	* Returns the last s v n revision in the ordered set where svnUserId = &#63;.
@@ -112,7 +112,7 @@ public interface SVNRevisionPersistence extends BasePersistence<SVNRevision> {
 	*/
 	public com.liferay.socialcoding.model.SVNRevision findBySVNUserId_Last(
 		java.lang.String svnUserId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialcoding.model.SVNRevision> orderByComparator)
 		throws com.liferay.socialcoding.NoSuchSVNRevisionException;
 
 	/**
@@ -124,7 +124,7 @@ public interface SVNRevisionPersistence extends BasePersistence<SVNRevision> {
 	*/
 	public com.liferay.socialcoding.model.SVNRevision fetchBySVNUserId_Last(
 		java.lang.String svnUserId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialcoding.model.SVNRevision> orderByComparator);
 
 	/**
 	* Returns the s v n revisions before and after the current s v n revision in the ordered set where svnUserId = &#63;.
@@ -137,7 +137,7 @@ public interface SVNRevisionPersistence extends BasePersistence<SVNRevision> {
 	*/
 	public com.liferay.socialcoding.model.SVNRevision[] findBySVNUserId_PrevAndNext(
 		long svnRevisionId, java.lang.String svnUserId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialcoding.model.SVNRevision> orderByComparator)
 		throws com.liferay.socialcoding.NoSuchSVNRevisionException;
 
 	/**
@@ -194,7 +194,7 @@ public interface SVNRevisionPersistence extends BasePersistence<SVNRevision> {
 	*/
 	public java.util.List<com.liferay.socialcoding.model.SVNRevision> findBySVNRepositoryId(
 		long svnRepositoryId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialcoding.model.SVNRevision> orderByComparator);
 
 	/**
 	* Returns the first s v n revision in the ordered set where svnRepositoryId = &#63;.
@@ -206,7 +206,7 @@ public interface SVNRevisionPersistence extends BasePersistence<SVNRevision> {
 	*/
 	public com.liferay.socialcoding.model.SVNRevision findBySVNRepositoryId_First(
 		long svnRepositoryId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialcoding.model.SVNRevision> orderByComparator)
 		throws com.liferay.socialcoding.NoSuchSVNRevisionException;
 
 	/**
@@ -218,7 +218,7 @@ public interface SVNRevisionPersistence extends BasePersistence<SVNRevision> {
 	*/
 	public com.liferay.socialcoding.model.SVNRevision fetchBySVNRepositoryId_First(
 		long svnRepositoryId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialcoding.model.SVNRevision> orderByComparator);
 
 	/**
 	* Returns the last s v n revision in the ordered set where svnRepositoryId = &#63;.
@@ -230,7 +230,7 @@ public interface SVNRevisionPersistence extends BasePersistence<SVNRevision> {
 	*/
 	public com.liferay.socialcoding.model.SVNRevision findBySVNRepositoryId_Last(
 		long svnRepositoryId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialcoding.model.SVNRevision> orderByComparator)
 		throws com.liferay.socialcoding.NoSuchSVNRevisionException;
 
 	/**
@@ -242,7 +242,7 @@ public interface SVNRevisionPersistence extends BasePersistence<SVNRevision> {
 	*/
 	public com.liferay.socialcoding.model.SVNRevision fetchBySVNRepositoryId_Last(
 		long svnRepositoryId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialcoding.model.SVNRevision> orderByComparator);
 
 	/**
 	* Returns the s v n revisions before and after the current s v n revision in the ordered set where svnRepositoryId = &#63;.
@@ -255,7 +255,7 @@ public interface SVNRevisionPersistence extends BasePersistence<SVNRevision> {
 	*/
 	public com.liferay.socialcoding.model.SVNRevision[] findBySVNRepositoryId_PrevAndNext(
 		long svnRevisionId, long svnRepositoryId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialcoding.model.SVNRevision> orderByComparator)
 		throws com.liferay.socialcoding.NoSuchSVNRevisionException;
 
 	/**
@@ -315,7 +315,7 @@ public interface SVNRevisionPersistence extends BasePersistence<SVNRevision> {
 	*/
 	public java.util.List<com.liferay.socialcoding.model.SVNRevision> findBySVNU_SVNR(
 		java.lang.String svnUserId, long svnRepositoryId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialcoding.model.SVNRevision> orderByComparator);
 
 	/**
 	* Returns the first s v n revision in the ordered set where svnUserId = &#63; and svnRepositoryId = &#63;.
@@ -328,7 +328,7 @@ public interface SVNRevisionPersistence extends BasePersistence<SVNRevision> {
 	*/
 	public com.liferay.socialcoding.model.SVNRevision findBySVNU_SVNR_First(
 		java.lang.String svnUserId, long svnRepositoryId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialcoding.model.SVNRevision> orderByComparator)
 		throws com.liferay.socialcoding.NoSuchSVNRevisionException;
 
 	/**
@@ -341,7 +341,7 @@ public interface SVNRevisionPersistence extends BasePersistence<SVNRevision> {
 	*/
 	public com.liferay.socialcoding.model.SVNRevision fetchBySVNU_SVNR_First(
 		java.lang.String svnUserId, long svnRepositoryId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialcoding.model.SVNRevision> orderByComparator);
 
 	/**
 	* Returns the last s v n revision in the ordered set where svnUserId = &#63; and svnRepositoryId = &#63;.
@@ -354,7 +354,7 @@ public interface SVNRevisionPersistence extends BasePersistence<SVNRevision> {
 	*/
 	public com.liferay.socialcoding.model.SVNRevision findBySVNU_SVNR_Last(
 		java.lang.String svnUserId, long svnRepositoryId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialcoding.model.SVNRevision> orderByComparator)
 		throws com.liferay.socialcoding.NoSuchSVNRevisionException;
 
 	/**
@@ -367,7 +367,7 @@ public interface SVNRevisionPersistence extends BasePersistence<SVNRevision> {
 	*/
 	public com.liferay.socialcoding.model.SVNRevision fetchBySVNU_SVNR_Last(
 		java.lang.String svnUserId, long svnRepositoryId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialcoding.model.SVNRevision> orderByComparator);
 
 	/**
 	* Returns the s v n revisions before and after the current s v n revision in the ordered set where svnUserId = &#63; and svnRepositoryId = &#63;.
@@ -381,7 +381,7 @@ public interface SVNRevisionPersistence extends BasePersistence<SVNRevision> {
 	*/
 	public com.liferay.socialcoding.model.SVNRevision[] findBySVNU_SVNR_PrevAndNext(
 		long svnRevisionId, java.lang.String svnUserId, long svnRepositoryId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialcoding.model.SVNRevision> orderByComparator)
 		throws com.liferay.socialcoding.NoSuchSVNRevisionException;
 
 	/**
@@ -498,7 +498,7 @@ public interface SVNRevisionPersistence extends BasePersistence<SVNRevision> {
 	*/
 	public java.util.List<com.liferay.socialcoding.model.SVNRevision> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialcoding.model.SVNRevision> orderByComparator);
 
 	/**
 	* Removes all the s v n revisions from the database.

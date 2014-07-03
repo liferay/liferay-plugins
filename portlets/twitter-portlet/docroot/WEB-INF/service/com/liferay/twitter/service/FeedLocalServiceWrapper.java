@@ -89,8 +89,7 @@ public class FeedLocalServiceWrapper implements FeedLocalService,
 	* @return the matching rows
 	*/
 	@Override
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
 		return _feedLocalService.dynamicQuery(dynamicQuery);
 	}
@@ -108,8 +107,7 @@ public class FeedLocalServiceWrapper implements FeedLocalService,
 	* @return the range of matching rows
 	*/
 	@Override
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) {
 		return _feedLocalService.dynamicQuery(dynamicQuery, start, end);
@@ -129,11 +127,10 @@ public class FeedLocalServiceWrapper implements FeedLocalService,
 	* @return the ordered range of matching rows
 	*/
 	@Override
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<T> orderByComparator) {
 		return _feedLocalService.dynamicQuery(dynamicQuery, start, end,
 			orderByComparator);
 	}
@@ -272,20 +269,17 @@ public class FeedLocalServiceWrapper implements FeedLocalService,
 
 	@Override
 	public void updateFeed(long userId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		_feedLocalService.updateFeed(userId);
 	}
 
 	@Override
-	public void updateFeeds()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public void updateFeeds() {
 		_feedLocalService.updateFeeds();
 	}
 
 	@Override
-	public void updateFeeds(long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public void updateFeeds(long companyId) {
 		_feedLocalService.updateFeeds(companyId);
 	}
 

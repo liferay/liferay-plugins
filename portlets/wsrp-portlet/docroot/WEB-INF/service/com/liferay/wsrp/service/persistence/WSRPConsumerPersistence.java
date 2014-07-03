@@ -76,7 +76,7 @@ public interface WSRPConsumerPersistence extends BasePersistence<WSRPConsumer> {
 	*/
 	public java.util.List<com.liferay.wsrp.model.WSRPConsumer> findByUuid(
 		java.lang.String uuid, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.wsrp.model.WSRPConsumer> orderByComparator);
 
 	/**
 	* Returns the first w s r p consumer in the ordered set where uuid = &#63;.
@@ -88,7 +88,7 @@ public interface WSRPConsumerPersistence extends BasePersistence<WSRPConsumer> {
 	*/
 	public com.liferay.wsrp.model.WSRPConsumer findByUuid_First(
 		java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.wsrp.model.WSRPConsumer> orderByComparator)
 		throws com.liferay.wsrp.NoSuchConsumerException;
 
 	/**
@@ -100,7 +100,7 @@ public interface WSRPConsumerPersistence extends BasePersistence<WSRPConsumer> {
 	*/
 	public com.liferay.wsrp.model.WSRPConsumer fetchByUuid_First(
 		java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.wsrp.model.WSRPConsumer> orderByComparator);
 
 	/**
 	* Returns the last w s r p consumer in the ordered set where uuid = &#63;.
@@ -112,7 +112,7 @@ public interface WSRPConsumerPersistence extends BasePersistence<WSRPConsumer> {
 	*/
 	public com.liferay.wsrp.model.WSRPConsumer findByUuid_Last(
 		java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.wsrp.model.WSRPConsumer> orderByComparator)
 		throws com.liferay.wsrp.NoSuchConsumerException;
 
 	/**
@@ -124,7 +124,7 @@ public interface WSRPConsumerPersistence extends BasePersistence<WSRPConsumer> {
 	*/
 	public com.liferay.wsrp.model.WSRPConsumer fetchByUuid_Last(
 		java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.wsrp.model.WSRPConsumer> orderByComparator);
 
 	/**
 	* Returns the w s r p consumers before and after the current w s r p consumer in the ordered set where uuid = &#63;.
@@ -137,7 +137,7 @@ public interface WSRPConsumerPersistence extends BasePersistence<WSRPConsumer> {
 	*/
 	public com.liferay.wsrp.model.WSRPConsumer[] findByUuid_PrevAndNext(
 		long wsrpConsumerId, java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.wsrp.model.WSRPConsumer> orderByComparator)
 		throws com.liferay.wsrp.NoSuchConsumerException;
 
 	/**
@@ -197,7 +197,7 @@ public interface WSRPConsumerPersistence extends BasePersistence<WSRPConsumer> {
 	*/
 	public java.util.List<com.liferay.wsrp.model.WSRPConsumer> findByUuid_C(
 		java.lang.String uuid, long companyId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.wsrp.model.WSRPConsumer> orderByComparator);
 
 	/**
 	* Returns the first w s r p consumer in the ordered set where uuid = &#63; and companyId = &#63;.
@@ -210,7 +210,7 @@ public interface WSRPConsumerPersistence extends BasePersistence<WSRPConsumer> {
 	*/
 	public com.liferay.wsrp.model.WSRPConsumer findByUuid_C_First(
 		java.lang.String uuid, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.wsrp.model.WSRPConsumer> orderByComparator)
 		throws com.liferay.wsrp.NoSuchConsumerException;
 
 	/**
@@ -223,7 +223,7 @@ public interface WSRPConsumerPersistence extends BasePersistence<WSRPConsumer> {
 	*/
 	public com.liferay.wsrp.model.WSRPConsumer fetchByUuid_C_First(
 		java.lang.String uuid, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.wsrp.model.WSRPConsumer> orderByComparator);
 
 	/**
 	* Returns the last w s r p consumer in the ordered set where uuid = &#63; and companyId = &#63;.
@@ -236,7 +236,7 @@ public interface WSRPConsumerPersistence extends BasePersistence<WSRPConsumer> {
 	*/
 	public com.liferay.wsrp.model.WSRPConsumer findByUuid_C_Last(
 		java.lang.String uuid, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.wsrp.model.WSRPConsumer> orderByComparator)
 		throws com.liferay.wsrp.NoSuchConsumerException;
 
 	/**
@@ -249,7 +249,7 @@ public interface WSRPConsumerPersistence extends BasePersistence<WSRPConsumer> {
 	*/
 	public com.liferay.wsrp.model.WSRPConsumer fetchByUuid_C_Last(
 		java.lang.String uuid, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.wsrp.model.WSRPConsumer> orderByComparator);
 
 	/**
 	* Returns the w s r p consumers before and after the current w s r p consumer in the ordered set where uuid = &#63; and companyId = &#63;.
@@ -263,7 +263,7 @@ public interface WSRPConsumerPersistence extends BasePersistence<WSRPConsumer> {
 	*/
 	public com.liferay.wsrp.model.WSRPConsumer[] findByUuid_C_PrevAndNext(
 		long wsrpConsumerId, java.lang.String uuid, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.wsrp.model.WSRPConsumer> orderByComparator)
 		throws com.liferay.wsrp.NoSuchConsumerException;
 
 	/**
@@ -322,7 +322,7 @@ public interface WSRPConsumerPersistence extends BasePersistence<WSRPConsumer> {
 	*/
 	public java.util.List<com.liferay.wsrp.model.WSRPConsumer> findByCompanyId(
 		long companyId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.wsrp.model.WSRPConsumer> orderByComparator);
 
 	/**
 	* Returns the first w s r p consumer in the ordered set where companyId = &#63;.
@@ -334,7 +334,7 @@ public interface WSRPConsumerPersistence extends BasePersistence<WSRPConsumer> {
 	*/
 	public com.liferay.wsrp.model.WSRPConsumer findByCompanyId_First(
 		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.wsrp.model.WSRPConsumer> orderByComparator)
 		throws com.liferay.wsrp.NoSuchConsumerException;
 
 	/**
@@ -346,7 +346,7 @@ public interface WSRPConsumerPersistence extends BasePersistence<WSRPConsumer> {
 	*/
 	public com.liferay.wsrp.model.WSRPConsumer fetchByCompanyId_First(
 		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.wsrp.model.WSRPConsumer> orderByComparator);
 
 	/**
 	* Returns the last w s r p consumer in the ordered set where companyId = &#63;.
@@ -358,7 +358,7 @@ public interface WSRPConsumerPersistence extends BasePersistence<WSRPConsumer> {
 	*/
 	public com.liferay.wsrp.model.WSRPConsumer findByCompanyId_Last(
 		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.wsrp.model.WSRPConsumer> orderByComparator)
 		throws com.liferay.wsrp.NoSuchConsumerException;
 
 	/**
@@ -370,7 +370,7 @@ public interface WSRPConsumerPersistence extends BasePersistence<WSRPConsumer> {
 	*/
 	public com.liferay.wsrp.model.WSRPConsumer fetchByCompanyId_Last(
 		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.wsrp.model.WSRPConsumer> orderByComparator);
 
 	/**
 	* Returns the w s r p consumers before and after the current w s r p consumer in the ordered set where companyId = &#63;.
@@ -383,7 +383,7 @@ public interface WSRPConsumerPersistence extends BasePersistence<WSRPConsumer> {
 	*/
 	public com.liferay.wsrp.model.WSRPConsumer[] findByCompanyId_PrevAndNext(
 		long wsrpConsumerId, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.wsrp.model.WSRPConsumer> orderByComparator)
 		throws com.liferay.wsrp.NoSuchConsumerException;
 
 	/**
@@ -495,7 +495,7 @@ public interface WSRPConsumerPersistence extends BasePersistence<WSRPConsumer> {
 	*/
 	public java.util.List<com.liferay.wsrp.model.WSRPConsumer> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.wsrp.model.WSRPConsumer> orderByComparator);
 
 	/**
 	* Removes all the w s r p consumers from the database.

@@ -67,11 +67,9 @@ public interface PushNotificationsDeviceService extends BaseService,
 
 	public com.liferay.pushnotifications.model.PushNotificationsDevice addPushNotificationsDevice(
 		java.lang.String token, java.lang.String platform)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	public com.liferay.pushnotifications.model.PushNotificationsDevice deletePushNotificationsDevice(
 		java.lang.String token)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.portal.kernel.exception.PortalException;
 }

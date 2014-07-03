@@ -156,7 +156,7 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 	 */
 	@Override
 	public List<WSRPConsumerPortlet> findByUuid(String uuid, int start,
-		int end, OrderByComparator orderByComparator) {
+		int end, OrderByComparator<WSRPConsumerPortlet> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -276,7 +276,7 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 	 */
 	@Override
 	public WSRPConsumerPortlet findByUuid_First(String uuid,
-		OrderByComparator orderByComparator)
+		OrderByComparator<WSRPConsumerPortlet> orderByComparator)
 		throws NoSuchConsumerPortletException {
 		WSRPConsumerPortlet wsrpConsumerPortlet = fetchByUuid_First(uuid,
 				orderByComparator);
@@ -306,7 +306,7 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 	 */
 	@Override
 	public WSRPConsumerPortlet fetchByUuid_First(String uuid,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<WSRPConsumerPortlet> orderByComparator) {
 		List<WSRPConsumerPortlet> list = findByUuid(uuid, 0, 1,
 				orderByComparator);
 
@@ -327,7 +327,7 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 	 */
 	@Override
 	public WSRPConsumerPortlet findByUuid_Last(String uuid,
-		OrderByComparator orderByComparator)
+		OrderByComparator<WSRPConsumerPortlet> orderByComparator)
 		throws NoSuchConsumerPortletException {
 		WSRPConsumerPortlet wsrpConsumerPortlet = fetchByUuid_Last(uuid,
 				orderByComparator);
@@ -357,7 +357,7 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 	 */
 	@Override
 	public WSRPConsumerPortlet fetchByUuid_Last(String uuid,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<WSRPConsumerPortlet> orderByComparator) {
 		int count = countByUuid(uuid);
 
 		if (count == 0) {
@@ -386,7 +386,7 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 	@Override
 	public WSRPConsumerPortlet[] findByUuid_PrevAndNext(
 		long wsrpConsumerPortletId, String uuid,
-		OrderByComparator orderByComparator)
+		OrderByComparator<WSRPConsumerPortlet> orderByComparator)
 		throws NoSuchConsumerPortletException {
 		WSRPConsumerPortlet wsrpConsumerPortlet = findByPrimaryKey(wsrpConsumerPortletId);
 
@@ -417,7 +417,8 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 
 	protected WSRPConsumerPortlet getByUuid_PrevAndNext(Session session,
 		WSRPConsumerPortlet wsrpConsumerPortlet, String uuid,
-		OrderByComparator orderByComparator, boolean previous) {
+		OrderByComparator<WSRPConsumerPortlet> orderByComparator,
+		boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -688,7 +689,8 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 	 */
 	@Override
 	public List<WSRPConsumerPortlet> findByUuid_C(String uuid, long companyId,
-		int start, int end, OrderByComparator orderByComparator) {
+		int start, int end,
+		OrderByComparator<WSRPConsumerPortlet> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -818,7 +820,7 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 	 */
 	@Override
 	public WSRPConsumerPortlet findByUuid_C_First(String uuid, long companyId,
-		OrderByComparator orderByComparator)
+		OrderByComparator<WSRPConsumerPortlet> orderByComparator)
 		throws NoSuchConsumerPortletException {
 		WSRPConsumerPortlet wsrpConsumerPortlet = fetchByUuid_C_First(uuid,
 				companyId, orderByComparator);
@@ -852,7 +854,7 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 	 */
 	@Override
 	public WSRPConsumerPortlet fetchByUuid_C_First(String uuid, long companyId,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<WSRPConsumerPortlet> orderByComparator) {
 		List<WSRPConsumerPortlet> list = findByUuid_C(uuid, companyId, 0, 1,
 				orderByComparator);
 
@@ -874,7 +876,7 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 	 */
 	@Override
 	public WSRPConsumerPortlet findByUuid_C_Last(String uuid, long companyId,
-		OrderByComparator orderByComparator)
+		OrderByComparator<WSRPConsumerPortlet> orderByComparator)
 		throws NoSuchConsumerPortletException {
 		WSRPConsumerPortlet wsrpConsumerPortlet = fetchByUuid_C_Last(uuid,
 				companyId, orderByComparator);
@@ -908,7 +910,7 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 	 */
 	@Override
 	public WSRPConsumerPortlet fetchByUuid_C_Last(String uuid, long companyId,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<WSRPConsumerPortlet> orderByComparator) {
 		int count = countByUuid_C(uuid, companyId);
 
 		if (count == 0) {
@@ -938,7 +940,7 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 	@Override
 	public WSRPConsumerPortlet[] findByUuid_C_PrevAndNext(
 		long wsrpConsumerPortletId, String uuid, long companyId,
-		OrderByComparator orderByComparator)
+		OrderByComparator<WSRPConsumerPortlet> orderByComparator)
 		throws NoSuchConsumerPortletException {
 		WSRPConsumerPortlet wsrpConsumerPortlet = findByPrimaryKey(wsrpConsumerPortletId);
 
@@ -969,7 +971,8 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 
 	protected WSRPConsumerPortlet getByUuid_C_PrevAndNext(Session session,
 		WSRPConsumerPortlet wsrpConsumerPortlet, String uuid, long companyId,
-		OrderByComparator orderByComparator, boolean previous) {
+		OrderByComparator<WSRPConsumerPortlet> orderByComparator,
+		boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -1248,7 +1251,8 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 	 */
 	@Override
 	public List<WSRPConsumerPortlet> findByWsrpConsumerId(long wsrpConsumerId,
-		int start, int end, OrderByComparator orderByComparator) {
+		int start, int end,
+		OrderByComparator<WSRPConsumerPortlet> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -1358,7 +1362,7 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 	 */
 	@Override
 	public WSRPConsumerPortlet findByWsrpConsumerId_First(long wsrpConsumerId,
-		OrderByComparator orderByComparator)
+		OrderByComparator<WSRPConsumerPortlet> orderByComparator)
 		throws NoSuchConsumerPortletException {
 		WSRPConsumerPortlet wsrpConsumerPortlet = fetchByWsrpConsumerId_First(wsrpConsumerId,
 				orderByComparator);
@@ -1388,7 +1392,8 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 	 */
 	@Override
 	public WSRPConsumerPortlet fetchByWsrpConsumerId_First(
-		long wsrpConsumerId, OrderByComparator orderByComparator) {
+		long wsrpConsumerId,
+		OrderByComparator<WSRPConsumerPortlet> orderByComparator) {
 		List<WSRPConsumerPortlet> list = findByWsrpConsumerId(wsrpConsumerId,
 				0, 1, orderByComparator);
 
@@ -1409,7 +1414,7 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 	 */
 	@Override
 	public WSRPConsumerPortlet findByWsrpConsumerId_Last(long wsrpConsumerId,
-		OrderByComparator orderByComparator)
+		OrderByComparator<WSRPConsumerPortlet> orderByComparator)
 		throws NoSuchConsumerPortletException {
 		WSRPConsumerPortlet wsrpConsumerPortlet = fetchByWsrpConsumerId_Last(wsrpConsumerId,
 				orderByComparator);
@@ -1439,7 +1444,7 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 	 */
 	@Override
 	public WSRPConsumerPortlet fetchByWsrpConsumerId_Last(long wsrpConsumerId,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<WSRPConsumerPortlet> orderByComparator) {
 		int count = countByWsrpConsumerId(wsrpConsumerId);
 
 		if (count == 0) {
@@ -1468,7 +1473,7 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 	@Override
 	public WSRPConsumerPortlet[] findByWsrpConsumerId_PrevAndNext(
 		long wsrpConsumerPortletId, long wsrpConsumerId,
-		OrderByComparator orderByComparator)
+		OrderByComparator<WSRPConsumerPortlet> orderByComparator)
 		throws NoSuchConsumerPortletException {
 		WSRPConsumerPortlet wsrpConsumerPortlet = findByPrimaryKey(wsrpConsumerPortletId);
 
@@ -1500,7 +1505,8 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 
 	protected WSRPConsumerPortlet getByWsrpConsumerId_PrevAndNext(
 		Session session, WSRPConsumerPortlet wsrpConsumerPortlet,
-		long wsrpConsumerId, OrderByComparator orderByComparator,
+		long wsrpConsumerId,
+		OrderByComparator<WSRPConsumerPortlet> orderByComparator,
 		boolean previous) {
 		StringBundler query = null;
 
@@ -2564,7 +2570,7 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 	 */
 	@Override
 	public List<WSRPConsumerPortlet> findAll(int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<WSRPConsumerPortlet> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;

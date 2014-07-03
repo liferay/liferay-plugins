@@ -20,11 +20,10 @@ package com.liferay.tasks.service.persistence;
 public interface TasksEntryFinder {
 	public int countByG_U_P_A_S_T_N(long groupId, long userId, int priority,
 		long assigneeUserId, int status, long[] assetTagIds,
-		long[] notAssetTagIds)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		long[] notAssetTagIds);
 
 	public java.util.List<com.liferay.tasks.model.TasksEntry> findByG_U_P_A_S_T_N(
 		long groupId, long userId, int priority, long assigneeUserId,
 		int status, long[] assetTagIds, long[] notAssetTagIds, int start,
-		int end) throws com.liferay.portal.kernel.exception.SystemException;
+		int end);
 }

@@ -101,12 +101,10 @@ public abstract class FolderLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @param folderId the primary key of the folder
 	 * @return the folder that was removed
 	 * @throws PortalException if a folder with the primary key could not be found
-	 * @throws SystemException
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
-	public Folder deleteFolder(long folderId)
-		throws PortalException, SystemException {
+	public Folder deleteFolder(long folderId) throws PortalException {
 		return folderPersistence.remove(folderId);
 	}
 
@@ -116,12 +114,10 @@ public abstract class FolderLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @param folder the folder
 	 * @return the folder that was removed
 	 * @throws PortalException
-	 * @throws SystemException
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
-	public Folder deleteFolder(Folder folder)
-		throws PortalException, SystemException {
+	public Folder deleteFolder(Folder folder) throws PortalException {
 		return folderPersistence.remove(folder);
 	}
 
@@ -140,8 +136,7 @@ public abstract class FolderLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the matching rows
 	 */
 	@Override
-	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery) {
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery) {
 		return folderPersistence.findWithDynamicQuery(dynamicQuery);
 	}
 
@@ -158,8 +153,8 @@ public abstract class FolderLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the range of matching rows
 	 */
 	@Override
-	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end) {
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
+		int end) {
 		return folderPersistence.findWithDynamicQuery(dynamicQuery, start, end);
 	}
 
@@ -177,9 +172,8 @@ public abstract class FolderLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the ordered range of matching rows
 	 */
 	@Override
-	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end,
-		OrderByComparator orderByComparator) {
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
+		int end, OrderByComparator<T> orderByComparator) {
 		return folderPersistence.findWithDynamicQuery(dynamicQuery, start, end,
 			orderByComparator);
 	}

@@ -236,8 +236,7 @@ public class BBBParticipantLocalServiceClp implements BBBParticipantLocalService
 
 	@Override
 	public com.liferay.bbb.model.BBBParticipant deleteBBBParticipant(
-		com.liferay.bbb.model.BBBParticipant bbbParticipant)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.bbb.model.BBBParticipant bbbParticipant) {
 		Object returnObj = null;
 
 		try {
@@ -247,10 +246,6 @@ public class BBBParticipantLocalServiceClp implements BBBParticipantLocalService
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
 
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
@@ -288,8 +283,7 @@ public class BBBParticipantLocalServiceClp implements BBBParticipantLocalService
 	}
 
 	@Override
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
 		Object returnObj = null;
 
@@ -310,12 +304,11 @@ public class BBBParticipantLocalServiceClp implements BBBParticipantLocalService
 			}
 		}
 
-		return (java.util.List)ClpSerializer.translateOutput(returnObj);
+		return (java.util.List<T>)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) {
 		Object returnObj = null;
@@ -343,15 +336,14 @@ public class BBBParticipantLocalServiceClp implements BBBParticipantLocalService
 			}
 		}
 
-		return (java.util.List)ClpSerializer.translateOutput(returnObj);
+		return (java.util.List<T>)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<T> orderByComparator) {
 		Object returnObj = null;
 
 		try {
@@ -379,7 +371,7 @@ public class BBBParticipantLocalServiceClp implements BBBParticipantLocalService
 			}
 		}
 
-		return (java.util.List)ClpSerializer.translateOutput(returnObj);
+		return (java.util.List<T>)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override
@@ -700,8 +692,7 @@ public class BBBParticipantLocalServiceClp implements BBBParticipantLocalService
 		long groupId, long bbbMeetingId, java.lang.String name,
 		java.lang.String emailAddress, int type, int status,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
 		try {
@@ -732,10 +723,6 @@ public class BBBParticipantLocalServiceClp implements BBBParticipantLocalService
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
 			}
 
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
 			}
@@ -750,8 +737,7 @@ public class BBBParticipantLocalServiceClp implements BBBParticipantLocalService
 
 	@Override
 	public com.liferay.bbb.model.BBBParticipant fetchBBBParticipant(
-		long bbbMeetingId, java.lang.String emailAddress)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long bbbMeetingId, java.lang.String emailAddress) {
 		Object returnObj = null;
 
 		try {
@@ -765,10 +751,6 @@ public class BBBParticipantLocalServiceClp implements BBBParticipantLocalService
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
 
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
@@ -784,8 +766,7 @@ public class BBBParticipantLocalServiceClp implements BBBParticipantLocalService
 
 	@Override
 	public java.util.List<com.liferay.bbb.model.BBBParticipant> getBBBParticipants(
-		long bbbMeetingId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long bbbMeetingId) {
 		Object returnObj = null;
 
 		try {
@@ -794,10 +775,6 @@ public class BBBParticipantLocalServiceClp implements BBBParticipantLocalService
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
 
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
@@ -812,8 +789,7 @@ public class BBBParticipantLocalServiceClp implements BBBParticipantLocalService
 	}
 
 	@Override
-	public int getBBBParticipantsCount(long bbbMeetingId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public int getBBBParticipantsCount(long bbbMeetingId) {
 		Object returnObj = null;
 
 		try {
@@ -822,10 +798,6 @@ public class BBBParticipantLocalServiceClp implements BBBParticipantLocalService
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
 
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
@@ -844,8 +816,7 @@ public class BBBParticipantLocalServiceClp implements BBBParticipantLocalService
 		long bbbParticipantId, long bbbMeetingId, java.lang.String name,
 		java.lang.String emailAddress, int type,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
 		try {
@@ -872,10 +843,6 @@ public class BBBParticipantLocalServiceClp implements BBBParticipantLocalService
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
 			}
 
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
 			}
@@ -891,8 +858,7 @@ public class BBBParticipantLocalServiceClp implements BBBParticipantLocalService
 	@Override
 	public com.liferay.bbb.model.BBBParticipant updateStatus(
 		long bbbParticipantId, int status)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
 		try {
@@ -905,10 +871,6 @@ public class BBBParticipantLocalServiceClp implements BBBParticipantLocalService
 
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
 
 			if (t instanceof RuntimeException) {

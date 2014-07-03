@@ -21,7 +21,7 @@ import com.liferay.socialcoding.service.JIRAChangeItemLocalServiceUtil;
 
 /**
  * @author Brian Wing Shun Chan
- * @deprecated As of 7.0.0, replaced by {@link JIRAChangeItemLocalServiceUtil#getExportActionableDynamicQuery()}
+ * @deprecated As of 7.0.0, replaced by {@link JIRAChangeItemLocalServiceUtil#getActionableDynamicQuery()}
  * @generated
  */
 @Deprecated

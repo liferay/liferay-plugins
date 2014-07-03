@@ -76,7 +76,7 @@ public interface WallEntryPersistence extends BasePersistence<WallEntry> {
 	*/
 	public java.util.List<com.liferay.socialnetworking.model.WallEntry> findByGroupId(
 		long groupId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialnetworking.model.WallEntry> orderByComparator);
 
 	/**
 	* Returns the first wall entry in the ordered set where groupId = &#63;.
@@ -88,7 +88,7 @@ public interface WallEntryPersistence extends BasePersistence<WallEntry> {
 	*/
 	public com.liferay.socialnetworking.model.WallEntry findByGroupId_First(
 		long groupId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialnetworking.model.WallEntry> orderByComparator)
 		throws com.liferay.socialnetworking.NoSuchWallEntryException;
 
 	/**
@@ -100,7 +100,7 @@ public interface WallEntryPersistence extends BasePersistence<WallEntry> {
 	*/
 	public com.liferay.socialnetworking.model.WallEntry fetchByGroupId_First(
 		long groupId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialnetworking.model.WallEntry> orderByComparator);
 
 	/**
 	* Returns the last wall entry in the ordered set where groupId = &#63;.
@@ -112,7 +112,7 @@ public interface WallEntryPersistence extends BasePersistence<WallEntry> {
 	*/
 	public com.liferay.socialnetworking.model.WallEntry findByGroupId_Last(
 		long groupId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialnetworking.model.WallEntry> orderByComparator)
 		throws com.liferay.socialnetworking.NoSuchWallEntryException;
 
 	/**
@@ -124,7 +124,7 @@ public interface WallEntryPersistence extends BasePersistence<WallEntry> {
 	*/
 	public com.liferay.socialnetworking.model.WallEntry fetchByGroupId_Last(
 		long groupId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialnetworking.model.WallEntry> orderByComparator);
 
 	/**
 	* Returns the wall entries before and after the current wall entry in the ordered set where groupId = &#63;.
@@ -137,7 +137,7 @@ public interface WallEntryPersistence extends BasePersistence<WallEntry> {
 	*/
 	public com.liferay.socialnetworking.model.WallEntry[] findByGroupId_PrevAndNext(
 		long wallEntryId, long groupId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialnetworking.model.WallEntry> orderByComparator)
 		throws com.liferay.socialnetworking.NoSuchWallEntryException;
 
 	/**
@@ -194,7 +194,7 @@ public interface WallEntryPersistence extends BasePersistence<WallEntry> {
 	*/
 	public java.util.List<com.liferay.socialnetworking.model.WallEntry> findByUserId(
 		long userId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialnetworking.model.WallEntry> orderByComparator);
 
 	/**
 	* Returns the first wall entry in the ordered set where userId = &#63;.
@@ -206,7 +206,7 @@ public interface WallEntryPersistence extends BasePersistence<WallEntry> {
 	*/
 	public com.liferay.socialnetworking.model.WallEntry findByUserId_First(
 		long userId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialnetworking.model.WallEntry> orderByComparator)
 		throws com.liferay.socialnetworking.NoSuchWallEntryException;
 
 	/**
@@ -218,7 +218,7 @@ public interface WallEntryPersistence extends BasePersistence<WallEntry> {
 	*/
 	public com.liferay.socialnetworking.model.WallEntry fetchByUserId_First(
 		long userId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialnetworking.model.WallEntry> orderByComparator);
 
 	/**
 	* Returns the last wall entry in the ordered set where userId = &#63;.
@@ -230,7 +230,7 @@ public interface WallEntryPersistence extends BasePersistence<WallEntry> {
 	*/
 	public com.liferay.socialnetworking.model.WallEntry findByUserId_Last(
 		long userId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialnetworking.model.WallEntry> orderByComparator)
 		throws com.liferay.socialnetworking.NoSuchWallEntryException;
 
 	/**
@@ -242,7 +242,7 @@ public interface WallEntryPersistence extends BasePersistence<WallEntry> {
 	*/
 	public com.liferay.socialnetworking.model.WallEntry fetchByUserId_Last(
 		long userId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialnetworking.model.WallEntry> orderByComparator);
 
 	/**
 	* Returns the wall entries before and after the current wall entry in the ordered set where userId = &#63;.
@@ -255,7 +255,7 @@ public interface WallEntryPersistence extends BasePersistence<WallEntry> {
 	*/
 	public com.liferay.socialnetworking.model.WallEntry[] findByUserId_PrevAndNext(
 		long wallEntryId, long userId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialnetworking.model.WallEntry> orderByComparator)
 		throws com.liferay.socialnetworking.NoSuchWallEntryException;
 
 	/**
@@ -315,7 +315,7 @@ public interface WallEntryPersistence extends BasePersistence<WallEntry> {
 	*/
 	public java.util.List<com.liferay.socialnetworking.model.WallEntry> findByG_U(
 		long groupId, long userId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialnetworking.model.WallEntry> orderByComparator);
 
 	/**
 	* Returns the first wall entry in the ordered set where groupId = &#63; and userId = &#63;.
@@ -328,7 +328,7 @@ public interface WallEntryPersistence extends BasePersistence<WallEntry> {
 	*/
 	public com.liferay.socialnetworking.model.WallEntry findByG_U_First(
 		long groupId, long userId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialnetworking.model.WallEntry> orderByComparator)
 		throws com.liferay.socialnetworking.NoSuchWallEntryException;
 
 	/**
@@ -341,7 +341,7 @@ public interface WallEntryPersistence extends BasePersistence<WallEntry> {
 	*/
 	public com.liferay.socialnetworking.model.WallEntry fetchByG_U_First(
 		long groupId, long userId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialnetworking.model.WallEntry> orderByComparator);
 
 	/**
 	* Returns the last wall entry in the ordered set where groupId = &#63; and userId = &#63;.
@@ -354,7 +354,7 @@ public interface WallEntryPersistence extends BasePersistence<WallEntry> {
 	*/
 	public com.liferay.socialnetworking.model.WallEntry findByG_U_Last(
 		long groupId, long userId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialnetworking.model.WallEntry> orderByComparator)
 		throws com.liferay.socialnetworking.NoSuchWallEntryException;
 
 	/**
@@ -367,7 +367,7 @@ public interface WallEntryPersistence extends BasePersistence<WallEntry> {
 	*/
 	public com.liferay.socialnetworking.model.WallEntry fetchByG_U_Last(
 		long groupId, long userId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialnetworking.model.WallEntry> orderByComparator);
 
 	/**
 	* Returns the wall entries before and after the current wall entry in the ordered set where groupId = &#63; and userId = &#63;.
@@ -381,7 +381,7 @@ public interface WallEntryPersistence extends BasePersistence<WallEntry> {
 	*/
 	public com.liferay.socialnetworking.model.WallEntry[] findByG_U_PrevAndNext(
 		long wallEntryId, long groupId, long userId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialnetworking.model.WallEntry> orderByComparator)
 		throws com.liferay.socialnetworking.NoSuchWallEntryException;
 
 	/**
@@ -497,7 +497,7 @@ public interface WallEntryPersistence extends BasePersistence<WallEntry> {
 	*/
 	public java.util.List<com.liferay.socialnetworking.model.WallEntry> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialnetworking.model.WallEntry> orderByComparator);
 
 	/**
 	* Removes all the wall entries from the database.

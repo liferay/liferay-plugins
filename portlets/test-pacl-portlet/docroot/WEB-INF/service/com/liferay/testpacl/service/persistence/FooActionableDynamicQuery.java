@@ -21,7 +21,7 @@ import com.liferay.testpacl.service.FooLocalServiceUtil;
 
 /**
  * @author Brian Wing Shun Chan
- * @deprecated As of 7.0.0, replaced by {@link FooLocalServiceUtil#getExportActionableDynamicQuery()}
+ * @deprecated As of 7.0.0, replaced by {@link FooLocalServiceUtil#getActionableDynamicQuery()}
  * @generated
  */
 @Deprecated

@@ -89,8 +89,7 @@ public class EntryLocalServiceWrapper implements EntryLocalService,
 	* @return the matching rows
 	*/
 	@Override
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
 		return _entryLocalService.dynamicQuery(dynamicQuery);
 	}
@@ -108,8 +107,7 @@ public class EntryLocalServiceWrapper implements EntryLocalService,
 	* @return the range of matching rows
 	*/
 	@Override
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) {
 		return _entryLocalService.dynamicQuery(dynamicQuery, start, end);
@@ -129,11 +127,10 @@ public class EntryLocalServiceWrapper implements EntryLocalService,
 	* @return the ordered range of matching rows
 	*/
 	@Override
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<T> orderByComparator) {
 		return _entryLocalService.dynamicQuery(dynamicQuery, start, end,
 			orderByComparator);
 	}
@@ -272,36 +269,31 @@ public class EntryLocalServiceWrapper implements EntryLocalService,
 
 	@Override
 	public com.liferay.chat.model.Entry addEntry(long createDate,
-		long fromUserId, long toUserId, java.lang.String content)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long fromUserId, long toUserId, java.lang.String content) {
 		return _entryLocalService.addEntry(createDate, fromUserId, toUserId,
 			content);
 	}
 
 	@Override
 	public com.liferay.chat.model.Entry addEntry(long fromUserId,
-		long toUserId, java.lang.String content)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long toUserId, java.lang.String content) {
 		return _entryLocalService.addEntry(fromUserId, toUserId, content);
 	}
 
 	@Override
-	public void deleteEntries(long userId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public void deleteEntries(long userId) {
 		_entryLocalService.deleteEntries(userId);
 	}
 
 	@Override
 	public java.util.List<com.liferay.chat.model.Entry> getNewEntries(
-		long userId, long createDate, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long userId, long createDate, int start, int end) {
 		return _entryLocalService.getNewEntries(userId, createDate, start, end);
 	}
 
 	@Override
 	public java.util.List<com.liferay.chat.model.Entry> getOldEntries(
-		long createDate, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long createDate, int start, int end) {
 		return _entryLocalService.getOldEntries(createDate, start, end);
 	}
 

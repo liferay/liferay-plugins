@@ -68,22 +68,18 @@ public interface FooLocalService extends BaseLocalService, InvokableLocalService
 	* @param fooId the primary key of the foo
 	* @return the foo that was removed
 	* @throws PortalException if a foo with the primary key could not be found
-	* @throws SystemException
 	*/
 	public com.liferay.sampleservicebuilder.model.Foo deleteFoo(long fooId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	/**
 	* Deletes the foo from the database. Also notifies the appropriate model listeners.
 	*
 	* @param foo the foo
 	* @return the foo that was removed
-	* @throws SystemException
 	*/
 	public com.liferay.sampleservicebuilder.model.Foo deleteFoo(
-		com.liferay.sampleservicebuilder.model.Foo foo)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.sampleservicebuilder.model.Foo foo);
 
 	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery();
 
@@ -93,8 +89,7 @@ public interface FooLocalService extends BaseLocalService, InvokableLocalService
 	* @param dynamicQuery the dynamic query
 	* @return the matching rows
 	*/
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery);
 
 	/**
@@ -109,8 +104,7 @@ public interface FooLocalService extends BaseLocalService, InvokableLocalService
 	* @param end the upper bound of the range of model instances (not inclusive)
 	* @return the range of matching rows
 	*/
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end);
 
@@ -127,11 +121,10 @@ public interface FooLocalService extends BaseLocalService, InvokableLocalService
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching rows
 	*/
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<T> orderByComparator);
 
 	/**
 	* Returns the number of rows that match the dynamic query.
@@ -290,18 +283,15 @@ public interface FooLocalService extends BaseLocalService, InvokableLocalService
 	public void addFoo(java.lang.String field1, boolean field2, int field3,
 		java.util.Date field4, java.lang.String field5,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.sampleservicebuilder.model.Foo> getFoos(
-		int start, int end, com.liferay.portal.kernel.util.OrderByComparator obc)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		int start, int end, com.liferay.portal.kernel.util.OrderByComparator obc);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.sampleservicebuilder.model.Foo> getFoos(
-		com.liferay.portal.kernel.util.OrderByComparator obc)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator obc);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.lang.Object getLocalObject() throws java.lang.Exception;
@@ -309,12 +299,10 @@ public interface FooLocalService extends BaseLocalService, InvokableLocalService
 	public void updateAsset(long userId,
 		com.liferay.sampleservicebuilder.model.Foo foo,
 		long[] assetCategoryIds, java.lang.String[] assetTagNames)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	public void updateFoo(long fooId, java.lang.String field1, boolean field2,
 		int field3, java.util.Date field4, java.lang.String field5,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.portal.kernel.exception.PortalException;
 }

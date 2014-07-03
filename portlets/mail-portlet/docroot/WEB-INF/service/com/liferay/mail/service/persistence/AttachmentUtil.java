@@ -85,7 +85,7 @@ public class AttachmentUtil {
 	 */
 	public static List<Attachment> findWithDynamicQuery(
 		DynamicQuery dynamicQuery, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<Attachment> orderByComparator) {
 		return getPersistence()
 				   .findWithDynamicQuery(dynamicQuery, start, end,
 			orderByComparator);
@@ -149,7 +149,7 @@ public class AttachmentUtil {
 	*/
 	public static java.util.List<com.liferay.mail.model.Attachment> findByMessageId(
 		long messageId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.mail.model.Attachment> orderByComparator) {
 		return getPersistence()
 				   .findByMessageId(messageId, start, end, orderByComparator);
 	}
@@ -164,7 +164,7 @@ public class AttachmentUtil {
 	*/
 	public static com.liferay.mail.model.Attachment findByMessageId_First(
 		long messageId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.mail.model.Attachment> orderByComparator)
 		throws com.liferay.mail.NoSuchAttachmentException {
 		return getPersistence()
 				   .findByMessageId_First(messageId, orderByComparator);
@@ -179,7 +179,7 @@ public class AttachmentUtil {
 	*/
 	public static com.liferay.mail.model.Attachment fetchByMessageId_First(
 		long messageId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.mail.model.Attachment> orderByComparator) {
 		return getPersistence()
 				   .fetchByMessageId_First(messageId, orderByComparator);
 	}
@@ -194,7 +194,7 @@ public class AttachmentUtil {
 	*/
 	public static com.liferay.mail.model.Attachment findByMessageId_Last(
 		long messageId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.mail.model.Attachment> orderByComparator)
 		throws com.liferay.mail.NoSuchAttachmentException {
 		return getPersistence()
 				   .findByMessageId_Last(messageId, orderByComparator);
@@ -209,7 +209,7 @@ public class AttachmentUtil {
 	*/
 	public static com.liferay.mail.model.Attachment fetchByMessageId_Last(
 		long messageId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.mail.model.Attachment> orderByComparator) {
 		return getPersistence()
 				   .fetchByMessageId_Last(messageId, orderByComparator);
 	}
@@ -225,7 +225,7 @@ public class AttachmentUtil {
 	*/
 	public static com.liferay.mail.model.Attachment[] findByMessageId_PrevAndNext(
 		long attachmentId, long messageId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.mail.model.Attachment> orderByComparator)
 		throws com.liferay.mail.NoSuchAttachmentException {
 		return getPersistence()
 				   .findByMessageId_PrevAndNext(attachmentId, messageId,
@@ -364,7 +364,7 @@ public class AttachmentUtil {
 	*/
 	public static java.util.List<com.liferay.mail.model.Attachment> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.mail.model.Attachment> orderByComparator) {
 		return getPersistence().findAll(start, end, orderByComparator);
 	}
 

@@ -151,7 +151,7 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	 */
 	@Override
 	public List<Entry> findByUserId(long userId, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<Entry> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -257,7 +257,7 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	 */
 	@Override
 	public Entry findByUserId_First(long userId,
-		OrderByComparator orderByComparator) throws NoSuchEntryException {
+		OrderByComparator<Entry> orderByComparator) throws NoSuchEntryException {
 		Entry entry = fetchByUserId_First(userId, orderByComparator);
 
 		if (entry != null) {
@@ -285,7 +285,7 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	 */
 	@Override
 	public Entry fetchByUserId_First(long userId,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<Entry> orderByComparator) {
 		List<Entry> list = findByUserId(userId, 0, 1, orderByComparator);
 
 		if (!list.isEmpty()) {
@@ -305,7 +305,7 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	 */
 	@Override
 	public Entry findByUserId_Last(long userId,
-		OrderByComparator orderByComparator) throws NoSuchEntryException {
+		OrderByComparator<Entry> orderByComparator) throws NoSuchEntryException {
 		Entry entry = fetchByUserId_Last(userId, orderByComparator);
 
 		if (entry != null) {
@@ -333,7 +333,7 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	 */
 	@Override
 	public Entry fetchByUserId_Last(long userId,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<Entry> orderByComparator) {
 		int count = countByUserId(userId);
 
 		if (count == 0) {
@@ -361,7 +361,7 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	 */
 	@Override
 	public Entry[] findByUserId_PrevAndNext(long entryId, long userId,
-		OrderByComparator orderByComparator) throws NoSuchEntryException {
+		OrderByComparator<Entry> orderByComparator) throws NoSuchEntryException {
 		Entry entry = findByPrimaryKey(entryId);
 
 		Session session = null;
@@ -390,7 +390,8 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	}
 
 	protected Entry getByUserId_PrevAndNext(Session session, Entry entry,
-		long userId, OrderByComparator orderByComparator, boolean previous) {
+		long userId, OrderByComparator<Entry> orderByComparator,
+		boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -1367,7 +1368,7 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	 */
 	@Override
 	public List<Entry> findAll(int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<Entry> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;

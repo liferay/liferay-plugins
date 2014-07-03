@@ -83,7 +83,7 @@ public class KaleoLogUtil {
 	 */
 	public static List<KaleoLog> findWithDynamicQuery(
 		DynamicQuery dynamicQuery, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KaleoLog> orderByComparator) {
 		return getPersistence()
 				   .findWithDynamicQuery(dynamicQuery, start, end,
 			orderByComparator);
@@ -147,7 +147,7 @@ public class KaleoLogUtil {
 	*/
 	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoLog> findByCompanyId(
 		long companyId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoLog> orderByComparator) {
 		return getPersistence()
 				   .findByCompanyId(companyId, start, end, orderByComparator);
 	}
@@ -162,7 +162,7 @@ public class KaleoLogUtil {
 	*/
 	public static com.liferay.portal.workflow.kaleo.model.KaleoLog findByCompanyId_First(
 		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoLog> orderByComparator)
 		throws com.liferay.portal.workflow.kaleo.NoSuchLogException {
 		return getPersistence()
 				   .findByCompanyId_First(companyId, orderByComparator);
@@ -177,7 +177,7 @@ public class KaleoLogUtil {
 	*/
 	public static com.liferay.portal.workflow.kaleo.model.KaleoLog fetchByCompanyId_First(
 		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoLog> orderByComparator) {
 		return getPersistence()
 				   .fetchByCompanyId_First(companyId, orderByComparator);
 	}
@@ -192,7 +192,7 @@ public class KaleoLogUtil {
 	*/
 	public static com.liferay.portal.workflow.kaleo.model.KaleoLog findByCompanyId_Last(
 		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoLog> orderByComparator)
 		throws com.liferay.portal.workflow.kaleo.NoSuchLogException {
 		return getPersistence()
 				   .findByCompanyId_Last(companyId, orderByComparator);
@@ -207,7 +207,7 @@ public class KaleoLogUtil {
 	*/
 	public static com.liferay.portal.workflow.kaleo.model.KaleoLog fetchByCompanyId_Last(
 		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoLog> orderByComparator) {
 		return getPersistence()
 				   .fetchByCompanyId_Last(companyId, orderByComparator);
 	}
@@ -223,7 +223,7 @@ public class KaleoLogUtil {
 	*/
 	public static com.liferay.portal.workflow.kaleo.model.KaleoLog[] findByCompanyId_PrevAndNext(
 		long kaleoLogId, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoLog> orderByComparator)
 		throws com.liferay.portal.workflow.kaleo.NoSuchLogException {
 		return getPersistence()
 				   .findByCompanyId_PrevAndNext(kaleoLogId, companyId,
@@ -293,7 +293,7 @@ public class KaleoLogUtil {
 	*/
 	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoLog> findByKaleoDefinitionId(
 		long kaleoDefinitionId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoLog> orderByComparator) {
 		return getPersistence()
 				   .findByKaleoDefinitionId(kaleoDefinitionId, start, end,
 			orderByComparator);
@@ -309,7 +309,7 @@ public class KaleoLogUtil {
 	*/
 	public static com.liferay.portal.workflow.kaleo.model.KaleoLog findByKaleoDefinitionId_First(
 		long kaleoDefinitionId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoLog> orderByComparator)
 		throws com.liferay.portal.workflow.kaleo.NoSuchLogException {
 		return getPersistence()
 				   .findByKaleoDefinitionId_First(kaleoDefinitionId,
@@ -325,7 +325,7 @@ public class KaleoLogUtil {
 	*/
 	public static com.liferay.portal.workflow.kaleo.model.KaleoLog fetchByKaleoDefinitionId_First(
 		long kaleoDefinitionId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoLog> orderByComparator) {
 		return getPersistence()
 				   .fetchByKaleoDefinitionId_First(kaleoDefinitionId,
 			orderByComparator);
@@ -341,7 +341,7 @@ public class KaleoLogUtil {
 	*/
 	public static com.liferay.portal.workflow.kaleo.model.KaleoLog findByKaleoDefinitionId_Last(
 		long kaleoDefinitionId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoLog> orderByComparator)
 		throws com.liferay.portal.workflow.kaleo.NoSuchLogException {
 		return getPersistence()
 				   .findByKaleoDefinitionId_Last(kaleoDefinitionId,
@@ -357,7 +357,7 @@ public class KaleoLogUtil {
 	*/
 	public static com.liferay.portal.workflow.kaleo.model.KaleoLog fetchByKaleoDefinitionId_Last(
 		long kaleoDefinitionId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoLog> orderByComparator) {
 		return getPersistence()
 				   .fetchByKaleoDefinitionId_Last(kaleoDefinitionId,
 			orderByComparator);
@@ -374,7 +374,7 @@ public class KaleoLogUtil {
 	*/
 	public static com.liferay.portal.workflow.kaleo.model.KaleoLog[] findByKaleoDefinitionId_PrevAndNext(
 		long kaleoLogId, long kaleoDefinitionId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoLog> orderByComparator)
 		throws com.liferay.portal.workflow.kaleo.NoSuchLogException {
 		return getPersistence()
 				   .findByKaleoDefinitionId_PrevAndNext(kaleoLogId,
@@ -444,7 +444,7 @@ public class KaleoLogUtil {
 	*/
 	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoLog> findByKaleoInstanceId(
 		long kaleoInstanceId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoLog> orderByComparator) {
 		return getPersistence()
 				   .findByKaleoInstanceId(kaleoInstanceId, start, end,
 			orderByComparator);
@@ -460,7 +460,7 @@ public class KaleoLogUtil {
 	*/
 	public static com.liferay.portal.workflow.kaleo.model.KaleoLog findByKaleoInstanceId_First(
 		long kaleoInstanceId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoLog> orderByComparator)
 		throws com.liferay.portal.workflow.kaleo.NoSuchLogException {
 		return getPersistence()
 				   .findByKaleoInstanceId_First(kaleoInstanceId,
@@ -476,7 +476,7 @@ public class KaleoLogUtil {
 	*/
 	public static com.liferay.portal.workflow.kaleo.model.KaleoLog fetchByKaleoInstanceId_First(
 		long kaleoInstanceId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoLog> orderByComparator) {
 		return getPersistence()
 				   .fetchByKaleoInstanceId_First(kaleoInstanceId,
 			orderByComparator);
@@ -492,7 +492,7 @@ public class KaleoLogUtil {
 	*/
 	public static com.liferay.portal.workflow.kaleo.model.KaleoLog findByKaleoInstanceId_Last(
 		long kaleoInstanceId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoLog> orderByComparator)
 		throws com.liferay.portal.workflow.kaleo.NoSuchLogException {
 		return getPersistence()
 				   .findByKaleoInstanceId_Last(kaleoInstanceId,
@@ -508,7 +508,7 @@ public class KaleoLogUtil {
 	*/
 	public static com.liferay.portal.workflow.kaleo.model.KaleoLog fetchByKaleoInstanceId_Last(
 		long kaleoInstanceId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoLog> orderByComparator) {
 		return getPersistence()
 				   .fetchByKaleoInstanceId_Last(kaleoInstanceId,
 			orderByComparator);
@@ -525,7 +525,7 @@ public class KaleoLogUtil {
 	*/
 	public static com.liferay.portal.workflow.kaleo.model.KaleoLog[] findByKaleoInstanceId_PrevAndNext(
 		long kaleoLogId, long kaleoInstanceId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoLog> orderByComparator)
 		throws com.liferay.portal.workflow.kaleo.NoSuchLogException {
 		return getPersistence()
 				   .findByKaleoInstanceId_PrevAndNext(kaleoLogId,
@@ -597,7 +597,7 @@ public class KaleoLogUtil {
 	*/
 	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoLog> findByKaleoTaskInstanceTokenId(
 		long kaleoTaskInstanceTokenId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoLog> orderByComparator) {
 		return getPersistence()
 				   .findByKaleoTaskInstanceTokenId(kaleoTaskInstanceTokenId,
 			start, end, orderByComparator);
@@ -613,7 +613,7 @@ public class KaleoLogUtil {
 	*/
 	public static com.liferay.portal.workflow.kaleo.model.KaleoLog findByKaleoTaskInstanceTokenId_First(
 		long kaleoTaskInstanceTokenId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoLog> orderByComparator)
 		throws com.liferay.portal.workflow.kaleo.NoSuchLogException {
 		return getPersistence()
 				   .findByKaleoTaskInstanceTokenId_First(kaleoTaskInstanceTokenId,
@@ -629,7 +629,7 @@ public class KaleoLogUtil {
 	*/
 	public static com.liferay.portal.workflow.kaleo.model.KaleoLog fetchByKaleoTaskInstanceTokenId_First(
 		long kaleoTaskInstanceTokenId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoLog> orderByComparator) {
 		return getPersistence()
 				   .fetchByKaleoTaskInstanceTokenId_First(kaleoTaskInstanceTokenId,
 			orderByComparator);
@@ -645,7 +645,7 @@ public class KaleoLogUtil {
 	*/
 	public static com.liferay.portal.workflow.kaleo.model.KaleoLog findByKaleoTaskInstanceTokenId_Last(
 		long kaleoTaskInstanceTokenId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoLog> orderByComparator)
 		throws com.liferay.portal.workflow.kaleo.NoSuchLogException {
 		return getPersistence()
 				   .findByKaleoTaskInstanceTokenId_Last(kaleoTaskInstanceTokenId,
@@ -661,7 +661,7 @@ public class KaleoLogUtil {
 	*/
 	public static com.liferay.portal.workflow.kaleo.model.KaleoLog fetchByKaleoTaskInstanceTokenId_Last(
 		long kaleoTaskInstanceTokenId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoLog> orderByComparator) {
 		return getPersistence()
 				   .fetchByKaleoTaskInstanceTokenId_Last(kaleoTaskInstanceTokenId,
 			orderByComparator);
@@ -678,7 +678,7 @@ public class KaleoLogUtil {
 	*/
 	public static com.liferay.portal.workflow.kaleo.model.KaleoLog[] findByKaleoTaskInstanceTokenId_PrevAndNext(
 		long kaleoLogId, long kaleoTaskInstanceTokenId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoLog> orderByComparator)
 		throws com.liferay.portal.workflow.kaleo.NoSuchLogException {
 		return getPersistence()
 				   .findByKaleoTaskInstanceTokenId_PrevAndNext(kaleoLogId,
@@ -755,7 +755,7 @@ public class KaleoLogUtil {
 	*/
 	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoLog> findByKITI_T(
 		long kaleoInstanceTokenId, java.lang.String type, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoLog> orderByComparator) {
 		return getPersistence()
 				   .findByKITI_T(kaleoInstanceTokenId, type, start, end,
 			orderByComparator);
@@ -772,7 +772,7 @@ public class KaleoLogUtil {
 	*/
 	public static com.liferay.portal.workflow.kaleo.model.KaleoLog findByKITI_T_First(
 		long kaleoInstanceTokenId, java.lang.String type,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoLog> orderByComparator)
 		throws com.liferay.portal.workflow.kaleo.NoSuchLogException {
 		return getPersistence()
 				   .findByKITI_T_First(kaleoInstanceTokenId, type,
@@ -789,7 +789,7 @@ public class KaleoLogUtil {
 	*/
 	public static com.liferay.portal.workflow.kaleo.model.KaleoLog fetchByKITI_T_First(
 		long kaleoInstanceTokenId, java.lang.String type,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoLog> orderByComparator) {
 		return getPersistence()
 				   .fetchByKITI_T_First(kaleoInstanceTokenId, type,
 			orderByComparator);
@@ -806,7 +806,7 @@ public class KaleoLogUtil {
 	*/
 	public static com.liferay.portal.workflow.kaleo.model.KaleoLog findByKITI_T_Last(
 		long kaleoInstanceTokenId, java.lang.String type,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoLog> orderByComparator)
 		throws com.liferay.portal.workflow.kaleo.NoSuchLogException {
 		return getPersistence()
 				   .findByKITI_T_Last(kaleoInstanceTokenId, type,
@@ -823,7 +823,7 @@ public class KaleoLogUtil {
 	*/
 	public static com.liferay.portal.workflow.kaleo.model.KaleoLog fetchByKITI_T_Last(
 		long kaleoInstanceTokenId, java.lang.String type,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoLog> orderByComparator) {
 		return getPersistence()
 				   .fetchByKITI_T_Last(kaleoInstanceTokenId, type,
 			orderByComparator);
@@ -841,7 +841,7 @@ public class KaleoLogUtil {
 	*/
 	public static com.liferay.portal.workflow.kaleo.model.KaleoLog[] findByKITI_T_PrevAndNext(
 		long kaleoLogId, long kaleoInstanceTokenId, java.lang.String type,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoLog> orderByComparator)
 		throws com.liferay.portal.workflow.kaleo.NoSuchLogException {
 		return getPersistence()
 				   .findByKITI_T_PrevAndNext(kaleoLogId, kaleoInstanceTokenId,
@@ -930,7 +930,7 @@ public class KaleoLogUtil {
 	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoLog> findByKCN_KCPK_KITI_T(
 		java.lang.String kaleoClassName, long kaleoClassPK,
 		long kaleoInstanceTokenId, java.lang.String type, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoLog> orderByComparator) {
 		return getPersistence()
 				   .findByKCN_KCPK_KITI_T(kaleoClassName, kaleoClassPK,
 			kaleoInstanceTokenId, type, start, end, orderByComparator);
@@ -950,7 +950,7 @@ public class KaleoLogUtil {
 	public static com.liferay.portal.workflow.kaleo.model.KaleoLog findByKCN_KCPK_KITI_T_First(
 		java.lang.String kaleoClassName, long kaleoClassPK,
 		long kaleoInstanceTokenId, java.lang.String type,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoLog> orderByComparator)
 		throws com.liferay.portal.workflow.kaleo.NoSuchLogException {
 		return getPersistence()
 				   .findByKCN_KCPK_KITI_T_First(kaleoClassName, kaleoClassPK,
@@ -970,7 +970,7 @@ public class KaleoLogUtil {
 	public static com.liferay.portal.workflow.kaleo.model.KaleoLog fetchByKCN_KCPK_KITI_T_First(
 		java.lang.String kaleoClassName, long kaleoClassPK,
 		long kaleoInstanceTokenId, java.lang.String type,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoLog> orderByComparator) {
 		return getPersistence()
 				   .fetchByKCN_KCPK_KITI_T_First(kaleoClassName, kaleoClassPK,
 			kaleoInstanceTokenId, type, orderByComparator);
@@ -990,7 +990,7 @@ public class KaleoLogUtil {
 	public static com.liferay.portal.workflow.kaleo.model.KaleoLog findByKCN_KCPK_KITI_T_Last(
 		java.lang.String kaleoClassName, long kaleoClassPK,
 		long kaleoInstanceTokenId, java.lang.String type,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoLog> orderByComparator)
 		throws com.liferay.portal.workflow.kaleo.NoSuchLogException {
 		return getPersistence()
 				   .findByKCN_KCPK_KITI_T_Last(kaleoClassName, kaleoClassPK,
@@ -1010,7 +1010,7 @@ public class KaleoLogUtil {
 	public static com.liferay.portal.workflow.kaleo.model.KaleoLog fetchByKCN_KCPK_KITI_T_Last(
 		java.lang.String kaleoClassName, long kaleoClassPK,
 		long kaleoInstanceTokenId, java.lang.String type,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoLog> orderByComparator) {
 		return getPersistence()
 				   .fetchByKCN_KCPK_KITI_T_Last(kaleoClassName, kaleoClassPK,
 			kaleoInstanceTokenId, type, orderByComparator);
@@ -1031,7 +1031,7 @@ public class KaleoLogUtil {
 	public static com.liferay.portal.workflow.kaleo.model.KaleoLog[] findByKCN_KCPK_KITI_T_PrevAndNext(
 		long kaleoLogId, java.lang.String kaleoClassName, long kaleoClassPK,
 		long kaleoInstanceTokenId, java.lang.String type,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoLog> orderByComparator)
 		throws com.liferay.portal.workflow.kaleo.NoSuchLogException {
 		return getPersistence()
 				   .findByKCN_KCPK_KITI_T_PrevAndNext(kaleoLogId,
@@ -1188,7 +1188,7 @@ public class KaleoLogUtil {
 	*/
 	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoLog> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoLog> orderByComparator) {
 		return getPersistence().findAll(start, end, orderByComparator);
 	}
 

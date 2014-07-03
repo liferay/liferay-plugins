@@ -130,7 +130,7 @@ public interface CheckoutPersistence extends BasePersistence<Checkout> {
 	*/
 	public java.util.List<com.liferay.ams.model.Checkout> findAll(int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.ams.model.Checkout> orderByComparator);
 
 	/**
 	* Removes all the checkouts from the database.

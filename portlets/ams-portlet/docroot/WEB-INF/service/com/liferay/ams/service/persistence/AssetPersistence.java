@@ -129,7 +129,7 @@ public interface AssetPersistence extends BasePersistence<Asset> {
 	*/
 	public java.util.List<com.liferay.ams.model.Asset> findAll(int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.ams.model.Asset> orderByComparator);
 
 	/**
 	* Removes all the assets from the database.

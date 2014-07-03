@@ -75,7 +75,7 @@ public interface KaleoActionPersistence extends BasePersistence<KaleoAction> {
 	*/
 	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoAction> findByCompanyId(
 		long companyId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoAction> orderByComparator);
 
 	/**
 	* Returns the first kaleo action in the ordered set where companyId = &#63;.
@@ -87,7 +87,7 @@ public interface KaleoActionPersistence extends BasePersistence<KaleoAction> {
 	*/
 	public com.liferay.portal.workflow.kaleo.model.KaleoAction findByCompanyId_First(
 		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoAction> orderByComparator)
 		throws com.liferay.portal.workflow.kaleo.NoSuchActionException;
 
 	/**
@@ -99,7 +99,7 @@ public interface KaleoActionPersistence extends BasePersistence<KaleoAction> {
 	*/
 	public com.liferay.portal.workflow.kaleo.model.KaleoAction fetchByCompanyId_First(
 		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoAction> orderByComparator);
 
 	/**
 	* Returns the last kaleo action in the ordered set where companyId = &#63;.
@@ -111,7 +111,7 @@ public interface KaleoActionPersistence extends BasePersistence<KaleoAction> {
 	*/
 	public com.liferay.portal.workflow.kaleo.model.KaleoAction findByCompanyId_Last(
 		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoAction> orderByComparator)
 		throws com.liferay.portal.workflow.kaleo.NoSuchActionException;
 
 	/**
@@ -123,7 +123,7 @@ public interface KaleoActionPersistence extends BasePersistence<KaleoAction> {
 	*/
 	public com.liferay.portal.workflow.kaleo.model.KaleoAction fetchByCompanyId_Last(
 		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoAction> orderByComparator);
 
 	/**
 	* Returns the kaleo actions before and after the current kaleo action in the ordered set where companyId = &#63;.
@@ -136,7 +136,7 @@ public interface KaleoActionPersistence extends BasePersistence<KaleoAction> {
 	*/
 	public com.liferay.portal.workflow.kaleo.model.KaleoAction[] findByCompanyId_PrevAndNext(
 		long kaleoActionId, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoAction> orderByComparator)
 		throws com.liferay.portal.workflow.kaleo.NoSuchActionException;
 
 	/**
@@ -193,7 +193,7 @@ public interface KaleoActionPersistence extends BasePersistence<KaleoAction> {
 	*/
 	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoAction> findByKaleoDefinitionId(
 		long kaleoDefinitionId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoAction> orderByComparator);
 
 	/**
 	* Returns the first kaleo action in the ordered set where kaleoDefinitionId = &#63;.
@@ -205,7 +205,7 @@ public interface KaleoActionPersistence extends BasePersistence<KaleoAction> {
 	*/
 	public com.liferay.portal.workflow.kaleo.model.KaleoAction findByKaleoDefinitionId_First(
 		long kaleoDefinitionId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoAction> orderByComparator)
 		throws com.liferay.portal.workflow.kaleo.NoSuchActionException;
 
 	/**
@@ -217,7 +217,7 @@ public interface KaleoActionPersistence extends BasePersistence<KaleoAction> {
 	*/
 	public com.liferay.portal.workflow.kaleo.model.KaleoAction fetchByKaleoDefinitionId_First(
 		long kaleoDefinitionId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoAction> orderByComparator);
 
 	/**
 	* Returns the last kaleo action in the ordered set where kaleoDefinitionId = &#63;.
@@ -229,7 +229,7 @@ public interface KaleoActionPersistence extends BasePersistence<KaleoAction> {
 	*/
 	public com.liferay.portal.workflow.kaleo.model.KaleoAction findByKaleoDefinitionId_Last(
 		long kaleoDefinitionId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoAction> orderByComparator)
 		throws com.liferay.portal.workflow.kaleo.NoSuchActionException;
 
 	/**
@@ -241,7 +241,7 @@ public interface KaleoActionPersistence extends BasePersistence<KaleoAction> {
 	*/
 	public com.liferay.portal.workflow.kaleo.model.KaleoAction fetchByKaleoDefinitionId_Last(
 		long kaleoDefinitionId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoAction> orderByComparator);
 
 	/**
 	* Returns the kaleo actions before and after the current kaleo action in the ordered set where kaleoDefinitionId = &#63;.
@@ -254,7 +254,7 @@ public interface KaleoActionPersistence extends BasePersistence<KaleoAction> {
 	*/
 	public com.liferay.portal.workflow.kaleo.model.KaleoAction[] findByKaleoDefinitionId_PrevAndNext(
 		long kaleoActionId, long kaleoDefinitionId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoAction> orderByComparator)
 		throws com.liferay.portal.workflow.kaleo.NoSuchActionException;
 
 	/**
@@ -314,7 +314,7 @@ public interface KaleoActionPersistence extends BasePersistence<KaleoAction> {
 	*/
 	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoAction> findByKCN_KCPK(
 		java.lang.String kaleoClassName, long kaleoClassPK, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoAction> orderByComparator);
 
 	/**
 	* Returns the first kaleo action in the ordered set where kaleoClassName = &#63; and kaleoClassPK = &#63;.
@@ -327,7 +327,7 @@ public interface KaleoActionPersistence extends BasePersistence<KaleoAction> {
 	*/
 	public com.liferay.portal.workflow.kaleo.model.KaleoAction findByKCN_KCPK_First(
 		java.lang.String kaleoClassName, long kaleoClassPK,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoAction> orderByComparator)
 		throws com.liferay.portal.workflow.kaleo.NoSuchActionException;
 
 	/**
@@ -340,7 +340,7 @@ public interface KaleoActionPersistence extends BasePersistence<KaleoAction> {
 	*/
 	public com.liferay.portal.workflow.kaleo.model.KaleoAction fetchByKCN_KCPK_First(
 		java.lang.String kaleoClassName, long kaleoClassPK,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoAction> orderByComparator);
 
 	/**
 	* Returns the last kaleo action in the ordered set where kaleoClassName = &#63; and kaleoClassPK = &#63;.
@@ -353,7 +353,7 @@ public interface KaleoActionPersistence extends BasePersistence<KaleoAction> {
 	*/
 	public com.liferay.portal.workflow.kaleo.model.KaleoAction findByKCN_KCPK_Last(
 		java.lang.String kaleoClassName, long kaleoClassPK,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoAction> orderByComparator)
 		throws com.liferay.portal.workflow.kaleo.NoSuchActionException;
 
 	/**
@@ -366,7 +366,7 @@ public interface KaleoActionPersistence extends BasePersistence<KaleoAction> {
 	*/
 	public com.liferay.portal.workflow.kaleo.model.KaleoAction fetchByKCN_KCPK_Last(
 		java.lang.String kaleoClassName, long kaleoClassPK,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoAction> orderByComparator);
 
 	/**
 	* Returns the kaleo actions before and after the current kaleo action in the ordered set where kaleoClassName = &#63; and kaleoClassPK = &#63;.
@@ -380,7 +380,7 @@ public interface KaleoActionPersistence extends BasePersistence<KaleoAction> {
 	*/
 	public com.liferay.portal.workflow.kaleo.model.KaleoAction[] findByKCN_KCPK_PrevAndNext(
 		long kaleoActionId, java.lang.String kaleoClassName, long kaleoClassPK,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoAction> orderByComparator)
 		throws com.liferay.portal.workflow.kaleo.NoSuchActionException;
 
 	/**
@@ -450,7 +450,7 @@ public interface KaleoActionPersistence extends BasePersistence<KaleoAction> {
 	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoAction> findByKCN_KCPK_ET(
 		java.lang.String kaleoClassName, long kaleoClassPK,
 		java.lang.String executionType, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoAction> orderByComparator);
 
 	/**
 	* Returns the first kaleo action in the ordered set where kaleoClassName = &#63; and kaleoClassPK = &#63; and executionType = &#63;.
@@ -465,7 +465,7 @@ public interface KaleoActionPersistence extends BasePersistence<KaleoAction> {
 	public com.liferay.portal.workflow.kaleo.model.KaleoAction findByKCN_KCPK_ET_First(
 		java.lang.String kaleoClassName, long kaleoClassPK,
 		java.lang.String executionType,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoAction> orderByComparator)
 		throws com.liferay.portal.workflow.kaleo.NoSuchActionException;
 
 	/**
@@ -480,7 +480,7 @@ public interface KaleoActionPersistence extends BasePersistence<KaleoAction> {
 	public com.liferay.portal.workflow.kaleo.model.KaleoAction fetchByKCN_KCPK_ET_First(
 		java.lang.String kaleoClassName, long kaleoClassPK,
 		java.lang.String executionType,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoAction> orderByComparator);
 
 	/**
 	* Returns the last kaleo action in the ordered set where kaleoClassName = &#63; and kaleoClassPK = &#63; and executionType = &#63;.
@@ -495,7 +495,7 @@ public interface KaleoActionPersistence extends BasePersistence<KaleoAction> {
 	public com.liferay.portal.workflow.kaleo.model.KaleoAction findByKCN_KCPK_ET_Last(
 		java.lang.String kaleoClassName, long kaleoClassPK,
 		java.lang.String executionType,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoAction> orderByComparator)
 		throws com.liferay.portal.workflow.kaleo.NoSuchActionException;
 
 	/**
@@ -510,7 +510,7 @@ public interface KaleoActionPersistence extends BasePersistence<KaleoAction> {
 	public com.liferay.portal.workflow.kaleo.model.KaleoAction fetchByKCN_KCPK_ET_Last(
 		java.lang.String kaleoClassName, long kaleoClassPK,
 		java.lang.String executionType,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoAction> orderByComparator);
 
 	/**
 	* Returns the kaleo actions before and after the current kaleo action in the ordered set where kaleoClassName = &#63; and kaleoClassPK = &#63; and executionType = &#63;.
@@ -526,7 +526,7 @@ public interface KaleoActionPersistence extends BasePersistence<KaleoAction> {
 	public com.liferay.portal.workflow.kaleo.model.KaleoAction[] findByKCN_KCPK_ET_PrevAndNext(
 		long kaleoActionId, java.lang.String kaleoClassName, long kaleoClassPK,
 		java.lang.String executionType,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoAction> orderByComparator)
 		throws com.liferay.portal.workflow.kaleo.NoSuchActionException;
 
 	/**
@@ -648,7 +648,7 @@ public interface KaleoActionPersistence extends BasePersistence<KaleoAction> {
 	*/
 	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoAction> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoAction> orderByComparator);
 
 	/**
 	* Removes all the kaleo actions from the database.

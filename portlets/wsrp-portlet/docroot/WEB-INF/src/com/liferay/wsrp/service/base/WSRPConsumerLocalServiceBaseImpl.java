@@ -107,12 +107,11 @@ public abstract class WSRPConsumerLocalServiceBaseImpl
 	 * @param wsrpConsumerId the primary key of the w s r p consumer
 	 * @return the w s r p consumer that was removed
 	 * @throws PortalException if a w s r p consumer with the primary key could not be found
-	 * @throws SystemException
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
 	public WSRPConsumer deleteWSRPConsumer(long wsrpConsumerId)
-		throws PortalException, SystemException {
+		throws PortalException {
 		return wsrpConsumerPersistence.remove(wsrpConsumerId);
 	}
 
@@ -122,12 +121,11 @@ public abstract class WSRPConsumerLocalServiceBaseImpl
 	 * @param wsrpConsumer the w s r p consumer
 	 * @return the w s r p consumer that was removed
 	 * @throws PortalException
-	 * @throws SystemException
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
 	public WSRPConsumer deleteWSRPConsumer(WSRPConsumer wsrpConsumer)
-		throws PortalException, SystemException {
+		throws PortalException {
 		return wsrpConsumerPersistence.remove(wsrpConsumer);
 	}
 
@@ -146,8 +144,7 @@ public abstract class WSRPConsumerLocalServiceBaseImpl
 	 * @return the matching rows
 	 */
 	@Override
-	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery) {
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery) {
 		return wsrpConsumerPersistence.findWithDynamicQuery(dynamicQuery);
 	}
 
@@ -164,8 +161,8 @@ public abstract class WSRPConsumerLocalServiceBaseImpl
 	 * @return the range of matching rows
 	 */
 	@Override
-	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end) {
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
+		int end) {
 		return wsrpConsumerPersistence.findWithDynamicQuery(dynamicQuery,
 			start, end);
 	}
@@ -184,9 +181,8 @@ public abstract class WSRPConsumerLocalServiceBaseImpl
 	 * @return the ordered range of matching rows
 	 */
 	@Override
-	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end,
-		OrderByComparator orderByComparator) {
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
+		int end, OrderByComparator<T> orderByComparator) {
 		return wsrpConsumerPersistence.findWithDynamicQuery(dynamicQuery,
 			start, end, orderByComparator);
 	}

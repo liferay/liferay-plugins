@@ -152,8 +152,7 @@ public abstract class KaleoTaskInstanceTokenLocalServiceBaseImpl
 	 * @return the matching rows
 	 */
 	@Override
-	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery) {
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery) {
 		return kaleoTaskInstanceTokenPersistence.findWithDynamicQuery(dynamicQuery);
 	}
 
@@ -170,8 +169,8 @@ public abstract class KaleoTaskInstanceTokenLocalServiceBaseImpl
 	 * @return the range of matching rows
 	 */
 	@Override
-	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end) {
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
+		int end) {
 		return kaleoTaskInstanceTokenPersistence.findWithDynamicQuery(dynamicQuery,
 			start, end);
 	}
@@ -190,9 +189,8 @@ public abstract class KaleoTaskInstanceTokenLocalServiceBaseImpl
 	 * @return the ordered range of matching rows
 	 */
 	@Override
-	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end,
-		OrderByComparator orderByComparator) {
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
+		int end, OrderByComparator<T> orderByComparator) {
 		return kaleoTaskInstanceTokenPersistence.findWithDynamicQuery(dynamicQuery,
 			start, end, orderByComparator);
 	}

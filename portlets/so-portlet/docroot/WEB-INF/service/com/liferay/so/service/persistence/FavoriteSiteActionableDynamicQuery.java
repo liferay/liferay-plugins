@@ -21,7 +21,7 @@ import com.liferay.so.service.FavoriteSiteLocalServiceUtil;
 
 /**
  * @author Brian Wing Shun Chan
- * @deprecated As of 7.0.0, replaced by {@link FavoriteSiteLocalServiceUtil#getExportActionableDynamicQuery()}
+ * @deprecated As of 7.0.0, replaced by {@link FavoriteSiteLocalServiceUtil#getActionableDynamicQuery()}
  * @generated
  */
 @Deprecated

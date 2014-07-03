@@ -18,14 +18,11 @@ package com.liferay.socialcoding.service.persistence;
  * @author Brian Wing Shun Chan
  */
 public interface JIRAActionFinder {
-	public int countByCD_P(java.util.Date createDate, long projectId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public int countByCD_P(java.util.Date createDate, long projectId);
 
 	public java.util.List<com.liferay.socialcoding.model.JIRAAction> findByCD_P(
-		java.util.Date createDate, long projectId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		java.util.Date createDate, long projectId);
 
 	public java.util.List<com.liferay.socialcoding.model.JIRAAction> findByCD_P(
-		java.util.Date createDate, long projectId, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		java.util.Date createDate, long projectId, int start, int end);
 }

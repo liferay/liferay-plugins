@@ -93,8 +93,7 @@ public class FooLocalServiceUtil {
 	* @param dynamicQuery the dynamic query
 	* @return the matching rows
 	*/
-	@SuppressWarnings("rawtypes")
-	public static java.util.List dynamicQuery(
+	public static <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
 		return getService().dynamicQuery(dynamicQuery);
 	}
@@ -111,8 +110,7 @@ public class FooLocalServiceUtil {
 	* @param end the upper bound of the range of model instances (not inclusive)
 	* @return the range of matching rows
 	*/
-	@SuppressWarnings("rawtypes")
-	public static java.util.List dynamicQuery(
+	public static <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) {
 		return getService().dynamicQuery(dynamicQuery, start, end);
@@ -131,11 +129,10 @@ public class FooLocalServiceUtil {
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching rows
 	*/
-	@SuppressWarnings("rawtypes")
-	public static java.util.List dynamicQuery(
+	public static <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<T> orderByComparator) {
 		return getService()
 				   .dynamicQuery(dynamicQuery, start, end, orderByComparator);
 	}
@@ -261,42 +258,36 @@ public class FooLocalServiceUtil {
 
 	public static com.liferay.portal.model.Company getCompanyPersistence_FindByPrimaryKey(
 		long companyId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().getCompanyPersistence_FindByPrimaryKey(companyId);
 	}
 
 	public static com.liferay.portal.model.Company getCompanyUtil_FindByPrimaryKey(
 		long companyId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().getCompanyUtil_FindByPrimaryKey(companyId);
 	}
 
 	public static java.util.List<com.liferay.chat.model.Entry> getEntryLocalServiceUtil_GetEntries(
-		int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		int start, int end) {
 		return getService().getEntryLocalServiceUtil_GetEntries(start, end);
 	}
 
 	public static com.liferay.chat.model.Entry getEntryLocalServiceUtil_GetEntry(
 		long entryId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().getEntryLocalServiceUtil_GetEntry(entryId);
 	}
 
 	public static com.liferay.portal.model.Group getGroupPersistence_FindByPrimaryKey(
 		long groupId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().getGroupPersistence_FindByPrimaryKey(groupId);
 	}
 
 	public static com.liferay.portal.model.Group getGroupUtil_FindByPrimaryKey(
 		long groupId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().getGroupUtil_FindByPrimaryKey(groupId);
 	}
 
@@ -308,8 +299,7 @@ public class FooLocalServiceUtil {
 		return getService().getPortalService_TestGetBuildNumber();
 	}
 
-	public static boolean getPortalService_TestHasClassName()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static boolean getPortalService_TestHasClassName() {
 		return getService().getPortalService_TestHasClassName();
 	}
 
@@ -321,8 +311,7 @@ public class FooLocalServiceUtil {
 		return getService().getPortalServiceUtil_TestGetBuildNumber();
 	}
 
-	public static boolean getPortalServiceUtil_TestHasClassName()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static boolean getPortalServiceUtil_TestHasClassName() {
 		return getService().getPortalServiceUtil_TestHasClassName();
 	}
 
@@ -332,28 +321,22 @@ public class FooLocalServiceUtil {
 
 	public static com.liferay.chat.model.Status getStatusLocalServiceUtil_GetStatus(
 		long statusId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().getStatusLocalServiceUtil_GetStatus(statusId);
 	}
 
 	public static java.util.List<com.liferay.chat.model.Status> getStatusLocalServiceUtil_GetStatuses(
-		int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		int start, int end) {
 		return getService().getStatusLocalServiceUtil_GetStatuses(start, end);
 	}
 
 	public static com.liferay.portal.model.User getUserPersistence_FindByPrimaryKey(
-		long userId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		long userId) throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().getUserPersistence_FindByPrimaryKey(userId);
 	}
 
 	public static com.liferay.portal.model.User getUserUtil_FindByPrimaryKey(
-		long userId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		long userId) throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().getUserUtil_FindByPrimaryKey(userId);
 	}
 

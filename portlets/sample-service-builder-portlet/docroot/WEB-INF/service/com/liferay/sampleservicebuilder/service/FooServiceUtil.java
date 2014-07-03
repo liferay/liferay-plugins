@@ -64,14 +64,12 @@ public class FooServiceUtil {
 	}
 
 	public static com.liferay.portal.model.User getUser(long userId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().getUser(userId);
 	}
 
 	public static java.util.List<com.liferay.portal.model.Group> getUserSitesGroups()
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().getUserSitesGroups();
 	}
 

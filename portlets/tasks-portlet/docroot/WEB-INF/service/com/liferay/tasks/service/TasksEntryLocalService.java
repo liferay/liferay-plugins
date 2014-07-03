@@ -69,12 +69,10 @@ public interface TasksEntryLocalService extends BaseLocalService,
 	* @param tasksEntryId the primary key of the tasks entry
 	* @return the tasks entry that was removed
 	* @throws PortalException if a tasks entry with the primary key could not be found
-	* @throws SystemException
 	*/
 	public com.liferay.tasks.model.TasksEntry deleteTasksEntry(
 		long tasksEntryId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	/**
 	* Deletes the tasks entry from the database. Also notifies the appropriate model listeners.
@@ -82,12 +80,10 @@ public interface TasksEntryLocalService extends BaseLocalService,
 	* @param tasksEntry the tasks entry
 	* @return the tasks entry that was removed
 	* @throws PortalException
-	* @throws SystemException
 	*/
 	public com.liferay.tasks.model.TasksEntry deleteTasksEntry(
 		com.liferay.tasks.model.TasksEntry tasksEntry)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery();
 
@@ -97,8 +93,7 @@ public interface TasksEntryLocalService extends BaseLocalService,
 	* @param dynamicQuery the dynamic query
 	* @return the matching rows
 	*/
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery);
 
 	/**
@@ -113,8 +108,7 @@ public interface TasksEntryLocalService extends BaseLocalService,
 	* @param end the upper bound of the range of model instances (not inclusive)
 	* @return the range of matching rows
 	*/
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end);
 
@@ -131,11 +125,10 @@ public interface TasksEntryLocalService extends BaseLocalService,
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching rows
 	*/
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<T> orderByComparator);
 
 	/**
 	* Returns the number of rows that match the dynamic query.
@@ -166,12 +159,10 @@ public interface TasksEntryLocalService extends BaseLocalService,
 	* @param tasksEntryId the primary key of the tasks entry
 	* @return the tasks entry
 	* @throws PortalException if a tasks entry with the primary key could not be found
-	* @throws SystemException
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.tasks.model.TasksEntry getTasksEntry(long tasksEntryId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery();
@@ -246,91 +237,74 @@ public interface TasksEntryLocalService extends BaseLocalService,
 		int dueDateMonth, int dueDateDay, int dueDateYear, int dueDateHour,
 		int dueDateMinute, boolean addDueDate,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.tasks.model.TasksEntry> getAssigneeTasksEntries(
-		long assigneeUserId, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		long assigneeUserId, int start, int end);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int getAssigneeTasksEntriesCount(long assigneeUserId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public int getAssigneeTasksEntriesCount(long assigneeUserId);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.tasks.model.TasksEntry> getGroupAssigneeTasksEntries(
-		long groupId, long assigneeUserId, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		long groupId, long assigneeUserId, int start, int end);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getGroupAssigneeTasksEntriesCount(long groupId,
-		long assigneeUserId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		long assigneeUserId);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.tasks.model.TasksEntry> getGroupResolverTasksEntries(
-		long groupId, long resolverUserId, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		long groupId, long resolverUserId, int start, int end);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getGroupResolverTasksEntriesCount(long groupId,
-		long resolverUserId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		long resolverUserId);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.tasks.model.TasksEntry> getGroupUserTasksEntries(
-		long groupId, long userId, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		long groupId, long userId, int start, int end);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int getGroupUserTasksEntriesCount(long groupId, long userId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public int getGroupUserTasksEntriesCount(long groupId, long userId);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.tasks.model.TasksEntry> getResolverTasksEntries(
-		long resolverUserId, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		long resolverUserId, int start, int end);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int getResolverTasksEntriesCount(long resolverUserId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public int getResolverTasksEntriesCount(long resolverUserId);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.tasks.model.TasksEntry> getTasksEntries(
-		long groupId, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		long groupId, int start, int end);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.tasks.model.TasksEntry> getTasksEntries(
 		long groupId, long userId, int priority, long assigneeUserId,
 		int status, long[] assetTagIds, long[] notAssetTagIds, int start,
-		int end) throws com.liferay.portal.kernel.exception.SystemException;
+		int end);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int getTasksEntriesCount(long groupId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public int getTasksEntriesCount(long groupId);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getTasksEntriesCount(long groupId, long userId, int priority,
 		long assigneeUserId, int status, long[] tagsEntryIds,
-		long[] notTagsEntryIds)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		long[] notTagsEntryIds);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.tasks.model.TasksEntry> getUserTasksEntries(
-		long userId, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		long userId, int start, int end);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int getUserTasksEntriesCount(long userId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public int getUserTasksEntriesCount(long userId);
 
 	public void updateAsset(long userId,
 		com.liferay.tasks.model.TasksEntry tasksEntry, long[] assetCategoryIds,
 		java.lang.String[] assetTagNames)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	public com.liferay.tasks.model.TasksEntry updateTasksEntry(
 		long tasksEntryId, java.lang.String title, int priority,
@@ -338,12 +312,10 @@ public interface TasksEntryLocalService extends BaseLocalService,
 		int dueDateDay, int dueDateYear, int dueDateHour, int dueDateMinute,
 		boolean addDueDate, int status,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	public com.liferay.tasks.model.TasksEntry updateTasksEntryStatus(
 		long tasksEntryId, long resolverUserId, int status,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.portal.kernel.exception.PortalException;
 }

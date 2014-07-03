@@ -21,7 +21,7 @@ import com.liferay.wsrp.service.WSRPProducerLocalServiceUtil;
 
 /**
  * @author Brian Wing Shun Chan
- * @deprecated As of 7.0.0, replaced by {@link WSRPProducerLocalServiceUtil#getExportActionableDynamicQuery()}
+ * @deprecated As of 7.0.0, replaced by {@link WSRPProducerLocalServiceUtil#getActionableDynamicQuery()}
  * @generated
  */
 @Deprecated

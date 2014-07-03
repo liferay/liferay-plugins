@@ -156,7 +156,7 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 	 */
 	@Override
 	public List<KaleoTransition> findByCompanyId(long companyId, int start,
-		int end, OrderByComparator orderByComparator) {
+		int end, OrderByComparator<KaleoTransition> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -262,7 +262,8 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 	 */
 	@Override
 	public KaleoTransition findByCompanyId_First(long companyId,
-		OrderByComparator orderByComparator) throws NoSuchTransitionException {
+		OrderByComparator<KaleoTransition> orderByComparator)
+		throws NoSuchTransitionException {
 		KaleoTransition kaleoTransition = fetchByCompanyId_First(companyId,
 				orderByComparator);
 
@@ -291,7 +292,7 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 	 */
 	@Override
 	public KaleoTransition fetchByCompanyId_First(long companyId,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KaleoTransition> orderByComparator) {
 		List<KaleoTransition> list = findByCompanyId(companyId, 0, 1,
 				orderByComparator);
 
@@ -312,7 +313,8 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 	 */
 	@Override
 	public KaleoTransition findByCompanyId_Last(long companyId,
-		OrderByComparator orderByComparator) throws NoSuchTransitionException {
+		OrderByComparator<KaleoTransition> orderByComparator)
+		throws NoSuchTransitionException {
 		KaleoTransition kaleoTransition = fetchByCompanyId_Last(companyId,
 				orderByComparator);
 
@@ -341,7 +343,7 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 	 */
 	@Override
 	public KaleoTransition fetchByCompanyId_Last(long companyId,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KaleoTransition> orderByComparator) {
 		int count = countByCompanyId(companyId);
 
 		if (count == 0) {
@@ -370,7 +372,8 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 	@Override
 	public KaleoTransition[] findByCompanyId_PrevAndNext(
 		long kaleoTransitionId, long companyId,
-		OrderByComparator orderByComparator) throws NoSuchTransitionException {
+		OrderByComparator<KaleoTransition> orderByComparator)
+		throws NoSuchTransitionException {
 		KaleoTransition kaleoTransition = findByPrimaryKey(kaleoTransitionId);
 
 		Session session = null;
@@ -400,7 +403,7 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 
 	protected KaleoTransition getByCompanyId_PrevAndNext(Session session,
 		KaleoTransition kaleoTransition, long companyId,
-		OrderByComparator orderByComparator, boolean previous) {
+		OrderByComparator<KaleoTransition> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -638,7 +641,7 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 	@Override
 	public List<KaleoTransition> findByKaleoDefinitionId(
 		long kaleoDefinitionId, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KaleoTransition> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -748,7 +751,8 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 	 */
 	@Override
 	public KaleoTransition findByKaleoDefinitionId_First(
-		long kaleoDefinitionId, OrderByComparator orderByComparator)
+		long kaleoDefinitionId,
+		OrderByComparator<KaleoTransition> orderByComparator)
 		throws NoSuchTransitionException {
 		KaleoTransition kaleoTransition = fetchByKaleoDefinitionId_First(kaleoDefinitionId,
 				orderByComparator);
@@ -778,7 +782,8 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 	 */
 	@Override
 	public KaleoTransition fetchByKaleoDefinitionId_First(
-		long kaleoDefinitionId, OrderByComparator orderByComparator) {
+		long kaleoDefinitionId,
+		OrderByComparator<KaleoTransition> orderByComparator) {
 		List<KaleoTransition> list = findByKaleoDefinitionId(kaleoDefinitionId,
 				0, 1, orderByComparator);
 
@@ -799,7 +804,8 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 	 */
 	@Override
 	public KaleoTransition findByKaleoDefinitionId_Last(
-		long kaleoDefinitionId, OrderByComparator orderByComparator)
+		long kaleoDefinitionId,
+		OrderByComparator<KaleoTransition> orderByComparator)
 		throws NoSuchTransitionException {
 		KaleoTransition kaleoTransition = fetchByKaleoDefinitionId_Last(kaleoDefinitionId,
 				orderByComparator);
@@ -829,7 +835,8 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 	 */
 	@Override
 	public KaleoTransition fetchByKaleoDefinitionId_Last(
-		long kaleoDefinitionId, OrderByComparator orderByComparator) {
+		long kaleoDefinitionId,
+		OrderByComparator<KaleoTransition> orderByComparator) {
 		int count = countByKaleoDefinitionId(kaleoDefinitionId);
 
 		if (count == 0) {
@@ -858,7 +865,8 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 	@Override
 	public KaleoTransition[] findByKaleoDefinitionId_PrevAndNext(
 		long kaleoTransitionId, long kaleoDefinitionId,
-		OrderByComparator orderByComparator) throws NoSuchTransitionException {
+		OrderByComparator<KaleoTransition> orderByComparator)
+		throws NoSuchTransitionException {
 		KaleoTransition kaleoTransition = findByPrimaryKey(kaleoTransitionId);
 
 		Session session = null;
@@ -888,8 +896,8 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 
 	protected KaleoTransition getByKaleoDefinitionId_PrevAndNext(
 		Session session, KaleoTransition kaleoTransition,
-		long kaleoDefinitionId, OrderByComparator orderByComparator,
-		boolean previous) {
+		long kaleoDefinitionId,
+		OrderByComparator<KaleoTransition> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -1127,7 +1135,7 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 	 */
 	@Override
 	public List<KaleoTransition> findByKaleoNodeId(long kaleoNodeId, int start,
-		int end, OrderByComparator orderByComparator) {
+		int end, OrderByComparator<KaleoTransition> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -1233,7 +1241,8 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 	 */
 	@Override
 	public KaleoTransition findByKaleoNodeId_First(long kaleoNodeId,
-		OrderByComparator orderByComparator) throws NoSuchTransitionException {
+		OrderByComparator<KaleoTransition> orderByComparator)
+		throws NoSuchTransitionException {
 		KaleoTransition kaleoTransition = fetchByKaleoNodeId_First(kaleoNodeId,
 				orderByComparator);
 
@@ -1262,7 +1271,7 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 	 */
 	@Override
 	public KaleoTransition fetchByKaleoNodeId_First(long kaleoNodeId,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KaleoTransition> orderByComparator) {
 		List<KaleoTransition> list = findByKaleoNodeId(kaleoNodeId, 0, 1,
 				orderByComparator);
 
@@ -1283,7 +1292,8 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 	 */
 	@Override
 	public KaleoTransition findByKaleoNodeId_Last(long kaleoNodeId,
-		OrderByComparator orderByComparator) throws NoSuchTransitionException {
+		OrderByComparator<KaleoTransition> orderByComparator)
+		throws NoSuchTransitionException {
 		KaleoTransition kaleoTransition = fetchByKaleoNodeId_Last(kaleoNodeId,
 				orderByComparator);
 
@@ -1312,7 +1322,7 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 	 */
 	@Override
 	public KaleoTransition fetchByKaleoNodeId_Last(long kaleoNodeId,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KaleoTransition> orderByComparator) {
 		int count = countByKaleoNodeId(kaleoNodeId);
 
 		if (count == 0) {
@@ -1341,7 +1351,8 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 	@Override
 	public KaleoTransition[] findByKaleoNodeId_PrevAndNext(
 		long kaleoTransitionId, long kaleoNodeId,
-		OrderByComparator orderByComparator) throws NoSuchTransitionException {
+		OrderByComparator<KaleoTransition> orderByComparator)
+		throws NoSuchTransitionException {
 		KaleoTransition kaleoTransition = findByPrimaryKey(kaleoTransitionId);
 
 		Session session = null;
@@ -1371,7 +1382,7 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 
 	protected KaleoTransition getByKaleoNodeId_PrevAndNext(Session session,
 		KaleoTransition kaleoTransition, long kaleoNodeId,
-		OrderByComparator orderByComparator, boolean previous) {
+		OrderByComparator<KaleoTransition> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -2701,7 +2712,7 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 	 */
 	@Override
 	public List<KaleoTransition> findAll(int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KaleoTransition> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;

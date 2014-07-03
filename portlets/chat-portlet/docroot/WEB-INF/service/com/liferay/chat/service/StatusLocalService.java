@@ -89,8 +89,7 @@ public interface StatusLocalService extends BaseLocalService,
 	* @param dynamicQuery the dynamic query
 	* @return the matching rows
 	*/
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery);
 
 	/**
@@ -105,8 +104,7 @@ public interface StatusLocalService extends BaseLocalService,
 	* @param end the upper bound of the range of model instances (not inclusive)
 	* @return the range of matching rows
 	*/
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end);
 
@@ -123,11 +121,10 @@ public interface StatusLocalService extends BaseLocalService,
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching rows
 	*/
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<T> orderByComparator);
 
 	/**
 	* Returns the number of rows that match the dynamic query.
@@ -233,34 +230,27 @@ public interface StatusLocalService extends BaseLocalService,
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<java.lang.Object[]> getAllStatuses(long companyId,
-		long userId, long modifiedDate, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		long userId, long modifiedDate, int start, int end);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<java.lang.Object[]> getGroupStatuses(long userId,
-		long modifiedDate, java.lang.String[] groupNames, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		long modifiedDate, java.lang.String[] groupNames, int start, int end);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<java.lang.Object[]> getSocialStatuses(long userId,
-		int type, long modifiedDate, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		int type, long modifiedDate, int start, int end);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<java.lang.Object[]> getSocialStatuses(long userId,
-		int[] types, long modifiedDate, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		int[] types, long modifiedDate, int start, int end);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.chat.model.Status getUserStatus(long userId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public com.liferay.chat.model.Status getUserStatus(long userId);
 
 	public com.liferay.chat.model.Status updateStatus(long userId,
-		long modifiedDate)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		long modifiedDate);
 
 	public com.liferay.chat.model.Status updateStatus(long userId,
 		long modifiedDate, int online, int awake,
-		java.lang.String activePanelIds, java.lang.String message, int playSound)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		java.lang.String activePanelIds, java.lang.String message, int playSound);
 }

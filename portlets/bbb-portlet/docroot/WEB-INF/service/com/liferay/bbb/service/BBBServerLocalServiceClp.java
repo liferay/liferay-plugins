@@ -197,8 +197,7 @@ public class BBBServerLocalServiceClp implements BBBServerLocalService {
 
 	@Override
 	public com.liferay.bbb.model.BBBServer deleteBBBServer(long bbbServerId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
 		try {
@@ -210,10 +209,6 @@ public class BBBServerLocalServiceClp implements BBBServerLocalService {
 
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
 
 			if (t instanceof RuntimeException) {
@@ -230,8 +225,7 @@ public class BBBServerLocalServiceClp implements BBBServerLocalService {
 
 	@Override
 	public com.liferay.bbb.model.BBBServer deleteBBBServer(
-		com.liferay.bbb.model.BBBServer bbbServer)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.bbb.model.BBBServer bbbServer) {
 		Object returnObj = null;
 
 		try {
@@ -241,10 +235,6 @@ public class BBBServerLocalServiceClp implements BBBServerLocalService {
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
 
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
@@ -282,8 +272,7 @@ public class BBBServerLocalServiceClp implements BBBServerLocalService {
 	}
 
 	@Override
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
 		Object returnObj = null;
 
@@ -304,12 +293,11 @@ public class BBBServerLocalServiceClp implements BBBServerLocalService {
 			}
 		}
 
-		return (java.util.List)ClpSerializer.translateOutput(returnObj);
+		return (java.util.List<T>)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) {
 		Object returnObj = null;
@@ -337,15 +325,14 @@ public class BBBServerLocalServiceClp implements BBBServerLocalService {
 			}
 		}
 
-		return (java.util.List)ClpSerializer.translateOutput(returnObj);
+		return (java.util.List<T>)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<T> orderByComparator) {
 		Object returnObj = null;
 
 		try {
@@ -373,7 +360,7 @@ public class BBBServerLocalServiceClp implements BBBServerLocalService {
 			}
 		}
 
-		return (java.util.List)ClpSerializer.translateOutput(returnObj);
+		return (java.util.List<T>)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override
@@ -691,8 +678,7 @@ public class BBBServerLocalServiceClp implements BBBServerLocalService {
 	public com.liferay.bbb.model.BBBServer addBBBServer(long userId,
 		java.lang.String name, java.lang.String url, java.lang.String secret,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
 		try {
@@ -717,10 +703,6 @@ public class BBBServerLocalServiceClp implements BBBServerLocalService {
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
 			}
 
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
 			}
@@ -735,8 +717,7 @@ public class BBBServerLocalServiceClp implements BBBServerLocalService {
 
 	@Override
 	public void checkBBBServers()
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		try {
 			_invokableLocalService.invokeMethod(_methodName22,
 				_methodParameterTypes22, new Object[] {  });
@@ -746,10 +727,6 @@ public class BBBServerLocalServiceClp implements BBBServerLocalService {
 
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
 
 			if (t instanceof RuntimeException) {
@@ -764,8 +741,7 @@ public class BBBServerLocalServiceClp implements BBBServerLocalService {
 
 	@Override
 	public java.util.List<com.liferay.bbb.model.BBBServer> getBBBServers(
-		boolean active)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		boolean active) {
 		Object returnObj = null;
 
 		try {
@@ -774,10 +750,6 @@ public class BBBServerLocalServiceClp implements BBBServerLocalService {
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
 
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
@@ -793,8 +765,7 @@ public class BBBServerLocalServiceClp implements BBBServerLocalService {
 
 	@Override
 	public java.util.List<com.liferay.bbb.model.BBBServer> getBBBServers(
-		int start, int end, com.liferay.portal.kernel.util.OrderByComparator obc)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		int start, int end, com.liferay.portal.kernel.util.OrderByComparator obc) {
 		Object returnObj = null;
 
 		try {
@@ -804,10 +775,6 @@ public class BBBServerLocalServiceClp implements BBBServerLocalService {
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
 
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
@@ -825,8 +792,7 @@ public class BBBServerLocalServiceClp implements BBBServerLocalService {
 	public com.liferay.bbb.model.BBBServer updateBBBServer(long bbbServerId,
 		java.lang.String name, java.lang.String url, java.lang.String secret,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
 		try {
@@ -849,10 +815,6 @@ public class BBBServerLocalServiceClp implements BBBServerLocalService {
 
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
 
 			if (t instanceof RuntimeException) {

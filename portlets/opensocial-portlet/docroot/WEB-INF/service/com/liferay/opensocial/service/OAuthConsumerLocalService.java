@@ -69,23 +69,19 @@ public interface OAuthConsumerLocalService extends BaseLocalService,
 	* @param oAuthConsumerId the primary key of the o auth consumer
 	* @return the o auth consumer that was removed
 	* @throws PortalException if a o auth consumer with the primary key could not be found
-	* @throws SystemException
 	*/
 	public com.liferay.opensocial.model.OAuthConsumer deleteOAuthConsumer(
 		long oAuthConsumerId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	/**
 	* Deletes the o auth consumer from the database. Also notifies the appropriate model listeners.
 	*
 	* @param oAuthConsumer the o auth consumer
 	* @return the o auth consumer that was removed
-	* @throws SystemException
 	*/
 	public com.liferay.opensocial.model.OAuthConsumer deleteOAuthConsumer(
-		com.liferay.opensocial.model.OAuthConsumer oAuthConsumer)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.opensocial.model.OAuthConsumer oAuthConsumer);
 
 	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery();
 
@@ -95,8 +91,7 @@ public interface OAuthConsumerLocalService extends BaseLocalService,
 	* @param dynamicQuery the dynamic query
 	* @return the matching rows
 	*/
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery);
 
 	/**
@@ -111,8 +106,7 @@ public interface OAuthConsumerLocalService extends BaseLocalService,
 	* @param end the upper bound of the range of model instances (not inclusive)
 	* @return the range of matching rows
 	*/
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end);
 
@@ -129,11 +123,10 @@ public interface OAuthConsumerLocalService extends BaseLocalService,
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching rows
 	*/
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<T> orderByComparator);
 
 	/**
 	* Returns the number of rows that match the dynamic query.
@@ -242,41 +235,33 @@ public interface OAuthConsumerLocalService extends BaseLocalService,
 	public com.liferay.opensocial.model.OAuthConsumer addOAuthConsumer(
 		long companyId, java.lang.String gadgetKey,
 		java.lang.String serviceName, java.lang.String consumerKey,
-		java.lang.String consumerSecret, java.lang.String keyType)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		java.lang.String consumerSecret, java.lang.String keyType);
 
-	public void deleteOAuthConsumers(java.lang.String gadgetKey)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public void deleteOAuthConsumers(java.lang.String gadgetKey);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.opensocial.model.OAuthConsumer fetchOAuthConsumer(
-		java.lang.String gadgetKey, java.lang.String serviceName)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		java.lang.String gadgetKey, java.lang.String serviceName);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.opensocial.model.OAuthConsumer getOAuthConsumer(
 		java.lang.String gadgetKey, java.lang.String serviceName)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.opensocial.model.OAuthConsumer> getOAuthConsumers(
-		java.lang.String gadgetKey)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		java.lang.String gadgetKey);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.opensocial.model.OAuthConsumer> getOAuthConsumers(
-		java.lang.String gadgetKey, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		java.lang.String gadgetKey, int start, int end);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int getOAuthConsumersCount(java.lang.String gadgetKey)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public int getOAuthConsumersCount(java.lang.String gadgetKey);
 
 	public com.liferay.opensocial.model.OAuthConsumer updateOAuthConsumer(
 		long oAuthConsumerId, java.lang.String consumerKey,
 		java.lang.String consumerSecret, java.lang.String keyType,
 		java.lang.String keyName, java.lang.String callbackURL)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.portal.kernel.exception.PortalException;
 }

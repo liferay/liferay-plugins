@@ -67,12 +67,10 @@ public class WSRPConsumerLocalServiceUtil {
 	* @param wsrpConsumerId the primary key of the w s r p consumer
 	* @return the w s r p consumer that was removed
 	* @throws PortalException if a w s r p consumer with the primary key could not be found
-	* @throws SystemException
 	*/
 	public static com.liferay.wsrp.model.WSRPConsumer deleteWSRPConsumer(
 		long wsrpConsumerId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().deleteWSRPConsumer(wsrpConsumerId);
 	}
 
@@ -82,12 +80,10 @@ public class WSRPConsumerLocalServiceUtil {
 	* @param wsrpConsumer the w s r p consumer
 	* @return the w s r p consumer that was removed
 	* @throws PortalException
-	* @throws SystemException
 	*/
 	public static com.liferay.wsrp.model.WSRPConsumer deleteWSRPConsumer(
 		com.liferay.wsrp.model.WSRPConsumer wsrpConsumer)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().deleteWSRPConsumer(wsrpConsumer);
 	}
 
@@ -101,8 +97,7 @@ public class WSRPConsumerLocalServiceUtil {
 	* @param dynamicQuery the dynamic query
 	* @return the matching rows
 	*/
-	@SuppressWarnings("rawtypes")
-	public static java.util.List dynamicQuery(
+	public static <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
 		return getService().dynamicQuery(dynamicQuery);
 	}
@@ -119,8 +114,7 @@ public class WSRPConsumerLocalServiceUtil {
 	* @param end the upper bound of the range of model instances (not inclusive)
 	* @return the range of matching rows
 	*/
-	@SuppressWarnings("rawtypes")
-	public static java.util.List dynamicQuery(
+	public static <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) {
 		return getService().dynamicQuery(dynamicQuery, start, end);
@@ -139,11 +133,10 @@ public class WSRPConsumerLocalServiceUtil {
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching rows
 	*/
-	@SuppressWarnings("rawtypes")
-	public static java.util.List dynamicQuery(
+	public static <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<T> orderByComparator) {
 		return getService()
 				   .dynamicQuery(dynamicQuery, start, end, orderByComparator);
 	}
@@ -305,34 +298,29 @@ public class WSRPConsumerLocalServiceUtil {
 		java.lang.String url, java.lang.String forwardCookies,
 		java.lang.String forwardHeaders, java.lang.String markupCharacterSets,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService()
 				   .addWSRPConsumer(companyId, adminPortletId, name, url,
 			forwardCookies, forwardHeaders, markupCharacterSets, serviceContext);
 	}
 
 	public static void deleteWSRPConsumers(long companyId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		getService().deleteWSRPConsumers(companyId);
 	}
 
 	public static com.liferay.wsrp.model.WSRPConsumer getWSRPConsumer(
 		java.lang.String wsrpConsumerUuid)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().getWSRPConsumer(wsrpConsumerUuid);
 	}
 
 	public static java.util.List<com.liferay.wsrp.model.WSRPConsumer> getWSRPConsumers(
-		long companyId, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long companyId, int start, int end) {
 		return getService().getWSRPConsumers(companyId, start, end);
 	}
 
-	public static int getWSRPConsumersCount(long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static int getWSRPConsumersCount(long companyId) {
 		return getService().getWSRPConsumersCount(companyId);
 	}
 
@@ -340,22 +328,19 @@ public class WSRPConsumerLocalServiceUtil {
 		long wsrpConsumerId, java.lang.String adminPortletId,
 		com.liferay.portal.kernel.util.UnicodeProperties registrationProperties,
 		java.lang.String registrationHandle)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService()
 				   .registerWSRPConsumer(wsrpConsumerId, adminPortletId,
 			registrationProperties, registrationHandle);
 	}
 
 	public static void restartConsumer(long wsrpConsumerId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		getService().restartConsumer(wsrpConsumerId);
 	}
 
 	public static void updateServiceDescription(long wsrpConsumerId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		getService().updateServiceDescription(wsrpConsumerId);
 	}
 
@@ -364,8 +349,7 @@ public class WSRPConsumerLocalServiceUtil {
 		java.lang.String name, java.lang.String url,
 		java.lang.String forwardCookies, java.lang.String forwardHeaders,
 		java.lang.String markupCharacterSets)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService()
 				   .updateWSRPConsumer(wsrpConsumerId, adminPortletId, name,
 			url, forwardCookies, forwardHeaders, markupCharacterSets);

@@ -76,7 +76,7 @@ public interface SampleLARBookingPersistence extends BasePersistence<SampleLARBo
 	*/
 	public java.util.List<com.liferay.samplelar.model.SampleLARBooking> findByUuid(
 		java.lang.String uuid, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.samplelar.model.SampleLARBooking> orderByComparator);
 
 	/**
 	* Returns the first sample l a r booking in the ordered set where uuid = &#63;.
@@ -88,7 +88,7 @@ public interface SampleLARBookingPersistence extends BasePersistence<SampleLARBo
 	*/
 	public com.liferay.samplelar.model.SampleLARBooking findByUuid_First(
 		java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.samplelar.model.SampleLARBooking> orderByComparator)
 		throws com.liferay.samplelar.NoSuchBookingException;
 
 	/**
@@ -100,7 +100,7 @@ public interface SampleLARBookingPersistence extends BasePersistence<SampleLARBo
 	*/
 	public com.liferay.samplelar.model.SampleLARBooking fetchByUuid_First(
 		java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.samplelar.model.SampleLARBooking> orderByComparator);
 
 	/**
 	* Returns the last sample l a r booking in the ordered set where uuid = &#63;.
@@ -112,7 +112,7 @@ public interface SampleLARBookingPersistence extends BasePersistence<SampleLARBo
 	*/
 	public com.liferay.samplelar.model.SampleLARBooking findByUuid_Last(
 		java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.samplelar.model.SampleLARBooking> orderByComparator)
 		throws com.liferay.samplelar.NoSuchBookingException;
 
 	/**
@@ -124,7 +124,7 @@ public interface SampleLARBookingPersistence extends BasePersistence<SampleLARBo
 	*/
 	public com.liferay.samplelar.model.SampleLARBooking fetchByUuid_Last(
 		java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.samplelar.model.SampleLARBooking> orderByComparator);
 
 	/**
 	* Returns the sample l a r bookings before and after the current sample l a r booking in the ordered set where uuid = &#63;.
@@ -137,7 +137,7 @@ public interface SampleLARBookingPersistence extends BasePersistence<SampleLARBo
 	*/
 	public com.liferay.samplelar.model.SampleLARBooking[] findByUuid_PrevAndNext(
 		long sampleLARBookingId, java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.samplelar.model.SampleLARBooking> orderByComparator)
 		throws com.liferay.samplelar.NoSuchBookingException;
 
 	/**
@@ -250,7 +250,7 @@ public interface SampleLARBookingPersistence extends BasePersistence<SampleLARBo
 	*/
 	public java.util.List<com.liferay.samplelar.model.SampleLARBooking> findByUuid_C(
 		java.lang.String uuid, long companyId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.samplelar.model.SampleLARBooking> orderByComparator);
 
 	/**
 	* Returns the first sample l a r booking in the ordered set where uuid = &#63; and companyId = &#63;.
@@ -263,7 +263,7 @@ public interface SampleLARBookingPersistence extends BasePersistence<SampleLARBo
 	*/
 	public com.liferay.samplelar.model.SampleLARBooking findByUuid_C_First(
 		java.lang.String uuid, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.samplelar.model.SampleLARBooking> orderByComparator)
 		throws com.liferay.samplelar.NoSuchBookingException;
 
 	/**
@@ -276,7 +276,7 @@ public interface SampleLARBookingPersistence extends BasePersistence<SampleLARBo
 	*/
 	public com.liferay.samplelar.model.SampleLARBooking fetchByUuid_C_First(
 		java.lang.String uuid, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.samplelar.model.SampleLARBooking> orderByComparator);
 
 	/**
 	* Returns the last sample l a r booking in the ordered set where uuid = &#63; and companyId = &#63;.
@@ -289,7 +289,7 @@ public interface SampleLARBookingPersistence extends BasePersistence<SampleLARBo
 	*/
 	public com.liferay.samplelar.model.SampleLARBooking findByUuid_C_Last(
 		java.lang.String uuid, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.samplelar.model.SampleLARBooking> orderByComparator)
 		throws com.liferay.samplelar.NoSuchBookingException;
 
 	/**
@@ -302,7 +302,7 @@ public interface SampleLARBookingPersistence extends BasePersistence<SampleLARBo
 	*/
 	public com.liferay.samplelar.model.SampleLARBooking fetchByUuid_C_Last(
 		java.lang.String uuid, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.samplelar.model.SampleLARBooking> orderByComparator);
 
 	/**
 	* Returns the sample l a r bookings before and after the current sample l a r booking in the ordered set where uuid = &#63; and companyId = &#63;.
@@ -316,7 +316,7 @@ public interface SampleLARBookingPersistence extends BasePersistence<SampleLARBo
 	*/
 	public com.liferay.samplelar.model.SampleLARBooking[] findByUuid_C_PrevAndNext(
 		long sampleLARBookingId, java.lang.String uuid, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.samplelar.model.SampleLARBooking> orderByComparator)
 		throws com.liferay.samplelar.NoSuchBookingException;
 
 	/**
@@ -375,7 +375,7 @@ public interface SampleLARBookingPersistence extends BasePersistence<SampleLARBo
 	*/
 	public java.util.List<com.liferay.samplelar.model.SampleLARBooking> findByGroupId(
 		long groupId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.samplelar.model.SampleLARBooking> orderByComparator);
 
 	/**
 	* Returns the first sample l a r booking in the ordered set where groupId = &#63;.
@@ -387,7 +387,7 @@ public interface SampleLARBookingPersistence extends BasePersistence<SampleLARBo
 	*/
 	public com.liferay.samplelar.model.SampleLARBooking findByGroupId_First(
 		long groupId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.samplelar.model.SampleLARBooking> orderByComparator)
 		throws com.liferay.samplelar.NoSuchBookingException;
 
 	/**
@@ -399,7 +399,7 @@ public interface SampleLARBookingPersistence extends BasePersistence<SampleLARBo
 	*/
 	public com.liferay.samplelar.model.SampleLARBooking fetchByGroupId_First(
 		long groupId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.samplelar.model.SampleLARBooking> orderByComparator);
 
 	/**
 	* Returns the last sample l a r booking in the ordered set where groupId = &#63;.
@@ -411,7 +411,7 @@ public interface SampleLARBookingPersistence extends BasePersistence<SampleLARBo
 	*/
 	public com.liferay.samplelar.model.SampleLARBooking findByGroupId_Last(
 		long groupId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.samplelar.model.SampleLARBooking> orderByComparator)
 		throws com.liferay.samplelar.NoSuchBookingException;
 
 	/**
@@ -423,7 +423,7 @@ public interface SampleLARBookingPersistence extends BasePersistence<SampleLARBo
 	*/
 	public com.liferay.samplelar.model.SampleLARBooking fetchByGroupId_Last(
 		long groupId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.samplelar.model.SampleLARBooking> orderByComparator);
 
 	/**
 	* Returns the sample l a r bookings before and after the current sample l a r booking in the ordered set where groupId = &#63;.
@@ -436,7 +436,7 @@ public interface SampleLARBookingPersistence extends BasePersistence<SampleLARBo
 	*/
 	public com.liferay.samplelar.model.SampleLARBooking[] findByGroupId_PrevAndNext(
 		long sampleLARBookingId, long groupId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.samplelar.model.SampleLARBooking> orderByComparator)
 		throws com.liferay.samplelar.NoSuchBookingException;
 
 	/**
@@ -552,7 +552,7 @@ public interface SampleLARBookingPersistence extends BasePersistence<SampleLARBo
 	*/
 	public java.util.List<com.liferay.samplelar.model.SampleLARBooking> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.samplelar.model.SampleLARBooking> orderByComparator);
 
 	/**
 	* Removes all the sample l a r bookings from the database.

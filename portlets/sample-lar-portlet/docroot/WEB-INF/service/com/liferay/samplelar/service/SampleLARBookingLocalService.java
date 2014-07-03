@@ -69,23 +69,19 @@ public interface SampleLARBookingLocalService extends BaseLocalService,
 	* @param sampleLARBookingId the primary key of the sample l a r booking
 	* @return the sample l a r booking that was removed
 	* @throws PortalException if a sample l a r booking with the primary key could not be found
-	* @throws SystemException
 	*/
 	public com.liferay.samplelar.model.SampleLARBooking deleteSampleLARBooking(
 		long sampleLARBookingId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	/**
 	* Deletes the sample l a r booking from the database. Also notifies the appropriate model listeners.
 	*
 	* @param sampleLARBooking the sample l a r booking
 	* @return the sample l a r booking that was removed
-	* @throws SystemException
 	*/
 	public com.liferay.samplelar.model.SampleLARBooking deleteSampleLARBooking(
-		com.liferay.samplelar.model.SampleLARBooking sampleLARBooking)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.samplelar.model.SampleLARBooking sampleLARBooking);
 
 	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery();
 
@@ -95,8 +91,7 @@ public interface SampleLARBookingLocalService extends BaseLocalService,
 	* @param dynamicQuery the dynamic query
 	* @return the matching rows
 	*/
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery);
 
 	/**
@@ -111,8 +106,7 @@ public interface SampleLARBookingLocalService extends BaseLocalService,
 	* @param end the upper bound of the range of model instances (not inclusive)
 	* @return the range of matching rows
 	*/
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end);
 
@@ -129,11 +123,10 @@ public interface SampleLARBookingLocalService extends BaseLocalService,
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching rows
 	*/
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<T> orderByComparator);
 
 	/**
 	* Returns the number of rows that match the dynamic query.
@@ -294,24 +287,19 @@ public interface SampleLARBookingLocalService extends BaseLocalService,
 	public com.liferay.samplelar.model.SampleLARBooking addSampleLARBooking(
 		long userId, long groupId, java.lang.String bookingNumber,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.portal.kernel.exception.PortalException;
 
-	public void deleteSampleLARBookings(long groupId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public void deleteSampleLARBookings(long groupId);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.samplelar.model.SampleLARBooking> getSampleLARBookings(
-		long groupId, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		long groupId, int start, int end);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int getSampleLARBookingsCount(long groupId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public int getSampleLARBookingsCount(long groupId);
 
 	public com.liferay.samplelar.model.SampleLARBooking updateSampleLARBooking(
 		long userId, long sampleLARBookingId, java.lang.String bookingNumber,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.portal.kernel.exception.PortalException;
 }

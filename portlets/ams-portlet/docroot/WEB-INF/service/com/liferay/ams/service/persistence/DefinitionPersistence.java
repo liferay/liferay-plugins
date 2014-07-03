@@ -130,7 +130,7 @@ public interface DefinitionPersistence extends BasePersistence<Definition> {
 	*/
 	public java.util.List<com.liferay.ams.model.Definition> findAll(int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.ams.model.Definition> orderByComparator);
 
 	/**
 	* Removes all the definitions from the database.

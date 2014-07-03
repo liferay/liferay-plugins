@@ -152,7 +152,7 @@ public class AttachmentPersistenceImpl extends BasePersistenceImpl<Attachment>
 	 */
 	@Override
 	public List<Attachment> findByMessageId(long messageId, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<Attachment> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -258,7 +258,8 @@ public class AttachmentPersistenceImpl extends BasePersistenceImpl<Attachment>
 	 */
 	@Override
 	public Attachment findByMessageId_First(long messageId,
-		OrderByComparator orderByComparator) throws NoSuchAttachmentException {
+		OrderByComparator<Attachment> orderByComparator)
+		throws NoSuchAttachmentException {
 		Attachment attachment = fetchByMessageId_First(messageId,
 				orderByComparator);
 
@@ -287,7 +288,7 @@ public class AttachmentPersistenceImpl extends BasePersistenceImpl<Attachment>
 	 */
 	@Override
 	public Attachment fetchByMessageId_First(long messageId,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<Attachment> orderByComparator) {
 		List<Attachment> list = findByMessageId(messageId, 0, 1,
 				orderByComparator);
 
@@ -308,7 +309,8 @@ public class AttachmentPersistenceImpl extends BasePersistenceImpl<Attachment>
 	 */
 	@Override
 	public Attachment findByMessageId_Last(long messageId,
-		OrderByComparator orderByComparator) throws NoSuchAttachmentException {
+		OrderByComparator<Attachment> orderByComparator)
+		throws NoSuchAttachmentException {
 		Attachment attachment = fetchByMessageId_Last(messageId,
 				orderByComparator);
 
@@ -337,7 +339,7 @@ public class AttachmentPersistenceImpl extends BasePersistenceImpl<Attachment>
 	 */
 	@Override
 	public Attachment fetchByMessageId_Last(long messageId,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<Attachment> orderByComparator) {
 		int count = countByMessageId(messageId);
 
 		if (count == 0) {
@@ -365,7 +367,7 @@ public class AttachmentPersistenceImpl extends BasePersistenceImpl<Attachment>
 	 */
 	@Override
 	public Attachment[] findByMessageId_PrevAndNext(long attachmentId,
-		long messageId, OrderByComparator orderByComparator)
+		long messageId, OrderByComparator<Attachment> orderByComparator)
 		throws NoSuchAttachmentException {
 		Attachment attachment = findByPrimaryKey(attachmentId);
 
@@ -396,7 +398,7 @@ public class AttachmentPersistenceImpl extends BasePersistenceImpl<Attachment>
 
 	protected Attachment getByMessageId_PrevAndNext(Session session,
 		Attachment attachment, long messageId,
-		OrderByComparator orderByComparator, boolean previous) {
+		OrderByComparator<Attachment> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -1063,7 +1065,7 @@ public class AttachmentPersistenceImpl extends BasePersistenceImpl<Attachment>
 	 */
 	@Override
 	public List<Attachment> findAll(int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<Attachment> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;

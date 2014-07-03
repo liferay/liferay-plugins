@@ -67,12 +67,10 @@ public class OAuthConsumerLocalServiceUtil {
 	* @param oAuthConsumerId the primary key of the o auth consumer
 	* @return the o auth consumer that was removed
 	* @throws PortalException if a o auth consumer with the primary key could not be found
-	* @throws SystemException
 	*/
 	public static com.liferay.opensocial.model.OAuthConsumer deleteOAuthConsumer(
 		long oAuthConsumerId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().deleteOAuthConsumer(oAuthConsumerId);
 	}
 
@@ -81,11 +79,9 @@ public class OAuthConsumerLocalServiceUtil {
 	*
 	* @param oAuthConsumer the o auth consumer
 	* @return the o auth consumer that was removed
-	* @throws SystemException
 	*/
 	public static com.liferay.opensocial.model.OAuthConsumer deleteOAuthConsumer(
-		com.liferay.opensocial.model.OAuthConsumer oAuthConsumer)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.opensocial.model.OAuthConsumer oAuthConsumer) {
 		return getService().deleteOAuthConsumer(oAuthConsumer);
 	}
 
@@ -99,8 +95,7 @@ public class OAuthConsumerLocalServiceUtil {
 	* @param dynamicQuery the dynamic query
 	* @return the matching rows
 	*/
-	@SuppressWarnings("rawtypes")
-	public static java.util.List dynamicQuery(
+	public static <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
 		return getService().dynamicQuery(dynamicQuery);
 	}
@@ -117,8 +112,7 @@ public class OAuthConsumerLocalServiceUtil {
 	* @param end the upper bound of the range of model instances (not inclusive)
 	* @return the range of matching rows
 	*/
-	@SuppressWarnings("rawtypes")
-	public static java.util.List dynamicQuery(
+	public static <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) {
 		return getService().dynamicQuery(dynamicQuery, start, end);
@@ -137,11 +131,10 @@ public class OAuthConsumerLocalServiceUtil {
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching rows
 	*/
-	@SuppressWarnings("rawtypes")
-	public static java.util.List dynamicQuery(
+	public static <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<T> orderByComparator) {
 		return getService()
 				   .dynamicQuery(dynamicQuery, start, end, orderByComparator);
 	}
@@ -270,45 +263,38 @@ public class OAuthConsumerLocalServiceUtil {
 	public static com.liferay.opensocial.model.OAuthConsumer addOAuthConsumer(
 		long companyId, java.lang.String gadgetKey,
 		java.lang.String serviceName, java.lang.String consumerKey,
-		java.lang.String consumerSecret, java.lang.String keyType)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		java.lang.String consumerSecret, java.lang.String keyType) {
 		return getService()
 				   .addOAuthConsumer(companyId, gadgetKey, serviceName,
 			consumerKey, consumerSecret, keyType);
 	}
 
-	public static void deleteOAuthConsumers(java.lang.String gadgetKey)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static void deleteOAuthConsumers(java.lang.String gadgetKey) {
 		getService().deleteOAuthConsumers(gadgetKey);
 	}
 
 	public static com.liferay.opensocial.model.OAuthConsumer fetchOAuthConsumer(
-		java.lang.String gadgetKey, java.lang.String serviceName)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		java.lang.String gadgetKey, java.lang.String serviceName) {
 		return getService().fetchOAuthConsumer(gadgetKey, serviceName);
 	}
 
 	public static com.liferay.opensocial.model.OAuthConsumer getOAuthConsumer(
 		java.lang.String gadgetKey, java.lang.String serviceName)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().getOAuthConsumer(gadgetKey, serviceName);
 	}
 
 	public static java.util.List<com.liferay.opensocial.model.OAuthConsumer> getOAuthConsumers(
-		java.lang.String gadgetKey)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		java.lang.String gadgetKey) {
 		return getService().getOAuthConsumers(gadgetKey);
 	}
 
 	public static java.util.List<com.liferay.opensocial.model.OAuthConsumer> getOAuthConsumers(
-		java.lang.String gadgetKey, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		java.lang.String gadgetKey, int start, int end) {
 		return getService().getOAuthConsumers(gadgetKey, start, end);
 	}
 
-	public static int getOAuthConsumersCount(java.lang.String gadgetKey)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static int getOAuthConsumersCount(java.lang.String gadgetKey) {
 		return getService().getOAuthConsumersCount(gadgetKey);
 	}
 
@@ -316,8 +302,7 @@ public class OAuthConsumerLocalServiceUtil {
 		long oAuthConsumerId, java.lang.String consumerKey,
 		java.lang.String consumerSecret, java.lang.String keyType,
 		java.lang.String keyName, java.lang.String callbackURL)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService()
 				   .updateOAuthConsumer(oAuthConsumerId, consumerKey,
 			consumerSecret, keyType, keyName, callbackURL);

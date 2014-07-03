@@ -85,7 +85,7 @@ public class MeetupsEntryUtil {
 	 */
 	public static List<MeetupsEntry> findWithDynamicQuery(
 		DynamicQuery dynamicQuery, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<MeetupsEntry> orderByComparator) {
 		return getPersistence()
 				   .findWithDynamicQuery(dynamicQuery, start, end,
 			orderByComparator);
@@ -149,7 +149,7 @@ public class MeetupsEntryUtil {
 	*/
 	public static java.util.List<com.liferay.socialnetworking.model.MeetupsEntry> findByCompanyId(
 		long companyId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialnetworking.model.MeetupsEntry> orderByComparator) {
 		return getPersistence()
 				   .findByCompanyId(companyId, start, end, orderByComparator);
 	}
@@ -164,7 +164,7 @@ public class MeetupsEntryUtil {
 	*/
 	public static com.liferay.socialnetworking.model.MeetupsEntry findByCompanyId_First(
 		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialnetworking.model.MeetupsEntry> orderByComparator)
 		throws com.liferay.socialnetworking.NoSuchMeetupsEntryException {
 		return getPersistence()
 				   .findByCompanyId_First(companyId, orderByComparator);
@@ -179,7 +179,7 @@ public class MeetupsEntryUtil {
 	*/
 	public static com.liferay.socialnetworking.model.MeetupsEntry fetchByCompanyId_First(
 		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialnetworking.model.MeetupsEntry> orderByComparator) {
 		return getPersistence()
 				   .fetchByCompanyId_First(companyId, orderByComparator);
 	}
@@ -194,7 +194,7 @@ public class MeetupsEntryUtil {
 	*/
 	public static com.liferay.socialnetworking.model.MeetupsEntry findByCompanyId_Last(
 		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialnetworking.model.MeetupsEntry> orderByComparator)
 		throws com.liferay.socialnetworking.NoSuchMeetupsEntryException {
 		return getPersistence()
 				   .findByCompanyId_Last(companyId, orderByComparator);
@@ -209,7 +209,7 @@ public class MeetupsEntryUtil {
 	*/
 	public static com.liferay.socialnetworking.model.MeetupsEntry fetchByCompanyId_Last(
 		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialnetworking.model.MeetupsEntry> orderByComparator) {
 		return getPersistence()
 				   .fetchByCompanyId_Last(companyId, orderByComparator);
 	}
@@ -225,7 +225,7 @@ public class MeetupsEntryUtil {
 	*/
 	public static com.liferay.socialnetworking.model.MeetupsEntry[] findByCompanyId_PrevAndNext(
 		long meetupsEntryId, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialnetworking.model.MeetupsEntry> orderByComparator)
 		throws com.liferay.socialnetworking.NoSuchMeetupsEntryException {
 		return getPersistence()
 				   .findByCompanyId_PrevAndNext(meetupsEntryId, companyId,
@@ -294,7 +294,7 @@ public class MeetupsEntryUtil {
 	*/
 	public static java.util.List<com.liferay.socialnetworking.model.MeetupsEntry> findByUserId(
 		long userId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialnetworking.model.MeetupsEntry> orderByComparator) {
 		return getPersistence()
 				   .findByUserId(userId, start, end, orderByComparator);
 	}
@@ -309,7 +309,7 @@ public class MeetupsEntryUtil {
 	*/
 	public static com.liferay.socialnetworking.model.MeetupsEntry findByUserId_First(
 		long userId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialnetworking.model.MeetupsEntry> orderByComparator)
 		throws com.liferay.socialnetworking.NoSuchMeetupsEntryException {
 		return getPersistence().findByUserId_First(userId, orderByComparator);
 	}
@@ -323,7 +323,7 @@ public class MeetupsEntryUtil {
 	*/
 	public static com.liferay.socialnetworking.model.MeetupsEntry fetchByUserId_First(
 		long userId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialnetworking.model.MeetupsEntry> orderByComparator) {
 		return getPersistence().fetchByUserId_First(userId, orderByComparator);
 	}
 
@@ -337,7 +337,7 @@ public class MeetupsEntryUtil {
 	*/
 	public static com.liferay.socialnetworking.model.MeetupsEntry findByUserId_Last(
 		long userId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialnetworking.model.MeetupsEntry> orderByComparator)
 		throws com.liferay.socialnetworking.NoSuchMeetupsEntryException {
 		return getPersistence().findByUserId_Last(userId, orderByComparator);
 	}
@@ -351,7 +351,7 @@ public class MeetupsEntryUtil {
 	*/
 	public static com.liferay.socialnetworking.model.MeetupsEntry fetchByUserId_Last(
 		long userId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialnetworking.model.MeetupsEntry> orderByComparator) {
 		return getPersistence().fetchByUserId_Last(userId, orderByComparator);
 	}
 
@@ -366,7 +366,7 @@ public class MeetupsEntryUtil {
 	*/
 	public static com.liferay.socialnetworking.model.MeetupsEntry[] findByUserId_PrevAndNext(
 		long meetupsEntryId, long userId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialnetworking.model.MeetupsEntry> orderByComparator)
 		throws com.liferay.socialnetworking.NoSuchMeetupsEntryException {
 		return getPersistence()
 				   .findByUserId_PrevAndNext(meetupsEntryId, userId,
@@ -509,7 +509,7 @@ public class MeetupsEntryUtil {
 	*/
 	public static java.util.List<com.liferay.socialnetworking.model.MeetupsEntry> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialnetworking.model.MeetupsEntry> orderByComparator) {
 		return getPersistence().findAll(start, end, orderByComparator);
 	}
 

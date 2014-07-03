@@ -159,7 +159,7 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 	 */
 	@Override
 	public List<JIRAChangeGroup> findByJiraUserId(String jiraUserId, int start,
-		int end, OrderByComparator orderByComparator) {
+		int end, OrderByComparator<JIRAChangeGroup> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -280,7 +280,7 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 	 */
 	@Override
 	public JIRAChangeGroup findByJiraUserId_First(String jiraUserId,
-		OrderByComparator orderByComparator)
+		OrderByComparator<JIRAChangeGroup> orderByComparator)
 		throws NoSuchJIRAChangeGroupException {
 		JIRAChangeGroup jiraChangeGroup = fetchByJiraUserId_First(jiraUserId,
 				orderByComparator);
@@ -310,7 +310,7 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 	 */
 	@Override
 	public JIRAChangeGroup fetchByJiraUserId_First(String jiraUserId,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<JIRAChangeGroup> orderByComparator) {
 		List<JIRAChangeGroup> list = findByJiraUserId(jiraUserId, 0, 1,
 				orderByComparator);
 
@@ -331,7 +331,7 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 	 */
 	@Override
 	public JIRAChangeGroup findByJiraUserId_Last(String jiraUserId,
-		OrderByComparator orderByComparator)
+		OrderByComparator<JIRAChangeGroup> orderByComparator)
 		throws NoSuchJIRAChangeGroupException {
 		JIRAChangeGroup jiraChangeGroup = fetchByJiraUserId_Last(jiraUserId,
 				orderByComparator);
@@ -361,7 +361,7 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 	 */
 	@Override
 	public JIRAChangeGroup fetchByJiraUserId_Last(String jiraUserId,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<JIRAChangeGroup> orderByComparator) {
 		int count = countByJiraUserId(jiraUserId);
 
 		if (count == 0) {
@@ -390,7 +390,7 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 	@Override
 	public JIRAChangeGroup[] findByJiraUserId_PrevAndNext(
 		long jiraChangeGroupId, String jiraUserId,
-		OrderByComparator orderByComparator)
+		OrderByComparator<JIRAChangeGroup> orderByComparator)
 		throws NoSuchJIRAChangeGroupException {
 		JIRAChangeGroup jiraChangeGroup = findByPrimaryKey(jiraChangeGroupId);
 
@@ -421,7 +421,7 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 
 	protected JIRAChangeGroup getByJiraUserId_PrevAndNext(Session session,
 		JIRAChangeGroup jiraChangeGroup, String jiraUserId,
-		OrderByComparator orderByComparator, boolean previous) {
+		OrderByComparator<JIRAChangeGroup> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -689,7 +689,7 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 	 */
 	@Override
 	public List<JIRAChangeGroup> findByJiraIssueId(long jiraIssueId, int start,
-		int end, OrderByComparator orderByComparator) {
+		int end, OrderByComparator<JIRAChangeGroup> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -795,7 +795,7 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 	 */
 	@Override
 	public JIRAChangeGroup findByJiraIssueId_First(long jiraIssueId,
-		OrderByComparator orderByComparator)
+		OrderByComparator<JIRAChangeGroup> orderByComparator)
 		throws NoSuchJIRAChangeGroupException {
 		JIRAChangeGroup jiraChangeGroup = fetchByJiraIssueId_First(jiraIssueId,
 				orderByComparator);
@@ -825,7 +825,7 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 	 */
 	@Override
 	public JIRAChangeGroup fetchByJiraIssueId_First(long jiraIssueId,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<JIRAChangeGroup> orderByComparator) {
 		List<JIRAChangeGroup> list = findByJiraIssueId(jiraIssueId, 0, 1,
 				orderByComparator);
 
@@ -846,7 +846,7 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 	 */
 	@Override
 	public JIRAChangeGroup findByJiraIssueId_Last(long jiraIssueId,
-		OrderByComparator orderByComparator)
+		OrderByComparator<JIRAChangeGroup> orderByComparator)
 		throws NoSuchJIRAChangeGroupException {
 		JIRAChangeGroup jiraChangeGroup = fetchByJiraIssueId_Last(jiraIssueId,
 				orderByComparator);
@@ -876,7 +876,7 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 	 */
 	@Override
 	public JIRAChangeGroup fetchByJiraIssueId_Last(long jiraIssueId,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<JIRAChangeGroup> orderByComparator) {
 		int count = countByJiraIssueId(jiraIssueId);
 
 		if (count == 0) {
@@ -905,7 +905,7 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 	@Override
 	public JIRAChangeGroup[] findByJiraIssueId_PrevAndNext(
 		long jiraChangeGroupId, long jiraIssueId,
-		OrderByComparator orderByComparator)
+		OrderByComparator<JIRAChangeGroup> orderByComparator)
 		throws NoSuchJIRAChangeGroupException {
 		JIRAChangeGroup jiraChangeGroup = findByPrimaryKey(jiraChangeGroupId);
 
@@ -936,7 +936,7 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 
 	protected JIRAChangeGroup getByJiraIssueId_PrevAndNext(Session session,
 		JIRAChangeGroup jiraChangeGroup, long jiraIssueId,
-		OrderByComparator orderByComparator, boolean previous) {
+		OrderByComparator<JIRAChangeGroup> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -1622,7 +1622,7 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 	 */
 	@Override
 	public List<JIRAChangeGroup> findAll(int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<JIRAChangeGroup> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;

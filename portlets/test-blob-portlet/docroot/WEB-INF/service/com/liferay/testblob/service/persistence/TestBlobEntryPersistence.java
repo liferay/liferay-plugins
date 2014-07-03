@@ -76,7 +76,7 @@ public interface TestBlobEntryPersistence extends BasePersistence<TestBlobEntry>
 	*/
 	public java.util.List<com.liferay.testblob.model.TestBlobEntry> findByUuid(
 		java.lang.String uuid, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.testblob.model.TestBlobEntry> orderByComparator);
 
 	/**
 	* Returns the first test blob entry in the ordered set where uuid = &#63;.
@@ -88,7 +88,7 @@ public interface TestBlobEntryPersistence extends BasePersistence<TestBlobEntry>
 	*/
 	public com.liferay.testblob.model.TestBlobEntry findByUuid_First(
 		java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.testblob.model.TestBlobEntry> orderByComparator)
 		throws com.liferay.testblob.NoSuchEntryException;
 
 	/**
@@ -100,7 +100,7 @@ public interface TestBlobEntryPersistence extends BasePersistence<TestBlobEntry>
 	*/
 	public com.liferay.testblob.model.TestBlobEntry fetchByUuid_First(
 		java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.testblob.model.TestBlobEntry> orderByComparator);
 
 	/**
 	* Returns the last test blob entry in the ordered set where uuid = &#63;.
@@ -112,7 +112,7 @@ public interface TestBlobEntryPersistence extends BasePersistence<TestBlobEntry>
 	*/
 	public com.liferay.testblob.model.TestBlobEntry findByUuid_Last(
 		java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.testblob.model.TestBlobEntry> orderByComparator)
 		throws com.liferay.testblob.NoSuchEntryException;
 
 	/**
@@ -124,7 +124,7 @@ public interface TestBlobEntryPersistence extends BasePersistence<TestBlobEntry>
 	*/
 	public com.liferay.testblob.model.TestBlobEntry fetchByUuid_Last(
 		java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.testblob.model.TestBlobEntry> orderByComparator);
 
 	/**
 	* Returns the test blob entries before and after the current test blob entry in the ordered set where uuid = &#63;.
@@ -137,7 +137,7 @@ public interface TestBlobEntryPersistence extends BasePersistence<TestBlobEntry>
 	*/
 	public com.liferay.testblob.model.TestBlobEntry[] findByUuid_PrevAndNext(
 		long testBlobEntryId, java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.testblob.model.TestBlobEntry> orderByComparator)
 		throws com.liferay.testblob.NoSuchEntryException;
 
 	/**
@@ -250,7 +250,7 @@ public interface TestBlobEntryPersistence extends BasePersistence<TestBlobEntry>
 	*/
 	public java.util.List<com.liferay.testblob.model.TestBlobEntry> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.testblob.model.TestBlobEntry> orderByComparator);
 
 	/**
 	* Removes all the test blob entries from the database.

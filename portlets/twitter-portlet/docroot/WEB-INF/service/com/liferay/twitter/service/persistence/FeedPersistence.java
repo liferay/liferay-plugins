@@ -183,7 +183,7 @@ public interface FeedPersistence extends BasePersistence<Feed> {
 	*/
 	public java.util.List<com.liferay.twitter.model.Feed> findAll(int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.twitter.model.Feed> orderByComparator);
 
 	/**
 	* Removes all the feeds from the database.

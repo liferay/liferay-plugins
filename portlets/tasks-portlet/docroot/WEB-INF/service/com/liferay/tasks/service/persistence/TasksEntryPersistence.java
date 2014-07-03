@@ -76,7 +76,7 @@ public interface TasksEntryPersistence extends BasePersistence<TasksEntry> {
 	*/
 	public java.util.List<com.liferay.tasks.model.TasksEntry> findByGroupId(
 		long groupId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.tasks.model.TasksEntry> orderByComparator);
 
 	/**
 	* Returns the first tasks entry in the ordered set where groupId = &#63;.
@@ -88,7 +88,7 @@ public interface TasksEntryPersistence extends BasePersistence<TasksEntry> {
 	*/
 	public com.liferay.tasks.model.TasksEntry findByGroupId_First(
 		long groupId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.tasks.model.TasksEntry> orderByComparator)
 		throws com.liferay.tasks.NoSuchTasksEntryException;
 
 	/**
@@ -100,7 +100,7 @@ public interface TasksEntryPersistence extends BasePersistence<TasksEntry> {
 	*/
 	public com.liferay.tasks.model.TasksEntry fetchByGroupId_First(
 		long groupId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.tasks.model.TasksEntry> orderByComparator);
 
 	/**
 	* Returns the last tasks entry in the ordered set where groupId = &#63;.
@@ -111,7 +111,7 @@ public interface TasksEntryPersistence extends BasePersistence<TasksEntry> {
 	* @throws com.liferay.tasks.NoSuchTasksEntryException if a matching tasks entry could not be found
 	*/
 	public com.liferay.tasks.model.TasksEntry findByGroupId_Last(long groupId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.tasks.model.TasksEntry> orderByComparator)
 		throws com.liferay.tasks.NoSuchTasksEntryException;
 
 	/**
@@ -123,7 +123,7 @@ public interface TasksEntryPersistence extends BasePersistence<TasksEntry> {
 	*/
 	public com.liferay.tasks.model.TasksEntry fetchByGroupId_Last(
 		long groupId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.tasks.model.TasksEntry> orderByComparator);
 
 	/**
 	* Returns the tasks entries before and after the current tasks entry in the ordered set where groupId = &#63;.
@@ -136,7 +136,7 @@ public interface TasksEntryPersistence extends BasePersistence<TasksEntry> {
 	*/
 	public com.liferay.tasks.model.TasksEntry[] findByGroupId_PrevAndNext(
 		long tasksEntryId, long groupId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.tasks.model.TasksEntry> orderByComparator)
 		throws com.liferay.tasks.NoSuchTasksEntryException;
 
 	/**
@@ -178,7 +178,7 @@ public interface TasksEntryPersistence extends BasePersistence<TasksEntry> {
 	*/
 	public java.util.List<com.liferay.tasks.model.TasksEntry> filterFindByGroupId(
 		long groupId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.tasks.model.TasksEntry> orderByComparator);
 
 	/**
 	* Returns the tasks entries before and after the current tasks entry in the ordered set of tasks entries that the user has permission to view where groupId = &#63;.
@@ -191,7 +191,7 @@ public interface TasksEntryPersistence extends BasePersistence<TasksEntry> {
 	*/
 	public com.liferay.tasks.model.TasksEntry[] filterFindByGroupId_PrevAndNext(
 		long tasksEntryId, long groupId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.tasks.model.TasksEntry> orderByComparator)
 		throws com.liferay.tasks.NoSuchTasksEntryException;
 
 	/**
@@ -256,7 +256,7 @@ public interface TasksEntryPersistence extends BasePersistence<TasksEntry> {
 	*/
 	public java.util.List<com.liferay.tasks.model.TasksEntry> findByUserId(
 		long userId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.tasks.model.TasksEntry> orderByComparator);
 
 	/**
 	* Returns the first tasks entry in the ordered set where userId = &#63;.
@@ -267,7 +267,7 @@ public interface TasksEntryPersistence extends BasePersistence<TasksEntry> {
 	* @throws com.liferay.tasks.NoSuchTasksEntryException if a matching tasks entry could not be found
 	*/
 	public com.liferay.tasks.model.TasksEntry findByUserId_First(long userId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.tasks.model.TasksEntry> orderByComparator)
 		throws com.liferay.tasks.NoSuchTasksEntryException;
 
 	/**
@@ -278,7 +278,7 @@ public interface TasksEntryPersistence extends BasePersistence<TasksEntry> {
 	* @return the first matching tasks entry, or <code>null</code> if a matching tasks entry could not be found
 	*/
 	public com.liferay.tasks.model.TasksEntry fetchByUserId_First(long userId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.tasks.model.TasksEntry> orderByComparator);
 
 	/**
 	* Returns the last tasks entry in the ordered set where userId = &#63;.
@@ -289,7 +289,7 @@ public interface TasksEntryPersistence extends BasePersistence<TasksEntry> {
 	* @throws com.liferay.tasks.NoSuchTasksEntryException if a matching tasks entry could not be found
 	*/
 	public com.liferay.tasks.model.TasksEntry findByUserId_Last(long userId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.tasks.model.TasksEntry> orderByComparator)
 		throws com.liferay.tasks.NoSuchTasksEntryException;
 
 	/**
@@ -300,7 +300,7 @@ public interface TasksEntryPersistence extends BasePersistence<TasksEntry> {
 	* @return the last matching tasks entry, or <code>null</code> if a matching tasks entry could not be found
 	*/
 	public com.liferay.tasks.model.TasksEntry fetchByUserId_Last(long userId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.tasks.model.TasksEntry> orderByComparator);
 
 	/**
 	* Returns the tasks entries before and after the current tasks entry in the ordered set where userId = &#63;.
@@ -313,7 +313,7 @@ public interface TasksEntryPersistence extends BasePersistence<TasksEntry> {
 	*/
 	public com.liferay.tasks.model.TasksEntry[] findByUserId_PrevAndNext(
 		long tasksEntryId, long userId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.tasks.model.TasksEntry> orderByComparator)
 		throws com.liferay.tasks.NoSuchTasksEntryException;
 
 	/**
@@ -370,7 +370,7 @@ public interface TasksEntryPersistence extends BasePersistence<TasksEntry> {
 	*/
 	public java.util.List<com.liferay.tasks.model.TasksEntry> findByAssigneeUserId(
 		long assigneeUserId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.tasks.model.TasksEntry> orderByComparator);
 
 	/**
 	* Returns the first tasks entry in the ordered set where assigneeUserId = &#63;.
@@ -382,7 +382,7 @@ public interface TasksEntryPersistence extends BasePersistence<TasksEntry> {
 	*/
 	public com.liferay.tasks.model.TasksEntry findByAssigneeUserId_First(
 		long assigneeUserId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.tasks.model.TasksEntry> orderByComparator)
 		throws com.liferay.tasks.NoSuchTasksEntryException;
 
 	/**
@@ -394,7 +394,7 @@ public interface TasksEntryPersistence extends BasePersistence<TasksEntry> {
 	*/
 	public com.liferay.tasks.model.TasksEntry fetchByAssigneeUserId_First(
 		long assigneeUserId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.tasks.model.TasksEntry> orderByComparator);
 
 	/**
 	* Returns the last tasks entry in the ordered set where assigneeUserId = &#63;.
@@ -406,7 +406,7 @@ public interface TasksEntryPersistence extends BasePersistence<TasksEntry> {
 	*/
 	public com.liferay.tasks.model.TasksEntry findByAssigneeUserId_Last(
 		long assigneeUserId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.tasks.model.TasksEntry> orderByComparator)
 		throws com.liferay.tasks.NoSuchTasksEntryException;
 
 	/**
@@ -418,7 +418,7 @@ public interface TasksEntryPersistence extends BasePersistence<TasksEntry> {
 	*/
 	public com.liferay.tasks.model.TasksEntry fetchByAssigneeUserId_Last(
 		long assigneeUserId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.tasks.model.TasksEntry> orderByComparator);
 
 	/**
 	* Returns the tasks entries before and after the current tasks entry in the ordered set where assigneeUserId = &#63;.
@@ -431,7 +431,7 @@ public interface TasksEntryPersistence extends BasePersistence<TasksEntry> {
 	*/
 	public com.liferay.tasks.model.TasksEntry[] findByAssigneeUserId_PrevAndNext(
 		long tasksEntryId, long assigneeUserId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.tasks.model.TasksEntry> orderByComparator)
 		throws com.liferay.tasks.NoSuchTasksEntryException;
 
 	/**
@@ -488,7 +488,7 @@ public interface TasksEntryPersistence extends BasePersistence<TasksEntry> {
 	*/
 	public java.util.List<com.liferay.tasks.model.TasksEntry> findByResolverUserId(
 		long resolverUserId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.tasks.model.TasksEntry> orderByComparator);
 
 	/**
 	* Returns the first tasks entry in the ordered set where resolverUserId = &#63;.
@@ -500,7 +500,7 @@ public interface TasksEntryPersistence extends BasePersistence<TasksEntry> {
 	*/
 	public com.liferay.tasks.model.TasksEntry findByResolverUserId_First(
 		long resolverUserId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.tasks.model.TasksEntry> orderByComparator)
 		throws com.liferay.tasks.NoSuchTasksEntryException;
 
 	/**
@@ -512,7 +512,7 @@ public interface TasksEntryPersistence extends BasePersistence<TasksEntry> {
 	*/
 	public com.liferay.tasks.model.TasksEntry fetchByResolverUserId_First(
 		long resolverUserId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.tasks.model.TasksEntry> orderByComparator);
 
 	/**
 	* Returns the last tasks entry in the ordered set where resolverUserId = &#63;.
@@ -524,7 +524,7 @@ public interface TasksEntryPersistence extends BasePersistence<TasksEntry> {
 	*/
 	public com.liferay.tasks.model.TasksEntry findByResolverUserId_Last(
 		long resolverUserId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.tasks.model.TasksEntry> orderByComparator)
 		throws com.liferay.tasks.NoSuchTasksEntryException;
 
 	/**
@@ -536,7 +536,7 @@ public interface TasksEntryPersistence extends BasePersistence<TasksEntry> {
 	*/
 	public com.liferay.tasks.model.TasksEntry fetchByResolverUserId_Last(
 		long resolverUserId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.tasks.model.TasksEntry> orderByComparator);
 
 	/**
 	* Returns the tasks entries before and after the current tasks entry in the ordered set where resolverUserId = &#63;.
@@ -549,7 +549,7 @@ public interface TasksEntryPersistence extends BasePersistence<TasksEntry> {
 	*/
 	public com.liferay.tasks.model.TasksEntry[] findByResolverUserId_PrevAndNext(
 		long tasksEntryId, long resolverUserId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.tasks.model.TasksEntry> orderByComparator)
 		throws com.liferay.tasks.NoSuchTasksEntryException;
 
 	/**
@@ -609,7 +609,7 @@ public interface TasksEntryPersistence extends BasePersistence<TasksEntry> {
 	*/
 	public java.util.List<com.liferay.tasks.model.TasksEntry> findByG_U(
 		long groupId, long userId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.tasks.model.TasksEntry> orderByComparator);
 
 	/**
 	* Returns the first tasks entry in the ordered set where groupId = &#63; and userId = &#63;.
@@ -622,7 +622,7 @@ public interface TasksEntryPersistence extends BasePersistence<TasksEntry> {
 	*/
 	public com.liferay.tasks.model.TasksEntry findByG_U_First(long groupId,
 		long userId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.tasks.model.TasksEntry> orderByComparator)
 		throws com.liferay.tasks.NoSuchTasksEntryException;
 
 	/**
@@ -635,7 +635,7 @@ public interface TasksEntryPersistence extends BasePersistence<TasksEntry> {
 	*/
 	public com.liferay.tasks.model.TasksEntry fetchByG_U_First(long groupId,
 		long userId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.tasks.model.TasksEntry> orderByComparator);
 
 	/**
 	* Returns the last tasks entry in the ordered set where groupId = &#63; and userId = &#63;.
@@ -648,7 +648,7 @@ public interface TasksEntryPersistence extends BasePersistence<TasksEntry> {
 	*/
 	public com.liferay.tasks.model.TasksEntry findByG_U_Last(long groupId,
 		long userId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.tasks.model.TasksEntry> orderByComparator)
 		throws com.liferay.tasks.NoSuchTasksEntryException;
 
 	/**
@@ -661,7 +661,7 @@ public interface TasksEntryPersistence extends BasePersistence<TasksEntry> {
 	*/
 	public com.liferay.tasks.model.TasksEntry fetchByG_U_Last(long groupId,
 		long userId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.tasks.model.TasksEntry> orderByComparator);
 
 	/**
 	* Returns the tasks entries before and after the current tasks entry in the ordered set where groupId = &#63; and userId = &#63;.
@@ -675,7 +675,7 @@ public interface TasksEntryPersistence extends BasePersistence<TasksEntry> {
 	*/
 	public com.liferay.tasks.model.TasksEntry[] findByG_U_PrevAndNext(
 		long tasksEntryId, long groupId, long userId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.tasks.model.TasksEntry> orderByComparator)
 		throws com.liferay.tasks.NoSuchTasksEntryException;
 
 	/**
@@ -720,7 +720,7 @@ public interface TasksEntryPersistence extends BasePersistence<TasksEntry> {
 	*/
 	public java.util.List<com.liferay.tasks.model.TasksEntry> filterFindByG_U(
 		long groupId, long userId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.tasks.model.TasksEntry> orderByComparator);
 
 	/**
 	* Returns the tasks entries before and after the current tasks entry in the ordered set of tasks entries that the user has permission to view where groupId = &#63; and userId = &#63;.
@@ -734,7 +734,7 @@ public interface TasksEntryPersistence extends BasePersistence<TasksEntry> {
 	*/
 	public com.liferay.tasks.model.TasksEntry[] filterFindByG_U_PrevAndNext(
 		long tasksEntryId, long groupId, long userId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.tasks.model.TasksEntry> orderByComparator)
 		throws com.liferay.tasks.NoSuchTasksEntryException;
 
 	/**
@@ -805,7 +805,7 @@ public interface TasksEntryPersistence extends BasePersistence<TasksEntry> {
 	*/
 	public java.util.List<com.liferay.tasks.model.TasksEntry> findByG_A(
 		long groupId, long assigneeUserId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.tasks.model.TasksEntry> orderByComparator);
 
 	/**
 	* Returns the first tasks entry in the ordered set where groupId = &#63; and assigneeUserId = &#63;.
@@ -818,7 +818,7 @@ public interface TasksEntryPersistence extends BasePersistence<TasksEntry> {
 	*/
 	public com.liferay.tasks.model.TasksEntry findByG_A_First(long groupId,
 		long assigneeUserId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.tasks.model.TasksEntry> orderByComparator)
 		throws com.liferay.tasks.NoSuchTasksEntryException;
 
 	/**
@@ -831,7 +831,7 @@ public interface TasksEntryPersistence extends BasePersistence<TasksEntry> {
 	*/
 	public com.liferay.tasks.model.TasksEntry fetchByG_A_First(long groupId,
 		long assigneeUserId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.tasks.model.TasksEntry> orderByComparator);
 
 	/**
 	* Returns the last tasks entry in the ordered set where groupId = &#63; and assigneeUserId = &#63;.
@@ -844,7 +844,7 @@ public interface TasksEntryPersistence extends BasePersistence<TasksEntry> {
 	*/
 	public com.liferay.tasks.model.TasksEntry findByG_A_Last(long groupId,
 		long assigneeUserId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.tasks.model.TasksEntry> orderByComparator)
 		throws com.liferay.tasks.NoSuchTasksEntryException;
 
 	/**
@@ -857,7 +857,7 @@ public interface TasksEntryPersistence extends BasePersistence<TasksEntry> {
 	*/
 	public com.liferay.tasks.model.TasksEntry fetchByG_A_Last(long groupId,
 		long assigneeUserId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.tasks.model.TasksEntry> orderByComparator);
 
 	/**
 	* Returns the tasks entries before and after the current tasks entry in the ordered set where groupId = &#63; and assigneeUserId = &#63;.
@@ -871,7 +871,7 @@ public interface TasksEntryPersistence extends BasePersistence<TasksEntry> {
 	*/
 	public com.liferay.tasks.model.TasksEntry[] findByG_A_PrevAndNext(
 		long tasksEntryId, long groupId, long assigneeUserId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.tasks.model.TasksEntry> orderByComparator)
 		throws com.liferay.tasks.NoSuchTasksEntryException;
 
 	/**
@@ -916,7 +916,7 @@ public interface TasksEntryPersistence extends BasePersistence<TasksEntry> {
 	*/
 	public java.util.List<com.liferay.tasks.model.TasksEntry> filterFindByG_A(
 		long groupId, long assigneeUserId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.tasks.model.TasksEntry> orderByComparator);
 
 	/**
 	* Returns the tasks entries before and after the current tasks entry in the ordered set of tasks entries that the user has permission to view where groupId = &#63; and assigneeUserId = &#63;.
@@ -930,7 +930,7 @@ public interface TasksEntryPersistence extends BasePersistence<TasksEntry> {
 	*/
 	public com.liferay.tasks.model.TasksEntry[] filterFindByG_A_PrevAndNext(
 		long tasksEntryId, long groupId, long assigneeUserId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.tasks.model.TasksEntry> orderByComparator)
 		throws com.liferay.tasks.NoSuchTasksEntryException;
 
 	/**
@@ -1001,7 +1001,7 @@ public interface TasksEntryPersistence extends BasePersistence<TasksEntry> {
 	*/
 	public java.util.List<com.liferay.tasks.model.TasksEntry> findByG_R(
 		long groupId, long resolverUserId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.tasks.model.TasksEntry> orderByComparator);
 
 	/**
 	* Returns the first tasks entry in the ordered set where groupId = &#63; and resolverUserId = &#63;.
@@ -1014,7 +1014,7 @@ public interface TasksEntryPersistence extends BasePersistence<TasksEntry> {
 	*/
 	public com.liferay.tasks.model.TasksEntry findByG_R_First(long groupId,
 		long resolverUserId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.tasks.model.TasksEntry> orderByComparator)
 		throws com.liferay.tasks.NoSuchTasksEntryException;
 
 	/**
@@ -1027,7 +1027,7 @@ public interface TasksEntryPersistence extends BasePersistence<TasksEntry> {
 	*/
 	public com.liferay.tasks.model.TasksEntry fetchByG_R_First(long groupId,
 		long resolverUserId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.tasks.model.TasksEntry> orderByComparator);
 
 	/**
 	* Returns the last tasks entry in the ordered set where groupId = &#63; and resolverUserId = &#63;.
@@ -1040,7 +1040,7 @@ public interface TasksEntryPersistence extends BasePersistence<TasksEntry> {
 	*/
 	public com.liferay.tasks.model.TasksEntry findByG_R_Last(long groupId,
 		long resolverUserId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.tasks.model.TasksEntry> orderByComparator)
 		throws com.liferay.tasks.NoSuchTasksEntryException;
 
 	/**
@@ -1053,7 +1053,7 @@ public interface TasksEntryPersistence extends BasePersistence<TasksEntry> {
 	*/
 	public com.liferay.tasks.model.TasksEntry fetchByG_R_Last(long groupId,
 		long resolverUserId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.tasks.model.TasksEntry> orderByComparator);
 
 	/**
 	* Returns the tasks entries before and after the current tasks entry in the ordered set where groupId = &#63; and resolverUserId = &#63;.
@@ -1067,7 +1067,7 @@ public interface TasksEntryPersistence extends BasePersistence<TasksEntry> {
 	*/
 	public com.liferay.tasks.model.TasksEntry[] findByG_R_PrevAndNext(
 		long tasksEntryId, long groupId, long resolverUserId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.tasks.model.TasksEntry> orderByComparator)
 		throws com.liferay.tasks.NoSuchTasksEntryException;
 
 	/**
@@ -1112,7 +1112,7 @@ public interface TasksEntryPersistence extends BasePersistence<TasksEntry> {
 	*/
 	public java.util.List<com.liferay.tasks.model.TasksEntry> filterFindByG_R(
 		long groupId, long resolverUserId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.tasks.model.TasksEntry> orderByComparator);
 
 	/**
 	* Returns the tasks entries before and after the current tasks entry in the ordered set of tasks entries that the user has permission to view where groupId = &#63; and resolverUserId = &#63;.
@@ -1126,7 +1126,7 @@ public interface TasksEntryPersistence extends BasePersistence<TasksEntry> {
 	*/
 	public com.liferay.tasks.model.TasksEntry[] filterFindByG_R_PrevAndNext(
 		long tasksEntryId, long groupId, long resolverUserId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.tasks.model.TasksEntry> orderByComparator)
 		throws com.liferay.tasks.NoSuchTasksEntryException;
 
 	/**
@@ -1197,7 +1197,7 @@ public interface TasksEntryPersistence extends BasePersistence<TasksEntry> {
 	*/
 	public java.util.List<com.liferay.tasks.model.TasksEntry> findByU_S(
 		long userId, int status, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.tasks.model.TasksEntry> orderByComparator);
 
 	/**
 	* Returns the first tasks entry in the ordered set where userId = &#63; and status = &#63;.
@@ -1210,7 +1210,7 @@ public interface TasksEntryPersistence extends BasePersistence<TasksEntry> {
 	*/
 	public com.liferay.tasks.model.TasksEntry findByU_S_First(long userId,
 		int status,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.tasks.model.TasksEntry> orderByComparator)
 		throws com.liferay.tasks.NoSuchTasksEntryException;
 
 	/**
@@ -1223,7 +1223,7 @@ public interface TasksEntryPersistence extends BasePersistence<TasksEntry> {
 	*/
 	public com.liferay.tasks.model.TasksEntry fetchByU_S_First(long userId,
 		int status,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.tasks.model.TasksEntry> orderByComparator);
 
 	/**
 	* Returns the last tasks entry in the ordered set where userId = &#63; and status = &#63;.
@@ -1236,7 +1236,7 @@ public interface TasksEntryPersistence extends BasePersistence<TasksEntry> {
 	*/
 	public com.liferay.tasks.model.TasksEntry findByU_S_Last(long userId,
 		int status,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.tasks.model.TasksEntry> orderByComparator)
 		throws com.liferay.tasks.NoSuchTasksEntryException;
 
 	/**
@@ -1249,7 +1249,7 @@ public interface TasksEntryPersistence extends BasePersistence<TasksEntry> {
 	*/
 	public com.liferay.tasks.model.TasksEntry fetchByU_S_Last(long userId,
 		int status,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.tasks.model.TasksEntry> orderByComparator);
 
 	/**
 	* Returns the tasks entries before and after the current tasks entry in the ordered set where userId = &#63; and status = &#63;.
@@ -1263,7 +1263,7 @@ public interface TasksEntryPersistence extends BasePersistence<TasksEntry> {
 	*/
 	public com.liferay.tasks.model.TasksEntry[] findByU_S_PrevAndNext(
 		long tasksEntryId, long userId, int status,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.tasks.model.TasksEntry> orderByComparator)
 		throws com.liferay.tasks.NoSuchTasksEntryException;
 
 	/**
@@ -1312,7 +1312,7 @@ public interface TasksEntryPersistence extends BasePersistence<TasksEntry> {
 	*/
 	public java.util.List<com.liferay.tasks.model.TasksEntry> findByU_S(
 		long userId, int[] statuses, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.tasks.model.TasksEntry> orderByComparator);
 
 	/**
 	* Removes all the tasks entries where userId = &#63; and status = &#63; from the database.
@@ -1382,7 +1382,7 @@ public interface TasksEntryPersistence extends BasePersistence<TasksEntry> {
 	*/
 	public java.util.List<com.liferay.tasks.model.TasksEntry> findByA_S(
 		long assigneeUserId, int status, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.tasks.model.TasksEntry> orderByComparator);
 
 	/**
 	* Returns the first tasks entry in the ordered set where assigneeUserId = &#63; and status = &#63;.
@@ -1395,7 +1395,7 @@ public interface TasksEntryPersistence extends BasePersistence<TasksEntry> {
 	*/
 	public com.liferay.tasks.model.TasksEntry findByA_S_First(
 		long assigneeUserId, int status,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.tasks.model.TasksEntry> orderByComparator)
 		throws com.liferay.tasks.NoSuchTasksEntryException;
 
 	/**
@@ -1408,7 +1408,7 @@ public interface TasksEntryPersistence extends BasePersistence<TasksEntry> {
 	*/
 	public com.liferay.tasks.model.TasksEntry fetchByA_S_First(
 		long assigneeUserId, int status,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.tasks.model.TasksEntry> orderByComparator);
 
 	/**
 	* Returns the last tasks entry in the ordered set where assigneeUserId = &#63; and status = &#63;.
@@ -1421,7 +1421,7 @@ public interface TasksEntryPersistence extends BasePersistence<TasksEntry> {
 	*/
 	public com.liferay.tasks.model.TasksEntry findByA_S_Last(
 		long assigneeUserId, int status,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.tasks.model.TasksEntry> orderByComparator)
 		throws com.liferay.tasks.NoSuchTasksEntryException;
 
 	/**
@@ -1434,7 +1434,7 @@ public interface TasksEntryPersistence extends BasePersistence<TasksEntry> {
 	*/
 	public com.liferay.tasks.model.TasksEntry fetchByA_S_Last(
 		long assigneeUserId, int status,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.tasks.model.TasksEntry> orderByComparator);
 
 	/**
 	* Returns the tasks entries before and after the current tasks entry in the ordered set where assigneeUserId = &#63; and status = &#63;.
@@ -1448,7 +1448,7 @@ public interface TasksEntryPersistence extends BasePersistence<TasksEntry> {
 	*/
 	public com.liferay.tasks.model.TasksEntry[] findByA_S_PrevAndNext(
 		long tasksEntryId, long assigneeUserId, int status,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.tasks.model.TasksEntry> orderByComparator)
 		throws com.liferay.tasks.NoSuchTasksEntryException;
 
 	/**
@@ -1497,7 +1497,7 @@ public interface TasksEntryPersistence extends BasePersistence<TasksEntry> {
 	*/
 	public java.util.List<com.liferay.tasks.model.TasksEntry> findByA_S(
 		long assigneeUserId, int[] statuses, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.tasks.model.TasksEntry> orderByComparator);
 
 	/**
 	* Removes all the tasks entries where assigneeUserId = &#63; and status = &#63; from the database.
@@ -1570,7 +1570,7 @@ public interface TasksEntryPersistence extends BasePersistence<TasksEntry> {
 	*/
 	public java.util.List<com.liferay.tasks.model.TasksEntry> findByG_U_S(
 		long groupId, long userId, int status, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.tasks.model.TasksEntry> orderByComparator);
 
 	/**
 	* Returns the first tasks entry in the ordered set where groupId = &#63; and userId = &#63; and status = &#63;.
@@ -1584,7 +1584,7 @@ public interface TasksEntryPersistence extends BasePersistence<TasksEntry> {
 	*/
 	public com.liferay.tasks.model.TasksEntry findByG_U_S_First(long groupId,
 		long userId, int status,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.tasks.model.TasksEntry> orderByComparator)
 		throws com.liferay.tasks.NoSuchTasksEntryException;
 
 	/**
@@ -1598,7 +1598,7 @@ public interface TasksEntryPersistence extends BasePersistence<TasksEntry> {
 	*/
 	public com.liferay.tasks.model.TasksEntry fetchByG_U_S_First(long groupId,
 		long userId, int status,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.tasks.model.TasksEntry> orderByComparator);
 
 	/**
 	* Returns the last tasks entry in the ordered set where groupId = &#63; and userId = &#63; and status = &#63;.
@@ -1612,7 +1612,7 @@ public interface TasksEntryPersistence extends BasePersistence<TasksEntry> {
 	*/
 	public com.liferay.tasks.model.TasksEntry findByG_U_S_Last(long groupId,
 		long userId, int status,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.tasks.model.TasksEntry> orderByComparator)
 		throws com.liferay.tasks.NoSuchTasksEntryException;
 
 	/**
@@ -1626,7 +1626,7 @@ public interface TasksEntryPersistence extends BasePersistence<TasksEntry> {
 	*/
 	public com.liferay.tasks.model.TasksEntry fetchByG_U_S_Last(long groupId,
 		long userId, int status,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.tasks.model.TasksEntry> orderByComparator);
 
 	/**
 	* Returns the tasks entries before and after the current tasks entry in the ordered set where groupId = &#63; and userId = &#63; and status = &#63;.
@@ -1641,7 +1641,7 @@ public interface TasksEntryPersistence extends BasePersistence<TasksEntry> {
 	*/
 	public com.liferay.tasks.model.TasksEntry[] findByG_U_S_PrevAndNext(
 		long tasksEntryId, long groupId, long userId, int status,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.tasks.model.TasksEntry> orderByComparator)
 		throws com.liferay.tasks.NoSuchTasksEntryException;
 
 	/**
@@ -1689,7 +1689,7 @@ public interface TasksEntryPersistence extends BasePersistence<TasksEntry> {
 	*/
 	public java.util.List<com.liferay.tasks.model.TasksEntry> filterFindByG_U_S(
 		long groupId, long userId, int status, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.tasks.model.TasksEntry> orderByComparator);
 
 	/**
 	* Returns the tasks entries before and after the current tasks entry in the ordered set of tasks entries that the user has permission to view where groupId = &#63; and userId = &#63; and status = &#63;.
@@ -1704,7 +1704,7 @@ public interface TasksEntryPersistence extends BasePersistence<TasksEntry> {
 	*/
 	public com.liferay.tasks.model.TasksEntry[] filterFindByG_U_S_PrevAndNext(
 		long tasksEntryId, long groupId, long userId, int status,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.tasks.model.TasksEntry> orderByComparator)
 		throws com.liferay.tasks.NoSuchTasksEntryException;
 
 	/**
@@ -1752,7 +1752,7 @@ public interface TasksEntryPersistence extends BasePersistence<TasksEntry> {
 	*/
 	public java.util.List<com.liferay.tasks.model.TasksEntry> filterFindByG_U_S(
 		long groupId, long userId, int[] statuses, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.tasks.model.TasksEntry> orderByComparator);
 
 	/**
 	* Returns all the tasks entries where groupId = &#63; and userId = &#63; and status = any &#63;.
@@ -1803,7 +1803,7 @@ public interface TasksEntryPersistence extends BasePersistence<TasksEntry> {
 	*/
 	public java.util.List<com.liferay.tasks.model.TasksEntry> findByG_U_S(
 		long groupId, long userId, int[] statuses, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.tasks.model.TasksEntry> orderByComparator);
 
 	/**
 	* Removes all the tasks entries where groupId = &#63; and userId = &#63; and status = &#63; from the database.
@@ -1899,7 +1899,7 @@ public interface TasksEntryPersistence extends BasePersistence<TasksEntry> {
 	*/
 	public java.util.List<com.liferay.tasks.model.TasksEntry> findByG_A_S(
 		long groupId, long assigneeUserId, int status, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.tasks.model.TasksEntry> orderByComparator);
 
 	/**
 	* Returns the first tasks entry in the ordered set where groupId = &#63; and assigneeUserId = &#63; and status = &#63;.
@@ -1913,7 +1913,7 @@ public interface TasksEntryPersistence extends BasePersistence<TasksEntry> {
 	*/
 	public com.liferay.tasks.model.TasksEntry findByG_A_S_First(long groupId,
 		long assigneeUserId, int status,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.tasks.model.TasksEntry> orderByComparator)
 		throws com.liferay.tasks.NoSuchTasksEntryException;
 
 	/**
@@ -1927,7 +1927,7 @@ public interface TasksEntryPersistence extends BasePersistence<TasksEntry> {
 	*/
 	public com.liferay.tasks.model.TasksEntry fetchByG_A_S_First(long groupId,
 		long assigneeUserId, int status,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.tasks.model.TasksEntry> orderByComparator);
 
 	/**
 	* Returns the last tasks entry in the ordered set where groupId = &#63; and assigneeUserId = &#63; and status = &#63;.
@@ -1941,7 +1941,7 @@ public interface TasksEntryPersistence extends BasePersistence<TasksEntry> {
 	*/
 	public com.liferay.tasks.model.TasksEntry findByG_A_S_Last(long groupId,
 		long assigneeUserId, int status,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.tasks.model.TasksEntry> orderByComparator)
 		throws com.liferay.tasks.NoSuchTasksEntryException;
 
 	/**
@@ -1955,7 +1955,7 @@ public interface TasksEntryPersistence extends BasePersistence<TasksEntry> {
 	*/
 	public com.liferay.tasks.model.TasksEntry fetchByG_A_S_Last(long groupId,
 		long assigneeUserId, int status,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.tasks.model.TasksEntry> orderByComparator);
 
 	/**
 	* Returns the tasks entries before and after the current tasks entry in the ordered set where groupId = &#63; and assigneeUserId = &#63; and status = &#63;.
@@ -1970,7 +1970,7 @@ public interface TasksEntryPersistence extends BasePersistence<TasksEntry> {
 	*/
 	public com.liferay.tasks.model.TasksEntry[] findByG_A_S_PrevAndNext(
 		long tasksEntryId, long groupId, long assigneeUserId, int status,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.tasks.model.TasksEntry> orderByComparator)
 		throws com.liferay.tasks.NoSuchTasksEntryException;
 
 	/**
@@ -2018,7 +2018,7 @@ public interface TasksEntryPersistence extends BasePersistence<TasksEntry> {
 	*/
 	public java.util.List<com.liferay.tasks.model.TasksEntry> filterFindByG_A_S(
 		long groupId, long assigneeUserId, int status, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.tasks.model.TasksEntry> orderByComparator);
 
 	/**
 	* Returns the tasks entries before and after the current tasks entry in the ordered set of tasks entries that the user has permission to view where groupId = &#63; and assigneeUserId = &#63; and status = &#63;.
@@ -2033,7 +2033,7 @@ public interface TasksEntryPersistence extends BasePersistence<TasksEntry> {
 	*/
 	public com.liferay.tasks.model.TasksEntry[] filterFindByG_A_S_PrevAndNext(
 		long tasksEntryId, long groupId, long assigneeUserId, int status,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.tasks.model.TasksEntry> orderByComparator)
 		throws com.liferay.tasks.NoSuchTasksEntryException;
 
 	/**
@@ -2081,7 +2081,7 @@ public interface TasksEntryPersistence extends BasePersistence<TasksEntry> {
 	*/
 	public java.util.List<com.liferay.tasks.model.TasksEntry> filterFindByG_A_S(
 		long groupId, long assigneeUserId, int[] statuses, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.tasks.model.TasksEntry> orderByComparator);
 
 	/**
 	* Returns all the tasks entries where groupId = &#63; and assigneeUserId = &#63; and status = any &#63;.
@@ -2132,7 +2132,7 @@ public interface TasksEntryPersistence extends BasePersistence<TasksEntry> {
 	*/
 	public java.util.List<com.liferay.tasks.model.TasksEntry> findByG_A_S(
 		long groupId, long assigneeUserId, int[] statuses, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.tasks.model.TasksEntry> orderByComparator);
 
 	/**
 	* Removes all the tasks entries where groupId = &#63; and assigneeUserId = &#63; and status = &#63; from the database.
@@ -2278,7 +2278,7 @@ public interface TasksEntryPersistence extends BasePersistence<TasksEntry> {
 	*/
 	public java.util.List<com.liferay.tasks.model.TasksEntry> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.tasks.model.TasksEntry> orderByComparator);
 
 	/**
 	* Removes all the tasks entries from the database.

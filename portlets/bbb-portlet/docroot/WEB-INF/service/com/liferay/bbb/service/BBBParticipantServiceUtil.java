@@ -65,21 +65,18 @@ public class BBBParticipantServiceUtil {
 
 	public static com.liferay.bbb.model.BBBParticipant deleteBBBParticipant(
 		com.liferay.bbb.model.BBBParticipant bbbParticipant)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().deleteBBBParticipant(bbbParticipant);
 	}
 
 	public static java.util.List<com.liferay.bbb.model.BBBParticipant> getBBBParticipants(
 		long bbbMeetingId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().getBBBParticipants(bbbMeetingId);
 	}
 
 	public static int getBBBParticipantsCount(long bbbMeetingId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().getBBBParticipantsCount(bbbMeetingId);
 	}
 
@@ -87,8 +84,7 @@ public class BBBParticipantServiceUtil {
 		long bbbParticipantId, long bbbMeetingId, java.lang.String name,
 		java.lang.String emailAddress, int type,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService()
 				   .updateBBBParticipant(bbbParticipantId, bbbMeetingId, name,
 			emailAddress, type, serviceContext);

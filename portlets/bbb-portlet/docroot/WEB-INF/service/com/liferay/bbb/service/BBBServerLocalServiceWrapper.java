@@ -59,12 +59,10 @@ public class BBBServerLocalServiceWrapper implements BBBServerLocalService,
 	* @param bbbServerId the primary key of the b b b server
 	* @return the b b b server that was removed
 	* @throws PortalException if a b b b server with the primary key could not be found
-	* @throws SystemException
 	*/
 	@Override
 	public com.liferay.bbb.model.BBBServer deleteBBBServer(long bbbServerId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _bbbServerLocalService.deleteBBBServer(bbbServerId);
 	}
 
@@ -73,12 +71,10 @@ public class BBBServerLocalServiceWrapper implements BBBServerLocalService,
 	*
 	* @param bbbServer the b b b server
 	* @return the b b b server that was removed
-	* @throws SystemException
 	*/
 	@Override
 	public com.liferay.bbb.model.BBBServer deleteBBBServer(
-		com.liferay.bbb.model.BBBServer bbbServer)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.bbb.model.BBBServer bbbServer) {
 		return _bbbServerLocalService.deleteBBBServer(bbbServer);
 	}
 
@@ -94,8 +90,7 @@ public class BBBServerLocalServiceWrapper implements BBBServerLocalService,
 	* @return the matching rows
 	*/
 	@Override
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
 		return _bbbServerLocalService.dynamicQuery(dynamicQuery);
 	}
@@ -113,8 +108,7 @@ public class BBBServerLocalServiceWrapper implements BBBServerLocalService,
 	* @return the range of matching rows
 	*/
 	@Override
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) {
 		return _bbbServerLocalService.dynamicQuery(dynamicQuery, start, end);
@@ -134,11 +128,10 @@ public class BBBServerLocalServiceWrapper implements BBBServerLocalService,
 	* @return the ordered range of matching rows
 	*/
 	@Override
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<T> orderByComparator) {
 		return _bbbServerLocalService.dynamicQuery(dynamicQuery, start, end,
 			orderByComparator);
 	}
@@ -280,30 +273,26 @@ public class BBBServerLocalServiceWrapper implements BBBServerLocalService,
 	public com.liferay.bbb.model.BBBServer addBBBServer(long userId,
 		java.lang.String name, java.lang.String url, java.lang.String secret,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _bbbServerLocalService.addBBBServer(userId, name, url, secret,
 			serviceContext);
 	}
 
 	@Override
 	public void checkBBBServers()
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		_bbbServerLocalService.checkBBBServers();
 	}
 
 	@Override
 	public java.util.List<com.liferay.bbb.model.BBBServer> getBBBServers(
-		boolean active)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		boolean active) {
 		return _bbbServerLocalService.getBBBServers(active);
 	}
 
 	@Override
 	public java.util.List<com.liferay.bbb.model.BBBServer> getBBBServers(
-		int start, int end, com.liferay.portal.kernel.util.OrderByComparator obc)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		int start, int end, com.liferay.portal.kernel.util.OrderByComparator obc) {
 		return _bbbServerLocalService.getBBBServers(start, end, obc);
 	}
 
@@ -311,8 +300,7 @@ public class BBBServerLocalServiceWrapper implements BBBServerLocalService,
 	public com.liferay.bbb.model.BBBServer updateBBBServer(long bbbServerId,
 		java.lang.String name, java.lang.String url, java.lang.String secret,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _bbbServerLocalService.updateBBBServer(bbbServerId, name, url,
 			secret, serviceContext);
 	}

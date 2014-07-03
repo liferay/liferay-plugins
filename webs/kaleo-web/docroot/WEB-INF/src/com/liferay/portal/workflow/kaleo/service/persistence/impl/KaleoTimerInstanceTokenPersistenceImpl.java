@@ -157,7 +157,7 @@ public class KaleoTimerInstanceTokenPersistenceImpl extends BasePersistenceImpl<
 	@Override
 	public List<KaleoTimerInstanceToken> findByKaleoInstanceId(
 		long kaleoInstanceId, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KaleoTimerInstanceToken> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -267,7 +267,8 @@ public class KaleoTimerInstanceTokenPersistenceImpl extends BasePersistenceImpl<
 	 */
 	@Override
 	public KaleoTimerInstanceToken findByKaleoInstanceId_First(
-		long kaleoInstanceId, OrderByComparator orderByComparator)
+		long kaleoInstanceId,
+		OrderByComparator<KaleoTimerInstanceToken> orderByComparator)
 		throws NoSuchTimerInstanceTokenException {
 		KaleoTimerInstanceToken kaleoTimerInstanceToken = fetchByKaleoInstanceId_First(kaleoInstanceId,
 				orderByComparator);
@@ -297,7 +298,8 @@ public class KaleoTimerInstanceTokenPersistenceImpl extends BasePersistenceImpl<
 	 */
 	@Override
 	public KaleoTimerInstanceToken fetchByKaleoInstanceId_First(
-		long kaleoInstanceId, OrderByComparator orderByComparator) {
+		long kaleoInstanceId,
+		OrderByComparator<KaleoTimerInstanceToken> orderByComparator) {
 		List<KaleoTimerInstanceToken> list = findByKaleoInstanceId(kaleoInstanceId,
 				0, 1, orderByComparator);
 
@@ -318,7 +320,8 @@ public class KaleoTimerInstanceTokenPersistenceImpl extends BasePersistenceImpl<
 	 */
 	@Override
 	public KaleoTimerInstanceToken findByKaleoInstanceId_Last(
-		long kaleoInstanceId, OrderByComparator orderByComparator)
+		long kaleoInstanceId,
+		OrderByComparator<KaleoTimerInstanceToken> orderByComparator)
 		throws NoSuchTimerInstanceTokenException {
 		KaleoTimerInstanceToken kaleoTimerInstanceToken = fetchByKaleoInstanceId_Last(kaleoInstanceId,
 				orderByComparator);
@@ -348,7 +351,8 @@ public class KaleoTimerInstanceTokenPersistenceImpl extends BasePersistenceImpl<
 	 */
 	@Override
 	public KaleoTimerInstanceToken fetchByKaleoInstanceId_Last(
-		long kaleoInstanceId, OrderByComparator orderByComparator) {
+		long kaleoInstanceId,
+		OrderByComparator<KaleoTimerInstanceToken> orderByComparator) {
 		int count = countByKaleoInstanceId(kaleoInstanceId);
 
 		if (count == 0) {
@@ -377,7 +381,7 @@ public class KaleoTimerInstanceTokenPersistenceImpl extends BasePersistenceImpl<
 	@Override
 	public KaleoTimerInstanceToken[] findByKaleoInstanceId_PrevAndNext(
 		long kaleoTimerInstanceTokenId, long kaleoInstanceId,
-		OrderByComparator orderByComparator)
+		OrderByComparator<KaleoTimerInstanceToken> orderByComparator)
 		throws NoSuchTimerInstanceTokenException {
 		KaleoTimerInstanceToken kaleoTimerInstanceToken = findByPrimaryKey(kaleoTimerInstanceTokenId);
 
@@ -410,7 +414,8 @@ public class KaleoTimerInstanceTokenPersistenceImpl extends BasePersistenceImpl<
 
 	protected KaleoTimerInstanceToken getByKaleoInstanceId_PrevAndNext(
 		Session session, KaleoTimerInstanceToken kaleoTimerInstanceToken,
-		long kaleoInstanceId, OrderByComparator orderByComparator,
+		long kaleoInstanceId,
+		OrderByComparator<KaleoTimerInstanceToken> orderByComparator,
 		boolean previous) {
 		StringBundler query = null;
 
@@ -890,7 +895,7 @@ public class KaleoTimerInstanceTokenPersistenceImpl extends BasePersistenceImpl<
 	@Override
 	public List<KaleoTimerInstanceToken> findByKITI_C(
 		long kaleoInstanceTokenId, boolean completed, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KaleoTimerInstanceToken> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -1007,7 +1012,7 @@ public class KaleoTimerInstanceTokenPersistenceImpl extends BasePersistenceImpl<
 	@Override
 	public KaleoTimerInstanceToken findByKITI_C_First(
 		long kaleoInstanceTokenId, boolean completed,
-		OrderByComparator orderByComparator)
+		OrderByComparator<KaleoTimerInstanceToken> orderByComparator)
 		throws NoSuchTimerInstanceTokenException {
 		KaleoTimerInstanceToken kaleoTimerInstanceToken = fetchByKITI_C_First(kaleoInstanceTokenId,
 				completed, orderByComparator);
@@ -1042,7 +1047,7 @@ public class KaleoTimerInstanceTokenPersistenceImpl extends BasePersistenceImpl<
 	@Override
 	public KaleoTimerInstanceToken fetchByKITI_C_First(
 		long kaleoInstanceTokenId, boolean completed,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KaleoTimerInstanceToken> orderByComparator) {
 		List<KaleoTimerInstanceToken> list = findByKITI_C(kaleoInstanceTokenId,
 				completed, 0, 1, orderByComparator);
 
@@ -1065,7 +1070,7 @@ public class KaleoTimerInstanceTokenPersistenceImpl extends BasePersistenceImpl<
 	@Override
 	public KaleoTimerInstanceToken findByKITI_C_Last(
 		long kaleoInstanceTokenId, boolean completed,
-		OrderByComparator orderByComparator)
+		OrderByComparator<KaleoTimerInstanceToken> orderByComparator)
 		throws NoSuchTimerInstanceTokenException {
 		KaleoTimerInstanceToken kaleoTimerInstanceToken = fetchByKITI_C_Last(kaleoInstanceTokenId,
 				completed, orderByComparator);
@@ -1100,7 +1105,7 @@ public class KaleoTimerInstanceTokenPersistenceImpl extends BasePersistenceImpl<
 	@Override
 	public KaleoTimerInstanceToken fetchByKITI_C_Last(
 		long kaleoInstanceTokenId, boolean completed,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KaleoTimerInstanceToken> orderByComparator) {
 		int count = countByKITI_C(kaleoInstanceTokenId, completed);
 
 		if (count == 0) {
@@ -1130,7 +1135,8 @@ public class KaleoTimerInstanceTokenPersistenceImpl extends BasePersistenceImpl<
 	@Override
 	public KaleoTimerInstanceToken[] findByKITI_C_PrevAndNext(
 		long kaleoTimerInstanceTokenId, long kaleoInstanceTokenId,
-		boolean completed, OrderByComparator orderByComparator)
+		boolean completed,
+		OrderByComparator<KaleoTimerInstanceToken> orderByComparator)
 		throws NoSuchTimerInstanceTokenException {
 		KaleoTimerInstanceToken kaleoTimerInstanceToken = findByPrimaryKey(kaleoTimerInstanceTokenId);
 
@@ -1164,7 +1170,8 @@ public class KaleoTimerInstanceTokenPersistenceImpl extends BasePersistenceImpl<
 	protected KaleoTimerInstanceToken getByKITI_C_PrevAndNext(Session session,
 		KaleoTimerInstanceToken kaleoTimerInstanceToken,
 		long kaleoInstanceTokenId, boolean completed,
-		OrderByComparator orderByComparator, boolean previous) {
+		OrderByComparator<KaleoTimerInstanceToken> orderByComparator,
+		boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -1431,7 +1438,8 @@ public class KaleoTimerInstanceTokenPersistenceImpl extends BasePersistenceImpl<
 	@Override
 	public List<KaleoTimerInstanceToken> findByKITI_C_B(
 		long kaleoInstanceTokenId, boolean completed, boolean blocking,
-		int start, int end, OrderByComparator orderByComparator) {
+		int start, int end,
+		OrderByComparator<KaleoTimerInstanceToken> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -1554,7 +1562,7 @@ public class KaleoTimerInstanceTokenPersistenceImpl extends BasePersistenceImpl<
 	@Override
 	public KaleoTimerInstanceToken findByKITI_C_B_First(
 		long kaleoInstanceTokenId, boolean completed, boolean blocking,
-		OrderByComparator orderByComparator)
+		OrderByComparator<KaleoTimerInstanceToken> orderByComparator)
 		throws NoSuchTimerInstanceTokenException {
 		KaleoTimerInstanceToken kaleoTimerInstanceToken = fetchByKITI_C_B_First(kaleoInstanceTokenId,
 				completed, blocking, orderByComparator);
@@ -1593,7 +1601,7 @@ public class KaleoTimerInstanceTokenPersistenceImpl extends BasePersistenceImpl<
 	@Override
 	public KaleoTimerInstanceToken fetchByKITI_C_B_First(
 		long kaleoInstanceTokenId, boolean completed, boolean blocking,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KaleoTimerInstanceToken> orderByComparator) {
 		List<KaleoTimerInstanceToken> list = findByKITI_C_B(kaleoInstanceTokenId,
 				completed, blocking, 0, 1, orderByComparator);
 
@@ -1617,7 +1625,7 @@ public class KaleoTimerInstanceTokenPersistenceImpl extends BasePersistenceImpl<
 	@Override
 	public KaleoTimerInstanceToken findByKITI_C_B_Last(
 		long kaleoInstanceTokenId, boolean completed, boolean blocking,
-		OrderByComparator orderByComparator)
+		OrderByComparator<KaleoTimerInstanceToken> orderByComparator)
 		throws NoSuchTimerInstanceTokenException {
 		KaleoTimerInstanceToken kaleoTimerInstanceToken = fetchByKITI_C_B_Last(kaleoInstanceTokenId,
 				completed, blocking, orderByComparator);
@@ -1656,7 +1664,7 @@ public class KaleoTimerInstanceTokenPersistenceImpl extends BasePersistenceImpl<
 	@Override
 	public KaleoTimerInstanceToken fetchByKITI_C_B_Last(
 		long kaleoInstanceTokenId, boolean completed, boolean blocking,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KaleoTimerInstanceToken> orderByComparator) {
 		int count = countByKITI_C_B(kaleoInstanceTokenId, completed, blocking);
 
 		if (count == 0) {
@@ -1687,7 +1695,8 @@ public class KaleoTimerInstanceTokenPersistenceImpl extends BasePersistenceImpl<
 	@Override
 	public KaleoTimerInstanceToken[] findByKITI_C_B_PrevAndNext(
 		long kaleoTimerInstanceTokenId, long kaleoInstanceTokenId,
-		boolean completed, boolean blocking, OrderByComparator orderByComparator)
+		boolean completed, boolean blocking,
+		OrderByComparator<KaleoTimerInstanceToken> orderByComparator)
 		throws NoSuchTimerInstanceTokenException {
 		KaleoTimerInstanceToken kaleoTimerInstanceToken = findByPrimaryKey(kaleoTimerInstanceTokenId);
 
@@ -1721,7 +1730,8 @@ public class KaleoTimerInstanceTokenPersistenceImpl extends BasePersistenceImpl<
 	protected KaleoTimerInstanceToken getByKITI_C_B_PrevAndNext(
 		Session session, KaleoTimerInstanceToken kaleoTimerInstanceToken,
 		long kaleoInstanceTokenId, boolean completed, boolean blocking,
-		OrderByComparator orderByComparator, boolean previous) {
+		OrderByComparator<KaleoTimerInstanceToken> orderByComparator,
+		boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -2556,7 +2566,7 @@ public class KaleoTimerInstanceTokenPersistenceImpl extends BasePersistenceImpl<
 	 */
 	@Override
 	public List<KaleoTimerInstanceToken> findAll(int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KaleoTimerInstanceToken> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;

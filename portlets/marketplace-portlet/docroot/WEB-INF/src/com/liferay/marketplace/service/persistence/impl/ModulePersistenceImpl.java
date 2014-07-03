@@ -151,7 +151,7 @@ public class ModulePersistenceImpl extends BasePersistenceImpl<Module>
 	 */
 	@Override
 	public List<Module> findByUuid(String uuid, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<Module> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -271,7 +271,8 @@ public class ModulePersistenceImpl extends BasePersistenceImpl<Module>
 	 */
 	@Override
 	public Module findByUuid_First(String uuid,
-		OrderByComparator orderByComparator) throws NoSuchModuleException {
+		OrderByComparator<Module> orderByComparator)
+		throws NoSuchModuleException {
 		Module module = fetchByUuid_First(uuid, orderByComparator);
 
 		if (module != null) {
@@ -299,7 +300,7 @@ public class ModulePersistenceImpl extends BasePersistenceImpl<Module>
 	 */
 	@Override
 	public Module fetchByUuid_First(String uuid,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<Module> orderByComparator) {
 		List<Module> list = findByUuid(uuid, 0, 1, orderByComparator);
 
 		if (!list.isEmpty()) {
@@ -319,7 +320,8 @@ public class ModulePersistenceImpl extends BasePersistenceImpl<Module>
 	 */
 	@Override
 	public Module findByUuid_Last(String uuid,
-		OrderByComparator orderByComparator) throws NoSuchModuleException {
+		OrderByComparator<Module> orderByComparator)
+		throws NoSuchModuleException {
 		Module module = fetchByUuid_Last(uuid, orderByComparator);
 
 		if (module != null) {
@@ -347,7 +349,7 @@ public class ModulePersistenceImpl extends BasePersistenceImpl<Module>
 	 */
 	@Override
 	public Module fetchByUuid_Last(String uuid,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<Module> orderByComparator) {
 		int count = countByUuid(uuid);
 
 		if (count == 0) {
@@ -374,7 +376,8 @@ public class ModulePersistenceImpl extends BasePersistenceImpl<Module>
 	 */
 	@Override
 	public Module[] findByUuid_PrevAndNext(long moduleId, String uuid,
-		OrderByComparator orderByComparator) throws NoSuchModuleException {
+		OrderByComparator<Module> orderByComparator)
+		throws NoSuchModuleException {
 		Module module = findByPrimaryKey(moduleId);
 
 		Session session = null;
@@ -403,7 +406,8 @@ public class ModulePersistenceImpl extends BasePersistenceImpl<Module>
 	}
 
 	protected Module getByUuid_PrevAndNext(Session session, Module module,
-		String uuid, OrderByComparator orderByComparator, boolean previous) {
+		String uuid, OrderByComparator<Module> orderByComparator,
+		boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -664,7 +668,7 @@ public class ModulePersistenceImpl extends BasePersistenceImpl<Module>
 	 */
 	@Override
 	public List<Module> findByAppId(long appId, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<Module> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -770,7 +774,8 @@ public class ModulePersistenceImpl extends BasePersistenceImpl<Module>
 	 */
 	@Override
 	public Module findByAppId_First(long appId,
-		OrderByComparator orderByComparator) throws NoSuchModuleException {
+		OrderByComparator<Module> orderByComparator)
+		throws NoSuchModuleException {
 		Module module = fetchByAppId_First(appId, orderByComparator);
 
 		if (module != null) {
@@ -798,7 +803,7 @@ public class ModulePersistenceImpl extends BasePersistenceImpl<Module>
 	 */
 	@Override
 	public Module fetchByAppId_First(long appId,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<Module> orderByComparator) {
 		List<Module> list = findByAppId(appId, 0, 1, orderByComparator);
 
 		if (!list.isEmpty()) {
@@ -818,7 +823,8 @@ public class ModulePersistenceImpl extends BasePersistenceImpl<Module>
 	 */
 	@Override
 	public Module findByAppId_Last(long appId,
-		OrderByComparator orderByComparator) throws NoSuchModuleException {
+		OrderByComparator<Module> orderByComparator)
+		throws NoSuchModuleException {
 		Module module = fetchByAppId_Last(appId, orderByComparator);
 
 		if (module != null) {
@@ -846,7 +852,7 @@ public class ModulePersistenceImpl extends BasePersistenceImpl<Module>
 	 */
 	@Override
 	public Module fetchByAppId_Last(long appId,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<Module> orderByComparator) {
 		int count = countByAppId(appId);
 
 		if (count == 0) {
@@ -874,7 +880,8 @@ public class ModulePersistenceImpl extends BasePersistenceImpl<Module>
 	 */
 	@Override
 	public Module[] findByAppId_PrevAndNext(long moduleId, long appId,
-		OrderByComparator orderByComparator) throws NoSuchModuleException {
+		OrderByComparator<Module> orderByComparator)
+		throws NoSuchModuleException {
 		Module module = findByPrimaryKey(moduleId);
 
 		Session session = null;
@@ -903,7 +910,8 @@ public class ModulePersistenceImpl extends BasePersistenceImpl<Module>
 	}
 
 	protected Module getByAppId_PrevAndNext(Session session, Module module,
-		long appId, OrderByComparator orderByComparator, boolean previous) {
+		long appId, OrderByComparator<Module> orderByComparator,
+		boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -1137,7 +1145,7 @@ public class ModulePersistenceImpl extends BasePersistenceImpl<Module>
 	 */
 	@Override
 	public List<Module> findByContextName(String contextName, int start,
-		int end, OrderByComparator orderByComparator) {
+		int end, OrderByComparator<Module> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -1257,7 +1265,8 @@ public class ModulePersistenceImpl extends BasePersistenceImpl<Module>
 	 */
 	@Override
 	public Module findByContextName_First(String contextName,
-		OrderByComparator orderByComparator) throws NoSuchModuleException {
+		OrderByComparator<Module> orderByComparator)
+		throws NoSuchModuleException {
 		Module module = fetchByContextName_First(contextName, orderByComparator);
 
 		if (module != null) {
@@ -1285,7 +1294,7 @@ public class ModulePersistenceImpl extends BasePersistenceImpl<Module>
 	 */
 	@Override
 	public Module fetchByContextName_First(String contextName,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<Module> orderByComparator) {
 		List<Module> list = findByContextName(contextName, 0, 1,
 				orderByComparator);
 
@@ -1306,7 +1315,8 @@ public class ModulePersistenceImpl extends BasePersistenceImpl<Module>
 	 */
 	@Override
 	public Module findByContextName_Last(String contextName,
-		OrderByComparator orderByComparator) throws NoSuchModuleException {
+		OrderByComparator<Module> orderByComparator)
+		throws NoSuchModuleException {
 		Module module = fetchByContextName_Last(contextName, orderByComparator);
 
 		if (module != null) {
@@ -1334,7 +1344,7 @@ public class ModulePersistenceImpl extends BasePersistenceImpl<Module>
 	 */
 	@Override
 	public Module fetchByContextName_Last(String contextName,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<Module> orderByComparator) {
 		int count = countByContextName(contextName);
 
 		if (count == 0) {
@@ -1362,7 +1372,7 @@ public class ModulePersistenceImpl extends BasePersistenceImpl<Module>
 	 */
 	@Override
 	public Module[] findByContextName_PrevAndNext(long moduleId,
-		String contextName, OrderByComparator orderByComparator)
+		String contextName, OrderByComparator<Module> orderByComparator)
 		throws NoSuchModuleException {
 		Module module = findByPrimaryKey(moduleId);
 
@@ -1392,8 +1402,8 @@ public class ModulePersistenceImpl extends BasePersistenceImpl<Module>
 	}
 
 	protected Module getByContextName_PrevAndNext(Session session,
-		Module module, String contextName, OrderByComparator orderByComparator,
-		boolean previous) {
+		Module module, String contextName,
+		OrderByComparator<Module> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -2439,7 +2449,7 @@ public class ModulePersistenceImpl extends BasePersistenceImpl<Module>
 	 */
 	@Override
 	public List<Module> findAll(int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<Module> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;

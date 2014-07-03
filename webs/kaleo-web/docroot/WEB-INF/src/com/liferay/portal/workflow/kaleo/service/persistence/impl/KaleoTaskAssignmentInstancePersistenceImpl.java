@@ -157,7 +157,8 @@ public class KaleoTaskAssignmentInstancePersistenceImpl
 	 */
 	@Override
 	public List<KaleoTaskAssignmentInstance> findByCompanyId(long companyId,
-		int start, int end, OrderByComparator orderByComparator) {
+		int start, int end,
+		OrderByComparator<KaleoTaskAssignmentInstance> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -263,7 +264,7 @@ public class KaleoTaskAssignmentInstancePersistenceImpl
 	 */
 	@Override
 	public KaleoTaskAssignmentInstance findByCompanyId_First(long companyId,
-		OrderByComparator orderByComparator)
+		OrderByComparator<KaleoTaskAssignmentInstance> orderByComparator)
 		throws NoSuchTaskAssignmentInstanceException {
 		KaleoTaskAssignmentInstance kaleoTaskAssignmentInstance = fetchByCompanyId_First(companyId,
 				orderByComparator);
@@ -293,7 +294,7 @@ public class KaleoTaskAssignmentInstancePersistenceImpl
 	 */
 	@Override
 	public KaleoTaskAssignmentInstance fetchByCompanyId_First(long companyId,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KaleoTaskAssignmentInstance> orderByComparator) {
 		List<KaleoTaskAssignmentInstance> list = findByCompanyId(companyId, 0,
 				1, orderByComparator);
 
@@ -314,7 +315,7 @@ public class KaleoTaskAssignmentInstancePersistenceImpl
 	 */
 	@Override
 	public KaleoTaskAssignmentInstance findByCompanyId_Last(long companyId,
-		OrderByComparator orderByComparator)
+		OrderByComparator<KaleoTaskAssignmentInstance> orderByComparator)
 		throws NoSuchTaskAssignmentInstanceException {
 		KaleoTaskAssignmentInstance kaleoTaskAssignmentInstance = fetchByCompanyId_Last(companyId,
 				orderByComparator);
@@ -344,7 +345,7 @@ public class KaleoTaskAssignmentInstancePersistenceImpl
 	 */
 	@Override
 	public KaleoTaskAssignmentInstance fetchByCompanyId_Last(long companyId,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KaleoTaskAssignmentInstance> orderByComparator) {
 		int count = countByCompanyId(companyId);
 
 		if (count == 0) {
@@ -373,7 +374,7 @@ public class KaleoTaskAssignmentInstancePersistenceImpl
 	@Override
 	public KaleoTaskAssignmentInstance[] findByCompanyId_PrevAndNext(
 		long kaleoTaskAssignmentInstanceId, long companyId,
-		OrderByComparator orderByComparator)
+		OrderByComparator<KaleoTaskAssignmentInstance> orderByComparator)
 		throws NoSuchTaskAssignmentInstanceException {
 		KaleoTaskAssignmentInstance kaleoTaskAssignmentInstance = findByPrimaryKey(kaleoTaskAssignmentInstanceId);
 
@@ -407,7 +408,9 @@ public class KaleoTaskAssignmentInstancePersistenceImpl
 	protected KaleoTaskAssignmentInstance getByCompanyId_PrevAndNext(
 		Session session,
 		KaleoTaskAssignmentInstance kaleoTaskAssignmentInstance,
-		long companyId, OrderByComparator orderByComparator, boolean previous) {
+		long companyId,
+		OrderByComparator<KaleoTaskAssignmentInstance> orderByComparator,
+		boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -646,7 +649,7 @@ public class KaleoTaskAssignmentInstancePersistenceImpl
 	@Override
 	public List<KaleoTaskAssignmentInstance> findByKaleoDefinitionId(
 		long kaleoDefinitionId, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KaleoTaskAssignmentInstance> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -756,7 +759,8 @@ public class KaleoTaskAssignmentInstancePersistenceImpl
 	 */
 	@Override
 	public KaleoTaskAssignmentInstance findByKaleoDefinitionId_First(
-		long kaleoDefinitionId, OrderByComparator orderByComparator)
+		long kaleoDefinitionId,
+		OrderByComparator<KaleoTaskAssignmentInstance> orderByComparator)
 		throws NoSuchTaskAssignmentInstanceException {
 		KaleoTaskAssignmentInstance kaleoTaskAssignmentInstance = fetchByKaleoDefinitionId_First(kaleoDefinitionId,
 				orderByComparator);
@@ -786,7 +790,8 @@ public class KaleoTaskAssignmentInstancePersistenceImpl
 	 */
 	@Override
 	public KaleoTaskAssignmentInstance fetchByKaleoDefinitionId_First(
-		long kaleoDefinitionId, OrderByComparator orderByComparator) {
+		long kaleoDefinitionId,
+		OrderByComparator<KaleoTaskAssignmentInstance> orderByComparator) {
 		List<KaleoTaskAssignmentInstance> list = findByKaleoDefinitionId(kaleoDefinitionId,
 				0, 1, orderByComparator);
 
@@ -807,7 +812,8 @@ public class KaleoTaskAssignmentInstancePersistenceImpl
 	 */
 	@Override
 	public KaleoTaskAssignmentInstance findByKaleoDefinitionId_Last(
-		long kaleoDefinitionId, OrderByComparator orderByComparator)
+		long kaleoDefinitionId,
+		OrderByComparator<KaleoTaskAssignmentInstance> orderByComparator)
 		throws NoSuchTaskAssignmentInstanceException {
 		KaleoTaskAssignmentInstance kaleoTaskAssignmentInstance = fetchByKaleoDefinitionId_Last(kaleoDefinitionId,
 				orderByComparator);
@@ -837,7 +843,8 @@ public class KaleoTaskAssignmentInstancePersistenceImpl
 	 */
 	@Override
 	public KaleoTaskAssignmentInstance fetchByKaleoDefinitionId_Last(
-		long kaleoDefinitionId, OrderByComparator orderByComparator) {
+		long kaleoDefinitionId,
+		OrderByComparator<KaleoTaskAssignmentInstance> orderByComparator) {
 		int count = countByKaleoDefinitionId(kaleoDefinitionId);
 
 		if (count == 0) {
@@ -866,7 +873,7 @@ public class KaleoTaskAssignmentInstancePersistenceImpl
 	@Override
 	public KaleoTaskAssignmentInstance[] findByKaleoDefinitionId_PrevAndNext(
 		long kaleoTaskAssignmentInstanceId, long kaleoDefinitionId,
-		OrderByComparator orderByComparator)
+		OrderByComparator<KaleoTaskAssignmentInstance> orderByComparator)
 		throws NoSuchTaskAssignmentInstanceException {
 		KaleoTaskAssignmentInstance kaleoTaskAssignmentInstance = findByPrimaryKey(kaleoTaskAssignmentInstanceId);
 
@@ -900,7 +907,8 @@ public class KaleoTaskAssignmentInstancePersistenceImpl
 	protected KaleoTaskAssignmentInstance getByKaleoDefinitionId_PrevAndNext(
 		Session session,
 		KaleoTaskAssignmentInstance kaleoTaskAssignmentInstance,
-		long kaleoDefinitionId, OrderByComparator orderByComparator,
+		long kaleoDefinitionId,
+		OrderByComparator<KaleoTaskAssignmentInstance> orderByComparator,
 		boolean previous) {
 		StringBundler query = null;
 
@@ -1141,7 +1149,7 @@ public class KaleoTaskAssignmentInstancePersistenceImpl
 	@Override
 	public List<KaleoTaskAssignmentInstance> findByKaleoInstanceId(
 		long kaleoInstanceId, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KaleoTaskAssignmentInstance> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -1251,7 +1259,8 @@ public class KaleoTaskAssignmentInstancePersistenceImpl
 	 */
 	@Override
 	public KaleoTaskAssignmentInstance findByKaleoInstanceId_First(
-		long kaleoInstanceId, OrderByComparator orderByComparator)
+		long kaleoInstanceId,
+		OrderByComparator<KaleoTaskAssignmentInstance> orderByComparator)
 		throws NoSuchTaskAssignmentInstanceException {
 		KaleoTaskAssignmentInstance kaleoTaskAssignmentInstance = fetchByKaleoInstanceId_First(kaleoInstanceId,
 				orderByComparator);
@@ -1281,7 +1290,8 @@ public class KaleoTaskAssignmentInstancePersistenceImpl
 	 */
 	@Override
 	public KaleoTaskAssignmentInstance fetchByKaleoInstanceId_First(
-		long kaleoInstanceId, OrderByComparator orderByComparator) {
+		long kaleoInstanceId,
+		OrderByComparator<KaleoTaskAssignmentInstance> orderByComparator) {
 		List<KaleoTaskAssignmentInstance> list = findByKaleoInstanceId(kaleoInstanceId,
 				0, 1, orderByComparator);
 
@@ -1302,7 +1312,8 @@ public class KaleoTaskAssignmentInstancePersistenceImpl
 	 */
 	@Override
 	public KaleoTaskAssignmentInstance findByKaleoInstanceId_Last(
-		long kaleoInstanceId, OrderByComparator orderByComparator)
+		long kaleoInstanceId,
+		OrderByComparator<KaleoTaskAssignmentInstance> orderByComparator)
 		throws NoSuchTaskAssignmentInstanceException {
 		KaleoTaskAssignmentInstance kaleoTaskAssignmentInstance = fetchByKaleoInstanceId_Last(kaleoInstanceId,
 				orderByComparator);
@@ -1332,7 +1343,8 @@ public class KaleoTaskAssignmentInstancePersistenceImpl
 	 */
 	@Override
 	public KaleoTaskAssignmentInstance fetchByKaleoInstanceId_Last(
-		long kaleoInstanceId, OrderByComparator orderByComparator) {
+		long kaleoInstanceId,
+		OrderByComparator<KaleoTaskAssignmentInstance> orderByComparator) {
 		int count = countByKaleoInstanceId(kaleoInstanceId);
 
 		if (count == 0) {
@@ -1361,7 +1373,7 @@ public class KaleoTaskAssignmentInstancePersistenceImpl
 	@Override
 	public KaleoTaskAssignmentInstance[] findByKaleoInstanceId_PrevAndNext(
 		long kaleoTaskAssignmentInstanceId, long kaleoInstanceId,
-		OrderByComparator orderByComparator)
+		OrderByComparator<KaleoTaskAssignmentInstance> orderByComparator)
 		throws NoSuchTaskAssignmentInstanceException {
 		KaleoTaskAssignmentInstance kaleoTaskAssignmentInstance = findByPrimaryKey(kaleoTaskAssignmentInstanceId);
 
@@ -1395,7 +1407,8 @@ public class KaleoTaskAssignmentInstancePersistenceImpl
 	protected KaleoTaskAssignmentInstance getByKaleoInstanceId_PrevAndNext(
 		Session session,
 		KaleoTaskAssignmentInstance kaleoTaskAssignmentInstance,
-		long kaleoInstanceId, OrderByComparator orderByComparator,
+		long kaleoInstanceId,
+		OrderByComparator<KaleoTaskAssignmentInstance> orderByComparator,
 		boolean previous) {
 		StringBundler query = null;
 
@@ -1641,7 +1654,7 @@ public class KaleoTaskAssignmentInstancePersistenceImpl
 	@Override
 	public List<KaleoTaskAssignmentInstance> findBykaleoTaskInstanceTokenId(
 		long kaleoTaskInstanceTokenId, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KaleoTaskAssignmentInstance> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -1751,7 +1764,8 @@ public class KaleoTaskAssignmentInstancePersistenceImpl
 	 */
 	@Override
 	public KaleoTaskAssignmentInstance findBykaleoTaskInstanceTokenId_First(
-		long kaleoTaskInstanceTokenId, OrderByComparator orderByComparator)
+		long kaleoTaskInstanceTokenId,
+		OrderByComparator<KaleoTaskAssignmentInstance> orderByComparator)
 		throws NoSuchTaskAssignmentInstanceException {
 		KaleoTaskAssignmentInstance kaleoTaskAssignmentInstance = fetchBykaleoTaskInstanceTokenId_First(kaleoTaskInstanceTokenId,
 				orderByComparator);
@@ -1781,7 +1795,8 @@ public class KaleoTaskAssignmentInstancePersistenceImpl
 	 */
 	@Override
 	public KaleoTaskAssignmentInstance fetchBykaleoTaskInstanceTokenId_First(
-		long kaleoTaskInstanceTokenId, OrderByComparator orderByComparator) {
+		long kaleoTaskInstanceTokenId,
+		OrderByComparator<KaleoTaskAssignmentInstance> orderByComparator) {
 		List<KaleoTaskAssignmentInstance> list = findBykaleoTaskInstanceTokenId(kaleoTaskInstanceTokenId,
 				0, 1, orderByComparator);
 
@@ -1802,7 +1817,8 @@ public class KaleoTaskAssignmentInstancePersistenceImpl
 	 */
 	@Override
 	public KaleoTaskAssignmentInstance findBykaleoTaskInstanceTokenId_Last(
-		long kaleoTaskInstanceTokenId, OrderByComparator orderByComparator)
+		long kaleoTaskInstanceTokenId,
+		OrderByComparator<KaleoTaskAssignmentInstance> orderByComparator)
 		throws NoSuchTaskAssignmentInstanceException {
 		KaleoTaskAssignmentInstance kaleoTaskAssignmentInstance = fetchBykaleoTaskInstanceTokenId_Last(kaleoTaskInstanceTokenId,
 				orderByComparator);
@@ -1832,7 +1848,8 @@ public class KaleoTaskAssignmentInstancePersistenceImpl
 	 */
 	@Override
 	public KaleoTaskAssignmentInstance fetchBykaleoTaskInstanceTokenId_Last(
-		long kaleoTaskInstanceTokenId, OrderByComparator orderByComparator) {
+		long kaleoTaskInstanceTokenId,
+		OrderByComparator<KaleoTaskAssignmentInstance> orderByComparator) {
 		int count = countBykaleoTaskInstanceTokenId(kaleoTaskInstanceTokenId);
 
 		if (count == 0) {
@@ -1861,7 +1878,7 @@ public class KaleoTaskAssignmentInstancePersistenceImpl
 	@Override
 	public KaleoTaskAssignmentInstance[] findBykaleoTaskInstanceTokenId_PrevAndNext(
 		long kaleoTaskAssignmentInstanceId, long kaleoTaskInstanceTokenId,
-		OrderByComparator orderByComparator)
+		OrderByComparator<KaleoTaskAssignmentInstance> orderByComparator)
 		throws NoSuchTaskAssignmentInstanceException {
 		KaleoTaskAssignmentInstance kaleoTaskAssignmentInstance = findByPrimaryKey(kaleoTaskAssignmentInstanceId);
 
@@ -1895,7 +1912,8 @@ public class KaleoTaskAssignmentInstancePersistenceImpl
 	protected KaleoTaskAssignmentInstance getBykaleoTaskInstanceTokenId_PrevAndNext(
 		Session session,
 		KaleoTaskAssignmentInstance kaleoTaskAssignmentInstance,
-		long kaleoTaskInstanceTokenId, OrderByComparator orderByComparator,
+		long kaleoTaskInstanceTokenId,
+		OrderByComparator<KaleoTaskAssignmentInstance> orderByComparator,
 		boolean previous) {
 		StringBundler query = null;
 
@@ -2662,7 +2680,7 @@ public class KaleoTaskAssignmentInstancePersistenceImpl
 	 */
 	@Override
 	public List<KaleoTaskAssignmentInstance> findAll(int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KaleoTaskAssignmentInstance> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;

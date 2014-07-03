@@ -71,27 +71,22 @@ public interface BBBMeetingService extends BaseService, InvokableService {
 		java.lang.String moderatorPassword, int status,
 		java.util.List<com.liferay.bbb.model.BBBParticipant> bbbParticipants,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	public com.liferay.bbb.model.BBBMeeting deleteBBBMeeting(long bbbMeetingId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.bbb.model.BBBMeeting getBBBMeeting(long bbbMeetingId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.bbb.model.BBBMeeting> getBBBMeetings(
 		long groupId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator obc)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator obc);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int getBBBMeetingsCount(long groupId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public int getBBBMeetingsCount(long groupId);
 
 	public com.liferay.bbb.model.BBBMeeting updateBBBMeeting(
 		long bbbMeetingId, long bbbServerId, java.lang.String name,
@@ -99,6 +94,5 @@ public interface BBBMeetingService extends BaseService, InvokableService {
 		java.lang.String moderatorPassword,
 		java.util.List<com.liferay.bbb.model.BBBParticipant> bbbParticipants,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.portal.kernel.exception.PortalException;
 }

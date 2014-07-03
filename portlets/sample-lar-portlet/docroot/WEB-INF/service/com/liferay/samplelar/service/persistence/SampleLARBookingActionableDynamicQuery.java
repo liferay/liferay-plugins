@@ -21,7 +21,7 @@ import com.liferay.samplelar.service.SampleLARBookingLocalServiceUtil;
 
 /**
  * @author Mate Thurzo
- * @deprecated As of 7.0.0, replaced by {@link SampleLARBookingLocalServiceUtil#getExportActionableDynamicQuery()}
+ * @deprecated As of 7.0.0, replaced by {@link SampleLARBookingLocalServiceUtil#getActionableDynamicQuery()}
  * @generated
  */
 @Deprecated

@@ -84,7 +84,7 @@ public class CheckoutUtil {
 	 */
 	public static List<Checkout> findWithDynamicQuery(
 		DynamicQuery dynamicQuery, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<Checkout> orderByComparator) {
 		return getPersistence()
 				   .findWithDynamicQuery(dynamicQuery, start, end,
 			orderByComparator);
@@ -218,7 +218,7 @@ public class CheckoutUtil {
 	*/
 	public static java.util.List<com.liferay.ams.model.Checkout> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.ams.model.Checkout> orderByComparator) {
 		return getPersistence().findAll(start, end, orderByComparator);
 	}
 

@@ -20,7 +20,7 @@ import com.liferay.portal.workflow.kaleo.service.KaleoNotificationRecipientLocal
 
 /**
  * @author Brian Wing Shun Chan
- * @deprecated As of 7.0.0, replaced by {@link KaleoNotificationRecipientLocalServiceUtil#getExportActionableDynamicQuery()}
+ * @deprecated As of 7.0.0, replaced by {@link KaleoNotificationRecipientLocalServiceUtil#getActionableDynamicQuery()}
  * @generated
  */
 @Deprecated

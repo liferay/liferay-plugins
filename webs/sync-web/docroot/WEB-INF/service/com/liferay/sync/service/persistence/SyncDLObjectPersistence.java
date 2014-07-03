@@ -136,7 +136,7 @@ public interface SyncDLObjectPersistence extends BasePersistence<SyncDLObject> {
 	public java.util.List<com.liferay.sync.model.SyncDLObject> findByC_M_R(
 		long companyId, long modifiedTime, long repositoryId, int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.sync.model.SyncDLObject> orderByComparator);
 
 	/**
 	* Returns the first sync d l object in the ordered set where companyId = &#63; and modifiedTime &gt; &#63; and repositoryId = &#63;.
@@ -150,7 +150,7 @@ public interface SyncDLObjectPersistence extends BasePersistence<SyncDLObject> {
 	*/
 	public com.liferay.sync.model.SyncDLObject findByC_M_R_First(
 		long companyId, long modifiedTime, long repositoryId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.sync.model.SyncDLObject> orderByComparator)
 		throws com.liferay.sync.NoSuchDLObjectException;
 
 	/**
@@ -164,7 +164,7 @@ public interface SyncDLObjectPersistence extends BasePersistence<SyncDLObject> {
 	*/
 	public com.liferay.sync.model.SyncDLObject fetchByC_M_R_First(
 		long companyId, long modifiedTime, long repositoryId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.sync.model.SyncDLObject> orderByComparator);
 
 	/**
 	* Returns the last sync d l object in the ordered set where companyId = &#63; and modifiedTime &gt; &#63; and repositoryId = &#63;.
@@ -178,7 +178,7 @@ public interface SyncDLObjectPersistence extends BasePersistence<SyncDLObject> {
 	*/
 	public com.liferay.sync.model.SyncDLObject findByC_M_R_Last(
 		long companyId, long modifiedTime, long repositoryId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.sync.model.SyncDLObject> orderByComparator)
 		throws com.liferay.sync.NoSuchDLObjectException;
 
 	/**
@@ -192,7 +192,7 @@ public interface SyncDLObjectPersistence extends BasePersistence<SyncDLObject> {
 	*/
 	public com.liferay.sync.model.SyncDLObject fetchByC_M_R_Last(
 		long companyId, long modifiedTime, long repositoryId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.sync.model.SyncDLObject> orderByComparator);
 
 	/**
 	* Returns the sync d l objects before and after the current sync d l object in the ordered set where companyId = &#63; and modifiedTime &gt; &#63; and repositoryId = &#63;.
@@ -208,7 +208,7 @@ public interface SyncDLObjectPersistence extends BasePersistence<SyncDLObject> {
 	public com.liferay.sync.model.SyncDLObject[] findByC_M_R_PrevAndNext(
 		long syncDLObjectId, long companyId, long modifiedTime,
 		long repositoryId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.sync.model.SyncDLObject> orderByComparator)
 		throws com.liferay.sync.NoSuchDLObjectException;
 
 	/**
@@ -325,7 +325,7 @@ public interface SyncDLObjectPersistence extends BasePersistence<SyncDLObject> {
 	*/
 	public java.util.List<com.liferay.sync.model.SyncDLObject> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.sync.model.SyncDLObject> orderByComparator);
 
 	/**
 	* Removes all the sync d l objects from the database.

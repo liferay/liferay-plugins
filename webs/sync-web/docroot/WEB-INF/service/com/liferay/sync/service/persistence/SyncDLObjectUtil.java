@@ -85,7 +85,7 @@ public class SyncDLObjectUtil {
 	 */
 	public static List<SyncDLObject> findWithDynamicQuery(
 		DynamicQuery dynamicQuery, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<SyncDLObject> orderByComparator) {
 		return getPersistence()
 				   .findWithDynamicQuery(dynamicQuery, start, end,
 			orderByComparator);
@@ -222,7 +222,7 @@ public class SyncDLObjectUtil {
 	public static java.util.List<com.liferay.sync.model.SyncDLObject> findByC_M_R(
 		long companyId, long modifiedTime, long repositoryId, int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.sync.model.SyncDLObject> orderByComparator) {
 		return getPersistence()
 				   .findByC_M_R(companyId, modifiedTime, repositoryId, start,
 			end, orderByComparator);
@@ -240,7 +240,7 @@ public class SyncDLObjectUtil {
 	*/
 	public static com.liferay.sync.model.SyncDLObject findByC_M_R_First(
 		long companyId, long modifiedTime, long repositoryId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.sync.model.SyncDLObject> orderByComparator)
 		throws com.liferay.sync.NoSuchDLObjectException {
 		return getPersistence()
 				   .findByC_M_R_First(companyId, modifiedTime, repositoryId,
@@ -258,7 +258,7 @@ public class SyncDLObjectUtil {
 	*/
 	public static com.liferay.sync.model.SyncDLObject fetchByC_M_R_First(
 		long companyId, long modifiedTime, long repositoryId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.sync.model.SyncDLObject> orderByComparator) {
 		return getPersistence()
 				   .fetchByC_M_R_First(companyId, modifiedTime, repositoryId,
 			orderByComparator);
@@ -276,7 +276,7 @@ public class SyncDLObjectUtil {
 	*/
 	public static com.liferay.sync.model.SyncDLObject findByC_M_R_Last(
 		long companyId, long modifiedTime, long repositoryId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.sync.model.SyncDLObject> orderByComparator)
 		throws com.liferay.sync.NoSuchDLObjectException {
 		return getPersistence()
 				   .findByC_M_R_Last(companyId, modifiedTime, repositoryId,
@@ -294,7 +294,7 @@ public class SyncDLObjectUtil {
 	*/
 	public static com.liferay.sync.model.SyncDLObject fetchByC_M_R_Last(
 		long companyId, long modifiedTime, long repositoryId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.sync.model.SyncDLObject> orderByComparator) {
 		return getPersistence()
 				   .fetchByC_M_R_Last(companyId, modifiedTime, repositoryId,
 			orderByComparator);
@@ -314,7 +314,7 @@ public class SyncDLObjectUtil {
 	public static com.liferay.sync.model.SyncDLObject[] findByC_M_R_PrevAndNext(
 		long syncDLObjectId, long companyId, long modifiedTime,
 		long repositoryId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.sync.model.SyncDLObject> orderByComparator)
 		throws com.liferay.sync.NoSuchDLObjectException {
 		return getPersistence()
 				   .findByC_M_R_PrevAndNext(syncDLObjectId, companyId,
@@ -462,7 +462,7 @@ public class SyncDLObjectUtil {
 	*/
 	public static java.util.List<com.liferay.sync.model.SyncDLObject> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.sync.model.SyncDLObject> orderByComparator) {
 		return getPersistence().findAll(start, end, orderByComparator);
 	}
 

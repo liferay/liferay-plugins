@@ -67,8 +67,7 @@ public class GadgetServiceUtil {
 		long companyId, java.lang.String url,
 		java.lang.String portletCategoryNames,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService()
 				   .addGadget(companyId, url, portletCategoryNames,
 			serviceContext);
@@ -76,16 +75,14 @@ public class GadgetServiceUtil {
 
 	public static void deleteGadget(long gadgetId,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		getService().deleteGadget(gadgetId, serviceContext);
 	}
 
 	public static void updateGadget(long gadgetId,
 		java.lang.String portletCategoryNames,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		getService().updateGadget(gadgetId, portletCategoryNames, serviceContext);
 	}
 

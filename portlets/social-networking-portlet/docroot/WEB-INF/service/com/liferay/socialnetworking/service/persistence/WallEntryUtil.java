@@ -85,7 +85,7 @@ public class WallEntryUtil {
 	 */
 	public static List<WallEntry> findWithDynamicQuery(
 		DynamicQuery dynamicQuery, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<WallEntry> orderByComparator) {
 		return getPersistence()
 				   .findWithDynamicQuery(dynamicQuery, start, end,
 			orderByComparator);
@@ -149,7 +149,7 @@ public class WallEntryUtil {
 	*/
 	public static java.util.List<com.liferay.socialnetworking.model.WallEntry> findByGroupId(
 		long groupId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialnetworking.model.WallEntry> orderByComparator) {
 		return getPersistence()
 				   .findByGroupId(groupId, start, end, orderByComparator);
 	}
@@ -164,7 +164,7 @@ public class WallEntryUtil {
 	*/
 	public static com.liferay.socialnetworking.model.WallEntry findByGroupId_First(
 		long groupId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialnetworking.model.WallEntry> orderByComparator)
 		throws com.liferay.socialnetworking.NoSuchWallEntryException {
 		return getPersistence().findByGroupId_First(groupId, orderByComparator);
 	}
@@ -178,7 +178,7 @@ public class WallEntryUtil {
 	*/
 	public static com.liferay.socialnetworking.model.WallEntry fetchByGroupId_First(
 		long groupId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialnetworking.model.WallEntry> orderByComparator) {
 		return getPersistence().fetchByGroupId_First(groupId, orderByComparator);
 	}
 
@@ -192,7 +192,7 @@ public class WallEntryUtil {
 	*/
 	public static com.liferay.socialnetworking.model.WallEntry findByGroupId_Last(
 		long groupId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialnetworking.model.WallEntry> orderByComparator)
 		throws com.liferay.socialnetworking.NoSuchWallEntryException {
 		return getPersistence().findByGroupId_Last(groupId, orderByComparator);
 	}
@@ -206,7 +206,7 @@ public class WallEntryUtil {
 	*/
 	public static com.liferay.socialnetworking.model.WallEntry fetchByGroupId_Last(
 		long groupId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialnetworking.model.WallEntry> orderByComparator) {
 		return getPersistence().fetchByGroupId_Last(groupId, orderByComparator);
 	}
 
@@ -221,7 +221,7 @@ public class WallEntryUtil {
 	*/
 	public static com.liferay.socialnetworking.model.WallEntry[] findByGroupId_PrevAndNext(
 		long wallEntryId, long groupId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialnetworking.model.WallEntry> orderByComparator)
 		throws com.liferay.socialnetworking.NoSuchWallEntryException {
 		return getPersistence()
 				   .findByGroupId_PrevAndNext(wallEntryId, groupId,
@@ -290,7 +290,7 @@ public class WallEntryUtil {
 	*/
 	public static java.util.List<com.liferay.socialnetworking.model.WallEntry> findByUserId(
 		long userId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialnetworking.model.WallEntry> orderByComparator) {
 		return getPersistence()
 				   .findByUserId(userId, start, end, orderByComparator);
 	}
@@ -305,7 +305,7 @@ public class WallEntryUtil {
 	*/
 	public static com.liferay.socialnetworking.model.WallEntry findByUserId_First(
 		long userId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialnetworking.model.WallEntry> orderByComparator)
 		throws com.liferay.socialnetworking.NoSuchWallEntryException {
 		return getPersistence().findByUserId_First(userId, orderByComparator);
 	}
@@ -319,7 +319,7 @@ public class WallEntryUtil {
 	*/
 	public static com.liferay.socialnetworking.model.WallEntry fetchByUserId_First(
 		long userId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialnetworking.model.WallEntry> orderByComparator) {
 		return getPersistence().fetchByUserId_First(userId, orderByComparator);
 	}
 
@@ -333,7 +333,7 @@ public class WallEntryUtil {
 	*/
 	public static com.liferay.socialnetworking.model.WallEntry findByUserId_Last(
 		long userId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialnetworking.model.WallEntry> orderByComparator)
 		throws com.liferay.socialnetworking.NoSuchWallEntryException {
 		return getPersistence().findByUserId_Last(userId, orderByComparator);
 	}
@@ -347,7 +347,7 @@ public class WallEntryUtil {
 	*/
 	public static com.liferay.socialnetworking.model.WallEntry fetchByUserId_Last(
 		long userId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialnetworking.model.WallEntry> orderByComparator) {
 		return getPersistence().fetchByUserId_Last(userId, orderByComparator);
 	}
 
@@ -362,7 +362,7 @@ public class WallEntryUtil {
 	*/
 	public static com.liferay.socialnetworking.model.WallEntry[] findByUserId_PrevAndNext(
 		long wallEntryId, long userId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialnetworking.model.WallEntry> orderByComparator)
 		throws com.liferay.socialnetworking.NoSuchWallEntryException {
 		return getPersistence()
 				   .findByUserId_PrevAndNext(wallEntryId, userId,
@@ -434,7 +434,7 @@ public class WallEntryUtil {
 	*/
 	public static java.util.List<com.liferay.socialnetworking.model.WallEntry> findByG_U(
 		long groupId, long userId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialnetworking.model.WallEntry> orderByComparator) {
 		return getPersistence()
 				   .findByG_U(groupId, userId, start, end, orderByComparator);
 	}
@@ -450,7 +450,7 @@ public class WallEntryUtil {
 	*/
 	public static com.liferay.socialnetworking.model.WallEntry findByG_U_First(
 		long groupId, long userId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialnetworking.model.WallEntry> orderByComparator)
 		throws com.liferay.socialnetworking.NoSuchWallEntryException {
 		return getPersistence()
 				   .findByG_U_First(groupId, userId, orderByComparator);
@@ -466,7 +466,7 @@ public class WallEntryUtil {
 	*/
 	public static com.liferay.socialnetworking.model.WallEntry fetchByG_U_First(
 		long groupId, long userId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialnetworking.model.WallEntry> orderByComparator) {
 		return getPersistence()
 				   .fetchByG_U_First(groupId, userId, orderByComparator);
 	}
@@ -482,7 +482,7 @@ public class WallEntryUtil {
 	*/
 	public static com.liferay.socialnetworking.model.WallEntry findByG_U_Last(
 		long groupId, long userId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialnetworking.model.WallEntry> orderByComparator)
 		throws com.liferay.socialnetworking.NoSuchWallEntryException {
 		return getPersistence()
 				   .findByG_U_Last(groupId, userId, orderByComparator);
@@ -498,7 +498,7 @@ public class WallEntryUtil {
 	*/
 	public static com.liferay.socialnetworking.model.WallEntry fetchByG_U_Last(
 		long groupId, long userId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialnetworking.model.WallEntry> orderByComparator) {
 		return getPersistence()
 				   .fetchByG_U_Last(groupId, userId, orderByComparator);
 	}
@@ -515,7 +515,7 @@ public class WallEntryUtil {
 	*/
 	public static com.liferay.socialnetworking.model.WallEntry[] findByG_U_PrevAndNext(
 		long wallEntryId, long groupId, long userId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialnetworking.model.WallEntry> orderByComparator)
 		throws com.liferay.socialnetworking.NoSuchWallEntryException {
 		return getPersistence()
 				   .findByG_U_PrevAndNext(wallEntryId, groupId, userId,
@@ -660,7 +660,7 @@ public class WallEntryUtil {
 	*/
 	public static java.util.List<com.liferay.socialnetworking.model.WallEntry> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialnetworking.model.WallEntry> orderByComparator) {
 		return getPersistence().findAll(start, end, orderByComparator);
 	}
 

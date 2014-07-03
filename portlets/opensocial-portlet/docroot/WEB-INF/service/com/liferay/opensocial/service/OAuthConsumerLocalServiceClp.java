@@ -220,8 +220,7 @@ public class OAuthConsumerLocalServiceClp implements OAuthConsumerLocalService {
 	@Override
 	public com.liferay.opensocial.model.OAuthConsumer deleteOAuthConsumer(
 		long oAuthConsumerId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
 		try {
@@ -233,10 +232,6 @@ public class OAuthConsumerLocalServiceClp implements OAuthConsumerLocalService {
 
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
 
 			if (t instanceof RuntimeException) {
@@ -253,8 +248,7 @@ public class OAuthConsumerLocalServiceClp implements OAuthConsumerLocalService {
 
 	@Override
 	public com.liferay.opensocial.model.OAuthConsumer deleteOAuthConsumer(
-		com.liferay.opensocial.model.OAuthConsumer oAuthConsumer)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.opensocial.model.OAuthConsumer oAuthConsumer) {
 		Object returnObj = null;
 
 		try {
@@ -264,10 +258,6 @@ public class OAuthConsumerLocalServiceClp implements OAuthConsumerLocalService {
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
 
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
@@ -305,8 +295,7 @@ public class OAuthConsumerLocalServiceClp implements OAuthConsumerLocalService {
 	}
 
 	@Override
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
 		Object returnObj = null;
 
@@ -327,12 +316,11 @@ public class OAuthConsumerLocalServiceClp implements OAuthConsumerLocalService {
 			}
 		}
 
-		return (java.util.List)ClpSerializer.translateOutput(returnObj);
+		return (java.util.List<T>)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) {
 		Object returnObj = null;
@@ -360,15 +348,14 @@ public class OAuthConsumerLocalServiceClp implements OAuthConsumerLocalService {
 			}
 		}
 
-		return (java.util.List)ClpSerializer.translateOutput(returnObj);
+		return (java.util.List<T>)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<T> orderByComparator) {
 		Object returnObj = null;
 
 		try {
@@ -396,7 +383,7 @@ public class OAuthConsumerLocalServiceClp implements OAuthConsumerLocalService {
 			}
 		}
 
-		return (java.util.List)ClpSerializer.translateOutput(returnObj);
+		return (java.util.List<T>)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override
@@ -716,8 +703,7 @@ public class OAuthConsumerLocalServiceClp implements OAuthConsumerLocalService {
 	public com.liferay.opensocial.model.OAuthConsumer addOAuthConsumer(
 		long companyId, java.lang.String gadgetKey,
 		java.lang.String serviceName, java.lang.String consumerKey,
-		java.lang.String consumerSecret, java.lang.String keyType)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		java.lang.String consumerSecret, java.lang.String keyType) {
 		Object returnObj = null;
 
 		try {
@@ -740,10 +726,6 @@ public class OAuthConsumerLocalServiceClp implements OAuthConsumerLocalService {
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
 
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
 			}
@@ -757,8 +739,7 @@ public class OAuthConsumerLocalServiceClp implements OAuthConsumerLocalService {
 	}
 
 	@Override
-	public void deleteOAuthConsumers(java.lang.String gadgetKey)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public void deleteOAuthConsumers(java.lang.String gadgetKey) {
 		try {
 			_invokableLocalService.invokeMethod(_methodName22,
 				_methodParameterTypes22,
@@ -766,10 +747,6 @@ public class OAuthConsumerLocalServiceClp implements OAuthConsumerLocalService {
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
 
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
@@ -783,8 +760,7 @@ public class OAuthConsumerLocalServiceClp implements OAuthConsumerLocalService {
 
 	@Override
 	public com.liferay.opensocial.model.OAuthConsumer fetchOAuthConsumer(
-		java.lang.String gadgetKey, java.lang.String serviceName)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		java.lang.String gadgetKey, java.lang.String serviceName) {
 		Object returnObj = null;
 
 		try {
@@ -798,10 +774,6 @@ public class OAuthConsumerLocalServiceClp implements OAuthConsumerLocalService {
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
 
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
@@ -818,8 +790,7 @@ public class OAuthConsumerLocalServiceClp implements OAuthConsumerLocalService {
 	@Override
 	public com.liferay.opensocial.model.OAuthConsumer getOAuthConsumer(
 		java.lang.String gadgetKey, java.lang.String serviceName)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
 		try {
@@ -838,10 +809,6 @@ public class OAuthConsumerLocalServiceClp implements OAuthConsumerLocalService {
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
 			}
 
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
 			}
@@ -856,8 +823,7 @@ public class OAuthConsumerLocalServiceClp implements OAuthConsumerLocalService {
 
 	@Override
 	public java.util.List<com.liferay.opensocial.model.OAuthConsumer> getOAuthConsumers(
-		java.lang.String gadgetKey)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		java.lang.String gadgetKey) {
 		Object returnObj = null;
 
 		try {
@@ -867,10 +833,6 @@ public class OAuthConsumerLocalServiceClp implements OAuthConsumerLocalService {
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
 
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
@@ -886,8 +848,7 @@ public class OAuthConsumerLocalServiceClp implements OAuthConsumerLocalService {
 
 	@Override
 	public java.util.List<com.liferay.opensocial.model.OAuthConsumer> getOAuthConsumers(
-		java.lang.String gadgetKey, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		java.lang.String gadgetKey, int start, int end) {
 		Object returnObj = null;
 
 		try {
@@ -904,10 +865,6 @@ public class OAuthConsumerLocalServiceClp implements OAuthConsumerLocalService {
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
 
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
 			}
@@ -921,8 +878,7 @@ public class OAuthConsumerLocalServiceClp implements OAuthConsumerLocalService {
 	}
 
 	@Override
-	public int getOAuthConsumersCount(java.lang.String gadgetKey)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public int getOAuthConsumersCount(java.lang.String gadgetKey) {
 		Object returnObj = null;
 
 		try {
@@ -932,10 +888,6 @@ public class OAuthConsumerLocalServiceClp implements OAuthConsumerLocalService {
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
 
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
@@ -954,8 +906,7 @@ public class OAuthConsumerLocalServiceClp implements OAuthConsumerLocalService {
 		long oAuthConsumerId, java.lang.String consumerKey,
 		java.lang.String consumerSecret, java.lang.String keyType,
 		java.lang.String keyName, java.lang.String callbackURL)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
 		try {
@@ -980,10 +931,6 @@ public class OAuthConsumerLocalServiceClp implements OAuthConsumerLocalService {
 
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
 
 			if (t instanceof RuntimeException) {

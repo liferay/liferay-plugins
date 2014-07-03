@@ -101,12 +101,11 @@ public abstract class OAuthConsumerLocalServiceBaseImpl
 	 * @param oAuthConsumerId the primary key of the o auth consumer
 	 * @return the o auth consumer that was removed
 	 * @throws PortalException if a o auth consumer with the primary key could not be found
-	 * @throws SystemException
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
 	public OAuthConsumer deleteOAuthConsumer(long oAuthConsumerId)
-		throws PortalException, SystemException {
+		throws PortalException {
 		return oAuthConsumerPersistence.remove(oAuthConsumerId);
 	}
 
@@ -115,12 +114,10 @@ public abstract class OAuthConsumerLocalServiceBaseImpl
 	 *
 	 * @param oAuthConsumer the o auth consumer
 	 * @return the o auth consumer that was removed
-	 * @throws SystemException
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
-	public OAuthConsumer deleteOAuthConsumer(OAuthConsumer oAuthConsumer)
-		throws SystemException {
+	public OAuthConsumer deleteOAuthConsumer(OAuthConsumer oAuthConsumer) {
 		return oAuthConsumerPersistence.remove(oAuthConsumer);
 	}
 
@@ -139,8 +136,7 @@ public abstract class OAuthConsumerLocalServiceBaseImpl
 	 * @return the matching rows
 	 */
 	@Override
-	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery) {
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery) {
 		return oAuthConsumerPersistence.findWithDynamicQuery(dynamicQuery);
 	}
 
@@ -157,8 +153,8 @@ public abstract class OAuthConsumerLocalServiceBaseImpl
 	 * @return the range of matching rows
 	 */
 	@Override
-	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end) {
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
+		int end) {
 		return oAuthConsumerPersistence.findWithDynamicQuery(dynamicQuery,
 			start, end);
 	}
@@ -177,9 +173,8 @@ public abstract class OAuthConsumerLocalServiceBaseImpl
 	 * @return the ordered range of matching rows
 	 */
 	@Override
-	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end,
-		OrderByComparator orderByComparator) {
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
+		int end, OrderByComparator<T> orderByComparator) {
 		return oAuthConsumerPersistence.findWithDynamicQuery(dynamicQuery,
 			start, end, orderByComparator);
 	}

@@ -241,8 +241,7 @@ public class BarLocalServiceClp implements BarLocalService {
 
 	@Override
 	public com.liferay.testtransaction.model.Bar deleteBar(
-		com.liferay.testtransaction.model.Bar bar)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.testtransaction.model.Bar bar) {
 		Object returnObj = null;
 
 		try {
@@ -252,10 +251,6 @@ public class BarLocalServiceClp implements BarLocalService {
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
 
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
@@ -293,8 +288,7 @@ public class BarLocalServiceClp implements BarLocalService {
 	}
 
 	@Override
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
 		Object returnObj = null;
 
@@ -315,12 +309,11 @@ public class BarLocalServiceClp implements BarLocalService {
 			}
 		}
 
-		return (java.util.List)ClpSerializer.translateOutput(returnObj);
+		return (java.util.List<T>)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) {
 		Object returnObj = null;
@@ -348,15 +341,14 @@ public class BarLocalServiceClp implements BarLocalService {
 			}
 		}
 
-		return (java.util.List)ClpSerializer.translateOutput(returnObj);
+		return (java.util.List<T>)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<T> orderByComparator) {
 		Object returnObj = null;
 
 		try {
@@ -384,7 +376,7 @@ public class BarLocalServiceClp implements BarLocalService {
 			}
 		}
 
-		return (java.util.List)ClpSerializer.translateOutput(returnObj);
+		return (java.util.List<T>)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override
@@ -699,8 +691,7 @@ public class BarLocalServiceClp implements BarLocalService {
 	}
 
 	@Override
-	public void addBar_Rollback(java.lang.String text)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public void addBar_Rollback(java.lang.String text) {
 		try {
 			_invokableLocalService.invokeMethod(_methodName21,
 				_methodParameterTypes21,
@@ -708,10 +699,6 @@ public class BarLocalServiceClp implements BarLocalService {
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
 
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
@@ -725,8 +712,7 @@ public class BarLocalServiceClp implements BarLocalService {
 
 	@Override
 	public com.liferay.testtransaction.model.Bar addBar_Success(
-		java.lang.String text)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		java.lang.String text) {
 		Object returnObj = null;
 
 		try {
@@ -736,10 +722,6 @@ public class BarLocalServiceClp implements BarLocalService {
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
 
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
@@ -754,8 +736,7 @@ public class BarLocalServiceClp implements BarLocalService {
 	}
 
 	@Override
-	public void addBarAndClassName_PortalRollback(java.lang.String text)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public void addBarAndClassName_PortalRollback(java.lang.String text) {
 		try {
 			_invokableLocalService.invokeMethod(_methodName23,
 				_methodParameterTypes23,
@@ -763,10 +744,6 @@ public class BarLocalServiceClp implements BarLocalService {
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
 
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
@@ -779,8 +756,7 @@ public class BarLocalServiceClp implements BarLocalService {
 	}
 
 	@Override
-	public void addBarAndClassName_PortletRollback(java.lang.String text)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public void addBarAndClassName_PortletRollback(java.lang.String text) {
 		try {
 			_invokableLocalService.invokeMethod(_methodName24,
 				_methodParameterTypes24,
@@ -788,10 +764,6 @@ public class BarLocalServiceClp implements BarLocalService {
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
 
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
@@ -805,8 +777,7 @@ public class BarLocalServiceClp implements BarLocalService {
 
 	@Override
 	public void deleteBarAndClassName(com.liferay.testtransaction.model.Bar bar)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		try {
 			_invokableLocalService.invokeMethod(_methodName25,
 				_methodParameterTypes25,
@@ -817,10 +788,6 @@ public class BarLocalServiceClp implements BarLocalService {
 
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
 
 			if (t instanceof RuntimeException) {
@@ -835,8 +802,7 @@ public class BarLocalServiceClp implements BarLocalService {
 
 	@Override
 	public com.liferay.testtransaction.model.Bar getBar(java.lang.String text)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
 		try {
@@ -849,10 +815,6 @@ public class BarLocalServiceClp implements BarLocalService {
 
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
 
 			if (t instanceof RuntimeException) {
@@ -868,8 +830,7 @@ public class BarLocalServiceClp implements BarLocalService {
 	}
 
 	@Override
-	public boolean hasBar(java.lang.String text)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public boolean hasBar(java.lang.String text) {
 		Object returnObj = null;
 
 		try {
@@ -880,10 +841,6 @@ public class BarLocalServiceClp implements BarLocalService {
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
 
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
 			}
@@ -897,8 +854,7 @@ public class BarLocalServiceClp implements BarLocalService {
 	}
 
 	@Override
-	public boolean hasClassName()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public boolean hasClassName() {
 		Object returnObj = null;
 
 		try {
@@ -908,10 +864,6 @@ public class BarLocalServiceClp implements BarLocalService {
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
 
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
 			}
@@ -925,8 +877,7 @@ public class BarLocalServiceClp implements BarLocalService {
 	}
 
 	@Override
-	public void testAddClassNameAndBar_Success(java.lang.String text)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public void testAddClassNameAndBar_Success(java.lang.String text) {
 		try {
 			_invokableLocalService.invokeMethod(_methodName29,
 				_methodParameterTypes29,
@@ -934,10 +885,6 @@ public class BarLocalServiceClp implements BarLocalService {
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
 
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;

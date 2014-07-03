@@ -62,8 +62,7 @@ public class TasksEntryServiceWrapper implements TasksEntryService,
 		int dueDateMonth, int dueDateDay, int dueDateYear, int dueDateHour,
 		int dueDateMinute, boolean neverDue,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _tasksEntryService.addTasksEntry(title, priority,
 			assigneeUserId, dueDateMonth, dueDateDay, dueDateYear, dueDateHour,
 			dueDateMinute, neverDue, serviceContext);
@@ -71,8 +70,7 @@ public class TasksEntryServiceWrapper implements TasksEntryService,
 
 	@Override
 	public com.liferay.tasks.model.TasksEntry getTasksEntry(long tasksEntryId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _tasksEntryService.getTasksEntry(tasksEntryId);
 	}
 
@@ -83,8 +81,7 @@ public class TasksEntryServiceWrapper implements TasksEntryService,
 		int dueDateDay, int dueDateYear, int dueDateHour, int dueDateMinute,
 		boolean neverDue, int status,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _tasksEntryService.updateTasksEntry(tasksEntryId, title,
 			priority, assigneeUserId, resolverUserId, dueDateMonth, dueDateDay,
 			dueDateYear, dueDateHour, dueDateMinute, neverDue, status,

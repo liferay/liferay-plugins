@@ -70,13 +70,11 @@ public interface TasksEntryService extends BaseService, InvokableService {
 		int dueDateMonth, int dueDateDay, int dueDateYear, int dueDateHour,
 		int dueDateMinute, boolean neverDue,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.tasks.model.TasksEntry getTasksEntry(long tasksEntryId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	public com.liferay.tasks.model.TasksEntry updateTasksEntry(
 		long tasksEntryId, java.lang.String title, int priority,
@@ -84,6 +82,5 @@ public interface TasksEntryService extends BaseService, InvokableService {
 		int dueDateDay, int dueDateYear, int dueDateHour, int dueDateMinute,
 		boolean neverDue, int status,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.portal.kernel.exception.PortalException;
 }

@@ -76,7 +76,7 @@ public interface UserThreadPersistence extends BasePersistence<UserThread> {
 	*/
 	public java.util.List<com.liferay.privatemessaging.model.UserThread> findByMBThreadId(
 		long mbThreadId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.privatemessaging.model.UserThread> orderByComparator);
 
 	/**
 	* Returns the first user thread in the ordered set where mbThreadId = &#63;.
@@ -88,7 +88,7 @@ public interface UserThreadPersistence extends BasePersistence<UserThread> {
 	*/
 	public com.liferay.privatemessaging.model.UserThread findByMBThreadId_First(
 		long mbThreadId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.privatemessaging.model.UserThread> orderByComparator)
 		throws com.liferay.privatemessaging.NoSuchUserThreadException;
 
 	/**
@@ -100,7 +100,7 @@ public interface UserThreadPersistence extends BasePersistence<UserThread> {
 	*/
 	public com.liferay.privatemessaging.model.UserThread fetchByMBThreadId_First(
 		long mbThreadId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.privatemessaging.model.UserThread> orderByComparator);
 
 	/**
 	* Returns the last user thread in the ordered set where mbThreadId = &#63;.
@@ -112,7 +112,7 @@ public interface UserThreadPersistence extends BasePersistence<UserThread> {
 	*/
 	public com.liferay.privatemessaging.model.UserThread findByMBThreadId_Last(
 		long mbThreadId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.privatemessaging.model.UserThread> orderByComparator)
 		throws com.liferay.privatemessaging.NoSuchUserThreadException;
 
 	/**
@@ -124,7 +124,7 @@ public interface UserThreadPersistence extends BasePersistence<UserThread> {
 	*/
 	public com.liferay.privatemessaging.model.UserThread fetchByMBThreadId_Last(
 		long mbThreadId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.privatemessaging.model.UserThread> orderByComparator);
 
 	/**
 	* Returns the user threads before and after the current user thread in the ordered set where mbThreadId = &#63;.
@@ -137,7 +137,7 @@ public interface UserThreadPersistence extends BasePersistence<UserThread> {
 	*/
 	public com.liferay.privatemessaging.model.UserThread[] findByMBThreadId_PrevAndNext(
 		long userThreadId, long mbThreadId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.privatemessaging.model.UserThread> orderByComparator)
 		throws com.liferay.privatemessaging.NoSuchUserThreadException;
 
 	/**
@@ -194,7 +194,7 @@ public interface UserThreadPersistence extends BasePersistence<UserThread> {
 	*/
 	public java.util.List<com.liferay.privatemessaging.model.UserThread> findByUserId(
 		long userId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.privatemessaging.model.UserThread> orderByComparator);
 
 	/**
 	* Returns the first user thread in the ordered set where userId = &#63;.
@@ -206,7 +206,7 @@ public interface UserThreadPersistence extends BasePersistence<UserThread> {
 	*/
 	public com.liferay.privatemessaging.model.UserThread findByUserId_First(
 		long userId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.privatemessaging.model.UserThread> orderByComparator)
 		throws com.liferay.privatemessaging.NoSuchUserThreadException;
 
 	/**
@@ -218,7 +218,7 @@ public interface UserThreadPersistence extends BasePersistence<UserThread> {
 	*/
 	public com.liferay.privatemessaging.model.UserThread fetchByUserId_First(
 		long userId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.privatemessaging.model.UserThread> orderByComparator);
 
 	/**
 	* Returns the last user thread in the ordered set where userId = &#63;.
@@ -230,7 +230,7 @@ public interface UserThreadPersistence extends BasePersistence<UserThread> {
 	*/
 	public com.liferay.privatemessaging.model.UserThread findByUserId_Last(
 		long userId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.privatemessaging.model.UserThread> orderByComparator)
 		throws com.liferay.privatemessaging.NoSuchUserThreadException;
 
 	/**
@@ -242,7 +242,7 @@ public interface UserThreadPersistence extends BasePersistence<UserThread> {
 	*/
 	public com.liferay.privatemessaging.model.UserThread fetchByUserId_Last(
 		long userId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.privatemessaging.model.UserThread> orderByComparator);
 
 	/**
 	* Returns the user threads before and after the current user thread in the ordered set where userId = &#63;.
@@ -255,7 +255,7 @@ public interface UserThreadPersistence extends BasePersistence<UserThread> {
 	*/
 	public com.liferay.privatemessaging.model.UserThread[] findByUserId_PrevAndNext(
 		long userThreadId, long userId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.privatemessaging.model.UserThread> orderByComparator)
 		throws com.liferay.privatemessaging.NoSuchUserThreadException;
 
 	/**
@@ -368,7 +368,7 @@ public interface UserThreadPersistence extends BasePersistence<UserThread> {
 	*/
 	public java.util.List<com.liferay.privatemessaging.model.UserThread> findByU_D(
 		long userId, boolean deleted, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.privatemessaging.model.UserThread> orderByComparator);
 
 	/**
 	* Returns the first user thread in the ordered set where userId = &#63; and deleted = &#63;.
@@ -381,7 +381,7 @@ public interface UserThreadPersistence extends BasePersistence<UserThread> {
 	*/
 	public com.liferay.privatemessaging.model.UserThread findByU_D_First(
 		long userId, boolean deleted,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.privatemessaging.model.UserThread> orderByComparator)
 		throws com.liferay.privatemessaging.NoSuchUserThreadException;
 
 	/**
@@ -394,7 +394,7 @@ public interface UserThreadPersistence extends BasePersistence<UserThread> {
 	*/
 	public com.liferay.privatemessaging.model.UserThread fetchByU_D_First(
 		long userId, boolean deleted,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.privatemessaging.model.UserThread> orderByComparator);
 
 	/**
 	* Returns the last user thread in the ordered set where userId = &#63; and deleted = &#63;.
@@ -407,7 +407,7 @@ public interface UserThreadPersistence extends BasePersistence<UserThread> {
 	*/
 	public com.liferay.privatemessaging.model.UserThread findByU_D_Last(
 		long userId, boolean deleted,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.privatemessaging.model.UserThread> orderByComparator)
 		throws com.liferay.privatemessaging.NoSuchUserThreadException;
 
 	/**
@@ -420,7 +420,7 @@ public interface UserThreadPersistence extends BasePersistence<UserThread> {
 	*/
 	public com.liferay.privatemessaging.model.UserThread fetchByU_D_Last(
 		long userId, boolean deleted,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.privatemessaging.model.UserThread> orderByComparator);
 
 	/**
 	* Returns the user threads before and after the current user thread in the ordered set where userId = &#63; and deleted = &#63;.
@@ -434,7 +434,7 @@ public interface UserThreadPersistence extends BasePersistence<UserThread> {
 	*/
 	public com.liferay.privatemessaging.model.UserThread[] findByU_D_PrevAndNext(
 		long userThreadId, long userId, boolean deleted,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.privatemessaging.model.UserThread> orderByComparator)
 		throws com.liferay.privatemessaging.NoSuchUserThreadException;
 
 	/**
@@ -499,7 +499,7 @@ public interface UserThreadPersistence extends BasePersistence<UserThread> {
 	*/
 	public java.util.List<com.liferay.privatemessaging.model.UserThread> findByU_R_D(
 		long userId, boolean read, boolean deleted, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.privatemessaging.model.UserThread> orderByComparator);
 
 	/**
 	* Returns the first user thread in the ordered set where userId = &#63; and read = &#63; and deleted = &#63;.
@@ -513,7 +513,7 @@ public interface UserThreadPersistence extends BasePersistence<UserThread> {
 	*/
 	public com.liferay.privatemessaging.model.UserThread findByU_R_D_First(
 		long userId, boolean read, boolean deleted,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.privatemessaging.model.UserThread> orderByComparator)
 		throws com.liferay.privatemessaging.NoSuchUserThreadException;
 
 	/**
@@ -527,7 +527,7 @@ public interface UserThreadPersistence extends BasePersistence<UserThread> {
 	*/
 	public com.liferay.privatemessaging.model.UserThread fetchByU_R_D_First(
 		long userId, boolean read, boolean deleted,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.privatemessaging.model.UserThread> orderByComparator);
 
 	/**
 	* Returns the last user thread in the ordered set where userId = &#63; and read = &#63; and deleted = &#63;.
@@ -541,7 +541,7 @@ public interface UserThreadPersistence extends BasePersistence<UserThread> {
 	*/
 	public com.liferay.privatemessaging.model.UserThread findByU_R_D_Last(
 		long userId, boolean read, boolean deleted,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.privatemessaging.model.UserThread> orderByComparator)
 		throws com.liferay.privatemessaging.NoSuchUserThreadException;
 
 	/**
@@ -555,7 +555,7 @@ public interface UserThreadPersistence extends BasePersistence<UserThread> {
 	*/
 	public com.liferay.privatemessaging.model.UserThread fetchByU_R_D_Last(
 		long userId, boolean read, boolean deleted,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.privatemessaging.model.UserThread> orderByComparator);
 
 	/**
 	* Returns the user threads before and after the current user thread in the ordered set where userId = &#63; and read = &#63; and deleted = &#63;.
@@ -570,7 +570,7 @@ public interface UserThreadPersistence extends BasePersistence<UserThread> {
 	*/
 	public com.liferay.privatemessaging.model.UserThread[] findByU_R_D_PrevAndNext(
 		long userThreadId, long userId, boolean read, boolean deleted,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.privatemessaging.model.UserThread> orderByComparator)
 		throws com.liferay.privatemessaging.NoSuchUserThreadException;
 
 	/**
@@ -690,7 +690,7 @@ public interface UserThreadPersistence extends BasePersistence<UserThread> {
 	*/
 	public java.util.List<com.liferay.privatemessaging.model.UserThread> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.privatemessaging.model.UserThread> orderByComparator);
 
 	/**
 	* Removes all the user threads from the database.

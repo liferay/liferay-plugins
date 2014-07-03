@@ -76,7 +76,7 @@ public interface ProjectsEntryPersistence extends BasePersistence<ProjectsEntry>
 	*/
 	public java.util.List<com.liferay.so.model.ProjectsEntry> findByUserId(
 		long userId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.so.model.ProjectsEntry> orderByComparator);
 
 	/**
 	* Returns the first projects entry in the ordered set where userId = &#63;.
@@ -87,7 +87,7 @@ public interface ProjectsEntryPersistence extends BasePersistence<ProjectsEntry>
 	* @throws com.liferay.so.NoSuchProjectsEntryException if a matching projects entry could not be found
 	*/
 	public com.liferay.so.model.ProjectsEntry findByUserId_First(long userId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.so.model.ProjectsEntry> orderByComparator)
 		throws com.liferay.so.NoSuchProjectsEntryException;
 
 	/**
@@ -98,7 +98,7 @@ public interface ProjectsEntryPersistence extends BasePersistence<ProjectsEntry>
 	* @return the first matching projects entry, or <code>null</code> if a matching projects entry could not be found
 	*/
 	public com.liferay.so.model.ProjectsEntry fetchByUserId_First(long userId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.so.model.ProjectsEntry> orderByComparator);
 
 	/**
 	* Returns the last projects entry in the ordered set where userId = &#63;.
@@ -109,7 +109,7 @@ public interface ProjectsEntryPersistence extends BasePersistence<ProjectsEntry>
 	* @throws com.liferay.so.NoSuchProjectsEntryException if a matching projects entry could not be found
 	*/
 	public com.liferay.so.model.ProjectsEntry findByUserId_Last(long userId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.so.model.ProjectsEntry> orderByComparator)
 		throws com.liferay.so.NoSuchProjectsEntryException;
 
 	/**
@@ -120,7 +120,7 @@ public interface ProjectsEntryPersistence extends BasePersistence<ProjectsEntry>
 	* @return the last matching projects entry, or <code>null</code> if a matching projects entry could not be found
 	*/
 	public com.liferay.so.model.ProjectsEntry fetchByUserId_Last(long userId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.so.model.ProjectsEntry> orderByComparator);
 
 	/**
 	* Returns the projects entries before and after the current projects entry in the ordered set where userId = &#63;.
@@ -133,7 +133,7 @@ public interface ProjectsEntryPersistence extends BasePersistence<ProjectsEntry>
 	*/
 	public com.liferay.so.model.ProjectsEntry[] findByUserId_PrevAndNext(
 		long projectsEntryId, long userId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.so.model.ProjectsEntry> orderByComparator)
 		throws com.liferay.so.NoSuchProjectsEntryException;
 
 	/**
@@ -246,7 +246,7 @@ public interface ProjectsEntryPersistence extends BasePersistence<ProjectsEntry>
 	*/
 	public java.util.List<com.liferay.so.model.ProjectsEntry> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.so.model.ProjectsEntry> orderByComparator);
 
 	/**
 	* Removes all the projects entries from the database.

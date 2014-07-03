@@ -152,7 +152,7 @@ public class WSRPProducerPersistenceImpl extends BasePersistenceImpl<WSRPProduce
 	 */
 	@Override
 	public List<WSRPProducer> findByUuid(String uuid, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<WSRPProducer> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -272,7 +272,8 @@ public class WSRPProducerPersistenceImpl extends BasePersistenceImpl<WSRPProduce
 	 */
 	@Override
 	public WSRPProducer findByUuid_First(String uuid,
-		OrderByComparator orderByComparator) throws NoSuchProducerException {
+		OrderByComparator<WSRPProducer> orderByComparator)
+		throws NoSuchProducerException {
 		WSRPProducer wsrpProducer = fetchByUuid_First(uuid, orderByComparator);
 
 		if (wsrpProducer != null) {
@@ -300,7 +301,7 @@ public class WSRPProducerPersistenceImpl extends BasePersistenceImpl<WSRPProduce
 	 */
 	@Override
 	public WSRPProducer fetchByUuid_First(String uuid,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<WSRPProducer> orderByComparator) {
 		List<WSRPProducer> list = findByUuid(uuid, 0, 1, orderByComparator);
 
 		if (!list.isEmpty()) {
@@ -320,7 +321,8 @@ public class WSRPProducerPersistenceImpl extends BasePersistenceImpl<WSRPProduce
 	 */
 	@Override
 	public WSRPProducer findByUuid_Last(String uuid,
-		OrderByComparator orderByComparator) throws NoSuchProducerException {
+		OrderByComparator<WSRPProducer> orderByComparator)
+		throws NoSuchProducerException {
 		WSRPProducer wsrpProducer = fetchByUuid_Last(uuid, orderByComparator);
 
 		if (wsrpProducer != null) {
@@ -348,7 +350,7 @@ public class WSRPProducerPersistenceImpl extends BasePersistenceImpl<WSRPProduce
 	 */
 	@Override
 	public WSRPProducer fetchByUuid_Last(String uuid,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<WSRPProducer> orderByComparator) {
 		int count = countByUuid(uuid);
 
 		if (count == 0) {
@@ -376,7 +378,7 @@ public class WSRPProducerPersistenceImpl extends BasePersistenceImpl<WSRPProduce
 	 */
 	@Override
 	public WSRPProducer[] findByUuid_PrevAndNext(long wsrpProducerId,
-		String uuid, OrderByComparator orderByComparator)
+		String uuid, OrderByComparator<WSRPProducer> orderByComparator)
 		throws NoSuchProducerException {
 		WSRPProducer wsrpProducer = findByPrimaryKey(wsrpProducerId);
 
@@ -407,7 +409,7 @@ public class WSRPProducerPersistenceImpl extends BasePersistenceImpl<WSRPProduce
 
 	protected WSRPProducer getByUuid_PrevAndNext(Session session,
 		WSRPProducer wsrpProducer, String uuid,
-		OrderByComparator orderByComparator, boolean previous) {
+		OrderByComparator<WSRPProducer> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -932,7 +934,7 @@ public class WSRPProducerPersistenceImpl extends BasePersistenceImpl<WSRPProduce
 	 */
 	@Override
 	public List<WSRPProducer> findByUuid_C(String uuid, long companyId,
-		int start, int end, OrderByComparator orderByComparator) {
+		int start, int end, OrderByComparator<WSRPProducer> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -1062,7 +1064,8 @@ public class WSRPProducerPersistenceImpl extends BasePersistenceImpl<WSRPProduce
 	 */
 	@Override
 	public WSRPProducer findByUuid_C_First(String uuid, long companyId,
-		OrderByComparator orderByComparator) throws NoSuchProducerException {
+		OrderByComparator<WSRPProducer> orderByComparator)
+		throws NoSuchProducerException {
 		WSRPProducer wsrpProducer = fetchByUuid_C_First(uuid, companyId,
 				orderByComparator);
 
@@ -1095,7 +1098,7 @@ public class WSRPProducerPersistenceImpl extends BasePersistenceImpl<WSRPProduce
 	 */
 	@Override
 	public WSRPProducer fetchByUuid_C_First(String uuid, long companyId,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<WSRPProducer> orderByComparator) {
 		List<WSRPProducer> list = findByUuid_C(uuid, companyId, 0, 1,
 				orderByComparator);
 
@@ -1117,7 +1120,8 @@ public class WSRPProducerPersistenceImpl extends BasePersistenceImpl<WSRPProduce
 	 */
 	@Override
 	public WSRPProducer findByUuid_C_Last(String uuid, long companyId,
-		OrderByComparator orderByComparator) throws NoSuchProducerException {
+		OrderByComparator<WSRPProducer> orderByComparator)
+		throws NoSuchProducerException {
 		WSRPProducer wsrpProducer = fetchByUuid_C_Last(uuid, companyId,
 				orderByComparator);
 
@@ -1150,7 +1154,7 @@ public class WSRPProducerPersistenceImpl extends BasePersistenceImpl<WSRPProduce
 	 */
 	@Override
 	public WSRPProducer fetchByUuid_C_Last(String uuid, long companyId,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<WSRPProducer> orderByComparator) {
 		int count = countByUuid_C(uuid, companyId);
 
 		if (count == 0) {
@@ -1179,7 +1183,8 @@ public class WSRPProducerPersistenceImpl extends BasePersistenceImpl<WSRPProduce
 	 */
 	@Override
 	public WSRPProducer[] findByUuid_C_PrevAndNext(long wsrpProducerId,
-		String uuid, long companyId, OrderByComparator orderByComparator)
+		String uuid, long companyId,
+		OrderByComparator<WSRPProducer> orderByComparator)
 		throws NoSuchProducerException {
 		WSRPProducer wsrpProducer = findByPrimaryKey(wsrpProducerId);
 
@@ -1210,7 +1215,7 @@ public class WSRPProducerPersistenceImpl extends BasePersistenceImpl<WSRPProduce
 
 	protected WSRPProducer getByUuid_C_PrevAndNext(Session session,
 		WSRPProducer wsrpProducer, String uuid, long companyId,
-		OrderByComparator orderByComparator, boolean previous) {
+		OrderByComparator<WSRPProducer> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -1486,7 +1491,7 @@ public class WSRPProducerPersistenceImpl extends BasePersistenceImpl<WSRPProduce
 	 */
 	@Override
 	public List<WSRPProducer> findByCompanyId(long companyId, int start,
-		int end, OrderByComparator orderByComparator) {
+		int end, OrderByComparator<WSRPProducer> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -1592,7 +1597,8 @@ public class WSRPProducerPersistenceImpl extends BasePersistenceImpl<WSRPProduce
 	 */
 	@Override
 	public WSRPProducer findByCompanyId_First(long companyId,
-		OrderByComparator orderByComparator) throws NoSuchProducerException {
+		OrderByComparator<WSRPProducer> orderByComparator)
+		throws NoSuchProducerException {
 		WSRPProducer wsrpProducer = fetchByCompanyId_First(companyId,
 				orderByComparator);
 
@@ -1621,7 +1627,7 @@ public class WSRPProducerPersistenceImpl extends BasePersistenceImpl<WSRPProduce
 	 */
 	@Override
 	public WSRPProducer fetchByCompanyId_First(long companyId,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<WSRPProducer> orderByComparator) {
 		List<WSRPProducer> list = findByCompanyId(companyId, 0, 1,
 				orderByComparator);
 
@@ -1642,7 +1648,8 @@ public class WSRPProducerPersistenceImpl extends BasePersistenceImpl<WSRPProduce
 	 */
 	@Override
 	public WSRPProducer findByCompanyId_Last(long companyId,
-		OrderByComparator orderByComparator) throws NoSuchProducerException {
+		OrderByComparator<WSRPProducer> orderByComparator)
+		throws NoSuchProducerException {
 		WSRPProducer wsrpProducer = fetchByCompanyId_Last(companyId,
 				orderByComparator);
 
@@ -1671,7 +1678,7 @@ public class WSRPProducerPersistenceImpl extends BasePersistenceImpl<WSRPProduce
 	 */
 	@Override
 	public WSRPProducer fetchByCompanyId_Last(long companyId,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<WSRPProducer> orderByComparator) {
 		int count = countByCompanyId(companyId);
 
 		if (count == 0) {
@@ -1699,7 +1706,7 @@ public class WSRPProducerPersistenceImpl extends BasePersistenceImpl<WSRPProduce
 	 */
 	@Override
 	public WSRPProducer[] findByCompanyId_PrevAndNext(long wsrpProducerId,
-		long companyId, OrderByComparator orderByComparator)
+		long companyId, OrderByComparator<WSRPProducer> orderByComparator)
 		throws NoSuchProducerException {
 		WSRPProducer wsrpProducer = findByPrimaryKey(wsrpProducerId);
 
@@ -1730,7 +1737,7 @@ public class WSRPProducerPersistenceImpl extends BasePersistenceImpl<WSRPProduce
 
 	protected WSRPProducer getByCompanyId_PrevAndNext(Session session,
 		WSRPProducer wsrpProducer, long companyId,
-		OrderByComparator orderByComparator, boolean previous) {
+		OrderByComparator<WSRPProducer> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -2508,7 +2515,7 @@ public class WSRPProducerPersistenceImpl extends BasePersistenceImpl<WSRPProduce
 	 */
 	@Override
 	public List<WSRPProducer> findAll(int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<WSRPProducer> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;

@@ -294,8 +294,7 @@ public class OAuthTokenLocalServiceClp implements OAuthTokenLocalService {
 	}
 
 	@Override
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
 		Object returnObj = null;
 
@@ -316,12 +315,11 @@ public class OAuthTokenLocalServiceClp implements OAuthTokenLocalService {
 			}
 		}
 
-		return (java.util.List)ClpSerializer.translateOutput(returnObj);
+		return (java.util.List<T>)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) {
 		Object returnObj = null;
@@ -349,15 +347,14 @@ public class OAuthTokenLocalServiceClp implements OAuthTokenLocalService {
 			}
 		}
 
-		return (java.util.List)ClpSerializer.translateOutput(returnObj);
+		return (java.util.List<T>)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<T> orderByComparator) {
 		Object returnObj = null;
 
 		try {
@@ -385,7 +382,7 @@ public class OAuthTokenLocalServiceClp implements OAuthTokenLocalService {
 			}
 		}
 
-		return (java.util.List)ClpSerializer.translateOutput(returnObj);
+		return (java.util.List<T>)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override
@@ -707,8 +704,7 @@ public class OAuthTokenLocalServiceClp implements OAuthTokenLocalService {
 		long moduleId, java.lang.String accessToken,
 		java.lang.String tokenName, java.lang.String tokenSecret,
 		java.lang.String sessionHandle, long expiration)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
 		try {
@@ -741,10 +737,6 @@ public class OAuthTokenLocalServiceClp implements OAuthTokenLocalService {
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
 			}
 
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
 			}
@@ -760,8 +752,7 @@ public class OAuthTokenLocalServiceClp implements OAuthTokenLocalService {
 	@Override
 	public void deleteOAuthToken(long userId, java.lang.String gadgetKey,
 		java.lang.String serviceName, long moduleId, java.lang.String tokenName)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		try {
 			_invokableLocalService.invokeMethod(_methodName22,
 				_methodParameterTypes22,
@@ -784,10 +775,6 @@ public class OAuthTokenLocalServiceClp implements OAuthTokenLocalService {
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
 			}
 
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
 			}
@@ -800,8 +787,7 @@ public class OAuthTokenLocalServiceClp implements OAuthTokenLocalService {
 
 	@Override
 	public void deleteOAuthTokens(java.lang.String gadgetKey,
-		java.lang.String serviceName)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		java.lang.String serviceName) {
 		try {
 			_invokableLocalService.invokeMethod(_methodName23,
 				_methodParameterTypes23,
@@ -813,10 +799,6 @@ public class OAuthTokenLocalServiceClp implements OAuthTokenLocalService {
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
 
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
@@ -831,8 +813,7 @@ public class OAuthTokenLocalServiceClp implements OAuthTokenLocalService {
 	@Override
 	public com.liferay.opensocial.model.OAuthToken fetchOAuthToken(
 		long userId, java.lang.String gadgetKey, java.lang.String serviceName,
-		long moduleId, java.lang.String tokenName)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long moduleId, java.lang.String tokenName) {
 		Object returnObj = null;
 
 		try {
@@ -853,10 +834,6 @@ public class OAuthTokenLocalServiceClp implements OAuthTokenLocalService {
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
 
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
 			}
@@ -873,8 +850,7 @@ public class OAuthTokenLocalServiceClp implements OAuthTokenLocalService {
 	public com.liferay.opensocial.model.OAuthToken getOAuthToken(long userId,
 		java.lang.String gadgetKey, java.lang.String serviceName,
 		long moduleId, java.lang.String tokenName)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
 		try {
@@ -899,10 +875,6 @@ public class OAuthTokenLocalServiceClp implements OAuthTokenLocalService {
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
 			}
 
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
 			}
@@ -917,8 +889,7 @@ public class OAuthTokenLocalServiceClp implements OAuthTokenLocalService {
 
 	@Override
 	public java.util.List<com.liferay.opensocial.model.OAuthToken> getOAuthTokens(
-		java.lang.String gadgetKey, java.lang.String serviceName)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		java.lang.String gadgetKey, java.lang.String serviceName) {
 		Object returnObj = null;
 
 		try {
@@ -932,10 +903,6 @@ public class OAuthTokenLocalServiceClp implements OAuthTokenLocalService {
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
 
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;

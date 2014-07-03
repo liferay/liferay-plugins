@@ -157,7 +157,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	 */
 	@Override
 	public List<JIRAIssue> findByProjectId(long projectId, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<JIRAIssue> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -263,7 +263,8 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	 */
 	@Override
 	public JIRAIssue findByProjectId_First(long projectId,
-		OrderByComparator orderByComparator) throws NoSuchJIRAIssueException {
+		OrderByComparator<JIRAIssue> orderByComparator)
+		throws NoSuchJIRAIssueException {
 		JIRAIssue jiraIssue = fetchByProjectId_First(projectId,
 				orderByComparator);
 
@@ -292,7 +293,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	 */
 	@Override
 	public JIRAIssue fetchByProjectId_First(long projectId,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<JIRAIssue> orderByComparator) {
 		List<JIRAIssue> list = findByProjectId(projectId, 0, 1,
 				orderByComparator);
 
@@ -313,7 +314,8 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	 */
 	@Override
 	public JIRAIssue findByProjectId_Last(long projectId,
-		OrderByComparator orderByComparator) throws NoSuchJIRAIssueException {
+		OrderByComparator<JIRAIssue> orderByComparator)
+		throws NoSuchJIRAIssueException {
 		JIRAIssue jiraIssue = fetchByProjectId_Last(projectId, orderByComparator);
 
 		if (jiraIssue != null) {
@@ -341,7 +343,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	 */
 	@Override
 	public JIRAIssue fetchByProjectId_Last(long projectId,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<JIRAIssue> orderByComparator) {
 		int count = countByProjectId(projectId);
 
 		if (count == 0) {
@@ -369,7 +371,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	 */
 	@Override
 	public JIRAIssue[] findByProjectId_PrevAndNext(long jiraIssueId,
-		long projectId, OrderByComparator orderByComparator)
+		long projectId, OrderByComparator<JIRAIssue> orderByComparator)
 		throws NoSuchJIRAIssueException {
 		JIRAIssue jiraIssue = findByPrimaryKey(jiraIssueId);
 
@@ -400,7 +402,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 
 	protected JIRAIssue getByProjectId_PrevAndNext(Session session,
 		JIRAIssue jiraIssue, long projectId,
-		OrderByComparator orderByComparator, boolean previous) {
+		OrderByComparator<JIRAIssue> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -877,7 +879,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	 */
 	@Override
 	public List<JIRAIssue> findByReporterJiraUserId(String reporterJiraUserId,
-		int start, int end, OrderByComparator orderByComparator) {
+		int start, int end, OrderByComparator<JIRAIssue> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -1002,7 +1004,8 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	 */
 	@Override
 	public JIRAIssue findByReporterJiraUserId_First(String reporterJiraUserId,
-		OrderByComparator orderByComparator) throws NoSuchJIRAIssueException {
+		OrderByComparator<JIRAIssue> orderByComparator)
+		throws NoSuchJIRAIssueException {
 		JIRAIssue jiraIssue = fetchByReporterJiraUserId_First(reporterJiraUserId,
 				orderByComparator);
 
@@ -1031,7 +1034,8 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	 */
 	@Override
 	public JIRAIssue fetchByReporterJiraUserId_First(
-		String reporterJiraUserId, OrderByComparator orderByComparator) {
+		String reporterJiraUserId,
+		OrderByComparator<JIRAIssue> orderByComparator) {
 		List<JIRAIssue> list = findByReporterJiraUserId(reporterJiraUserId, 0,
 				1, orderByComparator);
 
@@ -1052,7 +1056,8 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	 */
 	@Override
 	public JIRAIssue findByReporterJiraUserId_Last(String reporterJiraUserId,
-		OrderByComparator orderByComparator) throws NoSuchJIRAIssueException {
+		OrderByComparator<JIRAIssue> orderByComparator)
+		throws NoSuchJIRAIssueException {
 		JIRAIssue jiraIssue = fetchByReporterJiraUserId_Last(reporterJiraUserId,
 				orderByComparator);
 
@@ -1081,7 +1086,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	 */
 	@Override
 	public JIRAIssue fetchByReporterJiraUserId_Last(String reporterJiraUserId,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<JIRAIssue> orderByComparator) {
 		int count = countByReporterJiraUserId(reporterJiraUserId);
 
 		if (count == 0) {
@@ -1109,7 +1114,8 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	 */
 	@Override
 	public JIRAIssue[] findByReporterJiraUserId_PrevAndNext(long jiraIssueId,
-		String reporterJiraUserId, OrderByComparator orderByComparator)
+		String reporterJiraUserId,
+		OrderByComparator<JIRAIssue> orderByComparator)
 		throws NoSuchJIRAIssueException {
 		JIRAIssue jiraIssue = findByPrimaryKey(jiraIssueId);
 
@@ -1140,7 +1146,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 
 	protected JIRAIssue getByReporterJiraUserId_PrevAndNext(Session session,
 		JIRAIssue jiraIssue, String reporterJiraUserId,
-		OrderByComparator orderByComparator, boolean previous) {
+		OrderByComparator<JIRAIssue> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -1410,7 +1416,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	 */
 	@Override
 	public List<JIRAIssue> findByAssigneeJiraUserId(String assigneeJiraUserId,
-		int start, int end, OrderByComparator orderByComparator) {
+		int start, int end, OrderByComparator<JIRAIssue> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -1535,7 +1541,8 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	 */
 	@Override
 	public JIRAIssue findByAssigneeJiraUserId_First(String assigneeJiraUserId,
-		OrderByComparator orderByComparator) throws NoSuchJIRAIssueException {
+		OrderByComparator<JIRAIssue> orderByComparator)
+		throws NoSuchJIRAIssueException {
 		JIRAIssue jiraIssue = fetchByAssigneeJiraUserId_First(assigneeJiraUserId,
 				orderByComparator);
 
@@ -1564,7 +1571,8 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	 */
 	@Override
 	public JIRAIssue fetchByAssigneeJiraUserId_First(
-		String assigneeJiraUserId, OrderByComparator orderByComparator) {
+		String assigneeJiraUserId,
+		OrderByComparator<JIRAIssue> orderByComparator) {
 		List<JIRAIssue> list = findByAssigneeJiraUserId(assigneeJiraUserId, 0,
 				1, orderByComparator);
 
@@ -1585,7 +1593,8 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	 */
 	@Override
 	public JIRAIssue findByAssigneeJiraUserId_Last(String assigneeJiraUserId,
-		OrderByComparator orderByComparator) throws NoSuchJIRAIssueException {
+		OrderByComparator<JIRAIssue> orderByComparator)
+		throws NoSuchJIRAIssueException {
 		JIRAIssue jiraIssue = fetchByAssigneeJiraUserId_Last(assigneeJiraUserId,
 				orderByComparator);
 
@@ -1614,7 +1623,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	 */
 	@Override
 	public JIRAIssue fetchByAssigneeJiraUserId_Last(String assigneeJiraUserId,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<JIRAIssue> orderByComparator) {
 		int count = countByAssigneeJiraUserId(assigneeJiraUserId);
 
 		if (count == 0) {
@@ -1642,7 +1651,8 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	 */
 	@Override
 	public JIRAIssue[] findByAssigneeJiraUserId_PrevAndNext(long jiraIssueId,
-		String assigneeJiraUserId, OrderByComparator orderByComparator)
+		String assigneeJiraUserId,
+		OrderByComparator<JIRAIssue> orderByComparator)
 		throws NoSuchJIRAIssueException {
 		JIRAIssue jiraIssue = findByPrimaryKey(jiraIssueId);
 
@@ -1673,7 +1683,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 
 	protected JIRAIssue getByAssigneeJiraUserId_PrevAndNext(Session session,
 		JIRAIssue jiraIssue, String assigneeJiraUserId,
-		OrderByComparator orderByComparator, boolean previous) {
+		OrderByComparator<JIRAIssue> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -1937,7 +1947,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	 */
 	@Override
 	public List<JIRAIssue> findByMD_P(Date modifiedDate, long projectId,
-		int start, int end, OrderByComparator orderByComparator) {
+		int start, int end, OrderByComparator<JIRAIssue> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -2057,7 +2067,8 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	 */
 	@Override
 	public JIRAIssue findByMD_P_First(Date modifiedDate, long projectId,
-		OrderByComparator orderByComparator) throws NoSuchJIRAIssueException {
+		OrderByComparator<JIRAIssue> orderByComparator)
+		throws NoSuchJIRAIssueException {
 		JIRAIssue jiraIssue = fetchByMD_P_First(modifiedDate, projectId,
 				orderByComparator);
 
@@ -2090,7 +2101,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	 */
 	@Override
 	public JIRAIssue fetchByMD_P_First(Date modifiedDate, long projectId,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<JIRAIssue> orderByComparator) {
 		List<JIRAIssue> list = findByMD_P(modifiedDate, projectId, 0, 1,
 				orderByComparator);
 
@@ -2112,7 +2123,8 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	 */
 	@Override
 	public JIRAIssue findByMD_P_Last(Date modifiedDate, long projectId,
-		OrderByComparator orderByComparator) throws NoSuchJIRAIssueException {
+		OrderByComparator<JIRAIssue> orderByComparator)
+		throws NoSuchJIRAIssueException {
 		JIRAIssue jiraIssue = fetchByMD_P_Last(modifiedDate, projectId,
 				orderByComparator);
 
@@ -2145,7 +2157,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	 */
 	@Override
 	public JIRAIssue fetchByMD_P_Last(Date modifiedDate, long projectId,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<JIRAIssue> orderByComparator) {
 		int count = countByMD_P(modifiedDate, projectId);
 
 		if (count == 0) {
@@ -2174,7 +2186,8 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	 */
 	@Override
 	public JIRAIssue[] findByMD_P_PrevAndNext(long jiraIssueId,
-		Date modifiedDate, long projectId, OrderByComparator orderByComparator)
+		Date modifiedDate, long projectId,
+		OrderByComparator<JIRAIssue> orderByComparator)
 		throws NoSuchJIRAIssueException {
 		JIRAIssue jiraIssue = findByPrimaryKey(jiraIssueId);
 
@@ -2205,7 +2218,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 
 	protected JIRAIssue getByMD_P_PrevAndNext(Session session,
 		JIRAIssue jiraIssue, Date modifiedDate, long projectId,
-		OrderByComparator orderByComparator, boolean previous) {
+		OrderByComparator<JIRAIssue> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -2480,7 +2493,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	@Override
 	public List<JIRAIssue> findByP_RJUI(long projectId,
 		String reporterJiraUserId, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<JIRAIssue> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -2611,7 +2624,8 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	 */
 	@Override
 	public JIRAIssue findByP_RJUI_First(long projectId,
-		String reporterJiraUserId, OrderByComparator orderByComparator)
+		String reporterJiraUserId,
+		OrderByComparator<JIRAIssue> orderByComparator)
 		throws NoSuchJIRAIssueException {
 		JIRAIssue jiraIssue = fetchByP_RJUI_First(projectId,
 				reporterJiraUserId, orderByComparator);
@@ -2645,7 +2659,8 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	 */
 	@Override
 	public JIRAIssue fetchByP_RJUI_First(long projectId,
-		String reporterJiraUserId, OrderByComparator orderByComparator) {
+		String reporterJiraUserId,
+		OrderByComparator<JIRAIssue> orderByComparator) {
 		List<JIRAIssue> list = findByP_RJUI(projectId, reporterJiraUserId, 0,
 				1, orderByComparator);
 
@@ -2667,7 +2682,8 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	 */
 	@Override
 	public JIRAIssue findByP_RJUI_Last(long projectId,
-		String reporterJiraUserId, OrderByComparator orderByComparator)
+		String reporterJiraUserId,
+		OrderByComparator<JIRAIssue> orderByComparator)
 		throws NoSuchJIRAIssueException {
 		JIRAIssue jiraIssue = fetchByP_RJUI_Last(projectId, reporterJiraUserId,
 				orderByComparator);
@@ -2701,7 +2717,8 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	 */
 	@Override
 	public JIRAIssue fetchByP_RJUI_Last(long projectId,
-		String reporterJiraUserId, OrderByComparator orderByComparator) {
+		String reporterJiraUserId,
+		OrderByComparator<JIRAIssue> orderByComparator) {
 		int count = countByP_RJUI(projectId, reporterJiraUserId);
 
 		if (count == 0) {
@@ -2731,7 +2748,8 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	@Override
 	public JIRAIssue[] findByP_RJUI_PrevAndNext(long jiraIssueId,
 		long projectId, String reporterJiraUserId,
-		OrderByComparator orderByComparator) throws NoSuchJIRAIssueException {
+		OrderByComparator<JIRAIssue> orderByComparator)
+		throws NoSuchJIRAIssueException {
 		JIRAIssue jiraIssue = findByPrimaryKey(jiraIssueId);
 
 		Session session = null;
@@ -2761,7 +2779,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 
 	protected JIRAIssue getByP_RJUI_PrevAndNext(Session session,
 		JIRAIssue jiraIssue, long projectId, String reporterJiraUserId,
-		OrderByComparator orderByComparator, boolean previous) {
+		OrderByComparator<JIRAIssue> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -3043,7 +3061,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	@Override
 	public List<JIRAIssue> findByP_AJUI(long projectId,
 		String assigneeJiraUserId, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<JIRAIssue> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -3174,7 +3192,8 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	 */
 	@Override
 	public JIRAIssue findByP_AJUI_First(long projectId,
-		String assigneeJiraUserId, OrderByComparator orderByComparator)
+		String assigneeJiraUserId,
+		OrderByComparator<JIRAIssue> orderByComparator)
 		throws NoSuchJIRAIssueException {
 		JIRAIssue jiraIssue = fetchByP_AJUI_First(projectId,
 				assigneeJiraUserId, orderByComparator);
@@ -3208,7 +3227,8 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	 */
 	@Override
 	public JIRAIssue fetchByP_AJUI_First(long projectId,
-		String assigneeJiraUserId, OrderByComparator orderByComparator) {
+		String assigneeJiraUserId,
+		OrderByComparator<JIRAIssue> orderByComparator) {
 		List<JIRAIssue> list = findByP_AJUI(projectId, assigneeJiraUserId, 0,
 				1, orderByComparator);
 
@@ -3230,7 +3250,8 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	 */
 	@Override
 	public JIRAIssue findByP_AJUI_Last(long projectId,
-		String assigneeJiraUserId, OrderByComparator orderByComparator)
+		String assigneeJiraUserId,
+		OrderByComparator<JIRAIssue> orderByComparator)
 		throws NoSuchJIRAIssueException {
 		JIRAIssue jiraIssue = fetchByP_AJUI_Last(projectId, assigneeJiraUserId,
 				orderByComparator);
@@ -3264,7 +3285,8 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	 */
 	@Override
 	public JIRAIssue fetchByP_AJUI_Last(long projectId,
-		String assigneeJiraUserId, OrderByComparator orderByComparator) {
+		String assigneeJiraUserId,
+		OrderByComparator<JIRAIssue> orderByComparator) {
 		int count = countByP_AJUI(projectId, assigneeJiraUserId);
 
 		if (count == 0) {
@@ -3294,7 +3316,8 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	@Override
 	public JIRAIssue[] findByP_AJUI_PrevAndNext(long jiraIssueId,
 		long projectId, String assigneeJiraUserId,
-		OrderByComparator orderByComparator) throws NoSuchJIRAIssueException {
+		OrderByComparator<JIRAIssue> orderByComparator)
+		throws NoSuchJIRAIssueException {
 		JIRAIssue jiraIssue = findByPrimaryKey(jiraIssueId);
 
 		Session session = null;
@@ -3324,7 +3347,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 
 	protected JIRAIssue getByP_AJUI_PrevAndNext(Session session,
 		JIRAIssue jiraIssue, long projectId, String assigneeJiraUserId,
-		OrderByComparator orderByComparator, boolean previous) {
+		OrderByComparator<JIRAIssue> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -3608,7 +3631,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	@Override
 	public List<JIRAIssue> findByMD_P_RJUI(Date modifiedDate, long projectId,
 		String reporterJiraUserId, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<JIRAIssue> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -3749,7 +3772,8 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	 */
 	@Override
 	public JIRAIssue findByMD_P_RJUI_First(Date modifiedDate, long projectId,
-		String reporterJiraUserId, OrderByComparator orderByComparator)
+		String reporterJiraUserId,
+		OrderByComparator<JIRAIssue> orderByComparator)
 		throws NoSuchJIRAIssueException {
 		JIRAIssue jiraIssue = fetchByMD_P_RJUI_First(modifiedDate, projectId,
 				reporterJiraUserId, orderByComparator);
@@ -3787,7 +3811,8 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	 */
 	@Override
 	public JIRAIssue fetchByMD_P_RJUI_First(Date modifiedDate, long projectId,
-		String reporterJiraUserId, OrderByComparator orderByComparator) {
+		String reporterJiraUserId,
+		OrderByComparator<JIRAIssue> orderByComparator) {
 		List<JIRAIssue> list = findByMD_P_RJUI(modifiedDate, projectId,
 				reporterJiraUserId, 0, 1, orderByComparator);
 
@@ -3810,7 +3835,8 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	 */
 	@Override
 	public JIRAIssue findByMD_P_RJUI_Last(Date modifiedDate, long projectId,
-		String reporterJiraUserId, OrderByComparator orderByComparator)
+		String reporterJiraUserId,
+		OrderByComparator<JIRAIssue> orderByComparator)
 		throws NoSuchJIRAIssueException {
 		JIRAIssue jiraIssue = fetchByMD_P_RJUI_Last(modifiedDate, projectId,
 				reporterJiraUserId, orderByComparator);
@@ -3848,7 +3874,8 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	 */
 	@Override
 	public JIRAIssue fetchByMD_P_RJUI_Last(Date modifiedDate, long projectId,
-		String reporterJiraUserId, OrderByComparator orderByComparator) {
+		String reporterJiraUserId,
+		OrderByComparator<JIRAIssue> orderByComparator) {
 		int count = countByMD_P_RJUI(modifiedDate, projectId, reporterJiraUserId);
 
 		if (count == 0) {
@@ -3879,7 +3906,8 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	@Override
 	public JIRAIssue[] findByMD_P_RJUI_PrevAndNext(long jiraIssueId,
 		Date modifiedDate, long projectId, String reporterJiraUserId,
-		OrderByComparator orderByComparator) throws NoSuchJIRAIssueException {
+		OrderByComparator<JIRAIssue> orderByComparator)
+		throws NoSuchJIRAIssueException {
 		JIRAIssue jiraIssue = findByPrimaryKey(jiraIssueId);
 
 		Session session = null;
@@ -3911,8 +3939,8 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 
 	protected JIRAIssue getByMD_P_RJUI_PrevAndNext(Session session,
 		JIRAIssue jiraIssue, Date modifiedDate, long projectId,
-		String reporterJiraUserId, OrderByComparator orderByComparator,
-		boolean previous) {
+		String reporterJiraUserId,
+		OrderByComparator<JIRAIssue> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -4234,7 +4262,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	@Override
 	public List<JIRAIssue> findByMD_P_AJUI(Date modifiedDate, long projectId,
 		String assigneeJiraUserId, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<JIRAIssue> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -4375,7 +4403,8 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	 */
 	@Override
 	public JIRAIssue findByMD_P_AJUI_First(Date modifiedDate, long projectId,
-		String assigneeJiraUserId, OrderByComparator orderByComparator)
+		String assigneeJiraUserId,
+		OrderByComparator<JIRAIssue> orderByComparator)
 		throws NoSuchJIRAIssueException {
 		JIRAIssue jiraIssue = fetchByMD_P_AJUI_First(modifiedDate, projectId,
 				assigneeJiraUserId, orderByComparator);
@@ -4413,7 +4442,8 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	 */
 	@Override
 	public JIRAIssue fetchByMD_P_AJUI_First(Date modifiedDate, long projectId,
-		String assigneeJiraUserId, OrderByComparator orderByComparator) {
+		String assigneeJiraUserId,
+		OrderByComparator<JIRAIssue> orderByComparator) {
 		List<JIRAIssue> list = findByMD_P_AJUI(modifiedDate, projectId,
 				assigneeJiraUserId, 0, 1, orderByComparator);
 
@@ -4436,7 +4466,8 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	 */
 	@Override
 	public JIRAIssue findByMD_P_AJUI_Last(Date modifiedDate, long projectId,
-		String assigneeJiraUserId, OrderByComparator orderByComparator)
+		String assigneeJiraUserId,
+		OrderByComparator<JIRAIssue> orderByComparator)
 		throws NoSuchJIRAIssueException {
 		JIRAIssue jiraIssue = fetchByMD_P_AJUI_Last(modifiedDate, projectId,
 				assigneeJiraUserId, orderByComparator);
@@ -4474,7 +4505,8 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	 */
 	@Override
 	public JIRAIssue fetchByMD_P_AJUI_Last(Date modifiedDate, long projectId,
-		String assigneeJiraUserId, OrderByComparator orderByComparator) {
+		String assigneeJiraUserId,
+		OrderByComparator<JIRAIssue> orderByComparator) {
 		int count = countByMD_P_AJUI(modifiedDate, projectId, assigneeJiraUserId);
 
 		if (count == 0) {
@@ -4505,7 +4537,8 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	@Override
 	public JIRAIssue[] findByMD_P_AJUI_PrevAndNext(long jiraIssueId,
 		Date modifiedDate, long projectId, String assigneeJiraUserId,
-		OrderByComparator orderByComparator) throws NoSuchJIRAIssueException {
+		OrderByComparator<JIRAIssue> orderByComparator)
+		throws NoSuchJIRAIssueException {
 		JIRAIssue jiraIssue = findByPrimaryKey(jiraIssueId);
 
 		Session session = null;
@@ -4537,8 +4570,8 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 
 	protected JIRAIssue getByMD_P_AJUI_PrevAndNext(Session session,
 		JIRAIssue jiraIssue, Date modifiedDate, long projectId,
-		String assigneeJiraUserId, OrderByComparator orderByComparator,
-		boolean previous) {
+		String assigneeJiraUserId,
+		OrderByComparator<JIRAIssue> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -4870,7 +4903,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	@Override
 	public List<JIRAIssue> findByP_RJUI_S(long projectId,
 		String reporterJiraUserId, String status, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<JIRAIssue> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -5022,7 +5055,8 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	@Override
 	public JIRAIssue findByP_RJUI_S_First(long projectId,
 		String reporterJiraUserId, String status,
-		OrderByComparator orderByComparator) throws NoSuchJIRAIssueException {
+		OrderByComparator<JIRAIssue> orderByComparator)
+		throws NoSuchJIRAIssueException {
 		JIRAIssue jiraIssue = fetchByP_RJUI_S_First(projectId,
 				reporterJiraUserId, status, orderByComparator);
 
@@ -5060,7 +5094,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	@Override
 	public JIRAIssue fetchByP_RJUI_S_First(long projectId,
 		String reporterJiraUserId, String status,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<JIRAIssue> orderByComparator) {
 		List<JIRAIssue> list = findByP_RJUI_S(projectId, reporterJiraUserId,
 				status, 0, 1, orderByComparator);
 
@@ -5084,7 +5118,8 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	@Override
 	public JIRAIssue findByP_RJUI_S_Last(long projectId,
 		String reporterJiraUserId, String status,
-		OrderByComparator orderByComparator) throws NoSuchJIRAIssueException {
+		OrderByComparator<JIRAIssue> orderByComparator)
+		throws NoSuchJIRAIssueException {
 		JIRAIssue jiraIssue = fetchByP_RJUI_S_Last(projectId,
 				reporterJiraUserId, status, orderByComparator);
 
@@ -5122,7 +5157,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	@Override
 	public JIRAIssue fetchByP_RJUI_S_Last(long projectId,
 		String reporterJiraUserId, String status,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<JIRAIssue> orderByComparator) {
 		int count = countByP_RJUI_S(projectId, reporterJiraUserId, status);
 
 		if (count == 0) {
@@ -5153,7 +5188,8 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	@Override
 	public JIRAIssue[] findByP_RJUI_S_PrevAndNext(long jiraIssueId,
 		long projectId, String reporterJiraUserId, String status,
-		OrderByComparator orderByComparator) throws NoSuchJIRAIssueException {
+		OrderByComparator<JIRAIssue> orderByComparator)
+		throws NoSuchJIRAIssueException {
 		JIRAIssue jiraIssue = findByPrimaryKey(jiraIssueId);
 
 		Session session = null;
@@ -5183,7 +5219,8 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 
 	protected JIRAIssue getByP_RJUI_S_PrevAndNext(Session session,
 		JIRAIssue jiraIssue, long projectId, String reporterJiraUserId,
-		String status, OrderByComparator orderByComparator, boolean previous) {
+		String status, OrderByComparator<JIRAIssue> orderByComparator,
+		boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -5521,7 +5558,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	@Override
 	public List<JIRAIssue> findByP_AJUI_S(long projectId,
 		String assigneeJiraUserId, String status, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<JIRAIssue> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -5673,7 +5710,8 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	@Override
 	public JIRAIssue findByP_AJUI_S_First(long projectId,
 		String assigneeJiraUserId, String status,
-		OrderByComparator orderByComparator) throws NoSuchJIRAIssueException {
+		OrderByComparator<JIRAIssue> orderByComparator)
+		throws NoSuchJIRAIssueException {
 		JIRAIssue jiraIssue = fetchByP_AJUI_S_First(projectId,
 				assigneeJiraUserId, status, orderByComparator);
 
@@ -5711,7 +5749,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	@Override
 	public JIRAIssue fetchByP_AJUI_S_First(long projectId,
 		String assigneeJiraUserId, String status,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<JIRAIssue> orderByComparator) {
 		List<JIRAIssue> list = findByP_AJUI_S(projectId, assigneeJiraUserId,
 				status, 0, 1, orderByComparator);
 
@@ -5735,7 +5773,8 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	@Override
 	public JIRAIssue findByP_AJUI_S_Last(long projectId,
 		String assigneeJiraUserId, String status,
-		OrderByComparator orderByComparator) throws NoSuchJIRAIssueException {
+		OrderByComparator<JIRAIssue> orderByComparator)
+		throws NoSuchJIRAIssueException {
 		JIRAIssue jiraIssue = fetchByP_AJUI_S_Last(projectId,
 				assigneeJiraUserId, status, orderByComparator);
 
@@ -5773,7 +5812,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	@Override
 	public JIRAIssue fetchByP_AJUI_S_Last(long projectId,
 		String assigneeJiraUserId, String status,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<JIRAIssue> orderByComparator) {
 		int count = countByP_AJUI_S(projectId, assigneeJiraUserId, status);
 
 		if (count == 0) {
@@ -5804,7 +5843,8 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	@Override
 	public JIRAIssue[] findByP_AJUI_S_PrevAndNext(long jiraIssueId,
 		long projectId, String assigneeJiraUserId, String status,
-		OrderByComparator orderByComparator) throws NoSuchJIRAIssueException {
+		OrderByComparator<JIRAIssue> orderByComparator)
+		throws NoSuchJIRAIssueException {
 		JIRAIssue jiraIssue = findByPrimaryKey(jiraIssueId);
 
 		Session session = null;
@@ -5834,7 +5874,8 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 
 	protected JIRAIssue getByP_AJUI_S_PrevAndNext(Session session,
 		JIRAIssue jiraIssue, long projectId, String assigneeJiraUserId,
-		String status, OrderByComparator orderByComparator, boolean previous) {
+		String status, OrderByComparator<JIRAIssue> orderByComparator,
+		boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -6764,7 +6805,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	 */
 	@Override
 	public List<JIRAIssue> findAll(int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<JIRAIssue> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;

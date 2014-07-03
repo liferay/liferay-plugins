@@ -101,12 +101,11 @@ public abstract class BBBMeetingLocalServiceBaseImpl
 	 * @param bbbMeetingId the primary key of the b b b meeting
 	 * @return the b b b meeting that was removed
 	 * @throws PortalException if a b b b meeting with the primary key could not be found
-	 * @throws SystemException
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
 	public BBBMeeting deleteBBBMeeting(long bbbMeetingId)
-		throws PortalException, SystemException {
+		throws PortalException {
 		return bbbMeetingPersistence.remove(bbbMeetingId);
 	}
 
@@ -116,12 +115,11 @@ public abstract class BBBMeetingLocalServiceBaseImpl
 	 * @param bbbMeeting the b b b meeting
 	 * @return the b b b meeting that was removed
 	 * @throws PortalException
-	 * @throws SystemException
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
 	public BBBMeeting deleteBBBMeeting(BBBMeeting bbbMeeting)
-		throws PortalException, SystemException {
+		throws PortalException {
 		return bbbMeetingPersistence.remove(bbbMeeting);
 	}
 
@@ -140,8 +138,7 @@ public abstract class BBBMeetingLocalServiceBaseImpl
 	 * @return the matching rows
 	 */
 	@Override
-	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery) {
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery) {
 		return bbbMeetingPersistence.findWithDynamicQuery(dynamicQuery);
 	}
 
@@ -158,8 +155,8 @@ public abstract class BBBMeetingLocalServiceBaseImpl
 	 * @return the range of matching rows
 	 */
 	@Override
-	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end) {
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
+		int end) {
 		return bbbMeetingPersistence.findWithDynamicQuery(dynamicQuery, start,
 			end);
 	}
@@ -178,9 +175,8 @@ public abstract class BBBMeetingLocalServiceBaseImpl
 	 * @return the ordered range of matching rows
 	 */
 	@Override
-	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end,
-		OrderByComparator orderByComparator) {
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
+		int end, OrderByComparator<T> orderByComparator) {
 		return bbbMeetingPersistence.findWithDynamicQuery(dynamicQuery, start,
 			end, orderByComparator);
 	}
@@ -221,11 +217,10 @@ public abstract class BBBMeetingLocalServiceBaseImpl
 	 * @param bbbMeetingId the primary key of the b b b meeting
 	 * @return the b b b meeting
 	 * @throws PortalException if a b b b meeting with the primary key could not be found
-	 * @throws SystemException
 	 */
 	@Override
 	public BBBMeeting getBBBMeeting(long bbbMeetingId)
-		throws PortalException, SystemException {
+		throws PortalException {
 		return bbbMeetingPersistence.findByPrimaryKey(bbbMeetingId);
 	}
 

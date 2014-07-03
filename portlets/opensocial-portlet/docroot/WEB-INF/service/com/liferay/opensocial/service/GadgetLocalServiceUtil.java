@@ -67,12 +67,10 @@ public class GadgetLocalServiceUtil {
 	* @param gadgetId the primary key of the gadget
 	* @return the gadget that was removed
 	* @throws PortalException if a gadget with the primary key could not be found
-	* @throws SystemException
 	*/
 	public static com.liferay.opensocial.model.Gadget deleteGadget(
 		long gadgetId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().deleteGadget(gadgetId);
 	}
 
@@ -81,11 +79,9 @@ public class GadgetLocalServiceUtil {
 	*
 	* @param gadget the gadget
 	* @return the gadget that was removed
-	* @throws SystemException
 	*/
 	public static com.liferay.opensocial.model.Gadget deleteGadget(
-		com.liferay.opensocial.model.Gadget gadget)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.opensocial.model.Gadget gadget) {
 		return getService().deleteGadget(gadget);
 	}
 
@@ -99,8 +95,7 @@ public class GadgetLocalServiceUtil {
 	* @param dynamicQuery the dynamic query
 	* @return the matching rows
 	*/
-	@SuppressWarnings("rawtypes")
-	public static java.util.List dynamicQuery(
+	public static <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
 		return getService().dynamicQuery(dynamicQuery);
 	}
@@ -117,8 +112,7 @@ public class GadgetLocalServiceUtil {
 	* @param end the upper bound of the range of model instances (not inclusive)
 	* @return the range of matching rows
 	*/
-	@SuppressWarnings("rawtypes")
-	public static java.util.List dynamicQuery(
+	public static <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) {
 		return getService().dynamicQuery(dynamicQuery, start, end);
@@ -137,11 +131,10 @@ public class GadgetLocalServiceUtil {
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching rows
 	*/
-	@SuppressWarnings("rawtypes")
-	public static java.util.List dynamicQuery(
+	public static <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<T> orderByComparator) {
 		return getService()
 				   .dynamicQuery(dynamicQuery, start, end, orderByComparator);
 	}
@@ -300,78 +293,66 @@ public class GadgetLocalServiceUtil {
 		long companyId, java.lang.String url,
 		java.lang.String portletCategoryNames,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService()
 				   .addGadget(companyId, url, portletCategoryNames,
 			serviceContext);
 	}
 
-	public static void deleteGadgets(long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static void deleteGadgets(long companyId) {
 		getService().deleteGadgets(companyId);
 	}
 
-	public static void destroyGadget(java.lang.String uuid, long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static void destroyGadget(java.lang.String uuid, long companyId) {
 		getService().destroyGadget(uuid, companyId);
 	}
 
-	public static void destroyGadgets()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static void destroyGadgets() {
 		getService().destroyGadgets();
 	}
 
 	public static com.liferay.opensocial.model.Gadget fetchGadget(
-		long companyId, java.lang.String url)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long companyId, java.lang.String url) {
 		return getService().fetchGadget(companyId, url);
 	}
 
 	public static com.liferay.opensocial.model.Gadget getGadget(
 		long companyId, java.lang.String url)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().getGadget(companyId, url);
 	}
 
 	public static com.liferay.opensocial.model.Gadget getGadget(
 		java.lang.String uuid, long companyId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().getGadget(uuid, companyId);
 	}
 
 	public static java.util.List<com.liferay.opensocial.model.Gadget> getGadgets(
-		long companyId, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long companyId, int start, int end) {
 		return getService().getGadgets(companyId, start, end);
 	}
 
-	public static int getGadgetsCount(long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static int getGadgetsCount(long companyId) {
 		return getService().getGadgetsCount(companyId);
 	}
 
 	public static void initGadget(java.lang.String uuid, long companyId,
 		long gadgetId, java.lang.String name,
 		java.lang.String portletCategoryNames)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		getService()
 			.initGadget(uuid, companyId, gadgetId, name, portletCategoryNames);
 	}
 
 	public static void initGadgets()
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		getService().initGadgets();
 	}
 
 	public static com.liferay.opensocial.model.Gadget updateGadget(
 		long gadgetId, java.lang.String portletCategoryNames)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().updateGadget(gadgetId, portletCategoryNames);
 	}
 

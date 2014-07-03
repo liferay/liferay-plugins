@@ -85,7 +85,7 @@ public class ProjectsEntryUtil {
 	 */
 	public static List<ProjectsEntry> findWithDynamicQuery(
 		DynamicQuery dynamicQuery, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<ProjectsEntry> orderByComparator) {
 		return getPersistence()
 				   .findWithDynamicQuery(dynamicQuery, start, end,
 			orderByComparator);
@@ -149,7 +149,7 @@ public class ProjectsEntryUtil {
 	*/
 	public static java.util.List<com.liferay.so.model.ProjectsEntry> findByUserId(
 		long userId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.so.model.ProjectsEntry> orderByComparator) {
 		return getPersistence()
 				   .findByUserId(userId, start, end, orderByComparator);
 	}
@@ -164,7 +164,7 @@ public class ProjectsEntryUtil {
 	*/
 	public static com.liferay.so.model.ProjectsEntry findByUserId_First(
 		long userId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.so.model.ProjectsEntry> orderByComparator)
 		throws com.liferay.so.NoSuchProjectsEntryException {
 		return getPersistence().findByUserId_First(userId, orderByComparator);
 	}
@@ -178,7 +178,7 @@ public class ProjectsEntryUtil {
 	*/
 	public static com.liferay.so.model.ProjectsEntry fetchByUserId_First(
 		long userId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.so.model.ProjectsEntry> orderByComparator) {
 		return getPersistence().fetchByUserId_First(userId, orderByComparator);
 	}
 
@@ -192,7 +192,7 @@ public class ProjectsEntryUtil {
 	*/
 	public static com.liferay.so.model.ProjectsEntry findByUserId_Last(
 		long userId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.so.model.ProjectsEntry> orderByComparator)
 		throws com.liferay.so.NoSuchProjectsEntryException {
 		return getPersistence().findByUserId_Last(userId, orderByComparator);
 	}
@@ -206,7 +206,7 @@ public class ProjectsEntryUtil {
 	*/
 	public static com.liferay.so.model.ProjectsEntry fetchByUserId_Last(
 		long userId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.so.model.ProjectsEntry> orderByComparator) {
 		return getPersistence().fetchByUserId_Last(userId, orderByComparator);
 	}
 
@@ -221,7 +221,7 @@ public class ProjectsEntryUtil {
 	*/
 	public static com.liferay.so.model.ProjectsEntry[] findByUserId_PrevAndNext(
 		long projectsEntryId, long userId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.so.model.ProjectsEntry> orderByComparator)
 		throws com.liferay.so.NoSuchProjectsEntryException {
 		return getPersistence()
 				   .findByUserId_PrevAndNext(projectsEntryId, userId,
@@ -364,7 +364,7 @@ public class ProjectsEntryUtil {
 	*/
 	public static java.util.List<com.liferay.so.model.ProjectsEntry> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.so.model.ProjectsEntry> orderByComparator) {
 		return getPersistence().findAll(start, end, orderByComparator);
 	}
 

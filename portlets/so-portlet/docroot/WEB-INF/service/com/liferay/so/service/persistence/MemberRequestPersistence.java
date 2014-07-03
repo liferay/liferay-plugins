@@ -121,7 +121,7 @@ public interface MemberRequestPersistence extends BasePersistence<MemberRequest>
 	*/
 	public java.util.List<com.liferay.so.model.MemberRequest> findByReceiverUserId(
 		long receiverUserId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.so.model.MemberRequest> orderByComparator);
 
 	/**
 	* Returns the first member request in the ordered set where receiverUserId = &#63;.
@@ -133,7 +133,7 @@ public interface MemberRequestPersistence extends BasePersistence<MemberRequest>
 	*/
 	public com.liferay.so.model.MemberRequest findByReceiverUserId_First(
 		long receiverUserId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.so.model.MemberRequest> orderByComparator)
 		throws com.liferay.so.NoSuchMemberRequestException;
 
 	/**
@@ -145,7 +145,7 @@ public interface MemberRequestPersistence extends BasePersistence<MemberRequest>
 	*/
 	public com.liferay.so.model.MemberRequest fetchByReceiverUserId_First(
 		long receiverUserId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.so.model.MemberRequest> orderByComparator);
 
 	/**
 	* Returns the last member request in the ordered set where receiverUserId = &#63;.
@@ -157,7 +157,7 @@ public interface MemberRequestPersistence extends BasePersistence<MemberRequest>
 	*/
 	public com.liferay.so.model.MemberRequest findByReceiverUserId_Last(
 		long receiverUserId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.so.model.MemberRequest> orderByComparator)
 		throws com.liferay.so.NoSuchMemberRequestException;
 
 	/**
@@ -169,7 +169,7 @@ public interface MemberRequestPersistence extends BasePersistence<MemberRequest>
 	*/
 	public com.liferay.so.model.MemberRequest fetchByReceiverUserId_Last(
 		long receiverUserId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.so.model.MemberRequest> orderByComparator);
 
 	/**
 	* Returns the member requests before and after the current member request in the ordered set where receiverUserId = &#63;.
@@ -182,7 +182,7 @@ public interface MemberRequestPersistence extends BasePersistence<MemberRequest>
 	*/
 	public com.liferay.so.model.MemberRequest[] findByReceiverUserId_PrevAndNext(
 		long memberRequestId, long receiverUserId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.so.model.MemberRequest> orderByComparator)
 		throws com.liferay.so.NoSuchMemberRequestException;
 
 	/**
@@ -242,7 +242,7 @@ public interface MemberRequestPersistence extends BasePersistence<MemberRequest>
 	*/
 	public java.util.List<com.liferay.so.model.MemberRequest> findByR_S(
 		long receiverUserId, int status, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.so.model.MemberRequest> orderByComparator);
 
 	/**
 	* Returns the first member request in the ordered set where receiverUserId = &#63; and status = &#63;.
@@ -255,7 +255,7 @@ public interface MemberRequestPersistence extends BasePersistence<MemberRequest>
 	*/
 	public com.liferay.so.model.MemberRequest findByR_S_First(
 		long receiverUserId, int status,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.so.model.MemberRequest> orderByComparator)
 		throws com.liferay.so.NoSuchMemberRequestException;
 
 	/**
@@ -268,7 +268,7 @@ public interface MemberRequestPersistence extends BasePersistence<MemberRequest>
 	*/
 	public com.liferay.so.model.MemberRequest fetchByR_S_First(
 		long receiverUserId, int status,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.so.model.MemberRequest> orderByComparator);
 
 	/**
 	* Returns the last member request in the ordered set where receiverUserId = &#63; and status = &#63;.
@@ -281,7 +281,7 @@ public interface MemberRequestPersistence extends BasePersistence<MemberRequest>
 	*/
 	public com.liferay.so.model.MemberRequest findByR_S_Last(
 		long receiverUserId, int status,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.so.model.MemberRequest> orderByComparator)
 		throws com.liferay.so.NoSuchMemberRequestException;
 
 	/**
@@ -294,7 +294,7 @@ public interface MemberRequestPersistence extends BasePersistence<MemberRequest>
 	*/
 	public com.liferay.so.model.MemberRequest fetchByR_S_Last(
 		long receiverUserId, int status,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.so.model.MemberRequest> orderByComparator);
 
 	/**
 	* Returns the member requests before and after the current member request in the ordered set where receiverUserId = &#63; and status = &#63;.
@@ -308,7 +308,7 @@ public interface MemberRequestPersistence extends BasePersistence<MemberRequest>
 	*/
 	public com.liferay.so.model.MemberRequest[] findByR_S_PrevAndNext(
 		long memberRequestId, long receiverUserId, int status,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.so.model.MemberRequest> orderByComparator)
 		throws com.liferay.so.NoSuchMemberRequestException;
 
 	/**
@@ -481,7 +481,7 @@ public interface MemberRequestPersistence extends BasePersistence<MemberRequest>
 	*/
 	public java.util.List<com.liferay.so.model.MemberRequest> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.so.model.MemberRequest> orderByComparator);
 
 	/**
 	* Removes all the member requests from the database.

@@ -414,7 +414,7 @@ public class SyncDLObjectPersistenceImpl extends BasePersistenceImpl<SyncDLObjec
 	@Override
 	public List<SyncDLObject> findByC_M_R(long companyId, long modifiedTime,
 		long repositoryId, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<SyncDLObject> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -528,7 +528,7 @@ public class SyncDLObjectPersistenceImpl extends BasePersistenceImpl<SyncDLObjec
 	 */
 	@Override
 	public SyncDLObject findByC_M_R_First(long companyId, long modifiedTime,
-		long repositoryId, OrderByComparator orderByComparator)
+		long repositoryId, OrderByComparator<SyncDLObject> orderByComparator)
 		throws NoSuchDLObjectException {
 		SyncDLObject syncDLObject = fetchByC_M_R_First(companyId, modifiedTime,
 				repositoryId, orderByComparator);
@@ -566,7 +566,7 @@ public class SyncDLObjectPersistenceImpl extends BasePersistenceImpl<SyncDLObjec
 	 */
 	@Override
 	public SyncDLObject fetchByC_M_R_First(long companyId, long modifiedTime,
-		long repositoryId, OrderByComparator orderByComparator) {
+		long repositoryId, OrderByComparator<SyncDLObject> orderByComparator) {
 		List<SyncDLObject> list = findByC_M_R(companyId, modifiedTime,
 				repositoryId, 0, 1, orderByComparator);
 
@@ -589,7 +589,7 @@ public class SyncDLObjectPersistenceImpl extends BasePersistenceImpl<SyncDLObjec
 	 */
 	@Override
 	public SyncDLObject findByC_M_R_Last(long companyId, long modifiedTime,
-		long repositoryId, OrderByComparator orderByComparator)
+		long repositoryId, OrderByComparator<SyncDLObject> orderByComparator)
 		throws NoSuchDLObjectException {
 		SyncDLObject syncDLObject = fetchByC_M_R_Last(companyId, modifiedTime,
 				repositoryId, orderByComparator);
@@ -627,7 +627,7 @@ public class SyncDLObjectPersistenceImpl extends BasePersistenceImpl<SyncDLObjec
 	 */
 	@Override
 	public SyncDLObject fetchByC_M_R_Last(long companyId, long modifiedTime,
-		long repositoryId, OrderByComparator orderByComparator) {
+		long repositoryId, OrderByComparator<SyncDLObject> orderByComparator) {
 		int count = countByC_M_R(companyId, modifiedTime, repositoryId);
 
 		if (count == 0) {
@@ -658,7 +658,8 @@ public class SyncDLObjectPersistenceImpl extends BasePersistenceImpl<SyncDLObjec
 	@Override
 	public SyncDLObject[] findByC_M_R_PrevAndNext(long syncDLObjectId,
 		long companyId, long modifiedTime, long repositoryId,
-		OrderByComparator orderByComparator) throws NoSuchDLObjectException {
+		OrderByComparator<SyncDLObject> orderByComparator)
+		throws NoSuchDLObjectException {
 		SyncDLObject syncDLObject = findByPrimaryKey(syncDLObjectId);
 
 		Session session = null;
@@ -688,7 +689,8 @@ public class SyncDLObjectPersistenceImpl extends BasePersistenceImpl<SyncDLObjec
 
 	protected SyncDLObject getByC_M_R_PrevAndNext(Session session,
 		SyncDLObject syncDLObject, long companyId, long modifiedTime,
-		long repositoryId, OrderByComparator orderByComparator, boolean previous) {
+		long repositoryId, OrderByComparator<SyncDLObject> orderByComparator,
+		boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -1431,7 +1433,7 @@ public class SyncDLObjectPersistenceImpl extends BasePersistenceImpl<SyncDLObjec
 	 */
 	@Override
 	public List<SyncDLObject> findAll(int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<SyncDLObject> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;

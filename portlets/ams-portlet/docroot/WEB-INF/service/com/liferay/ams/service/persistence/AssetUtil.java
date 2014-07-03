@@ -83,7 +83,7 @@ public class AssetUtil {
 	 * @see com.liferay.portal.service.persistence.BasePersistence#findWithDynamicQuery(DynamicQuery, int, int, OrderByComparator)
 	 */
 	public static List<Asset> findWithDynamicQuery(DynamicQuery dynamicQuery,
-		int start, int end, OrderByComparator orderByComparator) {
+		int start, int end, OrderByComparator<Asset> orderByComparator) {
 		return getPersistence()
 				   .findWithDynamicQuery(dynamicQuery, start, end,
 			orderByComparator);
@@ -215,7 +215,7 @@ public class AssetUtil {
 	*/
 	public static java.util.List<com.liferay.ams.model.Asset> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.ams.model.Asset> orderByComparator) {
 		return getPersistence().findAll(start, end, orderByComparator);
 	}
 

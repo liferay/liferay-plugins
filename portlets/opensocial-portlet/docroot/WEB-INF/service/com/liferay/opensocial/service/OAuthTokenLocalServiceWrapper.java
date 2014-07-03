@@ -92,8 +92,7 @@ public class OAuthTokenLocalServiceWrapper implements OAuthTokenLocalService,
 	* @return the matching rows
 	*/
 	@Override
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
 		return _oAuthTokenLocalService.dynamicQuery(dynamicQuery);
 	}
@@ -111,8 +110,7 @@ public class OAuthTokenLocalServiceWrapper implements OAuthTokenLocalService,
 	* @return the range of matching rows
 	*/
 	@Override
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) {
 		return _oAuthTokenLocalService.dynamicQuery(dynamicQuery, start, end);
@@ -132,11 +130,10 @@ public class OAuthTokenLocalServiceWrapper implements OAuthTokenLocalService,
 	* @return the ordered range of matching rows
 	*/
 	@Override
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<T> orderByComparator) {
 		return _oAuthTokenLocalService.dynamicQuery(dynamicQuery, start, end,
 			orderByComparator);
 	}
@@ -283,8 +280,7 @@ public class OAuthTokenLocalServiceWrapper implements OAuthTokenLocalService,
 		long moduleId, java.lang.String accessToken,
 		java.lang.String tokenName, java.lang.String tokenSecret,
 		java.lang.String sessionHandle, long expiration)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _oAuthTokenLocalService.addOAuthToken(userId, gadgetKey,
 			serviceName, moduleId, accessToken, tokenName, tokenSecret,
 			sessionHandle, expiration);
@@ -293,24 +289,21 @@ public class OAuthTokenLocalServiceWrapper implements OAuthTokenLocalService,
 	@Override
 	public void deleteOAuthToken(long userId, java.lang.String gadgetKey,
 		java.lang.String serviceName, long moduleId, java.lang.String tokenName)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		_oAuthTokenLocalService.deleteOAuthToken(userId, gadgetKey,
 			serviceName, moduleId, tokenName);
 	}
 
 	@Override
 	public void deleteOAuthTokens(java.lang.String gadgetKey,
-		java.lang.String serviceName)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		java.lang.String serviceName) {
 		_oAuthTokenLocalService.deleteOAuthTokens(gadgetKey, serviceName);
 	}
 
 	@Override
 	public com.liferay.opensocial.model.OAuthToken fetchOAuthToken(
 		long userId, java.lang.String gadgetKey, java.lang.String serviceName,
-		long moduleId, java.lang.String tokenName)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long moduleId, java.lang.String tokenName) {
 		return _oAuthTokenLocalService.fetchOAuthToken(userId, gadgetKey,
 			serviceName, moduleId, tokenName);
 	}
@@ -319,16 +312,14 @@ public class OAuthTokenLocalServiceWrapper implements OAuthTokenLocalService,
 	public com.liferay.opensocial.model.OAuthToken getOAuthToken(long userId,
 		java.lang.String gadgetKey, java.lang.String serviceName,
 		long moduleId, java.lang.String tokenName)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _oAuthTokenLocalService.getOAuthToken(userId, gadgetKey,
 			serviceName, moduleId, tokenName);
 	}
 
 	@Override
 	public java.util.List<com.liferay.opensocial.model.OAuthToken> getOAuthTokens(
-		java.lang.String gadgetKey, java.lang.String serviceName)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		java.lang.String gadgetKey, java.lang.String serviceName) {
 		return _oAuthTokenLocalService.getOAuthTokens(gadgetKey, serviceName);
 	}
 

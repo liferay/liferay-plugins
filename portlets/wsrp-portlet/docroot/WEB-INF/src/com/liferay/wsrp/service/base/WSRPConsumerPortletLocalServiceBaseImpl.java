@@ -109,12 +109,11 @@ public abstract class WSRPConsumerPortletLocalServiceBaseImpl
 	 * @param wsrpConsumerPortletId the primary key of the w s r p consumer portlet
 	 * @return the w s r p consumer portlet that was removed
 	 * @throws PortalException if a w s r p consumer portlet with the primary key could not be found
-	 * @throws SystemException
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
 	public WSRPConsumerPortlet deleteWSRPConsumerPortlet(
-		long wsrpConsumerPortletId) throws PortalException, SystemException {
+		long wsrpConsumerPortletId) throws PortalException {
 		return wsrpConsumerPortletPersistence.remove(wsrpConsumerPortletId);
 	}
 
@@ -124,13 +123,11 @@ public abstract class WSRPConsumerPortletLocalServiceBaseImpl
 	 * @param wsrpConsumerPortlet the w s r p consumer portlet
 	 * @return the w s r p consumer portlet that was removed
 	 * @throws PortalException
-	 * @throws SystemException
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
 	public WSRPConsumerPortlet deleteWSRPConsumerPortlet(
-		WSRPConsumerPortlet wsrpConsumerPortlet)
-		throws PortalException, SystemException {
+		WSRPConsumerPortlet wsrpConsumerPortlet) throws PortalException {
 		return wsrpConsumerPortletPersistence.remove(wsrpConsumerPortlet);
 	}
 
@@ -149,8 +146,7 @@ public abstract class WSRPConsumerPortletLocalServiceBaseImpl
 	 * @return the matching rows
 	 */
 	@Override
-	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery) {
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery) {
 		return wsrpConsumerPortletPersistence.findWithDynamicQuery(dynamicQuery);
 	}
 
@@ -167,8 +163,8 @@ public abstract class WSRPConsumerPortletLocalServiceBaseImpl
 	 * @return the range of matching rows
 	 */
 	@Override
-	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end) {
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
+		int end) {
 		return wsrpConsumerPortletPersistence.findWithDynamicQuery(dynamicQuery,
 			start, end);
 	}
@@ -187,9 +183,8 @@ public abstract class WSRPConsumerPortletLocalServiceBaseImpl
 	 * @return the ordered range of matching rows
 	 */
 	@Override
-	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end,
-		OrderByComparator orderByComparator) {
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
+		int end, OrderByComparator<T> orderByComparator) {
 		return wsrpConsumerPortletPersistence.findWithDynamicQuery(dynamicQuery,
 			start, end, orderByComparator);
 	}

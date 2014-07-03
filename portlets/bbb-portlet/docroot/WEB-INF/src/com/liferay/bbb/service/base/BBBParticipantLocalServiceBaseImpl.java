@@ -114,12 +114,10 @@ public abstract class BBBParticipantLocalServiceBaseImpl
 	 *
 	 * @param bbbParticipant the b b b participant
 	 * @return the b b b participant that was removed
-	 * @throws SystemException
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
-	public BBBParticipant deleteBBBParticipant(BBBParticipant bbbParticipant)
-		throws SystemException {
+	public BBBParticipant deleteBBBParticipant(BBBParticipant bbbParticipant) {
 		return bbbParticipantPersistence.remove(bbbParticipant);
 	}
 
@@ -138,8 +136,7 @@ public abstract class BBBParticipantLocalServiceBaseImpl
 	 * @return the matching rows
 	 */
 	@Override
-	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery) {
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery) {
 		return bbbParticipantPersistence.findWithDynamicQuery(dynamicQuery);
 	}
 
@@ -156,8 +153,8 @@ public abstract class BBBParticipantLocalServiceBaseImpl
 	 * @return the range of matching rows
 	 */
 	@Override
-	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end) {
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
+		int end) {
 		return bbbParticipantPersistence.findWithDynamicQuery(dynamicQuery,
 			start, end);
 	}
@@ -176,9 +173,8 @@ public abstract class BBBParticipantLocalServiceBaseImpl
 	 * @return the ordered range of matching rows
 	 */
 	@Override
-	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end,
-		OrderByComparator orderByComparator) {
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
+		int end, OrderByComparator<T> orderByComparator) {
 		return bbbParticipantPersistence.findWithDynamicQuery(dynamicQuery,
 			start, end, orderByComparator);
 	}

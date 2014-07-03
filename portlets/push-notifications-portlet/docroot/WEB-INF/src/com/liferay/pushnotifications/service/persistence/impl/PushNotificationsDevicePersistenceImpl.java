@@ -395,7 +395,8 @@ public class PushNotificationsDevicePersistenceImpl extends BasePersistenceImpl<
 	 */
 	@Override
 	public List<PushNotificationsDevice> findByU_P(long userId,
-		String platform, int start, int end, OrderByComparator orderByComparator) {
+		String platform, int start, int end,
+		OrderByComparator<PushNotificationsDevice> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -526,7 +527,8 @@ public class PushNotificationsDevicePersistenceImpl extends BasePersistenceImpl<
 	 */
 	@Override
 	public PushNotificationsDevice findByU_P_First(long userId,
-		String platform, OrderByComparator orderByComparator)
+		String platform,
+		OrderByComparator<PushNotificationsDevice> orderByComparator)
 		throws NoSuchDeviceException {
 		PushNotificationsDevice pushNotificationsDevice = fetchByU_P_First(userId,
 				platform, orderByComparator);
@@ -560,7 +562,8 @@ public class PushNotificationsDevicePersistenceImpl extends BasePersistenceImpl<
 	 */
 	@Override
 	public PushNotificationsDevice fetchByU_P_First(long userId,
-		String platform, OrderByComparator orderByComparator) {
+		String platform,
+		OrderByComparator<PushNotificationsDevice> orderByComparator) {
 		List<PushNotificationsDevice> list = findByU_P(userId, platform, 0, 1,
 				orderByComparator);
 
@@ -582,7 +585,8 @@ public class PushNotificationsDevicePersistenceImpl extends BasePersistenceImpl<
 	 */
 	@Override
 	public PushNotificationsDevice findByU_P_Last(long userId, String platform,
-		OrderByComparator orderByComparator) throws NoSuchDeviceException {
+		OrderByComparator<PushNotificationsDevice> orderByComparator)
+		throws NoSuchDeviceException {
 		PushNotificationsDevice pushNotificationsDevice = fetchByU_P_Last(userId,
 				platform, orderByComparator);
 
@@ -615,7 +619,8 @@ public class PushNotificationsDevicePersistenceImpl extends BasePersistenceImpl<
 	 */
 	@Override
 	public PushNotificationsDevice fetchByU_P_Last(long userId,
-		String platform, OrderByComparator orderByComparator) {
+		String platform,
+		OrderByComparator<PushNotificationsDevice> orderByComparator) {
 		int count = countByU_P(userId, platform);
 
 		if (count == 0) {
@@ -645,7 +650,8 @@ public class PushNotificationsDevicePersistenceImpl extends BasePersistenceImpl<
 	@Override
 	public PushNotificationsDevice[] findByU_P_PrevAndNext(
 		long pushNotificationsDeviceId, long userId, String platform,
-		OrderByComparator orderByComparator) throws NoSuchDeviceException {
+		OrderByComparator<PushNotificationsDevice> orderByComparator)
+		throws NoSuchDeviceException {
 		PushNotificationsDevice pushNotificationsDevice = findByPrimaryKey(pushNotificationsDeviceId);
 
 		Session session = null;
@@ -675,7 +681,9 @@ public class PushNotificationsDevicePersistenceImpl extends BasePersistenceImpl<
 
 	protected PushNotificationsDevice getByU_P_PrevAndNext(Session session,
 		PushNotificationsDevice pushNotificationsDevice, long userId,
-		String platform, OrderByComparator orderByComparator, boolean previous) {
+		String platform,
+		OrderByComparator<PushNotificationsDevice> orderByComparator,
+		boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -1452,7 +1460,7 @@ public class PushNotificationsDevicePersistenceImpl extends BasePersistenceImpl<
 	 */
 	@Override
 	public List<PushNotificationsDevice> findAll(int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<PushNotificationsDevice> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;

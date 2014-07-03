@@ -78,7 +78,7 @@ public interface KaleoTimerPersistence extends BasePersistence<KaleoTimer> {
 	*/
 	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTimer> findByKCN_KCPK(
 		java.lang.String kaleoClassName, long kaleoClassPK, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoTimer> orderByComparator);
 
 	/**
 	* Returns the first kaleo timer in the ordered set where kaleoClassName = &#63; and kaleoClassPK = &#63;.
@@ -91,7 +91,7 @@ public interface KaleoTimerPersistence extends BasePersistence<KaleoTimer> {
 	*/
 	public com.liferay.portal.workflow.kaleo.model.KaleoTimer findByKCN_KCPK_First(
 		java.lang.String kaleoClassName, long kaleoClassPK,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoTimer> orderByComparator)
 		throws com.liferay.portal.workflow.kaleo.NoSuchTimerException;
 
 	/**
@@ -104,7 +104,7 @@ public interface KaleoTimerPersistence extends BasePersistence<KaleoTimer> {
 	*/
 	public com.liferay.portal.workflow.kaleo.model.KaleoTimer fetchByKCN_KCPK_First(
 		java.lang.String kaleoClassName, long kaleoClassPK,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoTimer> orderByComparator);
 
 	/**
 	* Returns the last kaleo timer in the ordered set where kaleoClassName = &#63; and kaleoClassPK = &#63;.
@@ -117,7 +117,7 @@ public interface KaleoTimerPersistence extends BasePersistence<KaleoTimer> {
 	*/
 	public com.liferay.portal.workflow.kaleo.model.KaleoTimer findByKCN_KCPK_Last(
 		java.lang.String kaleoClassName, long kaleoClassPK,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoTimer> orderByComparator)
 		throws com.liferay.portal.workflow.kaleo.NoSuchTimerException;
 
 	/**
@@ -130,7 +130,7 @@ public interface KaleoTimerPersistence extends BasePersistence<KaleoTimer> {
 	*/
 	public com.liferay.portal.workflow.kaleo.model.KaleoTimer fetchByKCN_KCPK_Last(
 		java.lang.String kaleoClassName, long kaleoClassPK,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoTimer> orderByComparator);
 
 	/**
 	* Returns the kaleo timers before and after the current kaleo timer in the ordered set where kaleoClassName = &#63; and kaleoClassPK = &#63;.
@@ -144,7 +144,7 @@ public interface KaleoTimerPersistence extends BasePersistence<KaleoTimer> {
 	*/
 	public com.liferay.portal.workflow.kaleo.model.KaleoTimer[] findByKCN_KCPK_PrevAndNext(
 		long kaleoTimerId, java.lang.String kaleoClassName, long kaleoClassPK,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoTimer> orderByComparator)
 		throws com.liferay.portal.workflow.kaleo.NoSuchTimerException;
 
 	/**
@@ -213,7 +213,7 @@ public interface KaleoTimerPersistence extends BasePersistence<KaleoTimer> {
 	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTimer> findByKCN_KCPK_Blocking(
 		java.lang.String kaleoClassName, long kaleoClassPK, boolean blocking,
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoTimer> orderByComparator);
 
 	/**
 	* Returns the first kaleo timer in the ordered set where kaleoClassName = &#63; and kaleoClassPK = &#63; and blocking = &#63;.
@@ -227,7 +227,7 @@ public interface KaleoTimerPersistence extends BasePersistence<KaleoTimer> {
 	*/
 	public com.liferay.portal.workflow.kaleo.model.KaleoTimer findByKCN_KCPK_Blocking_First(
 		java.lang.String kaleoClassName, long kaleoClassPK, boolean blocking,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoTimer> orderByComparator)
 		throws com.liferay.portal.workflow.kaleo.NoSuchTimerException;
 
 	/**
@@ -241,7 +241,7 @@ public interface KaleoTimerPersistence extends BasePersistence<KaleoTimer> {
 	*/
 	public com.liferay.portal.workflow.kaleo.model.KaleoTimer fetchByKCN_KCPK_Blocking_First(
 		java.lang.String kaleoClassName, long kaleoClassPK, boolean blocking,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoTimer> orderByComparator);
 
 	/**
 	* Returns the last kaleo timer in the ordered set where kaleoClassName = &#63; and kaleoClassPK = &#63; and blocking = &#63;.
@@ -255,7 +255,7 @@ public interface KaleoTimerPersistence extends BasePersistence<KaleoTimer> {
 	*/
 	public com.liferay.portal.workflow.kaleo.model.KaleoTimer findByKCN_KCPK_Blocking_Last(
 		java.lang.String kaleoClassName, long kaleoClassPK, boolean blocking,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoTimer> orderByComparator)
 		throws com.liferay.portal.workflow.kaleo.NoSuchTimerException;
 
 	/**
@@ -269,7 +269,7 @@ public interface KaleoTimerPersistence extends BasePersistence<KaleoTimer> {
 	*/
 	public com.liferay.portal.workflow.kaleo.model.KaleoTimer fetchByKCN_KCPK_Blocking_Last(
 		java.lang.String kaleoClassName, long kaleoClassPK, boolean blocking,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoTimer> orderByComparator);
 
 	/**
 	* Returns the kaleo timers before and after the current kaleo timer in the ordered set where kaleoClassName = &#63; and kaleoClassPK = &#63; and blocking = &#63;.
@@ -285,7 +285,7 @@ public interface KaleoTimerPersistence extends BasePersistence<KaleoTimer> {
 	public com.liferay.portal.workflow.kaleo.model.KaleoTimer[] findByKCN_KCPK_Blocking_PrevAndNext(
 		long kaleoTimerId, java.lang.String kaleoClassName, long kaleoClassPK,
 		boolean blocking,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoTimer> orderByComparator)
 		throws com.liferay.portal.workflow.kaleo.NoSuchTimerException;
 
 	/**
@@ -407,7 +407,7 @@ public interface KaleoTimerPersistence extends BasePersistence<KaleoTimer> {
 	*/
 	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTimer> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoTimer> orderByComparator);
 
 	/**
 	* Removes all the kaleo timers from the database.

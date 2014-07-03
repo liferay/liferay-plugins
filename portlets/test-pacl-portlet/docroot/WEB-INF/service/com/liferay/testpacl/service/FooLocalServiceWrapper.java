@@ -89,8 +89,7 @@ public class FooLocalServiceWrapper implements FooLocalService,
 	* @return the matching rows
 	*/
 	@Override
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
 		return _fooLocalService.dynamicQuery(dynamicQuery);
 	}
@@ -108,8 +107,7 @@ public class FooLocalServiceWrapper implements FooLocalService,
 	* @return the range of matching rows
 	*/
 	@Override
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) {
 		return _fooLocalService.dynamicQuery(dynamicQuery, start, end);
@@ -129,11 +127,10 @@ public class FooLocalServiceWrapper implements FooLocalService,
 	* @return the ordered range of matching rows
 	*/
 	@Override
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<T> orderByComparator) {
 		return _fooLocalService.dynamicQuery(dynamicQuery, start, end,
 			orderByComparator);
 	}
@@ -273,47 +270,41 @@ public class FooLocalServiceWrapper implements FooLocalService,
 	@Override
 	public com.liferay.portal.model.Company getCompanyPersistence_FindByPrimaryKey(
 		long companyId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _fooLocalService.getCompanyPersistence_FindByPrimaryKey(companyId);
 	}
 
 	@Override
 	public com.liferay.portal.model.Company getCompanyUtil_FindByPrimaryKey(
 		long companyId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _fooLocalService.getCompanyUtil_FindByPrimaryKey(companyId);
 	}
 
 	@Override
 	public java.util.List<com.liferay.chat.model.Entry> getEntryLocalServiceUtil_GetEntries(
-		int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		int start, int end) {
 		return _fooLocalService.getEntryLocalServiceUtil_GetEntries(start, end);
 	}
 
 	@Override
 	public com.liferay.chat.model.Entry getEntryLocalServiceUtil_GetEntry(
 		long entryId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _fooLocalService.getEntryLocalServiceUtil_GetEntry(entryId);
 	}
 
 	@Override
 	public com.liferay.portal.model.Group getGroupPersistence_FindByPrimaryKey(
 		long groupId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _fooLocalService.getGroupPersistence_FindByPrimaryKey(groupId);
 	}
 
 	@Override
 	public com.liferay.portal.model.Group getGroupUtil_FindByPrimaryKey(
 		long groupId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _fooLocalService.getGroupUtil_FindByPrimaryKey(groupId);
 	}
 
@@ -328,8 +319,7 @@ public class FooLocalServiceWrapper implements FooLocalService,
 	}
 
 	@Override
-	public boolean getPortalService_TestHasClassName()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public boolean getPortalService_TestHasClassName() {
 		return _fooLocalService.getPortalService_TestHasClassName();
 	}
 
@@ -344,8 +334,7 @@ public class FooLocalServiceWrapper implements FooLocalService,
 	}
 
 	@Override
-	public boolean getPortalServiceUtil_TestHasClassName()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public boolean getPortalServiceUtil_TestHasClassName() {
 		return _fooLocalService.getPortalServiceUtil_TestHasClassName();
 	}
 
@@ -357,31 +346,25 @@ public class FooLocalServiceWrapper implements FooLocalService,
 	@Override
 	public com.liferay.chat.model.Status getStatusLocalServiceUtil_GetStatus(
 		long statusId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _fooLocalService.getStatusLocalServiceUtil_GetStatus(statusId);
 	}
 
 	@Override
 	public java.util.List<com.liferay.chat.model.Status> getStatusLocalServiceUtil_GetStatuses(
-		int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		int start, int end) {
 		return _fooLocalService.getStatusLocalServiceUtil_GetStatuses(start, end);
 	}
 
 	@Override
 	public com.liferay.portal.model.User getUserPersistence_FindByPrimaryKey(
-		long userId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		long userId) throws com.liferay.portal.kernel.exception.PortalException {
 		return _fooLocalService.getUserPersistence_FindByPrimaryKey(userId);
 	}
 
 	@Override
 	public com.liferay.portal.model.User getUserUtil_FindByPrimaryKey(
-		long userId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		long userId) throws com.liferay.portal.kernel.exception.PortalException {
 		return _fooLocalService.getUserUtil_FindByPrimaryKey(userId);
 	}
 

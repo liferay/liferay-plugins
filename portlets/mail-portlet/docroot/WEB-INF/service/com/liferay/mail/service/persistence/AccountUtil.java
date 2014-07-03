@@ -84,7 +84,7 @@ public class AccountUtil {
 	 */
 	public static List<Account> findWithDynamicQuery(
 		DynamicQuery dynamicQuery, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<Account> orderByComparator) {
 		return getPersistence()
 				   .findWithDynamicQuery(dynamicQuery, start, end,
 			orderByComparator);
@@ -147,7 +147,7 @@ public class AccountUtil {
 	*/
 	public static java.util.List<com.liferay.mail.model.Account> findByUserId(
 		long userId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.mail.model.Account> orderByComparator) {
 		return getPersistence()
 				   .findByUserId(userId, start, end, orderByComparator);
 	}
@@ -162,7 +162,7 @@ public class AccountUtil {
 	*/
 	public static com.liferay.mail.model.Account findByUserId_First(
 		long userId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.mail.model.Account> orderByComparator)
 		throws com.liferay.mail.NoSuchAccountException {
 		return getPersistence().findByUserId_First(userId, orderByComparator);
 	}
@@ -176,7 +176,7 @@ public class AccountUtil {
 	*/
 	public static com.liferay.mail.model.Account fetchByUserId_First(
 		long userId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.mail.model.Account> orderByComparator) {
 		return getPersistence().fetchByUserId_First(userId, orderByComparator);
 	}
 
@@ -190,7 +190,7 @@ public class AccountUtil {
 	*/
 	public static com.liferay.mail.model.Account findByUserId_Last(
 		long userId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.mail.model.Account> orderByComparator)
 		throws com.liferay.mail.NoSuchAccountException {
 		return getPersistence().findByUserId_Last(userId, orderByComparator);
 	}
@@ -204,7 +204,7 @@ public class AccountUtil {
 	*/
 	public static com.liferay.mail.model.Account fetchByUserId_Last(
 		long userId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.mail.model.Account> orderByComparator) {
 		return getPersistence().fetchByUserId_Last(userId, orderByComparator);
 	}
 
@@ -219,7 +219,7 @@ public class AccountUtil {
 	*/
 	public static com.liferay.mail.model.Account[] findByUserId_PrevAndNext(
 		long accountId, long userId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.mail.model.Account> orderByComparator)
 		throws com.liferay.mail.NoSuchAccountException {
 		return getPersistence()
 				   .findByUserId_PrevAndNext(accountId, userId,
@@ -421,7 +421,7 @@ public class AccountUtil {
 	*/
 	public static java.util.List<com.liferay.mail.model.Account> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.mail.model.Account> orderByComparator) {
 		return getPersistence().findAll(start, end, orderByComparator);
 	}
 

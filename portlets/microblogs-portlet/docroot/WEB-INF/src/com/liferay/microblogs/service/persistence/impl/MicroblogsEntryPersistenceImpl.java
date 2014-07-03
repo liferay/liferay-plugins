@@ -164,7 +164,7 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 */
 	@Override
 	public List<MicroblogsEntry> findByCompanyId(long companyId, int start,
-		int end, OrderByComparator orderByComparator) {
+		int end, OrderByComparator<MicroblogsEntry> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -270,7 +270,8 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 */
 	@Override
 	public MicroblogsEntry findByCompanyId_First(long companyId,
-		OrderByComparator orderByComparator) throws NoSuchEntryException {
+		OrderByComparator<MicroblogsEntry> orderByComparator)
+		throws NoSuchEntryException {
 		MicroblogsEntry microblogsEntry = fetchByCompanyId_First(companyId,
 				orderByComparator);
 
@@ -299,7 +300,7 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 */
 	@Override
 	public MicroblogsEntry fetchByCompanyId_First(long companyId,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<MicroblogsEntry> orderByComparator) {
 		List<MicroblogsEntry> list = findByCompanyId(companyId, 0, 1,
 				orderByComparator);
 
@@ -320,7 +321,8 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 */
 	@Override
 	public MicroblogsEntry findByCompanyId_Last(long companyId,
-		OrderByComparator orderByComparator) throws NoSuchEntryException {
+		OrderByComparator<MicroblogsEntry> orderByComparator)
+		throws NoSuchEntryException {
 		MicroblogsEntry microblogsEntry = fetchByCompanyId_Last(companyId,
 				orderByComparator);
 
@@ -349,7 +351,7 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 */
 	@Override
 	public MicroblogsEntry fetchByCompanyId_Last(long companyId,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<MicroblogsEntry> orderByComparator) {
 		int count = countByCompanyId(companyId);
 
 		if (count == 0) {
@@ -378,7 +380,8 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	@Override
 	public MicroblogsEntry[] findByCompanyId_PrevAndNext(
 		long microblogsEntryId, long companyId,
-		OrderByComparator orderByComparator) throws NoSuchEntryException {
+		OrderByComparator<MicroblogsEntry> orderByComparator)
+		throws NoSuchEntryException {
 		MicroblogsEntry microblogsEntry = findByPrimaryKey(microblogsEntryId);
 
 		Session session = null;
@@ -408,7 +411,7 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 
 	protected MicroblogsEntry getByCompanyId_PrevAndNext(Session session,
 		MicroblogsEntry microblogsEntry, long companyId,
-		OrderByComparator orderByComparator, boolean previous) {
+		OrderByComparator<MicroblogsEntry> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -556,7 +559,7 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 */
 	@Override
 	public List<MicroblogsEntry> filterFindByCompanyId(long companyId,
-		int start, int end, OrderByComparator orderByComparator) {
+		int start, int end, OrderByComparator<MicroblogsEntry> orderByComparator) {
 		if (!InlineSQLHelperUtil.isEnabled()) {
 			return findByCompanyId(companyId, start, end, orderByComparator);
 		}
@@ -648,7 +651,8 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	@Override
 	public MicroblogsEntry[] filterFindByCompanyId_PrevAndNext(
 		long microblogsEntryId, long companyId,
-		OrderByComparator orderByComparator) throws NoSuchEntryException {
+		OrderByComparator<MicroblogsEntry> orderByComparator)
+		throws NoSuchEntryException {
 		if (!InlineSQLHelperUtil.isEnabled()) {
 			return findByCompanyId_PrevAndNext(microblogsEntryId, companyId,
 				orderByComparator);
@@ -683,7 +687,7 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 
 	protected MicroblogsEntry filterGetByCompanyId_PrevAndNext(
 		Session session, MicroblogsEntry microblogsEntry, long companyId,
-		OrderByComparator orderByComparator, boolean previous) {
+		OrderByComparator<MicroblogsEntry> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -1001,7 +1005,7 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 */
 	@Override
 	public List<MicroblogsEntry> findByUserId(long userId, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<MicroblogsEntry> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -1107,7 +1111,8 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 */
 	@Override
 	public MicroblogsEntry findByUserId_First(long userId,
-		OrderByComparator orderByComparator) throws NoSuchEntryException {
+		OrderByComparator<MicroblogsEntry> orderByComparator)
+		throws NoSuchEntryException {
 		MicroblogsEntry microblogsEntry = fetchByUserId_First(userId,
 				orderByComparator);
 
@@ -1136,7 +1141,7 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 */
 	@Override
 	public MicroblogsEntry fetchByUserId_First(long userId,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<MicroblogsEntry> orderByComparator) {
 		List<MicroblogsEntry> list = findByUserId(userId, 0, 1,
 				orderByComparator);
 
@@ -1157,7 +1162,8 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 */
 	@Override
 	public MicroblogsEntry findByUserId_Last(long userId,
-		OrderByComparator orderByComparator) throws NoSuchEntryException {
+		OrderByComparator<MicroblogsEntry> orderByComparator)
+		throws NoSuchEntryException {
 		MicroblogsEntry microblogsEntry = fetchByUserId_Last(userId,
 				orderByComparator);
 
@@ -1186,7 +1192,7 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 */
 	@Override
 	public MicroblogsEntry fetchByUserId_Last(long userId,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<MicroblogsEntry> orderByComparator) {
 		int count = countByUserId(userId);
 
 		if (count == 0) {
@@ -1214,7 +1220,7 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 */
 	@Override
 	public MicroblogsEntry[] findByUserId_PrevAndNext(long microblogsEntryId,
-		long userId, OrderByComparator orderByComparator)
+		long userId, OrderByComparator<MicroblogsEntry> orderByComparator)
 		throws NoSuchEntryException {
 		MicroblogsEntry microblogsEntry = findByPrimaryKey(microblogsEntryId);
 
@@ -1245,7 +1251,7 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 
 	protected MicroblogsEntry getByUserId_PrevAndNext(Session session,
 		MicroblogsEntry microblogsEntry, long userId,
-		OrderByComparator orderByComparator, boolean previous) {
+		OrderByComparator<MicroblogsEntry> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -1393,7 +1399,7 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 */
 	@Override
 	public List<MicroblogsEntry> filterFindByUserId(long userId, int start,
-		int end, OrderByComparator orderByComparator) {
+		int end, OrderByComparator<MicroblogsEntry> orderByComparator) {
 		if (!InlineSQLHelperUtil.isEnabled()) {
 			return findByUserId(userId, start, end, orderByComparator);
 		}
@@ -1484,7 +1490,8 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 */
 	@Override
 	public MicroblogsEntry[] filterFindByUserId_PrevAndNext(
-		long microblogsEntryId, long userId, OrderByComparator orderByComparator)
+		long microblogsEntryId, long userId,
+		OrderByComparator<MicroblogsEntry> orderByComparator)
 		throws NoSuchEntryException {
 		if (!InlineSQLHelperUtil.isEnabled()) {
 			return findByUserId_PrevAndNext(microblogsEntryId, userId,
@@ -1520,7 +1527,7 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 
 	protected MicroblogsEntry filterGetByUserId_PrevAndNext(Session session,
 		MicroblogsEntry microblogsEntry, long userId,
-		OrderByComparator orderByComparator, boolean previous) {
+		OrderByComparator<MicroblogsEntry> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -1843,7 +1850,7 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 */
 	@Override
 	public List<MicroblogsEntry> findByU_T(long userId, int type, int start,
-		int end, OrderByComparator orderByComparator) {
+		int end, OrderByComparator<MicroblogsEntry> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -1959,7 +1966,8 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 */
 	@Override
 	public MicroblogsEntry findByU_T_First(long userId, int type,
-		OrderByComparator orderByComparator) throws NoSuchEntryException {
+		OrderByComparator<MicroblogsEntry> orderByComparator)
+		throws NoSuchEntryException {
 		MicroblogsEntry microblogsEntry = fetchByU_T_First(userId, type,
 				orderByComparator);
 
@@ -1992,7 +2000,7 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 */
 	@Override
 	public MicroblogsEntry fetchByU_T_First(long userId, int type,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<MicroblogsEntry> orderByComparator) {
 		List<MicroblogsEntry> list = findByU_T(userId, type, 0, 1,
 				orderByComparator);
 
@@ -2014,7 +2022,8 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 */
 	@Override
 	public MicroblogsEntry findByU_T_Last(long userId, int type,
-		OrderByComparator orderByComparator) throws NoSuchEntryException {
+		OrderByComparator<MicroblogsEntry> orderByComparator)
+		throws NoSuchEntryException {
 		MicroblogsEntry microblogsEntry = fetchByU_T_Last(userId, type,
 				orderByComparator);
 
@@ -2047,7 +2056,7 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 */
 	@Override
 	public MicroblogsEntry fetchByU_T_Last(long userId, int type,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<MicroblogsEntry> orderByComparator) {
 		int count = countByU_T(userId, type);
 
 		if (count == 0) {
@@ -2076,7 +2085,8 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 */
 	@Override
 	public MicroblogsEntry[] findByU_T_PrevAndNext(long microblogsEntryId,
-		long userId, int type, OrderByComparator orderByComparator)
+		long userId, int type,
+		OrderByComparator<MicroblogsEntry> orderByComparator)
 		throws NoSuchEntryException {
 		MicroblogsEntry microblogsEntry = findByPrimaryKey(microblogsEntryId);
 
@@ -2107,7 +2117,7 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 
 	protected MicroblogsEntry getByU_T_PrevAndNext(Session session,
 		MicroblogsEntry microblogsEntry, long userId, int type,
-		OrderByComparator orderByComparator, boolean previous) {
+		OrderByComparator<MicroblogsEntry> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -2262,7 +2272,7 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 */
 	@Override
 	public List<MicroblogsEntry> filterFindByU_T(long userId, int type,
-		int start, int end, OrderByComparator orderByComparator) {
+		int start, int end, OrderByComparator<MicroblogsEntry> orderByComparator) {
 		if (!InlineSQLHelperUtil.isEnabled()) {
 			return findByU_T(userId, type, start, end, orderByComparator);
 		}
@@ -2359,7 +2369,8 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	@Override
 	public MicroblogsEntry[] filterFindByU_T_PrevAndNext(
 		long microblogsEntryId, long userId, int type,
-		OrderByComparator orderByComparator) throws NoSuchEntryException {
+		OrderByComparator<MicroblogsEntry> orderByComparator)
+		throws NoSuchEntryException {
 		if (!InlineSQLHelperUtil.isEnabled()) {
 			return findByU_T_PrevAndNext(microblogsEntryId, userId, type,
 				orderByComparator);
@@ -2394,7 +2405,7 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 
 	protected MicroblogsEntry filterGetByU_T_PrevAndNext(Session session,
 		MicroblogsEntry microblogsEntry, long userId, int type,
-		OrderByComparator orderByComparator, boolean previous) {
+		OrderByComparator<MicroblogsEntry> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -2734,7 +2745,7 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 */
 	@Override
 	public List<MicroblogsEntry> findByT_R(int type, long receiverUserId,
-		int start, int end, OrderByComparator orderByComparator) {
+		int start, int end, OrderByComparator<MicroblogsEntry> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -2850,7 +2861,8 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 */
 	@Override
 	public MicroblogsEntry findByT_R_First(int type, long receiverUserId,
-		OrderByComparator orderByComparator) throws NoSuchEntryException {
+		OrderByComparator<MicroblogsEntry> orderByComparator)
+		throws NoSuchEntryException {
 		MicroblogsEntry microblogsEntry = fetchByT_R_First(type,
 				receiverUserId, orderByComparator);
 
@@ -2883,7 +2895,7 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 */
 	@Override
 	public MicroblogsEntry fetchByT_R_First(int type, long receiverUserId,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<MicroblogsEntry> orderByComparator) {
 		List<MicroblogsEntry> list = findByT_R(type, receiverUserId, 0, 1,
 				orderByComparator);
 
@@ -2905,7 +2917,8 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 */
 	@Override
 	public MicroblogsEntry findByT_R_Last(int type, long receiverUserId,
-		OrderByComparator orderByComparator) throws NoSuchEntryException {
+		OrderByComparator<MicroblogsEntry> orderByComparator)
+		throws NoSuchEntryException {
 		MicroblogsEntry microblogsEntry = fetchByT_R_Last(type, receiverUserId,
 				orderByComparator);
 
@@ -2938,7 +2951,7 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 */
 	@Override
 	public MicroblogsEntry fetchByT_R_Last(int type, long receiverUserId,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<MicroblogsEntry> orderByComparator) {
 		int count = countByT_R(type, receiverUserId);
 
 		if (count == 0) {
@@ -2967,7 +2980,8 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 */
 	@Override
 	public MicroblogsEntry[] findByT_R_PrevAndNext(long microblogsEntryId,
-		int type, long receiverUserId, OrderByComparator orderByComparator)
+		int type, long receiverUserId,
+		OrderByComparator<MicroblogsEntry> orderByComparator)
 		throws NoSuchEntryException {
 		MicroblogsEntry microblogsEntry = findByPrimaryKey(microblogsEntryId);
 
@@ -2998,7 +3012,7 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 
 	protected MicroblogsEntry getByT_R_PrevAndNext(Session session,
 		MicroblogsEntry microblogsEntry, int type, long receiverUserId,
-		OrderByComparator orderByComparator, boolean previous) {
+		OrderByComparator<MicroblogsEntry> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -3153,7 +3167,7 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 */
 	@Override
 	public List<MicroblogsEntry> filterFindByT_R(int type, long receiverUserId,
-		int start, int end, OrderByComparator orderByComparator) {
+		int start, int end, OrderByComparator<MicroblogsEntry> orderByComparator) {
 		if (!InlineSQLHelperUtil.isEnabled()) {
 			return findByT_R(type, receiverUserId, start, end, orderByComparator);
 		}
@@ -3250,7 +3264,8 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	@Override
 	public MicroblogsEntry[] filterFindByT_R_PrevAndNext(
 		long microblogsEntryId, int type, long receiverUserId,
-		OrderByComparator orderByComparator) throws NoSuchEntryException {
+		OrderByComparator<MicroblogsEntry> orderByComparator)
+		throws NoSuchEntryException {
 		if (!InlineSQLHelperUtil.isEnabled()) {
 			return findByT_R_PrevAndNext(microblogsEntryId, type,
 				receiverUserId, orderByComparator);
@@ -3285,7 +3300,7 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 
 	protected MicroblogsEntry filterGetByT_R_PrevAndNext(Session session,
 		MicroblogsEntry microblogsEntry, int type, long receiverUserId,
-		OrderByComparator orderByComparator, boolean previous) {
+		OrderByComparator<MicroblogsEntry> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -3628,7 +3643,7 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	@Override
 	public List<MicroblogsEntry> findByT_RMEI(int type,
 		long receiverMicroblogsEntryId, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<MicroblogsEntry> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -3744,7 +3759,8 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 */
 	@Override
 	public MicroblogsEntry findByT_RMEI_First(int type,
-		long receiverMicroblogsEntryId, OrderByComparator orderByComparator)
+		long receiverMicroblogsEntryId,
+		OrderByComparator<MicroblogsEntry> orderByComparator)
 		throws NoSuchEntryException {
 		MicroblogsEntry microblogsEntry = fetchByT_RMEI_First(type,
 				receiverMicroblogsEntryId, orderByComparator);
@@ -3778,7 +3794,8 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 */
 	@Override
 	public MicroblogsEntry fetchByT_RMEI_First(int type,
-		long receiverMicroblogsEntryId, OrderByComparator orderByComparator) {
+		long receiverMicroblogsEntryId,
+		OrderByComparator<MicroblogsEntry> orderByComparator) {
 		List<MicroblogsEntry> list = findByT_RMEI(type,
 				receiverMicroblogsEntryId, 0, 1, orderByComparator);
 
@@ -3800,7 +3817,8 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 */
 	@Override
 	public MicroblogsEntry findByT_RMEI_Last(int type,
-		long receiverMicroblogsEntryId, OrderByComparator orderByComparator)
+		long receiverMicroblogsEntryId,
+		OrderByComparator<MicroblogsEntry> orderByComparator)
 		throws NoSuchEntryException {
 		MicroblogsEntry microblogsEntry = fetchByT_RMEI_Last(type,
 				receiverMicroblogsEntryId, orderByComparator);
@@ -3834,7 +3852,8 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 */
 	@Override
 	public MicroblogsEntry fetchByT_RMEI_Last(int type,
-		long receiverMicroblogsEntryId, OrderByComparator orderByComparator) {
+		long receiverMicroblogsEntryId,
+		OrderByComparator<MicroblogsEntry> orderByComparator) {
 		int count = countByT_RMEI(type, receiverMicroblogsEntryId);
 
 		if (count == 0) {
@@ -3864,7 +3883,8 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	@Override
 	public MicroblogsEntry[] findByT_RMEI_PrevAndNext(long microblogsEntryId,
 		int type, long receiverMicroblogsEntryId,
-		OrderByComparator orderByComparator) throws NoSuchEntryException {
+		OrderByComparator<MicroblogsEntry> orderByComparator)
+		throws NoSuchEntryException {
 		MicroblogsEntry microblogsEntry = findByPrimaryKey(microblogsEntryId);
 
 		Session session = null;
@@ -3894,8 +3914,8 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 
 	protected MicroblogsEntry getByT_RMEI_PrevAndNext(Session session,
 		MicroblogsEntry microblogsEntry, int type,
-		long receiverMicroblogsEntryId, OrderByComparator orderByComparator,
-		boolean previous) {
+		long receiverMicroblogsEntryId,
+		OrderByComparator<MicroblogsEntry> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -4053,7 +4073,7 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	@Override
 	public List<MicroblogsEntry> filterFindByT_RMEI(int type,
 		long receiverMicroblogsEntryId, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<MicroblogsEntry> orderByComparator) {
 		if (!InlineSQLHelperUtil.isEnabled()) {
 			return findByT_RMEI(type, receiverMicroblogsEntryId, start, end,
 				orderByComparator);
@@ -4151,7 +4171,8 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	@Override
 	public MicroblogsEntry[] filterFindByT_RMEI_PrevAndNext(
 		long microblogsEntryId, int type, long receiverMicroblogsEntryId,
-		OrderByComparator orderByComparator) throws NoSuchEntryException {
+		OrderByComparator<MicroblogsEntry> orderByComparator)
+		throws NoSuchEntryException {
 		if (!InlineSQLHelperUtil.isEnabled()) {
 			return findByT_RMEI_PrevAndNext(microblogsEntryId, type,
 				receiverMicroblogsEntryId, orderByComparator);
@@ -4186,8 +4207,8 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 
 	protected MicroblogsEntry filterGetByT_RMEI_PrevAndNext(Session session,
 		MicroblogsEntry microblogsEntry, int type,
-		long receiverMicroblogsEntryId, OrderByComparator orderByComparator,
-		boolean previous) {
+		long receiverMicroblogsEntryId,
+		OrderByComparator<MicroblogsEntry> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -4547,7 +4568,7 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	@Override
 	public List<MicroblogsEntry> findByU_C_T_S(long userId, Date createDate,
 		int type, int socialRelationType, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<MicroblogsEntry> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -4689,7 +4710,8 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 */
 	@Override
 	public MicroblogsEntry findByU_C_T_S_First(long userId, Date createDate,
-		int type, int socialRelationType, OrderByComparator orderByComparator)
+		int type, int socialRelationType,
+		OrderByComparator<MicroblogsEntry> orderByComparator)
 		throws NoSuchEntryException {
 		MicroblogsEntry microblogsEntry = fetchByU_C_T_S_First(userId,
 				createDate, type, socialRelationType, orderByComparator);
@@ -4731,7 +4753,8 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 */
 	@Override
 	public MicroblogsEntry fetchByU_C_T_S_First(long userId, Date createDate,
-		int type, int socialRelationType, OrderByComparator orderByComparator) {
+		int type, int socialRelationType,
+		OrderByComparator<MicroblogsEntry> orderByComparator) {
 		List<MicroblogsEntry> list = findByU_C_T_S(userId, createDate, type,
 				socialRelationType, 0, 1, orderByComparator);
 
@@ -4755,7 +4778,8 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 */
 	@Override
 	public MicroblogsEntry findByU_C_T_S_Last(long userId, Date createDate,
-		int type, int socialRelationType, OrderByComparator orderByComparator)
+		int type, int socialRelationType,
+		OrderByComparator<MicroblogsEntry> orderByComparator)
 		throws NoSuchEntryException {
 		MicroblogsEntry microblogsEntry = fetchByU_C_T_S_Last(userId,
 				createDate, type, socialRelationType, orderByComparator);
@@ -4797,7 +4821,8 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 */
 	@Override
 	public MicroblogsEntry fetchByU_C_T_S_Last(long userId, Date createDate,
-		int type, int socialRelationType, OrderByComparator orderByComparator) {
+		int type, int socialRelationType,
+		OrderByComparator<MicroblogsEntry> orderByComparator) {
 		int count = countByU_C_T_S(userId, createDate, type, socialRelationType);
 
 		if (count == 0) {
@@ -4829,7 +4854,8 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	@Override
 	public MicroblogsEntry[] findByU_C_T_S_PrevAndNext(long microblogsEntryId,
 		long userId, Date createDate, int type, int socialRelationType,
-		OrderByComparator orderByComparator) throws NoSuchEntryException {
+		OrderByComparator<MicroblogsEntry> orderByComparator)
+		throws NoSuchEntryException {
 		MicroblogsEntry microblogsEntry = findByPrimaryKey(microblogsEntryId);
 
 		Session session = null;
@@ -4861,8 +4887,8 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 
 	protected MicroblogsEntry getByU_C_T_S_PrevAndNext(Session session,
 		MicroblogsEntry microblogsEntry, long userId, Date createDate,
-		int type, int socialRelationType, OrderByComparator orderByComparator,
-		boolean previous) {
+		int type, int socialRelationType,
+		OrderByComparator<MicroblogsEntry> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -5045,7 +5071,7 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	@Override
 	public List<MicroblogsEntry> filterFindByU_C_T_S(long userId,
 		Date createDate, int type, int socialRelationType, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<MicroblogsEntry> orderByComparator) {
 		if (!InlineSQLHelperUtil.isEnabled()) {
 			return findByU_C_T_S(userId, createDate, type, socialRelationType,
 				start, end, orderByComparator);
@@ -5164,7 +5190,8 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	@Override
 	public MicroblogsEntry[] filterFindByU_C_T_S_PrevAndNext(
 		long microblogsEntryId, long userId, Date createDate, int type,
-		int socialRelationType, OrderByComparator orderByComparator)
+		int socialRelationType,
+		OrderByComparator<MicroblogsEntry> orderByComparator)
 		throws NoSuchEntryException {
 		if (!InlineSQLHelperUtil.isEnabled()) {
 			return findByU_C_T_S_PrevAndNext(microblogsEntryId, userId,
@@ -5202,8 +5229,8 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 
 	protected MicroblogsEntry filterGetByU_C_T_S_PrevAndNext(Session session,
 		MicroblogsEntry microblogsEntry, long userId, Date createDate,
-		int type, int socialRelationType, OrderByComparator orderByComparator,
-		boolean previous) {
+		int type, int socialRelationType,
+		OrderByComparator<MicroblogsEntry> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -6154,7 +6181,7 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 */
 	@Override
 	public List<MicroblogsEntry> findAll(int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<MicroblogsEntry> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;

@@ -159,7 +159,7 @@ public class KaleoInstanceTokenPersistenceImpl extends BasePersistenceImpl<Kaleo
 	 */
 	@Override
 	public List<KaleoInstanceToken> findByCompanyId(long companyId, int start,
-		int end, OrderByComparator orderByComparator) {
+		int end, OrderByComparator<KaleoInstanceToken> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -265,7 +265,7 @@ public class KaleoInstanceTokenPersistenceImpl extends BasePersistenceImpl<Kaleo
 	 */
 	@Override
 	public KaleoInstanceToken findByCompanyId_First(long companyId,
-		OrderByComparator orderByComparator)
+		OrderByComparator<KaleoInstanceToken> orderByComparator)
 		throws NoSuchInstanceTokenException {
 		KaleoInstanceToken kaleoInstanceToken = fetchByCompanyId_First(companyId,
 				orderByComparator);
@@ -295,7 +295,7 @@ public class KaleoInstanceTokenPersistenceImpl extends BasePersistenceImpl<Kaleo
 	 */
 	@Override
 	public KaleoInstanceToken fetchByCompanyId_First(long companyId,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KaleoInstanceToken> orderByComparator) {
 		List<KaleoInstanceToken> list = findByCompanyId(companyId, 0, 1,
 				orderByComparator);
 
@@ -316,7 +316,7 @@ public class KaleoInstanceTokenPersistenceImpl extends BasePersistenceImpl<Kaleo
 	 */
 	@Override
 	public KaleoInstanceToken findByCompanyId_Last(long companyId,
-		OrderByComparator orderByComparator)
+		OrderByComparator<KaleoInstanceToken> orderByComparator)
 		throws NoSuchInstanceTokenException {
 		KaleoInstanceToken kaleoInstanceToken = fetchByCompanyId_Last(companyId,
 				orderByComparator);
@@ -346,7 +346,7 @@ public class KaleoInstanceTokenPersistenceImpl extends BasePersistenceImpl<Kaleo
 	 */
 	@Override
 	public KaleoInstanceToken fetchByCompanyId_Last(long companyId,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KaleoInstanceToken> orderByComparator) {
 		int count = countByCompanyId(companyId);
 
 		if (count == 0) {
@@ -375,7 +375,7 @@ public class KaleoInstanceTokenPersistenceImpl extends BasePersistenceImpl<Kaleo
 	@Override
 	public KaleoInstanceToken[] findByCompanyId_PrevAndNext(
 		long kaleoInstanceTokenId, long companyId,
-		OrderByComparator orderByComparator)
+		OrderByComparator<KaleoInstanceToken> orderByComparator)
 		throws NoSuchInstanceTokenException {
 		KaleoInstanceToken kaleoInstanceToken = findByPrimaryKey(kaleoInstanceTokenId);
 
@@ -406,7 +406,8 @@ public class KaleoInstanceTokenPersistenceImpl extends BasePersistenceImpl<Kaleo
 
 	protected KaleoInstanceToken getByCompanyId_PrevAndNext(Session session,
 		KaleoInstanceToken kaleoInstanceToken, long companyId,
-		OrderByComparator orderByComparator, boolean previous) {
+		OrderByComparator<KaleoInstanceToken> orderByComparator,
+		boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -645,7 +646,7 @@ public class KaleoInstanceTokenPersistenceImpl extends BasePersistenceImpl<Kaleo
 	@Override
 	public List<KaleoInstanceToken> findByKaleoDefinitionId(
 		long kaleoDefinitionId, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KaleoInstanceToken> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -755,7 +756,8 @@ public class KaleoInstanceTokenPersistenceImpl extends BasePersistenceImpl<Kaleo
 	 */
 	@Override
 	public KaleoInstanceToken findByKaleoDefinitionId_First(
-		long kaleoDefinitionId, OrderByComparator orderByComparator)
+		long kaleoDefinitionId,
+		OrderByComparator<KaleoInstanceToken> orderByComparator)
 		throws NoSuchInstanceTokenException {
 		KaleoInstanceToken kaleoInstanceToken = fetchByKaleoDefinitionId_First(kaleoDefinitionId,
 				orderByComparator);
@@ -785,7 +787,8 @@ public class KaleoInstanceTokenPersistenceImpl extends BasePersistenceImpl<Kaleo
 	 */
 	@Override
 	public KaleoInstanceToken fetchByKaleoDefinitionId_First(
-		long kaleoDefinitionId, OrderByComparator orderByComparator) {
+		long kaleoDefinitionId,
+		OrderByComparator<KaleoInstanceToken> orderByComparator) {
 		List<KaleoInstanceToken> list = findByKaleoDefinitionId(kaleoDefinitionId,
 				0, 1, orderByComparator);
 
@@ -806,7 +809,8 @@ public class KaleoInstanceTokenPersistenceImpl extends BasePersistenceImpl<Kaleo
 	 */
 	@Override
 	public KaleoInstanceToken findByKaleoDefinitionId_Last(
-		long kaleoDefinitionId, OrderByComparator orderByComparator)
+		long kaleoDefinitionId,
+		OrderByComparator<KaleoInstanceToken> orderByComparator)
 		throws NoSuchInstanceTokenException {
 		KaleoInstanceToken kaleoInstanceToken = fetchByKaleoDefinitionId_Last(kaleoDefinitionId,
 				orderByComparator);
@@ -836,7 +840,8 @@ public class KaleoInstanceTokenPersistenceImpl extends BasePersistenceImpl<Kaleo
 	 */
 	@Override
 	public KaleoInstanceToken fetchByKaleoDefinitionId_Last(
-		long kaleoDefinitionId, OrderByComparator orderByComparator) {
+		long kaleoDefinitionId,
+		OrderByComparator<KaleoInstanceToken> orderByComparator) {
 		int count = countByKaleoDefinitionId(kaleoDefinitionId);
 
 		if (count == 0) {
@@ -865,7 +870,7 @@ public class KaleoInstanceTokenPersistenceImpl extends BasePersistenceImpl<Kaleo
 	@Override
 	public KaleoInstanceToken[] findByKaleoDefinitionId_PrevAndNext(
 		long kaleoInstanceTokenId, long kaleoDefinitionId,
-		OrderByComparator orderByComparator)
+		OrderByComparator<KaleoInstanceToken> orderByComparator)
 		throws NoSuchInstanceTokenException {
 		KaleoInstanceToken kaleoInstanceToken = findByPrimaryKey(kaleoInstanceTokenId);
 
@@ -898,7 +903,8 @@ public class KaleoInstanceTokenPersistenceImpl extends BasePersistenceImpl<Kaleo
 
 	protected KaleoInstanceToken getByKaleoDefinitionId_PrevAndNext(
 		Session session, KaleoInstanceToken kaleoInstanceToken,
-		long kaleoDefinitionId, OrderByComparator orderByComparator,
+		long kaleoDefinitionId,
+		OrderByComparator<KaleoInstanceToken> orderByComparator,
 		boolean previous) {
 		StringBundler query = null;
 
@@ -1138,7 +1144,7 @@ public class KaleoInstanceTokenPersistenceImpl extends BasePersistenceImpl<Kaleo
 	@Override
 	public List<KaleoInstanceToken> findByKaleoInstanceId(
 		long kaleoInstanceId, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KaleoInstanceToken> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -1248,7 +1254,8 @@ public class KaleoInstanceTokenPersistenceImpl extends BasePersistenceImpl<Kaleo
 	 */
 	@Override
 	public KaleoInstanceToken findByKaleoInstanceId_First(
-		long kaleoInstanceId, OrderByComparator orderByComparator)
+		long kaleoInstanceId,
+		OrderByComparator<KaleoInstanceToken> orderByComparator)
 		throws NoSuchInstanceTokenException {
 		KaleoInstanceToken kaleoInstanceToken = fetchByKaleoInstanceId_First(kaleoInstanceId,
 				orderByComparator);
@@ -1278,7 +1285,8 @@ public class KaleoInstanceTokenPersistenceImpl extends BasePersistenceImpl<Kaleo
 	 */
 	@Override
 	public KaleoInstanceToken fetchByKaleoInstanceId_First(
-		long kaleoInstanceId, OrderByComparator orderByComparator) {
+		long kaleoInstanceId,
+		OrderByComparator<KaleoInstanceToken> orderByComparator) {
 		List<KaleoInstanceToken> list = findByKaleoInstanceId(kaleoInstanceId,
 				0, 1, orderByComparator);
 
@@ -1299,7 +1307,7 @@ public class KaleoInstanceTokenPersistenceImpl extends BasePersistenceImpl<Kaleo
 	 */
 	@Override
 	public KaleoInstanceToken findByKaleoInstanceId_Last(long kaleoInstanceId,
-		OrderByComparator orderByComparator)
+		OrderByComparator<KaleoInstanceToken> orderByComparator)
 		throws NoSuchInstanceTokenException {
 		KaleoInstanceToken kaleoInstanceToken = fetchByKaleoInstanceId_Last(kaleoInstanceId,
 				orderByComparator);
@@ -1329,7 +1337,8 @@ public class KaleoInstanceTokenPersistenceImpl extends BasePersistenceImpl<Kaleo
 	 */
 	@Override
 	public KaleoInstanceToken fetchByKaleoInstanceId_Last(
-		long kaleoInstanceId, OrderByComparator orderByComparator) {
+		long kaleoInstanceId,
+		OrderByComparator<KaleoInstanceToken> orderByComparator) {
 		int count = countByKaleoInstanceId(kaleoInstanceId);
 
 		if (count == 0) {
@@ -1358,7 +1367,7 @@ public class KaleoInstanceTokenPersistenceImpl extends BasePersistenceImpl<Kaleo
 	@Override
 	public KaleoInstanceToken[] findByKaleoInstanceId_PrevAndNext(
 		long kaleoInstanceTokenId, long kaleoInstanceId,
-		OrderByComparator orderByComparator)
+		OrderByComparator<KaleoInstanceToken> orderByComparator)
 		throws NoSuchInstanceTokenException {
 		KaleoInstanceToken kaleoInstanceToken = findByPrimaryKey(kaleoInstanceTokenId);
 
@@ -1390,7 +1399,8 @@ public class KaleoInstanceTokenPersistenceImpl extends BasePersistenceImpl<Kaleo
 
 	protected KaleoInstanceToken getByKaleoInstanceId_PrevAndNext(
 		Session session, KaleoInstanceToken kaleoInstanceToken,
-		long kaleoInstanceId, OrderByComparator orderByComparator,
+		long kaleoInstanceId,
+		OrderByComparator<KaleoInstanceToken> orderByComparator,
 		boolean previous) {
 		StringBundler query = null;
 
@@ -1635,7 +1645,7 @@ public class KaleoInstanceTokenPersistenceImpl extends BasePersistenceImpl<Kaleo
 	@Override
 	public List<KaleoInstanceToken> findByC_PKITI(long companyId,
 		long parentKaleoInstanceTokenId, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KaleoInstanceToken> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -1751,7 +1761,8 @@ public class KaleoInstanceTokenPersistenceImpl extends BasePersistenceImpl<Kaleo
 	 */
 	@Override
 	public KaleoInstanceToken findByC_PKITI_First(long companyId,
-		long parentKaleoInstanceTokenId, OrderByComparator orderByComparator)
+		long parentKaleoInstanceTokenId,
+		OrderByComparator<KaleoInstanceToken> orderByComparator)
 		throws NoSuchInstanceTokenException {
 		KaleoInstanceToken kaleoInstanceToken = fetchByC_PKITI_First(companyId,
 				parentKaleoInstanceTokenId, orderByComparator);
@@ -1785,7 +1796,8 @@ public class KaleoInstanceTokenPersistenceImpl extends BasePersistenceImpl<Kaleo
 	 */
 	@Override
 	public KaleoInstanceToken fetchByC_PKITI_First(long companyId,
-		long parentKaleoInstanceTokenId, OrderByComparator orderByComparator) {
+		long parentKaleoInstanceTokenId,
+		OrderByComparator<KaleoInstanceToken> orderByComparator) {
 		List<KaleoInstanceToken> list = findByC_PKITI(companyId,
 				parentKaleoInstanceTokenId, 0, 1, orderByComparator);
 
@@ -1807,7 +1819,8 @@ public class KaleoInstanceTokenPersistenceImpl extends BasePersistenceImpl<Kaleo
 	 */
 	@Override
 	public KaleoInstanceToken findByC_PKITI_Last(long companyId,
-		long parentKaleoInstanceTokenId, OrderByComparator orderByComparator)
+		long parentKaleoInstanceTokenId,
+		OrderByComparator<KaleoInstanceToken> orderByComparator)
 		throws NoSuchInstanceTokenException {
 		KaleoInstanceToken kaleoInstanceToken = fetchByC_PKITI_Last(companyId,
 				parentKaleoInstanceTokenId, orderByComparator);
@@ -1841,7 +1854,8 @@ public class KaleoInstanceTokenPersistenceImpl extends BasePersistenceImpl<Kaleo
 	 */
 	@Override
 	public KaleoInstanceToken fetchByC_PKITI_Last(long companyId,
-		long parentKaleoInstanceTokenId, OrderByComparator orderByComparator) {
+		long parentKaleoInstanceTokenId,
+		OrderByComparator<KaleoInstanceToken> orderByComparator) {
 		int count = countByC_PKITI(companyId, parentKaleoInstanceTokenId);
 
 		if (count == 0) {
@@ -1871,7 +1885,8 @@ public class KaleoInstanceTokenPersistenceImpl extends BasePersistenceImpl<Kaleo
 	@Override
 	public KaleoInstanceToken[] findByC_PKITI_PrevAndNext(
 		long kaleoInstanceTokenId, long companyId,
-		long parentKaleoInstanceTokenId, OrderByComparator orderByComparator)
+		long parentKaleoInstanceTokenId,
+		OrderByComparator<KaleoInstanceToken> orderByComparator)
 		throws NoSuchInstanceTokenException {
 		KaleoInstanceToken kaleoInstanceToken = findByPrimaryKey(kaleoInstanceTokenId);
 
@@ -1904,7 +1919,8 @@ public class KaleoInstanceTokenPersistenceImpl extends BasePersistenceImpl<Kaleo
 
 	protected KaleoInstanceToken getByC_PKITI_PrevAndNext(Session session,
 		KaleoInstanceToken kaleoInstanceToken, long companyId,
-		long parentKaleoInstanceTokenId, OrderByComparator orderByComparator,
+		long parentKaleoInstanceTokenId,
+		OrderByComparator<KaleoInstanceToken> orderByComparator,
 		boolean previous) {
 		StringBundler query = null;
 
@@ -2170,7 +2186,7 @@ public class KaleoInstanceTokenPersistenceImpl extends BasePersistenceImpl<Kaleo
 	@Override
 	public List<KaleoInstanceToken> findByC_PKITI_CD(long companyId,
 		long parentKaleoInstanceTokenId, Date completionDate, int start,
-		int end, OrderByComparator orderByComparator) {
+		int end, OrderByComparator<KaleoInstanceToken> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -2307,7 +2323,7 @@ public class KaleoInstanceTokenPersistenceImpl extends BasePersistenceImpl<Kaleo
 	@Override
 	public KaleoInstanceToken findByC_PKITI_CD_First(long companyId,
 		long parentKaleoInstanceTokenId, Date completionDate,
-		OrderByComparator orderByComparator)
+		OrderByComparator<KaleoInstanceToken> orderByComparator)
 		throws NoSuchInstanceTokenException {
 		KaleoInstanceToken kaleoInstanceToken = fetchByC_PKITI_CD_First(companyId,
 				parentKaleoInstanceTokenId, completionDate, orderByComparator);
@@ -2346,7 +2362,7 @@ public class KaleoInstanceTokenPersistenceImpl extends BasePersistenceImpl<Kaleo
 	@Override
 	public KaleoInstanceToken fetchByC_PKITI_CD_First(long companyId,
 		long parentKaleoInstanceTokenId, Date completionDate,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KaleoInstanceToken> orderByComparator) {
 		List<KaleoInstanceToken> list = findByC_PKITI_CD(companyId,
 				parentKaleoInstanceTokenId, completionDate, 0, 1,
 				orderByComparator);
@@ -2371,7 +2387,7 @@ public class KaleoInstanceTokenPersistenceImpl extends BasePersistenceImpl<Kaleo
 	@Override
 	public KaleoInstanceToken findByC_PKITI_CD_Last(long companyId,
 		long parentKaleoInstanceTokenId, Date completionDate,
-		OrderByComparator orderByComparator)
+		OrderByComparator<KaleoInstanceToken> orderByComparator)
 		throws NoSuchInstanceTokenException {
 		KaleoInstanceToken kaleoInstanceToken = fetchByC_PKITI_CD_Last(companyId,
 				parentKaleoInstanceTokenId, completionDate, orderByComparator);
@@ -2410,7 +2426,7 @@ public class KaleoInstanceTokenPersistenceImpl extends BasePersistenceImpl<Kaleo
 	@Override
 	public KaleoInstanceToken fetchByC_PKITI_CD_Last(long companyId,
 		long parentKaleoInstanceTokenId, Date completionDate,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KaleoInstanceToken> orderByComparator) {
 		int count = countByC_PKITI_CD(companyId, parentKaleoInstanceTokenId,
 				completionDate);
 
@@ -2444,7 +2460,7 @@ public class KaleoInstanceTokenPersistenceImpl extends BasePersistenceImpl<Kaleo
 	public KaleoInstanceToken[] findByC_PKITI_CD_PrevAndNext(
 		long kaleoInstanceTokenId, long companyId,
 		long parentKaleoInstanceTokenId, Date completionDate,
-		OrderByComparator orderByComparator)
+		OrderByComparator<KaleoInstanceToken> orderByComparator)
 		throws NoSuchInstanceTokenException {
 		KaleoInstanceToken kaleoInstanceToken = findByPrimaryKey(kaleoInstanceTokenId);
 
@@ -2478,7 +2494,8 @@ public class KaleoInstanceTokenPersistenceImpl extends BasePersistenceImpl<Kaleo
 	protected KaleoInstanceToken getByC_PKITI_CD_PrevAndNext(Session session,
 		KaleoInstanceToken kaleoInstanceToken, long companyId,
 		long parentKaleoInstanceTokenId, Date completionDate,
-		OrderByComparator orderByComparator, boolean previous) {
+		OrderByComparator<KaleoInstanceToken> orderByComparator,
+		boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -3300,7 +3317,7 @@ public class KaleoInstanceTokenPersistenceImpl extends BasePersistenceImpl<Kaleo
 	 */
 	@Override
 	public List<KaleoInstanceToken> findAll(int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KaleoInstanceToken> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;

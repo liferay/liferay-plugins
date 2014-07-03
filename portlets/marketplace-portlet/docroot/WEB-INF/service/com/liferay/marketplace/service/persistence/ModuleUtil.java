@@ -83,7 +83,7 @@ public class ModuleUtil {
 	 * @see com.liferay.portal.service.persistence.BasePersistence#findWithDynamicQuery(DynamicQuery, int, int, OrderByComparator)
 	 */
 	public static List<Module> findWithDynamicQuery(DynamicQuery dynamicQuery,
-		int start, int end, OrderByComparator orderByComparator) {
+		int start, int end, OrderByComparator<Module> orderByComparator) {
 		return getPersistence()
 				   .findWithDynamicQuery(dynamicQuery, start, end,
 			orderByComparator);
@@ -146,7 +146,7 @@ public class ModuleUtil {
 	*/
 	public static java.util.List<com.liferay.marketplace.model.Module> findByUuid(
 		java.lang.String uuid, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.marketplace.model.Module> orderByComparator) {
 		return getPersistence().findByUuid(uuid, start, end, orderByComparator);
 	}
 
@@ -160,7 +160,7 @@ public class ModuleUtil {
 	*/
 	public static com.liferay.marketplace.model.Module findByUuid_First(
 		java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.marketplace.model.Module> orderByComparator)
 		throws com.liferay.marketplace.NoSuchModuleException {
 		return getPersistence().findByUuid_First(uuid, orderByComparator);
 	}
@@ -174,7 +174,7 @@ public class ModuleUtil {
 	*/
 	public static com.liferay.marketplace.model.Module fetchByUuid_First(
 		java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.marketplace.model.Module> orderByComparator) {
 		return getPersistence().fetchByUuid_First(uuid, orderByComparator);
 	}
 
@@ -188,7 +188,7 @@ public class ModuleUtil {
 	*/
 	public static com.liferay.marketplace.model.Module findByUuid_Last(
 		java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.marketplace.model.Module> orderByComparator)
 		throws com.liferay.marketplace.NoSuchModuleException {
 		return getPersistence().findByUuid_Last(uuid, orderByComparator);
 	}
@@ -202,7 +202,7 @@ public class ModuleUtil {
 	*/
 	public static com.liferay.marketplace.model.Module fetchByUuid_Last(
 		java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.marketplace.model.Module> orderByComparator) {
 		return getPersistence().fetchByUuid_Last(uuid, orderByComparator);
 	}
 
@@ -217,7 +217,7 @@ public class ModuleUtil {
 	*/
 	public static com.liferay.marketplace.model.Module[] findByUuid_PrevAndNext(
 		long moduleId, java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.marketplace.model.Module> orderByComparator)
 		throws com.liferay.marketplace.NoSuchModuleException {
 		return getPersistence()
 				   .findByUuid_PrevAndNext(moduleId, uuid, orderByComparator);
@@ -285,7 +285,7 @@ public class ModuleUtil {
 	*/
 	public static java.util.List<com.liferay.marketplace.model.Module> findByAppId(
 		long appId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.marketplace.model.Module> orderByComparator) {
 		return getPersistence().findByAppId(appId, start, end, orderByComparator);
 	}
 
@@ -299,7 +299,7 @@ public class ModuleUtil {
 	*/
 	public static com.liferay.marketplace.model.Module findByAppId_First(
 		long appId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.marketplace.model.Module> orderByComparator)
 		throws com.liferay.marketplace.NoSuchModuleException {
 		return getPersistence().findByAppId_First(appId, orderByComparator);
 	}
@@ -313,7 +313,7 @@ public class ModuleUtil {
 	*/
 	public static com.liferay.marketplace.model.Module fetchByAppId_First(
 		long appId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.marketplace.model.Module> orderByComparator) {
 		return getPersistence().fetchByAppId_First(appId, orderByComparator);
 	}
 
@@ -327,7 +327,7 @@ public class ModuleUtil {
 	*/
 	public static com.liferay.marketplace.model.Module findByAppId_Last(
 		long appId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.marketplace.model.Module> orderByComparator)
 		throws com.liferay.marketplace.NoSuchModuleException {
 		return getPersistence().findByAppId_Last(appId, orderByComparator);
 	}
@@ -341,7 +341,7 @@ public class ModuleUtil {
 	*/
 	public static com.liferay.marketplace.model.Module fetchByAppId_Last(
 		long appId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.marketplace.model.Module> orderByComparator) {
 		return getPersistence().fetchByAppId_Last(appId, orderByComparator);
 	}
 
@@ -356,7 +356,7 @@ public class ModuleUtil {
 	*/
 	public static com.liferay.marketplace.model.Module[] findByAppId_PrevAndNext(
 		long moduleId, long appId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.marketplace.model.Module> orderByComparator)
 		throws com.liferay.marketplace.NoSuchModuleException {
 		return getPersistence()
 				   .findByAppId_PrevAndNext(moduleId, appId, orderByComparator);
@@ -424,7 +424,7 @@ public class ModuleUtil {
 	*/
 	public static java.util.List<com.liferay.marketplace.model.Module> findByContextName(
 		java.lang.String contextName, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.marketplace.model.Module> orderByComparator) {
 		return getPersistence()
 				   .findByContextName(contextName, start, end, orderByComparator);
 	}
@@ -439,7 +439,7 @@ public class ModuleUtil {
 	*/
 	public static com.liferay.marketplace.model.Module findByContextName_First(
 		java.lang.String contextName,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.marketplace.model.Module> orderByComparator)
 		throws com.liferay.marketplace.NoSuchModuleException {
 		return getPersistence()
 				   .findByContextName_First(contextName, orderByComparator);
@@ -454,7 +454,7 @@ public class ModuleUtil {
 	*/
 	public static com.liferay.marketplace.model.Module fetchByContextName_First(
 		java.lang.String contextName,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.marketplace.model.Module> orderByComparator) {
 		return getPersistence()
 				   .fetchByContextName_First(contextName, orderByComparator);
 	}
@@ -469,7 +469,7 @@ public class ModuleUtil {
 	*/
 	public static com.liferay.marketplace.model.Module findByContextName_Last(
 		java.lang.String contextName,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.marketplace.model.Module> orderByComparator)
 		throws com.liferay.marketplace.NoSuchModuleException {
 		return getPersistence()
 				   .findByContextName_Last(contextName, orderByComparator);
@@ -484,7 +484,7 @@ public class ModuleUtil {
 	*/
 	public static com.liferay.marketplace.model.Module fetchByContextName_Last(
 		java.lang.String contextName,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.marketplace.model.Module> orderByComparator) {
 		return getPersistence()
 				   .fetchByContextName_Last(contextName, orderByComparator);
 	}
@@ -500,7 +500,7 @@ public class ModuleUtil {
 	*/
 	public static com.liferay.marketplace.model.Module[] findByContextName_PrevAndNext(
 		long moduleId, java.lang.String contextName,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.marketplace.model.Module> orderByComparator)
 		throws com.liferay.marketplace.NoSuchModuleException {
 		return getPersistence()
 				   .findByContextName_PrevAndNext(moduleId, contextName,
@@ -702,7 +702,7 @@ public class ModuleUtil {
 	*/
 	public static java.util.List<com.liferay.marketplace.model.Module> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.marketplace.model.Module> orderByComparator) {
 		return getPersistence().findAll(start, end, orderByComparator);
 	}
 

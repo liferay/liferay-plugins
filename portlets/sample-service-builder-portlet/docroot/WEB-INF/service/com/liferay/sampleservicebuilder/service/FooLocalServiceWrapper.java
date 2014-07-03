@@ -58,12 +58,10 @@ public class FooLocalServiceWrapper implements FooLocalService,
 	* @param fooId the primary key of the foo
 	* @return the foo that was removed
 	* @throws PortalException if a foo with the primary key could not be found
-	* @throws SystemException
 	*/
 	@Override
 	public com.liferay.sampleservicebuilder.model.Foo deleteFoo(long fooId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _fooLocalService.deleteFoo(fooId);
 	}
 
@@ -72,12 +70,10 @@ public class FooLocalServiceWrapper implements FooLocalService,
 	*
 	* @param foo the foo
 	* @return the foo that was removed
-	* @throws SystemException
 	*/
 	@Override
 	public com.liferay.sampleservicebuilder.model.Foo deleteFoo(
-		com.liferay.sampleservicebuilder.model.Foo foo)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.sampleservicebuilder.model.Foo foo) {
 		return _fooLocalService.deleteFoo(foo);
 	}
 
@@ -93,8 +89,7 @@ public class FooLocalServiceWrapper implements FooLocalService,
 	* @return the matching rows
 	*/
 	@Override
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
 		return _fooLocalService.dynamicQuery(dynamicQuery);
 	}
@@ -112,8 +107,7 @@ public class FooLocalServiceWrapper implements FooLocalService,
 	* @return the range of matching rows
 	*/
 	@Override
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) {
 		return _fooLocalService.dynamicQuery(dynamicQuery, start, end);
@@ -133,11 +127,10 @@ public class FooLocalServiceWrapper implements FooLocalService,
 	* @return the ordered range of matching rows
 	*/
 	@Override
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<T> orderByComparator) {
 		return _fooLocalService.dynamicQuery(dynamicQuery, start, end,
 			orderByComparator);
 	}
@@ -340,23 +333,20 @@ public class FooLocalServiceWrapper implements FooLocalService,
 	public void addFoo(java.lang.String field1, boolean field2, int field3,
 		java.util.Date field4, java.lang.String field5,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		_fooLocalService.addFoo(field1, field2, field3, field4, field5,
 			serviceContext);
 	}
 
 	@Override
 	public java.util.List<com.liferay.sampleservicebuilder.model.Foo> getFoos(
-		int start, int end, com.liferay.portal.kernel.util.OrderByComparator obc)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		int start, int end, com.liferay.portal.kernel.util.OrderByComparator obc) {
 		return _fooLocalService.getFoos(start, end, obc);
 	}
 
 	@Override
 	public java.util.List<com.liferay.sampleservicebuilder.model.Foo> getFoos(
-		com.liferay.portal.kernel.util.OrderByComparator obc)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator obc) {
 		return _fooLocalService.getFoos(obc);
 	}
 
@@ -369,8 +359,7 @@ public class FooLocalServiceWrapper implements FooLocalService,
 	public void updateAsset(long userId,
 		com.liferay.sampleservicebuilder.model.Foo foo,
 		long[] assetCategoryIds, java.lang.String[] assetTagNames)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		_fooLocalService.updateAsset(userId, foo, assetCategoryIds,
 			assetTagNames);
 	}
@@ -379,8 +368,7 @@ public class FooLocalServiceWrapper implements FooLocalService,
 	public void updateFoo(long fooId, java.lang.String field1, boolean field2,
 		int field3, java.util.Date field4, java.lang.String field5,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		_fooLocalService.updateFoo(fooId, field1, field2, field3, field4,
 			field5, serviceContext);
 	}

@@ -137,8 +137,7 @@ public abstract class MicroblogsEntryLocalServiceBaseImpl
 	 * @return the matching rows
 	 */
 	@Override
-	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery) {
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery) {
 		return microblogsEntryPersistence.findWithDynamicQuery(dynamicQuery);
 	}
 
@@ -155,8 +154,8 @@ public abstract class MicroblogsEntryLocalServiceBaseImpl
 	 * @return the range of matching rows
 	 */
 	@Override
-	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end) {
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
+		int end) {
 		return microblogsEntryPersistence.findWithDynamicQuery(dynamicQuery,
 			start, end);
 	}
@@ -175,9 +174,8 @@ public abstract class MicroblogsEntryLocalServiceBaseImpl
 	 * @return the ordered range of matching rows
 	 */
 	@Override
-	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end,
-		OrderByComparator orderByComparator) {
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
+		int end, OrderByComparator<T> orderByComparator) {
 		return microblogsEntryPersistence.findWithDynamicQuery(dynamicQuery,
 			start, end, orderByComparator);
 	}

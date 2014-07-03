@@ -76,7 +76,7 @@ public interface BBBMeetingPersistence extends BasePersistence<BBBMeeting> {
 	*/
 	public java.util.List<com.liferay.bbb.model.BBBMeeting> findByGroupId(
 		long groupId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.bbb.model.BBBMeeting> orderByComparator);
 
 	/**
 	* Returns the first b b b meeting in the ordered set where groupId = &#63;.
@@ -87,7 +87,7 @@ public interface BBBMeetingPersistence extends BasePersistence<BBBMeeting> {
 	* @throws com.liferay.bbb.NoSuchMeetingException if a matching b b b meeting could not be found
 	*/
 	public com.liferay.bbb.model.BBBMeeting findByGroupId_First(long groupId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.bbb.model.BBBMeeting> orderByComparator)
 		throws com.liferay.bbb.NoSuchMeetingException;
 
 	/**
@@ -98,7 +98,7 @@ public interface BBBMeetingPersistence extends BasePersistence<BBBMeeting> {
 	* @return the first matching b b b meeting, or <code>null</code> if a matching b b b meeting could not be found
 	*/
 	public com.liferay.bbb.model.BBBMeeting fetchByGroupId_First(long groupId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.bbb.model.BBBMeeting> orderByComparator);
 
 	/**
 	* Returns the last b b b meeting in the ordered set where groupId = &#63;.
@@ -109,7 +109,7 @@ public interface BBBMeetingPersistence extends BasePersistence<BBBMeeting> {
 	* @throws com.liferay.bbb.NoSuchMeetingException if a matching b b b meeting could not be found
 	*/
 	public com.liferay.bbb.model.BBBMeeting findByGroupId_Last(long groupId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.bbb.model.BBBMeeting> orderByComparator)
 		throws com.liferay.bbb.NoSuchMeetingException;
 
 	/**
@@ -120,7 +120,7 @@ public interface BBBMeetingPersistence extends BasePersistence<BBBMeeting> {
 	* @return the last matching b b b meeting, or <code>null</code> if a matching b b b meeting could not be found
 	*/
 	public com.liferay.bbb.model.BBBMeeting fetchByGroupId_Last(long groupId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.bbb.model.BBBMeeting> orderByComparator);
 
 	/**
 	* Returns the b b b meetings before and after the current b b b meeting in the ordered set where groupId = &#63;.
@@ -133,7 +133,7 @@ public interface BBBMeetingPersistence extends BasePersistence<BBBMeeting> {
 	*/
 	public com.liferay.bbb.model.BBBMeeting[] findByGroupId_PrevAndNext(
 		long bbbMeetingId, long groupId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.bbb.model.BBBMeeting> orderByComparator)
 		throws com.liferay.bbb.NoSuchMeetingException;
 
 	/**
@@ -175,7 +175,7 @@ public interface BBBMeetingPersistence extends BasePersistence<BBBMeeting> {
 	*/
 	public java.util.List<com.liferay.bbb.model.BBBMeeting> filterFindByGroupId(
 		long groupId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.bbb.model.BBBMeeting> orderByComparator);
 
 	/**
 	* Returns the b b b meetings before and after the current b b b meeting in the ordered set of b b b meetings that the user has permission to view where groupId = &#63;.
@@ -188,7 +188,7 @@ public interface BBBMeetingPersistence extends BasePersistence<BBBMeeting> {
 	*/
 	public com.liferay.bbb.model.BBBMeeting[] filterFindByGroupId_PrevAndNext(
 		long bbbMeetingId, long groupId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.bbb.model.BBBMeeting> orderByComparator)
 		throws com.liferay.bbb.NoSuchMeetingException;
 
 	/**
@@ -253,7 +253,7 @@ public interface BBBMeetingPersistence extends BasePersistence<BBBMeeting> {
 	*/
 	public java.util.List<com.liferay.bbb.model.BBBMeeting> findByBbbServerId(
 		long bbbServerId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.bbb.model.BBBMeeting> orderByComparator);
 
 	/**
 	* Returns the first b b b meeting in the ordered set where bbbServerId = &#63;.
@@ -265,7 +265,7 @@ public interface BBBMeetingPersistence extends BasePersistence<BBBMeeting> {
 	*/
 	public com.liferay.bbb.model.BBBMeeting findByBbbServerId_First(
 		long bbbServerId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.bbb.model.BBBMeeting> orderByComparator)
 		throws com.liferay.bbb.NoSuchMeetingException;
 
 	/**
@@ -277,7 +277,7 @@ public interface BBBMeetingPersistence extends BasePersistence<BBBMeeting> {
 	*/
 	public com.liferay.bbb.model.BBBMeeting fetchByBbbServerId_First(
 		long bbbServerId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.bbb.model.BBBMeeting> orderByComparator);
 
 	/**
 	* Returns the last b b b meeting in the ordered set where bbbServerId = &#63;.
@@ -289,7 +289,7 @@ public interface BBBMeetingPersistence extends BasePersistence<BBBMeeting> {
 	*/
 	public com.liferay.bbb.model.BBBMeeting findByBbbServerId_Last(
 		long bbbServerId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.bbb.model.BBBMeeting> orderByComparator)
 		throws com.liferay.bbb.NoSuchMeetingException;
 
 	/**
@@ -301,7 +301,7 @@ public interface BBBMeetingPersistence extends BasePersistence<BBBMeeting> {
 	*/
 	public com.liferay.bbb.model.BBBMeeting fetchByBbbServerId_Last(
 		long bbbServerId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.bbb.model.BBBMeeting> orderByComparator);
 
 	/**
 	* Returns the b b b meetings before and after the current b b b meeting in the ordered set where bbbServerId = &#63;.
@@ -314,7 +314,7 @@ public interface BBBMeetingPersistence extends BasePersistence<BBBMeeting> {
 	*/
 	public com.liferay.bbb.model.BBBMeeting[] findByBbbServerId_PrevAndNext(
 		long bbbMeetingId, long bbbServerId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.bbb.model.BBBMeeting> orderByComparator)
 		throws com.liferay.bbb.NoSuchMeetingException;
 
 	/**
@@ -371,7 +371,7 @@ public interface BBBMeetingPersistence extends BasePersistence<BBBMeeting> {
 	*/
 	public java.util.List<com.liferay.bbb.model.BBBMeeting> findByStatus(
 		int status, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.bbb.model.BBBMeeting> orderByComparator);
 
 	/**
 	* Returns the first b b b meeting in the ordered set where status = &#63;.
@@ -382,7 +382,7 @@ public interface BBBMeetingPersistence extends BasePersistence<BBBMeeting> {
 	* @throws com.liferay.bbb.NoSuchMeetingException if a matching b b b meeting could not be found
 	*/
 	public com.liferay.bbb.model.BBBMeeting findByStatus_First(int status,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.bbb.model.BBBMeeting> orderByComparator)
 		throws com.liferay.bbb.NoSuchMeetingException;
 
 	/**
@@ -393,7 +393,7 @@ public interface BBBMeetingPersistence extends BasePersistence<BBBMeeting> {
 	* @return the first matching b b b meeting, or <code>null</code> if a matching b b b meeting could not be found
 	*/
 	public com.liferay.bbb.model.BBBMeeting fetchByStatus_First(int status,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.bbb.model.BBBMeeting> orderByComparator);
 
 	/**
 	* Returns the last b b b meeting in the ordered set where status = &#63;.
@@ -404,7 +404,7 @@ public interface BBBMeetingPersistence extends BasePersistence<BBBMeeting> {
 	* @throws com.liferay.bbb.NoSuchMeetingException if a matching b b b meeting could not be found
 	*/
 	public com.liferay.bbb.model.BBBMeeting findByStatus_Last(int status,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.bbb.model.BBBMeeting> orderByComparator)
 		throws com.liferay.bbb.NoSuchMeetingException;
 
 	/**
@@ -415,7 +415,7 @@ public interface BBBMeetingPersistence extends BasePersistence<BBBMeeting> {
 	* @return the last matching b b b meeting, or <code>null</code> if a matching b b b meeting could not be found
 	*/
 	public com.liferay.bbb.model.BBBMeeting fetchByStatus_Last(int status,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.bbb.model.BBBMeeting> orderByComparator);
 
 	/**
 	* Returns the b b b meetings before and after the current b b b meeting in the ordered set where status = &#63;.
@@ -428,7 +428,7 @@ public interface BBBMeetingPersistence extends BasePersistence<BBBMeeting> {
 	*/
 	public com.liferay.bbb.model.BBBMeeting[] findByStatus_PrevAndNext(
 		long bbbMeetingId, int status,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.bbb.model.BBBMeeting> orderByComparator)
 		throws com.liferay.bbb.NoSuchMeetingException;
 
 	/**
@@ -488,7 +488,7 @@ public interface BBBMeetingPersistence extends BasePersistence<BBBMeeting> {
 	*/
 	public java.util.List<com.liferay.bbb.model.BBBMeeting> findByBSI_S(
 		long bbbServerId, int status, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.bbb.model.BBBMeeting> orderByComparator);
 
 	/**
 	* Returns the first b b b meeting in the ordered set where bbbServerId = &#63; and status = &#63;.
@@ -501,7 +501,7 @@ public interface BBBMeetingPersistence extends BasePersistence<BBBMeeting> {
 	*/
 	public com.liferay.bbb.model.BBBMeeting findByBSI_S_First(
 		long bbbServerId, int status,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.bbb.model.BBBMeeting> orderByComparator)
 		throws com.liferay.bbb.NoSuchMeetingException;
 
 	/**
@@ -514,7 +514,7 @@ public interface BBBMeetingPersistence extends BasePersistence<BBBMeeting> {
 	*/
 	public com.liferay.bbb.model.BBBMeeting fetchByBSI_S_First(
 		long bbbServerId, int status,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.bbb.model.BBBMeeting> orderByComparator);
 
 	/**
 	* Returns the last b b b meeting in the ordered set where bbbServerId = &#63; and status = &#63;.
@@ -527,7 +527,7 @@ public interface BBBMeetingPersistence extends BasePersistence<BBBMeeting> {
 	*/
 	public com.liferay.bbb.model.BBBMeeting findByBSI_S_Last(long bbbServerId,
 		int status,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.bbb.model.BBBMeeting> orderByComparator)
 		throws com.liferay.bbb.NoSuchMeetingException;
 
 	/**
@@ -540,7 +540,7 @@ public interface BBBMeetingPersistence extends BasePersistence<BBBMeeting> {
 	*/
 	public com.liferay.bbb.model.BBBMeeting fetchByBSI_S_Last(
 		long bbbServerId, int status,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.bbb.model.BBBMeeting> orderByComparator);
 
 	/**
 	* Returns the b b b meetings before and after the current b b b meeting in the ordered set where bbbServerId = &#63; and status = &#63;.
@@ -554,7 +554,7 @@ public interface BBBMeetingPersistence extends BasePersistence<BBBMeeting> {
 	*/
 	public com.liferay.bbb.model.BBBMeeting[] findByBSI_S_PrevAndNext(
 		long bbbMeetingId, long bbbServerId, int status,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.bbb.model.BBBMeeting> orderByComparator)
 		throws com.liferay.bbb.NoSuchMeetingException;
 
 	/**
@@ -667,7 +667,7 @@ public interface BBBMeetingPersistence extends BasePersistence<BBBMeeting> {
 	*/
 	public java.util.List<com.liferay.bbb.model.BBBMeeting> findAll(int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.bbb.model.BBBMeeting> orderByComparator);
 
 	/**
 	* Removes all the b b b meetings from the database.

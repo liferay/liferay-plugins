@@ -97,8 +97,7 @@ public class PushNotificationsDeviceServiceClp
 	@Override
 	public com.liferay.pushnotifications.model.PushNotificationsDevice addPushNotificationsDevice(
 		java.lang.String token, java.lang.String platform)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
 		try {
@@ -117,10 +116,6 @@ public class PushNotificationsDeviceServiceClp
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
 			}
 
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
 			}
@@ -136,8 +131,7 @@ public class PushNotificationsDeviceServiceClp
 	@Override
 	public com.liferay.pushnotifications.model.PushNotificationsDevice deletePushNotificationsDevice(
 		java.lang.String token)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
 		try {
@@ -150,10 +144,6 @@ public class PushNotificationsDeviceServiceClp
 
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
 
 			if (t instanceof RuntimeException) {

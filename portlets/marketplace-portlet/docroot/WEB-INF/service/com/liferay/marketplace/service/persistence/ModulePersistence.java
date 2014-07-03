@@ -76,7 +76,7 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	*/
 	public java.util.List<com.liferay.marketplace.model.Module> findByUuid(
 		java.lang.String uuid, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.marketplace.model.Module> orderByComparator);
 
 	/**
 	* Returns the first module in the ordered set where uuid = &#63;.
@@ -88,7 +88,7 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	*/
 	public com.liferay.marketplace.model.Module findByUuid_First(
 		java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.marketplace.model.Module> orderByComparator)
 		throws com.liferay.marketplace.NoSuchModuleException;
 
 	/**
@@ -100,7 +100,7 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	*/
 	public com.liferay.marketplace.model.Module fetchByUuid_First(
 		java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.marketplace.model.Module> orderByComparator);
 
 	/**
 	* Returns the last module in the ordered set where uuid = &#63;.
@@ -112,7 +112,7 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	*/
 	public com.liferay.marketplace.model.Module findByUuid_Last(
 		java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.marketplace.model.Module> orderByComparator)
 		throws com.liferay.marketplace.NoSuchModuleException;
 
 	/**
@@ -124,7 +124,7 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	*/
 	public com.liferay.marketplace.model.Module fetchByUuid_Last(
 		java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.marketplace.model.Module> orderByComparator);
 
 	/**
 	* Returns the modules before and after the current module in the ordered set where uuid = &#63;.
@@ -137,7 +137,7 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	*/
 	public com.liferay.marketplace.model.Module[] findByUuid_PrevAndNext(
 		long moduleId, java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.marketplace.model.Module> orderByComparator)
 		throws com.liferay.marketplace.NoSuchModuleException;
 
 	/**
@@ -194,7 +194,7 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	*/
 	public java.util.List<com.liferay.marketplace.model.Module> findByAppId(
 		long appId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.marketplace.model.Module> orderByComparator);
 
 	/**
 	* Returns the first module in the ordered set where appId = &#63;.
@@ -205,7 +205,7 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	* @throws com.liferay.marketplace.NoSuchModuleException if a matching module could not be found
 	*/
 	public com.liferay.marketplace.model.Module findByAppId_First(long appId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.marketplace.model.Module> orderByComparator)
 		throws com.liferay.marketplace.NoSuchModuleException;
 
 	/**
@@ -216,7 +216,7 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	* @return the first matching module, or <code>null</code> if a matching module could not be found
 	*/
 	public com.liferay.marketplace.model.Module fetchByAppId_First(long appId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.marketplace.model.Module> orderByComparator);
 
 	/**
 	* Returns the last module in the ordered set where appId = &#63;.
@@ -227,7 +227,7 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	* @throws com.liferay.marketplace.NoSuchModuleException if a matching module could not be found
 	*/
 	public com.liferay.marketplace.model.Module findByAppId_Last(long appId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.marketplace.model.Module> orderByComparator)
 		throws com.liferay.marketplace.NoSuchModuleException;
 
 	/**
@@ -238,7 +238,7 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	* @return the last matching module, or <code>null</code> if a matching module could not be found
 	*/
 	public com.liferay.marketplace.model.Module fetchByAppId_Last(long appId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.marketplace.model.Module> orderByComparator);
 
 	/**
 	* Returns the modules before and after the current module in the ordered set where appId = &#63;.
@@ -251,7 +251,7 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	*/
 	public com.liferay.marketplace.model.Module[] findByAppId_PrevAndNext(
 		long moduleId, long appId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.marketplace.model.Module> orderByComparator)
 		throws com.liferay.marketplace.NoSuchModuleException;
 
 	/**
@@ -308,7 +308,7 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	*/
 	public java.util.List<com.liferay.marketplace.model.Module> findByContextName(
 		java.lang.String contextName, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.marketplace.model.Module> orderByComparator);
 
 	/**
 	* Returns the first module in the ordered set where contextName = &#63;.
@@ -320,7 +320,7 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	*/
 	public com.liferay.marketplace.model.Module findByContextName_First(
 		java.lang.String contextName,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.marketplace.model.Module> orderByComparator)
 		throws com.liferay.marketplace.NoSuchModuleException;
 
 	/**
@@ -332,7 +332,7 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	*/
 	public com.liferay.marketplace.model.Module fetchByContextName_First(
 		java.lang.String contextName,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.marketplace.model.Module> orderByComparator);
 
 	/**
 	* Returns the last module in the ordered set where contextName = &#63;.
@@ -344,7 +344,7 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	*/
 	public com.liferay.marketplace.model.Module findByContextName_Last(
 		java.lang.String contextName,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.marketplace.model.Module> orderByComparator)
 		throws com.liferay.marketplace.NoSuchModuleException;
 
 	/**
@@ -356,7 +356,7 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	*/
 	public com.liferay.marketplace.model.Module fetchByContextName_Last(
 		java.lang.String contextName,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.marketplace.model.Module> orderByComparator);
 
 	/**
 	* Returns the modules before and after the current module in the ordered set where contextName = &#63;.
@@ -369,7 +369,7 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	*/
 	public com.liferay.marketplace.model.Module[] findByContextName_PrevAndNext(
 		long moduleId, java.lang.String contextName,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.marketplace.model.Module> orderByComparator)
 		throws com.liferay.marketplace.NoSuchModuleException;
 
 	/**
@@ -533,7 +533,7 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	*/
 	public java.util.List<com.liferay.marketplace.model.Module> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.marketplace.model.Module> orderByComparator);
 
 	/**
 	* Removes all the modules from the database.

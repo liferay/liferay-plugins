@@ -21,7 +21,7 @@ import com.liferay.so.service.MemberRequestLocalServiceUtil;
 
 /**
  * @author Brian Wing Shun Chan
- * @deprecated As of 7.0.0, replaced by {@link MemberRequestLocalServiceUtil#getExportActionableDynamicQuery()}
+ * @deprecated As of 7.0.0, replaced by {@link MemberRequestLocalServiceUtil#getActionableDynamicQuery()}
  * @generated
  */
 @Deprecated

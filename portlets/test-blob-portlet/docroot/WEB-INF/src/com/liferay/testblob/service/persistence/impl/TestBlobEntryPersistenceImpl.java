@@ -154,7 +154,7 @@ public class TestBlobEntryPersistenceImpl extends BasePersistenceImpl<TestBlobEn
 	 */
 	@Override
 	public List<TestBlobEntry> findByUuid(String uuid, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<TestBlobEntry> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -274,7 +274,8 @@ public class TestBlobEntryPersistenceImpl extends BasePersistenceImpl<TestBlobEn
 	 */
 	@Override
 	public TestBlobEntry findByUuid_First(String uuid,
-		OrderByComparator orderByComparator) throws NoSuchEntryException {
+		OrderByComparator<TestBlobEntry> orderByComparator)
+		throws NoSuchEntryException {
 		TestBlobEntry testBlobEntry = fetchByUuid_First(uuid, orderByComparator);
 
 		if (testBlobEntry != null) {
@@ -302,7 +303,7 @@ public class TestBlobEntryPersistenceImpl extends BasePersistenceImpl<TestBlobEn
 	 */
 	@Override
 	public TestBlobEntry fetchByUuid_First(String uuid,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<TestBlobEntry> orderByComparator) {
 		List<TestBlobEntry> list = findByUuid(uuid, 0, 1, orderByComparator);
 
 		if (!list.isEmpty()) {
@@ -322,7 +323,8 @@ public class TestBlobEntryPersistenceImpl extends BasePersistenceImpl<TestBlobEn
 	 */
 	@Override
 	public TestBlobEntry findByUuid_Last(String uuid,
-		OrderByComparator orderByComparator) throws NoSuchEntryException {
+		OrderByComparator<TestBlobEntry> orderByComparator)
+		throws NoSuchEntryException {
 		TestBlobEntry testBlobEntry = fetchByUuid_Last(uuid, orderByComparator);
 
 		if (testBlobEntry != null) {
@@ -350,7 +352,7 @@ public class TestBlobEntryPersistenceImpl extends BasePersistenceImpl<TestBlobEn
 	 */
 	@Override
 	public TestBlobEntry fetchByUuid_Last(String uuid,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<TestBlobEntry> orderByComparator) {
 		int count = countByUuid(uuid);
 
 		if (count == 0) {
@@ -378,7 +380,7 @@ public class TestBlobEntryPersistenceImpl extends BasePersistenceImpl<TestBlobEn
 	 */
 	@Override
 	public TestBlobEntry[] findByUuid_PrevAndNext(long testBlobEntryId,
-		String uuid, OrderByComparator orderByComparator)
+		String uuid, OrderByComparator<TestBlobEntry> orderByComparator)
 		throws NoSuchEntryException {
 		TestBlobEntry testBlobEntry = findByPrimaryKey(testBlobEntryId);
 
@@ -409,7 +411,7 @@ public class TestBlobEntryPersistenceImpl extends BasePersistenceImpl<TestBlobEn
 
 	protected TestBlobEntry getByUuid_PrevAndNext(Session session,
 		TestBlobEntry testBlobEntry, String uuid,
-		OrderByComparator orderByComparator, boolean previous) {
+		OrderByComparator<TestBlobEntry> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -1115,7 +1117,7 @@ public class TestBlobEntryPersistenceImpl extends BasePersistenceImpl<TestBlobEn
 	 */
 	@Override
 	public List<TestBlobEntry> findAll(int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<TestBlobEntry> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;

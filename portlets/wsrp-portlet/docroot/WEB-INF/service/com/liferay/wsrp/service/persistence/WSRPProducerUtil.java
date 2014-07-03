@@ -85,7 +85,7 @@ public class WSRPProducerUtil {
 	 */
 	public static List<WSRPProducer> findWithDynamicQuery(
 		DynamicQuery dynamicQuery, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<WSRPProducer> orderByComparator) {
 		return getPersistence()
 				   .findWithDynamicQuery(dynamicQuery, start, end,
 			orderByComparator);
@@ -149,7 +149,7 @@ public class WSRPProducerUtil {
 	*/
 	public static java.util.List<com.liferay.wsrp.model.WSRPProducer> findByUuid(
 		java.lang.String uuid, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.wsrp.model.WSRPProducer> orderByComparator) {
 		return getPersistence().findByUuid(uuid, start, end, orderByComparator);
 	}
 
@@ -163,7 +163,7 @@ public class WSRPProducerUtil {
 	*/
 	public static com.liferay.wsrp.model.WSRPProducer findByUuid_First(
 		java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.wsrp.model.WSRPProducer> orderByComparator)
 		throws com.liferay.wsrp.NoSuchProducerException {
 		return getPersistence().findByUuid_First(uuid, orderByComparator);
 	}
@@ -177,7 +177,7 @@ public class WSRPProducerUtil {
 	*/
 	public static com.liferay.wsrp.model.WSRPProducer fetchByUuid_First(
 		java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.wsrp.model.WSRPProducer> orderByComparator) {
 		return getPersistence().fetchByUuid_First(uuid, orderByComparator);
 	}
 
@@ -191,7 +191,7 @@ public class WSRPProducerUtil {
 	*/
 	public static com.liferay.wsrp.model.WSRPProducer findByUuid_Last(
 		java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.wsrp.model.WSRPProducer> orderByComparator)
 		throws com.liferay.wsrp.NoSuchProducerException {
 		return getPersistence().findByUuid_Last(uuid, orderByComparator);
 	}
@@ -205,7 +205,7 @@ public class WSRPProducerUtil {
 	*/
 	public static com.liferay.wsrp.model.WSRPProducer fetchByUuid_Last(
 		java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.wsrp.model.WSRPProducer> orderByComparator) {
 		return getPersistence().fetchByUuid_Last(uuid, orderByComparator);
 	}
 
@@ -220,7 +220,7 @@ public class WSRPProducerUtil {
 	*/
 	public static com.liferay.wsrp.model.WSRPProducer[] findByUuid_PrevAndNext(
 		long wsrpProducerId, java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.wsrp.model.WSRPProducer> orderByComparator)
 		throws com.liferay.wsrp.NoSuchProducerException {
 		return getPersistence()
 				   .findByUuid_PrevAndNext(wsrpProducerId, uuid,
@@ -355,7 +355,7 @@ public class WSRPProducerUtil {
 	*/
 	public static java.util.List<com.liferay.wsrp.model.WSRPProducer> findByUuid_C(
 		java.lang.String uuid, long companyId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.wsrp.model.WSRPProducer> orderByComparator) {
 		return getPersistence()
 				   .findByUuid_C(uuid, companyId, start, end, orderByComparator);
 	}
@@ -371,7 +371,7 @@ public class WSRPProducerUtil {
 	*/
 	public static com.liferay.wsrp.model.WSRPProducer findByUuid_C_First(
 		java.lang.String uuid, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.wsrp.model.WSRPProducer> orderByComparator)
 		throws com.liferay.wsrp.NoSuchProducerException {
 		return getPersistence()
 				   .findByUuid_C_First(uuid, companyId, orderByComparator);
@@ -387,7 +387,7 @@ public class WSRPProducerUtil {
 	*/
 	public static com.liferay.wsrp.model.WSRPProducer fetchByUuid_C_First(
 		java.lang.String uuid, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.wsrp.model.WSRPProducer> orderByComparator) {
 		return getPersistence()
 				   .fetchByUuid_C_First(uuid, companyId, orderByComparator);
 	}
@@ -403,7 +403,7 @@ public class WSRPProducerUtil {
 	*/
 	public static com.liferay.wsrp.model.WSRPProducer findByUuid_C_Last(
 		java.lang.String uuid, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.wsrp.model.WSRPProducer> orderByComparator)
 		throws com.liferay.wsrp.NoSuchProducerException {
 		return getPersistence()
 				   .findByUuid_C_Last(uuid, companyId, orderByComparator);
@@ -419,7 +419,7 @@ public class WSRPProducerUtil {
 	*/
 	public static com.liferay.wsrp.model.WSRPProducer fetchByUuid_C_Last(
 		java.lang.String uuid, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.wsrp.model.WSRPProducer> orderByComparator) {
 		return getPersistence()
 				   .fetchByUuid_C_Last(uuid, companyId, orderByComparator);
 	}
@@ -436,7 +436,7 @@ public class WSRPProducerUtil {
 	*/
 	public static com.liferay.wsrp.model.WSRPProducer[] findByUuid_C_PrevAndNext(
 		long wsrpProducerId, java.lang.String uuid, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.wsrp.model.WSRPProducer> orderByComparator)
 		throws com.liferay.wsrp.NoSuchProducerException {
 		return getPersistence()
 				   .findByUuid_C_PrevAndNext(wsrpProducerId, uuid, companyId,
@@ -507,7 +507,7 @@ public class WSRPProducerUtil {
 	*/
 	public static java.util.List<com.liferay.wsrp.model.WSRPProducer> findByCompanyId(
 		long companyId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.wsrp.model.WSRPProducer> orderByComparator) {
 		return getPersistence()
 				   .findByCompanyId(companyId, start, end, orderByComparator);
 	}
@@ -522,7 +522,7 @@ public class WSRPProducerUtil {
 	*/
 	public static com.liferay.wsrp.model.WSRPProducer findByCompanyId_First(
 		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.wsrp.model.WSRPProducer> orderByComparator)
 		throws com.liferay.wsrp.NoSuchProducerException {
 		return getPersistence()
 				   .findByCompanyId_First(companyId, orderByComparator);
@@ -537,7 +537,7 @@ public class WSRPProducerUtil {
 	*/
 	public static com.liferay.wsrp.model.WSRPProducer fetchByCompanyId_First(
 		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.wsrp.model.WSRPProducer> orderByComparator) {
 		return getPersistence()
 				   .fetchByCompanyId_First(companyId, orderByComparator);
 	}
@@ -552,7 +552,7 @@ public class WSRPProducerUtil {
 	*/
 	public static com.liferay.wsrp.model.WSRPProducer findByCompanyId_Last(
 		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.wsrp.model.WSRPProducer> orderByComparator)
 		throws com.liferay.wsrp.NoSuchProducerException {
 		return getPersistence()
 				   .findByCompanyId_Last(companyId, orderByComparator);
@@ -567,7 +567,7 @@ public class WSRPProducerUtil {
 	*/
 	public static com.liferay.wsrp.model.WSRPProducer fetchByCompanyId_Last(
 		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.wsrp.model.WSRPProducer> orderByComparator) {
 		return getPersistence()
 				   .fetchByCompanyId_Last(companyId, orderByComparator);
 	}
@@ -583,7 +583,7 @@ public class WSRPProducerUtil {
 	*/
 	public static com.liferay.wsrp.model.WSRPProducer[] findByCompanyId_PrevAndNext(
 		long wsrpProducerId, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.wsrp.model.WSRPProducer> orderByComparator)
 		throws com.liferay.wsrp.NoSuchProducerException {
 		return getPersistence()
 				   .findByCompanyId_PrevAndNext(wsrpProducerId, companyId,
@@ -724,7 +724,7 @@ public class WSRPProducerUtil {
 	*/
 	public static java.util.List<com.liferay.wsrp.model.WSRPProducer> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.wsrp.model.WSRPProducer> orderByComparator) {
 		return getPersistence().findAll(start, end, orderByComparator);
 	}
 

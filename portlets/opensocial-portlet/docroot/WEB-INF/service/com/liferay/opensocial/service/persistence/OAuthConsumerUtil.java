@@ -85,7 +85,7 @@ public class OAuthConsumerUtil {
 	 */
 	public static List<OAuthConsumer> findWithDynamicQuery(
 		DynamicQuery dynamicQuery, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<OAuthConsumer> orderByComparator) {
 		return getPersistence()
 				   .findWithDynamicQuery(dynamicQuery, start, end,
 			orderByComparator);
@@ -149,7 +149,7 @@ public class OAuthConsumerUtil {
 	*/
 	public static java.util.List<com.liferay.opensocial.model.OAuthConsumer> findByGadgetKey(
 		java.lang.String gadgetKey, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.opensocial.model.OAuthConsumer> orderByComparator) {
 		return getPersistence()
 				   .findByGadgetKey(gadgetKey, start, end, orderByComparator);
 	}
@@ -164,7 +164,7 @@ public class OAuthConsumerUtil {
 	*/
 	public static com.liferay.opensocial.model.OAuthConsumer findByGadgetKey_First(
 		java.lang.String gadgetKey,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.opensocial.model.OAuthConsumer> orderByComparator)
 		throws com.liferay.opensocial.NoSuchOAuthConsumerException {
 		return getPersistence()
 				   .findByGadgetKey_First(gadgetKey, orderByComparator);
@@ -179,7 +179,7 @@ public class OAuthConsumerUtil {
 	*/
 	public static com.liferay.opensocial.model.OAuthConsumer fetchByGadgetKey_First(
 		java.lang.String gadgetKey,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.opensocial.model.OAuthConsumer> orderByComparator) {
 		return getPersistence()
 				   .fetchByGadgetKey_First(gadgetKey, orderByComparator);
 	}
@@ -194,7 +194,7 @@ public class OAuthConsumerUtil {
 	*/
 	public static com.liferay.opensocial.model.OAuthConsumer findByGadgetKey_Last(
 		java.lang.String gadgetKey,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.opensocial.model.OAuthConsumer> orderByComparator)
 		throws com.liferay.opensocial.NoSuchOAuthConsumerException {
 		return getPersistence()
 				   .findByGadgetKey_Last(gadgetKey, orderByComparator);
@@ -209,7 +209,7 @@ public class OAuthConsumerUtil {
 	*/
 	public static com.liferay.opensocial.model.OAuthConsumer fetchByGadgetKey_Last(
 		java.lang.String gadgetKey,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.opensocial.model.OAuthConsumer> orderByComparator) {
 		return getPersistence()
 				   .fetchByGadgetKey_Last(gadgetKey, orderByComparator);
 	}
@@ -225,7 +225,7 @@ public class OAuthConsumerUtil {
 	*/
 	public static com.liferay.opensocial.model.OAuthConsumer[] findByGadgetKey_PrevAndNext(
 		long oAuthConsumerId, java.lang.String gadgetKey,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.opensocial.model.OAuthConsumer> orderByComparator)
 		throws com.liferay.opensocial.NoSuchOAuthConsumerException {
 		return getPersistence()
 				   .findByGadgetKey_PrevAndNext(oAuthConsumerId, gadgetKey,
@@ -434,7 +434,7 @@ public class OAuthConsumerUtil {
 	*/
 	public static java.util.List<com.liferay.opensocial.model.OAuthConsumer> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.opensocial.model.OAuthConsumer> orderByComparator) {
 		return getPersistence().findAll(start, end, orderByComparator);
 	}
 

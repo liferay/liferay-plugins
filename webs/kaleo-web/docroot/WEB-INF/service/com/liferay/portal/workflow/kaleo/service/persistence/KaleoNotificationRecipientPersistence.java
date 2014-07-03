@@ -75,7 +75,7 @@ public interface KaleoNotificationRecipientPersistence extends BasePersistence<K
 	*/
 	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient> findByCompanyId(
 		long companyId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient> orderByComparator);
 
 	/**
 	* Returns the first kaleo notification recipient in the ordered set where companyId = &#63;.
@@ -87,7 +87,7 @@ public interface KaleoNotificationRecipientPersistence extends BasePersistence<K
 	*/
 	public com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient findByCompanyId_First(
 		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient> orderByComparator)
 		throws com.liferay.portal.workflow.kaleo.NoSuchNotificationRecipientException;
 
 	/**
@@ -99,7 +99,7 @@ public interface KaleoNotificationRecipientPersistence extends BasePersistence<K
 	*/
 	public com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient fetchByCompanyId_First(
 		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient> orderByComparator);
 
 	/**
 	* Returns the last kaleo notification recipient in the ordered set where companyId = &#63;.
@@ -111,7 +111,7 @@ public interface KaleoNotificationRecipientPersistence extends BasePersistence<K
 	*/
 	public com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient findByCompanyId_Last(
 		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient> orderByComparator)
 		throws com.liferay.portal.workflow.kaleo.NoSuchNotificationRecipientException;
 
 	/**
@@ -123,7 +123,7 @@ public interface KaleoNotificationRecipientPersistence extends BasePersistence<K
 	*/
 	public com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient fetchByCompanyId_Last(
 		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient> orderByComparator);
 
 	/**
 	* Returns the kaleo notification recipients before and after the current kaleo notification recipient in the ordered set where companyId = &#63;.
@@ -136,7 +136,7 @@ public interface KaleoNotificationRecipientPersistence extends BasePersistence<K
 	*/
 	public com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient[] findByCompanyId_PrevAndNext(
 		long kaleoNotificationRecipientId, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient> orderByComparator)
 		throws com.liferay.portal.workflow.kaleo.NoSuchNotificationRecipientException;
 
 	/**
@@ -193,7 +193,7 @@ public interface KaleoNotificationRecipientPersistence extends BasePersistence<K
 	*/
 	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient> findByKaleoDefinitionId(
 		long kaleoDefinitionId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient> orderByComparator);
 
 	/**
 	* Returns the first kaleo notification recipient in the ordered set where kaleoDefinitionId = &#63;.
@@ -205,7 +205,7 @@ public interface KaleoNotificationRecipientPersistence extends BasePersistence<K
 	*/
 	public com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient findByKaleoDefinitionId_First(
 		long kaleoDefinitionId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient> orderByComparator)
 		throws com.liferay.portal.workflow.kaleo.NoSuchNotificationRecipientException;
 
 	/**
@@ -217,7 +217,7 @@ public interface KaleoNotificationRecipientPersistence extends BasePersistence<K
 	*/
 	public com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient fetchByKaleoDefinitionId_First(
 		long kaleoDefinitionId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient> orderByComparator);
 
 	/**
 	* Returns the last kaleo notification recipient in the ordered set where kaleoDefinitionId = &#63;.
@@ -229,7 +229,7 @@ public interface KaleoNotificationRecipientPersistence extends BasePersistence<K
 	*/
 	public com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient findByKaleoDefinitionId_Last(
 		long kaleoDefinitionId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient> orderByComparator)
 		throws com.liferay.portal.workflow.kaleo.NoSuchNotificationRecipientException;
 
 	/**
@@ -241,7 +241,7 @@ public interface KaleoNotificationRecipientPersistence extends BasePersistence<K
 	*/
 	public com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient fetchByKaleoDefinitionId_Last(
 		long kaleoDefinitionId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient> orderByComparator);
 
 	/**
 	* Returns the kaleo notification recipients before and after the current kaleo notification recipient in the ordered set where kaleoDefinitionId = &#63;.
@@ -254,7 +254,7 @@ public interface KaleoNotificationRecipientPersistence extends BasePersistence<K
 	*/
 	public com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient[] findByKaleoDefinitionId_PrevAndNext(
 		long kaleoNotificationRecipientId, long kaleoDefinitionId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient> orderByComparator)
 		throws com.liferay.portal.workflow.kaleo.NoSuchNotificationRecipientException;
 
 	/**
@@ -311,7 +311,7 @@ public interface KaleoNotificationRecipientPersistence extends BasePersistence<K
 	*/
 	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient> findByKaleoNotificationId(
 		long kaleoNotificationId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient> orderByComparator);
 
 	/**
 	* Returns the first kaleo notification recipient in the ordered set where kaleoNotificationId = &#63;.
@@ -323,7 +323,7 @@ public interface KaleoNotificationRecipientPersistence extends BasePersistence<K
 	*/
 	public com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient findByKaleoNotificationId_First(
 		long kaleoNotificationId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient> orderByComparator)
 		throws com.liferay.portal.workflow.kaleo.NoSuchNotificationRecipientException;
 
 	/**
@@ -335,7 +335,7 @@ public interface KaleoNotificationRecipientPersistence extends BasePersistence<K
 	*/
 	public com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient fetchByKaleoNotificationId_First(
 		long kaleoNotificationId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient> orderByComparator);
 
 	/**
 	* Returns the last kaleo notification recipient in the ordered set where kaleoNotificationId = &#63;.
@@ -347,7 +347,7 @@ public interface KaleoNotificationRecipientPersistence extends BasePersistence<K
 	*/
 	public com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient findByKaleoNotificationId_Last(
 		long kaleoNotificationId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient> orderByComparator)
 		throws com.liferay.portal.workflow.kaleo.NoSuchNotificationRecipientException;
 
 	/**
@@ -359,7 +359,7 @@ public interface KaleoNotificationRecipientPersistence extends BasePersistence<K
 	*/
 	public com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient fetchByKaleoNotificationId_Last(
 		long kaleoNotificationId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient> orderByComparator);
 
 	/**
 	* Returns the kaleo notification recipients before and after the current kaleo notification recipient in the ordered set where kaleoNotificationId = &#63;.
@@ -372,7 +372,7 @@ public interface KaleoNotificationRecipientPersistence extends BasePersistence<K
 	*/
 	public com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient[] findByKaleoNotificationId_PrevAndNext(
 		long kaleoNotificationRecipientId, long kaleoNotificationId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient> orderByComparator)
 		throws com.liferay.portal.workflow.kaleo.NoSuchNotificationRecipientException;
 
 	/**
@@ -488,7 +488,7 @@ public interface KaleoNotificationRecipientPersistence extends BasePersistence<K
 	*/
 	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient> orderByComparator);
 
 	/**
 	* Removes all the kaleo notification recipients from the database.

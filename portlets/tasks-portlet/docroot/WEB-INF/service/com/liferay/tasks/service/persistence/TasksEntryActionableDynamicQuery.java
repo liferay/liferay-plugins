@@ -21,7 +21,7 @@ import com.liferay.tasks.service.TasksEntryLocalServiceUtil;
 
 /**
  * @author Ryan Park
- * @deprecated As of 7.0.0, replaced by {@link TasksEntryLocalServiceUtil#getExportActionableDynamicQuery()}
+ * @deprecated As of 7.0.0, replaced by {@link TasksEntryLocalServiceUtil#getActionableDynamicQuery()}
  * @generated
  */
 @Deprecated

@@ -155,7 +155,7 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 	 */
 	@Override
 	public List<KaleoCondition> findByCompanyId(long companyId, int start,
-		int end, OrderByComparator orderByComparator) {
+		int end, OrderByComparator<KaleoCondition> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -261,7 +261,8 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 	 */
 	@Override
 	public KaleoCondition findByCompanyId_First(long companyId,
-		OrderByComparator orderByComparator) throws NoSuchConditionException {
+		OrderByComparator<KaleoCondition> orderByComparator)
+		throws NoSuchConditionException {
 		KaleoCondition kaleoCondition = fetchByCompanyId_First(companyId,
 				orderByComparator);
 
@@ -290,7 +291,7 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 	 */
 	@Override
 	public KaleoCondition fetchByCompanyId_First(long companyId,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KaleoCondition> orderByComparator) {
 		List<KaleoCondition> list = findByCompanyId(companyId, 0, 1,
 				orderByComparator);
 
@@ -311,7 +312,8 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 	 */
 	@Override
 	public KaleoCondition findByCompanyId_Last(long companyId,
-		OrderByComparator orderByComparator) throws NoSuchConditionException {
+		OrderByComparator<KaleoCondition> orderByComparator)
+		throws NoSuchConditionException {
 		KaleoCondition kaleoCondition = fetchByCompanyId_Last(companyId,
 				orderByComparator);
 
@@ -340,7 +342,7 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 	 */
 	@Override
 	public KaleoCondition fetchByCompanyId_Last(long companyId,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KaleoCondition> orderByComparator) {
 		int count = countByCompanyId(companyId);
 
 		if (count == 0) {
@@ -368,7 +370,7 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 	 */
 	@Override
 	public KaleoCondition[] findByCompanyId_PrevAndNext(long kaleoConditionId,
-		long companyId, OrderByComparator orderByComparator)
+		long companyId, OrderByComparator<KaleoCondition> orderByComparator)
 		throws NoSuchConditionException {
 		KaleoCondition kaleoCondition = findByPrimaryKey(kaleoConditionId);
 
@@ -399,7 +401,7 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 
 	protected KaleoCondition getByCompanyId_PrevAndNext(Session session,
 		KaleoCondition kaleoCondition, long companyId,
-		OrderByComparator orderByComparator, boolean previous) {
+		OrderByComparator<KaleoCondition> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -637,7 +639,7 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 	@Override
 	public List<KaleoCondition> findByKaleoDefinitionId(
 		long kaleoDefinitionId, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KaleoCondition> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -747,7 +749,8 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 	 */
 	@Override
 	public KaleoCondition findByKaleoDefinitionId_First(
-		long kaleoDefinitionId, OrderByComparator orderByComparator)
+		long kaleoDefinitionId,
+		OrderByComparator<KaleoCondition> orderByComparator)
 		throws NoSuchConditionException {
 		KaleoCondition kaleoCondition = fetchByKaleoDefinitionId_First(kaleoDefinitionId,
 				orderByComparator);
@@ -777,7 +780,8 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 	 */
 	@Override
 	public KaleoCondition fetchByKaleoDefinitionId_First(
-		long kaleoDefinitionId, OrderByComparator orderByComparator) {
+		long kaleoDefinitionId,
+		OrderByComparator<KaleoCondition> orderByComparator) {
 		List<KaleoCondition> list = findByKaleoDefinitionId(kaleoDefinitionId,
 				0, 1, orderByComparator);
 
@@ -798,7 +802,8 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 	 */
 	@Override
 	public KaleoCondition findByKaleoDefinitionId_Last(long kaleoDefinitionId,
-		OrderByComparator orderByComparator) throws NoSuchConditionException {
+		OrderByComparator<KaleoCondition> orderByComparator)
+		throws NoSuchConditionException {
 		KaleoCondition kaleoCondition = fetchByKaleoDefinitionId_Last(kaleoDefinitionId,
 				orderByComparator);
 
@@ -827,7 +832,8 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 	 */
 	@Override
 	public KaleoCondition fetchByKaleoDefinitionId_Last(
-		long kaleoDefinitionId, OrderByComparator orderByComparator) {
+		long kaleoDefinitionId,
+		OrderByComparator<KaleoCondition> orderByComparator) {
 		int count = countByKaleoDefinitionId(kaleoDefinitionId);
 
 		if (count == 0) {
@@ -856,7 +862,8 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 	@Override
 	public KaleoCondition[] findByKaleoDefinitionId_PrevAndNext(
 		long kaleoConditionId, long kaleoDefinitionId,
-		OrderByComparator orderByComparator) throws NoSuchConditionException {
+		OrderByComparator<KaleoCondition> orderByComparator)
+		throws NoSuchConditionException {
 		KaleoCondition kaleoCondition = findByPrimaryKey(kaleoConditionId);
 
 		Session session = null;
@@ -886,7 +893,7 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 
 	protected KaleoCondition getByKaleoDefinitionId_PrevAndNext(
 		Session session, KaleoCondition kaleoCondition, long kaleoDefinitionId,
-		OrderByComparator orderByComparator, boolean previous) {
+		OrderByComparator<KaleoCondition> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -1845,7 +1852,7 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 	 */
 	@Override
 	public List<KaleoCondition> findAll(int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KaleoCondition> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;

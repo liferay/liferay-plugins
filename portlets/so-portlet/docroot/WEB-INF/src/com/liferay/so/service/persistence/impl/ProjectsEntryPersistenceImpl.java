@@ -154,7 +154,7 @@ public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl<ProjectsEn
 	 */
 	@Override
 	public List<ProjectsEntry> findByUserId(long userId, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<ProjectsEntry> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -260,7 +260,7 @@ public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl<ProjectsEn
 	 */
 	@Override
 	public ProjectsEntry findByUserId_First(long userId,
-		OrderByComparator orderByComparator)
+		OrderByComparator<ProjectsEntry> orderByComparator)
 		throws NoSuchProjectsEntryException {
 		ProjectsEntry projectsEntry = fetchByUserId_First(userId,
 				orderByComparator);
@@ -290,7 +290,7 @@ public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl<ProjectsEn
 	 */
 	@Override
 	public ProjectsEntry fetchByUserId_First(long userId,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<ProjectsEntry> orderByComparator) {
 		List<ProjectsEntry> list = findByUserId(userId, 0, 1, orderByComparator);
 
 		if (!list.isEmpty()) {
@@ -310,7 +310,7 @@ public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl<ProjectsEn
 	 */
 	@Override
 	public ProjectsEntry findByUserId_Last(long userId,
-		OrderByComparator orderByComparator)
+		OrderByComparator<ProjectsEntry> orderByComparator)
 		throws NoSuchProjectsEntryException {
 		ProjectsEntry projectsEntry = fetchByUserId_Last(userId,
 				orderByComparator);
@@ -340,7 +340,7 @@ public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl<ProjectsEn
 	 */
 	@Override
 	public ProjectsEntry fetchByUserId_Last(long userId,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<ProjectsEntry> orderByComparator) {
 		int count = countByUserId(userId);
 
 		if (count == 0) {
@@ -368,7 +368,7 @@ public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl<ProjectsEn
 	 */
 	@Override
 	public ProjectsEntry[] findByUserId_PrevAndNext(long projectsEntryId,
-		long userId, OrderByComparator orderByComparator)
+		long userId, OrderByComparator<ProjectsEntry> orderByComparator)
 		throws NoSuchProjectsEntryException {
 		ProjectsEntry projectsEntry = findByPrimaryKey(projectsEntryId);
 
@@ -399,7 +399,7 @@ public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl<ProjectsEn
 
 	protected ProjectsEntry getByUserId_PrevAndNext(Session session,
 		ProjectsEntry projectsEntry, long userId,
-		OrderByComparator orderByComparator, boolean previous) {
+		OrderByComparator<ProjectsEntry> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -1069,7 +1069,7 @@ public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl<ProjectsEn
 	 */
 	@Override
 	public List<ProjectsEntry> findAll(int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<ProjectsEntry> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;

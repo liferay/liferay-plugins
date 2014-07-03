@@ -155,7 +155,7 @@ public class SyncDLFileVersionDiffPersistenceImpl extends BasePersistenceImpl<Sy
 	@Override
 	public List<SyncDLFileVersionDiff> findByExpirationDate(
 		Date expirationDate, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<SyncDLFileVersionDiff> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -265,7 +265,8 @@ public class SyncDLFileVersionDiffPersistenceImpl extends BasePersistenceImpl<Sy
 	 */
 	@Override
 	public SyncDLFileVersionDiff findByExpirationDate_First(
-		Date expirationDate, OrderByComparator orderByComparator)
+		Date expirationDate,
+		OrderByComparator<SyncDLFileVersionDiff> orderByComparator)
 		throws NoSuchDLFileVersionDiffException {
 		SyncDLFileVersionDiff syncDLFileVersionDiff = fetchByExpirationDate_First(expirationDate,
 				orderByComparator);
@@ -295,7 +296,8 @@ public class SyncDLFileVersionDiffPersistenceImpl extends BasePersistenceImpl<Sy
 	 */
 	@Override
 	public SyncDLFileVersionDiff fetchByExpirationDate_First(
-		Date expirationDate, OrderByComparator orderByComparator) {
+		Date expirationDate,
+		OrderByComparator<SyncDLFileVersionDiff> orderByComparator) {
 		List<SyncDLFileVersionDiff> list = findByExpirationDate(expirationDate,
 				0, 1, orderByComparator);
 
@@ -316,7 +318,8 @@ public class SyncDLFileVersionDiffPersistenceImpl extends BasePersistenceImpl<Sy
 	 */
 	@Override
 	public SyncDLFileVersionDiff findByExpirationDate_Last(
-		Date expirationDate, OrderByComparator orderByComparator)
+		Date expirationDate,
+		OrderByComparator<SyncDLFileVersionDiff> orderByComparator)
 		throws NoSuchDLFileVersionDiffException {
 		SyncDLFileVersionDiff syncDLFileVersionDiff = fetchByExpirationDate_Last(expirationDate,
 				orderByComparator);
@@ -346,7 +349,8 @@ public class SyncDLFileVersionDiffPersistenceImpl extends BasePersistenceImpl<Sy
 	 */
 	@Override
 	public SyncDLFileVersionDiff fetchByExpirationDate_Last(
-		Date expirationDate, OrderByComparator orderByComparator) {
+		Date expirationDate,
+		OrderByComparator<SyncDLFileVersionDiff> orderByComparator) {
 		int count = countByExpirationDate(expirationDate);
 
 		if (count == 0) {
@@ -375,7 +379,7 @@ public class SyncDLFileVersionDiffPersistenceImpl extends BasePersistenceImpl<Sy
 	@Override
 	public SyncDLFileVersionDiff[] findByExpirationDate_PrevAndNext(
 		long syncDLFileVersionDiffId, Date expirationDate,
-		OrderByComparator orderByComparator)
+		OrderByComparator<SyncDLFileVersionDiff> orderByComparator)
 		throws NoSuchDLFileVersionDiffException {
 		SyncDLFileVersionDiff syncDLFileVersionDiff = findByPrimaryKey(syncDLFileVersionDiffId);
 
@@ -408,7 +412,8 @@ public class SyncDLFileVersionDiffPersistenceImpl extends BasePersistenceImpl<Sy
 
 	protected SyncDLFileVersionDiff getByExpirationDate_PrevAndNext(
 		Session session, SyncDLFileVersionDiff syncDLFileVersionDiff,
-		Date expirationDate, OrderByComparator orderByComparator,
+		Date expirationDate,
+		OrderByComparator<SyncDLFileVersionDiff> orderByComparator,
 		boolean previous) {
 		StringBundler query = null;
 
@@ -1420,7 +1425,7 @@ public class SyncDLFileVersionDiffPersistenceImpl extends BasePersistenceImpl<Sy
 	 */
 	@Override
 	public List<SyncDLFileVersionDiff> findAll(int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<SyncDLFileVersionDiff> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;

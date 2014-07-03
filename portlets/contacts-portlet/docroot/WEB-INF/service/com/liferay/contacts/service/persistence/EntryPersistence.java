@@ -76,7 +76,7 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	*/
 	public java.util.List<com.liferay.contacts.model.Entry> findByUserId(
 		long userId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.contacts.model.Entry> orderByComparator);
 
 	/**
 	* Returns the first entry in the ordered set where userId = &#63;.
@@ -87,7 +87,7 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	* @throws com.liferay.contacts.NoSuchEntryException if a matching entry could not be found
 	*/
 	public com.liferay.contacts.model.Entry findByUserId_First(long userId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.contacts.model.Entry> orderByComparator)
 		throws com.liferay.contacts.NoSuchEntryException;
 
 	/**
@@ -98,7 +98,7 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	* @return the first matching entry, or <code>null</code> if a matching entry could not be found
 	*/
 	public com.liferay.contacts.model.Entry fetchByUserId_First(long userId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.contacts.model.Entry> orderByComparator);
 
 	/**
 	* Returns the last entry in the ordered set where userId = &#63;.
@@ -109,7 +109,7 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	* @throws com.liferay.contacts.NoSuchEntryException if a matching entry could not be found
 	*/
 	public com.liferay.contacts.model.Entry findByUserId_Last(long userId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.contacts.model.Entry> orderByComparator)
 		throws com.liferay.contacts.NoSuchEntryException;
 
 	/**
@@ -120,7 +120,7 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	* @return the last matching entry, or <code>null</code> if a matching entry could not be found
 	*/
 	public com.liferay.contacts.model.Entry fetchByUserId_Last(long userId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.contacts.model.Entry> orderByComparator);
 
 	/**
 	* Returns the entries before and after the current entry in the ordered set where userId = &#63;.
@@ -133,7 +133,7 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	*/
 	public com.liferay.contacts.model.Entry[] findByUserId_PrevAndNext(
 		long entryId, long userId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.contacts.model.Entry> orderByComparator)
 		throws com.liferay.contacts.NoSuchEntryException;
 
 	/**
@@ -297,7 +297,7 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	*/
 	public java.util.List<com.liferay.contacts.model.Entry> findAll(int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.contacts.model.Entry> orderByComparator);
 
 	/**
 	* Removes all the entries from the database.

@@ -141,8 +141,7 @@ public abstract class JIRAIssueLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the matching rows
 	 */
 	@Override
-	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery) {
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery) {
 		return jiraIssuePersistence.findWithDynamicQuery(dynamicQuery);
 	}
 
@@ -159,8 +158,8 @@ public abstract class JIRAIssueLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the range of matching rows
 	 */
 	@Override
-	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end) {
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
+		int end) {
 		return jiraIssuePersistence.findWithDynamicQuery(dynamicQuery, start,
 			end);
 	}
@@ -179,9 +178,8 @@ public abstract class JIRAIssueLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the ordered range of matching rows
 	 */
 	@Override
-	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end,
-		OrderByComparator orderByComparator) {
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
+		int end, OrderByComparator<T> orderByComparator) {
 		return jiraIssuePersistence.findWithDynamicQuery(dynamicQuery, start,
 			end, orderByComparator);
 	}
@@ -222,11 +220,9 @@ public abstract class JIRAIssueLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @param jiraIssueId the primary key of the j i r a issue
 	 * @return the j i r a issue
 	 * @throws PortalException if a j i r a issue with the primary key could not be found
-	 * @throws SystemException
 	 */
 	@Override
-	public JIRAIssue getJIRAIssue(long jiraIssueId)
-		throws PortalException, SystemException {
+	public JIRAIssue getJIRAIssue(long jiraIssueId) throws PortalException {
 		return jiraIssuePersistence.findByPrimaryKey(jiraIssueId);
 	}
 

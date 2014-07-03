@@ -89,8 +89,7 @@ public class StatusLocalServiceWrapper implements StatusLocalService,
 	* @return the matching rows
 	*/
 	@Override
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
 		return _statusLocalService.dynamicQuery(dynamicQuery);
 	}
@@ -108,8 +107,7 @@ public class StatusLocalServiceWrapper implements StatusLocalService,
 	* @return the range of matching rows
 	*/
 	@Override
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) {
 		return _statusLocalService.dynamicQuery(dynamicQuery, start, end);
@@ -129,11 +127,10 @@ public class StatusLocalServiceWrapper implements StatusLocalService,
 	* @return the ordered range of matching rows
 	*/
 	@Override
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<T> orderByComparator) {
 		return _statusLocalService.dynamicQuery(dynamicQuery, start, end,
 			orderByComparator);
 	}
@@ -272,54 +269,47 @@ public class StatusLocalServiceWrapper implements StatusLocalService,
 
 	@Override
 	public java.util.List<java.lang.Object[]> getAllStatuses(long companyId,
-		long userId, long modifiedDate, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long userId, long modifiedDate, int start, int end) {
 		return _statusLocalService.getAllStatuses(companyId, userId,
 			modifiedDate, start, end);
 	}
 
 	@Override
 	public java.util.List<java.lang.Object[]> getGroupStatuses(long userId,
-		long modifiedDate, java.lang.String[] groupNames, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long modifiedDate, java.lang.String[] groupNames, int start, int end) {
 		return _statusLocalService.getGroupStatuses(userId, modifiedDate,
 			groupNames, start, end);
 	}
 
 	@Override
 	public java.util.List<java.lang.Object[]> getSocialStatuses(long userId,
-		int type, long modifiedDate, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		int type, long modifiedDate, int start, int end) {
 		return _statusLocalService.getSocialStatuses(userId, type,
 			modifiedDate, start, end);
 	}
 
 	@Override
 	public java.util.List<java.lang.Object[]> getSocialStatuses(long userId,
-		int[] types, long modifiedDate, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		int[] types, long modifiedDate, int start, int end) {
 		return _statusLocalService.getSocialStatuses(userId, types,
 			modifiedDate, start, end);
 	}
 
 	@Override
-	public com.liferay.chat.model.Status getUserStatus(long userId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public com.liferay.chat.model.Status getUserStatus(long userId) {
 		return _statusLocalService.getUserStatus(userId);
 	}
 
 	@Override
 	public com.liferay.chat.model.Status updateStatus(long userId,
-		long modifiedDate)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long modifiedDate) {
 		return _statusLocalService.updateStatus(userId, modifiedDate);
 	}
 
 	@Override
 	public com.liferay.chat.model.Status updateStatus(long userId,
 		long modifiedDate, int online, int awake,
-		java.lang.String activePanelIds, java.lang.String message, int playSound)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		java.lang.String activePanelIds, java.lang.String message, int playSound) {
 		return _statusLocalService.updateStatus(userId, modifiedDate, online,
 			awake, activePanelIds, message, playSound);
 	}

@@ -158,7 +158,7 @@ public class JIRAChangeItemPersistenceImpl extends BasePersistenceImpl<JIRAChang
 	@Override
 	public List<JIRAChangeItem> findByJiraChangeGroupId(
 		long jiraChangeGroupId, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<JIRAChangeItem> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -268,7 +268,8 @@ public class JIRAChangeItemPersistenceImpl extends BasePersistenceImpl<JIRAChang
 	 */
 	@Override
 	public JIRAChangeItem findByJiraChangeGroupId_First(
-		long jiraChangeGroupId, OrderByComparator orderByComparator)
+		long jiraChangeGroupId,
+		OrderByComparator<JIRAChangeItem> orderByComparator)
 		throws NoSuchJIRAChangeItemException {
 		JIRAChangeItem jiraChangeItem = fetchByJiraChangeGroupId_First(jiraChangeGroupId,
 				orderByComparator);
@@ -298,7 +299,8 @@ public class JIRAChangeItemPersistenceImpl extends BasePersistenceImpl<JIRAChang
 	 */
 	@Override
 	public JIRAChangeItem fetchByJiraChangeGroupId_First(
-		long jiraChangeGroupId, OrderByComparator orderByComparator) {
+		long jiraChangeGroupId,
+		OrderByComparator<JIRAChangeItem> orderByComparator) {
 		List<JIRAChangeItem> list = findByJiraChangeGroupId(jiraChangeGroupId,
 				0, 1, orderByComparator);
 
@@ -319,7 +321,7 @@ public class JIRAChangeItemPersistenceImpl extends BasePersistenceImpl<JIRAChang
 	 */
 	@Override
 	public JIRAChangeItem findByJiraChangeGroupId_Last(long jiraChangeGroupId,
-		OrderByComparator orderByComparator)
+		OrderByComparator<JIRAChangeItem> orderByComparator)
 		throws NoSuchJIRAChangeItemException {
 		JIRAChangeItem jiraChangeItem = fetchByJiraChangeGroupId_Last(jiraChangeGroupId,
 				orderByComparator);
@@ -349,7 +351,8 @@ public class JIRAChangeItemPersistenceImpl extends BasePersistenceImpl<JIRAChang
 	 */
 	@Override
 	public JIRAChangeItem fetchByJiraChangeGroupId_Last(
-		long jiraChangeGroupId, OrderByComparator orderByComparator) {
+		long jiraChangeGroupId,
+		OrderByComparator<JIRAChangeItem> orderByComparator) {
 		int count = countByJiraChangeGroupId(jiraChangeGroupId);
 
 		if (count == 0) {
@@ -378,7 +381,7 @@ public class JIRAChangeItemPersistenceImpl extends BasePersistenceImpl<JIRAChang
 	@Override
 	public JIRAChangeItem[] findByJiraChangeGroupId_PrevAndNext(
 		long jiraChangeItemId, long jiraChangeGroupId,
-		OrderByComparator orderByComparator)
+		OrderByComparator<JIRAChangeItem> orderByComparator)
 		throws NoSuchJIRAChangeItemException {
 		JIRAChangeItem jiraChangeItem = findByPrimaryKey(jiraChangeItemId);
 
@@ -409,7 +412,7 @@ public class JIRAChangeItemPersistenceImpl extends BasePersistenceImpl<JIRAChang
 
 	protected JIRAChangeItem getByJiraChangeGroupId_PrevAndNext(
 		Session session, JIRAChangeItem jiraChangeItem, long jiraChangeGroupId,
-		OrderByComparator orderByComparator, boolean previous) {
+		OrderByComparator<JIRAChangeItem> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -1081,7 +1084,7 @@ public class JIRAChangeItemPersistenceImpl extends BasePersistenceImpl<JIRAChang
 	 */
 	@Override
 	public List<JIRAChangeItem> findAll(int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<JIRAChangeItem> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;

@@ -68,8 +68,7 @@ public class TasksEntryServiceUtil {
 		int dueDateMonth, int dueDateDay, int dueDateYear, int dueDateHour,
 		int dueDateMinute, boolean neverDue,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService()
 				   .addTasksEntry(title, priority, assigneeUserId,
 			dueDateMonth, dueDateDay, dueDateYear, dueDateHour, dueDateMinute,
@@ -78,8 +77,7 @@ public class TasksEntryServiceUtil {
 
 	public static com.liferay.tasks.model.TasksEntry getTasksEntry(
 		long tasksEntryId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().getTasksEntry(tasksEntryId);
 	}
 
@@ -89,8 +87,7 @@ public class TasksEntryServiceUtil {
 		int dueDateDay, int dueDateYear, int dueDateHour, int dueDateMinute,
 		boolean neverDue, int status,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService()
 				   .updateTasksEntry(tasksEntryId, title, priority,
 			assigneeUserId, resolverUserId, dueDateMonth, dueDateDay,

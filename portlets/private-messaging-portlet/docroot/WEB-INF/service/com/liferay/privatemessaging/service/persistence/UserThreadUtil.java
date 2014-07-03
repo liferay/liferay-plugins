@@ -85,7 +85,7 @@ public class UserThreadUtil {
 	 */
 	public static List<UserThread> findWithDynamicQuery(
 		DynamicQuery dynamicQuery, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<UserThread> orderByComparator) {
 		return getPersistence()
 				   .findWithDynamicQuery(dynamicQuery, start, end,
 			orderByComparator);
@@ -149,7 +149,7 @@ public class UserThreadUtil {
 	*/
 	public static java.util.List<com.liferay.privatemessaging.model.UserThread> findByMBThreadId(
 		long mbThreadId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.privatemessaging.model.UserThread> orderByComparator) {
 		return getPersistence()
 				   .findByMBThreadId(mbThreadId, start, end, orderByComparator);
 	}
@@ -164,7 +164,7 @@ public class UserThreadUtil {
 	*/
 	public static com.liferay.privatemessaging.model.UserThread findByMBThreadId_First(
 		long mbThreadId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.privatemessaging.model.UserThread> orderByComparator)
 		throws com.liferay.privatemessaging.NoSuchUserThreadException {
 		return getPersistence()
 				   .findByMBThreadId_First(mbThreadId, orderByComparator);
@@ -179,7 +179,7 @@ public class UserThreadUtil {
 	*/
 	public static com.liferay.privatemessaging.model.UserThread fetchByMBThreadId_First(
 		long mbThreadId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.privatemessaging.model.UserThread> orderByComparator) {
 		return getPersistence()
 				   .fetchByMBThreadId_First(mbThreadId, orderByComparator);
 	}
@@ -194,7 +194,7 @@ public class UserThreadUtil {
 	*/
 	public static com.liferay.privatemessaging.model.UserThread findByMBThreadId_Last(
 		long mbThreadId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.privatemessaging.model.UserThread> orderByComparator)
 		throws com.liferay.privatemessaging.NoSuchUserThreadException {
 		return getPersistence()
 				   .findByMBThreadId_Last(mbThreadId, orderByComparator);
@@ -209,7 +209,7 @@ public class UserThreadUtil {
 	*/
 	public static com.liferay.privatemessaging.model.UserThread fetchByMBThreadId_Last(
 		long mbThreadId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.privatemessaging.model.UserThread> orderByComparator) {
 		return getPersistence()
 				   .fetchByMBThreadId_Last(mbThreadId, orderByComparator);
 	}
@@ -225,7 +225,7 @@ public class UserThreadUtil {
 	*/
 	public static com.liferay.privatemessaging.model.UserThread[] findByMBThreadId_PrevAndNext(
 		long userThreadId, long mbThreadId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.privatemessaging.model.UserThread> orderByComparator)
 		throws com.liferay.privatemessaging.NoSuchUserThreadException {
 		return getPersistence()
 				   .findByMBThreadId_PrevAndNext(userThreadId, mbThreadId,
@@ -294,7 +294,7 @@ public class UserThreadUtil {
 	*/
 	public static java.util.List<com.liferay.privatemessaging.model.UserThread> findByUserId(
 		long userId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.privatemessaging.model.UserThread> orderByComparator) {
 		return getPersistence()
 				   .findByUserId(userId, start, end, orderByComparator);
 	}
@@ -309,7 +309,7 @@ public class UserThreadUtil {
 	*/
 	public static com.liferay.privatemessaging.model.UserThread findByUserId_First(
 		long userId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.privatemessaging.model.UserThread> orderByComparator)
 		throws com.liferay.privatemessaging.NoSuchUserThreadException {
 		return getPersistence().findByUserId_First(userId, orderByComparator);
 	}
@@ -323,7 +323,7 @@ public class UserThreadUtil {
 	*/
 	public static com.liferay.privatemessaging.model.UserThread fetchByUserId_First(
 		long userId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.privatemessaging.model.UserThread> orderByComparator) {
 		return getPersistence().fetchByUserId_First(userId, orderByComparator);
 	}
 
@@ -337,7 +337,7 @@ public class UserThreadUtil {
 	*/
 	public static com.liferay.privatemessaging.model.UserThread findByUserId_Last(
 		long userId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.privatemessaging.model.UserThread> orderByComparator)
 		throws com.liferay.privatemessaging.NoSuchUserThreadException {
 		return getPersistence().findByUserId_Last(userId, orderByComparator);
 	}
@@ -351,7 +351,7 @@ public class UserThreadUtil {
 	*/
 	public static com.liferay.privatemessaging.model.UserThread fetchByUserId_Last(
 		long userId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.privatemessaging.model.UserThread> orderByComparator) {
 		return getPersistence().fetchByUserId_Last(userId, orderByComparator);
 	}
 
@@ -366,7 +366,7 @@ public class UserThreadUtil {
 	*/
 	public static com.liferay.privatemessaging.model.UserThread[] findByUserId_PrevAndNext(
 		long userThreadId, long userId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.privatemessaging.model.UserThread> orderByComparator)
 		throws com.liferay.privatemessaging.NoSuchUserThreadException {
 		return getPersistence()
 				   .findByUserId_PrevAndNext(userThreadId, userId,
@@ -501,7 +501,7 @@ public class UserThreadUtil {
 	*/
 	public static java.util.List<com.liferay.privatemessaging.model.UserThread> findByU_D(
 		long userId, boolean deleted, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.privatemessaging.model.UserThread> orderByComparator) {
 		return getPersistence()
 				   .findByU_D(userId, deleted, start, end, orderByComparator);
 	}
@@ -517,7 +517,7 @@ public class UserThreadUtil {
 	*/
 	public static com.liferay.privatemessaging.model.UserThread findByU_D_First(
 		long userId, boolean deleted,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.privatemessaging.model.UserThread> orderByComparator)
 		throws com.liferay.privatemessaging.NoSuchUserThreadException {
 		return getPersistence()
 				   .findByU_D_First(userId, deleted, orderByComparator);
@@ -533,7 +533,7 @@ public class UserThreadUtil {
 	*/
 	public static com.liferay.privatemessaging.model.UserThread fetchByU_D_First(
 		long userId, boolean deleted,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.privatemessaging.model.UserThread> orderByComparator) {
 		return getPersistence()
 				   .fetchByU_D_First(userId, deleted, orderByComparator);
 	}
@@ -549,7 +549,7 @@ public class UserThreadUtil {
 	*/
 	public static com.liferay.privatemessaging.model.UserThread findByU_D_Last(
 		long userId, boolean deleted,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.privatemessaging.model.UserThread> orderByComparator)
 		throws com.liferay.privatemessaging.NoSuchUserThreadException {
 		return getPersistence()
 				   .findByU_D_Last(userId, deleted, orderByComparator);
@@ -565,7 +565,7 @@ public class UserThreadUtil {
 	*/
 	public static com.liferay.privatemessaging.model.UserThread fetchByU_D_Last(
 		long userId, boolean deleted,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.privatemessaging.model.UserThread> orderByComparator) {
 		return getPersistence()
 				   .fetchByU_D_Last(userId, deleted, orderByComparator);
 	}
@@ -582,7 +582,7 @@ public class UserThreadUtil {
 	*/
 	public static com.liferay.privatemessaging.model.UserThread[] findByU_D_PrevAndNext(
 		long userThreadId, long userId, boolean deleted,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.privatemessaging.model.UserThread> orderByComparator)
 		throws com.liferay.privatemessaging.NoSuchUserThreadException {
 		return getPersistence()
 				   .findByU_D_PrevAndNext(userThreadId, userId, deleted,
@@ -659,7 +659,7 @@ public class UserThreadUtil {
 	*/
 	public static java.util.List<com.liferay.privatemessaging.model.UserThread> findByU_R_D(
 		long userId, boolean read, boolean deleted, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.privatemessaging.model.UserThread> orderByComparator) {
 		return getPersistence()
 				   .findByU_R_D(userId, read, deleted, start, end,
 			orderByComparator);
@@ -677,7 +677,7 @@ public class UserThreadUtil {
 	*/
 	public static com.liferay.privatemessaging.model.UserThread findByU_R_D_First(
 		long userId, boolean read, boolean deleted,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.privatemessaging.model.UserThread> orderByComparator)
 		throws com.liferay.privatemessaging.NoSuchUserThreadException {
 		return getPersistence()
 				   .findByU_R_D_First(userId, read, deleted, orderByComparator);
@@ -694,7 +694,7 @@ public class UserThreadUtil {
 	*/
 	public static com.liferay.privatemessaging.model.UserThread fetchByU_R_D_First(
 		long userId, boolean read, boolean deleted,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.privatemessaging.model.UserThread> orderByComparator) {
 		return getPersistence()
 				   .fetchByU_R_D_First(userId, read, deleted, orderByComparator);
 	}
@@ -711,7 +711,7 @@ public class UserThreadUtil {
 	*/
 	public static com.liferay.privatemessaging.model.UserThread findByU_R_D_Last(
 		long userId, boolean read, boolean deleted,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.privatemessaging.model.UserThread> orderByComparator)
 		throws com.liferay.privatemessaging.NoSuchUserThreadException {
 		return getPersistence()
 				   .findByU_R_D_Last(userId, read, deleted, orderByComparator);
@@ -728,7 +728,7 @@ public class UserThreadUtil {
 	*/
 	public static com.liferay.privatemessaging.model.UserThread fetchByU_R_D_Last(
 		long userId, boolean read, boolean deleted,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.privatemessaging.model.UserThread> orderByComparator) {
 		return getPersistence()
 				   .fetchByU_R_D_Last(userId, read, deleted, orderByComparator);
 	}
@@ -746,7 +746,7 @@ public class UserThreadUtil {
 	*/
 	public static com.liferay.privatemessaging.model.UserThread[] findByU_R_D_PrevAndNext(
 		long userThreadId, long userId, boolean read, boolean deleted,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.privatemessaging.model.UserThread> orderByComparator)
 		throws com.liferay.privatemessaging.NoSuchUserThreadException {
 		return getPersistence()
 				   .findByU_R_D_PrevAndNext(userThreadId, userId, read,
@@ -893,7 +893,7 @@ public class UserThreadUtil {
 	*/
 	public static java.util.List<com.liferay.privatemessaging.model.UserThread> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.privatemessaging.model.UserThread> orderByComparator) {
 		return getPersistence().findAll(start, end, orderByComparator);
 	}
 

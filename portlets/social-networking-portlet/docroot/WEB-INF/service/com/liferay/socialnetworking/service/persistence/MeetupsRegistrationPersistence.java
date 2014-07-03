@@ -76,7 +76,7 @@ public interface MeetupsRegistrationPersistence extends BasePersistence<MeetupsR
 	*/
 	public java.util.List<com.liferay.socialnetworking.model.MeetupsRegistration> findByMeetupsEntryId(
 		long meetupsEntryId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialnetworking.model.MeetupsRegistration> orderByComparator);
 
 	/**
 	* Returns the first meetups registration in the ordered set where meetupsEntryId = &#63;.
@@ -88,7 +88,7 @@ public interface MeetupsRegistrationPersistence extends BasePersistence<MeetupsR
 	*/
 	public com.liferay.socialnetworking.model.MeetupsRegistration findByMeetupsEntryId_First(
 		long meetupsEntryId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialnetworking.model.MeetupsRegistration> orderByComparator)
 		throws com.liferay.socialnetworking.NoSuchMeetupsRegistrationException;
 
 	/**
@@ -100,7 +100,7 @@ public interface MeetupsRegistrationPersistence extends BasePersistence<MeetupsR
 	*/
 	public com.liferay.socialnetworking.model.MeetupsRegistration fetchByMeetupsEntryId_First(
 		long meetupsEntryId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialnetworking.model.MeetupsRegistration> orderByComparator);
 
 	/**
 	* Returns the last meetups registration in the ordered set where meetupsEntryId = &#63;.
@@ -112,7 +112,7 @@ public interface MeetupsRegistrationPersistence extends BasePersistence<MeetupsR
 	*/
 	public com.liferay.socialnetworking.model.MeetupsRegistration findByMeetupsEntryId_Last(
 		long meetupsEntryId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialnetworking.model.MeetupsRegistration> orderByComparator)
 		throws com.liferay.socialnetworking.NoSuchMeetupsRegistrationException;
 
 	/**
@@ -124,7 +124,7 @@ public interface MeetupsRegistrationPersistence extends BasePersistence<MeetupsR
 	*/
 	public com.liferay.socialnetworking.model.MeetupsRegistration fetchByMeetupsEntryId_Last(
 		long meetupsEntryId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialnetworking.model.MeetupsRegistration> orderByComparator);
 
 	/**
 	* Returns the meetups registrations before and after the current meetups registration in the ordered set where meetupsEntryId = &#63;.
@@ -137,7 +137,7 @@ public interface MeetupsRegistrationPersistence extends BasePersistence<MeetupsR
 	*/
 	public com.liferay.socialnetworking.model.MeetupsRegistration[] findByMeetupsEntryId_PrevAndNext(
 		long meetupsRegistrationId, long meetupsEntryId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialnetworking.model.MeetupsRegistration> orderByComparator)
 		throws com.liferay.socialnetworking.NoSuchMeetupsRegistrationException;
 
 	/**
@@ -250,7 +250,7 @@ public interface MeetupsRegistrationPersistence extends BasePersistence<MeetupsR
 	*/
 	public java.util.List<com.liferay.socialnetworking.model.MeetupsRegistration> findByME_S(
 		long meetupsEntryId, int status, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialnetworking.model.MeetupsRegistration> orderByComparator);
 
 	/**
 	* Returns the first meetups registration in the ordered set where meetupsEntryId = &#63; and status = &#63;.
@@ -263,7 +263,7 @@ public interface MeetupsRegistrationPersistence extends BasePersistence<MeetupsR
 	*/
 	public com.liferay.socialnetworking.model.MeetupsRegistration findByME_S_First(
 		long meetupsEntryId, int status,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialnetworking.model.MeetupsRegistration> orderByComparator)
 		throws com.liferay.socialnetworking.NoSuchMeetupsRegistrationException;
 
 	/**
@@ -276,7 +276,7 @@ public interface MeetupsRegistrationPersistence extends BasePersistence<MeetupsR
 	*/
 	public com.liferay.socialnetworking.model.MeetupsRegistration fetchByME_S_First(
 		long meetupsEntryId, int status,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialnetworking.model.MeetupsRegistration> orderByComparator);
 
 	/**
 	* Returns the last meetups registration in the ordered set where meetupsEntryId = &#63; and status = &#63;.
@@ -289,7 +289,7 @@ public interface MeetupsRegistrationPersistence extends BasePersistence<MeetupsR
 	*/
 	public com.liferay.socialnetworking.model.MeetupsRegistration findByME_S_Last(
 		long meetupsEntryId, int status,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialnetworking.model.MeetupsRegistration> orderByComparator)
 		throws com.liferay.socialnetworking.NoSuchMeetupsRegistrationException;
 
 	/**
@@ -302,7 +302,7 @@ public interface MeetupsRegistrationPersistence extends BasePersistence<MeetupsR
 	*/
 	public com.liferay.socialnetworking.model.MeetupsRegistration fetchByME_S_Last(
 		long meetupsEntryId, int status,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialnetworking.model.MeetupsRegistration> orderByComparator);
 
 	/**
 	* Returns the meetups registrations before and after the current meetups registration in the ordered set where meetupsEntryId = &#63; and status = &#63;.
@@ -316,7 +316,7 @@ public interface MeetupsRegistrationPersistence extends BasePersistence<MeetupsR
 	*/
 	public com.liferay.socialnetworking.model.MeetupsRegistration[] findByME_S_PrevAndNext(
 		long meetupsRegistrationId, long meetupsEntryId, int status,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialnetworking.model.MeetupsRegistration> orderByComparator)
 		throws com.liferay.socialnetworking.NoSuchMeetupsRegistrationException;
 
 	/**
@@ -434,7 +434,7 @@ public interface MeetupsRegistrationPersistence extends BasePersistence<MeetupsR
 	*/
 	public java.util.List<com.liferay.socialnetworking.model.MeetupsRegistration> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialnetworking.model.MeetupsRegistration> orderByComparator);
 
 	/**
 	* Removes all the meetups registrations from the database.

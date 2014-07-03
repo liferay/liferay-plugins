@@ -128,7 +128,7 @@ public interface TypePersistence extends BasePersistence<Type> {
 	*/
 	public java.util.List<com.liferay.ams.model.Type> findAll(int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.ams.model.Type> orderByComparator);
 
 	/**
 	* Removes all the types from the database.

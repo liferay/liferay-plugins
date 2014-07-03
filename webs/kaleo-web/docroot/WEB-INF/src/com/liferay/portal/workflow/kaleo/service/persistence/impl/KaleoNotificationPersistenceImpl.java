@@ -156,7 +156,7 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 	 */
 	@Override
 	public List<KaleoNotification> findByCompanyId(long companyId, int start,
-		int end, OrderByComparator orderByComparator) {
+		int end, OrderByComparator<KaleoNotification> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -262,7 +262,8 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 	 */
 	@Override
 	public KaleoNotification findByCompanyId_First(long companyId,
-		OrderByComparator orderByComparator) throws NoSuchNotificationException {
+		OrderByComparator<KaleoNotification> orderByComparator)
+		throws NoSuchNotificationException {
 		KaleoNotification kaleoNotification = fetchByCompanyId_First(companyId,
 				orderByComparator);
 
@@ -291,7 +292,7 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 	 */
 	@Override
 	public KaleoNotification fetchByCompanyId_First(long companyId,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KaleoNotification> orderByComparator) {
 		List<KaleoNotification> list = findByCompanyId(companyId, 0, 1,
 				orderByComparator);
 
@@ -312,7 +313,8 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 	 */
 	@Override
 	public KaleoNotification findByCompanyId_Last(long companyId,
-		OrderByComparator orderByComparator) throws NoSuchNotificationException {
+		OrderByComparator<KaleoNotification> orderByComparator)
+		throws NoSuchNotificationException {
 		KaleoNotification kaleoNotification = fetchByCompanyId_Last(companyId,
 				orderByComparator);
 
@@ -341,7 +343,7 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 	 */
 	@Override
 	public KaleoNotification fetchByCompanyId_Last(long companyId,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KaleoNotification> orderByComparator) {
 		int count = countByCompanyId(companyId);
 
 		if (count == 0) {
@@ -370,7 +372,8 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 	@Override
 	public KaleoNotification[] findByCompanyId_PrevAndNext(
 		long kaleoNotificationId, long companyId,
-		OrderByComparator orderByComparator) throws NoSuchNotificationException {
+		OrderByComparator<KaleoNotification> orderByComparator)
+		throws NoSuchNotificationException {
 		KaleoNotification kaleoNotification = findByPrimaryKey(kaleoNotificationId);
 
 		Session session = null;
@@ -400,7 +403,7 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 
 	protected KaleoNotification getByCompanyId_PrevAndNext(Session session,
 		KaleoNotification kaleoNotification, long companyId,
-		OrderByComparator orderByComparator, boolean previous) {
+		OrderByComparator<KaleoNotification> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -639,7 +642,7 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 	@Override
 	public List<KaleoNotification> findByKaleoDefinitionId(
 		long kaleoDefinitionId, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KaleoNotification> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -749,7 +752,8 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 	 */
 	@Override
 	public KaleoNotification findByKaleoDefinitionId_First(
-		long kaleoDefinitionId, OrderByComparator orderByComparator)
+		long kaleoDefinitionId,
+		OrderByComparator<KaleoNotification> orderByComparator)
 		throws NoSuchNotificationException {
 		KaleoNotification kaleoNotification = fetchByKaleoDefinitionId_First(kaleoDefinitionId,
 				orderByComparator);
@@ -779,7 +783,8 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 	 */
 	@Override
 	public KaleoNotification fetchByKaleoDefinitionId_First(
-		long kaleoDefinitionId, OrderByComparator orderByComparator) {
+		long kaleoDefinitionId,
+		OrderByComparator<KaleoNotification> orderByComparator) {
 		List<KaleoNotification> list = findByKaleoDefinitionId(kaleoDefinitionId,
 				0, 1, orderByComparator);
 
@@ -800,7 +805,8 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 	 */
 	@Override
 	public KaleoNotification findByKaleoDefinitionId_Last(
-		long kaleoDefinitionId, OrderByComparator orderByComparator)
+		long kaleoDefinitionId,
+		OrderByComparator<KaleoNotification> orderByComparator)
 		throws NoSuchNotificationException {
 		KaleoNotification kaleoNotification = fetchByKaleoDefinitionId_Last(kaleoDefinitionId,
 				orderByComparator);
@@ -830,7 +836,8 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 	 */
 	@Override
 	public KaleoNotification fetchByKaleoDefinitionId_Last(
-		long kaleoDefinitionId, OrderByComparator orderByComparator) {
+		long kaleoDefinitionId,
+		OrderByComparator<KaleoNotification> orderByComparator) {
 		int count = countByKaleoDefinitionId(kaleoDefinitionId);
 
 		if (count == 0) {
@@ -859,7 +866,8 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 	@Override
 	public KaleoNotification[] findByKaleoDefinitionId_PrevAndNext(
 		long kaleoNotificationId, long kaleoDefinitionId,
-		OrderByComparator orderByComparator) throws NoSuchNotificationException {
+		OrderByComparator<KaleoNotification> orderByComparator)
+		throws NoSuchNotificationException {
 		KaleoNotification kaleoNotification = findByPrimaryKey(kaleoNotificationId);
 
 		Session session = null;
@@ -891,8 +899,8 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 
 	protected KaleoNotification getByKaleoDefinitionId_PrevAndNext(
 		Session session, KaleoNotification kaleoNotification,
-		long kaleoDefinitionId, OrderByComparator orderByComparator,
-		boolean previous) {
+		long kaleoDefinitionId,
+		OrderByComparator<KaleoNotification> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -1135,7 +1143,7 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 	@Override
 	public List<KaleoNotification> findByKCN_KCPK(String kaleoClassName,
 		long kaleoClassPK, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KaleoNotification> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -1266,7 +1274,8 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 	 */
 	@Override
 	public KaleoNotification findByKCN_KCPK_First(String kaleoClassName,
-		long kaleoClassPK, OrderByComparator orderByComparator)
+		long kaleoClassPK,
+		OrderByComparator<KaleoNotification> orderByComparator)
 		throws NoSuchNotificationException {
 		KaleoNotification kaleoNotification = fetchByKCN_KCPK_First(kaleoClassName,
 				kaleoClassPK, orderByComparator);
@@ -1300,7 +1309,8 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 	 */
 	@Override
 	public KaleoNotification fetchByKCN_KCPK_First(String kaleoClassName,
-		long kaleoClassPK, OrderByComparator orderByComparator) {
+		long kaleoClassPK,
+		OrderByComparator<KaleoNotification> orderByComparator) {
 		List<KaleoNotification> list = findByKCN_KCPK(kaleoClassName,
 				kaleoClassPK, 0, 1, orderByComparator);
 
@@ -1322,7 +1332,8 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 	 */
 	@Override
 	public KaleoNotification findByKCN_KCPK_Last(String kaleoClassName,
-		long kaleoClassPK, OrderByComparator orderByComparator)
+		long kaleoClassPK,
+		OrderByComparator<KaleoNotification> orderByComparator)
 		throws NoSuchNotificationException {
 		KaleoNotification kaleoNotification = fetchByKCN_KCPK_Last(kaleoClassName,
 				kaleoClassPK, orderByComparator);
@@ -1356,7 +1367,8 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 	 */
 	@Override
 	public KaleoNotification fetchByKCN_KCPK_Last(String kaleoClassName,
-		long kaleoClassPK, OrderByComparator orderByComparator) {
+		long kaleoClassPK,
+		OrderByComparator<KaleoNotification> orderByComparator) {
 		int count = countByKCN_KCPK(kaleoClassName, kaleoClassPK);
 
 		if (count == 0) {
@@ -1386,7 +1398,8 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 	@Override
 	public KaleoNotification[] findByKCN_KCPK_PrevAndNext(
 		long kaleoNotificationId, String kaleoClassName, long kaleoClassPK,
-		OrderByComparator orderByComparator) throws NoSuchNotificationException {
+		OrderByComparator<KaleoNotification> orderByComparator)
+		throws NoSuchNotificationException {
 		KaleoNotification kaleoNotification = findByPrimaryKey(kaleoNotificationId);
 
 		Session session = null;
@@ -1416,7 +1429,8 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 
 	protected KaleoNotification getByKCN_KCPK_PrevAndNext(Session session,
 		KaleoNotification kaleoNotification, String kaleoClassName,
-		long kaleoClassPK, OrderByComparator orderByComparator, boolean previous) {
+		long kaleoClassPK,
+		OrderByComparator<KaleoNotification> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -1713,7 +1727,7 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 	@Override
 	public List<KaleoNotification> findByKCN_KCPK_ET(String kaleoClassName,
 		long kaleoClassPK, String executionType, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KaleoNotification> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -1868,7 +1882,8 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 	@Override
 	public KaleoNotification findByKCN_KCPK_ET_First(String kaleoClassName,
 		long kaleoClassPK, String executionType,
-		OrderByComparator orderByComparator) throws NoSuchNotificationException {
+		OrderByComparator<KaleoNotification> orderByComparator)
+		throws NoSuchNotificationException {
 		KaleoNotification kaleoNotification = fetchByKCN_KCPK_ET_First(kaleoClassName,
 				kaleoClassPK, executionType, orderByComparator);
 
@@ -1906,7 +1921,7 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 	@Override
 	public KaleoNotification fetchByKCN_KCPK_ET_First(String kaleoClassName,
 		long kaleoClassPK, String executionType,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KaleoNotification> orderByComparator) {
 		List<KaleoNotification> list = findByKCN_KCPK_ET(kaleoClassName,
 				kaleoClassPK, executionType, 0, 1, orderByComparator);
 
@@ -1930,7 +1945,8 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 	@Override
 	public KaleoNotification findByKCN_KCPK_ET_Last(String kaleoClassName,
 		long kaleoClassPK, String executionType,
-		OrderByComparator orderByComparator) throws NoSuchNotificationException {
+		OrderByComparator<KaleoNotification> orderByComparator)
+		throws NoSuchNotificationException {
 		KaleoNotification kaleoNotification = fetchByKCN_KCPK_ET_Last(kaleoClassName,
 				kaleoClassPK, executionType, orderByComparator);
 
@@ -1968,7 +1984,7 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 	@Override
 	public KaleoNotification fetchByKCN_KCPK_ET_Last(String kaleoClassName,
 		long kaleoClassPK, String executionType,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KaleoNotification> orderByComparator) {
 		int count = countByKCN_KCPK_ET(kaleoClassName, kaleoClassPK,
 				executionType);
 
@@ -2000,7 +2016,8 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 	@Override
 	public KaleoNotification[] findByKCN_KCPK_ET_PrevAndNext(
 		long kaleoNotificationId, String kaleoClassName, long kaleoClassPK,
-		String executionType, OrderByComparator orderByComparator)
+		String executionType,
+		OrderByComparator<KaleoNotification> orderByComparator)
 		throws NoSuchNotificationException {
 		KaleoNotification kaleoNotification = findByPrimaryKey(kaleoNotificationId);
 
@@ -2034,7 +2051,7 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 	protected KaleoNotification getByKCN_KCPK_ET_PrevAndNext(Session session,
 		KaleoNotification kaleoNotification, String kaleoClassName,
 		long kaleoClassPK, String executionType,
-		OrderByComparator orderByComparator, boolean previous) {
+		OrderByComparator<KaleoNotification> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -2870,7 +2887,7 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 	 */
 	@Override
 	public List<KaleoNotification> findAll(int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KaleoNotification> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;

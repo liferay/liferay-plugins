@@ -158,7 +158,7 @@ public class BBBParticipantPersistenceImpl extends BasePersistenceImpl<BBBPartic
 	 */
 	@Override
 	public List<BBBParticipant> findByBbbMeetingId(long bbbMeetingId,
-		int start, int end, OrderByComparator orderByComparator) {
+		int start, int end, OrderByComparator<BBBParticipant> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -268,7 +268,8 @@ public class BBBParticipantPersistenceImpl extends BasePersistenceImpl<BBBPartic
 	 */
 	@Override
 	public BBBParticipant findByBbbMeetingId_First(long bbbMeetingId,
-		OrderByComparator orderByComparator) throws NoSuchParticipantException {
+		OrderByComparator<BBBParticipant> orderByComparator)
+		throws NoSuchParticipantException {
 		BBBParticipant bbbParticipant = fetchByBbbMeetingId_First(bbbMeetingId,
 				orderByComparator);
 
@@ -297,7 +298,7 @@ public class BBBParticipantPersistenceImpl extends BasePersistenceImpl<BBBPartic
 	 */
 	@Override
 	public BBBParticipant fetchByBbbMeetingId_First(long bbbMeetingId,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<BBBParticipant> orderByComparator) {
 		List<BBBParticipant> list = findByBbbMeetingId(bbbMeetingId, 0, 1,
 				orderByComparator);
 
@@ -318,7 +319,8 @@ public class BBBParticipantPersistenceImpl extends BasePersistenceImpl<BBBPartic
 	 */
 	@Override
 	public BBBParticipant findByBbbMeetingId_Last(long bbbMeetingId,
-		OrderByComparator orderByComparator) throws NoSuchParticipantException {
+		OrderByComparator<BBBParticipant> orderByComparator)
+		throws NoSuchParticipantException {
 		BBBParticipant bbbParticipant = fetchByBbbMeetingId_Last(bbbMeetingId,
 				orderByComparator);
 
@@ -347,7 +349,7 @@ public class BBBParticipantPersistenceImpl extends BasePersistenceImpl<BBBPartic
 	 */
 	@Override
 	public BBBParticipant fetchByBbbMeetingId_Last(long bbbMeetingId,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<BBBParticipant> orderByComparator) {
 		int count = countByBbbMeetingId(bbbMeetingId);
 
 		if (count == 0) {
@@ -376,7 +378,8 @@ public class BBBParticipantPersistenceImpl extends BasePersistenceImpl<BBBPartic
 	@Override
 	public BBBParticipant[] findByBbbMeetingId_PrevAndNext(
 		long bbbParticipantId, long bbbMeetingId,
-		OrderByComparator orderByComparator) throws NoSuchParticipantException {
+		OrderByComparator<BBBParticipant> orderByComparator)
+		throws NoSuchParticipantException {
 		BBBParticipant bbbParticipant = findByPrimaryKey(bbbParticipantId);
 
 		Session session = null;
@@ -406,7 +409,7 @@ public class BBBParticipantPersistenceImpl extends BasePersistenceImpl<BBBPartic
 
 	protected BBBParticipant getByBbbMeetingId_PrevAndNext(Session session,
 		BBBParticipant bbbParticipant, long bbbMeetingId,
-		OrderByComparator orderByComparator, boolean previous) {
+		OrderByComparator<BBBParticipant> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -1405,7 +1408,7 @@ public class BBBParticipantPersistenceImpl extends BasePersistenceImpl<BBBPartic
 	 */
 	@Override
 	public List<BBBParticipant> findAll(int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<BBBParticipant> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;

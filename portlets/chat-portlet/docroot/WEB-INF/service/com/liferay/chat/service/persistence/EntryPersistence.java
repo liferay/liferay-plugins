@@ -76,7 +76,7 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	*/
 	public java.util.List<com.liferay.chat.model.Entry> findByCreateDate(
 		long createDate, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.chat.model.Entry> orderByComparator);
 
 	/**
 	* Returns the first entry in the ordered set where createDate = &#63;.
@@ -88,7 +88,7 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	*/
 	public com.liferay.chat.model.Entry findByCreateDate_First(
 		long createDate,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.chat.model.Entry> orderByComparator)
 		throws com.liferay.chat.NoSuchEntryException;
 
 	/**
@@ -100,7 +100,7 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	*/
 	public com.liferay.chat.model.Entry fetchByCreateDate_First(
 		long createDate,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.chat.model.Entry> orderByComparator);
 
 	/**
 	* Returns the last entry in the ordered set where createDate = &#63;.
@@ -111,7 +111,7 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	* @throws com.liferay.chat.NoSuchEntryException if a matching entry could not be found
 	*/
 	public com.liferay.chat.model.Entry findByCreateDate_Last(long createDate,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.chat.model.Entry> orderByComparator)
 		throws com.liferay.chat.NoSuchEntryException;
 
 	/**
@@ -123,7 +123,7 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	*/
 	public com.liferay.chat.model.Entry fetchByCreateDate_Last(
 		long createDate,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.chat.model.Entry> orderByComparator);
 
 	/**
 	* Returns the entries before and after the current entry in the ordered set where createDate = &#63;.
@@ -136,7 +136,7 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	*/
 	public com.liferay.chat.model.Entry[] findByCreateDate_PrevAndNext(
 		long entryId, long createDate,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.chat.model.Entry> orderByComparator)
 		throws com.liferay.chat.NoSuchEntryException;
 
 	/**
@@ -193,7 +193,7 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	*/
 	public java.util.List<com.liferay.chat.model.Entry> findByFromUserId(
 		long fromUserId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.chat.model.Entry> orderByComparator);
 
 	/**
 	* Returns the first entry in the ordered set where fromUserId = &#63;.
@@ -205,7 +205,7 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	*/
 	public com.liferay.chat.model.Entry findByFromUserId_First(
 		long fromUserId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.chat.model.Entry> orderByComparator)
 		throws com.liferay.chat.NoSuchEntryException;
 
 	/**
@@ -217,7 +217,7 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	*/
 	public com.liferay.chat.model.Entry fetchByFromUserId_First(
 		long fromUserId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.chat.model.Entry> orderByComparator);
 
 	/**
 	* Returns the last entry in the ordered set where fromUserId = &#63;.
@@ -228,7 +228,7 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	* @throws com.liferay.chat.NoSuchEntryException if a matching entry could not be found
 	*/
 	public com.liferay.chat.model.Entry findByFromUserId_Last(long fromUserId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.chat.model.Entry> orderByComparator)
 		throws com.liferay.chat.NoSuchEntryException;
 
 	/**
@@ -240,7 +240,7 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	*/
 	public com.liferay.chat.model.Entry fetchByFromUserId_Last(
 		long fromUserId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.chat.model.Entry> orderByComparator);
 
 	/**
 	* Returns the entries before and after the current entry in the ordered set where fromUserId = &#63;.
@@ -253,7 +253,7 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	*/
 	public com.liferay.chat.model.Entry[] findByFromUserId_PrevAndNext(
 		long entryId, long fromUserId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.chat.model.Entry> orderByComparator)
 		throws com.liferay.chat.NoSuchEntryException;
 
 	/**
@@ -310,7 +310,7 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	*/
 	public java.util.List<com.liferay.chat.model.Entry> findByToUserId(
 		long toUserId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.chat.model.Entry> orderByComparator);
 
 	/**
 	* Returns the first entry in the ordered set where toUserId = &#63;.
@@ -321,7 +321,7 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	* @throws com.liferay.chat.NoSuchEntryException if a matching entry could not be found
 	*/
 	public com.liferay.chat.model.Entry findByToUserId_First(long toUserId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.chat.model.Entry> orderByComparator)
 		throws com.liferay.chat.NoSuchEntryException;
 
 	/**
@@ -332,7 +332,7 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	* @return the first matching entry, or <code>null</code> if a matching entry could not be found
 	*/
 	public com.liferay.chat.model.Entry fetchByToUserId_First(long toUserId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.chat.model.Entry> orderByComparator);
 
 	/**
 	* Returns the last entry in the ordered set where toUserId = &#63;.
@@ -343,7 +343,7 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	* @throws com.liferay.chat.NoSuchEntryException if a matching entry could not be found
 	*/
 	public com.liferay.chat.model.Entry findByToUserId_Last(long toUserId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.chat.model.Entry> orderByComparator)
 		throws com.liferay.chat.NoSuchEntryException;
 
 	/**
@@ -354,7 +354,7 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	* @return the last matching entry, or <code>null</code> if a matching entry could not be found
 	*/
 	public com.liferay.chat.model.Entry fetchByToUserId_Last(long toUserId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.chat.model.Entry> orderByComparator);
 
 	/**
 	* Returns the entries before and after the current entry in the ordered set where toUserId = &#63;.
@@ -367,7 +367,7 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	*/
 	public com.liferay.chat.model.Entry[] findByToUserId_PrevAndNext(
 		long entryId, long toUserId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.chat.model.Entry> orderByComparator)
 		throws com.liferay.chat.NoSuchEntryException;
 
 	/**
@@ -427,7 +427,7 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	*/
 	public java.util.List<com.liferay.chat.model.Entry> findByC_F(
 		long createDate, long fromUserId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.chat.model.Entry> orderByComparator);
 
 	/**
 	* Returns the first entry in the ordered set where createDate = &#63; and fromUserId = &#63;.
@@ -440,7 +440,7 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	*/
 	public com.liferay.chat.model.Entry findByC_F_First(long createDate,
 		long fromUserId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.chat.model.Entry> orderByComparator)
 		throws com.liferay.chat.NoSuchEntryException;
 
 	/**
@@ -453,7 +453,7 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	*/
 	public com.liferay.chat.model.Entry fetchByC_F_First(long createDate,
 		long fromUserId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.chat.model.Entry> orderByComparator);
 
 	/**
 	* Returns the last entry in the ordered set where createDate = &#63; and fromUserId = &#63;.
@@ -466,7 +466,7 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	*/
 	public com.liferay.chat.model.Entry findByC_F_Last(long createDate,
 		long fromUserId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.chat.model.Entry> orderByComparator)
 		throws com.liferay.chat.NoSuchEntryException;
 
 	/**
@@ -479,7 +479,7 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	*/
 	public com.liferay.chat.model.Entry fetchByC_F_Last(long createDate,
 		long fromUserId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.chat.model.Entry> orderByComparator);
 
 	/**
 	* Returns the entries before and after the current entry in the ordered set where createDate = &#63; and fromUserId = &#63;.
@@ -493,7 +493,7 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	*/
 	public com.liferay.chat.model.Entry[] findByC_F_PrevAndNext(long entryId,
 		long createDate, long fromUserId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.chat.model.Entry> orderByComparator)
 		throws com.liferay.chat.NoSuchEntryException;
 
 	/**
@@ -555,7 +555,7 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	*/
 	public java.util.List<com.liferay.chat.model.Entry> findByC_T(
 		long createDate, long toUserId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.chat.model.Entry> orderByComparator);
 
 	/**
 	* Returns the first entry in the ordered set where createDate = &#63; and toUserId = &#63;.
@@ -568,7 +568,7 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	*/
 	public com.liferay.chat.model.Entry findByC_T_First(long createDate,
 		long toUserId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.chat.model.Entry> orderByComparator)
 		throws com.liferay.chat.NoSuchEntryException;
 
 	/**
@@ -581,7 +581,7 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	*/
 	public com.liferay.chat.model.Entry fetchByC_T_First(long createDate,
 		long toUserId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.chat.model.Entry> orderByComparator);
 
 	/**
 	* Returns the last entry in the ordered set where createDate = &#63; and toUserId = &#63;.
@@ -594,7 +594,7 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	*/
 	public com.liferay.chat.model.Entry findByC_T_Last(long createDate,
 		long toUserId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.chat.model.Entry> orderByComparator)
 		throws com.liferay.chat.NoSuchEntryException;
 
 	/**
@@ -607,7 +607,7 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	*/
 	public com.liferay.chat.model.Entry fetchByC_T_Last(long createDate,
 		long toUserId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.chat.model.Entry> orderByComparator);
 
 	/**
 	* Returns the entries before and after the current entry in the ordered set where createDate = &#63; and toUserId = &#63;.
@@ -621,7 +621,7 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	*/
 	public com.liferay.chat.model.Entry[] findByC_T_PrevAndNext(long entryId,
 		long createDate, long toUserId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.chat.model.Entry> orderByComparator)
 		throws com.liferay.chat.NoSuchEntryException;
 
 	/**
@@ -683,7 +683,7 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	*/
 	public java.util.List<com.liferay.chat.model.Entry> findByF_T(
 		long fromUserId, long toUserId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.chat.model.Entry> orderByComparator);
 
 	/**
 	* Returns the first entry in the ordered set where fromUserId = &#63; and toUserId = &#63;.
@@ -696,7 +696,7 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	*/
 	public com.liferay.chat.model.Entry findByF_T_First(long fromUserId,
 		long toUserId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.chat.model.Entry> orderByComparator)
 		throws com.liferay.chat.NoSuchEntryException;
 
 	/**
@@ -709,7 +709,7 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	*/
 	public com.liferay.chat.model.Entry fetchByF_T_First(long fromUserId,
 		long toUserId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.chat.model.Entry> orderByComparator);
 
 	/**
 	* Returns the last entry in the ordered set where fromUserId = &#63; and toUserId = &#63;.
@@ -722,7 +722,7 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	*/
 	public com.liferay.chat.model.Entry findByF_T_Last(long fromUserId,
 		long toUserId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.chat.model.Entry> orderByComparator)
 		throws com.liferay.chat.NoSuchEntryException;
 
 	/**
@@ -735,7 +735,7 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	*/
 	public com.liferay.chat.model.Entry fetchByF_T_Last(long fromUserId,
 		long toUserId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.chat.model.Entry> orderByComparator);
 
 	/**
 	* Returns the entries before and after the current entry in the ordered set where fromUserId = &#63; and toUserId = &#63;.
@@ -749,7 +749,7 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	*/
 	public com.liferay.chat.model.Entry[] findByF_T_PrevAndNext(long entryId,
 		long fromUserId, long toUserId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.chat.model.Entry> orderByComparator)
 		throws com.liferay.chat.NoSuchEntryException;
 
 	/**
@@ -814,7 +814,7 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	*/
 	public java.util.List<com.liferay.chat.model.Entry> findByC_F_T(
 		long createDate, long fromUserId, long toUserId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.chat.model.Entry> orderByComparator);
 
 	/**
 	* Returns the first entry in the ordered set where createDate = &#63; and fromUserId = &#63; and toUserId = &#63;.
@@ -828,7 +828,7 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	*/
 	public com.liferay.chat.model.Entry findByC_F_T_First(long createDate,
 		long fromUserId, long toUserId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.chat.model.Entry> orderByComparator)
 		throws com.liferay.chat.NoSuchEntryException;
 
 	/**
@@ -842,7 +842,7 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	*/
 	public com.liferay.chat.model.Entry fetchByC_F_T_First(long createDate,
 		long fromUserId, long toUserId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.chat.model.Entry> orderByComparator);
 
 	/**
 	* Returns the last entry in the ordered set where createDate = &#63; and fromUserId = &#63; and toUserId = &#63;.
@@ -856,7 +856,7 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	*/
 	public com.liferay.chat.model.Entry findByC_F_T_Last(long createDate,
 		long fromUserId, long toUserId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.chat.model.Entry> orderByComparator)
 		throws com.liferay.chat.NoSuchEntryException;
 
 	/**
@@ -870,7 +870,7 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	*/
 	public com.liferay.chat.model.Entry fetchByC_F_T_Last(long createDate,
 		long fromUserId, long toUserId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.chat.model.Entry> orderByComparator);
 
 	/**
 	* Returns the entries before and after the current entry in the ordered set where createDate = &#63; and fromUserId = &#63; and toUserId = &#63;.
@@ -885,7 +885,7 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	*/
 	public com.liferay.chat.model.Entry[] findByC_F_T_PrevAndNext(
 		long entryId, long createDate, long fromUserId, long toUserId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.chat.model.Entry> orderByComparator)
 		throws com.liferay.chat.NoSuchEntryException;
 
 	/**
@@ -954,7 +954,7 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	public java.util.List<com.liferay.chat.model.Entry> findByF_T_C(
 		long fromUserId, long toUserId, java.lang.String content, int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.chat.model.Entry> orderByComparator);
 
 	/**
 	* Returns the first entry in the ordered set where fromUserId = &#63; and toUserId = &#63; and content = &#63;.
@@ -968,7 +968,7 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	*/
 	public com.liferay.chat.model.Entry findByF_T_C_First(long fromUserId,
 		long toUserId, java.lang.String content,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.chat.model.Entry> orderByComparator)
 		throws com.liferay.chat.NoSuchEntryException;
 
 	/**
@@ -982,7 +982,7 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	*/
 	public com.liferay.chat.model.Entry fetchByF_T_C_First(long fromUserId,
 		long toUserId, java.lang.String content,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.chat.model.Entry> orderByComparator);
 
 	/**
 	* Returns the last entry in the ordered set where fromUserId = &#63; and toUserId = &#63; and content = &#63;.
@@ -996,7 +996,7 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	*/
 	public com.liferay.chat.model.Entry findByF_T_C_Last(long fromUserId,
 		long toUserId, java.lang.String content,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.chat.model.Entry> orderByComparator)
 		throws com.liferay.chat.NoSuchEntryException;
 
 	/**
@@ -1010,7 +1010,7 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	*/
 	public com.liferay.chat.model.Entry fetchByF_T_C_Last(long fromUserId,
 		long toUserId, java.lang.String content,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.chat.model.Entry> orderByComparator);
 
 	/**
 	* Returns the entries before and after the current entry in the ordered set where fromUserId = &#63; and toUserId = &#63; and content = &#63;.
@@ -1025,7 +1025,7 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	*/
 	public com.liferay.chat.model.Entry[] findByF_T_C_PrevAndNext(
 		long entryId, long fromUserId, long toUserId, java.lang.String content,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.chat.model.Entry> orderByComparator)
 		throws com.liferay.chat.NoSuchEntryException;
 
 	/**
@@ -1142,7 +1142,7 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	*/
 	public java.util.List<com.liferay.chat.model.Entry> findAll(int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.chat.model.Entry> orderByComparator);
 
 	/**
 	* Removes all the entries from the database.

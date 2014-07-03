@@ -76,7 +76,7 @@ public interface BBBServerPersistence extends BasePersistence<BBBServer> {
 	*/
 	public java.util.List<com.liferay.bbb.model.BBBServer> findByActive(
 		boolean active, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.bbb.model.BBBServer> orderByComparator);
 
 	/**
 	* Returns the first b b b server in the ordered set where active = &#63;.
@@ -87,7 +87,7 @@ public interface BBBServerPersistence extends BasePersistence<BBBServer> {
 	* @throws com.liferay.bbb.NoSuchServerException if a matching b b b server could not be found
 	*/
 	public com.liferay.bbb.model.BBBServer findByActive_First(boolean active,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.bbb.model.BBBServer> orderByComparator)
 		throws com.liferay.bbb.NoSuchServerException;
 
 	/**
@@ -98,7 +98,7 @@ public interface BBBServerPersistence extends BasePersistence<BBBServer> {
 	* @return the first matching b b b server, or <code>null</code> if a matching b b b server could not be found
 	*/
 	public com.liferay.bbb.model.BBBServer fetchByActive_First(boolean active,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.bbb.model.BBBServer> orderByComparator);
 
 	/**
 	* Returns the last b b b server in the ordered set where active = &#63;.
@@ -109,7 +109,7 @@ public interface BBBServerPersistence extends BasePersistence<BBBServer> {
 	* @throws com.liferay.bbb.NoSuchServerException if a matching b b b server could not be found
 	*/
 	public com.liferay.bbb.model.BBBServer findByActive_Last(boolean active,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.bbb.model.BBBServer> orderByComparator)
 		throws com.liferay.bbb.NoSuchServerException;
 
 	/**
@@ -120,7 +120,7 @@ public interface BBBServerPersistence extends BasePersistence<BBBServer> {
 	* @return the last matching b b b server, or <code>null</code> if a matching b b b server could not be found
 	*/
 	public com.liferay.bbb.model.BBBServer fetchByActive_Last(boolean active,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.bbb.model.BBBServer> orderByComparator);
 
 	/**
 	* Returns the b b b servers before and after the current b b b server in the ordered set where active = &#63;.
@@ -133,7 +133,7 @@ public interface BBBServerPersistence extends BasePersistence<BBBServer> {
 	*/
 	public com.liferay.bbb.model.BBBServer[] findByActive_PrevAndNext(
 		long bbbServerId, boolean active,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.bbb.model.BBBServer> orderByComparator)
 		throws com.liferay.bbb.NoSuchServerException;
 
 	/**
@@ -244,7 +244,7 @@ public interface BBBServerPersistence extends BasePersistence<BBBServer> {
 	*/
 	public java.util.List<com.liferay.bbb.model.BBBServer> findAll(int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.bbb.model.BBBServer> orderByComparator);
 
 	/**
 	* Removes all the b b b servers from the database.

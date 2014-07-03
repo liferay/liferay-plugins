@@ -20,7 +20,7 @@ import com.liferay.portal.workflow.kaleo.service.KaleoTransitionLocalServiceUtil
 
 /**
  * @author Brian Wing Shun Chan
- * @deprecated As of 7.0.0, replaced by {@link KaleoTransitionLocalServiceUtil#getExportActionableDynamicQuery()}
+ * @deprecated As of 7.0.0, replaced by {@link KaleoTransitionLocalServiceUtil#getActionableDynamicQuery()}
  * @generated
  */
 @Deprecated

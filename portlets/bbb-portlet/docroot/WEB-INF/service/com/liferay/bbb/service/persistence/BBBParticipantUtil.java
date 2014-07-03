@@ -85,7 +85,7 @@ public class BBBParticipantUtil {
 	 */
 	public static List<BBBParticipant> findWithDynamicQuery(
 		DynamicQuery dynamicQuery, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<BBBParticipant> orderByComparator) {
 		return getPersistence()
 				   .findWithDynamicQuery(dynamicQuery, start, end,
 			orderByComparator);
@@ -149,7 +149,7 @@ public class BBBParticipantUtil {
 	*/
 	public static java.util.List<com.liferay.bbb.model.BBBParticipant> findByBbbMeetingId(
 		long bbbMeetingId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.bbb.model.BBBParticipant> orderByComparator) {
 		return getPersistence()
 				   .findByBbbMeetingId(bbbMeetingId, start, end,
 			orderByComparator);
@@ -165,7 +165,7 @@ public class BBBParticipantUtil {
 	*/
 	public static com.liferay.bbb.model.BBBParticipant findByBbbMeetingId_First(
 		long bbbMeetingId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.bbb.model.BBBParticipant> orderByComparator)
 		throws com.liferay.bbb.NoSuchParticipantException {
 		return getPersistence()
 				   .findByBbbMeetingId_First(bbbMeetingId, orderByComparator);
@@ -180,7 +180,7 @@ public class BBBParticipantUtil {
 	*/
 	public static com.liferay.bbb.model.BBBParticipant fetchByBbbMeetingId_First(
 		long bbbMeetingId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.bbb.model.BBBParticipant> orderByComparator) {
 		return getPersistence()
 				   .fetchByBbbMeetingId_First(bbbMeetingId, orderByComparator);
 	}
@@ -195,7 +195,7 @@ public class BBBParticipantUtil {
 	*/
 	public static com.liferay.bbb.model.BBBParticipant findByBbbMeetingId_Last(
 		long bbbMeetingId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.bbb.model.BBBParticipant> orderByComparator)
 		throws com.liferay.bbb.NoSuchParticipantException {
 		return getPersistence()
 				   .findByBbbMeetingId_Last(bbbMeetingId, orderByComparator);
@@ -210,7 +210,7 @@ public class BBBParticipantUtil {
 	*/
 	public static com.liferay.bbb.model.BBBParticipant fetchByBbbMeetingId_Last(
 		long bbbMeetingId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.bbb.model.BBBParticipant> orderByComparator) {
 		return getPersistence()
 				   .fetchByBbbMeetingId_Last(bbbMeetingId, orderByComparator);
 	}
@@ -226,7 +226,7 @@ public class BBBParticipantUtil {
 	*/
 	public static com.liferay.bbb.model.BBBParticipant[] findByBbbMeetingId_PrevAndNext(
 		long bbbParticipantId, long bbbMeetingId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.bbb.model.BBBParticipant> orderByComparator)
 		throws com.liferay.bbb.NoSuchParticipantException {
 		return getPersistence()
 				   .findByBbbMeetingId_PrevAndNext(bbbParticipantId,
@@ -435,7 +435,7 @@ public class BBBParticipantUtil {
 	*/
 	public static java.util.List<com.liferay.bbb.model.BBBParticipant> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.bbb.model.BBBParticipant> orderByComparator) {
 		return getPersistence().findAll(start, end, orderByComparator);
 	}
 

@@ -84,7 +84,7 @@ public class KaleoNodeUtil {
 	 */
 	public static List<KaleoNode> findWithDynamicQuery(
 		DynamicQuery dynamicQuery, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KaleoNode> orderByComparator) {
 		return getPersistence()
 				   .findWithDynamicQuery(dynamicQuery, start, end,
 			orderByComparator);
@@ -148,7 +148,7 @@ public class KaleoNodeUtil {
 	*/
 	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoNode> findByCompanyId(
 		long companyId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoNode> orderByComparator) {
 		return getPersistence()
 				   .findByCompanyId(companyId, start, end, orderByComparator);
 	}
@@ -163,7 +163,7 @@ public class KaleoNodeUtil {
 	*/
 	public static com.liferay.portal.workflow.kaleo.model.KaleoNode findByCompanyId_First(
 		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoNode> orderByComparator)
 		throws com.liferay.portal.workflow.kaleo.NoSuchNodeException {
 		return getPersistence()
 				   .findByCompanyId_First(companyId, orderByComparator);
@@ -178,7 +178,7 @@ public class KaleoNodeUtil {
 	*/
 	public static com.liferay.portal.workflow.kaleo.model.KaleoNode fetchByCompanyId_First(
 		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoNode> orderByComparator) {
 		return getPersistence()
 				   .fetchByCompanyId_First(companyId, orderByComparator);
 	}
@@ -193,7 +193,7 @@ public class KaleoNodeUtil {
 	*/
 	public static com.liferay.portal.workflow.kaleo.model.KaleoNode findByCompanyId_Last(
 		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoNode> orderByComparator)
 		throws com.liferay.portal.workflow.kaleo.NoSuchNodeException {
 		return getPersistence()
 				   .findByCompanyId_Last(companyId, orderByComparator);
@@ -208,7 +208,7 @@ public class KaleoNodeUtil {
 	*/
 	public static com.liferay.portal.workflow.kaleo.model.KaleoNode fetchByCompanyId_Last(
 		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoNode> orderByComparator) {
 		return getPersistence()
 				   .fetchByCompanyId_Last(companyId, orderByComparator);
 	}
@@ -224,7 +224,7 @@ public class KaleoNodeUtil {
 	*/
 	public static com.liferay.portal.workflow.kaleo.model.KaleoNode[] findByCompanyId_PrevAndNext(
 		long kaleoNodeId, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoNode> orderByComparator)
 		throws com.liferay.portal.workflow.kaleo.NoSuchNodeException {
 		return getPersistence()
 				   .findByCompanyId_PrevAndNext(kaleoNodeId, companyId,
@@ -294,7 +294,7 @@ public class KaleoNodeUtil {
 	*/
 	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoNode> findByKaleoDefinitionId(
 		long kaleoDefinitionId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoNode> orderByComparator) {
 		return getPersistence()
 				   .findByKaleoDefinitionId(kaleoDefinitionId, start, end,
 			orderByComparator);
@@ -310,7 +310,7 @@ public class KaleoNodeUtil {
 	*/
 	public static com.liferay.portal.workflow.kaleo.model.KaleoNode findByKaleoDefinitionId_First(
 		long kaleoDefinitionId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoNode> orderByComparator)
 		throws com.liferay.portal.workflow.kaleo.NoSuchNodeException {
 		return getPersistence()
 				   .findByKaleoDefinitionId_First(kaleoDefinitionId,
@@ -326,7 +326,7 @@ public class KaleoNodeUtil {
 	*/
 	public static com.liferay.portal.workflow.kaleo.model.KaleoNode fetchByKaleoDefinitionId_First(
 		long kaleoDefinitionId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoNode> orderByComparator) {
 		return getPersistence()
 				   .fetchByKaleoDefinitionId_First(kaleoDefinitionId,
 			orderByComparator);
@@ -342,7 +342,7 @@ public class KaleoNodeUtil {
 	*/
 	public static com.liferay.portal.workflow.kaleo.model.KaleoNode findByKaleoDefinitionId_Last(
 		long kaleoDefinitionId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoNode> orderByComparator)
 		throws com.liferay.portal.workflow.kaleo.NoSuchNodeException {
 		return getPersistence()
 				   .findByKaleoDefinitionId_Last(kaleoDefinitionId,
@@ -358,7 +358,7 @@ public class KaleoNodeUtil {
 	*/
 	public static com.liferay.portal.workflow.kaleo.model.KaleoNode fetchByKaleoDefinitionId_Last(
 		long kaleoDefinitionId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoNode> orderByComparator) {
 		return getPersistence()
 				   .fetchByKaleoDefinitionId_Last(kaleoDefinitionId,
 			orderByComparator);
@@ -375,7 +375,7 @@ public class KaleoNodeUtil {
 	*/
 	public static com.liferay.portal.workflow.kaleo.model.KaleoNode[] findByKaleoDefinitionId_PrevAndNext(
 		long kaleoNodeId, long kaleoDefinitionId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoNode> orderByComparator)
 		throws com.liferay.portal.workflow.kaleo.NoSuchNodeException {
 		return getPersistence()
 				   .findByKaleoDefinitionId_PrevAndNext(kaleoNodeId,
@@ -448,7 +448,7 @@ public class KaleoNodeUtil {
 	*/
 	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoNode> findByC_KDI(
 		long companyId, long kaleoDefinitionId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoNode> orderByComparator) {
 		return getPersistence()
 				   .findByC_KDI(companyId, kaleoDefinitionId, start, end,
 			orderByComparator);
@@ -465,7 +465,7 @@ public class KaleoNodeUtil {
 	*/
 	public static com.liferay.portal.workflow.kaleo.model.KaleoNode findByC_KDI_First(
 		long companyId, long kaleoDefinitionId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoNode> orderByComparator)
 		throws com.liferay.portal.workflow.kaleo.NoSuchNodeException {
 		return getPersistence()
 				   .findByC_KDI_First(companyId, kaleoDefinitionId,
@@ -482,7 +482,7 @@ public class KaleoNodeUtil {
 	*/
 	public static com.liferay.portal.workflow.kaleo.model.KaleoNode fetchByC_KDI_First(
 		long companyId, long kaleoDefinitionId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoNode> orderByComparator) {
 		return getPersistence()
 				   .fetchByC_KDI_First(companyId, kaleoDefinitionId,
 			orderByComparator);
@@ -499,7 +499,7 @@ public class KaleoNodeUtil {
 	*/
 	public static com.liferay.portal.workflow.kaleo.model.KaleoNode findByC_KDI_Last(
 		long companyId, long kaleoDefinitionId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoNode> orderByComparator)
 		throws com.liferay.portal.workflow.kaleo.NoSuchNodeException {
 		return getPersistence()
 				   .findByC_KDI_Last(companyId, kaleoDefinitionId,
@@ -516,7 +516,7 @@ public class KaleoNodeUtil {
 	*/
 	public static com.liferay.portal.workflow.kaleo.model.KaleoNode fetchByC_KDI_Last(
 		long companyId, long kaleoDefinitionId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoNode> orderByComparator) {
 		return getPersistence()
 				   .fetchByC_KDI_Last(companyId, kaleoDefinitionId,
 			orderByComparator);
@@ -534,7 +534,7 @@ public class KaleoNodeUtil {
 	*/
 	public static com.liferay.portal.workflow.kaleo.model.KaleoNode[] findByC_KDI_PrevAndNext(
 		long kaleoNodeId, long companyId, long kaleoDefinitionId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoNode> orderByComparator)
 		throws com.liferay.portal.workflow.kaleo.NoSuchNodeException {
 		return getPersistence()
 				   .findByC_KDI_PrevAndNext(kaleoNodeId, companyId,
@@ -679,7 +679,7 @@ public class KaleoNodeUtil {
 	*/
 	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoNode> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoNode> orderByComparator) {
 		return getPersistence().findAll(start, end, orderByComparator);
 	}
 

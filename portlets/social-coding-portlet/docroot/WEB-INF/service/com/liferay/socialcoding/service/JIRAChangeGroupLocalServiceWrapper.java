@@ -93,8 +93,7 @@ public class JIRAChangeGroupLocalServiceWrapper
 	* @return the matching rows
 	*/
 	@Override
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
 		return _jiraChangeGroupLocalService.dynamicQuery(dynamicQuery);
 	}
@@ -112,8 +111,7 @@ public class JIRAChangeGroupLocalServiceWrapper
 	* @return the range of matching rows
 	*/
 	@Override
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) {
 		return _jiraChangeGroupLocalService.dynamicQuery(dynamicQuery, start,
@@ -134,11 +132,10 @@ public class JIRAChangeGroupLocalServiceWrapper
 	* @return the ordered range of matching rows
 	*/
 	@Override
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<T> orderByComparator) {
 		return _jiraChangeGroupLocalService.dynamicQuery(dynamicQuery, start,
 			end, orderByComparator);
 	}
@@ -182,13 +179,11 @@ public class JIRAChangeGroupLocalServiceWrapper
 	* @param jiraChangeGroupId the primary key of the j i r a change group
 	* @return the j i r a change group
 	* @throws PortalException if a j i r a change group with the primary key could not be found
-	* @throws SystemException
 	*/
 	@Override
 	public com.liferay.socialcoding.model.JIRAChangeGroup getJIRAChangeGroup(
 		long jiraChangeGroupId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _jiraChangeGroupLocalService.getJIRAChangeGroup(jiraChangeGroupId);
 	}
 

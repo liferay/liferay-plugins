@@ -557,8 +557,7 @@ public class AppWrapper implements App, ModelWrapper<App> {
 	}
 
 	@Override
-	public java.lang.String[] getContextNames()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public java.lang.String[] getContextNames() {
 		return _app.getContextNames();
 	}
 
@@ -579,14 +578,12 @@ public class AppWrapper implements App, ModelWrapper<App> {
 
 	@Override
 	public boolean isDownloaded()
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _app.isDownloaded();
 	}
 
 	@Override
-	public boolean isInstalled()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public boolean isInstalled() {
 		return _app.isInstalled();
 	}
 

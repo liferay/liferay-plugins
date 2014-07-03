@@ -21,7 +21,7 @@ import com.liferay.portal.kernel.dao.orm.BaseActionableDynamicQuery;
 
 /**
  * @author Shinn Lok
- * @deprecated As of 7.0.0, replaced by {@link BBBServerLocalServiceUtil#getExportActionableDynamicQuery()}
+ * @deprecated As of 7.0.0, replaced by {@link BBBServerLocalServiceUtil#getActionableDynamicQuery()}
  * @generated
  */
 @Deprecated

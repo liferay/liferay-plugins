@@ -77,11 +77,9 @@ public interface BarLocalService extends BaseLocalService, InvokableLocalService
 	*
 	* @param bar the bar
 	* @return the bar that was removed
-	* @throws SystemException
 	*/
 	public com.liferay.testtransaction.model.Bar deleteBar(
-		com.liferay.testtransaction.model.Bar bar)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.testtransaction.model.Bar bar);
 
 	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery();
 
@@ -91,8 +89,7 @@ public interface BarLocalService extends BaseLocalService, InvokableLocalService
 	* @param dynamicQuery the dynamic query
 	* @return the matching rows
 	*/
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery);
 
 	/**
@@ -107,8 +104,7 @@ public interface BarLocalService extends BaseLocalService, InvokableLocalService
 	* @param end the upper bound of the range of model instances (not inclusive)
 	* @return the range of matching rows
 	*/
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end);
 
@@ -125,11 +121,10 @@ public interface BarLocalService extends BaseLocalService, InvokableLocalService
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching rows
 	*/
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<T> orderByComparator);
 
 	/**
 	* Returns the number of rows that match the dynamic query.
@@ -233,36 +228,27 @@ public interface BarLocalService extends BaseLocalService, InvokableLocalService
 		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
 		throws java.lang.Throwable;
 
-	public void addBar_Rollback(java.lang.String text)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public void addBar_Rollback(java.lang.String text);
 
 	public com.liferay.testtransaction.model.Bar addBar_Success(
-		java.lang.String text)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		java.lang.String text);
 
-	public void addBarAndClassName_PortalRollback(java.lang.String text)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public void addBarAndClassName_PortalRollback(java.lang.String text);
 
-	public void addBarAndClassName_PortletRollback(java.lang.String text)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public void addBarAndClassName_PortletRollback(java.lang.String text);
 
 	public void deleteBarAndClassName(com.liferay.testtransaction.model.Bar bar)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.testtransaction.model.Bar getBar(java.lang.String text)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public boolean hasBar(java.lang.String text)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public boolean hasBar(java.lang.String text);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public boolean hasClassName()
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public boolean hasClassName();
 
-	public void testAddClassNameAndBar_Success(java.lang.String text)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public void testAddClassNameAndBar_Success(java.lang.String text);
 }

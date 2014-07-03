@@ -22,20 +22,17 @@ import com.liferay.portal.kernel.util.ReferenceRegistry;
  */
 public class EntryFinderUtil {
 	public static java.util.List<com.liferay.chat.model.Entry> findByEmptyContent(
-		long fromUserId, long toUserId, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long fromUserId, long toUserId, int start, int end) {
 		return getFinder().findByEmptyContent(fromUserId, toUserId, start, end);
 	}
 
 	public static java.util.List<com.liferay.chat.model.Entry> findByNew(
-		long userId, long createDate, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long userId, long createDate, int start, int end) {
 		return getFinder().findByNew(userId, createDate, start, end);
 	}
 
 	public static java.util.List<com.liferay.chat.model.Entry> findByOld(
-		long createDate, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long createDate, int start, int end) {
 		return getFinder().findByOld(createDate, start, end);
 	}
 

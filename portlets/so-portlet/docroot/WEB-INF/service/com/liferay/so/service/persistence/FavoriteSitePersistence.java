@@ -76,7 +76,7 @@ public interface FavoriteSitePersistence extends BasePersistence<FavoriteSite> {
 	*/
 	public java.util.List<com.liferay.so.model.FavoriteSite> findByUserId(
 		long userId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.so.model.FavoriteSite> orderByComparator);
 
 	/**
 	* Returns the first favorite site in the ordered set where userId = &#63;.
@@ -87,7 +87,7 @@ public interface FavoriteSitePersistence extends BasePersistence<FavoriteSite> {
 	* @throws com.liferay.so.NoSuchFavoriteSiteException if a matching favorite site could not be found
 	*/
 	public com.liferay.so.model.FavoriteSite findByUserId_First(long userId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.so.model.FavoriteSite> orderByComparator)
 		throws com.liferay.so.NoSuchFavoriteSiteException;
 
 	/**
@@ -98,7 +98,7 @@ public interface FavoriteSitePersistence extends BasePersistence<FavoriteSite> {
 	* @return the first matching favorite site, or <code>null</code> if a matching favorite site could not be found
 	*/
 	public com.liferay.so.model.FavoriteSite fetchByUserId_First(long userId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.so.model.FavoriteSite> orderByComparator);
 
 	/**
 	* Returns the last favorite site in the ordered set where userId = &#63;.
@@ -109,7 +109,7 @@ public interface FavoriteSitePersistence extends BasePersistence<FavoriteSite> {
 	* @throws com.liferay.so.NoSuchFavoriteSiteException if a matching favorite site could not be found
 	*/
 	public com.liferay.so.model.FavoriteSite findByUserId_Last(long userId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.so.model.FavoriteSite> orderByComparator)
 		throws com.liferay.so.NoSuchFavoriteSiteException;
 
 	/**
@@ -120,7 +120,7 @@ public interface FavoriteSitePersistence extends BasePersistence<FavoriteSite> {
 	* @return the last matching favorite site, or <code>null</code> if a matching favorite site could not be found
 	*/
 	public com.liferay.so.model.FavoriteSite fetchByUserId_Last(long userId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.so.model.FavoriteSite> orderByComparator);
 
 	/**
 	* Returns the favorite sites before and after the current favorite site in the ordered set where userId = &#63;.
@@ -133,7 +133,7 @@ public interface FavoriteSitePersistence extends BasePersistence<FavoriteSite> {
 	*/
 	public com.liferay.so.model.FavoriteSite[] findByUserId_PrevAndNext(
 		long favoriteSiteId, long userId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.so.model.FavoriteSite> orderByComparator)
 		throws com.liferay.so.NoSuchFavoriteSiteException;
 
 	/**
@@ -296,7 +296,7 @@ public interface FavoriteSitePersistence extends BasePersistence<FavoriteSite> {
 	*/
 	public java.util.List<com.liferay.so.model.FavoriteSite> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.so.model.FavoriteSite> orderByComparator);
 
 	/**
 	* Removes all the favorite sites from the database.

@@ -21,7 +21,7 @@ import com.liferay.socialnetworking.service.MeetupsRegistrationLocalServiceUtil;
 
 /**
  * @author Brian Wing Shun Chan
- * @deprecated As of 7.0.0, replaced by {@link MeetupsRegistrationLocalServiceUtil#getExportActionableDynamicQuery()}
+ * @deprecated As of 7.0.0, replaced by {@link MeetupsRegistrationLocalServiceUtil#getActionableDynamicQuery()}
  * @generated
  */
 @Deprecated

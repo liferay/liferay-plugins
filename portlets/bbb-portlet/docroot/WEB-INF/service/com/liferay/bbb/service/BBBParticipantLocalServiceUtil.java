@@ -79,11 +79,9 @@ public class BBBParticipantLocalServiceUtil {
 	*
 	* @param bbbParticipant the b b b participant
 	* @return the b b b participant that was removed
-	* @throws SystemException
 	*/
 	public static com.liferay.bbb.model.BBBParticipant deleteBBBParticipant(
-		com.liferay.bbb.model.BBBParticipant bbbParticipant)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.bbb.model.BBBParticipant bbbParticipant) {
 		return getService().deleteBBBParticipant(bbbParticipant);
 	}
 
@@ -97,8 +95,7 @@ public class BBBParticipantLocalServiceUtil {
 	* @param dynamicQuery the dynamic query
 	* @return the matching rows
 	*/
-	@SuppressWarnings("rawtypes")
-	public static java.util.List dynamicQuery(
+	public static <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
 		return getService().dynamicQuery(dynamicQuery);
 	}
@@ -115,8 +112,7 @@ public class BBBParticipantLocalServiceUtil {
 	* @param end the upper bound of the range of model instances (not inclusive)
 	* @return the range of matching rows
 	*/
-	@SuppressWarnings("rawtypes")
-	public static java.util.List dynamicQuery(
+	public static <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) {
 		return getService().dynamicQuery(dynamicQuery, start, end);
@@ -135,11 +131,10 @@ public class BBBParticipantLocalServiceUtil {
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching rows
 	*/
-	@SuppressWarnings("rawtypes")
-	public static java.util.List dynamicQuery(
+	public static <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<T> orderByComparator) {
 		return getService()
 				   .dynamicQuery(dynamicQuery, start, end, orderByComparator);
 	}
@@ -269,27 +264,23 @@ public class BBBParticipantLocalServiceUtil {
 		long userId, long groupId, long bbbMeetingId, java.lang.String name,
 		java.lang.String emailAddress, int type, int status,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService()
 				   .addBBBParticipant(userId, groupId, bbbMeetingId, name,
 			emailAddress, type, status, serviceContext);
 	}
 
 	public static com.liferay.bbb.model.BBBParticipant fetchBBBParticipant(
-		long bbbMeetingId, java.lang.String emailAddress)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long bbbMeetingId, java.lang.String emailAddress) {
 		return getService().fetchBBBParticipant(bbbMeetingId, emailAddress);
 	}
 
 	public static java.util.List<com.liferay.bbb.model.BBBParticipant> getBBBParticipants(
-		long bbbMeetingId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long bbbMeetingId) {
 		return getService().getBBBParticipants(bbbMeetingId);
 	}
 
-	public static int getBBBParticipantsCount(long bbbMeetingId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static int getBBBParticipantsCount(long bbbMeetingId) {
 		return getService().getBBBParticipantsCount(bbbMeetingId);
 	}
 
@@ -297,8 +288,7 @@ public class BBBParticipantLocalServiceUtil {
 		long bbbParticipantId, long bbbMeetingId, java.lang.String name,
 		java.lang.String emailAddress, int type,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService()
 				   .updateBBBParticipant(bbbParticipantId, bbbMeetingId, name,
 			emailAddress, type, serviceContext);
@@ -306,8 +296,7 @@ public class BBBParticipantLocalServiceUtil {
 
 	public static com.liferay.bbb.model.BBBParticipant updateStatus(
 		long bbbParticipantId, int status)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().updateStatus(bbbParticipantId, status);
 	}
 

@@ -83,7 +83,7 @@ public class FolderUtil {
 	 * @see com.liferay.portal.service.persistence.BasePersistence#findWithDynamicQuery(DynamicQuery, int, int, OrderByComparator)
 	 */
 	public static List<Folder> findWithDynamicQuery(DynamicQuery dynamicQuery,
-		int start, int end, OrderByComparator orderByComparator) {
+		int start, int end, OrderByComparator<Folder> orderByComparator) {
 		return getPersistence()
 				   .findWithDynamicQuery(dynamicQuery, start, end,
 			orderByComparator);
@@ -146,7 +146,7 @@ public class FolderUtil {
 	*/
 	public static java.util.List<com.liferay.mail.model.Folder> findByAccountId(
 		long accountId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.mail.model.Folder> orderByComparator) {
 		return getPersistence()
 				   .findByAccountId(accountId, start, end, orderByComparator);
 	}
@@ -161,7 +161,7 @@ public class FolderUtil {
 	*/
 	public static com.liferay.mail.model.Folder findByAccountId_First(
 		long accountId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.mail.model.Folder> orderByComparator)
 		throws com.liferay.mail.NoSuchFolderException {
 		return getPersistence()
 				   .findByAccountId_First(accountId, orderByComparator);
@@ -176,7 +176,7 @@ public class FolderUtil {
 	*/
 	public static com.liferay.mail.model.Folder fetchByAccountId_First(
 		long accountId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.mail.model.Folder> orderByComparator) {
 		return getPersistence()
 				   .fetchByAccountId_First(accountId, orderByComparator);
 	}
@@ -191,7 +191,7 @@ public class FolderUtil {
 	*/
 	public static com.liferay.mail.model.Folder findByAccountId_Last(
 		long accountId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.mail.model.Folder> orderByComparator)
 		throws com.liferay.mail.NoSuchFolderException {
 		return getPersistence()
 				   .findByAccountId_Last(accountId, orderByComparator);
@@ -206,7 +206,7 @@ public class FolderUtil {
 	*/
 	public static com.liferay.mail.model.Folder fetchByAccountId_Last(
 		long accountId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.mail.model.Folder> orderByComparator) {
 		return getPersistence()
 				   .fetchByAccountId_Last(accountId, orderByComparator);
 	}
@@ -222,7 +222,7 @@ public class FolderUtil {
 	*/
 	public static com.liferay.mail.model.Folder[] findByAccountId_PrevAndNext(
 		long folderId, long accountId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.mail.model.Folder> orderByComparator)
 		throws com.liferay.mail.NoSuchFolderException {
 		return getPersistence()
 				   .findByAccountId_PrevAndNext(folderId, accountId,
@@ -424,7 +424,7 @@ public class FolderUtil {
 	*/
 	public static java.util.List<com.liferay.mail.model.Folder> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.mail.model.Folder> orderByComparator) {
 		return getPersistence().findAll(start, end, orderByComparator);
 	}
 

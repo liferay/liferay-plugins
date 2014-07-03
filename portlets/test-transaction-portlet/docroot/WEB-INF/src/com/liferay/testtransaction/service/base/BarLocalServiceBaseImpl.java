@@ -110,11 +110,10 @@ public abstract class BarLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 *
 	 * @param bar the bar
 	 * @return the bar that was removed
-	 * @throws SystemException
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
-	public Bar deleteBar(Bar bar) throws SystemException {
+	public Bar deleteBar(Bar bar) {
 		return barPersistence.remove(bar);
 	}
 
@@ -133,8 +132,7 @@ public abstract class BarLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the matching rows
 	 */
 	@Override
-	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery) {
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery) {
 		return barPersistence.findWithDynamicQuery(dynamicQuery);
 	}
 
@@ -151,8 +149,8 @@ public abstract class BarLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the range of matching rows
 	 */
 	@Override
-	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end) {
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
+		int end) {
 		return barPersistence.findWithDynamicQuery(dynamicQuery, start, end);
 	}
 
@@ -170,9 +168,8 @@ public abstract class BarLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the ordered range of matching rows
 	 */
 	@Override
-	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end,
-		OrderByComparator orderByComparator) {
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
+		int end, OrderByComparator<T> orderByComparator) {
 		return barPersistence.findWithDynamicQuery(dynamicQuery, start, end,
 			orderByComparator);
 	}

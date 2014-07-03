@@ -67,12 +67,10 @@ public class BBBServerLocalServiceUtil {
 	* @param bbbServerId the primary key of the b b b server
 	* @return the b b b server that was removed
 	* @throws PortalException if a b b b server with the primary key could not be found
-	* @throws SystemException
 	*/
 	public static com.liferay.bbb.model.BBBServer deleteBBBServer(
 		long bbbServerId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().deleteBBBServer(bbbServerId);
 	}
 
@@ -81,11 +79,9 @@ public class BBBServerLocalServiceUtil {
 	*
 	* @param bbbServer the b b b server
 	* @return the b b b server that was removed
-	* @throws SystemException
 	*/
 	public static com.liferay.bbb.model.BBBServer deleteBBBServer(
-		com.liferay.bbb.model.BBBServer bbbServer)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.bbb.model.BBBServer bbbServer) {
 		return getService().deleteBBBServer(bbbServer);
 	}
 
@@ -99,8 +95,7 @@ public class BBBServerLocalServiceUtil {
 	* @param dynamicQuery the dynamic query
 	* @return the matching rows
 	*/
-	@SuppressWarnings("rawtypes")
-	public static java.util.List dynamicQuery(
+	public static <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
 		return getService().dynamicQuery(dynamicQuery);
 	}
@@ -117,8 +112,7 @@ public class BBBServerLocalServiceUtil {
 	* @param end the upper bound of the range of model instances (not inclusive)
 	* @return the range of matching rows
 	*/
-	@SuppressWarnings("rawtypes")
-	public static java.util.List dynamicQuery(
+	public static <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) {
 		return getService().dynamicQuery(dynamicQuery, start, end);
@@ -137,11 +131,10 @@ public class BBBServerLocalServiceUtil {
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching rows
 	*/
-	@SuppressWarnings("rawtypes")
-	public static java.util.List dynamicQuery(
+	public static <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<T> orderByComparator) {
 		return getService()
 				   .dynamicQuery(dynamicQuery, start, end, orderByComparator);
 	}
@@ -269,27 +262,23 @@ public class BBBServerLocalServiceUtil {
 	public static com.liferay.bbb.model.BBBServer addBBBServer(long userId,
 		java.lang.String name, java.lang.String url, java.lang.String secret,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService()
 				   .addBBBServer(userId, name, url, secret, serviceContext);
 	}
 
 	public static void checkBBBServers()
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		getService().checkBBBServers();
 	}
 
 	public static java.util.List<com.liferay.bbb.model.BBBServer> getBBBServers(
-		boolean active)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		boolean active) {
 		return getService().getBBBServers(active);
 	}
 
 	public static java.util.List<com.liferay.bbb.model.BBBServer> getBBBServers(
-		int start, int end, com.liferay.portal.kernel.util.OrderByComparator obc)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		int start, int end, com.liferay.portal.kernel.util.OrderByComparator obc) {
 		return getService().getBBBServers(start, end, obc);
 	}
 
@@ -297,8 +286,7 @@ public class BBBServerLocalServiceUtil {
 		long bbbServerId, java.lang.String name, java.lang.String url,
 		java.lang.String secret,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService()
 				   .updateBBBServer(bbbServerId, name, url, secret,
 			serviceContext);

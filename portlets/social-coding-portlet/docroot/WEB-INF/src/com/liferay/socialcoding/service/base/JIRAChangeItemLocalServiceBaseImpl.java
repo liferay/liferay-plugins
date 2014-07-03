@@ -142,8 +142,7 @@ public abstract class JIRAChangeItemLocalServiceBaseImpl
 	 * @return the matching rows
 	 */
 	@Override
-	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery) {
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery) {
 		return jiraChangeItemPersistence.findWithDynamicQuery(dynamicQuery);
 	}
 
@@ -160,8 +159,8 @@ public abstract class JIRAChangeItemLocalServiceBaseImpl
 	 * @return the range of matching rows
 	 */
 	@Override
-	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end) {
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
+		int end) {
 		return jiraChangeItemPersistence.findWithDynamicQuery(dynamicQuery,
 			start, end);
 	}
@@ -180,9 +179,8 @@ public abstract class JIRAChangeItemLocalServiceBaseImpl
 	 * @return the ordered range of matching rows
 	 */
 	@Override
-	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end,
-		OrderByComparator orderByComparator) {
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
+		int end, OrderByComparator<T> orderByComparator) {
 		return jiraChangeItemPersistence.findWithDynamicQuery(dynamicQuery,
 			start, end, orderByComparator);
 	}
@@ -223,11 +221,10 @@ public abstract class JIRAChangeItemLocalServiceBaseImpl
 	 * @param jiraChangeItemId the primary key of the j i r a change item
 	 * @return the j i r a change item
 	 * @throws PortalException if a j i r a change item with the primary key could not be found
-	 * @throws SystemException
 	 */
 	@Override
 	public JIRAChangeItem getJIRAChangeItem(long jiraChangeItemId)
-		throws PortalException, SystemException {
+		throws PortalException {
 		return jiraChangeItemPersistence.findByPrimaryKey(jiraChangeItemId);
 	}
 

@@ -155,7 +155,7 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	 */
 	@Override
 	public List<TasksEntry> findByGroupId(long groupId, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<TasksEntry> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -261,7 +261,8 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	 */
 	@Override
 	public TasksEntry findByGroupId_First(long groupId,
-		OrderByComparator orderByComparator) throws NoSuchTasksEntryException {
+		OrderByComparator<TasksEntry> orderByComparator)
+		throws NoSuchTasksEntryException {
 		TasksEntry tasksEntry = fetchByGroupId_First(groupId, orderByComparator);
 
 		if (tasksEntry != null) {
@@ -289,7 +290,7 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	 */
 	@Override
 	public TasksEntry fetchByGroupId_First(long groupId,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<TasksEntry> orderByComparator) {
 		List<TasksEntry> list = findByGroupId(groupId, 0, 1, orderByComparator);
 
 		if (!list.isEmpty()) {
@@ -309,7 +310,8 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	 */
 	@Override
 	public TasksEntry findByGroupId_Last(long groupId,
-		OrderByComparator orderByComparator) throws NoSuchTasksEntryException {
+		OrderByComparator<TasksEntry> orderByComparator)
+		throws NoSuchTasksEntryException {
 		TasksEntry tasksEntry = fetchByGroupId_Last(groupId, orderByComparator);
 
 		if (tasksEntry != null) {
@@ -337,7 +339,7 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	 */
 	@Override
 	public TasksEntry fetchByGroupId_Last(long groupId,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<TasksEntry> orderByComparator) {
 		int count = countByGroupId(groupId);
 
 		if (count == 0) {
@@ -365,7 +367,7 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	 */
 	@Override
 	public TasksEntry[] findByGroupId_PrevAndNext(long tasksEntryId,
-		long groupId, OrderByComparator orderByComparator)
+		long groupId, OrderByComparator<TasksEntry> orderByComparator)
 		throws NoSuchTasksEntryException {
 		TasksEntry tasksEntry = findByPrimaryKey(tasksEntryId);
 
@@ -396,7 +398,7 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 
 	protected TasksEntry getByGroupId_PrevAndNext(Session session,
 		TasksEntry tasksEntry, long groupId,
-		OrderByComparator orderByComparator, boolean previous) {
+		OrderByComparator<TasksEntry> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -543,7 +545,7 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	 */
 	@Override
 	public List<TasksEntry> filterFindByGroupId(long groupId, int start,
-		int end, OrderByComparator orderByComparator) {
+		int end, OrderByComparator<TasksEntry> orderByComparator) {
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
 			return findByGroupId(groupId, start, end, orderByComparator);
 		}
@@ -633,7 +635,7 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	 */
 	@Override
 	public TasksEntry[] filterFindByGroupId_PrevAndNext(long tasksEntryId,
-		long groupId, OrderByComparator orderByComparator)
+		long groupId, OrderByComparator<TasksEntry> orderByComparator)
 		throws NoSuchTasksEntryException {
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
 			return findByGroupId_PrevAndNext(tasksEntryId, groupId,
@@ -669,7 +671,7 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 
 	protected TasksEntry filterGetByGroupId_PrevAndNext(Session session,
 		TasksEntry tasksEntry, long groupId,
-		OrderByComparator orderByComparator, boolean previous) {
+		OrderByComparator<TasksEntry> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -987,7 +989,7 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	 */
 	@Override
 	public List<TasksEntry> findByUserId(long userId, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<TasksEntry> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -1093,7 +1095,8 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	 */
 	@Override
 	public TasksEntry findByUserId_First(long userId,
-		OrderByComparator orderByComparator) throws NoSuchTasksEntryException {
+		OrderByComparator<TasksEntry> orderByComparator)
+		throws NoSuchTasksEntryException {
 		TasksEntry tasksEntry = fetchByUserId_First(userId, orderByComparator);
 
 		if (tasksEntry != null) {
@@ -1121,7 +1124,7 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	 */
 	@Override
 	public TasksEntry fetchByUserId_First(long userId,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<TasksEntry> orderByComparator) {
 		List<TasksEntry> list = findByUserId(userId, 0, 1, orderByComparator);
 
 		if (!list.isEmpty()) {
@@ -1141,7 +1144,8 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	 */
 	@Override
 	public TasksEntry findByUserId_Last(long userId,
-		OrderByComparator orderByComparator) throws NoSuchTasksEntryException {
+		OrderByComparator<TasksEntry> orderByComparator)
+		throws NoSuchTasksEntryException {
 		TasksEntry tasksEntry = fetchByUserId_Last(userId, orderByComparator);
 
 		if (tasksEntry != null) {
@@ -1169,7 +1173,7 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	 */
 	@Override
 	public TasksEntry fetchByUserId_Last(long userId,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<TasksEntry> orderByComparator) {
 		int count = countByUserId(userId);
 
 		if (count == 0) {
@@ -1197,7 +1201,7 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	 */
 	@Override
 	public TasksEntry[] findByUserId_PrevAndNext(long tasksEntryId,
-		long userId, OrderByComparator orderByComparator)
+		long userId, OrderByComparator<TasksEntry> orderByComparator)
 		throws NoSuchTasksEntryException {
 		TasksEntry tasksEntry = findByPrimaryKey(tasksEntryId);
 
@@ -1228,7 +1232,7 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 
 	protected TasksEntry getByUserId_PrevAndNext(Session session,
 		TasksEntry tasksEntry, long userId,
-		OrderByComparator orderByComparator, boolean previous) {
+		OrderByComparator<TasksEntry> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -1466,7 +1470,7 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	 */
 	@Override
 	public List<TasksEntry> findByAssigneeUserId(long assigneeUserId,
-		int start, int end, OrderByComparator orderByComparator) {
+		int start, int end, OrderByComparator<TasksEntry> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -1576,7 +1580,8 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	 */
 	@Override
 	public TasksEntry findByAssigneeUserId_First(long assigneeUserId,
-		OrderByComparator orderByComparator) throws NoSuchTasksEntryException {
+		OrderByComparator<TasksEntry> orderByComparator)
+		throws NoSuchTasksEntryException {
 		TasksEntry tasksEntry = fetchByAssigneeUserId_First(assigneeUserId,
 				orderByComparator);
 
@@ -1605,7 +1610,7 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	 */
 	@Override
 	public TasksEntry fetchByAssigneeUserId_First(long assigneeUserId,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<TasksEntry> orderByComparator) {
 		List<TasksEntry> list = findByAssigneeUserId(assigneeUserId, 0, 1,
 				orderByComparator);
 
@@ -1626,7 +1631,8 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	 */
 	@Override
 	public TasksEntry findByAssigneeUserId_Last(long assigneeUserId,
-		OrderByComparator orderByComparator) throws NoSuchTasksEntryException {
+		OrderByComparator<TasksEntry> orderByComparator)
+		throws NoSuchTasksEntryException {
 		TasksEntry tasksEntry = fetchByAssigneeUserId_Last(assigneeUserId,
 				orderByComparator);
 
@@ -1655,7 +1661,7 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	 */
 	@Override
 	public TasksEntry fetchByAssigneeUserId_Last(long assigneeUserId,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<TasksEntry> orderByComparator) {
 		int count = countByAssigneeUserId(assigneeUserId);
 
 		if (count == 0) {
@@ -1683,7 +1689,7 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	 */
 	@Override
 	public TasksEntry[] findByAssigneeUserId_PrevAndNext(long tasksEntryId,
-		long assigneeUserId, OrderByComparator orderByComparator)
+		long assigneeUserId, OrderByComparator<TasksEntry> orderByComparator)
 		throws NoSuchTasksEntryException {
 		TasksEntry tasksEntry = findByPrimaryKey(tasksEntryId);
 
@@ -1714,7 +1720,7 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 
 	protected TasksEntry getByAssigneeUserId_PrevAndNext(Session session,
 		TasksEntry tasksEntry, long assigneeUserId,
-		OrderByComparator orderByComparator, boolean previous) {
+		OrderByComparator<TasksEntry> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -1952,7 +1958,7 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	 */
 	@Override
 	public List<TasksEntry> findByResolverUserId(long resolverUserId,
-		int start, int end, OrderByComparator orderByComparator) {
+		int start, int end, OrderByComparator<TasksEntry> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -2062,7 +2068,8 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	 */
 	@Override
 	public TasksEntry findByResolverUserId_First(long resolverUserId,
-		OrderByComparator orderByComparator) throws NoSuchTasksEntryException {
+		OrderByComparator<TasksEntry> orderByComparator)
+		throws NoSuchTasksEntryException {
 		TasksEntry tasksEntry = fetchByResolverUserId_First(resolverUserId,
 				orderByComparator);
 
@@ -2091,7 +2098,7 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	 */
 	@Override
 	public TasksEntry fetchByResolverUserId_First(long resolverUserId,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<TasksEntry> orderByComparator) {
 		List<TasksEntry> list = findByResolverUserId(resolverUserId, 0, 1,
 				orderByComparator);
 
@@ -2112,7 +2119,8 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	 */
 	@Override
 	public TasksEntry findByResolverUserId_Last(long resolverUserId,
-		OrderByComparator orderByComparator) throws NoSuchTasksEntryException {
+		OrderByComparator<TasksEntry> orderByComparator)
+		throws NoSuchTasksEntryException {
 		TasksEntry tasksEntry = fetchByResolverUserId_Last(resolverUserId,
 				orderByComparator);
 
@@ -2141,7 +2149,7 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	 */
 	@Override
 	public TasksEntry fetchByResolverUserId_Last(long resolverUserId,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<TasksEntry> orderByComparator) {
 		int count = countByResolverUserId(resolverUserId);
 
 		if (count == 0) {
@@ -2169,7 +2177,7 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	 */
 	@Override
 	public TasksEntry[] findByResolverUserId_PrevAndNext(long tasksEntryId,
-		long resolverUserId, OrderByComparator orderByComparator)
+		long resolverUserId, OrderByComparator<TasksEntry> orderByComparator)
 		throws NoSuchTasksEntryException {
 		TasksEntry tasksEntry = findByPrimaryKey(tasksEntryId);
 
@@ -2200,7 +2208,7 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 
 	protected TasksEntry getByResolverUserId_PrevAndNext(Session session,
 		TasksEntry tasksEntry, long resolverUserId,
-		OrderByComparator orderByComparator, boolean previous) {
+		OrderByComparator<TasksEntry> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -2440,7 +2448,7 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	 */
 	@Override
 	public List<TasksEntry> findByG_U(long groupId, long userId, int start,
-		int end, OrderByComparator orderByComparator) {
+		int end, OrderByComparator<TasksEntry> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -2556,7 +2564,8 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	 */
 	@Override
 	public TasksEntry findByG_U_First(long groupId, long userId,
-		OrderByComparator orderByComparator) throws NoSuchTasksEntryException {
+		OrderByComparator<TasksEntry> orderByComparator)
+		throws NoSuchTasksEntryException {
 		TasksEntry tasksEntry = fetchByG_U_First(groupId, userId,
 				orderByComparator);
 
@@ -2589,7 +2598,7 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	 */
 	@Override
 	public TasksEntry fetchByG_U_First(long groupId, long userId,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<TasksEntry> orderByComparator) {
 		List<TasksEntry> list = findByG_U(groupId, userId, 0, 1,
 				orderByComparator);
 
@@ -2611,7 +2620,8 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	 */
 	@Override
 	public TasksEntry findByG_U_Last(long groupId, long userId,
-		OrderByComparator orderByComparator) throws NoSuchTasksEntryException {
+		OrderByComparator<TasksEntry> orderByComparator)
+		throws NoSuchTasksEntryException {
 		TasksEntry tasksEntry = fetchByG_U_Last(groupId, userId,
 				orderByComparator);
 
@@ -2644,7 +2654,7 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	 */
 	@Override
 	public TasksEntry fetchByG_U_Last(long groupId, long userId,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<TasksEntry> orderByComparator) {
 		int count = countByG_U(groupId, userId);
 
 		if (count == 0) {
@@ -2673,7 +2683,7 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	 */
 	@Override
 	public TasksEntry[] findByG_U_PrevAndNext(long tasksEntryId, long groupId,
-		long userId, OrderByComparator orderByComparator)
+		long userId, OrderByComparator<TasksEntry> orderByComparator)
 		throws NoSuchTasksEntryException {
 		TasksEntry tasksEntry = findByPrimaryKey(tasksEntryId);
 
@@ -2704,7 +2714,7 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 
 	protected TasksEntry getByG_U_PrevAndNext(Session session,
 		TasksEntry tasksEntry, long groupId, long userId,
-		OrderByComparator orderByComparator, boolean previous) {
+		OrderByComparator<TasksEntry> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -2859,7 +2869,7 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	 */
 	@Override
 	public List<TasksEntry> filterFindByG_U(long groupId, long userId,
-		int start, int end, OrderByComparator orderByComparator) {
+		int start, int end, OrderByComparator<TasksEntry> orderByComparator) {
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
 			return findByG_U(groupId, userId, start, end, orderByComparator);
 		}
@@ -2954,7 +2964,8 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	 */
 	@Override
 	public TasksEntry[] filterFindByG_U_PrevAndNext(long tasksEntryId,
-		long groupId, long userId, OrderByComparator orderByComparator)
+		long groupId, long userId,
+		OrderByComparator<TasksEntry> orderByComparator)
 		throws NoSuchTasksEntryException {
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
 			return findByG_U_PrevAndNext(tasksEntryId, groupId, userId,
@@ -2990,7 +3001,7 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 
 	protected TasksEntry filterGetByG_U_PrevAndNext(Session session,
 		TasksEntry tasksEntry, long groupId, long userId,
-		OrderByComparator orderByComparator, boolean previous) {
+		OrderByComparator<TasksEntry> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -3329,7 +3340,7 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	 */
 	@Override
 	public List<TasksEntry> findByG_A(long groupId, long assigneeUserId,
-		int start, int end, OrderByComparator orderByComparator) {
+		int start, int end, OrderByComparator<TasksEntry> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -3445,7 +3456,8 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	 */
 	@Override
 	public TasksEntry findByG_A_First(long groupId, long assigneeUserId,
-		OrderByComparator orderByComparator) throws NoSuchTasksEntryException {
+		OrderByComparator<TasksEntry> orderByComparator)
+		throws NoSuchTasksEntryException {
 		TasksEntry tasksEntry = fetchByG_A_First(groupId, assigneeUserId,
 				orderByComparator);
 
@@ -3478,7 +3490,7 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	 */
 	@Override
 	public TasksEntry fetchByG_A_First(long groupId, long assigneeUserId,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<TasksEntry> orderByComparator) {
 		List<TasksEntry> list = findByG_A(groupId, assigneeUserId, 0, 1,
 				orderByComparator);
 
@@ -3500,7 +3512,8 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	 */
 	@Override
 	public TasksEntry findByG_A_Last(long groupId, long assigneeUserId,
-		OrderByComparator orderByComparator) throws NoSuchTasksEntryException {
+		OrderByComparator<TasksEntry> orderByComparator)
+		throws NoSuchTasksEntryException {
 		TasksEntry tasksEntry = fetchByG_A_Last(groupId, assigneeUserId,
 				orderByComparator);
 
@@ -3533,7 +3546,7 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	 */
 	@Override
 	public TasksEntry fetchByG_A_Last(long groupId, long assigneeUserId,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<TasksEntry> orderByComparator) {
 		int count = countByG_A(groupId, assigneeUserId);
 
 		if (count == 0) {
@@ -3562,7 +3575,7 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	 */
 	@Override
 	public TasksEntry[] findByG_A_PrevAndNext(long tasksEntryId, long groupId,
-		long assigneeUserId, OrderByComparator orderByComparator)
+		long assigneeUserId, OrderByComparator<TasksEntry> orderByComparator)
 		throws NoSuchTasksEntryException {
 		TasksEntry tasksEntry = findByPrimaryKey(tasksEntryId);
 
@@ -3593,7 +3606,7 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 
 	protected TasksEntry getByG_A_PrevAndNext(Session session,
 		TasksEntry tasksEntry, long groupId, long assigneeUserId,
-		OrderByComparator orderByComparator, boolean previous) {
+		OrderByComparator<TasksEntry> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -3748,7 +3761,7 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	 */
 	@Override
 	public List<TasksEntry> filterFindByG_A(long groupId, long assigneeUserId,
-		int start, int end, OrderByComparator orderByComparator) {
+		int start, int end, OrderByComparator<TasksEntry> orderByComparator) {
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
 			return findByG_A(groupId, assigneeUserId, start, end,
 				orderByComparator);
@@ -3844,7 +3857,8 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	 */
 	@Override
 	public TasksEntry[] filterFindByG_A_PrevAndNext(long tasksEntryId,
-		long groupId, long assigneeUserId, OrderByComparator orderByComparator)
+		long groupId, long assigneeUserId,
+		OrderByComparator<TasksEntry> orderByComparator)
 		throws NoSuchTasksEntryException {
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
 			return findByG_A_PrevAndNext(tasksEntryId, groupId, assigneeUserId,
@@ -3880,7 +3894,7 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 
 	protected TasksEntry filterGetByG_A_PrevAndNext(Session session,
 		TasksEntry tasksEntry, long groupId, long assigneeUserId,
-		OrderByComparator orderByComparator, boolean previous) {
+		OrderByComparator<TasksEntry> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -4219,7 +4233,7 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	 */
 	@Override
 	public List<TasksEntry> findByG_R(long groupId, long resolverUserId,
-		int start, int end, OrderByComparator orderByComparator) {
+		int start, int end, OrderByComparator<TasksEntry> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -4335,7 +4349,8 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	 */
 	@Override
 	public TasksEntry findByG_R_First(long groupId, long resolverUserId,
-		OrderByComparator orderByComparator) throws NoSuchTasksEntryException {
+		OrderByComparator<TasksEntry> orderByComparator)
+		throws NoSuchTasksEntryException {
 		TasksEntry tasksEntry = fetchByG_R_First(groupId, resolverUserId,
 				orderByComparator);
 
@@ -4368,7 +4383,7 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	 */
 	@Override
 	public TasksEntry fetchByG_R_First(long groupId, long resolverUserId,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<TasksEntry> orderByComparator) {
 		List<TasksEntry> list = findByG_R(groupId, resolverUserId, 0, 1,
 				orderByComparator);
 
@@ -4390,7 +4405,8 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	 */
 	@Override
 	public TasksEntry findByG_R_Last(long groupId, long resolverUserId,
-		OrderByComparator orderByComparator) throws NoSuchTasksEntryException {
+		OrderByComparator<TasksEntry> orderByComparator)
+		throws NoSuchTasksEntryException {
 		TasksEntry tasksEntry = fetchByG_R_Last(groupId, resolverUserId,
 				orderByComparator);
 
@@ -4423,7 +4439,7 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	 */
 	@Override
 	public TasksEntry fetchByG_R_Last(long groupId, long resolverUserId,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<TasksEntry> orderByComparator) {
 		int count = countByG_R(groupId, resolverUserId);
 
 		if (count == 0) {
@@ -4452,7 +4468,7 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	 */
 	@Override
 	public TasksEntry[] findByG_R_PrevAndNext(long tasksEntryId, long groupId,
-		long resolverUserId, OrderByComparator orderByComparator)
+		long resolverUserId, OrderByComparator<TasksEntry> orderByComparator)
 		throws NoSuchTasksEntryException {
 		TasksEntry tasksEntry = findByPrimaryKey(tasksEntryId);
 
@@ -4483,7 +4499,7 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 
 	protected TasksEntry getByG_R_PrevAndNext(Session session,
 		TasksEntry tasksEntry, long groupId, long resolverUserId,
-		OrderByComparator orderByComparator, boolean previous) {
+		OrderByComparator<TasksEntry> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -4638,7 +4654,7 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	 */
 	@Override
 	public List<TasksEntry> filterFindByG_R(long groupId, long resolverUserId,
-		int start, int end, OrderByComparator orderByComparator) {
+		int start, int end, OrderByComparator<TasksEntry> orderByComparator) {
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
 			return findByG_R(groupId, resolverUserId, start, end,
 				orderByComparator);
@@ -4734,7 +4750,8 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	 */
 	@Override
 	public TasksEntry[] filterFindByG_R_PrevAndNext(long tasksEntryId,
-		long groupId, long resolverUserId, OrderByComparator orderByComparator)
+		long groupId, long resolverUserId,
+		OrderByComparator<TasksEntry> orderByComparator)
 		throws NoSuchTasksEntryException {
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
 			return findByG_R_PrevAndNext(tasksEntryId, groupId, resolverUserId,
@@ -4770,7 +4787,7 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 
 	protected TasksEntry filterGetByG_R_PrevAndNext(Session session,
 		TasksEntry tasksEntry, long groupId, long resolverUserId,
-		OrderByComparator orderByComparator, boolean previous) {
+		OrderByComparator<TasksEntry> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -5113,7 +5130,7 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	 */
 	@Override
 	public List<TasksEntry> findByU_S(long userId, int status, int start,
-		int end, OrderByComparator orderByComparator) {
+		int end, OrderByComparator<TasksEntry> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -5229,7 +5246,8 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	 */
 	@Override
 	public TasksEntry findByU_S_First(long userId, int status,
-		OrderByComparator orderByComparator) throws NoSuchTasksEntryException {
+		OrderByComparator<TasksEntry> orderByComparator)
+		throws NoSuchTasksEntryException {
 		TasksEntry tasksEntry = fetchByU_S_First(userId, status,
 				orderByComparator);
 
@@ -5262,7 +5280,7 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	 */
 	@Override
 	public TasksEntry fetchByU_S_First(long userId, int status,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<TasksEntry> orderByComparator) {
 		List<TasksEntry> list = findByU_S(userId, status, 0, 1,
 				orderByComparator);
 
@@ -5284,7 +5302,8 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	 */
 	@Override
 	public TasksEntry findByU_S_Last(long userId, int status,
-		OrderByComparator orderByComparator) throws NoSuchTasksEntryException {
+		OrderByComparator<TasksEntry> orderByComparator)
+		throws NoSuchTasksEntryException {
 		TasksEntry tasksEntry = fetchByU_S_Last(userId, status,
 				orderByComparator);
 
@@ -5317,7 +5336,7 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	 */
 	@Override
 	public TasksEntry fetchByU_S_Last(long userId, int status,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<TasksEntry> orderByComparator) {
 		int count = countByU_S(userId, status);
 
 		if (count == 0) {
@@ -5346,7 +5365,7 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	 */
 	@Override
 	public TasksEntry[] findByU_S_PrevAndNext(long tasksEntryId, long userId,
-		int status, OrderByComparator orderByComparator)
+		int status, OrderByComparator<TasksEntry> orderByComparator)
 		throws NoSuchTasksEntryException {
 		TasksEntry tasksEntry = findByPrimaryKey(tasksEntryId);
 
@@ -5377,7 +5396,7 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 
 	protected TasksEntry getByU_S_PrevAndNext(Session session,
 		TasksEntry tasksEntry, long userId, int status,
-		OrderByComparator orderByComparator, boolean previous) {
+		OrderByComparator<TasksEntry> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -5536,7 +5555,7 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	 */
 	@Override
 	public List<TasksEntry> findByU_S(long userId, int[] statuses, int start,
-		int end, OrderByComparator orderByComparator) {
+		int end, OrderByComparator<TasksEntry> orderByComparator) {
 		if (statuses == null) {
 			statuses = new int[0];
 		}
@@ -5878,7 +5897,7 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	 */
 	@Override
 	public List<TasksEntry> findByA_S(long assigneeUserId, int status,
-		int start, int end, OrderByComparator orderByComparator) {
+		int start, int end, OrderByComparator<TasksEntry> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -5994,7 +6013,8 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	 */
 	@Override
 	public TasksEntry findByA_S_First(long assigneeUserId, int status,
-		OrderByComparator orderByComparator) throws NoSuchTasksEntryException {
+		OrderByComparator<TasksEntry> orderByComparator)
+		throws NoSuchTasksEntryException {
 		TasksEntry tasksEntry = fetchByA_S_First(assigneeUserId, status,
 				orderByComparator);
 
@@ -6027,7 +6047,7 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	 */
 	@Override
 	public TasksEntry fetchByA_S_First(long assigneeUserId, int status,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<TasksEntry> orderByComparator) {
 		List<TasksEntry> list = findByA_S(assigneeUserId, status, 0, 1,
 				orderByComparator);
 
@@ -6049,7 +6069,8 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	 */
 	@Override
 	public TasksEntry findByA_S_Last(long assigneeUserId, int status,
-		OrderByComparator orderByComparator) throws NoSuchTasksEntryException {
+		OrderByComparator<TasksEntry> orderByComparator)
+		throws NoSuchTasksEntryException {
 		TasksEntry tasksEntry = fetchByA_S_Last(assigneeUserId, status,
 				orderByComparator);
 
@@ -6082,7 +6103,7 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	 */
 	@Override
 	public TasksEntry fetchByA_S_Last(long assigneeUserId, int status,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<TasksEntry> orderByComparator) {
 		int count = countByA_S(assigneeUserId, status);
 
 		if (count == 0) {
@@ -6111,7 +6132,8 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	 */
 	@Override
 	public TasksEntry[] findByA_S_PrevAndNext(long tasksEntryId,
-		long assigneeUserId, int status, OrderByComparator orderByComparator)
+		long assigneeUserId, int status,
+		OrderByComparator<TasksEntry> orderByComparator)
 		throws NoSuchTasksEntryException {
 		TasksEntry tasksEntry = findByPrimaryKey(tasksEntryId);
 
@@ -6142,7 +6164,7 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 
 	protected TasksEntry getByA_S_PrevAndNext(Session session,
 		TasksEntry tasksEntry, long assigneeUserId, int status,
-		OrderByComparator orderByComparator, boolean previous) {
+		OrderByComparator<TasksEntry> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -6301,7 +6323,7 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	 */
 	@Override
 	public List<TasksEntry> findByA_S(long assigneeUserId, int[] statuses,
-		int start, int end, OrderByComparator orderByComparator) {
+		int start, int end, OrderByComparator<TasksEntry> orderByComparator) {
 		if (statuses == null) {
 			statuses = new int[0];
 		}
@@ -6660,7 +6682,7 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	 */
 	@Override
 	public List<TasksEntry> findByG_U_S(long groupId, long userId, int status,
-		int start, int end, OrderByComparator orderByComparator) {
+		int start, int end, OrderByComparator<TasksEntry> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -6782,7 +6804,8 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	 */
 	@Override
 	public TasksEntry findByG_U_S_First(long groupId, long userId, int status,
-		OrderByComparator orderByComparator) throws NoSuchTasksEntryException {
+		OrderByComparator<TasksEntry> orderByComparator)
+		throws NoSuchTasksEntryException {
 		TasksEntry tasksEntry = fetchByG_U_S_First(groupId, userId, status,
 				orderByComparator);
 
@@ -6819,7 +6842,7 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	 */
 	@Override
 	public TasksEntry fetchByG_U_S_First(long groupId, long userId, int status,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<TasksEntry> orderByComparator) {
 		List<TasksEntry> list = findByG_U_S(groupId, userId, status, 0, 1,
 				orderByComparator);
 
@@ -6842,7 +6865,8 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	 */
 	@Override
 	public TasksEntry findByG_U_S_Last(long groupId, long userId, int status,
-		OrderByComparator orderByComparator) throws NoSuchTasksEntryException {
+		OrderByComparator<TasksEntry> orderByComparator)
+		throws NoSuchTasksEntryException {
 		TasksEntry tasksEntry = fetchByG_U_S_Last(groupId, userId, status,
 				orderByComparator);
 
@@ -6879,7 +6903,7 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	 */
 	@Override
 	public TasksEntry fetchByG_U_S_Last(long groupId, long userId, int status,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<TasksEntry> orderByComparator) {
 		int count = countByG_U_S(groupId, userId, status);
 
 		if (count == 0) {
@@ -6910,7 +6934,8 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	@Override
 	public TasksEntry[] findByG_U_S_PrevAndNext(long tasksEntryId,
 		long groupId, long userId, int status,
-		OrderByComparator orderByComparator) throws NoSuchTasksEntryException {
+		OrderByComparator<TasksEntry> orderByComparator)
+		throws NoSuchTasksEntryException {
 		TasksEntry tasksEntry = findByPrimaryKey(tasksEntryId);
 
 		Session session = null;
@@ -6940,7 +6965,7 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 
 	protected TasksEntry getByG_U_S_PrevAndNext(Session session,
 		TasksEntry tasksEntry, long groupId, long userId, int status,
-		OrderByComparator orderByComparator, boolean previous) {
+		OrderByComparator<TasksEntry> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -7103,7 +7128,8 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	 */
 	@Override
 	public List<TasksEntry> filterFindByG_U_S(long groupId, long userId,
-		int status, int start, int end, OrderByComparator orderByComparator) {
+		int status, int start, int end,
+		OrderByComparator<TasksEntry> orderByComparator) {
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
 			return findByG_U_S(groupId, userId, status, start, end,
 				orderByComparator);
@@ -7205,7 +7231,8 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	@Override
 	public TasksEntry[] filterFindByG_U_S_PrevAndNext(long tasksEntryId,
 		long groupId, long userId, int status,
-		OrderByComparator orderByComparator) throws NoSuchTasksEntryException {
+		OrderByComparator<TasksEntry> orderByComparator)
+		throws NoSuchTasksEntryException {
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
 			return findByG_U_S_PrevAndNext(tasksEntryId, groupId, userId,
 				status, orderByComparator);
@@ -7240,7 +7267,7 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 
 	protected TasksEntry filterGetByG_U_S_PrevAndNext(Session session,
 		TasksEntry tasksEntry, long groupId, long userId, int status,
-		OrderByComparator orderByComparator, boolean previous) {
+		OrderByComparator<TasksEntry> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -7438,7 +7465,8 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	 */
 	@Override
 	public List<TasksEntry> filterFindByG_U_S(long groupId, long userId,
-		int[] statuses, int start, int end, OrderByComparator orderByComparator) {
+		int[] statuses, int start, int end,
+		OrderByComparator<TasksEntry> orderByComparator) {
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
 			return findByG_U_S(groupId, userId, statuses, start, end,
 				orderByComparator);
@@ -7592,7 +7620,8 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	 */
 	@Override
 	public List<TasksEntry> findByG_U_S(long groupId, long userId,
-		int[] statuses, int start, int end, OrderByComparator orderByComparator) {
+		int[] statuses, int start, int end,
+		OrderByComparator<TasksEntry> orderByComparator) {
 		if (statuses == null) {
 			statuses = new int[0];
 		}
@@ -8105,7 +8134,8 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	 */
 	@Override
 	public List<TasksEntry> findByG_A_S(long groupId, long assigneeUserId,
-		int status, int start, int end, OrderByComparator orderByComparator) {
+		int status, int start, int end,
+		OrderByComparator<TasksEntry> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -8227,7 +8257,7 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	 */
 	@Override
 	public TasksEntry findByG_A_S_First(long groupId, long assigneeUserId,
-		int status, OrderByComparator orderByComparator)
+		int status, OrderByComparator<TasksEntry> orderByComparator)
 		throws NoSuchTasksEntryException {
 		TasksEntry tasksEntry = fetchByG_A_S_First(groupId, assigneeUserId,
 				status, orderByComparator);
@@ -8265,7 +8295,7 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	 */
 	@Override
 	public TasksEntry fetchByG_A_S_First(long groupId, long assigneeUserId,
-		int status, OrderByComparator orderByComparator) {
+		int status, OrderByComparator<TasksEntry> orderByComparator) {
 		List<TasksEntry> list = findByG_A_S(groupId, assigneeUserId, status, 0,
 				1, orderByComparator);
 
@@ -8288,7 +8318,7 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	 */
 	@Override
 	public TasksEntry findByG_A_S_Last(long groupId, long assigneeUserId,
-		int status, OrderByComparator orderByComparator)
+		int status, OrderByComparator<TasksEntry> orderByComparator)
 		throws NoSuchTasksEntryException {
 		TasksEntry tasksEntry = fetchByG_A_S_Last(groupId, assigneeUserId,
 				status, orderByComparator);
@@ -8326,7 +8356,7 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	 */
 	@Override
 	public TasksEntry fetchByG_A_S_Last(long groupId, long assigneeUserId,
-		int status, OrderByComparator orderByComparator) {
+		int status, OrderByComparator<TasksEntry> orderByComparator) {
 		int count = countByG_A_S(groupId, assigneeUserId, status);
 
 		if (count == 0) {
@@ -8357,7 +8387,8 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	@Override
 	public TasksEntry[] findByG_A_S_PrevAndNext(long tasksEntryId,
 		long groupId, long assigneeUserId, int status,
-		OrderByComparator orderByComparator) throws NoSuchTasksEntryException {
+		OrderByComparator<TasksEntry> orderByComparator)
+		throws NoSuchTasksEntryException {
 		TasksEntry tasksEntry = findByPrimaryKey(tasksEntryId);
 
 		Session session = null;
@@ -8387,7 +8418,7 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 
 	protected TasksEntry getByG_A_S_PrevAndNext(Session session,
 		TasksEntry tasksEntry, long groupId, long assigneeUserId, int status,
-		OrderByComparator orderByComparator, boolean previous) {
+		OrderByComparator<TasksEntry> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -8552,7 +8583,7 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	@Override
 	public List<TasksEntry> filterFindByG_A_S(long groupId,
 		long assigneeUserId, int status, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<TasksEntry> orderByComparator) {
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
 			return findByG_A_S(groupId, assigneeUserId, status, start, end,
 				orderByComparator);
@@ -8654,7 +8685,8 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	@Override
 	public TasksEntry[] filterFindByG_A_S_PrevAndNext(long tasksEntryId,
 		long groupId, long assigneeUserId, int status,
-		OrderByComparator orderByComparator) throws NoSuchTasksEntryException {
+		OrderByComparator<TasksEntry> orderByComparator)
+		throws NoSuchTasksEntryException {
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
 			return findByG_A_S_PrevAndNext(tasksEntryId, groupId,
 				assigneeUserId, status, orderByComparator);
@@ -8689,7 +8721,7 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 
 	protected TasksEntry filterGetByG_A_S_PrevAndNext(Session session,
 		TasksEntry tasksEntry, long groupId, long assigneeUserId, int status,
-		OrderByComparator orderByComparator, boolean previous) {
+		OrderByComparator<TasksEntry> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -8889,7 +8921,7 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	@Override
 	public List<TasksEntry> filterFindByG_A_S(long groupId,
 		long assigneeUserId, int[] statuses, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<TasksEntry> orderByComparator) {
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
 			return findByG_A_S(groupId, assigneeUserId, statuses, start, end,
 				orderByComparator);
@@ -9043,7 +9075,8 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	 */
 	@Override
 	public List<TasksEntry> findByG_A_S(long groupId, long assigneeUserId,
-		int[] statuses, int start, int end, OrderByComparator orderByComparator) {
+		int[] statuses, int start, int end,
+		OrderByComparator<TasksEntry> orderByComparator) {
 		if (statuses == null) {
 			statuses = new int[0];
 		}
@@ -10174,7 +10207,7 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	 */
 	@Override
 	public List<TasksEntry> findAll(int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<TasksEntry> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;

@@ -76,7 +76,7 @@ public interface BarPersistence extends BasePersistence<Bar> {
 	*/
 	public java.util.List<com.liferay.testtransaction.model.Bar> findByText(
 		java.lang.String text, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.testtransaction.model.Bar> orderByComparator);
 
 	/**
 	* Returns the first bar in the ordered set where text = &#63;.
@@ -88,7 +88,7 @@ public interface BarPersistence extends BasePersistence<Bar> {
 	*/
 	public com.liferay.testtransaction.model.Bar findByText_First(
 		java.lang.String text,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.testtransaction.model.Bar> orderByComparator)
 		throws com.liferay.testtransaction.NoSuchBarException;
 
 	/**
@@ -100,7 +100,7 @@ public interface BarPersistence extends BasePersistence<Bar> {
 	*/
 	public com.liferay.testtransaction.model.Bar fetchByText_First(
 		java.lang.String text,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.testtransaction.model.Bar> orderByComparator);
 
 	/**
 	* Returns the last bar in the ordered set where text = &#63;.
@@ -112,7 +112,7 @@ public interface BarPersistence extends BasePersistence<Bar> {
 	*/
 	public com.liferay.testtransaction.model.Bar findByText_Last(
 		java.lang.String text,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.testtransaction.model.Bar> orderByComparator)
 		throws com.liferay.testtransaction.NoSuchBarException;
 
 	/**
@@ -124,7 +124,7 @@ public interface BarPersistence extends BasePersistence<Bar> {
 	*/
 	public com.liferay.testtransaction.model.Bar fetchByText_Last(
 		java.lang.String text,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.testtransaction.model.Bar> orderByComparator);
 
 	/**
 	* Returns the bars before and after the current bar in the ordered set where text = &#63;.
@@ -137,7 +137,7 @@ public interface BarPersistence extends BasePersistence<Bar> {
 	*/
 	public com.liferay.testtransaction.model.Bar[] findByText_PrevAndNext(
 		long barId, java.lang.String text,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.testtransaction.model.Bar> orderByComparator)
 		throws com.liferay.testtransaction.NoSuchBarException;
 
 	/**
@@ -248,7 +248,7 @@ public interface BarPersistence extends BasePersistence<Bar> {
 	*/
 	public java.util.List<com.liferay.testtransaction.model.Bar> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.testtransaction.model.Bar> orderByComparator);
 
 	/**
 	* Removes all the bars from the database.

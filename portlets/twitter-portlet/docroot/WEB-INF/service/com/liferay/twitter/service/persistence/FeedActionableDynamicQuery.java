@@ -21,7 +21,7 @@ import com.liferay.twitter.service.FeedLocalServiceUtil;
 
 /**
  * @author Brian Wing Shun Chan
- * @deprecated As of 7.0.0, replaced by {@link FeedLocalServiceUtil#getExportActionableDynamicQuery()}
+ * @deprecated As of 7.0.0, replaced by {@link FeedLocalServiceUtil#getActionableDynamicQuery()}
  * @generated
  */
 @Deprecated

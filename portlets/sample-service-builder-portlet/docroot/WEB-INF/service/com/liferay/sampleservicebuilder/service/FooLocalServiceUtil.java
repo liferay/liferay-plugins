@@ -67,12 +67,9 @@ public class FooLocalServiceUtil {
 	* @param fooId the primary key of the foo
 	* @return the foo that was removed
 	* @throws PortalException if a foo with the primary key could not be found
-	* @throws SystemException
 	*/
 	public static com.liferay.sampleservicebuilder.model.Foo deleteFoo(
-		long fooId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		long fooId) throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().deleteFoo(fooId);
 	}
 
@@ -81,11 +78,9 @@ public class FooLocalServiceUtil {
 	*
 	* @param foo the foo
 	* @return the foo that was removed
-	* @throws SystemException
 	*/
 	public static com.liferay.sampleservicebuilder.model.Foo deleteFoo(
-		com.liferay.sampleservicebuilder.model.Foo foo)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.sampleservicebuilder.model.Foo foo) {
 		return getService().deleteFoo(foo);
 	}
 
@@ -99,8 +94,7 @@ public class FooLocalServiceUtil {
 	* @param dynamicQuery the dynamic query
 	* @return the matching rows
 	*/
-	@SuppressWarnings("rawtypes")
-	public static java.util.List dynamicQuery(
+	public static <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
 		return getService().dynamicQuery(dynamicQuery);
 	}
@@ -117,8 +111,7 @@ public class FooLocalServiceUtil {
 	* @param end the upper bound of the range of model instances (not inclusive)
 	* @return the range of matching rows
 	*/
-	@SuppressWarnings("rawtypes")
-	public static java.util.List dynamicQuery(
+	public static <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) {
 		return getService().dynamicQuery(dynamicQuery, start, end);
@@ -137,11 +130,10 @@ public class FooLocalServiceUtil {
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching rows
 	*/
-	@SuppressWarnings("rawtypes")
-	public static java.util.List dynamicQuery(
+	public static <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<T> orderByComparator) {
 		return getService()
 				   .dynamicQuery(dynamicQuery, start, end, orderByComparator);
 	}
@@ -326,21 +318,18 @@ public class FooLocalServiceUtil {
 	public static void addFoo(java.lang.String field1, boolean field2,
 		int field3, java.util.Date field4, java.lang.String field5,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		getService()
 			.addFoo(field1, field2, field3, field4, field5, serviceContext);
 	}
 
 	public static java.util.List<com.liferay.sampleservicebuilder.model.Foo> getFoos(
-		int start, int end, com.liferay.portal.kernel.util.OrderByComparator obc)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		int start, int end, com.liferay.portal.kernel.util.OrderByComparator obc) {
 		return getService().getFoos(start, end, obc);
 	}
 
 	public static java.util.List<com.liferay.sampleservicebuilder.model.Foo> getFoos(
-		com.liferay.portal.kernel.util.OrderByComparator obc)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator obc) {
 		return getService().getFoos(obc);
 	}
 
@@ -351,8 +340,7 @@ public class FooLocalServiceUtil {
 	public static void updateAsset(long userId,
 		com.liferay.sampleservicebuilder.model.Foo foo,
 		long[] assetCategoryIds, java.lang.String[] assetTagNames)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		getService().updateAsset(userId, foo, assetCategoryIds, assetTagNames);
 	}
 
@@ -360,8 +348,7 @@ public class FooLocalServiceUtil {
 		boolean field2, int field3, java.util.Date field4,
 		java.lang.String field5,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		getService()
 			.updateFoo(fooId, field1, field2, field3, field4, field5,
 			serviceContext);

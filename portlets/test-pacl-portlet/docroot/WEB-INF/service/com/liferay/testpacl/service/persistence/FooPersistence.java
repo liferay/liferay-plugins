@@ -76,7 +76,7 @@ public interface FooPersistence extends BasePersistence<Foo> {
 	*/
 	public java.util.List<com.liferay.testpacl.model.Foo> findByField2(
 		boolean field2, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.testpacl.model.Foo> orderByComparator);
 
 	/**
 	* Returns the first foo in the ordered set where field2 = &#63;.
@@ -87,7 +87,7 @@ public interface FooPersistence extends BasePersistence<Foo> {
 	* @throws com.liferay.testpacl.NoSuchFooException if a matching foo could not be found
 	*/
 	public com.liferay.testpacl.model.Foo findByField2_First(boolean field2,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.testpacl.model.Foo> orderByComparator)
 		throws com.liferay.testpacl.NoSuchFooException;
 
 	/**
@@ -98,7 +98,7 @@ public interface FooPersistence extends BasePersistence<Foo> {
 	* @return the first matching foo, or <code>null</code> if a matching foo could not be found
 	*/
 	public com.liferay.testpacl.model.Foo fetchByField2_First(boolean field2,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.testpacl.model.Foo> orderByComparator);
 
 	/**
 	* Returns the last foo in the ordered set where field2 = &#63;.
@@ -109,7 +109,7 @@ public interface FooPersistence extends BasePersistence<Foo> {
 	* @throws com.liferay.testpacl.NoSuchFooException if a matching foo could not be found
 	*/
 	public com.liferay.testpacl.model.Foo findByField2_Last(boolean field2,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.testpacl.model.Foo> orderByComparator)
 		throws com.liferay.testpacl.NoSuchFooException;
 
 	/**
@@ -120,7 +120,7 @@ public interface FooPersistence extends BasePersistence<Foo> {
 	* @return the last matching foo, or <code>null</code> if a matching foo could not be found
 	*/
 	public com.liferay.testpacl.model.Foo fetchByField2_Last(boolean field2,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.testpacl.model.Foo> orderByComparator);
 
 	/**
 	* Returns the foos before and after the current foo in the ordered set where field2 = &#63;.
@@ -133,7 +133,7 @@ public interface FooPersistence extends BasePersistence<Foo> {
 	*/
 	public com.liferay.testpacl.model.Foo[] findByField2_PrevAndNext(
 		long fooId, boolean field2,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.testpacl.model.Foo> orderByComparator)
 		throws com.liferay.testpacl.NoSuchFooException;
 
 	/**
@@ -243,7 +243,7 @@ public interface FooPersistence extends BasePersistence<Foo> {
 	*/
 	public java.util.List<com.liferay.testpacl.model.Foo> findAll(int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.testpacl.model.Foo> orderByComparator);
 
 	/**
 	* Removes all the foos from the database.

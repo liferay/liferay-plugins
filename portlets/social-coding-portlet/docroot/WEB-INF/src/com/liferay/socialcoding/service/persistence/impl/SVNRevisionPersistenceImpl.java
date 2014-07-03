@@ -154,7 +154,7 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 	 */
 	@Override
 	public List<SVNRevision> findBySVNUserId(String svnUserId, int start,
-		int end, OrderByComparator orderByComparator) {
+		int end, OrderByComparator<SVNRevision> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -274,7 +274,8 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 	 */
 	@Override
 	public SVNRevision findBySVNUserId_First(String svnUserId,
-		OrderByComparator orderByComparator) throws NoSuchSVNRevisionException {
+		OrderByComparator<SVNRevision> orderByComparator)
+		throws NoSuchSVNRevisionException {
 		SVNRevision svnRevision = fetchBySVNUserId_First(svnUserId,
 				orderByComparator);
 
@@ -303,7 +304,7 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 	 */
 	@Override
 	public SVNRevision fetchBySVNUserId_First(String svnUserId,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<SVNRevision> orderByComparator) {
 		List<SVNRevision> list = findBySVNUserId(svnUserId, 0, 1,
 				orderByComparator);
 
@@ -324,7 +325,8 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 	 */
 	@Override
 	public SVNRevision findBySVNUserId_Last(String svnUserId,
-		OrderByComparator orderByComparator) throws NoSuchSVNRevisionException {
+		OrderByComparator<SVNRevision> orderByComparator)
+		throws NoSuchSVNRevisionException {
 		SVNRevision svnRevision = fetchBySVNUserId_Last(svnUserId,
 				orderByComparator);
 
@@ -353,7 +355,7 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 	 */
 	@Override
 	public SVNRevision fetchBySVNUserId_Last(String svnUserId,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<SVNRevision> orderByComparator) {
 		int count = countBySVNUserId(svnUserId);
 
 		if (count == 0) {
@@ -381,7 +383,7 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 	 */
 	@Override
 	public SVNRevision[] findBySVNUserId_PrevAndNext(long svnRevisionId,
-		String svnUserId, OrderByComparator orderByComparator)
+		String svnUserId, OrderByComparator<SVNRevision> orderByComparator)
 		throws NoSuchSVNRevisionException {
 		SVNRevision svnRevision = findByPrimaryKey(svnRevisionId);
 
@@ -412,7 +414,7 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 
 	protected SVNRevision getBySVNUserId_PrevAndNext(Session session,
 		SVNRevision svnRevision, String svnUserId,
-		OrderByComparator orderByComparator, boolean previous) {
+		OrderByComparator<SVNRevision> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -678,7 +680,7 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 	 */
 	@Override
 	public List<SVNRevision> findBySVNRepositoryId(long svnRepositoryId,
-		int start, int end, OrderByComparator orderByComparator) {
+		int start, int end, OrderByComparator<SVNRevision> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -788,7 +790,8 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 	 */
 	@Override
 	public SVNRevision findBySVNRepositoryId_First(long svnRepositoryId,
-		OrderByComparator orderByComparator) throws NoSuchSVNRevisionException {
+		OrderByComparator<SVNRevision> orderByComparator)
+		throws NoSuchSVNRevisionException {
 		SVNRevision svnRevision = fetchBySVNRepositoryId_First(svnRepositoryId,
 				orderByComparator);
 
@@ -817,7 +820,7 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 	 */
 	@Override
 	public SVNRevision fetchBySVNRepositoryId_First(long svnRepositoryId,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<SVNRevision> orderByComparator) {
 		List<SVNRevision> list = findBySVNRepositoryId(svnRepositoryId, 0, 1,
 				orderByComparator);
 
@@ -838,7 +841,8 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 	 */
 	@Override
 	public SVNRevision findBySVNRepositoryId_Last(long svnRepositoryId,
-		OrderByComparator orderByComparator) throws NoSuchSVNRevisionException {
+		OrderByComparator<SVNRevision> orderByComparator)
+		throws NoSuchSVNRevisionException {
 		SVNRevision svnRevision = fetchBySVNRepositoryId_Last(svnRepositoryId,
 				orderByComparator);
 
@@ -867,7 +871,7 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 	 */
 	@Override
 	public SVNRevision fetchBySVNRepositoryId_Last(long svnRepositoryId,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<SVNRevision> orderByComparator) {
 		int count = countBySVNRepositoryId(svnRepositoryId);
 
 		if (count == 0) {
@@ -895,7 +899,7 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 	 */
 	@Override
 	public SVNRevision[] findBySVNRepositoryId_PrevAndNext(long svnRevisionId,
-		long svnRepositoryId, OrderByComparator orderByComparator)
+		long svnRepositoryId, OrderByComparator<SVNRevision> orderByComparator)
 		throws NoSuchSVNRevisionException {
 		SVNRevision svnRevision = findByPrimaryKey(svnRevisionId);
 
@@ -926,7 +930,7 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 
 	protected SVNRevision getBySVNRepositoryId_PrevAndNext(Session session,
 		SVNRevision svnRevision, long svnRepositoryId,
-		OrderByComparator orderByComparator, boolean previous) {
+		OrderByComparator<SVNRevision> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -1169,7 +1173,7 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 	@Override
 	public List<SVNRevision> findBySVNU_SVNR(String svnUserId,
 		long svnRepositoryId, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<SVNRevision> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -1299,7 +1303,7 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 	 */
 	@Override
 	public SVNRevision findBySVNU_SVNR_First(String svnUserId,
-		long svnRepositoryId, OrderByComparator orderByComparator)
+		long svnRepositoryId, OrderByComparator<SVNRevision> orderByComparator)
 		throws NoSuchSVNRevisionException {
 		SVNRevision svnRevision = fetchBySVNU_SVNR_First(svnUserId,
 				svnRepositoryId, orderByComparator);
@@ -1333,7 +1337,7 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 	 */
 	@Override
 	public SVNRevision fetchBySVNU_SVNR_First(String svnUserId,
-		long svnRepositoryId, OrderByComparator orderByComparator) {
+		long svnRepositoryId, OrderByComparator<SVNRevision> orderByComparator) {
 		List<SVNRevision> list = findBySVNU_SVNR(svnUserId, svnRepositoryId, 0,
 				1, orderByComparator);
 
@@ -1355,7 +1359,7 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 	 */
 	@Override
 	public SVNRevision findBySVNU_SVNR_Last(String svnUserId,
-		long svnRepositoryId, OrderByComparator orderByComparator)
+		long svnRepositoryId, OrderByComparator<SVNRevision> orderByComparator)
 		throws NoSuchSVNRevisionException {
 		SVNRevision svnRevision = fetchBySVNU_SVNR_Last(svnUserId,
 				svnRepositoryId, orderByComparator);
@@ -1389,7 +1393,7 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 	 */
 	@Override
 	public SVNRevision fetchBySVNU_SVNR_Last(String svnUserId,
-		long svnRepositoryId, OrderByComparator orderByComparator) {
+		long svnRepositoryId, OrderByComparator<SVNRevision> orderByComparator) {
 		int count = countBySVNU_SVNR(svnUserId, svnRepositoryId);
 
 		if (count == 0) {
@@ -1419,7 +1423,8 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 	@Override
 	public SVNRevision[] findBySVNU_SVNR_PrevAndNext(long svnRevisionId,
 		String svnUserId, long svnRepositoryId,
-		OrderByComparator orderByComparator) throws NoSuchSVNRevisionException {
+		OrderByComparator<SVNRevision> orderByComparator)
+		throws NoSuchSVNRevisionException {
 		SVNRevision svnRevision = findByPrimaryKey(svnRevisionId);
 
 		Session session = null;
@@ -1449,7 +1454,7 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 
 	protected SVNRevision getBySVNU_SVNR_PrevAndNext(Session session,
 		SVNRevision svnRevision, String svnUserId, long svnRepositoryId,
-		OrderByComparator orderByComparator, boolean previous) {
+		OrderByComparator<SVNRevision> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -2198,7 +2203,7 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 	 */
 	@Override
 	public List<SVNRevision> findAll(int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<SVNRevision> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;

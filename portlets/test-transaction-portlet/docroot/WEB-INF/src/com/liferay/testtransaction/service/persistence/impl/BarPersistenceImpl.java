@@ -150,7 +150,7 @@ public class BarPersistenceImpl extends BasePersistenceImpl<Bar>
 	 */
 	@Override
 	public List<Bar> findByText(String text, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<Bar> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -268,8 +268,8 @@ public class BarPersistenceImpl extends BasePersistenceImpl<Bar>
 	 * @throws com.liferay.testtransaction.NoSuchBarException if a matching bar could not be found
 	 */
 	@Override
-	public Bar findByText_First(String text, OrderByComparator orderByComparator)
-		throws NoSuchBarException {
+	public Bar findByText_First(String text,
+		OrderByComparator<Bar> orderByComparator) throws NoSuchBarException {
 		Bar bar = fetchByText_First(text, orderByComparator);
 
 		if (bar != null) {
@@ -297,7 +297,7 @@ public class BarPersistenceImpl extends BasePersistenceImpl<Bar>
 	 */
 	@Override
 	public Bar fetchByText_First(String text,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<Bar> orderByComparator) {
 		List<Bar> list = findByText(text, 0, 1, orderByComparator);
 
 		if (!list.isEmpty()) {
@@ -316,8 +316,8 @@ public class BarPersistenceImpl extends BasePersistenceImpl<Bar>
 	 * @throws com.liferay.testtransaction.NoSuchBarException if a matching bar could not be found
 	 */
 	@Override
-	public Bar findByText_Last(String text, OrderByComparator orderByComparator)
-		throws NoSuchBarException {
+	public Bar findByText_Last(String text,
+		OrderByComparator<Bar> orderByComparator) throws NoSuchBarException {
 		Bar bar = fetchByText_Last(text, orderByComparator);
 
 		if (bar != null) {
@@ -344,7 +344,8 @@ public class BarPersistenceImpl extends BasePersistenceImpl<Bar>
 	 * @return the last matching bar, or <code>null</code> if a matching bar could not be found
 	 */
 	@Override
-	public Bar fetchByText_Last(String text, OrderByComparator orderByComparator) {
+	public Bar fetchByText_Last(String text,
+		OrderByComparator<Bar> orderByComparator) {
 		int count = countByText(text);
 
 		if (count == 0) {
@@ -371,7 +372,7 @@ public class BarPersistenceImpl extends BasePersistenceImpl<Bar>
 	 */
 	@Override
 	public Bar[] findByText_PrevAndNext(long barId, String text,
-		OrderByComparator orderByComparator) throws NoSuchBarException {
+		OrderByComparator<Bar> orderByComparator) throws NoSuchBarException {
 		Bar bar = findByPrimaryKey(barId);
 
 		Session session = null;
@@ -400,7 +401,7 @@ public class BarPersistenceImpl extends BasePersistenceImpl<Bar>
 	}
 
 	protected Bar getByText_PrevAndNext(Session session, Bar bar, String text,
-		OrderByComparator orderByComparator, boolean previous) {
+		OrderByComparator<Bar> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -1079,7 +1080,7 @@ public class BarPersistenceImpl extends BasePersistenceImpl<Bar>
 	 */
 	@Override
 	public List<Bar> findAll(int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<Bar> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;

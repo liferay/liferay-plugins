@@ -85,7 +85,7 @@ public class BBBServerUtil {
 	 */
 	public static List<BBBServer> findWithDynamicQuery(
 		DynamicQuery dynamicQuery, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<BBBServer> orderByComparator) {
 		return getPersistence()
 				   .findWithDynamicQuery(dynamicQuery, start, end,
 			orderByComparator);
@@ -149,7 +149,7 @@ public class BBBServerUtil {
 	*/
 	public static java.util.List<com.liferay.bbb.model.BBBServer> findByActive(
 		boolean active, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.bbb.model.BBBServer> orderByComparator) {
 		return getPersistence()
 				   .findByActive(active, start, end, orderByComparator);
 	}
@@ -164,7 +164,7 @@ public class BBBServerUtil {
 	*/
 	public static com.liferay.bbb.model.BBBServer findByActive_First(
 		boolean active,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.bbb.model.BBBServer> orderByComparator)
 		throws com.liferay.bbb.NoSuchServerException {
 		return getPersistence().findByActive_First(active, orderByComparator);
 	}
@@ -178,7 +178,7 @@ public class BBBServerUtil {
 	*/
 	public static com.liferay.bbb.model.BBBServer fetchByActive_First(
 		boolean active,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.bbb.model.BBBServer> orderByComparator) {
 		return getPersistence().fetchByActive_First(active, orderByComparator);
 	}
 
@@ -192,7 +192,7 @@ public class BBBServerUtil {
 	*/
 	public static com.liferay.bbb.model.BBBServer findByActive_Last(
 		boolean active,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.bbb.model.BBBServer> orderByComparator)
 		throws com.liferay.bbb.NoSuchServerException {
 		return getPersistence().findByActive_Last(active, orderByComparator);
 	}
@@ -206,7 +206,7 @@ public class BBBServerUtil {
 	*/
 	public static com.liferay.bbb.model.BBBServer fetchByActive_Last(
 		boolean active,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.bbb.model.BBBServer> orderByComparator) {
 		return getPersistence().fetchByActive_Last(active, orderByComparator);
 	}
 
@@ -221,7 +221,7 @@ public class BBBServerUtil {
 	*/
 	public static com.liferay.bbb.model.BBBServer[] findByActive_PrevAndNext(
 		long bbbServerId, boolean active,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.bbb.model.BBBServer> orderByComparator)
 		throws com.liferay.bbb.NoSuchServerException {
 		return getPersistence()
 				   .findByActive_PrevAndNext(bbbServerId, active,
@@ -360,7 +360,7 @@ public class BBBServerUtil {
 	*/
 	public static java.util.List<com.liferay.bbb.model.BBBServer> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.bbb.model.BBBServer> orderByComparator) {
 		return getPersistence().findAll(start, end, orderByComparator);
 	}
 

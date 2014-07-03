@@ -153,7 +153,7 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 	 */
 	@Override
 	public List<Folder> findByAccountId(long accountId, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<Folder> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -259,7 +259,8 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 	 */
 	@Override
 	public Folder findByAccountId_First(long accountId,
-		OrderByComparator orderByComparator) throws NoSuchFolderException {
+		OrderByComparator<Folder> orderByComparator)
+		throws NoSuchFolderException {
 		Folder folder = fetchByAccountId_First(accountId, orderByComparator);
 
 		if (folder != null) {
@@ -287,7 +288,7 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 	 */
 	@Override
 	public Folder fetchByAccountId_First(long accountId,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<Folder> orderByComparator) {
 		List<Folder> list = findByAccountId(accountId, 0, 1, orderByComparator);
 
 		if (!list.isEmpty()) {
@@ -307,7 +308,8 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 	 */
 	@Override
 	public Folder findByAccountId_Last(long accountId,
-		OrderByComparator orderByComparator) throws NoSuchFolderException {
+		OrderByComparator<Folder> orderByComparator)
+		throws NoSuchFolderException {
 		Folder folder = fetchByAccountId_Last(accountId, orderByComparator);
 
 		if (folder != null) {
@@ -335,7 +337,7 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 	 */
 	@Override
 	public Folder fetchByAccountId_Last(long accountId,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<Folder> orderByComparator) {
 		int count = countByAccountId(accountId);
 
 		if (count == 0) {
@@ -363,7 +365,8 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 	 */
 	@Override
 	public Folder[] findByAccountId_PrevAndNext(long folderId, long accountId,
-		OrderByComparator orderByComparator) throws NoSuchFolderException {
+		OrderByComparator<Folder> orderByComparator)
+		throws NoSuchFolderException {
 		Folder folder = findByPrimaryKey(folderId);
 
 		Session session = null;
@@ -392,7 +395,8 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 	}
 
 	protected Folder getByAccountId_PrevAndNext(Session session, Folder folder,
-		long accountId, OrderByComparator orderByComparator, boolean previous) {
+		long accountId, OrderByComparator<Folder> orderByComparator,
+		boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -1374,7 +1378,7 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 	 */
 	@Override
 	public List<Folder> findAll(int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<Folder> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;

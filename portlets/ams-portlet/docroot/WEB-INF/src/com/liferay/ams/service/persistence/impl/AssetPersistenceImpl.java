@@ -556,7 +556,7 @@ public class AssetPersistenceImpl extends BasePersistenceImpl<Asset>
 	 */
 	@Override
 	public List<Asset> findAll(int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<Asset> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;

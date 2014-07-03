@@ -76,7 +76,7 @@ public interface AccountPersistence extends BasePersistence<Account> {
 	*/
 	public java.util.List<com.liferay.mail.model.Account> findByUserId(
 		long userId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.mail.model.Account> orderByComparator);
 
 	/**
 	* Returns the first account in the ordered set where userId = &#63;.
@@ -87,7 +87,7 @@ public interface AccountPersistence extends BasePersistence<Account> {
 	* @throws com.liferay.mail.NoSuchAccountException if a matching account could not be found
 	*/
 	public com.liferay.mail.model.Account findByUserId_First(long userId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.mail.model.Account> orderByComparator)
 		throws com.liferay.mail.NoSuchAccountException;
 
 	/**
@@ -98,7 +98,7 @@ public interface AccountPersistence extends BasePersistence<Account> {
 	* @return the first matching account, or <code>null</code> if a matching account could not be found
 	*/
 	public com.liferay.mail.model.Account fetchByUserId_First(long userId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.mail.model.Account> orderByComparator);
 
 	/**
 	* Returns the last account in the ordered set where userId = &#63;.
@@ -109,7 +109,7 @@ public interface AccountPersistence extends BasePersistence<Account> {
 	* @throws com.liferay.mail.NoSuchAccountException if a matching account could not be found
 	*/
 	public com.liferay.mail.model.Account findByUserId_Last(long userId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.mail.model.Account> orderByComparator)
 		throws com.liferay.mail.NoSuchAccountException;
 
 	/**
@@ -120,7 +120,7 @@ public interface AccountPersistence extends BasePersistence<Account> {
 	* @return the last matching account, or <code>null</code> if a matching account could not be found
 	*/
 	public com.liferay.mail.model.Account fetchByUserId_Last(long userId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.mail.model.Account> orderByComparator);
 
 	/**
 	* Returns the accounts before and after the current account in the ordered set where userId = &#63;.
@@ -133,7 +133,7 @@ public interface AccountPersistence extends BasePersistence<Account> {
 	*/
 	public com.liferay.mail.model.Account[] findByUserId_PrevAndNext(
 		long accountId, long userId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.mail.model.Account> orderByComparator)
 		throws com.liferay.mail.NoSuchAccountException;
 
 	/**
@@ -297,7 +297,7 @@ public interface AccountPersistence extends BasePersistence<Account> {
 	*/
 	public java.util.List<com.liferay.mail.model.Account> findAll(int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.mail.model.Account> orderByComparator);
 
 	/**
 	* Removes all the accounts from the database.

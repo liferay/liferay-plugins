@@ -151,7 +151,7 @@ public class BBBServerPersistenceImpl extends BasePersistenceImpl<BBBServer>
 	 */
 	@Override
 	public List<BBBServer> findByActive(boolean active, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<BBBServer> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -257,7 +257,8 @@ public class BBBServerPersistenceImpl extends BasePersistenceImpl<BBBServer>
 	 */
 	@Override
 	public BBBServer findByActive_First(boolean active,
-		OrderByComparator orderByComparator) throws NoSuchServerException {
+		OrderByComparator<BBBServer> orderByComparator)
+		throws NoSuchServerException {
 		BBBServer bbbServer = fetchByActive_First(active, orderByComparator);
 
 		if (bbbServer != null) {
@@ -285,7 +286,7 @@ public class BBBServerPersistenceImpl extends BasePersistenceImpl<BBBServer>
 	 */
 	@Override
 	public BBBServer fetchByActive_First(boolean active,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<BBBServer> orderByComparator) {
 		List<BBBServer> list = findByActive(active, 0, 1, orderByComparator);
 
 		if (!list.isEmpty()) {
@@ -305,7 +306,8 @@ public class BBBServerPersistenceImpl extends BasePersistenceImpl<BBBServer>
 	 */
 	@Override
 	public BBBServer findByActive_Last(boolean active,
-		OrderByComparator orderByComparator) throws NoSuchServerException {
+		OrderByComparator<BBBServer> orderByComparator)
+		throws NoSuchServerException {
 		BBBServer bbbServer = fetchByActive_Last(active, orderByComparator);
 
 		if (bbbServer != null) {
@@ -333,7 +335,7 @@ public class BBBServerPersistenceImpl extends BasePersistenceImpl<BBBServer>
 	 */
 	@Override
 	public BBBServer fetchByActive_Last(boolean active,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<BBBServer> orderByComparator) {
 		int count = countByActive(active);
 
 		if (count == 0) {
@@ -361,7 +363,7 @@ public class BBBServerPersistenceImpl extends BasePersistenceImpl<BBBServer>
 	 */
 	@Override
 	public BBBServer[] findByActive_PrevAndNext(long bbbServerId,
-		boolean active, OrderByComparator orderByComparator)
+		boolean active, OrderByComparator<BBBServer> orderByComparator)
 		throws NoSuchServerException {
 		BBBServer bbbServer = findByPrimaryKey(bbbServerId);
 
@@ -392,7 +394,7 @@ public class BBBServerPersistenceImpl extends BasePersistenceImpl<BBBServer>
 
 	protected BBBServer getByActive_PrevAndNext(Session session,
 		BBBServer bbbServer, boolean active,
-		OrderByComparator orderByComparator, boolean previous) {
+		OrderByComparator<BBBServer> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -1057,7 +1059,7 @@ public class BBBServerPersistenceImpl extends BasePersistenceImpl<BBBServer>
 	 */
 	@Override
 	public List<BBBServer> findAll(int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<BBBServer> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;

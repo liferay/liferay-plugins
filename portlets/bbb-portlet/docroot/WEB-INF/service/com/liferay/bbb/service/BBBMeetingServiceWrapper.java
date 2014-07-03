@@ -63,8 +63,7 @@ public class BBBMeetingServiceWrapper implements BBBMeetingService,
 		java.lang.String moderatorPassword, int status,
 		java.util.List<com.liferay.bbb.model.BBBParticipant> bbbParticipants,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _bbbMeetingService.addBBBMeeting(groupId, portletId,
 			bbbServerId, name, description, attendeePassword,
 			moderatorPassword, status, bbbParticipants, serviceContext);
@@ -72,29 +71,25 @@ public class BBBMeetingServiceWrapper implements BBBMeetingService,
 
 	@Override
 	public com.liferay.bbb.model.BBBMeeting deleteBBBMeeting(long bbbMeetingId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _bbbMeetingService.deleteBBBMeeting(bbbMeetingId);
 	}
 
 	@Override
 	public com.liferay.bbb.model.BBBMeeting getBBBMeeting(long bbbMeetingId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _bbbMeetingService.getBBBMeeting(bbbMeetingId);
 	}
 
 	@Override
 	public java.util.List<com.liferay.bbb.model.BBBMeeting> getBBBMeetings(
 		long groupId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator obc)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator obc) {
 		return _bbbMeetingService.getBBBMeetings(groupId, start, end, obc);
 	}
 
 	@Override
-	public int getBBBMeetingsCount(long groupId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public int getBBBMeetingsCount(long groupId) {
 		return _bbbMeetingService.getBBBMeetingsCount(groupId);
 	}
 
@@ -105,8 +100,7 @@ public class BBBMeetingServiceWrapper implements BBBMeetingService,
 		java.lang.String moderatorPassword,
 		java.util.List<com.liferay.bbb.model.BBBParticipant> bbbParticipants,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _bbbMeetingService.updateBBBMeeting(bbbMeetingId, bbbServerId,
 			name, description, attendeePassword, moderatorPassword,
 			bbbParticipants, serviceContext);

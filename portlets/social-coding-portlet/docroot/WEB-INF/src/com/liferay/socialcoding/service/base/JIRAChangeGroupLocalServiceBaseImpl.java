@@ -143,8 +143,7 @@ public abstract class JIRAChangeGroupLocalServiceBaseImpl
 	 * @return the matching rows
 	 */
 	@Override
-	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery) {
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery) {
 		return jiraChangeGroupPersistence.findWithDynamicQuery(dynamicQuery);
 	}
 
@@ -161,8 +160,8 @@ public abstract class JIRAChangeGroupLocalServiceBaseImpl
 	 * @return the range of matching rows
 	 */
 	@Override
-	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end) {
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
+		int end) {
 		return jiraChangeGroupPersistence.findWithDynamicQuery(dynamicQuery,
 			start, end);
 	}
@@ -181,9 +180,8 @@ public abstract class JIRAChangeGroupLocalServiceBaseImpl
 	 * @return the ordered range of matching rows
 	 */
 	@Override
-	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end,
-		OrderByComparator orderByComparator) {
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
+		int end, OrderByComparator<T> orderByComparator) {
 		return jiraChangeGroupPersistence.findWithDynamicQuery(dynamicQuery,
 			start, end, orderByComparator);
 	}
@@ -224,11 +222,10 @@ public abstract class JIRAChangeGroupLocalServiceBaseImpl
 	 * @param jiraChangeGroupId the primary key of the j i r a change group
 	 * @return the j i r a change group
 	 * @throws PortalException if a j i r a change group with the primary key could not be found
-	 * @throws SystemException
 	 */
 	@Override
 	public JIRAChangeGroup getJIRAChangeGroup(long jiraChangeGroupId)
-		throws PortalException, SystemException {
+		throws PortalException {
 		return jiraChangeGroupPersistence.findByPrimaryKey(jiraChangeGroupId);
 	}
 

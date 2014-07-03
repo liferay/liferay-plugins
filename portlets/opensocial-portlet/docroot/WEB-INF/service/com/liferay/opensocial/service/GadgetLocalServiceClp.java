@@ -243,8 +243,7 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 
 	@Override
 	public com.liferay.opensocial.model.Gadget deleteGadget(long gadgetId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
 		try {
@@ -256,10 +255,6 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
 
 			if (t instanceof RuntimeException) {
@@ -276,8 +271,7 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 
 	@Override
 	public com.liferay.opensocial.model.Gadget deleteGadget(
-		com.liferay.opensocial.model.Gadget gadget)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.opensocial.model.Gadget gadget) {
 		Object returnObj = null;
 
 		try {
@@ -287,10 +281,6 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
 
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
@@ -328,8 +318,7 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 	}
 
 	@Override
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
 		Object returnObj = null;
 
@@ -350,12 +339,11 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 			}
 		}
 
-		return (java.util.List)ClpSerializer.translateOutput(returnObj);
+		return (java.util.List<T>)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) {
 		Object returnObj = null;
@@ -383,15 +371,14 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 			}
 		}
 
-		return (java.util.List)ClpSerializer.translateOutput(returnObj);
+		return (java.util.List<T>)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<T> orderByComparator) {
 		Object returnObj = null;
 
 		try {
@@ -419,7 +406,7 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 			}
 		}
 
-		return (java.util.List)ClpSerializer.translateOutput(returnObj);
+		return (java.util.List<T>)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override
@@ -819,8 +806,7 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 	public com.liferay.opensocial.model.Gadget addGadget(long companyId,
 		java.lang.String url, java.lang.String portletCategoryNames,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
 		try {
@@ -843,10 +829,6 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
 			}
 
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
 			}
@@ -860,18 +842,13 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 	}
 
 	@Override
-	public void deleteGadgets(long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public void deleteGadgets(long companyId) {
 		try {
 			_invokableLocalService.invokeMethod(_methodName25,
 				_methodParameterTypes25, new Object[] { companyId });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
 
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
@@ -884,8 +861,7 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 	}
 
 	@Override
-	public void destroyGadget(java.lang.String uuid, long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public void destroyGadget(java.lang.String uuid, long companyId) {
 		try {
 			_invokableLocalService.invokeMethod(_methodName26,
 				_methodParameterTypes26,
@@ -894,10 +870,6 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
 
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
 			}
@@ -909,18 +881,13 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 	}
 
 	@Override
-	public void destroyGadgets()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public void destroyGadgets() {
 		try {
 			_invokableLocalService.invokeMethod(_methodName27,
 				_methodParameterTypes27, new Object[] {  });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
 
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
@@ -934,8 +901,7 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 
 	@Override
 	public com.liferay.opensocial.model.Gadget fetchGadget(long companyId,
-		java.lang.String url)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		java.lang.String url) {
 		Object returnObj = null;
 
 		try {
@@ -945,10 +911,6 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
 
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
@@ -965,8 +927,7 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 	@Override
 	public com.liferay.opensocial.model.Gadget getGadget(long companyId,
 		java.lang.String url)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
 		try {
@@ -979,10 +940,6 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
 
 			if (t instanceof RuntimeException) {
@@ -1000,8 +957,7 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 	@Override
 	public com.liferay.opensocial.model.Gadget getGadget(
 		java.lang.String uuid, long companyId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
 		try {
@@ -1014,10 +970,6 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
 
 			if (t instanceof RuntimeException) {
@@ -1034,8 +986,7 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 
 	@Override
 	public java.util.List<com.liferay.opensocial.model.Gadget> getGadgets(
-		long companyId, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long companyId, int start, int end) {
 		Object returnObj = null;
 
 		try {
@@ -1045,10 +996,6 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
 
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
@@ -1063,8 +1010,7 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 	}
 
 	@Override
-	public int getGadgetsCount(long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public int getGadgetsCount(long companyId) {
 		Object returnObj = null;
 
 		try {
@@ -1073,10 +1019,6 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
 
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
@@ -1094,8 +1036,7 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 	public void initGadget(java.lang.String uuid, long companyId,
 		long gadgetId, java.lang.String name,
 		java.lang.String portletCategoryNames)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		try {
 			_invokableLocalService.invokeMethod(_methodName33,
 				_methodParameterTypes33,
@@ -1118,10 +1059,6 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
 			}
 
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
 			}
@@ -1134,8 +1071,7 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 
 	@Override
 	public void initGadgets()
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		try {
 			_invokableLocalService.invokeMethod(_methodName34,
 				_methodParameterTypes34, new Object[] {  });
@@ -1145,10 +1081,6 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
 
 			if (t instanceof RuntimeException) {
@@ -1164,8 +1096,7 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 	@Override
 	public com.liferay.opensocial.model.Gadget updateGadget(long gadgetId,
 		java.lang.String portletCategoryNames)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
 		try {
@@ -1182,10 +1113,6 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
 
 			if (t instanceof RuntimeException) {

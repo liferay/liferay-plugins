@@ -60,13 +60,11 @@ public class WSRPProducerLocalServiceWrapper implements WSRPProducerLocalService
 	* @param wsrpProducerId the primary key of the w s r p producer
 	* @return the w s r p producer that was removed
 	* @throws PortalException if a w s r p producer with the primary key could not be found
-	* @throws SystemException
 	*/
 	@Override
 	public com.liferay.wsrp.model.WSRPProducer deleteWSRPProducer(
 		long wsrpProducerId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _wsrpProducerLocalService.deleteWSRPProducer(wsrpProducerId);
 	}
 
@@ -76,13 +74,11 @@ public class WSRPProducerLocalServiceWrapper implements WSRPProducerLocalService
 	* @param wsrpProducer the w s r p producer
 	* @return the w s r p producer that was removed
 	* @throws PortalException
-	* @throws SystemException
 	*/
 	@Override
 	public com.liferay.wsrp.model.WSRPProducer deleteWSRPProducer(
 		com.liferay.wsrp.model.WSRPProducer wsrpProducer)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _wsrpProducerLocalService.deleteWSRPProducer(wsrpProducer);
 	}
 
@@ -98,8 +94,7 @@ public class WSRPProducerLocalServiceWrapper implements WSRPProducerLocalService
 	* @return the matching rows
 	*/
 	@Override
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
 		return _wsrpProducerLocalService.dynamicQuery(dynamicQuery);
 	}
@@ -117,8 +112,7 @@ public class WSRPProducerLocalServiceWrapper implements WSRPProducerLocalService
 	* @return the range of matching rows
 	*/
 	@Override
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) {
 		return _wsrpProducerLocalService.dynamicQuery(dynamicQuery, start, end);
@@ -138,11 +132,10 @@ public class WSRPProducerLocalServiceWrapper implements WSRPProducerLocalService
 	* @return the ordered range of matching rows
 	*/
 	@Override
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<T> orderByComparator) {
 		return _wsrpProducerLocalService.dynamicQuery(dynamicQuery, start, end,
 			orderByComparator);
 	}
@@ -354,8 +347,7 @@ public class WSRPProducerLocalServiceWrapper implements WSRPProducerLocalService
 		long groupId, java.lang.String name, java.lang.String version,
 		java.lang.String portletIds,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _wsrpProducerLocalService.addWSRPProducer(userId, groupId, name,
 			version, portletIds, serviceContext);
 	}
@@ -365,37 +357,32 @@ public class WSRPProducerLocalServiceWrapper implements WSRPProducerLocalService
 		java.lang.String name, java.lang.String version,
 		java.lang.String portletIds,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _wsrpProducerLocalService.addWSRPProducer(userId, name, version,
 			portletIds, serviceContext);
 	}
 
 	@Override
 	public void deleteWSRPProducers(long companyId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		_wsrpProducerLocalService.deleteWSRPProducers(companyId);
 	}
 
 	@Override
 	public com.liferay.wsrp.model.WSRPProducer getWSRPProducer(
 		java.lang.String wsrpProducerUuid)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _wsrpProducerLocalService.getWSRPProducer(wsrpProducerUuid);
 	}
 
 	@Override
 	public java.util.List<com.liferay.wsrp.model.WSRPProducer> getWSRPProducers(
-		long companyId, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long companyId, int start, int end) {
 		return _wsrpProducerLocalService.getWSRPProducers(companyId, start, end);
 	}
 
 	@Override
-	public int getWSRPProducersCount(long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public int getWSRPProducersCount(long companyId) {
 		return _wsrpProducerLocalService.getWSRPProducersCount(companyId);
 	}
 
@@ -403,8 +390,7 @@ public class WSRPProducerLocalServiceWrapper implements WSRPProducerLocalService
 	public com.liferay.wsrp.model.WSRPProducer updateWSRPProducer(
 		long wsrpProducerId, java.lang.String name, java.lang.String version,
 		java.lang.String portletIds)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _wsrpProducerLocalService.updateWSRPProducer(wsrpProducerId,
 			name, version, portletIds);
 	}

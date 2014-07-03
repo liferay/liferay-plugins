@@ -277,8 +277,7 @@ public class TasksEntryLocalServiceClp implements TasksEntryLocalService {
 	@Override
 	public com.liferay.tasks.model.TasksEntry deleteTasksEntry(
 		long tasksEntryId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
 		try {
@@ -290,10 +289,6 @@ public class TasksEntryLocalServiceClp implements TasksEntryLocalService {
 
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
 
 			if (t instanceof RuntimeException) {
@@ -311,8 +306,7 @@ public class TasksEntryLocalServiceClp implements TasksEntryLocalService {
 	@Override
 	public com.liferay.tasks.model.TasksEntry deleteTasksEntry(
 		com.liferay.tasks.model.TasksEntry tasksEntry)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
 		try {
@@ -325,10 +319,6 @@ public class TasksEntryLocalServiceClp implements TasksEntryLocalService {
 
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
 
 			if (t instanceof RuntimeException) {
@@ -367,8 +357,7 @@ public class TasksEntryLocalServiceClp implements TasksEntryLocalService {
 	}
 
 	@Override
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
 		Object returnObj = null;
 
@@ -389,12 +378,11 @@ public class TasksEntryLocalServiceClp implements TasksEntryLocalService {
 			}
 		}
 
-		return (java.util.List)ClpSerializer.translateOutput(returnObj);
+		return (java.util.List<T>)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) {
 		Object returnObj = null;
@@ -422,15 +410,14 @@ public class TasksEntryLocalServiceClp implements TasksEntryLocalService {
 			}
 		}
 
-		return (java.util.List)ClpSerializer.translateOutput(returnObj);
+		return (java.util.List<T>)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<T> orderByComparator) {
 		Object returnObj = null;
 
 		try {
@@ -458,7 +445,7 @@ public class TasksEntryLocalServiceClp implements TasksEntryLocalService {
 			}
 		}
 
-		return (java.util.List)ClpSerializer.translateOutput(returnObj);
+		return (java.util.List<T>)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override
@@ -541,8 +528,7 @@ public class TasksEntryLocalServiceClp implements TasksEntryLocalService {
 
 	@Override
 	public com.liferay.tasks.model.TasksEntry getTasksEntry(long tasksEntryId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
 		try {
@@ -554,10 +540,6 @@ public class TasksEntryLocalServiceClp implements TasksEntryLocalService {
 
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
 
 			if (t instanceof RuntimeException) {
@@ -783,8 +765,7 @@ public class TasksEntryLocalServiceClp implements TasksEntryLocalService {
 		int dueDateMonth, int dueDateDay, int dueDateYear, int dueDateHour,
 		int dueDateMinute, boolean addDueDate,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
 		try {
@@ -821,10 +802,6 @@ public class TasksEntryLocalServiceClp implements TasksEntryLocalService {
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
 			}
 
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
 			}
@@ -839,8 +816,7 @@ public class TasksEntryLocalServiceClp implements TasksEntryLocalService {
 
 	@Override
 	public java.util.List<com.liferay.tasks.model.TasksEntry> getAssigneeTasksEntries(
-		long assigneeUserId, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long assigneeUserId, int start, int end) {
 		Object returnObj = null;
 
 		try {
@@ -850,10 +826,6 @@ public class TasksEntryLocalServiceClp implements TasksEntryLocalService {
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
 
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
@@ -868,8 +840,7 @@ public class TasksEntryLocalServiceClp implements TasksEntryLocalService {
 	}
 
 	@Override
-	public int getAssigneeTasksEntriesCount(long assigneeUserId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public int getAssigneeTasksEntriesCount(long assigneeUserId) {
 		Object returnObj = null;
 
 		try {
@@ -878,10 +849,6 @@ public class TasksEntryLocalServiceClp implements TasksEntryLocalService {
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
 
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
@@ -897,8 +864,7 @@ public class TasksEntryLocalServiceClp implements TasksEntryLocalService {
 
 	@Override
 	public java.util.List<com.liferay.tasks.model.TasksEntry> getGroupAssigneeTasksEntries(
-		long groupId, long assigneeUserId, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long groupId, long assigneeUserId, int start, int end) {
 		Object returnObj = null;
 
 		try {
@@ -908,10 +874,6 @@ public class TasksEntryLocalServiceClp implements TasksEntryLocalService {
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
 
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
@@ -927,8 +889,7 @@ public class TasksEntryLocalServiceClp implements TasksEntryLocalService {
 
 	@Override
 	public int getGroupAssigneeTasksEntriesCount(long groupId,
-		long assigneeUserId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long assigneeUserId) {
 		Object returnObj = null;
 
 		try {
@@ -938,10 +899,6 @@ public class TasksEntryLocalServiceClp implements TasksEntryLocalService {
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
 
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
@@ -957,8 +914,7 @@ public class TasksEntryLocalServiceClp implements TasksEntryLocalService {
 
 	@Override
 	public java.util.List<com.liferay.tasks.model.TasksEntry> getGroupResolverTasksEntries(
-		long groupId, long resolverUserId, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long groupId, long resolverUserId, int start, int end) {
 		Object returnObj = null;
 
 		try {
@@ -968,10 +924,6 @@ public class TasksEntryLocalServiceClp implements TasksEntryLocalService {
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
 
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
@@ -987,8 +939,7 @@ public class TasksEntryLocalServiceClp implements TasksEntryLocalService {
 
 	@Override
 	public int getGroupResolverTasksEntriesCount(long groupId,
-		long resolverUserId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long resolverUserId) {
 		Object returnObj = null;
 
 		try {
@@ -998,10 +949,6 @@ public class TasksEntryLocalServiceClp implements TasksEntryLocalService {
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
 
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
@@ -1017,8 +964,7 @@ public class TasksEntryLocalServiceClp implements TasksEntryLocalService {
 
 	@Override
 	public java.util.List<com.liferay.tasks.model.TasksEntry> getGroupUserTasksEntries(
-		long groupId, long userId, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long groupId, long userId, int start, int end) {
 		Object returnObj = null;
 
 		try {
@@ -1028,10 +974,6 @@ public class TasksEntryLocalServiceClp implements TasksEntryLocalService {
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
 
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
@@ -1046,8 +988,7 @@ public class TasksEntryLocalServiceClp implements TasksEntryLocalService {
 	}
 
 	@Override
-	public int getGroupUserTasksEntriesCount(long groupId, long userId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public int getGroupUserTasksEntriesCount(long groupId, long userId) {
 		Object returnObj = null;
 
 		try {
@@ -1056,10 +997,6 @@ public class TasksEntryLocalServiceClp implements TasksEntryLocalService {
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
 
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
@@ -1075,8 +1012,7 @@ public class TasksEntryLocalServiceClp implements TasksEntryLocalService {
 
 	@Override
 	public java.util.List<com.liferay.tasks.model.TasksEntry> getResolverTasksEntries(
-		long resolverUserId, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long resolverUserId, int start, int end) {
 		Object returnObj = null;
 
 		try {
@@ -1086,10 +1022,6 @@ public class TasksEntryLocalServiceClp implements TasksEntryLocalService {
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
 
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
@@ -1104,8 +1036,7 @@ public class TasksEntryLocalServiceClp implements TasksEntryLocalService {
 	}
 
 	@Override
-	public int getResolverTasksEntriesCount(long resolverUserId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public int getResolverTasksEntriesCount(long resolverUserId) {
 		Object returnObj = null;
 
 		try {
@@ -1114,10 +1045,6 @@ public class TasksEntryLocalServiceClp implements TasksEntryLocalService {
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
 
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
@@ -1133,8 +1060,7 @@ public class TasksEntryLocalServiceClp implements TasksEntryLocalService {
 
 	@Override
 	public java.util.List<com.liferay.tasks.model.TasksEntry> getTasksEntries(
-		long groupId, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long groupId, int start, int end) {
 		Object returnObj = null;
 
 		try {
@@ -1144,10 +1070,6 @@ public class TasksEntryLocalServiceClp implements TasksEntryLocalService {
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
 
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
@@ -1165,7 +1087,7 @@ public class TasksEntryLocalServiceClp implements TasksEntryLocalService {
 	public java.util.List<com.liferay.tasks.model.TasksEntry> getTasksEntries(
 		long groupId, long userId, int priority, long assigneeUserId,
 		int status, long[] assetTagIds, long[] notAssetTagIds, int start,
-		int end) throws com.liferay.portal.kernel.exception.SystemException {
+		int end) {
 		Object returnObj = null;
 
 		try {
@@ -1194,10 +1116,6 @@ public class TasksEntryLocalServiceClp implements TasksEntryLocalService {
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
 
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
 			}
@@ -1211,8 +1129,7 @@ public class TasksEntryLocalServiceClp implements TasksEntryLocalService {
 	}
 
 	@Override
-	public int getTasksEntriesCount(long groupId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public int getTasksEntriesCount(long groupId) {
 		Object returnObj = null;
 
 		try {
@@ -1221,10 +1138,6 @@ public class TasksEntryLocalServiceClp implements TasksEntryLocalService {
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
 
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
@@ -1241,8 +1154,7 @@ public class TasksEntryLocalServiceClp implements TasksEntryLocalService {
 	@Override
 	public int getTasksEntriesCount(long groupId, long userId, int priority,
 		long assigneeUserId, int status, long[] tagsEntryIds,
-		long[] notTagsEntryIds)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long[] notTagsEntryIds) {
 		Object returnObj = null;
 
 		try {
@@ -1267,10 +1179,6 @@ public class TasksEntryLocalServiceClp implements TasksEntryLocalService {
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
 
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
 			}
@@ -1285,8 +1193,7 @@ public class TasksEntryLocalServiceClp implements TasksEntryLocalService {
 
 	@Override
 	public java.util.List<com.liferay.tasks.model.TasksEntry> getUserTasksEntries(
-		long userId, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long userId, int start, int end) {
 		Object returnObj = null;
 
 		try {
@@ -1295,10 +1202,6 @@ public class TasksEntryLocalServiceClp implements TasksEntryLocalService {
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
 
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
@@ -1313,8 +1216,7 @@ public class TasksEntryLocalServiceClp implements TasksEntryLocalService {
 	}
 
 	@Override
-	public int getUserTasksEntriesCount(long userId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public int getUserTasksEntriesCount(long userId) {
 		Object returnObj = null;
 
 		try {
@@ -1323,10 +1225,6 @@ public class TasksEntryLocalServiceClp implements TasksEntryLocalService {
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
 
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
@@ -1344,8 +1242,7 @@ public class TasksEntryLocalServiceClp implements TasksEntryLocalService {
 	public void updateAsset(long userId,
 		com.liferay.tasks.model.TasksEntry tasksEntry, long[] assetCategoryIds,
 		java.lang.String[] assetTagNames)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		try {
 			_invokableLocalService.invokeMethod(_methodName38,
 				_methodParameterTypes38,
@@ -1366,10 +1263,6 @@ public class TasksEntryLocalServiceClp implements TasksEntryLocalService {
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
 			}
 
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
 			}
@@ -1387,8 +1280,7 @@ public class TasksEntryLocalServiceClp implements TasksEntryLocalService {
 		int dueDateDay, int dueDateYear, int dueDateHour, int dueDateMinute,
 		boolean addDueDate, int status,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
 		try {
@@ -1429,10 +1321,6 @@ public class TasksEntryLocalServiceClp implements TasksEntryLocalService {
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
 			}
 
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
 			}
@@ -1449,8 +1337,7 @@ public class TasksEntryLocalServiceClp implements TasksEntryLocalService {
 	public com.liferay.tasks.model.TasksEntry updateTasksEntryStatus(
 		long tasksEntryId, long resolverUserId, int status,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
 		try {
@@ -1471,10 +1358,6 @@ public class TasksEntryLocalServiceClp implements TasksEntryLocalService {
 
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
 
 			if (t instanceof RuntimeException) {

@@ -878,7 +878,7 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 	 */
 	@Override
 	public List<Feed> findAll(int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<Feed> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;

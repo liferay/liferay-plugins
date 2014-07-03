@@ -100,12 +100,11 @@ public abstract class BBBServerLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @param bbbServerId the primary key of the b b b server
 	 * @return the b b b server that was removed
 	 * @throws PortalException if a b b b server with the primary key could not be found
-	 * @throws SystemException
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
 	public BBBServer deleteBBBServer(long bbbServerId)
-		throws PortalException, SystemException {
+		throws PortalException {
 		return bbbServerPersistence.remove(bbbServerId);
 	}
 
@@ -114,12 +113,10 @@ public abstract class BBBServerLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 *
 	 * @param bbbServer the b b b server
 	 * @return the b b b server that was removed
-	 * @throws SystemException
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
-	public BBBServer deleteBBBServer(BBBServer bbbServer)
-		throws SystemException {
+	public BBBServer deleteBBBServer(BBBServer bbbServer) {
 		return bbbServerPersistence.remove(bbbServer);
 	}
 
@@ -138,8 +135,7 @@ public abstract class BBBServerLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the matching rows
 	 */
 	@Override
-	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery) {
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery) {
 		return bbbServerPersistence.findWithDynamicQuery(dynamicQuery);
 	}
 
@@ -156,8 +152,8 @@ public abstract class BBBServerLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the range of matching rows
 	 */
 	@Override
-	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end) {
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
+		int end) {
 		return bbbServerPersistence.findWithDynamicQuery(dynamicQuery, start,
 			end);
 	}
@@ -176,9 +172,8 @@ public abstract class BBBServerLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the ordered range of matching rows
 	 */
 	@Override
-	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end,
-		OrderByComparator orderByComparator) {
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
+		int end, OrderByComparator<T> orderByComparator) {
 		return bbbServerPersistence.findWithDynamicQuery(dynamicQuery, start,
 			end, orderByComparator);
 	}

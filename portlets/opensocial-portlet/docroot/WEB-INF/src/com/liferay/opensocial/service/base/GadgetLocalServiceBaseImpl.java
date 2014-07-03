@@ -106,12 +106,10 @@ public abstract class GadgetLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @param gadgetId the primary key of the gadget
 	 * @return the gadget that was removed
 	 * @throws PortalException if a gadget with the primary key could not be found
-	 * @throws SystemException
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
-	public Gadget deleteGadget(long gadgetId)
-		throws PortalException, SystemException {
+	public Gadget deleteGadget(long gadgetId) throws PortalException {
 		return gadgetPersistence.remove(gadgetId);
 	}
 
@@ -120,11 +118,10 @@ public abstract class GadgetLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 *
 	 * @param gadget the gadget
 	 * @return the gadget that was removed
-	 * @throws SystemException
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
-	public Gadget deleteGadget(Gadget gadget) throws SystemException {
+	public Gadget deleteGadget(Gadget gadget) {
 		return gadgetPersistence.remove(gadget);
 	}
 
@@ -143,8 +140,7 @@ public abstract class GadgetLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the matching rows
 	 */
 	@Override
-	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery) {
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery) {
 		return gadgetPersistence.findWithDynamicQuery(dynamicQuery);
 	}
 
@@ -161,8 +157,8 @@ public abstract class GadgetLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the range of matching rows
 	 */
 	@Override
-	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end) {
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
+		int end) {
 		return gadgetPersistence.findWithDynamicQuery(dynamicQuery, start, end);
 	}
 
@@ -180,9 +176,8 @@ public abstract class GadgetLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the ordered range of matching rows
 	 */
 	@Override
-	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end,
-		OrderByComparator orderByComparator) {
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
+		int end, OrderByComparator<T> orderByComparator) {
 		return gadgetPersistence.findWithDynamicQuery(dynamicQuery, start, end,
 			orderByComparator);
 	}

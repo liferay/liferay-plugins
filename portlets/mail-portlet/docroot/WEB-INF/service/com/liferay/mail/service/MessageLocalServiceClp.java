@@ -240,8 +240,7 @@ public class MessageLocalServiceClp implements MessageLocalService {
 
 	@Override
 	public com.liferay.mail.model.Message deleteMessage(long messageId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
 		try {
@@ -253,10 +252,6 @@ public class MessageLocalServiceClp implements MessageLocalService {
 
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
 
 			if (t instanceof RuntimeException) {
@@ -274,8 +269,7 @@ public class MessageLocalServiceClp implements MessageLocalService {
 	@Override
 	public com.liferay.mail.model.Message deleteMessage(
 		com.liferay.mail.model.Message message)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
 		try {
@@ -288,10 +282,6 @@ public class MessageLocalServiceClp implements MessageLocalService {
 
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
 
 			if (t instanceof RuntimeException) {
@@ -330,8 +320,7 @@ public class MessageLocalServiceClp implements MessageLocalService {
 	}
 
 	@Override
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
 		Object returnObj = null;
 
@@ -352,12 +341,11 @@ public class MessageLocalServiceClp implements MessageLocalService {
 			}
 		}
 
-		return (java.util.List)ClpSerializer.translateOutput(returnObj);
+		return (java.util.List<T>)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) {
 		Object returnObj = null;
@@ -385,15 +373,14 @@ public class MessageLocalServiceClp implements MessageLocalService {
 			}
 		}
 
-		return (java.util.List)ClpSerializer.translateOutput(returnObj);
+		return (java.util.List<T>)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<T> orderByComparator) {
 		Object returnObj = null;
 
 		try {
@@ -421,7 +408,7 @@ public class MessageLocalServiceClp implements MessageLocalService {
 			}
 		}
 
-		return (java.util.List)ClpSerializer.translateOutput(returnObj);
+		return (java.util.List<T>)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override
@@ -741,8 +728,7 @@ public class MessageLocalServiceClp implements MessageLocalService {
 		java.lang.String cc, java.lang.String bcc, java.util.Date sentDate,
 		java.lang.String subject, java.lang.String body,
 		java.lang.String flags, long remoteMessageId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
 		try {
@@ -779,10 +765,6 @@ public class MessageLocalServiceClp implements MessageLocalService {
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
 			}
 
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
 			}
@@ -797,8 +779,7 @@ public class MessageLocalServiceClp implements MessageLocalService {
 
 	@Override
 	public void deleteMessages(long folderId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		try {
 			_invokableLocalService.invokeMethod(_methodName22,
 				_methodParameterTypes22, new Object[] { folderId });
@@ -808,10 +789,6 @@ public class MessageLocalServiceClp implements MessageLocalService {
 
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
 
 			if (t instanceof RuntimeException) {
@@ -825,8 +802,7 @@ public class MessageLocalServiceClp implements MessageLocalService {
 	}
 
 	@Override
-	public int getAccountUnreadMessagesCount(long accountId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public int getAccountUnreadMessagesCount(long accountId) {
 		Object returnObj = null;
 
 		try {
@@ -835,10 +811,6 @@ public class MessageLocalServiceClp implements MessageLocalService {
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
 
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
@@ -854,8 +826,7 @@ public class MessageLocalServiceClp implements MessageLocalService {
 
 	@Override
 	public java.util.List<com.liferay.mail.model.Message> getCompanyMessages(
-		long companyId, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long companyId, int start, int end) {
 		Object returnObj = null;
 
 		try {
@@ -865,10 +836,6 @@ public class MessageLocalServiceClp implements MessageLocalService {
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
 
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
@@ -883,8 +850,7 @@ public class MessageLocalServiceClp implements MessageLocalService {
 	}
 
 	@Override
-	public int getCompanyMessagesCount(long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public int getCompanyMessagesCount(long companyId) {
 		Object returnObj = null;
 
 		try {
@@ -893,10 +859,6 @@ public class MessageLocalServiceClp implements MessageLocalService {
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
 
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
@@ -912,8 +874,7 @@ public class MessageLocalServiceClp implements MessageLocalService {
 
 	@Override
 	public java.util.List<com.liferay.mail.model.Message> getFolderMessages(
-		long folderId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long folderId) {
 		Object returnObj = null;
 
 		try {
@@ -922,10 +883,6 @@ public class MessageLocalServiceClp implements MessageLocalService {
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
 
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
@@ -940,8 +897,7 @@ public class MessageLocalServiceClp implements MessageLocalService {
 	}
 
 	@Override
-	public int getFolderMessagesCount(long folderId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public int getFolderMessagesCount(long folderId) {
 		Object returnObj = null;
 
 		try {
@@ -950,10 +906,6 @@ public class MessageLocalServiceClp implements MessageLocalService {
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
 
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
@@ -968,8 +920,7 @@ public class MessageLocalServiceClp implements MessageLocalService {
 	}
 
 	@Override
-	public int getFolderUnreadMessagesCount(long folderId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public int getFolderUnreadMessagesCount(long folderId) {
 		Object returnObj = null;
 
 		try {
@@ -978,10 +929,6 @@ public class MessageLocalServiceClp implements MessageLocalService {
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
 
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
@@ -998,8 +945,7 @@ public class MessageLocalServiceClp implements MessageLocalService {
 	@Override
 	public com.liferay.mail.model.Message getMessage(long folderId,
 		long remoteMessageId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
 		try {
@@ -1012,10 +958,6 @@ public class MessageLocalServiceClp implements MessageLocalService {
 
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
 
 			if (t instanceof RuntimeException) {
@@ -1033,8 +975,7 @@ public class MessageLocalServiceClp implements MessageLocalService {
 	@Override
 	public com.liferay.mail.model.Message getRemoteMessage(long folderId,
 		boolean oldest)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
 		try {
@@ -1046,10 +987,6 @@ public class MessageLocalServiceClp implements MessageLocalService {
 
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
 
 			if (t instanceof RuntimeException) {
@@ -1068,8 +1005,7 @@ public class MessageLocalServiceClp implements MessageLocalService {
 	public int populateMessages(
 		java.util.List<com.liferay.mail.model.Message> messages, long folderId,
 		java.lang.String keywords, int pageNumber, int messagesPerPage,
-		java.lang.String orderByField, java.lang.String orderByType)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		java.lang.String orderByField, java.lang.String orderByType) {
 		Object returnObj = null;
 
 		try {
@@ -1094,10 +1030,6 @@ public class MessageLocalServiceClp implements MessageLocalService {
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
 
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
 			}
@@ -1113,8 +1045,7 @@ public class MessageLocalServiceClp implements MessageLocalService {
 	@Override
 	public com.liferay.mail.model.Message updateContent(long messageId,
 		java.lang.String body, java.lang.String flags)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
 		try {
@@ -1135,10 +1066,6 @@ public class MessageLocalServiceClp implements MessageLocalService {
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
 			}
 
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
 			}
@@ -1154,8 +1081,7 @@ public class MessageLocalServiceClp implements MessageLocalService {
 	@Override
 	public com.liferay.mail.model.Message updateFlag(long messageId, int flag,
 		boolean value)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
 		try {
@@ -1168,10 +1094,6 @@ public class MessageLocalServiceClp implements MessageLocalService {
 
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
 
 			if (t instanceof RuntimeException) {
@@ -1192,8 +1114,7 @@ public class MessageLocalServiceClp implements MessageLocalService {
 		java.lang.String cc, java.lang.String bcc, java.util.Date sentDate,
 		java.lang.String subject, java.lang.String body,
 		java.lang.String flags, long remoteMessageId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
 		try {
@@ -1228,10 +1149,6 @@ public class MessageLocalServiceClp implements MessageLocalService {
 
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
 
 			if (t instanceof RuntimeException) {

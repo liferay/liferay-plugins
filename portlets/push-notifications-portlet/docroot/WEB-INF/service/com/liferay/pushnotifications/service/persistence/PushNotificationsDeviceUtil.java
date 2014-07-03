@@ -86,7 +86,7 @@ public class PushNotificationsDeviceUtil {
 	 */
 	public static List<PushNotificationsDevice> findWithDynamicQuery(
 		DynamicQuery dynamicQuery, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<PushNotificationsDevice> orderByComparator) {
 		return getPersistence()
 				   .findWithDynamicQuery(dynamicQuery, start, end,
 			orderByComparator);
@@ -213,7 +213,7 @@ public class PushNotificationsDeviceUtil {
 	*/
 	public static java.util.List<com.liferay.pushnotifications.model.PushNotificationsDevice> findByU_P(
 		long userId, java.lang.String platform, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.pushnotifications.model.PushNotificationsDevice> orderByComparator) {
 		return getPersistence()
 				   .findByU_P(userId, platform, start, end, orderByComparator);
 	}
@@ -229,7 +229,7 @@ public class PushNotificationsDeviceUtil {
 	*/
 	public static com.liferay.pushnotifications.model.PushNotificationsDevice findByU_P_First(
 		long userId, java.lang.String platform,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.pushnotifications.model.PushNotificationsDevice> orderByComparator)
 		throws com.liferay.pushnotifications.NoSuchDeviceException {
 		return getPersistence()
 				   .findByU_P_First(userId, platform, orderByComparator);
@@ -245,7 +245,7 @@ public class PushNotificationsDeviceUtil {
 	*/
 	public static com.liferay.pushnotifications.model.PushNotificationsDevice fetchByU_P_First(
 		long userId, java.lang.String platform,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.pushnotifications.model.PushNotificationsDevice> orderByComparator) {
 		return getPersistence()
 				   .fetchByU_P_First(userId, platform, orderByComparator);
 	}
@@ -261,7 +261,7 @@ public class PushNotificationsDeviceUtil {
 	*/
 	public static com.liferay.pushnotifications.model.PushNotificationsDevice findByU_P_Last(
 		long userId, java.lang.String platform,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.pushnotifications.model.PushNotificationsDevice> orderByComparator)
 		throws com.liferay.pushnotifications.NoSuchDeviceException {
 		return getPersistence()
 				   .findByU_P_Last(userId, platform, orderByComparator);
@@ -277,7 +277,7 @@ public class PushNotificationsDeviceUtil {
 	*/
 	public static com.liferay.pushnotifications.model.PushNotificationsDevice fetchByU_P_Last(
 		long userId, java.lang.String platform,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.pushnotifications.model.PushNotificationsDevice> orderByComparator) {
 		return getPersistence()
 				   .fetchByU_P_Last(userId, platform, orderByComparator);
 	}
@@ -294,7 +294,7 @@ public class PushNotificationsDeviceUtil {
 	*/
 	public static com.liferay.pushnotifications.model.PushNotificationsDevice[] findByU_P_PrevAndNext(
 		long pushNotificationsDeviceId, long userId, java.lang.String platform,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.pushnotifications.model.PushNotificationsDevice> orderByComparator)
 		throws com.liferay.pushnotifications.NoSuchDeviceException {
 		return getPersistence()
 				   .findByU_P_PrevAndNext(pushNotificationsDeviceId, userId,
@@ -439,7 +439,7 @@ public class PushNotificationsDeviceUtil {
 	*/
 	public static java.util.List<com.liferay.pushnotifications.model.PushNotificationsDevice> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.pushnotifications.model.PushNotificationsDevice> orderByComparator) {
 		return getPersistence().findAll(start, end, orderByComparator);
 	}
 

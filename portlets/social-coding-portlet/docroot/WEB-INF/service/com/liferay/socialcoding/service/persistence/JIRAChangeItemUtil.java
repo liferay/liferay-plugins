@@ -85,7 +85,7 @@ public class JIRAChangeItemUtil {
 	 */
 	public static List<JIRAChangeItem> findWithDynamicQuery(
 		DynamicQuery dynamicQuery, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<JIRAChangeItem> orderByComparator) {
 		return getPersistence()
 				   .findWithDynamicQuery(dynamicQuery, start, end,
 			orderByComparator);
@@ -150,7 +150,7 @@ public class JIRAChangeItemUtil {
 	*/
 	public static java.util.List<com.liferay.socialcoding.model.JIRAChangeItem> findByJiraChangeGroupId(
 		long jiraChangeGroupId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialcoding.model.JIRAChangeItem> orderByComparator) {
 		return getPersistence()
 				   .findByJiraChangeGroupId(jiraChangeGroupId, start, end,
 			orderByComparator);
@@ -166,7 +166,7 @@ public class JIRAChangeItemUtil {
 	*/
 	public static com.liferay.socialcoding.model.JIRAChangeItem findByJiraChangeGroupId_First(
 		long jiraChangeGroupId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialcoding.model.JIRAChangeItem> orderByComparator)
 		throws com.liferay.socialcoding.NoSuchJIRAChangeItemException {
 		return getPersistence()
 				   .findByJiraChangeGroupId_First(jiraChangeGroupId,
@@ -182,7 +182,7 @@ public class JIRAChangeItemUtil {
 	*/
 	public static com.liferay.socialcoding.model.JIRAChangeItem fetchByJiraChangeGroupId_First(
 		long jiraChangeGroupId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialcoding.model.JIRAChangeItem> orderByComparator) {
 		return getPersistence()
 				   .fetchByJiraChangeGroupId_First(jiraChangeGroupId,
 			orderByComparator);
@@ -198,7 +198,7 @@ public class JIRAChangeItemUtil {
 	*/
 	public static com.liferay.socialcoding.model.JIRAChangeItem findByJiraChangeGroupId_Last(
 		long jiraChangeGroupId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialcoding.model.JIRAChangeItem> orderByComparator)
 		throws com.liferay.socialcoding.NoSuchJIRAChangeItemException {
 		return getPersistence()
 				   .findByJiraChangeGroupId_Last(jiraChangeGroupId,
@@ -214,7 +214,7 @@ public class JIRAChangeItemUtil {
 	*/
 	public static com.liferay.socialcoding.model.JIRAChangeItem fetchByJiraChangeGroupId_Last(
 		long jiraChangeGroupId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialcoding.model.JIRAChangeItem> orderByComparator) {
 		return getPersistence()
 				   .fetchByJiraChangeGroupId_Last(jiraChangeGroupId,
 			orderByComparator);
@@ -231,7 +231,7 @@ public class JIRAChangeItemUtil {
 	*/
 	public static com.liferay.socialcoding.model.JIRAChangeItem[] findByJiraChangeGroupId_PrevAndNext(
 		long jiraChangeItemId, long jiraChangeGroupId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialcoding.model.JIRAChangeItem> orderByComparator)
 		throws com.liferay.socialcoding.NoSuchJIRAChangeItemException {
 		return getPersistence()
 				   .findByJiraChangeGroupId_PrevAndNext(jiraChangeItemId,
@@ -374,7 +374,7 @@ public class JIRAChangeItemUtil {
 	*/
 	public static java.util.List<com.liferay.socialcoding.model.JIRAChangeItem> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialcoding.model.JIRAChangeItem> orderByComparator) {
 		return getPersistence().findAll(start, end, orderByComparator);
 	}
 

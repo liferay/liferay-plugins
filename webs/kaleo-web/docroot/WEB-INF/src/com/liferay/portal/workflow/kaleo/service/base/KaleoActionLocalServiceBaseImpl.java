@@ -149,8 +149,7 @@ public abstract class KaleoActionLocalServiceBaseImpl
 	 * @return the matching rows
 	 */
 	@Override
-	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery) {
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery) {
 		return kaleoActionPersistence.findWithDynamicQuery(dynamicQuery);
 	}
 
@@ -167,8 +166,8 @@ public abstract class KaleoActionLocalServiceBaseImpl
 	 * @return the range of matching rows
 	 */
 	@Override
-	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end) {
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
+		int end) {
 		return kaleoActionPersistence.findWithDynamicQuery(dynamicQuery, start,
 			end);
 	}
@@ -187,9 +186,8 @@ public abstract class KaleoActionLocalServiceBaseImpl
 	 * @return the ordered range of matching rows
 	 */
 	@Override
-	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end,
-		OrderByComparator orderByComparator) {
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
+		int end, OrderByComparator<T> orderByComparator) {
 		return kaleoActionPersistence.findWithDynamicQuery(dynamicQuery, start,
 			end, orderByComparator);
 	}

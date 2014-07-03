@@ -21,7 +21,7 @@ import com.liferay.testblob.service.TestBlobEntryLocalServiceUtil;
 
 /**
  * @author Brian Wing Shun Chan
- * @deprecated As of 7.0.0, replaced by {@link TestBlobEntryLocalServiceUtil#getExportActionableDynamicQuery()}
+ * @deprecated As of 7.0.0, replaced by {@link TestBlobEntryLocalServiceUtil#getActionableDynamicQuery()}
  * @generated
  */
 @Deprecated

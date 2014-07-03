@@ -102,12 +102,11 @@ public abstract class AttachmentLocalServiceBaseImpl
 	 * @param attachmentId the primary key of the attachment
 	 * @return the attachment that was removed
 	 * @throws PortalException if a attachment with the primary key could not be found
-	 * @throws SystemException
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
 	public Attachment deleteAttachment(long attachmentId)
-		throws PortalException, SystemException {
+		throws PortalException {
 		return attachmentPersistence.remove(attachmentId);
 	}
 
@@ -138,8 +137,7 @@ public abstract class AttachmentLocalServiceBaseImpl
 	 * @return the matching rows
 	 */
 	@Override
-	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery) {
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery) {
 		return attachmentPersistence.findWithDynamicQuery(dynamicQuery);
 	}
 
@@ -156,8 +154,8 @@ public abstract class AttachmentLocalServiceBaseImpl
 	 * @return the range of matching rows
 	 */
 	@Override
-	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end) {
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
+		int end) {
 		return attachmentPersistence.findWithDynamicQuery(dynamicQuery, start,
 			end);
 	}
@@ -176,9 +174,8 @@ public abstract class AttachmentLocalServiceBaseImpl
 	 * @return the ordered range of matching rows
 	 */
 	@Override
-	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end,
-		OrderByComparator orderByComparator) {
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
+		int end, OrderByComparator<T> orderByComparator) {
 		return attachmentPersistence.findWithDynamicQuery(dynamicQuery, start,
 			end, orderByComparator);
 	}

@@ -559,7 +559,7 @@ public class CheckoutPersistenceImpl extends BasePersistenceImpl<Checkout>
 	 */
 	@Override
 	public List<Checkout> findAll(int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<Checkout> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;

@@ -83,7 +83,7 @@ public class FooUtil {
 	 * @see com.liferay.portal.service.persistence.BasePersistence#findWithDynamicQuery(DynamicQuery, int, int, OrderByComparator)
 	 */
 	public static List<Foo> findWithDynamicQuery(DynamicQuery dynamicQuery,
-		int start, int end, OrderByComparator orderByComparator) {
+		int start, int end, OrderByComparator<Foo> orderByComparator) {
 		return getPersistence()
 				   .findWithDynamicQuery(dynamicQuery, start, end,
 			orderByComparator);
@@ -146,7 +146,7 @@ public class FooUtil {
 	*/
 	public static java.util.List<com.liferay.testpacl.model.Foo> findByField2(
 		boolean field2, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.testpacl.model.Foo> orderByComparator) {
 		return getPersistence()
 				   .findByField2(field2, start, end, orderByComparator);
 	}
@@ -161,7 +161,7 @@ public class FooUtil {
 	*/
 	public static com.liferay.testpacl.model.Foo findByField2_First(
 		boolean field2,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.testpacl.model.Foo> orderByComparator)
 		throws com.liferay.testpacl.NoSuchFooException {
 		return getPersistence().findByField2_First(field2, orderByComparator);
 	}
@@ -175,7 +175,7 @@ public class FooUtil {
 	*/
 	public static com.liferay.testpacl.model.Foo fetchByField2_First(
 		boolean field2,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.testpacl.model.Foo> orderByComparator) {
 		return getPersistence().fetchByField2_First(field2, orderByComparator);
 	}
 
@@ -189,7 +189,7 @@ public class FooUtil {
 	*/
 	public static com.liferay.testpacl.model.Foo findByField2_Last(
 		boolean field2,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.testpacl.model.Foo> orderByComparator)
 		throws com.liferay.testpacl.NoSuchFooException {
 		return getPersistence().findByField2_Last(field2, orderByComparator);
 	}
@@ -203,7 +203,7 @@ public class FooUtil {
 	*/
 	public static com.liferay.testpacl.model.Foo fetchByField2_Last(
 		boolean field2,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.testpacl.model.Foo> orderByComparator) {
 		return getPersistence().fetchByField2_Last(field2, orderByComparator);
 	}
 
@@ -218,7 +218,7 @@ public class FooUtil {
 	*/
 	public static com.liferay.testpacl.model.Foo[] findByField2_PrevAndNext(
 		long fooId, boolean field2,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.testpacl.model.Foo> orderByComparator)
 		throws com.liferay.testpacl.NoSuchFooException {
 		return getPersistence()
 				   .findByField2_PrevAndNext(fooId, field2, orderByComparator);
@@ -355,7 +355,7 @@ public class FooUtil {
 	*/
 	public static java.util.List<com.liferay.testpacl.model.Foo> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.testpacl.model.Foo> orderByComparator) {
 		return getPersistence().findAll(start, end, orderByComparator);
 	}
 

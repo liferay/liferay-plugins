@@ -95,8 +95,7 @@ public class OAuthTokenLocalServiceUtil {
 	* @param dynamicQuery the dynamic query
 	* @return the matching rows
 	*/
-	@SuppressWarnings("rawtypes")
-	public static java.util.List dynamicQuery(
+	public static <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
 		return getService().dynamicQuery(dynamicQuery);
 	}
@@ -113,8 +112,7 @@ public class OAuthTokenLocalServiceUtil {
 	* @param end the upper bound of the range of model instances (not inclusive)
 	* @return the range of matching rows
 	*/
-	@SuppressWarnings("rawtypes")
-	public static java.util.List dynamicQuery(
+	public static <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) {
 		return getService().dynamicQuery(dynamicQuery, start, end);
@@ -133,11 +131,10 @@ public class OAuthTokenLocalServiceUtil {
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching rows
 	*/
-	@SuppressWarnings("rawtypes")
-	public static java.util.List dynamicQuery(
+	public static <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<T> orderByComparator) {
 		return getService()
 				   .dynamicQuery(dynamicQuery, start, end, orderByComparator);
 	}
@@ -268,8 +265,7 @@ public class OAuthTokenLocalServiceUtil {
 		long moduleId, java.lang.String accessToken,
 		java.lang.String tokenName, java.lang.String tokenSecret,
 		java.lang.String sessionHandle, long expiration)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService()
 				   .addOAuthToken(userId, gadgetKey, serviceName, moduleId,
 			accessToken, tokenName, tokenSecret, sessionHandle, expiration);
@@ -278,23 +274,20 @@ public class OAuthTokenLocalServiceUtil {
 	public static void deleteOAuthToken(long userId,
 		java.lang.String gadgetKey, java.lang.String serviceName,
 		long moduleId, java.lang.String tokenName)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		getService()
 			.deleteOAuthToken(userId, gadgetKey, serviceName, moduleId,
 			tokenName);
 	}
 
 	public static void deleteOAuthTokens(java.lang.String gadgetKey,
-		java.lang.String serviceName)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		java.lang.String serviceName) {
 		getService().deleteOAuthTokens(gadgetKey, serviceName);
 	}
 
 	public static com.liferay.opensocial.model.OAuthToken fetchOAuthToken(
 		long userId, java.lang.String gadgetKey, java.lang.String serviceName,
-		long moduleId, java.lang.String tokenName)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long moduleId, java.lang.String tokenName) {
 		return getService()
 				   .fetchOAuthToken(userId, gadgetKey, serviceName, moduleId,
 			tokenName);
@@ -303,16 +296,14 @@ public class OAuthTokenLocalServiceUtil {
 	public static com.liferay.opensocial.model.OAuthToken getOAuthToken(
 		long userId, java.lang.String gadgetKey, java.lang.String serviceName,
 		long moduleId, java.lang.String tokenName)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService()
 				   .getOAuthToken(userId, gadgetKey, serviceName, moduleId,
 			tokenName);
 	}
 
 	public static java.util.List<com.liferay.opensocial.model.OAuthToken> getOAuthTokens(
-		java.lang.String gadgetKey, java.lang.String serviceName)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		java.lang.String gadgetKey, java.lang.String serviceName) {
 		return getService().getOAuthTokens(gadgetKey, serviceName);
 	}
 

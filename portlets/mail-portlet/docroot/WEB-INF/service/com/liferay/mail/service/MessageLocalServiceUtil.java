@@ -66,11 +66,9 @@ public class MessageLocalServiceUtil {
 	* @param messageId the primary key of the message
 	* @return the message that was removed
 	* @throws PortalException if a message with the primary key could not be found
-	* @throws SystemException
 	*/
 	public static com.liferay.mail.model.Message deleteMessage(long messageId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().deleteMessage(messageId);
 	}
 
@@ -80,12 +78,10 @@ public class MessageLocalServiceUtil {
 	* @param message the message
 	* @return the message that was removed
 	* @throws PortalException
-	* @throws SystemException
 	*/
 	public static com.liferay.mail.model.Message deleteMessage(
 		com.liferay.mail.model.Message message)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().deleteMessage(message);
 	}
 
@@ -99,8 +95,7 @@ public class MessageLocalServiceUtil {
 	* @param dynamicQuery the dynamic query
 	* @return the matching rows
 	*/
-	@SuppressWarnings("rawtypes")
-	public static java.util.List dynamicQuery(
+	public static <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
 		return getService().dynamicQuery(dynamicQuery);
 	}
@@ -117,8 +112,7 @@ public class MessageLocalServiceUtil {
 	* @param end the upper bound of the range of model instances (not inclusive)
 	* @return the range of matching rows
 	*/
-	@SuppressWarnings("rawtypes")
-	public static java.util.List dynamicQuery(
+	public static <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) {
 		return getService().dynamicQuery(dynamicQuery, start, end);
@@ -137,11 +131,10 @@ public class MessageLocalServiceUtil {
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching rows
 	*/
-	@SuppressWarnings("rawtypes")
-	public static java.util.List dynamicQuery(
+	public static <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<T> orderByComparator) {
 		return getService()
 				   .dynamicQuery(dynamicQuery, start, end, orderByComparator);
 	}
@@ -270,70 +263,59 @@ public class MessageLocalServiceUtil {
 		java.lang.String cc, java.lang.String bcc, java.util.Date sentDate,
 		java.lang.String subject, java.lang.String body,
 		java.lang.String flags, long remoteMessageId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService()
 				   .addMessage(userId, folderId, sender, to, cc, bcc, sentDate,
 			subject, body, flags, remoteMessageId);
 	}
 
 	public static void deleteMessages(long folderId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		getService().deleteMessages(folderId);
 	}
 
-	public static int getAccountUnreadMessagesCount(long accountId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static int getAccountUnreadMessagesCount(long accountId) {
 		return getService().getAccountUnreadMessagesCount(accountId);
 	}
 
 	public static java.util.List<com.liferay.mail.model.Message> getCompanyMessages(
-		long companyId, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long companyId, int start, int end) {
 		return getService().getCompanyMessages(companyId, start, end);
 	}
 
-	public static int getCompanyMessagesCount(long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static int getCompanyMessagesCount(long companyId) {
 		return getService().getCompanyMessagesCount(companyId);
 	}
 
 	public static java.util.List<com.liferay.mail.model.Message> getFolderMessages(
-		long folderId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long folderId) {
 		return getService().getFolderMessages(folderId);
 	}
 
-	public static int getFolderMessagesCount(long folderId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static int getFolderMessagesCount(long folderId) {
 		return getService().getFolderMessagesCount(folderId);
 	}
 
-	public static int getFolderUnreadMessagesCount(long folderId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static int getFolderUnreadMessagesCount(long folderId) {
 		return getService().getFolderUnreadMessagesCount(folderId);
 	}
 
 	public static com.liferay.mail.model.Message getMessage(long folderId,
 		long remoteMessageId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().getMessage(folderId, remoteMessageId);
 	}
 
 	public static com.liferay.mail.model.Message getRemoteMessage(
 		long folderId, boolean oldest)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().getRemoteMessage(folderId, oldest);
 	}
 
 	public static int populateMessages(
 		java.util.List<com.liferay.mail.model.Message> messages, long folderId,
 		java.lang.String keywords, int pageNumber, int messagesPerPage,
-		java.lang.String orderByField, java.lang.String orderByType)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		java.lang.String orderByField, java.lang.String orderByType) {
 		return getService()
 				   .populateMessages(messages, folderId, keywords, pageNumber,
 			messagesPerPage, orderByField, orderByType);
@@ -341,15 +323,13 @@ public class MessageLocalServiceUtil {
 
 	public static com.liferay.mail.model.Message updateContent(long messageId,
 		java.lang.String body, java.lang.String flags)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().updateContent(messageId, body, flags);
 	}
 
 	public static com.liferay.mail.model.Message updateFlag(long messageId,
 		int flag, boolean value)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().updateFlag(messageId, flag, value);
 	}
 
@@ -358,8 +338,7 @@ public class MessageLocalServiceUtil {
 		java.lang.String cc, java.lang.String bcc, java.util.Date sentDate,
 		java.lang.String subject, java.lang.String body,
 		java.lang.String flags, long remoteMessageId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService()
 				   .updateMessage(messageId, folderId, sender, to, cc, bcc,
 			sentDate, subject, body, flags, remoteMessageId);

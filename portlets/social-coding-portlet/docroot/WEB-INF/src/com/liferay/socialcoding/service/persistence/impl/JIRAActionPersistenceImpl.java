@@ -155,7 +155,7 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 	 */
 	@Override
 	public List<JIRAAction> findByJiraUserId(String jiraUserId, int start,
-		int end, OrderByComparator orderByComparator) {
+		int end, OrderByComparator<JIRAAction> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -275,7 +275,8 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 	 */
 	@Override
 	public JIRAAction findByJiraUserId_First(String jiraUserId,
-		OrderByComparator orderByComparator) throws NoSuchJIRAActionException {
+		OrderByComparator<JIRAAction> orderByComparator)
+		throws NoSuchJIRAActionException {
 		JIRAAction jiraAction = fetchByJiraUserId_First(jiraUserId,
 				orderByComparator);
 
@@ -304,7 +305,7 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 	 */
 	@Override
 	public JIRAAction fetchByJiraUserId_First(String jiraUserId,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<JIRAAction> orderByComparator) {
 		List<JIRAAction> list = findByJiraUserId(jiraUserId, 0, 1,
 				orderByComparator);
 
@@ -325,7 +326,8 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 	 */
 	@Override
 	public JIRAAction findByJiraUserId_Last(String jiraUserId,
-		OrderByComparator orderByComparator) throws NoSuchJIRAActionException {
+		OrderByComparator<JIRAAction> orderByComparator)
+		throws NoSuchJIRAActionException {
 		JIRAAction jiraAction = fetchByJiraUserId_Last(jiraUserId,
 				orderByComparator);
 
@@ -354,7 +356,7 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 	 */
 	@Override
 	public JIRAAction fetchByJiraUserId_Last(String jiraUserId,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<JIRAAction> orderByComparator) {
 		int count = countByJiraUserId(jiraUserId);
 
 		if (count == 0) {
@@ -382,7 +384,7 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 	 */
 	@Override
 	public JIRAAction[] findByJiraUserId_PrevAndNext(long jiraActionId,
-		String jiraUserId, OrderByComparator orderByComparator)
+		String jiraUserId, OrderByComparator<JIRAAction> orderByComparator)
 		throws NoSuchJIRAActionException {
 		JIRAAction jiraAction = findByPrimaryKey(jiraActionId);
 
@@ -413,7 +415,7 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 
 	protected JIRAAction getByJiraUserId_PrevAndNext(Session session,
 		JIRAAction jiraAction, String jiraUserId,
-		OrderByComparator orderByComparator, boolean previous) {
+		OrderByComparator<JIRAAction> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -679,7 +681,7 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 	 */
 	@Override
 	public List<JIRAAction> findByJiraIssueId(long jiraIssueId, int start,
-		int end, OrderByComparator orderByComparator) {
+		int end, OrderByComparator<JIRAAction> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -785,7 +787,8 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 	 */
 	@Override
 	public JIRAAction findByJiraIssueId_First(long jiraIssueId,
-		OrderByComparator orderByComparator) throws NoSuchJIRAActionException {
+		OrderByComparator<JIRAAction> orderByComparator)
+		throws NoSuchJIRAActionException {
 		JIRAAction jiraAction = fetchByJiraIssueId_First(jiraIssueId,
 				orderByComparator);
 
@@ -814,7 +817,7 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 	 */
 	@Override
 	public JIRAAction fetchByJiraIssueId_First(long jiraIssueId,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<JIRAAction> orderByComparator) {
 		List<JIRAAction> list = findByJiraIssueId(jiraIssueId, 0, 1,
 				orderByComparator);
 
@@ -835,7 +838,8 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 	 */
 	@Override
 	public JIRAAction findByJiraIssueId_Last(long jiraIssueId,
-		OrderByComparator orderByComparator) throws NoSuchJIRAActionException {
+		OrderByComparator<JIRAAction> orderByComparator)
+		throws NoSuchJIRAActionException {
 		JIRAAction jiraAction = fetchByJiraIssueId_Last(jiraIssueId,
 				orderByComparator);
 
@@ -864,7 +868,7 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 	 */
 	@Override
 	public JIRAAction fetchByJiraIssueId_Last(long jiraIssueId,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<JIRAAction> orderByComparator) {
 		int count = countByJiraIssueId(jiraIssueId);
 
 		if (count == 0) {
@@ -892,7 +896,7 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 	 */
 	@Override
 	public JIRAAction[] findByJiraIssueId_PrevAndNext(long jiraActionId,
-		long jiraIssueId, OrderByComparator orderByComparator)
+		long jiraIssueId, OrderByComparator<JIRAAction> orderByComparator)
 		throws NoSuchJIRAActionException {
 		JIRAAction jiraAction = findByPrimaryKey(jiraActionId);
 
@@ -923,7 +927,7 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 
 	protected JIRAAction getByJiraIssueId_PrevAndNext(Session session,
 		JIRAAction jiraAction, long jiraIssueId,
-		OrderByComparator orderByComparator, boolean previous) {
+		OrderByComparator<JIRAAction> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -1155,7 +1159,7 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 	 */
 	@Override
 	public List<JIRAAction> findByType(String type, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<JIRAAction> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -1275,7 +1279,8 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 	 */
 	@Override
 	public JIRAAction findByType_First(String type,
-		OrderByComparator orderByComparator) throws NoSuchJIRAActionException {
+		OrderByComparator<JIRAAction> orderByComparator)
+		throws NoSuchJIRAActionException {
 		JIRAAction jiraAction = fetchByType_First(type, orderByComparator);
 
 		if (jiraAction != null) {
@@ -1303,7 +1308,7 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 	 */
 	@Override
 	public JIRAAction fetchByType_First(String type,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<JIRAAction> orderByComparator) {
 		List<JIRAAction> list = findByType(type, 0, 1, orderByComparator);
 
 		if (!list.isEmpty()) {
@@ -1323,7 +1328,8 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 	 */
 	@Override
 	public JIRAAction findByType_Last(String type,
-		OrderByComparator orderByComparator) throws NoSuchJIRAActionException {
+		OrderByComparator<JIRAAction> orderByComparator)
+		throws NoSuchJIRAActionException {
 		JIRAAction jiraAction = fetchByType_Last(type, orderByComparator);
 
 		if (jiraAction != null) {
@@ -1351,7 +1357,7 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 	 */
 	@Override
 	public JIRAAction fetchByType_Last(String type,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<JIRAAction> orderByComparator) {
 		int count = countByType(type);
 
 		if (count == 0) {
@@ -1379,7 +1385,8 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 	 */
 	@Override
 	public JIRAAction[] findByType_PrevAndNext(long jiraActionId, String type,
-		OrderByComparator orderByComparator) throws NoSuchJIRAActionException {
+		OrderByComparator<JIRAAction> orderByComparator)
+		throws NoSuchJIRAActionException {
 		JIRAAction jiraAction = findByPrimaryKey(jiraActionId);
 
 		Session session = null;
@@ -1409,7 +1416,7 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 
 	protected JIRAAction getByType_PrevAndNext(Session session,
 		JIRAAction jiraAction, String type,
-		OrderByComparator orderByComparator, boolean previous) {
+		OrderByComparator<JIRAAction> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -2142,7 +2149,7 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 	 */
 	@Override
 	public List<JIRAAction> findAll(int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<JIRAAction> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;

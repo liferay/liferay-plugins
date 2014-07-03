@@ -76,7 +76,7 @@ public interface AkismetDataPersistence extends BasePersistence<AkismetData> {
 	*/
 	public java.util.List<com.liferay.akismet.model.AkismetData> findByLtModifiedDate(
 		java.util.Date modifiedDate, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.akismet.model.AkismetData> orderByComparator);
 
 	/**
 	* Returns the first akismet data in the ordered set where modifiedDate &lt; &#63;.
@@ -88,7 +88,7 @@ public interface AkismetDataPersistence extends BasePersistence<AkismetData> {
 	*/
 	public com.liferay.akismet.model.AkismetData findByLtModifiedDate_First(
 		java.util.Date modifiedDate,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.akismet.model.AkismetData> orderByComparator)
 		throws com.liferay.akismet.NoSuchDataException;
 
 	/**
@@ -100,7 +100,7 @@ public interface AkismetDataPersistence extends BasePersistence<AkismetData> {
 	*/
 	public com.liferay.akismet.model.AkismetData fetchByLtModifiedDate_First(
 		java.util.Date modifiedDate,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.akismet.model.AkismetData> orderByComparator);
 
 	/**
 	* Returns the last akismet data in the ordered set where modifiedDate &lt; &#63;.
@@ -112,7 +112,7 @@ public interface AkismetDataPersistence extends BasePersistence<AkismetData> {
 	*/
 	public com.liferay.akismet.model.AkismetData findByLtModifiedDate_Last(
 		java.util.Date modifiedDate,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.akismet.model.AkismetData> orderByComparator)
 		throws com.liferay.akismet.NoSuchDataException;
 
 	/**
@@ -124,7 +124,7 @@ public interface AkismetDataPersistence extends BasePersistence<AkismetData> {
 	*/
 	public com.liferay.akismet.model.AkismetData fetchByLtModifiedDate_Last(
 		java.util.Date modifiedDate,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.akismet.model.AkismetData> orderByComparator);
 
 	/**
 	* Returns the akismet datas before and after the current akismet data in the ordered set where modifiedDate &lt; &#63;.
@@ -137,7 +137,7 @@ public interface AkismetDataPersistence extends BasePersistence<AkismetData> {
 	*/
 	public com.liferay.akismet.model.AkismetData[] findByLtModifiedDate_PrevAndNext(
 		long akismetDataId, java.util.Date modifiedDate,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.akismet.model.AkismetData> orderByComparator)
 		throws com.liferay.akismet.NoSuchDataException;
 
 	/**
@@ -300,7 +300,7 @@ public interface AkismetDataPersistence extends BasePersistence<AkismetData> {
 	*/
 	public java.util.List<com.liferay.akismet.model.AkismetData> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.akismet.model.AkismetData> orderByComparator);
 
 	/**
 	* Removes all the akismet datas from the database.

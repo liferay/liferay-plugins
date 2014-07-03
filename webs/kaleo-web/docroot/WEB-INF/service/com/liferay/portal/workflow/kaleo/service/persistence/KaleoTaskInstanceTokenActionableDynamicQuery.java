@@ -20,7 +20,7 @@ import com.liferay.portal.workflow.kaleo.service.KaleoTaskInstanceTokenLocalServ
 
 /**
  * @author Brian Wing Shun Chan
- * @deprecated As of 7.0.0, replaced by {@link KaleoTaskInstanceTokenLocalServiceUtil#getExportActionableDynamicQuery()}
+ * @deprecated As of 7.0.0, replaced by {@link KaleoTaskInstanceTokenLocalServiceUtil#getActionableDynamicQuery()}
  * @generated
  */
 @Deprecated

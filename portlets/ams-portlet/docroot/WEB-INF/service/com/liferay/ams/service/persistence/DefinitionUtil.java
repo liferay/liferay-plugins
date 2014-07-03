@@ -85,7 +85,7 @@ public class DefinitionUtil {
 	 */
 	public static List<Definition> findWithDynamicQuery(
 		DynamicQuery dynamicQuery, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<Definition> orderByComparator) {
 		return getPersistence()
 				   .findWithDynamicQuery(dynamicQuery, start, end,
 			orderByComparator);
@@ -219,7 +219,7 @@ public class DefinitionUtil {
 	*/
 	public static java.util.List<com.liferay.ams.model.Definition> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.ams.model.Definition> orderByComparator) {
 		return getPersistence().findAll(start, end, orderByComparator);
 	}
 

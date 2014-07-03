@@ -294,8 +294,7 @@ public class SVNRevisionLocalServiceClp implements SVNRevisionLocalService {
 	}
 
 	@Override
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
 		Object returnObj = null;
 
@@ -316,12 +315,11 @@ public class SVNRevisionLocalServiceClp implements SVNRevisionLocalService {
 			}
 		}
 
-		return (java.util.List)ClpSerializer.translateOutput(returnObj);
+		return (java.util.List<T>)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) {
 		Object returnObj = null;
@@ -349,15 +347,14 @@ public class SVNRevisionLocalServiceClp implements SVNRevisionLocalService {
 			}
 		}
 
-		return (java.util.List)ClpSerializer.translateOutput(returnObj);
+		return (java.util.List<T>)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<T> orderByComparator) {
 		Object returnObj = null;
 
 		try {
@@ -385,7 +382,7 @@ public class SVNRevisionLocalServiceClp implements SVNRevisionLocalService {
 			}
 		}
 
-		return (java.util.List)ClpSerializer.translateOutput(returnObj);
+		return (java.util.List<T>)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override
@@ -470,8 +467,7 @@ public class SVNRevisionLocalServiceClp implements SVNRevisionLocalService {
 	@Override
 	public com.liferay.socialcoding.model.SVNRevision getSVNRevision(
 		long svnRevisionId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
 		try {
@@ -483,10 +479,6 @@ public class SVNRevisionLocalServiceClp implements SVNRevisionLocalService {
 
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
 
 			if (t instanceof RuntimeException) {
@@ -710,8 +702,7 @@ public class SVNRevisionLocalServiceClp implements SVNRevisionLocalService {
 	public com.liferay.socialcoding.model.SVNRevision addSVNRevision(
 		java.lang.String svnUserId, java.util.Date createDate,
 		long svnRepositoryId, long revisionNumber, java.lang.String comments)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
 		try {
@@ -736,10 +727,6 @@ public class SVNRevisionLocalServiceClp implements SVNRevisionLocalService {
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
 			}
 
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
 			}
@@ -755,8 +742,7 @@ public class SVNRevisionLocalServiceClp implements SVNRevisionLocalService {
 	@Override
 	public com.liferay.socialcoding.model.SVNRevision getFirstSVNRevision(
 		java.lang.String svnUserId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
 		try {
@@ -769,10 +755,6 @@ public class SVNRevisionLocalServiceClp implements SVNRevisionLocalService {
 
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
 
 			if (t instanceof RuntimeException) {
@@ -790,8 +772,7 @@ public class SVNRevisionLocalServiceClp implements SVNRevisionLocalService {
 	@Override
 	public com.liferay.socialcoding.model.SVNRevision getLastSVNRevision(
 		java.lang.String svnUserId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
 		try {
@@ -804,10 +785,6 @@ public class SVNRevisionLocalServiceClp implements SVNRevisionLocalService {
 
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
 
 			if (t instanceof RuntimeException) {
@@ -824,8 +801,7 @@ public class SVNRevisionLocalServiceClp implements SVNRevisionLocalService {
 
 	@Override
 	public java.util.List<com.liferay.socialcoding.model.SVNRevision> getSVNRevisions(
-		long svnRepositoryId, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long svnRepositoryId, int start, int end) {
 		Object returnObj = null;
 
 		try {
@@ -835,10 +811,6 @@ public class SVNRevisionLocalServiceClp implements SVNRevisionLocalService {
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
 
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
@@ -854,8 +826,7 @@ public class SVNRevisionLocalServiceClp implements SVNRevisionLocalService {
 
 	@Override
 	public java.util.List<com.liferay.socialcoding.model.SVNRevision> getSVNRevisions(
-		java.lang.String svnUserId, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		java.lang.String svnUserId, int start, int end) {
 		Object returnObj = null;
 
 		try {
@@ -872,10 +843,6 @@ public class SVNRevisionLocalServiceClp implements SVNRevisionLocalService {
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
 
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
 			}
@@ -890,8 +857,7 @@ public class SVNRevisionLocalServiceClp implements SVNRevisionLocalService {
 
 	@Override
 	public java.util.List<com.liferay.socialcoding.model.SVNRevision> getSVNRevisions(
-		java.lang.String svnUserId, long svnRepositoryId, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		java.lang.String svnUserId, long svnRepositoryId, int start, int end) {
 		Object returnObj = null;
 
 		try {
@@ -910,10 +876,6 @@ public class SVNRevisionLocalServiceClp implements SVNRevisionLocalService {
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
 
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
 			}
@@ -927,8 +889,7 @@ public class SVNRevisionLocalServiceClp implements SVNRevisionLocalService {
 	}
 
 	@Override
-	public int getSVNRevisionsCount(long svnRepositoryId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public int getSVNRevisionsCount(long svnRepositoryId) {
 		Object returnObj = null;
 
 		try {
@@ -937,10 +898,6 @@ public class SVNRevisionLocalServiceClp implements SVNRevisionLocalService {
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
 
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
@@ -955,8 +912,7 @@ public class SVNRevisionLocalServiceClp implements SVNRevisionLocalService {
 	}
 
 	@Override
-	public int getSVNRevisionsCount(java.lang.String svnUserId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public int getSVNRevisionsCount(java.lang.String svnUserId) {
 		Object returnObj = null;
 
 		try {
@@ -966,10 +922,6 @@ public class SVNRevisionLocalServiceClp implements SVNRevisionLocalService {
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
 
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
@@ -985,8 +937,7 @@ public class SVNRevisionLocalServiceClp implements SVNRevisionLocalService {
 
 	@Override
 	public int getSVNRevisionsCount(java.lang.String svnUserId,
-		long svnRepositoryId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long svnRepositoryId) {
 		Object returnObj = null;
 
 		try {
@@ -1000,10 +951,6 @@ public class SVNRevisionLocalServiceClp implements SVNRevisionLocalService {
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
 
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;

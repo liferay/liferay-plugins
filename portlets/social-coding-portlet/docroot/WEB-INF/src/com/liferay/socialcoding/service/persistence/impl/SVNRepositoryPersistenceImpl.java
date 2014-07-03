@@ -854,7 +854,7 @@ public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl<SVNReposit
 	 */
 	@Override
 	public List<SVNRepository> findAll(int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<SVNRepository> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;

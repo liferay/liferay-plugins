@@ -21,7 +21,7 @@ import com.liferay.sync.service.SyncDLFileVersionDiffLocalServiceUtil;
 
 /**
  * @author Brian Wing Shun Chan
- * @deprecated As of 7.0.0, replaced by {@link SyncDLFileVersionDiffLocalServiceUtil#getExportActionableDynamicQuery()}
+ * @deprecated As of 7.0.0, replaced by {@link SyncDLFileVersionDiffLocalServiceUtil#getActionableDynamicQuery()}
  * @generated
  */
 @Deprecated

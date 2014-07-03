@@ -76,7 +76,7 @@ public interface BBBParticipantPersistence extends BasePersistence<BBBParticipan
 	*/
 	public java.util.List<com.liferay.bbb.model.BBBParticipant> findByBbbMeetingId(
 		long bbbMeetingId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.bbb.model.BBBParticipant> orderByComparator);
 
 	/**
 	* Returns the first b b b participant in the ordered set where bbbMeetingId = &#63;.
@@ -88,7 +88,7 @@ public interface BBBParticipantPersistence extends BasePersistence<BBBParticipan
 	*/
 	public com.liferay.bbb.model.BBBParticipant findByBbbMeetingId_First(
 		long bbbMeetingId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.bbb.model.BBBParticipant> orderByComparator)
 		throws com.liferay.bbb.NoSuchParticipantException;
 
 	/**
@@ -100,7 +100,7 @@ public interface BBBParticipantPersistence extends BasePersistence<BBBParticipan
 	*/
 	public com.liferay.bbb.model.BBBParticipant fetchByBbbMeetingId_First(
 		long bbbMeetingId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.bbb.model.BBBParticipant> orderByComparator);
 
 	/**
 	* Returns the last b b b participant in the ordered set where bbbMeetingId = &#63;.
@@ -112,7 +112,7 @@ public interface BBBParticipantPersistence extends BasePersistence<BBBParticipan
 	*/
 	public com.liferay.bbb.model.BBBParticipant findByBbbMeetingId_Last(
 		long bbbMeetingId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.bbb.model.BBBParticipant> orderByComparator)
 		throws com.liferay.bbb.NoSuchParticipantException;
 
 	/**
@@ -124,7 +124,7 @@ public interface BBBParticipantPersistence extends BasePersistence<BBBParticipan
 	*/
 	public com.liferay.bbb.model.BBBParticipant fetchByBbbMeetingId_Last(
 		long bbbMeetingId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.bbb.model.BBBParticipant> orderByComparator);
 
 	/**
 	* Returns the b b b participants before and after the current b b b participant in the ordered set where bbbMeetingId = &#63;.
@@ -137,7 +137,7 @@ public interface BBBParticipantPersistence extends BasePersistence<BBBParticipan
 	*/
 	public com.liferay.bbb.model.BBBParticipant[] findByBbbMeetingId_PrevAndNext(
 		long bbbParticipantId, long bbbMeetingId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.bbb.model.BBBParticipant> orderByComparator)
 		throws com.liferay.bbb.NoSuchParticipantException;
 
 	/**
@@ -304,7 +304,7 @@ public interface BBBParticipantPersistence extends BasePersistence<BBBParticipan
 	*/
 	public java.util.List<com.liferay.bbb.model.BBBParticipant> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.bbb.model.BBBParticipant> orderByComparator);
 
 	/**
 	* Removes all the b b b participants from the database.

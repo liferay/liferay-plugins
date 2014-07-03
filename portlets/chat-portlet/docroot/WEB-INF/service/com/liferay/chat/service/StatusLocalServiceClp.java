@@ -283,8 +283,7 @@ public class StatusLocalServiceClp implements StatusLocalService {
 	}
 
 	@Override
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
 		Object returnObj = null;
 
@@ -305,12 +304,11 @@ public class StatusLocalServiceClp implements StatusLocalService {
 			}
 		}
 
-		return (java.util.List)ClpSerializer.translateOutput(returnObj);
+		return (java.util.List<T>)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) {
 		Object returnObj = null;
@@ -338,15 +336,14 @@ public class StatusLocalServiceClp implements StatusLocalService {
 			}
 		}
 
-		return (java.util.List)ClpSerializer.translateOutput(returnObj);
+		return (java.util.List<T>)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<T> orderByComparator) {
 		Object returnObj = null;
 
 		try {
@@ -374,7 +371,7 @@ public class StatusLocalServiceClp implements StatusLocalService {
 			}
 		}
 
-		return (java.util.List)ClpSerializer.translateOutput(returnObj);
+		return (java.util.List<T>)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override
@@ -690,8 +687,7 @@ public class StatusLocalServiceClp implements StatusLocalService {
 
 	@Override
 	public java.util.List<java.lang.Object[]> getAllStatuses(long companyId,
-		long userId, long modifiedDate, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long userId, long modifiedDate, int start, int end) {
 		Object returnObj = null;
 
 		try {
@@ -701,10 +697,6 @@ public class StatusLocalServiceClp implements StatusLocalService {
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
 
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
@@ -720,8 +712,7 @@ public class StatusLocalServiceClp implements StatusLocalService {
 
 	@Override
 	public java.util.List<java.lang.Object[]> getGroupStatuses(long userId,
-		long modifiedDate, java.lang.String[] groupNames, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long modifiedDate, java.lang.String[] groupNames, int start, int end) {
 		Object returnObj = null;
 
 		try {
@@ -742,10 +733,6 @@ public class StatusLocalServiceClp implements StatusLocalService {
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
 
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
 			}
@@ -760,8 +747,7 @@ public class StatusLocalServiceClp implements StatusLocalService {
 
 	@Override
 	public java.util.List<java.lang.Object[]> getSocialStatuses(long userId,
-		int type, long modifiedDate, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		int type, long modifiedDate, int start, int end) {
 		Object returnObj = null;
 
 		try {
@@ -772,10 +758,6 @@ public class StatusLocalServiceClp implements StatusLocalService {
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
 
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
 			}
@@ -790,8 +772,7 @@ public class StatusLocalServiceClp implements StatusLocalService {
 
 	@Override
 	public java.util.List<java.lang.Object[]> getSocialStatuses(long userId,
-		int[] types, long modifiedDate, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		int[] types, long modifiedDate, int start, int end) {
 		Object returnObj = null;
 
 		try {
@@ -812,10 +793,6 @@ public class StatusLocalServiceClp implements StatusLocalService {
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
 
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
 			}
@@ -829,8 +806,7 @@ public class StatusLocalServiceClp implements StatusLocalService {
 	}
 
 	@Override
-	public com.liferay.chat.model.Status getUserStatus(long userId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public com.liferay.chat.model.Status getUserStatus(long userId) {
 		Object returnObj = null;
 
 		try {
@@ -839,10 +815,6 @@ public class StatusLocalServiceClp implements StatusLocalService {
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
 
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
@@ -858,8 +830,7 @@ public class StatusLocalServiceClp implements StatusLocalService {
 
 	@Override
 	public com.liferay.chat.model.Status updateStatus(long userId,
-		long modifiedDate)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long modifiedDate) {
 		Object returnObj = null;
 
 		try {
@@ -869,10 +840,6 @@ public class StatusLocalServiceClp implements StatusLocalService {
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
 
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
@@ -889,8 +856,7 @@ public class StatusLocalServiceClp implements StatusLocalService {
 	@Override
 	public com.liferay.chat.model.Status updateStatus(long userId,
 		long modifiedDate, int online, int awake,
-		java.lang.String activePanelIds, java.lang.String message, int playSound)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		java.lang.String activePanelIds, java.lang.String message, int playSound) {
 		Object returnObj = null;
 
 		try {
@@ -914,10 +880,6 @@ public class StatusLocalServiceClp implements StatusLocalService {
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
 
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;

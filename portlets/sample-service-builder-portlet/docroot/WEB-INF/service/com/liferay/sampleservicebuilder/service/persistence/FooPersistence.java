@@ -76,7 +76,7 @@ public interface FooPersistence extends BasePersistence<Foo> {
 	*/
 	public java.util.List<com.liferay.sampleservicebuilder.model.Foo> findByUuid(
 		java.lang.String uuid, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.sampleservicebuilder.model.Foo> orderByComparator);
 
 	/**
 	* Returns the first foo in the ordered set where uuid = &#63;.
@@ -88,7 +88,7 @@ public interface FooPersistence extends BasePersistence<Foo> {
 	*/
 	public com.liferay.sampleservicebuilder.model.Foo findByUuid_First(
 		java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.sampleservicebuilder.model.Foo> orderByComparator)
 		throws com.liferay.sampleservicebuilder.NoSuchFooException;
 
 	/**
@@ -100,7 +100,7 @@ public interface FooPersistence extends BasePersistence<Foo> {
 	*/
 	public com.liferay.sampleservicebuilder.model.Foo fetchByUuid_First(
 		java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.sampleservicebuilder.model.Foo> orderByComparator);
 
 	/**
 	* Returns the last foo in the ordered set where uuid = &#63;.
@@ -112,7 +112,7 @@ public interface FooPersistence extends BasePersistence<Foo> {
 	*/
 	public com.liferay.sampleservicebuilder.model.Foo findByUuid_Last(
 		java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.sampleservicebuilder.model.Foo> orderByComparator)
 		throws com.liferay.sampleservicebuilder.NoSuchFooException;
 
 	/**
@@ -124,7 +124,7 @@ public interface FooPersistence extends BasePersistence<Foo> {
 	*/
 	public com.liferay.sampleservicebuilder.model.Foo fetchByUuid_Last(
 		java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.sampleservicebuilder.model.Foo> orderByComparator);
 
 	/**
 	* Returns the foos before and after the current foo in the ordered set where uuid = &#63;.
@@ -137,7 +137,7 @@ public interface FooPersistence extends BasePersistence<Foo> {
 	*/
 	public com.liferay.sampleservicebuilder.model.Foo[] findByUuid_PrevAndNext(
 		long fooId, java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.sampleservicebuilder.model.Foo> orderByComparator)
 		throws com.liferay.sampleservicebuilder.NoSuchFooException;
 
 	/**
@@ -250,7 +250,7 @@ public interface FooPersistence extends BasePersistence<Foo> {
 	*/
 	public java.util.List<com.liferay.sampleservicebuilder.model.Foo> findByUuid_C(
 		java.lang.String uuid, long companyId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.sampleservicebuilder.model.Foo> orderByComparator);
 
 	/**
 	* Returns the first foo in the ordered set where uuid = &#63; and companyId = &#63;.
@@ -263,7 +263,7 @@ public interface FooPersistence extends BasePersistence<Foo> {
 	*/
 	public com.liferay.sampleservicebuilder.model.Foo findByUuid_C_First(
 		java.lang.String uuid, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.sampleservicebuilder.model.Foo> orderByComparator)
 		throws com.liferay.sampleservicebuilder.NoSuchFooException;
 
 	/**
@@ -276,7 +276,7 @@ public interface FooPersistence extends BasePersistence<Foo> {
 	*/
 	public com.liferay.sampleservicebuilder.model.Foo fetchByUuid_C_First(
 		java.lang.String uuid, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.sampleservicebuilder.model.Foo> orderByComparator);
 
 	/**
 	* Returns the last foo in the ordered set where uuid = &#63; and companyId = &#63;.
@@ -289,7 +289,7 @@ public interface FooPersistence extends BasePersistence<Foo> {
 	*/
 	public com.liferay.sampleservicebuilder.model.Foo findByUuid_C_Last(
 		java.lang.String uuid, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.sampleservicebuilder.model.Foo> orderByComparator)
 		throws com.liferay.sampleservicebuilder.NoSuchFooException;
 
 	/**
@@ -302,7 +302,7 @@ public interface FooPersistence extends BasePersistence<Foo> {
 	*/
 	public com.liferay.sampleservicebuilder.model.Foo fetchByUuid_C_Last(
 		java.lang.String uuid, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.sampleservicebuilder.model.Foo> orderByComparator);
 
 	/**
 	* Returns the foos before and after the current foo in the ordered set where uuid = &#63; and companyId = &#63;.
@@ -316,7 +316,7 @@ public interface FooPersistence extends BasePersistence<Foo> {
 	*/
 	public com.liferay.sampleservicebuilder.model.Foo[] findByUuid_C_PrevAndNext(
 		long fooId, java.lang.String uuid, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.sampleservicebuilder.model.Foo> orderByComparator)
 		throws com.liferay.sampleservicebuilder.NoSuchFooException;
 
 	/**
@@ -375,7 +375,7 @@ public interface FooPersistence extends BasePersistence<Foo> {
 	*/
 	public java.util.List<com.liferay.sampleservicebuilder.model.Foo> findByField2(
 		boolean field2, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.sampleservicebuilder.model.Foo> orderByComparator);
 
 	/**
 	* Returns the first foo in the ordered set where field2 = &#63;.
@@ -387,7 +387,7 @@ public interface FooPersistence extends BasePersistence<Foo> {
 	*/
 	public com.liferay.sampleservicebuilder.model.Foo findByField2_First(
 		boolean field2,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.sampleservicebuilder.model.Foo> orderByComparator)
 		throws com.liferay.sampleservicebuilder.NoSuchFooException;
 
 	/**
@@ -399,7 +399,7 @@ public interface FooPersistence extends BasePersistence<Foo> {
 	*/
 	public com.liferay.sampleservicebuilder.model.Foo fetchByField2_First(
 		boolean field2,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.sampleservicebuilder.model.Foo> orderByComparator);
 
 	/**
 	* Returns the last foo in the ordered set where field2 = &#63;.
@@ -411,7 +411,7 @@ public interface FooPersistence extends BasePersistence<Foo> {
 	*/
 	public com.liferay.sampleservicebuilder.model.Foo findByField2_Last(
 		boolean field2,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.sampleservicebuilder.model.Foo> orderByComparator)
 		throws com.liferay.sampleservicebuilder.NoSuchFooException;
 
 	/**
@@ -423,7 +423,7 @@ public interface FooPersistence extends BasePersistence<Foo> {
 	*/
 	public com.liferay.sampleservicebuilder.model.Foo fetchByField2_Last(
 		boolean field2,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.sampleservicebuilder.model.Foo> orderByComparator);
 
 	/**
 	* Returns the foos before and after the current foo in the ordered set where field2 = &#63;.
@@ -436,7 +436,7 @@ public interface FooPersistence extends BasePersistence<Foo> {
 	*/
 	public com.liferay.sampleservicebuilder.model.Foo[] findByField2_PrevAndNext(
 		long fooId, boolean field2,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.sampleservicebuilder.model.Foo> orderByComparator)
 		throws com.liferay.sampleservicebuilder.NoSuchFooException;
 
 	/**
@@ -548,7 +548,7 @@ public interface FooPersistence extends BasePersistence<Foo> {
 	*/
 	public java.util.List<com.liferay.sampleservicebuilder.model.Foo> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.sampleservicebuilder.model.Foo> orderByComparator);
 
 	/**
 	* Removes all the foos from the database.

@@ -151,7 +151,7 @@ public class AkismetDataPersistenceImpl extends BasePersistenceImpl<AkismetData>
 	 */
 	@Override
 	public List<AkismetData> findByLtModifiedDate(Date modifiedDate, int start,
-		int end, OrderByComparator orderByComparator) {
+		int end, OrderByComparator<AkismetData> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -261,7 +261,8 @@ public class AkismetDataPersistenceImpl extends BasePersistenceImpl<AkismetData>
 	 */
 	@Override
 	public AkismetData findByLtModifiedDate_First(Date modifiedDate,
-		OrderByComparator orderByComparator) throws NoSuchDataException {
+		OrderByComparator<AkismetData> orderByComparator)
+		throws NoSuchDataException {
 		AkismetData akismetData = fetchByLtModifiedDate_First(modifiedDate,
 				orderByComparator);
 
@@ -290,7 +291,7 @@ public class AkismetDataPersistenceImpl extends BasePersistenceImpl<AkismetData>
 	 */
 	@Override
 	public AkismetData fetchByLtModifiedDate_First(Date modifiedDate,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<AkismetData> orderByComparator) {
 		List<AkismetData> list = findByLtModifiedDate(modifiedDate, 0, 1,
 				orderByComparator);
 
@@ -311,7 +312,8 @@ public class AkismetDataPersistenceImpl extends BasePersistenceImpl<AkismetData>
 	 */
 	@Override
 	public AkismetData findByLtModifiedDate_Last(Date modifiedDate,
-		OrderByComparator orderByComparator) throws NoSuchDataException {
+		OrderByComparator<AkismetData> orderByComparator)
+		throws NoSuchDataException {
 		AkismetData akismetData = fetchByLtModifiedDate_Last(modifiedDate,
 				orderByComparator);
 
@@ -340,7 +342,7 @@ public class AkismetDataPersistenceImpl extends BasePersistenceImpl<AkismetData>
 	 */
 	@Override
 	public AkismetData fetchByLtModifiedDate_Last(Date modifiedDate,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<AkismetData> orderByComparator) {
 		int count = countByLtModifiedDate(modifiedDate);
 
 		if (count == 0) {
@@ -368,7 +370,7 @@ public class AkismetDataPersistenceImpl extends BasePersistenceImpl<AkismetData>
 	 */
 	@Override
 	public AkismetData[] findByLtModifiedDate_PrevAndNext(long akismetDataId,
-		Date modifiedDate, OrderByComparator orderByComparator)
+		Date modifiedDate, OrderByComparator<AkismetData> orderByComparator)
 		throws NoSuchDataException {
 		AkismetData akismetData = findByPrimaryKey(akismetDataId);
 
@@ -399,7 +401,7 @@ public class AkismetDataPersistenceImpl extends BasePersistenceImpl<AkismetData>
 
 	protected AkismetData getByLtModifiedDate_PrevAndNext(Session session,
 		AkismetData akismetData, Date modifiedDate,
-		OrderByComparator orderByComparator, boolean previous) {
+		OrderByComparator<AkismetData> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -1361,7 +1363,7 @@ public class AkismetDataPersistenceImpl extends BasePersistenceImpl<AkismetData>
 	 */
 	@Override
 	public List<AkismetData> findAll(int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<AkismetData> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;

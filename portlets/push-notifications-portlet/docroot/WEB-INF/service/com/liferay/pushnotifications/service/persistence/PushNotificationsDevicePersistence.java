@@ -127,7 +127,7 @@ public interface PushNotificationsDevicePersistence extends BasePersistence<Push
 	*/
 	public java.util.List<com.liferay.pushnotifications.model.PushNotificationsDevice> findByU_P(
 		long userId, java.lang.String platform, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.pushnotifications.model.PushNotificationsDevice> orderByComparator);
 
 	/**
 	* Returns the first push notifications device in the ordered set where userId = &#63; and platform = &#63;.
@@ -140,7 +140,7 @@ public interface PushNotificationsDevicePersistence extends BasePersistence<Push
 	*/
 	public com.liferay.pushnotifications.model.PushNotificationsDevice findByU_P_First(
 		long userId, java.lang.String platform,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.pushnotifications.model.PushNotificationsDevice> orderByComparator)
 		throws com.liferay.pushnotifications.NoSuchDeviceException;
 
 	/**
@@ -153,7 +153,7 @@ public interface PushNotificationsDevicePersistence extends BasePersistence<Push
 	*/
 	public com.liferay.pushnotifications.model.PushNotificationsDevice fetchByU_P_First(
 		long userId, java.lang.String platform,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.pushnotifications.model.PushNotificationsDevice> orderByComparator);
 
 	/**
 	* Returns the last push notifications device in the ordered set where userId = &#63; and platform = &#63;.
@@ -166,7 +166,7 @@ public interface PushNotificationsDevicePersistence extends BasePersistence<Push
 	*/
 	public com.liferay.pushnotifications.model.PushNotificationsDevice findByU_P_Last(
 		long userId, java.lang.String platform,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.pushnotifications.model.PushNotificationsDevice> orderByComparator)
 		throws com.liferay.pushnotifications.NoSuchDeviceException;
 
 	/**
@@ -179,7 +179,7 @@ public interface PushNotificationsDevicePersistence extends BasePersistence<Push
 	*/
 	public com.liferay.pushnotifications.model.PushNotificationsDevice fetchByU_P_Last(
 		long userId, java.lang.String platform,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.pushnotifications.model.PushNotificationsDevice> orderByComparator);
 
 	/**
 	* Returns the push notifications devices before and after the current push notifications device in the ordered set where userId = &#63; and platform = &#63;.
@@ -193,7 +193,7 @@ public interface PushNotificationsDevicePersistence extends BasePersistence<Push
 	*/
 	public com.liferay.pushnotifications.model.PushNotificationsDevice[] findByU_P_PrevAndNext(
 		long pushNotificationsDeviceId, long userId, java.lang.String platform,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.pushnotifications.model.PushNotificationsDevice> orderByComparator)
 		throws com.liferay.pushnotifications.NoSuchDeviceException;
 
 	/**
@@ -311,7 +311,7 @@ public interface PushNotificationsDevicePersistence extends BasePersistence<Push
 	*/
 	public java.util.List<com.liferay.pushnotifications.model.PushNotificationsDevice> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.pushnotifications.model.PushNotificationsDevice> orderByComparator);
 
 	/**
 	* Removes all the push notifications devices from the database.

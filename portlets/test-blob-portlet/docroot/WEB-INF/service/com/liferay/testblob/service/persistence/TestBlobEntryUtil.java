@@ -85,7 +85,7 @@ public class TestBlobEntryUtil {
 	 */
 	public static List<TestBlobEntry> findWithDynamicQuery(
 		DynamicQuery dynamicQuery, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<TestBlobEntry> orderByComparator) {
 		return getPersistence()
 				   .findWithDynamicQuery(dynamicQuery, start, end,
 			orderByComparator);
@@ -149,7 +149,7 @@ public class TestBlobEntryUtil {
 	*/
 	public static java.util.List<com.liferay.testblob.model.TestBlobEntry> findByUuid(
 		java.lang.String uuid, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.testblob.model.TestBlobEntry> orderByComparator) {
 		return getPersistence().findByUuid(uuid, start, end, orderByComparator);
 	}
 
@@ -163,7 +163,7 @@ public class TestBlobEntryUtil {
 	*/
 	public static com.liferay.testblob.model.TestBlobEntry findByUuid_First(
 		java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.testblob.model.TestBlobEntry> orderByComparator)
 		throws com.liferay.testblob.NoSuchEntryException {
 		return getPersistence().findByUuid_First(uuid, orderByComparator);
 	}
@@ -177,7 +177,7 @@ public class TestBlobEntryUtil {
 	*/
 	public static com.liferay.testblob.model.TestBlobEntry fetchByUuid_First(
 		java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.testblob.model.TestBlobEntry> orderByComparator) {
 		return getPersistence().fetchByUuid_First(uuid, orderByComparator);
 	}
 
@@ -191,7 +191,7 @@ public class TestBlobEntryUtil {
 	*/
 	public static com.liferay.testblob.model.TestBlobEntry findByUuid_Last(
 		java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.testblob.model.TestBlobEntry> orderByComparator)
 		throws com.liferay.testblob.NoSuchEntryException {
 		return getPersistence().findByUuid_Last(uuid, orderByComparator);
 	}
@@ -205,7 +205,7 @@ public class TestBlobEntryUtil {
 	*/
 	public static com.liferay.testblob.model.TestBlobEntry fetchByUuid_Last(
 		java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.testblob.model.TestBlobEntry> orderByComparator) {
 		return getPersistence().fetchByUuid_Last(uuid, orderByComparator);
 	}
 
@@ -220,7 +220,7 @@ public class TestBlobEntryUtil {
 	*/
 	public static com.liferay.testblob.model.TestBlobEntry[] findByUuid_PrevAndNext(
 		long testBlobEntryId, java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.testblob.model.TestBlobEntry> orderByComparator)
 		throws com.liferay.testblob.NoSuchEntryException {
 		return getPersistence()
 				   .findByUuid_PrevAndNext(testBlobEntryId, uuid,
@@ -361,7 +361,7 @@ public class TestBlobEntryUtil {
 	*/
 	public static java.util.List<com.liferay.testblob.model.TestBlobEntry> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.testblob.model.TestBlobEntry> orderByComparator) {
 		return getPersistence().findAll(start, end, orderByComparator);
 	}
 

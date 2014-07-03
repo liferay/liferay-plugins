@@ -85,7 +85,7 @@ public class MicroblogsEntryUtil {
 	 */
 	public static List<MicroblogsEntry> findWithDynamicQuery(
 		DynamicQuery dynamicQuery, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<MicroblogsEntry> orderByComparator) {
 		return getPersistence()
 				   .findWithDynamicQuery(dynamicQuery, start, end,
 			orderByComparator);
@@ -149,7 +149,7 @@ public class MicroblogsEntryUtil {
 	*/
 	public static java.util.List<com.liferay.microblogs.model.MicroblogsEntry> findByCompanyId(
 		long companyId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.microblogs.model.MicroblogsEntry> orderByComparator) {
 		return getPersistence()
 				   .findByCompanyId(companyId, start, end, orderByComparator);
 	}
@@ -164,7 +164,7 @@ public class MicroblogsEntryUtil {
 	*/
 	public static com.liferay.microblogs.model.MicroblogsEntry findByCompanyId_First(
 		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.microblogs.model.MicroblogsEntry> orderByComparator)
 		throws com.liferay.microblogs.NoSuchEntryException {
 		return getPersistence()
 				   .findByCompanyId_First(companyId, orderByComparator);
@@ -179,7 +179,7 @@ public class MicroblogsEntryUtil {
 	*/
 	public static com.liferay.microblogs.model.MicroblogsEntry fetchByCompanyId_First(
 		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.microblogs.model.MicroblogsEntry> orderByComparator) {
 		return getPersistence()
 				   .fetchByCompanyId_First(companyId, orderByComparator);
 	}
@@ -194,7 +194,7 @@ public class MicroblogsEntryUtil {
 	*/
 	public static com.liferay.microblogs.model.MicroblogsEntry findByCompanyId_Last(
 		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.microblogs.model.MicroblogsEntry> orderByComparator)
 		throws com.liferay.microblogs.NoSuchEntryException {
 		return getPersistence()
 				   .findByCompanyId_Last(companyId, orderByComparator);
@@ -209,7 +209,7 @@ public class MicroblogsEntryUtil {
 	*/
 	public static com.liferay.microblogs.model.MicroblogsEntry fetchByCompanyId_Last(
 		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.microblogs.model.MicroblogsEntry> orderByComparator) {
 		return getPersistence()
 				   .fetchByCompanyId_Last(companyId, orderByComparator);
 	}
@@ -225,7 +225,7 @@ public class MicroblogsEntryUtil {
 	*/
 	public static com.liferay.microblogs.model.MicroblogsEntry[] findByCompanyId_PrevAndNext(
 		long microblogsEntryId, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.microblogs.model.MicroblogsEntry> orderByComparator)
 		throws com.liferay.microblogs.NoSuchEntryException {
 		return getPersistence()
 				   .findByCompanyId_PrevAndNext(microblogsEntryId, companyId,
@@ -275,7 +275,7 @@ public class MicroblogsEntryUtil {
 	*/
 	public static java.util.List<com.liferay.microblogs.model.MicroblogsEntry> filterFindByCompanyId(
 		long companyId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.microblogs.model.MicroblogsEntry> orderByComparator) {
 		return getPersistence()
 				   .filterFindByCompanyId(companyId, start, end,
 			orderByComparator);
@@ -292,7 +292,7 @@ public class MicroblogsEntryUtil {
 	*/
 	public static com.liferay.microblogs.model.MicroblogsEntry[] filterFindByCompanyId_PrevAndNext(
 		long microblogsEntryId, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.microblogs.model.MicroblogsEntry> orderByComparator)
 		throws com.liferay.microblogs.NoSuchEntryException {
 		return getPersistence()
 				   .filterFindByCompanyId_PrevAndNext(microblogsEntryId,
@@ -371,7 +371,7 @@ public class MicroblogsEntryUtil {
 	*/
 	public static java.util.List<com.liferay.microblogs.model.MicroblogsEntry> findByUserId(
 		long userId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.microblogs.model.MicroblogsEntry> orderByComparator) {
 		return getPersistence()
 				   .findByUserId(userId, start, end, orderByComparator);
 	}
@@ -386,7 +386,7 @@ public class MicroblogsEntryUtil {
 	*/
 	public static com.liferay.microblogs.model.MicroblogsEntry findByUserId_First(
 		long userId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.microblogs.model.MicroblogsEntry> orderByComparator)
 		throws com.liferay.microblogs.NoSuchEntryException {
 		return getPersistence().findByUserId_First(userId, orderByComparator);
 	}
@@ -400,7 +400,7 @@ public class MicroblogsEntryUtil {
 	*/
 	public static com.liferay.microblogs.model.MicroblogsEntry fetchByUserId_First(
 		long userId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.microblogs.model.MicroblogsEntry> orderByComparator) {
 		return getPersistence().fetchByUserId_First(userId, orderByComparator);
 	}
 
@@ -414,7 +414,7 @@ public class MicroblogsEntryUtil {
 	*/
 	public static com.liferay.microblogs.model.MicroblogsEntry findByUserId_Last(
 		long userId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.microblogs.model.MicroblogsEntry> orderByComparator)
 		throws com.liferay.microblogs.NoSuchEntryException {
 		return getPersistence().findByUserId_Last(userId, orderByComparator);
 	}
@@ -428,7 +428,7 @@ public class MicroblogsEntryUtil {
 	*/
 	public static com.liferay.microblogs.model.MicroblogsEntry fetchByUserId_Last(
 		long userId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.microblogs.model.MicroblogsEntry> orderByComparator) {
 		return getPersistence().fetchByUserId_Last(userId, orderByComparator);
 	}
 
@@ -443,7 +443,7 @@ public class MicroblogsEntryUtil {
 	*/
 	public static com.liferay.microblogs.model.MicroblogsEntry[] findByUserId_PrevAndNext(
 		long microblogsEntryId, long userId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.microblogs.model.MicroblogsEntry> orderByComparator)
 		throws com.liferay.microblogs.NoSuchEntryException {
 		return getPersistence()
 				   .findByUserId_PrevAndNext(microblogsEntryId, userId,
@@ -493,7 +493,7 @@ public class MicroblogsEntryUtil {
 	*/
 	public static java.util.List<com.liferay.microblogs.model.MicroblogsEntry> filterFindByUserId(
 		long userId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.microblogs.model.MicroblogsEntry> orderByComparator) {
 		return getPersistence()
 				   .filterFindByUserId(userId, start, end, orderByComparator);
 	}
@@ -509,7 +509,7 @@ public class MicroblogsEntryUtil {
 	*/
 	public static com.liferay.microblogs.model.MicroblogsEntry[] filterFindByUserId_PrevAndNext(
 		long microblogsEntryId, long userId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.microblogs.model.MicroblogsEntry> orderByComparator)
 		throws com.liferay.microblogs.NoSuchEntryException {
 		return getPersistence()
 				   .filterFindByUserId_PrevAndNext(microblogsEntryId, userId,
@@ -591,7 +591,7 @@ public class MicroblogsEntryUtil {
 	*/
 	public static java.util.List<com.liferay.microblogs.model.MicroblogsEntry> findByU_T(
 		long userId, int type, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.microblogs.model.MicroblogsEntry> orderByComparator) {
 		return getPersistence()
 				   .findByU_T(userId, type, start, end, orderByComparator);
 	}
@@ -607,7 +607,7 @@ public class MicroblogsEntryUtil {
 	*/
 	public static com.liferay.microblogs.model.MicroblogsEntry findByU_T_First(
 		long userId, int type,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.microblogs.model.MicroblogsEntry> orderByComparator)
 		throws com.liferay.microblogs.NoSuchEntryException {
 		return getPersistence().findByU_T_First(userId, type, orderByComparator);
 	}
@@ -622,7 +622,7 @@ public class MicroblogsEntryUtil {
 	*/
 	public static com.liferay.microblogs.model.MicroblogsEntry fetchByU_T_First(
 		long userId, int type,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.microblogs.model.MicroblogsEntry> orderByComparator) {
 		return getPersistence().fetchByU_T_First(userId, type, orderByComparator);
 	}
 
@@ -637,7 +637,7 @@ public class MicroblogsEntryUtil {
 	*/
 	public static com.liferay.microblogs.model.MicroblogsEntry findByU_T_Last(
 		long userId, int type,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.microblogs.model.MicroblogsEntry> orderByComparator)
 		throws com.liferay.microblogs.NoSuchEntryException {
 		return getPersistence().findByU_T_Last(userId, type, orderByComparator);
 	}
@@ -652,7 +652,7 @@ public class MicroblogsEntryUtil {
 	*/
 	public static com.liferay.microblogs.model.MicroblogsEntry fetchByU_T_Last(
 		long userId, int type,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.microblogs.model.MicroblogsEntry> orderByComparator) {
 		return getPersistence().fetchByU_T_Last(userId, type, orderByComparator);
 	}
 
@@ -668,7 +668,7 @@ public class MicroblogsEntryUtil {
 	*/
 	public static com.liferay.microblogs.model.MicroblogsEntry[] findByU_T_PrevAndNext(
 		long microblogsEntryId, long userId, int type,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.microblogs.model.MicroblogsEntry> orderByComparator)
 		throws com.liferay.microblogs.NoSuchEntryException {
 		return getPersistence()
 				   .findByU_T_PrevAndNext(microblogsEntryId, userId, type,
@@ -721,7 +721,7 @@ public class MicroblogsEntryUtil {
 	*/
 	public static java.util.List<com.liferay.microblogs.model.MicroblogsEntry> filterFindByU_T(
 		long userId, int type, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.microblogs.model.MicroblogsEntry> orderByComparator) {
 		return getPersistence()
 				   .filterFindByU_T(userId, type, start, end, orderByComparator);
 	}
@@ -738,7 +738,7 @@ public class MicroblogsEntryUtil {
 	*/
 	public static com.liferay.microblogs.model.MicroblogsEntry[] filterFindByU_T_PrevAndNext(
 		long microblogsEntryId, long userId, int type,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.microblogs.model.MicroblogsEntry> orderByComparator)
 		throws com.liferay.microblogs.NoSuchEntryException {
 		return getPersistence()
 				   .filterFindByU_T_PrevAndNext(microblogsEntryId, userId,
@@ -823,7 +823,7 @@ public class MicroblogsEntryUtil {
 	*/
 	public static java.util.List<com.liferay.microblogs.model.MicroblogsEntry> findByT_R(
 		int type, long receiverUserId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.microblogs.model.MicroblogsEntry> orderByComparator) {
 		return getPersistence()
 				   .findByT_R(type, receiverUserId, start, end,
 			orderByComparator);
@@ -840,7 +840,7 @@ public class MicroblogsEntryUtil {
 	*/
 	public static com.liferay.microblogs.model.MicroblogsEntry findByT_R_First(
 		int type, long receiverUserId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.microblogs.model.MicroblogsEntry> orderByComparator)
 		throws com.liferay.microblogs.NoSuchEntryException {
 		return getPersistence()
 				   .findByT_R_First(type, receiverUserId, orderByComparator);
@@ -856,7 +856,7 @@ public class MicroblogsEntryUtil {
 	*/
 	public static com.liferay.microblogs.model.MicroblogsEntry fetchByT_R_First(
 		int type, long receiverUserId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.microblogs.model.MicroblogsEntry> orderByComparator) {
 		return getPersistence()
 				   .fetchByT_R_First(type, receiverUserId, orderByComparator);
 	}
@@ -872,7 +872,7 @@ public class MicroblogsEntryUtil {
 	*/
 	public static com.liferay.microblogs.model.MicroblogsEntry findByT_R_Last(
 		int type, long receiverUserId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.microblogs.model.MicroblogsEntry> orderByComparator)
 		throws com.liferay.microblogs.NoSuchEntryException {
 		return getPersistence()
 				   .findByT_R_Last(type, receiverUserId, orderByComparator);
@@ -888,7 +888,7 @@ public class MicroblogsEntryUtil {
 	*/
 	public static com.liferay.microblogs.model.MicroblogsEntry fetchByT_R_Last(
 		int type, long receiverUserId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.microblogs.model.MicroblogsEntry> orderByComparator) {
 		return getPersistence()
 				   .fetchByT_R_Last(type, receiverUserId, orderByComparator);
 	}
@@ -905,7 +905,7 @@ public class MicroblogsEntryUtil {
 	*/
 	public static com.liferay.microblogs.model.MicroblogsEntry[] findByT_R_PrevAndNext(
 		long microblogsEntryId, int type, long receiverUserId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.microblogs.model.MicroblogsEntry> orderByComparator)
 		throws com.liferay.microblogs.NoSuchEntryException {
 		return getPersistence()
 				   .findByT_R_PrevAndNext(microblogsEntryId, type,
@@ -958,7 +958,7 @@ public class MicroblogsEntryUtil {
 	*/
 	public static java.util.List<com.liferay.microblogs.model.MicroblogsEntry> filterFindByT_R(
 		int type, long receiverUserId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.microblogs.model.MicroblogsEntry> orderByComparator) {
 		return getPersistence()
 				   .filterFindByT_R(type, receiverUserId, start, end,
 			orderByComparator);
@@ -976,7 +976,7 @@ public class MicroblogsEntryUtil {
 	*/
 	public static com.liferay.microblogs.model.MicroblogsEntry[] filterFindByT_R_PrevAndNext(
 		long microblogsEntryId, int type, long receiverUserId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.microblogs.model.MicroblogsEntry> orderByComparator)
 		throws com.liferay.microblogs.NoSuchEntryException {
 		return getPersistence()
 				   .filterFindByT_R_PrevAndNext(microblogsEntryId, type,
@@ -1062,7 +1062,7 @@ public class MicroblogsEntryUtil {
 	*/
 	public static java.util.List<com.liferay.microblogs.model.MicroblogsEntry> findByT_RMEI(
 		int type, long receiverMicroblogsEntryId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.microblogs.model.MicroblogsEntry> orderByComparator) {
 		return getPersistence()
 				   .findByT_RMEI(type, receiverMicroblogsEntryId, start, end,
 			orderByComparator);
@@ -1079,7 +1079,7 @@ public class MicroblogsEntryUtil {
 	*/
 	public static com.liferay.microblogs.model.MicroblogsEntry findByT_RMEI_First(
 		int type, long receiverMicroblogsEntryId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.microblogs.model.MicroblogsEntry> orderByComparator)
 		throws com.liferay.microblogs.NoSuchEntryException {
 		return getPersistence()
 				   .findByT_RMEI_First(type, receiverMicroblogsEntryId,
@@ -1096,7 +1096,7 @@ public class MicroblogsEntryUtil {
 	*/
 	public static com.liferay.microblogs.model.MicroblogsEntry fetchByT_RMEI_First(
 		int type, long receiverMicroblogsEntryId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.microblogs.model.MicroblogsEntry> orderByComparator) {
 		return getPersistence()
 				   .fetchByT_RMEI_First(type, receiverMicroblogsEntryId,
 			orderByComparator);
@@ -1113,7 +1113,7 @@ public class MicroblogsEntryUtil {
 	*/
 	public static com.liferay.microblogs.model.MicroblogsEntry findByT_RMEI_Last(
 		int type, long receiverMicroblogsEntryId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.microblogs.model.MicroblogsEntry> orderByComparator)
 		throws com.liferay.microblogs.NoSuchEntryException {
 		return getPersistence()
 				   .findByT_RMEI_Last(type, receiverMicroblogsEntryId,
@@ -1130,7 +1130,7 @@ public class MicroblogsEntryUtil {
 	*/
 	public static com.liferay.microblogs.model.MicroblogsEntry fetchByT_RMEI_Last(
 		int type, long receiverMicroblogsEntryId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.microblogs.model.MicroblogsEntry> orderByComparator) {
 		return getPersistence()
 				   .fetchByT_RMEI_Last(type, receiverMicroblogsEntryId,
 			orderByComparator);
@@ -1148,7 +1148,7 @@ public class MicroblogsEntryUtil {
 	*/
 	public static com.liferay.microblogs.model.MicroblogsEntry[] findByT_RMEI_PrevAndNext(
 		long microblogsEntryId, int type, long receiverMicroblogsEntryId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.microblogs.model.MicroblogsEntry> orderByComparator)
 		throws com.liferay.microblogs.NoSuchEntryException {
 		return getPersistence()
 				   .findByT_RMEI_PrevAndNext(microblogsEntryId, type,
@@ -1204,7 +1204,7 @@ public class MicroblogsEntryUtil {
 	*/
 	public static java.util.List<com.liferay.microblogs.model.MicroblogsEntry> filterFindByT_RMEI(
 		int type, long receiverMicroblogsEntryId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.microblogs.model.MicroblogsEntry> orderByComparator) {
 		return getPersistence()
 				   .filterFindByT_RMEI(type, receiverMicroblogsEntryId, start,
 			end, orderByComparator);
@@ -1222,7 +1222,7 @@ public class MicroblogsEntryUtil {
 	*/
 	public static com.liferay.microblogs.model.MicroblogsEntry[] filterFindByT_RMEI_PrevAndNext(
 		long microblogsEntryId, int type, long receiverMicroblogsEntryId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.microblogs.model.MicroblogsEntry> orderByComparator)
 		throws com.liferay.microblogs.NoSuchEntryException {
 		return getPersistence()
 				   .filterFindByT_RMEI_PrevAndNext(microblogsEntryId, type,
@@ -1320,7 +1320,7 @@ public class MicroblogsEntryUtil {
 	public static java.util.List<com.liferay.microblogs.model.MicroblogsEntry> findByU_C_T_S(
 		long userId, java.util.Date createDate, int type,
 		int socialRelationType, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.microblogs.model.MicroblogsEntry> orderByComparator) {
 		return getPersistence()
 				   .findByU_C_T_S(userId, createDate, type, socialRelationType,
 			start, end, orderByComparator);
@@ -1340,7 +1340,7 @@ public class MicroblogsEntryUtil {
 	public static com.liferay.microblogs.model.MicroblogsEntry findByU_C_T_S_First(
 		long userId, java.util.Date createDate, int type,
 		int socialRelationType,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.microblogs.model.MicroblogsEntry> orderByComparator)
 		throws com.liferay.microblogs.NoSuchEntryException {
 		return getPersistence()
 				   .findByU_C_T_S_First(userId, createDate, type,
@@ -1360,7 +1360,7 @@ public class MicroblogsEntryUtil {
 	public static com.liferay.microblogs.model.MicroblogsEntry fetchByU_C_T_S_First(
 		long userId, java.util.Date createDate, int type,
 		int socialRelationType,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.microblogs.model.MicroblogsEntry> orderByComparator) {
 		return getPersistence()
 				   .fetchByU_C_T_S_First(userId, createDate, type,
 			socialRelationType, orderByComparator);
@@ -1380,7 +1380,7 @@ public class MicroblogsEntryUtil {
 	public static com.liferay.microblogs.model.MicroblogsEntry findByU_C_T_S_Last(
 		long userId, java.util.Date createDate, int type,
 		int socialRelationType,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.microblogs.model.MicroblogsEntry> orderByComparator)
 		throws com.liferay.microblogs.NoSuchEntryException {
 		return getPersistence()
 				   .findByU_C_T_S_Last(userId, createDate, type,
@@ -1400,7 +1400,7 @@ public class MicroblogsEntryUtil {
 	public static com.liferay.microblogs.model.MicroblogsEntry fetchByU_C_T_S_Last(
 		long userId, java.util.Date createDate, int type,
 		int socialRelationType,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.microblogs.model.MicroblogsEntry> orderByComparator) {
 		return getPersistence()
 				   .fetchByU_C_T_S_Last(userId, createDate, type,
 			socialRelationType, orderByComparator);
@@ -1421,7 +1421,7 @@ public class MicroblogsEntryUtil {
 	public static com.liferay.microblogs.model.MicroblogsEntry[] findByU_C_T_S_PrevAndNext(
 		long microblogsEntryId, long userId, java.util.Date createDate,
 		int type, int socialRelationType,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.microblogs.model.MicroblogsEntry> orderByComparator)
 		throws com.liferay.microblogs.NoSuchEntryException {
 		return getPersistence()
 				   .findByU_C_T_S_PrevAndNext(microblogsEntryId, userId,
@@ -1486,7 +1486,7 @@ public class MicroblogsEntryUtil {
 	public static java.util.List<com.liferay.microblogs.model.MicroblogsEntry> filterFindByU_C_T_S(
 		long userId, java.util.Date createDate, int type,
 		int socialRelationType, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.microblogs.model.MicroblogsEntry> orderByComparator) {
 		return getPersistence()
 				   .filterFindByU_C_T_S(userId, createDate, type,
 			socialRelationType, start, end, orderByComparator);
@@ -1507,7 +1507,7 @@ public class MicroblogsEntryUtil {
 	public static com.liferay.microblogs.model.MicroblogsEntry[] filterFindByU_C_T_S_PrevAndNext(
 		long microblogsEntryId, long userId, java.util.Date createDate,
 		int type, int socialRelationType,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.microblogs.model.MicroblogsEntry> orderByComparator)
 		throws com.liferay.microblogs.NoSuchEntryException {
 		return getPersistence()
 				   .filterFindByU_C_T_S_PrevAndNext(microblogsEntryId, userId,
@@ -1676,7 +1676,7 @@ public class MicroblogsEntryUtil {
 	*/
 	public static java.util.List<com.liferay.microblogs.model.MicroblogsEntry> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.microblogs.model.MicroblogsEntry> orderByComparator) {
 		return getPersistence().findAll(start, end, orderByComparator);
 	}
 

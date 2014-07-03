@@ -142,8 +142,7 @@ public abstract class SVNRepositoryLocalServiceBaseImpl
 	 * @return the matching rows
 	 */
 	@Override
-	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery) {
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery) {
 		return svnRepositoryPersistence.findWithDynamicQuery(dynamicQuery);
 	}
 
@@ -160,8 +159,8 @@ public abstract class SVNRepositoryLocalServiceBaseImpl
 	 * @return the range of matching rows
 	 */
 	@Override
-	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end) {
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
+		int end) {
 		return svnRepositoryPersistence.findWithDynamicQuery(dynamicQuery,
 			start, end);
 	}
@@ -180,9 +179,8 @@ public abstract class SVNRepositoryLocalServiceBaseImpl
 	 * @return the ordered range of matching rows
 	 */
 	@Override
-	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end,
-		OrderByComparator orderByComparator) {
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
+		int end, OrderByComparator<T> orderByComparator) {
 		return svnRepositoryPersistence.findWithDynamicQuery(dynamicQuery,
 			start, end, orderByComparator);
 	}
@@ -223,11 +221,10 @@ public abstract class SVNRepositoryLocalServiceBaseImpl
 	 * @param svnRepositoryId the primary key of the s v n repository
 	 * @return the s v n repository
 	 * @throws PortalException if a s v n repository with the primary key could not be found
-	 * @throws SystemException
 	 */
 	@Override
 	public SVNRepository getSVNRepository(long svnRepositoryId)
-		throws PortalException, SystemException {
+		throws PortalException {
 		return svnRepositoryPersistence.findByPrimaryKey(svnRepositoryId);
 	}
 
