@@ -195,6 +195,18 @@ public class KBArticleImporter {
 				}
 			}
 
+			if (Validator.isNull(chapterIntroFileEntryName) &&
+				!chapterFileEntryNames.isEmpty()) {
+
+				StringBuilder sb = new StringBuilder(4);
+				sb.append("No file entry ending in ");
+				sb.append(PortletPropsValues.MARKDOWN_IMPORTER_ARTICLE_INTRO);
+				sb.append(" accompanies file entry ");
+				sb.append(chapterFileEntryNames.get(0));
+
+				throw new KBArticleImportException(sb.toString());
+			}
+
 			KBArticle chapterIntroKBArticle = addKBArticleMarkdown(
 				userId, groupId, homeKBArticlePK,
 				zipReader.getEntryAsString(chapterIntroFileEntryName),
