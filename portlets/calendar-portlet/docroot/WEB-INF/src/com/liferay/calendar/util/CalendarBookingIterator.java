@@ -35,7 +35,6 @@ import java.util.TimeZone;
 
 /**
  * @author Adam Brandizzi
- *
  */
 public class CalendarBookingIterator implements Iterator<CalendarBooking> {
 
@@ -43,7 +42,6 @@ public class CalendarBookingIterator implements Iterator<CalendarBooking> {
 		throws ParseException {
 
 		_calendarBooking = calendarBooking;
-		_instanceIndex = 0;
 		_recurrenceIterator =
 			RecurrenceIteratorFactory.createRecurrenceIterator(
 				calendarBooking.getRecurrence(),
@@ -63,7 +61,7 @@ public class CalendarBookingIterator implements Iterator<CalendarBooking> {
 		}
 
 		CalendarBooking newCalendarBooking =
-			(CalendarBooking) _calendarBooking.clone();
+			(CalendarBooking)_calendarBooking.clone();
 
 		_currentDateValue = _recurrenceIterator.next();
 
