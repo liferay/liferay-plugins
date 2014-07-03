@@ -106,7 +106,7 @@
 							windowState="<%= LiferayWindowState.POP_UP.toString() %>"
 						/>
 
-						<aui:nav-item href="<%= permissionsURL %>" useDialog="<%= true %>" label="permissions" />
+						<aui:nav-item href="<%= permissionsURL %>" label="permissions" useDialog="<%= true %>" />
 					</c:if>
 				</aui:nav>
 

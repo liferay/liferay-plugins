@@ -157,7 +157,7 @@ long parentResourcePrimKey = ParamUtil.getLong(request, "parentResourcePrimKey",
 							</c:if>
 
 							<c:if test="<%= AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.DELETE_KB_ARTICLES) %>">
-								<aui:nav-item cssClass="item-remove" id="deleteKBArticles" iconCssClass="icon-remove" label="delete" />
+								<aui:nav-item cssClass="item-remove" iconCssClass="icon-remove" id="deleteKBArticles" label="delete" />
 							</c:if>
 						</aui:nav-item>
 					</c:if>
