@@ -663,24 +663,24 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 	}
 
 	@Override
-	public KBArticle[] getKBArticlesPrevAndNext(long kbArticleId)
+	public KBArticle[] getPreviousAndNextKBArticles(long kbArticleId)
 		throws PortalException {
 
 		KBArticle kbArticle = kbArticlePersistence.findByPrimaryKey(
 			kbArticleId);
 
-		KBArticle[] prevAndNext = kbArticlePersistence.findByG_P_L_PrevAndNext(
-			kbArticleId, kbArticle.getGroupId(),
-			kbArticle.getParentResourcePrimKey(), true,
-			new KBArticlePriorityComparator(true));
+		KBArticle[] previousAndNextKBArticles =
+			kbArticlePersistence.findByG_P_L_PrevAndNext(
+				kbArticleId, kbArticle.getGroupId(),
+				kbArticle.getParentResourcePrimKey(), true,
+				new KBArticlePriorityComparator(true));
 
-		KBArticle prevKBArticle = getPrevKBArticle(kbArticle, prevAndNext);
-		KBArticle nextKBArticle = getNextKBArticle(kbArticle, prevAndNext);
+		KBArticle previousKBArticle = getPreviousKBArticle(
+			kbArticle, previousAndNextKBArticles);
+		KBArticle nextKBArticle = getNextKBArticle(
+			kbArticle, previousAndNextKBArticles);
 
-		KBArticle[] calculatedPrevAndNext =
-			new KBArticle[] {prevKBArticle, kbArticle, nextKBArticle};
-
-		return calculatedPrevAndNext;
+		return new KBArticle[] {previousKBArticle, kbArticle, nextKBArticle};
 	}
 
 	@Override
@@ -1589,13 +1589,13 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 	}
 
 	protected KBArticle getNextAntecessorKBArticle(
-			long kbArticleId, KBArticle[] prevAndNext)
+			long kbArticleId, KBArticle[] previousAndNextKBArticles)
 		throws PortalException {
 
 		KBArticle kbArticle = kbArticlePersistence.findByPrimaryKey(
 			kbArticleId);
 
-		KBArticle nextKBArticle = prevAndNext[2];
+		KBArticle nextKBArticle = previousAndNextKBArticles[2];
 
 		if (nextKBArticle != null) {
 			return nextKBArticle;
@@ -1607,17 +1607,18 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			return null;
 		}
 
-		prevAndNext = kbArticlePersistence.findByG_P_L_PrevAndNext(
-			parentKBArticle.getKbArticleId(), kbArticle.getGroupId(),
-			parentKBArticle.getParentResourcePrimKey(), true,
-			new KBArticlePriorityComparator(true));
+		previousAndNextKBArticles =
+			kbArticlePersistence.findByG_P_L_PrevAndNext(
+				parentKBArticle.getKbArticleId(), kbArticle.getGroupId(),
+				parentKBArticle.getParentResourcePrimKey(), true,
+				new KBArticlePriorityComparator(true));
 
 		return getNextAntecessorKBArticle(
-			parentKBArticle.getKbArticleId(), prevAndNext);
+			parentKBArticle.getKbArticleId(), previousAndNextKBArticles);
 	}
 
 	protected KBArticle getNextKBArticle(
-			KBArticle kbArticle, KBArticle[] prevAndNext)
+			KBArticle kbArticle, KBArticle[] previousAndNextKBArticles)
 		throws PortalException {
 
 		KBArticle nextKBArticle = null;
@@ -1631,33 +1632,34 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		}
 		else {
 			nextKBArticle = getNextAntecessorKBArticle(
-				kbArticle.getKbArticleId(), prevAndNext);
+				kbArticle.getKbArticleId(), previousAndNextKBArticles);
 		}
 
 		return nextKBArticle;
 	}
 
-	protected KBArticle getPrevKBArticle(
-			KBArticle kbArticle, KBArticle[] prevAndNext)
+	protected KBArticle getPreviousKBArticle(
+			KBArticle kbArticle, KBArticle[] previousAndNextKBArticles)
 		throws PortalException {
 
-		KBArticle prevKBArticle = prevAndNext[0];
+		KBArticle previousKBArticle = previousAndNextKBArticles[0];
 
-		if (prevKBArticle != null) {
+		if (previousKBArticle != null) {
 			KBArticle lastSiblingChildKBArticle =
 				kbArticlePersistence.fetchByG_P_L_Last(
-					kbArticle.getGroupId(), prevKBArticle.getResourcePrimKey(),
+					kbArticle.getGroupId(),
+					previousKBArticle.getResourcePrimKey(),
 					true, new KBArticlePriorityComparator(true));
 
 			if (lastSiblingChildKBArticle != null) {
-				prevKBArticle = lastSiblingChildKBArticle;
+				previousKBArticle = lastSiblingChildKBArticle;
 			}
 		}
 		else {
-			prevKBArticle = kbArticle.getParentKBArticle();
+			previousKBArticle = kbArticle.getParentKBArticle();
 		}
 
-		return prevKBArticle;
+		return previousKBArticle;
 	}
 
 	protected double getPriority(long groupId, long parentResourcePrimKey) {
