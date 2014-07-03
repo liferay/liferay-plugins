@@ -1588,7 +1588,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		return emailKBArticleDiffs;
 	}
 
-	protected KBArticle getNextAntecessorKBArticle(
+	protected KBArticle getNextAncestorKBArticle(
 			long kbArticleId, KBArticle[] previousAndNextKBArticles)
 		throws PortalException {
 
@@ -1613,7 +1613,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 				parentKBArticle.getParentResourcePrimKey(), true,
 				new KBArticlePriorityComparator(true));
 
-		return getNextAntecessorKBArticle(
+		return getNextAncestorKBArticle(
 			parentKBArticle.getKbArticleId(), previousAndNextKBArticles);
 	}
 
@@ -1631,7 +1631,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			nextKBArticle = firstChildKBArticle;
 		}
 		else {
-			nextKBArticle = getNextAntecessorKBArticle(
+			nextKBArticle = getNextAncestorKBArticle(
 				kbArticle.getKbArticleId(), previousAndNextKBArticles);
 		}
 
