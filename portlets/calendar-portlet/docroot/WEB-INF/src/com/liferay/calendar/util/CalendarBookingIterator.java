@@ -83,6 +83,26 @@ public class CalendarBookingIterator implements Iterator<CalendarBooking> {
 		throw new UnsupportedOperationException();
 	}
 
+	private Calendar _getStartTimeJCalendar(DateValue dateValue) {
+		Calendar jCalendar = JCalendarUtil.getJCalendar(
+			_calendarBooking.getStartTime());
+
+		Calendar startTimeJCalendar = JCalendarUtil.getJCalendar(
+			dateValue.year(), dateValue.month() - 1, dateValue.day(),
+			jCalendar.get(Calendar.HOUR_OF_DAY), jCalendar.get(Calendar.MINUTE),
+			jCalendar.get(Calendar.SECOND), jCalendar.get(Calendar.MILLISECOND),
+			TimeZone.getTimeZone(StringPool.UTC));
+
+		TimeZone timeZone = _getTimeZone(_calendarBooking);
+
+		int shift = JCalendarUtil.getDSTShift(
+			jCalendar, startTimeJCalendar, timeZone);
+
+		startTimeJCalendar.add(Calendar.MILLISECOND, shift);
+
+		return startTimeJCalendar;
+	}
+
 	private TimeZone _getTimeZone(CalendarBooking calendarBooking) {
 		try {
 			return calendarBooking.getTimeZone();
@@ -94,27 +114,6 @@ public class CalendarBookingIterator implements Iterator<CalendarBooking> {
 		}
 
 		return TimeZoneUtil.getDefault();
-	}
-
-	private Calendar _getStartTimeJCalendar(DateValue dateValue) {
-		Calendar jCalendar = JCalendarUtil.getJCalendar(
-			_calendarBooking.getStartTime());
-
-		Calendar startTimeJCalendar = JCalendarUtil.getJCalendar(
-			dateValue.year(), dateValue.month() - 1, dateValue.day(),
-			jCalendar.get(Calendar.HOUR_OF_DAY),
-			jCalendar.get(Calendar.MINUTE), jCalendar.get(Calendar.SECOND),
-			jCalendar.get(Calendar.MILLISECOND),
-			TimeZone.getTimeZone(StringPool.UTC));
-
-		TimeZone timeZone = _getTimeZone(_calendarBooking);
-
-		int shift = JCalendarUtil.getDSTShift(
-			jCalendar, startTimeJCalendar, timeZone);
-
-		startTimeJCalendar.add(Calendar.MILLISECOND, shift);
-
-		return startTimeJCalendar;
 	}
 
 	private DateValue _toDateValue(long time) {
