@@ -108,7 +108,7 @@ public class KBTemplateSearch extends SearchContainer<KBTemplate> {
 				searchTerms.setCurStartValues(new int[0]);
 			}
 
-			OrderByComparator orderByComparator =
+			OrderByComparator<KBTemplate> orderByComparator =
 				KnowledgeBaseUtil.getKBTemplateOrderByComparator(
 					orderByCol, orderByType);
 

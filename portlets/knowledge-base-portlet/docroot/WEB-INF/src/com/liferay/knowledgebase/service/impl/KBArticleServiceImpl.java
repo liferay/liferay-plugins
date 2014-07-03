@@ -180,7 +180,7 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 	@Override
 	public List<KBArticle> getGroupKBArticles(
 		long groupId, int status, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KBArticle> orderByComparator) {
 
 		if (status == WorkflowConstants.STATUS_ANY) {
 			return kbArticlePersistence.filterFindByG_L(
@@ -245,7 +245,7 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 	@Override
 	public List<KBArticle> getKBArticleAndAllDescendantKBArticles(
 		long groupId, long resourcePrimKey, int status,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KBArticle> orderByComparator) {
 
 		List<KBArticle> kbArticles = getKBArticles(
 			groupId, new long[] {resourcePrimKey}, status, null);
@@ -294,7 +294,7 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 	@Override
 	public List<KBArticle> getKBArticleAndAllDescendants(
 		long groupId, long resourcePrimKey, int status,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KBArticle> orderByComparator) {
 
 		return getKBArticleAndAllDescendantKBArticles(
 			groupId, resourcePrimKey, status, orderByComparator);
@@ -328,7 +328,7 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 	@Override
 	public List<KBArticle> getKBArticles(
 		long groupId, long parentResourcePrimKey, int status, int start,
-		int end, OrderByComparator orderByComparator) {
+		int end, OrderByComparator<KBArticle> orderByComparator) {
 
 		if (status == WorkflowConstants.STATUS_ANY) {
 			return kbArticlePersistence.filterFindByG_P_L(
@@ -349,7 +349,7 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 	@Override
 	public List<KBArticle> getKBArticles(
 		long groupId, long[] resourcePrimKeys, int status, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KBArticle> orderByComparator) {
 
 		List<KBArticle> kbArticles = new ArrayList<KBArticle>();
 
@@ -387,7 +387,7 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 	@Override
 	public List<KBArticle> getKBArticles(
 		long groupId, long[] resourcePrimKeys, int status,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KBArticle> orderByComparator) {
 
 		return getKBArticles(
 			groupId, resourcePrimKeys, status, QueryUtil.ALL_POS,
@@ -442,7 +442,7 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 			long groupId, String title, String content, int status,
 			Date startDate, Date endDate, boolean andOperator,
 			int[] curStartValues, int cur, int delta,
-			OrderByComparator orderByComparator)
+			OrderByComparator<KBArticle> orderByComparator)
 		throws PortalException {
 
 		// See LPS-9546
@@ -514,7 +514,7 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 	@Override
 	public List<KBArticle> getKBArticleVersions(
 		long groupId, long resourcePrimKey, int status, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KBArticle> orderByComparator) {
 
 		if (status == WorkflowConstants.STATUS_ANY) {
 			return kbArticlePersistence.filterFindByR_G(
@@ -552,7 +552,7 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 	@Override
 	public List<KBArticle> getSectionsKBArticles(
 		long groupId, String[] sections, int status, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KBArticle> orderByComparator) {
 
 		String[] array = AdminUtil.escapeSections(sections);
 
@@ -610,7 +610,7 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 	@Override
 	public List<KBArticle> getSiblingKBArticles(
 		long groupId, long parentResourcePrimKey, int status, int start,
-		int end, OrderByComparator orderByComparator) {
+		int end, OrderByComparator<KBArticle> orderByComparator) {
 
 		return getKBArticles(
 			groupId, parentResourcePrimKey, status, start, end,

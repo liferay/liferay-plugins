@@ -66,7 +66,7 @@ public class KBArticleSearch extends SearchContainer<KBArticle> {
 			setOrderByCol(orderByCol);
 			setOrderByType(orderByType);
 
-			OrderByComparator orderByComparator =
+			OrderByComparator<KBArticle> orderByComparator =
 				KnowledgeBaseUtil.getKBArticleOrderByComparator(
 					orderByCol, orderByType);
 

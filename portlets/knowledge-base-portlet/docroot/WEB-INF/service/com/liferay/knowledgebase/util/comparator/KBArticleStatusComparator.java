@@ -21,7 +21,7 @@ import com.liferay.portal.kernel.util.OrderByComparator;
  * @author Peter Shin
  * @author Brian Wing Shun Chan
  */
-public class KBArticleStatusComparator extends OrderByComparator {
+public class KBArticleStatusComparator extends OrderByComparator<KBArticle> {
 
 	public static final String ORDER_BY_ASC = "KBArticle.status ASC";
 
@@ -38,10 +38,7 @@ public class KBArticleStatusComparator extends OrderByComparator {
 	}
 
 	@Override
-	public int compare(Object obj1, Object obj2) {
-		KBArticle kbArticle1 = (KBArticle)obj1;
-		KBArticle kbArticle2 = (KBArticle)obj2;
-
+	public int compare(KBArticle kbArticle1, KBArticle kbArticle2) {
 		int value = 0;
 
 		if (kbArticle1.getStatus() < kbArticle2.getStatus()) {

@@ -15,6 +15,7 @@
 package com.liferay.knowledgebase.util;
 
 import com.liferay.knowledgebase.model.KBArticle;
+import com.liferay.knowledgebase.model.KBTemplate;
 import com.liferay.knowledgebase.util.comparator.KBArticleCreateDateComparator;
 import com.liferay.knowledgebase.util.comparator.KBArticleModifiedDateComparator;
 import com.liferay.knowledgebase.util.comparator.KBArticlePriorityComparator;
@@ -62,7 +63,7 @@ import java.util.regex.Pattern;
  */
 public class KnowledgeBaseUtil {
 
-	public static OrderByComparator getKBArticleOrderByComparator(
+	public static OrderByComparator<KBArticle> getKBArticleOrderByComparator(
 		String orderByCol, String orderByType) {
 
 		if (Validator.isNull(orderByCol) || Validator.isNull(orderByType)) {
@@ -194,7 +195,7 @@ public class KnowledgeBaseUtil {
 		return url;
 	}
 
-	public static OrderByComparator getKBTemplateOrderByComparator(
+	public static OrderByComparator<KBTemplate> getKBTemplateOrderByComparator(
 		String orderByCol, String orderByType) {
 
 		if (Validator.isNull(orderByCol) || Validator.isNull(orderByType)) {

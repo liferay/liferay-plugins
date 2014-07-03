@@ -445,7 +445,8 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 
 		List<KBArticle> kbArticles = null;
 
-		OrderByComparator orderByComparator = new KBArticleVersionComparator();
+		OrderByComparator<KBArticle> orderByComparator =
+			new KBArticleVersionComparator();
 
 		if (status == WorkflowConstants.STATUS_ANY) {
 			kbArticles = kbArticlePersistence.findByG_UT(
@@ -465,7 +466,8 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 
 	@Override
 	public List<KBArticle> getAllDescendantKBArticles(
-		long resourcePrimKey, int status, OrderByComparator orderByComparator) {
+		long resourcePrimKey, int status,
+		OrderByComparator<KBArticle> orderByComparator) {
 
 		return getAllDescendantKBArticles(
 			resourcePrimKey, status, orderByComparator, false);
@@ -482,7 +484,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 	@Override
 	public List<KBArticle> getCompanyKBArticles(
 		long companyId, int status, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KBArticle> orderByComparator) {
 
 		if (status == WorkflowConstants.STATUS_ANY) {
 			return kbArticlePersistence.findByC_L(
@@ -512,7 +514,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 	@Override
 	public List<KBArticle> getGroupKBArticles(
 		long groupId, int status, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KBArticle> orderByComparator) {
 
 		if (status == WorkflowConstants.STATUS_ANY) {
 			return kbArticlePersistence.findByG_L(
@@ -548,7 +550,8 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 
 	@Override
 	public List<KBArticle> getKBArticleAndAllDescendantKBArticles(
-		long resourcePrimKey, int status, OrderByComparator orderByComparator) {
+		long resourcePrimKey, int status,
+		OrderByComparator<KBArticle> orderByComparator) {
 
 		return getAllDescendantKBArticles(
 			resourcePrimKey, status, orderByComparator, true);
@@ -561,7 +564,8 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 	 */
 	@Override
 	public List<KBArticle> getKBArticleAndAllDescendants(
-		long resourcePrimKey, int status, OrderByComparator orderByComparator) {
+		long resourcePrimKey, int status,
+		OrderByComparator<KBArticle> orderByComparator) {
 
 		return getKBArticleAndAllDescendantKBArticles(
 			resourcePrimKey, status, orderByComparator);
@@ -588,7 +592,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 	@Override
 	public List<KBArticle> getKBArticles(
 		long groupId, long parentResourcePrimKey, int status, int start,
-		int end, OrderByComparator orderByComparator) {
+		int end, OrderByComparator<KBArticle> orderByComparator) {
 
 		if (status == WorkflowConstants.STATUS_ANY) {
 			return kbArticlePersistence.findByG_P_L(
@@ -609,7 +613,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 	@Override
 	public List<KBArticle> getKBArticles(
 		long[] resourcePrimKeys, int status,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KBArticle> orderByComparator) {
 
 		List<KBArticle> kbArticles = new ArrayList<KBArticle>();
 
@@ -664,7 +668,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 	@Override
 	public List<KBArticle> getKBArticleVersions(
 		long resourcePrimKey, int status, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KBArticle> orderByComparator) {
 
 		if (status == WorkflowConstants.STATUS_ANY) {
 			return kbArticlePersistence.findByResourcePrimKey(
@@ -738,7 +742,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 	@Override
 	public List<KBArticle> getSectionsKBArticles(
 		long groupId, String[] sections, int status, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KBArticle> orderByComparator) {
 
 		String[] array = AdminUtil.escapeSections(sections);
 
@@ -796,7 +800,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 	@Override
 	public List<KBArticle> getSiblingKBArticles(
 		long groupId, long parentResourcePrimKey, int status, int start,
-		int end, OrderByComparator orderByComparator) {
+		int end, OrderByComparator<KBArticle> orderByComparator) {
 
 		return getKBArticles(
 			groupId, parentResourcePrimKey, status, start, end,
@@ -858,7 +862,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 	public List<KBArticle> search(
 		long groupId, String title, String content, int status, Date startDate,
 		Date endDate, boolean andOperator, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KBArticle> orderByComparator) {
 
 		DynamicQuery dynamicQuery = buildDynamicQuery(
 			groupId, title, content, status, startDate, endDate, andOperator);
@@ -1517,7 +1521,8 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 	}
 
 	protected List<KBArticle> getAllDescendantKBArticles(
-		long resourcePrimKey, int status, OrderByComparator orderByComparator,
+		long resourcePrimKey, int status,
+		OrderByComparator<KBArticle> orderByComparator,
 		boolean includeParentArticle) {
 
 		List<KBArticle> kbArticles = null;

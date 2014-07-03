@@ -120,7 +120,7 @@ public class KBArticleSearch extends SearchContainer<KBArticle> {
 				searchTerms.setCurStartValues(new int[0]);
 			}
 
-			OrderByComparator orderByComparator =
+			OrderByComparator<KBArticle> orderByComparator =
 				KnowledgeBaseUtil.getKBArticleOrderByComparator(
 					orderByCol, orderByType);
 

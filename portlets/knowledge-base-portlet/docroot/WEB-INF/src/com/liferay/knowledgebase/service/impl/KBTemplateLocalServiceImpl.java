@@ -171,7 +171,8 @@ public class KBTemplateLocalServiceImpl extends KBTemplateLocalServiceBaseImpl {
 
 	@Override
 	public List<KBTemplate> getGroupKBTemplates(
-		long groupId, int start, int end, OrderByComparator orderByComparator) {
+		long groupId, int start, int end,
+		OrderByComparator<KBTemplate> orderByComparator) {
 
 		return kbTemplatePersistence.findByGroupId(
 			groupId, start, end, orderByComparator);
@@ -186,7 +187,7 @@ public class KBTemplateLocalServiceImpl extends KBTemplateLocalServiceBaseImpl {
 	public List<KBTemplate> search(
 		long groupId, String title, String content, Date startDate,
 		Date endDate, boolean andOperator, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KBTemplate> orderByComparator) {
 
 		DynamicQuery dynamicQuery = buildDynamicQuery(
 			groupId, title, content, startDate, endDate, andOperator);

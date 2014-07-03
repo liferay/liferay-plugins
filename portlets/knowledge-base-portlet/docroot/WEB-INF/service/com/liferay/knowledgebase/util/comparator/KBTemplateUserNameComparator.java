@@ -22,7 +22,8 @@ import com.liferay.portal.kernel.util.StringUtil;
  * @author Peter Shin
  * @author Brian Wing Shun Chan
  */
-public class KBTemplateUserNameComparator extends OrderByComparator {
+public class KBTemplateUserNameComparator
+	extends OrderByComparator<KBTemplate> {
 
 	public static final String ORDER_BY_ASC = "KBTemplate.userName ASC";
 
@@ -39,10 +40,7 @@ public class KBTemplateUserNameComparator extends OrderByComparator {
 	}
 
 	@Override
-	public int compare(Object obj1, Object obj2) {
-		KBTemplate kbTemplate1 = (KBTemplate)obj1;
-		KBTemplate kbTemplate2 = (KBTemplate)obj2;
-
+	public int compare(KBTemplate kbTemplate1, KBTemplate kbTemplate2) {
 		int value = StringUtil.toLowerCase(kbTemplate1.getUserName()).compareTo(
 			StringUtil.toLowerCase(kbTemplate2.getUserName()));
 

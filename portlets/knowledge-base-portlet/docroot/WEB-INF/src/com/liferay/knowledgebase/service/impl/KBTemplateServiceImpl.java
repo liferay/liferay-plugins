@@ -82,7 +82,8 @@ public class KBTemplateServiceImpl extends KBTemplateServiceBaseImpl {
 
 	@Override
 	public List<KBTemplate> getGroupKBTemplates(
-		long groupId, int start, int end, OrderByComparator orderByComparator) {
+		long groupId, int start, int end,
+		OrderByComparator<KBTemplate> orderByComparator) {
 
 		return kbTemplatePersistence.filterFindByGroupId(
 			groupId, start, end, orderByComparator);
@@ -105,7 +106,7 @@ public class KBTemplateServiceImpl extends KBTemplateServiceBaseImpl {
 	public KBTemplateSearchDisplay getKBTemplateSearchDisplay(
 			long groupId, String title, String content, Date startDate,
 			Date endDate, boolean andOperator, int[] curStartValues, int cur,
-			int delta, OrderByComparator orderByComparator)
+			int delta, OrderByComparator<KBTemplate> orderByComparator)
 		throws PortalException {
 
 		// See LPS-9546

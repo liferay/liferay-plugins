@@ -22,7 +22,8 @@ import com.liferay.portal.kernel.util.OrderByComparator;
  * @author Peter Shin
  * @author Brian Wing Shun Chan
  */
-public class KBTemplateModifiedDateComparator extends OrderByComparator {
+public class KBTemplateModifiedDateComparator
+	extends OrderByComparator<KBTemplate> {
 
 	public static final String ORDER_BY_ASC = "KBTemplate.modifiedDate ASC";
 
@@ -39,10 +40,7 @@ public class KBTemplateModifiedDateComparator extends OrderByComparator {
 	}
 
 	@Override
-	public int compare(Object obj1, Object obj2) {
-		KBTemplate kbTemplate1 = (KBTemplate)obj1;
-		KBTemplate kbTemplate2 = (KBTemplate)obj2;
-
+	public int compare(KBTemplate kbTemplate1, KBTemplate kbTemplate2) {
 		int value = DateUtil.compareTo(
 			kbTemplate1.getModifiedDate(), kbTemplate2.getModifiedDate());
 
