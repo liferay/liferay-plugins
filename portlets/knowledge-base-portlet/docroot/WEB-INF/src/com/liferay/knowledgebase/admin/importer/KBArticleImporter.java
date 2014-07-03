@@ -27,6 +27,7 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.FileUtil;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.zip.ZipReader;
@@ -96,7 +97,7 @@ public class KBArticleImporter {
 				kbArticleMarkdownConverter.getHtml(), serviceContext);
 		}
 		catch (Exception e) {
-			StringBuilder sb = new StringBuilder(4);
+			StringBundler sb = new StringBundler(4);
 
 			sb.append("Unable to add KB article for file entry ");
 			sb.append(fileEntryName);
@@ -198,7 +199,8 @@ public class KBArticleImporter {
 			if (Validator.isNull(chapterIntroFileEntryName) &&
 				!chapterFileEntryNames.isEmpty()) {
 
-				StringBuilder sb = new StringBuilder(4);
+				StringBundler sb = new StringBundler(4);
+
 				sb.append("No file entry ending in ");
 				sb.append(PortletPropsValues.MARKDOWN_IMPORTER_ARTICLE_INTRO);
 				sb.append(" accompanies file entry ");
