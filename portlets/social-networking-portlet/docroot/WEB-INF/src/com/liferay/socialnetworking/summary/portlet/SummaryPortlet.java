@@ -21,12 +21,12 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.ParamUtil;
-import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.GroupConstants;
 import com.liferay.portal.model.Organization;
+import com.liferay.portal.model.PortletConstants;
 import com.liferay.portal.model.Role;
 import com.liferay.portal.model.RoleConstants;
 import com.liferay.portal.model.User;
@@ -39,6 +39,7 @@ import com.liferay.portal.service.ServiceContextFactory;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.service.permission.UserPermissionUtil;
 import com.liferay.portal.theme.ThemeDisplay;
+import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.expando.service.ExpandoValueLocalServiceUtil;
 import com.liferay.portlet.social.model.SocialRelationConstants;
 import com.liferay.portlet.social.service.SocialRelationLocalServiceUtil;
@@ -74,8 +75,11 @@ public class SummaryPortlet extends MVCPortlet {
 
 		String addFriendMessage = ParamUtil.getString(
 			actionRequest, "addFriendMessage");
+		String portletId = PortalUtil.getPortletId(actionRequest);
+		String rootPortletId = PortletConstants.getRootPortletId(portletId);
 
 		extraDataJSONObject.put("addFriendMessage", addFriendMessage);
+		extraDataJSONObject.put(WebKeys.PORTLET_ID, rootPortletId);
 
 		SocialRequestLocalServiceUtil.addRequest(
 			themeDisplay.getUserId(), 0, User.class.getName(),
@@ -145,11 +149,18 @@ public class SummaryPortlet extends MVCPortlet {
 					(OrderByComparator)null);
 			}
 
+			String portletId = PortalUtil.getPortletId(actionRequest);
+			String rootPortletId = PortletConstants.getRootPortletId(portletId);
+
+			JSONObject extraDataJSONObject = JSONFactoryUtil.createJSONObject();
+
+			extraDataJSONObject.put(WebKeys.PORTLET_ID, rootPortletId);
+
 			for (User user : users) {
 				SocialRequestLocalServiceUtil.addRequest(
 					themeDisplay.getUserId(), 0, Group.class.getName(),
 					group.getGroupId(), MembersRequestKeys.ADD_MEMBER,
-					StringPool.BLANK, user.getUserId());
+					extraDataJSONObject.toString(), user.getUserId());
 			}
 		}
 	}
@@ -195,11 +206,18 @@ public class SummaryPortlet extends MVCPortlet {
 				QueryUtil.ALL_POS, QueryUtil.ALL_POS, (OrderByComparator)null);
 		}
 
+		String portletId = PortalUtil.getPortletId(actionRequest);
+		String rootPortletId = PortletConstants.getRootPortletId(portletId);
+
+		JSONObject extraDataJSONObject = JSONFactoryUtil.createJSONObject();
+
+		extraDataJSONObject.put(WebKeys.PORTLET_ID, rootPortletId);
+
 		for (User user : users) {
 			SocialRequestLocalServiceUtil.addRequest(
 				themeDisplay.getUserId(), 0, Organization.class.getName(),
 				organization.getOrganizationId(), MembersRequestKeys.ADD_MEMBER,
-				StringPool.BLANK, user.getUserId());
+				extraDataJSONObject.toString(), user.getUserId());
 		}
 	}
 

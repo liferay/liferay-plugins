@@ -371,10 +371,18 @@ public class ContactsCenterPortlet extends MVCPortlet {
 				continue;
 			}
 
+			String portletId = PortalUtil.getPortletId(actionRequest);
+			String rootPortletId = PortletConstants.getRootPortletId(portletId);
+
+			JSONObject extraDataJSONObject = JSONFactoryUtil.createJSONObject();
+
+			extraDataJSONObject.put(WebKeys.PORTLET_ID, rootPortletId);
+
 			SocialRequest socialRequest =
 				SocialRequestLocalServiceUtil.addRequest(
 					themeDisplay.getUserId(), 0, User.class.getName(),
-					themeDisplay.getUserId(), type, StringPool.BLANK, userId);
+					themeDisplay.getUserId(), type,
+					extraDataJSONObject.toString(), userId);
 
 			sendNotificationEvent(socialRequest);
 		}
