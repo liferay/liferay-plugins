@@ -169,7 +169,7 @@ public class KBArticleImporter {
 	}
 
 	protected void processSectionKBArticleFiles(
-			long userId, long groupId, long homeKBArticlePK,
+			long userId, long groupId, long parentKBArticlePK,
 			ZipReader zipReader, Map<String, FileEntry> fileEntriesMap,
 			Map<String, List<String>> folderNameFileEntryNamesMap,
 			ServiceContext serviceContext)
@@ -210,7 +210,7 @@ public class KBArticleImporter {
 			}
 
 			KBArticle sectionIntroKBArticle = addKBArticleMarkdown(
-				userId, groupId, homeKBArticlePK,
+				userId, groupId, parentKBArticlePK,
 				zipReader.getEntryAsString(sectionIntroFileEntryName),
 				sectionIntroFileEntryName, fileEntriesMap, serviceContext);
 
@@ -240,18 +240,29 @@ public class KBArticleImporter {
 			ServiceContext serviceContext)
 		throws KBArticleImportException {
 
-		KBArticle homeKBArticle = addKBArticleMarkdown(
-			userId, groupId,
-			KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY,
-			zipReader.getEntryAsString(
-				PortletPropsValues.MARKDOWN_IMPORTER_ARTICLE_HOME),
-			PortletPropsValues.MARKDOWN_IMPORTER_ARTICLE_HOME, fileEntriesMap,
-			serviceContext);
+		String homeMarkdown = zipReader.getEntryAsString(
+			PortletPropsValues.MARKDOWN_IMPORTER_ARTICLE_HOME);
+
+		KBArticle parentKBArticle = null;
+
+		if (Validator.isNotNull(homeMarkdown)) {
+
+			parentKBArticle = addKBArticleMarkdown(
+				userId, groupId, KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY,
+				homeMarkdown, PortletPropsValues.MARKDOWN_IMPORTER_ARTICLE_HOME,
+				fileEntriesMap, serviceContext);
+		}
+
+		long sectionParentPK = KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY;
+
+		if (parentKBArticle != null) {
+
+			sectionParentPK = parentKBArticle.getResourcePrimKey();
+		}
 
 		processSectionKBArticleFiles(
-			userId, groupId, homeKBArticle.getResourcePrimKey(), zipReader,
-			fileEntriesMap, getFolderNameFileEntryNamesMap(zipReader),
-			serviceContext);
+			userId, groupId, sectionParentPK, zipReader, fileEntriesMap,
+			getFolderNameFileEntryNamesMap(zipReader), serviceContext);
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(KBArticleImporter.class);
