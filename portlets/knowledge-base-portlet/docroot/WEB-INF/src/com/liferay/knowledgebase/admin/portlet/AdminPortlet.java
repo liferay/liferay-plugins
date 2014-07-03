@@ -26,6 +26,7 @@ import com.liferay.knowledgebase.NoSuchCommentException;
 import com.liferay.knowledgebase.NoSuchTemplateException;
 import com.liferay.knowledgebase.model.KBArticle;
 import com.liferay.knowledgebase.model.KBComment;
+import com.liferay.knowledgebase.model.KBCommentConstants;
 import com.liferay.knowledgebase.model.KBTemplate;
 import com.liferay.knowledgebase.service.KBArticleServiceUtil;
 import com.liferay.knowledgebase.service.KBCommentLocalServiceUtil;
@@ -520,6 +521,8 @@ public class AdminPortlet extends MVCPortlet {
 		long classPK = ParamUtil.getLong(actionRequest, "classPK");
 		String content = ParamUtil.getString(actionRequest, "content");
 		boolean helpful = ParamUtil.getBoolean(actionRequest, "helpful");
+		int state = ParamUtil.getInteger(
+			actionRequest, "state", KBCommentConstants.STATUS_NONE);
 
 		ServiceContext serviceContext = ServiceContextFactory.getInstance(
 			KBComment.class.getName(), actionRequest);
@@ -530,8 +533,15 @@ public class AdminPortlet extends MVCPortlet {
 				helpful, serviceContext);
 		}
 		else if (cmd.equals(Constants.UPDATE)) {
+			if (state == KBCommentConstants.STATUS_NONE) {
+				KBComment kbComment = KBCommentServiceUtil.getKBComment(
+					kbCommentId);
+
+				state = kbComment.getStatus();
+			}
+
 			KBCommentServiceUtil.updateKBComment(
-				kbCommentId, classNameId, classPK, content, helpful,
+				kbCommentId, classNameId, classPK, content, helpful, state,
 				serviceContext);
 		}
 	}

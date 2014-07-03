@@ -45,9 +45,18 @@ public class KBCommentServiceImpl extends KBCommentServiceBaseImpl {
 	}
 
 	@Override
+	public KBComment getKBComment(long kbCommentId) throws PortalException {
+		KBComment kbComment = kbCommentLocalService.getKBComment(kbCommentId);
+
+		KBCommentPermission.check(
+			getPermissionChecker(), kbComment, ActionKeys.VIEW);
+
+		return kbComment;
+	}
+
 	public KBComment updateKBComment(
 			long kbCommentId, long classNameId, long classPK, String content,
-			boolean helpful, ServiceContext serviceContext)
+			boolean helpful, int status, ServiceContext serviceContext)
 		throws PortalException {
 
 		KBComment kbComment = kbCommentPersistence.findByPrimaryKey(
@@ -57,8 +66,21 @@ public class KBCommentServiceImpl extends KBCommentServiceBaseImpl {
 			getPermissionChecker(), kbComment, ActionKeys.UPDATE);
 
 		return kbCommentLocalService.updateKBComment(
-			kbCommentId, classNameId, classPK, content, helpful,
+			kbCommentId, classNameId, classPK, content, helpful, status,
 			serviceContext);
+	}
+
+	public KBComment updateKBComment(
+			long kbCommentId, long classNameId, long classPK, String content,
+			boolean helpful, ServiceContext serviceContext)
+		throws PortalException {
+
+		KBComment kbComment = kbCommentPersistence.findByPrimaryKey(
+			kbCommentId);
+
+		return updateKBComment(
+			kbCommentId, classNameId, classPK, content, helpful,
+			kbComment.getStatus(), serviceContext);
 	}
 
 }

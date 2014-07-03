@@ -111,7 +111,7 @@ public class KBCommentStagedModelDataHandler
 					existingKBComment.getKbCommentId(),
 					kbComment.getClassNameId(), newClassPK,
 					kbComment.getContent(), kbComment.getHelpful(),
-					serviceContext);
+					kbComment.getStatus(), serviceContext);
 			}
 		}
 		else {
