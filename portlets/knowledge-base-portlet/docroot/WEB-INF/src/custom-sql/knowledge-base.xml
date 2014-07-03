@@ -1,0 +1,26 @@
+<custom-sql>
+	<sql id="com.liferay.knowledgebase.service.persistence.KBCommentFinder.countByG_S">
+		<![CDATA[
+			SELECT
+				COUNT(DISTINCT KBComment.kbCommentId) AS COUNT_VALUE
+			FROM
+				KBComment
+			WHERE
+				(KBComment.groupId = ?) AND
+				(KBComment.status = ?)
+		]]>
+	</sql>
+	<sql id="com.liferay.knowledgebase.service.persistence.KBCommentFinder.findByG_S">
+		<![CDATA[
+			SELECT
+				KBComment.*
+			FROM
+				KBComment
+			WHERE
+				(KBComment.groupId = ?) AND
+				(KBComment.status = ?)
+			ORDER BY
+				KBComment.helpful ASC, KBComment.modifiedDate DESC
+		]]>
+	</sql>
+</custom-sql>
