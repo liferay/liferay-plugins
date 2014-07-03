@@ -18,6 +18,7 @@ import com.liferay.knowledgebase.KBCommentContentException;
 import com.liferay.knowledgebase.admin.social.AdminActivityKeys;
 import com.liferay.knowledgebase.model.KBArticle;
 import com.liferay.knowledgebase.model.KBComment;
+import com.liferay.knowledgebase.model.KBCommentConstants;
 import com.liferay.knowledgebase.model.KBTemplate;
 import com.liferay.knowledgebase.service.KBArticleLocalServiceUtil;
 import com.liferay.knowledgebase.service.KBTemplateLocalServiceUtil;
@@ -74,6 +75,7 @@ public class KBCommentLocalServiceImpl extends KBCommentLocalServiceBaseImpl {
 		kbComment.setClassPK(classPK);
 		kbComment.setContent(content);
 		kbComment.setHelpful(helpful);
+		kbComment.setStatus(KBCommentConstants.STATUS_PENDING);
 
 		kbCommentPersistence.update(kbComment);
 
@@ -187,8 +189,8 @@ public class KBCommentLocalServiceImpl extends KBCommentLocalServiceBaseImpl {
 	@Override
 	public KBComment updateKBComment(
 			long kbCommentId, long classNameId, long classPK, String content,
-			boolean helpful, ServiceContext serviceContext)
-		throws PortalException, SystemException {
+			boolean helpful, int status, ServiceContext serviceContext)
+		throws PortalException {
 
 		// KB comment
 
@@ -202,6 +204,7 @@ public class KBCommentLocalServiceImpl extends KBCommentLocalServiceBaseImpl {
 		kbComment.setClassPK(classPK);
 		kbComment.setContent(content);
 		kbComment.setHelpful(helpful);
+		kbComment.setStatus(status);
 
 		kbCommentPersistence.update(kbComment);
 

@@ -201,6 +201,10 @@
 		<column name="createDate" type="Date" />
 		<column name="modifiedDate" type="Date" />
 
+		<!-- Feedback lifecycle -->
+
+		<column name="status" type="int" />
+
 		<!-- Other fields -->
 
 		<column name="classNameId" type="long" />
