@@ -61,12 +61,13 @@ else {
 		</c:otherwise>
 	</c:choose>
 </li>
-<c:if test="<%= (userNotificationEventsCount > fullViewDelta) && fullView %>">
-		<li class="clearfix message top">
-			<span class="left-nav <%= start == 0 ? "disabled" : "previous" %>"><a href="javascript:;"><liferay-ui:message key="previous" /></a></span>
-			<span><liferay-ui:message arguments="<%= new Object[] {(start + 1), end <= userNotificationEventsCount ? end : userNotificationEventsCount, userNotificationEventsCount} %>" key="showing-x-x-of-x-results" translateArguments="<%= false %>" /></span>
-			<span class="right-nav <%= userNotificationEventsCount <= end ? "disabled" : "next" %>"><a href="javascript:;"><liferay-ui:message key="next" /></a></span>
-		</li>
+
+<c:if test="<%= fullView && (userNotificationEventsCount > fullViewDelta) %>">
+	<li class="clearfix message top">
+		<span class="left-nav <%= start == 0 ? "disabled" : "previous" %>"><a href="javascript:;"><liferay-ui:message key="previous" /></a></span>
+		<span><liferay-ui:message arguments="<%= new Object[] {(start + 1), end <= userNotificationEventsCount ? end : userNotificationEventsCount, userNotificationEventsCount} %>" key="showing-x-x-of-x-results" translateArguments="<%= false %>" /></span>
+		<span class="right-nav <%= userNotificationEventsCount <= end ? "disabled" : "next" %>"><a href="javascript:;"><liferay-ui:message key="next" /></a></span>
+	</li>
 </c:if>
 
 <c:choose>
@@ -75,29 +76,32 @@ else {
 
 			<%
 			List<UserNotificationEvent> actionableUserNotificationEvents = NotificationsUtil.getArchivedUserNotificationEvents(themeDisplay.getUserId(), true, false, start, end);
-
-			if (unreadActionableUserNotificationsCount > 0) {
-				for (UserNotificationEvent userNotificationEvent : actionableUserNotificationEvents) {
 			%>
+
+			<c:if test="<%= unreadActionableUserNotificationsCount > 0 %>">
+
+				<%
+				for (UserNotificationEvent userNotificationEvent : actionableUserNotificationEvents) {
+				%>
 
 					<%@ include file="/notifications/notification_entry.jspf" %>
 
-			<%
+				<%
 				}
-			}
+				%>
 
-			if (unreadActionableUserNotificationsCount <= dockbarViewDelta) {
+			</c:if>
+
+			<c:if test="<%= unreadActionableUserNotificationsCount <= dockbarViewDelta %>">
+
+				<%
 				List<UserNotificationEvent> nonActionableUserNotificationEvents = NotificationsUtil.getArchivedUserNotificationEvents(themeDisplay.getUserId(), false, false, start, (end - unreadActionableUserNotificationsCount));
+				%>
 
-				if (!nonActionableUserNotificationEvents.isEmpty()) {
-					if (unreadActionableUserNotificationsCount > 0) {
-			%>
-
-					<hr class="seperator">
-
-					<%
-					}
-					%>
+				<c:if test="<%= !nonActionableUserNotificationEvents.isEmpty() %>">
+					<c:if test="<%= unreadActionableUserNotificationsCount > 0 %>">
+						<hr class="separator">
+					</c:if>
 
 					<div class="non-actionable-user-notifications-list">
 
@@ -113,11 +117,10 @@ else {
 						%>
 
 					</div>
+				</c:if>
+			</c:if>
 
 			<%
-				}
-			}
-
 			long notificationsPlid = themeDisplay.getPlid();
 
 			if (layout.isTypeControlPanel()) {
@@ -140,7 +143,7 @@ else {
 				<portlet:param name="mvcPath" value="/notifications/view.jsp" />
 			</liferay-portlet:renderURL>
 
-			<a href="<%= viewAllNotifications %>"><liferay-ui:message key="view-all-notifications" arguments="<%= totalUserNotificationEventsCount %>" /></a>
+			<a href="<%= viewAllNotifications %>"><liferay-ui:message arguments="<%= totalUserNotificationEventsCount %>" key="view-all-notifications-x" /></a>
 		</li>
 	</c:when>
 	<c:when test='<%= filter.equals("unread-actionable") %>'>
