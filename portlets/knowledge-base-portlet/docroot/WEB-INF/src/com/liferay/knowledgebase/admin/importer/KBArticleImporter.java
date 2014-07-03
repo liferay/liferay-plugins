@@ -168,7 +168,7 @@ public class KBArticleImporter {
 		return folderNameFileEntryNamesMap;
 	}
 
-	protected void processChapterKBArticleFiles(
+	protected void processSectionKBArticleFiles(
 			long userId, long groupId, long homeKBArticlePK,
 			ZipReader zipReader, Map<String, FileEntry> fileEntriesMap,
 			Map<String, List<String>> folderNameFileEntryNamesMap,
@@ -181,54 +181,54 @@ public class KBArticleImporter {
 			List<String> fileEntryNames = folderNameFileEntryNamesMap.get(
 				folderName);
 
-			String chapterIntroFileEntryName = null;
+			String sectionIntroFileEntryName = null;
 
-			List<String> chapterFileEntryNames = new ArrayList<String>();
+			List<String> sectionFileEntryNames = new ArrayList<String>();
 
 			for (String fileEntryName : fileEntryNames) {
 				if (fileEntryName.endsWith(
 						PortletPropsValues.MARKDOWN_IMPORTER_ARTICLE_INTRO)) {
 
-					chapterIntroFileEntryName = fileEntryName;
+					sectionIntroFileEntryName = fileEntryName;
 				}
 				else {
-					chapterFileEntryNames.add(fileEntryName);
+					sectionFileEntryNames.add(fileEntryName);
 				}
 			}
 
-			if (Validator.isNull(chapterIntroFileEntryName) &&
-				!chapterFileEntryNames.isEmpty()) {
+			if (Validator.isNull(sectionIntroFileEntryName) &&
+				!sectionFileEntryNames.isEmpty()) {
 
 				StringBundler sb = new StringBundler(4);
 
 				sb.append("No file entry ending in ");
 				sb.append(PortletPropsValues.MARKDOWN_IMPORTER_ARTICLE_INTRO);
 				sb.append(" accompanies file entry ");
-				sb.append(chapterFileEntryNames.get(0));
+				sb.append(sectionFileEntryNames.get(0));
 
 				throw new KBArticleImportException(sb.toString());
 			}
 
-			KBArticle chapterIntroKBArticle = addKBArticleMarkdown(
+			KBArticle sectionIntroKBArticle = addKBArticleMarkdown(
 				userId, groupId, homeKBArticlePK,
-				zipReader.getEntryAsString(chapterIntroFileEntryName),
-				chapterIntroFileEntryName, fileEntriesMap, serviceContext);
+				zipReader.getEntryAsString(sectionIntroFileEntryName),
+				sectionIntroFileEntryName, fileEntriesMap, serviceContext);
 
-			for (String chapterFileEntryName : chapterFileEntryNames) {
-				String chapterMarkdown = zipReader.getEntryAsString(
-					chapterFileEntryName);
+			for (String sectionFileEntryName : sectionFileEntryNames) {
+				String sectionMarkdown = zipReader.getEntryAsString(
+					sectionFileEntryName);
 
-				if (Validator.isNull(chapterMarkdown)) {
+				if (Validator.isNull(sectionMarkdown)) {
 					if (_log.isWarnEnabled()) {
 						_log.warn(
 							"Missing Markdown in file entry " +
-								chapterFileEntryName);
+								sectionFileEntryName);
 					}
 				}
 
 				addKBArticleMarkdown(
-					userId, groupId, chapterIntroKBArticle.getResourcePrimKey(),
-					chapterMarkdown, chapterFileEntryName, fileEntriesMap,
+					userId, groupId, sectionIntroKBArticle.getResourcePrimKey(),
+					sectionMarkdown, sectionFileEntryName, fileEntriesMap,
 					serviceContext);
 			}
 		}
@@ -248,7 +248,7 @@ public class KBArticleImporter {
 			PortletPropsValues.MARKDOWN_IMPORTER_ARTICLE_HOME, fileEntriesMap,
 			serviceContext);
 
-		processChapterKBArticleFiles(
+		processSectionKBArticleFiles(
 			userId, groupId, homeKBArticle.getResourcePrimKey(), zipReader,
 			fileEntriesMap, getFolderNameFileEntryNamesMap(zipReader),
 			serviceContext);
