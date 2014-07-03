@@ -511,12 +511,6 @@ public class KBArticleLocalServiceUtil {
 				   .getKBArticlesCount(groupId, parentResourcePrimKey, status);
 	}
 
-	public static com.liferay.knowledgebase.model.KBArticle[] getPreviousAndNextKBArticles(
-		long kbArticleId)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().getPreviousAndNextKBArticles(kbArticleId);
-	}
-
 	public static java.util.List<com.liferay.knowledgebase.model.KBArticle> getKBArticleVersions(
 		long resourcePrimKey, int status, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
@@ -540,6 +534,12 @@ public class KBArticleLocalServiceUtil {
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService()
 				   .getLatestKBArticleByUrlTitle(groupId, urlTitle, status);
+	}
+
+	public static com.liferay.knowledgebase.model.KBArticle[] getPreviousAndNextKBArticles(
+		long kbArticleId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().getPreviousAndNextKBArticles(kbArticleId);
 	}
 
 	public static java.util.List<com.liferay.knowledgebase.model.KBArticle> getSectionsKBArticles(

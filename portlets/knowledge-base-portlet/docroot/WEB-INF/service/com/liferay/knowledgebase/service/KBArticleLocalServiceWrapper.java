@@ -550,13 +550,6 @@ public class KBArticleLocalServiceWrapper implements KBArticleLocalService,
 	}
 
 	@Override
-	public com.liferay.knowledgebase.model.KBArticle[] getPreviousAndNextKBArticles(
-		long kbArticleId)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _kbArticleLocalService.getPreviousAndNextKBArticles(kbArticleId);
-	}
-
-	@Override
 	public java.util.List<com.liferay.knowledgebase.model.KBArticle> getKBArticleVersions(
 		long resourcePrimKey, int status, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
@@ -583,6 +576,13 @@ public class KBArticleLocalServiceWrapper implements KBArticleLocalService,
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _kbArticleLocalService.getLatestKBArticleByUrlTitle(groupId,
 			urlTitle, status);
+	}
+
+	@Override
+	public com.liferay.knowledgebase.model.KBArticle[] getPreviousAndNextKBArticles(
+		long kbArticleId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _kbArticleLocalService.getPreviousAndNextKBArticles(kbArticleId);
 	}
 
 	@Override
