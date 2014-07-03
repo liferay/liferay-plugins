@@ -92,7 +92,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -663,27 +662,6 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 	}
 
 	@Override
-	public KBArticle[] getPreviousAndNextKBArticles(long kbArticleId)
-		throws PortalException {
-
-		KBArticle kbArticle = kbArticlePersistence.findByPrimaryKey(
-			kbArticleId);
-
-		KBArticle[] previousAndNextKBArticles =
-			kbArticlePersistence.findByG_P_L_PrevAndNext(
-				kbArticleId, kbArticle.getGroupId(),
-				kbArticle.getParentResourcePrimKey(), true,
-				new KBArticlePriorityComparator(true));
-
-		KBArticle previousKBArticle = getPreviousKBArticle(
-			kbArticle, previousAndNextKBArticles);
-		KBArticle nextKBArticle = getNextKBArticle(
-			kbArticle, previousAndNextKBArticles);
-
-		return new KBArticle[] {previousKBArticle, kbArticle, nextKBArticle};
-	}
-
-	@Override
 	public List<KBArticle> getKBArticleVersions(
 		long resourcePrimKey, int status, int start, int end,
 		OrderByComparator orderByComparator) {
@@ -734,6 +712,27 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		}
 
 		return latestKBArticle;
+	}
+
+	@Override
+	public KBArticle[] getPreviousAndNextKBArticles(long kbArticleId)
+		throws PortalException {
+
+		KBArticle kbArticle = kbArticlePersistence.findByPrimaryKey(
+			kbArticleId);
+
+		KBArticle[] previousAndNextKBArticles =
+			kbArticlePersistence.findByG_P_L_PrevAndNext(
+				kbArticleId, kbArticle.getGroupId(),
+				kbArticle.getParentResourcePrimKey(), true,
+				new KBArticlePriorityComparator(true));
+
+		KBArticle previousKBArticle = getPreviousKBArticle(
+			kbArticle, previousAndNextKBArticles);
+		KBArticle nextKBArticle = getNextKBArticle(
+			kbArticle, previousAndNextKBArticles);
+
+		return new KBArticle[] {previousKBArticle, kbArticle, nextKBArticle};
 	}
 
 	@Override
@@ -1643,8 +1642,8 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			KBArticle lastSiblingChildKBArticle =
 				kbArticlePersistence.fetchByG_P_L_Last(
 					kbArticle.getGroupId(),
-					previousKBArticle.getResourcePrimKey(),
-					true, new KBArticlePriorityComparator(true));
+					previousKBArticle.getResourcePrimKey(), true,
+					new KBArticlePriorityComparator(true));
 
 			if (lastSiblingChildKBArticle != null) {
 				previousKBArticle = lastSiblingChildKBArticle;
