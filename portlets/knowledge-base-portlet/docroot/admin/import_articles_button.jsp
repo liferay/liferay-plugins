@@ -21,4 +21,4 @@
 	<portlet:param name="redirect" value="<%= redirect %>" />
 </portlet:renderURL>
 
-<aui:button href="<%= importURL %>" value="import" />
+<aui:nav-item href="<%= importURL %>" label="import" />
