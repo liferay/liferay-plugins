@@ -48,10 +48,6 @@
 		margin-bottom: 0;
 	}
 
-	.lfr-panel-container {
-		border-width: 0;
-	}
-
 	.taglib-page-iterator {
 		.search-pages .page-links {
 			padding-top: 5px;
@@ -89,7 +85,6 @@
 	}
 
 	.kb-article-child {
-		border: 1px solid #CCC;
 		margin: 15px -7px 0;
 
 		.kb-element-body {
@@ -105,7 +100,6 @@
 
 			a {
 				display: block;
-				font-weight: bold;
 			}
 		}
 
@@ -126,7 +120,6 @@
 			.icon {
 				line-height: inherit;
 				position: absolute;
-				text-decoration: none;
 				top: 0;
 
 				&.icon-circle-arrow-right {
@@ -196,7 +189,6 @@
 			margin: 15px 0 0;
 
 			.kb-info {
-				color: #7D7D7D;
 				padding-left: 5px;
 			}
 
@@ -205,9 +197,6 @@
 				width: 40%;
 
 				.kb-header {
-					border-bottom: 1px solid #CCC;
-					color: #555;
-					font-weight: bold;
 					margin: 0 -7px 0 -27px;
 					padding: 0 7px;
 				}
@@ -218,9 +207,6 @@
 				width: 60%;
 
 				.kb-header {
-					border-bottom: 1px solid #CCC;
-					color: #555;
-					font-weight: bold;
 					margin: 0 0 0 -27px;
 					padding: 0 7px;
 				}
@@ -230,14 +216,12 @@
 				margin: 5px 0 0;
 
 				a {
-					font-weight: bold;
 					margin: 0 0 0 -20px;
 				}
 			}
 		}
 
 		.kb-article-assets {
-			color: #7D7D7D;
 			margin: 10px 0 0;
 		}
 
@@ -253,8 +237,6 @@
 			}
 
 			.kb-all-comments {
-				color: #7D7D7D;
-				font-weight: bold;
 				margin: 0 10px 10px;
 			}
 
@@ -262,34 +244,16 @@
 				margin: 25px, 0, 25px, 5px;
 
 				.kb-feedback-title {
-					font-size: 1.2em;
-					font-weight: bold;
 					padding: 0;
 				}
 			}
 
 			.kb-helpful-inputs {
 				margin: 4px 5px 0;
-
-				label {
-					font-weight: normal;
-				}
 			}
 
 			.kb-helpful-text {
 				margin: 0 10px 0 0;
-			}
-
-			.kb-no {
-				color: red;
-			}
-
-			.kb-question {
-				color: #999;
-			}
-
-			.kb-yes {
-				color: green;
 			}
 		}
 
@@ -303,14 +267,11 @@
 	}
 
 	.kb-entity-header {
-		border-bottom: 1px solid #CCC;
 		margin: 5px 0 5px 0;
 		padding: 0 5px 3px;
 
 		.kb-title {
 			float: left;
-			font-size: 1.2em;
-			font-weight: bold;
 		}
 
 		.kb-tools {
@@ -345,5 +306,93 @@
 	.kb-submit-buttons {
 		margin-top: 0;
 		padding-top: 10px;
+	}
+}
+
+
+/* Skin */
+
+.knowledge-base-portlet {
+	.lfr-panel-container {
+		border-width: 0;
+	}
+
+	.kb-article-child {
+		border: 1px solid #CCC;
+
+		.kb-element-header {
+			a {
+				font-weight: bold;
+			}
+		}
+	}
+
+	.kb-article-siblings {
+		.kb-article-next, .kb-article-prev {
+			.icon {
+				text-decoration: none;
+			}
+		}
+	}
+
+	.kb-entity-body {
+		.kb-article-asset-entries {
+			.kb-info {
+				color: #7D7D7D;
+			}
+
+			.kb-most-popular-column .kb-header {
+				border-bottom: 1px solid #CCC;
+				color: #555;
+				font-weight: bold;
+			}
+
+			.kb-title {
+				a {
+					font-weight: bold;
+				}
+			}
+		}
+
+		.kb-article-assets {
+			color: #7D7D7D;
+		}
+
+		.kb-article-comments, .kb-template-comments {
+			.kb-all-comments {
+				color: #7D7D7D;
+				font-weight: bold;
+			}
+
+			.kb-helpful-container .kb-feedback-title {
+				font-size: 1.2em;
+				font-weight: bold;
+			}
+
+			.kb-helpful-inputs label {
+				font-weight: normal;
+			}
+
+			.kb-no {
+				color: red;
+			}
+
+			.kb-question {
+				color: #999;
+			}
+
+			.kb-yes {
+				color: green;
+			}
+		}
+	}
+
+	.kb-entity-header {
+		border-bottom: 1px solid #CCC;
+
+		.kb-title {
+			font-size: 1.2em;
+			font-weight: bold;
+		}
 	}
 }
