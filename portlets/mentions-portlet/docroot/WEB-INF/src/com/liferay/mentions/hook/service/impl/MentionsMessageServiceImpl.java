@@ -17,6 +17,7 @@ package com.liferay.mentions.hook.service.impl;
 import com.liferay.mentions.MentionsNotifier;
 import com.liferay.mentions.util.MentionsUtil;
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.PortalUtil;
@@ -55,8 +56,7 @@ public class MentionsMessageServiceImpl extends MBMessageLocalServiceWrapper {
 		message = super.updateStatus(
 			userId, messageId, status, serviceContext, workflowContext);
 
-		if (!message.isDiscussion() ||
-			(status != WorkflowConstants.STATUS_APPROVED) ||
+		if ((status != WorkflowConstants.STATUS_APPROVED) ||
 			(oldStatus == WorkflowConstants.STATUS_IN_TRASH) ||
 			(oldStatus == WorkflowConstants.STATUS_APPROVED)) {
 
@@ -67,6 +67,13 @@ public class MentionsMessageServiceImpl extends MBMessageLocalServiceWrapper {
 
 		if (!MentionsUtil.isMentionsEnabled(siteGroupId)) {
 			return message;
+		}
+
+		String contentURL = (String)serviceContext.getAttribute("contentURL");
+
+		if (Validator.isNull(contentURL)) {
+			serviceContext.setAttribute(
+				"contentURL", workflowContext.get("url"));
 		}
 
 		MentionsNotifier mentionsNotifier = new MentionsNotifier();

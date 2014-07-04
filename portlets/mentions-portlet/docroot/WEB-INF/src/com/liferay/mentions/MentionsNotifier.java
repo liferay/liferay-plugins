@@ -130,7 +130,7 @@ public class MentionsNotifier {
 		Set<String> mentionedUsersScreenNames = new HashSet<String>();
 
 		while (matcher.find()) {
-			String mentionedUserScreenName = matcher.group(1);
+			String mentionedUserScreenName = matcher.group(2);
 
 			List<User> users = MentionsUserFinderUtil.getUsers(
 				user.getCompanyId(), userId, mentionedUserScreenName,
@@ -150,6 +150,6 @@ public class MentionsNotifier {
 	}
 
 	private static Pattern _pattern = Pattern.compile(
-		"(?:\\s|^)@([^@\\s]+)", Pattern.CASE_INSENSITIVE);
+		"(?:\\s|^|\\]|>)(@([^(?:@|>|\\[|\\s)]+))", Pattern.CASE_INSENSITIVE);
 
 }

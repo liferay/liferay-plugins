@@ -41,7 +41,7 @@ public class MentionsUserNotificationHandler
 		MBMessage mbMessage = MBMessageLocalServiceUtil.fetchMBMessage(
 			jsonObject.getLong("classPK"));
 
-		if (mbMessage != null) {
+		if ((mbMessage != null) && mbMessage.isDiscussion()) {
 			return getAssetRenderer(
 				mbMessage.getClassName(), mbMessage.getClassPK());
 		}

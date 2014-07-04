@@ -18,7 +18,7 @@
 
 <%@ include file="/html/js/editor/ckeditor.portal.jsp" %>
 
-<c:if test="<%= portletId.equals(PortletKeys.BLOGS) || portletId.equals(PortletKeys.BLOGS_ADMIN) %>">
+<c:if test="<%= portletId.equals(PortletKeys.BLOGS) || portletId.equals(PortletKeys.BLOGS_ADMIN) || portletId.equals(PortletKeys.MESSAGE_BOARDS) || portletId.equals(PortletKeys.MESSAGE_BOARDS_ADMIN) %>">
 	<liferay-portlet:resourceURL portletName="1_WAR_mentionsportlet" var="autoCompleteUserURL" />
 
 	<aui:script>
