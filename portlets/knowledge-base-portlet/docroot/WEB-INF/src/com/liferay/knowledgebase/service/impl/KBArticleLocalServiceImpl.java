@@ -736,7 +736,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 
 	@Override
 	public KBArticle[] getPreviousAndNextKBArticles(long kbArticleId)
-		throws PortalException {
+		throws PortalException, SystemException {
 
 		KBArticle kbArticle = kbArticlePersistence.findByPrimaryKey(
 			kbArticleId);
@@ -1621,7 +1621,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 
 	protected KBArticle getNextAncestorKBArticle(
 			long kbArticleId, KBArticle[] previousAndNextKBArticles)
-		throws PortalException {
+		throws PortalException, SystemException {
 
 		KBArticle kbArticle = kbArticlePersistence.findByPrimaryKey(
 			kbArticleId);
@@ -1650,7 +1650,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 
 	protected KBArticle getNextKBArticle(
 			KBArticle kbArticle, KBArticle[] previousAndNextKBArticles)
-		throws PortalException {
+		throws PortalException, SystemException {
 
 		KBArticle firstChildKBArticle = kbArticlePersistence.fetchByG_P_L_First(
 			kbArticle.getGroupId(), kbArticle.getResourcePrimKey(), true,
@@ -1666,7 +1666,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 
 	protected KBArticle getPreviousKBArticle(
 			KBArticle kbArticle, KBArticle[] previousAndNextKBArticles)
-		throws PortalException {
+		throws PortalException, SystemException {
 
 		KBArticle previousKBArticle = previousAndNextKBArticles[0];
 
