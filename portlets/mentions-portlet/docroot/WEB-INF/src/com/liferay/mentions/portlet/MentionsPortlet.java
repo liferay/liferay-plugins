@@ -34,11 +34,8 @@ import com.liferay.portlet.social.util.SocialInteractionsConfiguration;
 import com.liferay.portlet.social.util.SocialInteractionsConfigurationUtil;
 import com.liferay.util.bridges.mvc.MVCPortlet;
 
-import java.io.IOException;
-
 import java.util.List;
 
-import javax.portlet.PortletException;
 import javax.portlet.ResourceRequest;
 import javax.portlet.ResourceResponse;
 
@@ -53,8 +50,7 @@ public class MentionsPortlet extends MVCPortlet {
 
 	@Override
 	public void serveResource(
-			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
-		throws IOException, PortletException {
+		ResourceRequest resourceRequest, ResourceResponse resourceResponse) {
 
 		try {
 			ThemeDisplay themeDisplay =

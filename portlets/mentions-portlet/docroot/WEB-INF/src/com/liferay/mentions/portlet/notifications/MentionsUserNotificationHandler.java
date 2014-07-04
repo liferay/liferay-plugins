@@ -52,6 +52,7 @@ public class MentionsUserNotificationHandler
 		}
 	}
 
+	@Override
 	protected String getTitle(
 		JSONObject jsonObject, AssetRenderer assetRenderer,
 		ServiceContext serviceContext) {
