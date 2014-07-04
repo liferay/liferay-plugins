@@ -14,10 +14,6 @@
  */
 --%>
 
-<%@ page import="com.liferay.portal.util.PortletKeys" %>
-
-<%@ taglib uri="http://liferay.com/tld/portlet" prefix="liferay-portlet" %>
-
 <%@ include file="/html/js/editor/ckeditor/ckconfig.portal.jsp" %>
 
 <%
