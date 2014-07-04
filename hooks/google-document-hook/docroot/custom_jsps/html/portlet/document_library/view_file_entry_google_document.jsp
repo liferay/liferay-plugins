@@ -765,7 +765,7 @@ request.setAttribute("view_file_entry.jsp-fileEntry", fileEntry);
 							Liferay.Util.openWindow(
 								{
 									title: '<%= UnicodeLanguageUtil.get(pageContext, "permissions") %>',
-									uri: '<%= permissionsURL.toString() %>',
+									uri: '<%= permissionsURL.toString() %>'
 								}
 							);
 						}
