@@ -174,17 +174,17 @@ public class KBArticleImporter {
 			ServiceContext serviceContext)
 		throws KBArticleImportException {
 
-		String homeMarkdown = zipReader.getEntryAsString(
-			PortletPropsValues.MARKDOWN_IMPORTER_ARTICLE_HOME);
-
 		long parentResourcePrimKey =
 			KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY;
 
-		if (Validator.isNotNull(homeMarkdown)) {
+		String markdown = zipReader.getEntryAsString(
+			PortletPropsValues.MARKDOWN_IMPORTER_ARTICLE_HOME);
+
+		if (Validator.isNotNull(markdown)) {
 			KBArticle parentKBArticle = addKBArticleMarkdown(
 				userId, groupId,
-				KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY,
-				homeMarkdown, PortletPropsValues.MARKDOWN_IMPORTER_ARTICLE_HOME,
+				KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY, markdown,
+				PortletPropsValues.MARKDOWN_IMPORTER_ARTICLE_HOME,
 				fileEntriesMap, serviceContext);
 
 			parentResourcePrimKey = parentKBArticle.getResourcePrimKey();
