@@ -2207,7 +2207,8 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 	@Override
 	public com.liferay.knowledgebase.model.KBArticle[] getPreviousAndNextKBArticles(
 		long kbArticleId)
-		throws com.liferay.portal.kernel.exception.PortalException {
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
@@ -2219,6 +2220,10 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
 
 			if (t instanceof RuntimeException) {

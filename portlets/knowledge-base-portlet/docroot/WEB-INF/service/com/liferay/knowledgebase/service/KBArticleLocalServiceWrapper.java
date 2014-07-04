@@ -626,7 +626,8 @@ public class KBArticleLocalServiceWrapper implements KBArticleLocalService,
 	@Override
 	public com.liferay.knowledgebase.model.KBArticle[] getPreviousAndNextKBArticles(
 		long kbArticleId)
-		throws com.liferay.portal.kernel.exception.PortalException {
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
 		return _kbArticleLocalService.getPreviousAndNextKBArticles(kbArticleId);
 	}
 
