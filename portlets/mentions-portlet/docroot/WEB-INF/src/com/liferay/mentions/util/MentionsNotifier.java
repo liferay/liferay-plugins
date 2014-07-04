@@ -12,12 +12,8 @@
  * details.
  */
 
-package com.liferay.mentions;
+package com.liferay.mentions.util;
 
-import com.liferay.mentions.util.MentionsConstants;
-import com.liferay.mentions.util.MentionsUserFinderUtil;
-import com.liferay.mentions.util.PortletKeys;
-import com.liferay.mentions.util.PortletPropsValues;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.PrefsPropsUtil;

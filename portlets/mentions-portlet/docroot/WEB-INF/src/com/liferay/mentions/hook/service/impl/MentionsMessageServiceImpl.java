@@ -14,7 +14,7 @@
 
 package com.liferay.mentions.hook.service.impl;
 
-import com.liferay.mentions.MentionsNotifier;
+import com.liferay.mentions.util.MentionsNotifier;
 import com.liferay.mentions.util.MentionsUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.util.Validator;
