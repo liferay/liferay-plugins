@@ -57,8 +57,8 @@ public class MentionsBlogsEntryServiceImpl
 			userId, entryId, status, serviceContext, workflowContext);
 
 		if ((status != WorkflowConstants.STATUS_APPROVED) ||
-			(oldStatus == WorkflowConstants.STATUS_IN_TRASH) ||
-			(oldStatus == WorkflowConstants.STATUS_APPROVED)) {
+			(oldStatus == WorkflowConstants.STATUS_APPROVED) ||
+			(oldStatus == WorkflowConstants.STATUS_IN_TRASH)) {
 
 			return entry;
 		}
