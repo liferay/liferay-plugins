@@ -69,14 +69,14 @@ public class MentionsMessageServiceImpl extends MBMessageLocalServiceWrapper {
 			return message;
 		}
 
+		MentionsNotifier mentionsNotifier = new MentionsNotifier();
+
 		String contentURL = (String)serviceContext.getAttribute("contentURL");
 
 		if (Validator.isNull(contentURL)) {
 			serviceContext.setAttribute(
 				"contentURL", workflowContext.get("url"));
 		}
-
-		MentionsNotifier mentionsNotifier = new MentionsNotifier();
 
 		mentionsNotifier.notify(
 			message.getUserId(), message.getGroupId(), message.getBody(),

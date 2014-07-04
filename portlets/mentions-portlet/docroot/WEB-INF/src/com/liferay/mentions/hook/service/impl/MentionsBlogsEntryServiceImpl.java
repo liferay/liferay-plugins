@@ -69,14 +69,14 @@ public class MentionsBlogsEntryServiceImpl
 			return entry;
 		}
 
+		MentionsNotifier mentionsNotifier = new MentionsNotifier();
+
 		String contentURL = (String)serviceContext.getAttribute("contentURL");
 
 		if (Validator.isNull(contentURL)) {
 			serviceContext.setAttribute(
 				"contentURL", workflowContext.get("url"));
 		}
-
-		MentionsNotifier mentionsNotifier = new MentionsNotifier();
 
 		mentionsNotifier.notify(
 			entry.getUserId(), entry.getGroupId(), entry.getContent(),
