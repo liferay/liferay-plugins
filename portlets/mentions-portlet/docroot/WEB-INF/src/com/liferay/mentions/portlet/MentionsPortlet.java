@@ -118,6 +118,7 @@ public class MentionsPortlet extends MVCPortlet {
 
 			jsonObject.put("fullName", user.getFullName());
 			jsonObject.put("portraitURL", user.getPortraitURL(themeDisplay));
+			jsonObject.put("profileURL", user.getDisplayURL(themeDisplay));
 			jsonObject.put("screenName", user.getScreenName());
 
 			jsonArray.put(jsonObject);
