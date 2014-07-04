@@ -177,30 +177,26 @@ public class KBArticleImporter {
 		String homeMarkdown = zipReader.getEntryAsString(
 			PortletPropsValues.MARKDOWN_IMPORTER_ARTICLE_HOME);
 
-		KBArticle parentKBArticle = null;
+		long parentResourcePrimKey =
+			KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY;
 
 		if (Validator.isNotNull(homeMarkdown)) {
-
-			parentKBArticle = addKBArticleMarkdown(
-				userId, groupId, KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY,
+			KBArticle parentKBArticle = addKBArticleMarkdown(
+				userId, groupId,
+				KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY,
 				homeMarkdown, PortletPropsValues.MARKDOWN_IMPORTER_ARTICLE_HOME,
 				fileEntriesMap, serviceContext);
-		}
 
-		long sectionParentPK = KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY;
-
-		if (parentKBArticle != null) {
-
-			sectionParentPK = parentKBArticle.getResourcePrimKey();
+			parentResourcePrimKey = parentKBArticle.getResourcePrimKey();
 		}
 
 		processSectionKBArticleFiles(
-			userId, groupId, sectionParentPK, zipReader, fileEntriesMap,
+			userId, groupId, parentResourcePrimKey, zipReader, fileEntriesMap,
 			getFolderNameFileEntryNamesMap(zipReader), serviceContext);
 	}
 
 	protected void processSectionKBArticleFiles(
-			long userId, long groupId, long parentKBArticlePK,
+			long userId, long groupId, long parentResourcePrimaryKey,
 			ZipReader zipReader, Map<String, FileEntry> fileEntriesMap,
 			Map<String, List<String>> folderNameFileEntryNamesMap,
 			ServiceContext serviceContext)
@@ -241,7 +237,7 @@ public class KBArticleImporter {
 			}
 
 			KBArticle sectionIntroKBArticle = addKBArticleMarkdown(
-				userId, groupId, parentKBArticlePK,
+				userId, groupId, parentResourcePrimaryKey,
 				zipReader.getEntryAsString(sectionIntroFileEntryName),
 				sectionIntroFileEntryName, fileEntriesMap, serviceContext);
 
