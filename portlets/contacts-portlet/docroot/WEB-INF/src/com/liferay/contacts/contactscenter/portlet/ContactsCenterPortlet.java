@@ -791,8 +791,12 @@ public class ContactsCenterPortlet extends MVCPortlet {
 			Layout layout = themeDisplay.getLayout();
 
 			if (group.isUser() && layout.isPublicLayout()) {
-				params.put("socialRelationType", new Long[] {group.getClassPK(),
-					(long)SocialRelationConstants.TYPE_BI_CONNECTION});
+				params.put(
+					"socialRelationType",
+					new Long[] {
+						group.getClassPK(),
+						(long)SocialRelationConstants.TYPE_BI_CONNECTION
+					});
 			}
 			else if (filterBy.startsWith(ContactsConstants.FILTER_BY_TYPE)) {
 				params.put(
