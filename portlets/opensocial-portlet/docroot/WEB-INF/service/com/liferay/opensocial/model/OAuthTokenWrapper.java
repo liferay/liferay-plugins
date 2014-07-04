@@ -154,224 +154,14 @@ public class OAuthTokenWrapper implements OAuthToken, ModelWrapper<OAuthToken> {
 		}
 	}
 
-	/**
-	* Returns the primary key of this o auth token.
-	*
-	* @return the primary key of this o auth token
-	*/
 	@Override
-	public long getPrimaryKey() {
-		return _oAuthToken.getPrimaryKey();
+	public java.lang.Object clone() {
+		return new OAuthTokenWrapper((OAuthToken)_oAuthToken.clone());
 	}
 
-	/**
-	* Sets the primary key of this o auth token.
-	*
-	* @param primaryKey the primary key of this o auth token
-	*/
 	@Override
-	public void setPrimaryKey(long primaryKey) {
-		_oAuthToken.setPrimaryKey(primaryKey);
-	}
-
-	/**
-	* Returns the o auth token ID of this o auth token.
-	*
-	* @return the o auth token ID of this o auth token
-	*/
-	@Override
-	public long getOAuthTokenId() {
-		return _oAuthToken.getOAuthTokenId();
-	}
-
-	/**
-	* Sets the o auth token ID of this o auth token.
-	*
-	* @param oAuthTokenId the o auth token ID of this o auth token
-	*/
-	@Override
-	public void setOAuthTokenId(long oAuthTokenId) {
-		_oAuthToken.setOAuthTokenId(oAuthTokenId);
-	}
-
-	/**
-	* Returns the company ID of this o auth token.
-	*
-	* @return the company ID of this o auth token
-	*/
-	@Override
-	public long getCompanyId() {
-		return _oAuthToken.getCompanyId();
-	}
-
-	/**
-	* Sets the company ID of this o auth token.
-	*
-	* @param companyId the company ID of this o auth token
-	*/
-	@Override
-	public void setCompanyId(long companyId) {
-		_oAuthToken.setCompanyId(companyId);
-	}
-
-	/**
-	* Returns the user ID of this o auth token.
-	*
-	* @return the user ID of this o auth token
-	*/
-	@Override
-	public long getUserId() {
-		return _oAuthToken.getUserId();
-	}
-
-	/**
-	* Sets the user ID of this o auth token.
-	*
-	* @param userId the user ID of this o auth token
-	*/
-	@Override
-	public void setUserId(long userId) {
-		_oAuthToken.setUserId(userId);
-	}
-
-	/**
-	* Returns the user uuid of this o auth token.
-	*
-	* @return the user uuid of this o auth token
-	*/
-	@Override
-	public java.lang.String getUserUuid() {
-		return _oAuthToken.getUserUuid();
-	}
-
-	/**
-	* Sets the user uuid of this o auth token.
-	*
-	* @param userUuid the user uuid of this o auth token
-	*/
-	@Override
-	public void setUserUuid(java.lang.String userUuid) {
-		_oAuthToken.setUserUuid(userUuid);
-	}
-
-	/**
-	* Returns the user name of this o auth token.
-	*
-	* @return the user name of this o auth token
-	*/
-	@Override
-	public java.lang.String getUserName() {
-		return _oAuthToken.getUserName();
-	}
-
-	/**
-	* Sets the user name of this o auth token.
-	*
-	* @param userName the user name of this o auth token
-	*/
-	@Override
-	public void setUserName(java.lang.String userName) {
-		_oAuthToken.setUserName(userName);
-	}
-
-	/**
-	* Returns the create date of this o auth token.
-	*
-	* @return the create date of this o auth token
-	*/
-	@Override
-	public java.util.Date getCreateDate() {
-		return _oAuthToken.getCreateDate();
-	}
-
-	/**
-	* Sets the create date of this o auth token.
-	*
-	* @param createDate the create date of this o auth token
-	*/
-	@Override
-	public void setCreateDate(java.util.Date createDate) {
-		_oAuthToken.setCreateDate(createDate);
-	}
-
-	/**
-	* Returns the modified date of this o auth token.
-	*
-	* @return the modified date of this o auth token
-	*/
-	@Override
-	public java.util.Date getModifiedDate() {
-		return _oAuthToken.getModifiedDate();
-	}
-
-	/**
-	* Sets the modified date of this o auth token.
-	*
-	* @param modifiedDate the modified date of this o auth token
-	*/
-	@Override
-	public void setModifiedDate(java.util.Date modifiedDate) {
-		_oAuthToken.setModifiedDate(modifiedDate);
-	}
-
-	/**
-	* Returns the gadget key of this o auth token.
-	*
-	* @return the gadget key of this o auth token
-	*/
-	@Override
-	public java.lang.String getGadgetKey() {
-		return _oAuthToken.getGadgetKey();
-	}
-
-	/**
-	* Sets the gadget key of this o auth token.
-	*
-	* @param gadgetKey the gadget key of this o auth token
-	*/
-	@Override
-	public void setGadgetKey(java.lang.String gadgetKey) {
-		_oAuthToken.setGadgetKey(gadgetKey);
-	}
-
-	/**
-	* Returns the service name of this o auth token.
-	*
-	* @return the service name of this o auth token
-	*/
-	@Override
-	public java.lang.String getServiceName() {
-		return _oAuthToken.getServiceName();
-	}
-
-	/**
-	* Sets the service name of this o auth token.
-	*
-	* @param serviceName the service name of this o auth token
-	*/
-	@Override
-	public void setServiceName(java.lang.String serviceName) {
-		_oAuthToken.setServiceName(serviceName);
-	}
-
-	/**
-	* Returns the module ID of this o auth token.
-	*
-	* @return the module ID of this o auth token
-	*/
-	@Override
-	public long getModuleId() {
-		return _oAuthToken.getModuleId();
-	}
-
-	/**
-	* Sets the module ID of this o auth token.
-	*
-	* @param moduleId the module ID of this o auth token
-	*/
-	@Override
-	public void setModuleId(long moduleId) {
-		_oAuthToken.setModuleId(moduleId);
+	public int compareTo(com.liferay.opensocial.model.OAuthToken oAuthToken) {
+		return _oAuthToken.compareTo(oAuthToken);
 	}
 
 	/**
@@ -385,73 +175,28 @@ public class OAuthTokenWrapper implements OAuthToken, ModelWrapper<OAuthToken> {
 	}
 
 	/**
-	* Sets the access token of this o auth token.
+	* Returns the company ID of this o auth token.
 	*
-	* @param accessToken the access token of this o auth token
+	* @return the company ID of this o auth token
 	*/
 	@Override
-	public void setAccessToken(java.lang.String accessToken) {
-		_oAuthToken.setAccessToken(accessToken);
+	public long getCompanyId() {
+		return _oAuthToken.getCompanyId();
 	}
 
 	/**
-	* Returns the token name of this o auth token.
+	* Returns the create date of this o auth token.
 	*
-	* @return the token name of this o auth token
+	* @return the create date of this o auth token
 	*/
 	@Override
-	public java.lang.String getTokenName() {
-		return _oAuthToken.getTokenName();
+	public java.util.Date getCreateDate() {
+		return _oAuthToken.getCreateDate();
 	}
 
-	/**
-	* Sets the token name of this o auth token.
-	*
-	* @param tokenName the token name of this o auth token
-	*/
 	@Override
-	public void setTokenName(java.lang.String tokenName) {
-		_oAuthToken.setTokenName(tokenName);
-	}
-
-	/**
-	* Returns the token secret of this o auth token.
-	*
-	* @return the token secret of this o auth token
-	*/
-	@Override
-	public java.lang.String getTokenSecret() {
-		return _oAuthToken.getTokenSecret();
-	}
-
-	/**
-	* Sets the token secret of this o auth token.
-	*
-	* @param tokenSecret the token secret of this o auth token
-	*/
-	@Override
-	public void setTokenSecret(java.lang.String tokenSecret) {
-		_oAuthToken.setTokenSecret(tokenSecret);
-	}
-
-	/**
-	* Returns the session handle of this o auth token.
-	*
-	* @return the session handle of this o auth token
-	*/
-	@Override
-	public java.lang.String getSessionHandle() {
-		return _oAuthToken.getSessionHandle();
-	}
-
-	/**
-	* Sets the session handle of this o auth token.
-	*
-	* @param sessionHandle the session handle of this o auth token
-	*/
-	@Override
-	public void setSessionHandle(java.lang.String sessionHandle) {
-		_oAuthToken.setSessionHandle(sessionHandle);
+	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {
+		return _oAuthToken.getExpandoBridge();
 	}
 
 	/**
@@ -465,23 +210,133 @@ public class OAuthTokenWrapper implements OAuthToken, ModelWrapper<OAuthToken> {
 	}
 
 	/**
-	* Sets the expiration of this o auth token.
+	* Returns the gadget key of this o auth token.
 	*
-	* @param expiration the expiration of this o auth token
+	* @return the gadget key of this o auth token
 	*/
 	@Override
-	public void setExpiration(long expiration) {
-		_oAuthToken.setExpiration(expiration);
+	public java.lang.String getGadgetKey() {
+		return _oAuthToken.getGadgetKey();
+	}
+
+	/**
+	* Returns the modified date of this o auth token.
+	*
+	* @return the modified date of this o auth token
+	*/
+	@Override
+	public java.util.Date getModifiedDate() {
+		return _oAuthToken.getModifiedDate();
+	}
+
+	/**
+	* Returns the module ID of this o auth token.
+	*
+	* @return the module ID of this o auth token
+	*/
+	@Override
+	public long getModuleId() {
+		return _oAuthToken.getModuleId();
+	}
+
+	/**
+	* Returns the o auth token ID of this o auth token.
+	*
+	* @return the o auth token ID of this o auth token
+	*/
+	@Override
+	public long getOAuthTokenId() {
+		return _oAuthToken.getOAuthTokenId();
+	}
+
+	/**
+	* Returns the primary key of this o auth token.
+	*
+	* @return the primary key of this o auth token
+	*/
+	@Override
+	public long getPrimaryKey() {
+		return _oAuthToken.getPrimaryKey();
 	}
 
 	@Override
-	public boolean isNew() {
-		return _oAuthToken.isNew();
+	public java.io.Serializable getPrimaryKeyObj() {
+		return _oAuthToken.getPrimaryKeyObj();
+	}
+
+	/**
+	* Returns the service name of this o auth token.
+	*
+	* @return the service name of this o auth token
+	*/
+	@Override
+	public java.lang.String getServiceName() {
+		return _oAuthToken.getServiceName();
+	}
+
+	/**
+	* Returns the session handle of this o auth token.
+	*
+	* @return the session handle of this o auth token
+	*/
+	@Override
+	public java.lang.String getSessionHandle() {
+		return _oAuthToken.getSessionHandle();
+	}
+
+	/**
+	* Returns the token name of this o auth token.
+	*
+	* @return the token name of this o auth token
+	*/
+	@Override
+	public java.lang.String getTokenName() {
+		return _oAuthToken.getTokenName();
+	}
+
+	/**
+	* Returns the token secret of this o auth token.
+	*
+	* @return the token secret of this o auth token
+	*/
+	@Override
+	public java.lang.String getTokenSecret() {
+		return _oAuthToken.getTokenSecret();
+	}
+
+	/**
+	* Returns the user ID of this o auth token.
+	*
+	* @return the user ID of this o auth token
+	*/
+	@Override
+	public long getUserId() {
+		return _oAuthToken.getUserId();
+	}
+
+	/**
+	* Returns the user name of this o auth token.
+	*
+	* @return the user name of this o auth token
+	*/
+	@Override
+	public java.lang.String getUserName() {
+		return _oAuthToken.getUserName();
+	}
+
+	/**
+	* Returns the user uuid of this o auth token.
+	*
+	* @return the user uuid of this o auth token
+	*/
+	@Override
+	public java.lang.String getUserUuid() {
+		return _oAuthToken.getUserUuid();
 	}
 
 	@Override
-	public void setNew(boolean n) {
-		_oAuthToken.setNew(n);
+	public int hashCode() {
+		return _oAuthToken.hashCode();
 	}
 
 	@Override
@@ -490,28 +345,53 @@ public class OAuthTokenWrapper implements OAuthToken, ModelWrapper<OAuthToken> {
 	}
 
 	@Override
-	public void setCachedModel(boolean cachedModel) {
-		_oAuthToken.setCachedModel(cachedModel);
-	}
-
-	@Override
 	public boolean isEscapedModel() {
 		return _oAuthToken.isEscapedModel();
 	}
 
 	@Override
-	public java.io.Serializable getPrimaryKeyObj() {
-		return _oAuthToken.getPrimaryKeyObj();
+	public boolean isNew() {
+		return _oAuthToken.isNew();
 	}
 
 	@Override
-	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
-		_oAuthToken.setPrimaryKeyObj(primaryKeyObj);
+	public void persist() {
+		_oAuthToken.persist();
+	}
+
+	/**
+	* Sets the access token of this o auth token.
+	*
+	* @param accessToken the access token of this o auth token
+	*/
+	@Override
+	public void setAccessToken(java.lang.String accessToken) {
+		_oAuthToken.setAccessToken(accessToken);
 	}
 
 	@Override
-	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {
-		return _oAuthToken.getExpandoBridge();
+	public void setCachedModel(boolean cachedModel) {
+		_oAuthToken.setCachedModel(cachedModel);
+	}
+
+	/**
+	* Sets the company ID of this o auth token.
+	*
+	* @param companyId the company ID of this o auth token
+	*/
+	@Override
+	public void setCompanyId(long companyId) {
+		_oAuthToken.setCompanyId(companyId);
+	}
+
+	/**
+	* Sets the create date of this o auth token.
+	*
+	* @param createDate the create date of this o auth token
+	*/
+	@Override
+	public void setCreateDate(java.util.Date createDate) {
+		_oAuthToken.setCreateDate(createDate);
 	}
 
 	@Override
@@ -532,19 +412,144 @@ public class OAuthTokenWrapper implements OAuthToken, ModelWrapper<OAuthToken> {
 		_oAuthToken.setExpandoBridgeAttributes(serviceContext);
 	}
 
+	/**
+	* Sets the expiration of this o auth token.
+	*
+	* @param expiration the expiration of this o auth token
+	*/
 	@Override
-	public java.lang.Object clone() {
-		return new OAuthTokenWrapper((OAuthToken)_oAuthToken.clone());
+	public void setExpiration(long expiration) {
+		_oAuthToken.setExpiration(expiration);
+	}
+
+	/**
+	* Sets the gadget key of this o auth token.
+	*
+	* @param gadgetKey the gadget key of this o auth token
+	*/
+	@Override
+	public void setGadgetKey(java.lang.String gadgetKey) {
+		_oAuthToken.setGadgetKey(gadgetKey);
+	}
+
+	/**
+	* Sets the modified date of this o auth token.
+	*
+	* @param modifiedDate the modified date of this o auth token
+	*/
+	@Override
+	public void setModifiedDate(java.util.Date modifiedDate) {
+		_oAuthToken.setModifiedDate(modifiedDate);
+	}
+
+	/**
+	* Sets the module ID of this o auth token.
+	*
+	* @param moduleId the module ID of this o auth token
+	*/
+	@Override
+	public void setModuleId(long moduleId) {
+		_oAuthToken.setModuleId(moduleId);
 	}
 
 	@Override
-	public int compareTo(com.liferay.opensocial.model.OAuthToken oAuthToken) {
-		return _oAuthToken.compareTo(oAuthToken);
+	public void setNew(boolean n) {
+		_oAuthToken.setNew(n);
+	}
+
+	/**
+	* Sets the o auth token ID of this o auth token.
+	*
+	* @param oAuthTokenId the o auth token ID of this o auth token
+	*/
+	@Override
+	public void setOAuthTokenId(long oAuthTokenId) {
+		_oAuthToken.setOAuthTokenId(oAuthTokenId);
+	}
+
+	/**
+	* Sets the primary key of this o auth token.
+	*
+	* @param primaryKey the primary key of this o auth token
+	*/
+	@Override
+	public void setPrimaryKey(long primaryKey) {
+		_oAuthToken.setPrimaryKey(primaryKey);
 	}
 
 	@Override
-	public int hashCode() {
-		return _oAuthToken.hashCode();
+	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
+		_oAuthToken.setPrimaryKeyObj(primaryKeyObj);
+	}
+
+	/**
+	* Sets the service name of this o auth token.
+	*
+	* @param serviceName the service name of this o auth token
+	*/
+	@Override
+	public void setServiceName(java.lang.String serviceName) {
+		_oAuthToken.setServiceName(serviceName);
+	}
+
+	/**
+	* Sets the session handle of this o auth token.
+	*
+	* @param sessionHandle the session handle of this o auth token
+	*/
+	@Override
+	public void setSessionHandle(java.lang.String sessionHandle) {
+		_oAuthToken.setSessionHandle(sessionHandle);
+	}
+
+	/**
+	* Sets the token name of this o auth token.
+	*
+	* @param tokenName the token name of this o auth token
+	*/
+	@Override
+	public void setTokenName(java.lang.String tokenName) {
+		_oAuthToken.setTokenName(tokenName);
+	}
+
+	/**
+	* Sets the token secret of this o auth token.
+	*
+	* @param tokenSecret the token secret of this o auth token
+	*/
+	@Override
+	public void setTokenSecret(java.lang.String tokenSecret) {
+		_oAuthToken.setTokenSecret(tokenSecret);
+	}
+
+	/**
+	* Sets the user ID of this o auth token.
+	*
+	* @param userId the user ID of this o auth token
+	*/
+	@Override
+	public void setUserId(long userId) {
+		_oAuthToken.setUserId(userId);
+	}
+
+	/**
+	* Sets the user name of this o auth token.
+	*
+	* @param userName the user name of this o auth token
+	*/
+	@Override
+	public void setUserName(java.lang.String userName) {
+		_oAuthToken.setUserName(userName);
+	}
+
+	/**
+	* Sets the user uuid of this o auth token.
+	*
+	* @param userUuid the user uuid of this o auth token
+	*/
+	@Override
+	public void setUserUuid(java.lang.String userUuid) {
+		_oAuthToken.setUserUuid(userUuid);
 	}
 
 	@Override
@@ -558,23 +563,18 @@ public class OAuthTokenWrapper implements OAuthToken, ModelWrapper<OAuthToken> {
 	}
 
 	@Override
-	public com.liferay.opensocial.model.OAuthToken toUnescapedModel() {
-		return new OAuthTokenWrapper(_oAuthToken.toUnescapedModel());
-	}
-
-	@Override
 	public java.lang.String toString() {
 		return _oAuthToken.toString();
 	}
 
 	@Override
-	public java.lang.String toXmlString() {
-		return _oAuthToken.toXmlString();
+	public com.liferay.opensocial.model.OAuthToken toUnescapedModel() {
+		return new OAuthTokenWrapper(_oAuthToken.toUnescapedModel());
 	}
 
 	@Override
-	public void persist() {
-		_oAuthToken.persist();
+	public java.lang.String toXmlString() {
+		return _oAuthToken.toXmlString();
 	}
 
 	@Override

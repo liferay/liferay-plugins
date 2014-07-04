@@ -38,31 +38,6 @@ public class SyncDLObjectServiceUtil {
 	 *
 	 * Never modify this class directly. Add custom service methods to {@link com.liferay.sync.service.impl.SyncDLObjectServiceImpl} and rerun ServiceBuilder to regenerate this class.
 	 */
-
-	/**
-	* Returns the Spring bean ID for this bean.
-	*
-	* @return the Spring bean ID for this bean
-	*/
-	public static java.lang.String getBeanIdentifier() {
-		return getService().getBeanIdentifier();
-	}
-
-	/**
-	* Sets the Spring bean ID for this bean.
-	*
-	* @param beanIdentifier the Spring bean ID for this bean
-	*/
-	public static void setBeanIdentifier(java.lang.String beanIdentifier) {
-		getService().setBeanIdentifier(beanIdentifier);
-	}
-
-	public static java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable {
-		return getService().invokeMethod(name, parameterTypes, arguments);
-	}
-
 	public static com.liferay.sync.model.SyncDLObject addFileEntry(
 		long repositoryId, long folderId, java.lang.String sourceFileName,
 		java.lang.String mimeType, java.lang.String title,
@@ -106,14 +81,6 @@ public class SyncDLObjectServiceUtil {
 	}
 
 	public static com.liferay.sync.model.SyncDLObject checkOutFileEntry(
-		long fileEntryId,
-		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return getService().checkOutFileEntry(fileEntryId, serviceContext);
-	}
-
-	public static com.liferay.sync.model.SyncDLObject checkOutFileEntry(
 		long fileEntryId, java.lang.String owner, long expirationTime,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -121,6 +88,14 @@ public class SyncDLObjectServiceUtil {
 		return getService()
 				   .checkOutFileEntry(fileEntryId, owner, expirationTime,
 			serviceContext);
+	}
+
+	public static com.liferay.sync.model.SyncDLObject checkOutFileEntry(
+		long fileEntryId,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService().checkOutFileEntry(fileEntryId, serviceContext);
 	}
 
 	/**
@@ -132,6 +107,15 @@ public class SyncDLObjectServiceUtil {
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService().getAllSyncDLObjects(repositoryId, folderId);
+	}
+
+	/**
+	* Returns the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
+	*/
+	public static java.lang.String getBeanIdentifier() {
+		return getService().getBeanIdentifier();
 	}
 
 	public static com.liferay.sync.model.SyncDLObject getFileEntrySyncDLObject(
@@ -203,6 +187,12 @@ public class SyncDLObjectServiceUtil {
 		return getService().getUserSitesGroups();
 	}
 
+	public static java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return getService().invokeMethod(name, parameterTypes, arguments);
+	}
+
 	public static com.liferay.sync.model.SyncDLObject moveFileEntry(
 		long fileEntryId, long newFolderId,
 		com.liferay.portal.service.ServiceContext serviceContext)
@@ -261,6 +251,15 @@ public class SyncDLObjectServiceUtil {
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService().restoreFolderFromTrash(folderId);
+	}
+
+	/**
+	* Sets the Spring bean ID for this bean.
+	*
+	* @param beanIdentifier the Spring bean ID for this bean
+	*/
+	public static void setBeanIdentifier(java.lang.String beanIdentifier) {
+		getService().setBeanIdentifier(beanIdentifier);
 	}
 
 	public static com.liferay.sync.model.SyncDLObject updateFileEntry(

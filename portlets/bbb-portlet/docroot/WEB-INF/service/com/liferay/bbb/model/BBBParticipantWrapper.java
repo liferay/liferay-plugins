@@ -141,184 +141,14 @@ public class BBBParticipantWrapper implements BBBParticipant,
 		}
 	}
 
-	/**
-	* Returns the primary key of this b b b participant.
-	*
-	* @return the primary key of this b b b participant
-	*/
 	@Override
-	public long getPrimaryKey() {
-		return _bbbParticipant.getPrimaryKey();
+	public java.lang.Object clone() {
+		return new BBBParticipantWrapper((BBBParticipant)_bbbParticipant.clone());
 	}
 
-	/**
-	* Sets the primary key of this b b b participant.
-	*
-	* @param primaryKey the primary key of this b b b participant
-	*/
 	@Override
-	public void setPrimaryKey(long primaryKey) {
-		_bbbParticipant.setPrimaryKey(primaryKey);
-	}
-
-	/**
-	* Returns the bbb participant ID of this b b b participant.
-	*
-	* @return the bbb participant ID of this b b b participant
-	*/
-	@Override
-	public long getBbbParticipantId() {
-		return _bbbParticipant.getBbbParticipantId();
-	}
-
-	/**
-	* Sets the bbb participant ID of this b b b participant.
-	*
-	* @param bbbParticipantId the bbb participant ID of this b b b participant
-	*/
-	@Override
-	public void setBbbParticipantId(long bbbParticipantId) {
-		_bbbParticipant.setBbbParticipantId(bbbParticipantId);
-	}
-
-	/**
-	* Returns the group ID of this b b b participant.
-	*
-	* @return the group ID of this b b b participant
-	*/
-	@Override
-	public long getGroupId() {
-		return _bbbParticipant.getGroupId();
-	}
-
-	/**
-	* Sets the group ID of this b b b participant.
-	*
-	* @param groupId the group ID of this b b b participant
-	*/
-	@Override
-	public void setGroupId(long groupId) {
-		_bbbParticipant.setGroupId(groupId);
-	}
-
-	/**
-	* Returns the company ID of this b b b participant.
-	*
-	* @return the company ID of this b b b participant
-	*/
-	@Override
-	public long getCompanyId() {
-		return _bbbParticipant.getCompanyId();
-	}
-
-	/**
-	* Sets the company ID of this b b b participant.
-	*
-	* @param companyId the company ID of this b b b participant
-	*/
-	@Override
-	public void setCompanyId(long companyId) {
-		_bbbParticipant.setCompanyId(companyId);
-	}
-
-	/**
-	* Returns the user ID of this b b b participant.
-	*
-	* @return the user ID of this b b b participant
-	*/
-	@Override
-	public long getUserId() {
-		return _bbbParticipant.getUserId();
-	}
-
-	/**
-	* Sets the user ID of this b b b participant.
-	*
-	* @param userId the user ID of this b b b participant
-	*/
-	@Override
-	public void setUserId(long userId) {
-		_bbbParticipant.setUserId(userId);
-	}
-
-	/**
-	* Returns the user uuid of this b b b participant.
-	*
-	* @return the user uuid of this b b b participant
-	*/
-	@Override
-	public java.lang.String getUserUuid() {
-		return _bbbParticipant.getUserUuid();
-	}
-
-	/**
-	* Sets the user uuid of this b b b participant.
-	*
-	* @param userUuid the user uuid of this b b b participant
-	*/
-	@Override
-	public void setUserUuid(java.lang.String userUuid) {
-		_bbbParticipant.setUserUuid(userUuid);
-	}
-
-	/**
-	* Returns the user name of this b b b participant.
-	*
-	* @return the user name of this b b b participant
-	*/
-	@Override
-	public java.lang.String getUserName() {
-		return _bbbParticipant.getUserName();
-	}
-
-	/**
-	* Sets the user name of this b b b participant.
-	*
-	* @param userName the user name of this b b b participant
-	*/
-	@Override
-	public void setUserName(java.lang.String userName) {
-		_bbbParticipant.setUserName(userName);
-	}
-
-	/**
-	* Returns the create date of this b b b participant.
-	*
-	* @return the create date of this b b b participant
-	*/
-	@Override
-	public java.util.Date getCreateDate() {
-		return _bbbParticipant.getCreateDate();
-	}
-
-	/**
-	* Sets the create date of this b b b participant.
-	*
-	* @param createDate the create date of this b b b participant
-	*/
-	@Override
-	public void setCreateDate(java.util.Date createDate) {
-		_bbbParticipant.setCreateDate(createDate);
-	}
-
-	/**
-	* Returns the modified date of this b b b participant.
-	*
-	* @return the modified date of this b b b participant
-	*/
-	@Override
-	public java.util.Date getModifiedDate() {
-		return _bbbParticipant.getModifiedDate();
-	}
-
-	/**
-	* Sets the modified date of this b b b participant.
-	*
-	* @param modifiedDate the modified date of this b b b participant
-	*/
-	@Override
-	public void setModifiedDate(java.util.Date modifiedDate) {
-		_bbbParticipant.setModifiedDate(modifiedDate);
+	public int compareTo(com.liferay.bbb.model.BBBParticipant bbbParticipant) {
+		return _bbbParticipant.compareTo(bbbParticipant);
 	}
 
 	/**
@@ -332,13 +162,68 @@ public class BBBParticipantWrapper implements BBBParticipant,
 	}
 
 	/**
-	* Sets the bbb meeting ID of this b b b participant.
+	* Returns the bbb participant ID of this b b b participant.
 	*
-	* @param bbbMeetingId the bbb meeting ID of this b b b participant
+	* @return the bbb participant ID of this b b b participant
 	*/
 	@Override
-	public void setBbbMeetingId(long bbbMeetingId) {
-		_bbbParticipant.setBbbMeetingId(bbbMeetingId);
+	public long getBbbParticipantId() {
+		return _bbbParticipant.getBbbParticipantId();
+	}
+
+	/**
+	* Returns the company ID of this b b b participant.
+	*
+	* @return the company ID of this b b b participant
+	*/
+	@Override
+	public long getCompanyId() {
+		return _bbbParticipant.getCompanyId();
+	}
+
+	/**
+	* Returns the create date of this b b b participant.
+	*
+	* @return the create date of this b b b participant
+	*/
+	@Override
+	public java.util.Date getCreateDate() {
+		return _bbbParticipant.getCreateDate();
+	}
+
+	/**
+	* Returns the email address of this b b b participant.
+	*
+	* @return the email address of this b b b participant
+	*/
+	@Override
+	public java.lang.String getEmailAddress() {
+		return _bbbParticipant.getEmailAddress();
+	}
+
+	@Override
+	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {
+		return _bbbParticipant.getExpandoBridge();
+	}
+
+	/**
+	* Returns the group ID of this b b b participant.
+	*
+	* @return the group ID of this b b b participant
+	*/
+	@Override
+	public long getGroupId() {
+		return _bbbParticipant.getGroupId();
+	}
+
+	/**
+	* Returns the modified date of this b b b participant.
+	*
+	* @return the modified date of this b b b participant
+	*/
+	@Override
+	public java.util.Date getModifiedDate() {
+		return _bbbParticipant.getModifiedDate();
 	}
 
 	/**
@@ -352,53 +237,18 @@ public class BBBParticipantWrapper implements BBBParticipant,
 	}
 
 	/**
-	* Sets the name of this b b b participant.
+	* Returns the primary key of this b b b participant.
 	*
-	* @param name the name of this b b b participant
+	* @return the primary key of this b b b participant
 	*/
 	@Override
-	public void setName(java.lang.String name) {
-		_bbbParticipant.setName(name);
+	public long getPrimaryKey() {
+		return _bbbParticipant.getPrimaryKey();
 	}
 
-	/**
-	* Returns the email address of this b b b participant.
-	*
-	* @return the email address of this b b b participant
-	*/
 	@Override
-	public java.lang.String getEmailAddress() {
-		return _bbbParticipant.getEmailAddress();
-	}
-
-	/**
-	* Sets the email address of this b b b participant.
-	*
-	* @param emailAddress the email address of this b b b participant
-	*/
-	@Override
-	public void setEmailAddress(java.lang.String emailAddress) {
-		_bbbParticipant.setEmailAddress(emailAddress);
-	}
-
-	/**
-	* Returns the type of this b b b participant.
-	*
-	* @return the type of this b b b participant
-	*/
-	@Override
-	public int getType() {
-		return _bbbParticipant.getType();
-	}
-
-	/**
-	* Sets the type of this b b b participant.
-	*
-	* @param type the type of this b b b participant
-	*/
-	@Override
-	public void setType(int type) {
-		_bbbParticipant.setType(type);
+	public java.io.Serializable getPrimaryKeyObj() {
+		return _bbbParticipant.getPrimaryKeyObj();
 	}
 
 	/**
@@ -412,23 +262,48 @@ public class BBBParticipantWrapper implements BBBParticipant,
 	}
 
 	/**
-	* Sets the status of this b b b participant.
+	* Returns the type of this b b b participant.
 	*
-	* @param status the status of this b b b participant
+	* @return the type of this b b b participant
 	*/
 	@Override
-	public void setStatus(int status) {
-		_bbbParticipant.setStatus(status);
+	public int getType() {
+		return _bbbParticipant.getType();
+	}
+
+	/**
+	* Returns the user ID of this b b b participant.
+	*
+	* @return the user ID of this b b b participant
+	*/
+	@Override
+	public long getUserId() {
+		return _bbbParticipant.getUserId();
+	}
+
+	/**
+	* Returns the user name of this b b b participant.
+	*
+	* @return the user name of this b b b participant
+	*/
+	@Override
+	public java.lang.String getUserName() {
+		return _bbbParticipant.getUserName();
+	}
+
+	/**
+	* Returns the user uuid of this b b b participant.
+	*
+	* @return the user uuid of this b b b participant
+	*/
+	@Override
+	public java.lang.String getUserUuid() {
+		return _bbbParticipant.getUserUuid();
 	}
 
 	@Override
-	public boolean isNew() {
-		return _bbbParticipant.isNew();
-	}
-
-	@Override
-	public void setNew(boolean n) {
-		_bbbParticipant.setNew(n);
+	public int hashCode() {
+		return _bbbParticipant.hashCode();
 	}
 
 	@Override
@@ -437,28 +312,73 @@ public class BBBParticipantWrapper implements BBBParticipant,
 	}
 
 	@Override
-	public void setCachedModel(boolean cachedModel) {
-		_bbbParticipant.setCachedModel(cachedModel);
-	}
-
-	@Override
 	public boolean isEscapedModel() {
 		return _bbbParticipant.isEscapedModel();
 	}
 
 	@Override
-	public java.io.Serializable getPrimaryKeyObj() {
-		return _bbbParticipant.getPrimaryKeyObj();
+	public boolean isNew() {
+		return _bbbParticipant.isNew();
 	}
 
 	@Override
-	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
-		_bbbParticipant.setPrimaryKeyObj(primaryKeyObj);
+	public void persist() {
+		_bbbParticipant.persist();
+	}
+
+	/**
+	* Sets the bbb meeting ID of this b b b participant.
+	*
+	* @param bbbMeetingId the bbb meeting ID of this b b b participant
+	*/
+	@Override
+	public void setBbbMeetingId(long bbbMeetingId) {
+		_bbbParticipant.setBbbMeetingId(bbbMeetingId);
+	}
+
+	/**
+	* Sets the bbb participant ID of this b b b participant.
+	*
+	* @param bbbParticipantId the bbb participant ID of this b b b participant
+	*/
+	@Override
+	public void setBbbParticipantId(long bbbParticipantId) {
+		_bbbParticipant.setBbbParticipantId(bbbParticipantId);
 	}
 
 	@Override
-	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {
-		return _bbbParticipant.getExpandoBridge();
+	public void setCachedModel(boolean cachedModel) {
+		_bbbParticipant.setCachedModel(cachedModel);
+	}
+
+	/**
+	* Sets the company ID of this b b b participant.
+	*
+	* @param companyId the company ID of this b b b participant
+	*/
+	@Override
+	public void setCompanyId(long companyId) {
+		_bbbParticipant.setCompanyId(companyId);
+	}
+
+	/**
+	* Sets the create date of this b b b participant.
+	*
+	* @param createDate the create date of this b b b participant
+	*/
+	@Override
+	public void setCreateDate(java.util.Date createDate) {
+		_bbbParticipant.setCreateDate(createDate);
+	}
+
+	/**
+	* Sets the email address of this b b b participant.
+	*
+	* @param emailAddress the email address of this b b b participant
+	*/
+	@Override
+	public void setEmailAddress(java.lang.String emailAddress) {
+		_bbbParticipant.setEmailAddress(emailAddress);
 	}
 
 	@Override
@@ -479,19 +399,104 @@ public class BBBParticipantWrapper implements BBBParticipant,
 		_bbbParticipant.setExpandoBridgeAttributes(serviceContext);
 	}
 
+	/**
+	* Sets the group ID of this b b b participant.
+	*
+	* @param groupId the group ID of this b b b participant
+	*/
 	@Override
-	public java.lang.Object clone() {
-		return new BBBParticipantWrapper((BBBParticipant)_bbbParticipant.clone());
+	public void setGroupId(long groupId) {
+		_bbbParticipant.setGroupId(groupId);
+	}
+
+	/**
+	* Sets the modified date of this b b b participant.
+	*
+	* @param modifiedDate the modified date of this b b b participant
+	*/
+	@Override
+	public void setModifiedDate(java.util.Date modifiedDate) {
+		_bbbParticipant.setModifiedDate(modifiedDate);
+	}
+
+	/**
+	* Sets the name of this b b b participant.
+	*
+	* @param name the name of this b b b participant
+	*/
+	@Override
+	public void setName(java.lang.String name) {
+		_bbbParticipant.setName(name);
 	}
 
 	@Override
-	public int compareTo(com.liferay.bbb.model.BBBParticipant bbbParticipant) {
-		return _bbbParticipant.compareTo(bbbParticipant);
+	public void setNew(boolean n) {
+		_bbbParticipant.setNew(n);
+	}
+
+	/**
+	* Sets the primary key of this b b b participant.
+	*
+	* @param primaryKey the primary key of this b b b participant
+	*/
+	@Override
+	public void setPrimaryKey(long primaryKey) {
+		_bbbParticipant.setPrimaryKey(primaryKey);
 	}
 
 	@Override
-	public int hashCode() {
-		return _bbbParticipant.hashCode();
+	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
+		_bbbParticipant.setPrimaryKeyObj(primaryKeyObj);
+	}
+
+	/**
+	* Sets the status of this b b b participant.
+	*
+	* @param status the status of this b b b participant
+	*/
+	@Override
+	public void setStatus(int status) {
+		_bbbParticipant.setStatus(status);
+	}
+
+	/**
+	* Sets the type of this b b b participant.
+	*
+	* @param type the type of this b b b participant
+	*/
+	@Override
+	public void setType(int type) {
+		_bbbParticipant.setType(type);
+	}
+
+	/**
+	* Sets the user ID of this b b b participant.
+	*
+	* @param userId the user ID of this b b b participant
+	*/
+	@Override
+	public void setUserId(long userId) {
+		_bbbParticipant.setUserId(userId);
+	}
+
+	/**
+	* Sets the user name of this b b b participant.
+	*
+	* @param userName the user name of this b b b participant
+	*/
+	@Override
+	public void setUserName(java.lang.String userName) {
+		_bbbParticipant.setUserName(userName);
+	}
+
+	/**
+	* Sets the user uuid of this b b b participant.
+	*
+	* @param userUuid the user uuid of this b b b participant
+	*/
+	@Override
+	public void setUserUuid(java.lang.String userUuid) {
+		_bbbParticipant.setUserUuid(userUuid);
 	}
 
 	@Override
@@ -505,23 +510,18 @@ public class BBBParticipantWrapper implements BBBParticipant,
 	}
 
 	@Override
-	public com.liferay.bbb.model.BBBParticipant toUnescapedModel() {
-		return new BBBParticipantWrapper(_bbbParticipant.toUnescapedModel());
-	}
-
-	@Override
 	public java.lang.String toString() {
 		return _bbbParticipant.toString();
 	}
 
 	@Override
-	public java.lang.String toXmlString() {
-		return _bbbParticipant.toXmlString();
+	public com.liferay.bbb.model.BBBParticipant toUnescapedModel() {
+		return new BBBParticipantWrapper(_bbbParticipant.toUnescapedModel());
 	}
 
 	@Override
-	public void persist() {
-		_bbbParticipant.persist();
+	public java.lang.String toXmlString() {
+		return _bbbParticipant.toXmlString();
 	}
 
 	@Override

@@ -29,33 +29,6 @@ public class KBArticleServiceWrapper implements KBArticleService,
 		_kbArticleService = kbArticleService;
 	}
 
-	/**
-	* Returns the Spring bean ID for this bean.
-	*
-	* @return the Spring bean ID for this bean
-	*/
-	@Override
-	public java.lang.String getBeanIdentifier() {
-		return _kbArticleService.getBeanIdentifier();
-	}
-
-	/**
-	* Sets the Spring bean ID for this bean.
-	*
-	* @param beanIdentifier the Spring bean ID for this bean
-	*/
-	@Override
-	public void setBeanIdentifier(java.lang.String beanIdentifier) {
-		_kbArticleService.setBeanIdentifier(beanIdentifier);
-	}
-
-	@Override
-	public java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable {
-		return _kbArticleService.invokeMethod(name, parameterTypes, arguments);
-	}
-
 	@Override
 	public void addAttachment(java.lang.String portletId, long resourcePrimKey,
 		java.lang.String dirName, java.lang.String shortFileName,
@@ -119,6 +92,16 @@ public class KBArticleServiceWrapper implements KBArticleService,
 			resourcePrimKey, fileName);
 	}
 
+	/**
+	* Returns the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
+	*/
+	@Override
+	public java.lang.String getBeanIdentifier() {
+		return _kbArticleService.getBeanIdentifier();
+	}
+
 	@Override
 	public java.util.List<com.liferay.knowledgebase.model.KBArticle> getGroupKBArticles(
 		long groupId, int status, int start, int end,
@@ -180,45 +163,6 @@ public class KBArticleServiceWrapper implements KBArticleService,
 	}
 
 	@Override
-	public java.util.List<com.liferay.knowledgebase.model.KBArticle> getKBArticles(
-		long groupId, long parentResourcePrimKey, int status, int start,
-		int end,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBArticle> orderByComparator) {
-		return _kbArticleService.getKBArticles(groupId, parentResourcePrimKey,
-			status, start, end, orderByComparator);
-	}
-
-	@Override
-	public java.util.List<com.liferay.knowledgebase.model.KBArticle> getKBArticles(
-		long groupId, long[] resourcePrimKeys, int status, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBArticle> orderByComparator) {
-		return _kbArticleService.getKBArticles(groupId, resourcePrimKeys,
-			status, start, end, orderByComparator);
-	}
-
-	@Override
-	public java.util.List<com.liferay.knowledgebase.model.KBArticle> getKBArticles(
-		long groupId, long[] resourcePrimKeys, int status,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBArticle> orderByComparator) {
-		return _kbArticleService.getKBArticles(groupId, resourcePrimKeys,
-			status, orderByComparator);
-	}
-
-	@Override
-	public int getKBArticlesCount(long groupId, long parentResourcePrimKey,
-		int status) {
-		return _kbArticleService.getKBArticlesCount(groupId,
-			parentResourcePrimKey, status);
-	}
-
-	@Override
-	public int getKBArticlesCount(long groupId, long[] resourcePrimKeys,
-		int status) {
-		return _kbArticleService.getKBArticlesCount(groupId, resourcePrimKeys,
-			status);
-	}
-
-	@Override
 	public com.liferay.knowledgebase.model.KBArticleSearchDisplay getKBArticleSearchDisplay(
 		long groupId, java.lang.String title, java.lang.String content,
 		int status, java.util.Date startDate, java.util.Date endDate,
@@ -243,6 +187,45 @@ public class KBArticleServiceWrapper implements KBArticleService,
 		int status) {
 		return _kbArticleService.getKBArticleVersionsCount(groupId,
 			resourcePrimKey, status);
+	}
+
+	@Override
+	public java.util.List<com.liferay.knowledgebase.model.KBArticle> getKBArticles(
+		long groupId, long parentResourcePrimKey, int status, int start,
+		int end,
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBArticle> orderByComparator) {
+		return _kbArticleService.getKBArticles(groupId, parentResourcePrimKey,
+			status, start, end, orderByComparator);
+	}
+
+	@Override
+	public java.util.List<com.liferay.knowledgebase.model.KBArticle> getKBArticles(
+		long groupId, long[] resourcePrimKeys, int status,
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBArticle> orderByComparator) {
+		return _kbArticleService.getKBArticles(groupId, resourcePrimKeys,
+			status, orderByComparator);
+	}
+
+	@Override
+	public java.util.List<com.liferay.knowledgebase.model.KBArticle> getKBArticles(
+		long groupId, long[] resourcePrimKeys, int status, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBArticle> orderByComparator) {
+		return _kbArticleService.getKBArticles(groupId, resourcePrimKeys,
+			status, start, end, orderByComparator);
+	}
+
+	@Override
+	public int getKBArticlesCount(long groupId, long parentResourcePrimKey,
+		int status) {
+		return _kbArticleService.getKBArticlesCount(groupId,
+			parentResourcePrimKey, status);
+	}
+
+	@Override
+	public int getKBArticlesCount(long groupId, long[] resourcePrimKeys,
+		int status) {
+		return _kbArticleService.getKBArticlesCount(groupId, resourcePrimKeys,
+			status);
 	}
 
 	@Override
@@ -294,11 +277,28 @@ public class KBArticleServiceWrapper implements KBArticleService,
 	}
 
 	@Override
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return _kbArticleService.invokeMethod(name, parameterTypes, arguments);
+	}
+
+	@Override
 	public void moveKBArticle(long resourcePrimKey, long parentResourcePrimKey,
 		double priority)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		_kbArticleService.moveKBArticle(resourcePrimKey, parentResourcePrimKey,
 			priority);
+	}
+
+	/**
+	* Sets the Spring bean ID for this bean.
+	*
+	* @param beanIdentifier the Spring bean ID for this bean
+	*/
+	@Override
+	public void setBeanIdentifier(java.lang.String beanIdentifier) {
+		_kbArticleService.setBeanIdentifier(beanIdentifier);
 	}
 
 	@Override

@@ -38,31 +38,6 @@ public class KBArticleServiceUtil {
 	 *
 	 * Never modify this class directly. Add custom service methods to {@link com.liferay.knowledgebase.service.impl.KBArticleServiceImpl} and rerun ServiceBuilder to regenerate this class.
 	 */
-
-	/**
-	* Returns the Spring bean ID for this bean.
-	*
-	* @return the Spring bean ID for this bean
-	*/
-	public static java.lang.String getBeanIdentifier() {
-		return getService().getBeanIdentifier();
-	}
-
-	/**
-	* Sets the Spring bean ID for this bean.
-	*
-	* @param beanIdentifier the Spring bean ID for this bean
-	*/
-	public static void setBeanIdentifier(java.lang.String beanIdentifier) {
-		getService().setBeanIdentifier(beanIdentifier);
-	}
-
-	public static java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable {
-		return getService().invokeMethod(name, parameterTypes, arguments);
-	}
-
 	public static void addAttachment(java.lang.String portletId,
 		long resourcePrimKey, java.lang.String dirName,
 		java.lang.String shortFileName, java.io.InputStream inputStream,
@@ -121,6 +96,15 @@ public class KBArticleServiceUtil {
 		return getService()
 				   .getAttachment(companyId, groupId, portletId,
 			resourcePrimKey, fileName);
+	}
+
+	/**
+	* Returns the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
+	*/
+	public static java.lang.String getBeanIdentifier() {
+		return getService().getBeanIdentifier();
 	}
 
 	public static java.util.List<com.liferay.knowledgebase.model.KBArticle> getGroupKBArticles(
@@ -182,42 +166,6 @@ public class KBArticleServiceUtil {
 			rssDisplayStyle, rssFormat, themeDisplay);
 	}
 
-	public static java.util.List<com.liferay.knowledgebase.model.KBArticle> getKBArticles(
-		long groupId, long parentResourcePrimKey, int status, int start,
-		int end,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBArticle> orderByComparator) {
-		return getService()
-				   .getKBArticles(groupId, parentResourcePrimKey, status,
-			start, end, orderByComparator);
-	}
-
-	public static java.util.List<com.liferay.knowledgebase.model.KBArticle> getKBArticles(
-		long groupId, long[] resourcePrimKeys, int status, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBArticle> orderByComparator) {
-		return getService()
-				   .getKBArticles(groupId, resourcePrimKeys, status, start,
-			end, orderByComparator);
-	}
-
-	public static java.util.List<com.liferay.knowledgebase.model.KBArticle> getKBArticles(
-		long groupId, long[] resourcePrimKeys, int status,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBArticle> orderByComparator) {
-		return getService()
-				   .getKBArticles(groupId, resourcePrimKeys, status,
-			orderByComparator);
-	}
-
-	public static int getKBArticlesCount(long groupId,
-		long parentResourcePrimKey, int status) {
-		return getService()
-				   .getKBArticlesCount(groupId, parentResourcePrimKey, status);
-	}
-
-	public static int getKBArticlesCount(long groupId, long[] resourcePrimKeys,
-		int status) {
-		return getService().getKBArticlesCount(groupId, resourcePrimKeys, status);
-	}
-
 	public static com.liferay.knowledgebase.model.KBArticleSearchDisplay getKBArticleSearchDisplay(
 		long groupId, java.lang.String title, java.lang.String content,
 		int status, java.util.Date startDate, java.util.Date endDate,
@@ -242,6 +190,42 @@ public class KBArticleServiceUtil {
 		long resourcePrimKey, int status) {
 		return getService()
 				   .getKBArticleVersionsCount(groupId, resourcePrimKey, status);
+	}
+
+	public static java.util.List<com.liferay.knowledgebase.model.KBArticle> getKBArticles(
+		long groupId, long parentResourcePrimKey, int status, int start,
+		int end,
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBArticle> orderByComparator) {
+		return getService()
+				   .getKBArticles(groupId, parentResourcePrimKey, status,
+			start, end, orderByComparator);
+	}
+
+	public static java.util.List<com.liferay.knowledgebase.model.KBArticle> getKBArticles(
+		long groupId, long[] resourcePrimKeys, int status,
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBArticle> orderByComparator) {
+		return getService()
+				   .getKBArticles(groupId, resourcePrimKeys, status,
+			orderByComparator);
+	}
+
+	public static java.util.List<com.liferay.knowledgebase.model.KBArticle> getKBArticles(
+		long groupId, long[] resourcePrimKeys, int status, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBArticle> orderByComparator) {
+		return getService()
+				   .getKBArticles(groupId, resourcePrimKeys, status, start,
+			end, orderByComparator);
+	}
+
+	public static int getKBArticlesCount(long groupId,
+		long parentResourcePrimKey, int status) {
+		return getService()
+				   .getKBArticlesCount(groupId, parentResourcePrimKey, status);
+	}
+
+	public static int getKBArticlesCount(long groupId, long[] resourcePrimKeys,
+		int status) {
+		return getService().getKBArticlesCount(groupId, resourcePrimKeys, status);
 	}
 
 	public static com.liferay.knowledgebase.model.KBArticle getLatestKBArticle(
@@ -289,11 +273,26 @@ public class KBArticleServiceUtil {
 			status);
 	}
 
+	public static java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return getService().invokeMethod(name, parameterTypes, arguments);
+	}
+
 	public static void moveKBArticle(long resourcePrimKey,
 		long parentResourcePrimKey, double priority)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		getService()
 			.moveKBArticle(resourcePrimKey, parentResourcePrimKey, priority);
+	}
+
+	/**
+	* Sets the Spring bean ID for this bean.
+	*
+	* @param beanIdentifier the Spring bean ID for this bean
+	*/
+	public static void setBeanIdentifier(java.lang.String beanIdentifier) {
+		getService().setBeanIdentifier(beanIdentifier);
 	}
 
 	public static void subscribeGroupKBArticles(long groupId,

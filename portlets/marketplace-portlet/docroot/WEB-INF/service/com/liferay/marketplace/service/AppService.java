@@ -44,6 +44,8 @@ public interface AppService extends BaseService, InvokableService {
 	 *
 	 * Never modify or reference this interface directly. Always use {@link AppServiceUtil} to access the app remote service. Add custom service methods to {@link com.liferay.marketplace.service.impl.AppServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
+	public com.liferay.marketplace.model.App deleteApp(long appId)
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	/**
 	* Returns the Spring bean ID for this bean.
@@ -52,23 +54,20 @@ public interface AppService extends BaseService, InvokableService {
 	*/
 	public java.lang.String getBeanIdentifier();
 
-	/**
-	* Sets the Spring bean ID for this bean.
-	*
-	* @param beanIdentifier the Spring bean ID for this bean
-	*/
-	public void setBeanIdentifier(java.lang.String beanIdentifier);
+	public void installApp(long remoteAppId)
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	@Override
 	public java.lang.Object invokeMethod(java.lang.String name,
 		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
 		throws java.lang.Throwable;
 
-	public com.liferay.marketplace.model.App deleteApp(long appId)
-		throws com.liferay.portal.kernel.exception.PortalException;
-
-	public void installApp(long remoteAppId)
-		throws com.liferay.portal.kernel.exception.PortalException;
+	/**
+	* Sets the Spring bean ID for this bean.
+	*
+	* @param beanIdentifier the Spring bean ID for this bean
+	*/
+	public void setBeanIdentifier(java.lang.String beanIdentifier);
 
 	public void uninstallApp(long remoteAppId)
 		throws com.liferay.portal.kernel.exception.PortalException;

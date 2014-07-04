@@ -53,12 +53,9 @@ public interface SocialOfficeService extends BaseService, InvokableService {
 	*/
 	public java.lang.String getBeanIdentifier();
 
-	/**
-	* Sets the Spring bean ID for this bean.
-	*
-	* @param beanIdentifier the Spring bean ID for this bean
-	*/
-	public void setBeanIdentifier(java.lang.String beanIdentifier);
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public long[] getUserSocialOfficeGroupIds()
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	@Override
 	public java.lang.Object invokeMethod(java.lang.String name,
@@ -66,10 +63,13 @@ public interface SocialOfficeService extends BaseService, InvokableService {
 		throws java.lang.Throwable;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public long[] getUserSocialOfficeGroupIds()
-		throws com.liferay.portal.kernel.exception.PortalException;
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public boolean isSocialOfficeGroup(long groupId)
 		throws com.liferay.portal.kernel.exception.PortalException;
+
+	/**
+	* Sets the Spring bean ID for this bean.
+	*
+	* @param beanIdentifier the Spring bean ID for this bean
+	*/
+	public void setBeanIdentifier(java.lang.String beanIdentifier);
 }

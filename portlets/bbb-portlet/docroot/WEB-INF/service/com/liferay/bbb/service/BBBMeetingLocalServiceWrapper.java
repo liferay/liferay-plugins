@@ -42,6 +42,19 @@ public class BBBMeetingLocalServiceWrapper implements BBBMeetingLocalService,
 		return _bbbMeetingLocalService.addBBBMeeting(bbbMeeting);
 	}
 
+	@Override
+	public com.liferay.bbb.model.BBBMeeting addBBBMeeting(long userId,
+		long groupId, long bbbServerId, java.lang.String name,
+		java.lang.String description, java.lang.String attendeePassword,
+		java.lang.String moderatorPassword, int status,
+		java.util.List<com.liferay.bbb.model.BBBParticipant> bbbParticipants,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _bbbMeetingLocalService.addBBBMeeting(userId, groupId,
+			bbbServerId, name, description, attendeePassword,
+			moderatorPassword, status, bbbParticipants, serviceContext);
+	}
+
 	/**
 	* Creates a new b b b meeting with the primary key. Does not add the b b b meeting to the database.
 	*
@@ -51,6 +64,20 @@ public class BBBMeetingLocalServiceWrapper implements BBBMeetingLocalService,
 	@Override
 	public com.liferay.bbb.model.BBBMeeting createBBBMeeting(long bbbMeetingId) {
 		return _bbbMeetingLocalService.createBBBMeeting(bbbMeetingId);
+	}
+
+	/**
+	* Deletes the b b b meeting from the database. Also notifies the appropriate model listeners.
+	*
+	* @param bbbMeeting the b b b meeting
+	* @return the b b b meeting that was removed
+	* @throws PortalException
+	*/
+	@Override
+	public com.liferay.bbb.model.BBBMeeting deleteBBBMeeting(
+		com.liferay.bbb.model.BBBMeeting bbbMeeting)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _bbbMeetingLocalService.deleteBBBMeeting(bbbMeeting);
 	}
 
 	/**
@@ -67,17 +94,13 @@ public class BBBMeetingLocalServiceWrapper implements BBBMeetingLocalService,
 	}
 
 	/**
-	* Deletes the b b b meeting from the database. Also notifies the appropriate model listeners.
-	*
-	* @param bbbMeeting the b b b meeting
-	* @return the b b b meeting that was removed
 	* @throws PortalException
 	*/
 	@Override
-	public com.liferay.bbb.model.BBBMeeting deleteBBBMeeting(
-		com.liferay.bbb.model.BBBMeeting bbbMeeting)
+	public com.liferay.portal.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.model.PersistedModel persistedModel)
 		throws com.liferay.portal.kernel.exception.PortalException {
-		return _bbbMeetingLocalService.deleteBBBMeeting(bbbMeeting);
+		return _bbbMeetingLocalService.deletePersistedModel(persistedModel);
 	}
 
 	@Override
@@ -170,6 +193,11 @@ public class BBBMeetingLocalServiceWrapper implements BBBMeetingLocalService,
 		return _bbbMeetingLocalService.fetchBBBMeeting(bbbMeetingId);
 	}
 
+	@Override
+	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
+		return _bbbMeetingLocalService.getActionableDynamicQuery();
+	}
+
 	/**
 	* Returns the b b b meeting with the primary key.
 	*
@@ -181,114 +209,6 @@ public class BBBMeetingLocalServiceWrapper implements BBBMeetingLocalService,
 	public com.liferay.bbb.model.BBBMeeting getBBBMeeting(long bbbMeetingId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _bbbMeetingLocalService.getBBBMeeting(bbbMeetingId);
-	}
-
-	@Override
-	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
-		return _bbbMeetingLocalService.getActionableDynamicQuery();
-	}
-
-	/**
-	* @throws PortalException
-	*/
-	@Override
-	public com.liferay.portal.model.PersistedModel deletePersistedModel(
-		com.liferay.portal.model.PersistedModel persistedModel)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _bbbMeetingLocalService.deletePersistedModel(persistedModel);
-	}
-
-	@Override
-	public com.liferay.portal.model.PersistedModel getPersistedModel(
-		java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _bbbMeetingLocalService.getPersistedModel(primaryKeyObj);
-	}
-
-	/**
-	* Returns a range of all the b b b meetings.
-	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.bbb.model.impl.BBBMeetingModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
-	* </p>
-	*
-	* @param start the lower bound of the range of b b b meetings
-	* @param end the upper bound of the range of b b b meetings (not inclusive)
-	* @return the range of b b b meetings
-	*/
-	@Override
-	public java.util.List<com.liferay.bbb.model.BBBMeeting> getBBBMeetings(
-		int start, int end) {
-		return _bbbMeetingLocalService.getBBBMeetings(start, end);
-	}
-
-	/**
-	* Returns the number of b b b meetings.
-	*
-	* @return the number of b b b meetings
-	*/
-	@Override
-	public int getBBBMeetingsCount() {
-		return _bbbMeetingLocalService.getBBBMeetingsCount();
-	}
-
-	/**
-	* Updates the b b b meeting in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	*
-	* @param bbbMeeting the b b b meeting
-	* @return the b b b meeting that was updated
-	*/
-	@Override
-	public com.liferay.bbb.model.BBBMeeting updateBBBMeeting(
-		com.liferay.bbb.model.BBBMeeting bbbMeeting) {
-		return _bbbMeetingLocalService.updateBBBMeeting(bbbMeeting);
-	}
-
-	/**
-	* Returns the Spring bean ID for this bean.
-	*
-	* @return the Spring bean ID for this bean
-	*/
-	@Override
-	public java.lang.String getBeanIdentifier() {
-		return _bbbMeetingLocalService.getBeanIdentifier();
-	}
-
-	/**
-	* Sets the Spring bean ID for this bean.
-	*
-	* @param beanIdentifier the Spring bean ID for this bean
-	*/
-	@Override
-	public void setBeanIdentifier(java.lang.String beanIdentifier) {
-		_bbbMeetingLocalService.setBeanIdentifier(beanIdentifier);
-	}
-
-	@Override
-	public java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable {
-		return _bbbMeetingLocalService.invokeMethod(name, parameterTypes,
-			arguments);
-	}
-
-	@Override
-	public com.liferay.bbb.model.BBBMeeting addBBBMeeting(long userId,
-		long groupId, long bbbServerId, java.lang.String name,
-		java.lang.String description, java.lang.String attendeePassword,
-		java.lang.String moderatorPassword, int status,
-		java.util.List<com.liferay.bbb.model.BBBParticipant> bbbParticipants,
-		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _bbbMeetingLocalService.addBBBMeeting(userId, groupId,
-			bbbServerId, name, description, attendeePassword,
-			moderatorPassword, status, bbbParticipants, serviceContext);
-	}
-
-	@Override
-	public java.util.List<com.liferay.bbb.model.BBBMeeting> getBBBMeetings(
-		int status) {
-		return _bbbMeetingLocalService.getBBBMeetings(status);
 	}
 
 	@Override
@@ -308,9 +228,37 @@ public class BBBMeetingLocalServiceWrapper implements BBBMeetingLocalService,
 			orderByType);
 	}
 
+	/**
+	* Returns a range of all the b b b meetings.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.bbb.model.impl.BBBMeetingModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param start the lower bound of the range of b b b meetings
+	* @param end the upper bound of the range of b b b meetings (not inclusive)
+	* @return the range of b b b meetings
+	*/
 	@Override
-	public int getBBBMeetingsCount(long groupId) {
-		return _bbbMeetingLocalService.getBBBMeetingsCount(groupId);
+	public java.util.List<com.liferay.bbb.model.BBBMeeting> getBBBMeetings(
+		int start, int end) {
+		return _bbbMeetingLocalService.getBBBMeetings(start, end);
+	}
+
+	@Override
+	public java.util.List<com.liferay.bbb.model.BBBMeeting> getBBBMeetings(
+		int status) {
+		return _bbbMeetingLocalService.getBBBMeetings(status);
+	}
+
+	/**
+	* Returns the number of b b b meetings.
+	*
+	* @return the number of b b b meetings
+	*/
+	@Override
+	public int getBBBMeetingsCount() {
+		return _bbbMeetingLocalService.getBBBMeetingsCount();
 	}
 
 	@Override
@@ -319,11 +267,63 @@ public class BBBMeetingLocalServiceWrapper implements BBBMeetingLocalService,
 	}
 
 	@Override
+	public int getBBBMeetingsCount(long groupId) {
+		return _bbbMeetingLocalService.getBBBMeetingsCount(groupId);
+	}
+
+	@Override
 	public int getBBBMeetingsCount(long groupId, long userId,
 		java.lang.String name, java.lang.String description, int status,
 		boolean andSearch) {
 		return _bbbMeetingLocalService.getBBBMeetingsCount(groupId, userId,
 			name, description, status, andSearch);
+	}
+
+	/**
+	* Returns the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
+	*/
+	@Override
+	public java.lang.String getBeanIdentifier() {
+		return _bbbMeetingLocalService.getBeanIdentifier();
+	}
+
+	@Override
+	public com.liferay.portal.model.PersistedModel getPersistedModel(
+		java.io.Serializable primaryKeyObj)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _bbbMeetingLocalService.getPersistedModel(primaryKeyObj);
+	}
+
+	@Override
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return _bbbMeetingLocalService.invokeMethod(name, parameterTypes,
+			arguments);
+	}
+
+	/**
+	* Sets the Spring bean ID for this bean.
+	*
+	* @param beanIdentifier the Spring bean ID for this bean
+	*/
+	@Override
+	public void setBeanIdentifier(java.lang.String beanIdentifier) {
+		_bbbMeetingLocalService.setBeanIdentifier(beanIdentifier);
+	}
+
+	/**
+	* Updates the b b b meeting in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	*
+	* @param bbbMeeting the b b b meeting
+	* @return the b b b meeting that was updated
+	*/
+	@Override
+	public com.liferay.bbb.model.BBBMeeting updateBBBMeeting(
+		com.liferay.bbb.model.BBBMeeting bbbMeeting) {
+		return _bbbMeetingLocalService.updateBBBMeeting(bbbMeeting);
 	}
 
 	@Override

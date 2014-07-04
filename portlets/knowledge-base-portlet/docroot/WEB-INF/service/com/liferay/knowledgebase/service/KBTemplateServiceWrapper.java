@@ -29,33 +29,6 @@ public class KBTemplateServiceWrapper implements KBTemplateService,
 		_kbTemplateService = kbTemplateService;
 	}
 
-	/**
-	* Returns the Spring bean ID for this bean.
-	*
-	* @return the Spring bean ID for this bean
-	*/
-	@Override
-	public java.lang.String getBeanIdentifier() {
-		return _kbTemplateService.getBeanIdentifier();
-	}
-
-	/**
-	* Sets the Spring bean ID for this bean.
-	*
-	* @param beanIdentifier the Spring bean ID for this bean
-	*/
-	@Override
-	public void setBeanIdentifier(java.lang.String beanIdentifier) {
-		_kbTemplateService.setBeanIdentifier(beanIdentifier);
-	}
-
-	@Override
-	public java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable {
-		return _kbTemplateService.invokeMethod(name, parameterTypes, arguments);
-	}
-
 	@Override
 	public com.liferay.knowledgebase.model.KBTemplate addKBTemplate(
 		java.lang.String portletId, java.lang.String title,
@@ -77,6 +50,16 @@ public class KBTemplateServiceWrapper implements KBTemplateService,
 	public void deleteKBTemplates(long groupId, long[] kbTemplateIds)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		_kbTemplateService.deleteKBTemplates(groupId, kbTemplateIds);
+	}
+
+	/**
+	* Returns the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
+	*/
+	@Override
+	public java.lang.String getBeanIdentifier() {
+		return _kbTemplateService.getBeanIdentifier();
 	}
 
 	@Override
@@ -109,6 +92,23 @@ public class KBTemplateServiceWrapper implements KBTemplateService,
 		return _kbTemplateService.getKBTemplateSearchDisplay(groupId, title,
 			content, startDate, endDate, andOperator, curStartValues, cur,
 			delta, orderByComparator);
+	}
+
+	@Override
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return _kbTemplateService.invokeMethod(name, parameterTypes, arguments);
+	}
+
+	/**
+	* Sets the Spring bean ID for this bean.
+	*
+	* @param beanIdentifier the Spring bean ID for this bean
+	*/
+	@Override
+	public void setBeanIdentifier(java.lang.String beanIdentifier) {
+		_kbTemplateService.setBeanIdentifier(beanIdentifier);
 	}
 
 	@Override

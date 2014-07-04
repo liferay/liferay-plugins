@@ -16,6 +16,7 @@ package com.liferay.akismet.service;
 
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.search.IndexableType;
 import com.liferay.portal.kernel.transaction.Isolation;
 import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
@@ -51,6 +52,7 @@ public interface AkismetDataLocalService extends BaseLocalService,
 	* @param akismetData the akismet data
 	* @return the akismet data that was added
 	*/
+	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.REINDEX)
 	public com.liferay.akismet.model.AkismetData addAkismetData(
 		com.liferay.akismet.model.AkismetData akismetData);
 
@@ -64,24 +66,39 @@ public interface AkismetDataLocalService extends BaseLocalService,
 		long akismetDataId);
 
 	/**
+	* Deletes the akismet data from the database. Also notifies the appropriate model listeners.
+	*
+	* @param akismetData the akismet data
+	* @return the akismet data that was removed
+	*/
+	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.DELETE)
+	public com.liferay.akismet.model.AkismetData deleteAkismetData(
+		com.liferay.akismet.model.AkismetData akismetData);
+
+	/**
 	* Deletes the akismet data with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param akismetDataId the primary key of the akismet data
 	* @return the akismet data that was removed
 	* @throws PortalException if a akismet data with the primary key could not be found
 	*/
+	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.DELETE)
 	public com.liferay.akismet.model.AkismetData deleteAkismetData(
 		long akismetDataId)
 		throws com.liferay.portal.kernel.exception.PortalException;
 
+	public void deleteAkismetData(java.lang.String className, long classPK)
+		throws com.liferay.portal.kernel.exception.PortalException;
+
+	public void deleteAkismetData(java.util.Date modifiedDate);
+
 	/**
-	* Deletes the akismet data from the database. Also notifies the appropriate model listeners.
-	*
-	* @param akismetData the akismet data
-	* @return the akismet data that was removed
+	* @throws PortalException
 	*/
-	public com.liferay.akismet.model.AkismetData deleteAkismetData(
-		com.liferay.akismet.model.AkismetData akismetData);
+	@Override
+	public com.liferay.portal.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.model.PersistedModel persistedModel)
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery();
 
@@ -152,6 +169,13 @@ public interface AkismetDataLocalService extends BaseLocalService,
 	public com.liferay.akismet.model.AkismetData fetchAkismetData(
 		long akismetDataId);
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.liferay.akismet.model.AkismetData fetchAkismetData(
+		java.lang.String className, long classPK);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery();
+
 	/**
 	* Returns the akismet data with the primary key.
 	*
@@ -162,23 +186,6 @@ public interface AkismetDataLocalService extends BaseLocalService,
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.akismet.model.AkismetData getAkismetData(
 		long akismetDataId)
-		throws com.liferay.portal.kernel.exception.PortalException;
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery();
-
-	/**
-	* @throws PortalException
-	*/
-	@Override
-	public com.liferay.portal.model.PersistedModel deletePersistedModel(
-		com.liferay.portal.model.PersistedModel persistedModel)
-		throws com.liferay.portal.kernel.exception.PortalException;
-
-	@Override
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.portal.model.PersistedModel getPersistedModel(
-		java.io.Serializable primaryKeyObj)
 		throws com.liferay.portal.kernel.exception.PortalException;
 
 	/**
@@ -205,20 +212,22 @@ public interface AkismetDataLocalService extends BaseLocalService,
 	public int getAkismetDatasCount();
 
 	/**
-	* Updates the akismet data in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	*
-	* @param akismetData the akismet data
-	* @return the akismet data that was updated
-	*/
-	public com.liferay.akismet.model.AkismetData updateAkismetData(
-		com.liferay.akismet.model.AkismetData akismetData);
-
-	/**
 	* Returns the Spring bean ID for this bean.
 	*
 	* @return the Spring bean ID for this bean
 	*/
 	public java.lang.String getBeanIdentifier();
+
+	@Override
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.liferay.portal.model.PersistedModel getPersistedModel(
+		java.io.Serializable primaryKeyObj)
+		throws com.liferay.portal.kernel.exception.PortalException;
+
+	@Override
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable;
 
 	/**
 	* Sets the Spring bean ID for this bean.
@@ -227,19 +236,15 @@ public interface AkismetDataLocalService extends BaseLocalService,
 	*/
 	public void setBeanIdentifier(java.lang.String beanIdentifier);
 
-	@Override
-	public java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable;
-
-	public void deleteAkismetData(java.util.Date modifiedDate);
-
-	public void deleteAkismetData(java.lang.String className, long classPK)
-		throws com.liferay.portal.kernel.exception.PortalException;
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.akismet.model.AkismetData fetchAkismetData(
-		java.lang.String className, long classPK);
+	/**
+	* Updates the akismet data in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	*
+	* @param akismetData the akismet data
+	* @return the akismet data that was updated
+	*/
+	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.REINDEX)
+	public com.liferay.akismet.model.AkismetData updateAkismetData(
+		com.liferay.akismet.model.AkismetData akismetData);
 
 	public com.liferay.akismet.model.AkismetData updateAkismetData(
 		java.lang.String className, long classPK, java.lang.String type,

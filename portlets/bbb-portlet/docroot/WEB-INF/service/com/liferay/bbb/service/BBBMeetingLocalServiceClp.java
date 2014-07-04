@@ -29,11 +29,15 @@ public class BBBMeetingLocalServiceClp implements BBBMeetingLocalService {
 
 		_methodParameterTypes0 = new String[] { "com.liferay.bbb.model.BBBMeeting" };
 
-		_methodName1 = "createBBBMeeting";
+		_methodName1 = "addBBBMeeting";
 
-		_methodParameterTypes1 = new String[] { "long" };
+		_methodParameterTypes1 = new String[] {
+				"long", "long", "long", "java.lang.String", "java.lang.String",
+				"java.lang.String", "java.lang.String", "int", "java.util.List",
+				"com.liferay.portal.service.ServiceContext"
+			};
 
-		_methodName2 = "deleteBBBMeeting";
+		_methodName2 = "createBBBMeeting";
 
 		_methodParameterTypes2 = new String[] { "long" };
 
@@ -41,125 +45,121 @@ public class BBBMeetingLocalServiceClp implements BBBMeetingLocalService {
 
 		_methodParameterTypes3 = new String[] { "com.liferay.bbb.model.BBBMeeting" };
 
-		_methodName4 = "dynamicQuery";
+		_methodName4 = "deleteBBBMeeting";
 
-		_methodParameterTypes4 = new String[] {  };
+		_methodParameterTypes4 = new String[] { "long" };
 
-		_methodName5 = "dynamicQuery";
+		_methodName5 = "deletePersistedModel";
 
 		_methodParameterTypes5 = new String[] {
-				"com.liferay.portal.kernel.dao.orm.DynamicQuery"
+				"com.liferay.portal.model.PersistedModel"
 			};
 
 		_methodName6 = "dynamicQuery";
 
-		_methodParameterTypes6 = new String[] {
-				"com.liferay.portal.kernel.dao.orm.DynamicQuery", "int", "int"
-			};
+		_methodParameterTypes6 = new String[] {  };
 
 		_methodName7 = "dynamicQuery";
 
 		_methodParameterTypes7 = new String[] {
+				"com.liferay.portal.kernel.dao.orm.DynamicQuery"
+			};
+
+		_methodName8 = "dynamicQuery";
+
+		_methodParameterTypes8 = new String[] {
+				"com.liferay.portal.kernel.dao.orm.DynamicQuery", "int", "int"
+			};
+
+		_methodName9 = "dynamicQuery";
+
+		_methodParameterTypes9 = new String[] {
 				"com.liferay.portal.kernel.dao.orm.DynamicQuery", "int", "int",
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			};
 
-		_methodName8 = "dynamicQueryCount";
+		_methodName10 = "dynamicQueryCount";
 
-		_methodParameterTypes8 = new String[] {
+		_methodParameterTypes10 = new String[] {
 				"com.liferay.portal.kernel.dao.orm.DynamicQuery"
 			};
 
-		_methodName9 = "dynamicQueryCount";
+		_methodName11 = "dynamicQueryCount";
 
-		_methodParameterTypes9 = new String[] {
+		_methodParameterTypes11 = new String[] {
 				"com.liferay.portal.kernel.dao.orm.DynamicQuery",
 				"com.liferay.portal.kernel.dao.orm.Projection"
 			};
 
-		_methodName10 = "fetchBBBMeeting";
+		_methodName12 = "fetchBBBMeeting";
 
-		_methodParameterTypes10 = new String[] { "long" };
+		_methodParameterTypes12 = new String[] { "long" };
 
-		_methodName11 = "getBBBMeeting";
+		_methodName13 = "getActionableDynamicQuery";
 
-		_methodParameterTypes11 = new String[] { "long" };
+		_methodParameterTypes13 = new String[] {  };
 
-		_methodName12 = "getActionableDynamicQuery";
+		_methodName14 = "getBBBMeeting";
 
-		_methodParameterTypes12 = new String[] {  };
-
-		_methodName13 = "deletePersistedModel";
-
-		_methodParameterTypes13 = new String[] {
-				"com.liferay.portal.model.PersistedModel"
-			};
-
-		_methodName14 = "getPersistedModel";
-
-		_methodParameterTypes14 = new String[] { "java.io.Serializable" };
+		_methodParameterTypes14 = new String[] { "long" };
 
 		_methodName15 = "getBBBMeetings";
 
-		_methodParameterTypes15 = new String[] { "int", "int" };
-
-		_methodName16 = "getBBBMeetingsCount";
-
-		_methodParameterTypes16 = new String[] {  };
-
-		_methodName17 = "updateBBBMeeting";
-
-		_methodParameterTypes17 = new String[] {
-				"com.liferay.bbb.model.BBBMeeting"
-			};
-
-		_methodName18 = "getBeanIdentifier";
-
-		_methodParameterTypes18 = new String[] {  };
-
-		_methodName19 = "setBeanIdentifier";
-
-		_methodParameterTypes19 = new String[] { "java.lang.String" };
-
-		_methodName21 = "addBBBMeeting";
-
-		_methodParameterTypes21 = new String[] {
-				"long", "long", "long", "java.lang.String", "java.lang.String",
-				"java.lang.String", "java.lang.String", "int", "java.util.List",
-				"com.liferay.portal.service.ServiceContext"
-			};
-
-		_methodName22 = "getBBBMeetings";
-
-		_methodParameterTypes22 = new String[] { "int" };
-
-		_methodName23 = "getBBBMeetings";
-
-		_methodParameterTypes23 = new String[] {
+		_methodParameterTypes15 = new String[] {
 				"long", "int", "int",
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			};
 
-		_methodName24 = "getBBBMeetings";
+		_methodName16 = "getBBBMeetings";
 
-		_methodParameterTypes24 = new String[] {
+		_methodParameterTypes16 = new String[] {
 				"long", "long", "java.lang.String", "java.lang.String", "int",
 				"boolean", "int", "int", "java.lang.String", "java.lang.String"
 			};
 
-		_methodName25 = "getBBBMeetingsCount";
+		_methodName17 = "getBBBMeetings";
 
-		_methodParameterTypes25 = new String[] { "long" };
+		_methodParameterTypes17 = new String[] { "int", "int" };
 
-		_methodName26 = "getBBBMeetingsCount";
+		_methodName18 = "getBBBMeetings";
 
-		_methodParameterTypes26 = new String[] { "long", "int" };
+		_methodParameterTypes18 = new String[] { "int" };
 
-		_methodName27 = "getBBBMeetingsCount";
+		_methodName19 = "getBBBMeetingsCount";
 
-		_methodParameterTypes27 = new String[] {
+		_methodParameterTypes19 = new String[] {  };
+
+		_methodName20 = "getBBBMeetingsCount";
+
+		_methodParameterTypes20 = new String[] { "long", "int" };
+
+		_methodName21 = "getBBBMeetingsCount";
+
+		_methodParameterTypes21 = new String[] { "long" };
+
+		_methodName22 = "getBBBMeetingsCount";
+
+		_methodParameterTypes22 = new String[] {
 				"long", "long", "java.lang.String", "java.lang.String", "int",
 				"boolean"
+			};
+
+		_methodName23 = "getBeanIdentifier";
+
+		_methodParameterTypes23 = new String[] {  };
+
+		_methodName24 = "getPersistedModel";
+
+		_methodParameterTypes24 = new String[] { "java.io.Serializable" };
+
+		_methodName26 = "setBeanIdentifier";
+
+		_methodParameterTypes26 = new String[] { "java.lang.String" };
+
+		_methodName27 = "updateBBBMeeting";
+
+		_methodParameterTypes27 = new String[] {
+				"com.liferay.bbb.model.BBBMeeting"
 			};
 
 		_methodName28 = "updateBBBMeeting";
@@ -201,15 +201,46 @@ public class BBBMeetingLocalServiceClp implements BBBMeetingLocalService {
 	}
 
 	@Override
-	public com.liferay.bbb.model.BBBMeeting createBBBMeeting(long bbbMeetingId) {
+	public com.liferay.bbb.model.BBBMeeting addBBBMeeting(long userId,
+		long groupId, long bbbServerId, java.lang.String name,
+		java.lang.String description, java.lang.String attendeePassword,
+		java.lang.String moderatorPassword, int status,
+		java.util.List<com.liferay.bbb.model.BBBParticipant> bbbParticipants,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName1,
-					_methodParameterTypes1, new Object[] { bbbMeetingId });
+					_methodParameterTypes1,
+					new Object[] {
+						userId,
+						
+					groupId,
+						
+					bbbServerId,
+						
+					ClpSerializer.translateInput(name),
+						
+					ClpSerializer.translateInput(description),
+						
+					ClpSerializer.translateInput(attendeePassword),
+						
+					ClpSerializer.translateInput(moderatorPassword),
+						
+					status,
+						
+					ClpSerializer.translateInput(bbbParticipants),
+						
+					ClpSerializer.translateInput(serviceContext)
+					});
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
 
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
@@ -224,8 +255,7 @@ public class BBBMeetingLocalServiceClp implements BBBMeetingLocalService {
 	}
 
 	@Override
-	public com.liferay.bbb.model.BBBMeeting deleteBBBMeeting(long bbbMeetingId)
-		throws com.liferay.portal.kernel.exception.PortalException {
+	public com.liferay.bbb.model.BBBMeeting createBBBMeeting(long bbbMeetingId) {
 		Object returnObj = null;
 
 		try {
@@ -234,10 +264,6 @@ public class BBBMeetingLocalServiceClp implements BBBMeetingLocalService {
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
-				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
 
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
@@ -282,12 +308,70 @@ public class BBBMeetingLocalServiceClp implements BBBMeetingLocalService {
 	}
 
 	@Override
-	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
+	public com.liferay.bbb.model.BBBMeeting deleteBBBMeeting(long bbbMeetingId)
+		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName4,
-					_methodParameterTypes4, new Object[] {  });
+					_methodParameterTypes4, new Object[] { bbbMeetingId });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.liferay.bbb.model.BBBMeeting)ClpSerializer.translateOutput(returnObj);
+	}
+
+	@Override
+	public com.liferay.portal.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.model.PersistedModel persistedModel)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName5,
+					_methodParameterTypes5,
+					new Object[] { ClpSerializer.translateInput(persistedModel) });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.liferay.portal.model.PersistedModel)ClpSerializer.translateOutput(returnObj);
+	}
+
+	@Override
+	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName6,
+					_methodParameterTypes6, new Object[] {  });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -310,8 +394,8 @@ public class BBBMeetingLocalServiceClp implements BBBMeetingLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName5,
-					_methodParameterTypes5,
+			returnObj = _invokableLocalService.invokeMethod(_methodName7,
+					_methodParameterTypes7,
 					new Object[] { ClpSerializer.translateInput(dynamicQuery) });
 		}
 		catch (Throwable t) {
@@ -336,8 +420,8 @@ public class BBBMeetingLocalServiceClp implements BBBMeetingLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName6,
-					_methodParameterTypes6,
+			returnObj = _invokableLocalService.invokeMethod(_methodName8,
+					_methodParameterTypes8,
 					new Object[] {
 						ClpSerializer.translateInput(dynamicQuery),
 						
@@ -369,8 +453,8 @@ public class BBBMeetingLocalServiceClp implements BBBMeetingLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName7,
-					_methodParameterTypes7,
+			returnObj = _invokableLocalService.invokeMethod(_methodName9,
+					_methodParameterTypes9,
 					new Object[] {
 						ClpSerializer.translateInput(dynamicQuery),
 						
@@ -402,8 +486,8 @@ public class BBBMeetingLocalServiceClp implements BBBMeetingLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName8,
-					_methodParameterTypes8,
+			returnObj = _invokableLocalService.invokeMethod(_methodName10,
+					_methodParameterTypes10,
 					new Object[] { ClpSerializer.translateInput(dynamicQuery) });
 		}
 		catch (Throwable t) {
@@ -428,8 +512,8 @@ public class BBBMeetingLocalServiceClp implements BBBMeetingLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName9,
-					_methodParameterTypes9,
+			returnObj = _invokableLocalService.invokeMethod(_methodName11,
+					_methodParameterTypes11,
 					new Object[] {
 						ClpSerializer.translateInput(dynamicQuery),
 						
@@ -456,39 +540,11 @@ public class BBBMeetingLocalServiceClp implements BBBMeetingLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName10,
-					_methodParameterTypes10, new Object[] { bbbMeetingId });
+			returnObj = _invokableLocalService.invokeMethod(_methodName12,
+					_methodParameterTypes12, new Object[] { bbbMeetingId });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-
-		return (com.liferay.bbb.model.BBBMeeting)ClpSerializer.translateOutput(returnObj);
-	}
-
-	@Override
-	public com.liferay.bbb.model.BBBMeeting getBBBMeeting(long bbbMeetingId)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		Object returnObj = null;
-
-		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName11,
-					_methodParameterTypes11, new Object[] { bbbMeetingId });
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
-				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
 
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
@@ -507,8 +563,8 @@ public class BBBMeetingLocalServiceClp implements BBBMeetingLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName12,
-					_methodParameterTypes12, new Object[] {  });
+			returnObj = _invokableLocalService.invokeMethod(_methodName13,
+					_methodParameterTypes13, new Object[] {  });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -526,221 +582,13 @@ public class BBBMeetingLocalServiceClp implements BBBMeetingLocalService {
 	}
 
 	@Override
-	public com.liferay.portal.model.PersistedModel deletePersistedModel(
-		com.liferay.portal.model.PersistedModel persistedModel)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		Object returnObj = null;
-
-		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName13,
-					_methodParameterTypes13,
-					new Object[] { ClpSerializer.translateInput(persistedModel) });
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
-				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-
-		return (com.liferay.portal.model.PersistedModel)ClpSerializer.translateOutput(returnObj);
-	}
-
-	@Override
-	public com.liferay.portal.model.PersistedModel getPersistedModel(
-		java.io.Serializable primaryKeyObj)
+	public com.liferay.bbb.model.BBBMeeting getBBBMeeting(long bbbMeetingId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName14,
-					_methodParameterTypes14,
-					new Object[] { ClpSerializer.translateInput(primaryKeyObj) });
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
-				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-
-		return (com.liferay.portal.model.PersistedModel)ClpSerializer.translateOutput(returnObj);
-	}
-
-	@Override
-	public java.util.List<com.liferay.bbb.model.BBBMeeting> getBBBMeetings(
-		int start, int end) {
-		Object returnObj = null;
-
-		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName15,
-					_methodParameterTypes15, new Object[] { start, end });
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-
-		return (java.util.List<com.liferay.bbb.model.BBBMeeting>)ClpSerializer.translateOutput(returnObj);
-	}
-
-	@Override
-	public int getBBBMeetingsCount() {
-		Object returnObj = null;
-
-		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName16,
-					_methodParameterTypes16, new Object[] {  });
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-
-		return ((Integer)returnObj).intValue();
-	}
-
-	@Override
-	public com.liferay.bbb.model.BBBMeeting updateBBBMeeting(
-		com.liferay.bbb.model.BBBMeeting bbbMeeting) {
-		Object returnObj = null;
-
-		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName17,
-					_methodParameterTypes17,
-					new Object[] { ClpSerializer.translateInput(bbbMeeting) });
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-
-		return (com.liferay.bbb.model.BBBMeeting)ClpSerializer.translateOutput(returnObj);
-	}
-
-	@Override
-	public java.lang.String getBeanIdentifier() {
-		Object returnObj = null;
-
-		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName18,
-					_methodParameterTypes18, new Object[] {  });
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-
-		return (java.lang.String)ClpSerializer.translateOutput(returnObj);
-	}
-
-	@Override
-	public void setBeanIdentifier(java.lang.String beanIdentifier) {
-		try {
-			_invokableLocalService.invokeMethod(_methodName19,
-				_methodParameterTypes19,
-				new Object[] { ClpSerializer.translateInput(beanIdentifier) });
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-	}
-
-	@Override
-	public java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable {
-		throw new UnsupportedOperationException();
-	}
-
-	@Override
-	public com.liferay.bbb.model.BBBMeeting addBBBMeeting(long userId,
-		long groupId, long bbbServerId, java.lang.String name,
-		java.lang.String description, java.lang.String attendeePassword,
-		java.lang.String moderatorPassword, int status,
-		java.util.List<com.liferay.bbb.model.BBBParticipant> bbbParticipants,
-		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		Object returnObj = null;
-
-		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName21,
-					_methodParameterTypes21,
-					new Object[] {
-						userId,
-						
-					groupId,
-						
-					bbbServerId,
-						
-					ClpSerializer.translateInput(name),
-						
-					ClpSerializer.translateInput(description),
-						
-					ClpSerializer.translateInput(attendeePassword),
-						
-					ClpSerializer.translateInput(moderatorPassword),
-						
-					status,
-						
-					ClpSerializer.translateInput(bbbParticipants),
-						
-					ClpSerializer.translateInput(serviceContext)
-					});
+					_methodParameterTypes14, new Object[] { bbbMeetingId });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -759,30 +607,6 @@ public class BBBMeetingLocalServiceClp implements BBBMeetingLocalService {
 		}
 
 		return (com.liferay.bbb.model.BBBMeeting)ClpSerializer.translateOutput(returnObj);
-	}
-
-	@Override
-	public java.util.List<com.liferay.bbb.model.BBBMeeting> getBBBMeetings(
-		int status) {
-		Object returnObj = null;
-
-		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName22,
-					_methodParameterTypes22, new Object[] { status });
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-
-		return (java.util.List<com.liferay.bbb.model.BBBMeeting>)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override
@@ -792,8 +616,8 @@ public class BBBMeetingLocalServiceClp implements BBBMeetingLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName23,
-					_methodParameterTypes23,
+			returnObj = _invokableLocalService.invokeMethod(_methodName15,
+					_methodParameterTypes15,
 					new Object[] {
 						groupId,
 						
@@ -827,8 +651,8 @@ public class BBBMeetingLocalServiceClp implements BBBMeetingLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName24,
-					_methodParameterTypes24,
+			returnObj = _invokableLocalService.invokeMethod(_methodName16,
+					_methodParameterTypes16,
 					new Object[] {
 						groupId,
 						
@@ -867,12 +691,60 @@ public class BBBMeetingLocalServiceClp implements BBBMeetingLocalService {
 	}
 
 	@Override
-	public int getBBBMeetingsCount(long groupId) {
+	public java.util.List<com.liferay.bbb.model.BBBMeeting> getBBBMeetings(
+		int start, int end) {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName25,
-					_methodParameterTypes25, new Object[] { groupId });
+			returnObj = _invokableLocalService.invokeMethod(_methodName17,
+					_methodParameterTypes17, new Object[] { start, end });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.util.List<com.liferay.bbb.model.BBBMeeting>)ClpSerializer.translateOutput(returnObj);
+	}
+
+	@Override
+	public java.util.List<com.liferay.bbb.model.BBBMeeting> getBBBMeetings(
+		int status) {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName18,
+					_methodParameterTypes18, new Object[] { status });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.util.List<com.liferay.bbb.model.BBBMeeting>)ClpSerializer.translateOutput(returnObj);
+	}
+
+	@Override
+	public int getBBBMeetingsCount() {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName19,
+					_methodParameterTypes19, new Object[] {  });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -894,9 +766,32 @@ public class BBBMeetingLocalServiceClp implements BBBMeetingLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName26,
-					_methodParameterTypes26,
+			returnObj = _invokableLocalService.invokeMethod(_methodName20,
+					_methodParameterTypes20,
 					new Object[] { bbbServerId, status });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return ((Integer)returnObj).intValue();
+	}
+
+	@Override
+	public int getBBBMeetingsCount(long groupId) {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName21,
+					_methodParameterTypes21, new Object[] { groupId });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -920,8 +815,8 @@ public class BBBMeetingLocalServiceClp implements BBBMeetingLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName27,
-					_methodParameterTypes27,
+			returnObj = _invokableLocalService.invokeMethod(_methodName22,
+					_methodParameterTypes22,
 					new Object[] {
 						groupId,
 						
@@ -949,6 +844,111 @@ public class BBBMeetingLocalServiceClp implements BBBMeetingLocalService {
 		}
 
 		return ((Integer)returnObj).intValue();
+	}
+
+	@Override
+	public java.lang.String getBeanIdentifier() {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName23,
+					_methodParameterTypes23, new Object[] {  });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.lang.String)ClpSerializer.translateOutput(returnObj);
+	}
+
+	@Override
+	public com.liferay.portal.model.PersistedModel getPersistedModel(
+		java.io.Serializable primaryKeyObj)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName24,
+					_methodParameterTypes24,
+					new Object[] { ClpSerializer.translateInput(primaryKeyObj) });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.liferay.portal.model.PersistedModel)ClpSerializer.translateOutput(returnObj);
+	}
+
+	@Override
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public void setBeanIdentifier(java.lang.String beanIdentifier) {
+		try {
+			_invokableLocalService.invokeMethod(_methodName26,
+				_methodParameterTypes26,
+				new Object[] { ClpSerializer.translateInput(beanIdentifier) });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+	}
+
+	@Override
+	public com.liferay.bbb.model.BBBMeeting updateBBBMeeting(
+		com.liferay.bbb.model.BBBMeeting bbbMeeting) {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName27,
+					_methodParameterTypes27,
+					new Object[] { ClpSerializer.translateInput(bbbMeeting) });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.liferay.bbb.model.BBBMeeting)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override
@@ -1071,6 +1071,8 @@ public class BBBMeetingLocalServiceClp implements BBBMeetingLocalService {
 	private String[] _methodParameterTypes18;
 	private String _methodName19;
 	private String[] _methodParameterTypes19;
+	private String _methodName20;
+	private String[] _methodParameterTypes20;
 	private String _methodName21;
 	private String[] _methodParameterTypes21;
 	private String _methodName22;
@@ -1079,8 +1081,6 @@ public class BBBMeetingLocalServiceClp implements BBBMeetingLocalService {
 	private String[] _methodParameterTypes23;
 	private String _methodName24;
 	private String[] _methodParameterTypes24;
-	private String _methodName25;
-	private String[] _methodParameterTypes25;
 	private String _methodName26;
 	private String[] _methodParameterTypes26;
 	private String _methodName27;

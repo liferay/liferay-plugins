@@ -16,6 +16,7 @@ package com.liferay.bbb.service;
 
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.search.IndexableType;
 import com.liferay.portal.kernel.transaction.Isolation;
 import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
@@ -51,8 +52,15 @@ public interface BBBParticipantLocalService extends BaseLocalService,
 	* @param bbbParticipant the b b b participant
 	* @return the b b b participant that was added
 	*/
+	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.REINDEX)
 	public com.liferay.bbb.model.BBBParticipant addBBBParticipant(
 		com.liferay.bbb.model.BBBParticipant bbbParticipant);
+
+	public com.liferay.bbb.model.BBBParticipant addBBBParticipant(long userId,
+		long groupId, long bbbMeetingId, java.lang.String name,
+		java.lang.String emailAddress, int type, int status,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	/**
 	* Creates a new b b b participant with the primary key. Does not add the b b b participant to the database.
@@ -64,24 +72,34 @@ public interface BBBParticipantLocalService extends BaseLocalService,
 		long bbbParticipantId);
 
 	/**
+	* Deletes the b b b participant from the database. Also notifies the appropriate model listeners.
+	*
+	* @param bbbParticipant the b b b participant
+	* @return the b b b participant that was removed
+	*/
+	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.DELETE)
+	public com.liferay.bbb.model.BBBParticipant deleteBBBParticipant(
+		com.liferay.bbb.model.BBBParticipant bbbParticipant);
+
+	/**
 	* Deletes the b b b participant with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param bbbParticipantId the primary key of the b b b participant
 	* @return the b b b participant that was removed
 	* @throws PortalException if a b b b participant with the primary key could not be found
 	*/
+	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.DELETE)
 	public com.liferay.bbb.model.BBBParticipant deleteBBBParticipant(
 		long bbbParticipantId)
 		throws com.liferay.portal.kernel.exception.PortalException;
 
 	/**
-	* Deletes the b b b participant from the database. Also notifies the appropriate model listeners.
-	*
-	* @param bbbParticipant the b b b participant
-	* @return the b b b participant that was removed
+	* @throws PortalException
 	*/
-	public com.liferay.bbb.model.BBBParticipant deleteBBBParticipant(
-		com.liferay.bbb.model.BBBParticipant bbbParticipant);
+	@Override
+	public com.liferay.portal.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.model.PersistedModel persistedModel)
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery();
 
@@ -150,7 +168,14 @@ public interface BBBParticipantLocalService extends BaseLocalService,
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.bbb.model.BBBParticipant fetchBBBParticipant(
+		long bbbMeetingId, java.lang.String emailAddress);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.liferay.bbb.model.BBBParticipant fetchBBBParticipant(
 		long bbbParticipantId);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery();
 
 	/**
 	* Returns the b b b participant with the primary key.
@@ -165,21 +190,8 @@ public interface BBBParticipantLocalService extends BaseLocalService,
 		throws com.liferay.portal.kernel.exception.PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery();
-
-	/**
-	* @throws PortalException
-	*/
-	@Override
-	public com.liferay.portal.model.PersistedModel deletePersistedModel(
-		com.liferay.portal.model.PersistedModel persistedModel)
-		throws com.liferay.portal.kernel.exception.PortalException;
-
-	@Override
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.portal.model.PersistedModel getPersistedModel(
-		java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException;
+	public java.util.List<com.liferay.bbb.model.BBBParticipant> getBBBParticipants(
+		long bbbMeetingId);
 
 	/**
 	* Returns a range of all the b b b participants.
@@ -204,14 +216,8 @@ public interface BBBParticipantLocalService extends BaseLocalService,
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getBBBParticipantsCount();
 
-	/**
-	* Updates the b b b participant in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	*
-	* @param bbbParticipant the b b b participant
-	* @return the b b b participant that was updated
-	*/
-	public com.liferay.bbb.model.BBBParticipant updateBBBParticipant(
-		com.liferay.bbb.model.BBBParticipant bbbParticipant);
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public int getBBBParticipantsCount(long bbbMeetingId);
 
 	/**
 	* Returns the Spring bean ID for this bean.
@@ -220,6 +226,17 @@ public interface BBBParticipantLocalService extends BaseLocalService,
 	*/
 	public java.lang.String getBeanIdentifier();
 
+	@Override
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.liferay.portal.model.PersistedModel getPersistedModel(
+		java.io.Serializable primaryKeyObj)
+		throws com.liferay.portal.kernel.exception.PortalException;
+
+	@Override
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable;
+
 	/**
 	* Sets the Spring bean ID for this bean.
 	*
@@ -227,27 +244,15 @@ public interface BBBParticipantLocalService extends BaseLocalService,
 	*/
 	public void setBeanIdentifier(java.lang.String beanIdentifier);
 
-	@Override
-	public java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable;
-
-	public com.liferay.bbb.model.BBBParticipant addBBBParticipant(long userId,
-		long groupId, long bbbMeetingId, java.lang.String name,
-		java.lang.String emailAddress, int type, int status,
-		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException;
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.bbb.model.BBBParticipant fetchBBBParticipant(
-		long bbbMeetingId, java.lang.String emailAddress);
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<com.liferay.bbb.model.BBBParticipant> getBBBParticipants(
-		long bbbMeetingId);
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int getBBBParticipantsCount(long bbbMeetingId);
+	/**
+	* Updates the b b b participant in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	*
+	* @param bbbParticipant the b b b participant
+	* @return the b b b participant that was updated
+	*/
+	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.REINDEX)
+	public com.liferay.bbb.model.BBBParticipant updateBBBParticipant(
+		com.liferay.bbb.model.BBBParticipant bbbParticipant);
 
 	public com.liferay.bbb.model.BBBParticipant updateBBBParticipant(
 		long bbbParticipantId, long bbbMeetingId, java.lang.String name,

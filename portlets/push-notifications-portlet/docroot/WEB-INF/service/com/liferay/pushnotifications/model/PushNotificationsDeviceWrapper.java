@@ -95,84 +95,15 @@ public class PushNotificationsDeviceWrapper implements PushNotificationsDevice,
 		}
 	}
 
-	/**
-	* Returns the primary key of this push notifications device.
-	*
-	* @return the primary key of this push notifications device
-	*/
 	@Override
-	public long getPrimaryKey() {
-		return _pushNotificationsDevice.getPrimaryKey();
+	public java.lang.Object clone() {
+		return new PushNotificationsDeviceWrapper((PushNotificationsDevice)_pushNotificationsDevice.clone());
 	}
 
-	/**
-	* Sets the primary key of this push notifications device.
-	*
-	* @param primaryKey the primary key of this push notifications device
-	*/
 	@Override
-	public void setPrimaryKey(long primaryKey) {
-		_pushNotificationsDevice.setPrimaryKey(primaryKey);
-	}
-
-	/**
-	* Returns the push notifications device ID of this push notifications device.
-	*
-	* @return the push notifications device ID of this push notifications device
-	*/
-	@Override
-	public long getPushNotificationsDeviceId() {
-		return _pushNotificationsDevice.getPushNotificationsDeviceId();
-	}
-
-	/**
-	* Sets the push notifications device ID of this push notifications device.
-	*
-	* @param pushNotificationsDeviceId the push notifications device ID of this push notifications device
-	*/
-	@Override
-	public void setPushNotificationsDeviceId(long pushNotificationsDeviceId) {
-		_pushNotificationsDevice.setPushNotificationsDeviceId(pushNotificationsDeviceId);
-	}
-
-	/**
-	* Returns the user ID of this push notifications device.
-	*
-	* @return the user ID of this push notifications device
-	*/
-	@Override
-	public long getUserId() {
-		return _pushNotificationsDevice.getUserId();
-	}
-
-	/**
-	* Sets the user ID of this push notifications device.
-	*
-	* @param userId the user ID of this push notifications device
-	*/
-	@Override
-	public void setUserId(long userId) {
-		_pushNotificationsDevice.setUserId(userId);
-	}
-
-	/**
-	* Returns the user uuid of this push notifications device.
-	*
-	* @return the user uuid of this push notifications device
-	*/
-	@Override
-	public java.lang.String getUserUuid() {
-		return _pushNotificationsDevice.getUserUuid();
-	}
-
-	/**
-	* Sets the user uuid of this push notifications device.
-	*
-	* @param userUuid the user uuid of this push notifications device
-	*/
-	@Override
-	public void setUserUuid(java.lang.String userUuid) {
-		_pushNotificationsDevice.setUserUuid(userUuid);
+	public int compareTo(
+		com.liferay.pushnotifications.model.PushNotificationsDevice pushNotificationsDevice) {
+		return _pushNotificationsDevice.compareTo(pushNotificationsDevice);
 	}
 
 	/**
@@ -185,14 +116,9 @@ public class PushNotificationsDeviceWrapper implements PushNotificationsDevice,
 		return _pushNotificationsDevice.getCreateDate();
 	}
 
-	/**
-	* Sets the create date of this push notifications device.
-	*
-	* @param createDate the create date of this push notifications device
-	*/
 	@Override
-	public void setCreateDate(java.util.Date createDate) {
-		_pushNotificationsDevice.setCreateDate(createDate);
+	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {
+		return _pushNotificationsDevice.getExpandoBridge();
 	}
 
 	/**
@@ -206,13 +132,28 @@ public class PushNotificationsDeviceWrapper implements PushNotificationsDevice,
 	}
 
 	/**
-	* Sets the platform of this push notifications device.
+	* Returns the primary key of this push notifications device.
 	*
-	* @param platform the platform of this push notifications device
+	* @return the primary key of this push notifications device
 	*/
 	@Override
-	public void setPlatform(java.lang.String platform) {
-		_pushNotificationsDevice.setPlatform(platform);
+	public long getPrimaryKey() {
+		return _pushNotificationsDevice.getPrimaryKey();
+	}
+
+	@Override
+	public java.io.Serializable getPrimaryKeyObj() {
+		return _pushNotificationsDevice.getPrimaryKeyObj();
+	}
+
+	/**
+	* Returns the push notifications device ID of this push notifications device.
+	*
+	* @return the push notifications device ID of this push notifications device
+	*/
+	@Override
+	public long getPushNotificationsDeviceId() {
+		return _pushNotificationsDevice.getPushNotificationsDeviceId();
 	}
 
 	/**
@@ -226,23 +167,28 @@ public class PushNotificationsDeviceWrapper implements PushNotificationsDevice,
 	}
 
 	/**
-	* Sets the token of this push notifications device.
+	* Returns the user ID of this push notifications device.
 	*
-	* @param token the token of this push notifications device
+	* @return the user ID of this push notifications device
 	*/
 	@Override
-	public void setToken(java.lang.String token) {
-		_pushNotificationsDevice.setToken(token);
+	public long getUserId() {
+		return _pushNotificationsDevice.getUserId();
+	}
+
+	/**
+	* Returns the user uuid of this push notifications device.
+	*
+	* @return the user uuid of this push notifications device
+	*/
+	@Override
+	public java.lang.String getUserUuid() {
+		return _pushNotificationsDevice.getUserUuid();
 	}
 
 	@Override
-	public boolean isNew() {
-		return _pushNotificationsDevice.isNew();
-	}
-
-	@Override
-	public void setNew(boolean n) {
-		_pushNotificationsDevice.setNew(n);
+	public int hashCode() {
+		return _pushNotificationsDevice.hashCode();
 	}
 
 	@Override
@@ -251,28 +197,33 @@ public class PushNotificationsDeviceWrapper implements PushNotificationsDevice,
 	}
 
 	@Override
-	public void setCachedModel(boolean cachedModel) {
-		_pushNotificationsDevice.setCachedModel(cachedModel);
-	}
-
-	@Override
 	public boolean isEscapedModel() {
 		return _pushNotificationsDevice.isEscapedModel();
 	}
 
 	@Override
-	public java.io.Serializable getPrimaryKeyObj() {
-		return _pushNotificationsDevice.getPrimaryKeyObj();
+	public boolean isNew() {
+		return _pushNotificationsDevice.isNew();
 	}
 
 	@Override
-	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
-		_pushNotificationsDevice.setPrimaryKeyObj(primaryKeyObj);
+	public void persist() {
+		_pushNotificationsDevice.persist();
 	}
 
 	@Override
-	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {
-		return _pushNotificationsDevice.getExpandoBridge();
+	public void setCachedModel(boolean cachedModel) {
+		_pushNotificationsDevice.setCachedModel(cachedModel);
+	}
+
+	/**
+	* Sets the create date of this push notifications device.
+	*
+	* @param createDate the create date of this push notifications device
+	*/
+	@Override
+	public void setCreateDate(java.util.Date createDate) {
+		_pushNotificationsDevice.setCreateDate(createDate);
 	}
 
 	@Override
@@ -294,19 +245,73 @@ public class PushNotificationsDeviceWrapper implements PushNotificationsDevice,
 	}
 
 	@Override
-	public java.lang.Object clone() {
-		return new PushNotificationsDeviceWrapper((PushNotificationsDevice)_pushNotificationsDevice.clone());
+	public void setNew(boolean n) {
+		_pushNotificationsDevice.setNew(n);
+	}
+
+	/**
+	* Sets the platform of this push notifications device.
+	*
+	* @param platform the platform of this push notifications device
+	*/
+	@Override
+	public void setPlatform(java.lang.String platform) {
+		_pushNotificationsDevice.setPlatform(platform);
+	}
+
+	/**
+	* Sets the primary key of this push notifications device.
+	*
+	* @param primaryKey the primary key of this push notifications device
+	*/
+	@Override
+	public void setPrimaryKey(long primaryKey) {
+		_pushNotificationsDevice.setPrimaryKey(primaryKey);
 	}
 
 	@Override
-	public int compareTo(
-		com.liferay.pushnotifications.model.PushNotificationsDevice pushNotificationsDevice) {
-		return _pushNotificationsDevice.compareTo(pushNotificationsDevice);
+	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
+		_pushNotificationsDevice.setPrimaryKeyObj(primaryKeyObj);
 	}
 
+	/**
+	* Sets the push notifications device ID of this push notifications device.
+	*
+	* @param pushNotificationsDeviceId the push notifications device ID of this push notifications device
+	*/
 	@Override
-	public int hashCode() {
-		return _pushNotificationsDevice.hashCode();
+	public void setPushNotificationsDeviceId(long pushNotificationsDeviceId) {
+		_pushNotificationsDevice.setPushNotificationsDeviceId(pushNotificationsDeviceId);
+	}
+
+	/**
+	* Sets the token of this push notifications device.
+	*
+	* @param token the token of this push notifications device
+	*/
+	@Override
+	public void setToken(java.lang.String token) {
+		_pushNotificationsDevice.setToken(token);
+	}
+
+	/**
+	* Sets the user ID of this push notifications device.
+	*
+	* @param userId the user ID of this push notifications device
+	*/
+	@Override
+	public void setUserId(long userId) {
+		_pushNotificationsDevice.setUserId(userId);
+	}
+
+	/**
+	* Sets the user uuid of this push notifications device.
+	*
+	* @param userUuid the user uuid of this push notifications device
+	*/
+	@Override
+	public void setUserUuid(java.lang.String userUuid) {
+		_pushNotificationsDevice.setUserUuid(userUuid);
 	}
 
 	@Override
@@ -320,23 +325,18 @@ public class PushNotificationsDeviceWrapper implements PushNotificationsDevice,
 	}
 
 	@Override
-	public com.liferay.pushnotifications.model.PushNotificationsDevice toUnescapedModel() {
-		return new PushNotificationsDeviceWrapper(_pushNotificationsDevice.toUnescapedModel());
-	}
-
-	@Override
 	public java.lang.String toString() {
 		return _pushNotificationsDevice.toString();
 	}
 
 	@Override
-	public java.lang.String toXmlString() {
-		return _pushNotificationsDevice.toXmlString();
+	public com.liferay.pushnotifications.model.PushNotificationsDevice toUnescapedModel() {
+		return new PushNotificationsDeviceWrapper(_pushNotificationsDevice.toUnescapedModel());
 	}
 
 	@Override
-	public void persist() {
-		_pushNotificationsDevice.persist();
+	public java.lang.String toXmlString() {
+		return _pushNotificationsDevice.toXmlString();
 	}
 
 	@Override

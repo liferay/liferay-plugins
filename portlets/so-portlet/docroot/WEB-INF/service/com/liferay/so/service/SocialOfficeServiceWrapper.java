@@ -39,14 +39,10 @@ public class SocialOfficeServiceWrapper implements SocialOfficeService,
 		return _socialOfficeService.getBeanIdentifier();
 	}
 
-	/**
-	* Sets the Spring bean ID for this bean.
-	*
-	* @param beanIdentifier the Spring bean ID for this bean
-	*/
 	@Override
-	public void setBeanIdentifier(java.lang.String beanIdentifier) {
-		_socialOfficeService.setBeanIdentifier(beanIdentifier);
+	public long[] getUserSocialOfficeGroupIds()
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _socialOfficeService.getUserSocialOfficeGroupIds();
 	}
 
 	@Override
@@ -57,15 +53,19 @@ public class SocialOfficeServiceWrapper implements SocialOfficeService,
 	}
 
 	@Override
-	public long[] getUserSocialOfficeGroupIds()
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _socialOfficeService.getUserSocialOfficeGroupIds();
-	}
-
-	@Override
 	public boolean isSocialOfficeGroup(long groupId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _socialOfficeService.isSocialOfficeGroup(groupId);
+	}
+
+	/**
+	* Sets the Spring bean ID for this bean.
+	*
+	* @param beanIdentifier the Spring bean ID for this bean
+	*/
+	@Override
+	public void setBeanIdentifier(java.lang.String beanIdentifier) {
+		_socialOfficeService.setBeanIdentifier(beanIdentifier);
 	}
 
 	/**

@@ -30,34 +30,6 @@ public class MicroblogsEntryServiceWrapper implements MicroblogsEntryService,
 		_microblogsEntryService = microblogsEntryService;
 	}
 
-	/**
-	* Returns the Spring bean ID for this bean.
-	*
-	* @return the Spring bean ID for this bean
-	*/
-	@Override
-	public java.lang.String getBeanIdentifier() {
-		return _microblogsEntryService.getBeanIdentifier();
-	}
-
-	/**
-	* Sets the Spring bean ID for this bean.
-	*
-	* @param beanIdentifier the Spring bean ID for this bean
-	*/
-	@Override
-	public void setBeanIdentifier(java.lang.String beanIdentifier) {
-		_microblogsEntryService.setBeanIdentifier(beanIdentifier);
-	}
-
-	@Override
-	public java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable {
-		return _microblogsEntryService.invokeMethod(name, parameterTypes,
-			arguments);
-	}
-
 	@Override
 	public com.liferay.microblogs.model.MicroblogsEntry addMicroblogsEntry(
 		long userId, java.lang.String content, int type, long receiverUserId,
@@ -76,11 +48,14 @@ public class MicroblogsEntryServiceWrapper implements MicroblogsEntryService,
 		return _microblogsEntryService.deleteMicroblogsEntry(microblogsEntryId);
 	}
 
+	/**
+	* Returns the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
+	*/
 	@Override
-	public java.util.List<com.liferay.microblogs.model.MicroblogsEntry> getMicroblogsEntries(
-		int start, int end)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _microblogsEntryService.getMicroblogsEntries(start, end);
+	public java.lang.String getBeanIdentifier() {
+		return _microblogsEntryService.getBeanIdentifier();
 	}
 
 	@Override
@@ -89,6 +64,13 @@ public class MicroblogsEntryServiceWrapper implements MicroblogsEntryService,
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _microblogsEntryService.getMicroblogsEntries(assetTagName,
 			start, end);
+	}
+
+	@Override
+	public java.util.List<com.liferay.microblogs.model.MicroblogsEntry> getMicroblogsEntries(
+		int start, int end)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _microblogsEntryService.getMicroblogsEntries(start, end);
 	}
 
 	@Override
@@ -137,6 +119,24 @@ public class MicroblogsEntryServiceWrapper implements MicroblogsEntryService,
 		int type) throws com.liferay.portal.kernel.exception.PortalException {
 		return _microblogsEntryService.getUserMicroblogsEntriesCount(microblogsEntryUserId,
 			type);
+	}
+
+	@Override
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return _microblogsEntryService.invokeMethod(name, parameterTypes,
+			arguments);
+	}
+
+	/**
+	* Sets the Spring bean ID for this bean.
+	*
+	* @param beanIdentifier the Spring bean ID for this bean
+	*/
+	@Override
+	public void setBeanIdentifier(java.lang.String beanIdentifier) {
+		_microblogsEntryService.setBeanIdentifier(beanIdentifier);
 	}
 
 	@Override

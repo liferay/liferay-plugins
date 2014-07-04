@@ -16,6 +16,7 @@ package com.liferay.testpacl.service;
 
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.search.IndexableType;
 import com.liferay.portal.kernel.transaction.Isolation;
 import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
@@ -51,6 +52,7 @@ public interface FooLocalService extends BaseLocalService, InvokableLocalService
 	* @param foo the foo
 	* @return the foo that was added
 	*/
+	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.REINDEX)
 	public com.liferay.testpacl.model.Foo addFoo(
 		com.liferay.testpacl.model.Foo foo);
 
@@ -63,23 +65,33 @@ public interface FooLocalService extends BaseLocalService, InvokableLocalService
 	public com.liferay.testpacl.model.Foo createFoo(long fooId);
 
 	/**
+	* Deletes the foo from the database. Also notifies the appropriate model listeners.
+	*
+	* @param foo the foo
+	* @return the foo that was removed
+	*/
+	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.DELETE)
+	public com.liferay.testpacl.model.Foo deleteFoo(
+		com.liferay.testpacl.model.Foo foo);
+
+	/**
 	* Deletes the foo with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param fooId the primary key of the foo
 	* @return the foo that was removed
 	* @throws PortalException if a foo with the primary key could not be found
 	*/
+	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.DELETE)
 	public com.liferay.testpacl.model.Foo deleteFoo(long fooId)
 		throws com.liferay.portal.kernel.exception.PortalException;
 
 	/**
-	* Deletes the foo from the database. Also notifies the appropriate model listeners.
-	*
-	* @param foo the foo
-	* @return the foo that was removed
+	* @throws PortalException
 	*/
-	public com.liferay.testpacl.model.Foo deleteFoo(
-		com.liferay.testpacl.model.Foo foo);
+	@Override
+	public com.liferay.portal.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.model.PersistedModel persistedModel)
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery();
 
@@ -149,6 +161,35 @@ public interface FooLocalService extends BaseLocalService, InvokableLocalService
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.testpacl.model.Foo fetchFoo(long fooId);
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery();
+
+	/**
+	* Returns the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
+	*/
+	public java.lang.String getBeanIdentifier();
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.liferay.portal.model.Company getCompanyPersistence_FindByPrimaryKey(
+		long companyId)
+		throws com.liferay.portal.kernel.exception.PortalException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.liferay.portal.model.Company getCompanyUtil_FindByPrimaryKey(
+		long companyId)
+		throws com.liferay.portal.kernel.exception.PortalException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<com.liferay.chat.model.Entry> getEntryLocalServiceUtil_GetEntries(
+		int start, int end);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.liferay.chat.model.Entry getEntryLocalServiceUtil_GetEntry(
+		long entryId)
+		throws com.liferay.portal.kernel.exception.PortalException;
+
 	/**
 	* Returns the foo with the primary key.
 	*
@@ -158,23 +199,6 @@ public interface FooLocalService extends BaseLocalService, InvokableLocalService
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.testpacl.model.Foo getFoo(long fooId)
-		throws com.liferay.portal.kernel.exception.PortalException;
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery();
-
-	/**
-	* @throws PortalException
-	*/
-	@Override
-	public com.liferay.portal.model.PersistedModel deletePersistedModel(
-		com.liferay.portal.model.PersistedModel persistedModel)
-		throws com.liferay.portal.kernel.exception.PortalException;
-
-	@Override
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.portal.model.PersistedModel getPersistedModel(
-		java.io.Serializable primaryKeyObj)
 		throws com.liferay.portal.kernel.exception.PortalException;
 
 	/**
@@ -200,53 +224,6 @@ public interface FooLocalService extends BaseLocalService, InvokableLocalService
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getFoosCount();
 
-	/**
-	* Updates the foo in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	*
-	* @param foo the foo
-	* @return the foo that was updated
-	*/
-	public com.liferay.testpacl.model.Foo updateFoo(
-		com.liferay.testpacl.model.Foo foo);
-
-	/**
-	* Returns the Spring bean ID for this bean.
-	*
-	* @return the Spring bean ID for this bean
-	*/
-	public java.lang.String getBeanIdentifier();
-
-	/**
-	* Sets the Spring bean ID for this bean.
-	*
-	* @param beanIdentifier the Spring bean ID for this bean
-	*/
-	public void setBeanIdentifier(java.lang.String beanIdentifier);
-
-	@Override
-	public java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable;
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.portal.model.Company getCompanyPersistence_FindByPrimaryKey(
-		long companyId)
-		throws com.liferay.portal.kernel.exception.PortalException;
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.portal.model.Company getCompanyUtil_FindByPrimaryKey(
-		long companyId)
-		throws com.liferay.portal.kernel.exception.PortalException;
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<com.liferay.chat.model.Entry> getEntryLocalServiceUtil_GetEntries(
-		int start, int end);
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.chat.model.Entry getEntryLocalServiceUtil_GetEntry(
-		long entryId)
-		throws com.liferay.portal.kernel.exception.PortalException;
-
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.portal.model.Group getGroupPersistence_FindByPrimaryKey(
 		long groupId)
@@ -257,14 +234,11 @@ public interface FooLocalService extends BaseLocalService, InvokableLocalService
 		long groupId)
 		throws com.liferay.portal.kernel.exception.PortalException;
 
+	@Override
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int getPortalService_GetBuildNumber();
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int getPortalService_TestGetBuildNumber();
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public boolean getPortalService_TestHasClassName();
+	public com.liferay.portal.model.PersistedModel getPersistedModel(
+		java.io.Serializable primaryKeyObj)
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getPortalServiceUtil_GetBuildNumber();
@@ -274,6 +248,15 @@ public interface FooLocalService extends BaseLocalService, InvokableLocalService
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public boolean getPortalServiceUtil_TestHasClassName();
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public int getPortalService_GetBuildNumber();
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public int getPortalService_TestGetBuildNumber();
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public boolean getPortalService_TestHasClassName();
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getReleaseInfo_GetBuildNumber();
@@ -294,4 +277,26 @@ public interface FooLocalService extends BaseLocalService, InvokableLocalService
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.portal.model.User getUserUtil_FindByPrimaryKey(
 		long userId) throws com.liferay.portal.kernel.exception.PortalException;
+
+	@Override
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable;
+
+	/**
+	* Sets the Spring bean ID for this bean.
+	*
+	* @param beanIdentifier the Spring bean ID for this bean
+	*/
+	public void setBeanIdentifier(java.lang.String beanIdentifier);
+
+	/**
+	* Updates the foo in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	*
+	* @param foo the foo
+	* @return the foo that was updated
+	*/
+	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.REINDEX)
+	public com.liferay.testpacl.model.Foo updateFoo(
+		com.liferay.testpacl.model.Foo foo);
 }

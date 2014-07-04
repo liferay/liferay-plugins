@@ -55,6 +55,18 @@ public class JIRAActionLocalServiceWrapper implements JIRAActionLocalService,
 	}
 
 	/**
+	* Deletes the j i r a action from the database. Also notifies the appropriate model listeners.
+	*
+	* @param jiraAction the j i r a action
+	* @return the j i r a action that was removed
+	*/
+	@Override
+	public com.liferay.socialcoding.model.JIRAAction deleteJIRAAction(
+		com.liferay.socialcoding.model.JIRAAction jiraAction) {
+		return _jiraActionLocalService.deleteJIRAAction(jiraAction);
+	}
+
+	/**
 	* Deletes the j i r a action with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param jiraActionId the primary key of the j i r a action
@@ -69,15 +81,13 @@ public class JIRAActionLocalServiceWrapper implements JIRAActionLocalService,
 	}
 
 	/**
-	* Deletes the j i r a action from the database. Also notifies the appropriate model listeners.
-	*
-	* @param jiraAction the j i r a action
-	* @return the j i r a action that was removed
+	* @throws PortalException
 	*/
 	@Override
-	public com.liferay.socialcoding.model.JIRAAction deleteJIRAAction(
-		com.liferay.socialcoding.model.JIRAAction jiraAction) {
-		return _jiraActionLocalService.deleteJIRAAction(jiraAction);
+	public com.liferay.portal.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.model.PersistedModel persistedModel)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _jiraActionLocalService.deletePersistedModel(persistedModel);
 	}
 
 	@Override
@@ -171,6 +181,21 @@ public class JIRAActionLocalServiceWrapper implements JIRAActionLocalService,
 		return _jiraActionLocalService.fetchJIRAAction(jiraActionId);
 	}
 
+	@Override
+	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
+		return _jiraActionLocalService.getActionableDynamicQuery();
+	}
+
+	/**
+	* Returns the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
+	*/
+	@Override
+	public java.lang.String getBeanIdentifier() {
+		return _jiraActionLocalService.getBeanIdentifier();
+	}
+
 	/**
 	* Returns the j i r a action with the primary key.
 	*
@@ -183,28 +208,6 @@ public class JIRAActionLocalServiceWrapper implements JIRAActionLocalService,
 		long jiraActionId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _jiraActionLocalService.getJIRAAction(jiraActionId);
-	}
-
-	@Override
-	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
-		return _jiraActionLocalService.getActionableDynamicQuery();
-	}
-
-	/**
-	* @throws PortalException
-	*/
-	@Override
-	public com.liferay.portal.model.PersistedModel deletePersistedModel(
-		com.liferay.portal.model.PersistedModel persistedModel)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _jiraActionLocalService.deletePersistedModel(persistedModel);
-	}
-
-	@Override
-	public com.liferay.portal.model.PersistedModel getPersistedModel(
-		java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _jiraActionLocalService.getPersistedModel(primaryKeyObj);
 	}
 
 	/**
@@ -234,26 +237,19 @@ public class JIRAActionLocalServiceWrapper implements JIRAActionLocalService,
 		return _jiraActionLocalService.getJIRAActionsCount();
 	}
 
-	/**
-	* Updates the j i r a action in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	*
-	* @param jiraAction the j i r a action
-	* @return the j i r a action that was updated
-	*/
 	@Override
-	public com.liferay.socialcoding.model.JIRAAction updateJIRAAction(
-		com.liferay.socialcoding.model.JIRAAction jiraAction) {
-		return _jiraActionLocalService.updateJIRAAction(jiraAction);
+	public com.liferay.portal.model.PersistedModel getPersistedModel(
+		java.io.Serializable primaryKeyObj)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _jiraActionLocalService.getPersistedModel(primaryKeyObj);
 	}
 
-	/**
-	* Returns the Spring bean ID for this bean.
-	*
-	* @return the Spring bean ID for this bean
-	*/
 	@Override
-	public java.lang.String getBeanIdentifier() {
-		return _jiraActionLocalService.getBeanIdentifier();
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return _jiraActionLocalService.invokeMethod(name, parameterTypes,
+			arguments);
 	}
 
 	/**
@@ -266,12 +262,16 @@ public class JIRAActionLocalServiceWrapper implements JIRAActionLocalService,
 		_jiraActionLocalService.setBeanIdentifier(beanIdentifier);
 	}
 
+	/**
+	* Updates the j i r a action in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	*
+	* @param jiraAction the j i r a action
+	* @return the j i r a action that was updated
+	*/
 	@Override
-	public java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable {
-		return _jiraActionLocalService.invokeMethod(name, parameterTypes,
-			arguments);
+	public com.liferay.socialcoding.model.JIRAAction updateJIRAAction(
+		com.liferay.socialcoding.model.JIRAAction jiraAction) {
+		return _jiraActionLocalService.updateJIRAAction(jiraAction);
 	}
 
 	/**

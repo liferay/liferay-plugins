@@ -38,6 +38,10 @@ public class EntryLocalServiceUtil {
 	 *
 	 * Never modify this class directly. Add custom service methods to {@link com.liferay.chat.service.impl.EntryLocalServiceImpl} and rerun ServiceBuilder to regenerate this class.
 	 */
+	public static com.liferay.chat.model.Entry addEntry(long createDate,
+		long fromUserId, long toUserId, java.lang.String content) {
+		return getService().addEntry(createDate, fromUserId, toUserId, content);
+	}
 
 	/**
 	* Adds the entry to the database. Also notifies the appropriate model listeners.
@@ -50,6 +54,11 @@ public class EntryLocalServiceUtil {
 		return getService().addEntry(entry);
 	}
 
+	public static com.liferay.chat.model.Entry addEntry(long fromUserId,
+		long toUserId, java.lang.String content) {
+		return getService().addEntry(fromUserId, toUserId, content);
+	}
+
 	/**
 	* Creates a new entry with the primary key. Does not add the entry to the database.
 	*
@@ -58,6 +67,21 @@ public class EntryLocalServiceUtil {
 	*/
 	public static com.liferay.chat.model.Entry createEntry(long entryId) {
 		return getService().createEntry(entryId);
+	}
+
+	public static void deleteEntries(long userId) {
+		getService().deleteEntries(userId);
+	}
+
+	/**
+	* Deletes the entry from the database. Also notifies the appropriate model listeners.
+	*
+	* @param entry the entry
+	* @return the entry that was removed
+	*/
+	public static com.liferay.chat.model.Entry deleteEntry(
+		com.liferay.chat.model.Entry entry) {
+		return getService().deleteEntry(entry);
 	}
 
 	/**
@@ -73,14 +97,12 @@ public class EntryLocalServiceUtil {
 	}
 
 	/**
-	* Deletes the entry from the database. Also notifies the appropriate model listeners.
-	*
-	* @param entry the entry
-	* @return the entry that was removed
+	* @throws PortalException
 	*/
-	public static com.liferay.chat.model.Entry deleteEntry(
-		com.liferay.chat.model.Entry entry) {
-		return getService().deleteEntry(entry);
+	public static com.liferay.portal.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.model.PersistedModel persistedModel)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().deletePersistedModel(persistedModel);
 	}
 
 	public static com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
@@ -165,35 +187,17 @@ public class EntryLocalServiceUtil {
 		return getService().fetchEntry(entryId);
 	}
 
-	/**
-	* Returns the entry with the primary key.
-	*
-	* @param entryId the primary key of the entry
-	* @return the entry
-	* @throws PortalException if a entry with the primary key could not be found
-	*/
-	public static com.liferay.chat.model.Entry getEntry(long entryId)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().getEntry(entryId);
-	}
-
 	public static com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
 		return getService().getActionableDynamicQuery();
 	}
 
 	/**
-	* @throws PortalException
+	* Returns the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
 	*/
-	public static com.liferay.portal.model.PersistedModel deletePersistedModel(
-		com.liferay.portal.model.PersistedModel persistedModel)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().deletePersistedModel(persistedModel);
-	}
-
-	public static com.liferay.portal.model.PersistedModel getPersistedModel(
-		java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().getPersistedModel(primaryKeyObj);
+	public static java.lang.String getBeanIdentifier() {
+		return getService().getBeanIdentifier();
 	}
 
 	/**
@@ -222,23 +226,37 @@ public class EntryLocalServiceUtil {
 	}
 
 	/**
-	* Updates the entry in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	* Returns the entry with the primary key.
 	*
-	* @param entry the entry
-	* @return the entry that was updated
+	* @param entryId the primary key of the entry
+	* @return the entry
+	* @throws PortalException if a entry with the primary key could not be found
 	*/
-	public static com.liferay.chat.model.Entry updateEntry(
-		com.liferay.chat.model.Entry entry) {
-		return getService().updateEntry(entry);
+	public static com.liferay.chat.model.Entry getEntry(long entryId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().getEntry(entryId);
 	}
 
-	/**
-	* Returns the Spring bean ID for this bean.
-	*
-	* @return the Spring bean ID for this bean
-	*/
-	public static java.lang.String getBeanIdentifier() {
-		return getService().getBeanIdentifier();
+	public static java.util.List<com.liferay.chat.model.Entry> getNewEntries(
+		long userId, long createDate, int start, int end) {
+		return getService().getNewEntries(userId, createDate, start, end);
+	}
+
+	public static java.util.List<com.liferay.chat.model.Entry> getOldEntries(
+		long createDate, int start, int end) {
+		return getService().getOldEntries(createDate, start, end);
+	}
+
+	public static com.liferay.portal.model.PersistedModel getPersistedModel(
+		java.io.Serializable primaryKeyObj)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().getPersistedModel(primaryKeyObj);
+	}
+
+	public static java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return getService().invokeMethod(name, parameterTypes, arguments);
 	}
 
 	/**
@@ -250,34 +268,15 @@ public class EntryLocalServiceUtil {
 		getService().setBeanIdentifier(beanIdentifier);
 	}
 
-	public static java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable {
-		return getService().invokeMethod(name, parameterTypes, arguments);
-	}
-
-	public static com.liferay.chat.model.Entry addEntry(long createDate,
-		long fromUserId, long toUserId, java.lang.String content) {
-		return getService().addEntry(createDate, fromUserId, toUserId, content);
-	}
-
-	public static com.liferay.chat.model.Entry addEntry(long fromUserId,
-		long toUserId, java.lang.String content) {
-		return getService().addEntry(fromUserId, toUserId, content);
-	}
-
-	public static void deleteEntries(long userId) {
-		getService().deleteEntries(userId);
-	}
-
-	public static java.util.List<com.liferay.chat.model.Entry> getNewEntries(
-		long userId, long createDate, int start, int end) {
-		return getService().getNewEntries(userId, createDate, start, end);
-	}
-
-	public static java.util.List<com.liferay.chat.model.Entry> getOldEntries(
-		long createDate, int start, int end) {
-		return getService().getOldEntries(createDate, start, end);
+	/**
+	* Updates the entry in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	*
+	* @param entry the entry
+	* @return the entry that was updated
+	*/
+	public static com.liferay.chat.model.Entry updateEntry(
+		com.liferay.chat.model.Entry entry) {
+		return getService().updateEntry(entry);
 	}
 
 	public static void clearService() {

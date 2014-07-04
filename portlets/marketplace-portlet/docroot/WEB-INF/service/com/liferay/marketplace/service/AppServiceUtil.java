@@ -38,6 +38,10 @@ public class AppServiceUtil {
 	 *
 	 * Never modify this class directly. Add custom service methods to {@link com.liferay.marketplace.service.impl.AppServiceImpl} and rerun ServiceBuilder to regenerate this class.
 	 */
+	public static com.liferay.marketplace.model.App deleteApp(long appId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().deleteApp(appId);
+	}
 
 	/**
 	* Returns the Spring bean ID for this bean.
@@ -48,13 +52,9 @@ public class AppServiceUtil {
 		return getService().getBeanIdentifier();
 	}
 
-	/**
-	* Sets the Spring bean ID for this bean.
-	*
-	* @param beanIdentifier the Spring bean ID for this bean
-	*/
-	public static void setBeanIdentifier(java.lang.String beanIdentifier) {
-		getService().setBeanIdentifier(beanIdentifier);
+	public static void installApp(long remoteAppId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		getService().installApp(remoteAppId);
 	}
 
 	public static java.lang.Object invokeMethod(java.lang.String name,
@@ -63,14 +63,13 @@ public class AppServiceUtil {
 		return getService().invokeMethod(name, parameterTypes, arguments);
 	}
 
-	public static com.liferay.marketplace.model.App deleteApp(long appId)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().deleteApp(appId);
-	}
-
-	public static void installApp(long remoteAppId)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		getService().installApp(remoteAppId);
+	/**
+	* Sets the Spring bean ID for this bean.
+	*
+	* @param beanIdentifier the Spring bean ID for this bean
+	*/
+	public static void setBeanIdentifier(java.lang.String beanIdentifier) {
+		getService().setBeanIdentifier(beanIdentifier);
 	}
 
 	public static void uninstallApp(long remoteAppId)

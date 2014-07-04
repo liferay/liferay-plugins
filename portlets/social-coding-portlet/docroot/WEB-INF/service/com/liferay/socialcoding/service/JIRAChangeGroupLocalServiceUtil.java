@@ -62,6 +62,17 @@ public class JIRAChangeGroupLocalServiceUtil {
 	}
 
 	/**
+	* Deletes the j i r a change group from the database. Also notifies the appropriate model listeners.
+	*
+	* @param jiraChangeGroup the j i r a change group
+	* @return the j i r a change group that was removed
+	*/
+	public static com.liferay.socialcoding.model.JIRAChangeGroup deleteJIRAChangeGroup(
+		com.liferay.socialcoding.model.JIRAChangeGroup jiraChangeGroup) {
+		return getService().deleteJIRAChangeGroup(jiraChangeGroup);
+	}
+
+	/**
 	* Deletes the j i r a change group with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param jiraChangeGroupId the primary key of the j i r a change group
@@ -75,14 +86,12 @@ public class JIRAChangeGroupLocalServiceUtil {
 	}
 
 	/**
-	* Deletes the j i r a change group from the database. Also notifies the appropriate model listeners.
-	*
-	* @param jiraChangeGroup the j i r a change group
-	* @return the j i r a change group that was removed
+	* @throws PortalException
 	*/
-	public static com.liferay.socialcoding.model.JIRAChangeGroup deleteJIRAChangeGroup(
-		com.liferay.socialcoding.model.JIRAChangeGroup jiraChangeGroup) {
-		return getService().deleteJIRAChangeGroup(jiraChangeGroup);
+	public static com.liferay.portal.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.model.PersistedModel persistedModel)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().deletePersistedModel(persistedModel);
 	}
 
 	public static com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
@@ -168,6 +177,19 @@ public class JIRAChangeGroupLocalServiceUtil {
 		return getService().fetchJIRAChangeGroup(jiraChangeGroupId);
 	}
 
+	public static com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
+		return getService().getActionableDynamicQuery();
+	}
+
+	/**
+	* Returns the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
+	*/
+	public static java.lang.String getBeanIdentifier() {
+		return getService().getBeanIdentifier();
+	}
+
 	/**
 	* Returns the j i r a change group with the primary key.
 	*
@@ -179,25 +201,6 @@ public class JIRAChangeGroupLocalServiceUtil {
 		long jiraChangeGroupId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().getJIRAChangeGroup(jiraChangeGroupId);
-	}
-
-	public static com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
-		return getService().getActionableDynamicQuery();
-	}
-
-	/**
-	* @throws PortalException
-	*/
-	public static com.liferay.portal.model.PersistedModel deletePersistedModel(
-		com.liferay.portal.model.PersistedModel persistedModel)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().deletePersistedModel(persistedModel);
-	}
-
-	public static com.liferay.portal.model.PersistedModel getPersistedModel(
-		java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().getPersistedModel(primaryKeyObj);
 	}
 
 	/**
@@ -225,24 +228,16 @@ public class JIRAChangeGroupLocalServiceUtil {
 		return getService().getJIRAChangeGroupsCount();
 	}
 
-	/**
-	* Updates the j i r a change group in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	*
-	* @param jiraChangeGroup the j i r a change group
-	* @return the j i r a change group that was updated
-	*/
-	public static com.liferay.socialcoding.model.JIRAChangeGroup updateJIRAChangeGroup(
-		com.liferay.socialcoding.model.JIRAChangeGroup jiraChangeGroup) {
-		return getService().updateJIRAChangeGroup(jiraChangeGroup);
+	public static com.liferay.portal.model.PersistedModel getPersistedModel(
+		java.io.Serializable primaryKeyObj)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().getPersistedModel(primaryKeyObj);
 	}
 
-	/**
-	* Returns the Spring bean ID for this bean.
-	*
-	* @return the Spring bean ID for this bean
-	*/
-	public static java.lang.String getBeanIdentifier() {
-		return getService().getBeanIdentifier();
+	public static java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return getService().invokeMethod(name, parameterTypes, arguments);
 	}
 
 	/**
@@ -254,10 +249,15 @@ public class JIRAChangeGroupLocalServiceUtil {
 		getService().setBeanIdentifier(beanIdentifier);
 	}
 
-	public static java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable {
-		return getService().invokeMethod(name, parameterTypes, arguments);
+	/**
+	* Updates the j i r a change group in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	*
+	* @param jiraChangeGroup the j i r a change group
+	* @return the j i r a change group that was updated
+	*/
+	public static com.liferay.socialcoding.model.JIRAChangeGroup updateJIRAChangeGroup(
+		com.liferay.socialcoding.model.JIRAChangeGroup jiraChangeGroup) {
+		return getService().updateJIRAChangeGroup(jiraChangeGroup);
 	}
 
 	public static void clearService() {

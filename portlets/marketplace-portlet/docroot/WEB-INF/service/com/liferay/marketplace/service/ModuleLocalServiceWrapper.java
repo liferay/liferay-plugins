@@ -41,6 +41,12 @@ public class ModuleLocalServiceWrapper implements ModuleLocalService,
 		return _moduleLocalService.addModule(module);
 	}
 
+	@Override
+	public com.liferay.marketplace.model.Module addModule(long userId,
+		long appId, java.lang.String contextName) {
+		return _moduleLocalService.addModule(userId, appId, contextName);
+	}
+
 	/**
 	* Creates a new module with the primary key. Does not add the module to the database.
 	*
@@ -50,6 +56,18 @@ public class ModuleLocalServiceWrapper implements ModuleLocalService,
 	@Override
 	public com.liferay.marketplace.model.Module createModule(long moduleId) {
 		return _moduleLocalService.createModule(moduleId);
+	}
+
+	/**
+	* Deletes the module from the database. Also notifies the appropriate model listeners.
+	*
+	* @param module the module
+	* @return the module that was removed
+	*/
+	@Override
+	public com.liferay.marketplace.model.Module deleteModule(
+		com.liferay.marketplace.model.Module module) {
+		return _moduleLocalService.deleteModule(module);
 	}
 
 	/**
@@ -66,15 +84,13 @@ public class ModuleLocalServiceWrapper implements ModuleLocalService,
 	}
 
 	/**
-	* Deletes the module from the database. Also notifies the appropriate model listeners.
-	*
-	* @param module the module
-	* @return the module that was removed
+	* @throws PortalException
 	*/
 	@Override
-	public com.liferay.marketplace.model.Module deleteModule(
-		com.liferay.marketplace.model.Module module) {
-		return _moduleLocalService.deleteModule(module);
+	public com.liferay.portal.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.model.PersistedModel persistedModel)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _moduleLocalService.deletePersistedModel(persistedModel);
 	}
 
 	@Override
@@ -162,8 +178,29 @@ public class ModuleLocalServiceWrapper implements ModuleLocalService,
 	}
 
 	@Override
+	public com.liferay.marketplace.model.Module fetchModule(long appId,
+		java.lang.String contextName) {
+		return _moduleLocalService.fetchModule(appId, contextName);
+	}
+
+	@Override
 	public com.liferay.marketplace.model.Module fetchModule(long moduleId) {
 		return _moduleLocalService.fetchModule(moduleId);
+	}
+
+	@Override
+	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
+		return _moduleLocalService.getActionableDynamicQuery();
+	}
+
+	/**
+	* Returns the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
+	*/
+	@Override
+	public java.lang.String getBeanIdentifier() {
+		return _moduleLocalService.getBeanIdentifier();
 	}
 
 	/**
@@ -180,25 +217,9 @@ public class ModuleLocalServiceWrapper implements ModuleLocalService,
 	}
 
 	@Override
-	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
-		return _moduleLocalService.getActionableDynamicQuery();
-	}
-
-	/**
-	* @throws PortalException
-	*/
-	@Override
-	public com.liferay.portal.model.PersistedModel deletePersistedModel(
-		com.liferay.portal.model.PersistedModel persistedModel)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _moduleLocalService.deletePersistedModel(persistedModel);
-	}
-
-	@Override
-	public com.liferay.portal.model.PersistedModel getPersistedModel(
-		java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _moduleLocalService.getPersistedModel(primaryKeyObj);
+	public java.util.List<com.liferay.marketplace.model.Module> getModules(
+		long appId) {
+		return _moduleLocalService.getModules(appId);
 	}
 
 	/**
@@ -228,26 +249,18 @@ public class ModuleLocalServiceWrapper implements ModuleLocalService,
 		return _moduleLocalService.getModulesCount();
 	}
 
-	/**
-	* Updates the module in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	*
-	* @param module the module
-	* @return the module that was updated
-	*/
 	@Override
-	public com.liferay.marketplace.model.Module updateModule(
-		com.liferay.marketplace.model.Module module) {
-		return _moduleLocalService.updateModule(module);
+	public com.liferay.portal.model.PersistedModel getPersistedModel(
+		java.io.Serializable primaryKeyObj)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _moduleLocalService.getPersistedModel(primaryKeyObj);
 	}
 
-	/**
-	* Returns the Spring bean ID for this bean.
-	*
-	* @return the Spring bean ID for this bean
-	*/
 	@Override
-	public java.lang.String getBeanIdentifier() {
-		return _moduleLocalService.getBeanIdentifier();
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return _moduleLocalService.invokeMethod(name, parameterTypes, arguments);
 	}
 
 	/**
@@ -260,29 +273,16 @@ public class ModuleLocalServiceWrapper implements ModuleLocalService,
 		_moduleLocalService.setBeanIdentifier(beanIdentifier);
 	}
 
+	/**
+	* Updates the module in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	*
+	* @param module the module
+	* @return the module that was updated
+	*/
 	@Override
-	public java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable {
-		return _moduleLocalService.invokeMethod(name, parameterTypes, arguments);
-	}
-
-	@Override
-	public com.liferay.marketplace.model.Module addModule(long userId,
-		long appId, java.lang.String contextName) {
-		return _moduleLocalService.addModule(userId, appId, contextName);
-	}
-
-	@Override
-	public com.liferay.marketplace.model.Module fetchModule(long appId,
-		java.lang.String contextName) {
-		return _moduleLocalService.fetchModule(appId, contextName);
-	}
-
-	@Override
-	public java.util.List<com.liferay.marketplace.model.Module> getModules(
-		long appId) {
-		return _moduleLocalService.getModules(appId);
+	public com.liferay.marketplace.model.Module updateModule(
+		com.liferay.marketplace.model.Module module) {
+		return _moduleLocalService.updateModule(module);
 	}
 
 	/**

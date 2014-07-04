@@ -43,6 +43,18 @@ public class ProjectsEntryLocalServiceWrapper
 		return _projectsEntryLocalService.addProjectsEntry(projectsEntry);
 	}
 
+	@Override
+	public com.liferay.so.model.ProjectsEntry addProjectsEntry(long userId,
+		java.lang.String title, java.lang.String description,
+		int startDateMonth, int startDateDay, int startDateYear,
+		int endDateMonth, int endDateDay, int endDateYear, boolean current,
+		java.lang.String data)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _projectsEntryLocalService.addProjectsEntry(userId, title,
+			description, startDateMonth, startDateDay, startDateYear,
+			endDateMonth, endDateDay, endDateYear, current, data);
+	}
+
 	/**
 	* Creates a new projects entry with the primary key. Does not add the projects entry to the database.
 	*
@@ -53,6 +65,28 @@ public class ProjectsEntryLocalServiceWrapper
 	public com.liferay.so.model.ProjectsEntry createProjectsEntry(
 		long projectsEntryId) {
 		return _projectsEntryLocalService.createProjectsEntry(projectsEntryId);
+	}
+
+	/**
+	* @throws PortalException
+	*/
+	@Override
+	public com.liferay.portal.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.model.PersistedModel persistedModel)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _projectsEntryLocalService.deletePersistedModel(persistedModel);
+	}
+
+	/**
+	* Deletes the projects entry from the database. Also notifies the appropriate model listeners.
+	*
+	* @param projectsEntry the projects entry
+	* @return the projects entry that was removed
+	*/
+	@Override
+	public com.liferay.so.model.ProjectsEntry deleteProjectsEntry(
+		com.liferay.so.model.ProjectsEntry projectsEntry) {
+		return _projectsEntryLocalService.deleteProjectsEntry(projectsEntry);
 	}
 
 	/**
@@ -67,18 +101,6 @@ public class ProjectsEntryLocalServiceWrapper
 		long projectsEntryId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _projectsEntryLocalService.deleteProjectsEntry(projectsEntryId);
-	}
-
-	/**
-	* Deletes the projects entry from the database. Also notifies the appropriate model listeners.
-	*
-	* @param projectsEntry the projects entry
-	* @return the projects entry that was removed
-	*/
-	@Override
-	public com.liferay.so.model.ProjectsEntry deleteProjectsEntry(
-		com.liferay.so.model.ProjectsEntry projectsEntry) {
-		return _projectsEntryLocalService.deleteProjectsEntry(projectsEntry);
 	}
 
 	@Override
@@ -172,33 +194,19 @@ public class ProjectsEntryLocalServiceWrapper
 		return _projectsEntryLocalService.fetchProjectsEntry(projectsEntryId);
 	}
 
-	/**
-	* Returns the projects entry with the primary key.
-	*
-	* @param projectsEntryId the primary key of the projects entry
-	* @return the projects entry
-	* @throws PortalException if a projects entry with the primary key could not be found
-	*/
-	@Override
-	public com.liferay.so.model.ProjectsEntry getProjectsEntry(
-		long projectsEntryId)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _projectsEntryLocalService.getProjectsEntry(projectsEntryId);
-	}
-
 	@Override
 	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
 		return _projectsEntryLocalService.getActionableDynamicQuery();
 	}
 
 	/**
-	* @throws PortalException
+	* Returns the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
 	*/
 	@Override
-	public com.liferay.portal.model.PersistedModel deletePersistedModel(
-		com.liferay.portal.model.PersistedModel persistedModel)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _projectsEntryLocalService.deletePersistedModel(persistedModel);
+	public java.lang.String getBeanIdentifier() {
+		return _projectsEntryLocalService.getBeanIdentifier();
 	}
 
 	@Override
@@ -236,25 +244,36 @@ public class ProjectsEntryLocalServiceWrapper
 	}
 
 	/**
-	* Updates the projects entry in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	* Returns the projects entry with the primary key.
 	*
-	* @param projectsEntry the projects entry
-	* @return the projects entry that was updated
+	* @param projectsEntryId the primary key of the projects entry
+	* @return the projects entry
+	* @throws PortalException if a projects entry with the primary key could not be found
 	*/
 	@Override
-	public com.liferay.so.model.ProjectsEntry updateProjectsEntry(
-		com.liferay.so.model.ProjectsEntry projectsEntry) {
-		return _projectsEntryLocalService.updateProjectsEntry(projectsEntry);
+	public com.liferay.so.model.ProjectsEntry getProjectsEntry(
+		long projectsEntryId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _projectsEntryLocalService.getProjectsEntry(projectsEntryId);
 	}
 
-	/**
-	* Returns the Spring bean ID for this bean.
-	*
-	* @return the Spring bean ID for this bean
-	*/
 	@Override
-	public java.lang.String getBeanIdentifier() {
-		return _projectsEntryLocalService.getBeanIdentifier();
+	public java.util.List<com.liferay.so.model.ProjectsEntry> getUserProjectsEntries(
+		long userId) {
+		return _projectsEntryLocalService.getUserProjectsEntries(userId);
+	}
+
+	@Override
+	public int getUserProjectsEntriesCount(long userId) {
+		return _projectsEntryLocalService.getUserProjectsEntriesCount(userId);
+	}
+
+	@Override
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return _projectsEntryLocalService.invokeMethod(name, parameterTypes,
+			arguments);
 	}
 
 	/**
@@ -267,35 +286,16 @@ public class ProjectsEntryLocalServiceWrapper
 		_projectsEntryLocalService.setBeanIdentifier(beanIdentifier);
 	}
 
+	/**
+	* Updates the projects entry in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	*
+	* @param projectsEntry the projects entry
+	* @return the projects entry that was updated
+	*/
 	@Override
-	public java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable {
-		return _projectsEntryLocalService.invokeMethod(name, parameterTypes,
-			arguments);
-	}
-
-	@Override
-	public com.liferay.so.model.ProjectsEntry addProjectsEntry(long userId,
-		java.lang.String title, java.lang.String description,
-		int startDateMonth, int startDateDay, int startDateYear,
-		int endDateMonth, int endDateDay, int endDateYear, boolean current,
-		java.lang.String data)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _projectsEntryLocalService.addProjectsEntry(userId, title,
-			description, startDateMonth, startDateDay, startDateYear,
-			endDateMonth, endDateDay, endDateYear, current, data);
-	}
-
-	@Override
-	public java.util.List<com.liferay.so.model.ProjectsEntry> getUserProjectsEntries(
-		long userId) {
-		return _projectsEntryLocalService.getUserProjectsEntries(userId);
-	}
-
-	@Override
-	public int getUserProjectsEntriesCount(long userId) {
-		return _projectsEntryLocalService.getUserProjectsEntriesCount(userId);
+	public com.liferay.so.model.ProjectsEntry updateProjectsEntry(
+		com.liferay.so.model.ProjectsEntry projectsEntry) {
+		return _projectsEntryLocalService.updateProjectsEntry(projectsEntry);
 	}
 
 	@Override

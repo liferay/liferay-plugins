@@ -39,23 +39,6 @@ public class FooServiceWrapper implements FooService,
 		return _fooService.getBeanIdentifier();
 	}
 
-	/**
-	* Sets the Spring bean ID for this bean.
-	*
-	* @param beanIdentifier the Spring bean ID for this bean
-	*/
-	@Override
-	public void setBeanIdentifier(java.lang.String beanIdentifier) {
-		_fooService.setBeanIdentifier(beanIdentifier);
-	}
-
-	@Override
-	public java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable {
-		return _fooService.invokeMethod(name, parameterTypes, arguments);
-	}
-
 	@Override
 	public com.liferay.portal.model.User getUser(long userId)
 		throws com.liferay.portal.kernel.exception.PortalException {
@@ -66,6 +49,23 @@ public class FooServiceWrapper implements FooService,
 	public java.util.List<com.liferay.portal.model.Group> getUserSitesGroups()
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _fooService.getUserSitesGroups();
+	}
+
+	@Override
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return _fooService.invokeMethod(name, parameterTypes, arguments);
+	}
+
+	/**
+	* Sets the Spring bean ID for this bean.
+	*
+	* @param beanIdentifier the Spring bean ID for this bean
+	*/
+	@Override
+	public void setBeanIdentifier(java.lang.String beanIdentifier) {
+		_fooService.setBeanIdentifier(beanIdentifier);
 	}
 
 	/**

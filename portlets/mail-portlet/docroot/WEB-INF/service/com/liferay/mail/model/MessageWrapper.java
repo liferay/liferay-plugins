@@ -189,164 +189,14 @@ public class MessageWrapper implements Message, ModelWrapper<Message> {
 		}
 	}
 
-	/**
-	* Returns the primary key of this message.
-	*
-	* @return the primary key of this message
-	*/
 	@Override
-	public long getPrimaryKey() {
-		return _message.getPrimaryKey();
+	public java.lang.Object clone() {
+		return new MessageWrapper((Message)_message.clone());
 	}
 
-	/**
-	* Sets the primary key of this message.
-	*
-	* @param primaryKey the primary key of this message
-	*/
 	@Override
-	public void setPrimaryKey(long primaryKey) {
-		_message.setPrimaryKey(primaryKey);
-	}
-
-	/**
-	* Returns the message ID of this message.
-	*
-	* @return the message ID of this message
-	*/
-	@Override
-	public long getMessageId() {
-		return _message.getMessageId();
-	}
-
-	/**
-	* Sets the message ID of this message.
-	*
-	* @param messageId the message ID of this message
-	*/
-	@Override
-	public void setMessageId(long messageId) {
-		_message.setMessageId(messageId);
-	}
-
-	/**
-	* Returns the company ID of this message.
-	*
-	* @return the company ID of this message
-	*/
-	@Override
-	public long getCompanyId() {
-		return _message.getCompanyId();
-	}
-
-	/**
-	* Sets the company ID of this message.
-	*
-	* @param companyId the company ID of this message
-	*/
-	@Override
-	public void setCompanyId(long companyId) {
-		_message.setCompanyId(companyId);
-	}
-
-	/**
-	* Returns the user ID of this message.
-	*
-	* @return the user ID of this message
-	*/
-	@Override
-	public long getUserId() {
-		return _message.getUserId();
-	}
-
-	/**
-	* Sets the user ID of this message.
-	*
-	* @param userId the user ID of this message
-	*/
-	@Override
-	public void setUserId(long userId) {
-		_message.setUserId(userId);
-	}
-
-	/**
-	* Returns the user uuid of this message.
-	*
-	* @return the user uuid of this message
-	*/
-	@Override
-	public java.lang.String getUserUuid() {
-		return _message.getUserUuid();
-	}
-
-	/**
-	* Sets the user uuid of this message.
-	*
-	* @param userUuid the user uuid of this message
-	*/
-	@Override
-	public void setUserUuid(java.lang.String userUuid) {
-		_message.setUserUuid(userUuid);
-	}
-
-	/**
-	* Returns the user name of this message.
-	*
-	* @return the user name of this message
-	*/
-	@Override
-	public java.lang.String getUserName() {
-		return _message.getUserName();
-	}
-
-	/**
-	* Sets the user name of this message.
-	*
-	* @param userName the user name of this message
-	*/
-	@Override
-	public void setUserName(java.lang.String userName) {
-		_message.setUserName(userName);
-	}
-
-	/**
-	* Returns the create date of this message.
-	*
-	* @return the create date of this message
-	*/
-	@Override
-	public java.util.Date getCreateDate() {
-		return _message.getCreateDate();
-	}
-
-	/**
-	* Sets the create date of this message.
-	*
-	* @param createDate the create date of this message
-	*/
-	@Override
-	public void setCreateDate(java.util.Date createDate) {
-		_message.setCreateDate(createDate);
-	}
-
-	/**
-	* Returns the modified date of this message.
-	*
-	* @return the modified date of this message
-	*/
-	@Override
-	public java.util.Date getModifiedDate() {
-		return _message.getModifiedDate();
-	}
-
-	/**
-	* Sets the modified date of this message.
-	*
-	* @param modifiedDate the modified date of this message
-	*/
-	@Override
-	public void setModifiedDate(java.util.Date modifiedDate) {
-		_message.setModifiedDate(modifiedDate);
+	public int compareTo(com.liferay.mail.model.Message message) {
+		return _message.compareTo(message);
 	}
 
 	/**
@@ -360,96 +210,6 @@ public class MessageWrapper implements Message, ModelWrapper<Message> {
 	}
 
 	/**
-	* Sets the account ID of this message.
-	*
-	* @param accountId the account ID of this message
-	*/
-	@Override
-	public void setAccountId(long accountId) {
-		_message.setAccountId(accountId);
-	}
-
-	/**
-	* Returns the folder ID of this message.
-	*
-	* @return the folder ID of this message
-	*/
-	@Override
-	public long getFolderId() {
-		return _message.getFolderId();
-	}
-
-	/**
-	* Sets the folder ID of this message.
-	*
-	* @param folderId the folder ID of this message
-	*/
-	@Override
-	public void setFolderId(long folderId) {
-		_message.setFolderId(folderId);
-	}
-
-	/**
-	* Returns the sender of this message.
-	*
-	* @return the sender of this message
-	*/
-	@Override
-	public java.lang.String getSender() {
-		return _message.getSender();
-	}
-
-	/**
-	* Sets the sender of this message.
-	*
-	* @param sender the sender of this message
-	*/
-	@Override
-	public void setSender(java.lang.String sender) {
-		_message.setSender(sender);
-	}
-
-	/**
-	* Returns the to of this message.
-	*
-	* @return the to of this message
-	*/
-	@Override
-	public java.lang.String getTo() {
-		return _message.getTo();
-	}
-
-	/**
-	* Sets the to of this message.
-	*
-	* @param to the to of this message
-	*/
-	@Override
-	public void setTo(java.lang.String to) {
-		_message.setTo(to);
-	}
-
-	/**
-	* Returns the cc of this message.
-	*
-	* @return the cc of this message
-	*/
-	@Override
-	public java.lang.String getCc() {
-		return _message.getCc();
-	}
-
-	/**
-	* Sets the cc of this message.
-	*
-	* @param cc the cc of this message
-	*/
-	@Override
-	public void setCc(java.lang.String cc) {
-		_message.setCc(cc);
-	}
-
-	/**
 	* Returns the bcc of this message.
 	*
 	* @return the bcc of this message
@@ -457,76 +217,6 @@ public class MessageWrapper implements Message, ModelWrapper<Message> {
 	@Override
 	public java.lang.String getBcc() {
 		return _message.getBcc();
-	}
-
-	/**
-	* Sets the bcc of this message.
-	*
-	* @param bcc the bcc of this message
-	*/
-	@Override
-	public void setBcc(java.lang.String bcc) {
-		_message.setBcc(bcc);
-	}
-
-	/**
-	* Returns the sent date of this message.
-	*
-	* @return the sent date of this message
-	*/
-	@Override
-	public java.util.Date getSentDate() {
-		return _message.getSentDate();
-	}
-
-	/**
-	* Sets the sent date of this message.
-	*
-	* @param sentDate the sent date of this message
-	*/
-	@Override
-	public void setSentDate(java.util.Date sentDate) {
-		_message.setSentDate(sentDate);
-	}
-
-	/**
-	* Returns the subject of this message.
-	*
-	* @return the subject of this message
-	*/
-	@Override
-	public java.lang.String getSubject() {
-		return _message.getSubject();
-	}
-
-	/**
-	* Sets the subject of this message.
-	*
-	* @param subject the subject of this message
-	*/
-	@Override
-	public void setSubject(java.lang.String subject) {
-		_message.setSubject(subject);
-	}
-
-	/**
-	* Returns the preview of this message.
-	*
-	* @return the preview of this message
-	*/
-	@Override
-	public java.lang.String getPreview() {
-		return _message.getPreview();
-	}
-
-	/**
-	* Sets the preview of this message.
-	*
-	* @param preview the preview of this message
-	*/
-	@Override
-	public void setPreview(java.lang.String preview) {
-		_message.setPreview(preview);
 	}
 
 	/**
@@ -540,13 +230,38 @@ public class MessageWrapper implements Message, ModelWrapper<Message> {
 	}
 
 	/**
-	* Sets the body of this message.
+	* Returns the cc of this message.
 	*
-	* @param body the body of this message
+	* @return the cc of this message
 	*/
 	@Override
-	public void setBody(java.lang.String body) {
-		_message.setBody(body);
+	public java.lang.String getCc() {
+		return _message.getCc();
+	}
+
+	/**
+	* Returns the company ID of this message.
+	*
+	* @return the company ID of this message
+	*/
+	@Override
+	public long getCompanyId() {
+		return _message.getCompanyId();
+	}
+
+	/**
+	* Returns the create date of this message.
+	*
+	* @return the create date of this message
+	*/
+	@Override
+	public java.util.Date getCreateDate() {
+		return _message.getCreateDate();
+	}
+
+	@Override
+	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {
+		return _message.getExpandoBridge();
 	}
 
 	/**
@@ -560,33 +275,64 @@ public class MessageWrapper implements Message, ModelWrapper<Message> {
 	}
 
 	/**
-	* Sets the flags of this message.
+	* Returns the folder ID of this message.
 	*
-	* @param flags the flags of this message
+	* @return the folder ID of this message
 	*/
 	@Override
-	public void setFlags(java.lang.String flags) {
-		_message.setFlags(flags);
+	public long getFolderId() {
+		return _message.getFolderId();
+	}
+
+	@Override
+	public long getGroupId()
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _message.getGroupId();
 	}
 
 	/**
-	* Returns the size of this message.
+	* Returns the message ID of this message.
 	*
-	* @return the size of this message
+	* @return the message ID of this message
 	*/
 	@Override
-	public long getSize() {
-		return _message.getSize();
+	public long getMessageId() {
+		return _message.getMessageId();
 	}
 
 	/**
-	* Sets the size of this message.
+	* Returns the modified date of this message.
 	*
-	* @param size the size of this message
+	* @return the modified date of this message
 	*/
 	@Override
-	public void setSize(long size) {
-		_message.setSize(size);
+	public java.util.Date getModifiedDate() {
+		return _message.getModifiedDate();
+	}
+
+	/**
+	* Returns the preview of this message.
+	*
+	* @return the preview of this message
+	*/
+	@Override
+	public java.lang.String getPreview() {
+		return _message.getPreview();
+	}
+
+	/**
+	* Returns the primary key of this message.
+	*
+	* @return the primary key of this message
+	*/
+	@Override
+	public long getPrimaryKey() {
+		return _message.getPrimaryKey();
+	}
+
+	@Override
+	public java.io.Serializable getPrimaryKeyObj() {
+		return _message.getPrimaryKeyObj();
 	}
 
 	/**
@@ -600,23 +346,93 @@ public class MessageWrapper implements Message, ModelWrapper<Message> {
 	}
 
 	/**
-	* Sets the remote message ID of this message.
+	* Returns the sender of this message.
 	*
-	* @param remoteMessageId the remote message ID of this message
+	* @return the sender of this message
 	*/
 	@Override
-	public void setRemoteMessageId(long remoteMessageId) {
-		_message.setRemoteMessageId(remoteMessageId);
+	public java.lang.String getSender() {
+		return _message.getSender();
+	}
+
+	/**
+	* Returns the sent date of this message.
+	*
+	* @return the sent date of this message
+	*/
+	@Override
+	public java.util.Date getSentDate() {
+		return _message.getSentDate();
+	}
+
+	/**
+	* Returns the size of this message.
+	*
+	* @return the size of this message
+	*/
+	@Override
+	public long getSize() {
+		return _message.getSize();
+	}
+
+	/**
+	* Returns the subject of this message.
+	*
+	* @return the subject of this message
+	*/
+	@Override
+	public java.lang.String getSubject() {
+		return _message.getSubject();
+	}
+
+	/**
+	* Returns the to of this message.
+	*
+	* @return the to of this message
+	*/
+	@Override
+	public java.lang.String getTo() {
+		return _message.getTo();
+	}
+
+	/**
+	* Returns the user ID of this message.
+	*
+	* @return the user ID of this message
+	*/
+	@Override
+	public long getUserId() {
+		return _message.getUserId();
+	}
+
+	/**
+	* Returns the user name of this message.
+	*
+	* @return the user name of this message
+	*/
+	@Override
+	public java.lang.String getUserName() {
+		return _message.getUserName();
+	}
+
+	/**
+	* Returns the user uuid of this message.
+	*
+	* @return the user uuid of this message
+	*/
+	@Override
+	public java.lang.String getUserUuid() {
+		return _message.getUserUuid();
 	}
 
 	@Override
-	public boolean isNew() {
-		return _message.isNew();
+	public boolean hasFlag(int flag) {
+		return _message.hasFlag(flag);
 	}
 
 	@Override
-	public void setNew(boolean n) {
-		_message.setNew(n);
+	public int hashCode() {
+		return _message.hashCode();
 	}
 
 	@Override
@@ -625,28 +441,83 @@ public class MessageWrapper implements Message, ModelWrapper<Message> {
 	}
 
 	@Override
-	public void setCachedModel(boolean cachedModel) {
-		_message.setCachedModel(cachedModel);
-	}
-
-	@Override
 	public boolean isEscapedModel() {
 		return _message.isEscapedModel();
 	}
 
 	@Override
-	public java.io.Serializable getPrimaryKeyObj() {
-		return _message.getPrimaryKeyObj();
+	public boolean isNew() {
+		return _message.isNew();
 	}
 
 	@Override
-	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
-		_message.setPrimaryKeyObj(primaryKeyObj);
+	public void persist() {
+		_message.persist();
+	}
+
+	/**
+	* Sets the account ID of this message.
+	*
+	* @param accountId the account ID of this message
+	*/
+	@Override
+	public void setAccountId(long accountId) {
+		_message.setAccountId(accountId);
+	}
+
+	/**
+	* Sets the bcc of this message.
+	*
+	* @param bcc the bcc of this message
+	*/
+	@Override
+	public void setBcc(java.lang.String bcc) {
+		_message.setBcc(bcc);
+	}
+
+	/**
+	* Sets the body of this message.
+	*
+	* @param body the body of this message
+	*/
+	@Override
+	public void setBody(java.lang.String body) {
+		_message.setBody(body);
 	}
 
 	@Override
-	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {
-		return _message.getExpandoBridge();
+	public void setCachedModel(boolean cachedModel) {
+		_message.setCachedModel(cachedModel);
+	}
+
+	/**
+	* Sets the cc of this message.
+	*
+	* @param cc the cc of this message
+	*/
+	@Override
+	public void setCc(java.lang.String cc) {
+		_message.setCc(cc);
+	}
+
+	/**
+	* Sets the company ID of this message.
+	*
+	* @param companyId the company ID of this message
+	*/
+	@Override
+	public void setCompanyId(long companyId) {
+		_message.setCompanyId(companyId);
+	}
+
+	/**
+	* Sets the create date of this message.
+	*
+	* @param createDate the create date of this message
+	*/
+	@Override
+	public void setCreateDate(java.util.Date createDate) {
+		_message.setCreateDate(createDate);
 	}
 
 	@Override
@@ -667,19 +538,164 @@ public class MessageWrapper implements Message, ModelWrapper<Message> {
 		_message.setExpandoBridgeAttributes(serviceContext);
 	}
 
+	/**
+	* Sets the flags of this message.
+	*
+	* @param flags the flags of this message
+	*/
 	@Override
-	public java.lang.Object clone() {
-		return new MessageWrapper((Message)_message.clone());
+	public void setFlags(java.lang.String flags) {
+		_message.setFlags(flags);
+	}
+
+	/**
+	* Sets the folder ID of this message.
+	*
+	* @param folderId the folder ID of this message
+	*/
+	@Override
+	public void setFolderId(long folderId) {
+		_message.setFolderId(folderId);
+	}
+
+	/**
+	* Sets the message ID of this message.
+	*
+	* @param messageId the message ID of this message
+	*/
+	@Override
+	public void setMessageId(long messageId) {
+		_message.setMessageId(messageId);
+	}
+
+	/**
+	* Sets the modified date of this message.
+	*
+	* @param modifiedDate the modified date of this message
+	*/
+	@Override
+	public void setModifiedDate(java.util.Date modifiedDate) {
+		_message.setModifiedDate(modifiedDate);
 	}
 
 	@Override
-	public int compareTo(com.liferay.mail.model.Message message) {
-		return _message.compareTo(message);
+	public void setNew(boolean n) {
+		_message.setNew(n);
+	}
+
+	/**
+	* Sets the preview of this message.
+	*
+	* @param preview the preview of this message
+	*/
+	@Override
+	public void setPreview(java.lang.String preview) {
+		_message.setPreview(preview);
+	}
+
+	/**
+	* Sets the primary key of this message.
+	*
+	* @param primaryKey the primary key of this message
+	*/
+	@Override
+	public void setPrimaryKey(long primaryKey) {
+		_message.setPrimaryKey(primaryKey);
 	}
 
 	@Override
-	public int hashCode() {
-		return _message.hashCode();
+	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
+		_message.setPrimaryKeyObj(primaryKeyObj);
+	}
+
+	/**
+	* Sets the remote message ID of this message.
+	*
+	* @param remoteMessageId the remote message ID of this message
+	*/
+	@Override
+	public void setRemoteMessageId(long remoteMessageId) {
+		_message.setRemoteMessageId(remoteMessageId);
+	}
+
+	/**
+	* Sets the sender of this message.
+	*
+	* @param sender the sender of this message
+	*/
+	@Override
+	public void setSender(java.lang.String sender) {
+		_message.setSender(sender);
+	}
+
+	/**
+	* Sets the sent date of this message.
+	*
+	* @param sentDate the sent date of this message
+	*/
+	@Override
+	public void setSentDate(java.util.Date sentDate) {
+		_message.setSentDate(sentDate);
+	}
+
+	/**
+	* Sets the size of this message.
+	*
+	* @param size the size of this message
+	*/
+	@Override
+	public void setSize(long size) {
+		_message.setSize(size);
+	}
+
+	/**
+	* Sets the subject of this message.
+	*
+	* @param subject the subject of this message
+	*/
+	@Override
+	public void setSubject(java.lang.String subject) {
+		_message.setSubject(subject);
+	}
+
+	/**
+	* Sets the to of this message.
+	*
+	* @param to the to of this message
+	*/
+	@Override
+	public void setTo(java.lang.String to) {
+		_message.setTo(to);
+	}
+
+	/**
+	* Sets the user ID of this message.
+	*
+	* @param userId the user ID of this message
+	*/
+	@Override
+	public void setUserId(long userId) {
+		_message.setUserId(userId);
+	}
+
+	/**
+	* Sets the user name of this message.
+	*
+	* @param userName the user name of this message
+	*/
+	@Override
+	public void setUserName(java.lang.String userName) {
+		_message.setUserName(userName);
+	}
+
+	/**
+	* Sets the user uuid of this message.
+	*
+	* @param userUuid the user uuid of this message
+	*/
+	@Override
+	public void setUserUuid(java.lang.String userUuid) {
+		_message.setUserUuid(userUuid);
 	}
 
 	@Override
@@ -693,34 +709,18 @@ public class MessageWrapper implements Message, ModelWrapper<Message> {
 	}
 
 	@Override
-	public com.liferay.mail.model.Message toUnescapedModel() {
-		return new MessageWrapper(_message.toUnescapedModel());
-	}
-
-	@Override
 	public java.lang.String toString() {
 		return _message.toString();
 	}
 
 	@Override
+	public com.liferay.mail.model.Message toUnescapedModel() {
+		return new MessageWrapper(_message.toUnescapedModel());
+	}
+
+	@Override
 	public java.lang.String toXmlString() {
 		return _message.toXmlString();
-	}
-
-	@Override
-	public void persist() {
-		_message.persist();
-	}
-
-	@Override
-	public long getGroupId()
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _message.getGroupId();
-	}
-
-	@Override
-	public boolean hasFlag(int flag) {
-		return _message.hasFlag(flag);
 	}
 
 	@Override

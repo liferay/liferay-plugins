@@ -38,6 +38,16 @@ public class KaleoInstanceLocalServiceUtil {
 	 *
 	 * Never modify this class directly. Add custom service methods to {@link com.liferay.portal.workflow.kaleo.service.impl.KaleoInstanceLocalServiceImpl} and rerun ServiceBuilder to regenerate this class.
 	 */
+	public static com.liferay.portal.workflow.kaleo.model.KaleoInstance addKaleoInstance(
+		long kaleoDefinitionId, java.lang.String kaleoDefinitionName,
+		int kaleoDefinitionVersion,
+		java.util.Map<java.lang.String, java.io.Serializable> workflowContext,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService()
+				   .addKaleoInstance(kaleoDefinitionId, kaleoDefinitionName,
+			kaleoDefinitionVersion, workflowContext, serviceContext);
+	}
 
 	/**
 	* Adds the kaleo instance to the database. Also notifies the appropriate model listeners.
@@ -50,6 +60,12 @@ public class KaleoInstanceLocalServiceUtil {
 		return getService().addKaleoInstance(kaleoInstance);
 	}
 
+	public static com.liferay.portal.workflow.kaleo.model.KaleoInstance completeKaleoInstance(
+		long kaleoInstanceId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().completeKaleoInstance(kaleoInstanceId);
+	}
+
 	/**
 	* Creates a new kaleo instance with the primary key. Does not add the kaleo instance to the database.
 	*
@@ -59,6 +75,26 @@ public class KaleoInstanceLocalServiceUtil {
 	public static com.liferay.portal.workflow.kaleo.model.KaleoInstance createKaleoInstance(
 		long kaleoInstanceId) {
 		return getService().createKaleoInstance(kaleoInstanceId);
+	}
+
+	public static void deleteCompanyKaleoInstances(long companyId) {
+		getService().deleteCompanyKaleoInstances(companyId);
+	}
+
+	public static void deleteKaleoDefinitionKaleoInstances(
+		long kaleoDefinitionId) {
+		getService().deleteKaleoDefinitionKaleoInstances(kaleoDefinitionId);
+	}
+
+	/**
+	* Deletes the kaleo instance from the database. Also notifies the appropriate model listeners.
+	*
+	* @param kaleoInstance the kaleo instance
+	* @return the kaleo instance that was removed
+	*/
+	public static com.liferay.portal.workflow.kaleo.model.KaleoInstance deleteKaleoInstance(
+		com.liferay.portal.workflow.kaleo.model.KaleoInstance kaleoInstance) {
+		return getService().deleteKaleoInstance(kaleoInstance);
 	}
 
 	/**
@@ -75,14 +111,12 @@ public class KaleoInstanceLocalServiceUtil {
 	}
 
 	/**
-	* Deletes the kaleo instance from the database. Also notifies the appropriate model listeners.
-	*
-	* @param kaleoInstance the kaleo instance
-	* @return the kaleo instance that was removed
+	* @throws PortalException
 	*/
-	public static com.liferay.portal.workflow.kaleo.model.KaleoInstance deleteKaleoInstance(
-		com.liferay.portal.workflow.kaleo.model.KaleoInstance kaleoInstance) {
-		return getService().deleteKaleoInstance(kaleoInstance);
+	public static com.liferay.portal.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.model.PersistedModel persistedModel)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().deletePersistedModel(persistedModel);
 	}
 
 	public static com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
@@ -168,6 +202,19 @@ public class KaleoInstanceLocalServiceUtil {
 		return getService().fetchKaleoInstance(kaleoInstanceId);
 	}
 
+	public static com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
+		return getService().getActionableDynamicQuery();
+	}
+
+	/**
+	* Returns the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
+	*/
+	public static java.lang.String getBeanIdentifier() {
+		return getService().getBeanIdentifier();
+	}
+
 	/**
 	* Returns the kaleo instance with the primary key.
 	*
@@ -181,23 +228,15 @@ public class KaleoInstanceLocalServiceUtil {
 		return getService().getKaleoInstance(kaleoInstanceId);
 	}
 
-	public static com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
-		return getService().getActionableDynamicQuery();
-	}
-
-	/**
-	* @throws PortalException
-	*/
-	public static com.liferay.portal.model.PersistedModel deletePersistedModel(
-		com.liferay.portal.model.PersistedModel persistedModel)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().deletePersistedModel(persistedModel);
-	}
-
-	public static com.liferay.portal.model.PersistedModel getPersistedModel(
-		java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().getPersistedModel(primaryKeyObj);
+	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoInstance> getKaleoInstances(
+		java.lang.String kaleoDefinitionName, int kaleoDefinitionVersion,
+		boolean completed, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator,
+		com.liferay.portal.service.ServiceContext serviceContext) {
+		return getService()
+				   .getKaleoInstances(kaleoDefinitionName,
+			kaleoDefinitionVersion, completed, start, end, orderByComparator,
+			serviceContext);
 	}
 
 	/**
@@ -214,76 +253,6 @@ public class KaleoInstanceLocalServiceUtil {
 	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoInstance> getKaleoInstances(
 		int start, int end) {
 		return getService().getKaleoInstances(start, end);
-	}
-
-	/**
-	* Returns the number of kaleo instances.
-	*
-	* @return the number of kaleo instances
-	*/
-	public static int getKaleoInstancesCount() {
-		return getService().getKaleoInstancesCount();
-	}
-
-	/**
-	* Updates the kaleo instance in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	*
-	* @param kaleoInstance the kaleo instance
-	* @return the kaleo instance that was updated
-	*/
-	public static com.liferay.portal.workflow.kaleo.model.KaleoInstance updateKaleoInstance(
-		com.liferay.portal.workflow.kaleo.model.KaleoInstance kaleoInstance) {
-		return getService().updateKaleoInstance(kaleoInstance);
-	}
-
-	/**
-	* Returns the Spring bean ID for this bean.
-	*
-	* @return the Spring bean ID for this bean
-	*/
-	public static java.lang.String getBeanIdentifier() {
-		return getService().getBeanIdentifier();
-	}
-
-	/**
-	* Sets the Spring bean ID for this bean.
-	*
-	* @param beanIdentifier the Spring bean ID for this bean
-	*/
-	public static void setBeanIdentifier(java.lang.String beanIdentifier) {
-		getService().setBeanIdentifier(beanIdentifier);
-	}
-
-	public static java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable {
-		return getService().invokeMethod(name, parameterTypes, arguments);
-	}
-
-	public static com.liferay.portal.workflow.kaleo.model.KaleoInstance addKaleoInstance(
-		long kaleoDefinitionId, java.lang.String kaleoDefinitionName,
-		int kaleoDefinitionVersion,
-		java.util.Map<java.lang.String, java.io.Serializable> workflowContext,
-		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService()
-				   .addKaleoInstance(kaleoDefinitionId, kaleoDefinitionName,
-			kaleoDefinitionVersion, workflowContext, serviceContext);
-	}
-
-	public static com.liferay.portal.workflow.kaleo.model.KaleoInstance completeKaleoInstance(
-		long kaleoInstanceId)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().completeKaleoInstance(kaleoInstanceId);
-	}
-
-	public static void deleteCompanyKaleoInstances(long companyId) {
-		getService().deleteCompanyKaleoInstances(companyId);
-	}
-
-	public static void deleteKaleoDefinitionKaleoInstances(
-		long kaleoDefinitionId) {
-		getService().deleteKaleoDefinitionKaleoInstances(kaleoDefinitionId);
 	}
 
 	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoInstance> getKaleoInstances(
@@ -307,20 +276,27 @@ public class KaleoInstanceLocalServiceUtil {
 			start, end, orderByComparator, serviceContext);
 	}
 
-	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoInstance> getKaleoInstances(
-		java.lang.String kaleoDefinitionName, int kaleoDefinitionVersion,
-		boolean completed, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator,
-		com.liferay.portal.service.ServiceContext serviceContext) {
-		return getService()
-				   .getKaleoInstances(kaleoDefinitionName,
-			kaleoDefinitionVersion, completed, start, end, orderByComparator,
-			serviceContext);
+	/**
+	* Returns the number of kaleo instances.
+	*
+	* @return the number of kaleo instances
+	*/
+	public static int getKaleoInstancesCount() {
+		return getService().getKaleoInstancesCount();
 	}
 
 	public static int getKaleoInstancesCount(long kaleoDefinitionId,
 		boolean completed) {
 		return getService().getKaleoInstancesCount(kaleoDefinitionId, completed);
+	}
+
+	public static int getKaleoInstancesCount(
+		java.lang.String kaleoDefinitionName, int kaleoDefinitionVersion,
+		boolean completed,
+		com.liferay.portal.service.ServiceContext serviceContext) {
+		return getService()
+				   .getKaleoInstancesCount(kaleoDefinitionName,
+			kaleoDefinitionVersion, completed, serviceContext);
 	}
 
 	public static int getKaleoInstancesCount(java.lang.Long userId,
@@ -340,13 +316,36 @@ public class KaleoInstanceLocalServiceUtil {
 			serviceContext);
 	}
 
-	public static int getKaleoInstancesCount(
-		java.lang.String kaleoDefinitionName, int kaleoDefinitionVersion,
-		boolean completed,
-		com.liferay.portal.service.ServiceContext serviceContext) {
-		return getService()
-				   .getKaleoInstancesCount(kaleoDefinitionName,
-			kaleoDefinitionVersion, completed, serviceContext);
+	public static com.liferay.portal.model.PersistedModel getPersistedModel(
+		java.io.Serializable primaryKeyObj)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().getPersistedModel(primaryKeyObj);
+	}
+
+	public static java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return getService().invokeMethod(name, parameterTypes, arguments);
+	}
+
+	/**
+	* Sets the Spring bean ID for this bean.
+	*
+	* @param beanIdentifier the Spring bean ID for this bean
+	*/
+	public static void setBeanIdentifier(java.lang.String beanIdentifier) {
+		getService().setBeanIdentifier(beanIdentifier);
+	}
+
+	/**
+	* Updates the kaleo instance in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	*
+	* @param kaleoInstance the kaleo instance
+	* @return the kaleo instance that was updated
+	*/
+	public static com.liferay.portal.workflow.kaleo.model.KaleoInstance updateKaleoInstance(
+		com.liferay.portal.workflow.kaleo.model.KaleoInstance kaleoInstance) {
+		return getService().updateKaleoInstance(kaleoInstance);
 	}
 
 	public static com.liferay.portal.workflow.kaleo.model.KaleoInstance updateKaleoInstance(

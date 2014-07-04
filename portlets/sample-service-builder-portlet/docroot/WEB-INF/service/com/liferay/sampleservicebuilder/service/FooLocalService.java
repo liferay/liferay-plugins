@@ -16,6 +16,7 @@ package com.liferay.sampleservicebuilder.service;
 
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.search.IndexableType;
 import com.liferay.portal.kernel.transaction.Isolation;
 import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
@@ -44,6 +45,10 @@ public interface FooLocalService extends BaseLocalService, InvokableLocalService
 	 *
 	 * Never modify or reference this interface directly. Always use {@link FooLocalServiceUtil} to access the foo local service. Add custom service methods to {@link com.liferay.sampleservicebuilder.service.impl.FooLocalServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
+	public void addFoo(java.lang.String field1, boolean field2, int field3,
+		java.util.Date field4, java.lang.String field5,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	/**
 	* Adds the foo to the database. Also notifies the appropriate model listeners.
@@ -51,6 +56,7 @@ public interface FooLocalService extends BaseLocalService, InvokableLocalService
 	* @param foo the foo
 	* @return the foo that was added
 	*/
+	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.REINDEX)
 	public com.liferay.sampleservicebuilder.model.Foo addFoo(
 		com.liferay.sampleservicebuilder.model.Foo foo);
 
@@ -63,23 +69,33 @@ public interface FooLocalService extends BaseLocalService, InvokableLocalService
 	public com.liferay.sampleservicebuilder.model.Foo createFoo(long fooId);
 
 	/**
+	* Deletes the foo from the database. Also notifies the appropriate model listeners.
+	*
+	* @param foo the foo
+	* @return the foo that was removed
+	*/
+	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.DELETE)
+	public com.liferay.sampleservicebuilder.model.Foo deleteFoo(
+		com.liferay.sampleservicebuilder.model.Foo foo);
+
+	/**
 	* Deletes the foo with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param fooId the primary key of the foo
 	* @return the foo that was removed
 	* @throws PortalException if a foo with the primary key could not be found
 	*/
+	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.DELETE)
 	public com.liferay.sampleservicebuilder.model.Foo deleteFoo(long fooId)
 		throws com.liferay.portal.kernel.exception.PortalException;
 
 	/**
-	* Deletes the foo from the database. Also notifies the appropriate model listeners.
-	*
-	* @param foo the foo
-	* @return the foo that was removed
+	* @throws PortalException
 	*/
-	public com.liferay.sampleservicebuilder.model.Foo deleteFoo(
-		com.liferay.sampleservicebuilder.model.Foo foo);
+	@Override
+	public com.liferay.portal.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.model.PersistedModel persistedModel)
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery();
 
@@ -171,6 +187,20 @@ public interface FooLocalService extends BaseLocalService, InvokableLocalService
 	public com.liferay.sampleservicebuilder.model.Foo fetchFooByUuidAndGroupId(
 		java.lang.String uuid, long groupId);
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery();
+
+	/**
+	* Returns the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
+	*/
+	public java.lang.String getBeanIdentifier();
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.liferay.portal.kernel.dao.orm.ExportActionableDynamicQuery getExportActionableDynamicQuery(
+		com.liferay.portal.kernel.lar.PortletDataContext portletDataContext);
+
 	/**
 	* Returns the foo with the primary key.
 	*
@@ -180,27 +210,6 @@ public interface FooLocalService extends BaseLocalService, InvokableLocalService
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.sampleservicebuilder.model.Foo getFoo(long fooId)
-		throws com.liferay.portal.kernel.exception.PortalException;
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery();
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.portal.kernel.dao.orm.ExportActionableDynamicQuery getExportActionableDynamicQuery(
-		com.liferay.portal.kernel.lar.PortletDataContext portletDataContext);
-
-	/**
-	* @throws PortalException
-	*/
-	@Override
-	public com.liferay.portal.model.PersistedModel deletePersistedModel(
-		com.liferay.portal.model.PersistedModel persistedModel)
-		throws com.liferay.portal.kernel.exception.PortalException;
-
-	@Override
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.portal.model.PersistedModel getPersistedModel(
-		java.io.Serializable primaryKeyObj)
 		throws com.liferay.portal.kernel.exception.PortalException;
 
 	/**
@@ -229,6 +238,10 @@ public interface FooLocalService extends BaseLocalService, InvokableLocalService
 		java.lang.String uuid, long groupId)
 		throws com.liferay.portal.kernel.exception.PortalException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<com.liferay.sampleservicebuilder.model.Foo> getFoos(
+		com.liferay.portal.kernel.util.OrderByComparator obc);
+
 	/**
 	* Returns a range of all the foos.
 	*
@@ -244,6 +257,10 @@ public interface FooLocalService extends BaseLocalService, InvokableLocalService
 	public java.util.List<com.liferay.sampleservicebuilder.model.Foo> getFoos(
 		int start, int end);
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<com.liferay.sampleservicebuilder.model.Foo> getFoos(
+		int start, int end, com.liferay.portal.kernel.util.OrderByComparator obc);
+
 	/**
 	* Returns the number of foos.
 	*
@@ -252,21 +269,19 @@ public interface FooLocalService extends BaseLocalService, InvokableLocalService
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getFoosCount();
 
-	/**
-	* Updates the foo in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	*
-	* @param foo the foo
-	* @return the foo that was updated
-	*/
-	public com.liferay.sampleservicebuilder.model.Foo updateFoo(
-		com.liferay.sampleservicebuilder.model.Foo foo);
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.lang.Object getLocalObject() throws java.lang.Exception;
 
-	/**
-	* Returns the Spring bean ID for this bean.
-	*
-	* @return the Spring bean ID for this bean
-	*/
-	public java.lang.String getBeanIdentifier();
+	@Override
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.liferay.portal.model.PersistedModel getPersistedModel(
+		java.io.Serializable primaryKeyObj)
+		throws com.liferay.portal.kernel.exception.PortalException;
+
+	@Override
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable;
 
 	/**
 	* Sets the Spring bean ID for this bean.
@@ -275,31 +290,20 @@ public interface FooLocalService extends BaseLocalService, InvokableLocalService
 	*/
 	public void setBeanIdentifier(java.lang.String beanIdentifier);
 
-	@Override
-	public java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable;
-
-	public void addFoo(java.lang.String field1, boolean field2, int field3,
-		java.util.Date field4, java.lang.String field5,
-		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException;
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<com.liferay.sampleservicebuilder.model.Foo> getFoos(
-		int start, int end, com.liferay.portal.kernel.util.OrderByComparator obc);
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<com.liferay.sampleservicebuilder.model.Foo> getFoos(
-		com.liferay.portal.kernel.util.OrderByComparator obc);
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.lang.Object getLocalObject() throws java.lang.Exception;
-
 	public void updateAsset(long userId,
 		com.liferay.sampleservicebuilder.model.Foo foo,
 		long[] assetCategoryIds, java.lang.String[] assetTagNames)
 		throws com.liferay.portal.kernel.exception.PortalException;
+
+	/**
+	* Updates the foo in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	*
+	* @param foo the foo
+	* @return the foo that was updated
+	*/
+	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.REINDEX)
+	public com.liferay.sampleservicebuilder.model.Foo updateFoo(
+		com.liferay.sampleservicebuilder.model.Foo foo);
 
 	public void updateFoo(long fooId, java.lang.String field1, boolean field2,
 		int field3, java.util.Date field4, java.lang.String field5,

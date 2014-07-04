@@ -29,33 +29,6 @@ public class CalendarServiceWrapper implements CalendarService,
 		_calendarService = calendarService;
 	}
 
-	/**
-	* Returns the Spring bean ID for this bean.
-	*
-	* @return the Spring bean ID for this bean
-	*/
-	@Override
-	public java.lang.String getBeanIdentifier() {
-		return _calendarService.getBeanIdentifier();
-	}
-
-	/**
-	* Sets the Spring bean ID for this bean.
-	*
-	* @param beanIdentifier the Spring bean ID for this bean
-	*/
-	@Override
-	public void setBeanIdentifier(java.lang.String beanIdentifier) {
-		_calendarService.setBeanIdentifier(beanIdentifier);
-	}
-
-	@Override
-	public java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable {
-		return _calendarService.invokeMethod(name, parameterTypes, arguments);
-	}
-
 	@Override
 	public com.liferay.calendar.model.Calendar addCalendar(long groupId,
 		long calendarResourceId,
@@ -88,6 +61,16 @@ public class CalendarServiceWrapper implements CalendarService,
 		return _calendarService.fetchCalendar(calendarId);
 	}
 
+	/**
+	* Returns the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
+	*/
+	@Override
+	public java.lang.String getBeanIdentifier() {
+		return _calendarService.getBeanIdentifier();
+	}
+
 	@Override
 	public com.liferay.calendar.model.Calendar getCalendar(long calendarId)
 		throws com.liferay.portal.kernel.exception.PortalException {
@@ -114,6 +97,13 @@ public class CalendarServiceWrapper implements CalendarService,
 	public void importCalendar(long calendarId, java.lang.String data,
 		java.lang.String type) throws java.lang.Exception {
 		_calendarService.importCalendar(calendarId, data, type);
+	}
+
+	@Override
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return _calendarService.invokeMethod(name, parameterTypes, arguments);
 	}
 
 	@Override
@@ -199,6 +189,16 @@ public class CalendarServiceWrapper implements CalendarService,
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _calendarService.searchCount(companyId, groupIds,
 			calendarResourceIds, name, description, andOperator, actionId);
+	}
+
+	/**
+	* Sets the Spring bean ID for this bean.
+	*
+	* @param beanIdentifier the Spring bean ID for this bean
+	*/
+	@Override
+	public void setBeanIdentifier(java.lang.String beanIdentifier) {
+		_calendarService.setBeanIdentifier(beanIdentifier);
 	}
 
 	@Override

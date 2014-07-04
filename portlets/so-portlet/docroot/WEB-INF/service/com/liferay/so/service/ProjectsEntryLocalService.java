@@ -16,6 +16,7 @@ package com.liferay.so.service;
 
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.search.IndexableType;
 import com.liferay.portal.kernel.transaction.Isolation;
 import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
@@ -51,8 +52,16 @@ public interface ProjectsEntryLocalService extends BaseLocalService,
 	* @param projectsEntry the projects entry
 	* @return the projects entry that was added
 	*/
+	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.REINDEX)
 	public com.liferay.so.model.ProjectsEntry addProjectsEntry(
 		com.liferay.so.model.ProjectsEntry projectsEntry);
+
+	public com.liferay.so.model.ProjectsEntry addProjectsEntry(long userId,
+		java.lang.String title, java.lang.String description,
+		int startDateMonth, int startDateDay, int startDateYear,
+		int endDateMonth, int endDateDay, int endDateYear, boolean current,
+		java.lang.String data)
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	/**
 	* Creates a new projects entry with the primary key. Does not add the projects entry to the database.
@@ -64,14 +73,11 @@ public interface ProjectsEntryLocalService extends BaseLocalService,
 		long projectsEntryId);
 
 	/**
-	* Deletes the projects entry with the primary key from the database. Also notifies the appropriate model listeners.
-	*
-	* @param projectsEntryId the primary key of the projects entry
-	* @return the projects entry that was removed
-	* @throws PortalException if a projects entry with the primary key could not be found
+	* @throws PortalException
 	*/
-	public com.liferay.so.model.ProjectsEntry deleteProjectsEntry(
-		long projectsEntryId)
+	@Override
+	public com.liferay.portal.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.model.PersistedModel persistedModel)
 		throws com.liferay.portal.kernel.exception.PortalException;
 
 	/**
@@ -80,8 +86,21 @@ public interface ProjectsEntryLocalService extends BaseLocalService,
 	* @param projectsEntry the projects entry
 	* @return the projects entry that was removed
 	*/
+	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.DELETE)
 	public com.liferay.so.model.ProjectsEntry deleteProjectsEntry(
 		com.liferay.so.model.ProjectsEntry projectsEntry);
+
+	/**
+	* Deletes the projects entry with the primary key from the database. Also notifies the appropriate model listeners.
+	*
+	* @param projectsEntryId the primary key of the projects entry
+	* @return the projects entry that was removed
+	* @throws PortalException if a projects entry with the primary key could not be found
+	*/
+	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.DELETE)
+	public com.liferay.so.model.ProjectsEntry deleteProjectsEntry(
+		long projectsEntryId)
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery();
 
@@ -152,28 +171,15 @@ public interface ProjectsEntryLocalService extends BaseLocalService,
 	public com.liferay.so.model.ProjectsEntry fetchProjectsEntry(
 		long projectsEntryId);
 
-	/**
-	* Returns the projects entry with the primary key.
-	*
-	* @param projectsEntryId the primary key of the projects entry
-	* @return the projects entry
-	* @throws PortalException if a projects entry with the primary key could not be found
-	*/
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.so.model.ProjectsEntry getProjectsEntry(
-		long projectsEntryId)
-		throws com.liferay.portal.kernel.exception.PortalException;
-
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery();
 
 	/**
-	* @throws PortalException
+	* Returns the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
 	*/
-	@Override
-	public com.liferay.portal.model.PersistedModel deletePersistedModel(
-		com.liferay.portal.model.PersistedModel persistedModel)
-		throws com.liferay.portal.kernel.exception.PortalException;
+	public java.lang.String getBeanIdentifier();
 
 	@Override
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
@@ -205,38 +211,15 @@ public interface ProjectsEntryLocalService extends BaseLocalService,
 	public int getProjectsEntriesCount();
 
 	/**
-	* Updates the projects entry in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	* Returns the projects entry with the primary key.
 	*
-	* @param projectsEntry the projects entry
-	* @return the projects entry that was updated
+	* @param projectsEntryId the primary key of the projects entry
+	* @return the projects entry
+	* @throws PortalException if a projects entry with the primary key could not be found
 	*/
-	public com.liferay.so.model.ProjectsEntry updateProjectsEntry(
-		com.liferay.so.model.ProjectsEntry projectsEntry);
-
-	/**
-	* Returns the Spring bean ID for this bean.
-	*
-	* @return the Spring bean ID for this bean
-	*/
-	public java.lang.String getBeanIdentifier();
-
-	/**
-	* Sets the Spring bean ID for this bean.
-	*
-	* @param beanIdentifier the Spring bean ID for this bean
-	*/
-	public void setBeanIdentifier(java.lang.String beanIdentifier);
-
-	@Override
-	public java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable;
-
-	public com.liferay.so.model.ProjectsEntry addProjectsEntry(long userId,
-		java.lang.String title, java.lang.String description,
-		int startDateMonth, int startDateDay, int startDateYear,
-		int endDateMonth, int endDateDay, int endDateYear, boolean current,
-		java.lang.String data)
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.liferay.so.model.ProjectsEntry getProjectsEntry(
+		long projectsEntryId)
 		throws com.liferay.portal.kernel.exception.PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
@@ -245,6 +228,28 @@ public interface ProjectsEntryLocalService extends BaseLocalService,
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getUserProjectsEntriesCount(long userId);
+
+	@Override
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable;
+
+	/**
+	* Sets the Spring bean ID for this bean.
+	*
+	* @param beanIdentifier the Spring bean ID for this bean
+	*/
+	public void setBeanIdentifier(java.lang.String beanIdentifier);
+
+	/**
+	* Updates the projects entry in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	*
+	* @param projectsEntry the projects entry
+	* @return the projects entry that was updated
+	*/
+	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.REINDEX)
+	public com.liferay.so.model.ProjectsEntry updateProjectsEntry(
+		com.liferay.so.model.ProjectsEntry projectsEntry);
 
 	public com.liferay.so.model.ProjectsEntry updateProjectsEntry(
 		long projectsEntryId, java.lang.String title,

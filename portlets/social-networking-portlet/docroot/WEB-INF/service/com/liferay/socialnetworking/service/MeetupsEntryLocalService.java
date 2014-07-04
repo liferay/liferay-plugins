@@ -16,6 +16,7 @@ package com.liferay.socialnetworking.service;
 
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.search.IndexableType;
 import com.liferay.portal.kernel.transaction.Isolation;
 import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
@@ -51,8 +52,17 @@ public interface MeetupsEntryLocalService extends BaseLocalService,
 	* @param meetupsEntry the meetups entry
 	* @return the meetups entry that was added
 	*/
+	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.REINDEX)
 	public com.liferay.socialnetworking.model.MeetupsEntry addMeetupsEntry(
 		com.liferay.socialnetworking.model.MeetupsEntry meetupsEntry);
+
+	public com.liferay.socialnetworking.model.MeetupsEntry addMeetupsEntry(
+		long userId, java.lang.String title, java.lang.String description,
+		int startDateMonth, int startDateDay, int startDateYear,
+		int startDateHour, int startDateMinute, int endDateMonth,
+		int endDateDay, int endDateYear, int endDateHour, int endDateMinute,
+		int totalAttendees, int maxAttendees, double price, byte[] thumbnail)
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	/**
 	* Creates a new meetups entry with the primary key. Does not add the meetups entry to the database.
@@ -64,24 +74,34 @@ public interface MeetupsEntryLocalService extends BaseLocalService,
 		long meetupsEntryId);
 
 	/**
+	* Deletes the meetups entry from the database. Also notifies the appropriate model listeners.
+	*
+	* @param meetupsEntry the meetups entry
+	* @return the meetups entry that was removed
+	*/
+	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.DELETE)
+	public com.liferay.socialnetworking.model.MeetupsEntry deleteMeetupsEntry(
+		com.liferay.socialnetworking.model.MeetupsEntry meetupsEntry);
+
+	/**
 	* Deletes the meetups entry with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param meetupsEntryId the primary key of the meetups entry
 	* @return the meetups entry that was removed
 	* @throws PortalException if a meetups entry with the primary key could not be found
 	*/
+	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.DELETE)
 	public com.liferay.socialnetworking.model.MeetupsEntry deleteMeetupsEntry(
 		long meetupsEntryId)
 		throws com.liferay.portal.kernel.exception.PortalException;
 
 	/**
-	* Deletes the meetups entry from the database. Also notifies the appropriate model listeners.
-	*
-	* @param meetupsEntry the meetups entry
-	* @return the meetups entry that was removed
+	* @throws PortalException
 	*/
-	public com.liferay.socialnetworking.model.MeetupsEntry deleteMeetupsEntry(
-		com.liferay.socialnetworking.model.MeetupsEntry meetupsEntry);
+	@Override
+	public com.liferay.portal.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.model.PersistedModel persistedModel)
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery();
 
@@ -152,34 +172,15 @@ public interface MeetupsEntryLocalService extends BaseLocalService,
 	public com.liferay.socialnetworking.model.MeetupsEntry fetchMeetupsEntry(
 		long meetupsEntryId);
 
-	/**
-	* Returns the meetups entry with the primary key.
-	*
-	* @param meetupsEntryId the primary key of the meetups entry
-	* @return the meetups entry
-	* @throws PortalException if a meetups entry with the primary key could not be found
-	*/
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.socialnetworking.model.MeetupsEntry getMeetupsEntry(
-		long meetupsEntryId)
-		throws com.liferay.portal.kernel.exception.PortalException;
-
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery();
 
 	/**
-	* @throws PortalException
+	* Returns the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
 	*/
-	@Override
-	public com.liferay.portal.model.PersistedModel deletePersistedModel(
-		com.liferay.portal.model.PersistedModel persistedModel)
-		throws com.liferay.portal.kernel.exception.PortalException;
-
-	@Override
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.portal.model.PersistedModel getPersistedModel(
-		java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException;
+	public java.lang.String getBeanIdentifier();
 
 	/**
 	* Returns a range of all the meetups entries.
@@ -196,6 +197,14 @@ public interface MeetupsEntryLocalService extends BaseLocalService,
 	public java.util.List<com.liferay.socialnetworking.model.MeetupsEntry> getMeetupsEntries(
 		int start, int end);
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<com.liferay.socialnetworking.model.MeetupsEntry> getMeetupsEntriesByCompany(
+		long companyId);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<com.liferay.socialnetworking.model.MeetupsEntry> getMeetupsEntriesByUser(
+		long userId);
+
 	/**
 	* Returns the number of meetups entries.
 	*
@@ -205,20 +214,27 @@ public interface MeetupsEntryLocalService extends BaseLocalService,
 	public int getMeetupsEntriesCount();
 
 	/**
-	* Updates the meetups entry in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	* Returns the meetups entry with the primary key.
 	*
-	* @param meetupsEntry the meetups entry
-	* @return the meetups entry that was updated
+	* @param meetupsEntryId the primary key of the meetups entry
+	* @return the meetups entry
+	* @throws PortalException if a meetups entry with the primary key could not be found
 	*/
-	public com.liferay.socialnetworking.model.MeetupsEntry updateMeetupsEntry(
-		com.liferay.socialnetworking.model.MeetupsEntry meetupsEntry);
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.liferay.socialnetworking.model.MeetupsEntry getMeetupsEntry(
+		long meetupsEntryId)
+		throws com.liferay.portal.kernel.exception.PortalException;
 
-	/**
-	* Returns the Spring bean ID for this bean.
-	*
-	* @return the Spring bean ID for this bean
-	*/
-	public java.lang.String getBeanIdentifier();
+	@Override
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.liferay.portal.model.PersistedModel getPersistedModel(
+		java.io.Serializable primaryKeyObj)
+		throws com.liferay.portal.kernel.exception.PortalException;
+
+	@Override
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable;
 
 	/**
 	* Sets the Spring bean ID for this bean.
@@ -227,26 +243,15 @@ public interface MeetupsEntryLocalService extends BaseLocalService,
 	*/
 	public void setBeanIdentifier(java.lang.String beanIdentifier);
 
-	@Override
-	public java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable;
-
-	public com.liferay.socialnetworking.model.MeetupsEntry addMeetupsEntry(
-		long userId, java.lang.String title, java.lang.String description,
-		int startDateMonth, int startDateDay, int startDateYear,
-		int startDateHour, int startDateMinute, int endDateMonth,
-		int endDateDay, int endDateYear, int endDateHour, int endDateMinute,
-		int totalAttendees, int maxAttendees, double price, byte[] thumbnail)
-		throws com.liferay.portal.kernel.exception.PortalException;
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<com.liferay.socialnetworking.model.MeetupsEntry> getMeetupsEntriesByCompany(
-		long companyId);
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<com.liferay.socialnetworking.model.MeetupsEntry> getMeetupsEntriesByUser(
-		long userId);
+	/**
+	* Updates the meetups entry in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	*
+	* @param meetupsEntry the meetups entry
+	* @return the meetups entry that was updated
+	*/
+	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.REINDEX)
+	public com.liferay.socialnetworking.model.MeetupsEntry updateMeetupsEntry(
+		com.liferay.socialnetworking.model.MeetupsEntry meetupsEntry);
 
 	public com.liferay.socialnetworking.model.MeetupsEntry updateMeetupsEntry(
 		long userId, long meetupsEntryId, java.lang.String title,

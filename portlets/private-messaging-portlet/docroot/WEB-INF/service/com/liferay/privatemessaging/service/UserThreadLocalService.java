@@ -16,6 +16,7 @@ package com.liferay.privatemessaging.service;
 
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.search.IndexableType;
 import com.liferay.portal.kernel.transaction.Isolation;
 import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
@@ -44,6 +45,22 @@ public interface UserThreadLocalService extends BaseLocalService,
 	 *
 	 * Never modify or reference this interface directly. Always use {@link UserThreadLocalServiceUtil} to access the user thread local service. Add custom service methods to {@link com.liferay.privatemessaging.service.impl.UserThreadLocalServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
+	public com.liferay.portlet.messageboards.model.MBMessage addPrivateMessage(
+		long userId, long mbThreadId, java.lang.String to,
+		java.lang.String subject, java.lang.String body,
+		java.util.List<com.liferay.portal.kernel.util.ObjectValuePair<java.lang.String, java.io.InputStream>> inputStreamOVPs,
+		com.liferay.portal.theme.ThemeDisplay themeDisplay)
+		throws com.liferay.portal.kernel.exception.PortalException;
+
+	public com.liferay.portlet.messageboards.model.MBMessage addPrivateMessageBranch(
+		long userId, long parentMBMessageId, java.lang.String body,
+		java.util.List<com.liferay.portal.kernel.util.ObjectValuePair<java.lang.String, java.io.InputStream>> inputStreamOVPs,
+		com.liferay.portal.theme.ThemeDisplay themeDisplay)
+		throws com.liferay.portal.kernel.exception.PortalException;
+
+	public void addUserThread(long userId, long mbThreadId,
+		long topMBMessageId, boolean read, boolean deleted)
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	/**
 	* Adds the user thread to the database. Also notifies the appropriate model listeners.
@@ -51,6 +68,7 @@ public interface UserThreadLocalService extends BaseLocalService,
 	* @param userThread the user thread
 	* @return the user thread that was added
 	*/
+	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.REINDEX)
 	public com.liferay.privatemessaging.model.UserThread addUserThread(
 		com.liferay.privatemessaging.model.UserThread userThread);
 
@@ -64,14 +82,17 @@ public interface UserThreadLocalService extends BaseLocalService,
 		long userThreadId);
 
 	/**
-	* Deletes the user thread with the primary key from the database. Also notifies the appropriate model listeners.
-	*
-	* @param userThreadId the primary key of the user thread
-	* @return the user thread that was removed
-	* @throws PortalException if a user thread with the primary key could not be found
+	* @throws PortalException
 	*/
-	public com.liferay.privatemessaging.model.UserThread deleteUserThread(
-		long userThreadId)
+	@Override
+	public com.liferay.portal.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.model.PersistedModel persistedModel)
+		throws com.liferay.portal.kernel.exception.PortalException;
+
+	public void deleteUser(long userId)
+		throws com.liferay.portal.kernel.exception.PortalException;
+
+	public void deleteUserThread(long userId, long mbThreadId)
 		throws com.liferay.portal.kernel.exception.PortalException;
 
 	/**
@@ -80,8 +101,21 @@ public interface UserThreadLocalService extends BaseLocalService,
 	* @param userThread the user thread
 	* @return the user thread that was removed
 	*/
+	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.DELETE)
 	public com.liferay.privatemessaging.model.UserThread deleteUserThread(
 		com.liferay.privatemessaging.model.UserThread userThread);
+
+	/**
+	* Deletes the user thread with the primary key from the database. Also notifies the appropriate model listeners.
+	*
+	* @param userThreadId the primary key of the user thread
+	* @return the user thread that was removed
+	* @throws PortalException if a user thread with the primary key could not be found
+	*/
+	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.DELETE)
+	public com.liferay.privatemessaging.model.UserThread deleteUserThread(
+		long userThreadId)
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery();
 
@@ -150,7 +184,37 @@ public interface UserThreadLocalService extends BaseLocalService,
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.privatemessaging.model.UserThread fetchUserThread(
+		long userId, long mbThreadId)
+		throws com.liferay.portal.kernel.exception.PortalException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.liferay.privatemessaging.model.UserThread fetchUserThread(
 		long userThreadId);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery();
+
+	/**
+	* Returns the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
+	*/
+	public java.lang.String getBeanIdentifier();
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<com.liferay.privatemessaging.model.UserThread> getMBThreadUserThreads(
+		long mbThreadId);
+
+	@Override
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.liferay.portal.model.PersistedModel getPersistedModel(
+		java.io.Serializable primaryKeyObj)
+		throws com.liferay.portal.kernel.exception.PortalException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.liferay.privatemessaging.model.UserThread getUserThread(
+		long userId, long mbThreadId)
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	/**
 	* Returns the user thread with the primary key.
@@ -162,23 +226,6 @@ public interface UserThreadLocalService extends BaseLocalService,
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.privatemessaging.model.UserThread getUserThread(
 		long userThreadId)
-		throws com.liferay.portal.kernel.exception.PortalException;
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery();
-
-	/**
-	* @throws PortalException
-	*/
-	@Override
-	public com.liferay.portal.model.PersistedModel deletePersistedModel(
-		com.liferay.portal.model.PersistedModel persistedModel)
-		throws com.liferay.portal.kernel.exception.PortalException;
-
-	@Override
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.portal.model.PersistedModel getPersistedModel(
-		java.io.Serializable primaryKeyObj)
 		throws com.liferay.portal.kernel.exception.PortalException;
 
 	/**
@@ -204,71 +251,6 @@ public interface UserThreadLocalService extends BaseLocalService,
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getUserThreadsCount();
 
-	/**
-	* Updates the user thread in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	*
-	* @param userThread the user thread
-	* @return the user thread that was updated
-	*/
-	public com.liferay.privatemessaging.model.UserThread updateUserThread(
-		com.liferay.privatemessaging.model.UserThread userThread);
-
-	/**
-	* Returns the Spring bean ID for this bean.
-	*
-	* @return the Spring bean ID for this bean
-	*/
-	public java.lang.String getBeanIdentifier();
-
-	/**
-	* Sets the Spring bean ID for this bean.
-	*
-	* @param beanIdentifier the Spring bean ID for this bean
-	*/
-	public void setBeanIdentifier(java.lang.String beanIdentifier);
-
-	@Override
-	public java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable;
-
-	public com.liferay.portlet.messageboards.model.MBMessage addPrivateMessage(
-		long userId, long mbThreadId, java.lang.String to,
-		java.lang.String subject, java.lang.String body,
-		java.util.List<com.liferay.portal.kernel.util.ObjectValuePair<java.lang.String, java.io.InputStream>> inputStreamOVPs,
-		com.liferay.portal.theme.ThemeDisplay themeDisplay)
-		throws com.liferay.portal.kernel.exception.PortalException;
-
-	public com.liferay.portlet.messageboards.model.MBMessage addPrivateMessageBranch(
-		long userId, long parentMBMessageId, java.lang.String body,
-		java.util.List<com.liferay.portal.kernel.util.ObjectValuePair<java.lang.String, java.io.InputStream>> inputStreamOVPs,
-		com.liferay.portal.theme.ThemeDisplay themeDisplay)
-		throws com.liferay.portal.kernel.exception.PortalException;
-
-	public void addUserThread(long userId, long mbThreadId,
-		long topMBMessageId, boolean read, boolean deleted)
-		throws com.liferay.portal.kernel.exception.PortalException;
-
-	public void deleteUser(long userId)
-		throws com.liferay.portal.kernel.exception.PortalException;
-
-	public void deleteUserThread(long userId, long mbThreadId)
-		throws com.liferay.portal.kernel.exception.PortalException;
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.privatemessaging.model.UserThread fetchUserThread(
-		long userId, long mbThreadId)
-		throws com.liferay.portal.kernel.exception.PortalException;
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<com.liferay.privatemessaging.model.UserThread> getMBThreadUserThreads(
-		long mbThreadId);
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.privatemessaging.model.UserThread getUserThread(
-		long userId, long mbThreadId)
-		throws com.liferay.portal.kernel.exception.PortalException;
-
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getUserUserThreadCount(long userId, boolean deleted);
 
@@ -281,11 +263,16 @@ public interface UserThreadLocalService extends BaseLocalService,
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.privatemessaging.model.UserThread> getUserUserThreads(
-		long userId, boolean read, boolean deleted);
+		long userId, boolean deleted, int start, int end);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.privatemessaging.model.UserThread> getUserUserThreads(
-		long userId, boolean deleted, int start, int end);
+		long userId, boolean read, boolean deleted);
+
+	@Override
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable;
 
 	public void markUserThreadAsRead(long userId, long mbThreadId)
 		throws com.liferay.portal.kernel.exception.PortalException;
@@ -293,5 +280,22 @@ public interface UserThreadLocalService extends BaseLocalService,
 	public void markUserThreadAsUnread(long userId, long mbThreadId)
 		throws com.liferay.portal.kernel.exception.PortalException;
 
+	/**
+	* Sets the Spring bean ID for this bean.
+	*
+	* @param beanIdentifier the Spring bean ID for this bean
+	*/
+	public void setBeanIdentifier(java.lang.String beanIdentifier);
+
 	public void updateUserName(com.liferay.portal.model.User user);
+
+	/**
+	* Updates the user thread in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	*
+	* @param userThread the user thread
+	* @return the user thread that was updated
+	*/
+	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.REINDEX)
+	public com.liferay.privatemessaging.model.UserThread updateUserThread(
+		com.liferay.privatemessaging.model.UserThread userThread);
 }

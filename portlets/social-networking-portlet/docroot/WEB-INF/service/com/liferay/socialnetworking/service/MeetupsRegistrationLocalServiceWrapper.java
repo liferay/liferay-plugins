@@ -56,6 +56,18 @@ public class MeetupsRegistrationLocalServiceWrapper
 	}
 
 	/**
+	* Deletes the meetups registration from the database. Also notifies the appropriate model listeners.
+	*
+	* @param meetupsRegistration the meetups registration
+	* @return the meetups registration that was removed
+	*/
+	@Override
+	public com.liferay.socialnetworking.model.MeetupsRegistration deleteMeetupsRegistration(
+		com.liferay.socialnetworking.model.MeetupsRegistration meetupsRegistration) {
+		return _meetupsRegistrationLocalService.deleteMeetupsRegistration(meetupsRegistration);
+	}
+
+	/**
 	* Deletes the meetups registration with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param meetupsRegistrationId the primary key of the meetups registration
@@ -70,15 +82,13 @@ public class MeetupsRegistrationLocalServiceWrapper
 	}
 
 	/**
-	* Deletes the meetups registration from the database. Also notifies the appropriate model listeners.
-	*
-	* @param meetupsRegistration the meetups registration
-	* @return the meetups registration that was removed
+	* @throws PortalException
 	*/
 	@Override
-	public com.liferay.socialnetworking.model.MeetupsRegistration deleteMeetupsRegistration(
-		com.liferay.socialnetworking.model.MeetupsRegistration meetupsRegistration) {
-		return _meetupsRegistrationLocalService.deleteMeetupsRegistration(meetupsRegistration);
+	public com.liferay.portal.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.model.PersistedModel persistedModel)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _meetupsRegistrationLocalService.deletePersistedModel(persistedModel);
 	}
 
 	@Override
@@ -173,6 +183,21 @@ public class MeetupsRegistrationLocalServiceWrapper
 		return _meetupsRegistrationLocalService.fetchMeetupsRegistration(meetupsRegistrationId);
 	}
 
+	@Override
+	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
+		return _meetupsRegistrationLocalService.getActionableDynamicQuery();
+	}
+
+	/**
+	* Returns the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
+	*/
+	@Override
+	public java.lang.String getBeanIdentifier() {
+		return _meetupsRegistrationLocalService.getBeanIdentifier();
+	}
+
 	/**
 	* Returns the meetups registration with the primary key.
 	*
@@ -188,25 +213,18 @@ public class MeetupsRegistrationLocalServiceWrapper
 	}
 
 	@Override
-	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
-		return _meetupsRegistrationLocalService.getActionableDynamicQuery();
-	}
-
-	/**
-	* @throws PortalException
-	*/
-	@Override
-	public com.liferay.portal.model.PersistedModel deletePersistedModel(
-		com.liferay.portal.model.PersistedModel persistedModel)
+	public com.liferay.socialnetworking.model.MeetupsRegistration getMeetupsRegistration(
+		long userId, long meetupsEntryId)
 		throws com.liferay.portal.kernel.exception.PortalException {
-		return _meetupsRegistrationLocalService.deletePersistedModel(persistedModel);
+		return _meetupsRegistrationLocalService.getMeetupsRegistration(userId,
+			meetupsEntryId);
 	}
 
 	@Override
-	public com.liferay.portal.model.PersistedModel getPersistedModel(
-		java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _meetupsRegistrationLocalService.getPersistedModel(primaryKeyObj);
+	public java.util.List<com.liferay.socialnetworking.model.MeetupsRegistration> getMeetupsRegistrations(
+		long meetupsEntryId, int status, int start, int end) {
+		return _meetupsRegistrationLocalService.getMeetupsRegistrations(meetupsEntryId,
+			status, start, end);
 	}
 
 	/**
@@ -237,26 +255,25 @@ public class MeetupsRegistrationLocalServiceWrapper
 		return _meetupsRegistrationLocalService.getMeetupsRegistrationsCount();
 	}
 
-	/**
-	* Updates the meetups registration in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	*
-	* @param meetupsRegistration the meetups registration
-	* @return the meetups registration that was updated
-	*/
 	@Override
-	public com.liferay.socialnetworking.model.MeetupsRegistration updateMeetupsRegistration(
-		com.liferay.socialnetworking.model.MeetupsRegistration meetupsRegistration) {
-		return _meetupsRegistrationLocalService.updateMeetupsRegistration(meetupsRegistration);
+	public int getMeetupsRegistrationsCount(long meetupsEntryId, int status) {
+		return _meetupsRegistrationLocalService.getMeetupsRegistrationsCount(meetupsEntryId,
+			status);
 	}
 
-	/**
-	* Returns the Spring bean ID for this bean.
-	*
-	* @return the Spring bean ID for this bean
-	*/
 	@Override
-	public java.lang.String getBeanIdentifier() {
-		return _meetupsRegistrationLocalService.getBeanIdentifier();
+	public com.liferay.portal.model.PersistedModel getPersistedModel(
+		java.io.Serializable primaryKeyObj)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _meetupsRegistrationLocalService.getPersistedModel(primaryKeyObj);
+	}
+
+	@Override
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return _meetupsRegistrationLocalService.invokeMethod(name,
+			parameterTypes, arguments);
 	}
 
 	/**
@@ -269,33 +286,16 @@ public class MeetupsRegistrationLocalServiceWrapper
 		_meetupsRegistrationLocalService.setBeanIdentifier(beanIdentifier);
 	}
 
+	/**
+	* Updates the meetups registration in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	*
+	* @param meetupsRegistration the meetups registration
+	* @return the meetups registration that was updated
+	*/
 	@Override
-	public java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable {
-		return _meetupsRegistrationLocalService.invokeMethod(name,
-			parameterTypes, arguments);
-	}
-
-	@Override
-	public com.liferay.socialnetworking.model.MeetupsRegistration getMeetupsRegistration(
-		long userId, long meetupsEntryId)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _meetupsRegistrationLocalService.getMeetupsRegistration(userId,
-			meetupsEntryId);
-	}
-
-	@Override
-	public java.util.List<com.liferay.socialnetworking.model.MeetupsRegistration> getMeetupsRegistrations(
-		long meetupsEntryId, int status, int start, int end) {
-		return _meetupsRegistrationLocalService.getMeetupsRegistrations(meetupsEntryId,
-			status, start, end);
-	}
-
-	@Override
-	public int getMeetupsRegistrationsCount(long meetupsEntryId, int status) {
-		return _meetupsRegistrationLocalService.getMeetupsRegistrationsCount(meetupsEntryId,
-			status);
+	public com.liferay.socialnetworking.model.MeetupsRegistration updateMeetupsRegistration(
+		com.liferay.socialnetworking.model.MeetupsRegistration meetupsRegistration) {
+		return _meetupsRegistrationLocalService.updateMeetupsRegistration(meetupsRegistration);
 	}
 
 	@Override

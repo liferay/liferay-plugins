@@ -30,6 +30,16 @@ public class KaleoTaskLocalServiceWrapper implements KaleoTaskLocalService,
 		_kaleoTaskLocalService = kaleoTaskLocalService;
 	}
 
+	@Override
+	public com.liferay.portal.workflow.kaleo.model.KaleoTask addKaleoTask(
+		long kaleoDefinitionId, long kaleoNodeId,
+		com.liferay.portal.workflow.kaleo.definition.Task task,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _kaleoTaskLocalService.addKaleoTask(kaleoDefinitionId,
+			kaleoNodeId, task, serviceContext);
+	}
+
 	/**
 	* Adds the kaleo task to the database. Also notifies the appropriate model listeners.
 	*
@@ -54,6 +64,28 @@ public class KaleoTaskLocalServiceWrapper implements KaleoTaskLocalService,
 		return _kaleoTaskLocalService.createKaleoTask(kaleoTaskId);
 	}
 
+	@Override
+	public void deleteCompanyKaleoTasks(long companyId) {
+		_kaleoTaskLocalService.deleteCompanyKaleoTasks(companyId);
+	}
+
+	@Override
+	public void deleteKaleoDefinitionKaleoTasks(long kaleoDefinitionId) {
+		_kaleoTaskLocalService.deleteKaleoDefinitionKaleoTasks(kaleoDefinitionId);
+	}
+
+	/**
+	* Deletes the kaleo task from the database. Also notifies the appropriate model listeners.
+	*
+	* @param kaleoTask the kaleo task
+	* @return the kaleo task that was removed
+	*/
+	@Override
+	public com.liferay.portal.workflow.kaleo.model.KaleoTask deleteKaleoTask(
+		com.liferay.portal.workflow.kaleo.model.KaleoTask kaleoTask) {
+		return _kaleoTaskLocalService.deleteKaleoTask(kaleoTask);
+	}
+
 	/**
 	* Deletes the kaleo task with the primary key from the database. Also notifies the appropriate model listeners.
 	*
@@ -69,15 +101,13 @@ public class KaleoTaskLocalServiceWrapper implements KaleoTaskLocalService,
 	}
 
 	/**
-	* Deletes the kaleo task from the database. Also notifies the appropriate model listeners.
-	*
-	* @param kaleoTask the kaleo task
-	* @return the kaleo task that was removed
+	* @throws PortalException
 	*/
 	@Override
-	public com.liferay.portal.workflow.kaleo.model.KaleoTask deleteKaleoTask(
-		com.liferay.portal.workflow.kaleo.model.KaleoTask kaleoTask) {
-		return _kaleoTaskLocalService.deleteKaleoTask(kaleoTask);
+	public com.liferay.portal.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.model.PersistedModel persistedModel)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _kaleoTaskLocalService.deletePersistedModel(persistedModel);
 	}
 
 	@Override
@@ -170,6 +200,28 @@ public class KaleoTaskLocalServiceWrapper implements KaleoTaskLocalService,
 		return _kaleoTaskLocalService.fetchKaleoTask(kaleoTaskId);
 	}
 
+	@Override
+	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
+		return _kaleoTaskLocalService.getActionableDynamicQuery();
+	}
+
+	/**
+	* Returns the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
+	*/
+	@Override
+	public java.lang.String getBeanIdentifier() {
+		return _kaleoTaskLocalService.getBeanIdentifier();
+	}
+
+	@Override
+	public com.liferay.portal.workflow.kaleo.model.KaleoTask getKaleoNodeKaleoTask(
+		long kaleoNodeId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _kaleoTaskLocalService.getKaleoNodeKaleoTask(kaleoNodeId);
+	}
+
 	/**
 	* Returns the kaleo task with the primary key.
 	*
@@ -182,28 +234,6 @@ public class KaleoTaskLocalServiceWrapper implements KaleoTaskLocalService,
 		long kaleoTaskId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _kaleoTaskLocalService.getKaleoTask(kaleoTaskId);
-	}
-
-	@Override
-	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
-		return _kaleoTaskLocalService.getActionableDynamicQuery();
-	}
-
-	/**
-	* @throws PortalException
-	*/
-	@Override
-	public com.liferay.portal.model.PersistedModel deletePersistedModel(
-		com.liferay.portal.model.PersistedModel persistedModel)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _kaleoTaskLocalService.deletePersistedModel(persistedModel);
-	}
-
-	@Override
-	public com.liferay.portal.model.PersistedModel getPersistedModel(
-		java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _kaleoTaskLocalService.getPersistedModel(primaryKeyObj);
 	}
 
 	/**
@@ -233,26 +263,19 @@ public class KaleoTaskLocalServiceWrapper implements KaleoTaskLocalService,
 		return _kaleoTaskLocalService.getKaleoTasksCount();
 	}
 
-	/**
-	* Updates the kaleo task in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	*
-	* @param kaleoTask the kaleo task
-	* @return the kaleo task that was updated
-	*/
 	@Override
-	public com.liferay.portal.workflow.kaleo.model.KaleoTask updateKaleoTask(
-		com.liferay.portal.workflow.kaleo.model.KaleoTask kaleoTask) {
-		return _kaleoTaskLocalService.updateKaleoTask(kaleoTask);
+	public com.liferay.portal.model.PersistedModel getPersistedModel(
+		java.io.Serializable primaryKeyObj)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _kaleoTaskLocalService.getPersistedModel(primaryKeyObj);
 	}
 
-	/**
-	* Returns the Spring bean ID for this bean.
-	*
-	* @return the Spring bean ID for this bean
-	*/
 	@Override
-	public java.lang.String getBeanIdentifier() {
-		return _kaleoTaskLocalService.getBeanIdentifier();
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return _kaleoTaskLocalService.invokeMethod(name, parameterTypes,
+			arguments);
 	}
 
 	/**
@@ -265,39 +288,16 @@ public class KaleoTaskLocalServiceWrapper implements KaleoTaskLocalService,
 		_kaleoTaskLocalService.setBeanIdentifier(beanIdentifier);
 	}
 
+	/**
+	* Updates the kaleo task in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	*
+	* @param kaleoTask the kaleo task
+	* @return the kaleo task that was updated
+	*/
 	@Override
-	public java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable {
-		return _kaleoTaskLocalService.invokeMethod(name, parameterTypes,
-			arguments);
-	}
-
-	@Override
-	public com.liferay.portal.workflow.kaleo.model.KaleoTask addKaleoTask(
-		long kaleoDefinitionId, long kaleoNodeId,
-		com.liferay.portal.workflow.kaleo.definition.Task task,
-		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _kaleoTaskLocalService.addKaleoTask(kaleoDefinitionId,
-			kaleoNodeId, task, serviceContext);
-	}
-
-	@Override
-	public void deleteCompanyKaleoTasks(long companyId) {
-		_kaleoTaskLocalService.deleteCompanyKaleoTasks(companyId);
-	}
-
-	@Override
-	public void deleteKaleoDefinitionKaleoTasks(long kaleoDefinitionId) {
-		_kaleoTaskLocalService.deleteKaleoDefinitionKaleoTasks(kaleoDefinitionId);
-	}
-
-	@Override
-	public com.liferay.portal.workflow.kaleo.model.KaleoTask getKaleoNodeKaleoTask(
-		long kaleoNodeId)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _kaleoTaskLocalService.getKaleoNodeKaleoTask(kaleoNodeId);
+	public com.liferay.portal.workflow.kaleo.model.KaleoTask updateKaleoTask(
+		com.liferay.portal.workflow.kaleo.model.KaleoTask kaleoTask) {
+		return _kaleoTaskLocalService.updateKaleoTask(kaleoTask);
 	}
 
 	/**

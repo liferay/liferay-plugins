@@ -29,33 +29,6 @@ public class TasksEntryServiceWrapper implements TasksEntryService,
 		_tasksEntryService = tasksEntryService;
 	}
 
-	/**
-	* Returns the Spring bean ID for this bean.
-	*
-	* @return the Spring bean ID for this bean
-	*/
-	@Override
-	public java.lang.String getBeanIdentifier() {
-		return _tasksEntryService.getBeanIdentifier();
-	}
-
-	/**
-	* Sets the Spring bean ID for this bean.
-	*
-	* @param beanIdentifier the Spring bean ID for this bean
-	*/
-	@Override
-	public void setBeanIdentifier(java.lang.String beanIdentifier) {
-		_tasksEntryService.setBeanIdentifier(beanIdentifier);
-	}
-
-	@Override
-	public java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable {
-		return _tasksEntryService.invokeMethod(name, parameterTypes, arguments);
-	}
-
 	@Override
 	public com.liferay.tasks.model.TasksEntry addTasksEntry(
 		java.lang.String title, int priority, long assigneeUserId,
@@ -68,10 +41,37 @@ public class TasksEntryServiceWrapper implements TasksEntryService,
 			dueDateMinute, neverDue, serviceContext);
 	}
 
+	/**
+	* Returns the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
+	*/
+	@Override
+	public java.lang.String getBeanIdentifier() {
+		return _tasksEntryService.getBeanIdentifier();
+	}
+
 	@Override
 	public com.liferay.tasks.model.TasksEntry getTasksEntry(long tasksEntryId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _tasksEntryService.getTasksEntry(tasksEntryId);
+	}
+
+	@Override
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return _tasksEntryService.invokeMethod(name, parameterTypes, arguments);
+	}
+
+	/**
+	* Sets the Spring bean ID for this bean.
+	*
+	* @param beanIdentifier the Spring bean ID for this bean
+	*/
+	@Override
+	public void setBeanIdentifier(java.lang.String beanIdentifier) {
+		_tasksEntryService.setBeanIdentifier(beanIdentifier);
 	}
 
 	@Override

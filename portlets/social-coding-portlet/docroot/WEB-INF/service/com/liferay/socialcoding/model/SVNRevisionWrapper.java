@@ -99,124 +99,14 @@ public class SVNRevisionWrapper implements SVNRevision,
 		}
 	}
 
-	/**
-	* Returns the primary key of this s v n revision.
-	*
-	* @return the primary key of this s v n revision
-	*/
 	@Override
-	public long getPrimaryKey() {
-		return _svnRevision.getPrimaryKey();
+	public java.lang.Object clone() {
+		return new SVNRevisionWrapper((SVNRevision)_svnRevision.clone());
 	}
 
-	/**
-	* Sets the primary key of this s v n revision.
-	*
-	* @param primaryKey the primary key of this s v n revision
-	*/
 	@Override
-	public void setPrimaryKey(long primaryKey) {
-		_svnRevision.setPrimaryKey(primaryKey);
-	}
-
-	/**
-	* Returns the svn revision ID of this s v n revision.
-	*
-	* @return the svn revision ID of this s v n revision
-	*/
-	@Override
-	public long getSvnRevisionId() {
-		return _svnRevision.getSvnRevisionId();
-	}
-
-	/**
-	* Sets the svn revision ID of this s v n revision.
-	*
-	* @param svnRevisionId the svn revision ID of this s v n revision
-	*/
-	@Override
-	public void setSvnRevisionId(long svnRevisionId) {
-		_svnRevision.setSvnRevisionId(svnRevisionId);
-	}
-
-	/**
-	* Returns the svn user ID of this s v n revision.
-	*
-	* @return the svn user ID of this s v n revision
-	*/
-	@Override
-	public java.lang.String getSvnUserId() {
-		return _svnRevision.getSvnUserId();
-	}
-
-	/**
-	* Sets the svn user ID of this s v n revision.
-	*
-	* @param svnUserId the svn user ID of this s v n revision
-	*/
-	@Override
-	public void setSvnUserId(java.lang.String svnUserId) {
-		_svnRevision.setSvnUserId(svnUserId);
-	}
-
-	/**
-	* Returns the create date of this s v n revision.
-	*
-	* @return the create date of this s v n revision
-	*/
-	@Override
-	public java.util.Date getCreateDate() {
-		return _svnRevision.getCreateDate();
-	}
-
-	/**
-	* Sets the create date of this s v n revision.
-	*
-	* @param createDate the create date of this s v n revision
-	*/
-	@Override
-	public void setCreateDate(java.util.Date createDate) {
-		_svnRevision.setCreateDate(createDate);
-	}
-
-	/**
-	* Returns the svn repository ID of this s v n revision.
-	*
-	* @return the svn repository ID of this s v n revision
-	*/
-	@Override
-	public long getSvnRepositoryId() {
-		return _svnRevision.getSvnRepositoryId();
-	}
-
-	/**
-	* Sets the svn repository ID of this s v n revision.
-	*
-	* @param svnRepositoryId the svn repository ID of this s v n revision
-	*/
-	@Override
-	public void setSvnRepositoryId(long svnRepositoryId) {
-		_svnRevision.setSvnRepositoryId(svnRepositoryId);
-	}
-
-	/**
-	* Returns the revision number of this s v n revision.
-	*
-	* @return the revision number of this s v n revision
-	*/
-	@Override
-	public long getRevisionNumber() {
-		return _svnRevision.getRevisionNumber();
-	}
-
-	/**
-	* Sets the revision number of this s v n revision.
-	*
-	* @param revisionNumber the revision number of this s v n revision
-	*/
-	@Override
-	public void setRevisionNumber(long revisionNumber) {
-		_svnRevision.setRevisionNumber(revisionNumber);
+	public int compareTo(com.liferay.socialcoding.model.SVNRevision svnRevision) {
+		return _svnRevision.compareTo(svnRevision);
 	}
 
 	/**
@@ -230,6 +120,121 @@ public class SVNRevisionWrapper implements SVNRevision,
 	}
 
 	/**
+	* Returns the create date of this s v n revision.
+	*
+	* @return the create date of this s v n revision
+	*/
+	@Override
+	public java.util.Date getCreateDate() {
+		return _svnRevision.getCreateDate();
+	}
+
+	@Override
+	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {
+		return _svnRevision.getExpandoBridge();
+	}
+
+	@Override
+	public java.lang.Object[] getJIRAIssueAndComments() {
+		return _svnRevision.getJIRAIssueAndComments();
+	}
+
+	/**
+	* Returns the primary key of this s v n revision.
+	*
+	* @return the primary key of this s v n revision
+	*/
+	@Override
+	public long getPrimaryKey() {
+		return _svnRevision.getPrimaryKey();
+	}
+
+	@Override
+	public java.io.Serializable getPrimaryKeyObj() {
+		return _svnRevision.getPrimaryKeyObj();
+	}
+
+	/**
+	* Returns the revision number of this s v n revision.
+	*
+	* @return the revision number of this s v n revision
+	*/
+	@Override
+	public long getRevisionNumber() {
+		return _svnRevision.getRevisionNumber();
+	}
+
+	@Override
+	public com.liferay.socialcoding.model.SVNRepository getSVNRepository() {
+		return _svnRevision.getSVNRepository();
+	}
+
+	/**
+	* Returns the svn repository ID of this s v n revision.
+	*
+	* @return the svn repository ID of this s v n revision
+	*/
+	@Override
+	public long getSvnRepositoryId() {
+		return _svnRevision.getSvnRepositoryId();
+	}
+
+	/**
+	* Returns the svn revision ID of this s v n revision.
+	*
+	* @return the svn revision ID of this s v n revision
+	*/
+	@Override
+	public long getSvnRevisionId() {
+		return _svnRevision.getSvnRevisionId();
+	}
+
+	/**
+	* Returns the svn user ID of this s v n revision.
+	*
+	* @return the svn user ID of this s v n revision
+	*/
+	@Override
+	public java.lang.String getSvnUserId() {
+		return _svnRevision.getSvnUserId();
+	}
+
+	@Override
+	public java.lang.String getWebRevisionNumberURL() {
+		return _svnRevision.getWebRevisionNumberURL();
+	}
+
+	@Override
+	public int hashCode() {
+		return _svnRevision.hashCode();
+	}
+
+	@Override
+	public boolean isCachedModel() {
+		return _svnRevision.isCachedModel();
+	}
+
+	@Override
+	public boolean isEscapedModel() {
+		return _svnRevision.isEscapedModel();
+	}
+
+	@Override
+	public boolean isNew() {
+		return _svnRevision.isNew();
+	}
+
+	@Override
+	public void persist() {
+		_svnRevision.persist();
+	}
+
+	@Override
+	public void setCachedModel(boolean cachedModel) {
+		_svnRevision.setCachedModel(cachedModel);
+	}
+
+	/**
 	* Sets the comments of this s v n revision.
 	*
 	* @param comments the comments of this s v n revision
@@ -239,44 +244,14 @@ public class SVNRevisionWrapper implements SVNRevision,
 		_svnRevision.setComments(comments);
 	}
 
+	/**
+	* Sets the create date of this s v n revision.
+	*
+	* @param createDate the create date of this s v n revision
+	*/
 	@Override
-	public boolean isNew() {
-		return _svnRevision.isNew();
-	}
-
-	@Override
-	public void setNew(boolean n) {
-		_svnRevision.setNew(n);
-	}
-
-	@Override
-	public boolean isCachedModel() {
-		return _svnRevision.isCachedModel();
-	}
-
-	@Override
-	public void setCachedModel(boolean cachedModel) {
-		_svnRevision.setCachedModel(cachedModel);
-	}
-
-	@Override
-	public boolean isEscapedModel() {
-		return _svnRevision.isEscapedModel();
-	}
-
-	@Override
-	public java.io.Serializable getPrimaryKeyObj() {
-		return _svnRevision.getPrimaryKeyObj();
-	}
-
-	@Override
-	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
-		_svnRevision.setPrimaryKeyObj(primaryKeyObj);
-	}
-
-	@Override
-	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {
-		return _svnRevision.getExpandoBridge();
+	public void setCreateDate(java.util.Date createDate) {
+		_svnRevision.setCreateDate(createDate);
 	}
 
 	@Override
@@ -298,18 +273,63 @@ public class SVNRevisionWrapper implements SVNRevision,
 	}
 
 	@Override
-	public java.lang.Object clone() {
-		return new SVNRevisionWrapper((SVNRevision)_svnRevision.clone());
+	public void setNew(boolean n) {
+		_svnRevision.setNew(n);
+	}
+
+	/**
+	* Sets the primary key of this s v n revision.
+	*
+	* @param primaryKey the primary key of this s v n revision
+	*/
+	@Override
+	public void setPrimaryKey(long primaryKey) {
+		_svnRevision.setPrimaryKey(primaryKey);
 	}
 
 	@Override
-	public int compareTo(com.liferay.socialcoding.model.SVNRevision svnRevision) {
-		return _svnRevision.compareTo(svnRevision);
+	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
+		_svnRevision.setPrimaryKeyObj(primaryKeyObj);
 	}
 
+	/**
+	* Sets the revision number of this s v n revision.
+	*
+	* @param revisionNumber the revision number of this s v n revision
+	*/
 	@Override
-	public int hashCode() {
-		return _svnRevision.hashCode();
+	public void setRevisionNumber(long revisionNumber) {
+		_svnRevision.setRevisionNumber(revisionNumber);
+	}
+
+	/**
+	* Sets the svn repository ID of this s v n revision.
+	*
+	* @param svnRepositoryId the svn repository ID of this s v n revision
+	*/
+	@Override
+	public void setSvnRepositoryId(long svnRepositoryId) {
+		_svnRevision.setSvnRepositoryId(svnRepositoryId);
+	}
+
+	/**
+	* Sets the svn revision ID of this s v n revision.
+	*
+	* @param svnRevisionId the svn revision ID of this s v n revision
+	*/
+	@Override
+	public void setSvnRevisionId(long svnRevisionId) {
+		_svnRevision.setSvnRevisionId(svnRevisionId);
+	}
+
+	/**
+	* Sets the svn user ID of this s v n revision.
+	*
+	* @param svnUserId the svn user ID of this s v n revision
+	*/
+	@Override
+	public void setSvnUserId(java.lang.String svnUserId) {
+		_svnRevision.setSvnUserId(svnUserId);
 	}
 
 	@Override
@@ -323,38 +343,18 @@ public class SVNRevisionWrapper implements SVNRevision,
 	}
 
 	@Override
-	public com.liferay.socialcoding.model.SVNRevision toUnescapedModel() {
-		return new SVNRevisionWrapper(_svnRevision.toUnescapedModel());
-	}
-
-	@Override
 	public java.lang.String toString() {
 		return _svnRevision.toString();
 	}
 
 	@Override
+	public com.liferay.socialcoding.model.SVNRevision toUnescapedModel() {
+		return new SVNRevisionWrapper(_svnRevision.toUnescapedModel());
+	}
+
+	@Override
 	public java.lang.String toXmlString() {
 		return _svnRevision.toXmlString();
-	}
-
-	@Override
-	public void persist() {
-		_svnRevision.persist();
-	}
-
-	@Override
-	public java.lang.Object[] getJIRAIssueAndComments() {
-		return _svnRevision.getJIRAIssueAndComments();
-	}
-
-	@Override
-	public com.liferay.socialcoding.model.SVNRepository getSVNRepository() {
-		return _svnRevision.getSVNRepository();
-	}
-
-	@Override
-	public java.lang.String getWebRevisionNumberURL() {
-		return _svnRevision.getWebRevisionNumberURL();
 	}
 
 	@Override

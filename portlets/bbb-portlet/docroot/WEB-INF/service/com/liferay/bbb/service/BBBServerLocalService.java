@@ -16,6 +16,7 @@ package com.liferay.bbb.service;
 
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.search.IndexableType;
 import com.liferay.portal.kernel.transaction.Isolation;
 import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
@@ -51,8 +52,17 @@ public interface BBBServerLocalService extends BaseLocalService,
 	* @param bbbServer the b b b server
 	* @return the b b b server that was added
 	*/
+	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.REINDEX)
 	public com.liferay.bbb.model.BBBServer addBBBServer(
 		com.liferay.bbb.model.BBBServer bbbServer);
+
+	public com.liferay.bbb.model.BBBServer addBBBServer(long userId,
+		java.lang.String name, java.lang.String url, java.lang.String secret,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException;
+
+	public void checkBBBServers()
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	/**
 	* Creates a new b b b server with the primary key. Does not add the b b b server to the database.
@@ -63,23 +73,33 @@ public interface BBBServerLocalService extends BaseLocalService,
 	public com.liferay.bbb.model.BBBServer createBBBServer(long bbbServerId);
 
 	/**
+	* Deletes the b b b server from the database. Also notifies the appropriate model listeners.
+	*
+	* @param bbbServer the b b b server
+	* @return the b b b server that was removed
+	*/
+	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.DELETE)
+	public com.liferay.bbb.model.BBBServer deleteBBBServer(
+		com.liferay.bbb.model.BBBServer bbbServer);
+
+	/**
 	* Deletes the b b b server with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param bbbServerId the primary key of the b b b server
 	* @return the b b b server that was removed
 	* @throws PortalException if a b b b server with the primary key could not be found
 	*/
+	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.DELETE)
 	public com.liferay.bbb.model.BBBServer deleteBBBServer(long bbbServerId)
 		throws com.liferay.portal.kernel.exception.PortalException;
 
 	/**
-	* Deletes the b b b server from the database. Also notifies the appropriate model listeners.
-	*
-	* @param bbbServer the b b b server
-	* @return the b b b server that was removed
+	* @throws PortalException
 	*/
-	public com.liferay.bbb.model.BBBServer deleteBBBServer(
-		com.liferay.bbb.model.BBBServer bbbServer);
+	@Override
+	public com.liferay.portal.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.model.PersistedModel persistedModel)
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery();
 
@@ -149,6 +169,9 @@ public interface BBBServerLocalService extends BaseLocalService,
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.bbb.model.BBBServer fetchBBBServer(long bbbServerId);
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery();
+
 	/**
 	* Returns the b b b server with the primary key.
 	*
@@ -161,21 +184,8 @@ public interface BBBServerLocalService extends BaseLocalService,
 		throws com.liferay.portal.kernel.exception.PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery();
-
-	/**
-	* @throws PortalException
-	*/
-	@Override
-	public com.liferay.portal.model.PersistedModel deletePersistedModel(
-		com.liferay.portal.model.PersistedModel persistedModel)
-		throws com.liferay.portal.kernel.exception.PortalException;
-
-	@Override
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.portal.model.PersistedModel getPersistedModel(
-		java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException;
+	public java.util.List<com.liferay.bbb.model.BBBServer> getBBBServers(
+		boolean active);
 
 	/**
 	* Returns a range of all the b b b servers.
@@ -192,6 +202,10 @@ public interface BBBServerLocalService extends BaseLocalService,
 	public java.util.List<com.liferay.bbb.model.BBBServer> getBBBServers(
 		int start, int end);
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<com.liferay.bbb.model.BBBServer> getBBBServers(
+		int start, int end, com.liferay.portal.kernel.util.OrderByComparator obc);
+
 	/**
 	* Returns the number of b b b servers.
 	*
@@ -201,20 +215,22 @@ public interface BBBServerLocalService extends BaseLocalService,
 	public int getBBBServersCount();
 
 	/**
-	* Updates the b b b server in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	*
-	* @param bbbServer the b b b server
-	* @return the b b b server that was updated
-	*/
-	public com.liferay.bbb.model.BBBServer updateBBBServer(
-		com.liferay.bbb.model.BBBServer bbbServer);
-
-	/**
 	* Returns the Spring bean ID for this bean.
 	*
 	* @return the Spring bean ID for this bean
 	*/
 	public java.lang.String getBeanIdentifier();
+
+	@Override
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.liferay.portal.model.PersistedModel getPersistedModel(
+		java.io.Serializable primaryKeyObj)
+		throws com.liferay.portal.kernel.exception.PortalException;
+
+	@Override
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable;
 
 	/**
 	* Sets the Spring bean ID for this bean.
@@ -223,26 +239,15 @@ public interface BBBServerLocalService extends BaseLocalService,
 	*/
 	public void setBeanIdentifier(java.lang.String beanIdentifier);
 
-	@Override
-	public java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable;
-
-	public com.liferay.bbb.model.BBBServer addBBBServer(long userId,
-		java.lang.String name, java.lang.String url, java.lang.String secret,
-		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException;
-
-	public void checkBBBServers()
-		throws com.liferay.portal.kernel.exception.PortalException;
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<com.liferay.bbb.model.BBBServer> getBBBServers(
-		boolean active);
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<com.liferay.bbb.model.BBBServer> getBBBServers(
-		int start, int end, com.liferay.portal.kernel.util.OrderByComparator obc);
+	/**
+	* Updates the b b b server in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	*
+	* @param bbbServer the b b b server
+	* @return the b b b server that was updated
+	*/
+	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.REINDEX)
+	public com.liferay.bbb.model.BBBServer updateBBBServer(
+		com.liferay.bbb.model.BBBServer bbbServer);
 
 	public com.liferay.bbb.model.BBBServer updateBBBServer(long bbbServerId,
 		java.lang.String name, java.lang.String url, java.lang.String secret,

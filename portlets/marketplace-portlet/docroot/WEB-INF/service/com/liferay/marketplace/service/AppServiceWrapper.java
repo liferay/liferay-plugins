@@ -29,6 +29,12 @@ public class AppServiceWrapper implements AppService,
 		_appService = appService;
 	}
 
+	@Override
+	public com.liferay.marketplace.model.App deleteApp(long appId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _appService.deleteApp(appId);
+	}
+
 	/**
 	* Returns the Spring bean ID for this bean.
 	*
@@ -39,14 +45,10 @@ public class AppServiceWrapper implements AppService,
 		return _appService.getBeanIdentifier();
 	}
 
-	/**
-	* Sets the Spring bean ID for this bean.
-	*
-	* @param beanIdentifier the Spring bean ID for this bean
-	*/
 	@Override
-	public void setBeanIdentifier(java.lang.String beanIdentifier) {
-		_appService.setBeanIdentifier(beanIdentifier);
+	public void installApp(long remoteAppId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		_appService.installApp(remoteAppId);
 	}
 
 	@Override
@@ -56,16 +58,14 @@ public class AppServiceWrapper implements AppService,
 		return _appService.invokeMethod(name, parameterTypes, arguments);
 	}
 
+	/**
+	* Sets the Spring bean ID for this bean.
+	*
+	* @param beanIdentifier the Spring bean ID for this bean
+	*/
 	@Override
-	public com.liferay.marketplace.model.App deleteApp(long appId)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _appService.deleteApp(appId);
-	}
-
-	@Override
-	public void installApp(long remoteAppId)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		_appService.installApp(remoteAppId);
+	public void setBeanIdentifier(java.lang.String beanIdentifier) {
+		_appService.setBeanIdentifier(beanIdentifier);
 	}
 
 	@Override

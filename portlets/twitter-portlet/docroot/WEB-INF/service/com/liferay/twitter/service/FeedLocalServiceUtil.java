@@ -61,6 +61,17 @@ public class FeedLocalServiceUtil {
 	}
 
 	/**
+	* Deletes the feed from the database. Also notifies the appropriate model listeners.
+	*
+	* @param feed the feed
+	* @return the feed that was removed
+	*/
+	public static com.liferay.twitter.model.Feed deleteFeed(
+		com.liferay.twitter.model.Feed feed) {
+		return getService().deleteFeed(feed);
+	}
+
+	/**
 	* Deletes the feed with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param feedId the primary key of the feed
@@ -73,14 +84,12 @@ public class FeedLocalServiceUtil {
 	}
 
 	/**
-	* Deletes the feed from the database. Also notifies the appropriate model listeners.
-	*
-	* @param feed the feed
-	* @return the feed that was removed
+	* @throws PortalException
 	*/
-	public static com.liferay.twitter.model.Feed deleteFeed(
-		com.liferay.twitter.model.Feed feed) {
-		return getService().deleteFeed(feed);
+	public static com.liferay.portal.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.model.PersistedModel persistedModel)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().deletePersistedModel(persistedModel);
 	}
 
 	public static com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
@@ -165,6 +174,19 @@ public class FeedLocalServiceUtil {
 		return getService().fetchFeed(feedId);
 	}
 
+	public static com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
+		return getService().getActionableDynamicQuery();
+	}
+
+	/**
+	* Returns the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
+	*/
+	public static java.lang.String getBeanIdentifier() {
+		return getService().getBeanIdentifier();
+	}
+
 	/**
 	* Returns the feed with the primary key.
 	*
@@ -175,25 +197,6 @@ public class FeedLocalServiceUtil {
 	public static com.liferay.twitter.model.Feed getFeed(long feedId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().getFeed(feedId);
-	}
-
-	public static com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
-		return getService().getActionableDynamicQuery();
-	}
-
-	/**
-	* @throws PortalException
-	*/
-	public static com.liferay.portal.model.PersistedModel deletePersistedModel(
-		com.liferay.portal.model.PersistedModel persistedModel)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().deletePersistedModel(persistedModel);
-	}
-
-	public static com.liferay.portal.model.PersistedModel getPersistedModel(
-		java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().getPersistedModel(primaryKeyObj);
 	}
 
 	/**
@@ -221,24 +224,16 @@ public class FeedLocalServiceUtil {
 		return getService().getFeedsCount();
 	}
 
-	/**
-	* Updates the feed in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	*
-	* @param feed the feed
-	* @return the feed that was updated
-	*/
-	public static com.liferay.twitter.model.Feed updateFeed(
-		com.liferay.twitter.model.Feed feed) {
-		return getService().updateFeed(feed);
+	public static com.liferay.portal.model.PersistedModel getPersistedModel(
+		java.io.Serializable primaryKeyObj)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().getPersistedModel(primaryKeyObj);
 	}
 
-	/**
-	* Returns the Spring bean ID for this bean.
-	*
-	* @return the Spring bean ID for this bean
-	*/
-	public static java.lang.String getBeanIdentifier() {
-		return getService().getBeanIdentifier();
+	public static java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return getService().invokeMethod(name, parameterTypes, arguments);
 	}
 
 	/**
@@ -250,10 +245,15 @@ public class FeedLocalServiceUtil {
 		getService().setBeanIdentifier(beanIdentifier);
 	}
 
-	public static java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable {
-		return getService().invokeMethod(name, parameterTypes, arguments);
+	/**
+	* Updates the feed in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	*
+	* @param feed the feed
+	* @return the feed that was updated
+	*/
+	public static com.liferay.twitter.model.Feed updateFeed(
+		com.liferay.twitter.model.Feed feed) {
+		return getService().updateFeed(feed);
 	}
 
 	public static void updateFeed(long userId)

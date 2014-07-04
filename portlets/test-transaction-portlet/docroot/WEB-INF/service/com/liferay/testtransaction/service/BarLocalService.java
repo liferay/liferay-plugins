@@ -16,6 +16,7 @@ package com.liferay.testtransaction.service;
 
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.search.IndexableType;
 import com.liferay.portal.kernel.transaction.Isolation;
 import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
@@ -51,8 +52,18 @@ public interface BarLocalService extends BaseLocalService, InvokableLocalService
 	* @param bar the bar
 	* @return the bar that was added
 	*/
+	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.REINDEX)
 	public com.liferay.testtransaction.model.Bar addBar(
 		com.liferay.testtransaction.model.Bar bar);
+
+	public void addBarAndClassName_PortalRollback(java.lang.String text);
+
+	public void addBarAndClassName_PortletRollback(java.lang.String text);
+
+	public void addBar_Rollback(java.lang.String text);
+
+	public com.liferay.testtransaction.model.Bar addBar_Success(
+		java.lang.String text);
 
 	/**
 	* Creates a new bar with the primary key. Does not add the bar to the database.
@@ -63,23 +74,36 @@ public interface BarLocalService extends BaseLocalService, InvokableLocalService
 	public com.liferay.testtransaction.model.Bar createBar(long barId);
 
 	/**
+	* Deletes the bar from the database. Also notifies the appropriate model listeners.
+	*
+	* @param bar the bar
+	* @return the bar that was removed
+	*/
+	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.DELETE)
+	public com.liferay.testtransaction.model.Bar deleteBar(
+		com.liferay.testtransaction.model.Bar bar);
+
+	/**
 	* Deletes the bar with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param barId the primary key of the bar
 	* @return the bar that was removed
 	* @throws PortalException if a bar with the primary key could not be found
 	*/
+	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.DELETE)
 	public com.liferay.testtransaction.model.Bar deleteBar(long barId)
 		throws com.liferay.portal.kernel.exception.PortalException;
 
+	public void deleteBarAndClassName(com.liferay.testtransaction.model.Bar bar)
+		throws com.liferay.portal.kernel.exception.PortalException;
+
 	/**
-	* Deletes the bar from the database. Also notifies the appropriate model listeners.
-	*
-	* @param bar the bar
-	* @return the bar that was removed
+	* @throws PortalException
 	*/
-	public com.liferay.testtransaction.model.Bar deleteBar(
-		com.liferay.testtransaction.model.Bar bar);
+	@Override
+	public com.liferay.portal.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.model.PersistedModel persistedModel)
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery();
 
@@ -149,6 +173,9 @@ public interface BarLocalService extends BaseLocalService, InvokableLocalService
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.testtransaction.model.Bar fetchBar(long barId);
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery();
+
 	/**
 	* Returns the bar with the primary key.
 	*
@@ -161,20 +188,7 @@ public interface BarLocalService extends BaseLocalService, InvokableLocalService
 		throws com.liferay.portal.kernel.exception.PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery();
-
-	/**
-	* @throws PortalException
-	*/
-	@Override
-	public com.liferay.portal.model.PersistedModel deletePersistedModel(
-		com.liferay.portal.model.PersistedModel persistedModel)
-		throws com.liferay.portal.kernel.exception.PortalException;
-
-	@Override
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.portal.model.PersistedModel getPersistedModel(
-		java.io.Serializable primaryKeyObj)
+	public com.liferay.testtransaction.model.Bar getBar(java.lang.String text)
 		throws com.liferay.portal.kernel.exception.PortalException;
 
 	/**
@@ -201,47 +215,16 @@ public interface BarLocalService extends BaseLocalService, InvokableLocalService
 	public int getBarsCount();
 
 	/**
-	* Updates the bar in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	*
-	* @param bar the bar
-	* @return the bar that was updated
-	*/
-	public com.liferay.testtransaction.model.Bar updateBar(
-		com.liferay.testtransaction.model.Bar bar);
-
-	/**
 	* Returns the Spring bean ID for this bean.
 	*
 	* @return the Spring bean ID for this bean
 	*/
 	public java.lang.String getBeanIdentifier();
 
-	/**
-	* Sets the Spring bean ID for this bean.
-	*
-	* @param beanIdentifier the Spring bean ID for this bean
-	*/
-	public void setBeanIdentifier(java.lang.String beanIdentifier);
-
 	@Override
-	public java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable;
-
-	public void addBar_Rollback(java.lang.String text);
-
-	public com.liferay.testtransaction.model.Bar addBar_Success(
-		java.lang.String text);
-
-	public void addBarAndClassName_PortalRollback(java.lang.String text);
-
-	public void addBarAndClassName_PortletRollback(java.lang.String text);
-
-	public void deleteBarAndClassName(com.liferay.testtransaction.model.Bar bar)
-		throws com.liferay.portal.kernel.exception.PortalException;
-
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.testtransaction.model.Bar getBar(java.lang.String text)
+	public com.liferay.portal.model.PersistedModel getPersistedModel(
+		java.io.Serializable primaryKeyObj)
 		throws com.liferay.portal.kernel.exception.PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
@@ -250,5 +233,27 @@ public interface BarLocalService extends BaseLocalService, InvokableLocalService
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public boolean hasClassName();
 
+	@Override
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable;
+
+	/**
+	* Sets the Spring bean ID for this bean.
+	*
+	* @param beanIdentifier the Spring bean ID for this bean
+	*/
+	public void setBeanIdentifier(java.lang.String beanIdentifier);
+
 	public void testAddClassNameAndBar_Success(java.lang.String text);
+
+	/**
+	* Updates the bar in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	*
+	* @param bar the bar
+	* @return the bar that was updated
+	*/
+	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.REINDEX)
+	public com.liferay.testtransaction.model.Bar updateBar(
+		com.liferay.testtransaction.model.Bar bar);
 }

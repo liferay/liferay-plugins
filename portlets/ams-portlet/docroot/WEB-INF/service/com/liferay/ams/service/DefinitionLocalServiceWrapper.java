@@ -54,6 +54,18 @@ public class DefinitionLocalServiceWrapper implements DefinitionLocalService,
 	}
 
 	/**
+	* Deletes the definition from the database. Also notifies the appropriate model listeners.
+	*
+	* @param definition the definition
+	* @return the definition that was removed
+	*/
+	@Override
+	public com.liferay.ams.model.Definition deleteDefinition(
+		com.liferay.ams.model.Definition definition) {
+		return _definitionLocalService.deleteDefinition(definition);
+	}
+
+	/**
 	* Deletes the definition with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param definitionId the primary key of the definition
@@ -67,15 +79,13 @@ public class DefinitionLocalServiceWrapper implements DefinitionLocalService,
 	}
 
 	/**
-	* Deletes the definition from the database. Also notifies the appropriate model listeners.
-	*
-	* @param definition the definition
-	* @return the definition that was removed
+	* @throws PortalException
 	*/
 	@Override
-	public com.liferay.ams.model.Definition deleteDefinition(
-		com.liferay.ams.model.Definition definition) {
-		return _definitionLocalService.deleteDefinition(definition);
+	public com.liferay.portal.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.model.PersistedModel persistedModel)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _definitionLocalService.deletePersistedModel(persistedModel);
 	}
 
 	@Override
@@ -168,6 +178,21 @@ public class DefinitionLocalServiceWrapper implements DefinitionLocalService,
 		return _definitionLocalService.fetchDefinition(definitionId);
 	}
 
+	@Override
+	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
+		return _definitionLocalService.getActionableDynamicQuery();
+	}
+
+	/**
+	* Returns the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
+	*/
+	@Override
+	public java.lang.String getBeanIdentifier() {
+		return _definitionLocalService.getBeanIdentifier();
+	}
+
 	/**
 	* Returns the definition with the primary key.
 	*
@@ -179,28 +204,6 @@ public class DefinitionLocalServiceWrapper implements DefinitionLocalService,
 	public com.liferay.ams.model.Definition getDefinition(long definitionId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _definitionLocalService.getDefinition(definitionId);
-	}
-
-	@Override
-	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
-		return _definitionLocalService.getActionableDynamicQuery();
-	}
-
-	/**
-	* @throws PortalException
-	*/
-	@Override
-	public com.liferay.portal.model.PersistedModel deletePersistedModel(
-		com.liferay.portal.model.PersistedModel persistedModel)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _definitionLocalService.deletePersistedModel(persistedModel);
-	}
-
-	@Override
-	public com.liferay.portal.model.PersistedModel getPersistedModel(
-		java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _definitionLocalService.getPersistedModel(primaryKeyObj);
 	}
 
 	/**
@@ -230,26 +233,19 @@ public class DefinitionLocalServiceWrapper implements DefinitionLocalService,
 		return _definitionLocalService.getDefinitionsCount();
 	}
 
-	/**
-	* Updates the definition in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	*
-	* @param definition the definition
-	* @return the definition that was updated
-	*/
 	@Override
-	public com.liferay.ams.model.Definition updateDefinition(
-		com.liferay.ams.model.Definition definition) {
-		return _definitionLocalService.updateDefinition(definition);
+	public com.liferay.portal.model.PersistedModel getPersistedModel(
+		java.io.Serializable primaryKeyObj)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _definitionLocalService.getPersistedModel(primaryKeyObj);
 	}
 
-	/**
-	* Returns the Spring bean ID for this bean.
-	*
-	* @return the Spring bean ID for this bean
-	*/
 	@Override
-	public java.lang.String getBeanIdentifier() {
-		return _definitionLocalService.getBeanIdentifier();
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return _definitionLocalService.invokeMethod(name, parameterTypes,
+			arguments);
 	}
 
 	/**
@@ -262,12 +258,16 @@ public class DefinitionLocalServiceWrapper implements DefinitionLocalService,
 		_definitionLocalService.setBeanIdentifier(beanIdentifier);
 	}
 
+	/**
+	* Updates the definition in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	*
+	* @param definition the definition
+	* @return the definition that was updated
+	*/
 	@Override
-	public java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable {
-		return _definitionLocalService.invokeMethod(name, parameterTypes,
-			arguments);
+	public com.liferay.ams.model.Definition updateDefinition(
+		com.liferay.ams.model.Definition definition) {
+		return _definitionLocalService.updateDefinition(definition);
 	}
 
 	/**

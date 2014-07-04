@@ -28,15 +28,15 @@ public class EntryServiceClp implements EntryService {
 
 		_methodParameterTypes0 = new String[] {  };
 
-		_methodName1 = "setBeanIdentifier";
+		_methodName2 = "searchUsersAndContacts";
 
-		_methodParameterTypes1 = new String[] { "java.lang.String" };
-
-		_methodName3 = "searchUsersAndContacts";
-
-		_methodParameterTypes3 = new String[] {
+		_methodParameterTypes2 = new String[] {
 				"long", "java.lang.String", "int", "int"
 			};
+
+		_methodName3 = "setBeanIdentifier";
+
+		_methodParameterTypes3 = new String[] { "java.lang.String" };
 	}
 
 	@Override
@@ -63,26 +63,6 @@ public class EntryServiceClp implements EntryService {
 	}
 
 	@Override
-	public void setBeanIdentifier(java.lang.String beanIdentifier) {
-		try {
-			_invokableService.invokeMethod(_methodName1,
-				_methodParameterTypes1,
-				new Object[] { ClpSerializer.translateInput(beanIdentifier) });
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-	}
-
-	@Override
 	public java.lang.Object invokeMethod(java.lang.String name,
 		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
 		throws java.lang.Throwable {
@@ -96,8 +76,8 @@ public class EntryServiceClp implements EntryService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableService.invokeMethod(_methodName3,
-					_methodParameterTypes3,
+			returnObj = _invokableService.invokeMethod(_methodName2,
+					_methodParameterTypes2,
 					new Object[] {
 						companyId,
 						
@@ -127,11 +107,31 @@ public class EntryServiceClp implements EntryService {
 		return (com.liferay.portal.kernel.json.JSONArray)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
+	public void setBeanIdentifier(java.lang.String beanIdentifier) {
+		try {
+			_invokableService.invokeMethod(_methodName3,
+				_methodParameterTypes3,
+				new Object[] { ClpSerializer.translateInput(beanIdentifier) });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+	}
+
 	private InvokableService _invokableService;
 	private String _methodName0;
 	private String[] _methodParameterTypes0;
-	private String _methodName1;
-	private String[] _methodParameterTypes1;
+	private String _methodName2;
+	private String[] _methodParameterTypes2;
 	private String _methodName3;
 	private String[] _methodParameterTypes3;
 }

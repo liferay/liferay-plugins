@@ -38,6 +38,13 @@ public class KaleoNodeLocalServiceUtil {
 	 *
 	 * Never modify this class directly. Add custom service methods to {@link com.liferay.portal.workflow.kaleo.service.impl.KaleoNodeLocalServiceImpl} and rerun ServiceBuilder to regenerate this class.
 	 */
+	public static com.liferay.portal.workflow.kaleo.model.KaleoNode addKaleoNode(
+		long kaleoDefinitionId,
+		com.liferay.portal.workflow.kaleo.definition.Node node,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().addKaleoNode(kaleoDefinitionId, node, serviceContext);
+	}
 
 	/**
 	* Adds the kaleo node to the database. Also notifies the appropriate model listeners.
@@ -61,6 +68,25 @@ public class KaleoNodeLocalServiceUtil {
 		return getService().createKaleoNode(kaleoNodeId);
 	}
 
+	public static void deleteCompanyKaleoNodes(long companyId) {
+		getService().deleteCompanyKaleoNodes(companyId);
+	}
+
+	public static void deleteKaleoDefinitionKaleoNodes(long kaleoDefinitionId) {
+		getService().deleteKaleoDefinitionKaleoNodes(kaleoDefinitionId);
+	}
+
+	/**
+	* Deletes the kaleo node from the database. Also notifies the appropriate model listeners.
+	*
+	* @param kaleoNode the kaleo node
+	* @return the kaleo node that was removed
+	*/
+	public static com.liferay.portal.workflow.kaleo.model.KaleoNode deleteKaleoNode(
+		com.liferay.portal.workflow.kaleo.model.KaleoNode kaleoNode) {
+		return getService().deleteKaleoNode(kaleoNode);
+	}
+
 	/**
 	* Deletes the kaleo node with the primary key from the database. Also notifies the appropriate model listeners.
 	*
@@ -75,14 +101,12 @@ public class KaleoNodeLocalServiceUtil {
 	}
 
 	/**
-	* Deletes the kaleo node from the database. Also notifies the appropriate model listeners.
-	*
-	* @param kaleoNode the kaleo node
-	* @return the kaleo node that was removed
+	* @throws PortalException
 	*/
-	public static com.liferay.portal.workflow.kaleo.model.KaleoNode deleteKaleoNode(
-		com.liferay.portal.workflow.kaleo.model.KaleoNode kaleoNode) {
-		return getService().deleteKaleoNode(kaleoNode);
+	public static com.liferay.portal.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.model.PersistedModel persistedModel)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().deletePersistedModel(persistedModel);
 	}
 
 	public static com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
@@ -168,6 +192,24 @@ public class KaleoNodeLocalServiceUtil {
 		return getService().fetchKaleoNode(kaleoNodeId);
 	}
 
+	public static com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
+		return getService().getActionableDynamicQuery();
+	}
+
+	/**
+	* Returns the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
+	*/
+	public static java.lang.String getBeanIdentifier() {
+		return getService().getBeanIdentifier();
+	}
+
+	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoNode> getKaleoDefinitionKaleoNodes(
+		long kaleoDefinitionId) {
+		return getService().getKaleoDefinitionKaleoNodes(kaleoDefinitionId);
+	}
+
 	/**
 	* Returns the kaleo node with the primary key.
 	*
@@ -179,25 +221,6 @@ public class KaleoNodeLocalServiceUtil {
 		long kaleoNodeId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().getKaleoNode(kaleoNodeId);
-	}
-
-	public static com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
-		return getService().getActionableDynamicQuery();
-	}
-
-	/**
-	* @throws PortalException
-	*/
-	public static com.liferay.portal.model.PersistedModel deletePersistedModel(
-		com.liferay.portal.model.PersistedModel persistedModel)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().deletePersistedModel(persistedModel);
-	}
-
-	public static com.liferay.portal.model.PersistedModel getPersistedModel(
-		java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().getPersistedModel(primaryKeyObj);
 	}
 
 	/**
@@ -225,24 +248,16 @@ public class KaleoNodeLocalServiceUtil {
 		return getService().getKaleoNodesCount();
 	}
 
-	/**
-	* Updates the kaleo node in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	*
-	* @param kaleoNode the kaleo node
-	* @return the kaleo node that was updated
-	*/
-	public static com.liferay.portal.workflow.kaleo.model.KaleoNode updateKaleoNode(
-		com.liferay.portal.workflow.kaleo.model.KaleoNode kaleoNode) {
-		return getService().updateKaleoNode(kaleoNode);
+	public static com.liferay.portal.model.PersistedModel getPersistedModel(
+		java.io.Serializable primaryKeyObj)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().getPersistedModel(primaryKeyObj);
 	}
 
-	/**
-	* Returns the Spring bean ID for this bean.
-	*
-	* @return the Spring bean ID for this bean
-	*/
-	public static java.lang.String getBeanIdentifier() {
-		return getService().getBeanIdentifier();
+	public static java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return getService().invokeMethod(name, parameterTypes, arguments);
 	}
 
 	/**
@@ -254,31 +269,15 @@ public class KaleoNodeLocalServiceUtil {
 		getService().setBeanIdentifier(beanIdentifier);
 	}
 
-	public static java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable {
-		return getService().invokeMethod(name, parameterTypes, arguments);
-	}
-
-	public static com.liferay.portal.workflow.kaleo.model.KaleoNode addKaleoNode(
-		long kaleoDefinitionId,
-		com.liferay.portal.workflow.kaleo.definition.Node node,
-		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().addKaleoNode(kaleoDefinitionId, node, serviceContext);
-	}
-
-	public static void deleteCompanyKaleoNodes(long companyId) {
-		getService().deleteCompanyKaleoNodes(companyId);
-	}
-
-	public static void deleteKaleoDefinitionKaleoNodes(long kaleoDefinitionId) {
-		getService().deleteKaleoDefinitionKaleoNodes(kaleoDefinitionId);
-	}
-
-	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoNode> getKaleoDefinitionKaleoNodes(
-		long kaleoDefinitionId) {
-		return getService().getKaleoDefinitionKaleoNodes(kaleoDefinitionId);
+	/**
+	* Updates the kaleo node in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	*
+	* @param kaleoNode the kaleo node
+	* @return the kaleo node that was updated
+	*/
+	public static com.liferay.portal.workflow.kaleo.model.KaleoNode updateKaleoNode(
+		com.liferay.portal.workflow.kaleo.model.KaleoNode kaleoNode) {
+		return getService().updateKaleoNode(kaleoNode);
 	}
 
 	public static void clearService() {

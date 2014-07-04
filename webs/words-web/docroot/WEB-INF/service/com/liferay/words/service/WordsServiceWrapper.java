@@ -29,6 +29,12 @@ public class WordsServiceWrapper implements WordsService,
 		_wordsService = wordsService;
 	}
 
+	@Override
+	public java.util.List<java.lang.String> checkSpelling(java.lang.String text)
+		throws java.lang.Exception {
+		return _wordsService.checkSpelling(text);
+	}
+
 	/**
 	* Returns the Spring bean ID for this bean.
 	*
@@ -39,14 +45,10 @@ public class WordsServiceWrapper implements WordsService,
 		return _wordsService.getBeanIdentifier();
 	}
 
-	/**
-	* Sets the Spring bean ID for this bean.
-	*
-	* @param beanIdentifier the Spring bean ID for this bean
-	*/
 	@Override
-	public void setBeanIdentifier(java.lang.String beanIdentifier) {
-		_wordsService.setBeanIdentifier(beanIdentifier);
+	public java.util.List<java.lang.String> getSuggestions(
+		java.lang.String word) throws java.lang.Exception {
+		return _wordsService.getSuggestions(word);
 	}
 
 	@Override
@@ -56,16 +58,14 @@ public class WordsServiceWrapper implements WordsService,
 		return _wordsService.invokeMethod(name, parameterTypes, arguments);
 	}
 
+	/**
+	* Sets the Spring bean ID for this bean.
+	*
+	* @param beanIdentifier the Spring bean ID for this bean
+	*/
 	@Override
-	public java.util.List<java.lang.String> checkSpelling(java.lang.String text)
-		throws java.lang.Exception {
-		return _wordsService.checkSpelling(text);
-	}
-
-	@Override
-	public java.util.List<java.lang.String> getSuggestions(
-		java.lang.String word) throws java.lang.Exception {
-		return _wordsService.getSuggestions(word);
+	public void setBeanIdentifier(java.lang.String beanIdentifier) {
+		_wordsService.setBeanIdentifier(beanIdentifier);
 	}
 
 	/**

@@ -31,34 +31,6 @@ public class PushNotificationsDeviceServiceWrapper
 		_pushNotificationsDeviceService = pushNotificationsDeviceService;
 	}
 
-	/**
-	* Returns the Spring bean ID for this bean.
-	*
-	* @return the Spring bean ID for this bean
-	*/
-	@Override
-	public java.lang.String getBeanIdentifier() {
-		return _pushNotificationsDeviceService.getBeanIdentifier();
-	}
-
-	/**
-	* Sets the Spring bean ID for this bean.
-	*
-	* @param beanIdentifier the Spring bean ID for this bean
-	*/
-	@Override
-	public void setBeanIdentifier(java.lang.String beanIdentifier) {
-		_pushNotificationsDeviceService.setBeanIdentifier(beanIdentifier);
-	}
-
-	@Override
-	public java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable {
-		return _pushNotificationsDeviceService.invokeMethod(name,
-			parameterTypes, arguments);
-	}
-
 	@Override
 	public com.liferay.pushnotifications.model.PushNotificationsDevice addPushNotificationsDevice(
 		java.lang.String token, java.lang.String platform)
@@ -72,6 +44,34 @@ public class PushNotificationsDeviceServiceWrapper
 		java.lang.String token)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _pushNotificationsDeviceService.deletePushNotificationsDevice(token);
+	}
+
+	/**
+	* Returns the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
+	*/
+	@Override
+	public java.lang.String getBeanIdentifier() {
+		return _pushNotificationsDeviceService.getBeanIdentifier();
+	}
+
+	@Override
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return _pushNotificationsDeviceService.invokeMethod(name,
+			parameterTypes, arguments);
+	}
+
+	/**
+	* Sets the Spring bean ID for this bean.
+	*
+	* @param beanIdentifier the Spring bean ID for this bean
+	*/
+	@Override
+	public void setBeanIdentifier(java.lang.String beanIdentifier) {
+		_pushNotificationsDeviceService.setBeanIdentifier(beanIdentifier);
 	}
 
 	/**

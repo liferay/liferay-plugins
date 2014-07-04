@@ -48,13 +48,9 @@ public class SocialOfficeServiceUtil {
 		return getService().getBeanIdentifier();
 	}
 
-	/**
-	* Sets the Spring bean ID for this bean.
-	*
-	* @param beanIdentifier the Spring bean ID for this bean
-	*/
-	public static void setBeanIdentifier(java.lang.String beanIdentifier) {
-		getService().setBeanIdentifier(beanIdentifier);
+	public static long[] getUserSocialOfficeGroupIds()
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().getUserSocialOfficeGroupIds();
 	}
 
 	public static java.lang.Object invokeMethod(java.lang.String name,
@@ -63,14 +59,18 @@ public class SocialOfficeServiceUtil {
 		return getService().invokeMethod(name, parameterTypes, arguments);
 	}
 
-	public static long[] getUserSocialOfficeGroupIds()
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().getUserSocialOfficeGroupIds();
-	}
-
 	public static boolean isSocialOfficeGroup(long groupId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().isSocialOfficeGroup(groupId);
+	}
+
+	/**
+	* Sets the Spring bean ID for this bean.
+	*
+	* @param beanIdentifier the Spring bean ID for this bean
+	*/
+	public static void setBeanIdentifier(java.lang.String beanIdentifier) {
+		getService().setBeanIdentifier(beanIdentifier);
 	}
 
 	public static void clearService() {

@@ -62,16 +62,12 @@ public class TestBlobEntryLocalServiceUtil {
 	}
 
 	/**
-	* Deletes the test blob entry with the primary key from the database. Also notifies the appropriate model listeners.
-	*
-	* @param testBlobEntryId the primary key of the test blob entry
-	* @return the test blob entry that was removed
-	* @throws PortalException if a test blob entry with the primary key could not be found
+	* @throws PortalException
 	*/
-	public static com.liferay.testblob.model.TestBlobEntry deleteTestBlobEntry(
-		long testBlobEntryId)
+	public static com.liferay.portal.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.model.PersistedModel persistedModel)
 		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().deleteTestBlobEntry(testBlobEntryId);
+		return getService().deletePersistedModel(persistedModel);
 	}
 
 	/**
@@ -83,6 +79,19 @@ public class TestBlobEntryLocalServiceUtil {
 	public static com.liferay.testblob.model.TestBlobEntry deleteTestBlobEntry(
 		com.liferay.testblob.model.TestBlobEntry testBlobEntry) {
 		return getService().deleteTestBlobEntry(testBlobEntry);
+	}
+
+	/**
+	* Deletes the test blob entry with the primary key from the database. Also notifies the appropriate model listeners.
+	*
+	* @param testBlobEntryId the primary key of the test blob entry
+	* @return the test blob entry that was removed
+	* @throws PortalException if a test blob entry with the primary key could not be found
+	*/
+	public static com.liferay.testblob.model.TestBlobEntry deleteTestBlobEntry(
+		long testBlobEntryId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().deleteTestBlobEntry(testBlobEntryId);
 	}
 
 	public static com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
@@ -168,30 +177,22 @@ public class TestBlobEntryLocalServiceUtil {
 		return getService().fetchTestBlobEntry(testBlobEntryId);
 	}
 
-	/**
-	* Returns the test blob entry with the primary key.
-	*
-	* @param testBlobEntryId the primary key of the test blob entry
-	* @return the test blob entry
-	* @throws PortalException if a test blob entry with the primary key could not be found
-	*/
-	public static com.liferay.testblob.model.TestBlobEntry getTestBlobEntry(
-		long testBlobEntryId)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().getTestBlobEntry(testBlobEntryId);
-	}
-
 	public static com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
 		return getService().getActionableDynamicQuery();
 	}
 
 	/**
-	* @throws PortalException
+	* Returns the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
 	*/
-	public static com.liferay.portal.model.PersistedModel deletePersistedModel(
-		com.liferay.portal.model.PersistedModel persistedModel)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().deletePersistedModel(persistedModel);
+	public static java.lang.String getBeanIdentifier() {
+		return getService().getBeanIdentifier();
+	}
+
+	public static com.liferay.testblob.model.TestBlobEntryBlobFieldBlobModel getBlobFieldBlobModel(
+		java.io.Serializable primaryKey) {
+		return getService().getBlobFieldBlobModel(primaryKey);
 	}
 
 	public static com.liferay.portal.model.PersistedModel getPersistedModel(
@@ -226,28 +227,22 @@ public class TestBlobEntryLocalServiceUtil {
 	}
 
 	/**
-	* Updates the test blob entry in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	* Returns the test blob entry with the primary key.
 	*
-	* @param testBlobEntry the test blob entry
-	* @return the test blob entry that was updated
+	* @param testBlobEntryId the primary key of the test blob entry
+	* @return the test blob entry
+	* @throws PortalException if a test blob entry with the primary key could not be found
 	*/
-	public static com.liferay.testblob.model.TestBlobEntry updateTestBlobEntry(
-		com.liferay.testblob.model.TestBlobEntry testBlobEntry) {
-		return getService().updateTestBlobEntry(testBlobEntry);
+	public static com.liferay.testblob.model.TestBlobEntry getTestBlobEntry(
+		long testBlobEntryId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().getTestBlobEntry(testBlobEntryId);
 	}
 
-	public static com.liferay.testblob.model.TestBlobEntryBlobFieldBlobModel getBlobFieldBlobModel(
-		java.io.Serializable primaryKey) {
-		return getService().getBlobFieldBlobModel(primaryKey);
-	}
-
-	/**
-	* Returns the Spring bean ID for this bean.
-	*
-	* @return the Spring bean ID for this bean
-	*/
-	public static java.lang.String getBeanIdentifier() {
-		return getService().getBeanIdentifier();
+	public static java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return getService().invokeMethod(name, parameterTypes, arguments);
 	}
 
 	/**
@@ -259,10 +254,15 @@ public class TestBlobEntryLocalServiceUtil {
 		getService().setBeanIdentifier(beanIdentifier);
 	}
 
-	public static java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable {
-		return getService().invokeMethod(name, parameterTypes, arguments);
+	/**
+	* Updates the test blob entry in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	*
+	* @param testBlobEntry the test blob entry
+	* @return the test blob entry that was updated
+	*/
+	public static com.liferay.testblob.model.TestBlobEntry updateTestBlobEntry(
+		com.liferay.testblob.model.TestBlobEntry testBlobEntry) {
+		return getService().updateTestBlobEntry(testBlobEntry);
 	}
 
 	public static void clearService() {

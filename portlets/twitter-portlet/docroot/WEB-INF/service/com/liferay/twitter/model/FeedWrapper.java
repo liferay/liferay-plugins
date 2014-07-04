@@ -119,44 +119,14 @@ public class FeedWrapper implements Feed, ModelWrapper<Feed> {
 		}
 	}
 
-	/**
-	* Returns the primary key of this feed.
-	*
-	* @return the primary key of this feed
-	*/
 	@Override
-	public long getPrimaryKey() {
-		return _feed.getPrimaryKey();
+	public java.lang.Object clone() {
+		return new FeedWrapper((Feed)_feed.clone());
 	}
 
-	/**
-	* Sets the primary key of this feed.
-	*
-	* @param primaryKey the primary key of this feed
-	*/
 	@Override
-	public void setPrimaryKey(long primaryKey) {
-		_feed.setPrimaryKey(primaryKey);
-	}
-
-	/**
-	* Returns the feed ID of this feed.
-	*
-	* @return the feed ID of this feed
-	*/
-	@Override
-	public long getFeedId() {
-		return _feed.getFeedId();
-	}
-
-	/**
-	* Sets the feed ID of this feed.
-	*
-	* @param feedId the feed ID of this feed
-	*/
-	@Override
-	public void setFeedId(long feedId) {
-		_feed.setFeedId(feedId);
+	public int compareTo(com.liferay.twitter.model.Feed feed) {
+		return _feed.compareTo(feed);
 	}
 
 	/**
@@ -170,76 +140,6 @@ public class FeedWrapper implements Feed, ModelWrapper<Feed> {
 	}
 
 	/**
-	* Sets the company ID of this feed.
-	*
-	* @param companyId the company ID of this feed
-	*/
-	@Override
-	public void setCompanyId(long companyId) {
-		_feed.setCompanyId(companyId);
-	}
-
-	/**
-	* Returns the user ID of this feed.
-	*
-	* @return the user ID of this feed
-	*/
-	@Override
-	public long getUserId() {
-		return _feed.getUserId();
-	}
-
-	/**
-	* Sets the user ID of this feed.
-	*
-	* @param userId the user ID of this feed
-	*/
-	@Override
-	public void setUserId(long userId) {
-		_feed.setUserId(userId);
-	}
-
-	/**
-	* Returns the user uuid of this feed.
-	*
-	* @return the user uuid of this feed
-	*/
-	@Override
-	public java.lang.String getUserUuid() {
-		return _feed.getUserUuid();
-	}
-
-	/**
-	* Sets the user uuid of this feed.
-	*
-	* @param userUuid the user uuid of this feed
-	*/
-	@Override
-	public void setUserUuid(java.lang.String userUuid) {
-		_feed.setUserUuid(userUuid);
-	}
-
-	/**
-	* Returns the user name of this feed.
-	*
-	* @return the user name of this feed
-	*/
-	@Override
-	public java.lang.String getUserName() {
-		return _feed.getUserName();
-	}
-
-	/**
-	* Sets the user name of this feed.
-	*
-	* @param userName the user name of this feed
-	*/
-	@Override
-	public void setUserName(java.lang.String userName) {
-		_feed.setUserName(userName);
-	}
-
-	/**
 	* Returns the create date of this feed.
 	*
 	* @return the create date of this feed
@@ -249,94 +149,19 @@ public class FeedWrapper implements Feed, ModelWrapper<Feed> {
 		return _feed.getCreateDate();
 	}
 
-	/**
-	* Sets the create date of this feed.
-	*
-	* @param createDate the create date of this feed
-	*/
 	@Override
-	public void setCreateDate(java.util.Date createDate) {
-		_feed.setCreateDate(createDate);
+	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {
+		return _feed.getExpandoBridge();
 	}
 
 	/**
-	* Returns the modified date of this feed.
+	* Returns the feed ID of this feed.
 	*
-	* @return the modified date of this feed
+	* @return the feed ID of this feed
 	*/
 	@Override
-	public java.util.Date getModifiedDate() {
-		return _feed.getModifiedDate();
-	}
-
-	/**
-	* Sets the modified date of this feed.
-	*
-	* @param modifiedDate the modified date of this feed
-	*/
-	@Override
-	public void setModifiedDate(java.util.Date modifiedDate) {
-		_feed.setModifiedDate(modifiedDate);
-	}
-
-	/**
-	* Returns the twitter user ID of this feed.
-	*
-	* @return the twitter user ID of this feed
-	*/
-	@Override
-	public long getTwitterUserId() {
-		return _feed.getTwitterUserId();
-	}
-
-	/**
-	* Sets the twitter user ID of this feed.
-	*
-	* @param twitterUserId the twitter user ID of this feed
-	*/
-	@Override
-	public void setTwitterUserId(long twitterUserId) {
-		_feed.setTwitterUserId(twitterUserId);
-	}
-
-	/**
-	* Returns the twitter user uuid of this feed.
-	*
-	* @return the twitter user uuid of this feed
-	*/
-	@Override
-	public java.lang.String getTwitterUserUuid() {
-		return _feed.getTwitterUserUuid();
-	}
-
-	/**
-	* Sets the twitter user uuid of this feed.
-	*
-	* @param twitterUserUuid the twitter user uuid of this feed
-	*/
-	@Override
-	public void setTwitterUserUuid(java.lang.String twitterUserUuid) {
-		_feed.setTwitterUserUuid(twitterUserUuid);
-	}
-
-	/**
-	* Returns the twitter screen name of this feed.
-	*
-	* @return the twitter screen name of this feed
-	*/
-	@Override
-	public java.lang.String getTwitterScreenName() {
-		return _feed.getTwitterScreenName();
-	}
-
-	/**
-	* Sets the twitter screen name of this feed.
-	*
-	* @param twitterScreenName the twitter screen name of this feed
-	*/
-	@Override
-	public void setTwitterScreenName(java.lang.String twitterScreenName) {
-		_feed.setTwitterScreenName(twitterScreenName);
+	public long getFeedId() {
+		return _feed.getFeedId();
 	}
 
 	/**
@@ -350,23 +175,93 @@ public class FeedWrapper implements Feed, ModelWrapper<Feed> {
 	}
 
 	/**
-	* Sets the last status ID of this feed.
+	* Returns the modified date of this feed.
 	*
-	* @param lastStatusId the last status ID of this feed
+	* @return the modified date of this feed
 	*/
 	@Override
-	public void setLastStatusId(long lastStatusId) {
-		_feed.setLastStatusId(lastStatusId);
+	public java.util.Date getModifiedDate() {
+		return _feed.getModifiedDate();
+	}
+
+	/**
+	* Returns the primary key of this feed.
+	*
+	* @return the primary key of this feed
+	*/
+	@Override
+	public long getPrimaryKey() {
+		return _feed.getPrimaryKey();
 	}
 
 	@Override
-	public boolean isNew() {
-		return _feed.isNew();
+	public java.io.Serializable getPrimaryKeyObj() {
+		return _feed.getPrimaryKeyObj();
+	}
+
+	/**
+	* Returns the twitter screen name of this feed.
+	*
+	* @return the twitter screen name of this feed
+	*/
+	@Override
+	public java.lang.String getTwitterScreenName() {
+		return _feed.getTwitterScreenName();
+	}
+
+	/**
+	* Returns the twitter user ID of this feed.
+	*
+	* @return the twitter user ID of this feed
+	*/
+	@Override
+	public long getTwitterUserId() {
+		return _feed.getTwitterUserId();
+	}
+
+	/**
+	* Returns the twitter user uuid of this feed.
+	*
+	* @return the twitter user uuid of this feed
+	*/
+	@Override
+	public java.lang.String getTwitterUserUuid() {
+		return _feed.getTwitterUserUuid();
+	}
+
+	/**
+	* Returns the user ID of this feed.
+	*
+	* @return the user ID of this feed
+	*/
+	@Override
+	public long getUserId() {
+		return _feed.getUserId();
+	}
+
+	/**
+	* Returns the user name of this feed.
+	*
+	* @return the user name of this feed
+	*/
+	@Override
+	public java.lang.String getUserName() {
+		return _feed.getUserName();
+	}
+
+	/**
+	* Returns the user uuid of this feed.
+	*
+	* @return the user uuid of this feed
+	*/
+	@Override
+	public java.lang.String getUserUuid() {
+		return _feed.getUserUuid();
 	}
 
 	@Override
-	public void setNew(boolean n) {
-		_feed.setNew(n);
+	public int hashCode() {
+		return _feed.hashCode();
 	}
 
 	@Override
@@ -375,28 +270,43 @@ public class FeedWrapper implements Feed, ModelWrapper<Feed> {
 	}
 
 	@Override
-	public void setCachedModel(boolean cachedModel) {
-		_feed.setCachedModel(cachedModel);
-	}
-
-	@Override
 	public boolean isEscapedModel() {
 		return _feed.isEscapedModel();
 	}
 
 	@Override
-	public java.io.Serializable getPrimaryKeyObj() {
-		return _feed.getPrimaryKeyObj();
+	public boolean isNew() {
+		return _feed.isNew();
 	}
 
 	@Override
-	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
-		_feed.setPrimaryKeyObj(primaryKeyObj);
+	public void persist() {
+		_feed.persist();
 	}
 
 	@Override
-	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {
-		return _feed.getExpandoBridge();
+	public void setCachedModel(boolean cachedModel) {
+		_feed.setCachedModel(cachedModel);
+	}
+
+	/**
+	* Sets the company ID of this feed.
+	*
+	* @param companyId the company ID of this feed
+	*/
+	@Override
+	public void setCompanyId(long companyId) {
+		_feed.setCompanyId(companyId);
+	}
+
+	/**
+	* Sets the create date of this feed.
+	*
+	* @param createDate the create date of this feed
+	*/
+	@Override
+	public void setCreateDate(java.util.Date createDate) {
+		_feed.setCreateDate(createDate);
 	}
 
 	@Override
@@ -417,19 +327,114 @@ public class FeedWrapper implements Feed, ModelWrapper<Feed> {
 		_feed.setExpandoBridgeAttributes(serviceContext);
 	}
 
+	/**
+	* Sets the feed ID of this feed.
+	*
+	* @param feedId the feed ID of this feed
+	*/
 	@Override
-	public java.lang.Object clone() {
-		return new FeedWrapper((Feed)_feed.clone());
+	public void setFeedId(long feedId) {
+		_feed.setFeedId(feedId);
+	}
+
+	/**
+	* Sets the last status ID of this feed.
+	*
+	* @param lastStatusId the last status ID of this feed
+	*/
+	@Override
+	public void setLastStatusId(long lastStatusId) {
+		_feed.setLastStatusId(lastStatusId);
+	}
+
+	/**
+	* Sets the modified date of this feed.
+	*
+	* @param modifiedDate the modified date of this feed
+	*/
+	@Override
+	public void setModifiedDate(java.util.Date modifiedDate) {
+		_feed.setModifiedDate(modifiedDate);
 	}
 
 	@Override
-	public int compareTo(com.liferay.twitter.model.Feed feed) {
-		return _feed.compareTo(feed);
+	public void setNew(boolean n) {
+		_feed.setNew(n);
+	}
+
+	/**
+	* Sets the primary key of this feed.
+	*
+	* @param primaryKey the primary key of this feed
+	*/
+	@Override
+	public void setPrimaryKey(long primaryKey) {
+		_feed.setPrimaryKey(primaryKey);
 	}
 
 	@Override
-	public int hashCode() {
-		return _feed.hashCode();
+	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
+		_feed.setPrimaryKeyObj(primaryKeyObj);
+	}
+
+	/**
+	* Sets the twitter screen name of this feed.
+	*
+	* @param twitterScreenName the twitter screen name of this feed
+	*/
+	@Override
+	public void setTwitterScreenName(java.lang.String twitterScreenName) {
+		_feed.setTwitterScreenName(twitterScreenName);
+	}
+
+	/**
+	* Sets the twitter user ID of this feed.
+	*
+	* @param twitterUserId the twitter user ID of this feed
+	*/
+	@Override
+	public void setTwitterUserId(long twitterUserId) {
+		_feed.setTwitterUserId(twitterUserId);
+	}
+
+	/**
+	* Sets the twitter user uuid of this feed.
+	*
+	* @param twitterUserUuid the twitter user uuid of this feed
+	*/
+	@Override
+	public void setTwitterUserUuid(java.lang.String twitterUserUuid) {
+		_feed.setTwitterUserUuid(twitterUserUuid);
+	}
+
+	/**
+	* Sets the user ID of this feed.
+	*
+	* @param userId the user ID of this feed
+	*/
+	@Override
+	public void setUserId(long userId) {
+		_feed.setUserId(userId);
+	}
+
+	/**
+	* Sets the user name of this feed.
+	*
+	* @param userName the user name of this feed
+	*/
+	@Override
+	public void setUserName(java.lang.String userName) {
+		_feed.setUserName(userName);
+	}
+
+	/**
+	* Sets the user uuid of this feed.
+	*
+	* @param userUuid the user uuid of this feed
+	*/
+	@Override
+	public void setUserUuid(java.lang.String userUuid) {
+		_feed.setUserUuid(userUuid);
 	}
 
 	@Override
@@ -443,23 +448,18 @@ public class FeedWrapper implements Feed, ModelWrapper<Feed> {
 	}
 
 	@Override
-	public com.liferay.twitter.model.Feed toUnescapedModel() {
-		return new FeedWrapper(_feed.toUnescapedModel());
-	}
-
-	@Override
 	public java.lang.String toString() {
 		return _feed.toString();
 	}
 
 	@Override
-	public java.lang.String toXmlString() {
-		return _feed.toXmlString();
+	public com.liferay.twitter.model.Feed toUnescapedModel() {
+		return new FeedWrapper(_feed.toUnescapedModel());
 	}
 
 	@Override
-	public void persist() {
-		_feed.persist();
+	public java.lang.String toXmlString() {
+		return _feed.toXmlString();
 	}
 
 	@Override

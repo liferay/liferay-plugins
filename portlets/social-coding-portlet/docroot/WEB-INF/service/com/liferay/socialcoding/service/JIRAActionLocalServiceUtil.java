@@ -62,6 +62,17 @@ public class JIRAActionLocalServiceUtil {
 	}
 
 	/**
+	* Deletes the j i r a action from the database. Also notifies the appropriate model listeners.
+	*
+	* @param jiraAction the j i r a action
+	* @return the j i r a action that was removed
+	*/
+	public static com.liferay.socialcoding.model.JIRAAction deleteJIRAAction(
+		com.liferay.socialcoding.model.JIRAAction jiraAction) {
+		return getService().deleteJIRAAction(jiraAction);
+	}
+
+	/**
 	* Deletes the j i r a action with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param jiraActionId the primary key of the j i r a action
@@ -75,14 +86,12 @@ public class JIRAActionLocalServiceUtil {
 	}
 
 	/**
-	* Deletes the j i r a action from the database. Also notifies the appropriate model listeners.
-	*
-	* @param jiraAction the j i r a action
-	* @return the j i r a action that was removed
+	* @throws PortalException
 	*/
-	public static com.liferay.socialcoding.model.JIRAAction deleteJIRAAction(
-		com.liferay.socialcoding.model.JIRAAction jiraAction) {
-		return getService().deleteJIRAAction(jiraAction);
+	public static com.liferay.portal.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.model.PersistedModel persistedModel)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().deletePersistedModel(persistedModel);
 	}
 
 	public static com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
@@ -168,6 +177,19 @@ public class JIRAActionLocalServiceUtil {
 		return getService().fetchJIRAAction(jiraActionId);
 	}
 
+	public static com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
+		return getService().getActionableDynamicQuery();
+	}
+
+	/**
+	* Returns the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
+	*/
+	public static java.lang.String getBeanIdentifier() {
+		return getService().getBeanIdentifier();
+	}
+
 	/**
 	* Returns the j i r a action with the primary key.
 	*
@@ -179,25 +201,6 @@ public class JIRAActionLocalServiceUtil {
 		long jiraActionId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().getJIRAAction(jiraActionId);
-	}
-
-	public static com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
-		return getService().getActionableDynamicQuery();
-	}
-
-	/**
-	* @throws PortalException
-	*/
-	public static com.liferay.portal.model.PersistedModel deletePersistedModel(
-		com.liferay.portal.model.PersistedModel persistedModel)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().deletePersistedModel(persistedModel);
-	}
-
-	public static com.liferay.portal.model.PersistedModel getPersistedModel(
-		java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().getPersistedModel(primaryKeyObj);
 	}
 
 	/**
@@ -225,24 +228,16 @@ public class JIRAActionLocalServiceUtil {
 		return getService().getJIRAActionsCount();
 	}
 
-	/**
-	* Updates the j i r a action in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	*
-	* @param jiraAction the j i r a action
-	* @return the j i r a action that was updated
-	*/
-	public static com.liferay.socialcoding.model.JIRAAction updateJIRAAction(
-		com.liferay.socialcoding.model.JIRAAction jiraAction) {
-		return getService().updateJIRAAction(jiraAction);
+	public static com.liferay.portal.model.PersistedModel getPersistedModel(
+		java.io.Serializable primaryKeyObj)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().getPersistedModel(primaryKeyObj);
 	}
 
-	/**
-	* Returns the Spring bean ID for this bean.
-	*
-	* @return the Spring bean ID for this bean
-	*/
-	public static java.lang.String getBeanIdentifier() {
-		return getService().getBeanIdentifier();
+	public static java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return getService().invokeMethod(name, parameterTypes, arguments);
 	}
 
 	/**
@@ -254,10 +249,15 @@ public class JIRAActionLocalServiceUtil {
 		getService().setBeanIdentifier(beanIdentifier);
 	}
 
-	public static java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable {
-		return getService().invokeMethod(name, parameterTypes, arguments);
+	/**
+	* Updates the j i r a action in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	*
+	* @param jiraAction the j i r a action
+	* @return the j i r a action that was updated
+	*/
+	public static com.liferay.socialcoding.model.JIRAAction updateJIRAAction(
+		com.liferay.socialcoding.model.JIRAAction jiraAction) {
+		return getService().updateJIRAAction(jiraAction);
 	}
 
 	public static void clearService() {

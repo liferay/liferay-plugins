@@ -54,6 +54,18 @@ public class CheckoutLocalServiceWrapper implements CheckoutLocalService,
 	}
 
 	/**
+	* Deletes the checkout from the database. Also notifies the appropriate model listeners.
+	*
+	* @param checkout the checkout
+	* @return the checkout that was removed
+	*/
+	@Override
+	public com.liferay.ams.model.Checkout deleteCheckout(
+		com.liferay.ams.model.Checkout checkout) {
+		return _checkoutLocalService.deleteCheckout(checkout);
+	}
+
+	/**
 	* Deletes the checkout with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param checkoutId the primary key of the checkout
@@ -67,15 +79,13 @@ public class CheckoutLocalServiceWrapper implements CheckoutLocalService,
 	}
 
 	/**
-	* Deletes the checkout from the database. Also notifies the appropriate model listeners.
-	*
-	* @param checkout the checkout
-	* @return the checkout that was removed
+	* @throws PortalException
 	*/
 	@Override
-	public com.liferay.ams.model.Checkout deleteCheckout(
-		com.liferay.ams.model.Checkout checkout) {
-		return _checkoutLocalService.deleteCheckout(checkout);
+	public com.liferay.portal.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.model.PersistedModel persistedModel)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _checkoutLocalService.deletePersistedModel(persistedModel);
 	}
 
 	@Override
@@ -167,6 +177,21 @@ public class CheckoutLocalServiceWrapper implements CheckoutLocalService,
 		return _checkoutLocalService.fetchCheckout(checkoutId);
 	}
 
+	@Override
+	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
+		return _checkoutLocalService.getActionableDynamicQuery();
+	}
+
+	/**
+	* Returns the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
+	*/
+	@Override
+	public java.lang.String getBeanIdentifier() {
+		return _checkoutLocalService.getBeanIdentifier();
+	}
+
 	/**
 	* Returns the checkout with the primary key.
 	*
@@ -178,28 +203,6 @@ public class CheckoutLocalServiceWrapper implements CheckoutLocalService,
 	public com.liferay.ams.model.Checkout getCheckout(long checkoutId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _checkoutLocalService.getCheckout(checkoutId);
-	}
-
-	@Override
-	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
-		return _checkoutLocalService.getActionableDynamicQuery();
-	}
-
-	/**
-	* @throws PortalException
-	*/
-	@Override
-	public com.liferay.portal.model.PersistedModel deletePersistedModel(
-		com.liferay.portal.model.PersistedModel persistedModel)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _checkoutLocalService.deletePersistedModel(persistedModel);
-	}
-
-	@Override
-	public com.liferay.portal.model.PersistedModel getPersistedModel(
-		java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _checkoutLocalService.getPersistedModel(primaryKeyObj);
 	}
 
 	/**
@@ -229,26 +232,19 @@ public class CheckoutLocalServiceWrapper implements CheckoutLocalService,
 		return _checkoutLocalService.getCheckoutsCount();
 	}
 
-	/**
-	* Updates the checkout in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	*
-	* @param checkout the checkout
-	* @return the checkout that was updated
-	*/
 	@Override
-	public com.liferay.ams.model.Checkout updateCheckout(
-		com.liferay.ams.model.Checkout checkout) {
-		return _checkoutLocalService.updateCheckout(checkout);
+	public com.liferay.portal.model.PersistedModel getPersistedModel(
+		java.io.Serializable primaryKeyObj)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _checkoutLocalService.getPersistedModel(primaryKeyObj);
 	}
 
-	/**
-	* Returns the Spring bean ID for this bean.
-	*
-	* @return the Spring bean ID for this bean
-	*/
 	@Override
-	public java.lang.String getBeanIdentifier() {
-		return _checkoutLocalService.getBeanIdentifier();
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return _checkoutLocalService.invokeMethod(name, parameterTypes,
+			arguments);
 	}
 
 	/**
@@ -261,12 +257,16 @@ public class CheckoutLocalServiceWrapper implements CheckoutLocalService,
 		_checkoutLocalService.setBeanIdentifier(beanIdentifier);
 	}
 
+	/**
+	* Updates the checkout in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	*
+	* @param checkout the checkout
+	* @return the checkout that was updated
+	*/
 	@Override
-	public java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable {
-		return _checkoutLocalService.invokeMethod(name, parameterTypes,
-			arguments);
+	public com.liferay.ams.model.Checkout updateCheckout(
+		com.liferay.ams.model.Checkout checkout) {
+		return _checkoutLocalService.updateCheckout(checkout);
 	}
 
 	/**

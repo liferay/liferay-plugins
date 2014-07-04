@@ -38,55 +38,57 @@ public class MeetupsRegistrationLocalServiceClp
 
 		_methodName2 = "deleteMeetupsRegistration";
 
-		_methodParameterTypes2 = new String[] { "long" };
-
-		_methodName3 = "deleteMeetupsRegistration";
-
-		_methodParameterTypes3 = new String[] {
+		_methodParameterTypes2 = new String[] {
 				"com.liferay.socialnetworking.model.MeetupsRegistration"
 			};
 
-		_methodName4 = "dynamicQuery";
+		_methodName3 = "deleteMeetupsRegistration";
 
-		_methodParameterTypes4 = new String[] {  };
+		_methodParameterTypes3 = new String[] { "long" };
+
+		_methodName4 = "deletePersistedModel";
+
+		_methodParameterTypes4 = new String[] {
+				"com.liferay.portal.model.PersistedModel"
+			};
 
 		_methodName5 = "dynamicQuery";
 
-		_methodParameterTypes5 = new String[] {
-				"com.liferay.portal.kernel.dao.orm.DynamicQuery"
-			};
+		_methodParameterTypes5 = new String[] {  };
 
 		_methodName6 = "dynamicQuery";
 
 		_methodParameterTypes6 = new String[] {
-				"com.liferay.portal.kernel.dao.orm.DynamicQuery", "int", "int"
+				"com.liferay.portal.kernel.dao.orm.DynamicQuery"
 			};
 
 		_methodName7 = "dynamicQuery";
 
 		_methodParameterTypes7 = new String[] {
-				"com.liferay.portal.kernel.dao.orm.DynamicQuery", "int", "int",
-				"com.liferay.portal.kernel.util.OrderByComparator"
+				"com.liferay.portal.kernel.dao.orm.DynamicQuery", "int", "int"
 			};
 
-		_methodName8 = "dynamicQueryCount";
+		_methodName8 = "dynamicQuery";
 
 		_methodParameterTypes8 = new String[] {
-				"com.liferay.portal.kernel.dao.orm.DynamicQuery"
+				"com.liferay.portal.kernel.dao.orm.DynamicQuery", "int", "int",
+				"com.liferay.portal.kernel.util.OrderByComparator"
 			};
 
 		_methodName9 = "dynamicQueryCount";
 
 		_methodParameterTypes9 = new String[] {
+				"com.liferay.portal.kernel.dao.orm.DynamicQuery"
+			};
+
+		_methodName10 = "dynamicQueryCount";
+
+		_methodParameterTypes10 = new String[] {
 				"com.liferay.portal.kernel.dao.orm.DynamicQuery",
 				"com.liferay.portal.kernel.dao.orm.Projection"
 			};
 
-		_methodName10 = "fetchMeetupsRegistration";
-
-		_methodParameterTypes10 = new String[] { "long" };
-
-		_methodName11 = "getMeetupsRegistration";
+		_methodName11 = "fetchMeetupsRegistration";
 
 		_methodParameterTypes11 = new String[] { "long" };
 
@@ -94,49 +96,47 @@ public class MeetupsRegistrationLocalServiceClp
 
 		_methodParameterTypes12 = new String[] {  };
 
-		_methodName13 = "deletePersistedModel";
+		_methodName13 = "getBeanIdentifier";
 
-		_methodParameterTypes13 = new String[] {
-				"com.liferay.portal.model.PersistedModel"
-			};
+		_methodParameterTypes13 = new String[] {  };
 
-		_methodName14 = "getPersistedModel";
+		_methodName14 = "getMeetupsRegistration";
 
-		_methodParameterTypes14 = new String[] { "java.io.Serializable" };
+		_methodParameterTypes14 = new String[] { "long" };
 
-		_methodName15 = "getMeetupsRegistrations";
+		_methodName15 = "getMeetupsRegistration";
 
-		_methodParameterTypes15 = new String[] { "int", "int" };
+		_methodParameterTypes15 = new String[] { "long", "long" };
 
-		_methodName16 = "getMeetupsRegistrationsCount";
+		_methodName16 = "getMeetupsRegistrations";
 
-		_methodParameterTypes16 = new String[] {  };
+		_methodParameterTypes16 = new String[] { "long", "int", "int", "int" };
 
-		_methodName17 = "updateMeetupsRegistration";
+		_methodName17 = "getMeetupsRegistrations";
 
-		_methodParameterTypes17 = new String[] {
-				"com.liferay.socialnetworking.model.MeetupsRegistration"
-			};
+		_methodParameterTypes17 = new String[] { "int", "int" };
 
-		_methodName18 = "getBeanIdentifier";
+		_methodName18 = "getMeetupsRegistrationsCount";
 
 		_methodParameterTypes18 = new String[] {  };
 
-		_methodName19 = "setBeanIdentifier";
+		_methodName19 = "getMeetupsRegistrationsCount";
 
-		_methodParameterTypes19 = new String[] { "java.lang.String" };
+		_methodParameterTypes19 = new String[] { "long", "int" };
 
-		_methodName21 = "getMeetupsRegistration";
+		_methodName20 = "getPersistedModel";
 
-		_methodParameterTypes21 = new String[] { "long", "long" };
+		_methodParameterTypes20 = new String[] { "java.io.Serializable" };
 
-		_methodName22 = "getMeetupsRegistrations";
+		_methodName22 = "setBeanIdentifier";
 
-		_methodParameterTypes22 = new String[] { "long", "int", "int", "int" };
+		_methodParameterTypes22 = new String[] { "java.lang.String" };
 
-		_methodName23 = "getMeetupsRegistrationsCount";
+		_methodName23 = "updateMeetupsRegistration";
 
-		_methodParameterTypes23 = new String[] { "long", "int" };
+		_methodParameterTypes23 = new String[] {
+				"com.liferay.socialnetworking.model.MeetupsRegistration"
+			};
 
 		_methodName24 = "updateMeetupsRegistration";
 
@@ -199,13 +199,40 @@ public class MeetupsRegistrationLocalServiceClp
 
 	@Override
 	public com.liferay.socialnetworking.model.MeetupsRegistration deleteMeetupsRegistration(
-		long meetupsRegistrationId)
-		throws com.liferay.portal.kernel.exception.PortalException {
+		com.liferay.socialnetworking.model.MeetupsRegistration meetupsRegistration) {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName2,
 					_methodParameterTypes2,
+					new Object[] {
+						ClpSerializer.translateInput(meetupsRegistration)
+					});
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.liferay.socialnetworking.model.MeetupsRegistration)ClpSerializer.translateOutput(returnObj);
+	}
+
+	@Override
+	public com.liferay.socialnetworking.model.MeetupsRegistration deleteMeetupsRegistration(
+		long meetupsRegistrationId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName3,
+					_methodParameterTypes3,
 					new Object[] { meetupsRegistrationId });
 		}
 		catch (Throwable t) {
@@ -228,19 +255,22 @@ public class MeetupsRegistrationLocalServiceClp
 	}
 
 	@Override
-	public com.liferay.socialnetworking.model.MeetupsRegistration deleteMeetupsRegistration(
-		com.liferay.socialnetworking.model.MeetupsRegistration meetupsRegistration) {
+	public com.liferay.portal.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.model.PersistedModel persistedModel)
+		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName3,
-					_methodParameterTypes3,
-					new Object[] {
-						ClpSerializer.translateInput(meetupsRegistration)
-					});
+			returnObj = _invokableLocalService.invokeMethod(_methodName4,
+					_methodParameterTypes4,
+					new Object[] { ClpSerializer.translateInput(persistedModel) });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
 
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
@@ -251,7 +281,7 @@ public class MeetupsRegistrationLocalServiceClp
 			}
 		}
 
-		return (com.liferay.socialnetworking.model.MeetupsRegistration)ClpSerializer.translateOutput(returnObj);
+		return (com.liferay.portal.model.PersistedModel)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override
@@ -259,8 +289,8 @@ public class MeetupsRegistrationLocalServiceClp
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName4,
-					_methodParameterTypes4, new Object[] {  });
+			returnObj = _invokableLocalService.invokeMethod(_methodName5,
+					_methodParameterTypes5, new Object[] {  });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -283,8 +313,8 @@ public class MeetupsRegistrationLocalServiceClp
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName5,
-					_methodParameterTypes5,
+			returnObj = _invokableLocalService.invokeMethod(_methodName6,
+					_methodParameterTypes6,
 					new Object[] { ClpSerializer.translateInput(dynamicQuery) });
 		}
 		catch (Throwable t) {
@@ -309,8 +339,8 @@ public class MeetupsRegistrationLocalServiceClp
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName6,
-					_methodParameterTypes6,
+			returnObj = _invokableLocalService.invokeMethod(_methodName7,
+					_methodParameterTypes7,
 					new Object[] {
 						ClpSerializer.translateInput(dynamicQuery),
 						
@@ -342,8 +372,8 @@ public class MeetupsRegistrationLocalServiceClp
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName7,
-					_methodParameterTypes7,
+			returnObj = _invokableLocalService.invokeMethod(_methodName8,
+					_methodParameterTypes8,
 					new Object[] {
 						ClpSerializer.translateInput(dynamicQuery),
 						
@@ -375,8 +405,8 @@ public class MeetupsRegistrationLocalServiceClp
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName8,
-					_methodParameterTypes8,
+			returnObj = _invokableLocalService.invokeMethod(_methodName9,
+					_methodParameterTypes9,
 					new Object[] { ClpSerializer.translateInput(dynamicQuery) });
 		}
 		catch (Throwable t) {
@@ -401,8 +431,8 @@ public class MeetupsRegistrationLocalServiceClp
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName9,
-					_methodParameterTypes9,
+			returnObj = _invokableLocalService.invokeMethod(_methodName10,
+					_methodParameterTypes10,
 					new Object[] {
 						ClpSerializer.translateInput(dynamicQuery),
 						
@@ -430,42 +460,12 @@ public class MeetupsRegistrationLocalServiceClp
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName10,
-					_methodParameterTypes10,
-					new Object[] { meetupsRegistrationId });
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-
-		return (com.liferay.socialnetworking.model.MeetupsRegistration)ClpSerializer.translateOutput(returnObj);
-	}
-
-	@Override
-	public com.liferay.socialnetworking.model.MeetupsRegistration getMeetupsRegistration(
-		long meetupsRegistrationId)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		Object returnObj = null;
-
-		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName11,
 					_methodParameterTypes11,
 					new Object[] { meetupsRegistrationId });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
-				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
 
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
@@ -503,146 +503,12 @@ public class MeetupsRegistrationLocalServiceClp
 	}
 
 	@Override
-	public com.liferay.portal.model.PersistedModel deletePersistedModel(
-		com.liferay.portal.model.PersistedModel persistedModel)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		Object returnObj = null;
-
-		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName13,
-					_methodParameterTypes13,
-					new Object[] { ClpSerializer.translateInput(persistedModel) });
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
-				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-
-		return (com.liferay.portal.model.PersistedModel)ClpSerializer.translateOutput(returnObj);
-	}
-
-	@Override
-	public com.liferay.portal.model.PersistedModel getPersistedModel(
-		java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		Object returnObj = null;
-
-		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName14,
-					_methodParameterTypes14,
-					new Object[] { ClpSerializer.translateInput(primaryKeyObj) });
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
-				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-
-		return (com.liferay.portal.model.PersistedModel)ClpSerializer.translateOutput(returnObj);
-	}
-
-	@Override
-	public java.util.List<com.liferay.socialnetworking.model.MeetupsRegistration> getMeetupsRegistrations(
-		int start, int end) {
-		Object returnObj = null;
-
-		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName15,
-					_methodParameterTypes15, new Object[] { start, end });
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-
-		return (java.util.List<com.liferay.socialnetworking.model.MeetupsRegistration>)ClpSerializer.translateOutput(returnObj);
-	}
-
-	@Override
-	public int getMeetupsRegistrationsCount() {
-		Object returnObj = null;
-
-		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName16,
-					_methodParameterTypes16, new Object[] {  });
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-
-		return ((Integer)returnObj).intValue();
-	}
-
-	@Override
-	public com.liferay.socialnetworking.model.MeetupsRegistration updateMeetupsRegistration(
-		com.liferay.socialnetworking.model.MeetupsRegistration meetupsRegistration) {
-		Object returnObj = null;
-
-		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName17,
-					_methodParameterTypes17,
-					new Object[] {
-						ClpSerializer.translateInput(meetupsRegistration)
-					});
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-
-		return (com.liferay.socialnetworking.model.MeetupsRegistration)ClpSerializer.translateOutput(returnObj);
-	}
-
-	@Override
 	public java.lang.String getBeanIdentifier() {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName18,
-					_methodParameterTypes18, new Object[] {  });
+			returnObj = _invokableLocalService.invokeMethod(_methodName13,
+					_methodParameterTypes13, new Object[] {  });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -660,14 +526,22 @@ public class MeetupsRegistrationLocalServiceClp
 	}
 
 	@Override
-	public void setBeanIdentifier(java.lang.String beanIdentifier) {
+	public com.liferay.socialnetworking.model.MeetupsRegistration getMeetupsRegistration(
+		long meetupsRegistrationId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		Object returnObj = null;
+
 		try {
-			_invokableLocalService.invokeMethod(_methodName19,
-				_methodParameterTypes19,
-				new Object[] { ClpSerializer.translateInput(beanIdentifier) });
+			returnObj = _invokableLocalService.invokeMethod(_methodName14,
+					_methodParameterTypes14,
+					new Object[] { meetupsRegistrationId });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
 
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
@@ -677,13 +551,8 @@ public class MeetupsRegistrationLocalServiceClp
 					" is not a valid exception");
 			}
 		}
-	}
 
-	@Override
-	public java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable {
-		throw new UnsupportedOperationException();
+		return (com.liferay.socialnetworking.model.MeetupsRegistration)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override
@@ -693,8 +562,8 @@ public class MeetupsRegistrationLocalServiceClp
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName21,
-					_methodParameterTypes21,
+			returnObj = _invokableLocalService.invokeMethod(_methodName15,
+					_methodParameterTypes15,
 					new Object[] { userId, meetupsEntryId });
 		}
 		catch (Throwable t) {
@@ -722,8 +591,8 @@ public class MeetupsRegistrationLocalServiceClp
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName22,
-					_methodParameterTypes22,
+			returnObj = _invokableLocalService.invokeMethod(_methodName16,
+					_methodParameterTypes16,
 					new Object[] { meetupsEntryId, status, start, end });
 		}
 		catch (Throwable t) {
@@ -742,12 +611,59 @@ public class MeetupsRegistrationLocalServiceClp
 	}
 
 	@Override
+	public java.util.List<com.liferay.socialnetworking.model.MeetupsRegistration> getMeetupsRegistrations(
+		int start, int end) {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName17,
+					_methodParameterTypes17, new Object[] { start, end });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.util.List<com.liferay.socialnetworking.model.MeetupsRegistration>)ClpSerializer.translateOutput(returnObj);
+	}
+
+	@Override
+	public int getMeetupsRegistrationsCount() {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName18,
+					_methodParameterTypes18, new Object[] {  });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return ((Integer)returnObj).intValue();
+	}
+
+	@Override
 	public int getMeetupsRegistrationsCount(long meetupsEntryId, int status) {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName23,
-					_methodParameterTypes23,
+			returnObj = _invokableLocalService.invokeMethod(_methodName19,
+					_methodParameterTypes19,
 					new Object[] { meetupsEntryId, status });
 		}
 		catch (Throwable t) {
@@ -763,6 +679,90 @@ public class MeetupsRegistrationLocalServiceClp
 		}
 
 		return ((Integer)returnObj).intValue();
+	}
+
+	@Override
+	public com.liferay.portal.model.PersistedModel getPersistedModel(
+		java.io.Serializable primaryKeyObj)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName20,
+					_methodParameterTypes20,
+					new Object[] { ClpSerializer.translateInput(primaryKeyObj) });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.liferay.portal.model.PersistedModel)ClpSerializer.translateOutput(returnObj);
+	}
+
+	@Override
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public void setBeanIdentifier(java.lang.String beanIdentifier) {
+		try {
+			_invokableLocalService.invokeMethod(_methodName22,
+				_methodParameterTypes22,
+				new Object[] { ClpSerializer.translateInput(beanIdentifier) });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+	}
+
+	@Override
+	public com.liferay.socialnetworking.model.MeetupsRegistration updateMeetupsRegistration(
+		com.liferay.socialnetworking.model.MeetupsRegistration meetupsRegistration) {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName23,
+					_methodParameterTypes23,
+					new Object[] {
+						ClpSerializer.translateInput(meetupsRegistration)
+					});
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.liferay.socialnetworking.model.MeetupsRegistration)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override
@@ -844,8 +844,8 @@ public class MeetupsRegistrationLocalServiceClp
 	private String[] _methodParameterTypes18;
 	private String _methodName19;
 	private String[] _methodParameterTypes19;
-	private String _methodName21;
-	private String[] _methodParameterTypes21;
+	private String _methodName20;
+	private String[] _methodParameterTypes20;
 	private String _methodName22;
 	private String[] _methodParameterTypes22;
 	private String _methodName23;

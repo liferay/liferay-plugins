@@ -42,6 +42,21 @@ public class MeetupsEntryLocalServiceWrapper implements MeetupsEntryLocalService
 		return _meetupsEntryLocalService.addMeetupsEntry(meetupsEntry);
 	}
 
+	@Override
+	public com.liferay.socialnetworking.model.MeetupsEntry addMeetupsEntry(
+		long userId, java.lang.String title, java.lang.String description,
+		int startDateMonth, int startDateDay, int startDateYear,
+		int startDateHour, int startDateMinute, int endDateMonth,
+		int endDateDay, int endDateYear, int endDateHour, int endDateMinute,
+		int totalAttendees, int maxAttendees, double price, byte[] thumbnail)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _meetupsEntryLocalService.addMeetupsEntry(userId, title,
+			description, startDateMonth, startDateDay, startDateYear,
+			startDateHour, startDateMinute, endDateMonth, endDateDay,
+			endDateYear, endDateHour, endDateMinute, totalAttendees,
+			maxAttendees, price, thumbnail);
+	}
+
 	/**
 	* Creates a new meetups entry with the primary key. Does not add the meetups entry to the database.
 	*
@@ -52,6 +67,18 @@ public class MeetupsEntryLocalServiceWrapper implements MeetupsEntryLocalService
 	public com.liferay.socialnetworking.model.MeetupsEntry createMeetupsEntry(
 		long meetupsEntryId) {
 		return _meetupsEntryLocalService.createMeetupsEntry(meetupsEntryId);
+	}
+
+	/**
+	* Deletes the meetups entry from the database. Also notifies the appropriate model listeners.
+	*
+	* @param meetupsEntry the meetups entry
+	* @return the meetups entry that was removed
+	*/
+	@Override
+	public com.liferay.socialnetworking.model.MeetupsEntry deleteMeetupsEntry(
+		com.liferay.socialnetworking.model.MeetupsEntry meetupsEntry) {
+		return _meetupsEntryLocalService.deleteMeetupsEntry(meetupsEntry);
 	}
 
 	/**
@@ -69,15 +96,13 @@ public class MeetupsEntryLocalServiceWrapper implements MeetupsEntryLocalService
 	}
 
 	/**
-	* Deletes the meetups entry from the database. Also notifies the appropriate model listeners.
-	*
-	* @param meetupsEntry the meetups entry
-	* @return the meetups entry that was removed
+	* @throws PortalException
 	*/
 	@Override
-	public com.liferay.socialnetworking.model.MeetupsEntry deleteMeetupsEntry(
-		com.liferay.socialnetworking.model.MeetupsEntry meetupsEntry) {
-		return _meetupsEntryLocalService.deleteMeetupsEntry(meetupsEntry);
+	public com.liferay.portal.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.model.PersistedModel persistedModel)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _meetupsEntryLocalService.deletePersistedModel(persistedModel);
 	}
 
 	@Override
@@ -171,40 +196,19 @@ public class MeetupsEntryLocalServiceWrapper implements MeetupsEntryLocalService
 		return _meetupsEntryLocalService.fetchMeetupsEntry(meetupsEntryId);
 	}
 
-	/**
-	* Returns the meetups entry with the primary key.
-	*
-	* @param meetupsEntryId the primary key of the meetups entry
-	* @return the meetups entry
-	* @throws PortalException if a meetups entry with the primary key could not be found
-	*/
-	@Override
-	public com.liferay.socialnetworking.model.MeetupsEntry getMeetupsEntry(
-		long meetupsEntryId)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _meetupsEntryLocalService.getMeetupsEntry(meetupsEntryId);
-	}
-
 	@Override
 	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
 		return _meetupsEntryLocalService.getActionableDynamicQuery();
 	}
 
 	/**
-	* @throws PortalException
+	* Returns the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
 	*/
 	@Override
-	public com.liferay.portal.model.PersistedModel deletePersistedModel(
-		com.liferay.portal.model.PersistedModel persistedModel)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _meetupsEntryLocalService.deletePersistedModel(persistedModel);
-	}
-
-	@Override
-	public com.liferay.portal.model.PersistedModel getPersistedModel(
-		java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _meetupsEntryLocalService.getPersistedModel(primaryKeyObj);
+	public java.lang.String getBeanIdentifier() {
+		return _meetupsEntryLocalService.getBeanIdentifier();
 	}
 
 	/**
@@ -224,6 +228,18 @@ public class MeetupsEntryLocalServiceWrapper implements MeetupsEntryLocalService
 		return _meetupsEntryLocalService.getMeetupsEntries(start, end);
 	}
 
+	@Override
+	public java.util.List<com.liferay.socialnetworking.model.MeetupsEntry> getMeetupsEntriesByCompany(
+		long companyId) {
+		return _meetupsEntryLocalService.getMeetupsEntriesByCompany(companyId);
+	}
+
+	@Override
+	public java.util.List<com.liferay.socialnetworking.model.MeetupsEntry> getMeetupsEntriesByUser(
+		long userId) {
+		return _meetupsEntryLocalService.getMeetupsEntriesByUser(userId);
+	}
+
 	/**
 	* Returns the number of meetups entries.
 	*
@@ -235,25 +251,32 @@ public class MeetupsEntryLocalServiceWrapper implements MeetupsEntryLocalService
 	}
 
 	/**
-	* Updates the meetups entry in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	* Returns the meetups entry with the primary key.
 	*
-	* @param meetupsEntry the meetups entry
-	* @return the meetups entry that was updated
+	* @param meetupsEntryId the primary key of the meetups entry
+	* @return the meetups entry
+	* @throws PortalException if a meetups entry with the primary key could not be found
 	*/
 	@Override
-	public com.liferay.socialnetworking.model.MeetupsEntry updateMeetupsEntry(
-		com.liferay.socialnetworking.model.MeetupsEntry meetupsEntry) {
-		return _meetupsEntryLocalService.updateMeetupsEntry(meetupsEntry);
+	public com.liferay.socialnetworking.model.MeetupsEntry getMeetupsEntry(
+		long meetupsEntryId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _meetupsEntryLocalService.getMeetupsEntry(meetupsEntryId);
 	}
 
-	/**
-	* Returns the Spring bean ID for this bean.
-	*
-	* @return the Spring bean ID for this bean
-	*/
 	@Override
-	public java.lang.String getBeanIdentifier() {
-		return _meetupsEntryLocalService.getBeanIdentifier();
+	public com.liferay.portal.model.PersistedModel getPersistedModel(
+		java.io.Serializable primaryKeyObj)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _meetupsEntryLocalService.getPersistedModel(primaryKeyObj);
+	}
+
+	@Override
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return _meetupsEntryLocalService.invokeMethod(name, parameterTypes,
+			arguments);
 	}
 
 	/**
@@ -266,39 +289,16 @@ public class MeetupsEntryLocalServiceWrapper implements MeetupsEntryLocalService
 		_meetupsEntryLocalService.setBeanIdentifier(beanIdentifier);
 	}
 
+	/**
+	* Updates the meetups entry in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	*
+	* @param meetupsEntry the meetups entry
+	* @return the meetups entry that was updated
+	*/
 	@Override
-	public java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable {
-		return _meetupsEntryLocalService.invokeMethod(name, parameterTypes,
-			arguments);
-	}
-
-	@Override
-	public com.liferay.socialnetworking.model.MeetupsEntry addMeetupsEntry(
-		long userId, java.lang.String title, java.lang.String description,
-		int startDateMonth, int startDateDay, int startDateYear,
-		int startDateHour, int startDateMinute, int endDateMonth,
-		int endDateDay, int endDateYear, int endDateHour, int endDateMinute,
-		int totalAttendees, int maxAttendees, double price, byte[] thumbnail)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _meetupsEntryLocalService.addMeetupsEntry(userId, title,
-			description, startDateMonth, startDateDay, startDateYear,
-			startDateHour, startDateMinute, endDateMonth, endDateDay,
-			endDateYear, endDateHour, endDateMinute, totalAttendees,
-			maxAttendees, price, thumbnail);
-	}
-
-	@Override
-	public java.util.List<com.liferay.socialnetworking.model.MeetupsEntry> getMeetupsEntriesByCompany(
-		long companyId) {
-		return _meetupsEntryLocalService.getMeetupsEntriesByCompany(companyId);
-	}
-
-	@Override
-	public java.util.List<com.liferay.socialnetworking.model.MeetupsEntry> getMeetupsEntriesByUser(
-		long userId) {
-		return _meetupsEntryLocalService.getMeetupsEntriesByUser(userId);
+	public com.liferay.socialnetworking.model.MeetupsEntry updateMeetupsEntry(
+		com.liferay.socialnetworking.model.MeetupsEntry meetupsEntry) {
+		return _meetupsEntryLocalService.updateMeetupsEntry(meetupsEntry);
 	}
 
 	@Override

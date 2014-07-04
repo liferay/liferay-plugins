@@ -45,6 +45,13 @@ public interface PushNotificationsDeviceService extends BaseService,
 	 *
 	 * Never modify or reference this interface directly. Always use {@link PushNotificationsDeviceServiceUtil} to access the push notifications device remote service. Add custom service methods to {@link com.liferay.pushnotifications.service.impl.PushNotificationsDeviceServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
+	public com.liferay.pushnotifications.model.PushNotificationsDevice addPushNotificationsDevice(
+		java.lang.String token, java.lang.String platform)
+		throws com.liferay.portal.kernel.exception.PortalException;
+
+	public com.liferay.pushnotifications.model.PushNotificationsDevice deletePushNotificationsDevice(
+		java.lang.String token)
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	/**
 	* Returns the Spring bean ID for this bean.
@@ -53,23 +60,15 @@ public interface PushNotificationsDeviceService extends BaseService,
 	*/
 	public java.lang.String getBeanIdentifier();
 
+	@Override
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable;
+
 	/**
 	* Sets the Spring bean ID for this bean.
 	*
 	* @param beanIdentifier the Spring bean ID for this bean
 	*/
 	public void setBeanIdentifier(java.lang.String beanIdentifier);
-
-	@Override
-	public java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable;
-
-	public com.liferay.pushnotifications.model.PushNotificationsDevice addPushNotificationsDevice(
-		java.lang.String token, java.lang.String platform)
-		throws com.liferay.portal.kernel.exception.PortalException;
-
-	public com.liferay.pushnotifications.model.PushNotificationsDevice deletePushNotificationsDevice(
-		java.lang.String token)
-		throws com.liferay.portal.kernel.exception.PortalException;
 }

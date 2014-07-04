@@ -126,224 +126,14 @@ public class BBBServerWrapper implements BBBServer, ModelWrapper<BBBServer> {
 		}
 	}
 
-	/**
-	* Returns the primary key of this b b b server.
-	*
-	* @return the primary key of this b b b server
-	*/
 	@Override
-	public long getPrimaryKey() {
-		return _bbbServer.getPrimaryKey();
+	public java.lang.Object clone() {
+		return new BBBServerWrapper((BBBServer)_bbbServer.clone());
 	}
 
-	/**
-	* Sets the primary key of this b b b server.
-	*
-	* @param primaryKey the primary key of this b b b server
-	*/
 	@Override
-	public void setPrimaryKey(long primaryKey) {
-		_bbbServer.setPrimaryKey(primaryKey);
-	}
-
-	/**
-	* Returns the bbb server ID of this b b b server.
-	*
-	* @return the bbb server ID of this b b b server
-	*/
-	@Override
-	public long getBbbServerId() {
-		return _bbbServer.getBbbServerId();
-	}
-
-	/**
-	* Sets the bbb server ID of this b b b server.
-	*
-	* @param bbbServerId the bbb server ID of this b b b server
-	*/
-	@Override
-	public void setBbbServerId(long bbbServerId) {
-		_bbbServer.setBbbServerId(bbbServerId);
-	}
-
-	/**
-	* Returns the company ID of this b b b server.
-	*
-	* @return the company ID of this b b b server
-	*/
-	@Override
-	public long getCompanyId() {
-		return _bbbServer.getCompanyId();
-	}
-
-	/**
-	* Sets the company ID of this b b b server.
-	*
-	* @param companyId the company ID of this b b b server
-	*/
-	@Override
-	public void setCompanyId(long companyId) {
-		_bbbServer.setCompanyId(companyId);
-	}
-
-	/**
-	* Returns the user ID of this b b b server.
-	*
-	* @return the user ID of this b b b server
-	*/
-	@Override
-	public long getUserId() {
-		return _bbbServer.getUserId();
-	}
-
-	/**
-	* Sets the user ID of this b b b server.
-	*
-	* @param userId the user ID of this b b b server
-	*/
-	@Override
-	public void setUserId(long userId) {
-		_bbbServer.setUserId(userId);
-	}
-
-	/**
-	* Returns the user uuid of this b b b server.
-	*
-	* @return the user uuid of this b b b server
-	*/
-	@Override
-	public java.lang.String getUserUuid() {
-		return _bbbServer.getUserUuid();
-	}
-
-	/**
-	* Sets the user uuid of this b b b server.
-	*
-	* @param userUuid the user uuid of this b b b server
-	*/
-	@Override
-	public void setUserUuid(java.lang.String userUuid) {
-		_bbbServer.setUserUuid(userUuid);
-	}
-
-	/**
-	* Returns the user name of this b b b server.
-	*
-	* @return the user name of this b b b server
-	*/
-	@Override
-	public java.lang.String getUserName() {
-		return _bbbServer.getUserName();
-	}
-
-	/**
-	* Sets the user name of this b b b server.
-	*
-	* @param userName the user name of this b b b server
-	*/
-	@Override
-	public void setUserName(java.lang.String userName) {
-		_bbbServer.setUserName(userName);
-	}
-
-	/**
-	* Returns the create date of this b b b server.
-	*
-	* @return the create date of this b b b server
-	*/
-	@Override
-	public java.util.Date getCreateDate() {
-		return _bbbServer.getCreateDate();
-	}
-
-	/**
-	* Sets the create date of this b b b server.
-	*
-	* @param createDate the create date of this b b b server
-	*/
-	@Override
-	public void setCreateDate(java.util.Date createDate) {
-		_bbbServer.setCreateDate(createDate);
-	}
-
-	/**
-	* Returns the modified date of this b b b server.
-	*
-	* @return the modified date of this b b b server
-	*/
-	@Override
-	public java.util.Date getModifiedDate() {
-		return _bbbServer.getModifiedDate();
-	}
-
-	/**
-	* Sets the modified date of this b b b server.
-	*
-	* @param modifiedDate the modified date of this b b b server
-	*/
-	@Override
-	public void setModifiedDate(java.util.Date modifiedDate) {
-		_bbbServer.setModifiedDate(modifiedDate);
-	}
-
-	/**
-	* Returns the name of this b b b server.
-	*
-	* @return the name of this b b b server
-	*/
-	@Override
-	public java.lang.String getName() {
-		return _bbbServer.getName();
-	}
-
-	/**
-	* Sets the name of this b b b server.
-	*
-	* @param name the name of this b b b server
-	*/
-	@Override
-	public void setName(java.lang.String name) {
-		_bbbServer.setName(name);
-	}
-
-	/**
-	* Returns the url of this b b b server.
-	*
-	* @return the url of this b b b server
-	*/
-	@Override
-	public java.lang.String getUrl() {
-		return _bbbServer.getUrl();
-	}
-
-	/**
-	* Sets the url of this b b b server.
-	*
-	* @param url the url of this b b b server
-	*/
-	@Override
-	public void setUrl(java.lang.String url) {
-		_bbbServer.setUrl(url);
-	}
-
-	/**
-	* Returns the secret of this b b b server.
-	*
-	* @return the secret of this b b b server
-	*/
-	@Override
-	public java.lang.String getSecret() {
-		return _bbbServer.getSecret();
-	}
-
-	/**
-	* Sets the secret of this b b b server.
-	*
-	* @param secret the secret of this b b b server
-	*/
-	@Override
-	public void setSecret(java.lang.String secret) {
-		_bbbServer.setSecret(secret);
+	public int compareTo(com.liferay.bbb.model.BBBServer bbbServer) {
+		return _bbbServer.compareTo(bbbServer);
 	}
 
 	/**
@@ -357,6 +147,131 @@ public class BBBServerWrapper implements BBBServer, ModelWrapper<BBBServer> {
 	}
 
 	/**
+	* Returns the bbb server ID of this b b b server.
+	*
+	* @return the bbb server ID of this b b b server
+	*/
+	@Override
+	public long getBbbServerId() {
+		return _bbbServer.getBbbServerId();
+	}
+
+	/**
+	* Returns the company ID of this b b b server.
+	*
+	* @return the company ID of this b b b server
+	*/
+	@Override
+	public long getCompanyId() {
+		return _bbbServer.getCompanyId();
+	}
+
+	/**
+	* Returns the create date of this b b b server.
+	*
+	* @return the create date of this b b b server
+	*/
+	@Override
+	public java.util.Date getCreateDate() {
+		return _bbbServer.getCreateDate();
+	}
+
+	@Override
+	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {
+		return _bbbServer.getExpandoBridge();
+	}
+
+	/**
+	* Returns the modified date of this b b b server.
+	*
+	* @return the modified date of this b b b server
+	*/
+	@Override
+	public java.util.Date getModifiedDate() {
+		return _bbbServer.getModifiedDate();
+	}
+
+	/**
+	* Returns the name of this b b b server.
+	*
+	* @return the name of this b b b server
+	*/
+	@Override
+	public java.lang.String getName() {
+		return _bbbServer.getName();
+	}
+
+	/**
+	* Returns the primary key of this b b b server.
+	*
+	* @return the primary key of this b b b server
+	*/
+	@Override
+	public long getPrimaryKey() {
+		return _bbbServer.getPrimaryKey();
+	}
+
+	@Override
+	public java.io.Serializable getPrimaryKeyObj() {
+		return _bbbServer.getPrimaryKeyObj();
+	}
+
+	/**
+	* Returns the secret of this b b b server.
+	*
+	* @return the secret of this b b b server
+	*/
+	@Override
+	public java.lang.String getSecret() {
+		return _bbbServer.getSecret();
+	}
+
+	/**
+	* Returns the url of this b b b server.
+	*
+	* @return the url of this b b b server
+	*/
+	@Override
+	public java.lang.String getUrl() {
+		return _bbbServer.getUrl();
+	}
+
+	/**
+	* Returns the user ID of this b b b server.
+	*
+	* @return the user ID of this b b b server
+	*/
+	@Override
+	public long getUserId() {
+		return _bbbServer.getUserId();
+	}
+
+	/**
+	* Returns the user name of this b b b server.
+	*
+	* @return the user name of this b b b server
+	*/
+	@Override
+	public java.lang.String getUserName() {
+		return _bbbServer.getUserName();
+	}
+
+	/**
+	* Returns the user uuid of this b b b server.
+	*
+	* @return the user uuid of this b b b server
+	*/
+	@Override
+	public java.lang.String getUserUuid() {
+		return _bbbServer.getUserUuid();
+	}
+
+	@Override
+	public int hashCode() {
+		return _bbbServer.hashCode();
+	}
+
+	/**
 	* Returns <code>true</code> if this b b b server is active.
 	*
 	* @return <code>true</code> if this b b b server is active; <code>false</code> otherwise
@@ -364,6 +279,26 @@ public class BBBServerWrapper implements BBBServer, ModelWrapper<BBBServer> {
 	@Override
 	public boolean isActive() {
 		return _bbbServer.isActive();
+	}
+
+	@Override
+	public boolean isCachedModel() {
+		return _bbbServer.isCachedModel();
+	}
+
+	@Override
+	public boolean isEscapedModel() {
+		return _bbbServer.isEscapedModel();
+	}
+
+	@Override
+	public boolean isNew() {
+		return _bbbServer.isNew();
+	}
+
+	@Override
+	public void persist() {
+		_bbbServer.persist();
 	}
 
 	/**
@@ -376,19 +311,14 @@ public class BBBServerWrapper implements BBBServer, ModelWrapper<BBBServer> {
 		_bbbServer.setActive(active);
 	}
 
+	/**
+	* Sets the bbb server ID of this b b b server.
+	*
+	* @param bbbServerId the bbb server ID of this b b b server
+	*/
 	@Override
-	public boolean isNew() {
-		return _bbbServer.isNew();
-	}
-
-	@Override
-	public void setNew(boolean n) {
-		_bbbServer.setNew(n);
-	}
-
-	@Override
-	public boolean isCachedModel() {
-		return _bbbServer.isCachedModel();
+	public void setBbbServerId(long bbbServerId) {
+		_bbbServer.setBbbServerId(bbbServerId);
 	}
 
 	@Override
@@ -396,24 +326,24 @@ public class BBBServerWrapper implements BBBServer, ModelWrapper<BBBServer> {
 		_bbbServer.setCachedModel(cachedModel);
 	}
 
+	/**
+	* Sets the company ID of this b b b server.
+	*
+	* @param companyId the company ID of this b b b server
+	*/
 	@Override
-	public boolean isEscapedModel() {
-		return _bbbServer.isEscapedModel();
+	public void setCompanyId(long companyId) {
+		_bbbServer.setCompanyId(companyId);
 	}
 
+	/**
+	* Sets the create date of this b b b server.
+	*
+	* @param createDate the create date of this b b b server
+	*/
 	@Override
-	public java.io.Serializable getPrimaryKeyObj() {
-		return _bbbServer.getPrimaryKeyObj();
-	}
-
-	@Override
-	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
-		_bbbServer.setPrimaryKeyObj(primaryKeyObj);
-	}
-
-	@Override
-	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {
-		return _bbbServer.getExpandoBridge();
+	public void setCreateDate(java.util.Date createDate) {
+		_bbbServer.setCreateDate(createDate);
 	}
 
 	@Override
@@ -434,19 +364,94 @@ public class BBBServerWrapper implements BBBServer, ModelWrapper<BBBServer> {
 		_bbbServer.setExpandoBridgeAttributes(serviceContext);
 	}
 
+	/**
+	* Sets the modified date of this b b b server.
+	*
+	* @param modifiedDate the modified date of this b b b server
+	*/
 	@Override
-	public java.lang.Object clone() {
-		return new BBBServerWrapper((BBBServer)_bbbServer.clone());
+	public void setModifiedDate(java.util.Date modifiedDate) {
+		_bbbServer.setModifiedDate(modifiedDate);
+	}
+
+	/**
+	* Sets the name of this b b b server.
+	*
+	* @param name the name of this b b b server
+	*/
+	@Override
+	public void setName(java.lang.String name) {
+		_bbbServer.setName(name);
 	}
 
 	@Override
-	public int compareTo(com.liferay.bbb.model.BBBServer bbbServer) {
-		return _bbbServer.compareTo(bbbServer);
+	public void setNew(boolean n) {
+		_bbbServer.setNew(n);
+	}
+
+	/**
+	* Sets the primary key of this b b b server.
+	*
+	* @param primaryKey the primary key of this b b b server
+	*/
+	@Override
+	public void setPrimaryKey(long primaryKey) {
+		_bbbServer.setPrimaryKey(primaryKey);
 	}
 
 	@Override
-	public int hashCode() {
-		return _bbbServer.hashCode();
+	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
+		_bbbServer.setPrimaryKeyObj(primaryKeyObj);
+	}
+
+	/**
+	* Sets the secret of this b b b server.
+	*
+	* @param secret the secret of this b b b server
+	*/
+	@Override
+	public void setSecret(java.lang.String secret) {
+		_bbbServer.setSecret(secret);
+	}
+
+	/**
+	* Sets the url of this b b b server.
+	*
+	* @param url the url of this b b b server
+	*/
+	@Override
+	public void setUrl(java.lang.String url) {
+		_bbbServer.setUrl(url);
+	}
+
+	/**
+	* Sets the user ID of this b b b server.
+	*
+	* @param userId the user ID of this b b b server
+	*/
+	@Override
+	public void setUserId(long userId) {
+		_bbbServer.setUserId(userId);
+	}
+
+	/**
+	* Sets the user name of this b b b server.
+	*
+	* @param userName the user name of this b b b server
+	*/
+	@Override
+	public void setUserName(java.lang.String userName) {
+		_bbbServer.setUserName(userName);
+	}
+
+	/**
+	* Sets the user uuid of this b b b server.
+	*
+	* @param userUuid the user uuid of this b b b server
+	*/
+	@Override
+	public void setUserUuid(java.lang.String userUuid) {
+		_bbbServer.setUserUuid(userUuid);
 	}
 
 	@Override
@@ -460,23 +465,18 @@ public class BBBServerWrapper implements BBBServer, ModelWrapper<BBBServer> {
 	}
 
 	@Override
-	public com.liferay.bbb.model.BBBServer toUnescapedModel() {
-		return new BBBServerWrapper(_bbbServer.toUnescapedModel());
-	}
-
-	@Override
 	public java.lang.String toString() {
 		return _bbbServer.toString();
 	}
 
 	@Override
-	public java.lang.String toXmlString() {
-		return _bbbServer.toXmlString();
+	public com.liferay.bbb.model.BBBServer toUnescapedModel() {
+		return new BBBServerWrapper(_bbbServer.toUnescapedModel());
 	}
 
 	@Override
-	public void persist() {
-		_bbbServer.persist();
+	public java.lang.String toXmlString() {
+		return _bbbServer.toXmlString();
 	}
 
 	@Override

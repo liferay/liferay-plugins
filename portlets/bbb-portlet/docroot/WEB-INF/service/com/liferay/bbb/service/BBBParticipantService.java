@@ -45,26 +45,6 @@ public interface BBBParticipantService extends BaseService, InvokableService {
 	 *
 	 * Never modify or reference this interface directly. Always use {@link BBBParticipantServiceUtil} to access the b b b participant remote service. Add custom service methods to {@link com.liferay.bbb.service.impl.BBBParticipantServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
-
-	/**
-	* Returns the Spring bean ID for this bean.
-	*
-	* @return the Spring bean ID for this bean
-	*/
-	public java.lang.String getBeanIdentifier();
-
-	/**
-	* Sets the Spring bean ID for this bean.
-	*
-	* @param beanIdentifier the Spring bean ID for this bean
-	*/
-	public void setBeanIdentifier(java.lang.String beanIdentifier);
-
-	@Override
-	public java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable;
-
 	public com.liferay.bbb.model.BBBParticipant deleteBBBParticipant(
 		com.liferay.bbb.model.BBBParticipant bbbParticipant)
 		throws com.liferay.portal.kernel.exception.PortalException;
@@ -77,6 +57,25 @@ public interface BBBParticipantService extends BaseService, InvokableService {
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getBBBParticipantsCount(long bbbMeetingId)
 		throws com.liferay.portal.kernel.exception.PortalException;
+
+	/**
+	* Returns the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
+	*/
+	public java.lang.String getBeanIdentifier();
+
+	@Override
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable;
+
+	/**
+	* Sets the Spring bean ID for this bean.
+	*
+	* @param beanIdentifier the Spring bean ID for this bean
+	*/
+	public void setBeanIdentifier(java.lang.String beanIdentifier);
 
 	public com.liferay.bbb.model.BBBParticipant updateBBBParticipant(
 		long bbbParticipantId, long bbbMeetingId, java.lang.String name,

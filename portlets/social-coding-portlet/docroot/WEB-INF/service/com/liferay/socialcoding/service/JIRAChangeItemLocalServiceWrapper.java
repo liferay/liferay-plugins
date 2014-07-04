@@ -56,6 +56,18 @@ public class JIRAChangeItemLocalServiceWrapper
 	}
 
 	/**
+	* Deletes the j i r a change item from the database. Also notifies the appropriate model listeners.
+	*
+	* @param jiraChangeItem the j i r a change item
+	* @return the j i r a change item that was removed
+	*/
+	@Override
+	public com.liferay.socialcoding.model.JIRAChangeItem deleteJIRAChangeItem(
+		com.liferay.socialcoding.model.JIRAChangeItem jiraChangeItem) {
+		return _jiraChangeItemLocalService.deleteJIRAChangeItem(jiraChangeItem);
+	}
+
+	/**
 	* Deletes the j i r a change item with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param jiraChangeItemId the primary key of the j i r a change item
@@ -70,15 +82,13 @@ public class JIRAChangeItemLocalServiceWrapper
 	}
 
 	/**
-	* Deletes the j i r a change item from the database. Also notifies the appropriate model listeners.
-	*
-	* @param jiraChangeItem the j i r a change item
-	* @return the j i r a change item that was removed
+	* @throws PortalException
 	*/
 	@Override
-	public com.liferay.socialcoding.model.JIRAChangeItem deleteJIRAChangeItem(
-		com.liferay.socialcoding.model.JIRAChangeItem jiraChangeItem) {
-		return _jiraChangeItemLocalService.deleteJIRAChangeItem(jiraChangeItem);
+	public com.liferay.portal.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.model.PersistedModel persistedModel)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _jiraChangeItemLocalService.deletePersistedModel(persistedModel);
 	}
 
 	@Override
@@ -172,6 +182,21 @@ public class JIRAChangeItemLocalServiceWrapper
 		return _jiraChangeItemLocalService.fetchJIRAChangeItem(jiraChangeItemId);
 	}
 
+	@Override
+	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
+		return _jiraChangeItemLocalService.getActionableDynamicQuery();
+	}
+
+	/**
+	* Returns the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
+	*/
+	@Override
+	public java.lang.String getBeanIdentifier() {
+		return _jiraChangeItemLocalService.getBeanIdentifier();
+	}
+
 	/**
 	* Returns the j i r a change item with the primary key.
 	*
@@ -187,25 +212,9 @@ public class JIRAChangeItemLocalServiceWrapper
 	}
 
 	@Override
-	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
-		return _jiraChangeItemLocalService.getActionableDynamicQuery();
-	}
-
-	/**
-	* @throws PortalException
-	*/
-	@Override
-	public com.liferay.portal.model.PersistedModel deletePersistedModel(
-		com.liferay.portal.model.PersistedModel persistedModel)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _jiraChangeItemLocalService.deletePersistedModel(persistedModel);
-	}
-
-	@Override
-	public com.liferay.portal.model.PersistedModel getPersistedModel(
-		java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _jiraChangeItemLocalService.getPersistedModel(primaryKeyObj);
+	public java.util.List<com.liferay.socialcoding.model.JIRAChangeItem> getJIRAChangeItems(
+		long jiraChangeGroupId) {
+		return _jiraChangeItemLocalService.getJIRAChangeItems(jiraChangeGroupId);
 	}
 
 	/**
@@ -235,26 +244,19 @@ public class JIRAChangeItemLocalServiceWrapper
 		return _jiraChangeItemLocalService.getJIRAChangeItemsCount();
 	}
 
-	/**
-	* Updates the j i r a change item in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	*
-	* @param jiraChangeItem the j i r a change item
-	* @return the j i r a change item that was updated
-	*/
 	@Override
-	public com.liferay.socialcoding.model.JIRAChangeItem updateJIRAChangeItem(
-		com.liferay.socialcoding.model.JIRAChangeItem jiraChangeItem) {
-		return _jiraChangeItemLocalService.updateJIRAChangeItem(jiraChangeItem);
+	public com.liferay.portal.model.PersistedModel getPersistedModel(
+		java.io.Serializable primaryKeyObj)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _jiraChangeItemLocalService.getPersistedModel(primaryKeyObj);
 	}
 
-	/**
-	* Returns the Spring bean ID for this bean.
-	*
-	* @return the Spring bean ID for this bean
-	*/
 	@Override
-	public java.lang.String getBeanIdentifier() {
-		return _jiraChangeItemLocalService.getBeanIdentifier();
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return _jiraChangeItemLocalService.invokeMethod(name, parameterTypes,
+			arguments);
 	}
 
 	/**
@@ -267,18 +269,16 @@ public class JIRAChangeItemLocalServiceWrapper
 		_jiraChangeItemLocalService.setBeanIdentifier(beanIdentifier);
 	}
 
+	/**
+	* Updates the j i r a change item in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	*
+	* @param jiraChangeItem the j i r a change item
+	* @return the j i r a change item that was updated
+	*/
 	@Override
-	public java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable {
-		return _jiraChangeItemLocalService.invokeMethod(name, parameterTypes,
-			arguments);
-	}
-
-	@Override
-	public java.util.List<com.liferay.socialcoding.model.JIRAChangeItem> getJIRAChangeItems(
-		long jiraChangeGroupId) {
-		return _jiraChangeItemLocalService.getJIRAChangeItems(jiraChangeGroupId);
+	public com.liferay.socialcoding.model.JIRAChangeItem updateJIRAChangeItem(
+		com.liferay.socialcoding.model.JIRAChangeItem jiraChangeItem) {
+		return _jiraChangeItemLocalService.updateJIRAChangeItem(jiraChangeItem);
 	}
 
 	/**

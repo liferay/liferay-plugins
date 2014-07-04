@@ -50,6 +50,16 @@ public class BBBParticipantLocalServiceUtil {
 		return getService().addBBBParticipant(bbbParticipant);
 	}
 
+	public static com.liferay.bbb.model.BBBParticipant addBBBParticipant(
+		long userId, long groupId, long bbbMeetingId, java.lang.String name,
+		java.lang.String emailAddress, int type, int status,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService()
+				   .addBBBParticipant(userId, groupId, bbbMeetingId, name,
+			emailAddress, type, status, serviceContext);
+	}
+
 	/**
 	* Creates a new b b b participant with the primary key. Does not add the b b b participant to the database.
 	*
@@ -59,6 +69,17 @@ public class BBBParticipantLocalServiceUtil {
 	public static com.liferay.bbb.model.BBBParticipant createBBBParticipant(
 		long bbbParticipantId) {
 		return getService().createBBBParticipant(bbbParticipantId);
+	}
+
+	/**
+	* Deletes the b b b participant from the database. Also notifies the appropriate model listeners.
+	*
+	* @param bbbParticipant the b b b participant
+	* @return the b b b participant that was removed
+	*/
+	public static com.liferay.bbb.model.BBBParticipant deleteBBBParticipant(
+		com.liferay.bbb.model.BBBParticipant bbbParticipant) {
+		return getService().deleteBBBParticipant(bbbParticipant);
 	}
 
 	/**
@@ -75,14 +96,12 @@ public class BBBParticipantLocalServiceUtil {
 	}
 
 	/**
-	* Deletes the b b b participant from the database. Also notifies the appropriate model listeners.
-	*
-	* @param bbbParticipant the b b b participant
-	* @return the b b b participant that was removed
+	* @throws PortalException
 	*/
-	public static com.liferay.bbb.model.BBBParticipant deleteBBBParticipant(
-		com.liferay.bbb.model.BBBParticipant bbbParticipant) {
-		return getService().deleteBBBParticipant(bbbParticipant);
+	public static com.liferay.portal.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.model.PersistedModel persistedModel)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().deletePersistedModel(persistedModel);
 	}
 
 	public static com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
@@ -164,8 +183,17 @@ public class BBBParticipantLocalServiceUtil {
 	}
 
 	public static com.liferay.bbb.model.BBBParticipant fetchBBBParticipant(
+		long bbbMeetingId, java.lang.String emailAddress) {
+		return getService().fetchBBBParticipant(bbbMeetingId, emailAddress);
+	}
+
+	public static com.liferay.bbb.model.BBBParticipant fetchBBBParticipant(
 		long bbbParticipantId) {
 		return getService().fetchBBBParticipant(bbbParticipantId);
+	}
+
+	public static com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
+		return getService().getActionableDynamicQuery();
 	}
 
 	/**
@@ -181,23 +209,9 @@ public class BBBParticipantLocalServiceUtil {
 		return getService().getBBBParticipant(bbbParticipantId);
 	}
 
-	public static com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
-		return getService().getActionableDynamicQuery();
-	}
-
-	/**
-	* @throws PortalException
-	*/
-	public static com.liferay.portal.model.PersistedModel deletePersistedModel(
-		com.liferay.portal.model.PersistedModel persistedModel)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().deletePersistedModel(persistedModel);
-	}
-
-	public static com.liferay.portal.model.PersistedModel getPersistedModel(
-		java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().getPersistedModel(primaryKeyObj);
+	public static java.util.List<com.liferay.bbb.model.BBBParticipant> getBBBParticipants(
+		long bbbMeetingId) {
+		return getService().getBBBParticipants(bbbMeetingId);
 	}
 
 	/**
@@ -225,15 +239,8 @@ public class BBBParticipantLocalServiceUtil {
 		return getService().getBBBParticipantsCount();
 	}
 
-	/**
-	* Updates the b b b participant in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	*
-	* @param bbbParticipant the b b b participant
-	* @return the b b b participant that was updated
-	*/
-	public static com.liferay.bbb.model.BBBParticipant updateBBBParticipant(
-		com.liferay.bbb.model.BBBParticipant bbbParticipant) {
-		return getService().updateBBBParticipant(bbbParticipant);
+	public static int getBBBParticipantsCount(long bbbMeetingId) {
+		return getService().getBBBParticipantsCount(bbbMeetingId);
 	}
 
 	/**
@@ -245,6 +252,18 @@ public class BBBParticipantLocalServiceUtil {
 		return getService().getBeanIdentifier();
 	}
 
+	public static com.liferay.portal.model.PersistedModel getPersistedModel(
+		java.io.Serializable primaryKeyObj)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().getPersistedModel(primaryKeyObj);
+	}
+
+	public static java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return getService().invokeMethod(name, parameterTypes, arguments);
+	}
+
 	/**
 	* Sets the Spring bean ID for this bean.
 	*
@@ -254,34 +273,15 @@ public class BBBParticipantLocalServiceUtil {
 		getService().setBeanIdentifier(beanIdentifier);
 	}
 
-	public static java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable {
-		return getService().invokeMethod(name, parameterTypes, arguments);
-	}
-
-	public static com.liferay.bbb.model.BBBParticipant addBBBParticipant(
-		long userId, long groupId, long bbbMeetingId, java.lang.String name,
-		java.lang.String emailAddress, int type, int status,
-		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService()
-				   .addBBBParticipant(userId, groupId, bbbMeetingId, name,
-			emailAddress, type, status, serviceContext);
-	}
-
-	public static com.liferay.bbb.model.BBBParticipant fetchBBBParticipant(
-		long bbbMeetingId, java.lang.String emailAddress) {
-		return getService().fetchBBBParticipant(bbbMeetingId, emailAddress);
-	}
-
-	public static java.util.List<com.liferay.bbb.model.BBBParticipant> getBBBParticipants(
-		long bbbMeetingId) {
-		return getService().getBBBParticipants(bbbMeetingId);
-	}
-
-	public static int getBBBParticipantsCount(long bbbMeetingId) {
-		return getService().getBBBParticipantsCount(bbbMeetingId);
+	/**
+	* Updates the b b b participant in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	*
+	* @param bbbParticipant the b b b participant
+	* @return the b b b participant that was updated
+	*/
+	public static com.liferay.bbb.model.BBBParticipant updateBBBParticipant(
+		com.liferay.bbb.model.BBBParticipant bbbParticipant) {
+		return getService().updateBBBParticipant(bbbParticipant);
 	}
 
 	public static com.liferay.bbb.model.BBBParticipant updateBBBParticipant(

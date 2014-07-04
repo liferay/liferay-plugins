@@ -40,14 +40,16 @@ public class KaleoDefinitionServiceWrapper implements KaleoDefinitionService,
 		return _kaleoDefinitionService.getBeanIdentifier();
 	}
 
-	/**
-	* Sets the Spring bean ID for this bean.
-	*
-	* @param beanIdentifier the Spring bean ID for this bean
-	*/
 	@Override
-	public void setBeanIdentifier(java.lang.String beanIdentifier) {
-		_kaleoDefinitionService.setBeanIdentifier(beanIdentifier);
+	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoDefinition> getKaleoDefinitions(
+		long companyId, int start, int end) {
+		return _kaleoDefinitionService.getKaleoDefinitions(companyId, start, end);
+	}
+
+	@Override
+	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoDefinition> getKaleoDefinitions(
+		int start, int end) {
+		return _kaleoDefinitionService.getKaleoDefinitions(start, end);
 	}
 
 	@Override
@@ -58,16 +60,14 @@ public class KaleoDefinitionServiceWrapper implements KaleoDefinitionService,
 			arguments);
 	}
 
+	/**
+	* Sets the Spring bean ID for this bean.
+	*
+	* @param beanIdentifier the Spring bean ID for this bean
+	*/
 	@Override
-	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoDefinition> getKaleoDefinitions(
-		int start, int end) {
-		return _kaleoDefinitionService.getKaleoDefinitions(start, end);
-	}
-
-	@Override
-	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoDefinition> getKaleoDefinitions(
-		long companyId, int start, int end) {
-		return _kaleoDefinitionService.getKaleoDefinitions(companyId, start, end);
+	public void setBeanIdentifier(java.lang.String beanIdentifier) {
+		_kaleoDefinitionService.setBeanIdentifier(beanIdentifier);
 	}
 
 	/**

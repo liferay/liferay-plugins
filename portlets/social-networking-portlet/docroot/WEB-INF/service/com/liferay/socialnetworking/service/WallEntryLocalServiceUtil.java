@@ -38,6 +38,12 @@ public class WallEntryLocalServiceUtil {
 	 *
 	 * Never modify this class directly. Add custom service methods to {@link com.liferay.socialnetworking.service.impl.WallEntryLocalServiceImpl} and rerun ServiceBuilder to regenerate this class.
 	 */
+	public static com.liferay.socialnetworking.model.WallEntry addWallEntry(
+		long groupId, long userId, java.lang.String comments,
+		com.liferay.portal.theme.ThemeDisplay themeDisplay)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().addWallEntry(groupId, userId, comments, themeDisplay);
+	}
 
 	/**
 	* Adds the wall entry to the database. Also notifies the appropriate model listeners.
@@ -62,16 +68,17 @@ public class WallEntryLocalServiceUtil {
 	}
 
 	/**
-	* Deletes the wall entry with the primary key from the database. Also notifies the appropriate model listeners.
-	*
-	* @param wallEntryId the primary key of the wall entry
-	* @return the wall entry that was removed
-	* @throws PortalException if a wall entry with the primary key could not be found
+	* @throws PortalException
 	*/
-	public static com.liferay.socialnetworking.model.WallEntry deleteWallEntry(
-		long wallEntryId)
+	public static com.liferay.portal.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.model.PersistedModel persistedModel)
 		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().deleteWallEntry(wallEntryId);
+		return getService().deletePersistedModel(persistedModel);
+	}
+
+	public static void deleteWallEntries(long groupId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		getService().deleteWallEntries(groupId);
 	}
 
 	/**
@@ -85,6 +92,19 @@ public class WallEntryLocalServiceUtil {
 		com.liferay.socialnetworking.model.WallEntry wallEntry)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().deleteWallEntry(wallEntry);
+	}
+
+	/**
+	* Deletes the wall entry with the primary key from the database. Also notifies the appropriate model listeners.
+	*
+	* @param wallEntryId the primary key of the wall entry
+	* @return the wall entry that was removed
+	* @throws PortalException if a wall entry with the primary key could not be found
+	*/
+	public static com.liferay.socialnetworking.model.WallEntry deleteWallEntry(
+		long wallEntryId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().deleteWallEntry(wallEntryId);
 	}
 
 	public static com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
@@ -170,36 +190,28 @@ public class WallEntryLocalServiceUtil {
 		return getService().fetchWallEntry(wallEntryId);
 	}
 
-	/**
-	* Returns the wall entry with the primary key.
-	*
-	* @param wallEntryId the primary key of the wall entry
-	* @return the wall entry
-	* @throws PortalException if a wall entry with the primary key could not be found
-	*/
-	public static com.liferay.socialnetworking.model.WallEntry getWallEntry(
-		long wallEntryId)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().getWallEntry(wallEntryId);
-	}
-
 	public static com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
 		return getService().getActionableDynamicQuery();
 	}
 
 	/**
-	* @throws PortalException
+	* Returns the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
 	*/
-	public static com.liferay.portal.model.PersistedModel deletePersistedModel(
-		com.liferay.portal.model.PersistedModel persistedModel)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().deletePersistedModel(persistedModel);
+	public static java.lang.String getBeanIdentifier() {
+		return getService().getBeanIdentifier();
 	}
 
 	public static com.liferay.portal.model.PersistedModel getPersistedModel(
 		java.io.Serializable primaryKeyObj)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().getPersistedModel(primaryKeyObj);
+	}
+
+	public static java.util.List<com.liferay.socialnetworking.model.WallEntry> getWallEntries(
+		long groupId, int start, int end) {
+		return getService().getWallEntries(groupId, start, end);
 	}
 
 	/**
@@ -227,60 +239,21 @@ public class WallEntryLocalServiceUtil {
 		return getService().getWallEntriesCount();
 	}
 
-	/**
-	* Updates the wall entry in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	*
-	* @param wallEntry the wall entry
-	* @return the wall entry that was updated
-	*/
-	public static com.liferay.socialnetworking.model.WallEntry updateWallEntry(
-		com.liferay.socialnetworking.model.WallEntry wallEntry) {
-		return getService().updateWallEntry(wallEntry);
-	}
-
-	/**
-	* Returns the Spring bean ID for this bean.
-	*
-	* @return the Spring bean ID for this bean
-	*/
-	public static java.lang.String getBeanIdentifier() {
-		return getService().getBeanIdentifier();
-	}
-
-	/**
-	* Sets the Spring bean ID for this bean.
-	*
-	* @param beanIdentifier the Spring bean ID for this bean
-	*/
-	public static void setBeanIdentifier(java.lang.String beanIdentifier) {
-		getService().setBeanIdentifier(beanIdentifier);
-	}
-
-	public static java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable {
-		return getService().invokeMethod(name, parameterTypes, arguments);
-	}
-
-	public static com.liferay.socialnetworking.model.WallEntry addWallEntry(
-		long groupId, long userId, java.lang.String comments,
-		com.liferay.portal.theme.ThemeDisplay themeDisplay)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().addWallEntry(groupId, userId, comments, themeDisplay);
-	}
-
-	public static void deleteWallEntries(long groupId)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		getService().deleteWallEntries(groupId);
-	}
-
-	public static java.util.List<com.liferay.socialnetworking.model.WallEntry> getWallEntries(
-		long groupId, int start, int end) {
-		return getService().getWallEntries(groupId, start, end);
-	}
-
 	public static int getWallEntriesCount(long groupId) {
 		return getService().getWallEntriesCount(groupId);
+	}
+
+	/**
+	* Returns the wall entry with the primary key.
+	*
+	* @param wallEntryId the primary key of the wall entry
+	* @return the wall entry
+	* @throws PortalException if a wall entry with the primary key could not be found
+	*/
+	public static com.liferay.socialnetworking.model.WallEntry getWallEntry(
+		long wallEntryId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().getWallEntry(wallEntryId);
 	}
 
 	public static java.util.List<com.liferay.socialnetworking.model.WallEntry> getWallToWallEntries(
@@ -296,6 +269,32 @@ public class WallEntryLocalServiceUtil {
 		return getService()
 				   .getWallToWallEntriesCount(groupId1, groupId2, userId1,
 			userId2);
+	}
+
+	public static java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return getService().invokeMethod(name, parameterTypes, arguments);
+	}
+
+	/**
+	* Sets the Spring bean ID for this bean.
+	*
+	* @param beanIdentifier the Spring bean ID for this bean
+	*/
+	public static void setBeanIdentifier(java.lang.String beanIdentifier) {
+		getService().setBeanIdentifier(beanIdentifier);
+	}
+
+	/**
+	* Updates the wall entry in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	*
+	* @param wallEntry the wall entry
+	* @return the wall entry that was updated
+	*/
+	public static com.liferay.socialnetworking.model.WallEntry updateWallEntry(
+		com.liferay.socialnetworking.model.WallEntry wallEntry) {
+		return getService().updateWallEntry(wallEntry);
 	}
 
 	public static com.liferay.socialnetworking.model.WallEntry updateWallEntry(

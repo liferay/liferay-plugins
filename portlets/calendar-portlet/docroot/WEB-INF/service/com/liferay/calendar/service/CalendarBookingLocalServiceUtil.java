@@ -50,6 +50,30 @@ public class CalendarBookingLocalServiceUtil {
 		return getService().addCalendarBooking(calendarBooking);
 	}
 
+	public static com.liferay.calendar.model.CalendarBooking addCalendarBooking(
+		long userId, long calendarId, long[] childCalendarIds,
+		long parentCalendarBookingId,
+		java.util.Map<java.util.Locale, java.lang.String> titleMap,
+		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
+		java.lang.String location, long startTime, long endTime,
+		boolean allDay, java.lang.String recurrence, long firstReminder,
+		java.lang.String firstReminderType, long secondReminder,
+		java.lang.String secondReminderType,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService()
+				   .addCalendarBooking(userId, calendarId, childCalendarIds,
+			parentCalendarBookingId, titleMap, descriptionMap, location,
+			startTime, endTime, allDay, recurrence, firstReminder,
+			firstReminderType, secondReminder, secondReminderType,
+			serviceContext);
+	}
+
+	public static void checkCalendarBookings()
+		throws com.liferay.portal.kernel.exception.PortalException {
+		getService().checkCalendarBookings();
+	}
+
 	/**
 	* Creates a new calendar booking with the primary key. Does not add the calendar booking to the database.
 	*
@@ -59,6 +83,19 @@ public class CalendarBookingLocalServiceUtil {
 	public static com.liferay.calendar.model.CalendarBooking createCalendarBooking(
 		long calendarBookingId) {
 		return getService().createCalendarBooking(calendarBookingId);
+	}
+
+	/**
+	* Deletes the calendar booking from the database. Also notifies the appropriate model listeners.
+	*
+	* @param calendarBooking the calendar booking
+	* @return the calendar booking that was removed
+	* @throws PortalException
+	*/
+	public static com.liferay.calendar.model.CalendarBooking deleteCalendarBooking(
+		com.liferay.calendar.model.CalendarBooking calendarBooking)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().deleteCalendarBooking(calendarBooking);
 	}
 
 	/**
@@ -74,17 +111,35 @@ public class CalendarBookingLocalServiceUtil {
 		return getService().deleteCalendarBooking(calendarBookingId);
 	}
 
+	public static void deleteCalendarBookingInstance(
+		com.liferay.calendar.model.CalendarBooking calendarBooking,
+		long startTime, boolean allFollowing)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		getService()
+			.deleteCalendarBookingInstance(calendarBooking, startTime,
+			allFollowing);
+	}
+
+	public static void deleteCalendarBookingInstance(long calendarBookingId,
+		long startTime, boolean allFollowing)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		getService()
+			.deleteCalendarBookingInstance(calendarBookingId, startTime,
+			allFollowing);
+	}
+
+	public static void deleteCalendarBookings(long calendarId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		getService().deleteCalendarBookings(calendarId);
+	}
+
 	/**
-	* Deletes the calendar booking from the database. Also notifies the appropriate model listeners.
-	*
-	* @param calendarBooking the calendar booking
-	* @return the calendar booking that was removed
 	* @throws PortalException
 	*/
-	public static com.liferay.calendar.model.CalendarBooking deleteCalendarBooking(
-		com.liferay.calendar.model.CalendarBooking calendarBooking)
+	public static com.liferay.portal.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.model.PersistedModel persistedModel)
 		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().deleteCalendarBooking(calendarBooking);
+		return getService().deletePersistedModel(persistedModel);
 	}
 
 	public static com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
@@ -165,9 +220,20 @@ public class CalendarBookingLocalServiceUtil {
 		return getService().dynamicQueryCount(dynamicQuery, projection);
 	}
 
+	public static java.lang.String exportCalendarBooking(
+		long calendarBookingId, java.lang.String type)
+		throws java.lang.Exception {
+		return getService().exportCalendarBooking(calendarBookingId, type);
+	}
+
 	public static com.liferay.calendar.model.CalendarBooking fetchCalendarBooking(
 		long calendarBookingId) {
 		return getService().fetchCalendarBooking(calendarBookingId);
+	}
+
+	public static com.liferay.calendar.model.CalendarBooking fetchCalendarBooking(
+		java.lang.String uuid, long groupId) {
+		return getService().fetchCalendarBooking(uuid, groupId);
 	}
 
 	/**
@@ -195,6 +261,19 @@ public class CalendarBookingLocalServiceUtil {
 		return getService().fetchCalendarBookingByUuidAndGroupId(uuid, groupId);
 	}
 
+	public static com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
+		return getService().getActionableDynamicQuery();
+	}
+
+	/**
+	* Returns the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
+	*/
+	public static java.lang.String getBeanIdentifier() {
+		return getService().getBeanIdentifier();
+	}
+
 	/**
 	* Returns the calendar booking with the primary key.
 	*
@@ -208,28 +287,11 @@ public class CalendarBookingLocalServiceUtil {
 		return getService().getCalendarBooking(calendarBookingId);
 	}
 
-	public static com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
-		return getService().getActionableDynamicQuery();
-	}
-
-	public static com.liferay.portal.kernel.dao.orm.ExportActionableDynamicQuery getExportActionableDynamicQuery(
-		com.liferay.portal.kernel.lar.PortletDataContext portletDataContext) {
-		return getService().getExportActionableDynamicQuery(portletDataContext);
-	}
-
-	/**
-	* @throws PortalException
-	*/
-	public static com.liferay.portal.model.PersistedModel deletePersistedModel(
-		com.liferay.portal.model.PersistedModel persistedModel)
+	public static com.liferay.calendar.model.CalendarBooking getCalendarBooking(
+		long calendarId, long parentCalendarBookingId)
 		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().deletePersistedModel(persistedModel);
-	}
-
-	public static com.liferay.portal.model.PersistedModel getPersistedModel(
-		java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().getPersistedModel(primaryKeyObj);
+		return getService()
+				   .getCalendarBooking(calendarId, parentCalendarBookingId);
 	}
 
 	/**
@@ -260,6 +322,27 @@ public class CalendarBookingLocalServiceUtil {
 		return getService().getCalendarBookingByUuidAndGroupId(uuid, groupId);
 	}
 
+	public static java.util.List<com.liferay.calendar.model.CalendarBooking> getCalendarBookings(
+		long calendarId) {
+		return getService().getCalendarBookings(calendarId);
+	}
+
+	public static java.util.List<com.liferay.calendar.model.CalendarBooking> getCalendarBookings(
+		long calendarId, long startTime, long endTime) {
+		return getService().getCalendarBookings(calendarId, startTime, endTime);
+	}
+
+	public static java.util.List<com.liferay.calendar.model.CalendarBooking> getCalendarBookings(
+		long calendarId, long startTime, long endTime, int max) {
+		return getService()
+				   .getCalendarBookings(calendarId, startTime, endTime, max);
+	}
+
+	public static java.util.List<com.liferay.calendar.model.CalendarBooking> getCalendarBookings(
+		long calendarId, int[] statuses) {
+		return getService().getCalendarBookings(calendarId, statuses);
+	}
+
 	/**
 	* Returns a range of all the calendar bookings.
 	*
@@ -285,126 +368,6 @@ public class CalendarBookingLocalServiceUtil {
 		return getService().getCalendarBookingsCount();
 	}
 
-	/**
-	* Updates the calendar booking in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	*
-	* @param calendarBooking the calendar booking
-	* @return the calendar booking that was updated
-	*/
-	public static com.liferay.calendar.model.CalendarBooking updateCalendarBooking(
-		com.liferay.calendar.model.CalendarBooking calendarBooking) {
-		return getService().updateCalendarBooking(calendarBooking);
-	}
-
-	/**
-	* Returns the Spring bean ID for this bean.
-	*
-	* @return the Spring bean ID for this bean
-	*/
-	public static java.lang.String getBeanIdentifier() {
-		return getService().getBeanIdentifier();
-	}
-
-	/**
-	* Sets the Spring bean ID for this bean.
-	*
-	* @param beanIdentifier the Spring bean ID for this bean
-	*/
-	public static void setBeanIdentifier(java.lang.String beanIdentifier) {
-		getService().setBeanIdentifier(beanIdentifier);
-	}
-
-	public static java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable {
-		return getService().invokeMethod(name, parameterTypes, arguments);
-	}
-
-	public static com.liferay.calendar.model.CalendarBooking addCalendarBooking(
-		long userId, long calendarId, long[] childCalendarIds,
-		long parentCalendarBookingId,
-		java.util.Map<java.util.Locale, java.lang.String> titleMap,
-		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
-		java.lang.String location, long startTime, long endTime,
-		boolean allDay, java.lang.String recurrence, long firstReminder,
-		java.lang.String firstReminderType, long secondReminder,
-		java.lang.String secondReminderType,
-		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService()
-				   .addCalendarBooking(userId, calendarId, childCalendarIds,
-			parentCalendarBookingId, titleMap, descriptionMap, location,
-			startTime, endTime, allDay, recurrence, firstReminder,
-			firstReminderType, secondReminder, secondReminderType,
-			serviceContext);
-	}
-
-	public static void checkCalendarBookings()
-		throws com.liferay.portal.kernel.exception.PortalException {
-		getService().checkCalendarBookings();
-	}
-
-	public static void deleteCalendarBookingInstance(
-		com.liferay.calendar.model.CalendarBooking calendarBooking,
-		long startTime, boolean allFollowing)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		getService()
-			.deleteCalendarBookingInstance(calendarBooking, startTime,
-			allFollowing);
-	}
-
-	public static void deleteCalendarBookingInstance(long calendarBookingId,
-		long startTime, boolean allFollowing)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		getService()
-			.deleteCalendarBookingInstance(calendarBookingId, startTime,
-			allFollowing);
-	}
-
-	public static void deleteCalendarBookings(long calendarId)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		getService().deleteCalendarBookings(calendarId);
-	}
-
-	public static java.lang.String exportCalendarBooking(
-		long calendarBookingId, java.lang.String type)
-		throws java.lang.Exception {
-		return getService().exportCalendarBooking(calendarBookingId, type);
-	}
-
-	public static com.liferay.calendar.model.CalendarBooking fetchCalendarBooking(
-		java.lang.String uuid, long groupId) {
-		return getService().fetchCalendarBooking(uuid, groupId);
-	}
-
-	public static com.liferay.calendar.model.CalendarBooking getCalendarBooking(
-		long calendarId, long parentCalendarBookingId)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService()
-				   .getCalendarBooking(calendarId, parentCalendarBookingId);
-	}
-
-	public static java.util.List<com.liferay.calendar.model.CalendarBooking> getCalendarBookings(
-		long calendarId) {
-		return getService().getCalendarBookings(calendarId);
-	}
-
-	public static java.util.List<com.liferay.calendar.model.CalendarBooking> getCalendarBookings(
-		long calendarId, int[] statuses) {
-		return getService().getCalendarBookings(calendarId, statuses);
-	}
-
-	public static java.util.List<com.liferay.calendar.model.CalendarBooking> getCalendarBookings(
-		long calendarId, long startTime, long endTime) {
-		return getService().getCalendarBookings(calendarId, startTime, endTime);
-	}
-
-	public static java.util.List<com.liferay.calendar.model.CalendarBooking> getCalendarBookings(
-		long calendarId, long startTime, long endTime, int max) {
-		return getService()
-				   .getCalendarBookings(calendarId, startTime, endTime, max);
-	}
-
 	public static int getCalendarBookingsCount(long calendarId,
 		long parentCalendarBookingId) {
 		return getService()
@@ -426,6 +389,23 @@ public class CalendarBookingLocalServiceUtil {
 		long calendarId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().getChildCalendarIds(calendarBookingId, calendarId);
+	}
+
+	public static com.liferay.portal.kernel.dao.orm.ExportActionableDynamicQuery getExportActionableDynamicQuery(
+		com.liferay.portal.kernel.lar.PortletDataContext portletDataContext) {
+		return getService().getExportActionableDynamicQuery(portletDataContext);
+	}
+
+	public static com.liferay.portal.model.PersistedModel getPersistedModel(
+		java.io.Serializable primaryKeyObj)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().getPersistedModel(primaryKeyObj);
+	}
+
+	public static java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return getService().invokeMethod(name, parameterTypes, arguments);
 	}
 
 	public static com.liferay.calendar.model.CalendarBooking moveCalendarBookingToTrash(
@@ -495,6 +475,15 @@ public class CalendarBookingLocalServiceUtil {
 			location, startTime, endTime, statuses, andOperator);
 	}
 
+	/**
+	* Sets the Spring bean ID for this bean.
+	*
+	* @param beanIdentifier the Spring bean ID for this bean
+	*/
+	public static void setBeanIdentifier(java.lang.String beanIdentifier) {
+		getService().setBeanIdentifier(beanIdentifier);
+	}
+
 	public static void updateAsset(long userId,
 		com.liferay.calendar.model.CalendarBooking calendarBooking,
 		long[] assetCategoryIds, java.lang.String[] assetTagNames,
@@ -503,6 +492,17 @@ public class CalendarBookingLocalServiceUtil {
 		getService()
 			.updateAsset(userId, calendarBooking, assetCategoryIds,
 			assetTagNames, assetLinkEntryIds);
+	}
+
+	/**
+	* Updates the calendar booking in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	*
+	* @param calendarBooking the calendar booking
+	* @return the calendar booking that was updated
+	*/
+	public static com.liferay.calendar.model.CalendarBooking updateCalendarBooking(
+		com.liferay.calendar.model.CalendarBooking calendarBooking) {
+		return getService().updateCalendarBooking(calendarBooking);
 	}
 
 	public static com.liferay.calendar.model.CalendarBooking updateCalendarBooking(

@@ -42,6 +42,18 @@ public class KaleoActionLocalServiceWrapper implements KaleoActionLocalService,
 		return _kaleoActionLocalService.addKaleoAction(kaleoAction);
 	}
 
+	@Override
+	public com.liferay.portal.workflow.kaleo.model.KaleoAction addKaleoAction(
+		java.lang.String kaleoClassName, long kaleoClassPK,
+		long kaleoDefinitionId, java.lang.String kaleoNodeName,
+		com.liferay.portal.workflow.kaleo.definition.Action action,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _kaleoActionLocalService.addKaleoAction(kaleoClassName,
+			kaleoClassPK, kaleoDefinitionId, kaleoNodeName, action,
+			serviceContext);
+	}
+
 	/**
 	* Creates a new kaleo action with the primary key. Does not add the kaleo action to the database.
 	*
@@ -52,6 +64,23 @@ public class KaleoActionLocalServiceWrapper implements KaleoActionLocalService,
 	public com.liferay.portal.workflow.kaleo.model.KaleoAction createKaleoAction(
 		long kaleoActionId) {
 		return _kaleoActionLocalService.createKaleoAction(kaleoActionId);
+	}
+
+	@Override
+	public void deleteCompanyKaleoActions(long companyId) {
+		_kaleoActionLocalService.deleteCompanyKaleoActions(companyId);
+	}
+
+	/**
+	* Deletes the kaleo action from the database. Also notifies the appropriate model listeners.
+	*
+	* @param kaleoAction the kaleo action
+	* @return the kaleo action that was removed
+	*/
+	@Override
+	public com.liferay.portal.workflow.kaleo.model.KaleoAction deleteKaleoAction(
+		com.liferay.portal.workflow.kaleo.model.KaleoAction kaleoAction) {
+		return _kaleoActionLocalService.deleteKaleoAction(kaleoAction);
 	}
 
 	/**
@@ -68,16 +97,19 @@ public class KaleoActionLocalServiceWrapper implements KaleoActionLocalService,
 		return _kaleoActionLocalService.deleteKaleoAction(kaleoActionId);
 	}
 
+	@Override
+	public void deleteKaleoDefinitionKaleoActions(long kaleoDefinitionId) {
+		_kaleoActionLocalService.deleteKaleoDefinitionKaleoActions(kaleoDefinitionId);
+	}
+
 	/**
-	* Deletes the kaleo action from the database. Also notifies the appropriate model listeners.
-	*
-	* @param kaleoAction the kaleo action
-	* @return the kaleo action that was removed
+	* @throws PortalException
 	*/
 	@Override
-	public com.liferay.portal.workflow.kaleo.model.KaleoAction deleteKaleoAction(
-		com.liferay.portal.workflow.kaleo.model.KaleoAction kaleoAction) {
-		return _kaleoActionLocalService.deleteKaleoAction(kaleoAction);
+	public com.liferay.portal.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.model.PersistedModel persistedModel)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _kaleoActionLocalService.deletePersistedModel(persistedModel);
 	}
 
 	@Override
@@ -171,6 +203,21 @@ public class KaleoActionLocalServiceWrapper implements KaleoActionLocalService,
 		return _kaleoActionLocalService.fetchKaleoAction(kaleoActionId);
 	}
 
+	@Override
+	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
+		return _kaleoActionLocalService.getActionableDynamicQuery();
+	}
+
+	/**
+	* Returns the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
+	*/
+	@Override
+	public java.lang.String getBeanIdentifier() {
+		return _kaleoActionLocalService.getBeanIdentifier();
+	}
+
 	/**
 	* Returns the kaleo action with the primary key.
 	*
@@ -186,25 +233,18 @@ public class KaleoActionLocalServiceWrapper implements KaleoActionLocalService,
 	}
 
 	@Override
-	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
-		return _kaleoActionLocalService.getActionableDynamicQuery();
-	}
-
-	/**
-	* @throws PortalException
-	*/
-	@Override
-	public com.liferay.portal.model.PersistedModel deletePersistedModel(
-		com.liferay.portal.model.PersistedModel persistedModel)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _kaleoActionLocalService.deletePersistedModel(persistedModel);
+	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoAction> getKaleoActions(
+		java.lang.String kaleoClassName, long kaleoClassPK) {
+		return _kaleoActionLocalService.getKaleoActions(kaleoClassName,
+			kaleoClassPK);
 	}
 
 	@Override
-	public com.liferay.portal.model.PersistedModel getPersistedModel(
-		java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _kaleoActionLocalService.getPersistedModel(primaryKeyObj);
+	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoAction> getKaleoActions(
+		java.lang.String kaleoClassName, long kaleoClassPK,
+		java.lang.String executionType) {
+		return _kaleoActionLocalService.getKaleoActions(kaleoClassName,
+			kaleoClassPK, executionType);
 	}
 
 	/**
@@ -234,26 +274,19 @@ public class KaleoActionLocalServiceWrapper implements KaleoActionLocalService,
 		return _kaleoActionLocalService.getKaleoActionsCount();
 	}
 
-	/**
-	* Updates the kaleo action in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	*
-	* @param kaleoAction the kaleo action
-	* @return the kaleo action that was updated
-	*/
 	@Override
-	public com.liferay.portal.workflow.kaleo.model.KaleoAction updateKaleoAction(
-		com.liferay.portal.workflow.kaleo.model.KaleoAction kaleoAction) {
-		return _kaleoActionLocalService.updateKaleoAction(kaleoAction);
+	public com.liferay.portal.model.PersistedModel getPersistedModel(
+		java.io.Serializable primaryKeyObj)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _kaleoActionLocalService.getPersistedModel(primaryKeyObj);
 	}
 
-	/**
-	* Returns the Spring bean ID for this bean.
-	*
-	* @return the Spring bean ID for this bean
-	*/
 	@Override
-	public java.lang.String getBeanIdentifier() {
-		return _kaleoActionLocalService.getBeanIdentifier();
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return _kaleoActionLocalService.invokeMethod(name, parameterTypes,
+			arguments);
 	}
 
 	/**
@@ -266,49 +299,16 @@ public class KaleoActionLocalServiceWrapper implements KaleoActionLocalService,
 		_kaleoActionLocalService.setBeanIdentifier(beanIdentifier);
 	}
 
+	/**
+	* Updates the kaleo action in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	*
+	* @param kaleoAction the kaleo action
+	* @return the kaleo action that was updated
+	*/
 	@Override
-	public java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable {
-		return _kaleoActionLocalService.invokeMethod(name, parameterTypes,
-			arguments);
-	}
-
-	@Override
-	public com.liferay.portal.workflow.kaleo.model.KaleoAction addKaleoAction(
-		java.lang.String kaleoClassName, long kaleoClassPK,
-		long kaleoDefinitionId, java.lang.String kaleoNodeName,
-		com.liferay.portal.workflow.kaleo.definition.Action action,
-		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _kaleoActionLocalService.addKaleoAction(kaleoClassName,
-			kaleoClassPK, kaleoDefinitionId, kaleoNodeName, action,
-			serviceContext);
-	}
-
-	@Override
-	public void deleteCompanyKaleoActions(long companyId) {
-		_kaleoActionLocalService.deleteCompanyKaleoActions(companyId);
-	}
-
-	@Override
-	public void deleteKaleoDefinitionKaleoActions(long kaleoDefinitionId) {
-		_kaleoActionLocalService.deleteKaleoDefinitionKaleoActions(kaleoDefinitionId);
-	}
-
-	@Override
-	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoAction> getKaleoActions(
-		java.lang.String kaleoClassName, long kaleoClassPK) {
-		return _kaleoActionLocalService.getKaleoActions(kaleoClassName,
-			kaleoClassPK);
-	}
-
-	@Override
-	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoAction> getKaleoActions(
-		java.lang.String kaleoClassName, long kaleoClassPK,
-		java.lang.String executionType) {
-		return _kaleoActionLocalService.getKaleoActions(kaleoClassName,
-			kaleoClassPK, executionType);
+	public com.liferay.portal.workflow.kaleo.model.KaleoAction updateKaleoAction(
+		com.liferay.portal.workflow.kaleo.model.KaleoAction kaleoAction) {
+		return _kaleoActionLocalService.updateKaleoAction(kaleoAction);
 	}
 
 	/**

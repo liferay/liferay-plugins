@@ -16,6 +16,7 @@ package com.liferay.marketplace.service;
 
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.search.IndexableType;
 import com.liferay.portal.kernel.transaction.Isolation;
 import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
@@ -51,8 +52,12 @@ public interface ModuleLocalService extends BaseLocalService,
 	* @param module the module
 	* @return the module that was added
 	*/
+	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.REINDEX)
 	public com.liferay.marketplace.model.Module addModule(
 		com.liferay.marketplace.model.Module module);
+
+	public com.liferay.marketplace.model.Module addModule(long userId,
+		long appId, java.lang.String contextName);
 
 	/**
 	* Creates a new module with the primary key. Does not add the module to the database.
@@ -63,23 +68,33 @@ public interface ModuleLocalService extends BaseLocalService,
 	public com.liferay.marketplace.model.Module createModule(long moduleId);
 
 	/**
+	* Deletes the module from the database. Also notifies the appropriate model listeners.
+	*
+	* @param module the module
+	* @return the module that was removed
+	*/
+	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.DELETE)
+	public com.liferay.marketplace.model.Module deleteModule(
+		com.liferay.marketplace.model.Module module);
+
+	/**
 	* Deletes the module with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param moduleId the primary key of the module
 	* @return the module that was removed
 	* @throws PortalException if a module with the primary key could not be found
 	*/
+	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.DELETE)
 	public com.liferay.marketplace.model.Module deleteModule(long moduleId)
 		throws com.liferay.portal.kernel.exception.PortalException;
 
 	/**
-	* Deletes the module from the database. Also notifies the appropriate model listeners.
-	*
-	* @param module the module
-	* @return the module that was removed
+	* @throws PortalException
 	*/
-	public com.liferay.marketplace.model.Module deleteModule(
-		com.liferay.marketplace.model.Module module);
+	@Override
+	public com.liferay.portal.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.model.PersistedModel persistedModel)
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery();
 
@@ -147,7 +162,21 @@ public interface ModuleLocalService extends BaseLocalService,
 		com.liferay.portal.kernel.dao.orm.Projection projection);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.liferay.marketplace.model.Module fetchModule(long appId,
+		java.lang.String contextName);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.marketplace.model.Module fetchModule(long moduleId);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery();
+
+	/**
+	* Returns the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
+	*/
+	public java.lang.String getBeanIdentifier();
 
 	/**
 	* Returns the module with the primary key.
@@ -161,21 +190,8 @@ public interface ModuleLocalService extends BaseLocalService,
 		throws com.liferay.portal.kernel.exception.PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery();
-
-	/**
-	* @throws PortalException
-	*/
-	@Override
-	public com.liferay.portal.model.PersistedModel deletePersistedModel(
-		com.liferay.portal.model.PersistedModel persistedModel)
-		throws com.liferay.portal.kernel.exception.PortalException;
-
-	@Override
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.portal.model.PersistedModel getPersistedModel(
-		java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException;
+	public java.util.List<com.liferay.marketplace.model.Module> getModules(
+		long appId);
 
 	/**
 	* Returns a range of all the modules.
@@ -200,21 +216,16 @@ public interface ModuleLocalService extends BaseLocalService,
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getModulesCount();
 
-	/**
-	* Updates the module in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	*
-	* @param module the module
-	* @return the module that was updated
-	*/
-	public com.liferay.marketplace.model.Module updateModule(
-		com.liferay.marketplace.model.Module module);
+	@Override
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.liferay.portal.model.PersistedModel getPersistedModel(
+		java.io.Serializable primaryKeyObj)
+		throws com.liferay.portal.kernel.exception.PortalException;
 
-	/**
-	* Returns the Spring bean ID for this bean.
-	*
-	* @return the Spring bean ID for this bean
-	*/
-	public java.lang.String getBeanIdentifier();
+	@Override
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable;
 
 	/**
 	* Sets the Spring bean ID for this bean.
@@ -223,19 +234,13 @@ public interface ModuleLocalService extends BaseLocalService,
 	*/
 	public void setBeanIdentifier(java.lang.String beanIdentifier);
 
-	@Override
-	public java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable;
-
-	public com.liferay.marketplace.model.Module addModule(long userId,
-		long appId, java.lang.String contextName);
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.marketplace.model.Module fetchModule(long appId,
-		java.lang.String contextName);
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<com.liferay.marketplace.model.Module> getModules(
-		long appId);
+	/**
+	* Updates the module in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	*
+	* @param module the module
+	* @return the module that was updated
+	*/
+	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.REINDEX)
+	public com.liferay.marketplace.model.Module updateModule(
+		com.liferay.marketplace.model.Module module);
 }

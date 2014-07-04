@@ -76,44 +76,19 @@ public class TypeWrapper implements Type, ModelWrapper<Type> {
 		}
 	}
 
-	/**
-	* Returns the primary key of this type.
-	*
-	* @return the primary key of this type
-	*/
 	@Override
-	public long getPrimaryKey() {
-		return _type.getPrimaryKey();
+	public java.lang.Object clone() {
+		return new TypeWrapper((Type)_type.clone());
 	}
 
-	/**
-	* Sets the primary key of this type.
-	*
-	* @param primaryKey the primary key of this type
-	*/
 	@Override
-	public void setPrimaryKey(long primaryKey) {
-		_type.setPrimaryKey(primaryKey);
+	public int compareTo(com.liferay.ams.model.Type type) {
+		return _type.compareTo(type);
 	}
 
-	/**
-	* Returns the type ID of this type.
-	*
-	* @return the type ID of this type
-	*/
 	@Override
-	public long getTypeId() {
-		return _type.getTypeId();
-	}
-
-	/**
-	* Sets the type ID of this type.
-	*
-	* @param typeId the type ID of this type
-	*/
-	@Override
-	public void setTypeId(long typeId) {
-		_type.setTypeId(typeId);
+	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {
+		return _type.getExpandoBridge();
 	}
 
 	/**
@@ -127,16 +102,6 @@ public class TypeWrapper implements Type, ModelWrapper<Type> {
 	}
 
 	/**
-	* Sets the group ID of this type.
-	*
-	* @param groupId the group ID of this type
-	*/
-	@Override
-	public void setGroupId(long groupId) {
-		_type.setGroupId(groupId);
-	}
-
-	/**
 	* Returns the name of this type.
 	*
 	* @return the name of this type
@@ -147,23 +112,33 @@ public class TypeWrapper implements Type, ModelWrapper<Type> {
 	}
 
 	/**
-	* Sets the name of this type.
+	* Returns the primary key of this type.
 	*
-	* @param name the name of this type
+	* @return the primary key of this type
 	*/
 	@Override
-	public void setName(java.lang.String name) {
-		_type.setName(name);
+	public long getPrimaryKey() {
+		return _type.getPrimaryKey();
 	}
 
 	@Override
-	public boolean isNew() {
-		return _type.isNew();
+	public java.io.Serializable getPrimaryKeyObj() {
+		return _type.getPrimaryKeyObj();
+	}
+
+	/**
+	* Returns the type ID of this type.
+	*
+	* @return the type ID of this type
+	*/
+	@Override
+	public long getTypeId() {
+		return _type.getTypeId();
 	}
 
 	@Override
-	public void setNew(boolean n) {
-		_type.setNew(n);
+	public int hashCode() {
+		return _type.hashCode();
 	}
 
 	@Override
@@ -172,28 +147,23 @@ public class TypeWrapper implements Type, ModelWrapper<Type> {
 	}
 
 	@Override
-	public void setCachedModel(boolean cachedModel) {
-		_type.setCachedModel(cachedModel);
-	}
-
-	@Override
 	public boolean isEscapedModel() {
 		return _type.isEscapedModel();
 	}
 
 	@Override
-	public java.io.Serializable getPrimaryKeyObj() {
-		return _type.getPrimaryKeyObj();
+	public boolean isNew() {
+		return _type.isNew();
 	}
 
 	@Override
-	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
-		_type.setPrimaryKeyObj(primaryKeyObj);
+	public void persist() {
+		_type.persist();
 	}
 
 	@Override
-	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {
-		return _type.getExpandoBridge();
+	public void setCachedModel(boolean cachedModel) {
+		_type.setCachedModel(cachedModel);
 	}
 
 	@Override
@@ -214,19 +184,54 @@ public class TypeWrapper implements Type, ModelWrapper<Type> {
 		_type.setExpandoBridgeAttributes(serviceContext);
 	}
 
+	/**
+	* Sets the group ID of this type.
+	*
+	* @param groupId the group ID of this type
+	*/
 	@Override
-	public java.lang.Object clone() {
-		return new TypeWrapper((Type)_type.clone());
+	public void setGroupId(long groupId) {
+		_type.setGroupId(groupId);
+	}
+
+	/**
+	* Sets the name of this type.
+	*
+	* @param name the name of this type
+	*/
+	@Override
+	public void setName(java.lang.String name) {
+		_type.setName(name);
 	}
 
 	@Override
-	public int compareTo(com.liferay.ams.model.Type type) {
-		return _type.compareTo(type);
+	public void setNew(boolean n) {
+		_type.setNew(n);
+	}
+
+	/**
+	* Sets the primary key of this type.
+	*
+	* @param primaryKey the primary key of this type
+	*/
+	@Override
+	public void setPrimaryKey(long primaryKey) {
+		_type.setPrimaryKey(primaryKey);
 	}
 
 	@Override
-	public int hashCode() {
-		return _type.hashCode();
+	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
+		_type.setPrimaryKeyObj(primaryKeyObj);
+	}
+
+	/**
+	* Sets the type ID of this type.
+	*
+	* @param typeId the type ID of this type
+	*/
+	@Override
+	public void setTypeId(long typeId) {
+		_type.setTypeId(typeId);
 	}
 
 	@Override
@@ -240,23 +245,18 @@ public class TypeWrapper implements Type, ModelWrapper<Type> {
 	}
 
 	@Override
-	public com.liferay.ams.model.Type toUnescapedModel() {
-		return new TypeWrapper(_type.toUnescapedModel());
-	}
-
-	@Override
 	public java.lang.String toString() {
 		return _type.toString();
 	}
 
 	@Override
-	public java.lang.String toXmlString() {
-		return _type.toXmlString();
+	public com.liferay.ams.model.Type toUnescapedModel() {
+		return new TypeWrapper(_type.toUnescapedModel());
 	}
 
 	@Override
-	public void persist() {
-		_type.persist();
+	public java.lang.String toXmlString() {
+		return _type.toXmlString();
 	}
 
 	@Override

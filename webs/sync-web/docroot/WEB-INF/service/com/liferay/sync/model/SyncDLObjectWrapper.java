@@ -211,224 +211,14 @@ public class SyncDLObjectWrapper implements SyncDLObject,
 		}
 	}
 
-	/**
-	* Returns the primary key of this sync d l object.
-	*
-	* @return the primary key of this sync d l object
-	*/
 	@Override
-	public long getPrimaryKey() {
-		return _syncDLObject.getPrimaryKey();
+	public java.lang.Object clone() {
+		return new SyncDLObjectWrapper((SyncDLObject)_syncDLObject.clone());
 	}
 
-	/**
-	* Sets the primary key of this sync d l object.
-	*
-	* @param primaryKey the primary key of this sync d l object
-	*/
 	@Override
-	public void setPrimaryKey(long primaryKey) {
-		_syncDLObject.setPrimaryKey(primaryKey);
-	}
-
-	/**
-	* Returns the sync d l object ID of this sync d l object.
-	*
-	* @return the sync d l object ID of this sync d l object
-	*/
-	@Override
-	public long getSyncDLObjectId() {
-		return _syncDLObject.getSyncDLObjectId();
-	}
-
-	/**
-	* Sets the sync d l object ID of this sync d l object.
-	*
-	* @param syncDLObjectId the sync d l object ID of this sync d l object
-	*/
-	@Override
-	public void setSyncDLObjectId(long syncDLObjectId) {
-		_syncDLObject.setSyncDLObjectId(syncDLObjectId);
-	}
-
-	/**
-	* Returns the company ID of this sync d l object.
-	*
-	* @return the company ID of this sync d l object
-	*/
-	@Override
-	public long getCompanyId() {
-		return _syncDLObject.getCompanyId();
-	}
-
-	/**
-	* Sets the company ID of this sync d l object.
-	*
-	* @param companyId the company ID of this sync d l object
-	*/
-	@Override
-	public void setCompanyId(long companyId) {
-		_syncDLObject.setCompanyId(companyId);
-	}
-
-	/**
-	* Returns the create time of this sync d l object.
-	*
-	* @return the create time of this sync d l object
-	*/
-	@Override
-	public long getCreateTime() {
-		return _syncDLObject.getCreateTime();
-	}
-
-	/**
-	* Sets the create time of this sync d l object.
-	*
-	* @param createTime the create time of this sync d l object
-	*/
-	@Override
-	public void setCreateTime(long createTime) {
-		_syncDLObject.setCreateTime(createTime);
-	}
-
-	/**
-	* Returns the modified time of this sync d l object.
-	*
-	* @return the modified time of this sync d l object
-	*/
-	@Override
-	public long getModifiedTime() {
-		return _syncDLObject.getModifiedTime();
-	}
-
-	/**
-	* Sets the modified time of this sync d l object.
-	*
-	* @param modifiedTime the modified time of this sync d l object
-	*/
-	@Override
-	public void setModifiedTime(long modifiedTime) {
-		_syncDLObject.setModifiedTime(modifiedTime);
-	}
-
-	/**
-	* Returns the repository ID of this sync d l object.
-	*
-	* @return the repository ID of this sync d l object
-	*/
-	@Override
-	public long getRepositoryId() {
-		return _syncDLObject.getRepositoryId();
-	}
-
-	/**
-	* Sets the repository ID of this sync d l object.
-	*
-	* @param repositoryId the repository ID of this sync d l object
-	*/
-	@Override
-	public void setRepositoryId(long repositoryId) {
-		_syncDLObject.setRepositoryId(repositoryId);
-	}
-
-	/**
-	* Returns the parent folder ID of this sync d l object.
-	*
-	* @return the parent folder ID of this sync d l object
-	*/
-	@Override
-	public long getParentFolderId() {
-		return _syncDLObject.getParentFolderId();
-	}
-
-	/**
-	* Sets the parent folder ID of this sync d l object.
-	*
-	* @param parentFolderId the parent folder ID of this sync d l object
-	*/
-	@Override
-	public void setParentFolderId(long parentFolderId) {
-		_syncDLObject.setParentFolderId(parentFolderId);
-	}
-
-	/**
-	* Returns the name of this sync d l object.
-	*
-	* @return the name of this sync d l object
-	*/
-	@Override
-	public java.lang.String getName() {
-		return _syncDLObject.getName();
-	}
-
-	/**
-	* Sets the name of this sync d l object.
-	*
-	* @param name the name of this sync d l object
-	*/
-	@Override
-	public void setName(java.lang.String name) {
-		_syncDLObject.setName(name);
-	}
-
-	/**
-	* Returns the extension of this sync d l object.
-	*
-	* @return the extension of this sync d l object
-	*/
-	@Override
-	public java.lang.String getExtension() {
-		return _syncDLObject.getExtension();
-	}
-
-	/**
-	* Sets the extension of this sync d l object.
-	*
-	* @param extension the extension of this sync d l object
-	*/
-	@Override
-	public void setExtension(java.lang.String extension) {
-		_syncDLObject.setExtension(extension);
-	}
-
-	/**
-	* Returns the mime type of this sync d l object.
-	*
-	* @return the mime type of this sync d l object
-	*/
-	@Override
-	public java.lang.String getMimeType() {
-		return _syncDLObject.getMimeType();
-	}
-
-	/**
-	* Sets the mime type of this sync d l object.
-	*
-	* @param mimeType the mime type of this sync d l object
-	*/
-	@Override
-	public void setMimeType(java.lang.String mimeType) {
-		_syncDLObject.setMimeType(mimeType);
-	}
-
-	/**
-	* Returns the description of this sync d l object.
-	*
-	* @return the description of this sync d l object
-	*/
-	@Override
-	public java.lang.String getDescription() {
-		return _syncDLObject.getDescription();
-	}
-
-	/**
-	* Sets the description of this sync d l object.
-	*
-	* @param description the description of this sync d l object
-	*/
-	@Override
-	public void setDescription(java.lang.String description) {
-		_syncDLObject.setDescription(description);
+	public int compareTo(com.liferay.sync.model.SyncDLObject syncDLObject) {
+		return _syncDLObject.compareTo(syncDLObject);
 	}
 
 	/**
@@ -442,13 +232,68 @@ public class SyncDLObjectWrapper implements SyncDLObject,
 	}
 
 	/**
-	* Sets the change log of this sync d l object.
+	* Returns the checksum of this sync d l object.
 	*
-	* @param changeLog the change log of this sync d l object
+	* @return the checksum of this sync d l object
 	*/
 	@Override
-	public void setChangeLog(java.lang.String changeLog) {
-		_syncDLObject.setChangeLog(changeLog);
+	public java.lang.String getChecksum() {
+		return _syncDLObject.getChecksum();
+	}
+
+	/**
+	* Returns the company ID of this sync d l object.
+	*
+	* @return the company ID of this sync d l object
+	*/
+	@Override
+	public long getCompanyId() {
+		return _syncDLObject.getCompanyId();
+	}
+
+	/**
+	* Returns the create time of this sync d l object.
+	*
+	* @return the create time of this sync d l object
+	*/
+	@Override
+	public long getCreateTime() {
+		return _syncDLObject.getCreateTime();
+	}
+
+	/**
+	* Returns the description of this sync d l object.
+	*
+	* @return the description of this sync d l object
+	*/
+	@Override
+	public java.lang.String getDescription() {
+		return _syncDLObject.getDescription();
+	}
+
+	/**
+	* Returns the event of this sync d l object.
+	*
+	* @return the event of this sync d l object
+	*/
+	@Override
+	public java.lang.String getEvent() {
+		return _syncDLObject.getEvent();
+	}
+
+	@Override
+	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {
+		return _syncDLObject.getExpandoBridge();
+	}
+
+	/**
+	* Returns the extension of this sync d l object.
+	*
+	* @return the extension of this sync d l object
+	*/
+	@Override
+	public java.lang.String getExtension() {
+		return _syncDLObject.getExtension();
 	}
 
 	/**
@@ -462,96 +307,6 @@ public class SyncDLObjectWrapper implements SyncDLObject,
 	}
 
 	/**
-	* Sets the extra settings of this sync d l object.
-	*
-	* @param extraSettings the extra settings of this sync d l object
-	*/
-	@Override
-	public void setExtraSettings(java.lang.String extraSettings) {
-		_syncDLObject.setExtraSettings(extraSettings);
-	}
-
-	/**
-	* Returns the version of this sync d l object.
-	*
-	* @return the version of this sync d l object
-	*/
-	@Override
-	public java.lang.String getVersion() {
-		return _syncDLObject.getVersion();
-	}
-
-	/**
-	* Sets the version of this sync d l object.
-	*
-	* @param version the version of this sync d l object
-	*/
-	@Override
-	public void setVersion(java.lang.String version) {
-		_syncDLObject.setVersion(version);
-	}
-
-	/**
-	* Returns the size of this sync d l object.
-	*
-	* @return the size of this sync d l object
-	*/
-	@Override
-	public long getSize() {
-		return _syncDLObject.getSize();
-	}
-
-	/**
-	* Sets the size of this sync d l object.
-	*
-	* @param size the size of this sync d l object
-	*/
-	@Override
-	public void setSize(long size) {
-		_syncDLObject.setSize(size);
-	}
-
-	/**
-	* Returns the checksum of this sync d l object.
-	*
-	* @return the checksum of this sync d l object
-	*/
-	@Override
-	public java.lang.String getChecksum() {
-		return _syncDLObject.getChecksum();
-	}
-
-	/**
-	* Sets the checksum of this sync d l object.
-	*
-	* @param checksum the checksum of this sync d l object
-	*/
-	@Override
-	public void setChecksum(java.lang.String checksum) {
-		_syncDLObject.setChecksum(checksum);
-	}
-
-	/**
-	* Returns the event of this sync d l object.
-	*
-	* @return the event of this sync d l object
-	*/
-	@Override
-	public java.lang.String getEvent() {
-		return _syncDLObject.getEvent();
-	}
-
-	/**
-	* Sets the event of this sync d l object.
-	*
-	* @param event the event of this sync d l object
-	*/
-	@Override
-	public void setEvent(java.lang.String event) {
-		_syncDLObject.setEvent(event);
-	}
-
-	/**
 	* Returns the lock expiration date of this sync d l object.
 	*
 	* @return the lock expiration date of this sync d l object
@@ -559,16 +314,6 @@ public class SyncDLObjectWrapper implements SyncDLObject,
 	@Override
 	public java.util.Date getLockExpirationDate() {
 		return _syncDLObject.getLockExpirationDate();
-	}
-
-	/**
-	* Sets the lock expiration date of this sync d l object.
-	*
-	* @param lockExpirationDate the lock expiration date of this sync d l object
-	*/
-	@Override
-	public void setLockExpirationDate(java.util.Date lockExpirationDate) {
-		_syncDLObject.setLockExpirationDate(lockExpirationDate);
 	}
 
 	/**
@@ -582,13 +327,13 @@ public class SyncDLObjectWrapper implements SyncDLObject,
 	}
 
 	/**
-	* Sets the lock user ID of this sync d l object.
+	* Returns the lock user name of this sync d l object.
 	*
-	* @param lockUserId the lock user ID of this sync d l object
+	* @return the lock user name of this sync d l object
 	*/
 	@Override
-	public void setLockUserId(long lockUserId) {
-		_syncDLObject.setLockUserId(lockUserId);
+	public java.lang.String getLockUserName() {
+		return _syncDLObject.getLockUserName();
 	}
 
 	/**
@@ -602,33 +347,88 @@ public class SyncDLObjectWrapper implements SyncDLObject,
 	}
 
 	/**
-	* Sets the lock user uuid of this sync d l object.
+	* Returns the mime type of this sync d l object.
 	*
-	* @param lockUserUuid the lock user uuid of this sync d l object
+	* @return the mime type of this sync d l object
 	*/
 	@Override
-	public void setLockUserUuid(java.lang.String lockUserUuid) {
-		_syncDLObject.setLockUserUuid(lockUserUuid);
+	public java.lang.String getMimeType() {
+		return _syncDLObject.getMimeType();
 	}
 
 	/**
-	* Returns the lock user name of this sync d l object.
+	* Returns the modified time of this sync d l object.
 	*
-	* @return the lock user name of this sync d l object
+	* @return the modified time of this sync d l object
 	*/
 	@Override
-	public java.lang.String getLockUserName() {
-		return _syncDLObject.getLockUserName();
+	public long getModifiedTime() {
+		return _syncDLObject.getModifiedTime();
 	}
 
 	/**
-	* Sets the lock user name of this sync d l object.
+	* Returns the name of this sync d l object.
 	*
-	* @param lockUserName the lock user name of this sync d l object
+	* @return the name of this sync d l object
 	*/
 	@Override
-	public void setLockUserName(java.lang.String lockUserName) {
-		_syncDLObject.setLockUserName(lockUserName);
+	public java.lang.String getName() {
+		return _syncDLObject.getName();
+	}
+
+	/**
+	* Returns the parent folder ID of this sync d l object.
+	*
+	* @return the parent folder ID of this sync d l object
+	*/
+	@Override
+	public long getParentFolderId() {
+		return _syncDLObject.getParentFolderId();
+	}
+
+	/**
+	* Returns the primary key of this sync d l object.
+	*
+	* @return the primary key of this sync d l object
+	*/
+	@Override
+	public long getPrimaryKey() {
+		return _syncDLObject.getPrimaryKey();
+	}
+
+	@Override
+	public java.io.Serializable getPrimaryKeyObj() {
+		return _syncDLObject.getPrimaryKeyObj();
+	}
+
+	/**
+	* Returns the repository ID of this sync d l object.
+	*
+	* @return the repository ID of this sync d l object
+	*/
+	@Override
+	public long getRepositoryId() {
+		return _syncDLObject.getRepositoryId();
+	}
+
+	/**
+	* Returns the size of this sync d l object.
+	*
+	* @return the size of this sync d l object
+	*/
+	@Override
+	public long getSize() {
+		return _syncDLObject.getSize();
+	}
+
+	/**
+	* Returns the sync d l object ID of this sync d l object.
+	*
+	* @return the sync d l object ID of this sync d l object
+	*/
+	@Override
+	public long getSyncDLObjectId() {
+		return _syncDLObject.getSyncDLObjectId();
 	}
 
 	/**
@@ -642,16 +442,6 @@ public class SyncDLObjectWrapper implements SyncDLObject,
 	}
 
 	/**
-	* Sets the type of this sync d l object.
-	*
-	* @param type the type of this sync d l object
-	*/
-	@Override
-	public void setType(java.lang.String type) {
-		_syncDLObject.setType(type);
-	}
-
-	/**
 	* Returns the type p k of this sync d l object.
 	*
 	* @return the type p k of this sync d l object
@@ -659,16 +449,6 @@ public class SyncDLObjectWrapper implements SyncDLObject,
 	@Override
 	public long getTypePK() {
 		return _syncDLObject.getTypePK();
-	}
-
-	/**
-	* Sets the type p k of this sync d l object.
-	*
-	* @param typePK the type p k of this sync d l object
-	*/
-	@Override
-	public void setTypePK(long typePK) {
-		_syncDLObject.setTypePK(typePK);
 	}
 
 	/**
@@ -682,23 +462,18 @@ public class SyncDLObjectWrapper implements SyncDLObject,
 	}
 
 	/**
-	* Sets the type uuid of this sync d l object.
+	* Returns the version of this sync d l object.
 	*
-	* @param typeUuid the type uuid of this sync d l object
+	* @return the version of this sync d l object
 	*/
 	@Override
-	public void setTypeUuid(java.lang.String typeUuid) {
-		_syncDLObject.setTypeUuid(typeUuid);
+	public java.lang.String getVersion() {
+		return _syncDLObject.getVersion();
 	}
 
 	@Override
-	public boolean isNew() {
-		return _syncDLObject.isNew();
-	}
-
-	@Override
-	public void setNew(boolean n) {
-		_syncDLObject.setNew(n);
+	public int hashCode() {
+		return _syncDLObject.hashCode();
 	}
 
 	@Override
@@ -707,28 +482,88 @@ public class SyncDLObjectWrapper implements SyncDLObject,
 	}
 
 	@Override
-	public void setCachedModel(boolean cachedModel) {
-		_syncDLObject.setCachedModel(cachedModel);
-	}
-
-	@Override
 	public boolean isEscapedModel() {
 		return _syncDLObject.isEscapedModel();
 	}
 
 	@Override
-	public java.io.Serializable getPrimaryKeyObj() {
-		return _syncDLObject.getPrimaryKeyObj();
+	public boolean isNew() {
+		return _syncDLObject.isNew();
 	}
 
 	@Override
-	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
-		_syncDLObject.setPrimaryKeyObj(primaryKeyObj);
+	public void persist() {
+		_syncDLObject.persist();
 	}
 
 	@Override
-	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {
-		return _syncDLObject.getExpandoBridge();
+	public void setCachedModel(boolean cachedModel) {
+		_syncDLObject.setCachedModel(cachedModel);
+	}
+
+	/**
+	* Sets the change log of this sync d l object.
+	*
+	* @param changeLog the change log of this sync d l object
+	*/
+	@Override
+	public void setChangeLog(java.lang.String changeLog) {
+		_syncDLObject.setChangeLog(changeLog);
+	}
+
+	/**
+	* Sets the checksum of this sync d l object.
+	*
+	* @param checksum the checksum of this sync d l object
+	*/
+	@Override
+	public void setChecksum(java.lang.String checksum) {
+		_syncDLObject.setChecksum(checksum);
+	}
+
+	/**
+	* Sets the company ID of this sync d l object.
+	*
+	* @param companyId the company ID of this sync d l object
+	*/
+	@Override
+	public void setCompanyId(long companyId) {
+		_syncDLObject.setCompanyId(companyId);
+	}
+
+	@Override
+	public void setCreateDate(java.util.Date createDate) {
+		_syncDLObject.setCreateDate(createDate);
+	}
+
+	/**
+	* Sets the create time of this sync d l object.
+	*
+	* @param createTime the create time of this sync d l object
+	*/
+	@Override
+	public void setCreateTime(long createTime) {
+		_syncDLObject.setCreateTime(createTime);
+	}
+
+	/**
+	* Sets the description of this sync d l object.
+	*
+	* @param description the description of this sync d l object
+	*/
+	@Override
+	public void setDescription(java.lang.String description) {
+		_syncDLObject.setDescription(description);
+	}
+
+	/**
+	* Sets the event of this sync d l object.
+	*
+	* @param event the event of this sync d l object
+	*/
+	@Override
+	public void setEvent(java.lang.String event) {
+		_syncDLObject.setEvent(event);
 	}
 
 	@Override
@@ -749,19 +584,199 @@ public class SyncDLObjectWrapper implements SyncDLObject,
 		_syncDLObject.setExpandoBridgeAttributes(serviceContext);
 	}
 
+	/**
+	* Sets the extension of this sync d l object.
+	*
+	* @param extension the extension of this sync d l object
+	*/
 	@Override
-	public java.lang.Object clone() {
-		return new SyncDLObjectWrapper((SyncDLObject)_syncDLObject.clone());
+	public void setExtension(java.lang.String extension) {
+		_syncDLObject.setExtension(extension);
+	}
+
+	/**
+	* Sets the extra settings of this sync d l object.
+	*
+	* @param extraSettings the extra settings of this sync d l object
+	*/
+	@Override
+	public void setExtraSettings(java.lang.String extraSettings) {
+		_syncDLObject.setExtraSettings(extraSettings);
+	}
+
+	/**
+	* Sets the lock expiration date of this sync d l object.
+	*
+	* @param lockExpirationDate the lock expiration date of this sync d l object
+	*/
+	@Override
+	public void setLockExpirationDate(java.util.Date lockExpirationDate) {
+		_syncDLObject.setLockExpirationDate(lockExpirationDate);
+	}
+
+	/**
+	* Sets the lock user ID of this sync d l object.
+	*
+	* @param lockUserId the lock user ID of this sync d l object
+	*/
+	@Override
+	public void setLockUserId(long lockUserId) {
+		_syncDLObject.setLockUserId(lockUserId);
+	}
+
+	/**
+	* Sets the lock user name of this sync d l object.
+	*
+	* @param lockUserName the lock user name of this sync d l object
+	*/
+	@Override
+	public void setLockUserName(java.lang.String lockUserName) {
+		_syncDLObject.setLockUserName(lockUserName);
+	}
+
+	/**
+	* Sets the lock user uuid of this sync d l object.
+	*
+	* @param lockUserUuid the lock user uuid of this sync d l object
+	*/
+	@Override
+	public void setLockUserUuid(java.lang.String lockUserUuid) {
+		_syncDLObject.setLockUserUuid(lockUserUuid);
+	}
+
+	/**
+	* Sets the mime type of this sync d l object.
+	*
+	* @param mimeType the mime type of this sync d l object
+	*/
+	@Override
+	public void setMimeType(java.lang.String mimeType) {
+		_syncDLObject.setMimeType(mimeType);
 	}
 
 	@Override
-	public int compareTo(com.liferay.sync.model.SyncDLObject syncDLObject) {
-		return _syncDLObject.compareTo(syncDLObject);
+	public void setModifiedDate(java.util.Date modifiedDate) {
+		_syncDLObject.setModifiedDate(modifiedDate);
+	}
+
+	/**
+	* Sets the modified time of this sync d l object.
+	*
+	* @param modifiedTime the modified time of this sync d l object
+	*/
+	@Override
+	public void setModifiedTime(long modifiedTime) {
+		_syncDLObject.setModifiedTime(modifiedTime);
+	}
+
+	/**
+	* Sets the name of this sync d l object.
+	*
+	* @param name the name of this sync d l object
+	*/
+	@Override
+	public void setName(java.lang.String name) {
+		_syncDLObject.setName(name);
 	}
 
 	@Override
-	public int hashCode() {
-		return _syncDLObject.hashCode();
+	public void setNew(boolean n) {
+		_syncDLObject.setNew(n);
+	}
+
+	/**
+	* Sets the parent folder ID of this sync d l object.
+	*
+	* @param parentFolderId the parent folder ID of this sync d l object
+	*/
+	@Override
+	public void setParentFolderId(long parentFolderId) {
+		_syncDLObject.setParentFolderId(parentFolderId);
+	}
+
+	/**
+	* Sets the primary key of this sync d l object.
+	*
+	* @param primaryKey the primary key of this sync d l object
+	*/
+	@Override
+	public void setPrimaryKey(long primaryKey) {
+		_syncDLObject.setPrimaryKey(primaryKey);
+	}
+
+	@Override
+	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
+		_syncDLObject.setPrimaryKeyObj(primaryKeyObj);
+	}
+
+	/**
+	* Sets the repository ID of this sync d l object.
+	*
+	* @param repositoryId the repository ID of this sync d l object
+	*/
+	@Override
+	public void setRepositoryId(long repositoryId) {
+		_syncDLObject.setRepositoryId(repositoryId);
+	}
+
+	/**
+	* Sets the size of this sync d l object.
+	*
+	* @param size the size of this sync d l object
+	*/
+	@Override
+	public void setSize(long size) {
+		_syncDLObject.setSize(size);
+	}
+
+	/**
+	* Sets the sync d l object ID of this sync d l object.
+	*
+	* @param syncDLObjectId the sync d l object ID of this sync d l object
+	*/
+	@Override
+	public void setSyncDLObjectId(long syncDLObjectId) {
+		_syncDLObject.setSyncDLObjectId(syncDLObjectId);
+	}
+
+	/**
+	* Sets the type of this sync d l object.
+	*
+	* @param type the type of this sync d l object
+	*/
+	@Override
+	public void setType(java.lang.String type) {
+		_syncDLObject.setType(type);
+	}
+
+	/**
+	* Sets the type p k of this sync d l object.
+	*
+	* @param typePK the type p k of this sync d l object
+	*/
+	@Override
+	public void setTypePK(long typePK) {
+		_syncDLObject.setTypePK(typePK);
+	}
+
+	/**
+	* Sets the type uuid of this sync d l object.
+	*
+	* @param typeUuid the type uuid of this sync d l object
+	*/
+	@Override
+	public void setTypeUuid(java.lang.String typeUuid) {
+		_syncDLObject.setTypeUuid(typeUuid);
+	}
+
+	/**
+	* Sets the version of this sync d l object.
+	*
+	* @param version the version of this sync d l object
+	*/
+	@Override
+	public void setVersion(java.lang.String version) {
+		_syncDLObject.setVersion(version);
 	}
 
 	@Override
@@ -775,33 +790,18 @@ public class SyncDLObjectWrapper implements SyncDLObject,
 	}
 
 	@Override
-	public com.liferay.sync.model.SyncDLObject toUnescapedModel() {
-		return new SyncDLObjectWrapper(_syncDLObject.toUnescapedModel());
-	}
-
-	@Override
 	public java.lang.String toString() {
 		return _syncDLObject.toString();
 	}
 
 	@Override
+	public com.liferay.sync.model.SyncDLObject toUnescapedModel() {
+		return new SyncDLObjectWrapper(_syncDLObject.toUnescapedModel());
+	}
+
+	@Override
 	public java.lang.String toXmlString() {
 		return _syncDLObject.toXmlString();
-	}
-
-	@Override
-	public void persist() {
-		_syncDLObject.persist();
-	}
-
-	@Override
-	public void setCreateDate(java.util.Date createDate) {
-		_syncDLObject.setCreateDate(createDate);
-	}
-
-	@Override
-	public void setModifiedDate(java.util.Date modifiedDate) {
-		_syncDLObject.setModifiedDate(modifiedDate);
 	}
 
 	@Override

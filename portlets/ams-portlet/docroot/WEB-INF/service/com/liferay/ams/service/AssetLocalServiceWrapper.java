@@ -53,6 +53,18 @@ public class AssetLocalServiceWrapper implements AssetLocalService,
 	}
 
 	/**
+	* Deletes the asset from the database. Also notifies the appropriate model listeners.
+	*
+	* @param asset the asset
+	* @return the asset that was removed
+	*/
+	@Override
+	public com.liferay.ams.model.Asset deleteAsset(
+		com.liferay.ams.model.Asset asset) {
+		return _assetLocalService.deleteAsset(asset);
+	}
+
+	/**
 	* Deletes the asset with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param assetId the primary key of the asset
@@ -66,15 +78,13 @@ public class AssetLocalServiceWrapper implements AssetLocalService,
 	}
 
 	/**
-	* Deletes the asset from the database. Also notifies the appropriate model listeners.
-	*
-	* @param asset the asset
-	* @return the asset that was removed
+	* @throws PortalException
 	*/
 	@Override
-	public com.liferay.ams.model.Asset deleteAsset(
-		com.liferay.ams.model.Asset asset) {
-		return _assetLocalService.deleteAsset(asset);
+	public com.liferay.portal.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.model.PersistedModel persistedModel)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _assetLocalService.deletePersistedModel(persistedModel);
 	}
 
 	@Override
@@ -166,6 +176,11 @@ public class AssetLocalServiceWrapper implements AssetLocalService,
 		return _assetLocalService.fetchAsset(assetId);
 	}
 
+	@Override
+	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
+		return _assetLocalService.getActionableDynamicQuery();
+	}
+
 	/**
 	* Returns the asset with the primary key.
 	*
@@ -177,28 +192,6 @@ public class AssetLocalServiceWrapper implements AssetLocalService,
 	public com.liferay.ams.model.Asset getAsset(long assetId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _assetLocalService.getAsset(assetId);
-	}
-
-	@Override
-	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
-		return _assetLocalService.getActionableDynamicQuery();
-	}
-
-	/**
-	* @throws PortalException
-	*/
-	@Override
-	public com.liferay.portal.model.PersistedModel deletePersistedModel(
-		com.liferay.portal.model.PersistedModel persistedModel)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _assetLocalService.deletePersistedModel(persistedModel);
-	}
-
-	@Override
-	public com.liferay.portal.model.PersistedModel getPersistedModel(
-		java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _assetLocalService.getPersistedModel(primaryKeyObj);
 	}
 
 	/**
@@ -229,18 +222,6 @@ public class AssetLocalServiceWrapper implements AssetLocalService,
 	}
 
 	/**
-	* Updates the asset in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	*
-	* @param asset the asset
-	* @return the asset that was updated
-	*/
-	@Override
-	public com.liferay.ams.model.Asset updateAsset(
-		com.liferay.ams.model.Asset asset) {
-		return _assetLocalService.updateAsset(asset);
-	}
-
-	/**
 	* Returns the Spring bean ID for this bean.
 	*
 	* @return the Spring bean ID for this bean
@@ -248,6 +229,20 @@ public class AssetLocalServiceWrapper implements AssetLocalService,
 	@Override
 	public java.lang.String getBeanIdentifier() {
 		return _assetLocalService.getBeanIdentifier();
+	}
+
+	@Override
+	public com.liferay.portal.model.PersistedModel getPersistedModel(
+		java.io.Serializable primaryKeyObj)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _assetLocalService.getPersistedModel(primaryKeyObj);
+	}
+
+	@Override
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return _assetLocalService.invokeMethod(name, parameterTypes, arguments);
 	}
 
 	/**
@@ -260,11 +255,16 @@ public class AssetLocalServiceWrapper implements AssetLocalService,
 		_assetLocalService.setBeanIdentifier(beanIdentifier);
 	}
 
+	/**
+	* Updates the asset in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	*
+	* @param asset the asset
+	* @return the asset that was updated
+	*/
 	@Override
-	public java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable {
-		return _assetLocalService.invokeMethod(name, parameterTypes, arguments);
+	public com.liferay.ams.model.Asset updateAsset(
+		com.liferay.ams.model.Asset asset) {
+		return _assetLocalService.updateAsset(asset);
 	}
 
 	/**

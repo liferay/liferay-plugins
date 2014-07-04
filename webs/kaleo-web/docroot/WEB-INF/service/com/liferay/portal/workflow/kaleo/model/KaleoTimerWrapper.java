@@ -175,264 +175,15 @@ public class KaleoTimerWrapper implements KaleoTimer, ModelWrapper<KaleoTimer> {
 		}
 	}
 
-	/**
-	* Returns the primary key of this kaleo timer.
-	*
-	* @return the primary key of this kaleo timer
-	*/
 	@Override
-	public long getPrimaryKey() {
-		return _kaleoTimer.getPrimaryKey();
+	public java.lang.Object clone() {
+		return new KaleoTimerWrapper((KaleoTimer)_kaleoTimer.clone());
 	}
 
-	/**
-	* Sets the primary key of this kaleo timer.
-	*
-	* @param primaryKey the primary key of this kaleo timer
-	*/
 	@Override
-	public void setPrimaryKey(long primaryKey) {
-		_kaleoTimer.setPrimaryKey(primaryKey);
-	}
-
-	/**
-	* Returns the kaleo timer ID of this kaleo timer.
-	*
-	* @return the kaleo timer ID of this kaleo timer
-	*/
-	@Override
-	public long getKaleoTimerId() {
-		return _kaleoTimer.getKaleoTimerId();
-	}
-
-	/**
-	* Sets the kaleo timer ID of this kaleo timer.
-	*
-	* @param kaleoTimerId the kaleo timer ID of this kaleo timer
-	*/
-	@Override
-	public void setKaleoTimerId(long kaleoTimerId) {
-		_kaleoTimer.setKaleoTimerId(kaleoTimerId);
-	}
-
-	/**
-	* Returns the group ID of this kaleo timer.
-	*
-	* @return the group ID of this kaleo timer
-	*/
-	@Override
-	public long getGroupId() {
-		return _kaleoTimer.getGroupId();
-	}
-
-	/**
-	* Sets the group ID of this kaleo timer.
-	*
-	* @param groupId the group ID of this kaleo timer
-	*/
-	@Override
-	public void setGroupId(long groupId) {
-		_kaleoTimer.setGroupId(groupId);
-	}
-
-	/**
-	* Returns the company ID of this kaleo timer.
-	*
-	* @return the company ID of this kaleo timer
-	*/
-	@Override
-	public long getCompanyId() {
-		return _kaleoTimer.getCompanyId();
-	}
-
-	/**
-	* Sets the company ID of this kaleo timer.
-	*
-	* @param companyId the company ID of this kaleo timer
-	*/
-	@Override
-	public void setCompanyId(long companyId) {
-		_kaleoTimer.setCompanyId(companyId);
-	}
-
-	/**
-	* Returns the user ID of this kaleo timer.
-	*
-	* @return the user ID of this kaleo timer
-	*/
-	@Override
-	public long getUserId() {
-		return _kaleoTimer.getUserId();
-	}
-
-	/**
-	* Sets the user ID of this kaleo timer.
-	*
-	* @param userId the user ID of this kaleo timer
-	*/
-	@Override
-	public void setUserId(long userId) {
-		_kaleoTimer.setUserId(userId);
-	}
-
-	/**
-	* Returns the user uuid of this kaleo timer.
-	*
-	* @return the user uuid of this kaleo timer
-	*/
-	@Override
-	public java.lang.String getUserUuid() {
-		return _kaleoTimer.getUserUuid();
-	}
-
-	/**
-	* Sets the user uuid of this kaleo timer.
-	*
-	* @param userUuid the user uuid of this kaleo timer
-	*/
-	@Override
-	public void setUserUuid(java.lang.String userUuid) {
-		_kaleoTimer.setUserUuid(userUuid);
-	}
-
-	/**
-	* Returns the user name of this kaleo timer.
-	*
-	* @return the user name of this kaleo timer
-	*/
-	@Override
-	public java.lang.String getUserName() {
-		return _kaleoTimer.getUserName();
-	}
-
-	/**
-	* Sets the user name of this kaleo timer.
-	*
-	* @param userName the user name of this kaleo timer
-	*/
-	@Override
-	public void setUserName(java.lang.String userName) {
-		_kaleoTimer.setUserName(userName);
-	}
-
-	/**
-	* Returns the create date of this kaleo timer.
-	*
-	* @return the create date of this kaleo timer
-	*/
-	@Override
-	public java.util.Date getCreateDate() {
-		return _kaleoTimer.getCreateDate();
-	}
-
-	/**
-	* Sets the create date of this kaleo timer.
-	*
-	* @param createDate the create date of this kaleo timer
-	*/
-	@Override
-	public void setCreateDate(java.util.Date createDate) {
-		_kaleoTimer.setCreateDate(createDate);
-	}
-
-	/**
-	* Returns the modified date of this kaleo timer.
-	*
-	* @return the modified date of this kaleo timer
-	*/
-	@Override
-	public java.util.Date getModifiedDate() {
-		return _kaleoTimer.getModifiedDate();
-	}
-
-	/**
-	* Sets the modified date of this kaleo timer.
-	*
-	* @param modifiedDate the modified date of this kaleo timer
-	*/
-	@Override
-	public void setModifiedDate(java.util.Date modifiedDate) {
-		_kaleoTimer.setModifiedDate(modifiedDate);
-	}
-
-	/**
-	* Returns the kaleo class name of this kaleo timer.
-	*
-	* @return the kaleo class name of this kaleo timer
-	*/
-	@Override
-	public java.lang.String getKaleoClassName() {
-		return _kaleoTimer.getKaleoClassName();
-	}
-
-	/**
-	* Sets the kaleo class name of this kaleo timer.
-	*
-	* @param kaleoClassName the kaleo class name of this kaleo timer
-	*/
-	@Override
-	public void setKaleoClassName(java.lang.String kaleoClassName) {
-		_kaleoTimer.setKaleoClassName(kaleoClassName);
-	}
-
-	/**
-	* Returns the kaleo class p k of this kaleo timer.
-	*
-	* @return the kaleo class p k of this kaleo timer
-	*/
-	@Override
-	public long getKaleoClassPK() {
-		return _kaleoTimer.getKaleoClassPK();
-	}
-
-	/**
-	* Sets the kaleo class p k of this kaleo timer.
-	*
-	* @param kaleoClassPK the kaleo class p k of this kaleo timer
-	*/
-	@Override
-	public void setKaleoClassPK(long kaleoClassPK) {
-		_kaleoTimer.setKaleoClassPK(kaleoClassPK);
-	}
-
-	/**
-	* Returns the kaleo definition ID of this kaleo timer.
-	*
-	* @return the kaleo definition ID of this kaleo timer
-	*/
-	@Override
-	public long getKaleoDefinitionId() {
-		return _kaleoTimer.getKaleoDefinitionId();
-	}
-
-	/**
-	* Sets the kaleo definition ID of this kaleo timer.
-	*
-	* @param kaleoDefinitionId the kaleo definition ID of this kaleo timer
-	*/
-	@Override
-	public void setKaleoDefinitionId(long kaleoDefinitionId) {
-		_kaleoTimer.setKaleoDefinitionId(kaleoDefinitionId);
-	}
-
-	/**
-	* Returns the name of this kaleo timer.
-	*
-	* @return the name of this kaleo timer
-	*/
-	@Override
-	public java.lang.String getName() {
-		return _kaleoTimer.getName();
-	}
-
-	/**
-	* Sets the name of this kaleo timer.
-	*
-	* @param name the name of this kaleo timer
-	*/
-	@Override
-	public void setName(java.lang.String name) {
-		_kaleoTimer.setName(name);
+	public int compareTo(
+		com.liferay.portal.workflow.kaleo.model.KaleoTimer kaleoTimer) {
+		return _kaleoTimer.compareTo(kaleoTimer);
 	}
 
 	/**
@@ -446,23 +197,23 @@ public class KaleoTimerWrapper implements KaleoTimer, ModelWrapper<KaleoTimer> {
 	}
 
 	/**
-	* Returns <code>true</code> if this kaleo timer is blocking.
+	* Returns the company ID of this kaleo timer.
 	*
-	* @return <code>true</code> if this kaleo timer is blocking; <code>false</code> otherwise
+	* @return the company ID of this kaleo timer
 	*/
 	@Override
-	public boolean isBlocking() {
-		return _kaleoTimer.isBlocking();
+	public long getCompanyId() {
+		return _kaleoTimer.getCompanyId();
 	}
 
 	/**
-	* Sets whether this kaleo timer is blocking.
+	* Returns the create date of this kaleo timer.
 	*
-	* @param blocking the blocking of this kaleo timer
+	* @return the create date of this kaleo timer
 	*/
 	@Override
-	public void setBlocking(boolean blocking) {
-		_kaleoTimer.setBlocking(blocking);
+	public java.util.Date getCreateDate() {
+		return _kaleoTimer.getCreateDate();
 	}
 
 	/**
@@ -476,16 +227,6 @@ public class KaleoTimerWrapper implements KaleoTimer, ModelWrapper<KaleoTimer> {
 	}
 
 	/**
-	* Sets the description of this kaleo timer.
-	*
-	* @param description the description of this kaleo timer
-	*/
-	@Override
-	public void setDescription(java.lang.String description) {
-		_kaleoTimer.setDescription(description);
-	}
-
-	/**
 	* Returns the duration of this kaleo timer.
 	*
 	* @return the duration of this kaleo timer
@@ -495,34 +236,99 @@ public class KaleoTimerWrapper implements KaleoTimer, ModelWrapper<KaleoTimer> {
 		return _kaleoTimer.getDuration();
 	}
 
-	/**
-	* Sets the duration of this kaleo timer.
-	*
-	* @param duration the duration of this kaleo timer
-	*/
 	@Override
-	public void setDuration(double duration) {
-		_kaleoTimer.setDuration(duration);
+	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {
+		return _kaleoTimer.getExpandoBridge();
 	}
 
 	/**
-	* Returns the scale of this kaleo timer.
+	* Returns the group ID of this kaleo timer.
 	*
-	* @return the scale of this kaleo timer
+	* @return the group ID of this kaleo timer
 	*/
 	@Override
-	public java.lang.String getScale() {
-		return _kaleoTimer.getScale();
+	public long getGroupId() {
+		return _kaleoTimer.getGroupId();
 	}
 
 	/**
-	* Sets the scale of this kaleo timer.
+	* Returns the kaleo class name of this kaleo timer.
 	*
-	* @param scale the scale of this kaleo timer
+	* @return the kaleo class name of this kaleo timer
 	*/
 	@Override
-	public void setScale(java.lang.String scale) {
-		_kaleoTimer.setScale(scale);
+	public java.lang.String getKaleoClassName() {
+		return _kaleoTimer.getKaleoClassName();
+	}
+
+	/**
+	* Returns the kaleo class p k of this kaleo timer.
+	*
+	* @return the kaleo class p k of this kaleo timer
+	*/
+	@Override
+	public long getKaleoClassPK() {
+		return _kaleoTimer.getKaleoClassPK();
+	}
+
+	/**
+	* Returns the kaleo definition ID of this kaleo timer.
+	*
+	* @return the kaleo definition ID of this kaleo timer
+	*/
+	@Override
+	public long getKaleoDefinitionId() {
+		return _kaleoTimer.getKaleoDefinitionId();
+	}
+
+	@Override
+	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment> getKaleoTaskReassignments() {
+		return _kaleoTimer.getKaleoTaskReassignments();
+	}
+
+	/**
+	* Returns the kaleo timer ID of this kaleo timer.
+	*
+	* @return the kaleo timer ID of this kaleo timer
+	*/
+	@Override
+	public long getKaleoTimerId() {
+		return _kaleoTimer.getKaleoTimerId();
+	}
+
+	/**
+	* Returns the modified date of this kaleo timer.
+	*
+	* @return the modified date of this kaleo timer
+	*/
+	@Override
+	public java.util.Date getModifiedDate() {
+		return _kaleoTimer.getModifiedDate();
+	}
+
+	/**
+	* Returns the name of this kaleo timer.
+	*
+	* @return the name of this kaleo timer
+	*/
+	@Override
+	public java.lang.String getName() {
+		return _kaleoTimer.getName();
+	}
+
+	/**
+	* Returns the primary key of this kaleo timer.
+	*
+	* @return the primary key of this kaleo timer
+	*/
+	@Override
+	public long getPrimaryKey() {
+		return _kaleoTimer.getPrimaryKey();
+	}
+
+	@Override
+	public java.io.Serializable getPrimaryKeyObj() {
+		return _kaleoTimer.getPrimaryKeyObj();
 	}
 
 	/**
@@ -536,16 +342,6 @@ public class KaleoTimerWrapper implements KaleoTimer, ModelWrapper<KaleoTimer> {
 	}
 
 	/**
-	* Sets the recurrence duration of this kaleo timer.
-	*
-	* @param recurrenceDuration the recurrence duration of this kaleo timer
-	*/
-	@Override
-	public void setRecurrenceDuration(double recurrenceDuration) {
-		_kaleoTimer.setRecurrenceDuration(recurrenceDuration);
-	}
-
-	/**
 	* Returns the recurrence scale of this kaleo timer.
 	*
 	* @return the recurrence scale of this kaleo timer
@@ -556,23 +352,58 @@ public class KaleoTimerWrapper implements KaleoTimer, ModelWrapper<KaleoTimer> {
 	}
 
 	/**
-	* Sets the recurrence scale of this kaleo timer.
+	* Returns the scale of this kaleo timer.
 	*
-	* @param recurrenceScale the recurrence scale of this kaleo timer
+	* @return the scale of this kaleo timer
 	*/
 	@Override
-	public void setRecurrenceScale(java.lang.String recurrenceScale) {
-		_kaleoTimer.setRecurrenceScale(recurrenceScale);
+	public java.lang.String getScale() {
+		return _kaleoTimer.getScale();
+	}
+
+	/**
+	* Returns the user ID of this kaleo timer.
+	*
+	* @return the user ID of this kaleo timer
+	*/
+	@Override
+	public long getUserId() {
+		return _kaleoTimer.getUserId();
+	}
+
+	/**
+	* Returns the user name of this kaleo timer.
+	*
+	* @return the user name of this kaleo timer
+	*/
+	@Override
+	public java.lang.String getUserName() {
+		return _kaleoTimer.getUserName();
+	}
+
+	/**
+	* Returns the user uuid of this kaleo timer.
+	*
+	* @return the user uuid of this kaleo timer
+	*/
+	@Override
+	public java.lang.String getUserUuid() {
+		return _kaleoTimer.getUserUuid();
 	}
 
 	@Override
-	public boolean isNew() {
-		return _kaleoTimer.isNew();
+	public int hashCode() {
+		return _kaleoTimer.hashCode();
 	}
 
+	/**
+	* Returns <code>true</code> if this kaleo timer is blocking.
+	*
+	* @return <code>true</code> if this kaleo timer is blocking; <code>false</code> otherwise
+	*/
 	@Override
-	public void setNew(boolean n) {
-		_kaleoTimer.setNew(n);
+	public boolean isBlocking() {
+		return _kaleoTimer.isBlocking();
 	}
 
 	@Override
@@ -581,28 +412,78 @@ public class KaleoTimerWrapper implements KaleoTimer, ModelWrapper<KaleoTimer> {
 	}
 
 	@Override
-	public void setCachedModel(boolean cachedModel) {
-		_kaleoTimer.setCachedModel(cachedModel);
-	}
-
-	@Override
 	public boolean isEscapedModel() {
 		return _kaleoTimer.isEscapedModel();
 	}
 
 	@Override
-	public java.io.Serializable getPrimaryKeyObj() {
-		return _kaleoTimer.getPrimaryKeyObj();
+	public boolean isNew() {
+		return _kaleoTimer.isNew();
 	}
 
 	@Override
-	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
-		_kaleoTimer.setPrimaryKeyObj(primaryKeyObj);
+	public boolean isRecurring() {
+		return _kaleoTimer.isRecurring();
 	}
 
 	@Override
-	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {
-		return _kaleoTimer.getExpandoBridge();
+	public void persist() {
+		_kaleoTimer.persist();
+	}
+
+	/**
+	* Sets whether this kaleo timer is blocking.
+	*
+	* @param blocking the blocking of this kaleo timer
+	*/
+	@Override
+	public void setBlocking(boolean blocking) {
+		_kaleoTimer.setBlocking(blocking);
+	}
+
+	@Override
+	public void setCachedModel(boolean cachedModel) {
+		_kaleoTimer.setCachedModel(cachedModel);
+	}
+
+	/**
+	* Sets the company ID of this kaleo timer.
+	*
+	* @param companyId the company ID of this kaleo timer
+	*/
+	@Override
+	public void setCompanyId(long companyId) {
+		_kaleoTimer.setCompanyId(companyId);
+	}
+
+	/**
+	* Sets the create date of this kaleo timer.
+	*
+	* @param createDate the create date of this kaleo timer
+	*/
+	@Override
+	public void setCreateDate(java.util.Date createDate) {
+		_kaleoTimer.setCreateDate(createDate);
+	}
+
+	/**
+	* Sets the description of this kaleo timer.
+	*
+	* @param description the description of this kaleo timer
+	*/
+	@Override
+	public void setDescription(java.lang.String description) {
+		_kaleoTimer.setDescription(description);
+	}
+
+	/**
+	* Sets the duration of this kaleo timer.
+	*
+	* @param duration the duration of this kaleo timer
+	*/
+	@Override
+	public void setDuration(double duration) {
+		_kaleoTimer.setDuration(duration);
 	}
 
 	@Override
@@ -623,20 +504,154 @@ public class KaleoTimerWrapper implements KaleoTimer, ModelWrapper<KaleoTimer> {
 		_kaleoTimer.setExpandoBridgeAttributes(serviceContext);
 	}
 
+	/**
+	* Sets the group ID of this kaleo timer.
+	*
+	* @param groupId the group ID of this kaleo timer
+	*/
 	@Override
-	public java.lang.Object clone() {
-		return new KaleoTimerWrapper((KaleoTimer)_kaleoTimer.clone());
+	public void setGroupId(long groupId) {
+		_kaleoTimer.setGroupId(groupId);
+	}
+
+	/**
+	* Sets the kaleo class name of this kaleo timer.
+	*
+	* @param kaleoClassName the kaleo class name of this kaleo timer
+	*/
+	@Override
+	public void setKaleoClassName(java.lang.String kaleoClassName) {
+		_kaleoTimer.setKaleoClassName(kaleoClassName);
+	}
+
+	/**
+	* Sets the kaleo class p k of this kaleo timer.
+	*
+	* @param kaleoClassPK the kaleo class p k of this kaleo timer
+	*/
+	@Override
+	public void setKaleoClassPK(long kaleoClassPK) {
+		_kaleoTimer.setKaleoClassPK(kaleoClassPK);
+	}
+
+	/**
+	* Sets the kaleo definition ID of this kaleo timer.
+	*
+	* @param kaleoDefinitionId the kaleo definition ID of this kaleo timer
+	*/
+	@Override
+	public void setKaleoDefinitionId(long kaleoDefinitionId) {
+		_kaleoTimer.setKaleoDefinitionId(kaleoDefinitionId);
+	}
+
+	/**
+	* Sets the kaleo timer ID of this kaleo timer.
+	*
+	* @param kaleoTimerId the kaleo timer ID of this kaleo timer
+	*/
+	@Override
+	public void setKaleoTimerId(long kaleoTimerId) {
+		_kaleoTimer.setKaleoTimerId(kaleoTimerId);
+	}
+
+	/**
+	* Sets the modified date of this kaleo timer.
+	*
+	* @param modifiedDate the modified date of this kaleo timer
+	*/
+	@Override
+	public void setModifiedDate(java.util.Date modifiedDate) {
+		_kaleoTimer.setModifiedDate(modifiedDate);
+	}
+
+	/**
+	* Sets the name of this kaleo timer.
+	*
+	* @param name the name of this kaleo timer
+	*/
+	@Override
+	public void setName(java.lang.String name) {
+		_kaleoTimer.setName(name);
 	}
 
 	@Override
-	public int compareTo(
-		com.liferay.portal.workflow.kaleo.model.KaleoTimer kaleoTimer) {
-		return _kaleoTimer.compareTo(kaleoTimer);
+	public void setNew(boolean n) {
+		_kaleoTimer.setNew(n);
+	}
+
+	/**
+	* Sets the primary key of this kaleo timer.
+	*
+	* @param primaryKey the primary key of this kaleo timer
+	*/
+	@Override
+	public void setPrimaryKey(long primaryKey) {
+		_kaleoTimer.setPrimaryKey(primaryKey);
 	}
 
 	@Override
-	public int hashCode() {
-		return _kaleoTimer.hashCode();
+	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
+		_kaleoTimer.setPrimaryKeyObj(primaryKeyObj);
+	}
+
+	/**
+	* Sets the recurrence duration of this kaleo timer.
+	*
+	* @param recurrenceDuration the recurrence duration of this kaleo timer
+	*/
+	@Override
+	public void setRecurrenceDuration(double recurrenceDuration) {
+		_kaleoTimer.setRecurrenceDuration(recurrenceDuration);
+	}
+
+	/**
+	* Sets the recurrence scale of this kaleo timer.
+	*
+	* @param recurrenceScale the recurrence scale of this kaleo timer
+	*/
+	@Override
+	public void setRecurrenceScale(java.lang.String recurrenceScale) {
+		_kaleoTimer.setRecurrenceScale(recurrenceScale);
+	}
+
+	/**
+	* Sets the scale of this kaleo timer.
+	*
+	* @param scale the scale of this kaleo timer
+	*/
+	@Override
+	public void setScale(java.lang.String scale) {
+		_kaleoTimer.setScale(scale);
+	}
+
+	/**
+	* Sets the user ID of this kaleo timer.
+	*
+	* @param userId the user ID of this kaleo timer
+	*/
+	@Override
+	public void setUserId(long userId) {
+		_kaleoTimer.setUserId(userId);
+	}
+
+	/**
+	* Sets the user name of this kaleo timer.
+	*
+	* @param userName the user name of this kaleo timer
+	*/
+	@Override
+	public void setUserName(java.lang.String userName) {
+		_kaleoTimer.setUserName(userName);
+	}
+
+	/**
+	* Sets the user uuid of this kaleo timer.
+	*
+	* @param userUuid the user uuid of this kaleo timer
+	*/
+	@Override
+	public void setUserUuid(java.lang.String userUuid) {
+		_kaleoTimer.setUserUuid(userUuid);
 	}
 
 	@Override
@@ -650,33 +665,18 @@ public class KaleoTimerWrapper implements KaleoTimer, ModelWrapper<KaleoTimer> {
 	}
 
 	@Override
-	public com.liferay.portal.workflow.kaleo.model.KaleoTimer toUnescapedModel() {
-		return new KaleoTimerWrapper(_kaleoTimer.toUnescapedModel());
-	}
-
-	@Override
 	public java.lang.String toString() {
 		return _kaleoTimer.toString();
 	}
 
 	@Override
+	public com.liferay.portal.workflow.kaleo.model.KaleoTimer toUnescapedModel() {
+		return new KaleoTimerWrapper(_kaleoTimer.toUnescapedModel());
+	}
+
+	@Override
 	public java.lang.String toXmlString() {
 		return _kaleoTimer.toXmlString();
-	}
-
-	@Override
-	public void persist() {
-		_kaleoTimer.persist();
-	}
-
-	@Override
-	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment> getKaleoTaskReassignments() {
-		return _kaleoTimer.getKaleoTaskReassignments();
-	}
-
-	@Override
-	public boolean isRecurring() {
-		return _kaleoTimer.isRecurring();
 	}
 
 	@Override

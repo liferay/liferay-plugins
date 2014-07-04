@@ -38,6 +38,10 @@ public class WordsServiceUtil {
 	 *
 	 * Never modify this class directly. Add custom service methods to {@link com.liferay.words.service.impl.WordsServiceImpl} and rerun ServiceBuilder to regenerate this class.
 	 */
+	public static java.util.List<java.lang.String> checkSpelling(
+		java.lang.String text) throws java.lang.Exception {
+		return getService().checkSpelling(text);
+	}
 
 	/**
 	* Returns the Spring bean ID for this bean.
@@ -48,13 +52,9 @@ public class WordsServiceUtil {
 		return getService().getBeanIdentifier();
 	}
 
-	/**
-	* Sets the Spring bean ID for this bean.
-	*
-	* @param beanIdentifier the Spring bean ID for this bean
-	*/
-	public static void setBeanIdentifier(java.lang.String beanIdentifier) {
-		getService().setBeanIdentifier(beanIdentifier);
+	public static java.util.List<java.lang.String> getSuggestions(
+		java.lang.String word) throws java.lang.Exception {
+		return getService().getSuggestions(word);
 	}
 
 	public static java.lang.Object invokeMethod(java.lang.String name,
@@ -63,14 +63,13 @@ public class WordsServiceUtil {
 		return getService().invokeMethod(name, parameterTypes, arguments);
 	}
 
-	public static java.util.List<java.lang.String> checkSpelling(
-		java.lang.String text) throws java.lang.Exception {
-		return getService().checkSpelling(text);
-	}
-
-	public static java.util.List<java.lang.String> getSuggestions(
-		java.lang.String word) throws java.lang.Exception {
-		return getService().getSuggestions(word);
+	/**
+	* Sets the Spring bean ID for this bean.
+	*
+	* @param beanIdentifier the Spring bean ID for this bean
+	*/
+	public static void setBeanIdentifier(java.lang.String beanIdentifier) {
+		getService().setBeanIdentifier(beanIdentifier);
 	}
 
 	public static void clearService() {

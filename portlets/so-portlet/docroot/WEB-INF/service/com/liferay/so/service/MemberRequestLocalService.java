@@ -16,6 +16,7 @@ package com.liferay.so.service;
 
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.search.IndexableType;
 import com.liferay.portal.kernel.transaction.Isolation;
 import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
@@ -51,8 +52,27 @@ public interface MemberRequestLocalService extends BaseLocalService,
 	* @param memberRequest the member request
 	* @return the member request that was added
 	*/
+	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.REINDEX)
 	public com.liferay.so.model.MemberRequest addMemberRequest(
 		com.liferay.so.model.MemberRequest memberRequest);
+
+	public com.liferay.so.model.MemberRequest addMemberRequest(long userId,
+		long groupId, long receiverUserId,
+		java.lang.String receiverEmailAddress, long invitedRoleId,
+		long invitedTeamId,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException;
+
+	public void addMemberRequests(long userId, long groupId,
+		java.lang.String[] emailAddresses, long invitedRoleId,
+		long invitedTeamId,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException;
+
+	public void addMemberRequests(long userId, long groupId,
+		long[] receiverUserIds, long invitedRoleId, long invitedTeamId,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	/**
 	* Creates a new member request with the primary key. Does not add the member request to the database.
@@ -64,24 +84,34 @@ public interface MemberRequestLocalService extends BaseLocalService,
 		long memberRequestId);
 
 	/**
+	* Deletes the member request from the database. Also notifies the appropriate model listeners.
+	*
+	* @param memberRequest the member request
+	* @return the member request that was removed
+	*/
+	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.DELETE)
+	public com.liferay.so.model.MemberRequest deleteMemberRequest(
+		com.liferay.so.model.MemberRequest memberRequest);
+
+	/**
 	* Deletes the member request with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param memberRequestId the primary key of the member request
 	* @return the member request that was removed
 	* @throws PortalException if a member request with the primary key could not be found
 	*/
+	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.DELETE)
 	public com.liferay.so.model.MemberRequest deleteMemberRequest(
 		long memberRequestId)
 		throws com.liferay.portal.kernel.exception.PortalException;
 
 	/**
-	* Deletes the member request from the database. Also notifies the appropriate model listeners.
-	*
-	* @param memberRequest the member request
-	* @return the member request that was removed
+	* @throws PortalException
 	*/
-	public com.liferay.so.model.MemberRequest deleteMemberRequest(
-		com.liferay.so.model.MemberRequest memberRequest);
+	@Override
+	public com.liferay.portal.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.model.PersistedModel persistedModel)
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery();
 
@@ -152,6 +182,21 @@ public interface MemberRequestLocalService extends BaseLocalService,
 	public com.liferay.so.model.MemberRequest fetchMemberRequest(
 		long memberRequestId);
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery();
+
+	/**
+	* Returns the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
+	*/
+	public java.lang.String getBeanIdentifier();
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.liferay.so.model.MemberRequest getMemberRequest(long groupId,
+		long receiverUserId, int status)
+		throws com.liferay.portal.kernel.exception.PortalException;
+
 	/**
 	* Returns the member request with the primary key.
 	*
@@ -162,23 +207,6 @@ public interface MemberRequestLocalService extends BaseLocalService,
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.so.model.MemberRequest getMemberRequest(
 		long memberRequestId)
-		throws com.liferay.portal.kernel.exception.PortalException;
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery();
-
-	/**
-	* @throws PortalException
-	*/
-	@Override
-	public com.liferay.portal.model.PersistedModel deletePersistedModel(
-		com.liferay.portal.model.PersistedModel persistedModel)
-		throws com.liferay.portal.kernel.exception.PortalException;
-
-	@Override
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.portal.model.PersistedModel getPersistedModel(
-		java.io.Serializable primaryKeyObj)
 		throws com.liferay.portal.kernel.exception.PortalException;
 
 	/**
@@ -204,55 +232,10 @@ public interface MemberRequestLocalService extends BaseLocalService,
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getMemberRequestsCount();
 
-	/**
-	* Updates the member request in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	*
-	* @param memberRequest the member request
-	* @return the member request that was updated
-	*/
-	public com.liferay.so.model.MemberRequest updateMemberRequest(
-		com.liferay.so.model.MemberRequest memberRequest);
-
-	/**
-	* Returns the Spring bean ID for this bean.
-	*
-	* @return the Spring bean ID for this bean
-	*/
-	public java.lang.String getBeanIdentifier();
-
-	/**
-	* Sets the Spring bean ID for this bean.
-	*
-	* @param beanIdentifier the Spring bean ID for this bean
-	*/
-	public void setBeanIdentifier(java.lang.String beanIdentifier);
-
 	@Override
-	public java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable;
-
-	public com.liferay.so.model.MemberRequest addMemberRequest(long userId,
-		long groupId, long receiverUserId,
-		java.lang.String receiverEmailAddress, long invitedRoleId,
-		long invitedTeamId,
-		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException;
-
-	public void addMemberRequests(long userId, long groupId,
-		long[] receiverUserIds, long invitedRoleId, long invitedTeamId,
-		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException;
-
-	public void addMemberRequests(long userId, long groupId,
-		java.lang.String[] emailAddresses, long invitedRoleId,
-		long invitedTeamId,
-		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException;
-
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.so.model.MemberRequest getMemberRequest(long groupId,
-		long receiverUserId, int status)
+	public com.liferay.portal.model.PersistedModel getPersistedModel(
+		java.io.Serializable primaryKeyObj)
 		throws com.liferay.portal.kernel.exception.PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
@@ -273,10 +256,32 @@ public interface MemberRequestLocalService extends BaseLocalService,
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public boolean hasPendingMemberRequest(long groupId, long receiverUserId);
 
-	public com.liferay.so.model.MemberRequest updateMemberRequest(long userId,
-		long memberRequestId, int status) throws java.lang.Exception;
+	@Override
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable;
+
+	/**
+	* Sets the Spring bean ID for this bean.
+	*
+	* @param beanIdentifier the Spring bean ID for this bean
+	*/
+	public void setBeanIdentifier(java.lang.String beanIdentifier);
 
 	public com.liferay.so.model.MemberRequest updateMemberRequest(
 		java.lang.String key, long receiverUserId)
 		throws com.liferay.portal.kernel.exception.PortalException;
+
+	/**
+	* Updates the member request in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	*
+	* @param memberRequest the member request
+	* @return the member request that was updated
+	*/
+	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.REINDEX)
+	public com.liferay.so.model.MemberRequest updateMemberRequest(
+		com.liferay.so.model.MemberRequest memberRequest);
+
+	public com.liferay.so.model.MemberRequest updateMemberRequest(long userId,
+		long memberRequestId, int status) throws java.lang.Exception;
 }

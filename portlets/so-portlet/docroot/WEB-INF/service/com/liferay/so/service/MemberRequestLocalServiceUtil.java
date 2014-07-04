@@ -50,6 +50,36 @@ public class MemberRequestLocalServiceUtil {
 		return getService().addMemberRequest(memberRequest);
 	}
 
+	public static com.liferay.so.model.MemberRequest addMemberRequest(
+		long userId, long groupId, long receiverUserId,
+		java.lang.String receiverEmailAddress, long invitedRoleId,
+		long invitedTeamId,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService()
+				   .addMemberRequest(userId, groupId, receiverUserId,
+			receiverEmailAddress, invitedRoleId, invitedTeamId, serviceContext);
+	}
+
+	public static void addMemberRequests(long userId, long groupId,
+		java.lang.String[] emailAddresses, long invitedRoleId,
+		long invitedTeamId,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		getService()
+			.addMemberRequests(userId, groupId, emailAddresses, invitedRoleId,
+			invitedTeamId, serviceContext);
+	}
+
+	public static void addMemberRequests(long userId, long groupId,
+		long[] receiverUserIds, long invitedRoleId, long invitedTeamId,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		getService()
+			.addMemberRequests(userId, groupId, receiverUserIds, invitedRoleId,
+			invitedTeamId, serviceContext);
+	}
+
 	/**
 	* Creates a new member request with the primary key. Does not add the member request to the database.
 	*
@@ -59,6 +89,17 @@ public class MemberRequestLocalServiceUtil {
 	public static com.liferay.so.model.MemberRequest createMemberRequest(
 		long memberRequestId) {
 		return getService().createMemberRequest(memberRequestId);
+	}
+
+	/**
+	* Deletes the member request from the database. Also notifies the appropriate model listeners.
+	*
+	* @param memberRequest the member request
+	* @return the member request that was removed
+	*/
+	public static com.liferay.so.model.MemberRequest deleteMemberRequest(
+		com.liferay.so.model.MemberRequest memberRequest) {
+		return getService().deleteMemberRequest(memberRequest);
 	}
 
 	/**
@@ -75,14 +116,12 @@ public class MemberRequestLocalServiceUtil {
 	}
 
 	/**
-	* Deletes the member request from the database. Also notifies the appropriate model listeners.
-	*
-	* @param memberRequest the member request
-	* @return the member request that was removed
+	* @throws PortalException
 	*/
-	public static com.liferay.so.model.MemberRequest deleteMemberRequest(
-		com.liferay.so.model.MemberRequest memberRequest) {
-		return getService().deleteMemberRequest(memberRequest);
+	public static com.liferay.portal.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.model.PersistedModel persistedModel)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().deletePersistedModel(persistedModel);
 	}
 
 	public static com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
@@ -168,6 +207,25 @@ public class MemberRequestLocalServiceUtil {
 		return getService().fetchMemberRequest(memberRequestId);
 	}
 
+	public static com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
+		return getService().getActionableDynamicQuery();
+	}
+
+	/**
+	* Returns the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
+	*/
+	public static java.lang.String getBeanIdentifier() {
+		return getService().getBeanIdentifier();
+	}
+
+	public static com.liferay.so.model.MemberRequest getMemberRequest(
+		long groupId, long receiverUserId, int status)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().getMemberRequest(groupId, receiverUserId, status);
+	}
+
 	/**
 	* Returns the member request with the primary key.
 	*
@@ -179,25 +237,6 @@ public class MemberRequestLocalServiceUtil {
 		long memberRequestId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().getMemberRequest(memberRequestId);
-	}
-
-	public static com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
-		return getService().getActionableDynamicQuery();
-	}
-
-	/**
-	* @throws PortalException
-	*/
-	public static com.liferay.portal.model.PersistedModel deletePersistedModel(
-		com.liferay.portal.model.PersistedModel persistedModel)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().deletePersistedModel(persistedModel);
-	}
-
-	public static com.liferay.portal.model.PersistedModel getPersistedModel(
-		java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().getPersistedModel(primaryKeyObj);
 	}
 
 	/**
@@ -225,75 +264,10 @@ public class MemberRequestLocalServiceUtil {
 		return getService().getMemberRequestsCount();
 	}
 
-	/**
-	* Updates the member request in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	*
-	* @param memberRequest the member request
-	* @return the member request that was updated
-	*/
-	public static com.liferay.so.model.MemberRequest updateMemberRequest(
-		com.liferay.so.model.MemberRequest memberRequest) {
-		return getService().updateMemberRequest(memberRequest);
-	}
-
-	/**
-	* Returns the Spring bean ID for this bean.
-	*
-	* @return the Spring bean ID for this bean
-	*/
-	public static java.lang.String getBeanIdentifier() {
-		return getService().getBeanIdentifier();
-	}
-
-	/**
-	* Sets the Spring bean ID for this bean.
-	*
-	* @param beanIdentifier the Spring bean ID for this bean
-	*/
-	public static void setBeanIdentifier(java.lang.String beanIdentifier) {
-		getService().setBeanIdentifier(beanIdentifier);
-	}
-
-	public static java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable {
-		return getService().invokeMethod(name, parameterTypes, arguments);
-	}
-
-	public static com.liferay.so.model.MemberRequest addMemberRequest(
-		long userId, long groupId, long receiverUserId,
-		java.lang.String receiverEmailAddress, long invitedRoleId,
-		long invitedTeamId,
-		com.liferay.portal.service.ServiceContext serviceContext)
+	public static com.liferay.portal.model.PersistedModel getPersistedModel(
+		java.io.Serializable primaryKeyObj)
 		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService()
-				   .addMemberRequest(userId, groupId, receiverUserId,
-			receiverEmailAddress, invitedRoleId, invitedTeamId, serviceContext);
-	}
-
-	public static void addMemberRequests(long userId, long groupId,
-		long[] receiverUserIds, long invitedRoleId, long invitedTeamId,
-		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		getService()
-			.addMemberRequests(userId, groupId, receiverUserIds, invitedRoleId,
-			invitedTeamId, serviceContext);
-	}
-
-	public static void addMemberRequests(long userId, long groupId,
-		java.lang.String[] emailAddresses, long invitedRoleId,
-		long invitedTeamId,
-		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		getService()
-			.addMemberRequests(userId, groupId, emailAddresses, invitedRoleId,
-			invitedTeamId, serviceContext);
-	}
-
-	public static com.liferay.so.model.MemberRequest getMemberRequest(
-		long groupId, long receiverUserId, int status)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().getMemberRequest(groupId, receiverUserId, status);
+		return getService().getPersistedModel(primaryKeyObj);
 	}
 
 	public static java.util.List<com.liferay.so.model.MemberRequest> getReceiverMemberRequest(
@@ -323,16 +297,42 @@ public class MemberRequestLocalServiceUtil {
 		return getService().hasPendingMemberRequest(groupId, receiverUserId);
 	}
 
-	public static com.liferay.so.model.MemberRequest updateMemberRequest(
-		long userId, long memberRequestId, int status)
-		throws java.lang.Exception {
-		return getService().updateMemberRequest(userId, memberRequestId, status);
+	public static java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return getService().invokeMethod(name, parameterTypes, arguments);
+	}
+
+	/**
+	* Sets the Spring bean ID for this bean.
+	*
+	* @param beanIdentifier the Spring bean ID for this bean
+	*/
+	public static void setBeanIdentifier(java.lang.String beanIdentifier) {
+		getService().setBeanIdentifier(beanIdentifier);
 	}
 
 	public static com.liferay.so.model.MemberRequest updateMemberRequest(
 		java.lang.String key, long receiverUserId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().updateMemberRequest(key, receiverUserId);
+	}
+
+	/**
+	* Updates the member request in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	*
+	* @param memberRequest the member request
+	* @return the member request that was updated
+	*/
+	public static com.liferay.so.model.MemberRequest updateMemberRequest(
+		com.liferay.so.model.MemberRequest memberRequest) {
+		return getService().updateMemberRequest(memberRequest);
+	}
+
+	public static com.liferay.so.model.MemberRequest updateMemberRequest(
+		long userId, long memberRequestId, int status)
+		throws java.lang.Exception {
+		return getService().updateMemberRequest(userId, memberRequestId, status);
 	}
 
 	public static void clearService() {

@@ -39,23 +39,6 @@ public class UserThreadServiceWrapper implements UserThreadService,
 		return _userThreadService.getBeanIdentifier();
 	}
 
-	/**
-	* Sets the Spring bean ID for this bean.
-	*
-	* @param beanIdentifier the Spring bean ID for this bean
-	*/
-	@Override
-	public void setBeanIdentifier(java.lang.String beanIdentifier) {
-		_userThreadService.setBeanIdentifier(beanIdentifier);
-	}
-
-	@Override
-	public java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable {
-		return _userThreadService.invokeMethod(name, parameterTypes, arguments);
-	}
-
 	@Override
 	public com.liferay.portlet.messageboards.model.MBMessage getLastThreadMessage(
 		long mbThreadId)
@@ -82,6 +65,23 @@ public class UserThreadServiceWrapper implements UserThreadService,
 		boolean deleted)
 		throws com.liferay.portal.security.auth.PrincipalException {
 		return _userThreadService.getUserUserThreads(deleted);
+	}
+
+	@Override
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return _userThreadService.invokeMethod(name, parameterTypes, arguments);
+	}
+
+	/**
+	* Sets the Spring bean ID for this bean.
+	*
+	* @param beanIdentifier the Spring bean ID for this bean
+	*/
+	@Override
+	public void setBeanIdentifier(java.lang.String beanIdentifier) {
+		_userThreadService.setBeanIdentifier(beanIdentifier);
 	}
 
 	/**

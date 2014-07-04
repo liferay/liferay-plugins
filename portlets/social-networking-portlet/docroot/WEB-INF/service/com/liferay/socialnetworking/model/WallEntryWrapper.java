@@ -112,184 +112,14 @@ public class WallEntryWrapper implements WallEntry, ModelWrapper<WallEntry> {
 		}
 	}
 
-	/**
-	* Returns the primary key of this wall entry.
-	*
-	* @return the primary key of this wall entry
-	*/
 	@Override
-	public long getPrimaryKey() {
-		return _wallEntry.getPrimaryKey();
+	public java.lang.Object clone() {
+		return new WallEntryWrapper((WallEntry)_wallEntry.clone());
 	}
 
-	/**
-	* Sets the primary key of this wall entry.
-	*
-	* @param primaryKey the primary key of this wall entry
-	*/
 	@Override
-	public void setPrimaryKey(long primaryKey) {
-		_wallEntry.setPrimaryKey(primaryKey);
-	}
-
-	/**
-	* Returns the wall entry ID of this wall entry.
-	*
-	* @return the wall entry ID of this wall entry
-	*/
-	@Override
-	public long getWallEntryId() {
-		return _wallEntry.getWallEntryId();
-	}
-
-	/**
-	* Sets the wall entry ID of this wall entry.
-	*
-	* @param wallEntryId the wall entry ID of this wall entry
-	*/
-	@Override
-	public void setWallEntryId(long wallEntryId) {
-		_wallEntry.setWallEntryId(wallEntryId);
-	}
-
-	/**
-	* Returns the group ID of this wall entry.
-	*
-	* @return the group ID of this wall entry
-	*/
-	@Override
-	public long getGroupId() {
-		return _wallEntry.getGroupId();
-	}
-
-	/**
-	* Sets the group ID of this wall entry.
-	*
-	* @param groupId the group ID of this wall entry
-	*/
-	@Override
-	public void setGroupId(long groupId) {
-		_wallEntry.setGroupId(groupId);
-	}
-
-	/**
-	* Returns the company ID of this wall entry.
-	*
-	* @return the company ID of this wall entry
-	*/
-	@Override
-	public long getCompanyId() {
-		return _wallEntry.getCompanyId();
-	}
-
-	/**
-	* Sets the company ID of this wall entry.
-	*
-	* @param companyId the company ID of this wall entry
-	*/
-	@Override
-	public void setCompanyId(long companyId) {
-		_wallEntry.setCompanyId(companyId);
-	}
-
-	/**
-	* Returns the user ID of this wall entry.
-	*
-	* @return the user ID of this wall entry
-	*/
-	@Override
-	public long getUserId() {
-		return _wallEntry.getUserId();
-	}
-
-	/**
-	* Sets the user ID of this wall entry.
-	*
-	* @param userId the user ID of this wall entry
-	*/
-	@Override
-	public void setUserId(long userId) {
-		_wallEntry.setUserId(userId);
-	}
-
-	/**
-	* Returns the user uuid of this wall entry.
-	*
-	* @return the user uuid of this wall entry
-	*/
-	@Override
-	public java.lang.String getUserUuid() {
-		return _wallEntry.getUserUuid();
-	}
-
-	/**
-	* Sets the user uuid of this wall entry.
-	*
-	* @param userUuid the user uuid of this wall entry
-	*/
-	@Override
-	public void setUserUuid(java.lang.String userUuid) {
-		_wallEntry.setUserUuid(userUuid);
-	}
-
-	/**
-	* Returns the user name of this wall entry.
-	*
-	* @return the user name of this wall entry
-	*/
-	@Override
-	public java.lang.String getUserName() {
-		return _wallEntry.getUserName();
-	}
-
-	/**
-	* Sets the user name of this wall entry.
-	*
-	* @param userName the user name of this wall entry
-	*/
-	@Override
-	public void setUserName(java.lang.String userName) {
-		_wallEntry.setUserName(userName);
-	}
-
-	/**
-	* Returns the create date of this wall entry.
-	*
-	* @return the create date of this wall entry
-	*/
-	@Override
-	public java.util.Date getCreateDate() {
-		return _wallEntry.getCreateDate();
-	}
-
-	/**
-	* Sets the create date of this wall entry.
-	*
-	* @param createDate the create date of this wall entry
-	*/
-	@Override
-	public void setCreateDate(java.util.Date createDate) {
-		_wallEntry.setCreateDate(createDate);
-	}
-
-	/**
-	* Returns the modified date of this wall entry.
-	*
-	* @return the modified date of this wall entry
-	*/
-	@Override
-	public java.util.Date getModifiedDate() {
-		return _wallEntry.getModifiedDate();
-	}
-
-	/**
-	* Sets the modified date of this wall entry.
-	*
-	* @param modifiedDate the modified date of this wall entry
-	*/
-	@Override
-	public void setModifiedDate(java.util.Date modifiedDate) {
-		_wallEntry.setModifiedDate(modifiedDate);
+	public int compareTo(com.liferay.socialnetworking.model.WallEntry wallEntry) {
+		return _wallEntry.compareTo(wallEntry);
 	}
 
 	/**
@@ -303,6 +133,136 @@ public class WallEntryWrapper implements WallEntry, ModelWrapper<WallEntry> {
 	}
 
 	/**
+	* Returns the company ID of this wall entry.
+	*
+	* @return the company ID of this wall entry
+	*/
+	@Override
+	public long getCompanyId() {
+		return _wallEntry.getCompanyId();
+	}
+
+	/**
+	* Returns the create date of this wall entry.
+	*
+	* @return the create date of this wall entry
+	*/
+	@Override
+	public java.util.Date getCreateDate() {
+		return _wallEntry.getCreateDate();
+	}
+
+	@Override
+	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {
+		return _wallEntry.getExpandoBridge();
+	}
+
+	/**
+	* Returns the group ID of this wall entry.
+	*
+	* @return the group ID of this wall entry
+	*/
+	@Override
+	public long getGroupId() {
+		return _wallEntry.getGroupId();
+	}
+
+	/**
+	* Returns the modified date of this wall entry.
+	*
+	* @return the modified date of this wall entry
+	*/
+	@Override
+	public java.util.Date getModifiedDate() {
+		return _wallEntry.getModifiedDate();
+	}
+
+	/**
+	* Returns the primary key of this wall entry.
+	*
+	* @return the primary key of this wall entry
+	*/
+	@Override
+	public long getPrimaryKey() {
+		return _wallEntry.getPrimaryKey();
+	}
+
+	@Override
+	public java.io.Serializable getPrimaryKeyObj() {
+		return _wallEntry.getPrimaryKeyObj();
+	}
+
+	/**
+	* Returns the user ID of this wall entry.
+	*
+	* @return the user ID of this wall entry
+	*/
+	@Override
+	public long getUserId() {
+		return _wallEntry.getUserId();
+	}
+
+	/**
+	* Returns the user name of this wall entry.
+	*
+	* @return the user name of this wall entry
+	*/
+	@Override
+	public java.lang.String getUserName() {
+		return _wallEntry.getUserName();
+	}
+
+	/**
+	* Returns the user uuid of this wall entry.
+	*
+	* @return the user uuid of this wall entry
+	*/
+	@Override
+	public java.lang.String getUserUuid() {
+		return _wallEntry.getUserUuid();
+	}
+
+	/**
+	* Returns the wall entry ID of this wall entry.
+	*
+	* @return the wall entry ID of this wall entry
+	*/
+	@Override
+	public long getWallEntryId() {
+		return _wallEntry.getWallEntryId();
+	}
+
+	@Override
+	public int hashCode() {
+		return _wallEntry.hashCode();
+	}
+
+	@Override
+	public boolean isCachedModel() {
+		return _wallEntry.isCachedModel();
+	}
+
+	@Override
+	public boolean isEscapedModel() {
+		return _wallEntry.isEscapedModel();
+	}
+
+	@Override
+	public boolean isNew() {
+		return _wallEntry.isNew();
+	}
+
+	@Override
+	public void persist() {
+		_wallEntry.persist();
+	}
+
+	@Override
+	public void setCachedModel(boolean cachedModel) {
+		_wallEntry.setCachedModel(cachedModel);
+	}
+
+	/**
 	* Sets the comments of this wall entry.
 	*
 	* @param comments the comments of this wall entry
@@ -312,44 +272,24 @@ public class WallEntryWrapper implements WallEntry, ModelWrapper<WallEntry> {
 		_wallEntry.setComments(comments);
 	}
 
+	/**
+	* Sets the company ID of this wall entry.
+	*
+	* @param companyId the company ID of this wall entry
+	*/
 	@Override
-	public boolean isNew() {
-		return _wallEntry.isNew();
+	public void setCompanyId(long companyId) {
+		_wallEntry.setCompanyId(companyId);
 	}
 
+	/**
+	* Sets the create date of this wall entry.
+	*
+	* @param createDate the create date of this wall entry
+	*/
 	@Override
-	public void setNew(boolean n) {
-		_wallEntry.setNew(n);
-	}
-
-	@Override
-	public boolean isCachedModel() {
-		return _wallEntry.isCachedModel();
-	}
-
-	@Override
-	public void setCachedModel(boolean cachedModel) {
-		_wallEntry.setCachedModel(cachedModel);
-	}
-
-	@Override
-	public boolean isEscapedModel() {
-		return _wallEntry.isEscapedModel();
-	}
-
-	@Override
-	public java.io.Serializable getPrimaryKeyObj() {
-		return _wallEntry.getPrimaryKeyObj();
-	}
-
-	@Override
-	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
-		_wallEntry.setPrimaryKeyObj(primaryKeyObj);
-	}
-
-	@Override
-	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {
-		return _wallEntry.getExpandoBridge();
+	public void setCreateDate(java.util.Date createDate) {
+		_wallEntry.setCreateDate(createDate);
 	}
 
 	@Override
@@ -370,19 +310,84 @@ public class WallEntryWrapper implements WallEntry, ModelWrapper<WallEntry> {
 		_wallEntry.setExpandoBridgeAttributes(serviceContext);
 	}
 
+	/**
+	* Sets the group ID of this wall entry.
+	*
+	* @param groupId the group ID of this wall entry
+	*/
 	@Override
-	public java.lang.Object clone() {
-		return new WallEntryWrapper((WallEntry)_wallEntry.clone());
+	public void setGroupId(long groupId) {
+		_wallEntry.setGroupId(groupId);
+	}
+
+	/**
+	* Sets the modified date of this wall entry.
+	*
+	* @param modifiedDate the modified date of this wall entry
+	*/
+	@Override
+	public void setModifiedDate(java.util.Date modifiedDate) {
+		_wallEntry.setModifiedDate(modifiedDate);
 	}
 
 	@Override
-	public int compareTo(com.liferay.socialnetworking.model.WallEntry wallEntry) {
-		return _wallEntry.compareTo(wallEntry);
+	public void setNew(boolean n) {
+		_wallEntry.setNew(n);
+	}
+
+	/**
+	* Sets the primary key of this wall entry.
+	*
+	* @param primaryKey the primary key of this wall entry
+	*/
+	@Override
+	public void setPrimaryKey(long primaryKey) {
+		_wallEntry.setPrimaryKey(primaryKey);
 	}
 
 	@Override
-	public int hashCode() {
-		return _wallEntry.hashCode();
+	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
+		_wallEntry.setPrimaryKeyObj(primaryKeyObj);
+	}
+
+	/**
+	* Sets the user ID of this wall entry.
+	*
+	* @param userId the user ID of this wall entry
+	*/
+	@Override
+	public void setUserId(long userId) {
+		_wallEntry.setUserId(userId);
+	}
+
+	/**
+	* Sets the user name of this wall entry.
+	*
+	* @param userName the user name of this wall entry
+	*/
+	@Override
+	public void setUserName(java.lang.String userName) {
+		_wallEntry.setUserName(userName);
+	}
+
+	/**
+	* Sets the user uuid of this wall entry.
+	*
+	* @param userUuid the user uuid of this wall entry
+	*/
+	@Override
+	public void setUserUuid(java.lang.String userUuid) {
+		_wallEntry.setUserUuid(userUuid);
+	}
+
+	/**
+	* Sets the wall entry ID of this wall entry.
+	*
+	* @param wallEntryId the wall entry ID of this wall entry
+	*/
+	@Override
+	public void setWallEntryId(long wallEntryId) {
+		_wallEntry.setWallEntryId(wallEntryId);
 	}
 
 	@Override
@@ -396,23 +401,18 @@ public class WallEntryWrapper implements WallEntry, ModelWrapper<WallEntry> {
 	}
 
 	@Override
-	public com.liferay.socialnetworking.model.WallEntry toUnescapedModel() {
-		return new WallEntryWrapper(_wallEntry.toUnescapedModel());
-	}
-
-	@Override
 	public java.lang.String toString() {
 		return _wallEntry.toString();
 	}
 
 	@Override
-	public java.lang.String toXmlString() {
-		return _wallEntry.toXmlString();
+	public com.liferay.socialnetworking.model.WallEntry toUnescapedModel() {
+		return new WallEntryWrapper(_wallEntry.toUnescapedModel());
 	}
 
 	@Override
-	public void persist() {
-		_wallEntry.persist();
+	public java.lang.String toXmlString() {
+		return _wallEntry.toXmlString();
 	}
 
 	@Override

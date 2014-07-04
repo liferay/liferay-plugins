@@ -30,19 +30,19 @@ public class CalendarImporterLocalServiceClp
 
 		_methodParameterTypes0 = new String[] {  };
 
-		_methodName1 = "setBeanIdentifier";
+		_methodName1 = "importCalEvent";
 
-		_methodParameterTypes1 = new String[] { "java.lang.String" };
-
-		_methodName3 = "importCalEvent";
-
-		_methodParameterTypes3 = new String[] {
+		_methodParameterTypes1 = new String[] {
 				"com.liferay.portlet.calendar.model.CalEvent"
 			};
 
-		_methodName4 = "importCalEvents";
+		_methodName2 = "importCalEvents";
 
-		_methodParameterTypes4 = new String[] {  };
+		_methodParameterTypes2 = new String[] {  };
+
+		_methodName4 = "setBeanIdentifier";
+
+		_methodParameterTypes4 = new String[] { "java.lang.String" };
 	}
 
 	@Override
@@ -69,39 +69,12 @@ public class CalendarImporterLocalServiceClp
 	}
 
 	@Override
-	public void setBeanIdentifier(java.lang.String beanIdentifier) {
-		try {
-			_invokableLocalService.invokeMethod(_methodName1,
-				_methodParameterTypes1,
-				new Object[] { ClpSerializer.translateInput(beanIdentifier) });
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-	}
-
-	@Override
-	public java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable {
-		throw new UnsupportedOperationException();
-	}
-
-	@Override
 	public void importCalEvent(
 		com.liferay.portlet.calendar.model.CalEvent calEvent)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		try {
-			_invokableLocalService.invokeMethod(_methodName3,
-				_methodParameterTypes3,
+			_invokableLocalService.invokeMethod(_methodName1,
+				_methodParameterTypes1,
 				new Object[] { ClpSerializer.translateInput(calEvent) });
 		}
 		catch (Throwable t) {
@@ -125,8 +98,8 @@ public class CalendarImporterLocalServiceClp
 	public void importCalEvents()
 		throws com.liferay.portal.kernel.exception.PortalException {
 		try {
-			_invokableLocalService.invokeMethod(_methodName4,
-				_methodParameterTypes4, new Object[] {  });
+			_invokableLocalService.invokeMethod(_methodName2,
+				_methodParameterTypes2, new Object[] {  });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -145,13 +118,40 @@ public class CalendarImporterLocalServiceClp
 		}
 	}
 
+	@Override
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public void setBeanIdentifier(java.lang.String beanIdentifier) {
+		try {
+			_invokableLocalService.invokeMethod(_methodName4,
+				_methodParameterTypes4,
+				new Object[] { ClpSerializer.translateInput(beanIdentifier) });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+	}
+
 	private InvokableLocalService _invokableLocalService;
 	private String _methodName0;
 	private String[] _methodParameterTypes0;
 	private String _methodName1;
 	private String[] _methodParameterTypes1;
-	private String _methodName3;
-	private String[] _methodParameterTypes3;
+	private String _methodName2;
+	private String[] _methodParameterTypes2;
 	private String _methodName4;
 	private String[] _methodParameterTypes4;
 }

@@ -34,53 +34,55 @@ public class CheckoutLocalServiceClp implements CheckoutLocalService {
 
 		_methodName2 = "deleteCheckout";
 
-		_methodParameterTypes2 = new String[] { "long" };
+		_methodParameterTypes2 = new String[] { "com.liferay.ams.model.Checkout" };
 
 		_methodName3 = "deleteCheckout";
 
-		_methodParameterTypes3 = new String[] { "com.liferay.ams.model.Checkout" };
+		_methodParameterTypes3 = new String[] { "long" };
 
-		_methodName4 = "dynamicQuery";
+		_methodName4 = "deletePersistedModel";
 
-		_methodParameterTypes4 = new String[] {  };
+		_methodParameterTypes4 = new String[] {
+				"com.liferay.portal.model.PersistedModel"
+			};
 
 		_methodName5 = "dynamicQuery";
 
-		_methodParameterTypes5 = new String[] {
-				"com.liferay.portal.kernel.dao.orm.DynamicQuery"
-			};
+		_methodParameterTypes5 = new String[] {  };
 
 		_methodName6 = "dynamicQuery";
 
 		_methodParameterTypes6 = new String[] {
-				"com.liferay.portal.kernel.dao.orm.DynamicQuery", "int", "int"
+				"com.liferay.portal.kernel.dao.orm.DynamicQuery"
 			};
 
 		_methodName7 = "dynamicQuery";
 
 		_methodParameterTypes7 = new String[] {
-				"com.liferay.portal.kernel.dao.orm.DynamicQuery", "int", "int",
-				"com.liferay.portal.kernel.util.OrderByComparator"
+				"com.liferay.portal.kernel.dao.orm.DynamicQuery", "int", "int"
 			};
 
-		_methodName8 = "dynamicQueryCount";
+		_methodName8 = "dynamicQuery";
 
 		_methodParameterTypes8 = new String[] {
-				"com.liferay.portal.kernel.dao.orm.DynamicQuery"
+				"com.liferay.portal.kernel.dao.orm.DynamicQuery", "int", "int",
+				"com.liferay.portal.kernel.util.OrderByComparator"
 			};
 
 		_methodName9 = "dynamicQueryCount";
 
 		_methodParameterTypes9 = new String[] {
+				"com.liferay.portal.kernel.dao.orm.DynamicQuery"
+			};
+
+		_methodName10 = "dynamicQueryCount";
+
+		_methodParameterTypes10 = new String[] {
 				"com.liferay.portal.kernel.dao.orm.DynamicQuery",
 				"com.liferay.portal.kernel.dao.orm.Projection"
 			};
 
-		_methodName10 = "fetchCheckout";
-
-		_methodParameterTypes10 = new String[] { "long" };
-
-		_methodName11 = "getCheckout";
+		_methodName11 = "fetchCheckout";
 
 		_methodParameterTypes11 = new String[] { "long" };
 
@@ -88,15 +90,13 @@ public class CheckoutLocalServiceClp implements CheckoutLocalService {
 
 		_methodParameterTypes12 = new String[] {  };
 
-		_methodName13 = "deletePersistedModel";
+		_methodName13 = "getBeanIdentifier";
 
-		_methodParameterTypes13 = new String[] {
-				"com.liferay.portal.model.PersistedModel"
-			};
+		_methodParameterTypes13 = new String[] {  };
 
-		_methodName14 = "getPersistedModel";
+		_methodName14 = "getCheckout";
 
-		_methodParameterTypes14 = new String[] { "java.io.Serializable" };
+		_methodParameterTypes14 = new String[] { "long" };
 
 		_methodName15 = "getCheckouts";
 
@@ -106,17 +106,17 @@ public class CheckoutLocalServiceClp implements CheckoutLocalService {
 
 		_methodParameterTypes16 = new String[] {  };
 
-		_methodName17 = "updateCheckout";
+		_methodName17 = "getPersistedModel";
 
-		_methodParameterTypes17 = new String[] { "com.liferay.ams.model.Checkout" };
-
-		_methodName18 = "getBeanIdentifier";
-
-		_methodParameterTypes18 = new String[] {  };
+		_methodParameterTypes17 = new String[] { "java.io.Serializable" };
 
 		_methodName19 = "setBeanIdentifier";
 
 		_methodParameterTypes19 = new String[] { "java.lang.String" };
+
+		_methodName20 = "updateCheckout";
+
+		_methodParameterTypes20 = new String[] { "com.liferay.ams.model.Checkout" };
 	}
 
 	@Override
@@ -168,13 +168,38 @@ public class CheckoutLocalServiceClp implements CheckoutLocalService {
 	}
 
 	@Override
+	public com.liferay.ams.model.Checkout deleteCheckout(
+		com.liferay.ams.model.Checkout checkout) {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName2,
+					_methodParameterTypes2,
+					new Object[] { ClpSerializer.translateInput(checkout) });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.liferay.ams.model.Checkout)ClpSerializer.translateOutput(returnObj);
+	}
+
+	@Override
 	public com.liferay.ams.model.Checkout deleteCheckout(long checkoutId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName2,
-					_methodParameterTypes2, new Object[] { checkoutId });
+			returnObj = _invokableLocalService.invokeMethod(_methodName3,
+					_methodParameterTypes3, new Object[] { checkoutId });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -196,17 +221,22 @@ public class CheckoutLocalServiceClp implements CheckoutLocalService {
 	}
 
 	@Override
-	public com.liferay.ams.model.Checkout deleteCheckout(
-		com.liferay.ams.model.Checkout checkout) {
+	public com.liferay.portal.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.model.PersistedModel persistedModel)
+		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName3,
-					_methodParameterTypes3,
-					new Object[] { ClpSerializer.translateInput(checkout) });
+			returnObj = _invokableLocalService.invokeMethod(_methodName4,
+					_methodParameterTypes4,
+					new Object[] { ClpSerializer.translateInput(persistedModel) });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
 
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
@@ -217,7 +247,7 @@ public class CheckoutLocalServiceClp implements CheckoutLocalService {
 			}
 		}
 
-		return (com.liferay.ams.model.Checkout)ClpSerializer.translateOutput(returnObj);
+		return (com.liferay.portal.model.PersistedModel)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override
@@ -225,8 +255,8 @@ public class CheckoutLocalServiceClp implements CheckoutLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName4,
-					_methodParameterTypes4, new Object[] {  });
+			returnObj = _invokableLocalService.invokeMethod(_methodName5,
+					_methodParameterTypes5, new Object[] {  });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -249,8 +279,8 @@ public class CheckoutLocalServiceClp implements CheckoutLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName5,
-					_methodParameterTypes5,
+			returnObj = _invokableLocalService.invokeMethod(_methodName6,
+					_methodParameterTypes6,
 					new Object[] { ClpSerializer.translateInput(dynamicQuery) });
 		}
 		catch (Throwable t) {
@@ -275,8 +305,8 @@ public class CheckoutLocalServiceClp implements CheckoutLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName6,
-					_methodParameterTypes6,
+			returnObj = _invokableLocalService.invokeMethod(_methodName7,
+					_methodParameterTypes7,
 					new Object[] {
 						ClpSerializer.translateInput(dynamicQuery),
 						
@@ -308,8 +338,8 @@ public class CheckoutLocalServiceClp implements CheckoutLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName7,
-					_methodParameterTypes7,
+			returnObj = _invokableLocalService.invokeMethod(_methodName8,
+					_methodParameterTypes8,
 					new Object[] {
 						ClpSerializer.translateInput(dynamicQuery),
 						
@@ -341,8 +371,8 @@ public class CheckoutLocalServiceClp implements CheckoutLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName8,
-					_methodParameterTypes8,
+			returnObj = _invokableLocalService.invokeMethod(_methodName9,
+					_methodParameterTypes9,
 					new Object[] { ClpSerializer.translateInput(dynamicQuery) });
 		}
 		catch (Throwable t) {
@@ -367,8 +397,8 @@ public class CheckoutLocalServiceClp implements CheckoutLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName9,
-					_methodParameterTypes9,
+			returnObj = _invokableLocalService.invokeMethod(_methodName10,
+					_methodParameterTypes10,
 					new Object[] {
 						ClpSerializer.translateInput(dynamicQuery),
 						
@@ -395,39 +425,11 @@ public class CheckoutLocalServiceClp implements CheckoutLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName10,
-					_methodParameterTypes10, new Object[] { checkoutId });
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-
-		return (com.liferay.ams.model.Checkout)ClpSerializer.translateOutput(returnObj);
-	}
-
-	@Override
-	public com.liferay.ams.model.Checkout getCheckout(long checkoutId)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		Object returnObj = null;
-
-		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName11,
 					_methodParameterTypes11, new Object[] { checkoutId });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
-				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
 
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
@@ -465,22 +467,15 @@ public class CheckoutLocalServiceClp implements CheckoutLocalService {
 	}
 
 	@Override
-	public com.liferay.portal.model.PersistedModel deletePersistedModel(
-		com.liferay.portal.model.PersistedModel persistedModel)
-		throws com.liferay.portal.kernel.exception.PortalException {
+	public java.lang.String getBeanIdentifier() {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName13,
-					_methodParameterTypes13,
-					new Object[] { ClpSerializer.translateInput(persistedModel) });
+					_methodParameterTypes13, new Object[] {  });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
-				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
 
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
@@ -491,19 +486,17 @@ public class CheckoutLocalServiceClp implements CheckoutLocalService {
 			}
 		}
 
-		return (com.liferay.portal.model.PersistedModel)ClpSerializer.translateOutput(returnObj);
+		return (java.lang.String)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override
-	public com.liferay.portal.model.PersistedModel getPersistedModel(
-		java.io.Serializable primaryKeyObj)
+	public com.liferay.ams.model.Checkout getCheckout(long checkoutId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName14,
-					_methodParameterTypes14,
-					new Object[] { ClpSerializer.translateInput(primaryKeyObj) });
+					_methodParameterTypes14, new Object[] { checkoutId });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -521,7 +514,7 @@ public class CheckoutLocalServiceClp implements CheckoutLocalService {
 			}
 		}
 
-		return (com.liferay.portal.model.PersistedModel)ClpSerializer.translateOutput(returnObj);
+		return (com.liferay.ams.model.Checkout)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override
@@ -572,17 +565,22 @@ public class CheckoutLocalServiceClp implements CheckoutLocalService {
 	}
 
 	@Override
-	public com.liferay.ams.model.Checkout updateCheckout(
-		com.liferay.ams.model.Checkout checkout) {
+	public com.liferay.portal.model.PersistedModel getPersistedModel(
+		java.io.Serializable primaryKeyObj)
+		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName17,
 					_methodParameterTypes17,
-					new Object[] { ClpSerializer.translateInput(checkout) });
+					new Object[] { ClpSerializer.translateInput(primaryKeyObj) });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
 
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
@@ -593,30 +591,14 @@ public class CheckoutLocalServiceClp implements CheckoutLocalService {
 			}
 		}
 
-		return (com.liferay.ams.model.Checkout)ClpSerializer.translateOutput(returnObj);
+		return (com.liferay.portal.model.PersistedModel)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override
-	public java.lang.String getBeanIdentifier() {
-		Object returnObj = null;
-
-		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName18,
-					_methodParameterTypes18, new Object[] {  });
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-
-		return (java.lang.String)ClpSerializer.translateOutput(returnObj);
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		throw new UnsupportedOperationException();
 	}
 
 	@Override
@@ -640,10 +622,28 @@ public class CheckoutLocalServiceClp implements CheckoutLocalService {
 	}
 
 	@Override
-	public java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable {
-		throw new UnsupportedOperationException();
+	public com.liferay.ams.model.Checkout updateCheckout(
+		com.liferay.ams.model.Checkout checkout) {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName20,
+					_methodParameterTypes20,
+					new Object[] { ClpSerializer.translateInput(checkout) });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.liferay.ams.model.Checkout)ClpSerializer.translateOutput(returnObj);
 	}
 
 	private InvokableLocalService _invokableLocalService;
@@ -683,8 +683,8 @@ public class CheckoutLocalServiceClp implements CheckoutLocalService {
 	private String[] _methodParameterTypes16;
 	private String _methodName17;
 	private String[] _methodParameterTypes17;
-	private String _methodName18;
-	private String[] _methodParameterTypes18;
 	private String _methodName19;
 	private String[] _methodParameterTypes19;
+	private String _methodName20;
+	private String[] _methodParameterTypes20;
 }

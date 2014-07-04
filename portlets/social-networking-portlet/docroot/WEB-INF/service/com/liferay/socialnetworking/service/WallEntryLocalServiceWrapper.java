@@ -30,6 +30,15 @@ public class WallEntryLocalServiceWrapper implements WallEntryLocalService,
 		_wallEntryLocalService = wallEntryLocalService;
 	}
 
+	@Override
+	public com.liferay.socialnetworking.model.WallEntry addWallEntry(
+		long groupId, long userId, java.lang.String comments,
+		com.liferay.portal.theme.ThemeDisplay themeDisplay)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _wallEntryLocalService.addWallEntry(groupId, userId, comments,
+			themeDisplay);
+	}
+
 	/**
 	* Adds the wall entry to the database. Also notifies the appropriate model listeners.
 	*
@@ -55,17 +64,19 @@ public class WallEntryLocalServiceWrapper implements WallEntryLocalService,
 	}
 
 	/**
-	* Deletes the wall entry with the primary key from the database. Also notifies the appropriate model listeners.
-	*
-	* @param wallEntryId the primary key of the wall entry
-	* @return the wall entry that was removed
-	* @throws PortalException if a wall entry with the primary key could not be found
+	* @throws PortalException
 	*/
 	@Override
-	public com.liferay.socialnetworking.model.WallEntry deleteWallEntry(
-		long wallEntryId)
+	public com.liferay.portal.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.model.PersistedModel persistedModel)
 		throws com.liferay.portal.kernel.exception.PortalException {
-		return _wallEntryLocalService.deleteWallEntry(wallEntryId);
+		return _wallEntryLocalService.deletePersistedModel(persistedModel);
+	}
+
+	@Override
+	public void deleteWallEntries(long groupId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		_wallEntryLocalService.deleteWallEntries(groupId);
 	}
 
 	/**
@@ -80,6 +91,20 @@ public class WallEntryLocalServiceWrapper implements WallEntryLocalService,
 		com.liferay.socialnetworking.model.WallEntry wallEntry)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _wallEntryLocalService.deleteWallEntry(wallEntry);
+	}
+
+	/**
+	* Deletes the wall entry with the primary key from the database. Also notifies the appropriate model listeners.
+	*
+	* @param wallEntryId the primary key of the wall entry
+	* @return the wall entry that was removed
+	* @throws PortalException if a wall entry with the primary key could not be found
+	*/
+	@Override
+	public com.liferay.socialnetworking.model.WallEntry deleteWallEntry(
+		long wallEntryId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _wallEntryLocalService.deleteWallEntry(wallEntryId);
 	}
 
 	@Override
@@ -172,33 +197,19 @@ public class WallEntryLocalServiceWrapper implements WallEntryLocalService,
 		return _wallEntryLocalService.fetchWallEntry(wallEntryId);
 	}
 
-	/**
-	* Returns the wall entry with the primary key.
-	*
-	* @param wallEntryId the primary key of the wall entry
-	* @return the wall entry
-	* @throws PortalException if a wall entry with the primary key could not be found
-	*/
-	@Override
-	public com.liferay.socialnetworking.model.WallEntry getWallEntry(
-		long wallEntryId)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _wallEntryLocalService.getWallEntry(wallEntryId);
-	}
-
 	@Override
 	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
 		return _wallEntryLocalService.getActionableDynamicQuery();
 	}
 
 	/**
-	* @throws PortalException
+	* Returns the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
 	*/
 	@Override
-	public com.liferay.portal.model.PersistedModel deletePersistedModel(
-		com.liferay.portal.model.PersistedModel persistedModel)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _wallEntryLocalService.deletePersistedModel(persistedModel);
+	public java.lang.String getBeanIdentifier() {
+		return _wallEntryLocalService.getBeanIdentifier();
 	}
 
 	@Override
@@ -206,6 +217,12 @@ public class WallEntryLocalServiceWrapper implements WallEntryLocalService,
 		java.io.Serializable primaryKeyObj)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _wallEntryLocalService.getPersistedModel(primaryKeyObj);
+	}
+
+	@Override
+	public java.util.List<com.liferay.socialnetworking.model.WallEntry> getWallEntries(
+		long groupId, int start, int end) {
+		return _wallEntryLocalService.getWallEntries(groupId, start, end);
 	}
 
 	/**
@@ -235,70 +252,23 @@ public class WallEntryLocalServiceWrapper implements WallEntryLocalService,
 		return _wallEntryLocalService.getWallEntriesCount();
 	}
 
-	/**
-	* Updates the wall entry in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	*
-	* @param wallEntry the wall entry
-	* @return the wall entry that was updated
-	*/
-	@Override
-	public com.liferay.socialnetworking.model.WallEntry updateWallEntry(
-		com.liferay.socialnetworking.model.WallEntry wallEntry) {
-		return _wallEntryLocalService.updateWallEntry(wallEntry);
-	}
-
-	/**
-	* Returns the Spring bean ID for this bean.
-	*
-	* @return the Spring bean ID for this bean
-	*/
-	@Override
-	public java.lang.String getBeanIdentifier() {
-		return _wallEntryLocalService.getBeanIdentifier();
-	}
-
-	/**
-	* Sets the Spring bean ID for this bean.
-	*
-	* @param beanIdentifier the Spring bean ID for this bean
-	*/
-	@Override
-	public void setBeanIdentifier(java.lang.String beanIdentifier) {
-		_wallEntryLocalService.setBeanIdentifier(beanIdentifier);
-	}
-
-	@Override
-	public java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable {
-		return _wallEntryLocalService.invokeMethod(name, parameterTypes,
-			arguments);
-	}
-
-	@Override
-	public com.liferay.socialnetworking.model.WallEntry addWallEntry(
-		long groupId, long userId, java.lang.String comments,
-		com.liferay.portal.theme.ThemeDisplay themeDisplay)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _wallEntryLocalService.addWallEntry(groupId, userId, comments,
-			themeDisplay);
-	}
-
-	@Override
-	public void deleteWallEntries(long groupId)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		_wallEntryLocalService.deleteWallEntries(groupId);
-	}
-
-	@Override
-	public java.util.List<com.liferay.socialnetworking.model.WallEntry> getWallEntries(
-		long groupId, int start, int end) {
-		return _wallEntryLocalService.getWallEntries(groupId, start, end);
-	}
-
 	@Override
 	public int getWallEntriesCount(long groupId) {
 		return _wallEntryLocalService.getWallEntriesCount(groupId);
+	}
+
+	/**
+	* Returns the wall entry with the primary key.
+	*
+	* @param wallEntryId the primary key of the wall entry
+	* @return the wall entry
+	* @throws PortalException if a wall entry with the primary key could not be found
+	*/
+	@Override
+	public com.liferay.socialnetworking.model.WallEntry getWallEntry(
+		long wallEntryId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _wallEntryLocalService.getWallEntry(wallEntryId);
 	}
 
 	@Override
@@ -314,6 +284,36 @@ public class WallEntryLocalServiceWrapper implements WallEntryLocalService,
 		long userId1, long userId2) {
 		return _wallEntryLocalService.getWallToWallEntriesCount(groupId1,
 			groupId2, userId1, userId2);
+	}
+
+	@Override
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return _wallEntryLocalService.invokeMethod(name, parameterTypes,
+			arguments);
+	}
+
+	/**
+	* Sets the Spring bean ID for this bean.
+	*
+	* @param beanIdentifier the Spring bean ID for this bean
+	*/
+	@Override
+	public void setBeanIdentifier(java.lang.String beanIdentifier) {
+		_wallEntryLocalService.setBeanIdentifier(beanIdentifier);
+	}
+
+	/**
+	* Updates the wall entry in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	*
+	* @param wallEntry the wall entry
+	* @return the wall entry that was updated
+	*/
+	@Override
+	public com.liferay.socialnetworking.model.WallEntry updateWallEntry(
+		com.liferay.socialnetworking.model.WallEntry wallEntry) {
+		return _wallEntryLocalService.updateWallEntry(wallEntry);
 	}
 
 	@Override

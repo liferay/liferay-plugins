@@ -16,6 +16,7 @@ package com.liferay.ams.service;
 
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.search.IndexableType;
 import com.liferay.portal.kernel.transaction.Isolation;
 import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
@@ -51,6 +52,7 @@ public interface CheckoutLocalService extends BaseLocalService,
 	* @param checkout the checkout
 	* @return the checkout that was added
 	*/
+	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.REINDEX)
 	public com.liferay.ams.model.Checkout addCheckout(
 		com.liferay.ams.model.Checkout checkout);
 
@@ -63,23 +65,33 @@ public interface CheckoutLocalService extends BaseLocalService,
 	public com.liferay.ams.model.Checkout createCheckout(long checkoutId);
 
 	/**
+	* Deletes the checkout from the database. Also notifies the appropriate model listeners.
+	*
+	* @param checkout the checkout
+	* @return the checkout that was removed
+	*/
+	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.DELETE)
+	public com.liferay.ams.model.Checkout deleteCheckout(
+		com.liferay.ams.model.Checkout checkout);
+
+	/**
 	* Deletes the checkout with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param checkoutId the primary key of the checkout
 	* @return the checkout that was removed
 	* @throws PortalException if a checkout with the primary key could not be found
 	*/
+	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.DELETE)
 	public com.liferay.ams.model.Checkout deleteCheckout(long checkoutId)
 		throws com.liferay.portal.kernel.exception.PortalException;
 
 	/**
-	* Deletes the checkout from the database. Also notifies the appropriate model listeners.
-	*
-	* @param checkout the checkout
-	* @return the checkout that was removed
+	* @throws PortalException
 	*/
-	public com.liferay.ams.model.Checkout deleteCheckout(
-		com.liferay.ams.model.Checkout checkout);
+	@Override
+	public com.liferay.portal.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.model.PersistedModel persistedModel)
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery();
 
@@ -149,6 +161,16 @@ public interface CheckoutLocalService extends BaseLocalService,
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.ams.model.Checkout fetchCheckout(long checkoutId);
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery();
+
+	/**
+	* Returns the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
+	*/
+	public java.lang.String getBeanIdentifier();
+
 	/**
 	* Returns the checkout with the primary key.
 	*
@@ -158,23 +180,6 @@ public interface CheckoutLocalService extends BaseLocalService,
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.ams.model.Checkout getCheckout(long checkoutId)
-		throws com.liferay.portal.kernel.exception.PortalException;
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery();
-
-	/**
-	* @throws PortalException
-	*/
-	@Override
-	public com.liferay.portal.model.PersistedModel deletePersistedModel(
-		com.liferay.portal.model.PersistedModel persistedModel)
-		throws com.liferay.portal.kernel.exception.PortalException;
-
-	@Override
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.portal.model.PersistedModel getPersistedModel(
-		java.io.Serializable primaryKeyObj)
 		throws com.liferay.portal.kernel.exception.PortalException;
 
 	/**
@@ -200,21 +205,16 @@ public interface CheckoutLocalService extends BaseLocalService,
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getCheckoutsCount();
 
-	/**
-	* Updates the checkout in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	*
-	* @param checkout the checkout
-	* @return the checkout that was updated
-	*/
-	public com.liferay.ams.model.Checkout updateCheckout(
-		com.liferay.ams.model.Checkout checkout);
+	@Override
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.liferay.portal.model.PersistedModel getPersistedModel(
+		java.io.Serializable primaryKeyObj)
+		throws com.liferay.portal.kernel.exception.PortalException;
 
-	/**
-	* Returns the Spring bean ID for this bean.
-	*
-	* @return the Spring bean ID for this bean
-	*/
-	public java.lang.String getBeanIdentifier();
+	@Override
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable;
 
 	/**
 	* Sets the Spring bean ID for this bean.
@@ -223,8 +223,13 @@ public interface CheckoutLocalService extends BaseLocalService,
 	*/
 	public void setBeanIdentifier(java.lang.String beanIdentifier);
 
-	@Override
-	public java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable;
+	/**
+	* Updates the checkout in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	*
+	* @param checkout the checkout
+	* @return the checkout that was updated
+	*/
+	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.REINDEX)
+	public com.liferay.ams.model.Checkout updateCheckout(
+		com.liferay.ams.model.Checkout checkout);
 }

@@ -29,33 +29,6 @@ public class SyncDLObjectServiceWrapper implements SyncDLObjectService,
 		_syncDLObjectService = syncDLObjectService;
 	}
 
-	/**
-	* Returns the Spring bean ID for this bean.
-	*
-	* @return the Spring bean ID for this bean
-	*/
-	@Override
-	public java.lang.String getBeanIdentifier() {
-		return _syncDLObjectService.getBeanIdentifier();
-	}
-
-	/**
-	* Sets the Spring bean ID for this bean.
-	*
-	* @param beanIdentifier the Spring bean ID for this bean
-	*/
-	@Override
-	public void setBeanIdentifier(java.lang.String beanIdentifier) {
-		_syncDLObjectService.setBeanIdentifier(beanIdentifier);
-	}
-
-	@Override
-	public java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable {
-		return _syncDLObjectService.invokeMethod(name, parameterTypes, arguments);
-	}
-
 	@Override
 	public com.liferay.sync.model.SyncDLObject addFileEntry(long repositoryId,
 		long folderId, java.lang.String sourceFileName,
@@ -100,22 +73,22 @@ public class SyncDLObjectServiceWrapper implements SyncDLObjectService,
 
 	@Override
 	public com.liferay.sync.model.SyncDLObject checkOutFileEntry(
-		long fileEntryId,
-		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return _syncDLObjectService.checkOutFileEntry(fileEntryId,
-			serviceContext);
-	}
-
-	@Override
-	public com.liferay.sync.model.SyncDLObject checkOutFileEntry(
 		long fileEntryId, java.lang.String owner, long expirationTime,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _syncDLObjectService.checkOutFileEntry(fileEntryId, owner,
 			expirationTime, serviceContext);
+	}
+
+	@Override
+	public com.liferay.sync.model.SyncDLObject checkOutFileEntry(
+		long fileEntryId,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _syncDLObjectService.checkOutFileEntry(fileEntryId,
+			serviceContext);
 	}
 
 	/**
@@ -128,6 +101,16 @@ public class SyncDLObjectServiceWrapper implements SyncDLObjectService,
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _syncDLObjectService.getAllSyncDLObjects(repositoryId, folderId);
+	}
+
+	/**
+	* Returns the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
+	*/
+	@Override
+	public java.lang.String getBeanIdentifier() {
+		return _syncDLObjectService.getBeanIdentifier();
 	}
 
 	@Override
@@ -212,6 +195,13 @@ public class SyncDLObjectServiceWrapper implements SyncDLObjectService,
 	}
 
 	@Override
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return _syncDLObjectService.invokeMethod(name, parameterTypes, arguments);
+	}
+
+	@Override
 	public com.liferay.sync.model.SyncDLObject moveFileEntry(long fileEntryId,
 		long newFolderId,
 		com.liferay.portal.service.ServiceContext serviceContext)
@@ -275,6 +265,16 @@ public class SyncDLObjectServiceWrapper implements SyncDLObjectService,
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _syncDLObjectService.restoreFolderFromTrash(folderId);
+	}
+
+	/**
+	* Sets the Spring bean ID for this bean.
+	*
+	* @param beanIdentifier the Spring bean ID for this bean
+	*/
+	@Override
+	public void setBeanIdentifier(java.lang.String beanIdentifier) {
+		_syncDLObjectService.setBeanIdentifier(beanIdentifier);
 	}
 
 	@Override

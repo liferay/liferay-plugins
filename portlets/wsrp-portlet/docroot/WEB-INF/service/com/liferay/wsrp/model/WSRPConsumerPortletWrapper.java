@@ -115,64 +115,15 @@ public class WSRPConsumerPortletWrapper implements WSRPConsumerPortlet,
 		}
 	}
 
-	/**
-	* Returns the primary key of this w s r p consumer portlet.
-	*
-	* @return the primary key of this w s r p consumer portlet
-	*/
 	@Override
-	public long getPrimaryKey() {
-		return _wsrpConsumerPortlet.getPrimaryKey();
+	public java.lang.Object clone() {
+		return new WSRPConsumerPortletWrapper((WSRPConsumerPortlet)_wsrpConsumerPortlet.clone());
 	}
 
-	/**
-	* Sets the primary key of this w s r p consumer portlet.
-	*
-	* @param primaryKey the primary key of this w s r p consumer portlet
-	*/
 	@Override
-	public void setPrimaryKey(long primaryKey) {
-		_wsrpConsumerPortlet.setPrimaryKey(primaryKey);
-	}
-
-	/**
-	* Returns the uuid of this w s r p consumer portlet.
-	*
-	* @return the uuid of this w s r p consumer portlet
-	*/
-	@Override
-	public java.lang.String getUuid() {
-		return _wsrpConsumerPortlet.getUuid();
-	}
-
-	/**
-	* Sets the uuid of this w s r p consumer portlet.
-	*
-	* @param uuid the uuid of this w s r p consumer portlet
-	*/
-	@Override
-	public void setUuid(java.lang.String uuid) {
-		_wsrpConsumerPortlet.setUuid(uuid);
-	}
-
-	/**
-	* Returns the wsrp consumer portlet ID of this w s r p consumer portlet.
-	*
-	* @return the wsrp consumer portlet ID of this w s r p consumer portlet
-	*/
-	@Override
-	public long getWsrpConsumerPortletId() {
-		return _wsrpConsumerPortlet.getWsrpConsumerPortletId();
-	}
-
-	/**
-	* Sets the wsrp consumer portlet ID of this w s r p consumer portlet.
-	*
-	* @param wsrpConsumerPortletId the wsrp consumer portlet ID of this w s r p consumer portlet
-	*/
-	@Override
-	public void setWsrpConsumerPortletId(long wsrpConsumerPortletId) {
-		_wsrpConsumerPortlet.setWsrpConsumerPortletId(wsrpConsumerPortletId);
+	public int compareTo(
+		com.liferay.wsrp.model.WSRPConsumerPortlet wsrpConsumerPortlet) {
+		return _wsrpConsumerPortlet.compareTo(wsrpConsumerPortlet);
 	}
 
 	/**
@@ -186,16 +137,6 @@ public class WSRPConsumerPortletWrapper implements WSRPConsumerPortlet,
 	}
 
 	/**
-	* Sets the company ID of this w s r p consumer portlet.
-	*
-	* @param companyId the company ID of this w s r p consumer portlet
-	*/
-	@Override
-	public void setCompanyId(long companyId) {
-		_wsrpConsumerPortlet.setCompanyId(companyId);
-	}
-
-	/**
 	* Returns the create date of this w s r p consumer portlet.
 	*
 	* @return the create date of this w s r p consumer portlet
@@ -205,14 +146,9 @@ public class WSRPConsumerPortletWrapper implements WSRPConsumerPortlet,
 		return _wsrpConsumerPortlet.getCreateDate();
 	}
 
-	/**
-	* Sets the create date of this w s r p consumer portlet.
-	*
-	* @param createDate the create date of this w s r p consumer portlet
-	*/
 	@Override
-	public void setCreateDate(java.util.Date createDate) {
-		_wsrpConsumerPortlet.setCreateDate(createDate);
+	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {
+		return _wsrpConsumerPortlet.getExpandoBridge();
 	}
 
 	/**
@@ -226,36 +162,6 @@ public class WSRPConsumerPortletWrapper implements WSRPConsumerPortlet,
 	}
 
 	/**
-	* Sets the modified date of this w s r p consumer portlet.
-	*
-	* @param modifiedDate the modified date of this w s r p consumer portlet
-	*/
-	@Override
-	public void setModifiedDate(java.util.Date modifiedDate) {
-		_wsrpConsumerPortlet.setModifiedDate(modifiedDate);
-	}
-
-	/**
-	* Returns the wsrp consumer ID of this w s r p consumer portlet.
-	*
-	* @return the wsrp consumer ID of this w s r p consumer portlet
-	*/
-	@Override
-	public long getWsrpConsumerId() {
-		return _wsrpConsumerPortlet.getWsrpConsumerId();
-	}
-
-	/**
-	* Sets the wsrp consumer ID of this w s r p consumer portlet.
-	*
-	* @param wsrpConsumerId the wsrp consumer ID of this w s r p consumer portlet
-	*/
-	@Override
-	public void setWsrpConsumerId(long wsrpConsumerId) {
-		_wsrpConsumerPortlet.setWsrpConsumerId(wsrpConsumerId);
-	}
-
-	/**
 	* Returns the name of this w s r p consumer portlet.
 	*
 	* @return the name of this w s r p consumer portlet
@@ -263,16 +169,6 @@ public class WSRPConsumerPortletWrapper implements WSRPConsumerPortlet,
 	@Override
 	public java.lang.String getName() {
 		return _wsrpConsumerPortlet.getName();
-	}
-
-	/**
-	* Sets the name of this w s r p consumer portlet.
-	*
-	* @param name the name of this w s r p consumer portlet
-	*/
-	@Override
-	public void setName(java.lang.String name) {
-		_wsrpConsumerPortlet.setName(name);
 	}
 
 	/**
@@ -286,23 +182,53 @@ public class WSRPConsumerPortletWrapper implements WSRPConsumerPortlet,
 	}
 
 	/**
-	* Sets the portlet handle of this w s r p consumer portlet.
+	* Returns the primary key of this w s r p consumer portlet.
 	*
-	* @param portletHandle the portlet handle of this w s r p consumer portlet
+	* @return the primary key of this w s r p consumer portlet
 	*/
 	@Override
-	public void setPortletHandle(java.lang.String portletHandle) {
-		_wsrpConsumerPortlet.setPortletHandle(portletHandle);
+	public long getPrimaryKey() {
+		return _wsrpConsumerPortlet.getPrimaryKey();
 	}
 
 	@Override
-	public boolean isNew() {
-		return _wsrpConsumerPortlet.isNew();
+	public java.io.Serializable getPrimaryKeyObj() {
+		return _wsrpConsumerPortlet.getPrimaryKeyObj();
+	}
+
+	/**
+	* Returns the uuid of this w s r p consumer portlet.
+	*
+	* @return the uuid of this w s r p consumer portlet
+	*/
+	@Override
+	public java.lang.String getUuid() {
+		return _wsrpConsumerPortlet.getUuid();
+	}
+
+	/**
+	* Returns the wsrp consumer ID of this w s r p consumer portlet.
+	*
+	* @return the wsrp consumer ID of this w s r p consumer portlet
+	*/
+	@Override
+	public long getWsrpConsumerId() {
+		return _wsrpConsumerPortlet.getWsrpConsumerId();
+	}
+
+	/**
+	* Returns the wsrp consumer portlet ID of this w s r p consumer portlet.
+	*
+	* @return the wsrp consumer portlet ID of this w s r p consumer portlet
+	*/
+	@Override
+	public long getWsrpConsumerPortletId() {
+		return _wsrpConsumerPortlet.getWsrpConsumerPortletId();
 	}
 
 	@Override
-	public void setNew(boolean n) {
-		_wsrpConsumerPortlet.setNew(n);
+	public int hashCode() {
+		return _wsrpConsumerPortlet.hashCode();
 	}
 
 	@Override
@@ -311,28 +237,43 @@ public class WSRPConsumerPortletWrapper implements WSRPConsumerPortlet,
 	}
 
 	@Override
-	public void setCachedModel(boolean cachedModel) {
-		_wsrpConsumerPortlet.setCachedModel(cachedModel);
-	}
-
-	@Override
 	public boolean isEscapedModel() {
 		return _wsrpConsumerPortlet.isEscapedModel();
 	}
 
 	@Override
-	public java.io.Serializable getPrimaryKeyObj() {
-		return _wsrpConsumerPortlet.getPrimaryKeyObj();
+	public boolean isNew() {
+		return _wsrpConsumerPortlet.isNew();
 	}
 
 	@Override
-	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
-		_wsrpConsumerPortlet.setPrimaryKeyObj(primaryKeyObj);
+	public void persist() {
+		_wsrpConsumerPortlet.persist();
 	}
 
 	@Override
-	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {
-		return _wsrpConsumerPortlet.getExpandoBridge();
+	public void setCachedModel(boolean cachedModel) {
+		_wsrpConsumerPortlet.setCachedModel(cachedModel);
+	}
+
+	/**
+	* Sets the company ID of this w s r p consumer portlet.
+	*
+	* @param companyId the company ID of this w s r p consumer portlet
+	*/
+	@Override
+	public void setCompanyId(long companyId) {
+		_wsrpConsumerPortlet.setCompanyId(companyId);
+	}
+
+	/**
+	* Sets the create date of this w s r p consumer portlet.
+	*
+	* @param createDate the create date of this w s r p consumer portlet
+	*/
+	@Override
+	public void setCreateDate(java.util.Date createDate) {
+		_wsrpConsumerPortlet.setCreateDate(createDate);
 	}
 
 	@Override
@@ -353,20 +294,84 @@ public class WSRPConsumerPortletWrapper implements WSRPConsumerPortlet,
 		_wsrpConsumerPortlet.setExpandoBridgeAttributes(serviceContext);
 	}
 
+	/**
+	* Sets the modified date of this w s r p consumer portlet.
+	*
+	* @param modifiedDate the modified date of this w s r p consumer portlet
+	*/
 	@Override
-	public java.lang.Object clone() {
-		return new WSRPConsumerPortletWrapper((WSRPConsumerPortlet)_wsrpConsumerPortlet.clone());
+	public void setModifiedDate(java.util.Date modifiedDate) {
+		_wsrpConsumerPortlet.setModifiedDate(modifiedDate);
+	}
+
+	/**
+	* Sets the name of this w s r p consumer portlet.
+	*
+	* @param name the name of this w s r p consumer portlet
+	*/
+	@Override
+	public void setName(java.lang.String name) {
+		_wsrpConsumerPortlet.setName(name);
 	}
 
 	@Override
-	public int compareTo(
-		com.liferay.wsrp.model.WSRPConsumerPortlet wsrpConsumerPortlet) {
-		return _wsrpConsumerPortlet.compareTo(wsrpConsumerPortlet);
+	public void setNew(boolean n) {
+		_wsrpConsumerPortlet.setNew(n);
+	}
+
+	/**
+	* Sets the portlet handle of this w s r p consumer portlet.
+	*
+	* @param portletHandle the portlet handle of this w s r p consumer portlet
+	*/
+	@Override
+	public void setPortletHandle(java.lang.String portletHandle) {
+		_wsrpConsumerPortlet.setPortletHandle(portletHandle);
+	}
+
+	/**
+	* Sets the primary key of this w s r p consumer portlet.
+	*
+	* @param primaryKey the primary key of this w s r p consumer portlet
+	*/
+	@Override
+	public void setPrimaryKey(long primaryKey) {
+		_wsrpConsumerPortlet.setPrimaryKey(primaryKey);
 	}
 
 	@Override
-	public int hashCode() {
-		return _wsrpConsumerPortlet.hashCode();
+	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
+		_wsrpConsumerPortlet.setPrimaryKeyObj(primaryKeyObj);
+	}
+
+	/**
+	* Sets the uuid of this w s r p consumer portlet.
+	*
+	* @param uuid the uuid of this w s r p consumer portlet
+	*/
+	@Override
+	public void setUuid(java.lang.String uuid) {
+		_wsrpConsumerPortlet.setUuid(uuid);
+	}
+
+	/**
+	* Sets the wsrp consumer ID of this w s r p consumer portlet.
+	*
+	* @param wsrpConsumerId the wsrp consumer ID of this w s r p consumer portlet
+	*/
+	@Override
+	public void setWsrpConsumerId(long wsrpConsumerId) {
+		_wsrpConsumerPortlet.setWsrpConsumerId(wsrpConsumerId);
+	}
+
+	/**
+	* Sets the wsrp consumer portlet ID of this w s r p consumer portlet.
+	*
+	* @param wsrpConsumerPortletId the wsrp consumer portlet ID of this w s r p consumer portlet
+	*/
+	@Override
+	public void setWsrpConsumerPortletId(long wsrpConsumerPortletId) {
+		_wsrpConsumerPortlet.setWsrpConsumerPortletId(wsrpConsumerPortletId);
 	}
 
 	@Override
@@ -380,23 +385,18 @@ public class WSRPConsumerPortletWrapper implements WSRPConsumerPortlet,
 	}
 
 	@Override
-	public com.liferay.wsrp.model.WSRPConsumerPortlet toUnescapedModel() {
-		return new WSRPConsumerPortletWrapper(_wsrpConsumerPortlet.toUnescapedModel());
-	}
-
-	@Override
 	public java.lang.String toString() {
 		return _wsrpConsumerPortlet.toString();
 	}
 
 	@Override
-	public java.lang.String toXmlString() {
-		return _wsrpConsumerPortlet.toXmlString();
+	public com.liferay.wsrp.model.WSRPConsumerPortlet toUnescapedModel() {
+		return new WSRPConsumerPortletWrapper(_wsrpConsumerPortlet.toUnescapedModel());
 	}
 
 	@Override
-	public void persist() {
-		_wsrpConsumerPortlet.persist();
+	public java.lang.String toXmlString() {
+		return _wsrpConsumerPortlet.toXmlString();
 	}
 
 	@Override

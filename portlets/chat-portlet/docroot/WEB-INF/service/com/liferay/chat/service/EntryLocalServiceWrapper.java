@@ -29,6 +29,13 @@ public class EntryLocalServiceWrapper implements EntryLocalService,
 		_entryLocalService = entryLocalService;
 	}
 
+	@Override
+	public com.liferay.chat.model.Entry addEntry(long createDate,
+		long fromUserId, long toUserId, java.lang.String content) {
+		return _entryLocalService.addEntry(createDate, fromUserId, toUserId,
+			content);
+	}
+
 	/**
 	* Adds the entry to the database. Also notifies the appropriate model listeners.
 	*
@@ -41,6 +48,12 @@ public class EntryLocalServiceWrapper implements EntryLocalService,
 		return _entryLocalService.addEntry(entry);
 	}
 
+	@Override
+	public com.liferay.chat.model.Entry addEntry(long fromUserId,
+		long toUserId, java.lang.String content) {
+		return _entryLocalService.addEntry(fromUserId, toUserId, content);
+	}
+
 	/**
 	* Creates a new entry with the primary key. Does not add the entry to the database.
 	*
@@ -50,6 +63,23 @@ public class EntryLocalServiceWrapper implements EntryLocalService,
 	@Override
 	public com.liferay.chat.model.Entry createEntry(long entryId) {
 		return _entryLocalService.createEntry(entryId);
+	}
+
+	@Override
+	public void deleteEntries(long userId) {
+		_entryLocalService.deleteEntries(userId);
+	}
+
+	/**
+	* Deletes the entry from the database. Also notifies the appropriate model listeners.
+	*
+	* @param entry the entry
+	* @return the entry that was removed
+	*/
+	@Override
+	public com.liferay.chat.model.Entry deleteEntry(
+		com.liferay.chat.model.Entry entry) {
+		return _entryLocalService.deleteEntry(entry);
 	}
 
 	/**
@@ -66,15 +96,13 @@ public class EntryLocalServiceWrapper implements EntryLocalService,
 	}
 
 	/**
-	* Deletes the entry from the database. Also notifies the appropriate model listeners.
-	*
-	* @param entry the entry
-	* @return the entry that was removed
+	* @throws PortalException
 	*/
 	@Override
-	public com.liferay.chat.model.Entry deleteEntry(
-		com.liferay.chat.model.Entry entry) {
-		return _entryLocalService.deleteEntry(entry);
+	public com.liferay.portal.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.model.PersistedModel persistedModel)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _entryLocalService.deletePersistedModel(persistedModel);
 	}
 
 	@Override
@@ -166,39 +194,19 @@ public class EntryLocalServiceWrapper implements EntryLocalService,
 		return _entryLocalService.fetchEntry(entryId);
 	}
 
-	/**
-	* Returns the entry with the primary key.
-	*
-	* @param entryId the primary key of the entry
-	* @return the entry
-	* @throws PortalException if a entry with the primary key could not be found
-	*/
-	@Override
-	public com.liferay.chat.model.Entry getEntry(long entryId)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _entryLocalService.getEntry(entryId);
-	}
-
 	@Override
 	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
 		return _entryLocalService.getActionableDynamicQuery();
 	}
 
 	/**
-	* @throws PortalException
+	* Returns the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
 	*/
 	@Override
-	public com.liferay.portal.model.PersistedModel deletePersistedModel(
-		com.liferay.portal.model.PersistedModel persistedModel)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _entryLocalService.deletePersistedModel(persistedModel);
-	}
-
-	@Override
-	public com.liferay.portal.model.PersistedModel getPersistedModel(
-		java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _entryLocalService.getPersistedModel(primaryKeyObj);
+	public java.lang.String getBeanIdentifier() {
+		return _entryLocalService.getBeanIdentifier();
 	}
 
 	/**
@@ -229,60 +237,16 @@ public class EntryLocalServiceWrapper implements EntryLocalService,
 	}
 
 	/**
-	* Updates the entry in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	* Returns the entry with the primary key.
 	*
-	* @param entry the entry
-	* @return the entry that was updated
+	* @param entryId the primary key of the entry
+	* @return the entry
+	* @throws PortalException if a entry with the primary key could not be found
 	*/
 	@Override
-	public com.liferay.chat.model.Entry updateEntry(
-		com.liferay.chat.model.Entry entry) {
-		return _entryLocalService.updateEntry(entry);
-	}
-
-	/**
-	* Returns the Spring bean ID for this bean.
-	*
-	* @return the Spring bean ID for this bean
-	*/
-	@Override
-	public java.lang.String getBeanIdentifier() {
-		return _entryLocalService.getBeanIdentifier();
-	}
-
-	/**
-	* Sets the Spring bean ID for this bean.
-	*
-	* @param beanIdentifier the Spring bean ID for this bean
-	*/
-	@Override
-	public void setBeanIdentifier(java.lang.String beanIdentifier) {
-		_entryLocalService.setBeanIdentifier(beanIdentifier);
-	}
-
-	@Override
-	public java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable {
-		return _entryLocalService.invokeMethod(name, parameterTypes, arguments);
-	}
-
-	@Override
-	public com.liferay.chat.model.Entry addEntry(long createDate,
-		long fromUserId, long toUserId, java.lang.String content) {
-		return _entryLocalService.addEntry(createDate, fromUserId, toUserId,
-			content);
-	}
-
-	@Override
-	public com.liferay.chat.model.Entry addEntry(long fromUserId,
-		long toUserId, java.lang.String content) {
-		return _entryLocalService.addEntry(fromUserId, toUserId, content);
-	}
-
-	@Override
-	public void deleteEntries(long userId) {
-		_entryLocalService.deleteEntries(userId);
+	public com.liferay.chat.model.Entry getEntry(long entryId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _entryLocalService.getEntry(entryId);
 	}
 
 	@Override
@@ -295,6 +259,42 @@ public class EntryLocalServiceWrapper implements EntryLocalService,
 	public java.util.List<com.liferay.chat.model.Entry> getOldEntries(
 		long createDate, int start, int end) {
 		return _entryLocalService.getOldEntries(createDate, start, end);
+	}
+
+	@Override
+	public com.liferay.portal.model.PersistedModel getPersistedModel(
+		java.io.Serializable primaryKeyObj)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _entryLocalService.getPersistedModel(primaryKeyObj);
+	}
+
+	@Override
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return _entryLocalService.invokeMethod(name, parameterTypes, arguments);
+	}
+
+	/**
+	* Sets the Spring bean ID for this bean.
+	*
+	* @param beanIdentifier the Spring bean ID for this bean
+	*/
+	@Override
+	public void setBeanIdentifier(java.lang.String beanIdentifier) {
+		_entryLocalService.setBeanIdentifier(beanIdentifier);
+	}
+
+	/**
+	* Updates the entry in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	*
+	* @param entry the entry
+	* @return the entry that was updated
+	*/
+	@Override
+	public com.liferay.chat.model.Entry updateEntry(
+		com.liferay.chat.model.Entry entry) {
+		return _entryLocalService.updateEntry(entry);
 	}
 
 	/**

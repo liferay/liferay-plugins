@@ -62,16 +62,12 @@ public class SVNRepositoryLocalServiceUtil {
 	}
 
 	/**
-	* Deletes the s v n repository with the primary key from the database. Also notifies the appropriate model listeners.
-	*
-	* @param svnRepositoryId the primary key of the s v n repository
-	* @return the s v n repository that was removed
-	* @throws PortalException if a s v n repository with the primary key could not be found
+	* @throws PortalException
 	*/
-	public static com.liferay.socialcoding.model.SVNRepository deleteSVNRepository(
-		long svnRepositoryId)
+	public static com.liferay.portal.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.model.PersistedModel persistedModel)
 		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().deleteSVNRepository(svnRepositoryId);
+		return getService().deletePersistedModel(persistedModel);
 	}
 
 	/**
@@ -83,6 +79,19 @@ public class SVNRepositoryLocalServiceUtil {
 	public static com.liferay.socialcoding.model.SVNRepository deleteSVNRepository(
 		com.liferay.socialcoding.model.SVNRepository svnRepository) {
 		return getService().deleteSVNRepository(svnRepository);
+	}
+
+	/**
+	* Deletes the s v n repository with the primary key from the database. Also notifies the appropriate model listeners.
+	*
+	* @param svnRepositoryId the primary key of the s v n repository
+	* @return the s v n repository that was removed
+	* @throws PortalException if a s v n repository with the primary key could not be found
+	*/
+	public static com.liferay.socialcoding.model.SVNRepository deleteSVNRepository(
+		long svnRepositoryId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().deleteSVNRepository(svnRepositoryId);
 	}
 
 	public static com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
@@ -168,30 +177,17 @@ public class SVNRepositoryLocalServiceUtil {
 		return getService().fetchSVNRepository(svnRepositoryId);
 	}
 
-	/**
-	* Returns the s v n repository with the primary key.
-	*
-	* @param svnRepositoryId the primary key of the s v n repository
-	* @return the s v n repository
-	* @throws PortalException if a s v n repository with the primary key could not be found
-	*/
-	public static com.liferay.socialcoding.model.SVNRepository getSVNRepository(
-		long svnRepositoryId)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().getSVNRepository(svnRepositoryId);
-	}
-
 	public static com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
 		return getService().getActionableDynamicQuery();
 	}
 
 	/**
-	* @throws PortalException
+	* Returns the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
 	*/
-	public static com.liferay.portal.model.PersistedModel deletePersistedModel(
-		com.liferay.portal.model.PersistedModel persistedModel)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().deletePersistedModel(persistedModel);
+	public static java.lang.String getBeanIdentifier() {
+		return getService().getBeanIdentifier();
 	}
 
 	public static com.liferay.portal.model.PersistedModel getPersistedModel(
@@ -226,23 +222,28 @@ public class SVNRepositoryLocalServiceUtil {
 	}
 
 	/**
-	* Updates the s v n repository in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	* Returns the s v n repository with the primary key.
 	*
-	* @param svnRepository the s v n repository
-	* @return the s v n repository that was updated
+	* @param svnRepositoryId the primary key of the s v n repository
+	* @return the s v n repository
+	* @throws PortalException if a s v n repository with the primary key could not be found
 	*/
-	public static com.liferay.socialcoding.model.SVNRepository updateSVNRepository(
-		com.liferay.socialcoding.model.SVNRepository svnRepository) {
-		return getService().updateSVNRepository(svnRepository);
+	public static com.liferay.socialcoding.model.SVNRepository getSVNRepository(
+		long svnRepositoryId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().getSVNRepository(svnRepositoryId);
 	}
 
-	/**
-	* Returns the Spring bean ID for this bean.
-	*
-	* @return the Spring bean ID for this bean
-	*/
-	public static java.lang.String getBeanIdentifier() {
-		return getService().getBeanIdentifier();
+	public static com.liferay.socialcoding.model.SVNRepository getSVNRepository(
+		java.lang.String url)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().getSVNRepository(url);
+	}
+
+	public static java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return getService().invokeMethod(name, parameterTypes, arguments);
 	}
 
 	/**
@@ -254,16 +255,15 @@ public class SVNRepositoryLocalServiceUtil {
 		getService().setBeanIdentifier(beanIdentifier);
 	}
 
-	public static java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable {
-		return getService().invokeMethod(name, parameterTypes, arguments);
-	}
-
-	public static com.liferay.socialcoding.model.SVNRepository getSVNRepository(
-		java.lang.String url)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().getSVNRepository(url);
+	/**
+	* Updates the s v n repository in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	*
+	* @param svnRepository the s v n repository
+	* @return the s v n repository that was updated
+	*/
+	public static com.liferay.socialcoding.model.SVNRepository updateSVNRepository(
+		com.liferay.socialcoding.model.SVNRepository svnRepository) {
+		return getService().updateSVNRepository(svnRepository);
 	}
 
 	public static void updateSVNRepository(java.lang.String url)

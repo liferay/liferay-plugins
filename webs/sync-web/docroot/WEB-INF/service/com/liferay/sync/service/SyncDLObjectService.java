@@ -45,26 +45,6 @@ public interface SyncDLObjectService extends BaseService, InvokableService {
 	 *
 	 * Never modify or reference this interface directly. Always use {@link SyncDLObjectServiceUtil} to access the sync d l object remote service. Add custom service methods to {@link com.liferay.sync.service.impl.SyncDLObjectServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
-
-	/**
-	* Returns the Spring bean ID for this bean.
-	*
-	* @return the Spring bean ID for this bean
-	*/
-	public java.lang.String getBeanIdentifier();
-
-	/**
-	* Sets the Spring bean ID for this bean.
-	*
-	* @param beanIdentifier the Spring bean ID for this bean
-	*/
-	public void setBeanIdentifier(java.lang.String beanIdentifier);
-
-	@Override
-	public java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable;
-
 	public com.liferay.sync.model.SyncDLObject addFileEntry(long repositoryId,
 		long folderId, java.lang.String sourceFileName,
 		java.lang.String mimeType, java.lang.String title,
@@ -92,13 +72,13 @@ public interface SyncDLObjectService extends BaseService, InvokableService {
 			com.liferay.portal.kernel.exception.SystemException;
 
 	public com.liferay.sync.model.SyncDLObject checkOutFileEntry(
-		long fileEntryId,
+		long fileEntryId, java.lang.String owner, long expirationTime,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
 	public com.liferay.sync.model.SyncDLObject checkOutFileEntry(
-		long fileEntryId, java.lang.String owner, long expirationTime,
+		long fileEntryId,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
@@ -106,12 +86,19 @@ public interface SyncDLObjectService extends BaseService, InvokableService {
 	/**
 	* @deprecated As of 7.0.0, with no direct replacement
 	*/
-	@Deprecated
+	@java.lang.Deprecated
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.sync.model.SyncDLObjectUpdate getAllSyncDLObjects(
 		long repositoryId, long folderId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
+	*/
+	public java.lang.String getBeanIdentifier();
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.sync.model.SyncDLObject getFileEntrySyncDLObject(
@@ -169,6 +156,11 @@ public interface SyncDLObjectService extends BaseService, InvokableService {
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
+	@Override
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable;
+
 	public com.liferay.sync.model.SyncDLObject moveFileEntry(long fileEntryId,
 		long newFolderId,
 		com.liferay.portal.service.ServiceContext serviceContext)
@@ -209,6 +201,13 @@ public interface SyncDLObjectService extends BaseService, InvokableService {
 		long folderId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Sets the Spring bean ID for this bean.
+	*
+	* @param beanIdentifier the Spring bean ID for this bean
+	*/
+	public void setBeanIdentifier(java.lang.String beanIdentifier);
 
 	public com.liferay.sync.model.SyncDLObject updateFileEntry(
 		long fileEntryId, java.lang.String sourceFileName,

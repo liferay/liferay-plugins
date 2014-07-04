@@ -45,26 +45,6 @@ public interface MicroblogsEntryService extends BaseService, InvokableService {
 	 *
 	 * Never modify or reference this interface directly. Always use {@link MicroblogsEntryServiceUtil} to access the microblogs entry remote service. Add custom service methods to {@link com.liferay.microblogs.service.impl.MicroblogsEntryServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
-
-	/**
-	* Returns the Spring bean ID for this bean.
-	*
-	* @return the Spring bean ID for this bean
-	*/
-	public java.lang.String getBeanIdentifier();
-
-	/**
-	* Sets the Spring bean ID for this bean.
-	*
-	* @param beanIdentifier the Spring bean ID for this bean
-	*/
-	public void setBeanIdentifier(java.lang.String beanIdentifier);
-
-	@Override
-	public java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable;
-
 	public com.liferay.microblogs.model.MicroblogsEntry addMicroblogsEntry(
 		long userId, java.lang.String content, int type, long receiverUserId,
 		long receiverMicroblogsEntryId, int socialRelationType,
@@ -75,14 +55,21 @@ public interface MicroblogsEntryService extends BaseService, InvokableService {
 		long microblogsEntryId)
 		throws com.liferay.portal.kernel.exception.PortalException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<com.liferay.microblogs.model.MicroblogsEntry> getMicroblogsEntries(
-		int start, int end)
-		throws com.liferay.portal.kernel.exception.PortalException;
+	/**
+	* Returns the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
+	*/
+	public java.lang.String getBeanIdentifier();
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.microblogs.model.MicroblogsEntry> getMicroblogsEntries(
 		java.lang.String assetTagName, int start, int end)
+		throws com.liferay.portal.kernel.exception.PortalException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<com.liferay.microblogs.model.MicroblogsEntry> getMicroblogsEntries(
+		int start, int end)
 		throws com.liferay.portal.kernel.exception.PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
@@ -115,6 +102,18 @@ public interface MicroblogsEntryService extends BaseService, InvokableService {
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getUserMicroblogsEntriesCount(long microblogsEntryUserId,
 		int type) throws com.liferay.portal.kernel.exception.PortalException;
+
+	@Override
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable;
+
+	/**
+	* Sets the Spring bean ID for this bean.
+	*
+	* @param beanIdentifier the Spring bean ID for this bean
+	*/
+	public void setBeanIdentifier(java.lang.String beanIdentifier);
 
 	public com.liferay.microblogs.model.MicroblogsEntry updateMicroblogsEntry(
 		long microblogsEntryId, java.lang.String content,

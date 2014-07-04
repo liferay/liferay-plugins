@@ -30,34 +30,6 @@ public class BBBParticipantServiceWrapper implements BBBParticipantService,
 		_bbbParticipantService = bbbParticipantService;
 	}
 
-	/**
-	* Returns the Spring bean ID for this bean.
-	*
-	* @return the Spring bean ID for this bean
-	*/
-	@Override
-	public java.lang.String getBeanIdentifier() {
-		return _bbbParticipantService.getBeanIdentifier();
-	}
-
-	/**
-	* Sets the Spring bean ID for this bean.
-	*
-	* @param beanIdentifier the Spring bean ID for this bean
-	*/
-	@Override
-	public void setBeanIdentifier(java.lang.String beanIdentifier) {
-		_bbbParticipantService.setBeanIdentifier(beanIdentifier);
-	}
-
-	@Override
-	public java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable {
-		return _bbbParticipantService.invokeMethod(name, parameterTypes,
-			arguments);
-	}
-
 	@Override
 	public com.liferay.bbb.model.BBBParticipant deleteBBBParticipant(
 		com.liferay.bbb.model.BBBParticipant bbbParticipant)
@@ -76,6 +48,34 @@ public class BBBParticipantServiceWrapper implements BBBParticipantService,
 	public int getBBBParticipantsCount(long bbbMeetingId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _bbbParticipantService.getBBBParticipantsCount(bbbMeetingId);
+	}
+
+	/**
+	* Returns the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
+	*/
+	@Override
+	public java.lang.String getBeanIdentifier() {
+		return _bbbParticipantService.getBeanIdentifier();
+	}
+
+	@Override
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return _bbbParticipantService.invokeMethod(name, parameterTypes,
+			arguments);
+	}
+
+	/**
+	* Sets the Spring bean ID for this bean.
+	*
+	* @param beanIdentifier the Spring bean ID for this bean
+	*/
+	@Override
+	public void setBeanIdentifier(java.lang.String beanIdentifier) {
+		_bbbParticipantService.setBeanIdentifier(beanIdentifier);
 	}
 
 	@Override

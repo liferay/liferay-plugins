@@ -105,64 +105,20 @@ public class JIRAChangeItemWrapper implements JIRAChangeItem,
 		}
 	}
 
-	/**
-	* Returns the primary key of this j i r a change item.
-	*
-	* @return the primary key of this j i r a change item
-	*/
 	@Override
-	public long getPrimaryKey() {
-		return _jiraChangeItem.getPrimaryKey();
+	public java.lang.Object clone() {
+		return new JIRAChangeItemWrapper((JIRAChangeItem)_jiraChangeItem.clone());
 	}
 
-	/**
-	* Sets the primary key of this j i r a change item.
-	*
-	* @param primaryKey the primary key of this j i r a change item
-	*/
 	@Override
-	public void setPrimaryKey(long primaryKey) {
-		_jiraChangeItem.setPrimaryKey(primaryKey);
+	public int compareTo(
+		com.liferay.socialcoding.model.JIRAChangeItem jiraChangeItem) {
+		return _jiraChangeItem.compareTo(jiraChangeItem);
 	}
 
-	/**
-	* Returns the jira change item ID of this j i r a change item.
-	*
-	* @return the jira change item ID of this j i r a change item
-	*/
 	@Override
-	public long getJiraChangeItemId() {
-		return _jiraChangeItem.getJiraChangeItemId();
-	}
-
-	/**
-	* Sets the jira change item ID of this j i r a change item.
-	*
-	* @param jiraChangeItemId the jira change item ID of this j i r a change item
-	*/
-	@Override
-	public void setJiraChangeItemId(long jiraChangeItemId) {
-		_jiraChangeItem.setJiraChangeItemId(jiraChangeItemId);
-	}
-
-	/**
-	* Returns the jira change group ID of this j i r a change item.
-	*
-	* @return the jira change group ID of this j i r a change item
-	*/
-	@Override
-	public long getJiraChangeGroupId() {
-		return _jiraChangeItem.getJiraChangeGroupId();
-	}
-
-	/**
-	* Sets the jira change group ID of this j i r a change item.
-	*
-	* @param jiraChangeGroupId the jira change group ID of this j i r a change item
-	*/
-	@Override
-	public void setJiraChangeGroupId(long jiraChangeGroupId) {
-		_jiraChangeItem.setJiraChangeGroupId(jiraChangeGroupId);
+	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {
+		return _jiraChangeItem.getExpandoBridge();
 	}
 
 	/**
@@ -176,73 +132,23 @@ public class JIRAChangeItemWrapper implements JIRAChangeItem,
 	}
 
 	/**
-	* Sets the field of this j i r a change item.
+	* Returns the jira change group ID of this j i r a change item.
 	*
-	* @param field the field of this j i r a change item
+	* @return the jira change group ID of this j i r a change item
 	*/
 	@Override
-	public void setField(java.lang.String field) {
-		_jiraChangeItem.setField(field);
+	public long getJiraChangeGroupId() {
+		return _jiraChangeItem.getJiraChangeGroupId();
 	}
 
 	/**
-	* Returns the old value of this j i r a change item.
+	* Returns the jira change item ID of this j i r a change item.
 	*
-	* @return the old value of this j i r a change item
+	* @return the jira change item ID of this j i r a change item
 	*/
 	@Override
-	public java.lang.String getOldValue() {
-		return _jiraChangeItem.getOldValue();
-	}
-
-	/**
-	* Sets the old value of this j i r a change item.
-	*
-	* @param oldValue the old value of this j i r a change item
-	*/
-	@Override
-	public void setOldValue(java.lang.String oldValue) {
-		_jiraChangeItem.setOldValue(oldValue);
-	}
-
-	/**
-	* Returns the old string of this j i r a change item.
-	*
-	* @return the old string of this j i r a change item
-	*/
-	@Override
-	public java.lang.String getOldString() {
-		return _jiraChangeItem.getOldString();
-	}
-
-	/**
-	* Sets the old string of this j i r a change item.
-	*
-	* @param oldString the old string of this j i r a change item
-	*/
-	@Override
-	public void setOldString(java.lang.String oldString) {
-		_jiraChangeItem.setOldString(oldString);
-	}
-
-	/**
-	* Returns the new value of this j i r a change item.
-	*
-	* @return the new value of this j i r a change item
-	*/
-	@Override
-	public java.lang.String getNewValue() {
-		return _jiraChangeItem.getNewValue();
-	}
-
-	/**
-	* Sets the new value of this j i r a change item.
-	*
-	* @param newValue the new value of this j i r a change item
-	*/
-	@Override
-	public void setNewValue(java.lang.String newValue) {
-		_jiraChangeItem.setNewValue(newValue);
+	public long getJiraChangeItemId() {
+		return _jiraChangeItem.getJiraChangeItemId();
 	}
 
 	/**
@@ -256,38 +162,43 @@ public class JIRAChangeItemWrapper implements JIRAChangeItem,
 	}
 
 	/**
-	* Sets the new string of this j i r a change item.
+	* Returns the new value of this j i r a change item.
 	*
-	* @param newString the new string of this j i r a change item
+	* @return the new value of this j i r a change item
 	*/
 	@Override
-	public void setNewString(java.lang.String newString) {
-		_jiraChangeItem.setNewString(newString);
+	public java.lang.String getNewValue() {
+		return _jiraChangeItem.getNewValue();
 	}
 
+	/**
+	* Returns the old string of this j i r a change item.
+	*
+	* @return the old string of this j i r a change item
+	*/
 	@Override
-	public boolean isNew() {
-		return _jiraChangeItem.isNew();
+	public java.lang.String getOldString() {
+		return _jiraChangeItem.getOldString();
 	}
 
+	/**
+	* Returns the old value of this j i r a change item.
+	*
+	* @return the old value of this j i r a change item
+	*/
 	@Override
-	public void setNew(boolean n) {
-		_jiraChangeItem.setNew(n);
+	public java.lang.String getOldValue() {
+		return _jiraChangeItem.getOldValue();
 	}
 
+	/**
+	* Returns the primary key of this j i r a change item.
+	*
+	* @return the primary key of this j i r a change item
+	*/
 	@Override
-	public boolean isCachedModel() {
-		return _jiraChangeItem.isCachedModel();
-	}
-
-	@Override
-	public void setCachedModel(boolean cachedModel) {
-		_jiraChangeItem.setCachedModel(cachedModel);
-	}
-
-	@Override
-	public boolean isEscapedModel() {
-		return _jiraChangeItem.isEscapedModel();
+	public long getPrimaryKey() {
+		return _jiraChangeItem.getPrimaryKey();
 	}
 
 	@Override
@@ -296,13 +207,33 @@ public class JIRAChangeItemWrapper implements JIRAChangeItem,
 	}
 
 	@Override
-	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
-		_jiraChangeItem.setPrimaryKeyObj(primaryKeyObj);
+	public int hashCode() {
+		return _jiraChangeItem.hashCode();
 	}
 
 	@Override
-	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {
-		return _jiraChangeItem.getExpandoBridge();
+	public boolean isCachedModel() {
+		return _jiraChangeItem.isCachedModel();
+	}
+
+	@Override
+	public boolean isEscapedModel() {
+		return _jiraChangeItem.isEscapedModel();
+	}
+
+	@Override
+	public boolean isNew() {
+		return _jiraChangeItem.isNew();
+	}
+
+	@Override
+	public void persist() {
+		_jiraChangeItem.persist();
+	}
+
+	@Override
+	public void setCachedModel(boolean cachedModel) {
+		_jiraChangeItem.setCachedModel(cachedModel);
 	}
 
 	@Override
@@ -323,20 +254,94 @@ public class JIRAChangeItemWrapper implements JIRAChangeItem,
 		_jiraChangeItem.setExpandoBridgeAttributes(serviceContext);
 	}
 
+	/**
+	* Sets the field of this j i r a change item.
+	*
+	* @param field the field of this j i r a change item
+	*/
 	@Override
-	public java.lang.Object clone() {
-		return new JIRAChangeItemWrapper((JIRAChangeItem)_jiraChangeItem.clone());
+	public void setField(java.lang.String field) {
+		_jiraChangeItem.setField(field);
+	}
+
+	/**
+	* Sets the jira change group ID of this j i r a change item.
+	*
+	* @param jiraChangeGroupId the jira change group ID of this j i r a change item
+	*/
+	@Override
+	public void setJiraChangeGroupId(long jiraChangeGroupId) {
+		_jiraChangeItem.setJiraChangeGroupId(jiraChangeGroupId);
+	}
+
+	/**
+	* Sets the jira change item ID of this j i r a change item.
+	*
+	* @param jiraChangeItemId the jira change item ID of this j i r a change item
+	*/
+	@Override
+	public void setJiraChangeItemId(long jiraChangeItemId) {
+		_jiraChangeItem.setJiraChangeItemId(jiraChangeItemId);
 	}
 
 	@Override
-	public int compareTo(
-		com.liferay.socialcoding.model.JIRAChangeItem jiraChangeItem) {
-		return _jiraChangeItem.compareTo(jiraChangeItem);
+	public void setNew(boolean n) {
+		_jiraChangeItem.setNew(n);
+	}
+
+	/**
+	* Sets the new string of this j i r a change item.
+	*
+	* @param newString the new string of this j i r a change item
+	*/
+	@Override
+	public void setNewString(java.lang.String newString) {
+		_jiraChangeItem.setNewString(newString);
+	}
+
+	/**
+	* Sets the new value of this j i r a change item.
+	*
+	* @param newValue the new value of this j i r a change item
+	*/
+	@Override
+	public void setNewValue(java.lang.String newValue) {
+		_jiraChangeItem.setNewValue(newValue);
+	}
+
+	/**
+	* Sets the old string of this j i r a change item.
+	*
+	* @param oldString the old string of this j i r a change item
+	*/
+	@Override
+	public void setOldString(java.lang.String oldString) {
+		_jiraChangeItem.setOldString(oldString);
+	}
+
+	/**
+	* Sets the old value of this j i r a change item.
+	*
+	* @param oldValue the old value of this j i r a change item
+	*/
+	@Override
+	public void setOldValue(java.lang.String oldValue) {
+		_jiraChangeItem.setOldValue(oldValue);
+	}
+
+	/**
+	* Sets the primary key of this j i r a change item.
+	*
+	* @param primaryKey the primary key of this j i r a change item
+	*/
+	@Override
+	public void setPrimaryKey(long primaryKey) {
+		_jiraChangeItem.setPrimaryKey(primaryKey);
 	}
 
 	@Override
-	public int hashCode() {
-		return _jiraChangeItem.hashCode();
+	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
+		_jiraChangeItem.setPrimaryKeyObj(primaryKeyObj);
 	}
 
 	@Override
@@ -350,23 +355,18 @@ public class JIRAChangeItemWrapper implements JIRAChangeItem,
 	}
 
 	@Override
-	public com.liferay.socialcoding.model.JIRAChangeItem toUnescapedModel() {
-		return new JIRAChangeItemWrapper(_jiraChangeItem.toUnescapedModel());
-	}
-
-	@Override
 	public java.lang.String toString() {
 		return _jiraChangeItem.toString();
 	}
 
 	@Override
-	public java.lang.String toXmlString() {
-		return _jiraChangeItem.toXmlString();
+	public com.liferay.socialcoding.model.JIRAChangeItem toUnescapedModel() {
+		return new JIRAChangeItemWrapper(_jiraChangeItem.toUnescapedModel());
 	}
 
 	@Override
-	public void persist() {
-		_jiraChangeItem.persist();
+	public java.lang.String toXmlString() {
+		return _jiraChangeItem.toXmlString();
 	}
 
 	@Override

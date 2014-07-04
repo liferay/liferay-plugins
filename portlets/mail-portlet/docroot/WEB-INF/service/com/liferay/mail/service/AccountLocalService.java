@@ -16,6 +16,7 @@ package com.liferay.mail.service;
 
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.search.IndexableType;
 import com.liferay.portal.kernel.transaction.Isolation;
 import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
@@ -51,8 +52,21 @@ public interface AccountLocalService extends BaseLocalService,
 	* @param account the account
 	* @return the account that was added
 	*/
+	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.REINDEX)
 	public com.liferay.mail.model.Account addAccount(
 		com.liferay.mail.model.Account account);
+
+	public com.liferay.mail.model.Account addAccount(long userId,
+		java.lang.String address, java.lang.String personalName,
+		java.lang.String protocol, java.lang.String incomingHostName,
+		int incomingPort, boolean incomingSecure,
+		java.lang.String outgoingHostName, int outgoingPort,
+		boolean outgoingSecure, java.lang.String login,
+		java.lang.String password, boolean savePassword,
+		java.lang.String signature, boolean useSignature,
+		java.lang.String folderPrefix, long inboxFolderId, long draftFolderId,
+		long sentFolderId, long trashFolderId, boolean defaultSender)
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	/**
 	* Creates a new account with the primary key. Does not add the account to the database.
@@ -63,24 +77,37 @@ public interface AccountLocalService extends BaseLocalService,
 	public com.liferay.mail.model.Account createAccount(long accountId);
 
 	/**
-	* Deletes the account with the primary key from the database. Also notifies the appropriate model listeners.
-	*
-	* @param accountId the primary key of the account
-	* @return the account that was removed
-	* @throws PortalException if a account with the primary key could not be found
-	*/
-	public com.liferay.mail.model.Account deleteAccount(long accountId)
-		throws com.liferay.portal.kernel.exception.PortalException;
-
-	/**
 	* Deletes the account from the database. Also notifies the appropriate model listeners.
 	*
 	* @param account the account
 	* @return the account that was removed
 	* @throws PortalException
 	*/
+	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.DELETE)
 	public com.liferay.mail.model.Account deleteAccount(
 		com.liferay.mail.model.Account account)
+		throws com.liferay.portal.kernel.exception.PortalException;
+
+	/**
+	* Deletes the account with the primary key from the database. Also notifies the appropriate model listeners.
+	*
+	* @param accountId the primary key of the account
+	* @return the account that was removed
+	* @throws PortalException if a account with the primary key could not be found
+	*/
+	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.DELETE)
+	public com.liferay.mail.model.Account deleteAccount(long accountId)
+		throws com.liferay.portal.kernel.exception.PortalException;
+
+	public void deleteAccounts(long userId)
+		throws com.liferay.portal.kernel.exception.PortalException;
+
+	/**
+	* @throws PortalException
+	*/
+	@Override
+	public com.liferay.portal.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.model.PersistedModel persistedModel)
 		throws com.liferay.portal.kernel.exception.PortalException;
 
 	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery();
@@ -163,20 +190,8 @@ public interface AccountLocalService extends BaseLocalService,
 		throws com.liferay.portal.kernel.exception.PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery();
-
-	/**
-	* @throws PortalException
-	*/
-	@Override
-	public com.liferay.portal.model.PersistedModel deletePersistedModel(
-		com.liferay.portal.model.PersistedModel persistedModel)
-		throws com.liferay.portal.kernel.exception.PortalException;
-
-	@Override
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.portal.model.PersistedModel getPersistedModel(
-		java.io.Serializable primaryKeyObj)
+	public com.liferay.mail.model.Account getAccount(long userId,
+		java.lang.String address)
 		throws com.liferay.portal.kernel.exception.PortalException;
 
 	/**
@@ -194,6 +209,10 @@ public interface AccountLocalService extends BaseLocalService,
 	public java.util.List<com.liferay.mail.model.Account> getAccounts(
 		int start, int end);
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<com.liferay.mail.model.Account> getAccounts(
+		long userId);
+
 	/**
 	* Returns the number of accounts.
 	*
@@ -202,14 +221,8 @@ public interface AccountLocalService extends BaseLocalService,
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getAccountsCount();
 
-	/**
-	* Updates the account in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	*
-	* @param account the account
-	* @return the account that was updated
-	*/
-	public com.liferay.mail.model.Account updateAccount(
-		com.liferay.mail.model.Account account);
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery();
 
 	/**
 	* Returns the Spring bean ID for this bean.
@@ -218,6 +231,17 @@ public interface AccountLocalService extends BaseLocalService,
 	*/
 	public java.lang.String getBeanIdentifier();
 
+	@Override
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.liferay.portal.model.PersistedModel getPersistedModel(
+		java.io.Serializable primaryKeyObj)
+		throws com.liferay.portal.kernel.exception.PortalException;
+
+	@Override
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable;
+
 	/**
 	* Sets the Spring bean ID for this bean.
 	*
@@ -225,34 +249,15 @@ public interface AccountLocalService extends BaseLocalService,
 	*/
 	public void setBeanIdentifier(java.lang.String beanIdentifier);
 
-	@Override
-	public java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable;
-
-	public com.liferay.mail.model.Account addAccount(long userId,
-		java.lang.String address, java.lang.String personalName,
-		java.lang.String protocol, java.lang.String incomingHostName,
-		int incomingPort, boolean incomingSecure,
-		java.lang.String outgoingHostName, int outgoingPort,
-		boolean outgoingSecure, java.lang.String login,
-		java.lang.String password, boolean savePassword,
-		java.lang.String signature, boolean useSignature,
-		java.lang.String folderPrefix, long inboxFolderId, long draftFolderId,
-		long sentFolderId, long trashFolderId, boolean defaultSender)
-		throws com.liferay.portal.kernel.exception.PortalException;
-
-	public void deleteAccounts(long userId)
-		throws com.liferay.portal.kernel.exception.PortalException;
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.mail.model.Account getAccount(long userId,
-		java.lang.String address)
-		throws com.liferay.portal.kernel.exception.PortalException;
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<com.liferay.mail.model.Account> getAccounts(
-		long userId);
+	/**
+	* Updates the account in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	*
+	* @param account the account
+	* @return the account that was updated
+	*/
+	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.REINDEX)
+	public com.liferay.mail.model.Account updateAccount(
+		com.liferay.mail.model.Account account);
 
 	public com.liferay.mail.model.Account updateAccount(long accountId,
 		java.lang.String personalName, java.lang.String password,

@@ -55,6 +55,18 @@ public class AkismetDataLocalServiceWrapper implements AkismetDataLocalService,
 	}
 
 	/**
+	* Deletes the akismet data from the database. Also notifies the appropriate model listeners.
+	*
+	* @param akismetData the akismet data
+	* @return the akismet data that was removed
+	*/
+	@Override
+	public com.liferay.akismet.model.AkismetData deleteAkismetData(
+		com.liferay.akismet.model.AkismetData akismetData) {
+		return _akismetDataLocalService.deleteAkismetData(akismetData);
+	}
+
+	/**
 	* Deletes the akismet data with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param akismetDataId the primary key of the akismet data
@@ -68,16 +80,25 @@ public class AkismetDataLocalServiceWrapper implements AkismetDataLocalService,
 		return _akismetDataLocalService.deleteAkismetData(akismetDataId);
 	}
 
+	@Override
+	public void deleteAkismetData(java.lang.String className, long classPK)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		_akismetDataLocalService.deleteAkismetData(className, classPK);
+	}
+
+	@Override
+	public void deleteAkismetData(java.util.Date modifiedDate) {
+		_akismetDataLocalService.deleteAkismetData(modifiedDate);
+	}
+
 	/**
-	* Deletes the akismet data from the database. Also notifies the appropriate model listeners.
-	*
-	* @param akismetData the akismet data
-	* @return the akismet data that was removed
+	* @throws PortalException
 	*/
 	@Override
-	public com.liferay.akismet.model.AkismetData deleteAkismetData(
-		com.liferay.akismet.model.AkismetData akismetData) {
-		return _akismetDataLocalService.deleteAkismetData(akismetData);
+	public com.liferay.portal.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.model.PersistedModel persistedModel)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _akismetDataLocalService.deletePersistedModel(persistedModel);
 	}
 
 	@Override
@@ -171,6 +192,17 @@ public class AkismetDataLocalServiceWrapper implements AkismetDataLocalService,
 		return _akismetDataLocalService.fetchAkismetData(akismetDataId);
 	}
 
+	@Override
+	public com.liferay.akismet.model.AkismetData fetchAkismetData(
+		java.lang.String className, long classPK) {
+		return _akismetDataLocalService.fetchAkismetData(className, classPK);
+	}
+
+	@Override
+	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
+		return _akismetDataLocalService.getActionableDynamicQuery();
+	}
+
 	/**
 	* Returns the akismet data with the primary key.
 	*
@@ -183,28 +215,6 @@ public class AkismetDataLocalServiceWrapper implements AkismetDataLocalService,
 		long akismetDataId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _akismetDataLocalService.getAkismetData(akismetDataId);
-	}
-
-	@Override
-	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
-		return _akismetDataLocalService.getActionableDynamicQuery();
-	}
-
-	/**
-	* @throws PortalException
-	*/
-	@Override
-	public com.liferay.portal.model.PersistedModel deletePersistedModel(
-		com.liferay.portal.model.PersistedModel persistedModel)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _akismetDataLocalService.deletePersistedModel(persistedModel);
-	}
-
-	@Override
-	public com.liferay.portal.model.PersistedModel getPersistedModel(
-		java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _akismetDataLocalService.getPersistedModel(primaryKeyObj);
 	}
 
 	/**
@@ -235,18 +245,6 @@ public class AkismetDataLocalServiceWrapper implements AkismetDataLocalService,
 	}
 
 	/**
-	* Updates the akismet data in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	*
-	* @param akismetData the akismet data
-	* @return the akismet data that was updated
-	*/
-	@Override
-	public com.liferay.akismet.model.AkismetData updateAkismetData(
-		com.liferay.akismet.model.AkismetData akismetData) {
-		return _akismetDataLocalService.updateAkismetData(akismetData);
-	}
-
-	/**
 	* Returns the Spring bean ID for this bean.
 	*
 	* @return the Spring bean ID for this bean
@@ -254,6 +252,21 @@ public class AkismetDataLocalServiceWrapper implements AkismetDataLocalService,
 	@Override
 	public java.lang.String getBeanIdentifier() {
 		return _akismetDataLocalService.getBeanIdentifier();
+	}
+
+	@Override
+	public com.liferay.portal.model.PersistedModel getPersistedModel(
+		java.io.Serializable primaryKeyObj)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _akismetDataLocalService.getPersistedModel(primaryKeyObj);
+	}
+
+	@Override
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return _akismetDataLocalService.invokeMethod(name, parameterTypes,
+			arguments);
 	}
 
 	/**
@@ -266,29 +279,16 @@ public class AkismetDataLocalServiceWrapper implements AkismetDataLocalService,
 		_akismetDataLocalService.setBeanIdentifier(beanIdentifier);
 	}
 
+	/**
+	* Updates the akismet data in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	*
+	* @param akismetData the akismet data
+	* @return the akismet data that was updated
+	*/
 	@Override
-	public java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable {
-		return _akismetDataLocalService.invokeMethod(name, parameterTypes,
-			arguments);
-	}
-
-	@Override
-	public void deleteAkismetData(java.util.Date modifiedDate) {
-		_akismetDataLocalService.deleteAkismetData(modifiedDate);
-	}
-
-	@Override
-	public void deleteAkismetData(java.lang.String className, long classPK)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		_akismetDataLocalService.deleteAkismetData(className, classPK);
-	}
-
-	@Override
-	public com.liferay.akismet.model.AkismetData fetchAkismetData(
-		java.lang.String className, long classPK) {
-		return _akismetDataLocalService.fetchAkismetData(className, classPK);
+	public com.liferay.akismet.model.AkismetData updateAkismetData(
+		com.liferay.akismet.model.AkismetData akismetData) {
+		return _akismetDataLocalService.updateAkismetData(akismetData);
 	}
 
 	@Override

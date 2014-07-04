@@ -16,6 +16,7 @@ package com.liferay.so.service;
 
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.search.IndexableType;
 import com.liferay.portal.kernel.transaction.Isolation;
 import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
@@ -51,8 +52,13 @@ public interface FavoriteSiteLocalService extends BaseLocalService,
 	* @param favoriteSite the favorite site
 	* @return the favorite site that was added
 	*/
+	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.REINDEX)
 	public com.liferay.so.model.FavoriteSite addFavoriteSite(
 		com.liferay.so.model.FavoriteSite favoriteSite);
+
+	public com.liferay.so.model.FavoriteSite addFavoriteSite(long userId,
+		long groupId)
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	/**
 	* Creates a new favorite site with the primary key. Does not add the favorite site to the database.
@@ -64,24 +70,37 @@ public interface FavoriteSiteLocalService extends BaseLocalService,
 		long favoriteSiteId);
 
 	/**
+	* Deletes the favorite site from the database. Also notifies the appropriate model listeners.
+	*
+	* @param favoriteSite the favorite site
+	* @return the favorite site that was removed
+	*/
+	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.DELETE)
+	public com.liferay.so.model.FavoriteSite deleteFavoriteSite(
+		com.liferay.so.model.FavoriteSite favoriteSite);
+
+	/**
 	* Deletes the favorite site with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param favoriteSiteId the primary key of the favorite site
 	* @return the favorite site that was removed
 	* @throws PortalException if a favorite site with the primary key could not be found
 	*/
+	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.DELETE)
 	public com.liferay.so.model.FavoriteSite deleteFavoriteSite(
 		long favoriteSiteId)
 		throws com.liferay.portal.kernel.exception.PortalException;
 
+	public void deleteFavoriteSites(long userId, long groupId)
+		throws com.liferay.portal.kernel.exception.PortalException;
+
 	/**
-	* Deletes the favorite site from the database. Also notifies the appropriate model listeners.
-	*
-	* @param favoriteSite the favorite site
-	* @return the favorite site that was removed
+	* @throws PortalException
 	*/
-	public com.liferay.so.model.FavoriteSite deleteFavoriteSite(
-		com.liferay.so.model.FavoriteSite favoriteSite);
+	@Override
+	public com.liferay.portal.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.model.PersistedModel persistedModel)
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery();
 
@@ -152,6 +171,16 @@ public interface FavoriteSiteLocalService extends BaseLocalService,
 	public com.liferay.so.model.FavoriteSite fetchFavoriteSite(
 		long favoriteSiteId);
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery();
+
+	/**
+	* Returns the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
+	*/
+	public java.lang.String getBeanIdentifier();
+
 	/**
 	* Returns the favorite site with the primary key.
 	*
@@ -162,23 +191,6 @@ public interface FavoriteSiteLocalService extends BaseLocalService,
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.so.model.FavoriteSite getFavoriteSite(
 		long favoriteSiteId)
-		throws com.liferay.portal.kernel.exception.PortalException;
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery();
-
-	/**
-	* @throws PortalException
-	*/
-	@Override
-	public com.liferay.portal.model.PersistedModel deletePersistedModel(
-		com.liferay.portal.model.PersistedModel persistedModel)
-		throws com.liferay.portal.kernel.exception.PortalException;
-
-	@Override
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.portal.model.PersistedModel getPersistedModel(
-		java.io.Serializable primaryKeyObj)
 		throws com.liferay.portal.kernel.exception.PortalException;
 
 	/**
@@ -196,6 +208,14 @@ public interface FavoriteSiteLocalService extends BaseLocalService,
 	public java.util.List<com.liferay.so.model.FavoriteSite> getFavoriteSites(
 		int start, int end);
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<java.lang.Object[]> getFavoriteSites(long userId,
+		java.lang.String name, int start, int end);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<com.liferay.so.model.FavoriteSite> getFavoriteSites(
+		long userId, int start, int end);
+
 	/**
 	* Returns the number of favorite sites.
 	*
@@ -204,21 +224,28 @@ public interface FavoriteSiteLocalService extends BaseLocalService,
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getFavoriteSitesCount();
 
-	/**
-	* Updates the favorite site in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	*
-	* @param favoriteSite the favorite site
-	* @return the favorite site that was updated
-	*/
-	public com.liferay.so.model.FavoriteSite updateFavoriteSite(
-		com.liferay.so.model.FavoriteSite favoriteSite);
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public int getFavoriteSitesCount(long userId);
 
-	/**
-	* Returns the Spring bean ID for this bean.
-	*
-	* @return the Spring bean ID for this bean
-	*/
-	public java.lang.String getBeanIdentifier();
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public int getFavoriteSitesCount(long userId, java.lang.String name);
+
+	@Override
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.liferay.portal.model.PersistedModel getPersistedModel(
+		java.io.Serializable primaryKeyObj)
+		throws com.liferay.portal.kernel.exception.PortalException;
+
+	@Override
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public boolean isFavoriteSite(long favoriteSiteId);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public boolean isFavoriteSite(long userId, long groupId);
 
 	/**
 	* Sets the Spring bean ID for this bean.
@@ -227,35 +254,13 @@ public interface FavoriteSiteLocalService extends BaseLocalService,
 	*/
 	public void setBeanIdentifier(java.lang.String beanIdentifier);
 
-	@Override
-	public java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable;
-
-	public com.liferay.so.model.FavoriteSite addFavoriteSite(long userId,
-		long groupId)
-		throws com.liferay.portal.kernel.exception.PortalException;
-
-	public void deleteFavoriteSites(long userId, long groupId)
-		throws com.liferay.portal.kernel.exception.PortalException;
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<com.liferay.so.model.FavoriteSite> getFavoriteSites(
-		long userId, int start, int end);
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<java.lang.Object[]> getFavoriteSites(long userId,
-		java.lang.String name, int start, int end);
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int getFavoriteSitesCount(long userId);
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int getFavoriteSitesCount(long userId, java.lang.String name);
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public boolean isFavoriteSite(long favoriteSiteId);
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public boolean isFavoriteSite(long userId, long groupId);
+	/**
+	* Updates the favorite site in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	*
+	* @param favoriteSite the favorite site
+	* @return the favorite site that was updated
+	*/
+	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.REINDEX)
+	public com.liferay.so.model.FavoriteSite updateFavoriteSite(
+		com.liferay.so.model.FavoriteSite favoriteSite);
 }

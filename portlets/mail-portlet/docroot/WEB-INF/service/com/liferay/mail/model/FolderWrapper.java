@@ -127,164 +127,14 @@ public class FolderWrapper implements Folder, ModelWrapper<Folder> {
 		}
 	}
 
-	/**
-	* Returns the primary key of this folder.
-	*
-	* @return the primary key of this folder
-	*/
 	@Override
-	public long getPrimaryKey() {
-		return _folder.getPrimaryKey();
+	public java.lang.Object clone() {
+		return new FolderWrapper((Folder)_folder.clone());
 	}
 
-	/**
-	* Sets the primary key of this folder.
-	*
-	* @param primaryKey the primary key of this folder
-	*/
 	@Override
-	public void setPrimaryKey(long primaryKey) {
-		_folder.setPrimaryKey(primaryKey);
-	}
-
-	/**
-	* Returns the folder ID of this folder.
-	*
-	* @return the folder ID of this folder
-	*/
-	@Override
-	public long getFolderId() {
-		return _folder.getFolderId();
-	}
-
-	/**
-	* Sets the folder ID of this folder.
-	*
-	* @param folderId the folder ID of this folder
-	*/
-	@Override
-	public void setFolderId(long folderId) {
-		_folder.setFolderId(folderId);
-	}
-
-	/**
-	* Returns the company ID of this folder.
-	*
-	* @return the company ID of this folder
-	*/
-	@Override
-	public long getCompanyId() {
-		return _folder.getCompanyId();
-	}
-
-	/**
-	* Sets the company ID of this folder.
-	*
-	* @param companyId the company ID of this folder
-	*/
-	@Override
-	public void setCompanyId(long companyId) {
-		_folder.setCompanyId(companyId);
-	}
-
-	/**
-	* Returns the user ID of this folder.
-	*
-	* @return the user ID of this folder
-	*/
-	@Override
-	public long getUserId() {
-		return _folder.getUserId();
-	}
-
-	/**
-	* Sets the user ID of this folder.
-	*
-	* @param userId the user ID of this folder
-	*/
-	@Override
-	public void setUserId(long userId) {
-		_folder.setUserId(userId);
-	}
-
-	/**
-	* Returns the user uuid of this folder.
-	*
-	* @return the user uuid of this folder
-	*/
-	@Override
-	public java.lang.String getUserUuid() {
-		return _folder.getUserUuid();
-	}
-
-	/**
-	* Sets the user uuid of this folder.
-	*
-	* @param userUuid the user uuid of this folder
-	*/
-	@Override
-	public void setUserUuid(java.lang.String userUuid) {
-		_folder.setUserUuid(userUuid);
-	}
-
-	/**
-	* Returns the user name of this folder.
-	*
-	* @return the user name of this folder
-	*/
-	@Override
-	public java.lang.String getUserName() {
-		return _folder.getUserName();
-	}
-
-	/**
-	* Sets the user name of this folder.
-	*
-	* @param userName the user name of this folder
-	*/
-	@Override
-	public void setUserName(java.lang.String userName) {
-		_folder.setUserName(userName);
-	}
-
-	/**
-	* Returns the create date of this folder.
-	*
-	* @return the create date of this folder
-	*/
-	@Override
-	public java.util.Date getCreateDate() {
-		return _folder.getCreateDate();
-	}
-
-	/**
-	* Sets the create date of this folder.
-	*
-	* @param createDate the create date of this folder
-	*/
-	@Override
-	public void setCreateDate(java.util.Date createDate) {
-		_folder.setCreateDate(createDate);
-	}
-
-	/**
-	* Returns the modified date of this folder.
-	*
-	* @return the modified date of this folder
-	*/
-	@Override
-	public java.util.Date getModifiedDate() {
-		return _folder.getModifiedDate();
-	}
-
-	/**
-	* Sets the modified date of this folder.
-	*
-	* @param modifiedDate the modified date of this folder
-	*/
-	@Override
-	public void setModifiedDate(java.util.Date modifiedDate) {
-		_folder.setModifiedDate(modifiedDate);
+	public int compareTo(com.liferay.mail.model.Folder folder) {
+		return _folder.compareTo(folder);
 	}
 
 	/**
@@ -298,13 +148,48 @@ public class FolderWrapper implements Folder, ModelWrapper<Folder> {
 	}
 
 	/**
-	* Sets the account ID of this folder.
+	* Returns the company ID of this folder.
 	*
-	* @param accountId the account ID of this folder
+	* @return the company ID of this folder
 	*/
 	@Override
-	public void setAccountId(long accountId) {
-		_folder.setAccountId(accountId);
+	public long getCompanyId() {
+		return _folder.getCompanyId();
+	}
+
+	/**
+	* Returns the create date of this folder.
+	*
+	* @return the create date of this folder
+	*/
+	@Override
+	public java.util.Date getCreateDate() {
+		return _folder.getCreateDate();
+	}
+
+	/**
+	* Returns the display name of this folder.
+	*
+	* @return the display name of this folder
+	*/
+	@Override
+	public java.lang.String getDisplayName() {
+		return _folder.getDisplayName();
+	}
+
+	@Override
+	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {
+		return _folder.getExpandoBridge();
+	}
+
+	/**
+	* Returns the folder ID of this folder.
+	*
+	* @return the folder ID of this folder
+	*/
+	@Override
+	public long getFolderId() {
+		return _folder.getFolderId();
 	}
 
 	/**
@@ -318,33 +203,28 @@ public class FolderWrapper implements Folder, ModelWrapper<Folder> {
 	}
 
 	/**
-	* Sets the full name of this folder.
+	* Returns the modified date of this folder.
 	*
-	* @param fullName the full name of this folder
+	* @return the modified date of this folder
 	*/
 	@Override
-	public void setFullName(java.lang.String fullName) {
-		_folder.setFullName(fullName);
+	public java.util.Date getModifiedDate() {
+		return _folder.getModifiedDate();
 	}
 
 	/**
-	* Returns the display name of this folder.
+	* Returns the primary key of this folder.
 	*
-	* @return the display name of this folder
+	* @return the primary key of this folder
 	*/
 	@Override
-	public java.lang.String getDisplayName() {
-		return _folder.getDisplayName();
+	public long getPrimaryKey() {
+		return _folder.getPrimaryKey();
 	}
 
-	/**
-	* Sets the display name of this folder.
-	*
-	* @param displayName the display name of this folder
-	*/
 	@Override
-	public void setDisplayName(java.lang.String displayName) {
-		_folder.setDisplayName(displayName);
+	public java.io.Serializable getPrimaryKeyObj() {
+		return _folder.getPrimaryKeyObj();
 	}
 
 	/**
@@ -358,23 +238,38 @@ public class FolderWrapper implements Folder, ModelWrapper<Folder> {
 	}
 
 	/**
-	* Sets the remote message count of this folder.
+	* Returns the user ID of this folder.
 	*
-	* @param remoteMessageCount the remote message count of this folder
+	* @return the user ID of this folder
 	*/
 	@Override
-	public void setRemoteMessageCount(int remoteMessageCount) {
-		_folder.setRemoteMessageCount(remoteMessageCount);
+	public long getUserId() {
+		return _folder.getUserId();
+	}
+
+	/**
+	* Returns the user name of this folder.
+	*
+	* @return the user name of this folder
+	*/
+	@Override
+	public java.lang.String getUserName() {
+		return _folder.getUserName();
+	}
+
+	/**
+	* Returns the user uuid of this folder.
+	*
+	* @return the user uuid of this folder
+	*/
+	@Override
+	public java.lang.String getUserUuid() {
+		return _folder.getUserUuid();
 	}
 
 	@Override
-	public boolean isNew() {
-		return _folder.isNew();
-	}
-
-	@Override
-	public void setNew(boolean n) {
-		_folder.setNew(n);
+	public int hashCode() {
+		return _folder.hashCode();
 	}
 
 	@Override
@@ -383,28 +278,63 @@ public class FolderWrapper implements Folder, ModelWrapper<Folder> {
 	}
 
 	@Override
-	public void setCachedModel(boolean cachedModel) {
-		_folder.setCachedModel(cachedModel);
-	}
-
-	@Override
 	public boolean isEscapedModel() {
 		return _folder.isEscapedModel();
 	}
 
 	@Override
-	public java.io.Serializable getPrimaryKeyObj() {
-		return _folder.getPrimaryKeyObj();
+	public boolean isNew() {
+		return _folder.isNew();
 	}
 
 	@Override
-	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
-		_folder.setPrimaryKeyObj(primaryKeyObj);
+	public void persist() {
+		_folder.persist();
+	}
+
+	/**
+	* Sets the account ID of this folder.
+	*
+	* @param accountId the account ID of this folder
+	*/
+	@Override
+	public void setAccountId(long accountId) {
+		_folder.setAccountId(accountId);
 	}
 
 	@Override
-	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {
-		return _folder.getExpandoBridge();
+	public void setCachedModel(boolean cachedModel) {
+		_folder.setCachedModel(cachedModel);
+	}
+
+	/**
+	* Sets the company ID of this folder.
+	*
+	* @param companyId the company ID of this folder
+	*/
+	@Override
+	public void setCompanyId(long companyId) {
+		_folder.setCompanyId(companyId);
+	}
+
+	/**
+	* Sets the create date of this folder.
+	*
+	* @param createDate the create date of this folder
+	*/
+	@Override
+	public void setCreateDate(java.util.Date createDate) {
+		_folder.setCreateDate(createDate);
+	}
+
+	/**
+	* Sets the display name of this folder.
+	*
+	* @param displayName the display name of this folder
+	*/
+	@Override
+	public void setDisplayName(java.lang.String displayName) {
+		_folder.setDisplayName(displayName);
 	}
 
 	@Override
@@ -425,19 +355,94 @@ public class FolderWrapper implements Folder, ModelWrapper<Folder> {
 		_folder.setExpandoBridgeAttributes(serviceContext);
 	}
 
+	/**
+	* Sets the folder ID of this folder.
+	*
+	* @param folderId the folder ID of this folder
+	*/
 	@Override
-	public java.lang.Object clone() {
-		return new FolderWrapper((Folder)_folder.clone());
+	public void setFolderId(long folderId) {
+		_folder.setFolderId(folderId);
+	}
+
+	/**
+	* Sets the full name of this folder.
+	*
+	* @param fullName the full name of this folder
+	*/
+	@Override
+	public void setFullName(java.lang.String fullName) {
+		_folder.setFullName(fullName);
+	}
+
+	/**
+	* Sets the modified date of this folder.
+	*
+	* @param modifiedDate the modified date of this folder
+	*/
+	@Override
+	public void setModifiedDate(java.util.Date modifiedDate) {
+		_folder.setModifiedDate(modifiedDate);
 	}
 
 	@Override
-	public int compareTo(com.liferay.mail.model.Folder folder) {
-		return _folder.compareTo(folder);
+	public void setNew(boolean n) {
+		_folder.setNew(n);
+	}
+
+	/**
+	* Sets the primary key of this folder.
+	*
+	* @param primaryKey the primary key of this folder
+	*/
+	@Override
+	public void setPrimaryKey(long primaryKey) {
+		_folder.setPrimaryKey(primaryKey);
 	}
 
 	@Override
-	public int hashCode() {
-		return _folder.hashCode();
+	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
+		_folder.setPrimaryKeyObj(primaryKeyObj);
+	}
+
+	/**
+	* Sets the remote message count of this folder.
+	*
+	* @param remoteMessageCount the remote message count of this folder
+	*/
+	@Override
+	public void setRemoteMessageCount(int remoteMessageCount) {
+		_folder.setRemoteMessageCount(remoteMessageCount);
+	}
+
+	/**
+	* Sets the user ID of this folder.
+	*
+	* @param userId the user ID of this folder
+	*/
+	@Override
+	public void setUserId(long userId) {
+		_folder.setUserId(userId);
+	}
+
+	/**
+	* Sets the user name of this folder.
+	*
+	* @param userName the user name of this folder
+	*/
+	@Override
+	public void setUserName(java.lang.String userName) {
+		_folder.setUserName(userName);
+	}
+
+	/**
+	* Sets the user uuid of this folder.
+	*
+	* @param userUuid the user uuid of this folder
+	*/
+	@Override
+	public void setUserUuid(java.lang.String userUuid) {
+		_folder.setUserUuid(userUuid);
 	}
 
 	@Override
@@ -451,23 +456,18 @@ public class FolderWrapper implements Folder, ModelWrapper<Folder> {
 	}
 
 	@Override
-	public com.liferay.mail.model.Folder toUnescapedModel() {
-		return new FolderWrapper(_folder.toUnescapedModel());
-	}
-
-	@Override
 	public java.lang.String toString() {
 		return _folder.toString();
 	}
 
 	@Override
-	public java.lang.String toXmlString() {
-		return _folder.toXmlString();
+	public com.liferay.mail.model.Folder toUnescapedModel() {
+		return new FolderWrapper(_folder.toUnescapedModel());
 	}
 
 	@Override
-	public void persist() {
-		_folder.persist();
+	public java.lang.String toXmlString() {
+		return _folder.toXmlString();
 	}
 
 	@Override

@@ -147,244 +147,14 @@ public class BBBMeetingWrapper implements BBBMeeting, ModelWrapper<BBBMeeting> {
 		}
 	}
 
-	/**
-	* Returns the primary key of this b b b meeting.
-	*
-	* @return the primary key of this b b b meeting
-	*/
 	@Override
-	public long getPrimaryKey() {
-		return _bbbMeeting.getPrimaryKey();
+	public java.lang.Object clone() {
+		return new BBBMeetingWrapper((BBBMeeting)_bbbMeeting.clone());
 	}
 
-	/**
-	* Sets the primary key of this b b b meeting.
-	*
-	* @param primaryKey the primary key of this b b b meeting
-	*/
 	@Override
-	public void setPrimaryKey(long primaryKey) {
-		_bbbMeeting.setPrimaryKey(primaryKey);
-	}
-
-	/**
-	* Returns the bbb meeting ID of this b b b meeting.
-	*
-	* @return the bbb meeting ID of this b b b meeting
-	*/
-	@Override
-	public long getBbbMeetingId() {
-		return _bbbMeeting.getBbbMeetingId();
-	}
-
-	/**
-	* Sets the bbb meeting ID of this b b b meeting.
-	*
-	* @param bbbMeetingId the bbb meeting ID of this b b b meeting
-	*/
-	@Override
-	public void setBbbMeetingId(long bbbMeetingId) {
-		_bbbMeeting.setBbbMeetingId(bbbMeetingId);
-	}
-
-	/**
-	* Returns the group ID of this b b b meeting.
-	*
-	* @return the group ID of this b b b meeting
-	*/
-	@Override
-	public long getGroupId() {
-		return _bbbMeeting.getGroupId();
-	}
-
-	/**
-	* Sets the group ID of this b b b meeting.
-	*
-	* @param groupId the group ID of this b b b meeting
-	*/
-	@Override
-	public void setGroupId(long groupId) {
-		_bbbMeeting.setGroupId(groupId);
-	}
-
-	/**
-	* Returns the company ID of this b b b meeting.
-	*
-	* @return the company ID of this b b b meeting
-	*/
-	@Override
-	public long getCompanyId() {
-		return _bbbMeeting.getCompanyId();
-	}
-
-	/**
-	* Sets the company ID of this b b b meeting.
-	*
-	* @param companyId the company ID of this b b b meeting
-	*/
-	@Override
-	public void setCompanyId(long companyId) {
-		_bbbMeeting.setCompanyId(companyId);
-	}
-
-	/**
-	* Returns the user ID of this b b b meeting.
-	*
-	* @return the user ID of this b b b meeting
-	*/
-	@Override
-	public long getUserId() {
-		return _bbbMeeting.getUserId();
-	}
-
-	/**
-	* Sets the user ID of this b b b meeting.
-	*
-	* @param userId the user ID of this b b b meeting
-	*/
-	@Override
-	public void setUserId(long userId) {
-		_bbbMeeting.setUserId(userId);
-	}
-
-	/**
-	* Returns the user uuid of this b b b meeting.
-	*
-	* @return the user uuid of this b b b meeting
-	*/
-	@Override
-	public java.lang.String getUserUuid() {
-		return _bbbMeeting.getUserUuid();
-	}
-
-	/**
-	* Sets the user uuid of this b b b meeting.
-	*
-	* @param userUuid the user uuid of this b b b meeting
-	*/
-	@Override
-	public void setUserUuid(java.lang.String userUuid) {
-		_bbbMeeting.setUserUuid(userUuid);
-	}
-
-	/**
-	* Returns the user name of this b b b meeting.
-	*
-	* @return the user name of this b b b meeting
-	*/
-	@Override
-	public java.lang.String getUserName() {
-		return _bbbMeeting.getUserName();
-	}
-
-	/**
-	* Sets the user name of this b b b meeting.
-	*
-	* @param userName the user name of this b b b meeting
-	*/
-	@Override
-	public void setUserName(java.lang.String userName) {
-		_bbbMeeting.setUserName(userName);
-	}
-
-	/**
-	* Returns the create date of this b b b meeting.
-	*
-	* @return the create date of this b b b meeting
-	*/
-	@Override
-	public java.util.Date getCreateDate() {
-		return _bbbMeeting.getCreateDate();
-	}
-
-	/**
-	* Sets the create date of this b b b meeting.
-	*
-	* @param createDate the create date of this b b b meeting
-	*/
-	@Override
-	public void setCreateDate(java.util.Date createDate) {
-		_bbbMeeting.setCreateDate(createDate);
-	}
-
-	/**
-	* Returns the modified date of this b b b meeting.
-	*
-	* @return the modified date of this b b b meeting
-	*/
-	@Override
-	public java.util.Date getModifiedDate() {
-		return _bbbMeeting.getModifiedDate();
-	}
-
-	/**
-	* Sets the modified date of this b b b meeting.
-	*
-	* @param modifiedDate the modified date of this b b b meeting
-	*/
-	@Override
-	public void setModifiedDate(java.util.Date modifiedDate) {
-		_bbbMeeting.setModifiedDate(modifiedDate);
-	}
-
-	/**
-	* Returns the bbb server ID of this b b b meeting.
-	*
-	* @return the bbb server ID of this b b b meeting
-	*/
-	@Override
-	public long getBbbServerId() {
-		return _bbbMeeting.getBbbServerId();
-	}
-
-	/**
-	* Sets the bbb server ID of this b b b meeting.
-	*
-	* @param bbbServerId the bbb server ID of this b b b meeting
-	*/
-	@Override
-	public void setBbbServerId(long bbbServerId) {
-		_bbbMeeting.setBbbServerId(bbbServerId);
-	}
-
-	/**
-	* Returns the name of this b b b meeting.
-	*
-	* @return the name of this b b b meeting
-	*/
-	@Override
-	public java.lang.String getName() {
-		return _bbbMeeting.getName();
-	}
-
-	/**
-	* Sets the name of this b b b meeting.
-	*
-	* @param name the name of this b b b meeting
-	*/
-	@Override
-	public void setName(java.lang.String name) {
-		_bbbMeeting.setName(name);
-	}
-
-	/**
-	* Returns the description of this b b b meeting.
-	*
-	* @return the description of this b b b meeting
-	*/
-	@Override
-	public java.lang.String getDescription() {
-		return _bbbMeeting.getDescription();
-	}
-
-	/**
-	* Sets the description of this b b b meeting.
-	*
-	* @param description the description of this b b b meeting
-	*/
-	@Override
-	public void setDescription(java.lang.String description) {
-		_bbbMeeting.setDescription(description);
+	public int compareTo(com.liferay.bbb.model.BBBMeeting bbbMeeting) {
+		return _bbbMeeting.compareTo(bbbMeeting);
 	}
 
 	/**
@@ -398,13 +168,68 @@ public class BBBMeetingWrapper implements BBBMeeting, ModelWrapper<BBBMeeting> {
 	}
 
 	/**
-	* Sets the attendee password of this b b b meeting.
+	* Returns the bbb meeting ID of this b b b meeting.
 	*
-	* @param attendeePassword the attendee password of this b b b meeting
+	* @return the bbb meeting ID of this b b b meeting
 	*/
 	@Override
-	public void setAttendeePassword(java.lang.String attendeePassword) {
-		_bbbMeeting.setAttendeePassword(attendeePassword);
+	public long getBbbMeetingId() {
+		return _bbbMeeting.getBbbMeetingId();
+	}
+
+	/**
+	* Returns the bbb server ID of this b b b meeting.
+	*
+	* @return the bbb server ID of this b b b meeting
+	*/
+	@Override
+	public long getBbbServerId() {
+		return _bbbMeeting.getBbbServerId();
+	}
+
+	/**
+	* Returns the company ID of this b b b meeting.
+	*
+	* @return the company ID of this b b b meeting
+	*/
+	@Override
+	public long getCompanyId() {
+		return _bbbMeeting.getCompanyId();
+	}
+
+	/**
+	* Returns the create date of this b b b meeting.
+	*
+	* @return the create date of this b b b meeting
+	*/
+	@Override
+	public java.util.Date getCreateDate() {
+		return _bbbMeeting.getCreateDate();
+	}
+
+	/**
+	* Returns the description of this b b b meeting.
+	*
+	* @return the description of this b b b meeting
+	*/
+	@Override
+	public java.lang.String getDescription() {
+		return _bbbMeeting.getDescription();
+	}
+
+	@Override
+	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {
+		return _bbbMeeting.getExpandoBridge();
+	}
+
+	/**
+	* Returns the group ID of this b b b meeting.
+	*
+	* @return the group ID of this b b b meeting
+	*/
+	@Override
+	public long getGroupId() {
+		return _bbbMeeting.getGroupId();
 	}
 
 	/**
@@ -418,13 +243,38 @@ public class BBBMeetingWrapper implements BBBMeeting, ModelWrapper<BBBMeeting> {
 	}
 
 	/**
-	* Sets the moderator password of this b b b meeting.
+	* Returns the modified date of this b b b meeting.
 	*
-	* @param moderatorPassword the moderator password of this b b b meeting
+	* @return the modified date of this b b b meeting
 	*/
 	@Override
-	public void setModeratorPassword(java.lang.String moderatorPassword) {
-		_bbbMeeting.setModeratorPassword(moderatorPassword);
+	public java.util.Date getModifiedDate() {
+		return _bbbMeeting.getModifiedDate();
+	}
+
+	/**
+	* Returns the name of this b b b meeting.
+	*
+	* @return the name of this b b b meeting
+	*/
+	@Override
+	public java.lang.String getName() {
+		return _bbbMeeting.getName();
+	}
+
+	/**
+	* Returns the primary key of this b b b meeting.
+	*
+	* @return the primary key of this b b b meeting
+	*/
+	@Override
+	public long getPrimaryKey() {
+		return _bbbMeeting.getPrimaryKey();
+	}
+
+	@Override
+	public java.io.Serializable getPrimaryKeyObj() {
+		return _bbbMeeting.getPrimaryKeyObj();
 	}
 
 	/**
@@ -438,23 +288,38 @@ public class BBBMeetingWrapper implements BBBMeeting, ModelWrapper<BBBMeeting> {
 	}
 
 	/**
-	* Sets the status of this b b b meeting.
+	* Returns the user ID of this b b b meeting.
 	*
-	* @param status the status of this b b b meeting
+	* @return the user ID of this b b b meeting
 	*/
 	@Override
-	public void setStatus(int status) {
-		_bbbMeeting.setStatus(status);
+	public long getUserId() {
+		return _bbbMeeting.getUserId();
+	}
+
+	/**
+	* Returns the user name of this b b b meeting.
+	*
+	* @return the user name of this b b b meeting
+	*/
+	@Override
+	public java.lang.String getUserName() {
+		return _bbbMeeting.getUserName();
+	}
+
+	/**
+	* Returns the user uuid of this b b b meeting.
+	*
+	* @return the user uuid of this b b b meeting
+	*/
+	@Override
+	public java.lang.String getUserUuid() {
+		return _bbbMeeting.getUserUuid();
 	}
 
 	@Override
-	public boolean isNew() {
-		return _bbbMeeting.isNew();
-	}
-
-	@Override
-	public void setNew(boolean n) {
-		_bbbMeeting.setNew(n);
+	public int hashCode() {
+		return _bbbMeeting.hashCode();
 	}
 
 	@Override
@@ -463,28 +328,83 @@ public class BBBMeetingWrapper implements BBBMeeting, ModelWrapper<BBBMeeting> {
 	}
 
 	@Override
-	public void setCachedModel(boolean cachedModel) {
-		_bbbMeeting.setCachedModel(cachedModel);
-	}
-
-	@Override
 	public boolean isEscapedModel() {
 		return _bbbMeeting.isEscapedModel();
 	}
 
 	@Override
-	public java.io.Serializable getPrimaryKeyObj() {
-		return _bbbMeeting.getPrimaryKeyObj();
+	public boolean isNew() {
+		return _bbbMeeting.isNew();
 	}
 
 	@Override
-	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
-		_bbbMeeting.setPrimaryKeyObj(primaryKeyObj);
+	public void persist() {
+		_bbbMeeting.persist();
+	}
+
+	/**
+	* Sets the attendee password of this b b b meeting.
+	*
+	* @param attendeePassword the attendee password of this b b b meeting
+	*/
+	@Override
+	public void setAttendeePassword(java.lang.String attendeePassword) {
+		_bbbMeeting.setAttendeePassword(attendeePassword);
+	}
+
+	/**
+	* Sets the bbb meeting ID of this b b b meeting.
+	*
+	* @param bbbMeetingId the bbb meeting ID of this b b b meeting
+	*/
+	@Override
+	public void setBbbMeetingId(long bbbMeetingId) {
+		_bbbMeeting.setBbbMeetingId(bbbMeetingId);
+	}
+
+	/**
+	* Sets the bbb server ID of this b b b meeting.
+	*
+	* @param bbbServerId the bbb server ID of this b b b meeting
+	*/
+	@Override
+	public void setBbbServerId(long bbbServerId) {
+		_bbbMeeting.setBbbServerId(bbbServerId);
 	}
 
 	@Override
-	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {
-		return _bbbMeeting.getExpandoBridge();
+	public void setCachedModel(boolean cachedModel) {
+		_bbbMeeting.setCachedModel(cachedModel);
+	}
+
+	/**
+	* Sets the company ID of this b b b meeting.
+	*
+	* @param companyId the company ID of this b b b meeting
+	*/
+	@Override
+	public void setCompanyId(long companyId) {
+		_bbbMeeting.setCompanyId(companyId);
+	}
+
+	/**
+	* Sets the create date of this b b b meeting.
+	*
+	* @param createDate the create date of this b b b meeting
+	*/
+	@Override
+	public void setCreateDate(java.util.Date createDate) {
+		_bbbMeeting.setCreateDate(createDate);
+	}
+
+	/**
+	* Sets the description of this b b b meeting.
+	*
+	* @param description the description of this b b b meeting
+	*/
+	@Override
+	public void setDescription(java.lang.String description) {
+		_bbbMeeting.setDescription(description);
 	}
 
 	@Override
@@ -505,19 +425,104 @@ public class BBBMeetingWrapper implements BBBMeeting, ModelWrapper<BBBMeeting> {
 		_bbbMeeting.setExpandoBridgeAttributes(serviceContext);
 	}
 
+	/**
+	* Sets the group ID of this b b b meeting.
+	*
+	* @param groupId the group ID of this b b b meeting
+	*/
 	@Override
-	public java.lang.Object clone() {
-		return new BBBMeetingWrapper((BBBMeeting)_bbbMeeting.clone());
+	public void setGroupId(long groupId) {
+		_bbbMeeting.setGroupId(groupId);
+	}
+
+	/**
+	* Sets the moderator password of this b b b meeting.
+	*
+	* @param moderatorPassword the moderator password of this b b b meeting
+	*/
+	@Override
+	public void setModeratorPassword(java.lang.String moderatorPassword) {
+		_bbbMeeting.setModeratorPassword(moderatorPassword);
+	}
+
+	/**
+	* Sets the modified date of this b b b meeting.
+	*
+	* @param modifiedDate the modified date of this b b b meeting
+	*/
+	@Override
+	public void setModifiedDate(java.util.Date modifiedDate) {
+		_bbbMeeting.setModifiedDate(modifiedDate);
+	}
+
+	/**
+	* Sets the name of this b b b meeting.
+	*
+	* @param name the name of this b b b meeting
+	*/
+	@Override
+	public void setName(java.lang.String name) {
+		_bbbMeeting.setName(name);
 	}
 
 	@Override
-	public int compareTo(com.liferay.bbb.model.BBBMeeting bbbMeeting) {
-		return _bbbMeeting.compareTo(bbbMeeting);
+	public void setNew(boolean n) {
+		_bbbMeeting.setNew(n);
+	}
+
+	/**
+	* Sets the primary key of this b b b meeting.
+	*
+	* @param primaryKey the primary key of this b b b meeting
+	*/
+	@Override
+	public void setPrimaryKey(long primaryKey) {
+		_bbbMeeting.setPrimaryKey(primaryKey);
 	}
 
 	@Override
-	public int hashCode() {
-		return _bbbMeeting.hashCode();
+	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
+		_bbbMeeting.setPrimaryKeyObj(primaryKeyObj);
+	}
+
+	/**
+	* Sets the status of this b b b meeting.
+	*
+	* @param status the status of this b b b meeting
+	*/
+	@Override
+	public void setStatus(int status) {
+		_bbbMeeting.setStatus(status);
+	}
+
+	/**
+	* Sets the user ID of this b b b meeting.
+	*
+	* @param userId the user ID of this b b b meeting
+	*/
+	@Override
+	public void setUserId(long userId) {
+		_bbbMeeting.setUserId(userId);
+	}
+
+	/**
+	* Sets the user name of this b b b meeting.
+	*
+	* @param userName the user name of this b b b meeting
+	*/
+	@Override
+	public void setUserName(java.lang.String userName) {
+		_bbbMeeting.setUserName(userName);
+	}
+
+	/**
+	* Sets the user uuid of this b b b meeting.
+	*
+	* @param userUuid the user uuid of this b b b meeting
+	*/
+	@Override
+	public void setUserUuid(java.lang.String userUuid) {
+		_bbbMeeting.setUserUuid(userUuid);
 	}
 
 	@Override
@@ -531,23 +536,18 @@ public class BBBMeetingWrapper implements BBBMeeting, ModelWrapper<BBBMeeting> {
 	}
 
 	@Override
-	public com.liferay.bbb.model.BBBMeeting toUnescapedModel() {
-		return new BBBMeetingWrapper(_bbbMeeting.toUnescapedModel());
-	}
-
-	@Override
 	public java.lang.String toString() {
 		return _bbbMeeting.toString();
 	}
 
 	@Override
-	public java.lang.String toXmlString() {
-		return _bbbMeeting.toXmlString();
+	public com.liferay.bbb.model.BBBMeeting toUnescapedModel() {
+		return new BBBMeetingWrapper(_bbbMeeting.toUnescapedModel());
 	}
 
 	@Override
-	public void persist() {
-		_bbbMeeting.persist();
+	public java.lang.String toXmlString() {
+		return _bbbMeeting.toXmlString();
 	}
 
 	@Override

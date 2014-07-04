@@ -62,6 +62,17 @@ public class DefinitionLocalServiceUtil {
 	}
 
 	/**
+	* Deletes the definition from the database. Also notifies the appropriate model listeners.
+	*
+	* @param definition the definition
+	* @return the definition that was removed
+	*/
+	public static com.liferay.ams.model.Definition deleteDefinition(
+		com.liferay.ams.model.Definition definition) {
+		return getService().deleteDefinition(definition);
+	}
+
+	/**
 	* Deletes the definition with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param definitionId the primary key of the definition
@@ -75,14 +86,12 @@ public class DefinitionLocalServiceUtil {
 	}
 
 	/**
-	* Deletes the definition from the database. Also notifies the appropriate model listeners.
-	*
-	* @param definition the definition
-	* @return the definition that was removed
+	* @throws PortalException
 	*/
-	public static com.liferay.ams.model.Definition deleteDefinition(
-		com.liferay.ams.model.Definition definition) {
-		return getService().deleteDefinition(definition);
+	public static com.liferay.portal.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.model.PersistedModel persistedModel)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().deletePersistedModel(persistedModel);
 	}
 
 	public static com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
@@ -168,6 +177,19 @@ public class DefinitionLocalServiceUtil {
 		return getService().fetchDefinition(definitionId);
 	}
 
+	public static com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
+		return getService().getActionableDynamicQuery();
+	}
+
+	/**
+	* Returns the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
+	*/
+	public static java.lang.String getBeanIdentifier() {
+		return getService().getBeanIdentifier();
+	}
+
 	/**
 	* Returns the definition with the primary key.
 	*
@@ -179,25 +201,6 @@ public class DefinitionLocalServiceUtil {
 		long definitionId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().getDefinition(definitionId);
-	}
-
-	public static com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
-		return getService().getActionableDynamicQuery();
-	}
-
-	/**
-	* @throws PortalException
-	*/
-	public static com.liferay.portal.model.PersistedModel deletePersistedModel(
-		com.liferay.portal.model.PersistedModel persistedModel)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().deletePersistedModel(persistedModel);
-	}
-
-	public static com.liferay.portal.model.PersistedModel getPersistedModel(
-		java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().getPersistedModel(primaryKeyObj);
 	}
 
 	/**
@@ -225,24 +228,16 @@ public class DefinitionLocalServiceUtil {
 		return getService().getDefinitionsCount();
 	}
 
-	/**
-	* Updates the definition in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	*
-	* @param definition the definition
-	* @return the definition that was updated
-	*/
-	public static com.liferay.ams.model.Definition updateDefinition(
-		com.liferay.ams.model.Definition definition) {
-		return getService().updateDefinition(definition);
+	public static com.liferay.portal.model.PersistedModel getPersistedModel(
+		java.io.Serializable primaryKeyObj)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().getPersistedModel(primaryKeyObj);
 	}
 
-	/**
-	* Returns the Spring bean ID for this bean.
-	*
-	* @return the Spring bean ID for this bean
-	*/
-	public static java.lang.String getBeanIdentifier() {
-		return getService().getBeanIdentifier();
+	public static java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return getService().invokeMethod(name, parameterTypes, arguments);
 	}
 
 	/**
@@ -254,10 +249,15 @@ public class DefinitionLocalServiceUtil {
 		getService().setBeanIdentifier(beanIdentifier);
 	}
 
-	public static java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable {
-		return getService().invokeMethod(name, parameterTypes, arguments);
+	/**
+	* Updates the definition in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	*
+	* @param definition the definition
+	* @return the definition that was updated
+	*/
+	public static com.liferay.ams.model.Definition updateDefinition(
+		com.liferay.ams.model.Definition definition) {
+		return getService().updateDefinition(definition);
 	}
 
 	public static void clearService() {

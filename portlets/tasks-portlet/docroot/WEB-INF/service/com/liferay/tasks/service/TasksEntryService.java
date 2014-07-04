@@ -45,6 +45,12 @@ public interface TasksEntryService extends BaseService, InvokableService {
 	 *
 	 * Never modify or reference this interface directly. Always use {@link TasksEntryServiceUtil} to access the tasks entry remote service. Add custom service methods to {@link com.liferay.tasks.service.impl.TasksEntryServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
+	public com.liferay.tasks.model.TasksEntry addTasksEntry(
+		java.lang.String title, int priority, long assigneeUserId,
+		int dueDateMonth, int dueDateDay, int dueDateYear, int dueDateHour,
+		int dueDateMinute, boolean neverDue,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	/**
 	* Returns the Spring bean ID for this bean.
@@ -53,28 +59,21 @@ public interface TasksEntryService extends BaseService, InvokableService {
 	*/
 	public java.lang.String getBeanIdentifier();
 
-	/**
-	* Sets the Spring bean ID for this bean.
-	*
-	* @param beanIdentifier the Spring bean ID for this bean
-	*/
-	public void setBeanIdentifier(java.lang.String beanIdentifier);
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.liferay.tasks.model.TasksEntry getTasksEntry(long tasksEntryId)
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	@Override
 	public java.lang.Object invokeMethod(java.lang.String name,
 		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
 		throws java.lang.Throwable;
 
-	public com.liferay.tasks.model.TasksEntry addTasksEntry(
-		java.lang.String title, int priority, long assigneeUserId,
-		int dueDateMonth, int dueDateDay, int dueDateYear, int dueDateHour,
-		int dueDateMinute, boolean neverDue,
-		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException;
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.tasks.model.TasksEntry getTasksEntry(long tasksEntryId)
-		throws com.liferay.portal.kernel.exception.PortalException;
+	/**
+	* Sets the Spring bean ID for this bean.
+	*
+	* @param beanIdentifier the Spring bean ID for this bean
+	*/
+	public void setBeanIdentifier(java.lang.String beanIdentifier);
 
 	public com.liferay.tasks.model.TasksEntry updateTasksEntry(
 		long tasksEntryId, java.lang.String title, int priority,

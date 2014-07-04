@@ -38,31 +38,6 @@ public class MicroblogsEntryServiceUtil {
 	 *
 	 * Never modify this class directly. Add custom service methods to {@link com.liferay.microblogs.service.impl.MicroblogsEntryServiceImpl} and rerun ServiceBuilder to regenerate this class.
 	 */
-
-	/**
-	* Returns the Spring bean ID for this bean.
-	*
-	* @return the Spring bean ID for this bean
-	*/
-	public static java.lang.String getBeanIdentifier() {
-		return getService().getBeanIdentifier();
-	}
-
-	/**
-	* Sets the Spring bean ID for this bean.
-	*
-	* @param beanIdentifier the Spring bean ID for this bean
-	*/
-	public static void setBeanIdentifier(java.lang.String beanIdentifier) {
-		getService().setBeanIdentifier(beanIdentifier);
-	}
-
-	public static java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable {
-		return getService().invokeMethod(name, parameterTypes, arguments);
-	}
-
 	public static com.liferay.microblogs.model.MicroblogsEntry addMicroblogsEntry(
 		long userId, java.lang.String content, int type, long receiverUserId,
 		long receiverMicroblogsEntryId, int socialRelationType,
@@ -79,16 +54,25 @@ public class MicroblogsEntryServiceUtil {
 		return getService().deleteMicroblogsEntry(microblogsEntryId);
 	}
 
-	public static java.util.List<com.liferay.microblogs.model.MicroblogsEntry> getMicroblogsEntries(
-		int start, int end)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().getMicroblogsEntries(start, end);
+	/**
+	* Returns the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
+	*/
+	public static java.lang.String getBeanIdentifier() {
+		return getService().getBeanIdentifier();
 	}
 
 	public static java.util.List<com.liferay.microblogs.model.MicroblogsEntry> getMicroblogsEntries(
 		java.lang.String assetTagName, int start, int end)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().getMicroblogsEntries(assetTagName, start, end);
+	}
+
+	public static java.util.List<com.liferay.microblogs.model.MicroblogsEntry> getMicroblogsEntries(
+		int start, int end)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().getMicroblogsEntries(start, end);
 	}
 
 	public static int getMicroblogsEntriesCount()
@@ -132,6 +116,21 @@ public class MicroblogsEntryServiceUtil {
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService()
 				   .getUserMicroblogsEntriesCount(microblogsEntryUserId, type);
+	}
+
+	public static java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return getService().invokeMethod(name, parameterTypes, arguments);
+	}
+
+	/**
+	* Sets the Spring bean ID for this bean.
+	*
+	* @param beanIdentifier the Spring bean ID for this bean
+	*/
+	public static void setBeanIdentifier(java.lang.String beanIdentifier) {
+		getService().setBeanIdentifier(beanIdentifier);
 	}
 
 	public static com.liferay.microblogs.model.MicroblogsEntry updateMicroblogsEntry(

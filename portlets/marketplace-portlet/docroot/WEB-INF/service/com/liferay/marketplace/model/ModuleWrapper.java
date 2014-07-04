@@ -83,64 +83,14 @@ public class ModuleWrapper implements Module, ModelWrapper<Module> {
 		}
 	}
 
-	/**
-	* Returns the primary key of this module.
-	*
-	* @return the primary key of this module
-	*/
 	@Override
-	public long getPrimaryKey() {
-		return _module.getPrimaryKey();
+	public java.lang.Object clone() {
+		return new ModuleWrapper((Module)_module.clone());
 	}
 
-	/**
-	* Sets the primary key of this module.
-	*
-	* @param primaryKey the primary key of this module
-	*/
 	@Override
-	public void setPrimaryKey(long primaryKey) {
-		_module.setPrimaryKey(primaryKey);
-	}
-
-	/**
-	* Returns the uuid of this module.
-	*
-	* @return the uuid of this module
-	*/
-	@Override
-	public java.lang.String getUuid() {
-		return _module.getUuid();
-	}
-
-	/**
-	* Sets the uuid of this module.
-	*
-	* @param uuid the uuid of this module
-	*/
-	@Override
-	public void setUuid(java.lang.String uuid) {
-		_module.setUuid(uuid);
-	}
-
-	/**
-	* Returns the module ID of this module.
-	*
-	* @return the module ID of this module
-	*/
-	@Override
-	public long getModuleId() {
-		return _module.getModuleId();
-	}
-
-	/**
-	* Sets the module ID of this module.
-	*
-	* @param moduleId the module ID of this module
-	*/
-	@Override
-	public void setModuleId(long moduleId) {
-		_module.setModuleId(moduleId);
+	public int compareTo(com.liferay.marketplace.model.Module module) {
+		return _module.compareTo(module);
 	}
 
 	/**
@@ -154,6 +104,81 @@ public class ModuleWrapper implements Module, ModelWrapper<Module> {
 	}
 
 	/**
+	* Returns the context name of this module.
+	*
+	* @return the context name of this module
+	*/
+	@Override
+	public java.lang.String getContextName() {
+		return _module.getContextName();
+	}
+
+	@Override
+	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {
+		return _module.getExpandoBridge();
+	}
+
+	/**
+	* Returns the module ID of this module.
+	*
+	* @return the module ID of this module
+	*/
+	@Override
+	public long getModuleId() {
+		return _module.getModuleId();
+	}
+
+	/**
+	* Returns the primary key of this module.
+	*
+	* @return the primary key of this module
+	*/
+	@Override
+	public long getPrimaryKey() {
+		return _module.getPrimaryKey();
+	}
+
+	@Override
+	public java.io.Serializable getPrimaryKeyObj() {
+		return _module.getPrimaryKeyObj();
+	}
+
+	/**
+	* Returns the uuid of this module.
+	*
+	* @return the uuid of this module
+	*/
+	@Override
+	public java.lang.String getUuid() {
+		return _module.getUuid();
+	}
+
+	@Override
+	public int hashCode() {
+		return _module.hashCode();
+	}
+
+	@Override
+	public boolean isCachedModel() {
+		return _module.isCachedModel();
+	}
+
+	@Override
+	public boolean isEscapedModel() {
+		return _module.isEscapedModel();
+	}
+
+	@Override
+	public boolean isNew() {
+		return _module.isNew();
+	}
+
+	@Override
+	public void persist() {
+		_module.persist();
+	}
+
+	/**
 	* Sets the app ID of this module.
 	*
 	* @param appId the app ID of this module
@@ -163,14 +188,9 @@ public class ModuleWrapper implements Module, ModelWrapper<Module> {
 		_module.setAppId(appId);
 	}
 
-	/**
-	* Returns the context name of this module.
-	*
-	* @return the context name of this module
-	*/
 	@Override
-	public java.lang.String getContextName() {
-		return _module.getContextName();
+	public void setCachedModel(boolean cachedModel) {
+		_module.setCachedModel(cachedModel);
 	}
 
 	/**
@@ -181,46 +201,6 @@ public class ModuleWrapper implements Module, ModelWrapper<Module> {
 	@Override
 	public void setContextName(java.lang.String contextName) {
 		_module.setContextName(contextName);
-	}
-
-	@Override
-	public boolean isNew() {
-		return _module.isNew();
-	}
-
-	@Override
-	public void setNew(boolean n) {
-		_module.setNew(n);
-	}
-
-	@Override
-	public boolean isCachedModel() {
-		return _module.isCachedModel();
-	}
-
-	@Override
-	public void setCachedModel(boolean cachedModel) {
-		_module.setCachedModel(cachedModel);
-	}
-
-	@Override
-	public boolean isEscapedModel() {
-		return _module.isEscapedModel();
-	}
-
-	@Override
-	public java.io.Serializable getPrimaryKeyObj() {
-		return _module.getPrimaryKeyObj();
-	}
-
-	@Override
-	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
-		_module.setPrimaryKeyObj(primaryKeyObj);
-	}
-
-	@Override
-	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {
-		return _module.getExpandoBridge();
 	}
 
 	@Override
@@ -241,19 +221,44 @@ public class ModuleWrapper implements Module, ModelWrapper<Module> {
 		_module.setExpandoBridgeAttributes(serviceContext);
 	}
 
+	/**
+	* Sets the module ID of this module.
+	*
+	* @param moduleId the module ID of this module
+	*/
 	@Override
-	public java.lang.Object clone() {
-		return new ModuleWrapper((Module)_module.clone());
+	public void setModuleId(long moduleId) {
+		_module.setModuleId(moduleId);
 	}
 
 	@Override
-	public int compareTo(com.liferay.marketplace.model.Module module) {
-		return _module.compareTo(module);
+	public void setNew(boolean n) {
+		_module.setNew(n);
+	}
+
+	/**
+	* Sets the primary key of this module.
+	*
+	* @param primaryKey the primary key of this module
+	*/
+	@Override
+	public void setPrimaryKey(long primaryKey) {
+		_module.setPrimaryKey(primaryKey);
 	}
 
 	@Override
-	public int hashCode() {
-		return _module.hashCode();
+	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
+		_module.setPrimaryKeyObj(primaryKeyObj);
+	}
+
+	/**
+	* Sets the uuid of this module.
+	*
+	* @param uuid the uuid of this module
+	*/
+	@Override
+	public void setUuid(java.lang.String uuid) {
+		_module.setUuid(uuid);
 	}
 
 	@Override
@@ -267,23 +272,18 @@ public class ModuleWrapper implements Module, ModelWrapper<Module> {
 	}
 
 	@Override
-	public com.liferay.marketplace.model.Module toUnescapedModel() {
-		return new ModuleWrapper(_module.toUnescapedModel());
-	}
-
-	@Override
 	public java.lang.String toString() {
 		return _module.toString();
 	}
 
 	@Override
-	public java.lang.String toXmlString() {
-		return _module.toXmlString();
+	public com.liferay.marketplace.model.Module toUnescapedModel() {
+		return new ModuleWrapper(_module.toUnescapedModel());
 	}
 
 	@Override
-	public void persist() {
-		_module.persist();
+	public java.lang.String toXmlString() {
+		return _module.toXmlString();
 	}
 
 	@Override

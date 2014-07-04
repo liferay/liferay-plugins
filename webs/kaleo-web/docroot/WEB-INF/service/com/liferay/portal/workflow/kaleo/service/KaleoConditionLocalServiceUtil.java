@@ -50,6 +50,16 @@ public class KaleoConditionLocalServiceUtil {
 		return getService().addKaleoCondition(kaleoCondition);
 	}
 
+	public static com.liferay.portal.workflow.kaleo.model.KaleoCondition addKaleoCondition(
+		long kaleoDefinitionId, long kaleoNodeId,
+		com.liferay.portal.workflow.kaleo.definition.Condition condition,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService()
+				   .addKaleoCondition(kaleoDefinitionId, kaleoNodeId,
+			condition, serviceContext);
+	}
+
 	/**
 	* Creates a new kaleo condition with the primary key. Does not add the kaleo condition to the database.
 	*
@@ -59,6 +69,21 @@ public class KaleoConditionLocalServiceUtil {
 	public static com.liferay.portal.workflow.kaleo.model.KaleoCondition createKaleoCondition(
 		long kaleoConditionId) {
 		return getService().createKaleoCondition(kaleoConditionId);
+	}
+
+	public static void deleteCompanyKaleoConditions(long companyId) {
+		getService().deleteCompanyKaleoConditions(companyId);
+	}
+
+	/**
+	* Deletes the kaleo condition from the database. Also notifies the appropriate model listeners.
+	*
+	* @param kaleoCondition the kaleo condition
+	* @return the kaleo condition that was removed
+	*/
+	public static com.liferay.portal.workflow.kaleo.model.KaleoCondition deleteKaleoCondition(
+		com.liferay.portal.workflow.kaleo.model.KaleoCondition kaleoCondition) {
+		return getService().deleteKaleoCondition(kaleoCondition);
 	}
 
 	/**
@@ -74,15 +99,18 @@ public class KaleoConditionLocalServiceUtil {
 		return getService().deleteKaleoCondition(kaleoConditionId);
 	}
 
+	public static void deleteKaleoDefinitionKaleoCondition(
+		long kaleoDefinitionId) {
+		getService().deleteKaleoDefinitionKaleoCondition(kaleoDefinitionId);
+	}
+
 	/**
-	* Deletes the kaleo condition from the database. Also notifies the appropriate model listeners.
-	*
-	* @param kaleoCondition the kaleo condition
-	* @return the kaleo condition that was removed
+	* @throws PortalException
 	*/
-	public static com.liferay.portal.workflow.kaleo.model.KaleoCondition deleteKaleoCondition(
-		com.liferay.portal.workflow.kaleo.model.KaleoCondition kaleoCondition) {
-		return getService().deleteKaleoCondition(kaleoCondition);
+	public static com.liferay.portal.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.model.PersistedModel persistedModel)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().deletePersistedModel(persistedModel);
 	}
 
 	public static com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
@@ -168,6 +196,19 @@ public class KaleoConditionLocalServiceUtil {
 		return getService().fetchKaleoCondition(kaleoConditionId);
 	}
 
+	public static com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
+		return getService().getActionableDynamicQuery();
+	}
+
+	/**
+	* Returns the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
+	*/
+	public static java.lang.String getBeanIdentifier() {
+		return getService().getBeanIdentifier();
+	}
+
 	/**
 	* Returns the kaleo condition with the primary key.
 	*
@@ -179,25 +220,6 @@ public class KaleoConditionLocalServiceUtil {
 		long kaleoConditionId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().getKaleoCondition(kaleoConditionId);
-	}
-
-	public static com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
-		return getService().getActionableDynamicQuery();
-	}
-
-	/**
-	* @throws PortalException
-	*/
-	public static com.liferay.portal.model.PersistedModel deletePersistedModel(
-		com.liferay.portal.model.PersistedModel persistedModel)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().deletePersistedModel(persistedModel);
-	}
-
-	public static com.liferay.portal.model.PersistedModel getPersistedModel(
-		java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().getPersistedModel(primaryKeyObj);
 	}
 
 	/**
@@ -225,24 +247,22 @@ public class KaleoConditionLocalServiceUtil {
 		return getService().getKaleoConditionsCount();
 	}
 
-	/**
-	* Updates the kaleo condition in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	*
-	* @param kaleoCondition the kaleo condition
-	* @return the kaleo condition that was updated
-	*/
-	public static com.liferay.portal.workflow.kaleo.model.KaleoCondition updateKaleoCondition(
-		com.liferay.portal.workflow.kaleo.model.KaleoCondition kaleoCondition) {
-		return getService().updateKaleoCondition(kaleoCondition);
+	public static com.liferay.portal.workflow.kaleo.model.KaleoCondition getKaleoNodeKaleoCondition(
+		long kaleoNodeId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().getKaleoNodeKaleoCondition(kaleoNodeId);
 	}
 
-	/**
-	* Returns the Spring bean ID for this bean.
-	*
-	* @return the Spring bean ID for this bean
-	*/
-	public static java.lang.String getBeanIdentifier() {
-		return getService().getBeanIdentifier();
+	public static com.liferay.portal.model.PersistedModel getPersistedModel(
+		java.io.Serializable primaryKeyObj)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().getPersistedModel(primaryKeyObj);
+	}
+
+	public static java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return getService().invokeMethod(name, parameterTypes, arguments);
 	}
 
 	/**
@@ -254,35 +274,15 @@ public class KaleoConditionLocalServiceUtil {
 		getService().setBeanIdentifier(beanIdentifier);
 	}
 
-	public static java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable {
-		return getService().invokeMethod(name, parameterTypes, arguments);
-	}
-
-	public static com.liferay.portal.workflow.kaleo.model.KaleoCondition addKaleoCondition(
-		long kaleoDefinitionId, long kaleoNodeId,
-		com.liferay.portal.workflow.kaleo.definition.Condition condition,
-		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService()
-				   .addKaleoCondition(kaleoDefinitionId, kaleoNodeId,
-			condition, serviceContext);
-	}
-
-	public static void deleteCompanyKaleoConditions(long companyId) {
-		getService().deleteCompanyKaleoConditions(companyId);
-	}
-
-	public static void deleteKaleoDefinitionKaleoCondition(
-		long kaleoDefinitionId) {
-		getService().deleteKaleoDefinitionKaleoCondition(kaleoDefinitionId);
-	}
-
-	public static com.liferay.portal.workflow.kaleo.model.KaleoCondition getKaleoNodeKaleoCondition(
-		long kaleoNodeId)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().getKaleoNodeKaleoCondition(kaleoNodeId);
+	/**
+	* Updates the kaleo condition in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	*
+	* @param kaleoCondition the kaleo condition
+	* @return the kaleo condition that was updated
+	*/
+	public static com.liferay.portal.workflow.kaleo.model.KaleoCondition updateKaleoCondition(
+		com.liferay.portal.workflow.kaleo.model.KaleoCondition kaleoCondition) {
+		return getService().updateKaleoCondition(kaleoCondition);
 	}
 
 	public static void clearService() {

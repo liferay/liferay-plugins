@@ -43,6 +43,20 @@ public class CalendarNotificationTemplateLocalServiceWrapper
 		return _calendarNotificationTemplateLocalService.addCalendarNotificationTemplate(calendarNotificationTemplate);
 	}
 
+	@Override
+	public com.liferay.calendar.model.CalendarNotificationTemplate addCalendarNotificationTemplate(
+		long userId, long calendarId,
+		com.liferay.calendar.notification.NotificationType notificationType,
+		java.lang.String notificationTypeSettings,
+		com.liferay.calendar.notification.NotificationTemplateType notificationTemplateType,
+		java.lang.String subject, java.lang.String body,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _calendarNotificationTemplateLocalService.addCalendarNotificationTemplate(userId,
+			calendarId, notificationType, notificationTypeSettings,
+			notificationTemplateType, subject, body, serviceContext);
+	}
+
 	/**
 	* Creates a new calendar notification template with the primary key. Does not add the calendar notification template to the database.
 	*
@@ -53,6 +67,18 @@ public class CalendarNotificationTemplateLocalServiceWrapper
 	public com.liferay.calendar.model.CalendarNotificationTemplate createCalendarNotificationTemplate(
 		long calendarNotificationTemplateId) {
 		return _calendarNotificationTemplateLocalService.createCalendarNotificationTemplate(calendarNotificationTemplateId);
+	}
+
+	/**
+	* Deletes the calendar notification template from the database. Also notifies the appropriate model listeners.
+	*
+	* @param calendarNotificationTemplate the calendar notification template
+	* @return the calendar notification template that was removed
+	*/
+	@Override
+	public com.liferay.calendar.model.CalendarNotificationTemplate deleteCalendarNotificationTemplate(
+		com.liferay.calendar.model.CalendarNotificationTemplate calendarNotificationTemplate) {
+		return _calendarNotificationTemplateLocalService.deleteCalendarNotificationTemplate(calendarNotificationTemplate);
 	}
 
 	/**
@@ -69,16 +95,19 @@ public class CalendarNotificationTemplateLocalServiceWrapper
 		return _calendarNotificationTemplateLocalService.deleteCalendarNotificationTemplate(calendarNotificationTemplateId);
 	}
 
+	@Override
+	public void deleteCalendarNotificationTemplates(long calendarId) {
+		_calendarNotificationTemplateLocalService.deleteCalendarNotificationTemplates(calendarId);
+	}
+
 	/**
-	* Deletes the calendar notification template from the database. Also notifies the appropriate model listeners.
-	*
-	* @param calendarNotificationTemplate the calendar notification template
-	* @return the calendar notification template that was removed
+	* @throws PortalException
 	*/
 	@Override
-	public com.liferay.calendar.model.CalendarNotificationTemplate deleteCalendarNotificationTemplate(
-		com.liferay.calendar.model.CalendarNotificationTemplate calendarNotificationTemplate) {
-		return _calendarNotificationTemplateLocalService.deleteCalendarNotificationTemplate(calendarNotificationTemplate);
+	public com.liferay.portal.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.model.PersistedModel persistedModel)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _calendarNotificationTemplateLocalService.deletePersistedModel(persistedModel);
 	}
 
 	@Override
@@ -169,6 +198,15 @@ public class CalendarNotificationTemplateLocalServiceWrapper
 
 	@Override
 	public com.liferay.calendar.model.CalendarNotificationTemplate fetchCalendarNotificationTemplate(
+		long calendarId,
+		com.liferay.calendar.notification.NotificationType notificationType,
+		com.liferay.calendar.notification.NotificationTemplateType notificationTemplateType) {
+		return _calendarNotificationTemplateLocalService.fetchCalendarNotificationTemplate(calendarId,
+			notificationType, notificationTemplateType);
+	}
+
+	@Override
+	public com.liferay.calendar.model.CalendarNotificationTemplate fetchCalendarNotificationTemplate(
 		long calendarNotificationTemplateId) {
 		return _calendarNotificationTemplateLocalService.fetchCalendarNotificationTemplate(calendarNotificationTemplateId);
 	}
@@ -201,6 +239,21 @@ public class CalendarNotificationTemplateLocalServiceWrapper
 			groupId);
 	}
 
+	@Override
+	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
+		return _calendarNotificationTemplateLocalService.getActionableDynamicQuery();
+	}
+
+	/**
+	* Returns the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
+	*/
+	@Override
+	public java.lang.String getBeanIdentifier() {
+		return _calendarNotificationTemplateLocalService.getBeanIdentifier();
+	}
+
 	/**
 	* Returns the calendar notification template with the primary key.
 	*
@@ -213,34 +266,6 @@ public class CalendarNotificationTemplateLocalServiceWrapper
 		long calendarNotificationTemplateId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _calendarNotificationTemplateLocalService.getCalendarNotificationTemplate(calendarNotificationTemplateId);
-	}
-
-	@Override
-	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
-		return _calendarNotificationTemplateLocalService.getActionableDynamicQuery();
-	}
-
-	@Override
-	public com.liferay.portal.kernel.dao.orm.ExportActionableDynamicQuery getExportActionableDynamicQuery(
-		com.liferay.portal.kernel.lar.PortletDataContext portletDataContext) {
-		return _calendarNotificationTemplateLocalService.getExportActionableDynamicQuery(portletDataContext);
-	}
-
-	/**
-	* @throws PortalException
-	*/
-	@Override
-	public com.liferay.portal.model.PersistedModel deletePersistedModel(
-		com.liferay.portal.model.PersistedModel persistedModel)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _calendarNotificationTemplateLocalService.deletePersistedModel(persistedModel);
-	}
-
-	@Override
-	public com.liferay.portal.model.PersistedModel getPersistedModel(
-		java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _calendarNotificationTemplateLocalService.getPersistedModel(primaryKeyObj);
 	}
 
 	/**
@@ -303,26 +328,25 @@ public class CalendarNotificationTemplateLocalServiceWrapper
 		return _calendarNotificationTemplateLocalService.getCalendarNotificationTemplatesCount();
 	}
 
-	/**
-	* Updates the calendar notification template in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	*
-	* @param calendarNotificationTemplate the calendar notification template
-	* @return the calendar notification template that was updated
-	*/
 	@Override
-	public com.liferay.calendar.model.CalendarNotificationTemplate updateCalendarNotificationTemplate(
-		com.liferay.calendar.model.CalendarNotificationTemplate calendarNotificationTemplate) {
-		return _calendarNotificationTemplateLocalService.updateCalendarNotificationTemplate(calendarNotificationTemplate);
+	public com.liferay.portal.kernel.dao.orm.ExportActionableDynamicQuery getExportActionableDynamicQuery(
+		com.liferay.portal.kernel.lar.PortletDataContext portletDataContext) {
+		return _calendarNotificationTemplateLocalService.getExportActionableDynamicQuery(portletDataContext);
 	}
 
-	/**
-	* Returns the Spring bean ID for this bean.
-	*
-	* @return the Spring bean ID for this bean
-	*/
 	@Override
-	public java.lang.String getBeanIdentifier() {
-		return _calendarNotificationTemplateLocalService.getBeanIdentifier();
+	public com.liferay.portal.model.PersistedModel getPersistedModel(
+		java.io.Serializable primaryKeyObj)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _calendarNotificationTemplateLocalService.getPersistedModel(primaryKeyObj);
+	}
+
+	@Override
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return _calendarNotificationTemplateLocalService.invokeMethod(name,
+			parameterTypes, arguments);
 	}
 
 	/**
@@ -335,40 +359,16 @@ public class CalendarNotificationTemplateLocalServiceWrapper
 		_calendarNotificationTemplateLocalService.setBeanIdentifier(beanIdentifier);
 	}
 
+	/**
+	* Updates the calendar notification template in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	*
+	* @param calendarNotificationTemplate the calendar notification template
+	* @return the calendar notification template that was updated
+	*/
 	@Override
-	public java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable {
-		return _calendarNotificationTemplateLocalService.invokeMethod(name,
-			parameterTypes, arguments);
-	}
-
-	@Override
-	public com.liferay.calendar.model.CalendarNotificationTemplate addCalendarNotificationTemplate(
-		long userId, long calendarId,
-		com.liferay.calendar.notification.NotificationType notificationType,
-		java.lang.String notificationTypeSettings,
-		com.liferay.calendar.notification.NotificationTemplateType notificationTemplateType,
-		java.lang.String subject, java.lang.String body,
-		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _calendarNotificationTemplateLocalService.addCalendarNotificationTemplate(userId,
-			calendarId, notificationType, notificationTypeSettings,
-			notificationTemplateType, subject, body, serviceContext);
-	}
-
-	@Override
-	public void deleteCalendarNotificationTemplates(long calendarId) {
-		_calendarNotificationTemplateLocalService.deleteCalendarNotificationTemplates(calendarId);
-	}
-
-	@Override
-	public com.liferay.calendar.model.CalendarNotificationTemplate fetchCalendarNotificationTemplate(
-		long calendarId,
-		com.liferay.calendar.notification.NotificationType notificationType,
-		com.liferay.calendar.notification.NotificationTemplateType notificationTemplateType) {
-		return _calendarNotificationTemplateLocalService.fetchCalendarNotificationTemplate(calendarId,
-			notificationType, notificationTemplateType);
+	public com.liferay.calendar.model.CalendarNotificationTemplate updateCalendarNotificationTemplate(
+		com.liferay.calendar.model.CalendarNotificationTemplate calendarNotificationTemplate) {
+		return _calendarNotificationTemplateLocalService.updateCalendarNotificationTemplate(calendarNotificationTemplate);
 	}
 
 	@Override

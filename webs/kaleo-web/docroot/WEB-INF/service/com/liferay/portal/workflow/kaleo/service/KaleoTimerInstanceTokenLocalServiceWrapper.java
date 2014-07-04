@@ -31,6 +31,18 @@ public class KaleoTimerInstanceTokenLocalServiceWrapper
 		_kaleoTimerInstanceTokenLocalService = kaleoTimerInstanceTokenLocalService;
 	}
 
+	@Override
+	public com.liferay.portal.workflow.kaleo.model.KaleoTimerInstanceToken addKaleoTimerInstanceToken(
+		long kaleoInstanceTokenId, long kaleoTaskInstanceTokenId,
+		long kaleoTimerId, java.lang.String kaleoTimerName,
+		java.util.Map<java.lang.String, java.io.Serializable> workflowContext,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _kaleoTimerInstanceTokenLocalService.addKaleoTimerInstanceToken(kaleoInstanceTokenId,
+			kaleoTaskInstanceTokenId, kaleoTimerId, kaleoTimerName,
+			workflowContext, serviceContext);
+	}
+
 	/**
 	* Adds the kaleo timer instance token to the database. Also notifies the appropriate model listeners.
 	*
@@ -43,6 +55,44 @@ public class KaleoTimerInstanceTokenLocalServiceWrapper
 		return _kaleoTimerInstanceTokenLocalService.addKaleoTimerInstanceToken(kaleoTimerInstanceToken);
 	}
 
+	@Override
+	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTimerInstanceToken> addKaleoTimerInstanceTokens(
+		com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken kaleoInstanceToken,
+		com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken kaleoTaskInstanceToken,
+		java.util.Collection<com.liferay.portal.workflow.kaleo.model.KaleoTimer> kaleoTimers,
+		java.util.Map<java.lang.String, java.io.Serializable> workflowContext,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _kaleoTimerInstanceTokenLocalService.addKaleoTimerInstanceTokens(kaleoInstanceToken,
+			kaleoTaskInstanceToken, kaleoTimers, workflowContext, serviceContext);
+	}
+
+	@Override
+	public com.liferay.portal.workflow.kaleo.model.KaleoTimerInstanceToken completeKaleoTimerInstanceToken(
+		long kaleoTimerInstanceTokenId,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _kaleoTimerInstanceTokenLocalService.completeKaleoTimerInstanceToken(kaleoTimerInstanceTokenId,
+			serviceContext);
+	}
+
+	@Override
+	public void completeKaleoTimerInstanceTokens(long kaleoInstanceTokenId,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		_kaleoTimerInstanceTokenLocalService.completeKaleoTimerInstanceTokens(kaleoInstanceTokenId,
+			serviceContext);
+	}
+
+	@Override
+	public void completeKaleoTimerInstanceTokens(
+		java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTimerInstanceToken> kaleoTimerInstanceTokens,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		_kaleoTimerInstanceTokenLocalService.completeKaleoTimerInstanceTokens(kaleoTimerInstanceTokens,
+			serviceContext);
+	}
+
 	/**
 	* Creates a new kaleo timer instance token with the primary key. Does not add the kaleo timer instance token to the database.
 	*
@@ -53,6 +103,26 @@ public class KaleoTimerInstanceTokenLocalServiceWrapper
 	public com.liferay.portal.workflow.kaleo.model.KaleoTimerInstanceToken createKaleoTimerInstanceToken(
 		long kaleoTimerInstanceTokenId) {
 		return _kaleoTimerInstanceTokenLocalService.createKaleoTimerInstanceToken(kaleoTimerInstanceTokenId);
+	}
+
+	@Override
+	public void deleteKaleoTimerInstanceToken(long kaleoInstanceTokenId,
+		long kaleoTimerId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		_kaleoTimerInstanceTokenLocalService.deleteKaleoTimerInstanceToken(kaleoInstanceTokenId,
+			kaleoTimerId);
+	}
+
+	/**
+	* Deletes the kaleo timer instance token from the database. Also notifies the appropriate model listeners.
+	*
+	* @param kaleoTimerInstanceToken the kaleo timer instance token
+	* @return the kaleo timer instance token that was removed
+	*/
+	@Override
+	public com.liferay.portal.workflow.kaleo.model.KaleoTimerInstanceToken deleteKaleoTimerInstanceToken(
+		com.liferay.portal.workflow.kaleo.model.KaleoTimerInstanceToken kaleoTimerInstanceToken) {
+		return _kaleoTimerInstanceTokenLocalService.deleteKaleoTimerInstanceToken(kaleoTimerInstanceToken);
 	}
 
 	/**
@@ -69,16 +139,19 @@ public class KaleoTimerInstanceTokenLocalServiceWrapper
 		return _kaleoTimerInstanceTokenLocalService.deleteKaleoTimerInstanceToken(kaleoTimerInstanceTokenId);
 	}
 
+	@Override
+	public void deleteKaleoTimerInstanceTokens(long kaleoInstanceId) {
+		_kaleoTimerInstanceTokenLocalService.deleteKaleoTimerInstanceTokens(kaleoInstanceId);
+	}
+
 	/**
-	* Deletes the kaleo timer instance token from the database. Also notifies the appropriate model listeners.
-	*
-	* @param kaleoTimerInstanceToken the kaleo timer instance token
-	* @return the kaleo timer instance token that was removed
+	* @throws PortalException
 	*/
 	@Override
-	public com.liferay.portal.workflow.kaleo.model.KaleoTimerInstanceToken deleteKaleoTimerInstanceToken(
-		com.liferay.portal.workflow.kaleo.model.KaleoTimerInstanceToken kaleoTimerInstanceToken) {
-		return _kaleoTimerInstanceTokenLocalService.deleteKaleoTimerInstanceToken(kaleoTimerInstanceToken);
+	public com.liferay.portal.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.model.PersistedModel persistedModel)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _kaleoTimerInstanceTokenLocalService.deletePersistedModel(persistedModel);
 	}
 
 	@Override
@@ -173,6 +246,29 @@ public class KaleoTimerInstanceTokenLocalServiceWrapper
 		return _kaleoTimerInstanceTokenLocalService.fetchKaleoTimerInstanceToken(kaleoTimerInstanceTokenId);
 	}
 
+	@Override
+	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
+		return _kaleoTimerInstanceTokenLocalService.getActionableDynamicQuery();
+	}
+
+	/**
+	* Returns the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
+	*/
+	@Override
+	public java.lang.String getBeanIdentifier() {
+		return _kaleoTimerInstanceTokenLocalService.getBeanIdentifier();
+	}
+
+	@Override
+	public com.liferay.portal.workflow.kaleo.model.KaleoTimerInstanceToken getKaleoTimerInstanceToken(
+		long kaleoInstanceTokenId, long kaleoTimerId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _kaleoTimerInstanceTokenLocalService.getKaleoTimerInstanceToken(kaleoInstanceTokenId,
+			kaleoTimerId);
+	}
+
 	/**
 	* Returns the kaleo timer instance token with the primary key.
 	*
@@ -188,25 +284,11 @@ public class KaleoTimerInstanceTokenLocalServiceWrapper
 	}
 
 	@Override
-	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
-		return _kaleoTimerInstanceTokenLocalService.getActionableDynamicQuery();
-	}
-
-	/**
-	* @throws PortalException
-	*/
-	@Override
-	public com.liferay.portal.model.PersistedModel deletePersistedModel(
-		com.liferay.portal.model.PersistedModel persistedModel)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _kaleoTimerInstanceTokenLocalService.deletePersistedModel(persistedModel);
-	}
-
-	@Override
-	public com.liferay.portal.model.PersistedModel getPersistedModel(
-		java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _kaleoTimerInstanceTokenLocalService.getPersistedModel(primaryKeyObj);
+	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTimerInstanceToken> getKaleoTimerInstanceTokens(
+		long kaleoInstanceTokenId, boolean completed, boolean blocking,
+		com.liferay.portal.service.ServiceContext serviceContext) {
+		return _kaleoTimerInstanceTokenLocalService.getKaleoTimerInstanceTokens(kaleoInstanceTokenId,
+			completed, blocking, serviceContext);
 	}
 
 	/**
@@ -237,26 +319,27 @@ public class KaleoTimerInstanceTokenLocalServiceWrapper
 		return _kaleoTimerInstanceTokenLocalService.getKaleoTimerInstanceTokensCount();
 	}
 
-	/**
-	* Updates the kaleo timer instance token in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	*
-	* @param kaleoTimerInstanceToken the kaleo timer instance token
-	* @return the kaleo timer instance token that was updated
-	*/
 	@Override
-	public com.liferay.portal.workflow.kaleo.model.KaleoTimerInstanceToken updateKaleoTimerInstanceToken(
-		com.liferay.portal.workflow.kaleo.model.KaleoTimerInstanceToken kaleoTimerInstanceToken) {
-		return _kaleoTimerInstanceTokenLocalService.updateKaleoTimerInstanceToken(kaleoTimerInstanceToken);
+	public int getKaleoTimerInstanceTokensCount(long kaleoInstanceTokenId,
+		boolean completed, boolean blocking,
+		com.liferay.portal.service.ServiceContext serviceContext) {
+		return _kaleoTimerInstanceTokenLocalService.getKaleoTimerInstanceTokensCount(kaleoInstanceTokenId,
+			completed, blocking, serviceContext);
 	}
 
-	/**
-	* Returns the Spring bean ID for this bean.
-	*
-	* @return the Spring bean ID for this bean
-	*/
 	@Override
-	public java.lang.String getBeanIdentifier() {
-		return _kaleoTimerInstanceTokenLocalService.getBeanIdentifier();
+	public com.liferay.portal.model.PersistedModel getPersistedModel(
+		java.io.Serializable primaryKeyObj)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _kaleoTimerInstanceTokenLocalService.getPersistedModel(primaryKeyObj);
+	}
+
+	@Override
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return _kaleoTimerInstanceTokenLocalService.invokeMethod(name,
+			parameterTypes, arguments);
 	}
 
 	/**
@@ -269,99 +352,16 @@ public class KaleoTimerInstanceTokenLocalServiceWrapper
 		_kaleoTimerInstanceTokenLocalService.setBeanIdentifier(beanIdentifier);
 	}
 
+	/**
+	* Updates the kaleo timer instance token in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	*
+	* @param kaleoTimerInstanceToken the kaleo timer instance token
+	* @return the kaleo timer instance token that was updated
+	*/
 	@Override
-	public java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable {
-		return _kaleoTimerInstanceTokenLocalService.invokeMethod(name,
-			parameterTypes, arguments);
-	}
-
-	@Override
-	public com.liferay.portal.workflow.kaleo.model.KaleoTimerInstanceToken addKaleoTimerInstanceToken(
-		long kaleoInstanceTokenId, long kaleoTaskInstanceTokenId,
-		long kaleoTimerId, java.lang.String kaleoTimerName,
-		java.util.Map<java.lang.String, java.io.Serializable> workflowContext,
-		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _kaleoTimerInstanceTokenLocalService.addKaleoTimerInstanceToken(kaleoInstanceTokenId,
-			kaleoTaskInstanceTokenId, kaleoTimerId, kaleoTimerName,
-			workflowContext, serviceContext);
-	}
-
-	@Override
-	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTimerInstanceToken> addKaleoTimerInstanceTokens(
-		com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken kaleoInstanceToken,
-		com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken kaleoTaskInstanceToken,
-		java.util.Collection<com.liferay.portal.workflow.kaleo.model.KaleoTimer> kaleoTimers,
-		java.util.Map<java.lang.String, java.io.Serializable> workflowContext,
-		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _kaleoTimerInstanceTokenLocalService.addKaleoTimerInstanceTokens(kaleoInstanceToken,
-			kaleoTaskInstanceToken, kaleoTimers, workflowContext, serviceContext);
-	}
-
-	@Override
-	public com.liferay.portal.workflow.kaleo.model.KaleoTimerInstanceToken completeKaleoTimerInstanceToken(
-		long kaleoTimerInstanceTokenId,
-		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _kaleoTimerInstanceTokenLocalService.completeKaleoTimerInstanceToken(kaleoTimerInstanceTokenId,
-			serviceContext);
-	}
-
-	@Override
-	public void completeKaleoTimerInstanceTokens(
-		java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTimerInstanceToken> kaleoTimerInstanceTokens,
-		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		_kaleoTimerInstanceTokenLocalService.completeKaleoTimerInstanceTokens(kaleoTimerInstanceTokens,
-			serviceContext);
-	}
-
-	@Override
-	public void completeKaleoTimerInstanceTokens(long kaleoInstanceTokenId,
-		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		_kaleoTimerInstanceTokenLocalService.completeKaleoTimerInstanceTokens(kaleoInstanceTokenId,
-			serviceContext);
-	}
-
-	@Override
-	public void deleteKaleoTimerInstanceToken(long kaleoInstanceTokenId,
-		long kaleoTimerId)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		_kaleoTimerInstanceTokenLocalService.deleteKaleoTimerInstanceToken(kaleoInstanceTokenId,
-			kaleoTimerId);
-	}
-
-	@Override
-	public void deleteKaleoTimerInstanceTokens(long kaleoInstanceId) {
-		_kaleoTimerInstanceTokenLocalService.deleteKaleoTimerInstanceTokens(kaleoInstanceId);
-	}
-
-	@Override
-	public com.liferay.portal.workflow.kaleo.model.KaleoTimerInstanceToken getKaleoTimerInstanceToken(
-		long kaleoInstanceTokenId, long kaleoTimerId)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _kaleoTimerInstanceTokenLocalService.getKaleoTimerInstanceToken(kaleoInstanceTokenId,
-			kaleoTimerId);
-	}
-
-	@Override
-	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTimerInstanceToken> getKaleoTimerInstanceTokens(
-		long kaleoInstanceTokenId, boolean completed, boolean blocking,
-		com.liferay.portal.service.ServiceContext serviceContext) {
-		return _kaleoTimerInstanceTokenLocalService.getKaleoTimerInstanceTokens(kaleoInstanceTokenId,
-			completed, blocking, serviceContext);
-	}
-
-	@Override
-	public int getKaleoTimerInstanceTokensCount(long kaleoInstanceTokenId,
-		boolean completed, boolean blocking,
-		com.liferay.portal.service.ServiceContext serviceContext) {
-		return _kaleoTimerInstanceTokenLocalService.getKaleoTimerInstanceTokensCount(kaleoInstanceTokenId,
-			completed, blocking, serviceContext);
+	public com.liferay.portal.workflow.kaleo.model.KaleoTimerInstanceToken updateKaleoTimerInstanceToken(
+		com.liferay.portal.workflow.kaleo.model.KaleoTimerInstanceToken kaleoTimerInstanceToken) {
+		return _kaleoTimerInstanceTokenLocalService.updateKaleoTimerInstanceToken(kaleoTimerInstanceToken);
 	}
 
 	/**

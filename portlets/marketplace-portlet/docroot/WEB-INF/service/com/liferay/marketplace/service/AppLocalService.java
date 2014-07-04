@@ -16,6 +16,7 @@ package com.liferay.marketplace.service;
 
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.search.IndexableType;
 import com.liferay.portal.kernel.transaction.Isolation;
 import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
@@ -51,8 +52,11 @@ public interface AppLocalService extends BaseLocalService, InvokableLocalService
 	* @param app the app
 	* @return the app that was added
 	*/
+	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.REINDEX)
 	public com.liferay.marketplace.model.App addApp(
 		com.liferay.marketplace.model.App app);
+
+	public void clearInstalledAppsCache();
 
 	/**
 	* Creates a new app with the primary key. Does not add the app to the database.
@@ -63,23 +67,33 @@ public interface AppLocalService extends BaseLocalService, InvokableLocalService
 	public com.liferay.marketplace.model.App createApp(long appId);
 
 	/**
+	* Deletes the app from the database. Also notifies the appropriate model listeners.
+	*
+	* @param app the app
+	* @return the app that was removed
+	*/
+	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.DELETE)
+	public com.liferay.marketplace.model.App deleteApp(
+		com.liferay.marketplace.model.App app);
+
+	/**
 	* Deletes the app with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param appId the primary key of the app
 	* @return the app that was removed
 	* @throws PortalException if a app with the primary key could not be found
 	*/
+	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.DELETE)
 	public com.liferay.marketplace.model.App deleteApp(long appId)
 		throws com.liferay.portal.kernel.exception.PortalException;
 
 	/**
-	* Deletes the app from the database. Also notifies the appropriate model listeners.
-	*
-	* @param app the app
-	* @return the app that was removed
+	* @throws PortalException
 	*/
-	public com.liferay.marketplace.model.App deleteApp(
-		com.liferay.marketplace.model.App app);
+	@Override
+	public com.liferay.portal.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.model.PersistedModel persistedModel)
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery();
 
@@ -160,6 +174,12 @@ public interface AppLocalService extends BaseLocalService, InvokableLocalService
 	public com.liferay.marketplace.model.App fetchAppByUuidAndCompanyId(
 		java.lang.String uuid, long companyId);
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.liferay.marketplace.model.App fetchRemoteApp(long remoteAppId);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery();
+
 	/**
 	* Returns the app with the primary key.
 	*
@@ -169,27 +189,6 @@ public interface AppLocalService extends BaseLocalService, InvokableLocalService
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.marketplace.model.App getApp(long appId)
-		throws com.liferay.portal.kernel.exception.PortalException;
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery();
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.portal.kernel.dao.orm.ExportActionableDynamicQuery getExportActionableDynamicQuery(
-		com.liferay.portal.kernel.lar.PortletDataContext portletDataContext);
-
-	/**
-	* @throws PortalException
-	*/
-	@Override
-	public com.liferay.portal.model.PersistedModel deletePersistedModel(
-		com.liferay.portal.model.PersistedModel persistedModel)
-		throws com.liferay.portal.kernel.exception.PortalException;
-
-	@Override
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.portal.model.PersistedModel getPersistedModel(
-		java.io.Serializable primaryKeyObj)
 		throws com.liferay.portal.kernel.exception.PortalException;
 
 	/**
@@ -204,6 +203,10 @@ public interface AppLocalService extends BaseLocalService, InvokableLocalService
 	public com.liferay.marketplace.model.App getAppByUuidAndCompanyId(
 		java.lang.String uuid, long companyId)
 		throws com.liferay.portal.kernel.exception.PortalException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<com.liferay.marketplace.model.App> getApps(
+		java.lang.String category);
 
 	/**
 	* Returns a range of all the apps.
@@ -229,20 +232,38 @@ public interface AppLocalService extends BaseLocalService, InvokableLocalService
 	public int getAppsCount();
 
 	/**
-	* Updates the app in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	*
-	* @param app the app
-	* @return the app that was updated
-	*/
-	public com.liferay.marketplace.model.App updateApp(
-		com.liferay.marketplace.model.App app);
-
-	/**
 	* Returns the Spring bean ID for this bean.
 	*
 	* @return the Spring bean ID for this bean
 	*/
 	public java.lang.String getBeanIdentifier();
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.Map<java.lang.String, java.lang.String> getBundledApps();
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.liferay.portal.kernel.dao.orm.ExportActionableDynamicQuery getExportActionableDynamicQuery(
+		com.liferay.portal.kernel.lar.PortletDataContext portletDataContext);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<com.liferay.marketplace.model.App> getInstalledApps();
+
+	@Override
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.liferay.portal.model.PersistedModel getPersistedModel(
+		java.io.Serializable primaryKeyObj)
+		throws com.liferay.portal.kernel.exception.PortalException;
+
+	public void installApp(long remoteAppId)
+		throws com.liferay.portal.kernel.exception.PortalException;
+
+	@Override
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable;
+
+	public void processMarketplaceProperties(java.util.Properties properties)
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	/**
 	* Sets the Spring bean ID for this bean.
@@ -251,42 +272,26 @@ public interface AppLocalService extends BaseLocalService, InvokableLocalService
 	*/
 	public void setBeanIdentifier(java.lang.String beanIdentifier);
 
-	@Override
-	public java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable;
-
-	public void clearInstalledAppsCache();
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.marketplace.model.App fetchRemoteApp(long remoteAppId);
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<com.liferay.marketplace.model.App> getApps(
-		java.lang.String category);
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.Map<java.lang.String, java.lang.String> getBundledApps();
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<com.liferay.marketplace.model.App> getInstalledApps();
-
-	public void installApp(long remoteAppId)
-		throws com.liferay.portal.kernel.exception.PortalException;
-
-	public void processMarketplaceProperties(java.util.Properties properties)
-		throws com.liferay.portal.kernel.exception.PortalException;
-
 	public void uninstallApp(long remoteAppId)
 		throws com.liferay.portal.kernel.exception.PortalException;
 
-	public com.liferay.marketplace.model.App updateApp(long userId,
-		long remoteAppId, java.lang.String version, java.io.File file)
-		throws com.liferay.portal.kernel.exception.PortalException;
+	/**
+	* Updates the app in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	*
+	* @param app the app
+	* @return the app that was updated
+	*/
+	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.REINDEX)
+	public com.liferay.marketplace.model.App updateApp(
+		com.liferay.marketplace.model.App app);
 
 	public com.liferay.marketplace.model.App updateApp(long userId,
 		long remoteAppId, java.lang.String title, java.lang.String description,
 		java.lang.String category, java.lang.String iconURL,
 		java.lang.String version, java.io.File file)
+		throws com.liferay.portal.kernel.exception.PortalException;
+
+	public com.liferay.marketplace.model.App updateApp(long userId,
+		long remoteAppId, java.lang.String version, java.io.File file)
 		throws com.liferay.portal.kernel.exception.PortalException;
 }

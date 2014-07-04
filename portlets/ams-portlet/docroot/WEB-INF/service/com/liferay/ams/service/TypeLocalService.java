@@ -16,6 +16,7 @@ package com.liferay.ams.service;
 
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.search.IndexableType;
 import com.liferay.portal.kernel.transaction.Isolation;
 import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
@@ -51,6 +52,7 @@ public interface TypeLocalService extends BaseLocalService, InvokableLocalServic
 	* @param type the type
 	* @return the type that was added
 	*/
+	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.REINDEX)
 	public com.liferay.ams.model.Type addType(com.liferay.ams.model.Type type);
 
 	/**
@@ -62,13 +64,11 @@ public interface TypeLocalService extends BaseLocalService, InvokableLocalServic
 	public com.liferay.ams.model.Type createType(long typeId);
 
 	/**
-	* Deletes the type with the primary key from the database. Also notifies the appropriate model listeners.
-	*
-	* @param typeId the primary key of the type
-	* @return the type that was removed
-	* @throws PortalException if a type with the primary key could not be found
+	* @throws PortalException
 	*/
-	public com.liferay.ams.model.Type deleteType(long typeId)
+	@Override
+	public com.liferay.portal.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.model.PersistedModel persistedModel)
 		throws com.liferay.portal.kernel.exception.PortalException;
 
 	/**
@@ -77,8 +77,20 @@ public interface TypeLocalService extends BaseLocalService, InvokableLocalServic
 	* @param type the type
 	* @return the type that was removed
 	*/
+	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.DELETE)
 	public com.liferay.ams.model.Type deleteType(
 		com.liferay.ams.model.Type type);
+
+	/**
+	* Deletes the type with the primary key from the database. Also notifies the appropriate model listeners.
+	*
+	* @param typeId the primary key of the type
+	* @return the type that was removed
+	* @throws PortalException if a type with the primary key could not be found
+	*/
+	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.DELETE)
+	public com.liferay.ams.model.Type deleteType(long typeId)
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery();
 
@@ -148,6 +160,22 @@ public interface TypeLocalService extends BaseLocalService, InvokableLocalServic
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.ams.model.Type fetchType(long typeId);
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery();
+
+	/**
+	* Returns the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
+	*/
+	public java.lang.String getBeanIdentifier();
+
+	@Override
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.liferay.portal.model.PersistedModel getPersistedModel(
+		java.io.Serializable primaryKeyObj)
+		throws com.liferay.portal.kernel.exception.PortalException;
+
 	/**
 	* Returns the type with the primary key.
 	*
@@ -157,23 +185,6 @@ public interface TypeLocalService extends BaseLocalService, InvokableLocalServic
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.ams.model.Type getType(long typeId)
-		throws com.liferay.portal.kernel.exception.PortalException;
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery();
-
-	/**
-	* @throws PortalException
-	*/
-	@Override
-	public com.liferay.portal.model.PersistedModel deletePersistedModel(
-		com.liferay.portal.model.PersistedModel persistedModel)
-		throws com.liferay.portal.kernel.exception.PortalException;
-
-	@Override
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.portal.model.PersistedModel getPersistedModel(
-		java.io.Serializable primaryKeyObj)
 		throws com.liferay.portal.kernel.exception.PortalException;
 
 	/**
@@ -199,21 +210,10 @@ public interface TypeLocalService extends BaseLocalService, InvokableLocalServic
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getTypesCount();
 
-	/**
-	* Updates the type in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	*
-	* @param type the type
-	* @return the type that was updated
-	*/
-	public com.liferay.ams.model.Type updateType(
-		com.liferay.ams.model.Type type);
-
-	/**
-	* Returns the Spring bean ID for this bean.
-	*
-	* @return the Spring bean ID for this bean
-	*/
-	public java.lang.String getBeanIdentifier();
+	@Override
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable;
 
 	/**
 	* Sets the Spring bean ID for this bean.
@@ -222,8 +222,13 @@ public interface TypeLocalService extends BaseLocalService, InvokableLocalServic
 	*/
 	public void setBeanIdentifier(java.lang.String beanIdentifier);
 
-	@Override
-	public java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable;
+	/**
+	* Updates the type in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	*
+	* @param type the type
+	* @return the type that was updated
+	*/
+	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.REINDEX)
+	public com.liferay.ams.model.Type updateType(
+		com.liferay.ams.model.Type type);
 }

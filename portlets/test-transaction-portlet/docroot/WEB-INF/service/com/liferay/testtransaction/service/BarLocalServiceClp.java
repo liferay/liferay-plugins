@@ -30,137 +30,137 @@ public class BarLocalServiceClp implements BarLocalService {
 				"com.liferay.testtransaction.model.Bar"
 			};
 
-		_methodName1 = "createBar";
+		_methodName1 = "addBarAndClassName_PortalRollback";
 
-		_methodParameterTypes1 = new String[] { "long" };
+		_methodParameterTypes1 = new String[] { "java.lang.String" };
 
-		_methodName2 = "deleteBar";
+		_methodName2 = "addBarAndClassName_PortletRollback";
 
-		_methodParameterTypes2 = new String[] { "long" };
+		_methodParameterTypes2 = new String[] { "java.lang.String" };
 
-		_methodName3 = "deleteBar";
+		_methodName3 = "addBar_Rollback";
 
-		_methodParameterTypes3 = new String[] {
+		_methodParameterTypes3 = new String[] { "java.lang.String" };
+
+		_methodName4 = "addBar_Success";
+
+		_methodParameterTypes4 = new String[] { "java.lang.String" };
+
+		_methodName5 = "createBar";
+
+		_methodParameterTypes5 = new String[] { "long" };
+
+		_methodName6 = "deleteBar";
+
+		_methodParameterTypes6 = new String[] {
 				"com.liferay.testtransaction.model.Bar"
 			};
 
-		_methodName4 = "dynamicQuery";
+		_methodName7 = "deleteBar";
 
-		_methodParameterTypes4 = new String[] {  };
+		_methodParameterTypes7 = new String[] { "long" };
 
-		_methodName5 = "dynamicQuery";
+		_methodName8 = "deleteBarAndClassName";
 
-		_methodParameterTypes5 = new String[] {
+		_methodParameterTypes8 = new String[] {
+				"com.liferay.testtransaction.model.Bar"
+			};
+
+		_methodName9 = "deletePersistedModel";
+
+		_methodParameterTypes9 = new String[] {
+				"com.liferay.portal.model.PersistedModel"
+			};
+
+		_methodName10 = "dynamicQuery";
+
+		_methodParameterTypes10 = new String[] {  };
+
+		_methodName11 = "dynamicQuery";
+
+		_methodParameterTypes11 = new String[] {
 				"com.liferay.portal.kernel.dao.orm.DynamicQuery"
 			};
 
-		_methodName6 = "dynamicQuery";
+		_methodName12 = "dynamicQuery";
 
-		_methodParameterTypes6 = new String[] {
+		_methodParameterTypes12 = new String[] {
 				"com.liferay.portal.kernel.dao.orm.DynamicQuery", "int", "int"
 			};
 
-		_methodName7 = "dynamicQuery";
+		_methodName13 = "dynamicQuery";
 
-		_methodParameterTypes7 = new String[] {
+		_methodParameterTypes13 = new String[] {
 				"com.liferay.portal.kernel.dao.orm.DynamicQuery", "int", "int",
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			};
 
-		_methodName8 = "dynamicQueryCount";
+		_methodName14 = "dynamicQueryCount";
 
-		_methodParameterTypes8 = new String[] {
+		_methodParameterTypes14 = new String[] {
 				"com.liferay.portal.kernel.dao.orm.DynamicQuery"
 			};
 
-		_methodName9 = "dynamicQueryCount";
+		_methodName15 = "dynamicQueryCount";
 
-		_methodParameterTypes9 = new String[] {
+		_methodParameterTypes15 = new String[] {
 				"com.liferay.portal.kernel.dao.orm.DynamicQuery",
 				"com.liferay.portal.kernel.dao.orm.Projection"
 			};
 
-		_methodName10 = "fetchBar";
+		_methodName16 = "fetchBar";
 
-		_methodParameterTypes10 = new String[] { "long" };
+		_methodParameterTypes16 = new String[] { "long" };
 
-		_methodName11 = "getBar";
+		_methodName17 = "getActionableDynamicQuery";
 
-		_methodParameterTypes11 = new String[] { "long" };
+		_methodParameterTypes17 = new String[] {  };
 
-		_methodName12 = "getActionableDynamicQuery";
+		_methodName18 = "getBar";
 
-		_methodParameterTypes12 = new String[] {  };
+		_methodParameterTypes18 = new String[] { "long" };
 
-		_methodName13 = "deletePersistedModel";
-
-		_methodParameterTypes13 = new String[] {
-				"com.liferay.portal.model.PersistedModel"
-			};
-
-		_methodName14 = "getPersistedModel";
-
-		_methodParameterTypes14 = new String[] { "java.io.Serializable" };
-
-		_methodName15 = "getBars";
-
-		_methodParameterTypes15 = new String[] { "int", "int" };
-
-		_methodName16 = "getBarsCount";
-
-		_methodParameterTypes16 = new String[] {  };
-
-		_methodName17 = "updateBar";
-
-		_methodParameterTypes17 = new String[] {
-				"com.liferay.testtransaction.model.Bar"
-			};
-
-		_methodName18 = "getBeanIdentifier";
-
-		_methodParameterTypes18 = new String[] {  };
-
-		_methodName19 = "setBeanIdentifier";
+		_methodName19 = "getBar";
 
 		_methodParameterTypes19 = new String[] { "java.lang.String" };
 
-		_methodName21 = "addBar_Rollback";
+		_methodName20 = "getBars";
 
-		_methodParameterTypes21 = new String[] { "java.lang.String" };
+		_methodParameterTypes20 = new String[] { "int", "int" };
 
-		_methodName22 = "addBar_Success";
+		_methodName21 = "getBarsCount";
 
-		_methodParameterTypes22 = new String[] { "java.lang.String" };
+		_methodParameterTypes21 = new String[] {  };
 
-		_methodName23 = "addBarAndClassName_PortalRollback";
+		_methodName22 = "getBeanIdentifier";
 
-		_methodParameterTypes23 = new String[] { "java.lang.String" };
+		_methodParameterTypes22 = new String[] {  };
 
-		_methodName24 = "addBarAndClassName_PortletRollback";
+		_methodName23 = "getPersistedModel";
+
+		_methodParameterTypes23 = new String[] { "java.io.Serializable" };
+
+		_methodName24 = "hasBar";
 
 		_methodParameterTypes24 = new String[] { "java.lang.String" };
 
-		_methodName25 = "deleteBarAndClassName";
+		_methodName25 = "hasClassName";
 
-		_methodParameterTypes25 = new String[] {
-				"com.liferay.testtransaction.model.Bar"
-			};
+		_methodParameterTypes25 = new String[] {  };
 
-		_methodName26 = "getBar";
-
-		_methodParameterTypes26 = new String[] { "java.lang.String" };
-
-		_methodName27 = "hasBar";
+		_methodName27 = "setBeanIdentifier";
 
 		_methodParameterTypes27 = new String[] { "java.lang.String" };
 
-		_methodName28 = "hasClassName";
+		_methodName28 = "testAddClassNameAndBar_Success";
 
-		_methodParameterTypes28 = new String[] {  };
+		_methodParameterTypes28 = new String[] { "java.lang.String" };
 
-		_methodName29 = "testAddClassNameAndBar_Success";
+		_methodName29 = "updateBar";
 
-		_methodParameterTypes29 = new String[] { "java.lang.String" };
+		_methodParameterTypes29 = new String[] {
+				"com.liferay.testtransaction.model.Bar"
+			};
 	}
 
 	@Override
@@ -189,12 +189,122 @@ public class BarLocalServiceClp implements BarLocalService {
 	}
 
 	@Override
+	public void addBarAndClassName_PortalRollback(java.lang.String text) {
+		try {
+			_invokableLocalService.invokeMethod(_methodName1,
+				_methodParameterTypes1,
+				new Object[] { ClpSerializer.translateInput(text) });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+	}
+
+	@Override
+	public void addBarAndClassName_PortletRollback(java.lang.String text) {
+		try {
+			_invokableLocalService.invokeMethod(_methodName2,
+				_methodParameterTypes2,
+				new Object[] { ClpSerializer.translateInput(text) });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+	}
+
+	@Override
+	public void addBar_Rollback(java.lang.String text) {
+		try {
+			_invokableLocalService.invokeMethod(_methodName3,
+				_methodParameterTypes3,
+				new Object[] { ClpSerializer.translateInput(text) });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+	}
+
+	@Override
+	public com.liferay.testtransaction.model.Bar addBar_Success(
+		java.lang.String text) {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName4,
+					_methodParameterTypes4,
+					new Object[] { ClpSerializer.translateInput(text) });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.liferay.testtransaction.model.Bar)ClpSerializer.translateOutput(returnObj);
+	}
+
+	@Override
 	public com.liferay.testtransaction.model.Bar createBar(long barId) {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName1,
-					_methodParameterTypes1, new Object[] { barId });
+			returnObj = _invokableLocalService.invokeMethod(_methodName5,
+					_methodParameterTypes5, new Object[] { barId });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.liferay.testtransaction.model.Bar)ClpSerializer.translateOutput(returnObj);
+	}
+
+	@Override
+	public com.liferay.testtransaction.model.Bar deleteBar(
+		com.liferay.testtransaction.model.Bar bar) {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName6,
+					_methodParameterTypes6,
+					new Object[] { ClpSerializer.translateInput(bar) });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -217,8 +327,8 @@ public class BarLocalServiceClp implements BarLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName2,
-					_methodParameterTypes2, new Object[] { barId });
+			returnObj = _invokableLocalService.invokeMethod(_methodName7,
+					_methodParameterTypes7, new Object[] { barId });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -240,17 +350,47 @@ public class BarLocalServiceClp implements BarLocalService {
 	}
 
 	@Override
-	public com.liferay.testtransaction.model.Bar deleteBar(
-		com.liferay.testtransaction.model.Bar bar) {
-		Object returnObj = null;
-
+	public void deleteBarAndClassName(com.liferay.testtransaction.model.Bar bar)
+		throws com.liferay.portal.kernel.exception.PortalException {
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName3,
-					_methodParameterTypes3,
-					new Object[] { ClpSerializer.translateInput(bar) });
+			_invokableLocalService.invokeMethod(_methodName8,
+				_methodParameterTypes8,
+				new Object[] { ClpSerializer.translateInput(bar) });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+	}
+
+	@Override
+	public com.liferay.portal.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.model.PersistedModel persistedModel)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName9,
+					_methodParameterTypes9,
+					new Object[] { ClpSerializer.translateInput(persistedModel) });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
 
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
@@ -261,7 +401,7 @@ public class BarLocalServiceClp implements BarLocalService {
 			}
 		}
 
-		return (com.liferay.testtransaction.model.Bar)ClpSerializer.translateOutput(returnObj);
+		return (com.liferay.portal.model.PersistedModel)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override
@@ -269,8 +409,8 @@ public class BarLocalServiceClp implements BarLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName4,
-					_methodParameterTypes4, new Object[] {  });
+			returnObj = _invokableLocalService.invokeMethod(_methodName10,
+					_methodParameterTypes10, new Object[] {  });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -293,8 +433,8 @@ public class BarLocalServiceClp implements BarLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName5,
-					_methodParameterTypes5,
+			returnObj = _invokableLocalService.invokeMethod(_methodName11,
+					_methodParameterTypes11,
 					new Object[] { ClpSerializer.translateInput(dynamicQuery) });
 		}
 		catch (Throwable t) {
@@ -319,8 +459,8 @@ public class BarLocalServiceClp implements BarLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName6,
-					_methodParameterTypes6,
+			returnObj = _invokableLocalService.invokeMethod(_methodName12,
+					_methodParameterTypes12,
 					new Object[] {
 						ClpSerializer.translateInput(dynamicQuery),
 						
@@ -352,8 +492,8 @@ public class BarLocalServiceClp implements BarLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName7,
-					_methodParameterTypes7,
+			returnObj = _invokableLocalService.invokeMethod(_methodName13,
+					_methodParameterTypes13,
 					new Object[] {
 						ClpSerializer.translateInput(dynamicQuery),
 						
@@ -385,8 +525,8 @@ public class BarLocalServiceClp implements BarLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName8,
-					_methodParameterTypes8,
+			returnObj = _invokableLocalService.invokeMethod(_methodName14,
+					_methodParameterTypes14,
 					new Object[] { ClpSerializer.translateInput(dynamicQuery) });
 		}
 		catch (Throwable t) {
@@ -411,8 +551,8 @@ public class BarLocalServiceClp implements BarLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName9,
-					_methodParameterTypes9,
+			returnObj = _invokableLocalService.invokeMethod(_methodName15,
+					_methodParameterTypes15,
 					new Object[] {
 						ClpSerializer.translateInput(dynamicQuery),
 						
@@ -439,39 +579,11 @@ public class BarLocalServiceClp implements BarLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName10,
-					_methodParameterTypes10, new Object[] { barId });
+			returnObj = _invokableLocalService.invokeMethod(_methodName16,
+					_methodParameterTypes16, new Object[] { barId });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-
-		return (com.liferay.testtransaction.model.Bar)ClpSerializer.translateOutput(returnObj);
-	}
-
-	@Override
-	public com.liferay.testtransaction.model.Bar getBar(long barId)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		Object returnObj = null;
-
-		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName11,
-					_methodParameterTypes11, new Object[] { barId });
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
-				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
 
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
@@ -490,8 +602,8 @@ public class BarLocalServiceClp implements BarLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName12,
-					_methodParameterTypes12, new Object[] {  });
+			returnObj = _invokableLocalService.invokeMethod(_methodName17,
+					_methodParameterTypes17, new Object[] {  });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -509,15 +621,13 @@ public class BarLocalServiceClp implements BarLocalService {
 	}
 
 	@Override
-	public com.liferay.portal.model.PersistedModel deletePersistedModel(
-		com.liferay.portal.model.PersistedModel persistedModel)
+	public com.liferay.testtransaction.model.Bar getBar(long barId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName13,
-					_methodParameterTypes13,
-					new Object[] { ClpSerializer.translateInput(persistedModel) });
+			returnObj = _invokableLocalService.invokeMethod(_methodName18,
+					_methodParameterTypes18, new Object[] { barId });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -535,7 +645,106 @@ public class BarLocalServiceClp implements BarLocalService {
 			}
 		}
 
-		return (com.liferay.portal.model.PersistedModel)ClpSerializer.translateOutput(returnObj);
+		return (com.liferay.testtransaction.model.Bar)ClpSerializer.translateOutput(returnObj);
+	}
+
+	@Override
+	public com.liferay.testtransaction.model.Bar getBar(java.lang.String text)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName19,
+					_methodParameterTypes19,
+					new Object[] { ClpSerializer.translateInput(text) });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.liferay.testtransaction.model.Bar)ClpSerializer.translateOutput(returnObj);
+	}
+
+	@Override
+	public java.util.List<com.liferay.testtransaction.model.Bar> getBars(
+		int start, int end) {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName20,
+					_methodParameterTypes20, new Object[] { start, end });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.util.List<com.liferay.testtransaction.model.Bar>)ClpSerializer.translateOutput(returnObj);
+	}
+
+	@Override
+	public int getBarsCount() {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName21,
+					_methodParameterTypes21, new Object[] {  });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return ((Integer)returnObj).intValue();
+	}
+
+	@Override
+	public java.lang.String getBeanIdentifier() {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName22,
+					_methodParameterTypes22, new Object[] {  });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.lang.String)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override
@@ -545,8 +754,8 @@ public class BarLocalServiceClp implements BarLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName14,
-					_methodParameterTypes14,
+			returnObj = _invokableLocalService.invokeMethod(_methodName23,
+					_methodParameterTypes23,
 					new Object[] { ClpSerializer.translateInput(primaryKeyObj) });
 		}
 		catch (Throwable t) {
@@ -569,273 +778,12 @@ public class BarLocalServiceClp implements BarLocalService {
 	}
 
 	@Override
-	public java.util.List<com.liferay.testtransaction.model.Bar> getBars(
-		int start, int end) {
-		Object returnObj = null;
-
-		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName15,
-					_methodParameterTypes15, new Object[] { start, end });
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-
-		return (java.util.List<com.liferay.testtransaction.model.Bar>)ClpSerializer.translateOutput(returnObj);
-	}
-
-	@Override
-	public int getBarsCount() {
-		Object returnObj = null;
-
-		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName16,
-					_methodParameterTypes16, new Object[] {  });
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-
-		return ((Integer)returnObj).intValue();
-	}
-
-	@Override
-	public com.liferay.testtransaction.model.Bar updateBar(
-		com.liferay.testtransaction.model.Bar bar) {
-		Object returnObj = null;
-
-		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName17,
-					_methodParameterTypes17,
-					new Object[] { ClpSerializer.translateInput(bar) });
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-
-		return (com.liferay.testtransaction.model.Bar)ClpSerializer.translateOutput(returnObj);
-	}
-
-	@Override
-	public java.lang.String getBeanIdentifier() {
-		Object returnObj = null;
-
-		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName18,
-					_methodParameterTypes18, new Object[] {  });
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-
-		return (java.lang.String)ClpSerializer.translateOutput(returnObj);
-	}
-
-	@Override
-	public void setBeanIdentifier(java.lang.String beanIdentifier) {
-		try {
-			_invokableLocalService.invokeMethod(_methodName19,
-				_methodParameterTypes19,
-				new Object[] { ClpSerializer.translateInput(beanIdentifier) });
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-	}
-
-	@Override
-	public java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable {
-		throw new UnsupportedOperationException();
-	}
-
-	@Override
-	public void addBar_Rollback(java.lang.String text) {
-		try {
-			_invokableLocalService.invokeMethod(_methodName21,
-				_methodParameterTypes21,
-				new Object[] { ClpSerializer.translateInput(text) });
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-	}
-
-	@Override
-	public com.liferay.testtransaction.model.Bar addBar_Success(
-		java.lang.String text) {
-		Object returnObj = null;
-
-		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName22,
-					_methodParameterTypes22,
-					new Object[] { ClpSerializer.translateInput(text) });
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-
-		return (com.liferay.testtransaction.model.Bar)ClpSerializer.translateOutput(returnObj);
-	}
-
-	@Override
-	public void addBarAndClassName_PortalRollback(java.lang.String text) {
-		try {
-			_invokableLocalService.invokeMethod(_methodName23,
-				_methodParameterTypes23,
-				new Object[] { ClpSerializer.translateInput(text) });
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-	}
-
-	@Override
-	public void addBarAndClassName_PortletRollback(java.lang.String text) {
-		try {
-			_invokableLocalService.invokeMethod(_methodName24,
-				_methodParameterTypes24,
-				new Object[] { ClpSerializer.translateInput(text) });
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-	}
-
-	@Override
-	public void deleteBarAndClassName(com.liferay.testtransaction.model.Bar bar)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		try {
-			_invokableLocalService.invokeMethod(_methodName25,
-				_methodParameterTypes25,
-				new Object[] { ClpSerializer.translateInput(bar) });
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
-				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-	}
-
-	@Override
-	public com.liferay.testtransaction.model.Bar getBar(java.lang.String text)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		Object returnObj = null;
-
-		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName26,
-					_methodParameterTypes26,
-					new Object[] { ClpSerializer.translateInput(text) });
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
-				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-
-		return (com.liferay.testtransaction.model.Bar)ClpSerializer.translateOutput(returnObj);
-	}
-
-	@Override
 	public boolean hasBar(java.lang.String text) {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName27,
-					_methodParameterTypes27,
+			returnObj = _invokableLocalService.invokeMethod(_methodName24,
+					_methodParameterTypes24,
 					new Object[] { ClpSerializer.translateInput(text) });
 		}
 		catch (Throwable t) {
@@ -858,8 +806,8 @@ public class BarLocalServiceClp implements BarLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName28,
-					_methodParameterTypes28, new Object[] {  });
+			returnObj = _invokableLocalService.invokeMethod(_methodName25,
+					_methodParameterTypes25, new Object[] {  });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -877,10 +825,37 @@ public class BarLocalServiceClp implements BarLocalService {
 	}
 
 	@Override
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public void setBeanIdentifier(java.lang.String beanIdentifier) {
+		try {
+			_invokableLocalService.invokeMethod(_methodName27,
+				_methodParameterTypes27,
+				new Object[] { ClpSerializer.translateInput(beanIdentifier) });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+	}
+
+	@Override
 	public void testAddClassNameAndBar_Success(java.lang.String text) {
 		try {
-			_invokableLocalService.invokeMethod(_methodName29,
-				_methodParameterTypes29,
+			_invokableLocalService.invokeMethod(_methodName28,
+				_methodParameterTypes28,
 				new Object[] { ClpSerializer.translateInput(text) });
 		}
 		catch (Throwable t) {
@@ -894,6 +869,31 @@ public class BarLocalServiceClp implements BarLocalService {
 					" is not a valid exception");
 			}
 		}
+	}
+
+	@Override
+	public com.liferay.testtransaction.model.Bar updateBar(
+		com.liferay.testtransaction.model.Bar bar) {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName29,
+					_methodParameterTypes29,
+					new Object[] { ClpSerializer.translateInput(bar) });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.liferay.testtransaction.model.Bar)ClpSerializer.translateOutput(returnObj);
 	}
 
 	private InvokableLocalService _invokableLocalService;
@@ -937,6 +937,8 @@ public class BarLocalServiceClp implements BarLocalService {
 	private String[] _methodParameterTypes18;
 	private String _methodName19;
 	private String[] _methodParameterTypes19;
+	private String _methodName20;
+	private String[] _methodParameterTypes20;
 	private String _methodName21;
 	private String[] _methodParameterTypes21;
 	private String _methodName22;
@@ -947,8 +949,6 @@ public class BarLocalServiceClp implements BarLocalService {
 	private String[] _methodParameterTypes24;
 	private String _methodName25;
 	private String[] _methodParameterTypes25;
-	private String _methodName26;
-	private String[] _methodParameterTypes26;
 	private String _methodName27;
 	private String[] _methodParameterTypes27;
 	private String _methodName28;

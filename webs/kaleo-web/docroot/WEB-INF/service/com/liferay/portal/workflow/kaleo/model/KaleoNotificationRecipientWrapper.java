@@ -152,285 +152,15 @@ public class KaleoNotificationRecipientWrapper
 		}
 	}
 
-	/**
-	* Returns the primary key of this kaleo notification recipient.
-	*
-	* @return the primary key of this kaleo notification recipient
-	*/
 	@Override
-	public long getPrimaryKey() {
-		return _kaleoNotificationRecipient.getPrimaryKey();
+	public java.lang.Object clone() {
+		return new KaleoNotificationRecipientWrapper((KaleoNotificationRecipient)_kaleoNotificationRecipient.clone());
 	}
 
-	/**
-	* Sets the primary key of this kaleo notification recipient.
-	*
-	* @param primaryKey the primary key of this kaleo notification recipient
-	*/
 	@Override
-	public void setPrimaryKey(long primaryKey) {
-		_kaleoNotificationRecipient.setPrimaryKey(primaryKey);
-	}
-
-	/**
-	* Returns the kaleo notification recipient ID of this kaleo notification recipient.
-	*
-	* @return the kaleo notification recipient ID of this kaleo notification recipient
-	*/
-	@Override
-	public long getKaleoNotificationRecipientId() {
-		return _kaleoNotificationRecipient.getKaleoNotificationRecipientId();
-	}
-
-	/**
-	* Sets the kaleo notification recipient ID of this kaleo notification recipient.
-	*
-	* @param kaleoNotificationRecipientId the kaleo notification recipient ID of this kaleo notification recipient
-	*/
-	@Override
-	public void setKaleoNotificationRecipientId(
-		long kaleoNotificationRecipientId) {
-		_kaleoNotificationRecipient.setKaleoNotificationRecipientId(kaleoNotificationRecipientId);
-	}
-
-	/**
-	* Returns the group ID of this kaleo notification recipient.
-	*
-	* @return the group ID of this kaleo notification recipient
-	*/
-	@Override
-	public long getGroupId() {
-		return _kaleoNotificationRecipient.getGroupId();
-	}
-
-	/**
-	* Sets the group ID of this kaleo notification recipient.
-	*
-	* @param groupId the group ID of this kaleo notification recipient
-	*/
-	@Override
-	public void setGroupId(long groupId) {
-		_kaleoNotificationRecipient.setGroupId(groupId);
-	}
-
-	/**
-	* Returns the company ID of this kaleo notification recipient.
-	*
-	* @return the company ID of this kaleo notification recipient
-	*/
-	@Override
-	public long getCompanyId() {
-		return _kaleoNotificationRecipient.getCompanyId();
-	}
-
-	/**
-	* Sets the company ID of this kaleo notification recipient.
-	*
-	* @param companyId the company ID of this kaleo notification recipient
-	*/
-	@Override
-	public void setCompanyId(long companyId) {
-		_kaleoNotificationRecipient.setCompanyId(companyId);
-	}
-
-	/**
-	* Returns the user ID of this kaleo notification recipient.
-	*
-	* @return the user ID of this kaleo notification recipient
-	*/
-	@Override
-	public long getUserId() {
-		return _kaleoNotificationRecipient.getUserId();
-	}
-
-	/**
-	* Sets the user ID of this kaleo notification recipient.
-	*
-	* @param userId the user ID of this kaleo notification recipient
-	*/
-	@Override
-	public void setUserId(long userId) {
-		_kaleoNotificationRecipient.setUserId(userId);
-	}
-
-	/**
-	* Returns the user uuid of this kaleo notification recipient.
-	*
-	* @return the user uuid of this kaleo notification recipient
-	*/
-	@Override
-	public java.lang.String getUserUuid() {
-		return _kaleoNotificationRecipient.getUserUuid();
-	}
-
-	/**
-	* Sets the user uuid of this kaleo notification recipient.
-	*
-	* @param userUuid the user uuid of this kaleo notification recipient
-	*/
-	@Override
-	public void setUserUuid(java.lang.String userUuid) {
-		_kaleoNotificationRecipient.setUserUuid(userUuid);
-	}
-
-	/**
-	* Returns the user name of this kaleo notification recipient.
-	*
-	* @return the user name of this kaleo notification recipient
-	*/
-	@Override
-	public java.lang.String getUserName() {
-		return _kaleoNotificationRecipient.getUserName();
-	}
-
-	/**
-	* Sets the user name of this kaleo notification recipient.
-	*
-	* @param userName the user name of this kaleo notification recipient
-	*/
-	@Override
-	public void setUserName(java.lang.String userName) {
-		_kaleoNotificationRecipient.setUserName(userName);
-	}
-
-	/**
-	* Returns the create date of this kaleo notification recipient.
-	*
-	* @return the create date of this kaleo notification recipient
-	*/
-	@Override
-	public java.util.Date getCreateDate() {
-		return _kaleoNotificationRecipient.getCreateDate();
-	}
-
-	/**
-	* Sets the create date of this kaleo notification recipient.
-	*
-	* @param createDate the create date of this kaleo notification recipient
-	*/
-	@Override
-	public void setCreateDate(java.util.Date createDate) {
-		_kaleoNotificationRecipient.setCreateDate(createDate);
-	}
-
-	/**
-	* Returns the modified date of this kaleo notification recipient.
-	*
-	* @return the modified date of this kaleo notification recipient
-	*/
-	@Override
-	public java.util.Date getModifiedDate() {
-		return _kaleoNotificationRecipient.getModifiedDate();
-	}
-
-	/**
-	* Sets the modified date of this kaleo notification recipient.
-	*
-	* @param modifiedDate the modified date of this kaleo notification recipient
-	*/
-	@Override
-	public void setModifiedDate(java.util.Date modifiedDate) {
-		_kaleoNotificationRecipient.setModifiedDate(modifiedDate);
-	}
-
-	/**
-	* Returns the kaleo definition ID of this kaleo notification recipient.
-	*
-	* @return the kaleo definition ID of this kaleo notification recipient
-	*/
-	@Override
-	public long getKaleoDefinitionId() {
-		return _kaleoNotificationRecipient.getKaleoDefinitionId();
-	}
-
-	/**
-	* Sets the kaleo definition ID of this kaleo notification recipient.
-	*
-	* @param kaleoDefinitionId the kaleo definition ID of this kaleo notification recipient
-	*/
-	@Override
-	public void setKaleoDefinitionId(long kaleoDefinitionId) {
-		_kaleoNotificationRecipient.setKaleoDefinitionId(kaleoDefinitionId);
-	}
-
-	/**
-	* Returns the kaleo notification ID of this kaleo notification recipient.
-	*
-	* @return the kaleo notification ID of this kaleo notification recipient
-	*/
-	@Override
-	public long getKaleoNotificationId() {
-		return _kaleoNotificationRecipient.getKaleoNotificationId();
-	}
-
-	/**
-	* Sets the kaleo notification ID of this kaleo notification recipient.
-	*
-	* @param kaleoNotificationId the kaleo notification ID of this kaleo notification recipient
-	*/
-	@Override
-	public void setKaleoNotificationId(long kaleoNotificationId) {
-		_kaleoNotificationRecipient.setKaleoNotificationId(kaleoNotificationId);
-	}
-
-	/**
-	* Returns the recipient class name of this kaleo notification recipient.
-	*
-	* @return the recipient class name of this kaleo notification recipient
-	*/
-	@Override
-	public java.lang.String getRecipientClassName() {
-		return _kaleoNotificationRecipient.getRecipientClassName();
-	}
-
-	/**
-	* Sets the recipient class name of this kaleo notification recipient.
-	*
-	* @param recipientClassName the recipient class name of this kaleo notification recipient
-	*/
-	@Override
-	public void setRecipientClassName(java.lang.String recipientClassName) {
-		_kaleoNotificationRecipient.setRecipientClassName(recipientClassName);
-	}
-
-	/**
-	* Returns the recipient class p k of this kaleo notification recipient.
-	*
-	* @return the recipient class p k of this kaleo notification recipient
-	*/
-	@Override
-	public long getRecipientClassPK() {
-		return _kaleoNotificationRecipient.getRecipientClassPK();
-	}
-
-	/**
-	* Sets the recipient class p k of this kaleo notification recipient.
-	*
-	* @param recipientClassPK the recipient class p k of this kaleo notification recipient
-	*/
-	@Override
-	public void setRecipientClassPK(long recipientClassPK) {
-		_kaleoNotificationRecipient.setRecipientClassPK(recipientClassPK);
-	}
-
-	/**
-	* Returns the recipient role type of this kaleo notification recipient.
-	*
-	* @return the recipient role type of this kaleo notification recipient
-	*/
-	@Override
-	public int getRecipientRoleType() {
-		return _kaleoNotificationRecipient.getRecipientRoleType();
-	}
-
-	/**
-	* Sets the recipient role type of this kaleo notification recipient.
-	*
-	* @param recipientRoleType the recipient role type of this kaleo notification recipient
-	*/
-	@Override
-	public void setRecipientRoleType(int recipientRoleType) {
-		_kaleoNotificationRecipient.setRecipientRoleType(recipientRoleType);
+	public int compareTo(
+		com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient kaleoNotificationRecipient) {
+		return _kaleoNotificationRecipient.compareTo(kaleoNotificationRecipient);
 	}
 
 	/**
@@ -444,6 +174,181 @@ public class KaleoNotificationRecipientWrapper
 	}
 
 	/**
+	* Returns the company ID of this kaleo notification recipient.
+	*
+	* @return the company ID of this kaleo notification recipient
+	*/
+	@Override
+	public long getCompanyId() {
+		return _kaleoNotificationRecipient.getCompanyId();
+	}
+
+	/**
+	* Returns the create date of this kaleo notification recipient.
+	*
+	* @return the create date of this kaleo notification recipient
+	*/
+	@Override
+	public java.util.Date getCreateDate() {
+		return _kaleoNotificationRecipient.getCreateDate();
+	}
+
+	@Override
+	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {
+		return _kaleoNotificationRecipient.getExpandoBridge();
+	}
+
+	/**
+	* Returns the group ID of this kaleo notification recipient.
+	*
+	* @return the group ID of this kaleo notification recipient
+	*/
+	@Override
+	public long getGroupId() {
+		return _kaleoNotificationRecipient.getGroupId();
+	}
+
+	/**
+	* Returns the kaleo definition ID of this kaleo notification recipient.
+	*
+	* @return the kaleo definition ID of this kaleo notification recipient
+	*/
+	@Override
+	public long getKaleoDefinitionId() {
+		return _kaleoNotificationRecipient.getKaleoDefinitionId();
+	}
+
+	/**
+	* Returns the kaleo notification ID of this kaleo notification recipient.
+	*
+	* @return the kaleo notification ID of this kaleo notification recipient
+	*/
+	@Override
+	public long getKaleoNotificationId() {
+		return _kaleoNotificationRecipient.getKaleoNotificationId();
+	}
+
+	/**
+	* Returns the kaleo notification recipient ID of this kaleo notification recipient.
+	*
+	* @return the kaleo notification recipient ID of this kaleo notification recipient
+	*/
+	@Override
+	public long getKaleoNotificationRecipientId() {
+		return _kaleoNotificationRecipient.getKaleoNotificationRecipientId();
+	}
+
+	/**
+	* Returns the modified date of this kaleo notification recipient.
+	*
+	* @return the modified date of this kaleo notification recipient
+	*/
+	@Override
+	public java.util.Date getModifiedDate() {
+		return _kaleoNotificationRecipient.getModifiedDate();
+	}
+
+	/**
+	* Returns the primary key of this kaleo notification recipient.
+	*
+	* @return the primary key of this kaleo notification recipient
+	*/
+	@Override
+	public long getPrimaryKey() {
+		return _kaleoNotificationRecipient.getPrimaryKey();
+	}
+
+	@Override
+	public java.io.Serializable getPrimaryKeyObj() {
+		return _kaleoNotificationRecipient.getPrimaryKeyObj();
+	}
+
+	/**
+	* Returns the recipient class name of this kaleo notification recipient.
+	*
+	* @return the recipient class name of this kaleo notification recipient
+	*/
+	@Override
+	public java.lang.String getRecipientClassName() {
+		return _kaleoNotificationRecipient.getRecipientClassName();
+	}
+
+	/**
+	* Returns the recipient class p k of this kaleo notification recipient.
+	*
+	* @return the recipient class p k of this kaleo notification recipient
+	*/
+	@Override
+	public long getRecipientClassPK() {
+		return _kaleoNotificationRecipient.getRecipientClassPK();
+	}
+
+	/**
+	* Returns the recipient role type of this kaleo notification recipient.
+	*
+	* @return the recipient role type of this kaleo notification recipient
+	*/
+	@Override
+	public int getRecipientRoleType() {
+		return _kaleoNotificationRecipient.getRecipientRoleType();
+	}
+
+	/**
+	* Returns the user ID of this kaleo notification recipient.
+	*
+	* @return the user ID of this kaleo notification recipient
+	*/
+	@Override
+	public long getUserId() {
+		return _kaleoNotificationRecipient.getUserId();
+	}
+
+	/**
+	* Returns the user name of this kaleo notification recipient.
+	*
+	* @return the user name of this kaleo notification recipient
+	*/
+	@Override
+	public java.lang.String getUserName() {
+		return _kaleoNotificationRecipient.getUserName();
+	}
+
+	/**
+	* Returns the user uuid of this kaleo notification recipient.
+	*
+	* @return the user uuid of this kaleo notification recipient
+	*/
+	@Override
+	public java.lang.String getUserUuid() {
+		return _kaleoNotificationRecipient.getUserUuid();
+	}
+
+	@Override
+	public int hashCode() {
+		return _kaleoNotificationRecipient.hashCode();
+	}
+
+	@Override
+	public boolean isCachedModel() {
+		return _kaleoNotificationRecipient.isCachedModel();
+	}
+
+	@Override
+	public boolean isEscapedModel() {
+		return _kaleoNotificationRecipient.isEscapedModel();
+	}
+
+	@Override
+	public boolean isNew() {
+		return _kaleoNotificationRecipient.isNew();
+	}
+
+	@Override
+	public void persist() {
+		_kaleoNotificationRecipient.persist();
+	}
+
+	/**
 	* Sets the address of this kaleo notification recipient.
 	*
 	* @param address the address of this kaleo notification recipient
@@ -454,43 +359,28 @@ public class KaleoNotificationRecipientWrapper
 	}
 
 	@Override
-	public boolean isNew() {
-		return _kaleoNotificationRecipient.isNew();
-	}
-
-	@Override
-	public void setNew(boolean n) {
-		_kaleoNotificationRecipient.setNew(n);
-	}
-
-	@Override
-	public boolean isCachedModel() {
-		return _kaleoNotificationRecipient.isCachedModel();
-	}
-
-	@Override
 	public void setCachedModel(boolean cachedModel) {
 		_kaleoNotificationRecipient.setCachedModel(cachedModel);
 	}
 
+	/**
+	* Sets the company ID of this kaleo notification recipient.
+	*
+	* @param companyId the company ID of this kaleo notification recipient
+	*/
 	@Override
-	public boolean isEscapedModel() {
-		return _kaleoNotificationRecipient.isEscapedModel();
+	public void setCompanyId(long companyId) {
+		_kaleoNotificationRecipient.setCompanyId(companyId);
 	}
 
+	/**
+	* Sets the create date of this kaleo notification recipient.
+	*
+	* @param createDate the create date of this kaleo notification recipient
+	*/
 	@Override
-	public java.io.Serializable getPrimaryKeyObj() {
-		return _kaleoNotificationRecipient.getPrimaryKeyObj();
-	}
-
-	@Override
-	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
-		_kaleoNotificationRecipient.setPrimaryKeyObj(primaryKeyObj);
-	}
-
-	@Override
-	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {
-		return _kaleoNotificationRecipient.getExpandoBridge();
+	public void setCreateDate(java.util.Date createDate) {
+		_kaleoNotificationRecipient.setCreateDate(createDate);
 	}
 
 	@Override
@@ -511,20 +401,135 @@ public class KaleoNotificationRecipientWrapper
 		_kaleoNotificationRecipient.setExpandoBridgeAttributes(serviceContext);
 	}
 
+	/**
+	* Sets the group ID of this kaleo notification recipient.
+	*
+	* @param groupId the group ID of this kaleo notification recipient
+	*/
 	@Override
-	public java.lang.Object clone() {
-		return new KaleoNotificationRecipientWrapper((KaleoNotificationRecipient)_kaleoNotificationRecipient.clone());
+	public void setGroupId(long groupId) {
+		_kaleoNotificationRecipient.setGroupId(groupId);
+	}
+
+	/**
+	* Sets the kaleo definition ID of this kaleo notification recipient.
+	*
+	* @param kaleoDefinitionId the kaleo definition ID of this kaleo notification recipient
+	*/
+	@Override
+	public void setKaleoDefinitionId(long kaleoDefinitionId) {
+		_kaleoNotificationRecipient.setKaleoDefinitionId(kaleoDefinitionId);
+	}
+
+	/**
+	* Sets the kaleo notification ID of this kaleo notification recipient.
+	*
+	* @param kaleoNotificationId the kaleo notification ID of this kaleo notification recipient
+	*/
+	@Override
+	public void setKaleoNotificationId(long kaleoNotificationId) {
+		_kaleoNotificationRecipient.setKaleoNotificationId(kaleoNotificationId);
+	}
+
+	/**
+	* Sets the kaleo notification recipient ID of this kaleo notification recipient.
+	*
+	* @param kaleoNotificationRecipientId the kaleo notification recipient ID of this kaleo notification recipient
+	*/
+	@Override
+	public void setKaleoNotificationRecipientId(
+		long kaleoNotificationRecipientId) {
+		_kaleoNotificationRecipient.setKaleoNotificationRecipientId(kaleoNotificationRecipientId);
+	}
+
+	/**
+	* Sets the modified date of this kaleo notification recipient.
+	*
+	* @param modifiedDate the modified date of this kaleo notification recipient
+	*/
+	@Override
+	public void setModifiedDate(java.util.Date modifiedDate) {
+		_kaleoNotificationRecipient.setModifiedDate(modifiedDate);
 	}
 
 	@Override
-	public int compareTo(
-		com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient kaleoNotificationRecipient) {
-		return _kaleoNotificationRecipient.compareTo(kaleoNotificationRecipient);
+	public void setNew(boolean n) {
+		_kaleoNotificationRecipient.setNew(n);
+	}
+
+	/**
+	* Sets the primary key of this kaleo notification recipient.
+	*
+	* @param primaryKey the primary key of this kaleo notification recipient
+	*/
+	@Override
+	public void setPrimaryKey(long primaryKey) {
+		_kaleoNotificationRecipient.setPrimaryKey(primaryKey);
 	}
 
 	@Override
-	public int hashCode() {
-		return _kaleoNotificationRecipient.hashCode();
+	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
+		_kaleoNotificationRecipient.setPrimaryKeyObj(primaryKeyObj);
+	}
+
+	/**
+	* Sets the recipient class name of this kaleo notification recipient.
+	*
+	* @param recipientClassName the recipient class name of this kaleo notification recipient
+	*/
+	@Override
+	public void setRecipientClassName(java.lang.String recipientClassName) {
+		_kaleoNotificationRecipient.setRecipientClassName(recipientClassName);
+	}
+
+	/**
+	* Sets the recipient class p k of this kaleo notification recipient.
+	*
+	* @param recipientClassPK the recipient class p k of this kaleo notification recipient
+	*/
+	@Override
+	public void setRecipientClassPK(long recipientClassPK) {
+		_kaleoNotificationRecipient.setRecipientClassPK(recipientClassPK);
+	}
+
+	/**
+	* Sets the recipient role type of this kaleo notification recipient.
+	*
+	* @param recipientRoleType the recipient role type of this kaleo notification recipient
+	*/
+	@Override
+	public void setRecipientRoleType(int recipientRoleType) {
+		_kaleoNotificationRecipient.setRecipientRoleType(recipientRoleType);
+	}
+
+	/**
+	* Sets the user ID of this kaleo notification recipient.
+	*
+	* @param userId the user ID of this kaleo notification recipient
+	*/
+	@Override
+	public void setUserId(long userId) {
+		_kaleoNotificationRecipient.setUserId(userId);
+	}
+
+	/**
+	* Sets the user name of this kaleo notification recipient.
+	*
+	* @param userName the user name of this kaleo notification recipient
+	*/
+	@Override
+	public void setUserName(java.lang.String userName) {
+		_kaleoNotificationRecipient.setUserName(userName);
+	}
+
+	/**
+	* Sets the user uuid of this kaleo notification recipient.
+	*
+	* @param userUuid the user uuid of this kaleo notification recipient
+	*/
+	@Override
+	public void setUserUuid(java.lang.String userUuid) {
+		_kaleoNotificationRecipient.setUserUuid(userUuid);
 	}
 
 	@Override
@@ -538,23 +543,18 @@ public class KaleoNotificationRecipientWrapper
 	}
 
 	@Override
-	public com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient toUnescapedModel() {
-		return new KaleoNotificationRecipientWrapper(_kaleoNotificationRecipient.toUnescapedModel());
-	}
-
-	@Override
 	public java.lang.String toString() {
 		return _kaleoNotificationRecipient.toString();
 	}
 
 	@Override
-	public java.lang.String toXmlString() {
-		return _kaleoNotificationRecipient.toXmlString();
+	public com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient toUnescapedModel() {
+		return new KaleoNotificationRecipientWrapper(_kaleoNotificationRecipient.toUnescapedModel());
 	}
 
 	@Override
-	public void persist() {
-		_kaleoNotificationRecipient.persist();
+	public java.lang.String toXmlString() {
+		return _kaleoNotificationRecipient.toXmlString();
 	}
 
 	@Override

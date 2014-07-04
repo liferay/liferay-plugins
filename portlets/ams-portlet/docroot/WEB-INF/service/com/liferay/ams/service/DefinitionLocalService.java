@@ -16,6 +16,7 @@ package com.liferay.ams.service;
 
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.search.IndexableType;
 import com.liferay.portal.kernel.transaction.Isolation;
 import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
@@ -51,6 +52,7 @@ public interface DefinitionLocalService extends BaseLocalService,
 	* @param definition the definition
 	* @return the definition that was added
 	*/
+	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.REINDEX)
 	public com.liferay.ams.model.Definition addDefinition(
 		com.liferay.ams.model.Definition definition);
 
@@ -63,23 +65,33 @@ public interface DefinitionLocalService extends BaseLocalService,
 	public com.liferay.ams.model.Definition createDefinition(long definitionId);
 
 	/**
+	* Deletes the definition from the database. Also notifies the appropriate model listeners.
+	*
+	* @param definition the definition
+	* @return the definition that was removed
+	*/
+	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.DELETE)
+	public com.liferay.ams.model.Definition deleteDefinition(
+		com.liferay.ams.model.Definition definition);
+
+	/**
 	* Deletes the definition with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param definitionId the primary key of the definition
 	* @return the definition that was removed
 	* @throws PortalException if a definition with the primary key could not be found
 	*/
+	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.DELETE)
 	public com.liferay.ams.model.Definition deleteDefinition(long definitionId)
 		throws com.liferay.portal.kernel.exception.PortalException;
 
 	/**
-	* Deletes the definition from the database. Also notifies the appropriate model listeners.
-	*
-	* @param definition the definition
-	* @return the definition that was removed
+	* @throws PortalException
 	*/
-	public com.liferay.ams.model.Definition deleteDefinition(
-		com.liferay.ams.model.Definition definition);
+	@Override
+	public com.liferay.portal.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.model.PersistedModel persistedModel)
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery();
 
@@ -149,6 +161,16 @@ public interface DefinitionLocalService extends BaseLocalService,
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.ams.model.Definition fetchDefinition(long definitionId);
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery();
+
+	/**
+	* Returns the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
+	*/
+	public java.lang.String getBeanIdentifier();
+
 	/**
 	* Returns the definition with the primary key.
 	*
@@ -158,23 +180,6 @@ public interface DefinitionLocalService extends BaseLocalService,
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.ams.model.Definition getDefinition(long definitionId)
-		throws com.liferay.portal.kernel.exception.PortalException;
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery();
-
-	/**
-	* @throws PortalException
-	*/
-	@Override
-	public com.liferay.portal.model.PersistedModel deletePersistedModel(
-		com.liferay.portal.model.PersistedModel persistedModel)
-		throws com.liferay.portal.kernel.exception.PortalException;
-
-	@Override
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.portal.model.PersistedModel getPersistedModel(
-		java.io.Serializable primaryKeyObj)
 		throws com.liferay.portal.kernel.exception.PortalException;
 
 	/**
@@ -200,21 +205,16 @@ public interface DefinitionLocalService extends BaseLocalService,
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getDefinitionsCount();
 
-	/**
-	* Updates the definition in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	*
-	* @param definition the definition
-	* @return the definition that was updated
-	*/
-	public com.liferay.ams.model.Definition updateDefinition(
-		com.liferay.ams.model.Definition definition);
+	@Override
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.liferay.portal.model.PersistedModel getPersistedModel(
+		java.io.Serializable primaryKeyObj)
+		throws com.liferay.portal.kernel.exception.PortalException;
 
-	/**
-	* Returns the Spring bean ID for this bean.
-	*
-	* @return the Spring bean ID for this bean
-	*/
-	public java.lang.String getBeanIdentifier();
+	@Override
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable;
 
 	/**
 	* Sets the Spring bean ID for this bean.
@@ -223,8 +223,13 @@ public interface DefinitionLocalService extends BaseLocalService,
 	*/
 	public void setBeanIdentifier(java.lang.String beanIdentifier);
 
-	@Override
-	public java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable;
+	/**
+	* Updates the definition in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	*
+	* @param definition the definition
+	* @return the definition that was updated
+	*/
+	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.REINDEX)
+	public com.liferay.ams.model.Definition updateDefinition(
+		com.liferay.ams.model.Definition definition);
 }
