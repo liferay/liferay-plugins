@@ -14,10 +14,18 @@
  */
 --%>
 
+<%@ page import="com.liferay.portal.util.PortletKeys" %>
+
 <%@ taglib uri="http://liferay.com/tld/portlet" prefix="liferay-portlet" %>
 
 <%@ include file="/html/js/editor/ckeditor/ckconfig.portal.jsp" %>
 
-var ckEditor = CKEDITOR.instances['<%= HtmlUtil.escapeJS(name) %>'];
+<%
+String portletId = ParamUtil.getString(request, "p_p_id");
+%>
 
-ckEditor.config.extraPlugins += ',autocomplete';
+<c:if test="<%= portletId.equals(PortletKeys.BLOGS) || portletId.equals(PortletKeys.BLOGS_ADMIN) %>">
+	var ckEditor = CKEDITOR.instances['<%= HtmlUtil.escapeJS(name) %>'];
+
+	ckEditor.config.extraPlugins += ',autocomplete';
+</c:if>

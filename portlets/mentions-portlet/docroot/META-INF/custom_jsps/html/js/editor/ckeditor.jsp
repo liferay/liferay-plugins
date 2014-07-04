@@ -18,29 +18,31 @@
 
 <%@ include file="/html/js/editor/ckeditor.portal.jsp" %>
 
-<liferay-portlet:resourceURL portletName="1_WAR_mentionsportlet" var="autoCompleteUserURL" />
+<c:if test="<%= portletId.equals(PortletKeys.BLOGS) || portletId.equals(PortletKeys.BLOGS_ADMIN) %>">
+	<liferay-portlet:resourceURL portletName="1_WAR_mentionsportlet" var="autoCompleteUserURL" />
 
-<aui:script>
-	CKEDITOR.on(
-		'instanceCreated',
-		function(event) {
-			var ckEditor = event.editor;
+	<aui:script>
+		CKEDITOR.on(
+			'instanceCreated',
+			function(event) {
+				var ckEditor = event.editor;
 
-			ckEditor.config.autocomplete = {
-				requestTemplate: function(query) {
-					return 'query=' + query;
-				},
-				trigger: [
-					{
-						resultFilters: function(query, results) { return results; },
-						resultTextLocator: 'screenName',
-						term: '@',
-						tplReplace: '<a href="{profileURL}">@{screenName}</a>',
-						tplResults: '<div class="taglib-user-display display-style-3" style="padding:5px;"><span><span class="user-profile-image" style="background-image: url(\'{portraitURL}\'); background-size: 32px 32px; height: 32px; width: 32px;margin-right:5px;"></span><span class="user-name">{fullName}</span><span class="user-details"> (@{screenName})</span></span></div>',
-						source: '<%= autoCompleteUserURL.toString() %>'
-					}
-				]
-			};
-		}
-	);
-</aui:script>
+				ckEditor.config.autocomplete = {
+					requestTemplate: function(query) {
+						return 'query=' + query;
+					},
+					trigger: [
+						{
+							resultFilters: function(query, results) { return results; },
+							resultTextLocator: 'screenName',
+							term: '@',
+							tplReplace: '<a href="{profileURL}">@{screenName}</a>',
+							tplResults: '<div class="taglib-user-display display-style-3" style="padding:5px;"><span><span class="user-profile-image" style="background-image: url(\'{portraitURL}\'); background-size: 32px 32px; height: 32px; width: 32px;margin-right:5px;"></span><span class="user-name">{fullName}</span><span class="user-details"> (@{screenName})</span></span></div>',
+							source: '<%= autoCompleteUserURL.toString() %>'
+						}
+					]
+				};
+			}
+		);
+	</aui:script>
+</c:if>
