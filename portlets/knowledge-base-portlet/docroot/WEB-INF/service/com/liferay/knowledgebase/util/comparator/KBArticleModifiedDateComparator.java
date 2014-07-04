@@ -22,7 +22,8 @@ import com.liferay.portal.kernel.util.OrderByComparator;
  * @author Peter Shin
  * @author Brian Wing Shun Chan
  */
-public class KBArticleModifiedDateComparator extends OrderByComparator<KBArticle> {
+public class KBArticleModifiedDateComparator
+	extends OrderByComparator<KBArticle> {
 
 	public static final String ORDER_BY_ASC = "KBArticle.modifiedDate ASC";
 
