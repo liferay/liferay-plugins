@@ -24,6 +24,7 @@ import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.PrefsPropsUtil;
 import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.UserLocalServiceUtil;
@@ -31,13 +32,16 @@ import com.liferay.portal.util.PortalUtil;
 import com.liferay.portal.util.SubscriptionSender;
 import com.liferay.portlet.messageboards.model.MBMessage;
 import com.liferay.portlet.messageboards.service.MBMessageLocalService;
+import com.liferay.portlet.messageboards.service.MBMessageLocalServiceUtil;
 import com.liferay.portlet.messageboards.service.MBMessageLocalServiceWrapper;
 import com.liferay.portlet.social.util.SocialInteractionsConfiguration;
 import com.liferay.portlet.social.util.SocialInteractionsConfigurationUtil;
 import com.liferay.util.ContentUtil;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -55,36 +59,26 @@ public class MentionsMessageServiceImpl extends MBMessageLocalServiceWrapper {
 	}
 
 	@Override
-	public MBMessage addDiscussionMessage(
-			long userId, String userName, long groupId, String className,
-			long classPK, long threadId, long parentMessageId, String subject,
-			String body, ServiceContext serviceContext)
+	public MBMessage updateStatus(
+			long userId, long messageId, int status,
+			ServiceContext serviceContext,
+			Map<String, Serializable> workflowContext)
 		throws PortalException {
 
-		MBMessage message = super.addDiscussionMessage(
-			userId, userName, groupId, className, classPK, threadId,
-			parentMessageId, subject, body, serviceContext);
+		MBMessage message = MBMessageLocalServiceUtil.getMessage(messageId);
 
-		long siteGroupId = PortalUtil.getSiteGroupId(message.getGroupId());
+		int oldStatus = message.getStatus();
 
-		if (!MentionsUtil.isMentionsEnabled(siteGroupId)) {
+		message = super.updateStatus(
+			userId, messageId, status, serviceContext, workflowContext);
+
+		if (!message.isDiscussion() ||
+			(status != WorkflowConstants.STATUS_APPROVED) ||
+			(oldStatus == WorkflowConstants.STATUS_IN_TRASH) ||
+			(oldStatus == WorkflowConstants.STATUS_APPROVED)) {
+
 			return message;
 		}
-
-		notifyUsers(message, serviceContext);
-
-		return message;
-	}
-
-	@Override
-	public MBMessage updateDiscussionMessage(
-			long userId, long messageId, String className, long classPK,
-			String subject, String body, ServiceContext serviceContext)
-		throws PortalException {
-
-		MBMessage message = super.updateDiscussionMessage(
-			userId, messageId, className, classPK, subject, body,
-			serviceContext);
 
 		long siteGroupId = PortalUtil.getSiteGroupId(message.getGroupId());
 
