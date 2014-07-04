@@ -101,23 +101,26 @@ public class RecurrenceUtil {
 	public static CalendarBooking getCalendarBookingInstance(
 		CalendarBooking calendarBooking, int instanceIndex) {
 
-		CalendarBooking newCalendarBooking = null;
-
 		try {
 			CalendarBookingIterator calendarBookingIterator =
 				new CalendarBookingIterator(calendarBooking);
 
-			newCalendarBooking = calendarBookingIterator.next();
+			while (calendarBookingIterator.hasNext()) {
+				CalendarBooking calendarBookingInstance =
+					calendarBookingIterator.next();
 
-			while (newCalendarBooking.getInstanceIndex() != instanceIndex) {
-				newCalendarBooking = calendarBookingIterator.next();
+				if (calendarBookingInstance.getInstanceIndex() ==
+						instanceIndex) {
+
+					return calendarBookingInstance;
+				}
 			}
 		}
-		catch (ParseException e) {
-			_log.error("Unable to parse data ", e);
+		catch (ParseException pe) {
+			_log.error("Unable to parse data ", pe);
 		}
 
-		return newCalendarBooking;
+		return null;
 	}
 
 	public static int getIndexOfInstance(
