@@ -33,6 +33,7 @@
 		className="com.liferay.knowledgebase.model.KBComment"
 		modelVar="kbComment"
 	>
+
 		<%
 		request.setAttribute("article_comment.jsp-kb_comment", kbComment);
 		%>
@@ -42,3 +43,16 @@
 
 	<liferay-ui:search-iterator />
 </liferay-ui:search-container>
+
+<aui:script use="aui-base">
+	var deleteButtons = A.all('a.kb-feedback-delete');
+
+	deleteButtons.on(
+		'click',
+		function(e) {
+			if (!confirm('<liferay-ui:message key="are-you-sure-you-want-to-delete-this" />')) {
+				e.halt();
+			}
+		}
+	);
+</aui:script>
