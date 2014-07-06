@@ -16,4 +16,12 @@
 
 <%@ include file="/admin/init.jsp" %>
 
-Resolved Feedback (placeholder text)
+<%
+String emptyResultsMessage = "no-resolved-feedback-was-found";
+
+int feedbackStatus = KBCommentConstants.STATUS_RESOLVED;
+
+String navItem = "viewResolvedFeedback";
+%>
+
+<%@ include file="/admin/view_feedback_in_state.jspf" %>
