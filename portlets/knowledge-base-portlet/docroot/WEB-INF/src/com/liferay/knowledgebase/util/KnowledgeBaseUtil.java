@@ -16,6 +16,7 @@ package com.liferay.knowledgebase.util;
 
 import com.liferay.knowledgebase.model.KBArticle;
 import com.liferay.knowledgebase.model.KBComment;
+import com.liferay.knowledgebase.model.KBCommentConstants;
 import com.liferay.knowledgebase.model.KBTemplate;
 import com.liferay.knowledgebase.util.comparator.KBArticleCreateDateComparator;
 import com.liferay.knowledgebase.util.comparator.KBArticleModifiedDateComparator;
@@ -261,6 +262,18 @@ public class KnowledgeBaseUtil {
 		}
 	}
 
+	public static final int getNextStatus(int status) {
+		if (status == KBCommentConstants.STATUS_PENDING) {
+			return KBCommentConstants.STATUS_IN_PROGRESS;
+		}
+		else if (status == KBCommentConstants.STATUS_IN_PROGRESS) {
+			return KBCommentConstants.STATUS_RESOLVED;
+		}
+		else {
+			return KBCommentConstants.STATUS_NONE;
+		}
+	}
+
 	public static Long[][] getParams(Long[] params) {
 		if (ArrayUtil.isEmpty(params)) {
 			return null;
@@ -274,6 +287,50 @@ public class KnowledgeBaseUtil {
 			ArrayUtil.subset(params, _SQL_DATA_MAX_PARAMETERS, params.length),
 			ArrayUtil.subset(params, 0, _SQL_DATA_MAX_PARAMETERS)
 		};
+	}
+
+	public static final int getPrevStatus(int status) {
+		if (status == KBCommentConstants.STATUS_IN_PROGRESS) {
+			return KBCommentConstants.STATUS_PENDING;
+		}
+		else if (status == KBCommentConstants.STATUS_RESOLVED) {
+			return KBCommentConstants.STATUS_IN_PROGRESS;
+		}
+		else {
+			return KBCommentConstants.STATUS_NONE;
+		}
+	}
+
+	public static final String getStatusLabel(int status) {
+		if (status == KBCommentConstants.STATUS_PENDING) {
+			return "pending";
+		}
+		else if (status == KBCommentConstants.STATUS_IN_PROGRESS) {
+			return "in-progress";
+		}
+		else if (status == KBCommentConstants.STATUS_RESOLVED) {
+			return "resolved";
+		}
+		else {
+			throw new IllegalArgumentException(
+				String.format("Invalid feedback status: %s", status));
+		}
+	}
+
+	public static final String getStatusTransitionLabel(int status) {
+		if (status == KBCommentConstants.STATUS_PENDING) {
+			return "move-to-pending";
+		}
+		else if (status == KBCommentConstants.STATUS_IN_PROGRESS) {
+			return "move-to-in-progress";
+		}
+		else if (status == KBCommentConstants.STATUS_RESOLVED) {
+			return "resolve";
+		}
+		else {
+			throw new IllegalArgumentException(
+				String.format("Invalid feedback status: %s", status));
+		}
 	}
 
 	public static String getUrlTitle(long id, String title) {

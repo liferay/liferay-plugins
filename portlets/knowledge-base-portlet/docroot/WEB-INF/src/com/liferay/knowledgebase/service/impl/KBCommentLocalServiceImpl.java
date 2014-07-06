@@ -227,6 +227,17 @@ public class KBCommentLocalServiceImpl extends KBCommentLocalServiceBaseImpl {
 		return kbComment;
 	}
 
+	public KBComment updateStatus(long kbCommentId, int status)
+		throws PortalException {
+
+		KBComment kbComment = kbCommentPersistence.findByPrimaryKey(
+			kbCommentId);
+
+		kbComment.setStatus(status);
+
+		return updateKBComment(kbComment);
+	}
+
 	protected void putTitle(JSONObject jsonObject, KBComment kbComment) {
 		KBArticle kbArticle = null;
 		KBTemplate kbTemplate = null;

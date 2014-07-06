@@ -95,4 +95,16 @@ public class KBCommentServiceImpl extends KBCommentServiceBaseImpl {
 			kbComment.getStatus(), serviceContext);
 	}
 
+	public KBComment updateStatus(long kbCommentId, int status)
+		throws PortalException {
+
+		KBComment kbComment = kbCommentPersistence.findByPrimaryKey(
+			kbCommentId);
+
+		KBCommentPermission.check(
+			getPermissionChecker(), kbComment, ActionKeys.UPDATE);
+
+		return kbCommentLocalService.updateStatus(kbCommentId, status);
+	}
+
 }

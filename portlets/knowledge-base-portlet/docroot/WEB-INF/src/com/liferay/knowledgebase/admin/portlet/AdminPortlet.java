@@ -546,6 +546,16 @@ public class AdminPortlet extends MVCPortlet {
 		}
 	}
 
+	public void updateKBCommentStatus(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws PortalException {
+
+		long kbCommentId = ParamUtil.getLong(actionRequest, "kbCommentId");
+		int targetStatus = ParamUtil.getInteger(actionRequest, "targetStatus");
+
+		KBCommentServiceUtil.updateStatus(kbCommentId, targetStatus);
+	}
+
 	public void updateKBTemplate(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
