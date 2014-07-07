@@ -132,8 +132,7 @@ public class WSRPConsumerStagedModelDataHandler
 
 	@Override
 	protected boolean validateMissingReference(
-			String uuid, long companyId, long groupId)
-		throws Exception {
+		String uuid, long companyId, long groupId) {
 
 		WSRPConsumer wsrpConsumer =
 			WSRPConsumerLocalServiceUtil.fetchWSRPConsumerByUuidAndCompanyId(

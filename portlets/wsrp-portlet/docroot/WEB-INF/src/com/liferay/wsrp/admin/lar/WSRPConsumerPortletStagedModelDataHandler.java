@@ -154,8 +154,7 @@ public class WSRPConsumerPortletStagedModelDataHandler
 
 	@Override
 	protected boolean validateMissingReference(
-			String uuid, long companyId, long groupId)
-		throws Exception {
+		String uuid, long companyId, long groupId) {
 
 		WSRPConsumerPortlet wsrpConsumerPortlet =
 			WSRPConsumerPortletLocalServiceUtil.
