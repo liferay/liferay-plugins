@@ -16,7 +16,6 @@ package com.liferay.knowledgebase.admin.lar;
 
 import com.liferay.knowledgebase.model.KBComment;
 import com.liferay.knowledgebase.service.KBCommentLocalServiceUtil;
-import com.liferay.knowledgebase.service.persistence.KBCommentUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.lar.BaseStagedModelDataHandler;
 import com.liferay.portal.kernel.lar.ExportImportPathUtil;
@@ -40,9 +39,7 @@ public class KBCommentStagedModelDataHandler
 			String uuid, long groupId, String className, String extraData)
 		throws PortalException {
 
-		KBComment kbComment =
-			KBCommentLocalServiceUtil.fetchKBCommentByUuidAndGroupId(
-				uuid, groupId);
+		KBComment kbComment = fetchExistingStagedModel(uuid, groupId);
 
 		if (kbComment != null) {
 			KBCommentLocalServiceUtil.deleteKBComment(kbComment);
@@ -73,6 +70,12 @@ public class KBCommentStagedModelDataHandler
 	}
 
 	@Override
+	protected KBComment doFetchExistingStagedModel(String uuid, long groupId) {
+		return KBCommentLocalServiceUtil.fetchKBCommentByUuidAndGroupId(
+			uuid, groupId);
+	}
+
+	@Override
 	protected void doImportStagedModel(
 			PortletDataContext portletDataContext, KBComment kbComment)
 		throws Exception {
@@ -92,7 +95,7 @@ public class KBCommentStagedModelDataHandler
 		KBComment importedKBComment = null;
 
 		if (portletDataContext.isDataStrategyMirror()) {
-			KBComment existingKBComment = KBCommentUtil.fetchByUUID_G(
+			KBComment existingKBComment = fetchExistingStagedModel(
 				kbComment.getUuid(), portletDataContext.getScopeGroupId());
 
 			if (existingKBComment == null) {

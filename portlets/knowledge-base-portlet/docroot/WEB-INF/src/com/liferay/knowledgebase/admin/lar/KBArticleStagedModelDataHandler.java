@@ -55,9 +55,7 @@ public class KBArticleStagedModelDataHandler
 			String uuid, long groupId, String className, String extraData)
 		throws PortalException {
 
-		KBArticle kbArticle =
-			KBArticleLocalServiceUtil.fetchKBArticleByUuidAndGroupId(
-				uuid, groupId);
+		KBArticle kbArticle = fetchExistingStagedModel(uuid, groupId);
 
 		if (kbArticle != null) {
 			KBArticleLocalServiceUtil.deleteKBArticle(kbArticle);
@@ -112,6 +110,12 @@ public class KBArticleStagedModelDataHandler
 	}
 
 	@Override
+	protected KBArticle doFetchExistingStagedModel(String uuid, long groupId) {
+		return KBArticleLocalServiceUtil.fetchKBArticleByUuidAndGroupId(
+			uuid, groupId);
+	}
+
+	@Override
 	protected void doImportStagedModel(
 			PortletDataContext portletDataContext, KBArticle kbArticle)
 		throws Exception {
@@ -147,7 +151,7 @@ public class KBArticleStagedModelDataHandler
 				resourcePrimaryKey, kbArticle.getVersion());
 
 			if (existingKBArticle == null) {
-				existingKBArticle = KBArticleUtil.fetchByUUID_G(
+				existingKBArticle = fetchExistingStagedModel(
 					kbArticle.getUuid(), portletDataContext.getScopeGroupId());
 			}
 
