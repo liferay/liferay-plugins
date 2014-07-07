@@ -18,13 +18,12 @@ import com.liferay.knowledgebase.model.KBArticle;
 import com.liferay.knowledgebase.model.KBComment;
 import com.liferay.knowledgebase.model.KBTemplate;
 import com.liferay.knowledgebase.service.KBArticleLocalServiceUtil;
+import com.liferay.knowledgebase.service.KBCommentLocalServiceUtil;
 import com.liferay.knowledgebase.service.KBTemplateLocalServiceUtil;
-import com.liferay.knowledgebase.service.persistence.KBArticleExportActionableDynamicQuery;
-import com.liferay.knowledgebase.service.persistence.KBCommentExportActionableDynamicQuery;
-import com.liferay.knowledgebase.service.persistence.KBTemplateExportActionableDynamicQuery;
 import com.liferay.knowledgebase.util.comparator.KBArticleVersionComparator;
 import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
+import com.liferay.portal.kernel.dao.orm.ExportActionableDynamicQuery;
 import com.liferay.portal.kernel.dao.orm.OrderFactoryUtil;
 import com.liferay.portal.kernel.lar.BasePortletDataHandler;
 import com.liferay.portal.kernel.lar.DataLevel;
@@ -105,7 +104,8 @@ public class AdminPortletDataHandler extends BasePortletDataHandler {
 		kbArticleActionableDynamicQuery.performActions();
 
 		ActionableDynamicQuery kbTemplateActionableDynamicQuery =
-			new KBTemplateExportActionableDynamicQuery(portletDataContext);
+			KBTemplateLocalServiceUtil.getExportActionableDynamicQuery(
+				portletDataContext);
 
 		kbTemplateActionableDynamicQuery.performActions();
 
@@ -165,12 +165,14 @@ public class AdminPortletDataHandler extends BasePortletDataHandler {
 		throws Exception {
 
 		ActionableDynamicQuery kbArticleActionableDynamicQuery =
-			new KBArticleExportActionableDynamicQuery(portletDataContext);
+			KBArticleLocalServiceUtil.getExportActionableDynamicQuery(
+				portletDataContext);
 
 		kbArticleActionableDynamicQuery.performCount();
 
 		ActionableDynamicQuery kbTemplateActionableDynamicQuery =
-			new KBTemplateExportActionableDynamicQuery(portletDataContext);
+			KBTemplateLocalServiceUtil.getExportActionableDynamicQuery(
+				portletDataContext);
 
 		kbTemplateActionableDynamicQuery.performCount();
 
@@ -184,33 +186,43 @@ public class AdminPortletDataHandler extends BasePortletDataHandler {
 			final PortletDataContext portletDataContext)
 		throws Exception {
 
-		return new KBArticleExportActionableDynamicQuery(portletDataContext) {
+		ExportActionableDynamicQuery exportActionableDynamicQuery =
+			KBArticleLocalServiceUtil.getExportActionableDynamicQuery(
+				portletDataContext);
+
+		final ActionableDynamicQuery.AddCriteriaMethod addCriteriaMethod =
+			exportActionableDynamicQuery.getAddCriteriaMethod();
+
+		exportActionableDynamicQuery.setAddCriteriaMethod(
+			new ActionableDynamicQuery.AddCriteriaMethod() {
 
 			@Override
-			protected void addCriteria(DynamicQuery dynamicQuery) {
-				super.addCriteria(dynamicQuery);
+			public void addCriteria(DynamicQuery dynamicQuery) {
+				addCriteriaMethod.addCriteria(dynamicQuery);
 
 				OrderFactoryUtil.addOrderByComparator(
 					dynamicQuery, new KBArticleVersionComparator(true));
 			}
 
-		};
+		});
+
+		return exportActionableDynamicQuery;
 	}
 
 	protected ActionableDynamicQuery getKBCommentActionableDynamicQuery(
-			final PortletDataContext portletDataContext)
+			PortletDataContext portletDataContext)
 		throws Exception {
 
-		return new KBCommentExportActionableDynamicQuery(portletDataContext) {
+		ExportActionableDynamicQuery exportActionableDynamicQuery =
+			KBCommentLocalServiceUtil.getExportActionableDynamicQuery(
+				portletDataContext);
 
-			@Override
-			protected StagedModelType getStagedModelType() {
-				return new StagedModelType(
-					PortalUtil.getClassNameId(KBComment.class.getName()),
-					StagedModelType.REFERRER_CLASS_NAME_ID_ALL);
-			}
+		exportActionableDynamicQuery.setStagedModelType(
+			new StagedModelType(
+				PortalUtil.getClassNameId(KBComment.class),
+				StagedModelType.REFERRER_CLASS_NAME_ID_ALL));
 
-		};
+		return exportActionableDynamicQuery;
 	}
 
 	protected static final String RESOURCE_NAME =

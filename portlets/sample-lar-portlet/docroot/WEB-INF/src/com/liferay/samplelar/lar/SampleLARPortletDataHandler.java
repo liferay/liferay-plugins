@@ -23,7 +23,6 @@ import com.liferay.portal.kernel.lar.StagedModelType;
 import com.liferay.portal.kernel.xml.Element;
 import com.liferay.samplelar.model.SampleLARBooking;
 import com.liferay.samplelar.service.SampleLARBookingLocalServiceUtil;
-import com.liferay.samplelar.service.persistence.SampleLARBookingExportActionableDynamicQuery;
 
 import java.util.List;
 
@@ -80,7 +79,7 @@ public class SampleLARPortletDataHandler extends BasePortletDataHandler {
 			"group-id", String.valueOf(portletDataContext.getScopeGroupId()));
 
 		ActionableDynamicQuery sampleLARBookingActionableDynamicQuery =
-			new SampleLARBookingExportActionableDynamicQuery(
+			SampleLARBookingLocalServiceUtil.getExportActionableDynamicQuery(
 				portletDataContext);
 
 		sampleLARBookingActionableDynamicQuery.performActions();
@@ -120,7 +119,7 @@ public class SampleLARPortletDataHandler extends BasePortletDataHandler {
 		throws Exception {
 
 		ActionableDynamicQuery sampleLARBookingActionableDynamicQuery =
-			new SampleLARBookingExportActionableDynamicQuery(
+			SampleLARBookingLocalServiceUtil.getExportActionableDynamicQuery(
 				portletDataContext);
 
 		sampleLARBookingActionableDynamicQuery.performCount();

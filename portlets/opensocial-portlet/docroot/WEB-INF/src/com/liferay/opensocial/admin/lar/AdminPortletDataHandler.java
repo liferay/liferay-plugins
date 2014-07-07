@@ -17,7 +17,6 @@ package com.liferay.opensocial.admin.lar;
 import com.liferay.opensocial.model.Gadget;
 import com.liferay.opensocial.service.GadgetLocalServiceUtil;
 import com.liferay.opensocial.service.permission.GadgetPermission;
-import com.liferay.opensocial.service.persistence.GadgetExportActionableDynamicQuery;
 import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
 import com.liferay.portal.kernel.lar.BasePortletDataHandler;
 import com.liferay.portal.kernel.lar.DataLevel;
@@ -74,7 +73,8 @@ public class AdminPortletDataHandler extends BasePortletDataHandler {
 			"group-id", String.valueOf(portletDataContext.getScopeGroupId()));
 
 		ActionableDynamicQuery actionableDynamicQuery =
-			new GadgetExportActionableDynamicQuery(portletDataContext);
+			GadgetLocalServiceUtil.getExportActionableDynamicQuery(
+				portletDataContext);
 
 		actionableDynamicQuery.performActions();
 
@@ -110,7 +110,8 @@ public class AdminPortletDataHandler extends BasePortletDataHandler {
 		throws Exception {
 
 		ActionableDynamicQuery actionableDynamicQuery =
-			new GadgetExportActionableDynamicQuery(portletDataContext);
+			GadgetLocalServiceUtil.getExportActionableDynamicQuery(
+				portletDataContext);
 
 		actionableDynamicQuery.performCount();
 	}
