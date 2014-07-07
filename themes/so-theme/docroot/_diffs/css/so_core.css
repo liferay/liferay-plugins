@@ -324,6 +324,13 @@ a {
 	}
 }
 
+.ie7.aui .opens-new-window-accessible {
+	background: url(/html/themes/classic/images/common/open_window.png) no-repeat 0 50%;
+	height: 16px;
+	text-indent: -9999px;
+	width: 11px;
+}
+
 /* ---------- Dockbar ---------- */
 
 html.aui {
