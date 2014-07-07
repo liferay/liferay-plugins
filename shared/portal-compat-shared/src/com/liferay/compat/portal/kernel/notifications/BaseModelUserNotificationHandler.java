@@ -133,6 +133,7 @@ public abstract class BaseModelUserNotificationHandler
 
 		if (userId > 0) {
 			User user = UserLocalServiceUtil.getUser(userId);
+
 			userName = user.getFullName();
 		}
 
