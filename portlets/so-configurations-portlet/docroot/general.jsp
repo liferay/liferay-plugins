@@ -32,14 +32,16 @@ boolean enablePrivateRestrictedSites = GetterUtil.getBoolean(portletPreferences.
 boolean enablePrivateSites = GetterUtil.getBoolean(portletPreferences.getValue("enablePrivateSites", null), true);
 %>
 
-<h3><liferay-ui:message key="general" /></h3>
-
 <portlet:actionURL name="updateGeneralConfigurations" var="updateGeneralConfigurationsURL">
 	<portlet:param name="redirect" value="<%= currentURL %>" />
 </portlet:actionURL>
 
 <aui:form action="<%= updateGeneralConfigurationsURL %>" method="post" name="fm">
+	<h3><liferay-ui:message key="role" /></h3>
+
 	<aui:input checked="<%= addSitePermission %>" label="social-office-users-can-add-sites" name="addSitePermission" type="checkbox" />
+
+	<h3><liferay-ui:message key="sites" /></h3>
 
 	<liferay-ui:message key="select-which-type-of-sites-users-can-add-by-default-through-the-sites-application" />
 
