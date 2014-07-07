@@ -21,4 +21,8 @@
 		<service-type>com.liferay.portlet.bookmarks.service.BookmarksEntryLocalService</service-type>
 		<service-impl>com.liferay.notifications.hook.service.impl.BookmarksEntryLocalServiceImpl</service-impl>
 	</service>
+	<service>
+		<service-type>com.liferay.portlet.wiki.service.WikiPageLocalService</service-type>
+		<service-impl>com.liferay.notifications.hook.service.impl.WikiPageLocalServiceImpl</service-impl>
+	</service>
 </hook>
