@@ -46,7 +46,7 @@ if (PortalUtil.isRSSFeedsEnabled()) {
 	<aui:fieldset>
 		<c:choose>
 			<c:when test='<%= tabs2.equals("general") %>'>
-				<div class="control-group kb-field-wrapper">
+				<div class="form-group kb-field-wrapper">
 
 					<%
 					KBArticle kbArticle = null;

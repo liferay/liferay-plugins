@@ -45,7 +45,7 @@ double priority = BeanParamUtil.getDouble(kbArticle, request, "priority");
 	<liferay-ui:error exception="<%= KBArticlePriorityException.class %>" message='<%= LanguageUtil.format(request, "please-enter-a-priority-that-is-greater-than-x", "0", false) %>' translateMessage="<%= false %>" />
 
 	<aui:fieldset>
-		<div class="control-group">
+		<div class="form-group">
 			<aui:input name="currentParent" type="resource" value='<%= !kbArticle.isRoot() ? BeanPropertiesUtil.getString(KBArticleServiceUtil.getLatestKBArticle(kbArticle.getParentResourcePrimKey(), status), "title") : "(" + LanguageUtil.get(request, "none") + ")" %>' />
 
 			<aui:input cssClass="input-mini" label="" name="priority" type="resource" value="<%= BigDecimal.valueOf(priority).toPlainString() %>" />

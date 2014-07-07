@@ -22,11 +22,11 @@ KBArticle kbArticle = (KBArticle)request.getAttribute(WebKeys.KNOWLEDGE_BASE_KB_
 
 <c:choose>
 	<c:when test="<%= kbArticle != null %>">
-		<div class="row-fluid">
-			<div class="span3">
+		<div class="row">
+			<div class="col-md-3">
 				<liferay-util:include page="/display/view_navigation.jsp" servletContext="<%= application %>" />
 			</div>
-			<div class="span9">
+			<div class="col-md-9">
 				<liferay-util:include page="/display/view_article.jsp" servletContext="<%= application %>" />
 			</div>
 		</div>
