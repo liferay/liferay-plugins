@@ -3,10 +3,7 @@
 
 	<resolvers>
 		<ibiblio m2compatible="true" name="liferay-public" root="http://cdn.repository.liferay.com/nexus/content/groups/public" />
-
-		<filesystem m2compatible="true" name="local-m2">
-			<artifact pattern="${user.home}/.m2/repository/[organisation]/[module]/[revision]/[artifact]-[revision](-[classifier]).[ext]" />
-		</filesystem>
+		<ibiblio m2compatible="true" name="local-m2" root="file://${user.home}/.m2/repository" />
 
 		<chain dual="true" name="default">
 			<resolver ref="local-m2" />
