@@ -53,7 +53,7 @@ zipsString = StringUtil.merge(zips, StringPool.NEW_LINE);
 	</liferay-ui:error>
 
 	<aui:fieldset>
-		<aui:input cssClass="lfr-textarea-container" label="enter-one-city-or-zip-code-per-line" name="preferences--zips--" type="textarea" value="<%= zipsString %>" />
+		<aui:input label="enter-one-city-or-zip-code-per-line" name="preferences--zips--" type="textarea" value="<%= zipsString %>" wrapperCssClass="lfr-textarea-container" />
 
 		<aui:select label="temperature-format" name="preferences--fahrenheit--">
 			<aui:option label="fahrenheit" selected="<%= fahrenheit %>" value="1" />

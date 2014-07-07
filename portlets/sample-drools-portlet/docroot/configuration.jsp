@@ -35,9 +35,9 @@ long[] classNameIdValues = StringUtil.split(ParamUtil.getString(request, "classN
 	<liferay-ui:error key="rulesEngineException" message="please-check-the-syntax-of-your-rules" />
 
 	<aui:fieldset>
-		<aui:input cssClass="lfr-input-text-container" name="domainName" value="<%= domainNameValue %>" />
+		<aui:input name="domainName" value="<%= domainNameValue %>" wrapperCssClass="lfr-input-text-container"  />
 
-		<aui:input cssClass="lfr-textarea-container" name="rules" style="height: 250px; width: 100%;" type="textarea" value="<%= rulesValue %>" wrap="off" />
+		<aui:input name="rules" style="height: 250px; width: 100%;" type="textarea" value="<%= rulesValue %>" wrap="off" wrapperCssClass="lfr-textarea-container" />
 
 		<%
 
@@ -66,7 +66,7 @@ long[] classNameIdValues = StringUtil.split(ParamUtil.getString(request, "classN
 		}
 		%>
 
-		<aui:input cssClass="lfr-input-text-container" name="userCustomAttributeNames" value="<%= userCustomAttributeNamesValue %>" />
+		<aui:input name="userCustomAttributeNames" value="<%= userCustomAttributeNamesValue %>" wrapperCssClass="lfr-input-text-container" />
 
 		<liferay-ui:input-move-boxes
 			leftBoxName="currentClassNameIds"

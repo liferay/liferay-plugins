@@ -71,7 +71,7 @@ Map<String, OAuthService> oAuthServices = (Map<String, OAuthService>)renderReque
 	<c:choose>
 		<c:when test='<%= tabs2.equals("gadget") || tabs2Names.equals("gadget") %>'>
 			<aui:fieldset>
-				<aui:input cssClass="lfr-input-text-container" label="url" name="preferences--url--" type="text" value="<%= url %>" />
+				<aui:input label="url" name="preferences--url--" type="text" value="<%= url %>" wrapperCssClass="lfr-input-text-container" />
 			</aui:fieldset>
 
 			<aui:button-row>

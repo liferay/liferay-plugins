@@ -28,9 +28,9 @@ String shibbolethUserHeader = PrefsPropsUtil.getString(company.getCompanyId(), _
 
 	<aui:input helpMessage="import-shibboleth-users-from-ldap-help" label="import-shibboleth-users-from-ldap" name='<%= "settings--" + _SHIBBOLETH_IMPORT_FROM_LDAP_KEY + "--" %>' type="checkbox" value="<%= shibbolethImportFromLdap %>" />
 
-	<aui:input cssClass="lfr-input-text-container" label="logout-url" name='<%= "settings--" + _SHIBBOLETH_LOGOUT_URL_KEY + "--" %>' type="text" value="<%= shibbolethLogoutURL %>" />
+	<aui:input label="logout-url" name='<%= "settings--" + _SHIBBOLETH_LOGOUT_URL_KEY + "--" %>' type="text" value="<%= shibbolethLogoutURL %>" wrapperCssClass="lfr-input-text-container" />
 
-	<aui:input cssClass="lfr-input-text-container" label="user-header" name='<%= "settings--" + _SHIBBOLETH_USER_HEADER_KEY + "--" %>' type="text" value="<%= shibbolethUserHeader %>" />
+	<aui:input label="user-header" name='<%= "settings--" + _SHIBBOLETH_USER_HEADER_KEY + "--" %>' type="text" value="<%= shibbolethUserHeader %>" wrapperCssClass="lfr-input-text-container" />
 </aui:fieldset>
 
 <%!
