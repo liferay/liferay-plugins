@@ -47,9 +47,7 @@ public class CalendarStagedModelDataHandler
 			String uuid, long groupId, String className, String extraData)
 		throws PortalException {
 
-		Calendar calendar =
-			CalendarLocalServiceUtil.fetchCalendarByUuidAndGroupId(
-				uuid, groupId);
+		Calendar calendar = fetchExistingStagedModel(uuid, groupId);
 
 		if (calendar != null) {
 			CalendarLocalServiceUtil.deleteCalendar(calendar);
@@ -84,6 +82,12 @@ public class CalendarStagedModelDataHandler
 	}
 
 	@Override
+	protected Calendar doFetchExistingStagedModel(String uuid, long groupId) {
+		return CalendarLocalServiceUtil.fetchCalendarByUuidAndGroupId(
+			uuid, groupId);
+	}
+
+	@Override
 	protected void doImportStagedModel(
 			PortletDataContext portletDataContext, Calendar calendar)
 		throws Exception {
@@ -110,9 +114,8 @@ public class CalendarStagedModelDataHandler
 		Calendar importedCalendar = null;
 
 		if (portletDataContext.isDataStrategyMirror()) {
-			Calendar existingCalendar =
-				CalendarLocalServiceUtil.fetchCalendarByUuidAndGroupId(
-					calendar.getUuid(), portletDataContext.getScopeGroupId());
+			Calendar existingCalendar = fetchExistingStagedModel(
+				calendar.getUuid(), portletDataContext.getScopeGroupId());
 
 			if (existingCalendar == null) {
 				serviceContext.setUuid(calendar.getUuid());

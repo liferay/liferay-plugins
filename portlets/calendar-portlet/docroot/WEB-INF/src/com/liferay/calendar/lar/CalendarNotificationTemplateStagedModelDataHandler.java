@@ -46,9 +46,7 @@ public class CalendarNotificationTemplateStagedModelDataHandler
 		String uuid, long groupId, String className, String extraData) {
 
 		CalendarNotificationTemplate calendarNotificationTemplate =
-			CalendarNotificationTemplateLocalServiceUtil.
-				fetchCalendarNotificationTemplateByUuidAndGroupId(
-					uuid, groupId);
+			fetchExistingStagedModel(uuid, groupId);
 
 		if (calendarNotificationTemplate != null) {
 			CalendarNotificationTemplateLocalServiceUtil.
@@ -94,6 +92,14 @@ public class CalendarNotificationTemplateStagedModelDataHandler
 	}
 
 	@Override
+	protected CalendarNotificationTemplate doFetchExistingStagedModel(
+		String uuid, long groupId) {
+
+		return CalendarNotificationTemplateLocalServiceUtil.
+			fetchCalendarNotificationTemplateByUuidAndGroupId(uuid, groupId);
+	}
+
+	@Override
 	protected void doImportStagedModel(
 			PortletDataContext portletDataContext,
 			CalendarNotificationTemplate calendarNotificationTemplate)
@@ -131,10 +137,9 @@ public class CalendarNotificationTemplateStagedModelDataHandler
 
 		if (portletDataContext.isDataStrategyMirror()) {
 			CalendarNotificationTemplate existingCalendarNotificationTemplate =
-				CalendarNotificationTemplateLocalServiceUtil.
-					fetchCalendarNotificationTemplateByUuidAndGroupId(
-						calendarNotificationTemplate.getUuid(),
-						portletDataContext.getScopeGroupId());
+				fetchExistingStagedModel(
+					calendarNotificationTemplate.getUuid(),
+					portletDataContext.getScopeGroupId());
 
 			if (existingCalendarNotificationTemplate == null) {
 				serviceContext.setUuid(calendarNotificationTemplate.getUuid());

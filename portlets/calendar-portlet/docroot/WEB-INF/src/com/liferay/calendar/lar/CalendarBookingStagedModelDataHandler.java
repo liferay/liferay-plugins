@@ -46,9 +46,8 @@ public class CalendarBookingStagedModelDataHandler
 			String uuid, long groupId, String className, String extraData)
 		throws PortalException {
 
-		CalendarBooking calendarBooking =
-			CalendarBookingLocalServiceUtil.
-				fetchCalendarBookingByUuidAndGroupId(uuid, groupId);
+		CalendarBooking calendarBooking = fetchExistingStagedModel(
+			uuid, groupId);
 
 		if (calendarBooking != null) {
 			CalendarBookingLocalServiceUtil.deleteCalendarBooking(
@@ -98,6 +97,14 @@ public class CalendarBookingStagedModelDataHandler
 	}
 
 	@Override
+	protected CalendarBooking doFetchExistingStagedModel(
+		String uuid, long groupId) {
+
+		return CalendarBookingLocalServiceUtil.
+			fetchCalendarBookingByUuidAndGroupId(uuid, groupId);
+	}
+
+	@Override
 	protected void doImportStagedModel(
 			PortletDataContext portletDataContext,
 			CalendarBooking calendarBooking)
@@ -140,11 +147,9 @@ public class CalendarBookingStagedModelDataHandler
 		CalendarBooking importedCalendarBooking = null;
 
 		if (portletDataContext.isDataStrategyMirror()) {
-			CalendarBooking existingCalendarBooking =
-				CalendarBookingLocalServiceUtil.
-					fetchCalendarBookingByUuidAndGroupId(
-						calendarBooking.getUuid(),
-						portletDataContext.getScopeGroupId());
+			CalendarBooking existingCalendarBooking = fetchExistingStagedModel(
+				calendarBooking.getUuid(),
+				portletDataContext.getScopeGroupId());
 
 			if (existingCalendarBooking == null) {
 				serviceContext.setUuid(calendarBooking.getUuid());
@@ -212,10 +217,8 @@ public class CalendarBookingStagedModelDataHandler
 		long userId = portletDataContext.getUserId(
 			calendarBooking.getUserUuid());
 
-		CalendarBooking existingBooking =
-			CalendarBookingLocalServiceUtil.fetchCalendarBooking(
-				calendarBooking.getUuid(),
-				portletDataContext.getScopeGroupId());
+		CalendarBooking existingBooking = fetchExistingStagedModel(
+			calendarBooking.getUuid(), portletDataContext.getScopeGroupId());
 
 		if ((existingBooking == null) || !existingBooking.isInTrash()) {
 			return;
