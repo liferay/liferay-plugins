@@ -35,9 +35,8 @@ public class SampleLARBookingStagedModelDataHandler
 	public void deleteStagedModel(
 		String uuid, long groupId, String className, String extraData) {
 
-		SampleLARBooking sampleLARBooking =
-			SampleLARBookingLocalServiceUtil.
-				fetchSampleLARBookingByUuidAndGroupId(uuid, groupId);
+		SampleLARBooking sampleLARBooking = fetchExistingStagedModel(
+			uuid, groupId);
 
 		if (sampleLARBooking != null) {
 			SampleLARBookingLocalServiceUtil.deleteSampleLARBooking(
@@ -71,6 +70,14 @@ public class SampleLARBookingStagedModelDataHandler
 	}
 
 	@Override
+	protected SampleLARBooking doFetchExistingStagedModel(
+		String uuid, long groupId) {
+
+		return SampleLARBookingLocalServiceUtil.
+			fetchSampleLARBookingByUuidAndGroupId(uuid, groupId);
+	}
+
+	@Override
 	protected void doImportStagedModel(
 			PortletDataContext portletDataContext,
 			SampleLARBooking sampleLARBooking)
@@ -86,10 +93,9 @@ public class SampleLARBookingStagedModelDataHandler
 
 		if (portletDataContext.isDataStrategyMirror()) {
 			SampleLARBooking existingSampleLARBooking =
-				SampleLARBookingLocalServiceUtil.
-					fetchSampleLARBookingByUuidAndGroupId(
-						sampleLARBooking.getUuid(),
-						portletDataContext.getScopeGroupId());
+				fetchExistingStagedModel(
+					sampleLARBooking.getUuid(),
+					portletDataContext.getScopeGroupId());
 
 			if (existingSampleLARBooking == null) {
 				serviceContext.setUuid(sampleLARBooking.getUuid());
