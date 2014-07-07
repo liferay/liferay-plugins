@@ -310,6 +310,20 @@ a {
 	}
 }
 
+.aui .opens-new-window-accessible {
+	display: inline-block;
+	font-size: 0;
+	margin-left: 2px;
+	overflow: hidden;
+	vertical-align: middle;
+
+	&:before {
+		@include font-awesome("\f08e");
+
+		font-size: 12px;
+	}
+}
+
 /* ---------- Dockbar ---------- */
 
 html.aui {
