@@ -39,13 +39,13 @@ KBArticle nextKBArticle = previousAndNextKBArticles[2];
 				</c:choose>
 			</liferay-portlet:renderURL>
 
-			<aui:a cssClass="hidden-xs" href="<%= previousKBArticleURL %>">
+			<aui:a cssClass="hidden-phone" href="<%= previousKBArticleURL %>">
 				<i class="icon icon-circle-arrow-left"></i>
 
 				<span class="title"><%= previousKBArticle.getTitle() %></span>
 			</aui:a>
 
-			<aui:a cssClass="visible-xs" href="<%= previousKBArticleURL %>">
+			<aui:a cssClass="visible-phone" href="<%= previousKBArticleURL %>">
 				<i class="icon icon-circle-arrow-left"></i>
 
 				<span class="title"><liferay-ui:message key="previous" /></span>
@@ -66,13 +66,13 @@ KBArticle nextKBArticle = previousAndNextKBArticles[2];
 				</c:choose>
 			</liferay-portlet:renderURL>
 
-			<aui:a cssClass="hidden-xs next" href="<%= nextKBArticleURL %>">
+			<aui:a cssClass="hidden-phone next" href="<%= nextKBArticleURL %>">
 				<span class="title"><%= nextKBArticle.getTitle() %></span>
 
 				<i class="icon icon-circle-arrow-right"></i>
 			</aui:a>
 
-			<aui:a cssClass="visible-xs next" href="<%= nextKBArticleURL %>">
+			<aui:a cssClass="visible-phone next" href="<%= nextKBArticleURL %>">
 				<span class="title"><liferay-ui:message key="next" /></span>
 
 				<i class="icon icon-circle-arrow-right"></i>
