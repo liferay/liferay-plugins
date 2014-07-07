@@ -1,0 +1,1380 @@
+@import "compass";
+@import "mixins";
+
+$addContentPanelWidth: 350px;
+$devicePreviewPanelWidth: 220px;
+$diamondSize: 12px;
+$editLayoutPanelWidth: 460px;
+
+.aui {
+	@include respond-to(phone, tablet) {
+		#navigation {
+			border-width: 0;
+			display: none;
+			left: 0;
+			position: absolute;
+			right: 0;
+			top: -5px;
+			z-index: 301;
+
+			&.open {
+				display: block;
+
+				li a {
+					font-size: 16px;
+					font-weight: 300;
+					line-height: 27px;
+					margin: 0;
+					max-width: none;
+					padding: 9px 15px;
+
+					b {
+						position: absolute;
+						right: 5px;
+					}
+				}
+			}
+
+			.nav {
+				margin: 0;
+			}
+		}
+	}
+
+	.dockbar {
+		height: auto;
+		left: 0;
+		margin-bottom: 0;
+		position: relative;
+		right: 0;
+		top: 0;
+		z-index: 400;
+
+		&.navbar-static-top {
+			position: relative;
+		}
+
+		.btn-link {
+			color: #FFF;
+		}
+
+		.impersonating-user {
+			.alert-icon{
+				margin-right: 9px;
+			}
+
+			.alert-info {
+				border-width: 0;
+				margin-bottom: 6px;
+			}
+		}
+
+		.container, .container-fluid {
+			background-color: #F3F3F3;
+			border-color: #DDD;
+			margin-left: 0;
+			margin-right: 0;
+			width: 100%;
+
+			@include respond-to(phone, tablet) {
+				@include flexbox;
+			}
+
+			> .nav {
+				margin: 0;
+
+				@include respond-to(phone, tablet) {
+					clear: none;
+					display: inline-block;
+
+					@include flex-shrink(1);
+
+					float: left;
+					height: auto;
+					overflow: visible;
+					position: static;
+				}
+
+				> li {
+					@include respond-to(phone, tablet) {
+						@include flex-shrink(1);
+
+						float: left;
+						margin: 5px;
+						position: static;
+
+						&.info-link-container {
+							float: right;
+						}
+					}
+
+					&.dropdown .dropdown-menu {
+						@include respond-to(phone, tablet) {
+							background-color: #F6F6F6;
+							left: 0;
+							margin: 3px 0 0 0;
+							position: absolute;
+							top: 100%;
+							width: 100%;
+						}
+
+						> li a {
+							@include respond-to(phone, tablet) {
+								&:focus, &:hover {
+									background: #555;
+									color: #FFF;
+								}
+							}
+
+							@include respond-to(tablet) {
+								margin: 5px 0;
+							}
+						}
+					}
+
+					&.user-avatar {
+						> .dropdown-menu {
+							right: 0;
+
+							&, &:after, &:before {
+								left: auto;
+							}
+
+							&:after {
+								right: 11px;
+							}
+
+							&:before {
+								right: 10px;
+							}
+						}
+					}
+
+					&.info-items {
+						background-color: transparent;
+						left: 0;
+						position: absolute;
+						top: 100%;
+						width: 100%;
+					}
+
+					@include respond-to(phone, tablet) {
+						> a {
+							display: inline-block;
+							margin: 0;
+							padding: 0;
+							position: relative;
+							text-align: center;
+							width: 45px;
+
+							> .nav-item-label {
+								display: none;
+							}
+
+							&:focus, &:hover {
+								background: #555;
+								color: #FFF;
+
+								> .nav-item-label {
+									display: none;
+								}
+							}
+						}
+
+						&.user-avatar .user-avatar-link .nav-item-label {
+							display: inline;
+
+							.user-full-name {
+								display: none;
+							}
+						}
+
+						.icon-caret-down {
+							display: none;
+						}
+
+						&.sign-in {
+							width: 100%;
+
+							> a {
+								float: right;
+								width: auto;
+
+								& > .nav-item-label {
+									display: block;
+								}
+							}
+						}
+					}
+				}
+
+				&.nav-account-controls {
+					float: right;
+					padding: 0 5px;
+					position: static;
+					width: auto;
+
+					@include respond-to(desktop) {
+						position: relative;
+					}
+
+					@include respond-to(phone, tablet) {
+						@include flexbox;
+
+						float: left;
+						max-width: 100%;
+						min-width: 0;
+						padding: 0;
+
+						.dropdown-menu .nav-item-label {
+							display: inline;
+						}
+					}
+
+					> li {
+						> a > .nav-item-icon {
+							display: none;
+
+							@include respond-to(phone, tablet) {
+								display: inline-block;
+							}
+						}
+
+						&.sign-in > a > .nav-item-icon {
+							position: absolute;
+							right: 0;
+							width: auto;
+
+							@include respond-to(phone, tablet) {
+								display: none;
+							}
+						}
+					}
+				}
+
+				&.nav-add-controls, &.nav-navigation {
+					@include respond-to(phone, tablet) {
+						position: static;
+					}
+
+					> li > a {
+						display: none;
+
+						@include respond-to(phone, tablet) {
+							display: inline-block;
+						}
+					}
+
+					@include respond-to(phone, tablet) {
+						.open ul.dropdown-menu {
+							display: block;
+						}
+					}
+
+					ul.dropdown-menu {
+						background: transparent;
+						border-width: 0;
+						display: inline-block;
+						margin: 0;
+						padding: 0 5px;
+						position: static;
+						z-index: 350;
+
+						@include respond-to(phone, tablet) {
+							background-color: #F6F6F6;
+							display: none;
+							left: 0;
+							margin: 3px 0 0 0;
+							padding: 0;
+							position: absolute;
+							top: 100%;
+							width: 100%;
+						}
+
+						&:after, &:before {
+							border-width: 0;
+						}
+
+						> li {
+							display: inline-block;
+							float: left;
+							margin: 0;
+
+							@include respond-to(phone, tablet) {
+								display: block;
+								float: none;
+
+								&.page-preview-controls {
+									display: none;
+								}
+							}
+
+							&.toggle-controls a {
+								clip: rect(auto auto auto auto);
+								position: static;
+								visibility: visible;
+							}
+
+							> a {
+								margin: 0;
+								padding: 15px;
+								white-space: nowrap;
+
+								@include respond-to(phone, tablet) {
+									line-height: inherit;
+									padding: 9px 15px;
+
+									&:focus, &:hover {
+										background: #555;
+										color: #FFF;
+									}
+								}
+
+								&:focus, &:hover {
+									background-color: transparent;
+									background-image: none;
+									color: #0077B3;
+								}
+
+								> .nav-item-icon {
+									margin-right: 0;
+									margin-top: 3px;
+
+									@include respond-to(phone, tablet) {
+										margin-top: 0;
+									}
+								}
+
+								.nav-item-label {
+									left: 0;
+									margin-left: 0;
+									margin-top: 0;
+									padding: 0;
+									position: relative;
+								}
+							}
+						}
+					}
+				}
+			}
+
+			.site-administration-menu li {
+				list-style: none;
+
+				a {
+					color: #000;
+					display: block;
+					padding: 3px 5px 3px 40px;
+
+					&:focus, &:hover {
+						background: #0DB5E7;
+						color: #FFF;
+						text-decoration: none;
+					}
+
+					i {
+						font-size: 0.8em;
+					}
+				}
+			}
+		}
+
+		.nav {
+			&.staging-nav-items {
+				margin: 0;
+				position: static;
+
+				li.dropdown.active > .dropdown-toggle {
+					background-color: transparent;
+					display: block;
+
+					&:hover {
+						color: #0077B3;
+					}
+				}
+
+				.staging-link {
+					position: static;
+				}
+			}
+
+			> li.staging-toggle {
+				&.active a, > a {
+					color: #555;
+				}
+
+				> a {
+					padding: 4px 10px;
+				}
+			}
+
+			.staging-controls {
+				position: static;
+			}
+		}
+
+		.nav-account-controls {
+			float: right;
+		}
+
+		.nav-add-controls {
+			float: left;
+		}
+
+		.navbar-brand h1 {
+			display: inline-block;
+			font-size: inherit;
+			line-height: 1;
+			margin-bottom: 0;
+			margin-top: 0;
+
+			@include respond-to(phone, tablet) {
+				line-height: 16px;
+			}
+		}
+
+		.navbar-btn {
+			float: left;
+			padding: 12px 15px;
+
+			@include respond-to(phone, tablet) {
+				display: none;
+			}
+		}
+
+		.nav-navigation {
+			float: left;
+		}
+
+		.page-customization-bar-container {
+			position: absolute;
+			right: 0;
+			top: 0;
+			width: 100%;
+		}
+
+		.staging-controls .staging-bar li.dropdown {
+			&.live-link.open .dropdown-menu {
+				&:after {
+					left: 73px;
+				}
+
+				&:before {
+					left: 72px;
+				}
+			}
+
+			.dropdown-menu {
+				left: 0;
+				margin-left: 10px;
+				width: 100%;
+			}
+		}
+
+		.staging-bar {
+			margin: 6px 0 0;
+
+			&, li.staging-toggle {
+				position: static;
+			}
+		}
+
+		.user-avatar .user-avatar-image {
+			background: #333 no-repeat center;
+			background-size: auto 16px;
+			display: inline-block;
+			height: 16px;
+			margin-top: -2px;
+			vertical-align: middle;
+			width: 16px;
+		}
+
+		.diamond {
+			display: none;
+		}
+
+		.info-button {
+			margin-right: 5px;
+			right: auto;
+			top: auto;
+
+			a {
+				color: #555;
+				display: block;
+				font-size: 20px;
+				padding: 10px 15px;
+				position: relative;
+
+				&:focus, &:hover {
+					background-color: #FFF;
+					color: #0077B3;
+					text-decoration: none;
+				}
+			}
+		}
+
+		.info-link-container {
+			width: auto;
+
+			&.open .info-button a {
+				background-color: #FFF;
+			}
+		}
+	}
+
+	.dockbar-split {
+		.dockbar {
+			height: 0;
+			position: absolute;
+
+			@include respond-to(phone, tablet) {
+				height: auto;
+				position: relative;
+			}
+
+			.diamond {
+				border: $diamondSize solid transparent;
+				border-bottom-color: #1485EB;
+				display: block;
+				height: 0;
+				position: relative;
+				top: -$diamondSize;
+				width: 0;
+
+				&:after {
+					border: $diamondSize solid transparent;
+					border-top-color: #1485EB;
+					content: '';
+					height: 0;
+					left: -$diamondSize;
+					position: absolute;
+					top: $diamondSize;
+					width: 0;
+				}
+			}
+
+			.info-button {
+				right: 12px;
+				top: 10px;
+
+				a {
+					color: #FFF;
+					display: inline;
+					font-size: 14px;
+					padding: 2px 10px;
+					position: absolute;
+
+					&:focus, &:hover {
+						background-color: transparent;
+					}
+				}
+			}
+
+			.info-link-container {
+				position: relative;
+				width: 0;
+
+				&.open .info-button a {
+					background-color: transparent;
+				}
+			}
+
+			.staging-controls {
+				.staging-bar {
+					li.dropdown .dropdown-menu {
+						left: 0;
+						margin-left: 0;
+						width: 100%;
+					}
+				}
+			}
+
+			.divider-vertical {
+				display: none;
+			}
+
+			.info-items {
+				left: auto;
+				position: static;
+			}
+
+			.nav > li.staging-toggle > a {
+				color: #FFF;
+				padding: 6px 10px;
+			}
+
+			.container, .container-fluid {
+				z-index: 400;
+
+				&.open {
+					overflow: visible;
+				}
+
+				> .nav {
+					&.nav-account-controls {
+						background: #333;
+						left: auto;
+						margin-right: 0;
+						padding: 0;
+						position: fixed;
+						right: 5em;
+						z-index: 325;
+
+						@include respond-to(phone, tablet) {
+							background: transparent;
+							position: static;
+							right: auto;
+						}
+					}
+
+					&.nav-add-controls {
+						@include respond-to(phone, tablet) {
+							.open ul.dropdown-menu {
+								display: block;
+							}
+						}
+
+						ul.dropdown-menu {
+							background: transparent;
+							display: block;
+							min-width: 0;
+							position: fixed;
+							right: auto;
+							top: 10%;
+							z-index: 350;
+
+							@include respond-to(phone, tablet) {
+								background-color: #F6F6F6;
+								display: none;
+								position: absolute;
+								top: 100%;
+							}
+
+							> li {
+								display: block;
+								float: none;
+								margin: 10px;
+								position: relative;
+
+								@include respond-to(phone, tablet) {
+									margin: 0;
+
+									&.page-preview-controls {
+										display: none;
+									}
+								}
+
+								&.toggle-controls a {
+									clip: rect(0 0 0 0);
+									position: absolute;
+
+									@include respond-to(phone, tablet) {
+										clip: rect(auto auto auto auto);
+										position: static;
+									}
+
+									&:focus {
+										clip: rect(auto auto auto auto);
+										position: static;
+									}
+								}
+
+								> a {
+									background: #333;
+									color: #FFF;
+									padding: 6px 8px;
+									text-align: center;
+
+									@include respond-to(phone, tablet) {
+										background: transparent;
+										color: inherit;
+										padding: 9px 15px;
+										text-align: left;
+									}
+
+									.nav-item-icon {
+										font-size: 25px;
+										margin-right: 0;
+										position: relative;
+										vertical-align: middle;
+
+										@include respond-to(phone, tablet) {
+											font-size: inherit;
+											margin-top: 0;
+										}
+									}
+
+									.nav-item-label {
+										background: #333;
+										display: none;
+										left: 100%;
+										margin-left: 0.5em;
+										margin-top: -1em;
+										padding: 0 20px;
+										position: absolute;
+										top: 50%;
+										white-space: nowrap;
+
+										@include respond-to(phone, tablet) {
+											background: transparent;
+											display: inline-block;
+											margin-left: 0;
+											margin-top: 0;
+											padding: 0;
+											position: static;
+										}
+									}
+
+									@include respond-to(phone, tablet) {
+										&:focus, &:hover {
+											background: #555;
+											color: #FFF;
+										}
+									}
+
+									&:hover .nav-item-label {
+										display: block;
+
+										@include respond-to(phone, tablet) {
+											display: inline-block;
+										}
+									}
+								}
+							}
+
+							&:hover > li.toggle-controls a {
+								clip: rect(auto auto auto auto);
+								position: static;
+							}
+						}
+					}
+
+					> li {
+						> a {
+							color: #FFF;
+							line-height: 31px;
+							padding: 6px 15px;
+
+							@include respond-to(phone, tablet) {
+								color: inherit;
+							}
+						}
+
+						&.active > a {
+							color: #FFF;
+						}
+
+						&.info-items {
+							left: auto;
+							top: auto;
+						}
+
+						&.open > a {
+							color: #333;
+						}
+					}
+				}
+			}
+
+			.page-customization-bar-container {
+				position: absolute;
+				right: 100%;
+				top: 0;
+				width: 320px;
+			}
+
+			.staging-nav-items {
+				li > span {
+					color: #FFF;
+					display: block;
+					line-height: 31px;
+					padding: 10px 15px;
+				}
+			}
+		}
+
+		.info-items {
+			height: 1px;
+
+			a, .btn-link {
+				color: #FFF;
+				text-decoration: underline;
+
+				&:hover {
+					text-decoration: none;
+
+					.taglib-text {
+						text-decoration: none;
+					}
+				}
+			}
+
+			.btn-link {
+				border-width: 0;
+				font-size: 14px;
+				font-weight: 300;
+				margin: 0 0 0 6px;
+				padding: 0;
+
+				@include text-shadow(none);
+			}
+		}
+
+		&.controls-hidden .dockbar .nav-add-controls li.toggle-controls > .toggle-controls-link {
+			background: #F5AF45;
+		}
+
+		&.lfr-has-add-content .nav-add-controls ul.dropdown-menu {
+			left: $addContentPanelWidth;
+		}
+
+		&.lfr-has-device-preview .nav-add-controls ul.dropdown-menu {
+			left: $devicePreviewPanelWidth;
+		}
+
+		&.lfr-has-edit-layout .nav-add-controls ul.dropdown-menu {
+			left: $editLayoutPanelWidth;
+		}
+	}
+
+	&.dialog-iframe-root-node .dockbar {
+		.container, .container-fluid {
+			> .nav.nav-add-controls .dropdown-menu .page-preview-controls {
+				display: none;
+			}
+		}
+	}
+
+	.signed-out {
+		.dockbar {
+			.container, .container-fluid {
+				> .nav-account-controls {
+					position: absolute;
+					right: 0;
+
+					@include respond-to(desktop) {
+						position: relative;
+					}
+				}
+			}
+		}
+
+		&.dockbar-split .dockbar {
+			.container, .container-fluid {
+				> .nav-account-controls {
+					position: absolute;
+					right: 0;
+
+					@include respond-to(desktop) {
+						position: fixed;
+						right: 5em;
+					}
+				}
+			}
+		}
+	}
+
+	.touch .dockbar-split, .controls-hidden.dockbar-split {
+		.dockbar {
+			.container, .container-fluid {
+				> .nav.nav-add-controls ul.dropdown-menu > li.toggle-controls > a.toggle-controls-link {
+					clip: rect(auto auto auto auto);
+					position: static;
+				}
+			}
+		}
+	}
+
+	/* ---------- Staging dockbar ---------- */
+
+	.variation-selector {
+		display: block;
+		font-size: 1.2em;
+		font-weight: bold;
+		margin: 1em;
+	}
+
+	.layout-revision-container {
+		margin: 1em 0 0 1em;
+		padding: 0;
+
+		.current-version {
+			color: #41801D;
+			display: block;
+		}
+
+		.layout-variation-name {
+			color: #666;
+			font-size: 1.15em;
+			margin-bottom: 0.1em;
+			text-transform: uppercase;
+		}
+
+		.taglib-workflow-status .workflow-status {
+			background: none;
+			padding-left: 0;
+
+			.workflow-status-ready-for-publication {
+				color: #41801D;
+				font-weight: bold;
+			}
+		}
+	}
+
+	.layout-revision-container-root {
+		margin: 0;
+	}
+
+	.staging-controls {
+		padding-left: 5px;
+		padding-right: 25px;
+
+		select {
+			width: 100%;
+		}
+
+		.staging-bar {
+			.dropdown-menu {
+				font-size: 13px;
+				position: absolute;
+				top: 100%;
+				width: 100%;
+
+				.btn-link {
+					float: left;
+					font-size: 11px;
+					margin: 0 5px 0 0;
+					padding: 0;
+					text-decoration: underline;
+
+					@include text-shadow(none);
+
+					&:hover {
+						text-decoration: none;
+					}
+
+					&.history {
+						float: right;
+					}
+				}
+			}
+		}
+	}
+
+	/* ---------- Add content ---------- */
+
+	.lfr-admin-panel {
+		background-color: #FFF;
+		bottom: 0;
+		left: 0;
+		overflow: auto;
+		padding: 10px;
+		position: fixed;
+		top: 0;
+		z-index: 1100;
+
+		@include respond-to(phone, tablet) {
+			margin: 0 0 0 -20px;
+			position: static;
+			width: auto;
+
+			@include respond-to(tablet) {
+				margin: 0;
+			}
+
+			&.lfr-add-panel .add-content-menu .lfr-add-page-toolbar, &.lfr-edit-layout-panel .taglib-form-navigator .button-holder {
+				margin-top: 0;
+				position: static;
+				width: auto;
+			}
+
+			&.lfr-edit-layout-panel {
+				.taglib-form-navigator .panel-group {
+					margin-bottom: 20px;
+				}
+
+				.site-admin-link {
+					padding: 0;
+					position: static;
+				}
+			}
+		}
+	}
+
+	.lfr-has-add-content {
+		padding-left: $addContentPanelWidth;
+	}
+
+	.lfr-has-device-preview {
+		padding-left: $devicePreviewPanelWidth;
+	}
+
+	.lfr-has-edit-layout {
+		padding-left: $editLayoutPanelWidth;
+	}
+
+	.lfr-has-add-content, .lfr-has-device-preview, .lfr-has-edit-layout {
+		height: 100%;
+		position: fixed;
+		width: 100%;
+		-webkit-overflow-scrolling: touch;
+
+		@include respond-to(phone, tablet) {
+			height: auto;
+			position: static;
+			width: auto;
+		}
+
+		@include respond-to(phone) {
+			padding-left: 20px;
+		}
+
+		@include respond-to(tablet) {
+			padding-left: 0;
+		}
+
+		#wrapper {
+			height: 100%;
+			overflow: auto;
+			width: 100%;
+			-webkit-overflow-scrolling: touch;
+		}
+	}
+
+	/* ---------- Menus ---------- */
+
+	.dropdown-menu > li > a:focus, .dropdown-submenu:focus > a {
+		> [class^="icon-"], > [class*=" icon-"] {
+			background-image: none;
+		}
+	}
+
+	.my-sites-menu {
+		.site-type {
+			color: #FFF;
+			display: none;
+			float: right;
+			font-size: 0.8em;
+			font-weight: normal;
+			margin-right: 10px;
+			position: absolute;
+			right: 100%;
+		}
+
+		a:hover .site-type {
+			color: #FFF;
+			display: inline-block;
+		}
+	}
+
+	.ie.rtl .dockbar .menu-button span {
+		background-position-x: -25px;
+	}
+
+	&.ie6, &.ie7, &.ie8 {
+		.dockbar {
+			.container, .container-fluid {
+				.nav-account-controls > li {
+					float: left;
+				}
+			}
+		}
+
+		.dockbar-split .dockbar .nav-add-controls li.page-preview-controls {
+			display: none;
+		}
+	}
+
+	&.ie6, &.ie7, &.ie8, &.ie9 {
+		.dockbar {
+			.container, .container-fluid {
+				.nav-account-controls {
+					width: auto;
+				}
+			}
+		}
+
+		.signed-out {
+			.dockbar {
+				.container, .container-fluid {
+					.nav-account-controls {
+						float: right;
+					}
+				}
+			}
+		}
+	}
+
+	.ie7 {
+		.dockbar {
+			zoom: 1;
+		}
+
+		.my-sites-menu {
+			a {
+				overflow: visible;
+				text-align: left;
+			}
+
+			.site-name {
+				float: none;
+			}
+
+			.site-type {
+				float: none;
+			}
+		}
+	}
+
+	.ie6 {
+		.dockbar, .lfr-dockbar-pinned .dockbar {
+			height: 10px;
+			left: 0;
+			position: relative;
+			top: 0;
+		}
+
+		.dockbar .pin-dockbar {
+			display: none;
+		}
+
+		.my-sites-menu {
+			width: 200px;
+
+			a {
+				zoom: 1;
+			}
+		}
+
+		.menu-scroll {
+			height: 300px;
+			overflow-y: auto;
+		}
+	}
+
+	/* ---------- Customization bar ---------- */
+
+	.controls-hidden {
+		.info-button, .page-customization-bar {
+			display: none;
+		}
+	}
+
+	.info-button {
+		cursor: pointer;
+		position: relative;
+		right: $diamondSize;
+		z-index: 1;
+
+		a {
+			color: #FFF;
+			padding: 2px 10px;
+			position: absolute;
+			text-decoration: none;
+			z-index: 1;
+		}
+
+		.icon-stop {
+			color: #1485EB;
+			font-size: 20px;
+		}
+	}
+
+	.page-customization-bar {
+		background-color: #555;
+		background-color: rgba(0, 0, 0, 0.5);
+		color: #FFF;
+		display: table;
+		font-size: 14px;
+		font-weight: 300;
+		padding: 0 15px;
+		width: 100%;
+
+		.customized-icon {
+			margin: 5px;
+			vertical-align: middle;
+		}
+
+		.page-customization-actions {
+			padding-left: 5em;
+		}
+
+		.page-customization-actions a {
+			color: #EEE;
+			font-size: 0.8em;
+			padding: 0 1em;
+		}
+
+		.page-customization-bar-form {
+			display: table-cell;
+			text-align: center;
+			vertical-align: middle;
+			width: 25%;
+
+			a {
+				color: #FFF;
+
+				&:focus, &:hover {
+					color: #FFF;
+					text-decoration: none;
+				}
+			}
+
+			span {
+				display: block;
+				line-height: 20px;
+			}
+		}
+
+		.page-customization-bar-text {
+			display: table-cell;
+			padding: 12px 0;
+			vertical-align: middle;
+			width: 75%;
+		}
+
+		.page-customization-bar-container {
+			position: absolute;
+		}
+
+		.reset-prototype {
+			display: inline;
+		}
+	}
+
+	.page-customization-bar-container {
+		position: absolute;
+		right: 100%;
+		top: -1px;
+		width: 320px;
+	}
+
+/* -------- Extras -------- */
+
+	.dockbar {
+		.container, .container-fluid {
+			> .nav > li.info-items {
+				@include background-image(none);
+			}
+		}
+
+		.nav-navigation {
+			.dropdown-menu {
+				@include box-shadow(none);
+			}
+		}
+	}
+
+	/* -------- Media queries -------- */
+
+	@media (min-width: 1400px) {
+		.dockbar-split {
+			.dockbar .page-customization-bar-container {
+				width: 963px;
+			}
+
+			&.staging-ready .page-customization-bar-container {
+				width: 722px;
+			}
+		}
+	}
+
+	@media (min-width: 1152px) and (max-width: 1399px) {
+		.dockbar-split {
+			.dockbar .page-customization-bar-container {
+				width: 715px;
+			}
+
+			&.staging-ready .page-customization-bar-container {
+				width: 475px;
+			}
+		}
+	}
+
+	@media (min-width: 980px) and (max-width: 1151px) {
+		.dockbar-split {
+			.dockbar .page-customization-bar-container {
+				width: 542px;
+			}
+
+			&.staging-ready .page-customization-bar-container {
+				width: 302px;
+			}
+		}
+	}
+
+	@include respond-to(phone, tablet) {
+		.dockbar, .dockbar-split .dockbar {
+			.info-link-container {
+				padding: 0;
+				width: auto;
+
+				.diamond {
+					display: none;
+				}
+
+				.info-button {
+					right: auto;
+					top: auto;
+				}
+
+				.info-link {
+					color: #333;
+					display: block;
+					margin: 5px 0 0 5px;
+					padding: 12px 18px;
+					position: relative;
+
+					&:focus, &:hover {
+						background-color: #555;
+						text-decoration: none;
+					}
+				}
+			}
+		}
+
+		.dockbar-split .dockbar {
+			.info-link-container.open .info-button a {
+				background-color: #FFF;
+			}
+
+			.container, .container-fluid {
+				> .nav > li.info-items {
+					left: 0;
+					top: 100%;
+				}
+			}
+
+			.page-customization-bar-container {
+				position: static;
+				width: 100%;
+			}
+		}
+
+		.portlet-staging-bar .layout-revision-actions {
+			a.taglib-icon {
+				padding: 9px 15px;
+			}
+
+			[class^="icon-"] {
+				margin-left: 0;
+			}
+		}
+
+		.dockbar .staging-controls {
+			padding: 0;
+
+			.staging-bar li.dropdown .dropdown-menu {
+				background-color: #FFF;
+				margin: 0;
+				padding: 10px;
+			}
+		}
+	}
+
+	@include respond-to(phone) {
+		.portlet-staging-bar .layout-revision-actions a.taglib-icon {
+			margin-left: -5px;
+		}
+	}
+}
