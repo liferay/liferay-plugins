@@ -26,9 +26,7 @@
 				var ckEditor = event.editor;
 
 				ckEditor.config.autocomplete = {
-					requestTemplate: function(query) {
-						return 'query=' + query;
-					},
+					requestTemplate: 'query={query}',
 					trigger: [
 						{
 							resultFilters: function(query, results) { return results; },
