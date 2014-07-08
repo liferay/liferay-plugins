@@ -15,17 +15,23 @@
 package com.liferay.knowledgebase.admin.importer.util;
 
 import com.liferay.knowledgebase.KBArticleImportException;
+import com.liferay.knowledgebase.model.KBArticle;
+import com.liferay.knowledgebase.util.PortletKeys;
 import com.liferay.knowledgebase.util.PortletPropsValues;
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.repository.model.FileEntry;
-import com.liferay.portal.kernel.repository.model.Folder;
-import com.liferay.portal.kernel.util.FileUtil;
+import com.liferay.portal.kernel.util.MimeTypesUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.zip.ZipReader;
-import com.liferay.portal.service.ServiceContext;
+import com.liferay.portal.portletfilerepository.PortletFileRepositoryUtil;
+import com.liferay.portlet.documentlibrary.NoSuchFileEntryException;
+
+import java.io.InputStream;
 
 import java.util.Map;
 
@@ -35,8 +41,43 @@ import java.util.Map;
  */
 public class KBArticleImporterUtil {
 
-	public static FileEntry extractImageFileEntry(
-		String html, Map<String, FileEntry> fileEntriesMap) {
+	public static FileEntry addImageAttachment(
+			String name, long userId, KBArticle kbArticle, ZipReader zipReader,
+			Map<String, FileEntry> fileEntriesMap)
+		throws PortalException, SystemException {
+
+		try {
+			validateImageFileExtension(name);
+		}
+		catch (KBArticleImportException kbaie) {
+			if (_log.isWarnEnabled()) {
+				_log.warn(
+					"Unsupported image file suffix used in ZIP file: " +
+						name);
+			}
+		}
+
+		try {
+			return addImageAttachment(
+				userId, kbArticle, name,
+				zipReader.getEntryAsInputStream(
+					PortletPropsValues.MARKDOWN_IMPORTER_IMAGE_FOLDER + name),
+				fileEntriesMap);
+		}
+		catch (Exception e) {
+			StringBuilder sb = new StringBuilder(4);
+
+			sb.append("Unable to import image file: ");
+			sb.append(name);
+			sb.append(". ");
+			sb.append(e.getLocalizedMessage());
+
+			throw new KBArticleImportException(sb.toString());
+		}
+	}
+
+	public static String extractImageName(String html)
+		throws PortalException, SystemException {
 
 		String imageSrc = null;
 
@@ -71,74 +112,7 @@ public class KBArticleImporterUtil {
 			return null;
 		}
 
-		String name = paths[paths.length - 1];
-
-		return fileEntriesMap.get(name);
-	}
-
-	public static void processImageFiles(
-			long groupId, String fileName, ZipReader zipReader,
-			Map<String, FileEntry> fileEntriesMap,
-			ServiceContext serviceContext)
-		throws KBArticleImportException {
-
-		String folderName = FileUtil.stripExtension(fileName);
-
-		folderName = StringUtil.toLowerCase(folderName);
-
-		Folder folder = null;
-
-		try {
-			KBArticleDLUtil.deleteFolder(groupId, folderName);
-
-			folder = KBArticleDLUtil.addFolder(
-				groupId, folderName, serviceContext);
-		}
-		catch (Exception e) {
-			throw new KBArticleImportException(e);
-		}
-
-		for (String zipEntry : zipReader.getEntries()) {
-			if (!zipEntry.contains(
-					PortletPropsValues.MARKDOWN_IMPORTER_IMAGE_FOLDER)) {
-
-				continue;
-			}
-
-			String zipEntryLower = StringUtil.toLowerCase(zipEntry);
-
-			try {
-				validateImageFileExtension(zipEntryLower);
-			}
-			catch (KBArticleImportException kbaie) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(
-						"Unsupported image file suffix used in ZIP file: " +
-							zipEntry);
-				}
-
-				continue;
-			}
-
-			try {
-				int pos = zipEntry.lastIndexOf(StringPool.SLASH);
-
-				KBArticleDLUtil.addFile(
-					folder, zipEntry.substring(pos + 1),
-					zipReader.getEntryAsInputStream(zipEntry), fileEntriesMap,
-					serviceContext);
-			}
-			catch (Exception e) {
-				StringBuilder sb = new StringBuilder(4);
-
-				sb.append("Unable to import image file: ");
-				sb.append(zipEntry);
-				sb.append(". ");
-				sb.append(e.getLocalizedMessage());
-
-				throw new KBArticleImportException(sb.toString());
-			}
-		}
+		return paths[paths.length - 1];
 	}
 
 	public static void validateImageFileExtension(String fileName)
@@ -161,6 +135,42 @@ public class KBArticleImporterUtil {
 		if (!validImageFileExtension) {
 			throw new KBArticleImportException(fileName);
 		}
+	}
+
+	protected static FileEntry addImageAttachment(
+			long userId, KBArticle kbArticle, String fileName,
+			InputStream inputStream, Map<String, FileEntry> fileEntriesMap)
+		throws PortalException, SystemException {
+
+		FileEntry fileEntry = fileEntriesMap.get(fileName);
+
+		if (fileEntry != null) {
+			return fileEntry;
+		}
+
+		String mimeType = MimeTypesUtil.getContentType(fileName);
+
+		try {
+			PortletFileRepositoryUtil.getPortletFileEntry(
+				kbArticle.getGroupId(), kbArticle.getAttachmentsFolderId(),
+				fileName);
+
+			PortletFileRepositoryUtil.deletePortletFileEntry(
+				kbArticle.getGroupId(), kbArticle.getAttachmentsFolderId(),
+				fileName);
+		}
+		catch (NoSuchFileEntryException nsfee) {
+		}
+
+		fileEntry = PortletFileRepositoryUtil.addPortletFileEntry(
+			kbArticle.getGroupId(), userId, KBArticle.class.getName(),
+			kbArticle.getClassPK(), PortletKeys.KNOWLEDGE_BASE_ARTICLE,
+			kbArticle.getAttachmentsFolderId(), inputStream, fileName, mimeType,
+			false);
+
+		fileEntriesMap.put(fileName, fileEntry);
+
+		return fileEntry;
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(

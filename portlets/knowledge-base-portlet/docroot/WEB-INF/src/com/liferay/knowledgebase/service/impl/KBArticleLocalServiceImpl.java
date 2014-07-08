@@ -277,8 +277,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		KBArticleImporter kbArticleImporter = new KBArticleImporter();
 
 		kbArticleImporter.processZipFile(
-			userId, groupId, fileName, inputStream,
-			new HashMap<String, FileEntry>(), serviceContext);
+			userId, groupId, inputStream, serviceContext);
 	}
 
 	@Override

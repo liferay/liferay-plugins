@@ -15,6 +15,7 @@
 package com.liferay.knowledgebase.admin.importer.util;
 
 import com.liferay.knowledgebase.KBArticleImportException;
+import com.liferay.knowledgebase.model.KBArticle;
 import com.liferay.markdown.converter.MarkdownConverter;
 import com.liferay.markdown.converter.factory.MarkdownConverterFactoryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -26,6 +27,7 @@ import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.kernel.zip.ZipReader;
 import com.liferay.portlet.documentlibrary.util.DLUtil;
 
 import java.io.IOException;
@@ -39,9 +41,8 @@ import java.util.TreeSet;
  */
 public class KBArticleMarkdownConverter {
 
-	public KBArticleMarkdownConverter(
-			String markdown, Map<String, FileEntry> fileEntriesMap)
-		throws KBArticleImportException {
+	public KBArticleMarkdownConverter(String markdown)
+		throws KBArticleImportException, SystemException {
 
 		MarkdownConverter markdownConverter =
 			MarkdownConverterFactoryUtil.create();
@@ -69,13 +70,7 @@ public class KBArticleMarkdownConverter {
 
 		_title = stripIds(heading);
 
-		html = stripIds(html);
-
-		_html = updateDocumentLibraryReferences(html, fileEntriesMap);
-	}
-
-	public String getHtml() {
-		return _html;
+		_html = stripIds(html);
 	}
 
 	public String getTitle() {
@@ -84,6 +79,106 @@ public class KBArticleMarkdownConverter {
 
 	public String getUrlTitle() {
 		return _urlTitle;
+	}
+
+	public String processAttachmentsReferences(
+			long userId, KBArticle kbArticle, ZipReader zipReader,
+			Map<String, FileEntry> fileEntriesMap)
+		throws PortalException, SystemException {
+
+		Set<Integer> indexes = new TreeSet<Integer>();
+
+		int index = 0;
+
+		while ((index = _html.indexOf("<img", index)) > -1) {
+			indexes.add(index);
+
+			index += 4;
+		}
+
+		if (indexes.isEmpty()) {
+			return _html;
+		}
+
+		StringBundler sb = new StringBundler();
+
+		int previousIndex = 0;
+
+		for (int curIndex : indexes) {
+			if (curIndex < 0) {
+				break;
+			}
+
+			if (curIndex > previousIndex) {
+
+				// Append text from previous position up to image tag
+
+				String text = _html.substring(previousIndex, curIndex);
+
+				sb.append(text);
+			}
+
+			int pos = _html.indexOf("/>", curIndex);
+
+			if (pos < 0) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(
+						"Expected close tag for image " +
+							_html.substring(curIndex));
+				}
+
+				sb.append(_html.substring(curIndex));
+
+				previousIndex = curIndex;
+
+				break;
+			}
+
+			String text = _html.substring(curIndex, pos);
+
+			String imageName = KBArticleImporterUtil.extractImageName(text);
+
+			FileEntry fileEntry = KBArticleImporterUtil.addImageAttachment(
+				imageName, userId, kbArticle, zipReader, fileEntriesMap);
+
+			if (fileEntry == null) {
+				if (_log.isWarnEnabled()) {
+					_log.warn("Unable to find image source " + text);
+				}
+
+				sb.append("<img alt=\"missing image\" src=\"\" ");
+			}
+			else {
+				String imageSrc = StringPool.BLANK;
+
+				try {
+					imageSrc = DLUtil.getPreviewURL(
+						fileEntry, fileEntry.getFileVersion(), null,
+						StringPool.BLANK);
+				}
+				catch (PortalException pe) {
+					if (_log.isWarnEnabled()) {
+						_log.warn(
+							"Unable to obtain image url from fileEntry " +
+								fileEntry.getFileEntryId());
+					}
+				}
+
+				sb.append("<img alt=\"");
+				sb.append(HtmlUtil.escapeAttribute(fileEntry.getTitle()));
+				sb.append("\" src=\"");
+				sb.append(imageSrc);
+				sb.append("\" ");
+			}
+
+			previousIndex = pos;
+		}
+
+		if (previousIndex < _html.length()) {
+			sb.append(_html.substring(previousIndex));
+		}
+
+		return sb.toString();
 	}
 
 	protected String getHeading(String html) {
@@ -162,102 +257,6 @@ public class KBArticleMarkdownConverter {
 		while ((index = content.indexOf("[](id=")) != -1);
 
 		sb.append(content);
-
-		return sb.toString();
-	}
-
-	protected String updateDocumentLibraryReferences(
-		String html, Map<String, FileEntry> fileEntriesMap) {
-
-		Set<Integer> indexes = new TreeSet<Integer>();
-
-		int index = 0;
-
-		while ((index = html.indexOf("<img", index)) > -1) {
-			indexes.add(index);
-
-			index += 4;
-		}
-
-		if (indexes.isEmpty()) {
-			return html;
-		}
-
-		StringBundler sb = new StringBundler();
-
-		int previousIndex = 0;
-
-		for (int curIndex : indexes) {
-			if (curIndex < 0) {
-				break;
-			}
-
-			if (curIndex > previousIndex) {
-
-				// Append text from previous position up to image tag
-
-				String text = html.substring(previousIndex, curIndex);
-
-				sb.append(text);
-			}
-
-			int pos = html.indexOf("/>", curIndex);
-
-			if (pos < 0) {
-				if (_log.isDebugEnabled()) {
-					_log.debug(
-						"Expected close tag for image " +
-							html.substring(curIndex));
-				}
-
-				sb.append(html.substring(curIndex));
-
-				previousIndex = curIndex;
-
-				break;
-			}
-
-			String text = html.substring(curIndex, pos);
-
-			FileEntry fileEntry = KBArticleImporterUtil.extractImageFileEntry(
-				text, fileEntriesMap);
-
-			if (fileEntry == null) {
-				if (_log.isWarnEnabled()) {
-					_log.warn("Unable to find image source " + text);
-				}
-
-				sb.append("<img alt=\"missing image\" src=\"\" ");
-			}
-			else {
-				String imageSrc = StringPool.BLANK;
-
-				try {
-					imageSrc = DLUtil.getPreviewURL(
-						fileEntry, fileEntry.getFileVersion(), null,
-						StringPool.BLANK);
-				}
-				catch (PortalException pe) {
-					if (_log.isWarnEnabled()) {
-						_log.warn(
-							"Unable to obtain image url from fileEntry " +
-								fileEntry.getFileEntryId());
-					}
-				}
-
-				sb.append("<img alt=\"");
-				sb.append(HtmlUtil.escapeAttribute(fileEntry.getTitle()));
-				sb.append("\" src=\"");
-				sb.append(imageSrc);
-				sb.append("\" ");
-			}
-
-			previousIndex = pos;
-		}
-
-		if (previousIndex < html.length()) {
-			sb.append(html.substring(previousIndex));
-		}
 
 		return sb.toString();
 	}
