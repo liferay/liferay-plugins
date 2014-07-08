@@ -16,6 +16,7 @@ package com.liferay.knowledgebase.service.impl;
 
 import com.liferay.knowledgebase.KBCommentContentException;
 import com.liferay.knowledgebase.admin.social.AdminActivityKeys;
+import com.liferay.knowledgebase.admin.util.AdminUtil;
 import com.liferay.knowledgebase.model.KBArticle;
 import com.liferay.knowledgebase.model.KBComment;
 import com.liferay.knowledgebase.model.KBCommentConstants;
@@ -24,21 +25,36 @@ import com.liferay.knowledgebase.service.KBArticleLocalServiceUtil;
 import com.liferay.knowledgebase.service.KBTemplateLocalServiceUtil;
 import com.liferay.knowledgebase.service.base.KBCommentLocalServiceBaseImpl;
 import com.liferay.knowledgebase.util.comparator.KBCommentCreateDateComparator;
+import com.liferay.knowledgebase.util.KnowledgeBaseUtil;
+import com.liferay.knowledgebase.util.PortletKeys;
+import com.liferay.mail.service.MailServiceUtil;
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.mail.MailMessage;
 import com.liferay.portal.kernel.systemevent.SystemEvent;
+import com.liferay.portal.kernel.transaction.TransactionCommitCallbackRegistryUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.SystemEventConstants;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.ServiceContext;
 
+import java.io.UnsupportedEncodingException;
+
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.Callable;
+
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
+
+import javax.portlet.PortletPreferences;
 
 /**
  * @author Peter Shin
@@ -77,6 +93,11 @@ public class KBCommentLocalServiceImpl extends KBCommentLocalServiceBaseImpl {
 		kbComment.setStatus(KBCommentConstants.STATUS_PENDING);
 
 		kbCommentPersistence.update(kbComment);
+
+		// Feedback notifications
+
+		notifyFeedbackUser(
+			kbComment, KBCommentConstants.STATUS_NONE, serviceContext);
 
 		// Social
 
@@ -227,15 +248,96 @@ public class KBCommentLocalServiceImpl extends KBCommentLocalServiceBaseImpl {
 		return kbComment;
 	}
 
-	public KBComment updateStatus(long kbCommentId, int status)
+	public KBComment updateStatus(
+			long kbCommentId, int status, ServiceContext serviceContext)
 		throws PortalException {
 
 		KBComment kbComment = kbCommentPersistence.findByPrimaryKey(
 			kbCommentId);
 
+		int previousStatus = kbComment.getStatus();
+
 		kbComment.setStatus(status);
 
-		return updateKBComment(kbComment);
+		KBComment updatedKBComment = updateKBComment(kbComment);
+
+		notifyFeedbackUser(updatedKBComment, previousStatus, serviceContext);
+
+		return updatedKBComment;
+	}
+
+	protected void notifyFeedbackUser(
+			KBComment kbComment, int previousStatus,
+			ServiceContext serviceContext)
+		throws PortalException {
+
+		try {
+			int status = kbComment.getStatus();
+
+			if (AdminUtil.isBackwardsStatusTransition(previousStatus, status)) {
+				return;
+			}
+
+			PortletPreferences preferences =
+				portletPreferencesLocalService.getPreferences(
+					kbComment.getCompanyId(), kbComment.getGroupId(),
+					PortletKeys.PREFS_OWNER_TYPE_GROUP,
+					PortletKeys.PREFS_PLID_SHARED,
+					PortletKeys.KNOWLEDGE_BASE_ADMIN, null);
+
+			if (!AdminUtil.isFeedbackStatusChangeNotificationEnabled(
+					status, preferences)) {
+
+				return;
+			}
+
+			User user = userLocalService.getUser(kbComment.getUserId());
+
+			String fromName = AdminUtil.getEmailFromName(
+				preferences, serviceContext.getCompanyId());
+			String fromAddress = AdminUtil.getEmailFromAddress(
+				preferences, kbComment.getCompanyId());
+
+			InternetAddress from = new InternetAddress(fromAddress, fromName);
+			InternetAddress to = new InternetAddress(user.getEmailAddress());
+
+			String subject =
+				AdminUtil.getEmailKBArticleFeedbackNotificationSubject(
+					status, preferences);
+
+			String body = AdminUtil.getEmailKBArticleFeedbackNotificationBody(
+				status, preferences);
+
+			KBArticle kbArticle = kbArticleLocalService.getLatestKBArticle(
+				kbComment.getClassPK(), WorkflowConstants.STATUS_APPROVED);
+
+			String processedSubject = replaceContent(
+				subject, kbArticle, kbComment, serviceContext);
+
+			String processedBody = replaceContent(
+				body, kbArticle, kbComment, serviceContext);
+
+			final MailMessage mailMessage = new MailMessage(
+				from, to, processedSubject, processedBody, false);
+
+			TransactionCommitCallbackRegistryUtil.registerCallback(
+				new Callable<Void>() {
+
+					@Override
+					public Void call() throws Exception {
+						MailServiceUtil.sendEmail(mailMessage);
+
+						return null;
+					}
+
+				});
+		}
+		catch (UnsupportedEncodingException uee) {
+			throw new SystemException(uee);
+		}
+		catch (AddressException ae) {
+			throw new PortalException(ae);
+		}
 	}
 
 	protected void putTitle(JSONObject jsonObject, KBComment kbComment) {
@@ -261,6 +363,27 @@ public class KBCommentLocalServiceImpl extends KBCommentLocalServiceBaseImpl {
 		catch (Exception e) {
 			_log.error(e);
 		}
+	}
+
+	protected String replaceContent(
+		String content, KBArticle kbArticle, KBComment kbComment,
+		ServiceContext serviceContext) {
+
+		String kbArticleURL = KnowledgeBaseUtil.getKBArticleURL(
+			serviceContext.getPlid(), kbArticle.getResourcePrimKey(),
+			kbArticle.getStatus(), serviceContext.getPortalURL(), false);
+
+		return StringUtil.replace(
+			content,
+			new String[] {
+				"[$ARTICLE_CONTENT$]", "[$ARTICLE_TITLE$]", "[$ARTICLE_URL$]",
+				"[$COMMENT_CONTENT$]", "[$TO_NAME$]"
+			},
+			new String[] {
+				kbArticle.getContent(), kbArticle.getTitle(), kbArticleURL,
+				kbComment.getContent(), kbComment.getUserName()
+			}
+		);
 	}
 
 	protected void validate(String content) throws PortalException {

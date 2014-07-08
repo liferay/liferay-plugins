@@ -16,6 +16,7 @@ package com.liferay.knowledgebase.admin.util;
 
 import com.liferay.knowledgebase.model.KBArticle;
 import com.liferay.knowledgebase.model.KBArticleConstants;
+import com.liferay.knowledgebase.model.KBCommentConstants;
 import com.liferay.knowledgebase.service.KBArticleLocalServiceUtil;
 import com.liferay.knowledgebase.util.PortletPropsValues;
 import com.liferay.portal.kernel.bean.BeanPropertiesUtil;
@@ -115,6 +116,115 @@ public class AdminUtil {
 
 		return ContentUtil.get(
 			PortletPropsValues.ADMIN_EMAIL_KB_ARTICLE_ADDED_SUBJECT);
+	}
+
+	public static String getEmailKBArticleFeedbackInProgressBody(
+		PortletPreferences portletPreferences) {
+
+		return ContentUtil.get(
+			PortletPropsValues.
+				ADMIN_EMAIL_KB_ARTICLE_FEEDBACK_IN_PROGRESS_BODY);
+	}
+
+	public static boolean getEmailKBArticleFeedbackInProgressEnabled(
+		PortletPreferences portletPreferences) {
+
+		return PortletPropsValues.
+			ADMIN_EMAIL_KB_ARTICLE_FEEDBACK_IN_PROGRESS_ENABLED;
+	}
+
+	public static String getEmailKBArticleFeedbackInProgressSubject(
+		PortletPreferences portletPreferences) {
+
+		return ContentUtil.get(
+			PortletPropsValues.
+				ADMIN_EMAIL_KB_ARTICLE_FEEDBACK_IN_PROGRESS_SUBJECT);
+	}
+
+	public static String getEmailKBArticleFeedbackNotificationBody(
+		int status, PortletPreferences portletPreferences) {
+
+		if (status == KBCommentConstants.STATUS_PENDING) {
+			return AdminUtil.getEmailKBArticleFeedbackReceivedBody(
+				portletPreferences);
+		}
+		else if (status == KBCommentConstants.STATUS_IN_PROGRESS) {
+			return AdminUtil.getEmailKBArticleFeedbackInProgressBody(
+				portletPreferences);
+		}
+		else if (status == KBCommentConstants.STATUS_RESOLVED) {
+			return AdminUtil.getEmailKBArticleFeedbackResolvedBody(
+				portletPreferences);
+		}
+		else {
+			throw new IllegalArgumentException(
+				String.format("unknown feedback status: %s", status));
+		}
+	}
+
+	public static String getEmailKBArticleFeedbackNotificationSubject(
+		int status, PortletPreferences portletPreferences) {
+
+		if (status == KBCommentConstants.STATUS_PENDING) {
+			return AdminUtil.getEmailKBArticleFeedbackReceivedSubject(
+				portletPreferences);
+		}
+		else if (status == KBCommentConstants.STATUS_IN_PROGRESS) {
+			return AdminUtil.getEmailKBArticleFeedbackInProgressSubject(
+				portletPreferences);
+		}
+		else if (status == KBCommentConstants.STATUS_RESOLVED) {
+			return AdminUtil.getEmailKBArticleFeedbackResolvedSubject(
+				portletPreferences);
+		}
+		else {
+			throw new IllegalArgumentException(
+				String.format("unknown feedback status: %s", status));
+		}
+	}
+
+	public static String getEmailKBArticleFeedbackReceivedBody(
+		PortletPreferences portletPreferences) {
+
+		return ContentUtil.get(
+			PortletPropsValues.ADMIN_EMAIL_KB_ARTICLE_FEEDBACK_RECEIVED_BODY);
+	}
+
+	public static boolean getEmailKBArticleFeedbackReceivedEnabled(
+		PortletPreferences portletPreferences) {
+
+		return PortletPropsValues.
+			ADMIN_EMAIL_KB_ARTICLE_FEEDBACK_RECEIVED_ENABLED;
+	}
+
+	public static String getEmailKBArticleFeedbackReceivedSubject(
+		PortletPreferences portletPreferences) {
+
+		return ContentUtil.get(
+			PortletPropsValues.
+				ADMIN_EMAIL_KB_ARTICLE_FEEDBACK_RECEIVED_SUBJECT);
+	}
+
+	public static String getEmailKBArticleFeedbackResolvedBody(
+		PortletPreferences portletPreferences) {
+
+		return ContentUtil.get(
+			PortletPropsValues.ADMIN_EMAIL_KB_ARTICLE_FEEDBACK_RESOLVED_BODY);
+	}
+
+	public static boolean getEmailKBArticleFeedbackResolvedEnabled(
+		PortletPreferences portletPreferences) {
+
+		return PortletPropsValues.
+			ADMIN_EMAIL_KB_ARTICLE_FEEDBACK_RESOLVED_ENABLED;
+	}
+
+	public static String getEmailKBArticleFeedbackResolvedSubject(
+		PortletPreferences portletPreferences) {
+
+		return ContentUtil.get(
+			PortletPropsValues.
+				ADMIN_EMAIL_KB_ARTICLE_FEEDBACK_RESOLVED_SUBJECT);
 	}
 
 	public static String getEmailKBArticleUpdatedBody(
@@ -246,6 +356,34 @@ public class AdminUtil {
 		}
 
 		return outputDocument.toString();
+	}
+
+	public static boolean isBackwardsStatusTransition(
+		int fromStatus, int toStatus) {
+
+		if (fromStatus > toStatus) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+
+	public static boolean isFeedbackStatusChangeNotificationEnabled(
+		int status, PortletPreferences preferences) {
+
+		if (status == KBCommentConstants.STATUS_PENDING) {
+			return getEmailKBArticleFeedbackReceivedEnabled(preferences);
+		}
+		else if (status == KBCommentConstants.STATUS_IN_PROGRESS) {
+			return getEmailKBArticleFeedbackInProgressEnabled(preferences);
+		}
+		else if (status == KBCommentConstants.STATUS_RESOLVED) {
+			return getEmailKBArticleFeedbackResolvedEnabled(preferences);
+		}
+		else {
+			return false;
+		}
 	}
 
 	public static String[] unescapeSections(String sections) {
