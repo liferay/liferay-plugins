@@ -1179,6 +1179,20 @@
 					);
 
 					return confirmationPanel.render().show();
+				},
+
+				showMessage: function(messageContainer, message, timeDisplayed) {
+					timeDisplayed = timeDisplayed || 5000;
+
+					messageContainer.set('text', message);
+					messageContainer.show();
+
+					setTimeout(
+						function() {
+							messageContainer.hide();
+						},
+						timeDisplayed
+					);
 				}
 			};
 		},
