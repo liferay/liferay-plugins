@@ -52,8 +52,7 @@ public class KBArticleImporterUtil {
 		catch (KBArticleImportException kbaie) {
 			if (_log.isWarnEnabled()) {
 				_log.warn(
-					"Unsupported image file suffix used in ZIP file: " +
-						name);
+					"Unsupported image file suffix used in ZIP file " + name);
 			}
 		}
 
@@ -67,9 +66,9 @@ public class KBArticleImporterUtil {
 		catch (Exception e) {
 			StringBuilder sb = new StringBuilder(4);
 
-			sb.append("Unable to import image file: ");
+			sb.append("Unable to import image file ");
 			sb.append(name);
-			sb.append(". ");
+			sb.append(": ");
 			sb.append(e.getLocalizedMessage());
 
 			throw new KBArticleImportException(sb.toString());
