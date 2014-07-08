@@ -41,6 +41,59 @@ public class PortletPropsValues {
 	public static final String ADMIN_EMAIL_KB_ARTICLE_ADDED_SUBJECT =
 		PortletProps.get(PortletPropsKeys.ADMIN_EMAIL_KB_ARTICLE_ADDED_SUBJECT);
 
+	public static final String
+		ADMIN_EMAIL_KB_ARTICLE_FEEDBACK_IN_PROGRESS_BODY =
+			PortletProps.get(
+				PortletPropsKeys.
+					ADMIN_EMAIL_KB_ARTICLE_FEEDBACK_IN_PROGRESS_BODY);
+
+	public static final boolean
+		ADMIN_EMAIL_KB_ARTICLE_FEEDBACK_IN_PROGRESS_ENABLED =
+			GetterUtil.getBoolean(
+				PortletProps.get(
+					PortletPropsKeys.
+						ADMIN_EMAIL_KB_ARTICLE_FEEDBACK_IN_PROGRESS_ENABLED));
+
+	public static final String
+		ADMIN_EMAIL_KB_ARTICLE_FEEDBACK_IN_PROGRESS_SUBJECT =
+			PortletProps.get(
+				PortletPropsKeys.
+					ADMIN_EMAIL_KB_ARTICLE_FEEDBACK_IN_PROGRESS_SUBJECT);
+
+	public static final String ADMIN_EMAIL_KB_ARTICLE_FEEDBACK_RECEIVED_BODY =
+		PortletProps.get(
+			PortletPropsKeys.ADMIN_EMAIL_KB_ARTICLE_FEEDBACK_RECEIVED_BODY);
+
+	public static final boolean
+		ADMIN_EMAIL_KB_ARTICLE_FEEDBACK_RECEIVED_ENABLED =
+			GetterUtil.getBoolean(
+				PortletProps.get(
+					PortletPropsKeys.
+						ADMIN_EMAIL_KB_ARTICLE_FEEDBACK_RECEIVED_ENABLED));
+
+	public static final String
+		ADMIN_EMAIL_KB_ARTICLE_FEEDBACK_RECEIVED_SUBJECT =
+			PortletProps.get(
+				PortletPropsKeys.
+					ADMIN_EMAIL_KB_ARTICLE_FEEDBACK_RECEIVED_SUBJECT);
+
+	public static final String ADMIN_EMAIL_KB_ARTICLE_FEEDBACK_RESOLVED_BODY =
+		PortletProps.get(
+			PortletPropsKeys.ADMIN_EMAIL_KB_ARTICLE_FEEDBACK_RESOLVED_BODY);
+
+	public static final boolean
+		ADMIN_EMAIL_KB_ARTICLE_FEEDBACK_RESOLVED_ENABLED =
+			GetterUtil.getBoolean(
+				PortletProps.get(
+					PortletPropsKeys.
+						ADMIN_EMAIL_KB_ARTICLE_FEEDBACK_RESOLVED_ENABLED));
+
+	public static final String
+		ADMIN_EMAIL_KB_ARTICLE_FEEDBACK_RESOLVED_SUBJECT =
+			PortletProps.get(
+				PortletPropsKeys.
+					ADMIN_EMAIL_KB_ARTICLE_FEEDBACK_RESOLVED_SUBJECT);
+
 	public static final String ADMIN_EMAIL_KB_ARTICLE_UPDATED_BODY =
 		PortletProps.get(PortletPropsKeys.ADMIN_EMAIL_KB_ARTICLE_UPDATED_BODY);
 
