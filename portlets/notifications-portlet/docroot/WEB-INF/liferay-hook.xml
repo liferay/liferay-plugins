@@ -22,6 +22,10 @@
 		<service-impl>com.liferay.notifications.hook.service.impl.BookmarksEntryLocalServiceImpl</service-impl>
 	</service>
 	<service>
+		<service-type>com.liferay.portlet.journal.service.JournalArticleLocalService</service-type>
+		<service-impl>com.liferay.notifications.hook.service.impl.JournalArticleLocalServiceImpl</service-impl>
+	</service>
+	<service>
 		<service-type>com.liferay.portlet.messageboards.service.MBMessageLocalService</service-type>
 		<service-impl>com.liferay.notifications.hook.service.impl.MBMessageLocalServiceImpl</service-impl>
 	</service>
