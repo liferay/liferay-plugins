@@ -27,7 +27,7 @@ Group group = themeDisplay.getScopeGroup();
 	<c:when test="<%= group.isUser() %>">
 
 		<%
-		List<User> users = UserLocalServiceUtil.getSocialUsers(group.getClassPK(), SocialRelationConstants.TYPE_BI_CONNECTION, StringPool.EQUAL, 0, 10, new UserLoginDateComparator());
+		List<User> users = UserLocalServiceUtil.getSocialUsers(group.getClassPK(), SocialRelationConstants.TYPE_BI_CONNECTION, StringPool.EQUAL, 0, 10, new UserLastNameComparator());
 
 		PortletURL portletURL = null;
 
