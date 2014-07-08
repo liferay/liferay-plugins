@@ -136,12 +136,13 @@ public class KBArticleMarkdownConverter {
 
 			String text = _html.substring(curIndex, pos);
 
-			String imageName = KBArticleImporterUtil.extractImageName(text);
+			String imageFileName = KBArticleImporterUtil.extractImageFileName(
+				text);
 
-			FileEntry fileEntry = KBArticleImporterUtil.addImageAttachment(
-				imageName, userId, kbArticle, zipReader, fileEntriesMap);
+			FileEntry imageFileEntry = KBArticleImporterUtil.addImageFileEntry(
+				imageFileName, userId, kbArticle, zipReader, fileEntriesMap);
 
-			if (fileEntry == null) {
+			if (imageFileEntry == null) {
 				if (_log.isWarnEnabled()) {
 					_log.warn("Unable to find image source " + text);
 				}
@@ -153,19 +154,19 @@ public class KBArticleMarkdownConverter {
 
 				try {
 					imageSrc = DLUtil.getPreviewURL(
-						fileEntry, fileEntry.getFileVersion(), null,
+						imageFileEntry, imageFileEntry.getFileVersion(), null,
 						StringPool.BLANK);
 				}
 				catch (PortalException pe) {
 					if (_log.isWarnEnabled()) {
 						_log.warn(
-							"Unable to obtain image url from fileEntry " +
-								fileEntry.getFileEntryId());
+							"Unable to obtain image URL from file entry " +
+								imageFileEntry.getFileEntryId());
 					}
 				}
 
 				sb.append("<img alt=\"");
-				sb.append(HtmlUtil.escapeAttribute(fileEntry.getTitle()));
+				sb.append(HtmlUtil.escapeAttribute(imageFileEntry.getTitle()));
 				sb.append("\" src=\"");
 				sb.append(imageSrc);
 				sb.append("\" ");
