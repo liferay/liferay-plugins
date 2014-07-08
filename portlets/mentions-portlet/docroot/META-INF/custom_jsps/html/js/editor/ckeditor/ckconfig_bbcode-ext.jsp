@@ -14,7 +14,7 @@
  */
 --%>
 
-<%@ include file="/html/js/editor/ckeditor/ckconfig_bbcode.portal.jsp" %>
+<%@ page import="com.liferay.portal.util.PortletKeys" %>
 
 <%
 String portletId = ParamUtil.getString(request, "p_p_id");
