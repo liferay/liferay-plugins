@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+
+#parse ($init)
+
+<html class="$root_css_class" dir="#language ("lang.dir")" lang="$w3c_language_id">
+
+<head>
+	<title>$the_title - $company_name</title>
+
+	<meta content="initial-scale=1.0, width=device-width" name="viewport" />
+
+	<!-- Nav bar on top -->
+	$theme.include($top_head_include)
+
+	<!-- For the middle-circle -->
+<!-- 	<link rel='stylesheet' id='theme_stylesheet-css'  href='http://wp-themes.com/wp-content/themes/ward/style.css?ver=4.0-alpha-20140630' type='text/css' media='all' /> -->
+	<link rel='stylesheet' id='theme_stylesheet-css'  href="$css_folder/style.css?ver=4.0-alpha-20140630" type='text/css' media='all' />
+
+	<link rel='stylesheet' id='google_fonts-css'  href='http://fonts.googleapis.com/css?family=Lato:300' type='text/css' media='all' />
+	<script type='text/javascript' src='$javascript_folder/jquery-1.11.1.js'></script>
+	<script type='text/javascript' src='$javascript_folder/jquery-migrate-1.2.1.min.js'></script>
+	
+
+	<style>	.container { max-width: 1200px; } </style>	
+
+</head>
+
+<body class="$css_class">
+
+$theme.include($body_top_include)
+
+<!-- Remove white space -->
+	<BR><BR>
+
+
+
+
+<div class="home blog basic" id="page">
+
+	<div id="page">
+
+		<header class="navbar-inverse navbar navbar-fixed-top" role="navigation">
+			#if (!$is_signed_in)
+				<div class="container">
+
+					<h1 class="site-title">
+						#if (!$is_signed_in)
+							<a href="$sign_in_url" id="sign-in" rel="nofollow">$sign_in_text</a>
+						#end 	
+					</h1>
+			
+				</div>			
+			#else
+				#dockbar()
+			#end				
+		</header>
+
+
+		<div class="home-top">
+			<div class="container">
+				<div class="row">
+					<div class="home-jumbotron jumbotron col-lg-10 col-lg-offset-1 col-sm-12">
+						<h1>
+							<a class="$logo_css_class" href="$site_default_url" title="#language_format ("go-to-x", [$site_name])">
+								<img alt="$logo_description" height="85" src="$site_logo" width="85" />
+								#if ($show_site_name)
+									<span class="site-name" title="#language_format ("go-to-x", [$site_name])" style="text-decoration:none">
+										$site_name
+									</span>
+								#end	
+							</a>
+						</h1>
+
+
+						<p class="lead">Liferay Portal is a free and open source enterprise portal project written in Java and distributed under the GNU Lesser General Public License and optional commercial license</p>
+						
+						<p class="entry-title">$the_title - $company_name</p>
+
+						#if (!$is_signed_in)
+							<a href="$sign_in_url" id="btn-sign-in-off" rel="nofollow">
+								<i class="middle-circle icon-off" style="text-decoration:none; color:#2a556a"></i>
+							</a>
+						#else
+							<a href="$sign_out_url" id="btn-sign-in-on" rel="nofollow"><i class="middle-circle icon-off" style="text-decoration:none;"></i></a>
+						#end
+					</div>
+				</div>
+			</div>
+		</div>
+		
+
+		<div id="main">
+			<div id="primary" class="">	      
+
+	 		#if ($selectable)
+				$theme.include($content_include)
+			#else
+				$portletDisplay.recycle()
+
+				$portletDisplay.setTitle($the_title)
+
+				$theme.wrapPortlet("portlet.vm", $content_include)
+			#end  
+
+
+			</div><!-- #primary -->
+		</div> <!-- end #main -->		
+	</div>	<!-- end #page -->
+	
+</div>	
+<!-- container-fluid -->
+
+
+
+<footer id="footer" role="contentinfo">
+	<div id="footer-content" class="container">
+		<div class="row">
+		</div><!-- .row -->
+
+		<div class="row">
+			<div class="col-lg-12">
+				<span class="line"></span>
+				<span class="pull-left">Copyright &copy; 2014  <a href="http://liferay.com">Liferay Inc.</a>. All Rights Reserved.</span>
+				<span class="credit-link pull-right"><i class="icon-leaf"></i>Ward-Theme-Project by Lam Nguyen.</span>
+			</div><!-- .col-lg-12 -->
+		</div><!-- .row -->
+	</div><!-- #footer-content.container -->
+</footer><!-- #footer -->
+
+
+$theme.include($body_bottom_include)
+
+$theme.include($bottom_include)
+
+<script type='text/javascript' src='$javascript_folder/bootstrap.min.js?ver=2.2.2'></script>
+<script type='text/javascript' src='$javascript_folder/theme.js?ver=4.0-alpha-20140630'></script>
+
+</body>
+
+</html>
