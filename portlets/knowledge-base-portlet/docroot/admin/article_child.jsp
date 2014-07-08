@@ -47,13 +47,6 @@ List<KBArticle> childKBArticles = KBArticleServiceUtil.getKBArticles(scopeGroupI
 					<a href="<%= viewKBArticleURL %>"><%= childrenKBArticle.getTitle() %></a>
 				</div>
 				<div class="kb-element-body">
-
-					<%
-					request.setAttribute("article_icons.jsp-kb_article", childrenKBArticle);
-					%>
-
-					<liferay-util:include page="/admin/article_icons.jsp" servletContext="<%= application %>" />
-
 					<c:choose>
 						<c:when test="<%= Validator.isNotNull(childrenKBArticle.getDescription()) %>">
 							<%= childrenKBArticle.getDescription() %>
