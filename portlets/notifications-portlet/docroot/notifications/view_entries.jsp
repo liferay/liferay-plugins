@@ -28,8 +28,8 @@ int userNotificationEventsCount = 0;
 
 int totalUnreadUserNotificationEventsCount = UserNotificationEventLocalServiceUtil.getArchivedUserNotificationEventsCount(themeDisplay.getUserId(), false);
 int totalUserNotificationEventsCount = UserNotificationEventLocalServiceUtil.getUserNotificationEventsCount(themeDisplay.getUserId());
+int unreadActionableUserNotificationsCount = NotificationsUtil.getArchivedUserNotificationEventsCount(themeDisplay.getUserId(), true, false);
 int unreadNonActionableUserNotificationsCount = NotificationsUtil.getArchivedUserNotificationEventsCount(themeDisplay.getUserId(), false, false);
-int userNotificationEventsCount = UserNotificationEventLocalServiceUtil.getArchivedUserNotificationEventsCount(themeDisplay.getUserId(), false);
 
 List<Long> userNotificationEventIds = new ArrayList<Long>();
 
@@ -138,7 +138,7 @@ else {
 		<li class="message">
 			<div class="dockbarMarkAllAsRead"></div>
 		</li>
-		<li class="bottom message">
+		<li class="bottom message all-notifications-count">
 			<liferay-portlet:renderURL plid="<%= notificationsPlid %>" portletName="<%= PortletKeys.NOTIFICATIONS %>" var="viewAllNotifications" windowState="<%= LiferayWindowState.MAXIMIZED.toString() %>">
 				<portlet:param name="mvcPath" value="/notifications/view.jsp" />
 			</liferay-portlet:renderURL>
@@ -193,22 +193,24 @@ else {
 		</c:if>
 	</c:when>
 	<c:otherwise>
+		<c:if test="<%= userNotificationEventsCount > 0 %>">
 
-		<%
-		for (UserNotificationEvent userNotificationEvent : userNotificationEvents) {
-		%>
+			<%
+			for (UserNotificationEvent userNotificationEvent : userNotificationEvents) {
+			%>
 
-			<%@ include file="/notifications/notification_entry.jspf" %>
+				<%@ include file="/notifications/notification_entry.jspf" %>
 
-		<%
-		}
-		%>
+			<%
+			}
+			%>
 
-		<li class="clearfix message">
-			<span class="left-nav <%= start == 0 ? "disabled" : "previous" %>"><a href="javascript:;"><liferay-ui:message key="previous" /></a></span>
-			<span><liferay-ui:message arguments="<%= new Object[] {(start + 1), end <= userNotificationEventsCount ? end : userNotificationEventsCount, userNotificationEventsCount} %>" key="showing-x-x-of-x-results" translateArguments="<%= false %>" /></span>
-			<span class="right-nav <%= userNotificationEventsCount <= end ? "disabled" : "next" %>"><a href="javascript:;"><liferay-ui:message key="next" /></a></span>
-		</li>
+			<li class="clearfix message">
+				<span class="left-nav <%= start == 0 ? "disabled" : "previous" %>"><a href="javascript:;"><liferay-ui:message key="previous" /></a></span>
+				<span><liferay-ui:message arguments="<%= new Object[] {(start + 1), end <= userNotificationEventsCount ? end : userNotificationEventsCount, userNotificationEventsCount} %>" key="showing-x-x-of-x-results" translateArguments="<%= false %>" /></span>
+				<span class="right-nav <%= userNotificationEventsCount <= end ? "disabled" : "next" %>"><a href="javascript:;"><liferay-ui:message key="next" /></a></span>
+			</li>
+		</c:if>
 	</c:otherwise>
 </c:choose>
 

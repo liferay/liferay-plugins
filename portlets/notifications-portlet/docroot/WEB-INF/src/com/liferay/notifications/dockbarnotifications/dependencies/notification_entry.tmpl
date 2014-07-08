@@ -1,26 +1,27 @@
 <li class="user-notification">
-	<div class="clearfix user-notification-link" data-href="[$LINK$]" data-markAsReadURL="[$MARK_AS_READ_URL$]">
+	[$ACTION_DIV$]
 
-	<div class="sender">
-		<span class="user-thumbnail">
-			<img alt="[$USER_FULL_NAME$]" src="[$USER_PORTRAIT_URL$]" />
-		</span>
-	</div>
-
-	<div class="content">
-		<div class="body">
-			[$BODY$]
+		<div class="sender">
+			<span class="user-thumbnail">
+				<img alt="[$USER_FULL_NAME$]" src="[$USER_PORTRAIT_URL$]" />
+			</span>
 		</div>
 
-		<div class="timestamp">
-			<span class="portlet-icon">
-				<span onmouseover="Liferay.Portal.ToolTip.show(this, '[$PORTLET_NAME$]')">
-					<img src="[$PORTLET_ICON$]">
-					<span class="taglib-text hide-accessible">[$PORTLET_NAME$]</span>
-				</span>
-			</span>
+		<div class="content">
+			<div class="body">
+				[$BODY$]
+			</div>
 
-			[$TIMESTAMP$]
+			<div class="timestamp">
+				<span class="portlet-icon">
+					<span onmouseover="Liferay.Portal.ToolTip.show(this, '[$PORTLET_NAME$]')">
+						<img src="[$PORTLET_ICON$]">
+						<span class="taglib-text hide-accessible">[$PORTLET_NAME$]</span>
+					</span>
+				</span>
+
+				[$TIMESTAMP$]
+			</div>
 		</div>
 	</div>
 </li>
