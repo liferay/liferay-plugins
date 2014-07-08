@@ -6801,6 +6801,35 @@ article .time {
   color: inherit;
 }
 
+/* Portlet-boundaries*/
+.breadcrumb,
+.portlet-boundary:not(.portlet-dockbar) {
+  padding: 70px 0 60px;
+  margin: 0;
+}
+body.page .breadcrumb,
+body.page .portlet-boundary {
+  padding-bottom: 20px;
+}
+.breadcrumb:nth-child(even),
+.portlet-boundary:nth-child(even) {
+  background: white;
+}
+.boxed.archive #primary .breadcrumb, .boxed.search #primary .breadcrumb,
+.boxed.archive #primary .portlet-boundary, .boxed.search #primary .portlet-boundary {
+  margin: 0 -15px;
+}
+.breadcrumb.time,
+.portlet-boundary.time {
+  color: inherit;
+}
+
+.portlet{
+  margin-right: 80px;
+  margin-left: 80px;  
+}
+
+
 /*.format-standard.featured-image .col-md-7 {
 	.home &,
 	.archive &,

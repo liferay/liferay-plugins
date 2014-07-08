@@ -1,5 +1,5 @@
 {
-	"layoutTemplateId": "2_columns_ii",
+	"layoutTemplateId": "1_column",
 	"privatePages": [
 		{
 			"columns": [
@@ -7,16 +7,82 @@
 					{
 						"portletId": "58"
 					}
-				],
-				[
-					{
-						"portletId": "47"
-					}
 				]
 			],
 			"friendlyURL": "/home",
 			"name": "Welcome",
 			"title": "Welcome"
 		}
-	]
+	],
+	"publicPages": [
+        {
+            "columns": [
+                [
+                    {
+                        "portletId": "47"
+                    },
+                    {
+                        "portletId": "50"
+                    },
+                    {
+                        "portletId": "58"
+                    },
+                    {
+                        "portletId": "16"
+                    },
+                    {
+                        "portletId": "61"
+                    },
+                    {
+                        "portletId": "3"
+                    },
+                    {
+                        "portletId": "23"
+                    },
+                    {
+                        "portletId": "16"
+                    },
+                    {
+                        "portletId": "71"
+                    }    
+                ]
+            ],
+            "friendlyURL": "/home",
+            "nameMap": {
+                "en_US": "Welcome",
+                "fr_CA": "Bienvenue"
+            },
+            "title": "Welcome"
+        },
+        {
+            "columns": [
+                [
+                    {
+                        "portletId": "58"
+                    }
+                ]
+            ],
+            "friendlyURL": "/parent-page",
+            "layouts": [
+                {
+                    "friendlyURL": "/child-page-1",
+                    "name": "Child Page 1",
+                    "title": "Child Page 1"
+                },
+                {
+                    "friendlyURL": "/child-page-2",
+                    "name": "Child Page 2",
+                    "title": "Child Page 2"
+                }
+            ],
+            "name": "Parent Page",
+            "title": "Parent Page"
+        },
+        {
+            "friendlyURL": "/hidden-page",
+            "name": "Hidden Page",
+            "title": "Hidden Page",
+            "hidden": "true"
+        }
+    ]
 }

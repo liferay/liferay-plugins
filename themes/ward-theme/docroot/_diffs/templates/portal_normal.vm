@@ -44,18 +44,9 @@ $theme.include($body_top_include)
 				<div class="container">
 
 					<h1 class="site-title">
-<!-- 						<a class="$logo_css_class" href="$site_default_url" title="#language_format ("go-to-x", [$site_name])">
-							<img alt="$logo_description" height="$site_logo_height" src="$site_logo" width="$site_logo_width" />
-							#if ($show_site_name)
-								<span class="site-name" title="#language_format ("go-to-x", [$site_name])">
-									$site_name
-								</span>
-							#end	
-						</a> -->
 						#if (!$is_signed_in)
 							<a href="$sign_in_url" id="sign-in" rel="nofollow">$sign_in_text</a>
 						#end 	
-
 					</h1>
 			
 				</div>			
@@ -74,7 +65,7 @@ $theme.include($body_top_include)
 								<img alt="$logo_description" height="85" src="$site_logo" width="85" />
 								#if ($show_site_name)
 									<span class="site-name" title="#language_format ("go-to-x", [$site_name])" style="text-decoration:none">
-										$site_name Portal
+										$site_name
 									</span>
 								#end	
 							</a>
@@ -82,7 +73,9 @@ $theme.include($body_top_include)
 
 
 						<p class="lead">Liferay Portal is a free and open source enterprise portal project written in Java and distributed under the GNU Lesser General Public License and optional commercial license</p>
-						<!-- <i class="middle-circle icon-off"></i> -->
+						
+						<p class="entry-title">$the_title - $company_name</p>
+
 						#if (!$is_signed_in)
 							<a href="$sign_in_url" id="btn-sign-in-off" rel="nofollow">
 								<i class="middle-circle icon-off" style="text-decoration:none; color:#2a556a"></i>
@@ -97,231 +90,18 @@ $theme.include($body_top_include)
 		
 
 		<div id="main">
-			<div id="primary" class="">
-	
-	        
-				<article id="post-19" class="post-19 post type-post status-publish format-standard hentry category-uncategorized tag-boat tag-lake no-featured-image">
-					<div class="container">
-						<div class="row">
-							
-							<div class="col-md-8 col-sm-12 col-md-offset-2">
+			<div id="primary" class="">	      
 
-						    	<h1 class="entry-title">
-						    		#if (!$is_signed_in)
-										<a href="$sign_in_url" title="Click to Sign in" rel="bookmark">Click to Sign in &uarr;</a>
-									#else
-										<a href="$sign_out_url" title="Click to Sign out" rel="bookmark">Click to Sign out &uarr;</a>
-									#end	
-								</h1>
+	 		#if ($selectable)
+				$theme.include($content_include)
+			#else
+				$portletDisplay.recycle()
 
-								<div class="entry-meta">
-									by <a href="#" title="Posts by Theme Admin" rel="author">Lam Nguyen</a>&nbsp;on&nbsp;<a href="#" class="time"><time class="published updated" datetime="2008-10-17">3 July, 2014</time></a>	
-								</div>
+				$portletDisplay.setTitle($the_title)
 
-						    	<div class="entry-content">
-						    		#if ($is_signed_in)
-							    		<p class="lead">You are signed in!</p>
-							    	#else
-							    		<p class="lead">Not signed in!!</p>
-						    		#end	
-									<p class="more-link-p"><a class="btn btn-danger" href="#">Read more &rarr;</a></p>
-						    	</div><!-- .entry-content -->
+				$theme.wrapPortlet("portlet.vm", $content_include)
+			#end  
 
-						    	<footer class="entry">
-			    				</footer><!-- .entry -->
-							</div>
-						</div>
-					</div>				
-				</article><!-- #post-19 -->
-		
-
-				<article id="post-36" class="post-36 post type-post status-publish format-standard hentry category-uncategorized no-featured-image">
-					<div class="container">
-						<div class="row">
-							
-							<div class="col-md-8 col-sm-12 col-md-offset-2">
-
-					    		<h1 class="entry-title">
-									<a href="#" title="Elements" rel="bookmark">Elements</a>
-								</h1>
-
-								<div class="entry-meta">
-									by <a href="#" title="Posts by Theme Admin" rel="author">Theme Admin</a>&nbsp;on&nbsp;<a href="#" class="time"><time class="published updated" datetime="2008-09-05">5 September, 2008</time></a>	
-								</div>
-
-					    		<div class="entry-content">
-						    		<p class="lead">The purpose of this HTML is to help determine what default settings are with CSS and to make sure that all possible HTML Elements are included in this HTML so as to not miss any possible Elements when designing a site. Heading 1 Heading 2 Heading 3 Heading 4 Heading 5 Heading 6 [top] Paragraph Lorem ipsum dolor sit amet...</p>
-									<p class="more-link-p"><a class="btn btn-danger" href="#">Read more &rarr;</a></p>
-					    		</div><!-- .entry-content -->
-					    		<footer class="entry">
-		    					</footer><!-- .entry -->
-							</div>
-						</div>
-					</div>
-				</article><!-- #post-36 -->
-
-
-				<article id="post-14" class="post-14 post type-post status-publish format-standard hentry category-uncategorized no-featured-image">
-					<div class="container">
-						<div class="row">
-									
-							<div class="col-md-8 col-sm-12 col-md-offset-2">
-
-						    	<h1 class="entry-title">
-									<a href="#" title="More Tags" rel="bookmark">More Tags</a>
-								</h1>
-
-								<div class="entry-meta">
-									by <a href="#" title="Posts by Theme Admin" rel="author">Theme Admin</a>&nbsp;on&nbsp;<a href="#" class="time"><time class="published updated" datetime="2008-06-21">21 June, 2008</time></a>&nbsp;&bull;&nbsp;<a href="#" title="Comment on More Tags">0 Comments</a>	
-								</div>
-
-								<div class="entry-content">
-									<p class="lead">More of these posts need tags.</p>
-									<p class="more-link-p"><a class="btn btn-danger" href="#">Read more &rarr;</a></p>
-								</div><!-- .entry-content -->
-
-								<footer class="entry">
-					    		</footer><!-- .entry -->
-							</div>
-						</div>
-					</div>
-				</article><!-- #post-14 -->
-
-
-				<article id="post-8" class="post-8 post type-post status-publish format-standard hentry category-uncategorized no-featured-image">
-					<div class="container">
-						<div class="row">
-									
-							<div class="col-md-8 col-sm-12 col-md-offset-2">
-
-								<h1 class="entry-title">
-									<a href="#" title="HTML" rel="bookmark">HTML</a>
-								</h1>
-
-								<div class="entry-meta">
-									by <a href="#" title="Posts by Theme Admin" rel="author">Theme Admin</a>&nbsp;on&nbsp;<a href="#" class="time"><time class="published updated" datetime="2008-06-21">21 June, 2008</time></a>&nbsp;&bull;&nbsp;<a href="#" title="Comment on HTML">1 Comment</a>	</div>
-							    
-							    <div class="entry-content">
-								    <p class="lead">What HTML tags would you like to see? Let's start with an unordered list: One Two Three Four And then move on to a more interesting ordered list: one, two buckle my shoe three, four knock at the door Five, six pick up sticks Seven, eight, lay them straight Nine, ten, a big fat hen Eleven, twelve, dig and delve..</p>
-									<p class="more-link-p"><a class="btn btn-danger" href="#">Read more &rarr;</a></p>
-							    </div><!-- .entry-content -->
-							    	
-								<footer class="entry">
-				    			</footer><!-- .entry -->
-							</div>
-						</div>
-					</div>
-				</article><!-- #post-8 -->
-
-
-				<article id="post-6" class="post-6 post type-post status-publish format-standard hentry category-uncategorized no-featured-image">
-					<div class="container">
-						<div class="row">
-									
-							<div class="col-md-8 col-sm-12 col-md-offset-2">
-							 	<h1 class="entry-title">
-									<a href="#" title="Links" rel="bookmark">Links</a>
-								</h1>
-
-								<div class="entry-meta">
-									by <a href="#" title="Posts by Theme Admin" rel="author">Theme Admin</a>&nbsp;on&nbsp;<a href="#" class="time"><time class="published updated" datetime="2008-06-20">20 June, 2008</time></a>	</div>
-							    
-							    <div class="entry-content">
-								    <p class="lead">A few well known WordPress links: WordPress.org, the Codex and the download page.</p>
-									<p class="more-link-p"><a class="btn btn-danger" href="#">Read more &rarr;</a></p>
-							    </div><!-- .entry-content -->
-
-							   	<footer class="entry">
-				    			</footer><!-- .entry -->
-							</div>
-						</div>
-					</div>
-				</article><!-- #post-6 -->
-
-
-				<article id="post-4" class="post-4 post type-post status-publish format-standard hentry category-first-child-category category-one-grandchild-category category-parent category-second-child-category no-featured-image">
-					<div class="container">
-						<div class="row">
-									
-							<div class="col-md-8 col-sm-12 col-md-offset-2">
-
-								<h1 class="entry-title">
-									<a href="#" title="Category Hierarchy" rel="bookmark">Category Hierarchy</a>
-								</h1>
-
-									<div class="entry-meta">
-										by <a href="#" title="Posts by Theme Admin" rel="author">Theme Admin</a>&nbsp;on&nbsp;<a href="#" class="time"><time class="published updated" datetime="2008-06-20">20 June, 2008</time></a>	
-									</div>
-
-									<div class="entry-content">
-									    <p class="lead">This post has 4 categories, part of a hierarchy that is 3 deep. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Fusce euismod commodo ante. Suspendisse potenti. Nunc pellentesque quam vel pede. Ut a lorem non urna molestie euismod. Fusce consequat tortor eu urna. Pellentesque aliquam, pede eget tincidunt feugiat, nunc massa hendrerit magna, non ultricies neque lectus nec dui...</p>
-										<p class="more-link-p"><a class="btn btn-danger" href="#">Read more &rarr;</a></p>
-					    			</div><!-- .entry-content -->
-
-							    	<footer class="entry">
-				    				</footer><!-- .entry -->
-
-							</div> <!-- col-md-8 col-sm-12 col-md-offset-2 -->
-						</div> <!-- row -->
-					</div> <!-- container -->
-				</article><!-- #post-4 -->
-
-
-				<article id="post-1" class="post-1 post type-post status-publish format-standard hentry category-uncategorized no-featured-image">
-					<div class="container">
-						<div class="row">
-									
-							<div class="col-md-8 col-sm-12 col-md-offset-2">
-
-								<h1 class="entry-title">
-									<a href="#" title="Hello world!" rel="bookmark">Hello world!</a>
-								</h1>
-
-								<div class="entry-meta">
-									by <a href="#" title="Posts by Theme Admin" rel="author">Theme Admin</a>&nbsp;on&nbsp;<a href="#" class="time"><time class="published updated" datetime="2008-06-04">4 June, 2008</time></a>&nbsp;&bull;&nbsp;<a href="#" title="Comment on Hello world!">2 Comments</a>	</div>
-							    
-							    <div class="entry-content">
-								    <p class="lead">Welcome to WordPress. This is your first post. Edit or delete it, then start blogging!</p>
-									<p class="more-link-p"><a class="btn btn-danger" href="#">Read more &rarr;</a></p>
-							    </div>
-							    <!-- .entry-content -->
-
-								<footer class="entry">
-				    			</footer><!-- .entry -->
-							</div>
-						</div> <!-- row -->
-					</div> <!-- container -->
-				</article><!-- #post-1 -->	
-
-
-				<!-- Portlets -->
-				<article id="main-content" class="main-content post type-post status-publish format-standard hentry category-uncategorized no-featured-image">
-					<div class="container">
-						<div class="row">
-							<section id="content">
-
-								<h1 class="entry-title">$the_title - $company_name</h1>
-								<!-- <h1 class="hide-accessible">$the_title</h1> -->
-
-						<!-- 		<nav class="site-breadcrumbs" id="breadcrumbs">
-									<h1 class="hide-accessible">#language ("breadcrumbs")</h1>
-									#breadcrumbs()
-								</nav> -->
-
-						 		#if ($selectable)
-									$theme.include($content_include)
-								#else
-									$portletDisplay.recycle()
-
-									$portletDisplay.setTitle($the_title)
-
-									$theme.wrapPortlet("portlet.vm", $content_include)
-								#end  
-							</section>	
-						</div> <!-- row -->
-					</div> <!-- container -->
-				</article><!-- #main-content -->	
-			
 
 			</div><!-- #primary -->
 		</div> <!-- end #main -->		
