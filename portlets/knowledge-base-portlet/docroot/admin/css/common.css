@@ -316,14 +316,8 @@
 		border-width: 0;
 	}
 
-	.kb-article-child {
-		border: 1px solid #CCC;
-
-		.kb-element-header {
-			a {
-				font-weight: bold;
-			}
-		}
+	.kb-article-child .kb-element-header a {
+		font-weight: bold;
 	}
 
 	.kb-article-siblings {
