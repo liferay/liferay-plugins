@@ -119,7 +119,14 @@ public class AdminUtil {
 	}
 
 	public static String getEmailKBArticleFeedbackInProgressBody(
-		PortletPreferences portletPreferences) {
+		PortletPreferences preferences) {
+
+		String emailKBArticleFeedbackInProgressBody = preferences.getValue(
+			"emailKBArticleFeedbackInProgressBody", StringPool.BLANK);
+
+		if (Validator.isNotNull(emailKBArticleFeedbackInProgressBody)) {
+			return emailKBArticleFeedbackInProgressBody;
+		}
 
 		return ContentUtil.get(
 			PortletPropsValues.
@@ -127,14 +134,29 @@ public class AdminUtil {
 	}
 
 	public static boolean getEmailKBArticleFeedbackInProgressEnabled(
-		PortletPreferences portletPreferences) {
+		PortletPreferences preferences) {
+
+		String emailKBArticleFeedbackInProgressEnabled = preferences.getValue(
+			"emailKBArticleFeedbackInProgressEnabled", StringPool.BLANK);
+
+		if (Validator.isNotNull(emailKBArticleFeedbackInProgressEnabled)) {
+			return GetterUtil.getBoolean(
+				emailKBArticleFeedbackInProgressEnabled);
+		}
 
 		return PortletPropsValues.
 			ADMIN_EMAIL_KB_ARTICLE_FEEDBACK_IN_PROGRESS_ENABLED;
 	}
 
 	public static String getEmailKBArticleFeedbackInProgressSubject(
-		PortletPreferences portletPreferences) {
+		PortletPreferences preferences) {
+
+		String emailKBArticleFeedbackInProgressSubject = preferences.getValue(
+			"emailKBArticleFeedbackInProgressSubject", StringPool.BLANK);
+
+		if (Validator.isNotNull(emailKBArticleFeedbackInProgressSubject)) {
+			return emailKBArticleFeedbackInProgressSubject;
+		}
 
 		return ContentUtil.get(
 			PortletPropsValues.
@@ -184,21 +206,42 @@ public class AdminUtil {
 	}
 
 	public static String getEmailKBArticleFeedbackReceivedBody(
-		PortletPreferences portletPreferences) {
+		PortletPreferences preferences) {
+
+		String emailKBArticleFeedbackReceivedBody = preferences.getValue(
+			"emailKBArticleFeedbackReceivedBody", StringPool.BLANK);
+
+		if (Validator.isNotNull(emailKBArticleFeedbackReceivedBody)) {
+			return emailKBArticleFeedbackReceivedBody;
+		}
 
 		return ContentUtil.get(
 			PortletPropsValues.ADMIN_EMAIL_KB_ARTICLE_FEEDBACK_RECEIVED_BODY);
 	}
 
 	public static boolean getEmailKBArticleFeedbackReceivedEnabled(
-		PortletPreferences portletPreferences) {
+		PortletPreferences preferences) {
+
+		String emailKBArticleFeedbackReceivedEnabled = preferences.getValue(
+			"emailKBArticleFeedbackReceivedEnabled", StringPool.BLANK);
+
+		if (Validator.isNotNull(emailKBArticleFeedbackReceivedEnabled)) {
+			return GetterUtil.getBoolean(emailKBArticleFeedbackReceivedEnabled);
+		}
 
 		return PortletPropsValues.
 			ADMIN_EMAIL_KB_ARTICLE_FEEDBACK_RECEIVED_ENABLED;
 	}
 
 	public static String getEmailKBArticleFeedbackReceivedSubject(
-		PortletPreferences portletPreferences) {
+		PortletPreferences preferences) {
+
+		String emailKBArticleFeedbackReceivedSubject = preferences.getValue(
+			"emailKBArticleFeedbackReceivedSubject", StringPool.BLANK);
+
+		if (Validator.isNotNull(emailKBArticleFeedbackReceivedSubject)) {
+			return emailKBArticleFeedbackReceivedSubject;
+		}
 
 		return ContentUtil.get(
 			PortletPropsValues.
@@ -206,21 +249,42 @@ public class AdminUtil {
 	}
 
 	public static String getEmailKBArticleFeedbackResolvedBody(
-		PortletPreferences portletPreferences) {
+		PortletPreferences preferences) {
+
+		String emailKBArticleFeedbackResolvedBody = preferences.getValue(
+			"emailKBArticleFeedbackResolvedBody", StringPool.BLANK);
+
+		if (Validator.isNotNull(emailKBArticleFeedbackResolvedBody)) {
+			return emailKBArticleFeedbackResolvedBody;
+		}
 
 		return ContentUtil.get(
 			PortletPropsValues.ADMIN_EMAIL_KB_ARTICLE_FEEDBACK_RESOLVED_BODY);
 	}
 
 	public static boolean getEmailKBArticleFeedbackResolvedEnabled(
-		PortletPreferences portletPreferences) {
+		PortletPreferences preferences) {
+
+		String emailKBArticleFeedbackResolvedEnabled = preferences.getValue(
+			"emailKBArticleFeedbackResolvedEnabled", StringPool.BLANK);
+
+		if (Validator.isNotNull(emailKBArticleFeedbackResolvedEnabled)) {
+			return GetterUtil.getBoolean(emailKBArticleFeedbackResolvedEnabled);
+		}
 
 		return PortletPropsValues.
 			ADMIN_EMAIL_KB_ARTICLE_FEEDBACK_RESOLVED_ENABLED;
 	}
 
 	public static String getEmailKBArticleFeedbackResolvedSubject(
-		PortletPreferences portletPreferences) {
+		PortletPreferences preferences) {
+
+		String emailKBArticleFeedbackResolvedSubject = preferences.getValue(
+			"emailKBArticleFeedbackResolvedSubject", StringPool.BLANK);
+
+		if (Validator.isNotNull(emailKBArticleFeedbackResolvedSubject)) {
+			return emailKBArticleFeedbackResolvedSubject;
+		}
 
 		return ContentUtil.get(
 			PortletPropsValues.
