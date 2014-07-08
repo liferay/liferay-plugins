@@ -31,9 +31,9 @@ if (enableKBArticleViewCountIncrement && !kbArticle.isDraft()) {
 <liferay-util:include page="/admin/article_breadcrumbs.jsp" servletContext="<%= application %>" />
 
 <div class="float-container kb-entity-header">
-	<div class="kb-title">
+	<h1 class="kb-title">
 		<%= HtmlUtil.escape(kbArticle.getTitle()) %>
-	</div>
+	</h1>
 
 	<div class="kb-tools">
 		<liferay-util:include page="/admin/article_tools.jsp" servletContext="<%= application %>" />
