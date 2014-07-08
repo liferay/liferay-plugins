@@ -44,7 +44,7 @@ public class KBArticleImporterUtil {
 	public static FileEntry addImageFileEntry(
 			String imageFileName, long userId, KBArticle kbArticle,
 			ZipReader zipReader, Map<String, FileEntry> fileEntriesMap)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		try {
 			validateImageFileExtension(imageFileName);
@@ -77,9 +77,7 @@ public class KBArticleImporterUtil {
 		}
 	}
 
-	public static String extractImageFileName(String html)
-		throws PortalException, SystemException {
-
+	public static String extractImageFileName(String html) {
 		String imageSrc = null;
 
 		String[] lines = StringUtil.split(html, StringPool.QUOTE);

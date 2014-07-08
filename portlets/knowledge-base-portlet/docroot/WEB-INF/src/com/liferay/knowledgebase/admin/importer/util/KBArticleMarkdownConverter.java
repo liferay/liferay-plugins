@@ -43,7 +43,7 @@ import java.util.TreeSet;
 public class KBArticleMarkdownConverter {
 
 	public KBArticleMarkdownConverter(String markdown)
-		throws KBArticleImportException, SystemException {
+		throws KBArticleImportException {
 
 		MarkdownConverter markdownConverter =
 			MarkdownConverterFactoryUtil.create();
