@@ -859,11 +859,11 @@ Please find a solution that does not require portal-impl.jar.
 
 						<!-- SDK dependencies -->
 
-						<ivy:resources module="com.liferay.sdk" />
+						<ivy:resources module="com.liferay.sdk" type="bundle,jar,orbit" />
 
 						<!-- Module dependencies -->
 
-						<ivy:resources />
+						<ivy:resources type="bundle,jar,orbit" />
 					</path>
 
 					<compile-java
