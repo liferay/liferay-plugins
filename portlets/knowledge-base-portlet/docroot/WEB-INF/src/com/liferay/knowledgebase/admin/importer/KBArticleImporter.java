@@ -15,13 +15,11 @@
 package com.liferay.knowledgebase.admin.importer;
 
 import com.liferay.knowledgebase.KBArticleImportException;
-import com.liferay.knowledgebase.admin.importer.util.KBArticleImporterUtil;
 import com.liferay.knowledgebase.admin.importer.util.KBArticleMarkdownConverter;
 import com.liferay.knowledgebase.model.KBArticle;
 import com.liferay.knowledgebase.model.KBArticleConstants;
 import com.liferay.knowledgebase.service.KBArticleLocalServiceUtil;
 import com.liferay.knowledgebase.util.PortletPropsValues;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -39,6 +37,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -51,8 +50,7 @@ import java.util.TreeMap;
 public class KBArticleImporter {
 
 	public void processZipFile(
-			long userId, long groupId, String fileName, InputStream inputStream,
-			Map<String, FileEntry> fileEntriesMap,
+			long userId, long groupId, InputStream inputStream,
 			ServiceContext serviceContext)
 		throws KBArticleImportException, SystemException {
 
@@ -64,11 +62,7 @@ public class KBArticleImporter {
 			ZipReader zipReader = ZipReaderFactoryUtil.getZipReader(
 				inputStream);
 
-			KBArticleImporterUtil.processImageFiles(
-				groupId, fileName, zipReader, fileEntriesMap, serviceContext);
-
-			processKBArticleFiles(
-				userId, groupId, zipReader, fileEntriesMap, serviceContext);
+			processKBArticleFiles(userId, groupId, zipReader, serviceContext);
 		}
 		catch (IOException ioe) {
 			throw new KBArticleImportException(ioe);
@@ -77,8 +71,7 @@ public class KBArticleImporter {
 
 	protected KBArticle addKBArticleMarkdown(
 			long userId, long groupId, long parentResourcePrimaryKey,
-			String markdown, String fileEntryName,
-			Map<String, FileEntry> fileEntriesMap,
+			String markdown, String fileEntryName, ZipReader zipReader,
 			ServiceContext serviceContext)
 		throws KBArticleImportException, SystemException {
 
@@ -88,49 +81,54 @@ public class KBArticleImporter {
 		}
 
 		KBArticleMarkdownConverter kbArticleMarkdownConverter =
-			new KBArticleMarkdownConverter(markdown, fileEntriesMap);
+			new KBArticleMarkdownConverter(markdown);
+
+		String urlTitle = kbArticleMarkdownConverter.getUrlTitle();
+
+		KBArticle kbArticle =
+			KBArticleLocalServiceUtil.fetchKBArticleByUrlTitle(
+				groupId, urlTitle);
 
 		try {
-			return applyContentToKBArticle(
-				userId, groupId, parentResourcePrimaryKey,
-				kbArticleMarkdownConverter.getTitle(),
-				kbArticleMarkdownConverter.getUrlTitle(),
-				kbArticleMarkdownConverter.getHtml(), serviceContext);
+			if (kbArticle == null) {
+				kbArticle = KBArticleLocalServiceUtil.addKBArticle(
+					userId, parentResourcePrimaryKey,
+					kbArticleMarkdownConverter.getTitle(), urlTitle, markdown,
+					null, null, null, serviceContext);
+			}
 		}
 		catch (Exception e) {
 			StringBundler sb = new StringBundler(4);
 
-			sb.append("Unable to add KB article for file entry ");
+			sb.append("Unable to add basic KB article for file entry ");
 			sb.append(fileEntryName);
 			sb.append(": ");
 			sb.append(e.getLocalizedMessage());
 
 			throw new KBArticleImportException(sb.toString(), e);
 		}
-	}
 
-	protected KBArticle applyContentToKBArticle(
-			long userId, long groupId, long parentResourcePrimaryKey,
-			String title, String urlTitle, String html,
-			ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		try {
+			String html =
+				kbArticleMarkdownConverter.processAttachmentsReferences(
+					userId, kbArticle, zipReader,
+					new HashMap<String, FileEntry>());
 
-		KBArticle kbArticle =
-			KBArticleLocalServiceUtil.fetchKBArticleByUrlTitle(
-				groupId, urlTitle);
-
-		if (kbArticle != null) {
-			kbArticle = KBArticleLocalServiceUtil.updateKBArticle(
-				userId, kbArticle.getResourcePrimKey(), title, html,
+			return KBArticleLocalServiceUtil.updateKBArticle(
+				userId, kbArticle.getResourcePrimKey(),
+				kbArticleMarkdownConverter.getTitle(), html,
 				kbArticle.getDescription(), null, null, serviceContext);
 		}
-		else {
-			kbArticle = KBArticleLocalServiceUtil.addKBArticle(
-				userId, parentResourcePrimaryKey, title, urlTitle, html, null,
-				null, null, serviceContext);
-		}
+		catch (Exception e) {
+			StringBundler sb = new StringBundler(4);
 
-		return kbArticle;
+			sb.append("Unable to update KB article for file entry ");
+			sb.append(fileEntryName);
+			sb.append(": ");
+			sb.append(e.getLocalizedMessage());
+
+			throw new KBArticleImportException(sb.toString(), e);
+		}
 	}
 
 	protected Map<String, List<String>> getFolderNameFileEntryNamesMap(
@@ -171,7 +169,6 @@ public class KBArticleImporter {
 
 	protected void processKBArticleFiles(
 			long userId, long groupId, ZipReader zipReader,
-			Map<String, FileEntry> fileEntriesMap,
 			ServiceContext serviceContext)
 		throws KBArticleImportException, SystemException {
 
@@ -185,20 +182,20 @@ public class KBArticleImporter {
 			KBArticle parentKBArticle = addKBArticleMarkdown(
 				userId, groupId,
 				KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY, markdown,
-				PortletPropsValues.MARKDOWN_IMPORTER_ARTICLE_HOME,
-				fileEntriesMap, serviceContext);
+				PortletPropsValues.MARKDOWN_IMPORTER_ARTICLE_HOME, zipReader,
+				serviceContext);
 
 			parentResourcePrimKey = parentKBArticle.getResourcePrimKey();
 		}
 
 		processSectionKBArticleFiles(
-			userId, groupId, parentResourcePrimKey, zipReader, fileEntriesMap,
+			userId, groupId, parentResourcePrimKey, zipReader,
 			getFolderNameFileEntryNamesMap(zipReader), serviceContext);
 	}
 
 	protected void processSectionKBArticleFiles(
 			long userId, long groupId, long parentResourcePrimaryKey,
-			ZipReader zipReader, Map<String, FileEntry> fileEntriesMap,
+			ZipReader zipReader,
 			Map<String, List<String>> folderNameFileEntryNamesMap,
 			ServiceContext serviceContext)
 		throws KBArticleImportException, SystemException {
@@ -240,7 +237,7 @@ public class KBArticleImporter {
 			KBArticle sectionIntroKBArticle = addKBArticleMarkdown(
 				userId, groupId, parentResourcePrimaryKey,
 				zipReader.getEntryAsString(sectionIntroFileEntryName),
-				sectionIntroFileEntryName, fileEntriesMap, serviceContext);
+				sectionIntroFileEntryName, zipReader, serviceContext);
 
 			for (String sectionFileEntryName : sectionFileEntryNames) {
 				String sectionMarkdown = zipReader.getEntryAsString(
@@ -256,7 +253,7 @@ public class KBArticleImporter {
 
 				addKBArticleMarkdown(
 					userId, groupId, sectionIntroKBArticle.getResourcePrimKey(),
-					sectionMarkdown, sectionFileEntryName, fileEntriesMap,
+					sectionMarkdown, sectionFileEntryName, zipReader,
 					serviceContext);
 			}
 		}
