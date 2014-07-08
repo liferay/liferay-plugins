@@ -39,7 +39,6 @@ import com.liferay.portal.service.LayoutLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.ServiceContextFactory;
 import com.liferay.portal.service.UserLocalServiceUtil;
-import com.liferay.portal.service.UserNotificationEventLocalServiceUtil;
 import com.liferay.portal.service.permission.LayoutPermissionUtil;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
@@ -172,9 +171,6 @@ public class InviteMembersPortlet extends MVCPortlet {
 		try {
 			MemberRequestLocalServiceUtil.updateMemberRequest(
 				themeDisplay.getUserId(), memberRequestId, status);
-
-			UserNotificationEventLocalServiceUtil.deleteUserNotificationEvent(
-				userNotificationEventId);
 
 			jsonObject.put("success", Boolean.TRUE);
 		}
