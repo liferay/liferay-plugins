@@ -191,70 +191,65 @@ if (WebFormUtil.getTableRowsCount(company.getCompanyId(), databaseTableName) > 0
 </aui:form>
 
 <%
-String modules = "aui-base";
-
 if (!fieldsEditingDisabled) {
-	modules += ",liferay-auto-fields";
-}
 %>
 
-<aui:script use="<%= modules %>">
-	var toggleOptions = function(event) {
-		var select = this;
+	<aui:script use="aui-base,liferay-auto-fields">
+		var toggleOptions = function(event) {
+			var select = this;
 
-		var formRow = select.ancestor('.lfr-form-row');
-		var value = select.val();
+			var formRow = select.ancestor('.lfr-form-row');
+			var value = select.val();
 
-		var optionsDiv = formRow.one('.options');
+			var optionsDiv = formRow.one('.options');
 
-		if ((value == 'options') || (value == 'radio')) {
-			optionsDiv.all('label').show();
-			optionsDiv.show();
-		}
-		else if (value == 'paragraph') {
+			if ((value == 'options') || (value == 'radio')) {
+				optionsDiv.all('label').show();
+				optionsDiv.show();
+			}
+			else if (value == 'paragraph') {
 
-			// Show just the text field and not the labels since there
-			// are multiple choice inputs
+				// Show just the text field and not the labels since there
+				// are multiple choice inputs
 
-			optionsDiv.all('label').hide();
-			optionsDiv.show();
-		}
-		else {
-			optionsDiv.hide();
-		}
+				optionsDiv.all('label').hide();
+				optionsDiv.show();
+			}
+			else {
+				optionsDiv.hide();
+			}
 
-		var optionalControl = formRow.one('.optional-control').ancestor();
-		var labelName = formRow.one('.label-name');
+			var optionalControl = formRow.one('.optional-control').ancestor();
+			var labelName = formRow.one('.label-name');
 
-		if (value == 'paragraph') {
-			var inputName = labelName.one('input.field');
+			if (value == 'paragraph') {
+				var inputName = labelName.one('input.field');
 
-			var formFieldsIndex = select.attr('id').match(/\d+$/);
+				var formFieldsIndex = select.attr('id').match(/\d+$/);
 
-			inputName.val('<liferay-ui:message key="paragraph" />' + formFieldsIndex);
-			inputName.fire('change');
+				inputName.val('<liferay-ui:message key="paragraph" />' + formFieldsIndex);
+				inputName.fire('change');
 
-			labelName.hide();
-			optionalControl.hide();
+				labelName.hide();
+				optionalControl.hide();
 
-			optionalControl.all('input[type="checkbox"]').attr('checked', 'true');
-			optionalControl.all('input[type="hidden"]').attr('value', 'true');
-		}
-		else {
-			optionalControl.show();
-			labelName.show();
-		}
-	};
+				optionalControl.all('input[type="checkbox"]').attr('checked', 'true');
+				optionalControl.all('input[type="hidden"]').attr('value', 'true');
+			}
+			else {
+				optionalControl.show();
+				labelName.show();
+			}
+		};
 
-	var toggleValidationOptions = function(event) {
-		this.next().toggle();
-	};
+		var toggleValidationOptions = function(event) {
+			this.next().toggle();
+		};
 
-	var webFields = A.one('.webFields');
+		var webFields = A.one('.webFields');
 
-	webFields.all('select').each(toggleOptions);
+		webFields.all('select').each(toggleOptions);
 
-	<c:if test="<%= !fieldsEditingDisabled %>">
 		webFields.delegate(['change', 'click', 'keydown'], toggleOptions, 'select');
 
 		webFields.delegate('click', toggleValidationOptions, '.validation-link');
@@ -287,5 +282,8 @@ if (!fieldsEditingDisabled) {
 				url: '<%= editFieldURL %>'
 			}
 		).render();
-	</c:if>
-</aui:script>
+	</aui:script>
+
+<%
+}
+%>
