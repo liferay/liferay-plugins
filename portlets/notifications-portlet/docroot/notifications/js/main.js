@@ -334,6 +334,16 @@ AUI().use(
 				}
 			},
 
+			_deleteNotification: function(target) {
+				var instance = this;
+
+				var deleteNode = target.ancestor('.user-notification-delete');
+
+				if (deleteNode) {
+					A.io.request(deleteNode.getAttribute('data-deleteURL'));
+				}
+			},
+
 			_getActionURL: function(name, userNotificationEventIds) {
 				var instance = this;
 
@@ -497,6 +507,8 @@ AUI().use(
 									}
 
 									if (response.success) {
+										instance._deleteNotification(currentTarget);
+
 										instance._updateNotifications(fullView, markAllAsRead);
 									}
 								}
@@ -510,7 +522,7 @@ AUI().use(
 			_onPollerUpdate: function(response) {
 				var instance = this;
 
-				instance._updateDockbarNotificationsCount(response.newUserNotificationsCount, response.timestamp, response.unreadUserNotificationsCount);
+				instance._updateDockbarNotificationsCount(response.newUserNotificationsCount, response.timestamp, response.totalUserNotificationsCount, response.unreadUserNotificationsCount);
 			},
 
 			_openWindow: function(uri) {
@@ -547,8 +559,16 @@ AUI().use(
 				A.io.request(instance._getActionURL('setDelivered'));
 			},
 
-			_updateDockbarNotificationsCount: function(newUserNotificationsCount, timestamp, unreadUserNotificationsCount) {
+			_updateDockbarNotificationsCount: function(newUserNotificationsCount, timestamp, totalUserNotificationsCount, unreadUserNotificationsCount) {
 				var instance = this;
+
+				var allNotiificationsCount = A.one('.dockbar-user-notifications .all-notifications-count a');
+
+				if (allNotiificationsCount) {
+					var html = A.Lang.sub(Liferay.Language.get('view-all-notifications-x'), [totalUserNotificationsCount]);
+
+					allNotiificationsCount.setHTML(html);
+				}
 
 				if (!instance._previousTimestamp || (instance._previousTimestamp < timestamp)) {
 					instance._previousTimestamp = timestamp;
@@ -691,7 +711,7 @@ AUI().use(
 										}
 									}
 
-									instance._updateDockbarNotificationsCount(response['newUserNotificationsCount'], response['timestamp'], response['unreadUserNotificationsCount']);
+									instance._updateDockbarNotificationsCount(response['newUserNotificationsCount'], response['timestamp'], response['totalUserNotificationsCount'], response['unreadUserNotificationsCount']);
 									instance._updateFullViewNotificationsCount(response['unreadActionableUserNotificationsCount'], response['unreadNonActionableUserNotificationsCount']);
 								}
 							}
