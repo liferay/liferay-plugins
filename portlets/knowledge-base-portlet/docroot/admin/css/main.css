@@ -16,6 +16,10 @@
 	text-align: right;
 }
 
+.knowledge-base-portlet-admin .kb-feedback-actions {
+	margin-top: 1em;
+}
+
 .knowledge-base-portlet-admin .kb-search-toggle .kb-date-field {
 	float: left;
 }
