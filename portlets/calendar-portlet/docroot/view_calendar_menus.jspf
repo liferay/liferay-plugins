@@ -284,6 +284,11 @@ String backURL = PortalUtil.getCurrentURL(request);
 										<portlet:namespace />syncCalendarsMap();
 
 										<portlet:namespace />scheduler.load();
+
+										var message = Liferay.Language.get('the-calendar-was-deleted-successfully');
+										var messageContainer = A.one('#<portlet:namespace />dynamicMessage');
+
+										Liferay.CalendarMessageUtil.showMessage(messageContainer, message);
 									}
 								);
 							}
