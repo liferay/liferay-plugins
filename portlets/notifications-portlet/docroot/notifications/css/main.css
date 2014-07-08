@@ -283,6 +283,10 @@
 	}
 }
 
+.span8 {
+	width: 70%;
+}
+
 /* ---------- Extras ---------- */
 
 .dockbar-user-notifications .user-notifications-count, .notifications-portlet .nav a:hover, .notifications-portlet .nav a.selected, .notifications-portlet .user-notifications-list-container {
