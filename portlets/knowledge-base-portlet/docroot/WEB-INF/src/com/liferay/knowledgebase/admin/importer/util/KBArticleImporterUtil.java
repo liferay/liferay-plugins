@@ -19,7 +19,6 @@ import com.liferay.knowledgebase.model.KBArticle;
 import com.liferay.knowledgebase.util.PortletKeys;
 import com.liferay.knowledgebase.util.PortletPropsValues;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.repository.model.FileEntry;
@@ -139,7 +138,7 @@ public class KBArticleImporterUtil {
 	protected static FileEntry addImageFileEntry(
 			long userId, KBArticle kbArticle, String imageFileName,
 			InputStream inputStream, Map<String, FileEntry> fileEntriesMap)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		FileEntry fileEntry = fileEntriesMap.get(imageFileName);
 

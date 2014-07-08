@@ -84,7 +84,7 @@ public class KBArticleMarkdownConverter {
 	public String processAttachmentsReferences(
 			long userId, KBArticle kbArticle, ZipReader zipReader,
 			Map<String, FileEntry> fileEntriesMap)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		Set<Integer> indexes = new TreeSet<Integer>();
 
