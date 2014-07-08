@@ -242,17 +242,19 @@ if (!fieldsEditingDisabled) {
 			}
 		};
 
-		var toggleValidationOptions = function(event) {
-			this.next().toggle();
-		};
-
 		var webFields = A.one('.webFields');
 
 		webFields.all('select').each(toggleOptions);
 
 		webFields.delegate(['change', 'click', 'keydown'], toggleOptions, 'select');
 
-		webFields.delegate('click', toggleValidationOptions, '.validation-link');
+		<c:if test="<%= PortletPropsValues.VALIDATION_SCRIPT_ENABLED %>">
+			var toggleValidationOptions = function(event) {
+				this.next().toggle();
+			};
+
+			webFields.delegate('click', toggleValidationOptions, '.validation-link');
+		</c:if>
 
 		webFields.delegate(
 			'change',
