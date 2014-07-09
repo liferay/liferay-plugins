@@ -216,13 +216,13 @@ public class KBArticleMarkdownConverter {
 	}
 
 	protected String stripHeading(String html) {
-		int x = html.indexOf("</h1>");
+		int index = html.indexOf("</h1>");
 
-		if (x == -1) {
+		if (index == -1) {
 			return html;
 		}
 
-		return html.substring(x + 5);
+		return html.substring(index + 5);
 	}
 
 	protected String stripIds(String content) {
