@@ -17,6 +17,8 @@ package com.liferay.mentions.hook.service.impl;
 import com.liferay.mentions.util.MentionsNotifier;
 import com.liferay.mentions.util.MentionsUtil;
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.parsers.bbcode.BBCodeTranslatorUtil;
+import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.service.ServiceContext;
@@ -78,8 +80,16 @@ public class MentionsMessageServiceImpl extends MBMessageLocalServiceWrapper {
 				"contentURL", workflowContext.get("url"));
 		}
 
+		String content = message.getBody();
+
+		if (message.isFormatBBCode()) {
+			content = BBCodeTranslatorUtil.getHTML(content);
+		}
+
+		content = HtmlUtil.extractText(content);
+
 		mentionsNotifier.notify(
-			message.getUserId(), message.getGroupId(), message.getBody(),
+			message.getUserId(), message.getGroupId(), content,
 			message.getModelClassName(), message.getMessageId(),
 			serviceContext);
 

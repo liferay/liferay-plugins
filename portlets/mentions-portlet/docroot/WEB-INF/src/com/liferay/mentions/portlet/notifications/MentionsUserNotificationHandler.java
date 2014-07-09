@@ -28,6 +28,7 @@ import com.liferay.portlet.messageboards.service.MBMessageLocalServiceUtil;
 
 /**
  * @author Iván Zaera
+ * @author Sergio González
  */
 public class MentionsUserNotificationHandler
 	extends BaseModelUserNotificationHandler {
@@ -64,10 +65,21 @@ public class MentionsUserNotificationHandler
 		String typeName = assetRendererFactory.getTypeName(
 			serviceContext.getLocale());
 
-		return serviceContext.translate(
-			"x-mentioned-you-in-a-comment-in-a-x",
-			HtmlUtil.escape(assetRenderer.getUserName()),
-			StringUtil.toLowerCase(HtmlUtil.escape(typeName)));
+		MBMessage mbMessage = MBMessageLocalServiceUtil.fetchMBMessage(
+			jsonObject.getLong("classPK"));
+
+		if ((mbMessage != null) && mbMessage.isDiscussion()) {
+			return serviceContext.translate(
+				"x-mentioned-you-in-a-comment-in-a-x",
+				HtmlUtil.escape(assetRenderer.getUserName()),
+				StringUtil.toLowerCase(HtmlUtil.escape(typeName)));
+		}
+		else {
+			return serviceContext.translate(
+				"x-mentioned-you-in-a-x",
+				HtmlUtil.escape(assetRenderer.getUserName()),
+				StringUtil.toLowerCase(HtmlUtil.escape(typeName)));
+		}
 	}
 
 }
