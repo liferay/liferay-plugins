@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+
+#parse ($init)
+
+<html class="$root_css_class" dir="#language ("lang.dir")" lang="$w3c_language_id">
+
+<head>
+	<title>$the_title - $company_name</title>
+
+	<meta content="initial-scale=1.0, width=device-width" name="viewport" />
+
+	$theme.include($top_head_include)
+</head>
+
+<body class="$css_class">
+
+<a href="#main-content" id="skip-to-content">#language ("skip-to-content")</a>
+
+
+
+$theme.include($body_top_include)
+
+#if ($is_signed_in)
+	#dockbar()
+#end
+
+
+<div id="wrapper">
+	<header id="banner" role="banner">
+		<div class="containeraaa">
+			<div class="bannerrow">
+				<h1 class="site-title">
+					<a class="$logo_css_class" href="$site_default_url" title="#language_format ("go-to-x", [$site_name])">
+						<img alt="$logo_description" height="$site_logo_height" src="$site_logo" width="$site_logo_width" />
+					</a>
+
+					#if ($show_site_name)
+						<span class="site-name" title="#language_format ("go-to-x", [$site_name])">
+							$site_name
+						</span>
+					#end
+				</h1>
+				<h2 class="page-title">
+					<span>$the_title</span>
+				</h2>
+
+
+		#if (!$is_signed_in)
+			<a data-redirect="$is_login_redirect_required" href="$sign_in_url" id="sign-in" rel="nofollow">$sign_in_text</a>
+		#end
+
+		#if ($has_navigation || $is_signed_in)
+			#parse ("$full_templates_path/navigation.vm")
+		#end
+			</div>
+		</div>
+	</header>
+
+	<div id="carousel">
+		<img src="http://localhost:8080/aaa-theme/images/nexuscarousel.png" alt="Carousel">
+	</div>
+
+	<div id="preface">
+		<div class="containeraaa">
+			<div class="prefacerow">
+				<div class="prefaceblock">
+					<h2>Preface First</h2>
+					<div class="prefacecontent">
+						<p> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. </p>
+					</div>
+				</div>
+				<div class="prefaceblock">
+					<h2>Preface Middle</h2>
+					<div class="prefacecontent">
+						<p> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+					</div>
+				</div>
+				<div class="prefaceblock">
+					<h2>Preface Last</h2>
+					<div class="prefacecontent">
+						<p> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. </p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<div id="content">
+		<div class="bodyrow">
+			<nav id="breadcrumbs">#breadcrumbs()</nav>
+
+
+			#if ($selectable)
+				$theme.include($content_include)
+
+			#else
+				$portletDisplay.recycle()
+
+				$portletDisplay.setTitle($the_title)
+
+				$theme.wrapPortlet("portlet.vm", $content_include)
+			#end
+
+			<div id="sidebar">
+				<div class="bodyregion">
+					<div id="sidebarblock">
+						<h2>Cash Contribution</h2>
+						<div class="sidebarcontent">
+							<p>Please consider <strong> <span>Cash Contribution Through Paypal</span> </strong> for our free Liferay Modules, Themes, and Projects which helps us creating new and free quality Liferay modules, themes, and projects in the future.
+							</p>
+							<img src="https://www.paypalobjects.com/en_GB/i/btn/btn_paynow_LG.gif" border="0" alt="PayPal - The safer, easier way to pay online.">
+							<p>
+								<br>
+								Download this theme at <strong> <span> bavvb.com </span></strong>
+							</p>
+						</div>
+					</div>
+					<div id="sidebarblock">
+						<h2>Become a Fan </h2>
+						<div class="sidebarcontent" id="sidebarcontentsocial">
+							<p>SOCIAL MEDIA</p>
+						</div>
+					</div>
+					<div id="sidebarblock">
+						<div class="sidebarcontent" id="sidebarcontentad">
+							<p>ADVERTISEMENT</p>
+						</div>
+					</div>
+					<div id="sidebarblock">
+						<h2>Links</h2>
+						<div class="sidebarcontent" id="sidebarcontentlinks">
+							<ul>
+								<li> <p>bavvb</p> </li>
+								<li> <p>Link #2</p> </li>
+								<li> <p>Link #3</p> </li>
+								<li> <p>Link #4</p> </li>
+								<li> <p>Link #5</p> </li>
+							</ul>
+							<p class="sidebartextcenter"> Visit <span>bavvb</span> for Advertisement in this site.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+		</div>
+	</div>
+
+
+	<div id="footer-blockaaa">
+		<div id="footerad">
+			<p>
+				ADVERTISEMENT
+			</P>
+		</div>
+	</div>
+	<div id="bottomaaa">
+		<div class="containeraaa">
+			<div class="bottom-row">
+				<div class="bottom-block">
+					<div class="bottom-region">
+						<div id="blockblock">
+							<h2>First Header</h2>
+							<div class="bottom-content">
+								<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="bottom-block">
+					<div class="bottom-region">
+						<div id="blockblock">
+							<h2>Second Header</h2>
+							<div class="bottom-content">
+								<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="bottom-block" id="adblock">
+					<div class="bottom-region">
+						<div id="blockblock">
+							<h2>Third Header </h2>
+							<div class="bottom-content">
+								<p> ADVERTISEMENT </p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="bottom-block">
+					<div class="bottom-region">
+						<div id="blockblock">
+							<h2>Fourth Header </h2>
+							<div class="bottom-content">
+								<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<footer id="footer" role="contentinfo">
+		<div class="containeraaa" id="footer-2">	
+			<p class="powered-by" id="powered">
+				#language ("powered-by") <a href="http://www.liferay.com" rel="external">Liferay</a>. Theme by bavvb.
+			</p>
+		</div>
+	</footer>
+</div>
+
+
+
+
+
+$theme.include($body_bottom_include)
+
+$theme.include($bottom_include)
+
+</body>
+
+</html>
