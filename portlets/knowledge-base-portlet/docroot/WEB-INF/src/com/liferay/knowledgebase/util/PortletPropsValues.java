@@ -69,11 +69,13 @@ public class PortletPropsValues {
 		PortletProps.get(
 			PortletPropsKeys.KNOWLEDGE_BASE_SOCIAL_BOOKMARKS_DISPLAY_STYLE);
 
-	public static final int KNOWLEDGE_BASE_RATINGS_DEFAULT_NUMBER_OF_STARS =
+	public static final int KNOWLEDGE_BASE_RATINGS_NUMBER_OF_STARS =
 		GetterUtil.getInteger(
 			PortletProps.get(
 				PortletPropsKeys.
-					KNOWLEDGE_BASE_RATINGS_DEFAULT_NUMBER_OF_STARS));
+					KNOWLEDGE_BASE_RATINGS_NUMBER_OF_STARS),
+			GetterUtil.getInteger(
+				PropsUtil.get(PropsKeys.RATINGS_DEFAULT_NUMBER_OF_STARS)));
 
 	public static final String[] MARKDOWN_IMPORTER_ARTICLE_EXTENSIONS =
 		PortletProps.getArray(
@@ -94,9 +96,5 @@ public class PortletPropsValues {
 	public static final String MARKDOWN_IMPORTER_IMAGE_FOLDER =
 		GetterUtil.getString(
 			PortletProps.get(PortletPropsKeys.MARKDOWN_IMPORTER_IMAGE_FOLDER));
-
-	public static final int PORTAL_RATINGS_DEFAULT_NUMBER_OF_STARS =
-		GetterUtil.getInteger(
-			PropsUtil.get(PropsKeys.RATINGS_DEFAULT_NUMBER_OF_STARS));
 
 }
