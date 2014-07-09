@@ -123,11 +123,17 @@ long resourcePrimKey = ParamUtil.getLong(request, "resourcePrimKey");
 				</td>
 			</c:if>
 
-			<td>
-				<aui:model-context bean="<%= kbArticle %>" model="<%= KBArticle.class %>" />
+			<%
+			int kbArticleStatus = kbArticle.getStatus();
+			%>
 
-				<aui:workflow-status status="<%= kbArticle.getStatus() %>" />
-			</td>
+			<c:if test="<%= kbArticleStatus != WorkflowConstants.STATUS_APPROVED %>">
+				<td>
+					<aui:model-context bean="<%= kbArticle %>" model="<%= KBArticle.class %>" />
+
+					<aui:workflow-status status="<%= kbArticleStatus %>" />
+				</td>
+			</c:if>
 		</tr>
 		</table>
 	</div>
