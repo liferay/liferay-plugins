@@ -87,24 +87,29 @@
 	.kb-article-child {
 		margin: 15px -7px 0;
 
-		.kb-element-body {
-			margin: 0 0 0 20px;
-
-			.kb-article-icons {
-				padding: 4px 0;
-			}
-		}
-
-		.kb-element-header {
-			margin: 8px 0 0;
-
-			a {
-				display: block;
-			}
-		}
-
 		.kb-elements {
 			margin: 8px;
+
+			.kb-element {
+				border-top: 1px solid;
+
+				.kb-element-body {
+					margin: 0 0 0 20px;
+
+					.kb-article-icons {
+						padding: 4px 0;
+					}
+				}
+
+				.kb-element-header {
+					margin: 8px 0 0;
+
+					a {
+						color: #555;
+						display: block;
+					}
+				}
+			}
 		}
 	}
 
