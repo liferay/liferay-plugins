@@ -86,8 +86,16 @@ public class BaseJSONHandler extends BaseHandler {
 			_logger.debug("Handling exception {}", exception);
 		}
 
-		if (exception.equals(
-				"com.liferay.portal.kernel.upload.UploadException")) {
+		if (exception.equals("com.liferay.portal.DuplicateLockException")) {
+			SyncFile syncFile = (SyncFile)getParameterValue("syncFile");
+
+			syncFile.setState(SyncFile.STATE_ERROR);
+			syncFile.setUiEvent(SyncFile.UI_EVENT_DUPLICATE_LOCK);
+
+			SyncFileService.update(syncFile);
+		}
+		else if (exception.equals(
+					"com.liferay.portal.kernel.upload.UploadException")) {
 
 			SyncFile syncFile = (SyncFile)getParameterValue("syncFile");
 
@@ -103,6 +111,16 @@ public class BaseJSONHandler extends BaseHandler {
 
 			syncFile.setState(SyncFile.STATE_ERROR);
 			syncFile.setUiEvent(SyncFile.UI_EVENT_INVALID_PERMISSIONS);
+
+			SyncFileService.update(syncFile);
+		}
+		else if (exception.equals(
+					"com.liferay.portlet.documentlibrary.FileNameException")) {
+
+			SyncFile syncFile = (SyncFile)getParameterValue("syncFile");
+
+			syncFile.setState(SyncFile.STATE_ERROR);
+			syncFile.setUiEvent(SyncFile.UI_EVENT_INVALID_FILE_NAME);
 
 			SyncFileService.update(syncFile);
 		}
