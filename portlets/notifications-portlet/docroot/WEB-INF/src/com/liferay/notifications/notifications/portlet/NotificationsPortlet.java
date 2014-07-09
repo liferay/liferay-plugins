@@ -16,9 +16,10 @@ package com.liferay.notifications.notifications.portlet;
 
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.WebKeys;
-import com.liferay.portal.model.UserNotificationDeliveryConstants;
 import com.liferay.portal.model.UserNotificationEvent;
 import com.liferay.portal.service.UserNotificationDeliveryLocalServiceUtil;
 import com.liferay.portal.service.UserNotificationEventLocalServiceUtil;
@@ -42,14 +43,14 @@ public class NotificationsPortlet extends MVCPortlet {
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
-		long[] userNotificationEventIds = ParamUtil.getLongValues(
-			actionRequest, "userNotificationEventIds");
+		String[] userNotificationEventIds = StringUtil.split(
+			ParamUtil.getString(actionRequest, "userNotificationEventIds"));
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
 		try {
-			for (long userNotificationEventId : userNotificationEventIds) {
-				updateArchived(userNotificationEventId);
+			for (String userNotificationEventId : userNotificationEventIds) {
+				doSetArchived(GetterUtil.getLong(userNotificationEventId));
 			}
 
 			jsonObject.put("success", Boolean.TRUE);
@@ -71,7 +72,7 @@ public class NotificationsPortlet extends MVCPortlet {
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
 		try {
-			updateArchived(userNotificationEventId);
+			doSetArchived(userNotificationEventId);
 
 			jsonObject.put("success", Boolean.TRUE);
 		}
@@ -98,7 +99,10 @@ public class NotificationsPortlet extends MVCPortlet {
 			String actionName = ParamUtil.getString(
 				actionRequest, ActionRequest.ACTION_NAME);
 
-			if (actionName.equals("markAsRead")) {
+			if (actionName.equals("markAllAsRead")) {
+				markAllAsRead(actionRequest, actionResponse);
+			}
+			else if (actionName.equals("markAsRead")) {
 				markAsRead(actionRequest, actionResponse);
 			}
 			else if (actionName.equals("setDelivered")) {
@@ -189,6 +193,19 @@ public class NotificationsPortlet extends MVCPortlet {
 		}
 	}
 
+	protected void doSetArchived(long userNotificationEventId)
+		throws Exception {
+
+		UserNotificationEvent userNotificationEvent =
+			UserNotificationEventLocalServiceUtil.getUserNotificationEvent(
+				userNotificationEventId);
+
+		userNotificationEvent.setArchived(true);
+
+		UserNotificationEventLocalServiceUtil.updateUserNotificationEvent(
+			userNotificationEvent);
+	}
+
 	protected void getNotificationsCount(
 			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
 		throws Exception {
@@ -202,21 +219,15 @@ public class NotificationsPortlet extends MVCPortlet {
 			int newUserNotificationsCount =
 				UserNotificationEventLocalServiceUtil.
 					getDeliveredUserNotificationEventsCount(
-						themeDisplay.getUserId(),
-						UserNotificationDeliveryConstants.TYPE_WEBSITE, false);
-
-			jsonObject.put(
-				"newUserNotificationsCount", newUserNotificationsCount);
-
-			jsonObject.put(
-				"timestamp", String.valueOf(System.currentTimeMillis()));
+						themeDisplay.getUserId(), false);
 
 			int unreadUserNotificationsCount =
 				UserNotificationEventLocalServiceUtil.
 					getArchivedUserNotificationEventsCount(
-						themeDisplay.getUserId(),
-						UserNotificationDeliveryConstants.TYPE_WEBSITE, false);
+						themeDisplay.getUserId(), false);
 
+			jsonObject.put(
+				"newUserNotificationsCount", newUserNotificationsCount);
 			jsonObject.put(
 				"unreadUserNotificationsCount", unreadUserNotificationsCount);
 
@@ -227,19 +238,6 @@ public class NotificationsPortlet extends MVCPortlet {
 		}
 
 		writeJSON(resourceRequest, resourceResponse, jsonObject);
-	}
-
-	protected void updateArchived(long userNotificationEventId)
-		throws Exception {
-
-		UserNotificationEvent userNotificationEvent =
-			UserNotificationEventLocalServiceUtil.getUserNotificationEvent(
-				userNotificationEventId);
-
-		userNotificationEvent.setArchived(true);
-
-		UserNotificationEventLocalServiceUtil.updateUserNotificationEvent(
-			userNotificationEvent);
 	}
 
 }
