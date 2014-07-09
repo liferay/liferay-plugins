@@ -65,10 +65,6 @@ public class PortletPropsValues {
 	public static final String[] ADMIN_KB_ARTICLE_SECTIONS =
 		PortletProps.getArray(PortletPropsKeys.ADMIN_KB_ARTICLE_SECTIONS);
 
-	public static final String KNOWLEDGE_BASE_SOCIAL_BOOKMARKS_DISPLAY_STYLE =
-		PortletProps.get(
-			PortletPropsKeys.KNOWLEDGE_BASE_SOCIAL_BOOKMARKS_DISPLAY_STYLE);
-
 	public static final int KNOWLEDGE_BASE_RATINGS_NUMBER_OF_STARS =
 		GetterUtil.getInteger(
 			PortletProps.get(
@@ -76,6 +72,10 @@ public class PortletPropsValues {
 					KNOWLEDGE_BASE_RATINGS_NUMBER_OF_STARS),
 			GetterUtil.getInteger(
 				PropsUtil.get(PropsKeys.RATINGS_DEFAULT_NUMBER_OF_STARS)));
+
+	public static final String KNOWLEDGE_BASE_SOCIAL_BOOKMARKS_DISPLAY_STYLE =
+		PortletProps.get(
+			PortletPropsKeys.KNOWLEDGE_BASE_SOCIAL_BOOKMARKS_DISPLAY_STYLE);
 
 	public static final String[] MARKDOWN_IMPORTER_ARTICLE_EXTENSIONS =
 		PortletProps.getArray(

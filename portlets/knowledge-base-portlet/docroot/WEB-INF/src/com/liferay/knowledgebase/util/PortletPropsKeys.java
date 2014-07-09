@@ -51,11 +51,11 @@ public class PortletPropsKeys {
 	public static final String ADMIN_KB_ARTICLE_SECTIONS =
 		"admin.kb.article.sections";
 
-	public static final String KNOWLEDGE_BASE_SOCIAL_BOOKMARKS_DISPLAY_STYLE =
-		"knowledge.base.social.bookmarks.display.style";
-
 	public static final String KNOWLEDGE_BASE_RATINGS_NUMBER_OF_STARS =
 		"knowledge.base.ratings.number.of.stars";
+
+	public static final String KNOWLEDGE_BASE_SOCIAL_BOOKMARKS_DISPLAY_STYLE =
+		"knowledge.base.social.bookmarks.display.style";
 
 	public static final String MARKDOWN_IMPORTER_ARTICLE_EXTENSIONS =
 		"markdown.importer.article.extensions";
