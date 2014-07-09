@@ -32,7 +32,7 @@ List<KBArticle> childKBArticles = KBArticleServiceUtil.getKBArticles(scopeGroupI
 			for (KBArticle childrenKBArticle : childKBArticles) {
 			%>
 
-			<div class="kb-element">
+			<section class="kb-element">
 				<h2 class="kb-element-header">
 					<liferay-portlet:renderURL var="viewKBArticleURL">
 						<c:choose>
@@ -47,17 +47,19 @@ List<KBArticle> childKBArticles = KBArticleServiceUtil.getKBArticles(scopeGroupI
 
 					<a href="<%= viewKBArticleURL %>"><%= childrenKBArticle.getTitle() %></a>
 				</h2>
+
 				<div class="kb-element-body">
 					<c:choose>
 						<c:when test="<%= Validator.isNotNull(childrenKBArticle.getDescription()) %>">
 							<%= childrenKBArticle.getDescription() %>
 						</c:when>
 						<c:otherwise>
-							<%= StringUtil.shorten(HtmlUtil.extractText(childrenKBArticle.getContent()), 500) %>
+							<%= StringUtil.shorten(HtmlUtil.extractText(childrenKBArticle.getContent()), 200) %>
+							<a href="<%= viewKBArticleURL %>"><liferay-ui:message key="read-more" /></a>
 						</c:otherwise>
 					</c:choose>
 				</div>
-			</div>
+			</section>
 
 			<%
 			}
