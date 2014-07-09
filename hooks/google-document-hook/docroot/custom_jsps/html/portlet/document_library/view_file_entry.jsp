@@ -52,7 +52,9 @@ if (fileEntryTypeId > 0) {
 <c:choose>
 	<c:when test="<%= isGoogleDocument %>">
 		<style>
-			.download-document, .webdav-url, .lfr-asset-panels {
+			.portlet-document-library .download-document,
+			.portlet-document-library .webdav-url,
+			.portlet-document-library .lfr-asset-panels {
 				display: none;
 			}
 		</style>

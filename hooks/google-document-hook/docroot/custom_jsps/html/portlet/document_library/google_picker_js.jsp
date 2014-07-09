@@ -21,6 +21,17 @@ String googleAPIKey = PrefsPropsUtil.getString(themeDisplay.getCompanyId(), "goo
 String googleClientId = PrefsPropsUtil.getString(themeDisplay.getCompanyId(), "googleClientId");
 %>
 
+<aui:script>
+	Liferay.provide(
+		window,
+		'onGoogleAPILoad',
+		function() {
+			Liferay.fire('googleAPILoad');
+		},
+		['aui-base']
+	);
+</aui:script>
+
 <aui:script use="aui-base">
 	var clientId = '<%= googleClientId %>';
 
@@ -30,15 +41,6 @@ String googleClientId = PrefsPropsUtil.getString(themeDisplay.getCompanyId(), "g
 		'https://www.googleapis.com/auth/drive.readonly',
 		'https://www.googleapis.com/auth/photos.upload'
 	];
-
-	Liferay.provide(
-		window,
-		'onGoogleAPILoad',
-		function() {
-			Liferay.fire('googleAPILoad');
-		},
-		['aui-base']
-	);
 
 	var authAPILoaded = false;
 	var googleAPILoaded = false;
@@ -146,7 +148,7 @@ String googleClientId = PrefsPropsUtil.getString(themeDisplay.getCompanyId(), "g
 			var doc = data[google.picker.Response.DOCUMENTS][0];
 			var googlePickerDoc = google.picker.Document;
 
- 			var documentId = doc[googlePickerDoc.ID];
+			var documentId = doc[googlePickerDoc.ID];
 			var documentName = doc[googlePickerDoc.NAME];
 			var documentDescription = doc[googlePickerDoc.DESCRIPTION];
 			var documentIconURL = doc[googlePickerDoc.ICON_URL];
