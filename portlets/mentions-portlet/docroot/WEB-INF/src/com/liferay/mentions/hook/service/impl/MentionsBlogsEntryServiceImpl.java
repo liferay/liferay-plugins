@@ -16,6 +16,7 @@ package com.liferay.mentions.hook.service.impl;
 
 import com.liferay.mentions.util.MentionsNotifier;
 import com.liferay.mentions.util.MentionsUtil;
+import com.liferay.mentions.util.PortletPropsValues;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
@@ -25,6 +26,7 @@ import com.liferay.portlet.blogs.model.BlogsEntry;
 import com.liferay.portlet.blogs.service.BlogsEntryLocalService;
 import com.liferay.portlet.blogs.service.BlogsEntryLocalServiceUtil;
 import com.liferay.portlet.blogs.service.BlogsEntryLocalServiceWrapper;
+import com.liferay.util.ContentUtil;
 
 import java.io.Serializable;
 
@@ -80,7 +82,10 @@ public class MentionsBlogsEntryServiceImpl
 
 		mentionsNotifier.notify(
 			entry.getUserId(), entry.getGroupId(), entry.getContent(),
-			BlogsEntry.class.getName(), entry.getEntryId(), serviceContext);
+			BlogsEntry.class.getName(), entry.getEntryId(),
+			ContentUtil.get(PortletPropsValues.ASSET_MENTION_EMAIL_SUBJECT),
+			ContentUtil.get(PortletPropsValues.ASSET_MENTION_EMAIL_BODY),
+			serviceContext);
 
 		return entry;
 	}

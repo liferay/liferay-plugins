@@ -21,6 +21,12 @@ import com.liferay.util.portlet.PortletProps;
  */
 public class PortletPropsValues {
 
+	public static final String ASSET_MENTION_EMAIL_BODY = PortletProps.get(
+		PortletPropsKeys.ASSET_MENTION_EMAIL_BODY);
+
+	public static final String ASSET_MENTION_EMAIL_SUBJECT = PortletProps.get(
+		PortletPropsKeys.ASSET_MENTION_EMAIL_SUBJECT);
+
 	public static final String MB_DISCUSSION_EMAIL_BODY = PortletProps.get(
 		PortletPropsKeys.MB_DISCUSSION_EMAIL_BODY);
 

@@ -24,9 +24,10 @@ import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portal.util.SubscriptionSender;
+import com.liferay.portlet.asset.AssetRendererFactoryRegistryUtil;
+import com.liferay.portlet.asset.model.AssetRendererFactory;
 import com.liferay.portlet.social.util.SocialInteractionsConfiguration;
 import com.liferay.portlet.social.util.SocialInteractionsConfigurationUtil;
-import com.liferay.util.ContentUtil;
 
 import java.util.HashSet;
 import java.util.List;
@@ -41,7 +42,8 @@ public class MentionsNotifier {
 
 	public void notify(
 			long userId, long groupId, String content, String className,
-			long classPK, ServiceContext serviceContext)
+			long classPK, String subject, String body,
+			ServiceContext serviceContext)
 		throws PortalException {
 
 		String[] mentionedUsersScreenNames = getMentionedUsersScreenNames(
@@ -64,10 +66,16 @@ public class MentionsNotifier {
 		String fromAddress = PrefsPropsUtil.getString(
 			user.getCompanyId(), PropsKeys.ADMIN_EMAIL_FROM_ADDRESS);
 
-		String subject = ContentUtil.get(
-			PortletPropsValues.MB_DISCUSSION_EMAIL_SUBJECT);
-		String body = ContentUtil.get(
-			PortletPropsValues.MB_DISCUSSION_EMAIL_BODY);
+		AssetRendererFactory assetRendererFactory =
+			AssetRendererFactoryRegistryUtil.getAssetRendererFactoryByClassName(
+				className);
+
+		String assetName = StringPool.BLANK;
+
+		if (assetRendererFactory != null) {
+			assetName = assetRendererFactory.getTypeName(
+				serviceContext.getLocale());
+		}
 
 		SubscriptionSender subscriptionSender = new SubscriptionSender();
 
@@ -75,12 +83,11 @@ public class MentionsNotifier {
 		subscriptionSender.setClassName(className);
 		subscriptionSender.setClassPK(classPK);
 		subscriptionSender.setCompanyId(user.getCompanyId());
-		subscriptionSender.setContextAttribute(
-			"[$COMMENTS_BODY$]", content, false);
+		subscriptionSender.setContextAttribute("[$CONTENT$]", content, false);
 		subscriptionSender.setContextAttributes(
-			"[$COMMENTS_USER_ADDRESS$]", messageUserEmailAddress,
-			"[$COMMENTS_USER_NAME$]", messageUserName, "[$CONTENT_URL$]",
-			contentURL);
+			"[$ASSET_NAME$]", assetName, "[$USER_ADDRESS$]",
+			messageUserEmailAddress, "[USER_NAME$]", messageUserName,
+			"[$CONTENT_URL$]", contentURL);
 		subscriptionSender.setEntryTitle(content);
 		subscriptionSender.setEntryURL(contentURL);
 		subscriptionSender.setFrom(fromAddress, fromName);

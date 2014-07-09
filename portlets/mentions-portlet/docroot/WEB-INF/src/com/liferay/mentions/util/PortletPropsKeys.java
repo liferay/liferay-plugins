@@ -19,6 +19,12 @@ package com.liferay.mentions.util;
  */
 public interface PortletPropsKeys {
 
+	public static final String ASSET_MENTION_EMAIL_BODY =
+		"asset.mention.email.body";
+
+	public static final String ASSET_MENTION_EMAIL_SUBJECT =
+		"asset.mention.email.subject";
+
 	public static final String MB_DISCUSSION_EMAIL_BODY =
 		"mb.discussion.email.body";
 
