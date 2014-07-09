@@ -78,7 +78,7 @@ in ascending chronological order.
 #### What changed?
 
 The number of stars for the ratings has changed from a hardcoded value of `10` to
-the value of the `knowledge.base.knowledge.base.ratings.default.number.of.stars`
+the value of the `knowledge.base.knowledge.base.ratings.number.of.stars`
 property.
 
 #### Who is affected?
@@ -88,7 +88,7 @@ Any installation where there are existing articles with a rating.
 #### How should I update my code?
 
 If you need to keep the former behaviour, you should change the value of the
-`knowledge.base.ratings.default.number.of.stars` property back to `10`.
+`knowledge.base.ratings.number.of.stars` property back to `10`.
 
 #### Why was this change made?
 
