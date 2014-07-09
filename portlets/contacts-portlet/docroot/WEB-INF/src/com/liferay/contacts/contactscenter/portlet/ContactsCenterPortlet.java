@@ -87,6 +87,7 @@ import com.liferay.portal.util.comparator.UserLastNameComparator;
 import com.liferay.portlet.announcements.model.AnnouncementsDelivery;
 import com.liferay.portlet.announcements.service.AnnouncementsDeliveryLocalServiceUtil;
 import com.liferay.portlet.social.NoSuchRelationException;
+import com.liferay.portlet.social.model.SocialRelation;
 import com.liferay.portlet.social.model.SocialRequest;
 import com.liferay.portlet.social.model.SocialRequestConstants;
 import com.liferay.portlet.social.service.SocialRelationLocalServiceUtil;
@@ -760,6 +761,22 @@ public class ContactsCenterPortlet extends MVCPortlet {
 				}
 
 				jsonArray.put(contactJSONObject);
+			}
+		}
+		else if (filterBy.equals(
+					ContactsConstants.FILTER_BY_FOLLOWERS) &&
+				 !portletId.equals(PortletKeys.MEMBERS)) {
+
+			List<SocialRelation> socialRelations =
+				SocialRelationLocalServiceUtil.getInverseRelations(
+					themeDisplay.getUserId(),
+					SocialRelationConstants.TYPE_UNI_FOLLOWER, start, end);
+
+			for (SocialRelation socialRelation : socialRelations) {
+				jsonArray.put(
+					getUserJSONObject(
+						portletResponse, themeDisplay,
+						socialRelation.getUserId1()));
 			}
 		}
 		else if (filterBy.equals(
