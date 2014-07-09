@@ -38,6 +38,8 @@ public class ContactsConstants {
 
 	public static final String FILTER_BY_DEFAULT = "default";
 
+	public static final String FILTER_BY_FOLLOWERS = "followers";
+
 	public static final String FILTER_BY_GROUP = "group_";
 
 	public static final String FILTER_BY_TYPE = "type_";
