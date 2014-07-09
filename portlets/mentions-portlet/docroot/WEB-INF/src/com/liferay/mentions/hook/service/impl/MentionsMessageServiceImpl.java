@@ -91,9 +91,9 @@ public class MentionsMessageServiceImpl extends MBMessageLocalServiceWrapper {
 		content = HtmlUtil.extractText(content);
 
 		String subject = ContentUtil.get(
-			PortletPropsValues.MB_DISCUSSION_EMAIL_SUBJECT);
+			PortletPropsValues.COMMENT_MENTION_EMAIL_SUBJECT);
 		String body = ContentUtil.get(
-			PortletPropsValues.MB_DISCUSSION_EMAIL_BODY);
+			PortletPropsValues.COMMENT_MENTION_EMAIL_BODY);
 
 		if (!message.isDiscussion()) {
 			subject = ContentUtil.get(
