@@ -1,0 +1,391 @@
+* {
+	box-sizing: border-box;
+}
+
+.aui p {
+	margin: 0 0 20px;
+}
+
+/* !!!!!!!!!!!!!! have to change the font of the site title icon thingy */
+/*turning off things to match nexus*/
+.page-title, #breadcrumbs, .portlet-title img {
+	display: none;
+}
+
+
+#wrapper {
+	padding: 0;
+	z-index: 5;
+}
+
+.aui a, .aui a:hover {
+	color: #000;
+	text-decoration: none;
+}
+
+
+.aui body {
+	font: 14px/1.6 'Oxygen',sans-serif;
+}
+
+.aui h1 {
+	font-size: 36px;
+}
+
+.aui .dropdown-menu > li > a {
+	color: #777;
+}
+
+.aui .dockbar .navbar-inner .site-administration-menu li a:focus, .aui .dockbar .navbar-inner .site-administration-menu li a:hover {
+	background: #F4473A;
+}
+
+.aui .dropdown-menu > li > a:hover, .aui .dropdown-menu > li > a:focus, .aui .dropdown-submenu:hover > a, .aui .dropdown-submenu:focus > a {
+	background-color: #F4473A;
+	background-image: none;
+}
+
+.aui .dropdown-menu > .active > a, .aui .dropdown-menu > .active > a:hover, .aui .dropdown-menu > .active > a:focus {
+	background-color: #F4473A;
+	background-image: none;
+}
+
+.aui .navbar .nav > li > a:focus {
+	color: #F4473A;
+	outline: none;
+}
+
+.aui .nav-pills > .active > a, .aui .nav-pills > .active > a, .aui .nav-pills > .active > a:hover, .lfr-add-panel .add-content-menu .lfr-page-template .toggler-header.active.lfr-page-template-title label {
+	background-color: #F4473A;
+}
+
+.aui .btn-primary, .aui .btn-primary:hover {
+	background-color: #F4473A;
+	background-image: none;
+}
+
+
+.portlet-boundary {
+	border-bottom: 1px solid #DDDDDD;
+	left: 0;
+	margin-bottom: 15px;
+	padding-bottom: 30px;
+	z-index: 1200;
+}
+
+.aui .navbar .nav > li > a:hover {
+	color: #F4473A;
+}
+
+.portlet-content {
+	padding: 0;
+}
+
+.containeraaa {
+	max-width: 1170px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#p_p_id_145_ {
+	border-bottom: none;
+	margin-bottom: 0;
+	padding: 0;
+	position: fixed;
+	width: 100%;
+}
+
+.lfr-add-panel {
+	margin-top: 40px;
+}
+
+/* Header */
+.signed-in #banner {
+	padding-top: 35px;
+}
+
+
+
+.bannerrow {
+	display: inline-block;
+	margin-left: -15px;
+	margin-right: -15px;
+	width: 100%;
+}
+
+.bannerrow .site-title {
+	float: left;
+	margin: 0;
+	margin-bottom: 20px;
+	margin-top: 18px;
+	padding-left: 15px;
+	padding-right: 15px;
+	width: 50%;
+}
+
+
+.bannerrow #navigation {
+	float: left;
+	padding: 0 15px;
+	width: 50%
+}
+
+#navigation ul {
+	margin: 0;
+	margin-top: 18px;
+}
+
+#navigation li {
+	color: #777;
+	display: inline;
+	font-family: 'Oxygen', sans-serif;
+	line-height: 51px;
+	list-style: none;
+	padding: 10px;
+}
+
+#navigation .selected span {
+	color: #F4473A;
+}
+
+#navigation a {
+	color: #777;
+}
+
+#navigation a:hover {
+	color: #F4473A;
+}
+
+#sign-in {
+	display: none;
+	position: fixed;
+	right: 5em;
+	top: auto;
+}
+
+/*give the top add/edit bar **FIXED** positioning somehow */
+
+#carousel img {
+	width: 100%;
+}
+
+/*preface*/
+#preface {
+	background: #ED564B;
+	border-bottom: 5px solid #F96B61;
+	border-top: 5px solid #F96B61;
+	margin-bottom: 15px;
+	padding:  40px 0 20px;
+	width: 100%;
+}
+
+.prefacerow {
+	display: inline-block;
+	margin-left: -15px;
+	margin-right: -15px;
+}
+
+.prefaceblock {
+	color: #FFF;
+	float: left;
+	font: 14px 'Oxygen', sans-serif;
+	padding: 0 15px;
+	position: relative;
+	text-align: center;
+	width: 33.3333333%;
+}
+
+.prefaceblock h2 {
+	font-size: 24px;
+	font-weight: bold;
+	margin: 0;
+}
+.prefacecontent p {
+	line-height: 1.6;
+	margin-bottom: 20px;
+}
+
+/* Main Body */
+#content {
+	margin-left: auto;
+	margin-right: auto;
+	max-width: 1170px;
+}
+
+#main-content {
+	float: left;	
+	padding: 20px 15px;
+	width: 66.66666%;
+}
+
+#hrefFm {
+	display: none;
+}
+
+#sidebar {
+	float: left;
+	padding: 20px 15px;
+	width: 33.33333%;
+}
+
+.bodyrow {
+	display: inline-block;
+	margin-left: -15px;
+	margin-right: -15px;
+}
+
+#sidebarblock {
+	margin-bottom: 30px;
+}
+
+#sidebar #sidebarblock h2 {
+	color: #000;
+	font-size: 20px;
+	font-weight: bold;	
+	line-height: 1.6;
+	margin: 0 0 15px 0;
+	text-transform: uppercase;
+}
+
+#sidebarblock span {
+	color: #F4473A;
+}
+
+#sidebarcontentsocial {
+	background-color: #AAA;
+	color: #FFF;
+	height: 370px;
+	max-width: 240px;
+	text-align: center;
+}
+
+#sidebarcontentad {
+	background-color: #AAA;
+	color: #FFF;
+	height: 200px;
+	margin: 0 auto;
+	text-align: center;
+	width: 200px;
+}
+
+#sidebarblock li p {
+	color: #F4473A;
+	margin-bottom: 0;
+}
+
+#sidebarblock #sidebarcontentlinks li {
+	line-height: 1.6;
+}
+
+.sidebartextcenter {
+	text-align: center;
+}
+
+/* Footer */
+
+#footer-blockaaa {
+	height: 126px;
+	padding: 20px 0 0;
+}
+
+#footerad {
+	background-color: #AAA;
+	color: #fff;
+	text-align: center;
+	font-size: 20; 
+	height: 90px;
+	margin-left: auto;
+	margin-right: auto;
+	max-width: 728px;
+}
+
+/*bottom*/
+#bottomaaa {
+	background: #3B3B3B;
+	border-top: 5px solid #ED564B;
+	padding: 20px 0 40px 0px;
+}
+
+.bottom-row {
+	display: inline-block;
+	font: 14px 'Oxygen', sans-serif;
+}
+
+.bottom-block {
+	color: #AAA;
+	float: left;
+	padding-left: 15px;
+	padding-right: 15px;
+	position: relative;
+	width: 22.5%
+}
+
+#blockblock {
+	line-height: 1.6;
+	margin-bottom: 30px;
+}
+
+#blockblock h2 {
+	margin-top: 0;
+	font-weight: normal;
+}
+
+.bottom-row{
+	margin-left: -15px;
+	margin-right: -15px;
+}
+
+.bottom-block #blockblock > h2 {
+	font-size: 16px;
+	line-height: 1.6;
+	margin-bottom: 10px;
+	padding: 10px 0;
+	color: #FFF;
+	text-transform: uppercase;
+}
+
+#adblock {
+	height: 291px;
+	padding-left: 15px;
+	padding-right: 15px;
+}
+
+#adblock .bottom-content {
+	background-color: #AAA;
+	height: 246px;
+	color: #FFF;
+	font-size: 20;
+	text-align: center;
+}
+	/*
+bottom-content
+*/
+
+#footer {
+	background: #292929;
+	font-size: 12px;
+	padding: 10px 0;
+}
+
+
+#footer-2 .powered-by {
+	color: #BBB;
+	font: 12px 'Oxygen',sans-serif;
+	line-height: 1.6;
+	margin-left: -15px;
+	margin-right: -15px;
+}
+
+.powered-by a {
+	color: #FFF;
+}
+
+.powered-by a:hover {
+	text-decoration: none;
+	color: #FFF;
+}
+	
+#footer-2 p {
+	margin: 0;
+	padding: 10px 0;
+}
