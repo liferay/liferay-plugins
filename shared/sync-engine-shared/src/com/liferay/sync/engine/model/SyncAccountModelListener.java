@@ -66,12 +66,7 @@ public class SyncAccountModelListener implements ModelListener<SyncAccount> {
 
 		activeSyncAccountIds.add(syncAccount.getSyncAccountId());
 
-		try {
-			SyncEngine.scheduleSyncAccountTasks(syncAccount.getSyncAccountId());
-		}
-		catch (Exception e) {
-			_logger.error(e.getMessage(), e);
-		}
+		SyncEngine.scheduleSyncAccountTasks(syncAccount.getSyncAccountId());
 	}
 
 	protected void deactivateSyncAccount(SyncAccount syncAccount) {

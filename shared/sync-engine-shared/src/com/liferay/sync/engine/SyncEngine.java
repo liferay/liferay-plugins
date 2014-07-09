@@ -80,7 +80,53 @@ public class SyncEngine {
 		return _running;
 	}
 
-	public synchronized static void scheduleSyncAccountTasks(long syncAccountId)
+	public synchronized static void scheduleSyncAccountTasks(
+		final long syncAccountId) {
+
+		Runnable runnable = new Runnable() {
+
+			@Override
+			public void run() {
+				try {
+					doScheduleSyncAccountTasks(syncAccountId);
+				}
+				catch (Exception e) {
+					_logger.error(e.getMessage(), e);
+				}
+			}
+
+		};
+
+		_executorService.execute(runnable);
+	}
+
+	public synchronized static void start() {
+		if (_running) {
+			return;
+		}
+
+		try {
+			doStart();
+		}
+		catch (Exception e) {
+			_logger.error(e.getMessage(), e);
+		}
+	}
+
+	public synchronized static void stop() {
+		if (!_running) {
+			return;
+		}
+
+		try {
+			doStop();
+		}
+		catch (Exception e) {
+			_logger.error(e.getMessage(), e);
+		}
+	}
+
+	protected static void doScheduleSyncAccountTasks(long syncAccountId)
 		throws Exception {
 
 		if (!_running) {
@@ -141,36 +187,10 @@ public class SyncEngine {
 
 		Watcher watcher = new Watcher(filePath, true, watchEventListener);
 
-		_watcherExecutorService.execute(watcher);
+		_executorService.execute(watcher);
 
 		_syncAccountTasks.put(
 			syncAccountId, new Object[] {scheduledFuture, watcher});
-	}
-
-	public synchronized static void start() {
-		if (_running) {
-			return;
-		}
-
-		try {
-			doStart();
-		}
-		catch (Exception e) {
-			_logger.error(e.getMessage(), e);
-		}
-	}
-
-	public synchronized static void stop() {
-		if (!_running) {
-			return;
-		}
-
-		try {
-			doStop();
-		}
-		catch (Exception e) {
-			_logger.error(e.getMessage(), e);
-		}
 	}
 
 	protected static void doStart() throws Exception {
@@ -249,6 +269,8 @@ public class SyncEngine {
 
 	private static ScheduledExecutorService _eventScheduledExecutorService =
 		Executors.newScheduledThreadPool(5);
+	private static ExecutorService _executorService =
+		Executors.newCachedThreadPool();
 	private static boolean _running;
 	private static SyncAccountModelListener _syncAccountModelListener;
 	private static Map<Long, Object[]> _syncAccountTasks =
@@ -257,7 +279,5 @@ public class SyncEngine {
 	private static SyncSiteModelListener _syncSiteModelListener;
 	private static ScheduledExecutorService
 		_syncWatchEventProcessorExecutorService;
-	private static ExecutorService _watcherExecutorService =
-		Executors.newCachedThreadPool();
 
 }
