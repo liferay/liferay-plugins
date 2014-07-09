@@ -1,4 +1,5 @@
 @import "compass";
+@import "mixins";
 
 /* ---------- Configuration ---------- */
 
@@ -85,31 +86,30 @@
 	}
 
 	.kb-article-child {
-		margin: 15px -7px 0;
+		margin: 15px 0 0;
 
-		.kb-elements {
-			margin: 8px;
-
-			.kb-element {
-				border-top: 1px solid;
-
-				.kb-element-body {
-					margin: 0 0 0 20px;
-
-					.kb-article-icons {
-						padding: 4px 0;
-					}
-				}
-
-				.kb-element-header {
-					margin: 8px 0 0;
-
-					a {
-						color: #555;
-						display: block;
-					}
-				}
+		@include respond-to(desktop) {
+			.kb-elements .kb-element {
+				display: inline-table;
+				padding: 0 2%;
+				margin: 1% 2%;
+				width: 41%;
 			}
+		}
+
+		.kb-element-header {
+			font-size: 21px;
+			line-height: inherit;
+			margin-bottom: 15px;
+
+			a {
+				display: block;
+			}
+		}
+
+		.kb-element-body a {
+			display: block;
+			margin-top: 5px;
 		}
 	}
 
@@ -319,10 +319,6 @@
 .knowledge-base-portlet {
 	.lfr-panel-container {
 		border-width: 0;
-	}
-
-	.kb-article-child .kb-element-header a {
-		font-weight: bold;
 	}
 
 	.kb-article-siblings {
