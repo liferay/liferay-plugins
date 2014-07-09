@@ -4,7 +4,7 @@
 <user-notification-definitions>
 	<definition>
 		<notification-type>${com.liferay.mentions.util.MentionsConstants.NOTIFICATION_TYPE_MENTION}</notification-type>
-		<description>receive-a-notification-when-someone-mentions-you-in-a-comment</description>
+		<description>receive-a-notification-when-someone-mentions-you-in-a-comment-message-boards-message-or-blogs-entry</description>
 		<delivery-type>
 			<name>email</name>
 			<type>${com.liferay.portal.model.UserNotificationDeliveryConstants.TYPE_EMAIL}</type>
