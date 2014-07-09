@@ -13,12 +13,12 @@
 		}
 
 		.kbarticle-expanded {
-			color: #555;
 			font-weight: bold;
 		}
 
 		.kbarticle-selected {
 			color: #555;
+			font-weight: bold;
 		}
 	}
 }
