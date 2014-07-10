@@ -50,9 +50,7 @@ if (enableKBArticleViewCountIncrement && !kbArticle.isDraft()) {
 	request.setAttribute("article_icons.jsp-kb_article", kbArticle);
 %>
 
-<div class="kb-article-actions text-right">
-	<liferay-util:include page="/admin/article_icons.jsp" servletContext="<%= application %>" />
-</div>
+<liferay-util:include page="/admin/article_icons.jsp" servletContext="<%= application %>" />
 
 <div class="kb-entity-body">
 	<div class="kb-article-body" id="<portlet:namespace /><%= kbArticle.getResourcePrimKey() %>">
