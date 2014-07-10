@@ -47,7 +47,7 @@ if (enableKBArticleViewCountIncrement && !kbArticle.isDraft()) {
 </div>
 
 <%
-	request.setAttribute("article_icons.jsp-kb_article", kbArticle);
+request.setAttribute("article_icons.jsp-kb_article", kbArticle);
 %>
 
 <liferay-util:include page="/admin/article_icons.jsp" servletContext="<%= application %>" />
