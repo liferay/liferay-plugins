@@ -20,6 +20,8 @@ feature or API will be dropped in an upcoming version.
 replaces an old API, in spite of the old API being kept in Liferay Portal for
 backwards compatibility.
 
+*This document has been reviewed through commit `6852658`.*
+
 ## Breaking Changes Contribution Guidelines
 
 Each change must have a brief descriptive title and contain the following
@@ -94,7 +96,7 @@ If you need to keep the previous behaviour, you should change the
 #### Why was this change made?
 
 This change makes ratings in Knowledge Base consistent with other components in
-the portal, and allows administrators to configure the number of stars, if
+the portal, and allow administrators to configure the number of stars, if
 necessary.
 
 ---------------------------------------
