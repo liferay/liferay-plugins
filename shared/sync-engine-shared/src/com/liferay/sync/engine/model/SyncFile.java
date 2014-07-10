@@ -42,9 +42,13 @@ public class SyncFile extends StateAwareModel {
 
 	public static final String EVENT_UPDATE = "update";
 
-	public static final int STATE_ERROR = 2;
+	public static final int STATE_ERROR = 4;
 
 	public static final int STATE_IN_PROGRESS = 1;
+
+	public static final int STATE_IN_PROGRESS_DOWNLOADING = 3;
+
+	public static final int STATE_IN_PROGRESS_UPLOADING = 2;
 
 	public static final int STATE_SYNCED = 0;
 

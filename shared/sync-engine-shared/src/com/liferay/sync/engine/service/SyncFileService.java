@@ -416,6 +416,19 @@ public class SyncFileService {
 		}
 	}
 
+	public static List<SyncFile> findSyncFiles(int state) {
+		try {
+			return _syncFilePersistence.findByState(state);
+		}
+		catch (SQLException sqle) {
+			if (_logger.isDebugEnabled()) {
+				_logger.debug(sqle.getMessage(), sqle);
+			}
+
+			return Collections.emptyList();
+		}
+	}
+
 	public static List<SyncFile> findSyncFiles(long syncAccountId) {
 		try {
 			return _syncFilePersistence.findBySyncAccountId(syncAccountId);

@@ -139,4 +139,8 @@ public class SyncFilePersistence extends BasePersistenceImpl<SyncFile, Long> {
 		return queryForEq("syncAccountId", syncAccountId);
 	}
 
+	public List<SyncFile> findByState(int state) throws SQLException {
+		return queryForEq("state", state);
+	}
+
 }

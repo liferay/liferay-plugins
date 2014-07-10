@@ -41,10 +41,12 @@ public class UpdateFileEntryEvent extends BaseEvent {
 	protected void processRequest() throws Exception {
 		SyncFile syncFile = (SyncFile)getParameterValue("syncFile");
 
-		syncFile.setState(SyncFile.STATE_IN_PROGRESS);
-
 		if (getParameterValue("filePath") != null) {
+			syncFile.setState(SyncFile.STATE_IN_PROGRESS_UPLOADING);
 			syncFile.setUiEvent(SyncFile.UI_EVENT_UPLOADING);
+		}
+		else {
+			syncFile.setState(SyncFile.STATE_IN_PROGRESS);
 		}
 
 		SyncFileService.update(syncFile);
