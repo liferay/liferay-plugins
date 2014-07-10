@@ -175,8 +175,8 @@ public class CalendarBookingServiceClpInvoker {
 		_methodName128 = "updateCalendarBookingInstance";
 
 		_methodParameterTypes128 = new String[] {
-				"long", "long", "long[][]", "java.util.Map", "java.util.Map",
-				"java.lang.String", "long", "long", "boolean",
+				"long", "int", "long", "long[][]", "java.util.Map",
+				"java.util.Map", "java.lang.String", "long", "long", "boolean",
 				"java.lang.String", "boolean", "long", "java.lang.String",
 				"long", "java.lang.String", "int",
 				"com.liferay.portal.service.ServiceContext"
@@ -185,7 +185,7 @@ public class CalendarBookingServiceClpInvoker {
 		_methodName129 = "updateCalendarBookingInstance";
 
 		_methodParameterTypes129 = new String[] {
-				"long", "long", "java.util.Map", "java.util.Map",
+				"long", "int", "long", "java.util.Map", "java.util.Map",
 				"java.lang.String", "int", "int", "int", "int", "int", "int",
 				"int", "int", "int", "int", "java.lang.String", "boolean",
 				"java.lang.String", "boolean", "long", "java.lang.String",
@@ -196,7 +196,7 @@ public class CalendarBookingServiceClpInvoker {
 		_methodName130 = "updateCalendarBookingInstance";
 
 		_methodParameterTypes130 = new String[] {
-				"long", "long", "java.util.Map", "java.util.Map",
+				"long", "int", "long", "java.util.Map", "java.util.Map",
 				"java.lang.String", "long", "long", "boolean",
 				"java.lang.String", "boolean", "long", "java.lang.String",
 				"long", "java.lang.String", "int",
@@ -483,7 +483,59 @@ public class CalendarBookingServiceClpInvoker {
 		if (_methodName128.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes128, parameterTypes)) {
 			return CalendarBookingServiceUtil.updateCalendarBookingInstance(((Long)arguments[0]).longValue(),
-				((Long)arguments[1]).longValue(), (long[])arguments[2],
+				((Integer)arguments[1]).intValue(),
+				((Long)arguments[2]).longValue(), (long[])arguments[3],
+				(java.util.Map<java.util.Locale, java.lang.String>)arguments[4],
+				(java.util.Map<java.util.Locale, java.lang.String>)arguments[5],
+				(java.lang.String)arguments[6],
+				((Long)arguments[7]).longValue(),
+				((Long)arguments[8]).longValue(),
+				((Boolean)arguments[9]).booleanValue(),
+				(java.lang.String)arguments[10],
+				((Boolean)arguments[11]).booleanValue(),
+				((Long)arguments[12]).longValue(),
+				(java.lang.String)arguments[13],
+				((Long)arguments[14]).longValue(),
+				(java.lang.String)arguments[15],
+				((Integer)arguments[16]).intValue(),
+				(com.liferay.portal.service.ServiceContext)arguments[17]);
+		}
+
+		if (_methodName129.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes129, parameterTypes)) {
+			return CalendarBookingServiceUtil.updateCalendarBookingInstance(((Long)arguments[0]).longValue(),
+				((Integer)arguments[1]).intValue(),
+				((Long)arguments[2]).longValue(),
+				(java.util.Map<java.util.Locale, java.lang.String>)arguments[3],
+				(java.util.Map<java.util.Locale, java.lang.String>)arguments[4],
+				(java.lang.String)arguments[5],
+				((Integer)arguments[6]).intValue(),
+				((Integer)arguments[7]).intValue(),
+				((Integer)arguments[8]).intValue(),
+				((Integer)arguments[9]).intValue(),
+				((Integer)arguments[10]).intValue(),
+				((Integer)arguments[11]).intValue(),
+				((Integer)arguments[12]).intValue(),
+				((Integer)arguments[13]).intValue(),
+				((Integer)arguments[14]).intValue(),
+				((Integer)arguments[15]).intValue(),
+				(java.lang.String)arguments[16],
+				((Boolean)arguments[17]).booleanValue(),
+				(java.lang.String)arguments[18],
+				((Boolean)arguments[19]).booleanValue(),
+				((Long)arguments[20]).longValue(),
+				(java.lang.String)arguments[21],
+				((Long)arguments[22]).longValue(),
+				(java.lang.String)arguments[23],
+				((Integer)arguments[24]).intValue(),
+				(com.liferay.portal.service.ServiceContext)arguments[25]);
+		}
+
+		if (_methodName130.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes130, parameterTypes)) {
+			return CalendarBookingServiceUtil.updateCalendarBookingInstance(((Long)arguments[0]).longValue(),
+				((Integer)arguments[1]).intValue(),
+				((Long)arguments[2]).longValue(),
 				(java.util.Map<java.util.Locale, java.lang.String>)arguments[3],
 				(java.util.Map<java.util.Locale, java.lang.String>)arguments[4],
 				(java.lang.String)arguments[5],
@@ -498,55 +550,6 @@ public class CalendarBookingServiceClpInvoker {
 				(java.lang.String)arguments[14],
 				((Integer)arguments[15]).intValue(),
 				(com.liferay.portal.service.ServiceContext)arguments[16]);
-		}
-
-		if (_methodName129.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes129, parameterTypes)) {
-			return CalendarBookingServiceUtil.updateCalendarBookingInstance(((Long)arguments[0]).longValue(),
-				((Long)arguments[1]).longValue(),
-				(java.util.Map<java.util.Locale, java.lang.String>)arguments[2],
-				(java.util.Map<java.util.Locale, java.lang.String>)arguments[3],
-				(java.lang.String)arguments[4],
-				((Integer)arguments[5]).intValue(),
-				((Integer)arguments[6]).intValue(),
-				((Integer)arguments[7]).intValue(),
-				((Integer)arguments[8]).intValue(),
-				((Integer)arguments[9]).intValue(),
-				((Integer)arguments[10]).intValue(),
-				((Integer)arguments[11]).intValue(),
-				((Integer)arguments[12]).intValue(),
-				((Integer)arguments[13]).intValue(),
-				((Integer)arguments[14]).intValue(),
-				(java.lang.String)arguments[15],
-				((Boolean)arguments[16]).booleanValue(),
-				(java.lang.String)arguments[17],
-				((Boolean)arguments[18]).booleanValue(),
-				((Long)arguments[19]).longValue(),
-				(java.lang.String)arguments[20],
-				((Long)arguments[21]).longValue(),
-				(java.lang.String)arguments[22],
-				((Integer)arguments[23]).intValue(),
-				(com.liferay.portal.service.ServiceContext)arguments[24]);
-		}
-
-		if (_methodName130.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes130, parameterTypes)) {
-			return CalendarBookingServiceUtil.updateCalendarBookingInstance(((Long)arguments[0]).longValue(),
-				((Long)arguments[1]).longValue(),
-				(java.util.Map<java.util.Locale, java.lang.String>)arguments[2],
-				(java.util.Map<java.util.Locale, java.lang.String>)arguments[3],
-				(java.lang.String)arguments[4],
-				((Long)arguments[5]).longValue(),
-				((Long)arguments[6]).longValue(),
-				((Boolean)arguments[7]).booleanValue(),
-				(java.lang.String)arguments[8],
-				((Boolean)arguments[9]).booleanValue(),
-				((Long)arguments[10]).longValue(),
-				(java.lang.String)arguments[11],
-				((Long)arguments[12]).longValue(),
-				(java.lang.String)arguments[13],
-				((Integer)arguments[14]).intValue(),
-				(com.liferay.portal.service.ServiceContext)arguments[15]);
 		}
 
 		if (_methodName131.equals(name) &&

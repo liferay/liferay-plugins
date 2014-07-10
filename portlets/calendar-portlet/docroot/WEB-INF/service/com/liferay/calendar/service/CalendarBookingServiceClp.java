@@ -175,8 +175,8 @@ public class CalendarBookingServiceClp implements CalendarBookingService {
 		_methodName27 = "updateCalendarBookingInstance";
 
 		_methodParameterTypes27 = new String[] {
-				"long", "long", "long[][]", "java.util.Map", "java.util.Map",
-				"java.lang.String", "long", "long", "boolean",
+				"long", "int", "long", "long[][]", "java.util.Map",
+				"java.util.Map", "java.lang.String", "long", "long", "boolean",
 				"java.lang.String", "boolean", "long", "java.lang.String",
 				"long", "java.lang.String", "int",
 				"com.liferay.portal.service.ServiceContext"
@@ -185,7 +185,7 @@ public class CalendarBookingServiceClp implements CalendarBookingService {
 		_methodName28 = "updateCalendarBookingInstance";
 
 		_methodParameterTypes28 = new String[] {
-				"long", "long", "java.util.Map", "java.util.Map",
+				"long", "int", "long", "java.util.Map", "java.util.Map",
 				"java.lang.String", "int", "int", "int", "int", "int", "int",
 				"int", "int", "int", "int", "java.lang.String", "boolean",
 				"java.lang.String", "boolean", "long", "java.lang.String",
@@ -196,7 +196,7 @@ public class CalendarBookingServiceClp implements CalendarBookingService {
 		_methodName29 = "updateCalendarBookingInstance";
 
 		_methodParameterTypes29 = new String[] {
-				"long", "long", "java.util.Map", "java.util.Map",
+				"long", "int", "long", "java.util.Map", "java.util.Map",
 				"java.lang.String", "long", "long", "boolean",
 				"java.lang.String", "boolean", "long", "java.lang.String",
 				"long", "java.lang.String", "int",
@@ -1414,7 +1414,8 @@ public class CalendarBookingServiceClp implements CalendarBookingService {
 
 	@Override
 	public com.liferay.calendar.model.CalendarBooking updateCalendarBookingInstance(
-		long calendarBookingId, long calendarId, long[] childCalendarIds,
+		long calendarBookingId, int instanceIndex, long calendarId,
+		long[] childCalendarIds,
 		java.util.Map<java.util.Locale, java.lang.String> titleMap,
 		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
 		java.lang.String location, long startTime, long endTime,
@@ -1431,6 +1432,8 @@ public class CalendarBookingServiceClp implements CalendarBookingService {
 					_methodParameterTypes27,
 					new Object[] {
 						calendarBookingId,
+						
+					instanceIndex,
 						
 					calendarId,
 						
@@ -1490,7 +1493,7 @@ public class CalendarBookingServiceClp implements CalendarBookingService {
 
 	@Override
 	public com.liferay.calendar.model.CalendarBooking updateCalendarBookingInstance(
-		long calendarBookingId, long calendarId,
+		long calendarBookingId, int instanceIndex, long calendarId,
 		java.util.Map<java.util.Locale, java.lang.String> titleMap,
 		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
 		java.lang.String location, int startTimeYear, int startTimeMonth,
@@ -1510,6 +1513,8 @@ public class CalendarBookingServiceClp implements CalendarBookingService {
 					_methodParameterTypes28,
 					new Object[] {
 						calendarBookingId,
+						
+					instanceIndex,
 						
 					calendarId,
 						
@@ -1585,7 +1590,7 @@ public class CalendarBookingServiceClp implements CalendarBookingService {
 
 	@Override
 	public com.liferay.calendar.model.CalendarBooking updateCalendarBookingInstance(
-		long calendarBookingId, long calendarId,
+		long calendarBookingId, int instanceIndex, long calendarId,
 		java.util.Map<java.util.Locale, java.lang.String> titleMap,
 		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
 		java.lang.String location, long startTime, long endTime,
@@ -1602,6 +1607,8 @@ public class CalendarBookingServiceClp implements CalendarBookingService {
 					_methodParameterTypes29,
 					new Object[] {
 						calendarBookingId,
+						
+					instanceIndex,
 						
 					calendarId,
 						
