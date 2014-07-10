@@ -24,6 +24,10 @@
 
 /* ---------- Portal ---------- */
 
+.controls-hidden .kb-article-actions {
+	display: none;
+}
+
 .knowledge-base-portlet {
 	.field-inline {
 		display: inline-block;
