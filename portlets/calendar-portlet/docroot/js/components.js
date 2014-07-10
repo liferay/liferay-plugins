@@ -1167,21 +1167,24 @@
 					return confirmationPanel.render().show();
 				},
 
-				showAlert: function(container, message) {
-					new A.Alert({
-						animated: true,
-						bodyContent: message,
-						closeable: true,
-						cssClass: 'alert-success',
-						destroyOnHide: true,
-						duration: 1
-					}).render(container);
+				showMessage: function(messageContainer, message, timeDisplayed) {
+					timeDisplayed = timeDisplayed || 5000;
+
+					messageContainer.set('text', message);
+					messageContainer.show();
+
+					setTimeout(
+						function() {
+							messageContainer.hide();
+						},
+						timeDisplayed
+					);
 				}
 			};
 		},
 		'',
 		{
-			requires: ['aui-alert', 'liferay-util-window']
+			requires: ['liferay-util-window']
 		}
 	);
 }());

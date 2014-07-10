@@ -279,7 +279,10 @@ String backURL = PortalUtil.getCurrentURL(request);
 
 										<portlet:namespace />scheduler.load();
 
-										Liferay.CalendarMessageUtil.showAlert('#<portlet:namespace />alert', '<liferay-ui:message key="the-calendar-was-deleted-successfully" />');
+										var message = '<liferay-ui:message key="the-calendar-was-deleted-successfully" />';
+										var messageContainer = A.one('#<portlet:namespace />dynamicMessage');
+
+										Liferay.CalendarMessageUtil.showMessage(messageContainer, message);
 									}
 								);
 							}
