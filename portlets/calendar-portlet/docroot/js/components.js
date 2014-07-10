@@ -1182,14 +1182,15 @@
 				},
 
 				showAlert: function(container, message) {
-					new A.Alert({
-						animated: true,
-						bodyContent: message,
-						closeable: true,
-						cssClass: 'alert-success',
-						destroyOnHide: true,
-						duration: 1
-					}).render(container);
+					new A.Alert(
+						{
+							animated: true,
+							bodyContent: message,
+							closeable: true,
+							cssClass: 'alert-success',
+							destroyOnHide: true,
+							duration: 1
+						}).render(container);
 				}
 			};
 		},
