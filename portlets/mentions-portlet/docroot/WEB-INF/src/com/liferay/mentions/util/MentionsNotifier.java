@@ -85,7 +85,7 @@ public class MentionsNotifier {
 		subscriptionSender.setCompanyId(user.getCompanyId());
 		subscriptionSender.setContextAttribute("[$CONTENT$]", content, false);
 		subscriptionSender.setContextAttributes(
-			"[$ASSET_NAME$]", assetName, "[$USER_ADDRESS$]",
+			"[$ASSET_ENTRY_NAME$]", assetName, "[$USER_ADDRESS$]",
 			messageUserEmailAddress, "[USER_NAME$]", messageUserName,
 			"[$CONTENT_URL$]", contentURL);
 		subscriptionSender.setEntryTitle(content);

@@ -97,8 +97,9 @@ public class MentionsMessageServiceImpl extends MBMessageLocalServiceWrapper {
 
 		if (!message.isDiscussion()) {
 			subject = ContentUtil.get(
-				PortletPropsValues.ASSET_MENTION_EMAIL_SUBJECT);
-			body = ContentUtil.get(PortletPropsValues.ASSET_MENTION_EMAIL_BODY);
+				PortletPropsValues.ASSET_ENTRY_MENTION_EMAIL_SUBJECT);
+			body = ContentUtil.get(
+				PortletPropsValues.ASSET_ENTRY_MENTION_EMAIL_BODY);
 		}
 
 		mentionsNotifier.notify(
