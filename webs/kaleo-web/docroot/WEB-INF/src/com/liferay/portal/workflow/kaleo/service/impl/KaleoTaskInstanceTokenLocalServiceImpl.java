@@ -235,7 +235,8 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 	@Override
 	public List<KaleoTaskInstanceToken> getKaleoTaskInstanceTokens(
 		Boolean completed, int start, int end,
-		OrderByComparator orderByComparator, ServiceContext serviceContext) {
+		OrderByComparator<KaleoTaskInstanceToken> orderByComparator,
+		ServiceContext serviceContext) {
 
 		DynamicQuery dynamicQuery = buildDynamicQuery(
 			completed, serviceContext);
@@ -246,7 +247,8 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 	@Override
 	public List<KaleoTaskInstanceToken> getKaleoTaskInstanceTokens(
 		List<Long> roleIds, Boolean completed, int start, int end,
-		OrderByComparator orderByComparator, ServiceContext serviceContext) {
+		OrderByComparator<KaleoTaskInstanceToken> orderByComparator,
+		ServiceContext serviceContext) {
 
 		KaleoTaskInstanceTokenQuery kaleoTaskInstanceTokenQuery =
 			new KaleoTaskInstanceTokenQuery(serviceContext);
@@ -264,7 +266,8 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 	@Override
 	public List<KaleoTaskInstanceToken> getKaleoTaskInstanceTokens(
 		long kaleoInstanceId, Boolean completed, int start, int end,
-		OrderByComparator orderByComparator, ServiceContext serviceContext) {
+		OrderByComparator<KaleoTaskInstanceToken> orderByComparator,
+		ServiceContext serviceContext) {
 
 		long userId = serviceContext.getUserId();
 
@@ -303,7 +306,8 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 	@Override
 	public List<KaleoTaskInstanceToken> getKaleoTaskInstanceTokens(
 		String assigneeClassName, long assigneeClassPK, Boolean completed,
-		int start, int end, OrderByComparator orderByComparator,
+		int start, int end,
+		OrderByComparator<KaleoTaskInstanceToken> orderByComparator,
 		ServiceContext serviceContext) {
 
 		KaleoTaskInstanceTokenQuery kaleoTaskInstanceTokenQuery =
@@ -392,7 +396,7 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 	public List<KaleoTaskInstanceToken>
 			getSubmittingUserKaleoTaskInstanceTokens(
 				long userId, Boolean completed, int start, int end,
-				OrderByComparator orderByComparator,
+				OrderByComparator<KaleoTaskInstanceToken> orderByComparator,
 				ServiceContext serviceContext) {
 
 		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
@@ -436,7 +440,8 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 	@Override
 	public List<KaleoTaskInstanceToken> search(
 		String keywords, Boolean completed, Boolean searchByUserRoles,
-		int start, int end, OrderByComparator orderByComparator,
+		int start, int end,
+		OrderByComparator<KaleoTaskInstanceToken> orderByComparator,
 		ServiceContext serviceContext) {
 
 		return search(
@@ -449,7 +454,8 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 		String taskName, String assetType, Long[] assetPrimaryKeys,
 		Date dueDateGT, Date dueDateLT, Boolean completed,
 		Boolean searchByUserRoles, boolean andOperator, int start, int end,
-		OrderByComparator orderByComparator, ServiceContext serviceContext) {
+		OrderByComparator<KaleoTaskInstanceToken> orderByComparator,
+		ServiceContext serviceContext) {
 
 		return search(
 			taskName, getAssetTypes(assetType), assetPrimaryKeys, dueDateGT,
@@ -461,7 +467,8 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 	public List<KaleoTaskInstanceToken> search(
 		String keywords, String[] assetTypes, Boolean completed,
 		Boolean searchByUserRoles, int start, int end,
-		OrderByComparator orderByComparator, ServiceContext serviceContext) {
+		OrderByComparator<KaleoTaskInstanceToken> orderByComparator,
+		ServiceContext serviceContext) {
 
 		return search(
 			keywords, assetTypes, null, null, null, completed,
@@ -474,7 +481,8 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 		String taskName, String[] assetTypes, Long[] assetPrimaryKeys,
 		Date dueDateGT, Date dueDateLT, Boolean completed,
 		Boolean searchByUserRoles, boolean andOperator, int start, int end,
-		OrderByComparator orderByComparator, ServiceContext serviceContext) {
+		OrderByComparator<KaleoTaskInstanceToken> orderByComparator,
+		ServiceContext serviceContext) {
 
 		KaleoTaskInstanceTokenQuery kaleoTaskInstanceTokenQuery =
 			new KaleoTaskInstanceTokenQuery(serviceContext);

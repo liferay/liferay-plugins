@@ -202,7 +202,8 @@ public class KaleoInstanceLocalServiceImpl
 	public List<KaleoInstance> getKaleoInstances(
 		Long userId, String assetClassName, Long assetClassPK,
 		Boolean completed, int start, int end,
-		OrderByComparator orderByComparator, ServiceContext serviceContext) {
+		OrderByComparator<KaleoInstance> orderByComparator,
+		ServiceContext serviceContext) {
 
 		DynamicQuery dynamicQuery = buildDynamicQuery(
 			userId, assetClassName, assetClassPK, completed, serviceContext);
@@ -213,7 +214,7 @@ public class KaleoInstanceLocalServiceImpl
 	@Override
 	public List<KaleoInstance> getKaleoInstances(
 		Long userId, String[] assetClassNames, Boolean completed, int start,
-		int end, OrderByComparator orderByComparator,
+		int end, OrderByComparator<KaleoInstance> orderByComparator,
 		ServiceContext serviceContext) {
 
 		DynamicQuery dynamicQuery = buildDynamicQuery(
@@ -226,7 +227,8 @@ public class KaleoInstanceLocalServiceImpl
 	public List<KaleoInstance> getKaleoInstances(
 		String kaleoDefinitionName, int kaleoDefinitionVersion,
 		boolean completed, int start, int end,
-		OrderByComparator orderByComparator, ServiceContext serviceContext) {
+		OrderByComparator<KaleoInstance> orderByComparator,
+		ServiceContext serviceContext) {
 
 		DynamicQuery dynamicQuery = buildDynamicQuery(
 			kaleoDefinitionName, kaleoDefinitionVersion, completed,

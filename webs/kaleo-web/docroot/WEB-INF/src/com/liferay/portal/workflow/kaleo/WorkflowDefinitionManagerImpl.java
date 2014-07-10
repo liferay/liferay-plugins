@@ -25,6 +25,7 @@ import com.liferay.portal.workflow.kaleo.model.KaleoDefinition;
 import com.liferay.portal.workflow.kaleo.runtime.WorkflowEngine;
 import com.liferay.portal.workflow.kaleo.service.KaleoDefinitionLocalServiceUtil;
 import com.liferay.portal.workflow.kaleo.util.WorkflowModelUtil;
+import com.liferay.portal.workflow.kaleo.util.comparators.KaleoDefinitionOrderByComparator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -87,7 +88,7 @@ public class WorkflowDefinitionManagerImpl
 	@Override
 	public List<WorkflowDefinition> getActiveWorkflowDefinitions(
 			long companyId, int start, int end,
-			OrderByComparator orderByComparator)
+			OrderByComparator<WorkflowDefinition> orderByComparator)
 		throws WorkflowException {
 
 		try {
@@ -103,7 +104,10 @@ public class WorkflowDefinitionManagerImpl
 
 			List<KaleoDefinition> kaleoDefinitions =
 				KaleoDefinitionLocalServiceUtil.getKaleoDefinitions(
-					true, start, end, orderByComparator, serviceContext);
+					true, start, end,
+					KaleoDefinitionOrderByComparator.getOrderByComparator(
+						orderByComparator),
+					serviceContext);
 
 			return toWorkflowDefinitions(kaleoDefinitions);
 		}
@@ -115,7 +119,7 @@ public class WorkflowDefinitionManagerImpl
 	@Override
 	public List<WorkflowDefinition> getActiveWorkflowDefinitions(
 			long companyId, String name, int start, int end,
-			OrderByComparator orderByComparator)
+			OrderByComparator<WorkflowDefinition> orderByComparator)
 		throws WorkflowException {
 
 		try {
@@ -125,7 +129,10 @@ public class WorkflowDefinitionManagerImpl
 
 			List<KaleoDefinition> kaleoDefinitions =
 				KaleoDefinitionLocalServiceUtil.getKaleoDefinitions(
-					name, true, start, end, orderByComparator, serviceContext);
+					name, true, start, end,
+					KaleoDefinitionOrderByComparator.getOrderByComparator(
+						orderByComparator),
+					serviceContext);
 
 			return toWorkflowDefinitions(kaleoDefinitions);
 		}
@@ -213,7 +220,7 @@ public class WorkflowDefinitionManagerImpl
 	@Override
 	public List<WorkflowDefinition> getWorkflowDefinitions(
 			long companyId, int start, int end,
-			OrderByComparator orderByComparator)
+			OrderByComparator<WorkflowDefinition> orderByComparator)
 		throws WorkflowException {
 
 		try {
@@ -223,7 +230,10 @@ public class WorkflowDefinitionManagerImpl
 
 			List<KaleoDefinition> kaleoDefinitions =
 				KaleoDefinitionLocalServiceUtil.getKaleoDefinitions(
-					start, end, orderByComparator, serviceContext);
+					start, end,
+					KaleoDefinitionOrderByComparator.getOrderByComparator(
+						orderByComparator),
+					serviceContext);
 
 			return toWorkflowDefinitions(kaleoDefinitions);
 		}
@@ -235,7 +245,7 @@ public class WorkflowDefinitionManagerImpl
 	@Override
 	public List<WorkflowDefinition> getWorkflowDefinitions(
 			long companyId, String name, int start, int end,
-			OrderByComparator orderByComparator)
+			OrderByComparator<WorkflowDefinition> orderByComparator)
 		throws WorkflowException {
 
 		try {
@@ -245,7 +255,10 @@ public class WorkflowDefinitionManagerImpl
 
 			List<KaleoDefinition> kaleoDefinitions =
 				KaleoDefinitionLocalServiceUtil.getKaleoDefinitions(
-					name, start, end, orderByComparator, serviceContext);
+					name, start, end,
+					KaleoDefinitionOrderByComparator.getOrderByComparator(
+						orderByComparator),
+					serviceContext);
 
 			return toWorkflowDefinitions(kaleoDefinitions);
 		}

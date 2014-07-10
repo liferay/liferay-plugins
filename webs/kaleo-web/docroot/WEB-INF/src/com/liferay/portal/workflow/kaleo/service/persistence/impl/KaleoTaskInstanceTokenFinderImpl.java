@@ -262,7 +262,7 @@ public class KaleoTaskInstanceTokenFinderImpl
 
 			sql = sb.toString();
 
-			OrderByComparator obc =
+			OrderByComparator<KaleoTaskInstanceToken> obc =
 				kaleoTaskInstanceTokenQuery.getOrderByComparator();
 
 			String[] orderByFields = obc.getOrderByFields();

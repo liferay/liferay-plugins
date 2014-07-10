@@ -341,7 +341,7 @@ public class KaleoLogLocalServiceImpl extends KaleoLogLocalServiceBaseImpl {
 	@Override
 	public List<KaleoLog> getKaleoInstanceKaleoLogs(
 		long kaleoInstanceId, List<Integer> logTypes, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KaleoLog> orderByComparator) {
 
 		if ((logTypes == null) || logTypes.isEmpty()) {
 			return kaleoLogPersistence.findByKaleoInstanceId(
@@ -372,7 +372,7 @@ public class KaleoLogLocalServiceImpl extends KaleoLogLocalServiceBaseImpl {
 	@Override
 	public List<KaleoLog> getKaleoTaskInstanceTokenKaleoLogs(
 		long kaleoTaskInstanceTokenId, List<Integer> logTypes, int start,
-		int end, OrderByComparator orderByComparator) {
+		int end, OrderByComparator<KaleoLog> orderByComparator) {
 
 		if ((logTypes == null) || logTypes.isEmpty()) {
 			return kaleoLogPersistence.findByKaleoTaskInstanceTokenId(

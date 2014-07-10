@@ -76,19 +76,21 @@ public interface WorkflowEngine {
 	public List<WorkflowInstance> getWorkflowInstances(
 			Long userId, String assetClassName, Long assetClassPK,
 			Boolean completed, int start, int end,
-			OrderByComparator orderByComparator, ServiceContext serviceContext)
+			OrderByComparator<WorkflowInstance> orderByComparator,
+			ServiceContext serviceContext)
 		throws WorkflowException;
 
 	public List<WorkflowInstance> getWorkflowInstances(
 			Long userId, String[] assetClassNames, Boolean completed, int start,
-			int end, OrderByComparator orderByComparator,
+			int end, OrderByComparator<WorkflowInstance> orderByComparator,
 			ServiceContext serviceContext)
 		throws WorkflowException;
 
 	public List<WorkflowInstance> getWorkflowInstances(
 			String workflowDefinitionName, int workflowDefinitionVersion,
 			boolean completed, int start, int end,
-			OrderByComparator orderByComparator, ServiceContext serviceContext)
+			OrderByComparator<WorkflowInstance> orderByComparator,
+			ServiceContext serviceContext)
 		throws WorkflowException;
 
 	public WorkflowInstance signalWorkflowInstance(

@@ -17,6 +17,7 @@ package com.liferay.portal.workflow.kaleo.service.persistence;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.service.ServiceContext;
+import com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken;
 
 import java.util.Date;
 import java.util.List;
@@ -68,7 +69,7 @@ public class KaleoTaskInstanceTokenQuery {
 		return _kaleoInstanceId;
 	}
 
-	public OrderByComparator getOrderByComparator() {
+	public OrderByComparator<KaleoTaskInstanceToken> getOrderByComparator() {
 		return _orderByComparator;
 	}
 
@@ -148,7 +149,9 @@ public class KaleoTaskInstanceTokenQuery {
 		_kaleoInstanceId = kaleoInstanceId;
 	}
 
-	public void setOrderByComparator(OrderByComparator orderByComparator) {
+	public void setOrderByComparator(
+		OrderByComparator<KaleoTaskInstanceToken> orderByComparator) {
+
 		_orderByComparator = orderByComparator;
 	}
 
@@ -187,7 +190,7 @@ public class KaleoTaskInstanceTokenQuery {
 	private Date _dueDateLT;
 	private int _end = QueryUtil.ALL_POS;
 	private Long _kaleoInstanceId;
-	private OrderByComparator _orderByComparator;
+	private OrderByComparator<KaleoTaskInstanceToken> _orderByComparator;
 	private List<Long> _roleIds;
 	private Boolean _searchByUserRoles;
 	private ServiceContext _serviceContext;
