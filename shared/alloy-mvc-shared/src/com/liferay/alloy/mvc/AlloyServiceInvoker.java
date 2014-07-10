@@ -138,7 +138,7 @@ public class AlloyServiceInvoker {
 	@SuppressWarnings("rawtypes")
 	public List executeDynamicQuery(
 			DynamicQuery dynamicQuery, int start, int end,
-			OrderByComparator obc)
+			OrderByComparator<?> obc)
 		throws Exception {
 
 		return (List)dynamicQueryMethod4.invoke(
@@ -159,7 +159,7 @@ public class AlloyServiceInvoker {
 
 	@SuppressWarnings("rawtypes")
 	public List executeDynamicQuery(
-			Object[] properties, int start, int end, OrderByComparator obc)
+			Object[] properties, int start, int end, OrderByComparator<?> obc)
 		throws Exception {
 
 		return executeDynamicQuery(

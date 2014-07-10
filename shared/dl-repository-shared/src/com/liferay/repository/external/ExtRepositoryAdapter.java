@@ -179,7 +179,6 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 	}
 
 	@Override
-	@SuppressWarnings("unused")
 	public FileEntry checkOutFileEntry(
 			long fileEntryId, String owner, long expirationTime,
 			ServiceContext serviceContext)
@@ -274,9 +273,8 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 	}
 
 	@Override
-	@SuppressWarnings("rawtypes")
 	public List<FileEntry> getFileEntries(
-			long folderId, int start, int end, OrderByComparator obc)
+			long folderId, int start, int end, OrderByComparator<FileEntry> obc)
 		throws PortalException {
 
 		String extRepositoryFolderKey = getExtRepositoryObjectKey(folderId);
@@ -289,13 +287,13 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 			_toExtRepositoryObjectAdapters(
 				ExtRepositoryObjectAdapterType.FILE, extRepositoryFileEntries);
 
-		return (List)_subList(extRepositoryFileEntryAdapters, start, end, obc);
+		return _subList(extRepositoryFileEntryAdapters, start, end, obc);
 	}
 
 	@Override
 	public List<FileEntry> getFileEntries(
 			long folderId, long fileEntryTypeId, int start, int end,
-			OrderByComparator obc)
+			OrderByComparator<FileEntry> obc)
 		throws PortalException {
 
 		if (fileEntryTypeId ==
@@ -309,10 +307,9 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 	}
 
 	@Override
-	@SuppressWarnings("rawtypes")
 	public List<FileEntry> getFileEntries(
 			long folderId, String[] mimeTypes, int start, int end,
-			OrderByComparator obc)
+			OrderByComparator<FileEntry> obc)
 		throws PortalException {
 
 		String extRepositoryFolderKey = getExtRepositoryObjectKey(folderId);
@@ -474,10 +471,9 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 	}
 
 	@Override
-	@SuppressWarnings("rawtypes")
 	public List<Folder> getFolders(
 			long parentFolderId, boolean includeMountFolders, int start,
-			int end, OrderByComparator obc)
+			int end, OrderByComparator<Folder> obc)
 		throws PortalException {
 
 		String extRepositoryParentFolderKey = getExtRepositoryObjectKey(
@@ -495,9 +491,8 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 	}
 
 	@Override
-	@SuppressWarnings("rawtypes")
 	public List getFoldersAndFileEntries(
-		long folderId, int start, int end, OrderByComparator obc) {
+		long folderId, int start, int end, OrderByComparator<?> obc) {
 
 		try {
 			String extRepositoryFolderKey = getExtRepositoryObjectKey(folderId);
@@ -511,7 +506,9 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 					ExtRepositoryObjectAdapterType.OBJECT,
 					extRepositoryObjects);
 
-			return _subList(extRepositoryObjectAdapters, start, end, obc);
+			return _subList(
+				extRepositoryObjectAdapters, start, end,
+				(OrderByComparator<Object>)obc);
 		}
 		catch (Exception e) {
 			throw new RepositoryException(e);
@@ -519,10 +516,9 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 	}
 
 	@Override
-	@SuppressWarnings("rawtypes")
 	public List<Object> getFoldersAndFileEntries(
 			long folderId, String[] mimeTypes, int start, int end,
-			OrderByComparator obc)
+			OrderByComparator<?> obc)
 		throws PortalException {
 
 		String extRepositoryFolderKey = getExtRepositoryObjectKey(folderId);
@@ -538,7 +534,9 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 		extRepositoryObjectAdapters = _filterByMimeType(
 			extRepositoryObjectAdapters, mimeTypes);
 
-		return (List)_subList(extRepositoryObjectAdapters, start, end, obc);
+		return _subList(
+			extRepositoryObjectAdapters, start, end,
+			(OrderByComparator<Object>)obc);
 	}
 
 	@Override
@@ -598,7 +596,8 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 	@Override
 	@SuppressWarnings("unused")
 	public List<Folder> getMountFolders(
-			long parentFolderId, int start, int end, OrderByComparator obc)
+			long parentFolderId, int start, int end,
+			OrderByComparator<Folder> obc)
 		throws PortalException {
 
 		return Collections.emptyList();
@@ -1203,17 +1202,6 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 		return repositoryEntry;
 	}
 
-	@SuppressWarnings("unchecked")
-	private <T extends ExtRepositoryObjectAdapter<?>> List<T> _subList(
-		List<T> list, int start, int end, OrderByComparator obc) {
-
-		if (obc != null) {
-			list = ListUtil.sort(list, obc);
-		}
-
-		return ListUtil.subList(list, start, end);
-	}
-
 	private ExtRepositoryFileVersionAdapter _toExtRepositoryFileVersionAdapter(
 			ExtRepositoryFileEntryAdapter extRepositoryFileEntryAdapter,
 			ExtRepositoryFileVersion extRepositoryFileVersion)
@@ -1364,6 +1352,16 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 		}
 
 		return extRepositoryObjectAdapters;
+	}
+
+	private <T, V extends T> List<T>_subList(
+		List<V> list, int start, int end, OrderByComparator<T> obc) {
+
+		if (obc != null) {
+			list = ListUtil.sort(list, obc);
+		}
+
+		return ListUtil.toList(ListUtil.subList(list, start, end));
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(ExtRepositoryAdapter.class);
