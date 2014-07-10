@@ -14,6 +14,8 @@
 
 package com.liferay.jsonwebserviceclient;
 
+import com.liferay.portal.kernel.util.Validator;
+
 import java.io.IOException;
 import java.io.InterruptedIOException;
 
@@ -60,6 +62,7 @@ import org.apache.http.client.utils.URLEncodedUtils;
 import org.apache.http.config.Registry;
 import org.apache.http.config.RegistryBuilder;
 import org.apache.http.conn.ConnectTimeoutException;
+import org.apache.http.conn.routing.HttpRoutePlanner;
 import org.apache.http.conn.socket.ConnectionSocketFactory;
 import org.apache.http.conn.socket.PlainConnectionSocketFactory;
 import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
@@ -69,6 +72,7 @@ import org.apache.http.impl.client.BasicCredentialsProvider;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.impl.client.HttpClients;
+import org.apache.http.impl.conn.DefaultProxyRoutePlanner;
 import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.protocol.HttpContext;
@@ -109,6 +113,8 @@ public class JSONWebServiceClientImpl implements JSONWebServiceClient {
 		}
 
 		try {
+			setProxyHost(httpClientBuilder);
+
 			_closeableHttpClient = httpClientBuilder.build();
 
 			if (_logger.isDebugEnabled()) {
@@ -245,6 +251,14 @@ public class JSONWebServiceClientImpl implements JSONWebServiceClient {
 		_protocol = protocol;
 	}
 
+	public void setProxyHostName(String proxyHostName) {
+		_proxyHostName = proxyHostName;
+	}
+
+	public void setProxyHostPort(int proxyHostPort) {
+		_proxyHostPort = proxyHostPort;
+	}
+
 	protected String execute(HttpRequestBase httpRequestBase)
 		throws CredentialException, IOException {
 
@@ -322,6 +336,19 @@ public class JSONWebServiceClientImpl implements JSONWebServiceClient {
 			SSLConnectionSocketFactory.BROWSER_COMPATIBLE_HOSTNAME_VERIFIER);
 	}
 
+	protected void setProxyHost(HttpClientBuilder httpClientBuilder) {
+		if (Validator.isNull(_proxyHostName)) {
+			return;
+		}
+
+		HttpHost httpHost = new HttpHost(_proxyHostName, _proxyHostPort);
+
+		HttpRoutePlanner httpRoutePlanner = new DefaultProxyRoutePlanner(
+			httpHost);
+
+		httpClientBuilder.setRoutePlanner(httpRoutePlanner);
+	}
+
 	protected List<NameValuePair> toNameValuePairs(
 		Map<String, String> parameters) {
 
@@ -356,6 +383,8 @@ public class JSONWebServiceClientImpl implements JSONWebServiceClient {
 	private String _login;
 	private String _password;
 	private String _protocol = "http";
+	private String _proxyHostName;
+	private int _proxyHostPort;
 
 	private class HttpRequestRetryHandlerImpl
 		implements HttpRequestRetryHandler {
