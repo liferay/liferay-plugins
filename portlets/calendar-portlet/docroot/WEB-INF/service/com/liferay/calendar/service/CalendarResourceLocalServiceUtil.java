@@ -333,7 +333,7 @@ public class CalendarResourceLocalServiceUtil {
 		java.lang.String code, java.lang.String name,
 		java.lang.String description, boolean active, boolean andOperator,
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.calendar.model.CalendarResource> orderByComparator) {
 		return getService()
 				   .search(companyId, groupIds, classNameIds, code, name,
 			description, active, andOperator, start, end, orderByComparator);
@@ -343,7 +343,7 @@ public class CalendarResourceLocalServiceUtil {
 		long companyId, long[] groupIds, long[] classNameIds,
 		java.lang.String keywords, boolean active, boolean andOperator,
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.calendar.model.CalendarResource> orderByComparator) {
 		return getService()
 				   .searchByKeywords(companyId, groupIds, classNameIds,
 			keywords, active, andOperator, start, end, orderByComparator);

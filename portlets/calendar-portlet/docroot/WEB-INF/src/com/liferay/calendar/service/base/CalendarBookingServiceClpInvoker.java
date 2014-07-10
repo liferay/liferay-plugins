@@ -399,7 +399,7 @@ public class CalendarBookingServiceClpInvoker {
 				((Boolean)arguments[8]).booleanValue(), (int[])arguments[9],
 				((Integer)arguments[10]).intValue(),
 				((Integer)arguments[11]).intValue(),
-				(com.liferay.portal.kernel.util.OrderByComparator)arguments[12]);
+				(com.liferay.portal.kernel.util.OrderByComparator<com.liferay.calendar.model.CalendarBooking>)arguments[12]);
 		}
 
 		if (_methodName123.equals(name) &&
@@ -415,7 +415,7 @@ public class CalendarBookingServiceClpInvoker {
 				((Boolean)arguments[12]).booleanValue(),
 				((Integer)arguments[13]).intValue(),
 				((Integer)arguments[14]).intValue(),
-				(com.liferay.portal.kernel.util.OrderByComparator)arguments[15]);
+				(com.liferay.portal.kernel.util.OrderByComparator<com.liferay.calendar.model.CalendarBooking>)arguments[15]);
 		}
 
 		if (_methodName124.equals(name) &&

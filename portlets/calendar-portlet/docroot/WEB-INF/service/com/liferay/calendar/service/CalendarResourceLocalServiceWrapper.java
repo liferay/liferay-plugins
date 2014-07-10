@@ -360,7 +360,7 @@ public class CalendarResourceLocalServiceWrapper
 		java.lang.String code, java.lang.String name,
 		java.lang.String description, boolean active, boolean andOperator,
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.calendar.model.CalendarResource> orderByComparator) {
 		return _calendarResourceLocalService.search(companyId, groupIds,
 			classNameIds, code, name, description, active, andOperator, start,
 			end, orderByComparator);
@@ -371,7 +371,7 @@ public class CalendarResourceLocalServiceWrapper
 		long companyId, long[] groupIds, long[] classNameIds,
 		java.lang.String keywords, boolean active, boolean andOperator,
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.calendar.model.CalendarResource> orderByComparator) {
 		return _calendarResourceLocalService.searchByKeywords(companyId,
 			groupIds, classNameIds, keywords, active, andOperator, start, end,
 			orderByComparator);

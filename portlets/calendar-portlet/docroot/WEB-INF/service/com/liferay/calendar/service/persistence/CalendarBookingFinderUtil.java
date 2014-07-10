@@ -90,7 +90,7 @@ public class CalendarBookingFinderUtil {
 		long[] calendarResourceIds, long parentCalendarBookingId,
 		java.lang.String keywords, long startTime, long endTime,
 		boolean recurring, int[] statuses, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.calendar.model.CalendarBooking> orderByComparator) {
 		return getFinder()
 				   .filterFindByKeywords(companyId, groupIds, calendarIds,
 			calendarResourceIds, parentCalendarBookingId, keywords, startTime,
@@ -104,7 +104,7 @@ public class CalendarBookingFinderUtil {
 		java.lang.String location, long startTime, long endTime,
 		boolean recurring, int[] statuses, boolean andOperator, int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.calendar.model.CalendarBooking> orderByComparator) {
 		return getFinder()
 				   .filterFindByC_G_C_C_P_T_D_L_S_E_S(companyId, groupIds,
 			calendarIds, calendarResourceIds, parentCalendarBookingId, title,
@@ -119,7 +119,7 @@ public class CalendarBookingFinderUtil {
 		java.lang.String[] locations, long startTime, long endTime,
 		boolean recurring, int[] statuses, boolean andOperator, int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.calendar.model.CalendarBooking> orderByComparator) {
 		return getFinder()
 				   .filterFindByC_G_C_C_P_T_D_L_S_E_S(companyId, groupIds,
 			calendarIds, calendarResourceIds, parentCalendarBookingId, titles,
@@ -137,7 +137,7 @@ public class CalendarBookingFinderUtil {
 		long[] calendarResourceIds, long parentCalendarBookingId,
 		java.lang.String keywords, long startTime, long endTime,
 		boolean recurring, int[] statuses, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.calendar.model.CalendarBooking> orderByComparator) {
 		return getFinder()
 				   .findByKeywords(companyId, groupIds, calendarIds,
 			calendarResourceIds, parentCalendarBookingId, keywords, startTime,
@@ -151,7 +151,7 @@ public class CalendarBookingFinderUtil {
 		java.lang.String location, long startTime, long endTime,
 		boolean recurring, int[] statuses, boolean andOperator, int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.calendar.model.CalendarBooking> orderByComparator) {
 		return getFinder()
 				   .findByC_G_C_C_P_T_D_L_S_E_S(companyId, groupIds,
 			calendarIds, calendarResourceIds, parentCalendarBookingId, title,
@@ -166,7 +166,7 @@ public class CalendarBookingFinderUtil {
 		java.lang.String[] locations, long startTime, long endTime,
 		boolean recurring, int[] statuses, boolean andOperator, int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.calendar.model.CalendarBooking> orderByComparator) {
 		return getFinder()
 				   .findByC_G_C_C_P_T_D_L_S_E_S(companyId, groupIds,
 			calendarIds, calendarResourceIds, parentCalendarBookingId, titles,

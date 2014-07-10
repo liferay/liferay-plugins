@@ -258,7 +258,7 @@ public class KaleoDefinitionLocalServiceUtil {
 
 	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoDefinition> getKaleoDefinitions(
 		boolean active, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator,
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoDefinition> orderByComparator,
 		com.liferay.portal.service.ServiceContext serviceContext) {
 		return getService()
 				   .getKaleoDefinitions(active, start, end, orderByComparator,
@@ -267,7 +267,7 @@ public class KaleoDefinitionLocalServiceUtil {
 
 	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoDefinition> getKaleoDefinitions(
 		java.lang.String name, boolean active, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator,
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoDefinition> orderByComparator,
 		com.liferay.portal.service.ServiceContext serviceContext) {
 		return getService()
 				   .getKaleoDefinitions(name, active, start, end,
@@ -276,7 +276,7 @@ public class KaleoDefinitionLocalServiceUtil {
 
 	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoDefinition> getKaleoDefinitions(
 		java.lang.String name, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator,
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoDefinition> orderByComparator,
 		com.liferay.portal.service.ServiceContext serviceContext) {
 		return getService()
 				   .getKaleoDefinitions(name, start, end, orderByComparator,
@@ -301,7 +301,7 @@ public class KaleoDefinitionLocalServiceUtil {
 
 	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoDefinition> getKaleoDefinitions(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator,
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoDefinition> orderByComparator,
 		com.liferay.portal.service.ServiceContext serviceContext) {
 		return getService()
 				   .getKaleoDefinitions(start, end, orderByComparator,

@@ -57,7 +57,7 @@ public class BBBMeetingServiceWrapper implements BBBMeetingService,
 	@Override
 	public java.util.List<com.liferay.bbb.model.BBBMeeting> getBBBMeetings(
 		long groupId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator obc) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.bbb.model.BBBMeeting> obc) {
 		return _bbbMeetingService.getBBBMeetings(groupId, start, end, obc);
 	}
 

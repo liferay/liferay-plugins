@@ -115,7 +115,7 @@ public class BBBMeetingServiceSoap {
 
 	public static com.liferay.bbb.model.BBBMeetingSoap[] getBBBMeetings(
 		long groupId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator obc)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.bbb.model.BBBMeeting> obc)
 		throws RemoteException {
 		try {
 			java.util.List<com.liferay.bbb.model.BBBMeeting> returnValue = BBBMeetingServiceUtil.getBBBMeetings(groupId,

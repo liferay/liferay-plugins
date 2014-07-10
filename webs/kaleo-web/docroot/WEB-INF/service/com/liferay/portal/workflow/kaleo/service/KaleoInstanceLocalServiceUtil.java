@@ -231,7 +231,7 @@ public class KaleoInstanceLocalServiceUtil {
 	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoInstance> getKaleoInstances(
 		java.lang.String kaleoDefinitionName, int kaleoDefinitionVersion,
 		boolean completed, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator,
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoInstance> orderByComparator,
 		com.liferay.portal.service.ServiceContext serviceContext) {
 		return getService()
 				   .getKaleoInstances(kaleoDefinitionName,
@@ -259,7 +259,7 @@ public class KaleoInstanceLocalServiceUtil {
 		java.lang.Long userId, java.lang.String assetClassName,
 		java.lang.Long assetClassPK, java.lang.Boolean completed, int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator,
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoInstance> orderByComparator,
 		com.liferay.portal.service.ServiceContext serviceContext) {
 		return getService()
 				   .getKaleoInstances(userId, assetClassName, assetClassPK,
@@ -269,7 +269,7 @@ public class KaleoInstanceLocalServiceUtil {
 	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoInstance> getKaleoInstances(
 		java.lang.Long userId, java.lang.String[] assetClassNames,
 		java.lang.Boolean completed, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator,
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoInstance> orderByComparator,
 		com.liferay.portal.service.ServiceContext serviceContext) {
 		return getService()
 				   .getKaleoInstances(userId, assetClassNames, completed,

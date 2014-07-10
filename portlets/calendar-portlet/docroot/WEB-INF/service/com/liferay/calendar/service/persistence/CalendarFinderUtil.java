@@ -70,7 +70,7 @@ public class CalendarFinderUtil {
 	public static java.util.List<com.liferay.calendar.model.Calendar> filterFindByKeywords(
 		long companyId, long[] groupIds, long[] calendarResourceIds,
 		java.lang.String keywords, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.calendar.model.Calendar> orderByComparator) {
 		return getFinder()
 				   .filterFindByKeywords(companyId, groupIds,
 			calendarResourceIds, keywords, start, end, orderByComparator);
@@ -80,7 +80,7 @@ public class CalendarFinderUtil {
 		long companyId, long[] groupIds, long[] calendarResourceIds,
 		java.lang.String name, java.lang.String description,
 		boolean andOperator, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.calendar.model.Calendar> orderByComparator) {
 		return getFinder()
 				   .filterFindByC_G_C_N_D(companyId, groupIds,
 			calendarResourceIds, name, description, andOperator, start, end,
@@ -91,7 +91,7 @@ public class CalendarFinderUtil {
 		long companyId, long[] groupIds, long[] calendarResourceIds,
 		java.lang.String[] names, java.lang.String[] descriptions,
 		boolean andOperator, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.calendar.model.Calendar> orderByComparator) {
 		return getFinder()
 				   .filterFindByC_G_C_N_D(companyId, groupIds,
 			calendarResourceIds, names, descriptions, andOperator, start, end,
@@ -101,7 +101,7 @@ public class CalendarFinderUtil {
 	public static java.util.List<com.liferay.calendar.model.Calendar> findByKeywords(
 		long companyId, long[] groupIds, long[] calendarResourceIds,
 		java.lang.String keywords, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.calendar.model.Calendar> orderByComparator) {
 		return getFinder()
 				   .findByKeywords(companyId, groupIds, calendarResourceIds,
 			keywords, start, end, orderByComparator);
@@ -111,7 +111,7 @@ public class CalendarFinderUtil {
 		long companyId, long[] groupIds, long[] calendarResourceIds,
 		java.lang.String name, java.lang.String description,
 		boolean andOperator, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.calendar.model.Calendar> orderByComparator) {
 		return getFinder()
 				   .findByC_G_C_N_D(companyId, groupIds, calendarResourceIds,
 			name, description, andOperator, start, end, orderByComparator);
@@ -121,7 +121,7 @@ public class CalendarFinderUtil {
 		long companyId, long[] groupIds, long[] calendarResourceIds,
 		java.lang.String[] names, java.lang.String[] descriptions,
 		boolean andOperator, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.calendar.model.Calendar> orderByComparator) {
 		return getFinder()
 				   .findByC_G_C_N_D(companyId, groupIds, calendarResourceIds,
 			names, descriptions, andOperator, start, end, orderByComparator);

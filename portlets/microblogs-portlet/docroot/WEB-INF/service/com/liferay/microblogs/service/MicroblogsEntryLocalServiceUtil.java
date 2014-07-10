@@ -269,7 +269,7 @@ public class MicroblogsEntryLocalServiceUtil {
 
 	public static java.util.List<com.liferay.microblogs.model.MicroblogsEntry> getReceiverMicroblogsEntryMicroblogsEntries(
 		int type, long receiverMicroblogsEntryId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.microblogs.model.MicroblogsEntry> orderByComparator) {
 		return getService()
 				   .getReceiverMicroblogsEntryMicroblogsEntries(type,
 			receiverMicroblogsEntryId, start, end, orderByComparator);

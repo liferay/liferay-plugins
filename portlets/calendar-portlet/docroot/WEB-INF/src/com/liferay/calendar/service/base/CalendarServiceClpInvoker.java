@@ -228,7 +228,7 @@ public class CalendarServiceClpInvoker {
 				((Boolean)arguments[4]).booleanValue(),
 				((Integer)arguments[5]).intValue(),
 				((Integer)arguments[6]).intValue(),
-				(com.liferay.portal.kernel.util.OrderByComparator)arguments[7]);
+				(com.liferay.portal.kernel.util.OrderByComparator<com.liferay.calendar.model.Calendar>)arguments[7]);
 		}
 
 		if (_methodName65.equals(name) &&
@@ -239,7 +239,7 @@ public class CalendarServiceClpInvoker {
 				((Boolean)arguments[4]).booleanValue(),
 				((Integer)arguments[5]).intValue(),
 				((Integer)arguments[6]).intValue(),
-				(com.liferay.portal.kernel.util.OrderByComparator)arguments[7],
+				(com.liferay.portal.kernel.util.OrderByComparator<com.liferay.calendar.model.Calendar>)arguments[7],
 				(java.lang.String)arguments[8]);
 		}
 
@@ -251,7 +251,7 @@ public class CalendarServiceClpInvoker {
 				((Boolean)arguments[5]).booleanValue(),
 				((Integer)arguments[6]).intValue(),
 				((Integer)arguments[7]).intValue(),
-				(com.liferay.portal.kernel.util.OrderByComparator)arguments[8]);
+				(com.liferay.portal.kernel.util.OrderByComparator<com.liferay.calendar.model.Calendar>)arguments[8]);
 		}
 
 		if (_methodName67.equals(name) &&
@@ -262,7 +262,7 @@ public class CalendarServiceClpInvoker {
 				((Boolean)arguments[5]).booleanValue(),
 				((Integer)arguments[6]).intValue(),
 				((Integer)arguments[7]).intValue(),
-				(com.liferay.portal.kernel.util.OrderByComparator)arguments[8],
+				(com.liferay.portal.kernel.util.OrderByComparator<com.liferay.calendar.model.Calendar>)arguments[8],
 				(java.lang.String)arguments[9]);
 		}
 

@@ -424,7 +424,7 @@ public class KaleoLogLocalServiceClpInvoker {
 				(java.util.List<java.lang.Integer>)arguments[1],
 				((Integer)arguments[2]).intValue(),
 				((Integer)arguments[3]).intValue(),
-				(com.liferay.portal.kernel.util.OrderByComparator)arguments[4]);
+				(com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoLog>)arguments[4]);
 		}
 
 		if (_methodName123.equals(name) &&
@@ -439,7 +439,7 @@ public class KaleoLogLocalServiceClpInvoker {
 				(java.util.List<java.lang.Integer>)arguments[1],
 				((Integer)arguments[2]).intValue(),
 				((Integer)arguments[3]).intValue(),
-				(com.liferay.portal.kernel.util.OrderByComparator)arguments[4]);
+				(com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoLog>)arguments[4]);
 		}
 
 		if (_methodName125.equals(name) &&

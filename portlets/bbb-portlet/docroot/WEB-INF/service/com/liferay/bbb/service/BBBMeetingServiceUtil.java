@@ -65,7 +65,7 @@ public class BBBMeetingServiceUtil {
 
 	public static java.util.List<com.liferay.bbb.model.BBBMeeting> getBBBMeetings(
 		long groupId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator obc) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.bbb.model.BBBMeeting> obc) {
 		return getService().getBBBMeetings(groupId, start, end, obc);
 	}
 

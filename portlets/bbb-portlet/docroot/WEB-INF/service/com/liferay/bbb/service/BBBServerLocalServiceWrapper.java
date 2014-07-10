@@ -235,7 +235,8 @@ public class BBBServerLocalServiceWrapper implements BBBServerLocalService,
 
 	@Override
 	public java.util.List<com.liferay.bbb.model.BBBServer> getBBBServers(
-		int start, int end, com.liferay.portal.kernel.util.OrderByComparator obc) {
+		int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.bbb.model.BBBServer> obc) {
 		return _bbbServerLocalService.getBBBServers(start, end, obc);
 	}
 

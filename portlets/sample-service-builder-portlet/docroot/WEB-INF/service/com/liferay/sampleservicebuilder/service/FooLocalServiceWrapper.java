@@ -277,7 +277,7 @@ public class FooLocalServiceWrapper implements FooLocalService,
 
 	@Override
 	public java.util.List<com.liferay.sampleservicebuilder.model.Foo> getFoos(
-		com.liferay.portal.kernel.util.OrderByComparator obc) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.sampleservicebuilder.model.Foo> obc) {
 		return _fooLocalService.getFoos(obc);
 	}
 
@@ -300,7 +300,8 @@ public class FooLocalServiceWrapper implements FooLocalService,
 
 	@Override
 	public java.util.List<com.liferay.sampleservicebuilder.model.Foo> getFoos(
-		int start, int end, com.liferay.portal.kernel.util.OrderByComparator obc) {
+		int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.sampleservicebuilder.model.Foo> obc) {
 		return _fooLocalService.getFoos(start, end, obc);
 	}
 

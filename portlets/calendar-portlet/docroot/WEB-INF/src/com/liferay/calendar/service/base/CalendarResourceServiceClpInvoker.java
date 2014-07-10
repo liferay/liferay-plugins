@@ -140,7 +140,7 @@ public class CalendarResourceServiceClpInvoker {
 				((Boolean)arguments[5]).booleanValue(),
 				((Integer)arguments[6]).intValue(),
 				((Integer)arguments[7]).intValue(),
-				(com.liferay.portal.kernel.util.OrderByComparator)arguments[8]);
+				(com.liferay.portal.kernel.util.OrderByComparator<com.liferay.calendar.model.CalendarResource>)arguments[8]);
 		}
 
 		if (_methodName67.equals(name) &&
@@ -153,7 +153,7 @@ public class CalendarResourceServiceClpInvoker {
 				((Boolean)arguments[7]).booleanValue(),
 				((Integer)arguments[8]).intValue(),
 				((Integer)arguments[9]).intValue(),
-				(com.liferay.portal.kernel.util.OrderByComparator)arguments[10]);
+				(com.liferay.portal.kernel.util.OrderByComparator<com.liferay.calendar.model.CalendarResource>)arguments[10]);
 		}
 
 		if (_methodName68.equals(name) &&

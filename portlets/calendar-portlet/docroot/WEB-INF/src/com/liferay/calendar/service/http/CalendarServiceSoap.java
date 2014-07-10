@@ -198,7 +198,7 @@ public class CalendarServiceSoap {
 	public static com.liferay.calendar.model.CalendarSoap[] search(
 		long companyId, long[] groupIds, long[] calendarResourceIds,
 		java.lang.String keywords, boolean andOperator, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.calendar.model.Calendar> orderByComparator)
 		throws RemoteException {
 		try {
 			java.util.List<com.liferay.calendar.model.Calendar> returnValue = CalendarServiceUtil.search(companyId,
@@ -217,7 +217,7 @@ public class CalendarServiceSoap {
 	public static com.liferay.calendar.model.CalendarSoap[] search(
 		long companyId, long[] groupIds, long[] calendarResourceIds,
 		java.lang.String keywords, boolean andOperator, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator,
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.calendar.model.Calendar> orderByComparator,
 		java.lang.String actionId) throws RemoteException {
 		try {
 			java.util.List<com.liferay.calendar.model.Calendar> returnValue = CalendarServiceUtil.search(companyId,
@@ -237,7 +237,7 @@ public class CalendarServiceSoap {
 		long companyId, long[] groupIds, long[] calendarResourceIds,
 		java.lang.String name, java.lang.String description,
 		boolean andOperator, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.calendar.model.Calendar> orderByComparator)
 		throws RemoteException {
 		try {
 			java.util.List<com.liferay.calendar.model.Calendar> returnValue = CalendarServiceUtil.search(companyId,
@@ -257,7 +257,7 @@ public class CalendarServiceSoap {
 		long companyId, long[] groupIds, long[] calendarResourceIds,
 		java.lang.String name, java.lang.String description,
 		boolean andOperator, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator,
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.calendar.model.Calendar> orderByComparator,
 		java.lang.String actionId) throws RemoteException {
 		try {
 			java.util.List<com.liferay.calendar.model.Calendar> returnValue = CalendarServiceUtil.search(companyId,

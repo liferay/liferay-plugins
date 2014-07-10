@@ -228,7 +228,8 @@ public class BBBServerLocalServiceUtil {
 	}
 
 	public static java.util.List<com.liferay.bbb.model.BBBServer> getBBBServers(
-		int start, int end, com.liferay.portal.kernel.util.OrderByComparator obc) {
+		int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.bbb.model.BBBServer> obc) {
 		return getService().getBBBServers(start, end, obc);
 	}
 
