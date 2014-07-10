@@ -34,7 +34,9 @@ import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.SubscriptionLocalServiceUtil;
 import com.liferay.portal.service.UserNotificationEventLocalServiceUtil;
 import com.liferay.portal.util.Portal;
+import com.liferay.portal.util.PortalUtil;
 import com.liferay.portal.util.PortletKeys;
+import com.liferay.portlet.PortletURLFactoryUtil;
 import com.liferay.portlet.bookmarks.model.BookmarksEntry;
 import com.liferay.portlet.bookmarks.model.BookmarksFolder;
 import com.liferay.portlet.bookmarks.service.BookmarksEntryLocalService;
@@ -43,6 +45,11 @@ import com.liferay.portlet.bookmarks.service.BookmarksEntryLocalServiceWrapper;
 import java.io.Serializable;
 
 import java.util.List;
+
+import javax.portlet.PortletRequest;
+import javax.portlet.PortletURL;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * @author Lin Cui
@@ -90,17 +97,45 @@ public class BookmarksEntryLocalServiceImpl
 	}
 
 	protected String getEntryURL(
-		BookmarksEntry bookmarksEntry, ServiceContext serviceContext) {
+			BookmarksEntry bookmarksEntry, ServiceContext serviceContext)
+		throws PortalException, SystemException {
 
-		StringBundler sb = new StringBundler(5);
+		HttpServletRequest request = serviceContext.getRequest();
 
-		sb.append(serviceContext.getLayoutFullURL());
-		sb.append(Portal.FRIENDLY_URL_SEPARATOR);
-		sb.append("bookmarks");
-		sb.append(StringPool.SLASH);
-		sb.append(bookmarksEntry.getEntryId());
+		if (request == null) {
+			return StringPool.BLANK;
+		}
 
-		return sb.toString();
+		long plid = serviceContext.getPlid();
+
+		long controlPanelPlid = PortalUtil.getControlPanelPlid(
+			serviceContext.getCompanyId());
+
+		if (plid == controlPanelPlid) {
+			plid = PortalUtil.getPlidFromPortletId(
+				bookmarksEntry.getGroupId(), PortletKeys.BOOKMARKS);
+
+			PortletURL portletURL = PortletURLFactoryUtil.create(
+				request, PortletKeys.BOOKMARKS, plid,
+				PortletRequest.RENDER_PHASE);
+
+			portletURL.setParameter("struts_action", "/bookmarks/view_entry");
+			portletURL.setParameter(
+				"entryId", String.valueOf(bookmarksEntry.getEntryId()));
+
+			return portletURL.toString();
+		}
+		else {
+			StringBundler sb = new StringBundler(5);
+
+			sb.append(serviceContext.getLayoutFullURL());
+			sb.append(Portal.FRIENDLY_URL_SEPARATOR);
+			sb.append("bookmarks");
+			sb.append(StringPool.SLASH);
+			sb.append(bookmarksEntry.getEntryId());
+
+			return sb.toString();
+		}
 	}
 
 	protected void sendNotificationEvent(

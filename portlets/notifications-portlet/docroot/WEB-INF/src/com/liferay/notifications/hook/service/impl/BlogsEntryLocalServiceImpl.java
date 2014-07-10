@@ -34,7 +34,9 @@ import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.SubscriptionLocalServiceUtil;
 import com.liferay.portal.service.UserNotificationEventLocalServiceUtil;
 import com.liferay.portal.util.Portal;
+import com.liferay.portal.util.PortalUtil;
 import com.liferay.portal.util.PortletKeys;
+import com.liferay.portlet.PortletURLFactoryUtil;
 import com.liferay.portlet.blogs.model.BlogsEntry;
 import com.liferay.portlet.blogs.service.BlogsEntryLocalService;
 import com.liferay.portlet.blogs.service.BlogsEntryLocalServiceWrapper;
@@ -42,6 +44,11 @@ import com.liferay.portlet.blogs.service.BlogsEntryLocalServiceWrapper;
 import java.io.Serializable;
 
 import java.util.List;
+
+import javax.portlet.PortletRequest;
+import javax.portlet.PortletURL;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * @author Lin Cui
@@ -71,17 +78,52 @@ public class BlogsEntryLocalServiceImpl extends BlogsEntryLocalServiceWrapper {
 				UserNotificationDefinition.NOTIFICATION_TYPE_UPDATE_ENTRY;
 		}
 
-		StringBundler sb = new StringBundler(5);
-
-		sb.append(serviceContext.getLayoutFullURL());
-		sb.append(Portal.FRIENDLY_URL_SEPARATOR);
-		sb.append("blogs");
-		sb.append(StringPool.SLASH);
-		sb.append(blogsEntry.getEntryId());
-
-		sendNotificationEvent(blogsEntry, sb.toString(), notificationType);
+		sendNotificationEvent(
+			blogsEntry, getEntryURL(blogsEntry, serviceContext),
+			notificationType);
 
 		return blogsEntry;
+	}
+
+	protected String getEntryURL(
+			BlogsEntry entry, ServiceContext serviceContext)
+		throws PortalException, SystemException {
+
+		HttpServletRequest request = serviceContext.getRequest();
+
+		if (request == null) {
+			return StringPool.BLANK;
+		}
+
+		long plid = serviceContext.getPlid();
+
+		long controlPanelPlid = PortalUtil.getControlPanelPlid(
+			serviceContext.getCompanyId());
+
+		if (plid == controlPanelPlid) {
+			plid = PortalUtil.getPlidFromPortletId(
+				entry.getGroupId(), PortletKeys.BLOGS);
+
+			PortletURL portletURL = PortletURLFactoryUtil.create(
+				request, PortletKeys.BLOGS, plid, PortletRequest.RENDER_PHASE);
+
+			portletURL.setParameter("struts_action", "/blogs/view_entry");
+			portletURL.setParameter(
+				"entryId", String.valueOf(entry.getEntryId()));
+
+			return portletURL.toString();
+		}
+		else {
+			StringBundler sb = new StringBundler(5);
+
+			sb.append(serviceContext.getLayoutFullURL());
+			sb.append(Portal.FRIENDLY_URL_SEPARATOR);
+			sb.append("blogs");
+			sb.append(StringPool.SLASH);
+			sb.append(entry.getEntryId());
+
+			return sb.toString();
+		}
 	}
 
 	protected void sendNotificationEvent(
