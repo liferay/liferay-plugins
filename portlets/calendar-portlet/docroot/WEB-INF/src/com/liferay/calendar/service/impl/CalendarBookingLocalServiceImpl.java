@@ -317,7 +317,7 @@ public class CalendarBookingLocalServiceImpl
 	public void deleteCalendarBookingInstance(
 			CalendarBooking calendarBooking, int instanceIndex,
 			boolean allFollowing)
-		throws PortalException {
+		throws PortalException, SystemException {
 
 		CalendarBooking calendarBookingInstance =
 			RecurrenceUtil.getCalendarBookingInstance(
@@ -896,7 +896,7 @@ public class CalendarBookingLocalServiceImpl
 			boolean allFollowing, long firstReminder, String firstReminderType,
 			long secondReminder, String secondReminderType, int status,
 			ServiceContext serviceContext)
-		throws PortalException {
+		throws PortalException, SystemException {
 
 		long[] childCalendarIds = getChildCalendarIds(
 			calendarBookingId, calendarId);

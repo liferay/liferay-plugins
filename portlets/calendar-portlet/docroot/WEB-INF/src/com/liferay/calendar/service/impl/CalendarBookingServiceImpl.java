@@ -479,7 +479,7 @@ public class CalendarBookingServiceImpl extends CalendarBookingServiceBaseImpl {
 			boolean allFollowing, long firstReminder, String firstReminderType,
 			long secondReminder, String secondReminderType, int status,
 			ServiceContext serviceContext)
-		throws PortalException {
+		throws PortalException, SystemException {
 
 		CalendarPermission.check(
 			getPermissionChecker(), calendarId, ActionKeys.MANAGE_BOOKINGS);
@@ -504,7 +504,7 @@ public class CalendarBookingServiceImpl extends CalendarBookingServiceBaseImpl {
 			String firstReminderType, long secondReminder,
 			String secondReminderType, int status,
 			ServiceContext serviceContext)
-		throws PortalException {
+		throws PortalException, SystemException {
 
 		TimeZone timeZone = TimeZoneUtil.getTimeZone(timeZoneId);
 
@@ -537,7 +537,7 @@ public class CalendarBookingServiceImpl extends CalendarBookingServiceBaseImpl {
 			String firstReminderType, long secondReminder,
 			String secondReminderType, int status,
 			ServiceContext serviceContext)
-		throws PortalException {
+		throws PortalException, SystemException {
 
 		CalendarPermission.check(
 			getPermissionChecker(), calendarId, ActionKeys.MANAGE_BOOKINGS);
