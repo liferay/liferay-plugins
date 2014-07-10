@@ -32,35 +32,35 @@ List<KBArticle> childKBArticles = KBArticleServiceUtil.getKBArticles(scopeGroupI
 			for (KBArticle childrenKBArticle : childKBArticles) {
 			%>
 
-			<section class="kb-element">
-				<h2 class="kb-element-header">
-					<liferay-portlet:renderURL var="viewKBArticleURL">
+				<section class="kb-element">
+					<h2 class="kb-element-header">
+						<liferay-portlet:renderURL var="viewKBArticleURL">
+							<c:choose>
+								<c:when test="<%= Validator.isNotNull(childrenKBArticle.getUrlTitle()) %>">
+									<portlet:param name="urlTitle" value="<%= childrenKBArticle.getUrlTitle() %>" />
+								</c:when>
+								<c:otherwise>
+									<portlet:param name="resourcePrimKey" value="<%= String.valueOf(childrenKBArticle.getResourcePrimKey()) %>" />
+								</c:otherwise>
+							</c:choose>
+						</liferay-portlet:renderURL>
+
+						<aui:a href="<%= viewKBArticleURL %>"><%= childrenKBArticle.getTitle() %></aui:a>
+					</h2>
+
+					<div class="kb-element-body">
 						<c:choose>
-							<c:when test="<%= Validator.isNotNull(childrenKBArticle.getUrlTitle()) %>">
-								<portlet:param name="urlTitle" value="<%= childrenKBArticle.getUrlTitle() %>" />
+							<c:when test="<%= Validator.isNotNull(childrenKBArticle.getDescription()) %>">
+								<%= childrenKBArticle.getDescription() %>
 							</c:when>
 							<c:otherwise>
-								<portlet:param name="resourcePrimKey" value="<%= String.valueOf(childrenKBArticle.getResourcePrimKey()) %>" />
+								<%= StringUtil.shorten(HtmlUtil.extractText(childrenKBArticle.getContent()), 200) %>
+
+								<aui:a href="<%= viewKBArticleURL %>"><liferay-ui:message key="read-more" /></aui:a>
 							</c:otherwise>
 						</c:choose>
-					</liferay-portlet:renderURL>
-
-					<aui:a href="<%= viewKBArticleURL %>"><%= childrenKBArticle.getTitle() %></aui:a>
-				</h2>
-
-				<div class="kb-element-body">
-					<c:choose>
-						<c:when test="<%= Validator.isNotNull(childrenKBArticle.getDescription()) %>">
-							<%= childrenKBArticle.getDescription() %>
-						</c:when>
-						<c:otherwise>
-							<%= StringUtil.shorten(HtmlUtil.extractText(childrenKBArticle.getContent()), 200) %>
-
-							<aui:a href="<%= viewKBArticleURL %>"><liferay-ui:message key="read-more" /></aui:a>
-						</c:otherwise>
-					</c:choose>
-				</div>
-			</section>
+					</div>
+				</section>
 
 			<%
 			}
