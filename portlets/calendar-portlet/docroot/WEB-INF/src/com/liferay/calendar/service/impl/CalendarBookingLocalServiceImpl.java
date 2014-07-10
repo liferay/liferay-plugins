@@ -605,7 +605,7 @@ public class CalendarBookingLocalServiceImpl
 		long[] calendarResourceIds, long parentCalendarBookingId,
 		String keywords, long startTime, long endTime, boolean recurring,
 		int[] statuses, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<CalendarBooking> orderByComparator) {
 
 		List<CalendarBooking> calendarBookings =
 			calendarBookingFinder.findByKeywords(
@@ -627,7 +627,7 @@ public class CalendarBookingLocalServiceImpl
 		long[] calendarResourceIds, long parentCalendarBookingId, String title,
 		String description, String location, long startTime, long endTime,
 		boolean recurring, int[] statuses, boolean andOperator, int start,
-		int end, OrderByComparator orderByComparator) {
+		int end, OrderByComparator<CalendarBooking> orderByComparator) {
 
 		List<CalendarBooking> calendarBookings =
 			calendarBookingFinder.findByC_G_C_C_P_T_D_L_S_E_S(

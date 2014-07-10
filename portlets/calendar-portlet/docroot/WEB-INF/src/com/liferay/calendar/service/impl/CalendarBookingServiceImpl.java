@@ -363,7 +363,7 @@ public class CalendarBookingServiceImpl extends CalendarBookingServiceBaseImpl {
 			long[] calendarResourceIds, long parentCalendarBookingId,
 			String keywords, long startTime, long endTime, boolean recurring,
 			int[] statuses, int start, int end,
-			OrderByComparator orderByComparator)
+			OrderByComparator<CalendarBooking> orderByComparator)
 		throws PortalException {
 
 		List<CalendarBooking> calendarBookings =
@@ -382,7 +382,7 @@ public class CalendarBookingServiceImpl extends CalendarBookingServiceBaseImpl {
 			String title, String description, String location, long startTime,
 			long endTime, boolean recurring, int[] statuses,
 			boolean andOperator, int start, int end,
-			OrderByComparator orderByComparator)
+			OrderByComparator<CalendarBooking> orderByComparator)
 		throws PortalException {
 
 		List<CalendarBooking> calendarBookings =

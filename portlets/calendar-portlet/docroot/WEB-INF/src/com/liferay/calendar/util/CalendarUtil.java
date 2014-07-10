@@ -165,7 +165,7 @@ public class CalendarUtil {
 		return calendarBooking;
 	}
 
-	public static OrderByComparator getOrderByComparator(
+	public static OrderByComparator<Calendar> getOrderByComparator(
 		String orderByCol, String orderByType) {
 
 		boolean orderByAsc = false;
@@ -174,8 +174,8 @@ public class CalendarUtil {
 			orderByAsc = true;
 		}
 
-		OrderByComparator orderByComparator = new CalendarNameComparator(
-			orderByAsc);
+		OrderByComparator<Calendar> orderByComparator =
+			new CalendarNameComparator(orderByAsc);
 
 		return orderByComparator;
 	}

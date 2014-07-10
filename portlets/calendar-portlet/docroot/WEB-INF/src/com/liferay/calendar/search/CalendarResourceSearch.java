@@ -111,7 +111,7 @@ public class CalendarResourceSearch extends SearchContainer<CalendarResource> {
 					"asc");
 			}
 
-			OrderByComparator orderByComparator =
+			OrderByComparator<CalendarResource> orderByComparator =
 				CalendarResourceUtil.getOrderByComparator(
 					orderByCol, orderByType);
 

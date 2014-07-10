@@ -108,7 +108,7 @@ public class CalendarResourceUtil {
 		return getGroupCalendarResource(groupId, serviceContext);
 	}
 
-	public static OrderByComparator getOrderByComparator(
+	public static OrderByComparator<CalendarResource> getOrderByComparator(
 		String orderByCol, String orderByType) {
 
 		boolean orderByAsc = false;
@@ -117,7 +117,7 @@ public class CalendarResourceUtil {
 			orderByAsc = true;
 		}
 
-		OrderByComparator orderByComparator = null;
+		OrderByComparator<CalendarResource> orderByComparator = null;
 
 		if (orderByCol.equals("name")) {
 			orderByComparator = new CalendarResourceNameComparator(orderByAsc);

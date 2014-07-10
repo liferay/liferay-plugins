@@ -144,7 +144,7 @@ public class CalendarFinderImpl
 	public List<Calendar> filterFindByKeywords(
 		long companyId, long[] groupIds, long[] calendarResourceIds,
 		String keywords, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<Calendar> orderByComparator) {
 
 		String[] names = null;
 		String[] descriptions = null;
@@ -167,7 +167,7 @@ public class CalendarFinderImpl
 	public List<Calendar> filterFindByC_G_C_N_D(
 		long companyId, long[] groupIds, long[] calendarResourceIds,
 		String name, String description, boolean andOperator, int start,
-		int end, OrderByComparator orderByComparator) {
+		int end, OrderByComparator<Calendar> orderByComparator) {
 
 		String[] names = CustomSQLUtil.keywords(name);
 		String[] descriptions = CustomSQLUtil.keywords(description, false);
@@ -181,7 +181,7 @@ public class CalendarFinderImpl
 	public List<Calendar> filterFindByC_G_C_N_D(
 		long companyId, long[] groupIds, long[] calendarResourceIds,
 		String[] names, String[] descriptions, boolean andOperator, int start,
-		int end, OrderByComparator orderByComparator) {
+		int end, OrderByComparator<Calendar> orderByComparator) {
 
 		return doFindByC_G_C_N_D(
 			companyId, groupIds, calendarResourceIds, names, descriptions,
@@ -192,7 +192,7 @@ public class CalendarFinderImpl
 	public List<Calendar> findByKeywords(
 		long companyId, long[] groupIds, long[] calendarResourceIds,
 		String keywords, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<Calendar> orderByComparator) {
 
 		String[] names = null;
 		String[] descriptions = null;
@@ -215,7 +215,7 @@ public class CalendarFinderImpl
 	public List<Calendar> findByC_G_C_N_D(
 		long companyId, long[] groupIds, long[] calendarResourceIds,
 		String name, String description, boolean andOperator, int start,
-		int end, OrderByComparator orderByComparator) {
+		int end, OrderByComparator<Calendar> orderByComparator) {
 
 		String[] names = CustomSQLUtil.keywords(name);
 		String[] descriptions = CustomSQLUtil.keywords(description, false);
@@ -229,7 +229,7 @@ public class CalendarFinderImpl
 	public List<Calendar> findByC_G_C_N_D(
 		long companyId, long[] groupIds, long[] calendarResourceIds,
 		String[] names, String[] descriptions, boolean andOperator, int start,
-		int end, OrderByComparator orderByComparator) {
+		int end, OrderByComparator<Calendar> orderByComparator) {
 
 		return doFindByC_G_C_N_D(
 			companyId, groupIds, calendarResourceIds, names, descriptions,
@@ -311,7 +311,8 @@ public class CalendarFinderImpl
 	protected List<Calendar> doFindByC_G_C_N_D(
 		long companyId, long[] groupIds, long[] calendarResourceIds,
 		String[] names, String[] descriptions, boolean andOperator, int start,
-		int end, OrderByComparator orderByComparator, boolean inlineSQLHelper) {
+		int end, OrderByComparator<Calendar> orderByComparator,
+		boolean inlineSQLHelper) {
 
 		if (groupIds == null) {
 			groupIds = new long[0];

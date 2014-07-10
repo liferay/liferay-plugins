@@ -135,7 +135,7 @@ public class CalendarServiceImpl extends CalendarServiceBaseImpl {
 	public List<Calendar> search(
 			long companyId, long[] groupIds, long[] calendarResourceIds,
 			String keywords, boolean andOperator, int start, int end,
-			OrderByComparator orderByComparator)
+			OrderByComparator<Calendar> orderByComparator)
 		throws PortalException {
 
 		return search(
@@ -147,7 +147,7 @@ public class CalendarServiceImpl extends CalendarServiceBaseImpl {
 	public List<Calendar> search(
 			long companyId, long[] groupIds, long[] calendarResourceIds,
 			String keywords, boolean andOperator, int start, int end,
-			OrderByComparator orderByComparator, String actionId)
+			OrderByComparator<Calendar> orderByComparator, String actionId)
 		throws PortalException {
 
 		List<Calendar> calendars = calendarFinder.findByKeywords(
@@ -161,7 +161,7 @@ public class CalendarServiceImpl extends CalendarServiceBaseImpl {
 	public List<Calendar> search(
 			long companyId, long[] groupIds, long[] calendarResourceIds,
 			String name, String description, boolean andOperator, int start,
-			int end, OrderByComparator orderByComparator)
+			int end, OrderByComparator<Calendar> orderByComparator)
 		throws PortalException {
 
 		return search(
@@ -173,7 +173,8 @@ public class CalendarServiceImpl extends CalendarServiceBaseImpl {
 	public List<Calendar> search(
 			long companyId, long[] groupIds, long[] calendarResourceIds,
 			String name, String description, boolean andOperator, int start,
-			int end, OrderByComparator orderByComparator, String actionId)
+			int end, OrderByComparator<Calendar> orderByComparator,
+			String actionId)
 		throws PortalException {
 
 		List<Calendar> calendars = calendarFinder.findByC_G_C_N_D(
@@ -202,7 +203,8 @@ public class CalendarServiceImpl extends CalendarServiceBaseImpl {
 
 		List<Calendar> calendars = search(
 			companyId, groupIds, calendarResourceIds, keywords, andOperator,
-			QueryUtil.ALL_POS, QueryUtil.ALL_POS, (OrderByComparator)null);
+			QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+			(OrderByComparator<Calendar>)null);
 
 		return calendars.size();
 	}
@@ -228,7 +230,7 @@ public class CalendarServiceImpl extends CalendarServiceBaseImpl {
 		List<Calendar> calendars = search(
 			companyId, groupIds, calendarResourceIds, name, description,
 			andOperator, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
-			(OrderByComparator)null, actionId);
+			(OrderByComparator<Calendar>)null, actionId);
 
 		return calendars.size();
 	}

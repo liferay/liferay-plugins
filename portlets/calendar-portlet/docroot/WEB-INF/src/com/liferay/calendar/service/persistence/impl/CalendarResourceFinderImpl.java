@@ -152,7 +152,7 @@ public class CalendarResourceFinderImpl
 	public List<CalendarResource> filterFindByKeywords(
 		long companyId, long[] groupIds, long[] classNameIds, String keywords,
 		boolean active, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<CalendarResource> orderByComparator) {
 
 		String[] codes = null;
 		String[] names = null;
@@ -177,7 +177,8 @@ public class CalendarResourceFinderImpl
 	public List<CalendarResource> filterFindByC_G_C_C_N_D_A(
 		long companyId, long[] groupIds, long[] classNameIds, String code,
 		String name, String description, boolean active, boolean andOperator,
-		int start, int end, OrderByComparator orderByComparator) {
+		int start, int end,
+		OrderByComparator<CalendarResource> orderByComparator) {
 
 		String[] codes = CustomSQLUtil.keywords(code);
 		String[] names = CustomSQLUtil.keywords(name);
@@ -193,7 +194,7 @@ public class CalendarResourceFinderImpl
 		long companyId, long[] groupIds, long[] classNameIds, String[] codes,
 		String[] names, String[] descriptions, boolean active,
 		boolean andOperator, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<CalendarResource> orderByComparator) {
 
 		return doFindByC_G_C_C_N_D_A(
 			companyId, groupIds, classNameIds, codes, names, descriptions,
@@ -204,7 +205,7 @@ public class CalendarResourceFinderImpl
 	public List<CalendarResource> findByKeywords(
 		long companyId, long[] groupIds, long[] classNameIds, String keywords,
 		boolean active, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<CalendarResource> orderByComparator) {
 
 		String[] codes = null;
 		String[] names = null;
@@ -229,7 +230,8 @@ public class CalendarResourceFinderImpl
 	public List<CalendarResource> findByC_G_C_C_N_D_A(
 		long companyId, long[] groupIds, long[] classNameIds, String code,
 		String name, String description, boolean active, boolean andOperator,
-		int start, int end, OrderByComparator orderByComparator) {
+		int start, int end,
+		OrderByComparator<CalendarResource> orderByComparator) {
 
 		String[] codes = CustomSQLUtil.keywords(code);
 		String[] names = CustomSQLUtil.keywords(name);
@@ -245,7 +247,7 @@ public class CalendarResourceFinderImpl
 		long companyId, long[] groupIds, long[] classNameIds, String[] codes,
 		String[] names, String[] descriptions, boolean active,
 		boolean andOperator, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<CalendarResource> orderByComparator) {
 
 		return doFindByC_G_C_C_N_D_A(
 			companyId, groupIds, classNameIds, codes, names, descriptions,
@@ -328,7 +330,8 @@ public class CalendarResourceFinderImpl
 		long companyId, long[] groupIds, long[] classNameIds, String[] codes,
 		String[] names, String[] descriptions, boolean active,
 		boolean andOperator, int start, int end,
-		OrderByComparator orderByComparator, boolean inlineSQLHelper) {
+		OrderByComparator<CalendarResource> orderByComparator,
+		boolean inlineSQLHelper) {
 
 		codes = CustomSQLUtil.keywords(codes);
 		names = CustomSQLUtil.keywords(names);

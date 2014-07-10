@@ -94,7 +94,7 @@ public class CalendarResourceServiceImpl
 	public List<CalendarResource> search(
 		long companyId, long[] groupIds, long[] classNameIds, String keywords,
 		boolean active, boolean andOperator, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<CalendarResource> orderByComparator) {
 
 		return calendarResourceFinder.filterFindByKeywords(
 			companyId, groupIds, classNameIds, keywords, active, start, end,
@@ -105,7 +105,8 @@ public class CalendarResourceServiceImpl
 	public List<CalendarResource> search(
 		long companyId, long[] groupIds, long[] classNameIds, String code,
 		String name, String description, boolean active, boolean andOperator,
-		int start, int end, OrderByComparator orderByComparator) {
+		int start, int end,
+		OrderByComparator<CalendarResource> orderByComparator) {
 
 		return calendarResourceFinder.filterFindByC_G_C_C_N_D_A(
 			companyId, groupIds, classNameIds, code, name, description, active,

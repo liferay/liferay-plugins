@@ -173,7 +173,7 @@ public class CalendarBookingFinderImpl
 		long[] calendarResourceIds, long parentCalendarBookingId,
 		String keywords, long startTime, long endTime, boolean recurring,
 		int[] statuses, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<CalendarBooking> orderByComparator) {
 
 		String[] titles = null;
 		String[] descriptions = null;
@@ -202,7 +202,7 @@ public class CalendarBookingFinderImpl
 		long[] calendarResourceIds, long parentCalendarBookingId, String title,
 		String description, String location, long startTime, long endTime,
 		boolean recurring, int[] statuses, boolean andOperator, int start,
-		int end, OrderByComparator orderByComparator) {
+		int end, OrderByComparator<CalendarBooking> orderByComparator) {
 
 		String[] titles = CustomSQLUtil.keywords(title);
 		String[] descriptions = CustomSQLUtil.keywords(description, false);
@@ -222,7 +222,7 @@ public class CalendarBookingFinderImpl
 		String[] titles, String[] descriptions, String[] locations,
 		long startTime, long endTime, boolean recurring, int[] statuses,
 		boolean andOperator, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<CalendarBooking> orderByComparator) {
 
 		return doFindByC_G_C_C_P_T_D_L_S_E_S(
 			companyId, groupIds, calendarIds, calendarResourceIds,
@@ -264,7 +264,7 @@ public class CalendarBookingFinderImpl
 		long[] calendarResourceIds, long parentCalendarBookingId,
 		String keywords, long startTime, long endTime, boolean recurring,
 		int[] statuses, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<CalendarBooking> orderByComparator) {
 
 		String[] titles = null;
 		String[] descriptions = null;
@@ -293,7 +293,7 @@ public class CalendarBookingFinderImpl
 		long[] calendarResourceIds, long parentCalendarBookingId, String title,
 		String description, String location, long startTime, long endTime,
 		boolean recurring, int[] statuses, boolean andOperator, int start,
-		int end, OrderByComparator orderByComparator) {
+		int end, OrderByComparator<CalendarBooking> orderByComparator) {
 
 		String[] titles = CustomSQLUtil.keywords(title);
 		String[] descriptions = CustomSQLUtil.keywords(description, false);
@@ -313,7 +313,7 @@ public class CalendarBookingFinderImpl
 		String[] titles, String[] descriptions, String[] locations,
 		long startTime, long endTime, boolean recurring, int[] statuses,
 		boolean andOperator, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<CalendarBooking> orderByComparator) {
 
 		return doFindByC_G_C_C_P_T_D_L_S_E_S(
 			companyId, groupIds, calendarIds, calendarResourceIds,
@@ -433,7 +433,8 @@ public class CalendarBookingFinderImpl
 		String[] titles, String[] descriptions, String[] locations,
 		long startTime, long endTime, boolean recurring, int[] statuses,
 		boolean andOperator, int start, int end,
-		OrderByComparator orderByComparator, boolean inlineSQLHelper) {
+		OrderByComparator<CalendarBooking> orderByComparator,
+		boolean inlineSQLHelper) {
 
 		titles = CustomSQLUtil.keywords(titles);
 		descriptions = CustomSQLUtil.keywords(descriptions, false);
