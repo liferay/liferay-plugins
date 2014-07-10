@@ -139,7 +139,7 @@ public class BBBMeetingLocalServiceImpl extends BBBMeetingLocalServiceBaseImpl {
 
 	@Override
 	public List<BBBMeeting> getBBBMeetings(
-		long groupId, int start, int end, OrderByComparator obc) {
+		long groupId, int start, int end, OrderByComparator<BBBMeeting> obc) {
 
 		return bbbMeetingPersistence.findByGroupId(groupId, start, end, obc);
 	}

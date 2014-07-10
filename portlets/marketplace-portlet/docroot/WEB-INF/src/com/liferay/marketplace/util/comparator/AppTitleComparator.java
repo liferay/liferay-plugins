@@ -21,7 +21,7 @@ import com.liferay.portal.kernel.util.StringUtil;
 /**
  * @author Ryan Park
  */
-public class AppTitleComparator extends OrderByComparator {
+public class AppTitleComparator extends OrderByComparator<App> {
 
 	public static final String ORDER_BY_ASC = "title ASC";
 
@@ -38,10 +38,7 @@ public class AppTitleComparator extends OrderByComparator {
 	}
 
 	@Override
-	public int compare(Object obj1, Object obj2) {
-		App app1 = (App)obj1;
-		App app2 = (App)obj2;
-
+	public int compare(App app1, App app2) {
 		int value = StringUtil.toLowerCase(app1.getTitle()).compareTo(
 			StringUtil.toLowerCase(app2.getTitle()));
 

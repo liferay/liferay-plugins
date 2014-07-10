@@ -107,7 +107,7 @@ public class BBBServerLocalServiceImpl extends BBBServerLocalServiceBaseImpl {
 
 	@Override
 	public List<BBBServer> getBBBServers(
-		int start, int end, OrderByComparator obc) {
+		int start, int end, OrderByComparator<BBBServer> obc) {
 
 		return bbbServerPersistence.findAll(start, end, obc);
 	}

@@ -200,7 +200,7 @@ public class MicroblogsEntryLocalServiceImpl
 
 	public List<MicroblogsEntry> getReceiverMicroblogsEntryMicroblogsEntries(
 		int type, long receiverMicroblogsEntryId, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<MicroblogsEntry> orderByComparator) {
 
 		return microblogsEntryPersistence.findByT_RMEI(
 			type, receiverMicroblogsEntryId, start, end, orderByComparator);

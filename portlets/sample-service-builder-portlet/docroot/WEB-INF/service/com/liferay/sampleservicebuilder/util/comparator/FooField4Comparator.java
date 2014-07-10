@@ -21,7 +21,7 @@ import com.liferay.sampleservicebuilder.model.Foo;
 /**
  * @author Alexander Chow
  */
-public class FooField4Comparator extends OrderByComparator {
+public class FooField4Comparator extends OrderByComparator<Foo> {
 
 	public static final String ORDER_BY_ASC = "field4 ASC";
 
@@ -36,10 +36,7 @@ public class FooField4Comparator extends OrderByComparator {
 	}
 
 	@Override
-	public int compare(Object obj1, Object obj2) {
-		Foo foo1 = (Foo)obj1;
-		Foo foo2 = (Foo)obj2;
-
+	public int compare(Foo foo1, Foo foo2) {
 		int value = DateUtil.compareTo(foo1.getField4(), foo2.getField4());
 
 		if (_asc) {

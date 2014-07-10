@@ -68,7 +68,7 @@ public class BBBMeetingServiceImpl extends BBBMeetingServiceBaseImpl {
 
 	@Override
 	public List<BBBMeeting> getBBBMeetings(
-		long groupId, int start, int end, OrderByComparator obc) {
+		long groupId, int start, int end, OrderByComparator<BBBMeeting> obc) {
 
 		return bbbMeetingPersistence.filterFindByGroupId(
 			groupId, start, end, obc);

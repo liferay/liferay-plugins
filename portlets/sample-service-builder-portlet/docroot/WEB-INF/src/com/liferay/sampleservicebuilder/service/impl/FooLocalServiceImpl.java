@@ -93,11 +93,11 @@ public class FooLocalServiceImpl extends FooLocalServiceBaseImpl {
 		return deleteFoo(foo);
 	}
 
-	public List<Foo> getFoos(int start, int end, OrderByComparator obc) {
+	public List<Foo> getFoos(int start, int end, OrderByComparator<Foo> obc) {
 		return fooPersistence.findAll(start, end, obc);
 	}
 
-	public List<Foo> getFoos(OrderByComparator obc) {
+	public List<Foo> getFoos(OrderByComparator<Foo> obc) {
 		return getFoos(QueryUtil.ALL_POS, QueryUtil.ALL_POS, obc);
 	}
 
