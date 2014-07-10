@@ -515,6 +515,7 @@ public class CalendarBookingServiceImpl extends CalendarBookingServiceBaseImpl {
 		java.util.Calendar startTimeJCalendar = JCalendarUtil.getJCalendar(
 			startTimeYear, startTimeMonth, startTimeDay, startTimeHour,
 			startTimeMinute, 0, 0, timeZone);
+
 		java.util.Calendar endTimeJCalendar = JCalendarUtil.getJCalendar(
 			endTimeYear, endTimeMonth, endTimeDay, endTimeHour, endTimeMinute,
 			0, 0, timeZone);

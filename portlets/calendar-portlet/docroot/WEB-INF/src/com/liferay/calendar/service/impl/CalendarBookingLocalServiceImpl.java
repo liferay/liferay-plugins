@@ -317,11 +317,13 @@ public class CalendarBookingLocalServiceImpl
 			boolean allFollowing)
 		throws PortalException {
 
-		CalendarBooking instance = RecurrenceUtil.getCalendarBookingInstance(
-			calendarBooking, instanceIndex);
+		CalendarBooking calendarBookingInstance =
+			RecurrenceUtil.getCalendarBookingInstance(
+				calendarBooking, instanceIndex);
 
 		deleteCalendarBookingInstance(
-			calendarBooking, instance.getStartTime(), allFollowing);
+			calendarBooking, calendarBookingInstance.getStartTime(),
+			allFollowing);
 	}
 
 	@Override
