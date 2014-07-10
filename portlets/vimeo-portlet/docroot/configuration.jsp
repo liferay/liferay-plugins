@@ -104,6 +104,8 @@
 	var urlNode = A.one('#<portlet:namespace />url');
 	var widthNode = A.one('#<portlet:namespace />width');
 
+	var player;
+
 	function presetChange(e) {
 		if (this.val().indexOf('x') < 0) {
 			A.one('#<portlet:namespace />height').ancestor('.control-group').removeClass('invisible');
@@ -161,7 +163,7 @@
 		}
 
 		if (id) {
-			new A.SWF(
+			player = new A.SWF(
 				{
 					boundingBox: previewNode,
 					height: height,
@@ -249,6 +251,19 @@
 	if (presetSizeNode.val() == 'custom') {
 		A.one('#<portlet:namespace />height').ancestor('.control-group').removeClass('invisible');
 		A.one('#<portlet:namespace />width').ancestor('.control-group').removeClass('invisible');
+	}
+
+	var dialog = Liferay.Util.getWindow();
+
+	if (dialog !== A.config.win) {
+		dialog.once(
+			'visibleChange',
+			function(event) {
+				if (player && !event.newVal) {
+					player.destroy();
+				}
+			}
+		);
 	}
 
 	createPlayer();
