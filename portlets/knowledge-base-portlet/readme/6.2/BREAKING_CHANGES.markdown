@@ -71,15 +71,15 @@ in ascending chronological order.
 
 ## Breaking Changes List
 
-### Make Knowledge Base ratings consistent with the rest of the portal
-- **Date: 2014-Jul-1**
-- **JIRA Ticket: LPS-48146**
+### Make Knowledge Base Ratings Consistent with the Rest of the Portal
+- **Date:** 2014-Jul-01
+- **JIRA Ticket:** LPS-48146
 
 #### What changed?
 
-The number of stars for the ratings has changed from a hardcoded value of `10` to
-the value of the `knowledge.base.knowledge.base.ratings.number.of.stars`
-property.
+The number of stars for the ratings has changed from a hardcoded value of `10`
+to the value of the `knowledge.base.ratings.number.of.stars` property in
+`portal.properties`.
 
 #### Who is affected?
 
@@ -87,12 +87,14 @@ Any installation where there are existing articles with a rating.
 
 #### How should I update my code?
 
-If you need to keep the former behaviour, you should change the value of the
-`knowledge.base.ratings.number.of.stars` property back to `10`.
+If you need to keep the previous behaviour, you should change the
+`knowledge.base.ratings.number.of.stars` property value back to `10` in a
+`portal-ext.properties` file.
 
 #### Why was this change made?
 
-To make ratings in Knowledge Base consistent with other components and to allow
-administrators to configure the number of stars if necessary.
+This change makes ratings in Knowledge Base consistent with other components in
+the portal, and allows administrators to configure the number of stars, if
+necessary.
 
 ---------------------------------------
