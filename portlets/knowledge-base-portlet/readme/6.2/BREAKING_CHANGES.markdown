@@ -96,7 +96,7 @@ If you need to keep the previous behaviour, you should change the
 #### Why was this change made?
 
 This change makes ratings in Knowledge Base consistent with other components in
-the portal, and allow administrators to configure the number of stars, if
+the portal, and allows administrators to configure the number of stars, if
 necessary.
 
 ---------------------------------------
