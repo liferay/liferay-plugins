@@ -92,7 +92,7 @@
 												conf="default"
 												overwriteMode="always"
 												pattern="@{ivy.xml.dir}/lib/[artifact].[ext]"
-												type="bundle,jar,orbit"
+												type="bundle,eclipse-plugin,jar,orbit"
 											/>
 
 											<ivy:retrieve
@@ -107,7 +107,7 @@
 												conf="default"
 												overwriteMode="always"
 												pattern="@{ivy.xml.dir}/docroot/WEB-INF/lib/[artifact].[ext]"
-												type="bundle,jar,orbit"
+												type="bundle,eclipse-plugin,jar,orbit"
 											/>
 
 											<ivy:retrieve
