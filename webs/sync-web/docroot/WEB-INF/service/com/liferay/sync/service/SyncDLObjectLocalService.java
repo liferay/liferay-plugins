@@ -54,8 +54,7 @@ public interface SyncDLObjectLocalService extends BaseLocalService,
 		java.lang.String event, java.util.Date lockExpirationDate,
 		long lockUserId, java.lang.String lockUserName, java.lang.String type,
 		long typePK, java.lang.String typeUuid)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	/**
 	* Adds the sync d l object to the database. Also notifies the appropriate model listeners.
@@ -186,8 +185,7 @@ public interface SyncDLObjectLocalService extends BaseLocalService,
 	public java.lang.String getBeanIdentifier();
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public long getLatestModifiedTime()
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public long getLatestModifiedTime();
 
 	@Override
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)

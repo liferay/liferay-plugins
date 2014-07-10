@@ -44,8 +44,7 @@ public class SyncDLObjectServiceUtil {
 		java.lang.String description, java.lang.String changeLog,
 		java.io.File file, java.lang.String checksum,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService()
 				   .addFileEntry(repositoryId, folderId, sourceFileName,
 			mimeType, title, description, changeLog, file, checksum,
@@ -56,8 +55,7 @@ public class SyncDLObjectServiceUtil {
 		long repositoryId, long parentFolderId, java.lang.String name,
 		java.lang.String description,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService()
 				   .addFolder(repositoryId, parentFolderId, name, description,
 			serviceContext);
@@ -65,16 +63,14 @@ public class SyncDLObjectServiceUtil {
 
 	public static com.liferay.sync.model.SyncDLObject cancelCheckOut(
 		long fileEntryId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().cancelCheckOut(fileEntryId);
 	}
 
 	public static com.liferay.sync.model.SyncDLObject checkInFileEntry(
 		long fileEntryId, boolean majorVersion, java.lang.String changeLog,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService()
 				   .checkInFileEntry(fileEntryId, majorVersion, changeLog,
 			serviceContext);
@@ -83,8 +79,7 @@ public class SyncDLObjectServiceUtil {
 	public static com.liferay.sync.model.SyncDLObject checkOutFileEntry(
 		long fileEntryId, java.lang.String owner, long expirationTime,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService()
 				   .checkOutFileEntry(fileEntryId, owner, expirationTime,
 			serviceContext);
@@ -93,8 +88,7 @@ public class SyncDLObjectServiceUtil {
 	public static com.liferay.sync.model.SyncDLObject checkOutFileEntry(
 		long fileEntryId,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().checkOutFileEntry(fileEntryId, serviceContext);
 	}
 
@@ -104,8 +98,7 @@ public class SyncDLObjectServiceUtil {
 	@Deprecated
 	public static com.liferay.sync.model.SyncDLObjectUpdate getAllSyncDLObjects(
 		long repositoryId, long folderId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().getAllSyncDLObjects(repositoryId, folderId);
 	}
 
@@ -120,70 +113,60 @@ public class SyncDLObjectServiceUtil {
 
 	public static com.liferay.sync.model.SyncDLObject getFileEntrySyncDLObject(
 		long groupId, long folderId, java.lang.String title)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().getFileEntrySyncDLObject(groupId, folderId, title);
 	}
 
 	public static java.util.List<com.liferay.sync.model.SyncDLObject> getFileEntrySyncDLObjects(
 		long repositoryId, long folderId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().getFileEntrySyncDLObjects(repositoryId, folderId);
 	}
 
 	public static com.liferay.sync.model.SyncDLObject getFolderSyncDLObject(
 		long folderId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().getFolderSyncDLObject(folderId);
 	}
 
 	public static com.liferay.sync.model.SyncDLObject getFolderSyncDLObject(
 		long repositoryId, long parentFolderId, java.lang.String name)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService()
 				   .getFolderSyncDLObject(repositoryId, parentFolderId, name);
 	}
 
 	public static java.util.List<com.liferay.sync.model.SyncDLObject> getFolderSyncDLObjects(
 		long repositoryId, long parentFolderId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().getFolderSyncDLObjects(repositoryId, parentFolderId);
 	}
 
 	public static com.liferay.portal.model.Group getGroup(long groupId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().getGroup(groupId);
 	}
 
-	public static long getLatestModifiedTime()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static long getLatestModifiedTime() {
 		return getService().getLatestModifiedTime();
 	}
 
 	public static com.liferay.sync.model.SyncContext getSyncContext(
 		java.lang.String uuid)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().getSyncContext(uuid);
 	}
 
 	public static com.liferay.sync.model.SyncDLObjectUpdate getSyncDLObjectUpdate(
 		long companyId, long repositoryId, long lastAccessTime)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService()
 				   .getSyncDLObjectUpdate(companyId, repositoryId,
 			lastAccessTime);
 	}
 
 	public static java.util.List<com.liferay.portal.model.Group> getUserSitesGroups()
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().getUserSitesGroups();
 	}
 
@@ -196,31 +179,27 @@ public class SyncDLObjectServiceUtil {
 	public static com.liferay.sync.model.SyncDLObject moveFileEntry(
 		long fileEntryId, long newFolderId,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService()
 				   .moveFileEntry(fileEntryId, newFolderId, serviceContext);
 	}
 
 	public static com.liferay.sync.model.SyncDLObject moveFileEntryToTrash(
 		long fileEntryId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().moveFileEntryToTrash(fileEntryId);
 	}
 
 	public static com.liferay.sync.model.SyncDLObject moveFolder(
 		long folderId, long parentFolderId,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().moveFolder(folderId, parentFolderId, serviceContext);
 	}
 
 	public static com.liferay.sync.model.SyncDLObject moveFolderToTrash(
 		long folderId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().moveFolderToTrash(folderId);
 	}
 
@@ -231,8 +210,7 @@ public class SyncDLObjectServiceUtil {
 		java.lang.String changeLog, boolean majorVersion,
 		java.io.File deltaFile, java.lang.String checksum,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService()
 				   .patchFileEntry(fileEntryId, sourceVersion, sourceFileName,
 			mimeType, title, description, changeLog, majorVersion, deltaFile,
@@ -241,15 +219,13 @@ public class SyncDLObjectServiceUtil {
 
 	public static com.liferay.sync.model.SyncDLObject restoreFileEntryFromTrash(
 		long fileEntryId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().restoreFileEntryFromTrash(fileEntryId);
 	}
 
 	public static com.liferay.sync.model.SyncDLObject restoreFolderFromTrash(
 		long folderId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().restoreFolderFromTrash(folderId);
 	}
 
@@ -268,8 +244,7 @@ public class SyncDLObjectServiceUtil {
 		java.lang.String description, java.lang.String changeLog,
 		boolean majorVersion, java.io.File file, java.lang.String checksum,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService()
 				   .updateFileEntry(fileEntryId, sourceFileName, mimeType,
 			title, description, changeLog, majorVersion, file, checksum,
@@ -279,8 +254,7 @@ public class SyncDLObjectServiceUtil {
 	public static com.liferay.sync.model.SyncDLObject updateFolder(
 		long folderId, java.lang.String name, java.lang.String description,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService()
 				   .updateFolder(folderId, name, description, serviceContext);
 	}

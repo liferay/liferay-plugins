@@ -47,8 +47,7 @@ public class SyncDLObjectLocalServiceUtil {
 		java.lang.String event, java.util.Date lockExpirationDate,
 		long lockUserId, java.lang.String lockUserName, java.lang.String type,
 		long typePK, java.lang.String typeUuid)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService()
 				   .addSyncDLObject(companyId, modifiedTime, repositoryId,
 			parentFolderId, name, extension, mimeType, description, changeLog,
@@ -207,8 +206,7 @@ public class SyncDLObjectLocalServiceUtil {
 		return getService().getBeanIdentifier();
 	}
 
-	public static long getLatestModifiedTime()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static long getLatestModifiedTime() {
 		return getService().getLatestModifiedTime();
 	}
 

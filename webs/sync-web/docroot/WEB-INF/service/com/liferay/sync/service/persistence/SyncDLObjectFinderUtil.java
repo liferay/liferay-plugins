@@ -22,8 +22,7 @@ import com.liferay.portal.kernel.util.ReferenceRegistry;
  */
 public class SyncDLObjectFinderUtil {
 	public static java.util.List<com.liferay.sync.model.SyncDLObject> filterFindByC_M_R(
-		long companyId, long modifiedTime, long repositoryId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long companyId, long modifiedTime, long repositoryId) {
 		return getFinder()
 				   .filterFindByC_M_R(companyId, modifiedTime, repositoryId);
 	}

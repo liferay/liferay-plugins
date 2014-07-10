@@ -48,8 +48,7 @@ public interface SyncDLFileVersionDiffLocalService extends BaseLocalService,
 	public com.liferay.sync.model.SyncDLFileVersionDiff addSyncDLFileVersionDiff(
 		long fileEntryId, long sourceFileVersionId, long targetFileVersionId,
 		java.io.File file)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	/**
 	* Adds the sync d l file version diff to the database. Also notifies the appropriate model listeners.
@@ -71,8 +70,7 @@ public interface SyncDLFileVersionDiffLocalService extends BaseLocalService,
 		long syncDLFileVersionDiffId);
 
 	public void deleteExpiredSyncDLFileVersionDiffs()
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	/**
 	* @throws PortalException
@@ -171,8 +169,7 @@ public interface SyncDLFileVersionDiffLocalService extends BaseLocalService,
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.sync.model.SyncDLFileVersionDiff fetchSyncDLFileVersionDiff(
-		long fileEntryId, long sourceFileVersionId, long targetFileVersionId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		long fileEntryId, long sourceFileVersionId, long targetFileVersionId);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.sync.model.SyncDLFileVersionDiff fetchSyncDLFileVersionDiff(
@@ -235,8 +232,7 @@ public interface SyncDLFileVersionDiffLocalService extends BaseLocalService,
 		throws java.lang.Throwable;
 
 	public void refreshExpirationDate(long syncDLFileVersionDiffId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	/**
 	* Sets the Spring bean ID for this bean.

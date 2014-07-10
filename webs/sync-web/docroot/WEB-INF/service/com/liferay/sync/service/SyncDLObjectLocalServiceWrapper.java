@@ -40,8 +40,7 @@ public class SyncDLObjectLocalServiceWrapper implements SyncDLObjectLocalService
 		java.lang.String event, java.util.Date lockExpirationDate,
 		long lockUserId, java.lang.String lockUserName, java.lang.String type,
 		long typePK, java.lang.String typeUuid)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _syncDLObjectLocalService.addSyncDLObject(companyId,
 			modifiedTime, repositoryId, parentFolderId, name, extension,
 			mimeType, description, changeLog, extraSettings, version, size,
@@ -216,8 +215,7 @@ public class SyncDLObjectLocalServiceWrapper implements SyncDLObjectLocalService
 	}
 
 	@Override
-	public long getLatestModifiedTime()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public long getLatestModifiedTime() {
 		return _syncDLObjectLocalService.getLatestModifiedTime();
 	}
 

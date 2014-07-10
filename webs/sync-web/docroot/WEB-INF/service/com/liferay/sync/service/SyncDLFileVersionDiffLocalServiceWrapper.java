@@ -35,8 +35,7 @@ public class SyncDLFileVersionDiffLocalServiceWrapper
 	public com.liferay.sync.model.SyncDLFileVersionDiff addSyncDLFileVersionDiff(
 		long fileEntryId, long sourceFileVersionId, long targetFileVersionId,
 		java.io.File file)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _syncDLFileVersionDiffLocalService.addSyncDLFileVersionDiff(fileEntryId,
 			sourceFileVersionId, targetFileVersionId, file);
 	}
@@ -67,8 +66,7 @@ public class SyncDLFileVersionDiffLocalServiceWrapper
 
 	@Override
 	public void deleteExpiredSyncDLFileVersionDiffs()
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		_syncDLFileVersionDiffLocalService.deleteExpiredSyncDLFileVersionDiffs();
 	}
 
@@ -196,8 +194,7 @@ public class SyncDLFileVersionDiffLocalServiceWrapper
 
 	@Override
 	public com.liferay.sync.model.SyncDLFileVersionDiff fetchSyncDLFileVersionDiff(
-		long fileEntryId, long sourceFileVersionId, long targetFileVersionId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long fileEntryId, long sourceFileVersionId, long targetFileVersionId) {
 		return _syncDLFileVersionDiffLocalService.fetchSyncDLFileVersionDiff(fileEntryId,
 			sourceFileVersionId, targetFileVersionId);
 	}
@@ -282,8 +279,7 @@ public class SyncDLFileVersionDiffLocalServiceWrapper
 
 	@Override
 	public void refreshExpirationDate(long syncDLFileVersionDiffId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		_syncDLFileVersionDiffLocalService.refreshExpirationDate(syncDLFileVersionDiffId);
 	}
 
