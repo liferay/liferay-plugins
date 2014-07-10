@@ -508,7 +508,7 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 				KaleoTaskInstanceTokenLocalServiceUtil.search(
 					null, completed, Boolean.TRUE, start, end,
 					KaleoTaskInstanceTokenOrderByComparator.
-							getOrderByComparator(orderByComparator),
+						getOrderByComparator(orderByComparator),
 					serviceContext);
 
 			return toWorkflowTasks(kaleoTaskInstanceTokens);
@@ -566,7 +566,7 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 				KaleoTaskInstanceTokenLocalServiceUtil.search(
 					keywords, completed, searchByUserRoles, start, end,
 					KaleoTaskInstanceTokenOrderByComparator.
-							getOrderByComparator(orderByComparator),
+						getOrderByComparator(orderByComparator),
 					serviceContext);
 
 			return toWorkflowTasks(kaleoTaskInstanceTokens);
@@ -596,7 +596,7 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 					taskName, assetType, assetPrimaryKey, dueDateGT, dueDateLT,
 					completed, searchByUserRoles, andOperator, start, end,
 					KaleoTaskInstanceTokenOrderByComparator.
-							getOrderByComparator(orderByComparator),
+						getOrderByComparator(orderByComparator),
 					serviceContext);
 
 			return toWorkflowTasks(kaleoTaskInstanceTokens);
@@ -623,7 +623,7 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 				KaleoTaskInstanceTokenLocalServiceUtil.search(
 					keywords, assetTypes, completed, searchByUserRoles, start,
 					end, KaleoTaskInstanceTokenOrderByComparator.
-							getOrderByComparator(orderByComparator),
+						getOrderByComparator(orderByComparator),
 					serviceContext);
 
 			return toWorkflowTasks(kaleoTaskInstanceTokens);

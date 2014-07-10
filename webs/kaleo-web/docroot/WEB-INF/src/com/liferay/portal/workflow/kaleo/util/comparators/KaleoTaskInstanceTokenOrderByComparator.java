@@ -43,9 +43,9 @@ public class KaleoTaskInstanceTokenOrderByComparator
 	public WorkflowTask adapt(KaleoTaskInstanceToken kaleoTaskInstanceToken) {
 		try {
 			return WorkflowModelUtil.toWorkflowTask(
-					kaleoTaskInstanceToken,
-					WorkflowContextUtil.convert(
-						kaleoTaskInstanceToken.getWorkflowContext()));
+				kaleoTaskInstanceToken,
+				WorkflowContextUtil.convert(
+					kaleoTaskInstanceToken.getWorkflowContext()));
 		}
 		catch (Exception e) {
 			throw new SystemException(e);
