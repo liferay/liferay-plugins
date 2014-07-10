@@ -96,6 +96,10 @@
 		<display-name>Sites</display-name>
 		<portlet-class>com.liferay.so.sites.portlet.SitesPortlet</portlet-class>
 		<init-param>
+			<name>add-process-action-success-action</name>
+			<value>false</value>
+		</init-param>
+		<init-param>
 			<name>config-template</name>
 			<value>/sites/configuration.jsp</value>
 		</init-param>
