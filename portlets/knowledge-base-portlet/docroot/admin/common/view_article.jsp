@@ -35,19 +35,32 @@ if (enableKBArticleViewCountIncrement && !kbArticle.isDraft()) {
 		<%= kbArticle.getTitle() %>
 	</h1>
 
+	<%
+		int kbArticleStatus = kbArticle.getStatus();
+	%>
+
+	<c:if test="<%= kbArticleStatus != WorkflowConstants.STATUS_APPROVED %>">
+		<div class="kb-article-status">
+			<aui:model-context bean="<%= kbArticle %>" model="<%= KBArticle.class %>" />
+
+			<aui:workflow-status status="<%= kbArticleStatus %>" />
+		</div>
+	</c:if>
+
 	<div class="kb-tools">
 		<liferay-util:include page="/admin/article_tools.jsp" servletContext="<%= application %>" />
 	</div>
 </div>
 
-<div class="kb-entity-body">
-
-	<%
+<%
 	request.setAttribute("article_icons.jsp-kb_article", kbArticle);
-	%>
+%>
 
+<div class="kb-article-actions text-right">
 	<liferay-util:include page="/admin/article_icons.jsp" servletContext="<%= application %>" />
+</div>
 
+<div class="kb-entity-body">
 	<div class="kb-article-body" id="<portlet:namespace /><%= kbArticle.getResourcePrimKey() %>">
 		<%= kbArticle.getContent() %>
 	</div>
