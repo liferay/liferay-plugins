@@ -48,8 +48,7 @@ public class SyncDLObjectFinderImpl
 
 	@Override
 	public List<SyncDLObject> filterFindByC_M_R(
-			long companyId, long modifiedTime, long repositoryId)
-		throws SystemException {
+		long companyId, long modifiedTime, long repositoryId) {
 
 		Session session = null;
 

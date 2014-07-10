@@ -19,7 +19,6 @@ import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.ProjectionFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.dao.orm.RestrictionsFactoryUtil;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.parsers.bbcode.BBCodeTranslatorUtil;
 import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.util.FastDateFormatFactoryUtil;
@@ -109,9 +108,7 @@ public abstract class SOSocialActivityInterpreter
 		return new SocialActivityFeedEntry(link, title, body);
 	}
 
-	protected List<Long> getActivitySetUserIds(long activitySetId)
-		throws SystemException {
-
+	protected List<Long> getActivitySetUserIds(long activitySetId) {
 		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
 			SocialActivity.class);
 

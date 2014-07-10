@@ -18,7 +18,6 @@ import com.liferay.io.delta.ByteChannelReader;
 import com.liferay.io.delta.ByteChannelWriter;
 import com.liferay.io.delta.DeltaUtil;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.repository.model.Folder;
 import com.liferay.portal.kernel.util.Digester;
@@ -55,7 +54,7 @@ import java.util.Date;
 public class SyncUtil {
 
 	public static String getChecksum(DLFileVersion dlFileVersion)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		return getChecksum(dlFileVersion.getContentStream(false));
 	}
@@ -234,14 +233,14 @@ public class SyncUtil {
 
 	public static SyncDLObject toSyncDLObject(
 			DLFileEntry dlFileEntry, String event)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		return toSyncDLObject(dlFileEntry, event, false);
 	}
 
 	public static SyncDLObject toSyncDLObject(
 			DLFileEntry dlFileEntry, String event, boolean excludeWorkingCopy)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		DLFileVersion dlFileVersion = null;
 
@@ -325,7 +324,7 @@ public class SyncUtil {
 	}
 
 	public static SyncDLObject toSyncDLObject(FileEntry fileEntry, String event)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		if (fileEntry.getModel() instanceof DLFileEntry) {
 			DLFileEntry dlFileEntry = (DLFileEntry)fileEntry.getModel();
@@ -338,7 +337,7 @@ public class SyncUtil {
 	}
 
 	public static SyncDLObject toSyncDLObject(Folder folder, String event)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		if (folder.getModel() instanceof DLFolder) {
 			DLFolder dlFolder = (DLFolder)folder.getModel();

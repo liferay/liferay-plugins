@@ -1283,7 +1283,7 @@ html.aui {
 		.tag {
 			background-color: #EEE;
 			background-position-x: 7px;
-			
+
 			@include border-radius(4px);
 
 			color: #2571AD;

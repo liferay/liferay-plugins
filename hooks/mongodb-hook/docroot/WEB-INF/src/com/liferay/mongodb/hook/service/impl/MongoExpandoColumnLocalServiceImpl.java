@@ -17,7 +17,6 @@ package com.liferay.mongodb.hook.service.impl;
 import com.liferay.mongodb.lang.MongoOperator;
 import com.liferay.mongodb.util.MongoDBUtil;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.UnicodeProperties;
 import com.liferay.portlet.expando.model.ExpandoColumn;
@@ -47,7 +46,7 @@ public class MongoExpandoColumnLocalServiceImpl
 	@Override
 	public ExpandoColumn updateColumn(
 			long columnId, String name, int type, Object defaultData)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		ExpandoColumn expandoColumn = super.updateColumn(
 			columnId, name, type, defaultData);
@@ -68,7 +67,7 @@ public class MongoExpandoColumnLocalServiceImpl
 
 	@Override
 	public ExpandoColumn updateTypeSettings(long columnId, String typeSettings)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		ExpandoColumn expandoColumn = super.updateTypeSettings(
 			columnId, typeSettings);

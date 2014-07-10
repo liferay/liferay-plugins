@@ -17,7 +17,6 @@ package com.liferay.sync.service.impl;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.deploy.DeployManagerUtil;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.plugin.PluginPackage;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.repository.model.Folder;
@@ -63,7 +62,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 			long repositoryId, long folderId, String sourceFileName,
 			String mimeType, String title, String description, String changeLog,
 			File file, String checksum, ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		try {
 			validateChecksum(file, checksum);
@@ -100,7 +99,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 	public SyncDLObject addFolder(
 			long repositoryId, long parentFolderId, String name,
 			String description, ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		try {
 			Folder folder = dlAppService.addFolder(
@@ -132,7 +131,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 
 	@Override
 	public SyncDLObject cancelCheckOut(long fileEntryId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		try {
 			dlAppService.cancelCheckOut(fileEntryId);
@@ -151,7 +150,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 	public SyncDLObject checkInFileEntry(
 			long fileEntryId, boolean majorVersion, String changeLog,
 			ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		try {
 			dlAppService.checkInFileEntry(
@@ -170,7 +169,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 	@Override
 	public SyncDLObject checkOutFileEntry(
 			long fileEntryId, ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		try {
 			dlAppService.checkOutFileEntry(fileEntryId, serviceContext);
@@ -189,7 +188,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 	public SyncDLObject checkOutFileEntry(
 			long fileEntryId, String owner, long expirationTime,
 			ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		try {
 			FileEntry fileEntry = dlAppService.checkOutFileEntry(
@@ -210,7 +209,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 	@Override
 	public SyncDLObjectUpdate getAllSyncDLObjects(
 			long repositoryId, long folderId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		try {
 			long lastAccessTime = System.currentTimeMillis();
@@ -229,7 +228,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 	@Override
 	public SyncDLObject getFileEntrySyncDLObject(
 			long groupId, long folderId, String title)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		try {
 			FileEntry fileEntry = dlAppService.getFileEntry(
@@ -245,7 +244,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 	@Override
 	public List<SyncDLObject> getFileEntrySyncDLObjects(
 			long repositoryId, long folderId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		try {
 			List<FileEntry> fileEntries = dlAppService.getFileEntries(
@@ -270,7 +269,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 
 	@Override
 	public SyncDLObject getFolderSyncDLObject(long folderId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		try {
 			Folder folder = dlAppService.getFolder(folderId);
@@ -289,7 +288,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 	@Override
 	public SyncDLObject getFolderSyncDLObject(
 			long repositoryId, long parentFolderId, String name)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		try {
 			Folder folder = dlAppService.getFolder(
@@ -309,7 +308,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 	@Override
 	public List<SyncDLObject> getFolderSyncDLObjects(
 			long repositoryId, long parentFolderId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		try {
 			List<Folder> folders = dlAppService.getFolders(
@@ -337,9 +336,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 	}
 
 	@Override
-	public Group getGroup(long groupId)
-		throws PortalException, SystemException {
-
+	public Group getGroup(long groupId) throws PortalException {
 		try {
 			return groupService.getGroup(groupId);
 		}
@@ -349,14 +346,12 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 	}
 
 	@Override
-	public long getLatestModifiedTime() throws SystemException {
+	public long getLatestModifiedTime() {
 		return syncDLObjectLocalService.getLatestModifiedTime();
 	}
 
 	@Override
-	public SyncContext getSyncContext(String uuid)
-		throws PortalException, SystemException {
-
+	public SyncContext getSyncContext(String uuid) throws PortalException {
 		try {
 			SyncContext syncContext = new SyncContext();
 
@@ -392,7 +387,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 	@Override
 	public SyncDLObjectUpdate getSyncDLObjectUpdate(
 			long companyId, long repositoryId, long lastAccessTime)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		try {
 			repositoryService.checkRepository(repositoryId);
@@ -415,9 +410,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 	}
 
 	@Override
-	public List<Group> getUserSitesGroups()
-		throws PortalException, SystemException {
-
+	public List<Group> getUserSitesGroups() throws PortalException {
 		try {
 			return groupService.getUserSitesGroups();
 		}
@@ -429,7 +422,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 	@Override
 	public SyncDLObject moveFileEntry(
 			long fileEntryId, long newFolderId, ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		try {
 			FileEntry fileEntry = dlAppService.moveFileEntry(
@@ -444,7 +437,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 
 	@Override
 	public SyncDLObject moveFileEntryToTrash(long fileEntryId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		try {
 			FileEntry fileEntry = dlAppService.moveFileEntryToTrash(
@@ -461,7 +454,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 	@Override
 	public SyncDLObject moveFolder(
 			long folderId, long parentFolderId, ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		try {
 			Folder folder = dlAppService.moveFolder(
@@ -476,7 +469,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 
 	@Override
 	public SyncDLObject moveFolderToTrash(long folderId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		try {
 			Folder folder = dlAppService.moveFolderToTrash(folderId);
@@ -494,7 +487,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 			String mimeType, String title, String description, String changeLog,
 			boolean majorVersion, File deltaFile, String checksum,
 			ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		File patchedFile = null;
 
@@ -535,7 +528,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 
 	@Override
 	public SyncDLObject restoreFileEntryFromTrash(long fileEntryId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		try {
 			dlAppService.restoreFileEntryFromTrash(fileEntryId);
@@ -552,7 +545,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 
 	@Override
 	public SyncDLObject restoreFolderFromTrash(long folderId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		try {
 			dlAppService.restoreFolderFromTrash(folderId);
@@ -572,7 +565,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 			String title, String description, String changeLog,
 			boolean majorVersion, File file, String checksum,
 			ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		try {
 			if (file != null) {
@@ -595,7 +588,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 	public SyncDLObject updateFolder(
 			long folderId, String name, String description,
 			ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		try {
 			Folder folder = dlAppService.updateFolder(
@@ -610,7 +603,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 
 	protected void getAllSyncDLObjects(
 			long repositoryId, long folderId, List<SyncDLObject> syncDLObjects)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		List<Object> foldersAndFileEntriesAndFileShortcuts =
 			dlAppService.getFoldersAndFileEntriesAndFileShortcuts(
@@ -645,7 +638,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 	}
 
 	protected Map<String, String> getPortletPreferencesMap()
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		Map<String, String> portletPreferencesMap =
 			new HashMap<String, String>();

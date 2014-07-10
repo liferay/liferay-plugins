@@ -15,7 +15,6 @@
 package com.liferay.repository.external;
 
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.search.Query;
 import com.liferay.portal.kernel.search.SearchContext;
 import com.liferay.portal.kernel.util.UnicodeProperties;
@@ -69,7 +68,7 @@ public interface ExtRepository {
 	public ExtRepositoryFileEntry addExtRepositoryFileEntry(
 			String extRepositoryParentFolderKey, String mimeType, String title,
 			String description, String changeLog, InputStream inputStream)
-		throws PortalException, SystemException;
+		throws PortalException;
 
 	/**
 	 * Adds an external repository folder.
@@ -86,7 +85,7 @@ public interface ExtRepository {
 	public ExtRepositoryFolder addExtRepositoryFolder(
 			String extRepositoryParentFolderKey, String name,
 			String description)
-		throws PortalException, SystemException;
+		throws PortalException;
 
 	/**
 	 * Cancels the check out of the external repository file. If a user has not
@@ -103,7 +102,7 @@ public interface ExtRepository {
 	 */
 	public ExtRepositoryFileVersion cancelCheckOut(
 			String extRepositoryFileEntryKey)
-		throws PortalException, SystemException;
+		throws PortalException;
 
 	/**
 	 * Checks in the external repository file entry. If a user has not checked
@@ -122,7 +121,7 @@ public interface ExtRepository {
 	public void checkInExtRepositoryFileEntry(
 			String extRepositoryFileEntryKey, boolean createMajorVersion,
 			String changeLog)
-		throws PortalException, SystemException;
+		throws PortalException;
 
 	/**
 	 * Checks out the external repository file entry.
@@ -136,7 +135,7 @@ public interface ExtRepository {
 	 */
 	public ExtRepositoryFileEntry checkOutExtRepositoryFileEntry(
 			String extRepositoryFileEntryKey)
-		throws PortalException, SystemException;
+		throws PortalException;
 
 	/**
 	 * Copies the external repository object to a different parent folder.
@@ -157,7 +156,7 @@ public interface ExtRepository {
 			ExtRepositoryObjectType<T> extRepositoryObjectType,
 			String extRepositoryFileEntryKey, String newExtRepositoryFolderKey,
 			String newTitle)
-		throws PortalException, SystemException;
+		throws PortalException;
 
 	/**
 	 * Deletes the external repository object.
@@ -172,7 +171,7 @@ public interface ExtRepository {
 			ExtRepositoryObjectType<? extends ExtRepositoryObject>
 				extRepositoryObjectType,
 			String extRepositoryObjectKey)
-		throws PortalException, SystemException;
+		throws PortalException;
 
 	public String getAuthType();
 
@@ -188,7 +187,7 @@ public interface ExtRepository {
 	 */
 	public InputStream getContentStream(
 			ExtRepositoryFileEntry extRepositoryFileEntry)
-		throws PortalException, SystemException;
+		throws PortalException;
 
 	/**
 	 * Returns the content stream of the external repository file version.
@@ -202,7 +201,7 @@ public interface ExtRepository {
 	 */
 	public InputStream getContentStream(
 			ExtRepositoryFileVersion extRepositoryFileVersion)
-		throws PortalException, SystemException;
+		throws PortalException;
 
 	/**
 	 * Returns the external repository file version of the file entry,
@@ -218,7 +217,7 @@ public interface ExtRepository {
 	 */
 	public ExtRepositoryFileVersion getExtRepositoryFileVersion(
 			ExtRepositoryFileEntry extRepositoryFileEntry, String version)
-		throws PortalException, SystemException;
+		throws PortalException;
 
 	/**
 	 * Returns the {@link ExtRepositoryFileVersionDescriptor} translated from
@@ -245,7 +244,7 @@ public interface ExtRepository {
 	 */
 	public List<ExtRepositoryFileVersion> getExtRepositoryFileVersions(
 			ExtRepositoryFileEntry extRepositoryFileEntry)
-		throws PortalException, SystemException;
+		throws PortalException;
 
 	/**
 	 * Returns the external repository object matching the type and key.
@@ -263,7 +262,7 @@ public interface ExtRepository {
 	public <T extends ExtRepositoryObject> T getExtRepositoryObject(
 			ExtRepositoryObjectType<T> extRepositoryObjectType,
 			String extRepositoryObjectKey)
-		throws PortalException, SystemException;
+		throws PortalException;
 
 	/**
 	 * Returns the external repository object matching the type and title, in
@@ -285,7 +284,7 @@ public interface ExtRepository {
 	public <T extends ExtRepositoryObject> T getExtRepositoryObject(
 			ExtRepositoryObjectType<T> extRepositoryObjectType,
 			String extRepositoryFolderKey, String title)
-		throws PortalException, SystemException;
+		throws PortalException;
 
 	/**
 	 * Returns the external repository objects matching the type, in the parent
@@ -307,7 +306,7 @@ public interface ExtRepository {
 	public <T extends ExtRepositoryObject> List<T> getExtRepositoryObjects(
 			ExtRepositoryObjectType<T> extRepositoryObjectType,
 			String extRepositoryFolderKey)
-		throws PortalException, SystemException;
+		throws PortalException;
 
 	/**
 	 * Returns the number of elements in the external repository folder matching
@@ -332,7 +331,7 @@ public interface ExtRepository {
 			ExtRepositoryObjectType<? extends ExtRepositoryObject>
 				extRepositoryObjectType,
 			String extRepositoryFolderKey)
-		throws PortalException, SystemException;
+		throws PortalException;
 
 	/**
 	 * Returns the external repository parent folder of the external repository
@@ -346,7 +345,7 @@ public interface ExtRepository {
 	 */
 	public ExtRepositoryFolder getExtRepositoryParentFolder(
 			ExtRepositoryObject extRepositoryObject)
-		throws PortalException, SystemException;
+		throws PortalException;
 
 	/**
 	 * Returns the Liferay login value, which is mapped from the user's external
@@ -369,7 +368,7 @@ public interface ExtRepository {
 	 *         accessed
 	 * @throws SystemException if a system exception occurred
 	 */
-	public String getRootFolderKey() throws PortalException, SystemException;
+	public String getRootFolderKey() throws PortalException;
 
 	/**
 	 * Returns the keys of the external repository subfolders stored inside the
@@ -385,7 +384,7 @@ public interface ExtRepository {
 	 */
 	public List<String> getSubfolderKeys(
 			String extRepositoryFolderKey, boolean recurse)
-		throws PortalException, SystemException;
+		throws PortalException;
 
 	/**
 	 * Returns the supported configurations for the external repository. Each
@@ -431,7 +430,7 @@ public interface ExtRepository {
 	public void initRepository(
 			UnicodeProperties typeSettingsProperties,
 			CredentialsProvider credentialsProvider)
-		throws PortalException, SystemException;
+		throws PortalException;
 
 	/**
 	 * Moves the external repository object to a different location. This method
@@ -452,7 +451,7 @@ public interface ExtRepository {
 			ExtRepositoryObjectType<T> extRepositoryObjectType,
 			String extRepositoryObjectKey, String newExtRepositoryFolderKey,
 			String newTitle)
-		throws PortalException, SystemException;
+		throws PortalException;
 
 	/**
 	 * Returns the external repository objects fulfilling the query. There may
@@ -483,7 +482,7 @@ public interface ExtRepository {
 	public List<ExtRepositorySearchResult<?>> search(
 			SearchContext searchContext, Query query,
 			ExtRepositoryQueryMapper extRepositoryQueryMapper)
-		throws PortalException, SystemException;
+		throws PortalException;
 
 	/**
 	 * Updates the external repository file entry's content.
@@ -499,6 +498,6 @@ public interface ExtRepository {
 	public ExtRepositoryFileEntry updateExtRepositoryFileEntry(
 			String extRepositoryFileEntryKey, String mimeType,
 			InputStream inputStream)
-		throws PortalException, SystemException;
+		throws PortalException;
 
 }

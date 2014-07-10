@@ -15,7 +15,6 @@
 package com.liferay.resourcesimporter.util;
 
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
@@ -120,7 +119,7 @@ public class FileSystemImporter extends BaseImporter {
 
 	protected void addApplicationDisplayTemplate(
 			String script, File file, long classNameId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		String fileName = FileUtil.stripExtension(file.getName());
 

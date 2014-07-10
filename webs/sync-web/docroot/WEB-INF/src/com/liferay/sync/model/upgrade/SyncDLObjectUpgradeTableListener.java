@@ -76,7 +76,7 @@ public class SyncDLObjectUpgradeTableListener extends BaseUpgradeTableListener {
 		_syncDLObjectIds = getSyncDLObjectIds();
 	}
 
-	protected Map<Long, Long> getSyncDLObjectIds() throws SystemException {
+	protected Map<Long, Long> getSyncDLObjectIds() {
 		Map<Long, Long> syncDLObjectIds = new HashMap<Long, Long>();
 
 		Connection con = null;

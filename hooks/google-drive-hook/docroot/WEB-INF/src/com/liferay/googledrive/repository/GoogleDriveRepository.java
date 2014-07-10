@@ -94,7 +94,7 @@ public class GoogleDriveRepository
 	public ExtRepositoryFileEntry addExtRepositoryFileEntry(
 			String extRepositoryParentFolderKey, String mimeType, String title,
 			String description, String changeLog, InputStream inputStream)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		File file = addFile(
 			extRepositoryParentFolderKey, mimeType, title, description,
@@ -107,7 +107,7 @@ public class GoogleDriveRepository
 	public ExtRepositoryFolder addExtRepositoryFolder(
 			String extRepositoryParentFolderKey, String name,
 			String description)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		File file = addFile(
 			extRepositoryParentFolderKey, _FOLDER_MIME_TYPE, name, description,
@@ -143,7 +143,7 @@ public class GoogleDriveRepository
 			ExtRepositoryObjectType<T> extRepositoryObjectType,
 			String extRepositoryFileEntryKey, String newExtRepositoryFolderKey,
 			String newTitle)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		try {
 			Drive drive = getDrive();
@@ -189,7 +189,7 @@ public class GoogleDriveRepository
 			ExtRepositoryObjectType<? extends ExtRepositoryObject>
 				extRepositoryObjectType,
 			String extRepositoryObjectKey)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		try {
 			Drive drive = getDrive();
@@ -220,7 +220,7 @@ public class GoogleDriveRepository
 	@Override
 	public InputStream getContentStream(
 			ExtRepositoryFileEntry extRepositoryFileEntry)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		GoogleDriveFileEntry googleDriveFileEntry =
 			(GoogleDriveFileEntry)extRepositoryFileEntry;
@@ -231,7 +231,7 @@ public class GoogleDriveRepository
 	@Override
 	public InputStream getContentStream(
 			ExtRepositoryFileVersion extRepositoryFileVersion)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		GoogleDriveFileVersion googleDriveFileVersion =
 			(GoogleDriveFileVersion)extRepositoryFileVersion;
@@ -248,7 +248,7 @@ public class GoogleDriveRepository
 	@Override
 	public ExtRepositoryFileVersion getExtRepositoryFileVersion(
 			ExtRepositoryFileEntry extRepositoryFileEntry, String version)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		try {
 			Drive drive = getDrive();
@@ -296,7 +296,7 @@ public class GoogleDriveRepository
 	@Override
 	public List<ExtRepositoryFileVersion> getExtRepositoryFileVersions(
 			ExtRepositoryFileEntry extRepositoryFileEntry)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		try {
 			Drive drive = getDrive();
@@ -372,7 +372,7 @@ public class GoogleDriveRepository
 	public <T extends ExtRepositoryObject> T getExtRepositoryObject(
 			ExtRepositoryObjectType<T> extRepositoryObjectType,
 			String extRepositoryFolderKey, String title)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		try {
 			StringBundler sb = new StringBundler();
@@ -434,7 +434,7 @@ public class GoogleDriveRepository
 	public <T extends ExtRepositoryObject> List<T> getExtRepositoryObjects(
 			ExtRepositoryObjectType<T> extRepositoryObjectType,
 			String extRepositoryFolderKey)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		try {
 			Drive drive = getDrive();
@@ -507,7 +507,7 @@ public class GoogleDriveRepository
 			ExtRepositoryObjectType<? extends ExtRepositoryObject>
 				extRepositoryObjectType,
 			String extRepositoryFolderKey)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		List<? extends ExtRepositoryObject> extRepositoryObjects =
 			getExtRepositoryObjects(
@@ -566,7 +566,7 @@ public class GoogleDriveRepository
 	@Override
 	public List<String> getSubfolderKeys(
 			String extRepositoryFolderKey, boolean recurse)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		List<String> subfolderKeys = new ArrayList<String>();
 
@@ -599,7 +599,7 @@ public class GoogleDriveRepository
 			ExtRepositoryObjectType<T> extRepositoryObjectType,
 			String extRepositoryObjectKey, String newExtRepositoryFolderKey,
 			String newTitle)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		try {
 			Drive drive = getDrive();
@@ -643,7 +643,7 @@ public class GoogleDriveRepository
 	public List<ExtRepositorySearchResult<?>> search(
 			SearchContext searchContext, Query query,
 			ExtRepositoryQueryMapper extRepositoryQueryMapper)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		try {
 			Drive drive = getDrive();
@@ -703,7 +703,7 @@ public class GoogleDriveRepository
 	public ExtRepositoryFileEntry updateExtRepositoryFileEntry(
 			String extRepositoryFileEntryKey, String mimeType,
 			InputStream inputStream)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		try {
 			Drive drive = getDrive();
@@ -732,7 +732,7 @@ public class GoogleDriveRepository
 	protected File addFile(
 			String extRepositoryParentFolderKey, String mimeType, String title,
 			String description, InputStream inputStream)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		try {
 			File file = new File();
@@ -778,7 +778,7 @@ public class GoogleDriveRepository
 	}
 
 	protected GoogleDriveSession buildGoogleDriveSession()
-		throws IOException, PortalException, SystemException {
+		throws IOException, PortalException {
 
 		long userId = PrincipalThreadLocal.getUserId();
 
@@ -834,7 +834,7 @@ public class GoogleDriveRepository
 	}
 
 	protected InputStream getContentStream(String downloadURL)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		if (Validator.isNull(downloadURL)) {
 			return null;
@@ -960,7 +960,7 @@ public class GoogleDriveRepository
 	protected List<String> getSubfolderKeys(
 			String extRepositoryFolderKey, boolean recurse,
 			List<String> subfolderKeys)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		List<ExtRepositoryFolder> extRepositoryFolders =
 			getExtRepositoryObjects(

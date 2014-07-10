@@ -15,7 +15,6 @@
 package com.liferay.repository.external.model;
 
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.repository.RepositoryException;
 import com.liferay.portal.kernel.repository.model.Folder;
 import com.liferay.portal.security.permission.ActionKeys;
@@ -41,7 +40,7 @@ public abstract class ExtRepositoryObjectAdapter<T>
 	@SuppressWarnings("unused")
 	public boolean containsPermission(
 			PermissionChecker permissionChecker, String actionId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		if (_unsupportedActionIds.containsKey(actionId)) {
 			return _unsupportedActionIds.get(actionId);
@@ -60,9 +59,7 @@ public abstract class ExtRepositoryObjectAdapter<T>
 		}
 	}
 
-	public List<Long> getAncestorFolderIds()
-		throws PortalException, SystemException {
-
+	public List<Long> getAncestorFolderIds() throws PortalException {
 		List<Long> folderIds = new ArrayList<Long>();
 
 		Folder folder = getParentFolder();
@@ -76,7 +73,7 @@ public abstract class ExtRepositoryObjectAdapter<T>
 		return folderIds;
 	}
 
-	public List<Folder> getAncestors() throws PortalException, SystemException {
+	public List<Folder> getAncestors() throws PortalException {
 		List<Folder> folders = new ArrayList<Folder>();
 
 		Folder folder = getParentFolder();
@@ -110,7 +107,7 @@ public abstract class ExtRepositoryObjectAdapter<T>
 
 	public abstract String getName();
 
-	public Folder getParentFolder() throws PortalException, SystemException {
+	public Folder getParentFolder() throws PortalException {
 		ExtRepositoryAdapter extRepositoryAdapter = getRepository();
 
 		Folder parentFolder = extRepositoryAdapter.getParentFolder(this);

@@ -19,7 +19,6 @@ package com.liferay.so.hook.upgrade.v3_0_0;
 
 import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.UnicodeProperties;
@@ -58,9 +57,7 @@ public class UpgradeLayout extends UpgradeProcess {
 			new LayoutActionableDynamicQuery() {
 
 			@Override
-			protected void performAction(Object object)
-				throws PortalException, SystemException {
-
+			protected void performAction(Object object) throws PortalException {
 				Layout layout = (Layout)object;
 
 				if (!SocialOfficeServiceUtil.isSocialOfficeGroup(

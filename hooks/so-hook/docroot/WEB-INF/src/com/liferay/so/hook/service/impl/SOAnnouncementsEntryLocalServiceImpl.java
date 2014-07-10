@@ -18,7 +18,6 @@
 package com.liferay.so.hook.service.impl;
 
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.log.Log;
@@ -83,7 +82,7 @@ public class SOAnnouncementsEntryLocalServiceImpl
 			int expirationDateMonth, int expirationDateDay,
 			int expirationDateYear, int expirationDateHour,
 			int expirationDateMinute, int priority, boolean alert)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		AnnouncementsEntry announcementEntry = super.addEntry(
 			userId, classNameId, classPK, title, content, url, type,
@@ -104,15 +103,13 @@ public class SOAnnouncementsEntryLocalServiceImpl
 	}
 
 	@Override
-	public void checkEntries() throws PortalException, SystemException {
+	public void checkEntries() throws PortalException {
 		super.checkEntries();
 
 		sendNotificationEvent();
 	}
 
-	protected void sendNotificationEvent()
-		throws PortalException, SystemException {
-
+	protected void sendNotificationEvent() throws PortalException {
 		Date now = new Date();
 
 		if (_previousCheckDate == null) {
@@ -140,7 +137,7 @@ public class SOAnnouncementsEntryLocalServiceImpl
 	}
 
 	protected void sendNotificationEvent(AnnouncementsEntry announcementEntry)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		JSONObject notificationEventJSONObject =
 			JSONFactoryUtil.createJSONObject();
@@ -193,7 +190,7 @@ public class SOAnnouncementsEntryLocalServiceImpl
 		protected void sendUserNotifications(
 				AnnouncementsEntry announcementEntry,
 				JSONObject notificationEventJSONObject)
-			throws PortalException, SystemException {
+			throws PortalException {
 
 			int count = 0;
 			long teamId = 0;

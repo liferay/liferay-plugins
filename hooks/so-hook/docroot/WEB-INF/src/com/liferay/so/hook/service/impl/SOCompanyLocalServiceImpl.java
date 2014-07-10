@@ -18,7 +18,6 @@
 package com.liferay.so.hook.service.impl;
 
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.model.Company;
 import com.liferay.portal.service.CompanyLocalService;
 import com.liferay.portal.service.CompanyLocalServiceWrapper;
@@ -34,9 +33,7 @@ public class SOCompanyLocalServiceImpl extends CompanyLocalServiceWrapper {
 	}
 
 	@Override
-	public Company checkCompany(String webId)
-		throws PortalException, SystemException {
-
+	public Company checkCompany(String webId) throws PortalException {
 		Company company = super.checkCompany(webId);
 
 		InstanceUtil.initRuntime(company.getCompanyId());

@@ -15,7 +15,6 @@
 package com.liferay.sync.servlet;
 
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.repository.model.FileVersion;
 import com.liferay.portal.kernel.servlet.PortalSessionThreadLocal;
@@ -104,7 +103,7 @@ public class DownloadServlet extends HttpServlet {
 	protected File getDeltaFile(
 			long userId, long fileEntryId, String sourceVersion,
 			String targetVersion)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		File sourceFile = DLFileEntryLocalServiceUtil.getFile(
 			userId, fileEntryId, sourceVersion, false);

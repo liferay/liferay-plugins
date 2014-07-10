@@ -19,7 +19,6 @@ import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.Projection;
 import com.liferay.portal.kernel.dao.orm.ProjectionFactoryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.repository.model.Folder;
 import com.liferay.portlet.documentlibrary.model.DLFileEntry;
 import com.liferay.portlet.documentlibrary.model.DLFolderConstants;
@@ -45,7 +44,7 @@ public class SyncDLObjectLocalServiceImpl
 			String version, long size, String checksum, String event,
 			Date lockExpirationDate, long lockUserId, String lockUserName,
 			String type, long typePK, String typeUuid)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		if (!isDefaultRepository(parentFolderId)) {
 			return null;
@@ -103,7 +102,7 @@ public class SyncDLObjectLocalServiceImpl
 	}
 
 	@Override
-	public long getLatestModifiedTime() throws SystemException {
+	public long getLatestModifiedTime() {
 		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
 			SyncDLObject.class, SyncDLObject.class.getClassLoader());
 
@@ -122,7 +121,7 @@ public class SyncDLObjectLocalServiceImpl
 	}
 
 	protected boolean isDefaultRepository(long folderId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		if (folderId == DLFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
 			return true;

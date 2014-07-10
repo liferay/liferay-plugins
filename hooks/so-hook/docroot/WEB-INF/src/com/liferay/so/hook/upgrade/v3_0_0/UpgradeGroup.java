@@ -19,7 +19,6 @@ package com.liferay.so.hook.upgrade.v3_0_0;
 
 import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.Group;
@@ -39,7 +38,7 @@ public class UpgradeGroup extends UpgradeProcess {
 
 				@Override
 				protected void performAction(Object object)
-					throws PortalException, SystemException {
+					throws PortalException {
 
 					Group group = (Group)object;
 

@@ -19,7 +19,6 @@ package com.liferay.so.util;
 
 import com.liferay.portal.kernel.configuration.Filter;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.StringPool;
@@ -176,7 +175,7 @@ public class LayoutUtil {
 	}
 
 	public static void addResources(Layout layout, String portletId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		String rootPortletId = PortletConstants.getRootPortletId(portletId);
 

@@ -14,7 +14,6 @@
 
 package com.liferay.shibboleth.util;
 
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.PrefsPropsUtil;
 
 /**
@@ -22,7 +21,7 @@ import com.liferay.portal.kernel.util.PrefsPropsUtil;
  */
 public class ShibbolethUtil {
 
-	public static boolean isEnabled(long companyId) throws SystemException {
+	public static boolean isEnabled(long companyId) {
 		if (PrefsPropsUtil.getBoolean(
 				companyId, PropsKeys.SHIBBOLETH_AUTH_ENABLED,
 				PropsValues.SHIBBOLETH_AUTH_ENABLED)) {

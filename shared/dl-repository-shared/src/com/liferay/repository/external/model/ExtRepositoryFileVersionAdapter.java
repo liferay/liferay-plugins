@@ -15,7 +15,6 @@
 package com.liferay.repository.external.model;
 
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.lar.StagedModelType;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.repository.model.FileVersion;
@@ -58,7 +57,7 @@ public class ExtRepositoryFileVersionAdapter
 
 	@Override
 	public InputStream getContentStream(boolean incrementCounter)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		ExtRepositoryAdapter extRepositoryAdapter = getRepository();
 
@@ -82,7 +81,7 @@ public class ExtRepositoryFileVersionAdapter
 
 	@Override
 	@SuppressWarnings("unused")
-	public FileEntry getFileEntry() throws PortalException, SystemException {
+	public FileEntry getFileEntry() throws PortalException {
 		return _extRepositoryFileEntryAdapter;
 	}
 
@@ -144,7 +143,7 @@ public class ExtRepositoryFileVersionAdapter
 
 	@Override
 	@SuppressWarnings("unused")
-	public String getStatusByUserUuid() throws SystemException {
+	public String getStatusByUserUuid() {
 		return getUserUuid();
 	}
 

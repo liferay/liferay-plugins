@@ -17,7 +17,6 @@ package com.liferay.sync.hook.upgrade.v1_0_0;
 import com.liferay.portal.kernel.dao.orm.QueryDefinition;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
@@ -53,7 +52,7 @@ public class UpgradeSyncDLObject extends UpgradeProcess {
 
 	protected void populateAllSyncDLObjects(
 			long groupId, long folderId, List<SyncDLObject> syncDLObjects)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		List<Object> foldersAndFileEntriesAndFileShortcuts =
 			DLFolderLocalServiceUtil.getFoldersAndFileEntriesAndFileShortcuts(

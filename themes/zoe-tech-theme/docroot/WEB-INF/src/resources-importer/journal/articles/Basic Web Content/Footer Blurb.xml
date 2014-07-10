@@ -3,7 +3,7 @@
 <root available-locales="en_US" default-locale="en_US">
 	<dynamic-element name="content" type="text_area" index-type="keyword" index="0">
 		<dynamic-content language-id="en_US">
-			<![CDATA[​
+			<![CDATA[
 				<h2>Zoe</h2>
 
 				<p>Vivamus rutrum nunc non neque conse ctetur quis placerat neque lobortis. Nam vestibulum, arcu sodales feugiat consectetur, nisl orci bibendum elit, eu euismod magna sapien ut nibh. Donec semper quam scelerisque tortor dictum gravida. In hac habitasse</p>

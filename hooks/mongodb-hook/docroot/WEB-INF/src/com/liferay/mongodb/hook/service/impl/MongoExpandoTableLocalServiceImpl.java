@@ -16,7 +16,6 @@ package com.liferay.mongodb.hook.service.impl;
 
 import com.liferay.mongodb.util.MongoDBUtil;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portlet.expando.DuplicateTableNameException;
 import com.liferay.portlet.expando.model.ExpandoTable;
 import com.liferay.portlet.expando.service.ExpandoTableLocalService;
@@ -40,7 +39,7 @@ public class MongoExpandoTableLocalServiceImpl
 
 	@Override
 	public ExpandoTable updateTable(long tableId, String name)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		ExpandoTable expandoTable = super.getTable(tableId);
 
