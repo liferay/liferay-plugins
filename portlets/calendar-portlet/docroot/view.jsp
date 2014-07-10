@@ -24,6 +24,8 @@ PortletURL portletURL = renderResponse.createRenderURL();
 portletURL.setParameter("tabs1", tabs1);
 %>
 
+<div id="<portlet:namespace />alert"></div>
+
 <c:if test="<%= themeDisplay.isSignedIn() %>">
 	<liferay-ui:tabs
 		names="calendar,resources"

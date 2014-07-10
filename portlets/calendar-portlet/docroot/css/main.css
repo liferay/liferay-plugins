@@ -1,12 +1,6 @@
 @import "compass";
 @import "mixins";
 
-.alert-dynamic {
-	position: absolute;
-	top: 3.5em;
-	left: 33%;
-}
-
 .calendar-booking-invitations {
 	min-height: 110px;
 
