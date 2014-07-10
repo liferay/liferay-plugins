@@ -134,8 +134,6 @@ public class AdminIndexer extends BaseIndexer {
 		document.addText(
 			Field.CONTENT, HtmlUtil.extractText(kbArticle.getContent()));
 		document.addText(Field.DESCRIPTION, kbArticle.getDescription());
-		document.addKeyword(
-			Field.ROOT_ENTRY_CLASS_PK, kbArticle.getRootResourcePrimKey());
 		document.addText(Field.TITLE, kbArticle.getTitle());
 
 		document.addKeyword("titleKeyword", kbArticle.getTitle(), true);
