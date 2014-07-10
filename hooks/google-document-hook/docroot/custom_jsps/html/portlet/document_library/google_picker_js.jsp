@@ -113,7 +113,6 @@ String googleClientId = PrefsPropsUtil.getString(themeDisplay.getCompanyId(), "g
 		createPicker();
 	};
 
-	// Create the picker UI
 	var createPicker = function() {
 		if (pickerAPILoaded && authAPILoaded) {
 			var ViewId = google.picker.ViewId;
@@ -133,6 +132,7 @@ String googleClientId = PrefsPropsUtil.getString(themeDisplay.getCompanyId(), "g
 
 			picker.addViewGroup(groupDocuments);
 			picker.addViewGroup(groupPhotos);
+
 			picker.addView(ViewId.RECENTLY_PICKED);
 
 			picker.setOAuthToken(oauthToken);
@@ -146,28 +146,31 @@ String googleClientId = PrefsPropsUtil.getString(themeDisplay.getCompanyId(), "g
 	var pickerCallback = function(data) {
 		if (data[google.picker.Response.ACTION] === google.picker.Action.PICKED) {
 			var doc = data[google.picker.Response.DOCUMENTS][0];
+
 			var googlePickerDoc = google.picker.Document;
 
 			var documentId = doc[googlePickerDoc.ID];
 			var documentName = doc[googlePickerDoc.NAME];
-			var documentDescription = doc[googlePickerDoc.DESCRIPTION];
-			var documentIconURL = doc[googlePickerDoc.ICON_URL];
-			var documentViewURL = doc[googlePickerDoc.EMBEDDABLE_URL];
-			var documentEditURL = doc[googlePickerDoc.URL];
+			var documentDescription = doc[googlePickerDoc.DESCRIPTION] || '';
+			var documentIconURL = doc[googlePickerDoc.ICON_URL] || '';
+			var documentViewURL = doc[googlePickerDoc.EMBEDDABLE_URL] || '';
+			var documentEditURL = doc[googlePickerDoc.URL] || '';
 
-			A.one('#<portlet:namespace />pickButtonIcon').attr('src', documentIconURL || '');
+			A.one('#<portlet:namespace />pickButtonIcon').attr('src', documentIconURL);
+
 			A.one('#<portlet:namespace />pickButtonName').html(documentName);
 
 			A.one('#<portlet:namespace />title').val(documentName);
-			A.one('#<portlet:namespace />description').val(documentDescription || '');
+			A.one('#<portlet:namespace />description').val(documentDescription);
 
 			var ddmInputs = A.all('#<portlet:namespace />fm .lfr-ddm-container input');
 
-			ddmInputs.item(0).val(documentId);
-			ddmInputs.item(1).val(documentName);
-			ddmInputs.item(2).val(documentIconURL || '');
-			ddmInputs.item(3).val(documentViewURL || '');
-			ddmInputs.item(4).val(documentEditURL || '');
+			A.Array.each(
+				[documentId, documentName, documentIconURL, documentViewURL, documentEditURL],
+				function(item, index) {
+					ddmInputs.item(index).val(item);
+				}
+			);
 		}
 	};
 
@@ -175,7 +178,6 @@ String googleClientId = PrefsPropsUtil.getString(themeDisplay.getCompanyId(), "g
 		var scriptNode = document.createElement('script');
 
 		scriptNode.id = 'googleAPILoader';
-
 		scriptNode.src = 'https://apis.google.com/js/api.js?onload=onGoogleAPILoad';
 
 		document.body.appendChild(scriptNode);
