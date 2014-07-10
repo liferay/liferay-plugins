@@ -8,6 +8,11 @@
 
 .knowledge-base-portlet-display {
 	.kbarticle-navigation {
+		li {
+			line-height: inherit;
+			margin: 15px 0;
+		}
+
 		li, ul {
 			list-style: none;
 		}
