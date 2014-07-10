@@ -33,15 +33,11 @@ if (enableKBArticleViewCountIncrement && !kbArticle.isDraft()) {
 		<%= kbArticle.getTitle() %>
 	</h1>
 
-	<%
-		int kbArticleStatus = kbArticle.getStatus();
-	%>
-
-	<c:if test="<%= kbArticleStatus != WorkflowConstants.STATUS_APPROVED %>">
+	<c:if test="<%= !kbArticle.isApproved() %>">
 		<div class="kb-article-status">
 			<aui:model-context bean="<%= kbArticle %>" model="<%= KBArticle.class %>" />
 
-			<aui:workflow-status status="<%= kbArticleStatus %>" />
+			<aui:workflow-status status="<%= kbArticle.getStatus() %>" />
 		</div>
 	</c:if>
 
