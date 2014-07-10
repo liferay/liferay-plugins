@@ -57,7 +57,7 @@ String backURL = PortalUtil.getCurrentURL(request);
 										modal: true
 									},
 									refreshWindow: window,
-									title: Liferay.Language.get('add-calendar'),
+									title: '<liferay-ui:message key="add-calendar" />',
 
 									<portlet:renderURL var="editCalendarURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
 										<portlet:param name="mvcPath" value="/edit_calendar.jsp" />
@@ -138,7 +138,7 @@ String backURL = PortalUtil.getCurrentURL(request);
 								modal: true
 							},
 							refreshWindow: window,
-							title: Liferay.Language.get('new-calendar-booking'),
+							title: '<liferay-ui:message key="new-calendar-booking" />',
 							uri: A.Lang.sub(
 								decodeURIComponent('<%= addCalendarBookingURL %>'),
 								{
@@ -197,7 +197,7 @@ String backURL = PortalUtil.getCurrentURL(request);
 								modal: true
 							},
 							refreshWindow: window,
-							title: Liferay.Language.get('calendar-settings'),
+							title: '<liferay-ui:message key="calendar-settings" />',
 
 							<portlet:renderURL var="editCalendarURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
 								<portlet:param name="mvcPath" value="/edit_calendar.jsp" />
@@ -238,7 +238,7 @@ String backURL = PortalUtil.getCurrentURL(request);
 								modal: true
 							},
 							refreshWindow: window,
-							title: Liferay.Language.get('permissions'),
+							title: '<liferay-ui:message key="permissions" />',
 
 							<liferay-security:permissionsURL
 								modelResource="<%= Calendar.class.getName() %>"
@@ -285,7 +285,7 @@ String backURL = PortalUtil.getCurrentURL(request);
 
 										<portlet:namespace />scheduler.load();
 
-										var message = Liferay.Language.get('the-calendar-was-deleted-successfully');
+										var message = '<liferay-ui:message key="the-calendar-was-deleted-successfully" />';
 										var messageContainer = A.one('#<portlet:namespace />dynamicMessage');
 
 										Liferay.CalendarMessageUtil.showMessage(messageContainer, message);
