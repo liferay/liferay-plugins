@@ -75,13 +75,6 @@ public class MentionsMessageServiceImpl extends MBMessageLocalServiceWrapper {
 
 		MentionsNotifier mentionsNotifier = new MentionsNotifier();
 
-		String contentURL = (String)serviceContext.getAttribute("contentURL");
-
-		if (Validator.isNull(contentURL)) {
-			serviceContext.setAttribute(
-				"contentURL", workflowContext.get("url"));
-		}
-
 		String content = message.getBody();
 
 		if (message.isFormatBBCode()) {
@@ -100,6 +93,13 @@ public class MentionsMessageServiceImpl extends MBMessageLocalServiceWrapper {
 				PortletPropsValues.ASSET_ENTRY_MENTION_EMAIL_SUBJECT);
 			body = ContentUtil.get(
 				PortletPropsValues.ASSET_ENTRY_MENTION_EMAIL_BODY);
+		}
+
+		String contentURL = (String)serviceContext.getAttribute("contentURL");
+
+		if (Validator.isNull(contentURL)) {
+			serviceContext.setAttribute(
+				"contentURL", workflowContext.get("url"));
 		}
 
 		mentionsNotifier.notify(
