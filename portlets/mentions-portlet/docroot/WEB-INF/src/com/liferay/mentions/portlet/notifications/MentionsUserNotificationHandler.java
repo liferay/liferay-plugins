@@ -58,15 +58,15 @@ public class MentionsUserNotificationHandler
 		JSONObject jsonObject, AssetRenderer assetRenderer,
 		ServiceContext serviceContext) {
 
+		MBMessage mbMessage = MBMessageLocalServiceUtil.fetchMBMessage(
+			jsonObject.getLong("classPK"));
+
 		AssetRendererFactory assetRendererFactory =
 			AssetRendererFactoryRegistryUtil.getAssetRendererFactoryByClassName(
 				assetRenderer.getClassName());
 
 		String typeName = assetRendererFactory.getTypeName(
 			serviceContext.getLocale());
-
-		MBMessage mbMessage = MBMessageLocalServiceUtil.fetchMBMessage(
-			jsonObject.getLong("classPK"));
 
 		if ((mbMessage != null) && mbMessage.isDiscussion()) {
 			return serviceContext.translate(
