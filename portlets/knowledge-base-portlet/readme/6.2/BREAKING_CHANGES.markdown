@@ -85,7 +85,7 @@ to the value of the `knowledge.base.ratings.number.of.stars` property in
 
 #### Who is affected?
 
-Any installation where that has existing articles with ratings is affected.
+Any installation that has existing articles with ratings is affected.
 
 #### How should I update my code?
 
