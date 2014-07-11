@@ -32,6 +32,7 @@
 
 <script id="<portlet:namespace />eventRecorderBodyTpl" type="text/x-alloy-template">
 	<div class="calendar-portlet-event-recorder">
+		<input name="instanceIndex" type="hidden" value="{instanceIndex}" />
 		<input name="allDay" type="hidden" value="{allDay}" />
 		<input name="startTime" type="hidden" value="{startTime}" />
 		<input name="endTime" type="hidden" value="{endTime}" />

@@ -145,6 +145,7 @@ boolean columnOptionsVisible = GetterUtil.getBoolean(SessionClicks.get(request, 
 					<portlet:param name="endTimeMinute" value="{endTimeMinute}" />
 					<portlet:param name="endTimeMonth" value="{endTimeMonth}" />
 					<portlet:param name="endTimeYear" value="{endTimeYear}" />
+					<portlet:param name="instanceIndex" value="{instanceIndex}" />
 					<portlet:param name="startTimeDay" value="{startTimeDay}" />
 					<portlet:param name="startTimeHour" value="{startTimeHour}" />
 					<portlet:param name="startTimeMinute" value="{startTimeMinute}" />
