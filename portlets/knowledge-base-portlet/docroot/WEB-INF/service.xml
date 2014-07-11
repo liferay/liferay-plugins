@@ -227,7 +227,7 @@
 			<finder-column name="classNameId" />
 			<finder-column name="classPK" />
 		</finder>
-		<finder name="U_C_C" return-type="KBComment" unique="true">
+		<finder name="U_C_C" return-type="Collection">
 			<finder-column name="userId" />
 			<finder-column name="classNameId" />
 			<finder-column name="classPK" />
