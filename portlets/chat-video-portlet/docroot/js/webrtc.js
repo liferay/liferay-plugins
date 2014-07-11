@@ -14,11 +14,12 @@ AUI().use(
 			},
 
 			init: function(config) {
-				var instance = Liferay.Chat.WebRtcManager;
+				var instance = this;
 
 				instance.debugMsg('initializing the WebRTC manager');
 
 				instance._webRtcAdapter = Liferay.Chat.WebRtcAdapter.getWebRtcAdapter();
+
 				if (instance._webRtcAdapter) {
 					instance.debugMsg('WebRTC seems supported!');
 
@@ -127,13 +128,13 @@ AUI().use(
 			},
 
 			getLocalStream: function() {
-				var instance = Liferay.Chat.WebRtcManager;
+				var instance = this;
 
 				return instance._localStream;
 			},
 
 			getState: function() {
-				var instance = Liferay.Chat.WebRtcManager;
+				var instance = this;
 
 				return instance._currentState;
 			},
@@ -143,7 +144,7 @@ AUI().use(
 			},
 
 			isSupported: function() {
-				var instance = Liferay.Chat.WebRtcManager;
+				var instance = this;
 
 				if (instance._webRtcAdapter === null) {
 					instance._webRtcAdapter = Liferay.Chat.WebRtcAdapter.getWebRtcAdapter();
@@ -153,24 +154,25 @@ AUI().use(
 			},
 
 			isUserAvailable: function(userId) {
-				var instance = Liferay.Chat.WebRtcManager;
+				var instance = this;
 
 				return instance._cb.isUserAvailable(userId);
 			},
 
 			muteMike: function() {
-				var instance = Liferay.Chat.WebRtcManager;
+				var instance = this;
 
 				Liferay.Chat.WebRtcManager.debugMsg('muting microphone');
 
 				var localStream = instance.getLocalStream();
+
 				if (localStream) {
 					instance.getWebRtcAdapter().muteStreamAudio(localStream);
 				}
 			},
 
 			onConversationStateChange: function() {
-				var instance = Liferay.Chat.WebRtcManager;
+				var instance = this;
 
 				var globalState = instance.getConversationsGlobalState();
 
@@ -198,7 +200,7 @@ AUI().use(
 			},
 
 			processWebRtcMails: function(mails) {
-				var instance = Liferay.Chat.WebRtcManager;
+				var instance = this;
 
 				if (mails.length > 0) {
 					instance.debugMsg('received ' + mails.length + ' mail' + (mails.length > 1 ? 's' : '') + ':');
@@ -212,14 +214,17 @@ AUI().use(
 					var msgType = msg.type;
 
 					var ensurePanel = !(mailType === 'conn' && msgType === 'status');
+
 					if (ensurePanel) {
 						instance.debugMsg('asking host to ensure panel for user ID ' + mail.sourceUserId);
 						instance._cb.ensurePanel(mail.sourceUserId);
 					}
 
 					var webRtcConversation = instance._conversations[mail.sourceUserId];
+
 					if (!webRtcConversation) {
 						instance.errorMsg('got message for user ' + mail.sourceUserId + ', but conversation not registered');
+
 						continue;
 					}
 
@@ -257,14 +262,14 @@ AUI().use(
 			},
 
 			registerConversation: function(conversation) {
-				var instance = Liferay.Chat.WebRtcManager;
+				var instance = this;
 
 				instance._conversations[conversation.getToUserId()] = conversation;
 				instance.debugMsg('registering conversation ID ' + conversation.getToUserId());
 			},
 
 			sendMsg: function(msgType, payload) {
-				var instance = Liferay.Chat.WebRtcManager;
+				var instance = this;
 
 				payload.type = msgType;
 				instance._cb.send(payload);
@@ -272,13 +277,13 @@ AUI().use(
 			},
 
 			sendResetMsg: function() {
-				var instance = Liferay.Chat.WebRtcManager;
+				var instance = this;
 
 				instance.sendMsg('reset', {});
 			},
 
 			sendSetAvailabilityMsg: function(available) {
-				var instance = Liferay.Chat.WebRtcManager;
+				var instance = this;
 
 				var msgType = 'setAvailability';
 				var msg = {
@@ -289,7 +294,7 @@ AUI().use(
 			},
 
 			sendUpdatePresenceMsg: function() {
-				var instance = Liferay.Chat.WebRtcManager;
+				var instance = this;
 
 				var msgType = 'updatePresence';
 
@@ -297,30 +302,25 @@ AUI().use(
 			},
 
 			setState: function(state) {
-				var instance = Liferay.Chat.WebRtcManager;
+				var instance = this;
 
 				instance._currentState = state;
 			},
 
 			unmuteMike: function() {
-				var instance = Liferay.Chat.WebRtcManager;
+				var instance = this;
 
 				instance.debugMsg('unmuting microphone');
 
 				var localStream = instance.getLocalStream();
+
 				if (localStream) {
 					instance.getWebRtcAdapter().unmuteStreamAudio(localStream);
 				}
 			},
 
-			_cb: {},
-
-			_conversations: [],
-
-			_currentState: null,
-
 			_disableMedia: function(notify) {
-				var instance = Liferay.Chat.WebRtcManager;
+				var instance = this;
 
 				if (instance.getState() === instance.State.ACQUIRED) {
 					instance.setState(instance.State.INIT);
@@ -332,7 +332,7 @@ AUI().use(
 			},
 
 			_enableMedia: function() {
-				var instance = Liferay.Chat.WebRtcManager;
+				var instance = this;
 
 				if (instance.getState() === instance.State.INIT) {
 					instance.setState(instance.State.ASKED);
@@ -345,6 +345,7 @@ AUI().use(
 							instance.setState(instance.State.ACQUIRED);
 
 							var globalState = instance.getConversationsGlobalState();
+
 							if (!globalState.active) {
 								instance._disableMedia(false);
 							}
@@ -369,21 +370,20 @@ AUI().use(
 				}
 			},
 
-			_localStream: null,
-
 			_setAudioTracksEnabled: function(en) {
 				var instance = this;
 
 				if (instance.getState() === instance.State.ACQUIRED && instance.getLocalStream()) {
 					for (var i in instance.getLocalStream().getAudioTracks()) {
 						var track = instance.getLocalStream().getAudioTracks()[i];
+
 						track.enabled = en;
 					}
 				}
 			},
 
 			_setLocalStream: function(stream) {
-				var instance = Liferay.Chat.WebRtcManager;
+				var instance = this;
 
 				instance._localStream = stream;
 			},
@@ -403,15 +403,13 @@ AUI().use(
 			},
 
 			_updatePresence: function() {
-				var instance = Liferay.Chat.WebRtcManager;
+				var instance = this;
 
 				instance.sendUpdatePresenceMsg();
 			},
 
-			_updatePresenceTimerId: null,
-
 			_updateWaitingConversationsCancel: function() {
-				var instance = Liferay.Chat.WebRtcManager;
+				var instance = this;
 
 				for (var i in instance._conversations) {
 					var conversation = instance._conversations[i];
@@ -429,7 +427,7 @@ AUI().use(
 			},
 
 			_updateWaitingConversationsNextState: function() {
-				var instance = Liferay.Chat.WebRtcManager;
+				var instance = this;
 
 				for (var i in instance._conversations) {
 					var conversation = instance._conversations[i];
@@ -445,6 +443,11 @@ AUI().use(
 				}
 			},
 
+			_cb: {},
+			_conversations: [],
+			_currentState: null,
+			_localStream: null,
+			_updatePresenceTimerId: null,
 			_webRtcAdapter: null
 		};
 
@@ -452,17 +455,21 @@ AUI().use(
 			var instance = this;
 
 			instance._userId = config.userId;
+
 			Liferay.Chat.WebRtcManager.debugMsg('creating new WebRTC conversation (ID ' + instance._userId + ')');
 
 			instance._cb = {};
+
 			A.mix(instance._cb, config.cb, true);
 
 			instance._remoteVideoEl = config.remoteVideoEl;
 			instance._localVideoEl = config.localVideoEl;
 
 			instance._iceServers = [];
+
 			for (var i in config.iceServers) {
 				var ice = config.iceServers[i];
+
 				var compatIce = Liferay.Chat.WebRtcManager.getWebRtcAdapter().createIceServer(ice);
 
 				if (compatIce !== null) {
@@ -488,6 +495,7 @@ AUI().use(
 			instance._stateHandlers = stateHandlers;
 
 			Liferay.Chat.WebRtcManager.registerConversation(instance);
+
 			instance.setState(State.STOPPED);
 		};
 
@@ -582,6 +590,7 @@ AUI().use(
 
 				if (msgId === 'unavailableUser' || msgId === 'invalidState' || msgId === 'cannotAnswer') {
 					Liferay.Chat.WebRtcManager.errorMsg('error from server: "' + msg.id + '"');
+
 					instance.setState(State.STOPPED);
 				}
 			},
@@ -633,7 +642,8 @@ AUI().use(
 				if (instance._isWebRtcStarted()) {
 					var iceCandidate = A.JSON.parse(msg.candidate);
 
-					RTCIceCandidate = Liferay.Chat.WebRtcManager.getWebRtcAdapter().RTCIceCandidate;
+					var RTCIceCandidate = Liferay.Chat.WebRtcManager.getWebRtcAdapter().RTCIceCandidate;
+
 					var rtcIce = new RTCIceCandidate(
 						{
 							candidate: iceCandidate.candidate,
@@ -737,7 +747,9 @@ AUI().use(
 				instance._currentState = state;
 
 				instance._cb.onStateChange(state);
+
 				Liferay.Chat.WebRtcManager.onConversationStateChange();
+
 				instance._onStateChange();
 			},
 
@@ -746,6 +758,7 @@ AUI().use(
 
 				if (instance._acceptIceCandidates) {
 					Liferay.Chat.WebRtcManager.debugMsg('adding remote ICE candidate to peer connection');
+
 					instance._pc.addIceCandidate(ice);
 				}
 				else {
@@ -758,6 +771,7 @@ AUI().use(
 				var instance = this;
 
 				var RTCPeerConnection = Liferay.Chat.WebRtcManager.getWebRtcAdapter().RTCPeerConnection;
+
 				instance._pc = new RTCPeerConnection(
 					{
 						iceServers: instance._iceServers
@@ -833,6 +847,7 @@ AUI().use(
 
 				if (instance._pc && event && event.candidate) {
 					Liferay.Chat.WebRtcManager.debugMsg('new local ICE candidate ready');
+
 					instance._sendIceMsg(event.candidate);
 				}
 			},
@@ -844,6 +859,7 @@ AUI().use(
 
 				if (instance._pc) {
 					instance._pc.close();
+
 					instance._pc = null;
 				}
 
@@ -875,6 +891,7 @@ AUI().use(
 				var instance = this;
 
 				instance._caller = true;
+
 				instance._setLocalVideoStream();
 			},
 
@@ -882,7 +899,9 @@ AUI().use(
 				var instance = this;
 
 				instance._sendCallMsg();
+
 				instance._caller = true;
+
 				instance.setState(State.CALLED);
 			},
 
@@ -897,11 +916,9 @@ AUI().use(
 			},
 
 			_onStateDeleted: function() {
-				var instance = this;
 			},
 
 			_onStateDeleting: function() {
-				var instance = this;
 			},
 
 			_onStateDenyingCall: function() {
@@ -932,7 +949,6 @@ AUI().use(
 			},
 
 			_onStateStopping: function() {
-				var instance = this;
 			},
 
 			_resetWebRtcState: function() {
@@ -948,6 +964,7 @@ AUI().use(
 				var instance = this;
 
 				var userId = instance.getToUserId();
+
 				var msg = {
 					answer: accept,
 					destinationUserId: userId
@@ -960,6 +977,7 @@ AUI().use(
 				var instance = this;
 
 				var userId = instance.getToUserId();
+
 				var msg = {
 					destinationUserId: userId
 				};
@@ -971,6 +989,7 @@ AUI().use(
 				var instance = this;
 
 				var userId = instance.getToUserId();
+
 				var msg = {
 					destinationUserId: userId
 				};
@@ -982,6 +1001,7 @@ AUI().use(
 				var instance = this;
 
 				var jsonIce = A.JSON.stringify(ice);
+
 				var msg = {
 					candidate: jsonIce,
 					destinationUserId: instance.getToUserId()
@@ -994,6 +1014,7 @@ AUI().use(
 				var instance = this;
 
 				var jsonDesc = A.JSON.stringify(desc);
+
 				var msg = {
 					description: jsonDesc,
 					destinationUserId: instance.getToUserId()
@@ -1004,6 +1025,7 @@ AUI().use(
 
 			_setLocalVideoStream: function() {
 				var instance = this;
+
 				var localStream = Liferay.Chat.WebRtcManager.getLocalStream();
 
 				if (localStream) {
@@ -1030,8 +1052,11 @@ AUI().use(
 
 				if (instance._pc) {
 					var RTCSessionDescription = Liferay.Chat.WebRtcManager.getWebRtcAdapter().RTCSessionDescription;
+
 					var remoteDesc = new RTCSessionDescription(desc);
+
 					instance._pc.setRemoteDescription(remoteDesc);
+
 					instance._pc.createAnswer(
 						function(desc) {
 							desc.sdp = Liferay.Chat.WebRtcAdapter.preferOpus(desc.sdp);
@@ -1064,6 +1089,7 @@ AUI().use(
 					instance._flushIceCandidatesBuffer();
 
 					var RTCSessionDescription = Liferay.Chat.WebRtcManager.getWebRtcAdapter().RTCSessionDescription;
+
 					instance._pc.setRemoteDescription(new RTCSessionDescription(desc));
 				}
 				else {

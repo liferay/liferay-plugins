@@ -308,6 +308,7 @@ AUI().use(
 
 				if (!A.Lang.isUndefined(instance._availableForChatVideoSettingCheckboxNode)) {
 					var available = instance.isAvailable();
+
 					instance._webRtcManager.sendSetAvailabilityMsg(available);
 
 					if (!available) {
@@ -467,8 +468,11 @@ AUI().use(
 				var elapsedMsTotal = curTimeMs - instance._beginMs;
 				var elapsedSeconds = parseInt(elapsedMsTotal / 1000, 10);
 				var elapsedHours = parseInt(elapsedSeconds / 3600, 10);
+
 				elapsedSeconds -= elapsedHours * 3600;
+
 				var elapsedMinutes = parseInt(elapsedSeconds / 60, 10);
+
 				elapsedSeconds -= elapsedMinutes * 60;
 
 				if (elapsedSeconds < 10) {
@@ -519,12 +523,6 @@ AUI().use(
 				if (!instance._destroyed && instance._errorTimeout === null) {
 					if (instance._node.hasClass('chat-video-fade-in')) {
 						instance._node.replaceClass('chat-video-fade-in', 'chat-video-fade-out');
-						instance._node.on(
-							'webkitAnimationEnd',
-							function() {
-								alert('end');
-							}
-						);
 					}
 				}
 			},
@@ -628,6 +626,7 @@ AUI().use(
 				A.after(videoManager._afterUpdateSettings, chatManager, '_updateSettings', videoManager);
 
 				var Chat = Liferay.Chat;
+
 				Chat.ConversationPanel = Chat.Conversation;
 
 				Chat.Conversation = function() {
@@ -662,6 +661,7 @@ AUI().use(
 						};
 
 						var chatVideoMsgContainerNode = panel.one('.chat-video-msg');
+
 						instance._status = new Liferay.Chat.VideoConversationStatus(chatVideoMsgContainerNode);
 
 						instance._videoCallTimer = new Liferay.Chat.VideoCallTimer(
@@ -677,6 +677,7 @@ AUI().use(
 										var Error = Liferay.Chat.WebRtcConversation.Error;
 
 										var errorMessages = {};
+
 										errorMessages[Error.CANNOTGETUSERMEDIA] = Liferay.Language.get('cannot-access-your-camera');
 										errorMessages[Error.HANGUP] = Liferay.Language.get('video-call-ended');
 										errorMessages[Error.REMOTEPEERDENIEDCALL] = Liferay.Language.get('your-friend-denied-your-call');
@@ -830,10 +831,10 @@ AUI().use(
 
 						instance._chatVideoCtrlButtonsNodes.mike.on(
 							'click',
-							function() {
-								var node = this;
+							function(event) {
+								var currentTarget = event.currentTarget;
 
-								if (node.hasClass('muted')) {
+								if (currentTarget.hasClass('muted')) {
 									Liferay.Chat.VideoManager.unmute();
 								}
 								else {
