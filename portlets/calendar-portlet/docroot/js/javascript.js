@@ -2133,7 +2133,6 @@ AUI.add(
 						var schedulerEvent = instance.get('event');
 
 						data.calendarBookingId = schedulerEvent.get('calendarBookingId');
-						data.instanceIndex = schedulerEvent.get('instanceIndex');
 
 						Liferay.Util.openWindow(
 							{
