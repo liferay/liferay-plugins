@@ -66,17 +66,6 @@ public class MentionsNotifier {
 		String fromAddress = PrefsPropsUtil.getString(
 			user.getCompanyId(), PropsKeys.ADMIN_EMAIL_FROM_ADDRESS);
 
-		AssetRendererFactory assetRendererFactory =
-			AssetRendererFactoryRegistryUtil.getAssetRendererFactoryByClassName(
-				className);
-
-		String assetName = StringPool.BLANK;
-
-		if (assetRendererFactory != null) {
-			assetName = assetRendererFactory.getTypeName(
-				serviceContext.getLocale());
-		}
-
 		SubscriptionSender subscriptionSender = new SubscriptionSender();
 
 		subscriptionSender.setBody(body);
@@ -85,7 +74,8 @@ public class MentionsNotifier {
 		subscriptionSender.setCompanyId(user.getCompanyId());
 		subscriptionSender.setContextAttribute("[$CONTENT$]", content, false);
 		subscriptionSender.setContextAttributes(
-			"[$ASSET_ENTRY_NAME$]", assetName, "[$USER_ADDRESS$]",
+			"[$ASSET_ENTRY_NAME$]",
+			getAssetEntryName(className, serviceContext), "[$USER_ADDRESS$]",
 			messageUserEmailAddress, "[USER_NAME$]", messageUserName,
 			"[$CONTENT_URL$]", contentURL);
 		subscriptionSender.setEntryTitle(content);
@@ -116,6 +106,20 @@ public class MentionsNotifier {
 		}
 
 		subscriptionSender.flushNotificationsAsync();
+	}
+
+	protected String getAssetEntryName(
+		String className, ServiceContext serviceContext) {
+
+		AssetRendererFactory assetRendererFactory =
+			AssetRendererFactoryRegistryUtil.getAssetRendererFactoryByClassName(
+				className);
+
+		if (assetRendererFactory != null) {
+			return assetRendererFactory.getTypeName(serviceContext.getLocale());
+		}
+
+		return StringPool.BLANK;
 	}
 
 	protected String[] getMentionedUsersScreenNames(long userId, String content)
