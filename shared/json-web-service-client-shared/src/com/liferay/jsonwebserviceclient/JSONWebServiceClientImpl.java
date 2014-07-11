@@ -14,8 +14,6 @@
 
 package com.liferay.jsonwebserviceclient;
 
-import com.liferay.portal.kernel.util.Validator;
-
 import java.io.IOException;
 import java.io.InterruptedIOException;
 
@@ -337,7 +335,7 @@ public class JSONWebServiceClientImpl implements JSONWebServiceClient {
 	}
 
 	protected void setProxyHost(HttpClientBuilder httpClientBuilder) {
-		if (Validator.isNull(_proxyHostName)) {
+		if (_proxyHostName == null || _proxyHostName.equals("")) {
 			return;
 		}
 
