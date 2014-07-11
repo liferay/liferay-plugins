@@ -460,7 +460,9 @@ public class DisplayPortlet extends MVCPortlet {
 		String actionName = ParamUtil.getString(
 			actionRequest, ActionRequest.ACTION_NAME);
 
-		if (actionName.equals("deleteKBArticle")) {
+		if (actionName.equals("deleteKBArticle") ||
+			actionName.equals("updateKBComment")) {
+
 			return;
 		}
 
