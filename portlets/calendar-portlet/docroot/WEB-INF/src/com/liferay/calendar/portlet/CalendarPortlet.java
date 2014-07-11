@@ -299,6 +299,8 @@ public class CalendarPortlet extends MVCPortlet {
 		long calendarBookingId = ParamUtil.getLong(
 			actionRequest, "calendarBookingId");
 
+		int instanceIndex = ParamUtil.getInteger(
+			actionRequest, "instanceIndex");
 		long calendarId = ParamUtil.getLong(actionRequest, "calendarId");
 		long[] childCalendarIds = ParamUtil.getLongValues(
 			actionRequest, "childCalendarIds");
@@ -346,10 +348,6 @@ public class CalendarPortlet extends MVCPortlet {
 				calendarBooking =
 					CalendarBookingLocalServiceUtil.getCalendarBooking(
 						calendarBookingId);
-
-				int instanceIndex = RecurrenceUtil.getIndexOfInstance(
-					recurrence, calendarBooking.getStartTime(),
-					startTimeJCalendar.getTimeInMillis());
 
 				boolean allFollowing = ParamUtil.getBoolean(
 					actionRequest, "allFollowing");
