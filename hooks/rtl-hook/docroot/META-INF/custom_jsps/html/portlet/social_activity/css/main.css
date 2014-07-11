@@ -92,7 +92,7 @@
 			min-height: 130px;
 
 			.content-field {
-				border-bottom: 1px solid #ccc;
+				border-bottom: 1px solid #CCC;
 				padding: 8px 0 8px 10px;
 
 				.settings-controls {
@@ -138,7 +138,7 @@
 		}
 
 		.settings-container-label {
-			border-bottom: 1px solid #ccc;
+			border-bottom: 1px solid #CCC;
 			font-size: 1.2em;
 			margin-top: 10px;
 			padding: 0 5px;

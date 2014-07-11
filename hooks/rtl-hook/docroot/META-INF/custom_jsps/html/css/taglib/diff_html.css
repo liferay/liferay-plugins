@@ -23,21 +23,21 @@
 .taglib-diff-html {
 	div {
 		&.diff-removed-image {
-			background: #fdc6c6 url(@theme_image_path@/diff/minus.png);
+			background: #FDC6C6 url(@theme_image_path@/diff/minus.png);
 		}
 
 		&.diff-added-image {
-			background: #cfc url(@theme_image_path@/diff/plus.png) no-repeat;
+			background: #CFC url(@theme_image_path@/diff/plus.png) no-repeat;
 		}
 	}
 
 	span {
 		&.diff-html-added {
-			background-color: #cfc;
+			background-color: #CFC;
 			font-size: 1em;
 
 			img {
-				border-color: #cfc;
+				border-color: #CFC;
 			}
 		}
 
@@ -50,12 +50,12 @@
 		}
 
 		&.diff-html-removed {
-			background-color: #fdc6c6;
+			background-color: #FDC6C6;
 			font-size: 1em;
 			text-decoration: line-through;
 
 			img {
-				border-color: #fdc6c6;
+				border-color: #FDC6C6;
 			}
 		}
 	}

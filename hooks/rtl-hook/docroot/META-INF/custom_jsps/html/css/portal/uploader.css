@@ -336,16 +336,16 @@
 	}
 
 	.file-uploading {
-		background-color: #ffc;
+		background-color: #FFC;
 	}
 
 	.progress-bar {
-		background: #fff;
-		border-color: #83a8d9;
+		background: #FFF;
+		border-color: #83A8D9;
 	}
 
 	.progress {
-		background: #8db2e3;
+		background: #8DB2E3;
 	}
 }
 

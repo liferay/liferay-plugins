@@ -119,7 +119,7 @@
 
 .lfr-portrait-preview .lfr-portrait-preview-img.loading {
 	background: #FFF url(@theme_image_path@/application/loading_indicator.gif) no-repeat 50%;
-	border-color: #ccc;
+	border-color: #CCC;
 }
 
 .ie {

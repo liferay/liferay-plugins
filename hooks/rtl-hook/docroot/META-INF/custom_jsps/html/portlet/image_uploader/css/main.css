@@ -16,7 +16,7 @@
 
 		.lfr-portrait-preview-img.loading {
 			background: #FFF url(@theme_image_path@/application/loading_indicator.gif) no-repeat 50%;
-			border-color: #ccc;
+			border-color: #CCC;
 			border: 1px solid transparent;
 			min-height: 50px;
 			min-width: 50px;

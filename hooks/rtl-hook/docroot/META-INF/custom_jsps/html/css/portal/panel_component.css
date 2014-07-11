@@ -112,7 +112,7 @@
 }
 
 .lfr-panel-container, .lfr-floating-container {
-	background: #fff;
+	background: #FFF;
 }
 
 .lfr-panel-titlebar {
@@ -144,13 +144,13 @@
 	}
 
 	&.lfr-extended .lfr-panel-titlebar {
-		background: #d6d6d6 url(@theme_image_path@/application/panel_header.png) repeat-x 0 0;
-		border-bottom-color: #cdcdcd;
+		background: #D6D6D6 url(@theme_image_path@/application/panel_header.png) repeat-x 0 0;
+		border-bottom-color: #CDCDCD;
 	}
 }
 
 .lfr-panel-container .lfr-extended.lfr-collapsible .lfr-panel-titlebar {
-	border-top-color: #cecece;
+	border-top-color: #CECECE;
 }
 
 .js {

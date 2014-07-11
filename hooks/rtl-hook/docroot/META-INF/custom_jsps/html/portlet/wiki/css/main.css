@@ -5,20 +5,20 @@
 		}
 
 		pre {
-			background : #fff;
-			border: 1px dashed #2f6fab;
+			background : #FFF;
+			border: 1px dashed #2F6FAB;
 			margin: 5px 0;
 			padding: 0.5em;
 		}
 	}
 
 	a.createpage {
-		color: #f00;
+		color: #F00;
 	}
 
 	.toc {
-		border: 1px solid #aaa;
-		background-color: #f9f9f9;
+		border: 1px solid #AAA;
+		background-color: #F9F9F9;
 		padding: 0 1em;
 
 		h4 {
@@ -50,7 +50,7 @@
 	}
 
 	.page-categories {
-		color: #7d7d7d;
+		color: #7D7D7D;
 	}
 
 	.taglib-discussion {
@@ -58,7 +58,7 @@
 	}
 
 	.page-tags {
-		color: #7d7d7d;
+		color: #7D7D7D;
 	}
 
 	.portlet-body h2 a.hashlink,
@@ -82,7 +82,7 @@
 	}
 
 	.preview {
-		background: #ffc;
+		background: #FFC;
 		border: 1px dotted gray;
 		padding: 3px;
 	}
@@ -122,14 +122,14 @@
 	}
 
 	.content-body .wiki-code {
-		background: #fff;
+		background: #FFF;
 		border: 1px solid #777;
 		font-family: monospace;
 		white-space: pre;
 	}
 
 	.content-body .code-lines {
-		border-right: 1px solid #ccc;
+		border-right: 1px solid #CCC;
 		color: #000;
 		margin-right: 5px;
 		padding: 0 5px;
@@ -199,8 +199,8 @@
 	}
 
 	.history-navigation {
-		background: #eee;
-		border-top: 1px solid #ccc;
+		background: #EEE;
+		border-top: 1px solid #CCC;
 		margin: 15px 0 20px;
 		overflow: hidden;
 		padding: 5px;
@@ -269,18 +269,18 @@
 	}
 
 	.page-info tr th, .page-info tr td {
-		border: 1px solid #ccc;
+		border: 1px solid #CCC;
 		border-left: none;
 		border-right: none;
 		padding: 0.3em 1em;
 	}
 
 	.page-old-version a {
-		color: #f93;
+		color: #F93;
 	}
 
 	.page-old-version {
-		color: #f93;
+		color: #F93;
 		line-height: 1.2em;
 		margin: -1em 0 1.4em 0;
 		width: auto;
@@ -291,7 +291,7 @@
 	}
 
 	.page-redirect {
-		color: #7d7d7d;
+		color: #7D7D7D;
 		cursor: pointer;
 		line-height: 1.2em;
 		margin: -1em 0 1.4em 0;
@@ -325,14 +325,14 @@
 	}
 
 	.top-links-nodes {
-		border: 1px solid #ddd;
+		border: 1px solid #DDD;
 		float: left;
 		list-style-type: none;
 		margin: 0 0.5em 0.5em;
 		padding: 0.2em 0.5em;
 
 		.top-link-node {
-			border-right: 1px solid #aaa;
+			border-right: 1px solid #AAA;
 			display: inline-block;
 			list-style-type: none;
 			margin: 0.3em;

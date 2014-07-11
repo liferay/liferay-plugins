@@ -39,12 +39,12 @@
 
 .lfr-portlet-item {
 	background: url(@theme_image_path@/add_content/portlet_item.png) no-repeat 0 50%;
-	border-color: #fff;
+	border-color: #FFF;
 	font-size: 1.1em;
 
 	&:hover, &.over {
-		background-color: #ffc;
-		border-color: #fc0;
+		background-color: #FFC;
+		border-color: #FC0;
 	}
 
 	p {

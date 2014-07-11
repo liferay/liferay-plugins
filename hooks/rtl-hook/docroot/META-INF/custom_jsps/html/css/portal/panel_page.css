@@ -37,20 +37,20 @@
 
 .lfr-panel-page {
 	.panel-page-content {
-		border-left-color: #ccc;
+		border-left-color: #CCC;
 	}
 
 	.lfr-add-content {
 		h2 {
-			border-color: #ccc;
+			border-color: #CCC;
 
 			span {
-				background: #efefef;
+				background: #EFEFEF;
 			}
 		}
 
 		.lfr-content-category h2 {
-			border-bottom-color: #ccc;
+			border-bottom-color: #CCC;
 
 			span {
 				background: none;

@@ -65,7 +65,6 @@ public class FeedLocalServiceImpl extends FeedLocalServiceBaseImpl {
 	}
 
 	public void updateFeeds(long companyId) throws SystemException {
-
 		ShardUtil.pushCompanyService(companyId);
 
 		try {

@@ -63,8 +63,8 @@
 	}
 
 	.entry.draft, .entry.pending, .entry.scheduled {
-		background: #eee;
-		border: 1px solid #ccc;
+		background: #EEE;
+		border: 1px solid #CCC;
 		color: #555;
 		padding: 5px;
 
@@ -76,8 +76,8 @@
 	}
 
 	.entry-navigation {
-		background: #eee;
-		border-top: 1px solid #ccc;
+		background: #EEE;
+		border-top: 1px solid #CCC;
 		margin: 15px 0 0;
 		overflow: hidden;
 		padding: 5px;
@@ -109,7 +109,7 @@
 	}
 
 	.preview {
-		background: #ffc;
+		background: #FFC;
 		border: 1px dotted gray;
 		padding: 3px;
 	}

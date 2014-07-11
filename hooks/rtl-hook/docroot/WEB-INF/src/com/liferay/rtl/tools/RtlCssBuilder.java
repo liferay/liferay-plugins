@@ -158,6 +158,29 @@ public class RtlCssBuilder {
 		return fileName.substring(0, pos) + "_rtl" + fileName.substring(pos);
 	}
 
+	/**
+	 * @see com.liferay.portal.util.FileImpl#mkdirsParentFile(File file)
+	 */
+	private void _mkdirsParentFile(File file) {
+		File parentFile = file.getParentFile();
+
+		if (parentFile == null) {
+			return;
+		}
+
+		try {
+			if (!parentFile.exists()) {
+				parentFile.mkdirs();
+			}
+		}
+		catch (SecurityException se) {
+
+			// We may have the permission to write a specific file without
+			// having the permission to check if the parent file exists
+
+		}
+	}
+
 	private String _normalizeFileName(String dirName, String fileName) {
 		return StringUtil.replace(
 			dirName + StringPool.SLASH + fileName,
@@ -212,29 +235,6 @@ public class RtlCssBuilder {
 		writer.write(s);
 
 		writer.close();
-	}
-
-	/**
-	 * @see com.liferay.portal.util.FileImpl#mkdirsParentFile(File file)
-	 */
-	private void _mkdirsParentFile(File file) {
-		File parentFile = file.getParentFile();
-
-		if (parentFile == null) {
-			return;
-		}
-
-		try {
-			if (!parentFile.exists()) {
-				parentFile.mkdirs();
-			}
-		}
-		catch (SecurityException se) {
-
-			// We may have the permission to write a specific file without
-			// having the permission to check if the parent file exists
-
-		}
 	}
 
 }

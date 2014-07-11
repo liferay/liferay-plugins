@@ -28,9 +28,9 @@
 
 .lfr-panel-content {
 	.paginator-container {
-		background: #cfd2d5;
-		border-bottom-color: #dcdee0;
-		border-top-color: #dcdee0;
+		background: #CFD2D5;
+		border-bottom-color: #DCDEE0;
+		border-top-color: #DCDEE0;
 	}
 
 	.paginator-page-container .paginator-page-link {
@@ -38,14 +38,14 @@
 		border-color: #CFD2D5;
 
 		&.paginator-current-page {
-			background: #99a7b3 url(@theme_image_path@/application/current_page_hover_bg.png) repeat-x 0 0;
-			border-color: #6b7785 #7c8994 #919fa9;
-			color: #fff;
+			background: #99A7B3 url(@theme_image_path@/application/current_page_hover_bg.png) repeat-x 0 0;
+			border-color: #6B7785 #7C8994 #919FA9;
+			color: #FFF;
 			font-weight: bold;
 
 			&:hover {
-				background: #5094d7 url(@theme_image_path@/application/current_page_bg.png) repeat-x 0 0;
-				border-color: #31659c #396ea8 #4c8ccb;
+				background: #5094D7 url(@theme_image_path@/application/current_page_bg.png) repeat-x 0 0;
+				border-color: #31659C #396EA8 #4C8CCB;
 			}
 		}
 	}

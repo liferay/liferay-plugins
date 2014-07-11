@@ -70,7 +70,7 @@
 /* Skin */
 
 .lfr-toolbar {
-	background-color: #e5e4e8;
+	background-color: #E5E4E8;
 
 	.lfr-button {
 		&:focus {
@@ -78,26 +78,26 @@
 		}
 
 		&:hover {
-			border-color: #ccc;
+			border-color: #CCC;
 			border-bottom-color: #777;
 			border-right-color: #777;
 		}
 	}
 
 	.lfr-separator {
-		border-left-color: #fff;
-		border-right-color: #ccc;
+		border-left-color: #FFF;
+		border-right-color: #CCC;
 		font-size: 12px;
 	}
 }
 
 .lfr-toolbar, .lfr-emoticon-container {
 	.lfr-button {
-		border-color: #e5e4e8;
+		border-color: #E5E4E8;
 	}
 }
 
 .lfr-emoticon-container {
-	background: #e5e4e8;
-	border-color: #ccc;
+	background: #E5E4E8;
+	border-color: #CCC;
 }

@@ -48,13 +48,13 @@
 	}
 
 	.lfr-input-localized .lfr-input-localized-state {
-		background: #ddd;
-		@include box-shadow(0 0 3px #ddd);
+		background: #DDD;
+		@include box-shadow(0 0 3px #DDD);
 	}
 
 	.palette-item-selected .lfr-input-localized-state {
-		background: #27c1f2;
-		@include box-shadow(0 0 3px #27c1f2);
+		background: #27C1F2;
+		@include box-shadow(0 0 3px #27C1F2);
 	}
 
 	.palette-item-inner {
