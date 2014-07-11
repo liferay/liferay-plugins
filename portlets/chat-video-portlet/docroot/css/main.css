@@ -4,10 +4,10 @@ $preferredPadding: 10px;
 $remoteVideoHeight: 165px;
 
 @mixin ctrl-button-hover($name, $btnSize) {
-	background-image: url('../images/btns_' + $btnSize + '/' + $name + '.png');
+	background-image: url(../images/btns_#{$btnSize}/#{$name}.png);
 
 	&:hover {
-		background-image: url('../images/btns_' + $btnSize + '/' + $name + '_hover.png');
+		background-image: url(../images/btns_#{$btnSize}/#{$name}_hover.png);
 	}
 }
 
@@ -270,8 +270,7 @@ $remoteVideoHeight: 165px;
 	}
 }
 
-
-// Extras
+/* ---------- Extras ---------- */
 
 .chat-bar, .chat-video-overlay {
 	.remote-video-container {
