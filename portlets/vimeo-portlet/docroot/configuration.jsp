@@ -168,8 +168,8 @@
 					boundingBox: previewNode,
 					height: height,
 					url: playerOptionsCompiled.join('&'),
-					width: width,
-					version: 0
+					version: 0,
+					width: width
 				}
 			).render();
 		}
