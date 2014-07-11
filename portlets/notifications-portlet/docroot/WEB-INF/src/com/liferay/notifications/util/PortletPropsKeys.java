@@ -19,6 +19,9 @@ package com.liferay.notifications.util;
  */
 public class PortletPropsKeys {
 
+	public static final String USER_NOTIFICATION_ENTRY =
+		"user.notification.entry";
+
 	public static final String USER_NOTIFICATIONS_DEFINITIONS =
 		"user.notifications.definitions";
 
