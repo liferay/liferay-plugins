@@ -71,7 +71,5 @@ request.setAttribute("article_icons.jsp-kb_article", kbArticle);
 
 	<liferay-util:include page="/admin/article_ratings.jsp" servletContext="<%= application %>" />
 
-	<liferay-util:include page="/admin/article_comments.jsp" servletContext="<%= application %>" />
-
 	<liferay-util:include page="/admin/article_social_bookmarks.jsp" servletContext="<%= application %>" />
 </div>
