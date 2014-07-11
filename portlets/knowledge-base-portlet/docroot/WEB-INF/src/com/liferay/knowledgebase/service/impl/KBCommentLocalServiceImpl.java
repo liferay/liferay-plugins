@@ -134,7 +134,8 @@ public class KBCommentLocalServiceImpl extends KBCommentLocalServiceBaseImpl {
 
 		long classNameId = classNameLocalService.getClassNameId(className);
 
-		return kbCommentPersistence.findByU_C_C(userId, classNameId, classPK);
+		return kbCommentPersistence.findByU_C_C_Last(
+			userId, classNameId, classPK, null);
 	}
 
 	@Override
