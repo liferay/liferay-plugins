@@ -81,7 +81,7 @@ in ascending chronological order.
 
 The number of stars for the ratings has changed from a hardcoded value of `10`
 to the value of the `knowledge.base.ratings.number.of.stars` property in
-`portal.properties`.
+`portlet.properties`.
 
 #### Who is affected?
 
@@ -91,7 +91,7 @@ Any installation where there are existing articles with a rating.
 
 If you need to keep the previous behaviour, you should change the
 `knowledge.base.ratings.number.of.stars` property value back to `10` in a
-`portal-ext.properties` file.
+`portlet-ext.properties` file.
 
 #### Why was this change made?
 
