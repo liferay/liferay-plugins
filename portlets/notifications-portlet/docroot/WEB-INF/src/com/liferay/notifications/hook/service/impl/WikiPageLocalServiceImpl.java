@@ -15,6 +15,7 @@
 package com.liferay.notifications.hook.service.impl;
 
 import com.liferay.compat.portal.kernel.notifications.UserNotificationDefinition;
+import com.liferay.notifications.util.NotificationsUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
@@ -26,32 +27,21 @@ import com.liferay.portal.kernel.notifications.NotificationEventFactoryUtil;
 import com.liferay.portal.kernel.notifications.UserNotificationManagerUtil;
 import com.liferay.portal.kernel.process.ProcessCallable;
 import com.liferay.portal.kernel.process.ProcessException;
-import com.liferay.portal.kernel.util.HttpUtil;
-import com.liferay.portal.kernel.util.StringBundler;
-import com.liferay.portal.kernel.util.StringPool;
-import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.model.Subscription;
 import com.liferay.portal.model.UserNotificationDeliveryConstants;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.SubscriptionLocalServiceUtil;
 import com.liferay.portal.service.UserNotificationEventLocalServiceUtil;
-import com.liferay.portal.util.Portal;
-import com.liferay.portal.util.PortalUtil;
 import com.liferay.portal.util.PortletKeys;
-import com.liferay.portlet.PortletURLFactoryUtil;
+import com.liferay.portlet.asset.AssetRendererFactoryRegistryUtil;
+import com.liferay.portlet.asset.model.AssetRendererFactory;
 import com.liferay.portlet.wiki.model.WikiNode;
 import com.liferay.portlet.wiki.model.WikiPage;
 import com.liferay.portlet.wiki.service.WikiPageLocalService;
 import com.liferay.portlet.wiki.service.WikiPageLocalServiceWrapper;
 
 import java.io.Serializable;
-
 import java.util.List;
-
-import javax.portlet.PortletRequest;
-import javax.portlet.PortletURL;
-
-import javax.servlet.http.HttpServletRequest;
 
 /**
  * @author Lin Cui
@@ -79,53 +69,13 @@ public class WikiPageLocalServiceImpl extends WikiPageLocalServiceWrapper {
 				UserNotificationDefinition.NOTIFICATION_TYPE_UPDATE_ENTRY;
 		}
 
-		sendNotificationEvent(
-			wikiPage, getEntryURL(wikiPage, serviceContext), notificationType);
+		String entryURL = NotificationsUtil.getEntryURL(
+			_assetRendererFactory.getAssetRenderer(wikiPage.getPageId()),
+			serviceContext);
+
+		sendNotificationEvent(wikiPage, entryURL, notificationType);
 
 		return wikiPage;
-	}
-
-	protected String getEntryURL(WikiPage page, ServiceContext serviceContext)
-		throws PortalException, SystemException {
-
-		HttpServletRequest request = serviceContext.getRequest();
-
-		if (request == null) {
-			return StringPool.BLANK;
-		}
-
-		long plid = serviceContext.getPlid();
-
-		long controlPanelPlid = PortalUtil.getControlPanelPlid(
-			serviceContext.getCompanyId());
-
-		if (plid == controlPanelPlid) {
-			plid = PortalUtil.getPlidFromPortletId(
-				page.getGroupId(), PortletKeys.WIKI);
-
-			PortletURL portletURL = PortletURLFactoryUtil.create(
-				request, PortletKeys.WIKI, plid, PortletRequest.RENDER_PHASE);
-
-			portletURL.setParameter("struts_action", "/wiki/view");
-			portletURL.setParameter("pageId", String.valueOf(page.getPageId()));
-
-			return portletURL.toString();
-		}
-		else {
-			StringBundler sb = new StringBundler(6);
-
-			sb.append(serviceContext.getLayoutFullURL());
-			sb.append(Portal.FRIENDLY_URL_SEPARATOR);
-			sb.append("wiki/");
-			sb.append(page.getNodeId());
-			sb.append(StringPool.SLASH);
-			sb.append(
-				HttpUtil.encodeURL(
-					StringUtil.replace(
-						page.getTitle(), _UNESCAPED_CHARS, _ESCAPED_CHARS)));
-
-			return sb.toString();
-		}
 	}
 
 	protected void sendNotificationEvent(
@@ -149,13 +99,9 @@ public class WikiPageLocalServiceImpl extends WikiPageLocalServiceWrapper {
 				wikiPage, notificationEventJSONObject));
 	}
 
-	private static final String[] _ESCAPED_CHARS = new String[] {
-		"<PLUS>", "<QUESTION>", "<SLASH>"
-	};
-
-	private static final String[] _UNESCAPED_CHARS = new String[] {
-		StringPool.PLUS, StringPool.QUESTION, StringPool.SLASH
-	};
+	protected AssetRendererFactory _assetRendererFactory =
+		AssetRendererFactoryRegistryUtil.getAssetRendererFactoryByClassName(
+			WikiPage.class.getName());
 
 	private static class NotificationProcessCallable
 		implements ProcessCallable<Serializable> {

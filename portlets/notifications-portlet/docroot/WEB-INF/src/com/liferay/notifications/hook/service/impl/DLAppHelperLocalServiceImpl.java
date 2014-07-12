@@ -15,6 +15,7 @@
 package com.liferay.notifications.hook.service.impl;
 
 import com.liferay.compat.portal.kernel.notifications.UserNotificationDefinition;
+import com.liferay.notifications.util.NotificationsUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
@@ -29,15 +30,15 @@ import com.liferay.portal.kernel.process.ProcessException;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.repository.model.FileVersion;
 import com.liferay.portal.kernel.repository.model.Folder;
-import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.Subscription;
 import com.liferay.portal.model.UserNotificationDeliveryConstants;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.SubscriptionLocalServiceUtil;
 import com.liferay.portal.service.UserNotificationEventLocalServiceUtil;
-import com.liferay.portal.util.PortalUtil;
 import com.liferay.portal.util.PortletKeys;
-import com.liferay.portlet.PortletURLFactoryUtil;
+import com.liferay.portlet.asset.AssetRendererFactoryRegistryUtil;
+import com.liferay.portlet.asset.model.AssetRendererFactory;
+import com.liferay.portlet.documentlibrary.model.DLFileEntry;
 import com.liferay.portlet.documentlibrary.model.DLFileEntryConstants;
 import com.liferay.portlet.documentlibrary.service.DLAppHelperLocalService;
 import com.liferay.portlet.documentlibrary.service.DLAppHelperLocalServiceWrapper;
@@ -46,11 +47,6 @@ import java.io.Serializable;
 
 import java.util.List;
 import java.util.Map;
-
-import javax.portlet.PortletRequest;
-import javax.portlet.PortletURL;
-
-import javax.servlet.http.HttpServletRequest;
 
 /**
  * @author Lin Cui
@@ -84,43 +80,12 @@ public class DLAppHelperLocalServiceImpl
 				UserNotificationDefinition.NOTIFICATION_TYPE_UPDATE_ENTRY;
 		}
 
-		sendNotificationEvent(
-			latestFileVersion,
-			getEntryURL(
-				latestFileVersion.getGroupId(),
-				latestFileVersion.getFileEntryId(), serviceContext),
-			notificationType);
-	}
+		String entryURL = NotificationsUtil.getEntryURL(
+			_assetRendererFactory.getAssetRenderer(
+				latestFileVersion.getFileEntryId()),
+			serviceContext);
 
-	protected String getEntryURL(
-			long groupId, long fileEntryId, ServiceContext serviceContext)
-		throws PortalException, SystemException {
-
-		HttpServletRequest request = serviceContext.getRequest();
-
-		if (request == null) {
-			return StringPool.BLANK;
-		}
-
-		long plid = serviceContext.getPlid();
-
-		long controlPanelPlid = PortalUtil.getControlPanelPlid(
-			serviceContext.getCompanyId());
-
-		if (plid == controlPanelPlid) {
-			plid = PortalUtil.getPlidFromPortletId(
-				groupId, PortletKeys.DOCUMENT_LIBRARY);
-		}
-
-		PortletURL portletURL = PortletURLFactoryUtil.create(
-			request, PortletKeys.DOCUMENT_LIBRARY, plid,
-			PortletRequest.RENDER_PHASE);
-
-		portletURL.setParameter(
-			"struts_action", "/document_library/view_file_entry");
-		portletURL.setParameter("fileEntryId", String.valueOf(fileEntryId));
-
-		return portletURL.toString();
+		sendNotificationEvent(latestFileVersion, entryURL, notificationType);
 	}
 
 	protected void sendNotificationEvent(
@@ -145,6 +110,10 @@ public class DLAppHelperLocalServiceImpl
 			new NotificationProcessCallable(
 				fileVersion, notificationEventJSONObject));
 	}
+
+	protected AssetRendererFactory _assetRendererFactory =
+		AssetRendererFactoryRegistryUtil.getAssetRendererFactoryByClassName(
+			DLFileEntry.class.getName());
 
 	private static class NotificationProcessCallable
 		implements ProcessCallable<Serializable> {

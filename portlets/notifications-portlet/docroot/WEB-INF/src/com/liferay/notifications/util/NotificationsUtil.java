@@ -23,7 +23,9 @@ import com.liferay.portal.kernel.dao.orm.ProjectionFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.RestrictionsFactoryUtil;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.model.UserNotificationEvent;
+import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.UserNotificationEventLocalServiceUtil;
+import com.liferay.portlet.asset.model.AssetRenderer;
 
 import java.util.Iterator;
 import java.util.List;
@@ -112,6 +114,19 @@ public class NotificationsUtil {
 		}
 
 		return 0;
+	}
+
+	public static String getEntryURL(
+		AssetRenderer assetRenderer, ServiceContext serviceContext) {
+
+		try {
+			return assetRenderer.getURLViewInContext(
+				serviceContext.getLiferayPortletRequest(),
+				serviceContext.getLiferayPortletResponse(), null);
+		}
+		catch (Exception e) {
+			return null;
+		}
 	}
 
 	protected static DynamicQuery getDynamicQuery(

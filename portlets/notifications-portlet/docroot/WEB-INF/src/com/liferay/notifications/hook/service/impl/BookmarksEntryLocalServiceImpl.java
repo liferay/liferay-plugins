@@ -15,6 +15,7 @@
 package com.liferay.notifications.hook.service.impl;
 
 import com.liferay.compat.portal.kernel.notifications.UserNotificationDefinition;
+import com.liferay.notifications.util.NotificationsUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
@@ -26,17 +27,14 @@ import com.liferay.portal.kernel.notifications.NotificationEventFactoryUtil;
 import com.liferay.portal.kernel.notifications.UserNotificationManagerUtil;
 import com.liferay.portal.kernel.process.ProcessCallable;
 import com.liferay.portal.kernel.process.ProcessException;
-import com.liferay.portal.kernel.util.StringBundler;
-import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.Subscription;
 import com.liferay.portal.model.UserNotificationDeliveryConstants;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.SubscriptionLocalServiceUtil;
 import com.liferay.portal.service.UserNotificationEventLocalServiceUtil;
-import com.liferay.portal.util.Portal;
-import com.liferay.portal.util.PortalUtil;
 import com.liferay.portal.util.PortletKeys;
-import com.liferay.portlet.PortletURLFactoryUtil;
+import com.liferay.portlet.asset.AssetRendererFactoryRegistryUtil;
+import com.liferay.portlet.asset.model.AssetRendererFactory;
 import com.liferay.portlet.bookmarks.model.BookmarksEntry;
 import com.liferay.portlet.bookmarks.model.BookmarksFolder;
 import com.liferay.portlet.bookmarks.service.BookmarksEntryLocalService;
@@ -45,11 +43,6 @@ import com.liferay.portlet.bookmarks.service.BookmarksEntryLocalServiceWrapper;
 import java.io.Serializable;
 
 import java.util.List;
-
-import javax.portlet.PortletRequest;
-import javax.portlet.PortletURL;
-
-import javax.servlet.http.HttpServletRequest;
 
 /**
  * @author Lin Cui
@@ -72,8 +65,12 @@ public class BookmarksEntryLocalServiceImpl
 		BookmarksEntry bookmarksEntry = super.addEntry(
 			userId, groupId, folderId, name, url, description, serviceContext);
 
+		String entryURL = NotificationsUtil.getEntryURL(
+			_assetRendererFactory.getAssetRenderer(bookmarksEntry.getEntryId()),
+			serviceContext);
+
 		sendNotificationEvent(
-			bookmarksEntry, getEntryURL(bookmarksEntry, serviceContext),
+			bookmarksEntry, entryURL,
 			UserNotificationDefinition.NOTIFICATION_TYPE_ADD_ENTRY, userId);
 
 		return bookmarksEntry;
@@ -89,53 +86,15 @@ public class BookmarksEntryLocalServiceImpl
 			userId, entryId, groupId, folderId, name, url, description,
 			serviceContext);
 
+		String entryURL = NotificationsUtil.getEntryURL(
+			_assetRendererFactory.getAssetRenderer(bookmarksEntry.getEntryId()),
+			serviceContext);
+
 		sendNotificationEvent(
-			bookmarksEntry, getEntryURL(bookmarksEntry, serviceContext),
+			bookmarksEntry, entryURL,
 			UserNotificationDefinition.NOTIFICATION_TYPE_UPDATE_ENTRY, userId);
 
 		return bookmarksEntry;
-	}
-
-	protected String getEntryURL(
-			BookmarksEntry bookmarksEntry, ServiceContext serviceContext)
-		throws PortalException, SystemException {
-
-		HttpServletRequest request = serviceContext.getRequest();
-
-		if (request == null) {
-			return StringPool.BLANK;
-		}
-
-		long plid = serviceContext.getPlid();
-
-		long controlPanelPlid = PortalUtil.getControlPanelPlid(
-			serviceContext.getCompanyId());
-
-		if (plid == controlPanelPlid) {
-			plid = PortalUtil.getPlidFromPortletId(
-				bookmarksEntry.getGroupId(), PortletKeys.BOOKMARKS);
-
-			PortletURL portletURL = PortletURLFactoryUtil.create(
-				request, PortletKeys.BOOKMARKS, plid,
-				PortletRequest.RENDER_PHASE);
-
-			portletURL.setParameter("struts_action", "/bookmarks/view_entry");
-			portletURL.setParameter(
-				"entryId", String.valueOf(bookmarksEntry.getEntryId()));
-
-			return portletURL.toString();
-		}
-		else {
-			StringBundler sb = new StringBundler(5);
-
-			sb.append(serviceContext.getLayoutFullURL());
-			sb.append(Portal.FRIENDLY_URL_SEPARATOR);
-			sb.append("bookmarks");
-			sb.append(StringPool.SLASH);
-			sb.append(bookmarksEntry.getEntryId());
-
-			return sb.toString();
-		}
 	}
 
 	protected void sendNotificationEvent(
@@ -173,6 +132,10 @@ public class BookmarksEntryLocalServiceImpl
 			new NotificationProcessCallable(
 				bookmarksEntry, notificationEventJSONObject));
 	}
+
+	protected AssetRendererFactory _assetRendererFactory =
+		AssetRendererFactoryRegistryUtil.getAssetRendererFactoryByClassName(
+			BookmarksEntry.class.getName());
 
 	private static class NotificationProcessCallable
 		implements ProcessCallable<Serializable> {

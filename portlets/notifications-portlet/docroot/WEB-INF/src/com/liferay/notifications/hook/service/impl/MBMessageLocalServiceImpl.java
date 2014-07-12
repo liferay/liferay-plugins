@@ -15,6 +15,7 @@
 package com.liferay.notifications.hook.service.impl;
 
 import com.liferay.compat.portal.kernel.notifications.UserNotificationDefinition;
+import com.liferay.notifications.util.NotificationsUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
@@ -26,17 +27,14 @@ import com.liferay.portal.kernel.notifications.NotificationEventFactoryUtil;
 import com.liferay.portal.kernel.notifications.UserNotificationManagerUtil;
 import com.liferay.portal.kernel.process.ProcessCallable;
 import com.liferay.portal.kernel.process.ProcessException;
-import com.liferay.portal.kernel.util.StringBundler;
-import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.Subscription;
 import com.liferay.portal.model.UserNotificationDeliveryConstants;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.SubscriptionLocalServiceUtil;
 import com.liferay.portal.service.UserNotificationEventLocalServiceUtil;
-import com.liferay.portal.util.Portal;
-import com.liferay.portal.util.PortalUtil;
 import com.liferay.portal.util.PortletKeys;
-import com.liferay.portlet.PortletURLFactoryUtil;
+import com.liferay.portlet.asset.AssetRendererFactoryRegistryUtil;
+import com.liferay.portlet.asset.model.AssetRendererFactory;
 import com.liferay.portlet.messageboards.model.MBCategory;
 import com.liferay.portlet.messageboards.model.MBMessage;
 import com.liferay.portlet.messageboards.service.MBMessageLocalService;
@@ -45,11 +43,6 @@ import com.liferay.portlet.messageboards.service.MBMessageLocalServiceWrapper;
 import java.io.Serializable;
 
 import java.util.List;
-
-import javax.portlet.PortletRequest;
-import javax.portlet.PortletURL;
-
-import javax.servlet.http.HttpServletRequest;
 
 /**
  * @author Lin Cui
@@ -79,53 +72,13 @@ public class MBMessageLocalServiceImpl extends MBMessageLocalServiceWrapper {
 				UserNotificationDefinition.NOTIFICATION_TYPE_UPDATE_ENTRY;
 		}
 
-		sendNotificationEvent(
-			mbMessage, getEntryURL(mbMessage, serviceContext),
-			notificationType);
+		String entryURL = NotificationsUtil.getEntryURL(
+			_assetRendererFactory.getAssetRenderer(mbMessage.getMessageId()),
+			serviceContext);
+
+		sendNotificationEvent(mbMessage, entryURL, notificationType);
 
 		return mbMessage;
-	}
-
-	protected String getEntryURL(
-			MBMessage mbMessage, ServiceContext serviceContext)
-		throws PortalException, SystemException {
-
-		HttpServletRequest request = serviceContext.getRequest();
-
-		if (request == null) {
-			return StringPool.BLANK;
-		}
-
-		long plid = serviceContext.getPlid();
-
-		long controlPanelPlid = PortalUtil.getControlPanelPlid(
-			serviceContext.getCompanyId());
-
-		if (plid == controlPanelPlid) {
-			plid = PortalUtil.getPlidFromPortletId(
-				mbMessage.getGroupId(), PortletKeys.MESSAGE_BOARDS);
-
-			PortletURL portletURL = PortletURLFactoryUtil.create(
-				request, PortletKeys.MESSAGE_BOARDS, plid,
-				PortletRequest.RENDER_PHASE);
-
-			portletURL.setParameter(
-				"struts_action", "/message_boards/view_message");
-			portletURL.setParameter(
-				"messageId", String.valueOf(mbMessage.getMessageId()));
-
-			return portletURL.toString();
-		}
-		else {
-			StringBundler sb = new StringBundler(5);
-
-			sb.append(serviceContext.getLayoutFullURL());
-			sb.append(Portal.FRIENDLY_URL_SEPARATOR);
-			sb.append("message_boards/view_message/");
-			sb.append(mbMessage.getMessageId());
-
-			return sb.toString();
-		}
 	}
 
 	protected void sendNotificationEvent(
@@ -149,6 +102,10 @@ public class MBMessageLocalServiceImpl extends MBMessageLocalServiceWrapper {
 			new NotificationProcessCallable(
 				mbMessage, notificationEventJSONObject));
 	}
+
+	protected AssetRendererFactory _assetRendererFactory =
+		AssetRendererFactoryRegistryUtil.getAssetRendererFactoryByClassName(
+			MBMessage.class.getName());
 
 	private static class NotificationProcessCallable
 		implements ProcessCallable<Serializable> {

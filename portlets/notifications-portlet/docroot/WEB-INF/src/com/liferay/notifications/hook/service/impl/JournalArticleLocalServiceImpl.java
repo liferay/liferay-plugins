@@ -15,6 +15,7 @@
 package com.liferay.notifications.hook.service.impl;
 
 import com.liferay.compat.portal.kernel.notifications.UserNotificationDefinition;
+import com.liferay.notifications.util.NotificationsUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
@@ -26,15 +27,14 @@ import com.liferay.portal.kernel.notifications.NotificationEventFactoryUtil;
 import com.liferay.portal.kernel.notifications.UserNotificationManagerUtil;
 import com.liferay.portal.kernel.process.ProcessCallable;
 import com.liferay.portal.kernel.process.ProcessException;
-import com.liferay.portal.kernel.util.StringBundler;
-import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.Subscription;
 import com.liferay.portal.model.UserNotificationDeliveryConstants;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.SubscriptionLocalServiceUtil;
 import com.liferay.portal.service.UserNotificationEventLocalServiceUtil;
-import com.liferay.portal.util.PortalUtil;
 import com.liferay.portal.util.PortletKeys;
+import com.liferay.portlet.asset.AssetRendererFactoryRegistryUtil;
+import com.liferay.portlet.asset.model.AssetRendererFactory;
 import com.liferay.portlet.journal.model.JournalArticle;
 import com.liferay.portlet.journal.service.JournalArticleLocalService;
 import com.liferay.portlet.journal.service.JournalArticleLocalServiceWrapper;
@@ -75,42 +75,16 @@ public class JournalArticleLocalServiceImpl
 				UserNotificationDefinition.NOTIFICATION_TYPE_UPDATE_ENTRY;
 		}
 
+		String entryURL = NotificationsUtil.getEntryURL(
+			_assetRendererFactory.getAssetRenderer(article.getId()),
+			serviceContext);
+
 		sendNotificationEvent(
 			journalArticle,
-			journalArticle.getTitle(serviceContext.getLanguageId()),
-			getEntryURL(
-				articleURL, journalArticle.getGroupId(),
-				journalArticle.getFolderId(), journalArticle.getArticleId(),
-				serviceContext),
+			journalArticle.getTitle(serviceContext.getLanguageId()), entryURL,
 			notificationType);
 
 		return journalArticle;
-	}
-
-	protected String getEntryURL(
-		String articleURL, long groupId, long folderId, String articleId,
-		ServiceContext serviceContext) {
-
-		StringBundler sb = new StringBundler(16);
-
-		sb.append(articleURL);
-		sb.append(StringPool.AMPERSAND);
-		sb.append(PortalUtil.getPortletNamespace(PortletKeys.JOURNAL));
-		sb.append("struts_action=/journal/edit_article");
-		sb.append(StringPool.AMPERSAND);
-		sb.append(PortalUtil.getPortletNamespace(PortletKeys.JOURNAL));
-		sb.append("groupId=");
-		sb.append(groupId);
-		sb.append(StringPool.AMPERSAND);
-		sb.append(PortalUtil.getPortletNamespace(PortletKeys.JOURNAL));
-		sb.append("folderId=");
-		sb.append(folderId);
-		sb.append(StringPool.AMPERSAND);
-		sb.append(PortalUtil.getPortletNamespace(PortletKeys.JOURNAL));
-		sb.append("articleId=");
-		sb.append(articleId);
-
-		return sb.toString();
 	}
 
 	protected void sendNotificationEvent(
@@ -135,6 +109,10 @@ public class JournalArticleLocalServiceImpl
 			new NotificationProcessCallable(
 				journalArticle, notificationEventJSONObject));
 	}
+
+	protected AssetRendererFactory _assetRendererFactory =
+		AssetRendererFactoryRegistryUtil.getAssetRendererFactoryByClassName(
+			JournalArticle.class.getName());
 
 	private static class NotificationProcessCallable
 		implements ProcessCallable<Serializable> {
