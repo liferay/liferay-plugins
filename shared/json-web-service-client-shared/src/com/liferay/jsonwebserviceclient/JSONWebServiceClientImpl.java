@@ -335,7 +335,7 @@ public class JSONWebServiceClientImpl implements JSONWebServiceClient {
 	}
 
 	protected void setProxyHost(HttpClientBuilder httpClientBuilder) {
-		if (_proxyHostName == null || _proxyHostName.equals("")) {
+		if ((_proxyHostName == null) || _proxyHostName.equals("")) {
 			return;
 		}
 
