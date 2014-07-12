@@ -62,18 +62,15 @@ AUI().use(
 			},
 
 			debugMsg: function(msg) {
-				// Uncomment to enable debugging
-				// console.debug('WebRTC: ' + msg);
+				//console.debug('WebRTC: ' + msg);
 			},
 
 			debugObj: function(obj) {
-				// Uncomment to enable debugging
-				// console.debug(obj);
+				//console.debug(obj);
 			},
 
 			errorMsg: function(msg) {
-				// Uncomment to enable debugging
-				// console.error('WebRTC: ' + msg);
+				//console.error('WebRTC: ' + msg);
 			},
 
 			getConversationsGlobalState: function() {

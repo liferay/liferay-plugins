@@ -119,14 +119,18 @@ AUI().use(
 						var urlParts = iceCandidate.url.split(':');
 
 						if (urlParts[0].indexOf('stun') === 0) {
+
 							// Create ICE server with STUN URL
+
 							iceServer = {
 								url: iceCandidate.url
 							};
 						}
 						else if (urlParts[0].indexOf('turn') === 0) {
 							if (browserVersion < 28) {
+
 								// Chrome < 28: use old TURN format
+
 								var urlTurnParts = iceCandidate.url.split('turn:');
 
 								iceServer = {
@@ -135,7 +139,9 @@ AUI().use(
 								};
 							}
 							else {
+
 								// Chrome >= 28: use new TURN format
+
 								iceServer = {
 									credential: iceCandidate.password,
 									url: iceCandidate.url,
@@ -171,6 +177,7 @@ AUI().use(
 				}
 
 				// New syntax of getLocalStreams/getRemoteStreams methods in Chrome 26
+
 				if (!webkitRTCPeerConnection.prototype.getLocalStreams) {
 					webkitRTCPeerConnection.prototype.getLocalStreams = function() {
 						return this.localStreams;
@@ -219,15 +226,19 @@ AUI().use(
 						var urlParts = url.split(':');
 
 						if (urlParts[0].indexOf('stun') === 0) {
+
 							// Create ICE server with STUN URL
+
 							iceServer = {
 								url: iceCandidate.url
 							};
 						}
 						else if (urlParts[0].indexOf('turn') === 0) {
 							if (browserVersion < 27) {
+
 								// Create ICE server with TURN URL
 								// Ignore transport parameter from TURN URL for FF < 27
+
 								var turnUrlParts = url.split('?');
 
 								if (turnUrlParts.length === 1 || turnUrlParts[1].indexOf('transport=udp') === 0) {
@@ -239,7 +250,9 @@ AUI().use(
 								}
 							}
 							else {
+
 								// FF >= 27 supports transport parameters in TURN URL
+
 								iceServer = {
 									credential: password,
 									url: url,
@@ -275,11 +288,14 @@ AUI().use(
 						var cnPos = mLineElements.indexOf(payload);
 
 						if (cnPos !== -1) {
+
 							// Remove CN payload from m line
+
 							mLineElements.splice(cnPos, 1);
 						}
 
 						// Remove CN line in SDP
+
 						sdpLines.splice(i, 1);
 					}
 				}
