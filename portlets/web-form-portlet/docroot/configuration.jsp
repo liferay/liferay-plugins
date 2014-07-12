@@ -190,10 +190,7 @@ if (WebFormUtil.getTableRowsCount(company.getCompanyId(), databaseTableName) > 0
 	</aui:button-row>
 </aui:form>
 
-<%
-if (!fieldsEditingDisabled) {
-%>
-
+<c:if test="<%= !fieldsEditingDisabled %>">
 	<aui:script use="aui-base,liferay-auto-fields">
 		var toggleOptions = function(event) {
 			var select = this;
@@ -285,7 +282,4 @@ if (!fieldsEditingDisabled) {
 			}
 		).render();
 	</aui:script>
-
-<%
-}
-%>
+</c:if>
