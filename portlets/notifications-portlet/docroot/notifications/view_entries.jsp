@@ -26,8 +26,6 @@ List<UserNotificationEvent> userNotificationEvents = null;
 
 int userNotificationEventsCount = 0;
 
-int totalUnreadUserNotificationEventsCount = UserNotificationEventLocalServiceUtil.getArchivedUserNotificationEventsCount(themeDisplay.getUserId(), false);
-int totalUserNotificationEventsCount = UserNotificationEventLocalServiceUtil.getUserNotificationEventsCount(themeDisplay.getUserId());
 int unreadActionableUserNotificationsCount = NotificationsUtil.getArchivedUserNotificationEventsCount(themeDisplay.getUserId(), true, false);
 int unreadNonActionableUserNotificationsCount = NotificationsUtil.getArchivedUserNotificationEventsCount(themeDisplay.getUserId(), false, false);
 
@@ -35,7 +33,7 @@ List<Long> userNotificationEventIds = new ArrayList<Long>();
 
 if (filter.equals("dockbar")) {
 	userNotificationEvents = UserNotificationEventLocalServiceUtil.getArchivedUserNotificationEvents(themeDisplay.getUserId(), false, start, end);
-	userNotificationEventsCount = totalUnreadUserNotificationEventsCount;
+	userNotificationEventsCount = UserNotificationEventLocalServiceUtil.getArchivedUserNotificationEventsCount(themeDisplay.getUserId(), false);
 }
 else if (filter.equals("unread-actionable")) {
 	userNotificationEvents = NotificationsUtil.getArchivedUserNotificationEvents(themeDisplay.getUserId(), true, false, start, end);
@@ -47,7 +45,7 @@ else if (filter.equals("unread-non-actionable")) {
 }
 else {
 	userNotificationEvents = UserNotificationEventLocalServiceUtil.getUserNotificationEvents(themeDisplay.getUserId(), start, end);
-	userNotificationEventsCount = totalUserNotificationEventsCount;
+	userNotificationEventsCount = UserNotificationEventLocalServiceUtil.getUserNotificationEventsCount(themeDisplay.getUserId());
 }
 %>
 
@@ -143,7 +141,7 @@ else {
 				<portlet:param name="mvcPath" value="/notifications/view.jsp" />
 			</liferay-portlet:renderURL>
 
-			<a href="<%= viewAllNotifications %>"><liferay-ui:message arguments="<%= totalUserNotificationEventsCount %>" key="view-all-notifications-x" /></a>
+			<a href="<%= viewAllNotifications %>"><liferay-ui:message key="view-all-notifications" /></a>
 		</li>
 	</c:when>
 	<c:when test='<%= filter.equals("unread-actionable") %>'>
@@ -227,7 +225,6 @@ else {
 			filter: '<%= HtmlUtil.escape(filter) %>',
 			namespace: '<portlet:namespace />',
 			start: <%= start %>,
-			totalUnreadUserNotificationsCount: <%= totalUnreadUserNotificationEventsCount %>,
 			unreadActionableUserNotificationsCount: <%= unreadActionableUserNotificationsCount %>,
 			unreadNonActionableUserNotificationsCount: <%= unreadNonActionableUserNotificationsCount %>,
 			userNotificationEventsCount: <%= userNotificationEventsCount %>,

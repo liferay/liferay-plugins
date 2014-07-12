@@ -28,7 +28,7 @@ AUI().use(
 					instance._previousPageNotificationsURL = instance._getRenderURL('/notifications/view_entries.jsp', config.filter, (config.start - config.delta).toString(), (config.end - config.delta).toString(), 'true');
 				}
 
-				instance._unreadCount = config.totalUnreadUserNotificationsCount;
+				instance._totalMarkAsReadableCount = config.unreadNonActionableUserNotificationsCount;
 
 				instance._createMarkAllAsReadNode(config);
 
@@ -202,10 +202,6 @@ AUI().use(
 
 					instance._bindNavMenu(unreadNonActionableNav, instance._getRenderURL('/notifications/view_entries.jsp', 'unread-non-actionable'), false, false, true);
 
-					var allNotificationsNav = userNotificationsSidebar.one('.all-notifications');
-
-					instance._bindNavMenu(allNotificationsNav, instance._getRenderURL('/notifications/view_entries.jsp'), true, false, false);
-
 					var manageNav = userNotificationsSidebar.one('.manage');
 
 					instance._bindNavMenu(manageNav, instance._getRenderURL('/notifications/configuration.jsp'), false, false, false);
@@ -238,7 +234,7 @@ AUI().use(
 
 				if (config.userNotificationEventsCount > 0) {
 					var nodeHTML = '<a class="mark-all-as-read" href="' + instance._getActionURL('markAllAsRead', config.userNotificationEventIds) + '">' +
-						A.Lang.sub(Liferay.Language.get('mark-all-as-read-x-of-x'), [config.currentPageNotificationEventsCount, instance._unreadCount]) + '</a><hr class="separator" />';
+						A.Lang.sub(Liferay.Language.get('mark-all-as-read-x-of-x'), [config.currentPageNotificationEventsCount, instance._totalMarkAsReadableCount]) + '</a><hr class="separator" />';
 
 					var dockbarMarkAllAsRead = A.one('.dockbarMarkAllAsRead');
 
@@ -326,7 +322,7 @@ AUI().use(
 								var dockbarUserNotificationsCount = A.one('.dockbar-user-notifications .user-notifications-count');
 
 								if (dockbarUserNotificationsCount) {
-									dockbarUserNotificationsCount.removeClass('alert');
+									dockbarUserNotificationsCount.toggleClass('alert', false);
 								}
 							}
 						}
@@ -340,6 +336,11 @@ AUI().use(
 				var deleteNode = target.ancestor('.user-notification-delete');
 
 				if (deleteNode) {
+
+					if (instance._hasRequestSent(deleteNode, deleteNode.getAttribute('data-deleteURL'))) {
+						return;
+					}
+
 					A.io.request(deleteNode.getAttribute('data-deleteURL'));
 				}
 			},
@@ -453,11 +454,17 @@ AUI().use(
 			_markAsRead: function(event, fullView, markAllAsRead) {
 				event.preventDefault();
 
+				event.stopPropagation();
+
 				var instance = this;
 
 				var currentRow;
 
 				var currentTarget = event.currentTarget;
+
+				if (instance._hasRequestSent(currentTarget, currentTarget.attr('href'))) {
+					return;
+				}
 
 				var dockbarNotificationsList;
 
@@ -522,7 +529,7 @@ AUI().use(
 			_onPollerUpdate: function(response) {
 				var instance = this;
 
-				instance._updateDockbarNotificationsCount(response.newUserNotificationsCount, response.timestamp, response.totalUserNotificationsCount, response.unreadUserNotificationsCount);
+				instance._updateDockbarNotificationsCount(response.newUserNotificationsCount, response.timestamp, response.unreadNonActionableUserNotificationsCount, response.unreadUserNotificationsCount);
 			},
 
 			_openWindow: function(uri) {
@@ -559,16 +566,8 @@ AUI().use(
 				A.io.request(instance._getActionURL('setDelivered'));
 			},
 
-			_updateDockbarNotificationsCount: function(newUserNotificationsCount, timestamp, totalUserNotificationsCount, unreadUserNotificationsCount) {
+			_updateDockbarNotificationsCount: function(newUserNotificationsCount, timestamp, unreadNonActionableUserNotificationsCount, unreadUserNotificationsCount) {
 				var instance = this;
-
-				var allNotiificationsCount = A.one('.dockbar-user-notifications .all-notifications-count a');
-
-				if (allNotiificationsCount) {
-					var html = A.Lang.sub(Liferay.Language.get('view-all-notifications-x'), [totalUserNotificationsCount]);
-
-					allNotiificationsCount.setHTML(html);
-				}
 
 				if (!instance._previousTimestamp || (instance._previousTimestamp < timestamp)) {
 					instance._previousTimestamp = timestamp;
@@ -580,7 +579,7 @@ AUI().use(
 
 						dockbarUserNotificationsCount.setHTML(unreadUserNotificationsCount);
 
-						instance._unreadCount = unreadUserNotificationsCount;
+						instance._totalMarkAsReadableCount = unreadNonActionableUserNotificationsCount;
 					}
 				}
 			},
@@ -634,7 +633,7 @@ AUI().use(
 
 												dockbarMarkAllAsRead.setAttribute('href', instance._getActionURL('markAllAsRead', response['userNotificationEventIds']));
 
-												var html = A.Lang.sub(Liferay.Language.get('mark-all-as-read-x-of-x'), [response['markAsReadCount'].toString(), instance._unreadCount]);
+												var html = A.Lang.sub(Liferay.Language.get('mark-all-as-read-x-of-x'), [response['markAsReadCount'].toString(), instance._totalMarkAsReadableCount]);
 
 												dockbarMarkAllAsRead.setHTML(html);
 											}
@@ -682,7 +681,7 @@ AUI().use(
 					unreadCount = userNotificationsSidebar.one('.unread-non-actionable .count');
 
 					if (unreadCount) {
-						unreadCount.setHTML(unreadActionableUserNotificationsCount);
+						unreadCount.setHTML(unreadNonActionableUserNotificationsCount);
 					}
 				}
 			},
@@ -711,7 +710,7 @@ AUI().use(
 										}
 									}
 
-									instance._updateDockbarNotificationsCount(response['newUserNotificationsCount'], response['timestamp'], response['totalUserNotificationsCount'], response['unreadUserNotificationsCount']);
+									instance._updateDockbarNotificationsCount(response['newUserNotificationsCount'], response['timestamp'], response['unreadNonActionableUserNotificationsCount'], response['unreadUserNotificationsCount']);
 									instance._updateFullViewNotificationsCount(response['unreadActionableUserNotificationsCount'], response['unreadNonActionableUserNotificationsCount']);
 								}
 							}
@@ -729,6 +728,10 @@ AUI().use(
 				var uri = currentTarget.attr('data-href');
 
 				var markAsReadURL = currentTarget.attr('data-markAsReadURL');
+
+				if (instance._hasRequestSent(currentTarget, markAsReadURL)) {
+					return;
+				}
 
 				if (markAsReadURL) {
 					A.io.request(
