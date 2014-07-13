@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+<!DOCTYPE project>
+
+<project name="build-common-plugins-inspector.xml">
+	<target name="inspect-plugins">
+		<exec dir="." executable="git">
+			<arg line="clean -d -f -x ." />
+		</exec>
+
+		<for param="module.name">
+			<path>
+				<dirset dir="." includes="*" />
+			</path>
+			<sequential>
+				<if>
+					<and>
+						<available file="@{module.name}/docroot" />
+						<available file="@{module.name}/src" />
+					</and>
+					<then>
+						<fail>Module @{module.name} must not have both a "docroot" and a "src" directory.</fail>
+					</then>
+				</if>
+
+				<if>
+					<and>
+						<not>
+							<available file="@{module.name}/docroot" />
+						</not>
+						<not>
+							<available file="@{module.name}/src" />
+						</not>
+					</and>
+					<then>
+						<fail>Module @{module.name} must have a "docroot" or a "src" directory.</fail>
+					</then>
+				</if>
+
+				<if>
+					<resourcecontains resource="@{module.name}/docroot/WEB-INF/web.xml" substring="Invoker Filter" />
+					<then>
+						<fail>@{module.name}/docroot/WEB-INF/web.xml contains generated code.</fail>						
+					</then>
+				</if>
+			</sequential>
+		</for>
+
+		<antcall target="clean" />
+
+		<antcall target="compile" />
+
+		<exec dir="." executable="git" outputproperty="git.command.output">
+			<arg line="status ." />
+		</exec>
+
+		<if>
+			<or>
+				<contains string="${git.command.output}" substring="Changes not staged for commit" />
+				<contains string="${git.command.output}" substring="Untracked files" />
+			</or>
+			<then>
+				<fail>Plugins must not generate modified files.</fail>
+			</then>
+		</if>
+
+		<resourcecount property="gitignore.count">
+			<fileset defaultexcludes="false" dir="." includes=".gitignore,**/.gitignore" />
+		</resourcecount>
+
+		<if>
+			<not>
+				<equals arg1="${gitignore.count}" arg2="0" />
+			</not>
+			<then>
+				<fail>Plugins must not have custom .gitignore files.</fail>				
+			</then>
+		</if>
+	</target>
+</project>

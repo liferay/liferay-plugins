@@ -3,6 +3,7 @@
 
 <project name="build-common-plugins" xmlns:antelope="antlib:ise.antelope.tasks">
 	<import file="build-common.xml" />
+	<import file="build-common-plugins-inspector.xml" />
 
 	<path id="plugins.includes.path">
 		<dirset dir="." excludes="${plugins.excludes}" includes="${plugins.includes}" />
