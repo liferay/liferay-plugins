@@ -416,7 +416,9 @@ AUI().use(
 					el.currentTime = 0;
 				}
 				catch (e) {
+
 					// Probably not ready yet: not playing anyway
+
 				}
 			},
 
@@ -512,6 +514,7 @@ AUI().use(
 				var instance = this;
 
 				// Make sure to cancel future events
+
 				instance._stopErrorMessage();
 
 				instance._destroyed = true;
@@ -695,6 +698,7 @@ AUI().use(
 										Liferay.Chat.VideoManager.onChatVideoConversationStateChange();
 
 										// Accept control button
+
 										if (state === State.GOTCALL) {
 											instance._showCtrlButton('accept');
 										}
@@ -702,9 +706,11 @@ AUI().use(
 											instance._hideCtrlButton('accept');
 										}
 
-										// Hangup control button
+										// Hang up control button
+
 										if (state === State.STOPPED || state === State.STOPPING ||
-												state === State.DELETED || state === State.DELETING) {
+											state === State.DELETED || state === State.DELETING) {
+
 											instance._hideCtrlButton('hangUp');
 										}
 										else {
@@ -712,6 +718,7 @@ AUI().use(
 										}
 
 										// Call control button
+
 										if (state === State.STOPPED) {
 											instance._showCtrlButton('call');
 										}
@@ -720,10 +727,12 @@ AUI().use(
 										}
 
 										// Mute/unmute, fullscreen control buttons
+
 										instance._hideCtrlButton('mike');
 										instance._hideCtrlButton('fullScreen');
 
 										// Status messages
+
 										if (state === State.DELETED || state === State.STOPPED) {
 											instance._status.hide();
 										}
@@ -748,12 +757,15 @@ AUI().use(
 										}
 
 										// Fullscreen hiding
+
 										if (state === State.DELETED || state === State.DELETING ||
-												state === State.STOPPED || state === State.STOPPING) {
+											state === State.STOPPED || state === State.STOPPING) {
+
 											instance._disableVideoFullScreen();
 										}
 
 										// Remote video hiding
+
 										if (state === State.DELETED || state === State.DELETING) {
 											instance._remoteVideoContainerNode.hide();
 										}
@@ -762,10 +774,12 @@ AUI().use(
 										}
 
 										// Local video
+
 										if (state === State.CALLING || state === State.CALLED ||
-												state === State.GOTCALL || state === State.ANSWERED ||
-												state === State.GOTANSWER || state === State.ACCEPTINGCALL ||
-												state === State.DENYINGCALL || state === State.CONNECTED) {
+											state === State.GOTCALL || state === State.ANSWERED ||
+											state === State.GOTANSWER || state === State.ACCEPTINGCALL ||
+											state === State.DENYINGCALL || state === State.CONNECTED) {
+
 											instance._showLocalVideo();
 										}
 										else {
@@ -773,12 +787,15 @@ AUI().use(
 										}
 
 										// Video call timer
+
 										if (state === State.DELETED || state === State.DELETING ||
-												state === State.STOPPED || state === State.STOPPING) {
+											state === State.STOPPED || state === State.STOPPING) {
+
 											instance._videoCallTimer.reset();
 										}
 
 										// Special handler for connected state
+
 										if (state === State.CONNECTED) {
 											instance._waitForRemoteStreamFlowing();
 										}
@@ -918,6 +935,7 @@ AUI().use(
 							var instance = this;
 
 							// Prevent showing control buttons if myself is not available for chat video
+
 							if (Liferay.Chat.VideoManager.isAvailable()) {
 								instance._ctrlButtonsContainerNode.show();
 							}
@@ -938,6 +956,7 @@ AUI().use(
 							var instance = this;
 
 							// Only allow this if we're connected
+
 							if (instance._webRtc.getState() === Liferay.Chat.WebRtcConversation.State.CONNECTED) {
 								Liferay.Chat.VideoManager.setOverlayVideoCallTime(instance._videoCallTimeStr);
 
@@ -1008,6 +1027,7 @@ AUI().use(
 							var userImagePath = Liferay.Chat.Util.getUserImagePath(instance._panelIcon);
 
 							// Custom HTML with integrated chat video elements
+
 							var html = A.Lang.sub(
 								TPL_CHAT_PANEL,
 								{
@@ -1063,7 +1083,9 @@ AUI().use(
 							var instance = this;
 
 							if (instance._webRtc.getState() === Liferay.Chat.WebRtcConversation.State.CONNECTED) {
+
 								// Wait for the remote stream to "flow"
+
 								if (!instance._webRtc.isRemoteStreamFlowing()) {
 									setTimeout(
 										function() {
