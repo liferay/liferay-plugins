@@ -1596,13 +1596,26 @@ Please find a solution that does not require portal-impl.jar.
 								module.dir="@{module.dir}"
 							/>
 
+							<var name="temp.deployed.plugin.dir" value="${tstamp.value}/${plugin.name}-${plugin.full.version}" />
+
+							<if>
+								<not>
+									<available file="${temp.deployed.plugin.dir}" />
+								</not>
+								<then>
+									<var name="temp.deployed.plugin.dir" value="${tstamp.value}/${plugin.name}" />
+								</then>
+							</if>
+
 							<zip destfile="${sdk.dir}/dist/${plugin.name}-${plugin.full.version}.war" update="true">
 								<zipfileset
-									dir="${tstamp.value}/${plugin.name}"
+									dir="${temp.deployed.plugin.dir}"
 									fullpath="WEB-INF/web.xml"
 									includes="WEB-INF/web.xml"
 								/>
 							</zip>
+
+							<var name="temp.deployed.plugin.dir" unset="true" />
 
 							<move file="${sdk.dir}/dist/${plugin.name}-${plugin.full.version}.war" tofile="${plugin.file}" />
 
