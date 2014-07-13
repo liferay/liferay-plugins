@@ -1607,13 +1607,21 @@ Please find a solution that does not require portal-impl.jar.
 								</then>
 							</if>
 
-							<zip destfile="${sdk.dir}/dist/${plugin.name}-${plugin.full.version}.war" update="true">
-								<zipfileset
-									dir="${temp.deployed.plugin.dir}"
-									fullpath="WEB-INF/web.xml"
-									includes="WEB-INF/web.xml"
-								/>
-							</zip>
+							<if>
+								<available file="${temp.deployed.plugin.dir}" />
+								<then>
+									<zip destfile="${sdk.dir}/dist/${plugin.name}-${plugin.full.version}.war" update="true">
+										<zipfileset
+											dir="${temp.deployed.plugin.dir}"
+											fullpath="WEB-INF/web.xml"
+											includes="WEB-INF/web.xml"
+										/>
+									</zip>
+								</then>
+								<else>
+									<echo>Unable to automatically update web.xml.</echo>
+								</else>
+							</if>
 
 							<var name="temp.deployed.plugin.dir" unset="true" />
 
