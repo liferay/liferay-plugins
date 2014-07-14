@@ -956,25 +956,6 @@ public class KBArticleClp extends BaseModelImpl<KBArticle> implements KBArticle 
 	}
 
 	@Override
-	public java.lang.String getAttachmentsDirName() {
-		try {
-			String methodName = "getAttachmentsDirName";
-
-			Class<?>[] parameterTypes = new Class<?>[] {  };
-
-			Object[] parameterValues = new Object[] {  };
-
-			java.lang.String returnObj = (java.lang.String)invokeOnRemoteModel(methodName,
-					parameterTypes, parameterValues);
-
-			return returnObj;
-		}
-		catch (Exception e) {
-			throw new UnsupportedOperationException(e);
-		}
-	}
-
-	@Override
 	public com.liferay.knowledgebase.model.KBArticle getParentKBArticle() {
 		try {
 			String methodName = "getParentKBArticle";
@@ -1022,25 +1003,6 @@ public class KBArticleClp extends BaseModelImpl<KBArticle> implements KBArticle 
 			Object[] parameterValues = new Object[] {  };
 
 			Boolean returnObj = (Boolean)invokeOnRemoteModel(methodName,
-					parameterTypes, parameterValues);
-
-			return returnObj;
-		}
-		catch (Exception e) {
-			throw new UnsupportedOperationException(e);
-		}
-	}
-
-	@Override
-	public java.lang.String[] getAttachmentsFileNames() {
-		try {
-			String methodName = "getAttachmentsFileNames";
-
-			Class<?>[] parameterTypes = new Class<?>[] {  };
-
-			Object[] parameterValues = new Object[] {  };
-
-			java.lang.String[] returnObj = (java.lang.String[])invokeOnRemoteModel(methodName,
 					parameterTypes, parameterValues);
 
 			return returnObj;
