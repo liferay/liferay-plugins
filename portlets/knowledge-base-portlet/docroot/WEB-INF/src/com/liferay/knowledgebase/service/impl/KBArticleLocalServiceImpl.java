@@ -19,6 +19,7 @@ import com.liferay.knowledgebase.KBArticlePriorityException;
 import com.liferay.knowledgebase.KBArticleTitleException;
 import com.liferay.knowledgebase.NoSuchArticleException;
 import com.liferay.knowledgebase.admin.importer.KBArticleImporter;
+import com.liferay.knowledgebase.admin.portlet.AdminPortlet;
 import com.liferay.knowledgebase.admin.social.AdminActivityKeys;
 import com.liferay.knowledgebase.admin.util.AdminSubscriptionSender;
 import com.liferay.knowledgebase.admin.util.AdminUtil;
@@ -107,22 +108,6 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 
 	@Override
 	public void addAttachment(
-			long userId, long resourcePrimKey, String fileName,
-			InputStream inputStream, String mimeType)
-		throws PortalException, SystemException {
-
-		KBArticle kbArticle = KBArticleLocalServiceUtil.getLatestKBArticle(
-			resourcePrimKey, WorkflowConstants.STATUS_ANY);
-
-		PortletFileRepositoryUtil.addPortletFileEntry(
-			kbArticle.getGroupId(), userId, KBArticle.class.getName(),
-			kbArticle.getClassPK(), PortletKeys.KNOWLEDGE_BASE_ARTICLE,
-			kbArticle.getAttachmentsFolderId(), inputStream, fileName, mimeType,
-			false);
-	}
-
-	@Override
-	public void addAttachment(
 			String dirName, String shortFileName, InputStream inputStream,
 			ServiceContext serviceContext)
 		throws PortalException, SystemException {
@@ -153,7 +138,8 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 	public KBArticle addKBArticle(
 			long userId, long parentResourcePrimKey, String title,
 			String urlTitle, String content, String description,
-			String[] sections, String dirName, ServiceContext serviceContext)
+			String[] sections, String dirName, String[] selectedFileNames,
+			ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
 		// KB article
@@ -225,6 +211,8 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		// Attachments
 
 		addKBArticleAttachments(userId, kbArticle, dirName, serviceContext);
+
+		addKBArticleAttachments(userId, kbArticle, selectedFileNames);
 
 		// Workflow
 
@@ -1022,7 +1010,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 	public KBArticle updateKBArticle(
 			long userId, long resourcePrimKey, String title, String content,
 			String description, String[] sections, String dirName,
-			ServiceContext serviceContext)
+			String[] selectedFileNames, ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
 		// KB article
@@ -1108,6 +1096,8 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 
 		updateKBArticleAttachments(
 			userId, kbArticle, oldVersion, dirName, serviceContext);
+
+		addKBArticleAttachments(userId, kbArticle, selectedFileNames);
 
 		// Workflow
 
@@ -1330,6 +1320,46 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		kbArticlePersistence.update(kbArticle);
 	}
 
+	protected void addAttachment(
+			long userId, long resourcePrimKey, String fileName,
+			InputStream inputStream, String mimeType)
+		throws PortalException, SystemException {
+
+		KBArticle kbArticle = KBArticleLocalServiceUtil.getLatestKBArticle(
+			resourcePrimKey, WorkflowConstants.STATUS_ANY);
+
+		PortletFileRepositoryUtil.addPortletFileEntry(
+			kbArticle.getGroupId(), userId, KBArticle.class.getName(),
+			kbArticle.getClassPK(), PortletKeys.KNOWLEDGE_BASE_ARTICLE,
+			kbArticle.getAttachmentsFolderId(), inputStream, fileName, mimeType,
+			false);
+	}
+
+	protected void addKBArticleAttachment(
+			long userId, long groupId, long resourcePrimKey,
+			String selectedFileName)
+		throws PortalException, SystemException {
+
+		FileEntry tempFileEntry = null;
+
+		try {
+			tempFileEntry = TempFileUtil.getTempFile(
+				groupId, userId, selectedFileName, _TEMP_FOLDER_NAME);
+
+			InputStream inputStream = tempFileEntry.getContentStream();
+			String mimeType = tempFileEntry.getMimeType();
+
+			addAttachment(
+				userId, resourcePrimKey, selectedFileName, inputStream,
+				mimeType);
+		}
+		finally {
+			if (tempFileEntry != null) {
+				TempFileUtil.deleteTempFile(tempFileEntry.getFileEntryId());
+			}
+		}
+	}
+
 	protected void addKBArticleAttachments(
 			long userId, KBArticle kbArticle, String dirName,
 			ServiceContext serviceContext)
@@ -1396,6 +1426,21 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 
 		if (ticket != null) {
 			ticketLocalService.deleteTicket(ticket);
+		}
+	}
+
+	protected void addKBArticleAttachments(
+			long userId, KBArticle kbArticle, String[] selectedFileNames)
+		throws PortalException, SystemException {
+
+		if (ArrayUtil.isEmpty(selectedFileNames)) {
+			return;
+		}
+
+		for (String selectedFileName : selectedFileNames) {
+			addKBArticleAttachment(
+				userId, kbArticle.getGroupId(), kbArticle.getResourcePrimKey(),
+				selectedFileName);
 		}
 	}
 
@@ -2074,6 +2119,9 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 
 	private static final String _TEMP_DIR_NAME_PREFIX =
 		"knowledgebase/temp/attachments";
+
+	private static final String _TEMP_FOLDER_NAME =
+		AdminPortlet.class.getName();
 
 	private static final long _TICKET_EXPIRATION = Time.HOUR;
 
