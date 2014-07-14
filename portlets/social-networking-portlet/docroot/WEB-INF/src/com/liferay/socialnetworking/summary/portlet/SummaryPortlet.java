@@ -114,47 +114,46 @@ public class SummaryPortlet extends MVCPortlet {
 		if (group.getType() == GroupConstants.TYPE_SITE_OPEN) {
 			UserLocalServiceUtil.addGroupUsers(
 				group.getGroupId(), new long[] {themeDisplay.getUserId()});
+
+			return;
 		}
-		else {
-			Role siteAdminRole = RoleLocalServiceUtil.getRole(
-				themeDisplay.getCompanyId(), RoleConstants.SITE_ADMINISTRATOR);
 
-			LinkedHashMap<String, Object> userParams =
-				new LinkedHashMap<String, Object>();
+		Role siteAdminRole = RoleLocalServiceUtil.getRole(
+			themeDisplay.getCompanyId(), RoleConstants.SITE_ADMINISTRATOR);
 
-			userParams.put(
-				"userGroupRole",
-				new Long[] {group.getGroupId(), siteAdminRole.getRoleId()});
+		LinkedHashMap<String, Object> userParams =
+			new LinkedHashMap<String, Object>();
 
-			List<User> users = UserLocalServiceUtil.search(
+		userParams.put(
+			"userGroupRole",
+			new Long[] {group.getGroupId(), siteAdminRole.getRoleId()});
+
+		List<User> users = UserLocalServiceUtil.search(
+			themeDisplay.getCompanyId(), null,
+			WorkflowConstants.STATUS_APPROVED, userParams, QueryUtil.ALL_POS,
+			QueryUtil.ALL_POS, (OrderByComparator)null);
+
+		if (users.isEmpty()) {
+			Role adminRole = RoleLocalServiceUtil.getRole(
+				themeDisplay.getCompanyId(), RoleConstants.ADMINISTRATOR);
+
+			userParams.clear();
+
+			userParams.put("usersRoles", adminRole.getRoleId());
+
+			users = UserLocalServiceUtil.search(
 				themeDisplay.getCompanyId(), null,
 				WorkflowConstants.STATUS_APPROVED, userParams,
 				QueryUtil.ALL_POS, QueryUtil.ALL_POS, (OrderByComparator)null);
+		}
 
-			if (users.isEmpty()) {
-				Role adminRole = RoleLocalServiceUtil.getRole(
-					themeDisplay.getCompanyId(), RoleConstants.ADMINISTRATOR);
+		JSONObject extraDataJSONObject = getExtraDataJSONObject(actionRequest);
 
-				userParams.clear();
-
-				userParams.put("usersRoles", adminRole.getRoleId());
-
-				users = UserLocalServiceUtil.search(
-					themeDisplay.getCompanyId(), null,
-					WorkflowConstants.STATUS_APPROVED, userParams,
-					QueryUtil.ALL_POS, QueryUtil.ALL_POS,
-					(OrderByComparator)null);
-			}
-
-			JSONObject extraDataJSONObject = getExtraDataJSONObject(
-				actionRequest);
-
-			for (User user : users) {
-				SocialRequestLocalServiceUtil.addRequest(
-					themeDisplay.getUserId(), 0, Group.class.getName(),
-					group.getGroupId(), MembersRequestKeys.ADD_MEMBER,
-					extraDataJSONObject.toString(), user.getUserId());
-			}
+		for (User user : users) {
+			SocialRequestLocalServiceUtil.addRequest(
+				themeDisplay.getUserId(), 0, Group.class.getName(),
+				group.getGroupId(), MembersRequestKeys.ADD_MEMBER,
+				extraDataJSONObject.toString(), user.getUserId());
 		}
 	}
 
