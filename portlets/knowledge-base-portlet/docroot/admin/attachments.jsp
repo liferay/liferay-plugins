@@ -51,25 +51,6 @@ if (kbArticle != null) {
 	}
 	%>
 
-	<liferay-portlet:renderURL var="selectAttachmentsURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
-		<portlet:param name="mvcPath" value='<%= templatePath + "select_attachments.jsp" %>' />
-		<portlet:param name="resourcePrimKey" value="<%= String.valueOf(resourcePrimKey) %>" />
-		<portlet:param name="status" value="<%= String.valueOf(WorkflowConstants.STATUS_ANY) %>" />
-	</liferay-portlet:renderURL>
-
-	<liferay-portlet:actionURL name="updateAttachments" var="updateAttachmentsURL">
-		<portlet:param name="redirect" value="<%= selectAttachmentsURL %>" />
-		<portlet:param name="resourcePrimKey" value="<%= String.valueOf(resourcePrimKey) %>" />
-	</liferay-portlet:actionURL>
-
-	<%
-	String taglibOnClick = "var selectAttachmentsWindow = window.open('" + updateAttachmentsURL + "&" + renderResponse.getNamespace() + "dirName=' + document." + renderResponse.getNamespace() + "fm." + renderResponse.getNamespace() + "dirName.value, 'selectAttachments', 'directories=no,height=640,location=no,menubar=no,resizable=yes,scrollbars=yes,status=no,toolbar=no,width=680'); void(''); selectAttachmentsWindow.focus();";
-	%>
-
-	<div class="kb-edit-link">
-		<aui:a href="javascript:;" onClick="<%= taglibOnClick %>"><liferay-ui:message key='<%= (!attachmentsFileEntries.isEmpty()) ? "attachments" : "add-attachments" %>' /> &raquo;</aui:a>
-	</div>
-
 	<div class="lfr-dynamic-uploader">
 		<div class="lfr-upload-container" id="<portlet:namespace />fileUpload"></div>
 	</div>
