@@ -221,19 +221,6 @@ public abstract class KBTemplateLocalServiceBaseImpl
 	}
 
 	/**
-	 * Returns the k b template with the matching UUID and company.
-	 *
-	 * @param uuid the k b template's UUID
-	 * @param  companyId the primary key of the company
-	 * @return the matching k b template, or <code>null</code> if a matching k b template could not be found
-	 */
-	@Override
-	public KBTemplate fetchKBTemplateByUuidAndCompanyId(String uuid,
-		long companyId) {
-		return kbTemplatePersistence.fetchByUuid_C_First(uuid, companyId, null);
-	}
-
-	/**
 	 * Returns the k b template matching the UUID and group.
 	 *
 	 * @param uuid the k b template's UUID
@@ -350,18 +337,18 @@ public abstract class KBTemplateLocalServiceBaseImpl
 		return kbTemplatePersistence.findByPrimaryKey(primaryKeyObj);
 	}
 
-	/**
-	 * Returns the k b template with the matching UUID and company.
-	 *
-	 * @param uuid the k b template's UUID
-	 * @param  companyId the primary key of the company
-	 * @return the matching k b template
-	 * @throws PortalException if a matching k b template could not be found
-	 */
 	@Override
-	public KBTemplate getKBTemplateByUuidAndCompanyId(String uuid,
-		long companyId) throws PortalException {
-		return kbTemplatePersistence.findByUuid_C_First(uuid, companyId, null);
+	public List<KBTemplate> getKBTemplatesByUuidAndCompanyId(String uuid,
+		long companyId) {
+		return kbTemplatePersistence.findByUuid_C(uuid, companyId);
+	}
+
+	@Override
+	public List<KBTemplate> getKBTemplatesByUuidAndCompanyId(String uuid,
+		long companyId, int start, int end,
+		OrderByComparator<KBTemplate> orderByComparator) {
+		return kbTemplatePersistence.findByUuid_C(uuid, companyId, start, end,
+			orderByComparator);
 	}
 
 	/**

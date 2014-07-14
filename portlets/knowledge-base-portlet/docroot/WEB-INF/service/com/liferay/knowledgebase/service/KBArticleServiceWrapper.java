@@ -30,25 +30,15 @@ public class KBArticleServiceWrapper implements KBArticleService,
 	}
 
 	@Override
-	public void addAttachment(java.lang.String portletId, long resourcePrimKey,
-		java.lang.String dirName, java.lang.String shortFileName,
-		java.io.InputStream inputStream,
-		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		_kbArticleService.addAttachment(portletId, resourcePrimKey, dirName,
-			shortFileName, inputStream, serviceContext);
-	}
-
-	@Override
 	public com.liferay.knowledgebase.model.KBArticle addKBArticle(
 		java.lang.String portletId, long parentResourcePrimKey,
 		java.lang.String title, java.lang.String urlTitle,
 		java.lang.String content, java.lang.String description,
-		java.lang.String[] sections, java.lang.String dirName,
+		java.lang.String[] sections, java.lang.String[] selectedFileNames,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _kbArticleService.addKBArticle(portletId, parentResourcePrimKey,
-			title, urlTitle, content, description, sections, dirName,
+			title, urlTitle, content, description, sections, selectedFileNames,
 			serviceContext);
 	}
 
@@ -62,12 +52,12 @@ public class KBArticleServiceWrapper implements KBArticleService,
 	}
 
 	@Override
-	public void deleteAttachment(long companyId, long groupId,
-		java.lang.String portletId, long resourcePrimKey,
-		java.lang.String fileName)
+	public void addTempAttachment(long groupId, long resourcePrimKey,
+		java.lang.String fileName, java.lang.String tempFolderName,
+		java.io.InputStream inputStream, java.lang.String mimeType)
 		throws com.liferay.portal.kernel.exception.PortalException {
-		_kbArticleService.deleteAttachment(companyId, groupId, portletId,
-			resourcePrimKey, fileName);
+		_kbArticleService.addTempAttachment(groupId, resourcePrimKey, fileName,
+			tempFolderName, inputStream, mimeType);
 	}
 
 	@Override
@@ -84,12 +74,11 @@ public class KBArticleServiceWrapper implements KBArticleService,
 	}
 
 	@Override
-	public java.io.File getAttachment(long companyId, long groupId,
-		java.lang.String portletId, long resourcePrimKey,
-		java.lang.String fileName)
+	public void deleteTempAttachment(long groupId, long resourcePrimKey,
+		java.lang.String fileName, java.lang.String tempFolderName)
 		throws com.liferay.portal.kernel.exception.PortalException {
-		return _kbArticleService.getAttachment(companyId, groupId, portletId,
-			resourcePrimKey, fileName);
+		_kbArticleService.deleteTempAttachment(groupId, resourcePrimKey,
+			fileName, tempFolderName);
 	}
 
 	/**
@@ -277,6 +266,13 @@ public class KBArticleServiceWrapper implements KBArticleService,
 	}
 
 	@Override
+	public java.lang.String[] getTempAttachmentNames(long groupId,
+		java.lang.String tempFolderName)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _kbArticleService.getTempAttachmentNames(groupId, tempFolderName);
+	}
+
+	@Override
 	public java.lang.Object invokeMethod(java.lang.String name,
 		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
 		throws java.lang.Throwable {
@@ -328,23 +324,15 @@ public class KBArticleServiceWrapper implements KBArticleService,
 	}
 
 	@Override
-	public java.lang.String updateAttachments(java.lang.String portletId,
-		long resourcePrimKey, java.lang.String dirName,
-		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _kbArticleService.updateAttachments(portletId, resourcePrimKey,
-			dirName, serviceContext);
-	}
-
-	@Override
 	public com.liferay.knowledgebase.model.KBArticle updateKBArticle(
 		long resourcePrimKey, java.lang.String title, java.lang.String content,
 		java.lang.String description, java.lang.String[] sections,
-		java.lang.String dirName,
+		java.lang.String[] selectedFileNames, long[] removeFileEntryIds,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _kbArticleService.updateKBArticle(resourcePrimKey, title,
-			content, description, sections, dirName, serviceContext);
+			content, description, sections, selectedFileNames,
+			removeFileEntryIds, serviceContext);
 	}
 
 	@Override

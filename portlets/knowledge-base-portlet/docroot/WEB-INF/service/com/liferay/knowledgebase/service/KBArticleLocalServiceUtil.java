@@ -38,13 +38,6 @@ public class KBArticleLocalServiceUtil {
 	 *
 	 * Never modify this class directly. Add custom service methods to {@link com.liferay.knowledgebase.service.impl.KBArticleLocalServiceImpl} and rerun ServiceBuilder to regenerate this class.
 	 */
-	public static void addAttachment(java.lang.String dirName,
-		java.lang.String shortFileName, java.io.InputStream inputStream,
-		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		getService()
-			.addAttachment(dirName, shortFileName, inputStream, serviceContext);
-	}
 
 	/**
 	* Adds the k b article to the database. Also notifies the appropriate model listeners.
@@ -61,12 +54,13 @@ public class KBArticleLocalServiceUtil {
 		long userId, long parentResourcePrimKey, java.lang.String title,
 		java.lang.String urlTitle, java.lang.String content,
 		java.lang.String description, java.lang.String[] sections,
-		java.lang.String dirName,
+		java.lang.String[] selectedFileNames,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService()
 				   .addKBArticle(userId, parentResourcePrimKey, title,
-			urlTitle, content, description, sections, dirName, serviceContext);
+			urlTitle, content, description, sections, selectedFileNames,
+			serviceContext);
 	}
 
 	public static void addKBArticleResources(
@@ -111,9 +105,13 @@ public class KBArticleLocalServiceUtil {
 			serviceContext);
 	}
 
-	public static void checkAttachments()
+	public static void addTempAttachment(long groupId, long userId,
+		java.lang.String fileName, java.lang.String tempFolderName,
+		java.io.InputStream inputStream, java.lang.String mimeType)
 		throws com.liferay.portal.kernel.exception.PortalException {
-		getService().checkAttachments();
+		getService()
+			.addTempAttachment(groupId, userId, fileName, tempFolderName,
+			inputStream, mimeType);
 	}
 
 	/**
@@ -125,12 +123,6 @@ public class KBArticleLocalServiceUtil {
 	public static com.liferay.knowledgebase.model.KBArticle createKBArticle(
 		long kbArticleId) {
 		return getService().createKBArticle(kbArticleId);
-	}
-
-	public static void deleteAttachment(long companyId,
-		java.lang.String fileName)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		getService().deleteAttachment(companyId, fileName);
 	}
 
 	public static void deleteGroupKBArticles(long groupId)
@@ -176,6 +168,13 @@ public class KBArticleLocalServiceUtil {
 		com.liferay.portal.model.PersistedModel persistedModel)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().deletePersistedModel(persistedModel);
+	}
+
+	public static void deleteTempAttachment(long groupId, long userId,
+		java.lang.String fileName, java.lang.String tempFolderName)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		getService()
+			.deleteTempAttachment(groupId, userId, fileName, tempFolderName);
 	}
 
 	public static com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
@@ -267,18 +266,6 @@ public class KBArticleLocalServiceUtil {
 	}
 
 	/**
-	* Returns the k b article with the matching UUID and company.
-	*
-	* @param uuid the k b article's UUID
-	* @param companyId the primary key of the company
-	* @return the matching k b article, or <code>null</code> if a matching k b article could not be found
-	*/
-	public static com.liferay.knowledgebase.model.KBArticle fetchKBArticleByUuidAndCompanyId(
-		java.lang.String uuid, long companyId) {
-		return getService().fetchKBArticleByUuidAndCompanyId(uuid, companyId);
-	}
-
-	/**
 	* Returns the k b article matching the UUID and group.
 	*
 	* @param uuid the k b article's UUID
@@ -311,12 +298,6 @@ public class KBArticleLocalServiceUtil {
 		return getService()
 				   .getAllDescendantKBArticles(resourcePrimKey, status,
 			orderByComparator);
-	}
-
-	public static java.io.File getAttachment(long companyId,
-		java.lang.String fileName)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().getAttachment(companyId, fileName);
 	}
 
 	/**
@@ -404,20 +385,6 @@ public class KBArticleLocalServiceUtil {
 	}
 
 	/**
-	* Returns the k b article with the matching UUID and company.
-	*
-	* @param uuid the k b article's UUID
-	* @param companyId the primary key of the company
-	* @return the matching k b article
-	* @throws PortalException if a matching k b article could not be found
-	*/
-	public static com.liferay.knowledgebase.model.KBArticle getKBArticleByUuidAndCompanyId(
-		java.lang.String uuid, long companyId)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().getKBArticleByUuidAndCompanyId(uuid, companyId);
-	}
-
-	/**
 	* Returns the k b article matching the UUID and group.
 	*
 	* @param uuid the k b article's UUID
@@ -473,6 +440,19 @@ public class KBArticleLocalServiceUtil {
 	public static java.util.List<com.liferay.knowledgebase.model.KBArticle> getKBArticles(
 		int start, int end) {
 		return getService().getKBArticles(start, end);
+	}
+
+	public static java.util.List<com.liferay.knowledgebase.model.KBArticle> getKBArticlesByUuidAndCompanyId(
+		java.lang.String uuid, long companyId) {
+		return getService().getKBArticlesByUuidAndCompanyId(uuid, companyId);
+	}
+
+	public static java.util.List<com.liferay.knowledgebase.model.KBArticle> getKBArticlesByUuidAndCompanyId(
+		java.lang.String uuid, long companyId, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBArticle> orderByComparator) {
+		return getService()
+				   .getKBArticlesByUuidAndCompanyId(uuid, companyId, start,
+			end, orderByComparator);
 	}
 
 	/**
@@ -554,6 +534,13 @@ public class KBArticleLocalServiceUtil {
 			status);
 	}
 
+	public static java.lang.String[] getTempAttachmentNames(long groupId,
+		long userId, java.lang.String tempFolderName)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService()
+				   .getTempAttachmentNames(groupId, userId, tempFolderName);
+	}
+
 	public static java.lang.Object invokeMethod(java.lang.String name,
 		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
 		throws java.lang.Throwable {
@@ -608,14 +595,6 @@ public class KBArticleLocalServiceUtil {
 		getService().unsubscribeKBArticle(userId, resourcePrimKey);
 	}
 
-	public static java.lang.String updateAttachments(long resourcePrimKey,
-		java.lang.String dirName,
-		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService()
-				   .updateAttachments(resourcePrimKey, dirName, serviceContext);
-	}
-
 	/**
 	* Updates the k b article in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
 	*
@@ -630,12 +609,14 @@ public class KBArticleLocalServiceUtil {
 	public static com.liferay.knowledgebase.model.KBArticle updateKBArticle(
 		long userId, long resourcePrimKey, java.lang.String title,
 		java.lang.String content, java.lang.String description,
-		java.lang.String[] sections, java.lang.String dirName,
+		java.lang.String[] sections, java.lang.String[] selectedFileNames,
+		long[] removeFileEntryIds,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService()
 				   .updateKBArticle(userId, resourcePrimKey, title, content,
-			description, sections, dirName, serviceContext);
+			description, sections, selectedFileNames, removeFileEntryIds,
+			serviceContext);
 	}
 
 	public static void updateKBArticleAsset(long userId,

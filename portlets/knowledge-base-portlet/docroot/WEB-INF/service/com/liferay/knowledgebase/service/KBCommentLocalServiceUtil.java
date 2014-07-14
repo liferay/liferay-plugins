@@ -195,18 +195,6 @@ public class KBCommentLocalServiceUtil {
 	}
 
 	/**
-	* Returns the k b comment with the matching UUID and company.
-	*
-	* @param uuid the k b comment's UUID
-	* @param companyId the primary key of the company
-	* @return the matching k b comment, or <code>null</code> if a matching k b comment could not be found
-	*/
-	public static com.liferay.knowledgebase.model.KBComment fetchKBCommentByUuidAndCompanyId(
-		java.lang.String uuid, long companyId) {
-		return getService().fetchKBCommentByUuidAndCompanyId(uuid, companyId);
-	}
-
-	/**
 	* Returns the k b comment matching the UUID and group.
 	*
 	* @param uuid the k b comment's UUID
@@ -256,20 +244,6 @@ public class KBCommentLocalServiceUtil {
 	}
 
 	/**
-	* Returns the k b comment with the matching UUID and company.
-	*
-	* @param uuid the k b comment's UUID
-	* @param companyId the primary key of the company
-	* @return the matching k b comment
-	* @throws PortalException if a matching k b comment could not be found
-	*/
-	public static com.liferay.knowledgebase.model.KBComment getKBCommentByUuidAndCompanyId(
-		java.lang.String uuid, long companyId)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().getKBCommentByUuidAndCompanyId(uuid, companyId);
-	}
-
-	/**
 	* Returns the k b comment matching the UUID and group.
 	*
 	* @param uuid the k b comment's UUID
@@ -305,6 +279,19 @@ public class KBCommentLocalServiceUtil {
 	public static java.util.List<com.liferay.knowledgebase.model.KBComment> getKBComments(
 		int start, int end) {
 		return getService().getKBComments(start, end);
+	}
+
+	public static java.util.List<com.liferay.knowledgebase.model.KBComment> getKBCommentsByUuidAndCompanyId(
+		java.lang.String uuid, long companyId) {
+		return getService().getKBCommentsByUuidAndCompanyId(uuid, companyId);
+	}
+
+	public static java.util.List<com.liferay.knowledgebase.model.KBComment> getKBCommentsByUuidAndCompanyId(
+		java.lang.String uuid, long companyId, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBComment> orderByComparator) {
+		return getService()
+				   .getKBCommentsByUuidAndCompanyId(uuid, companyId, start,
+			end, orderByComparator);
 	}
 
 	/**

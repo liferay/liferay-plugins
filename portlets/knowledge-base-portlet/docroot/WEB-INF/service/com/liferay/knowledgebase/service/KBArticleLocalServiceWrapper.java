@@ -30,15 +30,6 @@ public class KBArticleLocalServiceWrapper implements KBArticleLocalService,
 		_kbArticleLocalService = kbArticleLocalService;
 	}
 
-	@Override
-	public void addAttachment(java.lang.String dirName,
-		java.lang.String shortFileName, java.io.InputStream inputStream,
-		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		_kbArticleLocalService.addAttachment(dirName, shortFileName,
-			inputStream, serviceContext);
-	}
-
 	/**
 	* Adds the k b article to the database. Also notifies the appropriate model listeners.
 	*
@@ -56,12 +47,12 @@ public class KBArticleLocalServiceWrapper implements KBArticleLocalService,
 		long parentResourcePrimKey, java.lang.String title,
 		java.lang.String urlTitle, java.lang.String content,
 		java.lang.String description, java.lang.String[] sections,
-		java.lang.String dirName,
+		java.lang.String[] selectedFileNames,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _kbArticleLocalService.addKBArticle(userId,
 			parentResourcePrimKey, title, urlTitle, content, description,
-			sections, dirName, serviceContext);
+			sections, selectedFileNames, serviceContext);
 	}
 
 	@Override
@@ -108,9 +99,12 @@ public class KBArticleLocalServiceWrapper implements KBArticleLocalService,
 	}
 
 	@Override
-	public void checkAttachments()
+	public void addTempAttachment(long groupId, long userId,
+		java.lang.String fileName, java.lang.String tempFolderName,
+		java.io.InputStream inputStream, java.lang.String mimeType)
 		throws com.liferay.portal.kernel.exception.PortalException {
-		_kbArticleLocalService.checkAttachments();
+		_kbArticleLocalService.addTempAttachment(groupId, userId, fileName,
+			tempFolderName, inputStream, mimeType);
 	}
 
 	/**
@@ -123,12 +117,6 @@ public class KBArticleLocalServiceWrapper implements KBArticleLocalService,
 	public com.liferay.knowledgebase.model.KBArticle createKBArticle(
 		long kbArticleId) {
 		return _kbArticleLocalService.createKBArticle(kbArticleId);
-	}
-
-	@Override
-	public void deleteAttachment(long companyId, java.lang.String fileName)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		_kbArticleLocalService.deleteAttachment(companyId, fileName);
 	}
 
 	@Override
@@ -179,6 +167,14 @@ public class KBArticleLocalServiceWrapper implements KBArticleLocalService,
 		com.liferay.portal.model.PersistedModel persistedModel)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _kbArticleLocalService.deletePersistedModel(persistedModel);
+	}
+
+	@Override
+	public void deleteTempAttachment(long groupId, long userId,
+		java.lang.String fileName, java.lang.String tempFolderName)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		_kbArticleLocalService.deleteTempAttachment(groupId, userId, fileName,
+			tempFolderName);
 	}
 
 	@Override
@@ -278,20 +274,6 @@ public class KBArticleLocalServiceWrapper implements KBArticleLocalService,
 	}
 
 	/**
-	* Returns the k b article with the matching UUID and company.
-	*
-	* @param uuid the k b article's UUID
-	* @param companyId the primary key of the company
-	* @return the matching k b article, or <code>null</code> if a matching k b article could not be found
-	*/
-	@Override
-	public com.liferay.knowledgebase.model.KBArticle fetchKBArticleByUuidAndCompanyId(
-		java.lang.String uuid, long companyId) {
-		return _kbArticleLocalService.fetchKBArticleByUuidAndCompanyId(uuid,
-			companyId);
-	}
-
-	/**
 	* Returns the k b article matching the UUID and group.
 	*
 	* @param uuid the k b article's UUID
@@ -330,12 +312,6 @@ public class KBArticleLocalServiceWrapper implements KBArticleLocalService,
 		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBArticle> orderByComparator) {
 		return _kbArticleLocalService.getAllDescendantKBArticles(resourcePrimKey,
 			status, orderByComparator);
-	}
-
-	@Override
-	public java.io.File getAttachment(long companyId, java.lang.String fileName)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _kbArticleLocalService.getAttachment(companyId, fileName);
 	}
 
 	/**
@@ -431,22 +407,6 @@ public class KBArticleLocalServiceWrapper implements KBArticleLocalService,
 	}
 
 	/**
-	* Returns the k b article with the matching UUID and company.
-	*
-	* @param uuid the k b article's UUID
-	* @param companyId the primary key of the company
-	* @return the matching k b article
-	* @throws PortalException if a matching k b article could not be found
-	*/
-	@Override
-	public com.liferay.knowledgebase.model.KBArticle getKBArticleByUuidAndCompanyId(
-		java.lang.String uuid, long companyId)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _kbArticleLocalService.getKBArticleByUuidAndCompanyId(uuid,
-			companyId);
-	}
-
-	/**
 	* Returns the k b article matching the UUID and group.
 	*
 	* @param uuid the k b article's UUID
@@ -507,6 +467,21 @@ public class KBArticleLocalServiceWrapper implements KBArticleLocalService,
 	public java.util.List<com.liferay.knowledgebase.model.KBArticle> getKBArticles(
 		int start, int end) {
 		return _kbArticleLocalService.getKBArticles(start, end);
+	}
+
+	@Override
+	public java.util.List<com.liferay.knowledgebase.model.KBArticle> getKBArticlesByUuidAndCompanyId(
+		java.lang.String uuid, long companyId) {
+		return _kbArticleLocalService.getKBArticlesByUuidAndCompanyId(uuid,
+			companyId);
+	}
+
+	@Override
+	public java.util.List<com.liferay.knowledgebase.model.KBArticle> getKBArticlesByUuidAndCompanyId(
+		java.lang.String uuid, long companyId, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBArticle> orderByComparator) {
+		return _kbArticleLocalService.getKBArticlesByUuidAndCompanyId(uuid,
+			companyId, start, end, orderByComparator);
 	}
 
 	/**
@@ -597,6 +572,14 @@ public class KBArticleLocalServiceWrapper implements KBArticleLocalService,
 	}
 
 	@Override
+	public java.lang.String[] getTempAttachmentNames(long groupId, long userId,
+		java.lang.String tempFolderName)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _kbArticleLocalService.getTempAttachmentNames(groupId, userId,
+			tempFolderName);
+	}
+
+	@Override
 	public java.lang.Object invokeMethod(java.lang.String name,
 		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
 		throws java.lang.Throwable {
@@ -658,15 +641,6 @@ public class KBArticleLocalServiceWrapper implements KBArticleLocalService,
 		_kbArticleLocalService.unsubscribeKBArticle(userId, resourcePrimKey);
 	}
 
-	@Override
-	public java.lang.String updateAttachments(long resourcePrimKey,
-		java.lang.String dirName,
-		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _kbArticleLocalService.updateAttachments(resourcePrimKey,
-			dirName, serviceContext);
-	}
-
 	/**
 	* Updates the k b article in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
 	*
@@ -683,11 +657,13 @@ public class KBArticleLocalServiceWrapper implements KBArticleLocalService,
 	public com.liferay.knowledgebase.model.KBArticle updateKBArticle(
 		long userId, long resourcePrimKey, java.lang.String title,
 		java.lang.String content, java.lang.String description,
-		java.lang.String[] sections, java.lang.String dirName,
+		java.lang.String[] sections, java.lang.String[] selectedFileNames,
+		long[] removeFileEntryIds,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _kbArticleLocalService.updateKBArticle(userId, resourcePrimKey,
-			title, content, description, sections, dirName, serviceContext);
+			title, content, description, sections, selectedFileNames,
+			removeFileEntryIds, serviceContext);
 	}
 
 	@Override

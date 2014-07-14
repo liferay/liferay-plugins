@@ -234,19 +234,6 @@ public abstract class KBArticleLocalServiceBaseImpl extends BaseLocalServiceImpl
 	}
 
 	/**
-	 * Returns the k b article with the matching UUID and company.
-	 *
-	 * @param uuid the k b article's UUID
-	 * @param  companyId the primary key of the company
-	 * @return the matching k b article, or <code>null</code> if a matching k b article could not be found
-	 */
-	@Override
-	public KBArticle fetchKBArticleByUuidAndCompanyId(String uuid,
-		long companyId) {
-		return kbArticlePersistence.fetchByUuid_C_First(uuid, companyId, null);
-	}
-
-	/**
 	 * Returns the k b article matching the UUID and group.
 	 *
 	 * @param uuid the k b article's UUID
@@ -376,18 +363,18 @@ public abstract class KBArticleLocalServiceBaseImpl extends BaseLocalServiceImpl
 		return kbArticlePersistence.findByPrimaryKey(primaryKeyObj);
 	}
 
-	/**
-	 * Returns the k b article with the matching UUID and company.
-	 *
-	 * @param uuid the k b article's UUID
-	 * @param  companyId the primary key of the company
-	 * @return the matching k b article
-	 * @throws PortalException if a matching k b article could not be found
-	 */
 	@Override
-	public KBArticle getKBArticleByUuidAndCompanyId(String uuid, long companyId)
-		throws PortalException {
-		return kbArticlePersistence.findByUuid_C_First(uuid, companyId, null);
+	public List<KBArticle> getKBArticlesByUuidAndCompanyId(String uuid,
+		long companyId) {
+		return kbArticlePersistence.findByUuid_C(uuid, companyId);
+	}
+
+	@Override
+	public List<KBArticle> getKBArticlesByUuidAndCompanyId(String uuid,
+		long companyId, int start, int end,
+		OrderByComparator<KBArticle> orderByComparator) {
+		return kbArticlePersistence.findByUuid_C(uuid, companyId, start, end,
+			orderByComparator);
 	}
 
 	/**

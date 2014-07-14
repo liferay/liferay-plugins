@@ -34,12 +34,7 @@ public interface KBArticle extends KBArticleModel, PersistedModel {
 	public java.util.List<java.lang.Long> getAncestorResourcePrimaryKeys()
 		throws com.liferay.portal.kernel.exception.PortalException;
 
-	public java.lang.String getAttachmentsDirName();
-
 	public java.util.List<com.liferay.portal.kernel.repository.model.FileEntry> getAttachmentsFileEntries()
-		throws com.liferay.portal.kernel.exception.PortalException;
-
-	public java.lang.String[] getAttachmentsFileNames()
 		throws com.liferay.portal.kernel.exception.PortalException;
 
 	public long getAttachmentsFolderId()

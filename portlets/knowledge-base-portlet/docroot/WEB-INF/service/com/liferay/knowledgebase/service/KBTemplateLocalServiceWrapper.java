@@ -205,20 +205,6 @@ public class KBTemplateLocalServiceWrapper implements KBTemplateLocalService,
 	}
 
 	/**
-	* Returns the k b template with the matching UUID and company.
-	*
-	* @param uuid the k b template's UUID
-	* @param companyId the primary key of the company
-	* @return the matching k b template, or <code>null</code> if a matching k b template could not be found
-	*/
-	@Override
-	public com.liferay.knowledgebase.model.KBTemplate fetchKBTemplateByUuidAndCompanyId(
-		java.lang.String uuid, long companyId) {
-		return _kbTemplateLocalService.fetchKBTemplateByUuidAndCompanyId(uuid,
-			companyId);
-	}
-
-	/**
 	* Returns the k b template matching the UUID and group.
 	*
 	* @param uuid the k b template's UUID
@@ -281,22 +267,6 @@ public class KBTemplateLocalServiceWrapper implements KBTemplateLocalService,
 	}
 
 	/**
-	* Returns the k b template with the matching UUID and company.
-	*
-	* @param uuid the k b template's UUID
-	* @param companyId the primary key of the company
-	* @return the matching k b template
-	* @throws PortalException if a matching k b template could not be found
-	*/
-	@Override
-	public com.liferay.knowledgebase.model.KBTemplate getKBTemplateByUuidAndCompanyId(
-		java.lang.String uuid, long companyId)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _kbTemplateLocalService.getKBTemplateByUuidAndCompanyId(uuid,
-			companyId);
-	}
-
-	/**
 	* Returns the k b template matching the UUID and group.
 	*
 	* @param uuid the k b template's UUID
@@ -327,6 +297,21 @@ public class KBTemplateLocalServiceWrapper implements KBTemplateLocalService,
 	public java.util.List<com.liferay.knowledgebase.model.KBTemplate> getKBTemplates(
 		int start, int end) {
 		return _kbTemplateLocalService.getKBTemplates(start, end);
+	}
+
+	@Override
+	public java.util.List<com.liferay.knowledgebase.model.KBTemplate> getKBTemplatesByUuidAndCompanyId(
+		java.lang.String uuid, long companyId) {
+		return _kbTemplateLocalService.getKBTemplatesByUuidAndCompanyId(uuid,
+			companyId);
+	}
+
+	@Override
+	public java.util.List<com.liferay.knowledgebase.model.KBTemplate> getKBTemplatesByUuidAndCompanyId(
+		java.lang.String uuid, long companyId, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBTemplate> orderByComparator) {
+		return _kbTemplateLocalService.getKBTemplatesByUuidAndCompanyId(uuid,
+			companyId, start, end, orderByComparator);
 	}
 
 	/**

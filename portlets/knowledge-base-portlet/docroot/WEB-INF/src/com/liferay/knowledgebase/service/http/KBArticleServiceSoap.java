@@ -66,29 +66,15 @@ public class KBArticleServiceSoap {
 		java.lang.String portletId, long parentResourcePrimKey,
 		java.lang.String title, java.lang.String urlTitle,
 		java.lang.String content, java.lang.String description,
-		java.lang.String[] sections, java.lang.String dirName,
+		java.lang.String[] sections, java.lang.String[] selectedFileNames,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws RemoteException {
 		try {
 			com.liferay.knowledgebase.model.KBArticle returnValue = KBArticleServiceUtil.addKBArticle(portletId,
 					parentResourcePrimKey, title, urlTitle, content,
-					description, sections, dirName, serviceContext);
+					description, sections, selectedFileNames, serviceContext);
 
 			return com.liferay.knowledgebase.model.KBArticleSoap.toSoapModel(returnValue);
-		}
-		catch (Exception e) {
-			_log.error(e, e);
-
-			throw new RemoteException(e.getMessage());
-		}
-	}
-
-	public static void deleteAttachment(long companyId, long groupId,
-		java.lang.String portletId, long resourcePrimKey,
-		java.lang.String fileName) throws RemoteException {
-		try {
-			KBArticleServiceUtil.deleteAttachment(companyId, groupId,
-				portletId, resourcePrimKey, fileName);
 		}
 		catch (Exception e) {
 			_log.error(e, e);
@@ -115,6 +101,20 @@ public class KBArticleServiceSoap {
 		throws RemoteException {
 		try {
 			KBArticleServiceUtil.deleteKBArticles(groupId, resourcePrimKeys);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static void deleteTempAttachment(long groupId, long resourcePrimKey,
+		java.lang.String fileName, java.lang.String tempFolderName)
+		throws RemoteException {
+		try {
+			KBArticleServiceUtil.deleteTempAttachment(groupId, resourcePrimKey,
+				fileName, tempFolderName);
 		}
 		catch (Exception e) {
 			_log.error(e, e);
@@ -442,6 +442,21 @@ public class KBArticleServiceSoap {
 		}
 	}
 
+	public static java.lang.String[] getTempAttachmentNames(long groupId,
+		java.lang.String tempFolderName) throws RemoteException {
+		try {
+			java.lang.String[] returnValue = KBArticleServiceUtil.getTempAttachmentNames(groupId,
+					tempFolderName);
+
+			return returnValue;
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
 	public static void moveKBArticle(long resourcePrimKey,
 		long parentResourcePrimKey, double priority) throws RemoteException {
 		try {
@@ -503,34 +518,16 @@ public class KBArticleServiceSoap {
 		}
 	}
 
-	public static java.lang.String updateAttachments(
-		java.lang.String portletId, long resourcePrimKey,
-		java.lang.String dirName,
-		com.liferay.portal.service.ServiceContext serviceContext)
-		throws RemoteException {
-		try {
-			java.lang.String returnValue = KBArticleServiceUtil.updateAttachments(portletId,
-					resourcePrimKey, dirName, serviceContext);
-
-			return returnValue;
-		}
-		catch (Exception e) {
-			_log.error(e, e);
-
-			throw new RemoteException(e.getMessage());
-		}
-	}
-
 	public static com.liferay.knowledgebase.model.KBArticleSoap updateKBArticle(
 		long resourcePrimKey, java.lang.String title, java.lang.String content,
 		java.lang.String description, java.lang.String[] sections,
-		java.lang.String dirName,
+		java.lang.String[] selectedFileNames, long[] removeFileEntryIds,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws RemoteException {
 		try {
 			com.liferay.knowledgebase.model.KBArticle returnValue = KBArticleServiceUtil.updateKBArticle(resourcePrimKey,
-					title, content, description, sections, dirName,
-					serviceContext);
+					title, content, description, sections, selectedFileNames,
+					removeFileEntryIds, serviceContext);
 
 			return com.liferay.knowledgebase.model.KBArticleSoap.toSoapModel(returnValue);
 		}

@@ -221,19 +221,6 @@ public abstract class KBCommentLocalServiceBaseImpl extends BaseLocalServiceImpl
 	}
 
 	/**
-	 * Returns the k b comment with the matching UUID and company.
-	 *
-	 * @param uuid the k b comment's UUID
-	 * @param  companyId the primary key of the company
-	 * @return the matching k b comment, or <code>null</code> if a matching k b comment could not be found
-	 */
-	@Override
-	public KBComment fetchKBCommentByUuidAndCompanyId(String uuid,
-		long companyId) {
-		return kbCommentPersistence.fetchByUuid_C_First(uuid, companyId, null);
-	}
-
-	/**
 	 * Returns the k b comment matching the UUID and group.
 	 *
 	 * @param uuid the k b comment's UUID
@@ -359,18 +346,18 @@ public abstract class KBCommentLocalServiceBaseImpl extends BaseLocalServiceImpl
 		return kbCommentPersistence.findByPrimaryKey(primaryKeyObj);
 	}
 
-	/**
-	 * Returns the k b comment with the matching UUID and company.
-	 *
-	 * @param uuid the k b comment's UUID
-	 * @param  companyId the primary key of the company
-	 * @return the matching k b comment
-	 * @throws PortalException if a matching k b comment could not be found
-	 */
 	@Override
-	public KBComment getKBCommentByUuidAndCompanyId(String uuid, long companyId)
-		throws PortalException {
-		return kbCommentPersistence.findByUuid_C_First(uuid, companyId, null);
+	public List<KBComment> getKBCommentsByUuidAndCompanyId(String uuid,
+		long companyId) {
+		return kbCommentPersistence.findByUuid_C(uuid, companyId);
+	}
+
+	@Override
+	public List<KBComment> getKBCommentsByUuidAndCompanyId(String uuid,
+		long companyId, int start, int end,
+		OrderByComparator<KBComment> orderByComparator) {
+		return kbCommentPersistence.findByUuid_C(uuid, companyId, start, end,
+			orderByComparator);
 	}
 
 	/**

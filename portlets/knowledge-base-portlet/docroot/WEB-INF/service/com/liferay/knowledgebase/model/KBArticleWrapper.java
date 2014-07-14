@@ -259,20 +259,9 @@ public class KBArticleWrapper implements KBArticle, ModelWrapper<KBArticle> {
 	}
 
 	@Override
-	public java.lang.String getAttachmentsDirName() {
-		return _kbArticle.getAttachmentsDirName();
-	}
-
-	@Override
 	public java.util.List<com.liferay.portal.kernel.repository.model.FileEntry> getAttachmentsFileEntries()
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _kbArticle.getAttachmentsFileEntries();
-	}
-
-	@Override
-	public java.lang.String[] getAttachmentsFileNames()
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _kbArticle.getAttachmentsFileNames();
 	}
 
 	@Override
