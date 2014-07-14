@@ -85,6 +85,8 @@ else {
 </div>
 
 <aui:script use="datatype-number,liferay-so-site-list">
+	var Lang = A.Lang;
+
 	var directoryContainer = A.one('#<portlet:namespace />directory');
 
 	var navigationContainer = directoryContainer.all('.directory-navigation');
@@ -154,7 +156,7 @@ else {
 						'</a>' +
 					'</span>';
 
-				return A.Lang.sub(
+				return Lang.sub(
 					siteActionTemplate,
 					{
 						actionClassNames: actionClassNames,
@@ -247,7 +249,7 @@ else {
 							}
 						}
 
-						return A.Lang.sub(
+						return Lang.sub(
 							siteTemplate,
 							{
 								classNames: classNames.join(' '),
@@ -366,7 +368,7 @@ else {
 					siteName = siteNode.one('.name');
 				}
 
-				var unescapedSiteName = Liferay.Util.unescapeHTML(siteName.getContent());
+				var unescapedSiteName = Lang.String.unescapeHTML(siteName.getContent());
 
 				if (currentTargetClass == 'leave-site') {
 					confirmMessage = '<%= LanguageUtil.format(request, "are-you-sure-you-want-to-leave-x", "' + unescapedSiteName + '", false) %>';
