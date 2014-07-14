@@ -26,8 +26,6 @@ long resourcePrimKey = BeanParamUtil.getLong(kbArticle, request, "resourcePrimKe
 long parentResourcePrimKey = BeanParamUtil.getLong(kbArticle, request, "parentResourcePrimKey", KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY);
 String content = BeanParamUtil.getString(kbArticle, request, "content", BeanPropertiesUtil.getString(kbTemplate, "content"));
 String[] sections = AdminUtil.unescapeSections(BeanPropertiesUtil.getString(kbArticle, "sections", StringUtil.merge(PortletPropsValues.ADMIN_KB_ARTICLE_DEFAULT_SECTIONS)));
-
-String dirName = ParamUtil.getString(request, "dirName");
 %>
 
 <liferay-ui:header
@@ -63,7 +61,6 @@ String dirName = ParamUtil.getString(request, "dirName");
 	<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
 	<aui:input name="resourcePrimKey" type="hidden" value="<%= String.valueOf(resourcePrimKey) %>" />
 	<aui:input name="parentResourcePrimKey" type="hidden" value="<%= parentResourcePrimKey %>" />
-	<aui:input name="dirName" type="hidden" value="<%= dirName %>" />
 	<aui:input name="workflowAction" type="hidden" value="<%= WorkflowConstants.ACTION_SAVE_DRAFT %>" />
 
 	<liferay-ui:error exception="<%= KBArticleContentException.class %>" message="please-enter-valid-content" />
@@ -109,9 +106,7 @@ String dirName = ParamUtil.getString(request, "dirName");
 
 		<aui:field-wrapper label="attachments">
 			<div id="<portlet:namespace />attachments">
-				<liferay-util:include page="/admin/attachments.jsp" servletContext="<%= application %>">
-					<liferay-util:param name="dirName" value="<%= (kbArticle != null) ? kbArticle.getAttachmentsDirName() : StringPool.BLANK %>" />
-				</liferay-util:include>
+				<liferay-util:include page="/admin/attachments.jsp" servletContext="<%= application %>" />
 			</div>
 		</aui:field-wrapper>
 

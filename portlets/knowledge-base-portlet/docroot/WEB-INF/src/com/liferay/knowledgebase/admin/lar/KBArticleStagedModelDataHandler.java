@@ -31,7 +31,6 @@ import com.liferay.portal.kernel.lar.StagedModelDataHandlerUtil;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.util.MapUtil;
 import com.liferay.portal.kernel.util.StreamUtil;
-import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.kernel.xml.Element;
 import com.liferay.portal.portletfilerepository.PortletFileRepositoryUtil;
@@ -164,7 +163,7 @@ public class KBArticleStagedModelDataHandler
 					importedKBArticle = KBArticleLocalServiceUtil.addKBArticle(
 						userId, parentResourcePrimKey, kbArticle.getTitle(),
 						kbArticle.getUrlTitle(), kbArticle.getContent(),
-						kbArticle.getDescription(), sections, StringPool.BLANK,
+						kbArticle.getDescription(), sections, null,
 						serviceContext);
 
 					KBArticleLocalServiceUtil.updatePriority(
@@ -175,7 +174,7 @@ public class KBArticleStagedModelDataHandler
 					KBArticleLocalServiceUtil.updateKBArticle(
 						userId, existingKBArticle.getResourcePrimKey(),
 						kbArticle.getTitle(), kbArticle.getContent(),
-						kbArticle.getDescription(), sections, StringPool.BLANK,
+						kbArticle.getDescription(), sections, null,
 						serviceContext);
 
 					KBArticleLocalServiceUtil.moveKBArticle(
@@ -196,8 +195,7 @@ public class KBArticleStagedModelDataHandler
 			importedKBArticle = KBArticleLocalServiceUtil.addKBArticle(
 				userId, parentResourcePrimKey, kbArticle.getTitle(),
 				kbArticle.getUrlTitle(), kbArticle.getContent(),
-				kbArticle.getDescription(), sections, StringPool.BLANK,
-				serviceContext);
+				kbArticle.getDescription(), sections, null, serviceContext);
 
 			KBArticleLocalServiceUtil.updatePriority(
 				importedKBArticle.getResourcePrimKey(),
