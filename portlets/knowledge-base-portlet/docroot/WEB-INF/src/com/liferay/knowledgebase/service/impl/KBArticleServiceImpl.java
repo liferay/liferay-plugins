@@ -19,7 +19,6 @@ import com.liferay.knowledgebase.model.KBArticle;
 import com.liferay.knowledgebase.model.KBArticleConstants;
 import com.liferay.knowledgebase.model.KBArticleSearchDisplay;
 import com.liferay.knowledgebase.model.impl.KBArticleSearchDisplayImpl;
-import com.liferay.knowledgebase.service.KBArticleLocalServiceUtil;
 import com.liferay.knowledgebase.service.base.KBArticleServiceBaseImpl;
 import com.liferay.knowledgebase.service.permission.AdminPermission;
 import com.liferay.knowledgebase.service.permission.DisplayPermission;
@@ -73,23 +72,6 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 
 	@Override
 	public void addAttachment(
-			long resourcePrimKey, String fileName, InputStream inputStream,
-			String mimeType)
-		throws PortalException {
-
-		KBArticle kbArticle = KBArticleLocalServiceUtil.getLatestKBArticle(
-			resourcePrimKey, WorkflowConstants.STATUS_ANY);
-
-		checkAttachmentPermissions(
-			kbArticle.getGroupId(), PortletKeys.KNOWLEDGE_BASE_ADMIN,
-			resourcePrimKey);
-
-		kbArticleLocalService.addAttachment(
-			getUserId(), resourcePrimKey, fileName, inputStream, mimeType);
-	}
-
-	@Override
-	public void addAttachment(
 			String portletId, long resourcePrimKey, String dirName,
 			String shortFileName, InputStream inputStream,
 			ServiceContext serviceContext)
@@ -106,7 +88,8 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 	public KBArticle addKBArticle(
 			String portletId, long parentResourcePrimKey, String title,
 			String urlTitle, String content, String description,
-			String[] sections, String dirName, ServiceContext serviceContext)
+			String[] sections, String dirName, String[] selectedFileNames,
+			ServiceContext serviceContext)
 		throws PortalException {
 
 		if (portletId.equals(PortletKeys.KNOWLEDGE_BASE_ADMIN)) {
@@ -122,7 +105,7 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 
 		return kbArticleLocalService.addKBArticle(
 			getUserId(), parentResourcePrimKey, title, urlTitle, content,
-			description, sections, dirName, serviceContext);
+			description, sections, dirName, selectedFileNames, serviceContext);
 	}
 
 	@Override
@@ -140,20 +123,16 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 
 	@Override
 	public void addTempAttachment(
-			long resourcePrimKey, String fileName, String tempFolderName,
-			InputStream inputStream, String mimeType)
+			long groupId, long resourcePrimKey, String fileName,
+			String tempFolderName, InputStream inputStream, String mimeType)
 		throws PortalException {
 
-		KBArticle kbArticle = KBArticleLocalServiceUtil.getLatestKBArticle(
-			resourcePrimKey, WorkflowConstants.STATUS_ANY);
-
 		checkAttachmentPermissions(
-			kbArticle.getGroupId(), PortletKeys.KNOWLEDGE_BASE_ADMIN,
-			resourcePrimKey);
+			groupId, PortletKeys.KNOWLEDGE_BASE_ADMIN, resourcePrimKey);
 
 		kbArticleLocalService.addTempAttachment(
-			kbArticle.getGroupId(), getUserId(), fileName, tempFolderName,
-			inputStream, mimeType);
+			groupId, getUserId(), fileName, tempFolderName, inputStream,
+			mimeType);
 	}
 
 	@Override
@@ -204,18 +183,15 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 
 	@Override
 	public void deleteTempAttachment(
-			long resourcePrimKey, String fileName, String tempFolderName)
+			long groupId, long resourcePrimKey, String fileName,
+			String tempFolderName)
 		throws PortalException {
 
-		KBArticle kbArticle = KBArticleLocalServiceUtil.getLatestKBArticle(
-			resourcePrimKey, WorkflowConstants.STATUS_ANY);
-
 		checkAttachmentPermissions(
-			kbArticle.getGroupId(), PortletKeys.KNOWLEDGE_BASE_ADMIN,
-			resourcePrimKey);
+			groupId, PortletKeys.KNOWLEDGE_BASE_ADMIN, resourcePrimKey);
 
 		kbArticleLocalService.deleteTempAttachment(
-			kbArticle.getGroupId(), getUserId(), fileName, tempFolderName);
+			groupId, getUserId(), fileName, tempFolderName);
 	}
 
 	@Override
@@ -681,15 +657,11 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 	}
 
 	@Override
-	public String[] getTempAttachmentNames(
-			long resourcePrimKey, String tempFolderName)
+	public String[] getTempAttachmentNames(long groupId, String tempFolderName)
 		throws PortalException {
 
-		KBArticle kbArticle = KBArticleLocalServiceUtil.getLatestKBArticle(
-			resourcePrimKey, WorkflowConstants.STATUS_ANY);
-
 		return kbArticleLocalService.getTempAttachmentNames(
-			kbArticle.getGroupId(), getUserId(), tempFolderName);
+			groupId, getUserId(), tempFolderName);
 	}
 
 	@Override
@@ -792,7 +764,7 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 	public KBArticle updateKBArticle(
 			long resourcePrimKey, String title, String content,
 			String description, String[] sections, String dirName,
-			ServiceContext serviceContext)
+			String[] selectedFileNames, ServiceContext serviceContext)
 		throws PortalException {
 
 		KBArticlePermission.check(
@@ -800,7 +772,7 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 
 		return kbArticleLocalService.updateKBArticle(
 			getUserId(), resourcePrimKey, title, content, description, sections,
-			dirName, serviceContext);
+			dirName, selectedFileNames, serviceContext);
 	}
 
 	@Override

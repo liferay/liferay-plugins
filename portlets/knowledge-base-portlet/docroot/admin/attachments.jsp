@@ -100,7 +100,7 @@ Ticket ticket = TicketLocalServiceUtil.addTicket(user.getCompanyId(), User.class
 			tempFileURL: {
 				method: Liferay.Service.bind('/knowledge-base-portlet.kbarticle/get-temp-attachment-names'),
 				params: {
-					resourcePrimKey: <%= resourcePrimKey %>,
+					groupId: <%= scopeGroupId %>,
 					tempFolderName: 'com.liferay.knowledgebase.admin.portlet.AdminPortlet'
 				}
 			},

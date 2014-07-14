@@ -51,7 +51,6 @@ import com.liferay.portal.kernel.util.MimeTypesUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StreamUtil;
 import com.liferay.portal.kernel.util.StringUtil;
-import com.liferay.portal.kernel.util.TempFileUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.portletfilerepository.PortletFileRepositoryUtil;
@@ -135,6 +134,9 @@ public class AdminPortlet extends MVCPortlet {
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
 		UploadPortletRequest uploadPortletRequest =
 			PortalUtil.getUploadPortletRequest(actionRequest);
 
@@ -150,8 +152,8 @@ public class AdminPortlet extends MVCPortlet {
 			String mimeType = uploadPortletRequest.getContentType("file");
 
 			KBArticleServiceUtil.addTempAttachment(
-				resourcePrimKey, sourceFileName, _TEMP_FOLDER_NAME, inputStream,
-				mimeType);
+				themeDisplay.getScopeGroupId(), resourcePrimKey, sourceFileName,
+				_TEMP_FOLDER_NAME, inputStream, mimeType);
 		}
 		finally {
 			StreamUtil.cleanUp(inputStream);
@@ -255,7 +257,8 @@ public class AdminPortlet extends MVCPortlet {
 
 		try {
 			KBArticleServiceUtil.deleteTempAttachment(
-				resourcePrimKey, fileName, _TEMP_FOLDER_NAME);
+				themeDisplay.getScopeGroupId(), resourcePrimKey, fileName,
+				_TEMP_FOLDER_NAME);
 
 			jsonObject.put("deleted", Boolean.TRUE);
 		}
@@ -518,13 +521,6 @@ public class AdminPortlet extends MVCPortlet {
 		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		String[] selectedFileNames = ParamUtil.getParameterValues(
-			actionRequest, "selectedFileName");
-
-		for (String selectedFileName : selectedFileNames) {
-			addMultipleFileEntries(actionRequest, selectedFileName);
-		}
-
 		String portletId = PortalUtil.getPortletId(actionRequest);
 
 		String cmd = ParamUtil.getString(actionRequest, Constants.CMD);
@@ -540,6 +536,8 @@ public class AdminPortlet extends MVCPortlet {
 		String description = ParamUtil.getString(actionRequest, "description");
 		String[] sections = actionRequest.getParameterValues("sections");
 		String dirName = ParamUtil.getString(actionRequest, "dirName");
+		String[] selectedFileNames = ParamUtil.getParameterValues(
+			actionRequest, "selectedFileName");
 		int workflowAction = ParamUtil.getInteger(
 			actionRequest, "workflowAction");
 
@@ -551,12 +549,13 @@ public class AdminPortlet extends MVCPortlet {
 		if (cmd.equals(Constants.ADD)) {
 			kbArticle = KBArticleServiceUtil.addKBArticle(
 				portletId, parentResourcePrimKey, title, urlTitle, content,
-				description, sections, dirName, serviceContext);
+				description, sections, dirName, selectedFileNames,
+				serviceContext);
 		}
 		else if (cmd.equals(Constants.UPDATE)) {
 			kbArticle = KBArticleServiceUtil.updateKBArticle(
 				resourcePrimKey, title, content, description, sections, dirName,
-				serviceContext);
+				selectedFileNames, serviceContext);
 		}
 
 		if (!cmd.equals(Constants.ADD) && !cmd.equals(Constants.UPDATE)) {
@@ -669,36 +668,6 @@ public class AdminPortlet extends MVCPortlet {
 		else if (cmd.equals(Constants.UPDATE)) {
 			KBTemplateServiceUtil.updateKBTemplate(
 				kbTemplateId, title, content, serviceContext);
-		}
-	}
-
-	protected void addMultipleFileEntries(
-			ActionRequest actionRequest, String selectedFileName)
-		throws Exception {
-
-		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
-			WebKeys.THEME_DISPLAY);
-
-		long resourcePrimKey = ParamUtil.getLong(
-			actionRequest, "resourcePrimKey");
-
-		FileEntry tempFileEntry = null;
-
-		try {
-			tempFileEntry = TempFileUtil.getTempFile(
-				themeDisplay.getScopeGroupId(), themeDisplay.getUserId(),
-				selectedFileName, _TEMP_FOLDER_NAME);
-
-			InputStream inputStream = tempFileEntry.getContentStream();
-			String mimeType = tempFileEntry.getMimeType();
-
-			KBArticleServiceUtil.addAttachment(
-				resourcePrimKey, selectedFileName, inputStream, mimeType);
-		}
-		finally {
-			if (tempFileEntry != null) {
-				TempFileUtil.deleteTempFile(tempFileEntry.getFileEntryId());
-			}
 		}
 	}
 
