@@ -35,6 +35,8 @@ import com.liferay.knowledgebase.util.PortletKeys;
 import com.liferay.knowledgebase.util.WebKeys;
 import com.liferay.portal.NoSuchSubscriptionException;
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.json.JSONFactoryUtil;
+import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.portlet.PortletResponseUtil;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.servlet.SessionErrors;
@@ -49,6 +51,7 @@ import com.liferay.portal.kernel.util.MimeTypesUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StreamUtil;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.TempFileUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.portletfilerepository.PortletFileRepositoryUtil;
@@ -122,6 +125,33 @@ public class AdminPortlet extends MVCPortlet {
 			KBArticleServiceUtil.addAttachment(
 				portletId, resourcePrimKey, dirName, fileName, inputStream,
 				serviceContext);
+		}
+		finally {
+			StreamUtil.cleanUp(inputStream);
+		}
+	}
+
+	public void addTempAttachment(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws Exception {
+
+		UploadPortletRequest uploadPortletRequest =
+			PortalUtil.getUploadPortletRequest(actionRequest);
+
+		long resourcePrimKey = ParamUtil.getLong(
+			actionRequest, "resourcePrimKey");
+		String sourceFileName = uploadPortletRequest.getFileName("file");
+
+		InputStream inputStream = null;
+
+		try {
+			inputStream = uploadPortletRequest.getFileAsStream("file");
+
+			String mimeType = uploadPortletRequest.getContentType("file");
+
+			KBArticleServiceUtil.addTempAttachment(
+				resourcePrimKey, sourceFileName, _TEMP_FOLDER_NAME, inputStream,
+				mimeType);
 		}
 		finally {
 			StreamUtil.cleanUp(inputStream);
@@ -208,6 +238,36 @@ public class AdminPortlet extends MVCPortlet {
 
 		KBTemplateServiceUtil.deleteKBTemplates(
 			themeDisplay.getScopeGroupId(), kbTemplateIds);
+	}
+
+	public void deleteTempAttachment(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws Exception {
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		long resourcePrimKey = ParamUtil.getLong(
+			actionRequest, "resourcePrimKey");
+		String fileName = ParamUtil.getString(actionRequest, "fileName");
+
+		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
+
+		try {
+			KBArticleServiceUtil.deleteTempAttachment(
+				resourcePrimKey, fileName, _TEMP_FOLDER_NAME);
+
+			jsonObject.put("deleted", Boolean.TRUE);
+		}
+		catch (Exception e) {
+			String errorMessage = themeDisplay.translate(
+				"an-unexpected-error-occurred-while-deleting-the-file");
+
+			jsonObject.put("deleted", Boolean.FALSE);
+			jsonObject.put("errorMessage", errorMessage);
+		}
+
+		writeJSON(actionRequest, actionResponse, jsonObject);
 	}
 
 	public void importFile(
@@ -458,6 +518,13 @@ public class AdminPortlet extends MVCPortlet {
 		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
+		String[] selectedFileNames = ParamUtil.getParameterValues(
+			actionRequest, "selectedFileName");
+
+		for (String selectedFileName : selectedFileNames) {
+			addMultipleFileEntries(actionRequest, selectedFileName);
+		}
+
 		String portletId = PortalUtil.getPortletId(actionRequest);
 
 		String cmd = ParamUtil.getString(actionRequest, Constants.CMD);
@@ -605,6 +672,36 @@ public class AdminPortlet extends MVCPortlet {
 		}
 	}
 
+	protected void addMultipleFileEntries(
+			ActionRequest actionRequest, String selectedFileName)
+		throws Exception {
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		long resourcePrimKey = ParamUtil.getLong(
+			actionRequest, "resourcePrimKey");
+
+		FileEntry tempFileEntry = null;
+
+		try {
+			tempFileEntry = TempFileUtil.getTempFile(
+				themeDisplay.getScopeGroupId(), themeDisplay.getUserId(),
+				selectedFileName, _TEMP_FOLDER_NAME);
+
+			InputStream inputStream = tempFileEntry.getContentStream();
+			String mimeType = tempFileEntry.getMimeType();
+
+			KBArticleServiceUtil.addAttachment(
+				resourcePrimKey, selectedFileName, inputStream, mimeType);
+		}
+		finally {
+			if (tempFileEntry != null) {
+				TempFileUtil.deleteTempFile(tempFileEntry.getFileEntryId());
+			}
+		}
+	}
+
 	@Override
 	protected void addSuccessMessage(
 		ActionRequest actionRequest, ActionResponse actionResponse) {
@@ -682,5 +779,8 @@ public class AdminPortlet extends MVCPortlet {
 
 		return false;
 	}
+
+	private static final String _TEMP_FOLDER_NAME =
+		AdminPortlet.class.getName();
 
 }

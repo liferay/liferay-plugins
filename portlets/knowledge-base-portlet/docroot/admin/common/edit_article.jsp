@@ -158,6 +158,35 @@ String dirName = ParamUtil.getString(request, "dirName");
 </aui:form>
 
 <aui:script>
+	Liferay.provide(
+		window,
+		'<portlet:namespace />updateMultipleKBArticleAttachments',
+		function() {
+			var A = AUI();
+			var Lang = A.Lang;
+
+			var selectedFileNameContainer = A.one('#<portlet:namespace />selectedFileNameContainer');
+
+			var inputTpl = '<input id="<portlet:namespace />selectedFileName{0}" name="<portlet:namespace />selectedFileName" type="hidden" value="{1}" />';
+
+			var values = A.all('input[name=<portlet:namespace />selectUploadedFileCheckbox]:checked').val();
+
+			var buffer = [];
+			var dataBuffer = [];
+			var length = values.length;
+
+			for (var i = 0; i < length; i++) {
+				dataBuffer[0] = i;
+				dataBuffer[1] = values[i];
+
+				buffer[i] = Lang.sub(inputTpl, dataBuffer);
+			}
+
+			selectedFileNameContainer.html(buffer.join(''));
+		},
+		['aui-base']
+	);
+
 	function <portlet:namespace />initEditor() {
 		return '<%= UnicodeFormatter.toString(content) %>';
 	}
@@ -175,6 +204,9 @@ String dirName = ParamUtil.getString(request, "dirName");
 	function <portlet:namespace />updateKBArticle() {
 		document.<portlet:namespace />fm.<portlet:namespace /><%= Constants.CMD %>.value = '<%= (kbArticle == null) ? Constants.ADD : Constants.UPDATE %>';
 		document.<portlet:namespace />fm.<portlet:namespace />content.value = window.<portlet:namespace />editor.getHTML();
+
+		<portlet:namespace />updateMultipleKBArticleAttachments();
+
 		submitForm(document.<portlet:namespace />fm);
 	}
 </aui:script>
