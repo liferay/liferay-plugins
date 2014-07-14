@@ -215,11 +215,6 @@ String dirName = ParamUtil.getString(request, "dirName");
 		<portlet:namespace />updateKBArticle();
 	}
 
-	function <portlet:namespace />updateAttachments(dirName, html) {
-		document.<portlet:namespace />fm.<portlet:namespace />dirName.value = dirName;
-		document.getElementById('<portlet:namespace />attachments').innerHTML = html;
-	}
-
 	function <portlet:namespace />updateKBArticle() {
 		document.<portlet:namespace />fm.<portlet:namespace /><%= Constants.CMD %>.value = '<%= (kbArticle == null) ? Constants.ADD : Constants.UPDATE %>';
 		document.<portlet:namespace />fm.<portlet:namespace />content.value = window.<portlet:namespace />editor.getHTML();
