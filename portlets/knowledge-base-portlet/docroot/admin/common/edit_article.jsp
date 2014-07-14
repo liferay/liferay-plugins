@@ -36,6 +36,25 @@ String dirName = ParamUtil.getString(request, "dirName");
 	title='<%= (kbArticle == null) ? "new-article" : kbArticle.getTitle() %>'
 />
 
+<liferay-ui:error exception="<%= DuplicateFileException.class %>" message="please-enter-a-unique-document-name" />
+<liferay-ui:error exception="<%= FileNameException.class %>" message="please-enter-a-file-with-a-valid-file-name" />
+<liferay-ui:error exception="<%= NoSuchFileException.class %>" message="the-document-could-not-be-found" />
+
+<liferay-ui:error exception="<%= FileSizeException.class %>">
+
+	<%
+	long fileMaxSize = PrefsPropsUtil.getLong(PropsKeys.DL_FILE_MAX_SIZE);
+
+	if (fileMaxSize == 0) {
+		fileMaxSize = PrefsPropsUtil.getLong(PropsKeys.UPLOAD_SERVLET_REQUEST_IMPL_MAX_SIZE);
+	}
+
+	fileMaxSize /= 1024;
+	%>
+
+	<liferay-ui:message arguments="<%= fileMaxSize %>" key="please-enter-a-file-with-a-valid-file-size-no-larger-than-x" translateArguments="<%= false %>" />
+</liferay-ui:error>
+
 <liferay-portlet:actionURL name="updateKBArticle" var="updateKBArticleURL" />
 
 <aui:form action="<%= updateKBArticleURL %>" method="post" name="fm" onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "updateKBArticle();" %>'>
