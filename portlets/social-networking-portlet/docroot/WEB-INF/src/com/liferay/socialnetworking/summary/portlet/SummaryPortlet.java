@@ -284,7 +284,7 @@ public class SummaryPortlet extends MVCPortlet {
 		String portletId = PortalUtil.getPortletId(actionRequest);
 
 		extraDataJSONObject.put(
-			WebKeys.PORTLET_ID, PortletConstants.getRootPortletId(portletId));
+			"portletId", PortletConstants.getRootPortletId(portletId));
 
 		return extraDataJSONObject;
 	}
