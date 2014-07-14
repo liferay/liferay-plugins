@@ -23,10 +23,7 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
-import com.liferay.portal.model.CompanyConstants;
 import com.liferay.portal.portletfilerepository.PortletFileRepositoryUtil;
-import com.liferay.portlet.documentlibrary.NoSuchDirectoryException;
-import com.liferay.portlet.documentlibrary.store.DLStoreUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -58,29 +55,10 @@ public class KBArticleImpl extends KBArticleBaseImpl {
 	}
 
 	@Override
-	public String getAttachmentsDirName() {
-		return KBArticleConstants.DIR_NAME_PREFIX + getClassPK();
-	}
-
-	@Override
 	public List<FileEntry> getAttachmentsFileEntries() throws PortalException {
 		return PortletFileRepositoryUtil.getPortletFileEntries(
 			getGroupId(), getAttachmentsFolderId(),
 			WorkflowConstants.STATUS_APPROVED);
-	}
-
-	@Override
-	public String[] getAttachmentsFileNames() throws PortalException {
-		try {
-			return DLStoreUtil.getFileNames(
-				getCompanyId(), CompanyConstants.SYSTEM,
-				getAttachmentsDirName());
-		}
-		catch (NoSuchDirectoryException nsde) {
-			_log.error("No directory found for " + nsde.getMessage());
-		}
-
-		return new String[0];
 	}
 
 	@Override

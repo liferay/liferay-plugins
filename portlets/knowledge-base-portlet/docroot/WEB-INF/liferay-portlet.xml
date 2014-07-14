@@ -8,15 +8,6 @@
 		<configuration-action-class>com.liferay.knowledgebase.admin.action.ConfigurationActionImpl</configuration-action-class>
 		<indexer-class>com.liferay.knowledgebase.admin.util.AdminIndexer</indexer-class>
 		<open-search-class>com.liferay.knowledgebase.admin.util.AdminOpenSearchImpl</open-search-class>
-		<scheduler-entry>
-			<scheduler-event-listener-class>com.liferay.knowledgebase.admin.messaging.CheckAttachmentsMessageListener</scheduler-event-listener-class>
-			<trigger>
-				<simple>
-					<simple-trigger-value>1</simple-trigger-value>
-					<time-unit>day</time-unit>
-				</simple>
-			</trigger>
-		</scheduler-entry>
 		<friendly-url-mapper-class>com.liferay.portal.kernel.portlet.DefaultFriendlyURLMapper</friendly-url-mapper-class>
 		<friendly-url-mapping>knowledge_base_admin</friendly-url-mapping>
 		<friendly-url-routes>com/liferay/knowledgebase/admin/portlet/admin-friendly-url-routes.xml</friendly-url-routes>

@@ -81,40 +81,6 @@ import javax.servlet.http.HttpServletRequest;
  */
 public class SectionPortlet extends MVCPortlet {
 
-	public void addAttachment(
-			ActionRequest actionRequest, ActionResponse actionResponse)
-		throws Exception {
-
-		UploadPortletRequest uploadPortletRequest =
-			PortalUtil.getUploadPortletRequest(actionRequest);
-
-		checkExceededSizeLimit(uploadPortletRequest);
-
-		String portletId = PortalUtil.getPortletId(actionRequest);
-
-		long resourcePrimKey = ParamUtil.getLong(
-			uploadPortletRequest, "resourcePrimKey");
-
-		String dirName = ParamUtil.getString(uploadPortletRequest, "dirName");
-		String fileName = uploadPortletRequest.getFileName("file");
-
-		InputStream inputStream = null;
-
-		try {
-			inputStream = uploadPortletRequest.getFileAsStream("file");
-
-			ServiceContext serviceContext = ServiceContextFactory.getInstance(
-				KBArticle.class.getName(), actionRequest);
-
-			KBArticleServiceUtil.addAttachment(
-				portletId, resourcePrimKey, dirName, fileName, inputStream,
-				serviceContext);
-		}
-		finally {
-			StreamUtil.cleanUp(inputStream);
-		}
-	}
-
 	public void addTempAttachment(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
@@ -143,25 +109,6 @@ public class SectionPortlet extends MVCPortlet {
 		finally {
 			StreamUtil.cleanUp(inputStream);
 		}
-	}
-
-	public void deleteAttachment(
-			ActionRequest actionRequest, ActionResponse actionResponse)
-		throws Exception {
-
-		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
-			WebKeys.THEME_DISPLAY);
-
-		String portletId = PortalUtil.getPortletId(actionRequest);
-
-		long resourcePrimKey = ParamUtil.getLong(
-			actionRequest, "resourcePrimKey");
-
-		String fileName = ParamUtil.getString(actionRequest, "fileName");
-
-		KBArticleServiceUtil.deleteAttachment(
-			themeDisplay.getCompanyId(), themeDisplay.getScopeGroupId(),
-			portletId, resourcePrimKey, fileName);
 	}
 
 	public void deleteKBArticle(
@@ -368,31 +315,6 @@ public class SectionPortlet extends MVCPortlet {
 		KBArticleServiceUtil.unsubscribeKBArticle(resourcePrimKey);
 	}
 
-	public void updateAttachments(
-			ActionRequest actionRequest, ActionResponse actionResponse)
-		throws Exception {
-
-		String portletId = PortalUtil.getPortletId(actionRequest);
-
-		long resourcePrimKey = ParamUtil.getLong(
-			actionRequest, "resourcePrimKey");
-
-		String dirName = ParamUtil.getString(actionRequest, "dirName");
-
-		ServiceContext serviceContext = ServiceContextFactory.getInstance(
-			KBArticle.class.getName(), actionRequest);
-
-		dirName = KBArticleServiceUtil.updateAttachments(
-			portletId, resourcePrimKey, dirName, serviceContext);
-
-		String redirect = ParamUtil.getString(actionRequest, "redirect");
-
-		redirect = HttpUtil.setParameter(
-			redirect, actionResponse.getNamespace() + "dirName", dirName);
-
-		actionRequest.setAttribute(WebKeys.REDIRECT, redirect);
-	}
-
 	public void updateKBArticle(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
@@ -414,7 +336,6 @@ public class SectionPortlet extends MVCPortlet {
 		String content = ParamUtil.getString(actionRequest, "content");
 		String description = ParamUtil.getString(actionRequest, "description");
 		String[] sections = actionRequest.getParameterValues("sections");
-		String dirName = ParamUtil.getString(actionRequest, "dirName");
 		String[] selectedFileNames = ParamUtil.getParameterValues(
 			actionRequest, "selectedFileName");
 		int workflowAction = ParamUtil.getInteger(
@@ -428,12 +349,11 @@ public class SectionPortlet extends MVCPortlet {
 		if (cmd.equals(Constants.ADD)) {
 			kbArticle = KBArticleServiceUtil.addKBArticle(
 				portletId, parentResourcePrimKey, title, urlTitle, content,
-				description, sections, dirName, selectedFileNames,
-				serviceContext);
+				description, sections, selectedFileNames, serviceContext);
 		}
 		else if (cmd.equals(Constants.UPDATE)) {
 			kbArticle = KBArticleServiceUtil.updateKBArticle(
-				resourcePrimKey, title, content, description, sections, dirName,
+				resourcePrimKey, title, content, description, sections,
 				selectedFileNames, serviceContext);
 		}
 
@@ -497,20 +417,6 @@ public class SectionPortlet extends MVCPortlet {
 				kbCommentId, classNameId, classPK, content, helpful,
 				serviceContext);
 		}
-	}
-
-	@Override
-	protected void addSuccessMessage(
-		ActionRequest actionRequest, ActionResponse actionResponse) {
-
-		String actionName = ParamUtil.getString(
-			actionRequest, ActionRequest.ACTION_NAME);
-
-		if (actionName.equals("updateAttachments")) {
-			return;
-		}
-
-		super.addSuccessMessage(actionRequest, actionResponse);
 	}
 
 	protected void checkExceededSizeLimit(HttpServletRequest request)
