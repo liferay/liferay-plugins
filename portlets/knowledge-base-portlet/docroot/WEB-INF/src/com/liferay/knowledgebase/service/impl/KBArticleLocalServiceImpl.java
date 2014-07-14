@@ -24,6 +24,7 @@ import com.liferay.knowledgebase.admin.util.AdminSubscriptionSender;
 import com.liferay.knowledgebase.admin.util.AdminUtil;
 import com.liferay.knowledgebase.model.KBArticle;
 import com.liferay.knowledgebase.model.KBArticleConstants;
+import com.liferay.knowledgebase.service.KBArticleLocalServiceUtil;
 import com.liferay.knowledgebase.service.base.KBArticleLocalServiceBaseImpl;
 import com.liferay.knowledgebase.util.KnowledgeBaseUtil;
 import com.liferay.knowledgebase.util.PortletKeys;
@@ -62,6 +63,7 @@ import com.liferay.portal.kernel.util.StreamUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.TempFileUtil;
 import com.liferay.portal.kernel.util.Time;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
@@ -103,6 +105,22 @@ import javax.portlet.PortletPreferences;
  * @author Edward Han
  */
 public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
+
+	@Override
+	public void addAttachment(
+			long userId, long resourcePrimKey, String fileName,
+			InputStream inputStream, String mimeType)
+		throws PortalException {
+
+		KBArticle kbArticle = KBArticleLocalServiceUtil.getLatestKBArticle(
+			resourcePrimKey, WorkflowConstants.STATUS_ANY);
+
+		PortletFileRepositoryUtil.addPortletFileEntry(
+			kbArticle.getGroupId(), userId, KBArticle.class.getName(),
+			kbArticle.getClassPK(), PortletKeys.KNOWLEDGE_BASE_ARTICLE,
+			kbArticle.getAttachmentsFolderId(), inputStream, fileName, mimeType,
+			false);
+	}
 
 	@Override
 	public void addAttachment(
@@ -281,6 +299,16 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 	}
 
 	@Override
+	public void addTempAttachment(
+			long groupId, long userId, String fileName, String tempFolderName,
+			InputStream inputStream, String mimeType)
+		throws PortalException {
+
+		TempFileUtil.addTempFile(
+			groupId, userId, fileName, tempFolderName, inputStream, mimeType);
+	}
+
+	@Override
 	public void checkAttachments() throws PortalException {
 		for (long companyId : PortalUtil.getCompanyIds()) {
 			checkAttachments(companyId);
@@ -412,6 +440,14 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		for (KBArticle kbArticle : kbArticles) {
 			kbArticleLocalService.deleteKBArticle(kbArticle);
 		}
+	}
+
+	@Override
+	public void deleteTempAttachment(
+			long groupId, long userId, String fileName, String tempFolderName)
+		throws PortalException {
+
+		TempFileUtil.deleteTempFile(groupId, userId, fileName, tempFolderName);
 	}
 
 	@Override
@@ -815,6 +851,15 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		long groupId, long parentResourcePrimKey, int status) {
 
 		return getKBArticlesCount(groupId, parentResourcePrimKey, status);
+	}
+
+	@Override
+	public String[] getTempAttachmentNames(
+			long groupId, long userId, String tempFolderName)
+		throws PortalException {
+
+		return TempFileUtil.getTempFileEntryNames(
+			groupId, userId, tempFolderName);
 	}
 
 	@Override

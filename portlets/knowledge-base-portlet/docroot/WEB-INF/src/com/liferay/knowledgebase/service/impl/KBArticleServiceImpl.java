@@ -19,6 +19,7 @@ import com.liferay.knowledgebase.model.KBArticle;
 import com.liferay.knowledgebase.model.KBArticleConstants;
 import com.liferay.knowledgebase.model.KBArticleSearchDisplay;
 import com.liferay.knowledgebase.model.impl.KBArticleSearchDisplayImpl;
+import com.liferay.knowledgebase.service.KBArticleLocalServiceUtil;
 import com.liferay.knowledgebase.service.base.KBArticleServiceBaseImpl;
 import com.liferay.knowledgebase.service.permission.AdminPermission;
 import com.liferay.knowledgebase.service.permission.DisplayPermission;
@@ -72,6 +73,23 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 
 	@Override
 	public void addAttachment(
+			long resourcePrimKey, String fileName, InputStream inputStream,
+			String mimeType)
+		throws PortalException {
+
+		KBArticle kbArticle = KBArticleLocalServiceUtil.getLatestKBArticle(
+			resourcePrimKey, WorkflowConstants.STATUS_ANY);
+
+		checkAttachmentPermissions(
+			kbArticle.getGroupId(), PortletKeys.KNOWLEDGE_BASE_ADMIN,
+			resourcePrimKey);
+
+		kbArticleLocalService.addAttachment(
+			getUserId(), resourcePrimKey, fileName, inputStream, mimeType);
+	}
+
+	@Override
+	public void addAttachment(
 			String portletId, long resourcePrimKey, String dirName,
 			String shortFileName, InputStream inputStream,
 			ServiceContext serviceContext)
@@ -121,6 +139,24 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 	}
 
 	@Override
+	public void addTempAttachment(
+			long resourcePrimKey, String fileName, String tempFolderName,
+			InputStream inputStream, String mimeType)
+		throws PortalException {
+
+		KBArticle kbArticle = KBArticleLocalServiceUtil.getLatestKBArticle(
+			resourcePrimKey, WorkflowConstants.STATUS_ANY);
+
+		checkAttachmentPermissions(
+			kbArticle.getGroupId(), PortletKeys.KNOWLEDGE_BASE_ADMIN,
+			resourcePrimKey);
+
+		kbArticleLocalService.addTempAttachment(
+			kbArticle.getGroupId(), getUserId(), fileName, tempFolderName,
+			inputStream, mimeType);
+	}
+
+	@Override
 	public void deleteAttachment(
 			long companyId, long groupId, String portletId,
 			long resourcePrimKey, String fileName)
@@ -164,6 +200,22 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 			getPermissionChecker(), groupId, ActionKeys.DELETE_KB_ARTICLES);
 
 		kbArticleLocalService.deleteKBArticles(resourcePrimKeys);
+	}
+
+	@Override
+	public void deleteTempAttachment(
+			long resourcePrimKey, String fileName, String tempFolderName)
+		throws PortalException {
+
+		KBArticle kbArticle = KBArticleLocalServiceUtil.getLatestKBArticle(
+			resourcePrimKey, WorkflowConstants.STATUS_ANY);
+
+		checkAttachmentPermissions(
+			kbArticle.getGroupId(), PortletKeys.KNOWLEDGE_BASE_ADMIN,
+			resourcePrimKey);
+
+		kbArticleLocalService.deleteTempAttachment(
+			kbArticle.getGroupId(), getUserId(), fileName, tempFolderName);
 	}
 
 	@Override
@@ -626,6 +678,18 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 		long groupId, long parentResourcePrimKey, int status) {
 
 		return getKBArticlesCount(groupId, parentResourcePrimKey, status);
+	}
+
+	@Override
+	public String[] getTempAttachmentNames(
+			long resourcePrimKey, String tempFolderName)
+		throws PortalException {
+
+		KBArticle kbArticle = KBArticleLocalServiceUtil.getLatestKBArticle(
+			resourcePrimKey, WorkflowConstants.STATUS_ANY);
+
+		return kbArticleLocalService.getTempAttachmentNames(
+			kbArticle.getGroupId(), getUserId(), tempFolderName);
 	}
 
 	@Override

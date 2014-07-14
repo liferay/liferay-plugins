@@ -69,4 +69,42 @@ if (kbArticle != null) {
 	<div class="kb-edit-link">
 		<aui:a href="javascript:;" onClick="<%= taglibOnClick %>"><liferay-ui:message key='<%= (!attachmentsFileEntries.isEmpty()) ? "attachments" : "add-attachments" %>' /> &raquo;</aui:a>
 	</div>
+
+	<div class="lfr-dynamic-uploader">
+		<div class="lfr-upload-container" id="<portlet:namespace />fileUpload"></div>
+	</div>
+
+	<span id="<portlet:namespace />selectedFileNameContainer"></span>
+
+	<div class="hide" id="<portlet:namespace />metadataExplanationContainer"></div>
+
+	<div class="hide selected" id="<portlet:namespace />selectedFileNameMetadataContainer"></div>
 </div>
+
+<%
+Date expirationDate = new Date(System.currentTimeMillis() + GetterUtil.getInteger(PropsUtil.get(PropsKeys.SESSION_TIMEOUT)) * Time.MINUTE);
+
+Ticket ticket = TicketLocalServiceUtil.addTicket(user.getCompanyId(), User.class.getName(), user.getUserId(), TicketConstants.TYPE_IMPERSONATE, null, expirationDate, new ServiceContext());
+%>
+
+<aui:script use="liferay-upload">
+	new Liferay.Upload(
+		{
+			boundingBox: '#<portlet:namespace />fileUpload',
+			deleteFile: '<liferay-portlet:actionURL name="deleteTempAttachment" windowState="<%= LiferayWindowState.POP_UP.toString() %>" doAsUserId="<%= user.getUserId() %>"><portlet:param name="resourcePrimKey" value="<%= String.valueOf(resourcePrimKey) %>" /></liferay-portlet:actionURL>&ticketKey=<%= ticket.getKey() %><liferay-ui:input-permissions-params modelName="<%= KBArticle.class.getName() %>" />',
+			fileDescription: '<%= StringUtil.merge(PrefsPropsUtil.getStringArray(PropsKeys.DL_FILE_EXTENSIONS, StringPool.COMMA)) %>',
+			maxFileSize: '<%= PrefsPropsUtil.getLong(PropsKeys.DL_FILE_MAX_SIZE) %> B',
+			metadataContainer: '#<portlet:namespace />selectedFileNameMetadataContainer',
+			metadataExplanationContainer: '#<portlet:namespace />metadataExplanationContainer',
+			namespace: '<portlet:namespace />',
+			tempFileURL: {
+				method: Liferay.Service.bind('/knowledge-base-portlet.kbarticle/get-temp-attachment-names'),
+				params: {
+					resourcePrimKey: <%= resourcePrimKey %>,
+					tempFolderName: 'com.liferay.knowledgebase.admin.portlet.AdminPortlet'
+				}
+			},
+			uploadFile: '<liferay-portlet:actionURL name="addTempAttachment" windowState="<%= LiferayWindowState.POP_UP.toString() %>" doAsUserId="<%= user.getUserId() %>"><portlet:param name="resourcePrimKey" value="<%= String.valueOf(resourcePrimKey) %>" /></liferay-portlet:actionURL>&ticketKey=<%= ticket.getKey() %><liferay-ui:input-permissions-params modelName="<%= KBArticle.class.getName() %>" />'
+		}
+	);
+</aui:script>
