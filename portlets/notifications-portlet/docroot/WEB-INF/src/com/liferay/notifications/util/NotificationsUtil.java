@@ -21,11 +21,26 @@ import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.OrderFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.ProjectionFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.RestrictionsFactoryUtil;
+import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.json.JSONFactoryUtil;
+import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.messaging.DestinationNames;
+import com.liferay.portal.kernel.messaging.MessageBusUtil;
+import com.liferay.portal.kernel.notifications.NotificationEvent;
+import com.liferay.portal.kernel.notifications.NotificationEventFactoryUtil;
+import com.liferay.portal.kernel.notifications.UserNotificationManagerUtil;
+import com.liferay.portal.kernel.process.ProcessCallable;
+import com.liferay.portal.kernel.process.ProcessException;
+import com.liferay.portal.model.Subscription;
+import com.liferay.portal.model.UserNotificationDeliveryConstants;
 import com.liferay.portal.model.UserNotificationEvent;
 import com.liferay.portal.service.ServiceContext;
+import com.liferay.portal.service.SubscriptionLocalServiceUtil;
 import com.liferay.portal.service.UserNotificationEventLocalServiceUtil;
 import com.liferay.portlet.asset.model.AssetRenderer;
+
+import java.io.Serializable;
 
 import java.util.Iterator;
 import java.util.List;
@@ -129,6 +144,30 @@ public class NotificationsUtil {
 		}
 	}
 
+	public static void sendNotificationEvent(
+			long companyId, String subscriptionClassName,
+			long subscriptionClassPK, String portletKey, String className,
+			long classPK, String entryTitle, String entryURL,
+			int notificationType, long userId)
+		throws PortalException, SystemException {
+
+		JSONObject notificationEventJSONObject =
+			JSONFactoryUtil.createJSONObject();
+
+		notificationEventJSONObject.put("className", className);
+		notificationEventJSONObject.put("classPK", classPK);
+		notificationEventJSONObject.put("entryTitle", entryTitle);
+		notificationEventJSONObject.put("entryURL", entryURL);
+		notificationEventJSONObject.put("notificationType", notificationType);
+		notificationEventJSONObject.put("userId", userId);
+
+		MessageBusUtil.sendMessage(
+			DestinationNames.ASYNC_SERVICE,
+			new NotificationProcessCallable(
+				companyId, subscriptionClassName, subscriptionClassPK,
+				portletKey, notificationEventJSONObject));
+	}
+
 	protected static DynamicQuery getDynamicQuery(
 			long userId, boolean actionable)
 		throws SystemException {
@@ -161,6 +200,73 @@ public class NotificationsUtil {
 		}
 
 		return dynamicQuery;
+	}
+
+	private static class NotificationProcessCallable
+		implements ProcessCallable<Serializable> {
+
+		public NotificationProcessCallable(
+			long companyId, String className, long classPK, String portletKey,
+			JSONObject notificationEventJSONObject) {
+
+			_companyId = companyId;
+			_className = className;
+			_classPK = classPK;
+			_notificationEventJSONObject = notificationEventJSONObject;
+			_portletKey = portletKey;
+		}
+
+		@Override
+		public Serializable call() throws ProcessException {
+			try {
+				sendUserNotifications(
+					_companyId, _className, _classPK, _portletKey,
+					_notificationEventJSONObject);
+			}
+			catch (Exception e) {
+				throw new ProcessException(e);
+			}
+
+			return null;
+		}
+
+		protected void sendUserNotifications(
+				long companyId, String className, long classPK,
+				String portletKey, JSONObject notificationEventJSONObject)
+			throws PortalException, SystemException {
+
+			int notificationType = notificationEventJSONObject.getInt(
+				"notificationType");
+
+			List<Subscription> subscriptions =
+				SubscriptionLocalServiceUtil.getSubscriptions(
+					companyId, className, classPK);
+
+			for (Subscription subscription : subscriptions) {
+				long userId = subscription.getUserId();
+
+				if (UserNotificationManagerUtil.isDeliver(
+						userId, portletKey, 0, notificationType,
+					UserNotificationDeliveryConstants.TYPE_WEBSITE)) {
+
+					NotificationEvent notificationEvent =
+						NotificationEventFactoryUtil.createNotificationEvent(
+							System.currentTimeMillis(), portletKey,
+							notificationEventJSONObject);
+
+					UserNotificationEventLocalServiceUtil.
+						addUserNotificationEvent(userId, notificationEvent);
+				}
+			}
+		}
+
+		private static final long serialVersionUID = 1L;
+
+		private long _companyId;
+		private String _className;
+		private long _classPK;
+		private JSONObject _notificationEventJSONObject;
+		private String _portletKey;
 	}
 
 }

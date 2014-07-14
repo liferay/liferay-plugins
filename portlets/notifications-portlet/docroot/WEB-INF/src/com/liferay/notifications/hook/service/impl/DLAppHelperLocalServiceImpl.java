@@ -18,34 +18,19 @@ import com.liferay.compat.portal.kernel.notifications.UserNotificationDefinition
 import com.liferay.notifications.util.NotificationsUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.kernel.json.JSONFactoryUtil;
-import com.liferay.portal.kernel.json.JSONObject;
-import com.liferay.portal.kernel.messaging.DestinationNames;
-import com.liferay.portal.kernel.messaging.MessageBusUtil;
-import com.liferay.portal.kernel.notifications.NotificationEvent;
-import com.liferay.portal.kernel.notifications.NotificationEventFactoryUtil;
-import com.liferay.portal.kernel.notifications.UserNotificationManagerUtil;
-import com.liferay.portal.kernel.process.ProcessCallable;
-import com.liferay.portal.kernel.process.ProcessException;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.repository.model.FileVersion;
-import com.liferay.portal.kernel.repository.model.Folder;
-import com.liferay.portal.model.Subscription;
-import com.liferay.portal.model.UserNotificationDeliveryConstants;
 import com.liferay.portal.service.ServiceContext;
-import com.liferay.portal.service.SubscriptionLocalServiceUtil;
-import com.liferay.portal.service.UserNotificationEventLocalServiceUtil;
 import com.liferay.portal.util.PortletKeys;
 import com.liferay.portlet.asset.AssetRendererFactoryRegistryUtil;
 import com.liferay.portlet.asset.model.AssetRendererFactory;
 import com.liferay.portlet.documentlibrary.model.DLFileEntry;
-import com.liferay.portlet.documentlibrary.model.DLFileEntryConstants;
+import com.liferay.portlet.documentlibrary.model.DLFolder;
 import com.liferay.portlet.documentlibrary.service.DLAppHelperLocalService;
 import com.liferay.portlet.documentlibrary.service.DLAppHelperLocalServiceWrapper;
 
 import java.io.Serializable;
 
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -85,96 +70,21 @@ public class DLAppHelperLocalServiceImpl
 				latestFileVersion.getFileEntryId()),
 			serviceContext);
 
-		sendNotificationEvent(latestFileVersion, entryURL, notificationType);
-	}
-
-	protected void sendNotificationEvent(
-			FileVersion fileVersion, String entryURL, int notificationType)
-		throws PortalException {
-
-		JSONObject notificationEventJSONObject =
-			JSONFactoryUtil.createJSONObject();
-
-		notificationEventJSONObject.put(
-			"className", DLFileEntryConstants.getClassName());
-		notificationEventJSONObject.put(
-			"classPK", fileVersion.getFileEntryId());
-		notificationEventJSONObject.put("entryTitle", fileVersion.getTitle());
-		notificationEventJSONObject.put("entryURL", entryURL);
-		notificationEventJSONObject.put("notificationType", notificationType);
-		notificationEventJSONObject.put(
-			"userId", fileVersion.getStatusByUserId());
-
-		MessageBusUtil.sendMessage(
-			DestinationNames.ASYNC_SERVICE,
-			new NotificationProcessCallable(
-				fileVersion, notificationEventJSONObject));
+		NotificationsUtil.sendNotificationEvent(
+			latestFileVersion.getCompanyId(), _DL_FOLDER_CLASS_NAME,
+			latestFileVersion.getGroupId(), PortletKeys.DOCUMENT_LIBRARY,
+			_DL_FILE_ENTRY_CLASS_NAME, latestFileVersion.getFileEntryId(),
+			latestFileVersion.getTitle(), entryURL, notificationType, userId);
 	}
 
 	protected AssetRendererFactory _assetRendererFactory =
 		AssetRendererFactoryRegistryUtil.getAssetRendererFactoryByClassName(
-			DLFileEntry.class.getName());
+			_DL_FILE_ENTRY_CLASS_NAME);
 
-	private static class NotificationProcessCallable
-		implements ProcessCallable<Serializable> {
+	private static final String _DL_FILE_ENTRY_CLASS_NAME =
+		DLFileEntry.class.getName();
 
-		public NotificationProcessCallable(
-			FileVersion fileVersion, JSONObject notificationEventJSONObject) {
-
-			_fileVersion = fileVersion;
-			_notificationEventJSONObject = notificationEventJSONObject;
-		}
-
-		@Override
-		public Serializable call() throws ProcessException {
-			try {
-				sendUserNotifications(
-					_fileVersion, _notificationEventJSONObject);
-			}
-			catch (Exception e) {
-				throw new ProcessException(e);
-			}
-
-			return null;
-		}
-
-		protected void sendUserNotifications(
-				FileVersion fileVersion, JSONObject notificationEventJSONObject)
-			throws PortalException, SystemException {
-
-			int notificationType = notificationEventJSONObject.getInt(
-				"notificationType");
-
-			List<Subscription> subscriptions =
-				SubscriptionLocalServiceUtil.getSubscriptions(
-				fileVersion.getCompanyId(), Folder.class.getName(),
-				fileVersion.getGroupId());
-
-			for (Subscription subscription : subscriptions) {
-				long userId = subscription.getUserId();
-
-				if (UserNotificationManagerUtil.isDeliver(
-						userId, PortletKeys.DOCUMENT_LIBRARY, 0,
-						notificationType,
-						UserNotificationDeliveryConstants.TYPE_WEBSITE)) {
-
-					NotificationEvent notificationEvent =
-						NotificationEventFactoryUtil.createNotificationEvent(
-							System.currentTimeMillis(),
-							PortletKeys.DOCUMENT_LIBRARY,
-							notificationEventJSONObject);
-
-					UserNotificationEventLocalServiceUtil.
-						addUserNotificationEvent(userId, notificationEvent);
-				}
-			}
-		}
-
-		private static final long serialVersionUID = 1L;
-
-		private FileVersion _fileVersion;
-		private JSONObject _notificationEventJSONObject;
-
-	}
+	private static final String _DL_FOLDER_CLASS_NAME =
+		DLFolder.class.getName();
 
 }

@@ -18,20 +18,7 @@ import com.liferay.compat.portal.kernel.notifications.UserNotificationDefinition
 import com.liferay.notifications.util.NotificationsUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.kernel.json.JSONFactoryUtil;
-import com.liferay.portal.kernel.json.JSONObject;
-import com.liferay.portal.kernel.messaging.DestinationNames;
-import com.liferay.portal.kernel.messaging.MessageBusUtil;
-import com.liferay.portal.kernel.notifications.NotificationEvent;
-import com.liferay.portal.kernel.notifications.NotificationEventFactoryUtil;
-import com.liferay.portal.kernel.notifications.UserNotificationManagerUtil;
-import com.liferay.portal.kernel.process.ProcessCallable;
-import com.liferay.portal.kernel.process.ProcessException;
-import com.liferay.portal.model.Subscription;
-import com.liferay.portal.model.UserNotificationDeliveryConstants;
 import com.liferay.portal.service.ServiceContext;
-import com.liferay.portal.service.SubscriptionLocalServiceUtil;
-import com.liferay.portal.service.UserNotificationEventLocalServiceUtil;
 import com.liferay.portal.util.PortletKeys;
 import com.liferay.portlet.asset.AssetRendererFactoryRegistryUtil;
 import com.liferay.portlet.asset.model.AssetRendererFactory;
@@ -39,10 +26,6 @@ import com.liferay.portlet.bookmarks.model.BookmarksEntry;
 import com.liferay.portlet.bookmarks.model.BookmarksFolder;
 import com.liferay.portlet.bookmarks.service.BookmarksEntryLocalService;
 import com.liferay.portlet.bookmarks.service.BookmarksEntryLocalServiceWrapper;
-
-import java.io.Serializable;
-
-import java.util.List;
 
 /**
  * @author Lin Cui
@@ -69,8 +52,11 @@ public class BookmarksEntryLocalServiceImpl
 			_assetRendererFactory.getAssetRenderer(bookmarksEntry.getEntryId()),
 			serviceContext);
 
-		sendNotificationEvent(
-			bookmarksEntry, entryURL,
+		NotificationsUtil.sendNotificationEvent(
+			bookmarksEntry.getCompanyId(), _BOOKMARKS_FOLDER_CLASS_NAME,
+			bookmarksEntry.getFolderId(), _BOOKMARKS_FOLDER_CLASS_NAME,
+			PortletKeys.BOOKMARKS, bookmarksEntry.getFolderId(),
+			bookmarksEntry.getName(), entryURL,
 			UserNotificationDefinition.NOTIFICATION_TYPE_ADD_ENTRY, userId);
 
 		return bookmarksEntry;
@@ -90,137 +76,24 @@ public class BookmarksEntryLocalServiceImpl
 			_assetRendererFactory.getAssetRenderer(bookmarksEntry.getEntryId()),
 			serviceContext);
 
-		sendNotificationEvent(
-			bookmarksEntry, entryURL,
+		NotificationsUtil.sendNotificationEvent(
+			bookmarksEntry.getCompanyId(), _BOOKMARKS_ENTRY_CLASS_NAME,
+			bookmarksEntry.getEntryId(), PortletKeys.BOOKMARKS,
+			_BOOKMARKS_ENTRY_CLASS_NAME, bookmarksEntry.getEntryId(),
+			bookmarksEntry.getName(), entryURL,
 			UserNotificationDefinition.NOTIFICATION_TYPE_UPDATE_ENTRY, userId);
 
 		return bookmarksEntry;
 	}
 
-	protected void sendNotificationEvent(
-			BookmarksEntry bookmarksEntry, String entryURL,
-			int notificationType, long statusByUserId)
-		throws PortalException, SystemException {
-
-		JSONObject notificationEventJSONObject =
-			JSONFactoryUtil.createJSONObject();
-
-		if (notificationType ==
-				UserNotificationDefinition.NOTIFICATION_TYPE_ADD_ENTRY) {
-
-			notificationEventJSONObject.put(
-				"className", BookmarksFolder.class.getName());
-			notificationEventJSONObject.put(
-				"classPK", bookmarksEntry.getFolderId());
-		}
-		else if (notificationType ==
-					UserNotificationDefinition.NOTIFICATION_TYPE_UPDATE_ENTRY) {
-
-			notificationEventJSONObject.put(
-				"className", bookmarksEntry.getModelClassName());
-			notificationEventJSONObject.put(
-				"classPK", bookmarksEntry.getEntryId());
-		}
-
-		notificationEventJSONObject.put("entryTitle", bookmarksEntry.getName());
-		notificationEventJSONObject.put("entryURL", entryURL);
-		notificationEventJSONObject.put("notificationType", notificationType);
-		notificationEventJSONObject.put("userId", statusByUserId);
-
-		MessageBusUtil.sendMessage(
-			DestinationNames.ASYNC_SERVICE,
-			new NotificationProcessCallable(
-				bookmarksEntry, notificationEventJSONObject));
-	}
-
 	protected AssetRendererFactory _assetRendererFactory =
 		AssetRendererFactoryRegistryUtil.getAssetRendererFactoryByClassName(
-			BookmarksEntry.class.getName());
+			_BOOKMARKS_ENTRY_CLASS_NAME);
 
-	private static class NotificationProcessCallable
-		implements ProcessCallable<Serializable> {
+	private static final String _BOOKMARKS_ENTRY_CLASS_NAME =
+		BookmarksEntry.class.getName();
 
-		public NotificationProcessCallable(
-			BookmarksEntry bookmarksEntry,
-			JSONObject notificationEventJSONObject) {
-				_bookmarksEntry = bookmarksEntry;
-				_notificationEventJSONObject = notificationEventJSONObject;
-		}
-
-		@Override
-		public Serializable call() throws ProcessException {
-			try {
-				sendUserNotifications(
-					_bookmarksEntry, _notificationEventJSONObject);
-			}
-			catch (Exception e) {
-				throw new ProcessException(e);
-			}
-
-			return null;
-		}
-
-		protected void sendUserNotifications(
-				BookmarksEntry bookmarksEntry,
-				JSONObject notificationEventJSONObject)
-			throws PortalException, SystemException {
-
-			int notificationType = notificationEventJSONObject.getInt(
-				"notificationType");
-
-			long statusByUserId = notificationEventJSONObject.getLong("userId");
-
-			List<Subscription> subscriptions = null;
-
-			if (notificationType ==
-					UserNotificationDefinition.NOTIFICATION_TYPE_ADD_ENTRY) {
-
-				subscriptions = SubscriptionLocalServiceUtil.getSubscriptions(
-					bookmarksEntry.getCompanyId(),
-					BookmarksFolder.class.getName(),
-					bookmarksEntry.getGroupId());
-			}
-			else if (notificationType ==
-						UserNotificationDefinition.
-							NOTIFICATION_TYPE_UPDATE_ENTRY) {
-
-				subscriptions = SubscriptionLocalServiceUtil.getSubscriptions(
-					bookmarksEntry.getCompanyId(),
-					bookmarksEntry.getModelClassName(),
-					bookmarksEntry.getEntryId());
-			}
-
-			if (subscriptions == null) {
-				return;
-			}
-
-			for (Subscription subscription : subscriptions) {
-				long userId = subscription.getUserId();
-
-				if (userId == statusByUserId) {
-					continue;
-				}
-
-				if (UserNotificationManagerUtil.isDeliver(
-						userId, PortletKeys.BOOKMARKS, 0, notificationType,
-						UserNotificationDeliveryConstants.TYPE_WEBSITE)) {
-
-					NotificationEvent notificationEvent =
-						NotificationEventFactoryUtil.createNotificationEvent(
-							System.currentTimeMillis(), PortletKeys.BOOKMARKS,
-							notificationEventJSONObject);
-
-					UserNotificationEventLocalServiceUtil.
-						addUserNotificationEvent(userId, notificationEvent);
-				}
-			}
-		}
-
-		private static final long serialVersionUID = 1L;
-
-		private BookmarksEntry _bookmarksEntry;
-		private JSONObject _notificationEventJSONObject;
-
-	}
+	private static final String _BOOKMARKS_FOLDER_CLASS_NAME =
+		BookmarksFolder.class.getName();
 
 }
