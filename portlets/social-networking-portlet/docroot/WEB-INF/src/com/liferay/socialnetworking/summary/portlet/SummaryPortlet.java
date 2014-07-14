@@ -71,15 +71,12 @@ public class SummaryPortlet extends MVCPortlet {
 
 		User user = UserLocalServiceUtil.getUserById(group.getClassPK());
 
-		JSONObject extraDataJSONObject = JSONFactoryUtil.createJSONObject();
+		JSONObject extraDataJSONObject = getExtraDataJSONObject(actionRequest);
 
 		String addFriendMessage = ParamUtil.getString(
 			actionRequest, "addFriendMessage");
-		String portletId = PortalUtil.getPortletId(actionRequest);
-		String rootPortletId = PortletConstants.getRootPortletId(portletId);
 
 		extraDataJSONObject.put("addFriendMessage", addFriendMessage);
-		extraDataJSONObject.put(WebKeys.PORTLET_ID, rootPortletId);
 
 		SocialRequestLocalServiceUtil.addRequest(
 			themeDisplay.getUserId(), 0, User.class.getName(),
@@ -149,12 +146,8 @@ public class SummaryPortlet extends MVCPortlet {
 					(OrderByComparator)null);
 			}
 
-			String portletId = PortalUtil.getPortletId(actionRequest);
-			String rootPortletId = PortletConstants.getRootPortletId(portletId);
-
-			JSONObject extraDataJSONObject = JSONFactoryUtil.createJSONObject();
-
-			extraDataJSONObject.put(WebKeys.PORTLET_ID, rootPortletId);
+			JSONObject extraDataJSONObject = getExtraDataJSONObject(
+				actionRequest);
 
 			for (User user : users) {
 				SocialRequestLocalServiceUtil.addRequest(
@@ -206,12 +199,7 @@ public class SummaryPortlet extends MVCPortlet {
 				QueryUtil.ALL_POS, QueryUtil.ALL_POS, (OrderByComparator)null);
 		}
 
-		String portletId = PortalUtil.getPortletId(actionRequest);
-		String rootPortletId = PortletConstants.getRootPortletId(portletId);
-
-		JSONObject extraDataJSONObject = JSONFactoryUtil.createJSONObject();
-
-		extraDataJSONObject.put(WebKeys.PORTLET_ID, rootPortletId);
+		JSONObject extraDataJSONObject = getExtraDataJSONObject(actionRequest);
 
 		for (User user : users) {
 			SocialRequestLocalServiceUtil.addRequest(
@@ -289,6 +277,17 @@ public class SummaryPortlet extends MVCPortlet {
 		ExpandoValueLocalServiceUtil.addValue(
 			themeDisplay.getCompanyId(), User.class.getName(), "SN", "aboutMe",
 			user.getUserId(), aboutMe);
+	}
+
+	protected JSONObject getExtraDataJSONObject(ActionRequest actionRequest) {
+		JSONObject extraDataJSONObject = JSONFactoryUtil.createJSONObject();
+
+		String portletId = PortalUtil.getPortletId(actionRequest);
+
+		extraDataJSONObject.put(
+			WebKeys.PORTLET_ID, PortletConstants.getRootPortletId(portletId));
+
+		return extraDataJSONObject;
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(SummaryPortlet.class);
