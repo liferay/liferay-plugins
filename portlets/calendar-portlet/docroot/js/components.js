@@ -1188,6 +1188,7 @@
 					}
 
 					messageNode.set('text', message);
+
 					containerNode.show();
 				}
 			};

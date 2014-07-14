@@ -26,6 +26,7 @@ portletURL.setParameter("tabs1", tabs1);
 
 <div class="alert alert-success hide" id="<portlet:namespace />alert">
 	<button class="close" data-dismiss="alert" type="button">&times;</button>
+
 	<span class="message-placeholder"></span>
 </div>
 
