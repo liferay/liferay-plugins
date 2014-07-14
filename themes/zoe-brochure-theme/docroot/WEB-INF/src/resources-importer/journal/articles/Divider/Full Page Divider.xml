@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 
-<root>
+<root available-locales="en_US" default-locale="en_US">
 	<dynamic-element name="zoe_divider_icon" type="text">
 		<dynamic-content><![CDATA[icon-bolt]]></dynamic-content>
 		<dynamic-element name="size" type="text">

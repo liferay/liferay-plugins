@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 
-<root>
+<root available-locales="en_US" default-locale="en_US">
 	<dynamic-element name="title">
 		<dynamic-content><![CDATA[Pricing Page Pricing Table]]></dynamic-content>
 	</dynamic-element>
