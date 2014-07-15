@@ -117,6 +117,21 @@ public class AlloyPortlet extends GenericPortlet {
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws IOException, PortletException {
 
+		String actionName = ParamUtil.getString(
+			actionRequest, ActionRequest.ACTION_NAME);
+
+		if (actionName.equals("alloyAsynchronousRequest")) {
+			try {
+				AlloyAsynchronousRequestHandler.handle(
+					actionRequest, actionResponse, _alloyControllers);
+			}
+			catch (Exception e) {
+				throw new IOException(e);
+			}
+
+			return;
+		}
+
 		String path = getPath(actionRequest);
 
 		include(path, actionRequest, actionResponse);
@@ -206,9 +221,7 @@ public class AlloyPortlet extends GenericPortlet {
 
 		String controllerPath = baseAlloyControllerImpl.controllerPath;
 
-		if (!_alloyControllers.containsKey(controllerPath)) {
-			_alloyControllers.put(controllerPath, baseAlloyControllerImpl);
-		}
+		_alloyControllers.put(controllerPath, baseAlloyControllerImpl);
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(AlloyPortlet.class);
