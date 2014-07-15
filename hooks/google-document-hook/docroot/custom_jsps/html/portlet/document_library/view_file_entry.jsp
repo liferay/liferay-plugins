@@ -38,19 +38,19 @@ if (fileVersion.getModel() instanceof DLFileVersion) {
 	fileEntryTypeId = dlFileVersion.getFileEntryTypeId();
 }
 
-boolean isGoogleDocument = false;
+boolean googleDocument = false;
 
 if (fileEntryTypeId > 0) {
 	DLFileEntryType dlfileEntryType = DLFileEntryTypeLocalServiceUtil.getFileEntryType(fileEntryTypeId);
 
 	if (dlfileEntryType.getFileEntryTypeKey().equals("GOOGLE-DOCUMENT")) {
-		isGoogleDocument = true;
+		googleDocument = true;
 	}
 }
 %>
 
 <c:choose>
-	<c:when test="<%= isGoogleDocument %>">
+	<c:when test="<%= googleDocument %>">
 		<style>
 			.portlet-document-library .download-document,
 			.portlet-document-library .webdav-url,

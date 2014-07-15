@@ -15,7 +15,7 @@
 --%>
 
 <%
-boolean isGoogleDocument = false;
+boolean googleDocument = false;
 
 if (fileEntry != null) {
 	FileVersion fileVersion = fileEntry.getLatestFileVersion();
@@ -28,12 +28,12 @@ if (fileEntry != null) {
 		DLFileEntryType dlfileEntryType = DLFileEntryTypeLocalServiceUtil.getFileEntryType(fileEntryTypeId);
 
 		if (dlfileEntryType.getFileEntryTypeKey().equals("GOOGLE-DOCUMENT")) {
-			isGoogleDocument = true;
+			googleDocument = true;
 		}
 	}
 }
 %>
 
-<c:if test="<%= !isGoogleDocument %>">
+<c:if test="<%= !googleDocument %>">
 	<%@ include file="/html/portlet/document_library/action/download.portal.jspf" %>
 </c:if>

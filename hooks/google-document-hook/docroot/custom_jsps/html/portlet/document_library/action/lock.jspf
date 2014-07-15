@@ -14,6 +14,6 @@
  */
 --%>
 
-<c:if test="<%= !isGoogleDocument %>">
+<c:if test="<%= !googleDocument %>">
 	<%@ include file="/html/portlet/document_library/action/lock.portal.jspf" %>
 </c:if>

@@ -31,19 +31,19 @@ if (fileEntry != null) {
 	}
 }
 
-boolean isGoogleDocument = false;
+boolean googleDocument = false;
 
 if (fileEntryTypeId != -1) {
 	DLFileEntryType dlfileEntryType = DLFileEntryTypeLocalServiceUtil.getFileEntryType(fileEntryTypeId);
 
 	if (dlfileEntryType.getFileEntryTypeKey().equals("GOOGLE-DOCUMENT")) {
-		isGoogleDocument = true;
+		googleDocument = true;
 	}
 }
 %>
 
 <c:choose>
-	<c:when test="<%= isGoogleDocument %>">
+	<c:when test="<%= googleDocument %>">
 		<style>
 			#<portlet:namespace />file, label[for=<portlet:namespace />file],
 			#<portlet:namespace />title, label[for=<portlet:namespace />title],
