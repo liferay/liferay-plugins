@@ -2818,7 +2818,7 @@ for (String path : paths) {
 					<zip destfile="${plugin.src.file}">
 						<zipfileset
 							dir="${docroot.dir}"
-							excludes="${liferay-hook.xml.excludes}"
+							excludes="${liferay-hook.xml.excludes},**/classes/**,**/lib/**"
 							prefix="${plugin.name}-src-${plugin.full.version}"
 						/>
 						<zipfileset
@@ -2827,8 +2827,54 @@ for (String path : paths) {
 							includes="WEB-INF/liferay-hook.xml.processed"
 						/>
 					</zip>
+
+					<set-build-xml-var
+						build.xml.var.name="import.shared"
+						module.dir="@{module.dir}"
+					/>
+
+					<if>
+						<isset property="set-build-xml-var.return" />
+						<then>
+							<var name="compile-import-shared.import.shared" value="${set-build-xml-var.return}" />
+
+							<zip-shared-src />
+						</then>
+					</if>
 				</then>
 			</if>
+		</sequential>
+	</macrodef>
+
+	<macrodef name="zip-shared-src">
+		<attribute default="${compile-import-shared.import.shared}" name="import.shared.list" />
+
+		<sequential>
+			<for list="@{import.shared.list}" param="import.shared.current">
+				<sequential>
+					<zip destfile="${plugin.src.file}" update="true">
+						<zipfileset
+							dir="${sdk.dir}/shared/@{import.shared.current}"
+							excludes="build.xml,**/classes/**,**/lib/**"
+							prefix="@{import.shared.current}-src"
+						/>
+					</zip>
+
+					<set-build-xml-var
+						build.xml.var.name="import.shared"
+						module.dir="${sdk.dir}/shared/@{import.shared.current}"
+					/>
+
+					<if>
+						<isset property="set-build-xml-var.return" />
+						<then>
+							<var name="compile-import-shared.import.shared" value="${set-build-xml-var.return}" />
+
+							<zip-shared-src />
+						</then>
+					</if>
+				</sequential>
+			</for>
 		</sequential>
 	</macrodef>
 
