@@ -31,10 +31,10 @@ for (DDMStructure ddmStructure : ddmStructures) {
 		String name = field.getName();
 
 		if (name.equals("Edit_URL")) {
-			googleDocumentEditURL = field.getValue().toString();
+			googleDocumentEditURL = String.valueOf(field.getValue());
 		}
 		else if (name.equals("View_URL")) {
-			googleDocumentViewURL = field.getValue().toString();
+			googleDocumentViewURL = String.valueOf(field.getValue());
 		}
 	}
 }
