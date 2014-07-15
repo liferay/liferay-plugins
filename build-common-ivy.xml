@@ -81,7 +81,10 @@
 									/>
 
 									<if>
-										<available file="@{ivy.xml.dir}/docroot/WEB-INF" />
+										<or>
+											<antelope:endswith string="${plugin.name}" with="-portlet" />
+											<antelope:endswith string="${plugin.name}" with="-web" />
+										</or>
 										<then>
 											<ivy:retrieve
 												conf="default"
