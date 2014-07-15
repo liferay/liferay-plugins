@@ -15,24 +15,26 @@
 --%>
 
 <%
-String googleDocumentViewURL = StringPool.BLANK;
 String googleDocumentEditURL = StringPool.BLANK;
+String googleDocumentViewURL = StringPool.BLANK;
 
-DLFileEntryType fileEntryType = DLFileEntryTypeServiceUtil.getFileEntryType(fileEntryTypeId);
+DLFileEntryType dlFileEntryType = DLFileEntryTypeServiceUtil.getFileEntryType(fileEntryTypeId);
 
-List<DDMStructure> ddmStructures = fileEntryType.getDDMStructures();
+List<DDMStructure> ddmStructures = dlFileEntryType.getDDMStructures();
 
 for (DDMStructure ddmStructure : ddmStructures) {
-	DLFileEntryMetadata fileEntryMetadata = DLFileEntryMetadataLocalServiceUtil.getFileEntryMetadata(ddmStructure.getStructureId(), fileVersionId);
+	DLFileEntryMetadata dlFileEntryMetadata = DLFileEntryMetadataLocalServiceUtil.getFileEntryMetadata(ddmStructure.getStructureId(), fileVersionId);
 
-	Fields fields = StorageEngineUtil.getFields(fileEntryMetadata.getDDMStorageId());
+	Fields fields = StorageEngineUtil.getFields(dlFileEntryMetadata.getDDMStorageId());
 
 	for (com.liferay.portlet.dynamicdatamapping.storage.Field field : fields) {
-		if (field.getName().equals("View_URL")) {
-			googleDocumentViewURL = field.getValue().toString();
-		}
-		else if (field.getName().equals("Edit_URL")) {
+		String name = field.getName();
+
+		if (name.equals("Edit_URL")) {
 			googleDocumentEditURL = field.getValue().toString();
+		}
+		else if (name.equals("View_URL")) {
+			googleDocumentViewURL = field.getValue().toString();
 		}
 	}
 }
