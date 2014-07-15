@@ -143,6 +143,18 @@ public class KBCommentLocalServiceImpl extends KBCommentLocalServiceBaseImpl {
 
 	@Override
 	public List<KBComment> getKBComments(
+			long userId, String className, long classPK, int start, int end,
+			OrderByComparator orderByComparator)
+		throws SystemException {
+
+		long classNameId = classNameLocalService.getClassNameId(className);
+
+		return kbCommentPersistence.findByU_C_C(
+			userId, classNameId, classPK, start, end, orderByComparator);
+	}
+
+	@Override
+	public List<KBComment> getKBComments(
 			String className, long classPK, int start, int end,
 			OrderByComparator orderByComparator)
 		throws SystemException {
@@ -151,6 +163,15 @@ public class KBCommentLocalServiceImpl extends KBCommentLocalServiceBaseImpl {
 
 		return kbCommentPersistence.findByC_C(
 			classNameId, classPK, start, end, orderByComparator);
+	}
+
+	@Override
+	public int getKBCommentsCount(long userId, String className, long classPK)
+		throws SystemException {
+
+		long classNameId = classNameLocalService.getClassNameId(className);
+
+		return kbCommentPersistence.countByU_C_C(userId, classNameId, classPK);
 	}
 
 	@Override
