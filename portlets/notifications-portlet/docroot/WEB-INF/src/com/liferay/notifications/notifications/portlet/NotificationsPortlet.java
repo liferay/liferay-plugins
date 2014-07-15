@@ -14,6 +14,7 @@
 
 package com.liferay.notifications.notifications.portlet;
 
+import com.liferay.compat.portal.kernel.util.ListUtil;
 import com.liferay.notifications.util.NotificationsConstants;
 import com.liferay.notifications.util.NotificationsUtil;
 import com.liferay.notifications.util.PortletKeys;
@@ -258,8 +259,7 @@ public class NotificationsPortlet extends MVCPortlet {
 			String separator = StringPool.BLANK;
 
 			if ((i == (actionableUserNotificationEvents.size() - 1)) &&
-				(nonActionableUserNotificationEvents != null) &&
-				!nonActionableUserNotificationEvents.isEmpty()) {
+				ListUtil.isNotEmpty(nonActionableUserNotificationEvents)) {
 
 				separator = _NOTIFICATION_GROUP_SEPARATOR;
 			}
