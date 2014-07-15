@@ -34,22 +34,27 @@ KBArticle kbArticle = (KBArticle)request.getAttribute(WebKeys.KNOWLEDGE_BASE_KB_
 			type="<%= kbArticleRatingsType %>"
 		/>
 
-		<div id="<portlet:namespace />previousFeedbackContainer">
-			<c:if test="<%= themeDisplay.isSignedIn() %>">
+		<c:if test="<%= themeDisplay.isSignedIn() %>">
+			<div class="kb-article-feedback-actions" id="<portlet:namespace />additionalFeedbackActionsContainer">
 				<c:choose>
+					<c:when test="<%= kbCommentsCount == 0 %>">
+						<a data-target-node-id="<portlet:namespace />feedbackContainer" href="javascript:void(0)">
+							<liferay-ui:message key="do-you-have-any-suggestions" />
+						</a>
+					</c:when>
 					<c:when test="<%= kbCommentsCount == 1 %>">
 						<a href="javascript:void(0)">
 							<liferay-ui:message key="your-previous-suggestion" />
 						</a>
 					</c:when>
-					<c:when test="<%= kbCommentsCount > 1 %>">
+					<c:otherwise>
 						<a href="javascript:void(0)">
 							<liferay-ui:message arguments="<%= new Object[]{ kbCommentsCount } %>" key="your-previous-x-suggestions" />
 						</a>
-					</c:when>
+					</c:otherwise>
 				</c:choose>
-			</c:if>
-		</div>
+			</div>
+		</c:if>
 	</div>
 
 	<c:if test='<%= kbArticleRatingsType.equals("thumbs") && themeDisplay.isSignedIn() %>'>
@@ -67,6 +72,10 @@ KBArticle kbArticle = (KBArticle)request.getAttribute(WebKeys.KNOWLEDGE_BASE_KB_
 				<aui:model-context model="<%= KBComment.class %>" />
 
 				<aui:fieldset>
+					<span class="kb-helpful-text">
+						<liferay-ui:message key="what-did-you-like-the-most-what-would-you-improve" />
+					</span>
+
 					<aui:input label="" name="content" />
 
 					<aui:button-row cssClass="kb-submit-buttons">
@@ -162,14 +171,18 @@ KBArticle kbArticle = (KBArticle)request.getAttribute(WebKeys.KNOWLEDGE_BASE_KB_
 				}
 			);
 
-			var previousCommentsContainer = A.one('#<portlet:namespace />previousCommentsContainer');
+			var additionalFeedbackActions = A.all('#<portlet:namespace />additionalFeedbackActionsContainer a');
 
-			var previousFeedbackLink = A.all('#<portlet:namespace />previousFeedbackContainer a');
+			additionalFeedbackActions.each(
+				function(node) {
+					var targetForm = A.one('#' + node.getData('target-node-id'));
 
-			previousFeedbackLink.on(
-				'click',
-				function(event) {
-					previousCommentsContainer.toggleView();
+					node.on(
+						'click',
+						function(event) {
+							targetForm.toggleView();
+						}
+					);
 				}
 			);
 
@@ -177,16 +190,18 @@ KBArticle kbArticle = (KBArticle)request.getAttribute(WebKeys.KNOWLEDGE_BASE_KB_
 
 			var enableAddSuggestionFormButton = A.one('#<portlet:namespace />enableAddSuggestionForm');
 
-			enableAddSuggestionFormButton.on(
-				'click',
-				function(event) {
-					suggestionForm.toggleView();
+			if (enableAddSuggestionFormButton) {
+				enableAddSuggestionFormButton.on(
+					'click',
+					function(event) {
+						suggestionForm.toggleView();
 
-					var textArea = suggestionForm.one('textarea');
+						var textArea = suggestionForm.one('textarea');
 
-					textArea.focus();
-				}
-			);
+						textArea.focus();
+					}
+				);
+			}
 
 			var cancelButtons = A.all('.kb-article-feedback-cancel-button');
 

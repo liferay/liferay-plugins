@@ -134,7 +134,8 @@
 		}
 	}
 
-	.kb-article-previous-feedback {
+	.kb-article-feedback-actions {
+		display: inline-table;
 		margin: 10px 0 10px 10px;
 	}
 
