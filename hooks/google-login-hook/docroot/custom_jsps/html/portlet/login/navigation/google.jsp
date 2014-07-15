@@ -18,6 +18,10 @@
 
 <%
 boolean googleAuthEnabled = PrefsPropsUtil.getBoolean(themeDisplay.getCompanyId(), "google-auth-enabled", true);
+
+if (Validator.isNull(PrefsPropsUtil.getString(company.getCompanyId(), "google-client-id")) || Validator.isNull(PrefsPropsUtil.getString(company.getCompanyId(), "google-client-secret"))) {
+	googleAuthEnabled = false;
+}
 %>
 
 <c:if test="<%= googleAuthEnabled %>">
