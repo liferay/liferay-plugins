@@ -106,6 +106,38 @@
 		}
 	}
 
+	.kb-article-previous-comments {
+		clear: both;
+		margin-left: 15px;
+
+		.kb-article-comment {
+			border-top: 1px dotted;
+			margin: 20px;
+			padding: 10px;
+		}
+
+		.kb-article-add-comment {
+			margin: 10px 25px;
+		}
+	}
+
+	.kb-article-feedback {
+		clear: both;
+		margin-left: 25px;
+
+		textarea {
+			width: 500px;
+		}
+
+		div.control-group {
+			margin-bottom: 5px;
+		}
+	}
+
+	.kb-article-previous-feedback {
+		margin: 10px 0 10px 10px;
+	}
+
 	.kb-article-siblings {
 		padding: 1em 0;
 		overflow: auto;

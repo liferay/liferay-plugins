@@ -125,6 +125,7 @@ page import="com.liferay.portlet.documentlibrary.NoSuchFileException" %><%@
 page import="com.liferay.portlet.journal.model.JournalArticle" %><%@
 page import="com.liferay.portlet.messageboards.model.MBMessage" %><%@
 page import="com.liferay.portlet.wiki.model.WikiPage" %><%@
+page import="com.liferay.taglib.search.DateSearchEntry" %><%@
 page import="com.liferay.taglib.search.ResultRow" %><%@
 page import="com.liferay.util.RSSUtil" %>
 
