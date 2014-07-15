@@ -29,6 +29,19 @@ if (kbArticle != null) {
 %>
 
 <div class="kb-attachments">
+	<div class="lfr-dynamic-uploader">
+		<div class="lfr-upload-container" id="<portlet:namespace />fileUpload"></div>
+	</div>
+
+	<span id="<portlet:namespace />selectedFileNameContainer"></span>
+
+	<div class="hide" id="<portlet:namespace />metadataExplanationContainer"></div>
+
+	<div class="hide selected" id="<portlet:namespace />selectedFileNameMetadataContainer"></div>
+
+	<c:if test="<%= !attachmentsFileEntries.isEmpty() %>">
+		<h4><liferay-ui:message key="saved-attachments" /></h4>
+	</c:if>
 
 	<%
 	for (FileEntry fileEntry : attachmentsFileEntries) {
@@ -51,15 +64,6 @@ if (kbArticle != null) {
 	}
 	%>
 
-	<div class="lfr-dynamic-uploader">
-		<div class="lfr-upload-container" id="<portlet:namespace />fileUpload"></div>
-	</div>
-
-	<span id="<portlet:namespace />selectedFileNameContainer"></span>
-
-	<div class="hide" id="<portlet:namespace />metadataExplanationContainer"></div>
-
-	<div class="hide selected" id="<portlet:namespace />selectedFileNameMetadataContainer"></div>
 </div>
 
 <%
