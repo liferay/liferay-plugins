@@ -17,6 +17,7 @@ package com.liferay.sync.engine.service;
 import com.liferay.sync.engine.documentlibrary.event.GetUserSitesGroupsEvent;
 import com.liferay.sync.engine.model.ModelListener;
 import com.liferay.sync.engine.model.SyncSite;
+import com.liferay.sync.engine.model.SyncSiteModelListener;
 import com.liferay.sync.engine.service.persistence.SyncSitePersistence;
 
 import java.sql.SQLException;
@@ -152,6 +153,8 @@ public class SyncSiteService {
 				_logger.debug(sqle.getMessage(), sqle);
 			}
 		}
+
+		_syncSitePersistence.registerModelListener(new SyncSiteModelListener());
 
 		return _syncSitePersistence;
 	}

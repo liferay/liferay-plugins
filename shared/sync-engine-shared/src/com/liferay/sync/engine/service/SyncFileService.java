@@ -28,6 +28,7 @@ import com.liferay.sync.engine.documentlibrary.event.UpdateFileEntryEvent;
 import com.liferay.sync.engine.documentlibrary.event.UpdateFolderEvent;
 import com.liferay.sync.engine.model.ModelListener;
 import com.liferay.sync.engine.model.SyncFile;
+import com.liferay.sync.engine.model.SyncFileModelListener;
 import com.liferay.sync.engine.model.SyncSite;
 import com.liferay.sync.engine.service.persistence.SyncFilePersistence;
 import com.liferay.sync.engine.util.FilePathNameUtil;
@@ -499,6 +500,8 @@ public class SyncFileService {
 				_logger.debug(sqle.getMessage(), sqle);
 			}
 		}
+
+		_syncFilePersistence.registerModelListener(new SyncFileModelListener());
 
 		return _syncFilePersistence;
 	}

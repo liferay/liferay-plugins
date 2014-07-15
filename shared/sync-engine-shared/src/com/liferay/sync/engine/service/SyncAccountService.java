@@ -17,6 +17,7 @@ package com.liferay.sync.engine.service;
 import com.liferay.sync.engine.documentlibrary.event.GetSyncContextEvent;
 import com.liferay.sync.engine.model.ModelListener;
 import com.liferay.sync.engine.model.SyncAccount;
+import com.liferay.sync.engine.model.SyncAccountModelListener;
 import com.liferay.sync.engine.model.SyncFile;
 import com.liferay.sync.engine.model.SyncSite;
 import com.liferay.sync.engine.service.persistence.SyncAccountPersistence;
@@ -188,6 +189,8 @@ public class SyncAccountService {
 				_logger.debug(sqle.getMessage(), sqle);
 			}
 		}
+
+		registerModelListener(new SyncAccountModelListener());
 
 		return _syncAccountPersistence;
 	}
