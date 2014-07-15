@@ -82,7 +82,7 @@ else {
 				for (UserNotificationEvent userNotificationEvent : actionableUserNotificationEvents) {
 				%>
 
-					<%@ include file="/notifications/notification_entry.jspf" %>
+					<%@ include file="/notifications/view_entry.jspf" %>
 
 				<%
 				}
@@ -108,7 +108,7 @@ else {
 							userNotificationEventIds.add(userNotificationEvent.getUserNotificationEventId());
 						%>
 
-							<%@ include file="/notifications/notification_entry.jspf" %>
+							<%@ include file="/notifications/view_entry.jspf" %>
 
 						<%
 						}
@@ -151,7 +151,7 @@ else {
 			for (UserNotificationEvent userNotificationEvent : userNotificationEvents) {
 			%>
 
-				<%@ include file="/notifications/notification_entry.jspf" %>
+				<%@ include file="/notifications/view_entry.jspf" %>
 
 			<%
 			}
@@ -175,7 +175,7 @@ else {
 					userNotificationEventIds.add(userNotificationEvent.getUserNotificationEventId());
 				%>
 
-					<%@ include file="/notifications/notification_entry.jspf" %>
+					<%@ include file="/notifications/view_entry.jspf" %>
 
 				<%
 				}
@@ -197,7 +197,7 @@ else {
 			for (UserNotificationEvent userNotificationEvent : userNotificationEvents) {
 			%>
 
-				<%@ include file="/notifications/notification_entry.jspf" %>
+				<%@ include file="/notifications/view_entry.jspf" %>
 
 			<%
 			}
