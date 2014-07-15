@@ -17,7 +17,7 @@ package com.liferay.notifications.notifications.portlet;
 import com.liferay.notifications.util.NotificationsConstants;
 import com.liferay.notifications.util.NotificationsUtil;
 import com.liferay.notifications.util.PortletKeys;
-import com.liferay.notifications.util.PortletPropsKeys;
+import com.liferay.notifications.util.PortletPropsValues;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
@@ -44,7 +44,6 @@ import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.util.ContentUtil;
 import com.liferay.util.bridges.mvc.MVCPortlet;
-import com.liferay.util.portlet.PortletProps;
 
 import java.text.Format;
 
@@ -523,8 +522,7 @@ public class NotificationsPortlet extends MVCPortlet {
 		}
 
 		return StringUtil.replace(
-			ContentUtil.get(
-				PortletProps.get(PortletPropsKeys.USER_NOTIFICATION_ENTRY)),
+			ContentUtil.get(PortletPropsValues.USER_NOTIFICATION_ENTRY),
 			new String[] {
 				"[$BODY$]", "[$ACTION_DIV$]", "[$PORTLET_ICON$]",
 				"[$PORTLET_NAME$]", "[$SEPARATOR$]", "[$TIMESTAMP$]",
