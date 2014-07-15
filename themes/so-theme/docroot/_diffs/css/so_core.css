@@ -1301,8 +1301,10 @@ html.aui {
 	.thread-message-view {
 		position: relative;
 
-		td, tr {
-			display: block;
+		> tbody > {
+			tr, tr > td {
+				display: block;
+			}
 		}
 	}
 
