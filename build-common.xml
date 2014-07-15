@@ -1182,201 +1182,297 @@ Please find a solution that does not require portal-impl.jar.
 			<if>
 				<antelope:endswith string="${plugin.name}" with="-ext" />
 				<then>
-					<java
-						classname="com.liferay.portal.tools.deploy.ExtDeployer"
-						classpathref="portal.classpath"
-						fork="true"
-						newenvironment="true"
-					>
-
-						<!-- Required Arguments -->
-
-						<jvmarg value="-Dexternal-properties=com/liferay/portal/tools/dependencies/portal-tools.properties" />
-						<jvmarg value="-Dliferay.lib.portal.dir=${app.server.lib.portal.dir}" />
-						<jvmarg value="-Ddeployer.base.dir=${sdk.dir}/dist" />
-						<jvmarg value="-Ddeployer.dest.dir=${app.server.deploy.dir}" />
-						<jvmarg value="-Ddeployer.app.server.type=${app.server.type}" />
-						<jvmarg value="-Ddeployer.unpack.war=${auto.deploy.unpack.war}" />
-						<jvmarg value="-Ddeployer.file.pattern=${plugin.name}-*.war" />
-
-						<!-- Optional Arguments -->
-
-						<jvmarg value="-Ddeployer.tomcat.lib.dir=${app.server.tomcat.lib.global.dir}" />
-
-						<!-- Dependent Libraries -->
-
-						<arg value="${app.server.lib.portal.dir}/util-bridges.jar" />
-						<arg value="${app.server.lib.portal.dir}/util-java.jar" />
-						<arg value="${app.server.lib.portal.dir}/util-taglib.jar" />
-					</java>
+					<direct-deploy-ext-cmd
+						direct.deploy.dir="${app.server.deploy.dir}"
+						module.dir="@{module.dir}"
+					/>
 				</then>
 				<elseif>
 					<antelope:endswith string="${plugin.name}" with="-hook" />
 					<then>
-						<java
-							classname="com.liferay.portal.tools.deploy.HookDeployer"
-							classpathref="portal.classpath"
-							fork="true"
-							newenvironment="true"
-						>
-
-							<!-- Required Arguments -->
-
-							<jvmarg value="-Dexternal-properties=com/liferay/portal/tools/dependencies/portal-tools.properties" />
-							<jvmarg value="-Dliferay.lib.portal.dir=${app.server.lib.portal.dir}" />
-							<jvmarg value="-Ddeployer.base.dir=${sdk.dir}/dist" />
-							<jvmarg value="-Ddeployer.dest.dir=${app.server.deploy.dir}" />
-							<jvmarg value="-Ddeployer.app.server.type=${app.server.type}" />
-							<jvmarg value="-Ddeployer.unpack.war=${auto.deploy.unpack.war}" />
-							<jvmarg value="-Ddeployer.file.pattern=${plugin.name}-*.war" />
-
-							<!-- Optional Arguments -->
-
-							<jvmarg value="-Ddeployer.tomcat.lib.dir=${app.server.tomcat.lib.global.dir}" />
-
-							<!-- Dependent Libraries -->
-
-							<arg value="${app.server.lib.portal.dir}/util-bridges.jar" />
-							<arg value="${app.server.lib.portal.dir}/util-java.jar" />
-							<arg value="${app.server.lib.portal.dir}/util-taglib.jar" />
-						</java>
+						<direct-deploy-hook-cmd
+							direct.deploy.dir="${app.server.deploy.dir}"
+							module.dir="@{module.dir}"
+						/>
 					</then>
 				</elseif>
 				<elseif>
 					<antelope:endswith string="${plugin.name}" with="-layouttpl" />
 					<then>
-						<java
-							classname="com.liferay.portal.tools.deploy.LayoutTemplateDeployer"
-							classpathref="portal.classpath"
-							fork="true"
-							newenvironment="true"
-						>
-
-							<!-- Required Arguments -->
-
-							<jvmarg value="-Dexternal-properties=com/liferay/portal/tools/dependencies/portal-tools.properties" />
-							<jvmarg value="-Dliferay.lib.portal.dir=${app.server.lib.portal.dir}" />
-							<jvmarg value="-Ddeployer.base.dir=${sdk.dir}/dist" />
-							<jvmarg value="-Ddeployer.dest.dir=${app.server.deploy.dir}" />
-							<jvmarg value="-Ddeployer.app.server.type=${app.server.type}" />
-							<jvmarg value="-Ddeployer.unpack.war=${auto.deploy.unpack.war}" />
-							<jvmarg value="-Ddeployer.file.pattern=${plugin.name}-*.war" />
-
-							<!-- Dependent Libraries -->
-
-							<arg value="${app.server.lib.portal.dir}/util-bridges.jar" />
-							<arg value="${app.server.lib.portal.dir}/util-java.jar" />
-							<arg value="${app.server.lib.portal.dir}/util-taglib.jar" />
-						</java>
+						<direct-deploy-layouttpl-cmd
+							direct.deploy.dir="${app.server.deploy.dir}"
+							module.dir="@{module.dir}"
+						/>
 					</then>
 				</elseif>
 				<elseif>
 					<antelope:endswith string="${plugin.name}" with="-portlet" />
 					<then>
-						<java
-							classname="com.liferay.portal.tools.deploy.PortletDeployer"
-							classpathref="portal.classpath"
-							fork="true"
-							newenvironment="true"
-						>
-
-							<!-- Required Arguments -->
-
-							<jvmarg value="-Dexternal-properties=com/liferay/portal/tools/dependencies/portal-tools.properties" />
-							<jvmarg value="-Dliferay.lib.portal.dir=${app.server.lib.portal.dir}" />
-							<jvmarg value="-Ddeployer.base.dir=${sdk.dir}/dist" />
-							<jvmarg value="-Ddeployer.dest.dir=${app.server.deploy.dir}" />
-							<jvmarg value="-Ddeployer.app.server.type=${app.server.type}" />
-							<jvmarg value="-Ddeployer.aui.taglib.dtd=${app.server.portal.dir}/WEB-INF/tld/aui.tld" />
-							<jvmarg value="-Ddeployer.portlet.taglib.dtd=${app.server.portal.dir}/WEB-INF/tld/liferay-portlet.tld" />
-							<jvmarg value="-Ddeployer.portlet-ext.taglib.dtd=${app.server.portal.dir}/WEB-INF/tld/liferay-portlet-ext.tld" />
-							<jvmarg value="-Ddeployer.security.taglib.dtd=${app.server.portal.dir}/WEB-INF/tld/liferay-security.tld" />
-							<jvmarg value="-Ddeployer.theme.taglib.dtd=${app.server.portal.dir}/WEB-INF/tld/liferay-theme.tld" />
-							<jvmarg value="-Ddeployer.ui.taglib.dtd=${app.server.portal.dir}/WEB-INF/tld/liferay-ui.tld" />
-							<jvmarg value="-Ddeployer.util.taglib.dtd=${app.server.portal.dir}/WEB-INF/tld/liferay-util.tld" />
-							<jvmarg value="-Ddeployer.unpack.war=${auto.deploy.unpack.war}" />
-							<jvmarg value="-Ddeployer.custom.portlet.xml=${auto.deploy.custom.portlet.xml}" />
-							<jvmarg value="-Ddeployer.file.pattern=${plugin.name}-*.war" />
-
-							<!-- Optional Arguments -->
-
-							<jvmarg value="-Ddeployer.tomcat.lib.dir=${app.server.tomcat.lib.global.dir}" />
-
-							<!-- Dependent Libraries -->
-
-							<arg value="${app.server.lib.portal.dir}/util-bridges.jar" />
-							<arg value="${app.server.lib.portal.dir}/util-java.jar" />
-							<arg value="${app.server.lib.portal.dir}/util-taglib.jar" />
-						</java>
+						<direct-deploy-portlet-cmd
+							direct.deploy.dir="${app.server.deploy.dir}"
+							module.dir="@{module.dir}"
+						/>
 					</then>
 				</elseif>
 				<elseif>
 					<antelope:endswith string="${plugin.name}" with="-theme" />
 					<then>
-						<java
-							classname="com.liferay.portal.tools.deploy.ThemeDeployer"
-							classpathref="portal.classpath"
-							fork="true"
-							newenvironment="true"
-						>
-
-							<!-- Required Arguments -->
-
-							<jvmarg value="-Dexternal-properties=com/liferay/portal/tools/dependencies/portal-tools.properties" />
-							<jvmarg value="-Dliferay.lib.portal.dir=${app.server.lib.portal.dir}" />
-							<jvmarg value="-Ddeployer.base.dir=${sdk.dir}/dist" />
-							<jvmarg value="-Ddeployer.dest.dir=${app.server.deploy.dir}" />
-							<jvmarg value="-Ddeployer.app.server.type=${app.server.type}" />
-							<jvmarg value="-Ddeployer.theme.taglib.dtd=${app.server.portal.dir}/WEB-INF/tld/liferay-theme.tld" />
-							<jvmarg value="-Ddeployer.util.taglib.dtd=${app.server.portal.dir}/WEB-INF/tld/liferay-util.tld" />
-							<jvmarg value="-Ddeployer.unpack.war=${auto.deploy.unpack.war}" />
-							<jvmarg value="-Ddeployer.file.pattern=${plugin.name}-*.war" />
-
-							<!-- Optional Arguments -->
-
-							<jvmarg value="-Ddeployer.tomcat.lib.dir=${app.server.tomcat.lib.global.dir}" />
-
-							<!-- Dependent Libraries -->
-
-							<arg value="${app.server.lib.portal.dir}/util-bridges.jar" />
-							<arg value="${app.server.lib.portal.dir}/util-java.jar" />
-							<arg value="${app.server.lib.portal.dir}/util-taglib.jar" />
-						</java>
+						<direct-deploy-theme-cmd
+							direct.deploy.dir="${app.server.deploy.dir}"
+							module.dir="@{module.dir}"
+						/>
 					</then>
 				</elseif>
 				<elseif>
 					<antelope:endswith string="${plugin.name}" with="-web" />
 					<then>
-						<java
-							classname="com.liferay.portal.tools.deploy.WebDeployer"
-							classpathref="portal.classpath"
-							fork="true"
-							newenvironment="true"
-						>
-
-							<!-- Required Arguments -->
-
-							<jvmarg value="-Dexternal-properties=com/liferay/portal/tools/dependencies/portal-tools.properties" />
-							<jvmarg value="-Dliferay.lib.portal.dir=${app.server.lib.portal.dir}" />
-							<jvmarg value="-Ddeployer.base.dir=${sdk.dir}/dist" />
-							<jvmarg value="-Ddeployer.dest.dir=${app.server.deploy.dir}" />
-							<jvmarg value="-Ddeployer.app.server.type=${app.server.type}" />
-							<jvmarg value="-Ddeployer.unpack.war=${auto.deploy.unpack.war}" />
-							<jvmarg value="-Ddeployer.file.pattern=${plugin.name}-*.war" />
-
-							<!-- Optional Arguments -->
-
-							<jvmarg value="-Ddeployer.tomcat.lib.dir=${app.server.tomcat.lib.global.dir}" />
-
-							<!-- Dependent Libraries -->
-
-							<arg value="${app.server.lib.portal.dir}/util-bridges.jar" />
-							<arg value="${app.server.lib.portal.dir}/util-java.jar" />
-							<arg value="${app.server.lib.portal.dir}/util-taglib.jar" />
-						</java>
+						<direct-deploy-web-cmd
+							direct.deploy.dir="${app.server.deploy.dir}"
+							module.dir="@{module.dir}"
+						/>
 					</then>
 				</elseif>
 			</if>
+		</sequential>
+	</macrodef>
+
+	<macrodef name="direct-deploy-ext-cmd">
+		<attribute name="direct.deploy.dir" />
+		<attribute name="module.dir" />
+
+		<sequential>
+			<set-module-properties
+				module.dir="@{module.dir}"
+			/>
+
+			<java
+				classname="com.liferay.portal.tools.deploy.ExtDeployer"
+				classpathref="portal.classpath"
+				fork="true"
+				newenvironment="true"
+			>
+
+				<!-- Required Arguments -->
+
+				<jvmarg value="-Dexternal-properties=com/liferay/portal/tools/dependencies/portal-tools.properties" />
+				<jvmarg value="-Dliferay.lib.portal.dir=${app.server.lib.portal.dir}" />
+				<jvmarg value="-Ddeployer.base.dir=${sdk.dir}/dist" />
+				<jvmarg value="-Ddeployer.dest.dir=@{direct.deploy.dir}" />
+				<jvmarg value="-Ddeployer.app.server.type=${app.server.type}" />
+				<jvmarg value="-Ddeployer.unpack.war=${auto.deploy.unpack.war}" />
+				<jvmarg value="-Ddeployer.file.pattern=${plugin.name}-*.war" />
+
+				<!-- Optional Arguments -->
+
+				<jvmarg value="-Ddeployer.tomcat.lib.dir=${app.server.tomcat.lib.global.dir}" />
+
+				<!-- Dependent Libraries -->
+
+				<arg value="${app.server.lib.portal.dir}/util-bridges.jar" />
+				<arg value="${app.server.lib.portal.dir}/util-java.jar" />
+				<arg value="${app.server.lib.portal.dir}/util-taglib.jar" />
+			</java>
+		</sequential>
+	</macrodef>
+
+	<macrodef name="direct-deploy-hook-cmd">
+		<attribute name="direct.deploy.dir" />
+		<attribute name="module.dir" />
+
+		<sequential>
+			<set-module-properties
+				module.dir="@{module.dir}"
+			/>
+
+			<java
+				classname="com.liferay.portal.tools.deploy.HookDeployer"
+				classpathref="portal.classpath"
+				fork="true"
+				newenvironment="true"
+			>
+
+				<!-- Required Arguments -->
+
+				<jvmarg value="-Dexternal-properties=com/liferay/portal/tools/dependencies/portal-tools.properties" />
+				<jvmarg value="-Dliferay.lib.portal.dir=${app.server.lib.portal.dir}" />
+				<jvmarg value="-Ddeployer.base.dir=${sdk.dir}/dist" />
+				<jvmarg value="-Ddeployer.dest.dir=@{direct.deploy.dir}" />
+				<jvmarg value="-Ddeployer.app.server.type=${app.server.type}" />
+				<jvmarg value="-Ddeployer.unpack.war=${auto.deploy.unpack.war}" />
+				<jvmarg value="-Ddeployer.file.pattern=${plugin.name}-*.war" />
+
+				<!-- Optional Arguments -->
+
+				<jvmarg value="-Ddeployer.tomcat.lib.dir=${app.server.tomcat.lib.global.dir}" />
+
+				<!-- Dependent Libraries -->
+
+				<arg value="${app.server.lib.portal.dir}/util-bridges.jar" />
+				<arg value="${app.server.lib.portal.dir}/util-java.jar" />
+				<arg value="${app.server.lib.portal.dir}/util-taglib.jar" />
+			</java>
+		</sequential>
+	</macrodef>
+
+	<macrodef name="direct-deploy-layouttpl-cmd">
+		<attribute name="direct.deploy.dir" />
+		<attribute name="module.dir" />
+
+		<sequential>
+			<set-module-properties
+				module.dir="@{module.dir}"
+			/>
+
+			<java
+				classname="com.liferay.portal.tools.deploy.LayoutTemplateDeployer"
+				classpathref="portal.classpath"
+				fork="true"
+				newenvironment="true"
+			>
+
+				<!-- Required Arguments -->
+
+				<jvmarg value="-Dexternal-properties=com/liferay/portal/tools/dependencies/portal-tools.properties" />
+				<jvmarg value="-Dliferay.lib.portal.dir=${app.server.lib.portal.dir}" />
+				<jvmarg value="-Ddeployer.base.dir=${sdk.dir}/dist" />
+				<jvmarg value="-Ddeployer.dest.dir=@{direct.deploy.dir}" />
+				<jvmarg value="-Ddeployer.app.server.type=${app.server.type}" />
+				<jvmarg value="-Ddeployer.unpack.war=${auto.deploy.unpack.war}" />
+				<jvmarg value="-Ddeployer.file.pattern=${plugin.name}-*.war" />
+
+				<!-- Dependent Libraries -->
+
+				<arg value="${app.server.lib.portal.dir}/util-bridges.jar" />
+				<arg value="${app.server.lib.portal.dir}/util-java.jar" />
+				<arg value="${app.server.lib.portal.dir}/util-taglib.jar" />
+			</java>
+		</sequential>
+	</macrodef>
+
+	<macrodef name="direct-deploy-portlet-cmd">
+		<attribute name="direct.deploy.dir" />
+		<attribute name="module.dir" />
+
+		<sequential>
+			<set-module-properties
+				module.dir="@{module.dir}"
+			/>
+
+			<java
+				classname="com.liferay.portal.tools.deploy.PortletDeployer"
+				classpathref="portal.classpath"
+				fork="true"
+				newenvironment="true"
+			>
+
+				<!-- Required Arguments -->
+
+				<jvmarg value="-Dexternal-properties=com/liferay/portal/tools/dependencies/portal-tools.properties" />
+				<jvmarg value="-Dliferay.lib.portal.dir=${app.server.lib.portal.dir}" />
+				<jvmarg value="-Ddeployer.base.dir=${sdk.dir}/dist" />
+				<jvmarg value="-Ddeployer.dest.dir=@{direct.deploy.dir}" />
+				<jvmarg value="-Ddeployer.app.server.type=${app.server.type}" />
+				<jvmarg value="-Ddeployer.aui.taglib.dtd=${app.server.portal.dir}/WEB-INF/tld/aui.tld" />
+				<jvmarg value="-Ddeployer.portlet.taglib.dtd=${app.server.portal.dir}/WEB-INF/tld/liferay-portlet.tld" />
+				<jvmarg value="-Ddeployer.portlet-ext.taglib.dtd=${app.server.portal.dir}/WEB-INF/tld/liferay-portlet-ext.tld" />
+				<jvmarg value="-Ddeployer.security.taglib.dtd=${app.server.portal.dir}/WEB-INF/tld/liferay-security.tld" />
+				<jvmarg value="-Ddeployer.theme.taglib.dtd=${app.server.portal.dir}/WEB-INF/tld/liferay-theme.tld" />
+				<jvmarg value="-Ddeployer.ui.taglib.dtd=${app.server.portal.dir}/WEB-INF/tld/liferay-ui.tld" />
+				<jvmarg value="-Ddeployer.util.taglib.dtd=${app.server.portal.dir}/WEB-INF/tld/liferay-util.tld" />
+				<jvmarg value="-Ddeployer.unpack.war=${auto.deploy.unpack.war}" />
+				<jvmarg value="-Ddeployer.custom.portlet.xml=${auto.deploy.custom.portlet.xml}" />
+				<jvmarg value="-Ddeployer.file.pattern=${plugin.name}-*.war" />
+
+				<!-- Optional Arguments -->
+
+				<jvmarg value="-Ddeployer.tomcat.lib.dir=${app.server.tomcat.lib.global.dir}" />
+
+				<!-- Dependent Libraries -->
+
+				<arg value="${app.server.lib.portal.dir}/util-bridges.jar" />
+				<arg value="${app.server.lib.portal.dir}/util-java.jar" />
+				<arg value="${app.server.lib.portal.dir}/util-taglib.jar" />
+			</java>
+		</sequential>
+	</macrodef>
+
+	<macrodef name="direct-deploy-theme-cmd">
+		<attribute name="direct.deploy.dir" />
+		<attribute name="module.dir" />
+
+		<sequential>
+			<set-module-properties
+				module.dir="@{module.dir}"
+			/>
+
+			<java
+				classname="com.liferay.portal.tools.deploy.ThemeDeployer"
+				classpathref="portal.classpath"
+				fork="true"
+				newenvironment="true"
+			>
+
+				<!-- Required Arguments -->
+
+				<jvmarg value="-Dexternal-properties=com/liferay/portal/tools/dependencies/portal-tools.properties" />
+				<jvmarg value="-Dliferay.lib.portal.dir=${app.server.lib.portal.dir}" />
+				<jvmarg value="-Ddeployer.base.dir=${sdk.dir}/dist" />
+				<jvmarg value="-Ddeployer.dest.dir=@{direct.deploy.dir}" />
+				<jvmarg value="-Ddeployer.app.server.type=${app.server.type}" />
+				<jvmarg value="-Ddeployer.theme.taglib.dtd=${app.server.portal.dir}/WEB-INF/tld/liferay-theme.tld" />
+				<jvmarg value="-Ddeployer.util.taglib.dtd=${app.server.portal.dir}/WEB-INF/tld/liferay-util.tld" />
+				<jvmarg value="-Ddeployer.unpack.war=${auto.deploy.unpack.war}" />
+				<jvmarg value="-Ddeployer.file.pattern=${plugin.name}-*.war" />
+
+				<!-- Optional Arguments -->
+
+				<jvmarg value="-Ddeployer.tomcat.lib.dir=${app.server.tomcat.lib.global.dir}" />
+
+				<!-- Dependent Libraries -->
+
+				<arg value="${app.server.lib.portal.dir}/util-bridges.jar" />
+				<arg value="${app.server.lib.portal.dir}/util-java.jar" />
+				<arg value="${app.server.lib.portal.dir}/util-taglib.jar" />
+			</java>
+		</sequential>
+	</macrodef>
+
+	<macrodef name="direct-deploy-web-cmd">
+		<attribute name="direct.deploy.dir" />
+		<attribute name="module.dir" />
+
+		<sequential>
+			<set-module-properties
+				module.dir="@{module.dir}"
+			/>
+
+			<java
+				classname="com.liferay.portal.tools.deploy.WebDeployer"
+				classpathref="portal.classpath"
+				fork="true"
+				newenvironment="true"
+			>
+
+				<!-- Required Arguments -->
+
+				<jvmarg value="-Dexternal-properties=com/liferay/portal/tools/dependencies/portal-tools.properties" />
+				<jvmarg value="-Dliferay.lib.portal.dir=${app.server.lib.portal.dir}" />
+				<jvmarg value="-Ddeployer.base.dir=${sdk.dir}/dist" />
+				<jvmarg value="-Ddeployer.dest.dir=@{direct.deploy.dir}" />
+				<jvmarg value="-Ddeployer.app.server.type=${app.server.type}" />
+				<jvmarg value="-Ddeployer.unpack.war=${auto.deploy.unpack.war}" />
+				<jvmarg value="-Ddeployer.file.pattern=${plugin.name}-*.war" />
+
+				<!-- Optional Arguments -->
+
+				<jvmarg value="-Ddeployer.tomcat.lib.dir=${app.server.tomcat.lib.global.dir}" />
+
+				<!-- Dependent Libraries -->
+
+				<arg value="${app.server.lib.portal.dir}/util-bridges.jar" />
+				<arg value="${app.server.lib.portal.dir}/util-java.jar" />
+				<arg value="${app.server.lib.portal.dir}/util-taglib.jar" />
+			</java>
 		</sequential>
 	</macrodef>
 
@@ -1482,6 +1578,59 @@ Please find a solution that does not require portal-impl.jar.
 							<baseline-jar-macro
 								module.dir="@{module.dir}"
 							/>
+						</then>
+					</if>
+
+					<if>
+						<available file="@{module.dir}/docroot/WEB-INF/portlet.xml" />
+						<then>
+							<tstamp>
+								<format property="tstamp.value" pattern="yyyyMMddkkmmssSSS" />
+							</tstamp>
+
+							<move file="${plugin.file}" tofile="${sdk.dir}/dist/${plugin.name}-${plugin.full.version}.war" />
+
+							<direct-deploy-portlet-cmd
+								direct.deploy.dir="${tstamp.value}"
+								module.dir="@{module.dir}"
+							/>
+
+							<var name="temp.deployed.plugin.dir" value="${tstamp.value}/${plugin.name}-${plugin.full.version}" />
+
+							<if>
+								<not>
+									<available file="${temp.deployed.plugin.dir}" />
+								</not>
+								<then>
+									<var name="temp.deployed.plugin.dir" value="${tstamp.value}/${plugin.name}" />
+								</then>
+							</if>
+
+							<if>
+								<available file="${temp.deployed.plugin.dir}" />
+								<then>
+									<update-osgi-web-xml
+										web.xml.dir="${temp.deployed.plugin.dir}/WEB-INF"
+									/>
+
+									<zip destfile="${sdk.dir}/dist/${plugin.name}-${plugin.full.version}.war" update="true">
+										<zipfileset
+											dir="${temp.deployed.plugin.dir}"
+											fullpath="WEB-INF/web.xml"
+											includes="WEB-INF/web.xml"
+										/>
+									</zip>
+								</then>
+								<else>
+									<echo>Unable to automatically update web.xml.</echo>
+								</else>
+							</if>
+
+							<var name="temp.deployed.plugin.dir" unset="true" />
+
+							<move file="${sdk.dir}/dist/${plugin.name}-${plugin.full.version}.war" tofile="${plugin.file}" />
+
+							<delete dir="${tstamp.value}" />
 						</then>
 					</if>
 				</then>
@@ -2247,6 +2396,120 @@ Please find a solution that does not require portal-impl.jar.
 		</sequential>
 	</macrodef>
 
+	<macrodef name="update-osgi-web-xml">
+		<attribute name="web.xml.dir" />
+
+		<sequential>
+			<replace file="@{web.xml.dir}/web.xml">
+				<replacetoken><![CDATA[taglib-location>/WEB-INF/tld]]></replacetoken>
+				<replacevalue><![CDATA[taglib-location>/META-INF/tld]]></replacevalue>
+			</replace>
+
+			<var name="web.xml.dir" value="@{web.xml.dir}" />
+
+			<script classpathref="portal.classpath" language="beanshell">
+				<![CDATA[
+					import com.liferay.util.xml.XMLFormatter;
+
+					import org.dom4j.Document;
+					import org.dom4j.Element;
+					import org.dom4j.io.SAXReader;
+
+					import java.io.File;
+
+					SAXReader saxReader = new SAXReader();
+
+					Document document = saxReader.read(new File(project.getProperty("web.xml.dir"), "web.xml"));
+
+					Element rootElement = document.getRootElement();
+
+					Element displayNameElement = rootElement.element("display-name");
+
+					if (displayNameElement != null) {
+						displayNameElement.detach();
+					}
+
+					List filterElements = rootElement.elements("filter");
+
+					for (Element filterElement : filterElements) {
+						Element filterNameElement = filterElement.element("filter-name");
+
+						if (filterNameElement == null) {
+							continue;
+						}
+
+						String filterNameText = filterNameElement.getText();
+
+						if (filterNameText.contains("Invoker Filter -")) {
+							filterElement.detach();
+						}
+					}
+
+					List filterMappingElements = rootElement.elements("filter-mapping");
+
+					for (Element filterMappingElement : filterMappingElements) {
+						Element filterNameElement = filterMappingElement.element("filter-name");
+
+						if (filterNameElement == null) {
+							continue;
+						}
+
+						String filterNameText = filterNameElement.getText();
+
+						if (filterNameText.contains("Invoker Filter -")) {
+							filterMappingElement.detach();
+						}
+					}
+
+					List listenerElements = rootElement.elements("listener");
+
+					for (Element listenerElement : listenerElements) {
+						Element listenerClassElement = listenerElement.element("listener-class");
+
+						String listenerClassText = listenerClassElement.getText();
+
+						if (listenerClassText.equals("com.liferay.portal.kernel.servlet.PluginContextListener") ||
+							listenerClassText.equals("com.liferay.portal.kernel.servlet.SerializableSessionAttributeListener")) {
+
+							listenerElement.detach();
+						}
+					}
+
+					List servletElements = rootElement.elements("servlet");
+
+					for (Element servletElement : servletElements) {
+						Element servletNameElement = servletElement.element("servlet-name");
+
+						if (servletNameElement == null) {
+							continue;
+						}
+
+						String servletNameText = servletNameElement.getText();
+
+						if (servletNameText.equals("Dynamic Resource Servlet")) {
+							Element servletClassElement = servletElement.element("servlet-class");
+
+							servletClassElement.setText("com.liferay.portal.webserver.DynamicResourceServlet");
+
+							List initParamElements = servletElement.elements("init-param");
+
+							for (Element initParamElement : initParamElements) {
+								initParamElement.detach();
+							}
+						}
+					}
+
+					project.setProperty("web.xml.content", XMLFormatter.toString(document));
+				]]>
+			</script>
+
+			<echo file="@{web.xml.dir}/web.xml">${web.xml.content}</echo>
+
+			<var name="web.xml.content" unset="true" />
+			<var name="web.xml.dir" unset="true" />
+		</sequential>
+	</macrodef>
+
 	<macrodef name="war-alloy-portlet">
 		<attribute name="module.dir" />
 
@@ -2361,6 +2624,34 @@ for (String path : paths) {
 						module.dirs="@{module.dir}"
 						target.name="jar"
 					/>
+
+					<if>
+						<available file="@{module.dir}/docroot/WEB-INF/portlet.xml" />
+						<then>
+							<tstamp>
+								<format property="tstamp.value" pattern="yyyyMMddkkmmssSSS" />
+							</tstamp>
+
+							<move file="${plugin.file}" tofile="${sdk.dir}/dist/${plugin.name}-${plugin.full.version}.war" />
+
+							<direct-deploy-portlet-cmd
+								direct.deploy.dir="${tstamp.value}"
+								module.dir="@{module.dir}"
+							/>
+
+							<zip destfile="${sdk.dir}/dist/${plugin.name}-${plugin.full.version}.war" update="true">
+								<zipfileset
+									dir="${tstamp.value}/${plugin.name}"
+									fullpath="WEB-INF/web.xml"
+									includes="WEB-INF/web.xml"
+								/>
+							</zip>
+
+							<move file="${sdk.dir}/dist/${plugin.name}-${plugin.full.version}.war" tofile="${plugin.file}" />
+
+							<delete dir="${tstamp.value}" />
+						</then>
+					</if>
 				</then>
 				<else>
 					<if>
