@@ -120,11 +120,6 @@ public class AkismetWikiPageLocalServiceImpl
 
 		boolean enabled = isWikiEnabled(userId, nodeId, serviceContext);
 
-		if (enabled) {
-			serviceContext.setWorkflowAction(
-				WorkflowConstants.ACTION_SAVE_DRAFT);
-		}
-
 		WikiPage page = super.updatePage(
 			userId, nodeId, title, version, content, summary, minorEdit, format,
 			parentTitle, redirectTitle, serviceContext);
@@ -168,10 +163,7 @@ public class AkismetWikiPageLocalServiceImpl
 					newServiceContext);
 			}
 			else {
-				return super.updatePage(
-					userId, nodeId, title, page.getVersion(), null,
-					StringPool.BLANK, true, format, parentTitle, redirectTitle,
-					newServiceContext);
+				return page;
 			}
 		}
 		finally {
