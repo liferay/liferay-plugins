@@ -38,17 +38,17 @@ KBArticle kbArticle = (KBArticle)request.getAttribute(WebKeys.KNOWLEDGE_BASE_KB_
 			<div class="kb-article-feedback-actions" id="<portlet:namespace />additionalFeedbackActionsContainer">
 				<c:choose>
 					<c:when test="<%= kbCommentsCount == 0 %>">
-						<a data-target-node-id="<portlet:namespace />feedbackContainer" href="javascript:void(0)">
+						<a data-show-node-id="<portlet:namespace />feedbackContainer" href="javascript:void(0)">
 							<liferay-ui:message key="do-you-have-any-suggestions" />
 						</a>
 					</c:when>
 					<c:when test="<%= kbCommentsCount == 1 %>">
-						<a href="javascript:void(0)">
+						<a data-hide-node-id="<portlet:namespace />feedbackContainer" data-show-node-id="<portlet:namespace />previousCommentsContainer" href="javascript:void(0)">
 							<liferay-ui:message key="your-previous-suggestion" />
 						</a>
 					</c:when>
 					<c:otherwise>
-						<a href="javascript:void(0)">
+						<a data-hide-node-id="<portlet:namespace />feedbackContainer" data-show-node-id="<portlet:namespace />previousCommentsContainer" href="javascript:void(0)">
 							<liferay-ui:message arguments="<%= new Object[]{ kbCommentsCount } %>" key="your-previous-x-suggestions" />
 						</a>
 					</c:otherwise>
@@ -175,12 +175,28 @@ KBArticle kbArticle = (KBArticle)request.getAttribute(WebKeys.KNOWLEDGE_BASE_KB_
 
 			additionalFeedbackActions.each(
 				function(node) {
-					var targetForm = A.one('#' + node.getData('target-node-id'));
+					var nodeToHideId = node.getData('hide-node-id');
+
+					var nodeToHide = null;
+
+					if (nodeToHideId) {
+						nodeToHide = A.one('#' + node.getData('hide-node-id'));
+					}
+
+					var nodeToShow = A.one('#' + node.getData('show-node-id'));
 
 					node.on(
 						'click',
 						function(event) {
-							targetForm.toggleView();
+							if (nodeToHide) {
+								nodeToHide.hide();
+							}
+
+							nodeToShow.toggleView();
+
+							var textArea = nodeToShow.one('textarea');
+
+							textArea.focus();
 						}
 					);
 				}
