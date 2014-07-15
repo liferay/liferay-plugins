@@ -454,8 +454,6 @@ AUI().use(
 			_markAsRead: function(event, fullView, markAllAsRead) {
 				event.preventDefault();
 
-				event.stopPropagation();
-
 				var instance = this;
 
 				var currentRow;
