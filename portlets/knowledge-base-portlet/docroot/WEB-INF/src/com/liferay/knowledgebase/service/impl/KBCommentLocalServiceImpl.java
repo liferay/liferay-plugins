@@ -140,13 +140,31 @@ public class KBCommentLocalServiceImpl extends KBCommentLocalServiceBaseImpl {
 
 	@Override
 	public List<KBComment> getKBComments(
-		String className, long classPK, int start, int end,
+		long userId, String className, long classPK, int start, int end,
 		OrderByComparator<KBComment> orderByComparator) {
+
+		long classNameId = classNameLocalService.getClassNameId(className);
+
+		return kbCommentPersistence.findByU_C_C(
+			userId, classNameId, classPK, start, end, orderByComparator);
+	}
+
+	@Override
+	public List<KBComment> getKBComments(
+		String className, long classPK, int start, int end,
+		OrderByComparator orderByComparator) {
 
 		long classNameId = classNameLocalService.getClassNameId(className);
 
 		return kbCommentPersistence.findByC_C(
 			classNameId, classPK, start, end, orderByComparator);
+	}
+
+	@Override
+	public int getKBCommentsCount(long userId, String className, long classPK) {
+		long classNameId = classNameLocalService.getClassNameId(className);
+
+		return kbCommentPersistence.countByU_C_C(userId, classNameId, classPK);
 	}
 
 	@Override
