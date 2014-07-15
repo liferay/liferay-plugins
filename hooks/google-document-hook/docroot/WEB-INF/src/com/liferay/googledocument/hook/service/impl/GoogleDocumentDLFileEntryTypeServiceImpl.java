@@ -51,7 +51,7 @@ public class GoogleDocumentDLFileEntryTypeServiceImpl
 			return dlFileEntryTypes;
 		}
 
-		return filterGoogleDocumentFileEntryType(dlFileEntryTypes);
+		return filterDLFileEntryTypes(dlFileEntryTypes);
 	}
 
 	@Override
@@ -70,7 +70,7 @@ public class GoogleDocumentDLFileEntryTypeServiceImpl
 		return searchCount;
 	}
 
-	protected List<DLFileEntryType> filterGoogleDocumentFileEntryType(
+	protected List<DLFileEntryType> filterDLFileEntryTypes(
 		List<DLFileEntryType> dlFileEntryTypes) {
 
 		List<DLFileEntryType> filteredDLFileEntryTypes =
