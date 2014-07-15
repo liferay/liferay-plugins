@@ -370,6 +370,8 @@ public class DisplayPortlet extends MVCPortlet {
 		String[] sections = actionRequest.getParameterValues("sections");
 		String[] selectedFileNames = ParamUtil.getParameterValues(
 			actionRequest, "selectedFileName");
+		long[] removeFileEntryIds = ParamUtil.getLongValues(
+			actionRequest, "removeFileEntryIds");
 		int workflowAction = ParamUtil.getInteger(
 			actionRequest, "workflowAction");
 
@@ -386,7 +388,7 @@ public class DisplayPortlet extends MVCPortlet {
 		else if (cmd.equals(Constants.UPDATE)) {
 			kbArticle = KBArticleServiceUtil.updateKBArticle(
 				resourcePrimKey, title, content, description, sections,
-				selectedFileNames, serviceContext);
+				selectedFileNames, removeFileEntryIds, serviceContext);
 		}
 
 		if (!cmd.equals(Constants.ADD) && !cmd.equals(Constants.UPDATE)) {

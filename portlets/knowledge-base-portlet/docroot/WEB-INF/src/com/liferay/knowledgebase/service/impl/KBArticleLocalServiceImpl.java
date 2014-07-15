@@ -899,7 +899,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 	public KBArticle updateKBArticle(
 			long userId, long resourcePrimKey, String title, String content,
 			String description, String[] sections, String[] selectedFileNames,
-			ServiceContext serviceContext)
+			long[] removeFileEntryIds, ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
 		// KB article
@@ -984,6 +984,8 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		// Attachments
 
 		addKBArticleAttachments(userId, kbArticle, selectedFileNames);
+
+		removeKBArticleAttachments(removeFileEntryIds);
 
 		// Workflow
 
@@ -1750,6 +1752,18 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		}
 
 		subscriptionSender.flushNotificationsAsync();
+	}
+
+	protected void removeKBArticleAttachments(long[] removeFileEntryIds)
+		throws PortalException, SystemException {
+
+		if (ArrayUtil.isEmpty(removeFileEntryIds)) {
+			return;
+		}
+
+		for (long removeFileEntryId : removeFileEntryIds) {
+			PortletFileRepositoryUtil.deletePortletFileEntry(removeFileEntryId);
+		}
 	}
 
 	protected void updatePermissionFields(

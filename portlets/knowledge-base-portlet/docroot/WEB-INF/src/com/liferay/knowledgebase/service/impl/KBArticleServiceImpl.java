@@ -699,7 +699,7 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 	public KBArticle updateKBArticle(
 			long resourcePrimKey, String title, String content,
 			String description, String[] sections, String[] selectedFileNames,
-			ServiceContext serviceContext)
+			long[] removeFileEntryIds, ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
 		KBArticlePermission.check(
@@ -707,7 +707,7 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 
 		return kbArticleLocalService.updateKBArticle(
 			getUserId(), resourcePrimKey, title, content, description, sections,
-			selectedFileNames, serviceContext);
+			selectedFileNames, removeFileEntryIds, serviceContext);
 	}
 
 	@Override

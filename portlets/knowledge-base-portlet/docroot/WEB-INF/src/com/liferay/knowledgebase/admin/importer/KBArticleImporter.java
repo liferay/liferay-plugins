@@ -117,7 +117,7 @@ public class KBArticleImporter {
 			return KBArticleLocalServiceUtil.updateKBArticle(
 				userId, kbArticle.getResourcePrimKey(),
 				kbArticleMarkdownConverter.getTitle(), html,
-				kbArticle.getDescription(), null, null, serviceContext);
+				kbArticle.getDescription(), null, null, null, serviceContext);
 		}
 		catch (Exception e) {
 			StringBundler sb = new StringBundler(4);
