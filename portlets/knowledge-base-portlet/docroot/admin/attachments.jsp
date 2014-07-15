@@ -29,6 +29,8 @@ if (kbArticle != null) {
 %>
 
 <div class="kb-attachments">
+	<aui:input name="removeFileEntryIds" type="hidden" />
+
 	<div class="lfr-dynamic-uploader">
 		<div class="lfr-upload-container" id="<portlet:namespace />fileUpload"></div>
 	</div>
@@ -41,29 +43,41 @@ if (kbArticle != null) {
 
 	<c:if test="<%= !attachmentsFileEntries.isEmpty() %>">
 		<h4><liferay-ui:message key="saved-attachments" /></h4>
-	</c:if>
 
-	<%
-	for (FileEntry fileEntry : attachmentsFileEntries) {
-	%>
+		<div id="<portlet:namespace />existingAttachmentsContainer">
 
-		<div>
-			<liferay-portlet:resourceURL id="attachment" var="clipURL">
-				<portlet:param name="fileEntryId" value="<%= String.valueOf(fileEntry.getFileEntryId()) %>" />
-			</liferay-portlet:resourceURL>
+			<%
+			for (FileEntry fileEntry : attachmentsFileEntries) {
+			%>
 
-			<liferay-ui:icon
-				iconCssClass="icon-paper-clip"
-				label="<%= true %>"
-				message='<%= fileEntry.getTitle() + " (" + TextFormatter.formatKB(fileEntry.getSize(), locale) + "k)" %>'
-				url="<%= clipURL %>"
-			/>
+				<div id="<portlet:namespace />fileEntryIdWrapper<%= fileEntry.getFileEntryId() %>">
+					<liferay-portlet:resourceURL id="attachment" var="clipURL">
+						<portlet:param name="fileEntryId" value="<%= String.valueOf(fileEntry.getFileEntryId()) %>" />
+					</liferay-portlet:resourceURL>
+
+					<liferay-ui:icon
+						iconCssClass="icon-paper-clip"
+						label="<%= true %>"
+						message='<%= fileEntry.getTitle() + " (" + TextFormatter.formatKB(fileEntry.getSize(), locale) + "k)" %>'
+						url="<%= clipURL %>"
+					/>
+
+					<%
+					String taglibURL = "javascript:" + renderResponse.getNamespace() + "deleteFileEntry('" + fileEntry.getFileEntryId() + "');";
+					%>
+
+					<liferay-ui:icon-delete
+						label="<%= false %>"
+						url="<%= taglibURL %>"
+					/>
+				</div>
+
+			<%
+			}
+			%>
+
 		</div>
-
-	<%
-	}
-	%>
-
+	</c:if>
 </div>
 
 <%
@@ -91,5 +105,26 @@ Ticket ticket = TicketLocalServiceUtil.addTicket(user.getCompanyId(), User.class
 			},
 			uploadFile: '<liferay-portlet:actionURL name="addTempAttachment" windowState="<%= LiferayWindowState.POP_UP.toString() %>" doAsUserId="<%= user.getUserId() %>"><portlet:param name="resourcePrimKey" value="<%= String.valueOf(resourcePrimKey) %>" /></liferay-portlet:actionURL>&ticketKey=<%= ticket.getKey() %><liferay-ui:input-permissions-params modelName="<%= KBArticle.class.getName() %>" />'
 		}
+	);
+</aui:script>
+
+<aui:script use="aui-base">
+	var removeFileEntryIds = [];
+
+	Liferay.provide(
+		window,
+		'<portlet:namespace />deleteFileEntry',
+		function(fileEntryId) {
+			var removeFileEntryIdsInput = A.one('#<portlet:namespace />removeFileEntryIds');
+
+			removeFileEntryIds.push(fileEntryId);
+
+			removeFileEntryIdsInput.val(removeFileEntryIds.join());
+
+			var fileEntryIdWrapper = A.one('#<portlet:namespace />fileEntryIdWrapper' + fileEntryId);
+
+			fileEntryIdWrapper.hide();
+		},
+		[]
 	);
 </aui:script>

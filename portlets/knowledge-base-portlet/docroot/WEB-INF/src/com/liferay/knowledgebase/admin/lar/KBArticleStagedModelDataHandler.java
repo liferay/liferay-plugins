@@ -173,7 +173,7 @@ public class KBArticleStagedModelDataHandler
 					KBArticleLocalServiceUtil.updateKBArticle(
 						userId, existingKBArticle.getResourcePrimKey(),
 						kbArticle.getTitle(), kbArticle.getContent(),
-						kbArticle.getDescription(), sections, null,
+						kbArticle.getDescription(), sections, null, null,
 						serviceContext);
 
 					KBArticleLocalServiceUtil.moveKBArticle(
