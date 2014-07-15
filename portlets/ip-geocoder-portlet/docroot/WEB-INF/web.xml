@@ -26,31 +26,27 @@
 	<jsp-config>
 		<taglib>
 			<taglib-uri>http://liferay.com/tld/aui</taglib-uri>
-			<taglib-location>/META-INF/aui.tld</taglib-location>
+			<taglib-location>/META-INF/tld/aui.tld</taglib-location>
 		</taglib>
 		<taglib>
 			<taglib-uri>http://java.sun.com/portlet_2_0</taglib-uri>
-			<taglib-location>/META-INF/liferay-portlet.tld</taglib-location>
+			<taglib-location>/META-INF/tld/liferay-portlet.tld</taglib-location>
 		</taglib>
 		<taglib>
 			<taglib-uri>http://liferay.com/tld/security</taglib-uri>
-			<taglib-location>/META-INF/liferay-security.tld</taglib-location>
+			<taglib-location>/META-INF/tld/liferay-security.tld</taglib-location>
 		</taglib>
 		<taglib>
 			<taglib-uri>http://liferay.com/tld/theme</taglib-uri>
-			<taglib-location>/META-INF/liferay-theme.tld</taglib-location>
+			<taglib-location>/META-INF/tld/liferay-theme.tld</taglib-location>
 		</taglib>
 		<taglib>
 			<taglib-uri>http://liferay.com/tld/ui</taglib-uri>
-			<taglib-location>/META-INF/liferay-ui.tld</taglib-location>
+			<taglib-location>/META-INF/tld/liferay-ui.tld</taglib-location>
 		</taglib>
 		<taglib>
 			<taglib-uri>http://liferay.com/tld/util</taglib-uri>
-			<taglib-location>/META-INF/liferay-util.tld</taglib-location>
-		</taglib>
-		<taglib>
-			<taglib-uri>http://liferay.com/tld/portlet</taglib-uri>
-			<taglib-location>/META-INF/liferay-portlet-ext.tld</taglib-location>
+			<taglib-location>/META-INF/tld/liferay-util.tld</taglib-location>
 		</taglib>
 	</jsp-config>
 </web-app>
