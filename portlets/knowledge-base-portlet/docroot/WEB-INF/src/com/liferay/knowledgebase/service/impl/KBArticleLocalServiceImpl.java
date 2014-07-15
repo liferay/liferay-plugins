@@ -337,7 +337,8 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 
 		// Attachments
 
-		deleteKBArticleAttachments(kbArticle);
+		PortletFileRepositoryUtil.deleteFolder(
+			kbArticle.getAttachmentsFolderId());
 
 		// Subscriptions
 
@@ -1342,31 +1343,6 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		if (!kbArticle.isApproved() && !kbArticle.isFirstVersion()) {
 			assetEntryLocalService.deleteEntry(
 				KBArticle.class.getName(), kbArticle.getResourcePrimKey());
-		}
-	}
-
-	protected void deleteKBArticleAttachments(KBArticle kbArticle)
-		throws PortalException, SystemException {
-
-		deleteKBArticleAttachments(kbArticle, kbArticle.getClassPK());
-
-		if (!kbArticle.isApproved() && !kbArticle.isFirstVersion()) {
-			deleteKBArticleAttachments(
-				kbArticle, kbArticle.getResourcePrimKey());
-		}
-	}
-
-	protected void deleteKBArticleAttachments(
-			KBArticle kbArticle, long folderId)
-		throws PortalException, SystemException {
-
-		try {
-			DLStoreUtil.deleteDirectory(
-				kbArticle.getCompanyId(), CompanyConstants.SYSTEM,
-				KBArticleConstants.DIR_NAME_PREFIX + folderId);
-		}
-		catch (NoSuchDirectoryException nsde) {
-			_log.error("No directory found for " + nsde.getMessage());
 		}
 	}
 
