@@ -104,12 +104,6 @@ String[] sections = AdminUtil.unescapeSections(BeanPropertiesUtil.getString(kbAr
 			<aui:input name="description" />
 		</c:if>
 
-		<aui:field-wrapper label="attachments">
-			<div id="<portlet:namespace />attachments">
-				<liferay-util:include page="/admin/attachments.jsp" servletContext="<%= application %>" />
-			</div>
-		</aui:field-wrapper>
-
 		<c:if test="<%= ArrayUtil.isNotEmpty(PortletPropsValues.ADMIN_KB_ARTICLE_SECTIONS) && (parentResourcePrimKey == KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY) %>">
 			<aui:model-context bean="<%= null %>" model="<%= KBArticle.class %>" />
 
@@ -143,6 +137,14 @@ String[] sections = AdminUtil.unescapeSections(BeanPropertiesUtil.getString(kbAr
 				/>
 			</aui:field-wrapper>
 		</c:if>
+
+		<liferay-ui:panel collapsible="<%= true %>" defaultState="closed" extended="<%= false %>" persistState="<%= true %>" title="attachments">
+			<aui:fieldset>
+				<div id="<portlet:namespace />attachments">
+					<liferay-util:include page="/admin/attachments.jsp" servletContext="<%= application %>" />
+				</div>
+			</aui:fieldset>
+		</liferay-ui:panel>
 
 		<liferay-ui:panel collapsible="<%= true %>" defaultState="closed" extended="<%= false %>" persistState="<%= true %>" title="categorization">
 			<aui:fieldset>
