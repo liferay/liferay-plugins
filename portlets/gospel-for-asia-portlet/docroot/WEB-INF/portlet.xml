@@ -9,6 +9,7 @@
 		<supports>
 			<mime-type>text/html</mime-type>
 		</supports>
+		<resource-bundle>content.Language</resource-bundle>
 		<portlet-info>
 			<title>Gospel for Asia</title>
 			<short-title>Gospel for Asia</short-title>

@@ -23,6 +23,7 @@
 			<portlet-mode>edit</portlet-mode>
 			<portlet-mode>edit_guest</portlet-mode>
 		</supports>
+		<resource-bundle>content.Language</resource-bundle>
 		<portlet-info>
 			<title>Random Bible Verse</title>
 			<short-title>Random Bible Verse</short-title>

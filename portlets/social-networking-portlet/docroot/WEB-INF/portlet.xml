@@ -48,6 +48,7 @@
 		<supports>
 			<mime-type>text/html</mime-type>
 		</supports>
+		<resource-bundle>content.Language</resource-bundle>
 		<portlet-info>
 			<title>Friends</title>
 			<short-title>Friends</short-title>
@@ -82,6 +83,7 @@
 		<supports>
 			<mime-type>text/html</mime-type>
 		</supports>
+		<resource-bundle>content.Language</resource-bundle>
 		<portlet-info>
 			<title>Wall</title>
 			<short-title>Wall</short-title>
@@ -116,6 +118,7 @@
 		<supports>
 			<mime-type>text/html</mime-type>
 		</supports>
+		<resource-bundle>content.Language</resource-bundle>
 		<portlet-info>
 			<title>Friends' Activities</title>
 			<short-title>Friends' Activities</short-title>
@@ -146,6 +149,7 @@
 		<supports>
 			<mime-type>text/html</mime-type>
 		</supports>
+		<resource-bundle>content.Language</resource-bundle>
 		<portlet-info>
 			<title>Members</title>
 			<short-title>Members</short-title>
@@ -176,6 +180,7 @@
 		<supports>
 			<mime-type>text/html</mime-type>
 		</supports>
+		<resource-bundle>content.Language</resource-bundle>
 		<portlet-info>
 			<title>Map</title>
 			<short-title>Map</short-title>
@@ -245,6 +250,7 @@
 		<supports>
 			<mime-type>text/html</mime-type>
 		</supports>
+		<resource-bundle>content.Language</resource-bundle>
 		<portlet-info>
 			<title>Members' Activities</title>
 			<short-title>Members' Activities</short-title>
