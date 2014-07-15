@@ -35,6 +35,17 @@ public class ContactsHotDeployMessageListener extends HotDeployMessageListener {
 
 	@Override
 	protected void onDeploy(Message message) throws Exception {
+		if (_registerMethodKey == null) {
+			try {
+				_registerMethodKey = new MethodKey(
+					"com.liferay.chat.util.ChatExtensionsUtil", "register",
+					String.class, String.class);
+			}
+			catch (RuntimeException re) {
+				return;
+			}
+		}
+
 		PortletClassInvoker.invoke(
 			false, "1_WAR_chatportlet", _registerMethodKey,
 			ClpSerializer.getServletContextName(), "/chat/view.jsp");
