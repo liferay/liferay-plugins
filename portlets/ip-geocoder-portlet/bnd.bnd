@@ -1,4 +1,4 @@
-Bundle-Name: IP Geocoder Portlet
+Bundle-Name: Liferay IP Geocoder Portlet
 Web-ContextPath: /ip-geocoder-portlet
 -wab: \
 	view.jsp=docroot/view.jsp,\
