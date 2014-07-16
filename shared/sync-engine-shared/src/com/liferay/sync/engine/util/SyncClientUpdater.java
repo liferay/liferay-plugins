@@ -147,8 +147,10 @@ public class SyncClientUpdater {
 
 		HttpEntity httpEntity = httpResponse.getEntity();
 
+		Path filePath = getFilePath(httpResponse);
+
 		Files.copy(
-			httpEntity.getContent(), getFilePath(httpResponse),
+			httpEntity.getContent(), filePath,
 			StandardCopyOption.REPLACE_EXISTING);
 
 		Desktop desktop = Desktop.getDesktop();
@@ -171,7 +173,9 @@ public class SyncClientUpdater {
 		}
 	}
 
-	protected static Path getFilePath(HttpResponse httpResponse) {
+	protected static Path getFilePath(HttpResponse httpResponse)
+		throws Exception {
+
 		Header header = httpResponse.getFirstHeader("Content-Type");
 
 		HeaderElement headerElement = header.getElements()[0];
