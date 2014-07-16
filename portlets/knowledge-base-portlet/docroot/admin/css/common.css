@@ -189,6 +189,10 @@
 		}
 	}
 
+	.kb-article-comment-date {
+		margin-top: 15px;
+	}
+
 	.kb-attachments {
 		margin: 5px 0 0;
 	}
