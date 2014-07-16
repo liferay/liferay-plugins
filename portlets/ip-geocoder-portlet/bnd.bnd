@@ -1,5 +1,4 @@
 Bundle-Name: Liferay IP Geocoder Portlet
-Web-ContextPath: /ip-geocoder-portlet
 Import-Package:\
 	com.liferay.portal.kernel.portlet,\
 	com.liferay.portal.model,\
@@ -31,6 +30,7 @@ Import-Package:\
     org.apache.el,\
 	com.liferay.portal.servlet.jsp.compiler.jsp,\
 	*;resolution:="optional"
+Web-ContextPath: /ip-geocoder-portlet
 -wab: \
 	view.jsp=docroot/view.jsp,\
 	WEB-INF/classes=docroot/WEB-INF/classes,\
