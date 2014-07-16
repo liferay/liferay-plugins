@@ -18,6 +18,7 @@ import com.liferay.compat.portal.kernel.notifications.UserNotificationDefinition
 import com.liferay.notifications.util.NotificationsUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.PortletKeys;
 import com.liferay.portlet.asset.AssetRendererFactoryRegistryUtil;
@@ -68,12 +69,14 @@ public class JournalArticleLocalServiceImpl
 		String entryURL = NotificationsUtil.getEntryURL(
 			assetRenderer, PortletKeys.JOURNAL, serviceContext);
 
-		NotificationsUtil.sendNotificationEvent(
-			article.getCompanyId(), _JOURNAL_ARTICLE_CLASS_NAME,
-			article.getGroupId(), PortletKeys.JOURNAL,
-			_JOURNAL_ARTICLE_CLASS_NAME, article.getId(),
-			assetRenderer.getTitle(serviceContext.getLocale()), entryURL,
-			notificationType, userId);
+		if (Validator.isNotNull(entryURL)) {
+			NotificationsUtil.sendNotificationEvent(
+				article.getCompanyId(), _JOURNAL_ARTICLE_CLASS_NAME,
+				article.getGroupId(), PortletKeys.JOURNAL,
+				_JOURNAL_ARTICLE_CLASS_NAME, article.getId(),
+				assetRenderer.getTitle(serviceContext.getLocale()), entryURL,
+				notificationType, userId);
+		}
 
 		return journalArticle;
 	}

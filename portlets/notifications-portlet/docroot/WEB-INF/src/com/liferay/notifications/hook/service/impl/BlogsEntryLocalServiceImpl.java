@@ -18,6 +18,7 @@ import com.liferay.compat.portal.kernel.notifications.UserNotificationDefinition
 import com.liferay.notifications.util.NotificationsUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.PortletKeys;
 import com.liferay.portlet.asset.AssetRendererFactoryRegistryUtil;
@@ -61,12 +62,14 @@ public class BlogsEntryLocalServiceImpl extends BlogsEntryLocalServiceWrapper {
 		String entryURL = NotificationsUtil.getEntryURL(
 			assetRenderer, PortletKeys.BLOGS, serviceContext);
 
-		NotificationsUtil.sendNotificationEvent(
-			blogsEntry.getCompanyId(), _BLOGS_ENTRY_CLASS_NAME,
-			blogsEntry.getGroupId(), _BLOGS_ENTRY_CLASS_NAME, PortletKeys.BLOGS,
-			blogsEntry.getEntryId(),
-			assetRenderer.getTitle(serviceContext.getLocale()), entryURL,
-			notificationType, userId);
+		if (Validator.isNotNull(entryURL)) {
+			NotificationsUtil.sendNotificationEvent(
+				blogsEntry.getCompanyId(), _BLOGS_ENTRY_CLASS_NAME,
+				blogsEntry.getGroupId(), _BLOGS_ENTRY_CLASS_NAME,
+				PortletKeys.BLOGS, blogsEntry.getEntryId(),
+				assetRenderer.getTitle(serviceContext.getLocale()), entryURL,
+				notificationType, userId);
+		}
 
 		return blogsEntry;
 	}

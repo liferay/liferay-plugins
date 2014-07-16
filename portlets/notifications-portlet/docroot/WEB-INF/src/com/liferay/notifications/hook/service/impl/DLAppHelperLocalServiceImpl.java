@@ -20,6 +20,7 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.repository.model.FileVersion;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.PortletKeys;
 import com.liferay.portlet.asset.AssetRendererFactoryRegistryUtil;
@@ -72,12 +73,14 @@ public class DLAppHelperLocalServiceImpl
 		String entryURL = NotificationsUtil.getEntryURL(
 			assetRenderer, PortletKeys.DOCUMENT_LIBRARY, serviceContext);
 
-		NotificationsUtil.sendNotificationEvent(
-			latestFileVersion.getCompanyId(), _DL_FOLDER_CLASS_NAME,
-			latestFileVersion.getGroupId(), PortletKeys.DOCUMENT_LIBRARY,
-			_DL_FILE_ENTRY_CLASS_NAME, latestFileVersion.getFileEntryId(),
-			assetRenderer.getTitle(serviceContext.getLocale()), entryURL,
-			notificationType, userId);
+		if (Validator.isNotNull(entryURL)) {
+			NotificationsUtil.sendNotificationEvent(
+				latestFileVersion.getCompanyId(), _DL_FOLDER_CLASS_NAME,
+				latestFileVersion.getGroupId(), PortletKeys.DOCUMENT_LIBRARY,
+				_DL_FILE_ENTRY_CLASS_NAME, latestFileVersion.getFileEntryId(),
+				assetRenderer.getTitle(serviceContext.getLocale()), entryURL,
+				notificationType, userId);
+		}
 	}
 
 	protected AssetRendererFactory _assetRendererFactory =

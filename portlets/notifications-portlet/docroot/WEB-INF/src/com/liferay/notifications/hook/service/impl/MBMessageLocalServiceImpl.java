@@ -18,6 +18,7 @@ import com.liferay.compat.portal.kernel.notifications.UserNotificationDefinition
 import com.liferay.notifications.util.NotificationsUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.PortletKeys;
 import com.liferay.portlet.asset.AssetRendererFactoryRegistryUtil;
@@ -62,12 +63,14 @@ public class MBMessageLocalServiceImpl extends MBMessageLocalServiceWrapper {
 		String entryURL = NotificationsUtil.getEntryURL(
 			assetRenderer, PortletKeys.MESSAGE_BOARDS, serviceContext);
 
-		NotificationsUtil.sendNotificationEvent(
-			mbMessage.getCompanyId(), _MB_CATEGORY_CLASS_NAME,
-			mbMessage.getCategoryId(), PortletKeys.MESSAGE_BOARDS,
-			_MB_MESSAGE_CLASS_NAME, mbMessage.getMessageId(),
-			assetRenderer.getTitle(serviceContext.getLocale()), entryURL,
-			notificationType, userId);
+		if (Validator.isNotNull(entryURL)) {
+			NotificationsUtil.sendNotificationEvent(
+				mbMessage.getCompanyId(), _MB_CATEGORY_CLASS_NAME,
+				mbMessage.getCategoryId(), PortletKeys.MESSAGE_BOARDS,
+				_MB_MESSAGE_CLASS_NAME, mbMessage.getMessageId(),
+				assetRenderer.getTitle(serviceContext.getLocale()), entryURL,
+				notificationType, userId);
+		}
 
 		return mbMessage;
 	}
