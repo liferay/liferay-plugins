@@ -296,6 +296,7 @@ Error-Prone was automatically installed. Please rerun your task.
 			<if>
 				<equals arg1="${clean.delete.lib}" arg2="true" />
 				<then>
+					<delete dir="@{module.dir}/docroot/WEB-INF/lib" />
 					<delete dir="@{module.dir}/lib" />
 				</then>
 			</if>
@@ -439,6 +440,10 @@ Error-Prone was automatically installed. Please rerun your task.
 					</then>
 				</elseif>
 				<else>
+					<process-ivy
+						module.dir="@{module.dir}"
+					/>
+
 					<if>
 						<available file="docroot" />
 						<then>
@@ -450,10 +455,6 @@ Error-Prone was automatically installed. Please rerun your task.
 							<loop-macrodef-or-target
 								module.dirs="@{module.dir}"
 								target.name="compile-import-shared"
-							/>
-
-							<process-ivy
-								module.dir="@{module.dir}"
 							/>
 
 							<mkdir dir="@{module.dir}/classes" />
@@ -1146,16 +1147,25 @@ Please find a solution that does not require portal-impl.jar.
 
 							<mkdir dir="${module.auto.deploy.dir}" />
 
+							<set-build-xml-var
+								build.xml.var.name="osgi.runtime.dependencies"
+								module.dir="@{module.dir}"
+							/>
+
 							<if>
-								<available file="@{module.dir}/lib" />
+								<isset property="set-build-xml-var.return" />
 								<then>
-									<set-build-xml-var
-										build.xml.var.name="osgi.runtime.dependencies"
-										module.dir="@{module.dir}"
-									/>
+									<if>
+										<available file="@{module.dir}/docroot/WEB-INF/lib" />
+										<then>
+											<copy failonerror="false" todir="${module.auto.deploy.dir}">
+												<fileset dir="@{module.dir}/docroot/WEB-INF/lib" includes="${set-build-xml-var.return}" />
+											</copy>
+										</then>
+									</if>
 
 									<if>
-										<isset property="set-build-xml-var.return" />
+										<available file="@{module.dir}/lib" />
 										<then>
 											<copy failonerror="false" todir="${module.auto.deploy.dir}">
 												<fileset dir="@{module.dir}/lib" includes="${set-build-xml-var.return}" />
