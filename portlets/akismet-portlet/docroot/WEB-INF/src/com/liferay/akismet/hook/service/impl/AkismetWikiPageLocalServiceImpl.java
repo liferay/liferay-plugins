@@ -64,15 +64,13 @@ public class AkismetWikiPageLocalServiceImpl
 				serviceContext);
 		}
 
-		boolean enabled = isWikiEnabled(userId, nodeId, serviceContext);
-
 		WikiPage page = super.addPage(
 			userId, nodeId, title, version, content, summary, minorEdit, format,
 			head, parentTitle, redirectTitle, serviceContext);
 
 		AkismetData akismetData = updateAkismetData(page, serviceContext);
 
-		if (!enabled) {
+		if (!isWikiEnabled(userId, nodeId, serviceContext)) {
 			return page;
 		}
 
@@ -117,15 +115,13 @@ public class AkismetWikiPageLocalServiceImpl
 				format, parentTitle, redirectTitle, serviceContext);
 		}
 
-		boolean enabled = isWikiEnabled(userId, nodeId, serviceContext);
-
 		WikiPage page = super.updatePage(
 			userId, nodeId, title, version, content, summary, minorEdit, format,
 			parentTitle, redirectTitle, serviceContext);
 
 		AkismetData akismetData = updateAkismetData(page, serviceContext);
 
-		if (!enabled) {
+		if (!isWikiEnabled(userId, nodeId, serviceContext)) {
 			return page;
 		}
 
@@ -152,18 +148,17 @@ public class AkismetWikiPageLocalServiceImpl
 			WikiPage previousPage = AkismetUtil.getWikiPage(
 				page.getNodeId(), page.getTitle(), page.getVersion(), true);
 
+			if (previousPage == null) {
+				return page;
+			}
+
 			ServiceContext newServiceContext = new ServiceContext();
 
 			newServiceContext.setFormDate(page.getModifiedDate());
 
-			if (previousPage != null) {
-				return super.revertPage(
-					userId, nodeId, title, previousPage.getVersion(),
-					newServiceContext);
-			}
-			else {
-				return page;
-			}
+			return super.revertPage(
+				userId, nodeId, title, previousPage.getVersion(),
+				newServiceContext);
 		}
 		finally {
 			NotificationThreadLocal.setEnabled(notificationEnabled);
