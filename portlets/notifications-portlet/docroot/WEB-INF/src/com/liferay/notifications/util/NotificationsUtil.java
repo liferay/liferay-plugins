@@ -260,16 +260,22 @@ public class NotificationsUtil {
 			int notificationType = notificationEventJSONObject.getInt(
 				"notificationType");
 
+			long userId = notificationEventJSONObject.getLong("userId");
+
 			List<Subscription> subscriptions =
 				SubscriptionLocalServiceUtil.getSubscriptions(
 					companyId, className, classPK);
 
 			for (Subscription subscription : subscriptions) {
-				long userId = subscription.getUserId();
+				long subscriberUserId = subscription.getUserId();
+
+				if (subscriberUserId == userId) {
+					continue;
+				}
 
 				if (UserNotificationManagerUtil.isDeliver(
-						userId, portletKey, 0, notificationType,
-					UserNotificationDeliveryConstants.TYPE_WEBSITE)) {
+						subscriberUserId, portletKey, 0, notificationType,
+						UserNotificationDeliveryConstants.TYPE_WEBSITE)) {
 
 					NotificationEvent notificationEvent =
 						NotificationEventFactoryUtil.createNotificationEvent(
@@ -277,7 +283,8 @@ public class NotificationsUtil {
 							notificationEventJSONObject);
 
 					UserNotificationEventLocalServiceUtil.
-						addUserNotificationEvent(userId, notificationEvent);
+						addUserNotificationEvent(
+							subscriberUserId, notificationEvent);
 				}
 			}
 		}
