@@ -160,10 +160,11 @@ public class SyncClientUpdater {
 			filePath = Files.createTempFile(null, ".dmg");
 		}
 
-		HttpEntity entity = httpResponse.getEntity();
+		HttpEntity httpEntity = httpResponse.getEntity();
 
 		Files.copy(
-			entity.getContent(), filePath, StandardCopyOption.REPLACE_EXISTING);
+			httpEntity.getContent(), filePath,
+			StandardCopyOption.REPLACE_EXISTING);
 
 		Desktop desktop = Desktop.getDesktop();
 
@@ -171,12 +172,12 @@ public class SyncClientUpdater {
 	}
 
 	protected static HttpResponse execute(String url) {
+		HttpGet httpGet = new HttpGet(url);
+
 		Builder builder = RequestConfig.custom();
 
-		builder.setSocketTimeout(30000);
 		builder.setConnectTimeout(30000);
-
-		HttpGet httpGet = new HttpGet(url);
+		builder.setSocketTimeout(30000);
 
 		RequestConfig requestConfig = builder.build();
 
