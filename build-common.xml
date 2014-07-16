@@ -2404,7 +2404,7 @@ Please find a solution that does not require portal-impl.jar.
 		<sequential>
 			<replace file="@{web.xml.dir}/web.xml">
 				<replacetoken><![CDATA[taglib-location>/WEB-INF/tld]]></replacetoken>
-				<replacevalue><![CDATA[taglib-location>/META-INF/tld]]></replacevalue>
+				<replacevalue><![CDATA[taglib-location>/META-INF]]></replacevalue>
 			</replace>
 
 			<var name="web.xml.dir" value="@{web.xml.dir}" />
