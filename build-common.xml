@@ -1614,13 +1614,12 @@ Please find a solution that does not require portal-impl.jar.
 										web.xml.dir="${temp.deployed.plugin.dir}/WEB-INF"
 									/>
 
-									<zip destfile="${sdk.dir}/dist/${plugin.name}-${plugin.full.version}.war" update="true">
-										<zipfileset
+									<jar destfile="${sdk.dir}/dist/${plugin.name}-${plugin.full.version}.war" update="true">
+										<fileset
 											dir="${temp.deployed.plugin.dir}"
-											fullpath="WEB-INF/web.xml"
 											includes="WEB-INF/web.xml"
 										/>
-									</zip>
+									</jar>
 								</then>
 								<else>
 									<echo>Unable to automatically update web.xml.</echo>
