@@ -2342,6 +2342,7 @@ Please find a solution that does not require portal-impl.jar.
 						<available file="@{module.dir}/test/@{test.type}" type="dir" />
 						<then>
 							<junit dir="@{module.dir}" fork="on" forkmode="@{junit.forkmode}" jvm="${junit.jvm}" outputtoformatters="false" printsummary="on" showoutput="true">
+								<sysproperty key="app.server.tomcat.dir" value="${app.server.tomcat.dir}" />
 								<sysproperty key="net.sourceforge.cobertura.datafile" file="@{module.dir}/test-coverage/cobertura.ser" />
 								<jvmarg line="${junit.debug.jpda}" />
 								<jvmarg value="-Xmx${junit.java.mx}" />
@@ -2623,6 +2624,34 @@ for (String path : paths) {
 						module.dirs="@{module.dir}"
 						target.name="jar"
 					/>
+
+					<if>
+						<available file="@{module.dir}/docroot/WEB-INF/portlet.xml" />
+						<then>
+							<tstamp>
+								<format property="tstamp.value" pattern="yyyyMMddkkmmssSSS" />
+							</tstamp>
+
+							<move file="${plugin.file}" tofile="${sdk.dir}/dist/${plugin.name}-${plugin.full.version}.war" />
+
+							<direct-deploy-portlet-cmd
+								direct.deploy.dir="${tstamp.value}"
+								module.dir="@{module.dir}"
+							/>
+
+							<zip destfile="${sdk.dir}/dist/${plugin.name}-${plugin.full.version}.war" update="true">
+								<zipfileset
+									dir="${tstamp.value}/${plugin.name}"
+									fullpath="WEB-INF/web.xml"
+									includes="WEB-INF/web.xml"
+								/>
+							</zip>
+
+							<move file="${sdk.dir}/dist/${plugin.name}-${plugin.full.version}.war" tofile="${plugin.file}" />
+
+							<delete dir="${tstamp.value}" />
+						</then>
+					</if>
 				</then>
 				<else>
 					<if>
