@@ -37,6 +37,35 @@
 				</if>
 
 				<if>
+					<available file="@{module.name}/docroot/WEB-INF/liferay-hook.xml" />
+					<then>
+						<if>
+							<and>
+								<resourcecontains resource="@{module.name}/docroot/WEB-INF/liferay-hook.xml" substring="&lt;language-properties&gt;" />
+								<not>
+									<resourcecontains resource="@{module.name}/docroot/WEB-INF/liferay-hook.xml" substring="&lt;language-properties&gt;content/Language*.properties&lt;/language-properties&gt;" />
+								</not>
+							</and>
+							<then>
+								<fail>@{module.name}/docroot/WEB-INF/liferay-hook.xml has an nonstandard language-properties element.</fail>
+							</then>
+						</if>
+
+						<if>
+							<and>
+								<resourcecontains resource="@{module.name}/docroot/WEB-INF/liferay-hook.xml" substring="&lt;custom-jsp-dir&gt;" />
+								<not>
+									<resourcecontains resource="@{module.name}/docroot/WEB-INF/liferay-hook.xml" substring="&lt;custom-jsp-dir&gt;/META-INF/custom_jsps&lt;/custom-jsp-dir&gt;" />
+								</not>
+							</and>
+							<then>
+								<fail>@{module.name}/docroot/WEB-INF/liferay-hook.xml has an nonstandard custom-jsp-dir element.</fail>
+							</then>
+						</if>
+					</then>
+				</if>
+
+				<if>
 					<resourcecontains resource="@{module.name}/docroot/WEB-INF/web.xml" substring="Invoker Filter" />
 					<then>
 						<fail>@{module.name}/docroot/WEB-INF/web.xml contains generated code.</fail>						
@@ -45,7 +74,7 @@
 			</sequential>
 		</for>
 
-		<antcall target="clean" />
+		<!--<antcall target="clean" />
 
 		<antcall target="compile" />
 
@@ -74,6 +103,6 @@
 			<then>
 				<fail>Plugins must not have custom .gitignore files.</fail>				
 			</then>
-		</if>
+		</if>-->
 	</target>
 </project>
