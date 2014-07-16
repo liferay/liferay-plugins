@@ -146,7 +146,6 @@ public class SyncClientUpdater {
 		}
 
 		HttpEntity httpEntity = httpResponse.getEntity();
-
 		Path filePath = getFilePath(httpResponse);
 
 		Files.copy(
