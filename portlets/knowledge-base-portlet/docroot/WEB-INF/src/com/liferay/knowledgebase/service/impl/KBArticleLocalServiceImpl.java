@@ -1190,9 +1190,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			String selectedFileName)
 		throws PortalException {
 
-		FileEntry tempFileEntry = null;
-
-		tempFileEntry = TempFileUtil.getTempFile(
+		FileEntry tempFileEntry = TempFileUtil.getTempFile(
 			groupId, userId, selectedFileName, _TEMP_FOLDER_NAME);
 
 		InputStream inputStream = tempFileEntry.getContentStream();
