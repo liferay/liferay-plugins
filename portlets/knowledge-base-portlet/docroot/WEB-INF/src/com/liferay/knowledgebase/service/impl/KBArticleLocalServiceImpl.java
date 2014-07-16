@@ -1197,8 +1197,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		String mimeType = tempFileEntry.getMimeType();
 
 		addAttachment(
-			userId, resourcePrimKey, selectedFileName, inputStream,
-			mimeType);
+			userId, resourcePrimKey, selectedFileName, inputStream, mimeType);
 
 		if (tempFileEntry != null) {
 			TempFileUtil.deleteTempFile(tempFileEntry.getFileEntryId());
