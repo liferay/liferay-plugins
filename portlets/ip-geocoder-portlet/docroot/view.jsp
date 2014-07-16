@@ -37,7 +37,7 @@ IPInfo ipInfo = (IPInfo)request.getAttribute("IPInfo");
 	</c:when>
 	<c:otherwise>
 		<div class="alert alert-error">
-			<liferay-ui:message key="install-a-liferay-ip-geocoder-service-in-order-to-use-this-plugin" />
+			<liferay-ui:message key="an-unexpected-error-occurred" />
 		</div>
 	</c:otherwise>
 </c:choose>
