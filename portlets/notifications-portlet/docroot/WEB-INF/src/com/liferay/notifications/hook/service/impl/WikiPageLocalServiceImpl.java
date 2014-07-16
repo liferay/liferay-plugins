@@ -61,7 +61,7 @@ public class WikiPageLocalServiceImpl extends WikiPageLocalServiceWrapper {
 
 		String entryURL = NotificationsUtil.getEntryURL(
 			_assetRendererFactory.getAssetRenderer(wikiPage.getPageId()),
-			serviceContext);
+			PortletKeys.WIKI, serviceContext);
 
 		NotificationsUtil.sendNotificationEvent(
 			wikiPage.getCompanyId(), subscriptionClassName, subscriptionClassPK,

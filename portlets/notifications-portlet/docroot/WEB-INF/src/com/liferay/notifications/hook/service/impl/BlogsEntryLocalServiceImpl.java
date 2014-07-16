@@ -56,7 +56,7 @@ public class BlogsEntryLocalServiceImpl extends BlogsEntryLocalServiceWrapper {
 
 		String entryURL = NotificationsUtil.getEntryURL(
 			_assetRendererFactory.getAssetRenderer(blogsEntry.getEntryId()),
-			serviceContext);
+			PortletKeys.BLOGS, serviceContext);
 
 		NotificationsUtil.sendNotificationEvent(
 			blogsEntry.getCompanyId(), _BLOGS_ENTRY_CLASS_NAME,

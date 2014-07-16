@@ -57,7 +57,7 @@ public class MBMessageLocalServiceImpl extends MBMessageLocalServiceWrapper {
 
 		String entryURL = NotificationsUtil.getEntryURL(
 			_assetRendererFactory.getAssetRenderer(mbMessage.getMessageId()),
-			serviceContext);
+			PortletKeys.MESSAGE_BOARDS, serviceContext);
 
 		NotificationsUtil.sendNotificationEvent(
 			mbMessage.getCompanyId(), _MB_CATEGORY_CLASS_NAME,

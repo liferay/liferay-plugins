@@ -50,7 +50,7 @@ public class BookmarksEntryLocalServiceImpl
 
 		String entryURL = NotificationsUtil.getEntryURL(
 			_assetRendererFactory.getAssetRenderer(bookmarksEntry.getEntryId()),
-			serviceContext);
+			PortletKeys.BOOKMARKS, serviceContext);
 
 		NotificationsUtil.sendNotificationEvent(
 			bookmarksEntry.getCompanyId(), _BOOKMARKS_FOLDER_CLASS_NAME,
@@ -74,7 +74,7 @@ public class BookmarksEntryLocalServiceImpl
 
 		String entryURL = NotificationsUtil.getEntryURL(
 			_assetRendererFactory.getAssetRenderer(bookmarksEntry.getEntryId()),
-			serviceContext);
+			PortletKeys.BOOKMARKS, serviceContext);
 
 		NotificationsUtil.sendNotificationEvent(
 			bookmarksEntry.getCompanyId(), _BOOKMARKS_ENTRY_CLASS_NAME,

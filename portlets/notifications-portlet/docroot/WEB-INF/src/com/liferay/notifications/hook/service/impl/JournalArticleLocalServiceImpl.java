@@ -63,7 +63,7 @@ public class JournalArticleLocalServiceImpl
 
 		String entryURL = NotificationsUtil.getEntryURL(
 			_assetRendererFactory.getAssetRenderer(article.getId()),
-			serviceContext);
+			PortletKeys.JOURNAL, serviceContext);
 
 		NotificationsUtil.sendNotificationEvent(
 			article.getCompanyId(), _JOURNAL_ARTICLE_CLASS_NAME,

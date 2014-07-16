@@ -14,6 +14,7 @@
 
 package com.liferay.notifications.util;
 
+import com.liferay.compat.portal.util.PortalUtil;
 import com.liferay.portal.kernel.dao.orm.Conjunction;
 import com.liferay.portal.kernel.dao.orm.Disjunction;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
@@ -30,14 +31,17 @@ import com.liferay.portal.kernel.messaging.MessageBusUtil;
 import com.liferay.portal.kernel.notifications.NotificationEvent;
 import com.liferay.portal.kernel.notifications.NotificationEventFactoryUtil;
 import com.liferay.portal.kernel.notifications.UserNotificationManagerUtil;
+import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.process.ProcessCallable;
 import com.liferay.portal.kernel.process.ProcessException;
+import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.model.Subscription;
 import com.liferay.portal.model.UserNotificationDeliveryConstants;
 import com.liferay.portal.model.UserNotificationEvent;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.SubscriptionLocalServiceUtil;
 import com.liferay.portal.service.UserNotificationEventLocalServiceUtil;
+import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portlet.asset.model.AssetRenderer;
 
 import java.io.Serializable;
@@ -132,9 +136,27 @@ public class NotificationsUtil {
 	}
 
 	public static String getEntryURL(
-		AssetRenderer assetRenderer, ServiceContext serviceContext) {
+		AssetRenderer assetRenderer, String portletKey,
+		ServiceContext serviceContext) {
 
 		try {
+			long controlPanelPlid = PortalUtil.getControlPanelPlid(
+				serviceContext.getCompanyId());
+
+			if (serviceContext.getPlid() == controlPanelPlid) {
+				LiferayPortletRequest liferayPortletRequest =
+					serviceContext.getLiferayPortletRequest();
+
+				ThemeDisplay themeDisplay =
+					(ThemeDisplay)liferayPortletRequest.getAttribute(
+						WebKeys.THEME_DISPLAY);
+
+				long plid = PortalUtil.getPlidFromPortletId(
+					assetRenderer.getGroupId(), portletKey);
+
+				themeDisplay.setPlid(plid);
+			}
+
 			return assetRenderer.getURLViewInContext(
 				serviceContext.getLiferayPortletRequest(),
 				serviceContext.getLiferayPortletResponse(), null);

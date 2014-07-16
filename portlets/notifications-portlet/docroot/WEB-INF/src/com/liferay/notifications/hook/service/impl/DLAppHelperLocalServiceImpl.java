@@ -68,7 +68,7 @@ public class DLAppHelperLocalServiceImpl
 		String entryURL = NotificationsUtil.getEntryURL(
 			_assetRendererFactory.getAssetRenderer(
 				latestFileVersion.getFileEntryId()),
-			serviceContext);
+			PortletKeys.DOCUMENT_LIBRARY, serviceContext);
 
 		NotificationsUtil.sendNotificationEvent(
 			latestFileVersion.getCompanyId(), _DL_FOLDER_CLASS_NAME,
