@@ -26,10 +26,10 @@ IPInfo ipInfo = (IPInfo)request.getAttribute("IPInfo");
 
 <c:choose>
 	<c:when test="<%= ipInfo != null %>">
-		IP: <strong><%= ipInfo.getIpAddress() %></strong><br />
 		City: <%= ipInfo.getCity() %><br />
 		Country Code: <%= ipInfo.getCountryCode() %><br />
 		Country Name: <%= ipInfo.getCountryName() %><br />
+		IP: <%= ipInfo.getIpAddress() %><br />
 		Latitude: <%= ipInfo.getLatitude() %><br />
 		Longitude: <%= ipInfo.getLongitude() %><br />
 		Postal Code: <%= ipInfo.getPostalCode() %><br />
