@@ -258,8 +258,15 @@ public class EditUserAction extends BaseStrutsPortletAction {
 
 		User user = PortalUtil.getSelectedUser(actionRequest);
 
-		Role role = RoleLocalServiceUtil.getRole(
+		Role role = RoleLocalServiceUtil.fetchRole(
 			user.getCompanyId(), RoleConstants.SOCIAL_OFFICE_USER);
+
+		if (role == null) {
+			originalStrutsPortletAction.processAction(
+				portletConfig, dynamicActionRequest, actionResponse);
+
+			return;
+		}
 
 		long[] roleIds = getLongArray(
 			actionRequest, "rolesSearchContainerPrimaryKeys");
