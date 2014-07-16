@@ -33,8 +33,15 @@ KBComment kbComment = (KBComment)request.getAttribute("article_comment.jsp-kb_co
 			/>
 		</td>
 		<td valign="top" width="90%">
+			<portlet:renderURL var="viewKBArticleURL">
+				<portlet:param name="mvcPath" value='<%= templatePath + "view_article.jsp" %>' />
+				<portlet:param name="resourcePrimKey" value="<%= String.valueOf(kbArticle.getResourcePrimKey()) %>" />
+			</portlet:renderURL>
+
+			<h4><a href="<%= viewKBArticleURL %>"><%= HtmlUtil.escape(kbArticle.getTitle()) %></a></h4>
+
 			<div>
-				<strong class="kb-question"><liferay-ui:message key="was-this-information-helpful" /></strong>
+				<span class="kb-question"><liferay-ui:message key="was-this-information-helpful" /></span>
 
 				<c:choose>
 					<c:when test="<%= kbComment.getHelpful() %>">
