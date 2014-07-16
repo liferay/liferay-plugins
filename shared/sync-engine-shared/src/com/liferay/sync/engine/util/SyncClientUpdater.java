@@ -157,6 +157,8 @@ public class SyncClientUpdater {
 	}
 
 	protected static HttpResponse execute(String url) {
+		HttpClient httpClient = HttpClients.createDefault();
+
 		HttpGet httpGet = new HttpGet(url);
 
 		Builder builder = RequestConfig.custom();
@@ -167,8 +169,6 @@ public class SyncClientUpdater {
 		RequestConfig requestConfig = builder.build();
 
 		httpGet.setConfig(requestConfig);
-
-		HttpClient httpClient = HttpClients.createDefault();
 
 		try {
 			return httpClient.execute(httpGet);
