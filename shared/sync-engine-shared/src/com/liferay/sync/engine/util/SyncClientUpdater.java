@@ -171,21 +171,6 @@ public class SyncClientUpdater {
 		}
 	}
 
-	protected static HttpGet getHttpGet(String url) {
-		HttpGet httpGet = new HttpGet(url);
-
-		Builder builder = RequestConfig.custom();
-
-		builder.setConnectTimeout(30000);
-		builder.setSocketTimeout(30000);
-
-		RequestConfig requestConfig = builder.build();
-
-		httpGet.setConfig(requestConfig);
-
-		return httpGet;
-	}
-
 	protected static Path getFilePath(HttpResponse httpResponse) {
 		Header header = httpResponse.getFirstHeader("Content-Type");
 
@@ -199,6 +184,21 @@ public class SyncClientUpdater {
 		else {
 			return Files.createTempFile(null, ".dmg");
 		}
+	}
+
+	protected static HttpGet getHttpGet(String url) {
+		HttpGet httpGet = new HttpGet(url);
+
+		Builder builder = RequestConfig.custom();
+
+		builder.setConnectTimeout(30000);
+		builder.setSocketTimeout(30000);
+
+		RequestConfig requestConfig = builder.build();
+
+		httpGet.setConfig(requestConfig);
+
+		return httpGet;
 	}
 
 	private static Logger _logger = LoggerFactory.getLogger(
