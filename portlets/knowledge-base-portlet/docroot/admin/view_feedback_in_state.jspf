@@ -36,6 +36,10 @@
 
 		<%
 		request.setAttribute("article_comment.jsp-kb_comment", kbComment);
+
+		KBArticle kbArticle = KBArticleServiceUtil.getLatestKBArticle(kbComment.getClassPK(), WorkflowConstants.STATUS_ANY);
+
+		request.setAttribute(WebKeys.KNOWLEDGE_BASE_KB_ARTICLE, kbArticle);
 		%>
 
 		<liferay-util:include page="/admin/article_comment.jsp" servletContext="<%= application %>" />
