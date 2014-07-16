@@ -21,6 +21,7 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.PortletKeys;
 import com.liferay.portlet.asset.AssetRendererFactoryRegistryUtil;
+import com.liferay.portlet.asset.model.AssetRenderer;
 import com.liferay.portlet.asset.model.AssetRendererFactory;
 import com.liferay.portlet.journal.model.JournalArticle;
 import com.liferay.portlet.journal.service.JournalArticleLocalService;
@@ -61,15 +62,18 @@ public class JournalArticleLocalServiceImpl
 				UserNotificationDefinition.NOTIFICATION_TYPE_UPDATE_ENTRY;
 		}
 
+		AssetRenderer assetRenderer = _assetRendererFactory.getAssetRenderer(
+			article.getId());
+
 		String entryURL = NotificationsUtil.getEntryURL(
-			_assetRendererFactory.getAssetRenderer(article.getId()),
-			PortletKeys.JOURNAL, serviceContext);
+			assetRenderer, PortletKeys.JOURNAL, serviceContext);
 
 		NotificationsUtil.sendNotificationEvent(
 			article.getCompanyId(), _JOURNAL_ARTICLE_CLASS_NAME,
 			article.getGroupId(), PortletKeys.JOURNAL,
-			_JOURNAL_ARTICLE_CLASS_NAME, article.getId(), article.getTitle(),
-			entryURL, notificationType, userId);
+			_JOURNAL_ARTICLE_CLASS_NAME, article.getId(),
+			assetRenderer.getTitle(serviceContext.getLocale()), entryURL,
+			notificationType, userId);
 
 		return journalArticle;
 	}

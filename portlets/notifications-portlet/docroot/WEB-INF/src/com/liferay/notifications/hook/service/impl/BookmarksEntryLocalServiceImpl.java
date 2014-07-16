@@ -21,6 +21,7 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.PortletKeys;
 import com.liferay.portlet.asset.AssetRendererFactoryRegistryUtil;
+import com.liferay.portlet.asset.model.AssetRenderer;
 import com.liferay.portlet.asset.model.AssetRendererFactory;
 import com.liferay.portlet.bookmarks.model.BookmarksEntry;
 import com.liferay.portlet.bookmarks.model.BookmarksFolder;
@@ -48,15 +49,17 @@ public class BookmarksEntryLocalServiceImpl
 		BookmarksEntry bookmarksEntry = super.addEntry(
 			userId, groupId, folderId, name, url, description, serviceContext);
 
+		AssetRenderer assetRenderer = _assetRendererFactory.getAssetRenderer(
+			bookmarksEntry.getEntryId());
+
 		String entryURL = NotificationsUtil.getEntryURL(
-			_assetRendererFactory.getAssetRenderer(bookmarksEntry.getEntryId()),
-			PortletKeys.BOOKMARKS, serviceContext);
+			assetRenderer, PortletKeys.BOOKMARKS, serviceContext);
 
 		NotificationsUtil.sendNotificationEvent(
 			bookmarksEntry.getCompanyId(), _BOOKMARKS_FOLDER_CLASS_NAME,
 			bookmarksEntry.getFolderId(), _BOOKMARKS_FOLDER_CLASS_NAME,
 			PortletKeys.BOOKMARKS, bookmarksEntry.getFolderId(),
-			bookmarksEntry.getName(), entryURL,
+			assetRenderer.getTitle(serviceContext.getLocale()), entryURL,
 			UserNotificationDefinition.NOTIFICATION_TYPE_ADD_ENTRY, userId);
 
 		return bookmarksEntry;
@@ -72,15 +75,17 @@ public class BookmarksEntryLocalServiceImpl
 			userId, entryId, groupId, folderId, name, url, description,
 			serviceContext);
 
+		AssetRenderer assetRenderer = _assetRendererFactory.getAssetRenderer(
+			bookmarksEntry.getEntryId());
+
 		String entryURL = NotificationsUtil.getEntryURL(
-			_assetRendererFactory.getAssetRenderer(bookmarksEntry.getEntryId()),
-			PortletKeys.BOOKMARKS, serviceContext);
+			assetRenderer, PortletKeys.BOOKMARKS, serviceContext);
 
 		NotificationsUtil.sendNotificationEvent(
 			bookmarksEntry.getCompanyId(), _BOOKMARKS_ENTRY_CLASS_NAME,
 			bookmarksEntry.getEntryId(), PortletKeys.BOOKMARKS,
 			_BOOKMARKS_ENTRY_CLASS_NAME, bookmarksEntry.getEntryId(),
-			bookmarksEntry.getName(), entryURL,
+			assetRenderer.getTitle(serviceContext.getLocale()), entryURL,
 			UserNotificationDefinition.NOTIFICATION_TYPE_UPDATE_ENTRY, userId);
 
 		return bookmarksEntry;

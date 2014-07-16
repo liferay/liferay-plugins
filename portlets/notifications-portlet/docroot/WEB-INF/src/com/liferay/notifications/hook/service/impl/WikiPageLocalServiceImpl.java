@@ -21,6 +21,7 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.PortletKeys;
 import com.liferay.portlet.asset.AssetRendererFactoryRegistryUtil;
+import com.liferay.portlet.asset.model.AssetRenderer;
 import com.liferay.portlet.asset.model.AssetRendererFactory;
 import com.liferay.portlet.wiki.model.WikiNode;
 import com.liferay.portlet.wiki.model.WikiPage;
@@ -59,14 +60,17 @@ public class WikiPageLocalServiceImpl extends WikiPageLocalServiceWrapper {
 			subscriptionClassPK = wikiPage.getResourcePrimKey();
 		}
 
+		AssetRenderer assetRenderer = _assetRendererFactory.getAssetRenderer(
+			wikiPage.getPageId());
+
 		String entryURL = NotificationsUtil.getEntryURL(
-			_assetRendererFactory.getAssetRenderer(wikiPage.getPageId()),
-			PortletKeys.WIKI, serviceContext);
+			assetRenderer, PortletKeys.WIKI, serviceContext);
 
 		NotificationsUtil.sendNotificationEvent(
 			wikiPage.getCompanyId(), subscriptionClassName, subscriptionClassPK,
 			PortletKeys.WIKI, _WIKI_PAGE_CLASS_NAME, wikiPage.getPageId(),
-			wikiPage.getTitle(), entryURL, notificationType, userId);
+			assetRenderer.getTitle(serviceContext.getLocale()), entryURL,
+			notificationType, userId);
 
 		return wikiPage;
 	}

@@ -23,6 +23,7 @@ import com.liferay.portal.kernel.repository.model.FileVersion;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.PortletKeys;
 import com.liferay.portlet.asset.AssetRendererFactoryRegistryUtil;
+import com.liferay.portlet.asset.model.AssetRenderer;
 import com.liferay.portlet.asset.model.AssetRendererFactory;
 import com.liferay.portlet.documentlibrary.model.DLFileEntry;
 import com.liferay.portlet.documentlibrary.model.DLFolder;
@@ -65,16 +66,18 @@ public class DLAppHelperLocalServiceImpl
 				UserNotificationDefinition.NOTIFICATION_TYPE_UPDATE_ENTRY;
 		}
 
+		AssetRenderer assetRenderer = _assetRendererFactory.getAssetRenderer(
+			latestFileVersion.getFileEntryId());
+
 		String entryURL = NotificationsUtil.getEntryURL(
-			_assetRendererFactory.getAssetRenderer(
-				latestFileVersion.getFileEntryId()),
-			PortletKeys.DOCUMENT_LIBRARY, serviceContext);
+			assetRenderer, PortletKeys.DOCUMENT_LIBRARY, serviceContext);
 
 		NotificationsUtil.sendNotificationEvent(
 			latestFileVersion.getCompanyId(), _DL_FOLDER_CLASS_NAME,
 			latestFileVersion.getGroupId(), PortletKeys.DOCUMENT_LIBRARY,
 			_DL_FILE_ENTRY_CLASS_NAME, latestFileVersion.getFileEntryId(),
-			latestFileVersion.getTitle(), entryURL, notificationType, userId);
+			assetRenderer.getTitle(serviceContext.getLocale()), entryURL,
+			notificationType, userId);
 	}
 
 	protected AssetRendererFactory _assetRendererFactory =

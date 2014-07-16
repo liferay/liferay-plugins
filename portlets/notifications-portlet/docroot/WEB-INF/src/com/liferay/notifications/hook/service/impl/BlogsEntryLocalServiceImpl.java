@@ -21,6 +21,7 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.PortletKeys;
 import com.liferay.portlet.asset.AssetRendererFactoryRegistryUtil;
+import com.liferay.portlet.asset.model.AssetRenderer;
 import com.liferay.portlet.asset.model.AssetRendererFactory;
 import com.liferay.portlet.blogs.model.BlogsEntry;
 import com.liferay.portlet.blogs.service.BlogsEntryLocalService;
@@ -54,14 +55,17 @@ public class BlogsEntryLocalServiceImpl extends BlogsEntryLocalServiceWrapper {
 				UserNotificationDefinition.NOTIFICATION_TYPE_UPDATE_ENTRY;
 		}
 
+		AssetRenderer assetRenderer = _assetRendererFactory.getAssetRenderer(
+			blogsEntry.getEntryId());
+
 		String entryURL = NotificationsUtil.getEntryURL(
-			_assetRendererFactory.getAssetRenderer(blogsEntry.getEntryId()),
-			PortletKeys.BLOGS, serviceContext);
+			assetRenderer, PortletKeys.BLOGS, serviceContext);
 
 		NotificationsUtil.sendNotificationEvent(
 			blogsEntry.getCompanyId(), _BLOGS_ENTRY_CLASS_NAME,
 			blogsEntry.getGroupId(), _BLOGS_ENTRY_CLASS_NAME, PortletKeys.BLOGS,
-			blogsEntry.getEntryId(), blogsEntry.getTitle(), entryURL,
+			blogsEntry.getEntryId(),
+			assetRenderer.getTitle(serviceContext.getLocale()), entryURL,
 			notificationType, userId);
 
 		return blogsEntry;
