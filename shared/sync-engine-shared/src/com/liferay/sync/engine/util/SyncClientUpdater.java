@@ -157,8 +157,21 @@ public class SyncClientUpdater {
 	}
 
 	protected static HttpResponse execute(String url) {
-		HttpClient httpClient = HttpClients.createDefault();
+		try {
+			HttpClient httpClient = HttpClients.createDefault();
 
+			return httpClient.execute(getHttpGet(url));
+		}
+		catch (Exception e) {
+			if (_logger.isDebugEnabled()) {
+				_logger.debug(e.getMessage(), e);
+			}
+
+			return null;
+		}
+	}
+
+	protected static HttpGet getHttpGet(String url) {
 		HttpGet httpGet = new HttpGet(url);
 
 		Builder builder = RequestConfig.custom();
@@ -170,16 +183,7 @@ public class SyncClientUpdater {
 
 		httpGet.setConfig(requestConfig);
 
-		try {
-			return httpClient.execute(httpGet);
-		}
-		catch (Exception e) {
-			if (_logger.isDebugEnabled()) {
-				_logger.debug(e.getMessage(), e);
-			}
-
-			return null;
-		}
+		return httpGet;
 	}
 
 	protected static Path getFilePath(HttpResponse httpResponse) {
