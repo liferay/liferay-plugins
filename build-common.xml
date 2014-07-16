@@ -439,22 +439,32 @@ Error-Prone was automatically installed. Please rerun your task.
 					</then>
 				</elseif>
 				<else>
-					<loop-macrodef-or-target
-						module.dirs="@{module.dir}"
-						target.name="compile-import-shared"
-					/>
+					<if>
+						<available file="docroot" />
+						<then>
+							<compile-portlet
+								module.dir="@{module.dir}"
+							/>
+						</then>
+						<else>
+							<loop-macrodef-or-target
+								module.dirs="@{module.dir}"
+								target.name="compile-import-shared"
+							/>
 
-					<process-ivy
-						module.dir="@{module.dir}"
-					/>
+							<process-ivy
+								module.dir="@{module.dir}"
+							/>
 
-					<mkdir dir="@{module.dir}/classes" />
+							<mkdir dir="@{module.dir}/classes" />
 
-					<compile-java
-						javac.classpathref="plugin.classpath"
-						javac.destdir="@{module.dir}/classes"
-						javac.srcdir="@{module.dir}/src"
-					/>
+							<compile-java
+								javac.classpathref="plugin.classpath"
+								javac.destdir="@{module.dir}/classes"
+								javac.srcdir="@{module.dir}/src"
+							/>
+						</else>
+					</if>
 				</else>
 			</if>
 		</sequential>
