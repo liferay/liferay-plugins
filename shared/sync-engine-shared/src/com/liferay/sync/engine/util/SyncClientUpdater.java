@@ -58,8 +58,6 @@ public class SyncClientUpdater {
 	}
 
 	public static SyncVersion getLatestSyncVersion() throws Exception {
-		ObjectMapper objectMapper = new ObjectMapper();
-
 		HttpResponse httpResponse = execute(PropsValues.SYNC_UPDATE_CHECK_URL);
 
 		if (httpResponse == null) {
@@ -67,6 +65,8 @@ public class SyncClientUpdater {
 		}
 
 		HttpEntity httpEntity = httpResponse.getEntity();
+
+		ObjectMapper objectMapper = new ObjectMapper();
 
 		return objectMapper.readValue(
 			httpEntity.getContent(), new TypeReference<SyncVersion>() {});
@@ -145,15 +145,13 @@ public class SyncClientUpdater {
 			return;
 		}
 
-		HttpEntity entity = httpResponse.getEntity();
-
-		Path filePath = null;
-
 		Header header = httpResponse.getFirstHeader("Content-Type");
 
 		HeaderElement headerElement = header.getElements()[0];
 
 		String mimeType = headerElement.getName();
+
+		Path filePath = null;
 
 		if (mimeType.equals("application/x-msdownload")) {
 			filePath = Files.createTempFile(null, ".msi");
@@ -161,6 +159,8 @@ public class SyncClientUpdater {
 		else {
 			filePath = Files.createTempFile(null, ".dmg");
 		}
+
+		HttpEntity entity = httpResponse.getEntity();
 
 		Files.copy(
 			entity.getContent(), filePath, StandardCopyOption.REPLACE_EXISTING);
@@ -171,18 +171,18 @@ public class SyncClientUpdater {
 	}
 
 	protected static HttpResponse execute(String url) {
-		HttpClient httpClient = HttpClients.createDefault();
-
-		HttpGet httpGet = new HttpGet(url);
-
 		Builder builder = RequestConfig.custom();
 
 		builder.setSocketTimeout(30000);
 		builder.setConnectTimeout(30000);
 
+		HttpGet httpGet = new HttpGet(url);
+
 		RequestConfig requestConfig = builder.build();
 
 		httpGet.setConfig(requestConfig);
+
+		HttpClient httpClient = HttpClients.createDefault();
 
 		try {
 			return httpClient.execute(httpGet);
