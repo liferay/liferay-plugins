@@ -1192,21 +1192,18 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 
 		FileEntry tempFileEntry = null;
 
-		try {
-			tempFileEntry = TempFileUtil.getTempFile(
-				groupId, userId, selectedFileName, _TEMP_FOLDER_NAME);
+		tempFileEntry = TempFileUtil.getTempFile(
+			groupId, userId, selectedFileName, _TEMP_FOLDER_NAME);
 
-			InputStream inputStream = tempFileEntry.getContentStream();
-			String mimeType = tempFileEntry.getMimeType();
+		InputStream inputStream = tempFileEntry.getContentStream();
+		String mimeType = tempFileEntry.getMimeType();
 
-			addAttachment(
-				userId, resourcePrimKey, selectedFileName, inputStream,
-				mimeType);
-		}
-		finally {
-			if (tempFileEntry != null) {
-				TempFileUtil.deleteTempFile(tempFileEntry.getFileEntryId());
-			}
+		addAttachment(
+			userId, resourcePrimKey, selectedFileName, inputStream,
+			mimeType);
+
+		if (tempFileEntry != null) {
+			TempFileUtil.deleteTempFile(tempFileEntry.getFileEntryId());
 		}
 	}
 
