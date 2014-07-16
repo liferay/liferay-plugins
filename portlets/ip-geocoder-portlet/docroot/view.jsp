@@ -21,7 +21,7 @@
 <%@ page import="com.liferay.ip.geocoder.IPInfo" %>
 
 <%
-IPInfo ipInfo = (IPInfo)request.getAttribute("IPInfo");
+IPInfo ipInfo = (IPInfo)request.getAttribute(IPInfo.class.getName());
 %>
 
 <c:choose>
