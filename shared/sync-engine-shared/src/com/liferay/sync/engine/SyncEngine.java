@@ -204,7 +204,7 @@ public class SyncEngine {
 		UpgradeUtil.upgrade();
 
 		SyncClientUpdater.scheduleAutoUpdateChecker(
-			SyncPropService.getInteger("updateCheckInterval", 5));
+			SyncPropService.getInteger("updateCheckInterval", 1440));
 
 		SyncWatchEventProcessor syncWatchEventProcessor =
 			new SyncWatchEventProcessor();

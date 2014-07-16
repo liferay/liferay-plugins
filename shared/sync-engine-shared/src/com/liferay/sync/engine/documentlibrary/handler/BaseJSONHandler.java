@@ -95,7 +95,8 @@ public class BaseJSONHandler extends BaseHandler {
 			SyncFileService.update(syncFile);
 		}
 		else if (exception.equals(
-					"com.liferay.portal.kernel.upload.UploadException")) {
+					"com.liferay.portal.kernel.upload.UploadException") ||
+				 exception.contains("SizeLimitExceededException")) {
 
 			SyncFile syncFile = (SyncFile)getParameterValue("syncFile");
 

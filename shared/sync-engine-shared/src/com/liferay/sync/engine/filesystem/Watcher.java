@@ -227,6 +227,10 @@ public class Watcher implements Runnable {
 			syncFile.setLocalSyncTime(System.currentTimeMillis());
 
 			SyncFileService.update(syncFile);
+
+			if (syncFile.getState() == SyncFile.STATE_ERROR) {
+				return;
+			}
 		}
 
 		_watchEventListener.watchEvent(eventType, filePath);

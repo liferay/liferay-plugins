@@ -14,9 +14,12 @@
 
 package com.liferay.sync.engine.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 /**
  * @author Shinn Lok
  */
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class SyncVersion {
 
 	public int getBuildNumber() {
