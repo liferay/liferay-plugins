@@ -36,6 +36,8 @@ public class SyncEngineUtil {
 
 	public static final int SYNC_ENGINE_STATE_STOPPING = 4;
 
+	public static final int SYNC_ENGINE_UPDATE_AVAILABLE = 5;
+
 	public static void fireSyncEngineStateChanged(final int syncEngineState) {
 		for (final SyncEngineListener syncEngineListener :
 				_syncEngineListeners) {

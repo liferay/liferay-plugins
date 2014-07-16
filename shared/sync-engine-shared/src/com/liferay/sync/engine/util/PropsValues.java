@@ -53,4 +53,7 @@ public class PropsValues {
 	public static final String SYNC_PRODUCT_NAME = PropsUtil.get(
 		PropsKeys.SYNC_PRODUCT_NAME);
 
+	public static final String SYNC_UPDATE_CHECK_URL = PropsUtil.get(
+		PropsKeys.SYNC_UPDATE_CHECK_URL);
+
 }
