@@ -64,9 +64,9 @@ public class SyncClientUpdater {
 			return null;
 		}
 
-		HttpEntity httpEntity = httpResponse.getEntity();
-
 		ObjectMapper objectMapper = new ObjectMapper();
+
+		HttpEntity httpEntity = httpResponse.getEntity();
 
 		return objectMapper.readValue(
 			httpEntity.getContent(), new TypeReference<SyncVersion>() {});
@@ -145,25 +145,10 @@ public class SyncClientUpdater {
 			return;
 		}
 
-		Header header = httpResponse.getFirstHeader("Content-Type");
-
-		HeaderElement headerElement = header.getElements()[0];
-
-		String mimeType = headerElement.getName();
-
-		Path filePath = null;
-
-		if (mimeType.equals("application/x-msdownload")) {
-			filePath = Files.createTempFile(null, ".msi");
-		}
-		else {
-			filePath = Files.createTempFile(null, ".dmg");
-		}
-
 		HttpEntity httpEntity = httpResponse.getEntity();
 
 		Files.copy(
-			httpEntity.getContent(), filePath,
+			httpEntity.getContent(), getFilePath(httpResponse),
 			StandardCopyOption.REPLACE_EXISTING);
 
 		Desktop desktop = Desktop.getDesktop();
@@ -194,6 +179,21 @@ public class SyncClientUpdater {
 			}
 
 			return null;
+		}
+	}
+
+	protected static Path getFilePath(HttpResponse httpResponse) {
+		Header header = httpResponse.getFirstHeader("Content-Type");
+
+		HeaderElement headerElement = header.getElements()[0];
+
+		String mimeType = headerElement.getName();
+
+		if (mimeType.equals("application/x-msdownload")) {
+			return Files.createTempFile(null, ".msi");
+		}
+		else {
+			return Files.createTempFile(null, ".dmg");
 		}
 	}
 
