@@ -59,10 +59,15 @@ KBComment kbComment = (KBComment)request.getAttribute("article_comment.jsp-kb_co
 				<%= HtmlUtil.escape(kbComment.getContent()) %>
 			</div>
 
-			<br />
+			<div class="kb-article-comment-date">
 
-			<div>
-				<%= LanguageUtil.format(request, "posted-on-x", dateFormatDateTime.format(kbComment.getModifiedDate()), false) %>
+				<%
+				DateSearchEntry dateSearchEntry = new DateSearchEntry();
+
+				dateSearchEntry.setDate(kbComment.getModifiedDate());
+				%>
+
+				<span class="icon icon-calendar"></span> <%= dateSearchEntry.getName(pageContext) %>
 			</div>
 
 			<%
