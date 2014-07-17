@@ -362,12 +362,28 @@ public class KBCommentLocalServiceUtil {
 	}
 
 	public static java.util.List<com.liferay.knowledgebase.model.KBComment> getKBComments(
+		long userId, java.lang.String className, long classPK, int start,
+		int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService()
+				   .getKBComments(userId, className, classPK, start, end,
+			orderByComparator);
+	}
+
+	public static java.util.List<com.liferay.knowledgebase.model.KBComment> getKBComments(
 		java.lang.String className, long classPK, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService()
 				   .getKBComments(className, classPK, start, end,
 			orderByComparator);
+	}
+
+	public static int getKBCommentsCount(long userId,
+		java.lang.String className, long classPK)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().getKBCommentsCount(userId, className, classPK);
 	}
 
 	public static int getKBCommentsCount(java.lang.String className,

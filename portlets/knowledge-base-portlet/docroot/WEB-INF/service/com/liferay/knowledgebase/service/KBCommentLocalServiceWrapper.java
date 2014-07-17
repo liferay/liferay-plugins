@@ -383,11 +383,29 @@ public class KBCommentLocalServiceWrapper implements KBCommentLocalService,
 
 	@Override
 	public java.util.List<com.liferay.knowledgebase.model.KBComment> getKBComments(
+		long userId, java.lang.String className, long classPK, int start,
+		int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _kbCommentLocalService.getKBComments(userId, className, classPK,
+			start, end, orderByComparator);
+	}
+
+	@Override
+	public java.util.List<com.liferay.knowledgebase.model.KBComment> getKBComments(
 		java.lang.String className, long classPK, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _kbCommentLocalService.getKBComments(className, classPK, start,
 			end, orderByComparator);
+	}
+
+	@Override
+	public int getKBCommentsCount(long userId, java.lang.String className,
+		long classPK)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _kbCommentLocalService.getKBCommentsCount(userId, className,
+			classPK);
 	}
 
 	@Override
