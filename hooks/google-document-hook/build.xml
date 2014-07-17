@@ -5,7 +5,6 @@
 	<import file="../build-common-hook.xml" />
 
 	<target name="update-from-portal">
-		<echo>${app.server.portal.dir}</echo>
 		<copy overwrite="true" preservelastmodified="true" todir="docroot/META-INF/custom_jsps">
 			<fileset
 				dir="${app.server.portal.dir}"
