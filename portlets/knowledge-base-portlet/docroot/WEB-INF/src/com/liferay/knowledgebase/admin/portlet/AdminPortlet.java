@@ -551,13 +551,13 @@ public class AdminPortlet extends MVCPortlet {
 		throws PortalException {
 
 		long kbCommentId = ParamUtil.getLong(actionRequest, "kbCommentId");
-		int targetStatus = ParamUtil.getInteger(actionRequest, "targetStatus");
+		int status = ParamUtil.getInteger(actionRequest, "status");
 
 		ServiceContext serviceContext = ServiceContextFactory.getInstance(
 			KBComment.class.getName(), actionRequest);
 
 		KBCommentServiceUtil.updateStatus(
-			kbCommentId, targetStatus, serviceContext);
+			kbCommentId, status, serviceContext);
 	}
 
 	public void updateKBTemplate(

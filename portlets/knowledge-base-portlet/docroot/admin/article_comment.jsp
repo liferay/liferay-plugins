@@ -81,9 +81,9 @@ KBComment kbComment = (KBComment)request.getAttribute("article_comment.jsp-kb_co
 			<div class="kb-feedback-actions">
 				<c:if test="<%= previousStatus != KBCommentConstants.STATUS_NONE %>">
 					<liferay-portlet:actionURL name="updateKBCommentStatus" var="previousStatusURL">
-						<portlet:param name="targetStatus" value="<%= String.valueOf(previousStatus) %>" />
 						<portlet:param name="kbCommentId" value="<%= String.valueOf(kbComment.getKbCommentId()) %>" />
 						<portlet:param name="redirect" value="<%= redirect %>" />
+						<portlet:param name="status" value="<%= String.valueOf(previousStatus) %>" />
 					</liferay-portlet:actionURL>
 
 					<aui:button href="<%= previousStatusURL %>" value="<%= KnowledgeBaseUtil.getStatusTransitionLabel(previousStatus) %>" />
@@ -91,9 +91,9 @@ KBComment kbComment = (KBComment)request.getAttribute("article_comment.jsp-kb_co
 
 				<c:if test="<%= nextStatus != KBCommentConstants.STATUS_NONE %>">
 					<liferay-portlet:actionURL name="updateKBCommentStatus" var="nextStatusURL">
-						<portlet:param name="targetStatus" value="<%= String.valueOf(nextStatus) %>" />
 						<portlet:param name="kbCommentId" value="<%= String.valueOf(kbComment.getKbCommentId()) %>" />
 						<portlet:param name="redirect" value="<%= redirect %>" />
+						<portlet:param name="status" value="<%= String.valueOf(nextStatus) %>" />
 					</liferay-portlet:actionURL>
 
 					<aui:button href="<%= nextStatusURL %>" value="<%= KnowledgeBaseUtil.getStatusTransitionLabel(nextStatus) %>" />
