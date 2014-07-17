@@ -166,7 +166,7 @@ public class KBCommentLocalServiceImpl extends KBCommentLocalServiceBaseImpl {
 	public List<KBComment> getKBComments(
 		long groupId, int status, int start, int end) {
 
-		return kbCommentFinder.findByG_S(groupId, status, start, end);
+		return kbCommentPersistence.findByG_S(groupId, status, start, end);
 	}
 
 	@Override
@@ -201,7 +201,7 @@ public class KBCommentLocalServiceImpl extends KBCommentLocalServiceBaseImpl {
 
 	@Override
 	public int getKBCommentsCount(long groupId, int status) {
-		return kbCommentFinder.countByG_S(groupId, status);
+		return kbCommentPersistence.countByG_S(groupId, status);
 	}
 
 	@Override

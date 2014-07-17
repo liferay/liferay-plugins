@@ -16,6 +16,7 @@ package com.liferay.knowledgebase.service.impl;
 
 import com.liferay.knowledgebase.model.KBComment;
 import com.liferay.knowledgebase.service.base.KBCommentServiceBaseImpl;
+import com.liferay.knowledgebase.service.permission.AdminPermission;
 import com.liferay.knowledgebase.service.permission.KBCommentPermission;
 import com.liferay.knowledgebase.util.ActionKeys;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -57,13 +58,22 @@ public class KBCommentServiceImpl extends KBCommentServiceBaseImpl {
 	}
 
 	public List<KBComment> getKBComments(
-		long groupId, int status, int start, int end) {
+			long groupId, int status, int start, int end)
+		throws PortalException {
 
-		return kbCommentFinder.filterFindByG_S(groupId, status, start, end);
+		AdminPermission.check(
+			getPermissionChecker(), groupId, ActionKeys.VIEW_KB_FEEDBACK);
+
+		return kbCommentPersistence.findByG_S(groupId, status, start, end);
 	}
 
-	public int getKBCommentsCount(long groupId, int status) {
-		return kbCommentFinder.filterCountByG_S(groupId, status);
+	public int getKBCommentsCount(long groupId, int status)
+		throws PortalException {
+
+		AdminPermission.check(
+			getPermissionChecker(), groupId, ActionKeys.VIEW_KB_FEEDBACK);
+
+		return kbCommentPersistence.countByG_S(groupId, status);
 	}
 
 	public KBComment updateKBComment(
