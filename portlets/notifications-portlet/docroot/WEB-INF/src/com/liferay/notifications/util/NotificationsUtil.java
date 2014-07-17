@@ -291,9 +291,9 @@ public class NotificationsUtil {
 
 		private static final long serialVersionUID = 1L;
 
-		private long _companyId;
 		private String _className;
 		private long _classPK;
+		private long _companyId;
 		private JSONObject _notificationEventJSONObject;
 		private String _portletKey;
 	}
