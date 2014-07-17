@@ -289,7 +289,7 @@ public class KnowledgeBaseUtil {
 		};
 	}
 
-	public static final int getPrevStatus(int status) {
+	public static final int getPreviousStatus(int status) {
 		if (status == KBCommentConstants.STATUS_IN_PROGRESS) {
 			return KBCommentConstants.STATUS_PENDING;
 		}

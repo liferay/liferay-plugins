@@ -73,29 +73,30 @@ KBComment kbComment = (KBComment)request.getAttribute("article_comment.jsp-kb_co
 
 			<%
 			int feedbackStatus = kbComment.getStatus();
-			int prevStatus = KnowledgeBaseUtil.getPrevStatus(feedbackStatus);
+
+			int previousStatus = KnowledgeBaseUtil.getPreviousStatus(feedbackStatus);
 			int nextStatus = KnowledgeBaseUtil.getNextStatus(feedbackStatus);
 			%>
 
 			<div class="kb-feedback-actions">
-				<c:if test="<%= prevStatus != KBCommentConstants.STATUS_NONE %>">
-					<liferay-portlet:actionURL name="updateKBCommentStatus" var="prevStatusURL">
-						<portlet:param name="targetStatus" value="<%= Integer.toString(prevStatus) %>" />
-						<portlet:param name="kbCommentId" value="<%= Long.toString(kbComment.getKbCommentId()) %>" />
+				<c:if test="<%= previousStatus != KBCommentConstants.STATUS_NONE %>">
+					<liferay-portlet:actionURL name="updateKBCommentStatus" var="previousStatusURL">
+						<portlet:param name="targetStatus" value="<%= String.valueOf(previousStatus) %>" />
+						<portlet:param name="kbCommentId" value="<%= String.valueOf(kbComment.getKbCommentId()) %>" />
 						<portlet:param name="redirect" value="<%= redirect %>" />
 					</liferay-portlet:actionURL>
 
-					<aui:button href="<%= prevStatusURL %>" id="prevStatus" value="<%= KnowledgeBaseUtil.getStatusTransitionLabel(prevStatus) %>" />
+					<aui:button href="<%= previousStatusURL %>" value="<%= KnowledgeBaseUtil.getStatusTransitionLabel(previousStatus) %>" />
 				</c:if>
 
 				<c:if test="<%= nextStatus != KBCommentConstants.STATUS_NONE %>">
 					<liferay-portlet:actionURL name="updateKBCommentStatus" var="nextStatusURL">
-						<portlet:param name="targetStatus" value="<%= Integer.toString(nextStatus) %>" />
-						<portlet:param name="kbCommentId" value="<%= Long.toString(kbComment.getKbCommentId()) %>" />
+						<portlet:param name="targetStatus" value="<%= String.valueOf(nextStatus) %>" />
+						<portlet:param name="kbCommentId" value="<%= String.valueOf(kbComment.getKbCommentId()) %>" />
 						<portlet:param name="redirect" value="<%= redirect %>" />
 					</liferay-portlet:actionURL>
 
-					<aui:button href="<%= nextStatusURL %>" id="nextStatus" value="<%= KnowledgeBaseUtil.getStatusTransitionLabel(nextStatus) %>" />
+					<aui:button href="<%= nextStatusURL %>" value="<%= KnowledgeBaseUtil.getStatusTransitionLabel(nextStatus) %>" />
 				</c:if>
 
 				<c:if test="<%= feedbackStatus == KBCommentConstants.STATUS_RESOLVED && KBCommentPermission.contains(permissionChecker, kbComment, ActionKeys.DELETE) %>">
