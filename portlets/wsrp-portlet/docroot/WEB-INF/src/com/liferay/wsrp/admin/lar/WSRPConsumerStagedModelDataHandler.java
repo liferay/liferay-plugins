@@ -40,13 +40,20 @@ public class WSRPConsumerStagedModelDataHandler
 
 		Group group = GroupLocalServiceUtil.getGroup(groupId);
 
-		WSRPConsumer wsrpConsumer =
-			WSRPConsumerLocalServiceUtil.fetchWSRPConsumerByUuidAndCompanyId(
-				uuid, group.getCompanyId());
+		WSRPConsumer wsrpConsumer = fetchStagedModelByUuidAndCompanyId(
+			uuid, group.getCompanyId());
 
 		if (wsrpConsumer != null) {
 			WSRPConsumerLocalServiceUtil.deleteWSRPConsumer(wsrpConsumer);
 		}
+	}
+
+	@Override
+	public WSRPConsumer fetchStagedModelByUuidAndCompanyId(
+		String uuid, long companyId) {
+
+		return WSRPConsumerLocalServiceUtil.fetchWSRPConsumerByUuidAndCompanyId(
+			uuid, companyId);
 	}
 
 	@Override
@@ -84,10 +91,8 @@ public class WSRPConsumerStagedModelDataHandler
 
 		if (portletDataContext.isDataStrategyMirror()) {
 			WSRPConsumer existingWSRPConsumer =
-				WSRPConsumerLocalServiceUtil.
-					fetchWSRPConsumerByUuidAndCompanyId(
-						wsrpConsumer.getUuid(),
-						portletDataContext.getCompanyId());
+				fetchStagedModelByUuidAndCompanyId(
+					wsrpConsumer.getUuid(), portletDataContext.getCompanyId());
 
 			if (existingWSRPConsumer == null) {
 				serviceContext.setUuid(wsrpConsumer.getUuid());
@@ -128,21 +133,6 @@ public class WSRPConsumerStagedModelDataHandler
 
 		portletDataContext.importClassedModel(
 			wsrpConsumer, importedWSRPConsumer);
-	}
-
-	@Override
-	protected boolean validateMissingReference(
-		String uuid, long companyId, long groupId) {
-
-		WSRPConsumer wsrpConsumer =
-			WSRPConsumerLocalServiceUtil.fetchWSRPConsumerByUuidAndCompanyId(
-				uuid, companyId);
-
-		if (wsrpConsumer == null) {
-			return false;
-		}
-
-		return true;
 	}
 
 }
