@@ -583,6 +583,21 @@ Error-Prone was automatically installed. Please rerun your task.
 					/>
 
 					<set-build-xml-var
+						build.xml.var.name="plugin.full.version"
+						module.dir="@{import.shared.current.dir}"
+					/>
+
+					<if>
+						<isset property="set-build-xml-var.return" />
+						<then>
+							<var name="import.shared.current.plugin.full.version" value="${set-build-xml-var.return}" />
+						</then>
+						<else>
+							<var name="import.shared.current.plugin.full.version" value="${lp.version}" />
+						</else>
+					</if>
+
+					<set-build-xml-var
 						build.xml.var.name="plugin.name"
 						module.dir="@{import.shared.current.dir}"
 					/>
@@ -603,7 +618,7 @@ Error-Prone was automatically installed. Please rerun your task.
 
 					<for param="import.shared.full.path">
 						<path>
-							<fileset dir="${sdk.dir}/dist" includes="${import.shared.current.plugin.name}-${lp.version}.*.jar" />
+							<fileset dir="${sdk.dir}/dist" includes="${import.shared.current.plugin.name}-${import.shared.current.plugin.full.version}.jar" />
 						</path>
 						<sequential>
 							<copy
