@@ -49,7 +49,7 @@
 </liferay-ui:search-container>
 
 <aui:script use="aui-base">
-	var deleteButtons = A.all('a.kb-feedback-delete');
+	var deleteButtons = A.all('.kb-feedback-actions .kb-feedback-delete');
 
 	deleteButtons.on(
 		'click',
