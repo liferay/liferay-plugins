@@ -21,13 +21,16 @@ import com.liferay.knowledgebase.service.KBArticleLocalServiceUtil;
 import com.liferay.knowledgebase.service.persistence.KBArticleUtil;
 import com.liferay.knowledgebase.util.KnowledgeBaseUtil;
 import com.liferay.knowledgebase.util.PortletKeys;
+import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.io.unsync.UnsyncByteArrayInputStream;
 import com.liferay.portal.kernel.lar.BaseStagedModelDataHandler;
 import com.liferay.portal.kernel.lar.ExportImportPathUtil;
 import com.liferay.portal.kernel.lar.PortletDataContext;
 import com.liferay.portal.kernel.lar.StagedModelDataHandlerUtil;
+import com.liferay.portal.kernel.lar.StagedModelModifiedDateComparator;
 import com.liferay.portal.kernel.repository.model.FileEntry;
+import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.MapUtil;
 import com.liferay.portal.kernel.util.StreamUtil;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
@@ -55,11 +58,35 @@ public class KBArticleStagedModelDataHandler
 			String uuid, long groupId, String className, String extraData)
 		throws PortalException {
 
-		KBArticle kbArticle = fetchExistingStagedModel(uuid, groupId);
+		KBArticle kbArticle = fetchStagedModelByUuidAndGroupId(uuid, groupId);
 
 		if (kbArticle != null) {
 			KBArticleLocalServiceUtil.deleteKBArticle(kbArticle);
 		}
+	}
+
+	@Override
+	public KBArticle fetchStagedModelByUuidAndCompanyId(
+		String uuid, long companyId) {
+
+		List<KBArticle> kbArticles =
+			KBArticleLocalServiceUtil.getKBArticlesByUuidAndCompanyId(
+				uuid, companyId, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+				new StagedModelModifiedDateComparator<KBArticle>());
+
+		if (ListUtil.isEmpty(kbArticles)) {
+			return null;
+		}
+
+		return kbArticles.get(0);
+	}
+
+	@Override
+	public KBArticle fetchStagedModelByUuidAndGroupId(
+		String uuid, long groupId) {
+
+		return KBArticleLocalServiceUtil.fetchKBArticleByUuidAndGroupId(
+			uuid, groupId);
 	}
 
 	@Override
@@ -110,12 +137,6 @@ public class KBArticleStagedModelDataHandler
 	}
 
 	@Override
-	protected KBArticle doFetchExistingStagedModel(String uuid, long groupId) {
-		return KBArticleLocalServiceUtil.fetchKBArticleByUuidAndGroupId(
-			uuid, groupId);
-	}
-
-	@Override
 	protected void doImportStagedModel(
 			PortletDataContext portletDataContext, KBArticle kbArticle)
 		throws Exception {
@@ -151,7 +172,7 @@ public class KBArticleStagedModelDataHandler
 				resourcePrimaryKey, kbArticle.getVersion());
 
 			if (existingKBArticle == null) {
-				existingKBArticle = fetchExistingStagedModel(
+				existingKBArticle = fetchStagedModelByUuidAndGroupId(
 					kbArticle.getUuid(), portletDataContext.getScopeGroupId());
 			}
 
