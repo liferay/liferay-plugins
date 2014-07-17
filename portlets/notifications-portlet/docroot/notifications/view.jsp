@@ -38,8 +38,8 @@
 			</div>
 
 			<div class="nav">
-				<a class="clearfix unread-non-actionable" href="javascript:;">
-					<span class="title"><liferay-ui:message key="unread-non-actionable-notifications" /></span>
+				<a class="clearfix unread-nonactionable" href="javascript:;">
+					<span class="title"><liferay-ui:message key="unread-nonactionable-notifications" /></span>
 
 					<%
 					int unreadNonActionableUserNotificationsCount = NotificationsUtil.getArchivedUserNotificationEventsCount(themeDisplay.getUserId(), false, false);

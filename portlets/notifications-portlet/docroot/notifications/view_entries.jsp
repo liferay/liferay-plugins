@@ -38,7 +38,7 @@ else if (filter.equals("unread-actionable")) {
 	userNotificationEvents = NotificationsUtil.getArchivedUserNotificationEvents(themeDisplay.getUserId(), true, false, start, end);
 	userNotificationEventsCount = unreadActionableUserNotificationsCount;
 }
-else if (filter.equals("unread-non-actionable")) {
+else if (filter.equals("unread-nonactionable")) {
 	userNotificationEvents = NotificationsUtil.getArchivedUserNotificationEvents(themeDisplay.getUserId(), false, false, start, end);
 	userNotificationEventsCount = unreadNonActionableUserNotificationsCount;
 }
@@ -50,7 +50,7 @@ else {
 
 <li class='message<%= userNotificationEvents.isEmpty() ? "" : " hide" %>'>
 	<c:choose>
-		<c:when test='<%= filter.equals("dockbar") || filter.equals("unread-actionable") || filter.equals("unread-non-actionable") %>'>
+		<c:when test='<%= filter.equals("dockbar") || filter.equals("unread-actionable") || filter.equals("unread-nonactionable") %>'>
 			<a><liferay-ui:message key="you-do-not-have-any-unread-notifications" /></a>
 		</c:when>
 		<c:otherwise>
@@ -100,7 +100,7 @@ else {
 						<hr class="separator">
 					</c:if>
 
-					<div class="non-actionable-user-notifications-list">
+					<div class="nonactionable-user-notifications-list">
 
 						<%
 						for (UserNotificationEvent userNotificationEvent : nonActionableUserNotificationEvents) {
@@ -164,11 +164,11 @@ else {
 			</li>
 		</c:if>
 	</c:when>
-	<c:when test='<%= filter.equals("unread-non-actionable") %>'>
+	<c:when test='<%= filter.equals("unread-nonactionable") %>'>
 		<c:if test="<%= userNotificationEventsCount > 0 %>">
 			<div class="fullViewMarkAllAsRead"></div>
 
-			<div class="non-actionable-user-notifications-list">
+			<div class="nonactionable-user-notifications-list">
 
 				<%
 				for (UserNotificationEvent userNotificationEvent : userNotificationEvents) {

@@ -198,9 +198,9 @@ AUI().use(
 
 					instance._bindNavMenu(unreadActionableNav, instance._getRenderURL('/notifications/view_entries.jsp', 'unread-actionable'), false, true, false);
 
-					var unreadNonActionableNav = userNotificationsSidebar.one('.unread-non-actionable');
+					var unreadNonActionableNav = userNotificationsSidebar.one('.unread-nonactionable');
 
-					instance._bindNavMenu(unreadNonActionableNav, instance._getRenderURL('/notifications/view_entries.jsp', 'unread-non-actionable'), false, false, true);
+					instance._bindNavMenu(unreadNonActionableNav, instance._getRenderURL('/notifications/view_entries.jsp', 'unread-nonactionable'), false, false, true);
 
 					var manageNav = userNotificationsSidebar.one('.manage');
 
@@ -316,7 +316,7 @@ AUI().use(
 									instance.renderNotificationsList(instance._getFullViewNotificationsList(), instance._getRenderURL('/notifications/view_entries.jsp', 'unread-actionable'));
 								}
 								else if (instance._unreadNonActionable) {
-									instance.renderNotificationsList(instance._getFullViewNotificationsList(), instance._getRenderURL('/notifications/view_entries.jsp', 'unread-non-actionable'));
+									instance.renderNotificationsList(instance._getFullViewNotificationsList(), instance._getRenderURL('/notifications/view_entries.jsp', 'unread-nonactionable'));
 								}
 
 								var dockbarUserNotificationsCount = A.one('.dockbar-user-notifications .user-notifications-count');
@@ -475,13 +475,13 @@ AUI().use(
 					currentRow.hide().placeAfter(loadingRow);
 				}
 				else {
-					dockbarNotificationsList = A.one('.dockbar-user-notifications .non-actionable-user-notifications-list');
+					dockbarNotificationsList = A.one('.dockbar-user-notifications .nonactionable-user-notifications-list');
 
 					if (dockbarNotificationsList) {
 						dockbarNotificationsList.hide().placeAfter(loadingRow);
 					}
 
-					fullViewNotificationsList = A.one('.user-notifications-list-container .non-actionable-user-notifications-list');
+					fullViewNotificationsList = A.one('.user-notifications-list-container .nonactionable-user-notifications-list');
 
 					if (fullViewNotificationsList) {
 						fullViewNotificationsList.hide().placeAfter(loadingRow);
@@ -676,7 +676,7 @@ AUI().use(
 						unreadCount.setHTML(unreadActionableUserNotificationsCount);
 					}
 
-					unreadCount = userNotificationsSidebar.one('.unread-non-actionable .count');
+					unreadCount = userNotificationsSidebar.one('.unread-nonactionable .count');
 
 					if (unreadCount) {
 						unreadCount.setHTML(unreadNonActionableUserNotificationsCount);
