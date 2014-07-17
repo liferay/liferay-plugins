@@ -20,10 +20,10 @@ import com.liferay.knowledgebase.model.KBTemplate;
 import com.liferay.knowledgebase.service.KBArticleLocalServiceUtil;
 import com.liferay.knowledgebase.service.KBCommentLocalServiceUtil;
 import com.liferay.knowledgebase.service.KBTemplateLocalServiceUtil;
+import com.liferay.knowledgebase.util.ActionKeys;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.security.auth.PrincipalException;
-import com.liferay.portal.security.permission.ActionKeys;
 import com.liferay.portal.security.permission.PermissionChecker;
 
 /**
@@ -58,6 +58,12 @@ public class KBCommentPermission {
 
 		if (permissionChecker.getUserId() == kbComment.getUserId()) {
 			return true;
+		}
+
+		if (actionId.equals(ActionKeys.VIEW)) {
+			return AdminPermission.contains(
+				permissionChecker, kbComment.getGroupId(),
+				ActionKeys.VIEW_KB_FEEDBACK);
 		}
 
 		if (!actionId.equals(ActionKeys.DELETE)) {
