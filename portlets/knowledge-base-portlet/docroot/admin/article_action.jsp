@@ -27,6 +27,7 @@ KBArticle kbArticle = (KBArticle)row.getObject();
 <liferay-ui:icon-menu cssClass="kb-article-action" icon="<%= StringPool.BLANK %>" message="<%= StringPool.BLANK %>">
 	<liferay-portlet:renderURL var="viewURL">
 		<portlet:param name="mvcPath" value='<%= templatePath + "view_article.jsp" %>' />
+		<portlet:param name="redirect" value="<%= currentURL %>" />
 		<portlet:param name="resourcePrimKey" value="<%= String.valueOf(kbArticle.getResourcePrimKey()) %>" />
 	</liferay-portlet:renderURL>
 

@@ -16,6 +16,18 @@
 
 <%@ include file="/admin/init.jsp" %>
 
-<liferay-util:include page="/admin/top_tabs.jsp" servletContext="<%= application %>" />
+<c:choose>
+	<c:when test="<%= redirect.equals(currentURL) %>">
+		<liferay-util:include page="/admin/top_tabs.jsp" servletContext="<%= application %>" />
+	</c:when>
+	<c:otherwise>
+
+		<%
+		KBArticle kbArticle = (KBArticle)request.getAttribute(WebKeys.KNOWLEDGE_BASE_KB_ARTICLE);
+		%>
+
+		<liferay-ui:header title="<%= kbArticle.getTitle() %>" />
+	</c:otherwise>
+</c:choose>
 
 <liferay-util:include page="/admin/common/view_article.jsp" servletContext="<%= application %>" />
