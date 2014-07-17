@@ -23,7 +23,6 @@ int start = ParamUtil.getInteger(request, "start", 0);
 int end = ParamUtil.getInteger(request, "end", fullView ? fullViewDelta : dockbarViewDelta);
 
 List<UserNotificationEvent> userNotificationEvents = null;
-
 int userNotificationEventsCount = 0;
 
 int unreadActionableUserNotificationsCount = NotificationsUtil.getArchivedUserNotificationEventsCount(themeDisplay.getUserId(), true, false);
@@ -133,6 +132,7 @@ else {
 			%>
 
 		</div>
+
 		<li class="message">
 			<div class="dockbarMarkAllAsRead"></div>
 		</li>

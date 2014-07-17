@@ -594,6 +594,7 @@ AUI().use(
 				A.io.request(
 					instance._getResourceURL('userNotificationEvents', instance._dockbarViewDelta),
 					{
+						dataType: 'JSON',
 						on: {
 							success: function() {
 								var response = this.get('responseData');
@@ -660,8 +661,7 @@ AUI().use(
 									}
 								}
 							}
-						},
-						dataType: 'JSON'
+						}
 					}
 				);
 			},
