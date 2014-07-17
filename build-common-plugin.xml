@@ -10,6 +10,131 @@
 		module.dir="${basedir}"
 	/>
 
+	<macrodef name="build-service">
+		<sequential>
+			<if>
+				<not>
+					<isset property="service.base.dir" />
+				</not>
+				<then>
+					<property name="service.base.dir" value="docroot/WEB-INF" />
+				</then>
+			</if>
+
+			<mkdir dir="${service.base.dir}/classes" />
+			<mkdir dir="${service.base.dir}/lib" />
+			<mkdir dir="${service.base.dir}/service" />
+			<mkdir dir="${service.base.dir}/sql" />
+			<mkdir dir="${service.base.dir}/src" />
+
+			<copy todir="${service.base.dir}/classes">
+				<fileset dir="${service.base.dir}/src" excludes="**/*.java" />
+			</copy>
+
+			<path id="service.classpath">
+				<path refid="lib.classpath" />
+				<path refid="portal.classpath" />
+				<fileset dir="${app.server.lib.portal.dir}" includes="commons-digester.jar,commons-lang.jar,easyconf.jar" />
+				<fileset dir="${service.base.dir}/lib" includes="*.jar" />
+				<pathelement location="${service.base.dir}/classes" />
+			</path>
+
+			<if>
+				<os family="windows" />
+				<then>
+					<classpath-to-jar
+						classpathref="service.classpath"
+						jarfile="build-service-classpath.jar"
+					/>
+				</then>
+			</if>
+
+			<if>
+				<not>
+					<isset property="service.input.file" />
+				</not>
+				<then>
+					<property name="service.input.file" value="${basedir}/${service.base.dir}/service.xml" />
+				</then>
+			</if>
+
+			<java
+				classname="com.liferay.portal.tools.servicebuilder.ServiceBuilder"
+				classpathref="service.classpath"
+				fork="true"
+				newenvironment="true"
+				outputproperty="build-service.output"
+			>
+				<jvmarg value="-Xms512m" />
+				<jvmarg value="-Xmx1024m" />
+				<jvmarg value="-Xss2048k" />
+				<jvmarg value="-XX:MaxPermSize=512m" />
+				<arg value="-Dexternal-properties=com/liferay/portal/tools/dependencies/portal-tools.properties" />
+				<arg value="-Dorg.apache.commons.logging.Log=org.apache.commons.logging.impl.Log4JLogger" />
+				<arg value="service.api.dir=${basedir}/${service.base.dir}/service" />
+				<arg value="service.auto.namespace.tables=true" />
+				<arg value="service.bean.locator.util=com.liferay.util.bean.PortletBeanLocatorUtil" />
+				<arg value="service.build.number=1" />
+				<arg value="service.build.number.increment=true" />
+				<arg value="service.hbm.file=${basedir}/${service.base.dir}/src/META-INF/portlet-hbm.xml" />
+				<arg value="service.impl.dir=${basedir}/${service.base.dir}/src" />
+				<arg value="service.input.file=${service.input.file}" />
+				<arg value="service.model.hints.file=${basedir}/${service.base.dir}/src/META-INF/portlet-model-hints.xml" />
+				<arg value="service.osgi.module=false" />
+				<arg value="service.plugin.name=${plugin.name}" />
+				<arg value="service.props.util=com.liferay.util.service.ServiceProps" />
+				<arg value="service.remoting.file=" />
+				<arg value="service.resources.dir=${basedir}/${service.base.dir}/src" />
+				<arg value="service.spring.file=${basedir}/${service.base.dir}/src/META-INF/portlet-spring.xml" />
+				<arg value="service.sql.dir=${basedir}/${service.base.dir}/sql" />
+				<arg value="service.sql.file=tables.sql" />
+				<arg value="service.sql.indexes.file=indexes.sql" />
+				<arg value="service.sql.sequences.file=sequences.sql" />
+				<arg value="service.target.entity.name=${service.target.entity.name}" />
+				<arg value="service.test.dir=" />
+			</java>
+
+			<if>
+				<os family="windows" />
+				<then>
+					<delete file="build-service-classpath.jar" />
+				</then>
+			</if>
+
+			<delete file="ServiceBuilder.temp" />
+
+			<echo>${build-service.output}</echo>
+
+			<if>
+				<contains string="${build-service.output}" substring="Error" />
+				<then>
+					<fail>Service Builder generated exceptions.</fail>
+				</then>
+			</if>
+
+			<mkdir dir="${service.base.dir}/service-classes" />
+
+			<path id="service.classpath">
+				<path refid="lib.classpath" />
+				<fileset dir="${app.server.lib.global.dir}" includes="*.jar" />
+				<fileset dir="${service.base.dir}/lib" excludes="${plugin.name}-service.jar" includes="*.jar" />
+			</path>
+
+			<compile-java
+				javac.classpathref="service.classpath"
+				javac.destdir="${service.base.dir}/service-classes"
+				javac.srcdir="${service.base.dir}/service"
+			/>
+
+			<zip
+				basedir="${service.base.dir}/service-classes"
+				destfile="${service.base.dir}/lib/${plugin.name}-service.jar"
+			/>
+
+			<delete dir="${service.base.dir}/service-classes" />
+		</sequential>
+	</macrodef>
+
 	<macrodef name="classpath-to-jar">
 		<attribute name="classpathref" />
 		<attribute name="jarfile" />
@@ -150,126 +275,7 @@
 	</target>
 
 	<target name="build-service">
-		<if>
-			<not>
-				<isset property="service.base.dir" />
-			</not>
-			<then>
-				<property name="service.base.dir" value="docroot/WEB-INF" />
-			</then>
-		</if>
-
-		<mkdir dir="${service.base.dir}/classes" />
-		<mkdir dir="${service.base.dir}/lib" />
-		<mkdir dir="${service.base.dir}/service" />
-		<mkdir dir="${service.base.dir}/sql" />
-		<mkdir dir="${service.base.dir}/src" />
-
-		<copy todir="${service.base.dir}/classes">
-			<fileset dir="${service.base.dir}/src" excludes="**/*.java" />
-		</copy>
-
-		<path id="service.classpath">
-			<path refid="lib.classpath" />
-			<path refid="portal.classpath" />
-			<fileset dir="${app.server.lib.portal.dir}" includes="commons-digester.jar,commons-lang.jar,easyconf.jar" />
-			<fileset dir="${service.base.dir}/lib" includes="*.jar" />
-			<pathelement location="${service.base.dir}/classes" />
-		</path>
-
-		<if>
-			<os family="windows" />
-			<then>
-				<classpath-to-jar
-					classpathref="service.classpath"
-					jarfile="build-service-classpath.jar"
-				/>
-			</then>
-		</if>
-
-		<if>
-			<not>
-				<isset property="service.input.file" />
-			</not>
-			<then>
-				<property name="service.input.file" value="${basedir}/${service.base.dir}/service.xml" />
-			</then>
-		</if>
-
-		<java
-			classname="com.liferay.portal.tools.servicebuilder.ServiceBuilder"
-			classpathref="service.classpath"
-			fork="true"
-			newenvironment="true"
-			outputproperty="build-service.output"
-		>
-			<jvmarg value="-Xms512m" />
-			<jvmarg value="-Xmx1024m" />
-			<jvmarg value="-Xss2048k" />
-			<jvmarg value="-XX:MaxPermSize=512m" />
-			<arg value="-Dexternal-properties=com/liferay/portal/tools/dependencies/portal-tools.properties" />
-			<arg value="-Dorg.apache.commons.logging.Log=org.apache.commons.logging.impl.Log4JLogger" />
-			<arg value="service.api.dir=${basedir}/${service.base.dir}/service" />
-			<arg value="service.auto.namespace.tables=true" />
-			<arg value="service.bean.locator.util=com.liferay.util.bean.PortletBeanLocatorUtil" />
-			<arg value="service.build.number=1" />
-			<arg value="service.build.number.increment=true" />
-			<arg value="service.hbm.file=${basedir}/${service.base.dir}/src/META-INF/portlet-hbm.xml" />
-			<arg value="service.impl.dir=${basedir}/${service.base.dir}/src" />
-			<arg value="service.input.file=${service.input.file}" />
-			<arg value="service.model.hints.file=${basedir}/${service.base.dir}/src/META-INF/portlet-model-hints.xml" />
-			<arg value="service.osgi.module=false" />
-			<arg value="service.plugin.name=${plugin.name}" />
-			<arg value="service.props.util=com.liferay.util.service.ServiceProps" />
-			<arg value="service.remoting.file=" />
-			<arg value="service.resources.dir=${basedir}/${service.base.dir}/src" />
-			<arg value="service.spring.file=${basedir}/${service.base.dir}/src/META-INF/portlet-spring.xml" />
-			<arg value="service.sql.dir=${basedir}/${service.base.dir}/sql" />
-			<arg value="service.sql.file=tables.sql" />
-			<arg value="service.sql.indexes.file=indexes.sql" />
-			<arg value="service.sql.sequences.file=sequences.sql" />
-			<arg value="service.target.entity.name=${service.target.entity.name}" />
-			<arg value="service.test.dir=" />
-		</java>
-
-		<if>
-			<os family="windows" />
-			<then>
-				<delete file="build-service-classpath.jar" />
-			</then>
-		</if>
-
-		<delete file="ServiceBuilder.temp" />
-
-		<echo>${build-service.output}</echo>
-
-		<if>
-			<contains string="${build-service.output}" substring="Error" />
-			<then>
-				<fail>Service Builder generated exceptions.</fail>
-			</then>
-		</if>
-
-		<mkdir dir="${service.base.dir}/service-classes" />
-
-		<path id="service.classpath">
-			<path refid="lib.classpath" />
-			<fileset dir="${app.server.lib.global.dir}" includes="*.jar" />
-			<fileset dir="${service.base.dir}/lib" excludes="${plugin.name}-service.jar" includes="*.jar" />
-		</path>
-
-		<compile-java
-			javac.classpathref="service.classpath"
-			javac.destdir="${service.base.dir}/service-classes"
-			javac.srcdir="${service.base.dir}/service"
-		/>
-
-		<zip
-			basedir="${service.base.dir}/service-classes"
-			destfile="${service.base.dir}/lib/${plugin.name}-service.jar"
-		/>
-
-		<delete dir="${service.base.dir}/service-classes" />
+		<build-service />
 	</target>
 
 	<target name="build-wsdd">
