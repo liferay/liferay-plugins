@@ -73,7 +73,7 @@ public class PushNotificationsDeviceModelImpl extends BaseModelImpl<PushNotifica
 			{ "platform", Types.VARCHAR },
 			{ "token", Types.VARCHAR }
 		};
-	public static final String TABLE_SQL_CREATE = "create table PushNotificationsDevice (pushNotificationsDeviceId LONG not null primary key,userId LONG,createDate DATE null,platform VARCHAR(75) null,token VARCHAR(75) null)";
+	public static final String TABLE_SQL_CREATE = "create table PushNotificationsDevice (pushNotificationsDeviceId LONG not null primary key,userId LONG,createDate DATE null,platform VARCHAR(75) null,token STRING null)";
 	public static final String TABLE_SQL_DROP = "drop table PushNotificationsDevice";
 	public static final String ORDER_BY_JPQL = " ORDER BY pushNotificationsDevice.pushNotificationsDeviceId ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY PushNotificationsDevice.pushNotificationsDeviceId ASC";
