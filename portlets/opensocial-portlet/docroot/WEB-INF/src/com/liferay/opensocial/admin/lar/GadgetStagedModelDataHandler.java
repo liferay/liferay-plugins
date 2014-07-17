@@ -40,12 +40,20 @@ public class GadgetStagedModelDataHandler
 
 		Group group = GroupLocalServiceUtil.getGroup(groupId);
 
-		Gadget gadget = GadgetLocalServiceUtil.fetchGadgetByUuidAndCompanyId(
+		Gadget gadget = fetchStagedModelByUuidAndCompanyId(
 			uuid, group.getCompanyId());
 
 		if (gadget != null) {
 			GadgetLocalServiceUtil.deleteGadget(gadget);
 		}
+	}
+
+	@Override
+	public Gadget fetchStagedModelByUuidAndCompanyId(
+		String uuid, long companyId) {
+
+		return GadgetLocalServiceUtil.fetchGadgetByUuidAndCompanyId(
+			uuid, companyId);
 	}
 
 	@Override
@@ -80,9 +88,8 @@ public class GadgetStagedModelDataHandler
 		Gadget importedGadget = null;
 
 		if (portletDataContext.isDataStrategyMirror()) {
-			Gadget existingGadget =
-				GadgetLocalServiceUtil.fetchGadgetByUuidAndCompanyId(
-					gadget.getUuid(), portletDataContext.getCompanyId());
+			Gadget existingGadget = fetchStagedModelByUuidAndCompanyId(
+				gadget.getUuid(), portletDataContext.getCompanyId());
 
 			if (existingGadget == null) {
 				serviceContext.setUuid(gadget.getUuid());
