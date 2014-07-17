@@ -18,6 +18,10 @@
 
 <liferay-util:include page="/admin/top_tabs.jsp" servletContext="<%= application %>" />
 
+<%
+String navItem = ParamUtil.getString(request, "navItem", "viewPendingFeedback");
+%>
+
 <aui:nav-bar>
 	<aui:nav cssClass="navbar-nav">
 		<portlet:renderURL var="viewPendingFeedbackURL">
@@ -25,27 +29,35 @@
 			<portlet:param name="navItem" value="viewPendingFeedback" />
 		</portlet:renderURL>
 
-		<aui:nav-item href="<%= viewPendingFeedbackURL %>" label="pending" />
+		<aui:nav-item
+			href="<%= viewPendingFeedbackURL %>"
+			label="pending"
+			selected='<%= navItem.equals("viewPendingFeedback") %>'
+		/>
 
 		<portlet:renderURL var="viewInProgressFeedbackURL">
 			<portlet:param name="mvcPath" value="/admin/view_feedback.jsp" />
 			<portlet:param name="navItem" value="viewInProgressFeedback" />
 		</portlet:renderURL>
 
-		<aui:nav-item href="<%= viewInProgressFeedbackURL %>" label="in-progress" />
+		<aui:nav-item
+			href="<%= viewInProgressFeedbackURL %>"
+			label="in-progress"
+			selected='<%= navItem.equals("viewInProgressFeedback") %>'
+		/>
 
 		<portlet:renderURL var="viewResolvedFeedbackURL">
 			<portlet:param name="mvcPath" value="/admin/view_feedback.jsp" />
 			<portlet:param name="navItem" value="viewResolvedFeedback" />
 		</portlet:renderURL>
 
-		<aui:nav-item href="<%= viewResolvedFeedbackURL %>" label="resolved" />
+		<aui:nav-item
+			href="<%= viewResolvedFeedbackURL %>"
+			label="resolved"
+			selected='<%= navItem.equals("viewResolvedFeedback") %>'
+		/>
 	</aui:nav>
 </aui:nav-bar>
-
-<%
-String navItem = ParamUtil.getString(request, "navItem", "viewPendingFeedback");
-%>
 
 <c:choose>
 	<c:when test='<%= navItem.equals("viewPendingFeedback") %>'>
