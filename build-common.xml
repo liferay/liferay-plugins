@@ -440,7 +440,7 @@ Error-Prone was automatically installed. Please rerun your task.
 				</elseif>
 				<else>
 					<if>
-						<available file="docroot" />
+						<available file="@{module.dir}/docroot" />
 						<then>
 							<compile-portlet
 								module.dir="@{module.dir}"
