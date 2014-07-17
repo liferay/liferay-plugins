@@ -72,6 +72,10 @@ public class BlogsActivityInterpreter extends SOSocialActivityInterpreter {
 
 		Date displayDate = blogsEntry.getDisplayDate();
 
+		if (displayDate.before(blogsEntry.getCreateDate())) {
+			return;
+		}
+
 		activitySet.setModifiedDate(displayDate.getTime());
 
 		SocialActivitySetLocalServiceUtil.updateSocialActivitySet(activitySet);
