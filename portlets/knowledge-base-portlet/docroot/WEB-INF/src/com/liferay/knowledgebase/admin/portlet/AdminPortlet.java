@@ -522,7 +522,7 @@ public class AdminPortlet extends MVCPortlet {
 		String content = ParamUtil.getString(actionRequest, "content");
 		boolean helpful = ParamUtil.getBoolean(actionRequest, "helpful");
 		int state = ParamUtil.getInteger(
-			actionRequest, "state", KBCommentConstants.STATUS_NONE);
+			actionRequest, "state", KBCommentConstants.STATUS_ANY);
 
 		ServiceContext serviceContext = ServiceContextFactory.getInstance(
 			KBComment.class.getName(), actionRequest);
@@ -533,7 +533,7 @@ public class AdminPortlet extends MVCPortlet {
 				helpful, serviceContext);
 		}
 		else if (cmd.equals(Constants.UPDATE)) {
-			if (state == KBCommentConstants.STATUS_NONE) {
+			if (state == KBCommentConstants.STATUS_ANY) {
 				KBComment kbComment = KBCommentServiceUtil.getKBComment(
 					kbCommentId);
 
