@@ -135,8 +135,9 @@
 	}
 
 	.kb-article-feedback-actions {
-		display: inline-table;
-		margin: 10px 0 10px 10px;
+		clear: both;
+		display: block;
+		margin: 10px 0 10px 5px;
 	}
 
 	.kb-article-siblings {

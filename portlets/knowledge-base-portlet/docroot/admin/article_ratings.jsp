@@ -36,22 +36,21 @@ KBArticle kbArticle = (KBArticle)request.getAttribute(WebKeys.KNOWLEDGE_BASE_KB_
 
 		<c:if test="<%= themeDisplay.isSignedIn() %>">
 			<div class="kb-article-feedback-actions" id="<portlet:namespace />additionalFeedbackActionsContainer">
+				<a data-show-node-id="<portlet:namespace />feedbackContainer" href="javascript:void(0)">
+					<liferay-ui:message key="do-you-have-any-suggestions" />
+				</a>
+
 				<c:choose>
-					<c:when test="<%= kbCommentsCount == 0 %>">
-						<a data-show-node-id="<portlet:namespace />feedbackContainer" href="javascript:void(0)">
-							<liferay-ui:message key="do-you-have-any-suggestions" />
-						</a>
-					</c:when>
 					<c:when test="<%= kbCommentsCount == 1 %>">
-						<a data-hide-node-id="<portlet:namespace />feedbackContainer" data-show-node-id="<portlet:namespace />previousCommentsContainer" href="javascript:void(0)">
-							<liferay-ui:message key="your-previous-suggestion" />
+						| <a data-show-node-id="<portlet:namespace />previousCommentsContainer" href="javascript:void(0)">
+							<liferay-ui:message key="you-have-sent-one-suggestion-for-this-article" />
 						</a>
 					</c:when>
-					<c:otherwise>
-						<a data-hide-node-id="<portlet:namespace />feedbackContainer" data-show-node-id="<portlet:namespace />previousCommentsContainer" href="javascript:void(0)">
-							<liferay-ui:message arguments="<%= new Object[]{ kbCommentsCount } %>" key="your-previous-x-suggestions" />
+					<c:when test="<%= kbCommentsCount > 1 %>">
+						| <a data-show-node-id="<portlet:namespace />previousCommentsContainer" href="javascript:void(0)">
+							<liferay-ui:message arguments="<%= new Object[]{ kbCommentsCount } %>" key="you-have-sent-x-suggestions-for-this-article" />
 						</a>
-					</c:otherwise>
+					</c:when>
 				</c:choose>
 			</div>
 		</c:if>
@@ -76,6 +75,8 @@ KBArticle kbArticle = (KBArticle)request.getAttribute(WebKeys.KNOWLEDGE_BASE_KB_
 						<liferay-ui:message key="what-did-you-like-the-most-what-would-you-improve" />
 					</span>
 
+					<aui:input name="helpful" type="hidden" value="0" />
+
 					<aui:input label="" name="content" />
 
 					<aui:button-row cssClass="kb-submit-buttons">
@@ -92,30 +93,6 @@ KBArticle kbArticle = (KBArticle)request.getAttribute(WebKeys.KNOWLEDGE_BASE_KB_
 
 		<div class='kb-article-previous-comments <%= paginating ? "" : "hide" %>' id="<portlet:namespace />previousCommentsContainer">
 			<c:if test="<%= kbCommentsCount > 0 %>">
-				<aui:button cssClass="kb-article-add-comment" name="enableAddSuggestionForm" value="add-new" />
-
-				<div class="hide kb-article-feedback" id="<portlet:namespace />addSuggestionForm">
-					<liferay-portlet:actionURL name="updateKBComment" var="updateKBCommentURL" />
-
-					<aui:form action="<%= updateKBCommentURL %>" id="suggestionFm" method="post" name="suggestionFm">
-						<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.ADD %>" />
-						<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
-						<aui:input name="classNameId" type="hidden" value="<%= PortalUtil.getClassNameId(KBArticle.class) %>" />
-						<aui:input name="classPK" type="hidden" value="<%= kbArticle.getResourcePrimKey() %>" />
-
-						<aui:model-context model="<%= KBComment.class %>" />
-
-						<aui:fieldset>
-							<aui:input label="" name="content" />
-
-							<aui:button-row cssClass="kb-submit-buttons">
-								<aui:button type="submit" value="submit" />
-								<aui:button cssClass="kb-article-feedback-cancel-button" value="cancel" />
-							</aui:button-row>
-						</aui:fieldset>
-					</aui:form>
-				</div>
-
 				<liferay-portlet:renderURL varImpl="iteratorURL">
 					<portlet:param name="paginating" value="true" />
 				</liferay-portlet:renderURL>
@@ -165,7 +142,7 @@ KBArticle kbArticle = (KBArticle)request.getAttribute(WebKeys.KNOWLEDGE_BASE_KB_
 			feedbackFm.on(
 				'submit',
 				function(event) {
-					var helpful = this.one('<portlet:namespace />helpful');
+					var helpful = this.one('#<portlet:namespace />helpful');
 
 					helpful.val(thumbUp.hasClass('rating-on'));
 				}
@@ -175,49 +152,22 @@ KBArticle kbArticle = (KBArticle)request.getAttribute(WebKeys.KNOWLEDGE_BASE_KB_
 
 			additionalFeedbackActions.each(
 				function(node) {
-					var nodeToHideId = node.getData('hide-node-id');
-
-					var nodeToHide = null;
-
-					if (nodeToHideId) {
-						nodeToHide = A.one('#' + node.getData('hide-node-id'));
-					}
-
 					var nodeToShow = A.one('#' + node.getData('show-node-id'));
 
 					node.on(
 						'click',
 						function(event) {
-							if (nodeToHide) {
-								nodeToHide.hide();
-							}
-
 							nodeToShow.toggleView();
 
 							var textArea = nodeToShow.one('textarea');
 
-							textArea.focus();
+							if (textArea) {
+								textArea.focus();
+							}
 						}
 					);
 				}
 			);
-
-			var suggestionForm = A.one('#<portlet:namespace />addSuggestionForm');
-
-			var enableAddSuggestionFormButton = A.one('#<portlet:namespace />enableAddSuggestionForm');
-
-			if (enableAddSuggestionFormButton) {
-				enableAddSuggestionFormButton.on(
-					'click',
-					function(event) {
-						suggestionForm.toggleView();
-
-						var textArea = suggestionForm.one('textarea');
-
-						textArea.focus();
-					}
-				);
-			}
 
 			var cancelButtons = A.all('.kb-article-feedback-cancel-button');
 
