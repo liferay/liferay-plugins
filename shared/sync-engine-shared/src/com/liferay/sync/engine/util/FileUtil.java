@@ -163,7 +163,9 @@ public class FileUtil {
 		String nameWithoutExtension = FilenameUtils.removeExtension(fileName);
 
 		for (String blacklistName : PropsValues.SYNC_FILE_BLACKLIST_NAMES) {
-			if (nameWithoutExtension.equalsIgnoreCase(blacklistName)) {
+			if (StringUtil.equalsIgnoreCase(
+					blacklistName, nameWithoutExtension)) {
+
 				return false;
 			}
 		}
