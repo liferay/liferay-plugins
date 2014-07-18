@@ -187,7 +187,9 @@ public class MicroblogsEntryFinderImpl
 		}
 	}
 
-	public int countByU_T_MU(long userId, int type, long microblogsEntryUserId) {
+	public int countByU_T_MU(
+		long userId, int type, long microblogsEntryUserId) {
+
 		Session session = null;
 
 		try {
