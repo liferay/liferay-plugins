@@ -14,14 +14,17 @@
 
 package com.liferay.pushnotifications.service.impl;
 
+import com.liferay.portal.kernel.bean.BeanReference;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.pushnotifications.model.PushNotificationsDevice;
+import com.liferay.pushnotifications.sender.PushNotificationsSender;
 import com.liferay.pushnotifications.service.base.PushNotificationsDeviceLocalServiceBaseImpl;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author Silvio Santos
@@ -32,8 +35,7 @@ public class PushNotificationsDeviceLocalServiceImpl
 
 	@Override
 	public PushNotificationsDevice addPushNotificationsDevice(
-			long userId, String platform, String token)
-		throws SystemException {
+		long userId, String platform, String token) {
 
 		long pushNotificationsDeviceId = counterLocalService.increment();
 
@@ -53,7 +55,7 @@ public class PushNotificationsDeviceLocalServiceImpl
 
 	@Override
 	public PushNotificationsDevice deletePushNotificationsDevice(String token)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		PushNotificationsDevice pushNotificationsDevice =
 			pushNotificationsDevicePersistence.findByToken(token);
@@ -64,23 +66,57 @@ public class PushNotificationsDeviceLocalServiceImpl
 	}
 
 	@Override
-	public List<String> getTokens(
-			long userId, String platform, int start, int end)
-		throws SystemException {
+	public void sendPushNotification(JSONObject jsonObject, int start, int end)
+		throws Exception {
 
-		List<String> tokens = new ArrayList<String>();
-
-		List<PushNotificationsDevice> pushNotificationsDevices =
-			pushNotificationsDevicePersistence.findByU_P(
-				userId, platform, start, end);
-
-		for (PushNotificationsDevice pushNotificationsDevice :
-				pushNotificationsDevices) {
-
-			tokens.add(pushNotificationsDevice.getToken());
-		}
-
-		return tokens;
+		sendPushNotification(_ALL_USERS, jsonObject, start, end);
 	}
+
+	@Override
+	public void sendPushNotification(
+			long userId, JSONObject jsonObject, int start, int end)
+		throws Exception {
+
+		for (Map.Entry<String, PushNotificationsSender> entry :
+				_pushNotificationsSenders.entrySet()) {
+
+			String platform = entry.getKey();
+
+			List<PushNotificationsDevice> pushNotificationsDevices =
+				new ArrayList<PushNotificationsDevice>();
+
+			if (userId == _ALL_USERS) {
+				pushNotificationsDevices =
+					pushNotificationsDevicePersistence.findByPlatform(
+						platform, start, end);
+			}
+			else {
+				pushNotificationsDevices =
+					pushNotificationsDevicePersistence.findByU_P(
+						userId, platform, start, end);
+			}
+
+			List<String> tokens = new ArrayList<String>();
+
+			for (PushNotificationsDevice pushNotificationsDevice :
+					pushNotificationsDevices) {
+
+				tokens.add(pushNotificationsDevice.getToken());
+			}
+
+			if (tokens.isEmpty()) {
+				continue;
+			}
+
+			PushNotificationsSender pushNotificationsSender = entry.getValue();
+
+			pushNotificationsSender.send(tokens, jsonObject);
+		}
+	}
+
+	private static final int _ALL_USERS = -1;
+
+	@BeanReference(name = "pushNotificationsSenders")
+	private Map<String, PushNotificationsSender> _pushNotificationsSenders;
 
 }

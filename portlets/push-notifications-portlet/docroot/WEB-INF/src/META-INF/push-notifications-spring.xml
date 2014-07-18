@@ -4,9 +4,16 @@
 	default-destroy-method="destroy"
 	default-init-method="afterPropertiesSet"
 	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:util="http://www.springframework.org/schema/util"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd"
 >
-	<bean id="com.liferay.pushnotifications.sender.android.AndroidPushNotificationsSender" class="com.liferay.pushnotifications.sender.android.AndroidPushNotificationsSender" />
-	<bean id="com.liferay.pushnotifications.sender.apple.ApplePushNotificationsSender" class="com.liferay.pushnotifications.sender.apple.ApplePushNotificationsSender" />
+	<util:map id="pushNotificationsSenders" key-type="java.lang.String" value-type="com.liferay.pushnotifications.sender.PushNotificationsSender">
+		<entry key="android">
+			<bean class="com.liferay.pushnotifications.sender.android.AndroidPushNotificationsSender" />
+		</entry>
+		<entry key="apple">
+			<bean class="com.liferay.pushnotifications.sender.apple.ApplePushNotificationsSender" />
+		</entry>
+	</util:map>
 </beans>

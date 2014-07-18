@@ -22,6 +22,9 @@
 
 		<!-- Finder methods -->
 
+		<finder name="Platform" return-type="Collection">
+			<finder-column name="platform" />
+		</finder>
 		<finder name="Token" return-type="Device" unique="true">
 			<finder-column name="token" />
 		</finder>
