@@ -17,42 +17,68 @@
 
 package com.liferay.so.hook.filter;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.servlet.BaseFilter;
 import com.liferay.portal.model.User;
 import com.liferay.portal.util.PortalUtil;
+import com.liferay.so.util.PortletPropsValues;
 
-import java.io.IOException;
-
-import javax.servlet.Filter;
 import javax.servlet.FilterChain;
-import javax.servlet.FilterConfig;
-import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
  * @author Sherry Yang
  */
-public class SOFilter implements Filter {
+public class SOFilter extends BaseFilter {
 
 	@Override
-	public void destroy() {
+	public boolean isFilterEnabled(
+		HttpServletRequest request, HttpServletResponse response) {
+
+		try {
+			User user = PortalUtil.getUser(request);
+
+			if (user == null) {
+				return false;
+			}
+		}
+		catch (Exception e) {
+			if (_log.isWarnEnabled()) {
+				_log.warn(e, e);
+			}
+
+			return false;
+		}
+
+		String uri = request.getRequestURI();
+
+		if (uri.equals("/user") ||
+			uri.equals(PortletPropsValues.LOGIN_REDIRECT)) {
+
+			return true;
+		}
+
+		return false;
 	}
 
 	@Override
-	public void doFilter(
-			ServletRequest servletRequest, ServletResponse servletResponse,
+	protected Log getLog() {
+		return _log;
+	}
+
+	@Override
+	protected void processFilter(
+			HttpServletRequest request, HttpServletResponse response,
 			FilterChain filterChain)
-		throws IOException, ServletException {
+		throws Exception {
 
 		try {
-			HttpServletRequest request = (HttpServletRequest)servletRequest;
-
 			User user = PortalUtil.getUser(request);
 
 			if ((user == null) || !user.hasPrivateLayouts()) {
-				filterChain.doFilter(servletRequest, servletResponse);
+				filterChain.doFilter(request, response);
 
 				return;
 			}
@@ -63,17 +89,13 @@ public class SOFilter implements Filter {
 			String redirect = user.getDisplayURL(
 				portalURL, PortalUtil.getPathMain(), true);
 
-			HttpServletResponse response = (HttpServletResponse)servletResponse;
-
 			response.sendRedirect(redirect);
 		}
 		catch (Exception e) {
-			filterChain.doFilter(servletRequest, servletResponse);
+			filterChain.doFilter(request, response);
 		}
 	}
 
-	@Override
-	public void init(FilterConfig filterConfig) throws ServletException {
-	}
+	private static Log _log = LogFactoryUtil.getLog(SOFilter.class);
 
 }
