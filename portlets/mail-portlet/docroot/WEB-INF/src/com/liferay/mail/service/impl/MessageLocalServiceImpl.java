@@ -136,7 +136,9 @@ public class MessageLocalServiceImpl extends MessageLocalServiceBaseImpl {
 		return (int)dynamicQueryCount(dynamicQuery);
 	}
 
-	public List<Message> getCompanyMessages(long companyId, int start, int end) {
+	public List<Message> getCompanyMessages(
+		long companyId, int start, int end) {
+
 		return messagePersistence.findByCompanyId(companyId, start, end);
 	}
 
