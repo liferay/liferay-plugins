@@ -256,11 +256,11 @@ public class KBCommentLocalServiceImpl extends KBCommentLocalServiceBaseImpl {
 
 		kbComment.setStatus(status);
 
-		KBComment updatedKBComment = updateKBComment(kbComment);
+		kbCommentPersistence.update(kbComment);
 
-		notifyFeedbackUser(updatedKBComment, serviceContext);
+		notifyFeedbackUser(kbComment, serviceContext);
 
-		return updatedKBComment;
+		return kbComment;
 	}
 
 	protected void notifyFeedbackUser(
