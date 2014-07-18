@@ -310,7 +310,9 @@ public class MongoExpandoValueLocalServiceImpl
 	}
 
 	@Override
-	public List<ExpandoValue> getColumnValues(long columnId, int start, int end) {
+	public List<ExpandoValue> getColumnValues(
+		long columnId, int start, int end) {
+
 		try {
 			ExpandoColumn expandoColumn =
 				ExpandoColumnLocalServiceUtil.getColumn(columnId);
