@@ -1267,17 +1267,6 @@ html.aui {
 
 	.tags {
 		margin-bottom: 0.5em;
-
-		.tag {
-			background-color: #EEE;
-			background-position-x: 7px;
-
-			@include border-radius(4px);
-
-			color: #2571AD;
-			display: inline-block;
-			padding: 7px 7px 7px 27px;
-		}
 	}
 
 	/* ---------- Thread ---------- */
