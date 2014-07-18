@@ -267,8 +267,8 @@ public class KBCommentLocalServiceImpl extends KBCommentLocalServiceBaseImpl {
 			portletPreferencesLocalService.getPreferences(
 				kbComment.getCompanyId(), kbComment.getGroupId(),
 				PortletKeys.PREFS_OWNER_TYPE_GROUP,
-				PortletKeys.PREFS_PLID_SHARED,
-				PortletKeys.KNOWLEDGE_BASE_ADMIN, null);
+				PortletKeys.PREFS_PLID_SHARED, PortletKeys.KNOWLEDGE_BASE_ADMIN,
+				null);
 
 		if (!AdminUtil.isFeedbackStatusChangeNotificationEnabled(
 				kbComment.getStatus(), preferences)) {

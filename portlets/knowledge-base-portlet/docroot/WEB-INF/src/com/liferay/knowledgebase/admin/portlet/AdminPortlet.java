@@ -556,8 +556,7 @@ public class AdminPortlet extends MVCPortlet {
 		ServiceContext serviceContext = ServiceContextFactory.getInstance(
 			KBComment.class.getName(), actionRequest);
 
-		KBCommentServiceUtil.updateStatus(
-			kbCommentId, status, serviceContext);
+		KBCommentServiceUtil.updateStatus(kbCommentId, status, serviceContext);
 	}
 
 	public void updateKBTemplate(
