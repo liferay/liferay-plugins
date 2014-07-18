@@ -65,10 +65,10 @@ public class AndroidPushNotificationsSender implements PushNotificationsSender {
 	protected Message buildMessage(JSONObject jsonObject) {
 		Builder builder = new Builder();
 
-		String entryTitle = jsonObject.getString("entryTitle");
+		String message = jsonObject.getString("message");
 
-		if (entryTitle != null) {
-			builder.addData("data", entryTitle);
+		if (message != null) {
+			builder.addData("data", message);
 		}
 
 		return builder.build();
