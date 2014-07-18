@@ -422,17 +422,6 @@ public class AdminUtil {
 		return outputDocument.toString();
 	}
 
-	public static boolean isBackwardsStatusTransition(
-		int fromStatus, int toStatus) {
-
-		if (fromStatus > toStatus) {
-			return true;
-		}
-		else {
-			return false;
-		}
-	}
-
 	public static boolean isFeedbackStatusChangeNotificationEnabled(
 		int status, PortletPreferences preferences) {
 

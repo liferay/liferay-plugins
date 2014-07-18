@@ -96,8 +96,7 @@ public class KBCommentLocalServiceImpl extends KBCommentLocalServiceBaseImpl {
 
 		// Feedback notifications
 
-		notifyFeedbackUser(
-			kbComment, KBCommentConstants.STATUS_NONE, serviceContext);
+		notifyFeedbackUser(kbComment, serviceContext);
 
 		// Social
 
@@ -255,29 +254,20 @@ public class KBCommentLocalServiceImpl extends KBCommentLocalServiceBaseImpl {
 		KBComment kbComment = kbCommentPersistence.findByPrimaryKey(
 			kbCommentId);
 
-		int previousStatus = kbComment.getStatus();
-
 		kbComment.setStatus(status);
 
 		KBComment updatedKBComment = updateKBComment(kbComment);
 
-		notifyFeedbackUser(updatedKBComment, previousStatus, serviceContext);
+		notifyFeedbackUser(updatedKBComment, serviceContext);
 
 		return updatedKBComment;
 	}
 
 	protected void notifyFeedbackUser(
-			KBComment kbComment, int previousStatus,
-			ServiceContext serviceContext)
+			KBComment kbComment, ServiceContext serviceContext)
 		throws PortalException {
 
 		try {
-			int status = kbComment.getStatus();
-
-			if (AdminUtil.isBackwardsStatusTransition(previousStatus, status)) {
-				return;
-			}
-
 			PortletPreferences preferences =
 				portletPreferencesLocalService.getPreferences(
 					kbComment.getCompanyId(), kbComment.getGroupId(),
@@ -286,7 +276,7 @@ public class KBCommentLocalServiceImpl extends KBCommentLocalServiceBaseImpl {
 					PortletKeys.KNOWLEDGE_BASE_ADMIN, null);
 
 			if (!AdminUtil.isFeedbackStatusChangeNotificationEnabled(
-					status, preferences)) {
+					kbComment.getStatus(), preferences)) {
 
 				return;
 			}
@@ -303,10 +293,10 @@ public class KBCommentLocalServiceImpl extends KBCommentLocalServiceBaseImpl {
 
 			String subject =
 				AdminUtil.getEmailKBArticleFeedbackNotificationSubject(
-					status, preferences);
+					kbComment.getStatus(), preferences);
 
 			String body = AdminUtil.getEmailKBArticleFeedbackNotificationBody(
-				status, preferences);
+				kbComment.getStatus(), preferences);
 
 			KBArticle kbArticle = kbArticleLocalService.getLatestKBArticle(
 				kbComment.getClassPK(), WorkflowConstants.STATUS_APPROVED);
