@@ -10,18 +10,7 @@
 
 	<!-- Listeners -->
 
-	<bean id="messageListener.push_notification" class="com.liferay.pushnotifications.messaging.PushNotificationsMessageListener">
-		<property name="pushNotificationsSenders">
-			<map key-type="java.lang.String" value-type="com.liferay.pushnotifications.sender.PushNotificationsSender">
-				<entry key="android">
-					<ref bean="com.liferay.pushnotifications.sender.android.AndroidPushNotificationsSender" />
-				</entry>
-				<entry key="apple">
-					<ref bean="com.liferay.pushnotifications.sender.apple.ApplePushNotificationsSender" />
-				</entry>
-			</map>
-		</property>
-	</bean>
+	<bean id="messageListener.push_notification" class="com.liferay.pushnotifications.messaging.PushNotificationsMessageListener" />
 
 	<!-- Configurator -->
 
