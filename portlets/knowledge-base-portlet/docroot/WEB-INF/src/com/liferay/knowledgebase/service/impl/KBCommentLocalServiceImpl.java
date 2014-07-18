@@ -289,7 +289,8 @@ public class KBCommentLocalServiceImpl extends KBCommentLocalServiceBaseImpl {
 				preferences, kbComment.getCompanyId());
 
 			InternetAddress from = new InternetAddress(fromAddress, fromName);
-			InternetAddress to = new InternetAddress(user.getEmailAddress());
+			InternetAddress to = new InternetAddress(
+				user.getEmailAddress(), user.getFullName());
 
 			String subject =
 				AdminUtil.getEmailKBArticleFeedbackNotificationSubject(
@@ -301,14 +302,13 @@ public class KBCommentLocalServiceImpl extends KBCommentLocalServiceBaseImpl {
 			KBArticle kbArticle = kbArticleLocalService.getLatestKBArticle(
 				kbComment.getClassPK(), WorkflowConstants.STATUS_APPROVED);
 
-			String processedSubject = replaceContent(
+			subject = replaceContent(
 				subject, kbArticle, kbComment, serviceContext);
 
-			String processedBody = replaceContent(
-				body, kbArticle, kbComment, serviceContext);
+			body = replaceContent(body, kbArticle, kbComment, serviceContext);
 
 			final MailMessage mailMessage = new MailMessage(
-				from, to, processedSubject, processedBody, false);
+				from, to, subject, body, false);
 
 			TransactionCommitCallbackRegistryUtil.registerCallback(
 				new Callable<Void>() {
