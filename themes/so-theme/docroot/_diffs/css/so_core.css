@@ -867,15 +867,6 @@ html.aui {
 		margin-right: 4px;
 		padding: 0;
 	}
-
-	.comments {
-		display: inline;
-		margin: 0.5em 0;
-	}
-
-	.comments a {
-		white-space: nowrap;
-	}
 }
 
 /* ---------- Portlet: bookmarks ---------- */
