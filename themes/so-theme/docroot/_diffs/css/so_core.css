@@ -964,17 +964,7 @@ html.aui {
 			}
 
 			a {
-				background-color: #EEE;
-
-				@include border-radius(4px);
-
-				display: inline-block;
-				padding: 4px 6px;
-
-				&:hover {
-					background-color: #DDD;
-					text-decoration: none;
-				}
+				@include tag(true);
 			}
 		}
 	}
@@ -1766,6 +1756,10 @@ html.aui {
 	.thumbrating .rating-label {
 		display: inline-block;
 	}
+}
+
+.taglib-asset-tags-summary .tag {
+	@include tag(false);
 }
 
 /* ---------- Top links component ---------- */
