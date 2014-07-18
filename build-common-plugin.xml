@@ -101,16 +101,24 @@
 				<arg value="service.impl.dir=${basedir}/${service.base.dir}/src" />
 				<arg value="service.input.file=${service.input.file}" />
 				<arg value="service.model.hints.file=${basedir}/${service.base.dir}/src/META-INF/portlet-model-hints.xml" />
+				<arg value="service.orm.file=${basedir}/${service.base.dir}/src/META-INF/portlet-orm.xml" />
 				<arg value="service.osgi.module=${service.osgi.module}" />
 				<arg value="service.plugin.name=${service.plugin.name}" />
 				<arg value="service.props.util=com.liferay.util.service.ServiceProps" />
 				<arg value="service.remoting.file=" />
 				<arg value="service.resources.dir=${basedir}/${service.base.dir}/src" />
+				<arg value="service.spring.base.file=${basedir}/${service.base.dir}/src/META-INF/base-spring.xml" />
+				<arg value="service.spring.cluster.file=${basedir}/${service.base.dir}/src/META-INF/cluster-spring.xml" />
+				<arg value="service.spring.dynamic.data.source.file=${basedir}/${service.base.dir}/src/META-INF/dynamic-data-source-spring.xml" />
 				<arg value="service.spring.file=${basedir}/${service.base.dir}/src/META-INF/portlet-spring.xml" />
+				<arg value="service.spring.hibernate.file=${basedir}/${service.base.dir}/src/META-INF/hibernate-spring.xml" />
+				<arg value="service.spring.infrastructure.file=${basedir}/${service.base.dir}/src/META-INF/infrastructure-spring.xml" />
+				<arg value="service.spring.shard.data.source.file=${basedir}/${service.base.dir}/src/META-INF/shard-data-source-spring.xml" />
 				<arg value="service.spring.namespaces=${service.spring.namespaces}" />
 				<arg value="service.sql.dir=@{service.sql.dir}" />
 				<arg value="service.sql.file=tables.sql" />
 				<arg value="service.sql.indexes.file=indexes.sql" />
+				<arg value="service.sql.indexes.properties.file=indexes.properties" />
 				<arg value="service.sql.sequences.file=sequences.sql" />
 				<arg value="service.target.entity.name=${service.target.entity.name}" />
 				<arg value="service.test.dir=@{service.test.dir}" />
