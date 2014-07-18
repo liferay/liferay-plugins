@@ -867,6 +867,17 @@ html.aui {
 		margin-right: 4px;
 		padding: 0;
 	}
+
+	.abstract img {
+		margin-right: 10px;
+	}
+
+	.entry-tags {
+		border-left-width: 0;
+		margin-bottom: 0.5em;
+		padding-left: 0;
+		padding-right: 0;
+	}
 }
 
 /* ---------- Portlet: bookmarks ---------- */
