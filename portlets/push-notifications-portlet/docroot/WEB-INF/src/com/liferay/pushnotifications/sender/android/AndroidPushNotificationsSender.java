@@ -38,7 +38,9 @@ public class AndroidPushNotificationsSender implements PushNotificationsSender {
 
 		if (Validator.isNull(key)) {
 			if (_log.isWarnEnabled()) {
-				_log.warn("Missing android.api.key in portlet.properties");
+				_log.warn(
+					"The property \"android.api.key\" is not set in " +
+						"portlet.properties");
 			}
 
 			return;
