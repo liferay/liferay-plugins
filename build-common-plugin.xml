@@ -12,6 +12,9 @@
 
 	<macrodef name="build-service">
 		<attribute name="service.api.dir" />
+		<attribute name="service.auto.namespace.tables" default="true" />
+		<attribute name="service.model.hints.file.name" default="portlet-model-hints.xml" />
+		<attribute name="service.spring.file.name" default="portlet-spring.xml" />
 		<attribute name="service.sql.dir" />
 		<attribute name="service.test.dir" />
 
@@ -93,20 +96,20 @@
 				<arg value="-Dexternal-properties=com/liferay/portal/tools/dependencies/portal-tools.properties" />
 				<arg value="-Dorg.apache.commons.logging.Log=org.apache.commons.logging.impl.Log4JLogger" />
 				<arg value="service.api.dir=@{service.api.dir}" />
-				<arg value="service.auto.namespace.tables=true" />
+				<arg value="service.auto.namespace.tables=@{service.auto.namespace.tables}" />
 				<arg value="service.bean.locator.util=com.liferay.util.bean.PortletBeanLocatorUtil" />
 				<arg value="service.build.number=1" />
 				<arg value="service.build.number.increment=true" />
 				<arg value="service.hbm.file=${basedir}/${service.base.dir}/src/META-INF/portlet-hbm.xml" />
 				<arg value="service.impl.dir=${basedir}/${service.base.dir}/src" />
 				<arg value="service.input.file=${service.input.file}" />
-				<arg value="service.model.hints.file=${basedir}/${service.base.dir}/src/META-INF/portlet-model-hints.xml" />
+				<arg value="service.model.hints.file=${basedir}/${service.base.dir}/src/META-INF/@{service.model.hints.file.name}" />
 				<arg value="service.osgi.module=${service.osgi.module}" />
 				<arg value="service.plugin.name=${service.plugin.name}" />
 				<arg value="service.props.util=com.liferay.util.service.ServiceProps" />
 				<arg value="service.remoting.file=" />
 				<arg value="service.resources.dir=${basedir}/${service.base.dir}/src" />
-				<arg value="service.spring.file=${basedir}/${service.base.dir}/src/META-INF/portlet-spring.xml" />
+				<arg value="service.spring.file=${basedir}/${service.base.dir}/src/META-INF/@{service.spring.file.name}" />
 				<arg value="service.spring.namespaces=${service.spring.namespaces}" />
 				<arg value="service.sql.dir=@{service.sql.dir}" />
 				<arg value="service.sql.file=tables.sql" />
