@@ -15,6 +15,9 @@
 package com.liferay.pushnotifications.sender.apple;
 
 import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.pushnotifications.sender.PushNotificationsSender;
 import com.liferay.pushnotifications.util.PortletPropsValues;
 
@@ -34,9 +37,20 @@ public class ApplePushNotificationsSender implements PushNotificationsSender {
 	public ApplePushNotificationsSender() {
 		ApnsServiceBuilder appleServiceBuilder = APNS.newService();
 
-		appleServiceBuilder.withCert(
-			PortletPropsValues.APPLE_CERTIFICATE_PATH,
-			PortletPropsValues.APPLE_CERTIFICATE_PASSWORD);
+		String path = PortletPropsValues.APPLE_CERTIFICATE_PATH;
+		String password = PortletPropsValues.APPLE_CERTIFICATE_PASSWORD;
+
+		if (Validator.isNull(path) || Validator.isNull(password)) {
+			if (_log.isWarnEnabled()) {
+				_log.warn(
+					"Missing apple.certificate.password or " +
+						"apple.certificate.path in portlet.properties");
+			}
+
+			return;
+		}
+
+		appleServiceBuilder.withCert(path, password);
 
 		if (PortletPropsValues.APPLE_SANDBOX) {
 			appleServiceBuilder.withSandboxDestination();
@@ -48,6 +62,10 @@ public class ApplePushNotificationsSender implements PushNotificationsSender {
 	@Override
 	public void send(List<String> tokens, JSONObject jsonObject)
 		throws Exception {
+
+		if (_apnsService == null) {
+			return;
+		}
 
 		String payload = buildPayload(jsonObject);
 
@@ -65,6 +83,9 @@ public class ApplePushNotificationsSender implements PushNotificationsSender {
 
 		return builder.build();
 	}
+
+	private static Log _log = LogFactoryUtil.getLog(
+		ApplePushNotificationsSender.class);
 
 	private ApnsService _apnsService;
 
