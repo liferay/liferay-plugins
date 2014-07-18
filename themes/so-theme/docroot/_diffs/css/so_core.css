@@ -868,10 +868,6 @@ html.aui {
 		padding: 0;
 	}
 
-	.abstract, .entry-categories, .entry-tags {
-		display: none;
-	}
-
 	.comments {
 		display: inline;
 		margin: 0.5em 0;
