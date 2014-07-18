@@ -91,6 +91,14 @@ AssetEntry layoutAssetEntry = AssetEntryLocalServiceUtil.getEntry(CalendarBookin
 				<span class="location"><%= HtmlUtil.escape(calendarBooking.getLocation()) %></span>
 			</dd>
 		</c:if>
+		<c:if test="<%= Validator.isNotNull(calendarBooking.getRecurrence()) %>">
+			<dt>
+				<liferay-ui:message key="repeats" />:
+			</dt>
+			<dd>
+				<span id="recurrenceInfo"></span>
+			</dd>
+		</c:if>
 	</dl>
 
 	<liferay-ui:custom-attributes-available className="<%= CalendarBooking.class.getName() %>">
@@ -187,10 +195,49 @@ AssetEntry layoutAssetEntry = AssetEntryLocalServiceUtil.getEntry(CalendarBookin
 	</aui:fieldset>
 </aui:form>
 
-<aui:script>
+<aui:script  use="liferay-util-window, json,liferay-calendar-date-picker-util,liferay-calendar-list,liferay-calendar-recurrence-util,liferay-calendar-reminders,liferay-calendar-simple-menu">
 	function <portlet:namespace />invokeTransition(status) {
 		document.<portlet:namespace />fm.<portlet:namespace />status.value = status;
 
 		submitForm(document.<portlet:namespace />fm);
 	}
+
+	var recurrenceNode = A.one("#recurrenceInfo");
+
+	<c:if test="<%= Validator.isNotNull(calendarBooking.getRecurrence()) %>">
+
+	<%
+	JSONSerializer jsonSerializer = JSONFactoryUtil.createJSONSerializer();
+
+	String endValue = "never";
+
+	if(calendarBooking.getRecurrenceObj().getUntilJCalendar() == null){
+		if(calendarBooking.getRecurrenceObj().getCount() > 0){
+			endValue = "after";
+		}
+	}else{
+		endValue = "on";
+	}
+
+	%>
+
+	var untilDate;
+
+	<% if(calendarBooking.getRecurrenceObj().getUntilJCalendar() != null){ %>
+	untilDate = new Date('<%= dateFormatLongDate.format(calendarBooking.getRecurrenceObj().getUntilJCalendar().getTimeInMillis()) %>');
+	<%} %>
+
+	var recurrence = {
+		count: <%=calendarBooking.getRecurrenceObj().getCount() %>,
+		endValue: '<%= endValue %>',
+		frequency: '<%=calendarBooking.getRecurrenceObj().getFrequency().getValue() %>',
+		interval: <%=calendarBooking.getRecurrenceObj().getInterval() %>,
+		untilDate: untilDate,
+		weekdays: <%=jsonSerializer.serialize(calendarBooking.getRecurrenceObj().getWeekdays()) %>
+	}
+
+	var recurrenceSummary = Liferay.RecurrenceUtil.getSummary(recurrence);
+
+	recurrenceNode.html(recurrenceSummary);
+	</c:if>
 </aui:script>
