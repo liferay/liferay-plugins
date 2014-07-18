@@ -142,3 +142,28 @@ $red: #8F0920;
 	@include transition-duration(0.2s);
 	@include transition-property(background-position);
 }
+
+@mixin tag($hover) {
+	background-color: #EEE;
+	background-image: none;
+
+	@include border-radius(4px);
+
+	color: #2571AD;
+	display: inline-block;
+	line-height: 20px;
+	padding: 4px 6px;
+
+	&:before {
+		@include font-awesome("\f02b");
+
+		padding-right: 4px;
+	}
+
+	@if $hover == true {
+		&:hover {
+			background-color: #DDD;
+			text-decoration: none;
+		}
+	}
+}
