@@ -16,6 +16,7 @@ package com.liferay.knowledgebase.service.impl;
 
 import com.liferay.knowledgebase.KBCommentContentException;
 import com.liferay.knowledgebase.admin.social.AdminActivityKeys;
+import com.liferay.knowledgebase.admin.util.AdminSubscriptionSender;
 import com.liferay.knowledgebase.admin.util.AdminUtil;
 import com.liferay.knowledgebase.model.KBArticle;
 import com.liferay.knowledgebase.model.KBComment;
@@ -24,19 +25,14 @@ import com.liferay.knowledgebase.model.KBTemplate;
 import com.liferay.knowledgebase.service.KBArticleLocalServiceUtil;
 import com.liferay.knowledgebase.service.KBTemplateLocalServiceUtil;
 import com.liferay.knowledgebase.service.base.KBCommentLocalServiceBaseImpl;
-import com.liferay.knowledgebase.util.comparator.KBCommentCreateDateComparator;
-import com.liferay.knowledgebase.util.KnowledgeBaseUtil;
 import com.liferay.knowledgebase.util.PortletKeys;
-import com.liferay.mail.service.MailServiceUtil;
+import com.liferay.knowledgebase.util.comparator.KBCommentCreateDateComparator;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.mail.MailMessage;
 import com.liferay.portal.kernel.systemevent.SystemEvent;
-import com.liferay.portal.kernel.transaction.TransactionCommitCallbackRegistryUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
@@ -44,15 +40,10 @@ import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.SystemEventConstants;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.ServiceContext;
-
-import java.io.UnsupportedEncodingException;
+import com.liferay.portal.util.SubscriptionSender;
 
 import java.util.Date;
 import java.util.List;
-import java.util.concurrent.Callable;
-
-import javax.mail.internet.AddressException;
-import javax.mail.internet.InternetAddress;
 
 import javax.portlet.PortletPreferences;
 
@@ -175,19 +166,24 @@ public class KBCommentLocalServiceImpl extends KBCommentLocalServiceBaseImpl {
 
 		long classNameId = classNameLocalService.getClassNameId(className);
 
+		return kbCommentPersistence.findByC_C(
+			classNameId, classPK, start, end, orderByComparator);
+	}
+
+	@Override
+	public List<KBComment> getKBComments(
+		long userId, String className, long classPK, int start, int end,
+		OrderByComparator<KBComment> orderByComparator) {
+
+		long classNameId = classNameLocalService.getClassNameId(className);
+
 		return kbCommentPersistence.findByU_C_C(
 			userId, classNameId, classPK, start, end, orderByComparator);
 	}
 
 	@Override
-	public List<KBComment> getKBComments(
-		String className, long classPK, int start, int end,
-		OrderByComparator orderByComparator) {
-
-		long classNameId = classNameLocalService.getClassNameId(className);
-
-		return kbCommentPersistence.findByC_C(
-			classNameId, classPK, start, end, orderByComparator);
+	public int getKBCommentsCount(long groupId, int status) {
+		return kbCommentPersistence.countByG_S(groupId, status);
 	}
 
 	@Override
@@ -196,11 +192,6 @@ public class KBCommentLocalServiceImpl extends KBCommentLocalServiceBaseImpl {
 		long classNameId = classNameLocalService.getClassNameId(className);
 
 		return kbCommentPersistence.countByU_C_C(userId, classNameId, classPK);
-	}
-
-	@Override
-	public int getKBCommentsCount(long groupId, int status) {
-		return kbCommentPersistence.countByG_S(groupId, status);
 	}
 
 	@Override
@@ -267,67 +258,71 @@ public class KBCommentLocalServiceImpl extends KBCommentLocalServiceBaseImpl {
 			KBComment kbComment, ServiceContext serviceContext)
 		throws PortalException {
 
-		try {
-			PortletPreferences preferences =
-				portletPreferencesLocalService.getPreferences(
-					kbComment.getCompanyId(), kbComment.getGroupId(),
-					PortletKeys.PREFS_OWNER_TYPE_GROUP,
-					PortletKeys.PREFS_PLID_SHARED,
-					PortletKeys.KNOWLEDGE_BASE_ADMIN, null);
+		PortletPreferences preferences =
+			portletPreferencesLocalService.getPreferences(
+				kbComment.getCompanyId(), kbComment.getGroupId(),
+				PortletKeys.PREFS_OWNER_TYPE_GROUP,
+				PortletKeys.PREFS_PLID_SHARED, PortletKeys.KNOWLEDGE_BASE_ADMIN,
+				null);
 
-			if (!AdminUtil.isFeedbackStatusChangeNotificationEnabled(
-					kbComment.getStatus(), preferences)) {
+		if (!AdminUtil.isFeedbackStatusChangeNotificationEnabled(
+				kbComment.getStatus(), preferences)) {
 
-				return;
-			}
+			return;
+		}
 
-			User user = userLocalService.getUser(kbComment.getUserId());
+		String fromName = AdminUtil.getEmailFromName(
+			preferences, serviceContext.getCompanyId());
+		String fromAddress = AdminUtil.getEmailFromAddress(
+			preferences, kbComment.getCompanyId());
 
-			String fromName = AdminUtil.getEmailFromName(
-				preferences, serviceContext.getCompanyId());
-			String fromAddress = AdminUtil.getEmailFromAddress(
-				preferences, kbComment.getCompanyId());
+		KBArticle kbArticle = kbArticleLocalService.getLatestKBArticle(
+			kbComment.getClassPK(), WorkflowConstants.STATUS_APPROVED);
 
-			InternetAddress from = new InternetAddress(fromAddress, fromName);
-			InternetAddress to = new InternetAddress(
-				user.getEmailAddress(), user.getFullName());
+		String kbArticleContent = StringUtil.replace(
+			kbArticle.getContent(),
+			new String[] {
+				"href=\"/", "src=\"/"
+			},
+			new String[] {
+				"href=\"" + serviceContext.getPortalURL() + "/",
+				"src=\"" + serviceContext.getPortalURL() + "/"
+			});
 
-			String subject =
-				AdminUtil.getEmailKBArticleFeedbackNotificationSubject(
-					kbComment.getStatus(), preferences);
-
-			String body = AdminUtil.getEmailKBArticleFeedbackNotificationBody(
+		String subject =
+			AdminUtil.getEmailKBArticleFeedbackNotificationSubject(
 				kbComment.getStatus(), preferences);
 
-			KBArticle kbArticle = kbArticleLocalService.getLatestKBArticle(
-				kbComment.getClassPK(), WorkflowConstants.STATUS_APPROVED);
+		String body = AdminUtil.getEmailKBArticleFeedbackNotificationBody(
+			kbComment.getStatus(), preferences);
 
-			subject = replaceContent(
-				subject, kbArticle, kbComment, serviceContext);
+		SubscriptionSender subscriptionSender = new AdminSubscriptionSender(
+			kbArticle, serviceContext);
 
-			body = replaceContent(body, kbArticle, kbComment, serviceContext);
+		subscriptionSender.setBody(body);
+		subscriptionSender.setCompanyId(kbArticle.getCompanyId());
+		subscriptionSender.setContextAttribute(
+			"[$ARTICLE_CONTENT$]", kbArticleContent, false);
+		subscriptionSender.setContextAttribute(
+			"[$ARTICLE_TITLE$]", kbArticle.getTitle(), false);
+		subscriptionSender.setContextAttribute(
+			"[$COMMENT_CONTENT$]", kbComment.getContent(), false);
+		subscriptionSender.setContextUserPrefix("ARTICLE");
+		subscriptionSender.setFrom(fromAddress, fromName);
+		subscriptionSender.setHtmlFormat(true);
+		subscriptionSender.setMailId("kb_article", kbArticle.getKbArticleId());
+		subscriptionSender.setPortletId(serviceContext.getPortletId());
+		subscriptionSender.setReplyToAddress(fromAddress);
+		subscriptionSender.setScopeGroupId(kbArticle.getGroupId());
+		subscriptionSender.setSubject(subject);
+		subscriptionSender.setUserId(kbArticle.getUserId());
 
-			final MailMessage mailMessage = new MailMessage(
-				from, to, subject, body, false);
+		User user = userLocalService.getUser(kbComment.getUserId());
 
-			TransactionCommitCallbackRegistryUtil.registerCallback(
-				new Callable<Void>() {
+		subscriptionSender.addRuntimeSubscribers(
+			user.getEmailAddress(), user.getFullName());
 
-					@Override
-					public Void call() throws Exception {
-						MailServiceUtil.sendEmail(mailMessage);
-
-						return null;
-					}
-
-				});
-		}
-		catch (UnsupportedEncodingException uee) {
-			throw new SystemException(uee);
-		}
-		catch (AddressException ae) {
-			throw new PortalException(ae);
-		}
+		subscriptionSender.flushNotificationsAsync();
 	}
 
 	protected void putTitle(JSONObject jsonObject, KBComment kbComment) {
@@ -353,27 +348,6 @@ public class KBCommentLocalServiceImpl extends KBCommentLocalServiceBaseImpl {
 		catch (Exception e) {
 			_log.error(e);
 		}
-	}
-
-	protected String replaceContent(
-		String content, KBArticle kbArticle, KBComment kbComment,
-		ServiceContext serviceContext) {
-
-		String kbArticleURL = KnowledgeBaseUtil.getKBArticleURL(
-			serviceContext.getPlid(), kbArticle.getResourcePrimKey(),
-			kbArticle.getStatus(), serviceContext.getPortalURL(), false);
-
-		return StringUtil.replace(
-			content,
-			new String[] {
-				"[$ARTICLE_CONTENT$]", "[$ARTICLE_TITLE$]", "[$ARTICLE_URL$]",
-				"[$COMMENT_CONTENT$]", "[$TO_NAME$]"
-			},
-			new String[] {
-				kbArticle.getContent(), kbArticle.getTitle(), kbArticleURL,
-				kbComment.getContent(), kbComment.getUserName()
-			}
-		);
 	}
 
 	protected void validate(String content) throws PortalException {
