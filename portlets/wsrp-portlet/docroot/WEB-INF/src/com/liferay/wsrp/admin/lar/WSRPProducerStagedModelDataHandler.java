@@ -38,11 +38,9 @@ public class WSRPProducerStagedModelDataHandler
 			String uuid, long groupId, String className, String extraData)
 		throws PortalException {
 
-		Group group = GroupLocalServiceUtil.getGroup(groupId);
-
 		WSRPProducer wsrpProducer =
-			WSRPProducerLocalServiceUtil.fetchWSRPProducerByUuidAndCompanyId(
-				uuid, group.getCompanyId());
+			WSRPProducerLocalServiceUtil.fetchWSRPProducerByUuidAndGroupId(
+				uuid, groupId);
 
 		if (wsrpProducer != null) {
 			WSRPProducerLocalServiceUtil.deleteWSRPProducer(wsrpProducer);
@@ -85,9 +83,9 @@ public class WSRPProducerStagedModelDataHandler
 		if (portletDataContext.isDataStrategyMirror()) {
 			WSRPProducer existingWSRPProducer =
 				WSRPProducerLocalServiceUtil.
-					fetchWSRPProducerByUuidAndCompanyId(
+					fetchWSRPProducerByUuidAndGroupId(
 						wsrpProducer.getUuid(),
-						portletDataContext.getCompanyId());
+						portletDataContext.getScopeGroupId());
 
 			if (existingWSRPProducer == null) {
 				serviceContext.setUuid(wsrpProducer.getUuid());
