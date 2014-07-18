@@ -216,20 +216,6 @@ public abstract class SampleLARBookingLocalServiceBaseImpl
 	}
 
 	/**
-	 * Returns the sample l a r booking with the matching UUID and company.
-	 *
-	 * @param uuid the sample l a r booking's UUID
-	 * @param  companyId the primary key of the company
-	 * @return the matching sample l a r booking, or <code>null</code> if a matching sample l a r booking could not be found
-	 */
-	@Override
-	public SampleLARBooking fetchSampleLARBookingByUuidAndCompanyId(
-		String uuid, long companyId) {
-		return sampleLARBookingPersistence.fetchByUuid_C_First(uuid, companyId,
-			null);
-	}
-
-	/**
 	 * Returns the sample l a r booking matching the UUID and group.
 	 *
 	 * @param uuid the sample l a r booking's UUID
@@ -347,19 +333,18 @@ public abstract class SampleLARBookingLocalServiceBaseImpl
 		return sampleLARBookingPersistence.findByPrimaryKey(primaryKeyObj);
 	}
 
-	/**
-	 * Returns the sample l a r booking with the matching UUID and company.
-	 *
-	 * @param uuid the sample l a r booking's UUID
-	 * @param  companyId the primary key of the company
-	 * @return the matching sample l a r booking
-	 * @throws PortalException if a matching sample l a r booking could not be found
-	 */
 	@Override
-	public SampleLARBooking getSampleLARBookingByUuidAndCompanyId(String uuid,
-		long companyId) throws PortalException {
-		return sampleLARBookingPersistence.findByUuid_C_First(uuid, companyId,
-			null);
+	public List<SampleLARBooking> getSampleLARBookingsByUuidAndCompanyId(
+		String uuid, long companyId) {
+		return sampleLARBookingPersistence.findByUuid_C(uuid, companyId);
+	}
+
+	@Override
+	public List<SampleLARBooking> getSampleLARBookingsByUuidAndCompanyId(
+		String uuid, long companyId, int start, int end,
+		OrderByComparator<SampleLARBooking> orderByComparator) {
+		return sampleLARBookingPersistence.findByUuid_C(uuid, companyId, start,
+			end, orderByComparator);
 	}
 
 	/**

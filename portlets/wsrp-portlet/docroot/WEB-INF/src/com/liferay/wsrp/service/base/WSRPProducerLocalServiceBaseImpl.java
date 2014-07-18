@@ -220,19 +220,6 @@ public abstract class WSRPProducerLocalServiceBaseImpl
 	}
 
 	/**
-	 * Returns the w s r p producer with the matching UUID and company.
-	 *
-	 * @param uuid the w s r p producer's UUID
-	 * @param  companyId the primary key of the company
-	 * @return the matching w s r p producer, or <code>null</code> if a matching w s r p producer could not be found
-	 */
-	@Override
-	public WSRPProducer fetchWSRPProducerByUuidAndCompanyId(String uuid,
-		long companyId) {
-		return wsrpProducerPersistence.fetchByUuid_C_First(uuid, companyId, null);
-	}
-
-	/**
 	 * Returns the w s r p producer matching the UUID and group.
 	 *
 	 * @param uuid the w s r p producer's UUID
@@ -348,18 +335,18 @@ public abstract class WSRPProducerLocalServiceBaseImpl
 		return wsrpProducerPersistence.findByPrimaryKey(primaryKeyObj);
 	}
 
-	/**
-	 * Returns the w s r p producer with the matching UUID and company.
-	 *
-	 * @param uuid the w s r p producer's UUID
-	 * @param  companyId the primary key of the company
-	 * @return the matching w s r p producer
-	 * @throws PortalException if a matching w s r p producer could not be found
-	 */
 	@Override
-	public WSRPProducer getWSRPProducerByUuidAndCompanyId(String uuid,
-		long companyId) throws PortalException {
-		return wsrpProducerPersistence.findByUuid_C_First(uuid, companyId, null);
+	public List<WSRPProducer> getWSRPProducersByUuidAndCompanyId(String uuid,
+		long companyId) {
+		return wsrpProducerPersistence.findByUuid_C(uuid, companyId);
+	}
+
+	@Override
+	public List<WSRPProducer> getWSRPProducersByUuidAndCompanyId(String uuid,
+		long companyId, int start, int end,
+		OrderByComparator<WSRPProducer> orderByComparator) {
+		return wsrpProducerPersistence.findByUuid_C(uuid, companyId, start,
+			end, orderByComparator);
 	}
 
 	/**

@@ -210,20 +210,6 @@ public class CalendarNotificationTemplateLocalServiceUtil {
 	}
 
 	/**
-	* Returns the calendar notification template with the matching UUID and company.
-	*
-	* @param uuid the calendar notification template's UUID
-	* @param companyId the primary key of the company
-	* @return the matching calendar notification template, or <code>null</code> if a matching calendar notification template could not be found
-	*/
-	public static com.liferay.calendar.model.CalendarNotificationTemplate fetchCalendarNotificationTemplateByUuidAndCompanyId(
-		java.lang.String uuid, long companyId) {
-		return getService()
-				   .fetchCalendarNotificationTemplateByUuidAndCompanyId(uuid,
-			companyId);
-	}
-
-	/**
 	* Returns the calendar notification template matching the UUID and group.
 	*
 	* @param uuid the calendar notification template's UUID
@@ -265,22 +251,6 @@ public class CalendarNotificationTemplateLocalServiceUtil {
 	}
 
 	/**
-	* Returns the calendar notification template with the matching UUID and company.
-	*
-	* @param uuid the calendar notification template's UUID
-	* @param companyId the primary key of the company
-	* @return the matching calendar notification template
-	* @throws PortalException if a matching calendar notification template could not be found
-	*/
-	public static com.liferay.calendar.model.CalendarNotificationTemplate getCalendarNotificationTemplateByUuidAndCompanyId(
-		java.lang.String uuid, long companyId)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService()
-				   .getCalendarNotificationTemplateByUuidAndCompanyId(uuid,
-			companyId);
-	}
-
-	/**
 	* Returns the calendar notification template matching the UUID and group.
 	*
 	* @param uuid the calendar notification template's UUID
@@ -310,6 +280,21 @@ public class CalendarNotificationTemplateLocalServiceUtil {
 	public static java.util.List<com.liferay.calendar.model.CalendarNotificationTemplate> getCalendarNotificationTemplates(
 		int start, int end) {
 		return getService().getCalendarNotificationTemplates(start, end);
+	}
+
+	public static java.util.List<com.liferay.calendar.model.CalendarNotificationTemplate> getCalendarNotificationTemplatesByUuidAndCompanyId(
+		java.lang.String uuid, long companyId) {
+		return getService()
+				   .getCalendarNotificationTemplatesByUuidAndCompanyId(uuid,
+			companyId);
+	}
+
+	public static java.util.List<com.liferay.calendar.model.CalendarNotificationTemplate> getCalendarNotificationTemplatesByUuidAndCompanyId(
+		java.lang.String uuid, long companyId, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.calendar.model.CalendarNotificationTemplate> orderByComparator) {
+		return getService()
+				   .getCalendarNotificationTemplatesByUuidAndCompanyId(uuid,
+			companyId, start, end, orderByComparator);
 	}
 
 	/**

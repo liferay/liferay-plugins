@@ -183,17 +183,6 @@ public interface WSRPProducerLocalService extends BaseLocalService,
 		long wsrpProducerId);
 
 	/**
-	* Returns the w s r p producer with the matching UUID and company.
-	*
-	* @param uuid the w s r p producer's UUID
-	* @param companyId the primary key of the company
-	* @return the matching w s r p producer, or <code>null</code> if a matching w s r p producer could not be found
-	*/
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.wsrp.model.WSRPProducer fetchWSRPProducerByUuidAndCompanyId(
-		java.lang.String uuid, long companyId);
-
-	/**
 	* Returns the w s r p producer matching the UUID and group.
 	*
 	* @param uuid the w s r p producer's UUID
@@ -242,19 +231,6 @@ public interface WSRPProducerLocalService extends BaseLocalService,
 		throws com.liferay.portal.kernel.exception.PortalException;
 
 	/**
-	* Returns the w s r p producer with the matching UUID and company.
-	*
-	* @param uuid the w s r p producer's UUID
-	* @param companyId the primary key of the company
-	* @return the matching w s r p producer
-	* @throws PortalException if a matching w s r p producer could not be found
-	*/
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.wsrp.model.WSRPProducer getWSRPProducerByUuidAndCompanyId(
-		java.lang.String uuid, long companyId)
-		throws com.liferay.portal.kernel.exception.PortalException;
-
-	/**
 	* Returns the w s r p producer matching the UUID and group.
 	*
 	* @param uuid the w s r p producer's UUID
@@ -285,6 +261,15 @@ public interface WSRPProducerLocalService extends BaseLocalService,
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.wsrp.model.WSRPProducer> getWSRPProducers(
 		int start, int end);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<com.liferay.wsrp.model.WSRPProducer> getWSRPProducersByUuidAndCompanyId(
+		java.lang.String uuid, long companyId);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<com.liferay.wsrp.model.WSRPProducer> getWSRPProducersByUuidAndCompanyId(
+		java.lang.String uuid, long companyId, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.wsrp.model.WSRPProducer> orderByComparator);
 
 	/**
 	* Returns the number of w s r p producers.

@@ -202,19 +202,6 @@ public class CalendarResourceLocalServiceUtil {
 	}
 
 	/**
-	* Returns the calendar resource with the matching UUID and company.
-	*
-	* @param uuid the calendar resource's UUID
-	* @param companyId the primary key of the company
-	* @return the matching calendar resource, or <code>null</code> if a matching calendar resource could not be found
-	*/
-	public static com.liferay.calendar.model.CalendarResource fetchCalendarResourceByUuidAndCompanyId(
-		java.lang.String uuid, long companyId) {
-		return getService()
-				   .fetchCalendarResourceByUuidAndCompanyId(uuid, companyId);
-	}
-
-	/**
 	* Returns the calendar resource matching the UUID and group.
 	*
 	* @param uuid the calendar resource's UUID
@@ -253,21 +240,6 @@ public class CalendarResourceLocalServiceUtil {
 	}
 
 	/**
-	* Returns the calendar resource with the matching UUID and company.
-	*
-	* @param uuid the calendar resource's UUID
-	* @param companyId the primary key of the company
-	* @return the matching calendar resource
-	* @throws PortalException if a matching calendar resource could not be found
-	*/
-	public static com.liferay.calendar.model.CalendarResource getCalendarResourceByUuidAndCompanyId(
-		java.lang.String uuid, long companyId)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService()
-				   .getCalendarResourceByUuidAndCompanyId(uuid, companyId);
-	}
-
-	/**
 	* Returns the calendar resource matching the UUID and group.
 	*
 	* @param uuid the calendar resource's UUID
@@ -300,6 +272,20 @@ public class CalendarResourceLocalServiceUtil {
 	public static java.util.List<com.liferay.calendar.model.CalendarResource> getCalendarResources(
 		int start, int end) {
 		return getService().getCalendarResources(start, end);
+	}
+
+	public static java.util.List<com.liferay.calendar.model.CalendarResource> getCalendarResourcesByUuidAndCompanyId(
+		java.lang.String uuid, long companyId) {
+		return getService()
+				   .getCalendarResourcesByUuidAndCompanyId(uuid, companyId);
+	}
+
+	public static java.util.List<com.liferay.calendar.model.CalendarResource> getCalendarResourcesByUuidAndCompanyId(
+		java.lang.String uuid, long companyId, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.calendar.model.CalendarResource> orderByComparator) {
+		return getService()
+				   .getCalendarResourcesByUuidAndCompanyId(uuid, companyId,
+			start, end, orderByComparator);
 	}
 
 	/**

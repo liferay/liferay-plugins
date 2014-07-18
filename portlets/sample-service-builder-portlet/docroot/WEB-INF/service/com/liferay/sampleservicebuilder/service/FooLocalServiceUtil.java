@@ -184,18 +184,6 @@ public class FooLocalServiceUtil {
 	}
 
 	/**
-	* Returns the foo with the matching UUID and company.
-	*
-	* @param uuid the foo's UUID
-	* @param companyId the primary key of the company
-	* @return the matching foo, or <code>null</code> if a matching foo could not be found
-	*/
-	public static com.liferay.sampleservicebuilder.model.Foo fetchFooByUuidAndCompanyId(
-		java.lang.String uuid, long companyId) {
-		return getService().fetchFooByUuidAndCompanyId(uuid, companyId);
-	}
-
-	/**
 	* Returns the foo matching the UUID and group.
 	*
 	* @param uuid the foo's UUID
@@ -238,20 +226,6 @@ public class FooLocalServiceUtil {
 	}
 
 	/**
-	* Returns the foo with the matching UUID and company.
-	*
-	* @param uuid the foo's UUID
-	* @param companyId the primary key of the company
-	* @return the matching foo
-	* @throws PortalException if a matching foo could not be found
-	*/
-	public static com.liferay.sampleservicebuilder.model.Foo getFooByUuidAndCompanyId(
-		java.lang.String uuid, long companyId)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().getFooByUuidAndCompanyId(uuid, companyId);
-	}
-
-	/**
 	* Returns the foo matching the UUID and group.
 	*
 	* @param uuid the foo's UUID
@@ -290,6 +264,19 @@ public class FooLocalServiceUtil {
 		int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.sampleservicebuilder.model.Foo> obc) {
 		return getService().getFoos(start, end, obc);
+	}
+
+	public static java.util.List<com.liferay.sampleservicebuilder.model.Foo> getFoosByUuidAndCompanyId(
+		java.lang.String uuid, long companyId) {
+		return getService().getFoosByUuidAndCompanyId(uuid, companyId);
+	}
+
+	public static java.util.List<com.liferay.sampleservicebuilder.model.Foo> getFoosByUuidAndCompanyId(
+		java.lang.String uuid, long companyId, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.sampleservicebuilder.model.Foo> orderByComparator) {
+		return getService()
+				   .getFoosByUuidAndCompanyId(uuid, companyId, start, end,
+			orderByComparator);
 	}
 
 	/**

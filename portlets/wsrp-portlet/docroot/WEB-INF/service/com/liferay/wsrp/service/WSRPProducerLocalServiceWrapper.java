@@ -210,20 +210,6 @@ public class WSRPProducerLocalServiceWrapper implements WSRPProducerLocalService
 	}
 
 	/**
-	* Returns the w s r p producer with the matching UUID and company.
-	*
-	* @param uuid the w s r p producer's UUID
-	* @param companyId the primary key of the company
-	* @return the matching w s r p producer, or <code>null</code> if a matching w s r p producer could not be found
-	*/
-	@Override
-	public com.liferay.wsrp.model.WSRPProducer fetchWSRPProducerByUuidAndCompanyId(
-		java.lang.String uuid, long companyId) {
-		return _wsrpProducerLocalService.fetchWSRPProducerByUuidAndCompanyId(uuid,
-			companyId);
-	}
-
-	/**
 	* Returns the w s r p producer matching the UUID and group.
 	*
 	* @param uuid the w s r p producer's UUID
@@ -287,22 +273,6 @@ public class WSRPProducerLocalServiceWrapper implements WSRPProducerLocalService
 	}
 
 	/**
-	* Returns the w s r p producer with the matching UUID and company.
-	*
-	* @param uuid the w s r p producer's UUID
-	* @param companyId the primary key of the company
-	* @return the matching w s r p producer
-	* @throws PortalException if a matching w s r p producer could not be found
-	*/
-	@Override
-	public com.liferay.wsrp.model.WSRPProducer getWSRPProducerByUuidAndCompanyId(
-		java.lang.String uuid, long companyId)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _wsrpProducerLocalService.getWSRPProducerByUuidAndCompanyId(uuid,
-			companyId);
-	}
-
-	/**
 	* Returns the w s r p producer matching the UUID and group.
 	*
 	* @param uuid the w s r p producer's UUID
@@ -339,6 +309,21 @@ public class WSRPProducerLocalServiceWrapper implements WSRPProducerLocalService
 	public java.util.List<com.liferay.wsrp.model.WSRPProducer> getWSRPProducers(
 		int start, int end) {
 		return _wsrpProducerLocalService.getWSRPProducers(start, end);
+	}
+
+	@Override
+	public java.util.List<com.liferay.wsrp.model.WSRPProducer> getWSRPProducersByUuidAndCompanyId(
+		java.lang.String uuid, long companyId) {
+		return _wsrpProducerLocalService.getWSRPProducersByUuidAndCompanyId(uuid,
+			companyId);
+	}
+
+	@Override
+	public java.util.List<com.liferay.wsrp.model.WSRPProducer> getWSRPProducersByUuidAndCompanyId(
+		java.lang.String uuid, long companyId, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.wsrp.model.WSRPProducer> orderByComparator) {
+		return _wsrpProducerLocalService.getWSRPProducersByUuidAndCompanyId(uuid,
+			companyId, start, end, orderByComparator);
 	}
 
 	/**

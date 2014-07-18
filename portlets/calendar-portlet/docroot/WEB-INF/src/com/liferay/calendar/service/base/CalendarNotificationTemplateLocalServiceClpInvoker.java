@@ -84,41 +84,44 @@ public class CalendarNotificationTemplateLocalServiceClpInvoker {
 
 		_methodParameterTypes10 = new String[] { "long" };
 
-		_methodName11 = "fetchCalendarNotificationTemplateByUuidAndCompanyId";
+		_methodName11 = "fetchCalendarNotificationTemplateByUuidAndGroupId";
 
 		_methodParameterTypes11 = new String[] { "java.lang.String", "long" };
 
-		_methodName12 = "fetchCalendarNotificationTemplateByUuidAndGroupId";
+		_methodName12 = "getCalendarNotificationTemplate";
 
-		_methodParameterTypes12 = new String[] { "java.lang.String", "long" };
+		_methodParameterTypes12 = new String[] { "long" };
 
-		_methodName13 = "getCalendarNotificationTemplate";
+		_methodName13 = "getActionableDynamicQuery";
 
-		_methodParameterTypes13 = new String[] { "long" };
+		_methodParameterTypes13 = new String[] {  };
 
-		_methodName14 = "getActionableDynamicQuery";
+		_methodName15 = "getExportActionableDynamicQuery";
 
-		_methodParameterTypes14 = new String[] {  };
-
-		_methodName16 = "getExportActionableDynamicQuery";
-
-		_methodParameterTypes16 = new String[] {
+		_methodParameterTypes15 = new String[] {
 				"com.liferay.portal.kernel.lar.PortletDataContext"
 			};
 
-		_methodName17 = "deletePersistedModel";
+		_methodName16 = "deletePersistedModel";
 
-		_methodParameterTypes17 = new String[] {
+		_methodParameterTypes16 = new String[] {
 				"com.liferay.portal.model.PersistedModel"
 			};
 
-		_methodName18 = "getPersistedModel";
+		_methodName17 = "getPersistedModel";
 
-		_methodParameterTypes18 = new String[] { "java.io.Serializable" };
+		_methodParameterTypes17 = new String[] { "java.io.Serializable" };
 
-		_methodName19 = "getCalendarNotificationTemplateByUuidAndCompanyId";
+		_methodName18 = "getCalendarNotificationTemplatesByUuidAndCompanyId";
 
-		_methodParameterTypes19 = new String[] { "java.lang.String", "long" };
+		_methodParameterTypes18 = new String[] { "java.lang.String", "long" };
+
+		_methodName19 = "getCalendarNotificationTemplatesByUuidAndCompanyId";
+
+		_methodParameterTypes19 = new String[] {
+				"java.lang.String", "long", "int", "int",
+				"com.liferay.portal.kernel.util.OrderByComparator"
+			};
 
 		_methodName20 = "getCalendarNotificationTemplateByUuidAndGroupId";
 
@@ -247,45 +250,48 @@ public class CalendarNotificationTemplateLocalServiceClpInvoker {
 
 		if (_methodName11.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes11, parameterTypes)) {
-			return CalendarNotificationTemplateLocalServiceUtil.fetchCalendarNotificationTemplateByUuidAndCompanyId((java.lang.String)arguments[0],
+			return CalendarNotificationTemplateLocalServiceUtil.fetchCalendarNotificationTemplateByUuidAndGroupId((java.lang.String)arguments[0],
 				((Long)arguments[1]).longValue());
 		}
 
 		if (_methodName12.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes12, parameterTypes)) {
-			return CalendarNotificationTemplateLocalServiceUtil.fetchCalendarNotificationTemplateByUuidAndGroupId((java.lang.String)arguments[0],
-				((Long)arguments[1]).longValue());
+			return CalendarNotificationTemplateLocalServiceUtil.getCalendarNotificationTemplate(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName13.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes13, parameterTypes)) {
-			return CalendarNotificationTemplateLocalServiceUtil.getCalendarNotificationTemplate(((Long)arguments[0]).longValue());
+			return CalendarNotificationTemplateLocalServiceUtil.getActionableDynamicQuery();
 		}
 
-		if (_methodName14.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes14, parameterTypes)) {
-			return CalendarNotificationTemplateLocalServiceUtil.getActionableDynamicQuery();
+		if (_methodName15.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes15, parameterTypes)) {
+			return CalendarNotificationTemplateLocalServiceUtil.getExportActionableDynamicQuery((com.liferay.portal.kernel.lar.PortletDataContext)arguments[0]);
 		}
 
 		if (_methodName16.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes16, parameterTypes)) {
-			return CalendarNotificationTemplateLocalServiceUtil.getExportActionableDynamicQuery((com.liferay.portal.kernel.lar.PortletDataContext)arguments[0]);
+			return CalendarNotificationTemplateLocalServiceUtil.deletePersistedModel((com.liferay.portal.model.PersistedModel)arguments[0]);
 		}
 
 		if (_methodName17.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes17, parameterTypes)) {
-			return CalendarNotificationTemplateLocalServiceUtil.deletePersistedModel((com.liferay.portal.model.PersistedModel)arguments[0]);
+			return CalendarNotificationTemplateLocalServiceUtil.getPersistedModel((java.io.Serializable)arguments[0]);
 		}
 
 		if (_methodName18.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes18, parameterTypes)) {
-			return CalendarNotificationTemplateLocalServiceUtil.getPersistedModel((java.io.Serializable)arguments[0]);
+			return CalendarNotificationTemplateLocalServiceUtil.getCalendarNotificationTemplatesByUuidAndCompanyId((java.lang.String)arguments[0],
+				((Long)arguments[1]).longValue());
 		}
 
 		if (_methodName19.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes19, parameterTypes)) {
-			return CalendarNotificationTemplateLocalServiceUtil.getCalendarNotificationTemplateByUuidAndCompanyId((java.lang.String)arguments[0],
-				((Long)arguments[1]).longValue());
+			return CalendarNotificationTemplateLocalServiceUtil.getCalendarNotificationTemplatesByUuidAndCompanyId((java.lang.String)arguments[0],
+				((Long)arguments[1]).longValue(),
+				((Integer)arguments[2]).intValue(),
+				((Integer)arguments[3]).intValue(),
+				(com.liferay.portal.kernel.util.OrderByComparator<com.liferay.calendar.model.CalendarNotificationTemplate>)arguments[4]);
 		}
 
 		if (_methodName20.equals(name) &&
@@ -391,8 +397,8 @@ public class CalendarNotificationTemplateLocalServiceClpInvoker {
 	private String[] _methodParameterTypes12;
 	private String _methodName13;
 	private String[] _methodParameterTypes13;
-	private String _methodName14;
-	private String[] _methodParameterTypes14;
+	private String _methodName15;
+	private String[] _methodParameterTypes15;
 	private String _methodName16;
 	private String[] _methodParameterTypes16;
 	private String _methodName17;

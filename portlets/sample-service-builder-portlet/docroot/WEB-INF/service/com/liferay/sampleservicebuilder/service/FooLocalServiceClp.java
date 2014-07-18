@@ -97,54 +97,57 @@ public class FooLocalServiceClp implements FooLocalService {
 
 		_methodParameterTypes12 = new String[] { "long" };
 
-		_methodName13 = "fetchFooByUuidAndCompanyId";
+		_methodName13 = "fetchFooByUuidAndGroupId";
 
 		_methodParameterTypes13 = new String[] { "java.lang.String", "long" };
 
-		_methodName14 = "fetchFooByUuidAndGroupId";
+		_methodName14 = "getActionableDynamicQuery";
 
-		_methodParameterTypes14 = new String[] { "java.lang.String", "long" };
+		_methodParameterTypes14 = new String[] {  };
 
-		_methodName15 = "getActionableDynamicQuery";
+		_methodName15 = "getBeanIdentifier";
 
 		_methodParameterTypes15 = new String[] {  };
 
-		_methodName16 = "getBeanIdentifier";
+		_methodName16 = "getExportActionableDynamicQuery";
 
-		_methodParameterTypes16 = new String[] {  };
-
-		_methodName17 = "getExportActionableDynamicQuery";
-
-		_methodParameterTypes17 = new String[] {
+		_methodParameterTypes16 = new String[] {
 				"com.liferay.portal.kernel.lar.PortletDataContext"
 			};
 
-		_methodName18 = "getFoo";
+		_methodName17 = "getFoo";
 
-		_methodParameterTypes18 = new String[] { "long" };
+		_methodParameterTypes17 = new String[] { "long" };
 
-		_methodName19 = "getFooByUuidAndCompanyId";
+		_methodName18 = "getFooByUuidAndGroupId";
 
-		_methodParameterTypes19 = new String[] { "java.lang.String", "long" };
+		_methodParameterTypes18 = new String[] { "java.lang.String", "long" };
 
-		_methodName20 = "getFooByUuidAndGroupId";
+		_methodName19 = "getFoos";
 
-		_methodParameterTypes20 = new String[] { "java.lang.String", "long" };
+		_methodParameterTypes19 = new String[] {
+				"com.liferay.portal.kernel.util.OrderByComparator"
+			};
+
+		_methodName20 = "getFoos";
+
+		_methodParameterTypes20 = new String[] { "int", "int" };
 
 		_methodName21 = "getFoos";
 
 		_methodParameterTypes21 = new String[] {
-				"com.liferay.portal.kernel.util.OrderByComparator"
+				"int", "int", "com.liferay.portal.kernel.util.OrderByComparator"
 			};
 
-		_methodName22 = "getFoos";
+		_methodName22 = "getFoosByUuidAndCompanyId";
 
-		_methodParameterTypes22 = new String[] { "int", "int" };
+		_methodParameterTypes22 = new String[] { "java.lang.String", "long" };
 
-		_methodName23 = "getFoos";
+		_methodName23 = "getFoosByUuidAndCompanyId";
 
 		_methodParameterTypes23 = new String[] {
-				"int", "int", "com.liferay.portal.kernel.util.OrderByComparator"
+				"java.lang.String", "long", "int", "int",
+				"com.liferay.portal.kernel.util.OrderByComparator"
 			};
 
 		_methodName24 = "getFoosCount";
@@ -548,38 +551,13 @@ public class FooLocalServiceClp implements FooLocalService {
 	}
 
 	@Override
-	public com.liferay.sampleservicebuilder.model.Foo fetchFooByUuidAndCompanyId(
-		java.lang.String uuid, long companyId) {
-		Object returnObj = null;
-
-		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName13,
-					_methodParameterTypes13,
-					new Object[] { ClpSerializer.translateInput(uuid), companyId });
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-
-		return (com.liferay.sampleservicebuilder.model.Foo)ClpSerializer.translateOutput(returnObj);
-	}
-
-	@Override
 	public com.liferay.sampleservicebuilder.model.Foo fetchFooByUuidAndGroupId(
 		java.lang.String uuid, long groupId) {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName14,
-					_methodParameterTypes14,
+			returnObj = _invokableLocalService.invokeMethod(_methodName13,
+					_methodParameterTypes13,
 					new Object[] { ClpSerializer.translateInput(uuid), groupId });
 		}
 		catch (Throwable t) {
@@ -602,8 +580,8 @@ public class FooLocalServiceClp implements FooLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName15,
-					_methodParameterTypes15, new Object[] {  });
+			returnObj = _invokableLocalService.invokeMethod(_methodName14,
+					_methodParameterTypes14, new Object[] {  });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -625,8 +603,8 @@ public class FooLocalServiceClp implements FooLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName16,
-					_methodParameterTypes16, new Object[] {  });
+			returnObj = _invokableLocalService.invokeMethod(_methodName15,
+					_methodParameterTypes15, new Object[] {  });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -649,8 +627,8 @@ public class FooLocalServiceClp implements FooLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName17,
-					_methodParameterTypes17,
+			returnObj = _invokableLocalService.invokeMethod(_methodName16,
+					_methodParameterTypes16,
 					new Object[] {
 						ClpSerializer.translateInput(portletDataContext)
 					});
@@ -676,38 +654,8 @@ public class FooLocalServiceClp implements FooLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName18,
-					_methodParameterTypes18, new Object[] { fooId });
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
-				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-
-		return (com.liferay.sampleservicebuilder.model.Foo)ClpSerializer.translateOutput(returnObj);
-	}
-
-	@Override
-	public com.liferay.sampleservicebuilder.model.Foo getFooByUuidAndCompanyId(
-		java.lang.String uuid, long companyId)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		Object returnObj = null;
-
-		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName19,
-					_methodParameterTypes19,
-					new Object[] { ClpSerializer.translateInput(uuid), companyId });
+			returnObj = _invokableLocalService.invokeMethod(_methodName17,
+					_methodParameterTypes17, new Object[] { fooId });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -735,8 +683,8 @@ public class FooLocalServiceClp implements FooLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName20,
-					_methodParameterTypes20,
+			returnObj = _invokableLocalService.invokeMethod(_methodName18,
+					_methodParameterTypes18,
 					new Object[] { ClpSerializer.translateInput(uuid), groupId });
 		}
 		catch (Throwable t) {
@@ -764,8 +712,8 @@ public class FooLocalServiceClp implements FooLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName21,
-					_methodParameterTypes21,
+			returnObj = _invokableLocalService.invokeMethod(_methodName19,
+					_methodParameterTypes19,
 					new Object[] { ClpSerializer.translateInput(obc) });
 		}
 		catch (Throwable t) {
@@ -789,8 +737,8 @@ public class FooLocalServiceClp implements FooLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName22,
-					_methodParameterTypes22, new Object[] { start, end });
+			returnObj = _invokableLocalService.invokeMethod(_methodName20,
+					_methodParameterTypes20, new Object[] { start, end });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -814,9 +762,70 @@ public class FooLocalServiceClp implements FooLocalService {
 		Object returnObj = null;
 
 		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName21,
+					_methodParameterTypes21,
+					new Object[] { start, end, ClpSerializer.translateInput(obc) });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.util.List<com.liferay.sampleservicebuilder.model.Foo>)ClpSerializer.translateOutput(returnObj);
+	}
+
+	@Override
+	public java.util.List<com.liferay.sampleservicebuilder.model.Foo> getFoosByUuidAndCompanyId(
+		java.lang.String uuid, long companyId) {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName22,
+					_methodParameterTypes22,
+					new Object[] { ClpSerializer.translateInput(uuid), companyId });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.util.List<com.liferay.sampleservicebuilder.model.Foo>)ClpSerializer.translateOutput(returnObj);
+	}
+
+	@Override
+	public java.util.List<com.liferay.sampleservicebuilder.model.Foo> getFoosByUuidAndCompanyId(
+		java.lang.String uuid, long companyId, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.sampleservicebuilder.model.Foo> orderByComparator) {
+		Object returnObj = null;
+
+		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName23,
 					_methodParameterTypes23,
-					new Object[] { start, end, ClpSerializer.translateInput(obc) });
+					new Object[] {
+						ClpSerializer.translateInput(uuid),
+						
+					companyId,
+						
+					start,
+						
+					end,
+						
+					ClpSerializer.translateInput(orderByComparator)
+					});
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);

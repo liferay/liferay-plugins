@@ -224,20 +224,6 @@ public abstract class CalendarNotificationTemplateLocalServiceBaseImpl
 	}
 
 	/**
-	 * Returns the calendar notification template with the matching UUID and company.
-	 *
-	 * @param uuid the calendar notification template's UUID
-	 * @param  companyId the primary key of the company
-	 * @return the matching calendar notification template, or <code>null</code> if a matching calendar notification template could not be found
-	 */
-	@Override
-	public CalendarNotificationTemplate fetchCalendarNotificationTemplateByUuidAndCompanyId(
-		String uuid, long companyId) {
-		return calendarNotificationTemplatePersistence.fetchByUuid_C_First(uuid,
-			companyId, null);
-	}
-
-	/**
 	 * Returns the calendar notification template matching the UUID and group.
 	 *
 	 * @param uuid the calendar notification template's UUID
@@ -359,19 +345,19 @@ public abstract class CalendarNotificationTemplateLocalServiceBaseImpl
 		return calendarNotificationTemplatePersistence.findByPrimaryKey(primaryKeyObj);
 	}
 
-	/**
-	 * Returns the calendar notification template with the matching UUID and company.
-	 *
-	 * @param uuid the calendar notification template's UUID
-	 * @param  companyId the primary key of the company
-	 * @return the matching calendar notification template
-	 * @throws PortalException if a matching calendar notification template could not be found
-	 */
 	@Override
-	public CalendarNotificationTemplate getCalendarNotificationTemplateByUuidAndCompanyId(
-		String uuid, long companyId) throws PortalException {
-		return calendarNotificationTemplatePersistence.findByUuid_C_First(uuid,
-			companyId, null);
+	public List<CalendarNotificationTemplate> getCalendarNotificationTemplatesByUuidAndCompanyId(
+		String uuid, long companyId) {
+		return calendarNotificationTemplatePersistence.findByUuid_C(uuid,
+			companyId);
+	}
+
+	@Override
+	public List<CalendarNotificationTemplate> getCalendarNotificationTemplatesByUuidAndCompanyId(
+		String uuid, long companyId, int start, int end,
+		OrderByComparator<CalendarNotificationTemplate> orderByComparator) {
+		return calendarNotificationTemplatePersistence.findByUuid_C(uuid,
+			companyId, start, end, orderByComparator);
 	}
 
 	/**

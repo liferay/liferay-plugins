@@ -256,20 +256,6 @@ public class CalendarBookingLocalServiceWrapper
 	}
 
 	/**
-	* Returns the calendar booking with the matching UUID and company.
-	*
-	* @param uuid the calendar booking's UUID
-	* @param companyId the primary key of the company
-	* @return the matching calendar booking, or <code>null</code> if a matching calendar booking could not be found
-	*/
-	@Override
-	public com.liferay.calendar.model.CalendarBooking fetchCalendarBookingByUuidAndCompanyId(
-		java.lang.String uuid, long companyId) {
-		return _calendarBookingLocalService.fetchCalendarBookingByUuidAndCompanyId(uuid,
-			companyId);
-	}
-
-	/**
 	* Returns the calendar booking matching the UUID and group.
 	*
 	* @param uuid the calendar booking's UUID
@@ -318,22 +304,6 @@ public class CalendarBookingLocalServiceWrapper
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _calendarBookingLocalService.getCalendarBooking(calendarId,
 			parentCalendarBookingId);
-	}
-
-	/**
-	* Returns the calendar booking with the matching UUID and company.
-	*
-	* @param uuid the calendar booking's UUID
-	* @param companyId the primary key of the company
-	* @return the matching calendar booking
-	* @throws PortalException if a matching calendar booking could not be found
-	*/
-	@Override
-	public com.liferay.calendar.model.CalendarBooking getCalendarBookingByUuidAndCompanyId(
-		java.lang.String uuid, long companyId)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _calendarBookingLocalService.getCalendarBookingByUuidAndCompanyId(uuid,
-			companyId);
 	}
 
 	/**
@@ -394,6 +364,21 @@ public class CalendarBookingLocalServiceWrapper
 	public java.util.List<com.liferay.calendar.model.CalendarBooking> getCalendarBookings(
 		int start, int end) {
 		return _calendarBookingLocalService.getCalendarBookings(start, end);
+	}
+
+	@Override
+	public java.util.List<com.liferay.calendar.model.CalendarBooking> getCalendarBookingsByUuidAndCompanyId(
+		java.lang.String uuid, long companyId) {
+		return _calendarBookingLocalService.getCalendarBookingsByUuidAndCompanyId(uuid,
+			companyId);
+	}
+
+	@Override
+	public java.util.List<com.liferay.calendar.model.CalendarBooking> getCalendarBookingsByUuidAndCompanyId(
+		java.lang.String uuid, long companyId, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.calendar.model.CalendarBooking> orderByComparator) {
+		return _calendarBookingLocalService.getCalendarBookingsByUuidAndCompanyId(uuid,
+			companyId, start, end, orderByComparator);
 	}
 
 	/**

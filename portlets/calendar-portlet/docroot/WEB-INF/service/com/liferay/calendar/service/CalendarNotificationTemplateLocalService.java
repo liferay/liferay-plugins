@@ -184,17 +184,6 @@ public interface CalendarNotificationTemplateLocalService
 		long calendarNotificationTemplateId);
 
 	/**
-	* Returns the calendar notification template with the matching UUID and company.
-	*
-	* @param uuid the calendar notification template's UUID
-	* @param companyId the primary key of the company
-	* @return the matching calendar notification template, or <code>null</code> if a matching calendar notification template could not be found
-	*/
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.calendar.model.CalendarNotificationTemplate fetchCalendarNotificationTemplateByUuidAndCompanyId(
-		java.lang.String uuid, long companyId);
-
-	/**
 	* Returns the calendar notification template matching the UUID and group.
 	*
 	* @param uuid the calendar notification template's UUID
@@ -228,19 +217,6 @@ public interface CalendarNotificationTemplateLocalService
 		throws com.liferay.portal.kernel.exception.PortalException;
 
 	/**
-	* Returns the calendar notification template with the matching UUID and company.
-	*
-	* @param uuid the calendar notification template's UUID
-	* @param companyId the primary key of the company
-	* @return the matching calendar notification template
-	* @throws PortalException if a matching calendar notification template could not be found
-	*/
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.calendar.model.CalendarNotificationTemplate getCalendarNotificationTemplateByUuidAndCompanyId(
-		java.lang.String uuid, long companyId)
-		throws com.liferay.portal.kernel.exception.PortalException;
-
-	/**
 	* Returns the calendar notification template matching the UUID and group.
 	*
 	* @param uuid the calendar notification template's UUID
@@ -267,6 +243,15 @@ public interface CalendarNotificationTemplateLocalService
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.calendar.model.CalendarNotificationTemplate> getCalendarNotificationTemplates(
 		int start, int end);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<com.liferay.calendar.model.CalendarNotificationTemplate> getCalendarNotificationTemplatesByUuidAndCompanyId(
+		java.lang.String uuid, long companyId);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<com.liferay.calendar.model.CalendarNotificationTemplate> getCalendarNotificationTemplatesByUuidAndCompanyId(
+		java.lang.String uuid, long companyId, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.calendar.model.CalendarNotificationTemplate> orderByComparator);
 
 	/**
 	* Returns the number of calendar notification templates.

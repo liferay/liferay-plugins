@@ -174,17 +174,6 @@ public interface SampleLARBookingLocalService extends BaseLocalService,
 		long sampleLARBookingId);
 
 	/**
-	* Returns the sample l a r booking with the matching UUID and company.
-	*
-	* @param uuid the sample l a r booking's UUID
-	* @param companyId the primary key of the company
-	* @return the matching sample l a r booking, or <code>null</code> if a matching sample l a r booking could not be found
-	*/
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.samplelar.model.SampleLARBooking fetchSampleLARBookingByUuidAndCompanyId(
-		java.lang.String uuid, long companyId);
-
-	/**
 	* Returns the sample l a r booking matching the UUID and group.
 	*
 	* @param uuid the sample l a r booking's UUID
@@ -228,19 +217,6 @@ public interface SampleLARBookingLocalService extends BaseLocalService,
 		throws com.liferay.portal.kernel.exception.PortalException;
 
 	/**
-	* Returns the sample l a r booking with the matching UUID and company.
-	*
-	* @param uuid the sample l a r booking's UUID
-	* @param companyId the primary key of the company
-	* @return the matching sample l a r booking
-	* @throws PortalException if a matching sample l a r booking could not be found
-	*/
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.samplelar.model.SampleLARBooking getSampleLARBookingByUuidAndCompanyId(
-		java.lang.String uuid, long companyId)
-		throws com.liferay.portal.kernel.exception.PortalException;
-
-	/**
 	* Returns the sample l a r booking matching the UUID and group.
 	*
 	* @param uuid the sample l a r booking's UUID
@@ -271,6 +247,15 @@ public interface SampleLARBookingLocalService extends BaseLocalService,
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.samplelar.model.SampleLARBooking> getSampleLARBookings(
 		int start, int end);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<com.liferay.samplelar.model.SampleLARBooking> getSampleLARBookingsByUuidAndCompanyId(
+		java.lang.String uuid, long companyId);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<com.liferay.samplelar.model.SampleLARBooking> getSampleLARBookingsByUuidAndCompanyId(
+		java.lang.String uuid, long companyId, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.samplelar.model.SampleLARBooking> orderByComparator);
 
 	/**
 	* Returns the number of sample l a r bookings.

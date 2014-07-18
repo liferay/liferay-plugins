@@ -198,20 +198,6 @@ public class SampleLARBookingLocalServiceWrapper
 	}
 
 	/**
-	* Returns the sample l a r booking with the matching UUID and company.
-	*
-	* @param uuid the sample l a r booking's UUID
-	* @param companyId the primary key of the company
-	* @return the matching sample l a r booking, or <code>null</code> if a matching sample l a r booking could not be found
-	*/
-	@Override
-	public com.liferay.samplelar.model.SampleLARBooking fetchSampleLARBookingByUuidAndCompanyId(
-		java.lang.String uuid, long companyId) {
-		return _sampleLARBookingLocalService.fetchSampleLARBookingByUuidAndCompanyId(uuid,
-			companyId);
-	}
-
-	/**
 	* Returns the sample l a r booking matching the UUID and group.
 	*
 	* @param uuid the sample l a r booking's UUID
@@ -268,22 +254,6 @@ public class SampleLARBookingLocalServiceWrapper
 	}
 
 	/**
-	* Returns the sample l a r booking with the matching UUID and company.
-	*
-	* @param uuid the sample l a r booking's UUID
-	* @param companyId the primary key of the company
-	* @return the matching sample l a r booking
-	* @throws PortalException if a matching sample l a r booking could not be found
-	*/
-	@Override
-	public com.liferay.samplelar.model.SampleLARBooking getSampleLARBookingByUuidAndCompanyId(
-		java.lang.String uuid, long companyId)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _sampleLARBookingLocalService.getSampleLARBookingByUuidAndCompanyId(uuid,
-			companyId);
-	}
-
-	/**
 	* Returns the sample l a r booking matching the UUID and group.
 	*
 	* @param uuid the sample l a r booking's UUID
@@ -321,6 +291,21 @@ public class SampleLARBookingLocalServiceWrapper
 	public java.util.List<com.liferay.samplelar.model.SampleLARBooking> getSampleLARBookings(
 		int start, int end) {
 		return _sampleLARBookingLocalService.getSampleLARBookings(start, end);
+	}
+
+	@Override
+	public java.util.List<com.liferay.samplelar.model.SampleLARBooking> getSampleLARBookingsByUuidAndCompanyId(
+		java.lang.String uuid, long companyId) {
+		return _sampleLARBookingLocalService.getSampleLARBookingsByUuidAndCompanyId(uuid,
+			companyId);
+	}
+
+	@Override
+	public java.util.List<com.liferay.samplelar.model.SampleLARBooking> getSampleLARBookingsByUuidAndCompanyId(
+		java.lang.String uuid, long companyId, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.samplelar.model.SampleLARBooking> orderByComparator) {
+		return _sampleLARBookingLocalService.getSampleLARBookingsByUuidAndCompanyId(uuid,
+			companyId, start, end, orderByComparator);
 	}
 
 	/**

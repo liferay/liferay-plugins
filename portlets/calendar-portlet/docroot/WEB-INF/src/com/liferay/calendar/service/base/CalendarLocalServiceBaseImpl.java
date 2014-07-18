@@ -218,18 +218,6 @@ public abstract class CalendarLocalServiceBaseImpl extends BaseLocalServiceImpl
 	}
 
 	/**
-	 * Returns the calendar with the matching UUID and company.
-	 *
-	 * @param uuid the calendar's UUID
-	 * @param  companyId the primary key of the company
-	 * @return the matching calendar, or <code>null</code> if a matching calendar could not be found
-	 */
-	@Override
-	public Calendar fetchCalendarByUuidAndCompanyId(String uuid, long companyId) {
-		return calendarPersistence.fetchByUuid_C_First(uuid, companyId, null);
-	}
-
-	/**
 	 * Returns the calendar matching the UUID and group.
 	 *
 	 * @param uuid the calendar's UUID
@@ -345,18 +333,18 @@ public abstract class CalendarLocalServiceBaseImpl extends BaseLocalServiceImpl
 		return calendarPersistence.findByPrimaryKey(primaryKeyObj);
 	}
 
-	/**
-	 * Returns the calendar with the matching UUID and company.
-	 *
-	 * @param uuid the calendar's UUID
-	 * @param  companyId the primary key of the company
-	 * @return the matching calendar
-	 * @throws PortalException if a matching calendar could not be found
-	 */
 	@Override
-	public Calendar getCalendarByUuidAndCompanyId(String uuid, long companyId)
-		throws PortalException {
-		return calendarPersistence.findByUuid_C_First(uuid, companyId, null);
+	public List<Calendar> getCalendarsByUuidAndCompanyId(String uuid,
+		long companyId) {
+		return calendarPersistence.findByUuid_C(uuid, companyId);
+	}
+
+	@Override
+	public List<Calendar> getCalendarsByUuidAndCompanyId(String uuid,
+		long companyId, int start, int end,
+		OrderByComparator<Calendar> orderByComparator) {
+		return calendarPersistence.findByUuid_C(uuid, companyId, start, end,
+			orderByComparator);
 	}
 
 	/**

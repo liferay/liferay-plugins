@@ -227,20 +227,6 @@ public abstract class CalendarResourceLocalServiceBaseImpl
 	}
 
 	/**
-	 * Returns the calendar resource with the matching UUID and company.
-	 *
-	 * @param uuid the calendar resource's UUID
-	 * @param  companyId the primary key of the company
-	 * @return the matching calendar resource, or <code>null</code> if a matching calendar resource could not be found
-	 */
-	@Override
-	public CalendarResource fetchCalendarResourceByUuidAndCompanyId(
-		String uuid, long companyId) {
-		return calendarResourcePersistence.fetchByUuid_C_First(uuid, companyId,
-			null);
-	}
-
-	/**
 	 * Returns the calendar resource matching the UUID and group.
 	 *
 	 * @param uuid the calendar resource's UUID
@@ -368,19 +354,18 @@ public abstract class CalendarResourceLocalServiceBaseImpl
 		return calendarResourcePersistence.findByPrimaryKey(primaryKeyObj);
 	}
 
-	/**
-	 * Returns the calendar resource with the matching UUID and company.
-	 *
-	 * @param uuid the calendar resource's UUID
-	 * @param  companyId the primary key of the company
-	 * @return the matching calendar resource
-	 * @throws PortalException if a matching calendar resource could not be found
-	 */
 	@Override
-	public CalendarResource getCalendarResourceByUuidAndCompanyId(String uuid,
-		long companyId) throws PortalException {
-		return calendarResourcePersistence.findByUuid_C_First(uuid, companyId,
-			null);
+	public List<CalendarResource> getCalendarResourcesByUuidAndCompanyId(
+		String uuid, long companyId) {
+		return calendarResourcePersistence.findByUuid_C(uuid, companyId);
+	}
+
+	@Override
+	public List<CalendarResource> getCalendarResourcesByUuidAndCompanyId(
+		String uuid, long companyId, int start, int end,
+		OrderByComparator<CalendarResource> orderByComparator) {
+		return calendarResourcePersistence.findByUuid_C(uuid, companyId, start,
+			end, orderByComparator);
 	}
 
 	/**

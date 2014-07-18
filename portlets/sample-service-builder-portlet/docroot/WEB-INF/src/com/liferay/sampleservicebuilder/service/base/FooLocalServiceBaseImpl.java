@@ -213,18 +213,6 @@ public abstract class FooLocalServiceBaseImpl extends BaseLocalServiceImpl
 	}
 
 	/**
-	 * Returns the foo with the matching UUID and company.
-	 *
-	 * @param uuid the foo's UUID
-	 * @param  companyId the primary key of the company
-	 * @return the matching foo, or <code>null</code> if a matching foo could not be found
-	 */
-	@Override
-	public Foo fetchFooByUuidAndCompanyId(String uuid, long companyId) {
-		return fooPersistence.fetchByUuid_C_First(uuid, companyId, null);
-	}
-
-	/**
 	 * Returns the foo matching the UUID and group.
 	 *
 	 * @param uuid the foo's UUID
@@ -340,18 +328,16 @@ public abstract class FooLocalServiceBaseImpl extends BaseLocalServiceImpl
 		return fooPersistence.findByPrimaryKey(primaryKeyObj);
 	}
 
-	/**
-	 * Returns the foo with the matching UUID and company.
-	 *
-	 * @param uuid the foo's UUID
-	 * @param  companyId the primary key of the company
-	 * @return the matching foo
-	 * @throws PortalException if a matching foo could not be found
-	 */
 	@Override
-	public Foo getFooByUuidAndCompanyId(String uuid, long companyId)
-		throws PortalException {
-		return fooPersistence.findByUuid_C_First(uuid, companyId, null);
+	public List<Foo> getFoosByUuidAndCompanyId(String uuid, long companyId) {
+		return fooPersistence.findByUuid_C(uuid, companyId);
+	}
+
+	@Override
+	public List<Foo> getFoosByUuidAndCompanyId(String uuid, long companyId,
+		int start, int end, OrderByComparator<Foo> orderByComparator) {
+		return fooPersistence.findByUuid_C(uuid, companyId, start, end,
+			orderByComparator);
 	}
 
 	/**

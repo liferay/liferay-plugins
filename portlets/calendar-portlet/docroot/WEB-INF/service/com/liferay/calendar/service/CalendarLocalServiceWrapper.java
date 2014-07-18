@@ -200,20 +200,6 @@ public class CalendarLocalServiceWrapper implements CalendarLocalService,
 	}
 
 	/**
-	* Returns the calendar with the matching UUID and company.
-	*
-	* @param uuid the calendar's UUID
-	* @param companyId the primary key of the company
-	* @return the matching calendar, or <code>null</code> if a matching calendar could not be found
-	*/
-	@Override
-	public com.liferay.calendar.model.Calendar fetchCalendarByUuidAndCompanyId(
-		java.lang.String uuid, long companyId) {
-		return _calendarLocalService.fetchCalendarByUuidAndCompanyId(uuid,
-			companyId);
-	}
-
-	/**
 	* Returns the calendar matching the UUID and group.
 	*
 	* @param uuid the calendar's UUID
@@ -252,22 +238,6 @@ public class CalendarLocalServiceWrapper implements CalendarLocalService,
 	public com.liferay.calendar.model.Calendar getCalendar(long calendarId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _calendarLocalService.getCalendar(calendarId);
-	}
-
-	/**
-	* Returns the calendar with the matching UUID and company.
-	*
-	* @param uuid the calendar's UUID
-	* @param companyId the primary key of the company
-	* @return the matching calendar
-	* @throws PortalException if a matching calendar could not be found
-	*/
-	@Override
-	public com.liferay.calendar.model.Calendar getCalendarByUuidAndCompanyId(
-		java.lang.String uuid, long companyId)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _calendarLocalService.getCalendarByUuidAndCompanyId(uuid,
-			companyId);
 	}
 
 	/**
@@ -314,6 +284,21 @@ public class CalendarLocalServiceWrapper implements CalendarLocalService,
 	public java.util.List<com.liferay.calendar.model.Calendar> getCalendars(
 		int start, int end) {
 		return _calendarLocalService.getCalendars(start, end);
+	}
+
+	@Override
+	public java.util.List<com.liferay.calendar.model.Calendar> getCalendarsByUuidAndCompanyId(
+		java.lang.String uuid, long companyId) {
+		return _calendarLocalService.getCalendarsByUuidAndCompanyId(uuid,
+			companyId);
+	}
+
+	@Override
+	public java.util.List<com.liferay.calendar.model.Calendar> getCalendarsByUuidAndCompanyId(
+		java.lang.String uuid, long companyId, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.calendar.model.Calendar> orderByComparator) {
+		return _calendarLocalService.getCalendarsByUuidAndCompanyId(uuid,
+			companyId, start, end, orderByComparator);
 	}
 
 	/**
