@@ -92,6 +92,7 @@ public class SyncSystemTest {
 	}
 
 	@Parameters
+	@Test
 	public static Collection<Object[]> testFilePaths() throws Exception {
 		Collection<Object[]> testFilePaths = new LinkedList<Object[]>();
 
