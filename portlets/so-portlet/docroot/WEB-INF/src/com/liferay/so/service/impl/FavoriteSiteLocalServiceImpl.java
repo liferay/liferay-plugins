@@ -70,7 +70,9 @@ public class FavoriteSiteLocalServiceImpl
 		favoriteSitePersistence.removeByG_U(groupId, userId);
 	}
 
-	public List<FavoriteSite> getFavoriteSites(long userId, int start, int end) {
+	public List<FavoriteSite> getFavoriteSites(
+		long userId, int start, int end) {
+
 		return favoriteSitePersistence.findByUserId(userId, start, end);
 	}
 
