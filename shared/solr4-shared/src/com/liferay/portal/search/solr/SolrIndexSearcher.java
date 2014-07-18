@@ -140,6 +140,19 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 
 					solrQuery.addFacetQuery(facetQuery);
 				}
+				
+				if ((searchContext.getAttribute("modified") != null) &&
+					(searchContext.getAttribute("modified") != "")) {
+
+					String range = (String)
+						searchContext.getAttribute("modified");
+
+					String facetQuery =
+						facetConfiguration.getFieldName() + StringPool.COLON +
+							range;
+
+					solrQuery.addFacetQuery(facetQuery);
+				}
 			}
 			else {
 				solrQuery.addFacetField(facetConfiguration.getFieldName());
