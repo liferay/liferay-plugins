@@ -90,7 +90,9 @@ public class OAuthTokenLocalServiceImpl extends OAuthTokenLocalServiceBaseImpl {
 			userId, gadgetKey, serviceName, moduleId, tokenName);
 	}
 
-	public List<OAuthToken> getOAuthTokens(String gadgetKey, String serviceName) {
+	public List<OAuthToken> getOAuthTokens(
+		String gadgetKey, String serviceName) {
+
 		return oAuthTokenPersistence.findByG_S(gadgetKey, serviceName);
 	}
 
