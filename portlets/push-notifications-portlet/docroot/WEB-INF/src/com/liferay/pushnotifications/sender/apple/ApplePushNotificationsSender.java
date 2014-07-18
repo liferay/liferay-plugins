@@ -38,13 +38,24 @@ public class ApplePushNotificationsSender implements PushNotificationsSender {
 		ApnsServiceBuilder appleServiceBuilder = APNS.newService();
 
 		String path = PortletPropsValues.APPLE_CERTIFICATE_PATH;
-		String password = PortletPropsValues.APPLE_CERTIFICATE_PASSWORD;
 
-		if (Validator.isNull(path) || Validator.isNull(password)) {
+		if (Validator.isNull(path)) {
 			if (_log.isWarnEnabled()) {
 				_log.warn(
-					"Missing apple.certificate.password or " +
-						"apple.certificate.path in portlet.properties");
+					"The property \"apple.certificate.path\" is not set in " +
+						"portlet.properties");
+			}
+
+			return;
+		}
+
+		String password = PortletPropsValues.APPLE_CERTIFICATE_PASSWORD;
+
+		if (Validator.isNull(path)) {
+			if (_log.isWarnEnabled()) {
+				_log.warn(
+					"The property \"apple.certificate.password\" is not set " +
+						"in portlet.properties");
 			}
 
 			return;
