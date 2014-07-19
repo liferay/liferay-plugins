@@ -20,3 +20,23 @@
 	<aui:input label="message" name="message" type="textarea" />
 	<aui:button type="submit" value="send" />
 </aui:form>
+
+<aui:script use="aui-base">
+	var form = A.one('#<portlet:namespace />fm');
+
+	form.on(
+		'submit',
+		function(event) {
+			event.halt();
+
+			var message = form.one('textarea[name="<portlet:namespace />message"]').val();
+
+			Liferay.Service(
+				'/push-notifications-portlet.pushnotificationsdevice/send-push-notification',
+				{
+					message: message
+				}
+			);
+		}
+	);
+</aui:script>
