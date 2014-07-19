@@ -64,6 +64,11 @@ public class PushNotificationsDeviceServiceWrapper
 			parameterTypes, arguments);
 	}
 
+	@Override
+	public void sendPushNotification(java.lang.String message) {
+		_pushNotificationsDeviceService.sendPushNotification(message);
+	}
+
 	/**
 	* Sets the Spring bean ID for this bean.
 	*

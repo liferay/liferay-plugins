@@ -249,15 +249,22 @@ public class PushNotificationsDeviceLocalServiceUtil {
 		return getService().getPushNotificationsDevicesCount();
 	}
 
-	public static java.util.List<java.lang.String> getTokens(long userId,
-		java.lang.String platform, int start, int end) {
-		return getService().getTokens(userId, platform, start, end);
-	}
-
 	public static java.lang.Object invokeMethod(java.lang.String name,
 		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
 		throws java.lang.Throwable {
 		return getService().invokeMethod(name, parameterTypes, arguments);
+	}
+
+	public static void sendPushNotification(
+		com.liferay.portal.kernel.json.JSONObject jsonObject, int start, int end)
+		throws java.lang.Exception {
+		getService().sendPushNotification(jsonObject, start, end);
+	}
+
+	public static void sendPushNotification(long userId,
+		com.liferay.portal.kernel.json.JSONObject jsonObject, int start, int end)
+		throws java.lang.Exception {
+		getService().sendPushNotification(userId, jsonObject, start, end);
 	}
 
 	/**

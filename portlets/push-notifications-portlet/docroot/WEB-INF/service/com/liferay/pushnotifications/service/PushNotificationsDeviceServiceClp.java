@@ -39,9 +39,13 @@ public class PushNotificationsDeviceServiceClp
 
 		_methodParameterTypes2 = new String[] {  };
 
-		_methodName4 = "setBeanIdentifier";
+		_methodName4 = "sendPushNotification";
 
 		_methodParameterTypes4 = new String[] { "java.lang.String" };
+
+		_methodName5 = "setBeanIdentifier";
+
+		_methodParameterTypes5 = new String[] { "java.lang.String" };
 	}
 
 	@Override
@@ -139,10 +143,30 @@ public class PushNotificationsDeviceServiceClp
 	}
 
 	@Override
-	public void setBeanIdentifier(java.lang.String beanIdentifier) {
+	public void sendPushNotification(java.lang.String message) {
 		try {
 			_invokableService.invokeMethod(_methodName4,
 				_methodParameterTypes4,
+				new Object[] { ClpSerializer.translateInput(message) });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+	}
+
+	@Override
+	public void setBeanIdentifier(java.lang.String beanIdentifier) {
+		try {
+			_invokableService.invokeMethod(_methodName5,
+				_methodParameterTypes5,
 				new Object[] { ClpSerializer.translateInput(beanIdentifier) });
 		}
 		catch (Throwable t) {
@@ -167,4 +191,6 @@ public class PushNotificationsDeviceServiceClp
 	private String[] _methodParameterTypes2;
 	private String _methodName4;
 	private String[] _methodParameterTypes4;
+	private String _methodName5;
+	private String[] _methodParameterTypes5;
 }

@@ -262,18 +262,27 @@ public class PushNotificationsDeviceLocalServiceWrapper
 	}
 
 	@Override
-	public java.util.List<java.lang.String> getTokens(long userId,
-		java.lang.String platform, int start, int end) {
-		return _pushNotificationsDeviceLocalService.getTokens(userId, platform,
-			start, end);
-	}
-
-	@Override
 	public java.lang.Object invokeMethod(java.lang.String name,
 		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
 		throws java.lang.Throwable {
 		return _pushNotificationsDeviceLocalService.invokeMethod(name,
 			parameterTypes, arguments);
+	}
+
+	@Override
+	public void sendPushNotification(
+		com.liferay.portal.kernel.json.JSONObject jsonObject, int start, int end)
+		throws java.lang.Exception {
+		_pushNotificationsDeviceLocalService.sendPushNotification(jsonObject,
+			start, end);
+	}
+
+	@Override
+	public void sendPushNotification(long userId,
+		com.liferay.portal.kernel.json.JSONObject jsonObject, int start, int end)
+		throws java.lang.Exception {
+		_pushNotificationsDeviceLocalService.sendPushNotification(userId,
+			jsonObject, start, end);
 	}
 
 	/**

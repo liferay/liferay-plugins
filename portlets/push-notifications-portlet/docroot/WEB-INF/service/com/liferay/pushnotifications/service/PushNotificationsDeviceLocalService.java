@@ -222,14 +222,18 @@ public interface PushNotificationsDeviceLocalService extends BaseLocalService,
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getPushNotificationsDevicesCount();
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<java.lang.String> getTokens(long userId,
-		java.lang.String platform, int start, int end);
-
 	@Override
 	public java.lang.Object invokeMethod(java.lang.String name,
 		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
 		throws java.lang.Throwable;
+
+	public void sendPushNotification(
+		com.liferay.portal.kernel.json.JSONObject jsonObject, int start, int end)
+		throws java.lang.Exception;
+
+	public void sendPushNotification(long userId,
+		com.liferay.portal.kernel.json.JSONObject jsonObject, int start, int end)
+		throws java.lang.Exception;
 
 	/**
 	* Sets the Spring bean ID for this bean.

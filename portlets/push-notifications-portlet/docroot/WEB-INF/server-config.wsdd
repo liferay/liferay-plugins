@@ -41,7 +41,10 @@
 		<operation xmlns:operNS="urn:http.service.pushnotifications.liferay.com" xmlns:rtns="http://model.pushnotifications.liferay.com" name="deletePushNotificationsDevice" qname="operNS:deletePushNotificationsDevice" returnQName="deletePushNotificationsDeviceReturn" returnType="rtns:PushNotificationsDeviceSoap" soapAction="">
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="token" type="tns:string"></parameter>
 		</operation>
-		<parameter name="allowedMethods" value="addPushNotificationsDevice deletePushNotificationsDevice" />
+		<operation xmlns:operNS="urn:http.service.pushnotifications.liferay.com" name="sendPushNotification" qname="operNS:sendPushNotification" soapAction="">
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="message" type="tns:string"></parameter>
+		</operation>
+		<parameter name="allowedMethods" value="addPushNotificationsDevice deletePushNotificationsDevice sendPushNotification" />
 		<parameter name="className" value="com.liferay.pushnotifications.service.http.PushNotificationsDeviceServiceSoap" />
 		<parameter name="schemaUnqualified" value="http://model.pushnotifications.liferay.com" />
 		<parameter name="typeMappingVersion" value="1.2" />

@@ -65,6 +65,10 @@ public class PushNotificationsDeviceServiceUtil {
 		return getService().invokeMethod(name, parameterTypes, arguments);
 	}
 
+	public static void sendPushNotification(java.lang.String message) {
+		getService().sendPushNotification(message);
+	}
+
 	/**
 	* Sets the Spring bean ID for this bean.
 	*

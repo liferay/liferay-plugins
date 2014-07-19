@@ -65,6 +65,8 @@ public interface PushNotificationsDeviceService extends BaseService,
 		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
 		throws java.lang.Throwable;
 
+	public void sendPushNotification(java.lang.String message);
+
 	/**
 	* Sets the Spring bean ID for this bean.
 	*
