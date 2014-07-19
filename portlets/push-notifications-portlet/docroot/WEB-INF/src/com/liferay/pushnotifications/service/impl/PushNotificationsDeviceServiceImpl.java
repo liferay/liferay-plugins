@@ -97,7 +97,7 @@ public class PushNotificationsDeviceServiceImpl
 		jsonObject.put("message", message);
 
 		if (_log.isDebugEnabled()) {
-			_log.debug("Received message " + jsonObject + " for all users");
+			_log.debug("Sending message " + jsonObject + " to all devices");
 		}
 
 		try {
