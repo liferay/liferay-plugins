@@ -16,6 +16,7 @@ package com.liferay.pushnotifications.service.impl;
 
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.log.Log;
@@ -33,7 +34,7 @@ public class PushNotificationsDeviceServiceImpl
 	@Override
 	public PushNotificationsDevice addPushNotificationsDevice(
 			String token, String platform)
-		throws PortalException {
+		throws PortalException, SystemException {
 
 		PushNotificationsDevice pushNotificationsDevice =
 			pushNotificationsDevicePersistence.fetchByToken(token);
@@ -62,7 +63,7 @@ public class PushNotificationsDeviceServiceImpl
 
 	@Override
 	public PushNotificationsDevice deletePushNotificationsDevice(String token)
-		throws PortalException {
+		throws PortalException, SystemException {
 
 		PushNotificationsDevice pushNotificationsDevice =
 			pushNotificationsDevicePersistence.fetchByToken(token);
@@ -91,7 +92,9 @@ public class PushNotificationsDeviceServiceImpl
 	}
 
 	@Override
-	public void sendPushNotification(String message) {
+	public void sendPushNotification(String message)
+		throws PortalException, SystemException {
+
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
 		jsonObject.put("message", message);
@@ -100,13 +103,8 @@ public class PushNotificationsDeviceServiceImpl
 			_log.debug("Sending message " + jsonObject + " to all devices");
 		}
 
-		try {
-			pushNotificationsDeviceLocalService.sendPushNotification(
-				jsonObject, QueryUtil.ALL_POS, QueryUtil.ALL_POS);
-		}
-		catch (Exception e) {
-			_log.error("Unable to send notification", e);
-		}
+		pushNotificationsDeviceLocalService.sendPushNotification(
+			jsonObject, QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(

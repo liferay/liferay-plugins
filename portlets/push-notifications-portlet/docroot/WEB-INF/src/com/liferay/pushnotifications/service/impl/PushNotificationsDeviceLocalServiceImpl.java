@@ -16,6 +16,7 @@ package com.liferay.pushnotifications.service.impl;
 
 import com.liferay.portal.kernel.bean.BeanReference;
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.pushnotifications.model.PushNotificationsDevice;
 import com.liferay.pushnotifications.sender.PushNotificationsSender;
@@ -35,7 +36,8 @@ public class PushNotificationsDeviceLocalServiceImpl
 
 	@Override
 	public PushNotificationsDevice addPushNotificationsDevice(
-		long userId, String platform, String token) {
+			long userId, String platform, String token)
+		throws SystemException {
 
 		long pushNotificationsDeviceId = counterLocalService.increment();
 
@@ -55,7 +57,7 @@ public class PushNotificationsDeviceLocalServiceImpl
 
 	@Override
 	public PushNotificationsDevice deletePushNotificationsDevice(String token)
-		throws PortalException {
+		throws PortalException, SystemException {
 
 		PushNotificationsDevice pushNotificationsDevice =
 			pushNotificationsDevicePersistence.findByToken(token);
@@ -67,7 +69,7 @@ public class PushNotificationsDeviceLocalServiceImpl
 
 	@Override
 	public void sendPushNotification(JSONObject jsonObject, int start, int end)
-		throws PortalException {
+		throws PortalException, SystemException {
 
 		sendPushNotification(_ALL_USERS_USER_ID, jsonObject, start, end);
 	}
@@ -75,7 +77,7 @@ public class PushNotificationsDeviceLocalServiceImpl
 	@Override
 	public void sendPushNotification(
 			long userId, JSONObject jsonObject, int start, int end)
-		throws PortalException {
+		throws PortalException, SystemException {
 
 		for (Map.Entry<String, PushNotificationsSender> entry :
 				_pushNotificationsSenders.entrySet()) {
@@ -110,7 +112,8 @@ public class PushNotificationsDeviceLocalServiceImpl
 	}
 
 	protected List<PushNotificationsDevice> getPushNotificationsDevices(
-		long userId, String platform, int start, int end) {
+			long userId, String platform, int start, int end)
+		throws SystemException {
 
 		if (userId == _ALL_USERS_USER_ID) {
 			return pushNotificationsDevicePersistence.findByPlatform(
