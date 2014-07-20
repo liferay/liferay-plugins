@@ -18,6 +18,7 @@
 
 <aui:form name="fm">
 	<aui:input label="message" name="message" type="textarea" />
+
 	<aui:button type="submit" value="send" />
 </aui:form>
 
