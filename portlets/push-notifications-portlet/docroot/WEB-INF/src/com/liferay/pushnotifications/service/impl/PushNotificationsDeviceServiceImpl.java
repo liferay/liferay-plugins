@@ -91,7 +91,7 @@ public class PushNotificationsDeviceServiceImpl
 	}
 
 	@Override
-	public void sendPushNotification(String message) {
+	public void sendPushNotification(String message) throws PortalException {
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
 		jsonObject.put("message", message);
@@ -100,13 +100,8 @@ public class PushNotificationsDeviceServiceImpl
 			_log.debug("Sending message " + jsonObject + " to all devices");
 		}
 
-		try {
-			pushNotificationsDeviceLocalService.sendPushNotification(
-				jsonObject, QueryUtil.ALL_POS, QueryUtil.ALL_POS);
-		}
-		catch (Exception e) {
-			_log.error("Unable to send notification", e);
-		}
+		pushNotificationsDeviceLocalService.sendPushNotification(
+			jsonObject, QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(
