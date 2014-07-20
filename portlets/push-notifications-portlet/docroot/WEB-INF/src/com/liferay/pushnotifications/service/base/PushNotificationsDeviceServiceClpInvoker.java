@@ -41,6 +41,10 @@ public class PushNotificationsDeviceServiceClpInvoker {
 		_methodName31 = "deletePushNotificationsDevice";
 
 		_methodParameterTypes31 = new String[] { "java.lang.String" };
+
+		_methodName32 = "sendPushNotification";
+
+		_methodParameterTypes32 = new String[] { "java.lang.String" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -68,6 +72,13 @@ public class PushNotificationsDeviceServiceClpInvoker {
 			return PushNotificationsDeviceServiceUtil.deletePushNotificationsDevice((java.lang.String)arguments[0]);
 		}
 
+		if (_methodName32.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes32, parameterTypes)) {
+			PushNotificationsDeviceServiceUtil.sendPushNotification((java.lang.String)arguments[0]);
+
+			return null;
+		}
+
 		throw new UnsupportedOperationException();
 	}
 
@@ -79,4 +90,6 @@ public class PushNotificationsDeviceServiceClpInvoker {
 	private String[] _methodParameterTypes30;
 	private String _methodName31;
 	private String[] _methodParameterTypes31;
+	private String _methodName32;
+	private String[] _methodParameterTypes32;
 }

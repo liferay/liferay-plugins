@@ -77,6 +77,12 @@ public class PushNotificationsDeviceServiceUtil {
 		return getService().deletePushNotificationsDevice(token);
 	}
 
+	public static void sendPushNotification(java.lang.String message)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		getService().sendPushNotification(message);
+	}
+
 	public static void clearService() {
 		_service = null;
 	}

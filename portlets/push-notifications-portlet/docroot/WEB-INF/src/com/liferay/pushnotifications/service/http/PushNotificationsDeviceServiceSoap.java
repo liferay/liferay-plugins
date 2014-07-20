@@ -94,5 +94,17 @@ public class PushNotificationsDeviceServiceSoap {
 		}
 	}
 
+	public static void sendPushNotification(java.lang.String message)
+		throws RemoteException {
+		try {
+			PushNotificationsDeviceServiceUtil.sendPushNotification(message);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
 	private static Log _log = LogFactoryUtil.getLog(PushNotificationsDeviceServiceSoap.class);
 }
