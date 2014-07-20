@@ -229,11 +229,11 @@ public interface PushNotificationsDeviceLocalService extends BaseLocalService,
 
 	public void sendPushNotification(
 		com.liferay.portal.kernel.json.JSONObject jsonObject, int start, int end)
-		throws java.lang.Exception;
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	public void sendPushNotification(long userId,
 		com.liferay.portal.kernel.json.JSONObject jsonObject, int start, int end)
-		throws java.lang.Exception;
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	/**
 	* Sets the Spring bean ID for this bean.

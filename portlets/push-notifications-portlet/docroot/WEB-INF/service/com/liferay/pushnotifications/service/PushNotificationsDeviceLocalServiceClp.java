@@ -708,7 +708,7 @@ public class PushNotificationsDeviceLocalServiceClp
 	@Override
 	public void sendPushNotification(
 		com.liferay.portal.kernel.json.JSONObject jsonObject, int start, int end)
-		throws java.lang.Exception {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		try {
 			_invokableLocalService.invokeMethod(_methodName21,
 				_methodParameterTypes21,
@@ -723,8 +723,8 @@ public class PushNotificationsDeviceLocalServiceClp
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
 
-			if (t instanceof java.lang.Exception) {
-				throw (java.lang.Exception)t;
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
 			}
 
 			if (t instanceof RuntimeException) {
@@ -740,7 +740,7 @@ public class PushNotificationsDeviceLocalServiceClp
 	@Override
 	public void sendPushNotification(long userId,
 		com.liferay.portal.kernel.json.JSONObject jsonObject, int start, int end)
-		throws java.lang.Exception {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		try {
 			_invokableLocalService.invokeMethod(_methodName22,
 				_methodParameterTypes22,
@@ -757,8 +757,8 @@ public class PushNotificationsDeviceLocalServiceClp
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
 
-			if (t instanceof java.lang.Exception) {
-				throw (java.lang.Exception)t;
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
 			}
 
 			if (t instanceof RuntimeException) {

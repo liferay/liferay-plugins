@@ -257,13 +257,13 @@ public class PushNotificationsDeviceLocalServiceUtil {
 
 	public static void sendPushNotification(
 		com.liferay.portal.kernel.json.JSONObject jsonObject, int start, int end)
-		throws java.lang.Exception {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		getService().sendPushNotification(jsonObject, start, end);
 	}
 
 	public static void sendPushNotification(long userId,
 		com.liferay.portal.kernel.json.JSONObject jsonObject, int start, int end)
-		throws java.lang.Exception {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		getService().sendPushNotification(userId, jsonObject, start, end);
 	}
 
