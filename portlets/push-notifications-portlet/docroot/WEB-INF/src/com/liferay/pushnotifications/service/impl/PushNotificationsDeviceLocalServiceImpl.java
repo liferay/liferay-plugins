@@ -69,7 +69,7 @@ public class PushNotificationsDeviceLocalServiceImpl
 	public void sendPushNotification(JSONObject jsonObject, int start, int end)
 		throws PortalException {
 
-		sendPushNotification(_ALL_USERS_USER_ID, jsonObject, start, end);
+		sendPushNotification(0, jsonObject, start, end);
 	}
 
 	@Override
@@ -112,7 +112,7 @@ public class PushNotificationsDeviceLocalServiceImpl
 	protected List<PushNotificationsDevice> getPushNotificationsDevices(
 		long userId, String platform, int start, int end) {
 
-		if (userId == _ALL_USERS_USER_ID) {
+		if (userId == 0) {
 			return pushNotificationsDevicePersistence.findByPlatform(
 				platform, start, end);
 		}
@@ -120,8 +120,6 @@ public class PushNotificationsDeviceLocalServiceImpl
 		return pushNotificationsDevicePersistence.findByU_P(
 			userId, platform, start, end);
 	}
-
-	private static final int _ALL_USERS_USER_ID = -1;
 
 	@BeanReference(name = "pushNotificationsSenders")
 	private Map<String, PushNotificationsSender> _pushNotificationsSenders;
