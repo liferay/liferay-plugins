@@ -69,7 +69,7 @@ public class PushNotificationsDeviceLocalServiceImpl
 	public void sendPushNotification(JSONObject jsonObject, int start, int end)
 		throws Exception {
 
-		sendPushNotification(_ALL_USERS, jsonObject, start, end);
+		sendPushNotification(_ALL_USERS_USER_ID, jsonObject, start, end);
 	}
 
 	@Override
@@ -80,23 +80,10 @@ public class PushNotificationsDeviceLocalServiceImpl
 		for (Map.Entry<String, PushNotificationsSender> entry :
 				_pushNotificationsSenders.entrySet()) {
 
-			String platform = entry.getKey();
+			List<String> tokens = new ArrayList<String>();
 
 			List<PushNotificationsDevice> pushNotificationsDevices =
-				new ArrayList<PushNotificationsDevice>();
-
-			if (userId == _ALL_USERS) {
-				pushNotificationsDevices =
-					pushNotificationsDevicePersistence.findByPlatform(
-						platform, start, end);
-			}
-			else {
-				pushNotificationsDevices =
-					pushNotificationsDevicePersistence.findByU_P(
-						userId, platform, start, end);
-			}
-
-			List<String> tokens = new ArrayList<String>();
+				getPushNotificationsDevices(userId, entry.getKey(), start, end);
 
 			for (PushNotificationsDevice pushNotificationsDevice :
 					pushNotificationsDevices) {
@@ -114,7 +101,19 @@ public class PushNotificationsDeviceLocalServiceImpl
 		}
 	}
 
-	private static final int _ALL_USERS = -1;
+	protected List<PushNotificationsDevice> getPushNotificationsDevices(
+		long userId, String platform, int start, int end) {
+
+		if (userId == _ALL_USERS_USER_ID) {
+			return pushNotificationsDevicePersistence.findByPlatform(
+				platform, start, end);
+		}
+
+		return pushNotificationsDevicePersistence.findByU_P(
+			userId, platform, start, end);
+	}
+
+	private static final int _ALL_USERS_USER_ID = -1;
 
 	@BeanReference(name = "pushNotificationsSenders")
 	private Map<String, PushNotificationsSender> _pushNotificationsSenders;
