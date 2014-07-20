@@ -143,7 +143,8 @@ public class PushNotificationsDeviceServiceClp
 	}
 
 	@Override
-	public void sendPushNotification(java.lang.String message) {
+	public void sendPushNotification(java.lang.String message)
+		throws com.liferay.portal.kernel.exception.PortalException {
 		try {
 			_invokableService.invokeMethod(_methodName4,
 				_methodParameterTypes4,
@@ -151,6 +152,10 @@ public class PushNotificationsDeviceServiceClp
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
 
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
