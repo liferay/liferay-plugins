@@ -67,7 +67,7 @@ public class PushNotificationsDeviceLocalServiceImpl
 
 	@Override
 	public void sendPushNotification(JSONObject jsonObject, int start, int end)
-		throws Exception {
+		throws PortalException {
 
 		sendPushNotification(_ALL_USERS_USER_ID, jsonObject, start, end);
 	}
@@ -75,7 +75,7 @@ public class PushNotificationsDeviceLocalServiceImpl
 	@Override
 	public void sendPushNotification(
 			long userId, JSONObject jsonObject, int start, int end)
-		throws Exception {
+		throws PortalException {
 
 		for (Map.Entry<String, PushNotificationsSender> entry :
 				_pushNotificationsSenders.entrySet()) {
@@ -97,7 +97,15 @@ public class PushNotificationsDeviceLocalServiceImpl
 
 			PushNotificationsSender pushNotificationsSender = entry.getValue();
 
-			pushNotificationsSender.send(tokens, jsonObject);
+			try {
+				pushNotificationsSender.send(tokens, jsonObject);
+			}
+			catch (PortalException pe) {
+				throw pe;
+			}
+			catch (Exception e) {
+				throw new PortalException(e);
+			}
 		}
 	}
 
