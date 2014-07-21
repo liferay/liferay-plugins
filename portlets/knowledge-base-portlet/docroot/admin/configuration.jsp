@@ -326,7 +326,7 @@ else if (tabs2.equals("article-updated-email")) {
 	</aui:fieldset>
 </aui:form>
 
-<c:if test='<%= tabs3.equals("article") %>'>
+<c:if test='<%= tabs2.equals("display-settings") && tabs3.equals("article") %>'>
 	<aui:script>
 		Liferay.Util.toggleBoxes('<portlet:namespace />enableKBArticleRatingsCheckbox', '<portlet:namespace />ratingsType');
 	</aui:script>
