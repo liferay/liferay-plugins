@@ -97,6 +97,7 @@ KBArticle kbArticle = (KBArticle)request.getAttribute(WebKeys.KNOWLEDGE_BASE_KB_
 				<liferay-ui:search-container
 					emptyResultsMessage="no-comments-found"
 					iteratorURL="<%= iteratorURL %>"
+					orderByComparator='<%= KnowledgeBaseUtil.getKBCommentOrderByComparator("modified-date", "desc") %>'
 				>
 
 					<liferay-ui:search-container-results

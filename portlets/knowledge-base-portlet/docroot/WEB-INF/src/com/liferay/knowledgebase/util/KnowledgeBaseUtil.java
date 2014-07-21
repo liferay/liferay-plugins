@@ -15,6 +15,7 @@
 package com.liferay.knowledgebase.util;
 
 import com.liferay.knowledgebase.model.KBArticle;
+import com.liferay.knowledgebase.model.KBComment;
 import com.liferay.knowledgebase.model.KBTemplate;
 import com.liferay.knowledgebase.util.comparator.KBArticleCreateDateComparator;
 import com.liferay.knowledgebase.util.comparator.KBArticleModifiedDateComparator;
@@ -24,6 +25,8 @@ import com.liferay.knowledgebase.util.comparator.KBArticleTitleComparator;
 import com.liferay.knowledgebase.util.comparator.KBArticleUserNameComparator;
 import com.liferay.knowledgebase.util.comparator.KBArticleVersionComparator;
 import com.liferay.knowledgebase.util.comparator.KBArticleViewCountComparator;
+import com.liferay.knowledgebase.util.comparator.KBCommentCreateDateComparator;
+import com.liferay.knowledgebase.util.comparator.KBCommentModifiedDateComparator;
 import com.liferay.knowledgebase.util.comparator.KBTemplateCreateDateComparator;
 import com.liferay.knowledgebase.util.comparator.KBTemplateModifiedDateComparator;
 import com.liferay.knowledgebase.util.comparator.KBTemplateTitleComparator;
@@ -193,6 +196,29 @@ public class KnowledgeBaseUtil {
 		}
 
 		return url;
+	}
+
+	public static OrderByComparator<KBComment> getKBCommentOrderByComparator(
+		String orderByCol, String orderByType) {
+
+		if (Validator.isNull(orderByCol) || Validator.isNull(orderByType)) {
+			return null;
+		}
+
+		boolean ascending = false;
+
+		if (orderByType.equals("asc")) {
+			ascending = true;
+		}
+
+		if (orderByCol.equals("create-date")) {
+			return new KBCommentCreateDateComparator(ascending);
+		}
+		else if (orderByCol.equals("modified-date")) {
+			return new KBCommentModifiedDateComparator(ascending);
+		}
+
+		return null;
 	}
 
 	public static OrderByComparator<KBTemplate> getKBTemplateOrderByComparator(
