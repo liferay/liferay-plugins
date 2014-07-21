@@ -42,12 +42,12 @@ KBArticle kbArticle = (KBArticle)request.getAttribute(WebKeys.KNOWLEDGE_BASE_KB_
 			<c:choose>
 				<c:when test="<%= kbCommentsCount == 1 %>">
 					| <a data-show-node-id="<portlet:namespace />previousCommentsContainer" href="javascript:void(0)">
-						<liferay-ui:message key="you-have-sent-one-suggestion-for-this-article" />
+						<liferay-ui:message key="you-sent-one-suggestion-for-this-article" />
 					</a>
 				</c:when>
 				<c:when test="<%= kbCommentsCount > 1 %>">
 					| <a data-show-node-id="<portlet:namespace />previousCommentsContainer" href="javascript:void(0)">
-						<liferay-ui:message arguments="<%= new Object[]{ kbCommentsCount } %>" key="you-have-sent-x-suggestions-for-this-article" />
+						<liferay-ui:message arguments="<%= new Object[]{ kbCommentsCount } %>" key="you-sent-x-suggestions-for-this-article" />
 					</a>
 				</c:when>
 			</c:choose>
