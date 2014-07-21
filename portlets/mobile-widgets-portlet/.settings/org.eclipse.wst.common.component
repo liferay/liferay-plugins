@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="mobile-widgets-portlet">
+        <wb-resource deploy-path="/" source-path="/docroot" tag="defaultRootSource"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/docroot/WEB-INF/src"/>
+        <property name="context-root" value="mobile-widgets-portlet"/>
+        <property name="java-output-path" value="/mobile-widgets-portlet/docroot/WEB-INF/classes"/>
+    </wb-module>
+</project-modules>
