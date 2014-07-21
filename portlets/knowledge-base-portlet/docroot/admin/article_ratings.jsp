@@ -26,37 +26,33 @@ KBArticle kbArticle = (KBArticle)request.getAttribute(WebKeys.KNOWLEDGE_BASE_KB_
 	int kbCommentsCount = KBCommentLocalServiceUtil.getKBCommentsCount(themeDisplay.getUserId(), KBArticle.class.getName(), kbArticle.getClassPK());
 	%>
 
-	<div id="<portlet:namespace />kbArticleRatingsContainer">
-		<liferay-ui:ratings
-			className="<%= KBArticle.class.getName() %>"
-			classPK="<%= kbArticle.getResourcePrimKey() %>"
-			numberOfStars="<%= PortletPropsValues.KNOWLEDGE_BASE_RATINGS_NUMBER_OF_STARS %>"
-			type="<%= kbArticleRatingsType %>"
-		/>
-
-		<c:if test="<%= themeDisplay.isSignedIn() %>">
-			<div class="kb-article-feedback-actions" id="<portlet:namespace />additionalFeedbackActionsContainer">
-				<a data-show-node-id="<portlet:namespace />feedbackContainer" href="javascript:void(0)">
-					<liferay-ui:message key="do-you-have-any-suggestions" />
-				</a>
-
-				<c:choose>
-					<c:when test="<%= kbCommentsCount == 1 %>">
-						| <a data-show-node-id="<portlet:namespace />previousCommentsContainer" href="javascript:void(0)">
-							<liferay-ui:message key="you-have-sent-one-suggestion-for-this-article" />
-						</a>
-					</c:when>
-					<c:when test="<%= kbCommentsCount > 1 %>">
-						| <a data-show-node-id="<portlet:namespace />previousCommentsContainer" href="javascript:void(0)">
-							<liferay-ui:message arguments="<%= new Object[]{ kbCommentsCount } %>" key="you-have-sent-x-suggestions-for-this-article" />
-						</a>
-					</c:when>
-				</c:choose>
-			</div>
-		</c:if>
-	</div>
+	<liferay-ui:ratings
+		className="<%= KBArticle.class.getName() %>"
+		classPK="<%= kbArticle.getResourcePrimKey() %>"
+		numberOfStars="<%= PortletPropsValues.KNOWLEDGE_BASE_RATINGS_NUMBER_OF_STARS %>"
+		type="<%= kbArticleRatingsType %>"
+	/>
 
 	<c:if test='<%= kbArticleRatingsType.equals("thumbs") && themeDisplay.isSignedIn() %>'>
+		<div class="kb-article-feedback-actions" id="<portlet:namespace />additionalFeedbackActionsContainer">
+			<a data-show-node-id="<portlet:namespace />feedbackContainer" href="javascript:void(0)">
+				<liferay-ui:message key="do-you-have-any-suggestions" />
+			</a>
+
+			<c:choose>
+				<c:when test="<%= kbCommentsCount == 1 %>">
+					| <a data-show-node-id="<portlet:namespace />previousCommentsContainer" href="javascript:void(0)">
+						<liferay-ui:message key="you-have-sent-one-suggestion-for-this-article" />
+					</a>
+				</c:when>
+				<c:when test="<%= kbCommentsCount > 1 %>">
+					| <a data-show-node-id="<portlet:namespace />previousCommentsContainer" href="javascript:void(0)">
+						<liferay-ui:message arguments="<%= new Object[]{ kbCommentsCount } %>" key="you-have-sent-x-suggestions-for-this-article" />
+					</a>
+				</c:when>
+			</c:choose>
+		</div>
+
 		<div class="hide kb-article-feedback" id="<portlet:namespace />feedbackContainer">
 			<liferay-portlet:actionURL name="updateKBComment" var="updateKBCommentURL" />
 
@@ -81,36 +77,37 @@ KBArticle kbArticle = (KBArticle)request.getAttribute(WebKeys.KNOWLEDGE_BASE_KB_
 
 					<aui:button-row cssClass="kb-submit-buttons">
 						<aui:button type="submit" value="submit" />
-						<aui:button cssClass="kb-article-feedback-cancel-button" value="cancel" />
+
+						<aui:button name="cancelFeedback" value="cancel" />
 					</aui:button-row>
 				</aui:fieldset>
 			</aui:form>
 		</div>
 
 		<%
-		boolean paginating = GetterUtil.getBoolean(ParamUtil.getBoolean(request, "paginating"), false);
+		boolean expanded = ParamUtil.getBoolean(request, "expanded");
 		%>
 
-		<div class='kb-article-previous-comments <%= paginating ? "" : "hide" %>' id="<portlet:namespace />previousCommentsContainer">
+		<div class='kb-article-previous-comments <%= expanded ? "" : "hide" %>' id="<portlet:namespace />previousCommentsContainer">
 			<c:if test="<%= kbCommentsCount > 0 %>">
 				<liferay-portlet:renderURL varImpl="iteratorURL">
-					<portlet:param name="paginating" value="true" />
+					<portlet:param name="expanded" value="<%= Boolean.TRUE.toString() %>" />
 				</liferay-portlet:renderURL>
 
 				<liferay-ui:search-container
-						emptyResultsMessage="no-comments-found"
-						iteratorURL="<%= iteratorURL %>"
+					emptyResultsMessage="no-comments-found"
+					iteratorURL="<%= iteratorURL %>"
 				>
 
 					<liferay-ui:search-container-results
-							results="<%= KBCommentLocalServiceUtil.getKBComments(themeDisplay.getUserId(), KBArticle.class.getName(), kbArticle.getClassPK(), searchContainer.getStart(), searchContainer.getEnd(), searchContainer.getOrderByComparator()) %>"
-							total="<%= kbCommentsCount %>"
+						results="<%= KBCommentLocalServiceUtil.getKBComments(themeDisplay.getUserId(), KBArticle.class.getName(), kbArticle.getClassPK(), searchContainer.getStart(), searchContainer.getEnd(), searchContainer.getOrderByComparator()) %>"
+						total="<%= kbCommentsCount %>"
 					/>
 
 					<liferay-ui:search-container-row
-							className="com.liferay.knowledgebase.model.KBComment"
-							escapedModel="true"
-							modelVar="kbComment"
+						className="com.liferay.knowledgebase.model.KBComment"
+						escapedModel="true"
+						modelVar="kbComment"
 					>
 						<div class="kb-article-comment">
 							<p class="kb-article-comment-body">
@@ -148,38 +145,36 @@ KBArticle kbArticle = (KBArticle)request.getAttribute(WebKeys.KNOWLEDGE_BASE_KB_
 				}
 			);
 
-			var additionalFeedbackActions = A.all('#<portlet:namespace />additionalFeedbackActionsContainer a');
+			A.one('#<portlet:namespace />additionalFeedbackActionsContainer').delegate(
+				'click',
+				function(event) {
+					var showNode = A.one('#' + event.currentTarget.getData('show-node-id'));
 
-			additionalFeedbackActions.each(
-				function(node) {
-					var nodeToShow = A.one('#' + node.getData('show-node-id'));
+					showNode.toggleView();
 
-					node.on(
-						'click',
-						function(event) {
-							nodeToShow.toggleView();
+					var content = showNode.one('#content');
 
-							var textArea = nodeToShow.one('textarea');
-
-							if (textArea) {
-								textArea.focus();
-							}
-						}
-					);
-				}
+					if (content) {
+						content.focus();
+					}
+				},
+				'a'
 			);
 
-			var cancelButtons = A.all('.kb-article-feedback-cancel-button');
-
-			cancelButtons.on(
+			A.one('#<portlet:namespace />cancelFeedback').on(
 				'click',
 				function(event) {
 					this.each(
 						function(node) {
-							var container = node.ancestor('.kb-article-feedback');
+							var container = node.ancestor('#<portlet:namespace />feedbackContainer');
 
 							container.hide();
-							container.all('textarea').val('');
+
+							var content = container.one('#content');
+
+							if (content) {
+								content.val('');
+							}
 						}
 					);
 				}
