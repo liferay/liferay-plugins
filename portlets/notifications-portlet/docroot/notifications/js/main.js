@@ -552,7 +552,7 @@ AUI().use(
 				}
 
 				A.io.request(
-					instance._getResourceURL('userNotificationEvents', instance._dockbarViewDelta),
+					instance._getResourceURL('getUserNotificationEvents', instance._dockbarViewDelta),
 					{
 						dataType: 'JSON',
 						on: {
@@ -650,7 +650,7 @@ AUI().use(
 				var instance = this;
 
 				A.io.request(
-					instance._getResourceURL('notificationsCount'),
+					instance._getResourceURL('getNotificationsCount'),
 					{
 						on: {
 							success: function() {

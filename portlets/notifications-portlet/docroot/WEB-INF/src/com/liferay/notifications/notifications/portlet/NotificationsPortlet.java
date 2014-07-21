@@ -170,10 +170,10 @@ public class NotificationsPortlet extends MVCPortlet {
 		try {
 			String resourceId = resourceRequest.getResourceID();
 
-			if (resourceId.equals("notificationsCount")) {
+			if (resourceId.equals("getNotificationsCount")) {
 				getNotificationsCount(resourceRequest, resourceResponse);
 			}
-			else if (resourceId.equals("userNotificationEvents")) {
+			else if (resourceId.equals("getUserNotificationEvents")) {
 				getUserNotificationEvents(resourceRequest, resourceResponse);
 			}
 		}
