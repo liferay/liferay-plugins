@@ -36,6 +36,7 @@ import com.liferay.knowledgebase.util.PortletKeys;
 import com.liferay.knowledgebase.util.WebKeys;
 import com.liferay.portal.NoSuchSubscriptionException;
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.portlet.PortletResponseUtil;
@@ -548,7 +549,7 @@ public class AdminPortlet extends MVCPortlet {
 
 	public void updateKBCommentStatus(
 			ActionRequest actionRequest, ActionResponse actionResponse)
-		throws PortalException {
+		throws PortalException, SystemException {
 
 		long kbCommentId = ParamUtil.getLong(actionRequest, "kbCommentId");
 		int status = ParamUtil.getInteger(actionRequest, "status");

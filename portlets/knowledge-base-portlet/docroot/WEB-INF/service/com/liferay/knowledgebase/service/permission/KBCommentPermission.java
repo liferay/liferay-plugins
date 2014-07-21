@@ -45,7 +45,7 @@ public class KBCommentPermission {
 	public static void check(
 			PermissionChecker permissionChecker, long kbCommentId,
 			String actionId)
-		throws PortalException {
+		throws PortalException, SystemException {
 
 		if (!contains(permissionChecker, kbCommentId, actionId)) {
 			throw new PrincipalException();
@@ -96,7 +96,7 @@ public class KBCommentPermission {
 	public static boolean contains(
 			PermissionChecker permissionChecker, long kbCommentId,
 			String actionId)
-		throws PortalException {
+		throws PortalException, SystemException {
 
 		KBComment kbComment = KBCommentLocalServiceUtil.getKBComment(
 			kbCommentId);

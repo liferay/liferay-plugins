@@ -52,7 +52,9 @@ public class KBCommentServiceImpl extends KBCommentServiceBaseImpl {
 	}
 
 	@Override
-	public KBComment getKBComment(long kbCommentId) throws PortalException {
+	public KBComment getKBComment(long kbCommentId)
+		throws PortalException, SystemException {
+
 		KBCommentPermission.check(
 			getPermissionChecker(), kbCommentId, ActionKeys.VIEW);
 
@@ -61,7 +63,7 @@ public class KBCommentServiceImpl extends KBCommentServiceBaseImpl {
 
 	public List<KBComment> getKBComments(
 			long groupId, int status, int start, int end)
-		throws PortalException {
+		throws PortalException, SystemException {
 
 		List<KBComment> kbComments = new ArrayList<KBComment>();
 
@@ -76,7 +78,7 @@ public class KBCommentServiceImpl extends KBCommentServiceBaseImpl {
 	}
 
 	public int getKBCommentsCount(long groupId, int status)
-		throws PortalException {
+		throws PortalException, SystemException {
 
 		int kbCommentsCount = 0;
 
@@ -92,7 +94,7 @@ public class KBCommentServiceImpl extends KBCommentServiceBaseImpl {
 	public KBComment updateKBComment(
 			long kbCommentId, long classNameId, long classPK, String content,
 			boolean helpful, int status, ServiceContext serviceContext)
-		throws PortalException {
+		throws PortalException, SystemException {
 
 		KBCommentPermission.check(
 			getPermissionChecker(), kbCommentId, ActionKeys.UPDATE);
@@ -105,7 +107,7 @@ public class KBCommentServiceImpl extends KBCommentServiceBaseImpl {
 	public KBComment updateKBComment(
 			long kbCommentId, long classNameId, long classPK, String content,
 			boolean helpful, ServiceContext serviceContext)
-		throws PortalException {
+		throws PortalException, SystemException {
 
 		KBComment kbComment = kbCommentPersistence.findByPrimaryKey(
 			kbCommentId);
@@ -117,7 +119,7 @@ public class KBCommentServiceImpl extends KBCommentServiceBaseImpl {
 
 	public KBComment updateStatus(
 			long kbCommentId, int status, ServiceContext serviceContext)
-		throws PortalException {
+		throws PortalException, SystemException {
 
 		KBCommentPermission.check(
 			getPermissionChecker(), kbCommentId, ActionKeys.UPDATE);

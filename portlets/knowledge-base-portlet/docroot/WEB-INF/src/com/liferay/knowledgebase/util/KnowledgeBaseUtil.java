@@ -16,7 +16,6 @@ package com.liferay.knowledgebase.util;
 
 import com.liferay.knowledgebase.model.KBArticle;
 import com.liferay.knowledgebase.model.KBCommentConstants;
-import com.liferay.knowledgebase.model.KBTemplate;
 import com.liferay.knowledgebase.util.comparator.KBArticleCreateDateComparator;
 import com.liferay.knowledgebase.util.comparator.KBArticleModifiedDateComparator;
 import com.liferay.knowledgebase.util.comparator.KBArticlePriorityComparator;

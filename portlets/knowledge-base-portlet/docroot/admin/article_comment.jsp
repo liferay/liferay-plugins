@@ -61,6 +61,7 @@ KBComment kbComment = (KBComment)request.getAttribute("article_comment.jsp-kb_co
 			</div>
 
 			<div class="kb-article-comment-date">
+
 				<%
 				DateSearchEntry dateSearchEntry = new DateSearchEntry();
 

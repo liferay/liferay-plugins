@@ -29,6 +29,7 @@ import com.liferay.knowledgebase.util.comparator.KBCommentCreateDateComparator;
 import com.liferay.knowledgebase.util.KnowledgeBaseUtil;
 import com.liferay.knowledgebase.util.PortletKeys;
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.log.Log;
@@ -169,15 +170,17 @@ public class KBCommentLocalServiceImpl extends KBCommentLocalServiceBaseImpl {
 
 	@Override
 	public List<KBComment> getKBComments(
-		long groupId, int status, int start, int end) {
+			long groupId, int status, int start, int end)
+		throws SystemException {
 
 		return kbCommentPersistence.findByG_S(groupId, status, start, end);
 	}
 
 	@Override
 	public List<KBComment> getKBComments(
-		String className, long classPK, int start, int end,
-		OrderByComparator<KBComment> orderByComparator) {
+			String className, long classPK, int start, int end,
+			OrderByComparator orderByComparator)
+		throws SystemException {
 
 		long classNameId = classNameLocalService.getClassNameId(className);
 
@@ -195,12 +198,16 @@ public class KBCommentLocalServiceImpl extends KBCommentLocalServiceBaseImpl {
 	}
 
 	@Override
-	public int getKBCommentsCount(long groupId, int status) {
+	public int getKBCommentsCount(long groupId, int status)
+		throws SystemException {
+
 		return kbCommentPersistence.countByG_S(groupId, status);
 	}
 
 	@Override
-	public int getKBCommentsCount(String className, long classPK) {
+	public int getKBCommentsCount(String className, long classPK)
+		throws SystemException {
+
 		long classNameId = classNameLocalService.getClassNameId(className);
 
 		return kbCommentPersistence.countByC_C(classNameId, classPK);
@@ -210,7 +217,7 @@ public class KBCommentLocalServiceImpl extends KBCommentLocalServiceBaseImpl {
 	public KBComment updateKBComment(
 			long kbCommentId, long classNameId, long classPK, String content,
 			boolean helpful, int status, ServiceContext serviceContext)
-		throws PortalException {
+		throws PortalException, SystemException {
 
 		// KB comment
 
@@ -245,7 +252,7 @@ public class KBCommentLocalServiceImpl extends KBCommentLocalServiceBaseImpl {
 
 	public KBComment updateStatus(
 			long kbCommentId, int status, ServiceContext serviceContext)
-		throws PortalException {
+		throws PortalException, SystemException {
 
 		KBComment kbComment = kbCommentPersistence.findByPrimaryKey(
 			kbCommentId);
@@ -261,7 +268,7 @@ public class KBCommentLocalServiceImpl extends KBCommentLocalServiceBaseImpl {
 
 	protected void notifyFeedbackUser(
 			KBComment kbComment, ServiceContext serviceContext)
-		throws PortalException {
+		throws PortalException, SystemException {
 
 		PortletPreferences preferences =
 			portletPreferencesLocalService.getPreferences(
