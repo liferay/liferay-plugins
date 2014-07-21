@@ -1,0 +1,133 @@
+@import "compass";
+
+/* ---------- Add/remove page ---------- */
+
+.modify-pages {
+	li {
+		position: relative;
+
+		&.lfr-nav-hover {
+			.delete-tab {
+				@include opacity(1);
+			}
+		}
+	}
+
+	.add-page-editor-input {
+		width: 150px;
+	}
+
+	.delete-tab {
+		color: #444;
+		cursor: pointer;
+		display: block;
+		font-size: 20px;
+		font-weight: bold;
+		height: 10px;
+		line-height: 6px;
+		margin-top: -8px;
+		overflow: hidden;
+
+		@include opacity(0);
+
+		padding: 3px 0;
+		position: absolute;
+		right: 1px;
+		text-shadow: 0 1px #FFF;
+		top: 50%;
+
+		&:hover {
+			color: #B50303;
+		}
+	}
+
+	.lfr-nav-updateable.selected a:hover span {
+		cursor: text;
+	}
+}
+
+.nav {
+	li .toolbar {
+		margin-top: 5px;
+	}
+}
+
+/* ---------- Navigation portlet ---------- */
+
+.nav-menu {
+	ul {
+		padding-left: 10px;
+	}
+
+	li a {
+		&.ancestor {
+			font-weight: bold;
+		}
+
+		&.selected {
+			color: #000;
+			font-weight: bold;
+			text-decoration: none;
+		}
+	}
+}
+
+.nav-menu-style-arrows ul {
+	list-style-image: url(../images/arrows/04_right.png);
+}
+
+/* ---------- Page template selector ---------- */
+
+.form-options {
+	border: 1px solid #AAA;
+	display: inline-block;
+	vertical-align: middle;
+
+	input {
+		border-width: 0;
+		display: inline;
+		float: left;
+	}
+}
+
+.form-triggers {
+	float: left;
+}
+
+.form-trigger {
+	background: #C4C4C4 url(../images/application/button_bg.png) repeat-x 0 0;
+	border-left: 1px solid #BBB;
+	display: inline-block;
+	float: left;
+
+	img {
+		background: url() no-repeat 50% 40%;
+		height: 25px;
+		padding: 0 3px;
+		vertical-align: middle;
+		width: 16px;
+	}
+
+	&:focus, &:hover {
+		background-color: #83B0CA;
+		background-image: url(../images/application/button_bg_over.png);
+	}
+}
+
+.trigger-selected {
+	background-color: #EBEBEB;
+	background-image: url(../images/application/button_bg_selected.png);
+
+	&:focus, &:hover {
+		background-color: #B7DEF4;
+		background-image: url(../images/application/button_bg_selected_over.png);
+	}
+}
+
+.options-trigger img {
+	background-image: url(../images/common/configuration.png);
+}
+
+.save-trigger img {
+	background-image: url(../images/common/check.png);
+}

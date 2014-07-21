@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+
+<root available-locales="en_US" default-locale="en_US">
+	<dynamic-element instance-id="F9rndeGh" name="width" type="text" index-type="">
+		<dynamic-content><![CDATA[960]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element instance-id="dohmZ4aW" name="height" type="text" index-type="">
+		<dynamic-content><![CDATA[260]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element instance-id="sSzCClU1" name="duration" type="list" index-type="">
+		<dynamic-content><![CDATA[6]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element instance-id="TKFzz6Cm" name="controls" type="boolean" index-type="">
+		<dynamic-content><![CDATA[]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element instance-id="G4uAO5yJ" name="image" type="document_library" index-type="">
+		<dynamic-element instance-id="YROro1ov" name="link" type="text" index-type="">
+			<dynamic-element instance-id="5XDcRwj2" name="url-location" type="text" index-type="">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-content><![CDATA[]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-content><![CDATA[[$FILE=image1.png$]]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element instance-id="KvW92QWJ" name="image" type="document_library" index-type="">
+		<dynamic-element instance-id="mUJqXMFs" name="link" type="text" index-type="">
+			<dynamic-element instance-id="sWvozbm7" name="url-location" type="text" index-type="">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-content><![CDATA[]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-content><![CDATA[[$FILE=image2.png$]]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element instance-id="ZkHbi2dD" name="image" type="document_library" index-type="">
+		<dynamic-element instance-id="RIt6U99s" name="link" type="text" index-type="">
+			<dynamic-element instance-id="0BPNPTkc" name="url-location" type="text" index-type="">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-content><![CDATA[]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-content><![CDATA[[$FILE=image3.png$]]]></dynamic-content>
+	</dynamic-element>
+</root>

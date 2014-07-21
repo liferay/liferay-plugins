@@ -1,0 +1,13 @@
+/* FONT PATH
+ * -------------------------- */
+
+@font-face {
+	font-family: 'fontawesome-alloy';
+	src:url('#{$FontAwesomePath}/fontawesome-alloy.eot');
+	src:url('#{$FontAwesomePath}/fontawesome-alloy.eot?#iefix') format('embedded-opentype'),
+		url('#{$FontAwesomePath}/fontawesome-alloy.woff') format('woff'),
+		url('#{$FontAwesomePath}/fontawesome-alloy.ttf') format('truetype'),
+		url('#{$FontAwesomePath}/fontawesome-alloy.svg#fontawesome-alloy') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}

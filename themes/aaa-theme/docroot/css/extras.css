@@ -1,0 +1,414 @@
+@import "compass";
+@import "mixins";
+
+@mixin keyframes($name) {
+	@-webkit-keyframes #{$name} {
+		@content;
+	}
+
+	@-moz-keyframes #{$name} {
+		@content;
+	}
+
+	@-o-keyframes #{$name} {
+		@content;
+	}
+
+	@keyframes #{$name} {
+		@content;
+	}
+}
+
+.menu-content, .underlay-content {
+	@include box-shadow(2px 4px 7px rgba(0, 0, 0, 0.5));
+}
+
+.lfr-add-panel, .lfr-device-preview-panel, .lfr-edit-layout-panel {
+	@include box-shadow(0 0 5px rgba(0, 0, 0, 0.5));
+}
+
+.lfr-preview-file-image img, .lfr-translation-manager {
+	@include box-shadow(0 3px 5px -3px rgba(0, 0, 0, 0.8));
+}
+
+.lfr-preview-file-image-current-column {
+	@include box-shadow(inset 0 0 3px rgba(0, 0, 0, 0.8));
+}
+
+.lfr-preview-file-image-current-column {
+	@include box-shadow(inset 0 0 5px rgba(0, 0, 0, 0.8));
+}
+
+.lfr-device-preview {
+	.lfr-device-size-status-content {
+		@include border-radius(3px);
+		@include box-shadow(0 0 1px #FFF);
+		@include opacity(0.9);
+	}
+
+	.lfr-device {
+		&:after, &:before {
+			@include box-shadow(#111 0 1px 0);
+		}
+
+		&:after {
+			@include border-radius(15px);
+		}
+
+		&.rotated {
+			&:after, &:before {
+				@include box-shadow(#111 -1px 1px 0);
+			}
+		}
+
+		&.smartphone, &.tablet {
+			@include border-radius(25px);
+		}
+
+		&.tablet {
+			&:before {
+				@include border-radius(5px);
+			}
+		}
+	}
+}
+
+.dockbar {
+	@include respond-to(phone, tablet) {
+		.navbar-inner .btn-navbar {
+			@include box-shadow(none);
+			@include text-shadow(none);
+		}
+	}
+
+	.navbar-inner .nav li.staging-toggle {
+		&.active > a {
+			@include box-shadow(none);
+		}
+
+		span {
+			@include border-radius(4px);
+		}
+	}
+
+	.menu-button-active .menu-button {
+		@include box-shadow(inset 0 1px 5px rgba(0, 0, 0, 0.7));
+	}
+
+	.impersonating-user .alert-info {
+		@include border-radius(0);
+	}
+}
+
+.dockbar-split .dockbar {
+	.navbar-inner {
+		.nav > li > a {
+			@include text-shadow(none);
+		}
+
+		.nav-add-controls {
+			> li {
+				a {
+					@include border-radius(4px);
+
+					.nav-item-label {
+						@include border-radius(30px);
+					}
+				}
+
+				&.open a {
+					@include border-radius(4px 4px 0 0);
+				}
+			}
+		}
+	}
+}
+
+@include respond-to(phone, tablet) {
+	.navbar .navbar-search .form-search .search-query {
+		@include border-radius(14px);
+	}
+}
+
+.portlet-document-library, .portlet-dynamic-data-mapping {
+	.lfr-ddm-small-image-preview {
+		@include box-shadow(0 1px 3px #ccc);
+	}
+}
+
+.portlet-asset-category-admin {
+	.tree-node-selected, .tree-node-over, .category-item {
+		@include border-radius(5px);
+	}
+}
+
+.lfr-translation-manager-translation.lfr-translation-manager-translation-editing {
+	@include box-shadow(inset 0 0 2px #224FA8);
+}
+
+.portlet-document-library-upload-mask .overlaymask-content {
+	@include border-radius(5px);
+}
+
+.lfr-search-combobox-item, .portlet-journal .lfr-search-combobox .search input {
+	@include border-radius(1px);
+}
+
+.lfr-search-combobox {
+	.field-input-text {
+		@include border-radius(4px 1px 1px 4px);
+	}
+
+	.button-input {
+		@include border-radius(1px 4px 4px 1px);
+	}
+}
+
+.lfr-upload-container .progress-bar, .lfr-upload-container .progress, .lfr-editable:after {
+	@include border-radius(10px);
+}
+
+body > .lfr-menu-list ul, .active-area-proxy, .entry-display-style .entry-thumbnail, .lfr-api-results, .lfr-translation-manager, .lfr-translation-manager-translation, .lfr-upload-container .cancel-button .modify-pages .delete-tab, .portlet-image-gallery-display .image-thumbnail img, .rule-group-instance-container .rule-group-instance, .select-documents, .select-files, .taglib-ratings.stars:hover, .taglib-ratings.stars:hover .liferay-rating-vote, .tags-search-combobox .field-input-text {
+	@include border-radius(4px);
+}
+
+.entry-display-style, .lfr-search-combobox, .lfr-upload-container .upload-file, .lfr-upload-container .upload-target, .portlet-document-library .common-file-metadata-container.selected, .portlet-document-library-display .common-file-metadata-container.selected, .portlet-image-gallery-display .image-icon, .select-documents, .select-files {
+	@include border-radius(5px);
+}
+
+.portlet-journal .lfr-ddm-container .field-wrapper {
+	@include border-radius(6px);
+}
+
+.portlet-journal .display-page-item-container .display-page-item, .portlet-journal .display-page-item-container .display-page-item .display-page-item-remove, .taglib-categorization-filter .asset-entry {
+	@include border-radius(14px);
+}
+
+.menu-content {
+	@include border-bottom-left-radius(4px);
+	@include border-bottom-right-radius(4px);
+}
+
+.underlay-content {
+	@include border-bottom-left-radius(8px);
+	@include border-bottom-right-radius(8px);
+}
+
+.lfr-add-panel {
+	.add-content-button {
+		.lfr-actions {
+			@include border-radius(2px);
+		}
+	}
+
+	.lfr-panel-content .app-view-entry-taglib {
+		&.display-list, &.display-descriptive {
+			&:hover, &.hover, &.over {
+				@include border-radius(0);
+			}
+		}
+	}
+
+	.lfr-panel.lfr-extended {
+		@include border-radius(0);
+		@include box-shadow(none);
+	}
+
+	.lfr-panel.lfr-extended .lfr-panel-titlebar, .add-application-tab .lfr-add-content .lfr-title-category {
+		@include background-image(linear-gradient(#D2DBE4, #BDC8D6));
+	}
+
+	.search-panel {
+		.add-content-search .field-input {
+			@include border-radius(4px);
+		}
+	}
+}
+
+.lfr-add-dialog, .lfr-add-panel {
+	.add-content-menu .search-query {
+		@include border-radius(15px);
+	}
+}
+
+.lfr-content-preview-popup .lfr-content-preview-popup-content {
+	@include border-radius(0);
+	@include box-shadow(8px 3px 7px rgba(0, 0, 0, 0.25));
+}
+
+.lfr-message .lfr-message-control {
+	@include border-radius(10px);
+}
+
+.lfr-token, .layout-customizable-controls, .lfr-translation-manager-delete-translation {
+	@include border-radius(8px);
+}
+
+.customizable-layout-column-content {
+	@include border-radius(6px);
+}
+
+.staging-tabview-list {
+	@include border-radius(0);
+}
+
+.site-variations-tabview-list .tab-content, .staging-tabview-list .tab-active .tab-content, .tagselector-content .textboxlistentry-holder .lfr-tag-selector-input:focus {
+	@include box-shadow(none);
+}
+
+.rule-group-instance-container .rule-group-instance {
+	@include box-shadow(1px 1px 2px #999);
+}
+
+.lfr-action-label {
+	@include border-radius(2px);
+}
+
+.lfr-api-service-search .field-input {
+	@include box-sizing("border-box");
+}
+
+@include keyframes(progress-bar-stripes) {
+	from {
+		background-position: 40px 0;
+	}
+	to {
+		background-position: 0 0;
+	}
+}
+
+.lfr-progress-active .progress-bar-status, .lfr-upload-container .file-uploading .progress-bar .progress {
+	$transparent: rgba(255, 255, 255, 0);
+
+	@include background-image(linear-gradient(-45deg, rgba(255, 255, 255, 0.3) 25%, $transparent 25%, $transparent 50%, rgba(255, 255, 255, 0.3) 50%, rgba(255, 255, 255, 0.3) 75%, $transparent 75%, $transparent));
+	@include background-size(40px 40px);
+	@include experimental(animation, progress-bar-stripes 0.5s linear infinite);
+	@include single-transition(width, 0.5s, ease-out);
+}
+
+@include keyframes(highlight-animation) {
+	from {
+		background-color: #FFC;
+	}
+
+	to {
+		background-color: transparent;
+	}
+}
+
+.highlight-animation {
+	@include experimental(animation, highlight-animation 0.7s);
+}
+
+body:first-of-type {
+	%portlet-action-bar-fx {
+		@include single-transition(opacity, 0.5s, ease, 0.15s);
+	}
+
+	%portlet-action-bar-fx-hover {
+		@include single-transition(opacity, 0.5s, ease, 0s);
+	}
+
+	%portlet-action-bar-fx-text {
+		display: inline-block;
+		max-width: 0;
+		overflow: hidden;
+
+		@include single-transition(max-width, 0.3s, ease-in, 0.2s);
+
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+
+	%portlet-action-bar-fx-hover-text {
+		@include single-transition(max-width, 0.3s, ease, 0s);
+	}
+
+	.portlet-borderless-bar {
+		@extend %portlet-action-bar-fx;
+
+		.portlet-actions {
+			@extend %portlet-action-bar-fx-text;
+
+			@extend %portlet-action-bar-fx-hover-text;
+		}
+	}
+
+	.portlet-borderless-container:hover {
+		.portlet-borderless-bar {
+			@extend %portlet-action-bar-fx-hover;
+		}
+
+		.portlet-borderless-bar .portlet-actions {
+			max-width: 500px;
+		}
+	}
+
+	.portlet-content {
+		&:hover {
+			.lfr-icon-actions {
+				@extend %portlet-action-bar-fx-hover;
+
+				.taglib-text {
+					@extend %portlet-action-bar-fx-hover-text;
+
+					max-width: 200px;
+				}
+			}
+		}
+
+		.lfr-icon-actions {
+			@extend %portlet-action-bar-fx;
+
+			.taglib-text {
+				@extend %portlet-action-bar-fx-text;
+			}
+		}
+	}
+}
+
+.portlet-boundary.yui3-dd-dragging {
+	@include transform(scale(0.8));
+	@include transition(transform 0.3s ease);
+}
+
+.portlet-document-library .entry-thumbnail .label, .portlet-document-library-display .workflow-status .label, .portlet-journal .entry-thumbnail .label {
+	@include border-bottom-left-radius(0);
+	@include border-top-left-radius(0);
+	@include border-top-right-radius(0);
+}
+
+@include keyframes(lfr-drop-active) {
+	0% {
+		background-color: #EBEBEB;
+		border-color: #DDD;
+	}
+	50% {
+		background-color: #DDEDDE;
+		border-color: #7D7;
+
+		@include scale(1.1);
+	}
+	75% {
+		background-color: #DDEDDE;
+		border-color: #7D7;
+	}
+	100% {
+		background-color: #EBEBEB;
+		border-color: #DDD;
+	}
+}
+
+.upload-drop-active {
+	.lfr-upload-container .upload-target {
+		@include experimental(animation, none);
+	}
+
+	.portlet-document-library .document-container {
+		@include box-shadow(inset 0 0 5px #B8C1D1);
+	}
+}
+
+.upload-drop-intent .lfr-upload-container .upload-target {
+	@include experimental(animation, lfr-drop-active 1s ease 0.2s infinite);
+}

@@ -1,0 +1,44 @@
+//
+// Progress bars
+// --------------------------------------------------
+
+// THE BARS
+// --------
+
+// Outer container
+.progress-hiden {
+  display: none;
+}
+
+.progress.vertical {
+  width: $baseLineHeight;
+  height: 100%;
+  margin-right: $baseLineHeight;
+}
+
+// Bar of progress
+.progress .bar {
+  overflow: hidden;
+}
+
+.progress .bar p {
+  margin: 0;
+  color: $white;
+  font-size: 11px;
+  text-align: center;
+  text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.25);
+}
+
+.progress.vertical .bar {
+  width: 100%;
+  height: 0;
+}
+
+.progress.vertical.bottom {
+  position: relative;
+}
+
+.progress.vertical.bottom .bar {
+  position: absolute;
+  bottom: 0;
+}

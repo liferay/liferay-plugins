@@ -1,0 +1,37 @@
+<div class="preface">
+    <div class="preface-first"
+        #if ($header1.data !="")
+            <h2>
+            $header1.data
+            </h2>
+        #end
+        
+        #if ($content1.data !="")
+            $content1.data
+        #end
+    </div>
+    
+    <div class="preface-middle"
+        #if ($header2.data !="")
+            <h2>
+            $header2.data
+            </h2>
+        #end
+        
+        #if ($content2.data !="")
+            $content2.data
+        #end
+    </div>
+    
+    <div class="preface-last"
+        #if ($header3.data !="")
+            <h2>
+            $header3.data
+            </h2>
+        #end
+        
+        #if ($content3.data !="")
+            $content3.data
+        #end
+    </div>
+</div>

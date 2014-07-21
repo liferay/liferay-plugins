@@ -1,0 +1,59 @@
+#set ($content_id = $reserved-article-id.getData())
+#set ($content_class = "multiple-items-${content_id}-carousel")
+
+<style type="text/css">
+	#${content_class} {
+		height: ${height.getData()}px;
+		position: relative;
+		width: ${width.getData()}px;
+	}
+
+	#${content_class} .carousel-item {
+		height: ${height.getData()}px;
+		overflow: hidden;
+		position: absolute;
+		top: 0;
+		width: ${width.getData()}px;
+	}
+
+	#if ($controls.data)
+		#${content_class} menu {
+			display: none;
+		}
+	#end
+</style>
+
+<div id="$content_class">
+	#foreach ($item in $image.getSiblings())
+		<div class="carousel-item">
+			#if ($item.getData())
+				#if ($item.link.url-location.data != "")
+					<a href="$item.link.url-location.data">
+				#end
+
+				<img alt="$item.link.data" src="$item.getData()" title="$item.link.data" />
+
+				#if ($item.link.url-location.data != "")
+					</a>
+				#end
+			#end
+		</div>
+	#end
+</div>
+
+<script type="text/javascript">
+	AUI().ready(
+		'aui-carousel',
+		function(A) {
+			new A.Carousel(
+				{
+					activeIndex: 'rand',
+					contentBox: '#${content_class}',
+					height: $height.getData(),
+					intervalTime: $duration.getData(),
+					width: $width.getData()
+				}
+			).render();
+		}
+	);
+</script>

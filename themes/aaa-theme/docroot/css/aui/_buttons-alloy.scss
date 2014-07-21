@@ -1,0 +1,29 @@
+//
+// Buttons
+// --------------------------------------------------
+
+
+// Base styles
+// --------------------------------------------------
+
+// Core
+.btn-hidden {
+  display: none;
+}
+
+// Make a button look and behave like a close item
+.btn.close {
+  @extend .close;
+}
+
+.btn.close:focus,
+.btn.close:hover,
+.btn.close.active {
+	@extend .close:hover;
+	@include box-shadow(none);
+}
+
+.btn.close:active {
+  @extend .close:active;
+  @include box-shadow(none);
+}

@@ -1,0 +1,167 @@
+//
+// Variables
+// --------------------------------------------------
+
+
+// Global values
+// --------------------------------------------------
+
+
+// Grays
+// -------------------------
+
+
+// Accent colors
+// -------------------------
+
+
+
+// Scaffolding
+// -------------------------
+
+
+
+// Links
+// -------------------------
+
+
+
+// Typography
+// -------------------------
+
+
+
+// Component sizing
+// -------------------------
+// Based on 14px font-size and 20px line-height
+
+
+
+
+// Tables
+// -------------------------
+
+
+// Buttons
+// -------------------------
+$btnBackgroundHighlight:            darken(#FFF, 7%) !default;
+
+$btnPrimaryBackground:              #3fcaf4 !default;
+$btnPrimaryBackgroundHighlight:     adjust-hue($btnPrimaryBackground, 20%) !default;
+
+$btnInfoBackground:                 #3c8bf3 !default;
+$btnInfoBackgroundHighlight:        #0f6ce7 !default;
+
+$btnSuccessBackground:              #bacd29 !default;
+$btnSuccessBackgroundHighlight:     #a1bd17 !default;
+
+$btnDangerBackground:               #ff3019 !default;
+$btnDangerBackgroundHighlight:      #cf0404 !default;
+
+$btnInverseBackground:              #333 !default;
+
+
+// Forms
+// -------------------------
+
+
+
+// Dropdowns
+// -------------------------
+
+
+
+
+// COMPONENT VARIABLES
+// --------------------------------------------------
+
+
+// Z-index master list
+// -------------------------
+// Used for a bird's eye view of components dependent on the z-axis
+// Try to avoid customizing these :)
+
+
+
+// Sprite icons path
+// -------------------------
+
+
+
+// Input placeholder text color
+// -------------------------
+
+
+
+// Hr border color
+// -------------------------
+
+
+
+// Horizontal forms & lists
+// -------------------------
+
+
+
+// Wells
+// -------------------------
+
+
+
+// Navbar
+// -------------------------
+
+
+
+// Pagination
+// -------------------------
+
+
+// Progressbar
+// -------------------------
+
+
+// Hero unit
+// -------------------------
+
+
+
+// Form states and alerts
+// -------------------------
+
+
+
+// Tooltips and popovers
+// -------------------------
+
+// Help tooltip
+$helpTooltipColor:            #535353 !default;
+$helpTooltipBackground:       #fdfaec !default;
+$helpTooltipBorderColor:      #b0ad95 !default;
+$helpTooltipArrowColor:       $helpTooltipBorderColor !default;
+$helpTooltipFontSize:         14px !default;
+
+// GRID
+// --------------------------------------------------
+
+
+// Default 940px grid
+// -------------------------
+
+
+// 1200px min
+
+
+// 768px-979px
+
+
+
+// Fluid grid
+// -------------------------
+
+
+// 1200px min
+
+
+// 768px-979px
+

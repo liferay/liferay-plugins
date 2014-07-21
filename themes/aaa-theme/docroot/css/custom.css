@@ -1,0 +1,479 @@
+/*Page*/
+* {
+	box-sizing: border-box;
+}
+
+.aui {
+	a, a:hover {
+		color: #F4473A;
+		text-decoration: none;
+	}
+
+	body {
+		font: 14px/1.6 'Oxygen',sans-serif;
+	}
+
+	h1 {
+		font-size: 32px;
+	}
+
+	p {
+		margin: 0 0 20px;
+	}
+}
+
+#breadcrumbs, .page-title, .portlet-title img, #sign-in {
+	display: none;
+}
+
+#wrapper {
+	padding: 0;
+	z-index: 5;
+}
+
+.container {
+	max-width: 1170px;
+	margin: 0 auto;
+}
+
+.navbar-inner .container {
+	max-width: 100%;
+}
+
+/*Dockbar*/
+
+.aui .navbar .nav {
+
+	li > a:focus, li > a:hover {
+		color: #F4473A;
+		outline: none;
+	}
+
+	.dockbar-item li a, li a, li.dropdown.open > .dropdown-toggle {
+		color: #777;
+	}
+
+	.dropdown-menu > li > a:hover, .dropdown-menu > li >a:focus {
+		background-color: #F4473A;
+		background-image: none;
+		color: #FFF;
+	}
+
+	.dropdown-menu > .active > a {
+		background-color: #FFF;
+		background-image: none;
+	}
+
+	.site-administration-menu li a:hover, .site-administration-menu li a:focus {
+		background: #F4473A;
+	}
+}
+
+.portlet-boundary {
+	border-bottom: 1px solid #DDD;
+	left: 0;
+	margin-bottom: 15px;
+	padding-bottom: 30px;
+	z-index: 1102;
+}
+
+#p_p_id_145_ {
+	border-bottom-width: 0;
+	margin-bottom: 0;
+	padding: 0;
+	position: fixed;
+	width: 100%;
+}
+
+/*Add Content Menu*/
+
+.lfr-add-panel, .lfr-device-preview-panel, .lfr-edit-layout-panel  {
+	margin-top: 40px;
+}
+
+.lfr-add-panel .add-content-menu .lfr-page-template .toggler-header.active.lfr-page-template-title label {
+	background-color: #F4473A;
+}
+
+.aui { 
+	
+	.nav-pills > .active {
+		a, a:hover {
+			background-color: #F4473A;
+		}
+	}
+
+	.btn-primary, .btn-primary:hover {
+		background-color: #F4473A;
+		background-image: none;
+	}
+}
+
+
+/* Header */
+
+.signed-in #banner {
+	padding-top: 35px;
+}
+
+.banner-row {
+
+	display: inline-block;
+	margin: 0 -15px;
+	width: 100%;
+
+	.site-title {
+		float: left;
+		margin: 18px 0 20px;
+		padding: 0 15px;
+		text-transform: uppercase;
+		width: 50%;
+	}
+
+	#navigation {
+		float: left;
+		padding: 0 15px;
+		width: 50%
+	}
+}
+
+#navigation {
+
+	ul {
+		margin: 0;
+		margin-top: 18px;
+
+		ul {
+			display: none;
+		}
+	}
+
+	li {
+		color: #777;
+		display: inline;
+		line-height: 51px;
+		list-style: none;
+
+		a {
+			padding: 10px 10px 18px 10px;
+		}
+	}
+
+	.selected span {
+		color: #F4473A;
+	}
+
+	a {
+		color: #777;
+	}
+
+	a:hover {
+		color: #F4473A;
+	}
+}
+
+#navigation ul {
+
+	li:hover > ul {
+		display: block;
+	}
+
+	li li a {
+		border-top: 1px solid #DDD;
+		float: left;
+		line-height: 1.6;
+		padding: 10px 10px;
+		width: 148px;
+	}
+
+	li li:first-child a {
+		border-top: none;
+	}
+}
+
+#navigation li ul {
+	background: #EFEFEF;
+	font-size: 12px;
+	height: auto;
+	left: auto;
+	margin: 0;
+	padding: 5px 5px;
+	position: absolute;
+	width: 160px;
+	z-index: 1101;
+}
+
+#navigation .child-menu li {
+	display: block;
+	height: auto;
+	width: auto;
+}
+
+/* Body*/
+
+#content {
+	margin: 0 auto;
+}
+
+#main-content {
+	float: left;	
+	padding: 0px;
+	width: 100%;
+}
+
+#hrefFm {
+	display: none;
+}
+
+.bodyrow {
+	display: inline-block;
+	width: 100%;
+}
+
+/* Portlets*/
+
+.portlet-content {
+	padding: 0;
+}
+
+/*Carousel */
+#column-1 .portlet-boundary {
+	margin-bottom: 0;
+	padding-bottom: 0;
+}
+/* Preface */
+
+#layout-column_column-2 {
+	margin: 0 auto;
+	max-width: 1200px;
+}
+
+/* Main Body (This CSS is meant for the home page, unsure how these selectors will affect other pages but I wanted to make it work first)*/
+
+.portlet-layout:nth-child(2) {
+	background: #ED564B;
+	border: 5px solid #F96B61;
+	border-width: 5px 0;
+}
+
+.portlet-layout:nth-child(3), .portlet-layout:nth-child(4) {
+	margin: 0 auto;
+	max-width: 1200px;
+}
+
+.portlet-layout:nth-child(5) {
+	background-color: #3B3B3B;
+	border-top: 5px solid #ED564B;
+	margin: 0 0 -6px;
+}
+
+/* old CSS, probably will remove
+
+#column-6, #column-7, #column-8, #column-9 {
+	width: 14%;
+}
+
+#column-6 {
+	margin-left: 18%;
+}
+
+#column-9 {
+	margin-right: 18%;
+}
+
+#column-2, #column-3, #column-4 {
+	text-align: center;
+	margin-left: 0;
+	max-width: 400px;
+	padding: 0 15px;
+	width: 20%;
+}
+
+#column-2 {
+	margin-left: 21%;
+}
+*/
+
+/* Bottom Row*/
+
+#footer {
+	background: #292929;
+	font-size: 12px;
+	padding: 10px 0;
+}
+
+#footer-2 {
+
+	.powered-by {
+		color: #BBB;
+		font-size: 12px;
+		line-height: 1.6;
+		margin: 0 -15px;
+
+		a, a:hover {
+			color: #FFF;
+		}
+	}
+
+	p {
+		margin: 0;
+		padding: 10px 0;
+	}
+	
+}
+
+/*-------------------Old CSS, will remove when these sections are replaced with web content----------------------*/
+/*Preface*/
+
+#preface {
+	background: #ED564B;
+	border: 5px solid #F96B61;
+	border-width: 5px 0;
+	margin-bottom: 15px;
+	padding:  40px 0 20px;
+	width: 100%;
+}
+
+.preface-row {
+	display: inline-block;
+	margin: 0 -15px;
+}
+
+.preface-block {
+	color: #FFF;
+	float: left;
+	padding: 0 15px;
+	position: relative;
+	text-align: center;
+	width: 33.3333333%;
+
+	h2 {
+		font-size: 24px;
+		font-weight: bold;
+		margin: 0;
+	}
+}
+
+.preface-content p {
+	line-height: 1.6;
+	margin-bottom: 20px;
+}
+
+/* Sidebar*/
+
+#sidebar {
+	float: left;
+	padding: 20px 15px;
+	width: 33.33333%;
+
+	.sidebar-block {
+		margin-bottom: 30px;
+
+		h2 {
+			color: #000;
+			font-size: 20px;
+			font-weight: bold;
+			line-height: 1.6;
+			margin: 0 0 15px;
+			text-transform: uppercase;
+		}
+
+		span {
+			color: #F4473A;
+		}
+
+		li p {
+			color: #F4473A;
+			margin-bottom: 0;
+		}
+
+		#sidebarContentLinks li {
+			line-height: 1.6;
+		}
+	}
+}
+
+#sidebarContentSocial {
+	background-color: #AAA;
+	color: #FFF;
+	height: 370px;
+	max-width: 240px;
+	text-align: center;
+}
+
+#sidebarContentAd {
+	background-color: #AAA;
+	color: #FFF;
+	height: 200px;
+	margin: 0 auto;
+	text-align: center;
+	width: 200px;
+}
+
+.sidebar-text-center {
+	text-align: center;
+}
+/* Footer */
+
+#footerBlock {
+	height: 126px;
+	padding: 20px 0 0;
+}
+
+#footerAd {
+	background-color: #AAA;
+	color: #FFF;
+	text-align: center;
+	font-size: 20; 
+	height: 90px;
+	margin: 0 auto;
+	max-width: 728px;
+}
+
+/*Bottom*/
+
+#bottom {
+	background: #3B3B3B;
+	border-top: 5px solid #ED564B;
+	padding: 20px 0 40px 0;
+}
+
+.bottom-row {
+	display: inline-block;
+	margin: 0 -15px;
+}
+
+.bottom-block {
+	color: #AAA;
+	float: left;
+	padding: 0 15px;
+	position: relative;
+	width: 22.5%
+}
+
+.block-block {
+	line-height: 1.6;
+	margin-bottom: 30px;
+
+	h2 {
+		font-size: 16px;
+		font-weight: normal;
+		line-height: 1.6;
+		margin: 0 0 10px 0;
+		padding: 10px 0;
+		color: #FFF;
+		text-transform: uppercase;
+	}
+}
+
+#adBlock {
+	height: 291px;
+	padding: 0 15px;
+
+	.bottom-content {
+		background-color: #AAA;
+		height: 246px;
+		color: #FFF;
+		text-align: center;
+	}
+}

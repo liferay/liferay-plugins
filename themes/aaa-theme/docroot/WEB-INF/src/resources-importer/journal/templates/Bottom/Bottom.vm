@@ -1,0 +1,49 @@
+<div class="preface">
+    <div class="first-bottom"
+        #if ($header1.data !="")
+            <h2>
+            $header1.data
+            </h2>
+        #end
+        
+        #if ($content1.data !="")
+            $content1.data
+        #end
+    </div>
+    
+    <div class="second-bottom"
+        #if ($header2.data !="")
+            <h2>
+            $header2.data
+            </h2>
+        #end
+        
+        #if ($content2.data !="")
+            $content2.data
+        #end
+    </div>
+    
+    <div class="third-bottom"
+        #if ($header3.data !="")
+            <h2>
+            $header3.data
+            </h2>
+        #end
+        
+        #if ($content3.data !="")
+            $content3.data
+        #end
+    </div>
+
+    <div class="fourth-bottom"
+        #if ($header4.data !="")
+            <h2>
+            $header4.data
+            </h2>
+        #end
+        
+        #if ($content4.data !="")
+            $content4.data
+        #end
+    </div>
+</div>
