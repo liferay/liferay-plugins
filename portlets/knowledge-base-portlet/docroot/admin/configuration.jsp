@@ -328,6 +328,6 @@ else if (tabs2.equals("article-updated-email")) {
 
 <c:if test='<%= tabs3.equals("article") %>'>
 	<aui:script>
-		Liferay.Util.toggleBoxes('<portlet:namespace />enableKBArticleRatingsCheckbox', '<portlet:namespace />ratings-type');
+		Liferay.Util.toggleBoxes('<portlet:namespace />enableKBArticleRatingsCheckbox', '<portlet:namespace />ratingsType');
 	</aui:script>
 </c:if>
