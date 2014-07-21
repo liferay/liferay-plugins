@@ -25,6 +25,9 @@ import com.liferay.util.portlet.PortletProps;
  */
 public class PortletPropsValues {
 
+	public static final String LOGIN_REDIRECT = PortletProps.get(
+		PortletPropsKeys.LOGIN_REDIRECT);
+
 	public static final String[] SITE_AUTO_CREATE_TEAM_NAMES =
 		PortletProps.getArray(PortletPropsKeys.SITE_AUTO_CREATE_TEAM_NAMES);
 

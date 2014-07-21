@@ -25,7 +25,7 @@
 	<servlet-filter-mapping>
 		<servlet-filter-name>SO Filter</servlet-filter-name>
 		<before-filter>Virtual Host Filter</before-filter>
-		<url-pattern>/user</url-pattern>
+		<url-pattern>/*</url-pattern>
 		<dispatcher>REQUEST</dispatcher>
 		<dispatcher>FORWARD</dispatcher>
 	</servlet-filter-mapping>

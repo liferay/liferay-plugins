@@ -22,6 +22,8 @@ package com.liferay.so.util;
  */
 public interface PortletPropsKeys {
 
+	public static final String LOGIN_REDIRECT = "login.redirect";
+
 	public static final String SITE_AUTO_CREATE_TEAM_NAMES =
 		"site.auto.create.team.names";
 
