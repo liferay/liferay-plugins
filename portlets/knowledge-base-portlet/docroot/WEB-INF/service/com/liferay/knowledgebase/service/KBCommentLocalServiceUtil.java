@@ -259,7 +259,7 @@ public class KBCommentLocalServiceUtil {
 
 	public static java.util.List<com.liferay.knowledgebase.model.KBComment> getKBComments(
 		java.lang.String className, long classPK, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBComment> orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getService()
 				   .getKBComments(className, classPK, start, end,
 			orderByComparator);
@@ -279,6 +279,15 @@ public class KBCommentLocalServiceUtil {
 	public static java.util.List<com.liferay.knowledgebase.model.KBComment> getKBComments(
 		int start, int end) {
 		return getService().getKBComments(start, end);
+	}
+
+	public static java.util.List<com.liferay.knowledgebase.model.KBComment> getKBComments(
+		long userId, java.lang.String className, long classPK, int start,
+		int end,
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBComment> orderByComparator) {
+		return getService()
+				   .getKBComments(userId, className, classPK, start, end,
+			orderByComparator);
 	}
 
 	public static java.util.List<com.liferay.knowledgebase.model.KBComment> getKBCommentsByUuidAndCompanyId(
@@ -306,6 +315,11 @@ public class KBCommentLocalServiceUtil {
 	public static int getKBCommentsCount(java.lang.String className,
 		long classPK) {
 		return getService().getKBCommentsCount(className, classPK);
+	}
+
+	public static int getKBCommentsCount(long userId,
+		java.lang.String className, long classPK) {
+		return getService().getKBCommentsCount(userId, className, classPK);
 	}
 
 	public static com.liferay.portal.model.PersistedModel getPersistedModel(

@@ -272,7 +272,7 @@ public class KBCommentLocalServiceWrapper implements KBCommentLocalService,
 	@Override
 	public java.util.List<com.liferay.knowledgebase.model.KBComment> getKBComments(
 		java.lang.String className, long classPK, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBComment> orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return _kbCommentLocalService.getKBComments(className, classPK, start,
 			end, orderByComparator);
 	}
@@ -292,6 +292,15 @@ public class KBCommentLocalServiceWrapper implements KBCommentLocalService,
 	public java.util.List<com.liferay.knowledgebase.model.KBComment> getKBComments(
 		int start, int end) {
 		return _kbCommentLocalService.getKBComments(start, end);
+	}
+
+	@Override
+	public java.util.List<com.liferay.knowledgebase.model.KBComment> getKBComments(
+		long userId, java.lang.String className, long classPK, int start,
+		int end,
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBComment> orderByComparator) {
+		return _kbCommentLocalService.getKBComments(userId, className, classPK,
+			start, end, orderByComparator);
 	}
 
 	@Override
@@ -322,6 +331,13 @@ public class KBCommentLocalServiceWrapper implements KBCommentLocalService,
 	@Override
 	public int getKBCommentsCount(java.lang.String className, long classPK) {
 		return _kbCommentLocalService.getKBCommentsCount(className, classPK);
+	}
+
+	@Override
+	public int getKBCommentsCount(long userId, java.lang.String className,
+		long classPK) {
+		return _kbCommentLocalService.getKBCommentsCount(userId, className,
+			classPK);
 	}
 
 	@Override
