@@ -1368,6 +1368,7 @@ html.aui {
 		.user-profile-image {
 			height: 55px;
 			max-width: 55px;
+			overflow: hidden;
 
 			.avatar {
 				width: 55px;
