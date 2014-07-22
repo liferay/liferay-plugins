@@ -17,6 +17,8 @@ package com.liferay.sync.service.impl;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.deploy.DeployManagerUtil;
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.plugin.PluginPackage;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.repository.model.Folder;
@@ -41,6 +43,7 @@ import com.liferay.sync.service.base.SyncDLObjectServiceBaseImpl;
 import com.liferay.sync.util.PortletPropsKeys;
 import com.liferay.sync.util.PortletPropsValues;
 import com.liferay.sync.util.SyncUtil;
+import com.liferay.util.portlet.PortletProps;
 
 import java.io.File;
 
@@ -48,6 +51,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
 
 import javax.portlet.PortletPreferences;
 
@@ -348,6 +352,34 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 	@Override
 	public long getLatestModifiedTime() {
 		return syncDLObjectLocalService.getLatestModifiedTime();
+	}
+
+	@Override
+	public PortletPreferences getPortletPreferences() throws PortalException {
+		User user = getUser();
+
+		PortletPreferences portletPreferences = PrefsPropsUtil.getPreferences(
+			user.getCompanyId());
+
+		Properties properties = PortletProps.getProperties();
+
+		for (Map.Entry<Object, Object> entry : properties.entrySet()) {
+			String key = String.valueOf(entry.getKey());
+			String value = String.valueOf(entry.getValue());
+
+			if (portletPreferences.getValue(key, null) != null) {
+				continue;
+			}
+
+			try {
+				portletPreferences.setValue(key, value);
+			}
+			catch (Exception e) {
+				_log.error(e, e);
+			}
+		}
+
+		return portletPreferences;
 	}
 
 	@Override
@@ -687,5 +719,8 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 			throw new SyncDLObjectChecksumException(sb.toString());
 		}
 	}
+
+	private static Log _log = LogFactoryUtil.getLog(
+		SyncDLObjectServiceImpl.class);
 
 }
