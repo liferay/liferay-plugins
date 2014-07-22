@@ -157,6 +157,7 @@ public class MentionsNotifier {
 	}
 
 	private static Pattern _pattern = Pattern.compile(
-		"(?:\\s|^|\\]|>)(@([^(?:@|>|\\[|\\s)]+))", Pattern.CASE_INSENSITIVE);
+		"(?:\\s|^|\\]|>)(@([^(?:@|>|\\[|\\s|,|.|<)]+))",
+		Pattern.CASE_INSENSITIVE);
 
 }
