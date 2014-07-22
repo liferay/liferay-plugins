@@ -62,6 +62,7 @@ public class KBCommentWrapper implements KBComment, ModelWrapper<KBComment> {
 		attributes.put("classPK", getClassPK());
 		attributes.put("content", getContent());
 		attributes.put("helpful", getHelpful());
+		attributes.put("status", getStatus());
 
 		return attributes;
 	}
@@ -138,6 +139,12 @@ public class KBCommentWrapper implements KBComment, ModelWrapper<KBComment> {
 
 		if (helpful != null) {
 			setHelpful(helpful);
+		}
+
+		Integer status = (Integer)attributes.get("status");
+
+		if (status != null) {
+			setStatus(status);
 		}
 	}
 
@@ -269,6 +276,16 @@ public class KBCommentWrapper implements KBComment, ModelWrapper<KBComment> {
 	@Override
 	public java.io.Serializable getPrimaryKeyObj() {
 		return _kbComment.getPrimaryKeyObj();
+	}
+
+	/**
+	* Returns the status of this k b comment.
+	*
+	* @return the status of this k b comment
+	*/
+	@Override
+	public int getStatus() {
+		return _kbComment.getStatus();
 	}
 
 	/**
@@ -482,6 +499,16 @@ public class KBCommentWrapper implements KBComment, ModelWrapper<KBComment> {
 	@Override
 	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
 		_kbComment.setPrimaryKeyObj(primaryKeyObj);
+	}
+
+	/**
+	* Sets the status of this k b comment.
+	*
+	* @param status the status of this k b comment
+	*/
+	@Override
+	public void setStatus(int status) {
+		_kbComment.setStatus(status);
 	}
 
 	/**

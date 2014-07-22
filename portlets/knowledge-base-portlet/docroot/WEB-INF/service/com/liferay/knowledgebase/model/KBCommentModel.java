@@ -284,6 +284,20 @@ public interface KBCommentModel extends AttachedModel, BaseModel<KBComment>,
 	 */
 	public void setHelpful(boolean helpful);
 
+	/**
+	 * Returns the status of this k b comment.
+	 *
+	 * @return the status of this k b comment
+	 */
+	public int getStatus();
+
+	/**
+	 * Sets the status of this k b comment.
+	 *
+	 * @param status the status of this k b comment
+	 */
+	public void setStatus(int status);
+
 	@Override
 	public boolean isNew();
 

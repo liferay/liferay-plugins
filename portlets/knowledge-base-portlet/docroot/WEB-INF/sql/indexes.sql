@@ -23,6 +23,7 @@ create unique index IX_5C941F1B on KBArticle (uuid_, groupId);
 
 create index IX_9FE4C2A3 on KBComment (classNameId, classPK);
 create index IX_E8D43932 on KBComment (groupId, classNameId);
+create index IX_828BA082 on KBComment (groupId, status);
 create unique index IX_FD56A55D on KBComment (userId, classNameId, classPK);
 create index IX_6CB72942 on KBComment (uuid_, companyId);
 create unique index IX_791D1844 on KBComment (uuid_, groupId);

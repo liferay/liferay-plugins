@@ -92,6 +92,69 @@ public class KBCommentServiceSoap {
 		}
 	}
 
+	public static com.liferay.knowledgebase.model.KBCommentSoap getKBComment(
+		long kbCommentId) throws RemoteException {
+		try {
+			com.liferay.knowledgebase.model.KBComment returnValue = KBCommentServiceUtil.getKBComment(kbCommentId);
+
+			return com.liferay.knowledgebase.model.KBCommentSoap.toSoapModel(returnValue);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static com.liferay.knowledgebase.model.KBCommentSoap[] getKBComments(
+		long groupId, int status, int start, int end) throws RemoteException {
+		try {
+			java.util.List<com.liferay.knowledgebase.model.KBComment> returnValue =
+				KBCommentServiceUtil.getKBComments(groupId, status, start, end);
+
+			return com.liferay.knowledgebase.model.KBCommentSoap.toSoapModels(returnValue);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static int getKBCommentsCount(long groupId, int status)
+		throws RemoteException {
+		try {
+			int returnValue = KBCommentServiceUtil.getKBCommentsCount(groupId,
+					status);
+
+			return returnValue;
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static com.liferay.knowledgebase.model.KBCommentSoap updateKBComment(
+		long kbCommentId, long classNameId, long classPK,
+		java.lang.String content, boolean helpful, int status,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws RemoteException {
+		try {
+			com.liferay.knowledgebase.model.KBComment returnValue = KBCommentServiceUtil.updateKBComment(kbCommentId,
+					classNameId, classPK, content, helpful, status,
+					serviceContext);
+
+			return com.liferay.knowledgebase.model.KBCommentSoap.toSoapModel(returnValue);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
 	public static com.liferay.knowledgebase.model.KBCommentSoap updateKBComment(
 		long kbCommentId, long classNameId, long classPK,
 		java.lang.String content, boolean helpful,
@@ -100,6 +163,23 @@ public class KBCommentServiceSoap {
 		try {
 			com.liferay.knowledgebase.model.KBComment returnValue = KBCommentServiceUtil.updateKBComment(kbCommentId,
 					classNameId, classPK, content, helpful, serviceContext);
+
+			return com.liferay.knowledgebase.model.KBCommentSoap.toSoapModel(returnValue);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static com.liferay.knowledgebase.model.KBCommentSoap updateStatus(
+		long kbCommentId, int status,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws RemoteException {
+		try {
+			com.liferay.knowledgebase.model.KBComment returnValue = KBCommentServiceUtil.updateStatus(kbCommentId,
+					status, serviceContext);
 
 			return com.liferay.knowledgebase.model.KBCommentSoap.toSoapModel(returnValue);
 		}

@@ -53,6 +53,7 @@
 		<field name="helpful" type="boolean">
 			<hint name="default-value">true</hint>
 		</field>
+		<field name="status" type="int" />
 	</model>
 	<model name="com.liferay.knowledgebase.model.KBTemplate">
 		<field name="uuid" type="String" />

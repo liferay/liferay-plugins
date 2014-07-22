@@ -54,6 +54,26 @@ public class KBCommentServiceWrapper implements KBCommentService,
 	}
 
 	@Override
+	public com.liferay.knowledgebase.model.KBComment getKBComment(
+		long kbCommentId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _kbCommentService.getKBComment(kbCommentId);
+	}
+
+	@Override
+	public java.util.List<com.liferay.knowledgebase.model.KBComment> getKBComments(
+		long groupId, int status, int start, int end)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _kbCommentService.getKBComments(groupId, status, start, end);
+	}
+
+	@Override
+	public int getKBCommentsCount(long groupId, int status)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _kbCommentService.getKBCommentsCount(groupId, status);
+	}
+
+	@Override
 	public java.lang.Object invokeMethod(java.lang.String name,
 		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
 		throws java.lang.Throwable {
@@ -78,6 +98,25 @@ public class KBCommentServiceWrapper implements KBCommentService,
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _kbCommentService.updateKBComment(kbCommentId, classNameId,
 			classPK, content, helpful, serviceContext);
+	}
+
+	@Override
+	public com.liferay.knowledgebase.model.KBComment updateKBComment(
+		long kbCommentId, long classNameId, long classPK,
+		java.lang.String content, boolean helpful, int status,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _kbCommentService.updateKBComment(kbCommentId, classNameId,
+			classPK, content, helpful, status, serviceContext);
+	}
+
+	@Override
+	public com.liferay.knowledgebase.model.KBComment updateStatus(
+		long kbCommentId, int status,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _kbCommentService.updateStatus(kbCommentId, status,
+			serviceContext);
 	}
 
 	/**

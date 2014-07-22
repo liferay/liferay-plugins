@@ -38,7 +38,8 @@ create table KBComment (
 	classNameId LONG,
 	classPK LONG,
 	content STRING null,
-	helpful BOOLEAN
+	helpful BOOLEAN,
+	status INTEGER
 );
 
 create table KBTemplate (

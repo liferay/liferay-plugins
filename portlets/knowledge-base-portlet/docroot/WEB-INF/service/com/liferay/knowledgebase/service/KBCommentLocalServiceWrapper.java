@@ -272,9 +272,15 @@ public class KBCommentLocalServiceWrapper implements KBCommentLocalService,
 	@Override
 	public java.util.List<com.liferay.knowledgebase.model.KBComment> getKBComments(
 		java.lang.String className, long classPK, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBComment> orderByComparator) {
 		return _kbCommentLocalService.getKBComments(className, classPK, start,
 			end, orderByComparator);
+	}
+
+	@Override
+	public java.util.List<com.liferay.knowledgebase.model.KBComment> getKBComments(
+		long groupId, int status, int start, int end) {
+		return _kbCommentLocalService.getKBComments(groupId, status, start, end);
 	}
 
 	/**
@@ -334,6 +340,11 @@ public class KBCommentLocalServiceWrapper implements KBCommentLocalService,
 	}
 
 	@Override
+	public int getKBCommentsCount(long groupId, int status) {
+		return _kbCommentLocalService.getKBCommentsCount(groupId, status);
+	}
+
+	@Override
 	public int getKBCommentsCount(long userId, java.lang.String className,
 		long classPK) {
 		return _kbCommentLocalService.getKBCommentsCount(userId, className,
@@ -380,11 +391,20 @@ public class KBCommentLocalServiceWrapper implements KBCommentLocalService,
 	@Override
 	public com.liferay.knowledgebase.model.KBComment updateKBComment(
 		long kbCommentId, long classNameId, long classPK,
-		java.lang.String content, boolean helpful,
+		java.lang.String content, boolean helpful, int status,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _kbCommentLocalService.updateKBComment(kbCommentId, classNameId,
-			classPK, content, helpful, serviceContext);
+			classPK, content, helpful, status, serviceContext);
+	}
+
+	@Override
+	public com.liferay.knowledgebase.model.KBComment updateStatus(
+		long kbCommentId, int status,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _kbCommentLocalService.updateStatus(kbCommentId, status,
+			serviceContext);
 	}
 
 	/**
