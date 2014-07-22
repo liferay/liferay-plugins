@@ -552,6 +552,7 @@ public class AdminPortlet extends MVCPortlet {
 		throws PortalException, SystemException {
 
 		long kbCommentId = ParamUtil.getLong(actionRequest, "kbCommentId");
+
 		int status = ParamUtil.getInteger(actionRequest, "status");
 
 		ServiceContext serviceContext = ServiceContextFactory.getInstance(
