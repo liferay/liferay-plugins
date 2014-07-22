@@ -86,10 +86,6 @@ public class KBCommentLocalServiceImpl extends KBCommentLocalServiceBaseImpl {
 
 		kbCommentPersistence.update(kbComment);
 
-		// Feedback notifications
-
-		notifyFeedbackUser(kbComment, serviceContext);
-
 		// Social
 
 		JSONObject extraDataJSONObject = JSONFactoryUtil.createJSONObject();
@@ -100,6 +96,10 @@ public class KBCommentLocalServiceImpl extends KBCommentLocalServiceBaseImpl {
 			userId, kbComment.getGroupId(), KBComment.class.getName(),
 			kbCommentId, AdminActivityKeys.ADD_KB_COMMENT,
 			extraDataJSONObject.toString(), 0);
+
+		// Subscriptions
+
+		notifySubscribers(kbComment, serviceContext);
 
 		return kbComment;
 	}
@@ -260,12 +260,12 @@ public class KBCommentLocalServiceImpl extends KBCommentLocalServiceBaseImpl {
 
 		kbCommentPersistence.update(kbComment);
 
-		notifyFeedbackUser(kbComment, serviceContext);
+		notifySubscribers(kbComment, serviceContext);
 
 		return kbComment;
 	}
 
-	protected void notifyFeedbackUser(
+	protected void notifySubscribers(
 			KBComment kbComment, ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
@@ -287,6 +287,12 @@ public class KBCommentLocalServiceImpl extends KBCommentLocalServiceBaseImpl {
 		String fromAddress = AdminUtil.getEmailFromAddress(
 			preferences, kbComment.getCompanyId());
 
+		String subject =
+			AdminUtil.getEmailKBArticleFeedbackNotificationSubject(
+				kbComment.getStatus(), preferences);
+		String body = AdminUtil.getEmailKBArticleFeedbackNotificationBody(
+			kbComment.getStatus(), preferences);
+
 		KBArticle kbArticle = kbArticleLocalService.getLatestKBArticle(
 			kbComment.getClassPK(), WorkflowConstants.STATUS_APPROVED);
 
@@ -299,13 +305,6 @@ public class KBCommentLocalServiceImpl extends KBCommentLocalServiceBaseImpl {
 				"href=\"" + serviceContext.getPortalURL() + "/",
 				"src=\"" + serviceContext.getPortalURL() + "/"
 			});
-
-		String subject =
-			AdminUtil.getEmailKBArticleFeedbackNotificationSubject(
-				kbComment.getStatus(), preferences);
-
-		String body = AdminUtil.getEmailKBArticleFeedbackNotificationBody(
-			kbComment.getStatus(), preferences);
 
 		SubscriptionSender subscriptionSender = new AdminSubscriptionSender(
 			kbArticle, serviceContext);
