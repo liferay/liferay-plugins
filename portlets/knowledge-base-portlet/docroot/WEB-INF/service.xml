@@ -207,9 +207,6 @@
 		<column name="classPK" type="long" />
 		<column name="content" type="String" />
 		<column name="helpful" type="boolean" />
-
-		<!-- Feedback lifecycle -->
-
 		<column name="status" type="int" />
 
 		<!-- Order -->
