@@ -25,9 +25,8 @@ import com.liferay.knowledgebase.model.KBTemplate;
 import com.liferay.knowledgebase.service.KBArticleLocalServiceUtil;
 import com.liferay.knowledgebase.service.KBTemplateLocalServiceUtil;
 import com.liferay.knowledgebase.service.base.KBCommentLocalServiceBaseImpl;
-import com.liferay.knowledgebase.util.comparator.KBCommentCreateDateComparator;
-import com.liferay.knowledgebase.util.KnowledgeBaseUtil;
 import com.liferay.knowledgebase.util.PortletKeys;
+import com.liferay.knowledgebase.util.comparator.KBCommentCreateDateComparator;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
@@ -158,6 +157,14 @@ public class KBCommentLocalServiceImpl extends KBCommentLocalServiceBaseImpl {
 
 	@Override
 	public List<KBComment> getKBComments(
+			long groupId, int status, int start, int end)
+		throws SystemException {
+
+		return kbCommentPersistence.findByG_S(groupId, status, start, end);
+	}
+
+	@Override
+	public List<KBComment> getKBComments(
 			long userId, String className, long classPK, int start, int end,
 			OrderByComparator orderByComparator)
 		throws SystemException {
@@ -166,14 +173,6 @@ public class KBCommentLocalServiceImpl extends KBCommentLocalServiceBaseImpl {
 
 		return kbCommentPersistence.findByU_C_C(
 			userId, classNameId, classPK, start, end, orderByComparator);
-	}
-
-	@Override
-	public List<KBComment> getKBComments(
-			long groupId, int status, int start, int end)
-		throws SystemException {
-
-		return kbCommentPersistence.findByG_S(groupId, status, start, end);
 	}
 
 	@Override
@@ -189,19 +188,19 @@ public class KBCommentLocalServiceImpl extends KBCommentLocalServiceBaseImpl {
 	}
 
 	@Override
+	public int getKBCommentsCount(long groupId, int status)
+		throws SystemException {
+
+		return kbCommentPersistence.countByG_S(groupId, status);
+	}
+
+	@Override
 	public int getKBCommentsCount(long userId, String className, long classPK)
 		throws SystemException {
 
 		long classNameId = classNameLocalService.getClassNameId(className);
 
 		return kbCommentPersistence.countByU_C_C(userId, classNameId, classPK);
-	}
-
-	@Override
-	public int getKBCommentsCount(long groupId, int status)
-		throws SystemException {
-
-		return kbCommentPersistence.countByG_S(groupId, status);
 	}
 
 	@Override
