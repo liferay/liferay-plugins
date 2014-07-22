@@ -16,12 +16,14 @@ package com.liferay.sync.hook.upgrade.v1_0_0;
 
 import com.liferay.portal.kernel.dao.orm.QueryDefinition;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
-import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.service.GroupLocalServiceUtil;
+import com.liferay.portlet.documentlibrary.NoSuchFileException;
 import com.liferay.portlet.documentlibrary.model.DLFileEntry;
 import com.liferay.portlet.documentlibrary.model.DLFolder;
 import com.liferay.portlet.documentlibrary.model.DLFolderConstants;
@@ -75,18 +77,27 @@ public class UpgradeSyncDLObject extends UpgradeProcess {
 					event = SyncConstants.EVENT_ADD;
 				}
 
-				SyncDLObject fileEntrySyncDLObject = SyncUtil.toSyncDLObject(
-					dlFileEntry, event);
+				try {
+					SyncDLObject fileEntrySyncDLObject =
+						SyncUtil.toSyncDLObject(dlFileEntry, event);
 
-				syncDLObjects.add(fileEntrySyncDLObject);
+					syncDLObjects.add(fileEntrySyncDLObject);
 
-				String type = fileEntrySyncDLObject.getType();
+					String type = fileEntrySyncDLObject.getType();
 
-				if (type.equals(SyncConstants.TYPE_PRIVATE_WORKING_COPY)) {
-					SyncDLObject approvedSyncDLObject = SyncUtil.toSyncDLObject(
-						dlFileEntry, event, true);
+					if (type.equals(SyncConstants.TYPE_PRIVATE_WORKING_COPY)) {
+						SyncDLObject approvedSyncDLObject =
+							SyncUtil.toSyncDLObject(dlFileEntry, event, true);
 
-					syncDLObjects.add(approvedSyncDLObject);
+						syncDLObjects.add(approvedSyncDLObject);
+					}
+				}
+				catch (NoSuchFileException nsfe) {
+					if (_log.isWarnEnabled()) {
+						_log.warn(
+							"File missing for file entry " +
+								dlFileEntry.getFileEntryId());
+					}
 				}
 			}
 			else if (foldersAndFileEntriesAndFileShortcut instanceof DLFolder) {
@@ -147,5 +158,7 @@ public class UpgradeSyncDLObject extends UpgradeProcess {
 			}
 		}
 	}
+
+	private static Log _log = LogFactoryUtil.getLog(UpgradeSyncDLObject.class);
 
 }
