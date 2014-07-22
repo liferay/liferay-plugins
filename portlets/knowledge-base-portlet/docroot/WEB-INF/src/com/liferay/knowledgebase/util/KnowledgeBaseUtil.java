@@ -261,11 +261,11 @@ public class KnowledgeBaseUtil {
 	}
 
 	public static final int getNextStatus(int status) {
-		if (status == KBCommentConstants.STATUS_PENDING) {
-			return KBCommentConstants.STATUS_IN_PROGRESS;
-		}
-		else if (status == KBCommentConstants.STATUS_IN_PROGRESS) {
+		if (status == KBCommentConstants.STATUS_IN_PROGRESS) {
 			return KBCommentConstants.STATUS_RESOLVED;
+		}
+		else if (status == KBCommentConstants.STATUS_PENDING) {
+			return KBCommentConstants.STATUS_IN_PROGRESS;
 		}
 		else {
 			return KBCommentConstants.STATUS_NONE;
@@ -300,18 +300,18 @@ public class KnowledgeBaseUtil {
 	}
 
 	public static final String getStatusTransitionLabel(int status) {
-		if (status == KBCommentConstants.STATUS_PENDING) {
-			return "move-to-pending";
-		}
-		else if (status == KBCommentConstants.STATUS_IN_PROGRESS) {
+		if (status == KBCommentConstants.STATUS_IN_PROGRESS) {
 			return "move-to-in-progress";
+		}
+		else if (status == KBCommentConstants.STATUS_PENDING) {
+			return "move-to-pending";
 		}
 		else if (status == KBCommentConstants.STATUS_RESOLVED) {
 			return "resolve";
 		}
 		else {
 			throw new IllegalArgumentException(
-				String.format("Invalid feedback status: %s", status));
+				String.format("Invalid feedback status %s", status));
 		}
 	}
 
