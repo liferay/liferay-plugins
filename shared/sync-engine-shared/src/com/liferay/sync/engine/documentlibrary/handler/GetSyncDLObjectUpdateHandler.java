@@ -165,13 +165,17 @@ public class GetSyncDLObjectUpdateHandler extends BaseSyncDLObjectHandler {
 			targetSyncFile.getRepositoryId(), getSyncAccountId(),
 			targetSyncFile.getTypePK());
 
-		Path sourceFilePath = Paths.get(sourceSyncFile.getFilePathName());
+		if (sourceSyncFile == null) {
+			return;
+		}
 
-		Path targetFilePath = Paths.get(targetFilePathName);
+		Path sourceFilePath = Paths.get(sourceSyncFile.getFilePathName());
 
 		if (Files.notExists(sourceFilePath)) {
 			return;
 		}
+
+		Path targetFilePath = Paths.get(targetFilePathName);
 
 		Files.move(sourceFilePath, targetFilePath);
 

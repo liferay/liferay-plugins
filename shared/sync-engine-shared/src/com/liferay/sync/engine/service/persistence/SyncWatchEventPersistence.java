@@ -15,6 +15,7 @@
 package com.liferay.sync.engine.service.persistence;
 
 import com.j256.ormlite.stmt.QueryBuilder;
+import com.j256.ormlite.stmt.SelectArg;
 import com.j256.ormlite.stmt.Where;
 
 import com.liferay.sync.engine.model.SyncWatchEvent;
@@ -45,7 +46,7 @@ public class SyncWatchEventPersistence
 
 		where.and();
 
-		where.eq("filePathName", filePathName);
+		where.eq("filePathName", new SelectArg(filePathName));
 
 		where.and();
 

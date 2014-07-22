@@ -15,6 +15,7 @@
 package com.liferay.sync.engine.service.persistence;
 
 import com.j256.ormlite.stmt.QueryBuilder;
+import com.j256.ormlite.stmt.SelectArg;
 import com.j256.ormlite.stmt.Where;
 
 import com.liferay.sync.engine.model.SyncFile;
@@ -59,7 +60,7 @@ public class SyncFilePersistence extends BasePersistenceImpl<SyncFile, Long> {
 		fieldValues.put("filePathName", filePathName);
 		fieldValues.put("syncAccountId", syncAccountId);
 
-		List<SyncFile> syncFiles = queryForFieldValues(fieldValues);
+		List<SyncFile> syncFiles = queryForFieldValuesArgs(fieldValues);
 
 		if ((syncFiles == null) || syncFiles.isEmpty()) {
 			return null;
@@ -105,7 +106,7 @@ public class SyncFilePersistence extends BasePersistenceImpl<SyncFile, Long> {
 
 		fieldValues.put("filePathName", filePathName);
 
-		return queryForFieldValues(fieldValues);
+		return queryForFieldValuesArgs(fieldValues);
 	}
 
 	public List<SyncFile> findByF_L_S(
@@ -116,7 +117,7 @@ public class SyncFilePersistence extends BasePersistenceImpl<SyncFile, Long> {
 
 		Where<SyncFile, Long> where = queryBuilder.where();
 
-		where.like("filePathName", filePathName + "%");
+		where.like("filePathName", new SelectArg(filePathName + "%"));
 
 		where.and();
 
