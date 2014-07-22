@@ -180,7 +180,7 @@ public class AdminUtil {
 		}
 		else {
 			throw new IllegalArgumentException(
-				String.format("unknown feedback status: %s", status));
+				String.format("Unknown feedback status %s", status));
 		}
 	}
 
@@ -201,7 +201,7 @@ public class AdminUtil {
 		}
 		else {
 			throw new IllegalArgumentException(
-				String.format("unknown feedback status: %s", status));
+				String.format("Unknown feedback status %s", status));
 		}
 	}
 
