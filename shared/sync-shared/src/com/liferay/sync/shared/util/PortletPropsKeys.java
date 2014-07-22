@@ -12,24 +12,17 @@
  * details.
  */
 
-package com.liferay.sync.util;
+package com.liferay.sync.shared.util;
 
 /**
- * @author Dennis Ju
+ * @author Shinn Lok
  */
-public class PortletPropsKeys
-	extends com.liferay.sync.shared.util.PortletPropsKeys {
+public class PortletPropsKeys {
 
-	public static final String SYNC_AUTH_VERIFIER_PIPELINE =
-		"sync.auth.verifier.pipeline";
+	public static final String SYNC_CLIENT_MAX_CONNECTIONS =
+		"sync.client.max.connections";
 
-	public static final String SYNC_FILE_DIFF_CACHE_DELETE_INTERVAL =
-		"sync.file.diff.cache.delete.interval";
-
-	public static final String SYNC_FILE_DIFF_CACHE_ENABLED =
-		"sync.file.diff.cache.enabled";
-
-	public static final String SYNC_FILE_DIFF_CACHE_EXPIRATION_TIME =
-		"sync.file.diff.cache.expiration.time";
+	public static final String SYNC_CLIENT_POLL_INTERVAL =
+		"sync.client.poll.interval";
 
 }
