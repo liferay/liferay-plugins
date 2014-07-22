@@ -35,7 +35,7 @@ long date = ParamUtil.getLong(request, "date", nowJCalendar.getTimeInMillis());
 
 long calendarBookingId = BeanPropertiesUtil.getLong(calendarBooking, "calendarBookingId");
 
-int instanceIndex = BeanParamUtil.getInteger(calendarBooking, request, "instanceIndex", 0);
+int instanceIndex = BeanParamUtil.getInteger(calendarBooking, request, "instanceIndex");
 
 long calendarId = BeanParamUtil.getLong(calendarBooking, request, "calendarId", userDefaultCalendar.getCalendarId());
 
