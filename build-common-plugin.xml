@@ -57,12 +57,12 @@
 			</copy>
 
 			<path id="service.classpath">
+				<pathelement location="${service.base.dir}/classes" />
 				<path refid="lib.classpath" />
 				<path refid="portal.classpath" />
 				<fileset dir="${app.server.lib.portal.dir}" includes="commons-digester.jar,commons-lang.jar,easyconf.jar" />
 				<fileset dir="${service.base.dir}/lib" includes="*.jar" />
 				<pathelement location="${sdk.dir}/misc" />
-				<pathelement location="${service.base.dir}/classes" />
 			</path>
 
 			<if>
