@@ -18,9 +18,7 @@
 
 <%
 String emptyResultsMessage = "no-in-progress-feedback-was-found";
-
 int feedbackStatus = KBCommentConstants.STATUS_IN_PROGRESS;
-
 String navItem = "viewInProgressFeedback";
 %>
 

@@ -18,9 +18,7 @@
 
 <%
 String emptyResultsMessage = "no-resolved-feedback-was-found";
-
 int feedbackStatus = KBCommentConstants.STATUS_RESOLVED;
-
 String navItem = "viewResolvedFeedback";
 %>
 

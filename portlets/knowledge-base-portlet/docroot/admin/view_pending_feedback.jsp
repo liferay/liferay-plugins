@@ -18,9 +18,7 @@
 
 <%
 String emptyResultsMessage = "no-pending-feedback-was-found";
-
 int feedbackStatus = KBCommentConstants.STATUS_PENDING;
-
 String navItem = "viewPendingFeedback";
 %>
 
