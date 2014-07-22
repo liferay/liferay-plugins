@@ -33,7 +33,10 @@ boolean menuOpen = ParamUtil.getBoolean(request, "menuOpen");
 		</a>
 
 		<div class="dockbar-user-notifications-container">
-			<ul class="dropdown-menu pull-right user-notifications-list"></ul>
+			<ul class="dropdown-menu pull-right user-notifications-list">
+				<div class="non-actionable-user-notifications-list"></div>
+				<div class="actionable-user-notifications-list"></div>
+			</ul>
 		</div>
 
 		<aui:script use="aui-base">
