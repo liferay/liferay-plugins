@@ -311,7 +311,7 @@
 			javac.srcdir="${service.base.dir}/service"
 		/>
 
-		<zip
+		<jar
 			basedir="${service.base.dir}/service-classes"
 			destfile="${service.base.dir}/lib/${plugin.name}-service.jar"
 		/>
