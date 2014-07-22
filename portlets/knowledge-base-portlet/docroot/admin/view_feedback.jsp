@@ -60,11 +60,11 @@ String navItem = ParamUtil.getString(request, "navItem", "viewPendingFeedback");
 </aui:nav-bar>
 
 <c:choose>
-	<c:when test='<%= navItem.equals("viewPendingFeedback") %>'>
-		<liferay-util:include page="/admin/view_pending_feedback.jsp" servletContext="<%= application %>" />
-	</c:when>
 	<c:when test='<%= navItem.equals("viewInProgressFeedback") %>'>
 		<liferay-util:include page="/admin/view_in_progress_feedback.jsp" servletContext="<%= application %>" />
+	</c:when>
+	<c:when test='<%= navItem.equals("viewPendingFeedback") %>'>
+		<liferay-util:include page="/admin/view_pending_feedback.jsp" servletContext="<%= application %>" />
 	</c:when>
 	<c:otherwise>
 		<liferay-util:include page="/admin/view_resolved_feedback.jsp" servletContext="<%= application %>" />
