@@ -90,6 +90,7 @@ public class KBCommentClp extends BaseModelImpl<KBComment> implements KBComment 
 		attributes.put("classPK", getClassPK());
 		attributes.put("content", getContent());
 		attributes.put("helpful", getHelpful());
+		attributes.put("status", getStatus());
 
 		return attributes;
 	}
@@ -166,6 +167,12 @@ public class KBCommentClp extends BaseModelImpl<KBComment> implements KBComment 
 
 		if (helpful != null) {
 			setHelpful(helpful);
+		}
+
+		Integer status = (Integer)attributes.get("status");
+
+		if (status != null) {
+			setStatus(status);
 		}
 	}
 
@@ -481,6 +488,29 @@ public class KBCommentClp extends BaseModelImpl<KBComment> implements KBComment 
 	}
 
 	@Override
+	public int getStatus() {
+		return _status;
+	}
+
+	@Override
+	public void setStatus(int status) {
+		_status = status;
+
+		if (_kbCommentRemoteModel != null) {
+			try {
+				Class<?> clazz = _kbCommentRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setStatus", int.class);
+
+				method.invoke(_kbCommentRemoteModel, status);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
+	}
+
+	@Override
 	public StagedModelType getStagedModelType() {
 		return new StagedModelType(PortalUtil.getClassNameId(
 				KBComment.class.getName()), getClassNameId());
@@ -567,6 +597,7 @@ public class KBCommentClp extends BaseModelImpl<KBComment> implements KBComment 
 		clone.setClassPK(getClassPK());
 		clone.setContent(getContent());
 		clone.setHelpful(getHelpful());
+		clone.setStatus(getStatus());
 
 		return clone;
 	}
@@ -616,7 +647,7 @@ public class KBCommentClp extends BaseModelImpl<KBComment> implements KBComment 
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(25);
+		StringBundler sb = new StringBundler(27);
 
 		sb.append("{uuid=");
 		sb.append(getUuid());
@@ -642,6 +673,8 @@ public class KBCommentClp extends BaseModelImpl<KBComment> implements KBComment 
 		sb.append(getContent());
 		sb.append(", helpful=");
 		sb.append(getHelpful());
+		sb.append(", status=");
+		sb.append(getStatus());
 		sb.append("}");
 
 		return sb.toString();
@@ -649,7 +682,7 @@ public class KBCommentClp extends BaseModelImpl<KBComment> implements KBComment 
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(40);
+		StringBundler sb = new StringBundler(43);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.knowledgebase.model.KBComment");
@@ -703,6 +736,10 @@ public class KBCommentClp extends BaseModelImpl<KBComment> implements KBComment 
 			"<column><column-name>helpful</column-name><column-value><![CDATA[");
 		sb.append(getHelpful());
 		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>status</column-name><column-value><![CDATA[");
+		sb.append(getStatus());
+		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
 
@@ -722,5 +759,6 @@ public class KBCommentClp extends BaseModelImpl<KBComment> implements KBComment 
 	private long _classPK;
 	private String _content;
 	private boolean _helpful;
+	private int _status;
 	private BaseModel<?> _kbCommentRemoteModel;
 }

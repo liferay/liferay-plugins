@@ -38,7 +38,7 @@ public class KBCommentCacheModel implements CacheModel<KBComment>,
 	Externalizable {
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(25);
+		StringBundler sb = new StringBundler(27);
 
 		sb.append("{uuid=");
 		sb.append(uuid);
@@ -64,6 +64,8 @@ public class KBCommentCacheModel implements CacheModel<KBComment>,
 		sb.append(content);
 		sb.append(", helpful=");
 		sb.append(helpful);
+		sb.append(", status=");
+		sb.append(status);
 		sb.append("}");
 
 		return sb.toString();
@@ -117,6 +119,7 @@ public class KBCommentCacheModel implements CacheModel<KBComment>,
 		}
 
 		kbCommentImpl.setHelpful(helpful);
+		kbCommentImpl.setStatus(status);
 
 		kbCommentImpl.resetOriginalValues();
 
@@ -137,6 +140,7 @@ public class KBCommentCacheModel implements CacheModel<KBComment>,
 		classPK = objectInput.readLong();
 		content = objectInput.readUTF();
 		helpful = objectInput.readBoolean();
+		status = objectInput.readInt();
 	}
 
 	@Override
@@ -174,6 +178,7 @@ public class KBCommentCacheModel implements CacheModel<KBComment>,
 		}
 
 		objectOutput.writeBoolean(helpful);
+		objectOutput.writeInt(status);
 	}
 
 	public String uuid;
@@ -188,4 +193,5 @@ public class KBCommentCacheModel implements CacheModel<KBComment>,
 	public long classPK;
 	public String content;
 	public boolean helpful;
+	public int status;
 }

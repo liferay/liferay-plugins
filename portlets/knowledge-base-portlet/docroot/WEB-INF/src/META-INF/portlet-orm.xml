@@ -69,6 +69,7 @@
 			<basic name="classPK" />
 			<basic name="content" />
 			<basic name="helpful" />
+			<basic name="status" />
 			<transient name="className" />
 			<transient name="modelAttributes" />
 			<transient name="primaryKey" />

@@ -80,9 +80,10 @@ public class KBCommentModelImpl extends BaseModelImpl<KBComment>
 			{ "classNameId", Types.BIGINT },
 			{ "classPK", Types.BIGINT },
 			{ "content", Types.VARCHAR },
-			{ "helpful", Types.BOOLEAN }
+			{ "helpful", Types.BOOLEAN },
+			{ "status", Types.INTEGER }
 		};
-	public static final String TABLE_SQL_CREATE = "create table KBComment (uuid_ VARCHAR(75) null,kbCommentId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,classNameId LONG,classPK LONG,content STRING null,helpful BOOLEAN)";
+	public static final String TABLE_SQL_CREATE = "create table KBComment (uuid_ VARCHAR(75) null,kbCommentId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,classNameId LONG,classPK LONG,content STRING null,helpful BOOLEAN,status INTEGER)";
 	public static final String TABLE_SQL_DROP = "drop table KBComment";
 	public static final String ORDER_BY_JPQL = " ORDER BY kbComment.modifiedDate DESC";
 	public static final String ORDER_BY_SQL = " ORDER BY KBComment.modifiedDate DESC";
@@ -102,9 +103,10 @@ public class KBCommentModelImpl extends BaseModelImpl<KBComment>
 	public static long CLASSPK_COLUMN_BITMASK = 2L;
 	public static long COMPANYID_COLUMN_BITMASK = 4L;
 	public static long GROUPID_COLUMN_BITMASK = 8L;
-	public static long USERID_COLUMN_BITMASK = 16L;
-	public static long UUID_COLUMN_BITMASK = 32L;
-	public static long MODIFIEDDATE_COLUMN_BITMASK = 64L;
+	public static long STATUS_COLUMN_BITMASK = 16L;
+	public static long USERID_COLUMN_BITMASK = 32L;
+	public static long UUID_COLUMN_BITMASK = 64L;
+	public static long MODIFIEDDATE_COLUMN_BITMASK = 128L;
 
 	/**
 	 * Converts the soap model instance into a normal model instance.
@@ -131,6 +133,7 @@ public class KBCommentModelImpl extends BaseModelImpl<KBComment>
 		model.setClassPK(soapModel.getClassPK());
 		model.setContent(soapModel.getContent());
 		model.setHelpful(soapModel.getHelpful());
+		model.setStatus(soapModel.getStatus());
 
 		return model;
 	}
@@ -207,6 +210,7 @@ public class KBCommentModelImpl extends BaseModelImpl<KBComment>
 		attributes.put("classPK", getClassPK());
 		attributes.put("content", getContent());
 		attributes.put("helpful", getHelpful());
+		attributes.put("status", getStatus());
 
 		return attributes;
 	}
@@ -283,6 +287,12 @@ public class KBCommentModelImpl extends BaseModelImpl<KBComment>
 
 		if (helpful != null) {
 			setHelpful(helpful);
+		}
+
+		Integer status = (Integer)attributes.get("status");
+
+		if (status != null) {
+			setStatus(status);
 		}
 	}
 
@@ -538,6 +548,29 @@ public class KBCommentModelImpl extends BaseModelImpl<KBComment>
 		_helpful = helpful;
 	}
 
+	@JSON
+	@Override
+	public int getStatus() {
+		return _status;
+	}
+
+	@Override
+	public void setStatus(int status) {
+		_columnBitmask |= STATUS_COLUMN_BITMASK;
+
+		if (!_setOriginalStatus) {
+			_setOriginalStatus = true;
+
+			_originalStatus = _status;
+		}
+
+		_status = status;
+	}
+
+	public int getOriginalStatus() {
+		return _originalStatus;
+	}
+
 	@Override
 	public StagedModelType getStagedModelType() {
 		return new StagedModelType(PortalUtil.getClassNameId(
@@ -587,6 +620,7 @@ public class KBCommentModelImpl extends BaseModelImpl<KBComment>
 		kbCommentImpl.setClassPK(getClassPK());
 		kbCommentImpl.setContent(getContent());
 		kbCommentImpl.setHelpful(getHelpful());
+		kbCommentImpl.setStatus(getStatus());
 
 		kbCommentImpl.resetOriginalValues();
 
@@ -662,6 +696,10 @@ public class KBCommentModelImpl extends BaseModelImpl<KBComment>
 
 		kbCommentModelImpl._setOriginalClassPK = false;
 
+		kbCommentModelImpl._originalStatus = kbCommentModelImpl._status;
+
+		kbCommentModelImpl._setOriginalStatus = false;
+
 		kbCommentModelImpl._columnBitmask = 0;
 	}
 
@@ -725,12 +763,14 @@ public class KBCommentModelImpl extends BaseModelImpl<KBComment>
 
 		kbCommentCacheModel.helpful = getHelpful();
 
+		kbCommentCacheModel.status = getStatus();
+
 		return kbCommentCacheModel;
 	}
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(25);
+		StringBundler sb = new StringBundler(27);
 
 		sb.append("{uuid=");
 		sb.append(getUuid());
@@ -756,6 +796,8 @@ public class KBCommentModelImpl extends BaseModelImpl<KBComment>
 		sb.append(getContent());
 		sb.append(", helpful=");
 		sb.append(getHelpful());
+		sb.append(", status=");
+		sb.append(getStatus());
 		sb.append("}");
 
 		return sb.toString();
@@ -763,7 +805,7 @@ public class KBCommentModelImpl extends BaseModelImpl<KBComment>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(40);
+		StringBundler sb = new StringBundler(43);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.knowledgebase.model.KBComment");
@@ -817,6 +859,10 @@ public class KBCommentModelImpl extends BaseModelImpl<KBComment>
 			"<column><column-name>helpful</column-name><column-value><![CDATA[");
 		sb.append(getHelpful());
 		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>status</column-name><column-value><![CDATA[");
+		sb.append(getStatus());
+		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
 
@@ -851,6 +897,9 @@ public class KBCommentModelImpl extends BaseModelImpl<KBComment>
 	private boolean _setOriginalClassPK;
 	private String _content;
 	private boolean _helpful;
+	private int _status;
+	private int _originalStatus;
+	private boolean _setOriginalStatus;
 	private long _columnBitmask;
 	private KBComment _escapedModel;
 }

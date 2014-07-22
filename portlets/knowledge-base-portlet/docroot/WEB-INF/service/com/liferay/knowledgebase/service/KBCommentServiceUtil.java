@@ -77,6 +77,37 @@ public class KBCommentServiceUtil {
 		return getService().deleteKBComment(kbCommentId);
 	}
 
+	public static com.liferay.knowledgebase.model.KBComment getKBComment(
+		long kbCommentId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService().getKBComment(kbCommentId);
+	}
+
+	public static java.util.List<com.liferay.knowledgebase.model.KBComment> getKBComments(
+		long groupId, int status, int start, int end)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService().getKBComments(groupId, status, start, end);
+	}
+
+	public static int getKBCommentsCount(long groupId, int status)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService().getKBCommentsCount(groupId, status);
+	}
+
+	public static com.liferay.knowledgebase.model.KBComment updateKBComment(
+		long kbCommentId, long classNameId, long classPK,
+		java.lang.String content, boolean helpful, int status,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService()
+				   .updateKBComment(kbCommentId, classNameId, classPK, content,
+			helpful, status, serviceContext);
+	}
+
 	public static com.liferay.knowledgebase.model.KBComment updateKBComment(
 		long kbCommentId, long classNameId, long classPK,
 		java.lang.String content, boolean helpful,
@@ -86,6 +117,14 @@ public class KBCommentServiceUtil {
 		return getService()
 				   .updateKBComment(kbCommentId, classNameId, classPK, content,
 			helpful, serviceContext);
+	}
+
+	public static com.liferay.knowledgebase.model.KBComment updateStatus(
+		long kbCommentId, int status,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService().updateStatus(kbCommentId, status, serviceContext);
 	}
 
 	public static void clearService() {
