@@ -43,7 +43,7 @@
 			A.merge(
 				autocompleteConfig,
 				{
-					inputNode: '#<portlet:namespace /><%= randomNamespace + "postReplyBody" + "0" %>',
+					inputNode: '#<portlet:namespace /><%= randomNamespace + "postReplyBody" + "0" %>'
 				}
 			)
 		).render();
