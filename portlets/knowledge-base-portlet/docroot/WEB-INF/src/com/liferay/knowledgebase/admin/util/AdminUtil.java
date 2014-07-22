@@ -169,12 +169,12 @@ public class AdminUtil {
 	public static String getEmailKBArticleFeedbackNotificationBody(
 		int status, PortletPreferences portletPreferences) {
 
-		if (status == KBCommentConstants.STATUS_PENDING) {
-			return AdminUtil.getEmailKBArticleFeedbackReceivedBody(
+		if (status == KBCommentConstants.STATUS_IN_PROGRESS) {
+			return AdminUtil.getEmailKBArticleFeedbackInProgressBody(
 				portletPreferences);
 		}
-		else if (status == KBCommentConstants.STATUS_IN_PROGRESS) {
-			return AdminUtil.getEmailKBArticleFeedbackInProgressBody(
+		else if (status == KBCommentConstants.STATUS_PENDING) {
+			return AdminUtil.getEmailKBArticleFeedbackReceivedBody(
 				portletPreferences);
 		}
 		else if (status == KBCommentConstants.STATUS_RESOLVED) {
@@ -190,12 +190,12 @@ public class AdminUtil {
 	public static String getEmailKBArticleFeedbackNotificationSubject(
 		int status, PortletPreferences portletPreferences) {
 
-		if (status == KBCommentConstants.STATUS_PENDING) {
-			return AdminUtil.getEmailKBArticleFeedbackReceivedSubject(
+		if (status == KBCommentConstants.STATUS_IN_PROGRESS) {
+			return AdminUtil.getEmailKBArticleFeedbackInProgressSubject(
 				portletPreferences);
 		}
-		else if (status == KBCommentConstants.STATUS_IN_PROGRESS) {
-			return AdminUtil.getEmailKBArticleFeedbackInProgressSubject(
+		else if (status == KBCommentConstants.STATUS_PENDING) {
+			return AdminUtil.getEmailKBArticleFeedbackReceivedSubject(
 				portletPreferences);
 		}
 		else if (status == KBCommentConstants.STATUS_RESOLVED) {
@@ -428,11 +428,11 @@ public class AdminUtil {
 	public static boolean isFeedbackStatusChangeNotificationEnabled(
 		int status, PortletPreferences preferences) {
 
-		if (status == KBCommentConstants.STATUS_PENDING) {
-			return getEmailKBArticleFeedbackReceivedEnabled(preferences);
-		}
-		else if (status == KBCommentConstants.STATUS_IN_PROGRESS) {
+		if (status == KBCommentConstants.STATUS_IN_PROGRESS) {
 			return getEmailKBArticleFeedbackInProgressEnabled(preferences);
+		}
+		else if (status == KBCommentConstants.STATUS_PENDING) {
+			return getEmailKBArticleFeedbackReceivedEnabled(preferences);
 		}
 		else if (status == KBCommentConstants.STATUS_RESOLVED) {
 			return getEmailKBArticleFeedbackResolvedEnabled(preferences);
