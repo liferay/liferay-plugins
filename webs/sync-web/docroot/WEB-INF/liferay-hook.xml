@@ -3,4 +3,14 @@
 
 <hook>
 	<portal-properties>portal.properties</portal-properties>
+	<servlet-filter>
+		<servlet-filter-name>Sync JSON Filter</servlet-filter-name>
+		<servlet-filter-impl>com.liferay.sync.filter.SyncJSONFilter</servlet-filter-impl>
+	</servlet-filter>
+	<servlet-filter-mapping>
+		<servlet-filter-name>Sync JSON Filter</servlet-filter-name>
+		<url-pattern>/api/jsonws/*</url-pattern>
+		<dispatcher>REQUEST</dispatcher>
+		<dispatcher>FORWARD</dispatcher>
+	</servlet-filter-mapping>
 </hook>

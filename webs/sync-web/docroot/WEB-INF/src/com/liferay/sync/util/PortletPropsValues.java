@@ -46,4 +46,8 @@ public class PortletPropsValues {
 			PortletProps.get(
 				PortletPropsKeys.SYNC_FILE_DIFF_CACHE_EXPIRATION_TIME));
 
+	public static final boolean SYNC_SERVICES_ENABLED =
+		GetterUtil.getBoolean(
+			PortletProps.get(PortletPropsKeys.SYNC_SERVICES_ENABLED));
+
 }
