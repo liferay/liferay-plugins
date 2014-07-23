@@ -265,7 +265,7 @@ public class SyncEngine {
 	}
 
 	protected static void synchronizeSyncFiles(
-			Path filePath, long syncAccountId,
+			Path filePath, final long syncAccountId,
 			WatchEventListener watchEventListener)
 		throws IOException {
 
