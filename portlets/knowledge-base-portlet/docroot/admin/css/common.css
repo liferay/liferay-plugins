@@ -194,7 +194,11 @@
 	}
 
 	.kb-article-comment-date {
-		margin-top: 15px;
+		margin-top: 10px;
+	}
+
+	.kb-article-comment-helpful {
+		margin-top: 10px;
 	}
 
 	.kb-attachments {

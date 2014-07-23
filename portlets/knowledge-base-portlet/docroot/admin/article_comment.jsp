@@ -42,22 +42,20 @@ KBComment kbComment = (KBComment)request.getAttribute("article_comment.jsp-kb_co
 			<h4><a href="<%= viewKBArticleURL %>"><%= HtmlUtil.escape(kbArticle.getTitle()) %></a></h4>
 
 			<div>
-				<span class="kb-question"><liferay-ui:message key="was-this-information-helpful" /></span>
-
-				<c:choose>
-					<c:when test="<%= kbComment.getHelpful() %>">
-						<strong class="kb-yes"><liferay-ui:message key="yes" /></strong>
-					</c:when>
-					<c:otherwise>
-						<strong class="kb-no"><liferay-ui:message key="no" /></strong>
-					</c:otherwise>
-				</c:choose>
+				<%= HtmlUtil.escape(kbComment.getContent()) %>
 			</div>
 
-			<br />
-
-			<div>
-				<%= HtmlUtil.escape(kbComment.getContent()) %>
+			<div class="kb-article-comment-helpful">
+				<c:choose>
+					<c:when test="<%= kbComment.getHelpful() %>">
+						<span class="icon icon-thumbs-up"></span>
+						<liferay-ui:message key="the-user-liked-the-article" />
+					</c:when>
+					<c:otherwise>
+						<span class="icon icon-thumbs-down"></span>
+						<liferay-ui:message key="the-user-did-not-like-the-article" />
+					</c:otherwise>
+				</c:choose>
 			</div>
 
 			<div class="kb-article-comment-date">
