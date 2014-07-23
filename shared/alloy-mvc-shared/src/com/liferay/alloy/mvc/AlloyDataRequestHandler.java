@@ -114,11 +114,8 @@ public class AlloyDataRequestHandler {
 		AlloyServiceInvoker alloyServiceInvoker =
 			baseAlloyControllerImpl.alloyServiceInvoker;
 
-		String propertiesParam = ParamUtil.getString(
-			actionRequest, "properties");
-
 		List<Object> properties = JSONFactoryUtil.looseDeserialize(
-			propertiesParam, ArrayList.class);
+			ParamUtil.getString(actionRequest, "properties"), ArrayList.class);
 
 		int start = ParamUtil.getInteger(
 			actionRequest, "start", QueryUtil.ALL_POS);
