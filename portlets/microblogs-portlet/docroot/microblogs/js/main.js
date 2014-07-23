@@ -74,6 +74,8 @@ AUI().use(
 						on: {
 							success: function() {
 								instance.updateMicroblogsList(url, updateContainer);
+
+								Liferay.fire('microblogPosted');
 							}
 						}
 					}
