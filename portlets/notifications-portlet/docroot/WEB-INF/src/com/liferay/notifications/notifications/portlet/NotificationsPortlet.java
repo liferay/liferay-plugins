@@ -488,10 +488,13 @@ public class NotificationsPortlet extends MVCPortlet {
 			actionDiv =
 				StringUtil.replace(
 					_MARK_AS_READ_DIV,
-					new String[] {"[$LINK$]", "[$MARK_AS_READ_URL$]"},
+					new String[] {
+						"[$LINK$]", "[$MARK_AS_READ_URL$]", "[$OPEN_DIALOG$]"},
 					new String[] {
 						userNotificationFeedEntry.getLink(),
-						actionURL.toString()});
+						actionURL.toString(),
+						String.valueOf(userNotificationFeedEntry.isOpenDialog())
+					});
 		}
 
 		Portlet portlet =
@@ -560,7 +563,8 @@ public class NotificationsPortlet extends MVCPortlet {
 	private static final String _MARK_AS_READ_DIV =
 		"<div class=\"clearfix user-notification-link\" " +
 			"data-href=\"[$LINK$]\" " +
-				"data-markAsReadURL=\"[$MARK_AS_READ_URL$]\">";
+				"data-markAsReadURL=\"[$MARK_AS_READ_URL$]\" " +
+					"data-openDialog=\"[$OPEN_DIALOG$]\">";
 
 	private static final String _NOTIFICATION_GROUP_SEPARATOR =
 		"<hr class=\"separator\">";
