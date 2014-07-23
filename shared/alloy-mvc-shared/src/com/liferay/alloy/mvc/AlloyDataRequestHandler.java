@@ -16,6 +16,7 @@ package com.liferay.alloy.mvc;
 
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
+import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.search.Sort;
 import com.liferay.portal.kernel.servlet.ServletResponseUtil;
 import com.liferay.portal.kernel.util.ContentTypes;
@@ -44,14 +45,14 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * @author Ethan Bustad
  */
-public class AlloyAsynchronousRequestHandler {
+public class AlloyDataRequestHandler {
 
-	public static void handle(
+	public static void processRequest(
 			ActionRequest actionRequest, ActionResponse actionResponse,
 			Map<String, BaseAlloyControllerImpl> alloyControllers)
 		throws Exception {
 
-		String json = null;
+		String jsonString = null;
 
 		String controller = ParamUtil.getString(actionRequest, "controller");
 
@@ -66,27 +67,32 @@ public class AlloyAsynchronousRequestHandler {
 
 		try {
 			if (action.equals("custom")) {
-				json = baseAlloyControllerImpl.handleAsynchronousRequest(
+				jsonString = baseAlloyControllerImpl.processDataRequest(
 					actionRequest);
 			}
 			else if (action.equals("dynamicQuery")) {
-				json = performDynamicQuery(
+				jsonString = executeDynamicQuery(
 					baseAlloyControllerImpl, actionRequest);
 			}
 			else if (action.equals("search")) {
-				json = performSearch(baseAlloyControllerImpl, actionRequest);
+				jsonString = executeSearch(
+					baseAlloyControllerImpl, actionRequest);
 			}
 		}
 		catch (Exception e) {
-			json = "{ 'error': 'An unexpected exception occurred.' }";
+			JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
+
+			jsonObject.put("error", "An unexpected exception occurred.");
+
+			jsonString = jsonObject.toString();
 		}
 
-		if (json != null) {
-			writeJSON(actionRequest, actionResponse, json);
+		if (jsonString != null) {
+			writeJSON(actionRequest, actionResponse, jsonString);
 		}
 	}
 
-	protected static String performDynamicQuery(
+	protected static String executeDynamicQuery(
 			BaseAlloyControllerImpl baseAlloyControllerImpl,
 			ActionRequest actionRequest)
 		throws Exception {
@@ -121,7 +127,7 @@ public class AlloyAsynchronousRequestHandler {
 		return JSONFactoryUtil.looseSerialize(baseModels);
 	}
 
-	protected static String performSearch(
+	protected static String executeSearch(
 			BaseAlloyControllerImpl baseAlloyControllerImpl,
 			ActionRequest actionRequest)
 		throws Exception {
