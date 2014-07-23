@@ -165,8 +165,8 @@ public class AlloyDataRequestHandler {
 
 			int i = 0;
 
-			for (Map.Entry<String, Boolean> sort : sortsMap.entrySet()) {
-				sorts[i++] = new Sort(sort.getKey(), sort.getValue());
+			for (Map.Entry<String, Boolean> entry : sortsMap.entrySet()) {
+				sorts[i++] = new Sort(entry.getKey(), entry.getValue());
 			}
 		}
 
