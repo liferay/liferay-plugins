@@ -24,14 +24,16 @@ int end = ParamUtil.getInteger(request, "end", fullView ? fullViewDelta : dockba
 
 List<UserNotificationEvent> userNotificationEvents = null;
 
+int userNotificationEventsCount = 0;
+
 int unreadActionableUserNotificationsCount = UserNotificationEventLocalServiceUtil.getArchivedUserNotificationEventsCount(themeDisplay.getUserId(), UserNotificationDeliveryConstants.TYPE_WEBSITE, true, false);
 int unreadNonActionableUserNotificationsCount = UserNotificationEventLocalServiceUtil.getArchivedUserNotificationEventsCount(themeDisplay.getUserId(), UserNotificationDeliveryConstants.TYPE_WEBSITE, false, false);
-int userNotificationEventsCount = UserNotificationEventLocalServiceUtil.getArchivedUserNotificationEventsCount(themeDisplay.getUserId(), UserNotificationDeliveryConstants.TYPE_WEBSITE, false);
 
 List<Long> userNotificationEventIds = new ArrayList<Long>();
 
 if (filter.equals("dockbar")) {
 	userNotificationEvents = UserNotificationEventLocalServiceUtil.getArchivedUserNotificationEvents(themeDisplay.getUserId(), UserNotificationDeliveryConstants.TYPE_WEBSITE, false, start, end);
+	userNotificationEventsCount = UserNotificationEventLocalServiceUtil.getArchivedUserNotificationEventsCount(themeDisplay.getUserId(), UserNotificationDeliveryConstants.TYPE_WEBSITE, false);
 }
 else if (filter.equals("unread-actionable")) {
 	userNotificationEvents = UserNotificationEventLocalServiceUtil.getArchivedUserNotificationEvents(themeDisplay.getUserId(), UserNotificationDeliveryConstants.TYPE_WEBSITE, true, false, start, end);
@@ -57,46 +59,49 @@ else {
 		</c:otherwise>
 	</c:choose>
 </li>
-<c:if test="<%= (userNotificationEventsCount > fullViewDelta) && fullView %>">
-		<li class="clearfix message top">
-			<span class="left-nav <%= start == 0 ? "disabled" : "previous" %>"><a href="javascript:;"><liferay-ui:message key="previous" /></a></span>
-			<span><liferay-ui:message arguments="<%= new Object[] {(start + 1), end <= userNotificationEventsCount ? end : userNotificationEventsCount, userNotificationEventsCount} %>" key="showing-x-x-of-x-results" translateArguments="<%= false %>" /></span>
-			<span class="right-nav <%= userNotificationEventsCount <= end ? "disabled" : "next" %>"><a href="javascript:;"><liferay-ui:message key="next" /></a></span>
-		</li>
+
+<c:if test="<%= fullView && (userNotificationEventsCount > fullViewDelta) %>">
+	<li class="clearfix message top">
+		<span class="left-nav <%= start == 0 ? "disabled" : "previous" %>"><a href="javascript:;"><liferay-ui:message key="previous" /></a></span>
+		<span><liferay-ui:message arguments="<%= new Object[] {(start + 1), end <= userNotificationEventsCount ? end : userNotificationEventsCount, userNotificationEventsCount} %>" key="showing-x-x-of-x-results" translateArguments="<%= false %>" /></span>
+		<span class="right-nav <%= userNotificationEventsCount <= end ? "disabled" : "next" %>"><a href="javascript:;"><liferay-ui:message key="next" /></a></span>
+	</li>
 </c:if>
 
 <c:choose>
 	<c:when test='<%= filter.equals("dockbar") %>'>
-
-		<div id="<portlet:namespace />user-notifications-list">
+		<div class="dockbar-user-notifications-list">
 
 			<%
 			List<UserNotificationEvent> actionableUserNotificationEvents = UserNotificationEventLocalServiceUtil.getArchivedUserNotificationEvents(themeDisplay.getUserId(), UserNotificationDeliveryConstants.TYPE_WEBSITE, true, false, start, end);
-
-			if (unreadActionableUserNotificationsCount > 0) {
-				for (UserNotificationEvent userNotificationEvent : actionableUserNotificationEvents) {
 			%>
+
+			<c:if test="<%= unreadActionableUserNotificationsCount > 0 %>">
+
+				<%
+				for (UserNotificationEvent userNotificationEvent : actionableUserNotificationEvents) {
+				%>
 
 					<%@ include file="/notifications/notification_entry.jspf" %>
 
-			<%
+				<%
 				}
-			}
+				%>
 
-			if (unreadActionableUserNotificationsCount <= dockbarViewDelta) {
+			</c:if>
+
+			<c:if test="<%= unreadActionableUserNotificationsCount <= dockbarViewDelta %>">
+
+				<%
 				List<UserNotificationEvent> nonActionableUserNotificationEvents = UserNotificationEventLocalServiceUtil.getArchivedUserNotificationEvents(themeDisplay.getUserId(), UserNotificationDeliveryConstants.TYPE_WEBSITE, false, false, start, (end - unreadActionableUserNotificationsCount));
+				%>
 
-				if (!nonActionableUserNotificationEvents.isEmpty()) {
-					if (unreadActionableUserNotificationsCount > 0) {
-			%>
+				<c:if test="<%= !nonActionableUserNotificationEvents.isEmpty() %>">
+					<c:if test="<%= unreadActionableUserNotificationsCount > 0 %>">
+						<hr class="separator">
+					</c:if>
 
-					<hr>
-
-					<%
-					}
-					%>
-
-					<div id="<portlet:namespace />non-actionable-user-notifications-list">
+					<div class="non-actionable-user-notifications-list">
 
 						<%
 						for (UserNotificationEvent userNotificationEvent : nonActionableUserNotificationEvents) {
@@ -110,11 +115,10 @@ else {
 						%>
 
 					</div>
+				</c:if>
+			</c:if>
 
 			<%
-				}
-			}
-
 			long notificationsPlid = themeDisplay.getPlid();
 
 			if (layout.isTypeControlPanel()) {
@@ -129,15 +133,15 @@ else {
 			%>
 
 		</div>
-
+		<li class="message">
+			<div class="dockbarMarkAllAsRead"></div>
+		</li>
 		<li class="bottom message">
 			<liferay-portlet:renderURL plid="<%= notificationsPlid %>" portletName="<%= PortletKeys.NOTIFICATIONS %>" var="viewAllNotifications" windowState="<%= LiferayWindowState.MAXIMIZED.toString() %>">
 				<portlet:param name="mvcPath" value="/notifications/view.jsp" />
 			</liferay-portlet:renderURL>
 
 			<a href="<%= viewAllNotifications %>"><liferay-ui:message key="view-all-notifications" /></a>
-
-			<div class="dockbarMarkAllAsRead"></div>
 		</li>
 	</c:when>
 	<c:when test='<%= filter.equals("unread-actionable") %>'>
@@ -161,52 +165,50 @@ else {
 		</c:if>
 	</c:when>
 	<c:when test='<%= filter.equals("unread-non-actionable") %>'>
-		<div id="<portlet:namespace />user-notifications-list">
+		<c:if test="<%= userNotificationEventsCount > 0 %>">
+			<div class="fullViewMarkAllAsRead"></div>
 
-			<c:if test="<%= userNotificationEventsCount > 0 %>">
-				<div class="fullViewMarkAllAsRead"></div>
+			<div class="non-actionable-user-notifications-list">
 
-				<div id="<portlet:namespace />non-actionable-user-notifications-list">
+				<%
+				for (UserNotificationEvent userNotificationEvent : userNotificationEvents) {
+					userNotificationEventIds.add(userNotificationEvent.getUserNotificationEventId());
+				%>
 
-					<%
-					for (UserNotificationEvent userNotificationEvent : userNotificationEvents) {
-						userNotificationEventIds.add(userNotificationEvent.getUserNotificationEventId());
-					%>
+					<%@ include file="/notifications/notification_entry.jspf" %>
 
-						<%@ include file="/notifications/notification_entry.jspf" %>
+				<%
+				}
+				%>
 
-					<%
-					}
-					%>
+			</div>
 
-				</div>
-
-				<li class="clearfix message">
-					<span class="left-nav <%= start == 0 ? "disabled" : "previous" %>"><a href="javascript:;"><liferay-ui:message key="previous" /></a></span>
-					<span><liferay-ui:message arguments="<%= new Object[] {(start + 1), end <= userNotificationEventsCount ? end : userNotificationEventsCount, userNotificationEventsCount} %>" key="showing-x-x-of-x-results" translateArguments="<%= false %>" /></span>
-					<span class="right-nav <%= userNotificationEventsCount <= end ? "disabled" : "next" %>"><a href="javascript:;"><liferay-ui:message key="next" /></a></span>
-				</li>
-			</c:if>
-
-		</div>
+			<li class="clearfix message">
+				<span class="left-nav <%= start == 0 ? "disabled" : "previous" %>"><a href="javascript:;"><liferay-ui:message key="previous" /></a></span>
+				<span><liferay-ui:message arguments="<%= new Object[] {(start + 1), end <= userNotificationEventsCount ? end : userNotificationEventsCount, userNotificationEventsCount} %>" key="showing-x-x-of-x-results" translateArguments="<%= false %>" /></span>
+				<span class="right-nav <%= userNotificationEventsCount <= end ? "disabled" : "next" %>"><a href="javascript:;"><liferay-ui:message key="next" /></a></span>
+			</li>
+		</c:if>
 	</c:when>
 	<c:otherwise>
+		<c:if test="<%= userNotificationEventsCount > 0 %>">
 
-		<%
-		for (UserNotificationEvent userNotificationEvent : userNotificationEvents) {
-		%>
+			<%
+			for (UserNotificationEvent userNotificationEvent : userNotificationEvents) {
+			%>
 
-			<%@ include file="/notifications/notification_entry.jspf" %>
+				<%@ include file="/notifications/notification_entry.jspf" %>
 
-		<%
-		}
-		%>
+			<%
+			}
+			%>
 
-		<li class="clearfix message">
-			<span class="left-nav <%= start == 0 ? "disabled" : "previous" %>"><a href="javascript:;"><liferay-ui:message key="previous" /></a></span>
-			<span><liferay-ui:message arguments="<%= new Object[] {(start + 1), end <= userNotificationEventsCount ? end : userNotificationEventsCount, userNotificationEventsCount} %>" key="showing-x-x-of-x-results" translateArguments="<%= false %>" /></span>
-			<span class="right-nav <%= userNotificationEventsCount <= end ? "disabled" : "next" %>"><a href="javascript:;"><liferay-ui:message key="next" /></a></span>
-		</li>
+			<li class="clearfix message">
+				<span class="left-nav <%= start == 0 ? "disabled" : "previous" %>"><a href="javascript:;"><liferay-ui:message key="previous" /></a></span>
+				<span><liferay-ui:message arguments="<%= new Object[] {(start + 1), end <= userNotificationEventsCount ? end : userNotificationEventsCount, userNotificationEventsCount} %>" key="showing-x-x-of-x-results" translateArguments="<%= false %>" /></span>
+				<span class="right-nav <%= userNotificationEventsCount <= end ? "disabled" : "next" %>"><a href="javascript:;"><liferay-ui:message key="next" /></a></span>
+			</li>
+		</c:if>
 	</c:otherwise>
 </c:choose>
 
@@ -224,7 +226,7 @@ else {
 			namespace: '<portlet:namespace />',
 			start: <%= start %>,
 			unreadActionableUserNotificationsCount: <%= unreadActionableUserNotificationsCount %>,
-			unreadActionableUserNotificationsCount: <%= unreadNonActionableUserNotificationsCount %>,
+			unreadNonActionableUserNotificationsCount: <%= unreadNonActionableUserNotificationsCount %>,
 			userNotificationEventsCount: <%= userNotificationEventsCount %>,
 			userNotificationEventIds: '<%= StringUtil.merge(userNotificationEventIds) %>'
 		}
