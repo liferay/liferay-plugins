@@ -50,13 +50,29 @@ boolean hasEditPermission = KBArticlePermission.contains(permissionChecker, kbAr
 
 			<c:choose>
 				<c:when test="<%= kbCommentsCount == 1 %>">
-					| <a data-show-node-id="<portlet:namespace />previousCommentsContainer" href="javascript:void(0)">
-						<liferay-ui:message key="you-sent-one-suggestion-for-this-article" />
+					|
+					<a data-show-node-id="<portlet:namespace />previousCommentsContainer" href="javascript:void(0)">
+						<c:choose>
+							<c:when test="<%= hasEditPermission %>">
+								<liferay-ui:message key="a-user-sent-one-suggestion-for-this-article" />
+							</c:when>
+							<c:otherwise>
+								<liferay-ui:message key="you-sent-one-suggestion-for-this-article" />
+							</c:otherwise>
+						</c:choose>
 					</a>
 				</c:when>
 				<c:when test="<%= kbCommentsCount > 1 %>">
-					| <a data-show-node-id="<portlet:namespace />previousCommentsContainer" href="javascript:void(0)">
-						<liferay-ui:message arguments="<%= new Object[]{ kbCommentsCount } %>" key="you-sent-x-suggestions-for-this-article" />
+					|
+					<a data-show-node-id="<portlet:namespace />previousCommentsContainer" href="javascript:void(0)">
+						<c:choose>
+							<c:when test="<%= hasEditPermission %>">
+								<liferay-ui:message arguments="<%= new Object[]{ kbCommentsCount } %>" key="users-sent-x-suggestions-for-this-article" />
+							</c:when>
+							<c:otherwise>
+								<liferay-ui:message arguments="<%= new Object[]{ kbCommentsCount } %>" key="you-sent-x-suggestions-for-this-article" />
+							</c:otherwise>
+						</c:choose>
 					</a>
 				</c:when>
 			</c:choose>
