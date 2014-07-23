@@ -475,10 +475,6 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 		return attributesMap;
 	}
 
-	protected String handleAsynchronousRequest(ActionRequest actionRequest) {
-		return null;
-	}
-
 	protected long increment(String name) throws Exception {
 		return CounterLocalServiceUtil.increment(name);
 	}
@@ -752,6 +748,10 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 		company = themeDisplay.getCompany();
 		locale = themeDisplay.getLocale();
 		user = themeDisplay.getUser();
+	}
+
+	protected String processDataRequest(ActionRequest actionRequest) {
+		return null;
 	}
 
 	protected void redirectTo(PortletURL portletURL) {
