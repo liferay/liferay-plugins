@@ -174,9 +174,15 @@ boolean hasEditPermission = KBArticlePermission.contains(permissionChecker, kbAr
 			feedbackFm.on(
 				'submit',
 				function(event) {
+					var ratingThumb = A.one('.kb-article-container input[name="<portlet:namespace />ratingThumb"]');
+
+					if (!ratingThumb) {
+						return;
+					}
+
 					var helpful = this.one('#<portlet:namespace />helpful');
 
-					helpful.val(thumbUp.hasClass('rating-on'));
+					helpful.val(ratingThumb.val() === 'up');
 				}
 			);
 
