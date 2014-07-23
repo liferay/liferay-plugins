@@ -235,7 +235,7 @@ public class NotificationsPortlet extends MVCPortlet {
 				(nonActionableUserNotificationEvents != null) &&
 				!(nonActionableUserNotificationEvents.isEmpty())) {
 
-				separator = StringPool.BLANK;
+				separator = _NOTIFICATION_GROUP_SEPARATOR;
 			}
 
 			String entry = renderEntry(
@@ -507,5 +507,8 @@ public class NotificationsPortlet extends MVCPortlet {
 		UserNotificationEventLocalServiceUtil.updateUserNotificationEvent(
 			userNotificationEvent);
 	}
+
+	private static final String _NOTIFICATION_GROUP_SEPARATOR =
+		"<hr class=\"separator\">";
 
 }

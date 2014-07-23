@@ -98,6 +98,13 @@
 			}
 		}
 
+		.separator {
+			background-color: #DCDCDC;
+			height: 1px;
+			margin-bottom: 3px;
+			margin-top: 5px;
+		}
+
 		.user-notification {
 			background: #FFF;
 
