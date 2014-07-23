@@ -23,7 +23,6 @@ int start = ParamUtil.getInteger(request, "start", 0);
 int end = ParamUtil.getInteger(request, "end", fullView ? fullViewDelta : dockbarViewDelta);
 
 List<UserNotificationEvent> userNotificationEvents = null;
-
 int userNotificationEventsCount = 0;
 
 int unreadActionableUserNotificationsCount = UserNotificationEventLocalServiceUtil.getArchivedUserNotificationEventsCount(themeDisplay.getUserId(), UserNotificationDeliveryConstants.TYPE_WEBSITE, true, false);
@@ -82,7 +81,7 @@ else {
 				for (UserNotificationEvent userNotificationEvent : actionableUserNotificationEvents) {
 				%>
 
-					<%@ include file="/notifications/notification_entry.jspf" %>
+					<%@ include file="/notifications/view_entry.jspf" %>
 
 				<%
 				}
@@ -108,7 +107,7 @@ else {
 							userNotificationEventIds.add(userNotificationEvent.getUserNotificationEventId());
 						%>
 
-							<%@ include file="/notifications/notification_entry.jspf" %>
+							<%@ include file="/notifications/view_entry.jspf" %>
 
 						<%
 						}
@@ -133,6 +132,7 @@ else {
 			%>
 
 		</div>
+
 		<li class="message">
 			<div class="dockbarMarkAllAsRead"></div>
 		</li>
@@ -151,7 +151,7 @@ else {
 			for (UserNotificationEvent userNotificationEvent : userNotificationEvents) {
 			%>
 
-				<%@ include file="/notifications/notification_entry.jspf" %>
+				<%@ include file="/notifications/view_entry.jspf" %>
 
 			<%
 			}
@@ -175,7 +175,7 @@ else {
 					userNotificationEventIds.add(userNotificationEvent.getUserNotificationEventId());
 				%>
 
-					<%@ include file="/notifications/notification_entry.jspf" %>
+					<%@ include file="/notifications/view_entry.jspf" %>
 
 				<%
 				}
@@ -197,7 +197,7 @@ else {
 			for (UserNotificationEvent userNotificationEvent : userNotificationEvents) {
 			%>
 
-				<%@ include file="/notifications/notification_entry.jspf" %>
+				<%@ include file="/notifications/view_entry.jspf" %>
 
 			<%
 			}
