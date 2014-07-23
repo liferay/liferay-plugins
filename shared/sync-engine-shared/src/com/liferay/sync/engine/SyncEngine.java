@@ -320,7 +320,7 @@ public class SyncEngine {
 		for (SyncFile syncFile : syncFiles) {
 			watchEventListener.watchEvent(
 				SyncWatchEvent.EVENT_TYPE_DELETE,
-				java.nio.file.Paths.get(syncFile.getFilePathName()));
+				Paths.get(syncFile.getFilePathName()));
 		}
 	}
 
