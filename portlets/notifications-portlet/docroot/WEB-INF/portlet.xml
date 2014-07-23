@@ -6,6 +6,10 @@
 		<display-name>Notifications</display-name>
 		<portlet-class>com.liferay.notifications.notifications.portlet.NotificationsPortlet</portlet-class>
 		<init-param>
+			<name>add-process-action-success-action</name>
+			<value>false</value>
+		</init-param>
+		<init-param>
 			<name>view-template</name>
 			<value>/notifications/view.jsp</value>
 		</init-param>
@@ -36,6 +40,10 @@
 		<portlet-name>2</portlet-name>
 		<display-name>Dockbar Notifications</display-name>
 		<portlet-class>com.liferay.notifications.notifications.portlet.NotificationsPortlet</portlet-class>
+		<init-param>
+			<name>add-process-action-success-action</name>
+			<value>false</value>
+		</init-param>
 		<init-param>
 			<name>view-template</name>
 			<value>/dockbar_notifications/view.jsp</value>
