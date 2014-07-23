@@ -21,6 +21,7 @@ import com.liferay.portal.kernel.search.Sort;
 import com.liferay.portal.kernel.servlet.ServletResponseUtil;
 import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.ParamUtil;
+import com.liferay.portal.kernel.util.StackTraceUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.Portlet;
@@ -82,7 +83,10 @@ public class AlloyDataRequestHandler {
 		catch (Exception e) {
 			JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
-			jsonObject.put("error", "An unexpected exception occurred.");
+			jsonObject.put(
+				"error",
+				"An unexpected exception occurred: " + e.getMessage());
+			jsonObject.put("stacktrace", StackTraceUtil.getStackTrace(e));
 
 			jsonString = jsonObject.toString();
 		}
