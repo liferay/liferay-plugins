@@ -106,18 +106,22 @@
 		}
 	}
 
+	.kb-article-comment {
+		border-top: 1px dotted;
+		margin: 20px;
+		padding: 10px;
+	}
+
 	.kb-article-previous-comments {
 		clear: both;
 		margin-left: 15px;
 
-		.kb-article-comment {
-			border-top: 1px dotted;
-			margin: 20px;
-			padding: 10px;
-		}
-
 		.kb-article-add-comment {
 			margin: 10px 25px;
+		}
+
+		.kb-feedback-actions {
+			margin: 10px 0;
 		}
 	}
 
