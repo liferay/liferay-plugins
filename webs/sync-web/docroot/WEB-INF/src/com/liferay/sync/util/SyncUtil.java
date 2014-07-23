@@ -76,7 +76,7 @@ public class SyncUtil {
 	}
 
 	public static String getChecksum(InputStream inputStream) {
-		return DigesterUtil.digestBase64(Digester.SHA_1, inputStream);
+		return DigesterUtil.digestBase64(Digester.MD5, inputStream);
 	}
 
 	public static File getFileDelta(File sourceFile, File targetFile)
