@@ -34,6 +34,10 @@ public class PropsValues {
 	public static final String[] SYNC_FILE_BLACKLIST_NAMES = PropsUtil.getArray(
 		PropsKeys.SYNC_FILE_BLACKLIST_NAMES);
 
+	public static final int SYNC_FILE_CHECKSUM_THRESHOLD_SIZE =
+		Integer.parseInt(
+			PropsUtil.get(PropsKeys.SYNC_FILE_CHECKSUM_THRESHOLD_SIZE));
+
 	public static final boolean SYNC_FILE_IGNORE_HIDDEN = Boolean.valueOf(
 		PropsUtil.get(PropsKeys.SYNC_FILE_IGNORE_HIDDEN));
 
@@ -43,9 +47,9 @@ public class PropsValues {
 	public static final String[] SYNC_FILE_PATCHING_IGNORE_FILE_EXTENSIONS =
 		PropsUtil.getArray(PropsKeys.SYNC_FILE_PATCHING_IGNORE_EXTENSIONS);
 
-	public static final long SYNC_FILE_PATCHING_SIZE_RATIO_THRESHOLD =
-		Long.parseLong(
-			PropsUtil.get(PropsKeys.SYNC_FILE_PATCHING_SIZE_RATIO_THRESHOLD));
+	public static final int SYNC_FILE_PATCHING_THRESHOLD_SIZE_RATIO =
+		Integer.parseInt(
+			PropsUtil.get(PropsKeys.SYNC_FILE_PATCHING_THRESHOLD_SIZE_RATIO));
 
 	public static final String SYNC_LOGGER_CONFIGURATION_FILE = PropsUtil.get(
 		PropsKeys.SYNC_LOGGER_CONFIGURATION_FILE);

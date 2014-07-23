@@ -33,6 +33,9 @@ public interface PropsKeys {
 	public static final String SYNC_FILE_BLACKLIST_NAMES =
 		"sync.file.blacklist.names";
 
+	public static final String SYNC_FILE_CHECKSUM_THRESHOLD_SIZE =
+		"sync.file.checksum.threshold.size";
+
 	public static final String SYNC_FILE_IGNORE_HIDDEN =
 		"sync.file.ignore.hidden";
 
@@ -42,8 +45,8 @@ public interface PropsKeys {
 	public static final String SYNC_FILE_PATCHING_IGNORE_EXTENSIONS =
 		"sync.file.patching.ignore.extensions";
 
-	public static final String SYNC_FILE_PATCHING_SIZE_RATIO_THRESHOLD =
-		"sync.file.patching.size.ratio.threshold";
+	public static final String SYNC_FILE_PATCHING_THRESHOLD_SIZE_RATIO =
+		"sync.file.patching.threshold.size.ratio";
 
 	public static final String SYNC_LOGGER_CONFIGURATION_FILE =
 		"sync.logger.configuration.file";

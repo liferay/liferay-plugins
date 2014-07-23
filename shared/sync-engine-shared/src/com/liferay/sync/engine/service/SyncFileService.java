@@ -658,7 +658,7 @@ public class SyncFileService {
 		else {
 			if ((deltaFilePath != null) &&
 				(Files.size(filePath) / Files.size(deltaFilePath)) >=
-					PropsValues.SYNC_FILE_PATCHING_SIZE_RATIO_THRESHOLD) {
+					PropsValues.SYNC_FILE_PATCHING_THRESHOLD_SIZE_RATIO) {
 
 				parameters.put("deltaFilePath", deltaFilePath);
 				parameters.put("sourceFileName", sourceFileName);

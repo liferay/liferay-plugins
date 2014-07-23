@@ -49,9 +49,15 @@ public class FileUtil {
 		InputStream fileInputStream = null;
 
 		try {
+			if (Files.size(filePath) >
+					PropsValues.SYNC_FILE_CHECKSUM_THRESHOLD_SIZE) {
+
+				return "";
+			}
+
 			fileInputStream = Files.newInputStream(filePath);
 
-			byte[] bytes = DigestUtils.sha1(fileInputStream);
+			byte[] bytes = DigestUtils.md5(fileInputStream);
 
 			return Base64.encodeBase64String(bytes);
 		}
