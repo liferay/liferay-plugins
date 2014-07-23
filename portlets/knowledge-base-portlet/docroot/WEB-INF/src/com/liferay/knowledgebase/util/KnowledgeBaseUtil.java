@@ -302,6 +302,22 @@ public class KnowledgeBaseUtil {
 		}
 	}
 
+	public static final String getStatusLabel(int status) {
+		if (status == KBCommentConstants.STATUS_IN_PROGRESS) {
+			return "in-progress";
+		}
+		else if (status == KBCommentConstants.STATUS_PENDING) {
+			return "pending";
+		}
+		else if (status == KBCommentConstants.STATUS_RESOLVED) {
+			return "resolved";
+		}
+		else {
+			throw new IllegalArgumentException(
+				String.format("Invalid feedback status %s", status));
+		}
+	}
+
 	public static final String getStatusTransitionLabel(int status) {
 		if (status == KBCommentConstants.STATUS_IN_PROGRESS) {
 			return "move-to-in-progress";

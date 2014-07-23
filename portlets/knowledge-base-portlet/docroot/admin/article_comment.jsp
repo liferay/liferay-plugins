@@ -41,6 +41,16 @@ KBComment kbComment = (KBComment)request.getAttribute("article_comment.jsp-kb_co
 
 			<h4><a href="<%= viewKBArticleURL %>"><%= HtmlUtil.escape(kbArticle.getTitle()) %></a></h4>
 
+			<%
+			int feedbackStatus = kbComment.getStatus();
+			%>
+
+			<div class="kb-article-status">
+				<aui:model-context bean="<%= kbComment %>" model="<%= KBComment.class %>" />
+
+				<aui:workflow-status status="<%= feedbackStatus %>" statusMessage="<%= KnowledgeBaseUtil.getStatusLabel(feedbackStatus) %>" />
+			</div>
+
 			<div>
 				<%= HtmlUtil.escape(kbComment.getContent()) %>
 			</div>
@@ -70,8 +80,6 @@ KBComment kbComment = (KBComment)request.getAttribute("article_comment.jsp-kb_co
 			</div>
 
 			<%
-			int feedbackStatus = kbComment.getStatus();
-
 			int previousStatus = KnowledgeBaseUtil.getPreviousStatus(feedbackStatus);
 			int nextStatus = KnowledgeBaseUtil.getNextStatus(feedbackStatus);
 			%>
