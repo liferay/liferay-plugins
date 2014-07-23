@@ -143,23 +143,23 @@ public class AlloyDataRequestHandler {
 
 		Map<String, Serializable> attributes = null;
 
-		String attributesParam = ParamUtil.getString(
+		String attributesString = ParamUtil.getString(
 			actionRequest, "attributes");
 
-		if (Validator.isNotNull(attributesParam)) {
+		if (Validator.isNotNull(attributesString)) {
 			attributes = JSONFactoryUtil.looseDeserialize(
-				attributesParam, HashMap.class);
+				attributesString, HashMap.class);
 		}
 
 		String keywords = ParamUtil.getString(actionRequest, "keywords");
 
 		Sort[] sorts = null;
 
-		String sortsParam = ParamUtil.getString(actionRequest, "sorts");
+		String sortsString = ParamUtil.getString(actionRequest, "sorts");
 
-		if (Validator.isNotNull(sortsParam)) {
+		if (Validator.isNotNull(sortsString)) {
 			Map<String, Boolean> sortsMap = JSONFactoryUtil.looseDeserialize(
-				sortsParam, LinkedHashMap.class);
+				sortsString, LinkedHashMap.class);
 
 			sorts = new Sort[sortsMap.size()];
 
