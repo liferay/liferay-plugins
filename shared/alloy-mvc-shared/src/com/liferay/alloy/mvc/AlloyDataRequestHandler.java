@@ -116,10 +116,8 @@ public class AlloyDataRequestHandler {
 
 		List<Object> properties = JSONFactoryUtil.looseDeserialize(
 			ParamUtil.getString(actionRequest, "properties"), ArrayList.class);
-
 		int start = ParamUtil.getInteger(
 			actionRequest, "start", QueryUtil.ALL_POS);
-
 		int end = ParamUtil.getInteger(actionRequest, "end", QueryUtil.ALL_POS);
 
 		List<BaseModel<?>> baseModels = alloyServiceInvoker.executeDynamicQuery(
