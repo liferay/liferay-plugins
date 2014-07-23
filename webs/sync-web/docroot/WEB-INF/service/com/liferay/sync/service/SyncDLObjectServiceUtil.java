@@ -151,6 +151,11 @@ public class SyncDLObjectServiceUtil {
 		return getService().getLatestModifiedTime();
 	}
 
+	public static javax.portlet.PortletPreferences getPortletPreferences()
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().getPortletPreferences();
+	}
+
 	public static com.liferay.sync.model.SyncContext getSyncContext(
 		java.lang.String uuid)
 		throws com.liferay.portal.kernel.exception.PortalException {

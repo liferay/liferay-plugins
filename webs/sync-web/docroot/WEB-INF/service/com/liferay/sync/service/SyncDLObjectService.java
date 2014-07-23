@@ -126,6 +126,10 @@ public interface SyncDLObjectService extends BaseService, InvokableService {
 	public long getLatestModifiedTime();
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public javax.portlet.PortletPreferences getPortletPreferences()
+		throws com.liferay.portal.kernel.exception.PortalException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.sync.model.SyncContext getSyncContext(
 		java.lang.String uuid)
 		throws com.liferay.portal.kernel.exception.PortalException;
