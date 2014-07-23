@@ -120,9 +120,9 @@ public class AlloyPortlet extends GenericPortlet {
 		String actionName = ParamUtil.getString(
 			actionRequest, ActionRequest.ACTION_NAME);
 
-		if (actionName.equals("alloyAsynchronousRequest")) {
+		if (actionName.equals("alloyDataRequest")) {
 			try {
-				AlloyAsynchronousRequestHandler.handle(
+				AlloyDataRequestHandler.processRequest(
 					actionRequest, actionResponse, _alloyControllers);
 			}
 			catch (Exception e) {
