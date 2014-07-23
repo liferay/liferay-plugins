@@ -56,16 +56,29 @@ public class SyncUtil {
 	public static String getChecksum(DLFileVersion dlFileVersion)
 		throws PortalException {
 
-		return getChecksum(dlFileVersion.getContentStream(false));
+		if (dlFileVersion.getSize() >
+				PortletPropsValues.SYNC_FILE_CHECKSUM_THRESHOLD_SIZE) {
+
+			return StringPool.BLANK;
+		}
+
+		return DigesterUtil.digestBase64(
+			Digester.MD5, dlFileVersion.getContentStream(false));
 	}
 
 	public static String getChecksum(File file) throws PortalException {
+		if (file.length() >
+				PortletPropsValues.SYNC_FILE_CHECKSUM_THRESHOLD_SIZE) {
+
+			return StringPool.BLANK;
+		}
+
 		FileInputStream fileInputStream = null;
 
 		try {
 			fileInputStream = new FileInputStream(file);
 
-			return getChecksum(fileInputStream);
+			return DigesterUtil.digestBase64(Digester.MD5, fileInputStream);
 		}
 		catch (Exception e) {
 			throw new PortalException(e);
@@ -73,10 +86,6 @@ public class SyncUtil {
 		finally {
 			StreamUtil.cleanUp(fileInputStream);
 		}
-	}
-
-	public static String getChecksum(InputStream inputStream) {
-		return DigesterUtil.digestBase64(Digester.MD5, inputStream);
 	}
 
 	public static File getFileDelta(File sourceFile, File targetFile)

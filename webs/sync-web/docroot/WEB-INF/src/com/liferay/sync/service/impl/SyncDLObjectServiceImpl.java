@@ -27,6 +27,7 @@ import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.PrefsPropsUtil;
 import com.liferay.portal.kernel.util.ReleaseInfo;
 import com.liferay.portal.kernel.util.StringBundler;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.User;
@@ -699,18 +700,24 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 	protected void validateChecksum(File file, String checksum)
 		throws PortalException {
 
+		if (Validator.isNull(checksum)) {
+			return;
+		}
+
 		String fileChecksum = SyncUtil.getChecksum(file);
 
-		if (!fileChecksum.equals(checksum)) {
-			StringBundler sb = new StringBundler(4);
-
-			sb.append("Expected checksum ");
-			sb.append(checksum);
-			sb.append(" does not match actual checksum ");
-			sb.append(fileChecksum);
-
-			throw new SyncDLObjectChecksumException(sb.toString());
+		if (Validator.isNull(fileChecksum) || fileChecksum.equals(checksum)) {
+			return;
 		}
+
+		StringBundler sb = new StringBundler(4);
+
+		sb.append("Expected checksum ");
+		sb.append(checksum);
+		sb.append(" does not match actual checksum ");
+		sb.append(fileChecksum);
+
+		throw new SyncDLObjectChecksumException(sb.toString());
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(
