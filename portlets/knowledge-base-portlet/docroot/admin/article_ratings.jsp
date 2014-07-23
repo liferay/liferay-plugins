@@ -18,12 +18,21 @@
 
 <%
 KBArticle kbArticle = (KBArticle)request.getAttribute(WebKeys.KNOWLEDGE_BASE_KB_ARTICLE);
+
+boolean hasEditPermission = KBArticlePermission.contains(permissionChecker, kbArticle, ActionKeys.UPDATE);
 %>
 
 <c:if test="<%= enableKBArticleRatings %>">
 
 	<%
-	int kbCommentsCount = KBCommentLocalServiceUtil.getKBCommentsCount(themeDisplay.getUserId(), KBArticle.class.getName(), kbArticle.getClassPK());
+	int kbCommentsCount = 0;
+
+	if (hasEditPermission) {
+		kbCommentsCount = KBCommentLocalServiceUtil.getKBCommentsCount(KBArticle.class.getName(), kbArticle.getClassPK());
+	}
+	else {
+		kbCommentsCount = KBCommentLocalServiceUtil.getKBCommentsCount(themeDisplay.getUserId(), KBArticle.class.getName(), kbArticle.getClassPK());
+	}
 	%>
 
 	<liferay-ui:ratings
@@ -100,8 +109,19 @@ KBArticle kbArticle = (KBArticle)request.getAttribute(WebKeys.KNOWLEDGE_BASE_KB_
 					orderByComparator='<%= KnowledgeBaseUtil.getKBCommentOrderByComparator("modified-date", "desc") %>'
 				>
 
+					<%
+					List<KBComment> kbComments = null;
+
+					if (hasEditPermission) {
+						kbComments = KBCommentLocalServiceUtil.getKBComments(KBArticle.class.getName(), kbArticle.getClassPK(), searchContainer.getStart(), searchContainer.getEnd(), searchContainer.getOrderByComparator());
+					}
+					else {
+						kbComments = KBCommentLocalServiceUtil.getKBComments(themeDisplay.getUserId(), KBArticle.class.getName(), kbArticle.getClassPK(), searchContainer.getStart(), searchContainer.getEnd(), searchContainer.getOrderByComparator());
+					}
+					%>
+
 					<liferay-ui:search-container-results
-						results="<%= KBCommentLocalServiceUtil.getKBComments(themeDisplay.getUserId(), KBArticle.class.getName(), kbArticle.getClassPK(), searchContainer.getStart(), searchContainer.getEnd(), searchContainer.getOrderByComparator()) %>"
+						results="<%= kbComments %>"
 						total="<%= kbCommentsCount %>"
 					/>
 
@@ -110,23 +130,37 @@ KBArticle kbArticle = (KBArticle)request.getAttribute(WebKeys.KNOWLEDGE_BASE_KB_
 						escapedModel="true"
 						modelVar="kbComment"
 					>
-						<div class="kb-article-comment">
-							<p class="kb-article-comment-body">
-								<%= kbComment.getContent() %>
-							</p>
 
-							<div class="kb-article-comment-post-date">
-								<i class="icon-calendar"></i>
+						<c:choose>
+							<c:when test="<%= hasEditPermission %>">
 
 								<%
-								DateSearchEntry dateSearchEntry = new DateSearchEntry();
-
-								dateSearchEntry.setDate(kbComment.getModifiedDate());
+								request.setAttribute("article_comment.jsp-kb_comment", kbComment);
+								request.setAttribute(WebKeys.KNOWLEDGE_BASE_KB_ARTICLE, kbArticle);
 								%>
 
-								<%= dateSearchEntry.getName(pageContext) %>
-							</div>
-						</div>
+								<liferay-util:include page="/admin/article_comment.jsp" servletContext="<%= application %>" />
+							</c:when>
+							<c:otherwise>
+								<div class="kb-article-comment">
+									<p class="kb-article-comment-body">
+										<%= kbComment.getContent() %>
+									</p>
+
+									<div class="kb-article-comment-post-date">
+										<i class="icon-calendar"></i>
+
+										<%
+										DateSearchEntry dateSearchEntry = new DateSearchEntry();
+
+										dateSearchEntry.setDate(kbComment.getModifiedDate());
+										%>
+
+										<%= dateSearchEntry.getName(pageContext) %>
+									</div>
+								</div>
+							</c:otherwise>
+						</c:choose>
 					</liferay-ui:search-container-row>
 
 					<liferay-ui:search-iterator />
@@ -179,6 +213,16 @@ KBArticle kbArticle = (KBArticle)request.getAttribute(WebKeys.KNOWLEDGE_BASE_KB_
 						}
 					);
 				}
+			);
+
+			A.one('#<portlet:namespace />previousCommentsContainer').delegate(
+				'click',
+				function(e) {
+					if (!confirm('<liferay-ui:message key="are-you-sure-you-want-to-delete-this" />')) {
+						e.halt();
+					}
+				},
+				'.kb-feedback-actions .kb-feedback-delete'
 			);
 		</aui:script>
 	</c:if>
