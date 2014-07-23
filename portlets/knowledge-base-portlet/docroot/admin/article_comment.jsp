@@ -111,6 +111,4 @@ KBComment kbComment = (KBComment)request.getAttribute("article_comment.jsp-kb_co
 		</td>
 	</tr>
 	</table>
-
-	<div class="separator"><!-- --></div>
 </div>
