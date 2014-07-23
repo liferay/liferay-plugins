@@ -183,14 +183,14 @@ public class KBCommentLocalServiceClpInvoker {
 		_methodName84 = "getKBComments";
 
 		_methodParameterTypes84 = new String[] {
-				"java.lang.String", "long", "int", "int",
+				"long", "java.lang.String", "long", "int", "int",
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			};
 
 		_methodName85 = "getKBComments";
 
 		_methodParameterTypes85 = new String[] {
-				"long", "java.lang.String", "long", "int", "int",
+				"java.lang.String", "long", "int", "int",
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			};
 
@@ -409,21 +409,21 @@ public class KBCommentLocalServiceClpInvoker {
 
 		if (_methodName84.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes84, parameterTypes)) {
-			return KBCommentLocalServiceUtil.getKBComments((java.lang.String)arguments[0],
-				((Long)arguments[1]).longValue(),
-				((Integer)arguments[2]).intValue(),
-				((Integer)arguments[3]).intValue(),
-				(com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBComment>)arguments[4]);
-		}
-
-		if (_methodName85.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes85, parameterTypes)) {
 			return KBCommentLocalServiceUtil.getKBComments(((Long)arguments[0]).longValue(),
 				(java.lang.String)arguments[1],
 				((Long)arguments[2]).longValue(),
 				((Integer)arguments[3]).intValue(),
 				((Integer)arguments[4]).intValue(),
 				(com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBComment>)arguments[5]);
+		}
+
+		if (_methodName85.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes85, parameterTypes)) {
+			return KBCommentLocalServiceUtil.getKBComments((java.lang.String)arguments[0],
+				((Long)arguments[1]).longValue(),
+				((Integer)arguments[2]).intValue(),
+				((Integer)arguments[3]).intValue(),
+				(com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBComment>)arguments[4]);
 		}
 
 		if (_methodName86.equals(name) &&
