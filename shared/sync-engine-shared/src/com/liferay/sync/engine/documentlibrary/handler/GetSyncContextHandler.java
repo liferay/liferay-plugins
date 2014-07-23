@@ -70,7 +70,6 @@ public class GetSyncContextHandler extends BaseJSONHandler {
 			syncAccount.setState(SyncAccount.STATE_CONNECTED);
 		}
 		else {
-			syncAccount.setActive(false);
 			syncAccount.setState(SyncAccount.STATE_DISCONNECTED);
 			syncAccount.setUiEvent(SyncAccount.UI_EVENT_SYNC_WEB_OUT_OF_DATE);
 		}

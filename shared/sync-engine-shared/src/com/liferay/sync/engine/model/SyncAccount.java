@@ -35,6 +35,8 @@ public class SyncAccount extends StateAwareModel {
 
 	public static final int UI_EVENT_SYNC_ACCOUNT_FOLDER_MISSING = 3;
 
+	public static final int UI_EVENT_SYNC_SERVICES_NOT_ACTIVE = 6;
+
 	public static final int UI_EVENT_SYNC_WEB_MISSING = 4;
 
 	public static final int UI_EVENT_SYNC_WEB_OUT_OF_DATE = 5;
