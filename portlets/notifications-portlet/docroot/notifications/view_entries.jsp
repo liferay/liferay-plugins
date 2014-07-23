@@ -23,11 +23,23 @@ int start = ParamUtil.getInteger(request, "start", 0);
 int end = ParamUtil.getInteger(request, "end", fullView ? fullViewDelta : dockbarViewDelta);
 
 List<UserNotificationEvent> userNotificationEvents = null;
-int userNotificationEventsCount = 0;
 
-if (filter.equals("unread")) {
+int unreadActionableUserNotificationsCount = UserNotificationEventLocalServiceUtil.getArchivedUserNotificationEventsCount(themeDisplay.getUserId(), UserNotificationDeliveryConstants.TYPE_WEBSITE, true, false);
+int unreadNonActionableUserNotificationsCount = UserNotificationEventLocalServiceUtil.getArchivedUserNotificationEventsCount(themeDisplay.getUserId(), UserNotificationDeliveryConstants.TYPE_WEBSITE, false, false);
+int userNotificationEventsCount = UserNotificationEventLocalServiceUtil.getArchivedUserNotificationEventsCount(themeDisplay.getUserId(), UserNotificationDeliveryConstants.TYPE_WEBSITE, false);
+
+List<Long> userNotificationEventIds = new ArrayList<Long>();
+
+if (filter.equals("dockbar")) {
 	userNotificationEvents = UserNotificationEventLocalServiceUtil.getArchivedUserNotificationEvents(themeDisplay.getUserId(), UserNotificationDeliveryConstants.TYPE_WEBSITE, false, start, end);
-	userNotificationEventsCount = UserNotificationEventLocalServiceUtil.getArchivedUserNotificationEventsCount(themeDisplay.getUserId(), UserNotificationDeliveryConstants.TYPE_WEBSITE, false);
+}
+else if (filter.equals("unread-actionable")) {
+	userNotificationEvents = UserNotificationEventLocalServiceUtil.getArchivedUserNotificationEvents(themeDisplay.getUserId(), UserNotificationDeliveryConstants.TYPE_WEBSITE, true, false, start, end);
+	userNotificationEventsCount = unreadActionableUserNotificationsCount;
+}
+else if (filter.equals("unread-non-actionable")) {
+	userNotificationEvents = UserNotificationEventLocalServiceUtil.getArchivedUserNotificationEvents(themeDisplay.getUserId(), UserNotificationDeliveryConstants.TYPE_WEBSITE, false, false, start, end);
+	userNotificationEventsCount = unreadNonActionableUserNotificationsCount;
 }
 else {
 	userNotificationEvents = UserNotificationEventLocalServiceUtil.getUserNotificationEvents(themeDisplay.getUserId(), UserNotificationDeliveryConstants.TYPE_WEBSITE, start, end);
@@ -35,145 +47,168 @@ else {
 }
 %>
 
-<c:choose>
-	<c:when test="<%= userNotificationEvents.isEmpty() %>">
-		<li class="message">
-			<c:choose>
-				<c:when test='<%= filter.equals("unread") %>'>
-					<a><liferay-ui:message key="you-do-not-have-any-unread-notifications" /></a>
-				</c:when>
-				<c:otherwise>
-					<a><liferay-ui:message key="you-do-not-have-any-notifications" /></a>
-				</c:otherwise>
-			</c:choose>
-		</li>
-	</c:when>
-	<c:when test="<%= (userNotificationEventsCount > fullViewDelta) && fullView %>">
+<li class='message<%= userNotificationEvents.isEmpty() ? "" : " hide" %>'>
+	<c:choose>
+		<c:when test='<%= filter.equals("dockbar") || filter.equals("unread-actionable") || filter.equals("unread-non-actionable") %>'>
+			<a><liferay-ui:message key="you-do-not-have-any-unread-notifications" /></a>
+		</c:when>
+		<c:otherwise>
+			<a><liferay-ui:message key="you-do-not-have-any-notifications" /></a>
+		</c:otherwise>
+	</c:choose>
+</li>
+<c:if test="<%= (userNotificationEventsCount > fullViewDelta) && fullView %>">
 		<li class="clearfix message top">
 			<span class="left-nav <%= start == 0 ? "disabled" : "previous" %>"><a href="javascript:;"><liferay-ui:message key="previous" /></a></span>
 			<span><liferay-ui:message arguments="<%= new Object[] {(start + 1), end <= userNotificationEventsCount ? end : userNotificationEventsCount, userNotificationEventsCount} %>" key="showing-x-x-of-x-results" translateArguments="<%= false %>" /></span>
 			<span class="right-nav <%= userNotificationEventsCount <= end ? "disabled" : "next" %>"><a href="javascript:;"><liferay-ui:message key="next" /></a></span>
 		</li>
-	</c:when>
-</c:choose>
-
-<c:if test='<%= fullView && filter.equals("unread") %>'>
-	<div class="fullViewMarkAllAsRead"></div>
 </c:if>
 
-<%
-List<Long> userNotificationEventIds = new ArrayList<Long>();
+<c:choose>
+	<c:when test='<%= filter.equals("dockbar") %>'>
 
-for (UserNotificationEvent userNotificationEvent : userNotificationEvents) {
-	UserNotificationFeedEntry userNotificationFeedEntry = UserNotificationManagerUtil.interpret(StringPool.BLANK, userNotificationEvent, ServiceContextFactory.getInstance(request));
+		<div id="<portlet:namespace />user-notifications-list">
 
-	if (userNotificationFeedEntry == null) {
-		continue;
-	}
+			<%
+			List<UserNotificationEvent> actionableUserNotificationEvents = UserNotificationEventLocalServiceUtil.getArchivedUserNotificationEvents(themeDisplay.getUserId(), UserNotificationDeliveryConstants.TYPE_WEBSITE, true, false, start, end);
 
-	JSONObject userNotificationEventJSONObject = JSONFactoryUtil.createJSONObject(userNotificationEvent.getPayload());
+			if (unreadActionableUserNotificationsCount > 0) {
+				for (UserNotificationEvent userNotificationEvent : actionableUserNotificationEvents) {
+			%>
 
-	long userId = userNotificationEventJSONObject.getLong("userId");
+					<%@ include file="/notifications/notification_entry.jspf" %>
 
-	String userFullName = HtmlUtil.escape(PortalUtil.getUserName(userId, StringPool.BLANK));
+			<%
+				}
+			}
 
-	String userPortaitURL = StringPool.BLANK;
+			if (unreadActionableUserNotificationsCount <= dockbarViewDelta) {
+				List<UserNotificationEvent> nonActionableUserNotificationEvents = UserNotificationEventLocalServiceUtil.getArchivedUserNotificationEvents(themeDisplay.getUserId(), UserNotificationDeliveryConstants.TYPE_WEBSITE, false, false, start, (end - unreadActionableUserNotificationsCount));
 
-	User curUser = UserLocalServiceUtil.fetchUserById(userId);
+				if (!nonActionableUserNotificationEvents.isEmpty()) {
+					if (unreadActionableUserNotificationsCount > 0) {
+			%>
 
-	if (curUser != null) {
-		userPortaitURL = curUser.getPortraitURL(themeDisplay);
-	}
+					<hr>
 
-	boolean read = userNotificationEvent.isArchived();
-%>
+					<%
+					}
+					%>
 
-	<li class="user-notification<%= read ? "" : " unread" %>">
-		<c:choose>
-			<c:when test="<%= read %>">
-				<div class="clearfix user-notification-link" data-href="<%= userNotificationFeedEntry.getLink() %>" data-openDialog="<%= String.valueOf(userNotificationFeedEntry.isOpenDialog()) %>">
-			</c:when>
-			<c:otherwise>
+					<div id="<portlet:namespace />non-actionable-user-notifications-list">
 
-				<%
-				userNotificationEventIds.add(userNotificationEvent.getUserNotificationEventId());
-				%>
+						<%
+						for (UserNotificationEvent userNotificationEvent : nonActionableUserNotificationEvents) {
+							userNotificationEventIds.add(userNotificationEvent.getUserNotificationEventId());
+						%>
 
-				<liferay-portlet:actionURL name="markAsRead" var="markAsReadURL"><portlet:param name="userNotificationEventId" value="<%= String.valueOf(userNotificationEvent.getUserNotificationEventId()) %>" /></liferay-portlet:actionURL>
+							<%@ include file="/notifications/notification_entry.jspf" %>
 
-				<div class="clearfix user-notification-link" data-href="<%= userNotificationFeedEntry.getLink() %>" data-markAsReadURL="<%= markAsReadURL %>"  data-openDialog="<%= String.valueOf(userNotificationFeedEntry.isOpenDialog()) %>">
-			</c:otherwise>
-		</c:choose>
+						<%
+						}
+						%>
 
-		<div class="sender">
-			<span class="user-thumbnail">
-				<img alt="<%= HtmlUtil.escapeAttribute(userFullName) %>" src="<%= userPortaitURL %>" />
-			</span>
+					</div>
+
+			<%
+				}
+			}
+
+			long notificationsPlid = themeDisplay.getPlid();
+
+			if (layout.isTypeControlPanel()) {
+				notificationsPlid = LayoutLocalServiceUtil.getDefaultPlid(user.getGroupId(), true);
+
+				if (notificationsPlid == LayoutConstants.DEFAULT_PLID) {
+					Group guestGroup = GroupLocalServiceUtil.getGroup(user.getCompanyId(), GroupConstants.GUEST);
+
+					notificationsPlid = LayoutLocalServiceUtil.getDefaultPlid(guestGroup.getGroupId(), false);
+				}
+			}
+			%>
+
 		</div>
 
-		<div class="content">
-			<div class="body">
-				<%= userNotificationFeedEntry.getBody() %>
-			</div>
+		<li class="bottom message">
+			<liferay-portlet:renderURL plid="<%= notificationsPlid %>" portletName="<%= PortletKeys.NOTIFICATIONS %>" var="viewAllNotifications" windowState="<%= LiferayWindowState.MAXIMIZED.toString() %>">
+				<portlet:param name="mvcPath" value="/notifications/view.jsp" />
+			</liferay-portlet:renderURL>
 
-			<div class="timestamp">
-				<span class="portlet-icon">
-					<liferay-portlet:icon-portlet
-						portlet="<%= PortletLocalServiceUtil.getPortletById(company.getCompanyId(), userNotificationEvent.getType()) %>"
-					/>
-				</span>
+			<a href="<%= viewAllNotifications %>"><liferay-ui:message key="view-all-notifications" /></a>
 
-				<%= simpleDateFormat.format(userNotificationEvent.getTimestamp()) %>
-			</div>
-
-			<c:if test='<%= !filter.equals("unread") %>'>
-				<div class="read">
-					<liferay-ui:message key='<%= read ? "read" : "unread" %>' />
-				</div>
-			</c:if>
-		</div>
-	</li>
-
-<%
-}
-%>
-
-<c:if test="<%= !userNotificationEvents.isEmpty() && fullView %>">
-	<li class="clearfix message">
-		<span class="left-nav <%= start == 0 ? "disabled" : "previous" %>"><a href="javascript:;"><liferay-ui:message key="previous" /></a></span>
-		<span><liferay-ui:message arguments="<%= new Object[] {(start + 1), end <= userNotificationEventsCount ? end : userNotificationEventsCount, userNotificationEventsCount} %>" key="showing-x-x-of-x-results" translateArguments="<%= false %>" /></span>
-		<span class="right-nav <%= userNotificationEventsCount <= end ? "disabled" : "next" %>"><a href="javascript:;"><liferay-ui:message key="next" /></a></span>
-	</li>
-</c:if>
-
-<c:if test="<%= !fullView %>">
-
-	<%
-	long notificationsPlid = themeDisplay.getPlid();
-
-	if (layout.isTypeControlPanel()) {
-		notificationsPlid = LayoutLocalServiceUtil.getDefaultPlid(user.getGroupId(), true);
-
-		if (notificationsPlid == LayoutConstants.DEFAULT_PLID) {
-			Group guestGroup = GroupLocalServiceUtil.getGroup(user.getCompanyId(), GroupConstants.GUEST);
-
-			notificationsPlid = LayoutLocalServiceUtil.getDefaultPlid(guestGroup.getGroupId(), false);
-		}
-	}
-	%>
-
-	<li class="bottom message">
-		<liferay-portlet:renderURL plid="<%= notificationsPlid %>" portletName="<%= PortletKeys.NOTIFICATIONS %>" var="viewAllNotifications" windowState="<%= LiferayWindowState.MAXIMIZED.toString() %>">
-			<portlet:param name="mvcPath" value="/notifications/view.jsp" />
-		</liferay-portlet:renderURL>
-
-		<a href="<%= viewAllNotifications %>"><liferay-ui:message key="view-all-notifications" /></a>
-
-		<c:if test="<%= !userNotificationEventIds.isEmpty() %>">
 			<div class="dockbarMarkAllAsRead"></div>
+		</li>
+	</c:when>
+	<c:when test='<%= filter.equals("unread-actionable") %>'>
+		<c:if test="<%= userNotificationEventsCount > 0 %>">
+
+			<%
+			for (UserNotificationEvent userNotificationEvent : userNotificationEvents) {
+			%>
+
+				<%@ include file="/notifications/notification_entry.jspf" %>
+
+			<%
+			}
+			%>
+
+			<li class="clearfix message">
+				<span class="left-nav <%= start == 0 ? "disabled" : "previous" %>"><a href="javascript:;"><liferay-ui:message key="previous" /></a></span>
+				<span><liferay-ui:message arguments="<%= new Object[] {(start + 1), end <= userNotificationEventsCount ? end : userNotificationEventsCount, userNotificationEventsCount} %>" key="showing-x-x-of-x-results" translateArguments="<%= false %>" /></span>
+				<span class="right-nav <%= userNotificationEventsCount <= end ? "disabled" : "next" %>"><a href="javascript:;"><liferay-ui:message key="next" /></a></span>
+			</li>
 		</c:if>
-	</li>
-</c:if>
+	</c:when>
+	<c:when test='<%= filter.equals("unread-non-actionable") %>'>
+		<div id="<portlet:namespace />user-notifications-list">
+
+			<c:if test="<%= userNotificationEventsCount > 0 %>">
+				<div class="fullViewMarkAllAsRead"></div>
+
+				<div id="<portlet:namespace />non-actionable-user-notifications-list">
+
+					<%
+					for (UserNotificationEvent userNotificationEvent : userNotificationEvents) {
+						userNotificationEventIds.add(userNotificationEvent.getUserNotificationEventId());
+					%>
+
+						<%@ include file="/notifications/notification_entry.jspf" %>
+
+					<%
+					}
+					%>
+
+				</div>
+
+				<li class="clearfix message">
+					<span class="left-nav <%= start == 0 ? "disabled" : "previous" %>"><a href="javascript:;"><liferay-ui:message key="previous" /></a></span>
+					<span><liferay-ui:message arguments="<%= new Object[] {(start + 1), end <= userNotificationEventsCount ? end : userNotificationEventsCount, userNotificationEventsCount} %>" key="showing-x-x-of-x-results" translateArguments="<%= false %>" /></span>
+					<span class="right-nav <%= userNotificationEventsCount <= end ? "disabled" : "next" %>"><a href="javascript:;"><liferay-ui:message key="next" /></a></span>
+				</li>
+			</c:if>
+
+		</div>
+	</c:when>
+	<c:otherwise>
+
+		<%
+		for (UserNotificationEvent userNotificationEvent : userNotificationEvents) {
+		%>
+
+			<%@ include file="/notifications/notification_entry.jspf" %>
+
+		<%
+		}
+		%>
+
+		<li class="clearfix message">
+			<span class="left-nav <%= start == 0 ? "disabled" : "previous" %>"><a href="javascript:;"><liferay-ui:message key="previous" /></a></span>
+			<span><liferay-ui:message arguments="<%= new Object[] {(start + 1), end <= userNotificationEventsCount ? end : userNotificationEventsCount, userNotificationEventsCount} %>" key="showing-x-x-of-x-results" translateArguments="<%= false %>" /></span>
+			<span class="right-nav <%= userNotificationEventsCount <= end ? "disabled" : "next" %>"><a href="javascript:;"><liferay-ui:message key="next" /></a></span>
+		</li>
+	</c:otherwise>
+</c:choose>
 
 <aui:script use="aui-base">
 	Liferay.Notifications.init(
@@ -183,9 +218,13 @@ for (UserNotificationEvent userNotificationEvent : userNotificationEvents) {
 			baseResourceURL: '<%= PortletURLFactoryUtil.create(request, portletDisplay.getId(), themeDisplay.getPlid(), PortletRequest.RESOURCE_PHASE) %>',
 			currentPageNotificationEventsCount: <%= userNotificationEventIds.size() %>,
 			delta: <%= fullViewDelta %>,
+			dockbarViewDelta: '<%= dockbarViewDelta %>',
 			end: <%= end %>,
 			filter: '<%= HtmlUtil.escape(filter) %>',
+			namespace: '<portlet:namespace />',
 			start: <%= start %>,
+			unreadActionableUserNotificationsCount: <%= unreadActionableUserNotificationsCount %>,
+			unreadActionableUserNotificationsCount: <%= unreadNonActionableUserNotificationsCount %>,
 			userNotificationEventsCount: <%= userNotificationEventsCount %>,
 			userNotificationEventIds: '<%= StringUtil.merge(userNotificationEventIds) %>'
 		}
