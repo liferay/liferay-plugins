@@ -2,8 +2,74 @@
 <!DOCTYPE project>
 
 <project name="build-common-plugins-inspector.xml">
+	<macrodef name="record-fail">
+		<attribute name="message" />
+
+		<sequential>
+			<if>
+				<equals arg1="${basedir.name}" arg2="test-broken" />
+				<then>
+					<echo append="true" file="../plugins-inspector.log">@{message}</echo>
+				</then>
+				<else>
+					<fail>@{message}</fail>
+				</else>
+			</if>
+		</sequential>
+	</macrodef>
+
 	<target name="inspect-plugins">
-		<exec dir="." executable="git">
+		<delete file="../plugins-inspector.log" />
+
+		<checksum file="build.xml" property="build.xml.checksum" />
+
+		<if>
+			<not>
+				<equals arg1="${build.xml.checksum}" arg2="aa45183ecb2cda43d255c7070a6225de" />
+			</not>
+			<then>
+				<record-fail message="build.xml is nonstandard." />
+			</then>
+		</if>
+
+		<for param="module.name">
+			<path>
+				<dirset dir="." includes="*" />
+			</path>
+			<sequential>
+			</sequential>
+		</for>
+
+		<if>
+			<equals arg1="${basedir.name}" arg2="test-broken" />
+			<then>
+				<checksum file="../plugins-inspector.log" property="plugins-inspector.log.checksum" />
+
+				<if>
+					<not>
+						<equals arg1="${plugins-inspector.log.checksum}" arg2="6fc1f47ae6b8108699b044550eb5e64b" />
+					</not>
+					<then>
+						<fail>Plugins inspector is not detecting all errors.</fail>
+					</then>
+				</if>
+			</then>
+			<elseif>
+				<equals arg1="${basedir.name}" arg2="test-working" />
+				<then>
+					<if>
+						<available file="../plugins-inspector.log" />
+						<then>
+							<fail>Plugins inspector is not detecting false errors.</fail>
+						</then>
+					</if>
+				</then>
+			</elseif>
+		</if>
+
+		<delete file="../plugins-inspector.log" />
+
+		<!--<exec dir="." executable="git">
 			<arg line="clean -d -f -x ." />
 		</exec>
 
@@ -144,6 +210,6 @@
 			<then>
 				<fail>Plugins must not have custom .gitignore files.</fail>
 			</then>
-		</if>
+		</if>-->
 	</target>
 </project>
