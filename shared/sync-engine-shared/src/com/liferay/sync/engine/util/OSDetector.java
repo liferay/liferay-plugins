@@ -28,11 +28,11 @@ public class OSDetector {
 
 		_bitMode = System.getProperty("sun.arch.data.model");
 
-		if ((_bitMode == null) || (_bitMode.equals("null"))) {
+		if ((_bitMode == null) || _bitMode.equals("null")) {
 			_bitMode = System.getProperty("com.ibm.vm.bitmode");
 		}
 
-		if ((_bitMode == null) || (_bitMode.equals("null"))) {
+		if ((_bitMode == null) || _bitMode.equals("null")) {
 			String arch = System.getProperty("os.arch");
 
 			arch = arch.toLowerCase();

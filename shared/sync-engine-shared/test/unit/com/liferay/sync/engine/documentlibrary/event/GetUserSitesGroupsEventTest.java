@@ -48,8 +48,9 @@ public class GetUserSitesGroupsEventTest extends BaseTestCase {
 		setResponse("dependencies/get_user_sites_groups.json");
 
 		GetUserSitesGroupsEvent getUserSitesGroupsEvent =
-			new GetUserSitesGroupsEvent(syncAccount.getSyncAccountId(),
-			Collections.<String, Object>emptyMap());
+			new GetUserSitesGroupsEvent(
+				syncAccount.getSyncAccountId(),
+				Collections.<String, Object>emptyMap());
 
 		getUserSitesGroupsEvent.run();
 
