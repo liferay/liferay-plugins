@@ -20,43 +20,44 @@
 	<portlet:param name="feedbackStatus" value="<%= String.valueOf(feedbackStatus) %>" />
 </liferay-portlet:renderURL>
 
-<liferay-ui:search-container
-	emptyResultsMessage="<%= emptyResultsMessage %>"
-	iteratorURL="<%= iteratorURL %>"
-	total="<%= KBCommentServiceUtil.getKBCommentsCount(scopeGroupId, feedbackStatus) %>"
->
-	<liferay-ui:search-container-results
-		results="<%= KBCommentServiceUtil.getKBComments(scopeGroupId, feedbackStatus, searchContainer.getStart(), searchContainer.getEnd()) %>"
-	/>
-
-	<liferay-ui:search-container-row
-		className="com.liferay.knowledgebase.model.KBComment"
-		modelVar="kbComment"
+<div id="<portlet:namespace />kbArticleCommentsWrapper">
+	<liferay-ui:search-container
+		emptyResultsMessage="<%= emptyResultsMessage %>"
+		iteratorURL="<%= iteratorURL %>"
+		total="<%= KBCommentServiceUtil.getKBCommentsCount(scopeGroupId, feedbackStatus) %>"
 	>
+		<liferay-ui:search-container-results
+			results="<%= KBCommentServiceUtil.getKBComments(scopeGroupId, feedbackStatus, searchContainer.getStart(), searchContainer.getEnd()) %>"
+		/>
 
-		<%
-		request.setAttribute("article_comment.jsp-kb_comment", kbComment);
+		<liferay-ui:search-container-row
+			className="com.liferay.knowledgebase.model.KBComment"
+			modelVar="kbComment"
+		>
 
-		KBArticle kbArticle = KBArticleServiceUtil.getLatestKBArticle(kbComment.getClassPK(), WorkflowConstants.STATUS_ANY);
+			<%
+			request.setAttribute("article_comment.jsp-kb_comment", kbComment);
 
-		request.setAttribute(WebKeys.KNOWLEDGE_BASE_KB_ARTICLE, kbArticle);
-		%>
+			KBArticle kbArticle = KBArticleServiceUtil.getLatestKBArticle(kbComment.getClassPK(), WorkflowConstants.STATUS_ANY);
 
-		<liferay-util:include page="/admin/article_comment.jsp" servletContext="<%= application %>" />
-	</liferay-ui:search-container-row>
+			request.setAttribute(WebKeys.KNOWLEDGE_BASE_KB_ARTICLE, kbArticle);
+			%>
 
-	<liferay-ui:search-iterator />
-</liferay-ui:search-container>
+			<liferay-util:include page="/admin/article_comment.jsp" servletContext="<%= application %>" />
+		</liferay-ui:search-container-row>
+
+		<liferay-ui:search-iterator />
+	</liferay-ui:search-container>
+</div>
 
 <aui:script use="aui-base">
-	var deleteButtons = A.all('.kb-feedback-actions .kb-feedback-delete');
-
-	deleteButtons.on(
+	A.one('#<portlet:namespace />kbArticleCommentsWrapper').delegate(
 		'click',
 		function(e) {
 			if (!confirm('<liferay-ui:message key="are-you-sure-you-want-to-delete-this" />')) {
 				e.halt();
 			}
-		}
+		},
+		'.kb-feedback-actions .kb-feedback-delete'
 	);
 </aui:script>
