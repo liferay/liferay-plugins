@@ -32,6 +32,11 @@ public class PortletPropsValues {
 	public static final int SYNC_CLIENT_POLL_INTERVAL = GetterUtil.getInteger(
 		PortletProps.get(PortletPropsKeys.SYNC_CLIENT_POLL_INTERVAL));
 
+	public static final int SYNC_FILE_CHECKSUM_THRESHOLD_SIZE =
+		GetterUtil.getInteger(
+			PortletProps.get(
+				PortletPropsKeys.SYNC_FILE_CHECKSUM_THRESHOLD_SIZE));
+
 	public static final int SYNC_FILE_DIFF_CACHE_DELETE_INTERVAL =
 		GetterUtil.getInteger(
 			PortletProps.get(
