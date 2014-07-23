@@ -19,7 +19,10 @@ package com.liferay.notifications.util;
  */
 public class PortletPropsKeys {
 
-	public static final String NOTIFICATIONS_DOCKBAR_DISPLAY_ENABLED =
-		"notifications.dockbar.display.enabled";
+	public static final String USER_NOTIFICATION_ENTRY =
+		"user.notification.entry";
+
+	public static final String USER_NOTIFICATIONS_DOCKBAR_DISPLAY_ENABLED =
+		"user.notifications.dockbar.display.enabled";
 
 }

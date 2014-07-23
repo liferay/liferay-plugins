@@ -22,9 +22,12 @@ import com.liferay.util.portlet.PortletProps;
  */
 public class PortletPropsValues {
 
-	public static final boolean NOTIFICATIONS_DOCKBAR_DISPLAY_ENABLED =
+	public static final String USER_NOTIFICATION_ENTRY = PortletProps.get(
+		PortletPropsKeys.USER_NOTIFICATION_ENTRY);
+
+	public static final boolean USER_NOTIFICATIONS_DOCKBAR_DISPLAY_ENABLED =
 		GetterUtil.getBoolean(
 			PortletProps.get(
-				PortletPropsKeys.NOTIFICATIONS_DOCKBAR_DISPLAY_ENABLED));
+				PortletPropsKeys.USER_NOTIFICATIONS_DOCKBAR_DISPLAY_ENABLED));
 
 }
