@@ -38,6 +38,7 @@ page import="com.liferay.portal.kernel.util.HtmlUtil" %><%@
 page import="com.liferay.portal.kernel.util.ParamUtil" %><%@
 page import="com.liferay.portal.kernel.util.StringPool" %><%@
 page import="com.liferay.portal.kernel.util.StringUtil" %><%@
+page import="com.liferay.portal.kernel.util.Validator" %><%@
 page import="com.liferay.portal.model.Group" %><%@
 page import="com.liferay.portal.model.GroupConstants" %><%@
 page import="com.liferay.portal.model.LayoutConstants" %><%@
