@@ -60,7 +60,7 @@ public class AlloyDataRequestHandler {
 			controller);
 
 		if (baseAlloyControllerImpl == null) {
-			throw new Exception("No controller exists with the given name.");
+			throw new Exception("Unable to find controller " + controller);
 		}
 
 		String action = ParamUtil.getString(actionRequest, "action");
