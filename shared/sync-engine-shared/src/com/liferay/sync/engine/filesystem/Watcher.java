@@ -15,11 +15,9 @@
 package com.liferay.sync.engine.filesystem;
 
 import com.liferay.sync.engine.model.SyncAccount;
-import com.liferay.sync.engine.model.SyncFile;
 import com.liferay.sync.engine.model.SyncSite;
 import com.liferay.sync.engine.model.SyncWatchEvent;
 import com.liferay.sync.engine.service.SyncAccountService;
-import com.liferay.sync.engine.service.SyncFileService;
 import com.liferay.sync.engine.service.SyncSiteService;
 import com.liferay.sync.engine.util.FilePathNameUtil;
 
@@ -219,20 +217,6 @@ public class Watcher implements Runnable {
 	}
 
 	protected void fireWatchEventListener(String eventType, Path filePath) {
-		SyncFile syncFile = SyncFileService.fetchSyncFile(
-			FilePathNameUtil.getFilePathName(filePath),
-			_watchEventListener.getSyncAccountId());
-
-		if (syncFile != null) {
-			syncFile.setLocalSyncTime(System.currentTimeMillis());
-
-			SyncFileService.update(syncFile);
-
-			if (syncFile.getState() == SyncFile.STATE_ERROR) {
-				return;
-			}
-		}
-
 		_watchEventListener.watchEvent(eventType, filePath);
 	}
 
@@ -275,19 +259,7 @@ public class Watcher implements Runnable {
 			return;
 		}
 
-		long startTime = System.currentTimeMillis();
-
 		doRegister(filePath, recursive);
-
-		List<SyncFile> syncFiles = SyncFileService.findSyncFiles(
-			FilePathNameUtil.getFilePathName(filePath), startTime,
-			_watchEventListener.getSyncAccountId());
-
-		for (SyncFile syncFile : syncFiles) {
-			fireWatchEventListener(
-				SyncWatchEvent.EVENT_TYPE_DELETE,
-				java.nio.file.Paths.get(syncFile.getFilePathName()));
-		}
 	}
 
 	private static Logger _logger = LoggerFactory.getLogger(Watcher.class);
