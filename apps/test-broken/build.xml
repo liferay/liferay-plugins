@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<!DOCTYPE project>
+
+<!--
+Add comment for nonstandard MD5.
+-->
+
+<project>
+	<import file="../../build-common-plugins.xml" />
+</project>
