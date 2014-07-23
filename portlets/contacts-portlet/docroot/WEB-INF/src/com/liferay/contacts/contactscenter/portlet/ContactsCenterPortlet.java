@@ -49,8 +49,6 @@ import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
-import com.liferay.portal.kernel.notifications.NotificationEvent;
-import com.liferay.portal.kernel.notifications.NotificationEventFactoryUtil;
 import com.liferay.portal.kernel.notifications.UserNotificationManagerUtil;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.portlet.LiferayWindowState;
@@ -1053,15 +1051,10 @@ public class ContactsCenterPortlet extends MVCPortlet {
 			notificationEventJSONObject.put(
 				"userId", socialRequest.getUserId());
 
-			NotificationEvent notificationEvent =
-				NotificationEventFactoryUtil.createNotificationEvent(
-					System.currentTimeMillis(), PortletKeys.CONTACTS_CENTER,
-					notificationEventJSONObject);
-
-			notificationEvent.setDeliveryRequired(0);
-
-			UserNotificationEventLocalServiceUtil.addUserNotificationEvent(
-				socialRequest.getReceiverUserId(), notificationEvent);
+			UserNotificationEventLocalServiceUtil.sendUserNotificationEvents(
+				socialRequest.getReceiverUserId(), PortletKeys.CONTACTS_CENTER,
+				UserNotificationDeliveryConstants.TYPE_WEBSITE, true,
+				notificationEventJSONObject);
 		}
 	}
 

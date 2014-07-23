@@ -24,8 +24,6 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.messaging.DestinationNames;
 import com.liferay.portal.kernel.messaging.MessageBusUtil;
-import com.liferay.portal.kernel.notifications.NotificationEvent;
-import com.liferay.portal.kernel.notifications.NotificationEventFactoryUtil;
 import com.liferay.portal.kernel.notifications.UserNotificationManagerUtil;
 import com.liferay.portal.kernel.process.ProcessCallable;
 import com.liferay.portal.kernel.process.ProcessException;
@@ -287,18 +285,11 @@ public class SOAnnouncementsEntryLocalServiceImpl
 							0,
 							UserNotificationDeliveryConstants.TYPE_WEBSITE)) {
 
-						NotificationEvent notificationEvent =
-							NotificationEventFactoryUtil.
-								createNotificationEvent(
-									System.currentTimeMillis(),
-									PortletKeys.SO_ANNOUNCEMENTS,
-									notificationEventJSONObject);
-
-						notificationEvent.setDeliveryRequired(0);
-
 						UserNotificationEventLocalServiceUtil.
-							addUserNotificationEvent(
-								user.getUserId(), notificationEvent);
+							sendUserNotificationEvents(
+								user.getUserId(), PortletKeys.SO_ANNOUNCEMENTS,
+								UserNotificationDeliveryConstants.TYPE_WEBSITE,
+								notificationEventJSONObject);
 					}
 				}
 			}

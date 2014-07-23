@@ -24,8 +24,6 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.mail.MailMessage;
-import com.liferay.portal.kernel.notifications.NotificationEvent;
-import com.liferay.portal.kernel.notifications.NotificationEventFactoryUtil;
 import com.liferay.portal.kernel.notifications.UserNotificationManagerUtil;
 import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.PrefsPropsUtil;
@@ -423,15 +421,11 @@ public class MemberRequestLocalServiceImpl
 			notificationEventJSONObject.put(
 				"userId", memberRequest.getUserId());
 
-			NotificationEvent notificationEvent =
-				NotificationEventFactoryUtil.createNotificationEvent(
-					System.currentTimeMillis(), PortletKeys.SO_INVITE_MEMBERS,
-					notificationEventJSONObject);
-
-			notificationEvent.setDeliveryRequired(0);
-
-			UserNotificationEventLocalServiceUtil.addUserNotificationEvent(
-				memberRequest.getReceiverUserId(), notificationEvent);
+			UserNotificationEventLocalServiceUtil.sendUserNotificationEvents(
+				memberRequest.getReceiverUserId(),
+				PortletKeys.SO_INVITE_MEMBERS,
+				UserNotificationDeliveryConstants.TYPE_WEBSITE, true,
+				notificationEventJSONObject);
 		}
 	}
 
