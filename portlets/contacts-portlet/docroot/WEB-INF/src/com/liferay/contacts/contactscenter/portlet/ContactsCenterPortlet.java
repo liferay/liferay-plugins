@@ -641,9 +641,6 @@ public class ContactsCenterPortlet extends MVCPortlet {
 					socialRequest.getReceiverUserId(), socialRequest.getType());
 			}
 
-			UserNotificationEventLocalServiceUtil.deleteUserNotificationEvent(
-				userNotificationEventId);
-
 			jsonObject.put("success", Boolean.TRUE);
 		}
 		catch (Exception e) {

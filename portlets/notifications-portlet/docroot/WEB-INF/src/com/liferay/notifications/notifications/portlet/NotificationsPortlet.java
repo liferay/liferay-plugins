@@ -62,6 +62,22 @@ import javax.portlet.WindowState;
  */
 public class NotificationsPortlet extends MVCPortlet {
 
+	public void deleteUserNotificationEvent(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws Exception {
+
+		long userNotificationEventId = ParamUtil.getLong(
+			actionRequest, "userNotificationEventId");
+
+		try {
+			UserNotificationEventLocalServiceUtil.deleteUserNotificationEvent(
+				userNotificationEventId);
+		}
+		catch (Exception e) {
+			throw new PortletException(e);
+		}
+	}
+
 	public void markAllAsRead(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
@@ -122,7 +138,10 @@ public class NotificationsPortlet extends MVCPortlet {
 			String actionName = ParamUtil.getString(
 				actionRequest, ActionRequest.ACTION_NAME);
 
-			if (actionName.equals("markAllAsRead")) {
+			if (actionName.equals("deleteUserNotificationEvent")) {
+				deleteUserNotificationEvent(actionRequest, actionResponse);
+			}
+			else if (actionName.equals("markAllAsRead")) {
 				markAllAsRead(actionRequest, actionResponse);
 			}
 			else if (actionName.equals("markAsRead")) {
@@ -233,7 +252,7 @@ public class NotificationsPortlet extends MVCPortlet {
 
 			if ((i == (actionableUserNotificationEvents.size() - 1)) &&
 				(nonActionableUserNotificationEvents != null) &&
-				!(nonActionableUserNotificationEvents.isEmpty())) {
+				!nonActionableUserNotificationEvents.isEmpty()) {
 
 				separator = _NOTIFICATION_GROUP_SEPARATOR;
 			}
