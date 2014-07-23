@@ -159,6 +159,12 @@ boolean hasEditPermission = KBArticlePermission.contains(permissionChecker, kbAr
 							</c:when>
 							<c:otherwise>
 								<div class="kb-article-comment">
+									<div class="kb-article-status">
+										<aui:model-context bean="<%= kbComment %>" model="<%= KBComment.class %>" />
+
+										<aui:workflow-status status="<%= kbComment.getStatus() %>" statusMessage="<%= KnowledgeBaseUtil.getStatusLabel(kbComment.getStatus()) %>" />
+									</div>
+
 									<p class="kb-article-comment-body">
 										<%= kbComment.getContent() %>
 									</p>
