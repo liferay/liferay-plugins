@@ -12,20 +12,29 @@
  * details.
  */
 
-package com.liferay.sync.shared.util;
+package com.liferay.sync;
+
+import com.liferay.portal.kernel.exception.PortalException;
 
 /**
- * @author Shinn Lok
+ * @author Brian Wing Shun Chan
  */
-public class PortletPropsKeys {
+public class SyncServicesUnavailableException extends PortalException {
 
-	public static final String SYNC_SERVICES_ENABLED =
-		"sync.services.enabled";
+	public SyncServicesUnavailableException() {
+		super();
+	}
 
-	public static final String SYNC_CLIENT_MAX_CONNECTIONS =
-		"sync.client.max.connections";
+	public SyncServicesUnavailableException(String msg) {
+		super(msg);
+	}
 
-	public static final String SYNC_CLIENT_POLL_INTERVAL =
-		"sync.client.poll.interval";
+	public SyncServicesUnavailableException(String msg, Throwable cause) {
+		super(msg, cause);
+	}
+
+	public SyncServicesUnavailableException(Throwable cause) {
+		super(cause);
+	}
 
 }
