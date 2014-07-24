@@ -20,6 +20,8 @@
 KBArticle kbArticle = (KBArticle)request.getAttribute(WebKeys.KNOWLEDGE_BASE_KB_ARTICLE);
 
 boolean hasEditPermission = KBArticlePermission.contains(permissionChecker, kbArticle, ActionKeys.UPDATE);
+
+String feedbackAnchor = "#kbFeedback";
 %>
 
 <c:if test="<%= enableKBArticleRatings %>">
@@ -88,12 +90,15 @@ boolean hasEditPermission = KBArticlePermission.contains(permissionChecker, kbAr
 			</c:choose>
 		</div>
 
-		<div class="hide kb-article-feedback" id="<portlet:namespace />feedbackContainer">
-			<liferay-portlet:actionURL name="updateKBComment" var="updateKBCommentURL" />
+		<a name="kbFeedback"></a>
 
-			<aui:form action="<%= updateKBCommentURL %>" method="post" name="feedbackFm">
+		<div class="hide kb-article-feedback" id="<portlet:namespace />feedbackContainer">
+			<liferay-portlet:actionURL name="updateKBComment" var="updateKBCommentURL">
+				<portlet:param name="expanded" value="true" />
+			</liferay-portlet:actionURL>
+
+			<aui:form action="<%= updateKBCommentURL + feedbackAnchor %>" method="post" name="feedbackFm">
 				<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.ADD %>" />
-				<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
 				<aui:input name="classNameId" type="hidden" value="<%= PortalUtil.getClassNameId(KBArticle.class) %>" />
 				<aui:input name="classPK" type="hidden" value="<%= kbArticle.getResourcePrimKey() %>" />
 
