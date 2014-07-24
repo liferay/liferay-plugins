@@ -21,7 +21,7 @@
 	<!-- Configurator -->
 
 	<bean id="messagingConfigurator" class="com.liferay.portal.kernel.messaging.config.PluginMessagingConfigurator">
-	    <property name="destinations">
+		<property name="destinations">
 			<list>
 				<ref bean="destination.push_notification" />
 			</list>
