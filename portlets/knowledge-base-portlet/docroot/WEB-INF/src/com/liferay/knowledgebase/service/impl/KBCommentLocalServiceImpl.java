@@ -225,6 +225,13 @@ public class KBCommentLocalServiceImpl extends KBCommentLocalServiceBaseImpl {
 	}
 
 	@Override
+	public int getKBCommentsCount(String className, long classPK, int status) {
+		long classNameId = classNameLocalService.getClassNameId(className);
+
+		return kbCommentPersistence.countByC_C_S(classNameId, classPK, status);
+	}
+
+	@Override
 	public int getKBCommentsCount(
 		String className, long classPK, int[] status) {
 
