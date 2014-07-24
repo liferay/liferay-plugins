@@ -14,12 +14,19 @@
  */
 --%>
 
+<%
+KBFeedbackListDisplayContext kbFeedbackListDisplayContext =
+	(KBFeedbackListDisplayContext)request.getAttribute(
+		WebKeys.KB_FEEDBACK_LIST_DISPLAY_CONTEXT);
+%>
+
 <liferay-portlet:renderURL varImpl="iteratorURL">
-	<portlet:param name="mvcPath" value="/admin/view_feedback.jsp" />
-	<portlet:param name="navItem" value="<%= navItem %>" />
 	<portlet:param name="feedbackStatus" value="<%= String.valueOf(feedbackStatus) %>" />
-	<portlet:param name="expanded" value="true" />
 </liferay-portlet:renderURL>
+
+<%
+kbFeedbackListDisplayContext.getFeedbackByStatusURL(iteratorURL, navItem);
+%>
 
 <div id="<portlet:namespace />kbArticleCommentsWrapper">
 	<liferay-ui:search-container

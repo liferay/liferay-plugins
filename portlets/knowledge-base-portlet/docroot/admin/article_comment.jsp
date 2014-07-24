@@ -88,32 +88,29 @@ KBFeedbackListDisplayContext kbFeedbackListDisplayContext =
 
 			<div class="kb-feedback-actions">
 				<c:if test="<%= previousStatus != KBCommentConstants.STATUS_NONE %>">
-					<liferay-portlet:actionURL name="updateKBCommentStatus" var="previousStatusURL">
+					<liferay-portlet:actionURL name="updateKBCommentStatus" varImpl="previousStatusURL">
 						<portlet:param name="kbCommentId" value="<%= String.valueOf(kbComment.getKbCommentId()) %>" />
-						<portlet:param name="redirect" value="<%= redirect %>" />
 						<portlet:param name="status" value="<%= String.valueOf(previousStatus) %>" />
 					</liferay-portlet:actionURL>
 
-					<aui:button href="<%= previousStatusURL %>" value="<%= KnowledgeBaseUtil.getStatusTransitionLabel(previousStatus) %>" />
+					<aui:button href="<%= kbFeedbackListDisplayContext.getFeedbackByStatusURL(previousStatusURL, kbFeedbackListDisplayContext.getSelectedNavItem()) %>" value="<%= KnowledgeBaseUtil.getStatusTransitionLabel(previousStatus) %>" />
 				</c:if>
 
 				<c:if test="<%= nextStatus != KBCommentConstants.STATUS_NONE %>">
-					<liferay-portlet:actionURL name="updateKBCommentStatus" var="nextStatusURL">
+					<liferay-portlet:actionURL name="updateKBCommentStatus" varImpl="nextStatusURL">
 						<portlet:param name="kbCommentId" value="<%= String.valueOf(kbComment.getKbCommentId()) %>" />
-						<portlet:param name="redirect" value="<%= redirect %>" />
 						<portlet:param name="status" value="<%= String.valueOf(nextStatus) %>" />
 					</liferay-portlet:actionURL>
 
-					<aui:button href="<%= nextStatusURL %>" value="<%= KnowledgeBaseUtil.getStatusTransitionLabel(nextStatus) %>" />
+					<aui:button href="<%= kbFeedbackListDisplayContext.getFeedbackByStatusURL(nextStatusURL, kbFeedbackListDisplayContext.getSelectedNavItem()) %>" value="<%= KnowledgeBaseUtil.getStatusTransitionLabel(nextStatus) %>" />
 				</c:if>
 
 				<c:if test="<%= feedbackStatus == KBCommentConstants.STATUS_COMPLETED && KBCommentPermission.contains(permissionChecker, kbComment, ActionKeys.DELETE) %>">
-					<liferay-portlet:actionURL name="deleteKBComment" var="deleteURL">
+					<liferay-portlet:actionURL name="deleteKBComment" varImpl="deleteURL">
 						<portlet:param name="kbCommentId" value="<%= String.valueOf(kbComment.getKbCommentId()) %>" />
-						<portlet:param name="redirect" value="<%= redirect %>" />
 					</liferay-portlet:actionURL>
 
-					<aui:button cssClass="kb-feedback-delete" href="<%= deleteURL %>" value="delete" />
+					<aui:button cssClass="kb-feedback-delete" href="<%= kbFeedbackListDisplayContext.getFeedbackByStatusURL(deleteURL, kbFeedbackListDisplayContext.getSelectedNavItem()) %>" value="delete" />
 				</c:if>
 			</div>
 		</td>
