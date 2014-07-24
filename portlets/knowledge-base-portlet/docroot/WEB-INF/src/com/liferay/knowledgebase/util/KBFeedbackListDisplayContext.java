@@ -62,6 +62,8 @@ public class KBFeedbackListDisplayContext {
 		PortletURL viewFeedbackByStatusURL = renderResponse.createRenderURL();
 
 		viewFeedbackByStatusURL.setParameter("navItem", navItem);
+		viewFeedbackByStatusURL.setParameter(
+			"expanded", Boolean.TRUE.toString());
 
 		if (_kbArticle == null) {
 			viewFeedbackByStatusURL.setParameter(

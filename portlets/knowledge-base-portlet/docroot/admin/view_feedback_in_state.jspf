@@ -18,6 +18,7 @@
 	<portlet:param name="mvcPath" value="/admin/view_feedback.jsp" />
 	<portlet:param name="navItem" value="<%= navItem %>" />
 	<portlet:param name="feedbackStatus" value="<%= String.valueOf(feedbackStatus) %>" />
+	<portlet:param name="expanded" value="true" />
 </liferay-portlet:renderURL>
 
 <div id="<portlet:namespace />kbArticleCommentsWrapper">

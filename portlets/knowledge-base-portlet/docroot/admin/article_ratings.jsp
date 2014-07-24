@@ -123,51 +123,58 @@ boolean hasEditPermission = KBArticlePermission.contains(permissionChecker, kbAr
 		boolean expanded = ParamUtil.getBoolean(request, "expanded");
 		%>
 
-		<div class='kb-article-previous-comments <%= expanded ? "" : "hide" %>' id="<portlet:namespace />previousCommentsContainer">
-			<c:if test="<%= kbCommentsCount > 0 %>">
-				<liferay-portlet:renderURL varImpl="iteratorURL">
-					<portlet:param name="expanded" value="<%= Boolean.TRUE.toString() %>" />
-				</liferay-portlet:renderURL>
+		<c:choose>
+			<c:when test="<%= hasEditPermission %>">
 
-				<liferay-ui:search-container
-					emptyResultsMessage="no-comments-found"
-					iteratorURL="<%= iteratorURL %>"
-					orderByComparator='<%= KnowledgeBaseUtil.getKBCommentOrderByComparator("modified-date", "desc") %>'
-				>
+				<%
+				String navItem = ParamUtil.getString(request, "navItem", "viewNewFeedback");
 
-					<%
-					List<KBComment> kbComments = null;
+				KBFeedbackListDisplayContext kbFeedbackListDisplayContext =
+					new KBFeedbackListDisplayContext(kbArticle, navItem);
 
-					if (hasEditPermission) {
-						kbComments = KBCommentLocalServiceUtil.getKBComments(KBArticle.class.getName(), kbArticle.getClassPK(), searchContainer.getStart(), searchContainer.getEnd(), searchContainer.getOrderByComparator());
-					}
-					else {
-						kbComments = KBCommentLocalServiceUtil.getKBComments(themeDisplay.getUserId(), KBArticle.class.getName(), kbArticle.getClassPK(), searchContainer.getStart(), searchContainer.getEnd(), searchContainer.getOrderByComparator());
-					}
-					%>
+				request.setAttribute(
+					WebKeys.KB_FEEDBACK_LIST_DISPLAY_CONTEXT, kbFeedbackListDisplayContext);
+				%>
 
-					<liferay-ui:search-container-results
-						results="<%= kbComments %>"
-						total="<%= kbCommentsCount %>"
-					/>
+				<div class='kb-article-previous-comments <%= expanded ? "" : "hide" %>' id="<portlet:namespace />previousCommentsContainer">
+					<liferay-util:include page="/admin/common/view_feedback_by_status.jsp" servletContext="<%= application %>" />
+				</div>
+			</c:when>
+			<c:otherwise>
+				<div class='kb-article-previous-comments <%= expanded ? "" : "hide" %>' id="<portlet:namespace />previousCommentsContainer">
+					<c:if test="<%= kbCommentsCount > 0 %>">
+						<liferay-portlet:renderURL varImpl="iteratorURL">
+							<portlet:param name="expanded" value="<%= Boolean.TRUE.toString() %>" />
+						</liferay-portlet:renderURL>
 
-					<liferay-ui:search-container-row
-						className="com.liferay.knowledgebase.model.KBComment"
-						escapedModel="true"
-						modelVar="kbComment"
-					>
+						<liferay-ui:search-container
+							emptyResultsMessage="no-comments-found"
+							iteratorURL="<%= iteratorURL %>"
+							orderByComparator='<%= KnowledgeBaseUtil.getKBCommentOrderByComparator("modified-date", "desc") %>'
+						>
 
-						<c:choose>
-							<c:when test="<%= hasEditPermission %>">
+							<%
+							List<KBComment> kbComments = null;
 
-								<%
-								request.setAttribute("article_comment.jsp-kb_comment", kbComment);
-								request.setAttribute(WebKeys.KNOWLEDGE_BASE_KB_ARTICLE, kbArticle);
-								%>
+							if (hasEditPermission) {
+								kbComments = KBCommentLocalServiceUtil.getKBComments(KBArticle.class.getName(), kbArticle.getClassPK(), searchContainer.getStart(), searchContainer.getEnd(), searchContainer.getOrderByComparator());
+							}
+							else {
+								kbComments = KBCommentLocalServiceUtil.getKBComments(themeDisplay.getUserId(), KBArticle.class.getName(), kbArticle.getClassPK(), searchContainer.getStart(), searchContainer.getEnd(), searchContainer.getOrderByComparator());
+							}
+							%>
 
-								<liferay-util:include page="/admin/article_comment.jsp" servletContext="<%= application %>" />
-							</c:when>
-							<c:otherwise>
+							<liferay-ui:search-container-results
+								results="<%= kbComments %>"
+								total="<%= kbCommentsCount %>"
+							/>
+
+							<liferay-ui:search-container-row
+								className="com.liferay.knowledgebase.model.KBComment"
+								escapedModel="true"
+								modelVar="kbComment"
+							>
+
 								<div class="kb-article-comment">
 									<div class="kb-article-status">
 										<aui:model-context bean="<%= kbComment %>" model="<%= KBComment.class %>" />
@@ -191,14 +198,15 @@ boolean hasEditPermission = KBArticlePermission.contains(permissionChecker, kbAr
 										<%= dateSearchEntry.getName(pageContext) %>
 									</div>
 								</div>
-							</c:otherwise>
-						</c:choose>
-					</liferay-ui:search-container-row>
 
-					<liferay-ui:search-iterator />
-				</liferay-ui:search-container>
-			</c:if>
-		</div>
+							</liferay-ui:search-container-row>
+
+							<liferay-ui:search-iterator />
+						</liferay-ui:search-container>
+					</c:if>
+				</div>
+			</c:otherwise>
+		</c:choose>
 
 		<aui:script use="aui-base">
 			var feedbackFm = A.one('#<portlet:namespace />feedbackFm');
@@ -251,16 +259,6 @@ boolean hasEditPermission = KBArticlePermission.contains(permissionChecker, kbAr
 						}
 					);
 				}
-			);
-
-			A.one('#<portlet:namespace />previousCommentsContainer').delegate(
-				'click',
-				function(e) {
-					if (!confirm('<liferay-ui:message key="are-you-sure-you-want-to-delete-this" />')) {
-						e.halt();
-					}
-				},
-				'.kb-feedback-actions .kb-feedback-delete'
 			);
 		</aui:script>
 	</c:if>
