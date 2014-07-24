@@ -263,9 +263,9 @@ public class KnowledgeBaseUtil {
 
 	public static final int getNextStatus(int status) {
 		if (status == KBCommentConstants.STATUS_IN_PROGRESS) {
-			return KBCommentConstants.STATUS_RESOLVED;
+			return KBCommentConstants.STATUS_COMPLETED;
 		}
-		else if (status == KBCommentConstants.STATUS_PENDING) {
+		else if (status == KBCommentConstants.STATUS_NEW) {
 			return KBCommentConstants.STATUS_IN_PROGRESS;
 		}
 		else {
@@ -289,11 +289,11 @@ public class KnowledgeBaseUtil {
 	}
 
 	public static final int getPreviousStatus(int status) {
-		if (status == KBCommentConstants.STATUS_IN_PROGRESS) {
-			return KBCommentConstants.STATUS_PENDING;
-		}
-		else if (status == KBCommentConstants.STATUS_RESOLVED) {
+		if (status == KBCommentConstants.STATUS_COMPLETED) {
 			return KBCommentConstants.STATUS_IN_PROGRESS;
+		}
+		else if (status == KBCommentConstants.STATUS_IN_PROGRESS) {
+			return KBCommentConstants.STATUS_NEW;
 		}
 		else {
 			return KBCommentConstants.STATUS_NONE;
@@ -301,14 +301,14 @@ public class KnowledgeBaseUtil {
 	}
 
 	public static final String getStatusLabel(int status) {
-		if (status == KBCommentConstants.STATUS_IN_PROGRESS) {
+		if (status == KBCommentConstants.STATUS_COMPLETED) {
+			return "completed";
+		}
+		else if (status == KBCommentConstants.STATUS_IN_PROGRESS) {
 			return "in-progress";
 		}
-		else if (status == KBCommentConstants.STATUS_PENDING) {
-			return "pending";
-		}
-		else if (status == KBCommentConstants.STATUS_RESOLVED) {
-			return "resolved";
+		else if (status == KBCommentConstants.STATUS_NEW) {
+			return "new";
 		}
 		else {
 			throw new IllegalArgumentException(
@@ -317,14 +317,14 @@ public class KnowledgeBaseUtil {
 	}
 
 	public static final String getStatusTransitionLabel(int status) {
-		if (status == KBCommentConstants.STATUS_IN_PROGRESS) {
+		if (status == KBCommentConstants.STATUS_COMPLETED) {
+			return "resolve";
+		}
+		else if (status == KBCommentConstants.STATUS_IN_PROGRESS) {
 			return "move-to-in-progress";
 		}
-		else if (status == KBCommentConstants.STATUS_PENDING) {
-			return "move-to-pending";
-		}
-		else if (status == KBCommentConstants.STATUS_RESOLVED) {
-			return "resolve";
+		else if (status == KBCommentConstants.STATUS_NEW) {
+			return "move-to-new";
 		}
 		else {
 			throw new IllegalArgumentException(
