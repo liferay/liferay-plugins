@@ -9,7 +9,7 @@
 			<if>
 				<equals arg1="${basedir.name}" arg2="test-broken" />
 				<then>
-					<echo append="true" file="../plugins-inspector.log">@{message}</echo>
+					<echo append="true" file="../plugins-inspector.log">@{message}${line.separator}</echo>
 				</then>
 				<else>
 					<fail>@{message}</fail>
@@ -32,44 +32,7 @@
 			</then>
 		</if>
 
-		<for param="module.name">
-			<path>
-				<dirset dir="." includes="*" />
-			</path>
-			<sequential>
-			</sequential>
-		</for>
-
-		<if>
-			<equals arg1="${basedir.name}" arg2="test-broken" />
-			<then>
-				<checksum file="../plugins-inspector.log" property="plugins-inspector.log.checksum" />
-
-				<if>
-					<not>
-						<equals arg1="${plugins-inspector.log.checksum}" arg2="6fc1f47ae6b8108699b044550eb5e64b" />
-					</not>
-					<then>
-						<fail>Plugins inspector is not detecting all errors.</fail>
-					</then>
-				</if>
-			</then>
-			<elseif>
-				<equals arg1="${basedir.name}" arg2="test-working" />
-				<then>
-					<if>
-						<available file="../plugins-inspector.log" />
-						<then>
-							<fail>Plugins inspector is not detecting false errors.</fail>
-						</then>
-					</if>
-				</then>
-			</elseif>
-		</if>
-
-		<delete file="../plugins-inspector.log" />
-
-		<!--<exec dir="." executable="git">
+		<exec dir="." executable="git">
 			<arg line="clean -d -f -x ." />
 		</exec>
 
@@ -84,7 +47,7 @@
 						<available file="@{module.name}/src" />
 					</and>
 					<then>
-						<fail>Module @{module.name} must not have both a "docroot" and a "src" directory.</fail>
+						<record-fail message="Module @{module.name} must not have both a &quot;docroot&quot; and a &quot;src&quot; directory." />
 					</then>
 				</if>
 
@@ -98,7 +61,7 @@
 						</not>
 					</and>
 					<then>
-						<fail>Module @{module.name} must have a "docroot" or a "src" directory.</fail>
+						<record-fail message="Module @{module.name} must have a &quot;docroot&quot; or a &quot;src&quot; directory." />
 					</then>
 				</if>
 
@@ -113,7 +76,7 @@
 								</not>
 							</and>
 							<then>
-								<fail>@{module.name}/docroot/WEB-INF/liferay-hook.xml has an nonstandard language-properties element.</fail>
+								<record-fail message="@{module.name}/docroot/WEB-INF/liferay-hook.xml has an nonstandard language-properties element." />
 							</then>
 						</if>
 
@@ -125,7 +88,7 @@
 								</not>
 							</and>
 							<then>
-								<fail>@{module.name}/docroot/WEB-INF/liferay-hook.xml has a nonstandard custom-jsp-dir element.</fail>
+								<record-fail message="@{module.name}/docroot/WEB-INF/liferay-hook.xml has a nonstandard custom-jsp-dir element." />
 							</then>
 						</if>
 					</then>
@@ -134,35 +97,35 @@
 				<if>
 					<resourcecontains resource="@{module.name}/docroot/WEB-INF/web.xml" substring="Invoker Filter" />
 					<then>
-						<fail>@{module.name}/docroot/WEB-INF/web.xml contains generated code.</fail>
+						<record-fail message="@{module.name}/docroot/WEB-INF/web.xml contains generated code." />
 					</then>
 				</if>
 
 				<if>
 					<available file="@{module.name}/ivy.xml.MD5" />
 					<then>
-						<fail>@{module.name}/ivy.xml.MD5 must not be checked into source control.</fail>
+						<record-fail message="@{module.name}/ivy.xml.MD5 must not be checked into source control." />
 					</then>
 				</if>
 
 				<if>
 					<available file="@{module.name}/docroot/WEB-INF/lib" />
 					<then>
-						<fail>@{module.name}/docroot/WEB-INF/lib must not be checked into source control.</fail>
+						<record-fail message="@{module.name}/docroot/WEB-INF/lib must not be checked into source control." />
 					</then>
 				</if>
 
 				<if>
 					<available file="@{module.name}/docroot/WEB-INF/tld" />
 					<then>
-						<fail>@{module.name}/docroot/WEB-INF/tld must not be checked into source control.</fail>
+						<record-fail message="@{module.name}/docroot/WEB-INF/tld must not be checked into source control." />
 					</then>
 				</if>
 
 				<if>
 					<available file="@{module.name}/lib" />
 					<then>
-						<fail>@{module.name}/lib must not be checked into source control.</fail>
+						<record-fail message="@{module.name}/lib must not be checked into source control." />
 					</then>
 				</if>
 			</sequential>
@@ -195,7 +158,7 @@
 				<contains string="${git.command.output}" substring="Untracked files" />
 			</or>
 			<then>
-				<fail>Plugins must not generate modified files.</fail>
+				<record-fail message="Plugins must not generate modified files." />
 			</then>
 		</if>
 
@@ -208,8 +171,37 @@
 				<equals arg1="${gitignore.count}" arg2="0" />
 			</not>
 			<then>
-				<fail>Plugins must not have custom .gitignore files.</fail>
+				<record-fail message="Plugins must not have custom .gitignore files." />
 			</then>
-		</if>-->
+		</if>
+
+		<if>
+			<equals arg1="${basedir.name}" arg2="test-broken" />
+			<then>
+				<checksum file="../plugins-inspector.log" property="plugins-inspector.log.checksum" />
+
+				<if>
+					<not>
+						<equals arg1="${plugins-inspector.log.checksum}" arg2="6fc1f47ae6b8108699b044550eb5e64b" />
+					</not>
+					<then>
+						<fail>Plugins inspector is not detecting all errors.</fail>
+					</then>
+				</if>
+			</then>
+			<elseif>
+				<equals arg1="${basedir.name}" arg2="test-working" />
+				<then>
+					<if>
+						<available file="../plugins-inspector.log" />
+						<then>
+							<fail>Plugins inspector is not detecting false errors.</fail>
+						</then>
+					</if>
+				</then>
+			</elseif>
+		</if>
+
+		<delete file="../plugins-inspector.log" />
 	</target>
 </project>
