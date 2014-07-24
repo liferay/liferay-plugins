@@ -36,11 +36,38 @@
 			<arg line="clean -d -f -x ." />
 		</exec>
 
+		<trycatch>
+			<try>
+				<antcall target="clean" />
+			</try>
+			<catch>
+				<record-fail message="Unable to clean all plugins." />
+			</catch>
+		</trycatch>
+
+		<trycatch>
+			<try>
+				<antcall target="compile" />
+			</try>
+			<catch>
+				<record-fail message="Unable to compile all plugins." />
+			</catch>
+		</trycatch>
+
 		<for param="module.name">
 			<path>
 				<dirset dir="." includes="*" />
 			</path>
 			<sequential>
+				<trycatch>
+					<try>
+						<antcall target="compile" />
+					</try>
+					<catch>
+						<record-fail message="Module @{module.name} must compile." />
+					</catch>
+				</trycatch>
+
 				<if>
 					<and>
 						<available file="@{module.name}/docroot" />
@@ -143,10 +170,6 @@
 /*/test-results</echo>
 			</then>
 		</if>
-
-		<antcall target="clean" />
-
-		<antcall target="compile" />
 
 		<exec dir="." executable="git" outputproperty="git.command.output">
 			<arg line="status ." />
