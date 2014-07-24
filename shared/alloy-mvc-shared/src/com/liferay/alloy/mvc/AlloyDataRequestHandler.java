@@ -170,8 +170,8 @@ public class AlloyDataRequestHandler {
 		}
 
 		AlloySearchResult alloySearchResult = baseAlloyControllerImpl.search(
-			attributes, keywords, sorts, actionRequest,
-			PortalUtil.getHttpServletRequest(actionRequest));
+			PortalUtil.getHttpServletRequest(actionRequest), actionRequest, attributes, keywords,
+			sorts);
 
 		List<BaseModel<?>> baseModels = alloySearchResult.getBaseModels();
 

@@ -803,12 +803,12 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 			Map<String, Serializable> attributes, String keywords, Sort[] sorts)
 		throws Exception {
 
-		return search(attributes, keywords, sorts, portletRequest, request);
+		return search(request, portletRequest, attributes, keywords, sorts);
 	}
 
 	protected AlloySearchResult search(
-			Map<String, Serializable> attributes, String keywords, Sort[] sorts,
-			PortletRequest portletRequest, HttpServletRequest request)
+			HttpServletRequest request, PortletRequest portletRequest,
+			Map<String, Serializable> attributes, String keywords, Sort[] sorts)
 		throws Exception {
 
 		if (indexer == null) {
