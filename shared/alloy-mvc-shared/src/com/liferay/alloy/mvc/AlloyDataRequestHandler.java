@@ -84,8 +84,7 @@ public class AlloyDataRequestHandler {
 			JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
 			jsonObject.put(
-				"error",
-				"An unexpected exception occurred: " + e.getMessage());
+				"error", "An unexpected exception occurred: " + e.getMessage());
 			jsonObject.put("stacktrace", StackTraceUtil.getStackTrace(e));
 
 			jsonString = jsonObject.toString();
