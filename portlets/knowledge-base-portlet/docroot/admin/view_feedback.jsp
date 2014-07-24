@@ -29,9 +29,14 @@ String navItem = ParamUtil.getString(request, "navItem", "viewNewFeedback");
 			<portlet:param name="navItem" value="viewNewFeedback" />
 		</portlet:renderURL>
 
+		<%
+		int newKBCommentsCount = KBCommentLocalServiceUtil.getKBCommentsCount(scopeGroupId, KBCommentConstants.STATUS_NEW);
+		String newKBCommentsLabel = String.format("%s (%s)", LanguageUtil.get(pageContext, "new"), newKBCommentsCount);
+		%>
+
 		<aui:nav-item
 			href="<%= viewNewFeedbackURL %>"
-			label="new"
+			label="<%= newKBCommentsLabel %>"
 			selected='<%= navItem.equals("viewNewFeedback") %>'
 		/>
 
@@ -40,9 +45,14 @@ String navItem = ParamUtil.getString(request, "navItem", "viewNewFeedback");
 			<portlet:param name="navItem" value="viewInProgressFeedback" />
 		</portlet:renderURL>
 
+		<%
+		int inProgressKBCommentsCount = KBCommentLocalServiceUtil.getKBCommentsCount(scopeGroupId, KBCommentConstants.STATUS_IN_PROGRESS);
+		String inProgressKBCommentsLabel = String.format("%s (%s)", LanguageUtil.get(pageContext, "in-progress"), inProgressKBCommentsCount);
+		%>
+
 		<aui:nav-item
 			href="<%= viewInProgressFeedbackURL %>"
-			label="in-progress"
+			label="<%= inProgressKBCommentsLabel %>"
 			selected='<%= navItem.equals("viewInProgressFeedback") %>'
 		/>
 
@@ -51,9 +61,14 @@ String navItem = ParamUtil.getString(request, "navItem", "viewNewFeedback");
 			<portlet:param name="navItem" value="viewCompletedFeedback" />
 		</portlet:renderURL>
 
+		<%
+		int completedKBCommentsCount = KBCommentLocalServiceUtil.getKBCommentsCount(scopeGroupId, KBCommentConstants.STATUS_COMPLETED);
+		String completedLabel = String.format("%s (%s)", LanguageUtil.get(pageContext, "completed"), completedKBCommentsCount);
+		%>
+
 		<aui:nav-item
 			href="<%= viewCompletedFeedbackURL %>"
-			label="completed"
+			label="<%= completedLabel %>"
 			selected='<%= navItem.equals("viewCompletedFeedback") %>'
 		/>
 	</aui:nav>
