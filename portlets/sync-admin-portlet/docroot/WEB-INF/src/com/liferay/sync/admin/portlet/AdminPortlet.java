@@ -41,15 +41,19 @@ public class AdminPortlet extends MVCPortlet {
 
 		int maxConnections = ParamUtil.getInteger(
 			actionRequest, "maxConnections");
-		int pollInterval = ParamUtil.getInteger(actionRequest, "pollInterval");
-		boolean enabled = ParamUtil.getBoolean(actionRequest, "enabled");
 
 		portletPreferences.setValue(
 			PortletPropsKeys.SYNC_CLIENT_MAX_CONNECTIONS,
 			String.valueOf(maxConnections));
+
+		int pollInterval = ParamUtil.getInteger(actionRequest, "pollInterval");
+
 		portletPreferences.setValue(
 			PortletPropsKeys.SYNC_CLIENT_POLL_INTERVAL,
 			String.valueOf(pollInterval));
+
+		boolean enabled = ParamUtil.getBoolean(actionRequest, "enabled");
+
 		portletPreferences.setValue(
 			PortletPropsKeys.SYNC_SERVICES_ENABLED, String.valueOf(enabled));
 
