@@ -1,3 +1,5 @@
+<%@ page import="com.liferay.knowledgebase.util.KBFeedbackListDisplayContext" %>
+
 <%--
 /**
  * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
@@ -20,54 +22,43 @@
 
 <%
 String navItem = ParamUtil.getString(request, "navItem", "viewNewFeedback");
+
+KBFeedbackListDisplayContext kbFeedbackListDisplayContext =
+	new KBFeedbackListDisplayContext(scopeGroupId);
 %>
 
 <aui:nav-bar>
 	<aui:nav cssClass="navbar-nav">
-		<portlet:renderURL var="viewNewFeedbackURL">
-			<portlet:param name="mvcPath" value="/admin/view_feedback.jsp" />
-			<portlet:param name="navItem" value="viewNewFeedback" />
-		</portlet:renderURL>
 
 		<%
-		int newKBCommentsCount = KBCommentLocalServiceUtil.getKBCommentsCount(scopeGroupId, KBCommentConstants.STATUS_NEW);
+		int newKBCommentsCount = kbFeedbackListDisplayContext.getNewSuggestionsCount();
 		String newKBCommentsLabel = String.format("%s (%s)", LanguageUtil.get(pageContext, "new"), newKBCommentsCount);
 		%>
 
 		<aui:nav-item
-			href="<%= viewNewFeedbackURL %>"
+			href='<%= kbFeedbackListDisplayContext.getViewFeedbackByStatusURL(renderResponse, "viewNewFeedback") %>'
 			label="<%= newKBCommentsLabel %>"
 			selected='<%= navItem.equals("viewNewFeedback") %>'
 		/>
 
-		<portlet:renderURL var="viewInProgressFeedbackURL">
-			<portlet:param name="mvcPath" value="/admin/view_feedback.jsp" />
-			<portlet:param name="navItem" value="viewInProgressFeedback" />
-		</portlet:renderURL>
-
 		<%
-		int inProgressKBCommentsCount = KBCommentLocalServiceUtil.getKBCommentsCount(scopeGroupId, KBCommentConstants.STATUS_IN_PROGRESS);
+		int inProgressKBCommentsCount = kbFeedbackListDisplayContext.getInProgressSuggestionsCount();
 		String inProgressKBCommentsLabel = String.format("%s (%s)", LanguageUtil.get(pageContext, "in-progress"), inProgressKBCommentsCount);
 		%>
 
 		<aui:nav-item
-			href="<%= viewInProgressFeedbackURL %>"
+			href='<%= kbFeedbackListDisplayContext.getViewFeedbackByStatusURL(renderResponse, "viewInProgressFeedback") %>'
 			label="<%= inProgressKBCommentsLabel %>"
 			selected='<%= navItem.equals("viewInProgressFeedback") %>'
 		/>
 
-		<portlet:renderURL var="viewCompletedFeedbackURL">
-			<portlet:param name="mvcPath" value="/admin/view_feedback.jsp" />
-			<portlet:param name="navItem" value="viewCompletedFeedback" />
-		</portlet:renderURL>
-
 		<%
-		int completedKBCommentsCount = KBCommentLocalServiceUtil.getKBCommentsCount(scopeGroupId, KBCommentConstants.STATUS_COMPLETED);
+		int completedKBCommentsCount = kbFeedbackListDisplayContext.getCompletedSuggestionsCount();
 		String completedLabel = String.format("%s (%s)", LanguageUtil.get(pageContext, "completed"), completedKBCommentsCount);
 		%>
 
 		<aui:nav-item
-			href="<%= viewCompletedFeedbackURL %>"
+			href='<%= kbFeedbackListDisplayContext.getViewFeedbackByStatusURL(renderResponse, "viewCompletedFeedback") %>'
 			label="<%= completedLabel %>"
 			selected='<%= navItem.equals("viewCompletedFeedback") %>'
 		/>
