@@ -73,7 +73,7 @@ public class CalendarServiceImpl extends CalendarServiceBaseImpl {
 
 		CalendarPermission.check(
 			getPermissionChecker(), calendarId,
-			ActionKeys.VIEW_BOOKING_DETAILS);
+			ActionKeys.VIEW);
 
 		return calendarLocalService.exportCalendar(calendarId, type);
 	}
