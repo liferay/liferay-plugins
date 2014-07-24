@@ -152,6 +152,11 @@ public interface SyncDLObjectService extends BaseService, InvokableService {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public javax.portlet.PortletPreferences getPortletPreferences()
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.sync.model.SyncContext getSyncContext(
 		java.lang.String uuid)
 		throws com.liferay.portal.kernel.exception.PortalException,
