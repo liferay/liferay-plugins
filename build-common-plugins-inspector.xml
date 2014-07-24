@@ -11,7 +11,7 @@
 	</macrodef>
 
 	<target name="inspect-plugins">
-		<property name="plugins-inspector.log.expected.checksum" value="6fc1f47ae6b8108699b044550eb5e64b" />
+		<property name="plugins-inspector.log.expected.checksum" value="cd1c454298638a62444e54aa8aebfa47" />
 
 		<delete file="../plugins-inspector.log" />
 
