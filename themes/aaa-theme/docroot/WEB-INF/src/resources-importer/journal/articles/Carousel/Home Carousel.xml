@@ -2,13 +2,13 @@
 
 <root available-locales="en_US" default-locale="en_US">
 	<dynamic-element instance-id="F9rndeGh" name="width" type="text" index-type="">
-		<dynamic-content><![CDATA[960]]></dynamic-content>
+		<dynamic-content><![CDATA[100%]]></dynamic-content>
 	</dynamic-element>
 	<dynamic-element instance-id="dohmZ4aW" name="height" type="text" index-type="">
-		<dynamic-content><![CDATA[260]]></dynamic-content>
+		<dynamic-content><![CDATA[auto]]></dynamic-content>
 	</dynamic-element>
 	<dynamic-element instance-id="sSzCClU1" name="duration" type="list" index-type="">
-		<dynamic-content><![CDATA[6]]></dynamic-content>
+		<dynamic-content><![CDATA[8]]></dynamic-content>
 	</dynamic-element>
 	<dynamic-element instance-id="TKFzz6Cm" name="controls" type="boolean" index-type="">
 		<dynamic-content><![CDATA[]]></dynamic-content>

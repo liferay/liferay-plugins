@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+
+<root available-locales="en_US" default-locale="en_US">
+	<dynamic-element name="header" type="text" index-type="">
+		<dynamic-content><![CDATA[Sidebar]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element name="image" type="document_library" index-type="">
+		<dynamic-content><![CDATA[[$FILE=advertising.jpg$]]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element name="content1" type="text_area" index-type="">
+		<dynamic-content><![CDATA[Please consider Cash Contribution through Paypal for our free Liferay Modules, Themes & Projects which helps us creating new and free quality Liferay modules, themes & projects in the future.]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element name="content2" type="text_area" index-type="">
+		<dynamic-content><![CDATA[Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element name="content3" type="text_area" index-type="">
+		<dynamic-content><![CDATA[]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element name="content4" type="text_area" index-type="">
+		<dynamic-content><![CDATA[]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element name="content5" type="text_area" index-type="">
+		<dynamic-content><![CDATA[]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element name="content6" type="text_area" index-type="">
+		<dynamic-content><![CDATA[]]></dynamic-content>
+	</dynamic-element>
+</root>

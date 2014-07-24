@@ -22,6 +22,22 @@
 	}
 }
 
+.table-bordered {
+
+	th {
+		background: #555;
+		color: #FFF;
+	}
+
+	thead a {
+		color: #FFF;
+	}
+
+	tbody a {
+		color: #F4473A;
+	}
+}
+
 #breadcrumbs, .page-title, .portlet-title img, #sign-in {
 	display: none;
 }
@@ -209,211 +225,220 @@
 	width: auto;
 }
 
-/* Body*/
+/*breadcrumb childpage*/
 
-#content {
-	margin: 0 auto;
-}
-
-#main-content {
-	float: left;	
-	padding: 0px;
-	width: 100%;
-}
-
-#hrefFm {
+.layouts.level-1 {
 	display: none;
 }
 
-.bodyrow {
-	display: inline-block;
-	width: 100%;
+.aui .breadcrumb .active a {
+	color: #777;
 }
 
-/* Portlets*/
-
-.portlet-content {
-	padding: 0;
+.portlet-navigation header {
+	display: none;
 }
 
-/*Carousel */
-#column-1 .portlet-boundary {
-	margin-bottom: 0;
-	padding-bottom: 0;
-}
-/* Preface */
+/*General*/
 
-#layout-column_column-2 {
-	margin: 0 auto;
-	max-width: 1200px;
-}
+#main-content {
 
-/* Main Body (This CSS is meant for the home page, unsure how these selectors will affect other pages but I wanted to make it work first)*/
+	.portlet-layout {
+		margin: 0 auto;
+		max-width: 1200px;
+		padding-top: 15px;
 
-.portlet-layout:nth-child(2) {
-	background: #ED564B;
-	border: 5px solid #F96B61;
-	border-width: 5px 0;
-}
+		.portlet-column {
+			margin-left: 0;
+			padding: 20px 15px;
 
-.portlet-layout:nth-child(3), .portlet-layout:nth-child(4) {
-	margin: 0 auto;
-	max-width: 1200px;
-}
+			.portlet-boundary_56_ {
+				border-bottom: none;
 
-.portlet-layout:nth-child(5) {
-	background-color: #3B3B3B;
-	border-top: 5px solid #ED564B;
-	margin: 0 0 -6px;
-}
+				.form-header {
+					font-size: 36px;
+					font-weight: bold;
+				}
 
-/* old CSS, probably will remove
+				.form-item {
+					font-size: 13px;
+					font-weight: bold;
 
-#column-6, #column-7, #column-8, #column-9 {
-	width: 14%;
-}
-
-#column-6 {
-	margin-left: 18%;
-}
-
-#column-9 {
-	margin-right: 18%;
-}
-
-#column-2, #column-3, #column-4 {
-	text-align: center;
-	margin-left: 0;
-	max-width: 400px;
-	padding: 0 15px;
-	width: 20%;
-}
-
-#column-2 {
-	margin-left: 21%;
-}
-*/
-
-/* Bottom Row*/
-
-#footer {
-	background: #292929;
-	font-size: 12px;
-	padding: 10px 0;
-}
-
-#footer-2 {
-
-	.powered-by {
-		color: #BBB;
-		font-size: 12px;
-		line-height: 1.6;
-		margin: 0 -15px;
-
-		a, a:hover {
-			color: #FFF;
+					input[type="text"], textarea {
+						border-radius: 4px;
+						width: 100%
+					}
+				}
+			}
 		}
+
+		.journal-content-article img {
+			display: block;
+			margin: 0 auto 20px;
+		}
+
+		.portlet-column:first-child .portlet-boundary_56_ {
+			h1, h2 {
+				font-size: 36px;
+				margin: 10px 0 20px;
+			}
+		}
+
 	}
 
-	p {
+	.portlet-breadcrumb {
+		border-bottom: none;
 		margin: 0;
-		padding: 10px 0;
-	}
-	
-}
+		padding: 0;
 
-/*-------------------Old CSS, will remove when these sections are replaced with web content----------------------*/
-/*Preface*/
+		.portlet-title {
+			display: none;
+			margin-bottom: 20px;
+			padding: 8px 15px;
+		}
 
-#preface {
-	background: #ED564B;
-	border: 5px solid #F96B61;
-	border-width: 5px 0;
-	margin-bottom: 15px;
-	padding:  40px 0 20px;
-	width: 100%;
-}
-
-.preface-row {
-	display: inline-block;
-	margin: 0 -15px;
-}
-
-.preface-block {
-	color: #FFF;
-	float: left;
-	padding: 0 15px;
-	position: relative;
-	text-align: center;
-	width: 33.3333333%;
-
-	h2 {
-		font-size: 24px;
-		font-weight: bold;
-		margin: 0;
+		.portlet-content {
+			padding: 0;
+		}
 	}
 }
 
-.preface-content p {
-	line-height: 1.6;
-	margin-bottom: 20px;
-}
+/* Home page */
 
-/* Sidebar*/
+#main-content.columns-1-2-1-4  {
 
-#sidebar {
-	float: left;
-	padding: 20px 15px;
-	width: 33.33333%;
+	.portlet-layout:first-child {
+		max-width: 100%;
+		padding: 0;
 
-	.sidebar-block {
-		margin-bottom: 30px;
-
-		h2 {
-			color: #000;
-			font-size: 20px;
-			font-weight: bold;
-			line-height: 1.6;
-			margin: 0 0 15px;
-			text-transform: uppercase;
+		.portlet-column {
+			padding: 0;
 		}
 
-		span {
-			color: #F4473A;
-		}
-
-		li p {
-			color: #F4473A;
+		.portlet-boundary {
+			border: none;
 			margin-bottom: 0;
+			padding-bottom: 0;
+
+			.yui3-widget {
+				margin-bottom: 0;
+
+				.carousel-item {
+					display: none;
+
+					img {
+						width: 100%;
+						margin: 0;
+					}
+				}
+
+				.carousel-item.carousel-item-active {
+					display: block;
+				}
+			}
+		}
+	}
+
+	.portlet-layout:nth-child(2) {
+		background: #ED564B;
+		border: 5px solid #F96B61;
+		border-width: 5px 0;
+		max-width: 100%;
+		padding: 40px 0 20px;
+
+		.portlet-column {
+			padding: 0;
 		}
 
-		#sidebarContentLinks li {
-			line-height: 1.6;
+		#layout-column_column-2 {
+			margin: 0 auto;
+			max-width: 1200px;
+
+			.portlet-boundary {
+				border-bottom: none;
+				margin: 0;
+				padding-bottom: 0;
+
+				.preface {
+					color: #FFF;
+
+					div {
+						float: left;
+						margin-bottom: 30px;
+						padding: 0 15px;
+						text-align: center;
+						width: 33.33333%;
+
+						h2 {
+							font-size: 24px;
+							margin: 0;
+						}
+					}
+				}
+			}
+		}
+
+		a {
+			color: #FFF;
+			text-decoration: none;
 		}
 	}
 }
 
-#sidebarContentSocial {
-	background-color: #AAA;
-	color: #FFF;
-	height: 370px;
-	max-width: 240px;
-	text-align: center;
+#main-content.columns-1-2-1-4b {
+
+	.portlet-layout:first-child {
+		background: #ED564B;
+		border: 5px solid #F96B61;
+		border-width: 5px 0;
+		margin: 0;
+		max-width: 100%;
+		padding: 40px 0 20px;
+		width: 100%;
+
+		.portlet-column {
+			padding: 0;
+		}
+
+		#layout-column_column-1 {
+			margin: 0 auto;
+			max-width: 1200px;
+
+			.portlet-boundary {
+				margin: 0;
+				padding-bottom: 0;
+
+				.preface {
+					color: #FFF;
+
+					div {
+						float: left;
+						margin-bottom: 30px;
+						padding: 0 15px;
+						text-align: center;
+						width: 33.33333%;
+
+						h2 {
+							font-size: 24px;
+							margin: 0;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	.portlet-layout:nth-child(2) {
+		.portlet-boundary_56_ {
+			margin-bottom: 0;
+			padding-bottom: 0;
+		}
+	}
 }
 
-#sidebarContentAd {
-	background-color: #AAA;
-	color: #FFF;
-	height: 200px;
-	margin: 0 auto;
-	text-align: center;
-	width: 200px;
-}
 
-.sidebar-text-center {
-	text-align: center;
-}
-/* Footer */
+
+/* ----------------------AdBlock */
 
 #footerBlock {
 	height: 126px;
@@ -448,7 +473,7 @@
 	float: left;
 	padding: 0 15px;
 	position: relative;
-	width: 22.5%
+	width: 25%
 }
 
 .block-block {
@@ -476,4 +501,32 @@
 		color: #FFF;
 		text-align: center;
 	}
+}
+
+/* Footer*/
+
+#footer {
+	background: #292929;
+	font-size: 12px;
+	padding: 10px 0;
+}
+
+#footer-2 {
+
+	.powered-by {
+		color: #BBB;
+		font-size: 12px;
+		line-height: 1.6;
+		margin: 0 -15px;
+
+		a, a:hover {
+			color: #FFF;
+		}
+	}
+
+	p {
+		margin: 0;
+		padding: 10px 0;
+	}
+	
 }

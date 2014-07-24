@@ -4,14 +4,14 @@
 	<dynamic-element dataType="string" indexType="" name="width" readOnly="false" repeatable="false" required="true" showLabel="true" type="text" width="small">
 		<meta-data locale="en_US">
 			<entry name="label"><![CDATA[Image Width]]></entry>
-			<entry name="predefinedValue"><![CDATA[960]]></entry>
+			<entry name="predefinedValue"><![CDATA[]]></entry>
 			<entry name="tip"><![CDATA[Image width (960) without the "px" label]]></entry>
 		</meta-data>
 	</dynamic-element>
 	<dynamic-element dataType="string" indexType="" name="height" readOnly="false" repeatable="false" required="true" showLabel="true" type="text" width="small">
 		<meta-data locale="en_US">
 			<entry name="label"><![CDATA[Image Height]]></entry>
-			<entry name="predefinedValue"><![CDATA[260]]></entry>
+			<entry name="predefinedValue"><![CDATA[]]></entry>
 			<entry name="tip"><![CDATA[Image height (260) without the "px" label]]></entry>
 		</meta-data>
 	</dynamic-element>

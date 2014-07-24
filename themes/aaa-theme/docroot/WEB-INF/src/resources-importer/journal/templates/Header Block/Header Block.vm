@@ -1,0 +1,9 @@
+<div class="header-block">
+	#if ($header.data !="")
+		<h2> $header.data </h2>
+	#end
+
+	#if ($content.data !="")
+		<p> $content.data </p>
+	#end
+</div>

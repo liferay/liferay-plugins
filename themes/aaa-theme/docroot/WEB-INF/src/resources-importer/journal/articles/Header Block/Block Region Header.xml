@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+
+<root available-locales="en_US" default-locale="en_US">
+	<dynamic-element name="header" type="text" index-type="">
+		<dynamic-content><![CDATA[Header Block]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element name="content" type="text_area" index-type="">
+		<dynamic-content><![CDATA[
+			Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.]]></dynamic-content>
+	</dynamic-element>
+</root>

@@ -5,22 +5,17 @@
 	#${content_class} {
 		height: ${height.getData()}px;
 		position: relative;
-		width: ${width.getData()}px;
+		width: ${width.getData()};
 	}
 
 	#${content_class} .carousel-item {
 		height: ${height.getData()}px;
 		overflow: hidden;
-		position: absolute;
+		position: static;
 		top: 0;
-		width: ${width.getData()}px;
+		width: ${width.getData()};
 	}
 
-	#if ($controls.data)
-		#${content_class} menu {
-			display: none;
-		}
-	#end
 </style>
 
 <div id="$content_class">
@@ -49,9 +44,7 @@
 				{
 					activeIndex: 'rand',
 					contentBox: '#${content_class}',
-					height: $height.getData(),
 					intervalTime: $duration.getData(),
-					width: $width.getData()
 				}
 			).render();
 		}

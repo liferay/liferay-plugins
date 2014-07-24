@@ -1,0 +1,50 @@
+<div class="article">
+        #if ($header.data !="")
+            <h2>
+            $header.data
+            </h2>
+        #end
+        
+        
+        #if ($image.data !="")
+        <div class="content-image">
+            <img class="article-image" src="$image.data">
+        </div>
+        #end
+        
+        #if ($content1.data !="")
+            <p>
+            $content1.data
+            </p>
+        #end
+
+        #if ($content2.data !="")
+            <p>
+            $content2.data
+            </p>
+        #end
+
+        #if ($content3.data !="")
+            <p>
+            $content3.data
+            </p>
+        #end
+
+        #if ($content4.data !="")
+            <p>
+            $content4.data
+            </p>
+        #end
+
+        #if ($content5.data !="")
+            <p>
+            $content5.data
+            </p>
+        #end
+
+        #if ($content6.data !="")
+            <p>
+            $content6.data
+            </p>
+        #end
+</div>
