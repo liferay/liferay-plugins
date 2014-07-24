@@ -26,9 +26,11 @@ boolean hasEditPermission = KBArticlePermission.contains(permissionChecker, kbAr
 
 	<%
 	int kbCommentsCount = 0;
+	int pendingKBCommentsCount = 0;
 
 	if (hasEditPermission) {
 		kbCommentsCount = KBCommentLocalServiceUtil.getKBCommentsCount(KBArticle.class.getName(), kbArticle.getClassPK());
+		pendingKBCommentsCount = KBCommentLocalServiceUtil.getKBCommentsCount(KBArticle.class.getName(), kbArticle.getClassPK(), new int[]{KBCommentConstants.STATUS_IN_PROGRESS, KBCommentConstants.STATUS_PENDING});
 	}
 	else {
 		kbCommentsCount = KBCommentLocalServiceUtil.getKBCommentsCount(themeDisplay.getUserId(), KBArticle.class.getName(), kbArticle.getClassPK());
@@ -54,7 +56,11 @@ boolean hasEditPermission = KBArticlePermission.contains(permissionChecker, kbAr
 					<a data-show-node-id="<portlet:namespace />previousCommentsContainer" href="javascript:void(0)">
 						<c:choose>
 							<c:when test="<%= hasEditPermission %>">
-								<liferay-ui:message key="a-user-sent-one-suggestion-for-this-article" />
+								<liferay-ui:message key="there-is-one-suggestion" />
+
+								<c:if test="<%= pendingKBCommentsCount > 0 %>">
+									(<liferay-ui:message arguments="<%= pendingKBCommentsCount %>" key="x-pending" />)
+								</c:if>
 							</c:when>
 							<c:otherwise>
 								<liferay-ui:message key="you-sent-one-suggestion-for-this-article" />
@@ -67,7 +73,11 @@ boolean hasEditPermission = KBArticlePermission.contains(permissionChecker, kbAr
 					<a data-show-node-id="<portlet:namespace />previousCommentsContainer" href="javascript:void(0)">
 						<c:choose>
 							<c:when test="<%= hasEditPermission %>">
-								<liferay-ui:message arguments="<%= new Object[]{ kbCommentsCount } %>" key="users-sent-x-suggestions-for-this-article" />
+								<liferay-ui:message arguments="<%= new Object[]{ kbCommentsCount } %>" key="there-are-x-suggestions" />
+
+								<c:if test="<%= pendingKBCommentsCount > 0 %>">
+									(<liferay-ui:message arguments="<%= pendingKBCommentsCount %>" key="x-pending" />)
+								</c:if>
 							</c:when>
 							<c:otherwise>
 								<liferay-ui:message arguments="<%= new Object[]{ kbCommentsCount } %>" key="you-sent-x-suggestions-for-this-article" />
