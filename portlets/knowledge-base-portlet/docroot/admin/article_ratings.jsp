@@ -30,7 +30,7 @@ boolean hasEditPermission = KBArticlePermission.contains(permissionChecker, kbAr
 
 	if (hasEditPermission) {
 		kbCommentsCount = KBCommentLocalServiceUtil.getKBCommentsCount(KBArticle.class.getName(), kbArticle.getClassPK());
-		pendingKBCommentsCount = KBCommentLocalServiceUtil.getKBCommentsCount(KBArticle.class.getName(), kbArticle.getClassPK(), new int[]{KBCommentConstants.STATUS_IN_PROGRESS, KBCommentConstants.STATUS_PENDING});
+		pendingKBCommentsCount = KBCommentLocalServiceUtil.getKBCommentsCount(KBArticle.class.getName(), kbArticle.getClassPK(), new int[]{KBCommentConstants.STATUS_IN_PROGRESS, KBCommentConstants.STATUS_NEW});
 	}
 	else {
 		kbCommentsCount = KBCommentLocalServiceUtil.getKBCommentsCount(themeDisplay.getUserId(), KBArticle.class.getName(), kbArticle.getClassPK());
@@ -73,14 +73,14 @@ boolean hasEditPermission = KBArticlePermission.contains(permissionChecker, kbAr
 					<a data-show-node-id="<portlet:namespace />previousCommentsContainer" href="javascript:void(0)">
 						<c:choose>
 							<c:when test="<%= hasEditPermission %>">
-								<liferay-ui:message arguments="<%= new Object[]{ kbCommentsCount } %>" key="there-are-x-suggestions" />
+								<liferay-ui:message arguments="<%= kbCommentsCount %>" key="there-are-x-suggestions" />
 
 								<c:if test="<%= pendingKBCommentsCount > 0 %>">
 									(<liferay-ui:message arguments="<%= pendingKBCommentsCount %>" key="x-pending" />)
 								</c:if>
 							</c:when>
 							<c:otherwise>
-								<liferay-ui:message arguments="<%= new Object[]{ kbCommentsCount } %>" key="you-sent-x-suggestions-for-this-article" />
+								<liferay-ui:message arguments="<%= kbCommentsCount %>" key="you-sent-x-suggestions-for-this-article" />
 							</c:otherwise>
 						</c:choose>
 					</a>

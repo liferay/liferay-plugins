@@ -21,12 +21,12 @@ public class KBCommentConstants {
 
 	public static final int STATUS_ANY = -1;
 
+	public static final int STATUS_COMPLETED = 0;
+
 	public static final int STATUS_IN_PROGRESS = 2;
 
+	public static final int STATUS_NEW = 1;
+
 	public static final int STATUS_NONE = -2;
-
-	public static final int STATUS_PENDING = 1;
-
-	public static final int STATUS_RESOLVED = 0;
 
 }
