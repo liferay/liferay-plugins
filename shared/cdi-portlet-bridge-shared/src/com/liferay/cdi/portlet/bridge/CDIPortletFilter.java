@@ -57,7 +57,12 @@ public class CDIPortletFilter
 		actionResponse = cdiResponseFactory.getCDIActionResponse(
 			actionResponse, actionRequest.getLocale());
 
-		filterChain.doFilter(actionRequest, actionResponse);
+        PortletRequestContainer.registerPortletRequest(actionRequest);
+        try {
+            filterChain.doFilter(actionRequest, actionResponse);
+        } finally {
+            PortletRequestContainer.unregisterPortletRequest();
+        }
 	}
 
 	@Override
@@ -75,7 +80,12 @@ public class CDIPortletFilter
 		eventResponse = cdiResponseFactory.getCDIEventResponse(
 			eventResponse, eventRequest.getLocale());
 
-		filterChain.doFilter(eventRequest, eventResponse);
+        PortletRequestContainer.registerPortletRequest(eventRequest);
+        try {
+            filterChain.doFilter(eventRequest, eventResponse);
+        } finally {
+            PortletRequestContainer.unregisterPortletRequest();
+        }
 	}
 
 	@Override
@@ -93,7 +103,12 @@ public class CDIPortletFilter
 		renderResponse = cdiResponseFactory.getCDIRenderResponse(
 			renderResponse, renderRequest.getLocale());
 
-		filterChain.doFilter(renderRequest, renderResponse);
+        PortletRequestContainer.registerPortletRequest(renderRequest);
+        try {
+            filterChain.doFilter(renderRequest, renderResponse);
+        } finally {
+            PortletRequestContainer.unregisterPortletRequest();
+        }
 	}
 
 	@Override
@@ -112,7 +127,12 @@ public class CDIPortletFilter
 		resourceResponse = cdiResponseFactory.getCDIResourceResponse(
 			resourceResponse, resourceRequest.getLocale());
 
-		filterChain.doFilter(resourceRequest, resourceResponse);
+        PortletRequestContainer.registerPortletRequest(resourceRequest);
+        try {
+            filterChain.doFilter(resourceRequest, resourceResponse);
+        } finally {
+            PortletRequestContainer.unregisterPortletRequest();
+        }
 	}
 
 	@Override
