@@ -146,6 +146,7 @@ public class BaseJSONHandler extends BaseHandler {
 			syncAccount.setState(SyncAccount.STATE_DISCONNECTED);
 			syncAccount.setUiEvent(
 				SyncAccount.UI_EVENT_SYNC_SERVICES_NOT_ACTIVE);
+
 			SyncAccountService.update(syncAccount);
 
 			retryServerConnection();
