@@ -793,20 +793,6 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 	}
 
 	protected AlloySearchResult search(
-			Map<String, Serializable> attributes, String keywords, Sort sort)
-		throws Exception {
-
-		return search(attributes, keywords, new Sort[] {sort});
-	}
-
-	protected AlloySearchResult search(
-			Map<String, Serializable> attributes, String keywords, Sort[] sorts)
-		throws Exception {
-
-		return search(request, portletRequest, attributes, keywords, sorts);
-	}
-
-	protected AlloySearchResult search(
 			HttpServletRequest request, PortletRequest portletRequest,
 			Map<String, Serializable> attributes, String keywords, Sort[] sorts)
 		throws Exception {
@@ -867,6 +853,20 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 		alloySearchResult.afterPropertiesSet();
 
 		return alloySearchResult;
+	}
+
+	protected AlloySearchResult search(
+			Map<String, Serializable> attributes, String keywords, Sort sort)
+		throws Exception {
+
+		return search(attributes, keywords, new Sort[] {sort});
+	}
+
+	protected AlloySearchResult search(
+			Map<String, Serializable> attributes, String keywords, Sort[] sorts)
+		throws Exception {
+
+		return search(request, portletRequest, attributes, keywords, sorts);
 	}
 
 	protected AlloySearchResult search(String keywords) throws Exception {
