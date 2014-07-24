@@ -14,6 +14,7 @@
 
 package com.liferay.sync.filter;
 
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.PrefsPropsUtil;
@@ -59,17 +60,22 @@ public class SyncJSONFilter implements Filter {
 			return;
 		}
 
-		HttpServletRequest httpServletRequest =
-			(HttpServletRequest)servletRequest;
+		try {
+			HttpServletRequest httpServletRequest =
+				(HttpServletRequest)servletRequest;
 
-		if (PrefsPropsUtil.getBoolean(
-				PortalUtil.getCompanyId(httpServletRequest),
-				PortletPropsKeys.SYNC_SERVICES_ENABLED,
-				PortletPropsValues.SYNC_SERVICES_ENABLED)) {
+			if (PrefsPropsUtil.getBoolean(
+					PortalUtil.getCompanyId(httpServletRequest),
+					PortletPropsKeys.SYNC_SERVICES_ENABLED,
+					PortletPropsValues.SYNC_SERVICES_ENABLED)) {
 
-			filterChain.doFilter(servletRequest, servletResponse);
+				filterChain.doFilter(servletRequest, servletResponse);
 
-			return;
+				return;
+			}
+		}
+		catch (SystemException se) {
+			throw new IOException(se);
 		}
 
 		servletResponse.setCharacterEncoding(StringPool.UTF8);
