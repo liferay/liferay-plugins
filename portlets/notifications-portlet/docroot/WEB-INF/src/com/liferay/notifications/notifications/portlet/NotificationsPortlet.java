@@ -541,7 +541,7 @@ public class NotificationsPortlet extends MVCPortlet {
 				userNotificationFeedEntry.getBody(), actionDiv, portletIcon,
 				portletName, separator, timeStamp, userFullName,
 				userPortraitURL});
-}
+	}
 
 	protected void updateArchived(long userNotificationEventId)
 		throws Exception {

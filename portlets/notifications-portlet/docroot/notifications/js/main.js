@@ -437,13 +437,13 @@ AUI().use(
 					currentRow.hide().placeAfter(loadingRow);
 				}
 				else {
-					dockbarNotificationsList = A.one('.dockbar-user-notifications .non-actionable-user-notifications-list');
+					dockbarNotificationsList = A.one('.dockbar-user-notifications .nonactionable-user-notifications-list');
 
 					if (dockbarNotificationsList) {
 						dockbarNotificationsList.hide().placeAfter(loadingRow);
 					}
 
-					fullViewNotificationsList = A.one('.user-notifications-list-container .non-actionable-user-notifications-list');
+					fullViewNotificationsList = A.one('.user-notifications-list-container .nonactionable-user-notifications-list');
 
 					if (fullViewNotificationsList) {
 						fullViewNotificationsList.hide().placeAfter(loadingRow);

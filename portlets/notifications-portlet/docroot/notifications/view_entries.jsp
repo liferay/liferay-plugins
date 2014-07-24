@@ -100,7 +100,7 @@ else {
 						<hr class="separator">
 					</c:if>
 
-					<div class="non-actionable-user-notifications-list">
+					<div class="nonactionable-user-notifications-list">
 
 						<%
 						for (UserNotificationEvent userNotificationEvent : nonActionableUserNotificationEvents) {
@@ -168,7 +168,7 @@ else {
 		<c:if test="<%= userNotificationEventsCount > 0 %>">
 			<div class="fullViewMarkAllAsRead"></div>
 
-			<div class="non-actionable-user-notifications-list">
+			<div class="nonactionable-user-notifications-list">
 
 				<%
 				for (UserNotificationEvent userNotificationEvent : userNotificationEvents) {
