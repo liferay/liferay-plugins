@@ -1,0 +1,92 @@
+{
+	"layoutTemplateId": "1_column",
+	"privatePages": [
+		{
+			"columns": [
+				[
+					{
+						"portletId": "56",
+						"portletPreferences": {
+							"articleId": "Lots of bicycles.xml",
+							"groupId": "${groupId}",
+							"portletSetupShowBorders": "false"
+						}
+					},
+					{
+						"portletId": "56",
+						"portletPreferences": {
+							"articleId": "Saddles.xml",
+							"groupId": "${groupId}",
+							"portletSetupShowBorders": "false"
+						}
+					},
+					{
+						"portletId": "56",
+						"portletPreferences": {
+							"articleId": "I Have a Dream.xml",
+							"groupId": "${groupId}",
+							"portletSetupShowBorders": "false"
+						}
+					},
+					{
+						"portletId": "56",
+						"portletPreferences": {
+							"articleId": "Red Bikes.xml",
+							"groupId": "${groupId}",
+							"portletSetupShowBorders": "false"
+						}
+					},
+					{
+						"portletId": "56",
+						"portletPreferences": {
+							"articleId": "Short Post.xml",
+							"groupId": "${groupId}",
+							"portletSetupShowBorders": "false"
+						}
+					},
+					{
+						"portletId": "56",
+						"portletPreferences": {
+							"articleId": "A bicycle made for two.xml",
+							"groupId": "${groupId}",
+							"portletSetupShowBorders": "false"
+						}
+					},
+
+					{
+						"portletId": "56",
+						"portletPreferences": {
+							"articleId": "Learn Liferay.xml",
+							"groupId": "${groupId}",
+							"portletSetupShowBorders": "false"
+						}
+					}
+				]
+			],
+
+			"friendlyURL": "/home",
+			"name": "Home",
+			"title": "Home"
+		},
+		{
+			"friendlyURL": "/about",
+			"name": "About",
+			"title": "About"
+		},
+		{
+			"friendlyURL": "/html-elements",
+			"name": "HTML ELements",
+			"title": "HTML ELements"
+		},
+		{
+			"friendlyURL": "/image-alignment-and-styles",
+			"name": "Image Alignment and Styles",
+			"title": "Image Alignment and Styles"
+		},
+		{
+			"friendlyURL": "/readability",
+			"name": "Readability",
+			"title": "Readability"
+		}
+	]
+}

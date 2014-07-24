@@ -1,0 +1,8 @@
+<div class="quote-container">
+		<div class="entry-content">
+			<blockquote class="blockquote">
+				<p class="quote-entry">$Blockquote.getData()</p>
+				<cite>$cite.getData()</cite>
+			</blockquote>
+		</div>
+</div>

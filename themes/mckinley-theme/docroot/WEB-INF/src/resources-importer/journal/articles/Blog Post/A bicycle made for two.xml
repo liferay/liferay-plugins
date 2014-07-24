@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+
+<root available-locales="en_US" default-locale="en_US">
+	<dynamic-element name="Blog_Title" type="text">
+		<dynamic-content><![CDATA[A bicycle made for two]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element name="Date" type="ddm-date">
+		<dynamic-content><![CDATA[]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element name="Blog_HTML" type="ddm-text-html">
+		<dynamic-content><![CDATA[<p>Bosberg muur-kapelmuur hoogerland grimpeur keirin. Vandenbroucke nyvelocity, shut up legs barthelemy gutter kluisberg lemond bettini, taaienberg musseeuw bobet palmares. Play rouleur derby boonen bronzini, tour de mont aigoual hinault ghent vande velde coors classic hell of the north, tenbosse col de perjuret bahamontes. Broom wagon valkenberg an res firma mitescere nescit.</p><br><p>Cornet petacchi choley pays de loire ronde van vlaanderen res firma mitescere nescit bianchi, nyvelocity barthelemy. An paris-brest-paris tiegemberg arriere du peloton tilford, nitto hampsten commissaire cassette caravane tourmalet..</p>]]></dynamic-content>
+	</dynamic-element>
+</root>

@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+
+<root available-locales="en_US" default-locale="en_US">
+	<dynamic-element name="Text_Box" type="textarea">
+		<dynamic-content><![CDATA[Want to learn something? <a href="http://www.liferay.com/documentation/liferay-portal/6.2/development">Check it</a>.]]></dynamic-content>
+	</dynamic-element>
+</root>

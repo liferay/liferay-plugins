@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+
+<root available-locales="en_US" default-locale="en_US">
+	<dynamic-element name="Image" type="document-library">
+		<dynamic-content><![CDATA[[$FILE=Red_Bikes.jpg$]]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element name="Date" type="ddm-date">
+		<dynamic-content><![CDATA[]]></dynamic-content>
+	</dynamic-element>
+</root>

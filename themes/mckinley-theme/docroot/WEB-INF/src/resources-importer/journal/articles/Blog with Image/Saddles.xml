@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+
+<root available-locales="en_US" default-locale="en_US">
+	<dynamic-element name="image" type="wcm-image">
+		<dynamic-content><![CDATA[[$FILE=Bedazzled_Saddle.jpg$]]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element name="title" type="text">
+		<dynamic-content><![CDATA[Saddles come in all shapes and sizes]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element name="date" type="ddm-date">
+		<dynamic-content><![CDATA[]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element name="Text" type="ddm-text-html">
+		<dynamic-content><![CDATA[<p>Bartali musseeuw campagnolo knockteberg zabriskie colnago, gimondi tourmalet? Pau berg ter stene bruges rund um koln bianchi, tour de mont aigoual rouleur derby is for lovers contador res firma mitescere nescit driedaagse de panne-koksijde nys.</p>
+		]]></dynamic-content>
+	</dynamic-element>
+</root>

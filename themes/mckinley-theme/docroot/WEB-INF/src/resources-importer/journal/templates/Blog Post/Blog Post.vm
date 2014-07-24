@@ -1,0 +1,16 @@
+<div class="web-content-body">
+		<header class="entry-header">
+			<div class="entry-title">
+				<h2>$Blog_Title.getData()</h2>
+			<div class="entry-date"> 
+				<span class="hide-accessible">Published Date</span>
+				#set ($Date_DateObj = $dateUtil.newDate($getterUtil.getLong($Date.getData())))
+
+				$dateUtil.getDate($Date_DateObj, "dd MMM yyyy", $locale)
+			</div>
+		</header>
+
+		<div class="entry-content" style="padding-bottom: 60px;">
+			$Blog_HTML.getData()
+		</div>
+</div>

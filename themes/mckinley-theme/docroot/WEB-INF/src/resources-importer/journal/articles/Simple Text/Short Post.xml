@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+
+<root available-locales="en_US" default-locale="en_US">
+	<dynamic-element name="Text_Box" type="textarea">
+		<dynamic-content><![CDATA[Sometimes a short post is all that is needed to get your point across. That is the point of this post.]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element name="Date" type="ddm-date">
+		<dynamic-content><![CDATA[]]></dynamic-content>
+	</dynamic-element>
+</root>
