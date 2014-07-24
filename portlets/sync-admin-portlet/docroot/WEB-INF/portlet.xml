@@ -17,7 +17,7 @@
 		<portlet-info>
 			<title>Sync</title>
 			<short-title>Sync</short-title>
-			<keywords>Sync Admin</keywords>
+			<keywords>Sync</keywords>
 		</portlet-info>
 		<security-role-ref>
 			<role-name>administrator</role-name>
