@@ -13,19 +13,19 @@
 		<implicit-parameter name="p_p_state">normal</implicit-parameter>
 	</route>
 	<route>
+		<pattern>/feedback/completed/{p_p_state}</pattern>
+		<implicit-parameter name="mvcPath">/admin/view_feedback.jsp</implicit-parameter>
+		<implicit-parameter name="navItem">viewCompletedFeedback</implicit-parameter>
+	</route>
+	<route>
 		<pattern>/feedback/in_progress/{p_p_state}</pattern>
 		<implicit-parameter name="mvcPath">/admin/view_feedback.jsp</implicit-parameter>
 		<implicit-parameter name="navItem">viewInProgressFeedback</implicit-parameter>
 	</route>
 	<route>
-		<pattern>/feedback/pending/{p_p_state}</pattern>
+		<pattern>/feedback/new/{p_p_state}</pattern>
 		<implicit-parameter name="mvcPath">/admin/view_feedback.jsp</implicit-parameter>
-		<implicit-parameter name="navItem">viewPendingFeedback</implicit-parameter>
-	</route>
-	<route>
-		<pattern>/feedback/resolved/{p_p_state}</pattern>
-		<implicit-parameter name="mvcPath">/admin/view_feedback.jsp</implicit-parameter>
-		<implicit-parameter name="navItem">viewResolvedFeedback</implicit-parameter>
+		<implicit-parameter name="navItem">viewNewFeedback</implicit-parameter>
 	</route>
 	<route>
 		<pattern>/article/{resourcePrimKey:\d+}</pattern>

@@ -86,7 +86,7 @@ public class KBCommentLocalServiceImpl extends KBCommentLocalServiceBaseImpl {
 		kbComment.setClassPK(classPK);
 		kbComment.setContent(content);
 		kbComment.setHelpful(helpful);
-		kbComment.setStatus(KBCommentConstants.STATUS_PENDING);
+		kbComment.setStatus(KBCommentConstants.STATUS_NEW);
 
 		kbCommentPersistence.update(kbComment);
 

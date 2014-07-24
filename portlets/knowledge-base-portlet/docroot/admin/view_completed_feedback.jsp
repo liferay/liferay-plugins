@@ -17,9 +17,9 @@
 <%@ include file="/admin/init.jsp" %>
 
 <%
-String emptyResultsMessage = "no-pending-feedback-was-found";
-int feedbackStatus = KBCommentConstants.STATUS_PENDING;
-String navItem = "viewPendingFeedback";
+String emptyResultsMessage = "no-completed-feedback-was-found";
+int feedbackStatus = KBCommentConstants.STATUS_COMPLETED;
+String navItem = "viewCompletedFeedback";
 %>
 
 <%@ include file="/admin/view_feedback_in_state.jspf" %>

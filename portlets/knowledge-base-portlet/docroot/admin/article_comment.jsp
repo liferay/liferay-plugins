@@ -105,7 +105,7 @@ KBComment kbComment = (KBComment)request.getAttribute("article_comment.jsp-kb_co
 					<aui:button href="<%= nextStatusURL %>" value="<%= KnowledgeBaseUtil.getStatusTransitionLabel(nextStatus) %>" />
 				</c:if>
 
-				<c:if test="<%= feedbackStatus == KBCommentConstants.STATUS_RESOLVED && KBCommentPermission.contains(permissionChecker, kbComment, ActionKeys.DELETE) %>">
+				<c:if test="<%= feedbackStatus == KBCommentConstants.STATUS_COMPLETED && KBCommentPermission.contains(permissionChecker, kbComment, ActionKeys.DELETE) %>">
 					<liferay-portlet:actionURL name="deleteKBComment" var="deleteURL">
 						<portlet:param name="kbCommentId" value="<%= String.valueOf(kbComment.getKbCommentId()) %>" />
 						<portlet:param name="redirect" value="<%= redirect %>" />
