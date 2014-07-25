@@ -364,22 +364,22 @@ public class SyncFile extends StateAwareModel {
 	@DatabaseField(useGetSet = true)
 	protected long parentFolderId;
 
-	@DatabaseField(useGetSet = true)
+	@DatabaseField(uniqueIndexName = "r_s_t_t", useGetSet = true)
 	protected long repositoryId;
 
 	@DatabaseField(useGetSet = true)
 	protected long size;
 
-	@DatabaseField(useGetSet = true)
+	@DatabaseField(uniqueIndexName = "r_s_t_t", useGetSet = true)
 	protected long syncAccountId;
 
 	@DatabaseField(generatedId = true, useGetSet = true)
 	protected long syncFileId;
 
-	@DatabaseField(useGetSet = true)
+	@DatabaseField(uniqueIndexName = "r_s_t_t", useGetSet = true)
 	protected String type;
 
-	@DatabaseField(useGetSet = true)
+	@DatabaseField(uniqueIndexName = "r_s_t_t", useGetSet = true)
 	protected long typePK;
 
 	@DatabaseField(useGetSet = true)
