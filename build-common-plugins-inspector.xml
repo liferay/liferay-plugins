@@ -152,19 +152,6 @@
 			</sequential>
 		</for>
 
-		<if>
-			<available file=".gitignore" />
-			<then>
-				<echo file=".gitignore">/*/bin
-/*/classes
-/*/ivy.xml.MD5
-/*/javadoc
-/*/lib
-/*/test-classes
-/*/test-results</echo>
-			</then>
-		</if>
-
 		<exec dir="." executable="git" outputproperty="git.command.output">
 			<arg line="status ." />
 		</exec>
@@ -179,6 +166,19 @@
 			</then>
 		</if>
 
+		<!-- <if>
+			<available file=".gitignore" />
+			<then>
+				<echo file=".gitignore">/*/bin
+/*/classes
+/*/ivy.xml.MD5
+/*/javadoc
+/*/lib
+/*/test-classes
+/*/test-results</echo>
+			</then>
+		</if>
+
 		<resourcecount property="gitignore.count">
 			<fileset defaultexcludes="false" dir="." includes="**/.gitignore" />
 		</resourcecount>
@@ -190,7 +190,7 @@
 			<then>
 				<record-fail message="Plugins must not have custom .gitignore files." />
 			</then>
-		</if>
+		</if> -->
 
 		<trycatch>
 			<try>
