@@ -61,8 +61,8 @@ $theme.include($body_top_include)
 							$join_url.setParameter("addUserIds", "$user_id")
 							$join_url.setWindowState("normal")
 
-							<a class="aui-button button action request member-button" href="$join_url" id="memberButton">
-								<span class="aui-button-content"><span class="aui-button-label">#language("join-site")</span></span>
+							<a class="action request member-button" href="$join_url" id="memberButton">
+								<span>#language("join-site")</span>
 							</a>
 						#elseif (($page_group.getType() == 2) && !$membership_request)
 							#set ($membership_request_url = $portletURLFactory.create($request, "174", $page.getPlid(), "ACTION_PHASE"))
@@ -76,17 +76,13 @@ $theme.include($body_top_include)
 
 							$membership_request_url.setParameter("comments", $languageUtil.format($locale, "x-wishes-to-join-x", $arguments.toArray(), false))
 
-							<a class="aui-button button action request member-button" href="$membership_request_url" id="memberButton">
-								<span class="aui-button-content">
-									<span class="aui-button-label">#language ("request-membership")</span>
-								</span>
+							<a class="action request member-button" href="$membership_request_url" id="memberButton">
+								<span>#language ("request-membership")</span>
 							</a>
 						#elseif ($membership_request)
-							<a class="aui-button button action requested member-button" id="memberButton">
-								<span class="aui-button-content">
-									<span class="aui-button-label">#language ("membership-requested")</span>
-								</span>
-							</a>
+							<span class="action request member-button" id="memberButton">
+								<span>#language ("membership-requested")</span>
+							</span>
 						#end
 					#end
 				#end
