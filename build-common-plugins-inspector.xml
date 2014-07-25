@@ -11,8 +11,6 @@
 	</macrodef>
 
 	<target name="inspect-plugins">
-		<property name="plugins-inspector.log.expected.checksum" value="397ac4fc2cf05bf18ee13bfcef65439a" />
-
 		<delete file="../plugins-inspector.log" />
 
 		<checksum file="build.xml" property="build.xml.checksum" />
@@ -53,15 +51,6 @@
 				<dirset dir="." includes="*" />
 			</path>
 			<sequential>
-				<trycatch>
-					<try>
-						<antcall target="compile" />
-					</try>
-					<catch>
-						<record-fail message="Module @{module.name} must compile." />
-					</catch>
-				</trycatch>
-
 				<if>
 					<and>
 						<available file="@{module.name}/docroot" />
@@ -157,16 +146,6 @@
 		</exec>
 
 		<if>
-			<or>
-				<contains string="${git.command.output}" substring="Changes not staged for commit" />
-				<contains string="${git.command.output}" substring="Untracked files" />
-			</or>
-			<then>
-				<record-fail message="Plugins must not generate modified files." />
-			</then>
-		</if>
-
-		<!-- <if>
 			<available file=".gitignore" />
 			<then>
 				<echo file=".gitignore">/*/bin
@@ -190,21 +169,32 @@
 			<then>
 				<record-fail message="Plugins must not have custom .gitignore files." />
 			</then>
-		</if> -->
+		</if>
+
+		<if>
+			<or>
+				<contains string="${git.command.output}" substring="Changes not staged for commit" />
+				<contains string="${git.command.output}" substring="Untracked files" />
+			</or>
+			<then>
+				<record-fail message="Plugins must not generate modified files." />
+			</then>
+		</if>
 
 		<trycatch>
 			<try>
 				<if>
 					<equals arg1="${basedir.name}" arg2="test-broken" />
 					<then>
-						<checksum file="../plugins-inspector.log" property="plugins-inspector.log.checksum" />
+						<checksum file="../plugins-inspector.log" property="plugins-inspector.log.actual.checksum" />
+						<property name="plugins-inspector.log.expected.checksum" value="397ac4fc2cf05bf18ee13bfcef65439a" />
 
 						<if>
 							<not>
-								<equals arg1="${plugins-inspector.log.checksum}" arg2="${plugins-inspector.log.expected.checksum}" />
+								<equals arg1="${plugins-inspector.log.actual.checksum}" arg2="${plugins-inspector.log.expected.checksum}" />
 							</not>
 							<then>
-								<fail>Plugins inspector is not detecting all errors. Expected &quot;${plugins-inspector.log.expected.checksum}&quot; but found &quot;${plugins-inspector.log.checksum}&quot;.</fail>
+								<fail>Plugins inspector is not detecting all errors. Expected &quot;${plugins-inspector.log.expected.checksum}&quot; but found &quot;${plugins-inspector.log.actual.checksum}&quot;.</fail>
 							</then>
 						</if>
 					</then>
@@ -223,11 +213,11 @@
 						<if>
 							<available file="../plugins-inspector.log" />
 							<then>
-								<loadfile property="plugins-inspector.log.message" srcFile="../plugins-inspector.log" />
+								<loadfile property="plugins-inspector.log.content" srcFile="../plugins-inspector.log" />
 
-								<echo>${plugins-inspector.log.message}</echo>
+								<echo>${plugins-inspector.log.content}</echo>
 
-								<fail>Issues found.</fail>
+								<fail>Plugins inspector detected errors.</fail>
 							</then>
 						</if>
 					</else>
