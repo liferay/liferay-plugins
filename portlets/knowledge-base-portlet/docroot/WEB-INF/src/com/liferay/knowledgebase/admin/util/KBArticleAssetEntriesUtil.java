@@ -20,7 +20,6 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.StringUtil;
-import com.liferay.portal.kernel.util.UniqueList;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.security.auth.PrincipalException;
 import com.liferay.portal.theme.ThemeDisplay;
@@ -41,7 +40,9 @@ import com.liferay.portlet.messageboards.model.MBMessage;
 import com.liferay.portlet.wiki.model.WikiPage;
 import com.liferay.portlet.wiki.service.WikiPageLocalServiceUtil;
 
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.portlet.PortletMode;
 import javax.portlet.PortletRequest;
@@ -94,7 +95,7 @@ public class KBArticleAssetEntriesUtil {
 		long[] tagIds = AssetTagLocalServiceUtil.getTagIds(
 			groupIds, StringUtil.split(ListUtil.toString(assetTags, "name")));
 
-		List<Long> filteredTagIds = new UniqueList<Long>();
+		Set<Long> filteredTagIds = new LinkedHashSet<Long>();
 
 		for (long tagId : tagIds) {
 			try {

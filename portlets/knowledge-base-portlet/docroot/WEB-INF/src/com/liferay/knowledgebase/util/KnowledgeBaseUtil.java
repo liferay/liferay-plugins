@@ -46,7 +46,6 @@ import com.liferay.portal.kernel.util.StreamUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
-import com.liferay.portal.kernel.util.UniqueList;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.ModelHintsUtil;
@@ -55,8 +54,10 @@ import com.liferay.portal.util.PortalUtil;
 import java.io.InputStream;
 
 import java.util.HashMap;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.regex.Pattern;
 
 /**
@@ -337,7 +338,7 @@ public class KnowledgeBaseUtil {
 	}
 
 	public static String[] parseKeywords(String values) {
-		List<String> keywords = new UniqueList<String>();
+		Set<String> keywords = new LinkedHashSet<String>();
 
 		StringBundler sb = new StringBundler();
 
