@@ -75,7 +75,7 @@ public class GetSyncDLObjectUpdateEvent extends BaseEvent {
 		parameters.put("lastAccessTime", syncSite.getRemoteSyncTime());
 		parameters.put("repositoryId", syncSite.getGroupId());
 
-		executeAsynchronousPost(_URL_PATH, parameters);
+		executePost(_URL_PATH, parameters);
 	}
 
 	private static final String _URL_PATH =
