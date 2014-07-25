@@ -66,7 +66,9 @@ public class KBCommentPermission {
 				ActionKeys.VIEW_KB_FEEDBACK);
 		}
 
-		if (!actionId.equals(ActionKeys.DELETE)) {
+		if (!actionId.equals(ActionKeys.DELETE) &&
+			!actionId.equals(ActionKeys.UPDATE)) {
+
 			return false;
 		}
 
