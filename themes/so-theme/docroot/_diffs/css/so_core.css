@@ -22,7 +22,6 @@
 
 	.site-title {
 		display: inline-block;
-		float: left;
 
 		&, a {
 			color: $red;
@@ -43,6 +42,10 @@
 			vertical-align: middle;
 			width: auto;
 		}
+	}
+
+	.member-link {
+		margin: 0 1em;
 	}
 
 	.avatar {
