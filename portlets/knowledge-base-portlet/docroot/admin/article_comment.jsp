@@ -20,6 +20,10 @@
 KBArticle kbArticle = (KBArticle)request.getAttribute(WebKeys.KNOWLEDGE_BASE_KB_ARTICLE);
 
 KBComment kbComment = (KBComment)request.getAttribute("article_comment.jsp-kb_comment");
+
+KBFeedbackListDisplayContext kbFeedbackListDisplayContext =
+		(KBFeedbackListDisplayContext)request.getAttribute(
+				WebKeys.KB_FEEDBACK_LIST_DISPLAY_CONTEXT);
 %>
 
 <div class="kb-article-comment">
@@ -39,7 +43,9 @@ KBComment kbComment = (KBComment)request.getAttribute("article_comment.jsp-kb_co
 				<portlet:param name="redirect" value="<%= currentURL %>" />
 			</portlet:renderURL>
 
-			<h4><a href="<%= viewKBArticleURL %>"><%= HtmlUtil.escape(kbArticle.getTitle()) %></a></h4>
+			<c:if test="<%= kbFeedbackListDisplayContext.isKBArticleTitleEnabled() %>">
+				<h4><a href="<%= viewKBArticleURL %>"><%= HtmlUtil.escape(kbArticle.getTitle()) %></a></h4>
+			</c:if>
 
 			<div>
 				<%= HtmlUtil.escape(kbComment.getContent()) %>
