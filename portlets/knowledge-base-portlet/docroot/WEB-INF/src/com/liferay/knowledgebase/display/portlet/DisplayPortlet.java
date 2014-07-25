@@ -145,6 +145,10 @@ public class DisplayPortlet extends MVCPortlet {
 		long kbCommentId = ParamUtil.getLong(actionRequest, "kbCommentId");
 
 		KBCommentServiceUtil.deleteKBComment(kbCommentId);
+
+		SessionMessages.add(
+			actionRequest, "feedbackDeleted",
+			"feedback-has-been-deleted-successfully");
 	}
 
 	public void deleteTempAttachment(
@@ -452,6 +456,10 @@ public class DisplayPortlet extends MVCPortlet {
 				kbCommentId, classNameId, classPK, content, helpful,
 				serviceContext);
 		}
+
+		SessionMessages.add(
+			actionRequest, "feedbackSaved",
+			"your-feedback-has-been-saved-successfully");
 	}
 
 	public void updateKBCommentStatus(
@@ -466,6 +474,10 @@ public class DisplayPortlet extends MVCPortlet {
 			KBComment.class.getName(), actionRequest);
 
 		KBCommentServiceUtil.updateStatus(kbCommentId, status, serviceContext);
+
+		SessionMessages.add(
+			actionRequest, "feedbackStatusUpdated",
+			"feedback-status-has-been-updated-successfully");
 	}
 
 	@Override

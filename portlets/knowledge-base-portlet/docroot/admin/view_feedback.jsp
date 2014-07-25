@@ -1,5 +1,3 @@
-<%@ page import="com.liferay.knowledgebase.util.KBFeedbackListDisplayContext" %>
-
 <%--
 /**
  * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
@@ -19,6 +17,21 @@
 <%@ include file="/admin/init.jsp" %>
 
 <liferay-util:include page="/admin/top_tabs.jsp" servletContext="<%= application %>" />
+
+<liferay-ui:success
+	key="feedbackDeleted"
+	message="feedback-deleted-successfully"
+/>
+
+<liferay-ui:success
+	key="feedbackStatusUpdated"
+	message="feedback-status-updated-successfully"
+/>
+
+<liferay-ui:success
+	key="feedbackSaved"
+	message="feedback-saved-successfully"
+/>
 
 <%
 String navItem = ParamUtil.getString(request, "navItem", "viewNewFeedback");
