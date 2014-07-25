@@ -61,7 +61,6 @@ import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
-import com.liferay.portal.kernel.util.UniqueList;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.Address;
@@ -99,8 +98,10 @@ import com.liferay.util.bridges.mvc.MVCPortlet;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Set;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
@@ -841,7 +842,8 @@ public class ContactsCenterPortlet extends MVCPortlet {
 				params.put("usersGroups", ContactsUtil.getGroupId(filterBy));
 			}
 
-			List<User> users = new UniqueList<User>();
+			Set<User> users = new HashSet<User>();
+						List<User> usersList = new ArrayList<User>();
 
 			if (filterBy.equals(ContactsConstants.FILTER_BY_ADMINS)) {
 				Role siteAdministratorRole = RoleLocalServiceUtil.getRole(
@@ -878,7 +880,8 @@ public class ContactsCenterPortlet extends MVCPortlet {
 						QueryUtil.ALL_POS, QueryUtil.ALL_POS,
 						(OrderByComparator)null));
 
-				ListUtil.sort(users, new UserLastNameComparator(true));
+								usersList = new ArrayList<User>(users);
+				ListUtil.sort(usersList, new UserLastNameComparator(true));
 			}
 			else {
 				int usersCount = UserLocalServiceUtil.searchCount(
@@ -887,13 +890,13 @@ public class ContactsCenterPortlet extends MVCPortlet {
 
 				jsonObject.put("count", usersCount);
 
-				users = UserLocalServiceUtil.search(
+				usersList = UserLocalServiceUtil.search(
 					themeDisplay.getCompanyId(), keywords,
 					WorkflowConstants.STATUS_APPROVED, params, start, end,
 					new UserLastNameComparator(true));
 			}
 
-			for (User user : users) {
+			for (User user : usersList) {
 				JSONObject userJSONObject = getUserJSONObject(
 					portletResponse, themeDisplay, user);
 
