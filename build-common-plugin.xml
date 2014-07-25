@@ -31,16 +31,16 @@
 				</else>
 			</if>
 
+			<var name="service.plugin.name" value="${plugin.name}" />
+
 			<if>
 				<available file="bnd.bnd" />
 				<then>
 					<var name="service.osgi.module" value="true" />
-					<var name="service.plugin.name" value="" />
 					<var name="service.spring.namespaces" value="beans,osgi" />
 				</then>
 				<else>
 					<var name="service.osgi.module" value="false" />
-					<var name="service.plugin.name" value="${plugin.name}" />
 					<var name="service.spring.namespaces" value="beans" />
 				</else>
 			</if>
