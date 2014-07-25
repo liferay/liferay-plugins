@@ -75,14 +75,14 @@ public class SyncEngine {
 			return;
 		}
 
-		ScheduledFuture<?> scheduledFuture =
-			(ScheduledFuture<?>)syncAccountTasks[0];
-
-		scheduledFuture.cancel(false);
-
-		Watcher watcher = (Watcher)syncAccountTasks[1];
+		Watcher watcher = (Watcher)syncAccountTasks[0];
 
 		watcher.close();
+
+		ScheduledFuture<?> scheduledFuture =
+			(ScheduledFuture<?>)syncAccountTasks[1];
+
+		scheduledFuture.cancel(false);
 	}
 
 	public synchronized static boolean isRunning() {
@@ -147,6 +147,17 @@ public class SyncEngine {
 		final SyncAccount syncAccount =
 			SyncAccountService.synchronizeSyncAccount(syncAccountId);
 
+		Path filePath = Paths.get(syncAccount.getFilePathName());
+
+		WatchEventListener watchEventListener = new SyncSiteWatchEventListener(
+			syncAccount.getSyncAccountId());
+
+		synchronizeSyncFiles(filePath, syncAccountId, watchEventListener);
+
+		Watcher watcher = new Watcher(filePath, true, watchEventListener);
+
+		_executorService.execute(watcher);
+
 		Runnable runnable = new Runnable() {
 
 			@Override
@@ -189,19 +200,8 @@ public class SyncEngine {
 			_eventScheduledExecutorService.scheduleAtFixedRate(
 				runnable, 0, syncAccount.getPollInterval(), TimeUnit.SECONDS);
 
-		Path filePath = Paths.get(syncAccount.getFilePathName());
-
-		WatchEventListener watchEventListener = new SyncSiteWatchEventListener(
-			syncAccount.getSyncAccountId());
-
-		synchronizeSyncFiles(filePath, syncAccountId, watchEventListener);
-
-		Watcher watcher = new Watcher(filePath, true, watchEventListener);
-
-		_executorService.execute(watcher);
-
 		_syncAccountTasks.put(
-			syncAccountId, new Object[] {scheduledFuture, watcher});
+			syncAccountId, new Object[] {watcher, scheduledFuture});
 	}
 
 	protected static void doStart() throws Exception {
