@@ -1,5 +1,3 @@
-<%@ page import="com.liferay.knowledgebase.util.KBFeedbackListDisplayContext" %>
-
 <%--
 /**
  * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
@@ -53,7 +51,7 @@ String navItem = kbFeedbackListDisplayContext.getSelectedNavItem();
 
 		<%
 			int completedKBCommentsCount = kbFeedbackListDisplayContext.getCompletedSuggestionsCount();
-			String completedLabel = String.format("%s (%s)", LanguageUtil.get(pageContext, "completed"), completedKBCommentsCount);
+			String completedLabel = String.format("%s (%s)", LanguageUtil.get(pageContext, "resolved"), completedKBCommentsCount);
 		%>
 
 		<aui:nav-item
