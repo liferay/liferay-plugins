@@ -304,7 +304,7 @@ public class KnowledgeBaseUtil {
 
 	public static final String getStatusLabel(int status) {
 		if (status == KBCommentConstants.STATUS_COMPLETED) {
-			return "completed";
+			return "resolved";
 		}
 		else if (status == KBCommentConstants.STATUS_IN_PROGRESS) {
 			return "in-progress";
