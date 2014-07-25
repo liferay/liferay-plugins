@@ -1,12 +1,13 @@
 <?xml version="1.0"?>
 <!DOCTYPE project>
 
-<project name="test-broken-portlet" basedir="." default="deploy">
-	<import file="../../../build-common-plugins.xml" />
+<project>
+	<import file="../../portlets/build-common-portlet.xml" />
 
 	<target name="compile">
-		<echo file="copyright.txt">Modify copyright.txt.</echo>
+		<echo file="modified_file.txt">Hello world.</echo>
+		<echo file="new_file.txt">Hello world.</echo>
 
-		<ant antfile="../../build-common-portlet.xml" target="compile" />
+		<ant target="compile" />
 	</target>
 </project>
