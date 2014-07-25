@@ -1931,6 +1931,12 @@ html.aui {
 			width: auto;
 		}
 
+		/* ---------- Icon menu ---------- */
+
+		.lfr-menu-list.dropdown-menu > li > a {
+			white-space: normal;
+		}
+
 		/* ---------- Portlet: message boards ---------- */
 
 		.portlet-asset-publisher, .portlet-message-boards {
