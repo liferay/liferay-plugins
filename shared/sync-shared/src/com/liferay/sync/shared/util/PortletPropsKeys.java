@@ -19,13 +19,12 @@ package com.liferay.sync.shared.util;
  */
 public class PortletPropsKeys {
 
-	public static final String SYNC_SERVICES_ENABLED =
-		"sync.services.enabled";
-
 	public static final String SYNC_CLIENT_MAX_CONNECTIONS =
 		"sync.client.max.connections";
 
 	public static final String SYNC_CLIENT_POLL_INTERVAL =
 		"sync.client.poll.interval";
+
+	public static final String SYNC_SERVICES_ENABLED = "sync.services.enabled";
 
 }
