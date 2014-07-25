@@ -326,11 +326,15 @@ public class SyncFileService {
 	}
 
 	public static void deleteSyncFile(SyncFile syncFile) {
+		deleteSyncFile(syncFile, false);
+	}
+
+	public static void deleteSyncFile(SyncFile syncFile, boolean quiet) {
 		try {
 
 			// Sync file
 
-			_syncFilePersistence.delete(syncFile);
+			_syncFilePersistence.delete(syncFile, quiet);
 
 			if (!syncFile.isFolder()) {
 				return;
@@ -420,6 +424,19 @@ public class SyncFileService {
 	public static List<SyncFile> findSyncFiles(int state) {
 		try {
 			return _syncFilePersistence.findByState(state);
+		}
+		catch (SQLException sqle) {
+			if (_logger.isDebugEnabled()) {
+				_logger.debug(sqle.getMessage(), sqle);
+			}
+
+			return Collections.emptyList();
+		}
+	}
+
+	public static List<SyncFile> findSyncFiles(int state, long syncAccountId) {
+		try {
+			return _syncFilePersistence.findByS_S(state, syncAccountId);
 		}
 		catch (SQLException sqle) {
 			if (_logger.isDebugEnabled()) {

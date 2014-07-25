@@ -14,6 +14,7 @@
 
 package com.liferay.sync.engine;
 
+import com.liferay.sync.engine.documentlibrary.event.DownloadFileEvent;
 import com.liferay.sync.engine.documentlibrary.event.GetSyncDLObjectUpdateEvent;
 import com.liferay.sync.engine.filesystem.SyncSiteWatchEventListener;
 import com.liferay.sync.engine.filesystem.SyncWatchEventProcessor;
@@ -313,14 +314,50 @@ public class SyncEngine {
 			}
 		);
 
-		List<SyncFile> syncFiles = SyncFileService.findSyncFiles(
+		List<SyncFile> deletedSyncFiles = SyncFileService.findSyncFiles(
 			FilePathNameUtil.getFilePathName(filePath), startTime,
 			syncAccountId);
 
-		for (SyncFile syncFile : syncFiles) {
+		for (SyncFile deletedSyncFile : deletedSyncFiles) {
 			watchEventListener.watchEvent(
 				SyncWatchEvent.EVENT_TYPE_DELETE,
-				Paths.get(syncFile.getFilePathName()));
+				Paths.get(deletedSyncFile.getFilePathName()));
+		}
+
+		List<SyncFile> downloadingSyncFiles = SyncFileService.findSyncFiles(
+			SyncFile.STATE_IN_PROGRESS_DOWNLOADING, syncAccountId);
+
+		for (SyncFile downloadingSyncFile : downloadingSyncFiles) {
+			Map<String, Object> parameters = new HashMap<String, Object>();
+
+			parameters.put("patch", false);
+			parameters.put("syncFile", downloadingSyncFile);
+
+			DownloadFileEvent downloadFileEvent = new DownloadFileEvent(
+				syncAccountId, parameters);
+
+			downloadFileEvent.run();
+		}
+
+		List<SyncFile> uploadingSyncFiles = SyncFileService.findSyncFiles(
+			SyncFile.STATE_IN_PROGRESS_UPLOADING, syncAccountId);
+
+		for (SyncFile uploadingSyncFile : uploadingSyncFiles) {
+			if (uploadingSyncFile.getTypePK() > 0) {
+
+				// Reset the checksum and let the engine retry the upload
+
+				uploadingSyncFile.setChecksum("");
+
+				SyncFileService.update(uploadingSyncFile);
+			}
+			else {
+
+				// If the file doesn't exist on the portal yet, delete the entry
+				// and let the engine recreate it.
+
+				SyncFileService.deleteSyncFile(uploadingSyncFile, true);
+			}
 		}
 	}
 
