@@ -19,7 +19,7 @@
 <div class="manage-notifications">
 	<div class="title">
 		<div class="notification-delivery">
-			<span><liferay-ui:message key="notification-delivery" /></span>
+			<span><liferay-ui:message key="notification-delivery-settings" /></span>
 		</div>
 
 		<div class="receive-notification">
