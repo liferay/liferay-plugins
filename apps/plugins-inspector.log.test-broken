@@ -1,0 +1,14 @@
+build.xml is nonstandard.
+Unable to clean all plugins.
+Unable to compile all plugins.
+Module /Users/brian/dev/projects/github/liferay-plugins-ee-6.2.x/apps/test-broken/test-broken-portlet must not have both a "docroot" and a "src" directory.
+/Users/brian/dev/projects/github/liferay-plugins-ee-6.2.x/apps/test-broken/test-broken-portlet/docroot/WEB-INF/liferay-hook.xml has an nonstandard language-properties element.
+/Users/brian/dev/projects/github/liferay-plugins-ee-6.2.x/apps/test-broken/test-broken-portlet/docroot/WEB-INF/liferay-hook.xml has a nonstandard custom-jsp-dir element.
+/Users/brian/dev/projects/github/liferay-plugins-ee-6.2.x/apps/test-broken/test-broken-portlet/docroot/WEB-INF/web.xml contains generated code.
+/Users/brian/dev/projects/github/liferay-plugins-ee-6.2.x/apps/test-broken/test-broken-portlet/docroot/WEB-INF/lib must not be checked into source control.
+/Users/brian/dev/projects/github/liferay-plugins-ee-6.2.x/apps/test-broken/test-broken-portlet/docroot/WEB-INF/tld must not be checked into source control.
+/Users/brian/dev/projects/github/liferay-plugins-ee-6.2.x/apps/test-broken/test-broken-portlet/lib must not be checked into source control.
+Module /Users/brian/dev/projects/github/liferay-plugins-ee-6.2.x/apps/test-broken/test-empty-portlet must have a "docroot" or a "src" directory.
+/Users/brian/dev/projects/github/liferay-plugins-ee-6.2.x/apps/test-broken/test-empty-portlet/ivy.xml.MD5 must not be checked into source control.
+Plugins must not have custom .gitignore files.
+Plugins must not generate modified files.
