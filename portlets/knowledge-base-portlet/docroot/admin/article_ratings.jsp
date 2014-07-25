@@ -119,6 +119,21 @@ boolean hasEditPermission = KBArticlePermission.contains(permissionChecker, kbAr
 			</aui:form>
 		</div>
 
+		<liferay-ui:success
+			key="feedbackDeleted"
+			message="feedback-deleted-successfully"
+		/>
+
+		<liferay-ui:success
+			key="feedbackStatusUpdated"
+			message="feedback-status-updated-successfully"
+		/>
+
+		<liferay-ui:success
+			key="feedbackSaved"
+			message="feedback-saved-successfully"
+		/>
+
 		<%
 		boolean expanded = ParamUtil.getBoolean(request, "expanded");
 		%>
