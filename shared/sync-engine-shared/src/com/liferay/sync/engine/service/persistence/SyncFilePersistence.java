@@ -125,6 +125,10 @@ public class SyncFilePersistence extends BasePersistenceImpl<SyncFile, Long> {
 
 		where.and();
 
+		where.ne("state", SyncFile.STATE_IN_PROGRESS_DOWNLOADING);
+
+		where.and();
+
 		where.eq("syncAccountId", syncAccountId);
 
 		where.and();
