@@ -31,3 +31,10 @@ _sass_cache_*.css
 /build.*.properties
 /dist
 /tools/*/*/*/lib
+
+/themes/*/docroot/css
+/themes/*/docroot/images
+/themes/*/docroot/js
+/themes/*/docroot/templates
+/themes/*/docroot/layouttpl
+/themes/*/docroot/WEB-INF/lib
