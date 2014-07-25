@@ -41,16 +41,6 @@ KBComment kbComment = (KBComment)request.getAttribute("article_comment.jsp-kb_co
 
 			<h4><a href="<%= viewKBArticleURL %>"><%= HtmlUtil.escape(kbArticle.getTitle()) %></a></h4>
 
-			<%
-			int feedbackStatus = kbComment.getStatus();
-			%>
-
-			<div class="kb-article-status">
-				<aui:model-context bean="<%= kbComment %>" model="<%= KBComment.class %>" />
-
-				<aui:workflow-status status="<%= feedbackStatus %>" statusMessage="<%= KnowledgeBaseUtil.getStatusLabel(feedbackStatus) %>" />
-			</div>
-
 			<div>
 				<%= HtmlUtil.escape(kbComment.getContent()) %>
 			</div>
@@ -74,9 +64,15 @@ KBComment kbComment = (KBComment)request.getAttribute("article_comment.jsp-kb_co
 				DateSearchEntry dateSearchEntry = new DateSearchEntry();
 
 				dateSearchEntry.setDate(kbComment.getModifiedDate());
+
+				int feedbackStatus = kbComment.getStatus();
 				%>
 
 				<span class="icon icon-calendar"></span> <%= dateSearchEntry.getName(pageContext) %>
+
+				<aui:model-context bean="<%= kbComment %>" model="<%= KBComment.class %>" />
+
+				<aui:workflow-status status="<%= feedbackStatus %>" statusMessage="<%= KnowledgeBaseUtil.getStatusLabel(feedbackStatus) %>" />
 			</div>
 
 			<%
