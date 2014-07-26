@@ -17,4 +17,21 @@
 			</guest-unsupported>
 		</permissions>
 	</portlet-resource>
+	<model-resource>
+		<model-name>com.liferay.pushnotifications</model-name>
+		<portlet-ref>
+			<portlet-name>1</portlet-name>
+		</portlet-ref>
+		<permissions>
+			<supports>
+				<action-key>ADD_DEVICE</action-key>
+				<action-key>PERMISSIONS</action-key>
+			</supports>
+			<site-member-defaults />
+			<guest-defaults />
+			<guest-unsupported>
+			    <action-key>PERMISSIONS</action-key>
+			</guest-unsupported>
+		</permissions>
+	</model-resource>
 </resource-action-mapping>
