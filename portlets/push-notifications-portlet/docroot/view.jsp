@@ -16,10 +16,14 @@
 
 <%@ include file="/init.jsp" %>
 
+<%
+boolean showSendButton = PushNotificationsPermission.contains(permissionChecker, ActionKeys.SEND_NOTIFICATION);
+%>
+
 <aui:form name="fm">
 	<aui:input label="message" name="message" type="textarea" />
 
-	<aui:button type="submit" value="send" />
+	<aui:button disabled="<%= !showSendButton %>" type="submit" value="send" />
 </aui:form>
 
 <aui:script use="aui-base">
