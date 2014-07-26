@@ -9,7 +9,7 @@
 				<action-key>VIEW</action-key>
 			</supports>
 			<site-member-defaults>
-			    <action-key>VIEW</action-key>
+				<action-key>VIEW</action-key>
 			</site-member-defaults>
 			<guest-defaults />
 			<guest-unsupported>
@@ -30,7 +30,7 @@
 			<site-member-defaults />
 			<guest-defaults />
 			<guest-unsupported>
-			    <action-key>PERMISSIONS</action-key>
+				<action-key>PERMISSIONS</action-key>
 			</guest-unsupported>
 		</permissions>
 	</model-resource>
