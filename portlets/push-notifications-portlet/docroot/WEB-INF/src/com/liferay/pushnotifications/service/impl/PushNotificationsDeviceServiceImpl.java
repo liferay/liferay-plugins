@@ -48,10 +48,10 @@ public class PushNotificationsDeviceServiceImpl
 		if (pushNotificationsDevice == null) {
 			pushNotificationsDevice =
 				pushNotificationsDeviceLocalService.addPushNotificationsDevice(
-					getUserId(), platform, token);
+					getGuestOrUserId(), platform, token);
 		}
 		else {
-			long userId = getUserId();
+			long userId = getGuestOrUserId();
 
 			if (pushNotificationsDevice.getUserId() != userId) {
 				pushNotificationsDevice = null;
