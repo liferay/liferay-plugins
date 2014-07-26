@@ -102,6 +102,9 @@ public class PushNotificationsDeviceServiceImpl
 	public void sendPushNotification(String message)
 		throws PortalException, SystemException {
 
+		PushNotificationsPermission.check(
+			getPermissionChecker(), ActionKeys.SEND_NOTIFICATION);
+
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
 		jsonObject.put("message", message);

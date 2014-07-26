@@ -26,11 +26,13 @@
 			<supports>
 				<action-key>ADD_DEVICE</action-key>
 				<action-key>PERMISSIONS</action-key>
+				<action-key>SEND_NOTIFICATION</action-key>
 			</supports>
 			<site-member-defaults />
 			<guest-defaults />
 			<guest-unsupported>
 				<action-key>PERMISSIONS</action-key>
+				<action-key>SEND_NOTIFICATION</action-key>
 			</guest-unsupported>
 		</permissions>
 	</model-resource>
