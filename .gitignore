@@ -35,6 +35,6 @@ _sass_cache_*.css
 /themes/*/docroot/css
 /themes/*/docroot/images
 /themes/*/docroot/js
-/themes/*/docroot/templates
 /themes/*/docroot/layouttpl
+/themes/*/docroot/templates
 /themes/*/docroot/WEB-INF/lib
