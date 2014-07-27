@@ -30,7 +30,6 @@ _sass_cache_*.css
 /baseline-reports
 /build.*.properties
 /dist
-/tools/*/*/*/lib
 
 /themes/*/docroot/css
 /themes/*/docroot/images
@@ -38,3 +37,5 @@ _sass_cache_*.css
 /themes/*/docroot/layouttpl
 /themes/*/docroot/templates
 /themes/*/docroot/WEB-INF/lib
+
+/tools/*/*/*/lib
