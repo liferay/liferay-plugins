@@ -4,4 +4,10 @@
 	<author>Jose M. Navarro</author>
 	<namespace>MobileWidgets</namespace>
 
+	<entity name="MWUser" local-service="false" remote-service="true">
+
+		<reference package-path="com.liferay.portal" entity="Company" />
+
+	</entity>
+
 </service-builder>
