@@ -111,6 +111,9 @@ public class StartupAction extends SimpleAction {
 		String[] portletIds = PortletPropsValues.USER_NOTIFICATIONS_PORTLET_IDS;
 
 		for (String portletId : portletIds) {
+			UserNotificationManagerUtil.deleteUserNotificationDefinitions(
+				portletId);
+
 			Filter filter = new Filter(portletId);
 
 			String userNotificationDefinitionsLocation = PortletProps.get(
@@ -146,6 +149,9 @@ public class StartupAction extends SimpleAction {
 					(UserNotificationHandler)
 						InstanceFactory.newInstance(
 							userNotificationHandlerClassName);
+
+				UserNotificationManagerUtil.deleteUserNotificationHandler(
+					userNotificationHandler);
 
 				UserNotificationManagerUtil.addUserNotificationHandler(
 					userNotificationHandler);
