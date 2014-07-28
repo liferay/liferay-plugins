@@ -83,6 +83,7 @@ AssetEntry layoutAssetEntry = AssetEntryLocalServiceUtil.getEntry(CalendarBookin
 				<%= HtmlUtil.escape(StringUtil.merge(calendarResourcesNames, ", ")) %>
 			</dd>
 		</c:if>
+
 		<c:if test="<%= Validator.isNotNull(calendarBooking.getLocation()) %>">
 			<dt>
 				<liferay-ui:message key="location" />:
@@ -91,6 +92,7 @@ AssetEntry layoutAssetEntry = AssetEntryLocalServiceUtil.getEntry(CalendarBookin
 				<span class="location"><%= HtmlUtil.escape(calendarBooking.getLocation()) %></span>
 			</dd>
 		</c:if>
+
 		<c:if test="<%= calendarBooking.isRecurring() %>">
 			<dt>
 				<liferay-ui:message key="repeat" />:
