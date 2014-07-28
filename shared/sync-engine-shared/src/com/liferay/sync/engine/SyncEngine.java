@@ -317,7 +317,7 @@ public class SyncEngine {
 				// If the file does ont exist on the portal yet, delete the
 				// database entry and let the engine recreate it.
 
-				SyncFileService.deleteSyncFile(uploadingSyncFile, true);
+				SyncFileService.deleteSyncFile(uploadingSyncFile, false);
 			}
 		}
 	}

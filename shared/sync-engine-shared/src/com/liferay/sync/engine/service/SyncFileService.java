@@ -324,15 +324,15 @@ public class SyncFileService {
 	}
 
 	public static void deleteSyncFile(SyncFile syncFile) {
-		deleteSyncFile(syncFile, false);
+		deleteSyncFile(syncFile, true);
 	}
 
-	public static void deleteSyncFile(SyncFile syncFile, boolean quiet) {
+	public static void deleteSyncFile(SyncFile syncFile, boolean notify) {
 		try {
 
 			// Sync file
 
-			_syncFilePersistence.delete(syncFile, quiet);
+			_syncFilePersistence.delete(syncFile, notify);
 
 			if (!syncFile.isFolder()) {
 				return;

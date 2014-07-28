@@ -78,7 +78,7 @@ public class DownloadFileHandler extends BaseHandler {
 
 		SyncFile syncFile = (SyncFile)getParameterValue("syncFile");
 
-		SyncFileService.deleteSyncFile(syncFile, true);
+		SyncFileService.deleteSyncFile(syncFile, false);
 	}
 
 	@Override
