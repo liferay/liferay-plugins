@@ -25,7 +25,7 @@
 	#set ($media_icon = $heading.media_icon)
 	#set ($media_icon_alignment = $heading.media_icon.media_icon_alignment)
 	#set ($media_icon_background_color = $heading.media_icon.media_icon_background_color)
-	#set ($media_icon_color = $heading.media_icon.media_icon.media_icon_color)
+	#set ($media_icon_color = $heading.media_icon.media_icon_color)
 	#set ($media_icon_padding = $heading.media_icon.media_icon_padding)
 	#set ($media_icon_shape = $heading.media_icon.media_icon_shape)
 	#set ($media_icon_size = $heading.media_icon.media_icon_size)

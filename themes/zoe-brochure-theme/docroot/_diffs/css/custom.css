@@ -21,7 +21,7 @@ $default-box-shadow-v-offset: 1px;
 /* ---------- Global ---------- */
 
 .aui {
-	background-color: #EAEAEA;
+	background-color: #FFF;
 
 	a {
 		color: $textColor;
@@ -33,7 +33,7 @@ $default-box-shadow-v-offset: 1px;
 	}
 
 	body {
-		background-color: #EAEAEA;
+		background-color: #FFF;
 		font: 12px "Helvetica Neue", Helvetica, Arial, sans-serif;
 	}
 
@@ -119,6 +119,10 @@ $default-box-shadow-v-offset: 1px;
 			}
 		}
 
+		.nav-account-controls > li > a {
+			padding: 5px 15px;
+		}
+
 		.navbar-inner {
 			.container .nav-collapse > .nav > li.open > a {
 				color: #FFF;
@@ -170,7 +174,6 @@ $default-box-shadow-v-offset: 1px;
 		display: none;
 	}
 
-
 	/* ---------- Heading ---------- */
 
 	#banner {
@@ -182,7 +185,6 @@ $default-box-shadow-v-offset: 1px;
 	}
 
 	#content {
-		background-color: #FFF;
 		clear: left;
 		padding-left: $mainContentSpacing;
 		padding-right: $mainContentSpacing;
@@ -202,11 +204,14 @@ $default-box-shadow-v-offset: 1px;
 		}
 	}
 
+	.zoe-brochure-Home {
+		background-color: #EEE;
+	}
+
 	/* ---------- Navigation ---------- */
 
 	#navigation {
 		float: right;
-		margin-bottom: 0;
 
 		&.navbar .nav {
 			margin: 0;
@@ -257,17 +262,6 @@ $default-box-shadow-v-offset: 1px;
 					background-color: #FBFBFB;
 					border-top: 5px solid #89C8D6;
 					color: #333;
-				}
-
-				&.hover > a {
-					background-color: #AAA;
-					border-top: 5px solid #2ECC40;
-					color: #FFF;
-				}
-
-				> a:focus, > a:hover {
-					background-color: #AAA;
-					color: #FFF;
 				}
 			}
 		}
@@ -375,11 +369,13 @@ $default-box-shadow-v-offset: 1px;
 			}
 
 			> .media-image.align-left {
+				float: left;
 				margin-right: 6%;
 				text-align: center;
 			}
 
 			> .media-image.align-right {
+				float: right;
 				margin-left: 6%;
 				text-align: center;
 			}
@@ -500,7 +496,7 @@ $default-box-shadow-v-offset: 1px;
 	.zoe-panel-post .row-fluid, .zoe-panel-post.row-fluid {
 		@include box-sizing(border-box);
 
-		padding: 0 120px;
+		padding: 0 20px;
 
 		.zoe-panel {
 			background: transparent;

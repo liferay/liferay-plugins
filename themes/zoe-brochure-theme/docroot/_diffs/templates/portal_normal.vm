@@ -41,7 +41,9 @@ $theme.include($body_top_include)
 		#end
 	</header>
 
-	<section id="content">
+	#set ($page_name = "zoe-brochure-" + $layout.getName($locale))
+
+	<section class="$page_name" id="content">
 		<h1 class="hide-accessible">$the_title</h1>
 
 		<nav id="breadcrumbs">
