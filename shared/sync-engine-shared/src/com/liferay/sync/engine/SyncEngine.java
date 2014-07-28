@@ -378,6 +378,7 @@ public class SyncEngine {
 		throws IOException {
 
 		fireDeleteEvents(filePath, syncAccountId, watchEventListener);
+
 		retryFileTransfers(filePath, syncAccountId);
 	}
 
