@@ -150,7 +150,7 @@ AUI.add(
 						instance._bindUI();
 					},
 
-					markAsRead: function(event, userNotificationEventIds) {
+					markAsAllRead: function(event, userNotificationEventIds) {
 						event.preventDefault();
 
 						var instance = this;
@@ -177,6 +177,14 @@ AUI.add(
 					render: function() {
 						var instance = this;
 
+						var notificationsContainer = A.one(instance._notificationsContainer);
+
+						var notificationsNode = notificationsContainer.one(instance._notificationsNode);
+
+						notificationsNode.plug(A.LoadingMask);
+
+						notificationsNode.loadingmask.show();
+
 						var portletURL = new Liferay.PortletURL.createURL(instance._baseResourceURL);
 
 						portletURL.setParameter('actionable', instance._actionable);
@@ -191,8 +199,6 @@ AUI.add(
 								dataType: 'JSON',
 								on: {
 									success: function() {
-										var notificationsContainer = A.one(instance._notificationsContainer);
-
 										var response = this.get('responseData');
 
 										if (response) {
@@ -203,8 +209,6 @@ AUI.add(
 											if (notificationsCount) {
 												notificationsCount.setHTML('(' + total + ')');
 											}
-
-											var notificationsNode = notificationsContainer.one(instance._notificationsNode);
 
 											if (notificationsNode) {
 												var entries = [];
@@ -246,6 +250,8 @@ AUI.add(
 												}
 
 												instance._userNotificationEventIds = response['userNotificationEventIds'];
+
+												notificationsNode.loadingmask.hide();
 											}
 										}
 									}
@@ -265,22 +271,56 @@ AUI.add(
 							markAllAsReadNode.on(
 								'click',
 								function(event) {
-									instance.markAsRead(event, instance._userNotificationEventIds);
+									instance.markAsAllRead(event, instance._userNotificationEventIds);
 								}
 							);
 						}
 					},
 
-					_bindMarkAsReadDelegation: function(notificationsList) {
+					_bindMarkAsRead: function() {
 						var instance = this;
 
-						if (notificationsList) {
-							notificationsList.delegate(
+						var notificationsContainer = A.one(instance._notificationsContainer);
+
+						var notificationsNode = notificationsContainer.one(instance._notificationsNode);
+
+						if (notificationsNode) {
+							notificationsNode.delegate(
 								'click',
 								function(event) {
-									instance._markAsRead(event, notificationsList, true);
+									var currentTarget = event.currentTarget;
+
+									var currentRow = currentTarget.ancestor('.user-notification');
+
+									currentRow.plug(A.LoadingMask);
+
+									currentRow.loadingmask.show();
+
+									var userNotificationLink = currentRow.one('.user-notification-link');
+
+									var markAsReadURL = userNotificationLink.attr('data-markAsReadURL');
+
+									if (markAsReadURL) {
+										A.io.request(
+											markAsReadURL,
+											{
+												after: {
+													success: function() {
+														var responseData = this.get('responseData');
+
+														if (responseData.success) {
+															currentRow.remove();
+
+															instance.render();
+														}
+													}
+												},
+												dataType: 'JSON'
+											}
+										);
+									}
 								},
-								'.user-notification .btn-action'
+								'.user-notification .mark-as-read'
 							);
 						}
 					},
@@ -314,6 +354,24 @@ AUI.add(
 						var instance = this;
 
 						instance._bindPaginateDelegation(instance._getFullViewNotificationsList(), false, '.message .next a');
+					},
+
+					_bindNotificationsAction: function() {
+						var instance = this;
+
+						var notificationsContainer = A.one(instance._notificationsContainer);
+
+						var notificationsNode = notificationsContainer.one(instance._notificationsNode);
+
+						if (notificationsNode) {
+							notificationsNode.delegate(
+								'click',
+								function(event) {
+									instance._respondNotification(event);
+								},
+								'.user-notification .btn-action'
+							);
+						}
 					},
 
 					_bindPaginateDelegation: function(userNotificationsList, previous, selector) {
@@ -356,11 +414,13 @@ AUI.add(
 
 						instance._bindMarkAsRead();
 
-						instance._bindNextPageNotifications();
+						instance._bindNotificationsAction();
 
-						instance._bindPreviousPageNotifications();
+						//instance._bindNextPageNotifications();
 
-						instance._bindUserNotificationsSideBar();
+						//instance._bindPreviousPageNotifications();
+
+						//instance._bindUserNotificationsSideBar();
 
 						instance._bindViewNotification();
 					},
@@ -389,37 +449,21 @@ AUI.add(
 						}
 					},
 
-					_bindViewDelegation: function(notificationsList, selector) {
+					_bindViewNotification: function() {
 						var instance = this;
 
-						if (notificationsList) {
-							notificationsList.delegate(
+						var notificationsContainer = A.one(instance._notificationsContainer);
+
+						var notificationsNode = notificationsContainer.one(instance._notificationsNode);
+
+						if (notificationsNode) {
+							notificationsNode.delegate(
 								'click',
 								function(event) {
 									instance._viewNotification(event);
 								},
-								selector
+								'.user-notification .user-notification-link'
 							);
-						}
-					},
-
-					_bindViewNotification: function() {
-						var instance = this;
-						instance._bindViewDelegation(instance._getFullViewNotificationsList(), '.user-notification .user-notification-link');
-					},
-
-					_deleteNotification: function(target) {
-						var instance = this;
-
-						var deleteNode = target.ancestor('.user-notification-delete');
-
-						if (deleteNode) {
-
-							if (instance._hasRequestSent(deleteNode, deleteNode.getAttribute('data-deleteURL'))) {
-								return;
-							}
-
-							A.io.request(deleteNode.getAttribute('data-deleteURL'));
 						}
 					},
 
@@ -535,6 +579,51 @@ AUI.add(
 						}
 					},
 
+					_respondNotification: function(event) {
+						var instance = this;
+
+						event.preventDefault();
+
+						var currentTarget = event.currentTarget;
+
+						if (instance._hasRequestSent(currentTarget, currentTarget.attr('href'))) {
+							return;
+						}
+
+						var currentRow = currentTarget.ancestor('.user-notification');
+
+						currentRow.plug(A.LoadingMask);
+
+						currentRow.loadingmask.show();
+
+						A.io.request(
+							currentTarget.attr('href'),
+							{
+								after: {
+									success: function() {
+										var response = this.get('responseData');
+
+										if (response.success) {
+											currentRow.remove();
+
+											var deleteNode = currentTarget.ancestor('.user-notification-delete');
+
+											if (deleteNode) {
+												A.io.request(deleteNode.getAttribute('data-deleteURL'));
+											}
+
+											instance.render();
+										}
+										else {
+											currentRow.loadingmask.hide();
+										}
+									}
+								},
+								dataType: 'JSON'
+							}
+						);
+					},
+
 					_updateFullViewNotificationsCount: function(unreadActionableUserNotificationsCount, unreadNonActionableUserNotificationsCount) {
 						var userNotificationsSidebar = A.one('.user-notifications-sidebar');
 
@@ -558,6 +647,12 @@ AUI.add(
 
 						var currentTarget = event.currentTarget;
 
+						var target = event.target;
+
+						if (target.hasClass('.mark-as-read') || target.ancestor('.mark-as-read')) {
+							return;
+						}
+
 						var uri = currentTarget.attr('data-href');
 
 						var markAsReadURL = currentTarget.attr('data-markAsReadURL');
@@ -575,19 +670,7 @@ AUI.add(
 											var responseData = this.get('responseData');
 
 											if (responseData.success) {
-												var userNotification = currentTarget.ancestor('.user-notification');
-
-												if (userNotification) {
-													userNotification.removeClass('unread');
-
-													var read = userNotification.one('.content .read');
-
-													if (read) {
-														read.setHTML(Liferay.Language.get('read'));
-													}
-
-													instance._redirect(uri);
-												}
+												instance._redirect(uri);
 											}
 										}
 									},
@@ -596,11 +679,7 @@ AUI.add(
 							);
 						}
 						else {
-							var userNotification = currentTarget.ancestor('.user-notification');
-
-							if (userNotification) {
-								instance._redirect(uri);
-							}
+							instance._redirect(uri);
 						}
 					}
 				}
@@ -611,6 +690,6 @@ AUI.add(
 	},
 	'',
 	{
-		requires: ['aui-base', 'aui-io-deprecated', 'liferay-poller', 'liferay-portlet-base', 'liferay-portlet-url']
+		requires: ['aui-base', 'aui-io-deprecated', 'aui-loading-mask-deprecated', 'liferay-poller', 'liferay-portlet-base', 'liferay-portlet-url']
 	}
 );

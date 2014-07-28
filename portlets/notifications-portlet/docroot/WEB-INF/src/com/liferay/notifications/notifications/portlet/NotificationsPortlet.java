@@ -390,6 +390,7 @@ public class NotificationsPortlet extends MVCPortlet {
 		actionURL.setWindowState(WindowState.NORMAL);
 
 		String actionDiv = StringPool.BLANK;
+		String markAsReadIcon = StringPool.BLANK;
 
 		if (actionable) {
 			actionURL.setParameter(
@@ -409,6 +410,8 @@ public class NotificationsPortlet extends MVCPortlet {
 					new String[] {
 						userNotificationFeedEntry.getLink(),
 						actionURL.toString()});
+
+			markAsReadIcon = _MARK_AS_READ_ICON;
 		}
 
 		Portlet portlet =
@@ -446,12 +449,13 @@ public class NotificationsPortlet extends MVCPortlet {
 		return StringUtil.replace(
 			ContentUtil.get(PortletPropsValues.USER_NOTIFICATION_ENTRY),
 			new String[] {
-				"[$BODY$]", "[$ACTION_DIV$]", "[$PORTLET_ICON$]",
-				"[$PORTLET_NAME$]", "[$TIMESTAMP$]", "[$USER_FULL_NAME$]",
-				"[$USER_PORTRAIT_URL$]"},
+				"[$BODY$]", "[$ACTION_DIV$]", "[$MARK_AS_READ_ICON$]",
+				"[$PORTLET_ICON$]", "[$PORTLET_NAME$]", "[$TIMESTAMP$]",
+				"[$USER_FULL_NAME$]", "[$USER_PORTRAIT_URL$]"},
 			new String[] {
-				userNotificationFeedEntry.getBody(), actionDiv, portletIcon,
-				portletName, timeStamp, userFullName, userPortraitURL});
+				userNotificationFeedEntry.getBody(), actionDiv, markAsReadIcon,
+				portletIcon, portletName, timeStamp, userFullName,
+				userPortraitURL});
 	}
 
 	protected void updateArchived(long userNotificationEventId)
@@ -475,5 +479,8 @@ public class NotificationsPortlet extends MVCPortlet {
 		"<div class=\"clearfix user-notification-link\" " +
 			"data-href=\"[$LINK$]\" " +
 				"data-markAsReadURL=\"[$MARK_AS_READ_URL$]\">";
+
+	private static final String _MARK_AS_READ_ICON =
+		"<div class=\"mark-as-read\"><i class=\"icon-remove\"></i></div>";
 
 }
