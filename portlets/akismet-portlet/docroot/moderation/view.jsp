@@ -86,7 +86,7 @@ request.setAttribute("view.jsp-portletURL", portletURL);
 		function() {
 			var notSpamMBMessageIds = Liferay.Util.listCheckedExcept(document.<portlet:namespace />fm, '<portlet:namespace />allRowIds');
 
-			if (notSpamMBMessageIds && confirm('<%= UnicodeLanguageUtil.get(request, "are-you-sure-you-want-to-mark-the-selected-messages-not-spam") %>')) {
+			if (notSpamMBMessageIds && confirm('<%= UnicodeLanguageUtil.get(request, "are-you-sure-you-want-to-mark-the-selected-messages-as-not-spam") %>')) {
 				document.<portlet:namespace />fm.<portlet:namespace />notSpamMBMessageIds.value = notSpamMBMessageIds;
 				submitForm(document.<portlet:namespace />fm, '<portlet:actionURL name="markNotSpamMBMessages"><portlet:param name="redirect" value="<%= portletURL.toString() %>" /></portlet:actionURL>');
 			}
@@ -100,7 +100,7 @@ request.setAttribute("view.jsp-portletURL", portletURL);
 		function() {
 			var notSpamWikiPageIds = Liferay.Util.listCheckedExcept(document.<portlet:namespace />fm, '<portlet:namespace />allRowIds');
 
-			if (notSpamWikiPageIds && confirm('<%= UnicodeLanguageUtil.get(request, "are-you-sure-you-want-to-mark-the-selected-pages-not-spam") %>')) {
+			if (notSpamWikiPageIds && confirm('<%= UnicodeLanguageUtil.get(request, "are-you-sure-you-want-to-mark-the-selected-pages-as-not-spam") %>')) {
 				document.<portlet:namespace />fm.<portlet:namespace />notSpamWikiPageIds.value = notSpamWikiPageIds;
 				submitForm(document.<portlet:namespace />fm, '<portlet:actionURL name="markNotSpamWikiPages"><portlet:param name="redirect" value="<%= portletURL.toString() %>" /></portlet:actionURL>');
 			}
