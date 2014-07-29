@@ -1,0 +1,22 @@
+<div class="web-content-body">
+		<header class="entry-header">
+			<div class="entry-image">
+				<span><img alt="Image" src="$image.getData()" /></span>
+			</div>
+
+			<div class="entry-title">
+				<h2>
+					$title.getData()
+				</h2>
+			<div class="entry-date">
+				<span class="hide-accessible">Published Date</span>
+				#set ($date_DateObj = $dateUtil.newDate($getterUtil.getLong($date.getData())))
+
+				$dateUtil.getDate($date_DateObj, "dd MMM yyyy", $locale)
+			</div>
+		</header>
+
+		<div class="entry-content" style="padding-bottom: 60px;">
+			$Text.getData()
+		</div>
+</div>

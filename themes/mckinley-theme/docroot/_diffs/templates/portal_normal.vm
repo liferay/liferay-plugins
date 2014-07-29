@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+
+#parse ($init)
+
+<html class="$root_css_class" dir="#language ("lang.dir")" lang="$w3c_language_id">
+
+<head>
+	<title>$the_title - $company_name</title>
+
+	<meta content="initial-scale=1.0, width=device-width" name="viewport" />
+	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+	<link rel="stylesheet" id="mckinley-raleway-css" href="http://fonts.googleapis.com/css?family=Raleway:400,700,800,900" type="text/css" media="all">
+	<link rel="stylesheet" id="mckinley-open-sans-css" href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,800,700" type="text/css" media="all">
+
+	$theme.include($top_head_include)
+</head>
+
+<body class="$css_class">
+
+<a href="#main-content" id="skip-to-content">#language ("skip-to-content")</a>
+
+$theme.include($body_top_include)
+
+#if ($is_signed_in)
+	#dockbar()
+#end
+
+<div class="container-fluid" id="wrapper">
+	<header id="banner" role="banner">
+		#if (!$is_signed_in)
+			<a data-redirect="$is_login_redirect_required" href="$sign_in_url" id="sign-in" rel="nofollow">$sign_in_text</a>
+		#end
+
+		<div id="heading">
+			<a class="$logo_css_class" href="$site_default_url" title="#language_format ("go-to-x", [$site_name])">
+				<h1 class="site-title">
+					## <img alt="$logo_description" height="$site_logo_height" src="$site_logo" width="$site_logo_width" />
+
+					#if ($show_site_name)
+						<span class="site-name" title="#language_format ("go-to-x", [$site_name])">
+							$site_name
+						</span>
+					#end
+				</h1>
+
+				<h2 class="page-title site-description">
+					<p>
+						#if($theme.getSetting("display-site-description") == true)
+							$theme.getSetting("site-description")
+						#else
+							$page_title
+						#end
+					</p>
+				</h2>
+			</a>
+		</div>
+
+		#if ($has_navigation || $is_signed_in)
+			#parse ("$full_templates_path/navigation.vm")
+		#end
+	</header>
+
+	<div id="content">
+		<nav id="breadcrumbs">#breadcrumbs()</nav>
+
+		#if ($selectable)
+			$theme.include($content_include)
+		#else
+			$portletDisplay.recycle()
+
+			$portletDisplay.setTitle($the_title)
+
+			$theme.wrapPortlet("portlet.vm", $content_include)
+		#end
+	</div>
+
+	<footer id="footer" role="contentinfo">
+		<div class="footer-nav">
+			<div class="portlet-layout row-fluid">
+				<div class="portlet-column portlet-column-first span4" id="column-2">
+					$theme.runtime("3")
+					$theme.runtime("71_INSTANCE_CM7vQZhfFZ8s")
+					$velocityPortletPreferences.setValue("portletSetupShowBorders", "true")
+				</div>
+
+				<div class="portlet-column span4" id="column-3">
+					$theme.runtime("193_INSTANCE_gF8wxVmQ0gtp")
+					$velocityPortletPreferences.setValue("displayStyle", "title-list")
+					$velocityPortletPreferences.setValue("portletSetupShowBorders", "true")
+				</div>
+
+				<div class="portlet-column portlet-column-last span4" id="column-4">
+					$theme.runtime("58")
+					$theme.runtime("141_INSTANCE_5HYlAVLND54S")
+					$velocityPortletPreferences.setValue("portletSetupShowBorders", "true")
+				</div>
+			</div>
+		</div>
+
+		<div class="site-footer">
+			<p class="powered-by">
+				<a href="http://www.liferay.com" rel="external">#language ("powered-by") Liferay</a>
+			</p>
+		</div>
+	</footer>
+</div>
+
+$theme.include($body_bottom_include)
+
+$theme.include($bottom_include)
+
+</body>
+
+</html>

@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+
+<root available-locales="en_US" default-locale="en_US">
+	<dynamic-element name="width" type="text">
+		<dynamic-content><![CDATA[1050]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element name="height" type="text">
+		<dynamic-content><![CDATA[500]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element name="duration" type="select">
+		<dynamic-content><![CDATA[4]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element name="controls" type="boolean">
+		<dynamic-content><![CDATA["true"]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element name="items" type="text">
+		<dynamic-element name="image" type="document_library">
+			<dynamic-element name="url-link" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-content><![CDATA[[$FILE=Bike_Bus.png$]]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-content><![CDATA[]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element name="items" type="text">
+		<dynamic-element name="image" type="document_library">
+			<dynamic-element name="url-link" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-content><![CDATA[[$FILE=Blue_Wall.jpg$]]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-content><![CDATA[]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element name="items" type="text">
+		<dynamic-element name="image" type="document_library">
+			<dynamic-element name="url-link" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-content><![CDATA[[$FILE=Mt_Mckinley.png$]]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-content><![CDATA[]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element name="Blog_Title" type="text">
+		<dynamic-content><![CDATA[Lots of bicycles]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element name="Date" type="ddm-date">
+		<dynamic-content><![CDATA[]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element name="Blog_HTML" type="ddm-text-html">
+		<dynamic-content><![CDATA[<p>Choley pays de loire with coors classic planckaert berendries. Barthelemy driedaagse de panne-koksijde, cycles goff danseuse hoogerland flanders tour de mont aigoual bosberg.</p><br>
+		<p>Merckx as the toto turns cat among the pigeons flamme rouge. Van steenbergen giro d’italia petit-breton, flamme rouge bobet garin tete de la course coppi the, groupo feed zone vuelta a espana. Caravane festina domestique madone.</p>]]></dynamic-content>
+	</dynamic-element>
+</root>

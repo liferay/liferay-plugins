@@ -1,0 +1,5 @@
+<div class="standout-container">
+	<div class="entry-content">
+		<p class="standout-post">$Text_Box.getData()</p>
+	</div>
+</div>

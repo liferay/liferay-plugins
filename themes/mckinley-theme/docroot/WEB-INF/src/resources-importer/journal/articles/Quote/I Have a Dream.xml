@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+
+<root available-locales="en_US" default-locale="en_US">
+	<dynamic-element name="Blockquote" type="textarea">
+		<dynamic-content><![CDATA[<p>When we allow freedom to ring - when we let it ring from every city and every hamlet, from every state and every city, we will be able to speed up that day when all of God's children, black men and white men, Jews and Gentiles, Protestants and Catholics, will be able to join hands and sing in the words of the old Negro spiritual, "Free at last, Free at last, Great God a-mighty, We are free at last.</p>]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element name="cite" type="text">
+		<dynamic-content><![CDATA[<cite>Martin Luther King, Jr.</cite>]]></dynamic-content>
+	</dynamic-element>
+</root>

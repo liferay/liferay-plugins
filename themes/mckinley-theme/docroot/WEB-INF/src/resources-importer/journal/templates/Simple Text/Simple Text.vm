@@ -1,0 +1,11 @@
+<div class="entry-content">
+	<div class="text-only-content">
+		<p>$Text_Box.getData()</p>
+	</div>
+
+	<div class="entry-date">
+		#set ($Date_DateObj = $dateUtil.newDate($getterUtil.getLong($Date.getData())))
+
+		$dateUtil.getDate($Date_DateObj, "dd MMM yyyy", $locale)
+	</div>
+</div>

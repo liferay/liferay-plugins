@@ -1,0 +1,76 @@
+#set ($content_id = $reserved-article-id.getData())
+#set ($content_class = "multiple-items-${content_id}-carousel")
+
+<style type="text/css">
+	#${content_class} {
+		height: ${height.getData()}px;
+		position: relative;
+		width: ${width.getData()}px;
+	}
+
+	#${content_class} .carousel-item {
+		height: ${height.getData()}px;
+		overflow: hidden;
+		position: absolute;
+		top: 0;
+		width: ${width.getData()}px;
+	}
+
+	#if ($controls.data == "false")
+		#${content_class} menu {
+			display: none;
+		}
+	#end
+</style>
+
+<div id="$content_class">
+	#foreach ($item in $items.siblings)
+		<div class="carousel-item">
+			#if ($item.url-link.data != "")
+				<a href="$item.url-link.data">
+			#end
+
+			<img alt="$item.data" src="$item.image.data" style="height: 500px" title="$item.data" />
+
+			#if ($item.url-link.data != "")
+				</a>
+			#end
+		</div>
+	#end
+</div>
+
+<div class="web-content-body">
+	<header class="entry-header">
+		<div class="entry-title">
+			<h2>
+				$Blog_Title.getData()
+			</h2>
+		<div class="entry-date">
+			<span class="hide-accessible">Published Date</span>
+			#set ($Date_DateObj = $dateUtil.newDate($getterUtil.getLong($Date.getData())))
+
+			$dateUtil.getDate($Date_DateObj, "dd MMM yyyy", $locale)
+		</div>
+	</header>
+
+	<div class="entry-content" style="padding-bottom: 60px;">
+		$Blog_HTML.getData()
+	</div>
+</div>
+
+<script type="text/javascript">
+	AUI().ready(
+		'aui-carousel',
+		function(A) {
+			new A.Carousel(
+				{
+					activeIndex: 'rand',
+					contentBox: '#${content_class}',
+					height: $height.getData(),
+					intervalTime: $duration.getData(),
+					width: $width.getData()
+				}
+			).render();
+		}
+	);
+</script>

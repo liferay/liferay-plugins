@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+
+<root available-locales="en_US" default-locale="en_US">
+	<dynamic-element dataType="image" fieldNamespace="wcm" indexType="keyword" name="image" readOnly="false" repeatable="false" required="true" showLabel="true" type="wcm-image" width="">
+		<meta-data locale="en_US">
+			<entry name="label">
+				<![CDATA[Image]]>
+			</entry>
+			<entry name="predefinedValue">
+				<![CDATA[]]>
+			</entry>
+			<entry name="tip">
+				<![CDATA[]]>
+			</entry>
+		</meta-data>
+	</dynamic-element>
+	<dynamic-element dataType="string" indexType="keyword" name="title" readOnly="false" repeatable="false" required="false" showLabel="true" type="text" width="small">
+		<meta-data locale="en_US">
+			<entry name="label">
+				<![CDATA[Title]]>
+			</entry>
+			<entry name="predefinedValue">
+				<![CDATA[]]>
+			</entry>
+			<entry name="tip">
+				<![CDATA[]]>
+			</entry>
+		</meta-data>
+	</dynamic-element>
+	<dynamic-element dataType="date" fieldNamespace="ddm" indexType="keyword" name="date" readOnly="false" repeatable="false" required="false" showLabel="true" type="ddm-date" width="small">
+		<meta-data locale="en_US">
+			<entry name="label">
+				<![CDATA[Date]]>
+			</entry>
+			<entry name="predefinedValue">
+				<![CDATA[]]>
+			</entry>
+			<entry name="tip">
+				<![CDATA[]]>
+			</entry>
+		</meta-data>
+	</dynamic-element>
+	<dynamic-element dataType="html" fieldNamespace="ddm" indexType="keyword" name="Text" readOnly="false" repeatable="false" required="true" showLabel="true" type="ddm-text-html" width="small">
+		<meta-data locale="en_US">
+			<entry name="label">
+				<![CDATA[Text]]>
+			</entry>
+			<entry name="predefinedValue">
+				<![CDATA[]]>
+			</entry>
+			<entry name="tip">
+				<![CDATA[]]>
+			</entry>
+		</meta-data>
+	</dynamic-element>
+</root>
