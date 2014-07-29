@@ -51,6 +51,13 @@ public class KBFeedbackListDisplayContext {
 		return portletURL.toString() + "#kbFeedback";
 	}
 
+	public String getFeedbackByStatusURL(
+		RenderResponse renderResponse, String navItem) {
+
+		return getFeedbackByStatusURL(
+			renderResponse.createRenderURL(), navItem);
+	}
+
 	public int getInProgressSuggestionsCount() throws SystemException {
 		return getKBCommentsCountByStatus(
 			KBCommentConstants.STATUS_IN_PROGRESS);
@@ -62,13 +69,6 @@ public class KBFeedbackListDisplayContext {
 
 	public String getSelectedNavItem() {
 		return _selectedNavItem;
-	}
-
-	public String getViewFeedbackByStatusURL(
-		RenderResponse renderResponse, String navItem) {
-
-		return getFeedbackByStatusURL(
-			renderResponse.createRenderURL(), navItem);
 	}
 
 	public boolean isKBArticleTitleEnabled() {
