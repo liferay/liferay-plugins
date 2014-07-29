@@ -162,9 +162,7 @@ public class AdminPortlet extends MVCPortlet {
 
 		KBCommentServiceUtil.deleteKBComment(kbCommentId);
 
-		SessionMessages.add(
-			actionRequest, "feedbackDeleted",
-			"feedback-has-been-deleted-successfully");
+		SessionMessages.add(actionRequest, "feedbackDeleted");
 	}
 
 	public void deleteKBTemplate(
@@ -568,9 +566,7 @@ public class AdminPortlet extends MVCPortlet {
 
 		KBCommentServiceUtil.updateStatus(kbCommentId, status, serviceContext);
 
-		SessionMessages.add(
-			actionRequest, "feedbackStatusUpdated",
-			"feedback-status-has-been-updated-successfully");
+		SessionMessages.add(actionRequest, "feedbackStatusUpdated");
 	}
 
 	public void updateKBTemplate(
