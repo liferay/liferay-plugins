@@ -185,6 +185,20 @@ public class SolrIndexWriter extends BaseIndexWriter {
 		addDocuments(searchContext, documents);
 	}
 
+	protected void doAddSolrField(
+		SolrInputDocument solrInputDocument, Field field, float boost,
+		String value, String localizedName) {
+
+		solrInputDocument.addField(localizedName, value, boost);
+
+		if (field.isSortable()) {
+			String sortableFieldName = DocumentImpl.getSortableFieldName(
+				localizedName);
+
+			solrInputDocument.addField(sortableFieldName, value, boost);
+		}
+	}
+
 	protected SolrInputDocument getSolrInputDocument(Document document) {
 		SolrInputDocument solrInputDocument = new SolrInputDocument();
 
@@ -204,7 +218,10 @@ public class SolrIndexWriter extends BaseIndexWriter {
 						continue;
 					}
 
-					solrInputDocument.addField(name, value.trim(), boost);
+					value = value.trim();
+
+					doAddSolrField(
+						solrInputDocument, field, boost, value, name);
 				}
 			}
 			else {
@@ -227,15 +244,17 @@ public class SolrIndexWriter extends BaseIndexWriter {
 					String defaultLanguageId = LocaleUtil.toLanguageId(
 						LocaleUtil.getDefault());
 
+					value = value.trim();
+
 					if (languageId.equals(defaultLanguageId)) {
-						solrInputDocument.addField(name, value.trim(), boost);
+						solrInputDocument.addField(name, value, boost);
 					}
 
 					String localizedName = DocumentImpl.getLocalizedName(
 						locale, name);
 
-					solrInputDocument.addField(
-						localizedName, value.trim(), boost);
+					doAddSolrField(
+						solrInputDocument, field, boost, value, localizedName);
 				}
 			}
 		}
