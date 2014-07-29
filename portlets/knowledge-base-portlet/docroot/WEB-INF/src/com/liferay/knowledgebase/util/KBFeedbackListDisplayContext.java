@@ -17,7 +17,6 @@ package com.liferay.knowledgebase.util;
 import com.liferay.knowledgebase.model.KBArticle;
 import com.liferay.knowledgebase.model.KBCommentConstants;
 import com.liferay.knowledgebase.service.KBCommentLocalServiceUtil;
-import com.liferay.portal.kernel.exception.SystemException;
 
 import javax.portlet.PortletURL;
 import javax.portlet.RenderResponse;
@@ -39,7 +38,7 @@ public class KBFeedbackListDisplayContext {
 		_selectedNavItem = selectedNavItem;
 	}
 
-	public int getCompletedKBCommentsCount() throws SystemException {
+	public int getCompletedKBCommentsCount() {
 		return getKBCommentsCountByStatus(KBCommentConstants.STATUS_COMPLETED);
 	}
 
@@ -58,12 +57,12 @@ public class KBFeedbackListDisplayContext {
 			renderResponse.createRenderURL(), navItem);
 	}
 
-	public int getInProgressKBCommentsCount() throws SystemException {
+	public int getInProgressKBCommentsCount() {
 		return getKBCommentsCountByStatus(
 			KBCommentConstants.STATUS_IN_PROGRESS);
 	}
 
-	public int getNewKBCommentsCount() throws SystemException {
+	public int getNewKBCommentsCount() {
 		return getKBCommentsCountByStatus(KBCommentConstants.STATUS_NEW);
 	}
 
@@ -86,9 +85,7 @@ public class KBFeedbackListDisplayContext {
 		}
 	}
 
-	protected int getKBCommentsCountByStatus(int status)
-		throws SystemException {
-
+	protected int getKBCommentsCountByStatus(int status) {
 		int kbCommentsCount = 0;
 
 		if (_kbArticle == null) {
