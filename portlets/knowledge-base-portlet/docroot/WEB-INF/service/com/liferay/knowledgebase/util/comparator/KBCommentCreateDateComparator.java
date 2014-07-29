@@ -21,7 +21,8 @@ import com.liferay.portal.kernel.util.OrderByComparator;
 /**
  * @author Sergio González
  */
-public class KBCommentCreateDateComparator extends OrderByComparator {
+public class KBCommentCreateDateComparator
+	extends OrderByComparator<KBComment> {
 
 	public static final String ORDER_BY_ASC = "KBComment.createDate ASC";
 
@@ -38,10 +39,7 @@ public class KBCommentCreateDateComparator extends OrderByComparator {
 	}
 
 	@Override
-	public int compare(Object obj1, Object obj2) {
-		KBComment kbComment1 = (KBComment)obj1;
-		KBComment kbComment2 = (KBComment)obj2;
-
+	public int compare(KBComment kbComment1, KBComment kbComment2) {
 		int value = DateUtil.compareTo(
 			kbComment1.getCreateDate(), kbComment2.getCreateDate());
 
