@@ -21,9 +21,7 @@ KBArticle kbArticle = (KBArticle)request.getAttribute(WebKeys.KNOWLEDGE_BASE_KB_
 
 KBComment kbComment = (KBComment)request.getAttribute("article_comment.jsp-kb_comment");
 
-KBFeedbackListDisplayContext kbFeedbackListDisplayContext =
-		(KBFeedbackListDisplayContext)request.getAttribute(
-				WebKeys.KB_FEEDBACK_LIST_DISPLAY_CONTEXT);
+KBFeedbackListDisplayContext kbFeedbackListDisplayContext = (KBFeedbackListDisplayContext)request.getAttribute(WebKeys.KB_FEEDBACK_LIST_DISPLAY_CONTEXT);
 %>
 
 <div class="kb-article-comment">
@@ -55,10 +53,12 @@ KBFeedbackListDisplayContext kbFeedbackListDisplayContext =
 				<c:choose>
 					<c:when test="<%= kbComment.getHelpful() %>">
 						<span class="icon icon-thumbs-up"></span>
+
 						<liferay-ui:message key="the-user-liked-the-article" />
 					</c:when>
 					<c:otherwise>
 						<span class="icon icon-thumbs-down"></span>
+
 						<liferay-ui:message key="the-user-did-not-like-the-article" />
 					</c:otherwise>
 				</c:choose>

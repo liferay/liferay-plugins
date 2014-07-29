@@ -19,9 +19,7 @@
 <%
 KBArticle kbArticle = (KBArticle)request.getAttribute(WebKeys.KNOWLEDGE_BASE_KB_ARTICLE);
 
-boolean hasEditPermission = KBArticlePermission.contains(permissionChecker, kbArticle, ActionKeys.UPDATE);
-
-String feedbackAnchor = "#kbFeedback";
+boolean hasUpdatePermission = KBArticlePermission.contains(permissionChecker, kbArticle, ActionKeys.UPDATE);
 %>
 
 <c:if test="<%= enableKBArticleRatings %>">
@@ -30,8 +28,9 @@ String feedbackAnchor = "#kbFeedback";
 	int kbCommentsCount = 0;
 	int pendingKBCommentsCount = 0;
 
-	if (hasEditPermission) {
+	if (hasUpdatePermission) {
 		kbCommentsCount = KBCommentLocalServiceUtil.getKBCommentsCount(KBArticle.class.getName(), kbArticle.getClassPK());
+
 		pendingKBCommentsCount = KBCommentLocalServiceUtil.getKBCommentsCount(KBArticle.class.getName(), kbArticle.getClassPK(), new int[]{KBCommentConstants.STATUS_IN_PROGRESS, KBCommentConstants.STATUS_NEW});
 	}
 	else {
@@ -57,7 +56,7 @@ String feedbackAnchor = "#kbFeedback";
 					|
 					<a data-show-node-id="<portlet:namespace />previousCommentsContainer" href="javascript:void(0)">
 						<c:choose>
-							<c:when test="<%= hasEditPermission %>">
+							<c:when test="<%= hasUpdatePermission %>">
 								<liferay-ui:message key="there-is-one-suggestion" />
 
 								<c:if test="<%= pendingKBCommentsCount > 0 %>">
@@ -74,7 +73,7 @@ String feedbackAnchor = "#kbFeedback";
 					|
 					<a data-show-node-id="<portlet:namespace />previousCommentsContainer" href="javascript:void(0)">
 						<c:choose>
-							<c:when test="<%= hasEditPermission %>">
+							<c:when test="<%= hasUpdatePermission %>">
 								<liferay-ui:message arguments="<%= kbCommentsCount %>" key="there-are-x-suggestions" />
 
 								<c:if test="<%= pendingKBCommentsCount > 0 %>">
@@ -97,7 +96,7 @@ String feedbackAnchor = "#kbFeedback";
 				<portlet:param name="expanded" value="true" />
 			</liferay-portlet:actionURL>
 
-			<aui:form action="<%= updateKBCommentURL + feedbackAnchor %>" method="post" name="feedbackFm">
+			<aui:form action='<%= updateKBCommentURL + "#kbFeedback" %>' method="post" name="feedbackFm">
 				<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.ADD %>" />
 				<aui:input name="classNameId" type="hidden" value="<%= PortalUtil.getClassNameId(KBArticle.class) %>" />
 				<aui:input name="classPK" type="hidden" value="<%= kbArticle.getResourcePrimKey() %>" />
@@ -144,19 +143,17 @@ String feedbackAnchor = "#kbFeedback";
 		%>
 
 		<c:choose>
-			<c:when test="<%= hasEditPermission %>">
+			<c:when test="<%= hasUpdatePermission %>">
 
 				<%
 				String navItem = ParamUtil.getString(request, "navItem", "viewNewFeedback");
 
-				KBFeedbackListDisplayContext kbFeedbackListDisplayContext =
-					new KBFeedbackListDisplayContext(kbArticle, navItem);
+				KBFeedbackListDisplayContext kbFeedbackListDisplayContext = new KBFeedbackListDisplayContext(kbArticle, navItem);
 
-				request.setAttribute(
-					WebKeys.KB_FEEDBACK_LIST_DISPLAY_CONTEXT, kbFeedbackListDisplayContext);
+				request.setAttribute(WebKeys.KB_FEEDBACK_LIST_DISPLAY_CONTEXT, kbFeedbackListDisplayContext);
 				%>
 
-				<div class='kb-article-previous-comments <%= expanded ? "" : "hide" %>' id="<portlet:namespace />previousCommentsContainer">
+				<div class='kb-article-previous-comments <%= expanded ? StringPool.BLANK : "hide" %>' id="<portlet:namespace />previousCommentsContainer">
 					<liferay-util:include page="/admin/common/view_feedback_by_status.jsp" servletContext="<%= application %>" />
 				</div>
 			</c:when>
@@ -176,7 +173,7 @@ String feedbackAnchor = "#kbFeedback";
 							<%
 							List<KBComment> kbComments = null;
 
-							if (hasEditPermission) {
+							if (hasUpdatePermission) {
 								kbComments = KBCommentLocalServiceUtil.getKBComments(KBArticle.class.getName(), kbArticle.getClassPK(), searchContainer.getStart(), searchContainer.getEnd(), searchContainer.getOrderByComparator());
 							}
 							else {
@@ -194,7 +191,6 @@ String feedbackAnchor = "#kbFeedback";
 								escapedModel="true"
 								modelVar="kbComment"
 							>
-
 								<div class="kb-article-comment">
 									<p class="kb-article-comment-body">
 										<%= kbComment.getContent() %>
@@ -216,7 +212,6 @@ String feedbackAnchor = "#kbFeedback";
 										<aui:workflow-status status="<%= kbComment.getStatus() %>" statusMessage="<%= KnowledgeBaseUtil.getStatusLabel(kbComment.getStatus()) %>" />
 									</div>
 								</div>
-
 							</liferay-ui:search-container-row>
 
 							<liferay-ui:search-iterator />
