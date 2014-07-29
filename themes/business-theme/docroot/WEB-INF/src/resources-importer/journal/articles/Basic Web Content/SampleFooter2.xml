@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+
+<root available-locales="en_US" default-locale="en_US">
+	<dynamic-element name="content" type="text_area" index-type="keyword" index="0">
+		<dynamic-content language-id="en_US">
+			<![CDATA[
+				<div class="footer-title">Hipster Footer</div>
+				<div class="footer-content">
+					Paleo Carles fanny pack irony, cornhole whatever bitters vegan gluten-free slow-carb Neutra +1 tattooed street art butcher. Vegan XOXO flannel, organic Thundercats pickled street art meh 90's art party farm-to-table salvia sartorial Austin skateboard. Retro tote bag High Life, kitsch craft beer deep v quinoa squid street art organic tofu Schlitz locavore master cleanse. Viral disrupt photo booth vegan fixie tattooed. Forage Austin salvia banjo XOXO. Semiotics craft beer retro hella, asymmetrical gluten-free cred mixtape 8-bit brunch Odd Future organic. Bitters street art chillwave keytar, try-hard biodiesel 3 wolf moon pork belly freegan Shoreditch food truck artisan scenester Marfa.
+
+					Chia Echo Park hashtag, pork belly Odd Future food truck literally next level banh mi bespoke letterpress. Hella small batch XOXO, fixie sartorial Pinterest blog. PBR&B Vice trust fund, ethical asymmetrical High Life art party Pinterest Pitchfork vinyl XOXO Marfa. Stumptown freegan craft beer church-key Odd Future, Carles normcore bicycle rights Pinterest asymmetrical umami semiotics. Next level narwhal ethical typewriter stumptown quinoa. Freegan drinking vinegar kitsch fanny pack polaroid master cleanse. Tattooed tote bag twee, hashtag Brooklyn yr wolf stumptown narwhal.
+
+					Four loko church-key distillery twee, food truck chia mustache master cleanse banjo High Life meggings crucifix XOXO 8-bit post-ironic. Viral cray hashtag brunch hoodie. Sartorial retro kogi, shabby chic McSweeney's narwhal letterpress bicycle rights craft beer High Life Portland. Scenester flexitarian kogi ethical four loko, paleo VHS. Brooklyn Portland gluten-free bitters Odd Future, XOXO photo booth. Farm-to-table Kickstarter pork belly, four loko pug cray fashion axe. Art party narwhal VHS try-hard Marfa artisan.
+
+					Paleo church-key Truffaut, whatever sriracha asymmetrical High Life locavore Williamsburg Kickstarter scenester. Intelligentsia street art organic, gentrify tote bag narwhal beard hashtag deep v kogi fanny pack PBR&B scenester irony meh. Scenester Portland twee, XOXO Kickstarter photo booth aesthetic sartorial artisan meh drinking vinegar trust fund Helvetica. Small batch Carles literally crucifix, Thundercats you probably haven't heard of them raw denim drinking vinegar direct trade Shoreditch trust fund. Kickstarter Echo Park dreamcatcher, cred typewriter meh ethical post-ironic tote bag farm-to-table. XOXO slow-carb Cosby sweater Truffaut. Butcher swag lo-fi synth, salvia roof party paleo Godard.
+				</div>
+			]]>
+		</dynamic-content>
+	</dynamic-element>
+</root>

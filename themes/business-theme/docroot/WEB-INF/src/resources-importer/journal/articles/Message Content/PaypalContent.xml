@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<root available-locales="en_US" default-locale="en_US">
+	<dynamic-element name="Title" type="text" index-type="">
+		<dynamic-content>
+			<![CDATA[Cash Contribution]]>
+		</dynamic-content>
+	</dynamic-element>
+	<dynamic-element name="Content" type="text" index-type="">
+		<dynamic-content>
+			<![CDATA[<link href="http://fonts.googleapis.com/css?family=Droid+Sans" rel="stylesheet" type="text/css" />
+<style type="text/css">
+	#ppal p {
+		margin: 0px 0px 0.8em;
+		padding: 0px;
+		border: 0px;
+		outline: 0px;
+		font-size: 14px;
+		vertical-align: baseline;
+		color: rgb(51, 51, 51);
+		font-family: 'Droid Sans', arial, serif;
+		line-height: 21px;
+		text-align: center;
+	}
+
+	#ppal a{
+		color: rgb(46, 112, 177);
+		transition: color 0.2s ease-in-out;
+		-webkit-transition: color 0.2s ease-in-out;
+		font-weight: bold;
+	}
+
+	#ppal a:hover {
+		color: rgb(46, 112, 177);
+		transition: color 0.2s ease-in-out;
+		-webkit-transition: color 0.2s ease-in-out;
+		color: #b81007;
+	}
+
+	#ppalbutton {
+		background-image: url('../../../business-theme/images/custom/Paypal_button.png');
+		width: 150px;
+		height: 53px;
+		margin: 6px auto;
+	}
+
+	#ppalbutton:hover{
+		width: 180px;
+		background-image: url('../../../business-theme/images/custom/Paypal_hover.png');
+	}
+
+	#ppal .bottommsg {
+		text-align: center;
+	}
+</style>
+<div id="ppal">
+<p>Please consider <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=CTA8G3GRJEA78">Cash Contribution through Paypal</a> for our free Drupal Modules, Themes &amp; Projects which helps us creating new and free quality drupal modules, themes &amp; projects in the future</p>
+
+<div id="ppalbutton"><a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=CTA8G3GRJEA78">&nbsp;</a></div>
+<div class="bottommsg">Download this theme at&nbsp;<a href="http://www.devsaran.com/" id="a_f1e5_1">Devsaran.com</a></div></div>
+]]>
+		</dynamic-content>
+	</dynamic-element>
+</root>

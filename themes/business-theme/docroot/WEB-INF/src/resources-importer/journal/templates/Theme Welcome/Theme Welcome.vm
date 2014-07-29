@@ -1,0 +1,55 @@
+#set($title = $titleval.Data)
+#set($description = $descval.Data)
+
+<link href='http://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
+
+<style type="text/css">
+    #home-quote {
+        background: #F9F9F9;
+        border-bottom: 1px solid #EEE;
+        border-top: 1px solid #EEE;
+        color: #666;
+        margin-bottom: 25px;
+        padding: 20px;
+        text-align: center;
+    }
+
+    #home-quote h2 {
+        color: #000;
+        font-family: 'Droid Sans', serif;
+        font-size: 21px;
+        font-weight: normal;
+        letter-spacing: 1px;
+        line-height: 1.5em;
+        margin-top: 0px;
+        text-transform: capitalize;
+    }
+
+    #home-quote p{
+        color: #666;
+        font-family: 'Droid Sans', serif;
+        font-size: 16px;
+        margin-top: 1px;
+        padding-bottom: 1px;
+        padding-top: 1px;
+    }
+
+    @media (max-width : 1320px) {
+        .aui .span12 #home-quote{
+            margin-left: -40px;
+            margin-top: 100;
+            width: calc(100% + 40px);
+        }
+    }
+</style>
+
+
+<div id="home-quote"> <div class="region region-homequotes">
+    <div id="block-block-8" class="block block-block">
+        <h2>$title</h2>
+
+        <div class="content">
+            <p>$description</p>
+        </div>
+    </div> 
+</div></div>

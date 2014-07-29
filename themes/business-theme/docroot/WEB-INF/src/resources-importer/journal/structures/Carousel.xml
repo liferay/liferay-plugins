@@ -1,0 +1,84 @@
+<?xml version="1.0"?>
+
+<root available-locales="en_US" default-locale="en_US">
+	<dynamic-element dataType="string" indexType="" name="activeIndex" readOnly="false" repeatable="false" required="false" showLabel="true" type="text" width="small">
+		<meta-data locale="en_US">
+			<entry name="label">
+				<![CDATA[activeIndex]]>
+			</entry>
+			<entry name="predefinedValue">
+				<![CDATA[0]]>
+			</entry>
+			<entry name="tip">
+				<![CDATA[Index of the first visible item of the carousel]]>
+			</entry>
+		</meta-data>
+	</dynamic-element>
+	<dynamic-element dataType="string" indexType="" name="timeInterval" readOnly="false" repeatable="false" required="false" showLabel="true" type="text" width="small">
+		<meta-data locale="en_US">
+			<entry name="label">
+				<![CDATA[timeInterval]]>
+			</entry>
+			<entry name="predefinedValue">
+				<![CDATA[0.75]]>
+			</entry>
+			<entry name="tip">
+				<![CDATA[Interval time in seconds between an item transition.]]>
+			</entry>
+		</meta-data>
+	</dynamic-element>
+	<dynamic-element dataType="string" indexType="" name="maxImageHeight" readOnly="false" repeatable="false" required="false" showLabel="true" type="text" width="small">
+		<meta-data locale="en_US">
+			<entry name="label">
+				<![CDATA[maxImageHeight]]>
+			</entry>
+			<entry name="predefinedValue">
+				<![CDATA[254]]>
+			</entry>
+			<entry name="tip">
+				<![CDATA[Provide max height of image element. Min limit advisable is 40]]>
+			</entry>
+		</meta-data>
+	</dynamic-element>
+	<dynamic-element dataType="string" indexType="" name="maxImageWidth" readOnly="false" repeatable="false" required="false" showLabel="true" type="text" width="small">
+		<meta-data locale="en_US">
+			<entry name="label">
+				<![CDATA[maxImageWidth]]>
+			</entry>
+			<entry name="predefinedValue">
+				<![CDATA[600]]>
+			</entry>
+			<entry name="tip">
+				<![CDATA[Provide max width of image element. Min limit advisable is 130]]>
+			</entry>
+		</meta-data>
+	</dynamic-element>
+	<dynamic-element dataType="string" indexType="" name="items" readOnly="false" repeatable="true" required="false" showLabel="true" type="text" width="small">
+		<dynamic-element dataType="document-library" fieldNamespace="ddm" indexType="keyword" name="image" readOnly="false" repeatable="false" required="false" showLabel="true" type="ddm-documentlibrary" width="">
+			<meta-data locale="en_US">
+				<entry name="label"><![CDATA[Carousel Image]]></entry>
+				<entry name="predefinedValue"><![CDATA[]]></entry>
+				<entry name="tip"><![CDATA[]]></entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element dataType="string" indexType="" name="linkUrl" readOnly="false" repeatable="false" required="false" showLabel="true" type="text" width="small">
+			<meta-data locale="en_US">
+				<entry name="label"><![CDATA[Carousel Item URL]]></entry>
+				<entry name="predefinedValue"><![CDATA[]]></entry>
+				<entry name="tip"><![CDATA[]]></entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element dataType="string" indexType="" name="title-text" readOnly="false" repeatable="false" required="false" showLabel="true" type="text" width="small">
+			<meta-data locale="en_US">
+				<entry name="label"><![CDATA[Title Text]]></entry>
+				<entry name="predefinedValue"><![CDATA[]]></entry>
+				<entry name="tip"><![CDATA[]]></entry>
+			</meta-data>
+		</dynamic-element>
+		<meta-data locale="en_US">
+			<entry name="label"><![CDATA[Carousel Item Name]]></entry>
+			<entry name="predefinedValue"><![CDATA[]]></entry>
+			<entry name="tip"><![CDATA[]]></entry>
+		</meta-data>
+	</dynamic-element>
+</root>

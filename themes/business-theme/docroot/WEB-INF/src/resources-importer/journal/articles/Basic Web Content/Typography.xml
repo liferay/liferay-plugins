@@ -1,0 +1,133 @@
+<?xml version="1.0"?>
+
+<root available-locales="en_US" default-locale="en_US">
+	<dynamic-element name="content" type="text_area" index-type="keyword" index="0">
+		<dynamic-content language-id="en_US">
+			<![CDATA[
+				<p class="page-title" style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 24px; vertical-align: baseline; line-height: 1.2em; font-weight: normal; text-transform: capitalize; letter-spacing: 1px; font-family: 'Droid Sans', arial, serif; background-image: initial; background-attachment: initial; background-size: initial; background-origin: initial; background-clip: initial; background-position: initial; background-repeat: initial;"><span style="line-height: 1.2em;">Typography</span></p>
+
+				<div class="region region-content" style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 14px; vertical-align: baseline; color: rgb(51, 51, 51); font-family: 'Droid Sans', arial, serif; line-height: 21px; background-image: initial; background-attachment: initial; background-size: initial; background-origin: initial; background-clip: initial; background-position: initial; background-repeat: initial;">
+					<div class="block block--managed" id="block--managed-2" style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; background: transparent;">
+						<div class="content" style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; background: transparent;">
+							<div style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; text-align: center; background: transparent;">&nbsp;</div>
+						</div>
+					</div>
+
+					<div class="block block-system" id="block-system-main" style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; background: transparent;">
+						<div class="content" style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; background: transparent;">
+							<div class="node node-page node-full" style="margin: 0px 0px 20px; padding: 0px 0px 20px; border-width: 0px 0px 1px; border-bottom-style: solid; border-bottom-color: rgb(238, 238, 238); outline: 0px; vertical-align: baseline; background: transparent;">
+								<div class="field field-name-body field-type-text-with-summary field-label-hidden" style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; background: transparent;">
+									<div class="field-items" style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; background: transparent;">
+										<div class="field-item even" property="content:encoded" style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; background: transparent;">
+											<p style="margin: 0px 0px 0.8em; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; background: transparent;">Excepteur sint occaecat cupidatat non proident. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non.</p>
+
+											<blockquote style="margin: 5px 0px; padding: 10px 5px 5px 47px; border: 1px solid rgb(187, 187, 187); outline: 0px; vertical-align: baseline; quotes: none; text-shadow: rgb(255, 255, 255) 1px 1px; border-top-left-radius: 7px; border-top-right-radius: 7px; border-bottom-right-radius: 7px; border-bottom-left-radius: 7px; background: url(http://business-theme.techsaran.com/sites/all/themes/business/images/quote.png) no-repeat rgb(216, 216, 216);">
+												<p style="margin: 0px 0px 0.8em; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; background: transparent;"><span style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; font-weight: 700; background: transparent;">Blockquote</span>&nbsp;- Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco...</p>
+											</blockquote>
+
+											<h2 style="margin: 12px 0px 8px; padding: 0px; border: 0px; outline: 0px; font-size: 21px; vertical-align: baseline; color: rgb(0, 0, 0); line-height: 1.5em; font-weight: normal; text-transform: capitalize; letter-spacing: 1px; background: transparent;">Header 2</h2>
+
+											<p style="margin: 0px 0px 0.8em; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; background: transparent;">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+
+											<h2 style="margin: 12px 0px 8px; padding: 0px; border: 0px; outline: 0px; font-size: 21px; vertical-align: baseline; color: rgb(0, 0, 0); line-height: 1.5em; font-weight: normal; text-transform: capitalize; letter-spacing: 1px; background: transparent;"><a href="http://business-theme.techsaran.com/node/2#" style="text-decoration: none; color: rgb(0, 0, 0); transition: color 0.2s ease-in-out; -webkit-transition: color 0.2s ease-in-out;">Linked Header 2</a></h2>
+
+											<p style="margin: 0px 0px 0.8em; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; background: transparent;">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+
+											<h3 style="margin: 12px 0px 8px; padding: 0px; border: 0px; outline: 0px; font-size: 18px; vertical-align: baseline; color: rgb(0, 0, 0); line-height: 1.5em; font-weight: normal; text-transform: capitalize; letter-spacing: 1px; background: transparent;">Header 3</h3>
+
+											<p style="margin: 0px 0px 0.8em; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; background: transparent;">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+
+											<h4 style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 16px; vertical-align: baseline; color: rgb(0, 0, 0); line-height: 1.5em; font-weight: normal; text-transform: capitalize; letter-spacing: 1px; background: transparent;">Header 4</h4>
+
+											<p style="margin: 0px 0px 0.8em; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; background: transparent;">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+
+											<h4 style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 16px; vertical-align: baseline; color: rgb(0, 0, 0); line-height: 1.5em; font-weight: normal; text-transform: capitalize; letter-spacing: 1px; background: transparent;">Code Snippet</h4>
+
+											<p style="margin: 0px 0px 0.8em; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; background: transparent;"><code style="margin: 5px 0px; padding: 7px; border: 1px solid rgb(187, 187, 187); outline: 0px; vertical-align: baseline; text-shadow: rgb(255, 255, 255) 1px 1px; display: block; border-top-left-radius: 7px; border-top-right-radius: 7px; border-bottom-right-radius: 7px; border-bottom-left-radius: 7px; background: rgb(216, 216, 216);">#header h1 a {<br />
+											display: block;<br />
+											height: 80px;<br />
+											width: 300px;<br />
+											}</code></p>
+
+											<h4 style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 16px; vertical-align: baseline; color: rgb(0, 0, 0); line-height: 1.5em; font-weight: normal; text-transform: capitalize; letter-spacing: 1px; background: transparent;">Drupal's Messages</h4>
+
+											<div class="messages status" style="margin: 6px 0px; padding: 10px 10px 10px 50px; border: 1px solid rgb(187, 238, 119); outline: 0px; vertical-align: baseline; color: rgb(35, 70, 0); background: url(http://business-theme.techsaran.com/misc/message-24-ok.png) 8px 8px no-repeat rgb(248, 255, 240);">Sample status message. Page&nbsp;<em style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; background: transparent;"><span style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; font-weight: 700; background: transparent;">Typography</span></em>&nbsp;has been updated.</div>
+
+											<div class="messages error" style="margin: 6px 0px; padding: 10px 10px 10px 50px; border: 1px solid rgb(237, 84, 29); outline: 0px; vertical-align: baseline; color: rgb(140, 46, 11); background: url(http://business-theme.techsaran.com/misc/message-24-error.png) 8px 8px no-repeat rgb(254, 245, 241);">Sample error message. There is a security update available for your version of Drupal. To ensure the security of your server, you should update immediately! See the available updates page for more information.</div>
+
+											<div class="messages warning" style="margin: 6px 0px; padding: 10px 10px 10px 50px; border: 1px solid rgb(238, 221, 85); outline: 0px; vertical-align: baseline; color: rgb(136, 68, 0); background: url(http://business-theme.techsaran.com/misc/message-24-warning.png) 8px 8px no-repeat rgb(255, 252, 229);">Sample warning message. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
+
+											<h2 style="margin: 12px 0px 8px; padding: 0px; border: 0px; outline: 0px; font-size: 21px; vertical-align: baseline; color: rgb(0, 0, 0); line-height: 1.5em; font-weight: normal; text-transform: capitalize; letter-spacing: 1px; background: transparent;">Paragraph With Links</h2>
+
+											<p style="margin: 0px 0px 0.8em; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; background: transparent;">Lorem ipsum dolor sit amet,&nbsp;<a href="http://business-theme.techsaran.com/node/2#" style="text-decoration: none; color: rgb(46, 112, 177); transition: color 0.2s ease-in-out; -webkit-transition: color 0.2s ease-in-out;">consectetuer adipiscing</a>&nbsp;elit. Donec odio. Quisque volutpat mattis eros.&nbsp;<a href="http://business-theme.techsaran.com/node/2#" style="text-decoration: none; color: rgb(46, 112, 177); transition: color 0.2s ease-in-out; -webkit-transition: color 0.2s ease-in-out;">Nullam malesuada</a>&nbsp;erat ut turpis. Suspendisse urna nibh, viverra non, semper suscipit, posuere a, pede.</p>
+
+											<h2 style="margin: 12px 0px 8px; padding: 0px; border: 0px; outline: 0px; font-size: 21px; vertical-align: baseline; color: rgb(0, 0, 0); line-height: 1.5em; font-weight: normal; text-transform: capitalize; letter-spacing: 1px; background: transparent;">Ordered List</h2>
+
+											<ol style="margin: 0px; padding: 0px 0px 0px 20px; border: 0px; outline: 0px; vertical-align: baseline; background: transparent;">
+												<li style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; background: transparent;">This is a sample&nbsp;<span style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; font-weight: 700; background: transparent;">Ordered List</span>.</li>
+												<li style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; background: transparent;">Lorem ipsum dolor sit amet consectetuer.</li>
+												<li style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; background: transparent;">Condimentum quis.</li>
+												<li style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; background: transparent;">Congue Quisque augue elit dolor.
+													<ol style="margin: 0px; padding: 0px 0px 0px 20px; border: 0px; outline: 0px; vertical-align: baseline; background: transparent;">
+														<li style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; background: transparent;">Something goes here.</li>
+														<li style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; background: transparent;">And another here</li>
+														<li style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; background: transparent;">Then one more</li>
+													</ol>
+												</li>
+												<li style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; background: transparent;">Congue Quisque augue elit dolor nibh.</li>
+											</ol>
+
+											<h2 style="margin: 12px 0px 8px; padding: 0px; border: 0px; outline: 0px; font-size: 21px; vertical-align: baseline; color: rgb(0, 0, 0); line-height: 1.5em; font-weight: normal; text-transform: capitalize; letter-spacing: 1px; background: transparent;">Unordered List</h2>
+
+											<ul style="margin: 0px; padding: 0px 0px 0px 20px; border: 0px; outline: 0px; vertical-align: baseline; background: transparent;">
+												<li style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; background: transparent;">This is a sample&nbsp;<span style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; font-weight: 700; background: transparent;">Unordered List</span>.</li>
+												<li style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; background: transparent;">Condimentum quis.</li>
+												<li style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; background: transparent;">Congue Quisque augue elit dolor.
+													<ul style="margin: 0px; padding: 0px 0px 0px 20px; border: 0px; outline: 0px; vertical-align: baseline; background: transparent;">
+														<li style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; background: transparent;">Something goes here.</li>
+														<li style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; background: transparent;">And another here
+															<ul style="margin: 0px; padding: 0px 0px 0px 20px; border: 0px; outline: 0px; vertical-align: baseline; background: transparent;">
+																<li style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; background: transparent;">Something here as well</li>
+																<li style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; background: transparent;">Something here as well</li>
+																<li style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; background: transparent;">Something here as well</li>
+															</ul>
+														</li>
+														<li style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; background: transparent;">Then one more</li>
+													</ul>
+												</li>
+												<li style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; background: transparent;">Nunc cursus sem et pretium sapien eget.</li>
+											</ul>
+
+											<p style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; background: transparent;">&nbsp;</p>
+
+											<table style="border-collapse: collapse; margin: 0px 0px 15px; padding: 0px; border: 1px solid rgb(187, 187, 187); outline: 0px; vertical-align: baseline; border-spacing: 0px; width: 100%; background: rgb(236, 236, 236);">
+												<tbody style="border: 0px; margin: 0px; padding: 0px; outline: 0px; vertical-align: baseline; background: transparent;">
+													<tr style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: middle; background: transparent;">
+														<th style="border-width: 0px 1px 0px 0px; padding: 5px 4px; margin: 0px; border-right-style: solid; border-right-color: rgb(200, 199, 199); outline: 0px; vertical-align: middle; text-shadow: rgb(255, 255, 255) 1px 1px; background: rgb(219, 219, 219);">Header 1</th>
+														<th style="border-width: 0px 1px 0px 0px; padding: 5px 4px; margin: 0px; border-right-style: solid; border-right-color: rgb(200, 199, 199); outline: 0px; vertical-align: middle; text-shadow: rgb(255, 255, 255) 1px 1px; background: rgb(219, 219, 219);">Header 2</th>
+													</tr>
+													<tr style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: middle; background: transparent;">
+														<td style="margin: 0px; padding: 0px 0px 0px 4px; border-width: 0px 1px 1px 0px; border-right-style: solid; border-bottom-style: solid; border-right-color: rgb(200, 199, 199); border-bottom-color: rgb(200, 199, 199); outline: 0px; vertical-align: middle; color: rgb(116, 116, 116); background: rgb(235, 235, 235);">row 1, cell 1</td>
+														<td style="margin: 0px; padding: 0px 0px 0px 4px; border-width: 0px 1px 1px 0px; border-right-style: solid; border-bottom-style: solid; border-right-color: rgb(200, 199, 199); border-bottom-color: rgb(200, 199, 199); outline: 0px; vertical-align: middle; color: rgb(116, 116, 116); background: rgb(235, 235, 235);">row 1, cell 2</td>
+													</tr>
+													<tr style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: middle; background: transparent;">
+														<td style="margin: 0px; padding: 0px 0px 0px 4px; border-width: 0px 1px 1px 0px; border-right-style: solid; border-bottom-style: solid; border-right-color: rgb(200, 199, 199); border-bottom-color: rgb(200, 199, 199); outline: 0px; vertical-align: middle; color: rgb(116, 116, 116); background: rgb(235, 235, 235);">row 2, cell 1</td>
+														<td style="margin: 0px; padding: 0px 0px 0px 4px; border-width: 0px 1px 1px 0px; border-right-style: solid; border-bottom-style: solid; border-right-color: rgb(200, 199, 199); border-bottom-color: rgb(200, 199, 199); outline: 0px; vertical-align: middle; color: rgb(116, 116, 116); background: rgb(235, 235, 235);">row 2, cell 2</td>
+													</tr>
+													<tr style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: middle; background: transparent;">
+														<td style="margin: 0px; padding: 0px 0px 0px 4px; border-width: 0px 1px 1px 0px; border-right-style: solid; border-bottom-style: solid; border-right-color: rgb(200, 199, 199); border-bottom-color: rgb(200, 199, 199); outline: 0px; vertical-align: middle; color: rgb(116, 116, 116); background: rgb(235, 235, 235);">row 3, cell 1</td>
+														<td style="margin: 0px; padding: 0px 0px 0px 4px; border-width: 0px 1px 1px 0px; border-right-style: solid; border-bottom-style: solid; border-right-color: rgb(200, 199, 199); border-bottom-color: rgb(200, 199, 199); outline: 0px; vertical-align: middle; color: rgb(116, 116, 116); background: rgb(235, 235, 235);">row 3, cell 2</td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			]]>
+		</dynamic-content>
+	</dynamic-element>
+</root>

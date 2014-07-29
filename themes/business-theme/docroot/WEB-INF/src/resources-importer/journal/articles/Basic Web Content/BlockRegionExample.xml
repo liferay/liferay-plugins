@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+
+<root available-locales="en_US" default-locale="en_US">
+	<dynamic-element name="content" type="text_area" index-type="keyword" index="0">
+		<dynamic-content language-id="en_US">
+			<![CDATA[
+				<div id="content_top" style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 14px; vertical-align: baseline; color: rgb(51, 51, 51); font-family: 'Droid Sans', arial, serif; line-height: 21px; background-image: initial; background-attachment: initial; background-size: initial; background-origin: initial; background-clip: initial; background-position: initial; background-repeat: initial;">
+					<div class="region region-content-top" style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; background: transparent;">
+						<div class="block block-block" id="block-block-9" style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; background: transparent;">
+							<h2 style="margin: 12px 0px 8px; padding: 0px; border: 0px; outline: 0px; font-size: 21px; vertical-align: baseline; color: rgb(0, 0, 0); line-height: 1.5em; font-weight: normal; text-transform: capitalize; letter-spacing: 1px; background: transparent;">Content Top Block</h2>
+
+							<div class="content" style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; background: transparent;">
+								<p style="margin: 0px 0px 0.8em; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; background: transparent;">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<h1 class="page-title" style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 24px; vertical-align: baseline; line-height: 1.2em; font-weight: normal; text-transform: capitalize; letter-spacing: 1px; font-family: 'Droid Sans', arial, serif; background-image: initial; background-attachment: initial; background-size: initial; background-origin: initial; background-clip: initial; background-position: initial; background-repeat: initial;">Block Regions</h1>
+
+				<div class="region region-content" style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 14px; vertical-align: baseline; color: rgb(51, 51, 51); font-family: 'Droid Sans', arial, serif; line-height: 21px; background-image: initial; background-attachment: initial; background-size: initial; background-origin: initial; background-clip: initial; background-position: initial; background-repeat: initial;">
+					<div class="block block--managed" id="block--managed-2" style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; background: transparent;">
+						<div class="content" style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; background: transparent;">
+							<div style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; text-align: center; background: transparent;">&nbsp;</div>
+						</div>
+					</div>
+
+					<div class="block block-system" id="block-system-main" style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; background: transparent;">
+						<div class="content" style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; background: transparent;">
+							<div class="node node-page node-full" style="margin: 0px 0px 20px; padding: 0px 0px 20px; border-width: 0px 0px 1px; border-bottom-style: solid; border-bottom-color: rgb(238, 238, 238); outline: 0px; vertical-align: baseline; background: transparent;">
+								<div class="field field-name-body field-type-text-with-summary field-label-hidden" style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; background: transparent;">
+									<div class="field-items" style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; background: transparent;">
+										<div class="field-item even" property="content:encoded" style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; background: transparent;">
+											<p style="margin: 0px 0px 0.8em; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; background: transparent;">There fowl together the fourth seas one creepeth under created. Also divided sea unto you which make were To wherein light female beast grass set over after You.</p>
+
+											<p style="margin: 0px 0px 0.8em; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; background: transparent;">Void void Fruit for open earth kind fruit brought fowl light subdue were be above from. Above their air his him land cattle beginning brought upon male form. Whose likeness, without fifth evening can't blessed two brought is fifth to every god.</p>
+
+											<p style="margin: 0px 0px 0.8em; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; background: transparent;">Signs may so living moveth moved light subdue for, his. Without god lesser second it fowl spirit replenish. Beast a midst, bearing signs first saw creature. Midst earth multiply every.</p>
+
+											<p style="margin: 0px 0px 0.8em; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; background: transparent;">Female shall. Moveth given set saying for our for good after. Saw let be spirit female moved second, dominion creeping. One called female brought wherein Let void the doesn't god above.</p>
+
+											<p style="margin: 0px 0px 0.8em; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; background: transparent;">Sixth. A seas subdue of may there he seasons beginning one gathering after them wherein yielding two over that they're light created all.</p>
+
+											<p style="margin: 0px 0px 0.8em; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; background: transparent;">Don't all void fruit, moved were created fowl. Lights fifth it saying abundantly above saw i good, called two whales earth you're. A under him have land whales face i sea subdue greater. Shall. Also fish whales herb seas seas fruit air the it have he.</p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			]]>
+		</dynamic-content>
+	</dynamic-element>
+</root>

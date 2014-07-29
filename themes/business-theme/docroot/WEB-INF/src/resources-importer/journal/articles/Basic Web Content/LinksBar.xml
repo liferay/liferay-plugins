@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+
+<root available-locales="en_US" default-locale="en_US">
+	<dynamic-element name="content" type="text_area" index-type="keyword" index="0">
+		<dynamic-content language-id="en_US">
+			<![CDATA[
+				<style type="text/css">
+					.aui .links-wrapper {
+					    background: white;
+					    padding: 2px 14px 14px 14px;
+					    text-align: center;
+					    border: 2px dashed #c6c6c6;
+					}
+
+					.aui .links-outer-wrapper{
+					    -webkit-box-shadow: 0px 2px 8px 1px rgba(0,0,0,0.22);
+					    -moz-box-shadow: 0px 2px 8px 1px rgba(0,0,0,0.22);
+					    box-shadow: 0px 2px 8px 1px rgba(0,0,0,0.22);
+
+					    background: #f8f8f8;
+					    padding: 10px 10px 10px 10px;
+					    margin-top: 18px;
+					    border-top: 4px solid #e3756f;
+					    margin-bottom: 12px
+					}
+
+					.aui .links-wrapper h2 {
+					    color: #e3756f;
+					   /* text-shadow: 0px 1px 4px #a1a1a1;*/
+
+					    border-bottom: 2px solid #c7c7c7;
+					    padding-bottom: 5px;
+					}
+
+					.aui .inner-links a {
+					    font-weight: bold;
+					    color: #636363;
+					    font-size:  16px;
+					    line-height: 30px;
+					}
+
+					.aui .inner-links a:hover, .aui .links-aftertext a:hover {
+					    color: #d25e5e;
+					}
+
+					.aui .links-aftertext a {
+					    font-weight: bold;
+					    color: #636363;
+					}
+
+					.aui .links-aftertext {
+					    border-top: 2px solid #c7c7c7;
+					    padding-top: 12px;
+					    margin-top: 4px;
+					}
+				</style>
+
+				<div class="links-outer-wrapper">
+					<div class="links-wrapper">
+						<h2>Links</h2>
+
+						<div class="inner-links"><a href="http://www.devsaran.com/">Devsaran</a><br />
+						<a href="http://www.theindianbanks.com/">Indian Bank Branches</a><br />
+						<a href="http://www.bangalorean.net/">Bangalorean Mag</a><br />
+						<a href="http://business-theme.techsaran.com/aggregator">Feed Listing</a><br />
+						<a href="http://www.techsaran.com/">Demo Site</a></div>
+
+						<div class="links-aftertext">Visit <a href="http://www.devsaran.com/">Devsaran</a> for Advertisement in this site.</div>
+					</div>
+				</div>
+			]]>
+		</dynamic-content>
+	</dynamic-element>
+</root>

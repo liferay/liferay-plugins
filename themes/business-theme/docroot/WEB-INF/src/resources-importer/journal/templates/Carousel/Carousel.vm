@@ -1,0 +1,147 @@
+#set($imageWidth = $maxImageWidth.Data)
+#set($imageHeight = $maxImageHeight.Data)
+#set($imageWidthPx = $imageWidth + "px")
+#set($imageHeightPx = $imageHeight + "px")
+#set($interval = $timeInterval.Data)
+#set($activeIndexValue = $activeIndex.Data)
+ 
+<style type="text/css">
+    .aui #myCarousal {
+        width: 100% !important;
+        margin-top: 23px;
+    }
+
+    .aui .carousel li {
+        margin: 0 !important;
+    }
+ 
+    .bottom-shadow {
+        background: url("../../../business-theme/images/custom/slide-shadow.png") center -7px no-repeat;
+        height: 30px;
+        padding: 5px 0 15px 0;
+        text-align: center;
+        width: 940px;
+        z-index: 100;
+    }
+
+    .aui div.carousel[style] {
+        -moz-transition: all .35s ease-in-out;
+        -webkit-transition: all .35s ease-in-out;
+        background: transparent;
+        height: auto !important;
+        transition: all .35s ease-in-out;
+    }
+
+    .aui #myCarousal {
+        height: 0 !important;
+        overflow: hidden;
+        position: relative;
+        padding-bottom: 34.4%;
+    }
+
+    .aui #myCarousal img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width:100%;
+        max-width: none;
+    }
+
+    .aui .carousel-content {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width:100%;
+        max-width: none;
+    }
+
+    .aui #content .carousel {
+        margin-bottom: 0px;
+    }
+
+    .carousel-content .title-text {
+        background: rgba(12, 12, 12, 0.6);
+        color: white;
+        font-family: 'Droid Sans', Arial;
+        font-size: 22px;
+        height: 50px;
+        margin-top: calc(33.4% - 41px);
+        padding: 15px;
+        position: relative;
+        width: 100%;
+        z-index: 2;
+    }
+
+    .aui .carousel menu {
+        background: transparent;
+        bottom: 13px;
+        right: 12px;
+    }
+
+    @media (max-width : 1320px) {
+        .aui div.carousel[style] {
+            -moz-box-shadow: 0px 4px 9px 0px rgba(0,0,0,0.20);
+            -webkit-box-shadow: 0px 4px 9px 0px rgba(0,0,0,0.20);
+            border-bottom: 2px solid #b0b0b0;
+            box-shadow: 0px 4px 9px 0px rgba(0,0,0,0.20);
+            margin-left: -41px;
+            width: calc(100% + 82px) !important;
+        }
+
+        .aui #myCarousel {
+            border-top: 1px solid #b0b0b0;
+        }
+
+        .bottom-shadow {
+            display: none;
+        }
+    }
+
+    @media (max-width: 512px) {
+        .aui .carousel {
+            margin-top: 2px;
+        }
+    }
+</style>
+ 
+#set($totalCount = 0)
+
+<div id="myCarousal">
+    #foreach($item in $items.getSiblings())
+        <div class="carousel-content">
+        #if ($item.linkUrl.data != "")
+            #if ($item.title-text.data != "")
+                <div class="title-text">$item.title-text.data</div>
+            #end
+            <a href="$imageElement.linkUrl.Data">
+                <img class="carousel-item" src="$item.image.data" height="$imageHeightPx !important" width="$imageWidthPx" />
+            </a>
+           
+        #else
+            #if ($item.title-text.data != "")
+                <div class="title-text">$item.title-text.data</div>
+            #end
+            <img class="carousel-item" src="$item.image.data" height="$imageHeightPx" width="$imageWidthPx" />      
+        #end
+        </div>
+        #set($totalCount = $totalCount + 1)
+    #end
+</div>
+
+<div class="bottom-shadow"></div>
+
+#if($totalCount > 0)
+    <script>
+        AUI().ready('aui-carousel', function(A) 
+        { 
+            var carousel = new A.Carousel(
+            { 
+                contentBox: '#myCarousal', 
+                activeIndex: $activeIndexValue,
+                intervalTime: $interval, 
+                width: $imageWidth, 
+                height: $imageHeight 
+            }).render(); 
+        });
+    </script>
+#end

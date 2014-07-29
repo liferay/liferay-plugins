@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+
+<root available-locales="en_US" default-locale="en_US">
+	<dynamic-element name="content" type="text_area" index-type="keyword" index="0">
+		<dynamic-content language-id="en_US">
+			<![CDATA[
+				<div class="footer-title">Pirate Footer</div>
+				<div class="footer-content">
+				Man-of-war doubloon yo-ho-ho Letter of Marque cackle fruit careen log grog blossom run a rig weigh anchor. Furl Blimey lugsail yo-ho-ho hang the jib brigantine Yellow Jack strike colors booty Arr. Gold Road Admiral of the Black jack scourge of the seven seas red ensign salmagundi capstan gunwalls Barbary Coast bowsprit. 
+
+				Interloper rum sloop square-rigged starboard lookout Plate Fleet shrouds barkadeer rope's end. Me belay Jack Ketch Plate Fleet scurvy chantey pirate rutters barque chandler. Skysail cable topmast draught spike gibbet spanker deadlights loot hornswaggle. 
+
+				Capstan Blimey Yellow Jack Spanish Main jib hearties crimp sloop tack doubloon. Driver hail-shot mizzen lee Admiral of the Black broadside wench bilged on her anchor gaff ahoy. Privateer lass nipper hogshead stern lookout Chain Shot pillage keelhaul yo-ho-ho. 
+			</div>
+			]]>
+		</dynamic-content>
+	</dynamic-element>
+</root>

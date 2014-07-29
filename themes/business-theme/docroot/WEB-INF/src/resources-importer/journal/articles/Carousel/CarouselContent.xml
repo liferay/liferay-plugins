@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<root available-locales="en_US" default-locale="en_US">
+	<dynamic-element name="activeIndex" type="text" index-type="">
+		<dynamic-content language-id="en_US"><![CDATA[0]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element name="timeInterval" type="text" index-type="keyword" index="0">
+		<dynamic-content language-id="en_US">
+			<![CDATA[4]]>
+		</dynamic-content>
+	</dynamic-element>
+	<dynamic-element name="maxImageHeight" type="text" index-type="keyword" index="0">
+		<dynamic-content language-id="en_US">
+			<![CDATA[320]]>
+		</dynamic-content>
+	</dynamic-element>
+	<dynamic-element name="maxImageWidth" type="text" index-type="keyword" index="0">
+		<dynamic-content language-id="en_US">
+			<![CDATA[940]]>
+		</dynamic-content>
+	</dynamic-element>
+	<dynamic-element name="items" type="text" index-type="">
+		<dynamic-element name="image" type="document_library" index-type="">
+			<dynamic-content><![CDATA[[$FILE=slide1.jpg$]]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="linkUrl" type="text" index-type="">
+			<dynamic-content><![CDATA[]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="title-text" type="text" index-type="">
+			<dynamic-content><![CDATA[Title Test 1]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-content><![CDATA[Image 1]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element name="items" type="text" index-type="">
+		<dynamic-element name="image" type="document_library" index-type="">
+			<dynamic-content><![CDATA[[$FILE=slide2.jpg$]]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="linkUrl" type="text" index-type="">
+			<dynamic-content><![CDATA[]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="title-text" type="text" index-type="">
+			<dynamic-content><![CDATA[Title Test 2]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-content><![CDATA[Image 2]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element name="items" type="text" index-type="">
+		<dynamic-element name="image" type="document_library" index-type="">
+			<dynamic-content><![CDATA[[$FILE=slide3.jpg$]]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="linkUrl" type="text" index-type="">
+			<dynamic-content><![CDATA[]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="title-text" type="text" index-type="">
+			<dynamic-content><![CDATA[Title Test 3]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-content><![CDATA[Image 3]]></dynamic-content>
+	</dynamic-element>
+</root>

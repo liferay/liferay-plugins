@@ -1,0 +1,66 @@
+#set($title = $Title.Data)
+#set($description = $Content.Data)
+
+<link href='http://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
+
+<style type="text/css">
+    .paycontainer {
+        -moz-border-radius-bottomleft: 10px;
+        -moz-border-radius-bottomright: 10px;
+        -moz-box-shadow: (0px 2px 5px 1px rgba(0, 0, 0, 0.15));
+        -webkit-border-bottom-left-radius: 10px;
+        -webkit-border-bottom-right-radius: 10px;
+        -webkit-box-shadow: (0px 2px 5px 1px rgba(0, 0, 0, 0.15));
+        background: #f9f9f9;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+        border-top: 3px solid rgba(184, 16, 17, 0.5);
+        box-shadow: (0px 2px 5px 1px rgba(0, 0, 0, 0.15));
+        box-shadow: 0px 2px 5px 1px rgba(0, 0, 0, 0.15);
+        font-family: 'Droid Sans',serif;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 25px;
+        padding: 8px 17px;
+    }
+
+    .paytriangle {
+        border-color: #ccc transparent transparent transparent;
+        border-style: solid;
+        border-width: 15px 18px 0 18px;
+        height: 0;
+        margin: 0px auto 10px auto;
+        width: 0;
+    }
+
+    .paytitle {
+        border-bottom: 1px solid #dbdbdb;
+        color: #616161;
+        font-size: 22px;
+        font-weight: bold;
+        margin: 12px 0 10px 0;
+        padding-bottom: 11px;
+        text-align: center;
+    }
+
+    .aui .paycontainer .paytext1 {
+        background: transparent;
+        color: #333;
+        display: block;
+        font-size: 100%;
+        line-height: 1.5em;
+        margin: 0 0 0.8em;
+        text-align: center;
+        vertical-align: baseline;
+    }
+</style>
+
+<div class="paycontainer">
+    <div class="paytitle">$title</div>
+
+    <div class="paytext1">
+        $description
+    </div>
+</div>
+
+<div class="paytriangle"></div>

@@ -1,0 +1,43 @@
+<footer id="footer" role="contentinfo">
+	<div class="footer-bar">
+		<div class="footer-center">
+			<div class="footer-article footer-article-1">
+				#set ($VOID = $velocityPortletPreferences.setValue('groupId', $themeDisplay.getScopeGroupId().toString()))
+			    #set ($VOID = $velocityPortletPreferences.setValue('articleId', 'SAMPLEFOOTER1'))
+				#set ($VOID = $velocityPortletPreferences.setValue('portletSetupShowBorders', 'false'))
+				#set ($portlet_id = '56')
+				#set ($my_portlet_id = "${portlet_id}_INSTANCE_1234")
+				$theme.runtime($my_portlet_id, "", $velocityPortletPreferences.toString())
+				#set ($VOID = $velocityPortletPreferences.reset())
+			</div>
+			<div class="footer-article footer-article-2">
+				#set ($VOID = $velocityPortletPreferences.setValue('groupId', $themeDisplay.getScopeGroupId().toString()))
+				#set ($VOID = $velocityPortletPreferences.setValue('articleId', 'SAMPLEFOOTER2'))
+				#set ($VOID = $velocityPortletPreferences.setValue('portletSetupShowBorders', 'false'))
+				#set ($portlet_id = '56')
+				#set ($my_portlet_id = "${portlet_id}_INSTANCE_1235")
+				$theme.runtime($my_portlet_id, "", $velocityPortletPreferences.toString())
+				#set ($VOID = $velocityPortletPreferences.reset())
+			</div>
+			<div class="footer-article footer-article-3">
+				#set ($VOID = $velocityPortletPreferences.setValue('groupId', $themeDisplay.getScopeGroupId().toString()))
+			    #set ($VOID = $velocityPortletPreferences.setValue('articleId', 'SAMPLEFOOTER3'))
+				#set ($VOID = $velocityPortletPreferences.setValue('portletSetupShowBorders', 'false'))
+				#set ($portlet_id = '56')
+				#set ($my_portlet_id = "${portlet_id}_INSTANCE_1236")
+				$theme.runtime($my_portlet_id, "", $velocityPortletPreferences.toString())
+				#set ($VOID = $velocityPortletPreferences.reset())
+			</div>
+			<div class="footer-article footer-article-4">
+				#set ($VOID = $velocityPortletPreferences.setValue('groupId', $themeDisplay.getScopeGroupId().toString()))
+				#set ($VOID = $velocityPortletPreferences.setValue('articleId', 'SAMPLEFOOTER4'))
+				#set ($VOID = $velocityPortletPreferences.setValue('portletSetupShowBorders', 'false'))
+				#set ($portlet_id = '56')
+				#set ($my_portlet_id = "${portlet_id}_INSTANCE_1237")
+				$theme.runtime($my_portlet_id, "", $velocityPortletPreferences.toString())
+				#set ($VOID = $velocityPortletPreferences.reset())
+			</div>
+		</div>
+	</div>
+	<div class="note">Powered by Liferay</div>
+</footer>

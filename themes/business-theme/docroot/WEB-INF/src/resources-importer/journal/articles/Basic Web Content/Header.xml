@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+
+<root available-locales="en_US" default-locale="en_US">
+	<dynamic-element name="content" type="text_area" index-type="keyword" index="0">
+		<dynamic-content language-id="en_US">
+			<![CDATA[
+				<div class="plus" style="border-bottom: 2px solid #eee; margin-bottom: 6px;">
+					<h2 style="margin: 12px 0px 8px; padding: 0px; border: 0px; outline: 0px; font-size: 21px; vertical-align: baseline; line-height: 1.5em; font-weight: normal; text-transform: capitalize; letter-spacing: 1px; font-family: 'Droid Sans', arial, serif; background-image: initial; background-attachment: initial; background-size: initial; background-origin: initial; background-clip: initial; background-position: initial; background-repeat: initial;">Header Block</h2>
+
+					<div class="content" style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 14px; vertical-align: baseline; color: rgb(51, 51, 51); font-family: 'Droid Sans', arial, serif; line-height: 21px; background-image: initial; background-attachment: initial; background-size: initial; background-origin: initial; background-clip: initial; background-position: initial; background-repeat: initial;">
+						<p style="margin: 0px 0px 0.8em; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; background: transparent;">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+					</div>
+				</div>
+			]]>
+		</dynamic-content>
+	</dynamic-element>
+</root>

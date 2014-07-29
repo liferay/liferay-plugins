@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<root available-locales="en_US" default-locale="en_US">
+	<dynamic-element name="titleval" type="text" index-type="">
+		<dynamic-content>
+			<![CDATA[Welcome To Devsaran Theme]]>
+		</dynamic-content>
+	</dynamic-element>
+	<dynamic-element name="descval" type="text" index-type="">
+		<dynamic-content>
+			<![CDATA[Please consider a Small Donation for this Awesome Theme.]]>
+		</dynamic-content>
+	</dynamic-element>
+</root>

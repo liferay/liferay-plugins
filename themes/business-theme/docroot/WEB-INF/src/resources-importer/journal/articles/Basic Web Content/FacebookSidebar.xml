@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+
+<root available-locales="en_US" default-locale="en_US">
+	<dynamic-element name="content" type="text_area" index-type="keyword" index="0">
+		<dynamic-content language-id="en_US">
+			<![CDATA[
+				<style type="text/css">
+					.facebookcontent {
+					        background-color: white;
+					        border: 1px dotted #b6b6b6;
+					        border-radius: 5px;
+					        margin-top: 14px;
+					        padding-bottom: 14px;
+					        margin-bottom: 12px;
+					    }
+					.facebookalignment {
+					        margin-left: auto;
+					        margin-right: auto;
+					        width: 238px;
+					}
+
+				    .facebookcontent iframe {
+				        background: white;
+				    }
+				</style>
+
+
+				<div class="facebookcontent">
+					<h2 style="margin: 4px 0px 10px; padding: 0px 0px 4px; border-width: 0px 0px 1px; border-bottom-style: solid; border-bottom-color: rgb(238, 238, 238); outline: 0px; font-size: 21px; vertical-align: baseline; color: rgb(102, 102, 102); line-height: 1.5em; text-transform: capitalize; letter-spacing: 1px; font-family: 'Droid Sans', arial, serif; background-image: initial; background-attachment: initial; background-size: initial; background-origin: initial; background-clip: initial; background-position: initial; background-repeat: initial; text-align: center;">Became A Fan</h2>
+					<div class="facebookalignment">
+						<div class="content" style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 14px; vertical-align: baseline; color: rgb(51, 51, 51); font-family: 'Droid Sans', arial, serif; line-height: 21px; background-image: initial; background-attachment: initial; background-size: initial; background-origin: initial; background-clip: initial; background-position: initial; background-repeat: initial;"><iframe allowtransparency="true" class="twitter-follow-button" frameborder="0" scrolling="no" src="http://platform.twitter.com/widgets/follow_button.1340179658.html#_=1344687471539&amp;id=twitter-widget-2&amp;lang=en&amp;screen_name=saranquardz&amp;show_count=true&amp;show_screen_name=true&amp;size=m" style="margin: 0px; padding: 0px; border-width: 0px; outline: 0px; vertical-align: baseline; width: 243px; height: 20px; background: transparent;" title="Twitter Follow Button"></iframe>
+
+						<iframe allowtransparency="true" frameborder="0" scrolling="no" src="http://www.facebook.com/plugins/likebox.php?href=http%3A%2F%2Fwww.facebook.com%2Fdevsaran.drupal&amp;width=240&amp;height=258&amp;colorscheme=light&amp;show_faces=true&amp;border_color&amp;stream=false&amp;header=false" style="margin: 0px; padding: 0px; border-style: none; outline: 0px; vertical-align: baseline; overflow: hidden; width: 240px; height: 258px; background: transparent; margin-left: auto; margin-right: auto; background: white;"></iframe>
+
+						<div id="___plus_0" style="margin: 0px; padding: 0px; border: 0px none; outline: 0px; font-size: 1px; vertical-align: baseline; float: none; line-height: normal; display: inline-block; width: 240px; height: 85px; background: transparent;"><iframe data-gapiattached="true" frameborder="0" hspace="0" id="I0_1405382018086" marginheight="0" marginwidth="0" name="I0_1405382018086" scrolling="no" src="https://apis.google.com/u/0/_/widget/render/badge?usegapi=1&amp;width=240&amp;rel=publisher&amp;origin=http%3A%2F%2Fbusiness-theme.techsaran.com&amp;url=http%3A%2F%2Fplus.google.com%2F109064032428497406718&amp;gsrc=3p&amp;ic=1&amp;jsh=m%3B%2F_%2Fscs%2Fapps-static%2F_%2Fjs%2Fk%3Doz.gapi.en.IFFUVRhgyFo.O%2Fm%3D__features__%2Fam%3DAQ%2Frt%3Dj%2Fd%3D1%2Ft%3Dzcms%2Frs%3DAItRSTNi7P7mW6VN6SKH9KsMo07Sn1FDUA#_methods=onPlusOne%2C_ready%2C_close%2C_open%2C_resizeMe%2C_renderstart%2Concircled%2Cdrefresh%2Cerefresh%2Conload&amp;id=I0_1405382018086&amp;parent=http%3A%2F%2Fbusiness-theme.techsaran.com&amp;pfname=&amp;rpctoken=20928913" style="margin: 0px; padding: 0px; border-width: 0px; border-style: none; outline: 0px; vertical-align: baseline; position: static; top: 0px; width: 240px; left: 0px; visibility: visible; height: 85px; margin-left: auto; margin-right: auto; background: transparent;" tabindex="0" title="+Badge" vspace="0" width="100%"></iframe></div>
+					</div>
+				</div>
+			</div>
+			]]>
+		</dynamic-content>
+	</dynamic-element>
+</root>
