@@ -71,7 +71,7 @@ public class KBFeedbackListDisplayContext {
 		return _selectedNavItem;
 	}
 
-	public boolean isKBArticleTitleEnabled() {
+	public boolean isShowKBArticleTitle() {
 		return _kbArticle == null;
 	}
 
