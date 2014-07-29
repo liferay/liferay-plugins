@@ -39,7 +39,7 @@ public class KBFeedbackListDisplayContext {
 		_selectedNavItem = selectedNavItem;
 	}
 
-	public int getCompletedSuggestionsCount() throws SystemException {
+	public int getCompletedKBCommentsCount() throws SystemException {
 		return getKBCommentsCountByStatus(KBCommentConstants.STATUS_COMPLETED);
 	}
 
@@ -58,12 +58,12 @@ public class KBFeedbackListDisplayContext {
 			renderResponse.createRenderURL(), navItem);
 	}
 
-	public int getInProgressSuggestionsCount() throws SystemException {
+	public int getInProgressKBCommentsCount() throws SystemException {
 		return getKBCommentsCountByStatus(
 			KBCommentConstants.STATUS_IN_PROGRESS);
 	}
 
-	public int getNewSuggestionsCount() throws SystemException {
+	public int getNewKBCommentsCount() throws SystemException {
 		return getKBCommentsCountByStatus(KBCommentConstants.STATUS_NEW);
 	}
 
@@ -89,18 +89,18 @@ public class KBFeedbackListDisplayContext {
 	protected int getKBCommentsCountByStatus(int status)
 		throws SystemException {
 
-		int kbCommentCount = 0;
+		int kbCommentsCount = 0;
 
 		if (_kbArticle == null) {
-			kbCommentCount = KBCommentLocalServiceUtil.getKBCommentsCount(
+			kbCommentsCount = KBCommentLocalServiceUtil.getKBCommentsCount(
 				_groupId, status);
 		}
 		else {
-			kbCommentCount = KBCommentLocalServiceUtil.getKBCommentsCount(
+			kbCommentsCount = KBCommentLocalServiceUtil.getKBCommentsCount(
 				KBArticle.class.getName(), _kbArticle.getClassPK(), status);
 		}
 
-		return kbCommentCount;
+		return kbCommentsCount;
 	}
 
 	private long _groupId;

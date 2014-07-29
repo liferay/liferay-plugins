@@ -26,7 +26,7 @@ String navItem = kbFeedbackListDisplayContext.getSelectedNavItem();
 	<aui:nav cssClass="navbar-nav">
 
 		<%
-		int newKBCommentsCount = kbFeedbackListDisplayContext.getNewSuggestionsCount();
+		int newKBCommentsCount = kbFeedbackListDisplayContext.getNewKBCommentsCount();
 
 		String newKBCommentsLabel = String.format("%s (%s)", LanguageUtil.get(pageContext, "new"), newKBCommentsCount);
 		%>
@@ -38,7 +38,7 @@ String navItem = kbFeedbackListDisplayContext.getSelectedNavItem();
 		/>
 
 		<%
-		int inProgressKBCommentsCount = kbFeedbackListDisplayContext.getInProgressSuggestionsCount();
+		int inProgressKBCommentsCount = kbFeedbackListDisplayContext.getInProgressKBCommentsCount();
 
 		String inProgressKBCommentsLabel = String.format("%s (%s)", LanguageUtil.get(pageContext, "in-progress"), inProgressKBCommentsCount);
 		%>
@@ -50,7 +50,7 @@ String navItem = kbFeedbackListDisplayContext.getSelectedNavItem();
 		/>
 
 		<%
-		int completedKBCommentsCount = kbFeedbackListDisplayContext.getCompletedSuggestionsCount();
+		int completedKBCommentsCount = kbFeedbackListDisplayContext.getCompletedKBCommentsCount();
 
 		String completedLabel = String.format("%s (%s)", LanguageUtil.get(pageContext, "resolved"), completedKBCommentsCount);
 		%>
