@@ -41,7 +41,7 @@ KBFeedbackListDisplayContext kbFeedbackListDisplayContext = (KBFeedbackListDispl
 				<portlet:param name="redirect" value="<%= currentURL %>" />
 			</portlet:renderURL>
 
-			<c:if test="<%= kbFeedbackListDisplayContext.isKBArticleTitleEnabled() %>">
+			<c:if test="<%= kbFeedbackListDisplayContext.isShowKBArticleTitle() %>">
 				<h4><a href="<%= viewKBArticleURL %>"><%= HtmlUtil.escape(kbArticle.getTitle()) %></a></h4>
 			</c:if>
 
@@ -105,7 +105,7 @@ KBFeedbackListDisplayContext kbFeedbackListDisplayContext = (KBFeedbackListDispl
 					<aui:button href="<%= kbFeedbackListDisplayContext.getFeedbackByStatusURL(nextStatusURL, kbFeedbackListDisplayContext.getSelectedNavItem()) %>" value="<%= KnowledgeBaseUtil.getStatusTransitionLabel(nextStatus) %>" />
 				</c:if>
 
-				<c:if test="<%= feedbackStatus == KBCommentConstants.STATUS_COMPLETED && KBCommentPermission.contains(permissionChecker, kbComment, ActionKeys.DELETE) %>">
+				<c:if test="<%= (feedbackStatus == KBCommentConstants.STATUS_COMPLETED) && KBCommentPermission.contains(permissionChecker, kbComment, ActionKeys.DELETE) %>">
 					<liferay-portlet:actionURL name="deleteKBComment" varImpl="deleteURL">
 						<portlet:param name="kbCommentId" value="<%= String.valueOf(kbComment.getKbCommentId()) %>" />
 					</liferay-portlet:actionURL>
