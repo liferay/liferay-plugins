@@ -239,6 +239,11 @@ public interface KBCommentLocalService extends BaseLocalService,
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.knowledgebase.model.KBComment> getKBComments(
+		java.lang.String className, long classPK, int[] status, int start,
+		int end);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<com.liferay.knowledgebase.model.KBComment> getKBComments(
 		long groupId, int status, int start, int end);
 
 	/**
@@ -281,6 +286,14 @@ public interface KBCommentLocalService extends BaseLocalService,
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getKBCommentsCount(java.lang.String className, long classPK);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public int getKBCommentsCount(java.lang.String className, long classPK,
+		int status);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public int getKBCommentsCount(java.lang.String className, long classPK,
+		int[] status);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getKBCommentsCount(long groupId, int status);

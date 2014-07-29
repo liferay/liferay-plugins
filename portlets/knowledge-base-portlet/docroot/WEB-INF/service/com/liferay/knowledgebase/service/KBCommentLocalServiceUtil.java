@@ -266,6 +266,12 @@ public class KBCommentLocalServiceUtil {
 	}
 
 	public static java.util.List<com.liferay.knowledgebase.model.KBComment> getKBComments(
+		java.lang.String className, long classPK, int[] status, int start,
+		int end) {
+		return getService().getKBComments(className, classPK, status, start, end);
+	}
+
+	public static java.util.List<com.liferay.knowledgebase.model.KBComment> getKBComments(
 		long groupId, int status, int start, int end) {
 		return getService().getKBComments(groupId, status, start, end);
 	}
@@ -320,6 +326,16 @@ public class KBCommentLocalServiceUtil {
 	public static int getKBCommentsCount(java.lang.String className,
 		long classPK) {
 		return getService().getKBCommentsCount(className, classPK);
+	}
+
+	public static int getKBCommentsCount(java.lang.String className,
+		long classPK, int status) {
+		return getService().getKBCommentsCount(className, classPK, status);
+	}
+
+	public static int getKBCommentsCount(java.lang.String className,
+		long classPK, int[] status) {
+		return getService().getKBCommentsCount(className, classPK, status);
 	}
 
 	public static int getKBCommentsCount(long groupId, int status) {
