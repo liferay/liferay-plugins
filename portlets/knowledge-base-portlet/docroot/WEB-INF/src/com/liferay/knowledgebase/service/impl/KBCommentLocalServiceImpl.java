@@ -27,17 +27,12 @@ import com.liferay.knowledgebase.service.KBTemplateLocalServiceUtil;
 import com.liferay.knowledgebase.service.base.KBCommentLocalServiceBaseImpl;
 import com.liferay.knowledgebase.util.PortletKeys;
 import com.liferay.knowledgebase.util.comparator.KBCommentCreateDateComparator;
-import com.liferay.portal.kernel.dao.orm.DynamicQuery;
-import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
-import com.liferay.portal.kernel.dao.orm.ProjectionFactoryUtil;
-import com.liferay.portal.kernel.dao.orm.RestrictionsFactoryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.systemevent.SystemEvent;
-import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
@@ -190,18 +185,11 @@ public class KBCommentLocalServiceImpl extends KBCommentLocalServiceBaseImpl {
 	public List<KBComment> getKBComments(
 		String className, long classPK, int[] status, int start, int end) {
 
-		DynamicQuery query = DynamicQueryFactoryUtil.forClass(KBComment.class);
-
 		long classNameId = classNameLocalService.getClassNameId(className);
 
-		query.add(RestrictionsFactoryUtil.eq("classNameId", classNameId));
-		query.add(RestrictionsFactoryUtil.eq("classPK", classPK));
-
-		query.add(
-			RestrictionsFactoryUtil.in("status", ListUtil.toList(status)));
-
-		return dynamicQuery(
-			query, start, end, new KBCommentCreateDateComparator());
+		return kbCommentPersistence.findByC_C_S(
+			classNameId, classPK, status, start, end,
+			new KBCommentCreateDateComparator());
 	}
 
 	@Override
@@ -235,19 +223,9 @@ public class KBCommentLocalServiceImpl extends KBCommentLocalServiceBaseImpl {
 	public int getKBCommentsCount(
 		String className, long classPK, int[] status) {
 
-		DynamicQuery query = DynamicQueryFactoryUtil.forClass(KBComment.class);
-
 		long classNameId = classNameLocalService.getClassNameId(className);
 
-		query.add(RestrictionsFactoryUtil.eq("classNameId", classNameId));
-		query.add(RestrictionsFactoryUtil.eq("classPK", classPK));
-
-		query.add(
-			RestrictionsFactoryUtil.in("status", ListUtil.toList(status)));
-
-		query.setProjection(ProjectionFactoryUtil.count("kbCommentId"));
-
-		return (int)dynamicQueryCount(query);
+		return kbCommentPersistence.countByC_C_S(classNameId, classPK, status);
 	}
 
 	@Override
