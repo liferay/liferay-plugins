@@ -408,6 +408,14 @@ public class KBCommentLocalServiceWrapper implements KBCommentLocalService,
 	}
 
 	@Override
+	public java.util.List<com.liferay.knowledgebase.model.KBComment> getKBComments(
+		java.lang.String className, long classPK, int[] status, int start,
+		int end) throws com.liferay.portal.kernel.exception.SystemException {
+		return _kbCommentLocalService.getKBComments(className, classPK, status,
+			start, end);
+	}
+
+	@Override
 	public int getKBCommentsCount(long groupId, int status)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _kbCommentLocalService.getKBCommentsCount(groupId, status);
@@ -425,6 +433,21 @@ public class KBCommentLocalServiceWrapper implements KBCommentLocalService,
 	public int getKBCommentsCount(java.lang.String className, long classPK)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _kbCommentLocalService.getKBCommentsCount(className, classPK);
+	}
+
+	@Override
+	public int getKBCommentsCount(java.lang.String className, long classPK,
+		int status) throws com.liferay.portal.kernel.exception.SystemException {
+		return _kbCommentLocalService.getKBCommentsCount(className, classPK,
+			status);
+	}
+
+	@Override
+	public int getKBCommentsCount(java.lang.String className, long classPK,
+		int[] status)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _kbCommentLocalService.getKBCommentsCount(className, classPK,
+			status);
 	}
 
 	@Override

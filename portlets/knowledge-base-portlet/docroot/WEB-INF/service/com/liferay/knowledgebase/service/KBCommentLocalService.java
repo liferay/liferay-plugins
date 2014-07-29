@@ -343,6 +343,11 @@ public interface KBCommentLocalService extends BaseLocalService,
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<com.liferay.knowledgebase.model.KBComment> getKBComments(
+		java.lang.String className, long classPK, int[] status, int start,
+		int end) throws com.liferay.portal.kernel.exception.SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getKBCommentsCount(long groupId, int status)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
@@ -353,6 +358,15 @@ public interface KBCommentLocalService extends BaseLocalService,
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getKBCommentsCount(java.lang.String className, long classPK)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public int getKBCommentsCount(java.lang.String className, long classPK,
+		int status) throws com.liferay.portal.kernel.exception.SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public int getKBCommentsCount(java.lang.String className, long classPK,
+		int[] status)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public com.liferay.knowledgebase.model.KBComment updateKBComment(
