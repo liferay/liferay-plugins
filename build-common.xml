@@ -2261,19 +2261,19 @@ Please find a solution that does not require portal-impl.jar.
 						src="http://archive.apache.org/dist/tomcat/tomcat-${tomcat.major.version}/v${tomcat.version}/bin/apache-tomcat-${tomcat.version}.zip"
 					/>
 
-			        <unzip
+					<unzip
 						dest="${app.server.tomcat.dir}/webapps/"
 						src="tomcat.zip"
-			        >
+					>
 						<patternset
 							includes="apache-tomcat-${tomcat.version}/webapps/manager/**/*"
 						/>
 						<mapper>
 							<globmapper from="apache-tomcat-${tomcat.version}/webapps/*" to="*" />
 						</mapper>
-			        </unzip>
+					</unzip>
 
-			        <delete file="tomcat.zip" />
+					<delete file="tomcat.zip" />
 
 					<copy
 						file="${app.server.tomcat.dir}/conf/tomcat-users.xml"
@@ -3100,7 +3100,7 @@ for (String path : paths) {
 
 	<target name="setup-testable-tomcat">
 		<setup-osgi-jmx />
-		
+
 		<setup-tomcat-jmx />
 
 		<setup-tomcat-manager />
