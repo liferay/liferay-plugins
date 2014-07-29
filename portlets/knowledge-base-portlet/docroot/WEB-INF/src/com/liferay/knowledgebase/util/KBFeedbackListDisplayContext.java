@@ -46,12 +46,7 @@ public class KBFeedbackListDisplayContext {
 	public String getFeedbackByStatusURL(
 		PortletURL portletURL, String navItem) {
 
-		portletURL.setParameter("navItem", navItem);
-		portletURL.setParameter("expanded", Boolean.TRUE.toString());
-
-		if (_kbArticle == null) {
-			portletURL.setParameter("mvcPath", "/admin/view_feedback.jsp");
-		}
+		populateFeedbackByStatusURL(portletURL, navItem);
 
 		return portletURL.toString() + "#kbFeedback";
 	}
@@ -78,6 +73,17 @@ public class KBFeedbackListDisplayContext {
 
 	public boolean isKBArticleTitleEnabled() {
 		return _kbArticle == null;
+	}
+
+	public void populateFeedbackByStatusURL(
+		PortletURL portletURL, String navItem) {
+
+		portletURL.setParameter("navItem", navItem);
+		portletURL.setParameter("expanded", Boolean.TRUE.toString());
+
+		if (_kbArticle == null) {
+			portletURL.setParameter("mvcPath", "/admin/view_feedback.jsp");
+		}
 	}
 
 	protected int getKBCommentsCountByStatus(int status)
