@@ -2186,6 +2186,19 @@ Please find a solution that does not require portal-impl.jar.
 		</sequential>
 	</macrodef>
 
+	<macrodef name="setup-osgi-jmx">
+		<sequential>
+			<ivy:resolve>
+				<dependency org="org.apache.aries" name="org.apache.aries.util" rev="1.1.0" />
+				<dependency org="org.apache.aries.jmx" name="org.apache.aries.jmx" rev="1.1.1" />
+				<exclude org="org.eclipse" />
+				<exclude org="org.osgi" />
+			</ivy:resolve>
+
+			<ivy:retrieve pattern="${module.framework.parent.dir}/test/[artifact]-[revision].[ext]" type="bundle,jar" />
+		</sequential>
+	</macrodef>
+
 	<macrodef name="setup-tomcat-jmx">
 		<sequential>
 			<if>
@@ -3086,6 +3099,8 @@ for (String path : paths) {
 	</target>
 
 	<target name="setup-testable-tomcat">
+		<setup-osgi-jmx />
+		
 		<setup-tomcat-jmx />
 
 		<setup-tomcat-manager />
