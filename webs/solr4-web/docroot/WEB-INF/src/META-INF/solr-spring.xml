@@ -13,11 +13,13 @@
 	<!-- Solr search engine client -->
 
 	<bean id="com.liferay.portal.search.solr.server.BasicAuthSolrServer" class="com.liferay.portal.search.solr.server.BasicAuthSolrServer">
+		<property name="defaultMaxConnectionsPerHost" value="20" />
 		<property name="httpRequestInterceptors">
 			<list>
 				<bean class="com.liferay.portal.search.solr.interceptor.PreemptiveAuthInterceptor" />
 			</list>
 		</property>
+		<property name="maxTotalConnections" value="20" />
 		<property name="url" value="http://localhost:8080/solr" />
 	</bean>
 	<bean id="com.liferay.portal.search.solr.server.LiveServerChecker" class="com.liferay.portal.search.solr.server.LiveServerChecker">
