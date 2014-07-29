@@ -235,7 +235,7 @@
 		<finder name="C_C_S" return-type="Collection">
 			<finder-column name="classNameId" />
 			<finder-column name="classPK" />
-			<finder-column name="status" />
+			<finder-column name="status" arrayable-operator="OR" />
 		</finder>
 		<finder name="U_C_C" return-type="Collection">
 			<finder-column name="userId" />
