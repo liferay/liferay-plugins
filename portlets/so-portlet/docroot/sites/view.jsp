@@ -20,20 +20,34 @@
 <%@ include file="/sites/init.jsp" %>
 
 <%
-String tabs1 = ParamUtil.getString(request, "tabs1", userPortletPreferences.getValue("defaultSearchTab", "my-favorites"));
+String defaultSearchTab = userPortletPreferences.getValue("defaultSearchTab", "my-favorites");
 
 String name = ParamUtil.getString(request, "name");
+
+int myFavoritesGroupsCount = SitesUtil.getFavoriteSitesGroupsCount(themeDisplay.getUserId(), name);
+
+if (defaultSearchTab.equals("my-favorites") && (myFavoritesGroupsCount == 0)) {
+	defaultSearchTab = "my-sites";
+}
+
+int mySitesGroupsCount = SitesUtil.getVisibleSitesCount(themeDisplay.getCompanyId(), themeDisplay.getUserId(), name, true);
+
+if (defaultSearchTab.equals("my-sites") && (mySitesGroupsCount == 0)) {
+	defaultSearchTab = "all-sites";
+}
+
+String tabs1 = ParamUtil.getString(request, "tabs1", defaultSearchTab);
 
 List<Group> groups = null;
 int groupsCount = 0;
 
 if (tabs1.equals("my-favorites")) {
 	groups = SitesUtil.getFavoriteSitesGroups(themeDisplay.getUserId(), name, 0, maxResultSize);
-	groupsCount = SitesUtil.getFavoriteSitesGroupsCount(themeDisplay.getUserId(), name);
+	groupsCount = myFavoritesGroupsCount;
 }
 else if (tabs1.equals("my-sites")) {
 	groups = SitesUtil.getVisibleSites(themeDisplay.getCompanyId(), themeDisplay.getUserId(), name, true, 0, maxResultSize);
-	groupsCount = SitesUtil.getVisibleSitesCount(themeDisplay.getCompanyId(), themeDisplay.getUserId(), name, true);
+	groupsCount = mySitesGroupsCount;
 }
 else {
 	groups = SitesUtil.getVisibleSites(themeDisplay.getCompanyId(), themeDisplay.getUserId(), name, false, 0, maxResultSize);
