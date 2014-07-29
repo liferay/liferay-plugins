@@ -2195,7 +2195,7 @@ Please find a solution that does not require portal-impl.jar.
 				<exclude org="org.osgi" />
 			</ivy:resolve>
 
-			<ivy:retrieve pattern="${module.framework.parent.dir}/test/[artifact]-[revision].[ext]" type="bundle,jar" />
+			<ivy:retrieve pattern="${module.framework.base.dir}/test/[artifact]-[revision].[ext]" type="bundle,jar" />
 		</sequential>
 	</macrodef>
 
