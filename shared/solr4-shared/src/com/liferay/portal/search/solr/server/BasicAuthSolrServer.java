@@ -22,6 +22,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import com.liferay.portal.kernel.util.StringPool;
 import org.apache.http.HttpRequestInterceptor;
 import org.apache.http.auth.AuthScope;
 import org.apache.http.auth.UsernamePasswordCredentials;
@@ -43,16 +44,25 @@ import org.apache.solr.common.util.NamedList;
  */
 public class BasicAuthSolrServer extends SolrServer {
 
-	public void afterPropertiesSet() {
+	public BasicAuthSolrServer() {
+		String baseURL = StringPool.BLANK;
+
 		_poolingClientConnectionManager = new PoolingClientConnectionManager();
 
 		DefaultHttpClient defaultHttpClient = new DefaultHttpClient(
 			_poolingClientConnectionManager);
 
+		_server = new HttpSolrServer(baseURL, defaultHttpClient);
+	}
+
+	public void afterPropertiesSet() {
 		if ((_username != null) && (_password != null)) {
 			if (_authScope == null) {
 				_authScope = AuthScope.ANY;
 			}
+
+			DefaultHttpClient defaultHttpClient =
+				(DefaultHttpClient) _server.getHttpClient();
 
 			CredentialsProvider credentialsProvider =
 				defaultHttpClient.getCredentialsProvider();
@@ -69,7 +79,7 @@ public class BasicAuthSolrServer extends SolrServer {
 			}
 		}
 
-		_server = new HttpSolrServer(_url, defaultHttpClient);
+		_server.setBaseURL(_url);
 	}
 
 	public String getBaseURL() {
@@ -127,7 +137,8 @@ public class BasicAuthSolrServer extends SolrServer {
 	}
 
 	public void setDefaultMaxConnectionsPerHost(int maxConnectionsPerHost) {
-		_server.setDefaultMaxConnectionsPerHost(maxConnectionsPerHost);
+		_poolingClientConnectionManager.setDefaultMaxPerRoute(
+			maxConnectionsPerHost);
 	}
 
 	public void setFollowRedirects(boolean followRedirects) {
@@ -145,7 +156,7 @@ public class BasicAuthSolrServer extends SolrServer {
 	}
 
 	public void setMaxTotalConnections(int maxTotalConnections) {
-		_server.setMaxTotalConnections(maxTotalConnections);
+		_poolingClientConnectionManager.setMaxTotal(maxTotalConnections);
 	}
 
 	public void setParser(ResponseParser responseParser) {
