@@ -547,10 +547,6 @@ public class AdminPortlet extends MVCPortlet {
 				kbCommentId, classNameId, classPK, content, helpful, status,
 				serviceContext);
 		}
-
-		SessionMessages.add(
-			actionRequest, "feedbackUpdated",
-			"your-feedback-has-been-saved-successfully");
 	}
 
 	public void updateKBCommentStatus(
