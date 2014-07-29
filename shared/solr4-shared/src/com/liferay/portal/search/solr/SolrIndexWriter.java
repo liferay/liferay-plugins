@@ -237,14 +237,14 @@ public class SolrIndexWriter extends BaseIndexWriter {
 						continue;
 					}
 
+					value = value.trim();
+
 					Locale locale = entry.getKey();
 
 					String languageId = LocaleUtil.toLanguageId(locale);
 
 					String defaultLanguageId = LocaleUtil.toLanguageId(
 						LocaleUtil.getDefault());
-
-					value = value.trim();
 
 					if (languageId.equals(defaultLanguageId)) {
 						solrInputDocument.addField(name, value, boost);
