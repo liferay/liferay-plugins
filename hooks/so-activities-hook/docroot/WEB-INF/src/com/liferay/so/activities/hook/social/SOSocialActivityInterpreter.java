@@ -159,6 +159,8 @@ public abstract class SOSocialActivityInterpreter
 			sb.append(subfeedEntry.getTitle());
 			sb.append("</span><span class=\"activity-subentry-body\">");
 			sb.append(subfeedEntry.getBody());
+			sb.append("</span><span class=\"activity-subentry-link\">");
+			sb.append(subfeedEntry.getLink());
 			sb.append("</span></div>");
 		}
 
@@ -240,6 +242,8 @@ public abstract class SOSocialActivityInterpreter
 			SocialActivity activity, ServiceContext serviceContext)
 		throws Exception {
 
+		String link = getLink(activity, serviceContext);
+
 		String className = activity.getClassName();
 
 		String title = getPageTitle(
@@ -262,7 +266,7 @@ public abstract class SOSocialActivityInterpreter
 
 		body = StringUtil.shorten(HtmlUtil.escape(body), 200);
 
-		return new SocialActivityFeedEntry(title, body);
+		return new SocialActivityFeedEntry(link, title, body);
 	}
 
 	protected String getTitle(
