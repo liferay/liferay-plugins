@@ -35,6 +35,16 @@ public class SyncFilePersistence extends BasePersistenceImpl<SyncFile, Long> {
 		super(SyncFile.class);
 	}
 
+	public long countByState(int state) throws SQLException {
+		QueryBuilder<SyncFile, Long> queryBuilder = queryBuilder();
+
+		Where<SyncFile, Long> where = queryBuilder.where();
+
+		where.eq("state", state);
+
+		return where.countOf();
+	}
+
 	public SyncFile fetchByFK_S(String fileKey, long syncAccountId)
 		throws SQLException {
 
@@ -136,10 +146,6 @@ public class SyncFilePersistence extends BasePersistenceImpl<SyncFile, Long> {
 		where.ne("type", SyncFile.TYPE_SYSTEM);
 
 		return query(queryBuilder.prepare());
-	}
-
-	public List<SyncFile> findByState(int state) throws SQLException {
-		return queryForEq("state", state);
 	}
 
 	public List<SyncFile> findByS_S(int state, long syncAccountId)
