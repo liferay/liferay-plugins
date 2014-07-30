@@ -129,8 +129,8 @@ public class UpgradeSyncDLObject extends UpgradeProcess {
 
 	protected void updateSyncDLObjects() throws Exception {
 		SyncDLObjectLocalServiceUtil.deleteSyncDLObjects(
-			SyncConstants.TYPE_FILE,
-			DLFileEntryConstants.PRIVATE_WORKING_COPY_VERSION);
+			DLFileEntryConstants.PRIVATE_WORKING_COPY_VERSION,
+			SyncConstants.TYPE_FILE);
 
 		List<Group> groups =
 			GroupLocalServiceUtil.getGroups(

@@ -102,8 +102,8 @@ public class SyncDLObjectLocalServiceImpl
 	}
 
 	@Override
-	public void deleteSyncDLObjects(String type, String version) {
-		syncDLObjectPersistence.removeByT_V(type, version);
+	public void deleteSyncDLObjects(String version, String type) {
+		syncDLObjectPersistence.removeByV_T(version, type);
 	}
 
 	@Override
