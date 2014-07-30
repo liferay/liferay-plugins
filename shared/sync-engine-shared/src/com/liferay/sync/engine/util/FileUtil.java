@@ -57,7 +57,7 @@ public class FileUtil {
 
 			fileInputStream = Files.newInputStream(filePath);
 
-			byte[] bytes = DigestUtils.md5(fileInputStream);
+			byte[] bytes = DigestUtils.sha1(fileInputStream);
 
 			return Base64.encodeBase64String(bytes);
 		}
