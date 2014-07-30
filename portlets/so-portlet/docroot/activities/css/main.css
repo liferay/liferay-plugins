@@ -223,6 +223,10 @@ $default-border-color: #E7E7E7;
 		}
 	}
 
+	.portlet-document-library-activity .activity-subentry {
+		padding-right: 8em;
+	}
+
 	.tasks-portlet-activity {
 		.activity-body-container {
 			&.high {
