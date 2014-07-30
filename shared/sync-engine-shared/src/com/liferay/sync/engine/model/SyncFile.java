@@ -334,10 +334,10 @@ public class SyncFile extends StateAwareModel {
 	@DatabaseField(useGetSet = true, width = 16777216)
 	protected String extraSettings;
 
-	@DatabaseField(useGetSet = true)
+	@DatabaseField(index = true, useGetSet = true)
 	protected String fileKey;
 
-	@DatabaseField(useGetSet = true, width = 16777216)
+	@DatabaseField(index = true, useGetSet = true, width = 16777216)
 	protected String filePathName;
 
 	@DatabaseField(useGetSet = true)
@@ -364,13 +364,13 @@ public class SyncFile extends StateAwareModel {
 	@DatabaseField(useGetSet = true)
 	protected long parentFolderId;
 
-	@DatabaseField(indexName = "SyncFile_R_S_T", useGetSet = true)
+	@DatabaseField(useGetSet = true)
 	protected long repositoryId;
 
 	@DatabaseField(useGetSet = true)
 	protected long size;
 
-	@DatabaseField(indexName = "SyncFile_R_S_T", useGetSet = true)
+	@DatabaseField(useGetSet = true)
 	protected long syncAccountId;
 
 	@DatabaseField(generatedId = true, useGetSet = true)
@@ -379,7 +379,7 @@ public class SyncFile extends StateAwareModel {
 	@DatabaseField(useGetSet = true)
 	protected String type;
 
-	@DatabaseField(indexName = "SyncFile_R_S_T", useGetSet = true)
+	@DatabaseField(index = true, useGetSet = true)
 	protected long typePK;
 
 	@DatabaseField(useGetSet = true)
