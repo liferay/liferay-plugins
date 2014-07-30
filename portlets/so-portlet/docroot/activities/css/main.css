@@ -120,10 +120,6 @@ $default-border-color: #E7E7E7;
 		}
 	}
 
-	.icon-download:before {
-		margin-right: 4px;
-	}
-
 	.activity-body {
 		padding: 0.6em 0.9em;
 
@@ -175,7 +171,6 @@ $default-border-color: #E7E7E7;
 			height: 2.5em;
 			overflow: hidden;
 			padding: 0 0.9em;
-			position: relative;
 
 			&:last-child {
 				border-bottom-width: 0;
@@ -197,13 +192,6 @@ $default-border-color: #E7E7E7;
 			line-height: 2.5em;
 			overflow: hidden;
 		}
-
-		.activity-subentry-link {
-			padding: 10px 0;
-			position: absolute;
-			right: 0;
-			top: 0;
-		}
 	}
 
 	.microblogs-portlet-activity {
@@ -223,8 +211,22 @@ $default-border-color: #E7E7E7;
 		}
 	}
 
-	.portlet-document-library-activity .activity-subentry {
-		padding-right: 8em;
+	.portlet-document-library-activity {
+		.activity-subentry {
+			padding-right: 8em;
+			position: relative;
+		}
+
+		.activity-subentry-link {
+			padding: 10px 0;
+			position: absolute;
+			right: 0;
+			top: 0;
+		}
+
+		.icon-download:before {
+			margin-right: 4px;
+		}
 	}
 
 	.tasks-portlet-activity {
