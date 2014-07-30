@@ -2178,8 +2178,8 @@ Please find a solution that does not require portal-impl.jar.
 	<macrodef name="setup-osgi-jmx">
 		<sequential>
 			<ivy:resolve>
-				<dependency org="org.apache.aries" name="org.apache.aries.util" rev="1.1.0" />
-				<dependency org="org.apache.aries.jmx" name="org.apache.aries.jmx" rev="1.1.1" />
+				<dependency name="org.apache.aries.jmx" org="org.apache.aries.jmx" rev="1.1.1" />
+				<dependency name="org.apache.aries.util" org="org.apache.aries" rev="1.1.0" />
 				<exclude org="org.eclipse" />
 				<exclude org="org.osgi" />
 			</ivy:resolve>
