@@ -120,6 +120,7 @@
 				{
 					actionableNotificationsList: actionableNotificationsList,
 					baseActionURL: '<%= PortletURLFactoryUtil.create(request, portletDisplay.getId(), themeDisplay.getPlid(), PortletRequest.ACTION_PHASE) %>',
+					baseResourceURL: '<%= PortletURLFactoryUtil.create(request, portletDisplay.getId(), themeDisplay.getPlid(), PortletRequest.RESOURCE_PHASE) %>',
 					nonActionableNotificationsList: nonActionableNotificationsList,
 					portletKey: '<%= portletDisplay.getId() %>'
 				}
