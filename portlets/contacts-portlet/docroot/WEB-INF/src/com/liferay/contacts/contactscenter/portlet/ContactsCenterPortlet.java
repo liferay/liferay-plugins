@@ -842,8 +842,7 @@ public class ContactsCenterPortlet extends MVCPortlet {
 				params.put("usersGroups", ContactsUtil.getGroupId(filterBy));
 			}
 
-			Set<User> users = new HashSet<User>();
-						List<User> usersList = new ArrayList<User>();
+			List<User> usersList = null;
 
 			if (filterBy.equals(ContactsConstants.FILTER_BY_ADMINS)) {
 				Role siteAdministratorRole = RoleLocalServiceUtil.getRole(
@@ -855,6 +854,8 @@ public class ContactsCenterPortlet extends MVCPortlet {
 						new Long(group.getGroupId()),
 						new Long(siteAdministratorRole.getRoleId())
 					});
+
+				Set<User> users = new HashSet<User>();
 
 				users.addAll(
 					UserLocalServiceUtil.search(
@@ -880,7 +881,8 @@ public class ContactsCenterPortlet extends MVCPortlet {
 						QueryUtil.ALL_POS, QueryUtil.ALL_POS,
 						(OrderByComparator)null));
 
-								usersList = new ArrayList<User>(users);
+				usersList = new ArrayList<User>(users);
+
 				ListUtil.sort(usersList, new UserLastNameComparator(true));
 			}
 			else {
