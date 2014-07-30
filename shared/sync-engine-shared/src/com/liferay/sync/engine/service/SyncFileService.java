@@ -489,7 +489,7 @@ public class SyncFileService {
 		}
 	}
 
-	public static long getSyncFileCount(int state) {
+	public static long getSyncFilesCount(int state) {
 		try {
 			return _syncFilePersistence.countByState(state);
 		}
