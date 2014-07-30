@@ -120,6 +120,10 @@ $default-border-color: #E7E7E7;
 		}
 	}
 
+	.icon-download:before {
+		margin-right: 4px;
+	}
+
 	.activity-body {
 		padding: 0.6em 0.9em;
 
@@ -171,6 +175,7 @@ $default-border-color: #E7E7E7;
 			height: 2.5em;
 			overflow: hidden;
 			padding: 0 0.9em;
+			position: relative;
 
 			&:last-child {
 				border-bottom-width: 0;
@@ -191,6 +196,13 @@ $default-border-color: #E7E7E7;
 			display: inline;
 			line-height: 2.5em;
 			overflow: hidden;
+		}
+
+		.activity-subentry-link {
+			padding: 10px 0;
+			position: absolute;
+			right: 0;
+			top: 0;
 		}
 	}
 
