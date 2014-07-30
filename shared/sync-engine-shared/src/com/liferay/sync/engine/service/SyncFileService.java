@@ -265,19 +265,6 @@ public class SyncFileService {
 		return syncFile;
 	}
 
-	public static long countSyncFiles(int state) {
-		try {
-			return _syncFilePersistence.countByState(state);
-		}
-		catch (SQLException sqle) {
-			if (_logger.isDebugEnabled()) {
-				_logger.debug(sqle.getMessage(), sqle);
-			}
-
-			return 0;
-		}
-	}
-
 	public static SyncFile deleteFileSyncFile(
 			long syncAccountId, SyncFile syncFile)
 		throws Exception {
@@ -499,6 +486,19 @@ public class SyncFileService {
 			}
 
 			return Collections.emptyList();
+		}
+	}
+
+	public static long getSyncFileCount(int state) {
+		try {
+			return _syncFilePersistence.countByState(state);
+		}
+		catch (SQLException sqle) {
+			if (_logger.isDebugEnabled()) {
+				_logger.debug(sqle.getMessage(), sqle);
+			}
+
+			return 0;
 		}
 	}
 
