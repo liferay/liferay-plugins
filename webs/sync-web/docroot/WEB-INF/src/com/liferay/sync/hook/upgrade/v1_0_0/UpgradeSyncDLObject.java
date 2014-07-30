@@ -26,6 +26,7 @@ import com.liferay.portal.model.Group;
 import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portlet.documentlibrary.NoSuchFileException;
 import com.liferay.portlet.documentlibrary.model.DLFileEntry;
+import com.liferay.portlet.documentlibrary.model.DLFileEntryConstants;
 import com.liferay.portlet.documentlibrary.model.DLFolder;
 import com.liferay.portlet.documentlibrary.model.DLFolderConstants;
 import com.liferay.portlet.documentlibrary.service.DLFolderLocalServiceUtil;
@@ -127,7 +128,9 @@ public class UpgradeSyncDLObject extends UpgradeProcess {
 	}
 
 	protected void updateSyncDLObjects() throws Exception {
-		SyncDLObjectLocalServiceUtil.removeOldPWCSyncDLObjects();
+		SyncDLObjectLocalServiceUtil.deleteSyncDLObjects(
+			SyncConstants.TYPE_FILE,
+			DLFileEntryConstants.PRIVATE_WORKING_COPY_VERSION);
 
 		List<Group> groups =
 			GroupLocalServiceUtil.getGroups(
