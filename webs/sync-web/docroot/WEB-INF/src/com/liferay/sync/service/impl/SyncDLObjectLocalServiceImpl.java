@@ -21,6 +21,7 @@ import com.liferay.portal.kernel.dao.orm.ProjectionFactoryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.repository.model.Folder;
 import com.liferay.portlet.documentlibrary.model.DLFileEntry;
+import com.liferay.portlet.documentlibrary.model.DLFileEntryConstants;
 import com.liferay.portlet.documentlibrary.model.DLFolderConstants;
 import com.liferay.sync.model.SyncConstants;
 import com.liferay.sync.model.SyncDLObject;
@@ -118,6 +119,13 @@ public class SyncDLObjectLocalServiceImpl
 		}
 
 		return modifiedTimes.get(0);
+	}
+
+	@Override
+	public void removeOldPWCSyncDLObjects() {
+		syncDLObjectPersistence.removeByT_V(
+			SyncConstants.TYPE_FILE,
+			DLFileEntryConstants.PRIVATE_WORKING_COPY_VERSION);
 	}
 
 	protected boolean isDefaultRepository(long folderId)

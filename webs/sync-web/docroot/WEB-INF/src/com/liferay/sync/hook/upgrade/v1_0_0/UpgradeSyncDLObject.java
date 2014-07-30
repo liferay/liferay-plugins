@@ -127,6 +127,8 @@ public class UpgradeSyncDLObject extends UpgradeProcess {
 	}
 
 	protected void updateSyncDLObjects() throws Exception {
+		SyncDLObjectLocalServiceUtil.removeOldPWCSyncDLObjects();
+
 		List<Group> groups =
 			GroupLocalServiceUtil.getGroups(
 				QueryUtil.ALL_POS, QueryUtil.ALL_POS);
