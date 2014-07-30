@@ -111,6 +111,10 @@ public class SyncClientUpdater {
 				try {
 					SyncVersion latestSyncVersion = getLatestSyncVersion();
 
+					if (latestSyncVersion == null) {
+						return;
+					}
+
 					if ((SyncPropService.getInteger("ignoreUpdateBuild") !=
 							latestSyncVersion.getBuildNumber()) &&
 						isUpdateAvailable(latestSyncVersion)) {

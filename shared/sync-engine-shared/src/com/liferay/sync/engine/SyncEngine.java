@@ -314,7 +314,7 @@ public class SyncEngine {
 			}
 			else {
 
-				// If the file does ont exist on the portal yet, delete the
+				// If the file does not exist on the portal yet, delete the
 				// database entry and let the engine recreate it.
 
 				SyncFileService.deleteSyncFile(uploadingSyncFile, false);
