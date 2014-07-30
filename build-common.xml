@@ -2262,7 +2262,7 @@ Please find a solution that does not require portal-impl.jar.
 					/>
 
 					<unzip
-						dest="${app.server.tomcat.dir}/webapps/"
+						dest="${app.server.tomcat.dir}/webapps"
 						src="tomcat.zip"
 					>
 						<patternset
