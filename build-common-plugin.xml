@@ -1418,7 +1418,7 @@ Please find a solution that does not require portal-impl.jar.
 				<zip destfile="${plugin.src.file}">
 					<zipfileset
 						dir="${docroot.dir}"
-						excludes="${liferay-hook.xml.excludes}"
+						excludes="${liferay-hook.xml.excludes},**/classes/**,**/lib/**"
 						prefix="${plugin.name}-src-${plugin.full.version}"
 					/>
 					<zipfileset
@@ -1427,6 +1427,35 @@ Please find a solution that does not require portal-impl.jar.
 						includes="WEB-INF/liferay-hook.xml.processed"
 					/>
 				</zip>
+
+				<if>
+					<not>
+						<equals arg1="${plugin.name}" arg2="portal-compat-shared" />
+					</not>
+					<then>
+						<if>
+							<isset property="import.shared" />
+							<then>
+								<var name="import.shared" value="portal-compat-shared,${import.shared}" />
+							</then>
+							<else>
+								<var name="import.shared" value="portal-compat-shared" />
+							</else>
+						</if>
+					</then>
+				</if>
+
+				<for list="${import.shared}" param="import.shared.current">
+					<sequential>
+						<zip destfile="${plugin.src.file}" update="true">
+							<zipfileset
+								dir="${sdk.dir}/shared/@{import.shared.current}"
+								excludes="build.xml,**/classes/**,**/lib/**"
+								prefix="@{import.shared.current}-src"
+							/>
+						</zip>
+					</sequential>
+				</for>
 			</then>
 		</if>
 	</target>
