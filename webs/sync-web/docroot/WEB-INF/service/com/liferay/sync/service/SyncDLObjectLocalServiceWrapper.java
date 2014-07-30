@@ -307,6 +307,13 @@ public class SyncDLObjectLocalServiceWrapper implements SyncDLObjectLocalService
 	}
 
 	@Override
+	public void deleteSyncDLObjects(java.lang.String version,
+		java.lang.String type)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		_syncDLObjectLocalService.deleteSyncDLObjects(version, type);
+	}
+
+	@Override
 	public long getLatestModifiedTime()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _syncDLObjectLocalService.getLatestModifiedTime();

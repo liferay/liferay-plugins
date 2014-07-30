@@ -125,9 +125,15 @@ public class SyncDLObjectLocalServiceClpInvoker {
 				"java.lang.String"
 			};
 
-		_methodName81 = "getLatestModifiedTime";
+		_methodName81 = "deleteSyncDLObjects";
 
-		_methodParameterTypes81 = new String[] {  };
+		_methodParameterTypes81 = new String[] {
+				"java.lang.String", "java.lang.String"
+			};
+
+		_methodName82 = "getLatestModifiedTime";
+
+		_methodParameterTypes82 = new String[] {  };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -253,6 +259,14 @@ public class SyncDLObjectLocalServiceClpInvoker {
 
 		if (_methodName81.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes81, parameterTypes)) {
+			SyncDLObjectLocalServiceUtil.deleteSyncDLObjects((java.lang.String)arguments[0],
+				(java.lang.String)arguments[1]);
+
+			return null;
+		}
+
+		if (_methodName82.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes82, parameterTypes)) {
 			return SyncDLObjectLocalServiceUtil.getLatestModifiedTime();
 		}
 
@@ -299,4 +313,6 @@ public class SyncDLObjectLocalServiceClpInvoker {
 	private String[] _methodParameterTypes80;
 	private String _methodName81;
 	private String[] _methodParameterTypes81;
+	private String _methodName82;
+	private String[] _methodParameterTypes82;
 }

@@ -261,6 +261,10 @@ public interface SyncDLObjectLocalService extends BaseLocalService,
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
+	public void deleteSyncDLObjects(java.lang.String version,
+		java.lang.String type)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public long getLatestModifiedTime()
 		throws com.liferay.portal.kernel.exception.SystemException;

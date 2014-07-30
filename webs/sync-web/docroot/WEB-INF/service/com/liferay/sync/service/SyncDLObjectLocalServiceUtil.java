@@ -293,6 +293,12 @@ public class SyncDLObjectLocalServiceUtil {
 			lockUserId, lockUserName, type, typePK, typeUuid);
 	}
 
+	public static void deleteSyncDLObjects(java.lang.String version,
+		java.lang.String type)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		getService().deleteSyncDLObjects(version, type);
+	}
+
 	public static long getLatestModifiedTime()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().getLatestModifiedTime();

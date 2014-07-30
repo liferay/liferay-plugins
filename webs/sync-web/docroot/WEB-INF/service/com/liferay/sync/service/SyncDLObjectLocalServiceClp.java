@@ -126,9 +126,15 @@ public class SyncDLObjectLocalServiceClp implements SyncDLObjectLocalService {
 				"java.lang.String"
 			};
 
-		_methodName20 = "getLatestModifiedTime";
+		_methodName20 = "deleteSyncDLObjects";
 
-		_methodParameterTypes20 = new String[] {  };
+		_methodParameterTypes20 = new String[] {
+				"java.lang.String", "java.lang.String"
+			};
+
+		_methodName21 = "getLatestModifiedTime";
+
+		_methodParameterTypes21 = new String[] {  };
 	}
 
 	@Override
@@ -764,13 +770,43 @@ public class SyncDLObjectLocalServiceClp implements SyncDLObjectLocalService {
 	}
 
 	@Override
+	public void deleteSyncDLObjects(java.lang.String version,
+		java.lang.String type)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		try {
+			_invokableLocalService.invokeMethod(_methodName20,
+				_methodParameterTypes20,
+				new Object[] {
+					ClpSerializer.translateInput(version),
+					
+				ClpSerializer.translateInput(type)
+				});
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+	}
+
+	@Override
 	public long getLatestModifiedTime()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName20,
-					_methodParameterTypes20, new Object[] {  });
+			returnObj = _invokableLocalService.invokeMethod(_methodName21,
+					_methodParameterTypes21, new Object[] {  });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -832,4 +868,6 @@ public class SyncDLObjectLocalServiceClp implements SyncDLObjectLocalService {
 	private String[] _methodParameterTypes19;
 	private String _methodName20;
 	private String[] _methodParameterTypes20;
+	private String _methodName21;
+	private String[] _methodParameterTypes21;
 }

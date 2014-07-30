@@ -85,6 +85,624 @@ public class SyncDLObjectPersistenceImpl extends BasePersistenceImpl<SyncDLObjec
 	public static final FinderPath FINDER_PATH_COUNT_ALL = new FinderPath(SyncDLObjectModelImpl.ENTITY_CACHE_ENABLED,
 			SyncDLObjectModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countAll", new String[0]);
+	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_V_T = new FinderPath(SyncDLObjectModelImpl.ENTITY_CACHE_ENABLED,
+			SyncDLObjectModelImpl.FINDER_CACHE_ENABLED, SyncDLObjectImpl.class,
+			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByV_T",
+			new String[] {
+				String.class.getName(), String.class.getName(),
+				
+			Integer.class.getName(), Integer.class.getName(),
+				OrderByComparator.class.getName()
+			});
+	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_V_T = new FinderPath(SyncDLObjectModelImpl.ENTITY_CACHE_ENABLED,
+			SyncDLObjectModelImpl.FINDER_CACHE_ENABLED, SyncDLObjectImpl.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByV_T",
+			new String[] { String.class.getName(), String.class.getName() },
+			SyncDLObjectModelImpl.VERSION_COLUMN_BITMASK |
+			SyncDLObjectModelImpl.TYPE_COLUMN_BITMASK |
+			SyncDLObjectModelImpl.COMPANYID_COLUMN_BITMASK |
+			SyncDLObjectModelImpl.MODIFIEDTIME_COLUMN_BITMASK |
+			SyncDLObjectModelImpl.REPOSITORYID_COLUMN_BITMASK);
+	public static final FinderPath FINDER_PATH_COUNT_BY_V_T = new FinderPath(SyncDLObjectModelImpl.ENTITY_CACHE_ENABLED,
+			SyncDLObjectModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByV_T",
+			new String[] { String.class.getName(), String.class.getName() });
+
+	/**
+	 * Returns all the sync d l objects where version = &#63; and type = &#63;.
+	 *
+	 * @param version the version
+	 * @param type the type
+	 * @return the matching sync d l objects
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public List<SyncDLObject> findByV_T(String version, String type)
+		throws SystemException {
+		return findByV_T(version, type, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+			null);
+	}
+
+	/**
+	 * Returns a range of all the sync d l objects where version = &#63; and type = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.sync.model.impl.SyncDLObjectModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @param version the version
+	 * @param type the type
+	 * @param start the lower bound of the range of sync d l objects
+	 * @param end the upper bound of the range of sync d l objects (not inclusive)
+	 * @return the range of matching sync d l objects
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public List<SyncDLObject> findByV_T(String version, String type, int start,
+		int end) throws SystemException {
+		return findByV_T(version, type, start, end, null);
+	}
+
+	/**
+	 * Returns an ordered range of all the sync d l objects where version = &#63; and type = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.sync.model.impl.SyncDLObjectModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @param version the version
+	 * @param type the type
+	 * @param start the lower bound of the range of sync d l objects
+	 * @param end the upper bound of the range of sync d l objects (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @return the ordered range of matching sync d l objects
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public List<SyncDLObject> findByV_T(String version, String type, int start,
+		int end, OrderByComparator orderByComparator) throws SystemException {
+		boolean pagination = true;
+		FinderPath finderPath = null;
+		Object[] finderArgs = null;
+
+		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
+				(orderByComparator == null)) {
+			pagination = false;
+			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_V_T;
+			finderArgs = new Object[] { version, type };
+		}
+		else {
+			finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_V_T;
+			finderArgs = new Object[] {
+					version, type,
+					
+					start, end, orderByComparator
+				};
+		}
+
+		List<SyncDLObject> list = (List<SyncDLObject>)FinderCacheUtil.getResult(finderPath,
+				finderArgs, this);
+
+		if ((list != null) && !list.isEmpty()) {
+			for (SyncDLObject syncDLObject : list) {
+				if (!Validator.equals(version, syncDLObject.getVersion()) ||
+						!Validator.equals(type, syncDLObject.getType())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
+
+		if (list == null) {
+			StringBundler query = null;
+
+			if (orderByComparator != null) {
+				query = new StringBundler(4 +
+						(orderByComparator.getOrderByFields().length * 3));
+			}
+			else {
+				query = new StringBundler(4);
+			}
+
+			query.append(_SQL_SELECT_SYNCDLOBJECT_WHERE);
+
+			boolean bindVersion = false;
+
+			if (version == null) {
+				query.append(_FINDER_COLUMN_V_T_VERSION_1);
+			}
+			else if (version.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_V_T_VERSION_3);
+			}
+			else {
+				bindVersion = true;
+
+				query.append(_FINDER_COLUMN_V_T_VERSION_2);
+			}
+
+			boolean bindType = false;
+
+			if (type == null) {
+				query.append(_FINDER_COLUMN_V_T_TYPE_1);
+			}
+			else if (type.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_V_T_TYPE_3);
+			}
+			else {
+				bindType = true;
+
+				query.append(_FINDER_COLUMN_V_T_TYPE_2);
+			}
+
+			if (orderByComparator != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator);
+			}
+			else
+			 if (pagination) {
+				query.append(SyncDLObjectModelImpl.ORDER_BY_JPQL);
+			}
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				if (bindVersion) {
+					qPos.add(version);
+				}
+
+				if (bindType) {
+					qPos.add(type);
+				}
+
+				if (!pagination) {
+					list = (List<SyncDLObject>)QueryUtil.list(q, getDialect(),
+							start, end, false);
+
+					Collections.sort(list);
+
+					list = new UnmodifiableList<SyncDLObject>(list);
+				}
+				else {
+					list = (List<SyncDLObject>)QueryUtil.list(q, getDialect(),
+							start, end);
+				}
+
+				cacheResult(list);
+
+				FinderCacheUtil.putResult(finderPath, finderArgs, list);
+			}
+			catch (Exception e) {
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
+
+				throw processException(e);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+
+		return list;
+	}
+
+	/**
+	 * Returns the first sync d l object in the ordered set where version = &#63; and type = &#63;.
+	 *
+	 * @param version the version
+	 * @param type the type
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching sync d l object
+	 * @throws com.liferay.sync.NoSuchDLObjectException if a matching sync d l object could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public SyncDLObject findByV_T_First(String version, String type,
+		OrderByComparator orderByComparator)
+		throws NoSuchDLObjectException, SystemException {
+		SyncDLObject syncDLObject = fetchByV_T_First(version, type,
+				orderByComparator);
+
+		if (syncDLObject != null) {
+			return syncDLObject;
+		}
+
+		StringBundler msg = new StringBundler(6);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("version=");
+		msg.append(version);
+
+		msg.append(", type=");
+		msg.append(type);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchDLObjectException(msg.toString());
+	}
+
+	/**
+	 * Returns the first sync d l object in the ordered set where version = &#63; and type = &#63;.
+	 *
+	 * @param version the version
+	 * @param type the type
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching sync d l object, or <code>null</code> if a matching sync d l object could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public SyncDLObject fetchByV_T_First(String version, String type,
+		OrderByComparator orderByComparator) throws SystemException {
+		List<SyncDLObject> list = findByV_T(version, type, 0, 1,
+				orderByComparator);
+
+		if (!list.isEmpty()) {
+			return list.get(0);
+		}
+
+		return null;
+	}
+
+	/**
+	 * Returns the last sync d l object in the ordered set where version = &#63; and type = &#63;.
+	 *
+	 * @param version the version
+	 * @param type the type
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching sync d l object
+	 * @throws com.liferay.sync.NoSuchDLObjectException if a matching sync d l object could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public SyncDLObject findByV_T_Last(String version, String type,
+		OrderByComparator orderByComparator)
+		throws NoSuchDLObjectException, SystemException {
+		SyncDLObject syncDLObject = fetchByV_T_Last(version, type,
+				orderByComparator);
+
+		if (syncDLObject != null) {
+			return syncDLObject;
+		}
+
+		StringBundler msg = new StringBundler(6);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("version=");
+		msg.append(version);
+
+		msg.append(", type=");
+		msg.append(type);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchDLObjectException(msg.toString());
+	}
+
+	/**
+	 * Returns the last sync d l object in the ordered set where version = &#63; and type = &#63;.
+	 *
+	 * @param version the version
+	 * @param type the type
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching sync d l object, or <code>null</code> if a matching sync d l object could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public SyncDLObject fetchByV_T_Last(String version, String type,
+		OrderByComparator orderByComparator) throws SystemException {
+		int count = countByV_T(version, type);
+
+		if (count == 0) {
+			return null;
+		}
+
+		List<SyncDLObject> list = findByV_T(version, type, count - 1, count,
+				orderByComparator);
+
+		if (!list.isEmpty()) {
+			return list.get(0);
+		}
+
+		return null;
+	}
+
+	/**
+	 * Returns the sync d l objects before and after the current sync d l object in the ordered set where version = &#63; and type = &#63;.
+	 *
+	 * @param syncDLObjectId the primary key of the current sync d l object
+	 * @param version the version
+	 * @param type the type
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the previous, current, and next sync d l object
+	 * @throws com.liferay.sync.NoSuchDLObjectException if a sync d l object with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public SyncDLObject[] findByV_T_PrevAndNext(long syncDLObjectId,
+		String version, String type, OrderByComparator orderByComparator)
+		throws NoSuchDLObjectException, SystemException {
+		SyncDLObject syncDLObject = findByPrimaryKey(syncDLObjectId);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			SyncDLObject[] array = new SyncDLObjectImpl[3];
+
+			array[0] = getByV_T_PrevAndNext(session, syncDLObject, version,
+					type, orderByComparator, true);
+
+			array[1] = syncDLObject;
+
+			array[2] = getByV_T_PrevAndNext(session, syncDLObject, version,
+					type, orderByComparator, false);
+
+			return array;
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	protected SyncDLObject getByV_T_PrevAndNext(Session session,
+		SyncDLObject syncDLObject, String version, String type,
+		OrderByComparator orderByComparator, boolean previous) {
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(6 +
+					(orderByComparator.getOrderByFields().length * 6));
+		}
+		else {
+			query = new StringBundler(3);
+		}
+
+		query.append(_SQL_SELECT_SYNCDLOBJECT_WHERE);
+
+		boolean bindVersion = false;
+
+		if (version == null) {
+			query.append(_FINDER_COLUMN_V_T_VERSION_1);
+		}
+		else if (version.equals(StringPool.BLANK)) {
+			query.append(_FINDER_COLUMN_V_T_VERSION_3);
+		}
+		else {
+			bindVersion = true;
+
+			query.append(_FINDER_COLUMN_V_T_VERSION_2);
+		}
+
+		boolean bindType = false;
+
+		if (type == null) {
+			query.append(_FINDER_COLUMN_V_T_TYPE_1);
+		}
+		else if (type.equals(StringPool.BLANK)) {
+			query.append(_FINDER_COLUMN_V_T_TYPE_3);
+		}
+		else {
+			bindType = true;
+
+			query.append(_FINDER_COLUMN_V_T_TYPE_2);
+		}
+
+		if (orderByComparator != null) {
+			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+
+			if (orderByConditionFields.length > 0) {
+				query.append(WHERE_AND);
+			}
+
+			for (int i = 0; i < orderByConditionFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByConditionFields[i]);
+
+				if ((i + 1) < orderByConditionFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN_HAS_NEXT);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN);
+					}
+				}
+			}
+
+			query.append(ORDER_BY_CLAUSE);
+
+			String[] orderByFields = orderByComparator.getOrderByFields();
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC_HAS_NEXT);
+					}
+					else {
+						query.append(ORDER_BY_DESC_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC);
+					}
+					else {
+						query.append(ORDER_BY_DESC);
+					}
+				}
+			}
+		}
+		else {
+			query.append(SyncDLObjectModelImpl.ORDER_BY_JPQL);
+		}
+
+		String sql = query.toString();
+
+		Query q = session.createQuery(sql);
+
+		q.setFirstResult(0);
+		q.setMaxResults(2);
+
+		QueryPos qPos = QueryPos.getInstance(q);
+
+		if (bindVersion) {
+			qPos.add(version);
+		}
+
+		if (bindType) {
+			qPos.add(type);
+		}
+
+		if (orderByComparator != null) {
+			Object[] values = orderByComparator.getOrderByConditionValues(syncDLObject);
+
+			for (Object value : values) {
+				qPos.add(value);
+			}
+		}
+
+		List<SyncDLObject> list = q.list();
+
+		if (list.size() == 2) {
+			return list.get(1);
+		}
+		else {
+			return null;
+		}
+	}
+
+	/**
+	 * Removes all the sync d l objects where version = &#63; and type = &#63; from the database.
+	 *
+	 * @param version the version
+	 * @param type the type
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public void removeByV_T(String version, String type)
+		throws SystemException {
+		for (SyncDLObject syncDLObject : findByV_T(version, type,
+				QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
+			remove(syncDLObject);
+		}
+	}
+
+	/**
+	 * Returns the number of sync d l objects where version = &#63; and type = &#63;.
+	 *
+	 * @param version the version
+	 * @param type the type
+	 * @return the number of matching sync d l objects
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public int countByV_T(String version, String type)
+		throws SystemException {
+		FinderPath finderPath = FINDER_PATH_COUNT_BY_V_T;
+
+		Object[] finderArgs = new Object[] { version, type };
+
+		Long count = (Long)FinderCacheUtil.getResult(finderPath, finderArgs,
+				this);
+
+		if (count == null) {
+			StringBundler query = new StringBundler(3);
+
+			query.append(_SQL_COUNT_SYNCDLOBJECT_WHERE);
+
+			boolean bindVersion = false;
+
+			if (version == null) {
+				query.append(_FINDER_COLUMN_V_T_VERSION_1);
+			}
+			else if (version.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_V_T_VERSION_3);
+			}
+			else {
+				bindVersion = true;
+
+				query.append(_FINDER_COLUMN_V_T_VERSION_2);
+			}
+
+			boolean bindType = false;
+
+			if (type == null) {
+				query.append(_FINDER_COLUMN_V_T_TYPE_1);
+			}
+			else if (type.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_V_T_TYPE_3);
+			}
+			else {
+				bindType = true;
+
+				query.append(_FINDER_COLUMN_V_T_TYPE_2);
+			}
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				if (bindVersion) {
+					qPos.add(version);
+				}
+
+				if (bindType) {
+					qPos.add(type);
+				}
+
+				count = (Long)q.uniqueResult();
+
+				FinderCacheUtil.putResult(finderPath, finderArgs, count);
+			}
+			catch (Exception e) {
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
+
+				throw processException(e);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+
+		return count.intValue();
+	}
+
+	private static final String _FINDER_COLUMN_V_T_VERSION_1 = "syncDLObject.version IS NULL AND ";
+	private static final String _FINDER_COLUMN_V_T_VERSION_2 = "syncDLObject.version = ? AND ";
+	private static final String _FINDER_COLUMN_V_T_VERSION_3 = "(syncDLObject.version IS NULL OR syncDLObject.version = '') AND ";
+	private static final String _FINDER_COLUMN_V_T_TYPE_1 = "syncDLObject.type IS NULL";
+	private static final String _FINDER_COLUMN_V_T_TYPE_2 = "syncDLObject.type = ?";
+	private static final String _FINDER_COLUMN_V_T_TYPE_3 = "(syncDLObject.type IS NULL OR syncDLObject.type = '')";
 	public static final FinderPath FINDER_PATH_FETCH_BY_T_T = new FinderPath(SyncDLObjectModelImpl.ENTITY_CACHE_ENABLED,
 			SyncDLObjectModelImpl.FINDER_CACHE_ENABLED, SyncDLObjectImpl.class,
 			FINDER_CLASS_NAME_ENTITY, "fetchByT_T",
@@ -1151,6 +1769,8 @@ public class SyncDLObjectPersistenceImpl extends BasePersistenceImpl<SyncDLObjec
 
 		boolean isNew = syncDLObject.isNew();
 
+		SyncDLObjectModelImpl syncDLObjectModelImpl = (SyncDLObjectModelImpl)syncDLObject;
+
 		Session session = null;
 
 		try {
@@ -1176,6 +1796,29 @@ public class SyncDLObjectPersistenceImpl extends BasePersistenceImpl<SyncDLObjec
 
 		if (isNew || !SyncDLObjectModelImpl.COLUMN_BITMASK_ENABLED) {
 			FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+		}
+
+		else {
+			if ((syncDLObjectModelImpl.getColumnBitmask() &
+					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_V_T.getColumnBitmask()) != 0) {
+				Object[] args = new Object[] {
+						syncDLObjectModelImpl.getOriginalVersion(),
+						syncDLObjectModelImpl.getOriginalType()
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_V_T, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_V_T,
+					args);
+
+				args = new Object[] {
+						syncDLObjectModelImpl.getVersion(),
+						syncDLObjectModelImpl.getType()
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_V_T, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_V_T,
+					args);
+			}
 		}
 
 		EntityCacheUtil.putResult(SyncDLObjectModelImpl.ENTITY_CACHE_ENABLED,
