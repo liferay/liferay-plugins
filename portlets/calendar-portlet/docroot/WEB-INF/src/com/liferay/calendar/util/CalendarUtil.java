@@ -181,14 +181,14 @@ public class CalendarUtil {
 	}
 
 	public static String[] splitKeywords(String keywords) {
-		Set<String> keywordsList = new LinkedHashSet<String>();
+		Set<String> keywordsSet = new LinkedHashSet<String>();
 
 		StringBundler sb = new StringBundler();
 
 		for (char c : keywords.toCharArray()) {
 			if (Character.isWhitespace(c)) {
 				if (sb.length() > 0) {
-					keywordsList.add(sb.toString());
+					keywordsSet.add(sb.toString());
 
 					sb = new StringBundler();
 				}
@@ -202,10 +202,10 @@ public class CalendarUtil {
 		}
 
 		if (sb.length() > 0) {
-			keywordsList.add(sb.toString());
+			keywordsSet.add(sb.toString());
 		}
 
-		return StringUtil.split(StringUtil.merge(keywordsList));
+		return StringUtil.split(StringUtil.merge(keywordsSet));
 	}
 
 	public static JSONObject toCalendarBookingJSONObject(

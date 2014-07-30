@@ -110,7 +110,7 @@ public class AdminIndexer extends BaseIndexer {
 		String keywords = searchContext.getKeywords();
 
 		queryTerms = ArrayUtil.append(
-			queryTerms, KnowledgeBaseUtil.parseKeywords(keywords));
+			queryTerms, KnowledgeBaseUtil.splitKeywords(keywords));
 
 		hits.setQueryTerms(queryTerms);
 

@@ -1248,7 +1248,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 
 			Disjunction disjunction = RestrictionsFactoryUtil.disjunction();
 
-			for (String keyword : KnowledgeBaseUtil.parseKeywords(value)) {
+			for (String keyword : KnowledgeBaseUtil.splitKeywords(value)) {
 				Criterion criterion = RestrictionsFactoryUtil.ilike(
 					key, StringUtil.quote(keyword, StringPool.PERCENT));
 

@@ -339,15 +339,15 @@ public class KnowledgeBaseUtil {
 			KBArticle.class.getName(), "urlTitle", title);
 	}
 
-	public static String[] parseKeywords(String values) {
-		Set<String> keywords = new LinkedHashSet<String>();
+	public static String[] splitKeywords(String keywords) {
+		Set<String> keywordsSet = new LinkedHashSet<String>();
 
 		StringBundler sb = new StringBundler();
 
-		for (char c : values.toCharArray()) {
+		for (char c : keywords.toCharArray()) {
 			if (Character.isWhitespace(c)) {
 				if (sb.length() > 0) {
-					keywords.add(sb.toString());
+					keywordsSet.add(sb.toString());
 
 					sb = new StringBundler();
 				}
@@ -356,15 +356,15 @@ public class KnowledgeBaseUtil {
 				sb.append(c);
 			}
 			else {
-				return new String[] {values};
+				return new String[] {keywords};
 			}
 		}
 
 		if (sb.length() > 0) {
-			keywords.add(sb.toString());
+			keywordsSet.add(sb.toString());
 		}
 
-		return StringUtil.split(StringUtil.merge(keywords));
+		return StringUtil.split(StringUtil.merge(keywordsSet));
 	}
 
 	public static List<KBArticle> sort(
