@@ -489,19 +489,6 @@ public class SyncFileService {
 		}
 	}
 
-	public static long getSyncFilesCount(int state) {
-		try {
-			return _syncFilePersistence.countByState(state);
-		}
-		catch (SQLException sqle) {
-			if (_logger.isDebugEnabled()) {
-				_logger.debug(sqle.getMessage(), sqle);
-			}
-
-			return 0;
-		}
-	}
-
 	public static SyncFilePersistence getSyncFilePersistence() {
 		if (_syncFilePersistence != null) {
 			return _syncFilePersistence;
@@ -519,6 +506,19 @@ public class SyncFileService {
 		_syncFilePersistence.registerModelListener(new SyncFileModelListener());
 
 		return _syncFilePersistence;
+	}
+
+	public static long getSyncFilesCount(int state) {
+		try {
+			return _syncFilePersistence.countByState(state);
+		}
+		catch (SQLException sqle) {
+			if (_logger.isDebugEnabled()) {
+				_logger.debug(sqle.getMessage(), sqle);
+			}
+
+			return 0;
+		}
 	}
 
 	public static SyncFile moveFileSyncFile(
