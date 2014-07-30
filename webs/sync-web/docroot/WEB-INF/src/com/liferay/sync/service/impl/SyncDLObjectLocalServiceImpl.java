@@ -103,10 +103,10 @@ public class SyncDLObjectLocalServiceImpl
 	}
 
 	@Override
-	public void deleteSyncDLObjects(String type, String version)
+	public void deleteSyncDLObjects(String version, String type)
 		throws SystemException {
 
-		syncDLObjectPersistence.removeByT_V(type, version);
+		syncDLObjectPersistence.removeByV_T(version, type);
 	}
 
 	@Override

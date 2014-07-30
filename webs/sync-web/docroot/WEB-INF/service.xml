@@ -76,9 +76,9 @@
 
 		<!-- Finder methods -->
 
-		<finder name="T_V" return-type="Collection">
-			<finder-column name="type" />
+		<finder name="V_T" return-type="Collection">
 			<finder-column name="version" />
+			<finder-column name="type" />
 		</finder>
 		<finder name="T_T" return-type="SyncDLObject" unique="true">
 			<finder-column name="type" />
