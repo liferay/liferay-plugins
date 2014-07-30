@@ -417,6 +417,10 @@ $default-border-color: #E7E7E7;
 		}
 	}
 
+	.portlet-document-library-activity .grouped-activity-body-container {
+		position: relative;
+	}
+
 	.tasks-portlet-activity .grouped-activity-body-container {
 		height: 126px;
 	}
