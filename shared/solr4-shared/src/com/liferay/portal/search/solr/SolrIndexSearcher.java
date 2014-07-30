@@ -145,7 +145,7 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 
 				Serializable modified = searchContext.getAttribute("modified");
 
-				if (Validator.isNull(modified)) {
+				if (Validator.isNotNull(modified)) {
 					String facetQuery =
 						facetConfiguration.getFieldName() + StringPool.COLON +
 							GetterUtil.getString(modified);
