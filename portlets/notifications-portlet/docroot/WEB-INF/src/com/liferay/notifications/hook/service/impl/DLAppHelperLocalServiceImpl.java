@@ -20,6 +20,7 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.repository.model.FileVersion;
+import com.liferay.portal.kernel.repository.model.Folder;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.PortletKeys;
@@ -27,7 +28,6 @@ import com.liferay.portlet.asset.AssetRendererFactoryRegistryUtil;
 import com.liferay.portlet.asset.model.AssetRenderer;
 import com.liferay.portlet.asset.model.AssetRendererFactory;
 import com.liferay.portlet.documentlibrary.model.DLFileEntry;
-import com.liferay.portlet.documentlibrary.model.DLFolder;
 import com.liferay.portlet.documentlibrary.service.DLAppHelperLocalService;
 import com.liferay.portlet.documentlibrary.service.DLAppHelperLocalServiceWrapper;
 
@@ -75,7 +75,7 @@ public class DLAppHelperLocalServiceImpl
 
 		if (Validator.isNotNull(entryURL)) {
 			NotificationsUtil.sendNotificationEvent(
-				latestFileVersion.getCompanyId(), _DL_FOLDER_CLASS_NAME,
+				latestFileVersion.getCompanyId(), _FOLDER_CLASS_NAME,
 				latestFileVersion.getGroupId(), PortletKeys.DOCUMENT_LIBRARY,
 				_DL_FILE_ENTRY_CLASS_NAME, latestFileVersion.getFileEntryId(),
 				assetRenderer.getTitle(serviceContext.getLocale()), entryURL,
@@ -90,7 +90,6 @@ public class DLAppHelperLocalServiceImpl
 	private static final String _DL_FILE_ENTRY_CLASS_NAME =
 		DLFileEntry.class.getName();
 
-	private static final String _DL_FOLDER_CLASS_NAME =
-		DLFolder.class.getName();
+	private static final String _FOLDER_CLASS_NAME = Folder.class.getName();
 
 }
