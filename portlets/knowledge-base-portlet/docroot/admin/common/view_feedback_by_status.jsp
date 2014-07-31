@@ -32,7 +32,7 @@ String navItem = kbFeedbackListDisplayContext.getSelectedNavItem();
 		%>
 
 		<aui:nav-item
-			href='<%= kbFeedbackListDisplayContext.getFeedbackByStatusURL(renderResponse, "viewNewFeedback") %>'
+			href='<%= kbFeedbackListDisplayContext.getViewFeedbackURL(renderResponse, "viewNewFeedback") %>'
 			label="<%= newKBCommentsLabel %>"
 			selected='<%= navItem.equals("viewNewFeedback") %>'
 		/>
@@ -44,7 +44,7 @@ String navItem = kbFeedbackListDisplayContext.getSelectedNavItem();
 		%>
 
 		<aui:nav-item
-			href='<%= kbFeedbackListDisplayContext.getFeedbackByStatusURL(renderResponse, "viewInProgressFeedback") %>'
+			href='<%= kbFeedbackListDisplayContext.getViewFeedbackURL(renderResponse, "viewInProgressFeedback") %>'
 			label="<%= inProgressKBCommentsLabel %>"
 			selected='<%= navItem.equals("viewInProgressFeedback") %>'
 		/>
@@ -56,7 +56,7 @@ String navItem = kbFeedbackListDisplayContext.getSelectedNavItem();
 		%>
 
 		<aui:nav-item
-			href='<%= kbFeedbackListDisplayContext.getFeedbackByStatusURL(renderResponse, "viewCompletedFeedback") %>'
+			href='<%= kbFeedbackListDisplayContext.getViewFeedbackURL(renderResponse, "viewCompletedFeedback") %>'
 			label="<%= completedLabel %>"
 			selected='<%= navItem.equals("viewCompletedFeedback") %>'
 		/>

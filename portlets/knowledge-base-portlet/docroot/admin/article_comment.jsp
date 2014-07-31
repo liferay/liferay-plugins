@@ -93,7 +93,7 @@ KBFeedbackListDisplayContext kbFeedbackListDisplayContext = (KBFeedbackListDispl
 						<portlet:param name="status" value="<%= String.valueOf(previousStatus) %>" />
 					</liferay-portlet:actionURL>
 
-					<aui:button href="<%= kbFeedbackListDisplayContext.getFeedbackByStatusURL(previousStatusURL, kbFeedbackListDisplayContext.getSelectedNavItem()) %>" value="<%= KnowledgeBaseUtil.getStatusTransitionLabel(previousStatus) %>" />
+					<aui:button href="<%= kbFeedbackListDisplayContext.getViewFeedbackURL(previousStatusURL, kbFeedbackListDisplayContext.getSelectedNavItem()) %>" value="<%= KnowledgeBaseUtil.getStatusTransitionLabel(previousStatus) %>" />
 				</c:if>
 
 				<c:if test="<%= nextStatus != KBCommentConstants.STATUS_NONE %>">
@@ -102,7 +102,7 @@ KBFeedbackListDisplayContext kbFeedbackListDisplayContext = (KBFeedbackListDispl
 						<portlet:param name="status" value="<%= String.valueOf(nextStatus) %>" />
 					</liferay-portlet:actionURL>
 
-					<aui:button href="<%= kbFeedbackListDisplayContext.getFeedbackByStatusURL(nextStatusURL, kbFeedbackListDisplayContext.getSelectedNavItem()) %>" value="<%= KnowledgeBaseUtil.getStatusTransitionLabel(nextStatus) %>" />
+					<aui:button href="<%= kbFeedbackListDisplayContext.getViewFeedbackURL(nextStatusURL, kbFeedbackListDisplayContext.getSelectedNavItem()) %>" value="<%= KnowledgeBaseUtil.getStatusTransitionLabel(nextStatus) %>" />
 				</c:if>
 
 				<c:if test="<%= (feedbackStatus == KBCommentConstants.STATUS_COMPLETED) && KBCommentPermission.contains(permissionChecker, kbComment, ActionKeys.DELETE) %>">
@@ -110,7 +110,7 @@ KBFeedbackListDisplayContext kbFeedbackListDisplayContext = (KBFeedbackListDispl
 						<portlet:param name="kbCommentId" value="<%= String.valueOf(kbComment.getKbCommentId()) %>" />
 					</liferay-portlet:actionURL>
 
-					<aui:button cssClass="kb-feedback-delete" href="<%= kbFeedbackListDisplayContext.getFeedbackByStatusURL(deleteURL, kbFeedbackListDisplayContext.getSelectedNavItem()) %>" value="delete" />
+					<aui:button cssClass="kb-feedback-delete" href="<%= kbFeedbackListDisplayContext.getViewFeedbackURL(deleteURL, kbFeedbackListDisplayContext.getSelectedNavItem()) %>" value="delete" />
 				</c:if>
 			</div>
 		</td>
