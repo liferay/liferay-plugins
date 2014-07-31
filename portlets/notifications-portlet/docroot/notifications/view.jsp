@@ -24,7 +24,7 @@ boolean actionable = ParamUtil.getBoolean(request, "actionable");
 	<aui:row>
 		<aui:col cssClass="nav-bar user-notifications-sidebar" width="<%= 25 %>">
 			<div class="nav">
-				<a class="clearfix non-actionable" href="javascript:;">
+				<a class="clearfix non-actionable <%= !actionable ? "selected" : "" %>" href="javascript:;">
 					<span class="title"><liferay-ui:message key="notifications" /></span>
 
 					<%
@@ -36,7 +36,7 @@ boolean actionable = ParamUtil.getBoolean(request, "actionable");
 			</div>
 
 			<div class="nav">
-				<a class="clearfix actionable" href="javascript:;">
+				<a class="clearfix actionable <%= actionable ? "selected" : "" %>" href="javascript:;">
 					<span class="title"><liferay-ui:message key="requests" /></span>
 
 					<%
