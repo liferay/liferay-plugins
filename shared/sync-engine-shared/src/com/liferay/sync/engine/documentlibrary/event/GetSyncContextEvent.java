@@ -16,6 +16,8 @@ package com.liferay.sync.engine.documentlibrary.event;
 
 import com.liferay.sync.engine.documentlibrary.handler.GetSyncContextHandler;
 import com.liferay.sync.engine.documentlibrary.handler.Handler;
+import com.liferay.sync.engine.model.SyncAccount;
+import com.liferay.sync.engine.service.SyncAccountService;
 
 import java.util.Map;
 
@@ -33,6 +35,18 @@ public class GetSyncContextEvent extends BaseEvent {
 	@Override
 	protected Handler<Void> getHandler() {
 		return new GetSyncContextHandler(this);
+	}
+
+	@Override
+	protected void processRequest() throws Exception {
+		SyncAccount syncAccount = SyncAccountService.fetchSyncAccount(
+			getSyncAccountId());
+
+		syncAccount.setState(SyncAccount.STATE_CONNECTING);
+
+		SyncAccountService.update(syncAccount);
+
+		super.processRequest();
 	}
 
 	private static final String _URL_PATH =

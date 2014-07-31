@@ -36,6 +36,12 @@ public class GetSyncContextHandler extends BaseJSONHandler {
 
 	@Override
 	public void handleException(Exception e) {
+		SyncAccount syncAccount = SyncAccountService.fetchSyncAccount(
+			getSyncAccountId());
+
+		syncAccount.setState(SyncAccount.STATE_DISCONNECTED);
+
+		SyncAccountService.update(syncAccount);
 	}
 
 	@Override
