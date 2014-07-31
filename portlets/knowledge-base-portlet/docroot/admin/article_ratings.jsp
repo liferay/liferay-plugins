@@ -54,6 +54,7 @@ boolean hasUpdatePermission = KBArticlePermission.contains(permissionChecker, kb
 			<c:choose>
 				<c:when test="<%= kbCommentsCount == 1 %>">
 					|
+
 					<a data-show-node-id="<portlet:namespace />previousCommentsContainer" href="javascript:void(0)">
 						<c:choose>
 							<c:when test="<%= hasUpdatePermission %>">
@@ -71,6 +72,7 @@ boolean hasUpdatePermission = KBArticlePermission.contains(permissionChecker, kb
 				</c:when>
 				<c:when test="<%= kbCommentsCount > 1 %>">
 					|
+
 					<a data-show-node-id="<portlet:namespace />previousCommentsContainer" href="javascript:void(0)">
 						<c:choose>
 							<c:when test="<%= hasUpdatePermission %>">
