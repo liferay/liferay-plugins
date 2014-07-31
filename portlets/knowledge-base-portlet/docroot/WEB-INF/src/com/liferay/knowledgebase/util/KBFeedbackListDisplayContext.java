@@ -42,21 +42,6 @@ public class KBFeedbackListDisplayContext {
 		return getKBCommentsCountByStatus(KBCommentConstants.STATUS_COMPLETED);
 	}
 
-	public String getFeedbackByStatusURL(
-		PortletURL portletURL, String navItem) {
-
-		populateFeedbackByStatusURL(portletURL, navItem);
-
-		return portletURL.toString() + "#kbFeedback";
-	}
-
-	public String getFeedbackByStatusURL(
-		RenderResponse renderResponse, String navItem) {
-
-		return getFeedbackByStatusURL(
-			renderResponse.createRenderURL(), navItem);
-	}
-
 	public int getInProgressKBCommentsCount() {
 		return getKBCommentsCountByStatus(
 			KBCommentConstants.STATUS_IN_PROGRESS);
@@ -70,19 +55,25 @@ public class KBFeedbackListDisplayContext {
 		return _selectedNavItem;
 	}
 
-	public boolean isShowKBArticleTitle() {
-		return _kbArticle == null;
-	}
-
-	public void populateFeedbackByStatusURL(
-		PortletURL portletURL, String navItem) {
-
+	public String getViewFeedbackURL(PortletURL portletURL, String navItem) {
 		portletURL.setParameter("navItem", navItem);
 		portletURL.setParameter("expanded", Boolean.TRUE.toString());
 
 		if (_kbArticle == null) {
 			portletURL.setParameter("mvcPath", "/admin/view_feedback.jsp");
 		}
+
+		return portletURL.toString() + "#kbFeedback";
+	}
+
+	public String getViewFeedbackURL(
+		RenderResponse renderResponse, String navItem) {
+
+		return getViewFeedbackURL(renderResponse.createRenderURL(), navItem);
+	}
+
+	public boolean isShowKBArticleTitle() {
+		return _kbArticle == null;
 	}
 
 	protected int getKBCommentsCountByStatus(int status) {
