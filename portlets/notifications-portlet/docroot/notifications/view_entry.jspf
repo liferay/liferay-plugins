@@ -79,7 +79,9 @@ boolean read = userNotificationEvent.isArchived();
 					/>
 				</span>
 
-				<%= simpleDateFormat.format(userNotificationEvent.getTimestamp()) %>
+				<span title="<%= simpleDateFormat.format(userNotificationEvent.getTimestamp()) %>">
+					<%= Time.getRelativeTimeDescription(userNotificationEvent.getTimestamp(), themeDisplay.getLocale(), themeDisplay.getTimeZone()) %>
+				</span>
 			</div>
 
 			<c:if test="<%= Validator.isNull(filter) %>">
