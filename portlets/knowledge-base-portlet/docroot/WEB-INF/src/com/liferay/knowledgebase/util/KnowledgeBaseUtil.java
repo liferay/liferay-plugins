@@ -355,6 +355,26 @@ public class KnowledgeBaseUtil {
 			KBArticle.class.getName(), "urlTitle", title);
 	}
 
+	public static List<KBArticle> sort(
+		long[] resourcePrimKeys, List<KBArticle> kbArticles) {
+
+		Map<Long, KBArticle> map = new HashMap<Long, KBArticle>();
+
+		for (KBArticle kbArticle : kbArticles) {
+			map.put(kbArticle.getResourcePrimKey(), kbArticle);
+		}
+
+		kbArticles.clear();
+
+		for (long resourcePrimKey : resourcePrimKeys) {
+			if (map.containsKey(resourcePrimKey)) {
+				kbArticles.add(map.get(resourcePrimKey));
+			}
+		}
+
+		return kbArticles;
+	}
+
 	public static String[] splitKeywords(String keywords) {
 		Set<String> keywordsSet = new LinkedHashSet<String>();
 
@@ -381,26 +401,6 @@ public class KnowledgeBaseUtil {
 		}
 
 		return StringUtil.split(StringUtil.merge(keywordsSet));
-	}
-
-	public static List<KBArticle> sort(
-		long[] resourcePrimKeys, List<KBArticle> kbArticles) {
-
-		Map<Long, KBArticle> map = new HashMap<Long, KBArticle>();
-
-		for (KBArticle kbArticle : kbArticles) {
-			map.put(kbArticle.getResourcePrimKey(), kbArticle);
-		}
-
-		kbArticles.clear();
-
-		for (long resourcePrimKey : resourcePrimKeys) {
-			if (map.containsKey(resourcePrimKey)) {
-				kbArticles.add(map.get(resourcePrimKey));
-			}
-		}
-
-		return kbArticles;
 	}
 
 	public static String trimLeadingSlash(String s) {
