@@ -75,6 +75,7 @@
 									<ivy:settings file="${ivy.custom.settings.file}" />
 
 									<ivy:resolve
+										conf="default"
 										file="@{ivy.xml.dir}/ivy.xml"
 										log="download-only"
 										transitive="${ivy.resolve.transitive.dependencies}"
@@ -86,14 +87,12 @@
 										</not>
 										<then>
 											<ivy:retrieve
-												conf="default"
 												overwriteMode="always"
 												pattern="@{ivy.xml.dir}/lib/[artifact].[ext]"
 												type="bundle,eclipse-plugin,jar,orbit"
 											/>
 
 											<ivy:retrieve
-												conf="default"
 												overwriteMode="always"
 												pattern="@{ivy.xml.dir}/lib/[artifact]-[type]s.[ext]"
 												type="source"
@@ -101,14 +100,12 @@
 										</then>
 										<else>
 											<ivy:retrieve
-												conf="default"
 												overwriteMode="always"
 												pattern="@{ivy.xml.dir}/docroot/WEB-INF/lib/[artifact].[ext]"
 												type="bundle,eclipse-plugin,jar,orbit"
 											/>
 
 											<ivy:retrieve
-												conf="default"
 												overwriteMode="always"
 												pattern="@{ivy.xml.dir}/docroot/WEB-INF/lib/[artifact]-[type]s.[ext]"
 												type="source"
@@ -134,6 +131,7 @@
 		<ivy:settings file="${sdk.dir}/ivy-settings-publisher.xml" />
 
 		<ivy:resolve
+			conf="default,provided,runtime"
 			log="download-only"
 			transitive="${ivy.resolve.transitive.dependencies}"
 		/>
@@ -146,7 +144,6 @@
 		<property name="ivy.pom.version" value="${plugin.full.version}${plugin.release.qualifier}" />
 
 		<ivy:makepom
-			conf="default,provided,runtime"
 			description="${ivy.pom.description}"
 			ivyfile="ivy.xml"
 			pomfile="${plugin.pom.file}"
