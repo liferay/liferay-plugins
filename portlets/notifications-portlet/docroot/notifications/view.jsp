@@ -20,7 +20,7 @@
 boolean actionable = ParamUtil.getBoolean(request, "actionable");
 %>
 
-<div class="clearfix user-notifications-container">
+<div class="clearfix user-notifications-container <%= actionable ? "actionable" : "non-actionable" %>">
 	<aui:row>
 		<aui:col cssClass="nav-bar user-notifications-sidebar" width="<%= 25 %>">
 			<div class="nav">

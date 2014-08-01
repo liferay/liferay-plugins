@@ -160,6 +160,7 @@ AUI.add(
 
 						var notificationsConfigurationNode = A.one('.notifications-portlet .user-notifications-container .notifications-configurations');
 						var userNotificationsListNode = A.one('.notifications-portlet .user-notifications-container .user-notifications-list');
+						var userNotificationsContainerNode = A.one('.notifications-portlet .user-notifications-container');
 
 						var nonActionableUserNotificationsLink = A.one('.notifications-portlet .user-notifications-container .user-notifications-sidebar .nav .non-actionable');
 
@@ -174,6 +175,11 @@ AUI.add(
 									}
 
 									nonActionableUserNotificationsLink.addClass('selected');
+
+									if (userNotificationsContainerNode) {
+										userNotificationsContainerNode.addClass('non-actionable');
+										userNotificationsContainerNode.removeClass('actionable');
+									}
 
 									notificationsConfigurationNode.hide();
 									userNotificationsListNode.show();
@@ -200,6 +206,11 @@ AUI.add(
 									}
 
 									actionableUserNotificationsLink.addClass('selected');
+
+									if (userNotificationsContainerNode) {
+										userNotificationsContainerNode.addClass('actionable');
+										userNotificationsContainerNode.removeClass('non-actionable');
+									}
 
 									notificationsConfigurationNode.hide();
 									userNotificationsListNode.show();
