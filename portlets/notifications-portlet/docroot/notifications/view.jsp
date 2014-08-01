@@ -56,7 +56,7 @@ boolean actionable = ParamUtil.getBoolean(request, "actionable");
 
 		<aui:col cssClass="user-notifications-list-container" width="<%= 75 %>">
 			<ul class="unstyled user-notifications-list">
-				<li class="clearfix pagination">
+				<li class="clearfix pagination top">
 					<span class="left-nav previous hide"><a href="javascript:;"><liferay-ui:message key="previous" /></a></span>
 					<span class="page-info hide"></span>
 					<span class="right-nav next hide"><a href="javascript:;"><liferay-ui:message key="next" /></a></span>
@@ -70,7 +70,7 @@ boolean actionable = ParamUtil.getBoolean(request, "actionable");
 
 				<div class="user-notifications"></div>
 
-				<li class="clearfix pagination">
+				<li class="clearfix pagination bottom">
 					<span class="left-nav previous hide"><a href="javascript:;"><liferay-ui:message key="previous" /></a></span>
 					<span class="page-info hide"></span>
 					<span class="right-nav next hide"><a href="javascript:;"><liferay-ui:message key="next" /></a></span>
