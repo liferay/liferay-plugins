@@ -1,4 +1,5 @@
 @import "compass";
+@import "mixins";
 
 @mixin keyframes($name) {
 	@-o-keyframes #{$name} {
@@ -63,6 +64,21 @@
 		width: 350px;
 	}
 
+	.non-actionable .user-notification {
+		&:hover, &.hover {
+			background: #F3F3F3;
+			cursor: pointer;
+		}
+	}
+
+	.actionable .timestamp {
+		display: none;
+	}
+
+	.mark-all-as-read {
+		float: right;
+	}
+
 	.user-notifications-list {
 		list-style: none;
 		padding: 5px;
@@ -98,6 +114,10 @@
 			}
 		}
 
+		.message {
+			margin-top: 10px;
+		}
+
 		.separator {
 			background-color: #DCDCDC;
 			height: 1px;
@@ -106,20 +126,21 @@
 		}
 
 		.user-notification {
-			background: #FFF;
-
-			@include border-radius(4px);
-
-			margin-bottom: 10px;
 			padding: 10px;
+			position: relative;
 
 			.mark-as-read {
-				float: right;
-			}
+				@include border-radius(4px);
 
-			&:hover, &.hover {
-				background: #FAFAFA;
-				cursor: pointer;
+				color: #999;
+				padding: 0 5px;
+				position: absolute;
+				right: 4px;
+				top: 4px;
+
+				&:hover {
+					background-color: rgba(0,0,0,0.1);
+				}
 			}
 
 			.btn {
@@ -133,10 +154,9 @@
 			}
 
 			.left-container {
-				float: left;
 				min-height: 1px;
 				margin-left: 0px;
-				width: 95%;
+				margin-right: 20px;
 			}
 
 			.sender {
@@ -169,20 +189,45 @@
 				font-size: 11px;
 			}
 
-			.timestamp {
-				display: inline;
-				font-size: 11px;
-			}
-
 			.content {
 				margin-left: 40px;
 			}
 
 			.body {
-				color: #222;
+				color: #444;
 				overflow: hidden;
 				text-overflow: ellipsis;
+
+				.title {
+					color: #222;
+				}
 			}
+
+			.timestamp {
+				color: #999;
+				font-size: 11px;
+			}
+		}
+	}
+}
+
+.dockbar-user-notifications {
+	.actionable, .non-actionable {
+		background-color: #FFF;
+
+		@include border-radius(4px);
+	}
+
+	.non-actionable {
+		margin-bottom: 10px;
+	}
+
+	.user-notifications-header {
+		border-bottom: 1px solid #2AAAE6;
+		padding: 0 10px;
+
+		& > span {
+			line-height: 2.25em;
 		}
 	}
 }
@@ -218,35 +263,71 @@
 		@include box-sizing(border-box);
 	}
 
+	.actionable .user-notification:first-child {
+		border-top-width: 0;
+	}
+
 	.user-notifications-list-container {
 		border: 1px solid #D5D5D5;
 	}
 
 	.user-notifications-list{
 		margin: 0;
+		padding: 0;
 
-		.mark-all-as-read {
-			background-color: #FFF;
-			border-radius: 4px;
-			color: #000;
-			margin: 10px 10px;
-			padding: 5px 5px;
-			text-decoration: none;
+		.pagination {
+			box-sizing: border-box;
+			display: inline-flex;
+			margin: 0;
+			width: 100%;
 
-			&:hover {
-				background: #2FA4F5;
-				color: #FFF;
-				cursor: pointer;
+			&:before {
+				display: none;
+			}
+
+			.next, .page-info, .previous {
+				float: none;
+			}
+
+			&.top {
+				border-bottom: 1px solid #D5D5D5;
+			}
+
+			&.bottom {
+				border-top: 1px solid #D5D5D5;
+			}
+
+			.page-info {
+				color: #999;
+				flex-grow: 2;
 			}
 		}
 
+		.mark-all-as-read {
+			margin: 10px 20px;
+		}
+
+		.user-notifications {
+			clear: both;
+			margin-bottom: 10px;
+		}
+
 		.user-notification {
+			border-top: 1px solid #EEE;
 			color: #000;
-			margin: 5px;
+			margin: 0 20px;
 
 			.mark-as-read {
 				float: right;
 			}
+		}
+
+		.body {
+			float: left;
+		}
+
+		.timestamp {
+			float: right;
 		}
 
 		.message.top {
@@ -257,13 +338,25 @@
 
 	.manage-notifications {
 		overflow: auto;
+		padding: 10px;
 
 		.table {
 			max-width: none;
+
+			tbody {
+				border-top: 1px solid #DDD;
+			}
+
+			td {
+				background-color: transparent;
+				border-top-width: 0;
+			}
 		}
 
 		.title {
-			margin-bottom: 10px;
+			font-size: 1.5em;
+			line-height: 1.2em;
+			margin-bottom: 30px;
 
 			.notification-delivery {
 				font-size: 16px;
@@ -274,8 +367,8 @@
 
 		.notification-deliveries {
 			caption {
+				color: #AAA;
 				font-size: 14px;
-				font-weight: bold;
 				margin-bottom: 10px 0;
 				text-align: left;
 			}
@@ -321,4 +414,42 @@
 
 .ie8 .user-thumbnail img {
 	max-width: none;
+}
+
+/* ---------- Touch ---------- */
+
+.touch {
+	.dockbar-user-notifications, .notifications-portlet {
+		.user-notification .mark-as-read {
+			display: none;
+		}
+	}
+}
+
+/* ---------- Responsive ---------- */
+
+@include respond-to(phone) {
+	.notifications-portlet, .dockbar-user-notifications {
+		.user-notifications-list {
+			.user-notification {
+				margin: 0;
+
+				.body {
+					width: 100%;
+					
+					.btn {
+						display: inline-block;
+						margin-left: 5%;
+						margin-right: 0;
+						width: 45%;
+					}
+				}
+			}
+
+			.timestamp {
+				clear: both;
+				float: none;
+			}
+		}
+	}
 }
