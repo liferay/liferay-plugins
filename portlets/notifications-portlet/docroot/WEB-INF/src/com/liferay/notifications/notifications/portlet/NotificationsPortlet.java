@@ -469,7 +469,6 @@ public class NotificationsPortlet extends MVCPortlet {
 		actionURL.setParameter(
 			"userNotificationEventId",
 			String.valueOf(userNotificationEvent.getUserNotificationEventId()));
-
 		actionURL.setWindowState(WindowState.NORMAL);
 
 		String actionDiv = StringPool.BLANK;
@@ -509,7 +508,7 @@ public class NotificationsPortlet extends MVCPortlet {
 				"EEEE, MMMMM dd, yyyy 'at' h:mm a", themeDisplay.getLocale(),
 				themeDisplay.getTimeZone());
 
-		String timeStamp = simpleDateFormat.format(
+		String timestamp = simpleDateFormat.format(
 			userNotificationEvent.getTimestamp());
 
 		JSONObject userNotificationEventJSONObject =
@@ -539,7 +538,7 @@ public class NotificationsPortlet extends MVCPortlet {
 				"[$USER_FULL_NAME$]", "[$USER_PORTRAIT_URL$]"},
 			new String[] {
 				userNotificationFeedEntry.getBody(), actionDiv, portletIcon,
-				portletName, separator, timeStamp, userFullName,
+				portletName, separator, timestamp, userFullName,
 				userPortraitURL});
 	}
 
@@ -557,13 +556,12 @@ public class NotificationsPortlet extends MVCPortlet {
 	}
 
 	private static final String _DELETE_DIV =
-		"<div class=\"clearfix user-notification-delete\" " +
-			"data-deleteURL=\"[$DELETE_URL$]\">";
+		"<div class=\"clearfix user-notification-delete\" data-deleteURL=\"" +
+			"[$DELETE_URL$]\">";
 
 	private static final String _MARK_AS_READ_DIV =
-		"<div class=\"clearfix user-notification-link\" " +
-			"data-href=\"[$LINK$]\" " +
-				"data-markAsReadURL=\"[$MARK_AS_READ_URL$]\" " +
+		"<div class=\"clearfix user-notification-link\" data-href=\"" +
+			"[$LINK$]\" data-markAsReadURL=\"[$MARK_AS_READ_URL$]\" " +
 					"data-openDialog=\"[$OPEN_DIALOG$]\">";
 
 	private static final String _NOTIFICATION_GROUP_SEPARATOR =
