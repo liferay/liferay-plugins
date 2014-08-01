@@ -131,7 +131,7 @@
 		<ivy:settings file="${sdk.dir}/ivy-settings-publisher.xml" />
 
 		<ivy:resolve
-			conf="default,provided,runtime"
+			conf="default,provided"
 			log="download-only"
 			transitive="${ivy.resolve.transitive.dependencies}"
 		/>
@@ -151,7 +151,6 @@
 		>
 			<mapping conf="default" scope="compile" />
 			<mapping conf="provided" scope="provided" />
-			<mapping conf="runtime" scope="runtime" />
 		</ivy:makepom>
 
 		<ivy:publish
