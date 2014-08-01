@@ -23,6 +23,8 @@ import com.liferay.calendar.util.CalendarDataHandler;
 import com.liferay.calendar.util.CalendarDataHandlerFactory;
 import com.liferay.calendar.util.PortletPropsValues;
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.search.Indexable;
+import com.liferay.portal.kernel.search.IndexableType;
 import com.liferay.portal.kernel.systemevent.SystemEvent;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
@@ -44,6 +46,7 @@ import java.util.Map;
  */
 public class CalendarLocalServiceImpl extends CalendarLocalServiceBaseImpl {
 
+	@Indexable(type = IndexableType.REINDEX)
 	@Override
 	public Calendar addCalendar(
 			long userId, long groupId, long calendarResourceId,
@@ -241,6 +244,7 @@ public class CalendarLocalServiceImpl extends CalendarLocalServiceBaseImpl {
 		updateDefaultCalendar(calendar);
 	}
 
+	@Indexable(type = IndexableType.REINDEX)
 	@Override
 	public Calendar updateCalendar(
 			long calendarId, Map<Locale, String> nameMap,
