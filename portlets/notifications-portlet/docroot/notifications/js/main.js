@@ -29,13 +29,13 @@ AUI().use(
 					instance._previousPageNotificationsURL = instance._getRenderURL('/notifications/view_entries.jsp', config.filter, (config.start - config.delta).toString(), (config.end - config.delta).toString(), 'true');
 				}
 
-				instance._totalMarkAsReadableCount = config.unreadNonActionableUserNotificationsCount;
+				instance._totalMarkAsReadableCount = config.unreadNonactionableUserNotificationsCount;
 
 				instance._createMarkAllAsReadNode(config);
 
 				instance._bindUI();
 
-				instance._updateFullViewNotificationsCount(config.unreadActionableUserNotificationsCount, config.unreadNonActionableUserNotificationsCount);
+				instance._updateFullViewNotificationsCount(config.unreadActionableUserNotificationsCount, config.unreadNonactionableUserNotificationsCount);
 			},
 
 			initDockbarNotifications: function(config) {
@@ -103,7 +103,7 @@ AUI().use(
 				}
 			},
 
-			_bindNavMenu: function(menu, uri, allNotifications, unreadActionable, unreadNonActionable) {
+			_bindNavMenu: function(menu, uri, allNotifications, unreadActionable, unreadNonactionable) {
 				var instance = this;
 
 				if (menu) {
@@ -112,7 +112,7 @@ AUI().use(
 						function() {
 							instance._allNotifications = allNotifications;
 							instance._unreadActionable = unreadActionable;
-							instance._unreadNonActionable = unreadNonActionable;
+							instance._unreadNonactionable = unreadNonactionable;
 
 							instance._setDelivered();
 
@@ -199,9 +199,9 @@ AUI().use(
 
 					instance._bindNavMenu(unreadActionableNav, instance._getRenderURL('/notifications/view_entries.jsp', 'unread-actionable'), false, true, false);
 
-					var unreadNonActionableNav = userNotificationsSidebar.one('.unread-nonactionable');
+					var unreadNonactionableNav = userNotificationsSidebar.one('.unread-nonactionable');
 
-					instance._bindNavMenu(unreadNonActionableNav, instance._getRenderURL('/notifications/view_entries.jsp', 'unread-nonactionable'), false, false, true);
+					instance._bindNavMenu(unreadNonactionableNav, instance._getRenderURL('/notifications/view_entries.jsp', 'unread-nonactionable'), false, false, true);
 
 					var manageNav = userNotificationsSidebar.one('.manage');
 
@@ -271,13 +271,13 @@ AUI().use(
 
 									instance.renderNotificationsList(instance._getDockbarNotificationsList(), instance._dockbarNotificationsURL);
 
-									if (instance._allNotifications || ((typeof(instance._allNotifications) == 'undefined') && (typeof(instance._unreadActionable) == 'undefined') && (typeof(instance._unreadNonActionable) == 'undefined'))) {
+									if (instance._allNotifications || ((typeof(instance._allNotifications) == 'undefined') && (typeof(instance._unreadActionable) == 'undefined') && (typeof(instance._unreadNonactionable) == 'undefined'))) {
 										instance.renderNotificationsList(instance._getFullViewNotificationsList(), instance._getRenderURL('/notifications/view_entries.jsp'));
 									}
 									else if (instance._unreadActionable) {
 										instance.renderNotificationsList(instance._getFullViewNotificationsList(), instance._getRenderURL('/notifications/view_entries.jsp', 'unread-actionable'));
 									}
-									else if (instance._unreadNonActionable) {
+									else if (instance._unreadNonactionable) {
 										instance.renderNotificationsList(instance._getFullViewNotificationsList(), instance._getRenderURL('/notifications/view_entries.jsp', 'unread-nonactionable'));
 									}
 
@@ -489,7 +489,7 @@ AUI().use(
 			_onPollerUpdate: function(response) {
 				var instance = this;
 
-				instance._updateDockbarNotificationsCount(response.newUserNotificationsCount, response.timestamp, response.unreadNonActionableUserNotificationsCount, response.unreadUserNotificationsCount);
+				instance._updateDockbarNotificationsCount(response.newUserNotificationsCount, response.timestamp, response.unreadNonactionableUserNotificationsCount, response.unreadUserNotificationsCount);
 			},
 
 			_openWindow: function(uri) {
@@ -524,7 +524,7 @@ AUI().use(
 				A.io.request(instance._getActionURL('setDelivered'));
 			},
 
-			_updateDockbarNotificationsCount: function(newUserNotificationsCount, timestamp, unreadNonActionableUserNotificationsCount, unreadUserNotificationsCount) {
+			_updateDockbarNotificationsCount: function(newUserNotificationsCount, timestamp, unreadNonactionableUserNotificationsCount, unreadUserNotificationsCount) {
 				var instance = this;
 
 				if (!instance._previousTimestamp || (instance._previousTimestamp < timestamp)) {
@@ -537,7 +537,7 @@ AUI().use(
 
 						dockbarUserNotificationsCount.setHTML(unreadUserNotificationsCount);
 
-						instance._totalMarkAsReadableCount = unreadNonActionableUserNotificationsCount;
+						instance._totalMarkAsReadableCount = unreadNonactionableUserNotificationsCount;
 					}
 				}
 			},
@@ -628,7 +628,7 @@ AUI().use(
 				);
 			},
 
-			_updateFullViewNotificationsCount: function(unreadActionableUserNotificationsCount, unreadNonActionableUserNotificationsCount) {
+			_updateFullViewNotificationsCount: function(unreadActionableUserNotificationsCount, unreadNonactionableUserNotificationsCount) {
 				var userNotificationsSidebar = A.one('.user-notifications-sidebar');
 
 				if (userNotificationsSidebar) {
@@ -641,7 +641,7 @@ AUI().use(
 					unreadCount = userNotificationsSidebar.one('.unread-nonactionable .count');
 
 					if (unreadCount) {
-						unreadCount.setHTML(unreadNonActionableUserNotificationsCount);
+						unreadCount.setHTML(unreadNonactionableUserNotificationsCount);
 					}
 				}
 			},
@@ -661,7 +661,7 @@ AUI().use(
 										instance._updateDockbarNotificationsList();
 									}
 
-									if (instance._unreadActionable || instance._unreadNonActionable || ((typeof(instance._allNotifications) == 'undefined') && (typeof(instance._unreadActionable) == 'undefined') && (typeof(instance._unreadNonActionable) == 'undefined'))) {
+									if (instance._unreadActionable || instance._unreadNonactionable || ((typeof(instance._allNotifications) == 'undefined') && (typeof(instance._unreadActionable) == 'undefined') && (typeof(instance._unreadNonactionable) == 'undefined'))) {
 										if (instance._lastPage && (markAllAsRead || (instance._currentPageNotificationEventsCount == 1))) {
 											instance.renderNotificationsList(instance._getFullViewNotificationsList(), instance._previousPageNotificationsURL);
 										}
@@ -670,8 +670,8 @@ AUI().use(
 										}
 									}
 
-									instance._updateDockbarNotificationsCount(response['newUserNotificationsCount'], response['timestamp'], response['unreadNonActionableUserNotificationsCount'], response['unreadUserNotificationsCount']);
-									instance._updateFullViewNotificationsCount(response['unreadActionableUserNotificationsCount'], response['unreadNonActionableUserNotificationsCount']);
+									instance._updateDockbarNotificationsCount(response['newUserNotificationsCount'], response['timestamp'], response['unreadNonactionableUserNotificationsCount'], response['unreadUserNotificationsCount']);
+									instance._updateFullViewNotificationsCount(response['unreadActionableUserNotificationsCount'], response['unreadNonactionableUserNotificationsCount']);
 								}
 							}
 						},

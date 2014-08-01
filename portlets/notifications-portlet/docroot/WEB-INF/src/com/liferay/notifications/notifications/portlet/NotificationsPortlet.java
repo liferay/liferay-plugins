@@ -240,7 +240,7 @@ public class NotificationsPortlet extends MVCPortlet {
 
 	protected JSONArray getEntriesJSONArray(
 			List<UserNotificationEvent> actionableUserNotificationEvents,
-			List<UserNotificationEvent> nonActionableUserNotificationEvents,
+			List<UserNotificationEvent> nonactionableUserNotificationEvents,
 			ResourceRequest resourceRequest, ResourceResponse resourceResponse,
 			ThemeDisplay themeDisplay)
 		throws Exception {
@@ -251,7 +251,7 @@ public class NotificationsPortlet extends MVCPortlet {
 			String separator = StringPool.BLANK;
 
 			if ((i == (actionableUserNotificationEvents.size() - 1)) &&
-				ListUtil.isNotEmpty(nonActionableUserNotificationEvents)) {
+				ListUtil.isNotEmpty(nonactionableUserNotificationEvents)) {
 
 				separator = _NOTIFICATION_GROUP_SEPARATOR;
 			}
@@ -265,12 +265,12 @@ public class NotificationsPortlet extends MVCPortlet {
 			}
 		}
 
-		if (nonActionableUserNotificationEvents == null) {
+		if (nonactionableUserNotificationEvents == null) {
 			return jsonArray;
 		}
 
 		for (UserNotificationEvent userNotificationEvent :
-				nonActionableUserNotificationEvents) {
+				nonactionableUserNotificationEvents) {
 
 			String entry = renderEntry(
 				resourceRequest, resourceResponse, StringPool.BLANK,
@@ -324,7 +324,7 @@ public class NotificationsPortlet extends MVCPortlet {
 				"unreadActionableUserNotificationsCount",
 				unreadActionableUserNotificationsCount);
 
-			int unreadNonActionableUserNotificationsCount =
+			int unreadNonactionableUserNotificationsCount =
 				UserNotificationEventLocalServiceUtil.
 					getArchivedUserNotificationEventsCount(
 						themeDisplay.getUserId(),
@@ -332,8 +332,8 @@ public class NotificationsPortlet extends MVCPortlet {
 						false);
 
 			jsonObject.put(
-				"unreadNonActionableUserNotificationsCount",
-				unreadNonActionableUserNotificationsCount);
+				"unreadNonactionableUserNotificationsCount",
+				unreadNonactionableUserNotificationsCount);
 
 			int unreadUserNotificationsCount =
 				UserNotificationEventLocalServiceUtil.
@@ -387,43 +387,43 @@ public class NotificationsPortlet extends MVCPortlet {
 				resourceResponse, themeDisplay);
 		}
 		else {
-			int maxNonActionableCount =
+			int maxNonactionableCount =
 				dockbarViewDelta - actionableNotificationsCount;
 
-			int nonActionableNotificationsCount =
+			int nonactionableNotificationsCount =
 				UserNotificationEventLocalServiceUtil.
 					getArchivedUserNotificationEventsCount(
 						themeDisplay.getUserId(),
 						UserNotificationDeliveryConstants.TYPE_WEBSITE, false,
 						false);
 
-			if (nonActionableNotificationsCount == 0) {
+			if (nonactionableNotificationsCount == 0) {
 				jsonArray = getEntriesJSONArray(
 					actionableUserNotificationEvents, null, resourceRequest,
 					resourceResponse, themeDisplay);
 			}
 			else {
 				List<UserNotificationEvent>
-					nonActionableUserNotificationEvents =
+					nonactionableUserNotificationEvents =
 						UserNotificationEventLocalServiceUtil.
 							getArchivedUserNotificationEvents(
 								themeDisplay.getUserId(),
 								UserNotificationDeliveryConstants.TYPE_WEBSITE,
-								false, false, 0, maxNonActionableCount);
+								false, false, 0, maxNonactionableCount);
 
 				jsonArray = getEntriesJSONArray(
 					actionableUserNotificationEvents,
-					nonActionableUserNotificationEvents, resourceRequest,
+					nonactionableUserNotificationEvents, resourceRequest,
 					resourceResponse, themeDisplay);
 
 				jsonObject.put(
 					"markAsReadCount",
-					nonActionableUserNotificationEvents.size());
+					nonactionableUserNotificationEvents.size());
 
 				List<Long> userNotificationEventIds = new ArrayList<Long>();
 
 				for (UserNotificationEvent userNotificationEvent :
-						nonActionableUserNotificationEvents) {
+						nonactionableUserNotificationEvents) {
 
 					userNotificationEventIds.add(
 						userNotificationEvent.getUserNotificationEventId());

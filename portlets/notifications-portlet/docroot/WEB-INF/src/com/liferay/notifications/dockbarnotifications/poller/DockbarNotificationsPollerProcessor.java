@@ -74,7 +74,7 @@ public class DockbarNotificationsPollerProcessor extends BasePollerProcessor {
 			"unreadActionableUserNotificationsCount",
 			String.valueOf(unreadActionableUserNotificationsCount));
 
-		int unreadNonActionableUserNotificationsCount =
+		int unreadNonactionableUserNotificationsCount =
 			UserNotificationEventLocalServiceUtil.
 				getArchivedUserNotificationEventsCount(
 					pollerRequest.getUserId(),
@@ -82,8 +82,8 @@ public class DockbarNotificationsPollerProcessor extends BasePollerProcessor {
 					false);
 
 		pollerResponse.setParameter(
-			"unreadNonActionableUserNotificationsCount",
-			String.valueOf(unreadNonActionableUserNotificationsCount));
+			"unreadNonactionableUserNotificationsCount",
+			String.valueOf(unreadNonactionableUserNotificationsCount));
 
 		int unreadUserNotificationsCount =
 			UserNotificationEventLocalServiceUtil.

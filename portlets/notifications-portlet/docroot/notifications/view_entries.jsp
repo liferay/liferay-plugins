@@ -26,7 +26,7 @@ List<UserNotificationEvent> userNotificationEvents = null;
 int userNotificationEventsCount = 0;
 
 int unreadActionableUserNotificationsCount = UserNotificationEventLocalServiceUtil.getArchivedUserNotificationEventsCount(themeDisplay.getUserId(), UserNotificationDeliveryConstants.TYPE_WEBSITE, true, false);
-int unreadNonActionableUserNotificationsCount = UserNotificationEventLocalServiceUtil.getArchivedUserNotificationEventsCount(themeDisplay.getUserId(), UserNotificationDeliveryConstants.TYPE_WEBSITE, false, false);
+int unreadNonactionableUserNotificationsCount = UserNotificationEventLocalServiceUtil.getArchivedUserNotificationEventsCount(themeDisplay.getUserId(), UserNotificationDeliveryConstants.TYPE_WEBSITE, false, false);
 
 if (filter.equals("dockbar")) {
 	userNotificationEvents = UserNotificationEventLocalServiceUtil.getArchivedUserNotificationEvents(themeDisplay.getUserId(), UserNotificationDeliveryConstants.TYPE_WEBSITE, false, start, end);
@@ -38,7 +38,7 @@ else if (filter.equals("unread-actionable")) {
 }
 else if (filter.equals("unread-nonactionable")) {
 	userNotificationEvents = UserNotificationEventLocalServiceUtil.getArchivedUserNotificationEvents(themeDisplay.getUserId(), UserNotificationDeliveryConstants.TYPE_WEBSITE, false, false, start, end);
-	userNotificationEventsCount = unreadNonActionableUserNotificationsCount;
+	userNotificationEventsCount = unreadNonactionableUserNotificationsCount;
 }
 else {
 	userNotificationEvents = UserNotificationEventLocalServiceUtil.getUserNotificationEvents(themeDisplay.getUserId(), UserNotificationDeliveryConstants.TYPE_WEBSITE, start, end);
@@ -92,10 +92,10 @@ List<Long> userNotificationEventIds = new ArrayList<Long>();
 			<c:if test="<%= unreadActionableUserNotificationsCount <= dockbarViewDelta %>">
 
 				<%
-				List<UserNotificationEvent> nonActionableUserNotificationEvents = UserNotificationEventLocalServiceUtil.getArchivedUserNotificationEvents(themeDisplay.getUserId(), UserNotificationDeliveryConstants.TYPE_WEBSITE, false, false, start, (end - unreadActionableUserNotificationsCount));
+				List<UserNotificationEvent> nonactionableUserNotificationEvents = UserNotificationEventLocalServiceUtil.getArchivedUserNotificationEvents(themeDisplay.getUserId(), UserNotificationDeliveryConstants.TYPE_WEBSITE, false, false, start, (end - unreadActionableUserNotificationsCount));
 				%>
 
-				<c:if test="<%= !nonActionableUserNotificationEvents.isEmpty() %>">
+				<c:if test="<%= !nonactionableUserNotificationEvents.isEmpty() %>">
 					<c:if test="<%= unreadActionableUserNotificationsCount > 0 %>">
 						<hr class="separator">
 					</c:if>
@@ -103,7 +103,7 @@ List<Long> userNotificationEventIds = new ArrayList<Long>();
 					<div class="nonactionable-user-notifications-list">
 
 						<%
-						for (UserNotificationEvent userNotificationEvent : nonActionableUserNotificationEvents) {
+						for (UserNotificationEvent userNotificationEvent : nonactionableUserNotificationEvents) {
 							userNotificationEventIds.add(userNotificationEvent.getUserNotificationEventId());
 						%>
 
@@ -226,7 +226,7 @@ List<Long> userNotificationEventIds = new ArrayList<Long>();
 			namespace: '<portlet:namespace />',
 			start: <%= start %>,
 			unreadActionableUserNotificationsCount: <%= unreadActionableUserNotificationsCount %>,
-			unreadNonActionableUserNotificationsCount: <%= unreadNonActionableUserNotificationsCount %>,
+			unreadNonactionableUserNotificationsCount: <%= unreadNonactionableUserNotificationsCount %>,
 			userNotificationEventsCount: <%= userNotificationEventsCount %>,
 			userNotificationEventIds: '<%= StringUtil.merge(userNotificationEventIds) %>'
 		}
