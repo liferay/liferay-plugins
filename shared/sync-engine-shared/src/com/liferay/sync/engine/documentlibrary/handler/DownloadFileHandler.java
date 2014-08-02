@@ -116,7 +116,7 @@ public class DownloadFileHandler extends BaseHandler {
 
 			syncFile.setFileKey(FileUtil.getFileKey(tempFilePath));
 			syncFile.setState(SyncFile.STATE_SYNCED);
-			syncFile.setUiEvent(SyncFile.UI_EVENT_DOWNLOADED);
+			syncFile.setUiEvent((int)getParameterValue("uiEvent"));
 
 			SyncFileService.update(syncFile);
 

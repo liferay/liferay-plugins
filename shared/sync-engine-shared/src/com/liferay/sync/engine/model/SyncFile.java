@@ -66,33 +66,35 @@ public class SyncFile extends StateAwareModel {
 
 	public static final int UI_EVENT_DELETED_REMOTE = 4;
 
-	public static final int UI_EVENT_DOWNLOADED = 5;
+	public static final int UI_EVENT_DOWNLOADED_NEW = 5;
 
-	public static final int UI_EVENT_DOWNLOADING = 6;
+	public static final int UI_EVENT_DOWNLOADED_UPDATE = 6;
 
-	public static final int UI_EVENT_DUPLICATE_LOCK = 7;
+	public static final int UI_EVENT_DOWNLOADING = 7;
 
-	public static final int UI_EVENT_EXCEEDED_SIZE_LIMIT = 8;
+	public static final int UI_EVENT_DUPLICATE_LOCK = 8;
 
-	public static final int UI_EVENT_INVALID_FILE_NAME = 9;
+	public static final int UI_EVENT_EXCEEDED_SIZE_LIMIT = 9;
 
-	public static final int UI_EVENT_INVALID_PERMISSIONS = 10;
+	public static final int UI_EVENT_INVALID_FILE_NAME = 10;
 
-	public static final int UI_EVENT_MOVED_LOCAL = 11;
+	public static final int UI_EVENT_INVALID_PERMISSIONS = 11;
 
-	public static final int UI_EVENT_MOVED_REMOTE = 12;
+	public static final int UI_EVENT_MOVED_LOCAL = 12;
 
-	public static final int UI_EVENT_TRASHED_LOCAL = 13;
+	public static final int UI_EVENT_MOVED_REMOTE = 13;
 
-	public static final int UI_EVENT_TRASHED_REMOTE = 14;
+	public static final int UI_EVENT_TRASHED_LOCAL = 14;
 
-	public static final int UI_EVENT_UPDATED_LOCAL = 15;
+	public static final int UI_EVENT_TRASHED_REMOTE = 15;
 
-	public static final int UI_EVENT_UPDATED_REMOTE = 16;
+	public static final int UI_EVENT_UPDATED_LOCAL = 16;
 
-	public static final int UI_EVENT_UPLOADED = 17;
+	public static final int UI_EVENT_UPDATED_REMOTE = 17;
 
-	public static final int UI_EVENT_UPLOADING = 18;
+	public static final int UI_EVENT_UPLOADED = 18;
+
+	public static final int UI_EVENT_UPLOADING = 19;
 
 	public String getChangeLog() {
 		return changeLog;

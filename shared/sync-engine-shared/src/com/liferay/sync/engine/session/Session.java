@@ -330,6 +330,6 @@ public class Session {
 	private HttpClient _httpClient;
 	private HttpHost _httpHost;
 	private Set<String> _ignoredParameterKeys = new HashSet<String>(
-		Arrays.asList("filePath", "syncFile", "syncSite"));
+		Arrays.asList("filePath", "syncFile", "syncSite", "uiEvent"));
 
 }

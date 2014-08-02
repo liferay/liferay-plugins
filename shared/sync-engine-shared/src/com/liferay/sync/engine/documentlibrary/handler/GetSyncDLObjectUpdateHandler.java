@@ -75,7 +75,8 @@ public class GetSyncDLObjectUpdateHandler extends BaseSyncDLObjectHandler {
 		else {
 			SyncFileService.update(syncFile);
 
-			downloadFile(syncFile, null, false);
+			downloadFile(
+				syncFile, null, false, SyncFile.UI_EVENT_DOWNLOADED_NEW);
 		}
 	}
 
@@ -133,7 +134,7 @@ public class GetSyncDLObjectUpdateHandler extends BaseSyncDLObjectHandler {
 	}
 
 	protected void downloadFile(
-		SyncFile syncFile, String sourceVersion, boolean patch) {
+		SyncFile syncFile, String sourceVersion, boolean patch, int uiEvent) {
 
 		Map<String, Object> parameters = new HashMap<String, Object>();
 
@@ -151,6 +152,8 @@ public class GetSyncDLObjectUpdateHandler extends BaseSyncDLObjectHandler {
 		else {
 			parameters.put("patch", false);
 		}
+
+		parameters.put("uiEvent", uiEvent);
 
 		DownloadFileEvent downloadFileEvent = new DownloadFileEvent(
 			getSyncAccountId(), parameters);
@@ -280,7 +283,8 @@ public class GetSyncDLObjectUpdateHandler extends BaseSyncDLObjectHandler {
 
 			downloadFile(
 				sourceSyncFile, sourceVersion,
-				!IODeltaUtil.isIgnoredFilePatchingExtension(targetSyncFile));
+				!IODeltaUtil.isIgnoredFilePatchingExtension(targetSyncFile),
+				SyncFile.UI_EVENT_DOWNLOADED_UPDATE);
 		}
 	}
 
