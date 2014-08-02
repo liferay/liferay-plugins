@@ -66,7 +66,7 @@ boolean actionable = ParamUtil.getBoolean(request, "actionable");
 					<liferay-ui:message key="you-do-not-have-any-notifications" />
 				</div>
 
-				<div class="mark-all-as-read hide"><a href="javascript:;" ><liferay-ui:message key="mark-as-read" /></a></div>
+				<div class="mark-all-as-read hide"><a href="javascript:;"><liferay-ui:message key="mark-as-read" /></a></div>
 
 				<div class="user-notifications"></div>
 

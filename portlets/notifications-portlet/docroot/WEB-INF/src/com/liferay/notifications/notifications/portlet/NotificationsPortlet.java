@@ -14,7 +14,6 @@
 
 package com.liferay.notifications.notifications.portlet;
 
-import com.liferay.compat.portal.kernel.util.ListUtil;
 import com.liferay.notifications.util.NotificationsConstants;
 import com.liferay.notifications.util.NotificationsUtil;
 import com.liferay.notifications.util.PortletKeys;

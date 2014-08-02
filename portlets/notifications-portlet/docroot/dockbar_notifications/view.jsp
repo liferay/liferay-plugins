@@ -52,7 +52,7 @@
 
 						<span><a href="<%= viewAllNonActionableNotifications %>"><liferay-ui:message key="notifications" /> (<span class="count"></span>)</a></span>
 
-						<span class="mark-all-as-read hide"><a href="javascript:;" ><liferay-ui:message key="mark-as-read" /></a></span>
+						<span class="mark-all-as-read hide"><a href="javascript:;"><liferay-ui:message key="mark-as-read" /></a></span>
 					</div>
 
 					<div class="message hide">

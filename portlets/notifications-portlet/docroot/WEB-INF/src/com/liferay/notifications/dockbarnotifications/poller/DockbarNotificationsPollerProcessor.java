@@ -14,7 +14,6 @@
 
 package com.liferay.notifications.dockbarnotifications.poller;
 
-import com.liferay.notifications.util.NotificationsUtil;
 import com.liferay.portal.kernel.poller.BasePollerProcessor;
 import com.liferay.portal.kernel.poller.PollerRequest;
 import com.liferay.portal.kernel.poller.PollerResponse;

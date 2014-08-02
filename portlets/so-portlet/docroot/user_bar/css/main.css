@@ -11,7 +11,7 @@ $defaultTextColor: #202020;
 
 @mixin primary-hover-state {
 	background-color: #181B1D;
-	background-color: rgba(0,0,0, 0.48);
+	background-color: rgba(0, 0, 0, 0.48);
 }
 
 .aui {
@@ -41,10 +41,9 @@ $defaultTextColor: #202020;
 		@include hover-transition;
 
 		left: 0;
-		padding: .42em .5em .42em .6em;
+		padding: 0.42em 0.5em 0.42em 0.6em;
 		position: absolute;
 		top: 0;
-
 
 		&:hover {
 			@include primary-hover-state;
@@ -75,8 +74,7 @@ $defaultTextColor: #202020;
 
 				height: 2em;
 				line-height: 2em;
-				padding: .58em .8em;
-
+				padding: 0.58em 0.8em;
 
 				&:hover, &.selected {
 					@include primary-hover-state;
@@ -117,7 +115,7 @@ $defaultTextColor: #202020;
 
 						line-height: 1.7em;
 						margin: 0;
-						padding: .7em;
+						padding: 0.7em;
 
 						> i {
 							background-color: transparent;
@@ -216,7 +214,7 @@ $defaultTextColor: #202020;
 		color: #666;
 
 		&:hover {
-			box-shadow: inset 0 0 5px rgba(0,0,0,0.1);
+			box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1);
 		}
 	}
 }
@@ -328,6 +326,7 @@ $defaultTextColor: #202020;
 
 			.navbar-inner {
 				background: transparent;
+
 				.container {
 					z-index: 301;
 
@@ -338,8 +337,8 @@ $defaultTextColor: #202020;
 						color: #FFF;
 						float: right;
 						font-size: 1.6em;
-						margin: .17em;
-						padding: .28em .35em;
+						margin: 0.17em;
+						padding: 0.28em 0.35em;
 
 						&:hover {
 							background-color: #E6E6E6;
@@ -360,7 +359,7 @@ $defaultTextColor: #202020;
 
 					.brand {
 						float: right;
-						padding: .75em;
+						padding: 0.75em;
 					}
 
 					.nav-collapse.open {
@@ -385,7 +384,7 @@ $defaultTextColor: #202020;
 								font-size: 1em;
 								line-height: 2.4em;
 								margin: 0;
-								padding: .4em 1em;
+								padding: 0.4em 1em;
 								text-align: left;
 							}
 
@@ -410,7 +409,7 @@ $defaultTextColor: #202020;
 							}
 
 							a:hover, li.dropdown.open > .dropdown-toggle {
-								background: rgba(0,0,0,0.2);
+								background: rgba(0, 0, 0, 0.2);
 							}
 
 							.dropdown > .dropdown-menu {
@@ -437,7 +436,7 @@ $defaultTextColor: #202020;
 
 					.nav-add-controls i {
 						font-size: 1.8em;
-						padding-right: .5em;
+						padding-right: 0.5em;
 					}
 
 					.collapse .nav-account-controls > li {
@@ -478,7 +477,7 @@ $defaultTextColor: #202020;
 						}
 
 						.non-actionable .user-notification:hover {
-							background-color: rgba(0,0,0,0.2);
+							background-color: rgba(0, 0, 0, 0.2);
 						}
 					}
 				}
