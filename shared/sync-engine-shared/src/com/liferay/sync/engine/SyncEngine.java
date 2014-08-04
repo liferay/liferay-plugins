@@ -29,7 +29,6 @@ import com.liferay.sync.engine.service.SyncFileService;
 import com.liferay.sync.engine.service.SyncPropService;
 import com.liferay.sync.engine.service.SyncSiteService;
 import com.liferay.sync.engine.upgrade.util.UpgradeUtil;
-import com.liferay.sync.engine.util.FilePathNameUtil;
 import com.liferay.sync.engine.util.LoggerUtil;
 import com.liferay.sync.engine.util.PropsValues;
 import com.liferay.sync.engine.util.SyncClientUpdater;
@@ -239,8 +238,7 @@ public class SyncEngine {
 					throws IOException {
 
 					SyncFile syncFile = SyncFileService.fetchSyncFile(
-						FilePathNameUtil.getFilePathName(filePath),
-						syncAccountId);
+						filePath.toString(), syncAccountId);
 
 					if (syncFile != null) {
 						syncFile.setLocalSyncTime(System.currentTimeMillis());
@@ -256,8 +254,7 @@ public class SyncEngine {
 					Path filePath, BasicFileAttributes basicFileAttributes) {
 
 					SyncFile syncFile = SyncFileService.fetchSyncFile(
-						FilePathNameUtil.getFilePathName(filePath),
-						syncAccountId);
+						filePath.toString(), syncAccountId);
 
 					if (syncFile != null) {
 						syncFile.setLocalSyncTime(System.currentTimeMillis());
@@ -272,8 +269,7 @@ public class SyncEngine {
 		);
 
 		List<SyncFile> deletedSyncFiles = SyncFileService.findSyncFiles(
-			FilePathNameUtil.getFilePathName(filePath), startTime,
-			syncAccountId);
+			filePath.toString(), startTime, syncAccountId);
 
 		for (SyncFile deletedSyncFile : deletedSyncFiles) {
 			watchEventListener.watchEvent(

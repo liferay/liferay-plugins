@@ -19,7 +19,6 @@ import com.liferay.sync.engine.model.SyncSite;
 import com.liferay.sync.engine.model.SyncWatchEvent;
 import com.liferay.sync.engine.service.SyncAccountService;
 import com.liferay.sync.engine.service.SyncSiteService;
-import com.liferay.sync.engine.util.FilePathNameUtil;
 
 import java.io.IOException;
 
@@ -224,7 +223,7 @@ public class Watcher implements Runnable {
 		SyncAccount syncAccount = SyncAccountService.fetchSyncAccount(
 			_watchEventListener.getSyncAccountId());
 
-		String filePathName = FilePathNameUtil.getFilePathName(filePath);
+		String filePathName = filePath.toString();
 
 		if (filePathName.equals(syncAccount.getFilePathName())) {
 			syncAccount.setActive(false);

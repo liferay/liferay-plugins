@@ -160,8 +160,9 @@ public class IODeltaUtil {
 
 	public static Path getChecksumsFilePath(SyncFile syncFile) {
 		return Paths.get(
-			PropsValues.SYNC_CONFIGURATION_DIRECTORY + "/files/" +
-				syncFile.getSyncFileId());
+			FileUtil.getFilePathName(
+				PropsValues.SYNC_CONFIGURATION_DIRECTORY, "files",
+				String.valueOf(syncFile.getSyncFileId())));
 	}
 
 	public static boolean isIgnoredFilePatchingExtension(SyncFile syncFile) {
@@ -184,8 +185,7 @@ public class IODeltaUtil {
 		ReadableByteChannel deltaReadableByteChannel = null;
 
 		try {
-			targetInputStream = new FileInputStream(
-				FilePathNameUtil.getFilePathName(targetFilePath));
+			targetInputStream = new FileInputStream(targetFilePath.toString());
 
 			targetFileChannel = targetInputStream.getChannel();
 

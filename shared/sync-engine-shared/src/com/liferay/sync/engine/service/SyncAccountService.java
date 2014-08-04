@@ -108,7 +108,8 @@ public class SyncAccountService {
 				}
 
 				syncSite.setFilePathName(
-					syncAccount.getFilePathName() + "/" + syncSiteName);
+					FileUtil.getFilePathName(
+						syncAccount.getFilePathName(), syncSiteName));
 
 				syncSite.setSyncAccountId(syncAccount.getSyncAccountId());
 

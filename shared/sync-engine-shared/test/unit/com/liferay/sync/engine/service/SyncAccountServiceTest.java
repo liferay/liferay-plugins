@@ -18,7 +18,7 @@ import com.liferay.sync.engine.BaseTestCase;
 import com.liferay.sync.engine.model.SyncAccount;
 import com.liferay.sync.engine.model.SyncFile;
 import com.liferay.sync.engine.model.SyncSite;
-import com.liferay.sync.engine.util.FilePathNameUtil;
+import com.liferay.sync.engine.util.FileUtil;
 import com.liferay.sync.engine.util.SyncFileTestUtil;
 import com.liferay.sync.engine.util.SyncSiteTestUtil;
 
@@ -58,15 +58,16 @@ public class SyncAccountServiceTest extends BaseTestCase {
 			"http://localhost:8080");
 
 		SyncSite syncSite = SyncSiteTestUtil.addSyncSite(
-			10158, filePathName + "/test-site", 10185,
+			10158, FileUtil.getFilePathName(filePathName, "test-site"), 10185,
 			_syncAccount.getSyncAccountId());
 
 		SyncFile syncFile = SyncFileTestUtil.addFileSyncFile(
-			syncSite.getFilePathName() + "/test.txt", 0,
+			FileUtil.getFilePathName(syncSite.getFilePathName(), "test.txt"), 0,
 			_syncAccount.getSyncAccountId());
 
-		String targetFilePathName = FilePathNameUtil.fixFilePathName(
-			System.getProperty("user.home") + "/liferay-sync-test2");
+		String targetFilePathName =
+			FileUtil.getFilePathName(
+				System.getProperty("user.home"), "liferay-sync-test2");
 
 		SyncAccountService.setFilePathName(
 			_syncAccount.getSyncAccountId(), targetFilePathName);
@@ -74,12 +75,14 @@ public class SyncAccountServiceTest extends BaseTestCase {
 		syncSite = SyncSiteService.fetchSyncSite(syncSite.getSyncSiteId());
 
 		Assert.assertEquals(
-			targetFilePathName + "/test-site", syncSite.getFilePathName());
+			FileUtil.getFilePathName(targetFilePathName + "test-site"),
+			syncSite.getFilePathName());
 
 		syncFile = SyncFileService.fetchSyncFile(syncFile.getSyncFileId());
 
 		Assert.assertEquals(
-			targetFilePathName + "/test-site/test.txt",
+			FileUtil.getFilePathName(
+				targetFilePathName, "test-site", "test.txt"),
 			syncFile.getFilePathName());
 	}
 

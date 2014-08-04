@@ -31,7 +31,6 @@ import com.liferay.sync.engine.model.SyncFile;
 import com.liferay.sync.engine.model.SyncFileModelListener;
 import com.liferay.sync.engine.model.SyncSite;
 import com.liferay.sync.engine.service.persistence.SyncFilePersistence;
-import com.liferay.sync.engine.util.FilePathNameUtil;
 import com.liferay.sync.engine.util.FileUtil;
 import com.liferay.sync.engine.util.IODeltaUtil;
 import com.liferay.sync.engine.util.PropsValues;
@@ -71,8 +70,8 @@ public class SyncFileService {
 
 		SyncFile syncFile = addSyncFile(
 			"", checksum, name, FileUtil.getFileKey(filePath),
-			FilePathNameUtil.getFilePathName(filePath), mimeType, name,
-			folderId, repositoryId, syncAccountId, SyncFile.TYPE_FILE);
+			filePath.toString(), mimeType, name, folderId, repositoryId,
+			syncAccountId, SyncFile.TYPE_FILE);
 
 		// Remote sync file
 
@@ -124,10 +123,10 @@ public class SyncFileService {
 		String name = String.valueOf(filePath.getFileName());
 
 		SyncFile syncFile = addSyncFile(
-			null, null, name, FileUtil.getFileKey(filePath),
-			FilePathNameUtil.getFilePathName(filePath),
-			Files.probeContentType(filePath), name, parentFolderId,
-			repositoryId, syncAccountId, SyncFile.TYPE_FOLDER);
+				null, null, name, FileUtil.getFileKey(filePath),
+				filePath.toString(), Files.probeContentType(filePath), name,
+				parentFolderId, repositoryId, syncAccountId,
+				SyncFile.TYPE_FOLDER);
 
 		// Remote sync file
 
@@ -527,7 +526,7 @@ public class SyncFileService {
 
 		// Local sync file
 
-		syncFile.setFilePathName(FilePathNameUtil.getFilePathName(filePath));
+		syncFile.setFilePathName(filePath.toString());
 		syncFile.setParentFolderId(folderId);
 		syncFile.setUiEvent(SyncFile.UI_EVENT_MOVED_LOCAL);
 
@@ -641,7 +640,7 @@ public class SyncFileService {
 		}
 
 		syncFile.setChecksum(targetChecksum);
-		syncFile.setFilePathName(FilePathNameUtil.getFilePathName(filePath));
+		syncFile.setFilePathName(filePath.toString());
 		syncFile.setName(name);
 		syncFile.setUiEvent(SyncFile.UI_EVENT_UPDATED_LOCAL);
 
@@ -737,8 +736,7 @@ public class SyncFileService {
 			}
 
 			String sourceFilePathName = syncFile.getFilePathName();
-			String targetFilePathName = FilePathNameUtil.getFilePathName(
-				filePath);
+			String targetFilePathName = filePath.toString();
 
 			syncFile.setFilePathName(targetFilePathName);
 			syncFile.setLocalSyncTime(System.currentTimeMillis());

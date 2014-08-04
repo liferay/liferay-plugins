@@ -17,6 +17,7 @@ package com.liferay.sync.engine.service;
 import com.liferay.sync.engine.BaseTestCase;
 import com.liferay.sync.engine.model.SyncFile;
 import com.liferay.sync.engine.service.persistence.SyncFilePersistence;
+import com.liferay.sync.engine.util.FileUtil;
 import com.liferay.sync.engine.util.SyncFileTestUtil;
 
 import java.nio.file.Paths;
@@ -39,25 +40,32 @@ public class SyncFileServiceTest extends BaseTestCase {
 		Assert.assertEquals(1, syncFiles.size());
 
 		SyncFile folderSyncFileA = SyncFileTestUtil.addFolderSyncFile(
-			null, syncAccount.getSyncAccountId());
+			FileUtil.getFilePathName(filePathName, "a"),
+			syncAccount.getSyncAccountId());
 
 		SyncFile folderSyncFileAA = SyncFileTestUtil.addFolderSyncFile(
-			null, folderSyncFileA.getTypePK(), syncAccount.getSyncAccountId());
+			FileUtil.getFilePathName(filePathName, "a", "a"),
+			folderSyncFileA.getTypePK(), syncAccount.getSyncAccountId());
 
 		SyncFileTestUtil.addFolderSyncFile(
-			null, folderSyncFileA.getTypePK(), syncAccount.getSyncAccountId());
+			FileUtil.getFilePathName(filePathName, "a", "b"),
+			folderSyncFileA.getTypePK(), syncAccount.getSyncAccountId());
 
 		SyncFileTestUtil.addFolderSyncFile(
-			null, folderSyncFileAA.getTypePK(), syncAccount.getSyncAccountId());
+			FileUtil.getFilePathName(filePathName, "a", "a", "a"),
+			folderSyncFileAA.getTypePK(), syncAccount.getSyncAccountId());
 
 		SyncFileTestUtil.addFileSyncFile(
-			null, folderSyncFileA.getTypePK(), syncAccount.getSyncAccountId());
+			FileUtil.getFilePathName(filePathName, "a", "b"),
+			folderSyncFileA.getTypePK(), syncAccount.getSyncAccountId());
 
 		SyncFileTestUtil.addFileSyncFile(
-			null, folderSyncFileA.getTypePK(), syncAccount.getSyncAccountId());
+			FileUtil.getFilePathName(filePathName, "a", "c"),
+			folderSyncFileA.getTypePK(), syncAccount.getSyncAccountId());
 
 		SyncFileTestUtil.addFileSyncFile(
-			null, folderSyncFileAA.getTypePK(), syncAccount.getSyncAccountId());
+			FileUtil.getFilePathName(filePathName, "a", "a", "a"),
+			folderSyncFileAA.getTypePK(), syncAccount.getSyncAccountId());
 
 		syncFiles = SyncFileService.findSyncFiles(
 			syncAccount.getSyncAccountId());
@@ -75,23 +83,23 @@ public class SyncFileServiceTest extends BaseTestCase {
 	@Test
 	public void testDoUpdateFolderSyncFile() throws Exception {
 		SyncFile folderSyncFileA = SyncFileTestUtil.addFolderSyncFile(
-			"/home/liferay/liferay-sync-test/a",
+			FileUtil.getFilePathName(filePathName, "a"),
 			syncAccount.getSyncAccountId());
 
 		SyncFile folderSyncFileB = SyncFileTestUtil.addFolderSyncFile(
-			"/home/liferay/liferay-sync-test/b",
+			FileUtil.getFilePathName(filePathName, "b"),
 			syncAccount.getSyncAccountId());
 
 		SyncFile folderSyncFileAA = SyncFileTestUtil.addFolderSyncFile(
-			"/home/liferay/liferay-sync-test/a/a", folderSyncFileA.getTypePK(),
-			syncAccount.getSyncAccountId());
+			FileUtil.getFilePathName(filePathName, "a", "a"),
+			folderSyncFileA.getTypePK(), syncAccount.getSyncAccountId());
 
 		SyncFile fileSyncFileAA = SyncFileTestUtil.addFileSyncFile(
-			"/home/liferay/liferay-sync-test/a/a.txt",
+			FileUtil.getFilePathName(filePathName, "a", "a.txt"),
 			folderSyncFileA.getTypePK(), syncAccount.getSyncAccountId());
 
 		SyncFileService.updateSyncFile(
-			Paths.get("/home/liferay/liferay-sync-test/b/a"),
+			Paths.get(FileUtil.getFilePathName(filePathName, "b", "a")),
 			folderSyncFileB.getTypePK(), folderSyncFileA);
 
 		SyncFilePersistence syncFilePersistence =
@@ -101,14 +109,14 @@ public class SyncFileServiceTest extends BaseTestCase {
 			folderSyncFileAA.getTypePK());
 
 		Assert.assertEquals(
-			"/home/liferay/liferay-sync-test/b/a/a",
+			FileUtil.getFilePathName(filePathName, "b", "a", "a"),
 			folderSyncFileAA.getFilePathName());
 
 		fileSyncFileAA = syncFilePersistence.queryForId(
 			fileSyncFileAA.getTypePK());
 
 		Assert.assertEquals(
-			"/home/liferay/liferay-sync-test/b/a/a.txt",
+			FileUtil.getFilePathName(filePathName, "b", "a", "a.txt"),
 			fileSyncFileAA.getFilePathName());
 	}
 

@@ -22,7 +22,6 @@ import com.liferay.sync.engine.service.SyncAccountService;
 import com.liferay.sync.engine.service.SyncFileService;
 import com.liferay.sync.engine.service.SyncSiteService;
 import com.liferay.sync.engine.service.SyncWatchEventService;
-import com.liferay.sync.engine.util.FilePathNameUtil;
 import com.liferay.sync.engine.util.FileUtil;
 
 import java.nio.file.Files;
@@ -58,10 +57,11 @@ public class SyncSiteWatchEventListener extends BaseWatchEventListener {
 				return;
 			}
 
-			String parentFilePathName = FilePathNameUtil.getFilePathName(
-				filePath.getParent());
+			Path parentFilePath = filePath.getParent();
 
-			String filePathName = FilePathNameUtil.getFilePathName(filePath);
+			String parentFilePathName = parentFilePath.toString();
+
+			String filePathName = filePath.toString();
 
 			SyncAccount syncAccount = SyncAccountService.fetchSyncAccount(
 				getSyncAccountId());
@@ -100,7 +100,7 @@ public class SyncSiteWatchEventListener extends BaseWatchEventListener {
 	protected String getFileType(String eventType, Path filePath) {
 		if (eventType.equals(SyncWatchEvent.EVENT_TYPE_DELETE)) {
 			SyncFile syncFile = SyncFileService.fetchSyncFile(
-				FilePathNameUtil.getFilePathName(filePath), getSyncAccountId());
+				filePath.toString(), getSyncAccountId());
 
 			if (syncFile != null) {
 				return syncFile.getType();
@@ -123,7 +123,7 @@ public class SyncSiteWatchEventListener extends BaseWatchEventListener {
 			}
 
 			SyncFile syncFile = SyncFileService.fetchSyncFile(
-				FilePathNameUtil.getFilePathName(filePath), getSyncAccountId());
+				filePath.toString(), getSyncAccountId());
 
 			if (syncFile != null) {
 				return syncFile.getRepositoryId();

@@ -18,6 +18,8 @@ import com.liferay.sync.engine.model.SyncFile;
 
 import java.io.InputStream;
 
+import java.nio.file.FileSystem;
+import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -100,6 +102,21 @@ public class FileUtil {
 		Path filePath = Paths.get(filePathName);
 
 		return getFileKey(filePath);
+	}
+
+	public static String getFilePathName(String... filePathNames) {
+		FileSystem fileSystem = FileSystems.getDefault();
+
+		StringBuilder sb = new StringBuilder((filePathNames.length * 2) - 1);
+
+		for (String filePathName : filePathNames) {
+			sb.append(filePathName);
+			sb.append(fileSystem.getSeparator());
+		}
+
+		sb.setLength(sb.length() - 1);
+
+		return sb.toString();
 	}
 
 	public static boolean hasFileChanged(SyncFile syncFile) {

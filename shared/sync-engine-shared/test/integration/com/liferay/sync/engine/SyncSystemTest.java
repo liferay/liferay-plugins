@@ -23,7 +23,7 @@ import com.liferay.sync.engine.model.SyncSite;
 import com.liferay.sync.engine.service.SyncAccountService;
 import com.liferay.sync.engine.service.SyncFileService;
 import com.liferay.sync.engine.service.SyncSiteService;
-import com.liferay.sync.engine.util.FilePathNameUtil;
+import com.liferay.sync.engine.util.FileUtil;
 import com.liferay.sync.engine.util.LoggerUtil;
 import com.liferay.sync.engine.util.PropsKeys;
 import com.liferay.sync.engine.util.PropsUtil;
@@ -37,6 +37,8 @@ import java.net.URL;
 
 import java.nio.charset.Charset;
 import java.nio.file.DirectoryStream;
+import java.nio.file.FileSystem;
+import java.nio.file.FileSystems;
 import java.nio.file.FileVisitResult;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -115,12 +117,13 @@ public class SyncSystemTest {
 	public void run() throws Exception {
 		SyncEngine.start();
 
-		_rootFilePathName = FilePathNameUtil.fixFilePathName(
-			System.getProperty("user.home") + "/liferay-sync-test");
+		_rootFilePathName = FileUtil.getFilePathName(
+			System.getProperty("user.home"), "liferay-sync-test");
 
 		_syncAccount = SyncAccountService.addSyncAccount(
-			_rootFilePathName + "/test", "test@liferay.com", Integer.MAX_VALUE,
-			"test", "test", 5, null, false, "http://localhost:8080");
+			FileUtil.getFilePathName(_rootFilePathName, "test"),
+			"test@liferay.com", Integer.MAX_VALUE, "test", "test", 5, null,
+			false, "http://localhost:8080");
 
 		SyncAccountService.update(_syncAccount);
 
@@ -138,8 +141,9 @@ public class SyncSystemTest {
 
 		executeSteps(_testFilePath, rootJsonNode);
 
-		String testFileName = FilePathNameUtil.getFilePathName(
-			_testFilePath.getFileName());
+		Path testFileNameFilePath = _testFilePath.getFileName();
+
+		String testFileName = testFileNameFilePath.toString();
 
 		_logger.info(
 			"Test {} passed.", FilenameUtils.removeExtension(testFileName));
@@ -251,8 +255,8 @@ public class SyncSystemTest {
 
 		SyncSystemTestUtil.addUser(name, true, _syncAccount.getSyncAccountId());
 
-		String filePathName = FilePathNameUtil.fixFilePathName(
-			System.getProperty("user.home") + "/liferay-sync-test/" + name);
+		String filePathName = FileUtil.getFilePathName(
+			System.getProperty("user.home"), "liferay-sync-test", name);
 
 		SyncAccount syncAccount = SyncAccountService.addSyncAccount(
 			filePathName, name + "@liferay.com", 1, name, "test", 5, null,
@@ -274,11 +278,14 @@ public class SyncSystemTest {
 		Path dependencyFilePath = getDependencyFilePath(
 			testFilePath, dependency);
 
+		FileSystem fileSystem = FileSystems.getDefault();
+
 		dependency = getString(
-			stepJsonNode, "target", dependency.replace("common/", ""));
+			stepJsonNode, "target",
+			dependency.replace("common" + fileSystem.getSeparator(), ""));
 
 		Path targetFilePath = Paths.get(
-			syncSite.getFilePathName() + "/" + dependency);
+			FileUtil.getFilePathName(syncSite.getFilePathName(), dependency));
 
 		Files.copy(dependencyFilePath, targetFilePath);
 	}
@@ -293,10 +300,12 @@ public class SyncSystemTest {
 		final Path dependencyFilePath = getDependencyFilePath(
 			testFilePath, dependency);
 
-		dependency = dependency.replace("common/", "");
+		FileSystem fileSystem = FileSystems.getDefault();
 
 		final Path targetFilePath = Paths.get(
-			syncSite.getFilePathName() + "/" + dependency);
+			FileUtil.getFilePathName(
+				syncSite.getFilePathName(),
+				dependency.replace("common" + fileSystem.getSeparator(), "")));
 
 		Files.walkFileTree(
 			dependencyFilePath,
@@ -339,7 +348,7 @@ public class SyncSystemTest {
 		String source = getString(stepJsonNode, "source");
 
 		SyncFile syncFile = SyncFileService.fetchSyncFile(
-			syncSite.getFilePathName() + "/" + source,
+			FileUtil.getFilePathName(syncSite.getFilePathName(), source),
 			syncSite.getSyncAccountId());
 
 		SyncFileService.checkInSyncFile(syncSite.getSyncAccountId(), syncFile);
@@ -351,7 +360,7 @@ public class SyncSystemTest {
 		String source = getString(stepJsonNode, "source");
 
 		SyncFile syncFile = SyncFileService.fetchSyncFile(
-			syncSite.getFilePathName() + "/" + source,
+			FileUtil.getFilePathName(syncSite.getFilePathName(), source),
 			syncSite.getSyncAccountId());
 
 		SyncFileService.checkOutSyncFile(syncSite.getSyncAccountId(), syncFile);
@@ -363,7 +372,7 @@ public class SyncSystemTest {
 		String source = getString(stepJsonNode, "source");
 
 		Path targetFilePath = Paths.get(
-			syncSite.getFilePathName() + "/" + source);
+			FileUtil.getFilePathName(syncSite.getFilePathName(), source));
 
 		Files.deleteIfExists(targetFilePath);
 	}
@@ -431,23 +440,23 @@ public class SyncSystemTest {
 	protected Path getDependencyFilePath(Path testFilePath, String dependency)
 		throws Exception {
 
-		StringBuilder sb = new StringBuilder();
+		String filePathName = null;
 
-		sb.append("tests/dependencies/");
+		if (dependency.contains("common")) {
+			filePathName = FileUtil.getFilePathName(
+				"tests", "dependencies", dependency);
+		}
+		else {
+			Path testFileNameFilePath = testFilePath.getFileName();
 
-		Path testFileNameFilePath = testFilePath.getFileName();
+			String testFileName = testFileNameFilePath.toString();
 
-		String testFileName = testFileNameFilePath.toString();
-
-		if (!dependency.contains("common")) {
-			sb.append(FilenameUtils.removeExtension(testFileName));
-
-			sb.append("/");
+			filePathName = FileUtil.getFilePathName(
+				"tests", "dependencies",
+				FilenameUtils.removeExtension(testFileName), dependency);
 		}
 
-		sb.append(dependency);
-
-		return getResourceFilePath(sb.toString());
+		return getResourceFilePath(filePathName);
 	}
 
 	protected long getLong(JsonNode jsonNode, String key, long defaultValue) {
@@ -473,7 +482,11 @@ public class SyncSystemTest {
 			return defaultValue;
 		}
 
-		return childJsonNode.textValue();
+		FileSystem fileSystem = FileSystems.getDefault();
+
+		String value = childJsonNode.textValue();
+
+		return value.replace("/", fileSystem.getSeparator());
 	}
 
 	protected SyncSite getSyncSite(JsonNode stepJsonNode) {
@@ -491,7 +504,8 @@ public class SyncSystemTest {
 
 		String source = getString(jsonNode, "source");
 
-		return Paths.get(syncSite.getFilePathName() + "/" + source);
+		return Paths.get(
+			FileUtil.getFilePathName(syncSite.getFilePathName(), source));
 	}
 
 	protected void moveFile(JsonNode stepJsonNode) throws Exception {
@@ -501,9 +515,9 @@ public class SyncSystemTest {
 		String target = getString(stepJsonNode, "target");
 
 		Path sourceFilePath = Paths.get(
-			syncSite.getFilePathName() + "/" + source);
+			FileUtil.getFilePathName(syncSite.getFilePathName(), source));
 		Path targetFilePath = Paths.get(
-			syncSite.getFilePathName() + "/" + target);
+			FileUtil.getFilePathName(syncSite.getFilePathName(), target));
 
 		Files.move(sourceFilePath, targetFilePath);
 	}
@@ -540,10 +554,9 @@ public class SyncSystemTest {
 		}
 
 		if (!testPassed) {
-			String testFileName = FilePathNameUtil.getFilePathName(
-				_testFilePath.getFileName());
+			Path testFileNameFilePath = _testFilePath.getFileName();
 
-			Assert.fail("Test " + testFileName + " failed.");
+			Assert.fail("Test " + testFileNameFilePath.toString() + " failed.");
 		}
 	}
 

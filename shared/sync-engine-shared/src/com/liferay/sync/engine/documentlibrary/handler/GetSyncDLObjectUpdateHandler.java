@@ -24,7 +24,6 @@ import com.liferay.sync.engine.model.SyncFile;
 import com.liferay.sync.engine.model.SyncSite;
 import com.liferay.sync.engine.service.SyncFileService;
 import com.liferay.sync.engine.service.SyncSiteService;
-import com.liferay.sync.engine.util.FilePathNameUtil;
 import com.liferay.sync.engine.util.FileUtil;
 import com.liferay.sync.engine.util.IODeltaUtil;
 
@@ -210,7 +209,7 @@ public class GetSyncDLObjectUpdateHandler extends BaseSyncDLObjectHandler {
 				continue;
 			}
 
-			String filePathName = FilePathNameUtil.getFilePathName(
+			String filePathName = FileUtil.getFilePathName(
 				parentSyncFile.getFilePathName(), syncFile.getName());
 
 			String event = syncFile.getEvent();

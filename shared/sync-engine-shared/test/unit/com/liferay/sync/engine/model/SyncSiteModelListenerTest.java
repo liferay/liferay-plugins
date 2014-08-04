@@ -16,6 +16,7 @@ package com.liferay.sync.engine.model;
 
 import com.liferay.sync.engine.BaseTestCase;
 import com.liferay.sync.engine.service.SyncSiteService;
+import com.liferay.sync.engine.util.FileUtil;
 import com.liferay.sync.engine.util.SyncSiteTestUtil;
 
 import java.util.Set;
@@ -40,7 +41,7 @@ public class SyncSiteModelListenerTest extends BaseTestCase {
 		SyncSiteService.registerModelListener(_syncSiteModelListener);
 
 		_syncSite = SyncSiteTestUtil.addSyncSite(
-			10158, filePathName + "/test-site", 10185,
+			10158, FileUtil.getFilePathName(filePathName, "test-site"), 10185,
 			syncAccount.getSyncAccountId());
 
 		_syncSite.setActive(true);
