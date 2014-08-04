@@ -1,6 +1,12 @@
 @import "compass";
 @import "mixins";
 
+/* ---------- Mixins ---------- */ 
+ 
+@mixin default-border-radius {
+	@include border-radius(4px);
+}
+
 @mixin keyframes($name) {
 	@-o-keyframes #{$name} {
 		@content;
@@ -134,7 +140,7 @@
 			position: relative;
 
 			.mark-as-read {
-				@include border-radius(4px);
+				@include default-border-radius;
 
 				color: #999;
 				padding: 0 5px;
@@ -219,7 +225,7 @@
 	.actionable, .non-actionable {
 		background-color: #FFF;
 
-		@include border-radius(4px);
+		@include default-border-radius;
 	}
 
 	.non-actionable {
@@ -396,7 +402,7 @@
 /* ---------- Extras ---------- */
 
 .dockbar-user-notifications .dropdown-toggle .user-notifications-count, .notifications-portlet .nav a:hover, .notifications-portlet .nav a.selected, .notifications-portlet .user-notifications-list-container {
-	@include border-radius(4px);
+	@include default-border-radius;
 }
 
 .aui {
