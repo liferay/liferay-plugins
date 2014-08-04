@@ -17,7 +17,7 @@
 					) OR
 					(
 						(MicroblogsEntry.socialRelationType = SocialRelation.type_) AND
-						(MicroblogsEntry.userId = socialrelation.userId2) AND
+						(MicroblogsEntry.userId = SocialRelation.userId2) AND
 						(SocialRelation.userId1 = ?)
 					) OR
 					(
@@ -124,7 +124,7 @@
 					) OR
 					(
 						(MicroblogsEntry.socialRelationType = SocialRelation.type_) AND
-						(MicroblogsEntry.userId = socialrelation.userId2) AND
+						(MicroblogsEntry.userId = SocialRelation.userId2) AND
 						(SocialRelation.userId1 = ?)
 					) OR
 					(
