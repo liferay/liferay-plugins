@@ -47,6 +47,8 @@
 	}
 }
 
+/* ---------- Dockbar & notifications portlet ---------- */
+
 .dockbar-user-notifications, .notifications-portlet {
 	.dropdown-toggle .user-notifications-count {
 		background-color: #0066B3;
@@ -221,6 +223,8 @@
 	}
 }
 
+/* ---------- Dockbar notifications ---------- */
+
 .dockbar-user-notifications {
 	.actionable, .non-actionable {
 		background-color: #FFF;
@@ -241,6 +245,8 @@
 		}
 	}
 }
+
+/* ---------- Notifications portlet ---------- */
 
 .notifications-portlet {
 	.nav {
@@ -386,6 +392,8 @@
 	}
 }
 
+/* ---------- Layout ---------- */
+
 .span1, .span2, .span3, .span4, .span5, .span6 {
 	.notifications-portlet {
 		.user-notifications-sidebar, .user-notifications-list-container {
@@ -421,6 +429,8 @@
 		}
 	}
 }
+
+/* ---------- Internet explorer ---------- */
 
 .ie8 .user-thumbnail img {
 	max-width: none;
