@@ -464,6 +464,7 @@ $defaultTextColor: #202020;
 						.user-notification-link .user-notifications-count {
 							background-color: #333;
 							color: #FFF;
+							margin: 5px 0 4px;
 						}
 
 						.user-notification {
