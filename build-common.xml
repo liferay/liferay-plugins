@@ -68,7 +68,7 @@
 		<path refid="plugin.classpath" />
 		<path refid="plugin-test-type.classpath" />
 		<fileset dir="${app.server.lib.portal.dir}" excludes="ant.jar" includes="*.jar" />
-		<fileset dir="${module.framework.base.dir}/test" includes="portal-test*.jar" />
+		<fileset dir="${module.framework.base.dir}/test" erroronmissingdir="false" includes="portal-test*.jar" />
 	</path>
 
 	<path id="classpath.aQute.bnd">
@@ -742,7 +742,7 @@ Error-Prone was automatically installed. Please rerun your task.
 			</if>
 
 			<copy todir="@{module.dir}/docroot/WEB-INF/tld">
-				<fileset dir="${app.server.portal.dir}/WEB-INF/tld" includes="${plugin.tlds}" />
+				<fileset dir="${app.server.portal.dir}/WEB-INF/tld" erroronmissingdir="false" includes="${plugin.tlds}" />
 			</copy>
 
 			<if>
