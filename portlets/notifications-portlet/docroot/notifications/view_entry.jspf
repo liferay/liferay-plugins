@@ -66,7 +66,7 @@ boolean read = userNotificationEvent.isArchived();
 		</div>
 
 		<div class="content">
-			<div class="body">
+			<div class="body-container">
 				<%= userNotificationFeedEntry.getBody() %>
 			</div>
 
