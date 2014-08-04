@@ -14,11 +14,11 @@
 
 package com.liferay.portal.kernel.bean;
 
-import javax.servlet.http.HttpServletRequest;
-
 /**
  * @author Brian Wing Shun Chan
  */
 public interface BeanProperties {
+
+	public void setPropertySilent(Object bean, String param, Object value);
 
 }

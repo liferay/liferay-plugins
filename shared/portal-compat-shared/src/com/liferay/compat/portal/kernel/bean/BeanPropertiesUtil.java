@@ -12,15 +12,34 @@
  * details.
  */
 
-package com.liferay.portal.kernel.bean;
+package com.liferay.compat.portal.kernel.bean;
 
-import com.liferay.portal.kernel.security.pacl.permission.PortalRuntimePermission;
+import com.liferay.portal.kernel.util.PortalClassLoaderUtil;
 
-import javax.servlet.http.HttpServletRequest;
+import java.lang.reflect.Method;
 
 /**
  * @author Brian Wing Shun Chan
  */
-public class BeanPropertiesUtil {
+public class BeanPropertiesUtil extends com.liferay.portal.kernel.bean.BeanPropertiesUtil {
+
+	public static void setPropertySilent(
+		Object bean, String param, Object value) {
+
+		try {
+				ClassLoader classLoader = PortalClassLoaderUtil.getClassLoader();
+
+				Class<?> clazz = classLoader.loadClass("jodd.bean.BeanUtil");
+
+				Method method = clazz.getMethod("setPropertyForcedSilent", new Class[]{Object.class, String.class, Object.class});
+
+				method.setAccessible(true);
+
+				method.invoke(null, bean, param, value);
+		}
+		catch (Exception e) {
+				throw new RuntimeException(e);
+		}
+	}
 
 }
