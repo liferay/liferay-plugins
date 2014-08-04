@@ -158,7 +158,7 @@
 				margin-left: 40px;
 			}
 
-			.body {
+			.body-container {
 				color: #444;
 				overflow: hidden;
 				text-overflow: ellipsis;
@@ -343,7 +343,7 @@
 			}
 		}
 
-		.body {
+		.body-container {
 			float: left;
 		}
 
@@ -433,7 +433,7 @@
 			.user-notification {
 				margin: 0;
 
-				.body {
+				.body-container {
 					width: 100%;
 
 					.btn {
