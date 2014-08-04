@@ -16,13 +16,13 @@ package com.liferay.portal.search.solr.server;
 
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.util.StringPool;
 
 import java.io.IOException;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import com.liferay.portal.kernel.util.StringPool;
 import org.apache.http.HttpRequestInterceptor;
 import org.apache.http.auth.AuthScope;
 import org.apache.http.auth.UsernamePasswordCredentials;
@@ -45,14 +45,12 @@ import org.apache.solr.common.util.NamedList;
 public class BasicAuthSolrServer extends SolrServer {
 
 	public BasicAuthSolrServer() {
-		String baseURL = StringPool.BLANK;
-
 		_poolingClientConnectionManager = new PoolingClientConnectionManager();
 
 		DefaultHttpClient defaultHttpClient = new DefaultHttpClient(
 			_poolingClientConnectionManager);
 
-		_server = new HttpSolrServer(baseURL, defaultHttpClient);
+		_server = new HttpSolrServer(StringPool.BLANK, defaultHttpClient);
 	}
 
 	public void afterPropertiesSet() {
