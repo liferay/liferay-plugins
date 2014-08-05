@@ -45,7 +45,7 @@ public class ProjectionFactoryUtil
 			Constructor<? extends Projection> projectionImplConstructor =
 				projectionImplClass.getConstructor(hibernateProjectionClass);
 
-			Class<?> projectionsClass = classLoader.loadClass(
+			Class<?> hibernateProjectionsClass = classLoader.loadClass(
 				"org.hibernate.criterion.Projections");
 
 			Class<?> hibernateTypeClass = classLoader.loadClass(
@@ -54,9 +54,10 @@ public class ProjectionFactoryUtil
 			Object hibernateTypeArray = Array.newInstance(
 				hibernateTypeClass, types.length);
 
-			Method sqlGroupProjectionMethod = projectionsClass.getMethod(
-				"sqlGroupProjection", String.class, String.class,
-				String[].class, hibernateTypeArray.getClass());
+			Method sqlGroupProjectionMethod =
+				hibernateProjectionsClass.getMethod(
+					"sqlGroupProjection", String.class, String.class,
+					String[].class, hibernateTypeArray.getClass());
 
 			if (ArrayUtil.isEmpty(types)) {
 				return projectionImplConstructor.newInstance(
