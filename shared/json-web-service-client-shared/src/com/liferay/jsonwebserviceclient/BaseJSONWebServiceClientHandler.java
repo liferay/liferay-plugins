@@ -54,7 +54,7 @@ public abstract class BaseJSONWebServiceClientHandler {
 			return Collections.emptyList();
 		}
 
-		if (json.contains("exception")) {
+		if (json.contains("exception\":\"")) {
 			throw new Exception(getExceptionMessage(json));
 		}
 
@@ -76,7 +76,7 @@ public abstract class BaseJSONWebServiceClientHandler {
 			return null;
 		}
 
-		if (json.contains("exception")) {
+		if (json.contains("exception\":\"")) {
 			throw new Exception(getExceptionMessage(json));
 		}
 
@@ -94,7 +94,7 @@ public abstract class BaseJSONWebServiceClientHandler {
 			return null;
 		}
 
-		if (json.contains("exception")) {
+		if (json.contains("exception\":\"")) {
 			throw new Exception(getExceptionMessage(json));
 		}
 
