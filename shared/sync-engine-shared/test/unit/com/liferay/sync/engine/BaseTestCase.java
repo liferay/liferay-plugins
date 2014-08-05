@@ -75,9 +75,8 @@ public abstract class BaseTestCase {
 
 		UpgradeUtil.upgrade();
 
-		filePathName =
-			FileUtil.getFilePathName(
-				System.getProperty("user.home"), "liferay-sync-test");
+		filePathName = FileUtil.getFilePathName(
+			System.getProperty("user.home"), "liferay-sync-test");
 
 		syncAccount = SyncAccountService.addSyncAccount(
 			filePathName, "test@liferay.com", 1, "test", "test", 5, null, false,
