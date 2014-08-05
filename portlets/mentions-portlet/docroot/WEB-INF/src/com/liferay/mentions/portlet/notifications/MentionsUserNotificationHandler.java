@@ -69,16 +69,23 @@ public class MentionsUserNotificationHandler
 			serviceContext.getLocale());
 
 		if ((mbMessage != null) && mbMessage.isDiscussion()) {
-			return serviceContext.translate(
+			return LanguageUtil.format(
+				serviceContext.getLocale(),
 				"x-mentioned-you-in-a-comment-in-a-x",
-				HtmlUtil.escape(assetRenderer.getUserName()),
-				StringUtil.toLowerCase(HtmlUtil.escape(typeName)));
+				new String[] {
+					HtmlUtil.escape(assetRenderer.getUserName()),
+					StringUtil.toLowerCase(HtmlUtil.escape(typeName))
+				},
+				false);
 		}
 		else {
-			return serviceContext.translate(
-				"x-mentioned-you-in-a-x",
-				HtmlUtil.escape(assetRenderer.getUserName()),
-				StringUtil.toLowerCase(HtmlUtil.escape(typeName)));
+			return LanguageUtil.format(
+				serviceContext.getLocale(), "x-mentioned-you-in-a-x",
+				new String[] {
+					HtmlUtil.escape(assetRenderer.getUserName()),
+					StringUtil.toLowerCase(HtmlUtil.escape(typeName))
+				},
+				false);
 		}
 	}
 
