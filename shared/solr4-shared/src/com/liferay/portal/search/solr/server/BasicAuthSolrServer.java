@@ -16,7 +16,7 @@ package com.liferay.portal.search.solr.server;
 
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.Validator;
 
 import java.io.IOException;
 
@@ -44,23 +44,14 @@ import org.apache.solr.common.util.NamedList;
  */
 public class BasicAuthSolrServer extends SolrServer {
 
-	public BasicAuthSolrServer() {
-		_poolingClientConnectionManager = new PoolingClientConnectionManager();
-
+	public void afterPropertiesSet() {
 		DefaultHttpClient defaultHttpClient = new DefaultHttpClient(
 			_poolingClientConnectionManager);
 
-		_server = new HttpSolrServer(StringPool.BLANK, defaultHttpClient);
-	}
-
-	public void afterPropertiesSet() {
 		if ((_username != null) && (_password != null)) {
 			if (_authScope == null) {
 				_authScope = AuthScope.ANY;
 			}
-
-			DefaultHttpClient defaultHttpClient =
-				(DefaultHttpClient) _server.getHttpClient();
 
 			CredentialsProvider credentialsProvider =
 				defaultHttpClient.getCredentialsProvider();
@@ -77,7 +68,44 @@ public class BasicAuthSolrServer extends SolrServer {
 			}
 		}
 
-		_server.setBaseURL(_url);
+		_server = new HttpSolrServer(_url, defaultHttpClient);
+
+		if (_allowCompression != null) {
+			_server.setAllowCompression(_allowCompression);
+		}
+
+		if (Validator.isNotNull(_baseURL)) {
+			_server.setBaseURL(_baseURL);
+		}
+
+		if (_connectionTimeout != null) {
+			_server.setConnectionTimeout(_connectionTimeout);
+		}
+
+		if (_defaultMaxConnectionsPerRoute != null) {
+			_server.setDefaultMaxConnectionsPerHost(
+				_defaultMaxConnectionsPerRoute);
+		}
+
+		if (_followRedirects != null) {
+			_server.setFollowRedirects(_followRedirects);
+		}
+
+		if (_maxTotalConnections != null) {
+			_server.setMaxTotalConnections(_maxTotalConnections);
+		}
+
+		if (_maxRetries != null) {
+			_server.setMaxRetries(_maxRetries);
+		}
+
+		if (_responseParser != null) {
+			_server.setParser(_responseParser);
+		}
+
+		if (_socketTimeout != null) {
+			_server.setSoTimeout(_socketTimeout);
+		}
 	}
 
 	public String getBaseURL() {
@@ -118,8 +146,12 @@ public class BasicAuthSolrServer extends SolrServer {
 		return _server.request(solrRequest, responseParser);
 	}
 
-	public void setAllowCompression(boolean compression) {
-		_server.setAllowCompression(compression);
+	public void setAllowCompression(boolean allowCompression) {
+		_allowCompression = allowCompression;
+
+		if (_server != null) {
+			_server.setAllowCompression(_allowCompression);
+		}
 	}
 
 	public void setAuthScope(AuthScope authScope) {
@@ -127,20 +159,38 @@ public class BasicAuthSolrServer extends SolrServer {
 	}
 
 	public void setBaseURL(String baseURL) {
-		_server.setBaseURL(baseURL);
+		_baseURL = baseURL;
+
+		if (_server != null) {
+			_server.setBaseURL(baseURL);
+		}
 	}
 
 	public void setConnectionTimeout(int connectionTimeout) {
-		_server.setConnectionTimeout(connectionTimeout);
+		_connectionTimeout = connectionTimeout;
+
+		if (_server != null) {
+			_server.setConnectionTimeout(connectionTimeout);
+		}
 	}
 
-	public void setDefaultMaxConnectionsPerHost(int maxConnectionsPerHost) {
-		_poolingClientConnectionManager.setDefaultMaxPerRoute(
-			maxConnectionsPerHost);
+	public void setDefaultMaxConnectionsPerRoute(
+		int defaultMaxConnectionsPerRoute) {
+
+		_defaultMaxConnectionsPerRoute = defaultMaxConnectionsPerRoute;
+
+		if (_server != null) {
+			_server.setDefaultMaxConnectionsPerHost(
+				defaultMaxConnectionsPerRoute);
+		}
 	}
 
 	public void setFollowRedirects(boolean followRedirects) {
-		_server.setFollowRedirects(followRedirects);
+		_followRedirects = followRedirects;
+
+		if (_server != null) {
+			_server.setFollowRedirects(followRedirects);
+		}
 	}
 
 	public void setHttpRequestInterceptors(
@@ -150,23 +200,39 @@ public class BasicAuthSolrServer extends SolrServer {
 	}
 
 	public void setMaxRetries(int maxRetries) {
-		_server.setMaxRetries(maxRetries);
+		_maxRetries = maxRetries;
+
+		if (_server != null) {
+			_server.setMaxRetries(maxRetries);
+		}
 	}
 
 	public void setMaxTotalConnections(int maxTotalConnections) {
-		_poolingClientConnectionManager.setMaxTotal(maxTotalConnections);
+		_maxTotalConnections = maxTotalConnections;
+
+		if (_server != null) {
+			_server.setMaxTotalConnections(maxTotalConnections);
+		}
 	}
 
 	public void setParser(ResponseParser responseParser) {
-		_server.setParser(responseParser);
+		_responseParser = responseParser;
+
+		if (_server != null) {
+			_server.setParser(responseParser);
+		}
 	}
 
 	public void setPassword(String password) {
 		_password = password;
 	}
 
-	public void setSoTimeout(int soTimeout) {
-		_server.setSoTimeout(soTimeout);
+	public void setSocketTimeout(int socketTimeout) {
+		_socketTimeout = socketTimeout;
+
+		if (_server != null) {
+			_server.setSoTimeout(socketTimeout);
+		}
 	}
 
 	public void setUrl(String url) {
@@ -181,7 +247,11 @@ public class BasicAuthSolrServer extends SolrServer {
 	public void shutdown() {
 		_stopped = true;
 
-		while (true) {
+		_server.shutdown();
+
+		int retry = 0;
+
+		while (retry < 10) {
 			PoolStats poolStats =
 				_poolingClientConnectionManager.getTotalStats();
 
@@ -201,10 +271,12 @@ public class BasicAuthSolrServer extends SolrServer {
 				200, TimeUnit.MILLISECONDS);
 
 			try {
-				Thread.sleep(250);
+				Thread.sleep(500);
 			}
 			catch (InterruptedException ie) {
 			}
+
+			retry++;
 		}
 
 		_poolingClientConnectionManager.shutdown();
@@ -216,11 +288,21 @@ public class BasicAuthSolrServer extends SolrServer {
 
 	private static Log _log = LogFactoryUtil.getLog(BasicAuthSolrServer.class);
 
+	private Boolean _allowCompression;
 	private AuthScope _authScope;
+	private String _baseURL;
+	private Integer _connectionTimeout;
+	private Integer _defaultMaxConnectionsPerRoute;
+	private Boolean _followRedirects;
 	private List<HttpRequestInterceptor> _httpRequestInterceptors;
+	private Integer _maxRetries;
+	private Integer _maxTotalConnections;
 	private String _password;
-	private PoolingClientConnectionManager _poolingClientConnectionManager;
+	private PoolingClientConnectionManager _poolingClientConnectionManager =
+		new PoolingClientConnectionManager();
+	private ResponseParser _responseParser;
 	private HttpSolrServer _server;
+	private Integer _socketTimeout;
 	private boolean _stopped;
 	private String _url;
 	private String _username;
