@@ -1662,10 +1662,6 @@ Please find a solution that does not require portal-impl.jar.
 									<if>
 										<available file="${temp.deployed.plugin.dir}" />
 										<then>
-											<update-osgi-web-xml
-												web.xml.dir="${temp.deployed.plugin.dir}/WEB-INF"
-											/>
-
 											<jar destfile="${sdk.dir}/dist/${plugin.name}-${plugin.full.version}.war" update="true">
 												<fileset
 													dir="${temp.deployed.plugin.dir}"
@@ -2461,120 +2457,6 @@ Please find a solution that does not require portal-impl.jar.
 				test.class="*Test"
 				test.type="unit"
 			/>
-		</sequential>
-	</macrodef>
-
-	<macrodef name="update-osgi-web-xml">
-		<attribute name="web.xml.dir" />
-
-		<sequential>
-			<replace file="@{web.xml.dir}/web.xml">
-				<replacetoken><![CDATA[taglib-location>/WEB-INF/tld]]></replacetoken>
-				<replacevalue><![CDATA[taglib-location>/META-INF]]></replacevalue>
-			</replace>
-
-			<var name="web.xml.dir" value="@{web.xml.dir}" />
-
-			<script classpathref="portal.classpath" language="beanshell">
-				<![CDATA[
-					import com.liferay.util.xml.XMLFormatter;
-
-					import org.dom4j.Document;
-					import org.dom4j.Element;
-					import org.dom4j.io.SAXReader;
-
-					import java.io.File;
-
-					SAXReader saxReader = new SAXReader();
-
-					Document document = saxReader.read(new File(project.getProperty("web.xml.dir"), "web.xml"));
-
-					Element rootElement = document.getRootElement();
-
-					Element displayNameElement = rootElement.element("display-name");
-
-					if (displayNameElement != null) {
-						displayNameElement.detach();
-					}
-
-					List filterElements = rootElement.elements("filter");
-
-					for (Element filterElement : filterElements) {
-						Element filterNameElement = filterElement.element("filter-name");
-
-						if (filterNameElement == null) {
-							continue;
-						}
-
-						String filterNameText = filterNameElement.getText();
-
-						if (filterNameText.contains("Invoker Filter -")) {
-							filterElement.detach();
-						}
-					}
-
-					List filterMappingElements = rootElement.elements("filter-mapping");
-
-					for (Element filterMappingElement : filterMappingElements) {
-						Element filterNameElement = filterMappingElement.element("filter-name");
-
-						if (filterNameElement == null) {
-							continue;
-						}
-
-						String filterNameText = filterNameElement.getText();
-
-						if (filterNameText.contains("Invoker Filter -")) {
-							filterMappingElement.detach();
-						}
-					}
-
-					List listenerElements = rootElement.elements("listener");
-
-					for (Element listenerElement : listenerElements) {
-						Element listenerClassElement = listenerElement.element("listener-class");
-
-						String listenerClassText = listenerClassElement.getText();
-
-						if (listenerClassText.equals("com.liferay.portal.kernel.servlet.PluginContextListener") ||
-							listenerClassText.equals("com.liferay.portal.kernel.servlet.SerializableSessionAttributeListener")) {
-
-							listenerElement.detach();
-						}
-					}
-
-					List servletElements = rootElement.elements("servlet");
-
-					for (Element servletElement : servletElements) {
-						Element servletNameElement = servletElement.element("servlet-name");
-
-						if (servletNameElement == null) {
-							continue;
-						}
-
-						String servletNameText = servletNameElement.getText();
-
-						if (servletNameText.equals("Dynamic Resource Servlet")) {
-							Element servletClassElement = servletElement.element("servlet-class");
-
-							servletClassElement.setText("com.liferay.portal.webserver.DynamicResourceServlet");
-
-							List initParamElements = servletElement.elements("init-param");
-
-							for (Element initParamElement : initParamElements) {
-								initParamElement.detach();
-							}
-						}
-					}
-
-					project.setProperty("web.xml.content", XMLFormatter.toString(document));
-				]]>
-			</script>
-
-			<echo file="@{web.xml.dir}/web.xml">${web.xml.content}</echo>
-
-			<var name="web.xml.content" unset="true" />
-			<var name="web.xml.dir" unset="true" />
 		</sequential>
 	</macrodef>
 
