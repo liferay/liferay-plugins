@@ -23,7 +23,7 @@ KBFeedbackListDisplayContext kbFeedbackListDisplayContext = (KBFeedbackListDispl
 </liferay-portlet:renderURL>
 
 <%
-kbFeedbackListDisplayContext.populateFeedbackByStatusURL(iteratorURL, navItem);
+kbFeedbackListDisplayContext.getViewFeedbackURL(iteratorURL, navItem);
 %>
 
 <div id="<portlet:namespace />kbArticleCommentsWrapper">
