@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+
+<ivy-module
+	version="2.0"
+	xmlns:m2="http://ant.apache.org/ivy/maven"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="http://ant.apache.org/ivy/schemas/ivy.xsd"
+>
+	<info module="${plugin.name}" organisation="com.liferay">
+		<extends extendType="configurations,description,info" location="${sdk.dir}/ivy.xml" module="com.liferay.sdk" organisation="com.liferay" revision="latest.integration" />
+	</info>
+
+	<publications>
+		<artifact type="jar" />
+		<artifact type="pom" />
+		<artifact m2:classifier="sources" />
+	</publications>
+
+	<dependencies defaultconf="default">
+		<dependency name="org.eclipse.osgi.services" org="org.eclipse.birt.runtime" rev="3.3.100.v20120522-1822" />
+		<dependency name="org.osgi.core" org="org.osgi" rev="5.0.0" />
+	</dependencies>
+</ivy-module>

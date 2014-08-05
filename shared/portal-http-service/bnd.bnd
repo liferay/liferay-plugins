@@ -1,0 +1,9 @@
+Bundle-Activator: com.liferay.portal.http.service.internal.HttpServiceBundleActivator
+Bundle-Name: Liferay Portal HTTP Service
+Bundle-Version: ${plugin.full.version}
+Export-Package:\
+	com.liferay.portal.http.service.servlet,\
+	com.liferay.portal.http.service.ws.axis
+Include-Resource: classes
+Private-Package:\
+	com.liferay.portal.http.service.internal.*
