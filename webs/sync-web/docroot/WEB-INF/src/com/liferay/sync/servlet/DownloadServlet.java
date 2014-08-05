@@ -22,14 +22,18 @@ import com.liferay.portal.kernel.servlet.ServletResponseUtil;
 import com.liferay.portal.kernel.util.CharPool;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HttpUtil;
+import com.liferay.portal.kernel.util.MimeTypesUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.model.Image;
+import com.liferay.portal.model.ImageConstants;
 import com.liferay.portal.model.User;
 import com.liferay.portal.portletfilerepository.PortletFileRepositoryUtil;
 import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.portal.security.permission.PermissionCheckerFactoryUtil;
 import com.liferay.portal.security.permission.PermissionThreadLocal;
+import com.liferay.portal.service.ImageServiceUtil;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.documentlibrary.NoSuchFileEntryException;
 import com.liferay.portlet.documentlibrary.model.DLFileVersion;
@@ -79,16 +83,23 @@ public class DownloadServlet extends HttpServlet {
 			String path = HttpUtil.fixPath(request.getPathInfo());
 			String[] pathArray = StringUtil.split(path, CharPool.SLASH);
 
-			long groupId = GetterUtil.getLong(pathArray[0]);
-			String uuid = pathArray[1];
+			if (pathArray[0].equals("image")) {
+				long imageId = GetterUtil.getLong(pathArray[1]);
 
-			boolean patch = ParamUtil.getBoolean(request, "patch");
-
-			if (patch) {
-				sendPatch(request, response, user, groupId, uuid);
+				sendImage(response, imageId);
 			}
 			else {
-				sendFile(request, response, user, groupId, uuid);
+				long groupId = GetterUtil.getLong(pathArray[0]);
+				String uuid = pathArray[1];
+
+				boolean patch = ParamUtil.getBoolean(request, "patch");
+
+				if (patch) {
+					sendPatch(request, response, user, groupId, uuid);
+				}
+				else {
+					sendFile(request, response, groupId, uuid);
+				}
 			}
 		}
 		catch (NoSuchFileEntryException nsfee) {
@@ -114,7 +125,7 @@ public class DownloadServlet extends HttpServlet {
 	}
 
 	protected void sendFile(
-			HttpServletRequest request, HttpServletResponse response, User user,
+			HttpServletRequest request, HttpServletResponse response,
 			long groupId, String uuid)
 		throws Exception {
 
@@ -136,6 +147,22 @@ public class DownloadServlet extends HttpServlet {
 		InputStream inputStream = fileVersion.getContentStream(false);
 
 		ServletResponseUtil.write(response, inputStream, fileVersion.getSize());
+	}
+
+	protected void sendImage(HttpServletResponse response, long imageId)
+		throws Exception {
+
+		Image image = ImageServiceUtil.getImage(imageId);
+
+		String type = image.getType();
+
+		if (!type.equals(ImageConstants.TYPE_NOT_AVAILABLE)) {
+			String contentType = MimeTypesUtil.getExtensionContentType(type);
+
+			response.setContentType(contentType);
+		}
+
+		ServletResponseUtil.write(response, image.getTextObj());
 	}
 
 	protected void sendPatch(
