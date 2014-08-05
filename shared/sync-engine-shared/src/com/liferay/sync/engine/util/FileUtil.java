@@ -104,19 +104,12 @@ public class FileUtil {
 		return getFileKey(filePath);
 	}
 
-	public static String getFilePathName(String... filePathNames) {
+	public static String getFilePathName(String first, String... more) {
 		FileSystem fileSystem = FileSystems.getDefault();
 
-		StringBuilder sb = new StringBuilder((filePathNames.length * 2) - 1);
+		Path filePath = fileSystem.getPath(first, more);
 
-		for (String filePathName : filePathNames) {
-			sb.append(filePathName);
-			sb.append(fileSystem.getSeparator());
-		}
-
-		sb.setLength(sb.length() - 1);
-
-		return sb.toString();
+		return filePath.toString();
 	}
 
 	public static boolean hasFileChanged(SyncFile syncFile) {
