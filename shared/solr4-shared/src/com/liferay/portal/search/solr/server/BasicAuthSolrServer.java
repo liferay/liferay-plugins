@@ -85,6 +85,8 @@ public class BasicAuthSolrServer extends SolrServer {
 		if (_defaultMaxConnectionsPerRoute != null) {
 			_poolingClientConnectionManager.setDefaultMaxPerRoute(
 				_defaultMaxConnectionsPerRoute);
+			//_server.setDefaultMaxConnectionsPerHost(
+			//	_defaultMaxConnectionsPerRoute);
 		}
 
 		if (_followRedirects != null) {
@@ -93,6 +95,7 @@ public class BasicAuthSolrServer extends SolrServer {
 
 		if (_maxTotalConnections != null) {
 			_poolingClientConnectionManager.setMaxTotal(_maxTotalConnections);
+			//_server.setMaxTotalConnections(_maxTotalConnections);
 		}
 
 		if (_maxRetries != null) {
