@@ -14,6 +14,8 @@
 
 package com.liferay.sync.engine.model;
 
+import com.j256.ormlite.field.DatabaseField;
+
 /**
  * @author Shinn Lok
  */
@@ -29,6 +31,7 @@ public abstract class BaseModel {
 		this.uiEvent = uiEvent;
 	}
 
+	@DatabaseField(useGetSet = true)
 	protected int uiEvent;
 
 }

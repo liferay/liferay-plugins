@@ -278,11 +278,9 @@ public class SyncEngine {
 		}
 	}
 
-	protected static void retryFileTransfers(
-		Path filePath, long syncAccountId) {
-
+	protected static void retryFileTransfers(long syncAccountId) {
 		List<SyncFile> downloadingSyncFiles = SyncFileService.findSyncFiles(
-			SyncFile.STATE_IN_PROGRESS_DOWNLOADING, syncAccountId);
+			syncAccountId, SyncFile.UI_EVENT_DOWNLOADING);
 
 		for (SyncFile downloadingSyncFile : downloadingSyncFiles) {
 			Map<String, Object> parameters = new HashMap<String, Object>();
@@ -297,7 +295,7 @@ public class SyncEngine {
 		}
 
 		List<SyncFile> uploadingSyncFiles = SyncFileService.findSyncFiles(
-			SyncFile.STATE_IN_PROGRESS_UPLOADING, syncAccountId);
+			syncAccountId, SyncFile.UI_EVENT_UPLOADING);
 
 		for (SyncFile uploadingSyncFile : uploadingSyncFiles) {
 			if (uploadingSyncFile.getTypePK() > 0) {
@@ -375,7 +373,7 @@ public class SyncEngine {
 
 		fireDeleteEvents(filePath, syncAccountId, watchEventListener);
 
-		retryFileTransfers(filePath, syncAccountId);
+		retryFileTransfers(syncAccountId);
 	}
 
 	private static Logger _logger = LoggerFactory.getLogger(SyncEngine.class);

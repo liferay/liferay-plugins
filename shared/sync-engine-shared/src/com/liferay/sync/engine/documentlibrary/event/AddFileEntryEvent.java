@@ -41,7 +41,7 @@ public class AddFileEntryEvent extends BaseEvent {
 	protected void processRequest() throws Exception {
 		SyncFile syncFile = (SyncFile)getParameterValue("syncFile");
 
-		syncFile.setState(SyncFile.STATE_IN_PROGRESS_UPLOADING);
+		syncFile.setState(SyncFile.STATE_IN_PROGRESS);
 		syncFile.setUiEvent(SyncFile.UI_EVENT_UPLOADING);
 
 		SyncFileService.update(syncFile);

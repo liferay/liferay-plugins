@@ -38,12 +38,12 @@ public class SyncFilePersistence extends BasePersistenceImpl<SyncFile, Long> {
 		setObjectCache(ReferenceObjectCache.makeSoftCache());
 	}
 
-	public long countByState(int state) throws SQLException {
+	public long countByUIEvent(int uiEvent) throws SQLException {
 		QueryBuilder<SyncFile, Long> queryBuilder = queryBuilder();
 
 		Where<SyncFile, Long> where = queryBuilder.where();
 
-		where.eq("state", state);
+		where.eq("uiEvent", uiEvent);
 
 		return where.countOf();
 	}
@@ -138,26 +138,26 @@ public class SyncFilePersistence extends BasePersistenceImpl<SyncFile, Long> {
 
 		where.and();
 
-		where.ne("state", SyncFile.STATE_IN_PROGRESS_DOWNLOADING);
-
-		where.and();
-
 		where.eq("syncAccountId", syncAccountId);
 
 		where.and();
 
 		where.ne("type", SyncFile.TYPE_SYSTEM);
 
+		where.and();
+
+		where.ne("uiEvent", SyncFile.UI_EVENT_DOWNLOADING);
+
 		return query(queryBuilder.prepare());
 	}
 
-	public List<SyncFile> findByS_S(int state, long syncAccountId)
+	public List<SyncFile> findByS_U(long syncAccountId, int uiEvent)
 		throws SQLException {
 
 		Map<String, Object> fieldValues = new HashMap<String, Object>();
 
-		fieldValues.put("state", state);
 		fieldValues.put("syncAccountId", syncAccountId);
+		fieldValues.put("uiEvent", uiEvent);
 
 		return queryForFieldValues(fieldValues);
 	}

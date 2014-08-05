@@ -41,7 +41,7 @@ public class DownloadFileEvent extends BaseEvent {
 	protected void processRequest() throws Exception {
 		SyncFile syncFile = (SyncFile)getParameterValue("syncFile");
 
-		syncFile.setState(SyncFile.STATE_IN_PROGRESS_DOWNLOADING);
+		syncFile.setState(SyncFile.STATE_IN_PROGRESS);
 		syncFile.setUiEvent(SyncFile.UI_EVENT_DOWNLOADING);
 
 		SyncFileService.update(syncFile);
