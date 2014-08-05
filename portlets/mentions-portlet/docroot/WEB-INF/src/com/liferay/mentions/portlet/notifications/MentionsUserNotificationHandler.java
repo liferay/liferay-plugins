@@ -16,6 +16,7 @@ package com.liferay.mentions.portlet.notifications;
 
 import com.liferay.mentions.util.PortletKeys;
 import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.notifications.BaseModelUserNotificationHandler;
 import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.StringUtil;
