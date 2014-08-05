@@ -153,7 +153,9 @@ AUI.add(
 					initializer: function(config) {
 						var instance = this;
 
+						instance._actionableUserNotificationsStart = 0;
 						instance._baseRenderURL = config.baseRenderURL;
+						instance._nonActionableUserNotificationsStart = 0;
 						instance._notificationsList = config.notificationsList;
 
 						instance._notificationsList.render();
@@ -188,6 +190,10 @@ AUI.add(
 
 									instance._notificationsList.setNotificationsCount('.non-actionable .count');
 
+									instance._actionableUserNotificationsStart = instance._notificationsList.getStart();
+
+									instance._notificationsList.setStart(instance._nonActionableUserNotificationsStart);
+
 									instance._notificationsList.render();
 								}
 							)
@@ -218,6 +224,10 @@ AUI.add(
 									instance._notificationsList.setActionable(true);
 
 									instance._notificationsList.setNotificationsCount('.actionable .count');
+
+									instance._nonActionableUserNotificationsStart = instance._notificationsList.getStart();
+
+									instance._notificationsList.setStart(instance._actionableUserNotificationsStart);
 
 									instance._notificationsList.render();
 								}
@@ -316,6 +326,12 @@ AUI.add(
 						instance._bindUI();
 					},
 
+					getStart: function() {
+						var instance = this;
+
+						return instance._start;
+					},
+
 					render: function() {
 						var instance = this;
 
@@ -331,6 +347,7 @@ AUI.add(
 
 						portletURL.setParameter('actionable', instance._actionable);
 						portletURL.setParameter('end', instance._end);
+						portletURL.setParameter('fullView', instance._fullView);
 						portletURL.setParameter('start', instance._start);
 
 						portletURL.setResourceId("getUserNotificationEvents");
@@ -344,12 +361,12 @@ AUI.add(
 										var response = this.get('responseData');
 
 										if (response) {
-											var total = response['total'];
+											var newNotificationsTotal = response['newNotificationsTotal'];
 
-											var notificationsCount = notificationsContainer.one(instance._notificationsCount);
+											var notificationsCountNode = notificationsContainer.one(instance._notificationsCount);
 
-											if (notificationsCount) {
-												notificationsCount.setHTML(total);
+											if (notificationsCountNode) {
+												notificationsCountNode.setHTML(newNotificationsTotal);
 											}
 
 											var entries = [];
@@ -365,21 +382,26 @@ AUI.add(
 											}
 
 											var markAllAsReadNode = notificationsContainer.one(instance._markAllAsReadNode);
-											var message = notificationsContainer.one('.message');
 
 											if (entriesJSONArray.length == 0) {
+												var message = Liferay.Language.get('you-do-not-have-any-notifications');
+
+												if (instance._actionable) {
+													message = Liferay.Language.get('you-do-not-have-any-requests');
+												}
+
+												notificationsNode.setHTML('<div class=\"message\">' + message + '</div>');
+
 												if (markAllAsReadNode) {
 													markAllAsReadNode.hide();
 												}
-
-												if (message) {
-													message.show();
-												}
-
-												notificationsNode.empty();
 											}
 											else {
-												if (!instance._actionable) {
+												notificationsNode.setHTML(entries);
+
+												var newUserNotificationEventCount = response["newUserNotificationEventCount"];
+
+												if (!instance._actionable && newUserNotificationEventCount > 0) {
 													if (markAllAsReadNode) {
 														markAllAsReadNode.show();
 													}
@@ -389,24 +411,12 @@ AUI.add(
 														markAllAsReadNode.hide();
 													}
 												}
-
-												if (message) {
-													message.hide();
-												}
-
-												notificationsNode.setHTML(entries);
-
-												if (entriesJSONArray.length == 1) {
-													instance._lastEntry = true;
-												}
-												else {
-													instance._lastEntry = false;
-												}
 											}
 
 											var nextPageNode = notificationsContainer.all(instance._nextPageNode);
-
 											var previousPageNode = notificationsContainer.all(instance._previousPageNode);
+
+											var total = response['total'];
 
 											if (total <= instance._end) {
 												if (nextPageNode) {
@@ -449,7 +459,7 @@ AUI.add(
 												}
 											}
 
-											instance._userNotificationEventIds = response['userNotificationEventIds'];
+											instance._userNotificationEventIds = response['newUserNotificationEventIds'];
 
 											notificationsNode.loadingmask.hide();
 										}
@@ -471,6 +481,13 @@ AUI.add(
 						var instance = this;
 
 						instance._notificationsCount = notificationsCount;
+					},
+
+					setStart: function(start) {
+						var instance = this;
+
+						instance._start = start;
+						instance._end = instance._start + instance._delta;
 					},
 
 					_bindMarkAllAsRead: function() {
@@ -501,11 +518,6 @@ AUI.add(
 													var response = this.get('responseData');
 
 													if (response.success) {
-														if (instance._start >= instance._delta ) {
-															instance._start = instance._start - instance._delta;
-															instance._end = instance._end - instance._delta;
-														}
-
 														instance.render();
 													}
 												}
@@ -551,11 +563,6 @@ AUI.add(
 
 														if (responseData.success) {
 															currentRow.loadingmask.hide();
-
-															if ((instance._start >= instance._delta) && instance._lastEntry) {
-																instance._start = instance._start - instance._delta;
-																instance._end = instance._end - instance._delta;
-															}
 
 															instance.render();
 														}

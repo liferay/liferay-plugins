@@ -166,6 +166,41 @@ public class NotificationsUtil {
 		}
 	}
 
+	public static List<UserNotificationEvent> getUserNotificationEvents(
+		long userId, boolean actionable, int start,	int end)
+		throws SystemException {
+
+		DynamicQuery dynamicQuery = getDynamicQuery(userId, actionable);
+
+		dynamicQuery.addOrder(OrderFactoryUtil.desc("timestamp"));
+
+		return UserNotificationEventLocalServiceUtil.dynamicQuery(
+			dynamicQuery, start, end);
+	}
+
+	public static int getUserNotificationEventsCount(
+		long userId, boolean actionable)
+		throws SystemException {
+
+		DynamicQuery dynamicQuery = getDynamicQuery(userId, actionable);
+
+		dynamicQuery.setProjection(ProjectionFactoryUtil.rowCount());
+
+		Iterator<Long> itr =
+			UserNotificationEventLocalServiceUtil.dynamicQuery(
+				dynamicQuery).iterator();
+
+		if (itr.hasNext()) {
+			Long count = itr.next();
+
+			if (count != null) {
+				return count.intValue();
+			}
+		}
+
+		return 0;
+	}
+
 	public static void sendNotificationEvent(
 			long companyId, String subscriptionClassName,
 			long subscriptionClassPK, String portletKey, String className,
