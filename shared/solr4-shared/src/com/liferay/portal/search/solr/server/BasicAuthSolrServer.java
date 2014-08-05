@@ -83,7 +83,7 @@ public class BasicAuthSolrServer extends SolrServer {
 		}
 
 		if (_defaultMaxConnectionsPerRoute != null) {
-			_server.setDefaultMaxConnectionsPerHost(
+			_poolingClientConnectionManager.setDefaultMaxPerRoute(
 				_defaultMaxConnectionsPerRoute);
 		}
 
@@ -92,7 +92,7 @@ public class BasicAuthSolrServer extends SolrServer {
 		}
 
 		if (_maxTotalConnections != null) {
-			_server.setMaxTotalConnections(_maxTotalConnections);
+			_poolingClientConnectionManager.setMaxTotal(_maxTotalConnections);
 		}
 
 		if (_maxRetries != null) {
