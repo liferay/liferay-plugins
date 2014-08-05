@@ -55,10 +55,6 @@
 						<span class="mark-all-as-read hide"><a href="javascript:;"><liferay-ui:message key="mark-as-read" /></a></span>
 					</div>
 
-					<div class="message hide">
-						<liferay-ui:message key="you-do-not-have-any-notifications" />
-					</div>
-
 					<div class="user-notifications"></div>
 				</div>
 				<div class="actionable">
@@ -69,10 +65,6 @@
 						</liferay-portlet:renderURL>
 
 						<span><a href="<%= viewAllActionableNotifications %>"><liferay-ui:message key="requests" /> (<span class="count"></span>)</a></span>
-					</div>
-
-					<div class="message hide">
-						<liferay-ui:message key="you-do-not-have-any-notifications" />
 					</div>
 
 					<div class="user-notifications"></div>
