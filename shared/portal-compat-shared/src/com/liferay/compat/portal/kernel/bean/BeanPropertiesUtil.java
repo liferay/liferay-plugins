@@ -19,26 +19,27 @@ import com.liferay.portal.kernel.util.PortalClassLoaderUtil;
 import java.lang.reflect.Method;
 
 /**
- * @author Brian Wing Shun Chan
+ * @author Danny Situ
  */
-public class BeanPropertiesUtil extends com.liferay.portal.kernel.bean.BeanPropertiesUtil {
+public class BeanPropertiesUtil
+	extends com.liferay.portal.kernel.bean.BeanPropertiesUtil {
 
 	public static void setPropertySilent(
 		Object bean, String param, Object value) {
 
 		try {
-				ClassLoader classLoader = PortalClassLoaderUtil.getClassLoader();
+			ClassLoader classLoader = PortalClassLoaderUtil.getClassLoader();
 
-				Class<?> clazz = classLoader.loadClass("jodd.bean.BeanUtil");
+			Class<?> clazz = classLoader.loadClass("jodd.bean.BeanUtil");
 
-				Method method = clazz.getMethod("setPropertyForcedSilent", new Class[]{Object.class, String.class, Object.class});
+			Method method = clazz.getMethod(
+				"setPropertyForcedSilent",
+				new Class[] {Object.class, String.class, Object.class});
 
-				method.setAccessible(true);
-
-				method.invoke(null, bean, param, value);
+			method.invoke(null, bean, param, value);
 		}
 		catch (Exception e) {
-				throw new RuntimeException(e);
+			throw new RuntimeException(e);
 		}
 	}
 
