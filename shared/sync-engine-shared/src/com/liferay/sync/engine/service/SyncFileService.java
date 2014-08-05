@@ -509,9 +509,9 @@ public class SyncFileService {
 		return _syncFilePersistence;
 	}
 
-	public static long getSyncFilesCount(int state) {
+	public static long getSyncFilesCount(int uiEvent) {
 		try {
-			return _syncFilePersistence.countByUIEvent(state);
+			return _syncFilePersistence.countByUIEvent(uiEvent);
 		}
 		catch (SQLException sqle) {
 			if (_logger.isDebugEnabled()) {
