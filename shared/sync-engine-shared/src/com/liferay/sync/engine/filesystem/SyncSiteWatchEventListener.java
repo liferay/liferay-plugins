@@ -57,11 +57,11 @@ public class SyncSiteWatchEventListener extends BaseWatchEventListener {
 				return;
 			}
 
+			String filePathName = filePath.toString();
+
 			Path parentFilePath = filePath.getParent();
 
 			String parentFilePathName = parentFilePath.toString();
-
-			String filePathName = filePath.toString();
 
 			SyncAccount syncAccount = SyncAccountService.fetchSyncAccount(
 				getSyncAccountId());

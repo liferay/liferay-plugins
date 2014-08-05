@@ -123,10 +123,10 @@ public class SyncFileService {
 		String name = String.valueOf(filePath.getFileName());
 
 		SyncFile syncFile = addSyncFile(
-				null, null, name, FileUtil.getFileKey(filePath),
-				filePath.toString(), Files.probeContentType(filePath), name,
-				parentFolderId, repositoryId, syncAccountId,
-				SyncFile.TYPE_FOLDER);
+			null, null, name, FileUtil.getFileKey(filePath),
+			filePath.toString(), Files.probeContentType(filePath), name,
+			parentFolderId, repositoryId, syncAccountId,
+			SyncFile.TYPE_FOLDER);
 
 		// Remote sync file
 
