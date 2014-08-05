@@ -1670,7 +1670,7 @@ Please find a solution that does not require portal-impl.jar.
 											</jar>
 										</then>
 										<else>
-											<echo>Unable to automatically update web.xml.</echo>
+											<echo>Unable to create ${sdk.dir}/dist/${plugin.name}-${plugin.full.version}.jar file.</echo>
 										</else>
 									</if>
 
