@@ -407,7 +407,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 				syncContext.setSocialOfficeInstalled(false);
 			}
 
-			syncContext.setUserId(getUserId());
+			syncContext.setUser(getUser());
 			syncContext.setUserSitesGroups(getUserSitesGroups());
 
 			return syncContext;
