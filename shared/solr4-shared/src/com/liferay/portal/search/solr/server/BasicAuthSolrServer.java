@@ -103,8 +103,8 @@ public class BasicAuthSolrServer extends SolrServer {
 			_server.setParser(_responseParser);
 		}
 
-		if (_socketTimeout != null) {
-			_server.setSoTimeout(_socketTimeout);
+		if (_soTimeout != null) {
+			_server.setSoTimeout(_soTimeout);
 		}
 	}
 
@@ -227,11 +227,11 @@ public class BasicAuthSolrServer extends SolrServer {
 		_password = password;
 	}
 
-	public void setSocketTimeout(int socketTimeout) {
-		_socketTimeout = socketTimeout;
+	public void setSoTimeout(int soTimeout) {
+		_soTimeout = soTimeout;
 
 		if (_server != null) {
-			_server.setSoTimeout(socketTimeout);
+			_server.setSoTimeout(soTimeout);
 		}
 	}
 
@@ -302,7 +302,7 @@ public class BasicAuthSolrServer extends SolrServer {
 		new PoolingClientConnectionManager();
 	private ResponseParser _responseParser;
 	private HttpSolrServer _server;
-	private Integer _socketTimeout;
+	private Integer _soTimeout;
 	private boolean _stopped;
 	private String _url;
 	private String _username;
