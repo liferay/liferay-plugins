@@ -31,7 +31,6 @@ import com.liferay.portal.kernel.dao.orm.Session;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.kernel.util.InstanceFactory;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.PropsUtil;
@@ -40,12 +39,10 @@ import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.model.CacheModel;
-import com.liferay.portal.model.ModelListener;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 
 import java.io.Serializable;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -1992,25 +1989,6 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 	 * Initializes the message persistence.
 	 */
 	public void afterPropertiesSet() {
-		String[] listenerClassNames = StringUtil.split(GetterUtil.getString(
-					com.liferay.util.service.ServiceProps.get(
-						"value.object.listener.com.liferay.mail.model.Message")));
-
-		if (listenerClassNames.length > 0) {
-			try {
-				List<ModelListener<Message>> listenersList = new ArrayList<ModelListener<Message>>();
-
-				for (String listenerClassName : listenerClassNames) {
-					listenersList.add((ModelListener<Message>)InstanceFactory.newInstance(
-							getClassLoader(), listenerClassName));
-				}
-
-				listeners = listenersList.toArray(new ModelListener[listenersList.size()]);
-			}
-			catch (Exception e) {
-				_log.error(e);
-			}
-		}
 	}
 
 	public void destroy() {
