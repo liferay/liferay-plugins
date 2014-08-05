@@ -13,7 +13,7 @@
 			dest="lib"
 			src="${original.war.file}"
 		>
-			<patternset includes="solr-4.3.1/dist/solr-core-*.jar,solr-4.3.1/dist/solr-solrj-*.jar,solr-4.3.1/dist/solrj-lib/commons-io*.jar,solr-4.3.1/dist/solrj-lib/httpclient*.jar,solr-4.3.1/dist/solrj-lib/httpcore*.jar,solr-4.3.1/dist/solrj-lib/httpmime*.jar,solr-4.3.1/dist/solrj-lib/noggit*.jar,solr-4.3.1/dist/solrj-lib/slf4j-api*.jar,solr-4.3.1/dist/solrj-lib/slf4j-log4j12*.jar,solr-4.3.1/dist/solrj-lib/wstx-asl*.jar,solr-4.3.1/dist/solrj-lib/zookeeper*.jar" />
+			<patternset includes="solr-4.3.1/dist/solr-core-*.jar,solr-4.3.1/dist/solr-solrj-*.jar,solr-4.3.1/dist/solrj-lib/commons-codec*.jar,solr-4.3.1/dist/solrj-lib/commons-io*.jar,solr-4.3.1/dist/solrj-lib/httpclient*.jar,solr-4.3.1/dist/solrj-lib/httpcore*.jar,solr-4.3.1/dist/solrj-lib/httpmime*.jar,solr-4.3.1/dist/solrj-lib/noggit*.jar,solr-4.3.1/dist/solrj-lib/slf4j-api*.jar,solr-4.3.1/dist/solrj-lib/slf4j-log4j12*.jar,solr-4.3.1/dist/solrj-lib/wstx-asl*.jar,solr-4.3.1/dist/solrj-lib/zookeeper*.jar" />
 			<mapper type="flatten" />
 		</unzip>
 
@@ -25,7 +25,7 @@
 	<target name="shrink-zip">
 		<antcall target="shrink-zip-cmd">
 			<param name="zip.file.name" value="${original.war.file}" />
-			<param name="zip.includes" value="solr-4.3.1/dist/solr-core-*.jar,solr-4.3.1/dist/solr-solrj-*.jar,solr-4.3.1/dist/solrj-lib/commons-io*.jar,solr-4.3.1/dist/solrj-lib/httpclient*.jar,solr-4.3.1/dist/solrj-lib/httpcore*.jar,solr-4.3.1/dist/solrj-lib/httpmime*.jar,solr-4.3.1/dist/solrj-lib/noggit*.jar,solr-4.3.1/dist/solrj-lib/slf4j-api*.jar,solr-4.3.1/dist/solrj-lib/slf4j-log4j12*.jar,solr-4.3.1/dist/solrj-lib/wstx-asl*.jar,solr-4.3.1/dist/solrj-lib/zookeeper*.jar" />
+			<param name="zip.includes" value="solr-4.3.1/dist/solr-core-*.jar,solr-4.3.1/dist/solr-solrj-*.jar,solr-4.3.1/dist/solrj-lib/commons-codec*.jar,solr-4.3.1/dist/solrj-lib/commons-io*.jar,solr-4.3.1/dist/solrj-lib/httpclient*.jar,solr-4.3.1/dist/solrj-lib/httpcore*.jar,solr-4.3.1/dist/solrj-lib/httpmime*.jar,solr-4.3.1/dist/solrj-lib/noggit*.jar,solr-4.3.1/dist/solrj-lib/slf4j-api*.jar,solr-4.3.1/dist/solrj-lib/slf4j-log4j12*.jar,solr-4.3.1/dist/solrj-lib/wstx-asl*.jar,solr-4.3.1/dist/solrj-lib/zookeeper*.jar" />
 		</antcall>
 	</target>
 </project>
