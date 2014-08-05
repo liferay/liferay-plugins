@@ -64,7 +64,7 @@ public class SyncUtil {
 		}
 
 		return DigesterUtil.digestBase64(
-			Digester.MD5, dlFileVersion.getContentStream(false));
+			Digester.SHA_1, dlFileVersion.getContentStream(false));
 	}
 
 	public static String getChecksum(File file) throws PortalException {
@@ -79,7 +79,7 @@ public class SyncUtil {
 		try {
 			fileInputStream = new FileInputStream(file);
 
-			return DigesterUtil.digestBase64(Digester.MD5, fileInputStream);
+			return DigesterUtil.digestBase64(Digester.SHA_1, fileInputStream);
 		}
 		catch (Exception e) {
 			throw new PortalException(e);
