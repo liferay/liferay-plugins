@@ -25,8 +25,7 @@ import java.util.Map;
 /**
  * @author Dennis Ju
  */
-@JsonIgnoreProperties(
-	{"portalEELicenseDigest", "socialOfficeEELicenseDigest"})
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class SyncContext {
 
 	public static final String PREFERENCE_KEY_MAX_CONNECTIONS =
@@ -51,8 +50,8 @@ public class SyncContext {
 		return _syncSites;
 	}
 
-	public long getUserId() {
-		return _userId;
+	public SyncUser getSyncUser() {
+		return _syncUser;
 	}
 
 	public boolean isSocialOfficeInstalled() {
@@ -81,8 +80,8 @@ public class SyncContext {
 		_syncSites = syncSites;
 	}
 
-	public void setUserId(long userId) {
-		_userId = userId;
+	public void setSyncUser(SyncUser syncUser) {
+		_syncUser = syncUser;
 	}
 
 	private String _pluginVersion;
@@ -93,6 +92,7 @@ public class SyncContext {
 	@JsonProperty("userSitesGroups")
 	private List<SyncSite> _syncSites;
 
-	private long _userId;
+	@JsonProperty("user")
+	private SyncUser _syncUser;
 
 }
