@@ -97,7 +97,7 @@ public class MobileWidgetsUserServiceImpl
 			user.getCompanyId(), user.getEmailAddress(), null, null, null, null,
 			serviceContext);
 
-		Company company = companyLocalService.getCompanyById(
+		Company company = companyPersistence.findByPrimaryKey(
 			user.getCompanyId());
 
 		return company.isSendPassword();
