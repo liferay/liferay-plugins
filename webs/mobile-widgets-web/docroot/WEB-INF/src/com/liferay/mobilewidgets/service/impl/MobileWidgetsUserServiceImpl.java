@@ -33,6 +33,7 @@ import com.liferay.portal.util.PortalUtil;
 public class MobileWidgetsUserServiceImpl
 	extends MobileWidgetsUserServiceBaseImpl {
 
+	@Override
 	public boolean sendPasswordByEmailAddress(
 			long companyId, String emailAddress)
 		throws PortalException, SystemException {
@@ -43,6 +44,7 @@ public class MobileWidgetsUserServiceImpl
 		return sendPassword(user);
 	}
 
+	@Override
 	public boolean sendPasswordByScreenName(
 			long companyId, String screenName)
 		throws PortalException, SystemException {
@@ -52,6 +54,7 @@ public class MobileWidgetsUserServiceImpl
 		return sendPassword(user);
 	}
 
+	@Override
 	public boolean sendPasswordByUserId(long userId)
 		throws PortalException, SystemException {
 
