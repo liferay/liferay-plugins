@@ -69,7 +69,7 @@ AUI.add(
 
 						var portletURL = new Liferay.PortletURL.createURL(instance._baseResourceURL);
 
-						portletURL.setResourceId("getNotificationsCount");
+						portletURL.setResourceId('getNotificationsCount');
 
 						A.io.request(
 							portletURL.toString(),
@@ -350,7 +350,7 @@ AUI.add(
 						portletURL.setParameter('fullView', instance._fullView);
 						portletURL.setParameter('start', instance._start);
 
-						portletURL.setResourceId("getUserNotificationEvents");
+						portletURL.setResourceId('getUserNotificationEvents');
 
 						A.io.request(
 							portletURL.toString(),
@@ -403,7 +403,7 @@ AUI.add(
 											else {
 												notificationsNode.setHTML(entries);
 
-												var newUserNotificationEventCount = response["newUserNotificationEventCount"];
+												var newUserNotificationEventCount = response['newUserNotificationEventCount'];
 
 												if (!instance._actionable && newUserNotificationEventCount > 0) {
 													if (markAllAsReadLink) {

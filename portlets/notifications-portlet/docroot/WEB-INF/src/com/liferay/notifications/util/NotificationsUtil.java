@@ -167,7 +167,7 @@ public class NotificationsUtil {
 	}
 
 	public static List<UserNotificationEvent> getUserNotificationEvents(
-		long userId, boolean actionable, int start,	int end)
+			long userId, boolean actionable, int start, int end)
 		throws SystemException {
 
 		DynamicQuery dynamicQuery = getDynamicQuery(userId, actionable);
@@ -179,7 +179,7 @@ public class NotificationsUtil {
 	}
 
 	public static int getUserNotificationEventsCount(
-		long userId, boolean actionable)
+			long userId, boolean actionable)
 		throws SystemException {
 
 		DynamicQuery dynamicQuery = getDynamicQuery(userId, actionable);

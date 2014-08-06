@@ -36,7 +36,7 @@ boolean actionable = ParamUtil.getBoolean(request, "actionable");
 			</div>
 
 			<div class="nav">
-				<a class="clearfix actionable <%= actionable ? "selected" : "" %>" href="javascript:;">
+				<a class="actionable clearfix <%= actionable ? "selected" : "" %>" href="javascript:;">
 					<span class="title"><liferay-ui:message key="requests" /></span>
 
 					<%
@@ -48,7 +48,7 @@ boolean actionable = ParamUtil.getBoolean(request, "actionable");
 			</div>
 
 			<div class="nav">
-				<a class="manage clearfix" href="javascript:;">
+				<a class="clearfix manage" href="javascript:;">
 					<span class="title"><liferay-ui:message key="notification-delivery" /></span>
 				</a>
 			</div>
@@ -57,23 +57,23 @@ boolean actionable = ParamUtil.getBoolean(request, "actionable");
 		<aui:col cssClass="user-notifications-list-container" width="<%= 75 %>">
 			<ul class="unstyled user-notifications-list">
 				<li class="clearfix pagination top">
-					<span class="left-nav previous hide"><a href="javascript:;"><liferay-ui:message key="previous" /></a></span>
-					<span class="page-info hide"></span>
-					<span class="right-nav next hide"><a href="javascript:;"><liferay-ui:message key="next" /></a></span>
+					<span class="hide left-nav previous"><a href="javascript:;"><liferay-ui:message key="previous" /></a></span>
+					<span class="hide page-info"></span>
+					<span class="hide next right-nav"><a href="javascript:;"><liferay-ui:message key="next" /></a></span>
 				</li>
 
 				<div class="mark-all-as-read"><a class="hide" href="javascript:;"><liferay-ui:message key="mark-as-read" /></a></div>
 
 				<div class="user-notifications"></div>
 
-				<li class="clearfix pagination bottom">
-					<span class="left-nav previous hide"><a href="javascript:;"><liferay-ui:message key="previous" /></a></span>
-					<span class="page-info hide"></span>
-					<span class="right-nav next hide"><a href="javascript:;"><liferay-ui:message key="next" /></a></span>
+				<li class="bottom clearfix pagination">
+					<span class="hide left-nav previous"><a href="javascript:;"><liferay-ui:message key="previous" /></a></span>
+					<span class="hide page-info"></span>
+					<span class="hide next right-nav"><a href="javascript:;"><liferay-ui:message key="next" /></a></span>
 				</li>
 			</ul>
 
-			<div class="notifications-configurations hide"></div>
+			<div class="hide notifications-configurations"></div>
 		</aui:col>
 	</aui:row>
 </div>
