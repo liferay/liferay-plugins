@@ -57,19 +57,6 @@ public class MBMessageMentionsNotifierTest {
 	}
 
 	@Test
-	public void testNonexistentUser() throws Exception {
-		MentionsNotifier mentionsNotifier = new MentionsNotifier();
-
-		String[] mentionedUsersScreenNames =
-			mentionsNotifier.getMentionedUsersScreenNames(
-				TestPropsValues.getUserId(),
-				"Hey [url=http://localhost:8080]@fakeuser[/url]. You are a " +
-					"ghost.");
-
-		Assert.assertEquals(0, mentionedUsersScreenNames.length);
-	}
-
-	@Test
 	public void testMultipleUsers() throws Exception {
 		MentionsNotifier mentionsNotifier = new MentionsNotifier();
 
@@ -101,6 +88,19 @@ public class MBMessageMentionsNotifierTest {
 		Assert.assertTrue(ArrayUtil.contains(mentionedUsersScreenNames, "ana"));
 		Assert.assertTrue(
 			ArrayUtil.contains(mentionedUsersScreenNames, "sergio"));
+	}
+
+	@Test
+	public void testNonexistentUser() throws Exception {
+		MentionsNotifier mentionsNotifier = new MentionsNotifier();
+
+		String[] mentionedUsersScreenNames =
+			mentionsNotifier.getMentionedUsersScreenNames(
+				TestPropsValues.getUserId(),
+				"Hey [url=http://localhost:8080]@fakeuser[/url]. You are a " +
+					"ghost.");
+
+		Assert.assertEquals(0, mentionedUsersScreenNames.length);
 	}
 
 	@Test
