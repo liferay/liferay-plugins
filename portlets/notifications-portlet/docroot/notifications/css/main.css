@@ -321,11 +321,12 @@
 
 		.mark-all-as-read {
 			margin: 10px 20px;
+			min-height: 20px;
 		}
 
 		.user-notifications {
 			clear: both;
-			margin-bottom: 10px;
+			margin-bottom: 40px;
 		}
 
 		.message.top {

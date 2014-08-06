@@ -62,7 +62,7 @@ boolean actionable = ParamUtil.getBoolean(request, "actionable");
 					<span class="right-nav next hide"><a href="javascript:;"><liferay-ui:message key="next" /></a></span>
 				</li>
 
-				<div class="mark-all-as-read hide"><a href="javascript:;"><liferay-ui:message key="mark-as-read" /></a></div>
+				<div class="mark-all-as-read"><a class="hide" href="javascript:;"><liferay-ui:message key="mark-as-read" /></a></div>
 
 				<div class="user-notifications"></div>
 
