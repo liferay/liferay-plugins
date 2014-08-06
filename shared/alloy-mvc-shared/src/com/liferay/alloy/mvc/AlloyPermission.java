@@ -32,37 +32,31 @@ public class AlloyPermission {
 
 	public static void check(
 			PermissionChecker permissionChecker, long groupId, String portletId,
-			String controller, String actionId)
+			String actionId)
 		throws PortalException {
 
-		if (!contains(
-				permissionChecker, groupId, portletId, controller, actionId)) {
-
+		if (!contains(permissionChecker, groupId, portletId, actionId)) {
 			throw new PrincipalException();
 		}
 	}
 
 	public static void check(
-			ThemeDisplay themeDisplay, String controller, String actionId)
+			ThemeDisplay themeDisplay, String controller, String action)
 		throws PortalException {
 
-		if (!contains(themeDisplay, controller, actionId)) {
+		if (!contains(themeDisplay, controller, action)) {
 			throw new PrincipalException();
 		}
 	}
 
 	public static boolean contains(
 		PermissionChecker permissionChecker, long groupId, String portletId,
-		String controller, String actionId) {
-
-		actionId =
-			_formatActionId(actionId) + StringPool.POUND +
-				StringUtil.toUpperCase(controller);
+		String actionId) {
 
 		try {
 			ResourceActionsUtil.checkAction(portletId, actionId);
 		}
-		catch (NoSuchResourceActionException e) {
+		catch (NoSuchResourceActionException nsrae) {
 			return true;
 		}
 
@@ -71,27 +65,32 @@ public class AlloyPermission {
 	}
 
 	public static boolean contains(
-		ThemeDisplay themeDisplay, String controller, String actionId) {
+		ThemeDisplay themeDisplay, String controller, String action) {
 
 		PortletDisplay portletDisplay = themeDisplay.getPortletDisplay();
 
+		String actionId = _formatActionId(controller, action);
+
 		return contains(
 			themeDisplay.getPermissionChecker(), themeDisplay.getScopeGroupId(),
-			portletDisplay.getRootPortletId(), controller, actionId);
+			portletDisplay.getRootPortletId(), actionId);
 	}
 
-	private static String _formatActionId(String actionId) {
-		StringBuilder sb = new StringBuilder(StringUtil.toUpperCase(actionId));
+	private static String _formatActionId(String controller, String action) {
+		StringBuilder sb = new StringBuilder(StringUtil.toUpperCase(action));
 
-		for (int i = 0; i < actionId.length(); i++) {
-			char c = actionId.charAt(i);
+		for (int i = 0; i < action.length(); i++) {
+			char c = action.charAt(i);
 
 			if (Character.isUpperCase(c) && (i > 0)) {
-				int delta = sb.length() - actionId.length();
+				int delta = sb.length() - action.length();
 
 				sb.insert(i + delta, CharPool.UNDERLINE);
 			}
 		}
+
+		sb.append(StringPool.POUND);
+		sb.append(StringUtil.toUpperCase(controller));
 
 		return sb.toString();
 	}
