@@ -45,8 +45,7 @@ public class MobileWidgetsUserServiceImpl
 	}
 
 	@Override
-	public boolean sendPasswordByScreenName(
-			long companyId, String screenName)
+	public boolean sendPasswordByScreenName(long companyId, String screenName)
 		throws PortalException, SystemException {
 
 		User user = userLocalService.getUserByScreenName(companyId, screenName);
@@ -88,7 +87,7 @@ public class MobileWidgetsUserServiceImpl
 
 	protected boolean sendPassword(User user)
 		throws PortalException, SystemException {
-		
+
 		ServiceContext serviceContext =
 			ServiceContextThreadLocal.getServiceContext();
 
