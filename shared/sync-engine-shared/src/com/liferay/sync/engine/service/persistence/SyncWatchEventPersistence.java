@@ -14,6 +14,7 @@
 
 package com.liferay.sync.engine.service.persistence;
 
+import com.j256.ormlite.stmt.DeleteBuilder;
 import com.j256.ormlite.stmt.QueryBuilder;
 import com.j256.ormlite.stmt.SelectArg;
 import com.j256.ormlite.stmt.Where;
@@ -32,6 +33,16 @@ public class SyncWatchEventPersistence
 
 	public SyncWatchEventPersistence() throws SQLException {
 		super(SyncWatchEvent.class);
+	}
+
+	public void deleteBySyncAccountId(long syncAccountId) throws SQLException {
+		DeleteBuilder<SyncWatchEvent, Long> deleteBuilder = deleteBuilder();
+
+		Where<SyncWatchEvent, Long> where = deleteBuilder.where();
+
+		where.eq("syncAccountId", syncAccountId);
+
+		delete(deleteBuilder.prepare());
 	}
 
 	public SyncWatchEvent fetchByE_F_T(
