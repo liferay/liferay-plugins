@@ -24,6 +24,7 @@ import com.liferay.portal.model.User;
 import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.LayoutLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
+import com.liferay.portal.service.ServiceContextThreadLocal;
 import com.liferay.portal.util.PortalUtil;
 
 /**
@@ -33,31 +34,30 @@ public class MobileWidgetsUserServiceImpl
 	extends MobileWidgetsUserServiceBaseImpl {
 
 	public boolean sendPasswordByEmailAddress(
-			long companyId, String emailAddress, ServiceContext serviceContext)
+			long companyId, String emailAddress)
 		throws PortalException, SystemException {
 
 		User user = userLocalService.getUserByEmailAddress(
 			companyId, emailAddress);
 
-		return sendPasswordEmail(user, serviceContext);
+		return sendPassword(user);
 	}
 
 	public boolean sendPasswordByScreenName(
-			long companyId, String screenName, ServiceContext serviceContext)
+			long companyId, String screenName)
 		throws PortalException, SystemException {
 
 		User user = userLocalService.getUserByScreenName(companyId, screenName);
 
-		return sendPasswordEmail(user, serviceContext);
+		return sendPassword(user);
 	}
 
-	public boolean sendPasswordByUserId(
-			long userId, ServiceContext serviceContext)
+	public boolean sendPasswordByUserId(long userId)
 		throws PortalException, SystemException {
 
 		User user = userLocalService.getUserById(userId);
 
-		return sendPasswordEmail(user, serviceContext);
+		return sendPassword(user);
 	}
 
 	protected void populateServiceContext(
@@ -83,9 +83,11 @@ public class MobileWidgetsUserServiceImpl
 		}
 	}
 
-	protected boolean sendPasswordEmail(
-			User user, ServiceContext serviceContext)
+	protected boolean sendPassword(User user)
 		throws PortalException, SystemException {
+		
+		ServiceContext serviceContext =
+			ServiceContextThreadLocal.getServiceContext();
 
 		populateServiceContext(user.getCompanyId(), serviceContext);
 
