@@ -383,6 +383,10 @@ AUI.add(
 
 											var markAllAsReadNode = notificationsContainer.one(instance._markAllAsReadNode);
 
+											if (markAllAsReadNode) {
+												var markAllAsReadLink = markAllAsReadNode.one('a');
+											}
+
 											if (entriesJSONArray.length == 0) {
 												var message = Liferay.Language.get('you-do-not-have-any-notifications');
 
@@ -392,8 +396,8 @@ AUI.add(
 
 												notificationsNode.setHTML('<div class=\"message\">' + message + '</div>');
 
-												if (markAllAsReadNode) {
-													markAllAsReadNode.hide();
+												if (markAllAsReadLink) {
+													markAllAsReadLink.hide();
 												}
 											}
 											else {
@@ -402,13 +406,13 @@ AUI.add(
 												var newUserNotificationEventCount = response["newUserNotificationEventCount"];
 
 												if (!instance._actionable && newUserNotificationEventCount > 0) {
-													if (markAllAsReadNode) {
-														markAllAsReadNode.show();
+													if (markAllAsReadLink) {
+														markAllAsReadLink.show();
 													}
 												}
 												else {
-													if (markAllAsReadNode) {
-														markAllAsReadNode.hide();
+													if (markAllAsReadLink) {
+														markAllAsReadLink.hide();
 													}
 												}
 											}
