@@ -56,7 +56,7 @@ public class MBDiscussionMentionsNotifierTest {
 	}
 
 	@Test
-	public void testInexistentUser() throws Exception {
+	public void testNonexistentUser() throws Exception {
 		MentionsNotifier mentionsNotifier = new MentionsNotifier();
 
 		String[] mentionedUsersScreenNames =
