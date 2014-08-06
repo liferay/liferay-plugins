@@ -58,13 +58,13 @@
 					<div class="user-notifications"></div>
 				</div>
 				<div class="actionable">
-					<div class="user-notifications-header">
+					<div class="clearfix user-notifications-header">
 						<liferay-portlet:renderURL plid="<%= notificationsPlid %>" portletName="<%= PortletKeys.NOTIFICATIONS %>" var="viewAllActionableNotifications" windowState="<%= LiferayWindowState.MAXIMIZED.toString() %>">
 							<portlet:param name="mvcPath" value="/notifications/view.jsp" />
 							<portlet:param name="actionable" value="<%= Boolean.TRUE.toString() %>" />
 						</liferay-portlet:renderURL>
 
-						<span><a href="<%= viewAllActionableNotifications %>"><liferay-ui:message key="requests" /> (<span class="count"></span>)</a></span>
+						<span class="title"><a href="<%= viewAllActionableNotifications %>"><liferay-ui:message key="requests" /> (<span class="count"></span>)</a></span>
 					</div>
 
 					<div class="user-notifications"></div>
