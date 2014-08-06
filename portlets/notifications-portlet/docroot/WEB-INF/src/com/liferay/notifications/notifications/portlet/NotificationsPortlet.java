@@ -21,6 +21,7 @@ import com.liferay.notifications.util.PortletPropsValues;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.notifications.UserNotificationFeedEntry;
 import com.liferay.portal.kernel.notifications.UserNotificationManagerUtil;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
@@ -291,8 +292,7 @@ public class NotificationsPortlet extends MVCPortlet {
 		boolean actionable = ParamUtil.getBoolean(
 			resourceRequest, "actionable");
 		int end = ParamUtil.getInteger(resourceRequest, "end");
-		boolean fullView = ParamUtil.getBoolean(
-			resourceRequest, "fullView");
+		boolean fullView = ParamUtil.getBoolean(resourceRequest, "fullView");
 		int start = ParamUtil.getInteger(resourceRequest, "start");
 
 		List<UserNotificationEvent> userNotificationEvents;
@@ -315,7 +315,6 @@ public class NotificationsPortlet extends MVCPortlet {
 				themeDisplay.getUserId(), actionable, false);
 		}
 
-
 		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
 
 		List<Long> newUserNotificationEventIds = new ArrayList<Long>();
@@ -333,7 +332,6 @@ public class NotificationsPortlet extends MVCPortlet {
 					newUserNotificationEventIds.add(
 						userNotificationEvent.getUserNotificationEventId());
 				}
-
 			}
 		}
 
@@ -368,7 +366,6 @@ public class NotificationsPortlet extends MVCPortlet {
 
 		userNotificationEvent.isArchived();
 
-
 		UserNotificationFeedEntry userNotificationFeedEntry =
 			UserNotificationManagerUtil.interpret(
 				StringPool.BLANK, userNotificationEvent,
@@ -392,7 +389,6 @@ public class NotificationsPortlet extends MVCPortlet {
 		String actionDiv = StringPool.BLANK;
 		String cssClass = StringPool.BLANK;
 		String markAsReadIcon = StringPool.BLANK;
-
 
 		if (actionable) {
 			actionURL.setParameter(
@@ -418,7 +414,10 @@ public class NotificationsPortlet extends MVCPortlet {
 				cssClass = "archived";
 			}
 			else {
-				markAsReadIcon = _MARK_AS_READ_ICON;
+				markAsReadIcon = StringUtil.replace(
+					_MARK_AS_READ_ICON, "[$TITLE_MESSAGE$]",
+						LanguageUtil.get(
+							themeDisplay.getLocale(), "mark-as-read"));
 			}
 		}
 
@@ -494,6 +493,7 @@ public class NotificationsPortlet extends MVCPortlet {
 				"data-openDialog=\"[$OPEN_DIALOG$]\">";
 
 	private static final String _MARK_AS_READ_ICON =
-		"<div class=\"mark-as-read\"><i class=\"icon-remove\"></i></div>";
+		"<div class=\"mark-as-read\" title=\"[$TITLE_MESSAGE$]\">" +
+			"<i class=\"icon-remove\"></i></div>";
 
 }
