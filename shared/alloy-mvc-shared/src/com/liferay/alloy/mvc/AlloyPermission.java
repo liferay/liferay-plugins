@@ -31,11 +31,11 @@ import com.liferay.portal.theme.ThemeDisplay;
 public class AlloyPermission {
 
 	public static void check(
-			PermissionChecker permissionChecker, long groupId, String portletId,
-			String actionId)
+			PermissionChecker permissionChecker, long groupId, String name,
+			long primKey, String actionId)
 		throws PortalException {
 
-		if (!contains(permissionChecker, groupId, portletId, actionId)) {
+		if (!contains(permissionChecker, groupId, name, primKey, actionId)) {
 			throw new PrincipalException();
 		}
 	}
@@ -50,18 +50,18 @@ public class AlloyPermission {
 	}
 
 	public static boolean contains(
-		PermissionChecker permissionChecker, long groupId, String portletId,
-		String actionId) {
+		PermissionChecker permissionChecker, long groupId, String name,
+		long primKey, String actionId) {
 
 		try {
-			ResourceActionsUtil.checkAction(portletId, actionId);
+			ResourceActionsUtil.checkAction(name, actionId);
 		}
 		catch (NoSuchResourceActionException nsrae) {
 			return true;
 		}
 
 		return permissionChecker.hasPermission(
-			groupId, portletId, groupId, actionId);
+			groupId, name, primKey, actionId);
 	}
 
 	public static boolean contains(
@@ -73,7 +73,8 @@ public class AlloyPermission {
 
 		return contains(
 			themeDisplay.getPermissionChecker(), themeDisplay.getScopeGroupId(),
-			portletDisplay.getRootPortletId(), actionId);
+			portletDisplay.getRootPortletId(), themeDisplay.getScopeGroupId(),
+			actionId);
 	}
 
 	private static String _formatActionId(String controller, String action) {
