@@ -68,18 +68,18 @@ public class MobileWidgetsUserServiceImpl
 			serviceContext.setPathMain(PortalUtil.getPathMain());
 		}
 
-		if (serviceContext.getScopeGroupId() == 0) {
-			Group guestGroup = GroupLocalServiceUtil.getGroup(
-				companyId, GroupConstants.GUEST);
-
-			serviceContext.setScopeGroupId(guestGroup.getGroupId());
-		}
-
 		if (serviceContext.getPlid() == 0) {
 			long plid = LayoutLocalServiceUtil.getDefaultPlid(
 				serviceContext.getScopeGroupId(), false);
 
 			serviceContext.setPlid(plid);
+		}
+
+		if (serviceContext.getScopeGroupId() == 0) {
+			Group guestGroup = GroupLocalServiceUtil.getGroup(
+				companyId, GroupConstants.GUEST);
+
+			serviceContext.setScopeGroupId(guestGroup.getGroupId());
 		}
 	}
 
