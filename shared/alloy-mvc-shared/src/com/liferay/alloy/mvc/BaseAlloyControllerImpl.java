@@ -137,9 +137,7 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 
 		if (permissioned &&
 			!AlloyPermission.contains(
-				themeDisplay.getPermissionChecker(),
-				themeDisplay.getScopeGroupId(), portlet.getRootPortletId(),
-				controllerPath, actionPath)) {
+				themeDisplay, controllerPath, actionPath)) {
 
 			renderError(
 				"you-do-not-have-permission-to-access-the-requested-resource");
