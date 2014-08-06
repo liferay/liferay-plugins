@@ -17,15 +17,13 @@ package com.liferay.mentions.util;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.User;
-import com.liferay.portal.service.GroupLocalServiceUtil;
-import com.liferay.portal.service.UserLocalServiceUtil;
+import com.liferay.portal.test.DeleteAfterTestRun;
 import com.liferay.portal.util.test.GroupTestUtil;
 import com.liferay.portal.util.test.TestPropsValues;
 import com.liferay.portal.util.test.UserTestUtil;
 
 import org.jboss.arquillian.junit.Arquillian;
 
-import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -43,14 +41,6 @@ public class MBMessageMentionsNotifierTest {
 
 		_user1 = UserTestUtil.addUser("sergio", _group1.getGroupId());
 		_user2 = UserTestUtil.addUser("ana", _group1.getGroupId());
-	}
-
-	@After
-	public void tearDown() throws Exception {
-		GroupLocalServiceUtil.deleteGroup(_group1);
-
-		UserLocalServiceUtil.deleteUser(_user1);
-		UserLocalServiceUtil.deleteUser(_user2);
 	}
 
 	@Test
@@ -154,8 +144,13 @@ public class MBMessageMentionsNotifierTest {
 		Assert.assertEquals("sergio", mentionedUsersScreenNames[0]);
 	}
 
+	@DeleteAfterTestRun
 	private Group _group1;
+
+	@DeleteAfterTestRun
 	private User _user1;
+
+	@DeleteAfterTestRun
 	private User _user2;
 
 }
