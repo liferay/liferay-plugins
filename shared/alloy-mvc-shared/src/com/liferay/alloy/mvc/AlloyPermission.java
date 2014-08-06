@@ -15,10 +15,12 @@
 package com.liferay.alloy.mvc;
 
 import com.liferay.portal.NoSuchResourceActionException;
+import com.liferay.portal.kernel.bean.BeanPropertiesUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.util.CharPool;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.security.auth.PrincipalException;
 import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.portal.security.permission.ResourceActionsUtil;
@@ -36,6 +38,15 @@ public class AlloyPermission {
 		throws PortalException {
 
 		if (!contains(permissionChecker, groupId, name, primKey, actionId)) {
+			throw new PrincipalException();
+		}
+	}
+
+	public static void check(
+			ThemeDisplay themeDisplay, BaseModel<?> baseModel, String action)
+		throws PortalException {
+
+		if (!contains(themeDisplay, baseModel, action)) {
 			throw new PrincipalException();
 		}
 	}
@@ -60,8 +71,32 @@ public class AlloyPermission {
 			return true;
 		}
 
+		if (permissionChecker.hasOwnerPermission(
+				permissionChecker.getCompanyId(), name, primKey,
+				_getOwnerId(name, primKey), actionId)) {
+
+			return true;
+		}
+
 		return permissionChecker.hasPermission(
 			groupId, name, primKey, actionId);
+	}
+
+	public static boolean contains(
+		ThemeDisplay themeDisplay, BaseModel<?> baseModel, String action) {
+
+		Class<?> clazz = baseModel.getClass();
+
+		String modelClassName = StringUtil.replace(
+			clazz.getName(), "impl.", StringPool.BLANK);
+
+		modelClassName = modelClassName.substring(
+			0, modelClassName.length() - 4);
+
+		return contains(
+			themeDisplay.getPermissionChecker(), themeDisplay.getScopeGroupId(),
+			modelClassName, (Long)baseModel.getPrimaryKeyObj(),
+			StringUtil.toUpperCase(action));
 	}
 
 	public static boolean contains(
@@ -94,6 +129,21 @@ public class AlloyPermission {
 		sb.append(StringUtil.toUpperCase(controller));
 
 		return sb.toString();
+	}
+
+	private static long _getOwnerId(String className, long classPK) {
+		BaseModel<?> baseModel = null;
+
+		try {
+			AlloyServiceInvoker alloyServiceInvoker = new AlloyServiceInvoker(
+				className);
+
+			baseModel = alloyServiceInvoker.fetchModel(classPK);
+		}
+		catch (Exception e) {
+		}
+
+		return BeanPropertiesUtil.getLongSilent(baseModel, "ownerId");
 	}
 
 }
