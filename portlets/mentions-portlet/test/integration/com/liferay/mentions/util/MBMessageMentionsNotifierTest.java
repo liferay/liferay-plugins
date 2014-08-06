@@ -63,8 +63,8 @@ public class MBMessageMentionsNotifierTest {
 		String[] mentionedUsersScreenNames =
 			mentionsNotifier.getMentionedUsersScreenNames(
 				TestPropsValues.getUserId(),
-				"hey [url=http://localhost:8080]@fakeuser[/url] " +
-					"you are a ghost.");
+				"Hey [url=http://localhost:8080]@fakeuser[/url]. You are a " +
+					"ghost.");
 
 		Assert.assertEquals(0, mentionedUsersScreenNames.length);
 	}

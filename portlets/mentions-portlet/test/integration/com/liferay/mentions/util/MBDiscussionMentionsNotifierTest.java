@@ -61,7 +61,7 @@ public class MBDiscussionMentionsNotifierTest {
 
 		String[] mentionedUsersScreenNames =
 			mentionsNotifier.getMentionedUsersScreenNames(
-				TestPropsValues.getUserId(), "Hey @fakeuser you are a ghost.");
+				TestPropsValues.getUserId(), "Hey @fakeuser. You are a ghost.");
 
 		Assert.assertEquals(0, mentionedUsersScreenNames.length);
 	}

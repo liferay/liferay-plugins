@@ -63,8 +63,8 @@ public class BlogsEntryMentionsNotifierTest {
 		String[] mentionedUsersScreenNames =
 			mentionsNotifier.getMentionedUsersScreenNames(
 				TestPropsValues.getUserId(),
-				"hey <a href=\"http://localhost:8080\">@fakeuser</a> " +
-					"you are a ghost.");
+				"hey <a href=\"http://localhost:8080\">@fakeuser</a>. You " +
+					"are a ghost.");
 
 		Assert.assertEquals(0, mentionedUsersScreenNames.length);
 	}
