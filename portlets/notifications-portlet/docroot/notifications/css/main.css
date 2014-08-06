@@ -1,8 +1,8 @@
 @import "compass";
 @import "mixins";
 
-/* ---------- Mixins ---------- */ 
- 
+/* ---------- Mixins ---------- */
+
 @mixin default-border-radius {
 	@include border-radius(4px);
 }
@@ -51,9 +51,15 @@
 
 .dockbar-user-notifications, .notifications-portlet {
 	.non-actionable .user-notification {
-		&:hover, &.hover {
-			background: #F3F3F3;
-			cursor: pointer;
+		&, &.archived {
+			&:hover, &.hover {
+				background-color: #F3F3F3;
+				cursor: pointer;
+
+				.mark-as-read {
+					display: block;
+				}
+			}
 		}
 	}
 
@@ -97,7 +103,11 @@
 		}
 
 		.message {
-			margin-top: 10px;
+			margin: 10px 0;
+		}
+
+		.user-notifications {
+			clear: both;
 		}
 
 		.user-notification {
@@ -110,13 +120,17 @@
 
 				@include default-border-radius;
 
-				padding: 0 5px;
+				display: none;
 				position: absolute;
 				right: 4px;
 				top: 4px;
 
 				&:hover {
 					background-color: rgba(0, 0, 0, 0.1);
+				}
+
+				i {
+					padding: 4px 5px;
 				}
 			}
 
@@ -235,10 +249,15 @@
 
 	.user-notifications-header {
 		border-bottom: 1px solid #2AAAE6;
+		min-height: 31px;
 		padding: 0 10px;
 
 		& > span {
 			line-height: 2.25em;
+		}
+
+		.title {
+			float: left;
 		}
 	}
 }
@@ -276,8 +295,25 @@
 		}
 	}
 
-	.actionable .user-notification:first-child {
-		border-top-width: 0;
+	.non-actionable .user-notification {
+		background-color: #EDEDED;
+		overflow: hidden;
+
+		&.archived {
+			background-color: #FFF;
+
+			.title {
+				font-weight: normal;
+			}
+		}
+
+		.title {
+			font-weight: bold;
+		}
+
+		.timestamp {
+			color: #666;
+		}
 	}
 
 	.user-notifications-list-container {
@@ -295,6 +331,7 @@
 			box-sizing: border-box;
 			display: flex;
 			margin: 0;
+			min-height: 31px;
 			width: 100%;
 
 			&:before {
@@ -335,9 +372,13 @@
 		}
 
 		.user-notification {
-			border-top: 1px solid #EEE;
+			border-top: 1px solid #DDD;
 			color: #000;
 			margin: 0 20px;
+
+			&:last-child {
+				border-bottom: 1px solid #DDD;
+			}
 
 			.mark-as-read {
 				float: right;
@@ -420,8 +461,14 @@
 
 .touch {
 	.dockbar-user-notifications, .notifications-portlet {
-		.user-notification .mark-as-read {
-			display: none;
+		.user-notification {
+			&, &.archived {
+				&, &:hover, &.hover {
+					.mark-as-read {
+						display: none;
+					}
+				}
+			}
 		}
 	}
 }
