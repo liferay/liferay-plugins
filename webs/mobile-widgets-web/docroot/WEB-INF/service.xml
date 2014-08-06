@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 6.2.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_6_2_0.dtd">
+
+<service-builder package-path="com.liferay.mobilewidgets">
+	<author>José Manuel Navarro</author>
+	<namespace>MobileWidgets</namespace>
+	<entity name="MobileWidgetsUser" local-service="false" remote-service="true">
+		<reference package-path="com.liferay.portal" entity="Company" />
+	</entity>
+</service-builder>
