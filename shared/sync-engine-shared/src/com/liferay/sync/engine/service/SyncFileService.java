@@ -125,8 +125,7 @@ public class SyncFileService {
 		SyncFile syncFile = addSyncFile(
 			null, null, name, FileUtil.getFileKey(filePath),
 			filePath.toString(), Files.probeContentType(filePath), name,
-			parentFolderId, repositoryId, syncAccountId,
-			SyncFile.TYPE_FOLDER);
+			parentFolderId, repositoryId, syncAccountId, SyncFile.TYPE_FOLDER);
 
 		// Remote sync file
 

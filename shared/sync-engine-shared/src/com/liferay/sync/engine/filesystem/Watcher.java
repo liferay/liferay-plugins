@@ -15,10 +15,13 @@
 package com.liferay.sync.engine.filesystem;
 
 import com.liferay.sync.engine.model.SyncAccount;
+import com.liferay.sync.engine.model.SyncFile;
 import com.liferay.sync.engine.model.SyncSite;
 import com.liferay.sync.engine.model.SyncWatchEvent;
 import com.liferay.sync.engine.service.SyncAccountService;
+import com.liferay.sync.engine.service.SyncFileService;
 import com.liferay.sync.engine.service.SyncSiteService;
+import com.liferay.sync.engine.util.FileUtil;
 
 import java.io.IOException;
 
@@ -173,12 +176,25 @@ public class Watcher implements Runnable {
 
 					@Override
 					public FileVisitResult visitFile(
-						Path filePath,
-						BasicFileAttributes basicFileAttributes) {
+							Path filePath,
+							BasicFileAttributes basicFileAttributes)
+						throws IOException {
 
-						if (Files.exists(filePath)) {
+						if (Files.notExists(filePath)) {
+							return FileVisitResult.CONTINUE;
+						}
+
+						SyncFile syncFile = SyncFileService.fetchSyncFile(
+							filePath.toString(),
+							_watchEventListener.getSyncAccountId());
+
+						if (syncFile == null) {
 							fireWatchEventListener(
 								SyncWatchEvent.EVENT_TYPE_CREATE, filePath);
+						}
+						else if (FileUtil.hasFileChanged(syncFile, filePath)) {
+							fireWatchEventListener(
+								SyncWatchEvent.EVENT_TYPE_MODIFY, filePath);
 						}
 
 						return FileVisitResult.CONTINUE;
@@ -199,7 +215,13 @@ public class Watcher implements Runnable {
 
 			_filePaths.put(watchKey, filePath);
 
-			fireWatchEventListener(SyncWatchEvent.EVENT_TYPE_CREATE, filePath);
+			SyncFile syncFile = SyncFileService.fetchSyncFile(
+				filePath.toString(), _watchEventListener.getSyncAccountId());
+
+			if (syncFile == null) {
+				fireWatchEventListener(
+					SyncWatchEvent.EVENT_TYPE_CREATE, filePath);
+			}
 
 			if (_logger.isTraceEnabled()) {
 				_logger.trace("Registered file path {}", filePath);
