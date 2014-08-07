@@ -330,8 +330,8 @@ public class SyncEngine {
 					SyncAccountService.fetchSyncAccount(
 						syncAccount.getSyncAccountId());
 
-				if (updatedSyncAccount.getState() ==
-						SyncAccount.STATE_DISCONNECTED) {
+				if (updatedSyncAccount.getState() !=
+						SyncAccount.STATE_CONNECTED) {
 
 					return;
 				}

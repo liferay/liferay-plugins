@@ -70,7 +70,7 @@ public class DownloadFileHandler extends BaseHandler {
 		SyncAccount syncAccount = SyncAccountService.fetchSyncAccount(
 			getSyncAccountId());
 
-		if (syncAccount.getState() == SyncAccount.STATE_DISCONNECTED) {
+		if (syncAccount.getState() != SyncAccount.STATE_CONNECTED) {
 			super.handleException(e);
 
 			return;

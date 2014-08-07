@@ -163,7 +163,7 @@ public class BaseHandler implements Handler<Void> {
 				syncAccount = SyncAccountService.synchronizeSyncAccount(
 					getSyncAccountId());
 
-				if (syncAccount.getState() == SyncAccount.STATE_DISCONNECTED) {
+				if (syncAccount.getState() != SyncAccount.STATE_CONNECTED) {
 					throw new Exception();
 				}
 

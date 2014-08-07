@@ -51,7 +51,7 @@ public class SyncWatchEventProcessor implements Runnable {
 			SyncAccount syncAccount = SyncAccountService.fetchSyncAccount(
 				syncWatchEvent.getSyncAccountId());
 
-			if (syncAccount.getState() == SyncAccount.STATE_DISCONNECTED) {
+			if (syncAccount.getState() != SyncAccount.STATE_CONNECTED) {
 				continue;
 			}
 
@@ -107,7 +107,7 @@ public class SyncWatchEventProcessor implements Runnable {
 			syncAccount = SyncAccountService.fetchSyncAccount(
 				syncWatchEvent.getSyncAccountId());
 
-			if (syncAccount.getState() != SyncAccount.STATE_DISCONNECTED) {
+			if (syncAccount.getState() == SyncAccount.STATE_CONNECTED) {
 				SyncWatchEventService.deleteSyncWatchEvent(
 					syncWatchEvent.getSyncWatchEventId());
 			}
@@ -174,7 +174,7 @@ public class SyncWatchEventProcessor implements Runnable {
 		SyncAccount syncAccount = SyncAccountService.fetchSyncAccount(
 			syncWatchEvent.getSyncAccountId());
 
-		if (syncAccount.getState() != SyncAccount.STATE_DISCONNECTED) {
+		if (syncAccount.getState() == SyncAccount.STATE_CONNECTED) {
 			SyncWatchEvent relatedSyncWatchEvent =
 				SyncWatchEventService.fetchSyncWatchEvent(
 					SyncWatchEvent.EVENT_TYPE_DELETE,
@@ -236,7 +236,7 @@ public class SyncWatchEventProcessor implements Runnable {
 		SyncAccount syncAccount = SyncAccountService.fetchSyncAccount(
 			syncWatchEvent.getSyncAccountId());
 
-		if (syncAccount.getState() != SyncAccount.STATE_DISCONNECTED) {
+		if (syncAccount.getState() == SyncAccount.STATE_CONNECTED) {
 			SyncWatchEvent relatedSyncWatchEvent =
 				SyncWatchEventService.fetchSyncWatchEvent(
 					SyncWatchEvent.EVENT_TYPE_DELETE,
