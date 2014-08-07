@@ -211,15 +211,22 @@ Error-Prone was automatically installed. Please rerun your task.
 					moduleDirs = "${properties["module.dirs"]}".split(",")
 
 					for (moduleDir in moduleDirs) {
-						ant."set-module-properties"("module.dir": moduleDir)
+						File buildXml = new File(moduleDir + "/build.xml")
 
-						buildXmlContent = new File(moduleDir + "/build.xml").text
+						if (buildXml.exists()) {
+							String buildXmlContent = buildXml.text
 
-						if (buildXmlContent =~ "<target name=\"" + targetName + "\"") {
-							ant.ant(dir: moduleDir, target: targetName)
+							ant."set-module-properties"("module.dir": moduleDir)
+
+							if (buildXmlContent =~ "<target name=\"" + targetName + "\"") {
+								ant.ant(dir: moduleDir, target: targetName)
+							}
+							else {
+								ant."${macrodefName}"("module.dir": moduleDir)
+							}
 						}
 						else {
-							ant."${macrodefName}"("module.dir": moduleDir)
+							println "[WARN] No build.xml found in " + moduleDir + ". Skipping this directory."
 						}
 					}
 				]]>
