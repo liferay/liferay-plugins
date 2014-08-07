@@ -1090,6 +1090,15 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 		return repositoryEntry.getMappedId();
 	}
 
+	private void _ensureAssetCreated(
+			ExtRepositoryFileEntryAdapter extRepositoryFileEntryAdapter)
+		throws PortalException {
+
+		dlAppHelperLocalService.checkAssetEntry(
+			PrincipalThreadLocal.getUserId(), extRepositoryFileEntryAdapter,
+			extRepositoryFileEntryAdapter.getFileVersion() );
+	}
+
 	private <T extends ExtRepositoryObjectAdapter<?>> List<T> _filterByMimeType(
 		List<T> extRepositoryObjects, String[] mimeTypes) {
 
@@ -1320,6 +1329,9 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 					this, extRepositoryObjectId, uuid, extRepositoryFileEntry);
 
 				_forceGetVersions(
+					(ExtRepositoryFileEntryAdapter)extRepositoryObjectAdapter);
+
+				_ensureAssetCreated(
 					(ExtRepositoryFileEntryAdapter)extRepositoryObjectAdapter);
 			}
 
