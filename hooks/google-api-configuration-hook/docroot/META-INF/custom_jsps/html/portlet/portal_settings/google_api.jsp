@@ -26,7 +26,7 @@ String googleClientId = PrefsParamUtil.getString(companyPortletPreferences, requ
 %>
 
 <aui:fieldset>
-	<aui:input label="google-client-id" name="settings--googleClientId--" type="text" value="<%= googleClientId %>" />
-
 	<aui:input label="google-api-key" name="settings--googleAPIKey--" type="text" value="<%= googleAPIKey %>" />
+
+	<aui:input label="google-client-id" name="settings--googleClientId--" type="text" value="<%= googleClientId %>" />
 </aui:fieldset>
