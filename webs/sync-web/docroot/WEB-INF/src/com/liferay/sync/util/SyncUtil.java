@@ -29,6 +29,7 @@ import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.StreamUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.Lock;
 import com.liferay.portlet.documentlibrary.model.DLFileEntry;
@@ -95,7 +96,7 @@ public class SyncUtil {
 		sb.append(StringPool.QUOTE);
 
 		if (throwable.getCause() == null) {
-			return sb.toString();
+			return StringUtil.unquote(sb.toString());
 		}
 
 		sb.append(StringPool.COMMA_AND_SPACE);
@@ -122,7 +123,7 @@ public class SyncUtil {
 
 		sb.append(rootCauseJSONObject);
 
-		return sb.toString();
+		return StringUtil.unquote(sb.toString());
 	}
 
 	public static String getChecksum(DLFileVersion dlFileVersion)
