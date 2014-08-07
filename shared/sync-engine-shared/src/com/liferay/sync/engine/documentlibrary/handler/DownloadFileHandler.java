@@ -114,9 +114,15 @@ public class DownloadFileHandler extends BaseHandler {
 					StandardCopyOption.REPLACE_EXISTING);
 			}
 
+			if (syncFile.getFileKey() == null) {
+				syncFile.setUiEvent(SyncFile.UI_EVENT_DOWNLOADED_NEW);
+			}
+			else {
+				syncFile.setUiEvent(SyncFile.UI_EVENT_DOWNLOADED_UPDATE);
+			}
+
 			syncFile.setFileKey(FileUtil.getFileKey(tempFilePath));
 			syncFile.setState(SyncFile.STATE_SYNCED);
-			syncFile.setUiEvent((Integer)getParameterValue("uiEvent"));
 
 			SyncFileService.update(syncFile);
 

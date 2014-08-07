@@ -151,13 +151,6 @@ public class GetSyncDLObjectUpdateHandler extends BaseSyncDLObjectHandler {
 			parameters.put("patch", false);
 		}
 
-		if (sourceVersion == null) {
-			parameters.put("uiEvent", SyncFile.UI_EVENT_DOWNLOADED_NEW);
-		}
-		else {
-			parameters.put("uiEvent", SyncFile.UI_EVENT_DOWNLOADED_UPDATE);
-		}
-
 		DownloadFileEvent downloadFileEvent = new DownloadFileEvent(
 			getSyncAccountId(), parameters);
 
