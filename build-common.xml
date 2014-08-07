@@ -1665,6 +1665,10 @@ Please find a solution that does not require portal-impl.jar.
 											<jar destfile="${sdk.dir}/dist/${plugin.name}-${plugin.full.version}.war" update="true">
 												<fileset
 													dir="${temp.deployed.plugin.dir}"
+													includes="WEB-INF/tld/*"
+												/>
+												<fileset
+													dir="${temp.deployed.plugin.dir}"
 													includes="WEB-INF/web.xml"
 												/>
 											</jar>
