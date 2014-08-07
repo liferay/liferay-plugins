@@ -48,7 +48,20 @@ public class GetSyncContextHandler extends BaseJSONHandler {
 	@Override
 	protected boolean handlePortalException(String exception) throws Exception {
 		if (exception.equals(
-				"com.liferay.sync.SyncServicesUnavailableException")) {
+				"com.liferay.portal.kernel.jsonwebservice." +
+					"NoSuchJSONWebServiceException") ||
+			exception.equals("java.lang.RuntimeException")) {
+
+			SyncAccount syncAccount = SyncAccountService.fetchSyncAccount(
+				getSyncAccountId());
+
+			syncAccount.setState(SyncAccount.STATE_DISCONNECTED);
+			syncAccount.setUiEvent(SyncAccount.UI_EVENT_SYNC_WEB_MISSING);
+
+			return true;
+		}
+		else if (exception.equals(
+					"com.liferay.sync.SyncServicesUnavailableException")) {
 
 			SyncAccount syncAccount = SyncAccountService.fetchSyncAccount(
 				getSyncAccountId());

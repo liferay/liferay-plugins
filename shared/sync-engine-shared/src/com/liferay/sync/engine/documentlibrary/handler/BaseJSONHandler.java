@@ -27,7 +27,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import org.apache.commons.lang3.StringEscapeUtils;
+import org.apache.commons.lang.StringEscapeUtils;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
@@ -97,7 +97,7 @@ public class BaseJSONHandler extends BaseHandler {
 		JsonNode responseJsonNode = null;
 
 		try {
-			response = StringEscapeUtils.unescapeJson(response);
+			response = StringEscapeUtils.unescapeJava(response);
 
 			responseJsonNode = objectMapper.readTree(response);
 		}

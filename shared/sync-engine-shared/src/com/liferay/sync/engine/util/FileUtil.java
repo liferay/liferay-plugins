@@ -122,7 +122,9 @@ public class FileUtil {
 			return true;
 		}
 
-		if (syncFile.getSize() != Files.size(filePath)) {
+		if ((syncFile.getSize() > 0) &&
+			(syncFile.getSize() != Files.size(filePath))) {
+
 			return true;
 		}
 
