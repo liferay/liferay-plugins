@@ -226,7 +226,7 @@ Error-Prone was automatically installed. Please rerun your task.
 							}
 						}
 						else {
-							println "[WARN] No build.xml found in " + moduleDir + ". Skipping this directory."
+							println "Skipping " + moduleDir + " because it does not have a build.xml file."
 						}
 					}
 				]]>
