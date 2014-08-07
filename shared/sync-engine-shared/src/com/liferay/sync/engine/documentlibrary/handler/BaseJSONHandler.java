@@ -198,7 +198,11 @@ public class BaseJSONHandler extends BaseHandler {
 
 			retryServerConnection();
 		}
-		else if (exception.equals("java.lang.RuntimeException")) {
+		else if (exception.equals(
+					"com.liferay.portal.kernel.jsonwebservice." +
+						"NoSuchJSONWebServiceException") ||
+				 exception.equals("java.lang.RuntimeException")) {
+
 			SyncAccount syncAccount = SyncAccountService.fetchSyncAccount(
 				getSyncAccountId());
 
