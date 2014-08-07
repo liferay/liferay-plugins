@@ -253,11 +253,27 @@
 	</target>
 
 	<target name="build-lang">
-		<antcall target="build-lang-cmd">
-			<param name="lang.dir" value="docroot/WEB-INF/src/content" />
-			<param name="lang.file" value="Language" />
-			<param name="lang.translate" value="true" />
-		</antcall>
+		<if>
+			<available file="docroot/WEB-INF/src/content" />
+			<then>
+				<antcall target="build-lang-cmd">
+					<param name="lang.dir" value="docroot/WEB-INF/src/content" />
+					<param name="lang.file" value="Language" />
+					<param name="lang.translate" value="true" />
+				</antcall>
+			</then>
+		</if>
+
+		<if>
+			<available file="src/content" />
+			<then>
+				<antcall target="build-lang-cmd">
+					<param name="lang.dir" value="src/content" />
+					<param name="lang.file" value="Language" />
+					<param name="lang.translate" value="true" />
+				</antcall>
+			</then>
+		</if>
 	</target>
 
 	<target name="build-lang-cmd">
