@@ -27,6 +27,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+import org.apache.commons.lang3.StringEscapeUtils;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
@@ -68,19 +69,23 @@ public class BaseJSONHandler extends BaseHandler {
 		JsonNode responseJsonNode = null;
 
 		try {
+			response = StringEscapeUtils.unescapeJson(response);
+
 			responseJsonNode = objectMapper.readTree(response);
 		}
 		catch (Exception e) {
 			return "";
 		}
 
-		JsonNode exceptionJsonNode = responseJsonNode.get("exception");
+		JsonNode errorJsonNode = responseJsonNode.get("error");
 
-		if (exceptionJsonNode == null) {
+		if (errorJsonNode == null) {
 			return "";
 		}
 
-		return exceptionJsonNode.asText();
+		JsonNode typeJsonNode = errorJsonNode.get("type");
+
+		return typeJsonNode.asText();
 	}
 
 	protected boolean handlePortalException(String exception) throws Exception {
