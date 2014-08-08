@@ -1090,7 +1090,7 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 		return repositoryEntry.getMappedId();
 	}
 
-	private void _ensureAssetCreated(
+	private void _checkAssetEntry(
 			ExtRepositoryFileEntryAdapter extRepositoryFileEntryAdapter)
 		throws PortalException {
 
@@ -1127,7 +1127,7 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 		return filteredExtRepositoryObjects;
 	}
 
-	private void _forceGetVersions(
+	private void _forceGetFileVersions(
 			ExtRepositoryFileEntryAdapter extRepositoryFileEntryAdapter)
 		throws SystemException {
 
@@ -1328,10 +1328,10 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 				extRepositoryObjectAdapter = new ExtRepositoryFileEntryAdapter(
 					this, extRepositoryObjectId, uuid, extRepositoryFileEntry);
 
-				_forceGetVersions(
+				_forceGetFileVersions(
 					(ExtRepositoryFileEntryAdapter)extRepositoryObjectAdapter);
 
-				_ensureAssetCreated(
+				_checkAssetEntry(
 					(ExtRepositoryFileEntryAdapter)extRepositoryObjectAdapter);
 			}
 
