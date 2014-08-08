@@ -58,6 +58,385 @@
 
 	<pathconvert pathsep="," property="sdk.dependencies.path" refid="sdk.dependencies.path" targetos="unix" />
 
+	<macrodef name="set-build-xml-var">
+		<attribute name="build.xml.var.name" />
+		<attribute name="module.dir" />
+
+		<sequential>
+			<loadfile property="set-build-xml-var.build.xml.content" srcFile="@{module.dir}/build.xml" />
+
+			<antelope:stringutil string="${set-build-xml-var.build.xml.content}" property="set-build-xml-var.value.beginindex">
+				<antelope:indexof string="property name=&quot;@{build.xml.var.name}&quot; value=&quot;" fromindex="0" />
+			</antelope:stringutil>
+
+			<if>
+				<equals arg1="${set-build-xml-var.value.beginindex}" arg2="-1" />
+				<then>
+					<var name="set-build-xml-var.return" unset="true" />
+				</then>
+				<else>
+					<antelope:stringutil string="${set-build-xml-var.build.xml.content}" property="set-build-xml-var.value.beginindex">
+						<antelope:indexof string="value=&quot;" fromindex="${set-build-xml-var.value.beginindex}" />
+					</antelope:stringutil>
+
+					<antelope:math
+						datatype="int"
+						operand1="${set-build-xml-var.value.beginindex}"
+						operand2="7"
+						operation="+"
+						result="set-build-xml-var.value.beginindex"
+					/>
+
+					<antelope:stringutil string="${set-build-xml-var.build.xml.content}" property="set-build-xml-var.value.endindex">
+						<antelope:indexof string="&quot;" fromindex="${set-build-xml-var.value.beginindex}" />
+					</antelope:stringutil>
+
+					<antelope:stringutil string="${set-build-xml-var.build.xml.content}" property="set-build-xml-var.return">
+						<antelope:substring beginindex="${set-build-xml-var.value.beginindex}" endindex="${set-build-xml-var.value.endindex}" />
+					</antelope:stringutil>
+				</else>
+			</if>
+
+			<var name="set-build-xml-var.build.xml.content" unset="true" />
+		</sequential>
+	</macrodef>
+
+	<macrodef name="set-module-properties">
+		<attribute name="module.dir" />
+
+		<sequential>
+			<var name="module.dir.unix" unset="true" />
+
+			<pathconvert property="module.dir.unix" targetos="unix">
+				<path location="@{module.dir}" />
+			</pathconvert>
+
+			<var name="original.lib.name" unset="true" />
+			<var name="original.lib.version" unset="true" />
+			<var name="original.lib.url" unset="true" />
+			<var name="plugin.full.version" unset="true" />
+			<var name="plugin.jars" unset="true" />
+			<var name="plugin.required.contexts" unset="true" />
+			<var name="plugin.tlds" unset="true" />
+			<var name="plugin.version" unset="true" />
+
+			<set-build-xml-var
+				build.xml.var.name="original.lib.name"
+				module.dir="@{module.dir}"
+			/>
+
+			<if>
+				<isset property="set-build-xml-var.return" />
+				<then>
+					<var name="original.lib.name" value="${set-build-xml-var.return}" />
+				</then>
+			</if>
+
+			<set-build-xml-var
+				build.xml.var.name="original.lib.version"
+				module.dir="@{module.dir}"
+			/>
+
+			<if>
+				<isset property="set-build-xml-var.return" />
+				<then>
+					<var name="original.lib.version" value="${set-build-xml-var.return}" />
+				</then>
+			</if>
+
+			<set-build-xml-var
+				build.xml.var.name="original.lib.url"
+				module.dir="@{module.dir}"
+			/>
+
+			<if>
+				<isset property="set-build-xml-var.return" />
+				<then>
+					<var name="original.lib.url" value="${set-build-xml-var.return}" />
+				</then>
+			</if>
+
+			<if>
+				<available file="@{module.dir}/docroot/WEB-INF/liferay-plugin-package.properties" />
+				<then>
+					<var name="plugin-package.module-incremental-version" unset="true" />
+					<var name="plugin-package.portal-dependency-jars" unset="true" />
+					<var name="plugin-package.portal-dependency-tlds" unset="true" />
+					<var name="plugin-package.required-deployment-contexts" unset="true" />
+
+					<property file="@{module.dir}/docroot/WEB-INF/liferay-plugin-package.properties" prefix="plugin-package" />
+
+					<if>
+						<isset property="plugin-package.module-full-version" />
+						<then>
+							<var name="plugin.full.version" value="${plugin-package.module-full-version}" />
+						</then>
+					</if>
+
+					<var name="plugin.jars" value="${plugin-package.portal-dependency-jars}" />
+					<var name="plugin.required.contexts" value="${plugin-package.required-deployment-contexts}" />
+					<var name="plugin.tlds" value="${plugin-package.portal-dependency-tlds}" />
+					<var name="plugin.version" value="${plugin-package.module-incremental-version}" />
+				</then>
+				<else>
+					<set-build-xml-var
+						build.xml.var.name="plugin.version"
+						module.dir="@{module.dir}"
+					/>
+
+					<if>
+						<isset property="set-build-xml-var.return" />
+						<then>
+							<var name="plugin.version" value="${set-build-xml-var.return}" />
+						</then>
+						<else>
+							<var name="plugin.version" value="1" />
+						</else>
+					</if>
+
+					<set-build-xml-var
+						build.xml.var.name="plugin.full.version"
+						module.dir="@{module.dir}"
+					/>
+
+					<if>
+						<isset property="set-build-xml-var.return" />
+						<then>
+							<var name="plugin.full.version" value="${set-build-xml-var.return}" />
+						</then>
+						<else>
+							<if>
+								<available file="@{module.dir}/bnd.bnd" />
+								<then>
+									<loadproperties prefix="module.bnd.">
+										<file file="@{module.dir}/bnd.bnd" />
+									</loadproperties>
+								</then>
+							</if>
+
+							<if>
+								<isset property="module.bnd.Bundle-Version" />
+								<then>
+									<var name="plugin.full.version" value="${module.bnd.Bundle-Version}" />
+
+									<var name="module.bnd.Bundle-Version" unset="true" />
+								</then>
+							</if>
+						</else>
+					</if>
+				</else>
+			</if>
+
+			<if>
+				<not>
+					<isset property="plugin.full.version" />
+				</not>
+				<then>
+					<var name="plugin.full.version" value="${lp.version}.${plugin.version}${lp.version.file.suffix}" />
+				</then>
+			</if>
+
+			<set-build-xml-var
+				build.xml.var.name="plugin.name"
+				module.dir="@{module.dir}"
+			/>
+
+			<if>
+				<isset property="set-build-xml-var.return" />
+				<then>
+					<var name="plugin.name" value="${set-build-xml-var.return}" />
+				</then>
+				<else>
+					<if>
+						<available file="@{module.dir}/bnd.bnd" />
+						<then>
+							<loadproperties prefix="module.bnd.">
+								<file file="@{module.dir}/bnd.bnd" />
+							</loadproperties>
+						</then>
+					</if>
+
+					<if>
+						<isset property="module.bnd.Bundle-SymbolicName" />
+						<then>
+							<var name="plugin.name" value="${module.bnd.Bundle-SymbolicName}" />
+
+							<var name="module.bnd.Bundle-SymbolicName" unset="true" />
+						</then>
+						<else>
+							<if>
+								<equals arg1="@{module.dir}" arg2="." />
+								<then>
+									<var name="plugin.name" value="${ant.project.name}" />
+								</then>
+								<else>
+									<antelope:grep
+										group="1"
+										in="@{module.dir}"
+										property="plugin.name"
+										regex="(?:.*[/\\])(.*)"
+									/>
+								</else>
+							</if>
+						</else>
+					</if>
+				</else>
+			</if>
+
+			<set-build-xml-var
+				build.xml.var.name="theme.parent"
+				module.dir="@{module.dir}"
+			/>
+
+			<if>
+				<isset property="set-build-xml-var.return" />
+				<then>
+					<var name="theme.parent" value="${set-build-xml-var.return}" />
+				</then>
+				<else>
+					<var name="theme.parent" unset="true" />
+				</else>
+			</if>
+
+			<set-build-xml-var
+				build.xml.var.name="theme.type"
+				module.dir="@{module.dir}"
+			/>
+
+			<if>
+				<isset property="set-build-xml-var.return" />
+				<then>
+					<var name="theme.type" value="${set-build-xml-var.return}" />
+				</then>
+				<else>
+					<var name="theme.type" unset="true" />
+				</else>
+			</if>
+
+			<if>
+				<and>
+					<or>
+						<antelope:endswith string="${plugin.name}" with="-ext" />
+						<antelope:endswith string="${plugin.name}" with="-hook" />
+						<antelope:endswith string="${plugin.name}" with="-layouttpl" />
+						<antelope:endswith string="${plugin.name}" with="-portlet" />
+						<antelope:endswith string="${plugin.name}" with="-theme" />
+						<antelope:endswith string="${plugin.name}" with="-web" />
+					</or>
+					<not>
+						<resourcecontains
+							resource="${module.dir.unix}/build.xml"
+							substring="/build-common-osgi-plugin.xml&quot;"
+						/>
+					</not>
+				</and>
+				<then>
+					<var name="plugin.packaging" value="war" />
+				</then>
+				<else>
+					<var name="plugin.packaging" value="jar" />
+				</else>
+			</if>
+
+			<var name="plugin.file" value="${sdk.dir}/dist/${plugin.name}-${plugin.full.version}.${plugin.packaging}" />
+			<var name="plugin.javadoc.file" value="${sdk.dir}/dist/${plugin.name}-${plugin.full.version}-javadoc.zip" />
+			<var name="plugin.pom.file" value="${sdk.dir}/dist/${plugin.name}-${plugin.full.version}.pom" />
+			<var name="plugin.sources.file" value="${sdk.dir}/dist/${plugin.name}-${plugin.full.version}-sources.${plugin.packaging}" />
+			<var name="plugin.src.file" value="${sdk.dir}/dist/${plugin.name}-src-${plugin.full.version}.zip" />
+
+			<if>
+				<available file="@{module.dir}/src" />
+				<then>
+					<var name="plugin.classes.dir" value="@{module.dir}/classes" />
+					<var name="plugin.lib.dir" value="@{module.dir}/lib" />
+					<var name="plugin.source.dir" value="@{module.dir}/src" />
+
+					<if>
+						<available file="@{module.dir}/lib" />
+						<then>
+							<path id="plugin-lib.classpath">
+								<fileset dir="@{module.dir}/lib" includes="*.jar" />
+								<pathelement location="@{module.dir}/classes" />
+							</path>
+						</then>
+						<else>
+							<path id="plugin-lib.classpath">
+								<pathelement location="@{module.dir}/classes" />
+							</path>
+						</else>
+					</if>
+				</then>
+				<else>
+					<var name="plugin.classes.dir" value="@{module.dir}/docroot/WEB-INF/classes" />
+					<var name="plugin.lib.dir" value="@{module.dir}/docroot/WEB-INF/lib" />
+					<var name="plugin.source.dir" value="@{module.dir}/docroot/WEB-INF/src" />
+
+					<if>
+						<available file="@{module.dir}/tmp" />
+						<then>
+							<path id="plugin-lib.classpath">
+								<fileset dir="@{module.dir}/docroot/WEB-INF/lib" erroronmissingdir="false" includes="*.jar" />
+								<fileset dir="@{module.dir}/tmp/WEB-INF/lib" erroronmissingdir="false" includes="*.jar" />
+								<pathelement location="@{module.dir}/docroot/WEB-INF/classes" />
+								<pathelement location="@{module.dir}/tmp/WEB-INF/classes" />
+							</path>
+						</then>
+						<else>
+							<path id="plugin-lib.classpath">
+								<fileset dir="@{module.dir}/docroot/WEB-INF/lib" erroronmissingdir="false" includes="*.jar" />
+								<pathelement location="@{module.dir}/docroot/WEB-INF/classes" />
+							</path>
+						</else>
+					</if>
+				</else>
+			</if>
+
+			<if>
+				<resourcecontains
+					resource="${module.dir.unix}/build.xml"
+					substring="/build-common-osgi-plugin.xml&quot;"
+				/>
+				<then>
+					<property name="plugin-lib.classpath.path" refid="plugin-lib.classpath" />
+
+					<set-build-xml-var
+						build.xml.var.name="ignore.osgi.portal.classpath"
+						module.dir="@{module.dir}"
+					/>
+
+					<path id="plugin-lib.classpath">
+						<path refid="portal.classpath" />
+						<fileset dir="@{module.dir}/lib" erroronmissingdir="false" includes="*.jar" />
+						<pathelement path="${plugin-lib.classpath.path}" />
+					</path>
+
+					<var name="plugin-lib.classpath.path" unset="true" />
+				</then>
+			</if>
+
+			<set-build-xml-var
+				build.xml.var.name="plugin-lib.additional.dir"
+				module.dir="@{module.dir}"
+			/>
+
+			<if>
+				<isset property="set-build-xml-var.return" />
+				<then>
+					<property name="plugin-lib.classpath.path" refid="plugin-lib.classpath" />
+
+					<path id="plugin-lib.classpath">
+						<fileset dir="@{module.dir}/${set-build-xml-var.return}" includes="*.jar" />
+						<pathelement path="${plugin-lib.classpath.path}" />
+					</path>
+
+					<var name="plugin-lib.classpath.path" unset="true" />
+				</then>
+			</if>
+
+			<var name="set-module-properties.plugin.version" unset="true" />
+		</sequential>
+	</macrodef>
+
 	<macrodef name="process-ivy">
 		<attribute default="${basedir}" name="module.dir" />
 
@@ -72,6 +451,10 @@
 							<if>
 								<isfalse value="${ivy.xml.unmodified}" />
 								<then>
+									<set-module-properties
+										module.dir="@{ivy.xml.dir}"
+									/>
+
 									<ivy:settings file="${ivy.custom.settings.file}" />
 
 									<ivy:resolve
