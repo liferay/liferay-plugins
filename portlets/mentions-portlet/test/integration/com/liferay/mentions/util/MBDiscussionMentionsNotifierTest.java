@@ -14,133 +14,25 @@
 
 package com.liferay.mentions.util;
 
-import com.liferay.portal.kernel.util.ArrayUtil;
-import com.liferay.portal.model.Group;
-import com.liferay.portal.model.User;
-import com.liferay.portal.test.DeleteAfterTestRun;
-import com.liferay.portal.util.test.GroupTestUtil;
-import com.liferay.portal.util.test.TestPropsValues;
-import com.liferay.portal.util.test.UserTestUtil;
-
 import org.jboss.arquillian.junit.Arquillian;
 
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
 import org.junit.runner.RunWith;
 
 /**
  * @author Sergio González
  */
 @RunWith(Arquillian.class)
-public class MBDiscussionMentionsNotifierTest {
+public class MBDiscussionMentionsNotifierTest extends MentionsNotifierTestBase {
 
-	@Before
-	public void setUp() throws Exception {
-		_group1 = GroupTestUtil.addGroup();
-
-		_user1 = UserTestUtil.addUser("sergio", _group1.getGroupId());
-		_user2 = UserTestUtil.addUser("ana", _group1.getGroupId());
+	public MBDiscussionMentionsNotifierTest() {
+		super(
+			"Send an email to ana@sergio.com.",
+			"hey @sergio @ana can you check this out?",
+			"hey @ana, @sergio can you check this out?",
+			"Hey @fakeuser. You are a ghost.",
+			"hey @sergio can you check this out?",
+			"hey @sergio, can you check this out?",
+			"Hello @sergio. How are you?");
 	}
-
-	@Test
-	public void testEmail() throws Exception {
-		MentionsNotifier mentionsNotifier = new MentionsNotifier();
-
-		String[] mentionedUsersScreenNames =
-			mentionsNotifier.getMentionedUsersScreenNames(
-				TestPropsValues.getUserId(),
-				"Send an email to ana@sergio.com.");
-
-		Assert.assertEquals(0, mentionedUsersScreenNames.length);
-	}
-
-	@Test
-	public void testMultipleUsers() throws Exception {
-		MentionsNotifier mentionsNotifier = new MentionsNotifier();
-
-		String[] mentionedUsersScreenNames =
-			mentionsNotifier.getMentionedUsersScreenNames(
-				TestPropsValues.getUserId(),
-				"hey @sergio @ana can you check this out?");
-
-		Assert.assertEquals(2, mentionedUsersScreenNames.length);
-		Assert.assertTrue(ArrayUtil.contains(mentionedUsersScreenNames, "ana"));
-		Assert.assertTrue(
-			ArrayUtil.contains(mentionedUsersScreenNames, "sergio"));
-	}
-
-	@Test
-	public void testMultipleUsersSeparatedByComma() throws Exception {
-		MentionsNotifier mentionsNotifier = new MentionsNotifier();
-
-		String[] mentionedUsersScreenNames =
-			mentionsNotifier.getMentionedUsersScreenNames(
-				TestPropsValues.getUserId(),
-				"hey @ana, @sergio can you check this out?");
-
-		Assert.assertEquals(2, mentionedUsersScreenNames.length);
-		Assert.assertTrue(ArrayUtil.contains(mentionedUsersScreenNames, "ana"));
-		Assert.assertTrue(
-			ArrayUtil.contains(mentionedUsersScreenNames, "sergio"));
-	}
-
-	@Test
-	public void testNonexistentUser() throws Exception {
-		MentionsNotifier mentionsNotifier = new MentionsNotifier();
-
-		String[] mentionedUsersScreenNames =
-			mentionsNotifier.getMentionedUsersScreenNames(
-				TestPropsValues.getUserId(), "Hey @fakeuser. You are a ghost.");
-
-		Assert.assertEquals(0, mentionedUsersScreenNames.length);
-	}
-
-	@Test
-	public void testSingleUser() throws Exception {
-		MentionsNotifier mentionsNotifier = new MentionsNotifier();
-
-		String[] mentionedUsersScreenNames =
-			mentionsNotifier.getMentionedUsersScreenNames(
-				TestPropsValues.getUserId(),
-				"hey @sergio can you check this out?");
-
-		Assert.assertEquals(1, mentionedUsersScreenNames.length);
-		Assert.assertEquals("sergio", mentionedUsersScreenNames[0]);
-	}
-
-	@Test
-	public void testSingleUserWithComma() throws Exception {
-		MentionsNotifier mentionsNotifier = new MentionsNotifier();
-
-		String[] mentionedUsersScreenNames =
-			mentionsNotifier.getMentionedUsersScreenNames(
-				TestPropsValues.getUserId(),
-				"hey @sergio, can you check this out?");
-
-		Assert.assertEquals(1, mentionedUsersScreenNames.length);
-		Assert.assertEquals("sergio", mentionedUsersScreenNames[0]);
-	}
-
-	@Test
-	public void testSingleUserWithPeriod() throws Exception {
-		MentionsNotifier mentionsNotifier = new MentionsNotifier();
-
-		String[] mentionedUsersScreenNames =
-			mentionsNotifier.getMentionedUsersScreenNames(
-				TestPropsValues.getUserId(), "Hello @sergio. How are you?");
-
-		Assert.assertEquals(1, mentionedUsersScreenNames.length);
-		Assert.assertEquals("sergio", mentionedUsersScreenNames[0]);
-	}
-
-	@DeleteAfterTestRun
-	private Group _group1;
-
-	@DeleteAfterTestRun
-	private User _user1;
-
-	@DeleteAfterTestRun
-	private User _user2;
 
 }
