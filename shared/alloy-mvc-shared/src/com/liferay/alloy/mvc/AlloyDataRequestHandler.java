@@ -24,8 +24,6 @@ import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StackTraceUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.BaseModel;
-import com.liferay.portal.model.Portlet;
-import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
 
 import java.io.IOException;
@@ -101,12 +99,8 @@ public class AlloyDataRequestHandler {
 		throws Exception {
 
 		if (baseAlloyControllerImpl.permissioned) {
-			ThemeDisplay themeDisplay = baseAlloyControllerImpl.themeDisplay;
-			Portlet portlet = baseAlloyControllerImpl.portlet;
-
 			AlloyPermission.check(
-				themeDisplay.getPermissionChecker(),
-				themeDisplay.getScopeGroupId(), portlet.getRootPortletId(),
+				baseAlloyControllerImpl.themeDisplay,
 				baseAlloyControllerImpl.controllerPath, "index");
 		}
 
@@ -131,12 +125,8 @@ public class AlloyDataRequestHandler {
 		throws Exception {
 
 		if (baseAlloyControllerImpl.permissioned) {
-			ThemeDisplay themeDisplay = baseAlloyControllerImpl.themeDisplay;
-			Portlet portlet = baseAlloyControllerImpl.portlet;
-
 			AlloyPermission.check(
-				themeDisplay.getPermissionChecker(),
-				themeDisplay.getScopeGroupId(), portlet.getRootPortletId(),
+				baseAlloyControllerImpl.themeDisplay,
 				baseAlloyControllerImpl.controllerPath, "index");
 		}
 

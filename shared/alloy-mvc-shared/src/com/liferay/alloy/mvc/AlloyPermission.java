@@ -71,7 +71,8 @@ public class AlloyPermission {
 			return true;
 		}
 
-		if (permissionChecker.hasOwnerPermission(
+		if ((name.indexOf(CharPool.PERIOD) != -1) &&
+			permissionChecker.hasOwnerPermission(
 				permissionChecker.getCompanyId(), name, primKey,
 				_getOwnerId(name, primKey), actionId)) {
 
@@ -85,18 +86,10 @@ public class AlloyPermission {
 	public static boolean contains(
 		ThemeDisplay themeDisplay, BaseModel<?> baseModel, String action) {
 
-		Class<?> clazz = baseModel.getClass();
-
-		String modelClassName = StringUtil.replace(
-			clazz.getName(), "impl.", StringPool.BLANK);
-
-		modelClassName = modelClassName.substring(
-			0, modelClassName.length() - 4);
-
 		return contains(
 			themeDisplay.getPermissionChecker(), themeDisplay.getScopeGroupId(),
-			modelClassName, (Long)baseModel.getPrimaryKeyObj(),
-			StringUtil.toUpperCase(action));
+			BeanPropertiesUtil.getString(baseModel, "modelClassName"),
+			(Long)baseModel.getPrimaryKeyObj(), StringUtil.toUpperCase(action));
 	}
 
 	public static boolean contains(
@@ -143,7 +136,7 @@ public class AlloyPermission {
 		catch (Exception e) {
 		}
 
-		return BeanPropertiesUtil.getLongSilent(baseModel, "ownerId");
+		return BeanPropertiesUtil.getLongSilent(baseModel, "userId");
 	}
 
 }
