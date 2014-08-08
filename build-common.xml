@@ -1965,9 +1965,14 @@ Please find a solution that does not require portal-impl.jar.
 							<var name="plugin.full.version" value="${set-build-xml-var.return}" />
 						</then>
 						<else>
-							<loadproperties prefix="module.bnd.">
-								<file file="@{module.dir}/bnd.bnd" />
-							</loadproperties>
+							<if>
+								<available file="@{module.dir}/bnd.bnd" />
+								<then>
+									<loadproperties prefix="module.bnd.">
+										<file file="@{module.dir}/bnd.bnd" />
+									</loadproperties>
+								</then>
+							</if>
 
 							<if>
 								<isset property="module.bnd.Bundle-Version" />
@@ -2002,9 +2007,14 @@ Please find a solution that does not require portal-impl.jar.
 					<var name="plugin.name" value="${set-build-xml-var.return}" />
 				</then>
 				<else>
-					<loadproperties prefix="module.bnd.">
-						<file file="@{module.dir}/bnd.bnd" />
-					</loadproperties>
+					<if>
+						<available file="@{module.dir}/bnd.bnd" />
+						<then>
+							<loadproperties prefix="module.bnd.">
+								<file file="@{module.dir}/bnd.bnd" />
+							</loadproperties>
+						</then>
+					</if>
 
 					<if>
 						<isset property="module.bnd.Bundle-SymbolicName" />
