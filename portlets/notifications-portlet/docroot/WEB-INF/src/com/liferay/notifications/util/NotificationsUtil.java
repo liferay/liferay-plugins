@@ -79,12 +79,12 @@ public class NotificationsUtil {
 
 		dynamicQuery.setProjection(ProjectionFactoryUtil.rowCount());
 
-		Iterator<Long> itr =
+		Iterator<Long> iterator =
 			UserNotificationEventLocalServiceUtil.dynamicQuery(
 				dynamicQuery).iterator();
 
-		if (itr.hasNext()) {
-			Long count = itr.next();
+		if (iterator.hasNext()) {
+			Long count = iterator.next();
 
 			if (count != null) {
 				return count.intValue();
@@ -120,12 +120,12 @@ public class NotificationsUtil {
 
 		dynamicQuery.setProjection(ProjectionFactoryUtil.rowCount());
 
-		Iterator<Long> itr =
+		Iterator<Long> iterator =
 			UserNotificationEventLocalServiceUtil.dynamicQuery(
 				dynamicQuery).iterator();
 
-		if (itr.hasNext()) {
-			Long count = itr.next();
+		if (iterator.hasNext()) {
+			Long count = iterator.next();
 
 			if (count != null) {
 				return count.intValue();
@@ -186,12 +186,12 @@ public class NotificationsUtil {
 
 		dynamicQuery.setProjection(ProjectionFactoryUtil.rowCount());
 
-		Iterator<Long> itr =
+		Iterator<Long> iterator =
 			UserNotificationEventLocalServiceUtil.dynamicQuery(
 				dynamicQuery).iterator();
 
-		if (itr.hasNext()) {
-			Long count = itr.next();
+		if (iterator.hasNext()) {
+			Long count = iterator.next();
 
 			if (count != null) {
 				return count.intValue();

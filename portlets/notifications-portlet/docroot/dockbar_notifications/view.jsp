@@ -57,6 +57,7 @@
 
 					<div class="user-notifications"></div>
 				</div>
+
 				<div class="actionable">
 					<div class="clearfix user-notifications-header">
 						<liferay-portlet:renderURL plid="<%= notificationsPlid %>" portletName="<%= PortletKeys.NOTIFICATIONS %>" var="viewAllActionableNotifications" windowState="<%= LiferayWindowState.MAXIMIZED.toString() %>">
