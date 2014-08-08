@@ -77,7 +77,7 @@
 									<tpl for="parent.availableCalendars[values]">
 										<tpl if="values.get('permissions').MANAGE_BOOKINGS == true">
 											<option value="{[values.get('calendarId')]}">
-												{[AUI().Lang.String.escapeHTML(Liferay.CalendarUtil.getCalendarName(values.get('name'), values.get('calendarResourceName')))]}
+												{[LString.escapeHTML(Liferay.CalendarUtil.getCalendarName(values.get('name'), values.get('calendarResourceName')))]}
 											</option>
 										</tpl>
 									</tpl>
@@ -86,7 +86,7 @@
 						</tpl>
 
 						<tpl if="!values.permissions.MANAGE_BOOKINGS">
-							<label>{[AUI().Lang.String.escapeHTML(Liferay.CalendarUtil.getCalendarName(values.calendar.get('name'), values.calendar.get('calendarResourceName')))]}</label>
+							<label>{[LString.escapeHTML(Liferay.CalendarUtil.getCalendarName(values.calendar.get('name'), values.calendar.get('calendarResourceName')))]}</label>
 						</tpl>
 					</td>
 				</tr>
