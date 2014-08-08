@@ -2172,6 +2172,9 @@ Please find a solution that does not require portal-impl.jar.
 							substring="/build-common-osgi-plugin.xml&quot;"
 						/>
 					</not>
+					<not>
+						<available file="@{module.dir}/test/integration/arquillian.xml" />
+					</not>
 				</and>
 				<then>
 					<echo file="@{module.dir}/test/integration/arquillian.xml"><![CDATA[<?xml version="1.0"?>
