@@ -1962,6 +1962,20 @@ Please find a solution that does not require portal-impl.jar.
 						<then>
 							<var name="plugin.full.version" value="${set-build-xml-var.return}" />
 						</then>
+						<else>
+							<loadproperties prefix="module.bnd.">
+								<file file="@{module.dir}/bnd.bnd" />
+							</loadproperties>
+
+							<if>
+								<isset property="module.bnd.Bundle-Version" />
+								<then>
+									<var name="plugin.full.version" value="${module.bnd.Bundle-Version}" />
+
+									<var name="module.bnd.Bundle-Version" unset="true" />
+								</then>
+							</if>
+						</else>
 					</if>
 				</else>
 			</if>
@@ -1986,18 +2000,32 @@ Please find a solution that does not require portal-impl.jar.
 					<var name="plugin.name" value="${set-build-xml-var.return}" />
 				</then>
 				<else>
+					<loadproperties prefix="module.bnd.">
+						<file file="@{module.dir}/bnd.bnd" />
+					</loadproperties>
+
 					<if>
-						<equals arg1="@{module.dir}" arg2="." />
+						<isset property="module.bnd.Bundle-SymbolicName" />
 						<then>
-							<var name="plugin.name" value="${ant.project.name}" />
+							<var name="plugin.name" value="${module.bnd.Bundle-SymbolicName}" />
+
+							<var name="module.bnd.Bundle-SymbolicName" unset="true" />
 						</then>
 						<else>
-							<antelope:grep
-								group="1"
-								in="@{module.dir}"
-								property="plugin.name"
-								regex="(?:.*[/\\])(.*)"
-							/>
+							<if>
+								<equals arg1="@{module.dir}" arg2="." />
+								<then>
+									<var name="plugin.name" value="${ant.project.name}" />
+								</then>
+								<else>
+									<antelope:grep
+										group="1"
+										in="@{module.dir}"
+										property="plugin.name"
+										regex="(?:.*[/\\])(.*)"
+									/>
+								</else>
+							</if>
 						</else>
 					</if>
 				</else>
