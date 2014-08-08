@@ -44,7 +44,16 @@
 			<div class="calendar-portlet-colors" id="<portlet:namespace />colorPicker"></div>
 		</aui:field-wrapper>
 
-		<aui:input disabled="<%= (calendar != null) ? calendar.isDefaultCalendar() : false %>" name="defaultCalendar" />
+		<c:choose>
+			<c:when test="<%= (calendar != null) && calendar.isDefaultCalendar() %>">
+				<input name="<portlet:namespace />defaultCalendar" type="hidden" value="true">
+
+				<aui:input disabled="<%=  true %>" name="defaultCalendar" />
+			</c:when>
+			<c:otherwise>
+				<aui:input name="defaultCalendar" />
+			</c:otherwise>
+		</c:choose>
 
 		<aui:input name="enableComments" />
 
