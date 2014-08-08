@@ -1092,7 +1092,7 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 
 	private void _checkAssetEntry(
 			ExtRepositoryFileEntryAdapter extRepositoryFileEntryAdapter)
-		throws PortalException {
+		throws PortalException, SystemException {
 
 		dlAppHelperLocalService.checkAssetEntry(
 			PrincipalThreadLocal.getUserId(), extRepositoryFileEntryAdapter,
