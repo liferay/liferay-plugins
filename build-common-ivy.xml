@@ -72,6 +72,10 @@
 							<if>
 								<isfalse value="${ivy.xml.unmodified}" />
 								<then>
+									<set-module-properties
+										module.dir="@{ivy.xml.dir}"
+									/>
+
 									<ivy:settings file="${ivy.custom.settings.file}" />
 
 									<ivy:resolve
