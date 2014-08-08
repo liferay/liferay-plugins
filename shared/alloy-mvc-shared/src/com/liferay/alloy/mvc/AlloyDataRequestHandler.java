@@ -14,6 +14,7 @@
 
 package com.liferay.alloy.mvc;
 
+import com.liferay.compat.portal.util.PortalUtil;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
@@ -24,7 +25,6 @@ import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StackTraceUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.BaseModel;
-import com.liferay.portal.util.PortalUtil;
 
 import java.io.IOException;
 import java.io.Serializable;
