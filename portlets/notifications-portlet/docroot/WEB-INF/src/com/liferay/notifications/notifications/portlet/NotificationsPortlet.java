@@ -463,8 +463,7 @@ public class NotificationsPortlet extends MVCPortlet {
 				Time.getRelativeTimeDescription(
 					userNotificationEvent.getTimestamp(),
 					themeDisplay.getLocale(), themeDisplay.getTimeZone()),
-				simpleDateFormat.format(
-					userNotificationEvent.getTimestamp()),
+				simpleDateFormat.format(userNotificationEvent.getTimestamp()),
 				userFullName, userPortraitURL});
 	}
 
