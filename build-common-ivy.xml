@@ -63,7 +63,7 @@
 		<attribute name="module.dir" />
 
 		<sequential>
-			<loadfile property="set-build-xml-var.build.xml.content" srcFile="@{module.dir}/build.xml" />
+			<loadfile property="set-build-xml-var.build.xml.content" srcFile="@{module.dir}/build.xml" failonerror="false" />
 
 			<antelope:stringutil string="${set-build-xml-var.build.xml.content}" property="set-build-xml-var.value.beginindex">
 				<antelope:indexof string="property name=&quot;@{build.xml.var.name}&quot; value=&quot;" fromindex="0" />
