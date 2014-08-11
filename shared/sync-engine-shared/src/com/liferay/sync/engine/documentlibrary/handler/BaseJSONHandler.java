@@ -108,7 +108,13 @@ public class BaseJSONHandler extends BaseHandler {
 		JsonNode errorJsonNode = responseJsonNode.get("error");
 
 		if (errorJsonNode == null) {
-			return "";
+			JsonNode exceptionJsonNode = responseJsonNode.get("exception");
+
+			if (exceptionJsonNode == null) {
+				return "";
+			}
+
+			return exceptionJsonNode.asText();
 		}
 
 		JsonNode typeJsonNode = errorJsonNode.get("type");
