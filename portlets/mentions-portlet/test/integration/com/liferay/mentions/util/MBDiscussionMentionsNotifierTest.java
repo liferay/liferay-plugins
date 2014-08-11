@@ -27,11 +27,11 @@ public class MBDiscussionMentionsNotifierTest extends BaseMentionsNotifierTestCa
 	public MBDiscussionMentionsNotifierTest() {
 		super(
 			"Send an email to ana@sergio.com.",
-			"hey @sergio @ana can you check this out?",
-			"hey @ana, @sergio can you check this out?",
-			"Hey @fakeuser. You are a ghost.",
-			"hey @sergio can you check this out?",
-			"hey @sergio, can you check this out?",
+			"Hey @sergio @ana can you check this out?",
+			"Hey @ana, @sergio can you check this out?",
+			"Hey @fakeuser you are a ghost.",
+			"Hey @sergio can you check this out?",
+			"Hey @sergio, can you check this out?",
 			"Hello @sergio. How are you?");
 	}
 

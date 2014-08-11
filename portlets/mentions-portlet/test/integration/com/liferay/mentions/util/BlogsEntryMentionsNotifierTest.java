@@ -28,17 +28,17 @@ public class BlogsEntryMentionsNotifierTest extends BaseMentionsNotifierTestCase
 		super(
 			"Send an email to " +
 				"<a href=\"mailto:ana@sergio.com\">ana@sergio.com</a>.",
-			"hey <a href=\"http://localhost:8080\">@sergio</a> " +
+			"Hey <a href=\"http://localhost:8080\">@sergio</a> " +
 				"<a href=\"http://localhost:8080\">@ana</a> " +
 				"can you check this out?",
-			"hey <a href=\"http://localhost:8080\">@ana</a>," +
+			"Hey <a href=\"http://localhost:8080\">@ana</a>," +
 				"<a href=\"http://localhost:8080\">@sergio</a> " +
 				"can you check this out?",
-			"hey <a href=\"http://localhost:8080\">@fakeuser</a>. " +
-				"You are a ghost.",
-			"hey <a href=\"http://localhost:8080\">@sergio</a> " +
+			"Hey <a href=\"http://localhost:8080\">@fakeuser</a> " +
+				"you are a ghost.",
+			"Hey <a href=\"http://localhost:8080\">@sergio</a> " +
 				"can you check this out?",
-			"hey <a href=\"http://localhost:8080\">@sergio</a>, " +
+			"Hey <a href=\"http://localhost:8080\">@sergio</a>, " +
 				"can you check this out?",
 			"Hello <a href=\"http://localhost:8080\">@sergio</a>. " +
 				"How are you?");

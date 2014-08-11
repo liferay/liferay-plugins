@@ -27,15 +27,15 @@ public class MBMessageMentionsNotifierTest extends BaseMentionsNotifierTestCase 
 	public MBMessageMentionsNotifierTest() {
 		super(
 			"Send an email to [url=mailto:ana@sergio.com]ana@sergio.com[/url].",
-			"hey [url=http://localhost:8080]@sergio[/url] " +
+			"Hey [url=http://localhost:8080]@sergio[/url] " +
 				"[url=http://localhost:8080]@ana[/url] can you check this out?",
-			"hey [url=http://localhost:8080]@ana[/url], " +
+			"Hey [url=http://localhost:8080]@ana[/url], " +
 				"[url=http://localhost:8080]@sergio[/url] " +
 				"can you check this out?",
-			"Hey [url=http://localhost:8080]@fakeuser[/url]. You are a ghost.",
-			"hey [url=http://localhost:8080]@sergio[/url] " +
+			"Hey [url=http://localhost:8080]@fakeuser[/url] you are a ghost.",
+			"Hey [url=http://localhost:8080]@sergio[/url] " +
 				"can you check this out?",
-			"hey [url=http://localhost:8080]@sergio[/url], " +
+			"Hey [url=http://localhost:8080]@sergio[/url], " +
 				"can you check this out?",
 			"Hello [url=http://localhost:8080]@sergio[/url]. How are you?");
 	}
