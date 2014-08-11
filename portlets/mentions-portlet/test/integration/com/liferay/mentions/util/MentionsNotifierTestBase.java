@@ -40,16 +40,16 @@ import org.junit.rules.TestRule;
 public abstract class MentionsNotifierTestBase {
 
 	@Deployment
-	public static Archive<?> getDeployment() {
-		WebArchive build = WebArchiveBuilder.build();
+	public static Archive<?> getWebArchive() {
+		WebArchive webArchive = WebArchiveBuilder.build();
 
-		build.addClass(MentionsNotifierTestBase.class);
+		webArchive.addClass(MentionsNotifierTestBase.class);
 
-		return build;
+		return webArchive;
 	}
 
-	@Rule public TestRule deleteAfterTestRunRule = new DeleteAfterTestRunRule(
-		this);
+	@Rule
+	public TestRule deleteAfterTestRunRule = new DeleteAfterTestRunRule(this);
 
 	public MentionsNotifierTestBase(
 		String testEmailMessage, String testMultipleUsersMessage,
