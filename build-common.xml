@@ -591,6 +591,7 @@ Error-Prone was automatically installed. Please rerun your task.
 					/>
 
 					<set-build-xml-var
+						bnd.property.key="Bundle-Version"
 						build.xml.var.name="plugin.full.version"
 						module.dir="@{import.shared.current.dir}"
 					/>
@@ -606,6 +607,7 @@ Error-Prone was automatically installed. Please rerun your task.
 					</if>
 
 					<set-build-xml-var
+						bnd.property.key="Bundle-SymbolicName"
 						build.xml.var.name="plugin.name"
 						module.dir="@{import.shared.current.dir}"
 					/>
