@@ -48,9 +48,6 @@ public abstract class MentionsNotifierTestBase {
 		return webArchive;
 	}
 
-	@Rule
-	public TestRule deleteAfterTestRunRule = new DeleteAfterTestRunRule(this);
-
 	public MentionsNotifierTestBase(
 		String testEmailMessage, String testMultipleUsersMessage,
 		String testMultipleUsersSeparatedByCommaMessage,
@@ -162,6 +159,9 @@ public abstract class MentionsNotifierTestBase {
 		Assert.assertEquals(1, mentionedUsersScreenNames.length);
 		Assert.assertEquals("sergio", mentionedUsersScreenNames[0]);
 	}
+
+	@Rule
+	public TestRule deleteAfterTestRunRule = new DeleteAfterTestRunRule(this);
 
 	@DeleteAfterTestRun
 	private Group _group1;
