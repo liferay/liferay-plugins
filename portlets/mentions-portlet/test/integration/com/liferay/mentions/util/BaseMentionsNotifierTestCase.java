@@ -37,18 +37,18 @@ import org.junit.rules.TestRule;
 /**
  * @author Iván Zaera
  */
-public abstract class MentionsNotifierTestBase {
+public abstract class BaseMentionsNotifierTestCase {
 
 	@Deployment
 	public static Archive<?> getWebArchive() {
 		WebArchive webArchive = WebArchiveBuilder.build();
 
-		webArchive.addClass(MentionsNotifierTestBase.class);
+		webArchive.addClass(BaseMentionsNotifierTestCase.class);
 
 		return webArchive;
 	}
 
-	public MentionsNotifierTestBase(
+	public BaseMentionsNotifierTestCase(
 		String testEmailMessage, String testMultipleUsersMessage,
 		String testMultipleUsersSeparatedByCommaMessage,
 		String testNonexistentUserMessage, String testSingleUserMessage,
