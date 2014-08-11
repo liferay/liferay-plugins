@@ -18,18 +18,24 @@ import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.User;
 import com.liferay.portal.test.DeleteAfterTestRun;
+import com.liferay.portal.test.rule.DeleteAfterTestRunRule;
 import com.liferay.portal.util.test.GroupTestUtil;
 import com.liferay.portal.util.test.TestPropsValues;
 import com.liferay.portal.util.test.UserTestUtil;
 
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.TestRule;
 
 /**
  * @author Iván Zaera
  */
 public abstract class MentionsNotifierTestBase {
+
+	@Rule public TestRule deleteAfterTestRunRule = new DeleteAfterTestRunRule(
+		this);
 
 	public MentionsNotifierTestBase(
 		String testEmailMessage, String testMultipleUsersMessage,
