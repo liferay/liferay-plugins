@@ -32,7 +32,7 @@ public class MBMessageMentionsNotifierTest extends BaseMentionsNotifierTestCase 
 			"Hey [url=http://localhost:8080]@ana[/url], " +
 				"[url=http://localhost:8080]@sergio[/url] " +
 				"can you check this out?",
-			"Hey [url=http://localhost:8080]@fakeuser[/url] you are a ghost.",
+			"Hey [url=http://localhost:8080]@fakeuser[/url] you are not real.",
 			"Hey [url=http://localhost:8080]@sergio[/url] " +
 				"can you check this out?",
 			"Hey [url=http://localhost:8080]@sergio[/url], " +

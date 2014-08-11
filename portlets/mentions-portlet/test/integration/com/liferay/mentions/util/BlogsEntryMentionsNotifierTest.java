@@ -35,7 +35,7 @@ public class BlogsEntryMentionsNotifierTest extends BaseMentionsNotifierTestCase
 				"<a href=\"http://localhost:8080\">@sergio</a> " +
 				"can you check this out?",
 			"Hey <a href=\"http://localhost:8080\">@fakeuser</a> " +
-				"you are a ghost.",
+				"you are not real.",
 			"Hey <a href=\"http://localhost:8080\">@sergio</a> " +
 				"can you check this out?",
 			"Hey <a href=\"http://localhost:8080\">@sergio</a>, " +
