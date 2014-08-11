@@ -77,7 +77,7 @@ WindowState windowState = renderRequest.getWindowState();
 
 String currentURL = PortalUtil.getCurrentURL(request);
 
-boolean showStatus = PrefsParamUtil.getBoolean(portletPreferences, request, "showStatus");
+boolean showStatus = PrefsParamUtil.getBoolean(portletPreferences, request, "showStatus", true);
 
 Format dateFormatDateTime = FastDateFormatFactoryUtil.getDateTime(locale, timeZone);
 %>
