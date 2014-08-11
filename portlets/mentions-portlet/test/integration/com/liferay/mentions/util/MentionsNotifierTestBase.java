@@ -14,6 +14,7 @@
 
 package com.liferay.mentions.util;
 
+import com.liferay.ant.arquillian.WebArchiveBuilder;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.User;
@@ -22,6 +23,10 @@ import com.liferay.portal.test.rule.DeleteAfterTestRunRule;
 import com.liferay.portal.util.test.GroupTestUtil;
 import com.liferay.portal.util.test.TestPropsValues;
 import com.liferay.portal.util.test.UserTestUtil;
+
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.shrinkwrap.api.Archive;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -33,6 +38,15 @@ import org.junit.rules.TestRule;
  * @author Iván Zaera
  */
 public abstract class MentionsNotifierTestBase {
+
+	@Deployment
+	public static Archive<?> getDeployment() {
+		WebArchive build = WebArchiveBuilder.build();
+
+		build.addClass(MentionsNotifierTestBase.class);
+
+		return build;
+	}
 
 	@Rule public TestRule deleteAfterTestRunRule = new DeleteAfterTestRunRule(
 		this);
