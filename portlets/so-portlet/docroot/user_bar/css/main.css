@@ -149,13 +149,13 @@ $defaultTextColor: #202020;
 			color: $defaultTextColor;
 			font-size: 0.86em;
 			font-weight: bold;
-			height: 24px;
-			line-height: 24px;
+			height: 23px;
+			line-height: 23px;
 			margin: 0;
 			padding: 0;
 			text-align: center;
 			white-space: nowrap;
-			width: 24px;
+			width: 23px;
 
 			&.alert {
 				background-color: #A20F0F;
