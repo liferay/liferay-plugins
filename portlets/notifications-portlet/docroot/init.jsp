@@ -26,6 +26,7 @@
 
 <%@ page import="com.liferay.notifications.util.PortletKeys" %><%@
 page import="com.liferay.notifications.util.PortletPropsValues" %><%@
+page import="com.liferay.notifications.util.comparator.PortletIdComparator" %><%@
 page import="com.liferay.portal.kernel.json.JSONFactoryUtil" %><%@
 page import="com.liferay.portal.kernel.json.JSONObject" %><%@
 page import="com.liferay.portal.kernel.notifications.UserNotificationDefinition" %><%@
@@ -61,7 +62,9 @@ page import="com.liferay.portlet.PortletURLFactoryUtil" %>
 
 <%@ page import="java.util.ArrayList" %><%@
 page import="java.util.List" %><%@
-page import="java.util.Map" %>
+page import="java.util.Map" %><%@
+page import="java.util.SortedMap" %><%@
+page import="java.util.TreeMap" %>
 
 <%@ page import="javax.portlet.PortletRequest" %>
 
