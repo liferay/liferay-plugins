@@ -42,13 +42,10 @@
 	sortedUserNotificationDefinitionsMap.putAll(userNotificationDefinitionsMap);
 
 	for (Map.Entry<String, List<UserNotificationDefinition>> entry : sortedUserNotificationDefinitionsMap.entrySet()) {
-		String portletId = entry.getKey();
-
-		Portlet portlet = PortletLocalServiceUtil.getPortletById(portletId);
 	%>
 
 		<table class="notification-deliveries table table-condensed">
-			<caption><%= portlet.getDisplayName() %></caption>
+			<caption><%= PortalUtil.getPortletTitle(entry.getKey(), locale) %></caption>
 			<tbody>
 
 			<%
@@ -68,7 +65,7 @@
 					for (Map.Entry<Integer, UserNotificationDeliveryType> userNotificationDeliveryTypeEntry : userNotificationDeliveryTypesMap.entrySet()) {
 						UserNotificationDeliveryType userNotificationDeliveryType = userNotificationDeliveryTypeEntry.getValue();
 
-						UserNotificationDelivery userNotificationDelivery = UserNotificationDeliveryLocalServiceUtil.getUserNotificationDelivery(themeDisplay.getUserId(), portletId, userNotificationDefinition.getClassNameId(), userNotificationDefinition.getNotificationType(), userNotificationDeliveryType.getType(), userNotificationDeliveryType.isDefault());
+						UserNotificationDelivery userNotificationDelivery = UserNotificationDeliveryLocalServiceUtil.getUserNotificationDelivery(themeDisplay.getUserId(), entry.getKey(), userNotificationDefinition.getClassNameId(), userNotificationDefinition.getNotificationType(), userNotificationDeliveryType.getType(), userNotificationDeliveryType.isDefault());
 					%>
 
 						<td class="span1">
