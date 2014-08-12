@@ -562,7 +562,7 @@ public class NotificationsPortlet extends MVCPortlet {
 	private static final String _MARK_AS_READ_DIV =
 		"<div class=\"clearfix user-notification-link\" data-href=\"" +
 			"[$LINK$]\" data-markAsReadURL=\"[$MARK_AS_READ_URL$]\" " +
-					"data-openDialog=\"[$OPEN_DIALOG$]\">";
+				"data-openDialog=\"[$OPEN_DIALOG$]\">";
 
 	private static final String _NOTIFICATION_GROUP_SEPARATOR =
 		"<hr class=\"separator\">";
