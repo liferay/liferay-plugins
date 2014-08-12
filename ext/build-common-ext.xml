@@ -162,16 +162,21 @@ loader.
 		<mkdir dir="docroot/WEB-INF/ext-lib/global" />
 		<mkdir dir="docroot/WEB-INF/ext-${module.name}/classes" />
 
-		<path id="plugin-lib.classpath">
-			<fileset dir="docroot/WEB-INF/ext-lib/global" includes="*.jar" />
-			<pathelement location="docroot/WEB-INF/ext-${module.name}/classes" />
-		</path>
+		<if>
+			<available file="docroot/WEB-INF/ext-${module.name}/src" />
+			<then>
+				<path id="plugin-lib.classpath">
+					<fileset dir="docroot/WEB-INF/ext-lib/global" includes="*.jar" />
+					<pathelement location="docroot/WEB-INF/ext-${module.name}/classes" />
+				</path>
 
-		<compile-java
-			javac.classpathref="plugin.classpath"
-			javac.destdir="docroot/WEB-INF/ext-${module.name}/classes"
-			javac.srcdir="docroot/WEB-INF/ext-${module.name}/src"
-		/>
+				<compile-java
+					javac.classpathref="plugin.classpath"
+					javac.destdir="docroot/WEB-INF/ext-${module.name}/classes"
+					javac.srcdir="docroot/WEB-INF/ext-${module.name}/src"
+				/>
+			</then>
+		</if>
 	</target>
 
 	<target name="compile-with-portal-class-loader">
@@ -239,9 +244,14 @@ loader.
 			overwrite="true"
 		/>
 
-		<copy todir="${app.server.portal.dir}" overwrite="true">
-			<fileset dir="docroot/WEB-INF/ext-web/docroot" excludes="WEB-INF/web.xml" />
-		</copy>
+		<if>
+			<available file="docroot/WEB-INF/ext-web/docroot" />
+			<then>
+				<copy todir="${app.server.portal.dir}" overwrite="true">
+					<fileset dir="docroot/WEB-INF/ext-web/docroot" excludes="WEB-INF/web.xml" />
+				</copy>
+			</then>
+		</if>
 
 		<if>
 			<available file="docroot/WEB-INF/ext-web/docroot/WEB-INF/web.xml" />
