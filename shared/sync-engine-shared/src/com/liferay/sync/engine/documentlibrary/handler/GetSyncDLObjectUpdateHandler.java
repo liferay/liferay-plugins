@@ -39,6 +39,9 @@ import java.nio.file.attribute.BasicFileAttributes;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * @author Shinn Lok
  */
@@ -202,8 +205,17 @@ public class GetSyncDLObjectUpdateHandler extends BaseSyncDLObjectHandler {
 				continue;
 			}
 
-			String filePathName = FileUtil.getFilePathName(
-				parentSyncFile.getFilePathName(), syncFile.getName());
+			String filePathName = "";
+
+			try {
+				filePathName = FileUtil.getFilePathName(
+					parentSyncFile.getFilePathName(), syncFile.getName());
+			}
+			catch (Exception e) {
+				_logger.error(e.getMessage(), e);
+
+				continue;
+			}
 
 			String event = syncFile.getEvent();
 
@@ -282,5 +294,8 @@ public class GetSyncDLObjectUpdateHandler extends BaseSyncDLObjectHandler {
 				!IODeltaUtil.isIgnoredFilePatchingExtension(targetSyncFile));
 		}
 	}
+
+	private static Logger _logger = LoggerFactory.getLogger(
+		GetSyncDLObjectUpdateHandler.class);
 
 }
