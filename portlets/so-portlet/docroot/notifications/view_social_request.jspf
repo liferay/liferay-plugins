@@ -16,6 +16,11 @@
  * Liferay Social Office. If not, see http://www.gnu.org/licenses/agpl-3.0.html.
  */
 --%>
+<%
+SocialRequest socialRequest = SocialRequestLocalServiceUtil.getSocialRequest(notificationEventJSONObject.getLong("requestId"));
+
+SocialRequestFeedEntry socialRequestFeedEntry = SocialRequestInterpreterLocalServiceUtil.interpret(socialRequest, themeDisplay);
+%>
 
 <div class="aui-menu-item user-notification-event-content">
 	<div class="user-notification-event-sender">
@@ -31,7 +36,7 @@
 	<div class="notification-entry">
 		<div class="title">
 			<span>
-				<liferay-ui:message arguments="<%= userFullName %>" key='<%= notificationEventJSONObject.getString("title") %>' />
+				<liferay-ui:message arguments="<%= userFullName %>" key='<%= socialRequestFeedEntry.getTitle() %>' />
 			</span>
 		</div>
 
