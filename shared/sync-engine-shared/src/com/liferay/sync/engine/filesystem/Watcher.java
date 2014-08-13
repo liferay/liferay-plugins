@@ -120,6 +120,10 @@ public class Watcher implements Runnable {
 				Path childFilePath = parentFilePath.resolve(
 					pathImpl.toString());
 
+				if (isIgnoredFilePath(childFilePath)) {
+					continue;
+				}
+
 				fireWatchEventListener(childFilePath, watchEvent);
 
 				WatchEvent.Kind<?> kind = watchEvent.kind();
@@ -157,6 +161,10 @@ public class Watcher implements Runnable {
 
 	protected void doRegister(Path filePath, boolean recursive)
 		throws IOException {
+
+		if (isIgnoredFilePath(filePath)) {
+			return;
+		}
 
 		if (recursive) {
 			Files.walkFileTree(
@@ -239,6 +247,26 @@ public class Watcher implements Runnable {
 
 	protected void fireWatchEventListener(String eventType, Path filePath) {
 		_watchEventListener.watchEvent(eventType, filePath);
+	}
+
+	protected boolean isIgnoredFilePath(Path filePath) {
+		try {
+			if (FileUtil.isIgnoredFilePath(filePath) ||
+				!FileUtil.isValidFileName(
+					String.valueOf(filePath.getFileName()))) {
+
+				return true;
+			}
+
+			return false;
+		}
+		catch (Exception e) {
+			if (_logger.isDebugEnabled()) {
+				_logger.debug(e.getMessage(), e);
+			}
+
+			return false;
+		}
 	}
 
 	protected void processMissingFilePath(Path filePath) {

@@ -22,7 +22,6 @@ import com.liferay.sync.engine.service.SyncAccountService;
 import com.liferay.sync.engine.service.SyncFileService;
 import com.liferay.sync.engine.service.SyncSiteService;
 import com.liferay.sync.engine.service.SyncWatchEventService;
-import com.liferay.sync.engine.util.FileUtil;
 
 import java.nio.file.Files;
 import java.nio.file.LinkOption;
@@ -49,14 +48,6 @@ public class SyncSiteWatchEventListener extends BaseWatchEventListener {
 
 	protected void addSyncWatchEvent(String eventType, Path filePath) {
 		try {
-			if ((eventType.equals(SyncWatchEvent.EVENT_TYPE_CREATE) &&
-				 FileUtil.isIgnoredFilePath(filePath)) ||
-				!FileUtil.isValidFileName(
-					String.valueOf(filePath.getFileName()))) {
-
-				return;
-			}
-
 			String filePathName = filePath.toString();
 
 			Path parentFilePath = filePath.getParent();
