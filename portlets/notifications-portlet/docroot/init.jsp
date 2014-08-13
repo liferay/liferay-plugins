@@ -50,7 +50,6 @@ page import="com.liferay.portlet.PortletURLFactoryUtil" %>
 
 <%@ page import="java.util.List" %><%@
 page import="java.util.Map" %><%@
-page import="java.util.SortedMap" %><%@
 page import="java.util.TreeMap" %>
 
 <%@ page import="javax.portlet.PortletRequest" %>
