@@ -79,7 +79,7 @@ AUI().use(
 					instance._increasedPollingMaxCountMs = 30000;
 
 					Liferay.Poller.addListener(instance._portletId, instance._onPollerUpdate, instance);
-					Liferay.bind(
+					Liferay.on(
 						'sessionExpired',
 						function(event) {
 							instance._stopFastPolling();

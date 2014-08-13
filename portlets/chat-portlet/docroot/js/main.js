@@ -676,7 +676,7 @@ AUI().use(
 
 				Liferay.Poller.addListener(instance._portletId, instance._onPollerUpdate, instance);
 
-				Liferay.bind(
+				Liferay.on(
 					'sessionExpired',
 					function(event) {
 						Liferay.Poller.removeListener(instance._portletId);
