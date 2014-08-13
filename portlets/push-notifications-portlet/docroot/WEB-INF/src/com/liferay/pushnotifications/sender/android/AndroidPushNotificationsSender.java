@@ -25,6 +25,7 @@ import com.liferay.portal.kernel.util.Validator;
 import com.liferay.pushnotifications.sender.PushNotificationsSender;
 import com.liferay.pushnotifications.util.PortletPropsValues;
 
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -65,10 +66,12 @@ public class AndroidPushNotificationsSender implements PushNotificationsSender {
 	protected Message buildMessage(JSONObject jsonObject) {
 		Builder builder = new Builder();
 
-		String message = jsonObject.getString("message");
+		Iterator<String> keys = jsonObject.keys();
 
-		if (message != null) {
-			builder.addData("data", message);
+		while (keys.hasNext()) {
+			String key = keys.next();
+
+			builder.addData(key, jsonObject.getString(key));
 		}
 
 		return builder.build();

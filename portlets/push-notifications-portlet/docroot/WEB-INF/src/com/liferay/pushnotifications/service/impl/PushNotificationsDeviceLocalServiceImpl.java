@@ -18,6 +18,7 @@ import com.liferay.portal.kernel.bean.BeanReference;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.model.User;
 import com.liferay.pushnotifications.model.PushNotificationsDevice;
 import com.liferay.pushnotifications.sender.PushNotificationsSender;
 import com.liferay.pushnotifications.service.base.PushNotificationsDeviceLocalServiceBaseImpl;
@@ -79,6 +80,8 @@ public class PushNotificationsDeviceLocalServiceImpl
 			long userId, JSONObject jsonObject, int start, int end)
 		throws PortalException, SystemException {
 
+		addUserDetails(jsonObject);
+
 		for (Map.Entry<String, PushNotificationsSender> entry :
 				_pushNotificationsSenders.entrySet()) {
 
@@ -109,6 +112,17 @@ public class PushNotificationsDeviceLocalServiceImpl
 				throw new PortalException(e);
 			}
 		}
+	}
+
+	protected void addUserDetails(JSONObject jsonObject)
+		throws PortalException {
+
+		long userId = jsonObject.getLong("fromUserId");
+		User user = userLocalService.getUser(userId);
+
+		jsonObject.put("uuid", user.getUuid());
+		jsonObject.put("fullName", user.getFullName());
+		jsonObject.put("portraitId", user.getPortraitId());
 	}
 
 	protected List<PushNotificationsDevice> getPushNotificationsDevices(
