@@ -104,6 +104,7 @@ public class PushNotificationsDeviceServiceImpl
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
+		jsonObject.put("fromUserId", getUserId());
 		jsonObject.put("message", message);
 
 		if (_log.isDebugEnabled()) {
