@@ -50,7 +50,7 @@ public class ByteChannelReader {
 
 	public void ensureData(int length) throws IOException {
 		if (_byteBuffer.remaining() < length) {
-			read();
+			read(length);
 
 			if (_eof || (_byteBuffer.remaining() < length)) {
 				throw new IOException("Unexpected EOF");
@@ -76,22 +76,25 @@ public class ByteChannelReader {
 
 	public void maybeRead(int length) throws IOException {
 		if (!_eof && (_byteBuffer.remaining() < length)) {
-			read();
+			read(length);
 		}
 	}
 
-	public void read() throws IOException {
+	public void read(int length) throws IOException {
 		if (_eof) {
 			return;
 		}
 
 		_byteBuffer.compact();
 
-		if (_readableByteChannel.read(_byteBuffer) == -1) {
-			_eof = true;
-		}
-		else {
-			_eof = false;
+		while (_byteBuffer.position() <= length) {
+			int bytesRead = _readableByteChannel.read(_byteBuffer);
+
+			if (bytesRead == -1) {
+				_eof = true;
+
+				break;
+			}
 		}
 
 		_byteBuffer.flip();
