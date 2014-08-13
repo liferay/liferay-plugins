@@ -1275,6 +1275,7 @@ html.aui {
 	/* ---------- Thread ---------- */
 
 	.edit-controls li, .thread-actions li, .thread-navigation {
+		height: 2em;
 		line-height: 2em;
 	}
 
@@ -1297,6 +1298,7 @@ html.aui {
 	}
 
 	.message-container {
+		clear: both;
 		overflow: visible;
 
 		.thread-message-view {
@@ -2170,8 +2172,12 @@ html.aui {
 		/* ---------- Portlet: message boards ---------- */
 
 		.portlet-asset-publisher, .portlet-message-boards {
-			#toggle_id_message_boards_view_message_thread, #toggle_id_message_boards_view_message_thread_image, .thread-view-controls {
+			#toggle_id_message_boards_view_message_thread_image, .thread-view-controls {
 				display: none;
+			}
+
+			#toggle_id_message_boards_view_message_thread {
+				display: none !important;
 			}
 
 			.accordion-inner {
