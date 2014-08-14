@@ -174,15 +174,30 @@ public class GetSyncDLObjectUpdateHandler extends BaseSyncDLObjectHandler {
 
 		Path sourceFilePath = Paths.get(sourceSyncFile.getFilePathName());
 
-		if (Files.notExists(sourceFilePath)) {
-			return;
+		if (Files.exists(sourceFilePath)) {
+			Path targetFilePath = Paths.get(targetFilePathName);
+
+			Files.move(sourceFilePath, targetFilePath);
+
+			sourceSyncFile.setFilePathName(targetFilePathName);
+		}
+		else {
+			sourceSyncFile.setFilePathName(targetFilePathName);
+
+			if (targetSyncFile.isFolder()) {
+				Path targetFilePath = Paths.get(targetFilePathName);
+
+				Files.createDirectories(targetFilePath);
+
+				sourceSyncFile.setFileKey(FileUtil.getFileKey(targetFilePath));
+
+				SyncFileService.update(sourceSyncFile);
+			}
+			else {
+				downloadFile(sourceSyncFile, null, false);
+			}
 		}
 
-		Path targetFilePath = Paths.get(targetFilePathName);
-
-		Files.move(sourceFilePath, targetFilePath);
-
-		sourceSyncFile.setFilePathName(targetFilePathName);
 		sourceSyncFile.setModifiedTime(targetSyncFile.getModifiedTime());
 		sourceSyncFile.setParentFolderId(targetSyncFile.getParentFolderId());
 		sourceSyncFile.setUiEvent(SyncFile.UI_EVENT_MOVED_REMOTE);
@@ -280,11 +295,8 @@ public class GetSyncDLObjectUpdateHandler extends BaseSyncDLObjectHandler {
 
 		Path sourceFilePath = Paths.get(sourceSyncFile.getFilePathName());
 
-		if (Files.notExists(sourceFilePath)) {
-			return;
-		}
-
-		processFilePathChange(sourceSyncFile, targetSyncFile);
+		boolean filePathChanged = processFilePathChange(
+			sourceSyncFile, targetSyncFile);
 
 		sourceSyncFile.setChangeLog(targetSyncFile.getChangeLog());
 		sourceSyncFile.setChecksum(targetSyncFile.getChecksum());
@@ -302,9 +314,21 @@ public class GetSyncDLObjectUpdateHandler extends BaseSyncDLObjectHandler {
 
 		SyncFileService.update(sourceSyncFile);
 
-		if (Files.exists(sourceFilePath) && !targetSyncFile.isFolder() &&
-			FileUtil.hasFileChanged(targetSyncFile, sourceFilePath)) {
+		if (filePathChanged && !Files.exists(sourceFilePath)) {
+			if (targetSyncFile.isFolder()) {
+				Path targetFilePath = Paths.get(filePathName);
 
+				Files.createDirectories(targetFilePath);
+
+				sourceSyncFile.setFileKey(FileUtil.getFileKey(targetFilePath));
+
+				SyncFileService.update(sourceSyncFile);
+			}
+			else {
+				downloadFile(sourceSyncFile, null, false);
+			}
+		}
+		else if (FileUtil.hasFileChanged(targetSyncFile, sourceFilePath)) {
 			downloadFile(
 				sourceSyncFile, sourceVersion,
 				!IODeltaUtil.isIgnoredFilePatchingExtension(targetSyncFile));
