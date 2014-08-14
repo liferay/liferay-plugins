@@ -125,7 +125,7 @@ public class SOAnnouncementsEntryLocalServiceImpl
 		for (AnnouncementsEntry announcementEntry : announcementEntries) {
 			Date displayDate = announcementEntry.getDisplayDate();
 
-			if (displayDate.after(announcementEntry.getCreateDate())) {
+			if (!displayDate.after(announcementEntry.getCreateDate())) {
 				sendNotificationEvent(announcementEntry);
 			}
 		}
