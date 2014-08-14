@@ -14,7 +14,6 @@
 
 package com.liferay.sync.engine.service.persistence;
 
-import com.j256.ormlite.dao.ReferenceObjectCache;
 import com.j256.ormlite.stmt.QueryBuilder;
 import com.j256.ormlite.stmt.SelectArg;
 import com.j256.ormlite.stmt.Where;
@@ -34,8 +33,6 @@ public class SyncFilePersistence extends BasePersistenceImpl<SyncFile, Long> {
 
 	public SyncFilePersistence() throws SQLException {
 		super(SyncFile.class);
-
-		setObjectCache(ReferenceObjectCache.makeSoftCache());
 	}
 
 	public long countByUIEvent(int uiEvent) throws SQLException {
