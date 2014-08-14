@@ -19,12 +19,16 @@ import com.liferay.sync.engine.model.SyncFile;
 import java.io.IOException;
 import java.io.InputStream;
 
+import java.nio.ByteBuffer;
+import java.nio.CharBuffer;
+import java.nio.charset.Charset;
 import java.nio.file.FileSystem;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.attribute.BasicFileAttributes;
+import java.nio.file.attribute.UserDefinedFileAttributeView;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -72,13 +76,25 @@ public class FileUtil {
 		}
 
 		try {
-			BasicFileAttributes basicFileAttributes = Files.readAttributes(
-				filePath, BasicFileAttributes.class);
-
 			if (OSDetector.isWindows()) {
-				return String.valueOf(basicFileAttributes.creationTime());
+				UserDefinedFileAttributeView userDefinedFileAttributeView =
+					Files.getFileAttributeView(
+						filePath, UserDefinedFileAttributeView.class);
+
+				ByteBuffer byteBuffer = ByteBuffer.allocate(
+					userDefinedFileAttributeView.size("fileKey"));
+
+				userDefinedFileAttributeView.read("fileKey", byteBuffer);
+
+				CharBuffer charBuffer = _CHARSET.decode(
+					(ByteBuffer)byteBuffer.flip());
+
+				return charBuffer.toString();
 			}
 			else {
+				BasicFileAttributes basicFileAttributes = Files.readAttributes(
+					filePath, BasicFileAttributes.class);
+
 				Object fileKey = basicFileAttributes.fileKey();
 
 				return fileKey.toString();
@@ -193,6 +209,26 @@ public class FileUtil {
 
 		return true;
 	}
+
+	public static void writeFileKey(Path filePath, String fileKey) {
+		if (!OSDetector.isWindows()) {
+			return;
+		}
+
+		UserDefinedFileAttributeView userDefinedFileAttributeView =
+			Files.getFileAttributeView(
+				filePath, UserDefinedFileAttributeView.class);
+
+		try {
+			userDefinedFileAttributeView.write(
+				"fileKey", _CHARSET.encode(CharBuffer.wrap(fileKey)));
+		}
+		catch (Exception e) {
+			_logger.error(e.getMessage(), e);
+		}
+	}
+
+	private static final Charset _CHARSET = Charset.forName("UTF-8");
 
 	private static Logger _logger = LoggerFactory.getLogger(FileUtil.class);
 
