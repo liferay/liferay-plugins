@@ -36,7 +36,7 @@ public class SyncFileTestUtil {
 		throws Exception {
 
 		SyncFile syncFile = SyncFileService.addSyncFile(
-			null, null, null, null, filePathName, null, null, parentFolderId,
+			null, null, null, filePathName, null, null, parentFolderId,
 			repositoryId, syncAccountId, SyncFile.TYPE_FILE);
 
 		if (typePK == 0) {
@@ -71,7 +71,7 @@ public class SyncFileTestUtil {
 		throws Exception {
 
 		SyncFile syncFile = SyncFileService.addSyncFile(
-			null, null, null, null, filePathName, null, null, parentFolderId,
+			null, null, null, filePathName, null, null, parentFolderId,
 			repositoryId, syncAccountId, SyncFile.TYPE_FOLDER);
 
 		if (typePK == 0) {

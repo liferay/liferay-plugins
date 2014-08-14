@@ -20,7 +20,6 @@ import com.liferay.sync.engine.model.SyncFile;
 import com.liferay.sync.engine.model.SyncSite;
 import com.liferay.sync.engine.service.SyncFileService;
 import com.liferay.sync.engine.service.SyncSiteService;
-import com.liferay.sync.engine.util.FileUtil;
 
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -63,9 +62,9 @@ public class GetSyncDLObjectUpdateEvent extends BaseEvent {
 				Files.createDirectories(Paths.get(filePathName));
 
 				SyncFileService.addSyncFile(
-					null, null, null, FileUtil.getFileKey(filePathName),
-					filePathName, null, filePathName, 0, syncSite.getGroupId(),
-					syncSite.getSyncAccountId(), SyncFile.TYPE_SYSTEM);
+					null, null, null, filePathName, null, filePathName, 0,
+					syncSite.getGroupId(), syncSite.getSyncAccountId(),
+					SyncFile.TYPE_SYSTEM);
 			}
 		}
 

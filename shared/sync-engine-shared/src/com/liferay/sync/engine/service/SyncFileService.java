@@ -33,6 +33,7 @@ import com.liferay.sync.engine.model.SyncSite;
 import com.liferay.sync.engine.service.persistence.SyncFilePersistence;
 import com.liferay.sync.engine.util.FileUtil;
 import com.liferay.sync.engine.util.IODeltaUtil;
+import com.liferay.sync.engine.util.OSDetector;
 import com.liferay.sync.engine.util.PropsValues;
 
 import java.nio.file.Files;
@@ -69,9 +70,8 @@ public class SyncFileService {
 		String mimeType = Files.probeContentType(filePath);
 
 		SyncFile syncFile = addSyncFile(
-			"", checksum, name, FileUtil.getFileKey(filePath),
-			filePath.toString(), mimeType, name, folderId, repositoryId,
-			syncAccountId, SyncFile.TYPE_FILE);
+			"", checksum, name, filePath.toString(), mimeType, name, folderId,
+			repositoryId, syncAccountId, SyncFile.TYPE_FILE);
 
 		// Remote sync file
 
@@ -123,9 +123,9 @@ public class SyncFileService {
 		String name = String.valueOf(filePath.getFileName());
 
 		SyncFile syncFile = addSyncFile(
-			null, null, name, FileUtil.getFileKey(filePath),
-			filePath.toString(), Files.probeContentType(filePath), name,
-			parentFolderId, repositoryId, syncAccountId, SyncFile.TYPE_FOLDER);
+			null, null, name, filePath.toString(),
+			Files.probeContentType(filePath), name, parentFolderId,
+			repositoryId, syncAccountId, SyncFile.TYPE_FOLDER);
 
 		// Remote sync file
 
@@ -160,7 +160,7 @@ public class SyncFileService {
 
 	public static SyncFile addSyncFile(
 			String changeLog, String checksum, String description,
-			String fileKey, String filePathName, String mimeType, String name,
+			String filePathName, String mimeType, String name,
 			long parentFolderId, long repositoryId, long syncAccountId,
 			String type)
 		throws Exception {
@@ -170,7 +170,6 @@ public class SyncFileService {
 		syncFile.setChangeLog(changeLog);
 		syncFile.setChecksum(checksum);
 		syncFile.setDescription(description);
-		syncFile.setFileKey(fileKey);
 		syncFile.setFilePathName(filePathName);
 		syncFile.setLocalSyncTime(System.currentTimeMillis());
 		syncFile.setMimeType(mimeType);
@@ -182,6 +181,8 @@ public class SyncFileService {
 		syncFile.setUiEvent(SyncFile.UI_EVENT_ADDED_LOCAL);
 
 		_syncFilePersistence.create(syncFile);
+
+		setFileKey(syncFile);
 
 		return syncFile;
 	}
@@ -405,6 +406,10 @@ public class SyncFileService {
 	public static SyncFile fetchSyncFileByFileKey(
 		String fileKey, long syncAccountId) {
 
+		if ((fileKey == null) || fileKey.equals("")) {
+			return null;
+		}
+
 		try {
 			return _syncFilePersistence.fetchByFK_S(fileKey, syncAccountId);
 		}
@@ -592,6 +597,23 @@ public class SyncFileService {
 		ModelListener<SyncFile> modelListener) {
 
 		_syncFilePersistence.registerModelListener(modelListener);
+	}
+
+	public static SyncFile setFileKey(SyncFile syncFile) {
+		if (OSDetector.isWindows()) {
+			Path filePath = Paths.get(syncFile.getFilePathName());
+
+			FileUtil.writeFileKey(
+				filePath, String.valueOf(syncFile.getSyncFileId()));
+
+			syncFile.setFileKey(String.valueOf(syncFile.getSyncFileId()));
+		}
+		else {
+			syncFile.setFileKey(
+				FileUtil.getFileKey(syncFile.getFilePathName()));
+		}
+
+		return update(syncFile);
 	}
 
 	public static void unregisterModelListener(

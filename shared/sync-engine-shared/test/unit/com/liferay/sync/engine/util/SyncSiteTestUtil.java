@@ -54,9 +54,8 @@ public class SyncSiteTestUtil {
 		Files.createDirectories(Paths.get(filePathName));
 
 		SyncFileService.addSyncFile(
-			null, null, filePathName, FileUtil.getFileKey(filePathName),
-			filePathName, null, filePathName, 0, groupId,
-			syncSite.getSyncAccountId(), SyncFile.TYPE_SYSTEM);
+			null, null, filePathName, filePathName, null, filePathName, 0,
+			groupId, syncSite.getSyncAccountId(), SyncFile.TYPE_SYSTEM);
 
 		return syncSite;
 	}

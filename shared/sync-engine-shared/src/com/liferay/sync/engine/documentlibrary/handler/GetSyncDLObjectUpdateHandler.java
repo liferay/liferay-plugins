@@ -71,9 +71,9 @@ public class GetSyncDLObjectUpdateHandler extends BaseSyncDLObjectHandler {
 		if (syncFile.isFolder()) {
 			Files.createDirectories(filePath);
 
-			syncFile.setFileKey(FileUtil.getFileKey(filePath));
-
 			SyncFileService.update(syncFile);
+
+			SyncFileService.setFileKey(syncFile);
 		}
 		else {
 			SyncFileService.update(syncFile);
@@ -189,9 +189,9 @@ public class GetSyncDLObjectUpdateHandler extends BaseSyncDLObjectHandler {
 
 				Files.createDirectories(targetFilePath);
 
-				sourceSyncFile.setFileKey(FileUtil.getFileKey(targetFilePath));
-
 				SyncFileService.update(sourceSyncFile);
+
+				SyncFileService.setFileKey(sourceSyncFile);
 			}
 			else {
 				downloadFile(sourceSyncFile, null, false);
@@ -320,9 +320,9 @@ public class GetSyncDLObjectUpdateHandler extends BaseSyncDLObjectHandler {
 
 				Files.createDirectories(targetFilePath);
 
-				sourceSyncFile.setFileKey(FileUtil.getFileKey(targetFilePath));
-
 				SyncFileService.update(sourceSyncFile);
+
+				SyncFileService.setFileKey(sourceSyncFile);
 			}
 			else {
 				downloadFile(sourceSyncFile, null, false);
