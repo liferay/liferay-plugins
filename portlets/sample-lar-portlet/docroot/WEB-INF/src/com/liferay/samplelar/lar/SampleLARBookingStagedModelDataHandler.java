@@ -53,17 +53,17 @@ public class SampleLARBookingStagedModelDataHandler
 	public SampleLARBooking fetchStagedModelByUuidAndCompanyId(
 		String uuid, long companyId) {
 
-		List<SampleLARBooking> bookings =
+		List<SampleLARBooking> sampleLARBookings =
 			SampleLARBookingLocalServiceUtil.
 				getSampleLARBookingsByUuidAndCompanyId(
 					uuid, companyId, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
 					new StagedModelModifiedDateComparator<SampleLARBooking>());
 
-		if (ListUtil.isEmpty(bookings)) {
+		if (ListUtil.isEmpty(sampleLARBookings)) {
 			return null;
 		}
 
-		return bookings.get(0);
+		return sampleLARBookings.get(0);
 	}
 
 	@Override
