@@ -37,9 +37,9 @@
 	<%
 	Map<String, List<UserNotificationDefinition>> userNotificationDefinitionsMap = new TreeMap<String, List<UserNotificationDefinition>>(new PortletIdComparator(locale));
 
-	sortedUserNotificationDefinitionsMap.putAll(UserNotificationManagerUtil.getUserNotificationDefinitions());
+	userNotificationDefinitionsMap.putAll(UserNotificationManagerUtil.getUserNotificationDefinitions());
 
-	for (Map.Entry<String, List<UserNotificationDefinition>> entry : sortedUserNotificationDefinitionsMap.entrySet()) {
+	for (Map.Entry<String, List<UserNotificationDefinition>> entry : userNotificationDefinitionsMap.entrySet()) {
 	%>
 
 		<table class="notification-deliveries table table-condensed">
