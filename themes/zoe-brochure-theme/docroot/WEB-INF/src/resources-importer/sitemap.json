@@ -208,8 +208,7 @@
 								}
 							},
 							"portletSetupShowBorders": "false",
-							"portletSetupTitle_en_US":
-								"Web Content Display",
+							"portletSetupTitle_en_US": "Web Content Display",
 							"portletSetupUseCustomTitle": "false"
 						}
 					},
@@ -219,8 +218,7 @@
 							"articleId": "Full Page Divider.xml",
 							"groupId": "${groupId}",
 							"portletSetupShowBorders": "false",
-							"portletSetupTitle_en_US":
-								"Web Content Display",
+							"portletSetupTitle_en_US": "Web Content Display",
 							"portletSetupUseCustomTitle": "false"
 						}
 					},
@@ -230,8 +228,7 @@
 							"articleId": "Clickable Panel Support.xml",
 							"groupId": "${groupId}",
 							"portletSetupShowBorders": "false",
-							"portletSetupTitle_en_US":
-								"Web Content Display",
+							"portletSetupTitle_en_US": "Web Content Display",
 							"portletSetupUseCustomTitle": "false"
 						}
 					},
@@ -241,8 +238,7 @@
 							"articleId": "Footer.xml",
 							"groupId": "${groupId}",
 							"portletSetupShowBorders": "false",
-							"portletSetupTitle_en_US":
-								"Web Content Display",
+							"portletSetupTitle_en_US": "Web Content Display",
 							"portletSetupUseCustomTitle": "false"
 						}
 					}
@@ -261,8 +257,7 @@
 							"articleId": "Banner Contact Us.xml",
 							"groupId": "${groupId}",
 							"portletSetupShowBorders": "false",
-							"portletSetupTitle_en_US":
-								"Web Content Display",
+							"portletSetupTitle_en_US": "Web Content Display",
 							"portletSetupUseCustomTitle": "false"
 						}
 					},
@@ -272,8 +267,7 @@
 							"articleId": "Location Map.html",
 							"groupId": "${groupId}",
 							"portletSetupShowBorders": "false",
-							"portletSetupTitle_en_US":
-								"Web Content Display",
+							"portletSetupTitle_en_US": "Web Content Display",
 							"portletSetupUseCustomTitle": "false"
 						}
 					},
@@ -288,8 +282,7 @@
 								}
 							},
 							"portletSetupShowBorders": "true",
-							"portletSetupTitle_en_US":
-								"Americas",
+							"portletSetupTitle_en_US": "Americas",
 							"portletSetupUseCustomTitle": "true"
 						}
 					},
@@ -304,8 +297,7 @@
 								}
 							},
 							"portletSetupShowBorders": "true",
-							"portletSetupTitle_en_US":
-								"Europe",
+							"portletSetupTitle_en_US": "Europe",
 							"portletSetupUseCustomTitle": "true"
 						}
 					},
@@ -320,8 +312,7 @@
 								}
 							},
 							"portletSetupShowBorders": "true",
-							"portletSetupTitle_en_US":
-								"Asia Pacific",
+							"portletSetupTitle_en_US": "Asia Pacific",
 							"portletSetupUseCustomTitle": "true"
 						}
 					},
@@ -331,8 +322,7 @@
 							"articleId": "Full Page Divider.xml",
 							"groupId": "${groupId}",
 							"portletSetupShowBorders": "false",
-							"portletSetupTitle_en_US":
-								"Web Content Display",
+							"portletSetupTitle_en_US": "Web Content Display",
 							"portletSetupUseCustomTitle": "false"
 						}
 					},
@@ -347,8 +337,7 @@
 								}
 							},
 							"portletSetupShowBorders": "false",
-							"portletSetupTitle_en_US":
-								"Web Content Display",
+							"portletSetupTitle_en_US": "Web Content Display",
 							"portletSetupUseCustomTitle": "false"
 						}
 					},
@@ -358,8 +347,7 @@
 							"articleId": "Footer.xml",
 							"groupId": "${groupId}",
 							"portletSetupShowBorders": "false",
-							"portletSetupTitle_en_US":
-								"Web Content Display",
+							"portletSetupTitle_en_US": "Web Content Display",
 							"portletSetupUseCustomTitle": "false"
 						}
 					}
