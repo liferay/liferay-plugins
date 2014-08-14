@@ -147,6 +147,18 @@ public class FileUtil {
 		return false;
 	}
 
+	public static boolean isValidFileName(Path filePath) {
+		String fileName = String.valueOf(filePath.getFileName());
+
+		if ((Files.isDirectory(filePath) && (fileName.length() > 100)) ||
+			(!Files.isDirectory(filePath) && (fileName.length() > 255))) {
+
+			return false;
+		}
+
+		return isValidFileName(fileName);
+	}
+
 	public static boolean isValidFileName(String fileName) {
 		if (StringUtils.isBlank(fileName)) {
 			return false;

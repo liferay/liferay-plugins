@@ -252,8 +252,11 @@ public class Watcher implements Runnable {
 	protected boolean isIgnoredFilePath(Path filePath) {
 		try {
 			if (FileUtil.isIgnoredFilePath(filePath) ||
-				!FileUtil.isValidFileName(
-					String.valueOf(filePath.getFileName()))) {
+				!FileUtil.isValidFileName(filePath)) {
+
+				if (_logger.isDebugEnabled()) {
+					_logger.debug("Ignored file path {}", filePath);
+				}
 
 				return true;
 			}
