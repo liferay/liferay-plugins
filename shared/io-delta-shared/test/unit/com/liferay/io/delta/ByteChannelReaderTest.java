@@ -50,33 +50,37 @@ public class ByteChannelReaderTest {
 
 				int bytesRead = byteBuffer.remaining();
 
-				if (partialRead) {
+				if (_partialRead) {
 					bytesRead--;
 				}
 
 				byteBuffer.put(new byte[bytesRead], 0, bytesRead);
 
-				partialRead = !partialRead;
+				_partialRead = !_partialRead;
 
 				return bytesRead;
 			}
 
-			private boolean partialRead = true;
+			private boolean _partialRead = true;
 
 		};
 
-		Mockito.when(readableByteChannel.read(byteBuffer)).then(answer);
+		Mockito.when(
+			readableByteChannel.read(byteBuffer)
+		).then(
+			answer
+		);
 
-		int dataRemaining = 1025;
+		int remainingData = 1025;
 
-		while (dataRemaining > 0) {
-			if (dataRemaining > length) {
-				dataRemaining -= length;
+		while (remainingData > 0) {
+			if (remainingData > length) {
+				remainingData -= length;
 			}
 			else {
-				length = dataRemaining;
+				length = remainingData;
 
-				dataRemaining = 0;
+				remainingData = 0;
 			}
 
 			byteChannelReader.ensureData(length);
