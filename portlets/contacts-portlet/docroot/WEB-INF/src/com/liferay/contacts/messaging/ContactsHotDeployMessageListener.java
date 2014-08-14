@@ -35,20 +35,14 @@ public class ContactsHotDeployMessageListener extends HotDeployMessageListener {
 
 	@Override
 	protected void onDeploy(Message message) throws Exception {
-		if (_registerMethodKey == null) {
-			try {
-				_registerMethodKey = new MethodKey(
-					"com.liferay.chat.util.ChatExtensionsUtil", "register",
-					String.class, String.class);
-			}
-			catch (RuntimeException re) {
-				return;
-			}
+		try {
+			PortletClassInvoker.invoke(
+				false, "1_WAR_chatportlet", _registerMethodKey,
+				ClpSerializer.getServletContextName(), "/chat/view.jsp");
 		}
-
-		PortletClassInvoker.invoke(
-			false, "1_WAR_chatportlet", _registerMethodKey,
-			ClpSerializer.getServletContextName(), "/chat/view.jsp");
+		catch (Exception e) {
+			return;
+		}
 	}
 
 	@Override
@@ -57,6 +51,8 @@ public class ContactsHotDeployMessageListener extends HotDeployMessageListener {
 			message.getString("servletContextName"));
 	}
 
-	private MethodKey _registerMethodKey;
+	private MethodKey _registerMethodKey = new MethodKey(
+		"com.liferay.chat.util.ChatExtensionsUtil", "register", String.class,
+		String.class);
 
 }
