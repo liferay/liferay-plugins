@@ -25,28 +25,33 @@
 
 #foreach ($cur_panel_heading in $panel_heading.getSiblings())
 	#set ($mod = ${velocityCount}%${num_cols})
+
 	#set ($panel_button_text = $cur_panel_heading.panel_button_text)
+
 	#set ($panel_button_link = $panel_button_text.button_link)
 	#set ($panel_button_size = $panel_button_text.button_size)
 	#set ($panel_button_style = $panel_button_text.button_style)
+
 	#set ($panel_icon = $cur_panel_heading.panel_icon)
+
 	#set ($panel_icon_background_color = $panel_icon.icon_background_color)
 	#set ($panel_icon_color = $panel_icon.icon_color)
 	#set ($panel_icon_padding = $panel_icon.icon_padding)
 	#set ($panel_icon_shape = $panel_icon.icon_shape)
 	#set ($panel_icon_size = $panel_icon.icon_size)
+
 	#set ($panel_image = $panel_icon.icon_image)
 
 	#if (!$panel_icon_background_color.data.isEmpty())
 		#set ($background_color = "background: ${panel_icon_background_color.data};")
 	#end
 
-	#if (!$panel_icon_padding.data.isEmpty())
-		#set ($icon_padding = "padding: ${panel_icon_padding.data};")
-	#end
-
 	#if (!$panel_icon_color.data.isEmpty())
 		#set ($icon_color = "color: ${panel_icon_color.data};")
+	#end
+
+	#if (!$panel_icon_padding.data.isEmpty())
+		#set ($icon_padding = "padding: ${panel_icon_padding.data};")
 	#end
 
 	#if (!$panel_icon_size.data.isEmpty())

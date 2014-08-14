@@ -6,6 +6,7 @@
 #set ($icon_width = "")
 #set ($integer = 0)
 #set ($num_cols = $integer.parseInt($number_of_columns.data))
+#set ($span = "")
 
 #if ($num_cols == 5)
 	#set ($span = "span2-4")
@@ -15,8 +16,6 @@
 	#set ($span = "span4")
 #elseif ($num_cols == 2)
 	#set ($span = "span6")
-#else
-	#set ($span = "")
 #end
 
 #if ($num_cols == 1)
@@ -25,12 +24,14 @@
 
 #foreach ($cur_panel_heading in $clickable_panel_heading.getSiblings())
 	#set ($clickable_panel_icon = $cur_panel_heading.clickable_panel_icon)
-	#set ($clickable_panel_icon_background_color = $cur_panel_heading.clickable_panel_icon.clickable_panel_icon_background_color)
-	#set ($clickable_panel_icon_color = $cur_panel_heading.clickable_panel_icon.clickable_panel_icon_color)
-	#set ($clickable_panel_icon_padding = $cur_panel_heading.clickable_panel_icon.clickable_panel_icon_padding)
-	#set ($clickable_panel_icon_shape = $cur_panel_heading.clickable_panel_icon.clickable_panel_icon_shape)
-	#set ($clickable_panel_icon_size =$cur_panel_heading.clickable_panel_icon.clickable_panel_icon_size)
-	#set ($clickable_panel_image = $cur_panel_heading.clickable_panel_icon.clickable_panel_icon_image)
+
+	#set ($clickable_panel_icon_background_color = $clickable_panel_icon.clickable_panel_icon_background_color)
+	#set ($clickable_panel_icon_color = $clickable_panel_icon.clickable_panel_icon_color)
+	#set ($clickable_panel_icon_padding = $clickable_panel_icon.clickable_panel_icon_padding)
+	#set ($clickable_panel_icon_shape = $clickable_panel_icon.clickable_panel_icon_shape)
+	#set ($clickable_panel_icon_size =$clickable_panel_icon.clickable_panel_icon_size)
+	#set ($clickable_panel_image = $clickable_panel_icon.clickable_panel_icon_image)
+
 	#set ($mod = ${velocityCount}%${num_cols})
 
 	#if (!$clickable_panel_icon_background_color.data.isEmpty())
@@ -72,6 +73,7 @@
 		<h3>$cur_panel_heading.data</h3>
 
 		<p>$cur_panel_heading.content.data</p>
+
 	#if (!$cur_panel_heading.link_url.data.isEmpty())
 		</a>
 	#else

@@ -6,6 +6,7 @@
 		#if (!$carousel_maximum_height.data.isEmpty())
 			max-height: $carousel_maximum_height.data${carousel_maximum_height.units.data};
 		#end
+
 		overflow: hidden;
 		position: relative;
 	}
@@ -20,6 +21,7 @@
 		#if (!$carousel_maximum_height.data.isEmpty())
 			max-height: $carousel_maximum_height.data${carousel_maximum_height.units.data};
 		#end
+
 		top: 0;
 	}
 

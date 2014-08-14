@@ -23,13 +23,16 @@
 
 #foreach ($heading in $media_heading.getSiblings())
 	#set ($media_icon = $heading.media_icon)
-	#set ($media_icon_alignment = $heading.media_icon.media_icon_alignment)
-	#set ($media_icon_background_color = $heading.media_icon.media_icon_background_color)
-	#set ($media_icon_color = $heading.media_icon.media_icon_color)
-	#set ($media_icon_padding = $heading.media_icon.media_icon_padding)
-	#set ($media_icon_shape = $heading.media_icon.media_icon_shape)
-	#set ($media_icon_size = $heading.media_icon.media_icon_size)
-	#set ($media_image = $heading.media_icon.media_image)
+
+	#set ($media_icon_alignment = $media_icon.media_icon_alignment)
+	#set ($media_icon_background_color = $media_icon.media_icon_background_color)
+	#set ($media_icon_color = $media_icon.media_icon_color)
+	#set ($media_icon_padding = $media_icon.media_icon_padding)
+	#set ($media_icon_shape = $media_icon.media_icon_shape)
+	#set ($media_icon_size = $media_icon.media_icon_size)
+
+	#set ($media_image = $media_icon.media_image)
+
 	#set ($mod = ${velocityCount}%${num_cols})
 
 	#if (!$media_icon_background_color.data.isEmpty())
@@ -40,14 +43,14 @@
 		#set ($icon_color = "color: ${media_icon_color.data};")
 	#end
 
+	#if (!$media_icon_padding.data.isEmpty())
+		#set ($icon_padding = "padding: ${media_icon_padding.data};")
+	#end
+
 	#if (!$media_icon_size.data.isEmpty())
 		#set ($icon_size = "font-size: ${media_icon_size.data};")
 
 		#set ($media_image_size = "width: ${media_icon_size.data};")
-	#end
-
-	#if (!$media_icon_padding.data.isEmpty())
-		#set ($icon_padding = "padding: ${media_icon_padding.data};")
 	#end
 
 	#if ($mod == 1 && $num_cols != 1)
@@ -76,6 +79,7 @@
 				#end
 			</div>
 		</div>
+
 	#if ($mod == 0 && $num_cols != 1)
 		</div>
 	#end

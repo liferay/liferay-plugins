@@ -1,3 +1,5 @@
+#set ($span = "span12")
+
 #if ($footer_column_title.getSiblings().size() == 6)
 	#set ($span = "span2")
 #elseif ($footer_column_title.getSiblings().size() == 5)
@@ -8,8 +10,6 @@
 	#set ($span = "span4")
 #elseif ($footer_column_title.getSiblings().size() == 2)
 	#set ($span = "span6")
-#else
-	#set ($span = "span12")
 #end
 
 <div class="row-fluid zoe-footer">

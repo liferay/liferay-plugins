@@ -12,7 +12,7 @@ $textShadowColor2: #333;
 
 /* ---------- Set compass defaults ---------- */
 
-$default-box-shadow-blur-offset: 6px;
+$default-box-shadow-blur-offset: 6px ;
 $default-box-shadow-color: #999;
 $default-box-shadow-h-offset: 0;
 $default-box-shadow-spread: 1px;

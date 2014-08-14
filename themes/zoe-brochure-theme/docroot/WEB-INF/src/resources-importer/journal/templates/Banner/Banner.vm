@@ -1,9 +1,8 @@
 #set ($content_id = $reserved-article-id.data)
+#set($text_align = "")
 
 #if (!$banner_message_alignment.data.isEmpty())
 	#set($text_align = $banner_message_alignment.data)
-#else
-	#set($text_align = "")
 #end
 
 <div class="banner" id="banner${content_id}">

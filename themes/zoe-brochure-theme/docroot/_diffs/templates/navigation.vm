@@ -11,7 +11,7 @@
 
 					#if ($nav_item.isSelected())
 						#set ($nav_item_attr_selected="aria-selected='true'")
-						#set ($nav_item_css_class="$nav_item_css_class selected active")
+						#set ($nav_item_css_class="$nav_item_css_class active selected")
 					#end
 
 					#if ($nav_item.hasChildren())
