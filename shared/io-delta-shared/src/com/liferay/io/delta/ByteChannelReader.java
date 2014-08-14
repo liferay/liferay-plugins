@@ -87,7 +87,7 @@ public class ByteChannelReader {
 
 		_byteBuffer.compact();
 
-		while (_byteBuffer.position() <= length) {
+		while (_byteBuffer.position() < length) {
 			int bytesRead = _readableByteChannel.read(_byteBuffer);
 
 			if (bytesRead == -1) {
