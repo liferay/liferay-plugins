@@ -121,7 +121,7 @@ public class ContactsUtil {
 
 			ListType listType = address.getType();
 
-			sb.append(listType.getName().toUpperCase());
+			sb.append(_getVCardListTypeName(listType).toUpperCase());
 
 			sb.append(StringPool.COLON);
 			sb.append(StringPool.SEMICOLON);
@@ -316,7 +316,7 @@ public class ContactsUtil {
 
 			ListType listType = phone.getType();
 
-			sb.append(listType.getName().toUpperCase());
+			sb.append(_getVCardListTypeName(listType).toUpperCase());
 
 			sb.append(StringPool.COLON);
 			sb.append(phone.getNumber());
@@ -326,6 +326,19 @@ public class ContactsUtil {
 		}
 
 		return sb.toString();
+	}
+
+	private static String _getVCardListTypeName(ListType listType) {
+		String listTypeName = listType.getName();
+
+		if (listTypeName.equalsIgnoreCase("business")) {
+			listTypeName = "work";
+		}
+		else if (listTypeName.equalsIgnoreCase("personal")) {
+			listTypeName = "home";
+		}
+
+		return listTypeName;
 	}
 
 	private static String _getWebsites(User user) throws Exception {
@@ -339,7 +352,7 @@ public class ContactsUtil {
 
 			ListType listType = website.getType();
 
-			sb.append(listType.getName().toUpperCase());
+			sb.append(_getVCardListTypeName(listType).toUpperCase());
 
 			sb.append(StringPool.COLON);
 
