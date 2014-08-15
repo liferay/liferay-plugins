@@ -85,7 +85,8 @@ public class PushNotificationsDeviceServiceUtil {
 	}
 
 	public static void sendPushNotification(java.lang.String message)
-		throws com.liferay.portal.kernel.exception.PortalException {
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
 		getService().sendPushNotification(message);
 	}
 
