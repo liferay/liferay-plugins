@@ -640,7 +640,7 @@ public class CalendarICalDataHandler implements CalendarDataHandler {
 		Company company = CompanyLocalServiceUtil.getCompany(
 			calendarBooking.getCompanyId());
 
-		String descriptionCalendarBooking = StringUtil.replace(
+		String calendarBookingDescription = StringUtil.replace(
 			calendarBooking.getDescription(user.getLocale()),
 			new String[] {
 				"href=\"/", "src=\"/"
@@ -652,12 +652,12 @@ public class CalendarICalDataHandler implements CalendarDataHandler {
 					company.getPortalURL(calendarBooking.getGroupId()) + "/"
 		});
 
-		Description description = new Description(descriptionCalendarBooking);
+		Description description = new Description(calendarBookingDescription);
 
 		propertyList.add(description);
 
 		XProperty xProperty = new XProperty(
-			"X-ALT-DESC", descriptionCalendarBooking);
+			"X-ALT-DESC", calendarBookingDescription);
 
 		ParameterList parameters = xProperty.getParameters();
 
