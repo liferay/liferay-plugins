@@ -94,6 +94,19 @@ public class PushNotificationsDeviceServiceSoap {
 		}
 	}
 
+	public static void sendPushNotification(long toUserId,
+		java.lang.String message) throws RemoteException {
+		try {
+			PushNotificationsDeviceServiceUtil.sendPushNotification(toUserId,
+				message);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
 	public static void sendPushNotification(java.lang.String message)
 		throws RemoteException {
 		try {

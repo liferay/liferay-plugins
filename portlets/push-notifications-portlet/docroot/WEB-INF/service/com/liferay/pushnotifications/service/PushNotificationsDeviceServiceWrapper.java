@@ -70,6 +70,12 @@ public class PushNotificationsDeviceServiceWrapper
 		_pushNotificationsDeviceService.sendPushNotification(message);
 	}
 
+	@Override
+	public void sendPushNotification(long toUserId, java.lang.String message)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		_pushNotificationsDeviceService.sendPushNotification(toUserId, message);
+	}
+
 	/**
 	* Sets the Spring bean ID for this bean.
 	*

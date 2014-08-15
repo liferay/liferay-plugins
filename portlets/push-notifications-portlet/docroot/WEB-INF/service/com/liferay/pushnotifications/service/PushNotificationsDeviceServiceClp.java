@@ -43,9 +43,13 @@ public class PushNotificationsDeviceServiceClp
 
 		_methodParameterTypes4 = new String[] { "java.lang.String" };
 
-		_methodName5 = "setBeanIdentifier";
+		_methodName5 = "sendPushNotification";
 
-		_methodParameterTypes5 = new String[] { "java.lang.String" };
+		_methodParameterTypes5 = new String[] { "long", "java.lang.String" };
+
+		_methodName6 = "setBeanIdentifier";
+
+		_methodParameterTypes6 = new String[] { "java.lang.String" };
 	}
 
 	@Override
@@ -168,10 +172,35 @@ public class PushNotificationsDeviceServiceClp
 	}
 
 	@Override
-	public void setBeanIdentifier(java.lang.String beanIdentifier) {
+	public void sendPushNotification(long toUserId, java.lang.String message)
+		throws com.liferay.portal.kernel.exception.PortalException {
 		try {
 			_invokableService.invokeMethod(_methodName5,
 				_methodParameterTypes5,
+				new Object[] { toUserId, ClpSerializer.translateInput(message) });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+	}
+
+	@Override
+	public void setBeanIdentifier(java.lang.String beanIdentifier) {
+		try {
+			_invokableService.invokeMethod(_methodName6,
+				_methodParameterTypes6,
 				new Object[] { ClpSerializer.translateInput(beanIdentifier) });
 		}
 		catch (Throwable t) {
@@ -198,4 +227,6 @@ public class PushNotificationsDeviceServiceClp
 	private String[] _methodParameterTypes4;
 	private String _methodName5;
 	private String[] _methodParameterTypes5;
+	private String _methodName6;
+	private String[] _methodParameterTypes6;
 }

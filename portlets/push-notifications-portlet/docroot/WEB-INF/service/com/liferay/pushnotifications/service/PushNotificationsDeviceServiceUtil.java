@@ -70,6 +70,12 @@ public class PushNotificationsDeviceServiceUtil {
 		getService().sendPushNotification(message);
 	}
 
+	public static void sendPushNotification(long toUserId,
+		java.lang.String message)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		getService().sendPushNotification(toUserId, message);
+	}
+
 	/**
 	* Sets the Spring bean ID for this bean.
 	*
