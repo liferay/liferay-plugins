@@ -384,6 +384,7 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 			solrQuery.setHighlight(true);
 			solrQuery.setHighlightFragsize(
 				queryConfig.getHighlightFragmentSize());
+			solrQuery.setHighlightRequireFieldMatch(true);
 			solrQuery.setHighlightSnippets(
 				queryConfig.getHighlightSnippetSize());
 
