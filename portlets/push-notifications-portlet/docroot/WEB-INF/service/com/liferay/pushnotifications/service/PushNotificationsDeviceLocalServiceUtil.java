@@ -300,11 +300,11 @@ public class PushNotificationsDeviceLocalServiceUtil {
 		getService().sendPushNotification(jsonObject, start, end);
 	}
 
-	public static void sendPushNotification(long userId,
+	public static void sendPushNotification(long toUserId,
 		com.liferay.portal.kernel.json.JSONObject jsonObject, int start, int end)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		getService().sendPushNotification(userId, jsonObject, start, end);
+		getService().sendPushNotification(toUserId, jsonObject, start, end);
 	}
 
 	public static void clearService() {
