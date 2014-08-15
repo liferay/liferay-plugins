@@ -20,6 +20,7 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.pushnotifications.sender.PushNotificationsSender;
 import com.liferay.pushnotifications.util.PortletPropsValues;
+import com.liferay.pushnotifications.util.PushNotificationsConstants;
 
 import com.notnoop.apns.APNS;
 import com.notnoop.apns.ApnsService;
@@ -87,13 +88,14 @@ public class ApplePushNotificationsSender implements PushNotificationsSender {
 	protected String buildPayload(JSONObject jsonObject) {
 		PayloadBuilder builder = PayloadBuilder.newPayload();
 
-		String message = jsonObject.getString("message");
+		String message = jsonObject.getString(
+			PushNotificationsConstants.MESSAGE);
 
 		if (message != null) {
 			builder.alertBody(message);
 		}
 
-		jsonObject.remove("message");
+		jsonObject.remove(PushNotificationsConstants.MESSAGE);
 
 		Iterator<String> keys = jsonObject.keys();
 

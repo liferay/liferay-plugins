@@ -25,6 +25,7 @@ import com.liferay.pushnotifications.model.PushNotificationsDevice;
 import com.liferay.pushnotifications.service.base.PushNotificationsDeviceServiceBaseImpl;
 import com.liferay.pushnotifications.service.permission.PushNotificationsPermission;
 import com.liferay.pushnotifications.util.ActionKeys;
+import com.liferay.pushnotifications.util.PushNotificationsConstants;
 
 /**
  * @author Silvio Santos
@@ -104,8 +105,8 @@ public class PushNotificationsDeviceServiceImpl
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
-		jsonObject.put("fromUserId", getUserId());
-		jsonObject.put("message", message);
+		jsonObject.put(PushNotificationsConstants.FROM_USER_ID, getUserId());
+		jsonObject.put(PushNotificationsConstants.MESSAGE, message);
 
 		if (_log.isDebugEnabled()) {
 			_log.debug("Sending message " + jsonObject + " to all devices");

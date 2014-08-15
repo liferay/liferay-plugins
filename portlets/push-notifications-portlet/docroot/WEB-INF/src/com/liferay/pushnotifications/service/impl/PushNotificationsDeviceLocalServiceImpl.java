@@ -21,6 +21,7 @@ import com.liferay.portal.model.User;
 import com.liferay.pushnotifications.model.PushNotificationsDevice;
 import com.liferay.pushnotifications.sender.PushNotificationsSender;
 import com.liferay.pushnotifications.service.base.PushNotificationsDeviceLocalServiceBaseImpl;
+import com.liferay.pushnotifications.util.PushNotificationsConstants;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -115,12 +116,17 @@ public class PushNotificationsDeviceLocalServiceImpl
 	protected void addUserDetails(JSONObject jsonObject)
 		throws PortalException {
 
-		long userId = jsonObject.getLong("fromUserId");
+		long userId = jsonObject.getLong(
+			PushNotificationsConstants.FROM_USER_ID);
+
 		User user = userLocalService.getUser(userId);
 
-		jsonObject.put("uuid", user.getUuid());
-		jsonObject.put("fullName", user.getFullName());
-		jsonObject.put("portraitId", user.getPortraitId());
+		jsonObject.put(PushNotificationsConstants.UUID, user.getUuid());
+		jsonObject.put(
+			PushNotificationsConstants.FULL_NAME, user.getFullName());
+
+		jsonObject.put(
+			PushNotificationsConstants.PORTRAIT_ID, user.getPortraitId());
 	}
 
 	protected List<PushNotificationsDevice> getPushNotificationsDevices(
