@@ -21,6 +21,7 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.messaging.Message;
 import com.liferay.portal.kernel.messaging.MessageListener;
 import com.liferay.pushnotifications.service.PushNotificationsDeviceLocalServiceUtil;
+import com.liferay.pushnotifications.util.PushNotificationsConstants;
 
 /**
  * @author Silvio Santos
@@ -32,7 +33,7 @@ public class PushNotificationsMessageListener implements MessageListener {
 	public void receive(Message message) {
 		JSONObject jsonObject = (JSONObject)message.getPayload();
 
-		long userId = jsonObject.getLong("toUserId");
+		long userId = jsonObject.getLong(PushNotificationsConstants.TO_USER_ID);
 
 		if (_log.isDebugEnabled()) {
 			_log.debug("Received message " + jsonObject + " to user " + userId);
