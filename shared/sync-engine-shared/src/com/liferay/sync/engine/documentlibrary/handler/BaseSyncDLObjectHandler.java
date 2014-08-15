@@ -52,12 +52,13 @@ public class BaseSyncDLObjectHandler extends BaseJSONHandler {
 			Path targetFilePath = targetParentFilePath.resolve(
 				targetSyncFileName);
 
+			SyncFileService.updateSyncFile(
+				targetFilePath, targetSyncFile.getParentFolderId(),
+				sourceSyncFile);
+
 			if (Files.exists(sourceFilePath)) {
 				Files.move(sourceFilePath, targetFilePath);
 			}
-
-			sourceSyncFile.setFilePathName(targetFilePath.toString());
-			sourceSyncFile.setName(targetSyncFileName);
 
 			return true;
 		}
@@ -68,12 +69,13 @@ public class BaseSyncDLObjectHandler extends BaseJSONHandler {
 			Path targetFilePath = sourceSyncFilePath.resolveSibling(
 				targetSyncFileName);
 
+			SyncFileService.updateSyncFile(
+				targetFilePath, sourceSyncFile.getParentFolderId(),
+				sourceSyncFile);
+
 			if (Files.exists(sourceFilePath)) {
 				Files.move(sourceFilePath, targetFilePath);
 			}
-
-			sourceSyncFile.setFilePathName(targetFilePath.toString());
-			sourceSyncFile.setName(targetSyncFileName);
 
 			return true;
 		}

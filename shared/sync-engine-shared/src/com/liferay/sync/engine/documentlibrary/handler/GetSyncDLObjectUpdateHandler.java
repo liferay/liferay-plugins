@@ -174,32 +174,26 @@ public class GetSyncDLObjectUpdateHandler extends BaseSyncDLObjectHandler {
 
 		Path sourceFilePath = Paths.get(sourceSyncFile.getFilePathName());
 
+		Path targetFilePath = Paths.get(targetFilePathName);
+
+		sourceSyncFile = SyncFileService.updateSyncFile(
+			targetFilePath, targetSyncFile.getParentFolderId(), sourceSyncFile);
+
 		if (Files.exists(sourceFilePath)) {
-			Path targetFilePath = Paths.get(targetFilePathName);
-
 			Files.move(sourceFilePath, targetFilePath);
+		}
+		else if (targetSyncFile.isFolder()) {
+			Files.createDirectories(targetFilePath);
 
-			sourceSyncFile.setFilePathName(targetFilePathName);
+			SyncFileService.update(sourceSyncFile);
+
+			SyncFileService.updateFileKeySyncFile(sourceSyncFile);
 		}
 		else {
-			sourceSyncFile.setFilePathName(targetFilePathName);
-
-			if (targetSyncFile.isFolder()) {
-				Path targetFilePath = Paths.get(targetFilePathName);
-
-				Files.createDirectories(targetFilePath);
-
-				SyncFileService.update(sourceSyncFile);
-
-				SyncFileService.updateFileKeySyncFile(sourceSyncFile);
-			}
-			else {
-				downloadFile(sourceSyncFile, null, false);
-			}
+			downloadFile(sourceSyncFile, null, false);
 		}
 
 		sourceSyncFile.setModifiedTime(targetSyncFile.getModifiedTime());
-		sourceSyncFile.setParentFolderId(targetSyncFile.getParentFolderId());
 		sourceSyncFile.setUiEvent(SyncFile.UI_EVENT_MOVED_REMOTE);
 
 		SyncFileService.update(sourceSyncFile);
