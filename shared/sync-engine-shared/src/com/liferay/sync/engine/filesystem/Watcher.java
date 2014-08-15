@@ -117,16 +117,18 @@ public class Watcher implements Runnable {
 					continue;
 				}
 
+				WatchEvent.Kind<?> kind = watchEvent.kind();
+
 				Path childFilePath = parentFilePath.resolve(
 					pathImpl.toString());
 
-				if (isIgnoredFilePath(childFilePath)) {
+				if ((kind == StandardWatchEventKind.ENTRY_CREATE) &&
+					isIgnoredFilePath(childFilePath)) {
+
 					continue;
 				}
 
 				fireWatchEventListener(childFilePath, watchEvent);
-
-				WatchEvent.Kind<?> kind = watchEvent.kind();
 
 				if (_recursive &&
 					(kind == StandardWatchEventKind.ENTRY_CREATE)) {
