@@ -22,18 +22,16 @@
 			<format property="tstamp.value" pattern="yyyyMMddkkmmssSSS" />
 		</tstamp>
 
-		<property name="jar.src.dir" value="${tstamp.value}/OSGI-OPT/src" />
+		<mkdir dir="${tstamp.value}/OSGI-OPT/src" />
 
-		<mkdir dir="${jar.src.dir}" />
-
-		<axis-wsdl2java nowrapped="true" output="${jar.src.dir}" serverside="true" url="docroot/WEB-INF/wsdl/wsrp-1.0-service.wsdl" verbose="true">
+		<axis-wsdl2java nowrapped="true" output="${tstamp.value}/OSGI-OPT/src" serverside="true" url="docroot/WEB-INF/wsdl/wsrp-1.0-service.wsdl" verbose="true">
 			<mapping namespace="urn:oasis:names:tc:wsrp:v1:bind" package="oasis.names.tc.wsrp.v1.bind" />
 			<mapping namespace="urn:oasis:names:tc:wsrp:v1:intf" package="oasis.names.tc.wsrp.v1.intf" />
 			<mapping namespace="urn:oasis:names:tc:wsrp:v1:types" package="oasis.names.tc.wsrp.v1.types" />
 			<mapping namespace="urn:oasis:names:tc:wsrp:v1:wsdl" package="oasis.names.tc.wsrp.v1.wsdl" />
 		</axis-wsdl2java>
 
-		<axis-wsdl2java nowrapped="true" output="${jar.src.dir}" serverside="true" url="docroot/WEB-INF/wsdl/wsrp-2.0-service.wsdl" verbose="true">
+		<axis-wsdl2java nowrapped="true" output="${tstamp.value}/OSGI-OPT/src" serverside="true" url="docroot/WEB-INF/wsdl/wsrp-2.0-service.wsdl" verbose="true">
 			<mapping namespace="urn:oasis:names:tc:wsrp:v2:bind" package="oasis.names.tc.wsrp.v2.bind" />
 			<mapping namespace="urn:oasis:names:tc:wsrp:v2:intf" package="oasis.names.tc.wsrp.v2.intf" />
 			<mapping namespace="urn:oasis:names:tc:wsrp:v2:types" package="oasis.names.tc.wsrp.v2.types" />
@@ -44,18 +42,18 @@
 			match="super\(\s*errorCode,\s*reason,\s*resourceList,\s*extensions\)"
 			replace="super(reason, resourceList, extensions, errorCode)"
 		>
-			<fileset dir="${jar.src.dir}/oasis/names/tc/wsrp/v2/types" includes="FailedPortlets.java,HandleEventsFailed.java,ImportPortletsFailed.java" />
+			<fileset dir="${tstamp.value}/OSGI-OPT/src/oasis/names/tc/wsrp/v2/types" includes="FailedPortlets.java,HandleEventsFailed.java,ImportPortletsFailed.java" />
 		</replaceregexp>
 
 		<replaceregexp
 			match="super\(\s*ccppProfileWarning,\s*useCachedItem,\s*mimeType,\s*itemString,\s*itemBinary,\s*locale,\s*requiresRewriting,\s*cacheControl,\s*clientAttributes,\s*extensions\);"
 			replace="super(useCachedItem,mimeType,itemString,itemBinary,locale,requiresRewriting,cacheControl,clientAttributes,extensions,ccppProfileWarning);"
 		>
-			<fileset dir="${jar.src.dir}/oasis/names/tc/wsrp/v2/types" includes="MarkupContext.java,ResourceContext.java" />
+			<fileset dir="${tstamp.value}/OSGI-OPT/src/oasis/names/tc/wsrp/v2/types" includes="MarkupContext.java,ResourceContext.java" />
 		</replaceregexp>
 
 		<replace
-			dir="${jar.src.dir}/oasis/names/tc/wsrp"
+			dir="${tstamp.value}/OSGI-OPT/src/oasis/names/tc/wsrp"
 			includes="v1/types/LocalizedString.java,v1/types/ResourceValue.java,v1/types/Property.java,v2/types/LocalizedString.java,v2/types/ResourceValue.java,v2/types/Property.java"
 			summary="true"
 		>
@@ -65,7 +63,7 @@
 		<compile-java
 			javac.classpathref="plugin.classpath"
 			javac.destdir="${tstamp.value}"
-			javac.srcdir="${jar.src.dir}"
+			javac.srcdir="${tstamp.value}/OSGI-OPT/src"
 		/>
 
 		<jar
