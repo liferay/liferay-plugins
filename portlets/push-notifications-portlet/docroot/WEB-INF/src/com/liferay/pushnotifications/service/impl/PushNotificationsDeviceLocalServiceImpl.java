@@ -122,12 +122,11 @@ public class PushNotificationsDeviceLocalServiceImpl
 
 		User user = userLocalService.getUser(userId);
 
-		jsonObject.put(PushNotificationsConstants.UUID, user.getUuid());
 		jsonObject.put(
 			PushNotificationsConstants.FULL_NAME, user.getFullName());
-
 		jsonObject.put(
 			PushNotificationsConstants.PORTRAIT_ID, user.getPortraitId());
+		jsonObject.put(PushNotificationsConstants.UUID, user.getUuid());
 	}
 
 	protected List<PushNotificationsDevice> getPushNotificationsDevices(
