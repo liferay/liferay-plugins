@@ -129,7 +129,7 @@ public class DownloadFileHandler extends BaseHandler {
 
 			SyncFileService.update(syncFile);
 
-			SyncFileService.setFileKey(syncFile);
+			SyncFileService.updateFileKeySyncFile(syncFile);
 		}
 		catch (Exception e) {
 			if (e instanceof FileSystemException) {

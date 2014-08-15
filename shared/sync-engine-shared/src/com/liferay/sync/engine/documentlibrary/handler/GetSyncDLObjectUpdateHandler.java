@@ -73,7 +73,7 @@ public class GetSyncDLObjectUpdateHandler extends BaseSyncDLObjectHandler {
 
 			SyncFileService.update(syncFile);
 
-			SyncFileService.setFileKey(syncFile);
+			SyncFileService.updateFileKeySyncFile(syncFile);
 		}
 		else {
 			SyncFileService.update(syncFile);
@@ -191,7 +191,7 @@ public class GetSyncDLObjectUpdateHandler extends BaseSyncDLObjectHandler {
 
 				SyncFileService.update(sourceSyncFile);
 
-				SyncFileService.setFileKey(sourceSyncFile);
+				SyncFileService.updateFileKeySyncFile(sourceSyncFile);
 			}
 			else {
 				downloadFile(sourceSyncFile, null, false);
@@ -322,7 +322,7 @@ public class GetSyncDLObjectUpdateHandler extends BaseSyncDLObjectHandler {
 
 				SyncFileService.update(sourceSyncFile);
 
-				SyncFileService.setFileKey(sourceSyncFile);
+				SyncFileService.updateFileKeySyncFile(sourceSyncFile);
 			}
 			else {
 				downloadFile(sourceSyncFile, null, false);

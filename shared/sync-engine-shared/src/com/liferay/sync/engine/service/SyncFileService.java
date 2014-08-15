@@ -182,7 +182,7 @@ public class SyncFileService {
 
 		_syncFilePersistence.create(syncFile);
 
-		setFileKey(syncFile);
+		updateFileKeySyncFile(syncFile);
 
 		return syncFile;
 	}
@@ -599,23 +599,6 @@ public class SyncFileService {
 		_syncFilePersistence.registerModelListener(modelListener);
 	}
 
-	public static SyncFile setFileKey(SyncFile syncFile) {
-		if (OSDetector.isWindows()) {
-			Path filePath = Paths.get(syncFile.getFilePathName());
-
-			FileUtil.writeFileKey(
-				filePath, String.valueOf(syncFile.getSyncFileId()));
-
-			syncFile.setFileKey(String.valueOf(syncFile.getSyncFileId()));
-		}
-		else {
-			syncFile.setFileKey(
-				FileUtil.getFileKey(syncFile.getFilePathName()));
-		}
-
-		return update(syncFile);
-	}
-
 	public static void unregisterModelListener(
 		ModelListener<SyncFile> modelListener) {
 
@@ -635,6 +618,23 @@ public class SyncFileService {
 
 			return null;
 		}
+	}
+
+	public static SyncFile updateFileKeySyncFile(SyncFile syncFile) {
+		if (OSDetector.isWindows()) {
+			Path filePath = Paths.get(syncFile.getFilePathName());
+
+			FileUtil.writeFileKey(
+				filePath, String.valueOf(syncFile.getSyncFileId()));
+
+			syncFile.setFileKey(String.valueOf(syncFile.getSyncFileId()));
+		}
+		else {
+			syncFile.setFileKey(
+				FileUtil.getFileKey(syncFile.getFilePathName()));
+		}
+
+		return update(syncFile);
 	}
 
 	public static SyncFile updateFileSyncFile(
