@@ -21,6 +21,7 @@ import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.PortalClassLoaderUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.Address;
 import com.liferay.portal.model.Contact;
@@ -121,7 +122,7 @@ public class ContactsUtil {
 
 			ListType listType = address.getType();
 
-			sb.append(_getVCardListTypeName(listType).toUpperCase());
+			sb.append(StringUtil.toUpperCase(_getVCardListTypeName(listType)));
 
 			sb.append(StringPool.COLON);
 			sb.append(StringPool.SEMICOLON);
@@ -316,7 +317,7 @@ public class ContactsUtil {
 
 			ListType listType = phone.getType();
 
-			sb.append(_getVCardListTypeName(listType).toUpperCase());
+			sb.append(StringUtil.toUpperCase(_getVCardListTypeName(listType)));
 
 			sb.append(StringPool.COLON);
 			sb.append(phone.getNumber());
@@ -331,10 +332,10 @@ public class ContactsUtil {
 	private static String _getVCardListTypeName(ListType listType) {
 		String listTypeName = listType.getName();
 
-		if (listTypeName.equalsIgnoreCase("business")) {
+		if (StringUtil.equalsIgnoreCase(listTypeName, "business")) {
 			listTypeName = "work";
 		}
-		else if (listTypeName.equalsIgnoreCase("personal")) {
+		else if (StringUtil.equalsIgnoreCase(listTypeName, "personal")) {
 			listTypeName = "home";
 		}
 
@@ -352,7 +353,7 @@ public class ContactsUtil {
 
 			ListType listType = website.getType();
 
-			sb.append(_getVCardListTypeName(listType).toUpperCase());
+			sb.append(StringUtil.toUpperCase(_getVCardListTypeName(listType)));
 
 			sb.append(StringPool.COLON);
 
