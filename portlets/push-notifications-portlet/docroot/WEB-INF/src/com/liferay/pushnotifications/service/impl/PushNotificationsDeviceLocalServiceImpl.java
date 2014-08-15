@@ -117,7 +117,7 @@ public class PushNotificationsDeviceLocalServiceImpl
 	}
 
 	protected void addUserDetails(JSONObject jsonObject)
-		throws PortalException {
+		throws PortalException, SystemException {
 
 		long userId = jsonObject.getLong(
 			PushNotificationsConstants.FROM_USER_ID);

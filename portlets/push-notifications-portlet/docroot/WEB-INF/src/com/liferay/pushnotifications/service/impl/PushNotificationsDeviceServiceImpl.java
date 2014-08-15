@@ -118,7 +118,9 @@ public class PushNotificationsDeviceServiceImpl
 	}
 
 	@Override
-	public void sendPushNotification(String message) throws PortalException {
+	public void sendPushNotification(String message)
+		throws PortalException, SystemException {
+
 		PushNotificationsPermission.check(
 			getPermissionChecker(), ActionKeys.SEND_NOTIFICATION);
 
