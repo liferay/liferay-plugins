@@ -135,10 +135,7 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 			}
 		}
 
-		if (permissioned &&
-			!AlloyPermission.contains(
-				themeDisplay, controllerPath, actionPath)) {
-
+		if (!hasPermission()) {
 			renderError(
 				"you-do-not-have-permission-to-access-the-requested-resource");
 
@@ -471,6 +468,17 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 		}
 
 		return attributesMap;
+	}
+
+	protected boolean hasPermission() {
+		if (permissioned &&
+			!AlloyPermission.contains(
+				themeDisplay, controllerPath, actionPath)) {
+
+			return false;
+		}
+
+		return true;
 	}
 
 	protected long increment(String name) throws Exception {
