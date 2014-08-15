@@ -74,7 +74,7 @@ public class AlloyPermission {
 		if ((name.indexOf(CharPool.PERIOD) != -1) &&
 			permissionChecker.hasOwnerPermission(
 				permissionChecker.getCompanyId(), name, primKey,
-				_getOwnerId(name, primKey), actionId)) {
+				getOwnerId(name, primKey), actionId)) {
 
 			return true;
 		}
@@ -97,7 +97,7 @@ public class AlloyPermission {
 
 		PortletDisplay portletDisplay = themeDisplay.getPortletDisplay();
 
-		String actionId = _formatActionId(controller, action);
+		String actionId = formatActionId(controller, action);
 
 		return contains(
 			themeDisplay.getPermissionChecker(), themeDisplay.getScopeGroupId(),
@@ -105,7 +105,7 @@ public class AlloyPermission {
 			actionId);
 	}
 
-	private static String _formatActionId(String controller, String action) {
+	protected static String formatActionId(String controller, String action) {
 		StringBuilder sb = new StringBuilder(StringUtil.toUpperCase(action));
 
 		for (int i = 0; i < action.length(); i++) {
@@ -124,7 +124,7 @@ public class AlloyPermission {
 		return sb.toString();
 	}
 
-	private static long _getOwnerId(String className, long classPK) {
+	protected static long getOwnerId(String className, long classPK) {
 		BaseModel<?> baseModel = null;
 
 		try {
