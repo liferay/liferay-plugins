@@ -5,9 +5,7 @@
 	<import file="../build-common-portlet.xml" />
 
 	<target name="copy-zoom-portlet">
-		<delete dir="../zoom-portlet" />
-
-		<mkdir dir="../zoom-portlet" />
+		<remake-dir dir="../zoom-portlet" />
 
 		<copy todir="../zoom-portlet">
 			<fileset dir="." />

@@ -1775,8 +1775,7 @@ Please find a solution that does not require portal-impl.jar.
 							<uptodate srcfile="@{module.dir}/${merge.original.war.file}" targetfile="@{module.dir}/tmp" />
 						</not>
 						<then>
-							<delete dir="@{module.dir}/tmp" />
-							<mkdir dir="@{module.dir}/tmp" />
+							<remake-dir dir="@{module.dir}/tmp" />
 
 							<mkdir dir="@{module.dir}/tmp/WEB-INF/classes" />
 							<mkdir dir="@{module.dir}/tmp/WEB-INF/lib" />
@@ -1819,6 +1818,15 @@ Please find a solution that does not require portal-impl.jar.
 			/>
 
 			<var name="merge-unzip.original.war.file" unset="true" />
+		</sequential>
+	</macrodef>
+
+	<macrodef name="remake-dir">
+		<attribute name="dir" />
+
+		<sequential>
+			<delete dir="@{dir}" />
+			<mkdir dir="@{dir}" />
 		</sequential>
 	</macrodef>
 
