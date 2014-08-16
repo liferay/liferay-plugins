@@ -42,6 +42,25 @@ public class SyncSite extends StateAwareModel {
 
 	public static final int UI_EVENT_SYNC_SITE_FOLDER_MISSING = 1;
 
+	@Override
+	public boolean equals(Object object) {
+		if (!(object instanceof SyncSite)) {
+			return false;
+		}
+		else if (object == this) {
+			return true;
+		}
+
+		SyncSite syncSite = (SyncSite)object;
+
+		if (syncSite.getSyncSiteId() == syncSiteId) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+
 	public boolean getActive() {
 		return active;
 	}
@@ -100,6 +119,11 @@ public class SyncSite extends StateAwareModel {
 
 	public String getTypeSettings() {
 		return typeSettings;
+	}
+
+	@Override
+	public int hashCode() {
+		return (int)(syncSiteId^(syncSiteId>>>32));
 	}
 
 	public boolean isActive() {

@@ -94,6 +94,25 @@ public class SyncFile extends StateAwareModel {
 
 	public static final int UI_EVENT_UPLOADING = 20;
 
+	@Override
+	public boolean equals(Object object) {
+		if (!(object instanceof SyncFile)) {
+			return false;
+		}
+		else if (object == this) {
+			return true;
+		}
+
+		SyncFile syncFile = (SyncFile)object;
+
+		if (syncFile.getSyncFileId() == syncFileId) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+
 	public String getChangeLog() {
 		return changeLog;
 	}
@@ -196,6 +215,11 @@ public class SyncFile extends StateAwareModel {
 
 	public String getVersion() {
 		return version;
+	}
+
+	@Override
+	public int hashCode() {
+		return (int)(syncFileId^(syncFileId>>>32));
 	}
 
 	public boolean isFile() {
