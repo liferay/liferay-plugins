@@ -1824,6 +1824,7 @@ Please find a solution that does not require portal-impl.jar.
 
 		<sequential>
 			<delete dir="@{dir}" />
+
 			<mkdir dir="@{dir}" />
 		</sequential>
 	</macrodef>
