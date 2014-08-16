@@ -188,7 +188,9 @@ public class Watcher implements Runnable {
 							BasicFileAttributes basicFileAttributes)
 						throws IOException {
 
-						if (Files.notExists(filePath)) {
+						if (Files.notExists(filePath) ||
+							isIgnoredFilePath(filePath)) {
+
 							return FileVisitResult.CONTINUE;
 						}
 
