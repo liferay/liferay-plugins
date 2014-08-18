@@ -112,7 +112,7 @@ public class SyncAccount extends StateAwareModel {
 
 	@Override
 	public int hashCode() {
-		return (int)(syncAccountId^(syncAccountId>>>32));
+		return (int)(syncAccountId ^ (syncAccountId >>> 32));
 	}
 
 	public boolean isActive() {

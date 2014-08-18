@@ -123,7 +123,7 @@ public class SyncSite extends StateAwareModel {
 
 	@Override
 	public int hashCode() {
-		return (int)(syncSiteId^(syncSiteId>>>32));
+		return (int)(syncSiteId ^ (syncSiteId >>> 32));
 	}
 
 	public boolean isActive() {

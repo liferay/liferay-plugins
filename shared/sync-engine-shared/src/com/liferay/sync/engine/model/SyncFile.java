@@ -219,7 +219,7 @@ public class SyncFile extends StateAwareModel {
 
 	@Override
 	public int hashCode() {
-		return (int)(syncFileId^(syncFileId>>>32));
+		return (int)(syncFileId ^ (syncFileId >>> 32));
 	}
 
 	public boolean isFile() {
