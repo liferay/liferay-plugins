@@ -117,13 +117,13 @@ public class Session {
 	}
 
 	public HttpResponse execute(HttpRequest httpRequest) throws Exception {
-		return execute(httpRequest, _getBasicHttpContext());
+		return execute(httpRequest, getBasicHttpContext());
 	}
 
 	public <T> T execute(HttpRequest httpRequest, Handler<? extends T> handler)
 		throws Exception {
 
-		return execute(httpRequest, handler, _getBasicHttpContext());
+		return execute(httpRequest, handler, getBasicHttpContext());
 	}
 
 	public <T> T execute(
@@ -188,7 +188,7 @@ public class Session {
 	public HttpResponse executeGet(String urlPath) throws Exception {
 		HttpGet httpGet = new HttpGet(urlPath);
 
-		return _httpClient.execute(_httpHost, httpGet, _getBasicHttpContext());
+		return _httpClient.execute(_httpHost, httpGet, getBasicHttpContext());
 	}
 
 	public <T> T executeGet(String urlPath, Handler<? extends T> handler)
@@ -197,7 +197,7 @@ public class Session {
 		HttpGet httpGet = new HttpGet(urlPath);
 
 		return _httpClient.execute(
-			_httpHost, httpGet, handler, _getBasicHttpContext());
+			_httpHost, httpGet, handler, getBasicHttpContext());
 	}
 
 	public HttpResponse executePost(
@@ -208,7 +208,7 @@ public class Session {
 
 		_buildHttpPostBody(httpPost, parameters);
 
-		return _httpClient.execute(_httpHost, httpPost, _getBasicHttpContext());
+		return _httpClient.execute(_httpHost, httpPost, getBasicHttpContext());
 	}
 
 	public <T> T executePost(
@@ -221,7 +221,20 @@ public class Session {
 		_buildHttpPostBody(httpPost, parameters);
 
 		return _httpClient.execute(
-			_httpHost, httpPost, handler, _getBasicHttpContext());
+			_httpHost, httpPost, handler, getBasicHttpContext());
+	}
+
+	public BasicHttpContext getBasicHttpContext() {
+		if (_basicHttpContext != null) {
+			return _basicHttpContext;
+		}
+
+		_basicHttpContext = new BasicHttpContext();
+
+		_basicHttpContext.setAttribute(
+			HttpClientContext.AUTH_CACHE, _getBasicAuthCache());
+
+		return _basicHttpContext;
 	}
 
 	private void _buildHttpPostBody(
@@ -260,15 +273,6 @@ public class Session {
 		basicAuthCache.put(_httpHost, basicScheme);
 
 		return basicAuthCache;
-	}
-
-	private BasicHttpContext _getBasicHttpContext() {
-		BasicHttpContext basicHttpContext = new BasicHttpContext();
-
-		basicHttpContext.setAttribute(
-			HttpClientContext.AUTH_CACHE, _getBasicAuthCache());
-
-		return basicHttpContext;
 	}
 
 	private ContentBody _getFileBody(
@@ -326,6 +330,7 @@ public class Session {
 
 	private static HttpRoutePlanner _httpRoutePlanner;
 
+	private BasicHttpContext _basicHttpContext;
 	private ExecutorService _executorService;
 	private HttpClient _httpClient;
 	private HttpHost _httpHost;
