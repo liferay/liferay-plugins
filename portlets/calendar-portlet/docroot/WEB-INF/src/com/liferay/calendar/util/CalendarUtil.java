@@ -240,6 +240,12 @@ public class CalendarUtil {
 		jsonObject.put("firstReminder", calendarBooking.getFirstReminder());
 		jsonObject.put(
 			"firstReminderType", calendarBooking.getFirstReminderType());
+
+		List<CalendarBooking> childCalendarBookings =
+			calendarBooking.getChildCalendarBookings();
+
+		jsonObject.put(
+			"hasChildCalendarBookings", childCalendarBookings.size() > 1);
 		jsonObject.put("instanceIndex", calendarBooking.getInstanceIndex());
 		jsonObject.put("location", calendarBooking.getLocation());
 		jsonObject.put(
