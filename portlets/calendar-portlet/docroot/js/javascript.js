@@ -1620,7 +1620,7 @@ AUI.add(
 					_queueableQuestionResolver: function(data) {
 						var instance = this;
 
-						var answers = data[4];
+						var answers = data[3];
 						var duration = data[2];
 						var offset = data[1];
 						var schedulerEvent = data[0];
@@ -1641,7 +1641,7 @@ AUI.add(
 					_queueableQuestionUpdateAllInvited: function(data) {
 						var instance = this;
 
-						var answers = data[4];
+						var answers = data[3];
 
 						var showNextQuestion = A.bind(instance.queue.run, instance.queue);
 
@@ -1668,7 +1668,7 @@ AUI.add(
 					_queueableQuestionUpdateRecurring: function(data) {
 						var instance = this;
 
-						var answers = data[4];
+						var answers = data[3];
 
 						var showNextQuestion = A.bind(instance.queue.run, instance.queue);
 
@@ -1704,7 +1704,7 @@ AUI.add(
 					_queueableQuestionUserCalendarOnly: function(data) {
 						var instance = this;
 
-						var answers = data[4];
+						var answers = data[3];
 						var schedulerEvent = data[0];
 
 						var showNextQuestion = A.bind(instance.queue.run, instance.queue);
@@ -1750,7 +1750,6 @@ AUI.add(
 							schedulerEvent,
 							instance._getCalendarBookingOffset(schedulerEvent, changedAttributes),
 							instance._getCalendarBookingDuration(schedulerEvent),
-							instance._hasChildCalendarBookingsPromise(schedulerEvent),
 							answers
 						)
 						.then(
