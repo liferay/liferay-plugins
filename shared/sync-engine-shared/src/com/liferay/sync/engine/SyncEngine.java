@@ -237,8 +237,7 @@ public class SyncEngine {
 
 				@Override
 				public FileVisitResult preVisitDirectory(
-						Path filePath, BasicFileAttributes basicFileAttributes)
-					throws IOException {
+					Path filePath, BasicFileAttributes basicFileAttributes) {
 
 					SyncFile syncFile = SyncFileService.fetchSyncFile(
 						filePath.toString(), syncAccountId);
