@@ -452,23 +452,6 @@ AUI.add(
 				);
 			},
 
-			hasChildCalendarBookings: function(schedulerEvent, callback) {
-				var instance = this;
-
-				instance.invokeService(
-					{
-						'/calendar-portlet.calendarbooking/has-child-calendar-bookings': {
-							parentCalendarBookingId: schedulerEvent.get('calendarBookingId')
-						}
-					},
-					{
-						success: function() {
-							callback(this.get('responseData'));
-						}
-					}
-				);
-			},
-
 			invokeResourceURL: function(resourceId, parameters, callback) {
 				var instance = this;
 
@@ -1408,16 +1391,6 @@ AUI.add(
 						}
 
 						return offset;
-					},
-
-					_hasChildCalendarBookingsPromise: function(schedulerEvent) {
-						var instance = this;
-
-						return A.Promise(
-							function(resolve) {
-								CalendarUtil.hasChildCalendarBookings(schedulerEvent, resolve);
-							}
-						);
 					},
 
 					_onClickAddEvent: function(event) {
