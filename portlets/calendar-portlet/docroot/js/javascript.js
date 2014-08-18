@@ -268,6 +268,7 @@ AUI.add(
 						endDate: endDate.getTime(),
 						firstReminder: calendarBooking.firstReminder,
 						firstReminderType: calendarBooking.firstReminderType,
+						hasChildCalendarBookings: calendarBooking.hasChildCalendarBookings,
 						instanceIndex: calendarBooking.instanceIndex,
 						location: calendarBooking.location,
 						parentCalendarBookingId: calendarBooking.parentCalendarBookingId,
@@ -897,6 +898,11 @@ AUI.add(
 						setter: String,
 						validator: isValue,
 						value: CalendarUtil.NOTIFICATION_DEFAULT_TYPE
+					},
+
+					hasChildCalendarBookings: {
+						validator: isBoolean,
+						value: false
 					},
 
 					instanceIndex: {
@@ -1548,7 +1554,6 @@ AUI.add(
 					_promptSchedulerEventUpdate: function(data) {
 						var instance = this;
 
-						var hasChild = data[3];
 						var schedulerEvent = data[0];
 
 						instance.queue = new A.AsyncQueue();
@@ -1566,7 +1571,7 @@ AUI.add(
 						}
 
 						if (schedulerEvent.isMasterBooking()) {
-							if (hasChild) {
+							if (schedulerEvent.get('hasChildCalendarBookings')) {
 								instance.queue.add(
 									{
 										args: [data],
