@@ -403,6 +403,7 @@ public class SolrIndexSearcherImpl implements IndexSearcher {
 			solrQuery.setHighlight(true);
 			solrQuery.setHighlightFragsize(
 				queryConfig.getHighlightFragmentSize());
+			solrQuery.setHighlightRequireFieldMatch(true);
 			solrQuery.setHighlightSnippets(
 				queryConfig.getHighlightSnippetSize());
 
