@@ -952,7 +952,7 @@ public class CalendarPortlet extends MVCPortlet {
 		if (calendarIds.length > 0) {
 			JSONObject jsonObject = CalendarUtil.getCalendarRenderingRules(
 				themeDisplay, calendarIds, statuses, startTime, endTime,
-				ruleName);
+				ruleName, getTimeZone(resourceRequest));
 
 			writeJSON(resourceRequest, resourceResponse, jsonObject);
 		}

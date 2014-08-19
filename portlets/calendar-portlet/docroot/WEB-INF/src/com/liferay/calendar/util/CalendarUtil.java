@@ -52,7 +52,7 @@ public class CalendarUtil {
 
 	public static JSONObject getCalendarRenderingRules(
 		ThemeDisplay themeDisplay, long[] calendarIds, int[] statuses,
-		long startTime, long endTime, String ruleName) {
+		long startTime, long endTime, String ruleName, TimeZone timeZone) {
 
 		List<CalendarBooking> calendarBookings =
 			CalendarBookingLocalServiceUtil.search(
@@ -65,9 +65,9 @@ public class CalendarUtil {
 
 		for (CalendarBooking calendarBooking : calendarBookings) {
 			java.util.Calendar startTimeJCalendar = JCalendarUtil.getJCalendar(
-				calendarBooking.getStartTime());
+				calendarBooking.getStartTime(), timeZone);
 			java.util.Calendar endTimeJCalendar = JCalendarUtil.getJCalendar(
-				calendarBooking.getEndTime());
+				calendarBooking.getEndTime(), timeZone);
 
 			long days = JCalendarUtil.getDaysBetween(
 				startTimeJCalendar, endTimeJCalendar);
