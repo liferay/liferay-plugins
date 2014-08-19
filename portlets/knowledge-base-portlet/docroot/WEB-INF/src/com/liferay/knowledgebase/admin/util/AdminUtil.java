@@ -371,6 +371,10 @@ public class AdminUtil {
 
 			Attributes attributes = element.getAttributes();
 
+			if (attributes == null) {
+				continue;
+			}
+
 			Attribute changeTypeAttribute = attributes.get("changeType");
 
 			if (changeTypeAttribute != null) {
