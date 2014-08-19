@@ -155,16 +155,15 @@ public class MessageLocalServiceImpl extends MessageLocalServiceBaseImpl {
 	}
 
 	public int getFolderUnreadMessagesCount(long folderId) {
-		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
-			Message.class, getClassLoader());
+		List<Message> msgs = messagePersistence.findByFolderId(folderId);
+		int cnt = 0;
+		for (Message m : msgs) {
+			if (!m.getFlags().contains(String.valueOf(MailConstants.FLAG_SEEN))) {
+				cnt++;
+			}
+		}
 
-		dynamicQuery.add(RestrictionsFactoryUtil.eq("folderId", folderId));
-		dynamicQuery.add(
-			RestrictionsFactoryUtil.not(
-				RestrictionsFactoryUtil.like(
-					"flags", "%" + MailConstants.FLAG_SEEN + ",%")));
-
-		return (int)dynamicQueryCount(dynamicQuery);
+		return cnt;
 	}
 
 	public Message getMessage(long folderId, long remoteMessageId)
