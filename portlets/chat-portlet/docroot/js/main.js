@@ -93,10 +93,10 @@ AUI().use(
 				return now() - instance._getOffset();
 			},
 
-			getUserImagePath: function(userId) {
+			getUserImagePath: function(portraitURL) {
 				var instance = this;
 
-				return themeDisplay.getPathImage() + '/user_portrait?img_id=' + userId;
+				return themeDisplay.getPathImage() + portraitURL;
 			},
 
 			_convertToClientTimestamp: function(time) {
@@ -927,7 +927,7 @@ AUI().use(
 					{
 						panelId: options.userId,
 						panelTitle: options.fullName,
-						panelIcon: options.portraitId,
+						panelIcon: options.portraitURL,
 						statusMessage: options.statusMessage
 					}
 				);
@@ -1301,7 +1301,7 @@ AUI().use(
 
 					currentBuddies[buddy.userId] = buddy;
 
-					var userImagePath = Liferay.Chat.Util.getUserImagePath(buddy.portraitId);
+					var userImagePath = Liferay.Chat.Util.getUserImagePath(buddy.portraitURL);
 
 					buffer.push(
 						'<li class="user active" data-userId="' + buddy.userId + '" data-groupId="' + buddy.groupId + '">' +
