@@ -21,6 +21,7 @@ import com.liferay.sync.engine.model.SyncWatchEvent;
 import com.liferay.sync.engine.service.SyncAccountService;
 import com.liferay.sync.engine.service.SyncFileService;
 import com.liferay.sync.engine.service.SyncSiteService;
+import com.liferay.sync.engine.util.BidirectionalMap;
 import com.liferay.sync.engine.util.FileUtil;
 
 import java.io.IOException;
@@ -33,9 +34,7 @@ import java.nio.file.SimpleFileVisitor;
 import java.nio.file.attribute.BasicFileAttributes;
 
 import java.util.ConcurrentModificationException;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import name.pachler.nio.file.FileSystem;
 import name.pachler.nio.file.FileSystems;
@@ -67,10 +66,14 @@ public class Watcher implements Runnable {
 
 		_watchService = fileSystem.newWatchService();
 
-		register(filePath, recursive);
+		registerFilePath(filePath, recursive);
+
+		WatcherRegistry.register(_watchEventListener.getSyncAccountId(), this);
 	}
 
 	public void close() {
+		WatcherRegistry.unregister(_watchEventListener.getSyncAccountId());
+
 		try {
 			_watchService.close();
 		}
@@ -137,7 +140,7 @@ public class Watcher implements Runnable {
 						if (Files.isDirectory(
 								childFilePath, LinkOption.NOFOLLOW_LINKS)) {
 
-							register(childFilePath, true);
+							registerFilePath(childFilePath, true);
 						}
 					}
 					catch (IOException ioe) {
@@ -158,6 +161,18 @@ public class Watcher implements Runnable {
 					break;
 				}
 			}
+		}
+	}
+
+	public void unregisterFilePath(Path filePath) {
+		WatchKey watchKey = _filePaths.getKey(filePath);
+
+		_filePaths.removeValue(filePath);
+
+		watchKey.cancel();
+
+		if (_logger.isTraceEnabled()) {
+			_logger.trace("Unregistered file path {}", filePath);
 		}
 	}
 
@@ -306,7 +321,7 @@ public class Watcher implements Runnable {
 		}
 	}
 
-	protected void register(Path filePath, boolean recursive)
+	protected void registerFilePath(Path filePath, boolean recursive)
 		throws IOException {
 
 		if (Files.notExists(filePath)) {
@@ -320,7 +335,8 @@ public class Watcher implements Runnable {
 
 	private static Logger _logger = LoggerFactory.getLogger(Watcher.class);
 
-	private Map<WatchKey, Path> _filePaths = new HashMap<WatchKey, Path>();
+	private BidirectionalMap<WatchKey, Path> _filePaths =
+		new BidirectionalMap<WatchKey, Path>();
 	private boolean _recursive;
 	private WatchEventListener _watchEventListener;
 	private WatchService _watchService;

@@ -20,6 +20,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.liferay.sync.engine.documentlibrary.event.DownloadFileEvent;
 import com.liferay.sync.engine.documentlibrary.event.Event;
 import com.liferay.sync.engine.documentlibrary.model.SyncDLObjectUpdate;
+import com.liferay.sync.engine.filesystem.Watcher;
+import com.liferay.sync.engine.filesystem.WatcherRegistry;
 import com.liferay.sync.engine.model.SyncFile;
 import com.liferay.sync.engine.model.SyncSite;
 import com.liferay.sync.engine.service.SyncFileService;
@@ -108,6 +110,8 @@ public class GetSyncDLObjectUpdateHandler extends BaseSyncDLObjectHandler {
 			return;
 		}
 
+		final Watcher watcher = WatcherRegistry.getWatcher(getSyncAccountId());
+
 		Files.walkFileTree(
 			sourceFilePath,
 			new SimpleFileVisitor<Path>() {
@@ -120,6 +124,17 @@ public class GetSyncDLObjectUpdateHandler extends BaseSyncDLObjectHandler {
 					Files.deleteIfExists(filePath);
 
 					return FileVisitResult.CONTINUE;
+				}
+
+				@Override
+				public FileVisitResult preVisitDirectory(
+						Path filePath, BasicFileAttributes basicFileAttributes)
+					throws IOException {
+
+					watcher.unregisterFilePath(filePath);
+
+					return super.preVisitDirectory(
+						filePath, basicFileAttributes);
 				}
 
 				@Override
@@ -250,6 +265,8 @@ public class GetSyncDLObjectUpdateHandler extends BaseSyncDLObjectHandler {
 				}
 			}
 			catch (Exception e) {
+				_logger.error(e.getMessage(), e);
+
 				if (e instanceof FileSystemException) {
 					String message = e.getMessage();
 
