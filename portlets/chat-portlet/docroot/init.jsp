@@ -35,6 +35,7 @@ page import="com.liferay.portal.kernel.util.StringPool" %><%@
 page import="com.liferay.portal.kernel.util.Validator" %><%@
 page import="com.liferay.portal.model.ContactConstants" %><%@
 page import="com.liferay.portal.model.Portlet" %><%@
+page import="com.liferay.portal.model.UserConstants" %><%@
 page import="com.liferay.portal.service.PortletLocalServiceUtil" %><%@
 page import="com.liferay.portal.util.PortalUtil" %><%@
 page import="com.liferay.portal.webserver.WebServerServletTokenUtil" %>

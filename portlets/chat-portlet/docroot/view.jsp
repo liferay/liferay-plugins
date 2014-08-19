@@ -87,6 +87,7 @@
 
 										<%
 										for (Object[] buddy : buddies) {
+											String userUuid = (String)buddy[0];
 											long userId = (Long)buddy[1];
 											String firstName = (String)buddy[3];
 											String middleName = (String)buddy[4];
@@ -95,7 +96,7 @@
 										%>
 
 											<li class="active user" userId="<%= userId %>">
-												<img alt="" src="<%= themeDisplay.getPathImage() %>/user_portrait?img_id=<%= portraitId %>&t=<%= WebServerServletTokenUtil.getToken(portraitId) %>" />
+												<img alt="" src="<%= UserConstants.getPortraitURL(themeDisplay.getPathImage(), true, portraitId, userUuid) %>" />
 
 												<div class="name">
 													<%= HtmlUtil.escape(ContactConstants.getFullName(firstName, middleName, lastName)) %>
