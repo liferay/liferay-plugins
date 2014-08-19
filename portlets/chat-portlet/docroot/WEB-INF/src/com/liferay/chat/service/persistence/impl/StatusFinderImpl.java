@@ -59,6 +59,7 @@ public class StatusFinderImpl
 
 			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
+			q.addScalar("userUuid", Type.STRING);
 			q.addScalar("userId", Type.LONG);
 			q.addScalar("screenName", Type.STRING);
 			q.addScalar("firstName", Type.STRING);
@@ -96,6 +97,7 @@ public class StatusFinderImpl
 
 			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
+			q.addScalar("userUuid", Type.STRING);
 			q.addScalar("userId", Type.LONG);
 			q.addScalar("screenName", Type.STRING);
 			q.addScalar("firstName", Type.STRING);
@@ -139,6 +141,7 @@ public class StatusFinderImpl
 
 			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
+			q.addScalar("userUuid", Type.STRING);
 			q.addScalar("userId", Type.LONG);
 			q.addScalar("screenName", Type.STRING);
 			q.addScalar("firstName", Type.STRING);
