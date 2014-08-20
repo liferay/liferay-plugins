@@ -339,7 +339,9 @@ public class GetSyncDLObjectUpdateHandler extends BaseSyncDLObjectHandler {
 				downloadFile(sourceSyncFile, null, false);
 			}
 		}
-		else if (FileUtil.hasFileChanged(targetSyncFile, sourceFilePath)) {
+		else if (targetSyncFile.isFile() &&
+				 FileUtil.hasFileChanged(targetSyncFile, sourceFilePath)) {
+
 			downloadFile(
 				sourceSyncFile, sourceVersion,
 				!IODeltaUtil.isIgnoredFilePatchingExtension(targetSyncFile));
