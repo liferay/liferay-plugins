@@ -81,7 +81,9 @@ public class SOAnnouncementsUserNotificationHandler
 		return StringUtil.replace(
 			getBodyTemplate(), new String[] {"[$BODY$]", "[$TITLE$]"},
 			new String[] {
-				StringUtil.shorten(announcementEntry.getContent(), 50), title
+				HtmlUtil.escape(
+					StringUtil.shorten(announcementEntry.getTitle(), 70)),
+				title
 			});
 	}
 
