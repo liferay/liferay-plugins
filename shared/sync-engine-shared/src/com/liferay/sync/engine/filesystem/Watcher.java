@@ -94,11 +94,10 @@ public class Watcher implements Runnable {
 			try {
 				watchKey = _watchService.take();
 			}
+			catch (ConcurrentModificationException cme) {
+				continue;
+			}
 			catch (Exception e) {
-				if (e instanceof ConcurrentModificationException) {
-					continue;
-				}
-
 				break;
 			}
 
@@ -308,15 +307,15 @@ public class Watcher implements Runnable {
 			SyncSite syncSite = SyncSiteService.fetchSyncSite(
 				syncAccount.getFilePathName(), syncAccount.getSyncAccountId());
 
-			if (syncSite != null) {
+			if (syncSite == null) {
+				fireWatchEventListener(
+					SyncWatchEvent.EVENT_TYPE_DELETE, filePath);
+			}
+			else {
 				syncSite.setActive(false);
 				syncSite.setUiEvent(SyncSite.UI_EVENT_SYNC_SITE_FOLDER_MISSING);
 
 				SyncSiteService.update(syncSite);
-			}
-			else {
-				fireWatchEventListener(
-					SyncWatchEvent.EVENT_TYPE_DELETE, filePath);
 			}
 		}
 	}

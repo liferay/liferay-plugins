@@ -131,16 +131,14 @@ public class DownloadFileHandler extends BaseHandler {
 
 			SyncFileService.updateFileKeySyncFile(syncFile);
 		}
-		catch (Exception e) {
-			if (e instanceof FileSystemException) {
-				String message = e.getMessage();
+		catch (FileSystemException fse) {
+			String message = fse.getMessage();
 
-				if (message.contains("File name too long")) {
-					syncFile.setState(SyncFile.STATE_ERROR);
-					syncFile.setUiEvent(SyncFile.UI_EVENT_FILE_NAME_TOO_LONG);
+			if (message.contains("File name too long")) {
+				syncFile.setState(SyncFile.STATE_ERROR);
+				syncFile.setUiEvent(SyncFile.UI_EVENT_FILE_NAME_TOO_LONG);
 
-					SyncFileService.update(syncFile);
-				}
+				SyncFileService.update(syncFile);
 			}
 		}
 		finally {
