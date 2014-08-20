@@ -1561,6 +1561,44 @@ html.aui {
 	padding-bottom: 0;
 }
 
+/* ---------- Portlet: powwow ---------- */
+
+.powwow-portlet {
+	.taglib-header {
+		margin-top: 0;
+		padding: 0 10px;
+	}
+
+	.button-holder, .lfr-search-container  {
+		margin-left: 10px;
+		margin-right: 10px;
+	}
+
+	.form {
+		margin: 10px;
+
+		.button-holder {
+			margin: 20px 0;
+		}
+	}
+
+	.lfr-form-row {
+		border-top-width: 0;
+		margin: 0;
+		padding: 10px 5px 0 5px;
+
+		.row-fields {
+			float: left;
+		}
+
+		.lfr-autorow-controls {
+			float: left;
+			margin-top: 25px;
+			position: initial;
+		}
+	}
+}
+
 /* ---------- Portlet: private messaging ---------- */
 
 .private-messaging-portlet {
