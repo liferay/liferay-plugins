@@ -44,11 +44,12 @@ public class SyncSite extends StateAwareModel {
 
 	@Override
 	public boolean equals(Object object) {
+		if (object == this) {
+			return true;
+		}
+
 		if (!(object instanceof SyncSite)) {
 			return false;
-		}
-		else if (object == this) {
-			return true;
 		}
 
 		SyncSite syncSite = (SyncSite)object;

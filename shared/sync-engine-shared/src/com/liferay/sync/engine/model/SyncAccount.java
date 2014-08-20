@@ -45,11 +45,12 @@ public class SyncAccount extends StateAwareModel {
 
 	@Override
 	public boolean equals(Object object) {
+		if (object == this) {
+			return true;
+		}
+
 		if (!(object instanceof SyncAccount)) {
 			return false;
-		}
-		else if (object == this) {
-			return true;
 		}
 
 		SyncAccount syncAccount = (SyncAccount)object;

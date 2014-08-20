@@ -96,11 +96,12 @@ public class SyncFile extends StateAwareModel {
 
 	@Override
 	public boolean equals(Object object) {
+		if (object == this) {
+			return true;
+		}
+
 		if (!(object instanceof SyncFile)) {
 			return false;
-		}
-		else if (object == this) {
-			return true;
 		}
 
 		SyncFile syncFile = (SyncFile)object;
