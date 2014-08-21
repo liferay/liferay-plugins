@@ -982,7 +982,7 @@ AUI().use(
 							instance._createChatSession(
 								{
 									fullName: buddy.fullName,
-									portraitId: buddy.portraitId,
+									portraitURL: buddy.portraitURL,
 									statusMessage: buddy.statusMessage,
 									userId: userId
 								}
@@ -1255,7 +1255,7 @@ AUI().use(
 								{
 									fullName: buddy.fullName,
 									open: false,
-									portraitId: buddy.portraitId,
+									portraitURL: buddy.portraitURL,
 									statusMessage: buddy.statusMessage,
 									userId: item
 								}
@@ -1380,7 +1380,7 @@ AUI().use(
 									{
 										fullName: buddy.fullName,
 										statusMessage: buddy.statusMessage,
-										portraitId: buddy.portraitId,
+										portraitURL: buddy.portraitURL,
 										userId: buddy.userId
 									}
 								);
