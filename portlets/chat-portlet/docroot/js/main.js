@@ -1378,10 +1378,10 @@ AUI().use(
 							if (!chat && entry.content) {
 								chat = instance._createChatSession(
 									{
-										portraitId: buddy.portraitId,
-										userId: buddy.userId,
 										fullName: buddy.fullName,
-										statusMessage: buddy.statusMessage
+										statusMessage: buddy.statusMessage,
+										portraitId: buddy.portraitId,
+										userId: buddy.userId
 									}
 								);
 							}
