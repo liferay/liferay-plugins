@@ -48,20 +48,8 @@ public enum Weekday {
 		throw new IllegalArgumentException("Invalid value " + value);
 	}
 
-	public int getPosition() {
-		return _position;
-	}
-
 	public String getValue() {
 		return _value;
-	}
-
-	public void setPosition(int position) {
-		if ((position < -53) || (position > 53)) {
-			throw new IllegalArgumentException();
-		}
-
-		_position = position;
 	}
 
 	@Override
@@ -73,7 +61,6 @@ public enum Weekday {
 		_value = value;
 	}
 
-	private int _position;
 	private String _value;
 
 }
