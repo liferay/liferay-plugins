@@ -173,7 +173,9 @@
 		}
 
 		.toggler-content-collapsed {
-			display: none;
+			display: block;
+			height: 0;
+			overflow: hidden;
 		}
 
 		.entry {
