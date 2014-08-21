@@ -158,7 +158,7 @@ public class CalendarStagedModelDataHandler
 			portletDataContext.getSourceGroupId());
 
 		if ((sourceGroup == null) ||
-			!calendarName.equals(sourceGroup.getName())) {
+			!calendarName.equals(sourceGroup.getDescriptiveName())) {
 
 			return calendar.getNameMap();
 		}

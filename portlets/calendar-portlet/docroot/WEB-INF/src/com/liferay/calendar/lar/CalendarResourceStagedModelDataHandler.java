@@ -209,7 +209,7 @@ public class CalendarResourceStagedModelDataHandler
 			portletDataContext.getSourceGroupId());
 
 		if ((sourceGroup == null) ||
-			!calendarResourceName.equals(sourceGroup.getName())) {
+			!calendarResourceName.equals(sourceGroup.getDescriptiveName())) {
 
 			return calendarResource.getNameMap();
 		}
