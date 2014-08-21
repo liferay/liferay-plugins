@@ -18,6 +18,7 @@ import com.liferay.calendar.model.CalendarBooking;
 import com.liferay.calendar.model.CalendarResource;
 import com.liferay.calendar.notification.NotificationType;
 import com.liferay.calendar.recurrence.Frequency;
+import com.liferay.calendar.recurrence.PositionalWeekday;
 import com.liferay.calendar.recurrence.Recurrence;
 import com.liferay.calendar.recurrence.RecurrenceSerializer;
 import com.liferay.calendar.recurrence.Weekday;
@@ -27,6 +28,7 @@ import com.liferay.portal.kernel.cal.DayAndPosition;
 import com.liferay.portal.kernel.cal.TZSRecurrence;
 import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.Time;
 import com.liferay.portal.kernel.uuid.PortalUUIDUtil;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
@@ -534,28 +536,40 @@ public class CalendarImporterLocalServiceImpl
 
 		int interval = tzsRecurrence.getInterval();
 
-		List<Weekday> weekdays = new ArrayList<Weekday>();
+		List<PositionalWeekday> weekdays = new ArrayList<PositionalWeekday>();
 
 		if ((frequency == Frequency.DAILY) && (interval == 0)) {
 			frequency = Frequency.WEEKLY;
 
 			interval = 1;
 
-			weekdays.add(Weekday.MONDAY);
-			weekdays.add(Weekday.TUESDAY);
-			weekdays.add(Weekday.WEDNESDAY);
-			weekdays.add(Weekday.THURSDAY);
-			weekdays.add(Weekday.FRIDAY);
+			weekdays.add(new PositionalWeekday(Weekday.MONDAY, 0));
+			weekdays.add(new PositionalWeekday(Weekday.TUESDAY, 0));
+			weekdays.add(new PositionalWeekday(Weekday.WEDNESDAY, 0));
+			weekdays.add(new PositionalWeekday(Weekday.THURSDAY, 0));
+			weekdays.add(new PositionalWeekday(Weekday.FRIDAY, 0));
 		}
-		else if (frequency == Frequency.WEEKLY) {
+		else if ((frequency == Frequency.MONTHLY) ||
+				 (frequency == Frequency.WEEKLY)) {
+
 			DayAndPosition[] dayAndPositions = tzsRecurrence.getByDay();
 
-			for (DayAndPosition dayAndPosition : dayAndPositions) {
-				Weekday weekday = _weekdayMap.get(
-					dayAndPosition.getDayOfWeek());
+			if (dayAndPositions != null) {
+				for (DayAndPosition dayAndPosition : dayAndPositions) {
+					Weekday weekday = _weekdayMap.get(
+						dayAndPosition.getDayOfWeek());
 
-				weekdays.add(weekday);
+					PositionalWeekday positionalWeekday = new PositionalWeekday(
+						weekday, dayAndPosition.getDayPosition());
+
+					weekdays.add(positionalWeekday);
+				}
 			}
+		}
+		else if (frequency == Frequency.YEARLY) {
+			List<Integer> months = ListUtil.toList(tzsRecurrence.getByMonth());
+
+			recurrence.setMonths(months);
 		}
 
 		recurrence.setInterval(interval);
