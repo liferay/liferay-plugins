@@ -91,7 +91,8 @@ public class DefaultPortalKaleoManager
 		List<Company> companies = CompanyLocalServiceUtil.getCompanies(false);
 
 		for (Company company : companies) {
-			deployDefaultDefinitionLinks(company.getCompanyId());
+			PortalKaleoManagerUtil.deployDefaultDefinitionLinks(
+				company.getCompanyId());
 		}
 	}
 
@@ -120,7 +121,8 @@ public class DefaultPortalKaleoManager
 		List<Company> companies = CompanyLocalServiceUtil.getCompanies();
 
 		for (Company company : companies) {
-			deployDefaultDefinitions(company.getCompanyId());
+			PortalKaleoManagerUtil.deployDefaultDefinitions(
+				company.getCompanyId());
 		}
 	}
 
@@ -169,7 +171,7 @@ public class DefaultPortalKaleoManager
 		List<Company> companies = CompanyLocalServiceUtil.getCompanies();
 
 		for (Company company : companies) {
-			deployDefaultRoles(company.getCompanyId());
+			PortalKaleoManagerUtil.deployDefaultRoles(company.getCompanyId());
 		}
 	}
 
