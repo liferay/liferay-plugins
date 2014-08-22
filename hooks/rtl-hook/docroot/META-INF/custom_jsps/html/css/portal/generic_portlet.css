@@ -43,15 +43,19 @@
 	border-collapse: collapse;
 	clear: both;
 
-	tr td, tr th {
-		padding: 0 5px;
+	> tbody, > thead, > tfoot {
+		> tr {
+			> td, > th {
+				padding: 0 5px;
 
-		&:first-child, &.first-child {
-			padding-left: 0;
-		}
+				&:first-child, &.first-child {
+					padding-left: 0;
+				}
 
-		&:last-child, &.last-child {
-			padding-right: 0;
+				&:last-child, &.last-child {
+					padding-right: 0;
+				}
+			}
 		}
 	}
 }
@@ -105,8 +109,12 @@
 	background: url() no-repeat 0 50%;
 }
 
-.lfr-table tr th {
-	font-weight: bold;
+.lfr-table {
+	> tbody, > thead, > tfoot {
+		> tr > th {
+			font-weight: bold;
+		}
+	}
 }
 
 .lfr-checkbox-preselected, .lfr-configurator-visibility {
