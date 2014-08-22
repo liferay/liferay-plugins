@@ -371,20 +371,20 @@ else {
 				var unescapedSiteName = Lang.String.unescapeHTML(siteName.getContent());
 
 				if (currentTargetClass == 'leave-site') {
-					confirmMessage = '<%= LanguageUtil.format(request, "are-you-sure-you-want-to-leave-x", "' + unescapedSiteName + '", false) %>';
-					siteAction = '<%= LanguageUtil.format(request, "you-left-x", new String[] {"' + unescapedSiteName + '"}, false) %>';
+					confirmMessage = '<%= UnicodeLanguageUtil.format(request, "are-you-sure-you-want-to-leave-x", "' + unescapedSiteName + '", false) %>';
+					siteAction = '<%= UnicodeLanguageUtil.format(request, "you-left-x", new String[] {"' + unescapedSiteName + '"}, false) %>';
 				}
 				else if (currentTargetClass == 'join-site') {
-					confirmMessage = '<%= LanguageUtil.format(request, "are-you-sure-you-want-to-join-x", "' + unescapedSiteName + '", false) %>';
-					siteAction = '<%= LanguageUtil.format(request, "you-joined-x", new String[] {"' + unescapedSiteName + '"}, false) %>';
+					confirmMessage = '<%= UnicodeLanguageUtil.format(request, "are-you-sure-you-want-to-join-x", "' + unescapedSiteName + '", false) %>';
+					siteAction = '<%= UnicodeLanguageUtil.format(request, "you-joined-x", new String[] {"' + unescapedSiteName + '"}, false) %>';
 				}
 				else if (currentTargetClass == 'request-site') {
-					confirmMessage = '<%= LanguageUtil.format(request, "this-is-a-restricted-site-do-you-want-to-send-a-membership-request-to-x", "' + unescapedSiteName + '", false) %>';
-					siteAction = '<%= LanguageUtil.get(request, "your-membership-request-has-been-sent") %>';
+					confirmMessage = '<%= UnicodeLanguageUtil.format(request, "this-is-a-restricted-site-do-you-want-to-send-a-membership-request-to-x", "' + unescapedSiteName + '", false) %>';
+					siteAction = '<%= UnicodeLanguageUtil.get(request, "your-membership-request-has-been-sent") %>';
 				}
 				else {
-					confirmMessage = '<%= LanguageUtil.format(request, "are-you-sure-you-want-to-delete-x", "' + unescapedSiteName + '", false) %>';
-					siteAction = '<%= LanguageUtil.format(request, "you-deleted-x", new String[] {"' + unescapedSiteName + '"}, false) %>';
+					confirmMessage = '<%= UnicodeLanguageUtil.format(request, "are-you-sure-you-want-to-delete-x", "' + unescapedSiteName + '", false) %>';
+					siteAction = '<%= UnicodeLanguageUtil.format(request, "you-deleted-x", new String[] {"' + unescapedSiteName + '"}, false) %>';
 				}
 
 				if (confirm(confirmMessage)) {
