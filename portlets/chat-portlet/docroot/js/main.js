@@ -1304,7 +1304,7 @@ AUI().use(
 					var userImagePath = Liferay.Chat.Util.getUserImagePath(buddy.portraitURL);
 
 					buffer.push(
-						'<li class="user active" data-userId="' + buddy.userId + '" data-groupId="' + buddy.groupId + '">' +
+						'<li class="active user" data-groupId="' + buddy.groupId + '" data-userId="' + buddy.userId + '">' +
 							'<img alt="" src="' + userImagePath + '" />' +
 							'<div class="name">' + LString.escapeHTML(buddy.fullName) + '</div>' +
 							'<div class="buddy-services">');
