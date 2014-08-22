@@ -24,12 +24,12 @@ import com.liferay.calendar.recurrence.RecurrenceSerializer;
 import com.liferay.calendar.recurrence.Weekday;
 import com.liferay.calendar.service.base.CalendarImporterLocalServiceBaseImpl;
 import com.liferay.calendar.util.CalendarResourceUtil;
+import com.liferay.compat.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.cal.DayAndPosition;
 import com.liferay.portal.kernel.cal.TZSRecurrence;
 import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.Time;
 import com.liferay.portal.kernel.uuid.PortalUUIDUtil;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
@@ -577,6 +577,18 @@ public class CalendarImporterLocalServiceImpl
 
 					weekdays.add(positionalWeekday);
 				}
+			}
+
+			int[] months = tzsRecurrence.getByMonth();
+
+			if (ArrayUtil.isNotEmpty(months)) {
+				List<Integer> monthsList = new ArrayList<Integer>();
+
+				for (int month : months) {
+					monthsList.add(month + 1);
+				}
+
+				recurrence.setMonths(monthsList);
 			}
 		}
 
