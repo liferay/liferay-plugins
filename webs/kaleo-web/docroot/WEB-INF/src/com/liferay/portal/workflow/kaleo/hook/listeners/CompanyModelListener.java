@@ -17,7 +17,6 @@ package com.liferay.portal.workflow.kaleo.hook.listeners;
 import com.liferay.portal.ModelListenerException;
 import com.liferay.portal.model.BaseModelListener;
 import com.liferay.portal.model.Company;
-import com.liferay.portal.workflow.kaleo.manager.PortalKaleoManager;
 import com.liferay.portal.workflow.kaleo.manager.PortalKaleoManagerUtil;
 
 /**
@@ -28,10 +27,7 @@ public class CompanyModelListener extends BaseModelListener<Company> {
 	@Override
 	public void onAfterRemove(Company company) throws ModelListenerException {
 		try {
-			PortalKaleoManager portalKaleoManager =
-				PortalKaleoManagerUtil.getPortalKaleoManager();
-
-			portalKaleoManager.deleteKaleoData(company.getCompanyId());
+			PortalKaleoManagerUtil.deleteKaleoData(company.getCompanyId());
 		}
 		catch (Exception e) {
 			throw new ModelListenerException(e);
