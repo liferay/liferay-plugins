@@ -93,10 +93,11 @@
 											String middleName = (String)buddy[4];
 											String lastName = (String)buddy[5];
 											long portraitId = (Long)buddy[6];
+											boolean male = (Boolean)buddy[8];
 										%>
 
 											<li class="active user" userId="<%= userId %>">
-												<img alt="" src="<%= UserConstants.getPortraitURL(themeDisplay.getPathImage(), true, portraitId, userUuid) %>" />
+												<img alt="" src="<%= UserConstants.getPortraitURL(themeDisplay.getPathImage(), male, portraitId, userUuid) %>" />
 
 												<div class="name">
 													<%= HtmlUtil.escape(ContactConstants.getFullName(firstName, middleName, lastName)) %>
