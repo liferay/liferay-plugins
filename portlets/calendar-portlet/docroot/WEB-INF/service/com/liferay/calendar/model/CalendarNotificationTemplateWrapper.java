@@ -14,6 +14,8 @@
 
 package com.liferay.calendar.model;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.lar.StagedModelType;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.ModelWrapper;
@@ -31,6 +33,7 @@ import java.util.Map;
  * @see CalendarNotificationTemplate
  * @generated
  */
+@ProviderType
 public class CalendarNotificationTemplateWrapper
 	implements CalendarNotificationTemplate,
 		ModelWrapper<CalendarNotificationTemplate> {
@@ -653,5 +656,5 @@ public class CalendarNotificationTemplateWrapper
 		_calendarNotificationTemplate.resetOriginalValues();
 	}
 
-	private CalendarNotificationTemplate _calendarNotificationTemplate;
+	private final CalendarNotificationTemplate _calendarNotificationTemplate;
 }

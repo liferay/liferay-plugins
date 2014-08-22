@@ -14,6 +14,8 @@
 
 package com.liferay.calendar.model;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.lar.StagedModelType;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.ModelWrapper;
@@ -31,6 +33,7 @@ import java.util.Map;
  * @see CalendarResource
  * @generated
  */
+@ProviderType
 public class CalendarResourceWrapper implements CalendarResource,
 	ModelWrapper<CalendarResource> {
 	public CalendarResourceWrapper(CalendarResource calendarResource) {
@@ -1002,5 +1005,5 @@ public class CalendarResourceWrapper implements CalendarResource,
 		_calendarResource.resetOriginalValues();
 	}
 
-	private CalendarResource _calendarResource;
+	private final CalendarResource _calendarResource;
 }

@@ -14,12 +14,15 @@
 
 package com.liferay.calendar.service;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.service.InvokableService;
 
 /**
  * @author Eduardo Lundgren
  * @generated
  */
+@ProviderType
 public class CalendarServiceClp implements CalendarService {
 	public CalendarServiceClp(InvokableService invokableService) {
 		_invokableService = invokableService;

@@ -14,6 +14,8 @@
 
 package com.liferay.calendar.model;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.LocaleException;
 import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -48,6 +50,7 @@ import java.util.Map;
  * @see com.liferay.calendar.model.impl.CalendarBookingModelImpl
  * @generated
  */
+@ProviderType
 public interface CalendarBookingModel extends BaseModel<CalendarBooking>,
 	LocalizedModel, StagedGroupedModel, TrashedModel, WorkflowedModel {
 	/*

@@ -14,6 +14,8 @@
 
 package com.liferay.calendar.model.impl;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.calendar.model.CalendarBooking;
 import com.liferay.calendar.model.CalendarBookingModel;
 import com.liferay.calendar.model.CalendarBookingSoap;
@@ -75,6 +77,7 @@ import java.util.TreeSet;
  * @generated
  */
 @JSON(strict = true)
+@ProviderType
 public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 	implements CalendarBookingModel {
 	/*
@@ -128,16 +131,16 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.column.bitmask.enabled.com.liferay.calendar.model.CalendarBooking"),
 			true);
-	public static long CALENDARID_COLUMN_BITMASK = 1L;
-	public static long CALENDARRESOURCEID_COLUMN_BITMASK = 2L;
-	public static long COMPANYID_COLUMN_BITMASK = 4L;
-	public static long GROUPID_COLUMN_BITMASK = 8L;
-	public static long PARENTCALENDARBOOKINGID_COLUMN_BITMASK = 16L;
-	public static long RESOURCEBLOCKID_COLUMN_BITMASK = 32L;
-	public static long STATUS_COLUMN_BITMASK = 64L;
-	public static long UUID_COLUMN_BITMASK = 128L;
-	public static long STARTTIME_COLUMN_BITMASK = 256L;
-	public static long TITLE_COLUMN_BITMASK = 512L;
+	public static final long CALENDARID_COLUMN_BITMASK = 1L;
+	public static final long CALENDARRESOURCEID_COLUMN_BITMASK = 2L;
+	public static final long COMPANYID_COLUMN_BITMASK = 4L;
+	public static final long GROUPID_COLUMN_BITMASK = 8L;
+	public static final long PARENTCALENDARBOOKINGID_COLUMN_BITMASK = 16L;
+	public static final long RESOURCEBLOCKID_COLUMN_BITMASK = 32L;
+	public static final long STATUS_COLUMN_BITMASK = 64L;
+	public static final long UUID_COLUMN_BITMASK = 128L;
+	public static final long STARTTIME_COLUMN_BITMASK = 256L;
+	public static final long TITLE_COLUMN_BITMASK = 512L;
 
 	/**
 	 * Converts the soap model instance into a normal model instance.
@@ -1878,8 +1881,8 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 		return sb.toString();
 	}
 
-	private static ClassLoader _classLoader = CalendarBooking.class.getClassLoader();
-	private static Class<?>[] _escapedModelInterfaces = new Class[] {
+	private static final ClassLoader _classLoader = CalendarBooking.class.getClassLoader();
+	private static final Class<?>[] _escapedModelInterfaces = new Class[] {
 			CalendarBooking.class
 		};
 	private String _uuid;

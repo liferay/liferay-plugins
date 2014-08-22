@@ -14,6 +14,8 @@
 
 package com.liferay.calendar.service;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
 import com.liferay.portal.service.InvokableService;
@@ -32,6 +34,7 @@ import com.liferay.portal.service.InvokableService;
  * @see com.liferay.calendar.service.impl.CalendarNotificationTemplateServiceImpl
  * @generated
  */
+@ProviderType
 public class CalendarNotificationTemplateServiceUtil {
 	/*
 	 * NOTE FOR DEVELOPERS:

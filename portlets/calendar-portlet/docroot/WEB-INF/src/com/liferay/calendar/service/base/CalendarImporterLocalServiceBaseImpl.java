@@ -14,6 +14,8 @@
 
 package com.liferay.calendar.service.base;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.calendar.service.CalendarImporterLocalService;
 import com.liferay.calendar.service.persistence.CalendarBookingFinder;
 import com.liferay.calendar.service.persistence.CalendarBookingPersistence;
@@ -67,6 +69,7 @@ import javax.sql.DataSource;
  * @see com.liferay.calendar.service.CalendarImporterLocalServiceUtil
  * @generated
  */
+@ProviderType
 public abstract class CalendarImporterLocalServiceBaseImpl
 	extends BaseLocalServiceImpl implements CalendarImporterLocalService,
 		IdentifiableBean {

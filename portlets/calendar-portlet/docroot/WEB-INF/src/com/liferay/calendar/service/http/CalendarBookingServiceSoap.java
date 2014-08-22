@@ -14,6 +14,8 @@
 
 package com.liferay.calendar.service.http;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.calendar.service.CalendarBookingServiceUtil;
 
 import com.liferay.portal.kernel.log.Log;
@@ -65,6 +67,7 @@ import java.util.Map;
  * @see com.liferay.calendar.service.CalendarBookingServiceUtil
  * @generated
  */
+@ProviderType
 public class CalendarBookingServiceSoap {
 	public static com.liferay.calendar.model.CalendarBookingSoap addCalendarBooking(
 		long calendarId, long[] childCalendarIds, long parentCalendarBookingId,

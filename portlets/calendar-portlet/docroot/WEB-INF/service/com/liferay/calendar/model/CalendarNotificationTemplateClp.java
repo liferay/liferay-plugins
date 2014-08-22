@@ -14,6 +14,8 @@
 
 package com.liferay.calendar.model;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.calendar.service.CalendarNotificationTemplateLocalServiceUtil;
 import com.liferay.calendar.service.ClpSerializer;
 
@@ -41,6 +43,7 @@ import java.util.Map;
 /**
  * @author Eduardo Lundgren
  */
+@ProviderType
 public class CalendarNotificationTemplateClp extends BaseModelImpl<CalendarNotificationTemplate>
 	implements CalendarNotificationTemplate {
 	public CalendarNotificationTemplateClp() {

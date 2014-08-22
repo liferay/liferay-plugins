@@ -14,6 +14,8 @@
 
 package com.liferay.calendar.model;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.calendar.service.CalendarBookingLocalServiceUtil;
 import com.liferay.calendar.service.ClpSerializer;
 
@@ -58,6 +60,7 @@ import java.util.TreeSet;
 /**
  * @author Eduardo Lundgren
  */
+@ProviderType
 public class CalendarBookingClp extends BaseModelImpl<CalendarBooking>
 	implements CalendarBooking {
 	public CalendarBookingClp() {
@@ -1206,6 +1209,44 @@ public class CalendarBookingClp extends BaseModelImpl<CalendarBooking>
 	}
 
 	@Override
+	public com.liferay.calendar.model.CalendarBooking getParentCalendarBooking() {
+		try {
+			String methodName = "getParentCalendarBooking";
+
+			Class<?>[] parameterTypes = new Class<?>[] {  };
+
+			Object[] parameterValues = new Object[] {  };
+
+			com.liferay.calendar.model.CalendarBooking returnObj = (com.liferay.calendar.model.CalendarBooking)invokeOnRemoteModel(methodName,
+					parameterTypes, parameterValues);
+
+			return returnObj;
+		}
+		catch (Exception e) {
+			throw new UnsupportedOperationException(e);
+		}
+	}
+
+	@Override
+	public int getInstanceIndex() {
+		try {
+			String methodName = "getInstanceIndex";
+
+			Class<?>[] parameterTypes = new Class<?>[] {  };
+
+			Object[] parameterValues = new Object[] {  };
+
+			Integer returnObj = (Integer)invokeOnRemoteModel(methodName,
+					parameterTypes, parameterValues);
+
+			return returnObj;
+		}
+		catch (Exception e) {
+			throw new UnsupportedOperationException(e);
+		}
+	}
+
+	@Override
 	public void setInstanceIndex(int instanceIndex) {
 		try {
 			String methodName = "setInstanceIndex";
@@ -1241,6 +1282,44 @@ public class CalendarBookingClp extends BaseModelImpl<CalendarBooking>
 	}
 
 	@Override
+	public long getDuration() {
+		try {
+			String methodName = "getDuration";
+
+			Class<?>[] parameterTypes = new Class<?>[] {  };
+
+			Object[] parameterValues = new Object[] {  };
+
+			Long returnObj = (Long)invokeOnRemoteModel(methodName,
+					parameterTypes, parameterValues);
+
+			return returnObj;
+		}
+		catch (Exception e) {
+			throw new UnsupportedOperationException(e);
+		}
+	}
+
+	@Override
+	public com.liferay.calendar.model.CalendarResource getCalendarResource() {
+		try {
+			String methodName = "getCalendarResource";
+
+			Class<?>[] parameterTypes = new Class<?>[] {  };
+
+			Object[] parameterValues = new Object[] {  };
+
+			com.liferay.calendar.model.CalendarResource returnObj = (com.liferay.calendar.model.CalendarResource)invokeOnRemoteModel(methodName,
+					parameterTypes, parameterValues);
+
+			return returnObj;
+		}
+		catch (Exception e) {
+			throw new UnsupportedOperationException(e);
+		}
+	}
+
+	@Override
 	public com.liferay.calendar.model.Calendar getCalendar() {
 		try {
 			String methodName = "getCalendar";
@@ -1250,6 +1329,25 @@ public class CalendarBookingClp extends BaseModelImpl<CalendarBooking>
 			Object[] parameterValues = new Object[] {  };
 
 			com.liferay.calendar.model.Calendar returnObj = (com.liferay.calendar.model.Calendar)invokeOnRemoteModel(methodName,
+					parameterTypes, parameterValues);
+
+			return returnObj;
+		}
+		catch (Exception e) {
+			throw new UnsupportedOperationException(e);
+		}
+	}
+
+	@Override
+	public com.liferay.calendar.recurrence.Recurrence getRecurrenceObj() {
+		try {
+			String methodName = "getRecurrenceObj";
+
+			Class<?>[] parameterTypes = new Class<?>[] {  };
+
+			Object[] parameterValues = new Object[] {  };
+
+			com.liferay.calendar.recurrence.Recurrence returnObj = (com.liferay.calendar.recurrence.Recurrence)invokeOnRemoteModel(methodName,
 					parameterTypes, parameterValues);
 
 			return returnObj;
@@ -1289,101 +1387,6 @@ public class CalendarBookingClp extends BaseModelImpl<CalendarBooking>
 			Object[] parameterValues = new Object[] {  };
 
 			Boolean returnObj = (Boolean)invokeOnRemoteModel(methodName,
-					parameterTypes, parameterValues);
-
-			return returnObj;
-		}
-		catch (Exception e) {
-			throw new UnsupportedOperationException(e);
-		}
-	}
-
-	@Override
-	public int getInstanceIndex() {
-		try {
-			String methodName = "getInstanceIndex";
-
-			Class<?>[] parameterTypes = new Class<?>[] {  };
-
-			Object[] parameterValues = new Object[] {  };
-
-			Integer returnObj = (Integer)invokeOnRemoteModel(methodName,
-					parameterTypes, parameterValues);
-
-			return returnObj;
-		}
-		catch (Exception e) {
-			throw new UnsupportedOperationException(e);
-		}
-	}
-
-	@Override
-	public com.liferay.calendar.model.CalendarBooking getParentCalendarBooking() {
-		try {
-			String methodName = "getParentCalendarBooking";
-
-			Class<?>[] parameterTypes = new Class<?>[] {  };
-
-			Object[] parameterValues = new Object[] {  };
-
-			com.liferay.calendar.model.CalendarBooking returnObj = (com.liferay.calendar.model.CalendarBooking)invokeOnRemoteModel(methodName,
-					parameterTypes, parameterValues);
-
-			return returnObj;
-		}
-		catch (Exception e) {
-			throw new UnsupportedOperationException(e);
-		}
-	}
-
-	@Override
-	public com.liferay.calendar.model.CalendarResource getCalendarResource() {
-		try {
-			String methodName = "getCalendarResource";
-
-			Class<?>[] parameterTypes = new Class<?>[] {  };
-
-			Object[] parameterValues = new Object[] {  };
-
-			com.liferay.calendar.model.CalendarResource returnObj = (com.liferay.calendar.model.CalendarResource)invokeOnRemoteModel(methodName,
-					parameterTypes, parameterValues);
-
-			return returnObj;
-		}
-		catch (Exception e) {
-			throw new UnsupportedOperationException(e);
-		}
-	}
-
-	@Override
-	public long getDuration() {
-		try {
-			String methodName = "getDuration";
-
-			Class<?>[] parameterTypes = new Class<?>[] {  };
-
-			Object[] parameterValues = new Object[] {  };
-
-			Long returnObj = (Long)invokeOnRemoteModel(methodName,
-					parameterTypes, parameterValues);
-
-			return returnObj;
-		}
-		catch (Exception e) {
-			throw new UnsupportedOperationException(e);
-		}
-	}
-
-	@Override
-	public com.liferay.calendar.recurrence.Recurrence getRecurrenceObj() {
-		try {
-			String methodName = "getRecurrenceObj";
-
-			Class<?>[] parameterTypes = new Class<?>[] {  };
-
-			Object[] parameterValues = new Object[] {  };
-
-			com.liferay.calendar.recurrence.Recurrence returnObj = (com.liferay.calendar.recurrence.Recurrence)invokeOnRemoteModel(methodName,
 					parameterTypes, parameterValues);
 
 			return returnObj;

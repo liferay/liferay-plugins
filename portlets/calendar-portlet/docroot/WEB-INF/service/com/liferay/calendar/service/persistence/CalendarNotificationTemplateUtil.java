@@ -14,6 +14,8 @@
 
 package com.liferay.calendar.service.persistence;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.calendar.model.CalendarNotificationTemplate;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
@@ -36,6 +38,7 @@ import java.util.List;
  * @see CalendarNotificationTemplatePersistenceImpl
  * @generated
  */
+@ProviderType
 public class CalendarNotificationTemplateUtil {
 	/*
 	 * NOTE FOR DEVELOPERS:

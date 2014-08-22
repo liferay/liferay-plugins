@@ -14,6 +14,8 @@
 
 package com.liferay.calendar.model.impl;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.calendar.model.CalendarBooking;
 
 import com.liferay.portal.kernel.util.StringBundler;
@@ -34,6 +36,7 @@ import java.util.Date;
  * @see CalendarBooking
  * @generated
  */
+@ProviderType
 public class CalendarBookingCacheModel implements CacheModel<CalendarBooking>,
 	Externalizable {
 	@Override

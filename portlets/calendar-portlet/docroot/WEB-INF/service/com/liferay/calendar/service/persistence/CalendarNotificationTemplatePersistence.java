@@ -14,6 +14,8 @@
 
 package com.liferay.calendar.service.persistence;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.calendar.model.CalendarNotificationTemplate;
 
 import com.liferay.portal.service.persistence.BasePersistence;
@@ -30,6 +32,7 @@ import com.liferay.portal.service.persistence.BasePersistence;
  * @see CalendarNotificationTemplateUtil
  * @generated
  */
+@ProviderType
 public interface CalendarNotificationTemplatePersistence extends BasePersistence<CalendarNotificationTemplate> {
 	/*
 	 * NOTE FOR DEVELOPERS:

@@ -14,6 +14,8 @@
 
 package com.liferay.calendar.model;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.model.PermissionedModel;
 
 /**
@@ -25,6 +27,7 @@ import com.liferay.portal.model.PermissionedModel;
  * @see com.liferay.calendar.model.impl.CalendarResourceModelImpl
  * @generated
  */
+@ProviderType
 public interface CalendarResource extends CalendarResourceModel,
 	PermissionedModel {
 	/*

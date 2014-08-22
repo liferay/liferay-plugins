@@ -14,9 +14,12 @@
 
 package com.liferay.calendar.service.persistence;
 
+import aQute.bnd.annotation.ProviderType;
+
 /**
  * @author Eduardo Lundgren
  */
+@ProviderType
 public interface CalendarBookingFinder {
 	public int countByKeywords(long companyId, long[] groupIds,
 		long[] calendarIds, long[] calendarResourceIds,

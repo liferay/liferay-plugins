@@ -14,6 +14,8 @@
 
 package com.liferay.calendar.service.persistence.impl;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.calendar.NoSuchNotificationTemplateException;
 import com.liferay.calendar.model.CalendarNotificationTemplate;
 import com.liferay.calendar.model.impl.CalendarNotificationTemplateImpl;
@@ -65,6 +67,7 @@ import java.util.Set;
  * @see CalendarNotificationTemplateUtil
  * @generated
  */
+@ProviderType
 public class CalendarNotificationTemplatePersistenceImpl
 	extends BasePersistenceImpl<CalendarNotificationTemplate>
 	implements CalendarNotificationTemplatePersistence {
@@ -3146,11 +3149,11 @@ public class CalendarNotificationTemplatePersistenceImpl
 	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No CalendarNotificationTemplate exists with the key {";
 	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = GetterUtil.getBoolean(PropsUtil.get(
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
-	private static Log _log = LogFactoryUtil.getLog(CalendarNotificationTemplatePersistenceImpl.class);
-	private static Set<String> _badColumnNames = SetUtil.fromArray(new String[] {
+	private static final Log _log = LogFactoryUtil.getLog(CalendarNotificationTemplatePersistenceImpl.class);
+	private static final Set<String> _badColumnNames = SetUtil.fromArray(new String[] {
 				"uuid"
 			});
-	private static CalendarNotificationTemplate _nullCalendarNotificationTemplate =
+	private static final CalendarNotificationTemplate _nullCalendarNotificationTemplate =
 		new CalendarNotificationTemplateImpl() {
 			@Override
 			public Object clone() {
@@ -3163,7 +3166,7 @@ public class CalendarNotificationTemplatePersistenceImpl
 			}
 		};
 
-	private static CacheModel<CalendarNotificationTemplate> _nullCalendarNotificationTemplateCacheModel =
+	private static final CacheModel<CalendarNotificationTemplate> _nullCalendarNotificationTemplateCacheModel =
 		new CacheModel<CalendarNotificationTemplate>() {
 			@Override
 			public CalendarNotificationTemplate toEntityModel() {

@@ -14,6 +14,8 @@
 
 package com.liferay.calendar.model;
 
+import aQute.bnd.annotation.ProviderType;
+
 import java.io.Serializable;
 
 import java.util.ArrayList;
@@ -27,6 +29,7 @@ import java.util.List;
  * @see com.liferay.calendar.service.http.CalendarNotificationTemplateServiceSoap
  * @generated
  */
+@ProviderType
 public class CalendarNotificationTemplateSoap implements Serializable {
 	public static CalendarNotificationTemplateSoap toSoapModel(
 		CalendarNotificationTemplate model) {

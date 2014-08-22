@@ -14,6 +14,8 @@
 
 package com.liferay.calendar.service.base;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.calendar.service.CalendarResourceServiceUtil;
 
 import java.util.Arrays;
@@ -22,6 +24,7 @@ import java.util.Arrays;
  * @author Eduardo Lundgren
  * @generated
  */
+@ProviderType
 public class CalendarResourceServiceClpInvoker {
 	public CalendarResourceServiceClpInvoker() {
 		_methodName56 = "getBeanIdentifier";

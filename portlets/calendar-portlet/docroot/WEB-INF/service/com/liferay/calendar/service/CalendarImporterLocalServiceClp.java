@@ -14,12 +14,15 @@
 
 package com.liferay.calendar.service;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.service.InvokableLocalService;
 
 /**
  * @author Eduardo Lundgren
  * @generated
  */
+@ProviderType
 public class CalendarImporterLocalServiceClp
 	implements CalendarImporterLocalService {
 	public CalendarImporterLocalServiceClp(

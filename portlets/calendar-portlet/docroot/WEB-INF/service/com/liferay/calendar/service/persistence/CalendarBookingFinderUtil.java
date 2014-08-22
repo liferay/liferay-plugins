@@ -14,12 +14,15 @@
 
 package com.liferay.calendar.service.persistence;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
 
 /**
  * @author Eduardo Lundgren
  */
+@ProviderType
 public class CalendarBookingFinderUtil {
 	public static int countByKeywords(long companyId, long[] groupIds,
 		long[] calendarIds, long[] calendarResourceIds,

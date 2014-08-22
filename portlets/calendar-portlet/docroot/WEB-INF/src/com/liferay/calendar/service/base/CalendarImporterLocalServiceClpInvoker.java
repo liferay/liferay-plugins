@@ -14,6 +14,8 @@
 
 package com.liferay.calendar.service.base;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.calendar.service.CalendarImporterLocalServiceUtil;
 
 import java.util.Arrays;
@@ -22,6 +24,7 @@ import java.util.Arrays;
  * @author Eduardo Lundgren
  * @generated
  */
+@ProviderType
 public class CalendarImporterLocalServiceClpInvoker {
 	public CalendarImporterLocalServiceClpInvoker() {
 		_methodName134 = "getBeanIdentifier";

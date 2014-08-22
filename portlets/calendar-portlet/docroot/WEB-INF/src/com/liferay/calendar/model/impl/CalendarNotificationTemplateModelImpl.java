@@ -14,6 +14,8 @@
 
 package com.liferay.calendar.model.impl;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.calendar.model.CalendarNotificationTemplate;
 import com.liferay.calendar.model.CalendarNotificationTemplateModel;
 import com.liferay.calendar.model.CalendarNotificationTemplateSoap;
@@ -60,6 +62,7 @@ import java.util.Map;
  * @generated
  */
 @JSON(strict = true)
+@ProviderType
 public class CalendarNotificationTemplateModelImpl extends BaseModelImpl<CalendarNotificationTemplate>
 	implements CalendarNotificationTemplateModel {
 	/*
@@ -100,13 +103,13 @@ public class CalendarNotificationTemplateModelImpl extends BaseModelImpl<Calenda
 	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.column.bitmask.enabled.com.liferay.calendar.model.CalendarNotificationTemplate"),
 			true);
-	public static long CALENDARID_COLUMN_BITMASK = 1L;
-	public static long COMPANYID_COLUMN_BITMASK = 2L;
-	public static long GROUPID_COLUMN_BITMASK = 4L;
-	public static long NOTIFICATIONTEMPLATETYPE_COLUMN_BITMASK = 8L;
-	public static long NOTIFICATIONTYPE_COLUMN_BITMASK = 16L;
-	public static long UUID_COLUMN_BITMASK = 32L;
-	public static long CALENDARNOTIFICATIONTEMPLATEID_COLUMN_BITMASK = 64L;
+	public static final long CALENDARID_COLUMN_BITMASK = 1L;
+	public static final long COMPANYID_COLUMN_BITMASK = 2L;
+	public static final long GROUPID_COLUMN_BITMASK = 4L;
+	public static final long NOTIFICATIONTEMPLATETYPE_COLUMN_BITMASK = 8L;
+	public static final long NOTIFICATIONTYPE_COLUMN_BITMASK = 16L;
+	public static final long UUID_COLUMN_BITMASK = 32L;
+	public static final long CALENDARNOTIFICATIONTEMPLATEID_COLUMN_BITMASK = 64L;
 
 	/**
 	 * Converts the soap model instance into a normal model instance.
@@ -920,8 +923,8 @@ public class CalendarNotificationTemplateModelImpl extends BaseModelImpl<Calenda
 		return sb.toString();
 	}
 
-	private static ClassLoader _classLoader = CalendarNotificationTemplate.class.getClassLoader();
-	private static Class<?>[] _escapedModelInterfaces = new Class[] {
+	private static final ClassLoader _classLoader = CalendarNotificationTemplate.class.getClassLoader();
+	private static final Class<?>[] _escapedModelInterfaces = new Class[] {
 			CalendarNotificationTemplate.class
 		};
 	private String _uuid;

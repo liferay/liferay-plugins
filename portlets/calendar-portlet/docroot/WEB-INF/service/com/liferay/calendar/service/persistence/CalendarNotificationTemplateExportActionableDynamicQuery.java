@@ -14,6 +14,8 @@
 
 package com.liferay.calendar.service.persistence;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.calendar.model.CalendarNotificationTemplate;
 
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
@@ -31,6 +33,7 @@ import com.liferay.portal.util.PortalUtil;
  * @generated
  */
 @Deprecated
+@ProviderType
 public class CalendarNotificationTemplateExportActionableDynamicQuery
 	extends CalendarNotificationTemplateActionableDynamicQuery {
 	public CalendarNotificationTemplateExportActionableDynamicQuery(

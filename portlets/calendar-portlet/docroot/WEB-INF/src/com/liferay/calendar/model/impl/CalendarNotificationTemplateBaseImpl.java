@@ -14,6 +14,8 @@
 
 package com.liferay.calendar.model.impl;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.calendar.model.CalendarNotificationTemplate;
 import com.liferay.calendar.service.CalendarNotificationTemplateLocalServiceUtil;
 
@@ -29,6 +31,7 @@ import com.liferay.calendar.service.CalendarNotificationTemplateLocalServiceUtil
  * @see com.liferay.calendar.model.CalendarNotificationTemplate
  * @generated
  */
+@ProviderType
 public abstract class CalendarNotificationTemplateBaseImpl
 	extends CalendarNotificationTemplateModelImpl
 	implements CalendarNotificationTemplate {

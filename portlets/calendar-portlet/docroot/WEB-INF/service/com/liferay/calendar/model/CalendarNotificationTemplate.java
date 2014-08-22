@@ -14,6 +14,8 @@
 
 package com.liferay.calendar.model;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.model.PersistedModel;
 
 /**
@@ -25,6 +27,7 @@ import com.liferay.portal.model.PersistedModel;
  * @see com.liferay.calendar.model.impl.CalendarNotificationTemplateModelImpl
  * @generated
  */
+@ProviderType
 public interface CalendarNotificationTemplate
 	extends CalendarNotificationTemplateModel, PersistedModel {
 	/*

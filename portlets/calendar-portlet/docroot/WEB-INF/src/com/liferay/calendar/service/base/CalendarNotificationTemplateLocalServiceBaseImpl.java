@@ -14,6 +14,8 @@
 
 package com.liferay.calendar.service.base;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.calendar.model.CalendarNotificationTemplate;
 import com.liferay.calendar.service.CalendarNotificationTemplateLocalService;
 import com.liferay.calendar.service.persistence.CalendarBookingFinder;
@@ -71,6 +73,7 @@ import javax.sql.DataSource;
  * @see com.liferay.calendar.service.CalendarNotificationTemplateLocalServiceUtil
  * @generated
  */
+@ProviderType
 public abstract class CalendarNotificationTemplateLocalServiceBaseImpl
 	extends BaseLocalServiceImpl
 	implements CalendarNotificationTemplateLocalService, IdentifiableBean {

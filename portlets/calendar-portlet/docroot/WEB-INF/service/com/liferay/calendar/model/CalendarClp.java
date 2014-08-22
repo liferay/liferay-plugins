@@ -14,6 +14,8 @@
 
 package com.liferay.calendar.model;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.calendar.service.CalendarLocalServiceUtil;
 import com.liferay.calendar.service.ClpSerializer;
 
@@ -49,6 +51,7 @@ import java.util.TreeSet;
 /**
  * @author Eduardo Lundgren
  */
+@ProviderType
 public class CalendarClp extends BaseModelImpl<Calendar> implements Calendar {
 	public CalendarClp() {
 	}

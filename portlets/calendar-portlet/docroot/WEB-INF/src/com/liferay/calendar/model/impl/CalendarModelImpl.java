@@ -14,6 +14,8 @@
 
 package com.liferay.calendar.model.impl;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.calendar.model.Calendar;
 import com.liferay.calendar.model.CalendarModel;
 import com.liferay.calendar.model.CalendarSoap;
@@ -67,6 +69,7 @@ import java.util.TreeSet;
  * @generated
  */
 @JSON(strict = true)
+@ProviderType
 public class CalendarModelImpl extends BaseModelImpl<Calendar>
 	implements CalendarModel {
 	/*
@@ -109,13 +112,13 @@ public class CalendarModelImpl extends BaseModelImpl<Calendar>
 	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.column.bitmask.enabled.com.liferay.calendar.model.Calendar"),
 			true);
-	public static long CALENDARRESOURCEID_COLUMN_BITMASK = 1L;
-	public static long COMPANYID_COLUMN_BITMASK = 2L;
-	public static long DEFAULTCALENDAR_COLUMN_BITMASK = 4L;
-	public static long GROUPID_COLUMN_BITMASK = 8L;
-	public static long RESOURCEBLOCKID_COLUMN_BITMASK = 16L;
-	public static long UUID_COLUMN_BITMASK = 32L;
-	public static long NAME_COLUMN_BITMASK = 64L;
+	public static final long CALENDARRESOURCEID_COLUMN_BITMASK = 1L;
+	public static final long COMPANYID_COLUMN_BITMASK = 2L;
+	public static final long DEFAULTCALENDAR_COLUMN_BITMASK = 4L;
+	public static final long GROUPID_COLUMN_BITMASK = 8L;
+	public static final long RESOURCEBLOCKID_COLUMN_BITMASK = 16L;
+	public static final long UUID_COLUMN_BITMASK = 32L;
+	public static final long NAME_COLUMN_BITMASK = 64L;
 
 	/**
 	 * Converts the soap model instance into a normal model instance.
@@ -1215,8 +1218,8 @@ public class CalendarModelImpl extends BaseModelImpl<Calendar>
 		return sb.toString();
 	}
 
-	private static ClassLoader _classLoader = Calendar.class.getClassLoader();
-	private static Class<?>[] _escapedModelInterfaces = new Class[] {
+	private static final ClassLoader _classLoader = Calendar.class.getClassLoader();
+	private static final Class<?>[] _escapedModelInterfaces = new Class[] {
 			Calendar.class
 		};
 	private String _uuid;

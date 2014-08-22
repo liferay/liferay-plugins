@@ -14,6 +14,8 @@
 
 package com.liferay.calendar.service;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.service.ServiceWrapper;
 
 /**
@@ -23,6 +25,7 @@ import com.liferay.portal.service.ServiceWrapper;
  * @see CalendarBookingService
  * @generated
  */
+@ProviderType
 public class CalendarBookingServiceWrapper implements CalendarBookingService,
 	ServiceWrapper<CalendarBookingService> {
 	public CalendarBookingServiceWrapper(

@@ -14,6 +14,8 @@
 
 package com.liferay.calendar.model.impl;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.calendar.model.Calendar;
 import com.liferay.calendar.service.CalendarLocalServiceUtil;
 
@@ -29,6 +31,7 @@ import com.liferay.calendar.service.CalendarLocalServiceUtil;
  * @see com.liferay.calendar.model.Calendar
  * @generated
  */
+@ProviderType
 public abstract class CalendarBaseImpl extends CalendarModelImpl
 	implements Calendar {
 	/*

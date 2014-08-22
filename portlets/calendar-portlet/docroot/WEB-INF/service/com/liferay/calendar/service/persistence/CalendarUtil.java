@@ -14,6 +14,8 @@
 
 package com.liferay.calendar.service.persistence;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.calendar.model.Calendar;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
@@ -36,6 +38,7 @@ import java.util.List;
  * @see CalendarPersistenceImpl
  * @generated
  */
+@ProviderType
 public class CalendarUtil {
 	/*
 	 * NOTE FOR DEVELOPERS:

@@ -14,6 +14,8 @@
 
 package com.liferay.calendar.service.persistence.impl;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.calendar.NoSuchBookingException;
 import com.liferay.calendar.model.CalendarBooking;
 import com.liferay.calendar.model.impl.CalendarBookingImpl;
@@ -66,6 +68,7 @@ import java.util.Set;
  * @see CalendarBookingUtil
  * @generated
  */
+@ProviderType
 public class CalendarBookingPersistenceImpl extends BasePersistenceImpl<CalendarBooking>
 	implements CalendarBookingPersistence {
 	/*
@@ -5876,11 +5879,11 @@ public class CalendarBookingPersistenceImpl extends BasePersistenceImpl<Calendar
 	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No CalendarBooking exists with the key {";
 	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = GetterUtil.getBoolean(PropsUtil.get(
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
-	private static Log _log = LogFactoryUtil.getLog(CalendarBookingPersistenceImpl.class);
-	private static Set<String> _badColumnNames = SetUtil.fromArray(new String[] {
+	private static final Log _log = LogFactoryUtil.getLog(CalendarBookingPersistenceImpl.class);
+	private static final Set<String> _badColumnNames = SetUtil.fromArray(new String[] {
 				"uuid"
 			});
-	private static CalendarBooking _nullCalendarBooking = new CalendarBookingImpl() {
+	private static final CalendarBooking _nullCalendarBooking = new CalendarBookingImpl() {
 			@Override
 			public Object clone() {
 				return this;
@@ -5892,7 +5895,8 @@ public class CalendarBookingPersistenceImpl extends BasePersistenceImpl<Calendar
 			}
 		};
 
-	private static CacheModel<CalendarBooking> _nullCalendarBookingCacheModel = new CacheModel<CalendarBooking>() {
+	private static final CacheModel<CalendarBooking> _nullCalendarBookingCacheModel =
+		new CacheModel<CalendarBooking>() {
 			@Override
 			public CalendarBooking toEntityModel() {
 				return _nullCalendarBooking;

@@ -14,6 +14,8 @@
 
 package com.liferay.calendar.service;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.service.ServiceWrapper;
 
 /**
@@ -23,6 +25,7 @@ import com.liferay.portal.service.ServiceWrapper;
  * @see CalendarResourceService
  * @generated
  */
+@ProviderType
 public class CalendarResourceServiceWrapper implements CalendarResourceService,
 	ServiceWrapper<CalendarResourceService> {
 	public CalendarResourceServiceWrapper(

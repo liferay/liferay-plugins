@@ -14,6 +14,8 @@
 
 package com.liferay.calendar.service;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.calendar.model.CalendarBookingClp;
 import com.liferay.calendar.model.CalendarClp;
 import com.liferay.calendar.model.CalendarNotificationTemplateClp;
@@ -39,6 +41,7 @@ import java.util.List;
 /**
  * @author Eduardo Lundgren
  */
+@ProviderType
 public class ClpSerializer {
 	public static String getServletContextName() {
 		if (Validator.isNotNull(_servletContextName)) {

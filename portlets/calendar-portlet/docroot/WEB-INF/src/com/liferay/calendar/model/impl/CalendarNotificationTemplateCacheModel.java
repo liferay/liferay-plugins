@@ -14,6 +14,8 @@
 
 package com.liferay.calendar.model.impl;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.calendar.model.CalendarNotificationTemplate;
 
 import com.liferay.portal.kernel.util.StringBundler;
@@ -34,6 +36,7 @@ import java.util.Date;
  * @see CalendarNotificationTemplate
  * @generated
  */
+@ProviderType
 public class CalendarNotificationTemplateCacheModel implements CacheModel<CalendarNotificationTemplate>,
 	Externalizable {
 	@Override

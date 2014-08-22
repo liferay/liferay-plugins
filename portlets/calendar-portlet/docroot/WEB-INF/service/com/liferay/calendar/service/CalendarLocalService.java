@@ -14,6 +14,8 @@
 
 package com.liferay.calendar.service;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.search.IndexableType;
@@ -37,6 +39,7 @@ import com.liferay.portal.service.PermissionedModelLocalService;
  * @see com.liferay.calendar.service.impl.CalendarLocalServiceImpl
  * @generated
  */
+@ProviderType
 @Transactional(isolation = Isolation.PORTAL, rollbackFor =  {
 	PortalException.class, SystemException.class})
 public interface CalendarLocalService extends BaseLocalService,

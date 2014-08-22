@@ -14,6 +14,8 @@
 
 package com.liferay.calendar.service.messaging;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.calendar.service.CalendarBookingLocalServiceUtil;
 import com.liferay.calendar.service.CalendarBookingServiceUtil;
 import com.liferay.calendar.service.CalendarImporterLocalServiceUtil;
@@ -31,6 +33,7 @@ import com.liferay.portal.kernel.messaging.Message;
 /**
  * @author Eduardo Lundgren
  */
+@ProviderType
 public class ClpMessageListener extends BaseMessageListener {
 	public static String getServletContextName() {
 		return ClpSerializer.getServletContextName();
