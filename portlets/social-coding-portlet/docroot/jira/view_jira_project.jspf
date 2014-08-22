@@ -92,7 +92,7 @@ for (int j = 0; j < jiraProjectRowsArray.length; j++) {
 					<br />
 				</c:if>
 
-				<a href="<%= url %>" target="_blank"><em><liferay-ui:message key="<%= message %>" /></em></a>
+				<a href="<%= HtmlUtil.escapeAttribute(url) %>" target="_blank"><em><liferay-ui:message key="<%= message %>" /></em></a>
 			</td>
 		</tr>
 
