@@ -16,6 +16,8 @@
 
 <%@ include file="/init.jsp" %>
 
+<%@ taglib uri="http://liferay.com/tld/aui" prefix="aui" %>
+
 <%
 PortletURL portletURL = renderResponse.createRenderURL();
 %>
@@ -61,12 +63,20 @@ PortletURL portletURL = renderResponse.createRenderURL();
 	<div>
 		<c:if test="<%= GadgetPermission.contains(permissionChecker, themeDisplay.getScopeGroupId(), ActionKeys.PUBLISH_GADGET) %>">
 			<span>
-				<input onClick="location.href = '<portlet:renderURL><portlet:param name="mvcPath" value="/admin/edit_gadget.jsp" /><portlet:param name="redirect" value="<%= currentURL %>" /></portlet:renderURL>';" type="button" value="<liferay-ui:message key="publish-gadget" />" />
+				<%
+				String PUBLISH_LOCATION_HREF = "<portlet:renderURL><portlet:param name='mvcPath' value='/admin/edit_gadget.jsp'/><portlet:param name='redirect' value='<%= currentURL %>'/></portlet:renderURL>";
+				%>
+
+				<aui:button onClick='<%= "location.href=PUBLISH_LOCATION_HREF;" %>' type="button" value='<liferay-ui:message key="publish-gadget" />' />
 			</span>
 		</c:if>
 
 		<span>
-			<input onClick="location.href = '<portlet:actionURL name="refreshGadgets"><portlet:param name="redirect" value="<%= currentURL %>" /></portlet:actionURL>';" type="button" value="<liferay-ui:message key="refresh-gadgets" />" />
+			<%
+			String REFRESH_LOCATION_HREF = "<portlet:actionURL name='refreshGadgets'><portlet:param name='redirect' value='<%= currentURL %>'/></portlet:actionURL>";
+			%>
+
+			<aui:button onClick='<%= "location.href=REFRESH_LOCATION_HREF;" %>' type="button" value='<liferay-ui:message key="refresh-gadgets" />' />
 		</span>
 	</div>
 
