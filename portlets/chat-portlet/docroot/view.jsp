@@ -94,9 +94,10 @@
 											String lastName = (String)buddy[5];
 											long portraitId = (Long)buddy[6];
 											boolean male = (Boolean)buddy[8];
+											long groupId = (Long)buddy[9];
 										%>
 
-											<li class="active user" userId="<%= userId %>">
+											<li class="active user" data-groupId="<%= groupId %>" data-userId="<%= userId %>">
 												<img alt="" src="<%= UserConstants.getPortraitURL(themeDisplay.getPathImage(), male, portraitId, userUuid) %>" />
 
 												<div class="name">
