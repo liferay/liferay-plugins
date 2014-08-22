@@ -65,8 +65,8 @@ public class BlogsEntryLocalServiceImpl extends BlogsEntryLocalServiceWrapper {
 		if (Validator.isNotNull(entryURL)) {
 			NotificationsUtil.sendNotificationEvent(
 				blogsEntry.getCompanyId(), _BLOGS_ENTRY_CLASS_NAME,
-				blogsEntry.getGroupId(), _BLOGS_ENTRY_CLASS_NAME,
-				PortletKeys.BLOGS, blogsEntry.getEntryId(),
+				blogsEntry.getGroupId(), PortletKeys.BLOGS,
+				_BLOGS_ENTRY_CLASS_NAME, blogsEntry.getEntryId(),
 				assetRenderer.getTitle(serviceContext.getLocale()), entryURL,
 				notificationType, userId);
 		}
