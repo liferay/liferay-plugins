@@ -549,9 +549,7 @@ public class CalendarImporterLocalServiceImpl
 			weekdays.add(new PositionalWeekday(Weekday.THURSDAY, 0));
 			weekdays.add(new PositionalWeekday(Weekday.FRIDAY, 0));
 		}
-		else if ((frequency == Frequency.MONTHLY) ||
-				 (frequency == Frequency.WEEKLY)) {
-
+		else {
 			DayAndPosition[] dayAndPositions = tzsRecurrence.getByDay();
 
 			if (dayAndPositions != null) {
