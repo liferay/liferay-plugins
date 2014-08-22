@@ -370,21 +370,21 @@ else {
 
 				var unescapedSiteName = Lang.String.unescapeHTML(siteName.getContent());
 
-				if (currentTargetClass == "leave-site") {
-					confirmMessage = '<%= LanguageUtil.format(pageContext, "are-you-sure-you-want-to-leave-x", "' + unescapedSiteName + '", false) %>';
-					siteAction = '<%= LanguageUtil.format(pageContext, "you-left-x", new String[] {"' + unescapedSiteName + '"}, false) %>';
+				if (currentTargetClass == 'leave-site') {
+					confirmMessage = '<%= UnicodeLanguageUtil.format(pageContext, "are-you-sure-you-want-to-leave-x", "' + unescapedSiteName + '", false) %>';
+					siteAction = '<%= UnicodeLanguageUtil.format(pageContext, "you-left-x", new String[] {"' + unescapedSiteName + '"}, false) %>';
 				}
-				else if (currentTargetClass == "join-site") {
-					confirmMessage = '<%= LanguageUtil.format(pageContext, "are-you-sure-you-want-to-join-x", "' + unescapedSiteName + '", false) %>';
-					siteAction = '<%= LanguageUtil.format(pageContext, "you-joined-x", new String[] {"' + unescapedSiteName + '"}, false) %>';
+				else if (currentTargetClass == 'join-site') {
+					confirmMessage = '<%= UnicodeLanguageUtil.format(pageContext, "are-you-sure-you-want-to-join-x", "' + unescapedSiteName + '", false) %>';
+					siteAction = '<%= UnicodeLanguageUtil.format(pageContext, "you-joined-x", new String[] {"' + unescapedSiteName + '"}, false) %>';
 				}
-				else if (currentTargetClass == "request-site") {
-					confirmMessage = '<%= LanguageUtil.format(pageContext, "this-is-a-restricted-site-do-you-want-to-send-a-membership-request-to-x", "' + unescapedSiteName + '", false) %>';
-					siteAction = '<%= LanguageUtil.get(pageContext, "your-membership-request-has-been-sent") %>';
+				else if (currentTargetClass == 'request-site') {
+					confirmMessage = '<%= UnicodeLanguageUtil.format(pageContext, "this-is-a-restricted-site-do-you-want-to-send-a-membership-request-to-x", "' + unescapedSiteName + '", false) %>';
+					siteAction = '<%= UnicodeLanguageUtil.get(pageContext, "your-membership-request-has-been-sent") %>';
 				}
 				else {
-					confirmMessage = '<%= LanguageUtil.format(pageContext, "are-you-sure-you-want-to-delete-x", "' + unescapedSiteName + '", false) %>';
-					siteAction = '<%= LanguageUtil.format(pageContext, "you-deleted-x", new String[] {"' + unescapedSiteName + '"}, false) %>';
+					confirmMessage = '<%= UnicodeLanguageUtil.format(pageContext, "are-you-sure-you-want-to-delete-x", "' + unescapedSiteName + '", false) %>';
+					siteAction = '<%= UnicodeLanguageUtil.format(pageContext, "you-deleted-x", new String[] {"' + unescapedSiteName + '"}, false) %>';
 				}
 
 				if (confirm(confirmMessage)) {
