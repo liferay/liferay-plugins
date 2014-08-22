@@ -34,7 +34,9 @@ if (recurrence != null) {
 		untilJCalendar = recurrence.getUntilJCalendar();
 	}
 
-	weekdays = recurrence.getWeekdays();
+	for (PositionalWeekday positionalWeekday : recurrence.getWeekdays()) {
+		weekdays.add(positionalWeekday.getWeekday());
+	}
 
 	if (count > 0) {
 		afterChecked = true;

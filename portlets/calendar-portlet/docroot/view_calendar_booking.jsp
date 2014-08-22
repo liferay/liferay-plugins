@@ -231,6 +231,12 @@ AssetEntry layoutAssetEntry = AssetEntryLocalServiceUtil.getEntry(CalendarBookin
 
 		<%
 		JSONSerializer jsonSerializer = JSONFactoryUtil.createJSONSerializer();
+
+		List<Weekday> weekdays = new ArrayList<Weekday>();
+
+		for (PositionalWeekday positionalWeekday : recurrence.getWeekdays()) {
+			weekdays.add(positionalWeekday.getWeekday());
+		}
 		%>
 
 		var recurrence = {
@@ -239,7 +245,7 @@ AssetEntry layoutAssetEntry = AssetEntryLocalServiceUtil.getEntry(CalendarBookin
 			frequency: '<%= String.valueOf(recurrence.getFrequency()) %>',
 			interval: <%= recurrence.getInterval() %>,
 			untilDate: untilDate,
-			weekdays: <%= jsonSerializer.serialize(recurrence.getWeekdays()) %>
+			weekdays: <%= jsonSerializer.serialize(weekdays) %>
 		}
 
 		var recurrenceSummary = Liferay.RecurrenceUtil.getSummary(recurrence);

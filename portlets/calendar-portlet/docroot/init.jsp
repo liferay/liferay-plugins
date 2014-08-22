@@ -40,6 +40,7 @@ page import="com.liferay.calendar.notification.NotificationField" %><%@
 page import="com.liferay.calendar.notification.NotificationTemplateType" %><%@
 page import="com.liferay.calendar.notification.NotificationType" %><%@
 page import="com.liferay.calendar.recurrence.Frequency" %><%@
+page import="com.liferay.calendar.recurrence.PositionalWeekday" %><%@
 page import="com.liferay.calendar.recurrence.Recurrence" %><%@
 page import="com.liferay.calendar.recurrence.Weekday" %><%@
 page import="com.liferay.calendar.search.CalendarResourceDisplayTerms" %><%@

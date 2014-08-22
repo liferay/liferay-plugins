@@ -110,7 +110,8 @@ public class RecurrenceSerializer {
 		List<WeekdayNum> weekdayNums = new ArrayList<WeekdayNum>();
 
 		for (PositionalWeekday weekday : recurrence.getWeekdays()) {
-			com.google.ical.values.Weekday wday = _weekdaysMap.get(weekday);
+			com.google.ical.values.Weekday wday = _weekdaysMap.get(
+				weekday.getWeekday());
 
 			WeekdayNum weekdayNum = new WeekdayNum(weekday.getPosition(), wday);
 
