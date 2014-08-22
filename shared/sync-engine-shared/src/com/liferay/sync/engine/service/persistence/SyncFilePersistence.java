@@ -26,6 +26,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.lang.StringUtils;
+
 /**
  * @author Shinn Lok
  */
@@ -126,6 +128,8 @@ public class SyncFilePersistence extends BasePersistenceImpl<SyncFile, Long> {
 		QueryBuilder<SyncFile, Long> queryBuilder = queryBuilder();
 
 		Where<SyncFile, Long> where = queryBuilder.where();
+
+		filePathName = StringUtils.replace(filePathName, "\\", "\\\\");
 
 		where.like("filePathName", new SelectArg(filePathName + "%"));
 
