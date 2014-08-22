@@ -31,7 +31,7 @@ public class CompanyModelListener extends BaseModelListener<Company> {
 			PortalKaleoManager portalKaleoManager =
 				PortalKaleoManagerUtil.getPortalKaleoManager();
 
-			portalKaleoManager.deleteKaleoData(company);
+			portalKaleoManager.deleteKaleoData(company.getCompanyId());
 		}
 		catch (Exception e) {
 			throw new ModelListenerException(e);
