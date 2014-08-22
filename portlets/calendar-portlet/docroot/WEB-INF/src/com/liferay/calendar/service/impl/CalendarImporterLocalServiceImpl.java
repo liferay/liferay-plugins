@@ -564,9 +564,7 @@ public class CalendarImporterLocalServiceImpl
 			weekdays.add(new PositionalWeekday(Weekday.THURSDAY, 0));
 			weekdays.add(new PositionalWeekday(Weekday.FRIDAY, 0));
 		}
-		else if ((frequency == Frequency.MONTHLY) ||
-				 (frequency == Frequency.WEEKLY)) {
-
+		else {
 			DayAndPosition[] dayAndPositions = tzsRecurrence.getByDay();
 
 			if (dayAndPositions != null) {
@@ -580,11 +578,6 @@ public class CalendarImporterLocalServiceImpl
 					weekdays.add(positionalWeekday);
 				}
 			}
-		}
-		else if (frequency == Frequency.YEARLY) {
-			List<Integer> months = ListUtil.toList(tzsRecurrence.getByMonth());
-
-			recurrence.setMonths(months);
 		}
 
 		recurrence.setInterval(interval);
