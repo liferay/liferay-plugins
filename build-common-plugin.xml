@@ -318,8 +318,8 @@
 		<path id="service.classpath">
 			<path refid="lib.classpath" />
 			<fileset dir="${app.server.lib.global.dir}" includes="*.jar" />
-			<fileset dir="${service.base.dir}/lib" excludes="${plugin.name}-service.jar" includes="*.jar" />
 			<fileset dir="${sdk.dir}/dependencies/aQute.bnd/lib" includes="*.jar" />
+			<fileset dir="${service.base.dir}/lib" excludes="${plugin.name}-service.jar" includes="*.jar" />
 		</path>
 
 		<compile-java
