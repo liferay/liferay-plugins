@@ -122,7 +122,9 @@ public class RecurrenceSerializer {
 
 		List<Integer> months = recurrence.getMonths();
 
-		rRule.setByMonth(ArrayUtil.toIntArray(months));
+		if (months != null) {
+			rRule.setByMonth(ArrayUtil.toIntArray(months));
+		}
 
 		rRule.setCount(recurrence.getCount());
 
