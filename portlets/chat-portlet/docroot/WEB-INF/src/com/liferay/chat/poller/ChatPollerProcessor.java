@@ -84,7 +84,7 @@ public class ChatPollerProcessor extends BasePollerProcessor {
 		JSONArray buddiesJSONArray = JSONFactoryUtil.createJSONArray();
 
 		for (Object[] buddy : buddies) {
-			String userUuid = (String) buddy[0];
+			String userUuid = (String)buddy[0];
 			long userId = (Long)buddy[1];
 			String screenName = (String)buddy[2];
 			String firstName = (String)buddy[3];
@@ -92,6 +92,8 @@ public class ChatPollerProcessor extends BasePollerProcessor {
 			String lastName = (String)buddy[5];
 			long portraitId = (Long)buddy[6];
 			boolean awake = (Boolean)buddy[7];
+			boolean male = (Boolean)buddy[8];
+			long groupId = (Long)buddy[9];
 
 			JSONObject curUserJSONObject = JSONFactoryUtil.createJSONObject();
 
@@ -105,21 +107,15 @@ public class ChatPollerProcessor extends BasePollerProcessor {
 				firstName, middleName, lastName);
 
 			curUserJSONObject.put("fullName", fullName);
+			curUserJSONObject.put("groupId", groupId);
 
-			User user = UserLocalServiceUtil.getUser(userId);
+			// Leave imagePath blank, it is appended to the portraitURL in the
+			// main.js where we have ThemeDisplay.
 
-			curUserJSONObject.put("groupId", user.getGroupId());
-
-			curUserJSONObject.put("portraitId", portraitId);
-
-			//Build portraitURL
-			//Leave imagePath blank, because we don't have a ThemeDisplay here
-			//but we will add it in main.js
 			String portraitURL = UserConstants.getPortraitURL(
-				StringPool.BLANK, user.isMale(), portraitId, userUuid);
+				StringPool.BLANK, male, portraitId, userUuid);
 
 			curUserJSONObject.put("portraitURL", portraitURL);
-
 			curUserJSONObject.put("screenName", screenName);
 
 			String statusMessage = buddyStatus.getMessage();

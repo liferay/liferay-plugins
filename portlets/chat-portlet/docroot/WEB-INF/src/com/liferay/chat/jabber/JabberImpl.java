@@ -23,6 +23,7 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.model.Contact;
 import com.liferay.portal.model.ContactConstants;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.UserLocalServiceUtil;
@@ -145,7 +146,9 @@ public class JabberImpl implements Jabber {
 				User user = UserLocalServiceUtil.getUserByScreenName(
 					companyId, getScreenName(rosterEntry.getUser()));
 
-				Object[] jabberBuddy = new Object[8];
+				Contact contact = user.getContact();
+
+				Object[] jabberBuddy = new Object[10];
 
 				jabberBuddy[0] = user.getUserUuid();
 				jabberBuddy[1] = user.getUserId();
@@ -155,6 +158,8 @@ public class JabberImpl implements Jabber {
 				jabberBuddy[5] = user.getLastName();
 				jabberBuddy[6] = user.getPortraitId();
 				jabberBuddy[7] = true;
+				jabberBuddy[8] = contact.isMale();
+				jabberBuddy[9] = user.getGroupId();
 
 				if (Collections.binarySearch(
 						jabberBuddies, jabberBuddy, buddyComparator) < 0) {
