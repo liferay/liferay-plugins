@@ -19,6 +19,52 @@ package com.liferay.portal.workflow.kaleo.manager;
  */
 public class PortalKaleoManagerUtil {
 
+	public static void deleteKaleoData(long companyId) throws Exception {
+		_portalKaleoManager.deleteKaleoData(companyId);
+	}
+
+	public static void deployDefaultDefinitionLink(String assetClassName)
+		throws Exception {
+
+		_portalKaleoManager.deployDefaultDefinitionLink(assetClassName);
+	}
+
+	public static void deployDefaultDefinitionLinks() throws Exception {
+		_portalKaleoManager.deployDefaultDefinitionLinks();
+	}
+
+	public static void deployDefaultDefinitionLinks(long companyId)
+		throws Exception {
+
+		_portalKaleoManager.deployDefaultDefinitionLinks(companyId);
+	}
+
+	public static void deployDefaultDefinitions() throws Exception {
+		_portalKaleoManager.deployDefaultDefinitions();
+	}
+
+	public static void deployDefaultDefinitions(long companyId)
+		throws Exception {
+
+		_portalKaleoManager.deployDefaultDefinitions(companyId);
+	}
+
+	public static void deployDefaultRoles() throws Exception {
+		_portalKaleoManager.deployDefaultRoles();
+	}
+
+	public static void deployDefaultRoles(long companyId) throws Exception {
+		_portalKaleoManager.deployDefaultRoles(companyId);
+	}
+
+	public static void deployKaleoDefaults() throws Exception {
+		_portalKaleoManager.deployKaleoDefaults();
+	}
+
+	public static void deployKaleoDefaults(long companyId) throws Exception {
+		_portalKaleoManager.deployKaleoDefaults(companyId);
+	}
+
 	public static PortalKaleoManager getPortalKaleoManager() {
 		return _portalKaleoManager;
 	}
