@@ -347,6 +347,8 @@ public class SyncFileService {
 					deleteSyncFile(childSyncFile);
 				}
 				else {
+					childSyncFile.setUiEvent(syncFile.getUiEvent());
+
 					_syncFilePersistence.delete(childSyncFile);
 				}
 			}
