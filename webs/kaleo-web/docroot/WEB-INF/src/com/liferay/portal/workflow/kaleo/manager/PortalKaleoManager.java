@@ -14,32 +14,30 @@
 
 package com.liferay.portal.workflow.kaleo.manager;
 
-import com.liferay.portal.model.Company;
-
 /**
  * @author Michael C. Han
  */
 public interface PortalKaleoManager {
 
-	public void deleteKaleoData(Company company) throws Exception;
+	public void deleteKaleoData(long companyId) throws Exception;
 
 	public void deployDefaultDefinitionLink(String assetClassName)
 		throws Exception;
 
 	public void deployDefaultDefinitionLinks() throws Exception;
 
-	public void deployDefaultDefinitionLinks(Company company) throws Exception;
+	public void deployDefaultDefinitionLinks(long companyId) throws Exception;
 
 	public void deployDefaultDefinitions() throws Exception;
 
-	public void deployDefaultDefinitions(Company company) throws Exception;
+	public void deployDefaultDefinitions(long companyId) throws Exception;
 
 	public void deployDefaultRoles() throws Exception;
 
-	public void deployDefaultRoles(Company company) throws Exception;
+	public void deployDefaultRoles(long companyId) throws Exception;
 
 	public void deployKaleoDefaults() throws Exception;
 
-	public void deployKaleoDefaults(Company company) throws Exception;
+	public void deployKaleoDefaults(long companyId) throws Exception;
 
 }
