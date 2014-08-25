@@ -47,12 +47,12 @@ public class Recurrence {
 		return _months;
 	}
 
-	public Calendar getUntilJCalendar() {
-		return _untilJCalendar;
+	public List<PositionalWeekday> getPositionalWeekdays() {
+		return _positionalWeekdays;
 	}
 
-	public List<PositionalWeekday> getWeekdays() {
-		return _weekdays;
+	public Calendar getUntilJCalendar() {
+		return _untilJCalendar;
 	}
 
 	public void setCount(int count) {
@@ -75,12 +75,14 @@ public class Recurrence {
 		_months = months;
 	}
 
-	public void setUntilJCalendar(Calendar untilJCalendar) {
-		_untilJCalendar = untilJCalendar;
+	public void setPositionalWeekdays(
+		List<PositionalWeekday> positionalWeekdays) {
+
+		_positionalWeekdays = positionalWeekdays;
 	}
 
-	public void setWeekdays(List<PositionalWeekday> weekdays) {
-		_weekdays = weekdays;
+	public void setUntilJCalendar(Calendar untilJCalendar) {
+		_untilJCalendar = untilJCalendar;
 	}
 
 	private int _count;
@@ -88,7 +90,7 @@ public class Recurrence {
 	private Frequency _frequency;
 	private int _interval;
 	private List<Integer> _months;
+	private List<PositionalWeekday> _positionalWeekdays;
 	private Calendar _untilJCalendar;
-	private List<PositionalWeekday> _weekdays;
 
 }

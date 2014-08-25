@@ -24,11 +24,11 @@ import com.liferay.calendar.recurrence.RecurrenceSerializer;
 import com.liferay.calendar.recurrence.Weekday;
 import com.liferay.calendar.service.base.CalendarImporterLocalServiceBaseImpl;
 import com.liferay.calendar.util.CalendarResourceUtil;
-import com.liferay.compat.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.cal.DayAndPosition;
 import com.liferay.portal.kernel.cal.TZSRecurrence;
 import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.Time;
 import com.liferay.portal.kernel.uuid.PortalUUIDUtil;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
@@ -536,18 +536,19 @@ public class CalendarImporterLocalServiceImpl
 
 		int interval = tzsRecurrence.getInterval();
 
-		List<PositionalWeekday> weekdays = new ArrayList<PositionalWeekday>();
+		List<PositionalWeekday> positionalWeekdays =
+			new ArrayList<PositionalWeekday>();
 
 		if ((frequency == Frequency.DAILY) && (interval == 0)) {
 			frequency = Frequency.WEEKLY;
 
 			interval = 1;
 
-			weekdays.add(new PositionalWeekday(Weekday.MONDAY, 0));
-			weekdays.add(new PositionalWeekday(Weekday.TUESDAY, 0));
-			weekdays.add(new PositionalWeekday(Weekday.WEDNESDAY, 0));
-			weekdays.add(new PositionalWeekday(Weekday.THURSDAY, 0));
-			weekdays.add(new PositionalWeekday(Weekday.FRIDAY, 0));
+			positionalWeekdays.add(new PositionalWeekday(Weekday.MONDAY, 0));
+			positionalWeekdays.add(new PositionalWeekday(Weekday.TUESDAY, 0));
+			positionalWeekdays.add(new PositionalWeekday(Weekday.WEDNESDAY, 0));
+			positionalWeekdays.add(new PositionalWeekday(Weekday.THURSDAY, 0));
+			positionalWeekdays.add(new PositionalWeekday(Weekday.FRIDAY, 0));
 		}
 		else {
 			DayAndPosition[] dayAndPositions = tzsRecurrence.getByDay();
@@ -560,7 +561,7 @@ public class CalendarImporterLocalServiceImpl
 					PositionalWeekday positionalWeekday = new PositionalWeekday(
 						weekday, dayAndPosition.getDayPosition());
 
-					weekdays.add(positionalWeekday);
+					positionalWeekdays.add(positionalWeekday);
 				}
 			}
 
@@ -579,7 +580,7 @@ public class CalendarImporterLocalServiceImpl
 
 		recurrence.setInterval(interval);
 		recurrence.setFrequency(frequency);
-		recurrence.setWeekdays(weekdays);
+		recurrence.setPositionalWeekdays(positionalWeekdays);
 
 		Calendar untilJCalendar = tzsRecurrence.getUntil();
 

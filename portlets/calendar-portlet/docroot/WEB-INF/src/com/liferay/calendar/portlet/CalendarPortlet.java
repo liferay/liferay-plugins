@@ -739,7 +739,8 @@ public class CalendarPortlet extends MVCPortlet {
 
 		recurrence.setUntilJCalendar(untilJCalendar);
 
-		List<PositionalWeekday> weekdays = new ArrayList<PositionalWeekday>();
+		List<PositionalWeekday> positionalWeekdays =
+			new ArrayList<PositionalWeekday>();
 
 		if (frequency == Frequency.WEEKLY) {
 			for (Weekday weekday : Weekday.values()) {
@@ -747,12 +748,12 @@ public class CalendarPortlet extends MVCPortlet {
 					actionRequest, weekday.getValue());
 
 				if (checked) {
-					weekdays.add(new PositionalWeekday(weekday, 0));
+					positionalWeekdays.add(new PositionalWeekday(weekday, 0));
 				}
 			}
 		}
 
-		recurrence.setWeekdays(weekdays);
+		recurrence.setPositionalWeekdays(positionalWeekdays);
 
 		String[] exceptionDates = StringUtil.split(
 			ParamUtil.getString(actionRequest, "exceptionDates"));
