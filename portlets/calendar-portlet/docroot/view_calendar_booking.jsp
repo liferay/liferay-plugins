@@ -231,6 +231,7 @@ AssetEntry layoutAssetEntry = AssetEntryLocalServiceUtil.getEntry(CalendarBookin
 
 		<%
 		JSONSerializer jsonSerializer = JSONFactoryUtil.createJSONSerializer();
+
 		List<Weekday> weekdays = new ArrayList<Weekday>();
 
 		for (PositionalWeekday positionalWeekday : recurrence.getWeekdays()) {
