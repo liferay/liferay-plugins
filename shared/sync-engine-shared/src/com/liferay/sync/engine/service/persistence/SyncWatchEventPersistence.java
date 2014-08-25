@@ -72,10 +72,15 @@ public class SyncWatchEventPersistence
 		return syncWatchEvents.get(0);
 	}
 
-	public List<SyncWatchEvent> findAll(String orderByColumn, boolean ascending)
+	public List<SyncWatchEvent> findBySyncAccountId(
+			long syncAccountId, String orderByColumn, boolean ascending)
 		throws SQLException {
 
 		QueryBuilder<SyncWatchEvent, Long> queryBuilder = queryBuilder();
+
+		Where<SyncWatchEvent, Long> where = queryBuilder.where();
+
+		where.eq("syncAccountId", syncAccountId);
 
 		queryBuilder.orderBy(orderByColumn, ascending);
 

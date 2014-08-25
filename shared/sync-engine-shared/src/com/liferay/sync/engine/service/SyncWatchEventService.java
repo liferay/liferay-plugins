@@ -112,11 +112,12 @@ public class SyncWatchEventService {
 		}
 	}
 
-	public static List<SyncWatchEvent> findAll(
-		String orderByColumn, boolean ascending) {
+	public static List<SyncWatchEvent> findBySyncAccountId(
+		long syncAccountId, String orderByColumn, boolean ascending) {
 
 		try {
-			return _syncWatchEventPersistence.findAll(orderByColumn, ascending);
+			return _syncWatchEventPersistence.findBySyncAccountId(
+				syncAccountId, orderByColumn, ascending);
 		}
 		catch (SQLException sqle) {
 			if (_logger.isDebugEnabled()) {
