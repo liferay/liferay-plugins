@@ -50,9 +50,10 @@ public class SyncWatchEventProcessor implements Runnable {
 		SyncWatchEvent latestSyncWatchEvent = syncWatchEvents.get(
 			syncWatchEvents.size() - 1);
 
-		if ((System.currentTimeMillis() - latestSyncWatchEvent.getTimestamp())
-				<= 500) {
+		long delta =
+			System.currentTimeMillis() - latestSyncWatchEvent.getTimestamp();
 
+		if (delta <= 500) {
 			return;
 		}
 
