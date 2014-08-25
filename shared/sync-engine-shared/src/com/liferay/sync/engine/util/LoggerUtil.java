@@ -16,6 +16,9 @@ package com.liferay.sync.engine.util;
 
 import java.net.URL;
 
+import java.nio.file.Files;
+import java.nio.file.Paths;
+
 import org.apache.log4j.xml.DOMConfigurator;
 
 /**
@@ -24,12 +27,21 @@ import org.apache.log4j.xml.DOMConfigurator;
 public class LoggerUtil {
 
 	public static void initLogger() {
-		ClassLoader classLoader = LoggerUtil.class.getClassLoader();
-
-		URL url = classLoader.getResource(
+		String loggerConfigurationFilePathName = FileUtil.getFilePathName(
+			PropsValues.SYNC_CONFIGURATION_DIRECTORY,
 			PropsValues.SYNC_LOGGER_CONFIGURATION_FILE);
 
-		DOMConfigurator.configure(url);
+		if (Files.exists(Paths.get(loggerConfigurationFilePathName))) {
+			DOMConfigurator.configureAndWatch(loggerConfigurationFilePathName);
+		}
+		else {
+			ClassLoader classLoader = LoggerUtil.class.getClassLoader();
+
+			URL url = classLoader.getResource(
+				PropsValues.SYNC_LOGGER_CONFIGURATION_FILE);
+
+			DOMConfigurator.configure(url);
+		}
 	}
 
 }
