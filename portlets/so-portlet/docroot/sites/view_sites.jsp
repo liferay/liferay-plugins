@@ -371,20 +371,20 @@ else {
 				var unescapedSiteName = Lang.String.unescapeHTML(siteName.getContent());
 
 				if (currentTargetClass == 'leave-site') {
-					confirmMessage = '<%= UnicodeLanguageUtil.format(request, "are-you-sure-you-want-to-leave-x", "' + unescapedSiteName + '", false) %>';
-					siteAction = '<%= UnicodeLanguageUtil.format(request, "you-left-x", new String[] {"' + unescapedSiteName + '"}, false) %>';
+					confirmMessage = Lang.sub(Liferay.Language.get('are-you-sure-you-want-to-leave-x'), [unescapedSiteName]);
+					siteAction = Lang.sub(Liferay.Language.get('you-left-x'), [unescapedSiteName]);
 				}
 				else if (currentTargetClass == 'join-site') {
-					confirmMessage = '<%= UnicodeLanguageUtil.format(request, "are-you-sure-you-want-to-join-x", "' + unescapedSiteName + '", false) %>';
-					siteAction = '<%= UnicodeLanguageUtil.format(request, "you-joined-x", new String[] {"' + unescapedSiteName + '"}, false) %>';
+					confirmMessage = Lang.sub(Liferay.Language.get('are-you-sure-you-want-to-join-x'), [unescapedSiteName]);
+					siteAction = Lang.sub(Liferay.Language.get('you-joined-x'), [unescapedSiteName]);
 				}
 				else if (currentTargetClass == 'request-site') {
-					confirmMessage = '<%= UnicodeLanguageUtil.format(request, "this-is-a-restricted-site-do-you-want-to-send-a-membership-request-to-x", "' + unescapedSiteName + '", false) %>';
-					siteAction = '<%= UnicodeLanguageUtil.get(request, "your-membership-request-has-been-sent") %>';
+					confirmMessage = Lang.sub(Liferay.Language.get('this-is-a-restricted-site-do-you-want-to-send-a-membership-request-to-x'), [unescapedSiteName]);
+					siteAction = Liferay.Language.get('your-membership-request-has-been-sent');
 				}
 				else {
-					confirmMessage = '<%= UnicodeLanguageUtil.format(request, "are-you-sure-you-want-to-delete-x", "' + unescapedSiteName + '", false) %>';
-					siteAction = '<%= UnicodeLanguageUtil.format(request, "you-deleted-x", new String[] {"' + unescapedSiteName + '"}, false) %>';
+					confirmMessage = Lang.sub(Liferay.Language.get('are-you-sure-you-want-to-delete-x'), [unescapedSiteName]);
+					siteAction = Lang.sub(Liferay.Language.get('you-deleted-x'), [unescapedSiteName]);
 				}
 
 				if (confirm(confirmMessage)) {
