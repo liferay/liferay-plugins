@@ -48,7 +48,7 @@ import com.liferay.portlet.asset.model.AssetLink;
 import com.liferay.portlet.asset.model.AssetTag;
 import com.liferay.portlet.asset.model.AssetVocabulary;
 import com.liferay.portlet.calendar.model.CalEvent;
-import com.liferay.portlet.calendar.service.persistence.CalEventActionableDynamicQuery;
+import com.liferay.portlet.calendar.service.CalEventLocalServiceUtil;
 import com.liferay.portlet.messageboards.model.MBDiscussion;
 import com.liferay.portlet.messageboards.model.MBMessage;
 import com.liferay.portlet.messageboards.model.MBMessageConstants;
@@ -146,16 +146,21 @@ public class CalendarImporterLocalServiceImpl
 	@Override
 	public void importCalEvents() throws PortalException {
 		ActionableDynamicQuery actionableDynamicQuery =
-			new CalEventActionableDynamicQuery() {
+			CalEventLocalServiceUtil.getActionableDynamicQuery();
 
-			@Override
-			protected void performAction(Object object) throws PortalException {
-				CalEvent calEvent = (CalEvent)object;
+		actionableDynamicQuery.setPerformActionMethod(
+			new ActionableDynamicQuery.PerformActionMethod() {
 
-				importCalEvent(calEvent);
-			}
+				@Override
+				public void performAction(Object object)
+					throws PortalException {
 
-		};
+					CalEvent calEvent = (CalEvent)object;
+
+					importCalEvent(calEvent);
+				}
+
+			});
 
 		actionableDynamicQuery.performActions();
 	}
