@@ -108,7 +108,7 @@ AUI().use(
 											chat = instance._chatManager._createChatSession(
 												{
 													fullName: buddy.fullName,
-													portraitId: buddy.portraitId,
+													portraitURL: buddy.portraitURL,
 													statusMessage: buddy.statusMessage,
 													userId: buddy.userId
 												}
