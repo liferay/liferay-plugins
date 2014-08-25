@@ -42,6 +42,10 @@ public class SyncWatchEventProcessor implements Runnable {
 		_syncAccountId = syncAccountId;
 	}
 
+	public boolean isInProgress() {
+		return _inProgress;
+	}
+
 	@Override
 	public void run() {
 		List<SyncWatchEvent> syncWatchEvents =
@@ -59,6 +63,8 @@ public class SyncWatchEventProcessor implements Runnable {
 			System.currentTimeMillis() - latestSyncWatchEvent.getTimestamp();
 
 		if (delta <= 500) {
+			_inProgress = true;
+
 			return;
 		}
 
@@ -130,6 +136,8 @@ public class SyncWatchEventProcessor implements Runnable {
 					syncWatchEvent.getSyncWatchEventId());
 			}
 		}
+
+		_inProgress = false;
 
 		_processedSyncWatchEventIds.clear();
 	}
@@ -317,6 +325,7 @@ public class SyncWatchEventProcessor implements Runnable {
 	private static Logger _logger = LoggerFactory.getLogger(
 		SyncWatchEventProcessor.class);
 
+	private boolean _inProgress;
 	private Set<Long> _processedSyncWatchEventIds = new HashSet<Long>();
 	private long _syncAccountId;
 

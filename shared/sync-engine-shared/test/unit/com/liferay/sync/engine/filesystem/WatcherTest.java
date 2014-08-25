@@ -65,7 +65,8 @@ public class WatcherTest extends BaseTestCase {
 			Executors.newSingleThreadScheduledExecutor();
 
 		scheduledExecutorService.scheduleAtFixedRate(
-			new SyncWatchEventProcessor(), 0, 1, TimeUnit.SECONDS);
+			new SyncWatchEventProcessor(syncAccount.getSyncAccountId()), 0, 1,
+			TimeUnit.SECONDS);
 
 		WatchEventListener watchEventListener = new SyncSiteWatchEventListener(
 			syncAccount.getSyncAccountId());
