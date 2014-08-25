@@ -9,6 +9,7 @@ Export-Package: \
 	com.liferay.portal.jsonwebservice,\
 	com.liferay.portal.spring.context,\
 	com.liferay.portal.struts,\
+	com.liferay.portal.templateparser,\
 	com.liferay.util,\
 	com.liferay.util.bean,\
 	com.liferay.util.portlet.PortletProps,\
