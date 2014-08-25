@@ -156,8 +156,6 @@ public class UserThreadLocalServiceImpl extends UserThreadLocalServiceBaseImpl {
 			userId);
 
 		for (UserThread userThread : userThreads) {
-			MBThreadLocalServiceUtil.deleteMBThread(userThread.getMbThreadId());
-
 			userThreadPersistence.remove(userThread.getUserThreadId());
 		}
 	}
