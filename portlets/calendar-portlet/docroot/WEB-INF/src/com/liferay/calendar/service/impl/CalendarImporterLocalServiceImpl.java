@@ -30,6 +30,7 @@ import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.ArrayUtil;
+import com.liferay.portal.kernel.util.DateUtil;
 import com.liferay.portal.kernel.util.Time;
 import com.liferay.portal.kernel.uuid.PortalUUIDUtil;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
@@ -76,7 +77,11 @@ public class CalendarImporterLocalServiceImpl
 
 		// Calendar event
 
-		if (isImported(calEvent)) {
+		CalendarBooking calendarBooking = fetchCalendarBooking(calEvent);
+
+		if (calendarBooking != null) {
+			verifyCalendarBooking(calendarBooking, calEvent);
+
 			return;
 		}
 
@@ -448,6 +453,16 @@ public class CalendarImporterLocalServiceImpl
 		subscription.setFrequency(frequency);
 
 		subscriptionPersistence.update(subscription);
+	}
+
+	protected CalendarBooking fetchCalendarBooking(CalEvent calEvent)
+		throws PortalException, SystemException {
+
+		CalendarResource calendarResource = getCalendarResource(
+			calEvent.getCompanyId(), calEvent.getGroupId());
+
+		return calendarBookingPersistence.fetchByUUID_G(
+			calEvent.getUuid(), calendarResource.getGroupId());
 	}
 
 	protected long getActionId(
@@ -968,23 +983,6 @@ public class CalendarImporterLocalServiceImpl
 		}
 	}
 
-	protected boolean isImported(CalEvent calEvent)
-		throws PortalException, SystemException {
-
-		CalendarResource calendarResource = getCalendarResource(
-			calEvent.getCompanyId(), calEvent.getGroupId());
-
-		CalendarBooking calendarBooking =
-			calendarBookingPersistence.fetchByUUID_G(
-				calEvent.getUuid(), calendarResource.getGroupId());
-
-		if (calendarBooking != null) {
-			return true;
-		}
-
-		return false;
-	}
-
 	protected void updateMBThreadRootMessageId(
 			long threadId, long rootMessageId)
 		throws PortalException, SystemException {
@@ -994,6 +992,28 @@ public class CalendarImporterLocalServiceImpl
 		mbThread.setRootMessageId(rootMessageId);
 
 		mbThreadPersistence.update(mbThread);
+	}
+
+	protected void verifyCalendarBooking(
+			CalendarBooking calendarBooking, CalEvent calEvent)
+		throws PortalException, SystemException {
+
+		if (!calendarBooking.isRecurring()) {
+			return;
+		}
+
+		if (DateUtil.compareTo(
+				calendarBooking.getModifiedDate(),
+				calEvent.getModifiedDate()) > 0) {
+
+			return;
+		}
+
+		String recurrence = getRecurrence(calEvent.getRecurrenceObj());
+
+		calendarBooking.setRecurrence(recurrence);
+
+		calendarBookingPersistence.update(calendarBooking);
 	}
 
 	private static final String _ASSET_VOCABULARY_NAME = "Calendar Event Types";
