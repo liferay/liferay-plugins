@@ -40,12 +40,25 @@ public class SyncWatchEventProcessor implements Runnable {
 
 	@Override
 	public void run() {
+		List<SyncWatchEvent> syncWatchEvents = SyncWatchEventService.findAll(
+			"eventType", true);
+
+		if (syncWatchEvents.isEmpty()) {
+			return;
+		}
+
+		SyncWatchEvent latestSyncWatchEvent = syncWatchEvents.get(
+			syncWatchEvents.size() - 1);
+
+		if ((System.currentTimeMillis() - latestSyncWatchEvent.getTimestamp())
+				<= 500) {
+
+			return;
+		}
+
 		if (_logger.isTraceEnabled()) {
 			_logger.trace("Processing sync watch events");
 		}
-
-		List<SyncWatchEvent> syncWatchEvents = SyncWatchEventService.findAll(
-			"eventType", true);
 
 		for (SyncWatchEvent syncWatchEvent : syncWatchEvents) {
 			SyncAccount syncAccount = SyncAccountService.fetchSyncAccount(
