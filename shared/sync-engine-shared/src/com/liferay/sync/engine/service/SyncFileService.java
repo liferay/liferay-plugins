@@ -761,10 +761,6 @@ public class SyncFileService {
 
 			// Sync file
 
-			if (!syncFile.isFolder()) {
-				return update(syncFile);
-			}
-
 			String sourceFilePathName = syncFile.getFilePathName();
 			String targetFilePathName = filePath.toString();
 
@@ -772,6 +768,10 @@ public class SyncFileService {
 			syncFile.setLocalSyncTime(System.currentTimeMillis());
 			syncFile.setName(String.valueOf(filePath.getFileName()));
 			syncFile.setParentFolderId(parentFolderId);
+
+			if (!syncFile.isFolder()) {
+				return update(syncFile);
+			}
 
 			update(syncFile);
 

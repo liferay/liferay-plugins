@@ -188,7 +188,6 @@ public class GetSyncDLObjectUpdateHandler extends BaseSyncDLObjectHandler {
 		}
 
 		Path sourceFilePath = Paths.get(sourceSyncFile.getFilePathName());
-
 		Path targetFilePath = Paths.get(targetFilePathName);
 
 		sourceSyncFile = SyncFileService.updateSyncFile(
@@ -199,8 +198,6 @@ public class GetSyncDLObjectUpdateHandler extends BaseSyncDLObjectHandler {
 		}
 		else if (targetSyncFile.isFolder()) {
 			Files.createDirectories(targetFilePath);
-
-			SyncFileService.update(sourceSyncFile);
 
 			SyncFileService.updateFileKeySyncFile(sourceSyncFile);
 		}
