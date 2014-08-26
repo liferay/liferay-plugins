@@ -117,7 +117,7 @@ catch (NoSuchRoleException nsre) {
 
 	<aui:script use="aui-base">
 		if (!('placeholder' in document.createElement('input'))) {
-			var searchInput = A.one('#<%= PortalUtil.getPortletNamespace(PortletKeys.SO_SITES) %>name')
+			var searchInput = A.one('#<%= PortalUtil.getPortletNamespace(PortletKeys.SO_SITES) %>name');
 
 			if (searchInput) {
 				var placeholder = searchInput.getAttribute('placeholder');
