@@ -115,6 +115,7 @@ public class ChatPollerProcessor extends BasePollerProcessor {
 			String portraitURL = UserConstants.getPortraitURL(
 				StringPool.BLANK, male, portraitId, userUuid);
 
+			curUserJSONObject.put("portraitId", portraitId);
 			curUserJSONObject.put("portraitURL", portraitURL);
 			curUserJSONObject.put("screenName", screenName);
 
