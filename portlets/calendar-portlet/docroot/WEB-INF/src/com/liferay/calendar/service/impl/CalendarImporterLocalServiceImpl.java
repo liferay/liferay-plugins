@@ -29,7 +29,6 @@ import com.liferay.portal.kernel.cal.TZSRecurrence;
 import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.util.ArrayUtil;
-import com.liferay.portal.kernel.util.DateUtil;
 import com.liferay.portal.kernel.util.Time;
 import com.liferay.portal.kernel.uuid.PortalUUIDUtil;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
@@ -986,16 +985,19 @@ public class CalendarImporterLocalServiceImpl
 			return;
 		}
 
-		if (DateUtil.compareTo(
-				calendarBooking.getModifiedDate(),
-				calEvent.getModifiedDate()) > 0) {
+		String calendarBookingRecurrence = calendarBooking.getRecurrence();
+		String calEventRecurrence = getRecurrence(calEvent.getRecurrenceObj());
 
-			return;
+		String monthlyRRule = "RRULE:FREQ=MONTHLY;INTERVAL=1";
+		String yearlyRRule = "RRULE:FREQ=YEARLY;INTERVAL=1";
+
+		if ((calendarBookingRecurrence.equals(monthlyRRule) &&
+			 !calEventRecurrence.equals(monthlyRRule)) ||
+			(calendarBookingRecurrence.equals(yearlyRRule) &&
+			 !calEventRecurrence.equals(yearlyRRule))) {
+
+			calendarBooking.setRecurrence(calEventRecurrence);
 		}
-
-		String recurrence = getRecurrence(calEvent.getRecurrenceObj());
-
-		calendarBooking.setRecurrence(recurrence);
 
 		calendarBookingPersistence.update(calendarBooking);
 	}
