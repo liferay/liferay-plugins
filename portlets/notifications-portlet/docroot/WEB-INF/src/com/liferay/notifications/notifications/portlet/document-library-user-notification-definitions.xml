@@ -14,7 +14,7 @@
 	</definition>
 	<definition>
 		<notification-type>${com.liferay.compat.portal.kernel.notifications.UserNotificationDefinition.NOTIFICATION_TYPE_UPDATE_ENTRY}</notification-type>
-		<description>receive-a-notification-when-someone-updates-a-document-in-a-folder-you-are-subscribed-to</description>
+		<description>receive-a-notification-when-someone-updates-a-document-you-are-subscribed-to</description>
 		<delivery-type>
 			<name>website</name>
 			<type>${com.liferay.portal.model.UserNotificationDeliveryConstants.TYPE_WEBSITE}</type>

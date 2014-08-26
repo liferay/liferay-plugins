@@ -4,7 +4,7 @@
 <user-notification-definitions>
 	<definition>
 		<notification-type>${com.liferay.compat.portal.kernel.notifications.UserNotificationDefinition.NOTIFICATION_TYPE_ADD_ENTRY}</notification-type>
-		<description>receive-a-notification-when-someone-adds-a-new-thread-in-a-category-you-are-subscribed-to</description>
+		<description>receive-a-notification-when-someone-adds-a-new-post-in-a-thread-or-category-you-are-subscribed-to</description>
 		<delivery-type>
 			<name>website</name>
 			<type>${com.liferay.portal.model.UserNotificationDeliveryConstants.TYPE_WEBSITE}</type>
@@ -14,7 +14,7 @@
 	</definition>
 	<definition>
 		<notification-type>${com.liferay.compat.portal.kernel.notifications.UserNotificationDefinition.NOTIFICATION_TYPE_UPDATE_ENTRY}</notification-type>
-		<description>receive-a-notification-when-someone-updates-a-thread-in-a-category-you-are-subscribed-to</description>
+		<description>receive-a-notification-when-someone-updates-a-post-you-are-subscribed-to</description>
 		<delivery-type>
 			<name>website</name>
 			<type>${com.liferay.portal.model.UserNotificationDeliveryConstants.TYPE_WEBSITE}</type>
