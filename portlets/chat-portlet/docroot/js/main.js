@@ -96,7 +96,16 @@ AUI().use(
 			getUserImagePath: function(portraitURL) {
 				var instance = this;
 
-				return themeDisplay.getPathImage() + portraitURL;
+				var userImagePath = themeDisplay.getPathImage();
+
+				if (Lang.isNumber(portraitURL)) {
+					userImagePath += '/user_portrait?img_id=' + portraitURL;
+				}
+				else {
+					userImagePath += portraitURL;
+				}
+
+				return userImagePath;
 			},
 
 			_convertToClientTimestamp: function(time) {
