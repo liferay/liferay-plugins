@@ -311,8 +311,8 @@ public class SyncWatchEventProcessor implements Runnable {
 	protected void modifyFile(SyncWatchEvent syncWatchEvent) throws Exception {
 		Path filePath = Paths.get(syncWatchEvent.getFilePathName());
 
-		SyncFile syncFile = SyncFileService.fetchSyncFileByFileKey(
-			FileUtil.getFileKey(filePath), _syncAccountId);
+		SyncFile syncFile = SyncFileService.fetchSyncFile(
+			filePath.toString(), _syncAccountId);
 
 		if ((syncFile == null) || !FileUtil.hasFileChanged(syncFile)) {
 			return;

@@ -645,6 +645,11 @@ public class SyncFileService {
 
 		// Local sync file
 
+		if (OSDetector.isWindows()) {
+			FileUtil.writeFileKey(
+				filePath, String.valueOf(syncFile.getSyncFileId()));
+		}
+
 		Path deltaFilePath = null;
 
 		String name = String.valueOf(filePath.getFileName());
