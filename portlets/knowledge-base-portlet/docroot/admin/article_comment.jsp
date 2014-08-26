@@ -74,7 +74,7 @@ KBFeedbackListDisplayContext kbFeedbackListDisplayContext = (KBFeedbackListDispl
 				int feedbackStatus = kbComment.getStatus();
 				%>
 
-				<span class="icon icon-calendar"></span> <%= dateSearchEntry.getName(pageContext) %>
+				<span class="icon icon-calendar"></span> <%= dateSearchEntry.getName(request) %>
 
 				<aui:model-context bean="<%= kbComment %>" model="<%= KBComment.class %>" />
 

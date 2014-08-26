@@ -207,7 +207,7 @@ boolean hasUpdatePermission = KBArticlePermission.contains(permissionChecker, kb
 										dateSearchEntry.setDate(kbComment.getModifiedDate());
 										%>
 
-										<%= dateSearchEntry.getName(pageContext) %>
+										<%= dateSearchEntry.getName(request) %>
 
 										<aui:model-context bean="<%= kbComment %>" model="<%= KBComment.class %>" />
 
