@@ -332,10 +332,10 @@ public class ContactsUtil {
 	private static String _getVCardListTypeName(ListType listType) {
 		String listTypeName = listType.getName();
 
-		if (StringUtil.equalsIgnoreCase(listTypeName, "business")) {
+		if (listTypeName.equalsIgnoreCase("business")) {
 			listTypeName = "work";
 		}
-		else if (StringUtil.equalsIgnoreCase(listTypeName, "personal")) {
+		else if (listTypeName.equalsIgnoreCase("personal")) {
 			listTypeName = "home";
 		}
 
