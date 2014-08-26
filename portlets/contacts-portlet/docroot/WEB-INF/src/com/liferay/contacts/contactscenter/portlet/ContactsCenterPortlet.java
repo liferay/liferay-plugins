@@ -19,6 +19,7 @@ package com.liferay.contacts.contactscenter.portlet;
 
 import com.liferay.compat.portal.kernel.portlet.PortletResponseUtil;
 import com.liferay.compat.portal.kernel.util.StringUtil;
+import com.liferay.compat.portal.util.PortalUtil;
 import com.liferay.compat.util.bridges.mvc.MVCPortlet;
 import com.liferay.contacts.DuplicateEntryEmailAddressException;
 import com.liferay.contacts.EntryEmailAddressException;
