@@ -29,6 +29,7 @@ import com.liferay.portal.kernel.cal.TZSRecurrence;
 import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.Time;
 import com.liferay.portal.kernel.uuid.PortalUUIDUtil;
@@ -625,6 +626,16 @@ public class CalendarImporterLocalServiceImpl
 		return RecurrenceSerializer.serialize(recurrence);
 	}
 
+	protected boolean hasDayAndPosition(TZSRecurrence tzsRecurrence) {
+		if ((tzsRecurrence == null) ||
+			ArrayUtil.isEmpty(tzsRecurrence.getByDay())) {
+
+			return false;
+		}
+
+		return true;
+	}
+
 	protected void importAssetLink(
 			AssetLink assetLink, long oldEntryId, long newEntryId)
 		throws PortalException, SystemException {
@@ -982,6 +993,17 @@ public class CalendarImporterLocalServiceImpl
 		}
 	}
 
+	protected void updateCalendarBookingRecurrence(
+			CalendarBooking calendarBooking, TZSRecurrence tzsRecurrence)
+		throws SystemException {
+
+		String recurrence = getRecurrence(tzsRecurrence);
+
+		calendarBooking.setRecurrence(recurrence);
+
+		calendarBookingPersistence.update(calendarBooking);
+	}
+
 	protected void updateMBThreadRootMessageId(
 			long threadId, long rootMessageId)
 		throws PortalException, SystemException {
@@ -997,25 +1019,22 @@ public class CalendarImporterLocalServiceImpl
 			CalendarBooking calendarBooking, CalEvent calEvent)
 		throws PortalException, SystemException {
 
-		if (!calendarBooking.isRecurring()) {
+		if (!hasDayAndPosition(calEvent.getRecurrenceObj())) {
 			return;
 		}
 
-		String calendarBookingRecurrence = calendarBooking.getRecurrence();
-		String calEventRecurrence = getRecurrence(calEvent.getRecurrenceObj());
+		TZSRecurrence tzsRecurrence =
+			(TZSRecurrence)JSONFactoryUtil.deserialize(
+				calEvent.getRecurrence());
 
-		String monthlyRRule = "RRULE:FREQ=MONTHLY;INTERVAL=1";
-		String yearlyRRule = "RRULE:FREQ=YEARLY;INTERVAL=1";
+		tzsRecurrence.setByDay(null);
 
-		if ((calendarBookingRecurrence.equals(monthlyRRule) &&
-			 !calEventRecurrence.equals(monthlyRRule)) ||
-			(calendarBookingRecurrence.equals(yearlyRRule) &&
-			 !calEventRecurrence.equals(yearlyRRule))) {
+		String oldRecurrence = getRecurrence(tzsRecurrence);
 
-			calendarBooking.setRecurrence(calEventRecurrence);
+		if (oldRecurrence.equals(calendarBooking.getRecurrence())) {
+			updateCalendarBookingRecurrence(
+				calendarBooking, calEvent.getRecurrenceObj());
 		}
-
-		calendarBookingPersistence.update(calendarBooking);
 	}
 
 	private static final String _ASSET_VOCABULARY_NAME = "Calendar Event Types";
