@@ -98,7 +98,7 @@ AUI().use(
 
 				var userImagePath = themeDisplay.getPathImage();
 
-				if (Lang.isNumber(portraitURL)) {
+				if (Lang.isNumber(parseInt(portraitURL, 10))) {
 					userImagePath += '/user_portrait?img_id=' + portraitURL;
 				}
 				else {
