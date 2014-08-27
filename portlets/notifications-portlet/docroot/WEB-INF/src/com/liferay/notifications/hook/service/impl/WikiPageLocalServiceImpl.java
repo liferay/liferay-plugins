@@ -93,10 +93,9 @@ public class WikiPageLocalServiceImpl extends WikiPageLocalServiceWrapper {
 		List<ObjectValuePair<String, Long>> subscribersOVPs =
 			new ArrayList<ObjectValuePair<String, Long>>();
 
-		ObjectValuePair<String, Long> ovp = new ObjectValuePair<String, Long>(
-			subscriptionClassName, subscriptionClassPK);
-
-		subscribersOVPs.add(ovp);
+		subscribersOVPs.add(
+			new ObjectValuePair<String, Long>(
+				subscriptionClassName, subscriptionClassPK));
 
 		return subscribersOVPs;
 	}

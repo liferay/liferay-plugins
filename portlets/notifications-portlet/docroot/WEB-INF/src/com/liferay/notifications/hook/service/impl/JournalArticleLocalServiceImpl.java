@@ -90,10 +90,9 @@ public class JournalArticleLocalServiceImpl
 		List<ObjectValuePair<String, Long>> subscribersOVPs =
 			new ArrayList<ObjectValuePair<String, Long>>();
 
-		ObjectValuePair<String, Long> ovp = new ObjectValuePair<String, Long>(
-			_JOURNAL_ARTICLE_CLASS_NAME, article.getGroupId());
-
-		subscribersOVPs.add(ovp);
+		subscribersOVPs.add(
+			new ObjectValuePair<String, Long>(
+				_JOURNAL_ARTICLE_CLASS_NAME, article.getGroupId()));
 
 		return subscribersOVPs;
 	}

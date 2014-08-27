@@ -87,10 +87,9 @@ public class MBMessageLocalServiceImpl extends MBMessageLocalServiceWrapper {
 		List<ObjectValuePair<String, Long>> subscribersOVPs =
 			new ArrayList<ObjectValuePair<String, Long>>();
 
-		ObjectValuePair<String, Long> ovp = new ObjectValuePair<String, Long>(
-			_MB_THREAD_CLASS_NAME, mbMessage.getThreadId());
-
-		subscribersOVPs.add(ovp);
+		subscribersOVPs.add(
+			new ObjectValuePair<String, Long>(
+				_MB_THREAD_CLASS_NAME, mbMessage.getThreadId()));
 
 		long categoryId = mbMessage.getCategoryId();
 
@@ -108,11 +107,10 @@ public class MBMessageLocalServiceImpl extends MBMessageLocalServiceWrapper {
 			categoryIds.addAll(category.getAncestorCategoryIds());
 		}
 
-		for (Long curCategoryId : categoryIds) {
-			ovp = new ObjectValuePair<String, Long>(
-				_MB_CATEGORY_CLASS_NAME, curCategoryId);
-
-			subscribersOVPs.add(ovp);
+		for (long curCategoryId : categoryIds) {
+			subscribersOVPs.add(
+				new ObjectValuePair<String, Long>(
+					_MB_CATEGORY_CLASS_NAME, curCategoryId));
 		}
 
 		return subscribersOVPs;

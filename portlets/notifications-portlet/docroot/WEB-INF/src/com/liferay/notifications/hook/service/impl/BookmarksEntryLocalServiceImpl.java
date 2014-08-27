@@ -116,11 +116,9 @@ public class BookmarksEntryLocalServiceImpl
 			new ArrayList<ObjectValuePair<String, Long>>();
 
 		if (subscriptionClassName.equals(_BOOKMARKS_ENTRY_CLASS_NAME)) {
-			ObjectValuePair<String, Long> ovp =
+			subscribersOVPs.add(
 				new ObjectValuePair<String, Long>(
-					subscriptionClassName, subscriptionClassPK);
-
-			subscribersOVPs.add(ovp);
+					subscriptionClassName, subscriptionClassPK));
 
 			subscriptionClassName = _BOOKMARKS_FOLDER_CLASS_NAME;
 			subscriptionClassPK = bookmarksEntry.getFolderId();
@@ -143,11 +141,9 @@ public class BookmarksEntryLocalServiceImpl
 		}
 
 		for (Long folderId : folderIds) {
-			ObjectValuePair<String, Long> ovp =
+			subscribersOVPs.add(
 				new ObjectValuePair<String, Long>(
-					subscriptionClassName, folderId);
-
-			subscribersOVPs.add(ovp);
+					subscriptionClassName, folderId));
 		}
 
 		return subscribersOVPs;

@@ -84,10 +84,9 @@ public class BlogsEntryLocalServiceImpl extends BlogsEntryLocalServiceWrapper {
 		List<ObjectValuePair<String, Long>> subscribersOVPs =
 			new ArrayList<ObjectValuePair<String, Long>>();
 
-		ObjectValuePair<String, Long> ovp = new ObjectValuePair<String, Long>(
-			_BLOGS_ENTRY_CLASS_NAME, blogsEntry.getGroupId());
-
-		subscribersOVPs.add(ovp);
+		subscribersOVPs.add(
+			new ObjectValuePair<String, Long>(
+				_BLOGS_ENTRY_CLASS_NAME, blogsEntry.getGroupId()));
 
 		return subscribersOVPs;
 	}

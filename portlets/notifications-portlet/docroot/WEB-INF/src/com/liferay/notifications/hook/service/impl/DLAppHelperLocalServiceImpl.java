@@ -93,10 +93,9 @@ public class DLAppHelperLocalServiceImpl
 		List<ObjectValuePair<String, Long>> subscribersOVPs =
 			new ArrayList<ObjectValuePair<String, Long>>();
 
-		ObjectValuePair<String, Long> ovp = new ObjectValuePair<String, Long>(
-			_FOLDER_CLASS_NAME, latestFileVersion.getGroupId());
-
-		subscribersOVPs.add(ovp);
+		subscribersOVPs.add(
+			new ObjectValuePair<String, Long>(
+				_FOLDER_CLASS_NAME, latestFileVersion.getGroupId()));
 
 		return subscribersOVPs;
 	}
