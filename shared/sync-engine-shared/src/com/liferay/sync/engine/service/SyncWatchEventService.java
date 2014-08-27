@@ -70,6 +70,20 @@ public class SyncWatchEventService {
 		}
 	}
 
+	public static SyncWatchEvent fetchLastSyncWatchEvent(long syncAccountId) {
+		try {
+			return _syncWatchEventPersistence.findBySyncAccountId_Last(
+				syncAccountId);
+		}
+		catch (SQLException sqle) {
+			if (_logger.isDebugEnabled()) {
+				_logger.debug(sqle.getMessage(), sqle);
+			}
+
+			return null;
+		}
+	}
+
 	public static SyncWatchEvent fetchSyncWatchEvent(long syncWatchEventId) {
 		try {
 			return _syncWatchEventPersistence.queryForId(syncWatchEventId);

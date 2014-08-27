@@ -48,19 +48,15 @@ public class SyncWatchEventProcessor implements Runnable {
 
 	@Override
 	public void run() {
-		List<SyncWatchEvent> syncWatchEvents =
-			SyncWatchEventService.findBySyncAccountId(
-				_syncAccountId, "eventType", true);
+		SyncWatchEvent lastSyncWatchEvent =
+			SyncWatchEventService.fetchLastSyncWatchEvent(_syncAccountId);
 
-		if (syncWatchEvents.isEmpty()) {
+		if (lastSyncWatchEvent == null) {
 			return;
 		}
 
-		SyncWatchEvent latestSyncWatchEvent = syncWatchEvents.get(
-			syncWatchEvents.size() - 1);
-
 		long delta =
-			System.currentTimeMillis() - latestSyncWatchEvent.getTimestamp();
+			System.currentTimeMillis() - lastSyncWatchEvent.getTimestamp();
 
 		if (delta <= 500) {
 			_inProgress = true;
@@ -71,6 +67,10 @@ public class SyncWatchEventProcessor implements Runnable {
 		if (_logger.isTraceEnabled()) {
 			_logger.trace("Processing sync watch events");
 		}
+
+		List<SyncWatchEvent> syncWatchEvents =
+			SyncWatchEventService.findBySyncAccountId(
+				_syncAccountId, "eventType", true);
 
 		for (SyncWatchEvent syncWatchEvent : syncWatchEvents) {
 			SyncAccount syncAccount = SyncAccountService.fetchSyncAccount(

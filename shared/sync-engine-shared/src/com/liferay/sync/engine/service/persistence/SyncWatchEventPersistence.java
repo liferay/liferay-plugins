@@ -87,4 +87,25 @@ public class SyncWatchEventPersistence
 		return query(queryBuilder.prepare());
 	}
 
+	public SyncWatchEvent findBySyncAccountId_Last(long syncAccountId)
+		throws SQLException {
+
+		QueryBuilder<SyncWatchEvent, Long> queryBuilder = queryBuilder();
+
+		Where<SyncWatchEvent, Long> where = queryBuilder.where();
+
+		where.eq("syncAccountId", syncAccountId);
+
+		queryBuilder.limit(1L);
+		queryBuilder.orderBy("timestamp", false);
+
+		List<SyncWatchEvent> syncWatchEvents = query(queryBuilder.prepare());
+
+		if ((syncWatchEvents == null) || syncWatchEvents.isEmpty()) {
+			return null;
+		}
+
+		return syncWatchEvents.get(0);
+	}
+
 }

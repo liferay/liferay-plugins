@@ -57,6 +57,12 @@ public class SyncSiteWatchEventListener extends BaseWatchEventListener {
 			SyncAccount syncAccount = SyncAccountService.fetchSyncAccount(
 				getSyncAccountId());
 
+			if (isDuplicateEvent(
+					eventType, filePath.toString(), getSyncAccountId())) {
+
+				return;
+			}
+
 			if (filePathName.equals(syncAccount.getFilePathName()) ||
 				parentFilePathName.equals(syncAccount.getFilePathName())) {
 
@@ -120,6 +126,22 @@ public class SyncSiteWatchEventListener extends BaseWatchEventListener {
 				return syncFile.getRepositoryId();
 			}
 		}
+	}
+
+	protected boolean isDuplicateEvent(
+		String eventType, String filePathName, long syncAccountId) {
+
+		SyncWatchEvent lastSyncWatchEvent =
+			SyncWatchEventService.fetchLastSyncWatchEvent(syncAccountId);
+
+		if ((lastSyncWatchEvent == null) ||
+			!eventType.equals(lastSyncWatchEvent.getEventType()) ||
+			!filePathName.equals(lastSyncWatchEvent.getFilePathName())) {
+
+			return false;
+		}
+
+		return true;
 	}
 
 	private static Logger _logger = LoggerFactory.getLogger(
