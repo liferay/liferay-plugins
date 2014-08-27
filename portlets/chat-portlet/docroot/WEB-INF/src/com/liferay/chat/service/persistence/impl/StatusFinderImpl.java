@@ -75,10 +75,10 @@ public class StatusFinderImpl
 
 			QueryPos qPos = QueryPos.getInstance(q);
 
+			qPos.add(ClassNameLocalServiceUtil.getClassNameId(User.class));
 			qPos.add(companyId);
 			qPos.add(userId);
 			qPos.add(modifiedDate);
-			qPos.add(ClassNameLocalServiceUtil.getClassNameId(User.class));
 
 			return (List<Object[]>)QueryUtil.list(q, getDialect(), start, end);
 		}
@@ -116,16 +116,16 @@ public class StatusFinderImpl
 
 			QueryPos qPos = QueryPos.getInstance(q);
 
+			qPos.add(ClassNameLocalServiceUtil.getClassNameId(User.class));
 			qPos.add(userId);
 
 			if (types.length > 0) {
 				qPos.add(types);
 			}
 
-			qPos.add(modifiedDate);
 			qPos.add(CompanyThreadLocal.getCompanyId());
 			qPos.add(userId);
-			qPos.add(ClassNameLocalServiceUtil.getClassNameId(User.class));
+			qPos.add(modifiedDate);
 
 			return (List<Object[]>)QueryUtil.list(q, getDialect(), start, end);
 		}
@@ -164,6 +164,9 @@ public class StatusFinderImpl
 
 			QueryPos qPos = QueryPos.getInstance(q);
 
+			qPos.add(ClassNameLocalServiceUtil.getClassNameId(User.class));
+			qPos.add(CompanyThreadLocal.getCompanyId());
+			qPos.add(userId);
 			qPos.add(userId);
 
 			if (groupNames.length > 0) {
@@ -171,9 +174,6 @@ public class StatusFinderImpl
 			}
 
 			qPos.add(modifiedDate);
-			qPos.add(CompanyThreadLocal.getCompanyId());
-			qPos.add(userId);
-			qPos.add(ClassNameLocalServiceUtil.getClassNameId(User.class));
 
 			return (List<Object[]>)QueryUtil.list(q, getDialect(), start, end);
 		}

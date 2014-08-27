@@ -108,15 +108,13 @@ public class ChatPollerProcessor extends BasePollerProcessor {
 
 			curUserJSONObject.put("fullName", fullName);
 			curUserJSONObject.put("groupId", groupId);
-
-			// Leave imagePath blank, it is appended to the portraitURL in the
-			// main.js where we have ThemeDisplay.
+			curUserJSONObject.put("portraitId", portraitId);
 
 			String portraitURL = UserConstants.getPortraitURL(
 				StringPool.BLANK, male, portraitId, userUuid);
 
-			curUserJSONObject.put("portraitId", portraitId);
 			curUserJSONObject.put("portraitURL", portraitURL);
+
 			curUserJSONObject.put("screenName", screenName);
 
 			String statusMessage = buddyStatus.getMessage();

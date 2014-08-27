@@ -61,11 +61,11 @@
 						(Group_.companyId = User_.companyId)
 					)
 			WHERE
+				(Group_.classNameId = ?) AND
 				(User_.companyId = ?) AND
 				(User_.userId != ?) AND
 				(Chat_Status.modifiedDate > ?) AND
-				(Chat_Status.online_ = [$TRUE$]) AND
-				(Group_.classNameId = ?)
+				(Chat_Status.online_ = [$TRUE$])
 			ORDER BY
 				Chat_Status.awake ASC,
 				User_.firstName ASC,
@@ -95,13 +95,13 @@
 				SocialRelation ON
 					(SocialRelation.userId2 = User_.userId)
 			WHERE
+				(Group_.classNameId = ?) AND
 				(SocialRelation.userId1 = ?) AND
 				[$SOCIAL_RELATION_TYPES$]
-				(Chat_Status.modifiedDate > ?) AND
-				(Chat_Status.online_ = [$TRUE$]) AND
 				(User_.companyId = ?) AND
 				(User_.userId != ?) AND
-				(Group_.classNameId = ?)
+				(Chat_Status.modifiedDate > ?) AND
+				(Chat_Status.online_ = [$TRUE$])
 			ORDER BY
 				Chat_Status.awake ASC,
 				User_.firstName ASC,
@@ -131,6 +131,9 @@
 						(Group_.companyId = User_.companyId)
 					)
 			WHERE
+				(Group_.classNameId = ?) AND
+				(User_.companyId = ?) AND
+				(User_.userId != ?) AND
 				(Users_Groups.groupId IN
 					(
 						SELECT
@@ -142,10 +145,7 @@
 					)
 				) AND
 				(Chat_Status.modifiedDate > ?) AND
-				(Chat_Status.online_ = [$TRUE$]) AND
-				(User_.companyId = ?) AND
-				(User_.userId != ?) AND
-				(Group_.classNameId = ?)
+				(Chat_Status.online_ = [$TRUE$])
 			ORDER BY
 				Chat_Status.awake ASC,
 				User_.firstName ASC,
