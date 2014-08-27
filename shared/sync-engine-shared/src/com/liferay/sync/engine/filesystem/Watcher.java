@@ -23,6 +23,7 @@ import com.liferay.sync.engine.service.SyncFileService;
 import com.liferay.sync.engine.service.SyncSiteService;
 import com.liferay.sync.engine.util.BidirectionalMap;
 import com.liferay.sync.engine.util.FileUtil;
+import com.liferay.sync.engine.util.OSDetector;
 
 import java.io.IOException;
 
@@ -44,6 +45,7 @@ import name.pachler.nio.file.WatchEvent;
 import name.pachler.nio.file.WatchKey;
 import name.pachler.nio.file.WatchService;
 import name.pachler.nio.file.ext.ExtendedWatchEventKind;
+import name.pachler.nio.file.ext.ExtendedWatchEventModifier;
 import name.pachler.nio.file.impl.PathImpl;
 
 import org.slf4j.Logger;
@@ -164,9 +166,11 @@ public class Watcher implements Runnable {
 	}
 
 	public void unregisterFilePath(Path filePath) {
-		WatchKey watchKey = _filePaths.getKey(filePath);
+		WatchKey watchKey = _filePaths.removeValue(filePath);
 
-		_filePaths.removeValue(filePath);
+		if (watchKey == null) {
+			return;
+		}
 
 		watchKey.cancel();
 
@@ -230,17 +234,6 @@ public class Watcher implements Runnable {
 			);
 		}
 		else {
-			name.pachler.nio.file.Path jpathwatchFilePath = Paths.get(
-				filePath.toString());
-
-			WatchKey watchKey = jpathwatchFilePath.register(
-				_watchService, ExtendedWatchEventKind.KEY_INVALID,
-				StandardWatchEventKind.ENTRY_CREATE,
-				StandardWatchEventKind.ENTRY_DELETE,
-				StandardWatchEventKind.ENTRY_MODIFY);
-
-			_filePaths.put(watchKey, filePath);
-
 			SyncFile syncFile = SyncFileService.fetchSyncFile(
 				filePath.toString(), _watchEventListener.getSyncAccountId());
 
@@ -248,6 +241,36 @@ public class Watcher implements Runnable {
 				fireWatchEventListener(
 					SyncWatchEvent.EVENT_TYPE_CREATE, filePath);
 			}
+
+			if (OSDetector.isWindows() && !_filePaths.isEmpty()) {
+				return;
+			}
+
+			WatchKey watchKey = null;
+
+			name.pachler.nio.file.Path jpathwatchFilePath = Paths.get(
+				filePath.toString());
+
+			if (OSDetector.isWindows()) {
+				watchKey = jpathwatchFilePath.register(
+					_watchService,
+					new WatchEvent.Kind[] {
+						ExtendedWatchEventKind.KEY_INVALID,
+						StandardWatchEventKind.ENTRY_CREATE,
+						StandardWatchEventKind.ENTRY_DELETE,
+						StandardWatchEventKind.ENTRY_MODIFY
+					},
+					ExtendedWatchEventModifier.FILE_TREE);
+			}
+			else {
+				watchKey = jpathwatchFilePath.register(
+					_watchService, ExtendedWatchEventKind.KEY_INVALID,
+					StandardWatchEventKind.ENTRY_CREATE,
+					StandardWatchEventKind.ENTRY_DELETE,
+					StandardWatchEventKind.ENTRY_MODIFY);
+			}
+
+			_filePaths.put(watchKey, filePath);
 
 			if (_logger.isTraceEnabled()) {
 				_logger.trace("Registered file path {}", filePath);
