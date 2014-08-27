@@ -62,16 +62,7 @@ public class StatusFinderImpl
 
 			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
-			q.addScalar("awake", Type.BOOLEAN);
-			q.addScalar("firstName", Type.STRING);
-			q.addScalar("groupId", Type.LONG);
-			q.addScalar("lastName", Type.STRING);
-			q.addScalar("male", Type.BOOLEAN);
-			q.addScalar("middleName", Type.STRING);
-			q.addScalar("portraitId", Type.LONG);
-			q.addScalar("screenName", Type.STRING);
-			q.addScalar("userId", Type.LONG);
-			q.addScalar("userUuid", Type.STRING);
+			addScalar(q);
 
 			QueryPos qPos = QueryPos.getInstance(q);
 
@@ -103,16 +94,7 @@ public class StatusFinderImpl
 
 			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
-			q.addScalar("awake", Type.BOOLEAN);
-			q.addScalar("firstName", Type.STRING);
-			q.addScalar("groupId", Type.LONG);
-			q.addScalar("lastName", Type.STRING);
-			q.addScalar("male", Type.BOOLEAN);
-			q.addScalar("middleName", Type.STRING);
-			q.addScalar("portraitId", Type.LONG);
-			q.addScalar("screenName", Type.STRING);
-			q.addScalar("userId", Type.LONG);
-			q.addScalar("userUuid", Type.STRING);
+			addScalar(q);
 
 			QueryPos qPos = QueryPos.getInstance(q);
 
@@ -151,16 +133,7 @@ public class StatusFinderImpl
 
 			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
-			q.addScalar("awake", Type.BOOLEAN);
-			q.addScalar("firstName", Type.STRING);
-			q.addScalar("groupId", Type.LONG);
-			q.addScalar("lastName", Type.STRING);
-			q.addScalar("male", Type.BOOLEAN);
-			q.addScalar("middleName", Type.STRING);
-			q.addScalar("portraitId", Type.LONG);
-			q.addScalar("screenName", Type.STRING);
-			q.addScalar("userId", Type.LONG);
-			q.addScalar("userUuid", Type.STRING);
+			addScalar(q);
 
 			QueryPos qPos = QueryPos.getInstance(q);
 
@@ -183,6 +156,19 @@ public class StatusFinderImpl
 		finally {
 			closeSession(session);
 		}
+	}
+
+	protected void addScalar(SQLQuery sqlQuery) {
+		sqlQuery.addScalar("awake", Type.BOOLEAN);
+		sqlQuery.addScalar("firstName", Type.STRING);
+		sqlQuery.addScalar("groupId", Type.LONG);
+		sqlQuery.addScalar("lastName", Type.STRING);
+		sqlQuery.addScalar("male", Type.BOOLEAN);
+		sqlQuery.addScalar("middleName", Type.STRING);
+		sqlQuery.addScalar("portraitId", Type.LONG);
+		sqlQuery.addScalar("screenName", Type.STRING);
+		sqlQuery.addScalar("userId", Type.LONG);
+		sqlQuery.addScalar("userUuid", Type.STRING);
 	}
 
 	protected String getFindBySocialRelationTypes_SQL(int[] types) {
