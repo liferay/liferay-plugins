@@ -159,6 +159,7 @@ $defaultTextColor: #202020;
 
 			&.alert {
 				background-color: #A20F0F;
+				border: 1px solid #A20F0F;
 				color: #FFF;
 				text-shadow: none;
 			}
