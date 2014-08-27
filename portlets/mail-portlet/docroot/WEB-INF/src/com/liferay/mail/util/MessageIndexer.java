@@ -31,6 +31,7 @@ import com.liferay.portal.kernel.search.Field;
 import com.liferay.portal.kernel.search.Hits;
 import com.liferay.portal.kernel.search.SearchContext;
 import com.liferay.portal.kernel.search.SearchEngineUtil;
+import com.liferay.portal.kernel.search.SortFactoryUtil;
 import com.liferay.portal.kernel.search.Summary;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HtmlUtil;
@@ -38,6 +39,8 @@ import com.liferay.portal.util.PortletKeys;
 import com.liferay.portlet.expando.model.ExpandoBridge;
 import com.liferay.portlet.expando.util.ExpandoBridgeIndexerUtil;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 import javax.portlet.PortletRequest;
@@ -79,17 +82,24 @@ public class MessageIndexer extends BaseIndexer {
 
 			booleanQuery.addRequiredTerm("accountId", account.getAccountId());
 
-			Hits hits = SearchEngineUtil.search(
-				getSearchEngineId(), account.getCompanyId(), booleanQuery,
-				QueryUtil.ALL_POS, QueryUtil.ALL_POS);
+			searchContext.setCompanyId(account.getCompanyId());
+			searchContext.setEnd(QueryUtil.ALL_POS);
+			searchContext.setSorts(SortFactoryUtil.getDefaultSorts());
+			searchContext.setStart(QueryUtil.ALL_POS);
+
+			Hits hits = SearchEngineUtil.search(searchContext, booleanQuery);
+
+			List<String> uids = new ArrayList<String>(hits.getLength());
 
 			for (int i = 0; i < hits.getLength(); i++) {
 				Document document = hits.doc(i);
 
-				SearchEngineUtil.deleteDocument(
-					getSearchEngineId(), account.getCompanyId(),
-					document.get(Field.UID));
+				uids.add(document.get(Field.UID));
 			}
+
+			SearchEngineUtil.deleteDocuments(
+				getSearchEngineId(), account.getCompanyId(), uids,
+				isCommitImmediately());
 		}
 		else if (obj instanceof Folder) {
 			Folder folder = (Folder)obj;
@@ -101,17 +111,24 @@ public class MessageIndexer extends BaseIndexer {
 
 			booleanQuery.addRequiredTerm("folderId", folder.getFolderId());
 
-			Hits hits = SearchEngineUtil.search(
-				getSearchEngineId(), folder.getCompanyId(), booleanQuery,
-				QueryUtil.ALL_POS, QueryUtil.ALL_POS);
+			searchContext.setCompanyId(folder.getCompanyId());
+			searchContext.setEnd(QueryUtil.ALL_POS);
+			searchContext.setSorts(SortFactoryUtil.getDefaultSorts());
+			searchContext.setStart(QueryUtil.ALL_POS);
+
+			Hits hits = SearchEngineUtil.search(searchContext, booleanQuery);
+
+			List<String> uids = new ArrayList<String>(hits.getLength());
 
 			for (int i = 0; i < hits.getLength(); i++) {
 				Document document = hits.doc(i);
 
-				SearchEngineUtil.deleteDocument(
-					getSearchEngineId(), folder.getCompanyId(),
-					document.get(Field.UID));
+				uids.add(document.get(Field.UID));
 			}
+
+			SearchEngineUtil.deleteDocuments(
+				getSearchEngineId(), folder.getCompanyId(), uids,
+				isCommitImmediately());
 		}
 		else if (obj instanceof Message) {
 			Message message = (Message)obj;
@@ -122,7 +139,7 @@ public class MessageIndexer extends BaseIndexer {
 
 			SearchEngineUtil.deleteDocument(
 				getSearchEngineId(), message.getCompanyId(),
-				document.get(Field.UID));
+				document.get(Field.UID), isCommitImmediately());
 		}
 	}
 
@@ -162,7 +179,8 @@ public class MessageIndexer extends BaseIndexer {
 		Document document = getDocument(message);
 
 		SearchEngineUtil.updateDocument(
-			getSearchEngineId(), message.getCompanyId(), document);
+			getSearchEngineId(), message.getCompanyId(), document,
+			isCommitImmediately());
 	}
 
 	@Override

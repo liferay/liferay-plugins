@@ -179,7 +179,8 @@ public class CalendarBookingIndexer extends BaseIndexer {
 			Document document = getDocument(calendarBooking);
 
 			SearchEngineUtil.updateDocument(
-				getSearchEngineId(), calendarBooking.getCompanyId(), document);
+				getSearchEngineId(), calendarBooking.getCompanyId(), document,
+				isCommitImmediately());
 		}
 		else if ((status == CalendarBookingWorkflowConstants.STATUS_DENIED) ||
 				 (status == CalendarBookingWorkflowConstants.STATUS_IN_TRASH)) {
@@ -257,7 +258,7 @@ public class CalendarBookingIndexer extends BaseIndexer {
 		actionableDynamicQuery.performActions();
 
 		SearchEngineUtil.updateDocuments(
-			getSearchEngineId(), companyId, documents);
+			getSearchEngineId(), companyId, documents, isCommitImmediately());
 	}
 
 }

@@ -172,7 +172,7 @@ public class AdminIndexer extends BaseIndexer {
 
 		SearchEngineUtil.updateDocument(
 			getSearchEngineId(), kbArticle.getCompanyId(),
-			getDocument(kbArticle));
+			getDocument(kbArticle), isCommitImmediately());
 	}
 
 	@Override
@@ -211,7 +211,8 @@ public class AdminIndexer extends BaseIndexer {
 		}
 
 		SearchEngineUtil.updateDocuments(
-			getSearchEngineId(), kbArticle.getCompanyId(), documents);
+			getSearchEngineId(), kbArticle.getCompanyId(), documents,
+			isCommitImmediately());
 	}
 
 	protected void reindexKBArticles(long companyId) throws Exception {
