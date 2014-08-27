@@ -126,8 +126,10 @@ public class Watcher implements Runnable {
 				Path childFilePath = parentFilePath.resolve(
 					pathImpl.toString());
 
-				if ((kind == StandardWatchEventKind.ENTRY_CREATE) &&
-					isIgnoredFilePath(childFilePath)) {
+				if (((kind == StandardWatchEventKind.ENTRY_CREATE) &&
+					 isIgnoredFilePath(childFilePath)) ||
+					((kind == StandardWatchEventKind.ENTRY_MODIFY) &&
+					 Files.isDirectory(childFilePath))) {
 
 					continue;
 				}
