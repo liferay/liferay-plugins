@@ -101,13 +101,7 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 		_swallowException = swallowException;
 	}
 
-	protected Hits doSearch(SearchContext searchContext, Query query)
-		throws Exception {
-
-		SolrQuery solrQuery = translateQuery(
-			searchContext.getCompanyId(), query, searchContext.getSorts(),
-			searchContext.getStart(), searchContext.getEnd());
-
+	protected void addFacets(SolrQuery solrQuery, SearchContext searchContext) {
 		Map<String, Facet> facets = searchContext.getFacets();
 
 		for (Facet facet : facets.values()) {
@@ -171,6 +165,16 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 		}
 
 		solrQuery.setFacetLimit(-1);
+	}
+
+	protected Hits doSearch(SearchContext searchContext, Query query)
+		throws Exception {
+
+		SolrQuery solrQuery = translateQuery(
+			searchContext.getCompanyId(), query, searchContext.getSorts(),
+			searchContext.getStart(), searchContext.getEnd());
+
+		addFacets(solrQuery, searchContext);
 
 		QueryResponse queryResponse = _solrServer.query(solrQuery, METHOD.POST);
 
@@ -183,6 +187,8 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 		List<FacetField> facetFields = queryResponse.getFacetFields();
 
 		if (facetFields != null) {
+			Map<String, Facet> facets = searchContext.getFacets();
+
 			for (FacetField facetField : facetFields) {
 				Facet facet = facets.get(facetField.getName());
 
