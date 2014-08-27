@@ -34,6 +34,7 @@ import com.liferay.portal.kernel.notifications.UserNotificationManagerUtil;
 import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.process.ProcessCallable;
 import com.liferay.portal.kernel.process.ProcessException;
+import com.liferay.portal.kernel.util.ObjectValuePair;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.model.Subscription;
 import com.liferay.portal.model.UserNotificationDeliveryConstants;
@@ -46,8 +47,10 @@ import com.liferay.portlet.asset.model.AssetRenderer;
 
 import java.io.Serializable;
 
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 /**
  * @author Lin Cui
@@ -202,10 +205,9 @@ public class NotificationsUtil {
 	}
 
 	public static void sendNotificationEvent(
-			long companyId, String subscriptionClassName,
-			long subscriptionClassPK, String portletKey, String className,
-			long classPK, String entryTitle, String entryURL,
-			int notificationType, long userId)
+			long companyId, String portletKey, String className, long classPK,
+			String entryTitle, String entryURL, int notificationType,
+			List<ObjectValuePair<String, Long>> subscribersOVPs, long userId)
 		throws PortalException, SystemException {
 
 		JSONObject notificationEventJSONObject =
@@ -221,8 +223,8 @@ public class NotificationsUtil {
 		MessageBusUtil.sendMessage(
 			DestinationNames.ASYNC_SERVICE,
 			new NotificationProcessCallable(
-				companyId, subscriptionClassName, subscriptionClassPK,
-				portletKey, notificationEventJSONObject));
+				companyId, portletKey, notificationEventJSONObject,
+				subscribersOVPs));
 	}
 
 	protected static DynamicQuery getDynamicQuery(
@@ -263,22 +265,22 @@ public class NotificationsUtil {
 		implements ProcessCallable<Serializable> {
 
 		public NotificationProcessCallable(
-			long companyId, String className, long classPK, String portletKey,
-			JSONObject notificationEventJSONObject) {
+			long companyId, String portletKey,
+			JSONObject notificationEventJSONObject,
+			List<ObjectValuePair<String, Long>> subscribersOVPs) {
 
 			_companyId = companyId;
-			_className = className;
-			_classPK = classPK;
 			_notificationEventJSONObject = notificationEventJSONObject;
 			_portletKey = portletKey;
+			_subscribersOVPs = subscribersOVPs;
 		}
 
 		@Override
 		public Serializable call() throws ProcessException {
 			try {
 				sendUserNotifications(
-					_companyId, _className, _classPK, _portletKey,
-					_notificationEventJSONObject);
+					_companyId, _portletKey, _notificationEventJSONObject,
+					_subscribersOVPs);
 			}
 			catch (Exception e) {
 				throw new ProcessException(e);
@@ -288,8 +290,9 @@ public class NotificationsUtil {
 		}
 
 		protected void sendUserNotifications(
-				long companyId, String className, long classPK,
-				String portletKey, JSONObject notificationEventJSONObject)
+				long companyId, String portletKey,
+				JSONObject notificationEventJSONObject,
+				List<ObjectValuePair<String, Long>> subscribersOVPs)
 			throws PortalException, SystemException {
 
 			int notificationType = notificationEventJSONObject.getInt(
@@ -297,40 +300,53 @@ public class NotificationsUtil {
 
 			long userId = notificationEventJSONObject.getLong("userId");
 
-			List<Subscription> subscriptions =
-				SubscriptionLocalServiceUtil.getSubscriptions(
-					companyId, className, classPK);
+			Set<Long> subscriberUserIds = new HashSet<Long>();
 
-			for (Subscription subscription : subscriptions) {
-				long subscriberUserId = subscription.getUserId();
+			for (ObjectValuePair<String, Long> ovp : subscribersOVPs) {
+				String className = ovp.getKey();
+				long classPK = ovp.getValue();
 
-				if (subscriberUserId == userId) {
-					continue;
-				}
+				List<Subscription> subscriptions =
+					SubscriptionLocalServiceUtil.getSubscriptions(
+						companyId, className, classPK);
 
-				if (UserNotificationManagerUtil.isDeliver(
-						subscriberUserId, portletKey, 0, notificationType,
-						UserNotificationDeliveryConstants.TYPE_WEBSITE)) {
+				for (Subscription subscription : subscriptions) {
+					long subscriberUserId = subscription.getUserId();
 
-					NotificationEvent notificationEvent =
-						NotificationEventFactoryUtil.createNotificationEvent(
-							System.currentTimeMillis(), portletKey,
-							notificationEventJSONObject);
+					if (subscriberUserId == userId) {
+						continue;
+					}
 
-					UserNotificationEventLocalServiceUtil.
-						addUserNotificationEvent(
-							subscriberUserId, notificationEvent);
+					if (subscriberUserIds.contains(subscriberUserId)) {
+						continue;
+					}
+
+					subscriberUserIds.add(subscriberUserId);
+
+					if (UserNotificationManagerUtil.isDeliver(
+							subscriberUserId, portletKey, 0, notificationType,
+							UserNotificationDeliveryConstants.TYPE_WEBSITE)) {
+
+						NotificationEvent notificationEvent =
+							NotificationEventFactoryUtil.
+								createNotificationEvent(
+									System.currentTimeMillis(), portletKey,
+									notificationEventJSONObject);
+
+						UserNotificationEventLocalServiceUtil.
+							addUserNotificationEvent(
+								subscriberUserId, notificationEvent);
+					}
 				}
 			}
 		}
 
 		private static final long serialVersionUID = 1L;
 
-		private String _className;
-		private long _classPK;
 		private long _companyId;
 		private JSONObject _notificationEventJSONObject;
 		private String _portletKey;
+		List<ObjectValuePair<String, Long>> _subscribersOVPs;
 	}
 
 }
