@@ -91,7 +91,8 @@ public class LARImporter extends BaseImporter {
 			PortletDataHandlerKeys.LAYOUTS_IMPORT_MODE,
 			new String[] {
 				PortletDataHandlerKeys.
-					LAYOUTS_IMPORT_MODE_MERGE_BY_LAYOUT_UUID});
+					LAYOUTS_IMPORT_MODE_MERGE_BY_LAYOUT_UUID
+			});
 		parameters.put(
 			PortletDataHandlerKeys.LOGO,
 			new String[] {Boolean.TRUE.toString()});
