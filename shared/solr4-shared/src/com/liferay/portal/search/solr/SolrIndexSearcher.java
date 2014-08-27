@@ -194,6 +194,16 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 		addHighlightedField(solrQuery, queryConfig, Field.TITLE);
 	}
 
+	protected void addPagination(SolrQuery solrQuery, int start, int end) {
+		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS)) {
+			solrQuery.setRows(0);
+		}
+		else {
+			solrQuery.setStart(start);
+			solrQuery.setRows(end - start);
+		}
+	}
+
 	protected Hits doSearch(SearchContext searchContext, Query query)
 		throws Exception {
 
@@ -203,6 +213,8 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 
 		addFacets(solrQuery, searchContext);
 		addHighlights(solrQuery, query.getQueryConfig());
+		addPagination(
+			solrQuery, searchContext.getStart(), searchContext.getEnd());
 
 		QueryResponse queryResponse = _solrServer.query(solrQuery, METHOD.POST);
 
@@ -430,14 +442,6 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 		sb.append(companyId);
 
 		solrQuery.setQuery(sb.toString());
-
-		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS)) {
-			solrQuery.setRows(0);
-		}
-		else {
-			solrQuery.setRows(end - start);
-			solrQuery.setStart(start);
-		}
 
 		if (sorts != null) {
 			for (Sort sort : sorts) {
