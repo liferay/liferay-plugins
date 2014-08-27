@@ -87,14 +87,15 @@
 
 										<%
 										for (Object[] buddy : buddies) {
-											String userUuid = (String)buddy[0];
-											long userId = (Long)buddy[1];
-											String firstName = (String)buddy[3];
-											String middleName = (String)buddy[4];
-											String lastName = (String)buddy[5];
+											String firstName = (String)buddy[1];
+											long groupId = (Long)buddy[2];
+											String lastName = (String)buddy[3];
+											boolean male = (Boolean)buddy[4];
+											String middleName = (String)buddy[5];
 											long portraitId = (Long)buddy[6];
-											boolean male = (Boolean)buddy[8];
-											long groupId = (Long)buddy[9];
+											String screenName = (String)buddy[7];
+											long userId = (Long)buddy[8];
+											String userUuid = (String)buddy[9];
 										%>
 
 											<li class="active user" data-groupId="<%= groupId %>" data-userId="<%= userId %>">

@@ -62,16 +62,16 @@ public class StatusFinderImpl
 
 			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
-			q.addScalar("userUuid", Type.STRING);
-			q.addScalar("userId", Type.LONG);
-			q.addScalar("screenName", Type.STRING);
-			q.addScalar("firstName", Type.STRING);
-			q.addScalar("middleName", Type.STRING);
-			q.addScalar("lastName", Type.STRING);
-			q.addScalar("portraitId", Type.LONG);
 			q.addScalar("awake", Type.BOOLEAN);
-			q.addScalar("male", Type.BOOLEAN);
+			q.addScalar("firstName", Type.STRING);
 			q.addScalar("groupId", Type.LONG);
+			q.addScalar("lastName", Type.STRING);
+			q.addScalar("male", Type.BOOLEAN);
+			q.addScalar("middleName", Type.STRING);
+			q.addScalar("portraitId", Type.LONG);
+			q.addScalar("screenName", Type.STRING);
+			q.addScalar("userId", Type.LONG);
+			q.addScalar("userUuid", Type.STRING);
 
 			QueryPos qPos = QueryPos.getInstance(q);
 
@@ -103,16 +103,16 @@ public class StatusFinderImpl
 
 			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
-			q.addScalar("userUuid", Type.STRING);
-			q.addScalar("userId", Type.LONG);
-			q.addScalar("screenName", Type.STRING);
-			q.addScalar("firstName", Type.STRING);
-			q.addScalar("middleName", Type.STRING);
-			q.addScalar("lastName", Type.STRING);
-			q.addScalar("portraitId", Type.LONG);
 			q.addScalar("awake", Type.BOOLEAN);
-			q.addScalar("male", Type.BOOLEAN);
+			q.addScalar("firstName", Type.STRING);
 			q.addScalar("groupId", Type.LONG);
+			q.addScalar("lastName", Type.STRING);
+			q.addScalar("male", Type.BOOLEAN);
+			q.addScalar("middleName", Type.STRING);
+			q.addScalar("portraitId", Type.LONG);
+			q.addScalar("screenName", Type.STRING);
+			q.addScalar("userId", Type.LONG);
+			q.addScalar("userUuid", Type.STRING);
 
 			QueryPos qPos = QueryPos.getInstance(q);
 
@@ -151,16 +151,16 @@ public class StatusFinderImpl
 
 			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
-			q.addScalar("userUuid", Type.STRING);
-			q.addScalar("userId", Type.LONG);
-			q.addScalar("screenName", Type.STRING);
-			q.addScalar("firstName", Type.STRING);
-			q.addScalar("middleName", Type.STRING);
-			q.addScalar("lastName", Type.STRING);
-			q.addScalar("portraitId", Type.LONG);
 			q.addScalar("awake", Type.BOOLEAN);
-			q.addScalar("male", Type.BOOLEAN);
+			q.addScalar("firstName", Type.STRING);
 			q.addScalar("groupId", Type.LONG);
+			q.addScalar("lastName", Type.STRING);
+			q.addScalar("male", Type.BOOLEAN);
+			q.addScalar("middleName", Type.STRING);
+			q.addScalar("portraitId", Type.LONG);
+			q.addScalar("screenName", Type.STRING);
+			q.addScalar("userId", Type.LONG);
+			q.addScalar("userUuid", Type.STRING);
 
 			QueryPos qPos = QueryPos.getInstance(q);
 

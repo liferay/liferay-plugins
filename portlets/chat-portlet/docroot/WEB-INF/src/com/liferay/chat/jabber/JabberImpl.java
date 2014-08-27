@@ -118,10 +118,10 @@ public class JabberImpl implements Jabber {
 
 			if (PortletPropsValues.JABBER_IMPORT_USER_ENABLED) {
 				for (Object[] buddy : buddies) {
-					String screenName = (String)buddy[2];
-					String firstName = (String)buddy[3];
-					String middleName = (String)buddy[4];
-					String lastName = (String)buddy[5];
+					String firstName = (String)buddy[1];
+					String lastName = (String)buddy[3];
+					String middleName = (String)buddy[5];
+					String screenName = (String)buddy[7];
 
 					String fullName = ContactConstants.getFullName(
 						firstName, middleName, lastName);
@@ -150,16 +150,16 @@ public class JabberImpl implements Jabber {
 
 				Object[] jabberBuddy = new Object[10];
 
-				jabberBuddy[0] = user.getUserUuid();
-				jabberBuddy[1] = user.getUserId();
-				jabberBuddy[2] = user.getScreenName();
-				jabberBuddy[3] = user.getFirstName();
-				jabberBuddy[4] = user.getMiddleName();
-				jabberBuddy[5] = user.getLastName();
+				jabberBuddy[0] = true;
+				jabberBuddy[1] = user.getFirstName();
+				jabberBuddy[2] = user.getGroupId();
+				jabberBuddy[3] = user.getLastName();
+				jabberBuddy[4] = contact.isMale();
+				jabberBuddy[5] = user.getMiddleName();
 				jabberBuddy[6] = user.getPortraitId();
-				jabberBuddy[7] = true;
-				jabberBuddy[8] = contact.isMale();
-				jabberBuddy[9] = user.getGroupId();
+				jabberBuddy[7] = user.getScreenName();
+				jabberBuddy[8] = user.getUserId();
+				jabberBuddy[9] = user.getUserUuid();
 
 				if (Collections.binarySearch(
 						jabberBuddies, jabberBuddy, buddyComparator) < 0) {
