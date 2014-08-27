@@ -18,6 +18,7 @@ import com.liferay.compat.portal.kernel.notifications.UserNotificationDefinition
 import com.liferay.notifications.util.NotificationsUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.util.ObjectValuePair;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.PortletKeys;
@@ -30,6 +31,8 @@ import com.liferay.portlet.journal.service.JournalArticleLocalServiceWrapper;
 
 import java.io.Serializable;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -71,14 +74,28 @@ public class JournalArticleLocalServiceImpl
 
 		if (Validator.isNotNull(entryURL)) {
 			NotificationsUtil.sendNotificationEvent(
-				article.getCompanyId(), _JOURNAL_ARTICLE_CLASS_NAME,
-				article.getGroupId(), PortletKeys.JOURNAL,
+				article.getCompanyId(), PortletKeys.JOURNAL,
 				_JOURNAL_ARTICLE_CLASS_NAME, article.getId(),
 				assetRenderer.getTitle(serviceContext.getLocale()), entryURL,
-				notificationType, userId);
+				notificationType, getSubscribersOVPs(article), userId);
 		}
 
 		return journalArticle;
+	}
+
+	protected List<ObjectValuePair<String, Long>> getSubscribersOVPs(
+			JournalArticle article)
+		throws SystemException {
+
+		List<ObjectValuePair<String, Long>> subscribersOVPs =
+			new ArrayList<ObjectValuePair<String, Long>>();
+
+		ObjectValuePair<String, Long> ovp = new ObjectValuePair<String, Long>(
+			_JOURNAL_ARTICLE_CLASS_NAME, article.getGroupId());
+
+		subscribersOVPs.add(ovp);
+
+		return subscribersOVPs;
 	}
 
 	protected AssetRendererFactory _assetRendererFactory =

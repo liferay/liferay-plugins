@@ -21,6 +21,7 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.repository.model.FileVersion;
 import com.liferay.portal.kernel.repository.model.Folder;
+import com.liferay.portal.kernel.util.ObjectValuePair;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.PortletKeys;
@@ -33,6 +34,8 @@ import com.liferay.portlet.documentlibrary.service.DLAppHelperLocalServiceWrappe
 
 import java.io.Serializable;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -75,12 +78,27 @@ public class DLAppHelperLocalServiceImpl
 
 		if (Validator.isNotNull(entryURL)) {
 			NotificationsUtil.sendNotificationEvent(
-				latestFileVersion.getCompanyId(), _FOLDER_CLASS_NAME,
-				latestFileVersion.getGroupId(), PortletKeys.DOCUMENT_LIBRARY,
+				latestFileVersion.getCompanyId(), PortletKeys.DOCUMENT_LIBRARY,
 				_DL_FILE_ENTRY_CLASS_NAME, latestFileVersion.getFileEntryId(),
 				assetRenderer.getTitle(serviceContext.getLocale()), entryURL,
-				notificationType, userId);
+				notificationType, getSubscribersOVPs(latestFileVersion),
+				userId);
 		}
+	}
+
+	protected List<ObjectValuePair<String, Long>> getSubscribersOVPs(
+			FileVersion latestFileVersion)
+		throws SystemException {
+
+		List<ObjectValuePair<String, Long>> subscribersOVPs =
+			new ArrayList<ObjectValuePair<String, Long>>();
+
+		ObjectValuePair<String, Long> ovp = new ObjectValuePair<String, Long>(
+			_FOLDER_CLASS_NAME, latestFileVersion.getGroupId());
+
+		subscribersOVPs.add(ovp);
+
+		return subscribersOVPs;
 	}
 
 	protected AssetRendererFactory _assetRendererFactory =

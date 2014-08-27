@@ -18,6 +18,7 @@ import com.liferay.compat.portal.kernel.notifications.UserNotificationDefinition
 import com.liferay.notifications.util.NotificationsUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.util.ObjectValuePair;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.PortletKeys;
@@ -26,8 +27,12 @@ import com.liferay.portlet.asset.model.AssetRenderer;
 import com.liferay.portlet.asset.model.AssetRendererFactory;
 import com.liferay.portlet.bookmarks.model.BookmarksEntry;
 import com.liferay.portlet.bookmarks.model.BookmarksFolder;
+import com.liferay.portlet.bookmarks.model.BookmarksFolderConstants;
 import com.liferay.portlet.bookmarks.service.BookmarksEntryLocalService;
 import com.liferay.portlet.bookmarks.service.BookmarksEntryLocalServiceWrapper;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Lin Cui
@@ -58,11 +63,14 @@ public class BookmarksEntryLocalServiceImpl
 
 		if (Validator.isNotNull(entryURL)) {
 			NotificationsUtil.sendNotificationEvent(
-				bookmarksEntry.getCompanyId(), _BOOKMARKS_FOLDER_CLASS_NAME,
-				bookmarksEntry.getFolderId(), _BOOKMARKS_FOLDER_CLASS_NAME,
-				PortletKeys.BOOKMARKS, bookmarksEntry.getFolderId(),
+				bookmarksEntry.getCompanyId(), PortletKeys.BOOKMARKS,
+				_BOOKMARKS_FOLDER_CLASS_NAME, bookmarksEntry.getFolderId(),
 				assetRenderer.getTitle(serviceContext.getLocale()), entryURL,
-				UserNotificationDefinition.NOTIFICATION_TYPE_ADD_ENTRY, userId);
+				UserNotificationDefinition.NOTIFICATION_TYPE_ADD_ENTRY,
+				getSubscribersOVPs(
+					bookmarksEntry, _BOOKMARKS_FOLDER_CLASS_NAME,
+					bookmarksEntry.getFolderId()),
+				userId);
 		}
 
 		return bookmarksEntry;
@@ -86,15 +94,63 @@ public class BookmarksEntryLocalServiceImpl
 
 		if (Validator.isNotNull(entryURL)) {
 			NotificationsUtil.sendNotificationEvent(
-				bookmarksEntry.getCompanyId(), _BOOKMARKS_ENTRY_CLASS_NAME,
-				bookmarksEntry.getEntryId(), PortletKeys.BOOKMARKS,
+				bookmarksEntry.getCompanyId(), PortletKeys.BOOKMARKS,
 				_BOOKMARKS_ENTRY_CLASS_NAME, bookmarksEntry.getEntryId(),
 				assetRenderer.getTitle(serviceContext.getLocale()), entryURL,
 				UserNotificationDefinition.NOTIFICATION_TYPE_UPDATE_ENTRY,
+				getSubscribersOVPs(
+					bookmarksEntry, _BOOKMARKS_ENTRY_CLASS_NAME,
+					bookmarksEntry.getEntryId()),
 				userId);
 		}
 
 		return bookmarksEntry;
+	}
+
+	protected List<ObjectValuePair<String, Long>> getSubscribersOVPs(
+			BookmarksEntry bookmarksEntry, String subscriptionClassName,
+			long subscriptionClassPK)
+		throws PortalException, SystemException {
+
+		List<ObjectValuePair<String, Long>> subscribersOVPs =
+			new ArrayList<ObjectValuePair<String, Long>>();
+
+		if (subscriptionClassName.equals(_BOOKMARKS_ENTRY_CLASS_NAME)) {
+			ObjectValuePair<String, Long> ovp =
+				new ObjectValuePair<String, Long>(
+					subscriptionClassName, subscriptionClassPK);
+
+			subscribersOVPs.add(ovp);
+
+			subscriptionClassName = _BOOKMARKS_FOLDER_CLASS_NAME;
+			subscriptionClassPK = bookmarksEntry.getFolderId();
+		}
+
+		if (subscriptionClassPK <= 0) {
+			subscriptionClassPK = bookmarksEntry.getGroupId();
+		}
+
+		List<Long> folderIds = new ArrayList<Long>();
+
+		folderIds.add(subscriptionClassPK);
+
+		BookmarksFolder folder = bookmarksEntry.getFolder();
+
+		if (subscriptionClassPK !=
+				BookmarksFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
+
+			folderIds.addAll(folder.getAncestorFolderIds());
+		}
+
+		for (Long folderId : folderIds) {
+			ObjectValuePair<String, Long> ovp =
+				new ObjectValuePair<String, Long>(
+					subscriptionClassName, folderId);
+
+			subscribersOVPs.add(ovp);
+		}
+
+		return subscribersOVPs;
 	}
 
 	protected AssetRendererFactory _assetRendererFactory =

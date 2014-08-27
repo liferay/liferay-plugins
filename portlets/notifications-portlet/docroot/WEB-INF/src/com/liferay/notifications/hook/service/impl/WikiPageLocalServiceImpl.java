@@ -18,6 +18,7 @@ import com.liferay.compat.portal.kernel.notifications.UserNotificationDefinition
 import com.liferay.notifications.util.NotificationsUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.util.ObjectValuePair;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.PortletKeys;
@@ -28,6 +29,9 @@ import com.liferay.portlet.wiki.model.WikiNode;
 import com.liferay.portlet.wiki.model.WikiPage;
 import com.liferay.portlet.wiki.service.WikiPageLocalService;
 import com.liferay.portlet.wiki.service.WikiPageLocalServiceWrapper;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Lin Cui
@@ -69,14 +73,32 @@ public class WikiPageLocalServiceImpl extends WikiPageLocalServiceWrapper {
 
 		if (Validator.isNotNull(entryURL)) {
 			NotificationsUtil.sendNotificationEvent(
-				wikiPage.getCompanyId(), subscriptionClassName,
-				subscriptionClassPK, PortletKeys.WIKI, _WIKI_PAGE_CLASS_NAME,
-				wikiPage.getPageId(),
+				wikiPage.getCompanyId(), PortletKeys.WIKI,
+				_WIKI_PAGE_CLASS_NAME, wikiPage.getPageId(),
 				assetRenderer.getTitle(serviceContext.getLocale()), entryURL,
-				notificationType, userId);
+				notificationType,
+				getSubscribersOVPs(
+					wikiPage, subscriptionClassName, subscriptionClassPK),
+				userId);
 		}
 
 		return wikiPage;
+	}
+
+	protected List<ObjectValuePair<String, Long>> getSubscribersOVPs(
+			WikiPage wikiPage, String subscriptionClassName,
+			long subscriptionClassPK)
+		throws SystemException {
+
+		List<ObjectValuePair<String, Long>> subscribersOVPs =
+			new ArrayList<ObjectValuePair<String, Long>>();
+
+		ObjectValuePair<String, Long> ovp = new ObjectValuePair<String, Long>(
+			subscriptionClassName, subscriptionClassPK);
+
+		subscribersOVPs.add(ovp);
+
+		return subscribersOVPs;
 	}
 
 	protected AssetRendererFactory _assetRendererFactory =
