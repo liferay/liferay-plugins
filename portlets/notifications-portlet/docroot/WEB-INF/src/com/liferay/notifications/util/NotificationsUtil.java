@@ -346,7 +346,7 @@ public class NotificationsUtil {
 		private long _companyId;
 		private JSONObject _notificationEventJSONObject;
 		private String _portletKey;
-		List<ObjectValuePair<String, Long>> _subscribersOVPs;
+		private List<ObjectValuePair<String, Long>> _subscribersOVPs;
 	}
 
 }
