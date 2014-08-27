@@ -71,7 +71,7 @@ public class StatusFinderImpl
 			qPos.add(userId);
 			qPos.add(modifiedDate);
 
-			return (List<Object[]>)QueryUtil.list(q, getDialect(), start, end);
+			return toObjectArray(QueryUtil.list(q, getDialect(), start, end));
 		}
 		catch (Exception e) {
 			throw new SystemException(e);
@@ -109,7 +109,7 @@ public class StatusFinderImpl
 			qPos.add(userId);
 			qPos.add(modifiedDate);
 
-			return (List<Object[]>)QueryUtil.list(q, getDialect(), start, end);
+			return toObjectArray(QueryUtil.list(q, getDialect(), start, end));
 		}
 		catch (Exception e) {
 			throw new SystemException(e);
@@ -148,7 +148,7 @@ public class StatusFinderImpl
 
 			qPos.add(modifiedDate);
 
-			return (List<Object[]>)QueryUtil.list(q, getDialect(), start, end);
+			return toObjectArray(QueryUtil.list(q, getDialect(), start, end));
 		}
 		catch (Exception e) {
 			throw new SystemException(e);
@@ -223,6 +223,12 @@ public class StatusFinderImpl
 				"INNER JOIN Group_ ON Group_.groupId = Users_Groups.groupId",
 				"AND Group_.name NOT IN (" + sb.toString() + ")"
 			});
+	}
+
+	protected List<Object[]> toObjectArray(List<?> list) throws Exception {
+		List<Object[]> objectArrayList = (List<Object[]>)list;
+
+		return objectArrayList;
 	}
 
 }
