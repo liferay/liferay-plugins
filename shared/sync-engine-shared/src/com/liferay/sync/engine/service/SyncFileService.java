@@ -70,7 +70,7 @@ public class SyncFileService {
 		String mimeType = Files.probeContentType(filePath);
 
 		SyncFile syncFile = addSyncFile(
-			"", checksum, name, filePath.toString(), mimeType, name, folderId,
+			null, checksum, null, filePath.toString(), mimeType, name, folderId,
 			repositoryId, syncAccountId, SyncFile.TYPE_FILE);
 
 		// Remote sync file
@@ -123,7 +123,7 @@ public class SyncFileService {
 		String name = String.valueOf(filePath.getFileName());
 
 		SyncFile syncFile = addSyncFile(
-			null, null, name, filePath.toString(),
+			null, null, null, filePath.toString(),
 			Files.probeContentType(filePath), name, parentFolderId,
 			repositoryId, syncAccountId, SyncFile.TYPE_FOLDER);
 
@@ -741,7 +741,7 @@ public class SyncFileService {
 
 		Map<String, Object> parameters = new HashMap<String, Object>();
 
-		parameters.put("-description", null);
+		parameters.put("description", syncFile.getDescription());
 		parameters.put("folderId", syncFile.getTypePK());
 		parameters.put("name", filePath.getFileName());
 		parameters.put("syncFile", syncFile);

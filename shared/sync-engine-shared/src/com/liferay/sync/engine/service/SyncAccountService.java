@@ -93,7 +93,7 @@ public class SyncAccountService {
 		Files.createDirectories(Paths.get(filePathName));
 
 		SyncFileService.addSyncFile(
-			null, null, filePathName, filePathName, null, filePathName, 0, 0,
+			null, null, null, filePathName, null, filePathName, 0, 0,
 			syncAccount.getSyncAccountId(), SyncFile.TYPE_SYSTEM);
 
 		// Sync sites
