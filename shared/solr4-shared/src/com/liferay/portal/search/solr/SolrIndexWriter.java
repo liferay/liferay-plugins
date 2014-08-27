@@ -49,7 +49,7 @@ public class SolrIndexWriter extends BaseIndexWriter {
 		try {
 			_solrServer.add(getSolrInputDocument(document));
 
-			if (_commit) {
+			if (_commit || searchContext.isCommitImmediately()) {
 				_solrServer.commit();
 			}
 		}
@@ -75,7 +75,7 @@ public class SolrIndexWriter extends BaseIndexWriter {
 
 			_solrServer.add(solrInputDocuments);
 
-			if (_commit) {
+			if (_commit || searchContext.isCommitImmediately()) {
 				_solrServer.commit();
 			}
 		}
@@ -93,7 +93,7 @@ public class SolrIndexWriter extends BaseIndexWriter {
 		try {
 			_solrServer.deleteById(uid);
 
-			if (_commit) {
+			if (_commit || searchContext.isCommitImmediately()) {
 				_solrServer.commit();
 			}
 		}
@@ -145,7 +145,7 @@ public class SolrIndexWriter extends BaseIndexWriter {
 
 			_solrServer.deleteByQuery(sb.toString());
 
-			if (_commit) {
+			if (_commit || searchContext.isCommitImmediately()) {
 				_solrServer.commit();
 			}
 		}
