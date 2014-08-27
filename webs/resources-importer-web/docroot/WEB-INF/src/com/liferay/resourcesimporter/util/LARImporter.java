@@ -75,9 +75,6 @@ public class LARImporter extends BaseImporter {
 		Map<String, String[]> parameters = new HashMap<String, String[]>();
 
 		parameters.put(
-			PortletDataHandlerKeys.CATEGORIES,
-			new String[] {Boolean.TRUE.toString()});
-		parameters.put(
 			PortletDataHandlerKeys.DELETE_MISSING_LAYOUTS,
 			new String[] {Boolean.TRUE.toString()});
 		parameters.put(
@@ -121,12 +118,6 @@ public class LARImporter extends BaseImporter {
 			new String[] {Boolean.TRUE.toString()});
 		parameters.put(
 			PortletDataHandlerKeys.PORTLETS_MERGE_MODE,
-			new String[] {Boolean.TRUE.toString()});
-		parameters.put(
-			PortletDataHandlerKeys.PUBLIC_LAYOUT_PERMISSIONS,
-			new String[] {Boolean.TRUE.toString()});
-		parameters.put(
-			PortletDataHandlerKeys.PUBLISH_TO_REMOTE,
 			new String[] {Boolean.TRUE.toString()});
 		parameters.put(
 			PortletDataHandlerKeys.THEME_REFERENCE,
