@@ -75,17 +75,17 @@ public class MessageIndexer extends BaseIndexer {
 		if (obj instanceof Account) {
 			Account account = (Account)obj;
 
+			searchContext.setCompanyId(account.getCompanyId());
+			searchContext.setEnd(QueryUtil.ALL_POS);
+			searchContext.setSorts(SortFactoryUtil.getDefaultSorts());
+			searchContext.setStart(QueryUtil.ALL_POS);
+
 			BooleanQuery booleanQuery = BooleanQueryFactoryUtil.create(
 				searchContext);
 
 			booleanQuery.addRequiredTerm(Field.PORTLET_ID, PORTLET_ID);
 
 			booleanQuery.addRequiredTerm("accountId", account.getAccountId());
-
-			searchContext.setCompanyId(account.getCompanyId());
-			searchContext.setEnd(QueryUtil.ALL_POS);
-			searchContext.setSorts(SortFactoryUtil.getDefaultSorts());
-			searchContext.setStart(QueryUtil.ALL_POS);
 
 			Hits hits = SearchEngineUtil.search(searchContext, booleanQuery);
 
@@ -104,17 +104,17 @@ public class MessageIndexer extends BaseIndexer {
 		else if (obj instanceof Folder) {
 			Folder folder = (Folder)obj;
 
+			searchContext.setCompanyId(folder.getCompanyId());
+			searchContext.setEnd(QueryUtil.ALL_POS);
+			searchContext.setSorts(SortFactoryUtil.getDefaultSorts());
+			searchContext.setStart(QueryUtil.ALL_POS);
+
 			BooleanQuery booleanQuery = BooleanQueryFactoryUtil.create(
 				searchContext);
 
 			booleanQuery.addRequiredTerm(Field.PORTLET_ID, PORTLET_ID);
 
 			booleanQuery.addRequiredTerm("folderId", folder.getFolderId());
-
-			searchContext.setCompanyId(folder.getCompanyId());
-			searchContext.setEnd(QueryUtil.ALL_POS);
-			searchContext.setSorts(SortFactoryUtil.getDefaultSorts());
-			searchContext.setStart(QueryUtil.ALL_POS);
 
 			Hits hits = SearchEngineUtil.search(searchContext, booleanQuery);
 
