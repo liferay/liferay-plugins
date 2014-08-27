@@ -72,6 +72,8 @@ public class NotificationsPortlet extends MVCPortlet {
 		long userNotificationEventId = ParamUtil.getLong(
 			actionRequest, "userNotificationEventId");
 
+		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
+
 		try {
 			UserNotificationEvent userNotificationEvent =
 				UserNotificationEventLocalServiceUtil.
@@ -81,10 +83,14 @@ public class NotificationsPortlet extends MVCPortlet {
 				UserNotificationEventLocalServiceUtil.
 					deleteUserNotificationEvent(userNotificationEvent);
 			}
+
+			jsonObject.put("success", Boolean.TRUE);
 		}
 		catch (Exception e) {
-			throw new PortletException(e);
+			jsonObject.put("success", Boolean.FALSE);
 		}
+
+		writeJSON(actionRequest, actionResponse, jsonObject);
 	}
 
 	public void markAllAsRead(

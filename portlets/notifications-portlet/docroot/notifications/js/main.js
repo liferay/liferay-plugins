@@ -633,12 +633,17 @@ AUI.add(
 														var deleteNode = currentTarget.ancestor('.user-notification-delete');
 
 														if (deleteNode) {
-															A.io.request(deleteNode.getAttribute('data-deleteURL'));
+															A.io.request(
+																deleteNode.getAttribute('data-deleteURL'),
+																{
+																	after: {
+																		success: function() {
+																			instance.render();
+																		}
+																	}
+																}
+															);
 														}
-
-														currentRow.loadingmask.hide();
-
-														instance.render();
 													}
 													else {
 														currentRow.loadingmask.hide();
