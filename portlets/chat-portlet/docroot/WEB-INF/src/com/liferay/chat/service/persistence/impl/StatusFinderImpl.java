@@ -186,12 +186,11 @@ public class StatusFinderImpl
 
 			Object[] newObjectArray = new Object[objectArray.length + 1];
 
-			System.arraycopy(objectArray, 0, newObjectArray, 0, 3);
+			System.arraycopy(objectArray, 0, newObjectArray, 0, 4);
 
 			newObjectArray[4] = user.isMale();
 
-			System.arraycopy(
-				objectArray, 4, newObjectArray, 3, objectArray.length);
+			System.arraycopy(objectArray, 4, newObjectArray, 5, 5);
 
 			newObjectArrayList.add(newObjectArray);
 		}
