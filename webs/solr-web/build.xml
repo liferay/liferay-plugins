@@ -2,9 +2,9 @@
 <!DOCTYPE project>
 
 <project name="solr-web" basedir="." default="deploy">
-	<import file="../build-common-web.xml" />
-
 	<property name="original.war.file" value="apache-solr-1.4.1.zip" />
+
+	<import file="../build-common-web.xml" />
 
 	<target name="merge-unzip">
 		<unzip
