@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+
+<model-hints>
+	<model name="com.liferay.notifications.model.UserNotificationEvent">
+		<field name="notificationEventId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="userId" type="long" />
+		<field name="userNotificationEventId" type="long" />
+		<field name="timestamp" type="long" />
+		<field name="delivered" type="boolean" />
+		<field name="actionRequired" type="boolean" />
+		<field name="archived" type="boolean" />
+	</model>
+</model-hints>
