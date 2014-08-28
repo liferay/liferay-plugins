@@ -25,6 +25,8 @@ List<Weekday> weekdays = new ArrayList<Weekday>();
 boolean afterChecked = false;
 boolean onChecked = false;
 
+PositionalWeekday positionalWeekday = new PositionalWeekday(Weekday.getWeekday(startTimeJCalendar), JCalendarUtil.getWeekdayPosition(startTimeJCalendar));
+
 if (recurrence != null) {
 	count = recurrence.getCount();
 	frequency = recurrence.getFrequency();
@@ -34,8 +36,9 @@ if (recurrence != null) {
 		untilJCalendar = recurrence.getUntilJCalendar();
 	}
 
-	for (PositionalWeekday positionalWeekday : recurrence.getPositionalWeekdays()) {
-		weekdays.add(positionalWeekday.getWeekday());
+	for (PositionalWeekday pw : recurrence.getPositionalWeekdays()) {
+		positionalWeekday = pw;
+		weekdays.add(pw.getWeekday());
 	}
 
 	if (count > 0) {
@@ -135,6 +138,43 @@ if (recurrence != null) {
 						%>
 
 					</aui:field-wrapper>
+				</td>
+			</tr>
+		</tbody>
+		<tbody class="calendar-portlet-interval-view <%= ((frequency == Frequency.MONTHLY) || (frequency == Frequency.YEARLY)) ? "" : "hide" %>" id="<portlet:namespace />viewPositionInMonth">
+			<tr>
+				<th class="calendar-portlet-recurrence-title">
+					<liferay-ui:message key="repeat-on" />:
+				</th>
+				<td class="calendar-portlet-recurrence-content calendar-recurrence-month-radio">
+					<aui:input checked="<%= ListUtil.isEmpty(weekdays) %>" inlineField="<%= true %>" label="day-of-the-month" name="repeatOnWeekday" type="radio" value="false" />
+
+					<aui:input checked="<%= ListUtil.isNotEmpty(weekdays) %>" inlineField="<%= true %>" label="day-of-the-week" name="repeatOnWeekday" type="radio" value="true" />
+
+					<div class='<%= ListUtil.isEmpty(weekdays) ? "hide" : "" %>' id="<portlet:namespace />viewPositionalWeekday">
+
+						<aui:select inlineField="<%= true %>" label="" name="position">
+							<aui:option label="first" selected="<%= positionalWeekday.getPosition() == 1 %>" value="1" />
+							<aui:option label="second" selected="<%= positionalWeekday.getPosition() == 2 %>" value="2" />
+							<aui:option label="third" selected="<%= positionalWeekday.getPosition() == 3 %>" value="3" />
+							<aui:option label="fourth" selected="<%= positionalWeekday.getPosition() == 4 %>" value="4" />
+							<aui:option label="last" selected="<%= positionalWeekday.getPosition() == -1 %>" value="-1" />
+						</aui:select>
+
+						<aui:select inlineField="<%= true %>" label="" name="weekday">
+
+							<%
+							for (Weekday weekday : Weekday.values()) {
+							%>
+
+								<aui:option label='<%= "weekday." + weekday.getValue() %>' selected="<%= weekday == positionalWeekday.getWeekday() %>" value="<%= weekday.getValue() %>" />
+
+							<%
+							}
+							%>
+
+						</aui:select>
+					</div>
 				</td>
 			</tr>
 		</tbody>
