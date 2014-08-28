@@ -64,7 +64,7 @@ public class StatusFinderImpl
 
 			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
-			addScalar(q);
+			addScalars(q);
 
 			QueryPos qPos = QueryPos.getInstance(q);
 
@@ -73,7 +73,7 @@ public class StatusFinderImpl
 			qPos.add(userId);
 			qPos.add(modifiedDate);
 
-			return toObjectArray(QueryUtil.list(q, getDialect(), start, end));
+			return addUsersGender(QueryUtil.list(q, getDialect(), start, end));
 		}
 		catch (Exception e) {
 			throw new SystemException(e);
@@ -96,7 +96,7 @@ public class StatusFinderImpl
 
 			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
-			addScalar(q);
+			addScalars(q);
 
 			QueryPos qPos = QueryPos.getInstance(q);
 
@@ -111,7 +111,7 @@ public class StatusFinderImpl
 			qPos.add(userId);
 			qPos.add(modifiedDate);
 
-			return toObjectArray(QueryUtil.list(q, getDialect(), start, end));
+			return addUsersGender(QueryUtil.list(q, getDialect(), start, end));
 		}
 		catch (Exception e) {
 			throw new SystemException(e);
@@ -135,7 +135,7 @@ public class StatusFinderImpl
 
 			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
-			addScalar(q);
+			addScalars(q);
 
 			QueryPos qPos = QueryPos.getInstance(q);
 
@@ -150,7 +150,7 @@ public class StatusFinderImpl
 
 			qPos.add(modifiedDate);
 
-			return toObjectArray(QueryUtil.list(q, getDialect(), start, end));
+			return addUsersGender(QueryUtil.list(q, getDialect(), start, end));
 		}
 		catch (Exception e) {
 			throw new SystemException(e);
@@ -160,7 +160,7 @@ public class StatusFinderImpl
 		}
 	}
 
-	protected void addScalar(SQLQuery sqlQuery) {
+	protected void addScalars(SQLQuery sqlQuery) {
 		sqlQuery.addScalar("awake", Type.BOOLEAN);
 		sqlQuery.addScalar("firstName", Type.STRING);
 		sqlQuery.addScalar("groupId", Type.LONG);
@@ -171,6 +171,32 @@ public class StatusFinderImpl
 		sqlQuery.addScalar("screenName", Type.STRING);
 		sqlQuery.addScalar("userId", Type.LONG);
 		sqlQuery.addScalar("userUuid", Type.STRING);
+	}
+
+	protected List<Object[]> addUsersGender(List<?> list) throws Exception {
+		List<Object[]> objectArrayList = (List<Object[]>)list;
+
+		List<Object[]> newObjectArrayList = new ArrayList<Object[]>(
+			objectArrayList.size());
+
+		for (Object[] objectArray : objectArrayList) {
+			long userId = (Long)objectArray[7];
+
+			User user = UserUtil.findByPrimaryKey(userId);
+
+			Object[] newObjectArray = new Object[objectArray.length + 1];
+
+			System.arraycopy(objectArray, 0, newObjectArray, 0, 3);
+
+			newObjectArray[4] = user.isMale();
+
+			System.arraycopy(
+				objectArray, 4, newObjectArray, 3, objectArray.length);
+
+			newObjectArrayList.add(newObjectArray);
+		}
+
+		return newObjectArrayList;
 	}
 
 	protected String getFindBySocialRelationTypes_SQL(int[] types) {
@@ -225,32 +251,6 @@ public class StatusFinderImpl
 				"INNER JOIN Group_ ON Group_.groupId = Users_Groups.groupId",
 				"AND Group_.name NOT IN (" + sb.toString() + ")"
 			});
-	}
-
-	protected List<Object[]> toObjectArray(List<?> list) throws Exception {
-		List<Object[]> objectArrayList = (List<Object[]>)list;
-
-		List<Object[]> newObjectArrayList = new ArrayList<Object[]>(
-			objectArrayList.size());
-
-		for (Object[] objectArray : objectArrayList) {
-			long userId = (Long)objectArray[7];
-
-			User user = UserUtil.findByPrimaryKey(userId);
-
-			Object[] newObjectArray = new Object[objectArray.length + 1];
-
-			System.arraycopy(objectArray, 0, newObjectArray, 0, 3);
-
-			newObjectArray[4] = user.isMale();
-
-			System.arraycopy(
-				objectArray, 4, newObjectArray, 3, objectArray.length);
-
-			newObjectArrayList.add(newObjectArray);
-		}
-
-		return newObjectArrayList;
 	}
 
 }
