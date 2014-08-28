@@ -89,6 +89,42 @@ public class JCalendarUtilTest {
 		Assert.assertEquals(-1 * JCalendarUtil.HOUR, shift);
 	}
 
+	@Test
+	public void testGetWeekdayPosition2June2014() {
+		Calendar calendar = CalendarFactoryUtil.getCalendar(
+			2014, Calendar.JUNE, 2);
+
+		Assert.assertEquals(1, JCalendarUtil.getWeekdayPosition(calendar));
+		Assert.assertEquals(
+			Calendar.MONDAY, calendar.get(Calendar.DAY_OF_WEEK));
+	}
+
+	@Test
+	public void testGetWeekdayPosition4August2014() {
+		Calendar calendar = CalendarFactoryUtil.getCalendar(
+			2014, Calendar.AUGUST, 4);
+
+		Assert.assertEquals(1, JCalendarUtil.getWeekdayPosition(calendar));
+		Assert.assertEquals(
+			Calendar.MONDAY, calendar.get(Calendar.DAY_OF_WEEK));
+	}
+
+	@Test
+	public void testGetWeekdayPosition7_8August2014() {
+		Calendar calendar1 = CalendarFactoryUtil.getCalendar(
+			2014, Calendar.AUGUST, 7);
+		Calendar calendar2 = CalendarFactoryUtil.getCalendar(
+			2014, Calendar.AUGUST, 8);
+
+		Assert.assertEquals(1, JCalendarUtil.getWeekdayPosition(calendar1));
+		Assert.assertEquals(
+			Calendar.THURSDAY, calendar1.get(Calendar.DAY_OF_WEEK));
+
+		Assert.assertEquals(2, JCalendarUtil.getWeekdayPosition(calendar2));
+		Assert.assertEquals(
+			Calendar.FRIDAY, calendar2.get(Calendar.DAY_OF_WEEK));
+	}
+
 	private static TimeZone _losAngelesTimeZone = TimeZone.getTimeZone(
 		"America/Los_Angeles");
 

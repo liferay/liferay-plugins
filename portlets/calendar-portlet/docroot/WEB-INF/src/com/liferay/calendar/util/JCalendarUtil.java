@@ -113,6 +113,21 @@ public class JCalendarUtil {
 		return offset;
 	}
 
+	public static int getWeekdayPosition(Calendar calendar) {
+		int weekOfMonth = calendar.get(Calendar.WEEK_OF_MONTH);
+
+		Calendar firstDayCalendar = (Calendar)calendar.clone();
+		firstDayCalendar.set(Calendar.DAY_OF_MONTH, 1);
+
+		if (firstDayCalendar.get(Calendar.DAY_OF_WEEK) >
+				calendar.get(Calendar.DAY_OF_WEEK)) {
+
+			return weekOfMonth - 1;
+		}
+
+		return weekOfMonth;
+	}
+
 	public static Calendar toLastHourJCalendar(Calendar jCalendar) {
 		Calendar lastHourJCalendar = (Calendar)jCalendar.clone();
 
