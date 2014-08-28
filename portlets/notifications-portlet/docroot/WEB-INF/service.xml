@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 6.2.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_6_2_0.dtd">
+
+<service-builder package-path="com.liferay.notifications">
+	<namespace>Notifications</namespace>
+	<entity name="UserNotificationEvent" local-service="true" remote-service="false">
+
+		<!-- PK fields -->
+
+		<column name="notificationEventId" type="long" primary="true" />
+
+		<!-- Other fields -->
+
+		<column name="userId" type="long" />
+		<column name="userNotificationEventId" type="long" />
+		<column name="timestamp" type="long" />
+		<column name="actionRequired" type="boolean" />
+		<column name="delivered" type="boolean" />
+		<column name="archived" type="boolean" />
+
+		<!-- Order -->
+
+		<order by="asc">
+			<order-column name="timestamp" case-sensitive="false" />
+		</order>
+
+		<!-- Finder methods -->
+
+		<finder name="UserNotificationEventId" return-type="NotificationEvent">
+			<finder-column name="userNotificationEventId" />
+		</finder>
+		<finder name="U_A" return-type="Collection">
+			<finder-column name="userId" />
+			<finder-column name="actionRequired" />
+		</finder>
+		<finder name="U_A_A" return-type="Collection">
+			<finder-column name="userId" />
+			<finder-column name="actionRequired" />
+			<finder-column name="archived" />
+		</finder>
+		<finder name="U_A_D" return-type="Collection">
+			<finder-column name="userId" />
+			<finder-column name="actionRequired" />
+			<finder-column name="delivered" />
+		</finder>
+	</entity>
+</service-builder>
