@@ -348,6 +348,23 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 		return snippet;
 	}
 
+	protected Float[] normalizeScores(
+		List<Float> scores, QueryConfig queryConfig, float maxScore,
+		int numDocuments) {
+
+		Float[] scoresArray = scores.toArray(new Float[numDocuments]);
+
+		if (queryConfig.isScoreEnabled() && (numDocuments > 0) &&
+			(maxScore > 0)) {
+
+			for (int i = 0; i < scoresArray.length; i++) {
+				scoresArray[i] = scoresArray[i] / maxScore;
+			}
+		}
+
+		return scoresArray;
+	}
+
 	protected Hits processQueryResponse(
 			SolrQuery solrQuery, QueryResponse queryResponse,
 			SearchContext searchContext, Query query)
@@ -456,15 +473,8 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 		hits.setQuery(query);
 		hits.setQueryTerms(queryTerms.toArray(new String[queryTerms.size()]));
 
-		Float[] scoresArray = scores.toArray(new Float[subsetTotal]);
-
-		if (queryConfig.isScoreEnabled() && (subsetTotal > 0) &&
-			(maxScore > 0)) {
-
-			for (int i = 0; i < scoresArray.length; i++) {
-				scoresArray[i] = scoresArray[i] / maxScore;
-			}
-		}
+		Float[] scoresArray = normalizeScores(
+			scores, query.getQueryConfig(), maxScore, documents.size());
 
 		hits.setScores(scoresArray);
 
