@@ -97,11 +97,11 @@ public class DLAppHelperLocalServiceImpl
 			new ObjectValuePair<String, Long>(
 				_FOLDER_CLASS_NAME, latestFileVersion.getGroupId()));
 
+		List<Long> folderIds = new ArrayList<Long>();
+
 		FileEntry fileEntry = latestFileVersion.getFileEntry();
 
 		Folder folder = fileEntry.getFolder();
-
-		List<Long> folderIds = new ArrayList<Long>();
 
 		if (folder != null) {
 			folderIds.add(folder.getFolderId());
