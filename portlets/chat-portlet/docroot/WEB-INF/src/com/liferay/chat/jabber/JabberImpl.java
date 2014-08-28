@@ -23,7 +23,6 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
-import com.liferay.portal.model.Contact;
 import com.liferay.portal.model.ContactConstants;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.UserLocalServiceUtil;
@@ -146,15 +145,13 @@ public class JabberImpl implements Jabber {
 				User user = UserLocalServiceUtil.getUserByScreenName(
 					companyId, getScreenName(rosterEntry.getUser()));
 
-				Contact contact = user.getContact();
-
 				Object[] jabberBuddy = new Object[10];
 
 				jabberBuddy[0] = true;
 				jabberBuddy[1] = user.getFirstName();
 				jabberBuddy[2] = user.getGroupId();
 				jabberBuddy[3] = user.getLastName();
-				jabberBuddy[4] = contact.isMale();
+				jabberBuddy[4] = user.isMale();
 				jabberBuddy[5] = user.getMiddleName();
 				jabberBuddy[6] = user.getPortraitId();
 				jabberBuddy[7] = user.getScreenName();
