@@ -240,6 +240,8 @@ if (recurrence != null) {
 	var countNode = A.one('#<portlet:namespace />count');
 	var endsRadioNodes = A.all('[name=<portlet:namespace />ends]');
 	var frequencyNode = A.one('#<portlet:namespace />frequency');
+	var positionInMonthNode = A.one('#<portlet:namespace />viewPositionInMonth');
+	var positionalWeekdayNode = A.one('#<portlet:namespace />viewPositionalWeekday');
 	var recurrenceContainerNode = A.one('#<portlet:namespace />recurrenceContainer');
 	var repeatCheckboxNode = A.one('#<portlet:namespace />repeat');
 	var summaryNode = A.one('#<portlet:namespace />summary');
@@ -294,6 +296,11 @@ if (recurrence != null) {
 
 		if (target.test('#<portlet:namespace />frequency')) {
 			window.<portlet:namespace />toggleView('<%= Frequency.WEEKLY %>', (target.val() == '<%= Frequency.WEEKLY %>'));
+			window.<portlet:namespace />toggleView('PositionInMonth', ((target.val() == '<%= Frequency.MONTHLY %>') || (target.val() == '<%= Frequency.YEARLY %>')));
+		}
+
+		if (target.get('name') == '<portlet:namespace />repeatOnWeekday') {
+			window.<portlet:namespace />toggleView('PositionalWeekday', (target.val() == "true"));
 		}
 
 		var endValue = endsRadioNodes.filter(':checked').val()[0];
