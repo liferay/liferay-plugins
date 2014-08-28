@@ -88,7 +88,7 @@ public class DLAppHelperLocalServiceImpl
 
 	protected List<ObjectValuePair<String, Long>> getSubscribersOVPs(
 			FileVersion latestFileVersion)
-		throws SystemException {
+		throws PortalException, SystemException {
 
 		List<ObjectValuePair<String, Long>> subscribersOVPs =
 			new ArrayList<ObjectValuePair<String, Long>>();
@@ -96,6 +96,24 @@ public class DLAppHelperLocalServiceImpl
 		subscribersOVPs.add(
 			new ObjectValuePair<String, Long>(
 				_FOLDER_CLASS_NAME, latestFileVersion.getGroupId()));
+
+		FileEntry fileEntry = latestFileVersion.getFileEntry();
+
+		Folder folder = fileEntry.getFolder();
+
+		List<Long> folderIds = new ArrayList<Long>();
+
+		if (folder != null) {
+			folderIds.add(folder.getFolderId());
+
+			folderIds.addAll(folder.getAncestorFolderIds());
+		}
+
+		for (long curFolderId : folderIds) {
+			subscribersOVPs.add(
+				new ObjectValuePair<String, Long>(
+					_FOLDER_CLASS_NAME, curFolderId));
+		}
 
 		return subscribersOVPs;
 	}
