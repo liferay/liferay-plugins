@@ -447,7 +447,20 @@
 				</then>
 			</if>
 
-			<var name="set-module-properties.plugin.version" unset="true" />
+			<set-build-xml-var
+				build.xml.var.name="ivy.resolve.transitive.dependencies"
+				module.dir="@{module.dir}"
+			/>
+
+			<if>
+				<isset property="set-build-xml-var.return" />
+				<then>
+					<var name="plugin.ivy.resolve.transitive.dependencies" value="${set-build-xml-var.return}" />
+				</then>
+				<else>
+					<var name="plugin.ivy.resolve.transitive.dependencies" value="${ivy.resolve.transitive.dependencies}" />
+				</else>
+			</if>
 		</sequential>
 	</macrodef>
 
@@ -465,6 +478,8 @@
 							<if>
 								<isfalse value="${ivy.xml.unmodified}" />
 								<then>
+									<var name="plugin.ivy.resolve.transitive.dependencies" unset="true" />
+
 									<if>
 										<and>
 											<available file="@{ivy.xml.dir}/bnd.bnd" />
@@ -475,6 +490,9 @@
 												module.dir="@{ivy.xml.dir}"
 											/>
 										</then>
+										<else>
+											<var name="plugin.ivy.resolve.transitive.dependencies" value="${ivy.resolve.transitive.dependencies}" />
+										</else>
 									</if>
 
 									<ivy:settings file="${ivy.custom.settings.file}" />
@@ -483,7 +501,7 @@
 										conf="default"
 										file="@{ivy.xml.dir}/ivy.xml"
 										log="download-only"
-										transitive="${ivy.resolve.transitive.dependencies}"
+										transitive="${plugin.ivy.resolve.transitive.dependencies}"
 									/>
 
 									<if>
