@@ -173,31 +173,6 @@ public class StatusFinderImpl
 		sqlQuery.addScalar("userUuid", Type.STRING);
 	}
 
-	protected List<Object[]> toObjectArray(List<?> list) throws Exception {
-		List<Object[]> objectArrayList = (List<Object[]>)list;
-
-		List<Object[]> newObjectArrayList = new ArrayList<Object[]>(
-			objectArrayList.size());
-
-		for (Object[] objectArray : objectArrayList) {
-			long userId = (Long)objectArray[7];
-
-			User user = UserUtil.findByPrimaryKey(userId);
-
-			Object[] newObjectArray = new Object[objectArray.length + 1];
-
-			System.arraycopy(objectArray, 0, newObjectArray, 0, 4);
-
-			newObjectArray[4] = user.isMale();
-
-			System.arraycopy(objectArray, 4, newObjectArray, 5, 5);
-
-			newObjectArrayList.add(newObjectArray);
-		}
-
-		return newObjectArrayList;
-	}
-
 	protected String getFindBySocialRelationTypes_SQL(int[] types) {
 		String sql = CustomSQLUtil.get(FIND_BY_SOCIAL_RELATION_TYPES);
 
@@ -250,6 +225,31 @@ public class StatusFinderImpl
 				"INNER JOIN Group_ ON Group_.groupId = Users_Groups.groupId",
 				"AND Group_.name NOT IN (" + sb.toString() + ")"
 			});
+	}
+
+	protected List<Object[]> toObjectArray(List<?> list) throws Exception {
+		List<Object[]> objectArrayList = (List<Object[]>)list;
+
+		List<Object[]> newObjectArrayList = new ArrayList<Object[]>(
+			objectArrayList.size());
+
+		for (Object[] objectArray : objectArrayList) {
+			long userId = (Long)objectArray[7];
+
+			User user = UserUtil.findByPrimaryKey(userId);
+
+			Object[] newObjectArray = new Object[objectArray.length + 1];
+
+			System.arraycopy(objectArray, 0, newObjectArray, 0, 4);
+
+			newObjectArray[4] = user.isMale();
+
+			System.arraycopy(objectArray, 4, newObjectArray, 5, 5);
+
+			newObjectArrayList.add(newObjectArray);
+		}
+
+		return newObjectArrayList;
 	}
 
 }
