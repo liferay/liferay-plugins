@@ -2,11 +2,10 @@
 <!DOCTYPE project>
 
 <project name="solr4-shared" basedir="." default="deploy">
+	<property name="original.war.file" value="solr-4.3.1.zip" />
 	<property name="plugin.version" value="1" />
 
 	<import file="../../build-common-osgi-plugin.xml" />
-
-	<property name="original.war.file" value="solr-4.3.1.zip" />
 
 	<target name="compile-import-shared">
 		<unzip

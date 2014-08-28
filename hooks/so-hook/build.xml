@@ -2,7 +2,7 @@
 <!DOCTYPE project>
 
 <project name="so-hook" basedir="." default="deploy">
-	<import file="../build-common-hook.xml" />
-
 	<property name="import.shared" value="deploy-listener-shared,so-shared" />
+
+	<import file="../build-common-hook.xml" />
 </project>

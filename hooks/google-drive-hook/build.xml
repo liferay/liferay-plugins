@@ -2,7 +2,7 @@
 <!DOCTYPE project>
 
 <project name="google-drive-hook" basedir="." default="deploy">
-	<import file="../build-common-hook.xml" />
-
 	<property name="import.shared" value="dl-repository-shared" />
+
+	<import file="../build-common-hook.xml" />
 </project>
