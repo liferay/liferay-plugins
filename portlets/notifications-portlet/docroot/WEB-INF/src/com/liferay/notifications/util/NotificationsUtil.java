@@ -14,13 +14,7 @@
 
 package com.liferay.notifications.util;
 
-import com.liferay.portal.kernel.dao.orm.Conjunction;
-import com.liferay.portal.kernel.dao.orm.Disjunction;
-import com.liferay.portal.kernel.dao.orm.DynamicQuery;
-import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
-import com.liferay.portal.kernel.dao.orm.OrderFactoryUtil;
-import com.liferay.portal.kernel.dao.orm.ProjectionFactoryUtil;
-import com.liferay.portal.kernel.dao.orm.RestrictionsFactoryUtil;
+import com.liferay.compat.portal.util.PortalUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
@@ -47,8 +41,8 @@ import com.liferay.portlet.asset.model.AssetRenderer;
 
 import java.io.Serializable;
 
+import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -58,84 +52,56 @@ import java.util.Set;
 public class NotificationsUtil {
 
 	public static List<UserNotificationEvent> getArchivedUserNotificationEvents(
-			long userId, boolean actionable, boolean archived, int start,
+			long userId, boolean actionRequired, boolean archived, int start,
 			int end)
-		throws SystemException {
+		throws PortalException, SystemException {
 
-		DynamicQuery dynamicQuery = getDynamicQuery(userId, actionable);
+		List<com.liferay.notifications.model.UserNotificationEvent>
+			notificationEvents =
+				com.liferay.notifications.service.
+					UserNotificationEventLocalServiceUtil.
+						getArchivedUserNotificationEvents(
+							userId, actionRequired, archived, start, end);
 
-		dynamicQuery.add(RestrictionsFactoryUtil.eq("archived", archived));
-
-		dynamicQuery.addOrder(OrderFactoryUtil.desc("timestamp"));
-
-		return UserNotificationEventLocalServiceUtil.dynamicQuery(
-			dynamicQuery, start, end);
+		return getUserNotificationEvents(notificationEvents);
 	}
 
 	public static int getArchivedUserNotificationEventsCount(
-			long userId, boolean actionable, boolean archived)
-		throws SystemException {
+			long userId, boolean actionRequired, boolean archived)
+		throws PortalException, SystemException {
 
-		DynamicQuery dynamicQuery = getDynamicQuery(userId, actionable);
-
-		dynamicQuery.add(RestrictionsFactoryUtil.eq("archived", archived));
-
-		dynamicQuery.setProjection(ProjectionFactoryUtil.rowCount());
-
-		Iterator<Long> iterator =
-			UserNotificationEventLocalServiceUtil.dynamicQuery(
-				dynamicQuery).iterator();
-
-		if (iterator.hasNext()) {
-			Long count = iterator.next();
-
-			if (count != null) {
-				return count.intValue();
-			}
-		}
-
-		return 0;
+		return
+			com.liferay.notifications.service.
+				UserNotificationEventLocalServiceUtil.
+					getArchivedUserNotificationEventsCount(
+						userId, actionRequired, archived);
 	}
 
 	public static List<UserNotificationEvent>
 			getDeliveredUserNotificationEvents(
-				long userId, boolean actionable, boolean delivered, int start,
-				int end)
-		throws SystemException {
+				long userId, boolean actionRequired, boolean delivered,
+				int start, int end)
+		throws PortalException, SystemException {
 
-		DynamicQuery dynamicQuery = getDynamicQuery(userId, actionable);
+		List<com.liferay.notifications.model.UserNotificationEvent>
+			notificationEvents =
+				com.liferay.notifications.service.
+					UserNotificationEventLocalServiceUtil.
+						getDeliveredUserNotificationEvents(
+							userId, actionRequired, delivered, start, end);
 
-		dynamicQuery.add(RestrictionsFactoryUtil.eq("delivered", delivered));
-
-		dynamicQuery.addOrder(OrderFactoryUtil.desc("timestamp"));
-
-		return UserNotificationEventLocalServiceUtil.dynamicQuery(
-			dynamicQuery, start, end);
+		return getUserNotificationEvents(notificationEvents);
 	}
 
 	public static int getDeliveredUserNotificationEventsCount(
-			long userId, boolean actionable, boolean delivered)
-		throws SystemException {
+			long userId, boolean actionRequired, boolean delivered)
+		throws PortalException, SystemException {
 
-		DynamicQuery dynamicQuery = getDynamicQuery(userId, actionable);
-
-		dynamicQuery.add(RestrictionsFactoryUtil.eq("delivered", delivered));
-
-		dynamicQuery.setProjection(ProjectionFactoryUtil.rowCount());
-
-		Iterator<Long> iterator =
-			UserNotificationEventLocalServiceUtil.dynamicQuery(
-				dynamicQuery).iterator();
-
-		if (iterator.hasNext()) {
-			Long count = iterator.next();
-
-			if (count != null) {
-				return count.intValue();
-			}
-		}
-
-		return 0;
+		return
+			com.liferay.notifications.service.
+				UserNotificationEventLocalServiceUtil.
+					getDeliveredUserNotificationEventsCount(
+						userId, actionRequired, delivered);
 	}
 
 	public static String getEntryURL(
@@ -170,38 +136,27 @@ public class NotificationsUtil {
 	}
 
 	public static List<UserNotificationEvent> getUserNotificationEvents(
-			long userId, boolean actionable, int start, int end)
-		throws SystemException {
+			long userId, boolean actionRequired, int start, int end)
+		throws PortalException, SystemException {
 
-		DynamicQuery dynamicQuery = getDynamicQuery(userId, actionable);
+		List<com.liferay.notifications.model.UserNotificationEvent>
+			notificationEvents =
+				com.liferay.notifications.service.
+					UserNotificationEventLocalServiceUtil.
+						getUserNotificationEvents(
+							userId, actionRequired, start, end);
 
-		dynamicQuery.addOrder(OrderFactoryUtil.desc("timestamp"));
-
-		return UserNotificationEventLocalServiceUtil.dynamicQuery(
-			dynamicQuery, start, end);
+		return getUserNotificationEvents(notificationEvents);
 	}
 
 	public static int getUserNotificationEventsCount(
-			long userId, boolean actionable)
-		throws SystemException {
+			long userId, boolean actionRequired)
+		throws PortalException, SystemException {
 
-		DynamicQuery dynamicQuery = getDynamicQuery(userId, actionable);
-
-		dynamicQuery.setProjection(ProjectionFactoryUtil.rowCount());
-
-		Iterator<Long> iterator =
-			UserNotificationEventLocalServiceUtil.dynamicQuery(
-				dynamicQuery).iterator();
-
-		if (iterator.hasNext()) {
-			Long count = iterator.next();
-
-			if (count != null) {
-				return count.intValue();
-			}
-		}
-
-		return 0;
+		return
+			com.liferay.notifications.service.
+				UserNotificationEventLocalServiceUtil.
+					getUserNotificationEventsCount(userId, actionRequired);
 	}
 
 	public static void sendNotificationEvent(
@@ -227,38 +182,23 @@ public class NotificationsUtil {
 				subscribersOVPs));
 	}
 
-	protected static DynamicQuery getDynamicQuery(
-			long userId, boolean actionable)
-		throws SystemException {
+	protected static List<UserNotificationEvent> getUserNotificationEvents(
+			List<com.liferay.notifications.model.UserNotificationEvent>
+				notificationEvents)
+		throws PortalException, SystemException {
 
-		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
-			UserNotificationEvent.class);
+		List<UserNotificationEvent> userNotificationEvents =
+			new ArrayList<UserNotificationEvent>();
 
-		dynamicQuery.add(RestrictionsFactoryUtil.eq("userId", userId));
+		for (com.liferay.notifications.model.UserNotificationEvent
+				userNotificationEvent : notificationEvents) {
 
-		if (actionable) {
-			Disjunction disjuncton = RestrictionsFactoryUtil.disjunction();
-
-			disjuncton.add(
-				RestrictionsFactoryUtil.in(
-					"type", NotificationsConstants.ACTIONABLE_TYPES));
-
-			dynamicQuery.add(disjuncton);
-		}
-		else {
-			Conjunction conjunction = RestrictionsFactoryUtil.conjunction();
-
-			for (String actionableType :
-					NotificationsConstants.ACTIONABLE_TYPES) {
-
-				conjunction.add(
-					RestrictionsFactoryUtil.ne("type", actionableType));
-			}
-
-			dynamicQuery.add(conjunction);
+			userNotificationEvents.add(
+				UserNotificationEventLocalServiceUtil.getUserNotificationEvent(
+					userNotificationEvent.getUserNotificationEventId()));
 		}
 
-		return dynamicQuery;
+		return userNotificationEvents;
 	}
 
 	private static class NotificationProcessCallable
