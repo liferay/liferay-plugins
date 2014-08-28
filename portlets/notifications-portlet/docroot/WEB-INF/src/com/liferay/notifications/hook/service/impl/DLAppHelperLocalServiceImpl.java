@@ -109,10 +109,10 @@ public class DLAppHelperLocalServiceImpl
 			folderIds.addAll(folder.getAncestorFolderIds());
 		}
 
-		for (long curFolderId : folderIds) {
+		for (long folderId : folderIds) {
 			subscribersOVPs.add(
 				new ObjectValuePair<String, Long>(
-					_FOLDER_CLASS_NAME, curFolderId));
+					_FOLDER_CLASS_NAME, folderId));
 		}
 
 		return subscribersOVPs;
