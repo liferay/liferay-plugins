@@ -2,7 +2,7 @@
 <!DOCTYPE project>
 
 <project name="so-portlet" basedir="." default="deploy">
-	<import file="../build-common-portlet.xml" />
-
 	<property name="import.shared" value="notifications-shared,so-activities-shared,so-shared" />
+
+	<import file="../build-common-portlet.xml" />
 </project>

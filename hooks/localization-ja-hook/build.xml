@@ -2,7 +2,7 @@
 <!DOCTYPE project>
 
 <project name="localization-ja-hook" basedir="." default="deploy">
-	<import file="../build-common-hook.xml" />
-
 	<property name="import.shared" value="localization-shared" />
+
+	<import file="../build-common-hook.xml" />
 </project>

@@ -2,7 +2,7 @@
 <!DOCTYPE project>
 
 <project name="private-messaging-portlet" basedir="." default="deploy">
-	<import file="../build-common-portlet.xml" />
-
 	<property name="import.shared" value="private-messaging-shared" />
+
+	<import file="../build-common-portlet.xml" />
 </project>

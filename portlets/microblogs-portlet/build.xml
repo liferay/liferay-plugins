@@ -2,7 +2,7 @@
 <!DOCTYPE project>
 
 <project name="microblogs-portlet" basedir="." default="deploy">
-	<import file="../build-common-portlet.xml" />
-
 	<property name="import.shared" value="microblogs-shared" />
+
+	<import file="../build-common-portlet.xml" />
 </project>

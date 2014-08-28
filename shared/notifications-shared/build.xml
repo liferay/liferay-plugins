@@ -2,9 +2,8 @@
 <!DOCTYPE project>
 
 <project name="notifications-shared" basedir="." default="deploy">
+	<property name="import.shared" value="contacts-shared,so-announcements-shared,so-shared" />
 	<property name="plugin.version" value="1" />
 
 	<import file="../build-common-shared.xml" />
-
-	<property name="import.shared" value="contacts-shared,so-announcements-shared,so-shared" />
 </project>
