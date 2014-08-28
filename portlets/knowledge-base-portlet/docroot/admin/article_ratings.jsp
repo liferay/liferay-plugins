@@ -94,8 +94,21 @@ boolean hasUpdatePermission = KBArticlePermission.contains(permissionChecker, kb
 		<a name="kbFeedback"></a>
 
 		<div class="hide kb-article-feedback" id="<portlet:namespace />feedbackContainer">
-			<liferay-portlet:actionURL name="updateKBComment" var="updateKBCommentURL">
+			<liferay-portlet:renderURL var="viewKBArticle">
 				<portlet:param name="expanded" value="true" />
+
+				<c:choose>
+					<c:when test="<%= Validator.isNull(kbArticle.getUrlTitle()) %>">
+						<portlet:param name="urlTitle" value="<%= kbArticle.getUrlTitle() %>" />
+					</c:when>
+					<c:otherwise>
+						<portlet:param name="resourcePrimKey" value="<%= String.valueOf(kbArticle.getResourcePrimKey()) %>" />
+					</c:otherwise>
+				</c:choose>
+			</liferay-portlet:renderURL>
+
+			<liferay-portlet:actionURL name="updateKBComment" var="updateKBCommentURL">
+				<portlet:param name="redirect" value="<%= viewKBArticle %>" />
 			</liferay-portlet:actionURL>
 
 			<aui:form action='<%= updateKBCommentURL + "#kbFeedback" %>' method="post" name="feedbackFm">
