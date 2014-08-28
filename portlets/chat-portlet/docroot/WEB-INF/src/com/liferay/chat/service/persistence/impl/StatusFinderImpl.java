@@ -73,7 +73,7 @@ public class StatusFinderImpl
 			qPos.add(userId);
 			qPos.add(modifiedDate);
 
-			return addUsersGender(QueryUtil.list(q, getDialect(), start, end));
+			return toObjectArray(QueryUtil.list(q, getDialect(), start, end));
 		}
 		catch (Exception e) {
 			throw new SystemException(e);
@@ -111,7 +111,7 @@ public class StatusFinderImpl
 			qPos.add(userId);
 			qPos.add(modifiedDate);
 
-			return addUsersGender(QueryUtil.list(q, getDialect(), start, end));
+			return toObjectArray(QueryUtil.list(q, getDialect(), start, end));
 		}
 		catch (Exception e) {
 			throw new SystemException(e);
@@ -150,7 +150,7 @@ public class StatusFinderImpl
 
 			qPos.add(modifiedDate);
 
-			return addUsersGender(QueryUtil.list(q, getDialect(), start, end));
+			return toObjectArray(QueryUtil.list(q, getDialect(), start, end));
 		}
 		catch (Exception e) {
 			throw new SystemException(e);
@@ -173,7 +173,7 @@ public class StatusFinderImpl
 		sqlQuery.addScalar("userUuid", Type.STRING);
 	}
 
-	protected List<Object[]> addUsersGender(List<?> list) throws Exception {
+	protected List<Object[]> toObjectArray(List<?> list) throws Exception {
 		List<Object[]> objectArrayList = (List<Object[]>)list;
 
 		List<Object[]> newObjectArrayList = new ArrayList<Object[]>(
