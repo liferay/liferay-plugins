@@ -2,9 +2,9 @@
 <!DOCTYPE project>
 
 <project name="opensocial-portlet" basedir="." default="deploy">
-	<import file="../build-common-portlet.xml" />
-
 	<property name="original.war.file" value="shindig-server-2.0.2.war" />
+
+	<import file="../build-common-portlet.xml" />
 
 	<target name="merge">
 

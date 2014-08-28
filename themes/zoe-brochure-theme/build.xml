@@ -2,7 +2,7 @@
 <!DOCTYPE project>
 
 <project name="zoe-brochure-theme" basedir="." default="deploy">
-	<import file="../build-common-theme.xml" />
-
 	<property name="theme.parent" value="_styled" />
+
+	<import file="../build-common-theme.xml" />
 </project>

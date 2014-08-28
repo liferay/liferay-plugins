@@ -2,7 +2,6 @@
 <!DOCTYPE project>
 
 <project name="sun-tour-ipc-portlet" basedir="." default="deploy">
-	<import file="../build-common-portlet.xml" />
 
 	<!--
 	Download Tour IPC Portlets from
@@ -10,6 +9,8 @@
 	-->
 
 	<property name="original.war.file" value="touripcportlet.war" />
+
+	<import file="../build-common-portlet.xml" />
 
 	<target name="merge">
 		<antcall target="build-common-plugin.merge" />

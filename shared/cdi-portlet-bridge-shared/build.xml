@@ -5,7 +5,6 @@
 	<property name="ivy.pom.description" value="The Liferay CDI Portlet Bridge provides the ability for portlet developers to use CDI." />
 	<property name="ivy.pom.developer.name" value="Neil Griffin" />
 	<property name="ivy.pom.name" value="Liferay CDI Portlet Bridge" />
-
 	<property name="plugin.version" value="2" />
 
 	<import file="../build-common-shared.xml" />

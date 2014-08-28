@@ -2,9 +2,8 @@
 <!DOCTYPE project>
 
 <project name="amazon-tools-shared" basedir="." default="deploy">
+	<property name="import.shared" value="json-web-service-client-shared" />
 	<property name="plugin.version" value="1" />
 
 	<import file="../build-common-shared.xml" />
-
-	<property name="import.shared" value="json-web-service-client-shared" />
 </project>
