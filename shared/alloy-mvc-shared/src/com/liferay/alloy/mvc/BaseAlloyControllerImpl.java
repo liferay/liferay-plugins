@@ -174,8 +174,7 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 		}
 
 		if (alloyNotificationProcessor != null) {
-			alloyNotificationProcessor.process(
-				request, themeDisplay, controllerPath, actionPath);
+			alloyNotificationProcessor.process(request);
 		}
 	}
 
