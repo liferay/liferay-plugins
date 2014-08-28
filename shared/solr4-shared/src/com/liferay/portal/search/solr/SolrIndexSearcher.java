@@ -37,6 +37,7 @@ import com.liferay.portal.kernel.search.facet.collector.FacetCollector;
 import com.liferay.portal.kernel.search.facet.config.FacetConfiguration;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
@@ -272,28 +273,7 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 			allResults = true;
 		}
 
-		List<FacetField> facetFields = queryResponse.getFacetFields();
-
-		if (facetFields != null) {
-			Map<String, Facet> facets = searchContext.getFacets();
-
-			for (FacetField facetField : facetFields) {
-				Facet facet = facets.get(facetField.getName());
-
-				FacetCollector facetCollector = null;
-
-				if (facet instanceof RangeFacet) {
-					facetCollector = new SolrFacetQueryCollector(
-						facetField.getName(), queryResponse.getFacetQuery());
-				}
-				else {
-					facetCollector = new SolrFacetFieldCollector(
-						facetField.getName(), facetField);
-				}
-
-				facet.setFacetCollector(facetCollector);
-			}
-		}
+		updateFacetCollectors(queryResponse, searchContext);
 
 		return subset(
 			solrQuery, query, query.getQueryConfig(), queryResponse,
@@ -484,6 +464,35 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 		sb.append(searchContext.getCompanyId());
 
 		solrQuery.setQuery(sb.toString());
+	}
+
+	protected void updateFacetCollectors(
+		QueryResponse queryResponse, SearchContext searchContext) {
+
+		Map<String, Facet> facetsMap = searchContext.getFacets();
+
+		List<FacetField> facetFields = queryResponse.getFacetFields();
+
+		if (ListUtil.isEmpty(facetFields)) {
+			return;
+		}
+
+		for (FacetField facetField : facetFields) {
+			Facet facet = facetsMap.get(facetField.getName());
+
+			FacetCollector facetCollector = null;
+
+			if (facet instanceof RangeFacet) {
+				facetCollector = new SolrFacetQueryCollector(
+					facetField.getName(), queryResponse.getFacetQuery());
+			}
+			else {
+				facetCollector = new SolrFacetFieldCollector(
+					facetField.getName(), facetField);
+			}
+
+			facet.setFacetCollector(facetCollector);
+		}
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(SolrIndexSearcher.class);
