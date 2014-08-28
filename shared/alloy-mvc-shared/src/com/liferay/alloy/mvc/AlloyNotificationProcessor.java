@@ -20,7 +20,6 @@ import com.liferay.portal.kernel.notifications.NotificationEvent;
 import com.liferay.portal.kernel.notifications.NotificationEventFactoryUtil;
 import com.liferay.portal.kernel.notifications.UserNotificationManagerUtil;
 import com.liferay.portal.service.UserNotificationEventLocalServiceUtil;
-import com.liferay.portal.theme.ThemeDisplay;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -29,16 +28,18 @@ import javax.servlet.http.HttpServletRequest;
  */
 public class AlloyNotificationProcessor {
 
-	public void process(
-			HttpServletRequest request, ThemeDisplay themeDisplay,
-			String controller, String actionId)
-		throws Exception {
+	public void process(HttpServletRequest request) throws Exception {
 	}
 
 	protected void sendNotification(
 			String portletKey, long userId, int notificationType,
-			int deliveryType, long classPK, String title, String body)
+			int deliveryType, Object... attributes)
 		throws Exception {
+
+		if ((attributes.length == 0) || ((attributes.length % 2) != 0)) {
+			throw new IllegalArgumentException(
+				"Attributes length is not an even number");
+		}
 
 		if (UserNotificationManagerUtil.isDeliver(
 				userId, portletKey, 0, notificationType, deliveryType)) {
@@ -46,10 +47,12 @@ public class AlloyNotificationProcessor {
 			JSONObject notificationEventJSONObject =
 				JSONFactoryUtil.createJSONObject();
 
-			notificationEventJSONObject.put("classPK", classPK);
-			notificationEventJSONObject.put("userId", userId);
-			notificationEventJSONObject.put("title", title);
-			notificationEventJSONObject.put("body", body);
+			for (int i = 0; i < attributes.length; i += 2) {
+				String key = String.valueOf(attributes[i]);
+				String value = String.valueOf(attributes[i + 1]);
+
+				notificationEventJSONObject.put(key, value);
+			}
 
 			NotificationEvent notificationEvent =
 				NotificationEventFactoryUtil.createNotificationEvent(
