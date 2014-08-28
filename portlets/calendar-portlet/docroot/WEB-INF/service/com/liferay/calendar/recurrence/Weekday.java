@@ -14,6 +14,8 @@
 
 package com.liferay.calendar.recurrence;
 
+import java.util.Calendar;
+
 /**
  * @author Marcellus Tavares
  */
@@ -21,6 +23,36 @@ public enum Weekday {
 
 	SUNDAY("SU"), MONDAY("MO"), TUESDAY("TU"), WEDNESDAY("WE"), THURSDAY("TH"),
 	FRIDAY("FR"), SATURDAY("SA");
+
+	public static Weekday getWeekday(Calendar calendar) {
+		return getWeekday(calendar.get(Calendar.DAY_OF_WEEK));
+	}
+
+	public static Weekday getWeekday(int dayOfTheWeek) {
+		if (dayOfTheWeek == Calendar.SUNDAY) {
+			return SUNDAY;
+		}
+		else if (dayOfTheWeek == Calendar.MONDAY) {
+			return MONDAY;
+		}
+		else if (dayOfTheWeek == Calendar.TUESDAY) {
+			return TUESDAY;
+		}
+		else if (dayOfTheWeek == Calendar.WEDNESDAY) {
+			return WEDNESDAY;
+		}
+		else if (dayOfTheWeek == Calendar.THURSDAY) {
+			return THURSDAY;
+		}
+		else if (dayOfTheWeek == Calendar.FRIDAY) {
+			return FRIDAY;
+		}
+		else if (dayOfTheWeek == Calendar.SATURDAY) {
+			return SATURDAY;
+		}
+
+		throw new IllegalArgumentException("Invalid value " + dayOfTheWeek);
+	}
 
 	public static Weekday parse(String value) {
 		if (SUNDAY.getValue().equals(value)) {
