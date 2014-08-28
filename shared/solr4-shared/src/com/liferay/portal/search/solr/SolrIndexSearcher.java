@@ -38,7 +38,6 @@ import com.liferay.portal.kernel.search.facet.config.FacetConfiguration;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ListUtil;
-import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.MapUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
@@ -300,42 +299,27 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 
 		Map<String, List<String>> uidHighlights = highlights.get(key);
 
-		boolean localizedSearch = true;
+		String localizedFieldName = DocumentImpl.getLocalizedName(
+			locale, fieldName);
 
-		String defaultLanguageId = LocaleUtil.toLanguageId(
-			LocaleUtil.getDefault());
-		String queryLanguageId = LocaleUtil.toLanguageId(locale);
+		String snippetFieldName = localizedFieldName;
 
-		if (defaultLanguageId.equals(queryLanguageId)) {
-			localizedSearch = false;
-		}
-
-		List<String> snippets = null;
-
-		String snippetFieldName = fieldName;
-
-		if (localizedSearch) {
-			String localizedFieldName = DocumentImpl.getLocalizedName(
-				locale, fieldName);
-
-			snippets = uidHighlights.get(localizedFieldName);
-
-			if (snippets != null) {
-				snippetFieldName = localizedFieldName;
-			}
-		}
+		List<String> snippets = uidHighlights.get(localizedFieldName);
 
 		if (snippets == null) {
 			snippets = uidHighlights.get(fieldName);
+
+			snippetFieldName = fieldName;
 		}
 
-		String snippet = StringUtil.merge(snippets, StringPool.TRIPLE_PERIOD);
+		String snippet = StringPool.BLANK;
 
-		if (Validator.isNotNull(snippet)) {
-			snippet = snippet.concat(StringPool.TRIPLE_PERIOD);
-		}
-		else {
-			snippet = StringPool.BLANK;
+		if (ListUtil.isNotEmpty(snippets)) {
+			snippet = StringUtil.merge(snippets, StringPool.TRIPLE_PERIOD);
+
+			if (Validator.isNotNull(snippet)) {
+				snippet = snippet.concat(StringPool.TRIPLE_PERIOD);
+			}
 		}
 
 		if (!snippet.equals(StringPool.BLANK)) {
@@ -345,8 +329,8 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 				queryTerms.add(matcher.group(1));
 			}
 
-			snippet = StringUtil.replace(snippet, "<em>", "");
-			snippet = StringUtil.replace(snippet, "</em>", "");
+			snippet = StringUtil.replace(snippet, "<em>", StringPool.BLANK);
+			snippet = StringUtil.replace(snippet, "</em>", StringPool.BLANK);
 		}
 
 		document.addText(
