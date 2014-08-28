@@ -230,6 +230,27 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 		}
 	}
 
+	protected float addScore(
+		SolrDocument solrDocument, List<Float> scores, float maxScore,
+		boolean scoreEnabled) {
+
+		if (scoreEnabled) {
+			float score = GetterUtil.getFloat(
+				String.valueOf(solrDocument.getFieldValue("score")));
+
+			if (score > maxScore) {
+				maxScore = score;
+			}
+
+			scores.add(score);
+		}
+		else {
+			scores.add(maxScore);
+		}
+
+		return maxScore;
+	}
+
 	protected void addSelectedFields(
 		SolrQuery solrQuery, QueryConfig queryConfig) {
 
@@ -451,19 +472,8 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 				}
 			}
 
-			if (queryConfig.isScoreEnabled()) {
-				float score = GetterUtil.getFloat(
-					String.valueOf(solrDocument.getFieldValue("score")));
-
-				if (score > maxScore) {
-					maxScore = score;
-				}
-
-				scores.add(score);
-			}
-			else {
-				scores.add(maxScore);
-			}
+			maxScore = addScore(
+				solrDocument, scores, maxScore, queryConfig.isScoreEnabled());
 
 			subsetTotal++;
 		}
