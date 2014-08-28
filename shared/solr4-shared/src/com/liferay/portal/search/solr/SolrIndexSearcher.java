@@ -249,9 +249,7 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 	protected Hits doSearch(SearchContext searchContext, Query query)
 		throws Exception {
 
-		SolrQuery solrQuery = translateQuery(
-			searchContext.getCompanyId(), query, searchContext.getSorts(),
-			searchContext.getStart(), searchContext.getEnd());
+		SolrQuery solrQuery = new SolrQuery();
 
 		QueryConfig queryConfig = query.getQueryConfig();
 
@@ -263,6 +261,8 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 		addSort(solrQuery, searchContext.getSorts());
 
 		solrQuery.setIncludeScore(queryConfig.isScoreEnabled());
+
+		translateQuery(solrQuery, searchContext, query);
 
 		QueryResponse queryResponse = _solrServer.query(solrQuery, METHOD.POST);
 
@@ -466,13 +466,9 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 		return hits;
 	}
 
-	protected SolrQuery translateQuery(
-			long companyId, Query query, Sort[] sorts, int start, int end)
+	protected void translateQuery(
+			SolrQuery solrQuery, SearchContext searchContext, Query query)
 		throws Exception {
-
-		QueryConfig queryConfig = query.getQueryConfig();
-
-		SolrQuery solrQuery = new SolrQuery();
 
 		QueryTranslatorUtil.translateForSolr(query);
 
@@ -485,11 +481,9 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 		sb.append(StringPool.PLUS);
 		sb.append(Field.COMPANY_ID);
 		sb.append(StringPool.COLON);
-		sb.append(companyId);
+		sb.append(searchContext.getCompanyId());
 
 		solrQuery.setQuery(sb.toString());
-
-		return solrQuery;
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(SolrIndexSearcher.class);
