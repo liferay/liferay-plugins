@@ -173,8 +173,8 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 			executeResource(method);
 		}
 
-		if (alloyNotificationProcessor != null) {
-			alloyNotificationProcessor.process(request);
+		if (alloyNotificationEventHelper != null) {
+			alloyNotificationEventHelper.addUserNotificationEvents(request);
 		}
 	}
 
@@ -918,10 +918,10 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 		return search(null, keywords, sorts);
 	}
 
-	protected void setAlloyNotificationProcessor(
-		AlloyNotificationProcessor alloyNotificationProcessor) {
+	protected void setAlloyNotificationEventHelper(
+		AlloyNotificationEventHelper alloyNotificationEventHelper) {
 
-		this.alloyNotificationProcessor = alloyNotificationProcessor;
+		this.alloyNotificationEventHelper = alloyNotificationEventHelper;
 	}
 
 	protected void setAlloyServiceInvokerClass(Class<?> clazz) {
@@ -1019,7 +1019,7 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 	protected String actionPath;
 	protected ActionRequest actionRequest;
 	protected ActionResponse actionResponse;
-	protected AlloyNotificationProcessor alloyNotificationProcessor;
+	protected AlloyNotificationEventHelper alloyNotificationEventHelper;
 	protected AlloyPortlet alloyPortlet;
 	protected AlloyServiceInvoker alloyServiceInvoker;
 	protected ClassLoader classLoader;

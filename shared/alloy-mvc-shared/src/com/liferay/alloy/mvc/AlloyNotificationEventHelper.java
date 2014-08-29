@@ -26,12 +26,12 @@ import javax.servlet.http.HttpServletRequest;
 /**
  * @author Calvin Keum
  */
-public class AlloyNotificationProcessor {
+public abstract class AlloyNotificationEventHelper {
 
-	public void process(HttpServletRequest request) throws Exception {
-	}
+	public abstract void addUserNotificationEvents(HttpServletRequest request)
+		throws Exception;
 
-	protected void sendNotification(
+	protected void addUserNotificationEvent(
 			String portletKey, long userId, int notificationType,
 			int deliveryType, Object... attributes)
 		throws Exception {
