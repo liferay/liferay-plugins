@@ -25,6 +25,10 @@
 		<priority value="INFO" />
 	</category>
 
+	<category name="com.liferay.nativity">
+		<priority value="ERROR" />
+	</category>
+
 	<category name="com.liferay.sync.engine.documentlibrary.event.GetSyncContextEvent">
 		<priority value="ERROR" />
 	</category>
