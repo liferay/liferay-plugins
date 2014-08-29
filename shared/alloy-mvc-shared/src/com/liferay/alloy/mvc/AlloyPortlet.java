@@ -122,7 +122,7 @@ public class AlloyPortlet extends GenericPortlet {
 
 		if (actionName.equals("alloyDataRequest")) {
 			try {
-				AlloyDataRequestHandler.processRequest(
+				AlloyDataRequestProcessor.process(
 					actionRequest, actionResponse, _alloyControllers);
 			}
 			catch (Exception e) {
