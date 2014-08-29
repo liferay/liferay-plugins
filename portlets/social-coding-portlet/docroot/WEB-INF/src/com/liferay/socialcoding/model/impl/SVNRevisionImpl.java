@@ -121,7 +121,7 @@ public class SVNRevisionImpl extends SVNRevisionBaseImpl {
 			if (Validator.isNumber(keyId)) {
 				try {
 					jiraIssue = JIRAIssueLocalServiceUtil.getJIRAIssue(
-						keyPrefix + "-" + keyId);
+						keyPrefix + StringPool.DASH + keyId);
 				}
 				catch (Exception e) {
 				}

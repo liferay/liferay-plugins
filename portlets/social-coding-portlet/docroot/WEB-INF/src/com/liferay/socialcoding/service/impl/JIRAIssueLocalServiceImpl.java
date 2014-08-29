@@ -139,7 +139,7 @@ public class JIRAIssueLocalServiceImpl extends JIRAIssueLocalServiceBaseImpl {
 	public JIRAIssue getJIRAIssue(String key)
 		throws PortalException, SystemException {
 
-		return jiraIssuePersistence.findByKey(key);
+		return jiraIssueFinder.findByKey(key);
 	}
 
 	public JIRAIssue getLastAssigneeJIRAIssue(
