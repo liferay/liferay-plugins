@@ -29,7 +29,7 @@ import com.liferay.sync.engine.util.LoggerUtil;
 import com.liferay.sync.engine.util.PropsValues;
 import com.liferay.sync.engine.util.ReleaseInfo;
 
-import java.net.URL;
+import java.io.InputStream;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -52,21 +52,16 @@ public class UpgradeUtil {
 
 			Files.createDirectories(configurationFilePath.resolve("files"));
 
-			ClassLoader classLoader = LoggerUtil.class.getClassLoader();
-
-			URL url = classLoader.getResource(
+			Path loggerConfigurationFilePath = configurationFilePath.resolve(
 				PropsValues.SYNC_LOGGER_CONFIGURATION_FILE);
 
-			Path sourceLoggerConfigurationFilePath = Paths.get(url.getPath());
+			if (!Files.exists(loggerConfigurationFilePath)) {
+				ClassLoader classLoader = LoggerUtil.class.getClassLoader();
 
-			Path destinationLoggerConfigurationFilePath =
-				configurationFilePath.resolve(
-					sourceLoggerConfigurationFilePath.getFileName());
+				InputStream inputStream = classLoader.getResourceAsStream(
+					PropsValues.SYNC_LOGGER_CONFIGURATION_FILE);
 
-			if (!Files.exists(destinationLoggerConfigurationFilePath)) {
-				Files.copy(
-					sourceLoggerConfigurationFilePath,
-					destinationLoggerConfigurationFilePath);
+				Files.copy(inputStream, loggerConfigurationFilePath);
 			}
 		}
 		else if (buildNumber == ReleaseInfo.getBuildNumber()) {
