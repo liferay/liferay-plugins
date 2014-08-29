@@ -357,6 +357,7 @@ if (recurrence != null) {
 	);
 
 	window.<portlet:namespace />getSummary = function() {
+		var frequency = frequencyNode.val();
 		var intervalNode = A.one('#<portlet:namespace />interval');
 		var weekdays = A.all('#<portlet:namespace />view<%= Frequency.WEEKLY %> input:checked');
 
@@ -366,13 +367,26 @@ if (recurrence != null) {
 			selectedWeekdays = weekdays.getAttribute('data-weekday');
 		}
 
+		var positionalWeekday = null;
+
+		if ((frequency == '<%= Frequency.MONTHLY %>') || (frequency == '<%= Frequency.YEARLY %>')) {
+			if (positionInMonthNode.one('input:checked').val() == 'true') {
+				positionalWeekday = {
+					month: parseInt(A.one('#<portlet:namespace />startTimeMonth').val(), 10),
+					position: A.one('#<portlet:namespace />position').val(),
+					weekday: A.one('#<portlet:namespace />weekday').val()
+				};
+			}
+		}
+
 		var endValue = endsRadioNodes.filter(':checked').val()[0];
 
 		var recurrence = {
 			count: countNode.val(),
 			endValue: endValue,
-			frequency: frequencyNode.val(),
+			frequency: frequency,
 			interval: intervalNode.val(),
+			positionalWeekday: positionalWeekday,
 			untilDate: untilDateDatePicker.getDate(),
 			weekdays: selectedWeekdays
 		}
