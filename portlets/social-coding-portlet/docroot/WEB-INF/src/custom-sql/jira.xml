@@ -78,6 +78,21 @@
 				(security IS NULL)
 		]]>
 	</sql>
+	<sql id="com.liferay.socialcoding.service.persistence.JIRAIssueFinder.findByKey">
+		<![CDATA[
+			SELECT
+				{jiraissue.*}
+			FROM
+				jiraissue
+			INNER JOIN
+				project ON
+					(project.id = jiraissue.project)
+			WHERE
+				(jiraissue.issuenum = ?) AND
+				(project.pkey = ?) AND
+				(jiraissue.security IS NULL)
+		]]>
+	</sql>
 	<sql id="com.liferay.socialcoding.service.persistence.JIRAIssueFinder.findByCD_P">
 		<![CDATA[
 			SELECT
