@@ -44,9 +44,9 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * @author Ethan Bustad
  */
-public class AlloyDataRequestHandler {
+public class AlloyDataRequestProcessor {
 
-	public static void processRequest(
+	public static void process(
 			ActionRequest actionRequest, ActionResponse actionResponse,
 			Map<String, BaseAlloyControllerImpl> alloyControllers)
 		throws Exception {
