@@ -270,6 +270,10 @@ public class SyncFileService {
 
 		// Local sync file
 
+		if (Files.exists(Paths.get(syncFile.getFilePathName()))) {
+			return syncFile;
+		}
+
 		syncFile.setUiEvent(SyncFile.UI_EVENT_DELETED_LOCAL);
 
 		deleteSyncFile(syncFile);
@@ -298,6 +302,10 @@ public class SyncFileService {
 		throws Exception {
 
 		// Local sync file
+
+		if (Files.exists(Paths.get(syncFile.getFilePathName()))) {
+			return syncFile;
+		}
 
 		syncFile.setUiEvent(SyncFile.UI_EVENT_DELETED_LOCAL);
 
