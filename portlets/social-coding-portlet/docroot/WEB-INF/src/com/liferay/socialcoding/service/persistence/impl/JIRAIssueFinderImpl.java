@@ -21,6 +21,8 @@ import com.liferay.portal.kernel.dao.orm.Session;
 import com.liferay.portal.kernel.dao.orm.Type;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.CalendarUtil;
+import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 import com.liferay.socialcoding.model.JIRAIssue;
 import com.liferay.socialcoding.model.impl.JIRAIssueImpl;
@@ -44,6 +46,9 @@ public class JIRAIssueFinderImpl
 
 	public static final String FIND_BY_CD_P =
 		JIRAIssueFinder.class.getName() + ".findByCD_P";
+
+	public static final String FIND_BY_KEY =
+		JIRAIssueFinder.class.getName() + ".findByKey";
 
 	public int countByCD_P(Date createDate, long projectId) {
 		Timestamp createDate_TS = CalendarUtil.getTimestamp(createDate);
@@ -75,6 +80,46 @@ public class JIRAIssueFinderImpl
 			}
 
 			return 0;
+		}
+		catch (Exception e) {
+			throw new SystemException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	public JIRAIssue findByKey(String jiraIssueKey) {
+		String[] jiraIssueKeyArray = StringUtil.split(
+			jiraIssueKey, StringPool.DASH);
+
+		if (jiraIssueKeyArray.length != 2) {
+			return null;
+		}
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			String sql = CustomSQLUtil.get(FIND_BY_KEY);
+
+			SQLQuery q = session.createSynchronizedSQLQuery(sql);
+
+			q.addEntity("jiraissue", JIRAIssueImpl.class);
+
+			QueryPos qPos = QueryPos.getInstance(q);
+
+			qPos.add(jiraIssueKeyArray[1]);
+			qPos.add(jiraIssueKeyArray[0]);
+
+			List<JIRAIssue> list = q.list();
+
+			if (list.isEmpty()) {
+				return null;
+			}
+
+			return list.get(0);
 		}
 		catch (Exception e) {
 			throw new SystemException(e);
