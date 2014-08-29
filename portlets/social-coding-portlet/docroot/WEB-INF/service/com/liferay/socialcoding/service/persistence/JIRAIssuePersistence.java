@@ -176,64 +176,6 @@ public interface JIRAIssuePersistence extends BasePersistence<JIRAIssue> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns the j i r a issue where key = &#63; or throws a {@link com.liferay.socialcoding.NoSuchJIRAIssueException} if it could not be found.
-	*
-	* @param key the key
-	* @return the matching j i r a issue
-	* @throws com.liferay.socialcoding.NoSuchJIRAIssueException if a matching j i r a issue could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public com.liferay.socialcoding.model.JIRAIssue findByKey(
-		java.lang.String key)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.socialcoding.NoSuchJIRAIssueException;
-
-	/**
-	* Returns the j i r a issue where key = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
-	*
-	* @param key the key
-	* @return the matching j i r a issue, or <code>null</code> if a matching j i r a issue could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public com.liferay.socialcoding.model.JIRAIssue fetchByKey(
-		java.lang.String key)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the j i r a issue where key = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
-	*
-	* @param key the key
-	* @param retrieveFromCache whether to use the finder cache
-	* @return the matching j i r a issue, or <code>null</code> if a matching j i r a issue could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public com.liferay.socialcoding.model.JIRAIssue fetchByKey(
-		java.lang.String key, boolean retrieveFromCache)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Removes the j i r a issue where key = &#63; from the database.
-	*
-	* @param key the key
-	* @return the j i r a issue that was removed
-	* @throws SystemException if a system exception occurred
-	*/
-	public com.liferay.socialcoding.model.JIRAIssue removeByKey(
-		java.lang.String key)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.socialcoding.NoSuchJIRAIssueException;
-
-	/**
-	* Returns the number of j i r a issues where key = &#63;.
-	*
-	* @param key the key
-	* @return the number of matching j i r a issues
-	* @throws SystemException if a system exception occurred
-	*/
-	public int countByKey(java.lang.String key)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
 	* Returns all the j i r a issues where reporterJiraUserId = &#63;.
 	*
 	* @param reporterJiraUserId the reporter jira user ID

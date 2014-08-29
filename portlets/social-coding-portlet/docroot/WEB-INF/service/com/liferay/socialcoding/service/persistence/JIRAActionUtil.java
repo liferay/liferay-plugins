@@ -764,6 +764,7 @@ public class JIRAActionUtil {
 	/**
 	 * @deprecated As of 6.2.0
 	 */
+	@Deprecated
 	public void setPersistence(JIRAActionPersistence persistence) {
 	}
 

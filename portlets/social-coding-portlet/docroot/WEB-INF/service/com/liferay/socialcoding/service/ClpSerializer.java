@@ -27,6 +27,7 @@ import com.liferay.socialcoding.model.JIRAActionClp;
 import com.liferay.socialcoding.model.JIRAChangeGroupClp;
 import com.liferay.socialcoding.model.JIRAChangeItemClp;
 import com.liferay.socialcoding.model.JIRAIssueClp;
+import com.liferay.socialcoding.model.JIRAProjectClp;
 import com.liferay.socialcoding.model.SVNRepositoryClp;
 import com.liferay.socialcoding.model.SVNRevisionClp;
 
@@ -121,6 +122,10 @@ public class ClpSerializer {
 			return translateInputJIRAIssue(oldModel);
 		}
 
+		if (oldModelClassName.equals(JIRAProjectClp.class.getName())) {
+			return translateInputJIRAProject(oldModel);
+		}
+
 		if (oldModelClassName.equals(SVNRepositoryClp.class.getName())) {
 			return translateInputSVNRepository(oldModel);
 		}
@@ -184,6 +189,16 @@ public class ClpSerializer {
 		return newModel;
 	}
 
+	public static Object translateInputJIRAProject(BaseModel<?> oldModel) {
+		JIRAProjectClp oldClpModel = (JIRAProjectClp)oldModel;
+
+		BaseModel<?> newModel = oldClpModel.getJIRAProjectRemoteModel();
+
+		newModel.setModelAttributes(oldClpModel.getModelAttributes());
+
+		return newModel;
+	}
+
 	public static Object translateInputSVNRepository(BaseModel<?> oldModel) {
 		SVNRepositoryClp oldClpModel = (SVNRepositoryClp)oldModel;
 
@@ -239,6 +254,11 @@ public class ClpSerializer {
 		if (oldModelClassName.equals(
 					"com.liferay.socialcoding.model.impl.JIRAIssueImpl")) {
 			return translateOutputJIRAIssue(oldModel);
+		}
+
+		if (oldModelClassName.equals(
+					"com.liferay.socialcoding.model.impl.JIRAProjectImpl")) {
+			return translateOutputJIRAProject(oldModel);
 		}
 
 		if (oldModelClassName.equals(
@@ -355,6 +375,12 @@ public class ClpSerializer {
 		}
 
 		if (className.equals(
+					"com.liferay.socialcoding.NoSuchJIRAProjectException")) {
+			return new com.liferay.socialcoding.NoSuchJIRAProjectException(throwable.getMessage(),
+				throwable.getCause());
+		}
+
+		if (className.equals(
 					"com.liferay.socialcoding.NoSuchSVNRepositoryException")) {
 			return new com.liferay.socialcoding.NoSuchSVNRepositoryException(throwable.getMessage(),
 				throwable.getCause());
@@ -405,6 +431,16 @@ public class ClpSerializer {
 		newModel.setModelAttributes(oldModel.getModelAttributes());
 
 		newModel.setJIRAIssueRemoteModel(oldModel);
+
+		return newModel;
+	}
+
+	public static Object translateOutputJIRAProject(BaseModel<?> oldModel) {
+		JIRAProjectClp newModel = new JIRAProjectClp();
+
+		newModel.setModelAttributes(oldModel.getModelAttributes());
+
+		newModel.setJIRAProjectRemoteModel(oldModel);
 
 		return newModel;
 	}

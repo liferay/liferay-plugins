@@ -1176,7 +1176,7 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 			CacheRegistryUtil.clear(JIRAChangeGroupImpl.class.getName());
 		}
 
-		EntityCacheUtil.clearCache(JIRAChangeGroupImpl.class.getName());
+		EntityCacheUtil.clearCache(JIRAChangeGroupImpl.class);
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_ENTITY);
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
@@ -1393,7 +1393,9 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 
 		EntityCacheUtil.putResult(JIRAChangeGroupModelImpl.ENTITY_CACHE_ENABLED,
 			JIRAChangeGroupImpl.class, jiraChangeGroup.getPrimaryKey(),
-			jiraChangeGroup);
+			jiraChangeGroup, false);
+
+		jiraChangeGroup.resetOriginalValues();
 
 		return jiraChangeGroup;
 	}

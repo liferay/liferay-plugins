@@ -22,6 +22,7 @@ import com.liferay.socialcoding.service.JIRAActionLocalServiceUtil;
 import com.liferay.socialcoding.service.JIRAChangeGroupLocalServiceUtil;
 import com.liferay.socialcoding.service.JIRAChangeItemLocalServiceUtil;
 import com.liferay.socialcoding.service.JIRAIssueLocalServiceUtil;
+import com.liferay.socialcoding.service.JIRAProjectLocalServiceUtil;
 import com.liferay.socialcoding.service.SVNRepositoryLocalServiceUtil;
 import com.liferay.socialcoding.service.SVNRevisionLocalServiceUtil;
 
@@ -47,6 +48,8 @@ public class ClpMessageListener extends BaseMessageListener {
 			JIRAChangeItemLocalServiceUtil.clearService();
 
 			JIRAIssueLocalServiceUtil.clearService();
+
+			JIRAProjectLocalServiceUtil.clearService();
 
 			SVNRepositoryLocalServiceUtil.clearService();
 

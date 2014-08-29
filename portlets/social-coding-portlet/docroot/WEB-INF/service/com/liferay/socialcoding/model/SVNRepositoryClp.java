@@ -16,6 +16,7 @@ package com.liferay.socialcoding.model;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.BaseModel;
@@ -77,6 +78,9 @@ public class SVNRepositoryClp extends BaseModelImpl<SVNRepository>
 		attributes.put("url", getUrl());
 		attributes.put("revisionNumber", getRevisionNumber());
 
+		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
+		attributes.put("finderCacheEnabled", isFinderCacheEnabled());
+
 		return attributes;
 	}
 
@@ -99,6 +103,9 @@ public class SVNRepositoryClp extends BaseModelImpl<SVNRepository>
 		if (revisionNumber != null) {
 			setRevisionNumber(revisionNumber);
 		}
+
+		_entityCacheEnabled = GetterUtil.getBoolean("entityCacheEnabled");
+		_finderCacheEnabled = GetterUtil.getBoolean("finderCacheEnabled");
 	}
 
 	@Override
@@ -326,6 +333,16 @@ public class SVNRepositoryClp extends BaseModelImpl<SVNRepository>
 	}
 
 	@Override
+	public boolean isEntityCacheEnabled() {
+		return _entityCacheEnabled;
+	}
+
+	@Override
+	public boolean isFinderCacheEnabled() {
+		return _finderCacheEnabled;
+	}
+
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(7);
 
@@ -370,4 +387,6 @@ public class SVNRepositoryClp extends BaseModelImpl<SVNRepository>
 	private String _url;
 	private long _revisionNumber;
 	private BaseModel<?> _svnRepositoryRemoteModel;
+	private boolean _entityCacheEnabled;
+	private boolean _finderCacheEnabled;
 }

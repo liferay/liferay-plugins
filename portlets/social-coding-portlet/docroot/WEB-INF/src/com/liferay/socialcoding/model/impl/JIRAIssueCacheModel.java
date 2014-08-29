@@ -48,8 +48,8 @@ public class JIRAIssueCacheModel implements CacheModel<JIRAIssue>,
 		sb.append(modifiedDate);
 		sb.append(", projectId=");
 		sb.append(projectId);
-		sb.append(", key=");
-		sb.append(key);
+		sb.append(", issueNumber=");
+		sb.append(issueNumber);
 		sb.append(", summary=");
 		sb.append(summary);
 		sb.append(", description=");
@@ -88,13 +88,7 @@ public class JIRAIssueCacheModel implements CacheModel<JIRAIssue>,
 		}
 
 		jiraIssueImpl.setProjectId(projectId);
-
-		if (key == null) {
-			jiraIssueImpl.setKey(StringPool.BLANK);
-		}
-		else {
-			jiraIssueImpl.setKey(key);
-		}
+		jiraIssueImpl.setIssueNumber(issueNumber);
 
 		if (summary == null) {
 			jiraIssueImpl.setSummary(StringPool.BLANK);
@@ -149,7 +143,7 @@ public class JIRAIssueCacheModel implements CacheModel<JIRAIssue>,
 		createDate = objectInput.readLong();
 		modifiedDate = objectInput.readLong();
 		projectId = objectInput.readLong();
-		key = objectInput.readUTF();
+		issueNumber = objectInput.readLong();
 		summary = objectInput.readUTF();
 		description = objectInput.readUTF();
 		reporterJiraUserId = objectInput.readUTF();
@@ -165,13 +159,7 @@ public class JIRAIssueCacheModel implements CacheModel<JIRAIssue>,
 		objectOutput.writeLong(createDate);
 		objectOutput.writeLong(modifiedDate);
 		objectOutput.writeLong(projectId);
-
-		if (key == null) {
-			objectOutput.writeUTF(StringPool.BLANK);
-		}
-		else {
-			objectOutput.writeUTF(key);
-		}
+		objectOutput.writeLong(issueNumber);
 
 		if (summary == null) {
 			objectOutput.writeUTF(StringPool.BLANK);
@@ -220,7 +208,7 @@ public class JIRAIssueCacheModel implements CacheModel<JIRAIssue>,
 	public long createDate;
 	public long modifiedDate;
 	public long projectId;
-	public String key;
+	public long issueNumber;
 	public String summary;
 	public String description;
 	public String reporterJiraUserId;

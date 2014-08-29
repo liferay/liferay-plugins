@@ -313,6 +313,7 @@ public class JIRAChangeGroupWrapper implements JIRAChangeGroup,
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedModel}
 	 */
+	@Deprecated
 	public JIRAChangeGroup getWrappedJIRAChangeGroup() {
 		return _jiraChangeGroup;
 	}
@@ -320,6 +321,16 @@ public class JIRAChangeGroupWrapper implements JIRAChangeGroup,
 	@Override
 	public JIRAChangeGroup getWrappedModel() {
 		return _jiraChangeGroup;
+	}
+
+	@Override
+	public boolean isEntityCacheEnabled() {
+		return _jiraChangeGroup.isEntityCacheEnabled();
+	}
+
+	@Override
+	public boolean isFinderCacheEnabled() {
+		return _jiraChangeGroup.isFinderCacheEnabled();
 	}
 
 	@Override

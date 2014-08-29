@@ -53,7 +53,7 @@ public class JIRAIssueWrapper implements JIRAIssue, ModelWrapper<JIRAIssue> {
 		attributes.put("createDate", getCreateDate());
 		attributes.put("modifiedDate", getModifiedDate());
 		attributes.put("projectId", getProjectId());
-		attributes.put("key", getKey());
+		attributes.put("issueNumber", getIssueNumber());
 		attributes.put("summary", getSummary());
 		attributes.put("description", getDescription());
 		attributes.put("reporterJiraUserId", getReporterJiraUserId());
@@ -90,10 +90,10 @@ public class JIRAIssueWrapper implements JIRAIssue, ModelWrapper<JIRAIssue> {
 			setProjectId(projectId);
 		}
 
-		String key = (String)attributes.get("key");
+		Long issueNumber = (Long)attributes.get("issueNumber");
 
-		if (key != null) {
-			setKey(key);
+		if (issueNumber != null) {
+			setIssueNumber(issueNumber);
 		}
 
 		String summary = (String)attributes.get("summary");
@@ -234,23 +234,23 @@ public class JIRAIssueWrapper implements JIRAIssue, ModelWrapper<JIRAIssue> {
 	}
 
 	/**
-	* Returns the key of this j i r a issue.
+	* Returns the issue number of this j i r a issue.
 	*
-	* @return the key of this j i r a issue
+	* @return the issue number of this j i r a issue
 	*/
 	@Override
-	public java.lang.String getKey() {
-		return _jiraIssue.getKey();
+	public long getIssueNumber() {
+		return _jiraIssue.getIssueNumber();
 	}
 
 	/**
-	* Sets the key of this j i r a issue.
+	* Sets the issue number of this j i r a issue.
 	*
-	* @param key the key of this j i r a issue
+	* @param issueNumber the issue number of this j i r a issue
 	*/
 	@Override
-	public void setKey(java.lang.String key) {
-		_jiraIssue.setKey(key);
+	public void setIssueNumber(long issueNumber) {
+		_jiraIssue.setIssueNumber(issueNumber);
 	}
 
 	/**
@@ -478,6 +478,11 @@ public class JIRAIssueWrapper implements JIRAIssue, ModelWrapper<JIRAIssue> {
 	}
 
 	@Override
+	public java.lang.String getKey() {
+		return _jiraIssue.getKey();
+	}
+
+	@Override
 	public boolean equals(Object obj) {
 		if (this == obj) {
 			return true;
@@ -499,6 +504,7 @@ public class JIRAIssueWrapper implements JIRAIssue, ModelWrapper<JIRAIssue> {
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedModel}
 	 */
+	@Deprecated
 	public JIRAIssue getWrappedJIRAIssue() {
 		return _jiraIssue;
 	}
@@ -506,6 +512,16 @@ public class JIRAIssueWrapper implements JIRAIssue, ModelWrapper<JIRAIssue> {
 	@Override
 	public JIRAIssue getWrappedModel() {
 		return _jiraIssue;
+	}
+
+	@Override
+	public boolean isEntityCacheEnabled() {
+		return _jiraIssue.isEntityCacheEnabled();
+	}
+
+	@Override
+	public boolean isFinderCacheEnabled() {
+		return _jiraIssue.isFinderCacheEnabled();
 	}
 
 	@Override

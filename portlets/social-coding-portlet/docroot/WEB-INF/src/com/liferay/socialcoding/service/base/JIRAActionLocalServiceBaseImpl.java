@@ -16,6 +16,8 @@ package com.liferay.socialcoding.service.base;
 
 import com.liferay.portal.kernel.bean.BeanReference;
 import com.liferay.portal.kernel.bean.IdentifiableBean;
+import com.liferay.portal.kernel.dao.db.DB;
+import com.liferay.portal.kernel.dao.db.DBFactoryUtil;
 import com.liferay.portal.kernel.dao.jdbc.SqlUpdate;
 import com.liferay.portal.kernel.dao.jdbc.SqlUpdateFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
@@ -31,6 +33,7 @@ import com.liferay.portal.service.BaseLocalServiceImpl;
 import com.liferay.portal.service.PersistedModelLocalServiceRegistryUtil;
 import com.liferay.portal.service.persistence.ClassNamePersistence;
 import com.liferay.portal.service.persistence.UserPersistence;
+import com.liferay.portal.util.PortalUtil;
 
 import com.liferay.socialcoding.model.JIRAAction;
 import com.liferay.socialcoding.service.JIRAActionLocalService;
@@ -41,6 +44,7 @@ import com.liferay.socialcoding.service.persistence.JIRAChangeGroupPersistence;
 import com.liferay.socialcoding.service.persistence.JIRAChangeItemPersistence;
 import com.liferay.socialcoding.service.persistence.JIRAIssueFinder;
 import com.liferay.socialcoding.service.persistence.JIRAIssuePersistence;
+import com.liferay.socialcoding.service.persistence.JIRAProjectPersistence;
 import com.liferay.socialcoding.service.persistence.SVNRepositoryPersistence;
 import com.liferay.socialcoding.service.persistence.SVNRevisionPersistence;
 
@@ -497,6 +501,44 @@ public abstract class JIRAActionLocalServiceBaseImpl
 	}
 
 	/**
+	 * Returns the j i r a project local service.
+	 *
+	 * @return the j i r a project local service
+	 */
+	public com.liferay.socialcoding.service.JIRAProjectLocalService getJIRAProjectLocalService() {
+		return jiraProjectLocalService;
+	}
+
+	/**
+	 * Sets the j i r a project local service.
+	 *
+	 * @param jiraProjectLocalService the j i r a project local service
+	 */
+	public void setJIRAProjectLocalService(
+		com.liferay.socialcoding.service.JIRAProjectLocalService jiraProjectLocalService) {
+		this.jiraProjectLocalService = jiraProjectLocalService;
+	}
+
+	/**
+	 * Returns the j i r a project persistence.
+	 *
+	 * @return the j i r a project persistence
+	 */
+	public JIRAProjectPersistence getJIRAProjectPersistence() {
+		return jiraProjectPersistence;
+	}
+
+	/**
+	 * Sets the j i r a project persistence.
+	 *
+	 * @param jiraProjectPersistence the j i r a project persistence
+	 */
+	public void setJIRAProjectPersistence(
+		JIRAProjectPersistence jiraProjectPersistence) {
+		this.jiraProjectPersistence = jiraProjectPersistence;
+	}
+
+	/**
 	 * Returns the s v n repository local service.
 	 *
 	 * @return the s v n repository local service
@@ -787,13 +829,18 @@ public abstract class JIRAActionLocalServiceBaseImpl
 	}
 
 	/**
-	 * Performs an SQL query.
+	 * Performs a SQL query.
 	 *
 	 * @param sql the sql query
 	 */
 	protected void runSQL(String sql) throws SystemException {
 		try {
 			DataSource dataSource = jiraActionPersistence.getDataSource();
+
+			DB db = DBFactoryUtil.getDB();
+
+			sql = db.buildSQL(sql);
+			sql = PortalUtil.transformSQL(sql);
 
 			SqlUpdate sqlUpdate = SqlUpdateFactoryUtil.getSqlUpdate(dataSource,
 					sql, new int[0]);
@@ -827,6 +874,10 @@ public abstract class JIRAActionLocalServiceBaseImpl
 	protected JIRAIssuePersistence jiraIssuePersistence;
 	@BeanReference(type = JIRAIssueFinder.class)
 	protected JIRAIssueFinder jiraIssueFinder;
+	@BeanReference(type = com.liferay.socialcoding.service.JIRAProjectLocalService.class)
+	protected com.liferay.socialcoding.service.JIRAProjectLocalService jiraProjectLocalService;
+	@BeanReference(type = JIRAProjectPersistence.class)
+	protected JIRAProjectPersistence jiraProjectPersistence;
 	@BeanReference(type = com.liferay.socialcoding.service.SVNRepositoryLocalService.class)
 	protected com.liferay.socialcoding.service.SVNRepositoryLocalService svnRepositoryLocalService;
 	@BeanReference(type = SVNRepositoryPersistence.class)

@@ -25,7 +25,6 @@ import com.liferay.portal.kernel.dao.orm.Session;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.util.CalendarUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.InstanceFactory;
 import com.liferay.portal.kernel.util.OrderByComparator;
@@ -47,6 +46,8 @@ import com.liferay.socialcoding.model.impl.JIRAIssueImpl;
 import com.liferay.socialcoding.model.impl.JIRAIssueModelImpl;
 
 import java.io.Serializable;
+
+import java.sql.Timestamp;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -579,254 +580,6 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	}
 
 	private static final String _FINDER_COLUMN_PROJECTID_PROJECTID_2 = "jiraIssue.projectId = ?";
-	public static final FinderPath FINDER_PATH_FETCH_BY_KEY = new FinderPath(JIRAIssueModelImpl.ENTITY_CACHE_ENABLED,
-			JIRAIssueModelImpl.FINDER_CACHE_ENABLED, JIRAIssueImpl.class,
-			FINDER_CLASS_NAME_ENTITY, "fetchByKey",
-			new String[] { String.class.getName() },
-			JIRAIssueModelImpl.KEY_COLUMN_BITMASK);
-	public static final FinderPath FINDER_PATH_COUNT_BY_KEY = new FinderPath(JIRAIssueModelImpl.ENTITY_CACHE_ENABLED,
-			JIRAIssueModelImpl.FINDER_CACHE_ENABLED, Long.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByKey",
-			new String[] { String.class.getName() });
-
-	/**
-	 * Returns the j i r a issue where key = &#63; or throws a {@link com.liferay.socialcoding.NoSuchJIRAIssueException} if it could not be found.
-	 *
-	 * @param key the key
-	 * @return the matching j i r a issue
-	 * @throws com.liferay.socialcoding.NoSuchJIRAIssueException if a matching j i r a issue could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public JIRAIssue findByKey(String key)
-		throws NoSuchJIRAIssueException, SystemException {
-		JIRAIssue jiraIssue = fetchByKey(key);
-
-		if (jiraIssue == null) {
-			StringBundler msg = new StringBundler(4);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("key=");
-			msg.append(key);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			if (_log.isWarnEnabled()) {
-				_log.warn(msg.toString());
-			}
-
-			throw new NoSuchJIRAIssueException(msg.toString());
-		}
-
-		return jiraIssue;
-	}
-
-	/**
-	 * Returns the j i r a issue where key = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
-	 *
-	 * @param key the key
-	 * @return the matching j i r a issue, or <code>null</code> if a matching j i r a issue could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public JIRAIssue fetchByKey(String key) throws SystemException {
-		return fetchByKey(key, true);
-	}
-
-	/**
-	 * Returns the j i r a issue where key = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
-	 *
-	 * @param key the key
-	 * @param retrieveFromCache whether to use the finder cache
-	 * @return the matching j i r a issue, or <code>null</code> if a matching j i r a issue could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public JIRAIssue fetchByKey(String key, boolean retrieveFromCache)
-		throws SystemException {
-		Object[] finderArgs = new Object[] { key };
-
-		Object result = null;
-
-		if (retrieveFromCache) {
-			result = FinderCacheUtil.getResult(FINDER_PATH_FETCH_BY_KEY,
-					finderArgs, this);
-		}
-
-		if (result instanceof JIRAIssue) {
-			JIRAIssue jiraIssue = (JIRAIssue)result;
-
-			if (!Validator.equals(key, jiraIssue.getKey())) {
-				result = null;
-			}
-		}
-
-		if (result == null) {
-			StringBundler query = new StringBundler(3);
-
-			query.append(_SQL_SELECT_JIRAISSUE_WHERE);
-
-			boolean bindKey = false;
-
-			if (key == null) {
-				query.append(_FINDER_COLUMN_KEY_KEY_1);
-			}
-			else if (key.equals(StringPool.BLANK)) {
-				query.append(_FINDER_COLUMN_KEY_KEY_3);
-			}
-			else {
-				bindKey = true;
-
-				query.append(_FINDER_COLUMN_KEY_KEY_2);
-			}
-
-			String sql = query.toString();
-
-			Session session = null;
-
-			try {
-				session = openSession();
-
-				Query q = session.createQuery(sql);
-
-				QueryPos qPos = QueryPos.getInstance(q);
-
-				if (bindKey) {
-					qPos.add(key);
-				}
-
-				List<JIRAIssue> list = q.list();
-
-				if (list.isEmpty()) {
-					FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_KEY,
-						finderArgs, list);
-				}
-				else {
-					if ((list.size() > 1) && _log.isWarnEnabled()) {
-						_log.warn(
-							"JIRAIssuePersistenceImpl.fetchByKey(String, boolean) with parameters (" +
-							StringUtil.merge(finderArgs) +
-							") yields a result set with more than 1 result. This violates the logical unique restriction. There is no order guarantee on which result is returned by this finder.");
-					}
-
-					JIRAIssue jiraIssue = list.get(0);
-
-					result = jiraIssue;
-
-					cacheResult(jiraIssue);
-
-					if ((jiraIssue.getKey() == null) ||
-							!jiraIssue.getKey().equals(key)) {
-						FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_KEY,
-							finderArgs, jiraIssue);
-					}
-				}
-			}
-			catch (Exception e) {
-				FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_KEY,
-					finderArgs);
-
-				throw processException(e);
-			}
-			finally {
-				closeSession(session);
-			}
-		}
-
-		if (result instanceof List<?>) {
-			return null;
-		}
-		else {
-			return (JIRAIssue)result;
-		}
-	}
-
-	/**
-	 * Removes the j i r a issue where key = &#63; from the database.
-	 *
-	 * @param key the key
-	 * @return the j i r a issue that was removed
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public JIRAIssue removeByKey(String key)
-		throws NoSuchJIRAIssueException, SystemException {
-		JIRAIssue jiraIssue = findByKey(key);
-
-		return remove(jiraIssue);
-	}
-
-	/**
-	 * Returns the number of j i r a issues where key = &#63;.
-	 *
-	 * @param key the key
-	 * @return the number of matching j i r a issues
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public int countByKey(String key) throws SystemException {
-		FinderPath finderPath = FINDER_PATH_COUNT_BY_KEY;
-
-		Object[] finderArgs = new Object[] { key };
-
-		Long count = (Long)FinderCacheUtil.getResult(finderPath, finderArgs,
-				this);
-
-		if (count == null) {
-			StringBundler query = new StringBundler(2);
-
-			query.append(_SQL_COUNT_JIRAISSUE_WHERE);
-
-			boolean bindKey = false;
-
-			if (key == null) {
-				query.append(_FINDER_COLUMN_KEY_KEY_1);
-			}
-			else if (key.equals(StringPool.BLANK)) {
-				query.append(_FINDER_COLUMN_KEY_KEY_3);
-			}
-			else {
-				bindKey = true;
-
-				query.append(_FINDER_COLUMN_KEY_KEY_2);
-			}
-
-			String sql = query.toString();
-
-			Session session = null;
-
-			try {
-				session = openSession();
-
-				Query q = session.createQuery(sql);
-
-				QueryPos qPos = QueryPos.getInstance(q);
-
-				if (bindKey) {
-					qPos.add(key);
-				}
-
-				count = (Long)q.uniqueResult();
-
-				FinderCacheUtil.putResult(finderPath, finderArgs, count);
-			}
-			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
-
-				throw processException(e);
-			}
-			finally {
-				closeSession(session);
-			}
-		}
-
-		return count.intValue();
-	}
-
-	private static final String _FINDER_COLUMN_KEY_KEY_1 = "jiraIssue.key IS NULL";
-	private static final String _FINDER_COLUMN_KEY_KEY_2 = "jiraIssue.key = ?";
-	private static final String _FINDER_COLUMN_KEY_KEY_3 = "(jiraIssue.key IS NULL OR jiraIssue.key = '')";
 	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_REPORTERJIRAUSERID =
 		new FinderPath(JIRAIssueModelImpl.ENTITY_CACHE_ENABLED,
 			JIRAIssueModelImpl.FINDER_CACHE_ENABLED, JIRAIssueImpl.class,
@@ -2068,7 +1821,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 				QueryPos qPos = QueryPos.getInstance(q);
 
 				if (bindModifiedDate) {
-					qPos.add(CalendarUtil.getTimestamp(modifiedDate));
+					qPos.add(new Timestamp(modifiedDate.getTime()));
 				}
 
 				qPos.add(projectId);
@@ -2364,7 +2117,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		QueryPos qPos = QueryPos.getInstance(q);
 
 		if (bindModifiedDate) {
-			qPos.add(CalendarUtil.getTimestamp(modifiedDate));
+			qPos.add(new Timestamp(modifiedDate.getTime()));
 		}
 
 		qPos.add(projectId);
@@ -2451,7 +2204,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 				QueryPos qPos = QueryPos.getInstance(q);
 
 				if (bindModifiedDate) {
-					qPos.add(CalendarUtil.getTimestamp(modifiedDate));
+					qPos.add(new Timestamp(modifiedDate.getTime()));
 				}
 
 				qPos.add(projectId);
@@ -3802,7 +3555,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 				QueryPos qPos = QueryPos.getInstance(q);
 
 				if (bindModifiedDate) {
-					qPos.add(CalendarUtil.getTimestamp(modifiedDate));
+					qPos.add(new Timestamp(modifiedDate.getTime()));
 				}
 
 				qPos.add(projectId);
@@ -4133,7 +3886,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		QueryPos qPos = QueryPos.getInstance(q);
 
 		if (bindModifiedDate) {
-			qPos.add(CalendarUtil.getTimestamp(modifiedDate));
+			qPos.add(new Timestamp(modifiedDate.getTime()));
 		}
 
 		qPos.add(projectId);
@@ -4242,7 +3995,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 				QueryPos qPos = QueryPos.getInstance(q);
 
 				if (bindModifiedDate) {
-					qPos.add(CalendarUtil.getTimestamp(modifiedDate));
+					qPos.add(new Timestamp(modifiedDate.getTime()));
 				}
 
 				qPos.add(projectId);
@@ -4442,7 +4195,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 				QueryPos qPos = QueryPos.getInstance(q);
 
 				if (bindModifiedDate) {
-					qPos.add(CalendarUtil.getTimestamp(modifiedDate));
+					qPos.add(new Timestamp(modifiedDate.getTime()));
 				}
 
 				qPos.add(projectId);
@@ -4773,7 +4526,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		QueryPos qPos = QueryPos.getInstance(q);
 
 		if (bindModifiedDate) {
-			qPos.add(CalendarUtil.getTimestamp(modifiedDate));
+			qPos.add(new Timestamp(modifiedDate.getTime()));
 		}
 
 		qPos.add(projectId);
@@ -4882,7 +4635,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 				QueryPos qPos = QueryPos.getInstance(q);
 
 				if (bindModifiedDate) {
-					qPos.add(CalendarUtil.getTimestamp(modifiedDate));
+					qPos.add(new Timestamp(modifiedDate.getTime()));
 				}
 
 				qPos.add(projectId);
@@ -6259,9 +6012,6 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		EntityCacheUtil.putResult(JIRAIssueModelImpl.ENTITY_CACHE_ENABLED,
 			JIRAIssueImpl.class, jiraIssue.getPrimaryKey(), jiraIssue);
 
-		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_KEY,
-			new Object[] { jiraIssue.getKey() }, jiraIssue);
-
 		jiraIssue.resetOriginalValues();
 	}
 
@@ -6297,7 +6047,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 			CacheRegistryUtil.clear(JIRAIssueImpl.class.getName());
 		}
 
-		EntityCacheUtil.clearCache(JIRAIssueImpl.class.getName());
+		EntityCacheUtil.clearCache(JIRAIssueImpl.class);
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_ENTITY);
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
@@ -6318,8 +6068,6 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
-
-		clearUniqueFindersCache(jiraIssue);
 	}
 
 	@Override
@@ -6330,48 +6078,6 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		for (JIRAIssue jiraIssue : jiraIssues) {
 			EntityCacheUtil.removeResult(JIRAIssueModelImpl.ENTITY_CACHE_ENABLED,
 				JIRAIssueImpl.class, jiraIssue.getPrimaryKey());
-
-			clearUniqueFindersCache(jiraIssue);
-		}
-	}
-
-	protected void cacheUniqueFindersCache(JIRAIssue jiraIssue) {
-		if (jiraIssue.isNew()) {
-			Object[] args = new Object[] { jiraIssue.getKey() };
-
-			FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_KEY, args,
-				Long.valueOf(1));
-			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_KEY, args, jiraIssue);
-		}
-		else {
-			JIRAIssueModelImpl jiraIssueModelImpl = (JIRAIssueModelImpl)jiraIssue;
-
-			if ((jiraIssueModelImpl.getColumnBitmask() &
-					FINDER_PATH_FETCH_BY_KEY.getColumnBitmask()) != 0) {
-				Object[] args = new Object[] { jiraIssue.getKey() };
-
-				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_KEY, args,
-					Long.valueOf(1));
-				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_KEY, args,
-					jiraIssue);
-			}
-		}
-	}
-
-	protected void clearUniqueFindersCache(JIRAIssue jiraIssue) {
-		JIRAIssueModelImpl jiraIssueModelImpl = (JIRAIssueModelImpl)jiraIssue;
-
-		Object[] args = new Object[] { jiraIssue.getKey() };
-
-		FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_KEY, args);
-		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_KEY, args);
-
-		if ((jiraIssueModelImpl.getColumnBitmask() &
-				FINDER_PATH_FETCH_BY_KEY.getColumnBitmask()) != 0) {
-			args = new Object[] { jiraIssueModelImpl.getOriginalKey() };
-
-			FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_KEY, args);
-			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_KEY, args);
 		}
 	}
 
@@ -6664,10 +6370,9 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		}
 
 		EntityCacheUtil.putResult(JIRAIssueModelImpl.ENTITY_CACHE_ENABLED,
-			JIRAIssueImpl.class, jiraIssue.getPrimaryKey(), jiraIssue);
+			JIRAIssueImpl.class, jiraIssue.getPrimaryKey(), jiraIssue, false);
 
-		clearUniqueFindersCache(jiraIssue);
-		cacheUniqueFindersCache(jiraIssue);
+		jiraIssue.resetOriginalValues();
 
 		return jiraIssue;
 	}
@@ -6686,7 +6391,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		jiraIssueImpl.setCreateDate(jiraIssue.getCreateDate());
 		jiraIssueImpl.setModifiedDate(jiraIssue.getModifiedDate());
 		jiraIssueImpl.setProjectId(jiraIssue.getProjectId());
-		jiraIssueImpl.setKey(jiraIssue.getKey());
+		jiraIssueImpl.setIssueNumber(jiraIssue.getIssueNumber());
 		jiraIssueImpl.setSummary(jiraIssue.getSummary());
 		jiraIssueImpl.setDescription(jiraIssue.getDescription());
 		jiraIssueImpl.setReporterJiraUserId(jiraIssue.getReporterJiraUserId());
@@ -7018,8 +6723,9 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
 	private static Log _log = LogFactoryUtil.getLog(JIRAIssuePersistenceImpl.class);
 	private static Set<String> _badColumnNames = SetUtil.fromArray(new String[] {
-				"jiraIssueId", "createDate", "modifiedDate", "projectId", "key",
-				"reporterJiraUserId", "assigneeJiraUserId", "status"
+				"jiraIssueId", "createDate", "modifiedDate", "projectId",
+				"issueNumber", "reporterJiraUserId", "assigneeJiraUserId",
+				"status"
 			});
 	private static JIRAIssue _nullJIRAIssue = new JIRAIssueImpl() {
 			@Override

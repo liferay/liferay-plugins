@@ -31,13 +31,18 @@
 		<field name="createDate" type="Date" />
 		<field name="modifiedDate" type="Date" />
 		<field name="projectId" type="long" />
-		<field name="key" type="String" />
+		<field name="issueNumber" type="long" />
 		<field name="summary" type="String" />
 		<field name="description" type="String" />
 		<field name="reporterJiraUserId" type="String" />
 		<field name="assigneeJiraUserId" type="String" />
 		<field name="resolution" type="String" />
 		<field name="status" type="String" />
+	</model>
+	<model name="com.liferay.socialcoding.model.JIRAProject">
+		<field name="jiraProjectId" type="long" />
+		<field name="key" type="String" />
+		<field name="name" type="String" />
 	</model>
 	<model name="com.liferay.socialcoding.model.SVNRepository">
 		<field name="svnRepositoryId" type="long" />

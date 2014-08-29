@@ -292,6 +292,7 @@ public class JIRAChangeGroupLocalServiceWrapper
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
 	 */
+	@Deprecated
 	public JIRAChangeGroupLocalService getWrappedJIRAChangeGroupLocalService() {
 		return _jiraChangeGroupLocalService;
 	}
@@ -299,6 +300,7 @@ public class JIRAChangeGroupLocalServiceWrapper
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #setWrappedService}
 	 */
+	@Deprecated
 	public void setWrappedJIRAChangeGroupLocalService(
 		JIRAChangeGroupLocalService jiraChangeGroupLocalService) {
 		_jiraChangeGroupLocalService = jiraChangeGroupLocalService;
