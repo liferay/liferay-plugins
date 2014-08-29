@@ -1022,19 +1022,52 @@
 					Liferay.Language.get('december')
 				],
 
+				POSITION_LABELS: {
+				    '-1': Liferay.Language.get('last'),
+				    '1': Liferay.Language.get('first'),
+				    '2': Liferay.Language.get('second'),
+				    '3': Liferay.Language.get('third'),
+				    '4': Liferay.Language.get('fourth')
+				},
+
+				WEEKDAY_LABELS: {
+					SU: Liferay.Language.get('weekday.SU'),
+					MO: Liferay.Language.get('weekday.MO'),
+					TU: Liferay.Language.get('weekday.TU'),
+					WE: Liferay.Language.get('weekday.WE'),
+					TH: Liferay.Language.get('weekday.TH'),
+					FR: Liferay.Language.get('weekday.FR'),
+					SA: Liferay.Language.get('weekday.SA'),
+				},
+
 				getSummary: function(recurrence) {
 					var instance = this;
 
+					var month = null;
+					var position = null;
 					var template = [];
+					var weekDay = null;
 
 					if (recurrence.interval == 1) {
-						template.push(recurrence.frequency);
+						template.push(recurrence.frequency, ' ');
 					}
 					else {
-						template.push(Liferay.Language.get('every'), ' {interval} {intervalLabel}');
+						template.push(Liferay.Language.get('every'), ' {interval} {intervalLabel} ');
 					}
 
-					if ((recurrence.frequency == instance.FREQUENCY.WEEKLY) && (recurrence.weekdays.length > 0)) {
+					if (recurrence.positionalWeekday) {
+						if (recurrence.frequency == instance.FREQUENCY.MONTHLY) {
+							template.push(Liferay.Language.get('on'), ' {position} {weekDay}');
+						}
+						else {
+							template.push(Liferay.Language.get('on-the'), ' {position} {weekDay} ', Liferay.Language.get('of'), ' {month}');
+						}
+
+						month = instance.MONTH_LABELS[recurrence.positionalWeekday.month];
+						position = instance.POSITION_LABELS[recurrence.positionalWeekday.position];
+						weekDay = instance.WEEKDAY_LABELS[recurrence.positionalWeekday.weekday];
+					}
+					else if ((recurrence.frequency == instance.FREQUENCY.WEEKLY) && (recurrence.weekdays.length > 0)) {
 						template.push(STR_SPACE, TPL_SPAN, Liferay.Language.get('on'), TPL_SPAN_CLOSE, ' {weekDays}');
 					}
 
@@ -1067,6 +1100,9 @@
 							count: recurrence.count,
 							interval: recurrence.interval,
 							intervalLabel: instance.INTERVAL_LABELS[recurrence.frequency],
+							month: month,
+							position: position,
+							weekDay: weekDay,
 							weekDays: recurrence.weekdays.join(', ')
 						}
 					);
