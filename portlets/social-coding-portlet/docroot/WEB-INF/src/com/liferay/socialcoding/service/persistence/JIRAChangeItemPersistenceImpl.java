@@ -1122,6 +1122,8 @@ public class JIRAChangeItemPersistenceImpl extends BasePersistenceImpl<JIRAChang
 	protected JIRAChangeItemPersistence jiraChangeItemPersistence;
 	@BeanReference(type = JIRAIssuePersistence.class)
 	protected JIRAIssuePersistence jiraIssuePersistence;
+	@BeanReference(type = JIRAProjectPersistence.class)
+	protected JIRAProjectPersistence jiraProjectPersistence;
 	@BeanReference(type = SVNRepositoryPersistence.class)
 	protected SVNRepositoryPersistence svnRepositoryPersistence;
 	@BeanReference(type = SVNRevisionPersistence.class)

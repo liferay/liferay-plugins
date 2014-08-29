@@ -14,33 +14,33 @@
 
 package com.liferay.socialcoding.service.base;
 
-import com.liferay.socialcoding.service.JIRAChangeItemLocalServiceUtil;
+import com.liferay.socialcoding.service.JIRAProjectLocalServiceUtil;
 
 import java.util.Arrays;
 
 /**
  * @author Brian Wing Shun Chan
  */
-public class JIRAChangeItemLocalServiceClpInvoker {
-	public JIRAChangeItemLocalServiceClpInvoker() {
-		_methodName0 = "addJIRAChangeItem";
+public class JIRAProjectLocalServiceClpInvoker {
+	public JIRAProjectLocalServiceClpInvoker() {
+		_methodName0 = "addJIRAProject";
 
 		_methodParameterTypes0 = new String[] {
-				"com.liferay.socialcoding.model.JIRAChangeItem"
+				"com.liferay.socialcoding.model.JIRAProject"
 			};
 
-		_methodName1 = "createJIRAChangeItem";
+		_methodName1 = "createJIRAProject";
 
 		_methodParameterTypes1 = new String[] { "long" };
 
-		_methodName2 = "deleteJIRAChangeItem";
+		_methodName2 = "deleteJIRAProject";
 
 		_methodParameterTypes2 = new String[] { "long" };
 
-		_methodName3 = "deleteJIRAChangeItem";
+		_methodName3 = "deleteJIRAProject";
 
 		_methodParameterTypes3 = new String[] {
-				"com.liferay.socialcoding.model.JIRAChangeItem"
+				"com.liferay.socialcoding.model.JIRAProject"
 			};
 
 		_methodName4 = "dynamicQuery";
@@ -72,11 +72,11 @@ public class JIRAChangeItemLocalServiceClpInvoker {
 				"com.liferay.portal.kernel.dao.orm.DynamicQuery"
 			};
 
-		_methodName9 = "fetchJIRAChangeItem";
+		_methodName9 = "fetchJIRAProject";
 
 		_methodParameterTypes9 = new String[] { "long" };
 
-		_methodName10 = "getJIRAChangeItem";
+		_methodName10 = "getJIRAProject";
 
 		_methodParameterTypes10 = new String[] { "long" };
 
@@ -84,24 +84,24 @@ public class JIRAChangeItemLocalServiceClpInvoker {
 
 		_methodParameterTypes11 = new String[] { "java.io.Serializable" };
 
-		_methodName12 = "getJIRAChangeItems";
+		_methodName12 = "getJIRAProjects";
 
 		_methodParameterTypes12 = new String[] { "int", "int" };
 
-		_methodName13 = "getJIRAChangeItemsCount";
+		_methodName13 = "getJIRAProjectsCount";
 
 		_methodParameterTypes13 = new String[] {  };
 
-		_methodName14 = "updateJIRAChangeItem";
+		_methodName14 = "updateJIRAProject";
 
 		_methodParameterTypes14 = new String[] {
-				"com.liferay.socialcoding.model.JIRAChangeItem"
+				"com.liferay.socialcoding.model.JIRAProject"
 			};
 
-		_methodName15 = "updateJIRAChangeItem";
+		_methodName15 = "updateJIRAProject";
 
 		_methodParameterTypes15 = new String[] {
-				"com.liferay.socialcoding.model.JIRAChangeItem", "boolean"
+				"com.liferay.socialcoding.model.JIRAProject", "boolean"
 			};
 
 		_methodName72 = "getBeanIdentifier";
@@ -111,58 +111,50 @@ public class JIRAChangeItemLocalServiceClpInvoker {
 		_methodName73 = "setBeanIdentifier";
 
 		_methodParameterTypes73 = new String[] { "java.lang.String" };
-
-		_methodName78 = "getJIRAChangeItem";
-
-		_methodParameterTypes78 = new String[] { "long" };
-
-		_methodName79 = "getJIRAChangeItems";
-
-		_methodParameterTypes79 = new String[] { "long" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
 		Object[] arguments) throws Throwable {
 		if (_methodName0.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes0, parameterTypes)) {
-			return JIRAChangeItemLocalServiceUtil.addJIRAChangeItem((com.liferay.socialcoding.model.JIRAChangeItem)arguments[0]);
+			return JIRAProjectLocalServiceUtil.addJIRAProject((com.liferay.socialcoding.model.JIRAProject)arguments[0]);
 		}
 
 		if (_methodName1.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes1, parameterTypes)) {
-			return JIRAChangeItemLocalServiceUtil.createJIRAChangeItem(((Long)arguments[0]).longValue());
+			return JIRAProjectLocalServiceUtil.createJIRAProject(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName2.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes2, parameterTypes)) {
-			return JIRAChangeItemLocalServiceUtil.deleteJIRAChangeItem(((Long)arguments[0]).longValue());
+			return JIRAProjectLocalServiceUtil.deleteJIRAProject(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName3.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes3, parameterTypes)) {
-			return JIRAChangeItemLocalServiceUtil.deleteJIRAChangeItem((com.liferay.socialcoding.model.JIRAChangeItem)arguments[0]);
+			return JIRAProjectLocalServiceUtil.deleteJIRAProject((com.liferay.socialcoding.model.JIRAProject)arguments[0]);
 		}
 
 		if (_methodName4.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes4, parameterTypes)) {
-			return JIRAChangeItemLocalServiceUtil.dynamicQuery();
+			return JIRAProjectLocalServiceUtil.dynamicQuery();
 		}
 
 		if (_methodName5.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes5, parameterTypes)) {
-			return JIRAChangeItemLocalServiceUtil.dynamicQuery((com.liferay.portal.kernel.dao.orm.DynamicQuery)arguments[0]);
+			return JIRAProjectLocalServiceUtil.dynamicQuery((com.liferay.portal.kernel.dao.orm.DynamicQuery)arguments[0]);
 		}
 
 		if (_methodName6.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes6, parameterTypes)) {
-			return JIRAChangeItemLocalServiceUtil.dynamicQuery((com.liferay.portal.kernel.dao.orm.DynamicQuery)arguments[0],
+			return JIRAProjectLocalServiceUtil.dynamicQuery((com.liferay.portal.kernel.dao.orm.DynamicQuery)arguments[0],
 				((Integer)arguments[1]).intValue(),
 				((Integer)arguments[2]).intValue());
 		}
 
 		if (_methodName7.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes7, parameterTypes)) {
-			return JIRAChangeItemLocalServiceUtil.dynamicQuery((com.liferay.portal.kernel.dao.orm.DynamicQuery)arguments[0],
+			return JIRAProjectLocalServiceUtil.dynamicQuery((com.liferay.portal.kernel.dao.orm.DynamicQuery)arguments[0],
 				((Integer)arguments[1]).intValue(),
 				((Integer)arguments[2]).intValue(),
 				(com.liferay.portal.kernel.util.OrderByComparator)arguments[3]);
@@ -170,66 +162,56 @@ public class JIRAChangeItemLocalServiceClpInvoker {
 
 		if (_methodName8.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes8, parameterTypes)) {
-			return JIRAChangeItemLocalServiceUtil.dynamicQueryCount((com.liferay.portal.kernel.dao.orm.DynamicQuery)arguments[0]);
+			return JIRAProjectLocalServiceUtil.dynamicQueryCount((com.liferay.portal.kernel.dao.orm.DynamicQuery)arguments[0]);
 		}
 
 		if (_methodName9.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes9, parameterTypes)) {
-			return JIRAChangeItemLocalServiceUtil.fetchJIRAChangeItem(((Long)arguments[0]).longValue());
+			return JIRAProjectLocalServiceUtil.fetchJIRAProject(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName10.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes10, parameterTypes)) {
-			return JIRAChangeItemLocalServiceUtil.getJIRAChangeItem(((Long)arguments[0]).longValue());
+			return JIRAProjectLocalServiceUtil.getJIRAProject(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName11.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes11, parameterTypes)) {
-			return JIRAChangeItemLocalServiceUtil.getPersistedModel((java.io.Serializable)arguments[0]);
+			return JIRAProjectLocalServiceUtil.getPersistedModel((java.io.Serializable)arguments[0]);
 		}
 
 		if (_methodName12.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes12, parameterTypes)) {
-			return JIRAChangeItemLocalServiceUtil.getJIRAChangeItems(((Integer)arguments[0]).intValue(),
+			return JIRAProjectLocalServiceUtil.getJIRAProjects(((Integer)arguments[0]).intValue(),
 				((Integer)arguments[1]).intValue());
 		}
 
 		if (_methodName13.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes13, parameterTypes)) {
-			return JIRAChangeItemLocalServiceUtil.getJIRAChangeItemsCount();
+			return JIRAProjectLocalServiceUtil.getJIRAProjectsCount();
 		}
 
 		if (_methodName14.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes14, parameterTypes)) {
-			return JIRAChangeItemLocalServiceUtil.updateJIRAChangeItem((com.liferay.socialcoding.model.JIRAChangeItem)arguments[0]);
+			return JIRAProjectLocalServiceUtil.updateJIRAProject((com.liferay.socialcoding.model.JIRAProject)arguments[0]);
 		}
 
 		if (_methodName15.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes15, parameterTypes)) {
-			return JIRAChangeItemLocalServiceUtil.updateJIRAChangeItem((com.liferay.socialcoding.model.JIRAChangeItem)arguments[0],
+			return JIRAProjectLocalServiceUtil.updateJIRAProject((com.liferay.socialcoding.model.JIRAProject)arguments[0],
 				((Boolean)arguments[1]).booleanValue());
 		}
 
 		if (_methodName72.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes72, parameterTypes)) {
-			return JIRAChangeItemLocalServiceUtil.getBeanIdentifier();
+			return JIRAProjectLocalServiceUtil.getBeanIdentifier();
 		}
 
 		if (_methodName73.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes73, parameterTypes)) {
-			JIRAChangeItemLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
+			JIRAProjectLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
 
 			return null;
-		}
-
-		if (_methodName78.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes78, parameterTypes)) {
-			return JIRAChangeItemLocalServiceUtil.getJIRAChangeItem(((Long)arguments[0]).longValue());
-		}
-
-		if (_methodName79.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes79, parameterTypes)) {
-			return JIRAChangeItemLocalServiceUtil.getJIRAChangeItems(((Long)arguments[0]).longValue());
 		}
 
 		throw new UnsupportedOperationException();
@@ -271,8 +253,4 @@ public class JIRAChangeItemLocalServiceClpInvoker {
 	private String[] _methodParameterTypes72;
 	private String _methodName73;
 	private String[] _methodParameterTypes73;
-	private String _methodName78;
-	private String[] _methodParameterTypes78;
-	private String _methodName79;
-	private String[] _methodParameterTypes79;
 }

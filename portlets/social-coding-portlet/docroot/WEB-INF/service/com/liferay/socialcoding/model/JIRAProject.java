@@ -17,19 +17,18 @@ package com.liferay.socialcoding.model;
 import com.liferay.portal.model.PersistedModel;
 
 /**
- * The extended model interface for the JIRAIssue service. Represents a row in the &quot;jiraissue&quot; database table, with each column mapped to a property of this class.
+ * The extended model interface for the JIRAProject service. Represents a row in the &quot;project&quot; database table, with each column mapped to a property of this class.
  *
  * @author Brian Wing Shun Chan
- * @see JIRAIssueModel
- * @see com.liferay.socialcoding.model.impl.JIRAIssueImpl
- * @see com.liferay.socialcoding.model.impl.JIRAIssueModelImpl
+ * @see JIRAProjectModel
+ * @see com.liferay.socialcoding.model.impl.JIRAProjectImpl
+ * @see com.liferay.socialcoding.model.impl.JIRAProjectModelImpl
  * @generated
  */
-public interface JIRAIssue extends JIRAIssueModel, PersistedModel {
+public interface JIRAProject extends JIRAProjectModel, PersistedModel {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
-	 * Never modify this interface directly. Add methods to {@link com.liferay.socialcoding.model.impl.JIRAIssueImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
+	 * Never modify this interface directly. Add methods to {@link com.liferay.socialcoding.model.impl.JIRAProjectImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
-	public java.lang.String getKey();
 }

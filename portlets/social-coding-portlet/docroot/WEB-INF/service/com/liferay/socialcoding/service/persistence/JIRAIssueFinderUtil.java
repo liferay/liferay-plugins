@@ -26,6 +26,12 @@ public class JIRAIssueFinderUtil {
 		return getFinder().countByCD_P(createDate, projectId);
 	}
 
+	public static com.liferay.socialcoding.model.JIRAIssue findByKey(
+		java.lang.String jiraIssueKey)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getFinder().findByKey(jiraIssueKey);
+	}
+
 	public static java.util.List<com.liferay.socialcoding.model.JIRAIssue> findByCD_P(
 		java.util.Date createDate, long projectId)
 		throws com.liferay.portal.kernel.exception.SystemException {

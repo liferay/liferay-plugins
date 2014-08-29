@@ -6,6 +6,7 @@
 	<import class="com.liferay.socialcoding.model.JIRAChangeGroup" />
 	<import class="com.liferay.socialcoding.model.JIRAChangeItem" />
 	<import class="com.liferay.socialcoding.model.JIRAIssue" />
+	<import class="com.liferay.socialcoding.model.JIRAProject" />
 	<import class="com.liferay.socialcoding.model.SVNRepository" />
 	<import class="com.liferay.socialcoding.model.SVNRevision" />
 	<class name="com.liferay.socialcoding.model.impl.JIRAActionImpl" table="jiraaction">
@@ -49,13 +50,20 @@
 		<property name="createDate" type="org.hibernate.type.TimestampType" column="created" />
 		<property name="modifiedDate" type="org.hibernate.type.TimestampType" column="updated" />
 		<property name="projectId" type="com.liferay.portal.dao.orm.hibernate.LongType" column="project" />
-		<property name="key" type="com.liferay.portal.dao.orm.hibernate.StringType" column="pkey" />
+		<property name="issueNumber" type="com.liferay.portal.dao.orm.hibernate.LongType" column="issuenum" />
 		<property name="summary" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="description" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="reporterJiraUserId" type="com.liferay.portal.dao.orm.hibernate.StringType" column="reporter" />
 		<property name="assigneeJiraUserId" type="com.liferay.portal.dao.orm.hibernate.StringType" column="assignee" />
 		<property name="resolution" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="status" type="com.liferay.portal.dao.orm.hibernate.StringType" column="issuestatus" />
+	</class>
+	<class name="com.liferay.socialcoding.model.impl.JIRAProjectImpl" table="project">
+		<id name="jiraProjectId" column="id" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="key" type="com.liferay.portal.dao.orm.hibernate.StringType" column="pkey" />
+		<property name="name" type="com.liferay.portal.dao.orm.hibernate.StringType" column="pname" />
 	</class>
 	<class name="com.liferay.socialcoding.model.impl.SVNRepositoryImpl" table="SC_SVNRepository">
 		<cache usage="read-write" />

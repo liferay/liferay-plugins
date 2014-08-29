@@ -33,6 +33,11 @@
 		<property name="dataSource" ref="jiraDataSource" />
 		<property name="sessionFactory" ref="jiraSessionFactory" />
 	</bean>
+	<bean id="com.liferay.socialcoding.service.JIRAProjectLocalService" class="com.liferay.socialcoding.service.impl.JIRAProjectLocalServiceImpl" />
+	<bean id="com.liferay.socialcoding.service.persistence.JIRAProjectPersistence" class="com.liferay.socialcoding.service.persistence.JIRAProjectPersistenceImpl" parent="basePersistence">
+		<property name="dataSource" ref="jiraDataSource" />
+		<property name="sessionFactory" ref="jiraSessionFactory" />
+	</bean>
 	<bean id="com.liferay.socialcoding.service.SVNRepositoryLocalService" class="com.liferay.socialcoding.service.impl.SVNRepositoryLocalServiceImpl" />
 	<bean id="com.liferay.socialcoding.service.persistence.SVNRepositoryPersistence" class="com.liferay.socialcoding.service.persistence.SVNRepositoryPersistenceImpl" parent="basePersistence" />
 	<bean id="com.liferay.socialcoding.service.SVNRevisionLocalService" class="com.liferay.socialcoding.service.impl.SVNRevisionLocalServiceImpl" />

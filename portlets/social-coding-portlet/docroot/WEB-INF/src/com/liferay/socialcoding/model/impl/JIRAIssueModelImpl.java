@@ -64,7 +64,7 @@ public class JIRAIssueModelImpl extends BaseModelImpl<JIRAIssue>
 			{ "created", Types.TIMESTAMP },
 			{ "updated", Types.TIMESTAMP },
 			{ "project", Types.BIGINT },
-			{ "pkey", Types.VARCHAR },
+			{ "issuenum", Types.BIGINT },
 			{ "summary", Types.VARCHAR },
 			{ "description", Types.VARCHAR },
 			{ "reporter", Types.VARCHAR },
@@ -72,7 +72,7 @@ public class JIRAIssueModelImpl extends BaseModelImpl<JIRAIssue>
 			{ "resolution", Types.VARCHAR },
 			{ "issuestatus", Types.VARCHAR }
 		};
-	public static final String TABLE_SQL_CREATE = "create table jiraissue (id LONG not null primary key,created DATE null,updated DATE null,project LONG,pkey VARCHAR(75) null,summary VARCHAR(75) null,description VARCHAR(75) null,reporter VARCHAR(75) null,assignee VARCHAR(75) null,resolution VARCHAR(75) null,issuestatus VARCHAR(75) null)";
+	public static final String TABLE_SQL_CREATE = "create table jiraissue (id LONG not null primary key,created DATE null,updated DATE null,project LONG,issuenum LONG,summary VARCHAR(75) null,description VARCHAR(75) null,reporter VARCHAR(75) null,assignee VARCHAR(75) null,resolution VARCHAR(75) null,issuestatus VARCHAR(75) null)";
 	public static final String TABLE_SQL_DROP = "drop table jiraissue";
 	public static final String ORDER_BY_JPQL = " ORDER BY jiraIssue.modifiedDate DESC";
 	public static final String ORDER_BY_SQL = " ORDER BY jiraissue.updated DESC";
@@ -89,11 +89,10 @@ public class JIRAIssueModelImpl extends BaseModelImpl<JIRAIssue>
 				"value.object.column.bitmask.enabled.com.liferay.socialcoding.model.JIRAIssue"),
 			true);
 	public static long ASSIGNEEJIRAUSERID_COLUMN_BITMASK = 1L;
-	public static long KEY_COLUMN_BITMASK = 2L;
-	public static long MODIFIEDDATE_COLUMN_BITMASK = 4L;
-	public static long PROJECTID_COLUMN_BITMASK = 8L;
-	public static long REPORTERJIRAUSERID_COLUMN_BITMASK = 16L;
-	public static long STATUS_COLUMN_BITMASK = 32L;
+	public static long MODIFIEDDATE_COLUMN_BITMASK = 2L;
+	public static long PROJECTID_COLUMN_BITMASK = 4L;
+	public static long REPORTERJIRAUSERID_COLUMN_BITMASK = 8L;
+	public static long STATUS_COLUMN_BITMASK = 16L;
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.liferay.socialcoding.model.JIRAIssue"));
 
@@ -132,7 +131,7 @@ public class JIRAIssueModelImpl extends BaseModelImpl<JIRAIssue>
 		attributes.put("createDate", getCreateDate());
 		attributes.put("modifiedDate", getModifiedDate());
 		attributes.put("projectId", getProjectId());
-		attributes.put("key", getKey());
+		attributes.put("issueNumber", getIssueNumber());
 		attributes.put("summary", getSummary());
 		attributes.put("description", getDescription());
 		attributes.put("reporterJiraUserId", getReporterJiraUserId());
@@ -169,10 +168,10 @@ public class JIRAIssueModelImpl extends BaseModelImpl<JIRAIssue>
 			setProjectId(projectId);
 		}
 
-		String key = (String)attributes.get("key");
+		Long issueNumber = (Long)attributes.get("issueNumber");
 
-		if (key != null) {
-			setKey(key);
+		if (issueNumber != null) {
+			setIssueNumber(issueNumber);
 		}
 
 		String summary = (String)attributes.get("summary");
@@ -266,27 +265,12 @@ public class JIRAIssueModelImpl extends BaseModelImpl<JIRAIssue>
 		return _originalProjectId;
 	}
 
-	public String getKey() {
-		if (_key == null) {
-			return StringPool.BLANK;
-		}
-		else {
-			return _key;
-		}
+	public long getIssueNumber() {
+		return _issueNumber;
 	}
 
-	public void setKey(String key) {
-		_columnBitmask |= KEY_COLUMN_BITMASK;
-
-		if (_originalKey == null) {
-			_originalKey = _key;
-		}
-
-		_key = key;
-	}
-
-	public String getOriginalKey() {
-		return GetterUtil.getString(_originalKey);
+	public void setIssueNumber(long issueNumber) {
+		_issueNumber = issueNumber;
 	}
 
 	public String getSummary() {
@@ -436,7 +420,7 @@ public class JIRAIssueModelImpl extends BaseModelImpl<JIRAIssue>
 		jiraIssueImpl.setCreateDate(getCreateDate());
 		jiraIssueImpl.setModifiedDate(getModifiedDate());
 		jiraIssueImpl.setProjectId(getProjectId());
-		jiraIssueImpl.setKey(getKey());
+		jiraIssueImpl.setIssueNumber(getIssueNumber());
 		jiraIssueImpl.setSummary(getSummary());
 		jiraIssueImpl.setDescription(getDescription());
 		jiraIssueImpl.setReporterJiraUserId(getReporterJiraUserId());
@@ -501,8 +485,6 @@ public class JIRAIssueModelImpl extends BaseModelImpl<JIRAIssue>
 
 		jiraIssueModelImpl._setOriginalProjectId = false;
 
-		jiraIssueModelImpl._originalKey = jiraIssueModelImpl._key;
-
 		jiraIssueModelImpl._originalReporterJiraUserId = jiraIssueModelImpl._reporterJiraUserId;
 
 		jiraIssueModelImpl._originalAssigneeJiraUserId = jiraIssueModelImpl._assigneeJiraUserId;
@@ -538,13 +520,7 @@ public class JIRAIssueModelImpl extends BaseModelImpl<JIRAIssue>
 
 		jiraIssueCacheModel.projectId = getProjectId();
 
-		jiraIssueCacheModel.key = getKey();
-
-		String key = jiraIssueCacheModel.key;
-
-		if ((key != null) && (key.length() == 0)) {
-			jiraIssueCacheModel.key = null;
-		}
+		jiraIssueCacheModel.issueNumber = getIssueNumber();
 
 		jiraIssueCacheModel.summary = getSummary();
 
@@ -609,8 +585,8 @@ public class JIRAIssueModelImpl extends BaseModelImpl<JIRAIssue>
 		sb.append(getModifiedDate());
 		sb.append(", projectId=");
 		sb.append(getProjectId());
-		sb.append(", key=");
-		sb.append(getKey());
+		sb.append(", issueNumber=");
+		sb.append(getIssueNumber());
 		sb.append(", summary=");
 		sb.append(getSummary());
 		sb.append(", description=");
@@ -652,8 +628,8 @@ public class JIRAIssueModelImpl extends BaseModelImpl<JIRAIssue>
 		sb.append(getProjectId());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>key</column-name><column-value><![CDATA[");
-		sb.append(getKey());
+			"<column><column-name>issueNumber</column-name><column-value><![CDATA[");
+		sb.append(getIssueNumber());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>summary</column-name><column-value><![CDATA[");
@@ -696,8 +672,7 @@ public class JIRAIssueModelImpl extends BaseModelImpl<JIRAIssue>
 	private long _projectId;
 	private long _originalProjectId;
 	private boolean _setOriginalProjectId;
-	private String _key;
-	private String _originalKey;
+	private long _issueNumber;
 	private String _summary;
 	private String _description;
 	private String _reporterJiraUserId;

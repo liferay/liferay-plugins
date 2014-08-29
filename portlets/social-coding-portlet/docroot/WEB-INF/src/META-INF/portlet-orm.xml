@@ -94,8 +94,8 @@
 			<basic name="projectId">
 				<column name="PROJECT" />
 			</basic>
-			<basic name="key">
-				<column name="PKEY" />
+			<basic name="issueNumber">
+				<column name="ISSUENUM" />
 			</basic>
 			<basic name="summary" />
 			<basic name="description" />
@@ -108,6 +108,22 @@
 			<basic name="resolution" />
 			<basic name="status">
 				<column name="ISSUESTATUS" />
+			</basic>
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.liferay.socialcoding.model.impl.JIRAProjectModelImpl">
+		<attributes>
+			<id name="jiraProjectId">
+				<column name="ID" />
+			</id>
+			<basic name="key">
+				<column name="PKEY" />
+			</basic>
+			<basic name="name">
+				<column name="PNAME" />
 			</basic>
 			<transient name="modelAttributes" />
 			<transient name="primaryKey" />
@@ -153,6 +169,10 @@
 	</entity>
 	<entity class="com.liferay.socialcoding.model.impl.JIRAIssueImpl" name="JIRAIssue">
 		<table name="jiraissue" />
+		<attributes />
+	</entity>
+	<entity class="com.liferay.socialcoding.model.impl.JIRAProjectImpl" name="JIRAProject">
+		<table name="project" />
 		<attributes />
 	</entity>
 	<entity class="com.liferay.socialcoding.model.impl.SVNRepositoryImpl" name="SVNRepository">

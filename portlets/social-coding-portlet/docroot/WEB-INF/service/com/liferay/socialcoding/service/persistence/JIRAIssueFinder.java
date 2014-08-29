@@ -21,6 +21,10 @@ public interface JIRAIssueFinder {
 	public int countByCD_P(java.util.Date createDate, long projectId)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
+	public com.liferay.socialcoding.model.JIRAIssue findByKey(
+		java.lang.String jiraIssueKey)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
 	public java.util.List<com.liferay.socialcoding.model.JIRAIssue> findByCD_P(
 		java.util.Date createDate, long projectId)
 		throws com.liferay.portal.kernel.exception.SystemException;
