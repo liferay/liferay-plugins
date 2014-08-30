@@ -14,18 +14,23 @@
 
 package com.liferay.sync.messaging;
 
+import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.messaging.BaseMessageListener;
 import com.liferay.portal.kernel.messaging.Message;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.repository.model.Folder;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portlet.documentlibrary.NoSuchFileEntryException;
 import com.liferay.portlet.documentlibrary.NoSuchFolderException;
 import com.liferay.portlet.documentlibrary.service.DLAppLocalServiceUtil;
+import com.liferay.portlet.documentlibrary.service.DLAppServiceUtil;
 import com.liferay.sync.model.SyncConstants;
 import com.liferay.sync.model.SyncDLObject;
 import com.liferay.sync.service.SyncDLObjectLocalServiceUtil;
 import com.liferay.sync.util.SyncUtil;
+
+import java.util.List;
 
 /**
  * @author Dennis Ju
@@ -88,6 +93,40 @@ public class SyncDLObjectMessageListener extends BaseMessageListener {
 			syncDLObject.getLockExpirationDate(), syncDLObject.getLockUserId(),
 			syncDLObject.getLockUserName(), syncDLObject.getType(),
 			syncDLObject.getTypePK(), syncDLObject.getTypeUuid());
+
+		if (event.equals(SyncConstants.EVENT_RESTORE) &&
+			type.equals(SyncConstants.TYPE_FOLDER)) {
+
+			List<Object> foldersAndFileEntriesAndFileShortcuts =
+				DLAppServiceUtil.getFoldersAndFileEntriesAndFileShortcuts(
+					syncDLObject.getRepositoryId(), syncDLObject.getTypePK(),
+					WorkflowConstants.STATUS_ANY, false, QueryUtil.ALL_POS,
+					QueryUtil.ALL_POS);
+
+			for (Object folderAndFileEntryAndFileShortcut :
+					foldersAndFileEntriesAndFileShortcuts) {
+
+				if (folderAndFileEntryAndFileShortcut instanceof FileEntry) {
+					FileEntry fileEntry =
+						(FileEntry)folderAndFileEntryAndFileShortcut;
+
+					addSyncDLObject(
+						modifiedTime, SyncConstants.EVENT_RESTORE,
+						SyncConstants.TYPE_FILE, fileEntry.getFileEntryId());
+				}
+				else if (folderAndFileEntryAndFileShortcut instanceof Folder) {
+					Folder folder = (Folder)folderAndFileEntryAndFileShortcut;
+
+					if (!SyncUtil.isSupportedFolder(folder)) {
+						continue;
+					}
+
+					addSyncDLObject(
+						modifiedTime, SyncConstants.EVENT_RESTORE,
+						SyncConstants.TYPE_FOLDER, folder.getFolderId());
+				}
+			}
+		}
 	}
 
 	@Override
