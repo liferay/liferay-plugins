@@ -14,6 +14,8 @@
 
 package com.liferay.socialcoding.model;
 
+import aQute.bnd.annotation.ProviderType;
+
 import java.io.Serializable;
 
 import java.util.ArrayList;
@@ -26,6 +28,7 @@ import java.util.List;
  * @author Brian Wing Shun Chan
  * @generated
  */
+@ProviderType
 public class SVNRevisionSoap implements Serializable {
 	public static SVNRevisionSoap toSoapModel(SVNRevision model) {
 		SVNRevisionSoap soapModel = new SVNRevisionSoap();

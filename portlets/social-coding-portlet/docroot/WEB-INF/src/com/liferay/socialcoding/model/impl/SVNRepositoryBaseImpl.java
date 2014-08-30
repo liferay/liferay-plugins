@@ -14,6 +14,8 @@
 
 package com.liferay.socialcoding.model.impl;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.socialcoding.model.SVNRepository;
 import com.liferay.socialcoding.service.SVNRepositoryLocalServiceUtil;
 
@@ -29,6 +31,7 @@ import com.liferay.socialcoding.service.SVNRepositoryLocalServiceUtil;
  * @see com.liferay.socialcoding.model.SVNRepository
  * @generated
  */
+@ProviderType
 public abstract class SVNRepositoryBaseImpl extends SVNRepositoryModelImpl
 	implements SVNRepository {
 	/*

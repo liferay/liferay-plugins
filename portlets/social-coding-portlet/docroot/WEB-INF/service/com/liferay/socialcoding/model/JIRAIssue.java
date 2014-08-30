@@ -14,6 +14,8 @@
 
 package com.liferay.socialcoding.model;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.model.PersistedModel;
 
 /**
@@ -25,10 +27,12 @@ import com.liferay.portal.model.PersistedModel;
  * @see com.liferay.socialcoding.model.impl.JIRAIssueModelImpl
  * @generated
  */
+@ProviderType
 public interface JIRAIssue extends JIRAIssueModel, PersistedModel {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify this interface directly. Add methods to {@link com.liferay.socialcoding.model.impl.JIRAIssueImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
+	public java.lang.String getKey();
 }

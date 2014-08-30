@@ -14,6 +14,8 @@
 
 package com.liferay.socialcoding.model;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.ModelWrapper;
 
@@ -30,6 +32,7 @@ import java.util.Map;
  * @see JIRAAction
  * @generated
  */
+@ProviderType
 public class JIRAActionWrapper implements JIRAAction, ModelWrapper<JIRAAction> {
 	public JIRAActionWrapper(JIRAAction jiraAction) {
 		_jiraAction = jiraAction;
@@ -442,5 +445,5 @@ public class JIRAActionWrapper implements JIRAAction, ModelWrapper<JIRAAction> {
 		_jiraAction.resetOriginalValues();
 	}
 
-	private JIRAAction _jiraAction;
+	private final JIRAAction _jiraAction;
 }

@@ -14,6 +14,8 @@
 
 package com.liferay.socialcoding.service.persistence.impl;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.cache.CacheRegistryUtil;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
@@ -63,6 +65,7 @@ import java.util.Set;
  * @see SVNRepositoryUtil
  * @generated
  */
+@ProviderType
 public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl<SVNRepository>
 	implements SVNRepositoryPersistence {
 	/*
@@ -1001,8 +1004,8 @@ public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl<SVNReposit
 	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No SVNRepository exists with the key {";
 	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = GetterUtil.getBoolean(PropsUtil.get(
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
-	private static Log _log = LogFactoryUtil.getLog(SVNRepositoryPersistenceImpl.class);
-	private static SVNRepository _nullSVNRepository = new SVNRepositoryImpl() {
+	private static final Log _log = LogFactoryUtil.getLog(SVNRepositoryPersistenceImpl.class);
+	private static final SVNRepository _nullSVNRepository = new SVNRepositoryImpl() {
 			@Override
 			public Object clone() {
 				return this;
@@ -1014,7 +1017,7 @@ public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl<SVNReposit
 			}
 		};
 
-	private static CacheModel<SVNRepository> _nullSVNRepositoryCacheModel = new CacheModel<SVNRepository>() {
+	private static final CacheModel<SVNRepository> _nullSVNRepositoryCacheModel = new CacheModel<SVNRepository>() {
 			@Override
 			public SVNRepository toEntityModel() {
 				return _nullSVNRepository;

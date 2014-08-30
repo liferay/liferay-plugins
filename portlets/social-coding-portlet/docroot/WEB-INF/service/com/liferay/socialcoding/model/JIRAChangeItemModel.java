@@ -14,6 +14,8 @@
 
 package com.liferay.socialcoding.model;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.CacheModel;
@@ -36,6 +38,7 @@ import java.io.Serializable;
  * @see com.liferay.socialcoding.model.impl.JIRAChangeItemModelImpl
  * @generated
  */
+@ProviderType
 public interface JIRAChangeItemModel extends BaseModel<JIRAChangeItem> {
 	/*
 	 * NOTE FOR DEVELOPERS:

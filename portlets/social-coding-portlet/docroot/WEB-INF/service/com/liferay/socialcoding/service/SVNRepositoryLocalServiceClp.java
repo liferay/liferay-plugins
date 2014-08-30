@@ -14,12 +14,15 @@
 
 package com.liferay.socialcoding.service;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.service.InvokableLocalService;
 
 /**
  * @author Brian Wing Shun Chan
  * @generated
  */
+@ProviderType
 public class SVNRepositoryLocalServiceClp implements SVNRepositoryLocalService {
 	public SVNRepositoryLocalServiceClp(
 		InvokableLocalService invokableLocalService) {

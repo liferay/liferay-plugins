@@ -14,15 +14,23 @@
 
 package com.liferay.socialcoding.service.persistence;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
 
 /**
  * @author Brian Wing Shun Chan
  */
+@ProviderType
 public class JIRAIssueFinderUtil {
 	public static int countByCD_P(java.util.Date createDate, long projectId) {
 		return getFinder().countByCD_P(createDate, projectId);
+	}
+
+	public static com.liferay.socialcoding.model.JIRAIssue findByKey(
+		java.lang.String jiraIssueKey) {
+		return getFinder().findByKey(jiraIssueKey);
 	}
 
 	public static java.util.List<com.liferay.socialcoding.model.JIRAIssue> findByCD_P(

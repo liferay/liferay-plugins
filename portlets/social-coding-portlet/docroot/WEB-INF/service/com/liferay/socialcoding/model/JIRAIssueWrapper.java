@@ -14,6 +14,8 @@
 
 package com.liferay.socialcoding.model;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.ModelWrapper;
 
@@ -30,6 +32,7 @@ import java.util.Map;
  * @see JIRAIssue
  * @generated
  */
+@ProviderType
 public class JIRAIssueWrapper implements JIRAIssue, ModelWrapper<JIRAIssue> {
 	public JIRAIssueWrapper(JIRAIssue jiraIssue) {
 		_jiraIssue = jiraIssue;
@@ -53,7 +56,7 @@ public class JIRAIssueWrapper implements JIRAIssue, ModelWrapper<JIRAIssue> {
 		attributes.put("createDate", getCreateDate());
 		attributes.put("modifiedDate", getModifiedDate());
 		attributes.put("projectId", getProjectId());
-		attributes.put("key", getKey());
+		attributes.put("issueNumber", getIssueNumber());
 		attributes.put("summary", getSummary());
 		attributes.put("description", getDescription());
 		attributes.put("reporterJiraUserId", getReporterJiraUserId());
@@ -90,10 +93,10 @@ public class JIRAIssueWrapper implements JIRAIssue, ModelWrapper<JIRAIssue> {
 			setProjectId(projectId);
 		}
 
-		String key = (String)attributes.get("key");
+		Long issueNumber = (Long)attributes.get("issueNumber");
 
-		if (key != null) {
-			setKey(key);
+		if (issueNumber != null) {
+			setIssueNumber(issueNumber);
 		}
 
 		String summary = (String)attributes.get("summary");
@@ -179,6 +182,16 @@ public class JIRAIssueWrapper implements JIRAIssue, ModelWrapper<JIRAIssue> {
 	}
 
 	/**
+	* Returns the issue number of this j i r a issue.
+	*
+	* @return the issue number of this j i r a issue
+	*/
+	@Override
+	public long getIssueNumber() {
+		return _jiraIssue.getIssueNumber();
+	}
+
+	/**
 	* Returns the jira issue ID of this j i r a issue.
 	*
 	* @return the jira issue ID of this j i r a issue
@@ -188,11 +201,6 @@ public class JIRAIssueWrapper implements JIRAIssue, ModelWrapper<JIRAIssue> {
 		return _jiraIssue.getJiraIssueId();
 	}
 
-	/**
-	* Returns the key of this j i r a issue.
-	*
-	* @return the key of this j i r a issue
-	*/
 	@Override
 	public java.lang.String getKey() {
 		return _jiraIssue.getKey();
@@ -352,6 +360,16 @@ public class JIRAIssueWrapper implements JIRAIssue, ModelWrapper<JIRAIssue> {
 	}
 
 	/**
+	* Sets the issue number of this j i r a issue.
+	*
+	* @param issueNumber the issue number of this j i r a issue
+	*/
+	@Override
+	public void setIssueNumber(long issueNumber) {
+		_jiraIssue.setIssueNumber(issueNumber);
+	}
+
+	/**
 	* Sets the jira issue ID of this j i r a issue.
 	*
 	* @param jiraIssueId the jira issue ID of this j i r a issue
@@ -359,16 +377,6 @@ public class JIRAIssueWrapper implements JIRAIssue, ModelWrapper<JIRAIssue> {
 	@Override
 	public void setJiraIssueId(long jiraIssueId) {
 		_jiraIssue.setJiraIssueId(jiraIssueId);
-	}
-
-	/**
-	* Sets the key of this j i r a issue.
-	*
-	* @param key the key of this j i r a issue
-	*/
-	@Override
-	public void setKey(java.lang.String key) {
-		_jiraIssue.setKey(key);
 	}
 
 	/**
@@ -523,5 +531,5 @@ public class JIRAIssueWrapper implements JIRAIssue, ModelWrapper<JIRAIssue> {
 		_jiraIssue.resetOriginalValues();
 	}
 
-	private JIRAIssue _jiraIssue;
+	private final JIRAIssue _jiraIssue;
 }

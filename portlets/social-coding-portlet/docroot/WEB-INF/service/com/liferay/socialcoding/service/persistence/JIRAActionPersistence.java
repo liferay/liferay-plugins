@@ -14,6 +14,8 @@
 
 package com.liferay.socialcoding.service.persistence;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.service.persistence.BasePersistence;
 
 import com.liferay.socialcoding.model.JIRAAction;
@@ -30,6 +32,7 @@ import com.liferay.socialcoding.model.JIRAAction;
  * @see JIRAActionUtil
  * @generated
  */
+@ProviderType
 public interface JIRAActionPersistence extends BasePersistence<JIRAAction> {
 	/*
 	 * NOTE FOR DEVELOPERS:

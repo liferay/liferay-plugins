@@ -14,6 +14,8 @@
 
 package com.liferay.socialcoding.service;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.search.IndexableType;
@@ -36,6 +38,7 @@ import com.liferay.portal.service.PersistedModelLocalService;
  * @see com.liferay.socialcoding.service.impl.JIRAChangeItemLocalServiceImpl
  * @generated
  */
+@ProviderType
 @Transactional(isolation = Isolation.PORTAL, rollbackFor =  {
 	PortalException.class, SystemException.class})
 public interface JIRAChangeItemLocalService extends BaseLocalService,

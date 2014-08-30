@@ -14,6 +14,8 @@
 
 package com.liferay.socialcoding.service.persistence.impl;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.cache.CacheRegistryUtil;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
@@ -63,6 +65,7 @@ import java.util.Set;
  * @see JIRAChangeGroupUtil
  * @generated
  */
+@ProviderType
 public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChangeGroup>
 	implements JIRAChangeGroupPersistence {
 	/*
@@ -1773,11 +1776,11 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No JIRAChangeGroup exists with the key {";
 	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = GetterUtil.getBoolean(PropsUtil.get(
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
-	private static Log _log = LogFactoryUtil.getLog(JIRAChangeGroupPersistenceImpl.class);
-	private static Set<String> _badColumnNames = SetUtil.fromArray(new String[] {
+	private static final Log _log = LogFactoryUtil.getLog(JIRAChangeGroupPersistenceImpl.class);
+	private static final Set<String> _badColumnNames = SetUtil.fromArray(new String[] {
 				"jiraChangeGroupId", "jiraUserId", "createDate", "jiraIssueId"
 			});
-	private static JIRAChangeGroup _nullJIRAChangeGroup = new JIRAChangeGroupImpl() {
+	private static final JIRAChangeGroup _nullJIRAChangeGroup = new JIRAChangeGroupImpl() {
 			@Override
 			public Object clone() {
 				return this;
@@ -1789,7 +1792,8 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 			}
 		};
 
-	private static CacheModel<JIRAChangeGroup> _nullJIRAChangeGroupCacheModel = new CacheModel<JIRAChangeGroup>() {
+	private static final CacheModel<JIRAChangeGroup> _nullJIRAChangeGroupCacheModel =
+		new CacheModel<JIRAChangeGroup>() {
 			@Override
 			public JIRAChangeGroup toEntityModel() {
 				return _nullJIRAChangeGroup;

@@ -14,6 +14,8 @@
 
 package com.liferay.socialcoding.service.base;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.socialcoding.service.JIRAChangeItemLocalServiceUtil;
 
 import java.util.Arrays;
@@ -22,6 +24,7 @@ import java.util.Arrays;
  * @author Brian Wing Shun Chan
  * @generated
  */
+@ProviderType
 public class JIRAChangeItemLocalServiceClpInvoker {
 	public JIRAChangeItemLocalServiceClpInvoker() {
 		_methodName0 = "addJIRAChangeItem";
@@ -116,21 +119,21 @@ public class JIRAChangeItemLocalServiceClpInvoker {
 				"com.liferay.socialcoding.model.JIRAChangeItem"
 			};
 
-		_methodName67 = "getBeanIdentifier";
+		_methodName71 = "getBeanIdentifier";
 
-		_methodParameterTypes67 = new String[] {  };
+		_methodParameterTypes71 = new String[] {  };
 
-		_methodName68 = "setBeanIdentifier";
+		_methodName72 = "setBeanIdentifier";
 
-		_methodParameterTypes68 = new String[] { "java.lang.String" };
+		_methodParameterTypes72 = new String[] { "java.lang.String" };
 
-		_methodName73 = "getJIRAChangeItem";
+		_methodName77 = "getJIRAChangeItem";
 
-		_methodParameterTypes73 = new String[] { "long" };
+		_methodParameterTypes77 = new String[] { "long" };
 
-		_methodName74 = "getJIRAChangeItems";
+		_methodName78 = "getJIRAChangeItems";
 
-		_methodParameterTypes74 = new String[] { "long" };
+		_methodParameterTypes78 = new String[] { "long" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -232,25 +235,25 @@ public class JIRAChangeItemLocalServiceClpInvoker {
 			return JIRAChangeItemLocalServiceUtil.updateJIRAChangeItem((com.liferay.socialcoding.model.JIRAChangeItem)arguments[0]);
 		}
 
-		if (_methodName67.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes67, parameterTypes)) {
+		if (_methodName71.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes71, parameterTypes)) {
 			return JIRAChangeItemLocalServiceUtil.getBeanIdentifier();
 		}
 
-		if (_methodName68.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes68, parameterTypes)) {
+		if (_methodName72.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes72, parameterTypes)) {
 			JIRAChangeItemLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
 
 			return null;
 		}
 
-		if (_methodName73.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes73, parameterTypes)) {
+		if (_methodName77.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes77, parameterTypes)) {
 			return JIRAChangeItemLocalServiceUtil.getJIRAChangeItem(((Long)arguments[0]).longValue());
 		}
 
-		if (_methodName74.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes74, parameterTypes)) {
+		if (_methodName78.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes78, parameterTypes)) {
 			return JIRAChangeItemLocalServiceUtil.getJIRAChangeItems(((Long)arguments[0]).longValue());
 		}
 
@@ -293,12 +296,12 @@ public class JIRAChangeItemLocalServiceClpInvoker {
 	private String[] _methodParameterTypes17;
 	private String _methodName18;
 	private String[] _methodParameterTypes18;
-	private String _methodName67;
-	private String[] _methodParameterTypes67;
-	private String _methodName68;
-	private String[] _methodParameterTypes68;
-	private String _methodName73;
-	private String[] _methodParameterTypes73;
-	private String _methodName74;
-	private String[] _methodParameterTypes74;
+	private String _methodName71;
+	private String[] _methodParameterTypes71;
+	private String _methodName72;
+	private String[] _methodParameterTypes72;
+	private String _methodName77;
+	private String[] _methodParameterTypes77;
+	private String _methodName78;
+	private String[] _methodParameterTypes78;
 }

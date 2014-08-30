@@ -14,6 +14,8 @@
 
 package com.liferay.socialcoding.service.persistence;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.util.OrderByComparator;
@@ -36,6 +38,7 @@ import java.util.List;
  * @see JIRAChangeItemPersistenceImpl
  * @generated
  */
+@ProviderType
 public class JIRAChangeItemUtil {
 	/*
 	 * NOTE FOR DEVELOPERS:

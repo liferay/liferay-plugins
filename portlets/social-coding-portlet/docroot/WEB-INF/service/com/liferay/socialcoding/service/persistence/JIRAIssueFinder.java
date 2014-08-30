@@ -14,11 +14,17 @@
 
 package com.liferay.socialcoding.service.persistence;
 
+import aQute.bnd.annotation.ProviderType;
+
 /**
  * @author Brian Wing Shun Chan
  */
+@ProviderType
 public interface JIRAIssueFinder {
 	public int countByCD_P(java.util.Date createDate, long projectId);
+
+	public com.liferay.socialcoding.model.JIRAIssue findByKey(
+		java.lang.String jiraIssueKey);
 
 	public java.util.List<com.liferay.socialcoding.model.JIRAIssue> findByCD_P(
 		java.util.Date createDate, long projectId);

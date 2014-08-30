@@ -14,6 +14,8 @@
 
 package com.liferay.socialcoding.model;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.ModelWrapper;
 
@@ -30,6 +32,7 @@ import java.util.Map;
  * @see SVNRevision
  * @generated
  */
+@ProviderType
 public class SVNRevisionWrapper implements SVNRevision,
 	ModelWrapper<SVNRevision> {
 	public SVNRevisionWrapper(SVNRevision svnRevision) {
@@ -404,5 +407,5 @@ public class SVNRevisionWrapper implements SVNRevision,
 		_svnRevision.resetOriginalValues();
 	}
 
-	private SVNRevision _svnRevision;
+	private final SVNRevision _svnRevision;
 }

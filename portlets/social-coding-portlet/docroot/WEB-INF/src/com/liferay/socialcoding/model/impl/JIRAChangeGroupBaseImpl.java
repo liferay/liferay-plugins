@@ -14,6 +14,8 @@
 
 package com.liferay.socialcoding.model.impl;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.socialcoding.model.JIRAChangeGroup;
 import com.liferay.socialcoding.service.JIRAChangeGroupLocalServiceUtil;
 
@@ -29,6 +31,7 @@ import com.liferay.socialcoding.service.JIRAChangeGroupLocalServiceUtil;
  * @see com.liferay.socialcoding.model.JIRAChangeGroup
  * @generated
  */
+@ProviderType
 public abstract class JIRAChangeGroupBaseImpl extends JIRAChangeGroupModelImpl
 	implements JIRAChangeGroup {
 	/*

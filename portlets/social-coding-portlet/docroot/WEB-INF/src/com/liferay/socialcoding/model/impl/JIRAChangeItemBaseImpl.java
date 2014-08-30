@@ -14,6 +14,8 @@
 
 package com.liferay.socialcoding.model.impl;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.socialcoding.model.JIRAChangeItem;
 import com.liferay.socialcoding.service.JIRAChangeItemLocalServiceUtil;
 
@@ -29,6 +31,7 @@ import com.liferay.socialcoding.service.JIRAChangeItemLocalServiceUtil;
  * @see com.liferay.socialcoding.model.JIRAChangeItem
  * @generated
  */
+@ProviderType
 public abstract class JIRAChangeItemBaseImpl extends JIRAChangeItemModelImpl
 	implements JIRAChangeItem {
 	/*

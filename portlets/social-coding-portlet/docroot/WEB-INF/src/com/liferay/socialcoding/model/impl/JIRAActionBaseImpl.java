@@ -14,6 +14,8 @@
 
 package com.liferay.socialcoding.model.impl;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.socialcoding.model.JIRAAction;
 import com.liferay.socialcoding.service.JIRAActionLocalServiceUtil;
 
@@ -29,6 +31,7 @@ import com.liferay.socialcoding.service.JIRAActionLocalServiceUtil;
  * @see com.liferay.socialcoding.model.JIRAAction
  * @generated
  */
+@ProviderType
 public abstract class JIRAActionBaseImpl extends JIRAActionModelImpl
 	implements JIRAAction {
 	/*

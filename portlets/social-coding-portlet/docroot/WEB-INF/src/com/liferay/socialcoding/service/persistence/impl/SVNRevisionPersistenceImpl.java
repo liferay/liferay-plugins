@@ -14,6 +14,8 @@
 
 package com.liferay.socialcoding.service.persistence.impl;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.cache.CacheRegistryUtil;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
@@ -62,6 +64,7 @@ import java.util.Set;
  * @see SVNRevisionUtil
  * @generated
  */
+@ProviderType
 public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 	implements SVNRevisionPersistence {
 	/*
@@ -2349,8 +2352,8 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No SVNRevision exists with the key {";
 	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = GetterUtil.getBoolean(PropsUtil.get(
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
-	private static Log _log = LogFactoryUtil.getLog(SVNRevisionPersistenceImpl.class);
-	private static SVNRevision _nullSVNRevision = new SVNRevisionImpl() {
+	private static final Log _log = LogFactoryUtil.getLog(SVNRevisionPersistenceImpl.class);
+	private static final SVNRevision _nullSVNRevision = new SVNRevisionImpl() {
 			@Override
 			public Object clone() {
 				return this;
@@ -2362,7 +2365,7 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 			}
 		};
 
-	private static CacheModel<SVNRevision> _nullSVNRevisionCacheModel = new CacheModel<SVNRevision>() {
+	private static final CacheModel<SVNRevision> _nullSVNRevisionCacheModel = new CacheModel<SVNRevision>() {
 			@Override
 			public SVNRevision toEntityModel() {
 				return _nullSVNRevision;

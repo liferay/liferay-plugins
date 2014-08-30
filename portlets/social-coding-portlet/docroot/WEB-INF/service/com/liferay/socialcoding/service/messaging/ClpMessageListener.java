@@ -14,6 +14,8 @@
 
 package com.liferay.socialcoding.service.messaging;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.messaging.BaseMessageListener;
 import com.liferay.portal.kernel.messaging.Message;
 
@@ -22,12 +24,14 @@ import com.liferay.socialcoding.service.JIRAActionLocalServiceUtil;
 import com.liferay.socialcoding.service.JIRAChangeGroupLocalServiceUtil;
 import com.liferay.socialcoding.service.JIRAChangeItemLocalServiceUtil;
 import com.liferay.socialcoding.service.JIRAIssueLocalServiceUtil;
+import com.liferay.socialcoding.service.JIRAProjectLocalServiceUtil;
 import com.liferay.socialcoding.service.SVNRepositoryLocalServiceUtil;
 import com.liferay.socialcoding.service.SVNRevisionLocalServiceUtil;
 
 /**
  * @author Brian Wing Shun Chan
  */
+@ProviderType
 public class ClpMessageListener extends BaseMessageListener {
 	public static String getServletContextName() {
 		return ClpSerializer.getServletContextName();
@@ -47,6 +51,8 @@ public class ClpMessageListener extends BaseMessageListener {
 			JIRAChangeItemLocalServiceUtil.clearService();
 
 			JIRAIssueLocalServiceUtil.clearService();
+
+			JIRAProjectLocalServiceUtil.clearService();
 
 			SVNRepositoryLocalServiceUtil.clearService();
 

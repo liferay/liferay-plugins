@@ -14,6 +14,8 @@
 
 package com.liferay.socialcoding.service.persistence;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.service.persistence.BasePersistence;
 
 import com.liferay.socialcoding.model.SVNRepository;
@@ -30,6 +32,7 @@ import com.liferay.socialcoding.model.SVNRepository;
  * @see SVNRepositoryUtil
  * @generated
  */
+@ProviderType
 public interface SVNRepositoryPersistence extends BasePersistence<SVNRepository> {
 	/*
 	 * NOTE FOR DEVELOPERS:

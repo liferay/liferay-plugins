@@ -14,6 +14,8 @@
 
 package com.liferay.socialcoding.service.persistence;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.util.OrderByComparator;
@@ -36,6 +38,7 @@ import java.util.List;
  * @see JIRAIssuePersistenceImpl
  * @generated
  */
+@ProviderType
 public class JIRAIssueUtil {
 	/*
 	 * NOTE FOR DEVELOPERS:
@@ -249,64 +252,6 @@ public class JIRAIssueUtil {
 	*/
 	public static int countByProjectId(long projectId) {
 		return getPersistence().countByProjectId(projectId);
-	}
-
-	/**
-	* Returns the j i r a issue where key = &#63; or throws a {@link com.liferay.socialcoding.NoSuchJIRAIssueException} if it could not be found.
-	*
-	* @param key the key
-	* @return the matching j i r a issue
-	* @throws com.liferay.socialcoding.NoSuchJIRAIssueException if a matching j i r a issue could not be found
-	*/
-	public static com.liferay.socialcoding.model.JIRAIssue findByKey(
-		java.lang.String key)
-		throws com.liferay.socialcoding.NoSuchJIRAIssueException {
-		return getPersistence().findByKey(key);
-	}
-
-	/**
-	* Returns the j i r a issue where key = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
-	*
-	* @param key the key
-	* @return the matching j i r a issue, or <code>null</code> if a matching j i r a issue could not be found
-	*/
-	public static com.liferay.socialcoding.model.JIRAIssue fetchByKey(
-		java.lang.String key) {
-		return getPersistence().fetchByKey(key);
-	}
-
-	/**
-	* Returns the j i r a issue where key = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
-	*
-	* @param key the key
-	* @param retrieveFromCache whether to use the finder cache
-	* @return the matching j i r a issue, or <code>null</code> if a matching j i r a issue could not be found
-	*/
-	public static com.liferay.socialcoding.model.JIRAIssue fetchByKey(
-		java.lang.String key, boolean retrieveFromCache) {
-		return getPersistence().fetchByKey(key, retrieveFromCache);
-	}
-
-	/**
-	* Removes the j i r a issue where key = &#63; from the database.
-	*
-	* @param key the key
-	* @return the j i r a issue that was removed
-	*/
-	public static com.liferay.socialcoding.model.JIRAIssue removeByKey(
-		java.lang.String key)
-		throws com.liferay.socialcoding.NoSuchJIRAIssueException {
-		return getPersistence().removeByKey(key);
-	}
-
-	/**
-	* Returns the number of j i r a issues where key = &#63;.
-	*
-	* @param key the key
-	* @return the number of matching j i r a issues
-	*/
-	public static int countByKey(java.lang.String key) {
-		return getPersistence().countByKey(key);
 	}
 
 	/**

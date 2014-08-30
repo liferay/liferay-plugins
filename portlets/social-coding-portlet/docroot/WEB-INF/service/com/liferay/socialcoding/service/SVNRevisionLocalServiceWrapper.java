@@ -14,6 +14,8 @@
 
 package com.liferay.socialcoding.service;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.service.ServiceWrapper;
 
 /**
@@ -23,6 +25,7 @@ import com.liferay.portal.service.ServiceWrapper;
  * @see SVNRevisionLocalService
  * @generated
  */
+@ProviderType
 public class SVNRevisionLocalServiceWrapper implements SVNRevisionLocalService,
 	ServiceWrapper<SVNRevisionLocalService> {
 	public SVNRevisionLocalServiceWrapper(

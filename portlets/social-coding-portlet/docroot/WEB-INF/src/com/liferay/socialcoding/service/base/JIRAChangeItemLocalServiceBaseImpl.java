@@ -14,6 +14,8 @@
 
 package com.liferay.socialcoding.service.base;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.bean.BeanReference;
 import com.liferay.portal.kernel.bean.IdentifiableBean;
 import com.liferay.portal.kernel.dao.db.DB;
@@ -46,6 +48,7 @@ import com.liferay.socialcoding.service.persistence.JIRAChangeGroupPersistence;
 import com.liferay.socialcoding.service.persistence.JIRAChangeItemPersistence;
 import com.liferay.socialcoding.service.persistence.JIRAIssueFinder;
 import com.liferay.socialcoding.service.persistence.JIRAIssuePersistence;
+import com.liferay.socialcoding.service.persistence.JIRAProjectPersistence;
 import com.liferay.socialcoding.service.persistence.SVNRepositoryPersistence;
 import com.liferay.socialcoding.service.persistence.SVNRevisionPersistence;
 
@@ -67,6 +70,7 @@ import javax.sql.DataSource;
  * @see com.liferay.socialcoding.service.JIRAChangeItemLocalServiceUtil
  * @generated
  */
+@ProviderType
 public abstract class JIRAChangeItemLocalServiceBaseImpl
 	extends BaseLocalServiceImpl implements JIRAChangeItemLocalService,
 		IdentifiableBean {
@@ -511,6 +515,44 @@ public abstract class JIRAChangeItemLocalServiceBaseImpl
 	}
 
 	/**
+	 * Returns the j i r a project local service.
+	 *
+	 * @return the j i r a project local service
+	 */
+	public com.liferay.socialcoding.service.JIRAProjectLocalService getJIRAProjectLocalService() {
+		return jiraProjectLocalService;
+	}
+
+	/**
+	 * Sets the j i r a project local service.
+	 *
+	 * @param jiraProjectLocalService the j i r a project local service
+	 */
+	public void setJIRAProjectLocalService(
+		com.liferay.socialcoding.service.JIRAProjectLocalService jiraProjectLocalService) {
+		this.jiraProjectLocalService = jiraProjectLocalService;
+	}
+
+	/**
+	 * Returns the j i r a project persistence.
+	 *
+	 * @return the j i r a project persistence
+	 */
+	public JIRAProjectPersistence getJIRAProjectPersistence() {
+		return jiraProjectPersistence;
+	}
+
+	/**
+	 * Sets the j i r a project persistence.
+	 *
+	 * @param jiraProjectPersistence the j i r a project persistence
+	 */
+	public void setJIRAProjectPersistence(
+		JIRAProjectPersistence jiraProjectPersistence) {
+		this.jiraProjectPersistence = jiraProjectPersistence;
+	}
+
+	/**
 	 * Returns the s v n repository local service.
 	 *
 	 * @return the s v n repository local service
@@ -846,6 +888,10 @@ public abstract class JIRAChangeItemLocalServiceBaseImpl
 	protected JIRAIssuePersistence jiraIssuePersistence;
 	@BeanReference(type = JIRAIssueFinder.class)
 	protected JIRAIssueFinder jiraIssueFinder;
+	@BeanReference(type = com.liferay.socialcoding.service.JIRAProjectLocalService.class)
+	protected com.liferay.socialcoding.service.JIRAProjectLocalService jiraProjectLocalService;
+	@BeanReference(type = JIRAProjectPersistence.class)
+	protected JIRAProjectPersistence jiraProjectPersistence;
 	@BeanReference(type = com.liferay.socialcoding.service.SVNRepositoryLocalService.class)
 	protected com.liferay.socialcoding.service.SVNRepositoryLocalService svnRepositoryLocalService;
 	@BeanReference(type = SVNRepositoryPersistence.class)

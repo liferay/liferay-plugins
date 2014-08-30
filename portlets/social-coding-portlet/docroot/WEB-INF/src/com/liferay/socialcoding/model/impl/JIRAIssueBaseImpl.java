@@ -14,6 +14,8 @@
 
 package com.liferay.socialcoding.model.impl;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.socialcoding.model.JIRAIssue;
 import com.liferay.socialcoding.service.JIRAIssueLocalServiceUtil;
 
@@ -29,6 +31,7 @@ import com.liferay.socialcoding.service.JIRAIssueLocalServiceUtil;
  * @see com.liferay.socialcoding.model.JIRAIssue
  * @generated
  */
+@ProviderType
 public abstract class JIRAIssueBaseImpl extends JIRAIssueModelImpl
 	implements JIRAIssue {
 	/*

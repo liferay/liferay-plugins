@@ -14,6 +14,8 @@
 
 package com.liferay.socialcoding.model;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.util.DateUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
@@ -36,6 +38,7 @@ import java.util.Map;
 /**
  * @author Brian Wing Shun Chan
  */
+@ProviderType
 public class JIRAIssueClp extends BaseModelImpl<JIRAIssue> implements JIRAIssue {
 	public JIRAIssueClp() {
 	}
@@ -78,7 +81,7 @@ public class JIRAIssueClp extends BaseModelImpl<JIRAIssue> implements JIRAIssue 
 		attributes.put("createDate", getCreateDate());
 		attributes.put("modifiedDate", getModifiedDate());
 		attributes.put("projectId", getProjectId());
-		attributes.put("key", getKey());
+		attributes.put("issueNumber", getIssueNumber());
 		attributes.put("summary", getSummary());
 		attributes.put("description", getDescription());
 		attributes.put("reporterJiraUserId", getReporterJiraUserId());
@@ -118,10 +121,10 @@ public class JIRAIssueClp extends BaseModelImpl<JIRAIssue> implements JIRAIssue 
 			setProjectId(projectId);
 		}
 
-		String key = (String)attributes.get("key");
+		Long issueNumber = (Long)attributes.get("issueNumber");
 
-		if (key != null) {
-			setKey(key);
+		if (issueNumber != null) {
+			setIssueNumber(issueNumber);
 		}
 
 		String summary = (String)attributes.get("summary");
@@ -257,21 +260,21 @@ public class JIRAIssueClp extends BaseModelImpl<JIRAIssue> implements JIRAIssue 
 	}
 
 	@Override
-	public String getKey() {
-		return _key;
+	public long getIssueNumber() {
+		return _issueNumber;
 	}
 
 	@Override
-	public void setKey(String key) {
-		_key = key;
+	public void setIssueNumber(long issueNumber) {
+		_issueNumber = issueNumber;
 
 		if (_jiraIssueRemoteModel != null) {
 			try {
 				Class<?> clazz = _jiraIssueRemoteModel.getClass();
 
-				Method method = clazz.getMethod("setKey", String.class);
+				Method method = clazz.getMethod("setIssueNumber", long.class);
 
-				method.invoke(_jiraIssueRemoteModel, key);
+				method.invoke(_jiraIssueRemoteModel, issueNumber);
 			}
 			catch (Exception e) {
 				throw new UnsupportedOperationException(e);
@@ -419,6 +422,25 @@ public class JIRAIssueClp extends BaseModelImpl<JIRAIssue> implements JIRAIssue 
 		}
 	}
 
+	@Override
+	public java.lang.String getKey() {
+		try {
+			String methodName = "getKey";
+
+			Class<?>[] parameterTypes = new Class<?>[] {  };
+
+			Object[] parameterValues = new Object[] {  };
+
+			java.lang.String returnObj = (java.lang.String)invokeOnRemoteModel(methodName,
+					parameterTypes, parameterValues);
+
+			return returnObj;
+		}
+		catch (Exception e) {
+			throw new UnsupportedOperationException(e);
+		}
+	}
+
 	public BaseModel<?> getJIRAIssueRemoteModel() {
 		return _jiraIssueRemoteModel;
 	}
@@ -492,7 +514,7 @@ public class JIRAIssueClp extends BaseModelImpl<JIRAIssue> implements JIRAIssue 
 		clone.setCreateDate(getCreateDate());
 		clone.setModifiedDate(getModifiedDate());
 		clone.setProjectId(getProjectId());
-		clone.setKey(getKey());
+		clone.setIssueNumber(getIssueNumber());
 		clone.setSummary(getSummary());
 		clone.setDescription(getDescription());
 		clone.setReporterJiraUserId(getReporterJiraUserId());
@@ -572,8 +594,8 @@ public class JIRAIssueClp extends BaseModelImpl<JIRAIssue> implements JIRAIssue 
 		sb.append(getModifiedDate());
 		sb.append(", projectId=");
 		sb.append(getProjectId());
-		sb.append(", key=");
-		sb.append(getKey());
+		sb.append(", issueNumber=");
+		sb.append(getIssueNumber());
 		sb.append(", summary=");
 		sb.append(getSummary());
 		sb.append(", description=");
@@ -616,8 +638,8 @@ public class JIRAIssueClp extends BaseModelImpl<JIRAIssue> implements JIRAIssue 
 		sb.append(getProjectId());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>key</column-name><column-value><![CDATA[");
-		sb.append(getKey());
+			"<column><column-name>issueNumber</column-name><column-value><![CDATA[");
+		sb.append(getIssueNumber());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>summary</column-name><column-value><![CDATA[");
@@ -653,7 +675,7 @@ public class JIRAIssueClp extends BaseModelImpl<JIRAIssue> implements JIRAIssue 
 	private Date _createDate;
 	private Date _modifiedDate;
 	private long _projectId;
-	private String _key;
+	private long _issueNumber;
 	private String _summary;
 	private String _description;
 	private String _reporterJiraUserId;

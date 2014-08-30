@@ -14,9 +14,12 @@
 
 package com.liferay.socialcoding.service.persistence;
 
+import aQute.bnd.annotation.ProviderType;
+
 /**
  * @author Brian Wing Shun Chan
  */
+@ProviderType
 public interface JIRAChangeGroupFinder {
 	public int countByCD_P(java.util.Date createDate, long projectId);
 

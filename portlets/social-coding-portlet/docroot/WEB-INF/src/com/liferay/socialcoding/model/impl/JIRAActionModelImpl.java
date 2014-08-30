@@ -14,6 +14,8 @@
 
 package com.liferay.socialcoding.model.impl;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.util.DateUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
@@ -51,6 +53,7 @@ import java.util.Map;
  * @see com.liferay.socialcoding.model.JIRAActionModel
  * @generated
  */
+@ProviderType
 public class JIRAActionModelImpl extends BaseModelImpl<JIRAAction>
 	implements JIRAActionModel {
 	/*
@@ -85,10 +88,10 @@ public class JIRAActionModelImpl extends BaseModelImpl<JIRAAction>
 	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.column.bitmask.enabled.com.liferay.socialcoding.model.JIRAAction"),
 			true);
-	public static long JIRAISSUEID_COLUMN_BITMASK = 1L;
-	public static long JIRAUSERID_COLUMN_BITMASK = 2L;
-	public static long TYPE_COLUMN_BITMASK = 4L;
-	public static long MODIFIEDDATE_COLUMN_BITMASK = 8L;
+	public static final long JIRAISSUEID_COLUMN_BITMASK = 1L;
+	public static final long JIRAUSERID_COLUMN_BITMASK = 2L;
+	public static final long TYPE_COLUMN_BITMASK = 4L;
+	public static final long MODIFIEDDATE_COLUMN_BITMASK = 8L;
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.liferay.socialcoding.model.JIRAAction"));
 
@@ -574,8 +577,8 @@ public class JIRAActionModelImpl extends BaseModelImpl<JIRAAction>
 		return sb.toString();
 	}
 
-	private static ClassLoader _classLoader = JIRAAction.class.getClassLoader();
-	private static Class<?>[] _escapedModelInterfaces = new Class[] {
+	private static final ClassLoader _classLoader = JIRAAction.class.getClassLoader();
+	private static final Class<?>[] _escapedModelInterfaces = new Class[] {
 			JIRAAction.class
 		};
 	private long _jiraActionId;

@@ -14,6 +14,8 @@
 
 package com.liferay.socialcoding.service.persistence.impl;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.cache.CacheRegistryUtil;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
@@ -62,6 +64,7 @@ import java.util.Set;
  * @see JIRAChangeItemUtil
  * @generated
  */
+@ProviderType
 public class JIRAChangeItemPersistenceImpl extends BasePersistenceImpl<JIRAChangeItem>
 	implements JIRAChangeItemPersistence {
 	/*
@@ -1235,11 +1238,11 @@ public class JIRAChangeItemPersistenceImpl extends BasePersistenceImpl<JIRAChang
 	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No JIRAChangeItem exists with the key {";
 	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = GetterUtil.getBoolean(PropsUtil.get(
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
-	private static Log _log = LogFactoryUtil.getLog(JIRAChangeItemPersistenceImpl.class);
-	private static Set<String> _badColumnNames = SetUtil.fromArray(new String[] {
+	private static final Log _log = LogFactoryUtil.getLog(JIRAChangeItemPersistenceImpl.class);
+	private static final Set<String> _badColumnNames = SetUtil.fromArray(new String[] {
 				"jiraChangeItemId", "jiraChangeGroupId"
 			});
-	private static JIRAChangeItem _nullJIRAChangeItem = new JIRAChangeItemImpl() {
+	private static final JIRAChangeItem _nullJIRAChangeItem = new JIRAChangeItemImpl() {
 			@Override
 			public Object clone() {
 				return this;
@@ -1251,7 +1254,8 @@ public class JIRAChangeItemPersistenceImpl extends BasePersistenceImpl<JIRAChang
 			}
 		};
 
-	private static CacheModel<JIRAChangeItem> _nullJIRAChangeItemCacheModel = new CacheModel<JIRAChangeItem>() {
+	private static final CacheModel<JIRAChangeItem> _nullJIRAChangeItemCacheModel =
+		new CacheModel<JIRAChangeItem>() {
 			@Override
 			public JIRAChangeItem toEntityModel() {
 				return _nullJIRAChangeItem;

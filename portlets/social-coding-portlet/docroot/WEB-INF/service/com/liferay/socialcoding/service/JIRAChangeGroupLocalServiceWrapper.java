@@ -14,6 +14,8 @@
 
 package com.liferay.socialcoding.service;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.service.ServiceWrapper;
 
 /**
@@ -23,6 +25,7 @@ import com.liferay.portal.service.ServiceWrapper;
  * @see JIRAChangeGroupLocalService
  * @generated
  */
+@ProviderType
 public class JIRAChangeGroupLocalServiceWrapper
 	implements JIRAChangeGroupLocalService,
 		ServiceWrapper<JIRAChangeGroupLocalService> {

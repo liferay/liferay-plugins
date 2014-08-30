@@ -14,12 +14,15 @@
 
 package com.liferay.socialcoding.service.persistence;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
 
 /**
  * @author Brian Wing Shun Chan
  */
+@ProviderType
 public class JIRAChangeGroupFinderUtil {
 	public static int countByCD_P(java.util.Date createDate, long projectId) {
 		return getFinder().countByCD_P(createDate, projectId);

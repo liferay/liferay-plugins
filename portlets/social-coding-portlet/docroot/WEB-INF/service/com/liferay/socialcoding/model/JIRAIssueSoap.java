@@ -14,6 +14,8 @@
 
 package com.liferay.socialcoding.model;
 
+import aQute.bnd.annotation.ProviderType;
+
 import java.io.Serializable;
 
 import java.util.ArrayList;
@@ -26,6 +28,7 @@ import java.util.List;
  * @author Brian Wing Shun Chan
  * @generated
  */
+@ProviderType
 public class JIRAIssueSoap implements Serializable {
 	public static JIRAIssueSoap toSoapModel(JIRAIssue model) {
 		JIRAIssueSoap soapModel = new JIRAIssueSoap();
@@ -34,7 +37,7 @@ public class JIRAIssueSoap implements Serializable {
 		soapModel.setCreateDate(model.getCreateDate());
 		soapModel.setModifiedDate(model.getModifiedDate());
 		soapModel.setProjectId(model.getProjectId());
-		soapModel.setKey(model.getKey());
+		soapModel.setIssueNumber(model.getIssueNumber());
 		soapModel.setSummary(model.getSummary());
 		soapModel.setDescription(model.getDescription());
 		soapModel.setReporterJiraUserId(model.getReporterJiraUserId());
@@ -125,12 +128,12 @@ public class JIRAIssueSoap implements Serializable {
 		_projectId = projectId;
 	}
 
-	public String getKey() {
-		return _key;
+	public long getIssueNumber() {
+		return _issueNumber;
 	}
 
-	public void setKey(String key) {
-		_key = key;
+	public void setIssueNumber(long issueNumber) {
+		_issueNumber = issueNumber;
 	}
 
 	public String getSummary() {
@@ -185,7 +188,7 @@ public class JIRAIssueSoap implements Serializable {
 	private Date _createDate;
 	private Date _modifiedDate;
 	private long _projectId;
-	private String _key;
+	private long _issueNumber;
 	private String _summary;
 	private String _description;
 	private String _reporterJiraUserId;

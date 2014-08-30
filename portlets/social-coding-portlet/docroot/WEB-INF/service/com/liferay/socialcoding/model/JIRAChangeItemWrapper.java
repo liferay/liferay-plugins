@@ -14,6 +14,8 @@
 
 package com.liferay.socialcoding.model;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.ModelWrapper;
 
@@ -29,6 +31,7 @@ import java.util.Map;
  * @see JIRAChangeItem
  * @generated
  */
+@ProviderType
 public class JIRAChangeItemWrapper implements JIRAChangeItem,
 	ModelWrapper<JIRAChangeItem> {
 	public JIRAChangeItemWrapper(JIRAChangeItem jiraChangeItem) {
@@ -417,5 +420,5 @@ public class JIRAChangeItemWrapper implements JIRAChangeItem,
 		_jiraChangeItem.resetOriginalValues();
 	}
 
-	private JIRAChangeItem _jiraChangeItem;
+	private final JIRAChangeItem _jiraChangeItem;
 }

@@ -14,6 +14,8 @@
 
 package com.liferay.socialcoding.service.persistence;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.service.persistence.BasePersistence;
 
 import com.liferay.socialcoding.model.JIRAChangeItem;
@@ -30,6 +32,7 @@ import com.liferay.socialcoding.model.JIRAChangeItem;
  * @see JIRAChangeItemUtil
  * @generated
  */
+@ProviderType
 public interface JIRAChangeItemPersistence extends BasePersistence<JIRAChangeItem> {
 	/*
 	 * NOTE FOR DEVELOPERS:

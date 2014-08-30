@@ -14,6 +14,8 @@
 
 package com.liferay.socialcoding.model;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.model.PersistedModel;
 
 /**
@@ -25,6 +27,7 @@ import com.liferay.portal.model.PersistedModel;
  * @see com.liferay.socialcoding.model.impl.SVNRepositoryModelImpl
  * @generated
  */
+@ProviderType
 public interface SVNRepository extends SVNRepositoryModel, PersistedModel {
 	/*
 	 * NOTE FOR DEVELOPERS:
