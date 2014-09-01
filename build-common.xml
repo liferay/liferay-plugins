@@ -575,6 +575,10 @@ Error-Prone was automatically installed. Please rerun your task.
 
 			<var name="compile-import-shared.import.compat.shared" unset="true" />
 			<var name="compile-import-shared.import.shared" unset="true" />
+
+			<set-module-properties
+				module.dir="@{module.dir}"
+			/>
 		</sequential>
 	</macrodef>
 
