@@ -27,7 +27,7 @@ import org.junit.runner.RunWith;
 public class CalendarLocalServiceTest {
 
 	@Test
-	public void testGetCalendarsCount() {
+	public void testGetCalendarsCount() throws Exception {
 		int count = CalendarLocalServiceUtil.getCalendarsCount();
 
 		Assert.assertEquals(0, count);
