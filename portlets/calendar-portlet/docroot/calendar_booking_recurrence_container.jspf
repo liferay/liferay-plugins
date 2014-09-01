@@ -69,8 +69,8 @@ if (recurrence != null) {
 }
 %>
 
-<div class="calendar-portlet-recurrence-container hide">
-	<table id="<portlet:namespace />recurrenceContainer">
+<div class="calendar-portlet-recurrence-container hide" id="<portlet:namespace />recurrenceContainer">
+	<table>
 		<aui:input name="exceptionDates" type="hidden" value="<%= exceptionDatesString %>" />
 
 		<tbody>

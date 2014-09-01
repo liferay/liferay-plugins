@@ -289,6 +289,10 @@
 	.field-content, .field-wrapper-content {
 		margin: 2px;
 	}
+
+	table {
+		width: 100%;
+	}
 }
 
 .calendar-portlet-recurrence-content {
