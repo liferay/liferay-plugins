@@ -274,12 +274,12 @@ if (recurrence != null) {
 					toolbars: {
 						footer: [
 							{
+								label: '<liferay-ui:message key="done" />',
 								on: {
 									click: function() {
 										window.<portlet:namespace />recurrenceDialog.hide();
 									}
-								},
-								label: '<liferay-ui:message key="done" />'
+								}
 							}
 						]
 					},
@@ -300,7 +300,7 @@ if (recurrence != null) {
 		}
 
 		if (target.get('name') == '<portlet:namespace />repeatOnWeekday') {
-			window.<portlet:namespace />toggleView('PositionalWeekday', (target.val() == "true"));
+			window.<portlet:namespace />toggleView('PositionalWeekday', (target.val() == 'true'));
 		}
 
 		var endValue = endsRadioNodes.filter(':checked').val()[0];
