@@ -1051,18 +1051,18 @@
 					var weekDay = null;
 
 					if (recurrence.interval == 1) {
-						template.push(recurrence.frequency, STR_SPACE);
+						template.push(recurrence.frequency);
 					}
 					else {
-						template.push(Liferay.Language.get('every'), ' {interval} {intervalLabel} ');
+						template.push(Liferay.Language.get('every'), ' {interval} {intervalLabel}');
 					}
 
 					if (recurrence.positionalWeekday) {
 						if (recurrence.frequency == instance.FREQUENCY.MONTHLY) {
-							template.push(Liferay.Language.get('on'), ' {position} {weekDay}');
+							template.push(STR_SPACE, Liferay.Language.get('on'), ' {position} {weekDay}');
 						}
 						else {
-							template.push(Liferay.Language.get('on-the'), ' {position} {weekDay} ', Liferay.Language.get('of'), ' {month}');
+							template.push(STR_SPACE, Liferay.Language.get('on-the'), ' {position} {weekDay} ', Liferay.Language.get('of'), ' {month}');
 						}
 
 						month = instance.MONTH_LABELS[recurrence.positionalWeekday.month];
