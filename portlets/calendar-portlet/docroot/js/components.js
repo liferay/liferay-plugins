@@ -202,6 +202,19 @@
 										cssClass += STR_SPACE + item.cssClass;
 									}
 
+									var icon = STR_BLANK;
+
+									if (item.icon) {
+										icon = Lang.sub(
+											TPL_ICON,
+											{
+												iconClass: item.icon
+											}
+										);
+
+										caption = [icon, caption].join(STR_SPACE);
+									}
+
 									var li = A.Node.create(
 										Lang.sub(
 											TPL_SIMPLE_MENU_ITEM,
@@ -212,17 +225,6 @@
 											}
 										)
 									);
-
-									if (item.icon) {
-										var icon = Lang.sub(
-											TPL_ICON,
-											{
-												iconClass: item.icon
-											}
-										);
-
-										caption = [icon, caption].join(STR_SPACE);
-									}
 
 									li.setContent(caption);
 
@@ -627,13 +629,13 @@
 							return A.merge(
 								{
 									align: {
-										points: [ A.WidgetPositionAlign.TL, A.WidgetPositionAlign.BL ]
+										points: [A.WidgetPositionAlign.TL, A.WidgetPositionAlign.BL]
 									},
-									bubbleTargets: [ instance ],
+									bubbleTargets: [instance],
 									constrain: true,
 									host: instance,
 									items: [],
-									plugins: [ A.Plugin.OverlayAutohide ],
+									plugins: [A.Plugin.OverlayAutohide],
 									visible: false,
 									width: 290,
 									zIndex: Liferay.zIndex.MENU
@@ -1023,21 +1025,21 @@
 				],
 
 				POSITION_LABELS: {
-				    '-1': Liferay.Language.get('last'),
-				    '1': Liferay.Language.get('first'),
-				    '2': Liferay.Language.get('second'),
-				    '3': Liferay.Language.get('third'),
-				    '4': Liferay.Language.get('fourth')
+					'-1': Liferay.Language.get('last'),
+					'1': Liferay.Language.get('first'),
+					'2': Liferay.Language.get('second'),
+					'3': Liferay.Language.get('third'),
+					'4': Liferay.Language.get('fourth')
 				},
 
 				WEEKDAY_LABELS: {
-					SU: Liferay.Language.get('weekday.SU'),
-					MO: Liferay.Language.get('weekday.MO'),
-					TU: Liferay.Language.get('weekday.TU'),
-					WE: Liferay.Language.get('weekday.WE'),
-					TH: Liferay.Language.get('weekday.TH'),
 					FR: Liferay.Language.get('weekday.FR'),
+					MO: Liferay.Language.get('weekday.MO'),
 					SA: Liferay.Language.get('weekday.SA'),
+					SU: Liferay.Language.get('weekday.SU'),
+					TH: Liferay.Language.get('weekday.TH'),
+					TU: Liferay.Language.get('weekday.TU'),
+					WE: Liferay.Language.get('weekday.WE')
 				},
 
 				getSummary: function(recurrence) {
@@ -1129,12 +1131,12 @@
 						return {
 							label: label,
 							on: {
-								click: function(event, buttonItem) {
+								click: function() {
 									if (callback) {
-										callback.apply(confirmationPanel, arguments);
+										callback.apply(this, arguments);
 									}
 
-									confirmationPanel.hide();
+									this.hide();
 								}
 							}
 						};
@@ -1184,12 +1186,12 @@
 						return {
 							label: label,
 							on: {
-								click: function(event, buttonItem) {
+								click: function() {
 									if (callback) {
-										callback.apply(confirmationPanel, arguments);
+										callback.apply(this, arguments);
 									}
 
-									confirmationPanel.hide();
+									this.hide();
 								}
 							}
 						};
@@ -1226,7 +1228,8 @@
 							cssClass: 'alert-success',
 							destroyOnHide: true,
 							duration: 1
-						}).render(container);
+						}
+					).render(container);
 				}
 			};
 		},
