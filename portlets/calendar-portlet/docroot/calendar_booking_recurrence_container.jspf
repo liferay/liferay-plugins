@@ -248,6 +248,12 @@ if (recurrence != null) {
 
 	var untilDateDatePicker = Liferay.component('<%= renderResponse.getNamespace() + HtmlUtil.getAUICompatibleId("untilDateDatePicker") %>');
 
+	var getRecurrenceDialogTitle = function() {
+		var summary = window.<portlet:namespace />getSummary();
+
+		return '<liferay-ui:message key="repeat" /> ' + (summary.charAt(0).toLowerCase() + summary.slice(1));
+	};
+
 	window.<portlet:namespace />recurrenceDialog;
 
 	window.<portlet:namespace />openRecurrenceDialog = function(visible) {
@@ -284,7 +290,7 @@ if (recurrence != null) {
 					visible: visible,
 					width: 600
 				},
-				title: '<liferay-ui:message key="repeat" />'
+				title: getRecurrenceDialogTitle()
 			}
 		);
 	};
@@ -413,6 +419,11 @@ if (recurrence != null) {
 	window.<portlet:namespace />updateSummaries = function() {
 		window.<portlet:namespace />updateSummary(summaryNode);
 		window.<portlet:namespace />updateSummary('#<portlet:namespace />summaryPreview');
+
+		if (window.<portlet:namespace />recurrenceDialog) {
+			window.<portlet:namespace />recurrenceDialog.titleNode.html(getRecurrenceDialogTitle());
+			window.<portlet:namespace />recurrenceDialog.fillHeight(window.<portlet:namespace />recurrenceDialog.bodyNode);
+		}
 	}
 
 	<c:if test="<%= recurring %>">
