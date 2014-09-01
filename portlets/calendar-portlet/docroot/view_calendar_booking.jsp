@@ -234,7 +234,7 @@ AssetEntry layoutAssetEntry = AssetEntryLocalServiceUtil.getEntry(CalendarBookin
 
 		List<Weekday> weekdays = new ArrayList<Weekday>();
 
-		for (PositionalWeekday positionalWeekday : recurrence.getWeekdays()) {
+		for (PositionalWeekday positionalWeekday : recurrence.getPositionalWeekdays()) {
 			weekdays.add(positionalWeekday.getWeekday());
 		}
 		%>
