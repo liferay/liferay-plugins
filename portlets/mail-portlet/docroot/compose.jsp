@@ -105,7 +105,7 @@ else {
 
 		<div class="body-editor">
 			<aui:field-wrapper label="body">
-				<liferay-ui:input-editor editorImpl="<%= EDITOR_WYSIWYG_IMPL_KEY %>" toolbarSet="email" width="100%" />
+				<liferay-ui:input-editor contents="<%= body %>" editorImpl="<%= EDITOR_WYSIWYG_IMPL_KEY %>" toolbarSet="email" width="100%" />
 
 				<aui:input name="body" type="hidden" />
 			</aui:field-wrapper>
@@ -120,12 +120,6 @@ else {
 		<aui:button cssClass="discard-draft" data-messageId="<%= messageId %>" value="discard" />
 	</aui:button-row>
 </form>
-
-<aui:script>
-	function <portlet:namespace />initEditor() {
-		return '<%= UnicodeFormatter.toString(body) %>';
-	}
-</aui:script>
 
 <aui:script use="aui-base,aui-io-deprecated,aui-io-upload">
 	var form = A.one('#<portlet:namespace />fm');

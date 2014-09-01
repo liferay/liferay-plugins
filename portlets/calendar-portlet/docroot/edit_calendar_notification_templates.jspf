@@ -72,7 +72,7 @@ String notificationTemplateBody = BeanPropertiesUtil.getString(calendarNotificat
 		<aui:input name="subject" value="<%= notificationTemplateSubject %>" />
 
 		<aui:field-wrapper label="body">
-			<liferay-ui:input-editor editorImpl="ckeditor" />
+			<liferay-ui:input-editor contents="<%= notificationTemplateBody %>" editorImpl="ckeditor" />
 
 			<aui:input name="body" type="hidden" value="<%= notificationTemplateBody %>" />
 		</aui:field-wrapper>
@@ -151,10 +151,6 @@ String notificationTemplateBody = BeanPropertiesUtil.getString(calendarNotificat
 </aui:form>
 
 <aui:script>
-	function <portlet:namespace />initEditor() {
-		return '<%= UnicodeFormatter.toString(notificationTemplateBody) %>';
-	}
-
 	function <portlet:namespace />updateCalendarNotificationTemplate() {
 		var notificationTemplateContentBody = document.getElementById('<portlet:namespace />body');
 

@@ -47,7 +47,7 @@ String content = BeanParamUtil.getString(kbTemplate, request, "content");
 		<aui:input name="title" />
 
 		<aui:field-wrapper label="content">
-			<liferay-ui:input-editor width="100%" />
+			<liferay-ui:input-editor contents="<%= content %>" width="100%" />
 
 			<aui:input name="content" type="hidden" />
 		</aui:field-wrapper>
@@ -69,10 +69,6 @@ String content = BeanParamUtil.getString(kbTemplate, request, "content");
 </aui:form>
 
 <aui:script>
-	function <portlet:namespace />initEditor() {
-		return '<%= UnicodeFormatter.toString(content) %>';
-	}
-
 	function <portlet:namespace />updateKBTemplate() {
 		document.<portlet:namespace />fm.<portlet:namespace /><%= Constants.CMD %>.value = '<%= (kbTemplate == null) ? Constants.ADD : Constants.UPDATE %>';
 		document.<portlet:namespace />fm.<portlet:namespace />content.value = window.<portlet:namespace />editor.getHTML();

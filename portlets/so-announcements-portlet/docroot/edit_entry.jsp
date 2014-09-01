@@ -114,7 +114,7 @@ if (entry == null) {
 		</div>
 
 		<aui:field-wrapper label="content">
-			<liferay-ui:input-editor height="150" toolbarSet="Basic" width="100%" />
+			<liferay-ui:input-editor contents="<%= content %>" height="150" toolbarSet="Basic" width="100%" />
 
 			<aui:input name="content" type="hidden" />
 		</aui:field-wrapper>
@@ -187,14 +187,6 @@ if (entry == null) {
 </div>
 
 <aui:script>
-	function <portlet:namespace />initEditor() {
-		var ckEditor = CKEDITOR.instances['<portlet:namespace />editor'];
-
-		ckEditor.resize('100%', '200');
-
-		return '<%= UnicodeFormatter.toString(content) %>';
-	}
-
 	function <portlet:namespace />closeEntry() {
 		Liferay.Util.getWindow('<portlet:namespace />Dialog').hide();
 	}
