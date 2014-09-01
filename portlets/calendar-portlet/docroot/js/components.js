@@ -1051,7 +1051,7 @@
 					var weekDay = null;
 
 					if (recurrence.interval == 1) {
-						template.push(recurrence.frequency, ' ');
+						template.push(recurrence.frequency, STR_SPACE);
 					}
 					else {
 						template.push(Liferay.Language.get('every'), ' {interval} {intervalLabel} ');
