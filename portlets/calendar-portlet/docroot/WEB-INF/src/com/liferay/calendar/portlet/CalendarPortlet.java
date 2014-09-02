@@ -751,14 +751,16 @@ public class CalendarPortlet extends MVCPortlet {
 					positionalWeekdays.add(new PositionalWeekday(weekday, 0));
 				}
 			}
-		} else if ((frequency == Frequency.MONTHLY) ||
-			(frequency == Frequency.YEARLY)) {
+		}
+		else if ((frequency == Frequency.MONTHLY) ||
+				 (frequency == Frequency.YEARLY)) {
 
 			boolean repeatOnWeekday = ParamUtil.getBoolean(
 				actionRequest, "repeatOnWeekday");
 
 			if (repeatOnWeekday) {
 				int position = ParamUtil.getInteger(actionRequest, "position");
+
 				Weekday weekday = Weekday.parse(
 					ParamUtil.getString(actionRequest, "weekday"));
 
