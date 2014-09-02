@@ -3,7 +3,6 @@
 
 <project name="system-packages-extra-shared" basedir="." default="deploy">
 	<property name="import.compat.shared" value="false" />
-	<property name="plugin.version" value="1" />
 
 	<import file="../../build-common-osgi-plugin.xml" />
 </project>
