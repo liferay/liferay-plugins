@@ -35,10 +35,10 @@ if (recurrence != null) {
 		untilJCalendar = recurrence.getUntilJCalendar();
 	}
 
-	for (PositionalWeekday pw : recurrence.getPositionalWeekdays()) {
-		weekdays.add(pw.getWeekday());
+	for (PositionalWeekday curPositionalWeekday : recurrence.getPositionalWeekdays()) {
+		weekdays.add(curPositionalWeekday.getWeekday());
 
-		positionalWeekday = pw;
+		positionalWeekday = curPositionalWeekday;
 	}
 
 	if (count > 0) {
@@ -421,6 +421,7 @@ if (recurrence != null) {
 
 		if (window.<portlet:namespace />recurrenceDialog) {
 			window.<portlet:namespace />recurrenceDialog.titleNode.html(getRecurrenceDialogTitle());
+
 			window.<portlet:namespace />recurrenceDialog.fillHeight(window.<portlet:namespace />recurrenceDialog.bodyNode);
 		}
 	}
