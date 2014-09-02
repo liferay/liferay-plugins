@@ -999,8 +999,7 @@ public class CalendarImporterLocalServiceImpl
 	}
 
 	protected void verifyCalendarBooking(
-			CalendarBooking calendarBooking, CalEvent calEvent)
-		throws PortalException {
+		CalendarBooking calendarBooking, CalEvent calEvent) {
 
 		if (!hasDayAndPosition(calEvent.getRecurrenceObj())) {
 			return;

@@ -277,9 +277,8 @@ public class CalendarUtil {
 	}
 
 	public static JSONArray toCalendarBookingsJSONArray(
-			ThemeDisplay themeDisplay, List<CalendarBooking> calendarBookings,
-			TimeZone timeZone)
-		throws PortalException {
+		ThemeDisplay themeDisplay, List<CalendarBooking> calendarBookings,
+		TimeZone timeZone) {
 
 		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
 

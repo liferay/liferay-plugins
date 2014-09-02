@@ -296,9 +296,7 @@ public class CalendarBookingServiceImpl extends CalendarBookingServiceBaseImpl {
 	}
 
 	@Override
-	public boolean hasChildCalendarBookings(long parentCalendarBookingId)
-		throws PortalException {
-
+	public boolean hasChildCalendarBookings(long parentCalendarBookingId) {
 		int total = calendarBookingPersistence.countByParentCalendarBookingId(
 			parentCalendarBookingId);
 
