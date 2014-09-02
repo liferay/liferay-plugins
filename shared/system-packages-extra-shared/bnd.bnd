@@ -1,3 +1,5 @@
+Bundle-SymbolicName: system-packages-extra-shared
+Bundle-Version: 1.0.0
 Export-Package: \
 	com.germinus.easyconf,\
 	com.liferay.portal.apache.bridges.struts,\
