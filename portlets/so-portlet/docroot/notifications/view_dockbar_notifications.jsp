@@ -33,6 +33,8 @@ catch (UnknownChannelException e) {
 
 notificationEvents = new ArrayList<NotificationEvent>(notificationEvents);
 
+ListUtil.sort(notificationEvents, new NotificationEventComparator(false));
+
 Iterator<NotificationEvent> iterator = notificationEvents.iterator();
 
 while (iterator.hasNext()) {
