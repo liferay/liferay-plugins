@@ -502,6 +502,7 @@ public class CalendarBookingLocalServiceImpl
 			parentCalendarBookingId, status);
 	}
 
+	@Override
 	public long[] getChildCalendarIds(long calendarBookingId, long calendarId)
 		throws PortalException {
 
