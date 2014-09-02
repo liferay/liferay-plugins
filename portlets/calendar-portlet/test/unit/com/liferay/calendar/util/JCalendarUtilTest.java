@@ -39,94 +39,94 @@ public class JCalendarUtilTest {
 
 	@Test
 	public void testGetDSTShiftAtLosAngelesDuringDST() {
-		Calendar calendar1 = JCalendarUtil.getJCalendar(
+		Calendar jCalendar1 = JCalendarUtil.getJCalendar(
 			2012, Calendar.MAY, 1, 12, 0, 0, 0, TimeZoneUtil.GMT);
-		Calendar calendar2 = JCalendarUtil.getJCalendar(
+		Calendar jCalendar2 = JCalendarUtil.getJCalendar(
 			2013, Calendar.JULY, 2, 12, 0, 0, 0, TimeZoneUtil.GMT);
 
 		int shift = JCalendarUtil.getDSTShift(
-			calendar1, calendar2, _losAngelesTimeZone);
+			jCalendar1, jCalendar2, _losAngelesTimeZone);
 
 		Assert.assertEquals(0, shift);
 	}
 
 	@Test
 	public void testGetDSTShiftAtLosAngelesDuringNoDST() {
-		Calendar calendar1 = JCalendarUtil.getJCalendar(
+		Calendar jCalendar1 = JCalendarUtil.getJCalendar(
 			2013, Calendar.DECEMBER, 1, 12, 0, 0, 0, TimeZoneUtil.GMT);
-		Calendar calendar2 = JCalendarUtil.getJCalendar(
+		Calendar jCalendar2 = JCalendarUtil.getJCalendar(
 			2013, Calendar.JANUARY, 2, 12, 0, 0, 0, TimeZoneUtil.GMT);
 
 		int shift = JCalendarUtil.getDSTShift(
-			calendar1, calendar2, _losAngelesTimeZone);
+			jCalendar1, jCalendar2, _losAngelesTimeZone);
 
 		Assert.assertEquals(0, shift);
 	}
 
 	@Test
 	public void testGetDSTShiftAtLosAngelesFromDSTToNoDST() {
-		Calendar calendar1 = JCalendarUtil.getJCalendar(
+		Calendar jCalendar1 = JCalendarUtil.getJCalendar(
 			2013, Calendar.JULY, 1, 12, 0, 0, 0, TimeZoneUtil.GMT);
-		Calendar calendar2 = JCalendarUtil.getJCalendar(
+		Calendar jCalendar2 = JCalendarUtil.getJCalendar(
 			2013, Calendar.JANUARY, 1, 12, 0, 0, 0, TimeZoneUtil.GMT);
 
 		int shift = JCalendarUtil.getDSTShift(
-			calendar1, calendar2, _losAngelesTimeZone);
+			jCalendar1, jCalendar2, _losAngelesTimeZone);
 
 		Assert.assertEquals(JCalendarUtil.HOUR, shift);
 	}
 
 	@Test
 	public void testGetDSTShiftAtLosAngelesFromNoDSTToDST() {
-		Calendar calendar1 = JCalendarUtil.getJCalendar(
+		Calendar jCalendar1 = JCalendarUtil.getJCalendar(
 			2013, Calendar.JANUARY, 1, 12, 0, 0, 0, TimeZoneUtil.GMT);
-		Calendar calendar2 = JCalendarUtil.getJCalendar(
+		Calendar jCalendar2 = JCalendarUtil.getJCalendar(
 			2013, Calendar.JULY, 1, 12, 0, 0, 0, TimeZoneUtil.GMT);
 
 		int shift = JCalendarUtil.getDSTShift(
-			calendar1, calendar2, _losAngelesTimeZone);
+			jCalendar1, jCalendar2, _losAngelesTimeZone);
 
 		Assert.assertEquals(-1 * JCalendarUtil.HOUR, shift);
 	}
 
 	@Test
 	public void testGetWeekdayPosition2June2014() {
-		Calendar calendar = CalendarFactoryUtil.getCalendar(
+		Calendar jCalendar = CalendarFactoryUtil.getCalendar(
 			2014, Calendar.JUNE, 2);
 
-		Assert.assertEquals(1, JCalendarUtil.getWeekdayPosition(calendar));
+		Assert.assertEquals(1, JCalendarUtil.getWeekdayPosition(jCalendar));
 		Assert.assertEquals(
-			Calendar.MONDAY, calendar.get(Calendar.DAY_OF_WEEK));
+			Calendar.MONDAY, jCalendar.get(Calendar.DAY_OF_WEEK));
 	}
 
 	@Test
 	public void testGetWeekdayPosition4August2014() {
-		Calendar calendar = CalendarFactoryUtil.getCalendar(
+		Calendar jCalendar = CalendarFactoryUtil.getCalendar(
 			2014, Calendar.AUGUST, 4);
 
-		Assert.assertEquals(1, JCalendarUtil.getWeekdayPosition(calendar));
+		Assert.assertEquals(1, JCalendarUtil.getWeekdayPosition(jCalendar));
 		Assert.assertEquals(
-			Calendar.MONDAY, calendar.get(Calendar.DAY_OF_WEEK));
+			Calendar.MONDAY, jCalendar.get(Calendar.DAY_OF_WEEK));
 	}
 
 	@Test
 	public void testGetWeekdayPosition7August2014() {
-		Calendar calendar = CalendarFactoryUtil.getCalendar(
+		Calendar jCalendar = CalendarFactoryUtil.getCalendar(
 			2014, Calendar.AUGUST, 7);
 
-		Assert.assertEquals(1, JCalendarUtil.getWeekdayPosition(calendar));
+		Assert.assertEquals(1, JCalendarUtil.getWeekdayPosition(jCalendar));
 		Assert.assertEquals(
-			Calendar.THURSDAY, calendar.get(Calendar.DAY_OF_WEEK));
+			Calendar.THURSDAY, jCalendar.get(Calendar.DAY_OF_WEEK));
 	}
 
 	@Test
 	public void testGetWeekdayPosition8August2014() {
-		Calendar calendar = CalendarFactoryUtil.getCalendar(
+		Calendar jCalendar = CalendarFactoryUtil.getCalendar(
 			2014, Calendar.AUGUST, 8);
 
-		Assert.assertEquals(2, JCalendarUtil.getWeekdayPosition(calendar));
+		Assert.assertEquals(2, JCalendarUtil.getWeekdayPosition(jCalendar));
 		Assert.assertEquals(
-			Calendar.FRIDAY, calendar.get(Calendar.DAY_OF_WEEK));
+			Calendar.FRIDAY, jCalendar.get(Calendar.DAY_OF_WEEK));
 	}
 
 	private static TimeZone _losAngelesTimeZone = TimeZone.getTimeZone(

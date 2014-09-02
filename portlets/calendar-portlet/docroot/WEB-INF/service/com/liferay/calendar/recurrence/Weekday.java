@@ -24,8 +24,8 @@ public enum Weekday {
 	SUNDAY("SU"), MONDAY("MO"), TUESDAY("TU"), WEDNESDAY("WE"), THURSDAY("TH"),
 	FRIDAY("FR"), SATURDAY("SA");
 
-	public static Weekday getWeekday(Calendar calendar) {
-		return getWeekday(calendar.get(Calendar.DAY_OF_WEEK));
+	public static Weekday getWeekday(Calendar jCalendar) {
+		return getWeekday(jCalendar.get(Calendar.DAY_OF_WEEK));
 	}
 
 	public static Weekday getWeekday(int dayOfTheWeek) {
