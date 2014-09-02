@@ -117,6 +117,7 @@ public class JCalendarUtil {
 		int weekOfMonth = calendar.get(Calendar.WEEK_OF_MONTH);
 
 		Calendar firstDayCalendar = (Calendar)calendar.clone();
+
 		firstDayCalendar.set(Calendar.DAY_OF_MONTH, 1);
 
 		if (firstDayCalendar.get(Calendar.DAY_OF_WEEK) >
