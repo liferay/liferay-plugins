@@ -63,8 +63,7 @@ public class JCalendarUtil {
 			jCalendar1.get(Calendar.YEAR), jCalendar1.get(Calendar.MONTH),
 			jCalendar1.get(Calendar.DAY_OF_MONTH),
 			jCalendar2.get(Calendar.HOUR_OF_DAY),
-			jCalendar2.get(Calendar.MINUTE),
-			jCalendar2.get(Calendar.SECOND),
+			jCalendar2.get(Calendar.MINUTE), jCalendar2.get(Calendar.SECOND),
 			jCalendar2.get(Calendar.MILLISECOND), timeZone);
 
 		Long shift =
