@@ -90,16 +90,15 @@ public class WikiActivityInterpreter extends SOSocialActivityInterpreter {
 					extraDataJSONObject = JSONFactoryUtil.createJSONObject();
 
 					extraDataJSONObject.put(
-						"sourceVersion", wikiPage.getVersion());
+						"sourceVersion",
+						MathUtil.format(wikiPage.getVersion() - 0.1, 1, 1));
 				}
 				else {
 					extraDataJSONObject = JSONFactoryUtil.createJSONObject(
 						activitySet.getExtraData());
 				}
 
-				extraDataJSONObject.put(
-					"targetVersion",
-					MathUtil.format(wikiPage.getVersion() + 0.1, 1, 1));
+				extraDataJSONObject.put("targetVersion", wikiPage.getVersion());
 
 				activitySet.setExtraData(extraDataJSONObject.toString());
 
@@ -124,10 +123,10 @@ public class WikiActivityInterpreter extends SOSocialActivityInterpreter {
 				JSONObject extraDataJSONObject =
 					JSONFactoryUtil.createJSONObject();
 
-				extraDataJSONObject.put("sourceVersion", wikiPage.getVersion());
 				extraDataJSONObject.put(
-					"targetVersion",
-					MathUtil.format(wikiPage.getVersion() + 0.1, 1, 1));
+					"sourceVersion",
+					MathUtil.format(wikiPage.getVersion() - 0.1, 1, 1));
+				extraDataJSONObject.put("targetVersion", wikiPage.getVersion());
 
 				activitySet.setExtraData(extraDataJSONObject.toString());
 
