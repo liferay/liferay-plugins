@@ -36,8 +36,5 @@
 		<dependency name="ormlite-jdbc" org="com.j256.ormlite" rev="4.47" />
 		<dependency name="slf4j-api" org="org.slf4j" rev="1.7.5" />
 		<dependency name="slf4j-log4j12" org="org.slf4j" rev="1.7.5" />
-		<dependency name="spring" org="org.springframework" rev="2.5.6.SEC03" />
-		<dependency name="spring-retry" org="org.springframework.retry" rev="1.0.3.RELEASE" />
-		<dependency name="spring-web" org="org.springframework" rev="4.0.2.RELEASE" />
 	</dependencies>
 </ivy-module>
