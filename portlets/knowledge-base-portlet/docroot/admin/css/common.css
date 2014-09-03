@@ -314,8 +314,15 @@
 		margin: 5px 0 5px 0;
 		padding: 0 5px 3px;
 
-		.kb-title {
-			float: left;
+		.kb-article-source-url {
+			float: right;
+			margin-top: 10px;
+		}
+
+		@include respond-to(phone) {
+			.kb-article-source-url {
+				float: inherit;
+			}
 		}
 
 		.kb-tools {
