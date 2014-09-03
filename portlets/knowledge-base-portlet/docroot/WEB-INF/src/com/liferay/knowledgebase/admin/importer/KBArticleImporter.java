@@ -94,7 +94,7 @@ public class KBArticleImporter {
 				kbArticle = KBArticleLocalServiceUtil.addKBArticle(
 					userId, parentResourcePrimaryKey,
 					kbArticleMarkdownConverter.getTitle(), urlTitle, markdown,
-					null, null, null, serviceContext);
+					null, null, null, null, serviceContext);
 			}
 		}
 		catch (Exception e) {
@@ -117,7 +117,8 @@ public class KBArticleImporter {
 			return KBArticleLocalServiceUtil.updateKBArticle(
 				userId, kbArticle.getResourcePrimKey(),
 				kbArticleMarkdownConverter.getTitle(), html,
-				kbArticle.getDescription(), null, null, null, serviceContext);
+				kbArticle.getDescription(), null, null, null, null,
+				serviceContext);
 		}
 		catch (Exception e) {
 			StringBundler sb = new StringBundler(4);

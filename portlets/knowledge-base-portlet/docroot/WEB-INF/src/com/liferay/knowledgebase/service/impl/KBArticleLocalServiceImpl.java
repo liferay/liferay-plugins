@@ -16,6 +16,7 @@ package com.liferay.knowledgebase.service.impl;
 
 import com.liferay.knowledgebase.KBArticleContentException;
 import com.liferay.knowledgebase.KBArticlePriorityException;
+import com.liferay.knowledgebase.KBArticleSourceURLException;
 import com.liferay.knowledgebase.KBArticleTitleException;
 import com.liferay.knowledgebase.NoSuchArticleException;
 import com.liferay.knowledgebase.admin.importer.KBArticleImporter;
@@ -78,6 +79,9 @@ import com.liferay.portlet.asset.model.AssetLinkConstants;
 
 import java.io.InputStream;
 
+import java.net.MalformedURLException;
+import java.net.URL;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
@@ -98,7 +102,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 	public KBArticle addKBArticle(
 			long userId, long parentResourcePrimKey, String title,
 			String urlTitle, String content, String description,
-			String[] sections, String[] selectedFileNames,
+			String sourceURL, String[] sections, String[] selectedFileNames,
 			ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
@@ -109,7 +113,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		double priority = getPriority(groupId, parentResourcePrimKey);
 		Date now = new Date();
 
-		validate(title, content);
+		validate(title, content, sourceURL);
 
 		long kbArticleId = counterLocalService.increment();
 
@@ -143,6 +147,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		kbArticle.setLatest(true);
 		kbArticle.setMain(false);
 		kbArticle.setStatus(WorkflowConstants.STATUS_DRAFT);
+		kbArticle.setSourceURL(sourceURL);
 
 		kbArticlePersistence.update(kbArticle);
 
@@ -896,15 +901,16 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 	@Override
 	public KBArticle updateKBArticle(
 			long userId, long resourcePrimKey, String title, String content,
-			String description, String[] sections, String[] selectedFileNames,
-			long[] removeFileEntryIds, ServiceContext serviceContext)
+			String description, String sourceURL, String[] sections,
+			String[] selectedFileNames, long[] removeFileEntryIds,
+			ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
 		// KB article
 
 		User user = userPersistence.findByPrimaryKey(userId);
 
-		validate(title, content);
+		validate(title, content, sourceURL);
 
 		KBArticle oldKBArticle = getLatestKBArticle(
 			resourcePrimKey, WorkflowConstants.STATUS_ANY);
@@ -949,6 +955,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		kbArticle.setTitle(title);
 		kbArticle.setContent(content);
 		kbArticle.setDescription(description);
+		kbArticle.setSourceURL(sourceURL);
 		kbArticle.setSections(
 			StringUtil.merge(AdminUtil.escapeSections(sections)));
 		kbArticle.setLatest(true);
@@ -1786,7 +1793,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		}
 	}
 
-	protected void validate(String title, String content)
+	protected void validate(String title, String content, String sourceURL)
 		throws PortalException {
 
 		if (Validator.isNull(title)) {
@@ -1795,6 +1802,21 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 
 		if (Validator.isNull(content)) {
 			throw new KBArticleContentException();
+		}
+
+		validateSourceURL(sourceURL);
+	}
+
+	protected void validateSourceURL(String sourceURL) throws PortalException {
+		if (Validator.isNull(sourceURL)) {
+			return;
+		}
+
+		try {
+			new URL(sourceURL);
+		}
+		catch (MalformedURLException mue) {
+			throw new KBArticleSourceURLException(mue);
 		}
 	}
 

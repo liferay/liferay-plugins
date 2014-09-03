@@ -341,6 +341,7 @@ public class ArticlePortlet extends MVCPortlet {
 		String urlTitle = ParamUtil.getString(actionRequest, "urlTitle");
 		String content = ParamUtil.getString(actionRequest, "content");
 		String description = ParamUtil.getString(actionRequest, "description");
+		String sourceURL = ParamUtil.getString(actionRequest, "sourceURL");
 		String[] sections = actionRequest.getParameterValues("sections");
 		String[] selectedFileNames = ParamUtil.getParameterValues(
 			actionRequest, "selectedFileName");
@@ -357,12 +358,14 @@ public class ArticlePortlet extends MVCPortlet {
 		if (cmd.equals(Constants.ADD)) {
 			kbArticle = KBArticleServiceUtil.addKBArticle(
 				portletId, parentResourcePrimKey, title, urlTitle, content,
-				description, sections, selectedFileNames, serviceContext);
+				description, sourceURL, sections, selectedFileNames,
+				serviceContext);
 		}
 		else if (cmd.equals(Constants.UPDATE)) {
 			kbArticle = KBArticleServiceUtil.updateKBArticle(
-				resourcePrimKey, title, content, description, sections,
-				selectedFileNames, removeFileEntryIds, serviceContext);
+				resourcePrimKey, title, content, description, sourceURL,
+				sections, selectedFileNames, removeFileEntryIds,
+				serviceContext);
 		}
 
 		if (!cmd.equals(Constants.ADD) && !cmd.equals(Constants.UPDATE)) {
