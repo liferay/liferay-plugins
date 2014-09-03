@@ -16,6 +16,7 @@ package com.liferay.sync.engine.util;
 
 import com.liferay.sync.engine.model.SyncFile;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -220,6 +221,12 @@ public class FileUtil {
 	public static void writeFileKey(Path filePath, String fileKey) {
 		if (!OSDetector.isWindows()) {
 			return;
+		}
+
+		File file = filePath.toFile();
+
+		if (!file.canWrite()) {
+			file.setWritable(true);
 		}
 
 		UserDefinedFileAttributeView userDefinedFileAttributeView =
