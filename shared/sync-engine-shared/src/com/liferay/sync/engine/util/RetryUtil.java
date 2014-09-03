@@ -27,7 +27,11 @@ public class RetryUtil {
 	}
 
 	public static long incrementRetryDelay(long syncAccountId) {
-		int count = _counts.getOrDefault(syncAccountId, 0);
+		int count = 0;
+
+		if (_counts.containsKey(syncAccountId)) {
+			count = _counts.get(syncAccountId);
+		}
 
 		count++;
 
