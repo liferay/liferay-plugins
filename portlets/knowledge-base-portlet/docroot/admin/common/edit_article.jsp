@@ -63,6 +63,7 @@ String[] sections = AdminUtil.unescapeSections(BeanPropertiesUtil.getString(kbAr
 	</liferay-ui:error>
 
 	<liferay-ui:error exception="<%= KBArticleContentException.class %>" message="please-enter-valid-content" />
+	<liferay-ui:error exception="<%= KBArticleSourceURLException.class %>" message="please-enter-a-valid-source-url" />
 	<liferay-ui:error exception="<%= KBArticleTitleException.class %>" message="please-enter-a-valid-title" />
 	<liferay-ui:error exception="<%= NoSuchFileException.class %>" message="the-document-could-not-be-found" />
 
@@ -103,6 +104,8 @@ String[] sections = AdminUtil.unescapeSections(BeanPropertiesUtil.getString(kbAr
 		<c:if test="<%= enableKBArticleDescription %>">
 			<aui:input name="description" />
 		</c:if>
+
+		<aui:input label="source-url" name="sourceURL" />
 
 		<c:if test="<%= ArrayUtil.isNotEmpty(PortletPropsValues.ADMIN_KB_ARTICLE_SECTIONS) && (parentResourcePrimKey == KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY) %>">
 			<aui:model-context bean="<%= null %>" model="<%= KBArticle.class %>" />

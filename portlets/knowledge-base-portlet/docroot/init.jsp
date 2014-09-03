@@ -29,6 +29,7 @@
 page import="com.liferay.knowledgebase.KBArticleContentException" %><%@
 page import="com.liferay.knowledgebase.KBArticleImportException" %><%@
 page import="com.liferay.knowledgebase.KBArticlePriorityException" %><%@
+page import="com.liferay.knowledgebase.KBArticleSourceURLException" %><%@
 page import="com.liferay.knowledgebase.KBArticleTitleException" %><%@
 page import="com.liferay.knowledgebase.KBCommentContentException" %><%@
 page import="com.liferay.knowledgebase.KBTemplateContentException" %><%@
