@@ -39,6 +39,7 @@
 		<column name="viewCount" type="int" />
 		<column name="latest" type="boolean" />
 		<column name="main" type="boolean" />
+		<column name="sourceURL" type="String" />
 		<column name="status" type="int" />
 		<column name="statusByUserId" type="long" />
 		<column name="statusByUserName" type="String" />
@@ -292,6 +293,7 @@
 		<exception>KBArticleContent</exception>
 		<exception>KBArticleImport</exception>
 		<exception>KBArticlePriority</exception>
+		<exception>KBArticleSourceURL</exception>
 		<exception>KBArticleTitle</exception>
 		<exception>KBCommentContent</exception>
 		<exception>KBTemplateContent</exception>
