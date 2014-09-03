@@ -134,6 +134,10 @@ public class Watcher implements Runnable {
 					continue;
 				}
 
+				if (kind == StandardWatchEventKind.ENTRY_DELETE) {
+					processMissingFilePath(childFilePath);
+				}
+
 				fireWatchEventListener(childFilePath, watchEvent);
 
 				if (_recursive &&
@@ -330,13 +334,9 @@ public class Watcher implements Runnable {
 		}
 		else {
 			SyncSite syncSite = SyncSiteService.fetchSyncSite(
-				syncAccount.getFilePathName(), syncAccount.getSyncAccountId());
+				filePath.toString(), syncAccount.getSyncAccountId());
 
-			if (syncSite == null) {
-				fireWatchEventListener(
-					SyncWatchEvent.EVENT_TYPE_DELETE, filePath);
-			}
-			else {
+			if (syncSite != null) {
 				syncSite.setActive(false);
 				syncSite.setUiEvent(SyncSite.UI_EVENT_SYNC_SITE_FOLDER_MISSING);
 
