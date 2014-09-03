@@ -54,7 +54,7 @@ List<KBArticle> childKBArticles = KBArticleServiceUtil.getKBArticles(scopeGroupI
 								<%= childrenKBArticle.getDescription() %>
 							</c:when>
 							<c:otherwise>
-								<%= StringUtil.shorten(HtmlUtil.extractText(childrenKBArticle.getContent()), 200) %>
+								<p><%= StringUtil.shorten(HtmlUtil.extractText(childrenKBArticle.getContent()), 200) %></p>
 
 								<aui:a href="<%= viewKBArticleURL %>"><liferay-ui:message key="read-more" /></aui:a>
 							</c:otherwise>
