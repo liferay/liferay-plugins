@@ -16,7 +16,6 @@ package com.liferay.socialcoding.model;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.BaseModel;
@@ -82,9 +81,6 @@ public class JIRAChangeItemClp extends BaseModelImpl<JIRAChangeItem>
 		attributes.put("newValue", getNewValue());
 		attributes.put("newString", getNewString());
 
-		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
-		attributes.put("finderCacheEnabled", isFinderCacheEnabled());
-
 		return attributes;
 	}
 
@@ -131,9 +127,6 @@ public class JIRAChangeItemClp extends BaseModelImpl<JIRAChangeItem>
 		if (newString != null) {
 			setNewString(newString);
 		}
-
-		_entityCacheEnabled = GetterUtil.getBoolean("entityCacheEnabled");
-		_finderCacheEnabled = GetterUtil.getBoolean("finderCacheEnabled");
 	}
 
 	@Override
@@ -424,16 +417,6 @@ public class JIRAChangeItemClp extends BaseModelImpl<JIRAChangeItem>
 	}
 
 	@Override
-	public boolean isEntityCacheEnabled() {
-		return _entityCacheEnabled;
-	}
-
-	@Override
-	public boolean isFinderCacheEnabled() {
-		return _finderCacheEnabled;
-	}
-
-	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(15);
 
@@ -506,6 +489,4 @@ public class JIRAChangeItemClp extends BaseModelImpl<JIRAChangeItem>
 	private String _newValue;
 	private String _newString;
 	private BaseModel<?> _jiraChangeItemRemoteModel;
-	private boolean _entityCacheEnabled;
-	private boolean _finderCacheEnabled;
 }

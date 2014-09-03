@@ -221,7 +221,7 @@ public class JIRAProjectWrapper implements JIRAProject,
 	}
 
 	@Override
-	public int compareTo(JIRAProject jiraProject) {
+	public int compareTo(com.liferay.socialcoding.model.JIRAProject jiraProject) {
 		return _jiraProject.compareTo(jiraProject);
 	}
 
@@ -231,17 +231,17 @@ public class JIRAProjectWrapper implements JIRAProject,
 	}
 
 	@Override
-	public com.liferay.portal.model.CacheModel<JIRAProject> toCacheModel() {
+	public com.liferay.portal.model.CacheModel<com.liferay.socialcoding.model.JIRAProject> toCacheModel() {
 		return _jiraProject.toCacheModel();
 	}
 
 	@Override
-	public JIRAProject toEscapedModel() {
+	public com.liferay.socialcoding.model.JIRAProject toEscapedModel() {
 		return new JIRAProjectWrapper(_jiraProject.toEscapedModel());
 	}
 
 	@Override
-	public JIRAProject toUnescapedModel() {
+	public com.liferay.socialcoding.model.JIRAProject toUnescapedModel() {
 		return new JIRAProjectWrapper(_jiraProject.toUnescapedModel());
 	}
 
@@ -283,7 +283,6 @@ public class JIRAProjectWrapper implements JIRAProject,
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedModel}
 	 */
-	@Deprecated
 	public JIRAProject getWrappedJIRAProject() {
 		return _jiraProject;
 	}
@@ -291,16 +290,6 @@ public class JIRAProjectWrapper implements JIRAProject,
 	@Override
 	public JIRAProject getWrappedModel() {
 		return _jiraProject;
-	}
-
-	@Override
-	public boolean isEntityCacheEnabled() {
-		return _jiraProject.isEntityCacheEnabled();
-	}
-
-	@Override
-	public boolean isFinderCacheEnabled() {
-		return _jiraProject.isFinderCacheEnabled();
 	}
 
 	@Override

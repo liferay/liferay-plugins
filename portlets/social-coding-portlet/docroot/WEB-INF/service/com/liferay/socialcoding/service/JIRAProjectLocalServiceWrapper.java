@@ -290,7 +290,6 @@ public class JIRAProjectLocalServiceWrapper implements JIRAProjectLocalService,
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
 	 */
-	@Deprecated
 	public JIRAProjectLocalService getWrappedJIRAProjectLocalService() {
 		return _jiraProjectLocalService;
 	}
@@ -298,7 +297,6 @@ public class JIRAProjectLocalServiceWrapper implements JIRAProjectLocalService,
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #setWrappedService}
 	 */
-	@Deprecated
 	public void setWrappedJIRAProjectLocalService(
 		JIRAProjectLocalService jiraProjectLocalService) {
 		_jiraProjectLocalService = jiraProjectLocalService;

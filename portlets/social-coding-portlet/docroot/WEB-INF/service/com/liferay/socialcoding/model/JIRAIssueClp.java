@@ -17,7 +17,6 @@ package com.liferay.socialcoding.model;
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.DateUtil;
-import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.BaseModel;
@@ -86,9 +85,6 @@ public class JIRAIssueClp extends BaseModelImpl<JIRAIssue> implements JIRAIssue 
 		attributes.put("assigneeJiraUserId", getAssigneeJiraUserId());
 		attributes.put("resolution", getResolution());
 		attributes.put("status", getStatus());
-
-		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
-		attributes.put("finderCacheEnabled", isFinderCacheEnabled());
 
 		return attributes;
 	}
@@ -160,9 +156,6 @@ public class JIRAIssueClp extends BaseModelImpl<JIRAIssue> implements JIRAIssue 
 		if (status != null) {
 			setStatus(status);
 		}
-
-		_entityCacheEnabled = GetterUtil.getBoolean("entityCacheEnabled");
-		_finderCacheEnabled = GetterUtil.getBoolean("finderCacheEnabled");
 	}
 
 	@Override
@@ -567,16 +560,6 @@ public class JIRAIssueClp extends BaseModelImpl<JIRAIssue> implements JIRAIssue 
 	}
 
 	@Override
-	public boolean isEntityCacheEnabled() {
-		return _entityCacheEnabled;
-	}
-
-	@Override
-	public boolean isFinderCacheEnabled() {
-		return _finderCacheEnabled;
-	}
-
-	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(23);
 
@@ -677,6 +660,4 @@ public class JIRAIssueClp extends BaseModelImpl<JIRAIssue> implements JIRAIssue 
 	private String _resolution;
 	private String _status;
 	private BaseModel<?> _jiraIssueRemoteModel;
-	private boolean _entityCacheEnabled;
-	private boolean _finderCacheEnabled;
 }

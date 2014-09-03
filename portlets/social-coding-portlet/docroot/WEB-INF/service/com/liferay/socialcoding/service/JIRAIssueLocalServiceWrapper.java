@@ -440,7 +440,6 @@ public class JIRAIssueLocalServiceWrapper implements JIRAIssueLocalService,
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
 	 */
-	@Deprecated
 	public JIRAIssueLocalService getWrappedJIRAIssueLocalService() {
 		return _jiraIssueLocalService;
 	}
@@ -448,7 +447,6 @@ public class JIRAIssueLocalServiceWrapper implements JIRAIssueLocalService,
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #setWrappedService}
 	 */
-	@Deprecated
 	public void setWrappedJIRAIssueLocalService(
 		JIRAIssueLocalService jiraIssueLocalService) {
 		_jiraIssueLocalService = jiraIssueLocalService;

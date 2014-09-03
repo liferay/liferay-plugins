@@ -386,7 +386,7 @@ public class JIRAProjectPersistenceImpl extends BasePersistenceImpl<JIRAProject>
 			CacheRegistryUtil.clear(JIRAProjectImpl.class.getName());
 		}
 
-		EntityCacheUtil.clearCache(JIRAProjectImpl.class);
+		EntityCacheUtil.clearCache(JIRAProjectImpl.class.getName());
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_ENTITY);
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
@@ -605,13 +605,10 @@ public class JIRAProjectPersistenceImpl extends BasePersistenceImpl<JIRAProject>
 		}
 
 		EntityCacheUtil.putResult(JIRAProjectModelImpl.ENTITY_CACHE_ENABLED,
-			JIRAProjectImpl.class, jiraProject.getPrimaryKey(), jiraProject,
-			false);
+			JIRAProjectImpl.class, jiraProject.getPrimaryKey(), jiraProject);
 
 		clearUniqueFindersCache(jiraProject);
 		cacheUniqueFindersCache(jiraProject);
-
-		jiraProject.resetOriginalValues();
 
 		return jiraProject;
 	}

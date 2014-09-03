@@ -1695,7 +1695,7 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 			CacheRegistryUtil.clear(JIRAActionImpl.class.getName());
 		}
 
-		EntityCacheUtil.clearCache(JIRAActionImpl.class);
+		EntityCacheUtil.clearCache(JIRAActionImpl.class.getName());
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_ENTITY);
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
@@ -1928,9 +1928,7 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 		}
 
 		EntityCacheUtil.putResult(JIRAActionModelImpl.ENTITY_CACHE_ENABLED,
-			JIRAActionImpl.class, jiraAction.getPrimaryKey(), jiraAction, false);
-
-		jiraAction.resetOriginalValues();
+			JIRAActionImpl.class, jiraAction.getPrimaryKey(), jiraAction);
 
 		return jiraAction;
 	}

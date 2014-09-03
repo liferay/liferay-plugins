@@ -17,7 +17,6 @@ package com.liferay.socialcoding.model;
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.DateUtil;
-import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.BaseModel;
@@ -85,9 +84,6 @@ public class JIRAActionClp extends BaseModelImpl<JIRAAction>
 		attributes.put("body", getBody());
 		attributes.put("jiraGroupName", getJiraGroupName());
 
-		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
-		attributes.put("finderCacheEnabled", isFinderCacheEnabled());
-
 		return attributes;
 	}
 
@@ -140,9 +136,6 @@ public class JIRAActionClp extends BaseModelImpl<JIRAAction>
 		if (jiraGroupName != null) {
 			setJiraGroupName(jiraGroupName);
 		}
-
-		_entityCacheEnabled = GetterUtil.getBoolean("entityCacheEnabled");
-		_finderCacheEnabled = GetterUtil.getBoolean("finderCacheEnabled");
 	}
 
 	@Override
@@ -454,16 +447,6 @@ public class JIRAActionClp extends BaseModelImpl<JIRAAction>
 	}
 
 	@Override
-	public boolean isEntityCacheEnabled() {
-		return _entityCacheEnabled;
-	}
-
-	@Override
-	public boolean isFinderCacheEnabled() {
-		return _finderCacheEnabled;
-	}
-
-	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(17);
 
@@ -543,6 +526,4 @@ public class JIRAActionClp extends BaseModelImpl<JIRAAction>
 	private String _body;
 	private String _jiraGroupName;
 	private BaseModel<?> _jiraActionRemoteModel;
-	private boolean _entityCacheEnabled;
-	private boolean _finderCacheEnabled;
 }

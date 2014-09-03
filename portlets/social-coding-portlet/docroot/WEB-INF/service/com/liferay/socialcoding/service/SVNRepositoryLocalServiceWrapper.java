@@ -306,7 +306,6 @@ public class SVNRepositoryLocalServiceWrapper
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
 	 */
-	@Deprecated
 	public SVNRepositoryLocalService getWrappedSVNRepositoryLocalService() {
 		return _svnRepositoryLocalService;
 	}
@@ -314,7 +313,6 @@ public class SVNRepositoryLocalServiceWrapper
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #setWrappedService}
 	 */
-	@Deprecated
 	public void setWrappedSVNRepositoryLocalService(
 		SVNRepositoryLocalService svnRepositoryLocalService) {
 		_svnRepositoryLocalService = svnRepositoryLocalService;
