@@ -69,7 +69,7 @@ public class KBArticleAssetRenderer extends BaseAssetRenderer {
 
 		if (Validator.isNull(summary)) {
 			summary = StringUtil.shorten(
-				HtmlUtil.stripHtml(_kbArticle.getContent()), 200);
+				HtmlUtil.extractText(_kbArticle.getContent()), 200);
 		}
 
 		return summary;
