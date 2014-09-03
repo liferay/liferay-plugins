@@ -35,6 +35,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -249,7 +252,9 @@ public class SyncAccountService {
 		}
 	}
 
-	public static SyncAccount synchronizeSyncAccount(long syncAccountId) {
+	public static SyncAccount synchronizeSyncAccount(
+		long syncAccountId, long delay) {
+
 		Map<String, Object> parameters = new HashMap<String, Object>();
 
 		parameters.put("uuid", null);
@@ -257,7 +262,8 @@ public class SyncAccountService {
 		GetSyncContextEvent getSyncContextEvent = new GetSyncContextEvent(
 			syncAccountId, parameters);
 
-		getSyncContextEvent.run();
+		_scheduledExecutorService.schedule(
+			getSyncContextEvent, delay, TimeUnit.MILLISECONDS);
 
 		return SyncAccountService.fetchSyncAccount(syncAccountId);
 	}
@@ -287,6 +293,8 @@ public class SyncAccountService {
 		SyncAccountService.class);
 
 	private static Set<Long> _activeSyncAccountIds;
+	private static ScheduledExecutorService _scheduledExecutorService =
+		Executors.newScheduledThreadPool(5);
 	private static SyncAccountPersistence _syncAccountPersistence =
 		getSyncAccountPersistence();
 

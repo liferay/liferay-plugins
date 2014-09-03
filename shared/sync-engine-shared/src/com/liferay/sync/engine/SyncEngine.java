@@ -142,12 +142,14 @@ public class SyncEngine {
 			return;
 		}
 
-		SyncSiteService.synchronizeSyncSites(syncAccountId);
-
 		SyncWatchEventService.deleteSyncWatchEvents(syncAccountId);
 
 		SyncAccount syncAccount = SyncAccountService.synchronizeSyncAccount(
-			syncAccountId);
+			syncAccountId, 0);
+
+		if (syncAccount.getState() == SyncAccount.STATE_CONNECTED) {
+			SyncSiteService.synchronizeSyncSites(syncAccountId);
+		}
 
 		Path filePath = Paths.get(syncAccount.getFilePathName());
 

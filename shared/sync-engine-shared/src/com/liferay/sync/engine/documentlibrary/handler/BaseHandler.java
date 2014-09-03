@@ -19,6 +19,7 @@ import com.liferay.sync.engine.model.SyncAccount;
 import com.liferay.sync.engine.model.SyncFile;
 import com.liferay.sync.engine.service.SyncAccountService;
 import com.liferay.sync.engine.service.SyncFileService;
+import com.liferay.sync.engine.util.RetryUtil;
 
 import java.io.FileNotFoundException;
 
@@ -34,12 +35,6 @@ import org.apache.http.conn.HttpHostConnectException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import org.springframework.retry.RetryCallback;
-import org.springframework.retry.RetryContext;
-import org.springframework.retry.backoff.ExponentialBackOffPolicy;
-import org.springframework.retry.policy.SimpleRetryPolicy;
-import org.springframework.retry.support.RetryTemplate;
-
 /**
  * @author Shinn Lok
  */
@@ -51,8 +46,6 @@ public class BaseHandler implements Handler<Void> {
 
 	@Override
 	public void handleException(Exception e) {
-		_logger.error(e.getMessage(), e);
-
 		SyncAccount syncAccount = SyncAccountService.fetchSyncAccount(
 			getSyncAccountId());
 
@@ -95,6 +88,9 @@ public class BaseHandler implements Handler<Void> {
 				retryServerConnection();
 			}
 		}
+		else {
+			_logger.error(e.getMessage(), e);
+		}
 	}
 
 	@Override
@@ -135,47 +131,18 @@ public class BaseHandler implements Handler<Void> {
 	}
 
 	protected void retryServerConnection() {
-		RetryTemplate retryTemplate = new RetryTemplate();
+		SyncAccount syncAccount = SyncAccountService.fetchSyncAccount(
+			getSyncAccountId());
 
-		retryTemplate.setBackOffPolicy(new ExponentialBackOffPolicy());
+		SyncAccountService.synchronizeSyncAccount(
+			getSyncAccountId(),
+			RetryUtil.incrementRetryDelay(getSyncAccountId()));
 
-		SimpleRetryPolicy simpleRetryPolicy = new SimpleRetryPolicy();
-
-		simpleRetryPolicy.setMaxAttempts(Integer.MAX_VALUE);
-
-		retryTemplate.setRetryPolicy(simpleRetryPolicy);
-
-		RetryCallback<Object> retryCallback = new RetryCallback<Object>() {
-
-			@Override
-			public Object doWithRetry(RetryContext retryContext)
-				throws Exception {
-
-				SyncAccount syncAccount = SyncAccountService.fetchSyncAccount(
-					getSyncAccountId());
-
-				if (_logger.isDebugEnabled()) {
-					_logger.debug(
-						"Attempting to reconnect to {}. Retry #{}.",
-						syncAccount.getUrl(), retryContext.getRetryCount() + 1);
-				}
-
-				syncAccount = SyncAccountService.synchronizeSyncAccount(
-					getSyncAccountId());
-
-				if (syncAccount.getState() != SyncAccount.STATE_CONNECTED) {
-					throw new Exception();
-				}
-
-				return null;
-			}
-
-		};
-
-		try {
-			retryTemplate.execute(retryCallback);
-		}
-		catch (Exception e) {
+		if (_logger.isDebugEnabled()) {
+			_logger.debug(
+				"Attempting to reconnect to {}. Retry #{}.",
+				syncAccount.getUrl(),
+				RetryUtil.getRetryCount(getSyncAccountId()));
 		}
 	}
 
