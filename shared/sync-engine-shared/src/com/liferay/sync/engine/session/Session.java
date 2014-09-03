@@ -61,8 +61,6 @@ import org.apache.http.protocol.HttpContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import org.springframework.http.MediaType;
-
 /**
  * @author Shinn Lok
  * @author Dennis Ju
@@ -323,7 +321,8 @@ public class Session {
 		return new StringBody(
 			String.valueOf(value),
 			ContentType.create(
-				MediaType.TEXT_PLAIN_VALUE, Charset.defaultCharset()));
+				ContentType.TEXT_PLAIN.getMimeType(),
+				Charset.defaultCharset()));
 	}
 
 	private static Logger _logger = LoggerFactory.getLogger(Session.class);
