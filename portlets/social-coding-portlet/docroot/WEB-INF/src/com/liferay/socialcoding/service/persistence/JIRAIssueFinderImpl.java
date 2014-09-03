@@ -61,7 +61,7 @@ public class JIRAIssueFinderImpl
 
 			String sql = CustomSQLUtil.get(COUNT_BY_CD_P);
 
-			SQLQuery q = session.createSynchronizedSQLQuery(sql);
+			SQLQuery q = session.createSQLQuery(sql);
 
 			q.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
@@ -105,7 +105,7 @@ public class JIRAIssueFinderImpl
 
 			String sql = CustomSQLUtil.get(FIND_BY_KEY);
 
-			SQLQuery q = session.createSynchronizedSQLQuery(sql);
+			SQLQuery q = session.createSQLQuery(sql);
 
 			q.addEntity("jiraissue", JIRAIssueImpl.class);
 
@@ -150,7 +150,7 @@ public class JIRAIssueFinderImpl
 
 			String sql = CustomSQLUtil.get(FIND_BY_CD_P);
 
-			SQLQuery q = session.createSynchronizedSQLQuery(sql);
+			SQLQuery q = session.createSQLQuery(sql);
 
 			q.addEntity("jiraissue", JIRAIssueImpl.class);
 
