@@ -91,6 +91,9 @@ public class PortletPropsKeys {
 	public static final String KNOWLEDGE_BASE_SOCIAL_BOOKMARKS_DISPLAY_STYLE =
 		"knowledge.base.social.bookmarks.display.style";
 
+	public static final String KNOWLEDGE_BASE_SOURCE_URL_ENABLED =
+		"knowledge.base.source.url.enabled";
+
 	public static final String MARKDOWN_IMPORTER_ARTICLE_EXTENSIONS =
 		"markdown.importer.article.extensions";
 
