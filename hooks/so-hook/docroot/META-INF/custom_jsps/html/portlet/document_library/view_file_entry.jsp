@@ -34,7 +34,7 @@
 		%>
 
 		<div class="so-breadcrumbs">
-			<liferay-ui:breadcrumb showCurrentGroup="<%= false %>" showCurrentPortlet="<%= false %>" showGuestGroup="<%= false %>" showLayout="<%= true %>" showParentGroups="<%= false %>" />
+			<liferay-ui:breadcrumb showCurrentGroup="<%= false %>" showGuestGroup="<%= false %>" showLayout="<%= true %>" showParentGroups="<%= false %>" showPortletBreadcrumb="<%= false %>"/>
 		</div>
 	</c:if>
 </c:if>
