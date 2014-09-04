@@ -335,7 +335,7 @@ public class SyncFile extends StateAwareModel {
 		this.version = version;
 	}
 
-	@DatabaseField(useGetSet = true)
+	@DatabaseField(defaultValue = "", useGetSet = true)
 	protected String changeLog;
 
 	@DatabaseField(useGetSet = true)
@@ -347,7 +347,7 @@ public class SyncFile extends StateAwareModel {
 	@DatabaseField(useGetSet = true)
 	protected long createTime;
 
-	@DatabaseField(useGetSet = true, width = 16777216)
+	@DatabaseField(defaultValue = "", useGetSet = true, width = 16777216)
 	protected String description;
 
 	@DatabaseField(persisted = false)
