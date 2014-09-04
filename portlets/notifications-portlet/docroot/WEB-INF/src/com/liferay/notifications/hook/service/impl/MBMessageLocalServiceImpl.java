@@ -55,6 +55,12 @@ public class MBMessageLocalServiceImpl extends MBMessageLocalServiceWrapper {
 		MBMessage mbMessage = super.updateStatus(
 			userId, messageId, status, serviceContext);
 
+		if (mbMessage.getCategoryId() ==
+				MBCategoryConstants.DISCUSSION_CATEGORY_ID) {
+
+			return mbMessage;
+		}
+
 		int notificationType =
 			UserNotificationDefinition.NOTIFICATION_TYPE_ADD_ENTRY;
 
