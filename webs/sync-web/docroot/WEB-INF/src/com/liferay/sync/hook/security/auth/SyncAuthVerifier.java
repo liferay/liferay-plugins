@@ -73,17 +73,16 @@ public class SyncAuthVerifier extends BaseAutoLogin implements AuthVerifier {
 			HttpServletRequest request, HttpServletResponse response)
 		throws Exception {
 
-		for (String autoLoginClassName : _autoLoginClassNames) {
-			Thread currentThread = Thread.currentThread();
+		Thread currentThread = Thread.currentThread();
 
-			ClassLoader classLoader = currentThread.getContextClassLoader();
+		ClassLoader contextClassLoader = currentThread.getContextClassLoader();
 
-			try {
-				ClassLoader portalClassLoader =
-					PortalClassLoaderUtil.getClassLoader();
+		ClassLoader portalClassLoader = PortalClassLoaderUtil.getClassLoader();
 
-				currentThread.setContextClassLoader(portalClassLoader);
+		try {
+			currentThread.setContextClassLoader(portalClassLoader);
 
+			for (String autoLoginClassName : _autoLoginClassNames) {
 				Class<?> clazz = portalClassLoader.loadClass(
 					autoLoginClassName);
 
@@ -100,9 +99,9 @@ public class SyncAuthVerifier extends BaseAutoLogin implements AuthVerifier {
 					return credentials;
 				}
 			}
-			finally {
-				currentThread.setContextClassLoader(classLoader);
-			}
+		}
+		finally {
+			currentThread.setContextClassLoader(contextClassLoader);
 		}
 
 		return null;
