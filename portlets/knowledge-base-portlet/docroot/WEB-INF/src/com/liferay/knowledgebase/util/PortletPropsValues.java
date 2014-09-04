@@ -130,6 +130,10 @@ public class PortletPropsValues {
 		PortletProps.get(
 			PortletPropsKeys.KNOWLEDGE_BASE_SOCIAL_BOOKMARKS_DISPLAY_STYLE);
 
+	public static final String KNOWLEDGE_BASE_SOURCE_URL_EDIT_MESSAGE_KEY =
+		PortletProps.get(
+			PortletPropsKeys.KNOWLEDGE_BASE_SOURCE_URL_EDIT_MESSAGE_KEY);
+
 	public static final boolean KNOWLEDGE_BASE_SOURCE_URL_ENABLED =
 		GetterUtil.getBoolean(
 			PortletProps.get(
