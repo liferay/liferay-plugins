@@ -416,6 +416,21 @@ public interface KBArticleModel extends BaseModel<KBArticle>, ResourcedModel,
 	public void setMain(boolean main);
 
 	/**
+	 * Returns the source u r l of this k b article.
+	 *
+	 * @return the source u r l of this k b article
+	 */
+	@AutoEscape
+	public String getSourceURL();
+
+	/**
+	 * Sets the source u r l of this k b article.
+	 *
+	 * @param sourceURL the source u r l of this k b article
+	 */
+	public void setSourceURL(String sourceURL);
+
+	/**
 	 * Returns the status of this k b article.
 	 *
 	 * @return the status of this k b article

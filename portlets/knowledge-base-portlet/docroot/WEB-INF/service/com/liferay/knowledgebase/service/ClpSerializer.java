@@ -289,6 +289,12 @@ public class ClpSerializer {
 		}
 
 		if (className.equals(
+					"com.liferay.knowledgebase.KBArticleSourceURLException")) {
+			return new com.liferay.knowledgebase.KBArticleSourceURLException(throwable.getMessage(),
+				throwable.getCause());
+		}
+
+		if (className.equals(
 					"com.liferay.knowledgebase.KBArticleTitleException")) {
 			return new com.liferay.knowledgebase.KBArticleTitleException(throwable.getMessage(),
 				throwable.getCause());

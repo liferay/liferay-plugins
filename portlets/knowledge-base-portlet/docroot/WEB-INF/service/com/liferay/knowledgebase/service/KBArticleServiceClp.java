@@ -37,7 +37,8 @@ public class KBArticleServiceClp implements KBArticleService {
 		_methodParameterTypes3 = new String[] {
 				"java.lang.String", "long", "java.lang.String",
 				"java.lang.String", "java.lang.String", "java.lang.String",
-				"java.lang.String[][]", "java.lang.String[][]",
+				"java.lang.String", "java.lang.String[][]",
+				"java.lang.String[][]",
 				"com.liferay.portal.service.ServiceContext"
 			};
 
@@ -216,7 +217,7 @@ public class KBArticleServiceClp implements KBArticleService {
 
 		_methodParameterTypes35 = new String[] {
 				"long", "java.lang.String", "java.lang.String",
-				"java.lang.String", "java.lang.String[][]",
+				"java.lang.String", "java.lang.String", "java.lang.String[][]",
 				"java.lang.String[][]", "long[][]",
 				"com.liferay.portal.service.ServiceContext"
 			};
@@ -281,7 +282,8 @@ public class KBArticleServiceClp implements KBArticleService {
 		java.lang.String portletId, long parentResourcePrimKey,
 		java.lang.String title, java.lang.String urlTitle,
 		java.lang.String content, java.lang.String description,
-		java.lang.String[] sections, java.lang.String[] selectedFileNames,
+		java.lang.String sourceURL, java.lang.String[] sections,
+		java.lang.String[] selectedFileNames,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -302,6 +304,8 @@ public class KBArticleServiceClp implements KBArticleService {
 					ClpSerializer.translateInput(content),
 						
 					ClpSerializer.translateInput(description),
+						
+					ClpSerializer.translateInput(sourceURL),
 						
 					ClpSerializer.translateInput(sections),
 						
@@ -1506,8 +1510,9 @@ public class KBArticleServiceClp implements KBArticleService {
 	@Override
 	public com.liferay.knowledgebase.model.KBArticle updateKBArticle(
 		long resourcePrimKey, java.lang.String title, java.lang.String content,
-		java.lang.String description, java.lang.String[] sections,
-		java.lang.String[] selectedFileNames, long[] removeFileEntryIds,
+		java.lang.String description, java.lang.String sourceURL,
+		java.lang.String[] sections, java.lang.String[] selectedFileNames,
+		long[] removeFileEntryIds,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -1524,6 +1529,8 @@ public class KBArticleServiceClp implements KBArticleService {
 					ClpSerializer.translateInput(content),
 						
 					ClpSerializer.translateInput(description),
+						
+					ClpSerializer.translateInput(sourceURL),
 						
 					ClpSerializer.translateInput(sections),
 						

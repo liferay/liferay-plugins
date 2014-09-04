@@ -29973,6 +29973,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		kbArticleImpl.setViewCount(kbArticle.getViewCount());
 		kbArticleImpl.setLatest(kbArticle.isLatest());
 		kbArticleImpl.setMain(kbArticle.isMain());
+		kbArticleImpl.setSourceURL(kbArticle.getSourceURL());
 		kbArticleImpl.setStatus(kbArticle.getStatus());
 		kbArticleImpl.setStatusByUserId(kbArticle.getStatusByUserId());
 		kbArticleImpl.setStatusByUserName(kbArticle.getStatusByUserName());

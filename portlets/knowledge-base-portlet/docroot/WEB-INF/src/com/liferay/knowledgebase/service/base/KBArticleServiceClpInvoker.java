@@ -37,7 +37,8 @@ public class KBArticleServiceClpInvoker {
 		_methodParameterTypes98 = new String[] {
 				"java.lang.String", "long", "java.lang.String",
 				"java.lang.String", "java.lang.String", "java.lang.String",
-				"java.lang.String[][]", "java.lang.String[][]",
+				"java.lang.String", "java.lang.String[][]",
+				"java.lang.String[][]",
 				"com.liferay.portal.service.ServiceContext"
 			};
 
@@ -216,7 +217,7 @@ public class KBArticleServiceClpInvoker {
 
 		_methodParameterTypes130 = new String[] {
 				"long", "java.lang.String", "java.lang.String",
-				"java.lang.String", "java.lang.String[][]",
+				"java.lang.String", "java.lang.String", "java.lang.String[][]",
 				"java.lang.String[][]", "long[][]",
 				"com.liferay.portal.service.ServiceContext"
 			};
@@ -246,9 +247,10 @@ public class KBArticleServiceClpInvoker {
 				((Long)arguments[1]).longValue(),
 				(java.lang.String)arguments[2], (java.lang.String)arguments[3],
 				(java.lang.String)arguments[4], (java.lang.String)arguments[5],
-				(java.lang.String[])arguments[6],
+				(java.lang.String)arguments[6],
 				(java.lang.String[])arguments[7],
-				(com.liferay.portal.service.ServiceContext)arguments[8]);
+				(java.lang.String[])arguments[8],
+				(com.liferay.portal.service.ServiceContext)arguments[9]);
 		}
 
 		if (_methodName99.equals(name) &&
@@ -506,10 +508,10 @@ public class KBArticleServiceClpInvoker {
 				Arrays.deepEquals(_methodParameterTypes130, parameterTypes)) {
 			return KBArticleServiceUtil.updateKBArticle(((Long)arguments[0]).longValue(),
 				(java.lang.String)arguments[1], (java.lang.String)arguments[2],
-				(java.lang.String)arguments[3],
-				(java.lang.String[])arguments[4],
-				(java.lang.String[])arguments[5], (long[])arguments[6],
-				(com.liferay.portal.service.ServiceContext)arguments[7]);
+				(java.lang.String)arguments[3], (java.lang.String)arguments[4],
+				(java.lang.String[])arguments[5],
+				(java.lang.String[])arguments[6], (long[])arguments[7],
+				(com.liferay.portal.service.ServiceContext)arguments[8]);
 		}
 
 		if (_methodName131.equals(name) &&

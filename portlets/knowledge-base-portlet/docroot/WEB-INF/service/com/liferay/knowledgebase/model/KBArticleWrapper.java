@@ -71,6 +71,7 @@ public class KBArticleWrapper implements KBArticle, ModelWrapper<KBArticle> {
 		attributes.put("viewCount", getViewCount());
 		attributes.put("latest", getLatest());
 		attributes.put("main", getMain());
+		attributes.put("sourceURL", getSourceURL());
 		attributes.put("status", getStatus());
 		attributes.put("statusByUserId", getStatusByUserId());
 		attributes.put("statusByUserName", getStatusByUserName());
@@ -206,6 +207,12 @@ public class KBArticleWrapper implements KBArticle, ModelWrapper<KBArticle> {
 
 		if (main != null) {
 			setMain(main);
+		}
+
+		String sourceURL = (String)attributes.get("sourceURL");
+
+		if (sourceURL != null) {
+			setSourceURL(sourceURL);
 		}
 
 		Integer status = (Integer)attributes.get("status");
@@ -718,6 +725,26 @@ public class KBArticleWrapper implements KBArticle, ModelWrapper<KBArticle> {
 	@Override
 	public void setMain(boolean main) {
 		_kbArticle.setMain(main);
+	}
+
+	/**
+	* Returns the source u r l of this k b article.
+	*
+	* @return the source u r l of this k b article
+	*/
+	@Override
+	public java.lang.String getSourceURL() {
+		return _kbArticle.getSourceURL();
+	}
+
+	/**
+	* Sets the source u r l of this k b article.
+	*
+	* @param sourceURL the source u r l of this k b article
+	*/
+	@Override
+	public void setSourceURL(java.lang.String sourceURL) {
+		_kbArticle.setSourceURL(sourceURL);
 	}
 
 	/**

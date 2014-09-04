@@ -66,13 +66,15 @@ public class KBArticleServiceSoap {
 		java.lang.String portletId, long parentResourcePrimKey,
 		java.lang.String title, java.lang.String urlTitle,
 		java.lang.String content, java.lang.String description,
-		java.lang.String[] sections, java.lang.String[] selectedFileNames,
+		java.lang.String sourceURL, java.lang.String[] sections,
+		java.lang.String[] selectedFileNames,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws RemoteException {
 		try {
 			com.liferay.knowledgebase.model.KBArticle returnValue = KBArticleServiceUtil.addKBArticle(portletId,
 					parentResourcePrimKey, title, urlTitle, content,
-					description, sections, selectedFileNames, serviceContext);
+					description, sourceURL, sections, selectedFileNames,
+					serviceContext);
 
 			return com.liferay.knowledgebase.model.KBArticleSoap.toSoapModel(returnValue);
 		}
@@ -520,14 +522,15 @@ public class KBArticleServiceSoap {
 
 	public static com.liferay.knowledgebase.model.KBArticleSoap updateKBArticle(
 		long resourcePrimKey, java.lang.String title, java.lang.String content,
-		java.lang.String description, java.lang.String[] sections,
-		java.lang.String[] selectedFileNames, long[] removeFileEntryIds,
+		java.lang.String description, java.lang.String sourceURL,
+		java.lang.String[] sections, java.lang.String[] selectedFileNames,
+		long[] removeFileEntryIds,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws RemoteException {
 		try {
 			com.liferay.knowledgebase.model.KBArticle returnValue = KBArticleServiceUtil.updateKBArticle(resourcePrimKey,
-					title, content, description, sections, selectedFileNames,
-					removeFileEntryIds, serviceContext);
+					title, content, description, sourceURL, sections,
+					selectedFileNames, removeFileEntryIds, serviceContext);
 
 			return com.liferay.knowledgebase.model.KBArticleSoap.toSoapModel(returnValue);
 		}
