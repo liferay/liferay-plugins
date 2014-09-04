@@ -191,7 +191,7 @@ public class SolrIndexWriter extends BaseIndexWriter {
 
 		solrInputDocument.addField(localizedName, value, boost);
 
-		if (field.isSortable()) {
+		if (com.liferay.compat.portal.kernel.search.Field.isSortable(field)) {
 			String sortableFieldName = DocumentImpl.getSortableFieldName(
 				localizedName);
 

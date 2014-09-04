@@ -460,8 +460,9 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 					continue;
 				}
 
-				String sortFieldName = DocumentImpl.getSortFieldName(
-					sort, "score");
+				String sortFieldName =
+					com.liferay.compat.portal.kernel.search.DocumentImpl.
+						getSortFieldName(sort, "score");
 
 				ORDER order = ORDER.asc;
 
