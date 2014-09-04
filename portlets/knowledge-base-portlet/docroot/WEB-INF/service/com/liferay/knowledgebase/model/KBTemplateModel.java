@@ -14,6 +14,8 @@
 
 package com.liferay.knowledgebase.model;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.CacheModel;
@@ -39,6 +41,7 @@ import java.util.Date;
  * @see com.liferay.knowledgebase.model.impl.KBTemplateModelImpl
  * @generated
  */
+@ProviderType
 public interface KBTemplateModel extends BaseModel<KBTemplate>,
 	StagedGroupedModel {
 	/*

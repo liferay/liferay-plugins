@@ -14,6 +14,8 @@
 
 package com.liferay.knowledgebase.model;
 
+import aQute.bnd.annotation.ProviderType;
+
 import java.io.Serializable;
 
 import java.util.ArrayList;
@@ -27,6 +29,7 @@ import java.util.List;
  * @see com.liferay.knowledgebase.service.http.KBCommentServiceSoap
  * @generated
  */
+@ProviderType
 public class KBCommentSoap implements Serializable {
 	public static KBCommentSoap toSoapModel(KBComment model) {
 		KBCommentSoap soapModel = new KBCommentSoap();

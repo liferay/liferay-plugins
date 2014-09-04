@@ -14,6 +14,8 @@
 
 package com.liferay.knowledgebase.service;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.service.ServiceWrapper;
 
 /**
@@ -23,6 +25,7 @@ import com.liferay.portal.service.ServiceWrapper;
  * @see KBArticleService
  * @generated
  */
+@ProviderType
 public class KBArticleServiceWrapper implements KBArticleService,
 	ServiceWrapper<KBArticleService> {
 	public KBArticleServiceWrapper(KBArticleService kbArticleService) {
@@ -34,12 +37,13 @@ public class KBArticleServiceWrapper implements KBArticleService,
 		java.lang.String portletId, long parentResourcePrimKey,
 		java.lang.String title, java.lang.String urlTitle,
 		java.lang.String content, java.lang.String description,
-		java.lang.String[] sections, java.lang.String[] selectedFileNames,
+		java.lang.String sourceURL, java.lang.String[] sections,
+		java.lang.String[] selectedFileNames,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _kbArticleService.addKBArticle(portletId, parentResourcePrimKey,
-			title, urlTitle, content, description, sections, selectedFileNames,
-			serviceContext);
+			title, urlTitle, content, description, sourceURL, sections,
+			selectedFileNames, serviceContext);
 	}
 
 	@Override
@@ -326,12 +330,13 @@ public class KBArticleServiceWrapper implements KBArticleService,
 	@Override
 	public com.liferay.knowledgebase.model.KBArticle updateKBArticle(
 		long resourcePrimKey, java.lang.String title, java.lang.String content,
-		java.lang.String description, java.lang.String[] sections,
-		java.lang.String[] selectedFileNames, long[] removeFileEntryIds,
+		java.lang.String description, java.lang.String sourceURL,
+		java.lang.String[] sections, java.lang.String[] selectedFileNames,
+		long[] removeFileEntryIds,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _kbArticleService.updateKBArticle(resourcePrimKey, title,
-			content, description, sections, selectedFileNames,
+			content, description, sourceURL, sections, selectedFileNames,
 			removeFileEntryIds, serviceContext);
 	}
 

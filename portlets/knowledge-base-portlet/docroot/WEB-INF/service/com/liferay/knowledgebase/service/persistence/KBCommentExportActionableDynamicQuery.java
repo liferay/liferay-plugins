@@ -14,6 +14,8 @@
 
 package com.liferay.knowledgebase.service.persistence;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.knowledgebase.model.KBComment;
 
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
@@ -33,6 +35,7 @@ import com.liferay.portal.util.PortalUtil;
  * @generated
  */
 @Deprecated
+@ProviderType
 public class KBCommentExportActionableDynamicQuery
 	extends KBCommentActionableDynamicQuery {
 	public KBCommentExportActionableDynamicQuery(

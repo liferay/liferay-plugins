@@ -14,12 +14,15 @@
 
 package com.liferay.knowledgebase.service;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.service.InvokableLocalService;
 
 /**
  * @author Brian Wing Shun Chan
  * @generated
  */
+@ProviderType
 public class KBTemplateLocalServiceClp implements KBTemplateLocalService {
 	public KBTemplateLocalServiceClp(
 		InvokableLocalService invokableLocalService) {

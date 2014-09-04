@@ -14,6 +14,8 @@
 
 package com.liferay.knowledgebase.service.http;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.knowledgebase.service.KBTemplateServiceUtil;
 
 import com.liferay.portal.kernel.log.Log;
@@ -61,6 +63,7 @@ import java.rmi.RemoteException;
  * @see com.liferay.knowledgebase.service.KBTemplateServiceUtil
  * @generated
  */
+@ProviderType
 public class KBTemplateServiceSoap {
 	public static com.liferay.knowledgebase.model.KBTemplateSoap addKBTemplate(
 		java.lang.String portletId, java.lang.String title,

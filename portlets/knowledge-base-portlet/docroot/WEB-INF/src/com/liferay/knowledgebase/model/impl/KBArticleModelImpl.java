@@ -14,6 +14,8 @@
 
 package com.liferay.knowledgebase.model.impl;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.knowledgebase.model.KBArticle;
 import com.liferay.knowledgebase.model.KBArticleModel;
 import com.liferay.knowledgebase.model.KBArticleSoap;
@@ -62,6 +64,7 @@ import java.util.Map;
  * @generated
  */
 @JSON(strict = true)
+@ProviderType
 public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 	implements KBArticleModel {
 	/*
@@ -92,12 +95,13 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 			{ "viewCount", Types.INTEGER },
 			{ "latest", Types.BOOLEAN },
 			{ "main", Types.BOOLEAN },
+			{ "sourceURL", Types.VARCHAR },
 			{ "status", Types.INTEGER },
 			{ "statusByUserId", Types.BIGINT },
 			{ "statusByUserName", Types.VARCHAR },
 			{ "statusDate", Types.TIMESTAMP }
 		};
-	public static final String TABLE_SQL_CREATE = "create table KBArticle (uuid_ VARCHAR(75) null,kbArticleId LONG not null primary key,resourcePrimKey LONG,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,rootResourcePrimKey LONG,parentResourcePrimKey LONG,version INTEGER,title STRING null,urlTitle VARCHAR(75) null,content TEXT null,description STRING null,priority DOUBLE,sections STRING null,viewCount INTEGER,latest BOOLEAN,main BOOLEAN,status INTEGER,statusByUserId LONG,statusByUserName VARCHAR(75) null,statusDate DATE null)";
+	public static final String TABLE_SQL_CREATE = "create table KBArticle (uuid_ VARCHAR(75) null,kbArticleId LONG not null primary key,resourcePrimKey LONG,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,rootResourcePrimKey LONG,parentResourcePrimKey LONG,version INTEGER,title STRING null,urlTitle VARCHAR(75) null,content TEXT null,description STRING null,priority DOUBLE,sections STRING null,viewCount INTEGER,latest BOOLEAN,main BOOLEAN,sourceURL VARCHAR(75) null,status INTEGER,statusByUserId LONG,statusByUserName VARCHAR(75) null,statusDate DATE null)";
 	public static final String TABLE_SQL_DROP = "drop table KBArticle";
 	public static final String ORDER_BY_JPQL = " ORDER BY kbArticle.modifiedDate DESC";
 	public static final String ORDER_BY_SQL = " ORDER BY KBArticle.modifiedDate DESC";
@@ -113,18 +117,18 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.column.bitmask.enabled.com.liferay.knowledgebase.model.KBArticle"),
 			true);
-	public static long COMPANYID_COLUMN_BITMASK = 1L;
-	public static long GROUPID_COLUMN_BITMASK = 2L;
-	public static long LATEST_COLUMN_BITMASK = 4L;
-	public static long MAIN_COLUMN_BITMASK = 8L;
-	public static long PARENTRESOURCEPRIMKEY_COLUMN_BITMASK = 16L;
-	public static long RESOURCEPRIMKEY_COLUMN_BITMASK = 32L;
-	public static long SECTIONS_COLUMN_BITMASK = 64L;
-	public static long STATUS_COLUMN_BITMASK = 128L;
-	public static long URLTITLE_COLUMN_BITMASK = 256L;
-	public static long UUID_COLUMN_BITMASK = 512L;
-	public static long VERSION_COLUMN_BITMASK = 1024L;
-	public static long MODIFIEDDATE_COLUMN_BITMASK = 2048L;
+	public static final long COMPANYID_COLUMN_BITMASK = 1L;
+	public static final long GROUPID_COLUMN_BITMASK = 2L;
+	public static final long LATEST_COLUMN_BITMASK = 4L;
+	public static final long MAIN_COLUMN_BITMASK = 8L;
+	public static final long PARENTRESOURCEPRIMKEY_COLUMN_BITMASK = 16L;
+	public static final long RESOURCEPRIMKEY_COLUMN_BITMASK = 32L;
+	public static final long SECTIONS_COLUMN_BITMASK = 64L;
+	public static final long STATUS_COLUMN_BITMASK = 128L;
+	public static final long URLTITLE_COLUMN_BITMASK = 256L;
+	public static final long UUID_COLUMN_BITMASK = 512L;
+	public static final long VERSION_COLUMN_BITMASK = 1024L;
+	public static final long MODIFIEDDATE_COLUMN_BITMASK = 2048L;
 
 	/**
 	 * Converts the soap model instance into a normal model instance.
@@ -160,6 +164,7 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 		model.setViewCount(soapModel.getViewCount());
 		model.setLatest(soapModel.getLatest());
 		model.setMain(soapModel.getMain());
+		model.setSourceURL(soapModel.getSourceURL());
 		model.setStatus(soapModel.getStatus());
 		model.setStatusByUserId(soapModel.getStatusByUserId());
 		model.setStatusByUserName(soapModel.getStatusByUserName());
@@ -249,6 +254,7 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 		attributes.put("viewCount", getViewCount());
 		attributes.put("latest", getLatest());
 		attributes.put("main", getMain());
+		attributes.put("sourceURL", getSourceURL());
 		attributes.put("status", getStatus());
 		attributes.put("statusByUserId", getStatusByUserId());
 		attributes.put("statusByUserName", getStatusByUserName());
@@ -387,6 +393,12 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 
 		if (main != null) {
 			setMain(main);
+		}
+
+		String sourceURL = (String)attributes.get("sourceURL");
+
+		if (sourceURL != null) {
+			setSourceURL(sourceURL);
 		}
 
 		Integer status = (Integer)attributes.get("status");
@@ -827,6 +839,22 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 
 	@JSON
 	@Override
+	public String getSourceURL() {
+		if (_sourceURL == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _sourceURL;
+		}
+	}
+
+	@Override
+	public void setSourceURL(String sourceURL) {
+		_sourceURL = sourceURL;
+	}
+
+	@JSON
+	@Override
 	public int getStatus() {
 		return _status;
 	}
@@ -1049,6 +1077,7 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 		kbArticleImpl.setViewCount(getViewCount());
 		kbArticleImpl.setLatest(getLatest());
 		kbArticleImpl.setMain(getMain());
+		kbArticleImpl.setSourceURL(getSourceURL());
 		kbArticleImpl.setStatus(getStatus());
 		kbArticleImpl.setStatusByUserId(getStatusByUserId());
 		kbArticleImpl.setStatusByUserName(getStatusByUserName());
@@ -1259,6 +1288,14 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 
 		kbArticleCacheModel.main = getMain();
 
+		kbArticleCacheModel.sourceURL = getSourceURL();
+
+		String sourceURL = kbArticleCacheModel.sourceURL;
+
+		if ((sourceURL != null) && (sourceURL.length() == 0)) {
+			kbArticleCacheModel.sourceURL = null;
+		}
+
 		kbArticleCacheModel.status = getStatus();
 
 		kbArticleCacheModel.statusByUserId = getStatusByUserId();
@@ -1285,7 +1322,7 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(51);
+		StringBundler sb = new StringBundler(53);
 
 		sb.append("{uuid=");
 		sb.append(getUuid());
@@ -1329,6 +1366,8 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 		sb.append(getLatest());
 		sb.append(", main=");
 		sb.append(getMain());
+		sb.append(", sourceURL=");
+		sb.append(getSourceURL());
 		sb.append(", status=");
 		sb.append(getStatus());
 		sb.append(", statusByUserId=");
@@ -1344,7 +1383,7 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(79);
+		StringBundler sb = new StringBundler(82);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.knowledgebase.model.KBArticle");
@@ -1435,6 +1474,10 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 		sb.append(getMain());
 		sb.append("]]></column-value></column>");
 		sb.append(
+			"<column><column-name>sourceURL</column-name><column-value><![CDATA[");
+		sb.append(getSourceURL());
+		sb.append("]]></column-value></column>");
+		sb.append(
 			"<column><column-name>status</column-name><column-value><![CDATA[");
 		sb.append(getStatus());
 		sb.append("]]></column-value></column>");
@@ -1456,8 +1499,8 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 		return sb.toString();
 	}
 
-	private static ClassLoader _classLoader = KBArticle.class.getClassLoader();
-	private static Class<?>[] _escapedModelInterfaces = new Class[] {
+	private static final ClassLoader _classLoader = KBArticle.class.getClassLoader();
+	private static final Class<?>[] _escapedModelInterfaces = new Class[] {
 			KBArticle.class
 		};
 	private String _uuid;
@@ -1498,6 +1541,7 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 	private boolean _main;
 	private boolean _originalMain;
 	private boolean _setOriginalMain;
+	private String _sourceURL;
 	private int _status;
 	private int _originalStatus;
 	private boolean _setOriginalStatus;

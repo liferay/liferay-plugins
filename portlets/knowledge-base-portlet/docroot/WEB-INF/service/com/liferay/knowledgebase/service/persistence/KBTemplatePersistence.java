@@ -14,6 +14,8 @@
 
 package com.liferay.knowledgebase.service.persistence;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.knowledgebase.model.KBTemplate;
 
 import com.liferay.portal.service.persistence.BasePersistence;
@@ -30,6 +32,7 @@ import com.liferay.portal.service.persistence.BasePersistence;
  * @see KBTemplateUtil
  * @generated
  */
+@ProviderType
 public interface KBTemplatePersistence extends BasePersistence<KBTemplate> {
 	/*
 	 * NOTE FOR DEVELOPERS:

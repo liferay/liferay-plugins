@@ -14,6 +14,8 @@
 
 package com.liferay.knowledgebase.model;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.CacheModel;
@@ -41,6 +43,7 @@ import java.util.Date;
  * @see com.liferay.knowledgebase.model.impl.KBArticleModelImpl
  * @generated
  */
+@ProviderType
 public interface KBArticleModel extends BaseModel<KBArticle>, ResourcedModel,
 	StagedGroupedModel, WorkflowedModel {
 	/*
@@ -412,6 +415,21 @@ public interface KBArticleModel extends BaseModel<KBArticle>, ResourcedModel,
 	 * @param main the main of this k b article
 	 */
 	public void setMain(boolean main);
+
+	/**
+	 * Returns the source u r l of this k b article.
+	 *
+	 * @return the source u r l of this k b article
+	 */
+	@AutoEscape
+	public String getSourceURL();
+
+	/**
+	 * Sets the source u r l of this k b article.
+	 *
+	 * @param sourceURL the source u r l of this k b article
+	 */
+	public void setSourceURL(String sourceURL);
 
 	/**
 	 * Returns the status of this k b article.

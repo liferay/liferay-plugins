@@ -14,6 +14,8 @@
 
 package com.liferay.knowledgebase.model.impl;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.knowledgebase.model.KBTemplate;
 
 import com.liferay.portal.kernel.util.StringBundler;
@@ -34,6 +36,7 @@ import java.util.Date;
  * @see KBTemplate
  * @generated
  */
+@ProviderType
 public class KBTemplateCacheModel implements CacheModel<KBTemplate>,
 	Externalizable {
 	@Override

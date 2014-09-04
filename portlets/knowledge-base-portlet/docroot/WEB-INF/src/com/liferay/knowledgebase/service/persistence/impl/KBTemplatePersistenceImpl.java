@@ -14,6 +14,8 @@
 
 package com.liferay.knowledgebase.service.persistence.impl;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.knowledgebase.NoSuchTemplateException;
 import com.liferay.knowledgebase.model.KBTemplate;
 import com.liferay.knowledgebase.model.impl.KBTemplateImpl;
@@ -66,6 +68,7 @@ import java.util.Set;
  * @see KBTemplateUtil
  * @generated
  */
+@ProviderType
 public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 	implements KBTemplatePersistence {
 	/*
@@ -3026,11 +3029,11 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No KBTemplate exists with the key {";
 	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = GetterUtil.getBoolean(PropsUtil.get(
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
-	private static Log _log = LogFactoryUtil.getLog(KBTemplatePersistenceImpl.class);
-	private static Set<String> _badColumnNames = SetUtil.fromArray(new String[] {
+	private static final Log _log = LogFactoryUtil.getLog(KBTemplatePersistenceImpl.class);
+	private static final Set<String> _badColumnNames = SetUtil.fromArray(new String[] {
 				"uuid"
 			});
-	private static KBTemplate _nullKBTemplate = new KBTemplateImpl() {
+	private static final KBTemplate _nullKBTemplate = new KBTemplateImpl() {
 			@Override
 			public Object clone() {
 				return this;
@@ -3042,7 +3045,7 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 			}
 		};
 
-	private static CacheModel<KBTemplate> _nullKBTemplateCacheModel = new CacheModel<KBTemplate>() {
+	private static final CacheModel<KBTemplate> _nullKBTemplateCacheModel = new CacheModel<KBTemplate>() {
 			@Override
 			public KBTemplate toEntityModel() {
 				return _nullKBTemplate;

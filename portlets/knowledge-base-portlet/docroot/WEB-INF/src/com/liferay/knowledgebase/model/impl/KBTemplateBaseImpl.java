@@ -14,6 +14,8 @@
 
 package com.liferay.knowledgebase.model.impl;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.knowledgebase.model.KBTemplate;
 import com.liferay.knowledgebase.service.KBTemplateLocalServiceUtil;
 
@@ -29,6 +31,7 @@ import com.liferay.knowledgebase.service.KBTemplateLocalServiceUtil;
  * @see com.liferay.knowledgebase.model.KBTemplate
  * @generated
  */
+@ProviderType
 public abstract class KBTemplateBaseImpl extends KBTemplateModelImpl
 	implements KBTemplate {
 	/*

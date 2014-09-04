@@ -14,6 +14,8 @@
 
 package com.liferay.knowledgebase.service.persistence;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.knowledgebase.model.KBArticle;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
@@ -36,6 +38,7 @@ import java.util.List;
  * @see KBArticlePersistenceImpl
  * @generated
  */
+@ProviderType
 public class KBArticleUtil {
 	/*
 	 * NOTE FOR DEVELOPERS:

@@ -14,6 +14,8 @@
 
 package com.liferay.knowledgebase.service.persistence.impl;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.knowledgebase.NoSuchCommentException;
 import com.liferay.knowledgebase.model.KBComment;
 import com.liferay.knowledgebase.model.impl.KBCommentImpl;
@@ -66,6 +68,7 @@ import java.util.Set;
  * @see KBCommentUtil
  * @generated
  */
+@ProviderType
 public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 	implements KBCommentPersistence {
 	/*
@@ -5696,11 +5699,11 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No KBComment exists with the key {";
 	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = GetterUtil.getBoolean(PropsUtil.get(
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
-	private static Log _log = LogFactoryUtil.getLog(KBCommentPersistenceImpl.class);
-	private static Set<String> _badColumnNames = SetUtil.fromArray(new String[] {
+	private static final Log _log = LogFactoryUtil.getLog(KBCommentPersistenceImpl.class);
+	private static final Set<String> _badColumnNames = SetUtil.fromArray(new String[] {
 				"uuid"
 			});
-	private static KBComment _nullKBComment = new KBCommentImpl() {
+	private static final KBComment _nullKBComment = new KBCommentImpl() {
 			@Override
 			public Object clone() {
 				return this;
@@ -5712,7 +5715,7 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 			}
 		};
 
-	private static CacheModel<KBComment> _nullKBCommentCacheModel = new CacheModel<KBComment>() {
+	private static final CacheModel<KBComment> _nullKBCommentCacheModel = new CacheModel<KBComment>() {
 			@Override
 			public KBComment toEntityModel() {
 				return _nullKBComment;

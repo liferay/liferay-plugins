@@ -14,6 +14,8 @@
 
 package com.liferay.knowledgebase.model;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.lar.StagedModelType;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.ModelWrapper;
@@ -31,6 +33,7 @@ import java.util.Map;
  * @see KBTemplate
  * @generated
  */
+@ProviderType
 public class KBTemplateWrapper implements KBTemplate, ModelWrapper<KBTemplate> {
 	public KBTemplateWrapper(KBTemplate kbTemplate) {
 		_kbTemplate = kbTemplate;
@@ -522,5 +525,5 @@ public class KBTemplateWrapper implements KBTemplate, ModelWrapper<KBTemplate> {
 		_kbTemplate.resetOriginalValues();
 	}
 
-	private KBTemplate _kbTemplate;
+	private final KBTemplate _kbTemplate;
 }

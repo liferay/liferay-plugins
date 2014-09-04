@@ -14,6 +14,8 @@
 
 package com.liferay.knowledgebase.model;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.model.PersistedModel;
 
 /**
@@ -25,6 +27,7 @@ import com.liferay.portal.model.PersistedModel;
  * @see com.liferay.knowledgebase.model.impl.KBCommentModelImpl
  * @generated
  */
+@ProviderType
 public interface KBComment extends KBCommentModel, PersistedModel {
 	/*
 	 * NOTE FOR DEVELOPERS:

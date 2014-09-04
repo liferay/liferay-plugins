@@ -14,6 +14,8 @@
 
 package com.liferay.knowledgebase.service.http;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.knowledgebase.service.KBCommentServiceUtil;
 
 import com.liferay.portal.kernel.log.Log;
@@ -61,6 +63,7 @@ import java.rmi.RemoteException;
  * @see com.liferay.knowledgebase.service.KBCommentServiceUtil
  * @generated
  */
+@ProviderType
 public class KBCommentServiceSoap {
 	public static com.liferay.knowledgebase.model.KBCommentSoap deleteKBComment(
 		com.liferay.knowledgebase.model.KBCommentSoap kbComment)

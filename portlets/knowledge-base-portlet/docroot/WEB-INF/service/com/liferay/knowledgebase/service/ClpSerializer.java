@@ -14,6 +14,8 @@
 
 package com.liferay.knowledgebase.service;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.knowledgebase.model.KBArticleClp;
 import com.liferay.knowledgebase.model.KBCommentClp;
 import com.liferay.knowledgebase.model.KBTemplateClp;
@@ -38,6 +40,7 @@ import java.util.List;
 /**
  * @author Brian Wing Shun Chan
  */
+@ProviderType
 public class ClpSerializer {
 	public static String getServletContextName() {
 		if (Validator.isNotNull(_servletContextName)) {
@@ -381,6 +384,12 @@ public class ClpSerializer {
 		if (className.equals(
 					"com.liferay.knowledgebase.KBArticlePriorityException")) {
 			return new com.liferay.knowledgebase.KBArticlePriorityException(throwable.getMessage(),
+				throwable.getCause());
+		}
+
+		if (className.equals(
+					"com.liferay.knowledgebase.KBArticleSourceURLException")) {
+			return new com.liferay.knowledgebase.KBArticleSourceURLException(throwable.getMessage(),
 				throwable.getCause());
 		}
 

@@ -14,6 +14,8 @@
 
 package com.liferay.knowledgebase.model;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.lar.StagedModelType;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.ModelWrapper;
@@ -31,6 +33,7 @@ import java.util.Map;
  * @see KBComment
  * @generated
  */
+@ProviderType
 public class KBCommentWrapper implements KBComment, ModelWrapper<KBComment> {
 	public KBCommentWrapper(KBComment kbComment) {
 		_kbComment = kbComment;
@@ -628,5 +631,5 @@ public class KBCommentWrapper implements KBComment, ModelWrapper<KBComment> {
 		_kbComment.resetOriginalValues();
 	}
 
-	private KBComment _kbComment;
+	private final KBComment _kbComment;
 }

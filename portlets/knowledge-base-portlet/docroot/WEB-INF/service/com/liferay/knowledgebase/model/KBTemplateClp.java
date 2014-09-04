@@ -14,6 +14,8 @@
 
 package com.liferay.knowledgebase.model;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.knowledgebase.service.ClpSerializer;
 import com.liferay.knowledgebase.service.KBTemplateLocalServiceUtil;
 
@@ -42,6 +44,7 @@ import java.util.Map;
 /**
  * @author Brian Wing Shun Chan
  */
+@ProviderType
 public class KBTemplateClp extends BaseModelImpl<KBTemplate>
 	implements KBTemplate {
 	public KBTemplateClp() {

@@ -14,6 +14,8 @@
 
 package com.liferay.knowledgebase.model.impl;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.knowledgebase.model.KBComment;
 
 import com.liferay.portal.kernel.util.StringBundler;
@@ -34,6 +36,7 @@ import java.util.Date;
  * @see KBComment
  * @generated
  */
+@ProviderType
 public class KBCommentCacheModel implements CacheModel<KBComment>,
 	Externalizable {
 	@Override

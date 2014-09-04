@@ -14,12 +14,15 @@
 
 package com.liferay.knowledgebase.service;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.service.InvokableService;
 
 /**
  * @author Brian Wing Shun Chan
  * @generated
  */
+@ProviderType
 public class KBTemplateServiceClp implements KBTemplateService {
 	public KBTemplateServiceClp(InvokableService invokableService) {
 		_invokableService = invokableService;

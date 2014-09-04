@@ -14,6 +14,8 @@
 
 package com.liferay.knowledgebase.service.base;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.knowledgebase.model.KBTemplate;
 import com.liferay.knowledgebase.service.KBTemplateLocalService;
 import com.liferay.knowledgebase.service.persistence.KBArticlePersistence;
@@ -70,6 +72,7 @@ import javax.sql.DataSource;
  * @see com.liferay.knowledgebase.service.KBTemplateLocalServiceUtil
  * @generated
  */
+@ProviderType
 public abstract class KBTemplateLocalServiceBaseImpl
 	extends BaseLocalServiceImpl implements KBTemplateLocalService,
 		IdentifiableBean {

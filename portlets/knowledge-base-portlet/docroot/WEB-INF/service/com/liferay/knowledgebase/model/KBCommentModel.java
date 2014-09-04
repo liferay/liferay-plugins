@@ -14,6 +14,8 @@
 
 package com.liferay.knowledgebase.model;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.model.AttachedModel;
 import com.liferay.portal.model.BaseModel;
@@ -40,6 +42,7 @@ import java.util.Date;
  * @see com.liferay.knowledgebase.model.impl.KBCommentModelImpl
  * @generated
  */
+@ProviderType
 public interface KBCommentModel extends AttachedModel, BaseModel<KBComment>,
 	StagedGroupedModel {
 	/*

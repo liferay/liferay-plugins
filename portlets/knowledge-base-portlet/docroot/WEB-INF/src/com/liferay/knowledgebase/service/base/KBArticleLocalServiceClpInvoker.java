@@ -14,6 +14,8 @@
 
 package com.liferay.knowledgebase.service.base;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.knowledgebase.service.KBArticleLocalServiceUtil;
 
 import java.util.Arrays;
@@ -22,6 +24,7 @@ import java.util.Arrays;
  * @author Brian Wing Shun Chan
  * @generated
  */
+@ProviderType
 public class KBArticleLocalServiceClpInvoker {
 	public KBArticleLocalServiceClpInvoker() {
 		_methodName0 = "addKBArticle";
@@ -153,8 +156,8 @@ public class KBArticleLocalServiceClpInvoker {
 
 		_methodParameterTypes122 = new String[] {
 				"long", "long", "java.lang.String", "java.lang.String",
-				"java.lang.String", "java.lang.String", "java.lang.String[][]",
-				"java.lang.String[][]",
+				"java.lang.String", "java.lang.String", "java.lang.String",
+				"java.lang.String[][]", "java.lang.String[][]",
 				"com.liferay.portal.service.ServiceContext"
 			};
 
@@ -390,7 +393,7 @@ public class KBArticleLocalServiceClpInvoker {
 
 		_methodParameterTypes165 = new String[] {
 				"long", "long", "java.lang.String", "java.lang.String",
-				"java.lang.String", "java.lang.String[][]",
+				"java.lang.String", "java.lang.String", "java.lang.String[][]",
 				"java.lang.String[][]", "long[][]",
 				"com.liferay.portal.service.ServiceContext"
 			};
@@ -578,9 +581,10 @@ public class KBArticleLocalServiceClpInvoker {
 				((Long)arguments[1]).longValue(),
 				(java.lang.String)arguments[2], (java.lang.String)arguments[3],
 				(java.lang.String)arguments[4], (java.lang.String)arguments[5],
-				(java.lang.String[])arguments[6],
+				(java.lang.String)arguments[6],
 				(java.lang.String[])arguments[7],
-				(com.liferay.portal.service.ServiceContext)arguments[8]);
+				(java.lang.String[])arguments[8],
+				(com.liferay.portal.service.ServiceContext)arguments[9]);
 		}
 
 		if (_methodName123.equals(name) &&
@@ -913,10 +917,10 @@ public class KBArticleLocalServiceClpInvoker {
 			return KBArticleLocalServiceUtil.updateKBArticle(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				(java.lang.String)arguments[2], (java.lang.String)arguments[3],
-				(java.lang.String)arguments[4],
-				(java.lang.String[])arguments[5],
-				(java.lang.String[])arguments[6], (long[])arguments[7],
-				(com.liferay.portal.service.ServiceContext)arguments[8]);
+				(java.lang.String)arguments[4], (java.lang.String)arguments[5],
+				(java.lang.String[])arguments[6],
+				(java.lang.String[])arguments[7], (long[])arguments[8],
+				(com.liferay.portal.service.ServiceContext)arguments[9]);
 		}
 
 		if (_methodName166.equals(name) &&

@@ -14,6 +14,8 @@
 
 package com.liferay.knowledgebase.service.persistence;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.knowledgebase.model.KBComment;
 
 import com.liferay.portal.service.persistence.BasePersistence;
@@ -30,6 +32,7 @@ import com.liferay.portal.service.persistence.BasePersistence;
  * @see KBCommentUtil
  * @generated
  */
+@ProviderType
 public interface KBCommentPersistence extends BasePersistence<KBComment> {
 	/*
 	 * NOTE FOR DEVELOPERS:

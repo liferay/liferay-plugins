@@ -14,6 +14,8 @@
 
 package com.liferay.knowledgebase.model;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.knowledgebase.service.ClpSerializer;
 import com.liferay.knowledgebase.service.KBCommentLocalServiceUtil;
 
@@ -43,6 +45,7 @@ import java.util.Map;
 /**
  * @author Brian Wing Shun Chan
  */
+@ProviderType
 public class KBCommentClp extends BaseModelImpl<KBComment> implements KBComment {
 	public KBCommentClp() {
 	}

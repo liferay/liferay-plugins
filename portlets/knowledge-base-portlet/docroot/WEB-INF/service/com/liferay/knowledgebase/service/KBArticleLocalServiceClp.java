@@ -14,12 +14,15 @@
 
 package com.liferay.knowledgebase.service;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.service.InvokableLocalService;
 
 /**
  * @author Brian Wing Shun Chan
  * @generated
  */
+@ProviderType
 public class KBArticleLocalServiceClp implements KBArticleLocalService {
 	public KBArticleLocalServiceClp(InvokableLocalService invokableLocalService) {
 		_invokableLocalService = invokableLocalService;
@@ -34,8 +37,8 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 
 		_methodParameterTypes1 = new String[] {
 				"long", "long", "java.lang.String", "java.lang.String",
-				"java.lang.String", "java.lang.String", "java.lang.String[][]",
-				"java.lang.String[][]",
+				"java.lang.String", "java.lang.String", "java.lang.String",
+				"java.lang.String[][]", "java.lang.String[][]",
 				"com.liferay.portal.service.ServiceContext"
 			};
 
@@ -376,7 +379,7 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 
 		_methodParameterTypes67 = new String[] {
 				"long", "long", "java.lang.String", "java.lang.String",
-				"java.lang.String", "java.lang.String[][]",
+				"java.lang.String", "java.lang.String", "java.lang.String[][]",
 				"java.lang.String[][]", "long[][]",
 				"com.liferay.portal.service.ServiceContext"
 			};
@@ -444,8 +447,8 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 	public com.liferay.knowledgebase.model.KBArticle addKBArticle(long userId,
 		long parentResourcePrimKey, java.lang.String title,
 		java.lang.String urlTitle, java.lang.String content,
-		java.lang.String description, java.lang.String[] sections,
-		java.lang.String[] selectedFileNames,
+		java.lang.String description, java.lang.String sourceURL,
+		java.lang.String[] sections, java.lang.String[] selectedFileNames,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
@@ -465,6 +468,8 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 					ClpSerializer.translateInput(content),
 						
 					ClpSerializer.translateInput(description),
+						
+					ClpSerializer.translateInput(sourceURL),
 						
 					ClpSerializer.translateInput(sections),
 						
@@ -2398,8 +2403,8 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 	public com.liferay.knowledgebase.model.KBArticle updateKBArticle(
 		long userId, long resourcePrimKey, java.lang.String title,
 		java.lang.String content, java.lang.String description,
-		java.lang.String[] sections, java.lang.String[] selectedFileNames,
-		long[] removeFileEntryIds,
+		java.lang.String sourceURL, java.lang.String[] sections,
+		java.lang.String[] selectedFileNames, long[] removeFileEntryIds,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
@@ -2417,6 +2422,8 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 					ClpSerializer.translateInput(content),
 						
 					ClpSerializer.translateInput(description),
+						
+					ClpSerializer.translateInput(sourceURL),
 						
 					ClpSerializer.translateInput(sections),
 						
