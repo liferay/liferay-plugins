@@ -26,7 +26,6 @@ import com.liferay.repository.external.ExtRepositoryAdapter;
 import com.liferay.repository.external.ExtRepositoryFileVersion;
 
 import java.io.InputStream;
-
 import java.util.Date;
 
 /**
@@ -88,6 +87,11 @@ public class ExtRepositoryFileVersionAdapter
 	@Override
 	public long getFileEntryId() {
 		return _extRepositoryFileEntryAdapter.getFileEntryId();
+	}
+
+	@Override
+	public String getFileName() {
+		return DLUtil.getSanitizedFileName(getTitle(), getExtension());
 	}
 
 	@Override
