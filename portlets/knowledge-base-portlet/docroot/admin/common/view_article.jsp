@@ -29,7 +29,7 @@ if (enableKBArticleViewCountIncrement && !kbArticle.isDraft()) {
 %>
 
 <div class="float-container kb-entity-header">
-	<c:if test="<%= PortletPropsValues.KNOWLEDGE_BASE_SOURCE_URL_ENABLED && KnowledgeBaseUtil.isValidSourceURL(kbArticle) %>">
+	<c:if test="<%= PortletPropsValues.KNOWLEDGE_BASE_SOURCE_URL_ENABLED && Validator.isUrl(kbArticle.getSourceURL()) %>">
 		<a href="<%= kbArticle.getSourceURL() %>" target="_blank">
 			<span class="kb-article-source-url label label-success">
 				<liferay-ui:message key="<%= PortletPropsValues.KNOWLEDGE_BASE_SOURCE_URL_EDIT_MESSAGE_KEY %>" />

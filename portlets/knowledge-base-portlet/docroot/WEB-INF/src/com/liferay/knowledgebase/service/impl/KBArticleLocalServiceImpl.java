@@ -79,9 +79,6 @@ import com.liferay.portlet.asset.model.AssetLinkConstants;
 
 import java.io.InputStream;
 
-import java.net.MalformedURLException;
-import java.net.URL;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
@@ -1812,11 +1809,8 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			return;
 		}
 
-		try {
-			new URL(sourceURL);
-		}
-		catch (MalformedURLException mue) {
-			throw new KBArticleSourceURLException(mue);
+		if (!Validator.isUrl(sourceURL)) {
+			throw new KBArticleSourceURLException(sourceURL);
 		}
 	}
 

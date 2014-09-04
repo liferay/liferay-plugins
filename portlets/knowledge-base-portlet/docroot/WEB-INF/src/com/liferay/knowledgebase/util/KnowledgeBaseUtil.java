@@ -53,9 +53,6 @@ import com.liferay.portal.util.PortalUtil;
 
 import java.io.InputStream;
 
-import java.net.MalformedURLException;
-import java.net.URL;
-
 import java.util.HashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -354,17 +351,6 @@ public class KnowledgeBaseUtil {
 
 		return ModelHintsUtil.trimString(
 			KBArticle.class.getName(), "urlTitle", title);
-	}
-
-	public static boolean isValidSourceURL(KBArticle kbArticle) {
-		try {
-			new URL(kbArticle.getSourceURL());
-
-			return true;
-		}
-		catch (MalformedURLException mue) {
-			return false;
-		}
 	}
 
 	public static List<KBArticle> sort(
