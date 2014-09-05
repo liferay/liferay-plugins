@@ -19,6 +19,8 @@
 <aui:form name="fm">
 	<aui:input label="message" name="message" type="textarea" />
 
+	<aui:input label="url" name="url" />
+
 	<aui:button disabled="<%= !PushNotificationsPermission.contains(permissionChecker, ActionKeys.SEND_NOTIFICATION) %>" type="submit" value="send" />
 </aui:form>
 
@@ -31,11 +33,17 @@
 			event.halt();
 
 			var message = form.one('textarea[name="<portlet:namespace />message"]').val();
+			var url = form.one('input[name="<portlet:namespace />url"]').val();
 
 			Liferay.Service(
 				'/push-notifications-portlet.pushnotificationsdevice/send-push-notification',
 				{
-					message: message
+					payload: A.JSON.stringify(
+						{
+							message: message,
+							url: url
+						}
+					)
 				}
 			);
 		}
