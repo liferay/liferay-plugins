@@ -21,6 +21,11 @@ import java.util.List;
  */
 public interface GGroupManager {
 
+	public void addGGroup(
+			String groupEmailAddress, String groupName, String description,
+			String emailPermission)
+		throws GoogleAppsException;
+
 	public void addGGroupMember(
 			String groupEmailAddress, String memberEmailAddress)
 		throws GoogleAppsException;
