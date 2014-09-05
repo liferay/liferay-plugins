@@ -64,10 +64,16 @@ public class CalendarUtil {
 			new HashMap<Integer, Map<Integer, List<Integer>>>();
 
 		for (CalendarBooking calendarBooking : calendarBookings) {
+			TimeZone displayTimeZone = timeZone;
+
+			if (calendarBooking.isAllDay()) {
+				displayTimeZone = _utcTimeZone;
+			}
+
 			java.util.Calendar startTimeJCalendar = JCalendarUtil.getJCalendar(
-				calendarBooking.getStartTime(), timeZone);
+				calendarBooking.getStartTime(), displayTimeZone);
 			java.util.Calendar endTimeJCalendar = JCalendarUtil.getJCalendar(
-				calendarBooking.getEndTime(), timeZone);
+				calendarBooking.getEndTime(), displayTimeZone);
 
 			long days = JCalendarUtil.getDaysBetween(
 				startTimeJCalendar, endTimeJCalendar);
@@ -413,5 +419,7 @@ public class CalendarUtil {
 
 		return jsonObject;
 	}
+
+	private static TimeZone _utcTimeZone = TimeZone.getTimeZone(StringPool.UTC);
 
 }
