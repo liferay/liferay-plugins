@@ -100,13 +100,13 @@ public class PushNotificationsDeviceServiceImpl
 	}
 
 	@Override
-	public void sendPushNotification(long toUserId, String message)
+	public void sendPushNotification(long toUserId, String payload)
 		throws PortalException, SystemException {
 
 		PushNotificationsPermission.check(
 			getPermissionChecker(), ActionKeys.SEND_NOTIFICATION);
 
-		JSONObject jsonObject = createJSONObject(message);
+		JSONObject jsonObject = createJSONObject(payload);
 
 		if (_log.isDebugEnabled()) {
 			_log.debug(
@@ -118,13 +118,13 @@ public class PushNotificationsDeviceServiceImpl
 	}
 
 	@Override
-	public void sendPushNotification(String message)
+	public void sendPushNotification(String payload)
 		throws PortalException, SystemException {
 
 		PushNotificationsPermission.check(
 			getPermissionChecker(), ActionKeys.SEND_NOTIFICATION);
 
-		JSONObject jsonObject = createJSONObject(message);
+		JSONObject jsonObject = createJSONObject(payload);
 
 		if (_log.isDebugEnabled()) {
 			_log.debug("Sending message " + jsonObject + " to all users");
@@ -134,13 +134,20 @@ public class PushNotificationsDeviceServiceImpl
 			jsonObject, QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 	}
 
-	protected JSONObject createJSONObject(String message)
+	protected JSONObject createJSONObject(String payload)
 		throws PortalException {
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
-		jsonObject.put(PushNotificationsConstants.FROM_USER_ID, getUserId());
-		jsonObject.put(PushNotificationsConstants.MESSAGE, message);
+		jsonObject.put(
+			PushNotificationsConstants.PAYLOAD,
+			JSONFactoryUtil.createJSONObject(payload));
+
+		JSONObject fromUser = JSONFactoryUtil.createJSONObject();
+
+		fromUser.put(PushNotificationsConstants.USER_ID, getUserId());
+
+		jsonObject.put(PushNotificationsConstants.FROM_USER, fromUser);
 
 		return jsonObject;
 	}
