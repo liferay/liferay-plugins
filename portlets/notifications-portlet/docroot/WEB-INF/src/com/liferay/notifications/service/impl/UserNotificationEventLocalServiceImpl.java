@@ -34,46 +34,27 @@ public class UserNotificationEventLocalServiceImpl
 			boolean actionRequired, boolean delivered, boolean archived)
 		throws PortalException, SystemException {
 
-		User user = userPersistence.findByPrimaryKey(userId);
+		validate(userNotificationEventId);
 
-		UserNotificationEventLocalServiceUtil.getUserNotificationEvent(
-			userNotificationEventId);
+		User user = userPersistence.findByPrimaryKey(userId);
 
 		long notificationEventId = counterLocalService.increment();
 
 		UserNotificationEvent userNotificationEvent =
 			userNotificationEventPersistence.create(notificationEventId);
 
+		userNotificationEvent.setCompanyId(user.getCompanyId());
 		userNotificationEvent.setUserId(user.getUserId());
 		userNotificationEvent.setUserNotificationEventId(
 			userNotificationEventId);
 		userNotificationEvent.setTimestamp(timeStamp);
-		userNotificationEvent.setActionRequired(actionRequired);
 		userNotificationEvent.setDelivered(delivered);
+		userNotificationEvent.setActionRequired(actionRequired);
 		userNotificationEvent.setArchived(archived);
 
-		userNotificationEventPersistence.update(userNotificationEvent, false);
+		userNotificationEventPersistence.update(userNotificationEvent);
 
 		return userNotificationEvent;
-	}
-
-	@Override
-	public UserNotificationEvent deleteUserNotificationEvent(
-			long notificationEventId)
-		throws PortalException, SystemException {
-
-		userNotificationEventPersistence.findByPrimaryKey(notificationEventId);
-
-		return userNotificationEventPersistence.remove(notificationEventId);
-	}
-
-	public UserNotificationEvent
-		fetchNotificationEventByUserNotificationEventId(
-			long UserNotificationEventId)
-		throws PortalException, SystemException {
-
-		return userNotificationEventPersistence.fetchByUserNotificationEventId(
-			UserNotificationEventId);
 	}
 
 	public List<UserNotificationEvent> getArchivedUserNotificationEvents(
@@ -94,20 +75,28 @@ public class UserNotificationEventLocalServiceImpl
 	}
 
 	public List<UserNotificationEvent> getDeliveredUserNotificationEvents(
-			long userId, boolean actionRequired, boolean delivered, int start,
+			long userId, boolean delivered, boolean actionRequired, int start,
 			int end)
 		throws PortalException, SystemException {
 
-		return userNotificationEventPersistence.findByU_A_D(
-			userId, actionRequired, delivered, start, end);
+		return userNotificationEventPersistence.findByU_D_A(
+			userId, delivered, actionRequired, start, end);
 	}
 
 	public int getDeliveredUserNotificationEventsCount(
-			long userId, boolean actionRequired, boolean delivered)
+			long userId, boolean delivered, boolean actionRequired)
 		throws PortalException, SystemException {
 
-		return userNotificationEventPersistence.countByU_A_D(
-			userId, actionRequired, delivered);
+		return userNotificationEventPersistence.countByU_D_A(
+			userId, delivered, actionRequired);
+	}
+
+	public UserNotificationEvent getNotificationEventByUserNotificationEventId(
+			long userNotificationEventId)
+		throws PortalException, SystemException {
+
+		return userNotificationEventPersistence.findByUserNotificationEventId(
+			userNotificationEventId);
 	}
 
 	public List<UserNotificationEvent> getUserNotificationEvents(
@@ -127,31 +116,29 @@ public class UserNotificationEventLocalServiceImpl
 	}
 
 	public UserNotificationEvent updateUserNotificationEvent(
-			long notificationEventId, long userNotificationEventId, long userId,
-			long timeStamp, boolean actionRequired, boolean delivered,
-			boolean archived)
+			long notificationEventId, long timeStamp, boolean actionRequired,
+			boolean delivered, boolean archived)
 		throws PortalException, SystemException {
-
-		User user = userPersistence.findByPrimaryKey(userId);
-
-		UserNotificationEventLocalServiceUtil.getUserNotificationEvent(
-			userNotificationEventId);
 
 		UserNotificationEvent userNotificationEvent =
 			userNotificationEventPersistence.findByPrimaryKey(
 				notificationEventId);
 
-		userNotificationEvent.setUserId(user.getUserId());
-		userNotificationEvent.setUserNotificationEventId(
-			userNotificationEventId);
 		userNotificationEvent.setTimestamp(timeStamp);
 		userNotificationEvent.setActionRequired(actionRequired);
 		userNotificationEvent.setDelivered(delivered);
 		userNotificationEvent.setArchived(archived);
 
-		userNotificationEventPersistence.update(userNotificationEvent, false);
+		userNotificationEventPersistence.update(userNotificationEvent);
 
 		return userNotificationEvent;
+	}
+
+	protected void validate(long userNotificationEventId)
+		throws PortalException, SystemException {
+
+		UserNotificationEventLocalServiceUtil.getUserNotificationEvent(
+			userNotificationEventId);
 	}
 
 }

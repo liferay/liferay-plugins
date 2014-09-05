@@ -14,7 +14,8 @@
 
 package com.liferay.notifications.util;
 
-import com.liferay.compat.portal.util.PortalUtil;
+import com.liferay.notifications.model.UserNotificationEvent;
+import com.liferay.notifications.service.UserNotificationEventLocalServiceUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
@@ -31,10 +32,8 @@ import com.liferay.portal.kernel.util.ObjectValuePair;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.model.Subscription;
 import com.liferay.portal.model.UserNotificationDeliveryConstants;
-import com.liferay.portal.model.UserNotificationEvent;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.SubscriptionLocalServiceUtil;
-import com.liferay.portal.service.UserNotificationEventLocalServiceUtil;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.asset.model.AssetRenderer;
@@ -51,17 +50,16 @@ import java.util.Set;
  */
 public class NotificationsUtil {
 
-	public static List<UserNotificationEvent> getArchivedUserNotificationEvents(
+	public static List<com.liferay.portal.model.UserNotificationEvent>
+		getArchivedUserNotificationEvents(
 			long userId, boolean actionRequired, boolean archived, int start,
 			int end)
 		throws PortalException, SystemException {
 
-		List<com.liferay.notifications.model.UserNotificationEvent>
-			notificationEvents =
-				com.liferay.notifications.service.
-					UserNotificationEventLocalServiceUtil.
-						getArchivedUserNotificationEvents(
-							userId, actionRequired, archived, start, end);
+		List<UserNotificationEvent> notificationEvents =
+			UserNotificationEventLocalServiceUtil.
+				getArchivedUserNotificationEvents(
+					userId, actionRequired, archived, start, end);
 
 		return getUserNotificationEvents(notificationEvents);
 	}
@@ -71,37 +69,33 @@ public class NotificationsUtil {
 		throws PortalException, SystemException {
 
 		return
-			com.liferay.notifications.service.
-				UserNotificationEventLocalServiceUtil.
-					getArchivedUserNotificationEventsCount(
-						userId, actionRequired, archived);
+			UserNotificationEventLocalServiceUtil.
+				getArchivedUserNotificationEventsCount(
+					userId, actionRequired, archived);
 	}
 
-	public static List<UserNotificationEvent>
+	public static List<com.liferay.portal.model.UserNotificationEvent>
 			getDeliveredUserNotificationEvents(
-				long userId, boolean actionRequired, boolean delivered,
+				long userId, boolean delivered, boolean actionRequired,
 				int start, int end)
 		throws PortalException, SystemException {
 
-		List<com.liferay.notifications.model.UserNotificationEvent>
-			notificationEvents =
-				com.liferay.notifications.service.
-					UserNotificationEventLocalServiceUtil.
-						getDeliveredUserNotificationEvents(
-							userId, actionRequired, delivered, start, end);
+		List<UserNotificationEvent> notificationEvents =
+			UserNotificationEventLocalServiceUtil.
+				getDeliveredUserNotificationEvents(
+					userId, delivered, actionRequired, start, end);
 
 		return getUserNotificationEvents(notificationEvents);
 	}
 
 	public static int getDeliveredUserNotificationEventsCount(
-			long userId, boolean actionRequired, boolean delivered)
+			long userId, boolean delivered, boolean actionRequired)
 		throws PortalException, SystemException {
 
 		return
-			com.liferay.notifications.service.
-				UserNotificationEventLocalServiceUtil.
-					getDeliveredUserNotificationEventsCount(
-						userId, actionRequired, delivered);
+			UserNotificationEventLocalServiceUtil.
+				getDeliveredUserNotificationEventsCount(
+					userId, delivered, actionRequired);
 	}
 
 	public static String getEntryURL(
@@ -135,16 +129,14 @@ public class NotificationsUtil {
 		}
 	}
 
-	public static List<UserNotificationEvent> getUserNotificationEvents(
+	public static List<com.liferay.portal.model.UserNotificationEvent>
+		getUserNotificationEvents(
 			long userId, boolean actionRequired, int start, int end)
 		throws PortalException, SystemException {
 
-		List<com.liferay.notifications.model.UserNotificationEvent>
-			notificationEvents =
-				com.liferay.notifications.service.
-					UserNotificationEventLocalServiceUtil.
-						getUserNotificationEvents(
-							userId, actionRequired, start, end);
+		List<UserNotificationEvent> notificationEvents =
+			UserNotificationEventLocalServiceUtil.getUserNotificationEvents(
+				userId, actionRequired, start, end);
 
 		return getUserNotificationEvents(notificationEvents);
 	}
@@ -154,9 +146,8 @@ public class NotificationsUtil {
 		throws PortalException, SystemException {
 
 		return
-			com.liferay.notifications.service.
-				UserNotificationEventLocalServiceUtil.
-					getUserNotificationEventsCount(userId, actionRequired);
+			UserNotificationEventLocalServiceUtil.
+				getUserNotificationEventsCount(userId, actionRequired);
 	}
 
 	public static void sendNotificationEvent(
@@ -182,20 +173,22 @@ public class NotificationsUtil {
 				subscribersOVPs));
 	}
 
-	protected static List<UserNotificationEvent> getUserNotificationEvents(
-			List<com.liferay.notifications.model.UserNotificationEvent>
-				notificationEvents)
+	protected static List<com.liferay.portal.model.UserNotificationEvent>
+		getUserNotificationEvents(
+			List<UserNotificationEvent> notificationEvents)
 		throws PortalException, SystemException {
 
-		List<UserNotificationEvent> userNotificationEvents =
-			new ArrayList<UserNotificationEvent>();
+		List<com.liferay.portal.model.UserNotificationEvent>
+			userNotificationEvents =
+				new ArrayList<com.liferay.portal.model.UserNotificationEvent>();
 
-		for (com.liferay.notifications.model.UserNotificationEvent
-				userNotificationEvent : notificationEvents) {
-
+		for (UserNotificationEvent userNotificationEvent : notificationEvents) {
 			userNotificationEvents.add(
-				UserNotificationEventLocalServiceUtil.getUserNotificationEvent(
-					userNotificationEvent.getUserNotificationEventId()));
+				com.liferay.portal.service.
+					UserNotificationEventLocalServiceUtil.
+						getUserNotificationEvent(
+							userNotificationEvent.
+								getUserNotificationEventId()));
 		}
 
 		return userNotificationEvents;
@@ -273,9 +266,10 @@ public class NotificationsUtil {
 									System.currentTimeMillis(), portletKey,
 									notificationEventJSONObject);
 
-						UserNotificationEventLocalServiceUtil.
-							addUserNotificationEvent(
-								subscriberUserId, notificationEvent);
+						com.liferay.portal.service.
+							UserNotificationEventLocalServiceUtil.
+								addUserNotificationEvent(
+									subscriberUserId, notificationEvent);
 					}
 				}
 			}

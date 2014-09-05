@@ -9,13 +9,17 @@
 
 		<column name="notificationEventId" type="long" primary="true" />
 
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long" />
+		<column name="userId" type="long" />
+
 		<!-- Other fields -->
 
-		<column name="userId" type="long" />
 		<column name="userNotificationEventId" type="long" />
 		<column name="timestamp" type="long" />
-		<column name="actionRequired" type="boolean" />
 		<column name="delivered" type="boolean" />
+		<column name="actionRequired" type="boolean" />
 		<column name="archived" type="boolean" />
 
 		<!-- Order -->
@@ -33,15 +37,15 @@
 			<finder-column name="userId" />
 			<finder-column name="actionRequired" />
 		</finder>
+		<finder name="U_D_A" return-type="Collection">
+			<finder-column name="userId" />
+			<finder-column name="delivered" />
+			<finder-column name="actionRequired" />
+		</finder>
 		<finder name="U_A_A" return-type="Collection">
 			<finder-column name="userId" />
 			<finder-column name="actionRequired" />
 			<finder-column name="archived" />
-		</finder>
-		<finder name="U_A_D" return-type="Collection">
-			<finder-column name="userId" />
-			<finder-column name="actionRequired" />
-			<finder-column name="delivered" />
 		</finder>
 	</entity>
 </service-builder>

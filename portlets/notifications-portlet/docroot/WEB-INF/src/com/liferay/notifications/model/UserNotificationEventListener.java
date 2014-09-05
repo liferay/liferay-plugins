@@ -19,16 +19,17 @@ import com.liferay.portal.kernel.json.JSONException;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.model.BaseModelListener;
-import com.liferay.portal.model.UserNotificationEvent;
 
 /**
  * @author Calvin Keum
  */
 public class UserNotificationEventListener
-	extends BaseModelListener<UserNotificationEvent> {
+	extends BaseModelListener<com.liferay.portal.model.UserNotificationEvent> {
 
 	@Override
-	public void onAfterCreate(UserNotificationEvent userNotificationEvent) {
+	public void onAfterCreate(
+		com.liferay.portal.model.UserNotificationEvent userNotificationEvent) {
+
 		try {
 			boolean actionRequired = isActionRequired(
 				userNotificationEvent.getPayload());
@@ -45,15 +46,14 @@ public class UserNotificationEventListener
 	};
 
 	@Override
-	public void onAfterRemove(UserNotificationEvent userNotificationEvent) {
-		System.out.println("onAfterRemove");
+	public void onAfterRemove(
+		com.liferay.portal.model.UserNotificationEvent userNotificationEvent) {
 
 		try {
-			com.liferay.notifications.model.UserNotificationEvent
-				notificationEvent =
-					UserNotificationEventLocalServiceUtil.
-						fetchNotificationEventByUserNotificationEventId(
-							userNotificationEvent.getUserNotificationEventId());
+			UserNotificationEvent notificationEvent =
+				UserNotificationEventLocalServiceUtil.
+					getNotificationEventByUserNotificationEventId(
+						userNotificationEvent.getUserNotificationEventId());
 
 			UserNotificationEventLocalServiceUtil.deleteUserNotificationEvent(
 				notificationEvent);
@@ -63,21 +63,17 @@ public class UserNotificationEventListener
 	}
 
 	@Override
-	public void onAfterUpdate(UserNotificationEvent userNotificationEvent) {
-		try {
-			boolean actionRequired = isActionRequired(
-				userNotificationEvent.getPayload());
+	public void onAfterUpdate(
+		com.liferay.portal.model.UserNotificationEvent userNotificationEvent) {
 
-			com.liferay.notifications.model.UserNotificationEvent
-				notificationEvent =
-					UserNotificationEventLocalServiceUtil.
-					fetchNotificationEventByUserNotificationEventId(
+		try {
+			UserNotificationEvent notificationEvent =
+				UserNotificationEventLocalServiceUtil.
+					getNotificationEventByUserNotificationEventId(
 						userNotificationEvent.getUserNotificationEventId());
 
 			UserNotificationEventLocalServiceUtil.updateUserNotificationEvent(
 				notificationEvent.getNotificationEventId(),
-				userNotificationEvent.getUserNotificationEventId(),
-				userNotificationEvent.getUserId(),
 				userNotificationEvent.getTimestamp(),
 				isActionRequired(userNotificationEvent.getPayload()),
 				userNotificationEvent.getDelivered(),

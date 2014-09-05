@@ -46,7 +46,7 @@ public class UpgradeUserNotificationEvent extends UpgradeProcess {
 
 			ps = con.prepareStatement(
 				"select userNotificationEventId, userId, type_, timestamp, " +
-				"delivered, payload, archived from UserNotificationEvent");
+					"delivered, archived from UserNotificationEvent");
 
 			rs = ps.executeQuery();
 
@@ -57,7 +57,6 @@ public class UpgradeUserNotificationEvent extends UpgradeProcess {
 				String type = rs.getString("type_");
 				long timestamp = rs.getLong("timestamp");
 				boolean delivered = rs.getBoolean("delivered");
-				String payload = rs.getString("payload");
 				boolean archived = rs.getBoolean("archived");
 
 				List<String> actionRequiredTypes = ListUtil.fromArray(
