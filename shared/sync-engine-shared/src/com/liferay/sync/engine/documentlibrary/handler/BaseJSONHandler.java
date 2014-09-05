@@ -22,12 +22,15 @@ import com.liferay.sync.engine.model.SyncAccount;
 import com.liferay.sync.engine.model.SyncFile;
 import com.liferay.sync.engine.service.SyncAccountService;
 import com.liferay.sync.engine.service.SyncFileService;
+import com.liferay.sync.engine.session.Session;
+import com.liferay.sync.engine.session.SessionManager;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import org.apache.commons.lang.StringEscapeUtils;
+import org.apache.http.Header;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
@@ -77,6 +80,14 @@ public class BaseJSONHandler extends BaseHandler {
 	@Override
 	protected void doHandleResponse(HttpResponse httpResponse)
 		throws Exception {
+
+		Header header = httpResponse.getFirstHeader("Sync-JWT");
+
+		if (header != null) {
+			Session session = SessionManager.getSession(getSyncAccountId());
+
+			session.setToken(header.getValue());
+		}
 
 		String response = getResponseString(httpResponse);
 

@@ -129,6 +129,8 @@ public class Session {
 			HttpContext httpContext)
 		throws Exception {
 
+		httpRequest.setHeader("Sync-JWT", _token);
+
 		return _httpClient.execute(
 			_httpHost, httpRequest, handler, httpContext);
 	}
@@ -136,6 +138,8 @@ public class Session {
 	public HttpResponse execute(
 			HttpRequest httpRequest, HttpContext httpContext)
 		throws Exception {
+
+		httpRequest.setHeader("Sync-JWT", _token);
 
 		return _httpClient.execute(_httpHost, httpRequest, httpContext);
 	}
@@ -186,6 +190,8 @@ public class Session {
 	public HttpResponse executeGet(String urlPath) throws Exception {
 		HttpGet httpGet = new HttpGet(urlPath);
 
+		httpGet.setHeader("Sync-JWT", _token);
+
 		return _httpClient.execute(_httpHost, httpGet, getBasicHttpContext());
 	}
 
@@ -193,6 +199,8 @@ public class Session {
 		throws Exception {
 
 		HttpGet httpGet = new HttpGet(urlPath);
+
+		httpGet.setHeader("Sync-JWT", _token);
 
 		return _httpClient.execute(
 			_httpHost, httpGet, handler, getBasicHttpContext());
@@ -203,6 +211,8 @@ public class Session {
 		throws Exception {
 
 		HttpPost httpPost = new HttpPost(urlPath);
+
+		httpPost.setHeader("Sync-JWT", _token);
 
 		_buildHttpPostBody(httpPost, parameters);
 
@@ -215,6 +225,8 @@ public class Session {
 		throws Exception {
 
 		HttpPost httpPost = new HttpPost(urlPath);
+
+		httpPost.setHeader("Sync-JWT", _token);
 
 		_buildHttpPostBody(httpPost, parameters);
 
@@ -233,6 +245,10 @@ public class Session {
 			HttpClientContext.AUTH_CACHE, _getBasicAuthCache());
 
 		return _basicHttpContext;
+	}
+
+	public void setToken(String token) {
+		_token = token;
 	}
 
 	private void _buildHttpPostBody(
@@ -328,6 +344,7 @@ public class Session {
 	private static Logger _logger = LoggerFactory.getLogger(Session.class);
 
 	private static HttpRoutePlanner _httpRoutePlanner;
+	private static String _token;
 
 	private BasicHttpContext _basicHttpContext;
 	private ExecutorService _executorService;
