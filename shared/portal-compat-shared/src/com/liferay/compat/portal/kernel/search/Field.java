@@ -38,6 +38,10 @@ public class Field extends com.liferay.portal.kernel.search.Field {
 		}
 	}
 
+	public Field(String name, String value) {
+		super(name, value);
+	}
+
 	private static Method _getIsSortableMethod() {
 		if (_hasSortableMethod != null) {
 			return _sortableMethod;
