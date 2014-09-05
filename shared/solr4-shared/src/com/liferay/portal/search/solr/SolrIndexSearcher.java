@@ -21,7 +21,7 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.search.BaseIndexSearcher;
 import com.liferay.portal.kernel.search.Document;
-import com.liferay.portal.kernel.search.DocumentImpl;
+import com.liferay.compat.portal.kernel.search.DocumentImpl;
 import com.liferay.portal.kernel.search.Field;
 import com.liferay.portal.kernel.search.Hits;
 import com.liferay.portal.kernel.search.HitsImpl;
@@ -460,9 +460,8 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 					continue;
 				}
 
-				String sortFieldName =
-					com.liferay.compat.portal.kernel.search.DocumentImpl.
-						getSortFieldName(sort, "score");
+				String sortFieldName = DocumentImpl.getSortFieldName(
+					sort, "score");
 
 				ORDER order = ORDER.asc;
 

@@ -19,7 +19,7 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.search.BaseIndexWriter;
 import com.liferay.portal.kernel.search.Document;
 import com.liferay.portal.kernel.search.DocumentImpl;
-import com.liferay.portal.kernel.search.Field;
+import com.liferay.compat.portal.kernel.search.Field;
 import com.liferay.portal.kernel.search.SearchContext;
 import com.liferay.portal.kernel.search.SearchException;
 import com.liferay.portal.kernel.util.ArrayUtil;
@@ -191,7 +191,7 @@ public class SolrIndexWriter extends BaseIndexWriter {
 
 		solrInputDocument.addField(localizedName, value, boost);
 
-		if (com.liferay.compat.portal.kernel.search.Field.isSortable(field)) {
+		if (field.isSortable()) {
 			String sortableFieldName = DocumentImpl.getSortableFieldName(
 				localizedName);
 
