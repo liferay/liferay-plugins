@@ -43,6 +43,24 @@ public class GGroupManagerImpl
 	}
 
 	@Override
+	public void addGGroup(
+			String groupEmailAddress, String groupName, String description,
+			String emailPermission)
+		throws GoogleAppsException {
+
+		Document document = SAXReaderUtil.createDocument();
+
+		Element atomEntryElement = addAtomEntry(document);
+
+		addAppsProperty(atomEntryElement, "groupId", groupEmailAddress);
+		addAppsProperty(atomEntryElement, "groupName", groupName);
+		addAppsProperty(atomEntryElement, "description", description);
+		addAppsProperty(atomEntryElement, "emailPermission", emailPermission);
+
+		submitAdd(groupURL, document);
+	}
+
+	@Override
 	public void addGGroupMember(
 			String groupEmailAddress, String memberEmailAddress)
 		throws GoogleAppsException {
