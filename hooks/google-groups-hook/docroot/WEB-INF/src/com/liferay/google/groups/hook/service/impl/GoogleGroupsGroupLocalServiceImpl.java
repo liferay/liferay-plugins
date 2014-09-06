@@ -20,7 +20,6 @@ import com.liferay.googleapps.GGroupManager;
 import com.liferay.googleapps.GoogleAppsFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
@@ -51,7 +50,7 @@ public class GoogleGroupsGroupLocalServiceImpl
 
 	@Override
 	public Group updateFriendlyURL(long groupId, String friendlyURL)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		Group group = GroupLocalServiceUtil.getGroup(groupId);
 
@@ -76,7 +75,7 @@ public class GoogleGroupsGroupLocalServiceImpl
 			long groupId, long parentGroupId, String name, String description,
 			int type, boolean manualMembership, int membershipRestriction,
 			String friendlyURL, boolean active, ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		Group group = GroupLocalServiceUtil.getGroup(groupId);
 
