@@ -159,10 +159,9 @@ public class IODeltaUtil {
 	}
 
 	public static Path getChecksumsFilePath(SyncFile syncFile) {
-		return Paths.get(
-			FileUtil.getFilePathName(
-				PropsValues.SYNC_CONFIGURATION_DIRECTORY, "files",
-				String.valueOf(syncFile.getSyncFileId())));
+		return FileUtil.getFilePath(
+			PropsValues.SYNC_CONFIGURATION_DIRECTORY, "files",
+			String.valueOf(syncFile.getSyncFileId()));
 	}
 
 	public static boolean isIgnoredFilePatchingExtension(SyncFile syncFile) {

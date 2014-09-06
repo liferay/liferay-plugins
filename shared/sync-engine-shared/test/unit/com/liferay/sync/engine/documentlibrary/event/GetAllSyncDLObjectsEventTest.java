@@ -24,7 +24,6 @@ import com.liferay.sync.engine.util.SyncSiteTestUtil;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 
 import java.util.HashMap;
 import java.util.List;
@@ -84,8 +83,8 @@ public class GetAllSyncDLObjectsEventTest extends BaseTestCase {
 
 		Assert.assertEquals(3, _syncFiles.size());
 
-		Path filePath = Paths.get(
-			FileUtil.getFilePathName(_syncSite.getFilePathName(), "test.txt"));
+		Path filePath = FileUtil.getFilePath(
+			_syncSite.getFilePathName(), "test.txt");
 
 		Assert.assertTrue(Files.exists(filePath));
 	}

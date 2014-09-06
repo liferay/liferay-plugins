@@ -121,10 +121,14 @@ public class FileUtil {
 		return getFileKey(filePath);
 	}
 
-	public static String getFilePathName(String first, String... more) {
+	public static Path getFilePath(String first, String... more) {
 		FileSystem fileSystem = FileSystems.getDefault();
 
-		Path filePath = fileSystem.getPath(first, more);
+		return fileSystem.getPath(first, more);
+	}
+
+	public static String getFilePathName(String first, String... more) {
+		Path filePath = getFilePath(first, more);
 
 		return filePath.toString();
 	}

@@ -284,8 +284,8 @@ public class SyncSystemTest {
 			stepJsonNode, "target",
 			dependency.replace("common" + fileSystem.getSeparator(), ""));
 
-		Path targetFilePath = Paths.get(
-			FileUtil.getFilePathName(syncSite.getFilePathName(), dependency));
+		Path targetFilePath = FileUtil.getFilePath(
+			syncSite.getFilePathName(), dependency);
 
 		Files.copy(dependencyFilePath, targetFilePath);
 	}
@@ -302,10 +302,9 @@ public class SyncSystemTest {
 
 		FileSystem fileSystem = FileSystems.getDefault();
 
-		final Path targetFilePath = Paths.get(
-			FileUtil.getFilePathName(
-				syncSite.getFilePathName(),
-				dependency.replace("common" + fileSystem.getSeparator(), "")));
+		final Path targetFilePath = FileUtil.getFilePath(
+			syncSite.getFilePathName(),
+			dependency.replace("common" + fileSystem.getSeparator(), ""));
 
 		Files.walkFileTree(
 			dependencyFilePath,
@@ -369,8 +368,8 @@ public class SyncSystemTest {
 
 		String source = getString(stepJsonNode, "source");
 
-		Path targetFilePath = Paths.get(
-			FileUtil.getFilePathName(syncSite.getFilePathName(), source));
+		Path targetFilePath = FileUtil.getFilePath(
+			syncSite.getFilePathName(), source);
 
 		Files.deleteIfExists(targetFilePath);
 	}
@@ -502,8 +501,7 @@ public class SyncSystemTest {
 
 		String source = getString(jsonNode, "source");
 
-		return Paths.get(
-			FileUtil.getFilePathName(syncSite.getFilePathName(), source));
+		return FileUtil.getFilePath(syncSite.getFilePathName(), source);
 	}
 
 	protected void moveFile(JsonNode stepJsonNode) throws Exception {
@@ -512,10 +510,10 @@ public class SyncSystemTest {
 		String source = getString(stepJsonNode, "source");
 		String target = getString(stepJsonNode, "target");
 
-		Path sourceFilePath = Paths.get(
-			FileUtil.getFilePathName(syncSite.getFilePathName(), source));
-		Path targetFilePath = Paths.get(
-			FileUtil.getFilePathName(syncSite.getFilePathName(), target));
+		Path sourceFilePath = FileUtil.getFilePath(
+			syncSite.getFilePathName(), source);
+		Path targetFilePath = FileUtil.getFilePath(
+			syncSite.getFilePathName(), target);
 
 		Files.move(sourceFilePath, targetFilePath);
 	}

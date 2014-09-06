@@ -105,8 +105,8 @@ public class WatcherTest extends BaseTestCase {
 	public void testRunAddFile() throws Exception {
 		setResponse("dependencies/watcher_test_add_file.json");
 
-		Path filePath = Paths.get(
-			FileUtil.getFilePathName(_syncSite.getFilePathName(), "test.txt"));
+		Path filePath = FileUtil.getFilePath(
+			_syncSite.getFilePathName(), "test.txt");
 
 		Files.createFile(filePath);
 
@@ -126,8 +126,8 @@ public class WatcherTest extends BaseTestCase {
 
 		SyncSiteService.update(_syncSite);
 
-		Path filePath = Paths.get(
-			FileUtil.getFilePathName(_syncSite.getFilePathName(), "test.txt"));
+		Path filePath = FileUtil.getFilePath(
+			_syncSite.getFilePathName(), "test.txt");
 
 		Files.createFile(filePath);
 

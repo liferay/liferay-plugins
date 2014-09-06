@@ -24,7 +24,6 @@ import com.liferay.sync.engine.service.persistence.SyncFilePersistence;
 import com.liferay.sync.engine.service.persistence.SyncPropPersistence;
 import com.liferay.sync.engine.service.persistence.SyncSitePersistence;
 import com.liferay.sync.engine.service.persistence.SyncWatchEventPersistence;
-import com.liferay.sync.engine.util.FileUtil;
 import com.liferay.sync.engine.util.LoggerUtil;
 import com.liferay.sync.engine.util.PropsValues;
 import com.liferay.sync.engine.util.ReleaseInfo;
@@ -47,8 +46,7 @@ public class UpgradeUtil {
 			createTables();
 
 			Path configurationFilePath = Paths.get(
-				FileUtil.getFilePathName(
-					PropsValues.SYNC_CONFIGURATION_DIRECTORY));
+				PropsValues.SYNC_CONFIGURATION_DIRECTORY);
 
 			Files.createDirectories(configurationFilePath.resolve("files"));
 
