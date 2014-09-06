@@ -474,21 +474,6 @@ public class SyncFileService {
 	}
 
 	public static List<SyncFile> findSyncFiles(
-		String checksum, long syncAccountId) {
-
-		try {
-			return _syncFilePersistence.findByC_S(checksum, syncAccountId);
-		}
-		catch (SQLException sqle) {
-			if (_logger.isDebugEnabled()) {
-				_logger.debug(sqle.getMessage(), sqle);
-			}
-
-			return Collections.emptyList();
-		}
-	}
-
-	public static List<SyncFile> findSyncFiles(
 		String filePathName, long localSyncTime, long syncAccountId) {
 
 		try {

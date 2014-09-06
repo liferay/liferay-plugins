@@ -100,17 +100,6 @@ public class SyncFilePersistence extends BasePersistenceImpl<SyncFile, Long> {
 		return syncFiles.get(0);
 	}
 
-	public List<SyncFile> findByC_S(String checksum, long syncAccountId)
-		throws SQLException {
-
-		Map<String, Object> fieldValues = new HashMap<String, Object>();
-
-		fieldValues.put("checksum", checksum);
-		fieldValues.put("syncAccountId", syncAccountId);
-
-		return queryForFieldValues(fieldValues);
-	}
-
 	public List<SyncFile> findByFilePathName(String filePathName)
 		throws SQLException {
 
