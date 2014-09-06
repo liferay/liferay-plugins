@@ -55,8 +55,7 @@ public class GetSyncDLObjectUpdateEvent extends BaseEvent {
 		if (syncSite.getRemoteSyncTime() == 0) {
 			String filePathName = syncSite.getFilePathName();
 
-			SyncFile syncFile = SyncFileService.fetchSyncFile(
-				filePathName, getSyncAccountId());
+			SyncFile syncFile = SyncFileService.fetchSyncFile(filePathName);
 
 			if (syncFile == null) {
 				Files.createDirectories(Paths.get(filePathName));

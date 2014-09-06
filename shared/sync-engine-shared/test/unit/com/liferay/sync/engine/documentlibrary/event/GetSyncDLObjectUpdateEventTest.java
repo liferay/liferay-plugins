@@ -186,7 +186,7 @@ public class GetSyncDLObjectUpdateEventTest extends BaseTestCase {
 		Assert.assertTrue(Files.exists(targetFilePath));
 
 		SyncFile syncFile = SyncFileService.fetchSyncFile(
-			targetFilePath.toString(), syncAccount.getSyncAccountId());
+			targetFilePath.toString());
 
 		Assert.assertEquals("Updated Description", syncFile.getDescription());
 	}

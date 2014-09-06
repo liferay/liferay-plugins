@@ -207,8 +207,7 @@ public class WatcherTest extends BaseTestCase {
 
 		sleep();
 
-		SyncFile syncFile = SyncFileService.fetchSyncFile(
-			filePath.toString(), syncAccount.getSyncAccountId());
+		SyncFile syncFile = SyncFileService.fetchSyncFile(filePath.toString());
 
 		syncFile.setLockExpirationDate(System.currentTimeMillis());
 		syncFile.setLockUserId(10205);
@@ -219,8 +218,7 @@ public class WatcherTest extends BaseTestCase {
 		SyncFileService.checkOutSyncFile(
 			syncAccount.getSyncAccountId(), syncFile);
 
-		syncFile = SyncFileService.fetchSyncFile(
-			filePath.toString(), syncAccount.getSyncAccountId());
+		syncFile = SyncFileService.fetchSyncFile(filePath.toString());
 
 		Assert.assertEquals(0, syncFile.getLockExpirationDate());
 		Assert.assertEquals(0, syncFile.getLockUserId());
@@ -243,8 +241,7 @@ public class WatcherTest extends BaseTestCase {
 
 		sleep();
 
-		SyncFile syncFile = SyncFileService.fetchSyncFile(
-			filePath.toString(), syncAccount.getSyncAccountId());
+		SyncFile syncFile = SyncFileService.fetchSyncFile(filePath.toString());
 
 		syncFile.setLockExpirationDate(0);
 		syncFile.setLockUserId(0);
@@ -255,8 +252,7 @@ public class WatcherTest extends BaseTestCase {
 		SyncFileService.checkOutSyncFile(
 			syncAccount.getSyncAccountId(), syncFile);
 
-		syncFile = SyncFileService.fetchSyncFile(
-			filePath.toString(), syncAccount.getSyncAccountId());
+		syncFile = SyncFileService.fetchSyncFile(filePath.toString());
 
 		Assert.assertNotEquals(0, syncFile.getLockExpirationDate());
 		Assert.assertNotEquals(0, syncFile.getLockUserId());
@@ -287,9 +283,7 @@ public class WatcherTest extends BaseTestCase {
 			syncAccount.getSyncAccountId());
 
 		Assert.assertEquals(2, _syncFiles.size());
-		Assert.assertNull(
-			SyncFileService.fetchSyncFile(
-				filePath.toString(), syncAccount.getSyncAccountId()));
+		Assert.assertNull(SyncFileService.fetchSyncFile(filePath.toString()));
 	}
 
 	@Test
@@ -317,8 +311,7 @@ public class WatcherTest extends BaseTestCase {
 
 		Assert.assertEquals(3, _syncFiles.size());
 
-		SyncFile syncFile = SyncFileService.fetchSyncFile(
-			filePath.toString(), syncAccount.getSyncAccountId());
+		SyncFile syncFile = SyncFileService.fetchSyncFile(filePath.toString());
 
 		Assert.assertEquals(
 			FileUtil.getChecksum(filePath), syncFile.getChecksum());
@@ -352,8 +345,7 @@ public class WatcherTest extends BaseTestCase {
 
 		Assert.assertEquals(4, _syncFiles.size());
 		Assert.assertNotNull(
-			SyncFileService.fetchSyncFile(
-				targetFilePath.toString(), syncAccount.getSyncAccountId()));
+			SyncFileService.fetchSyncFile(targetFilePath.toString()));
 	}
 
 	@Test
@@ -379,8 +371,7 @@ public class WatcherTest extends BaseTestCase {
 
 		Assert.assertEquals(3, _syncFiles.size());
 		Assert.assertNotNull(
-			SyncFileService.fetchSyncFile(
-				targetFilePath.toString(), syncAccount.getSyncAccountId()));
+			SyncFileService.fetchSyncFile(targetFilePath.toString()));
 	}
 
 	protected void sleep() throws InterruptedException {

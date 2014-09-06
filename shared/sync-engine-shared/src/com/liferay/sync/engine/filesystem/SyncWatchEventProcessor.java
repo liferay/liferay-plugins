@@ -152,10 +152,10 @@ public class SyncWatchEventProcessor implements Runnable {
 		Path parentTargetFilePath = targetFilePath.getParent();
 
 		SyncFile parentSyncFile = SyncFileService.fetchSyncFile(
-			parentTargetFilePath.toString(), _syncAccountId);
+			parentTargetFilePath.toString());
 
 		SyncFile syncFile = SyncFileService.fetchSyncFile(
-			targetFilePath.toString(), _syncAccountId);
+			targetFilePath.toString());
 
 		if (syncFile == null) {
 			syncFile = SyncFileService.fetchSyncFileByFileKey(
@@ -222,7 +222,7 @@ public class SyncWatchEventProcessor implements Runnable {
 		Path parentTargetFilePath = targetFilePath.getParent();
 
 		SyncFile parentSyncFile = SyncFileService.fetchSyncFile(
-			parentTargetFilePath.toString(), _syncAccountId);
+			parentTargetFilePath.toString());
 
 		SyncFile syncFile = SyncFileService.fetchSyncFileByFileKey(
 			FileUtil.getFileKey(targetFilePath), _syncAccountId);
@@ -283,8 +283,7 @@ public class SyncWatchEventProcessor implements Runnable {
 	protected void deleteFile(SyncWatchEvent syncWatchEvent) throws Exception {
 		Path filePath = Paths.get(syncWatchEvent.getFilePathName());
 
-		SyncFile syncFile = SyncFileService.fetchSyncFile(
-			filePath.toString(), _syncAccountId);
+		SyncFile syncFile = SyncFileService.fetchSyncFile(filePath.toString());
 
 		if (syncFile == null) {
 			return;
@@ -298,8 +297,7 @@ public class SyncWatchEventProcessor implements Runnable {
 
 		Path filePath = Paths.get(syncWatchEvent.getFilePathName());
 
-		SyncFile syncFile = SyncFileService.fetchSyncFile(
-			filePath.toString(), _syncAccountId);
+		SyncFile syncFile = SyncFileService.fetchSyncFile(filePath.toString());
 
 		if (syncFile == null) {
 			return;
@@ -311,8 +309,7 @@ public class SyncWatchEventProcessor implements Runnable {
 	protected void modifyFile(SyncWatchEvent syncWatchEvent) throws Exception {
 		Path filePath = Paths.get(syncWatchEvent.getFilePathName());
 
-		SyncFile syncFile = SyncFileService.fetchSyncFile(
-			filePath.toString(), _syncAccountId);
+		SyncFile syncFile = SyncFileService.fetchSyncFile(filePath.toString());
 
 		if ((syncFile == null) || !FileUtil.hasFileChanged(syncFile)) {
 			return;

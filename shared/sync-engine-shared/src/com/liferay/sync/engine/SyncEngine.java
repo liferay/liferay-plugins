@@ -225,8 +225,7 @@ public class SyncEngine {
 	}
 
 	protected static void fireDeleteEvents(
-			Path filePath, final long syncAccountId,
-			WatchEventListener watchEventListener)
+			Path filePath, WatchEventListener watchEventListener)
 		throws IOException {
 
 		long startTime = System.currentTimeMillis();
@@ -240,7 +239,7 @@ public class SyncEngine {
 					Path filePath, BasicFileAttributes basicFileAttributes) {
 
 					SyncFile syncFile = SyncFileService.fetchSyncFile(
-						filePath.toString(), syncAccountId);
+						filePath.toString());
 
 					if (syncFile != null) {
 						syncFile.setLocalSyncTime(System.currentTimeMillis());
@@ -256,7 +255,7 @@ public class SyncEngine {
 					Path filePath, BasicFileAttributes basicFileAttributes) {
 
 					SyncFile syncFile = SyncFileService.fetchSyncFile(
-						filePath.toString(), syncAccountId);
+						filePath.toString());
 
 					if (syncFile != null) {
 						syncFile.setLocalSyncTime(System.currentTimeMillis());
@@ -271,7 +270,7 @@ public class SyncEngine {
 		);
 
 		List<SyncFile> deletedSyncFiles = SyncFileService.findSyncFiles(
-			filePath.toString(), startTime, syncAccountId);
+			filePath.toString(), startTime);
 
 		for (SyncFile deletedSyncFile : deletedSyncFiles) {
 			if (deletedSyncFile.getUiEvent() ==
@@ -382,7 +381,7 @@ public class SyncEngine {
 			WatchEventListener watchEventListener)
 		throws IOException {
 
-		fireDeleteEvents(filePath, syncAccountId, watchEventListener);
+		fireDeleteEvents(filePath, watchEventListener);
 
 		retryFileTransfers(syncAccountId);
 	}

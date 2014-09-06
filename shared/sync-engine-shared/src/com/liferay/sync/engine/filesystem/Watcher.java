@@ -221,8 +221,7 @@ public class Watcher implements Runnable {
 						}
 
 						SyncFile syncFile = SyncFileService.fetchSyncFile(
-							filePath.toString(),
-							_watchEventListener.getSyncAccountId());
+							filePath.toString());
 
 						if (syncFile == null) {
 							fireWatchEventListener(
@@ -241,7 +240,7 @@ public class Watcher implements Runnable {
 		}
 		else {
 			SyncFile syncFile = SyncFileService.fetchSyncFile(
-				filePath.toString(), _watchEventListener.getSyncAccountId());
+				filePath.toString());
 
 			if (syncFile == null) {
 				fireWatchEventListener(

@@ -397,12 +397,9 @@ public class SyncFileService {
 		}
 	}
 
-	public static SyncFile fetchSyncFile(
-		String filePathName, long syncAccountId) {
-
+	public static SyncFile fetchSyncFile(String filePathName) {
 		try {
-			return _syncFilePersistence.fetchByFPN_S(
-				filePathName, syncAccountId);
+			return _syncFilePersistence.fetchByFilePathName(filePathName);
 		}
 		catch (SQLException sqle) {
 			if (_logger.isDebugEnabled()) {
@@ -460,25 +457,11 @@ public class SyncFileService {
 		}
 	}
 
-	public static List<SyncFile> findSyncFiles(String filePathName) {
-		try {
-			return _syncFilePersistence.findByFilePathName(filePathName);
-		}
-		catch (SQLException sqle) {
-			if (_logger.isDebugEnabled()) {
-				_logger.debug(sqle.getMessage(), sqle);
-			}
-
-			return Collections.emptyList();
-		}
-	}
-
 	public static List<SyncFile> findSyncFiles(
-		String filePathName, long localSyncTime, long syncAccountId) {
+		String filePathName, long localSyncTime) {
 
 		try {
-			return _syncFilePersistence.findByF_L_S(
-				filePathName, localSyncTime, syncAccountId);
+			return _syncFilePersistence.findByF_L(filePathName, localSyncTime);
 		}
 		catch (SQLException sqle) {
 			if (_logger.isDebugEnabled()) {

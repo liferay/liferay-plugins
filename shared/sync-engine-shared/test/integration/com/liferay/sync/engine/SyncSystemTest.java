@@ -348,8 +348,7 @@ public class SyncSystemTest {
 		String source = getString(stepJsonNode, "source");
 
 		SyncFile syncFile = SyncFileService.fetchSyncFile(
-			FileUtil.getFilePathName(syncSite.getFilePathName(), source),
-			syncSite.getSyncAccountId());
+			FileUtil.getFilePathName(syncSite.getFilePathName(), source));
 
 		SyncFileService.checkInSyncFile(syncSite.getSyncAccountId(), syncFile);
 	}
@@ -360,8 +359,7 @@ public class SyncSystemTest {
 		String source = getString(stepJsonNode, "source");
 
 		SyncFile syncFile = SyncFileService.fetchSyncFile(
-			FileUtil.getFilePathName(syncSite.getFilePathName(), source),
-			syncSite.getSyncAccountId());
+			FileUtil.getFilePathName(syncSite.getFilePathName(), source));
 
 		SyncFileService.checkOutSyncFile(syncSite.getSyncAccountId(), syncFile);
 	}

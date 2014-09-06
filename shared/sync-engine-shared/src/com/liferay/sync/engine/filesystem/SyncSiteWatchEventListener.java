@@ -97,7 +97,7 @@ public class SyncSiteWatchEventListener extends BaseWatchEventListener {
 	protected String getFileType(String eventType, Path filePath) {
 		if (eventType.equals(SyncWatchEvent.EVENT_TYPE_DELETE)) {
 			SyncFile syncFile = SyncFileService.fetchSyncFile(
-				filePath.toString(), getSyncAccountId());
+				filePath.toString());
 
 			if (syncFile != null) {
 				return syncFile.getType();
@@ -120,7 +120,7 @@ public class SyncSiteWatchEventListener extends BaseWatchEventListener {
 			}
 
 			SyncFile syncFile = SyncFileService.fetchSyncFile(
-				filePath.toString(), getSyncAccountId());
+				filePath.toString());
 
 			if (syncFile != null) {
 				return syncFile.getRepositoryId();
