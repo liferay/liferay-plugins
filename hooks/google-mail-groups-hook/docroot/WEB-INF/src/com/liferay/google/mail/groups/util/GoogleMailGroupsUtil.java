@@ -64,6 +64,10 @@ public class GoogleMailGroupsUtil {
 		return sb.toString();
 	}
 
+	public static String getUserEmailAddress(User user) throws PortalException {
+		return user.getUserId() + StringPool.AT + user.getCompanyMx();
+	}
+
 	public static boolean isSync(Group group) {
 		if ((group == null) || group.isCompany() || group.isControlPanel() ||
 			group.isGuest() || (!group.isOrganization() && !group.isSite())) {
@@ -127,7 +131,7 @@ public class GoogleMailGroupsUtil {
 					(OrderByComparator)null);
 
 				for (User user : users) {
-					emailAddresses.add(user.getEmailAddress());
+					emailAddresses.add(getUserEmailAddress(user));
 				}
 
 				for (String gGroupMemberEmailAddress :
