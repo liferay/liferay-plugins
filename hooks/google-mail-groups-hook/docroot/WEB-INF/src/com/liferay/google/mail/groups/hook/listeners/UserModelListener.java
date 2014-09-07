@@ -42,41 +42,20 @@ public class UserModelListener extends BaseModelListener<User> {
 		throws ModelListenerException {
 
 		try {
-			List<Group> groups = new ArrayList<Group>();
+			new OnAssociation(
+				classPK, associationClassName, associationClassPK) {
 
-			if (associationClassName.equals(Group.class.getName())) {
-				groups.add(
-					GroupLocalServiceUtil.getGroup((Long)associationClassPK));
-			}
-			else if (associationClassName.equals(
-						Organization.class.getName())) {
+				@Override
+				public void onAssociation(
+						User user, Group group, GGroupManager gGroupManager)
+					throws Exception {
 
-				Organization organization =
-					OrganizationLocalServiceUtil.getOrganization(
-						(Long)associationClassPK);
-
-				groups.add(organization.getGroup());
-			}
-			else if (associationClassName.equals(UserGroup.class.getName())) {
-				groups = GroupLocalServiceUtil.getUserGroupGroups(
-					(Long)associationClassPK);
-			}
-
-			User user = UserLocalServiceUtil.getUser((Long)classPK);
-
-			GGroupManager gGroupManager =
-				GoogleAppsConnectionFactoryUtil.getGGroupManager(
-					user.getCompanyId());
-
-			for (Group group : groups) {
-				if (!GoogleMailGroupsUtil.isSync(group)) {
-					continue;
+					gGroupManager.addGGroupMember(
+						GoogleMailGroupsUtil.getGroupEmailAddress(group),
+						GoogleMailGroupsUtil.getUserEmailAddress(user));
 				}
 
-				gGroupManager.addGGroupMember(
-					GoogleMailGroupsUtil.getGroupEmailAddress(group),
-					GoogleMailGroupsUtil.getUserEmailAddress(user));
-			}
+			};
 		}
 		catch (Exception e) {
 			throw new ModelListenerException(e);
@@ -90,6 +69,39 @@ public class UserModelListener extends BaseModelListener<User> {
 		throws ModelListenerException {
 
 		try {
+			new OnAssociation(
+				classPK, associationClassName, associationClassPK) {
+
+				@Override
+				public void onAssociation(
+						User user, Group group, GGroupManager gGroupManager)
+					throws Exception {
+
+					if (GroupLocalServiceUtil.hasUserGroup(
+							user.getUserId(), group.getGroupId(), true)) {
+
+						return;
+					}
+
+					gGroupManager.deleteGGroupMember(
+						GoogleMailGroupsUtil.getGroupEmailAddress(group),
+						GoogleMailGroupsUtil.getUserEmailAddress(user));
+				}
+
+			};
+		}
+		catch (Exception e) {
+			throw new ModelListenerException(e);
+		}
+	}
+
+	private abstract class OnAssociation {
+
+		public OnAssociation(
+				Object classPK, String associationClassName,
+				Object associationClassPK)
+			throws Exception {
+
 			List<Group> groups = new ArrayList<Group>();
 
 			if (associationClassName.equals(Group.class.getName())) {
@@ -121,20 +133,14 @@ public class UserModelListener extends BaseModelListener<User> {
 					continue;
 				}
 
-				if (GroupLocalServiceUtil.hasUserGroup(
-						user.getUserId(), group.getGroupId(), true)) {
-
-					continue;
-				}
-
-				gGroupManager.deleteGGroupMember(
-					GoogleMailGroupsUtil.getGroupEmailAddress(group),
-					GoogleMailGroupsUtil.getUserEmailAddress(user));
+				onAssociation(user, group, gGroupManager);
 			}
 		}
-		catch (Exception e) {
-			throw new ModelListenerException(e);
-		}
+
+		public abstract void onAssociation(
+				User user, Group group, GGroupManager gGroupManager)
+			throws Exception;
+
 	}
 
 }
