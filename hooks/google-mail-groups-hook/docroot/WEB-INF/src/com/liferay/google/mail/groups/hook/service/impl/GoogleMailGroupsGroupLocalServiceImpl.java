@@ -111,7 +111,8 @@ public class GoogleMailGroupsGroupLocalServiceImpl
 
 		gGroupManager.deleteGGroup(oldGroupEmailAddress);
 
-		String groupEmailAddress = GoogleMailGroupsUtil.getGroupEmailAddress(group);
+		String groupEmailAddress = GoogleMailGroupsUtil.getGroupEmailAddress(
+			group);
 
 		gGroupManager.addGGroup(
 			groupEmailAddress, group.getDescriptiveName(), StringPool.BLANK,
