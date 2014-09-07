@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE project>
 
-<project name="google-mail-user-hook" basedir="." default="deploy">
+<project name="google-mail-users-hook" basedir="." default="deploy">
 	<property name="import.shared" value="google-apps-connector-shared" />
 
 	<import file="../build-common-hook.xml" />

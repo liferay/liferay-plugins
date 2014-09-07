@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.google.mail.user.hook.mail;
+package com.liferay.google.mail.users.hook.mail;
 
 import com.liferay.google.apps.connector.GEmailSettingsManager;
 import com.liferay.google.apps.connector.GNicknameManager;
@@ -35,7 +35,7 @@ import java.util.List;
 /**
  * @author Brian Wing Shun Chan
  */
-public class GoogleHook implements Hook {
+public class GoogleMailUsersHook implements Hook {
 
 	@Override
 	public void addForward(
@@ -176,6 +176,6 @@ public class GoogleHook implements Hook {
 		return emailAddress.substring(0, pos);
 	}
 
-	private static Log _log = LogFactoryUtil.getLog(GoogleHook.class);
+	private static Log _log = LogFactoryUtil.getLog(GoogleMailUsersHook.class);
 
 }
