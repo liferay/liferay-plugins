@@ -12,29 +12,40 @@
  * details.
  */
 
-package com.liferay.googleapps;
+package com.liferay.google.apps.connector.comparator;
 
-import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.google.apps.connector.GUser;
+
+import java.util.Comparator;
 
 /**
  * @author Brian Wing Shun Chan
  */
-public class GoogleAppsException extends PortalException {
+public class GUserFirstNameComparator implements Comparator<GUser> {
 
-	public GoogleAppsException() {
-		super();
+	public GUserFirstNameComparator() {
+		this(true);
 	}
 
-	public GoogleAppsException(String msg) {
-		super(msg);
+	public GUserFirstNameComparator(boolean ascending) {
+		_ascending = ascending;
 	}
 
-	public GoogleAppsException(String msg, Throwable cause) {
-		super(msg, cause);
+	@Override
+	public int compare(GUser user1, GUser user2) {
+		String firstName1 = user1.getFirstName();
+		String firstName2 = user2.getFirstName();
+
+		int value = firstName1.compareTo(firstName2);
+
+		if (_ascending) {
+			return value;
+		}
+		else {
+			return -value;
+		}
 	}
 
-	public GoogleAppsException(Throwable cause) {
-		super(cause);
-	}
+	private boolean _ascending;
 
 }

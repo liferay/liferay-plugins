@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.googleapps;
+package com.liferay.google.apps.connector;
 
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.xml.Document;
@@ -25,7 +25,7 @@ import com.liferay.portal.kernel.xml.SAXReaderUtil;
 public class GEmailSettingsManagerImpl
 	extends GBaseManagerImpl implements GEmailSettingsManager {
 
-	public GEmailSettingsManagerImpl(GoogleApps googleApps) {
+	public GEmailSettingsManagerImpl(GoogleAppsConnection googleApps) {
 		super(googleApps);
 
 		GAuthenticator gAuthenticator = googleApps.getGAuthenticator();

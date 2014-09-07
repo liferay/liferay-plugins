@@ -12,40 +12,29 @@
  * details.
  */
 
-package com.liferay.googleapps.comparator;
+package com.liferay.google.apps.connector;
 
-import com.liferay.googleapps.GGroup;
-
-import java.util.Comparator;
+import com.liferay.portal.kernel.exception.PortalException;
 
 /**
  * @author Brian Wing Shun Chan
  */
-public class GGroupEmailAddressComparator implements Comparator<GGroup> {
+public class GoogleAppsException extends PortalException {
 
-	public GGroupEmailAddressComparator() {
-		this(true);
+	public GoogleAppsException() {
+		super();
 	}
 
-	public GGroupEmailAddressComparator(boolean ascending) {
-		_ascending = ascending;
+	public GoogleAppsException(String msg) {
+		super(msg);
 	}
 
-	@Override
-	public int compare(GGroup user1, GGroup user2) {
-		String emailAddress1 = user1.getEmailAddress();
-		String emailAddress2 = user2.getEmailAddress();
-
-		int value = emailAddress1.compareTo(emailAddress2);
-
-		if (_ascending) {
-			return value;
-		}
-		else {
-			return -value;
-		}
+	public GoogleAppsException(String msg, Throwable cause) {
+		super(msg, cause);
 	}
 
-	private boolean _ascending;
+	public GoogleAppsException(Throwable cause) {
+		super(cause);
+	}
 
 }
