@@ -57,12 +57,12 @@ public class GroupModelListener extends BaseModelListener<Group> {
 
 			List<User> users = new ArrayList<User>();
 
-			if (associationClassName.equals(UserGroup.class.getName())) {
-				users = UserLocalServiceUtil.getUserGroupUsers(
+			if (associationClassName.equals(Organization.class.getName())) {
+				users = UserLocalServiceUtil.getOrganizationUsers(
 					(Long)associationClassPK);
 			}
 			else {
-				users = UserLocalServiceUtil.getOrganizationUsers(
+				users = UserLocalServiceUtil.getUserGroupUsers(
 					(Long)associationClassPK);
 			}
 
@@ -145,12 +145,12 @@ public class GroupModelListener extends BaseModelListener<Group> {
 
 			List<User> users = new ArrayList<User>();
 
-			if (associationClassName.equals(UserGroup.class.getName())) {
-				users = UserLocalServiceUtil.getUserGroupUsers(
+			if (associationClassName.equals(Organization.class.getName())) {
+				users = UserLocalServiceUtil.getOrganizationUsers(
 					(Long)associationClassPK);
 			}
 			else {
-				users = UserLocalServiceUtil.getOrganizationUsers(
+				users = UserLocalServiceUtil.getUserGroupUsers(
 					(Long)associationClassPK);
 			}
 
