@@ -22,16 +22,13 @@ import com.liferay.util.portlet.PortletProps;
  */
 public class PortletPropsValues {
 
-	public static final String GOOGLE_GROUPS_EMAIL_PERMISSION =
-		GetterUtil.getString(
-			PortletProps.get(PortletPropsKeys.GOOGLE_GROUPS_EMAIL_PERMISSION));
+	public static final String EMAIL_PERMISSION = GetterUtil.getString(
+		PortletProps.get(PortletPropsKeys.EMAIL_PERMISSION));
 
-	public static final String GOOGLE_GROUPS_EMAIL_PREFIX =
-		GetterUtil.getString(
-			PortletProps.get(PortletPropsKeys.GOOGLE_GROUPS_EMAIL_PREFIX));
+	public static final String EMAIL_PREFIX = GetterUtil.getString(
+		PortletProps.get(PortletPropsKeys.EMAIL_PREFIX));
 
-	public static final boolean GOOGLE_GROUPS_SYNC_ON_STARTUP =
-		GetterUtil.getBoolean(
-			PortletProps.get(PortletPropsKeys.GOOGLE_GROUPS_SYNC_ON_STARTUP));
+	public static final boolean SYNC_ON_STARTUP = GetterUtil.getBoolean(
+		PortletProps.get(PortletPropsKeys.SYNC_ON_STARTUP));
 
 }

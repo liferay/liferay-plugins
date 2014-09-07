@@ -47,7 +47,7 @@ public class GoogleMailGroupsUtil {
 
 		StringBundler sb = new StringBundler(5);
 
-		sb.append(PortletPropsValues.GOOGLE_GROUPS_EMAIL_PREFIX);
+		sb.append(PortletPropsValues.EMAIL_PREFIX);
 		sb.append(StringPool.DASH);
 
 		String friendlyURL = group.getFriendlyURL();
@@ -101,8 +101,7 @@ public class GoogleMailGroupsUtil {
 
 					gGroupManager.addGGroup(
 						groupEmailAddress, group.getDescriptiveName(),
-						StringPool.BLANK,
-						PortletPropsValues.GOOGLE_GROUPS_EMAIL_PERMISSION);
+						StringPool.BLANK, PortletPropsValues.EMAIL_PERMISSION);
 				}
 
 				List<GGroupMember> gGroupMembers =

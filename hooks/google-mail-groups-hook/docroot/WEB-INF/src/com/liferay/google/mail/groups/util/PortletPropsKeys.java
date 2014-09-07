@@ -19,13 +19,10 @@ package com.liferay.google.mail.groups.util;
  */
 public class PortletPropsKeys {
 
-	public static final String GOOGLE_GROUPS_EMAIL_PERMISSION =
-		"google.mail.groups.email.permission";
+	public static final String EMAIL_PERMISSION = "email.permission";
 
-	public static final String GOOGLE_GROUPS_EMAIL_PREFIX =
-		"google.mail.groups.email.prefix";
+	public static final String EMAIL_PREFIX = "email.prefix";
 
-	public static final String GOOGLE_GROUPS_SYNC_ON_STARTUP =
-		"google.mail.groups.sync.on.startup";
+	public static final String SYNC_ON_STARTUP = "sync.on.startup";
 
 }

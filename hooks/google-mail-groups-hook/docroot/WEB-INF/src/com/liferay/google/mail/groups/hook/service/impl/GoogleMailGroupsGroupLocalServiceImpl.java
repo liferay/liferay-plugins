@@ -115,7 +115,7 @@ public class GoogleMailGroupsGroupLocalServiceImpl
 
 		gGroupManager.addGGroup(
 			groupEmailAddress, group.getDescriptiveName(), StringPool.BLANK,
-			PortletPropsValues.GOOGLE_GROUPS_EMAIL_PERMISSION);
+			PortletPropsValues.EMAIL_PERMISSION);
 
 		LinkedHashMap<String, Object> userParams =
 			new LinkedHashMap<String, Object>();
