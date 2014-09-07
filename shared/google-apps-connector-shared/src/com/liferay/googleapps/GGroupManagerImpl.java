@@ -52,10 +52,10 @@ public class GGroupManagerImpl
 
 		Element atomEntryElement = addAtomEntry(document);
 
-		addAppsProperty(atomEntryElement, "groupId", groupEmailAddress);
-		addAppsProperty(atomEntryElement, "groupName", groupName);
 		addAppsProperty(atomEntryElement, "description", description);
 		addAppsProperty(atomEntryElement, "emailPermission", emailPermission);
+		addAppsProperty(atomEntryElement, "groupId", groupEmailAddress);
+		addAppsProperty(atomEntryElement, "groupName", groupName);
 
 		submitAdd(groupURL, document);
 	}
