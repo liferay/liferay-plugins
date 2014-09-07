@@ -61,7 +61,7 @@ public class GoogleMailGroupsGroupLocalServiceImpl
 		group = super.updateFriendlyURL(groupId, friendlyURL);
 
 		try {
-			updateGGroup(oldFriendlyURL, oldGroupEmailAddress, group);
+			updateGGroup(group, oldFriendlyURL, oldGroupEmailAddress);
 		}
 		catch (Exception e) {
 			_log.error(e);
@@ -88,7 +88,7 @@ public class GoogleMailGroupsGroupLocalServiceImpl
 			membershipRestriction, friendlyURL, active, serviceContext);
 
 		try {
-			updateGGroup(oldFriendlyURL, oldGroupEmailAddress, group);
+			updateGGroup(group, oldFriendlyURL, oldGroupEmailAddress);
 		}
 		catch (Exception e) {
 			_log.error(e);
@@ -98,7 +98,7 @@ public class GoogleMailGroupsGroupLocalServiceImpl
 	}
 
 	protected void updateGGroup(
-			String oldFriendlyURL, String oldGroupEmailAddress, Group group)
+			Group group, String oldFriendlyURL, String oldGroupEmailAddress)
 		throws Exception {
 
 		if (oldFriendlyURL.equals(group.getFriendlyURL())) {
