@@ -16,7 +16,7 @@ package com.liferay.google.mail.groups.hook.listeners;
 
 import com.liferay.google.apps.connector.GGroupManager;
 import com.liferay.google.apps.connector.GoogleAppsConnectionFactoryUtil;
-import com.liferay.google.mail.groups.util.GoogleGroupsUtil;
+import com.liferay.google.mail.groups.util.GoogleMailGroupsUtil;
 import com.liferay.google.mail.groups.util.PortletPropsValues;
 import com.liferay.portal.ModelListenerException;
 import com.liferay.portal.kernel.util.StringPool;
@@ -51,7 +51,7 @@ public class GroupModelListener extends BaseModelListener<Group> {
 		try {
 			Group group = GroupLocalServiceUtil.getGroup((Long)classPK);
 
-			if (!GoogleGroupsUtil.isSync(group)) {
+			if (!GoogleMailGroupsUtil.isSync(group)) {
 				return;
 			}
 
@@ -59,7 +59,7 @@ public class GroupModelListener extends BaseModelListener<Group> {
 				GoogleAppsConnectionFactoryUtil.getGGroupManager(
 					group.getCompanyId());
 
-			String groupEmailAddress = GoogleGroupsUtil.getGroupEmailAddress(
+			String groupEmailAddress = GoogleMailGroupsUtil.getGroupEmailAddress(
 				group);
 
 			List<User> users = new ArrayList<User>();
@@ -85,7 +85,7 @@ public class GroupModelListener extends BaseModelListener<Group> {
 
 	@Override
 	public void onAfterCreate(Group group) throws ModelListenerException {
-		if (!GoogleGroupsUtil.isSync(group)) {
+		if (!GoogleMailGroupsUtil.isSync(group)) {
 			return;
 		}
 
@@ -95,7 +95,7 @@ public class GroupModelListener extends BaseModelListener<Group> {
 					group.getCompanyId());
 
 			gGroupManager.addGGroup(
-				GoogleGroupsUtil.getGroupEmailAddress(group),
+				GoogleMailGroupsUtil.getGroupEmailAddress(group),
 				group.getDescriptiveName(), StringPool.BLANK,
 				PortletPropsValues.GOOGLE_GROUPS_EMAIL_PERMISSION);
 		}
@@ -106,7 +106,7 @@ public class GroupModelListener extends BaseModelListener<Group> {
 
 	@Override
 	public void onAfterRemove(Group group) throws ModelListenerException {
-		if (!GoogleGroupsUtil.isSync(group)) {
+		if (!GoogleMailGroupsUtil.isSync(group)) {
 			return;
 		}
 
@@ -116,7 +116,7 @@ public class GroupModelListener extends BaseModelListener<Group> {
 					group.getCompanyId());
 
 			gGroupManager.deleteGGroup(
-				GoogleGroupsUtil.getGroupEmailAddress(group));
+				GoogleMailGroupsUtil.getGroupEmailAddress(group));
 		}
 		catch (Exception e) {
 			throw new ModelListenerException(e);
@@ -138,7 +138,7 @@ public class GroupModelListener extends BaseModelListener<Group> {
 		try {
 			Group group = GroupLocalServiceUtil.getGroup((Long)classPK);
 
-			if (!GoogleGroupsUtil.isSync(group)) {
+			if (!GoogleMailGroupsUtil.isSync(group)) {
 				return;
 			}
 
@@ -146,7 +146,7 @@ public class GroupModelListener extends BaseModelListener<Group> {
 				GoogleAppsConnectionFactoryUtil.getGGroupManager(
 					group.getCompanyId());
 
-			String groupEmailAddress = GoogleGroupsUtil.getGroupEmailAddress(
+			String groupEmailAddress = GoogleMailGroupsUtil.getGroupEmailAddress(
 				group);
 
 			List<User> users = new ArrayList<User>();

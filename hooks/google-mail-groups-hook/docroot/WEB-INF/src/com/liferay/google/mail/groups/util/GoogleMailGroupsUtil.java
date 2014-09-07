@@ -40,7 +40,7 @@ import java.util.List;
 /**
  * @author Matthew Kong
  */
-public class GoogleGroupsUtil {
+public class GoogleMailGroupsUtil {
 
 	public static String getGroupEmailAddress(Group group)
 		throws PortalException {

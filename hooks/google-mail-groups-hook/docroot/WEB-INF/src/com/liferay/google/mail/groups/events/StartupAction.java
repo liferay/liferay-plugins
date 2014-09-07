@@ -14,7 +14,7 @@
 
 package com.liferay.google.mail.groups.events;
 
-import com.liferay.google.mail.groups.util.GoogleGroupsUtil;
+import com.liferay.google.mail.groups.util.GoogleMailGroupsUtil;
 import com.liferay.google.mail.groups.util.PortletPropsValues;
 import com.liferay.portal.kernel.events.ActionException;
 import com.liferay.portal.kernel.events.SimpleAction;
@@ -32,7 +32,7 @@ public class StartupAction extends SimpleAction {
 			}
 
 			for (String id : ids) {
-				GoogleGroupsUtil.syncGroups(Long.valueOf(id));
+				GoogleMailGroupsUtil.syncGroups(Long.valueOf(id));
 			}
 		}
 		catch (Exception e) {
