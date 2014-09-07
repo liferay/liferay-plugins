@@ -55,13 +55,6 @@ public class GroupModelListener extends BaseModelListener<Group> {
 				return;
 			}
 
-			GGroupManager gGroupManager =
-				GoogleAppsConnectionFactoryUtil.getGGroupManager(
-					group.getCompanyId());
-
-			String groupEmailAddress =
-				GoogleMailGroupsUtil.getGroupEmailAddress(group);
-
 			List<User> users = new ArrayList<User>();
 
 			if (associationClassName.equals(UserGroup.class.getName())) {
@@ -72,6 +65,13 @@ public class GroupModelListener extends BaseModelListener<Group> {
 				users = UserLocalServiceUtil.getOrganizationUsers(
 					(Long)associationClassPK);
 			}
+
+			GGroupManager gGroupManager =
+				GoogleAppsConnectionFactoryUtil.getGGroupManager(
+					group.getCompanyId());
+
+			String groupEmailAddress =
+				GoogleMailGroupsUtil.getGroupEmailAddress(group);
 
 			for (User user : users) {
 				gGroupManager.addGGroupMember(
