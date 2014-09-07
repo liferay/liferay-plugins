@@ -75,7 +75,8 @@ public class GroupModelListener extends BaseModelListener<Group> {
 
 			for (User user : users) {
 				gGroupManager.addGGroupMember(
-					groupEmailAddress, user.getEmailAddress());
+					groupEmailAddress,
+					GoogleMailGroupsUtil.getUserEmailAddress(user));
 			}
 		}
 		catch (Exception e) {
@@ -168,7 +169,8 @@ public class GroupModelListener extends BaseModelListener<Group> {
 				}
 
 				gGroupManager.deleteGGroupMember(
-					groupEmailAddress, user.getEmailAddress());
+					groupEmailAddress,
+					GoogleMailGroupsUtil.getUserEmailAddress(user));
 			}
 		}
 		catch (Exception e) {

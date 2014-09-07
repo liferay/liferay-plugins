@@ -131,7 +131,8 @@ public class GoogleMailGroupsGroupLocalServiceImpl
 
 		for (User user : users) {
 			gGroupManager.addGGroupMember(
-				groupEmailAddress, user.getEmailAddress());
+				groupEmailAddress,
+				GoogleMailGroupsUtil.getUserEmailAddress(user));
 		}
 	}
 
