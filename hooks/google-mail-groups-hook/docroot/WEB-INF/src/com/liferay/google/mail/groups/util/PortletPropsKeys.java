@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.google.groups.util;
+package com.liferay.google.mail.groups.util;
 
 /**
  * @author Matthew Kong
@@ -20,12 +20,12 @@ package com.liferay.google.groups.util;
 public class PortletPropsKeys {
 
 	public static final String GOOGLE_GROUPS_EMAIL_PERMISSION =
-		"google.groups.email.permission";
+		"google.mail.groups.email.permission";
 
 	public static final String GOOGLE_GROUPS_EMAIL_PREFIX =
-		"google.groups.email.prefix";
+		"google.mail.groups.email.prefix";
 
 	public static final String GOOGLE_GROUPS_SYNC_ON_STARTUP =
-		"google.groups.sync.on.startup";
+		"google.mail.groups.sync.on.startup";
 
 }

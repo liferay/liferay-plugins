@@ -12,10 +12,10 @@
  * details.
  */
 
-package com.liferay.google.groups.hook.service.impl;
+package com.liferay.google.mail.groups.hook.service.impl;
 
-import com.liferay.google.groups.util.GoogleGroupsUtil;
-import com.liferay.google.groups.util.PortletPropsValues;
+import com.liferay.google.mail.groups.util.GoogleGroupsUtil;
+import com.liferay.google.mail.groups.util.PortletPropsValues;
 import com.liferay.googleapps.GGroupManager;
 import com.liferay.googleapps.GoogleAppsFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
