@@ -16,7 +16,7 @@ package com.liferay.google.mail.groups.hook.service.impl;
 
 import com.liferay.google.apps.connector.GGroupManager;
 import com.liferay.google.apps.connector.GoogleAppsConnectionFactoryUtil;
-import com.liferay.google.mail.groups.util.GoogleGroupsUtil;
+import com.liferay.google.mail.groups.util.GoogleMailGroupsUtil;
 import com.liferay.google.mail.groups.util.PortletPropsValues;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -55,7 +55,7 @@ public class GoogleGroupsGroupLocalServiceImpl
 		Group group = GroupLocalServiceUtil.getGroup(groupId);
 
 		String oldFriendlyURL = group.getFriendlyURL();
-		String oldGroupEmailAddress = GoogleGroupsUtil.getGroupEmailAddress(
+		String oldGroupEmailAddress = GoogleMailGroupsUtil.getGroupEmailAddress(
 			group);
 
 		group = super.updateFriendlyURL(groupId, friendlyURL);
@@ -80,7 +80,7 @@ public class GoogleGroupsGroupLocalServiceImpl
 		Group group = GroupLocalServiceUtil.getGroup(groupId);
 
 		String oldFriendlyURL = group.getFriendlyURL();
-		String oldGroupEmailAddress = GoogleGroupsUtil.getGroupEmailAddress(
+		String oldGroupEmailAddress = GoogleMailGroupsUtil.getGroupEmailAddress(
 			group);
 
 		group = super.updateGroup(
@@ -111,7 +111,7 @@ public class GoogleGroupsGroupLocalServiceImpl
 
 		gGroupManager.deleteGGroup(oldGroupEmailAddress);
 
-		String groupEmailAddress = GoogleGroupsUtil.getGroupEmailAddress(group);
+		String groupEmailAddress = GoogleMailGroupsUtil.getGroupEmailAddress(group);
 
 		gGroupManager.addGGroup(
 			groupEmailAddress, group.getDescriptiveName(), StringPool.BLANK,
