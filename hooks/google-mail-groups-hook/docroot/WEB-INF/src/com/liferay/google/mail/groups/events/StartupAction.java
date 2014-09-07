@@ -27,7 +27,7 @@ public class StartupAction extends SimpleAction {
 	@Override
 	public void run(String[] ids) throws ActionException {
 		try {
-			if (!PortletPropsValues.GOOGLE_GROUPS_SYNC_ON_STARTUP) {
+			if (!PortletPropsValues.SYNC_ON_STARTUP) {
 				return;
 			}
 

@@ -97,7 +97,7 @@ public class GroupModelListener extends BaseModelListener<Group> {
 			gGroupManager.addGGroup(
 				GoogleMailGroupsUtil.getGroupEmailAddress(group),
 				group.getDescriptiveName(), StringPool.BLANK,
-				PortletPropsValues.GOOGLE_GROUPS_EMAIL_PERMISSION);
+				PortletPropsValues.EMAIL_PERMISSION);
 		}
 		catch (Exception e) {
 			throw new ModelListenerException(e);
