@@ -12,37 +12,23 @@
  * details.
  */
 
-package com.liferay.googledrive.repository.model;
+package com.liferay.google.drive.repository.model;
 
-import com.google.api.services.drive.model.File;
-
-import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.repository.external.ExtRepositoryFolder;
+import com.liferay.repository.external.CredentialsProvider;
 
 /**
  * @author Sergio González
  */
-public class GoogleDriveFolder
-	extends GoogleDriveObject implements ExtRepositoryFolder {
+public class GoogleDriveCredentialsProvider implements CredentialsProvider {
 
-	public GoogleDriveFolder(File file, String rootFolderKey) {
-		super(file);
-
-		_name = GetterUtil.getString(file.getTitle());
-		_rootFolderKey = rootFolderKey;
+	@Override
+	public String getLogin() {
+		return null;
 	}
 
 	@Override
-	public String getName() {
-		return _name;
+	public String getPassword() {
+		return null;
 	}
-
-	@Override
-	public boolean isRoot() {
-		return _rootFolderKey.equals(getExtRepositoryModelKey());
-	}
-
-	private String _name;
-	private final String _rootFolderKey;
 
 }
