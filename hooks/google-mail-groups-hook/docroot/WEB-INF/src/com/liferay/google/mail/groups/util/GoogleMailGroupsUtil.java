@@ -66,7 +66,7 @@ public class GoogleMailGroupsUtil {
 
 	public static boolean isSync(Group group) {
 		if ((group == null) || group.isCompany() || group.isControlPanel() ||
-			group.isGuest() || (!group.isSite() && !group.isOrganization())) {
+			group.isGuest() || (!group.isOrganization() && !group.isSite())) {
 
 			return false;
 		}
