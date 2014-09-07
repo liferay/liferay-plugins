@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.googleapps;
+package com.liferay.google.apps.connector;
 
 import com.liferay.portal.kernel.io.unsync.UnsyncStringReader;
 import com.liferay.portal.kernel.log.Log;

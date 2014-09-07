@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.googleapps;
+package com.liferay.google.apps.connector;
 
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -33,7 +33,7 @@ import java.util.List;
 public class GGroupManagerImpl
 	extends GBaseManagerImpl implements GGroupManager {
 
-	public GGroupManagerImpl(GoogleApps googleApps) {
+	public GGroupManagerImpl(GoogleAppsConnection googleApps) {
 		super(googleApps);
 
 		GAuthenticator gAuthenticator = googleApps.getGAuthenticator();

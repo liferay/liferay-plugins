@@ -12,12 +12,12 @@
  * details.
  */
 
-package com.liferay.googleapps;
+package com.liferay.google.apps.connector;
 
 /**
  * @author Brian Wing Shun Chan
  */
-public class GoogleAppsFactoryUtil {
+public class GoogleAppsConnectionFactoryUtil {
 
 	public static GEmailSettingsManager getGEmailSettingsManager(
 		long companyId) {
@@ -33,19 +33,21 @@ public class GoogleAppsFactoryUtil {
 		return getGoogleAppsFactory().getGNicknameManager(companyId);
 	}
 
-	public static GoogleAppsFactory getGoogleAppsFactory() {
-		return _googleAppsFactory;
+	public static GoogleAppsConnectionFactory getGoogleAppsFactory() {
+		return _googleAppsConnectionFactory;
 	}
 
 	public static GUserManager getGUserManager(long companyId) {
 		return getGoogleAppsFactory().getGUserManager(companyId);
 	}
 
-	public void setGoogleAppsFactory(GoogleAppsFactory googleAppsFactory) {
-		_googleAppsFactory = googleAppsFactory;
+	public void setGoogleAppsConnectionFactory(
+		GoogleAppsConnectionFactory googleAppsConnectionFactory) {
+
+		_googleAppsConnectionFactory = googleAppsConnectionFactory;
 	}
 
-	private static GoogleAppsFactory _googleAppsFactory =
-		new GoogleAppsFactoryImpl();
+	private static GoogleAppsConnectionFactory _googleAppsConnectionFactory =
+		new GoogleAppsConnectionFactoryImpl();
 
 }

@@ -12,19 +12,30 @@
  * details.
  */
 
-package com.liferay.googleapps;
+package com.liferay.google.apps.connector;
 
 /**
  * @author Brian Wing Shun Chan
  */
-public interface GoogleAppsFactory {
+public class GNickname {
 
-	public GEmailSettingsManager getGEmailSettingsManager(long companyId);
+	public String getNickname() {
+		return _nickname;
+	}
 
-	public GGroupManager getGGroupManager(long companyId);
+	public long getUserId() {
+		return _userId;
+	}
 
-	public GNicknameManager getGNicknameManager(long companyId);
+	public void setNickname(String nickname) {
+		_nickname = nickname;
+	}
 
-	public GUserManager getGUserManager(long companyId);
+	public void setUserId(long userId) {
+		_userId = userId;
+	}
+
+	private String _nickname;
+	private long _userId;
 
 }

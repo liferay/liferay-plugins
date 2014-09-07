@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.googleapps;
+package com.liferay.google.apps.connector;
 
 import com.liferay.portal.kernel.xml.Document;
 import com.liferay.portal.kernel.xml.Element;
@@ -26,7 +26,7 @@ public class GBaseManagerImpl {
 
 	public static final String APPS_URL = GHelperUtil.APPS_URL;
 
-	public GBaseManagerImpl(GoogleApps googleApps) {
+	public GBaseManagerImpl(GoogleAppsConnection googleApps) {
 		this.googleApps = googleApps;
 	}
 
@@ -94,6 +94,6 @@ public class GBaseManagerImpl {
 		GHelperUtil.submitUpdate(googleApps.getGAuthenticator(), url, document);
 	}
 
-	protected GoogleApps googleApps;
+	protected GoogleAppsConnection googleApps;
 
 }

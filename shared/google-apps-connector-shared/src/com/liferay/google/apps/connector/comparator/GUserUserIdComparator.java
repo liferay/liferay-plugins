@@ -12,31 +12,38 @@
  * details.
  */
 
-package com.liferay.googleapps.comparator;
+package com.liferay.google.apps.connector.comparator;
 
-import com.liferay.googleapps.GUser;
+import com.liferay.google.apps.connector.GUser;
 
 import java.util.Comparator;
 
 /**
  * @author Brian Wing Shun Chan
  */
-public class GUserLastNameComparator implements Comparator<GUser> {
+public class GUserUserIdComparator implements Comparator<GUser> {
 
-	public GUserLastNameComparator() {
+	public GUserUserIdComparator() {
 		this(true);
 	}
 
-	public GUserLastNameComparator(boolean ascending) {
+	public GUserUserIdComparator(boolean ascending) {
 		_ascending = ascending;
 	}
 
 	@Override
 	public int compare(GUser user1, GUser user2) {
-		String lastName1 = user1.getLastName();
-		String lastName2 = user2.getLastName();
+		long userId1 = user1.getUserId();
+		long userId2 = user2.getUserId();
 
-		int value = lastName1.compareTo(lastName2);
+		int value = 0;
+
+		if (userId1 < userId2) {
+			value = -1;
+		}
+		else if (userId1 > userId2) {
+			value = 1;
+		}
 
 		if (_ascending) {
 			return value;

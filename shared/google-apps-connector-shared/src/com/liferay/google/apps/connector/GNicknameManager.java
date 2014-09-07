@@ -12,30 +12,22 @@
  * details.
  */
 
-package com.liferay.googleapps;
+package com.liferay.google.apps.connector;
+
+import java.util.List;
 
 /**
  * @author Brian Wing Shun Chan
  */
-public class GNickname {
+public interface GNicknameManager {
 
-	public String getNickname() {
-		return _nickname;
-	}
+	public void addGNickname(long userId, String nickname)
+		throws GoogleAppsException;
 
-	public long getUserId() {
-		return _userId;
-	}
+	public void deleteGNickname(String nickname) throws GoogleAppsException;
 
-	public void setNickname(String nickname) {
-		_nickname = nickname;
-	}
+	public GNickname getGNickname(String nickname) throws GoogleAppsException;
 
-	public void setUserId(long userId) {
-		_userId = userId;
-	}
-
-	private String _nickname;
-	private long _userId;
+	public List<GNickname> getGNicknames() throws GoogleAppsException;
 
 }

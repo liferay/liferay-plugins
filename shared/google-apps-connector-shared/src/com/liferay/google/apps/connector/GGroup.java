@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.googleapps;
+package com.liferay.google.apps.connector;
 
 /**
  * @author Brian Wing Shun Chan

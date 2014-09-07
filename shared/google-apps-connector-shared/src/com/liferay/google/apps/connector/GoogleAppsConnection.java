@@ -12,20 +12,22 @@
  * details.
  */
 
-package com.liferay.googleapps;
+package com.liferay.google.apps.connector;
 
 /**
  * @author Brian Wing Shun Chan
  */
-public class GoogleApps {
+public class GoogleAppsConnection {
 
-	public GoogleApps(long companyId) {
+	public GoogleAppsConnection(long companyId) {
 		_gAuthenticator = new GAuthenticator(companyId);
 
 		init();
 	}
 
-	public GoogleApps(String domain, String userName, String password) {
+	public GoogleAppsConnection(
+		String domain, String userName, String password) {
+
 		_gAuthenticator = new GAuthenticator(domain, userName, password);
 
 		init();

@@ -12,38 +12,31 @@
  * details.
  */
 
-package com.liferay.googleapps.comparator;
+package com.liferay.google.apps.connector.comparator;
 
-import com.liferay.googleapps.GUser;
+import com.liferay.google.apps.connector.GGroup;
 
 import java.util.Comparator;
 
 /**
  * @author Brian Wing Shun Chan
  */
-public class GUserUserIdComparator implements Comparator<GUser> {
+public class GGroupEmailAddressComparator implements Comparator<GGroup> {
 
-	public GUserUserIdComparator() {
+	public GGroupEmailAddressComparator() {
 		this(true);
 	}
 
-	public GUserUserIdComparator(boolean ascending) {
+	public GGroupEmailAddressComparator(boolean ascending) {
 		_ascending = ascending;
 	}
 
 	@Override
-	public int compare(GUser user1, GUser user2) {
-		long userId1 = user1.getUserId();
-		long userId2 = user2.getUserId();
+	public int compare(GGroup user1, GGroup user2) {
+		String emailAddress1 = user1.getEmailAddress();
+		String emailAddress2 = user2.getEmailAddress();
 
-		int value = 0;
-
-		if (userId1 < userId2) {
-			value = -1;
-		}
-		else if (userId1 > userId2) {
-			value = 1;
-		}
+		int value = emailAddress1.compareTo(emailAddress2);
 
 		if (_ascending) {
 			return value;

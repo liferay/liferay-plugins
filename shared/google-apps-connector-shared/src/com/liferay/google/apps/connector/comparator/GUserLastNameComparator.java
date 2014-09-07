@@ -12,31 +12,31 @@
  * details.
  */
 
-package com.liferay.googleapps.comparator;
+package com.liferay.google.apps.connector.comparator;
 
-import com.liferay.googleapps.GGroup;
+import com.liferay.google.apps.connector.GUser;
 
 import java.util.Comparator;
 
 /**
  * @author Brian Wing Shun Chan
  */
-public class GGroupNameComparator implements Comparator<GGroup> {
+public class GUserLastNameComparator implements Comparator<GUser> {
 
-	public GGroupNameComparator() {
+	public GUserLastNameComparator() {
 		this(true);
 	}
 
-	public GGroupNameComparator(boolean ascending) {
+	public GUserLastNameComparator(boolean ascending) {
 		_ascending = ascending;
 	}
 
 	@Override
-	public int compare(GGroup user1, GGroup user2) {
-		String name1 = user1.getName();
-		String name2 = user2.getName();
+	public int compare(GUser user1, GUser user2) {
+		String lastName1 = user1.getLastName();
+		String lastName2 = user2.getLastName();
 
-		int value = name1.compareTo(name2);
+		int value = lastName1.compareTo(lastName2);
 
 		if (_ascending) {
 			return value;

@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.googleapps;
+package com.liferay.google.apps.connector;
 
 import com.liferay.portal.kernel.security.pacl.DoPrivileged;
 
@@ -23,41 +23,42 @@ import java.util.concurrent.ConcurrentHashMap;
  * @author Brian Wing Shun Chan
  */
 @DoPrivileged
-public class GoogleAppsFactoryImpl implements GoogleAppsFactory {
+public class GoogleAppsConnectionFactoryImpl
+	implements GoogleAppsConnectionFactory {
 
 	@Override
 	public GEmailSettingsManager getGEmailSettingsManager(long companyId) {
-		return getGoogleApps(companyId).getGEmailSettingsManager();
+		return getGoogleAppsConnection(companyId).getGEmailSettingsManager();
 	}
 
 	@Override
 	public GGroupManager getGGroupManager(long companyId) {
-		return getGoogleApps(companyId).getGGroupManager();
+		return getGoogleAppsConnection(companyId).getGGroupManager();
 	}
 
 	@Override
 	public GNicknameManager getGNicknameManager(long companyId) {
-		return getGoogleApps(companyId).getGNicknameManager();
+		return getGoogleAppsConnection(companyId).getGNicknameManager();
 	}
 
 	@Override
 	public GUserManager getGUserManager(long companyId) {
-		return getGoogleApps(companyId).getGUserManager();
+		return getGoogleAppsConnection(companyId).getGUserManager();
 	}
 
-	protected GoogleApps getGoogleApps(long companyId) {
-		GoogleApps googleApps = _googleAppsMap.get(companyId);
+	protected GoogleAppsConnection getGoogleAppsConnection(long companyId) {
+		GoogleAppsConnection googleApps = _googleAppsConnections.get(companyId);
 
 		if (googleApps == null) {
-			googleApps = new GoogleApps(companyId);
+			googleApps = new GoogleAppsConnection(companyId);
 
-			_googleAppsMap.put(companyId, googleApps);
+			_googleAppsConnections.put(companyId, googleApps);
 		}
 
 		return googleApps;
 	}
 
-	private static Map<Long, GoogleApps> _googleAppsMap =
-		new ConcurrentHashMap<Long, GoogleApps>();
+	private static Map<Long, GoogleAppsConnection> _googleAppsConnections =
+		new ConcurrentHashMap<Long, GoogleAppsConnection>();
 
 }
