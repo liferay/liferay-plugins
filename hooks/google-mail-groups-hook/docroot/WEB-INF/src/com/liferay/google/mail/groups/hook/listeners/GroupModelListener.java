@@ -59,8 +59,8 @@ public class GroupModelListener extends BaseModelListener<Group> {
 				GoogleAppsConnectionFactoryUtil.getGGroupManager(
 					group.getCompanyId());
 
-			String groupEmailAddress = GoogleMailGroupsUtil.getGroupEmailAddress(
-				group);
+			String groupEmailAddress =
+				GoogleMailGroupsUtil.getGroupEmailAddress(group);
 
 			List<User> users = new ArrayList<User>();
 
@@ -146,8 +146,8 @@ public class GroupModelListener extends BaseModelListener<Group> {
 				GoogleAppsConnectionFactoryUtil.getGGroupManager(
 					group.getCompanyId());
 
-			String groupEmailAddress = GoogleMailGroupsUtil.getGroupEmailAddress(
-				group);
+			String groupEmailAddress =
+				GoogleMailGroupsUtil.getGroupEmailAddress(group);
 
 			List<User> users = new ArrayList<User>();
 
