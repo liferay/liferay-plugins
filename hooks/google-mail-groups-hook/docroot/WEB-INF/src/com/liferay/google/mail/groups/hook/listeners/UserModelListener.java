@@ -14,9 +14,9 @@
 
 package com.liferay.google.mail.groups.hook.listeners;
 
+import com.liferay.google.apps.connector.GGroupManager;
+import com.liferay.google.apps.connector.GoogleAppsConnectionFactoryUtil;
 import com.liferay.google.mail.groups.util.GoogleGroupsUtil;
-import com.liferay.googleapps.GGroupManager;
-import com.liferay.googleapps.GoogleAppsFactoryUtil;
 import com.liferay.portal.ModelListenerException;
 import com.liferay.portal.model.BaseModelListener;
 import com.liferay.portal.model.Group;
@@ -65,7 +65,8 @@ public class UserModelListener extends BaseModelListener<User> {
 			User user = UserLocalServiceUtil.getUser((Long)classPK);
 
 			GGroupManager gGroupManager =
-				GoogleAppsFactoryUtil.getGGroupManager(user.getCompanyId());
+				GoogleAppsConnectionFactoryUtil.getGGroupManager(
+					user.getCompanyId());
 
 			for (Group group : groups) {
 				if (!GoogleGroupsUtil.isSync(group)) {
@@ -112,7 +113,8 @@ public class UserModelListener extends BaseModelListener<User> {
 			User user = UserLocalServiceUtil.getUser((Long)classPK);
 
 			GGroupManager gGroupManager =
-				GoogleAppsFactoryUtil.getGGroupManager(user.getCompanyId());
+				GoogleAppsConnectionFactoryUtil.getGGroupManager(
+					user.getCompanyId());
 
 			for (Group group : groups) {
 				if (!GoogleGroupsUtil.isSync(group)) {

@@ -14,10 +14,10 @@
 
 package com.liferay.google.mail.groups.util;
 
-import com.liferay.googleapps.GGroup;
-import com.liferay.googleapps.GGroupManager;
-import com.liferay.googleapps.GGroupMember;
-import com.liferay.googleapps.GoogleAppsFactoryUtil;
+import com.liferay.google.apps.connector.GGroup;
+import com.liferay.google.apps.connector.GGroupManager;
+import com.liferay.google.apps.connector.GGroupMember;
+import com.liferay.google.apps.connector.GoogleAppsConnectionFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -76,7 +76,7 @@ public class GoogleGroupsUtil {
 
 	public static void syncGroups(long companyId) throws Exception {
 		final GGroupManager gGroupManager =
-			GoogleAppsFactoryUtil.getGGroupManager(companyId);
+			GoogleAppsConnectionFactoryUtil.getGGroupManager(companyId);
 
 		ActionableDynamicQuery actionableDynamicQuery =
 			new GroupActionableDynamicQuery() {

@@ -14,10 +14,10 @@
 
 package com.liferay.google.mail.groups.hook.listeners;
 
+import com.liferay.google.apps.connector.GGroupManager;
+import com.liferay.google.apps.connector.GoogleAppsConnectionFactoryUtil;
 import com.liferay.google.mail.groups.util.GoogleGroupsUtil;
 import com.liferay.google.mail.groups.util.PortletPropsValues;
-import com.liferay.googleapps.GGroupManager;
-import com.liferay.googleapps.GoogleAppsFactoryUtil;
 import com.liferay.portal.ModelListenerException;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.BaseModelListener;
@@ -56,7 +56,8 @@ public class GroupModelListener extends BaseModelListener<Group> {
 			}
 
 			GGroupManager gGroupManager =
-				GoogleAppsFactoryUtil.getGGroupManager(group.getCompanyId());
+				GoogleAppsConnectionFactoryUtil.getGGroupManager(
+					group.getCompanyId());
 
 			String groupEmailAddress = GoogleGroupsUtil.getGroupEmailAddress(
 				group);
@@ -90,7 +91,8 @@ public class GroupModelListener extends BaseModelListener<Group> {
 
 		try {
 			GGroupManager gGroupManager =
-				GoogleAppsFactoryUtil.getGGroupManager(group.getCompanyId());
+				GoogleAppsConnectionFactoryUtil.getGGroupManager(
+					group.getCompanyId());
 
 			gGroupManager.addGGroup(
 				GoogleGroupsUtil.getGroupEmailAddress(group),
@@ -110,7 +112,8 @@ public class GroupModelListener extends BaseModelListener<Group> {
 
 		try {
 			GGroupManager gGroupManager =
-				GoogleAppsFactoryUtil.getGGroupManager(group.getCompanyId());
+				GoogleAppsConnectionFactoryUtil.getGGroupManager(
+					group.getCompanyId());
 
 			gGroupManager.deleteGGroup(
 				GoogleGroupsUtil.getGroupEmailAddress(group));
@@ -140,7 +143,8 @@ public class GroupModelListener extends BaseModelListener<Group> {
 			}
 
 			GGroupManager gGroupManager =
-				GoogleAppsFactoryUtil.getGGroupManager(group.getCompanyId());
+				GoogleAppsConnectionFactoryUtil.getGGroupManager(
+					group.getCompanyId());
 
 			String groupEmailAddress = GoogleGroupsUtil.getGroupEmailAddress(
 				group);
