@@ -39,10 +39,10 @@ import java.util.List;
 /**
  * @author Matthew Kong
  */
-public class GoogleGroupsGroupLocalServiceImpl
+public class GoogleMailGroupsGroupLocalServiceImpl
 	extends GroupLocalServiceWrapper {
 
-	public GoogleGroupsGroupLocalServiceImpl(
+	public GoogleMailGroupsGroupLocalServiceImpl(
 		GroupLocalService groupLocalService) {
 
 		super(groupLocalService);
@@ -135,6 +135,6 @@ public class GoogleGroupsGroupLocalServiceImpl
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(
-		GoogleGroupsGroupLocalServiceImpl.class);
+		GoogleMailGroupsGroupLocalServiceImpl.class);
 
 }
