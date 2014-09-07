@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.googlelogin.util;
+package com.liferay.google.login.util;
 
 /**
  * @author Sergio Gonz�lez

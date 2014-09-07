@@ -12,9 +12,9 @@
  * details.
  */
 
-package com.liferay.googlelogin.hook.security.auth;
+package com.liferay.google.login.hook.security.auth;
 
-import com.liferay.googlelogin.util.WebKeys;
+import com.liferay.google.login.util.WebKeys;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.PrefsPropsUtil;
 import com.liferay.portal.kernel.util.Validator;
