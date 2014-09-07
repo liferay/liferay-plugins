@@ -12,13 +12,14 @@
  * details.
  */
 
-package com.liferay.mail.util;
+package com.liferay.google.mail.user.hook.mail;
 
 import com.liferay.google.apps.connector.GEmailSettingsManager;
 import com.liferay.google.apps.connector.GNicknameManager;
 import com.liferay.google.apps.connector.GUserManager;
 import com.liferay.google.apps.connector.GoogleAppsConnectionFactoryUtil;
 import com.liferay.mail.model.Filter;
+import com.liferay.mail.util.Hook;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.CharPool;
