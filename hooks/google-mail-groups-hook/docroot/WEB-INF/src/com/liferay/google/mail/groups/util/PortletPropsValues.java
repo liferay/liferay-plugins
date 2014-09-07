@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.google.groups.util;
+package com.liferay.google.mail.groups.util;
 
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.util.portlet.PortletProps;

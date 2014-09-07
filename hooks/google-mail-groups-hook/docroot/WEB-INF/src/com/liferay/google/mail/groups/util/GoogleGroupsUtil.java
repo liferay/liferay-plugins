@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.google.groups.util;
+package com.liferay.google.mail.groups.util;
 
 import com.liferay.googleapps.GGroup;
 import com.liferay.googleapps.GGroupManager;

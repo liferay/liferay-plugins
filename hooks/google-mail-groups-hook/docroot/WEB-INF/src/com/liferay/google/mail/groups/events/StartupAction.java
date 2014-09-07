@@ -12,10 +12,10 @@
  * details.
  */
 
-package com.liferay.google.groups.events;
+package com.liferay.google.mail.groups.events;
 
-import com.liferay.google.groups.util.GoogleGroupsUtil;
-import com.liferay.google.groups.util.PortletPropsValues;
+import com.liferay.google.mail.groups.util.GoogleGroupsUtil;
+import com.liferay.google.mail.groups.util.PortletPropsValues;
 import com.liferay.portal.kernel.events.ActionException;
 import com.liferay.portal.kernel.events.SimpleAction;
 
