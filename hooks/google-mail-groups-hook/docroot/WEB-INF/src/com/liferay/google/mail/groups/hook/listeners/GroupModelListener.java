@@ -42,8 +42,8 @@ public class GroupModelListener extends BaseModelListener<Group> {
 			Object associationClassPK)
 		throws ModelListenerException {
 
-		if (!associationClassName.equals(UserGroup.class.getName()) &&
-			!associationClassName.equals(Organization.class.getName())) {
+		if (!associationClassName.equals(Organization.class.getName()) &&
+			!associationClassName.equals(UserGroup.class.getName())) {
 
 			return;
 		}
