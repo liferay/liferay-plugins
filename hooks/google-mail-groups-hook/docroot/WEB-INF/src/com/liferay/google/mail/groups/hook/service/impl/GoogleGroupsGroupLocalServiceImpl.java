@@ -14,10 +14,10 @@
 
 package com.liferay.google.mail.groups.hook.service.impl;
 
+import com.liferay.google.apps.connector.GGroupManager;
+import com.liferay.google.apps.connector.GoogleAppsConnectionFactoryUtil;
 import com.liferay.google.mail.groups.util.GoogleGroupsUtil;
 import com.liferay.google.mail.groups.util.PortletPropsValues;
-import com.liferay.googleapps.GGroupManager;
-import com.liferay.googleapps.GoogleAppsFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.log.Log;
@@ -105,8 +105,9 @@ public class GoogleGroupsGroupLocalServiceImpl
 			return;
 		}
 
-		GGroupManager gGroupManager = GoogleAppsFactoryUtil.getGGroupManager(
-			group.getCompanyId());
+		GGroupManager gGroupManager =
+			GoogleAppsConnectionFactoryUtil.getGGroupManager(
+				group.getCompanyId());
 
 		gGroupManager.deleteGGroup(oldGroupEmailAddress);
 
