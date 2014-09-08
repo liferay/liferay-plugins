@@ -285,7 +285,8 @@ public class AppLocalServiceImpl extends AppLocalServiceBaseImpl {
 
 				String fileName = zipEntry.getName();
 
-				if (!fileName.endsWith(".war") &&
+				if (!fileName.endsWith(".jar") &&
+					!fileName.endsWith(".war") &&
 					!fileName.endsWith(".xml") &&
 					!fileName.endsWith(".zip") &&
 					!fileName.equals("liferay-marketplace.properties")) {
@@ -491,6 +492,10 @@ public class AppLocalServiceImpl extends AppLocalServiceBaseImpl {
 
 	protected String getContextName(String fileName) {
 		String context = fileName;
+
+		if (context.endsWith(".jar")) {
+			return context.substring(0, context.length() - 4);
+		}
 
 		while (context.contains(StringPool.DASH)) {
 			if (context.endsWith("-ext") || context.endsWith("-hook") ||
