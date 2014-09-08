@@ -64,6 +64,7 @@ import javax.servlet.ServletContext;
 
 /**
  * @author Ryan Park
+ * @author Joan Kim
  */
 public class AppLocalServiceImpl extends AppLocalServiceBaseImpl {
 
@@ -288,7 +289,8 @@ public class AppLocalServiceImpl extends AppLocalServiceBaseImpl {
 
 				String fileName = zipEntry.getName();
 
-				if (!fileName.endsWith(".war") &&
+				if (!fileName.endsWith(".jar") &&
+					!fileName.endsWith(".war") &&
 					!fileName.endsWith(".xml") &&
 					!fileName.endsWith(".zip") &&
 					!fileName.equals("liferay-marketplace.properties")) {
@@ -330,8 +332,10 @@ public class AppLocalServiceImpl extends AppLocalServiceBaseImpl {
 
 						DeployManagerUtil.deploy(autoDeploymentContext);
 
-						moduleLocalService.addModule(
-							app.getUserId(), app.getAppId(), contextName);
+						if (Validator.isNotNull(contextName)) {
+							moduleLocalService.addModule(
+								app.getUserId(), app.getAppId(), contextName);
+						}
 					}
 				}
 				finally {
@@ -495,6 +499,10 @@ public class AppLocalServiceImpl extends AppLocalServiceBaseImpl {
 	}
 
 	protected String getContextName(String fileName) {
+		if (fileName.endsWith(".jar")) {
+			return StringPool.BLANK;
+		}
+
 		String context = fileName;
 
 		while (context.contains(StringPool.DASH)) {
