@@ -42,42 +42,21 @@ public class GroupModelListener extends BaseModelListener<Group> {
 			Object associationClassPK)
 		throws ModelListenerException {
 
-		if (!associationClassName.equals(Organization.class.getName()) &&
-			!associationClassName.equals(UserGroup.class.getName())) {
-
-			return;
-		}
-
 		try {
-			Group group = GroupLocalServiceUtil.getGroup((Long)classPK);
+			new OnAssociation(
+				classPK, associationClassName, associationClassPK) {
 
-			if (!GoogleMailGroupsUtil.isSync(group)) {
-				return;
-			}
+				@Override
+				public void onAssociation(
+						User user, Group group, GGroupManager gGroupManager)
+					throws Exception {
 
-			List<User> users = new ArrayList<User>();
+					gGroupManager.addGGroupMember(
+						GoogleMailGroupsUtil.getGroupEmailAddress(group),
+						GoogleMailGroupsUtil.getUserEmailAddress(user));
+				}
 
-			if (associationClassName.equals(Organization.class.getName())) {
-				users = UserLocalServiceUtil.getOrganizationUsers(
-					(Long)associationClassPK);
-			}
-			else {
-				users = UserLocalServiceUtil.getUserGroupUsers(
-					(Long)associationClassPK);
-			}
-
-			GGroupManager gGroupManager =
-				GoogleAppsConnectionFactoryUtil.getGGroupManager(
-					group.getCompanyId());
-
-			String groupEmailAddress =
-				GoogleMailGroupsUtil.getGroupEmailAddress(group);
-
-			for (User user : users) {
-				gGroupManager.addGGroupMember(
-					groupEmailAddress,
-					GoogleMailGroupsUtil.getUserEmailAddress(user));
-			}
+			};
 		}
 		catch (Exception e) {
 			throw new ModelListenerException(e);
@@ -130,13 +109,46 @@ public class GroupModelListener extends BaseModelListener<Group> {
 			Object associationClassPK)
 		throws ModelListenerException {
 
-		if (!associationClassName.equals(Organization.class.getName()) &&
-			!associationClassName.equals(UserGroup.class.getName())) {
-
-			return;
-		}
-
 		try {
+			new OnAssociation(
+				classPK, associationClassName, associationClassPK) {
+
+				@Override
+				public void onAssociation(
+						User user, Group group, GGroupManager gGroupManager)
+					throws Exception {
+
+					if (GroupLocalServiceUtil.hasUserGroup(
+							user.getUserId(), group.getGroupId(), true)) {
+
+						return;
+					}
+
+					gGroupManager.deleteGGroupMember(
+						GoogleMailGroupsUtil.getGroupEmailAddress(group),
+						GoogleMailGroupsUtil.getUserEmailAddress(user));
+				}
+
+			};
+		}
+		catch (Exception e) {
+			throw new ModelListenerException(e);
+		}
+	}
+
+	private abstract class OnAssociation {
+
+		public OnAssociation(
+				Object classPK, String associationClassName,
+				Object associationClassPK)
+			throws Exception {
+
+			if (!associationClassName.equals(Organization.class.getName()) &&
+				!associationClassName.equals(UserGroup.class.getName())) {
+
+				return;
+			}
+
 			Group group = GroupLocalServiceUtil.getGroup((Long)classPK);
 
 			if (!GoogleMailGroupsUtil.isSync(group)) {
@@ -158,24 +170,14 @@ public class GroupModelListener extends BaseModelListener<Group> {
 				GoogleAppsConnectionFactoryUtil.getGGroupManager(
 					group.getCompanyId());
 
-			String groupEmailAddress =
-				GoogleMailGroupsUtil.getGroupEmailAddress(group);
-
 			for (User user : users) {
-				if (GroupLocalServiceUtil.hasUserGroup(
-						user.getUserId(), group.getGroupId(), true)) {
-
-					continue;
-				}
-
-				gGroupManager.deleteGGroupMember(
-					groupEmailAddress,
-					GoogleMailGroupsUtil.getUserEmailAddress(user));
+				onAssociation(user, group, gGroupManager);
 			}
 		}
-		catch (Exception e) {
-			throw new ModelListenerException(e);
-		}
+
+		public abstract void onAssociation(
+				User user, Group group, GGroupManager gGroupManager)
+			throws Exception;
 	}
 
 }
