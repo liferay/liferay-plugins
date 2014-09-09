@@ -428,8 +428,9 @@ public class NotificationsPortlet extends MVCPortlet {
 		String portletName = portlet.getDisplayName();
 		String portletIcon = portlet.getContextPath() + portlet.getIcon();
 
-		String timeStamp = Time.getRelativeTimeDescription(
-			userNotificationEvent.getTimestamp(), themeDisplay.getLocale(),
+		String timeStamp =
+			Time.getRelativeTimeDescription(
+				userNotificationEvent.getTimestamp(), themeDisplay.getLocale(),
 				themeDisplay.getTimeZone());
 
 		Format simpleDateFormat =

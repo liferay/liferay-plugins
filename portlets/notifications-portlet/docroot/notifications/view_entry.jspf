@@ -38,7 +38,7 @@ if (curUser != null) {
 boolean read = userNotificationEvent.isArchived();
 %>
 
-<li class="user-notification<%= read ? "" : " unread" %>">
+<li class="user-notification <%= read ? "" : "unread" %>">
 	<c:choose>
 		<c:when test="<%= userNotificationFeedEntry.isActionable() %>">
 			<liferay-portlet:actionURL name="deleteUserNotificationEvent" var="deleteUserNotificationEventURL"><portlet:param name="userNotificationEventId" value="<%= String.valueOf(userNotificationEvent.getUserNotificationEventId()) %>" /></liferay-portlet:actionURL>
