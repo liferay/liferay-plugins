@@ -19,8 +19,20 @@
 <c:if test="<%= PortletPropsValues.USER_NOTIFICATIONS_DOCKBAR_DISPLAY_ENABLED %>">
 
 	<%
-	int newUserNotificationsCount = UserNotificationEventLocalServiceUtil.getDeliveredUserNotificationEventsCount(themeDisplay.getUserId(), UserNotificationDeliveryConstants.TYPE_WEBSITE, false);
-	int unreadUserNotificationsCount = UserNotificationEventLocalServiceUtil.getArchivedUserNotificationEventsCount(themeDisplay.getUserId(), UserNotificationDeliveryConstants.TYPE_WEBSITE, false);
+	int newUserNotificationsCount = UserNotificationEventLocalServiceUtil.getDeliveredUserNotificationEventsCount(themeDisplay.getUserId(), false);
+	int unreadUserNotificationsCount = UserNotificationEventLocalServiceUtil.getArchivedUserNotificationEventsCount(themeDisplay.getUserId(), false);
+
+	long notificationsPlid = themeDisplay.getPlid();
+
+	if (layout.isTypeControlPanel()) {
+		notificationsPlid = LayoutLocalServiceUtil.getDefaultPlid(user.getGroupId(), true);
+
+		if (notificationsPlid == LayoutConstants.DEFAULT_PLID) {
+			Group guestGroup = GroupLocalServiceUtil.getGroup(user.getCompanyId(), GroupConstants.GUEST);
+
+			notificationsPlid = LayoutLocalServiceUtil.getDefaultPlid(guestGroup.getGroupId(), false);
+		}
+	}
 	%>
 
 	<li class="dockbar-user-notifications dropdown toggle-controls" id="<portlet:namespace />userNotifications">
@@ -28,11 +40,19 @@
 			<span class='user-notifications-count <%= (newUserNotificationsCount > 0) ? "alert" : StringPool.BLANK %>' id="<portlet:namespace />userNotificationsCount"><%= unreadUserNotificationsCount %></span>
 		</a>
 
+
+
 		<div class="dockbar-user-notifications-container">
 			<ul class="dropdown-menu pull-right user-notifications-list">
 				<div class="non-actionable">
 					<div class="user-notifications-header">
-						<span><a href=""><liferay-ui:message key="notifications" /><span class="count"></span></a></span>
+
+						<liferay-portlet:renderURL plid="<%= notificationsPlid %>" portletName="<%= PortletKeys.NOTIFICATIONS %>" var="viewAllNonActionableNotifications" windowState="<%= LiferayWindowState.MAXIMIZED.toString() %>">
+							<portlet:param name="mvcPath" value="/notifications/view.jsp" />
+							<portlet:param name="actionable" value="<%= Boolean.FALSE.toString() %>" />
+						</liferay-portlet:renderURL>
+
+						<span><a href="<%= viewAllNonActionableNotifications %>"><liferay-ui:message key="notifications" /><span class="count"></span></a></span>
 
 						<span class="mark-all-as-read"><a href="javascript:;" ><liferay-ui:message key="mark-as-read" /></a></span>
 					</div>
@@ -45,7 +65,12 @@
 				</div>
 				<div class="actionable">
 					<div class="user-notifications-header">
-						<span><a href=""><liferay-ui:message key="requests" /><span class="count"></span></a></span>
+						<liferay-portlet:renderURL plid="<%= notificationsPlid %>" portletName="<%= PortletKeys.NOTIFICATIONS %>" var="viewAllActionableNotifications" windowState="<%= LiferayWindowState.MAXIMIZED.toString() %>">
+							<portlet:param name="mvcPath" value="/notifications/view.jsp" />
+							<portlet:param name="actionable" value="<%= Boolean.TRUE.toString() %>" />
+						</liferay-portlet:renderURL>
+
+						<span><a href="<%= viewAllActionableNotifications %>"><liferay-ui:message key="requests" /><span class="count"></span></a></span>
 					</div>
 
 					<div class="message hide">
