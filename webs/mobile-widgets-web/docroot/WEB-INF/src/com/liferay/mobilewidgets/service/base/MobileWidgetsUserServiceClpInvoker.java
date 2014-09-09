@@ -19,7 +19,7 @@ import com.liferay.mobilewidgets.service.MobileWidgetsUserServiceUtil;
 import java.util.Arrays;
 
 /**
- * @author JosÔøΩ Manuel Navarro
+ * @author Jose Manuel Navarro
  * @generated
  */
 public class MobileWidgetsUserServiceClpInvoker {

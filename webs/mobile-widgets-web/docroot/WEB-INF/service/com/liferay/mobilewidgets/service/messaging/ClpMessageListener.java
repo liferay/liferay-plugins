@@ -21,7 +21,7 @@ import com.liferay.portal.kernel.messaging.BaseMessageListener;
 import com.liferay.portal.kernel.messaging.Message;
 
 /**
- * @author Jos� Manuel Navarro
+ * @author Jose Manuel Navarro
  */
 public class ClpMessageListener extends BaseMessageListener {
 	public static String getServletContextName() {
