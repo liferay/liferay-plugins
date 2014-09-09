@@ -134,8 +134,9 @@ public class AsgardAMIDeployer extends BaseAMITool {
 
 		String[] elasticIpAddresses = elasticIpAddressesString.split(",");
 
-		for (int i = 0; (i < elasticIpAddresses.length) &&
-				(i < instanceIds.size()); i++) {
+		for (int i = 0;
+				(i < elasticIpAddresses.length) && (i < instanceIds.size());
+					i++) {
 
 			System.out.println(
 				"Associating IP address " + elasticIpAddresses[i] +
