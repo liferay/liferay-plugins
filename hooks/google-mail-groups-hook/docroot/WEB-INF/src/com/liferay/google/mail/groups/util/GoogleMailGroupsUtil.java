@@ -21,6 +21,7 @@ import com.liferay.google.apps.connector.GoogleAppsConnectionFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
@@ -43,7 +44,7 @@ import java.util.List;
 public class GoogleMailGroupsUtil {
 
 	public static String getGroupEmailAddress(Group group)
-		throws PortalException {
+		throws PortalException, SystemException {
 
 		StringBundler sb = new StringBundler(5);
 
@@ -64,7 +65,9 @@ public class GoogleMailGroupsUtil {
 		return sb.toString();
 	}
 
-	public static String getUserEmailAddress(User user) throws PortalException {
+	public static String getUserEmailAddress(User user)
+		throws PortalException, SystemException {
+
 		return user.getUserId() + StringPool.AT + user.getCompanyMx();
 	}
 
@@ -86,7 +89,9 @@ public class GoogleMailGroupsUtil {
 			new GroupActionableDynamicQuery() {
 
 			@Override
-			protected void performAction(Object object) throws PortalException {
+			protected void performAction(Object object)
+				throws PortalException, SystemException {
+
 				Group group = (Group)object;
 
 				if (!isSync(group)) {
