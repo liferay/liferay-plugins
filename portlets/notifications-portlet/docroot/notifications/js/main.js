@@ -15,7 +15,6 @@ AUI().use(
 				instance._baseRenderURL = config.baseRenderURL;
 				instance._baseResourceURL = config.baseResourceURL;
 				instance._currentPageNotificationEventsCount = config.currentPageNotificationEventsCount;
-				instance._dockbarNotificationsURL = instance._getRenderURL('/notifications/view_entries.jsp', 'dockbar', null, null, 'false', 'true');
 				instance._dockbarViewDelta = config.dockbarViewDelta;
 				instance._fullViewNotificationsURL = instance._getRenderURL('/notifications/view_entries.jsp', config.filter, config.start.toString(), config.end.toString(), 'true');
 				instance._lastPage = config.userNotificationEventsCount <= config.end;
@@ -34,8 +33,6 @@ AUI().use(
 				instance._createMarkAllAsReadNode(config);
 
 				instance._bindUI();
-
-				instance._updateFullViewNotificationsCount(config.unreadActionableUserNotificationsCount, config.unreadNonactionableUserNotificationsCount);
 			},
 
 			initDockbarNotifications: function(config) {
@@ -45,9 +42,7 @@ AUI().use(
 				instance._baseRenderURL = config.baseRenderURL;
 				instance._portletKey = config.portletKey;
 
-				instance._dockbarNotificationsURL = instance._getRenderURL('/notifications/view_entries.jsp', 'dockbar', null, null, 'false', 'true');
-
-				instance._createMenuToggle();
+				instance._createMenuToggle(config.menuOpen);
 
 				A.on(
 					'domready',
@@ -262,12 +257,39 @@ AUI().use(
 			_createMenuToggle: function() {
 				var instance = this;
 
-				new Liferay.MenuToggle(
-					{
-						after: {
-							openChange: function(event) {
-								if (event.newVal) {
-									instance._setDelivered();
+				var userNotifications =  A.one('.dockbar-user-notifications');
+
+				if (menuOpen) {
+					if (!userNotifications.hasClass('open')) {
+						userNotifications.addClass('open');
+					}
+
+					userNotifications.on(
+						'clickoutside',
+						function(event) {
+							userNotifications.removeClass('open');
+						}
+					);
+
+					instance.renderNotificationsList(instance._getDockbarNotificationsList(), dockbarURL);
+				}
+				else {
+					userNotifications.on(
+						'click',
+						function(event) {
+							var target = event.target;
+
+							if (target.ancestor('.dockbar-user-notifications-container')) {
+								return;
+							}
+
+							instance._setDelivered();
+
+							var currentTarget = event.currentTarget;
+
+							var container = currentTarget.one('.dockbar-user-notifications-container');
+
+							container.toggleClass('open');
 
 									instance.renderNotificationsList(instance._getDockbarNotificationsList(), instance._dockbarNotificationsURL);
 
@@ -280,6 +302,21 @@ AUI().use(
 									else if (instance._unreadNonactionable) {
 										instance.renderNotificationsList(instance._getFullViewNotificationsList(), instance._getRenderURL('/notifications/view_entries.jsp', 'unread-nonactionable'));
 									}
+								);
+
+								instance.renderNotificationsList(instance._getNonActionableUserNotificationsList(), instance._getRenderURL('/notifications/view_entries.jsp', 'non-actionable', null, null, 'false'));
+
+								instance.renderNotificationsList(instance._getActionableUserNotificationsList(), instance._getRenderURL('/notifications/view_entries.jsp', 'actionable', null, null, 'false'));
+
+								if (instance._allNotifications || ((typeof(instance._allNotifications) == 'undefined') && (typeof(instance._unreadActionable) == 'undefined') && (typeof(instance._unreadNonActionable) == 'undefined'))) {
+									instance.renderNotificationsList(instance._getFullViewNotificationsList(), instance._getRenderURL('/notifications/view_entries.jsp'));
+								}
+								else if (instance._unreadActionable) {
+									instance.renderNotificationsList(instance._getFullViewNotificationsList(), instance._getRenderURL('/notifications/view_entries.jsp', 'unread-actionable'));
+								}
+								else if (instance._unreadNonActionable) {
+									instance.renderNotificationsList(instance._getFullViewNotificationsList(), instance._getRenderURL('/notifications/view_entries.jsp', 'unread-nonactionable'));
+								}
 
 									var dockbarUserNotificationsCount = A.one('.dockbar-user-notifications .user-notifications-count');
 
@@ -325,6 +362,30 @@ AUI().use(
 				portletURL.setWindowState('normal');
 
 				return portletURL.toString();
+			},
+
+			_getActionableUserNotificationsList: function() {
+				var instance = this;
+
+				if (instance._actionableUserNotificationsList) {
+					return instance._actionableUserNotificationsList;
+				}
+
+				instance._actionableUserNotificationsList = A.one('.dockbar-user-notifications .dockbar-user-notifications-container .user-notifications-list .actionable-user-notifications-list');
+
+				return instance._actionableUserNotificationsList ;
+			},
+
+			_getNonActionableUserNotificationsList: function() {
+				var instance = this;
+
+				if (instance._nonActionableUserNotificationsList) {
+					return instance._nonActionableUserNotificationsList;
+				}
+
+				instance._nonActionableUserNotificationsList = A.one('.dockbar-user-notifications .dockbar-user-notifications-container .user-notifications-list .non-actionable-user-notifications-list');
+
+				return instance._nonActionableUserNotificationsList ;
 			},
 
 			_getDockbarNotificationsList: function() {
@@ -652,6 +713,7 @@ AUI().use(
 				A.io.request(
 					instance._getResourceURL('getNotificationsCount'),
 					{
+						dataType: 'JSON',
 						on: {
 							success: function() {
 								var response = this.get('responseData');
@@ -674,8 +736,7 @@ AUI().use(
 									instance._updateFullViewNotificationsCount(response['unreadActionableUserNotificationsCount'], response['unreadNonactionableUserNotificationsCount']);
 								}
 							}
-						},
-						dataType: 'JSON'
+						}
 					}
 				);
 			},
