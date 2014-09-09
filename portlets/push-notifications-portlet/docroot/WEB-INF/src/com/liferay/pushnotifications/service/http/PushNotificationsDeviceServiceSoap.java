@@ -95,10 +95,10 @@ public class PushNotificationsDeviceServiceSoap {
 	}
 
 	public static void sendPushNotification(long toUserId,
-		java.lang.String message) throws RemoteException {
+		java.lang.String payload) throws RemoteException {
 		try {
 			PushNotificationsDeviceServiceUtil.sendPushNotification(toUserId,
-				message);
+				payload);
 		}
 		catch (Exception e) {
 			_log.error(e, e);
@@ -107,10 +107,10 @@ public class PushNotificationsDeviceServiceSoap {
 		}
 	}
 
-	public static void sendPushNotification(java.lang.String message)
+	public static void sendPushNotification(java.lang.String payload)
 		throws RemoteException {
 		try {
-			PushNotificationsDeviceServiceUtil.sendPushNotification(message);
+			PushNotificationsDeviceServiceUtil.sendPushNotification(payload);
 		}
 		catch (Exception e) {
 			_log.error(e, e);

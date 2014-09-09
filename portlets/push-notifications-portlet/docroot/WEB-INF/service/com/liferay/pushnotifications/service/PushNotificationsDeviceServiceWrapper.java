@@ -77,17 +77,17 @@ public class PushNotificationsDeviceServiceWrapper
 	}
 
 	@Override
-	public void sendPushNotification(long toUserId, java.lang.String message)
+	public void sendPushNotification(long toUserId, java.lang.String payload)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		_pushNotificationsDeviceService.sendPushNotification(toUserId, message);
+		_pushNotificationsDeviceService.sendPushNotification(toUserId, payload);
 	}
 
 	@Override
-	public void sendPushNotification(java.lang.String message)
+	public void sendPushNotification(java.lang.String payload)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		_pushNotificationsDeviceService.sendPushNotification(message);
+		_pushNotificationsDeviceService.sendPushNotification(payload);
 	}
 
 	/**
