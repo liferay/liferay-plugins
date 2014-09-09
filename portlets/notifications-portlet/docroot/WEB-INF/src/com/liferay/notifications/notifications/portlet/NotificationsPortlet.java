@@ -316,13 +316,14 @@ public class NotificationsPortlet extends MVCPortlet {
 
 		boolean actionable = ParamUtil.getBoolean(
 			resourceRequest, "actionable");
-		int delta = ParamUtil.getInteger(resourceRequest, "delta");
+		int end = ParamUtil.getInteger(resourceRequest, "end");
+		int start = ParamUtil.getInteger(resourceRequest, "start");
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
 		List<UserNotificationEvent> userNotificationEvents =
 			NotificationsUtil.getArchivedUserNotificationEvents(
-				themeDisplay.getUserId(), actionable, false, 0, delta);
+				themeDisplay.getUserId(), actionable, false, start, end);
 
 		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
 
@@ -348,7 +349,7 @@ public class NotificationsPortlet extends MVCPortlet {
 			StringUtil.merge(userNotificationEventIds));
 
 		int total = NotificationsUtil.getArchivedUserNotificationEventsCount(
-			themeDisplay.getUserId(), true, false);
+			themeDisplay.getUserId(), actionable, false);
 
 		jsonObject.put("total", total);
 
@@ -472,8 +473,5 @@ public class NotificationsPortlet extends MVCPortlet {
 		"<div class=\"clearfix user-notification-link\" data-href=\"" +
 			"[$LINK$]\" data-markAsReadURL=\"[$MARK_AS_READ_URL$]\" " +
 				"data-openDialog=\"[$OPEN_DIALOG$]\">";
-
-	private static final String _NOTIFICATION_GROUP_SEPARATOR =
-		"<hr class=\"separator\">";
 
 }

@@ -30,17 +30,77 @@
 
 		<div class="dockbar-user-notifications-container">
 			<ul class="dropdown-menu pull-right user-notifications-list">
-				<div class="non-actionable-user-notifications-list"></div>
-				<div class="actionable-user-notifications-list"></div>
+				<div class="non-actionable">
+					<div class="user-notifications-header">
+						<span><a href=""><liferay-ui:message key="notifications" /><span class="count"></span></a></span>
+
+						<span class="mark-all-as-read"><a href="javascript:;" ><liferay-ui:message key="mark-as-read" /></a></span>
+					</div>
+
+					<div class="message hide">
+						<liferay-ui:message key="you-do-not-have-any-notifications" />
+					</div>
+
+					<div class="user-notifications"></div>
+				</div>
+				<div class="actionable">
+					<div class="user-notifications-header">
+						<span><a href=""><liferay-ui:message key="requests" /><span class="count"></span></a></span>
+					</div>
+
+					<div class="message hide">
+						<liferay-ui:message key="you-do-not-have-any-notifications" />
+					</div>
+
+					<div class="user-notifications"></div>
+				</div>
 			</ul>
 		</div>
 
-		<aui:script use="aui-base">
-			Liferay.Notifications.initDockbarNotifications(
+		<aui:script use="aui-base,liferay-plugin-dockbar-notifications,liferay-plugin-notifications-list">
+			var nonActionableNotificationsList = new Liferay.NotificationsList(
 				{
+					actionable: <%= false %>,
 					baseActionURL: '<%= PortletURLFactoryUtil.create(request, portletDisplay.getId(), themeDisplay.getPlid(), PortletRequest.ACTION_PHASE) %>',
 					baseRenderURL: '<%= PortletURLFactoryUtil.create(request, portletDisplay.getId(), themeDisplay.getPlid(), PortletRequest.RENDER_PHASE) %>',
-					portletKey: '<%= PortletKeys.DOCKBAR_NOTIFICATIONS %>'
+					baseResourceURL: '<%= PortletURLFactoryUtil.create(request, portletDisplay.getId(), themeDisplay.getPlid(), PortletRequest.RESOURCE_PHASE) %>',
+					delta: <%= dockbarViewDelta %>,
+					dockbarViewDelta: '<%= dockbarViewDelta %>',
+					fullView: <%= false %>,
+					markAllAsReadNode: '.mark-all-as-read',
+					namespace: '<portlet:namespace />',
+					notificationsContainer: '.dockbar-user-notifications .dockbar-user-notifications-container .user-notifications-list .non-actionable',
+					notificationsCount: '.count',
+					notificationsNode: '.user-notifications',
+					portletKey: '<%= portletDisplay.getId() %>',
+					start: 0
+				}
+			);
+
+			var actionableNotificationsList = new Liferay.NotificationsList(
+				{
+					actionable: <%= true %>,
+					baseActionURL: '<%= PortletURLFactoryUtil.create(request, portletDisplay.getId(), themeDisplay.getPlid(), PortletRequest.ACTION_PHASE) %>',
+					baseRenderURL: '<%= PortletURLFactoryUtil.create(request, portletDisplay.getId(), themeDisplay.getPlid(), PortletRequest.RENDER_PHASE) %>',
+					baseResourceURL: '<%= PortletURLFactoryUtil.create(request, portletDisplay.getId(), themeDisplay.getPlid(), PortletRequest.RESOURCE_PHASE) %>',
+					delta: <%= dockbarViewDelta %>,
+					dockbarViewDelta: '<%= dockbarViewDelta %>',
+					fullView: <%= false %>,
+					namespace: '<portlet:namespace />',
+					notificationsContainer: '.dockbar-user-notifications .dockbar-user-notifications-container .user-notifications-list .actionable',
+					notificationsCount: '.count',
+					notificationsNode: '.user-notifications',
+					portletKey: '<%= portletDisplay.getId() %>',
+					start: 0
+				}
+			);
+
+			new Liferay.DockbarNotifications(
+				{
+					actionableNotificationsList: actionableNotificationsList,
+					baseActionURL: '<%= PortletURLFactoryUtil.create(request, portletDisplay.getId(), themeDisplay.getPlid(), PortletRequest.ACTION_PHASE) %>',
+					nonActionableNotificationsList: nonActionableNotificationsList,
+					portletKey: '<%= portletDisplay.getId() %>'
 				}
 			);
 		</aui:script>
