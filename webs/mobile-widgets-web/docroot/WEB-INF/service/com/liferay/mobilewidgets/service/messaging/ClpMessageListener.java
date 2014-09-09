@@ -15,6 +15,7 @@
 package com.liferay.mobilewidgets.service.messaging;
 
 import com.liferay.mobilewidgets.service.ClpSerializer;
+import com.liferay.mobilewidgets.service.MobileWidgetsDDLServiceUtil;
 import com.liferay.mobilewidgets.service.MobileWidgetsUserServiceUtil;
 
 import com.liferay.portal.kernel.messaging.BaseMessageListener;
@@ -35,6 +36,8 @@ public class ClpMessageListener extends BaseMessageListener {
 
 		if (command.equals("undeploy") &&
 				servletContextName.equals(getServletContextName())) {
+			MobileWidgetsDDLServiceUtil.clearService();
+
 			MobileWidgetsUserServiceUtil.clearService();
 		}
 	}

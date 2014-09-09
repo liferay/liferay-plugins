@@ -14,7 +14,7 @@
 
 package com.liferay.mobilewidgets.service.base;
 
-import com.liferay.mobilewidgets.service.MobileWidgetsUserServiceUtil;
+import com.liferay.mobilewidgets.service.MobileWidgetsDDLServiceUtil;
 
 import java.util.Arrays;
 
@@ -22,8 +22,8 @@ import java.util.Arrays;
  * @author Jose Manuel Navarro
  * @generated
  */
-public class MobileWidgetsUserServiceClpInvoker {
-	public MobileWidgetsUserServiceClpInvoker() {
+public class MobileWidgetsDDLServiceClpInvoker {
+	public MobileWidgetsDDLServiceClpInvoker() {
 		_methodName22 = "getBeanIdentifier";
 
 		_methodParameterTypes22 = new String[] {  };
@@ -32,48 +32,29 @@ public class MobileWidgetsUserServiceClpInvoker {
 
 		_methodParameterTypes23 = new String[] { "java.lang.String" };
 
-		_methodName26 = "sendPasswordByEmailAddress";
+		_methodName26 = "getDDLRecordValues";
 
-		_methodParameterTypes26 = new String[] { "long", "java.lang.String" };
-
-		_methodName27 = "sendPasswordByScreenName";
-
-		_methodParameterTypes27 = new String[] { "long", "java.lang.String" };
-
-		_methodName28 = "sendPasswordByUserId";
-
-		_methodParameterTypes28 = new String[] { "long" };
+		_methodParameterTypes26 = new String[] { "long", "java.util.Locale" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
 		Object[] arguments) throws Throwable {
 		if (_methodName22.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes22, parameterTypes)) {
-			return MobileWidgetsUserServiceUtil.getBeanIdentifier();
+			return MobileWidgetsDDLServiceUtil.getBeanIdentifier();
 		}
 
 		if (_methodName23.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes23, parameterTypes)) {
-			MobileWidgetsUserServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
+			MobileWidgetsDDLServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
 
 			return null;
 		}
 
 		if (_methodName26.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes26, parameterTypes)) {
-			return MobileWidgetsUserServiceUtil.sendPasswordByEmailAddress(((Long)arguments[0]).longValue(),
-				(java.lang.String)arguments[1]);
-		}
-
-		if (_methodName27.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes27, parameterTypes)) {
-			return MobileWidgetsUserServiceUtil.sendPasswordByScreenName(((Long)arguments[0]).longValue(),
-				(java.lang.String)arguments[1]);
-		}
-
-		if (_methodName28.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes28, parameterTypes)) {
-			return MobileWidgetsUserServiceUtil.sendPasswordByUserId(((Long)arguments[0]).longValue());
+			return MobileWidgetsDDLServiceUtil.getDDLRecordValues(((Long)arguments[0]).longValue(),
+				(java.util.Locale)arguments[1]);
 		}
 
 		throw new UnsupportedOperationException();
@@ -85,8 +66,4 @@ public class MobileWidgetsUserServiceClpInvoker {
 	private String[] _methodParameterTypes23;
 	private String _methodName26;
 	private String[] _methodParameterTypes26;
-	private String _methodName27;
-	private String[] _methodParameterTypes27;
-	private String _methodName28;
-	private String[] _methodParameterTypes28;
 }
