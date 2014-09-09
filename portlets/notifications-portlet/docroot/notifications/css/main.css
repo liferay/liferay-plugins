@@ -23,15 +23,19 @@
 	0% {
 		@include transform(rotate(5deg));
 	}
+
 	25% {
-		@include transform(translate(3px, -4px), rotate(0deg));
+		@include transform(translate(3px, -4px), rotate(0));
 	}
+
 	50% {
 		@include transform(rotate(-5deg));
 	}
+
 	75% {
-		@include transform(rotate(0deg));
+		@include transform(rotate(0));
 	}
+
 	100% {
 		@include transform(translate(0, 0), rotate(5deg));
 	}
@@ -139,7 +143,7 @@
 				top: 4px;
 
 				&:hover {
-					background-color: rgba(0,0,0,0.1);
+					background-color: rgba(0, 0, 0, 0.1);
 				}
 			}
 
@@ -154,9 +158,9 @@
 			}
 
 			.left-container {
-				min-height: 1px;
-				margin-left: 0px;
+				margin-left: 0;
 				margin-right: 20px;
+				min-height: 1px;
 			}
 
 			.sender {
@@ -436,7 +440,7 @@
 
 				.body {
 					width: 100%;
-					
+
 					.btn {
 						display: inline-block;
 						margin-left: 5%;
