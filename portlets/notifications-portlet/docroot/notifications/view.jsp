@@ -16,36 +16,34 @@
 
 <%@ include file="/init.jsp" %>
 
-<div class="clearfix notifications-container">
+<%
+boolean actionable = ParamUtil.getBoolean(request, "actionable");
+%>
+
+<div class="clearfix user-notifications-container">
 	<aui:row>
 		<aui:col cssClass="nav-bar user-notifications-sidebar" width="<%= 25 %>">
 			<div class="nav">
-				<a class="all-notifications clearfix selected" href="javascript:;">
-					<span class="title"><liferay-ui:message key="all-notifications" /></span>
+				<a class="clearfix non-actionable" href="javascript:;">
+					<span class="title"><liferay-ui:message key="notifications" /></span>
+
+					<%
+					int unreadNonActionableUserNotificationsCount = NotificationsUtil.getArchivedUserNotificationEventsCount(themeDisplay.getUserId(), false, false);
+					%>
+
+					<span class="count"><%= unreadNonActionableUserNotificationsCount %></span>
 				</a>
 			</div>
 
 			<div class="nav">
-				<a class="clearfix unread-actionable" href="javascript:;">
-					<span class="title"><liferay-ui:message key="unread-actionable-notifications" /></span>
+				<a class="clearfix actionable" href="javascript:;">
+					<span class="title"><liferay-ui:message key="requests" /></span>
 
 					<%
-					int unreadActionableUserNotificationsCount = UserNotificationEventLocalServiceUtil.getArchivedUserNotificationEventsCount(themeDisplay.getUserId(), UserNotificationDeliveryConstants.TYPE_WEBSITE, true, false);
+					int unreadActionableUserNotificationsCount = NotificationsUtil.getArchivedUserNotificationEventsCount(themeDisplay.getUserId(), true, false);
 					%>
 
 					<span class="count"><%= unreadActionableUserNotificationsCount %></span>
-				</a>
-			</div>
-
-			<div class="nav">
-				<a class="clearfix unread-nonactionable" href="javascript:;">
-					<span class="title"><liferay-ui:message key="unread-nonactionable-notifications" /></span>
-
-					<%
-					int unreadNonactionableUserNotificationsCount = UserNotificationEventLocalServiceUtil.getArchivedUserNotificationEventsCount(themeDisplay.getUserId(), UserNotificationDeliveryConstants.TYPE_WEBSITE, false, false);
-					%>
-
-					<span class="count"><%= unreadNonactionableUserNotificationsCount %></span>
 				</a>
 			</div>
 
@@ -58,18 +56,64 @@
 
 		<aui:col cssClass="user-notifications-list-container" width="<%= 75 %>">
 			<ul class="unstyled user-notifications-list">
-				<div class="loading-mask"></div>
+				<li class="clearfix pagination">
+					<span class="left-nav previous hide"><a href="javascript:;"><liferay-ui:message key="previous" /></a></span>
+					<span class="page-info hide"></span>
+					<span class="right-nav next hide"><a href="javascript:;"><liferay-ui:message key="next" /></a></span>
+				</li>
+
+				<div class="message hide">
+					<liferay-ui:message key="you-do-not-have-any-notifications" />
+				</div>
+
+				<div class="mark-all-as-read hide"><a href="javascript:;" ><liferay-ui:message key="mark-as-read" /></a></div>
+
+				<div class="user-notifications"></div>
+
+				<li class="clearfix pagination">
+					<span class="left-nav previous hide"><a href="javascript:;"><liferay-ui:message key="previous" /></a></span>
+					<span class="page-info hide"></span>
+					<span class="right-nav next hide"><a href="javascript:;"><liferay-ui:message key="next" /></a></span>
+				</li>
 			</ul>
+
+			<div class="notifications-configurations hide"></div>
 		</aui:col>
 	</aui:row>
 </div>
 
-<aui:script use="aui-base">
-	var userNotificationsList = A.one('#portlet_<%= PortletKeys.NOTIFICATIONS %> .user-notifications-list-container .user-notifications-list');
+<aui:script use="aui-base,liferay-plugin-notifications">
+	var notificationsCount = '.non-actionable .count';
 
-	<portlet:renderURL var="allNotificationsURL" windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>">
-		<portlet:param name="mvcPath" value="/notifications/view_entries.jsp" />
-	</portlet:renderURL>
+	if (<%= actionable %>) {
+		notificationsCount = '.actionable .count'
+	}
 
-	Liferay.Notifications.renderNotificationsList(userNotificationsList, '<%= allNotificationsURL %>');
+	var notificationsList = new Liferay.NotificationsList(
+		{
+			actionable: <%= actionable %>,
+			baseActionURL: '<%= PortletURLFactoryUtil.create(request, portletDisplay.getId(), themeDisplay.getPlid(), PortletRequest.ACTION_PHASE) %>',
+			baseRenderURL: '<%= PortletURLFactoryUtil.create(request, portletDisplay.getId(), themeDisplay.getPlid(), PortletRequest.RENDER_PHASE) %>',
+			baseResourceURL: '<%= PortletURLFactoryUtil.create(request, portletDisplay.getId(), themeDisplay.getPlid(), PortletRequest.RESOURCE_PHASE) %>',
+			delta: <%= fullViewDelta %>,
+			fullView: <%= true %>,
+			markAllAsReadNode: '.user-notifications-list .mark-all-as-read',
+			namespace: '<portlet:namespace />',
+			nextPageNode: '.pagination .next',
+			notificationsContainer: '.notifications-portlet .user-notifications-container',
+			notificationsCount: notificationsCount,
+			notificationsNode: '.user-notifications-list .user-notifications',
+			paginationInfoNode: '.pagination .page-info',
+			previousPageNode: '.pagination .previous',
+			portletKey: '<%= portletDisplay.getId() %>',
+			start: 0
+		}
+	);
+
+	new Liferay.Notifications(
+		{
+			baseRenderURL: '<%= PortletURLFactoryUtil.create(request, portletDisplay.getId(), themeDisplay.getPlid(), PortletRequest.RENDER_PHASE) %>',
+			notificationsList: notificationsList
+		}
+	)
 </aui:script>

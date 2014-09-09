@@ -40,8 +40,6 @@
 			<span class='user-notifications-count <%= (newUserNotificationsCount > 0) ? "alert" : StringPool.BLANK %>' id="<portlet:namespace />userNotificationsCount"><%= unreadUserNotificationsCount %></span>
 		</a>
 
-
-
 		<div class="dockbar-user-notifications-container">
 			<ul class="dropdown-menu pull-right user-notifications-list">
 				<div class="non-actionable">
@@ -52,9 +50,9 @@
 							<portlet:param name="actionable" value="<%= Boolean.FALSE.toString() %>" />
 						</liferay-portlet:renderURL>
 
-						<span><a href="<%= viewAllNonActionableNotifications %>"><liferay-ui:message key="notifications" /><span class="count"></span></a></span>
+						<span><a href="<%= viewAllNonActionableNotifications %>"><liferay-ui:message key="notifications" /> (<span class="count"></span>)</a></span>
 
-						<span class="mark-all-as-read"><a href="javascript:;" ><liferay-ui:message key="mark-as-read" /></a></span>
+						<span class="mark-all-as-read hide"><a href="javascript:;" ><liferay-ui:message key="mark-as-read" /></a></span>
 					</div>
 
 					<div class="message hide">
@@ -70,7 +68,7 @@
 							<portlet:param name="actionable" value="<%= Boolean.TRUE.toString() %>" />
 						</liferay-portlet:renderURL>
 
-						<span><a href="<%= viewAllActionableNotifications %>"><liferay-ui:message key="requests" /><span class="count"></span></a></span>
+						<span><a href="<%= viewAllActionableNotifications %>"><liferay-ui:message key="requests" /> (<span class="count"></span>)</a></span>
 					</div>
 
 					<div class="message hide">
@@ -90,7 +88,6 @@
 					baseRenderURL: '<%= PortletURLFactoryUtil.create(request, portletDisplay.getId(), themeDisplay.getPlid(), PortletRequest.RENDER_PHASE) %>',
 					baseResourceURL: '<%= PortletURLFactoryUtil.create(request, portletDisplay.getId(), themeDisplay.getPlid(), PortletRequest.RESOURCE_PHASE) %>',
 					delta: <%= dockbarViewDelta %>,
-					dockbarViewDelta: '<%= dockbarViewDelta %>',
 					fullView: <%= false %>,
 					markAllAsReadNode: '.mark-all-as-read',
 					namespace: '<portlet:namespace />',
@@ -109,7 +106,6 @@
 					baseRenderURL: '<%= PortletURLFactoryUtil.create(request, portletDisplay.getId(), themeDisplay.getPlid(), PortletRequest.RENDER_PHASE) %>',
 					baseResourceURL: '<%= PortletURLFactoryUtil.create(request, portletDisplay.getId(), themeDisplay.getPlid(), PortletRequest.RESOURCE_PHASE) %>',
 					delta: <%= dockbarViewDelta %>,
-					dockbarViewDelta: '<%= dockbarViewDelta %>',
 					fullView: <%= false %>,
 					namespace: '<portlet:namespace />',
 					notificationsContainer: '.dockbar-user-notifications .dockbar-user-notifications-container .user-notifications-list .actionable',

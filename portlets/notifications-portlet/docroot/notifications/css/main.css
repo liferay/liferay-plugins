@@ -67,7 +67,7 @@
 		list-style: none;
 		padding: 5px;
 
-		.message {
+		.pagination, .message {
 			padding: 5px;
 			text-align: center;
 
@@ -132,6 +132,13 @@
 				top: 20px;
 			}
 
+			.left-container {
+				float: left;
+				min-height: 1px;
+				margin-left: 0px;
+				width: 95%;
+			}
+
 			.sender {
 				float: left;
 				position: relative;
@@ -155,10 +162,6 @@
 					left: 0;
 					position: absolute;
 				}
-			}
-
-			.span3 {
-				margin-left: 0;
 			}
 
 			.read {
@@ -217,13 +220,9 @@
 
 	.user-notifications-list-container {
 		border: 1px solid #D5D5D5;
-
-		.loading-mask {
-			min-height: 30px;
-		}
 	}
 
-	.user-notifications-list {
+	.user-notifications-list{
 		margin: 0;
 
 		.mark-all-as-read {
@@ -247,19 +246,6 @@
 
 			.mark-as-read {
 				float: right;
-			}
-
-			.span3 {
-				margin-left: 0;
-			}
-
-			&:hover {
-				color: #FFF;
-				background: #2FA4F5;
-			}
-
-			a {
-				color: #009AE5;
 			}
 		}
 
