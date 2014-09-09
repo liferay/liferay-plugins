@@ -14,12 +14,6 @@
 
 package com.liferay.mobilewidgets.service.impl;
 
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Locale;
-import java.util.Map;
-import java.util.Set;
-
 import com.liferay.mobilewidgets.service.base.MobileWidgetsDDLServiceBaseImpl;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
@@ -28,6 +22,12 @@ import com.liferay.portlet.dynamicdatamapping.storage.Field;
 import com.liferay.portlet.dynamicdatamapping.storage.FieldConstants;
 import com.liferay.portlet.dynamicdatamapping.storage.Fields;
 import com.liferay.portlet.dynamicdatamapping.util.DDMImpl;
+
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * The implementation of the mobile widgets d d l remote service.
@@ -43,38 +43,40 @@ import com.liferay.portlet.dynamicdatamapping.util.DDMImpl;
  * @see com.liferay.mobilewidgets.service.base.MobileWidgetsDDLServiceBaseImpl
  * @see com.liferay.mobilewidgets.service.MobileWidgetsDDLServiceUtil
  */
-public class MobileWidgetsDDLServiceImpl extends MobileWidgetsDDLServiceBaseImpl {
-	/*
+public class MobileWidgetsDDLServiceImpl
+	extends MobileWidgetsDDLServiceBaseImpl {
+
+	/**
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never reference this interface directly. Always use {@link com.liferay.mobilewidgets.service.MobileWidgetsDDLServiceUtil} to access the mobile widgets d d l remote service.
 	 */
-	
-	public Map<String, String> getDDLRecordValues(long recordId, Locale locale) 
+
+	public Map<String, String> getDDLRecordValues(long recordId, Locale locale)
 		throws PortalException, SystemException {
-		
+
 		Map<String, String> recordValues = new HashMap<String, String>();
 
 		DDLRecord record = ddlRecordLocalService.getDDLRecord(recordId);
-					
+
 		Fields fields = record.getFields();
-					
+
 		Set<Locale> availableLocales = fields.getAvailableLocales();
-					
-		if (locale == null || !availableLocales.contains(locale)) {
+
+		if ((locale == null) || !availableLocales.contains(locale)) {
 			locale = fields.getDefaultLocale();
 		}
-					
+
 		Iterator<Field> fieldsIterator = fields.iterator();
-									
+
 		while (fieldsIterator.hasNext()) {
 			Field currentField = fieldsIterator.next();
 
-			String fieldType = currentField.getType(); 
+			String fieldType = currentField.getType();
 			String fieldValue;
 
-			if (fieldType == FieldConstants.DATE ||  
-				fieldType == DDMImpl.TYPE_DDM_DATE) {
+			if ((fieldType == FieldConstants.DATE) ||
+				(fieldType == DDMImpl.TYPE_DDM_DATE)) {
 
 				fieldValue = currentField.getRenderedValue(locale);
 			}
@@ -84,8 +86,8 @@ public class MobileWidgetsDDLServiceImpl extends MobileWidgetsDDLServiceBaseImpl
 
 			recordValues.put(currentField.getName(), fieldValue);
 		}
-					
+
 		return recordValues;
 	}
-	
+
 }
