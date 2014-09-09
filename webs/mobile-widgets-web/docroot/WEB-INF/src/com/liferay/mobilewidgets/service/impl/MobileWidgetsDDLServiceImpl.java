@@ -25,7 +25,9 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portlet.dynamicdatalists.model.DDLRecord;
 import com.liferay.portlet.dynamicdatamapping.storage.Field;
+import com.liferay.portlet.dynamicdatamapping.storage.FieldConstants;
 import com.liferay.portlet.dynamicdatamapping.storage.Fields;
+import com.liferay.portlet.dynamicdatamapping.util.DDMImpl;
 
 /**
  * The implementation of the mobile widgets d d l remote service.
@@ -67,9 +69,20 @@ public class MobileWidgetsDDLServiceImpl extends MobileWidgetsDDLServiceBaseImpl
 									
 		while (fieldsIterator.hasNext()) {
 			Field currentField = fieldsIterator.next();
-						
-			recordValues.put(
-				currentField.getName(), currentField.getRenderedValue(locale));
+
+			String fieldType = currentField.getType(); 
+			String fieldValue;
+
+			if (fieldType == FieldConstants.DATE ||  
+				fieldType == DDMImpl.TYPE_DDM_DATE) {
+
+				fieldValue = currentField.getRenderedValue(locale);
+			}
+			else {
+				fieldValue = String.valueOf(currentField.getValue(locale));
+			}
+
+			recordValues.put(currentField.getName(), fieldValue);
 		}
 					
 		return recordValues;
