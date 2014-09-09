@@ -14,6 +14,8 @@
 
 package com.liferay.pushnotifications.service.persistence;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.util.OrderByComparator;
@@ -36,6 +38,7 @@ import java.util.List;
  * @see PushNotificationsDevicePersistenceImpl
  * @generated
  */
+@ProviderType
 public class PushNotificationsDeviceUtil {
 	/*
 	 * NOTE FOR DEVELOPERS:

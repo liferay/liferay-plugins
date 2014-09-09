@@ -14,6 +14,8 @@
 
 package com.liferay.pushnotifications.service;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
 import com.liferay.portal.service.InvokableService;
@@ -32,6 +34,7 @@ import com.liferay.portal.service.InvokableService;
  * @see com.liferay.pushnotifications.service.impl.PushNotificationsDeviceServiceImpl
  * @generated
  */
+@ProviderType
 public class PushNotificationsDeviceServiceUtil {
 	/*
 	 * NOTE FOR DEVELOPERS:
@@ -65,15 +68,15 @@ public class PushNotificationsDeviceServiceUtil {
 		return getService().invokeMethod(name, parameterTypes, arguments);
 	}
 
-	public static void sendPushNotification(java.lang.String message)
+	public static void sendPushNotification(java.lang.String payload)
 		throws com.liferay.portal.kernel.exception.PortalException {
-		getService().sendPushNotification(message);
+		getService().sendPushNotification(payload);
 	}
 
 	public static void sendPushNotification(long toUserId,
-		java.lang.String message)
+		java.lang.String payload)
 		throws com.liferay.portal.kernel.exception.PortalException {
-		getService().sendPushNotification(toUserId, message);
+		getService().sendPushNotification(toUserId, payload);
 	}
 
 	/**

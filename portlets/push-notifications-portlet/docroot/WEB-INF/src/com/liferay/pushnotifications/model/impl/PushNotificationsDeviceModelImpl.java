@@ -14,6 +14,8 @@
 
 package com.liferay.pushnotifications.model.impl;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSON;
@@ -58,6 +60,7 @@ import java.util.Map;
  * @generated
  */
 @JSON(strict = true)
+@ProviderType
 public class PushNotificationsDeviceModelImpl extends BaseModelImpl<PushNotificationsDevice>
 	implements PushNotificationsDeviceModel {
 	/*
@@ -89,10 +92,10 @@ public class PushNotificationsDeviceModelImpl extends BaseModelImpl<PushNotifica
 	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.column.bitmask.enabled.com.liferay.pushnotifications.model.PushNotificationsDevice"),
 			true);
-	public static long PLATFORM_COLUMN_BITMASK = 1L;
-	public static long TOKEN_COLUMN_BITMASK = 2L;
-	public static long USERID_COLUMN_BITMASK = 4L;
-	public static long PUSHNOTIFICATIONSDEVICEID_COLUMN_BITMASK = 8L;
+	public static final long PLATFORM_COLUMN_BITMASK = 1L;
+	public static final long TOKEN_COLUMN_BITMASK = 2L;
+	public static final long USERID_COLUMN_BITMASK = 4L;
+	public static final long PUSHNOTIFICATIONSDEVICEID_COLUMN_BITMASK = 8L;
 
 	/**
 	 * Converts the soap model instance into a normal model instance.
@@ -536,8 +539,8 @@ public class PushNotificationsDeviceModelImpl extends BaseModelImpl<PushNotifica
 		return sb.toString();
 	}
 
-	private static ClassLoader _classLoader = PushNotificationsDevice.class.getClassLoader();
-	private static Class<?>[] _escapedModelInterfaces = new Class[] {
+	private static final ClassLoader _classLoader = PushNotificationsDevice.class.getClassLoader();
+	private static final Class<?>[] _escapedModelInterfaces = new Class[] {
 			PushNotificationsDevice.class
 		};
 	private long _pushNotificationsDeviceId;

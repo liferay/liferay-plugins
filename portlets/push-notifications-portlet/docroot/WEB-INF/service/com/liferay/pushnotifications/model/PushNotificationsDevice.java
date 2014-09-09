@@ -14,6 +14,8 @@
 
 package com.liferay.pushnotifications.model;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.model.PersistedModel;
 
 /**
@@ -25,6 +27,7 @@ import com.liferay.portal.model.PersistedModel;
  * @see com.liferay.pushnotifications.model.impl.PushNotificationsDeviceModelImpl
  * @generated
  */
+@ProviderType
 public interface PushNotificationsDevice extends PushNotificationsDeviceModel,
 	PersistedModel {
 	/*

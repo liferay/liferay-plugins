@@ -14,6 +14,8 @@
 
 package com.liferay.pushnotifications.service.base;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.pushnotifications.service.PushNotificationsDeviceServiceUtil;
 
 import java.util.Arrays;
@@ -22,6 +24,7 @@ import java.util.Arrays;
  * @author Silvio Santos
  * @generated
  */
+@ProviderType
 public class PushNotificationsDeviceServiceClpInvoker {
 	public PushNotificationsDeviceServiceClpInvoker() {
 		_methodName24 = "getBeanIdentifier";

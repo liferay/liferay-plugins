@@ -14,12 +14,15 @@
 
 package com.liferay.pushnotifications.service;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.service.InvokableService;
 
 /**
  * @author Silvio Santos
  * @generated
  */
+@ProviderType
 public class PushNotificationsDeviceServiceClp
 	implements PushNotificationsDeviceService {
 	public PushNotificationsDeviceServiceClp(InvokableService invokableService) {
@@ -147,12 +150,12 @@ public class PushNotificationsDeviceServiceClp
 	}
 
 	@Override
-	public void sendPushNotification(java.lang.String message)
+	public void sendPushNotification(java.lang.String payload)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		try {
 			_invokableService.invokeMethod(_methodName4,
 				_methodParameterTypes4,
-				new Object[] { ClpSerializer.translateInput(message) });
+				new Object[] { ClpSerializer.translateInput(payload) });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -172,12 +175,12 @@ public class PushNotificationsDeviceServiceClp
 	}
 
 	@Override
-	public void sendPushNotification(long toUserId, java.lang.String message)
+	public void sendPushNotification(long toUserId, java.lang.String payload)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		try {
 			_invokableService.invokeMethod(_methodName5,
 				_methodParameterTypes5,
-				new Object[] { toUserId, ClpSerializer.translateInput(message) });
+				new Object[] { toUserId, ClpSerializer.translateInput(payload) });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);

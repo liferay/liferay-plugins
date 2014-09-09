@@ -14,6 +14,8 @@
 
 package com.liferay.pushnotifications.service.persistence.impl;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.cache.CacheRegistryUtil;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
@@ -62,6 +64,7 @@ import java.util.Set;
  * @see PushNotificationsDeviceUtil
  * @generated
  */
+@ProviderType
 public class PushNotificationsDevicePersistenceImpl extends BasePersistenceImpl<PushNotificationsDevice>
 	implements PushNotificationsDevicePersistence {
 	/*
@@ -2157,8 +2160,8 @@ public class PushNotificationsDevicePersistenceImpl extends BasePersistenceImpl<
 	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No PushNotificationsDevice exists with the key {";
 	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = GetterUtil.getBoolean(PropsUtil.get(
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
-	private static Log _log = LogFactoryUtil.getLog(PushNotificationsDevicePersistenceImpl.class);
-	private static PushNotificationsDevice _nullPushNotificationsDevice = new PushNotificationsDeviceImpl() {
+	private static final Log _log = LogFactoryUtil.getLog(PushNotificationsDevicePersistenceImpl.class);
+	private static final PushNotificationsDevice _nullPushNotificationsDevice = new PushNotificationsDeviceImpl() {
 			@Override
 			public Object clone() {
 				return this;
@@ -2170,7 +2173,7 @@ public class PushNotificationsDevicePersistenceImpl extends BasePersistenceImpl<
 			}
 		};
 
-	private static CacheModel<PushNotificationsDevice> _nullPushNotificationsDeviceCacheModel =
+	private static final CacheModel<PushNotificationsDevice> _nullPushNotificationsDeviceCacheModel =
 		new CacheModel<PushNotificationsDevice>() {
 			@Override
 			public PushNotificationsDevice toEntityModel() {

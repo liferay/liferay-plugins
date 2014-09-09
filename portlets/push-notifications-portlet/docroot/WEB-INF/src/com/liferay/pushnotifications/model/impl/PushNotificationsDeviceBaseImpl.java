@@ -14,6 +14,8 @@
 
 package com.liferay.pushnotifications.model.impl;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.pushnotifications.model.PushNotificationsDevice;
 import com.liferay.pushnotifications.service.PushNotificationsDeviceLocalServiceUtil;
 
@@ -29,6 +31,7 @@ import com.liferay.pushnotifications.service.PushNotificationsDeviceLocalService
  * @see com.liferay.pushnotifications.model.PushNotificationsDevice
  * @generated
  */
+@ProviderType
 public abstract class PushNotificationsDeviceBaseImpl
 	extends PushNotificationsDeviceModelImpl implements PushNotificationsDevice {
 	/*

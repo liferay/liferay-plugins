@@ -14,12 +14,15 @@
 
 package com.liferay.pushnotifications.service;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.service.InvokableLocalService;
 
 /**
  * @author Silvio Santos
  * @generated
  */
+@ProviderType
 public class PushNotificationsDeviceLocalServiceClp
 	implements PushNotificationsDeviceLocalService {
 	public PushNotificationsDeviceLocalServiceClp(
