@@ -7,4 +7,7 @@
 	<entity name="MobileWidgetsUser" local-service="false" remote-service="true">
 		<reference package-path="com.liferay.portal" entity="Company" />
 	</entity>
+	<entity name="MobileWidgetsDDL" local-service="false" remote-service="true">
+		<reference package-path="com.liferay.portlet.dynamicdatalists" entity="DDLRecord" />
+	</entity>
 </service-builder>
