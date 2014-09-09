@@ -174,7 +174,8 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 		}
 
 		if (alloyNotificationEventHelper != null) {
-			alloyNotificationEventHelper.addUserNotificationEvents(request);
+			alloyNotificationEventHelper.addUserNotificationEvents(
+				request, controllerPath, actionPath);
 		}
 	}
 
