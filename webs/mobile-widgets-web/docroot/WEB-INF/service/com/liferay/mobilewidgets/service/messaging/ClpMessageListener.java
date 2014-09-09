@@ -15,13 +15,14 @@
 package com.liferay.mobilewidgets.service.messaging;
 
 import com.liferay.mobilewidgets.service.ClpSerializer;
+import com.liferay.mobilewidgets.service.MobileWidgetsDDLServiceUtil;
 import com.liferay.mobilewidgets.service.MobileWidgetsUserServiceUtil;
 
 import com.liferay.portal.kernel.messaging.BaseMessageListener;
 import com.liferay.portal.kernel.messaging.Message;
 
 /**
- * @author Jos� Manuel Navarro
+ * @author Jose Manuel Navarro
  */
 public class ClpMessageListener extends BaseMessageListener {
 	public static String getServletContextName() {
@@ -35,6 +36,8 @@ public class ClpMessageListener extends BaseMessageListener {
 
 		if (command.equals("undeploy") &&
 				servletContextName.equals(getServletContextName())) {
+			MobileWidgetsDDLServiceUtil.clearService();
+
 			MobileWidgetsUserServiceUtil.clearService();
 		}
 	}

@@ -19,24 +19,24 @@ import com.liferay.portal.kernel.util.ReferenceRegistry;
 import com.liferay.portal.service.InvokableService;
 
 /**
- * Provides the remote service utility for MobileWidgetsUser. This utility wraps
- * {@link com.liferay.mobilewidgets.service.impl.MobileWidgetsUserServiceImpl} and is the
+ * Provides the remote service utility for MobileWidgetsDDL. This utility wraps
+ * {@link com.liferay.mobilewidgets.service.impl.MobileWidgetsDDLServiceImpl} and is the
  * primary access point for service operations in application layer code running
  * on a remote server. Methods of this service are expected to have security
  * checks based on the propagated JAAS credentials because this service can be
  * accessed remotely.
  *
  * @author Jose Manuel Navarro
- * @see MobileWidgetsUserService
- * @see com.liferay.mobilewidgets.service.base.MobileWidgetsUserServiceBaseImpl
- * @see com.liferay.mobilewidgets.service.impl.MobileWidgetsUserServiceImpl
+ * @see MobileWidgetsDDLService
+ * @see com.liferay.mobilewidgets.service.base.MobileWidgetsDDLServiceBaseImpl
+ * @see com.liferay.mobilewidgets.service.impl.MobileWidgetsDDLServiceImpl
  * @generated
  */
-public class MobileWidgetsUserServiceUtil {
+public class MobileWidgetsDDLServiceUtil {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
-	 * Never modify this class directly. Add custom service methods to {@link com.liferay.mobilewidgets.service.impl.MobileWidgetsUserServiceImpl} and rerun ServiceBuilder to regenerate this class.
+	 * Never modify this class directly. Add custom service methods to {@link com.liferay.mobilewidgets.service.impl.MobileWidgetsDDLServiceImpl} and rerun ServiceBuilder to regenerate this class.
 	 */
 
 	/**
@@ -63,43 +63,30 @@ public class MobileWidgetsUserServiceUtil {
 		return getService().invokeMethod(name, parameterTypes, arguments);
 	}
 
-	public static boolean sendPasswordByEmailAddress(long companyId,
-		java.lang.String emailAddress)
+	public static java.util.Map<java.lang.String, java.lang.String> getDDLRecordValues(
+		long recordId, java.util.Locale locale)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return getService().sendPasswordByEmailAddress(companyId, emailAddress);
-	}
-
-	public static boolean sendPasswordByScreenName(long companyId,
-		java.lang.String screenName)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return getService().sendPasswordByScreenName(companyId, screenName);
-	}
-
-	public static boolean sendPasswordByUserId(long userId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return getService().sendPasswordByUserId(userId);
+		return getService().getDDLRecordValues(recordId, locale);
 	}
 
 	public static void clearService() {
 		_service = null;
 	}
 
-	public static MobileWidgetsUserService getService() {
+	public static MobileWidgetsDDLService getService() {
 		if (_service == null) {
 			InvokableService invokableService = (InvokableService)PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
-					MobileWidgetsUserService.class.getName());
+					MobileWidgetsDDLService.class.getName());
 
-			if (invokableService instanceof MobileWidgetsUserService) {
-				_service = (MobileWidgetsUserService)invokableService;
+			if (invokableService instanceof MobileWidgetsDDLService) {
+				_service = (MobileWidgetsDDLService)invokableService;
 			}
 			else {
-				_service = new MobileWidgetsUserServiceClp(invokableService);
+				_service = new MobileWidgetsDDLServiceClp(invokableService);
 			}
 
-			ReferenceRegistry.registerReference(MobileWidgetsUserServiceUtil.class,
+			ReferenceRegistry.registerReference(MobileWidgetsDDLServiceUtil.class,
 				"_service");
 		}
 
@@ -109,8 +96,8 @@ public class MobileWidgetsUserServiceUtil {
 	/**
 	 * @deprecated As of 6.2.0
 	 */
-	public void setService(MobileWidgetsUserService service) {
+	public void setService(MobileWidgetsDDLService service) {
 	}
 
-	private static MobileWidgetsUserService _service;
+	private static MobileWidgetsDDLService _service;
 }
