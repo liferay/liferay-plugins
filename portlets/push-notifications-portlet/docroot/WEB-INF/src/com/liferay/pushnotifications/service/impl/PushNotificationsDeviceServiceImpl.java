@@ -140,11 +140,12 @@ public class PushNotificationsDeviceServiceImpl
 			PushNotificationsConstants.PAYLOAD,
 			JSONFactoryUtil.createJSONObject(payload));
 
-		JSONObject fromUser = JSONFactoryUtil.createJSONObject();
+		JSONObject fromUserJSONObject = JSONFactoryUtil.createJSONObject();
 
-		fromUser.put(PushNotificationsConstants.USER_ID, getUserId());
+		fromUserJSONObject.put(PushNotificationsConstants.USER_ID, getUserId());
 
-		jsonObject.put(PushNotificationsConstants.FROM_USER, fromUser);
+		jsonObject.put(
+			PushNotificationsConstants.FROM_USER, fromUserJSONObject);
 
 		return jsonObject;
 	}
