@@ -24,6 +24,7 @@ import java.security.KeyStore;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
 
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -179,6 +180,10 @@ public class JSONWebServiceClientImpl implements JSONWebServiceClient {
 
 		HttpGet httpGet = new HttpGet(url);
 
+		for (String key : _headers.keySet()) {
+			httpGet.addHeader(key, _headers.get(key));
+		}
+
 		return execute(httpGet);
 	}
 
@@ -198,9 +203,17 @@ public class JSONWebServiceClientImpl implements JSONWebServiceClient {
 		HttpEntity httpEntity = new UrlEncodedFormEntity(
 			nameValuePairs, Charsets.UTF_8);
 
+		for (String key : _headers.keySet()) {
+			httpPost.addHeader(key, _headers.get(key));
+		}
+
 		httpPost.setEntity(httpEntity);
 
 		return execute(httpPost);
+	}
+
+	public Map<String, String> getHeaders() {
+		return _headers;
 	}
 
 	public String getHostName() {
@@ -220,6 +233,10 @@ public class JSONWebServiceClientImpl implements JSONWebServiceClient {
 		destroy();
 
 		afterPropertiesSet();
+	}
+
+	public void setHeaders(Map<String, String> headers) {
+		_headers = headers;
 	}
 
 	public void setHostName(String hostName) {
@@ -375,6 +392,7 @@ public class JSONWebServiceClientImpl implements JSONWebServiceClient {
 		JSONWebServiceClientImpl.class);
 
 	private CloseableHttpClient _closeableHttpClient;
+	private Map<String, String> _headers = Collections.emptyMap();
 	private String _hostName;
 	private int _hostPort = 80;
 	private KeyStore _keyStore;
