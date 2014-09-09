@@ -14,8 +14,6 @@
 
 package com.liferay.notifications.notifications.portlet;
 
-import com.liferay.notifications.util.NotificationsConstants;
-import com.liferay.notifications.util.NotificationsUtil;
 import com.liferay.notifications.util.PortletKeys;
 import com.liferay.notifications.util.PortletPropsValues;
 import com.liferay.portal.kernel.json.JSONArray;
@@ -27,7 +25,6 @@ import com.liferay.portal.kernel.notifications.UserNotificationManagerUtil;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.util.FastDateFormatFactoryUtil;
 import com.liferay.portal.kernel.util.HtmlUtil;
-import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -300,19 +297,33 @@ public class NotificationsPortlet extends MVCPortlet {
 
 		if (fullView) {
 			userNotificationEvents =
-				NotificationsUtil.getUserNotificationEvents(
-					themeDisplay.getUserId(), actionable, start, end);
+				UserNotificationEventLocalServiceUtil.
+					getDeliveredUserNotificationEvents(
+						themeDisplay.getUserId(),
+						UserNotificationDeliveryConstants.TYPE_WEBSITE,
+						actionable, start, end);
 
-			total = NotificationsUtil.getUserNotificationEventsCount(
-				themeDisplay.getUserId(), actionable);
+			total =
+				UserNotificationEventLocalServiceUtil.
+					getDeliveredUserNotificationEventsCount(
+						themeDisplay.getUserId(),
+						UserNotificationDeliveryConstants.TYPE_WEBSITE,
+						actionable);
 		}
 		else {
 			userNotificationEvents =
-				NotificationsUtil.getArchivedUserNotificationEvents(
-					themeDisplay.getUserId(), actionable, false, start, end);
+				UserNotificationEventLocalServiceUtil.
+					getArchivedUserNotificationEvents(
+						themeDisplay.getUserId(),
+						UserNotificationDeliveryConstants.TYPE_WEBSITE,
+						actionable, false, start, end);
 
-			total = NotificationsUtil.getArchivedUserNotificationEventsCount(
-				themeDisplay.getUserId(), actionable, false);
+			total =
+				UserNotificationEventLocalServiceUtil.
+					getArchivedUserNotificationEventsCount(
+						themeDisplay.getUserId(),
+						UserNotificationDeliveryConstants.TYPE_WEBSITE,
+						actionable, false);
 		}
 
 		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
@@ -339,9 +350,7 @@ public class NotificationsPortlet extends MVCPortlet {
 
 		jsonObject.put("entries", jsonArray);
 
-		int newTotalUuserNotificationEventsCount =
-			NotificationsUtil.getArchivedUserNotificationEventsCount(
-				themeDisplay.getUserId(), actionable, false);
+		int newTotalUuserNotificationEventsCount = total;
 
 		jsonObject.put(
 			"newTotalUuserNotificationEventsCount",
@@ -391,7 +400,7 @@ public class NotificationsPortlet extends MVCPortlet {
 		String cssClass = StringPool.BLANK;
 		String markAsReadIcon = StringPool.BLANK;
 
-		if (actionable) {
+		if (userNotificationEvent.isActionRequired()) {
 			actionURL.setParameter(
 				"javax.portlet.action", "deleteUserNotificationEvent");
 
@@ -406,7 +415,7 @@ public class NotificationsPortlet extends MVCPortlet {
 				StringUtil.replace(
 					_MARK_AS_READ_DIV,
 					new String[] {
-						"[$LINK$]", "[$MARK_AS_READ_URL$]", "[$OPEN_DIALOG$]"},
+						"[$LINK$]", "[$MARK_AS_READ_URL$]"},
 					new String[] {
 						userNotificationFeedEntry.getLink(),
 						actionURL.toString()});

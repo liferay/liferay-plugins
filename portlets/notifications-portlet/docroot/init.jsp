@@ -24,8 +24,7 @@
 <%@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 <%@ taglib uri="http://liferay.com/tld/util" prefix="liferay-util" %>
 
-<%@ page import="com.liferay.notifications.util.NotificationsUtil" %><%@
-page import="com.liferay.notifications.util.PortletKeys" %><%@
+<%@ page import="com.liferay.notifications.util.PortletKeys" %><%@
 page import="com.liferay.notifications.util.PortletPropsValues" %><%@
 page import="com.liferay.portal.kernel.notifications.UserNotificationDefinition" %><%@
 page import="com.liferay.portal.kernel.notifications.UserNotificationDeliveryType" %><%@
@@ -37,11 +36,10 @@ page import="com.liferay.portal.kernel.util.StringPool" %><%@
 page import="com.liferay.portal.model.Group" %><%@
 page import="com.liferay.portal.model.GroupConstants" %><%@
 page import="com.liferay.portal.model.LayoutConstants" %><%@
-page import="com.liferay.portal.model.Portlet" %><%@
 page import="com.liferay.portal.model.UserNotificationDelivery" %><%@
+page import="com.liferay.portal.model.UserNotificationDeliveryConstants" %><%@
 page import="com.liferay.portal.service.GroupLocalServiceUtil" %><%@
 page import="com.liferay.portal.service.LayoutLocalServiceUtil" %><%@
-page import="com.liferay.portal.service.PortletLocalServiceUtil" %><%@
 page import="com.liferay.portal.service.UserNotificationDeliveryLocalServiceUtil" %><%@
 page import="com.liferay.portal.service.UserNotificationEventLocalServiceUtil" %><%@
 page import="com.liferay.portlet.PortletURLFactoryUtil" %>
