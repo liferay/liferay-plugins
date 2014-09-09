@@ -18,31 +18,32 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.jsonwebservice.JSONWebService;
 import com.liferay.portal.kernel.transaction.Isolation;
+import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
 import com.liferay.portal.security.ac.AccessControlled;
 import com.liferay.portal.service.BaseService;
 import com.liferay.portal.service.InvokableService;
 
 /**
- * Provides the remote service interface for MobileWidgetsUser. Methods of this
+ * Provides the remote service interface for MobileWidgetsDDL. Methods of this
  * service are expected to have security checks based on the propagated JAAS
  * credentials because this service can be accessed remotely.
  *
  * @author Jose Manuel Navarro
- * @see MobileWidgetsUserServiceUtil
- * @see com.liferay.mobilewidgets.service.base.MobileWidgetsUserServiceBaseImpl
- * @see com.liferay.mobilewidgets.service.impl.MobileWidgetsUserServiceImpl
+ * @see MobileWidgetsDDLServiceUtil
+ * @see com.liferay.mobilewidgets.service.base.MobileWidgetsDDLServiceBaseImpl
+ * @see com.liferay.mobilewidgets.service.impl.MobileWidgetsDDLServiceImpl
  * @generated
  */
 @AccessControlled
 @JSONWebService
 @Transactional(isolation = Isolation.PORTAL, rollbackFor =  {
 	PortalException.class, SystemException.class})
-public interface MobileWidgetsUserService extends BaseService, InvokableService {
+public interface MobileWidgetsDDLService extends BaseService, InvokableService {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
-	 * Never modify or reference this interface directly. Always use {@link MobileWidgetsUserServiceUtil} to access the mobile widgets user remote service. Add custom service methods to {@link com.liferay.mobilewidgets.service.impl.MobileWidgetsUserServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
+	 * Never modify or reference this interface directly. Always use {@link MobileWidgetsDDLServiceUtil} to access the mobile widgets d d l remote service. Add custom service methods to {@link com.liferay.mobilewidgets.service.impl.MobileWidgetsDDLServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
 
 	/**
@@ -64,17 +65,9 @@ public interface MobileWidgetsUserService extends BaseService, InvokableService 
 		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
 		throws java.lang.Throwable;
 
-	public boolean sendPasswordByEmailAddress(long companyId,
-		java.lang.String emailAddress)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
-
-	public boolean sendPasswordByScreenName(long companyId,
-		java.lang.String screenName)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
-
-	public boolean sendPasswordByUserId(long userId)
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.Map<java.lang.String, java.lang.String> getDDLRecordValues(
+		long recordId, java.util.Locale locale)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 }
