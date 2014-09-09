@@ -29,7 +29,7 @@ import javax.servlet.http.HttpServletRequest;
 public abstract class AlloyNotificationEventHelper {
 
 	public abstract void addUserNotificationEvents(
-			HttpServletRequest request, String controllerPath, 
+			HttpServletRequest request, String controllerPath,
 			String actionPath)
 		throws Exception;
 
