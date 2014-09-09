@@ -15,6 +15,7 @@ AUI.add(
 
 						instance._actionableNotificationsList = config.actionableNotificationsList;
 						instance._baseActionURL = config.baseActionURL;
+						instance._baseResourceURL = config.baseResourceURL;
 						instance._nonActionableNotificationsList = config.nonActionableNotificationsList;
 						instance._portletKey = config.portletKey;
 
@@ -59,12 +60,42 @@ AUI.add(
 								Liferay.Poller.addListener(instance._portletKey, instance._onPollerUpdate, instance);
 							}
 						);
+
+						Liferay.on('updateNotificationsCount', instance._getNotificationsCount, instance);
+					},
+
+					_getNotificationsCount: function() {
+						var instance = this;
+
+						var portletURL = new Liferay.PortletURL.createURL(instance._baseResourceURL);
+
+						portletURL.setResourceId("getNotificationsCount");
+
+						A.io.request(
+							portletURL.toString(),
+							{
+								dataType: 'JSON',
+								on: {
+									success: function() {
+										var response = this.get('responseData');
+
+										if (response) {
+											var newUserNotificationsCount = response['newUserNotificationsCount'];
+											var timestamp = response['timestamp'];
+											var unreadUserNotificationsCount = response['unreadUserNotificationsCount'];
+
+											instance._updateDockbarNotificationsCount(newUserNotificationsCount, timestamp, unreadUserNotificationsCount);
+										}
+									}
+								}
+							}
+						);
 					},
 
 					_onPollerUpdate: function(response) {
 						var instance = this;
 
-						instance._updateDockbarNotificationsCount(response.newUserNotificationsCount, response.timestamp, response.unreadNonActionableUserNotificationsCount, response.unreadUserNotificationsCount);
+						instance._updateDockbarNotificationsCount(response.newUserNotificationsCount, response.timestamp, response.unreadUserNotificationsCount);
 					},
 
 					_setDelivered: function() {
@@ -407,7 +438,6 @@ AUI.add(
 												}
 											}
 
-
 											instance._userNotificationEventIds = response['userNotificationEventIds'];
 
 											notificationsNode.loadingmask.hide();
@@ -416,6 +446,8 @@ AUI.add(
 								}
 							}
 						);
+
+						Liferay.fire('updateNotificationsCount');
 					},
 
 					setActionable: function(actionable) {
