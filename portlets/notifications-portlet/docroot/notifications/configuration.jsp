@@ -18,10 +18,6 @@
 
 <div class="manage-notifications">
 	<div class="title">
-		<div class="notification-delivery">
-			<span><liferay-ui:message key="notification-delivery-settings" /></span>
-		</div>
-
 		<div class="receive-notification">
 			<c:choose>
 				<c:when test="<%= UserNotificationDeliveryLocalServiceUtil.getUserNotificationDeliveriesCount() > 0 %>">
