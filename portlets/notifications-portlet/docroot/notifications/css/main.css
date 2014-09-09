@@ -138,13 +138,15 @@
 		}
 
 		.user-notification {
+			line-height: 20px;
 			padding: 10px;
 			position: relative;
 
 			.mark-as-read {
+				color: #999;
+
 				@include default-border-radius;
 
-				color: #999;
 				padding: 0 5px;
 				position: absolute;
 				right: 4px;
@@ -225,7 +227,24 @@
 
 /* ---------- Dockbar notifications ---------- */
 
+.aui {
+	.dockbar .nav li.dropdown.dockbar-user-notifications .dropdown-menu {
+		left: auto;
+		max-height: none;
+		padding: 10px;
+		right: 0;
+
+		&.pull-right:after {
+			right: 20px;
+		}
+	}
+}
+
 .dockbar-user-notifications {
+	.dropdown-toggle .user-notifications-count {
+		@include default-border-radius;
+	}
+
 	.actionable, .non-actionable {
 		background-color: #FFF;
 
@@ -264,6 +283,10 @@
 				float: right;
 			}
 
+			&:hover, &.selected {
+				@include default-border-radius;
+			}
+
 			&:hover {
 				text-decoration: none;
 			}
@@ -285,6 +308,8 @@
 
 	.user-notifications-list-container {
 		border: 1px solid #D5D5D5;
+
+		@include default-border-radius;
 	}
 
 	.user-notifications-list{
@@ -405,29 +430,6 @@
 
 .span8 {
 	width: 70%;
-}
-
-/* ---------- Extras ---------- */
-
-.dockbar-user-notifications .dropdown-toggle .user-notifications-count, .notifications-portlet .nav a:hover, .notifications-portlet .nav a.selected, .notifications-portlet .user-notifications-list-container {
-	@include default-border-radius;
-}
-
-.aui {
-	li.user-notification {
-		line-height: 20px;
-	}
-
-	.dockbar .navbar-inner .container .nav-collapse > .nav li.dropdown.dockbar-user-notifications > ul.dropdown-menu {
-		left: auto;
-		max-height: none;
-		padding: 10px;
-		right: 0;
-
-		&.pull-right:after {
-			right: 20px;
-		}
-	}
 }
 
 /* ---------- Internet explorer ---------- */
