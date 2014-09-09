@@ -289,14 +289,14 @@ public class NotificationsPortlet extends MVCPortlet {
 		ThemeDisplay themeDisplay = (ThemeDisplay)resourceRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
+		boolean fullView = ParamUtil.getBoolean(resourceRequest, "fullView");
 		boolean actionable = ParamUtil.getBoolean(
 			resourceRequest, "actionable");
-		int end = ParamUtil.getInteger(resourceRequest, "end");
-		boolean fullView = ParamUtil.getBoolean(resourceRequest, "fullView");
 		int start = ParamUtil.getInteger(resourceRequest, "start");
+		int end = ParamUtil.getInteger(resourceRequest, "end");
 
-		List<UserNotificationEvent> userNotificationEvents;
-		int total;
+		List<UserNotificationEvent> userNotificationEvents = null;
+		int total = 0;
 
 		if (fullView) {
 			userNotificationEvents =
@@ -338,18 +338,21 @@ public class NotificationsPortlet extends MVCPortlet {
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
 		jsonObject.put("entries", jsonArray);
+
+		int newTotalUuserNotificationEventsCount =
+			NotificationsUtil.getArchivedUserNotificationEventsCount(
+				themeDisplay.getUserId(), actionable, false);
+
+		jsonObject.put(
+			"newTotalUuserNotificationEventsCount",
+			newTotalUuserNotificationEventsCount);
+
 		jsonObject.put(
 			"newUserNotificationEventIds",
 			StringUtil.merge(newUserNotificationEventIds));
 		jsonObject.put(
-			"newUserNotificationEventCount",
+			"newUserNotificationEventsCount",
 			newUserNotificationEventIds.size());
-
-		int newNotificationsTotal =
-			NotificationsUtil.getArchivedUserNotificationEventsCount(
-				themeDisplay.getUserId(), actionable, false);
-
-		jsonObject.put("newNotificationsTotal", newNotificationsTotal);
 
 		jsonObject.put("total", total);
 
@@ -363,8 +366,6 @@ public class NotificationsPortlet extends MVCPortlet {
 
 		ThemeDisplay themeDisplay = (ThemeDisplay)resourceRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
-
-		userNotificationEvent.isArchived();
 
 		UserNotificationFeedEntry userNotificationFeedEntry =
 			UserNotificationManagerUtil.interpret(
@@ -416,8 +417,7 @@ public class NotificationsPortlet extends MVCPortlet {
 			else {
 				markAsReadIcon = StringUtil.replace(
 					_MARK_AS_READ_ICON, "[$TITLE_MESSAGE$]",
-						LanguageUtil.get(
-							themeDisplay.getLocale(), "mark-as-read"));
+					LanguageUtil.get(themeDisplay.getLocale(), "mark-as-read"));
 			}
 		}
 
@@ -428,18 +428,10 @@ public class NotificationsPortlet extends MVCPortlet {
 		String portletName = portlet.getDisplayName();
 		String portletIcon = portlet.getContextPath() + portlet.getIcon();
 
-		String timeStamp =
-			Time.getRelativeTimeDescription(
-				userNotificationEvent.getTimestamp(), themeDisplay.getLocale(),
-				themeDisplay.getTimeZone());
-
 		Format simpleDateFormat =
 			FastDateFormatFactoryUtil.getSimpleDateFormat(
 				"EEEE, MMMMM dd, yyyy 'at' h:mm a", themeDisplay.getLocale(),
 				themeDisplay.getTimeZone());
-
-		String timeTitle = simpleDateFormat.format(
-			userNotificationEvent.getTimestamp());
 
 		JSONObject userNotificationEventJSONObject =
 			JSONFactoryUtil.createJSONObject(
@@ -467,7 +459,12 @@ public class NotificationsPortlet extends MVCPortlet {
 				"[$USER_PORTRAIT_URL$]"},
 			new String[] {
 				actionDiv, userNotificationFeedEntry.getBody(), cssClass,
-				markAsReadIcon, portletIcon, portletName, timeStamp, timeTitle,
+				markAsReadIcon, portletIcon, portletName,
+				Time.getRelativeTimeDescription(
+					userNotificationEvent.getTimestamp(),
+					themeDisplay.getLocale(), themeDisplay.getTimeZone()),
+				simpleDateFormat.format(
+					userNotificationEvent.getTimestamp()),
 				userFullName, userPortraitURL});
 	}
 
@@ -490,11 +487,10 @@ public class NotificationsPortlet extends MVCPortlet {
 
 	private static final String _MARK_AS_READ_DIV =
 		"<div class=\"clearfix user-notification-link\" data-href=\"" +
-			"[$LINK$]\" data-markAsReadURL=\"[$MARK_AS_READ_URL$]\" " +
-				"data-openDialog=\"[$OPEN_DIALOG$]\">";
+			"[$LINK$]\" data-markAsReadURL=\"[$MARK_AS_READ_URL$]\">";
 
 	private static final String _MARK_AS_READ_ICON =
-		"<div class=\"mark-as-read\" title=\"[$TITLE_MESSAGE$]\">" +
-			"<i class=\"icon-remove\"></i></div>";
+		"<div class=\"mark-as-read\" title=\"[$TITLE_MESSAGE$]\"><i class=\"" +
+			"icon-remove\"></i></div>";
 
 }

@@ -361,12 +361,12 @@ AUI.add(
 										var response = this.get('responseData');
 
 										if (response) {
-											var newNotificationsTotal = response['newNotificationsTotal'];
+											var newTotalUuserNotificationEventsCount = response['newTotalUuserNotificationEventsCount'];
 
 											var notificationsCountNode = notificationsContainer.one(instance._notificationsCount);
 
 											if (notificationsCountNode) {
-												notificationsCountNode.setHTML(newNotificationsTotal);
+												notificationsCountNode.setHTML(newTotalUuserNotificationEventsCount);
 											}
 
 											var entries = [];
@@ -403,9 +403,9 @@ AUI.add(
 											else {
 												notificationsNode.setHTML(entries);
 
-												var newUserNotificationEventCount = response['newUserNotificationEventCount'];
+												var newUserNotificationEventsCount = response['newUserNotificationEventsCount'];
 
-												if (!instance._actionable && newUserNotificationEventCount > 0) {
+												if (!instance._actionable && newUserNotificationEventsCount > 0) {
 													if (markAllAsReadLink) {
 														markAllAsReadLink.show();
 													}
