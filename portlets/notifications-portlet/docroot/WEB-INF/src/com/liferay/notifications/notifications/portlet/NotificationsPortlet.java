@@ -28,6 +28,7 @@ import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.Time;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.model.Portlet;
@@ -388,12 +389,16 @@ public class NotificationsPortlet extends MVCPortlet {
 		String portletName = portlet.getDisplayName();
 		String portletIcon = portlet.getContextPath() + portlet.getIcon();
 
+		String timeStamp = Time.getRelativeTimeDescription(
+			userNotificationEvent.getTimestamp(), themeDisplay.getLocale(),
+				themeDisplay.getTimeZone());
+
 		Format simpleDateFormat =
 			FastDateFormatFactoryUtil.getSimpleDateFormat(
 				"EEEE, MMMMM dd, yyyy 'at' h:mm a", themeDisplay.getLocale(),
 				themeDisplay.getTimeZone());
 
-		String timestamp = simpleDateFormat.format(
+		String timeTitle = simpleDateFormat.format(
 			userNotificationEvent.getTimestamp());
 
 		JSONObject userNotificationEventJSONObject =
@@ -418,10 +423,10 @@ public class NotificationsPortlet extends MVCPortlet {
 			new String[] {
 				"[$BODY$]", "[$ACTION_DIV$]", "[$MARK_AS_READ_ICON$]",
 				"[$PORTLET_ICON$]", "[$PORTLET_NAME$]", "[$TIMESTAMP$]",
-				"[$USER_FULL_NAME$]", "[$USER_PORTRAIT_URL$]"},
+				"[$TIMETITLE$]", "[$USER_FULL_NAME$]", "[$USER_PORTRAIT_URL$]"},
 			new String[] {
 				userNotificationFeedEntry.getBody(), actionDiv, markAsReadIcon,
-				portletIcon, portletName, timeStamp, userFullName,
+				portletIcon, portletName, timeStamp, timeTitle, userFullName,
 				userPortraitURL});
 	}
 
