@@ -1136,7 +1136,7 @@
 										callback.apply(this, arguments);
 									}
 
-									this.hide();
+									confirmationPanel.hide();
 								}
 							}
 						};
