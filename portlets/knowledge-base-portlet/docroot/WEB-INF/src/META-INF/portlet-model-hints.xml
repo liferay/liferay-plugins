@@ -31,7 +31,9 @@
 		<field name="viewCount" type="int" />
 		<field name="latest" type="boolean" />
 		<field name="main" type="boolean" />
-		<field name="sourceURL" type="String" />
+		<field name="sourceURL" type="String">
+			<hint name="max-length">4000</hint>
+		</field>
 		<field name="status" type="int" />
 		<field name="statusByUserId" type="long" />
 		<field name="statusByUserName" type="String" />
