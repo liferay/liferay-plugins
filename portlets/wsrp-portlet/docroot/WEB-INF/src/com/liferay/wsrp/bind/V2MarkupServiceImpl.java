@@ -697,7 +697,7 @@ public class V2MarkupServiceImpl
 	}
 
 	protected String getURL(
-			String lifecycle, String resourceId, MimeRequest mimeRequest,
+			String lifecycle, String resourceID, MimeRequest mimeRequest,
 			PortletContext portletContext, WSRPProducer wsrpProducer)
 		throws Exception {
 
@@ -746,9 +746,9 @@ public class V2MarkupServiceImpl
 		sb.append("&p_p_mode=");
 		sb.append(HttpUtil.encodeURL(portletMode));
 
-		if (lifecycle.equals("2") && Validator.isNotNull(resourceId)) {
+		if (lifecycle.equals("2") && Validator.isNotNull(resourceID)) {
 			sb.append("&p_p_resource_id=");
-			sb.append(resourceId);
+			sb.append(resourceID);
 		}
 
 		sb.append("&p_p_isolated=1");
