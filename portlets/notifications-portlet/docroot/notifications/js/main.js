@@ -80,9 +80,9 @@ AUI.add(
 										var response = this.get('responseData');
 
 										if (response) {
-											var newUserNotificationsCount = response['newUserNotificationsCount'];
-											var timestamp = response['timestamp'];
-											var unreadUserNotificationsCount = response['unreadUserNotificationsCount'];
+											var newUserNotificationsCount = response.newUserNotificationsCount;
+											var timestamp = response.timestamp;
+											var unreadUserNotificationsCount = response.unreadUserNotificationsCount;
 
 											instance._updateDockbarNotificationsCount(newUserNotificationsCount, timestamp, unreadUserNotificationsCount);
 										}
@@ -127,7 +127,7 @@ AUI.add(
 					}
 				}
 			}
-		)
+		);
 
 		Liferay.DockbarNotifications = DockbarNotifications;
 	},
@@ -196,7 +196,7 @@ AUI.add(
 
 									instance._notificationsList.render();
 								}
-							)
+							);
 						}
 
 						var actionableUserNotificationsLink = A.one('.notifications-portlet .user-notifications-container .user-notifications-sidebar .nav .actionable');
@@ -231,7 +231,7 @@ AUI.add(
 
 									instance._notificationsList.render();
 								}
-							)
+							);
 						}
 
 						var manageLink = A.one('.notifications-portlet .user-notifications-container .user-notifications-sidebar .nav .manage');
@@ -273,7 +273,7 @@ AUI.add(
 					}
 				}
 			}
-		)
+		);
 
 		Liferay.Notifications = Notifications;
 	},
@@ -357,7 +357,7 @@ AUI.add(
 										var response = this.get('responseData');
 
 										if (response) {
-											var newTotalUuserNotificationEventsCount = response['newTotalUuserNotificationEventsCount'];
+											var newTotalUuserNotificationEventsCount = response.newTotalUuserNotificationEventsCount;
 
 											var notificationsCountNode = notificationsContainer.one(instance._notificationsCount);
 
@@ -367,7 +367,7 @@ AUI.add(
 
 											var entries = [];
 
-											var entriesJSONArray = response['entries'];
+											var entriesJSONArray = response.entries;
 
 											if (entriesJSONArray) {
 												for (var i = 0; i < entriesJSONArray.length; i++) {
@@ -379,11 +379,15 @@ AUI.add(
 
 											var markAllAsReadNode = notificationsContainer.one(instance._markAllAsReadNode);
 
+											var markAllAsReadLink;
+
 											if (markAllAsReadNode) {
-												var markAllAsReadLink = markAllAsReadNode.one('a');
+												markAllAsReadLink = markAllAsReadNode.one('a');
 											}
 
-											if (entriesJSONArray.length == 0) {
+											var hasEntries = entriesJSONArray.length > 0;
+
+											if (!hasEntries) {
 												var message = Liferay.Language.get('you-do-not-have-any-notifications');
 
 												if (instance._actionable) {
@@ -399,45 +403,24 @@ AUI.add(
 											else {
 												notificationsNode.setHTML(entries);
 
-												var newUserNotificationEventsCount = response['newUserNotificationEventsCount'];
+												var newUserNotificationEventsCount = response.newUserNotificationEventsCount;
 
-												if (!instance._actionable && newUserNotificationEventsCount > 0) {
-													if (markAllAsReadLink) {
-														markAllAsReadLink.show();
-													}
-												}
-												else {
-													if (markAllAsReadLink) {
-														markAllAsReadLink.hide();
-													}
+												if (markAllAsReadLink) {
+													markAllAsReadLink.toggle(!instance._actionable && newUserNotificationEventsCount > 0);
 												}
 											}
 
 											var nextPageNode = notificationsContainer.all(instance._nextPageNode);
 											var previousPageNode = notificationsContainer.all(instance._previousPageNode);
 
-											var total = response['total'];
+											var total = response.total;
 
-											if (total <= instance._end) {
-												if (nextPageNode) {
-													nextPageNode.hide();
-												}
-											}
-											else {
-												if (nextPageNode) {
-													nextPageNode.show();
-												}
+											if (nextPageNode) {
+												nextPageNode.toggle(total > instance._end);
 											}
 
-											if (instance._start == 0) {
-												if (previousPageNode) {
-													previousPageNode.hide();
-												}
-											}
-											else {
-												if (previousPageNode) {
-													previousPageNode.show();
-												}
+											if (previousPageNode) {
+												previousPageNode.toggle(instance._start != 0);
 											}
 
 											var paginationInfoNode = notificationsContainer.all(instance._paginationInfoNode);
@@ -446,20 +429,15 @@ AUI.add(
 
 											var paginationInfoText = Lang.sub(Liferay.Language.get('showing-x-x-of-x-results'), [(instance._start + 1), displayingCount, total]);
 
-											if (entriesJSONArray.length > 0) {
-												if (paginationInfoNode) {
+											if (paginationInfoNode) {
+												if (hasEntries) {
 													paginationInfoNode.setHTML(paginationInfoText);
+												}
 
-													paginationInfoNode.show();
-												}
-											}
-											else {
-												if (paginationInfoNode) {
-													paginationInfoNode.hide();
-												}
+												paginationInfoNode.toggle(hasEntries);
 											}
 
-											instance._userNotificationEventIds = response['newUserNotificationEventIds'];
+											instance._userNotificationEventIds = response.newUserNotificationEventIds;
 
 											notificationsNode.loadingmask.hide();
 										}
