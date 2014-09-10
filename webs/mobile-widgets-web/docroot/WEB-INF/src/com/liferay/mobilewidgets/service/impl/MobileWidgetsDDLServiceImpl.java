@@ -21,7 +21,6 @@ import com.liferay.portlet.dynamicdatalists.model.DDLRecord;
 import com.liferay.portlet.dynamicdatamapping.storage.Field;
 import com.liferay.portlet.dynamicdatamapping.storage.FieldConstants;
 import com.liferay.portlet.dynamicdatamapping.storage.Fields;
-import com.liferay.portlet.dynamicdatamapping.util.DDMImpl;
 
 import java.util.HashMap;
 import java.util.Iterator;
@@ -75,9 +74,7 @@ public class MobileWidgetsDDLServiceImpl
 			String fieldType = currentField.getType();
 			String fieldValue;
 
-			if ((fieldType == FieldConstants.DATE) ||
-				(fieldType == DDMImpl.TYPE_DDM_DATE)) {
-
+			if (fieldType.indexOf(FieldConstants.DATE) != -1) {
 				fieldValue = currentField.getRenderedValue(locale);
 			}
 			else {
