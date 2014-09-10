@@ -23,6 +23,7 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.repository.model.FileEntry;
+import com.liferay.portal.kernel.util.CharPool;
 import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
@@ -42,7 +43,8 @@ import java.util.TreeSet;
  */
 public class KBArticleMarkdownConverter {
 
-	public KBArticleMarkdownConverter(String markdown)
+	public KBArticleMarkdownConverter(
+			String markdown, String fileEntryName, Map<String, String> metadata)
 		throws KBArticleImportException {
 
 		MarkdownConverter markdownConverter =
@@ -74,6 +76,14 @@ public class KBArticleMarkdownConverter {
 		html = stripIds(html);
 
 		_html = stripHeading(html);
+
+		String baseSourceURL = metadata.get(_METADATA_BASE_SOURCE_URL);
+
+		_sourceURL = buildSourceURL(baseSourceURL, fileEntryName);
+	}
+
+	public String getSourceURL() {
+		return _sourceURL;
 	}
 
 	public String getTitle() {
@@ -185,6 +195,38 @@ public class KBArticleMarkdownConverter {
 		return sb.toString();
 	}
 
+	protected String buildSourceURL(
+		String baseSourceURL, String fileEntryName) {
+
+		if (!Validator.isUrl(baseSourceURL)) {
+			return null;
+		}
+
+		int pos = baseSourceURL.length() - 1;
+
+		while (pos >= 0) {
+			char c = baseSourceURL.charAt(pos);
+
+			if (c != CharPool.SLASH) {
+				break;
+			}
+
+			pos--;
+		}
+
+		StringBundler sb = new StringBundler(3);
+
+		sb.append(baseSourceURL.substring(0, pos + 1));
+
+		if (!fileEntryName.startsWith(StringPool.SLASH)) {
+			sb.append(StringPool.SLASH);
+		}
+
+		sb.append(fileEntryName);
+
+		return sb.toString();
+	}
+
 	protected String getHeading(String html) {
 		int x = html.indexOf("<h1>");
 		int y = html.indexOf("</h1>");
@@ -275,10 +317,13 @@ public class KBArticleMarkdownConverter {
 		return sb.toString();
 	}
 
+	private static final String _METADATA_BASE_SOURCE_URL = "base.source.url";
+
 	private static Log _log = LogFactoryUtil.getLog(
 		KBArticleMarkdownConverter.class);
 
 	private String _html;
+	private String _sourceURL;
 	private String _title;
 	private String _urlTitle;
 
