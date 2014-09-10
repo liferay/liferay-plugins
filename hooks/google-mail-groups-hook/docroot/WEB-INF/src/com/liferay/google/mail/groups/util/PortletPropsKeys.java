@@ -23,6 +23,13 @@ public class PortletPropsKeys {
 
 	public static final String EMAIL_PREFIX = "email.prefix";
 
+	public static final String SERVICE_ACCOUNT_ID = "service.account.id";
+
+	public static final String SERVICE_ACCOUNT_PRIVATE_KEY_P12_FILE =
+		"service.account.private.key.p12.file";
+
+	public static final String SERVICE_ACCOUNT_USER = "service.account.user";
+
 	public static final String SYNC_ON_STARTUP = "sync.on.startup";
 
 }
