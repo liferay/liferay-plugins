@@ -133,7 +133,7 @@ AUI.add(
 	},
 	'',
 	{
-		requires: ['aui-base', 'aui-io-deprecated', 'liferay-poller', 'liferay-portlet-base', 'liferay-portlet-url']
+		requires: ['aui-base', 'aui-io', 'liferay-poller', 'liferay-portlet-base', 'liferay-portlet-url']
 	}
 
 );
@@ -249,14 +249,10 @@ AUI.add(
 									manageLink.addClass('selected');
 
 									if (notificationsConfigurationNode) {
-										if (!notificationsConfigurationNode.io) {
-											notificationsConfigurationNode.plug(
-												A.Plugin.IO,
-												{
-													autoLoad: false
-												}
-											);
-										}
+										notificationsConfigurationNode.show();
+										notificationsConfigurationNode.plug(A.LoadingMask).loadingmask.show();
+
+										userNotificationsListNode.hide();
 
 										var portletURL = new Liferay.PortletURL.createURL(instance._baseRenderURL);
 
@@ -264,15 +260,15 @@ AUI.add(
 
 										portletURL.setWindowState('exclusive');
 
-										notificationsConfigurationNode.show();
-										userNotificationsListNode.hide();
-
-										notificationsConfigurationNode.io.set('uri', portletURL.toString());
-
-										notificationsConfigurationNode.io.start();
+										notificationsConfigurationNode.load(
+											portletURL.toString(),
+											function() {
+												notificationsConfigurationNode.unplug(A.LoadingMask);
+											}
+										);
 									}
 								}
-							)
+							);
 						}
 					}
 				}
@@ -283,7 +279,7 @@ AUI.add(
 	},
 	'',
 	{
-		requires: ['aui-base', 'aui-io-deprecated', 'liferay-portlet-base', 'liferay-portlet-url']
+		requires: ['aui-base', 'aui-io', 'aui-loading-mask-deprecated', 'liferay-portlet-base', 'liferay-portlet-url', 'node-load']
 	}
 
 );
@@ -774,6 +770,6 @@ AUI.add(
 	},
 	'',
 	{
-		requires: ['aui-base', 'aui-io-deprecated', 'aui-loading-mask-deprecated', 'liferay-poller', 'liferay-portlet-base', 'liferay-portlet-url']
+		requires: ['aui-base', 'aui-io', 'aui-loading-mask-deprecated', 'liferay-poller', 'liferay-portlet-base', 'liferay-portlet-url']
 	}
 );
