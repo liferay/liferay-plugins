@@ -1115,6 +1115,7 @@
 
 					var titleText;
 					var changeDeleteText;
+					var confirmationPanel;
 
 					if (actionName === 'delete') {
 						titleText = Liferay.Language.get('delete-recurring-event');
@@ -1134,13 +1135,13 @@
 										callback.apply(this, arguments);
 									}
 
-									this.hide();
+									confirmationPanel.hide();
 								}
 							}
 						};
 					};
 
-					var confirmationPanel = Liferay.Util.Window.getWindow(
+					confirmationPanel = Liferay.Util.Window.getWindow(
 						{
 							dialog:	{
 								bodyContent: changeDeleteText,
