@@ -1483,7 +1483,6 @@ AUI.add(
 						var instance = this;
 
 						var schedulerEvent = data[0];
-						var hasChild = schedulerEvent.get("hasChildCalendarBookings");
 
 						instance.queue = new A.AsyncQueue();
 
@@ -1500,7 +1499,7 @@ AUI.add(
 						}
 
 						if (schedulerEvent.isMasterBooking()) {
-							if (hasChild) {
+							if (schedulerEvent.get('hasChildCalendarBookings')) {
 								instance.queue.add(
 									{
 										args: [data],
