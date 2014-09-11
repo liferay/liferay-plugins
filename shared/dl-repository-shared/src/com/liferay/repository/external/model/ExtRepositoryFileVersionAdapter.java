@@ -18,6 +18,7 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.lar.StagedModelType;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.repository.model.FileVersion;
+import com.liferay.portal.kernel.repository.model.RepositoryModelOperation;
 import com.liferay.portal.kernel.util.MimeTypesUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
@@ -51,11 +52,11 @@ public class ExtRepositoryFileVersionAdapter
 	}
 
 	@Override
-	public String getChangeLog() {
-		return _extRepositoryFileVersion.getChangeLog();
-	}
+	public void execute(RepositoryModelOperation repositoryModelOperation)
+		throws PortalException {
 
-	@Override
+		repositoryModelOperation.execute(this);
+	} @Override
 	public InputStream getContentStream(boolean incrementCounter)
 		throws PortalException {
 
@@ -188,5 +189,10 @@ public class ExtRepositoryFileVersionAdapter
 
 	private ExtRepositoryFileEntryAdapter _extRepositoryFileEntryAdapter;
 	private ExtRepositoryFileVersion _extRepositoryFileVersion;
+
+	@Override
+	public String getChangeLog() {
+		return _extRepositoryFileVersion.getChangeLog();
+	}
 
 }

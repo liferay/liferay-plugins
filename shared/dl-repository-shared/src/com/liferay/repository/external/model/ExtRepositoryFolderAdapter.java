@@ -14,10 +14,12 @@
 
 package com.liferay.repository.external.model;
 
+import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.lar.StagedModelType;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.repository.model.Folder;
+import com.liferay.portal.kernel.repository.model.RepositoryModelOperation;
 import com.liferay.portlet.documentlibrary.model.DLFolderConstants;
 import com.liferay.portlet.documentlibrary.service.DLAppLocalServiceUtil;
 import com.liferay.repository.external.ExtRepositoryAdapter;
@@ -44,11 +46,11 @@ public class ExtRepositoryFolderAdapter
 	}
 
 	@Override
-	public ExtRepositoryFolder getExtRepositoryModel() {
-		return _extRepositoryFolder;
-	}
+	public void execute(RepositoryModelOperation repositoryModelOperation)
+		throws PortalException {
 
-	@Override
+		repositoryModelOperation.execute(this);
+	} @Override
 	public long getFolderId() {
 		return getPrimaryKey();
 	}
@@ -150,5 +152,10 @@ public class ExtRepositoryFolderAdapter
 		ExtRepositoryFolderAdapter.class);
 
 	private ExtRepositoryFolder _extRepositoryFolder;
+
+	@Override
+	public ExtRepositoryFolder getExtRepositoryModel() {
+		return _extRepositoryFolder;
+	}
 
 }
