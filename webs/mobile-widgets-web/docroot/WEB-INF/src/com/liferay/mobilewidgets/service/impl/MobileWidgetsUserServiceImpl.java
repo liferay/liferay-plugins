@@ -28,7 +28,7 @@ import com.liferay.portal.service.ServiceContextThreadLocal;
 import com.liferay.portal.util.PortalUtil;
 
 /**
- * @author Jose Manuel Navarro
+ * @author José Manuel Navarro
  */
 public class MobileWidgetsUserServiceImpl
 	extends MobileWidgetsUserServiceBaseImpl {

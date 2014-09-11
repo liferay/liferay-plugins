@@ -28,7 +28,7 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * @author Jose Manuel Navarro
+ * @author José Manuel Navarro
  */
 public class MobileWidgetsDDLServiceImpl
 	extends MobileWidgetsDDLServiceBaseImpl {
