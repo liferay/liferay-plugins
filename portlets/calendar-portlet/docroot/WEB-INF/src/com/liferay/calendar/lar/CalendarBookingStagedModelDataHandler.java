@@ -134,9 +134,6 @@ public class CalendarBookingStagedModelDataHandler
 		long userId = portletDataContext.getUserId(
 			calendarBooking.getUserUuid());
 
-		StagedModelDataHandlerUtil.importReferenceStagedModels(
-			portletDataContext, calendarBooking, Calendar.class);
-
 		Map<Long, Long> calendarIds =
 			(Map<Long, Long>)portletDataContext.getNewPrimaryKeysMap(
 				Calendar.class);
@@ -149,9 +146,6 @@ public class CalendarBookingStagedModelDataHandler
 			CalendarBookingConstants.PARENT_CALENDAR_BOOKING_ID_DEFAULT;
 
 		if (!calendarBooking.isMasterBooking()) {
-			StagedModelDataHandlerUtil.importReferenceStagedModels(
-				portletDataContext, calendarBooking, CalendarBooking.class);
-
 			Map<Long, Long> calendarBookingIds =
 				(Map<Long, Long>)portletDataContext.getNewPrimaryKeysMap(
 					CalendarBooking.class);
