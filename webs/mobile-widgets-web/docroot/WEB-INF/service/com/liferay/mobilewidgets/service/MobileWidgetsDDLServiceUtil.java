@@ -64,10 +64,10 @@ public class MobileWidgetsDDLServiceUtil {
 	}
 
 	public static java.util.Map<java.lang.String, java.lang.String> getDDLRecordValues(
-		long recordId, java.util.Locale locale)
+		long ddlRecordId, java.util.Locale locale)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return getService().getDDLRecordValues(recordId, locale);
+		return getService().getDDLRecordValues(ddlRecordId, locale);
 	}
 
 	public static void clearService() {

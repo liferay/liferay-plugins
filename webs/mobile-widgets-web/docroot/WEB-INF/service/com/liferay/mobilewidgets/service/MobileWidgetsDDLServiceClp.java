@@ -89,7 +89,7 @@ public class MobileWidgetsDDLServiceClp implements MobileWidgetsDDLService {
 
 	@Override
 	public java.util.Map<java.lang.String, java.lang.String> getDDLRecordValues(
-		long recordId, java.util.Locale locale)
+		long ddlRecordId, java.util.Locale locale)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -97,8 +97,11 @@ public class MobileWidgetsDDLServiceClp implements MobileWidgetsDDLService {
 		try {
 			returnObj = _invokableService.invokeMethod(_methodName3,
 					_methodParameterTypes3,
-					new Object[] { recordId, ClpSerializer.translateInput(
-							locale) });
+					new Object[] {
+						ddlRecordId,
+						
+					ClpSerializer.translateInput(locale)
+					});
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);

@@ -60,10 +60,10 @@ public class MobileWidgetsDDLServiceWrapper implements MobileWidgetsDDLService,
 
 	@Override
 	public java.util.Map<java.lang.String, java.lang.String> getDDLRecordValues(
-		long recordId, java.util.Locale locale)
+		long ddlRecordId, java.util.Locale locale)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return _mobileWidgetsDDLService.getDDLRecordValues(recordId, locale);
+		return _mobileWidgetsDDLService.getDDLRecordValues(ddlRecordId, locale);
 	}
 
 	/**

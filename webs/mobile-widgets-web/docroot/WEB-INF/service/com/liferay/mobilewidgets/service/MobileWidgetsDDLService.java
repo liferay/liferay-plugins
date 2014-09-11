@@ -67,7 +67,7 @@ public interface MobileWidgetsDDLService extends BaseService, InvokableService {
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.Map<java.lang.String, java.lang.String> getDDLRecordValues(
-		long recordId, java.util.Locale locale)
+		long ddlRecordId, java.util.Locale locale)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 }
