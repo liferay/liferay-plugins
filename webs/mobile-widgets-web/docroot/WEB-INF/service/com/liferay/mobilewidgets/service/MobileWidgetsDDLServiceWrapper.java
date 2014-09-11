@@ -19,7 +19,7 @@ import com.liferay.portal.service.ServiceWrapper;
 /**
  * Provides a wrapper for {@link MobileWidgetsDDLService}.
  *
- * @author Jose Manuel Navarro
+ * @author José Manuel Navarro
  * @see MobileWidgetsDDLService
  * @generated
  */

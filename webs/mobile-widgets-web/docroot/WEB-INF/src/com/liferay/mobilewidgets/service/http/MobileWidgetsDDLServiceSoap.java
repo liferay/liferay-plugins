@@ -38,7 +38,7 @@ package com.liferay.mobilewidgets.service.http;
  * The SOAP utility is only generated for remote services.
  * </p>
  *
- * @author Jose Manuel Navarro
+ * @author José Manuel Navarro
  * @see MobileWidgetsDDLServiceHttp
  * @see com.liferay.mobilewidgets.service.MobileWidgetsDDLServiceUtil
  * @generated

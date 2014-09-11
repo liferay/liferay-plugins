@@ -19,40 +19,40 @@ import com.liferay.mobilewidgets.service.MobileWidgetsDDLServiceUtil;
 import java.util.Arrays;
 
 /**
- * @author Jose Manuel Navarro
+ * @author José Manuel Navarro
  * @generated
  */
 public class MobileWidgetsDDLServiceClpInvoker {
 	public MobileWidgetsDDLServiceClpInvoker() {
-		_methodName22 = "getBeanIdentifier";
+		_methodName28 = "getBeanIdentifier";
 
-		_methodParameterTypes22 = new String[] {  };
+		_methodParameterTypes28 = new String[] {  };
 
-		_methodName23 = "setBeanIdentifier";
+		_methodName29 = "setBeanIdentifier";
 
-		_methodParameterTypes23 = new String[] { "java.lang.String" };
+		_methodParameterTypes29 = new String[] { "java.lang.String" };
 
-		_methodName26 = "getDDLRecordValues";
+		_methodName32 = "getDDLRecordValues";
 
-		_methodParameterTypes26 = new String[] { "long", "java.util.Locale" };
+		_methodParameterTypes32 = new String[] { "long", "java.util.Locale" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
 		Object[] arguments) throws Throwable {
-		if (_methodName22.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes22, parameterTypes)) {
+		if (_methodName28.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes28, parameterTypes)) {
 			return MobileWidgetsDDLServiceUtil.getBeanIdentifier();
 		}
 
-		if (_methodName23.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes23, parameterTypes)) {
+		if (_methodName29.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes29, parameterTypes)) {
 			MobileWidgetsDDLServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
 
 			return null;
 		}
 
-		if (_methodName26.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes26, parameterTypes)) {
+		if (_methodName32.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes32, parameterTypes)) {
 			return MobileWidgetsDDLServiceUtil.getDDLRecordValues(((Long)arguments[0]).longValue(),
 				(java.util.Locale)arguments[1]);
 		}
@@ -60,10 +60,10 @@ public class MobileWidgetsDDLServiceClpInvoker {
 		throw new UnsupportedOperationException();
 	}
 
-	private String _methodName22;
-	private String[] _methodParameterTypes22;
-	private String _methodName23;
-	private String[] _methodParameterTypes23;
-	private String _methodName26;
-	private String[] _methodParameterTypes26;
+	private String _methodName28;
+	private String[] _methodParameterTypes28;
+	private String _methodName29;
+	private String[] _methodParameterTypes29;
+	private String _methodName32;
+	private String[] _methodParameterTypes32;
 }
