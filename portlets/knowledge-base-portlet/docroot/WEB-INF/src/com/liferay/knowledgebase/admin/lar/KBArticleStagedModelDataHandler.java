@@ -143,13 +143,6 @@ public class KBArticleStagedModelDataHandler
 
 		long userId = portletDataContext.getUserId(kbArticle.getUserUuid());
 
-		if (kbArticle.getParentResourcePrimKey() !=
-				KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY) {
-
-			StagedModelDataHandlerUtil.importReferenceStagedModels(
-				portletDataContext, kbArticle, KBArticle.class);
-		}
-
 		Map<Long, Long> kbArticleResourcePrimKeys =
 			(Map<Long, Long>)portletDataContext.getNewPrimaryKeysMap(
 				KBArticle.class);
