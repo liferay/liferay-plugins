@@ -14,15 +14,15 @@
 
 package com.liferay.mobilewidgets.service.impl;
 
-import java.util.List;
-import java.util.Locale;
-
 import com.liferay.mobilewidgets.service.base.MobileWidgetsAssetServiceBaseImpl;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portlet.asset.model.AssetEntry;
 import com.liferay.portlet.asset.service.persistence.AssetEntryQuery;
+
+import java.util.List;
+import java.util.Locale;
 
 /**
  * The implementation of the mobile widgets asset remote service.
@@ -39,27 +39,29 @@ import com.liferay.portlet.asset.service.persistence.AssetEntryQuery;
  * @see com.liferay.mobilewidgets.service.MobileWidgetsAssetServiceUtil
  */
 public class MobileWidgetsAssetServiceImpl
-	extends MobileWidgetsAssetServiceBaseImpl {
-	/*
+		extends MobileWidgetsAssetServiceBaseImpl {
+
+	/**
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never reference this interface directly. Always use {@link com.liferay.mobilewidgets.service.MobileWidgetsAssetServiceUtil} to access the mobile widgets asset remote service.
 	 */
-	
+
 	@Override
 	public List<AssetEntry> getEntries(
-				AssetEntryQuery entryQuery, Locale locale) 
+				AssetEntryQuery entryQuery, Locale locale)
 			throws PortalException, SystemException {
-		
-		List<AssetEntry> assetEntries = 
-			assetEntryLocalService.getEntries(entryQuery);
-		
+
+		List<AssetEntry> assetEntries = assetEntryLocalService.getEntries(
+			entryQuery);
+
 		String languageId = LanguageUtil.getLanguageId(locale);
-		
+
 		for (AssetEntry assetEntry : assetEntries) {
 			assetEntry.setTitleCurrentLanguageId(languageId);
 		}
-		
+
 		return assetEntries;
 	}
+
 }
