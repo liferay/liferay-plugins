@@ -19,7 +19,7 @@ AUI.add(
 						instance._nonActionableNotificationsList = config.nonActionableNotificationsList;
 						instance._portletKey = config.portletKey;
 
-						var userNotifications =  A.one('.dockbar-user-notifications');
+						var userNotifications = A.one('.dockbar-user-notifications');
 
 						userNotifications.on(
 							'click',
@@ -385,7 +385,7 @@ AUI.add(
 												markAllAsReadLink = markAllAsReadNode.one('a');
 											}
 
-											var hasEntries = entriesJSONArray.length > 0;
+											var hasEntries = (entriesJSONArray.length > 0);
 
 											if (!hasEntries) {
 												var message = Liferay.Language.get('you-do-not-have-any-notifications');
@@ -465,6 +465,7 @@ AUI.add(
 						var instance = this;
 
 						instance._start = start;
+
 						instance._end = instance._start + instance._delta;
 					},
 
@@ -565,8 +566,8 @@ AUI.add(
 							notificationsContainer.delegate(
 								'click',
 								function() {
-									instance._start = instance._start + instance._delta;
-									instance._end = instance._end + instance._delta;
+									instance._start += instance._delta;
+									instance._end += instance._delta;
 
 									instance.render();
 								},
@@ -637,8 +638,8 @@ AUI.add(
 							notificationsContainer.delegate(
 								'click',
 								function() {
-									instance._start = instance._start - instance._delta;
-									instance._end = instance._end - instance._delta;
+									instance._start -= instance._delta;
+									instance._end -= instance._delta;
 
 									instance.render();
 								},
@@ -652,15 +653,10 @@ AUI.add(
 						var instance = this;
 
 						instance._bindMarkAllAsRead();
-
 						instance._bindMarkAsRead();
-
 						instance._bindNotificationsAction();
-
 						instance._bindNextPageNotifications();
-
 						instance._bindPreviousPageNotifications();
-
 						instance._bindViewNotification();
 					},
 
@@ -714,11 +710,7 @@ AUI.add(
 					},
 
 					_openWindow: function(uri) {
-						if (uri.match('p_p_state=maximized') || uri.match('p_p_state=pop_up') || uri.match('p_p_state=exclusive')) {
-							return true;
-						}
-
-						return false;
+						return /p_p_state=(maximized|pop_up|exclusive)/.test(uri);
 					},
 
 					_redirect: function(uri) {
