@@ -33,14 +33,15 @@ import java.util.Set;
 public class MobileWidgetsDDLServiceImpl
 	extends MobileWidgetsDDLServiceBaseImpl {
 
-	public Map<String, String> getDDLRecordValues(long recordId, Locale locale)
+	public Map<String, String> getDDLRecordValues(
+			long ddlRecordId, Locale locale)
 		throws PortalException, SystemException {
 
-		Map<String, String> recordValues = new HashMap<String, String>();
+		Map<String, String> ddlRecordValues = new HashMap<String, String>();
 
-		DDLRecord record = ddlRecordLocalService.getDDLRecord(recordId);
+		DDLRecord ddlRecord = ddlRecordLocalService.getDDLRecord(ddlRecordId);
 
-		Fields fields = record.getFields();
+		Fields fields = ddlRecord.getFields();
 
 		Set<Locale> availableLocales = fields.getAvailableLocales();
 
@@ -55,10 +56,10 @@ public class MobileWidgetsDDLServiceImpl
 				fieldValue = field.getRenderedValue(locale);
 			}
 
-			recordValues.put(field.getName(), fieldValue);
+			ddlRecordValues.put(field.getName(), fieldValue);
 		}
 
-		return recordValues;
+		return ddlRecordValues;
 	}
 
 	protected boolean isDateField(String fieldType) {
