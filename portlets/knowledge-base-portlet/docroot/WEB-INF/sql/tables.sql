@@ -20,7 +20,7 @@ create table KBArticle (
 	viewCount INTEGER,
 	latest BOOLEAN,
 	main BOOLEAN,
-	sourceURL VARCHAR(75) null,
+	sourceURL STRING null,
 	status INTEGER,
 	statusByUserId LONG,
 	statusByUserName VARCHAR(75) null,
