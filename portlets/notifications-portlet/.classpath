@@ -10,6 +10,7 @@
 	<classpathentry kind="lib" path="/portal-6.2.x/lib/development/mail.jar" />
 	<classpathentry kind="lib" path="/portal-6.2.x/lib/development/servlet-api.jar" />
 	<classpathentry kind="lib" path="/portal-6.2.x/lib/global/portlet.jar" />
+	<classpathentry kind="lib" path="/portal-6.2.x/lib/portal/bnd.jar" />
 	<classpathentry kind="lib" path="/portal-6.2.x/lib/portal/commons-logging.jar" />
 	<classpathentry kind="lib" path="/portal-6.2.x/lib/portal/jstl-api.jar" />
 	<classpathentry kind="lib" path="/portal-6.2.x/lib/portal/jstl-impl.jar" />
@@ -19,9 +20,12 @@
 	<classpathentry kind="lib" path="/portal-6.2.x/util-java/util-java.jar" />
 	<classpathentry kind="lib" path="/portal-6.2.x/util-taglib/util-taglib.jar" />
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/contacts-shared.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/microblogs-shared.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/notifications-shared.jar" />
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/portal-compat-shared.jar" />
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/private-messaging-shared.jar" />
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/so-announcements-shared.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/so-configurations-shared.jar" />
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/so-shared.jar" />
 	<classpathentry kind="output" path="bin" />
 </classpath>
