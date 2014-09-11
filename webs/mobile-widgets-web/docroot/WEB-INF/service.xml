@@ -4,6 +4,9 @@
 <service-builder package-path="com.liferay.mobilewidgets">
 	<author>José Manuel Navarro</author>
 	<namespace>MobileWidgets</namespace>
+	<entity name="MobileWidgetsAsset" local-service="false" remote-service="true">
+		<reference package-path="com.liferay.portlet.asset" entity="AssetEntry" />
+	</entity>
 	<entity name="MobileWidgetsDDL" local-service="false" remote-service="true">
 		<reference package-path="com.liferay.portlet.dynamicdatalists" entity="DDLRecord" />
 	</entity>
