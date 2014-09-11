@@ -1183,6 +1183,8 @@
 				confirm: function(message, yesButtonLabel, noButtonLabel, yesFn, noFn) {
 					var instance = this;
 
+					var confirmationPanel;
+
 					var getButtonConfig = function(label, callback) {
 						return {
 							label: label,
@@ -1192,13 +1194,13 @@
 										callback.apply(this, arguments);
 									}
 
-									this.hide();
+									confirmationPanel.hide();
 								}
 							}
 						};
 					};
 
-					var confirmationPanel = Liferay.Util.Window.getWindow(
+					confirmationPanel = Liferay.Util.Window.getWindow(
 						{
 							dialog : {
 								bodyContent: message,
