@@ -23,6 +23,8 @@ import com.liferay.sync.engine.util.RetryUtil;
 
 import java.io.FileNotFoundException;
 
+import java.net.SocketException;
+
 import java.util.Map;
 
 import org.apache.http.HttpResponse;
@@ -57,7 +59,8 @@ public class BaseHandler implements Handler<Void> {
 			}
 		}
 		else if ((e instanceof HttpHostConnectException) ||
-				 (e instanceof NoHttpResponseException)) {
+				 (e instanceof NoHttpResponseException) ||
+				 (e instanceof SocketException)) {
 
 			syncAccount.setState(SyncAccount.STATE_DISCONNECTED);
 			syncAccount.setUiEvent(SyncAccount.UI_EVENT_CONNECTION_EXCEPTION);
@@ -90,6 +93,13 @@ public class BaseHandler implements Handler<Void> {
 		}
 		else {
 			_logger.error(e.getMessage(), e);
+
+			syncAccount.setState(SyncAccount.STATE_DISCONNECTED);
+			syncAccount.setUiEvent(SyncAccount.UI_EVENT_CONNECTION_EXCEPTION);
+
+			SyncAccountService.update(syncAccount);
+
+			retryServerConnection();
 		}
 	}
 
