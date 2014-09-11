@@ -246,6 +246,7 @@ public class CalendarUtil {
 
 		jsonObject.put(
 			"hasChildCalendarBookings", childCalendarBookings.size() > 1);
+
 		jsonObject.put("instanceIndex", calendarBooking.getInstanceIndex());
 		jsonObject.put("location", calendarBooking.getLocation());
 		jsonObject.put(
