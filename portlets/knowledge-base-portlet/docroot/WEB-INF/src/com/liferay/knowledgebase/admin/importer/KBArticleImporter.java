@@ -182,7 +182,7 @@ public class KBArticleImporter {
 		InputStream inputStream = null;
 
 		try {
-			inputStream = zipReader.getEntryAsInputStream(_METADATA_FILE_NAME);
+			inputStream = zipReader.getEntryAsInputStream(".METADATA");
 
 			if (inputStream == null) {
 				return Collections.emptyMap();
