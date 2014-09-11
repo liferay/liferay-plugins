@@ -38,7 +38,7 @@ String navItem = ParamUtil.getString(request, "navItem", "viewNewFeedback");
 
 KBFeedbackListDisplayContext kbFeedbackListDisplayContext = new KBFeedbackListDisplayContext(scopeGroupId, navItem);
 
-request.setAttribute(WebKeys.KB_FEEDBACK_LIST_DISPLAY_CONTEXT, kbFeedbackListDisplayContext);
+request.setAttribute(WebKeys.KNOWLEDGE_BASE_KB_FEEDBACK_LIST_DISPLAY_CONTEXT, kbFeedbackListDisplayContext);
 %>
 
 <liferay-util:include page="/admin/common/view_feedback_by_status.jsp" servletContext="<%= application %>" />
