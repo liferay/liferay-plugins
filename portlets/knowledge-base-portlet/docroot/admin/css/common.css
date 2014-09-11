@@ -141,7 +141,7 @@
 	.kb-article-feedback-actions {
 		clear: both;
 		display: block;
-		margin: 10px 0 10px 5px;
+		padding: 10px 0 10px 5px;
 	}
 
 	.kb-article-siblings {
