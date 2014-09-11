@@ -103,10 +103,6 @@ public class WSRPConsumerPortletStagedModelDataHandler
 			WSRPConsumerPortlet wsrpConsumerPortlet)
 		throws Exception {
 
-		StagedModelDataHandlerUtil.importReferenceStagedModel(
-			portletDataContext, wsrpConsumerPortlet, WSRPConsumer.class,
-			wsrpConsumerPortlet.getWsrpConsumerId());
-
 		Map<Long, Long> wsrpConsumerIds =
 			(Map<Long, Long>)portletDataContext.getNewPrimaryKeysMap(
 				WSRPConsumer.class);
