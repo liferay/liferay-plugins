@@ -39,7 +39,8 @@ public class MobileWidgetsDDLServiceImpl
 
 		Map<String, String> ddlRecordValues = new HashMap<String, String>();
 
-		DDLRecord ddlRecord = ddlRecordLocalService.getDDLRecord(ddlRecordId);
+		DDLRecord ddlRecord = ddlRecordPersistence.findByPrimaryKey(
+			ddlRecordId);
 
 		Fields fields = ddlRecord.getFields();
 
