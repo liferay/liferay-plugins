@@ -14,6 +14,7 @@
 
 package com.liferay.notifications.hook.events;
 
+import com.liferay.compat.portal.util.JavaFieldsParser;
 import com.liferay.notifications.util.PortletPropsKeys;
 import com.liferay.notifications.util.PortletPropsValues;
 import com.liferay.portal.kernel.configuration.Filter;
@@ -31,7 +32,6 @@ import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.xml.Document;
 import com.liferay.portal.kernel.xml.Element;
 import com.liferay.portal.kernel.xml.SAXReaderUtil;
-import com.liferay.portal.util.JavaFieldsParser;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.util.ContentUtil;
 import com.liferay.util.portlet.PortletProps;
