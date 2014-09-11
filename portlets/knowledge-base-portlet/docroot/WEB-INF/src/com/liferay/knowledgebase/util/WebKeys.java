@@ -20,6 +20,9 @@ package com.liferay.knowledgebase.util;
  */
 public class WebKeys implements com.liferay.portal.kernel.util.WebKeys {
 
+	public static String KB_FEEDBACK_LIST_DISPLAY_CONTEXT =
+		"KB_FEEDBACK_LIST_DISPLAY_CONTEXT";
+
 	public static final String KNOWLEDGE_BASE_KB_ARTICLE =
 		"KNOWLEDGE_BASE_KB_ARTICLE";
 
@@ -27,8 +30,5 @@ public class WebKeys implements com.liferay.portal.kernel.util.WebKeys {
 		"KNOWLEDGE_BASE_KB_TEMPLATE";
 
 	public static final String KNOWLEDGE_BASE_STATUS = "KNOWLEDGE_BASE_STATUS";
-
-	public static String KB_FEEDBACK_LIST_DISPLAY_CONTEXT =
-		"KB_FEEDBACK_LIST_DISPLAY_CONTEXT";
 
 }

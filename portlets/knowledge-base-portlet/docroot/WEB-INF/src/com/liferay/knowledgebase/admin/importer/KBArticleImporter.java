@@ -181,7 +181,7 @@ public class KBArticleImporter {
 		InputStream inputStream = null;
 
 		try {
-			inputStream = zipReader.getEntryAsInputStream(_METADATA_FILE_NAME);
+			inputStream = zipReader.getEntryAsInputStream(".METADATA");
 
 			if (inputStream == null) {
 				return Collections.emptyMap();
@@ -304,8 +304,6 @@ public class KBArticleImporter {
 			}
 		}
 	}
-
-	private static String _METADATA_FILE_NAME = ".METADATA";
 
 	private static Log _log = LogFactoryUtil.getLog(KBArticleImporter.class);
 
