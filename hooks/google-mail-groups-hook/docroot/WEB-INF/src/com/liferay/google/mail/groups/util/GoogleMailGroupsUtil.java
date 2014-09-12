@@ -177,10 +177,9 @@ public class GoogleMailGroupsUtil {
 	public static String getGroupEmailAddress(Group group)
 		throws PortalException {
 
-		StringBundler sb = new StringBundler(5);
+		StringBundler sb = new StringBundler(4);
 
 		sb.append(PortletPropsValues.EMAIL_PREFIX);
-		sb.append(StringPool.DASH);
 
 		String friendlyURL = group.getFriendlyURL();
 
