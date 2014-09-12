@@ -14,8 +14,8 @@
 
 package com.liferay.google.mail.groups.hook.listeners;
 
-import com.liferay.google.apps.connector.GGroupManager;
-import com.liferay.google.apps.connector.GoogleAppsConnectionFactoryUtil;
+import com.google.api.services.admin.directory.Directory;
+
 import com.liferay.google.mail.groups.util.GoogleMailGroupsUtil;
 import com.liferay.portal.ModelListenerException;
 import com.liferay.portal.model.BaseModelListener;
@@ -47,10 +47,11 @@ public class UserModelListener extends BaseModelListener<User> {
 
 				@Override
 				public void onAssociation(
-						User user, Group group, GGroupManager gGroupManager)
+						User user, Group group, Directory directory)
 					throws Exception {
 
-					gGroupManager.addGGroupMember(
+					GoogleMailGroupsUtil.addGGroupMember(
+						directory,
 						GoogleMailGroupsUtil.getGroupEmailAddress(group),
 						GoogleMailGroupsUtil.getUserEmailAddress(user));
 				}
@@ -74,7 +75,7 @@ public class UserModelListener extends BaseModelListener<User> {
 
 				@Override
 				public void onAssociation(
-						User user, Group group, GGroupManager gGroupManager)
+						User user, Group group, Directory directory)
 					throws Exception {
 
 					if (GroupLocalServiceUtil.hasUserGroup(
@@ -83,7 +84,8 @@ public class UserModelListener extends BaseModelListener<User> {
 						return;
 					}
 
-					gGroupManager.deleteGGroupMember(
+					GoogleMailGroupsUtil.deleteGGroupMember(
+						directory,
 						GoogleMailGroupsUtil.getGroupEmailAddress(group),
 						GoogleMailGroupsUtil.getUserEmailAddress(user));
 				}
@@ -124,21 +126,19 @@ public class UserModelListener extends BaseModelListener<User> {
 
 			User user = UserLocalServiceUtil.getUser((Long)classPK);
 
-			GGroupManager gGroupManager =
-				GoogleAppsConnectionFactoryUtil.getGGroupManager(
-					user.getCompanyId());
+			Directory directory = GoogleMailGroupsUtil.getDirectory();
 
 			for (Group group : groups) {
 				if (!GoogleMailGroupsUtil.isSync(group)) {
 					continue;
 				}
 
-				onAssociation(user, group, gGroupManager);
+				onAssociation(user, group, directory);
 			}
 		}
 
 		public abstract void onAssociation(
-				User user, Group group, GGroupManager gGroupManager)
+				User user, Group group, Directory directory)
 			throws Exception;
 
 	}
