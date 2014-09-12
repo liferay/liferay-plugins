@@ -14,16 +14,14 @@
 
 package com.liferay.google.mail.groups.hook.service.impl;
 
-import com.liferay.google.apps.connector.GGroupManager;
-import com.liferay.google.apps.connector.GoogleAppsConnectionFactoryUtil;
+import com.google.api.services.admin.directory.Directory;
+
 import com.liferay.google.mail.groups.util.GoogleMailGroupsUtil;
-import com.liferay.google.mail.groups.util.PortletPropsValues;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
-import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.User;
@@ -105,18 +103,19 @@ public class GoogleMailGroupsGroupLocalServiceImpl
 			return;
 		}
 
-		GGroupManager gGroupManager =
-			GoogleAppsConnectionFactoryUtil.getGGroupManager(
-				group.getCompanyId());
+		if (!GoogleMailGroupsUtil.isSync(group)) {
+			return;
+		}
 
-		gGroupManager.deleteGGroup(oldGroupEmailAddress);
+		Directory directory = GoogleMailGroupsUtil.getDirectory();
+
+		GoogleMailGroupsUtil.deleteGGroup(directory, oldGroupEmailAddress);
 
 		String groupEmailAddress = GoogleMailGroupsUtil.getGroupEmailAddress(
 			group);
 
-		gGroupManager.addGGroup(
-			groupEmailAddress, group.getDescriptiveName(), StringPool.BLANK,
-			PortletPropsValues.EMAIL_PERMISSION);
+		GoogleMailGroupsUtil.addGGroup(
+			directory, group.getDescriptiveName(), groupEmailAddress);
 
 		LinkedHashMap<String, Object> userParams =
 			new LinkedHashMap<String, Object>();
@@ -130,8 +129,8 @@ public class GoogleMailGroupsGroupLocalServiceImpl
 			(OrderByComparator)null);
 
 		for (User user : users) {
-			gGroupManager.addGGroupMember(
-				groupEmailAddress,
+			GoogleMailGroupsUtil.addGGroupMember(
+				directory, groupEmailAddress,
 				GoogleMailGroupsUtil.getUserEmailAddress(user));
 		}
 	}
