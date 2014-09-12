@@ -19,6 +19,7 @@ import com.google.ical.iter.RecurrenceIteratorFactory;
 import com.google.ical.util.TimeUtils;
 import com.google.ical.values.DateValue;
 import com.google.ical.values.DateValueImpl;
+
 import com.liferay.calendar.model.CalendarBooking;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -26,6 +27,7 @@ import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.TimeZoneUtil;
 
 import java.text.ParseException;
+
 import java.util.Calendar;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
