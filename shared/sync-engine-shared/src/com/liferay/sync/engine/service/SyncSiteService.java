@@ -147,16 +147,18 @@ public class SyncSiteService {
 
 		try {
 			_syncSitePersistence = new SyncSitePersistence();
+
+			registerModelListener(new SyncSiteModelListener());
+
+			return _syncSitePersistence;
 		}
 		catch (SQLException sqle) {
 			if (_logger.isDebugEnabled()) {
 				_logger.debug(sqle.getMessage(), sqle);
 			}
+
+			return null;
 		}
-
-		_syncSitePersistence.registerModelListener(new SyncSiteModelListener());
-
-		return _syncSitePersistence;
 	}
 
 	public static void registerModelListener(

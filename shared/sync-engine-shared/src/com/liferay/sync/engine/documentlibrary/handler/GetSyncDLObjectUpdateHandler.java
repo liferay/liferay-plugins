@@ -232,16 +232,9 @@ public class GetSyncDLObjectUpdateHandler extends BaseSyncDLObjectHandler {
 			try {
 				filePathName = FileUtil.getFilePathName(
 					parentSyncFile.getFilePathName(), syncFile.getName());
-			}
-			catch (Exception e) {
-				_logger.error(e.getMessage(), e);
 
-				continue;
-			}
+				String event = syncFile.getEvent();
 
-			String event = syncFile.getEvent();
-
-			try {
 				if (event.equals(SyncFile.EVENT_ADD) ||
 					event.equals(SyncFile.EVENT_GET) ||
 					event.equals(SyncFile.EVENT_RESTORE)) {

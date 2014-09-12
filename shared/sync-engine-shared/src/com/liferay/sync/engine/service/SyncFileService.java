@@ -479,16 +479,18 @@ public class SyncFileService {
 
 		try {
 			_syncFilePersistence = new SyncFilePersistence();
+
+			registerModelListener(new SyncFileModelListener());
+
+			return _syncFilePersistence;
 		}
 		catch (SQLException sqle) {
 			if (_logger.isDebugEnabled()) {
 				_logger.debug(sqle.getMessage(), sqle);
 			}
+
+			return null;
 		}
-
-		_syncFilePersistence.registerModelListener(new SyncFileModelListener());
-
-		return _syncFilePersistence;
 	}
 
 	public static long getSyncFilesCount(int uiEvent) {

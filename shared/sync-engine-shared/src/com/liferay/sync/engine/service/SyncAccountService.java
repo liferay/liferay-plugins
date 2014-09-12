@@ -160,11 +160,11 @@ public class SyncAccountService {
 	}
 
 	public static Set<Long> getActiveSyncAccountIds() {
-		try {
-			if (_activeSyncAccountIds != null) {
-				return _activeSyncAccountIds;
-			}
+		if (_activeSyncAccountIds != null) {
+			return _activeSyncAccountIds;
+		}
 
+		try {
 			_activeSyncAccountIds = new HashSet<Long>(
 				_syncAccountPersistence.findByActive(true));
 
@@ -186,16 +186,18 @@ public class SyncAccountService {
 
 		try {
 			_syncAccountPersistence = new SyncAccountPersistence();
+
+			registerModelListener(new SyncAccountModelListener());
+
+			return _syncAccountPersistence;
 		}
 		catch (SQLException sqle) {
 			if (_logger.isDebugEnabled()) {
 				_logger.debug(sqle.getMessage(), sqle);
 			}
+
+			return null;
 		}
-
-		registerModelListener(new SyncAccountModelListener());
-
-		return _syncAccountPersistence;
 	}
 
 	public static void registerModelListener(
