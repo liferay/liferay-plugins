@@ -147,7 +147,6 @@ public class ExtRepositoryFileVersionAdapter
 	}
 
 	@Override
-	@SuppressWarnings("unused")
 	public String getStatusByUserUuid() {
 		return getUserUuid();
 	}

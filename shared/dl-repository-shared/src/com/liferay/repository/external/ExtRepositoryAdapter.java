@@ -178,6 +178,9 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 			ExtRepositoryObjectAdapterType.FILE, extRepositoryFileEntry);
 	}
 
+	/**
+	 * @throws PortalException
+	 */
 	@Override
 	public FileEntry checkOutFileEntry(
 			long fileEntryId, String owner, long expirationTime,
@@ -325,7 +328,7 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 		extRepositoryFileEntryAdapters = _filterByMimeType(
 			extRepositoryFileEntryAdapters, mimeTypes);
 
-		return (List)_subList(extRepositoryFileEntryAdapters, start, end, obc);
+		return _subList(extRepositoryFileEntryAdapters, start, end, obc);
 	}
 
 	@Override
@@ -487,10 +490,11 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 			_toExtRepositoryObjectAdapters(
 				ExtRepositoryObjectAdapterType.FOLDER, extRepositoryFolders);
 
-		return (List)_subList(extRepositoryFolderAdapters, start, end, obc);
+		return _subList(extRepositoryFolderAdapters, start, end, obc);
 	}
 
 	@Override
+	@SuppressWarnings("rawtypes")
 	public List getFoldersAndFileEntries(
 		long folderId, int start, int end, OrderByComparator<?> obc) {
 
