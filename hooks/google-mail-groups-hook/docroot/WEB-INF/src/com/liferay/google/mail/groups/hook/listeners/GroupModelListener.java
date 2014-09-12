@@ -18,6 +18,8 @@ import com.google.api.services.admin.directory.Directory;
 
 import com.liferay.google.mail.groups.util.GoogleMailGroupsUtil;
 import com.liferay.portal.ModelListenerException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.model.BaseModelListener;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.Organization;
@@ -58,7 +60,7 @@ public class GroupModelListener extends BaseModelListener<Group> {
 			};
 		}
 		catch (Exception e) {
-			throw new ModelListenerException(e);
+			_log.error(e);
 		}
 	}
 
@@ -74,7 +76,7 @@ public class GroupModelListener extends BaseModelListener<Group> {
 				GoogleMailGroupsUtil.getGroupEmailAddress(group));
 		}
 		catch (Exception e) {
-			throw new ModelListenerException(e);
+			_log.error(e);
 		}
 	}
 
@@ -90,7 +92,7 @@ public class GroupModelListener extends BaseModelListener<Group> {
 				GoogleMailGroupsUtil.getGroupEmailAddress(group));
 		}
 		catch (Exception e) {
-			throw new ModelListenerException(e);
+			_log.error(e);
 		}
 	}
 
@@ -124,9 +126,11 @@ public class GroupModelListener extends BaseModelListener<Group> {
 			};
 		}
 		catch (Exception e) {
-			throw new ModelListenerException(e);
+			_log.error(e);
 		}
 	}
+
+	private static Log _log = LogFactoryUtil.getLog(GroupModelListener.class);
 
 	private abstract class OnAssociation {
 
