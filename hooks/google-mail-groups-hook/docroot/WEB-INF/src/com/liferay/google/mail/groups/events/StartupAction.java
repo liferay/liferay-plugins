@@ -18,7 +18,6 @@ import com.liferay.google.mail.groups.util.GoogleMailGroupsUtil;
 import com.liferay.google.mail.groups.util.PortletPropsValues;
 import com.liferay.portal.kernel.events.ActionException;
 import com.liferay.portal.kernel.events.SimpleAction;
-import com.liferay.portal.kernel.util.GetterUtil;
 
 /**
  * @author Matthew Kong
@@ -32,11 +31,7 @@ public class StartupAction extends SimpleAction {
 				return;
 			}
 
-			for (String id : ids) {
-				long companyId = GetterUtil.getLong(id);
-
-				GoogleMailGroupsUtil.syncGroups(companyId);
-			}
+			GoogleMailGroupsUtil.syncGroups();
 		}
 		catch (Exception e) {
 			throw new ActionException(e);
