@@ -39,10 +39,8 @@ public class MobileWidgetsAssetEntryServiceImpl
 		List<AssetEntry> assetEntries = assetEntryLocalService.getEntries(
 			assetEntryQuery);
 
-		String languageId = LanguageUtil.getLanguageId(locale);
-
 		for (AssetEntry assetEntry : assetEntries) {
-			assetEntry.setTitleCurrentLanguageId(languageId);
+			assetEntry.setTitle(assetEntry.getTitle(locale));
 		}
 
 		return AssetEntrySoap.toSoapModels(assetEntries);
