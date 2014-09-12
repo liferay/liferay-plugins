@@ -40,7 +40,9 @@ public class MobileWidgetsAssetEntryServiceImpl
 			assetEntryQuery);
 
 		for (AssetEntry assetEntry : assetEntries) {
-			assetEntry.setTitle(assetEntry.getTitle(locale));
+			String localizedTitle = assetEntry.getTitle(locale);
+			
+			assetEntry.setTitle(localizedTitle);
 		}
 
 		return AssetEntrySoap.toSoapModels(assetEntries);
