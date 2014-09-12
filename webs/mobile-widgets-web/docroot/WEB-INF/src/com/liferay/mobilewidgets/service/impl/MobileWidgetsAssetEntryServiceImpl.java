@@ -14,7 +14,7 @@
 
 package com.liferay.mobilewidgets.service.impl;
 
-import com.liferay.mobilewidgets.service.base.MobileWidgetsAssetServiceBaseImpl;
+import com.liferay.mobilewidgets.service.base.MobileWidgetsAssetEntryServiceBaseImpl;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.language.LanguageUtil;
@@ -38,8 +38,8 @@ import java.util.Locale;
  * @see com.liferay.mobilewidgets.service.base.MobileWidgetsAssetServiceBaseImpl
  * @see com.liferay.mobilewidgets.service.MobileWidgetsAssetServiceUtil
  */
-public class MobileWidgetsAssetServiceImpl
-		extends MobileWidgetsAssetServiceBaseImpl {
+public class MobileWidgetsAssetEntryServiceImpl
+	extends MobileWidgetsAssetEntryServiceBaseImpl {
 
 	/**
 	 * NOTE FOR DEVELOPERS:
