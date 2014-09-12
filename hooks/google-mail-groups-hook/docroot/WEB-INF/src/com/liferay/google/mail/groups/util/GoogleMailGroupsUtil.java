@@ -14,6 +14,13 @@
 
 package com.liferay.google.mail.groups.util;
 
+import com.google.api.client.googleapis.auth.oauth2.GoogleCredential;
+import com.google.api.client.http.javanet.NetHttpTransport;
+import com.google.api.client.json.jackson2.JacksonFactory;
+import com.google.api.services.admin.directory.Directory;
+import com.google.api.services.admin.directory.model.Member;
+import com.google.api.services.admin.directory.model.Members;
+
 import com.liferay.google.apps.connector.GGroup;
 import com.liferay.google.apps.connector.GGroupManager;
 import com.liferay.google.apps.connector.GGroupMember;
@@ -22,6 +29,8 @@ import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portal.kernel.util.PropsKeys;
+import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
@@ -33,7 +42,10 @@ import com.liferay.portal.service.CompanyLocalServiceUtil;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.service.persistence.GroupActionableDynamicQuery;
 
+import java.io.File;
+
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.List;
 
@@ -41,6 +53,123 @@ import java.util.List;
  * @author Matthew Kong
  */
 public class GoogleMailGroupsUtil {
+
+	public static void addGGroup(
+			Directory directory, String name, String groupEmailAddress)
+		throws PortalException {
+
+		try {
+			Directory.Groups gGroups = directory.groups();
+
+			com.google.api.services.admin.directory.model.Group gGroup =
+				new com.google.api.services.admin.directory.model.Group();
+
+			gGroup.setEmail(groupEmailAddress);
+			gGroup.setName(name);
+
+			Directory.Groups.Insert insert = gGroups.insert(gGroup);
+
+			insert.execute();
+		}
+		catch (Exception e) {
+			throw new PortalException(e);
+		}
+	}
+
+	public static void addGGroupMember(
+			Directory directory, String groupEmailAddress, String emailAddress)
+		throws PortalException {
+
+		try {
+			Directory.Members members = directory.members();
+
+			Member member = new Member();
+
+			member.setEmail(emailAddress);
+
+			Directory.Members.Insert insert = members.insert(
+				groupEmailAddress, member);
+
+			insert.execute();
+		}
+		catch (Exception e) {
+			throw new PortalException(e);
+		}
+	}
+
+	public static void deleteGGroup(
+			Directory directory, String groupEmailAddress)
+		throws PortalException {
+
+		try {
+			Directory.Groups gGroups = directory.groups();
+
+			Directory.Groups.Delete delete = gGroups.delete(groupEmailAddress);
+
+			delete.execute();
+		}
+		catch (Exception e) {
+			throw new PortalException(e);
+		}
+	}
+
+	public static void deleteGGroupMember(
+			Directory directory, String groupEmailAddress, String emailAddress)
+		throws PortalException {
+
+		try {
+			Directory.Members members = directory.members();
+
+			Directory.Members.Delete delete = members.delete(
+				groupEmailAddress, emailAddress);
+
+			delete.execute();
+		}
+		catch (Exception e) {
+			throw new PortalException(e);
+		}
+	}
+
+	public static Directory getDirectory() throws Exception {
+		GoogleCredential googleCredential = getGoogleCredential();
+
+		Directory.Builder builder = new Directory.Builder(
+			googleCredential.getTransport(), googleCredential.getJsonFactory(),
+			googleCredential);
+
+		return builder.build();
+	}
+
+	public static com.google.api.services.admin.directory.model.Group
+		getGGroup(Directory directory, String groupEmailAddress) {
+
+		try {
+			Directory.Groups gGroups = directory.groups();
+
+			Directory.Groups.Get get = gGroups.get(groupEmailAddress);
+
+			return get.execute();
+		}
+		catch (Exception e) {
+			return null;
+		}
+	}
+
+	public static Members getGGroupMembers(
+			Directory directory, String groupEmailAddress)
+		throws PortalException {
+
+		try {
+			Directory.Members members = directory.members();
+
+			Directory.Members.List list = members.list(groupEmailAddress);
+
+			return list.execute();
+		}
+		catch (Exception e) {
+			throw new PortalException(e);
+		}
+	}
 
 	public static String getGroupEmailAddress(Group group)
 		throws PortalException {
@@ -158,5 +287,28 @@ public class GoogleMailGroupsUtil {
 
 		actionableDynamicQuery.performActions();
 	}
+
+	protected static GoogleCredential getGoogleCredential() throws Exception {
+		GoogleCredential.Builder builder = new GoogleCredential.Builder();
+
+		builder.setJsonFactory(new JacksonFactory());
+		builder.setServiceAccountId(PortletPropsValues.SERVICE_ACCOUNT_ID);
+
+		File file = new File(
+			PropsUtil.get(PropsKeys.LIFERAY_HOME) +
+				PortletPropsValues.SERVICE_ACCOUNT_PRIVATE_KEY_P12_FILE);
+
+		builder.setServiceAccountPrivateKeyFromP12File(file);
+
+		builder.setServiceAccountScopes(_SCOPES_DIRECTORY);
+		builder.setServiceAccountUser(PortletPropsValues.SERVICE_ACCOUNT_USER);
+		builder.setTransport(new NetHttpTransport());
+
+		return builder.build();
+	}
+
+	private static final List<String> _SCOPES_DIRECTORY = Arrays.asList(
+		"https://www.googleapis.com/auth/admin.directory.group",
+		"https://www.googleapis.com/auth/admin.directory.user");
 
 }
