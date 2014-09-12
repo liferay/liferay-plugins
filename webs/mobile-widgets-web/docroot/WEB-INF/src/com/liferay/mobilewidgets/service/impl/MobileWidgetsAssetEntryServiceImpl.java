@@ -25,35 +25,18 @@ import java.util.List;
 import java.util.Locale;
 
 /**
- * The implementation of the mobile widgets asset remote service.
- *
- * <p>
- * All custom service methods should be put in this class. Whenever methods are added, rerun ServiceBuilder to copy their definitions into the {@link com.liferay.mobilewidgets.service.MobileWidgetsAssetService} interface.
- *
- * <p>
- * This is a remote service. Methods of this service are expected to have security checks based on the propagated JAAS credentials because this service can be accessed remotely.
- * </p>
- *
  * @author José Manuel Navarro
- * @see com.liferay.mobilewidgets.service.base.MobileWidgetsAssetServiceBaseImpl
- * @see com.liferay.mobilewidgets.service.MobileWidgetsAssetServiceUtil
  */
 public class MobileWidgetsAssetEntryServiceImpl
 	extends MobileWidgetsAssetEntryServiceBaseImpl {
 
-	/**
-	 * NOTE FOR DEVELOPERS:
-	 *
-	 * Never reference this interface directly. Always use {@link com.liferay.mobilewidgets.service.MobileWidgetsAssetServiceUtil} to access the mobile widgets asset remote service.
-	 */
-
 	@Override
-	public List<AssetEntry> getEntries(
-				AssetEntryQuery entryQuery, Locale locale)
-			throws PortalException, SystemException {
+	public List<AssetEntry> getAssetEntries(
+			AssetEntryQuery assetEntryQuery, Locale locale)
+		throws PortalException, SystemException {
 
 		List<AssetEntry> assetEntries = assetEntryLocalService.getEntries(
-			entryQuery);
+			assetEntryQuery);
 
 		String languageId = LanguageUtil.getLanguageId(locale);
 
