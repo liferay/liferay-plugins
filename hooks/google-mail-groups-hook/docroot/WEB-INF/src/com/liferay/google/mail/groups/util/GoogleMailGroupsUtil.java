@@ -15,6 +15,7 @@
 package com.liferay.google.mail.groups.util;
 
 import com.google.api.client.googleapis.auth.oauth2.GoogleCredential;
+import com.google.api.client.googleapis.json.GoogleJsonResponseException;
 import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.json.jackson2.JacksonFactory;
 import com.google.api.services.admin.directory.Directory;
@@ -86,6 +87,13 @@ public class GoogleMailGroupsUtil {
 				groupEmailAddress, member);
 
 			insert.execute();
+		}
+		catch (GoogleJsonResponseException gjre) {
+			if (gjre.getStatusCode() == _ERROR_CONFLICT) {
+				return;
+			}
+
+			throw new PortalException(gjre);
 		}
 		catch (Exception e) {
 			throw new PortalException(e);
@@ -299,6 +307,8 @@ public class GoogleMailGroupsUtil {
 
 		return builder.build();
 	}
+
+	private static final int _ERROR_CONFLICT = 409;
 
 	private static final List<String> _SCOPES_DIRECTORY = Arrays.asList(
 		"https://www.googleapis.com/auth/admin.directory.group",
