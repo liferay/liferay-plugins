@@ -25,25 +25,26 @@ import com.liferay.portal.service.BaseService;
 import com.liferay.portal.service.InvokableService;
 
 /**
- * Provides the remote service interface for MobileWidgetsDDL. Methods of this
+ * Provides the remote service interface for MobileWidgetsDDLRecord. Methods of this
  * service are expected to have security checks based on the propagated JAAS
  * credentials because this service can be accessed remotely.
  *
  * @author José Manuel Navarro
- * @see MobileWidgetsDDLServiceUtil
- * @see com.liferay.mobilewidgets.service.base.MobileWidgetsDDLServiceBaseImpl
- * @see com.liferay.mobilewidgets.service.impl.MobileWidgetsDDLServiceImpl
+ * @see MobileWidgetsDDLRecordServiceUtil
+ * @see com.liferay.mobilewidgets.service.base.MobileWidgetsDDLRecordServiceBaseImpl
+ * @see com.liferay.mobilewidgets.service.impl.MobileWidgetsDDLRecordServiceImpl
  * @generated
  */
 @AccessControlled
 @JSONWebService
 @Transactional(isolation = Isolation.PORTAL, rollbackFor =  {
 	PortalException.class, SystemException.class})
-public interface MobileWidgetsDDLService extends BaseService, InvokableService {
+public interface MobileWidgetsDDLRecordService extends BaseService,
+	InvokableService {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
-	 * Never modify or reference this interface directly. Always use {@link MobileWidgetsDDLServiceUtil} to access the mobile widgets d d l remote service. Add custom service methods to {@link com.liferay.mobilewidgets.service.impl.MobileWidgetsDDLServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
+	 * Never modify or reference this interface directly. Always use {@link MobileWidgetsDDLRecordServiceUtil} to access the mobile widgets d d l record remote service. Add custom service methods to {@link com.liferay.mobilewidgets.service.impl.MobileWidgetsDDLRecordServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
 
 	/**

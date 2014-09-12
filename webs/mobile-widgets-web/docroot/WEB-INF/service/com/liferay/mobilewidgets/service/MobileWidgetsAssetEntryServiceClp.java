@@ -20,8 +20,9 @@ import com.liferay.portal.service.InvokableService;
  * @author José Manuel Navarro
  * @generated
  */
-public class MobileWidgetsDDLServiceClp implements MobileWidgetsDDLService {
-	public MobileWidgetsDDLServiceClp(InvokableService invokableService) {
+public class MobileWidgetsAssetEntryServiceClp
+	implements MobileWidgetsAssetEntryService {
+	public MobileWidgetsAssetEntryServiceClp(InvokableService invokableService) {
 		_invokableService = invokableService;
 
 		_methodName0 = "getBeanIdentifier";
@@ -32,9 +33,12 @@ public class MobileWidgetsDDLServiceClp implements MobileWidgetsDDLService {
 
 		_methodParameterTypes1 = new String[] { "java.lang.String" };
 
-		_methodName3 = "getDDLRecordValues";
+		_methodName3 = "getAssetEntries";
 
-		_methodParameterTypes3 = new String[] { "long", "java.util.Locale" };
+		_methodParameterTypes3 = new String[] {
+				"com.liferay.portlet.asset.service.persistence.AssetEntryQuery",
+				"java.util.Locale"
+			};
 	}
 
 	@Override
@@ -88,8 +92,9 @@ public class MobileWidgetsDDLServiceClp implements MobileWidgetsDDLService {
 	}
 
 	@Override
-	public java.util.Map<java.lang.String, java.lang.String> getDDLRecordValues(
-		long ddlRecordId, java.util.Locale locale)
+	public com.liferay.portlet.asset.model.AssetEntrySoap[] getAssetEntries(
+		com.liferay.portlet.asset.service.persistence.AssetEntryQuery assetEntryQuery,
+		java.util.Locale locale)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -98,7 +103,7 @@ public class MobileWidgetsDDLServiceClp implements MobileWidgetsDDLService {
 			returnObj = _invokableService.invokeMethod(_methodName3,
 					_methodParameterTypes3,
 					new Object[] {
-						ddlRecordId,
+						ClpSerializer.translateInput(assetEntryQuery),
 						
 					ClpSerializer.translateInput(locale)
 					});
@@ -123,7 +128,7 @@ public class MobileWidgetsDDLServiceClp implements MobileWidgetsDDLService {
 			}
 		}
 
-		return (java.util.Map<java.lang.String, java.lang.String>)ClpSerializer.translateOutput(returnObj);
+		return (com.liferay.portlet.asset.model.AssetEntrySoap[])ClpSerializer.translateOutput(returnObj);
 	}
 
 	private InvokableService _invokableService;

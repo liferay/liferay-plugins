@@ -19,24 +19,24 @@ import com.liferay.portal.kernel.util.ReferenceRegistry;
 import com.liferay.portal.service.InvokableService;
 
 /**
- * Provides the remote service utility for MobileWidgetsDDL. This utility wraps
- * {@link com.liferay.mobilewidgets.service.impl.MobileWidgetsDDLServiceImpl} and is the
+ * Provides the remote service utility for MobileWidgetsAssetEntry. This utility wraps
+ * {@link com.liferay.mobilewidgets.service.impl.MobileWidgetsAssetEntryServiceImpl} and is the
  * primary access point for service operations in application layer code running
  * on a remote server. Methods of this service are expected to have security
  * checks based on the propagated JAAS credentials because this service can be
  * accessed remotely.
  *
  * @author José Manuel Navarro
- * @see MobileWidgetsDDLService
- * @see com.liferay.mobilewidgets.service.base.MobileWidgetsDDLServiceBaseImpl
- * @see com.liferay.mobilewidgets.service.impl.MobileWidgetsDDLServiceImpl
+ * @see MobileWidgetsAssetEntryService
+ * @see com.liferay.mobilewidgets.service.base.MobileWidgetsAssetEntryServiceBaseImpl
+ * @see com.liferay.mobilewidgets.service.impl.MobileWidgetsAssetEntryServiceImpl
  * @generated
  */
-public class MobileWidgetsDDLServiceUtil {
+public class MobileWidgetsAssetEntryServiceUtil {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
-	 * Never modify this class directly. Add custom service methods to {@link com.liferay.mobilewidgets.service.impl.MobileWidgetsDDLServiceImpl} and rerun ServiceBuilder to regenerate this class.
+	 * Never modify this class directly. Add custom service methods to {@link com.liferay.mobilewidgets.service.impl.MobileWidgetsAssetEntryServiceImpl} and rerun ServiceBuilder to regenerate this class.
 	 */
 
 	/**
@@ -63,30 +63,31 @@ public class MobileWidgetsDDLServiceUtil {
 		return getService().invokeMethod(name, parameterTypes, arguments);
 	}
 
-	public static java.util.Map<java.lang.String, java.lang.String> getDDLRecordValues(
-		long ddlRecordId, java.util.Locale locale)
+	public static com.liferay.portlet.asset.model.AssetEntrySoap[] getAssetEntries(
+		com.liferay.portlet.asset.service.persistence.AssetEntryQuery assetEntryQuery,
+		java.util.Locale locale)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return getService().getDDLRecordValues(ddlRecordId, locale);
+		return getService().getAssetEntries(assetEntryQuery, locale);
 	}
 
 	public static void clearService() {
 		_service = null;
 	}
 
-	public static MobileWidgetsDDLService getService() {
+	public static MobileWidgetsAssetEntryService getService() {
 		if (_service == null) {
 			InvokableService invokableService = (InvokableService)PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
-					MobileWidgetsDDLService.class.getName());
+					MobileWidgetsAssetEntryService.class.getName());
 
-			if (invokableService instanceof MobileWidgetsDDLService) {
-				_service = (MobileWidgetsDDLService)invokableService;
+			if (invokableService instanceof MobileWidgetsAssetEntryService) {
+				_service = (MobileWidgetsAssetEntryService)invokableService;
 			}
 			else {
-				_service = new MobileWidgetsDDLServiceClp(invokableService);
+				_service = new MobileWidgetsAssetEntryServiceClp(invokableService);
 			}
 
-			ReferenceRegistry.registerReference(MobileWidgetsDDLServiceUtil.class,
+			ReferenceRegistry.registerReference(MobileWidgetsAssetEntryServiceUtil.class,
 				"_service");
 		}
 
@@ -96,8 +97,8 @@ public class MobileWidgetsDDLServiceUtil {
 	/**
 	 * @deprecated As of 6.2.0
 	 */
-	public void setService(MobileWidgetsDDLService service) {
+	public void setService(MobileWidgetsAssetEntryService service) {
 	}
 
-	private static MobileWidgetsDDLService _service;
+	private static MobileWidgetsAssetEntryService _service;
 }

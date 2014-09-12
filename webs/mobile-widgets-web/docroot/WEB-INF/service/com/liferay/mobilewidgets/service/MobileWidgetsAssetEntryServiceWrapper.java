@@ -17,17 +17,18 @@ package com.liferay.mobilewidgets.service;
 import com.liferay.portal.service.ServiceWrapper;
 
 /**
- * Provides a wrapper for {@link MobileWidgetsDDLService}.
+ * Provides a wrapper for {@link MobileWidgetsAssetEntryService}.
  *
  * @author José Manuel Navarro
- * @see MobileWidgetsDDLService
+ * @see MobileWidgetsAssetEntryService
  * @generated
  */
-public class MobileWidgetsDDLServiceWrapper implements MobileWidgetsDDLService,
-	ServiceWrapper<MobileWidgetsDDLService> {
-	public MobileWidgetsDDLServiceWrapper(
-		MobileWidgetsDDLService mobileWidgetsDDLService) {
-		_mobileWidgetsDDLService = mobileWidgetsDDLService;
+public class MobileWidgetsAssetEntryServiceWrapper
+	implements MobileWidgetsAssetEntryService,
+		ServiceWrapper<MobileWidgetsAssetEntryService> {
+	public MobileWidgetsAssetEntryServiceWrapper(
+		MobileWidgetsAssetEntryService mobileWidgetsAssetEntryService) {
+		_mobileWidgetsAssetEntryService = mobileWidgetsAssetEntryService;
 	}
 
 	/**
@@ -37,7 +38,7 @@ public class MobileWidgetsDDLServiceWrapper implements MobileWidgetsDDLService,
 	*/
 	@Override
 	public java.lang.String getBeanIdentifier() {
-		return _mobileWidgetsDDLService.getBeanIdentifier();
+		return _mobileWidgetsAssetEntryService.getBeanIdentifier();
 	}
 
 	/**
@@ -47,50 +48,52 @@ public class MobileWidgetsDDLServiceWrapper implements MobileWidgetsDDLService,
 	*/
 	@Override
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
-		_mobileWidgetsDDLService.setBeanIdentifier(beanIdentifier);
+		_mobileWidgetsAssetEntryService.setBeanIdentifier(beanIdentifier);
 	}
 
 	@Override
 	public java.lang.Object invokeMethod(java.lang.String name,
 		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
 		throws java.lang.Throwable {
-		return _mobileWidgetsDDLService.invokeMethod(name, parameterTypes,
-			arguments);
+		return _mobileWidgetsAssetEntryService.invokeMethod(name,
+			parameterTypes, arguments);
 	}
 
 	@Override
-	public java.util.Map<java.lang.String, java.lang.String> getDDLRecordValues(
-		long ddlRecordId, java.util.Locale locale)
+	public com.liferay.portlet.asset.model.AssetEntrySoap[] getAssetEntries(
+		com.liferay.portlet.asset.service.persistence.AssetEntryQuery assetEntryQuery,
+		java.util.Locale locale)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return _mobileWidgetsDDLService.getDDLRecordValues(ddlRecordId, locale);
+		return _mobileWidgetsAssetEntryService.getAssetEntries(assetEntryQuery,
+			locale);
 	}
 
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
 	 */
-	public MobileWidgetsDDLService getWrappedMobileWidgetsDDLService() {
-		return _mobileWidgetsDDLService;
+	public MobileWidgetsAssetEntryService getWrappedMobileWidgetsAssetEntryService() {
+		return _mobileWidgetsAssetEntryService;
 	}
 
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #setWrappedService}
 	 */
-	public void setWrappedMobileWidgetsDDLService(
-		MobileWidgetsDDLService mobileWidgetsDDLService) {
-		_mobileWidgetsDDLService = mobileWidgetsDDLService;
+	public void setWrappedMobileWidgetsAssetEntryService(
+		MobileWidgetsAssetEntryService mobileWidgetsAssetEntryService) {
+		_mobileWidgetsAssetEntryService = mobileWidgetsAssetEntryService;
 	}
 
 	@Override
-	public MobileWidgetsDDLService getWrappedService() {
-		return _mobileWidgetsDDLService;
+	public MobileWidgetsAssetEntryService getWrappedService() {
+		return _mobileWidgetsAssetEntryService;
 	}
 
 	@Override
 	public void setWrappedService(
-		MobileWidgetsDDLService mobileWidgetsDDLService) {
-		_mobileWidgetsDDLService = mobileWidgetsDDLService;
+		MobileWidgetsAssetEntryService mobileWidgetsAssetEntryService) {
+		_mobileWidgetsAssetEntryService = mobileWidgetsAssetEntryService;
 	}
 
-	private MobileWidgetsDDLService _mobileWidgetsDDLService;
+	private MobileWidgetsAssetEntryService _mobileWidgetsAssetEntryService;
 }

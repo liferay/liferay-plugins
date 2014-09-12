@@ -16,7 +16,7 @@ package com.liferay.mobilewidgets.service.http;
 
 /**
  * Provides the SOAP utility for the
- * {@link com.liferay.mobilewidgets.service.MobileWidgetsDDLServiceUtil} service utility. The
+ * {@link com.liferay.mobilewidgets.service.MobileWidgetsDDLRecordServiceUtil} service utility. The
  * static methods of this class calls the same methods of the service utility.
  * However, the signatures are different because it is difficult for SOAP to
  * support certain types.
@@ -39,9 +39,9 @@ package com.liferay.mobilewidgets.service.http;
  * </p>
  *
  * @author José Manuel Navarro
- * @see MobileWidgetsDDLServiceHttp
- * @see com.liferay.mobilewidgets.service.MobileWidgetsDDLServiceUtil
+ * @see MobileWidgetsDDLRecordServiceHttp
+ * @see com.liferay.mobilewidgets.service.MobileWidgetsDDLRecordServiceUtil
  * @generated
  */
-public class MobileWidgetsDDLServiceSoap {
+public class MobileWidgetsDDLRecordServiceSoap {
 }
