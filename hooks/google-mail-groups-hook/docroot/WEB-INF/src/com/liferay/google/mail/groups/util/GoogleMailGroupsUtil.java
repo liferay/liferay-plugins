@@ -21,10 +21,6 @@ import com.google.api.services.admin.directory.Directory;
 import com.google.api.services.admin.directory.model.Member;
 import com.google.api.services.admin.directory.model.Members;
 
-import com.liferay.google.apps.connector.GGroup;
-import com.liferay.google.apps.connector.GGroupManager;
-import com.liferay.google.apps.connector.GGroupMember;
-import com.liferay.google.apps.connector.GoogleAppsConnectionFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -33,7 +29,6 @@ import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
-import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.Company;
 import com.liferay.portal.model.Group;
@@ -208,8 +203,7 @@ public class GoogleMailGroupsUtil {
 	}
 
 	public static void syncGroups(long companyId) throws Exception {
-		final GGroupManager gGroupManager =
-			GoogleAppsConnectionFactoryUtil.getGGroupManager(companyId);
+		final Directory directory = getDirectory();
 
 		ActionableDynamicQuery actionableDynamicQuery =
 			new GroupActionableDynamicQuery() {
@@ -227,22 +221,22 @@ public class GoogleMailGroupsUtil {
 
 				String groupEmailAddress = getGroupEmailAddress(group);
 
-				GGroup gGroup = gGroupManager.getGGroup(groupEmailAddress);
+				com.google.api.services.admin.directory.model.Group gGroup =
+					getGGroup(directory, groupEmailAddress);
 
-				if ((gGroup == null) ||
-					Validator.isNull(gGroup.getEmailAddress())) {
-
-					gGroupManager.addGGroup(
-						groupEmailAddress, group.getDescriptiveName(),
-						StringPool.BLANK, PortletPropsValues.EMAIL_PERMISSION);
+				if (gGroup == null) {
+					addGGroup(
+						directory, group.getDescriptiveName(),
+						groupEmailAddress);
 				}
 
-				List<GGroupMember> gGroupMembers =
-					gGroupManager.getGGroupMembers(groupEmailAddress);
+				Members members = getGGroupMembers(
+					directory, groupEmailAddress);
 
-				for (GGroupMember gGroupMember : gGroupMembers) {
-					gGroupMemberEmailAddresses.add(
-						gGroupMember.getEmailAddress());
+				if (members.getMembers() != null) {
+					for (Member member : members.getMembers()) {
+						gGroupMemberEmailAddresses.add(member.getEmail());
+					}
 				}
 
 				List<String> emailAddresses = new ArrayList<String>();
@@ -270,8 +264,8 @@ public class GoogleMailGroupsUtil {
 						continue;
 					}
 
-					gGroupManager.deleteGGroupMember(
-						groupEmailAddress, gGroupMemberEmailAddress);
+					deleteGGroupMember(
+						directory, groupEmailAddress, gGroupMemberEmailAddress);
 				}
 
 				for (String emailAddress : emailAddresses) {
@@ -279,8 +273,7 @@ public class GoogleMailGroupsUtil {
 						continue;
 					}
 
-					gGroupManager.addGGroupMember(
-						groupEmailAddress, emailAddress);
+					addGGroupMember(directory, groupEmailAddress, emailAddress);
 				}
 			}
 		};
