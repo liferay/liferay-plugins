@@ -210,7 +210,7 @@ public class GoogleMailGroupsUtil {
 		return true;
 	}
 
-	public static void syncGroups(long companyId) throws Exception {
+	public static void syncGroups() throws Exception {
 		final Directory directory = getDirectory();
 
 		ActionableDynamicQuery actionableDynamicQuery =
