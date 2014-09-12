@@ -19,6 +19,7 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portlet.asset.model.AssetEntry;
+import com.liferay.portlet.asset.model.AssetEntrySoap;
 import com.liferay.portlet.asset.service.persistence.AssetEntryQuery;
 
 import java.util.List;
@@ -31,7 +32,7 @@ public class MobileWidgetsAssetEntryServiceImpl
 	extends MobileWidgetsAssetEntryServiceBaseImpl {
 
 	@Override
-	public List<AssetEntry> getAssetEntries(
+	public AssetEntrySoap[] getAssetEntries(
 			AssetEntryQuery assetEntryQuery, Locale locale)
 		throws PortalException, SystemException {
 
@@ -44,7 +45,7 @@ public class MobileWidgetsAssetEntryServiceImpl
 			assetEntry.setTitleCurrentLanguageId(languageId);
 		}
 
-		return assetEntries;
+		return AssetEntrySoap.toSoapModels(assetEntries);
 	}
 
 }
