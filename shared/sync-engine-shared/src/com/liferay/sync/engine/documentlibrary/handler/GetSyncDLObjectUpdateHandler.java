@@ -231,7 +231,9 @@ public class GetSyncDLObjectUpdateHandler extends BaseSyncDLObjectHandler {
 
 			try {
 				filePathName = FileUtil.getFilePathName(
-					parentSyncFile.getFilePathName(), syncFile.getName());
+					parentSyncFile.getFilePathName(),
+					FileUtil.getSanitizedFileName(
+						syncFile.getName(), syncFile.getExtension()));
 
 				String event = syncFile.getEvent();
 

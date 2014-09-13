@@ -630,7 +630,17 @@ public class SyncFileService {
 
 		Path deltaFilePath = null;
 
+		String sanitizedFileName = FileUtil.getSanitizedFileName(
+			syncFile.getName(), syncFile.getExtension());
+
 		String name = String.valueOf(filePath.getFileName());
+
+		if (sanitizedFileName.equals(
+				FileUtil.getSanitizedFileName(name, syncFile.getExtension()))) {
+
+			name = syncFile.getName();
+		}
+
 		String sourceChecksum = syncFile.getChecksum();
 		String sourceFileName = syncFile.getName();
 		String sourceVersion = syncFile.getVersion();
