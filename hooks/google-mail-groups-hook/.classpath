@@ -20,7 +20,6 @@
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/commons-codec.jar" />
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/google-api-client.jar" />
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/google-api-services-admin-directory.jar" />
-	<classpathentry kind="lib" path="docroot/WEB-INF/lib/google-apps-connector-shared.jar" />
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/google-http-client-jackson2.jar" />
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/google-http-client.jar" />
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/google-oauth-client.jar" />
