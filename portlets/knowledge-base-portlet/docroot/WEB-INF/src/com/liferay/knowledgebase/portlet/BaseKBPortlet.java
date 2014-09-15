@@ -55,10 +55,12 @@ import com.liferay.portlet.documentlibrary.FileNameException;
 import com.liferay.portlet.documentlibrary.FileSizeException;
 import com.liferay.portlet.documentlibrary.NoSuchFileException;
 
+import java.io.IOException;
 import java.io.InputStream;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
+import javax.portlet.PortletException;
 import javax.portlet.ResourceRequest;
 import javax.portlet.ResourceResponse;
 
@@ -214,6 +216,32 @@ public abstract class BaseKBPortlet extends MVCPortlet {
 		PortletResponseUtil.sendFile(
 			resourceRequest, resourceResponse, null,
 			rss.getBytes(StringPool.UTF8), ContentTypes.TEXT_XML_UTF8);
+	}
+
+	@Override
+	public void serveResource(
+			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
+		throws IOException, PortletException {
+
+		try {
+			String resourceID = resourceRequest.getResourceID();
+
+			if (resourceID.equals("attachment")) {
+				serveAttachment(resourceRequest, resourceResponse);
+			}
+			else if (resourceID.equals("kbArticleRSS")) {
+				serveKBArticleRSS(resourceRequest, resourceResponse);
+			}
+		}
+		catch (IOException ioe) {
+			throw ioe;
+		}
+		catch (PortletException pe) {
+			throw pe;
+		}
+		catch (Exception e) {
+			throw new PortletException(e);
+		}
 	}
 
 	public void subscribeKBArticle(
