@@ -77,7 +77,7 @@ public class SyncDLObjectLocalServiceImpl
 				DLFileEntry dlFileEntry =
 					dlFileEntryLocalService.fetchDLFileEntry(typePK);
 
-				if ((dlFileEntry != null) && !dlFileEntry.isCheckedOut()) {
+				if ((dlFileEntry == null) || !dlFileEntry.isCheckedOut()) {
 					syncDLObjectPersistence.remove(pwcSyncDLObject);
 				}
 			}
