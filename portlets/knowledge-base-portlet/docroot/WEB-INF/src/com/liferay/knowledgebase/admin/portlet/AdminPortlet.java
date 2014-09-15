@@ -289,20 +289,6 @@ public class AdminPortlet extends BaseKBPortlet {
 			themeDisplay.getScopeGroupId(), portletId);
 	}
 
-	public void subscribeKBArticle(
-			ActionRequest actionRequest, ActionResponse actionResponse)
-		throws Exception {
-
-		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
-			WebKeys.THEME_DISPLAY);
-
-		long resourcePrimKey = ParamUtil.getLong(
-			actionRequest, "resourcePrimKey");
-
-		KBArticleServiceUtil.subscribeKBArticle(
-			themeDisplay.getScopeGroupId(), resourcePrimKey);
-	}
-
 	public void unsubscribeGroupKBArticles(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
@@ -314,16 +300,6 @@ public class AdminPortlet extends BaseKBPortlet {
 
 		KBArticleServiceUtil.unsubscribeGroupKBArticles(
 			themeDisplay.getScopeGroupId(), portletId);
-	}
-
-	public void unsubscribeKBArticle(
-			ActionRequest actionRequest, ActionResponse actionResponse)
-		throws Exception {
-
-		long resourcePrimKey = ParamUtil.getLong(
-			actionRequest, "resourcePrimKey");
-
-		KBArticleServiceUtil.unsubscribeKBArticle(resourcePrimKey);
 	}
 
 	public void updateKBArticle(
