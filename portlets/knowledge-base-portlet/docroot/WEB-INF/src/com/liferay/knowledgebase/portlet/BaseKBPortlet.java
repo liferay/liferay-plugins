@@ -20,6 +20,7 @@ import com.liferay.knowledgebase.KBArticleTitleException;
 import com.liferay.knowledgebase.KBCommentContentException;
 import com.liferay.knowledgebase.NoSuchArticleException;
 import com.liferay.knowledgebase.NoSuchCommentException;
+import com.liferay.knowledgebase.model.KBArticle;
 import com.liferay.knowledgebase.model.KBComment;
 import com.liferay.knowledgebase.model.KBCommentConstants;
 import com.liferay.knowledgebase.service.KBArticleServiceUtil;
@@ -64,7 +65,7 @@ import javax.portlet.ResourceResponse;
 /**
  * @author Adolfo Pérez
  */
-public class BaseKBPortlet extends MVCPortlet {
+public abstract class BaseKBPortlet extends MVCPortlet {
 
 	public void addTempAttachment(
 			ActionRequest actionRequest, ActionResponse actionResponse)
@@ -239,6 +240,62 @@ public class BaseKBPortlet extends MVCPortlet {
 		KBArticleServiceUtil.unsubscribeKBArticle(resourcePrimKey);
 	}
 
+	public void updateKBArticle(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws Exception {
+
+		String portletId = PortalUtil.getPortletId(actionRequest);
+
+		String cmd = ParamUtil.getString(actionRequest, Constants.CMD);
+
+		long resourcePrimKey = ParamUtil.getLong(
+			actionRequest, "resourcePrimKey");
+
+		long parentResourcePrimKey = ParamUtil.getLong(
+			actionRequest, "parentResourcePrimKey");
+		String title = ParamUtil.getString(actionRequest, "title");
+		String urlTitle = ParamUtil.getString(actionRequest, "urlTitle");
+		String content = ParamUtil.getString(actionRequest, "content");
+		String description = ParamUtil.getString(actionRequest, "description");
+		String sourceURL = ParamUtil.getString(actionRequest, "sourceURL");
+		String[] sections = actionRequest.getParameterValues("sections");
+		String[] selectedFileNames = ParamUtil.getParameterValues(
+			actionRequest, "selectedFileName");
+		long[] removeFileEntryIds = ParamUtil.getLongValues(
+			actionRequest, "removeFileEntryIds");
+		int workflowAction = ParamUtil.getInteger(
+			actionRequest, "workflowAction");
+
+		KBArticle kbArticle = null;
+
+		ServiceContext serviceContext = ServiceContextFactory.getInstance(
+			KBArticle.class.getName(), actionRequest);
+
+		if (cmd.equals(Constants.ADD)) {
+			kbArticle = KBArticleServiceUtil.addKBArticle(
+				portletId, parentResourcePrimKey, title, urlTitle, content,
+				description, sourceURL, sections, selectedFileNames,
+				serviceContext);
+		}
+		else if (cmd.equals(Constants.UPDATE)) {
+			kbArticle = KBArticleServiceUtil.updateKBArticle(
+				resourcePrimKey, title, content, description, sourceURL,
+				sections, selectedFileNames, removeFileEntryIds,
+				serviceContext);
+		}
+
+		if (!cmd.equals(Constants.ADD) && !cmd.equals(Constants.UPDATE)) {
+			return;
+		}
+
+		if (workflowAction == WorkflowConstants.ACTION_SAVE_DRAFT) {
+			String editURL = buildEditURL(
+				actionRequest, actionResponse, kbArticle);
+
+			actionRequest.setAttribute(WebKeys.REDIRECT, editURL);
+		}
+	}
+
 	public void updateKBComment(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
@@ -300,6 +357,11 @@ public class BaseKBPortlet extends MVCPortlet {
 
 		SessionMessages.add(actionRequest, "feedbackStatusUpdated");
 	}
+
+	protected abstract String buildEditURL(
+			ActionRequest actionRequest, ActionResponse actionResponse,
+			KBArticle kbArticle)
+		throws PortalException, SystemException;
 
 	@Override
 	protected boolean isSessionErrorException(Throwable cause) {

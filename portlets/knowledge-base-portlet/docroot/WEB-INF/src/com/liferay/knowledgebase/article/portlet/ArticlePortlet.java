@@ -29,15 +29,12 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.servlet.SessionMessages;
 import com.liferay.portal.kernel.upload.UploadException;
-import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.security.auth.PrincipalException;
 import com.liferay.portal.security.permission.PermissionChecker;
-import com.liferay.portal.service.ServiceContext;
-import com.liferay.portal.service.ServiceContextFactory;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.documentlibrary.FileSizeException;
@@ -128,62 +125,6 @@ public class ArticlePortlet extends BaseKBPortlet {
 		}
 	}
 
-	public void updateKBArticle(
-			ActionRequest actionRequest, ActionResponse actionResponse)
-		throws Exception {
-
-		String portletId = PortalUtil.getPortletId(actionRequest);
-
-		String cmd = ParamUtil.getString(actionRequest, Constants.CMD);
-
-		long resourcePrimKey = ParamUtil.getLong(
-			actionRequest, "resourcePrimKey");
-
-		long parentResourcePrimKey = ParamUtil.getLong(
-			actionRequest, "parentResourcePrimKey");
-		String title = ParamUtil.getString(actionRequest, "title");
-		String urlTitle = ParamUtil.getString(actionRequest, "urlTitle");
-		String content = ParamUtil.getString(actionRequest, "content");
-		String description = ParamUtil.getString(actionRequest, "description");
-		String sourceURL = ParamUtil.getString(actionRequest, "sourceURL");
-		String[] sections = actionRequest.getParameterValues("sections");
-		String[] selectedFileNames = ParamUtil.getParameterValues(
-			actionRequest, "selectedFileName");
-		long[] removeFileEntryIds = ParamUtil.getLongValues(
-			actionRequest, "removeFileEntryIds");
-		int workflowAction = ParamUtil.getInteger(
-			actionRequest, "workflowAction");
-
-		KBArticle kbArticle = null;
-
-		ServiceContext serviceContext = ServiceContextFactory.getInstance(
-			KBArticle.class.getName(), actionRequest);
-
-		if (cmd.equals(Constants.ADD)) {
-			kbArticle = KBArticleServiceUtil.addKBArticle(
-				portletId, parentResourcePrimKey, title, urlTitle, content,
-				description, sourceURL, sections, selectedFileNames,
-				serviceContext);
-		}
-		else if (cmd.equals(Constants.UPDATE)) {
-			kbArticle = KBArticleServiceUtil.updateKBArticle(
-				resourcePrimKey, title, content, description, sourceURL,
-				sections, selectedFileNames, removeFileEntryIds,
-				serviceContext);
-		}
-
-		if (!cmd.equals(Constants.ADD) && !cmd.equals(Constants.UPDATE)) {
-			return;
-		}
-
-		if (workflowAction == WorkflowConstants.ACTION_SAVE_DRAFT) {
-			String editURL = buildEditURL(
-				actionRequest, actionResponse, kbArticle);
-
-			actionRequest.setAttribute(WebKeys.REDIRECT, editURL);
-		}
-	}
-
 	@Override
 	protected void addSuccessMessage(
 		ActionRequest actionRequest, ActionResponse actionResponse) {
@@ -198,6 +139,7 @@ public class ArticlePortlet extends BaseKBPortlet {
 		super.addSuccessMessage(actionRequest, actionResponse);
 	}
 
+	@Override
 	protected String buildEditURL(
 			ActionRequest actionRequest, ActionResponse actionResponse,
 			KBArticle kbArticle)
