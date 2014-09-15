@@ -21,8 +21,11 @@ import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.portlet.PortletResponseUtil;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.upload.UploadPortletRequest;
+import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StreamUtil;
+import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.portletfilerepository.PortletFileRepositoryUtil;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
@@ -113,6 +116,37 @@ public class BaseKBPortlet extends MVCPortlet {
 		PortletResponseUtil.sendFile(
 			resourceRequest, resourceResponse, fileEntry.getTitle(),
 			fileEntry.getContentStream(), fileEntry.getMimeType());
+	}
+
+	public void serveKBArticleRSS(
+			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
+		throws Exception {
+
+		if (!PortalUtil.isRSSFeedsEnabled()) {
+			PortalUtil.sendRSSFeedsDisabledError(
+				resourceRequest, resourceResponse);
+
+			return;
+		}
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)resourceRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		long resourcePrimKey = ParamUtil.getLong(
+			resourceRequest, "resourcePrimKey");
+
+		int rssDelta = ParamUtil.getInteger(resourceRequest, "rssDelta");
+		String rssDisplayStyle = ParamUtil.getString(
+			resourceRequest, "rssDisplayStyle");
+		String rssFormat = ParamUtil.getString(resourceRequest, "rssFormat");
+
+		String rss = KBArticleServiceUtil.getKBArticleRSS(
+			resourcePrimKey, WorkflowConstants.STATUS_APPROVED, rssDelta,
+			rssDisplayStyle, rssFormat, themeDisplay);
+
+		PortletResponseUtil.sendFile(
+			resourceRequest, resourceResponse, null,
+			rss.getBytes(StringPool.UTF8), ContentTypes.TEXT_XML_UTF8);
 	}
 
 	public void subscribeKBArticle(
