@@ -50,8 +50,8 @@ $red: #8F0920;
 }
 
 @mixin remove-gradients {
-	background-image: none;
 	background-color: transparent;
+	background-image: none;
 }
 
 body.so-classic {
@@ -182,7 +182,7 @@ body.so-classic {
 
 	input[type="image"] {
 		background: transparent none;
-		border: none;
+		border-width: 0;
 		padding: 0;
 	}
 
