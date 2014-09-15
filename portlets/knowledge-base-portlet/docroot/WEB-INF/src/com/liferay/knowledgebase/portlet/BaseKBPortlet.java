@@ -379,7 +379,7 @@ public abstract class BaseKBPortlet extends MVCPortlet {
 
 		long kbCommentId = ParamUtil.getLong(actionRequest, "kbCommentId");
 
-		int status = ParamUtil.getInteger(actionRequest, "status");
+		int status = ParamUtil.getInteger(actionRequest, "kbCommentStatus");
 
 		ServiceContext serviceContext = ServiceContextFactory.getInstance(
 			KBComment.class.getName(), actionRequest);
