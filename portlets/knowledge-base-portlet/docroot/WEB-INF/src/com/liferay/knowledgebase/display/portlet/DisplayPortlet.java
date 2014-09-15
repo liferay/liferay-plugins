@@ -22,12 +22,9 @@ import com.liferay.knowledgebase.NoSuchArticleException;
 import com.liferay.knowledgebase.NoSuchCommentException;
 import com.liferay.knowledgebase.model.KBArticle;
 import com.liferay.knowledgebase.model.KBArticleConstants;
-import com.liferay.knowledgebase.model.KBComment;
 import com.liferay.knowledgebase.portlet.BaseKBPortlet;
 import com.liferay.knowledgebase.service.KBArticleLocalServiceUtil;
 import com.liferay.knowledgebase.service.KBArticleServiceUtil;
-import com.liferay.knowledgebase.service.KBCommentLocalServiceUtil;
-import com.liferay.knowledgebase.service.KBCommentServiceUtil;
 import com.liferay.knowledgebase.service.permission.KBArticlePermission;
 import com.liferay.knowledgebase.util.ActionKeys;
 import com.liferay.knowledgebase.util.PortletKeys;
@@ -35,9 +32,6 @@ import com.liferay.knowledgebase.util.WebKeys;
 import com.liferay.knowledgebase.util.comparator.KBArticlePriorityComparator;
 import com.liferay.portal.NoSuchSubscriptionException;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.json.JSONFactoryUtil;
-import com.liferay.portal.kernel.json.JSONObject;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.servlet.SessionMessages;
 import com.liferay.portal.kernel.upload.UploadException;
@@ -59,7 +53,6 @@ import com.liferay.portlet.documentlibrary.DuplicateFileException;
 import com.liferay.portlet.documentlibrary.FileNameException;
 import com.liferay.portlet.documentlibrary.FileSizeException;
 import com.liferay.portlet.documentlibrary.NoSuchFileException;
-import com.liferay.util.bridges.mvc.MVCPortlet;
 
 import java.io.IOException;
 
@@ -91,24 +84,6 @@ public class DisplayPortlet extends BaseKBPortlet {
 			actionRequest, "resourcePrimKey");
 
 		KBArticleServiceUtil.deleteKBArticle(resourcePrimKey);
-	}
-
-	public void deleteKBComment(
-			ActionRequest actionRequest, ActionResponse actionResponse)
-		throws Exception {
-
-		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
-			WebKeys.THEME_DISPLAY);
-
-		if (!themeDisplay.isSignedIn()) {
-			return;
-		}
-
-		long kbCommentId = ParamUtil.getLong(actionRequest, "kbCommentId");
-
-		KBCommentServiceUtil.deleteKBComment(kbCommentId);
-
-		SessionMessages.add(actionRequest, "feedbackDeleted");
 	}
 
 	public void moveKBArticle(
@@ -284,59 +259,6 @@ public class DisplayPortlet extends BaseKBPortlet {
 
 			actionRequest.setAttribute(WebKeys.REDIRECT, editURL);
 		}
-	}
-
-	public void updateKBComment(
-			ActionRequest actionRequest, ActionResponse actionResponse)
-		throws Exception {
-
-		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
-			WebKeys.THEME_DISPLAY);
-
-		if (!themeDisplay.isSignedIn()) {
-			return;
-		}
-
-		String cmd = ParamUtil.getString(actionRequest, Constants.CMD);
-
-		long kbCommentId = ParamUtil.getLong(actionRequest, "kbCommentId");
-
-		long classNameId = ParamUtil.getLong(actionRequest, "classNameId");
-		long classPK = ParamUtil.getLong(actionRequest, "classPK");
-		String content = ParamUtil.getString(actionRequest, "content");
-		boolean helpful = ParamUtil.getBoolean(actionRequest, "helpful");
-
-		ServiceContext serviceContext = ServiceContextFactory.getInstance(
-			KBComment.class.getName(), actionRequest);
-
-		if (cmd.equals(Constants.ADD)) {
-			KBCommentLocalServiceUtil.addKBComment(
-				themeDisplay.getUserId(), classNameId, classPK, content,
-				helpful, serviceContext);
-		}
-		else if (cmd.equals(Constants.UPDATE)) {
-			KBCommentServiceUtil.updateKBComment(
-				kbCommentId, classNameId, classPK, content, helpful,
-				serviceContext);
-		}
-
-		SessionMessages.add(actionRequest, "feedbackSaved");
-	}
-
-	public void updateKBCommentStatus(
-			ActionRequest actionRequest, ActionResponse actionResponse)
-		throws PortalException {
-
-		long kbCommentId = ParamUtil.getLong(actionRequest, "kbCommentId");
-
-		int status = ParamUtil.getInteger(actionRequest, "status");
-
-		ServiceContext serviceContext = ServiceContextFactory.getInstance(
-			KBComment.class.getName(), actionRequest);
-
-		KBCommentServiceUtil.updateStatus(kbCommentId, status, serviceContext);
-
-		SessionMessages.add(actionRequest, "feedbackStatusUpdated");
 	}
 
 	@Override

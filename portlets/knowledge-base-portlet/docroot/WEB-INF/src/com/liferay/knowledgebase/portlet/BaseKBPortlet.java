@@ -14,19 +14,29 @@
 
 package com.liferay.knowledgebase.portlet;
 
+import com.liferay.knowledgebase.model.KBComment;
+import com.liferay.knowledgebase.model.KBCommentConstants;
 import com.liferay.knowledgebase.service.KBArticleServiceUtil;
+import com.liferay.knowledgebase.service.KBCommentLocalServiceUtil;
+import com.liferay.knowledgebase.service.KBCommentServiceUtil;
 import com.liferay.knowledgebase.util.WebKeys;
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.portlet.PortletResponseUtil;
 import com.liferay.portal.kernel.repository.model.FileEntry;
+import com.liferay.portal.kernel.servlet.SessionMessages;
 import com.liferay.portal.kernel.upload.UploadPortletRequest;
+import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StreamUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.portletfilerepository.PortletFileRepositoryUtil;
+import com.liferay.portal.service.ServiceContext;
+import com.liferay.portal.service.ServiceContextFactory;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.util.bridges.mvc.MVCPortlet;
@@ -71,6 +81,24 @@ public class BaseKBPortlet extends MVCPortlet {
 		finally {
 			StreamUtil.cleanUp(inputStream);
 		}
+	}
+
+	public void deleteKBComment(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws Exception {
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		if (!themeDisplay.isSignedIn()) {
+			return;
+		}
+
+		long kbCommentId = ParamUtil.getLong(actionRequest, "kbCommentId");
+
+		KBCommentServiceUtil.deleteKBComment(kbCommentId);
+
+		SessionMessages.add(actionRequest, "feedbackDeleted");
 	}
 
 	public void deleteTempAttachment(
@@ -171,6 +199,68 @@ public class BaseKBPortlet extends MVCPortlet {
 			actionRequest, "resourcePrimKey");
 
 		KBArticleServiceUtil.unsubscribeKBArticle(resourcePrimKey);
+	}
+
+	public void updateKBComment(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws Exception {
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		if (!themeDisplay.isSignedIn()) {
+			return;
+		}
+
+		String cmd = ParamUtil.getString(actionRequest, Constants.CMD);
+
+		long kbCommentId = ParamUtil.getLong(actionRequest, "kbCommentId");
+
+		long classNameId = ParamUtil.getLong(actionRequest, "classNameId");
+		long classPK = ParamUtil.getLong(actionRequest, "classPK");
+		String content = ParamUtil.getString(actionRequest, "content");
+		boolean helpful = ParamUtil.getBoolean(actionRequest, "helpful");
+		int status = ParamUtil.getInteger(
+			actionRequest, "status", KBCommentConstants.STATUS_ANY);
+
+		ServiceContext serviceContext = ServiceContextFactory.getInstance(
+			KBComment.class.getName(), actionRequest);
+
+		if (cmd.equals(Constants.ADD)) {
+			KBCommentLocalServiceUtil.addKBComment(
+				themeDisplay.getUserId(), classNameId, classPK, content,
+				helpful, serviceContext);
+		}
+		else if (cmd.equals(Constants.UPDATE)) {
+			if (status == KBCommentConstants.STATUS_ANY) {
+				KBComment kbComment = KBCommentServiceUtil.getKBComment(
+					kbCommentId);
+
+				status = kbComment.getStatus();
+			}
+
+			KBCommentServiceUtil.updateKBComment(
+				kbCommentId, classNameId, classPK, content, helpful, status,
+				serviceContext);
+		}
+
+		SessionMessages.add(actionRequest, "feedbackSaved");
+	}
+
+	public void updateKBCommentStatus(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws PortalException, SystemException {
+
+		long kbCommentId = ParamUtil.getLong(actionRequest, "kbCommentId");
+
+		int status = ParamUtil.getInteger(actionRequest, "status");
+
+		ServiceContext serviceContext = ServiceContextFactory.getInstance(
+			KBComment.class.getName(), actionRequest);
+
+		KBCommentServiceUtil.updateStatus(kbCommentId, status, serviceContext);
+
+		SessionMessages.add(actionRequest, "feedbackStatusUpdated");
 	}
 
 	private static final String _TEMP_FOLDER_NAME =

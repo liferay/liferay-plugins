@@ -25,20 +25,15 @@ import com.liferay.knowledgebase.NoSuchArticleException;
 import com.liferay.knowledgebase.NoSuchCommentException;
 import com.liferay.knowledgebase.NoSuchTemplateException;
 import com.liferay.knowledgebase.model.KBArticle;
-import com.liferay.knowledgebase.model.KBComment;
-import com.liferay.knowledgebase.model.KBCommentConstants;
 import com.liferay.knowledgebase.model.KBTemplate;
 import com.liferay.knowledgebase.portlet.BaseKBPortlet;
 import com.liferay.knowledgebase.service.KBArticleServiceUtil;
-import com.liferay.knowledgebase.service.KBCommentLocalServiceUtil;
-import com.liferay.knowledgebase.service.KBCommentServiceUtil;
 import com.liferay.knowledgebase.service.KBTemplateServiceUtil;
 import com.liferay.knowledgebase.util.PortletKeys;
 import com.liferay.knowledgebase.util.WebKeys;
 import com.liferay.portal.NoSuchSubscriptionException;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.servlet.SessionErrors;
-import com.liferay.portal.kernel.servlet.SessionMessages;
 import com.liferay.portal.kernel.upload.UploadException;
 import com.liferay.portal.kernel.upload.UploadPortletRequest;
 import com.liferay.portal.kernel.util.Constants;
@@ -107,24 +102,6 @@ public class AdminPortlet extends BaseKBPortlet {
 
 		KBArticleServiceUtil.deleteKBArticles(
 			themeDisplay.getScopeGroupId(), resourcePrimKeys);
-	}
-
-	public void deleteKBComment(
-			ActionRequest actionRequest, ActionResponse actionResponse)
-		throws Exception {
-
-		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
-			WebKeys.THEME_DISPLAY);
-
-		if (!themeDisplay.isSignedIn()) {
-			return;
-		}
-
-		long kbCommentId = ParamUtil.getLong(actionRequest, "kbCommentId");
-
-		KBCommentServiceUtil.deleteKBComment(kbCommentId);
-
-		SessionMessages.add(actionRequest, "feedbackDeleted");
 	}
 
 	public void deleteKBTemplate(
@@ -399,66 +376,6 @@ public class AdminPortlet extends BaseKBPortlet {
 
 		KBArticleServiceUtil.updateKBArticlesPriorities(
 			themeDisplay.getScopeGroupId(), resourcePrimKeyToPriorityMap);
-	}
-
-	public void updateKBComment(
-			ActionRequest actionRequest, ActionResponse actionResponse)
-		throws Exception {
-
-		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
-			WebKeys.THEME_DISPLAY);
-
-		if (!themeDisplay.isSignedIn()) {
-			return;
-		}
-
-		String cmd = ParamUtil.getString(actionRequest, Constants.CMD);
-
-		long kbCommentId = ParamUtil.getLong(actionRequest, "kbCommentId");
-
-		long classNameId = ParamUtil.getLong(actionRequest, "classNameId");
-		long classPK = ParamUtil.getLong(actionRequest, "classPK");
-		String content = ParamUtil.getString(actionRequest, "content");
-		boolean helpful = ParamUtil.getBoolean(actionRequest, "helpful");
-		int status = ParamUtil.getInteger(
-			actionRequest, "status", KBCommentConstants.STATUS_ANY);
-
-		ServiceContext serviceContext = ServiceContextFactory.getInstance(
-			KBComment.class.getName(), actionRequest);
-
-		if (cmd.equals(Constants.ADD)) {
-			KBCommentLocalServiceUtil.addKBComment(
-				themeDisplay.getUserId(), classNameId, classPK, content,
-				helpful, serviceContext);
-		}
-		else if (cmd.equals(Constants.UPDATE)) {
-			if (status == KBCommentConstants.STATUS_ANY) {
-				KBComment kbComment = KBCommentServiceUtil.getKBComment(
-					kbCommentId);
-
-				status = kbComment.getStatus();
-			}
-
-			KBCommentServiceUtil.updateKBComment(
-				kbCommentId, classNameId, classPK, content, helpful, status,
-				serviceContext);
-		}
-	}
-
-	public void updateKBCommentStatus(
-			ActionRequest actionRequest, ActionResponse actionResponse)
-		throws PortalException {
-
-		long kbCommentId = ParamUtil.getLong(actionRequest, "kbCommentId");
-
-		int status = ParamUtil.getInteger(actionRequest, "status");
-
-		ServiceContext serviceContext = ServiceContextFactory.getInstance(
-			KBComment.class.getName(), actionRequest);
-
-		KBCommentServiceUtil.updateStatus(kbCommentId, status, serviceContext);
-
-		SessionMessages.add(actionRequest, "feedbackStatusUpdated");
 	}
 
 	public void updateKBTemplate(
