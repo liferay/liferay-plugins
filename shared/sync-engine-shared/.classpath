@@ -26,6 +26,7 @@
 	<classpathentry kind="lib" path="/portal-master/util-java/util-java.jar" />
 	<classpathentry kind="lib" path="/portal-master/util-taglib/util-taglib.jar" />
 	<classpathentry kind="lib" path="lib/com.btr.proxy.vole.jar" />
+	<classpathentry kind="lib" path="lib/com.liferay.io.delta.jar" />
 	<classpathentry kind="lib" path="lib/commons-codec.jar" />
 	<classpathentry kind="lib" path="lib/commons-configuration.jar" />
 	<classpathentry kind="lib" path="lib/commons-io.jar" />
@@ -34,7 +35,6 @@
 	<classpathentry kind="lib" path="lib/httpclient.jar" />
 	<classpathentry kind="lib" path="lib/httpcore.jar" />
 	<classpathentry kind="lib" path="lib/httpmime.jar" />
-	<classpathentry kind="lib" path="lib/io-delta-shared.jar" />
 	<classpathentry kind="lib" path="lib/jackson-annotations.jar" />
 	<classpathentry kind="lib" path="lib/jackson-core.jar" />
 	<classpathentry kind="lib" path="lib/jackson-databind.jar" />

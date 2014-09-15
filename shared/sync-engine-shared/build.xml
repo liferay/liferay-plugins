@@ -2,7 +2,6 @@
 <!DOCTYPE project>
 
 <project name="sync-engine-shared" basedir="." default="compile">
-	<property name="import.shared" value="io-delta-shared" />
 	<property name="ivy.pom.developer.name" value="Shinn Lok" />
 	<property name="ivy.pom.name" value="Liferay Sync Engine" />
 	<property name="plugin.version" value="1" />

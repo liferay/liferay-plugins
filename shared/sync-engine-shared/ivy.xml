@@ -18,6 +18,7 @@
 
 	<dependencies defaultconf="default">
 		<dependency name="com.btr.proxy.vole" org="com.liferay" rev="20131209" />
+		<dependency name="com.liferay.io.delta" org="com.liferay" rev="7.0.0.1-SNAPSHOT" />
 		<dependency name="commons-codec" org="commons-codec" rev="1.9" />
 		<dependency name="commons-configuration" org="commons-configuration" rev="1.10" />
 		<dependency name="commons-io" org="commons-io" rev="2.4" />
