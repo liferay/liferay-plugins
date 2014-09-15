@@ -167,6 +167,33 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 		solrQuery.setFacetLimit(-1);
 	}
 
+	protected void addHighlightedField(
+		SolrQuery solrQuery, QueryConfig queryConfig,
+		String fieldName) {
+
+		solrQuery.addHighlightField(fieldName);
+
+		String localizedFieldName = DocumentImpl.getLocalizedName(
+			queryConfig.getLocale(), fieldName);
+
+		solrQuery.addHighlightField(localizedFieldName);
+	}
+
+	protected void addHighlights(SolrQuery solrQuery, QueryConfig queryConfig) {
+		if (!queryConfig.isHighlightEnabled()) {
+			return;
+		}
+
+		solrQuery.setHighlight(true);
+		solrQuery.setHighlightFragsize(queryConfig.getHighlightFragmentSize());
+		solrQuery.setHighlightRequireFieldMatch(true);
+		solrQuery.setHighlightSnippets(queryConfig.getHighlightSnippetSize());
+
+		addHighlightedField(solrQuery, queryConfig, Field.CONTENT);
+		addHighlightedField(solrQuery, queryConfig, Field.DESCRIPTION);
+		addHighlightedField(solrQuery, queryConfig, Field.TITLE);
+	}
+
 	protected Hits doSearch(SearchContext searchContext, Query query)
 		throws Exception {
 
@@ -175,6 +202,7 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 			searchContext.getStart(), searchContext.getEnd());
 
 		addFacets(solrQuery, searchContext);
+		addHighlights(solrQuery, query.getQueryConfig());
 
 		QueryResponse queryResponse = _solrServer.query(solrQuery, METHOD.POST);
 
@@ -385,25 +413,6 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 		QueryConfig queryConfig = query.getQueryConfig();
 
 		SolrQuery solrQuery = new SolrQuery();
-
-		if (queryConfig.isHighlightEnabled()) {
-			solrQuery.setHighlight(true);
-			solrQuery.setHighlightFragsize(
-				queryConfig.getHighlightFragmentSize());
-			solrQuery.setHighlightRequireFieldMatch(true);
-			solrQuery.setHighlightSnippets(
-				queryConfig.getHighlightSnippetSize());
-
-			String localizedContentName = DocumentImpl.getLocalizedName(
-				queryConfig.getLocale(), Field.CONTENT);
-
-			String localizedTitleName = DocumentImpl.getLocalizedName(
-				queryConfig.getLocale(), Field.TITLE);
-
-			solrQuery.setParam(
-				"hl.fl", Field.CONTENT, localizedContentName, Field.TITLE,
-				localizedTitleName);
-		}
 
 		solrQuery.setIncludeScore(queryConfig.isScoreEnabled());
 
