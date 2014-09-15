@@ -29,6 +29,7 @@ import com.liferay.knowledgebase.util.PortletKeys;
 import com.liferay.knowledgebase.util.WebKeys;
 import com.liferay.portal.NoSuchSubscriptionException;
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.upload.UploadException;
 import com.liferay.portal.kernel.upload.UploadPortletRequest;
@@ -57,6 +58,8 @@ import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
 import javax.portlet.ResourceRequest;
 import javax.portlet.ResourceResponse;
+import javax.portlet.WindowStateException;
+
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.io.InputStream;
@@ -249,9 +252,6 @@ public class AdminPortlet extends BaseKBPortlet {
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
-		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
-			WebKeys.THEME_DISPLAY);
-
 		String portletId = PortalUtil.getPortletId(actionRequest);
 
 		String cmd = ParamUtil.getString(actionRequest, Constants.CMD);
@@ -297,18 +297,8 @@ public class AdminPortlet extends BaseKBPortlet {
 		}
 
 		if (workflowAction == WorkflowConstants.ACTION_SAVE_DRAFT) {
-			PortletURL portletURL = PortletURLFactoryUtil.create(
-				actionRequest, PortletKeys.KNOWLEDGE_BASE_ADMIN,
-				themeDisplay.getPlid(), PortletRequest.RENDER_PHASE);
-
-			portletURL.setParameter(
-				"mvcPath", templatePath + "edit_article.jsp");
-			portletURL.setParameter(
-				"redirect", getRedirect(actionRequest, actionResponse));
-			portletURL.setParameter(
-				"resourcePrimKey",
-				String.valueOf(kbArticle.getResourcePrimKey()));
-			portletURL.setWindowState(actionRequest.getWindowState());
+			PortletURL portletURL = buildEditURL(
+				actionRequest, actionResponse, kbArticle);
 
 			actionRequest.setAttribute(WebKeys.REDIRECT, portletURL.toString());
 		}
@@ -367,6 +357,35 @@ public class AdminPortlet extends BaseKBPortlet {
 		else if (cmd.equals(Constants.UPDATE)) {
 			KBTemplateServiceUtil.updateKBTemplate(
 				kbTemplateId, title, content, serviceContext);
+		}
+	}
+
+	protected PortletURL buildEditURL(
+			ActionRequest actionRequest, ActionResponse actionResponse,
+			KBArticle kbArticle)
+		throws PortalException, SystemException {
+
+		try {
+			ThemeDisplay themeDisplay =
+				(ThemeDisplay)actionRequest.getAttribute(WebKeys.THEME_DISPLAY);
+
+			PortletURL portletURL = PortletURLFactoryUtil.create(
+				actionRequest, PortletKeys.KNOWLEDGE_BASE_ADMIN,
+				themeDisplay.getPlid(), PortletRequest.RENDER_PHASE);
+
+			portletURL.setParameter(
+				"mvcPath", templatePath + "edit_article.jsp");
+			portletURL.setParameter(
+				"redirect", getRedirect(actionRequest, actionResponse));
+			portletURL.setParameter(
+				"resourcePrimKey",
+				String.valueOf(kbArticle.getResourcePrimKey()));
+			portletURL.setWindowState(actionRequest.getWindowState());
+
+			return portletURL;
+		}
+		catch (WindowStateException e) {
+			throw new PortalException(e);
 		}
 	}
 

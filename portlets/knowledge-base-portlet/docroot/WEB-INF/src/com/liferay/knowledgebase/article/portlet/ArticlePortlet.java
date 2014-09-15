@@ -25,6 +25,7 @@ import com.liferay.knowledgebase.util.PortletKeys;
 import com.liferay.knowledgebase.util.WebKeys;
 import com.liferay.portal.NoSuchSubscriptionException;
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.servlet.SessionMessages;
 import com.liferay.portal.kernel.upload.UploadException;
@@ -131,9 +132,6 @@ public class ArticlePortlet extends BaseKBPortlet {
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
-		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
-			WebKeys.THEME_DISPLAY);
-
 		String portletId = PortalUtil.getPortletId(actionRequest);
 
 		String cmd = ParamUtil.getString(actionRequest, Constants.CMD);
@@ -179,23 +177,8 @@ public class ArticlePortlet extends BaseKBPortlet {
 		}
 
 		if (workflowAction == WorkflowConstants.ACTION_SAVE_DRAFT) {
-			String namespace = actionResponse.getNamespace();
-			String redirect = getRedirect(actionRequest, actionResponse);
-
-			String editURL = PortalUtil.getLayoutFullURL(themeDisplay);
-
-			editURL = HttpUtil.setParameter(
-				editURL, "p_p_id", PortletKeys.KNOWLEDGE_BASE_ARTICLE);
-			editURL = HttpUtil.setParameter(
-				editURL, namespace + "mvcPath",
-				templatePath + "edit_article.jsp");
-			editURL = HttpUtil.setParameter(
-				editURL, namespace + "redirect", redirect);
-			editURL = HttpUtil.setParameter(
-				editURL, namespace + "resourcePrimKey",
-				kbArticle.getResourcePrimKey());
-			editURL = HttpUtil.setParameter(
-				editURL, namespace + "status", WorkflowConstants.STATUS_ANY);
+			String editURL = buildEditURL(
+				actionRequest, actionResponse, kbArticle);
 
 			actionRequest.setAttribute(WebKeys.REDIRECT, editURL);
 		}
@@ -213,6 +196,34 @@ public class ArticlePortlet extends BaseKBPortlet {
 		}
 
 		super.addSuccessMessage(actionRequest, actionResponse);
+	}
+
+	protected String buildEditURL(
+			ActionRequest actionRequest, ActionResponse actionResponse,
+			KBArticle kbArticle)
+		throws PortalException, SystemException {
+
+		String namespace = actionResponse.getNamespace();
+		String redirect = getRedirect(actionRequest, actionResponse);
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		String editURL = PortalUtil.getLayoutFullURL(themeDisplay);
+
+		editURL = HttpUtil.setParameter(
+			editURL, "p_p_id", PortletKeys.KNOWLEDGE_BASE_ARTICLE);
+		editURL = HttpUtil.setParameter(
+			editURL, namespace + "mvcPath", templatePath + "edit_article.jsp");
+		editURL = HttpUtil.setParameter(
+			editURL, namespace + "redirect", redirect);
+		editURL = HttpUtil.setParameter(
+			editURL, namespace + "resourcePrimKey",
+			kbArticle.getResourcePrimKey());
+		editURL = HttpUtil.setParameter(
+			editURL, namespace + "status", WorkflowConstants.STATUS_ANY);
+
+		return editURL;
 	}
 
 	protected void checkExceededSizeLimit(HttpServletRequest request)
