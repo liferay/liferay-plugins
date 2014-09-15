@@ -22,6 +22,7 @@ import java.net.URL;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ExecutorService;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -62,7 +63,11 @@ public class SessionManager {
 	}
 
 	public static void removeSession(long syncAccountId) {
-		_sessions.remove(syncAccountId);
+		Session session = _sessions.remove(syncAccountId);
+
+		ExecutorService executorService = session.getExecutorService();
+
+		executorService.shutdownNow();
 	}
 
 	private static Logger _logger = LoggerFactory.getLogger(

@@ -124,7 +124,28 @@ public class SyncAccountService {
 
 	public static void deleteSyncAccount(long syncAccountId) {
 		try {
+
+			// Sync account
+
 			_syncAccountPersistence.deleteById(syncAccountId);
+
+			// Sync files
+
+			List<SyncFile> syncFiles = SyncFileService.findSyncFiles(
+				syncAccountId);
+
+			for (SyncFile syncFile : syncFiles) {
+				SyncFileService.deleteSyncFile(syncFile, false);
+			}
+
+			// Sync sites
+
+			List<SyncSite> syncSites = SyncSiteService.findSyncSites(
+				syncAccountId);
+
+			for (SyncSite syncSite : syncSites) {
+				SyncSiteService.deleteSyncSite(syncSite.getSyncSiteId());
+			}
 		}
 		catch (SQLException sqle) {
 			if (_logger.isDebugEnabled()) {

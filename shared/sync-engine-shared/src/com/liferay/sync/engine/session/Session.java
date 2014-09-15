@@ -247,6 +247,10 @@ public class Session {
 		return _basicHttpContext;
 	}
 
+	public ExecutorService getExecutorService() {
+		return _executorService;
+	}
+
 	public void setToken(String token) {
 		_token = token;
 	}
