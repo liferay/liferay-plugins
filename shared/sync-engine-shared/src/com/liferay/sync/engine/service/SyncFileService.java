@@ -630,17 +630,7 @@ public class SyncFileService {
 
 		Path deltaFilePath = null;
 
-		String sanitizedFileName = FileUtil.getSanitizedFileName(
-			syncFile.getName(), syncFile.getExtension());
-
-		String name = String.valueOf(filePath.getFileName());
-
-		if (sanitizedFileName.equals(
-				FileUtil.getSanitizedFileName(name, syncFile.getExtension()))) {
-
-			name = syncFile.getName();
-		}
-
+		String name = _getName(filePath, syncFile);
 		String sourceChecksum = syncFile.getChecksum();
 		String sourceFileName = syncFile.getName();
 		String sourceVersion = syncFile.getVersion();
@@ -795,6 +785,21 @@ public class SyncFileService {
 
 			return null;
 		}
+	}
+
+	private static String _getName(Path filePath, SyncFile syncFile) {
+		String name = String.valueOf(filePath.getFileName());
+
+		String sanitizedFileName = FileUtil.getSanitizedFileName(
+			syncFile.getName(), syncFile.getExtension());
+
+		if (sanitizedFileName.equals(
+				FileUtil.getSanitizedFileName(name, syncFile.getExtension()))) {
+
+			name = syncFile.getName();
+		}
+
+		return name;
 	}
 
 	private static Logger _logger = LoggerFactory.getLogger(

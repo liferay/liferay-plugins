@@ -64,11 +64,11 @@ public class BaseSyncDLObjectHandler extends BaseJSONHandler {
 
 			return true;
 		}
-		else if (!targetSyncFileName.equals(
-					FileUtil.getSanitizedFileName(
-						sourceSyncFile.getName(),
-						sourceSyncFile.getExtension()))) {
 
+		String sourceSyncFileName = FileUtil.getSanitizedFileName(
+			sourceSyncFile.getName(), sourceSyncFile.getExtension());
+
+		if (!targetSyncFileName.equals(sourceSyncFileName)) {
 			Path sourceSyncFilePath = Paths.get(
 				sourceSyncFile.getFilePathName());
 
