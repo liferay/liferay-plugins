@@ -14,11 +14,7 @@
 
 package com.liferay.knowledgebase.admin.portlet;
 
-import com.liferay.knowledgebase.KBArticleContentException;
 import com.liferay.knowledgebase.KBArticleImportException;
-import com.liferay.knowledgebase.KBArticlePriorityException;
-import com.liferay.knowledgebase.KBArticleTitleException;
-import com.liferay.knowledgebase.KBCommentContentException;
 import com.liferay.knowledgebase.KBTemplateContentException;
 import com.liferay.knowledgebase.KBTemplateTitleException;
 import com.liferay.knowledgebase.NoSuchArticleException;
@@ -50,12 +46,7 @@ import com.liferay.portal.service.ServiceContextFactory;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.PortletURLFactoryUtil;
-import com.liferay.portlet.asset.AssetCategoryException;
-import com.liferay.portlet.asset.AssetTagException;
-import com.liferay.portlet.documentlibrary.DuplicateFileException;
-import com.liferay.portlet.documentlibrary.FileNameException;
 import com.liferay.portlet.documentlibrary.FileSizeException;
-import com.liferay.portlet.documentlibrary.NoSuchFileException;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -447,22 +438,8 @@ public class AdminPortlet extends BaseKBPortlet {
 
 	@Override
 	protected boolean isSessionErrorException(Throwable cause) {
-		if (cause instanceof AssetCategoryException ||
-			cause instanceof AssetTagException ||
-			cause instanceof DuplicateFileException ||
-			cause instanceof FileNameException ||
-			cause instanceof FileSizeException ||
-			cause instanceof KBArticleContentException ||
-			cause instanceof KBArticlePriorityException ||
-			cause instanceof KBArticleTitleException ||
-			cause instanceof KBCommentContentException ||
-			cause instanceof KBTemplateContentException ||
+		if (cause instanceof KBTemplateContentException ||
 			cause instanceof KBTemplateTitleException ||
-			cause instanceof NoSuchArticleException ||
-			cause instanceof NoSuchCommentException ||
-			cause instanceof NoSuchFileException ||
-			cause instanceof NoSuchTemplateException ||
-			cause instanceof PrincipalException ||
 			super.isSessionErrorException(cause)) {
 
 			return true;
