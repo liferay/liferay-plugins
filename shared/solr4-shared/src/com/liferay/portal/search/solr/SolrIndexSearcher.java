@@ -204,6 +204,18 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 		}
 	}
 
+	protected void addSelectedFields(
+		SolrQuery solrQuery, QueryConfig queryConfig) {
+
+		if (queryConfig.isAllFieldsSelected()) {
+			return;
+		}
+
+		String[] selectedFieldNames = queryConfig.getSelectedFieldNames();
+
+		solrQuery.setFields(selectedFieldNames);
+	}
+
 	protected Hits doSearch(SearchContext searchContext, Query query)
 		throws Exception {
 
@@ -211,10 +223,13 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 			searchContext.getCompanyId(), query, searchContext.getSorts(),
 			searchContext.getStart(), searchContext.getEnd());
 
+		QueryConfig queryConfig = query.getQueryConfig();
+
 		addFacets(solrQuery, searchContext);
-		addHighlights(solrQuery, query.getQueryConfig());
+		addHighlights(solrQuery, queryConfig);
 		addPagination(
 			solrQuery, searchContext.getStart(), searchContext.getEnd());
+		addSelectedFields(solrQuery, queryConfig);
 
 		QueryResponse queryResponse = _solrServer.query(solrQuery, METHOD.POST);
 
