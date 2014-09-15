@@ -522,11 +522,21 @@ html.aui {
 .aui .row-fluid {
 	.span4 {
 		margin-left: 0;
-		width: 34%;
+		width: 33.33%;
+	}
+
+	.span6 {
+		margin-left: 0;
+		width: 50%;
 	}
 
 	.span8 {
-		width: 66%;
+		margin-left: 0;
+		width: 66.66%;
+	}
+
+	.span12 {
+		width: 100%;
 	}
 }
 
