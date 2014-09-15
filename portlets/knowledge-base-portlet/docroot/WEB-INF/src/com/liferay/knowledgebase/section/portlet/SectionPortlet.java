@@ -14,13 +14,8 @@
 
 package com.liferay.knowledgebase.section.portlet;
 
-import com.liferay.knowledgebase.KBArticleContentException;
-import com.liferay.knowledgebase.KBArticlePriorityException;
-import com.liferay.knowledgebase.KBArticleTitleException;
-import com.liferay.knowledgebase.KBCommentContentException;
 import com.liferay.knowledgebase.NoSuchArticleException;
 import com.liferay.knowledgebase.NoSuchCommentException;
-import com.liferay.knowledgebase.admin.portlet.AdminPortlet;
 import com.liferay.knowledgebase.model.KBArticle;
 import com.liferay.knowledgebase.portlet.BaseKBPortlet;
 import com.liferay.knowledgebase.service.KBArticleServiceUtil;
@@ -43,13 +38,7 @@ import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.ServiceContextFactory;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
-import com.liferay.portlet.asset.AssetCategoryException;
-import com.liferay.portlet.asset.AssetTagException;
-import com.liferay.portlet.documentlibrary.DuplicateFileException;
-import com.liferay.portlet.documentlibrary.FileNameException;
 import com.liferay.portlet.documentlibrary.FileSizeException;
-import com.liferay.portlet.documentlibrary.NoSuchFileException;
-import com.liferay.util.bridges.mvc.MVCPortlet;
 
 import java.io.IOException;
 
@@ -300,29 +289,6 @@ public class SectionPortlet extends BaseKBPortlet {
 		}
 
 		return WorkflowConstants.STATUS_APPROVED;
-	}
-
-	@Override
-	protected boolean isSessionErrorException(Throwable cause) {
-		if (cause instanceof AssetCategoryException ||
-			cause instanceof AssetTagException ||
-			cause instanceof DuplicateFileException ||
-			cause instanceof FileNameException ||
-			cause instanceof FileSizeException ||
-			cause instanceof KBArticleContentException ||
-			cause instanceof KBArticlePriorityException ||
-			cause instanceof KBArticleTitleException ||
-			cause instanceof KBCommentContentException ||
-			cause instanceof NoSuchArticleException ||
-			cause instanceof NoSuchCommentException ||
-			cause instanceof NoSuchFileException ||
-			cause instanceof PrincipalException ||
-			super.isSessionErrorException(cause)) {
-
-			return true;
-		}
-
-		return false;
 	}
 
 }
