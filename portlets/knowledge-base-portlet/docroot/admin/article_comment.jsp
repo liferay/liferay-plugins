@@ -90,7 +90,7 @@ KBFeedbackListDisplayContext kbFeedbackListDisplayContext = (KBFeedbackListDispl
 				<c:if test="<%= previousStatus != KBCommentConstants.STATUS_NONE %>">
 					<liferay-portlet:actionURL name="updateKBCommentStatus" varImpl="previousStatusURL">
 						<portlet:param name="kbCommentId" value="<%= String.valueOf(kbComment.getKbCommentId()) %>" />
-						<portlet:param name="status" value="<%= String.valueOf(previousStatus) %>" />
+						<portlet:param name="kbCommentStatus" value="<%= String.valueOf(previousStatus) %>" />
 					</liferay-portlet:actionURL>
 
 					<aui:button href="<%= kbFeedbackListDisplayContext.getViewFeedbackURL(previousStatusURL, kbFeedbackListDisplayContext.getSelectedNavItem()) %>" value="<%= KnowledgeBaseUtil.getStatusTransitionLabel(previousStatus) %>" />
@@ -99,7 +99,7 @@ KBFeedbackListDisplayContext kbFeedbackListDisplayContext = (KBFeedbackListDispl
 				<c:if test="<%= nextStatus != KBCommentConstants.STATUS_NONE %>">
 					<liferay-portlet:actionURL name="updateKBCommentStatus" varImpl="nextStatusURL">
 						<portlet:param name="kbCommentId" value="<%= String.valueOf(kbComment.getKbCommentId()) %>" />
-						<portlet:param name="status" value="<%= String.valueOf(nextStatus) %>" />
+						<portlet:param name="kbCommentStatus" value="<%= String.valueOf(nextStatus) %>" />
 					</liferay-portlet:actionURL>
 
 					<aui:button href="<%= kbFeedbackListDisplayContext.getViewFeedbackURL(nextStatusURL, kbFeedbackListDisplayContext.getSelectedNavItem()) %>" value="<%= KnowledgeBaseUtil.getStatusTransitionLabel(nextStatus) %>" />
