@@ -250,62 +250,6 @@ public class AdminPortlet extends BaseKBPortlet {
 			themeDisplay.getScopeGroupId(), portletId);
 	}
 
-	public void updateKBArticle(
-			ActionRequest actionRequest, ActionResponse actionResponse)
-		throws Exception {
-
-		String portletId = PortalUtil.getPortletId(actionRequest);
-
-		String cmd = ParamUtil.getString(actionRequest, Constants.CMD);
-
-		long resourcePrimKey = ParamUtil.getLong(
-			actionRequest, "resourcePrimKey");
-
-		long parentResourcePrimKey = ParamUtil.getLong(
-			actionRequest, "parentResourcePrimKey");
-		String title = ParamUtil.getString(actionRequest, "title");
-		String urlTitle = ParamUtil.getString(actionRequest, "urlTitle");
-		String content = ParamUtil.getString(actionRequest, "content");
-		String description = ParamUtil.getString(actionRequest, "description");
-		String sourceURL = ParamUtil.getString(actionRequest, "sourceURL");
-		String[] sections = actionRequest.getParameterValues("sections");
-		String[] selectedFileNames = ParamUtil.getParameterValues(
-			actionRequest, "selectedFileName");
-		long[] removeFileEntryIds = ParamUtil.getLongValues(
-			actionRequest, "removeFileEntryIds");
-		int workflowAction = ParamUtil.getInteger(
-			actionRequest, "workflowAction");
-
-		KBArticle kbArticle = null;
-
-		ServiceContext serviceContext = ServiceContextFactory.getInstance(
-			KBArticle.class.getName(), actionRequest);
-
-		if (cmd.equals(Constants.ADD)) {
-			kbArticle = KBArticleServiceUtil.addKBArticle(
-				portletId, parentResourcePrimKey, title, urlTitle, content,
-				description, sourceURL, sections, selectedFileNames,
-				serviceContext);
-		}
-		else if (cmd.equals(Constants.UPDATE)) {
-			kbArticle = KBArticleServiceUtil.updateKBArticle(
-				resourcePrimKey, title, content, description, sourceURL,
-				sections, selectedFileNames, removeFileEntryIds,
-				serviceContext);
-		}
-
-		if (!cmd.equals(Constants.ADD) && !cmd.equals(Constants.UPDATE)) {
-			return;
-		}
-
-		if (workflowAction == WorkflowConstants.ACTION_SAVE_DRAFT) {
-			PortletURL portletURL = buildEditURL(
-				actionRequest, actionResponse, kbArticle);
-
-			actionRequest.setAttribute(WebKeys.REDIRECT, portletURL.toString());
-		}
-	}
-
 	public void updateKBArticlesPriorities(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
@@ -362,7 +306,8 @@ public class AdminPortlet extends BaseKBPortlet {
 		}
 	}
 
-	protected PortletURL buildEditURL(
+	@Override
+	protected String buildEditURL(
 			ActionRequest actionRequest, ActionResponse actionResponse,
 			KBArticle kbArticle)
 		throws PortalException, SystemException {
@@ -384,7 +329,7 @@ public class AdminPortlet extends BaseKBPortlet {
 				String.valueOf(kbArticle.getResourcePrimKey()));
 			portletURL.setWindowState(actionRequest.getWindowState());
 
-			return portletURL;
+			return portletURL.toString();
 		}
 		catch (WindowStateException e) {
 			throw new PortalException(e);
