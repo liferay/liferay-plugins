@@ -96,6 +96,16 @@ public class BaseKBPortlet extends MVCPortlet {
 		}
 	}
 
+	public void deleteKBArticle(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws Exception {
+
+		long resourcePrimKey = ParamUtil.getLong(
+			actionRequest, "resourcePrimKey");
+
+		KBArticleServiceUtil.deleteKBArticle(resourcePrimKey);
+	}
+
 	public void deleteKBComment(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
@@ -143,6 +153,21 @@ public class BaseKBPortlet extends MVCPortlet {
 		}
 
 		writeJSON(actionRequest, actionResponse, jsonObject);
+	}
+
+	public void moveKBArticle(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws Exception {
+
+		long resourcePrimKey = ParamUtil.getLong(
+			actionRequest, "resourcePrimKey");
+
+		long parentResourcePrimKey = ParamUtil.getLong(
+			actionRequest, "parentResourcePrimKey");
+		double priority = ParamUtil.getDouble(actionRequest, "priority");
+
+		KBArticleServiceUtil.moveKBArticle(
+			resourcePrimKey, parentResourcePrimKey, priority);
 	}
 
 	public void serveAttachment(

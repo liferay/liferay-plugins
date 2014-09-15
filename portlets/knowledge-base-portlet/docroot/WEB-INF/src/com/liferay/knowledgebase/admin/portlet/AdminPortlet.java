@@ -71,16 +71,6 @@ import java.util.Map;
  */
 public class AdminPortlet extends BaseKBPortlet {
 
-	public void deleteKBArticle(
-			ActionRequest actionRequest, ActionResponse actionResponse)
-		throws Exception {
-
-		long resourcePrimKey = ParamUtil.getLong(
-			actionRequest, "resourcePrimKey");
-
-		KBArticleServiceUtil.deleteKBArticle(resourcePrimKey);
-	}
-
 	public void deleteKBArticles(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
@@ -154,21 +144,6 @@ public class AdminPortlet extends BaseKBPortlet {
 		finally {
 			StreamUtil.cleanUp(inputStream);
 		}
-	}
-
-	public void moveKBArticle(
-			ActionRequest actionRequest, ActionResponse actionResponse)
-		throws Exception {
-
-		long resourcePrimKey = ParamUtil.getLong(
-			actionRequest, "resourcePrimKey");
-
-		long parentResourcePrimKey = ParamUtil.getLong(
-			actionRequest, "parentResourcePrimKey");
-		double priority = ParamUtil.getDouble(actionRequest, "priority");
-
-		KBArticleServiceUtil.moveKBArticle(
-			resourcePrimKey, parentResourcePrimKey, priority);
 	}
 
 	@Override
