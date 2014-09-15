@@ -60,31 +60,6 @@ import javax.servlet.http.HttpServletRequest;
  */
 public class ArticlePortlet extends BaseKBPortlet {
 
-	public void deleteKBArticle(
-			ActionRequest actionRequest, ActionResponse actionResponse)
-		throws Exception {
-
-		long resourcePrimKey = ParamUtil.getLong(
-			actionRequest, "resourcePrimKey");
-
-		KBArticleServiceUtil.deleteKBArticle(resourcePrimKey);
-	}
-
-	public void moveKBArticle(
-			ActionRequest actionRequest, ActionResponse actionResponse)
-		throws Exception {
-
-		long resourcePrimKey = ParamUtil.getLong(
-			actionRequest, "resourcePrimKey");
-
-		long parentResourcePrimKey = ParamUtil.getLong(
-			actionRequest, "parentResourcePrimKey");
-		double priority = ParamUtil.getDouble(actionRequest, "priority");
-
-		KBArticleServiceUtil.moveKBArticle(
-			resourcePrimKey, parentResourcePrimKey, priority);
-	}
-
 	@Override
 	public void render(
 			RenderRequest renderRequest, RenderResponse renderResponse)
