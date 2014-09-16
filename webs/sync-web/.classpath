@@ -18,11 +18,11 @@
 	<classpathentry kind="lib" path="/portal-master/util-bridges/util-bridges.jar" />
 	<classpathentry kind="lib" path="/portal-master/util-java/util-java.jar" />
 	<classpathentry kind="lib" path="/portal-master/util-taglib/util-taglib.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/com.liferay.io.delta.jar" />
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/commons-codec.jar" />
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/google-collections.jar" />
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/gson.jar" />
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/httpcore.jar" />
-	<classpathentry kind="lib" path="docroot/WEB-INF/lib/io-delta-shared.jar" />
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/joda-time.jar" />
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/jsontoken.jar" />
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/portal-compat-shared.jar" />
