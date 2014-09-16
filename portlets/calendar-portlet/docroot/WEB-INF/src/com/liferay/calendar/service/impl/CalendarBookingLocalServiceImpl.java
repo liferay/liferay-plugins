@@ -70,6 +70,7 @@ import com.liferay.portlet.asset.model.AssetLinkConstants;
 import com.liferay.portlet.social.model.SocialActivityConstants;
 import com.liferay.portlet.trash.model.TrashEntry;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
@@ -361,8 +362,8 @@ public class CalendarBookingLocalServiceImpl
 
 		String recurrence = RecurrenceSerializer.serialize(recurrenceObj);
 
-		List<CalendarBooking> childCalendarBookings = getChildCalendarBookings(
-			calendarBooking.getCalendarBookingId());
+		List<CalendarBooking> childCalendarBookings =
+			getCalendarBookingWithChildren(calendarBooking);
 
 		for (CalendarBooking childCalendarBooking : childCalendarBookings) {
 			childCalendarBooking.setModifiedDate(now);
@@ -495,6 +496,23 @@ public class CalendarBookingLocalServiceImpl
 
 		return calendarBookingPersistence.countByC_P(
 			calendarId, parentCalendarBookingId);
+	}
+
+	@Override
+	public List<CalendarBooking> getCalendarBookingWithChildren(
+		CalendarBooking calendarBooking) {
+
+		if (calendarBooking.isMasterBooking()) {
+			return getChildCalendarBookings(
+				calendarBooking.getCalendarBookingId());
+		}
+
+		List<CalendarBooking> calendarBookings =
+			new ArrayList<CalendarBooking>();
+
+		calendarBookings.add(calendarBooking);
+
+		return calendarBookings;
 	}
 
 	@Override
