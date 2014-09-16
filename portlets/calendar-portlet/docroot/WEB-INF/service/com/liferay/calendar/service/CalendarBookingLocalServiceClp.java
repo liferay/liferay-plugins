@@ -177,94 +177,98 @@ public class CalendarBookingLocalServiceClp
 
 		_methodParameterTypes31 = new String[] { "long", "long" };
 
-		_methodName32 = "getCalendarBookings";
+		_methodName32 = "getCalendarBookingInstance";
 
-		_methodParameterTypes32 = new String[] { "long" };
+		_methodParameterTypes32 = new String[] { "long", "int" };
 
 		_methodName33 = "getCalendarBookings";
 
-		_methodParameterTypes33 = new String[] { "long", "int[][]" };
+		_methodParameterTypes33 = new String[] { "long" };
 
 		_methodName34 = "getCalendarBookings";
 
-		_methodParameterTypes34 = new String[] { "long", "long", "long" };
+		_methodParameterTypes34 = new String[] { "long", "int[][]" };
 
 		_methodName35 = "getCalendarBookings";
 
-		_methodParameterTypes35 = new String[] { "long", "long", "long", "int" };
+		_methodParameterTypes35 = new String[] { "long", "long", "long" };
 
-		_methodName36 = "getCalendarBookingsCount";
+		_methodName36 = "getCalendarBookings";
 
-		_methodParameterTypes36 = new String[] { "long", "long" };
+		_methodParameterTypes36 = new String[] { "long", "long", "long", "int" };
 
-		_methodName37 = "getChildCalendarBookings";
+		_methodName37 = "getCalendarBookingsCount";
 
-		_methodParameterTypes37 = new String[] { "long" };
+		_methodParameterTypes37 = new String[] { "long", "long" };
 
 		_methodName38 = "getChildCalendarBookings";
 
-		_methodParameterTypes38 = new String[] { "long", "int" };
+		_methodParameterTypes38 = new String[] { "long" };
 
-		_methodName39 = "getChildCalendarIds";
+		_methodName39 = "getChildCalendarBookings";
 
-		_methodParameterTypes39 = new String[] { "long", "long" };
+		_methodParameterTypes39 = new String[] { "long", "int" };
 
-		_methodName40 = "moveCalendarBookingToTrash";
+		_methodName40 = "getChildCalendarIds";
 
-		_methodParameterTypes40 = new String[] {
-				"long", "com.liferay.calendar.model.CalendarBooking"
-			};
+		_methodParameterTypes40 = new String[] { "long", "long" };
 
 		_methodName41 = "moveCalendarBookingToTrash";
 
-		_methodParameterTypes41 = new String[] { "long", "long" };
+		_methodParameterTypes41 = new String[] {
+				"long", "com.liferay.calendar.model.CalendarBooking"
+			};
 
-		_methodName42 = "restoreCalendarBookingFromTrash";
+		_methodName42 = "moveCalendarBookingToTrash";
 
 		_methodParameterTypes42 = new String[] { "long", "long" };
 
-		_methodName43 = "search";
+		_methodName43 = "restoreCalendarBookingFromTrash";
 
-		_methodParameterTypes43 = new String[] {
+		_methodParameterTypes43 = new String[] { "long", "long" };
+
+		_methodName44 = "search";
+
+		_methodParameterTypes44 = new String[] {
 				"long", "long[][]", "long[][]", "long[][]", "long",
 				"java.lang.String", "long", "long", "boolean", "int[][]", "int",
 				"int", "com.liferay.portal.kernel.util.OrderByComparator"
 			};
 
-		_methodName44 = "search";
+		_methodName45 = "search";
 
-		_methodParameterTypes44 = new String[] {
+		_methodParameterTypes45 = new String[] {
 				"long", "long[][]", "long[][]", "long[][]", "long",
 				"java.lang.String", "java.lang.String", "java.lang.String",
 				"long", "long", "boolean", "int[][]", "boolean", "int", "int",
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			};
 
-		_methodName45 = "searchCount";
+		_methodName46 = "searchCount";
 
-		_methodParameterTypes45 = new String[] {
+		_methodParameterTypes46 = new String[] {
 				"long", "long[][]", "long[][]", "long[][]", "long",
 				"java.lang.String", "long", "long", "int[][]"
 			};
 
-		_methodName46 = "searchCount";
+		_methodName47 = "searchCount";
 
-		_methodParameterTypes46 = new String[] {
+		_methodParameterTypes47 = new String[] {
 				"long", "long[][]", "long[][]", "long[][]", "long",
 				"java.lang.String", "java.lang.String", "java.lang.String",
 				"long", "long", "int[][]", "boolean"
 			};
 
-		_methodName47 = "updateAsset";
+		_methodName48 = "updateAsset";
 
-		_methodParameterTypes47 = new String[] {
+		_methodParameterTypes48 = new String[] {
 				"long", "com.liferay.calendar.model.CalendarBooking", "long[][]",
 				"java.lang.String[][]", "long[][]"
 			};
 
-		_methodName48 = "updateCalendarBooking";
+		_methodName49 = "updateCalendarBooking";
 
-		_methodParameterTypes48 = new String[] {
+		_methodParameterTypes49 = new String[] {
 				"long", "long", "long", "long[][]", "java.util.Map",
 				"java.util.Map", "java.lang.String", "long", "long", "boolean",
 				"java.lang.String", "long", "java.lang.String", "long",
@@ -272,9 +276,9 @@ public class CalendarBookingLocalServiceClp
 				"com.liferay.portal.service.ServiceContext"
 			};
 
-		_methodName49 = "updateCalendarBooking";
+		_methodName50 = "updateCalendarBooking";
 
-		_methodParameterTypes49 = new String[] {
+		_methodParameterTypes50 = new String[] {
 				"long", "long", "long", "java.util.Map", "java.util.Map",
 				"java.lang.String", "long", "long", "boolean",
 				"java.lang.String", "long", "java.lang.String", "long",
@@ -282,9 +286,9 @@ public class CalendarBookingLocalServiceClp
 				"com.liferay.portal.service.ServiceContext"
 			};
 
-		_methodName50 = "updateCalendarBookingInstance";
+		_methodName51 = "updateCalendarBookingInstance";
 
-		_methodParameterTypes50 = new String[] {
+		_methodParameterTypes51 = new String[] {
 				"long", "long", "int", "long", "long[][]", "java.util.Map",
 				"java.util.Map", "java.lang.String", "long", "long", "boolean",
 				"java.lang.String", "boolean", "long", "java.lang.String",
@@ -292,9 +296,9 @@ public class CalendarBookingLocalServiceClp
 				"com.liferay.portal.service.ServiceContext"
 			};
 
-		_methodName51 = "updateCalendarBookingInstance";
+		_methodName52 = "updateCalendarBookingInstance";
 
-		_methodParameterTypes51 = new String[] {
+		_methodParameterTypes52 = new String[] {
 				"long", "long", "int", "long", "java.util.Map", "java.util.Map",
 				"java.lang.String", "long", "long", "boolean",
 				"java.lang.String", "boolean", "long", "java.lang.String",
@@ -302,16 +306,16 @@ public class CalendarBookingLocalServiceClp
 				"com.liferay.portal.service.ServiceContext"
 			};
 
-		_methodName52 = "updateStatus";
+		_methodName53 = "updateStatus";
 
-		_methodParameterTypes52 = new String[] {
+		_methodParameterTypes53 = new String[] {
 				"long", "com.liferay.calendar.model.CalendarBooking", "int",
 				"com.liferay.portal.service.ServiceContext"
 			};
 
-		_methodName53 = "updateStatus";
+		_methodName54 = "updateStatus";
 
-		_methodParameterTypes53 = new String[] {
+		_methodParameterTypes54 = new String[] {
 				"long", "long", "int",
 				"com.liferay.portal.service.ServiceContext"
 			};
@@ -1341,14 +1345,49 @@ public class CalendarBookingLocalServiceClp
 	}
 
 	@Override
+	public com.liferay.calendar.model.CalendarBooking getCalendarBookingInstance(
+		long calendarBookingId, int instanceIndex)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName32,
+					_methodParameterTypes32,
+					new Object[] { calendarBookingId, instanceIndex });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.liferay.calendar.model.CalendarBooking)ClpSerializer.translateOutput(returnObj);
+	}
+
+	@Override
 	public java.util.List<com.liferay.calendar.model.CalendarBooking> getCalendarBookings(
 		long calendarId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName32,
-					_methodParameterTypes32, new Object[] { calendarId });
+			returnObj = _invokableLocalService.invokeMethod(_methodName33,
+					_methodParameterTypes33, new Object[] { calendarId });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -1376,8 +1415,8 @@ public class CalendarBookingLocalServiceClp
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName33,
-					_methodParameterTypes33,
+			returnObj = _invokableLocalService.invokeMethod(_methodName34,
+					_methodParameterTypes34,
 					new Object[] {
 						calendarId,
 						
@@ -1410,8 +1449,8 @@ public class CalendarBookingLocalServiceClp
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName34,
-					_methodParameterTypes34,
+			returnObj = _invokableLocalService.invokeMethod(_methodName35,
+					_methodParameterTypes35,
 					new Object[] { calendarId, startTime, endTime });
 		}
 		catch (Throwable t) {
@@ -1440,8 +1479,8 @@ public class CalendarBookingLocalServiceClp
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName35,
-					_methodParameterTypes35,
+			returnObj = _invokableLocalService.invokeMethod(_methodName36,
+					_methodParameterTypes36,
 					new Object[] { calendarId, startTime, endTime, max });
 		}
 		catch (Throwable t) {
@@ -1470,8 +1509,8 @@ public class CalendarBookingLocalServiceClp
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName36,
-					_methodParameterTypes36,
+			returnObj = _invokableLocalService.invokeMethod(_methodName37,
+					_methodParameterTypes37,
 					new Object[] { calendarId, parentCalendarBookingId });
 		}
 		catch (Throwable t) {
@@ -1500,8 +1539,8 @@ public class CalendarBookingLocalServiceClp
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName37,
-					_methodParameterTypes37, new Object[] { calendarBookingId });
+			returnObj = _invokableLocalService.invokeMethod(_methodName38,
+					_methodParameterTypes38, new Object[] { calendarBookingId });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -1529,8 +1568,8 @@ public class CalendarBookingLocalServiceClp
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName38,
-					_methodParameterTypes38,
+			returnObj = _invokableLocalService.invokeMethod(_methodName39,
+					_methodParameterTypes39,
 					new Object[] { parentCalendarBookingId, status });
 		}
 		catch (Throwable t) {
@@ -1559,8 +1598,8 @@ public class CalendarBookingLocalServiceClp
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName39,
-					_methodParameterTypes39,
+			returnObj = _invokableLocalService.invokeMethod(_methodName40,
+					_methodParameterTypes40,
 					new Object[] { calendarBookingId, calendarId });
 		}
 		catch (Throwable t) {
@@ -1594,8 +1633,8 @@ public class CalendarBookingLocalServiceClp
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName40,
-					_methodParameterTypes40,
+			returnObj = _invokableLocalService.invokeMethod(_methodName41,
+					_methodParameterTypes41,
 					new Object[] {
 						userId,
 						
@@ -1633,8 +1672,8 @@ public class CalendarBookingLocalServiceClp
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName41,
-					_methodParameterTypes41,
+			returnObj = _invokableLocalService.invokeMethod(_methodName42,
+					_methodParameterTypes42,
 					new Object[] { userId, calendarBookingId });
 		}
 		catch (Throwable t) {
@@ -1668,8 +1707,8 @@ public class CalendarBookingLocalServiceClp
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName42,
-					_methodParameterTypes42,
+			returnObj = _invokableLocalService.invokeMethod(_methodName43,
+					_methodParameterTypes43,
 					new Object[] { userId, calendarBookingId });
 		}
 		catch (Throwable t) {
@@ -1706,8 +1745,8 @@ public class CalendarBookingLocalServiceClp
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName43,
-					_methodParameterTypes43,
+			returnObj = _invokableLocalService.invokeMethod(_methodName44,
+					_methodParameterTypes44,
 					new Object[] {
 						companyId,
 						
@@ -1768,8 +1807,8 @@ public class CalendarBookingLocalServiceClp
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName44,
-					_methodParameterTypes44,
+			returnObj = _invokableLocalService.invokeMethod(_methodName45,
+					_methodParameterTypes45,
 					new Object[] {
 						companyId,
 						
@@ -1831,8 +1870,8 @@ public class CalendarBookingLocalServiceClp
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName45,
-					_methodParameterTypes45,
+			returnObj = _invokableLocalService.invokeMethod(_methodName46,
+					_methodParameterTypes46,
 					new Object[] {
 						companyId,
 						
@@ -1882,8 +1921,8 @@ public class CalendarBookingLocalServiceClp
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName46,
-					_methodParameterTypes46,
+			returnObj = _invokableLocalService.invokeMethod(_methodName47,
+					_methodParameterTypes47,
 					new Object[] {
 						companyId,
 						
@@ -1937,8 +1976,8 @@ public class CalendarBookingLocalServiceClp
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		try {
-			_invokableLocalService.invokeMethod(_methodName47,
-				_methodParameterTypes47,
+			_invokableLocalService.invokeMethod(_methodName48,
+				_methodParameterTypes48,
 				new Object[] {
 					userId,
 					
@@ -1988,8 +2027,8 @@ public class CalendarBookingLocalServiceClp
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName48,
-					_methodParameterTypes48,
+			returnObj = _invokableLocalService.invokeMethod(_methodName49,
+					_methodParameterTypes49,
 					new Object[] {
 						userId,
 						
@@ -2064,8 +2103,8 @@ public class CalendarBookingLocalServiceClp
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName49,
-					_methodParameterTypes49,
+			returnObj = _invokableLocalService.invokeMethod(_methodName50,
+					_methodParameterTypes50,
 					new Object[] {
 						userId,
 						
@@ -2139,8 +2178,8 @@ public class CalendarBookingLocalServiceClp
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName50,
-					_methodParameterTypes50,
+			returnObj = _invokableLocalService.invokeMethod(_methodName51,
+					_methodParameterTypes51,
 					new Object[] {
 						userId,
 						
@@ -2220,8 +2259,8 @@ public class CalendarBookingLocalServiceClp
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName51,
-					_methodParameterTypes51,
+			returnObj = _invokableLocalService.invokeMethod(_methodName52,
+					_methodParameterTypes52,
 					new Object[] {
 						userId,
 						
@@ -2293,8 +2332,8 @@ public class CalendarBookingLocalServiceClp
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName52,
-					_methodParameterTypes52,
+			returnObj = _invokableLocalService.invokeMethod(_methodName53,
+					_methodParameterTypes53,
 					new Object[] {
 						userId,
 						
@@ -2337,8 +2376,8 @@ public class CalendarBookingLocalServiceClp
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName53,
-					_methodParameterTypes53,
+			returnObj = _invokableLocalService.invokeMethod(_methodName54,
+					_methodParameterTypes54,
 					new Object[] {
 						userId,
 						
@@ -2479,4 +2518,6 @@ public class CalendarBookingLocalServiceClp
 	private String[] _methodParameterTypes52;
 	private String _methodName53;
 	private String[] _methodParameterTypes53;
+	private String _methodName54;
+	private String[] _methodParameterTypes54;
 }
