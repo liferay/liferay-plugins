@@ -33,9 +33,7 @@ import javax.management.openmbean.TabularData;
  */
 public class BundleUtil {
 
-	public static Map<String, Map> getInstalledBundles()
-		throws SystemException {
-
+	public static Map<String, Map> getInstalledBundles() {
 		Map<String, Map> bundles = new HashMap<String, Map>();
 
 		try {
@@ -51,9 +49,6 @@ public class BundleUtil {
 				(Collection<CompositeData>)data.values();
 
 			for (CompositeData compositeData : values) {
-				Map<String, Object> bundleDataMap =
-					new HashMap<String, Object>();
-
 				String state = (String)compositeData.get("State");
 
 				if (!state.equals("ACTIVE")) {
@@ -67,12 +62,14 @@ public class BundleUtil {
 					continue;
 				}
 
-				bundleDataMap.put("bundleId", compositeData.get("Identifier"));
-				bundleDataMap.put("location", compositeData.get("Location"));
-				bundleDataMap.put("version", compositeData.get("Version"));
-				bundleDataMap.put("state", state);
+				Map<String, Object> bundleData = new HashMap<String, Object>();
 
-				bundles.put(bundleSymbolicName, bundleDataMap);
+				bundleData.put("bundleId", compositeData.get("Identifier"));
+				bundleData.put("location", compositeData.get("Location"));
+				bundleData.put("state", state);
+				bundleData.put("version", compositeData.get("Version"));
+
+				bundles.put(bundleSymbolicName, bundleData);
 			}
 		}
 		catch (Exception e) {
@@ -82,9 +79,7 @@ public class BundleUtil {
 		return bundles;
 	}
 
-	public static void uninstallBundle(String bundleSymbolicName)
-		throws SystemException {
-
+	public static void uninstallBundle(String bundleSymbolicName) {
 		try {
 			MBeanServer mBeanServer =
 				ManagementFactory.getPlatformMBeanServer();
@@ -93,13 +88,13 @@ public class BundleUtil {
 
 			Map<String, Map> bundles = getInstalledBundles();
 
-			Map<String, Object> bundle = bundles.get(bundleSymbolicName);
+			Map<String, Object> bundleData = bundles.get(bundleSymbolicName);
 
-			if (bundle == null || bundle.isEmpty()) {
+			if ((bundleData == null) || bundleData.isEmpty()) {
 				return;
 			}
 
-			long bundleId = (Long)bundle.get("bundleId");
+			long bundleId = (Long)bundleData.get("bundleId");
 
 			if (bundleId > 0) {
 				mBeanServer.invoke(
