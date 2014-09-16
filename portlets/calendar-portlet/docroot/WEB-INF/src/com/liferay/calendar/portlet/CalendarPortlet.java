@@ -298,6 +298,8 @@ public class CalendarPortlet extends MVCPortlet {
 
 		long calendarBookingId = ParamUtil.getLong(
 			actionRequest, "calendarBookingId");
+		int instanceIndex = ParamUtil.getInteger(
+			actionRequest, "instanceIndex");
 
 		long calendarId = ParamUtil.getLong(actionRequest, "calendarId");
 		long[] childCalendarIds = ParamUtil.getLongValues(
@@ -341,8 +343,6 @@ public class CalendarPortlet extends MVCPortlet {
 					CalendarBookingLocalServiceUtil.getCalendarBooking(
 						calendarBookingId);
 
-				int instanceIndex = ParamUtil.getInteger(
-					actionRequest, "instanceIndex");
 				boolean allFollowing = ParamUtil.getBoolean(
 					actionRequest, "allFollowing");
 
