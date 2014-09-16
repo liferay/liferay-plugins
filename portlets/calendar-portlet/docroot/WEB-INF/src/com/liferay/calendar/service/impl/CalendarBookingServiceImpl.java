@@ -188,18 +188,6 @@ public class CalendarBookingServiceImpl extends CalendarBookingServiceBaseImpl {
 	}
 
 	@Override
-	public CalendarBooking getCalendarBookingInstance(
-		long calendarBookingId, int instanceIndex)
-	throws PortalException {
-
-		CalendarBooking calendarBooking =
-			calendarBookingLocalService.getCalendarBookingInstance(
-				calendarBookingId, instanceIndex);
-
-		return filterCalendarBooking(calendarBooking);
-	}
-
-	@Override
 	public CalendarBooking getCalendarBooking(
 			long calendarId, long parentCalendarBookingId)
 		throws PortalException {
@@ -209,6 +197,18 @@ public class CalendarBookingServiceImpl extends CalendarBookingServiceBaseImpl {
 
 		return calendarBookingLocalService.getCalendarBooking(
 			calendarId, parentCalendarBookingId);
+	}
+
+	@Override
+	public CalendarBooking getCalendarBookingInstance(
+			long calendarBookingId, int instanceIndex)
+		throws PortalException {
+
+		CalendarBooking calendarBooking =
+			calendarBookingLocalService.getCalendarBookingInstance(
+				calendarBookingId, instanceIndex);
+
+		return filterCalendarBooking(calendarBooking);
 	}
 
 	@Override

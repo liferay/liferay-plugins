@@ -429,8 +429,8 @@ public class CalendarBookingLocalServiceImpl
 
 	@Override
 	public CalendarBooking getCalendarBookingInstance(
-		long calendarBookingId, int instanceIndex)
-	throws PortalException {
+			long calendarBookingId, int instanceIndex)
+		throws PortalException {
 
 		CalendarBooking calendarBooking = getCalendarBooking(calendarBookingId);
 
