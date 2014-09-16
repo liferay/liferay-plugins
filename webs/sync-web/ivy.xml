@@ -11,6 +11,7 @@
 	</info>
 
 	<dependencies defaultconf="default">
+		<dependency name="com.liferay.io.delta" org="com.liferay" rev="1.0.0-SNAPSHOT" />
 		<dependency name="jsontoken" org="com.googlecode.jsontoken" rev="1.1" />
 	</dependencies>
 </ivy-module>

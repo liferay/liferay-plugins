@@ -2,7 +2,7 @@
 <!DOCTYPE project>
 
 <project name="sync-web" basedir="." default="deploy">
-	<property name="import.shared" value="io-delta-shared,sync-shared" />
+	<property name="import.shared" value="sync-shared" />
 
 	<import file="../build-common-web.xml" />
 </project>
