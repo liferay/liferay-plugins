@@ -322,8 +322,6 @@ public class CalendarPortlet extends MVCPortlet {
 
 		CalendarBooking calendarBooking = null;
 
-		String redirect = getRedirect(actionRequest, actionResponse);
-
 		if (calendarBookingId <= 0) {
 			calendarBooking = CalendarBookingServiceUtil.addCalendarBooking(
 				calendarId, childCalendarIds,
@@ -384,11 +382,14 @@ public class CalendarPortlet extends MVCPortlet {
 			}
 		}
 
+		actionRequest.setAttribute(WebKeys.CALENDAR_BOOKING, calendarBooking);
+
+		String redirect = getRedirect(actionRequest, actionResponse);
+
 		redirect = HttpUtil.setParameter(
 			redirect, actionResponse.getNamespace() + "calendarBookingId",
 			calendarBooking.getCalendarBookingId());
 
-		actionRequest.setAttribute(WebKeys.CALENDAR_BOOKING, calendarBooking);
 		actionRequest.setAttribute(WebKeys.REDIRECT, redirect);
 	}
 
