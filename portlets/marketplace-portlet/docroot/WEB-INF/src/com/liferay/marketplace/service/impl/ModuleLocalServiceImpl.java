@@ -16,6 +16,7 @@ package com.liferay.marketplace.service.impl;
 
 import com.liferay.marketplace.model.Module;
 import com.liferay.marketplace.service.base.ModuleLocalServiceBaseImpl;
+import com.liferay.portal.kernel.util.Validator;
 
 import java.util.List;
 
@@ -25,8 +26,11 @@ import java.util.List;
 public class ModuleLocalServiceImpl extends ModuleLocalServiceBaseImpl {
 
 	@Override
-	public Module addModule(long userId, long appId, String contextName) {
-		Module module = modulePersistence.fetchByA_C(appId, contextName);
+	public Module addModule(
+		long userId, long appId, String bundleSymbolicName,
+		String contextName) {
+
+		Module module = fetchModule(appId, bundleSymbolicName, contextName);
 
 		if (module != null) {
 			return module;
@@ -38,6 +42,7 @@ public class ModuleLocalServiceImpl extends ModuleLocalServiceBaseImpl {
 
 		module.setModuleId(moduleId);
 		module.setAppId(appId);
+		module.setBundleSymbolicName(bundleSymbolicName);
 		module.setContextName(contextName);
 
 		modulePersistence.update(module);
@@ -46,8 +51,17 @@ public class ModuleLocalServiceImpl extends ModuleLocalServiceBaseImpl {
 	}
 
 	@Override
-	public Module fetchModule(long appId, String contextName) {
-		return modulePersistence.fetchByA_C(appId, contextName);
+	public Module fetchModule(
+		long appId, String bundleSymbolicName, String contextName) {
+
+		if (Validator.isNotNull(bundleSymbolicName)) {
+			return modulePersistence.fetchByA_BSN(appId, bundleSymbolicName);
+		}
+		else if (Validator.isNotNull(contextName)) {
+			return modulePersistence.fetchByA_CN(appId, contextName);
+		}
+
+		return null;
 	}
 
 	@Override

@@ -21,6 +21,7 @@ import com.liferay.portal.kernel.messaging.BaseMessageListener;
 import com.liferay.portal.kernel.messaging.Message;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.PropertiesUtil;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 
@@ -63,7 +64,8 @@ public class MarketplaceMessageListener extends BaseMessageListener {
 			properties.getProperty("context-names"));
 
 		for (String contextName : contextNames) {
-			ModuleLocalServiceUtil.addModule(0, app.getAppId(), contextName);
+			ModuleLocalServiceUtil.addModule(
+				0, app.getAppId(), StringPool.BLANK, contextName);
 		}
 
 		AppLocalServiceUtil.processMarketplaceProperties(properties);

@@ -24,6 +24,9 @@
 		<field name="uuid" type="String" />
 		<field name="moduleId" type="long" />
 		<field name="appId" type="long" />
+		<field name="bundleSymbolicName" type="String">
+			<hint name="max-length">500</hint>
+		</field>
 		<field name="contextName" type="String" />
 	</model>
 </model-hints>
