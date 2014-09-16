@@ -41,6 +41,7 @@
 				<column name="UUID_" />
 			</basic>
 			<basic name="appId" />
+			<basic name="bundleSymbolicName" />
 			<basic name="contextName" />
 			<transient name="modelAttributes" />
 			<transient name="primaryKey" />

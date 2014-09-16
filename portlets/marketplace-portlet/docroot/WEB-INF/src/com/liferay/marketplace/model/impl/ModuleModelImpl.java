@@ -61,9 +61,10 @@ public class ModuleModelImpl extends BaseModelImpl<Module>
 			{ "uuid_", Types.VARCHAR },
 			{ "moduleId", Types.BIGINT },
 			{ "appId", Types.BIGINT },
+			{ "bundleSymbolicName", Types.VARCHAR },
 			{ "contextName", Types.VARCHAR }
 		};
-	public static final String TABLE_SQL_CREATE = "create table Marketplace_Module (uuid_ VARCHAR(75) null,moduleId LONG not null primary key,appId LONG,contextName VARCHAR(75) null)";
+	public static final String TABLE_SQL_CREATE = "create table Marketplace_Module (uuid_ VARCHAR(75) null,moduleId LONG not null primary key,appId LONG,bundleSymbolicName VARCHAR(500) null,contextName VARCHAR(75) null)";
 	public static final String TABLE_SQL_DROP = "drop table Marketplace_Module";
 	public static final String ORDER_BY_JPQL = " ORDER BY module.moduleId ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY Marketplace_Module.moduleId ASC";
@@ -80,9 +81,10 @@ public class ModuleModelImpl extends BaseModelImpl<Module>
 				"value.object.column.bitmask.enabled.com.liferay.marketplace.model.Module"),
 			true);
 	public static long APPID_COLUMN_BITMASK = 1L;
-	public static long CONTEXTNAME_COLUMN_BITMASK = 2L;
-	public static long UUID_COLUMN_BITMASK = 4L;
-	public static long MODULEID_COLUMN_BITMASK = 8L;
+	public static long BUNDLESYMBOLICNAME_COLUMN_BITMASK = 2L;
+	public static long CONTEXTNAME_COLUMN_BITMASK = 4L;
+	public static long UUID_COLUMN_BITMASK = 8L;
+	public static long MODULEID_COLUMN_BITMASK = 16L;
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.liferay.marketplace.model.Module"));
 
@@ -126,6 +128,7 @@ public class ModuleModelImpl extends BaseModelImpl<Module>
 		attributes.put("uuid", getUuid());
 		attributes.put("moduleId", getModuleId());
 		attributes.put("appId", getAppId());
+		attributes.put("bundleSymbolicName", getBundleSymbolicName());
 		attributes.put("contextName", getContextName());
 
 		return attributes;
@@ -149,6 +152,12 @@ public class ModuleModelImpl extends BaseModelImpl<Module>
 
 		if (appId != null) {
 			setAppId(appId);
+		}
+
+		String bundleSymbolicName = (String)attributes.get("bundleSymbolicName");
+
+		if (bundleSymbolicName != null) {
+			setBundleSymbolicName(bundleSymbolicName);
 		}
 
 		String contextName = (String)attributes.get("contextName");
@@ -214,6 +223,31 @@ public class ModuleModelImpl extends BaseModelImpl<Module>
 	}
 
 	@Override
+	public String getBundleSymbolicName() {
+		if (_bundleSymbolicName == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _bundleSymbolicName;
+		}
+	}
+
+	@Override
+	public void setBundleSymbolicName(String bundleSymbolicName) {
+		_columnBitmask |= BUNDLESYMBOLICNAME_COLUMN_BITMASK;
+
+		if (_originalBundleSymbolicName == null) {
+			_originalBundleSymbolicName = _bundleSymbolicName;
+		}
+
+		_bundleSymbolicName = bundleSymbolicName;
+	}
+
+	public String getOriginalBundleSymbolicName() {
+		return GetterUtil.getString(_originalBundleSymbolicName);
+	}
+
+	@Override
 	public String getContextName() {
 		if (_contextName == null) {
 			return StringPool.BLANK;
@@ -272,6 +306,7 @@ public class ModuleModelImpl extends BaseModelImpl<Module>
 		moduleImpl.setUuid(getUuid());
 		moduleImpl.setModuleId(getModuleId());
 		moduleImpl.setAppId(getAppId());
+		moduleImpl.setBundleSymbolicName(getBundleSymbolicName());
 		moduleImpl.setContextName(getContextName());
 
 		moduleImpl.resetOriginalValues();
@@ -331,6 +366,8 @@ public class ModuleModelImpl extends BaseModelImpl<Module>
 
 		moduleModelImpl._setOriginalAppId = false;
 
+		moduleModelImpl._originalBundleSymbolicName = moduleModelImpl._bundleSymbolicName;
+
 		moduleModelImpl._originalContextName = moduleModelImpl._contextName;
 
 		moduleModelImpl._columnBitmask = 0;
@@ -352,6 +389,14 @@ public class ModuleModelImpl extends BaseModelImpl<Module>
 
 		moduleCacheModel.appId = getAppId();
 
+		moduleCacheModel.bundleSymbolicName = getBundleSymbolicName();
+
+		String bundleSymbolicName = moduleCacheModel.bundleSymbolicName;
+
+		if ((bundleSymbolicName != null) && (bundleSymbolicName.length() == 0)) {
+			moduleCacheModel.bundleSymbolicName = null;
+		}
+
 		moduleCacheModel.contextName = getContextName();
 
 		String contextName = moduleCacheModel.contextName;
@@ -365,7 +410,7 @@ public class ModuleModelImpl extends BaseModelImpl<Module>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(9);
+		StringBundler sb = new StringBundler(11);
 
 		sb.append("{uuid=");
 		sb.append(getUuid());
@@ -373,6 +418,8 @@ public class ModuleModelImpl extends BaseModelImpl<Module>
 		sb.append(getModuleId());
 		sb.append(", appId=");
 		sb.append(getAppId());
+		sb.append(", bundleSymbolicName=");
+		sb.append(getBundleSymbolicName());
 		sb.append(", contextName=");
 		sb.append(getContextName());
 		sb.append("}");
@@ -382,7 +429,7 @@ public class ModuleModelImpl extends BaseModelImpl<Module>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(16);
+		StringBundler sb = new StringBundler(19);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.marketplace.model.Module");
@@ -399,6 +446,10 @@ public class ModuleModelImpl extends BaseModelImpl<Module>
 		sb.append(
 			"<column><column-name>appId</column-name><column-value><![CDATA[");
 		sb.append(getAppId());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>bundleSymbolicName</column-name><column-value><![CDATA[");
+		sb.append(getBundleSymbolicName());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>contextName</column-name><column-value><![CDATA[");
@@ -418,6 +469,8 @@ public class ModuleModelImpl extends BaseModelImpl<Module>
 	private long _appId;
 	private long _originalAppId;
 	private boolean _setOriginalAppId;
+	private String _bundleSymbolicName;
+	private String _originalBundleSymbolicName;
 	private String _contextName;
 	private String _originalContextName;
 	private long _columnBitmask;

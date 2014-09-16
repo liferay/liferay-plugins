@@ -101,6 +101,21 @@ public interface ModuleModel extends BaseModel<Module> {
 	public void setAppId(long appId);
 
 	/**
+	 * Returns the bundle symbolic name of this module.
+	 *
+	 * @return the bundle symbolic name of this module
+	 */
+	@AutoEscape
+	public String getBundleSymbolicName();
+
+	/**
+	 * Sets the bundle symbolic name of this module.
+	 *
+	 * @param bundleSymbolicName the bundle symbolic name of this module
+	 */
+	public void setBundleSymbolicName(String bundleSymbolicName);
+
+	/**
 	 * Returns the context name of this module.
 	 *
 	 * @return the context name of this module

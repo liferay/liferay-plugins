@@ -117,12 +117,14 @@ public class ModuleLocalServiceClp implements ModuleLocalService {
 		_methodName19 = "addModule";
 
 		_methodParameterTypes19 = new String[] {
-				"long", "long", "java.lang.String"
+				"long", "long", "java.lang.String", "java.lang.String"
 			};
 
 		_methodName20 = "fetchModule";
 
-		_methodParameterTypes20 = new String[] { "long", "java.lang.String" };
+		_methodParameterTypes20 = new String[] {
+				"long", "java.lang.String", "java.lang.String"
+			};
 
 		_methodName21 = "getModules";
 
@@ -677,7 +679,8 @@ public class ModuleLocalServiceClp implements ModuleLocalService {
 
 	@Override
 	public com.liferay.marketplace.model.Module addModule(long userId,
-		long appId, java.lang.String contextName)
+		long appId, java.lang.String bundleSymbolicName,
+		java.lang.String contextName)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
@@ -688,6 +691,8 @@ public class ModuleLocalServiceClp implements ModuleLocalService {
 						userId,
 						
 					appId,
+						
+					ClpSerializer.translateInput(bundleSymbolicName),
 						
 					ClpSerializer.translateInput(contextName)
 					});
@@ -713,7 +718,7 @@ public class ModuleLocalServiceClp implements ModuleLocalService {
 
 	@Override
 	public com.liferay.marketplace.model.Module fetchModule(long appId,
-		java.lang.String contextName)
+		java.lang.String bundleSymbolicName, java.lang.String contextName)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
@@ -722,6 +727,8 @@ public class ModuleLocalServiceClp implements ModuleLocalService {
 					_methodParameterTypes20,
 					new Object[] {
 						appId,
+						
+					ClpSerializer.translateInput(bundleSymbolicName),
 						
 					ClpSerializer.translateInput(contextName)
 					});
