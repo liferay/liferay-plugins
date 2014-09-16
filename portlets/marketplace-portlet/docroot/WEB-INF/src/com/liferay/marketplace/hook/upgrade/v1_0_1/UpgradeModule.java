@@ -37,10 +37,10 @@ public class UpgradeModule extends UpgradeProcess {
 
 		try {
 			runSQL(
-				"create index IX_E3A93ED9 on Marketplace_Module" +
+				"create index IX_E3A93ED9 on Marketplace_Module " +
 					"(appId, bundleSymbolicName)");
 			runSQL(
-				"create index IX_DD03D499 on Marketplace_Module" +
+				"create index IX_DD03D499 on Marketplace_Module " +
 					"(bundleSymbolicName)");
 		}
 		catch (Exception e) {
