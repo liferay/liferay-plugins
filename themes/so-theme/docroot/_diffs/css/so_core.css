@@ -526,24 +526,13 @@ html.aui {
 
 /* ---------- Layout ---------- */
 
-.aui .row-fluid {
-	.span4 {
-		margin-left: 0;
-		width: 33.33%;
-	}
+.aui .row {
+	margin-left: 0;
+	margin-right: 0;
 
-	.span6 {
-		margin-left: 0;
-		width: 50%;
-	}
-
-	.span8 {
-		margin-left: 0;
-		width: 66.66%;
-	}
-
-	.span12 {
-		width: 100%;
+	.col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12 {
+		padding-left: 0;
+		padding-right: 0;
 	}
 }
 
