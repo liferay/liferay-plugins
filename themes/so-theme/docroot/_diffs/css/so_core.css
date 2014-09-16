@@ -63,8 +63,8 @@
 		display: block;
 		float: right;
 		margin-left: 2em;
-		padding: 4px;
 		overflow: visible;
+		padding: 4px;
 
 		&:focus, &:hover {
 			text-decoration: none;

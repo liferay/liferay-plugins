@@ -32,7 +32,7 @@ $default-border-color: #E7E7E7;
 	.user-portrait {
 		float: left;
 		left: 1em;
-		margin-bottom: .4em;
+		margin-bottom: 0.4em;
 		max-height: 45px;
 		position: absolute;
 		top: 1em;
@@ -76,7 +76,7 @@ $default-border-color: #E7E7E7;
 
 	.activity-action {
 		clear: both;
-		color: #333333;
+		color: #333;
 		margin-bottom: 0.8em;
 	}
 
@@ -263,8 +263,8 @@ $default-border-color: #E7E7E7;
 			display: inline-block;
 			height: 16px;
 			line-height: 16px;
-			margin: .5em 0;
-			padding: 0 .6em 0 .8em;
+			margin: 0.5em 0;
+			padding: 0 0.6em 0 0.8em;
 			vertical-align: middle;
 
 			&:first-child {
@@ -388,8 +388,8 @@ $default-border-color: #E7E7E7;
 	}
 
 	.loading-bar {
-		display: block;
 		background: transparent url(@theme_image_path@/aui/loading_indicator.gif) 45% center no-repeat;
+		display: block;
 		font-style: italic;
 		height: 100px;
 		margin-left: 25px;
@@ -444,7 +444,7 @@ $default-border-color: #E7E7E7;
 
 		.activity-time {
 			float: none;
-			margin: .4em 0 0;
+			margin: 0.4em 0 0;
 		}
 
 		.activity-block, .activity-action {
@@ -454,7 +454,7 @@ $default-border-color: #E7E7E7;
 		}
 
 		.activity-action {
-			margin-bottom: .4em;
+			margin-bottom: 0.4em;
 		}
 	}
 }

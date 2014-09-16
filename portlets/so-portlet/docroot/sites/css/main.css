@@ -7,7 +7,7 @@ $defaultTextColor: #202020;
 	background-color: #FFF;
 
 	@include border-radius(4px);
-	@include box-shadow(0 1px 3px rgba(0,0,0, 0.78));
+	@include box-shadow(0 1px 3px rgba(0, 0, 0, 0.78));
 }
 
 .so-portlet-sites {
@@ -54,7 +54,7 @@ $defaultTextColor: #202020;
 
 			.action a {
 				float: right;
-				font-size: 0px;
+				font-size: 0;
 				height: 16px;
 				margin: 0 5px;
 				width: 16px;
@@ -180,7 +180,7 @@ $defaultTextColor: #202020;
 
 			.action a {
 				float: right;
-				font-size: 0px;
+				font-size: 0;
 				height: 16px;
 				margin: 0 5px;
 				width: 16px;
@@ -364,7 +364,7 @@ $defaultTextColor: #202020;
 			margin: 0;
 		}
 
-		 .field-content, .field-label, .field-select {
+		.field-content, .field-label, .field-select {
 			display: inline;
 		}
 
@@ -452,7 +452,7 @@ $defaultTextColor: #202020;
 				border: 1px solid #1C2125;
 
 				@include border-radius(20px);
-				@include box-shadow(0 1px 2px rgba(0,0,0, 0.4) inset);
+				@include box-shadow(0 1px 2px rgba(0, 0, 0, 0.4) inset);
 
 				color: #202020;
 				cursor: pointer;
@@ -478,7 +478,7 @@ $defaultTextColor: #202020;
 		}
 
 		.sites-tabs {
-			border-top: 1px solid rgba(0,0,0, 0.1);
+			border-top: 1px solid rgba(0, 0, 0, 0.1);
 			float: none;
 			padding: 1em;
 
@@ -508,7 +508,7 @@ $defaultTextColor: #202020;
 					margin: -0.55em -2.5em;
 
 					&:hover {
-						background-color: rgba(0,0,0, 0.1);
+						background-color: rgba(0, 0, 0, 0.1);
 					}
 				}
 
@@ -585,14 +585,14 @@ $defaultTextColor: #202020;
 			z-index: 3;
 
 			.search {
-				top: .7em;
+				top: 0.7em;
 				width: auto;
 
 				.search-input {
 					background: #FFF;
 					border: 1px solid $defaultBorderColor;
 
-					@include box-shadow(0 1px 2px rgba(0,0,0, 0) inset);
+					@include box-shadow(0 1px 2px rgba(0, 0, 0, 0) inset);
 
 					color: $defaultTextColor;
 					cursor: text;

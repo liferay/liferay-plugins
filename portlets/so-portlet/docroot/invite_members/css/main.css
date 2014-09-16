@@ -21,9 +21,9 @@
 		border: 1px solid;
 		border-color: #BFBFBF #DEDEDE #DEDEDE #BFBFBF;
 		height: 300px;
-		width: 205px;
 		overflow-x: hidden;
 		overflow-y: auto;
+		width: 205px;
 
 		.more-results a {
 			display: block;
