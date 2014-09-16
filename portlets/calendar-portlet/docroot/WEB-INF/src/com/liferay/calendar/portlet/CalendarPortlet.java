@@ -384,8 +384,6 @@ public class CalendarPortlet extends MVCPortlet {
 			}
 		}
 
-		actionRequest.setAttribute(WebKeys.CALENDAR_BOOKING, calendarBooking);
-
 		String redirect = getRedirect(actionRequest, actionResponse);
 
 		redirect = HttpUtil.setParameter(
