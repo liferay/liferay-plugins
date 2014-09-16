@@ -293,26 +293,6 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 		}
 	}
 
-	protected QueryResponse search(
-			SolrQuery solrQuery, SearchContext searchContext, Query query)
-		throws Exception {
-
-		QueryConfig queryConfig = query.getQueryConfig();
-
-		addFacets(solrQuery, searchContext);
-		addHighlights(solrQuery, queryConfig);
-		addPagination(
-			solrQuery, searchContext.getStart(), searchContext.getEnd());
-		addSelectedFields(solrQuery, queryConfig);
-		addSort(solrQuery, searchContext.getSorts());
-
-		solrQuery.setIncludeScore(queryConfig.isScoreEnabled());
-
-		translateQuery(solrQuery, searchContext, query);
-
-		return _solrServer.query(solrQuery, METHOD.POST);
-	}
-
 	protected String getSnippet(
 		SolrDocument solrDocument, QueryConfig queryConfig,
 		Set<String> queryTerms,
@@ -423,6 +403,26 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 		}
 
 		return document;
+	}
+
+	protected QueryResponse search(
+			SolrQuery solrQuery, SearchContext searchContext, Query query)
+		throws Exception {
+
+		QueryConfig queryConfig = query.getQueryConfig();
+
+		addFacets(solrQuery, searchContext);
+		addHighlights(solrQuery, queryConfig);
+		addPagination(
+			solrQuery, searchContext.getStart(), searchContext.getEnd());
+		addSelectedFields(solrQuery, queryConfig);
+		addSort(solrQuery, searchContext.getSorts());
+
+		solrQuery.setIncludeScore(queryConfig.isScoreEnabled());
+
+		translateQuery(solrQuery, searchContext, query);
+
+		return _solrServer.query(solrQuery, METHOD.POST);
 	}
 
 	protected Hits subset(
