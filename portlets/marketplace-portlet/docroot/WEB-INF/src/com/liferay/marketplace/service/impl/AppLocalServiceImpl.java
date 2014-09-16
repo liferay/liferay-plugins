@@ -334,7 +334,8 @@ public class AppLocalServiceImpl extends AppLocalServiceBaseImpl {
 
 						if (Validator.isNotNull(contextName)) {
 							moduleLocalService.addModule(
-								app.getUserId(), app.getAppId(), contextName);
+								app.getUserId(), app.getAppId(),
+								StringPool.BLANK, contextName);
 						}
 					}
 				}
