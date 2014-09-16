@@ -87,7 +87,7 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 		try {
 			SolrQuery solrQuery = new SolrQuery();
 
-			QueryResponse queryResponse = doSearch(
+			QueryResponse queryResponse = search(
 				solrQuery, searchContext, query);
 
 			Hits hits = processQueryResponse(
@@ -293,7 +293,7 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 		}
 	}
 
-	protected QueryResponse doSearch(
+	protected QueryResponse search(
 			SolrQuery solrQuery, SearchContext searchContext, Query query)
 		throws Exception {
 
