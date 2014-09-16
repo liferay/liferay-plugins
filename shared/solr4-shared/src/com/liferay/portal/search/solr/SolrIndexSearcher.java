@@ -199,8 +199,8 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 			solrQuery.setRows(0);
 		}
 		else {
-			solrQuery.setStart(start);
 			solrQuery.setRows(end - start);
+			solrQuery.setStart(start);
 		}
 	}
 
