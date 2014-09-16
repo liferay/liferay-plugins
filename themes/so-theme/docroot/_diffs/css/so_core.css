@@ -62,15 +62,17 @@
 	#toggleDockbar {
 		display: block;
 		float: right;
-		height: 52px;
-		margin: -0.75em -1.4em -0.85em 1em;
+		margin-left: 2em;
+		padding: 4px;
 		overflow: visible;
-		width: 52px;
 
-		img {
-			height: 16px;
-			padding: 1.35em;
-			width: 16px;
+		&:focus, &:hover {
+			text-decoration: none;
+		}
+
+		i {
+			color: #252D31;
+			font-size: 24px;
 		}
 	}
 }
@@ -78,6 +80,10 @@
 #page-search {
 	float: right;
 	position: relative;
+
+	.form-group {
+		margin-bottom: 0;
+	}
 
 	input[type="text"] {
 		color: $defaultBorderColor;
@@ -91,8 +97,8 @@
 		color: $defaultTextColor;
 	}
 
-	input[type="image"], select {
-		display: none;
+	.taglib-icon {
+		@include hidden-accessible;
 	}
 }
 
@@ -354,10 +360,11 @@ html.aui {
 		@include transition-duration(0.2s);
 		@include transition-property(margin-left);
 
-		.navbar-inner .nav-add-controls {
+		.container-fluid .nav-add-controls .dockbar-item .dropdown-menu {
 			background: $controlBgColor;
 			bottom: 0;
 			margin-left: -64px;
+			padding: 0;
 			top: 0;
 
 			@include transition-duration(0.2s);
@@ -368,7 +375,7 @@ html.aui {
 			}
 		}
 
-		&.navbar-static-top .collapse, .navbar-inner .container {
+		&.navbar-static-top .collapse, .container-fluid .container {
 			.nav-account-controls {
 				top: 0;
 
@@ -445,7 +452,7 @@ html.aui {
 	@include transition-duration(0.2s);
 	@include transition-property(border-left);
 
-	.dockbar .navbar-inner .nav-add-controls {
+	.dockbar .container-fluid .nav-add-controls .dockbar-item .dropdown-menu {
 		background: $controlBgColor;
 		border-right: 1px solid $defaultBorderColor;
 		bottom: 0;
@@ -1809,7 +1816,7 @@ html.aui {
 				display: none;
 			}
 
-			.navbar-inner .nav-collapse.open .nav-add-controls {
+			.container-fluid .nav-collapse.open .nav-add-controls .dockbar-item .dropdown-menu {
 				bottom: auto;
 				top: auto;
 			}

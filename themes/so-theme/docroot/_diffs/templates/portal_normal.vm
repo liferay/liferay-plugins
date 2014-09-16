@@ -91,7 +91,7 @@ $theme.include($body_top_include)
 			#if ($is_signed_in)
 				#if ((!$page_group.isControlPanel()) && $user.isSetupComplete() && ($show_add_controls || $show_edit_controls || $show_preview_controls || $show_toggle_controls))
 					<a class="config-icon" href="javascript:;" id="toggleDockbar">
-						<img alt="#language("configuration") #language("icon")" height="16" src="$images_folder/custom/cog.png" width="16" />
+						<i alt="#language("configuration") #language("icon")" class="icon-cog"></i>
 
 						<span class="aui-helper-hidden">
 							#language("toggle") #language("javax.portlet.title.145")
