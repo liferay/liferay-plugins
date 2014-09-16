@@ -14,6 +14,8 @@
 
 package com.liferay.marketplace.service.base;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.marketplace.model.App;
 import com.liferay.marketplace.service.AppLocalService;
 import com.liferay.marketplace.service.persistence.AppPersistence;
@@ -66,6 +68,7 @@ import javax.sql.DataSource;
  * @see com.liferay.marketplace.service.AppLocalServiceUtil
  * @generated
  */
+@ProviderType
 public abstract class AppLocalServiceBaseImpl extends BaseLocalServiceImpl
 	implements AppLocalService, IdentifiableBean {
 	/*

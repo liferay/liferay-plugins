@@ -14,6 +14,8 @@
 
 package com.liferay.marketplace.service.base;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.marketplace.service.AppLocalServiceUtil;
 
 import java.util.Arrays;
@@ -22,6 +24,7 @@ import java.util.Arrays;
  * @author Ryan Park
  * @generated
  */
+@ProviderType
 public class AppLocalServiceClpInvoker {
 	public AppLocalServiceClpInvoker() {
 		_methodName0 = "addApp";

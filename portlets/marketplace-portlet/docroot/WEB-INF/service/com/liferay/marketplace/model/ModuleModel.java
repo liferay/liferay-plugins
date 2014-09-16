@@ -14,6 +14,8 @@
 
 package com.liferay.marketplace.model;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.CacheModel;
@@ -36,6 +38,7 @@ import java.io.Serializable;
  * @see com.liferay.marketplace.model.impl.ModuleModelImpl
  * @generated
  */
+@ProviderType
 public interface ModuleModel extends BaseModel<Module> {
 	/*
 	 * NOTE FOR DEVELOPERS:
@@ -99,6 +102,21 @@ public interface ModuleModel extends BaseModel<Module> {
 	 * @param appId the app ID of this module
 	 */
 	public void setAppId(long appId);
+
+	/**
+	 * Returns the bundle symbolic name of this module.
+	 *
+	 * @return the bundle symbolic name of this module
+	 */
+	@AutoEscape
+	public String getBundleSymbolicName();
+
+	/**
+	 * Sets the bundle symbolic name of this module.
+	 *
+	 * @param bundleSymbolicName the bundle symbolic name of this module
+	 */
+	public void setBundleSymbolicName(String bundleSymbolicName);
 
 	/**
 	 * Returns the context name of this module.

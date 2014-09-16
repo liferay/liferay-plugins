@@ -14,6 +14,8 @@
 
 package com.liferay.marketplace.model;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.marketplace.service.AppLocalServiceUtil;
 import com.liferay.marketplace.service.ClpSerializer;
 
@@ -41,6 +43,7 @@ import java.util.Map;
 /**
  * @author Ryan Park
  */
+@ProviderType
 public class AppClp extends BaseModelImpl<App> implements App {
 	public AppClp() {
 	}

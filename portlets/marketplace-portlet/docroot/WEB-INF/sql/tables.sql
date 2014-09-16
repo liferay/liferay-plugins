@@ -18,5 +18,6 @@ create table Marketplace_Module (
 	uuid_ VARCHAR(75) null,
 	moduleId LONG not null primary key,
 	appId LONG,
+	bundleSymbolicName VARCHAR(500) null,
 	contextName VARCHAR(75) null
 );

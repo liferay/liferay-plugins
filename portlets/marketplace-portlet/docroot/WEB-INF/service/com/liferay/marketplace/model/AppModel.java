@@ -14,6 +14,8 @@
 
 package com.liferay.marketplace.model;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.CacheModel;
@@ -39,6 +41,7 @@ import java.util.Date;
  * @see com.liferay.marketplace.model.impl.AppModelImpl
  * @generated
  */
+@ProviderType
 public interface AppModel extends BaseModel<App>, StagedAuditedModel {
 	/*
 	 * NOTE FOR DEVELOPERS:

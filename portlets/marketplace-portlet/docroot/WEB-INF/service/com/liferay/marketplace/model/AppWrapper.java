@@ -14,6 +14,8 @@
 
 package com.liferay.marketplace.model;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.lar.StagedModelType;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.ModelWrapper;
@@ -31,6 +33,7 @@ import java.util.Map;
  * @see App
  * @generated
  */
+@ProviderType
 public class AppWrapper implements App, ModelWrapper<App> {
 	public AppWrapper(App app) {
 		_app = app;
@@ -639,5 +642,5 @@ public class AppWrapper implements App, ModelWrapper<App> {
 		_app.resetOriginalValues();
 	}
 
-	private App _app;
+	private final App _app;
 }

@@ -14,6 +14,8 @@
 
 package com.liferay.marketplace.model;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.model.PersistedModel;
 
 /**
@@ -25,6 +27,7 @@ import com.liferay.portal.model.PersistedModel;
  * @see com.liferay.marketplace.model.impl.ModuleModelImpl
  * @generated
  */
+@ProviderType
 public interface Module extends ModuleModel, PersistedModel {
 	/*
 	 * NOTE FOR DEVELOPERS:

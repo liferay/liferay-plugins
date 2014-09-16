@@ -14,6 +14,8 @@
 
 package com.liferay.marketplace.service.messaging;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.marketplace.service.AppLocalServiceUtil;
 import com.liferay.marketplace.service.AppServiceUtil;
 import com.liferay.marketplace.service.ClpSerializer;
@@ -25,6 +27,7 @@ import com.liferay.portal.kernel.messaging.Message;
 /**
  * @author Ryan Park
  */
+@ProviderType
 public class ClpMessageListener extends BaseMessageListener {
 	public static String getServletContextName() {
 		return ClpSerializer.getServletContextName();

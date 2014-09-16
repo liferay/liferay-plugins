@@ -14,6 +14,8 @@
 
 package com.liferay.marketplace.service;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.service.ServiceWrapper;
 
 /**
@@ -23,6 +25,7 @@ import com.liferay.portal.service.ServiceWrapper;
  * @see ModuleLocalService
  * @generated
  */
+@ProviderType
 public class ModuleLocalServiceWrapper implements ModuleLocalService,
 	ServiceWrapper<ModuleLocalService> {
 	public ModuleLocalServiceWrapper(ModuleLocalService moduleLocalService) {
@@ -43,8 +46,10 @@ public class ModuleLocalServiceWrapper implements ModuleLocalService,
 
 	@Override
 	public com.liferay.marketplace.model.Module addModule(long userId,
-		long appId, java.lang.String contextName) {
-		return _moduleLocalService.addModule(userId, appId, contextName);
+		long appId, java.lang.String bundleSymbolicName,
+		java.lang.String contextName) {
+		return _moduleLocalService.addModule(userId, appId, bundleSymbolicName,
+			contextName);
 	}
 
 	/**
@@ -179,8 +184,9 @@ public class ModuleLocalServiceWrapper implements ModuleLocalService,
 
 	@Override
 	public com.liferay.marketplace.model.Module fetchModule(long appId,
-		java.lang.String contextName) {
-		return _moduleLocalService.fetchModule(appId, contextName);
+		java.lang.String bundleSymbolicName, java.lang.String contextName) {
+		return _moduleLocalService.fetchModule(appId, bundleSymbolicName,
+			contextName);
 	}
 
 	@Override

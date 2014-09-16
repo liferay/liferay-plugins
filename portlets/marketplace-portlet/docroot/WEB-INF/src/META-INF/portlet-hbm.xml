@@ -29,6 +29,7 @@
 		</id>
 		<property name="uuid" type="com.liferay.portal.dao.orm.hibernate.StringType" column="uuid_" />
 		<property name="appId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="bundleSymbolicName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="contextName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 	</class>
 </hibernate-mapping>

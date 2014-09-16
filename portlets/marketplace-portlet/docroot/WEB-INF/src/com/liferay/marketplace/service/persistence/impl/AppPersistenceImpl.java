@@ -14,6 +14,8 @@
 
 package com.liferay.marketplace.service.persistence.impl;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.marketplace.NoSuchAppException;
 import com.liferay.marketplace.model.App;
 import com.liferay.marketplace.model.impl.AppImpl;
@@ -65,6 +67,7 @@ import java.util.Set;
  * @see AppUtil
  * @generated
  */
+@ProviderType
 public class AppPersistenceImpl extends BasePersistenceImpl<App>
 	implements AppPersistence {
 	/*
@@ -3107,11 +3110,11 @@ public class AppPersistenceImpl extends BasePersistenceImpl<App>
 	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No App exists with the key {";
 	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = GetterUtil.getBoolean(PropsUtil.get(
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
-	private static Log _log = LogFactoryUtil.getLog(AppPersistenceImpl.class);
-	private static Set<String> _badColumnNames = SetUtil.fromArray(new String[] {
+	private static final Log _log = LogFactoryUtil.getLog(AppPersistenceImpl.class);
+	private static final Set<String> _badColumnNames = SetUtil.fromArray(new String[] {
 				"uuid"
 			});
-	private static App _nullApp = new AppImpl() {
+	private static final App _nullApp = new AppImpl() {
 			@Override
 			public Object clone() {
 				return this;
@@ -3123,7 +3126,7 @@ public class AppPersistenceImpl extends BasePersistenceImpl<App>
 			}
 		};
 
-	private static CacheModel<App> _nullAppCacheModel = new CacheModel<App>() {
+	private static final CacheModel<App> _nullAppCacheModel = new CacheModel<App>() {
 			@Override
 			public App toEntityModel() {
 				return _nullApp;

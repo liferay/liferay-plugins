@@ -14,6 +14,8 @@
 
 package com.liferay.marketplace.service;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.marketplace.model.AppClp;
 import com.liferay.marketplace.model.ModuleClp;
 
@@ -37,6 +39,7 @@ import java.util.List;
 /**
  * @author Ryan Park
  */
+@ProviderType
 public class ClpSerializer {
 	public static String getServletContextName() {
 		if (Validator.isNotNull(_servletContextName)) {

@@ -14,6 +14,8 @@
 
 package com.liferay.marketplace.service.persistence;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.marketplace.model.App;
 
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
@@ -31,6 +33,7 @@ import com.liferay.portal.util.PortalUtil;
  * @generated
  */
 @Deprecated
+@ProviderType
 public class AppExportActionableDynamicQuery extends AppActionableDynamicQuery {
 	public AppExportActionableDynamicQuery(
 		PortletDataContext portletDataContext) {

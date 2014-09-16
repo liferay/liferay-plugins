@@ -14,6 +14,8 @@
 
 package com.liferay.marketplace.service.persistence;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.marketplace.model.App;
 
 import com.liferay.portal.service.persistence.BasePersistence;
@@ -30,6 +32,7 @@ import com.liferay.portal.service.persistence.BasePersistence;
  * @see AppUtil
  * @generated
  */
+@ProviderType
 public interface AppPersistence extends BasePersistence<App> {
 	/*
 	 * NOTE FOR DEVELOPERS:

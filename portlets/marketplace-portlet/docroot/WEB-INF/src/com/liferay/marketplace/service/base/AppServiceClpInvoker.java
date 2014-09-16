@@ -14,6 +14,8 @@
 
 package com.liferay.marketplace.service.base;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.marketplace.service.AppServiceUtil;
 
 import java.util.Arrays;
@@ -22,6 +24,7 @@ import java.util.Arrays;
  * @author Ryan Park
  * @generated
  */
+@ProviderType
 public class AppServiceClpInvoker {
 	public AppServiceClpInvoker() {
 		_methodName28 = "getBeanIdentifier";

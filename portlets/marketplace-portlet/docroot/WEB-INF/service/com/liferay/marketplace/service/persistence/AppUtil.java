@@ -14,6 +14,8 @@
 
 package com.liferay.marketplace.service.persistence;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.marketplace.model.App;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
@@ -36,6 +38,7 @@ import java.util.List;
  * @see AppPersistenceImpl
  * @generated
  */
+@ProviderType
 public class AppUtil {
 	/*
 	 * NOTE FOR DEVELOPERS:

@@ -14,6 +14,8 @@
 
 package com.liferay.marketplace.service;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
 import com.liferay.portal.service.InvokableLocalService;
@@ -32,6 +34,7 @@ import com.liferay.portal.service.InvokableLocalService;
  * @see com.liferay.marketplace.service.impl.ModuleLocalServiceImpl
  * @generated
  */
+@ProviderType
 public class ModuleLocalServiceUtil {
 	/*
 	 * NOTE FOR DEVELOPERS:
@@ -51,8 +54,10 @@ public class ModuleLocalServiceUtil {
 	}
 
 	public static com.liferay.marketplace.model.Module addModule(long userId,
-		long appId, java.lang.String contextName) {
-		return getService().addModule(userId, appId, contextName);
+		long appId, java.lang.String bundleSymbolicName,
+		java.lang.String contextName) {
+		return getService()
+				   .addModule(userId, appId, bundleSymbolicName, contextName);
 	}
 
 	/**
@@ -178,8 +183,8 @@ public class ModuleLocalServiceUtil {
 	}
 
 	public static com.liferay.marketplace.model.Module fetchModule(long appId,
-		java.lang.String contextName) {
-		return getService().fetchModule(appId, contextName);
+		java.lang.String bundleSymbolicName, java.lang.String contextName) {
+		return getService().fetchModule(appId, bundleSymbolicName, contextName);
 	}
 
 	public static com.liferay.marketplace.model.Module fetchModule(

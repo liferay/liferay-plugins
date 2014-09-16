@@ -14,6 +14,8 @@
 
 package com.liferay.marketplace.model;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.marketplace.service.ClpSerializer;
 import com.liferay.marketplace.service.ModuleLocalServiceUtil;
 
@@ -34,6 +36,7 @@ import java.util.Map;
 /**
  * @author Ryan Park
  */
+@ProviderType
 public class ModuleClp extends BaseModelImpl<Module> implements Module {
 	public ModuleClp() {
 	}
@@ -75,6 +78,7 @@ public class ModuleClp extends BaseModelImpl<Module> implements Module {
 		attributes.put("uuid", getUuid());
 		attributes.put("moduleId", getModuleId());
 		attributes.put("appId", getAppId());
+		attributes.put("bundleSymbolicName", getBundleSymbolicName());
 		attributes.put("contextName", getContextName());
 
 		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
@@ -101,6 +105,12 @@ public class ModuleClp extends BaseModelImpl<Module> implements Module {
 
 		if (appId != null) {
 			setAppId(appId);
+		}
+
+		String bundleSymbolicName = (String)attributes.get("bundleSymbolicName");
+
+		if (bundleSymbolicName != null) {
+			setBundleSymbolicName(bundleSymbolicName);
 		}
 
 		String contextName = (String)attributes.get("contextName");
@@ -175,6 +185,30 @@ public class ModuleClp extends BaseModelImpl<Module> implements Module {
 				Method method = clazz.getMethod("setAppId", long.class);
 
 				method.invoke(_moduleRemoteModel, appId);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
+	}
+
+	@Override
+	public String getBundleSymbolicName() {
+		return _bundleSymbolicName;
+	}
+
+	@Override
+	public void setBundleSymbolicName(String bundleSymbolicName) {
+		_bundleSymbolicName = bundleSymbolicName;
+
+		if (_moduleRemoteModel != null) {
+			try {
+				Class<?> clazz = _moduleRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setBundleSymbolicName",
+						String.class);
+
+				method.invoke(_moduleRemoteModel, bundleSymbolicName);
 			}
 			catch (Exception e) {
 				throw new UnsupportedOperationException(e);
@@ -277,6 +311,7 @@ public class ModuleClp extends BaseModelImpl<Module> implements Module {
 		clone.setUuid(getUuid());
 		clone.setModuleId(getModuleId());
 		clone.setAppId(getAppId());
+		clone.setBundleSymbolicName(getBundleSymbolicName());
 		clone.setContextName(getContextName());
 
 		return clone;
@@ -340,7 +375,7 @@ public class ModuleClp extends BaseModelImpl<Module> implements Module {
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(9);
+		StringBundler sb = new StringBundler(11);
 
 		sb.append("{uuid=");
 		sb.append(getUuid());
@@ -348,6 +383,8 @@ public class ModuleClp extends BaseModelImpl<Module> implements Module {
 		sb.append(getModuleId());
 		sb.append(", appId=");
 		sb.append(getAppId());
+		sb.append(", bundleSymbolicName=");
+		sb.append(getBundleSymbolicName());
 		sb.append(", contextName=");
 		sb.append(getContextName());
 		sb.append("}");
@@ -357,7 +394,7 @@ public class ModuleClp extends BaseModelImpl<Module> implements Module {
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(16);
+		StringBundler sb = new StringBundler(19);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.marketplace.model.Module");
@@ -376,6 +413,10 @@ public class ModuleClp extends BaseModelImpl<Module> implements Module {
 		sb.append(getAppId());
 		sb.append("]]></column-value></column>");
 		sb.append(
+			"<column><column-name>bundleSymbolicName</column-name><column-value><![CDATA[");
+		sb.append(getBundleSymbolicName());
+		sb.append("]]></column-value></column>");
+		sb.append(
 			"<column><column-name>contextName</column-name><column-value><![CDATA[");
 		sb.append(getContextName());
 		sb.append("]]></column-value></column>");
@@ -388,6 +429,7 @@ public class ModuleClp extends BaseModelImpl<Module> implements Module {
 	private String _uuid;
 	private long _moduleId;
 	private long _appId;
+	private String _bundleSymbolicName;
 	private String _contextName;
 	private BaseModel<?> _moduleRemoteModel;
 	private Class<?> _clpSerializerClass = com.liferay.marketplace.service.ClpSerializer.class;

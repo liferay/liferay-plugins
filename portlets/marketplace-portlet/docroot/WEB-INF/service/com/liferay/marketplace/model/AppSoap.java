@@ -14,6 +14,8 @@
 
 package com.liferay.marketplace.model;
 
+import aQute.bnd.annotation.ProviderType;
+
 import java.io.Serializable;
 
 import java.util.ArrayList;
@@ -27,6 +29,7 @@ import java.util.List;
  * @see com.liferay.marketplace.service.http.AppServiceSoap
  * @generated
  */
+@ProviderType
 public class AppSoap implements Serializable {
 	public static AppSoap toSoapModel(App model) {
 		AppSoap soapModel = new AppSoap();

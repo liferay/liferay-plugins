@@ -14,6 +14,8 @@
 
 package com.liferay.marketplace.service.persistence;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.marketplace.model.Module;
 
 import com.liferay.portal.service.persistence.BasePersistence;
@@ -30,6 +32,7 @@ import com.liferay.portal.service.persistence.BasePersistence;
  * @see ModuleUtil
  * @generated
  */
+@ProviderType
 public interface ModulePersistence extends BasePersistence<Module> {
 	/*
 	 * NOTE FOR DEVELOPERS:
@@ -270,6 +273,124 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	public int countByAppId(long appId);
 
 	/**
+	* Returns all the modules where bundleSymbolicName = &#63;.
+	*
+	* @param bundleSymbolicName the bundle symbolic name
+	* @return the matching modules
+	*/
+	public java.util.List<com.liferay.marketplace.model.Module> findByBundleSymbolicName(
+		java.lang.String bundleSymbolicName);
+
+	/**
+	* Returns a range of all the modules where bundleSymbolicName = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.marketplace.model.impl.ModuleModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param bundleSymbolicName the bundle symbolic name
+	* @param start the lower bound of the range of modules
+	* @param end the upper bound of the range of modules (not inclusive)
+	* @return the range of matching modules
+	*/
+	public java.util.List<com.liferay.marketplace.model.Module> findByBundleSymbolicName(
+		java.lang.String bundleSymbolicName, int start, int end);
+
+	/**
+	* Returns an ordered range of all the modules where bundleSymbolicName = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.marketplace.model.impl.ModuleModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param bundleSymbolicName the bundle symbolic name
+	* @param start the lower bound of the range of modules
+	* @param end the upper bound of the range of modules (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @return the ordered range of matching modules
+	*/
+	public java.util.List<com.liferay.marketplace.model.Module> findByBundleSymbolicName(
+		java.lang.String bundleSymbolicName, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.marketplace.model.Module> orderByComparator);
+
+	/**
+	* Returns the first module in the ordered set where bundleSymbolicName = &#63;.
+	*
+	* @param bundleSymbolicName the bundle symbolic name
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching module
+	* @throws com.liferay.marketplace.NoSuchModuleException if a matching module could not be found
+	*/
+	public com.liferay.marketplace.model.Module findByBundleSymbolicName_First(
+		java.lang.String bundleSymbolicName,
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.marketplace.model.Module> orderByComparator)
+		throws com.liferay.marketplace.NoSuchModuleException;
+
+	/**
+	* Returns the first module in the ordered set where bundleSymbolicName = &#63;.
+	*
+	* @param bundleSymbolicName the bundle symbolic name
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching module, or <code>null</code> if a matching module could not be found
+	*/
+	public com.liferay.marketplace.model.Module fetchByBundleSymbolicName_First(
+		java.lang.String bundleSymbolicName,
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.marketplace.model.Module> orderByComparator);
+
+	/**
+	* Returns the last module in the ordered set where bundleSymbolicName = &#63;.
+	*
+	* @param bundleSymbolicName the bundle symbolic name
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching module
+	* @throws com.liferay.marketplace.NoSuchModuleException if a matching module could not be found
+	*/
+	public com.liferay.marketplace.model.Module findByBundleSymbolicName_Last(
+		java.lang.String bundleSymbolicName,
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.marketplace.model.Module> orderByComparator)
+		throws com.liferay.marketplace.NoSuchModuleException;
+
+	/**
+	* Returns the last module in the ordered set where bundleSymbolicName = &#63;.
+	*
+	* @param bundleSymbolicName the bundle symbolic name
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching module, or <code>null</code> if a matching module could not be found
+	*/
+	public com.liferay.marketplace.model.Module fetchByBundleSymbolicName_Last(
+		java.lang.String bundleSymbolicName,
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.marketplace.model.Module> orderByComparator);
+
+	/**
+	* Returns the modules before and after the current module in the ordered set where bundleSymbolicName = &#63;.
+	*
+	* @param moduleId the primary key of the current module
+	* @param bundleSymbolicName the bundle symbolic name
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the previous, current, and next module
+	* @throws com.liferay.marketplace.NoSuchModuleException if a module with the primary key could not be found
+	*/
+	public com.liferay.marketplace.model.Module[] findByBundleSymbolicName_PrevAndNext(
+		long moduleId, java.lang.String bundleSymbolicName,
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.marketplace.model.Module> orderByComparator)
+		throws com.liferay.marketplace.NoSuchModuleException;
+
+	/**
+	* Removes all the modules where bundleSymbolicName = &#63; from the database.
+	*
+	* @param bundleSymbolicName the bundle symbolic name
+	*/
+	public void removeByBundleSymbolicName(java.lang.String bundleSymbolicName);
+
+	/**
+	* Returns the number of modules where bundleSymbolicName = &#63;.
+	*
+	* @param bundleSymbolicName the bundle symbolic name
+	* @return the number of matching modules
+	*/
+	public int countByBundleSymbolicName(java.lang.String bundleSymbolicName);
+
+	/**
 	* Returns all the modules where contextName = &#63;.
 	*
 	* @param contextName the context name
@@ -388,6 +509,59 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	public int countByContextName(java.lang.String contextName);
 
 	/**
+	* Returns the module where appId = &#63; and bundleSymbolicName = &#63; or throws a {@link com.liferay.marketplace.NoSuchModuleException} if it could not be found.
+	*
+	* @param appId the app ID
+	* @param bundleSymbolicName the bundle symbolic name
+	* @return the matching module
+	* @throws com.liferay.marketplace.NoSuchModuleException if a matching module could not be found
+	*/
+	public com.liferay.marketplace.model.Module findByA_BSN(long appId,
+		java.lang.String bundleSymbolicName)
+		throws com.liferay.marketplace.NoSuchModuleException;
+
+	/**
+	* Returns the module where appId = &#63; and bundleSymbolicName = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	*
+	* @param appId the app ID
+	* @param bundleSymbolicName the bundle symbolic name
+	* @return the matching module, or <code>null</code> if a matching module could not be found
+	*/
+	public com.liferay.marketplace.model.Module fetchByA_BSN(long appId,
+		java.lang.String bundleSymbolicName);
+
+	/**
+	* Returns the module where appId = &#63; and bundleSymbolicName = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	*
+	* @param appId the app ID
+	* @param bundleSymbolicName the bundle symbolic name
+	* @param retrieveFromCache whether to use the finder cache
+	* @return the matching module, or <code>null</code> if a matching module could not be found
+	*/
+	public com.liferay.marketplace.model.Module fetchByA_BSN(long appId,
+		java.lang.String bundleSymbolicName, boolean retrieveFromCache);
+
+	/**
+	* Removes the module where appId = &#63; and bundleSymbolicName = &#63; from the database.
+	*
+	* @param appId the app ID
+	* @param bundleSymbolicName the bundle symbolic name
+	* @return the module that was removed
+	*/
+	public com.liferay.marketplace.model.Module removeByA_BSN(long appId,
+		java.lang.String bundleSymbolicName)
+		throws com.liferay.marketplace.NoSuchModuleException;
+
+	/**
+	* Returns the number of modules where appId = &#63; and bundleSymbolicName = &#63;.
+	*
+	* @param appId the app ID
+	* @param bundleSymbolicName the bundle symbolic name
+	* @return the number of matching modules
+	*/
+	public int countByA_BSN(long appId, java.lang.String bundleSymbolicName);
+
+	/**
 	* Returns the module where appId = &#63; and contextName = &#63; or throws a {@link com.liferay.marketplace.NoSuchModuleException} if it could not be found.
 	*
 	* @param appId the app ID
@@ -395,7 +569,7 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	* @return the matching module
 	* @throws com.liferay.marketplace.NoSuchModuleException if a matching module could not be found
 	*/
-	public com.liferay.marketplace.model.Module findByA_C(long appId,
+	public com.liferay.marketplace.model.Module findByA_CN(long appId,
 		java.lang.String contextName)
 		throws com.liferay.marketplace.NoSuchModuleException;
 
@@ -406,7 +580,7 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	* @param contextName the context name
 	* @return the matching module, or <code>null</code> if a matching module could not be found
 	*/
-	public com.liferay.marketplace.model.Module fetchByA_C(long appId,
+	public com.liferay.marketplace.model.Module fetchByA_CN(long appId,
 		java.lang.String contextName);
 
 	/**
@@ -417,7 +591,7 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	* @param retrieveFromCache whether to use the finder cache
 	* @return the matching module, or <code>null</code> if a matching module could not be found
 	*/
-	public com.liferay.marketplace.model.Module fetchByA_C(long appId,
+	public com.liferay.marketplace.model.Module fetchByA_CN(long appId,
 		java.lang.String contextName, boolean retrieveFromCache);
 
 	/**
@@ -427,7 +601,7 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	* @param contextName the context name
 	* @return the module that was removed
 	*/
-	public com.liferay.marketplace.model.Module removeByA_C(long appId,
+	public com.liferay.marketplace.model.Module removeByA_CN(long appId,
 		java.lang.String contextName)
 		throws com.liferay.marketplace.NoSuchModuleException;
 
@@ -438,7 +612,7 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	* @param contextName the context name
 	* @return the number of matching modules
 	*/
-	public int countByA_C(long appId, java.lang.String contextName);
+	public int countByA_CN(long appId, java.lang.String contextName);
 
 	/**
 	* Caches the module in the entity cache if it is enabled.

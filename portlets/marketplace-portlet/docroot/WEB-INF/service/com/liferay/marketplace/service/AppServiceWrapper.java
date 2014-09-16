@@ -14,6 +14,8 @@
 
 package com.liferay.marketplace.service;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.service.ServiceWrapper;
 
 /**
@@ -23,6 +25,7 @@ import com.liferay.portal.service.ServiceWrapper;
  * @see AppService
  * @generated
  */
+@ProviderType
 public class AppServiceWrapper implements AppService,
 	ServiceWrapper<AppService> {
 	public AppServiceWrapper(AppService appService) {

@@ -14,6 +14,8 @@
 
 package com.liferay.marketplace.service.base;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.marketplace.service.ModuleLocalServiceUtil;
 
 import java.util.Arrays;
@@ -22,6 +24,7 @@ import java.util.Arrays;
  * @author Ryan Park
  * @generated
  */
+@ProviderType
 public class ModuleLocalServiceClpInvoker {
 	public ModuleLocalServiceClpInvoker() {
 		_methodName0 = "addModule";
@@ -127,12 +130,14 @@ public class ModuleLocalServiceClpInvoker {
 		_methodName53 = "addModule";
 
 		_methodParameterTypes53 = new String[] {
-				"long", "long", "java.lang.String"
+				"long", "long", "java.lang.String", "java.lang.String"
 			};
 
 		_methodName54 = "fetchModule";
 
-		_methodParameterTypes54 = new String[] { "long", "java.lang.String" };
+		_methodParameterTypes54 = new String[] {
+				"long", "java.lang.String", "java.lang.String"
+			};
 
 		_methodName55 = "getModules";
 
@@ -253,13 +258,14 @@ public class ModuleLocalServiceClpInvoker {
 		if (_methodName53.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes53, parameterTypes)) {
 			return ModuleLocalServiceUtil.addModule(((Long)arguments[0]).longValue(),
-				((Long)arguments[1]).longValue(), (java.lang.String)arguments[2]);
+				((Long)arguments[1]).longValue(),
+				(java.lang.String)arguments[2], (java.lang.String)arguments[3]);
 		}
 
 		if (_methodName54.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes54, parameterTypes)) {
 			return ModuleLocalServiceUtil.fetchModule(((Long)arguments[0]).longValue(),
-				(java.lang.String)arguments[1]);
+				(java.lang.String)arguments[1], (java.lang.String)arguments[2]);
 		}
 
 		if (_methodName55.equals(name) &&

@@ -14,12 +14,15 @@
 
 package com.liferay.marketplace.service;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.service.InvokableService;
 
 /**
  * @author Ryan Park
  * @generated
  */
+@ProviderType
 public class AppServiceClp implements AppService {
 	public AppServiceClp(InvokableService invokableService) {
 		_invokableService = invokableService;

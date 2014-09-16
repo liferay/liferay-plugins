@@ -14,6 +14,8 @@
 
 package com.liferay.marketplace.service.http;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.marketplace.service.AppServiceUtil;
 
 import com.liferay.portal.kernel.log.Log;
@@ -61,6 +63,7 @@ import java.rmi.RemoteException;
  * @see com.liferay.marketplace.service.AppServiceUtil
  * @generated
  */
+@ProviderType
 public class AppServiceSoap {
 	public static com.liferay.marketplace.model.AppSoap deleteApp(long appId)
 		throws RemoteException {
