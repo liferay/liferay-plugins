@@ -33,8 +33,9 @@ import javax.management.openmbean.TabularData;
  */
 public class BundleUtil {
 
-	public static Map<String, Map> getInstalledBundles() {
-		Map<String, Map> bundles = new HashMap<String, Map>();
+	public static Map<String, Map<String, Object>> getInstalledBundles() {
+		Map<String, Map<String, Object>> bundles =
+			new HashMap<String, Map<String, Object>>();
 
 		try {
 			MBeanServer mBeanServer =
@@ -42,11 +43,11 @@ public class BundleUtil {
 
 			ObjectName objectName = new ObjectName(_BUNDLE_STATE_OBJECT_NAME);
 
-			TabularData data = (TabularData)mBeanServer.invoke(
+			TabularData tabularData = (TabularData)mBeanServer.invoke(
 				objectName, "listBundles", null, null);
 
 			Collection<CompositeData> values =
-				(Collection<CompositeData>)data.values();
+				(Collection<CompositeData>)tabularData.values();
 
 			for (CompositeData compositeData : values) {
 				String state = (String)compositeData.get("State");
@@ -86,7 +87,7 @@ public class BundleUtil {
 
 			ObjectName objectName = new ObjectName(_FRAMEWORK_OBJECT_NAME);
 
-			Map<String, Map> bundles = getInstalledBundles();
+			Map<String, Map<String, Object>> bundles = getInstalledBundles();
 
 			Map<String, Object> bundleData = bundles.get(bundleSymbolicName);
 
