@@ -356,8 +356,9 @@ public class CalendarPortlet extends MVCPortlet {
 						reminders[1], remindersType[1], status, serviceContext);
 			}
 			else {
-				calendarBooking = CalendarBookingServiceUtil.getCalendarBooking(
-					calendarBookingId);
+				calendarBooking =
+					CalendarBookingServiceUtil.getCalendarBookingInstance(
+						calendarBookingId, instanceIndex);
 
 				long duration =
 					(endTimeJCalendar.getTimeInMillis() -
