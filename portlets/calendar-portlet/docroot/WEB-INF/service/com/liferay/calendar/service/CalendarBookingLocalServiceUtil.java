@@ -307,6 +307,13 @@ public class CalendarBookingLocalServiceUtil {
 		return getService().getCalendarBookingByUuidAndGroupId(uuid, groupId);
 	}
 
+	public static com.liferay.calendar.model.CalendarBooking getCalendarBookingInstance(
+		long calendarBookingId, int instanceIndex)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService()
+				   .getCalendarBookingInstance(calendarBookingId, instanceIndex);
+	}
+
 	public static java.util.List<com.liferay.calendar.model.CalendarBooking> getCalendarBookings(
 		long calendarId) {
 		return getService().getCalendarBookings(calendarId);

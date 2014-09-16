@@ -212,6 +212,21 @@ public class CalendarBookingServiceSoap {
 		}
 	}
 
+	public static com.liferay.calendar.model.CalendarBookingSoap getCalendarBookingInstance(
+		long calendarBookingId, int instanceIndex) throws RemoteException {
+		try {
+			com.liferay.calendar.model.CalendarBooking returnValue = CalendarBookingServiceUtil.getCalendarBookingInstance(calendarBookingId,
+					instanceIndex);
+
+			return com.liferay.calendar.model.CalendarBookingSoap.toSoapModel(returnValue);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
 	public static com.liferay.calendar.model.CalendarBookingSoap getCalendarBooking(
 		long calendarId, long parentCalendarBookingId)
 		throws RemoteException {
