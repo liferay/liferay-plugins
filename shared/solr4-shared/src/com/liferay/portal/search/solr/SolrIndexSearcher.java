@@ -262,7 +262,7 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 
 		solrQuery.setIncludeScore(queryConfig.isScoreEnabled());
 
-		translateQuery(solrQuery, searchContext, query);
+		translateQuery(searchContext, query, solrQuery);
 
 		QueryResponse queryResponse = _solrServer.query(solrQuery, METHOD.POST);
 
@@ -467,7 +467,7 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 	}
 
 	protected void translateQuery(
-			SolrQuery solrQuery, SearchContext searchContext, Query query)
+			SearchContext searchContext, Query query, SolrQuery solrQuery)
 		throws Exception {
 
 		QueryTranslatorUtil.translateForSolr(query);
