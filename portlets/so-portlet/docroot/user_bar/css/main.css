@@ -72,7 +72,6 @@ $defaultTextColor: #202020;
 
 				@include hover-transition;
 
-				height: 2em;
 				line-height: 2em;
 				padding: 0.58em 0.8em;
 
@@ -90,16 +89,20 @@ $defaultTextColor: #202020;
 
 /* ---------- Dockbar ---------- */
 
-.aui .portlet-dockbar {
+.aui .dockbar-split .portlet-dockbar {
 	z-index: 301;
 
 	.dockbar {
+		background: transparent;
+
 		.my-sites.dropdown {
 			display: none;
 		}
 
-		.navbar-inner .container {
-			.collapse .nav-account-controls {
+		.container-fluid {
+			padding: 0;
+
+			> .nav.nav-account-controls {
 				border-top-width: 0;
 				margin: 0;
 				position: static;
@@ -164,7 +167,7 @@ $defaultTextColor: #202020;
 			}
 		}
 
-		.navbar-inner .container .btn-navbar, .nav .user-avatar .user-avatar-link {
+		.container-fluid .dockbar-item, .nav .user-avatar .user-avatar-link {
 			.user-avatar-image {
 				@include border-radius(50%);
 				@include box-shadow(none);
@@ -228,7 +231,7 @@ $defaultTextColor: #202020;
 		height: auto;
 		position: static;
 
-		.navbar-inner {
+		.container-fluid {
 			background: none;
 
 			@include box-shadow(none);
@@ -251,7 +254,7 @@ $defaultTextColor: #202020;
 	.portlet-dockbar {
 		clear: both;
 
-		.navbar-inner .container .collapse .nav-account-controls {
+		.container-fluid .nav-account-controls {
 			bottom: 100%;
 			position: relative;
 		}
@@ -324,21 +327,25 @@ $defaultTextColor: #202020;
 				position: absolute;
 			}
 
-			.navbar-inner {
+			.container-fluid {
 				background: transparent;
 
-				.container {
+				.navbar-nav {
 					z-index: 301;
 
-					.btn-navbar {
+					li {
+						margin: 0;
+					}
+
+					.dockbar-item {
 						background-color: transparent;
 						background-image: none;
 						border-width: 0;
 						color: #FFF;
 						float: right;
 						font-size: 1.6em;
-						margin: 0.17em;
-						padding: 0.28em 0.35em;
+						margin: 0;
+						padding: 0;
 
 						&:hover {
 							background-color: #E6E6E6;
@@ -362,7 +369,7 @@ $defaultTextColor: #202020;
 						padding: 0.75em;
 					}
 
-					.nav-collapse.open {
+					.dockbar-item.open {
 						ul {
 							background-color: #DDD;
 							margin-left: 0;
@@ -401,6 +408,7 @@ $defaultTextColor: #202020;
 
 							.nav-item-label {
 								background: transparent;
+								color: #FFF;
 								display: inline;
 								left: 0;
 								margin: 0;
@@ -439,16 +447,16 @@ $defaultTextColor: #202020;
 						padding-right: 0.5em;
 					}
 
-					.collapse .nav-account-controls > li {
+					.nav-account-controls > li {
 						background: transparent;
 					}
 
 					.go-to {
-						display: none;
+						/*display: none;*/
 					}
 
 					.my-sites {
-						display: block;
+						display: none;
 					}
 
 					.dockbar-user-notifications {
@@ -462,9 +470,9 @@ $defaultTextColor: #202020;
 						}
 
 						.user-notification-link .user-notifications-count {
-							background-color: #333;
-							color: #FFF;
-							margin: 5px 0 4px;
+							/*background-color: #333;*/
+							/*color: #FFF;*/
+							/*margin: 5px 0 4px;*/
 						}
 
 						.user-notification {
@@ -480,6 +488,10 @@ $defaultTextColor: #202020;
 						.non-actionable .user-notification:hover {
 							background-color: rgba(0, 0, 0, 0.2);
 						}
+					}
+
+					.user-avatar-image {
+						 display: block;
 					}
 				}
 			}
@@ -513,7 +525,7 @@ $defaultTextColor: #202020;
 		}
 	}
 
-	.portlet-dockbar .dockbar .navbar-inner .container .nav-collapse.open ul .dockbar-user-notifications {
+	.portlet-dockbar .dockbar .container-fluid .dockbar-item.open ul .dockbar-user-notifications {
 		.title, .user-notifications-header {
 			a:hover {
 				background: transparent;
