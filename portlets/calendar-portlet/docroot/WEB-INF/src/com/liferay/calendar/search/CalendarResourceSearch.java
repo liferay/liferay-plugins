@@ -40,8 +40,12 @@ import javax.portlet.PortletURL;
  */
 public class CalendarResourceSearch extends SearchContainer<CalendarResource> {
 
-	static List<String> headerNames = new ArrayList<String>();
-	static Map<String, String> orderableHeaders = new HashMap<String, String>();
+	public static final String EMPTY_RESULTS_MESSAGE =
+		"no-calendar-resources-were-found";
+
+	public static List<String> headerNames = new ArrayList<String>();
+	public static Map<String, String> orderableHeaders =
+		new HashMap<String, String>();
 
 	static {
 		headerNames.add("code");
@@ -52,9 +56,6 @@ public class CalendarResourceSearch extends SearchContainer<CalendarResource> {
 		orderableHeaders.put("code", "code");
 		orderableHeaders.put("name", "name");
 	}
-
-	public static final String EMPTY_RESULTS_MESSAGE =
-		"no-calendar-resources-were-found";
 
 	public CalendarResourceSearch(
 		PortletRequest portletRequest, String curParam,
