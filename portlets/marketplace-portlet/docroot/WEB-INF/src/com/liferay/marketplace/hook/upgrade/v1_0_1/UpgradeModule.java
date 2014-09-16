@@ -32,7 +32,7 @@ public class UpgradeModule extends UpgradeProcess {
 		}
 
 		runSQL(
-			"alter table Marketplace_Module add column bundleSymbolicName" +
+			"alter table Marketplace_Module add column bundleSymbolicName " +
 				"VARCHAR(500)");
 
 		try {
