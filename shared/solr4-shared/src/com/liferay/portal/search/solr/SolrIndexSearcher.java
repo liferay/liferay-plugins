@@ -406,6 +406,25 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 			allResults);
 	}
 
+	protected Document processSolrDocument(SolrDocument solrDocument) {
+		Document document = new DocumentImpl();
+
+		Collection<String> names = solrDocument.getFieldNames();
+
+		for (String name : names) {
+			Collection<Object> fieldValues = solrDocument.getFieldValues(name);
+
+			Field field = new Field(
+				name,
+				ArrayUtil.toStringArray(
+					fieldValues.toArray(new Object[fieldValues.size()])));
+
+			document.add(field);
+		}
+
+		return document;
+	}
+
 	protected Hits subset(
 			SolrQuery solrQuery, Query query, QueryConfig queryConfig,
 			QueryResponse queryResponse, boolean allResults)
@@ -436,21 +455,7 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 		int subsetTotal = 0;
 
 		for (SolrDocument solrDocument : solrDocumentList) {
-			Document document = new DocumentImpl();
-
-			Collection<String> names = solrDocument.getFieldNames();
-
-			for (String name : names) {
-				Collection<Object> fieldValues = solrDocument.getFieldValues(
-					name);
-
-				Field field = new Field(
-					name,
-					ArrayUtil.toStringArray(
-						fieldValues.toArray(new Object[fieldValues.size()])));
-
-				document.add(field);
-			}
+			Document document = processSolrDocument(solrDocument);
 
 			documents.add(document);
 
