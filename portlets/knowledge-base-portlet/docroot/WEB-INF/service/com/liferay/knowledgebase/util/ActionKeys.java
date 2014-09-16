@@ -23,6 +23,8 @@ public class ActionKeys
 
 	public static final String ADD_KB_ARTICLE = "ADD_KB_ARTICLE";
 
+	public static final String ADD_KB_FOLDER = "ADD_KB_FOLDER";
+
 	public static final String ADD_KB_TEMPLATE = "ADD_KB_TEMPLATE";
 
 	public static final String ADMINISTRATOR = "ADMINISTRATOR";
@@ -32,6 +34,8 @@ public class ActionKeys
 	public static final String DELETE_KB_TEMPLATES = "DELETE_KB_TEMPLATES";
 
 	public static final String MOVE_KB_ARTICLE = "MOVE_KB_ARTICLE";
+
+	public static final String MOVE_KB_FOLDER = "MOVE_KB_FOLDER";
 
 	public static final String UPDATE_KB_ARTICLES_PRIORITIES =
 		"UPDATE_KB_ARTICLES_PRIORITIES";

@@ -12,24 +12,24 @@
  * details.
  */
 
-package com.liferay.knowledgebase.model;
+package com.liferay.knowledgebase.hook.upgrade;
+
+import com.liferay.knowledgebase.hook.upgrade.v1_3_2.UpgradeKBArticle;
+import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 
 /**
- * @author Peter Shin
- * @author Brian Wing Shun Chan
+ * @author Adolfo Pérez
  */
-public class KBArticleConstants {
+public class UpgradeProcess_1_3_2 extends UpgradeProcess {
 
-	public static final long DEFAULT_PARENT_RESOURCE_PRIM_KEY = 0;
+	@Override
+	public int getThreshold() {
+		return 132;
+	}
 
-	public static final double DEFAULT_PRIORITY = 1.0;
-
-	public static final int DEFAULT_VERSION = 1;
-
-	public static final String DIR_NAME_PREFIX = "knowledgebase/kbarticles/";
-
-	public static String getClassName() {
-		return KBArticle.class.getName();
+	@Override
+	protected void doUpgrade() throws Exception {
+		upgrade(UpgradeKBArticle.class);
 	}
 
 }

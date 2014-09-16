@@ -103,6 +103,7 @@
 		<permissions>
 			<supports>
 				<action-key>ADD_KB_ARTICLE</action-key>
+				<action-key>ADD_KB_FOLDER</action-key>
 				<action-key>ADD_KB_TEMPLATE</action-key>
 				<action-key>DELETE_KB_ARTICLES</action-key>
 				<action-key>DELETE_KB_TEMPLATES</action-key>
@@ -118,6 +119,7 @@
 			<guest-defaults />
 			<guest-unsupported>
 				<action-key>ADD_KB_ARTICLE</action-key>
+				<action-key>ADD_KB_FOLDER</action-key>
 				<action-key>ADD_KB_TEMPLATE</action-key>
 				<action-key>DELETE_KB_ARTICLES</action-key>
 				<action-key>DELETE_KB_TEMPLATES</action-key>
@@ -183,6 +185,37 @@
 				<action-key>MOVE_KB_ARTICLE</action-key>
 				<action-key>PERMISSIONS</action-key>
 				<action-key>SUBSCRIBE</action-key>
+				<action-key>UPDATE</action-key>
+			</guest-unsupported>
+		</permissions>
+	</model-resource>
+	<model-resource>
+		<model-name>com.liferay.knowledgebase.model.KBFolder</model-name>
+		<portlet-ref>
+			<portlet-name>1</portlet-name>
+		</portlet-ref>
+		<permissions>
+			<supports>
+				<action-key>ADD_KB_ARTICLE</action-key>
+				<action-key>ADD_KB_FOLDER</action-key>
+				<action-key>DELETE</action-key>
+				<action-key>MOVE_KB_FOLDER</action-key>
+				<action-key>PERMISSIONS</action-key>
+				<action-key>UPDATE</action-key>
+				<action-key>VIEW</action-key>
+			</supports>
+			<site-member-defaults>
+				<action-key>VIEW</action-key>
+			</site-member-defaults>
+			<guest-defaults>
+				<action-key>VIEW</action-key>
+			</guest-defaults>
+			<guest-unsupported>
+				<action-key>ADD_KB_ARTICLE</action-key>
+				<action-key>ADD_KB_FOLDER</action-key>
+				<action-key>DELETE</action-key>
+				<action-key>MOVE_KB_FOLDER</action-key>
+				<action-key>PERMISSIONS</action-key>
 				<action-key>UPDATE</action-key>
 			</guest-unsupported>
 		</permissions>
