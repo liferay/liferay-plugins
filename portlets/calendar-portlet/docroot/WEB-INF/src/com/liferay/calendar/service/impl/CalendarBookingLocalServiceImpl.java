@@ -434,6 +434,17 @@ public class CalendarBookingLocalServiceImpl
 	}
 
 	@Override
+	public CalendarBooking getCalendarBookingInstance(
+			long calendarBookingId, int instanceIndex)
+		throws PortalException, SystemException {
+
+		CalendarBooking calendarBooking = getCalendarBooking(calendarBookingId);
+
+		return RecurrenceUtil.getCalendarBookingInstance(
+			calendarBooking, instanceIndex);
+	}
+
+	@Override
 	public List<CalendarBooking> getCalendarBookings(long calendarId)
 		throws SystemException {
 
