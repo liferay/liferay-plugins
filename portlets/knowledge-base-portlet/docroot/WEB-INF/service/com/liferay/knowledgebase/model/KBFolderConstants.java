@@ -15,21 +15,14 @@
 package com.liferay.knowledgebase.model;
 
 /**
- * @author Peter Shin
- * @author Brian Wing Shun Chan
+ * @author Adolfo Pérez
  */
-public class KBArticleConstants {
+public class KBFolderConstants {
 
-	public static final long DEFAULT_PARENT_RESOURCE_PRIM_KEY = 0;
-
-	public static final double DEFAULT_PRIORITY = 1.0;
-
-	public static final int DEFAULT_VERSION = 1;
-
-	public static final String DIR_NAME_PREFIX = "knowledgebase/kbarticles/";
+	public static final long DEFAULT_PARENT_FOLDER_ID = 0;
 
 	public static String getClassName() {
-		return KBArticle.class.getName();
+		return KBFolder.class.getName();
 	}
 
 }
