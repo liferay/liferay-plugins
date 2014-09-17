@@ -10,6 +10,7 @@ Export-Package: \
 	com.liferay.portal.servlet.filters.dynamiccss,\
 	com.liferay.portal.jsonwebservice,\
 	com.liferay.portal.spring.context,\
+	com.liferay.portal.spring.transaction,\
 	com.liferay.portal.struts,\
 	com.liferay.portal.templateparser,\
 	com.liferay.util,\
