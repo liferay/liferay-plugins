@@ -15,6 +15,7 @@
 package com.liferay.portal.search.solr;
 
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
+import com.liferay.portal.kernel.dao.search.SearchPaginationUtil;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.log.Log;
@@ -86,9 +87,26 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 		stopWatch.start();
 
 		try {
+			int total = (int)searchCount(searchContext, query);
+
+			int start = searchContext.getStart();
+			int end = searchContext.getEnd();
+
+			if ((searchContext.getStart() == QueryUtil.ALL_POS) &&
+				(searchContext.getEnd() == QueryUtil.ALL_POS)) {
+
+				start = 0;
+				end = total;
+			}
+
+			int[] startAndEnd = SearchPaginationUtil.calculateStartAndEnd(
+				start, end, total);
+
+			start = startAndEnd[0];
+			end = startAndEnd[1];
+
 			QueryResponse queryResponse = search(
-				searchContext, query, searchContext.getStart(),
-				searchContext.getEnd(), false);
+				searchContext, query, start, end, false);
 
 			Hits hits = processQueryResponse(
 				queryResponse, searchContext, query);
@@ -259,13 +277,8 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 	}
 
 	protected void addPagination(SolrQuery solrQuery, int start, int end) {
-		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS)) {
-			solrQuery.setRows(0);
-		}
-		else {
-			solrQuery.setRows(end - start);
-			solrQuery.setStart(start);
-		}
+		solrQuery.setStart(start);
+		solrQuery.setRows(end - start);
 	}
 
 	protected void addSelectedFields(
@@ -392,25 +405,7 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 
 		long startTime = System.currentTimeMillis();
 
-		boolean allResults = false;
-
-		if ((searchContext.getStart() == QueryUtil.ALL_POS) &&
-			(searchContext.getEnd() == QueryUtil.ALL_POS)) {
-
-			allResults = true;
-		}
-
 		SolrDocumentList solrDocumentList = queryResponse.getResults();
-
-		long total = solrDocumentList.getNumFound();
-
-		if (allResults && (total > 0)) {
-			queryResponse = search(searchContext, query, 0, (int)total, false);
-
-			solrDocumentList = queryResponse.getResults();
-
-			total = solrDocumentList.getNumFound();
-		}
 
 		updateFacetCollectors(queryResponse, searchContext);
 
@@ -439,7 +434,7 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 		}
 
 		hits.setDocs(documents.toArray(new Document[documents.size()]));
-		hits.setLength((int)total);
+		hits.setLength((int)solrDocumentList.getNumFound());
 		hits.setQuery(query);
 		hits.setQueryTerms(queryTerms.toArray(new String[queryTerms.size()]));
 
