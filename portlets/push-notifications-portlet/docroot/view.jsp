@@ -17,7 +17,7 @@
 <%@ include file="/init.jsp" %>
 
 <aui:form name="fm">
-	<aui:input label="message" name="message" type="textarea" />
+	<aui:input label="message" name="message" required="true" type="textarea" />
 
 	<aui:input label="url" name="url" />
 
@@ -32,14 +32,25 @@
 		function(event) {
 			event.halt();
 
+			var type = 'text';
 			var message = form.one('textarea[name="<portlet:namespace />message"]').val();
-			var url = form.one('input[name="<portlet:namespace />url"]').val();
+			var url = form.one('input[name="<portlet:namespace />url"]').val().trim();
+
+			if (url.length !== 0) {
+				if (<portlet:namespace />isImage(url)) {
+					type = 'image';
+				}
+				else {
+					type = 'link';
+				}
+			}
 
 			Liferay.Service(
 				'/push-notifications-portlet.pushnotificationsdevice/send-push-notification',
 				{
 					payload: A.JSON.stringify(
 						{
+							type: type,
 							message: message,
 							url: url
 						}
@@ -48,4 +59,15 @@
 			);
 		}
 	);
+
+	function <portlet:namespace />isImage(url) {
+		var regex = /(.*\.(?:png|jpg|jpeg|gif))/i;
+
+		if (regex.test(url)) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
 </aui:script>
