@@ -241,8 +241,8 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 	}
 
 	protected void addPagination(SolrQuery solrQuery, int start, int end) {
-		solrQuery.setStart(start);
 		solrQuery.setRows(end - start);
+		solrQuery.setStart(start);
 	}
 
 	protected void addSelectedFields(
