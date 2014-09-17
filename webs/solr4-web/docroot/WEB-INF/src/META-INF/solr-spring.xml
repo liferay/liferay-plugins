@@ -39,9 +39,24 @@
 		</property>
 	</bean>
 
+	<!-- Solr facet -->
+
+	<bean id="com.liferay.portal.search.solr.facet.DefaultFacetProcessor" class="com.liferay.portal.search.solr.facet.DefaultFacetProcessor" />
+	<bean id="com.liferay.portal.search.solr.facet.RangeFacetProcessor" class="com.liferay.portal.search.solr.facet.RangeFacetProcessor" />
+	<bean id="com.liferay.portal.search.solr.facet.CompositeFacetProcessor" class="com.liferay.portal.search.solr.facet.CompositeFacetProcessor" >
+		<property name="defaultFacetProcessor" ref="com.liferay.portal.search.solr.facet.DefaultFacetProcessor" />
+		<property name="facetProcessors">
+			<map>
+				<entry key="com.liferay.portal.kernel.search.facet.ModifiedFacet" value-ref="com.liferay.portal.search.solr.facet.RangeFacetProcessor" />
+				<entry key="com.liferay.portal.kernel.search.facet.RangeFacet" value-ref="com.liferay.portal.search.solr.facet.RangeFacetProcessor" />
+			</map>
+		</property>
+	</bean>
+
 	<!-- Solr search engine adapter -->
 
 	<bean id="com.liferay.portal.search.solr.SolrIndexSearcher" class="com.liferay.portal.search.solr.SolrIndexSearcher">
+		<property name="facetProcessor" ref="com.liferay.portal.search.solr.facet.CompositeFacetProcessor" />
 		<property name="querySuggester" ref="com.liferay.portal.search.solr.SolrQuerySuggester" />
 		<property name="solrServer" ref="com.liferay.portal.search.solr.server.BasicAuthSolrServer" />
 		<property name="swallowException" value="true" />
