@@ -279,8 +279,8 @@
 			</fragmenter>
 			<formatter class="solr.highlight.HtmlFormatter" default="true" name="html">
 				<lst name="defaults">
-					<str name="hl.simple.pre"><![CDATA[<em>]]></str>
-					<str name="hl.simple.post"><![CDATA[</em>]]></str>
+					<str name="hl.simple.pre"><![CDATA[<em_solr>]]></str>
+					<str name="hl.simple.post"><![CDATA[</em_solr>]]></str>
 				</lst>
 			</formatter>
 			<encoder class="solr.highlight.HtmlEncoder" name="html" />
