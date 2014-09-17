@@ -417,15 +417,13 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 		Hits hits = new HitsImpl();
 
 		List<Document> documents = new ArrayList<Document>();
-		List<Float> scores = new ArrayList<Float>();
-		List<String> snippets = new ArrayList<String>();
-
 		float maxScore = -1;
 		Set<String> queryTerms = new HashSet<String>();
+		List<Float> scores = new ArrayList<Float>();
+		List<String> snippets = new ArrayList<String>();
 		int subsetTotal = 0;
 
 		QueryConfig queryConfig = query.getQueryConfig();
-
 		Map<String, Map<String, List<String>>> highlights =
 			queryResponse.getHighlighting();
 
@@ -464,13 +462,14 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 	protected Document processSolrDocument(SolrDocument solrDocument) {
 		Document document = new DocumentImpl();
 
-		Collection<String> names = solrDocument.getFieldNames();
+		Collection<String> fieldNames = solrDocument.getFieldNames();
 
-		for (String name : names) {
-			Collection<Object> fieldValues = solrDocument.getFieldValues(name);
+		for (String fieldName : fieldNames) {
+			Collection<Object> fieldValues = solrDocument.getFieldValues(
+				fieldName);
 
 			Field field = new Field(
-				name,
+				fieldName,
 				ArrayUtil.toStringArray(
 					fieldValues.toArray(new Object[fieldValues.size()])));
 
