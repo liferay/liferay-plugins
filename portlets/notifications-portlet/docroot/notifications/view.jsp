@@ -40,7 +40,7 @@ boolean actionable = ParamUtil.getBoolean(request, "actionable");
 					<span class="title"><liferay-ui:message key="requests" /></span>
 
 					<%
-					int unreadActionableUserNotificationsCount = NotificationsUtil.getArchivedUserNotificationEventsCount(themeDisplay.getUserId(), UserNotificationDeliveryConstants.TYPE_WEBSITE, true, false);
+					int unreadActionableUserNotificationsCount = UserNotificationEventLocalServiceUtil.getArchivedUserNotificationEventsCount(themeDisplay.getUserId(), UserNotificationDeliveryConstants.TYPE_WEBSITE, true, false);
 					%>
 
 					<span class="count"><%= unreadActionableUserNotificationsCount %></span>
