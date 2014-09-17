@@ -451,10 +451,6 @@ $defaultTextColor: #202020;
 						background: transparent;
 					}
 
-					.go-to {
-						/*display: none;*/
-					}
-
 					.my-sites {
 						display: none;
 					}
@@ -467,12 +463,6 @@ $defaultTextColor: #202020;
 							> li {
 								text-align: left;
 							}
-						}
-
-						.user-notification-link .user-notifications-count {
-							/*background-color: #333;*/
-							/*color: #FFF;*/
-							/*margin: 5px 0 4px;*/
 						}
 
 						.user-notification {
