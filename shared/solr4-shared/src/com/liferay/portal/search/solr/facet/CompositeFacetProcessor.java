@@ -25,18 +25,16 @@ import java.util.Map;
 public class CompositeFacetProcessor<T> implements FacetProcessor<T> {
 
 	public void processFacet(T searchQuery, Facet facet) {
+		Class<?> clazz = facet.getClass();
 
-			Class<?> clazz = facet.getClass();
+		FacetProcessor facetProcessor = _facetProcessors.get(clazz.getName());
 
-			FacetProcessor facetProcessor = _facetProcessors.get(
-				clazz.getName());
-
-			if (facetProcessor == null) {
-				facetProcessor = _defaultFacetProcessor;
-			}
-
-			facetProcessor.processFacet(searchQuery, facet);
+		if (facetProcessor == null) {
+			facetProcessor = _defaultFacetProcessor;
 		}
+
+		facetProcessor.processFacet(searchQuery, facet);
+	}
 
 	public void setDefaultFacetProcessor(
 		FacetProcessor<?> defaultFacetProcessor) {

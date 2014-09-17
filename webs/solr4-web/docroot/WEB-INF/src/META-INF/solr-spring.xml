@@ -41,9 +41,7 @@
 
 	<!-- Solr facet -->
 
-	<bean id="com.liferay.portal.search.solr.facet.DefaultFacetProcessor" class="com.liferay.portal.search.solr.facet.DefaultFacetProcessor" />
-	<bean id="com.liferay.portal.search.solr.facet.RangeFacetProcessor" class="com.liferay.portal.search.solr.facet.RangeFacetProcessor" />
-	<bean id="com.liferay.portal.search.solr.facet.CompositeFacetProcessor" class="com.liferay.portal.search.solr.facet.CompositeFacetProcessor" >
+	<bean id="com.liferay.portal.search.solr.facet.CompositeFacetProcessor" class="com.liferay.portal.search.solr.facet.CompositeFacetProcessor">
 		<property name="defaultFacetProcessor" ref="com.liferay.portal.search.solr.facet.DefaultFacetProcessor" />
 		<property name="facetProcessors">
 			<map>
@@ -52,6 +50,8 @@
 			</map>
 		</property>
 	</bean>
+	<bean id="com.liferay.portal.search.solr.facet.DefaultFacetProcessor" class="com.liferay.portal.search.solr.facet.DefaultFacetProcessor" />
+	<bean id="com.liferay.portal.search.solr.facet.RangeFacetProcessor" class="com.liferay.portal.search.solr.facet.RangeFacetProcessor" />
 
 	<!-- Solr search engine adapter -->
 
