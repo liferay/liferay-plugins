@@ -85,13 +85,12 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 		stopWatch.start();
 
 		try {
-			SolrQuery solrQuery = new SolrQuery();
-
 			QueryResponse queryResponse = search(
-				solrQuery, searchContext, query);
+				searchContext, query, searchContext.getStart(),
+				searchContext.getEnd());
 
 			Hits hits = processQueryResponse(
-				solrQuery, queryResponse, searchContext, query);
+				queryResponse, searchContext, query);
 
 			hits.setStart(stopWatch.getStartTime());
 
@@ -367,8 +366,8 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 	}
 
 	protected Hits processQueryResponse(
-			SolrQuery solrQuery, QueryResponse queryResponse,
-			SearchContext searchContext, Query query)
+			QueryResponse queryResponse, SearchContext searchContext,
+			Query query)
 		throws Exception {
 
 		boolean allResults = false;
@@ -379,10 +378,8 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 			allResults = true;
 		}
 
-		updateFacetCollectors(queryResponse, searchContext);
-
 		return subset(
-			solrQuery, query, query.getQueryConfig(), queryResponse,
+			searchContext, query, query.getQueryConfig(), queryResponse,
 			allResults);
 	}
 
@@ -406,15 +403,16 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 	}
 
 	protected QueryResponse search(
-			SolrQuery solrQuery, SearchContext searchContext, Query query)
+			SearchContext searchContext, Query query, int start, int end)
 		throws Exception {
+
+		SolrQuery solrQuery = new SolrQuery();
 
 		QueryConfig queryConfig = query.getQueryConfig();
 
 		addFacets(solrQuery, searchContext);
 		addHighlights(solrQuery, queryConfig);
-		addPagination(
-			solrQuery, searchContext.getStart(), searchContext.getEnd());
+		addPagination(solrQuery, start, end);
 		addSelectedFields(solrQuery, queryConfig);
 		addSort(solrQuery, searchContext.getSorts());
 
@@ -426,7 +424,7 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 	}
 
 	protected Hits subset(
-			SolrQuery solrQuery, Query query, QueryConfig queryConfig,
+			SearchContext searchContext, Query query, QueryConfig queryConfig,
 			QueryResponse queryResponse, boolean allResults)
 		throws Exception {
 
@@ -439,12 +437,14 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 		long total = solrDocumentList.getNumFound();
 
 		if (allResults && (total > 0)) {
-			solrQuery.setRows((int)total);
+			queryResponse = search(searchContext, query, 0, (int)total);
 
-			queryResponse = _solrServer.query(solrQuery);
+			solrDocumentList = queryResponse.getResults();
 
-			return subset(solrQuery, query, queryConfig, queryResponse, false);
+			total = solrDocumentList.getNumFound();
 		}
+
+		updateFacetCollectors(queryResponse, searchContext);
 
 		List<Document> documents = new ArrayList<Document>();
 		List<Float> scores = new ArrayList<Float>();
