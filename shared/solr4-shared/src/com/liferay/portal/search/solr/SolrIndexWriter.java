@@ -22,17 +22,13 @@ import com.liferay.portal.kernel.search.DocumentImpl;
 import com.liferay.portal.kernel.search.Field;
 import com.liferay.portal.kernel.search.SearchContext;
 import com.liferay.portal.kernel.search.SearchException;
-import com.liferay.portal.kernel.util.ArrayUtil;
-import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
-import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.search.solr.document.SolrDocumentFactory;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.Locale;
-import java.util.Map;
 
 import org.apache.solr.client.solrj.SolrServer;
 import org.apache.solr.common.SolrInputDocument;
@@ -47,7 +43,10 @@ public class SolrIndexWriter extends BaseIndexWriter {
 		throws SearchException {
 
 		try {
-			_solrServer.add(getSolrInputDocument(document));
+			SolrInputDocument solrInputDocument =
+				_solrDocumentFactory.getSolrInputDocument(document);
+
+			_solrServer.add(solrInputDocument);
 
 			if (_commit || searchContext.isCommitImmediately()) {
 				_solrServer.commit();
@@ -160,6 +159,12 @@ public class SolrIndexWriter extends BaseIndexWriter {
 		_commit = commit;
 	}
 
+	public void setSolrDocumentFactory(
+		SolrDocumentFactory solrDocumentFactory) {
+
+		_solrDocumentFactory = solrDocumentFactory;
+	}
+
 	public void setSolrServer(SolrServer solrServer) {
 		_solrServer = solrServer;
 	}
@@ -199,69 +204,6 @@ public class SolrIndexWriter extends BaseIndexWriter {
 		}
 	}
 
-	protected SolrInputDocument getSolrInputDocument(Document document) {
-		SolrInputDocument solrInputDocument = new SolrInputDocument();
-
-		Collection<Field> fields = document.getFields().values();
-
-		for (Field field : fields) {
-			String name = field.getName();
-			float boost = field.getBoost();
-
-			if (ArrayUtil.contains(Field.UNSCORED_FIELD_NAMES, name)) {
-				boost = _UNSCORED_FIELDS_BOOST;
-			}
-
-			if (!field.isLocalized()) {
-				for (String value : field.getValues()) {
-					if (Validator.isNull(value)) {
-						continue;
-					}
-
-					value = value.trim();
-
-					doAddSolrField(
-						solrInputDocument, field, boost, value, name);
-				}
-			}
-			else {
-				Map<Locale, String> localizedValues =
-					field.getLocalizedValues();
-
-				for (Map.Entry<Locale, String> entry :
-						localizedValues.entrySet()) {
-
-					String value = entry.getValue();
-
-					if (Validator.isNull(value)) {
-						continue;
-					}
-
-					value = value.trim();
-
-					Locale locale = entry.getKey();
-
-					String languageId = LocaleUtil.toLanguageId(locale);
-
-					String defaultLanguageId = LocaleUtil.toLanguageId(
-						LocaleUtil.getDefault());
-
-					if (languageId.equals(defaultLanguageId)) {
-						solrInputDocument.addField(name, value, boost);
-					}
-
-					String localizedName = DocumentImpl.getLocalizedName(
-						locale, name);
-
-					doAddSolrField(
-						solrInputDocument, field, boost, value, localizedName);
-				}
-			}
-		}
-
-		return solrInputDocument;
-	}
-
 	protected Collection<SolrInputDocument> getSolrInputDocuments(
 		Collection<Document> documents) {
 
@@ -269,8 +211,8 @@ public class SolrIndexWriter extends BaseIndexWriter {
 			new ArrayList<SolrInputDocument>(documents.size());
 
 		for (Document document : documents) {
-			SolrInputDocument solrInputDocument = getSolrInputDocument(
-				document);
+			SolrInputDocument solrInputDocument =
+				_solrDocumentFactory.getSolrInputDocument(document);
 
 			solrInputDocuments.add(solrInputDocument);
 		}
@@ -278,11 +220,10 @@ public class SolrIndexWriter extends BaseIndexWriter {
 		return solrInputDocuments;
 	}
 
-	private static final float _UNSCORED_FIELDS_BOOST = 1;
-
 	private static Log _log = LogFactoryUtil.getLog(SolrIndexWriter.class);
 
 	private boolean _commit;
+	private SolrDocumentFactory _solrDocumentFactory;
 	private SolrServer _solrServer;
 
 }
