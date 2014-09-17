@@ -88,7 +88,7 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 		try {
 			QueryResponse queryResponse = search(
 				searchContext, query, searchContext.getStart(),
-				searchContext.getEnd());
+				searchContext.getEnd(), false);
 
 			Hits hits = processQueryResponse(
 				queryResponse, searchContext, query);
@@ -107,6 +107,44 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 			}
 
 			return new HitsImpl();
+		}
+		finally {
+			if (_log.isInfoEnabled()) {
+				stopWatch.stop();
+
+				_log.info(
+					"Searching " + query.toString() + " took " +
+						stopWatch.getTime() + " ms");
+			}
+		}
+	}
+
+	public long searchCount(SearchContext searchContext, Query query)
+		throws SearchException {
+
+		StopWatch stopWatch = new StopWatch();
+
+		stopWatch.start();
+
+		try {
+			QueryResponse queryResponse = search(
+				searchContext, query, searchContext.getStart(),
+				searchContext.getEnd(), true);
+
+			SolrDocumentList solrDocumentList = queryResponse.getResults();
+
+			return solrDocumentList.getNumFound();
+		}
+		catch (Exception e) {
+			if (_log.isWarnEnabled()) {
+				_log.warn(e, e);
+			}
+
+			if (!_swallowException) {
+				throw new SearchException(e.getMessage());
+			}
+
+			return 0;
 		}
 		finally {
 			if (_log.isInfoEnabled()) {
@@ -367,7 +405,7 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 		long total = solrDocumentList.getNumFound();
 
 		if (allResults && (total > 0)) {
-			queryResponse = search(searchContext, query, 0, (int)total);
+			queryResponse = search(searchContext, query, 0, (int)total, false);
 
 			solrDocumentList = queryResponse.getResults();
 
@@ -434,20 +472,26 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 	}
 
 	protected QueryResponse search(
-			SearchContext searchContext, Query query, int start, int end)
+			SearchContext searchContext, Query query, int start, int end,
+			boolean count)
 		throws Exception {
 
 		SolrQuery solrQuery = new SolrQuery();
 
-		QueryConfig queryConfig = query.getQueryConfig();
+		if (count) {
+			solrQuery.setRows(0);
+		}
+		else {
+			QueryConfig queryConfig = query.getQueryConfig();
 
-		addFacets(solrQuery, searchContext);
-		addHighlights(solrQuery, queryConfig);
-		addPagination(solrQuery, start, end);
-		addSelectedFields(solrQuery, queryConfig);
-		addSort(solrQuery, searchContext.getSorts());
+			addFacets(solrQuery, searchContext);
+			addHighlights(solrQuery, queryConfig);
+			addPagination(solrQuery, start, end);
+			addSelectedFields(solrQuery, queryConfig);
+			addSort(solrQuery, searchContext.getSorts());
 
-		solrQuery.setIncludeScore(queryConfig.isScoreEnabled());
+			solrQuery.setIncludeScore(queryConfig.isScoreEnabled());
+		}
 
 		translateQuery(solrQuery, searchContext, query);
 
