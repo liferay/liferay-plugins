@@ -384,62 +384,6 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 		}
 	}
 
-	protected String getSnippet(
-		SolrDocument solrDocument, QueryConfig queryConfig,
-		Set<String> queryTerms,
-		Map<String, Map<String, List<String>>> highlights, String field) {
-
-		if (highlights == null) {
-			return StringPool.BLANK;
-		}
-
-		String key = (String)solrDocument.getFieldValue(Field.UID);
-
-		Map<String, List<String>> uidHighlights = highlights.get(key);
-
-		boolean localizedSearch = true;
-
-		String defaultLanguageId = LocaleUtil.toLanguageId(
-			LocaleUtil.getDefault());
-		String queryLanguageId = LocaleUtil.toLanguageId(
-			queryConfig.getLocale());
-
-		if (defaultLanguageId.equals(queryLanguageId)) {
-			localizedSearch = false;
-		}
-
-		if (localizedSearch) {
-			String localizedName = DocumentImpl.getLocalizedName(
-				queryConfig.getLocale(), field);
-
-			if (solrDocument.containsKey(localizedName)) {
-				field = localizedName;
-			}
-		}
-
-		List<String> snippets = uidHighlights.get(field);
-
-		String snippet = StringUtil.merge(snippets, "...");
-
-		if (Validator.isNotNull(snippet)) {
-			snippet = snippet + "...";
-		}
-		else {
-			snippet = StringPool.BLANK;
-		}
-
-		Matcher matcher = _pattern.matcher(snippet);
-
-		while (matcher.find()) {
-			queryTerms.add(matcher.group(1));
-		}
-
-		snippet = StringUtil.replace(snippet, "<em>", "");
-		snippet = StringUtil.replace(snippet, "</em>", "");
-
-		return snippet;
-	}
-
 	protected Float[] normalizeScores(
 		List<Float> scores, QueryConfig queryConfig, float maxScore,
 		int numDocuments) {
