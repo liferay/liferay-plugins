@@ -15,13 +15,23 @@
 package com.liferay.marketplace.util;
 
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.util.PropertiesUtil;
+import com.liferay.portal.kernel.util.StreamUtil;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
+
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 
 import java.lang.management.ManagementFactory;
 
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Properties;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipFile;
 
 import javax.management.MBeanServer;
 import javax.management.ObjectName;
@@ -78,6 +88,40 @@ public class BundleUtil {
 		}
 
 		return bundles;
+	}
+
+	public static Properties getManifestProperties(File file) {
+		InputStream inputStream = null;
+		ZipFile zipFile = null;
+
+		try {
+			zipFile = new ZipFile(file);
+
+			ZipEntry zipEntry = zipFile.getEntry("META-INF/MANIFEST.MF");
+
+			if (zipEntry == null) {
+				return null;
+			}
+
+			inputStream = zipFile.getInputStream(zipEntry);
+
+			return PropertiesUtil.load(inputStream, StringPool.UTF8);
+		}
+		catch (Exception e) {
+		}
+		finally {
+			StreamUtil.cleanUp(inputStream);
+
+			if (zipFile != null) {
+				try {
+					zipFile.close();
+				}
+				catch (IOException ioe) {
+				}
+			}
+		}
+
+		return null;
 	}
 
 	public static void uninstallBundle(String bundleSymbolicName) {

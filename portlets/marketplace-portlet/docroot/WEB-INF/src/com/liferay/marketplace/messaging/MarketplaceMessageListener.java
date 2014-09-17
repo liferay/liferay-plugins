@@ -60,6 +60,24 @@ public class MarketplaceMessageListener extends BaseMessageListener {
 			0, remoteAppId, title, description, category, iconURL, version,
 			null);
 
+		String[] bundleSymoblicNames = StringUtil.split(
+			properties.getProperty("bundle-symbolic-names"));
+
+		for (String bundleSymoblicName : bundleSymoblicNames) {
+			String contextName = StringPool.BLANK;
+
+			if (bundleSymoblicName.contains(StringPool.POUND)) {
+				String[] bundleSymoblicNameParts = StringUtil.split(
+					bundleSymoblicName, StringPool.POUND);
+
+				bundleSymoblicName = bundleSymoblicNameParts[0];
+				contextName = bundleSymoblicNameParts[1];
+			}
+
+			ModuleLocalServiceUtil.addModule(
+				0, app.getAppId(), bundleSymoblicName, contextName);
+		}
+
 		String[] contextNames = StringUtil.split(
 			properties.getProperty("context-names"));
 
