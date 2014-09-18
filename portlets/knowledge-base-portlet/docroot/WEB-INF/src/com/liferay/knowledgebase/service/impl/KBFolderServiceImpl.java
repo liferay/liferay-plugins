@@ -16,8 +16,11 @@ package com.liferay.knowledgebase.service.impl;
 
 import com.liferay.knowledgebase.model.KBFolder;
 import com.liferay.knowledgebase.service.base.KBFolderServiceBaseImpl;
+import com.liferay.knowledgebase.service.permission.KBFolderPermission;
+import com.liferay.knowledgebase.util.ActionKeys;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.service.ServiceContext;
 
 import java.util.List;
 
@@ -25,6 +28,32 @@ import java.util.List;
  * @author Brian Wing Shun Chan
  */
 public class KBFolderServiceImpl extends KBFolderServiceBaseImpl {
+
+	@Override
+	public KBFolder addKBFolder(
+			long groupId, long parentResourceClassNameId,
+			long parentResourcePrimKey, String name, String description,
+			ServiceContext serviceContext)
+		throws PortalException, SystemException {
+
+		KBFolderPermission.check(
+			getPermissionChecker(), groupId, parentResourcePrimKey,
+			ActionKeys.ADD_KB_FOLDER);
+
+		return kbFolderLocalService.addKBFolder(
+			getUserId(), groupId, parentResourceClassNameId,
+			parentResourcePrimKey, name, description, serviceContext);
+	}
+
+	@Override
+	public KBFolder getFolder(long kbFolderId)
+		throws PortalException, SystemException {
+
+		KBFolderPermission.check(
+			getPermissionChecker(), kbFolderId, ActionKeys.VIEW);
+
+		return kbFolderLocalService.getKBFolder(kbFolderId);
+	}
 
 	@Override
 	public List<KBFolder> getKBFolders(
@@ -40,6 +69,20 @@ public class KBFolderServiceImpl extends KBFolderServiceBaseImpl {
 		throws PortalException, SystemException {
 
 		return kbFolderPersistence.filterCountByG_P(groupId, parentKBFolderId);
+	}
+
+	@Override
+	public KBFolder updateKBFolder(
+			long parentResourceClassNameId, long parentResourcePrimKey,
+			long kbFolderId, String name, String description)
+		throws PortalException, SystemException {
+
+		KBFolderPermission.check(
+			getPermissionChecker(), kbFolderId, ActionKeys.UPDATE);
+
+		return kbFolderLocalService.updateKBFolder(
+			parentResourceClassNameId, parentResourcePrimKey, kbFolderId, name,
+			description);
 	}
 
 }

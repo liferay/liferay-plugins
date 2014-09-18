@@ -63,11 +63,24 @@ long parentResourcePrimKey = ParamUtil.getLong(request, "parentResourcePrimKey",
 					</aui:nav-item>
 				</c:if>
 
-				<c:if test="<%= AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_KB_ARTICLE) %>">
-					<aui:nav-item dropdown="<%= true %>" label="add">
-						<liferay-util:include page="/admin/common/add_article_button.jsp" servletContext="<%= application %>" />
+				<%
+				boolean hasAddArticlePermission = KBFolderPermission.contains(permissionChecker, scopeGroupId, parentResourcePrimKey, ActionKeys.ADD_KB_ARTICLE);
+				boolean hasAddFolderPermission = KBFolderPermission.contains(permissionChecker, scopeGroupId, parentResourcePrimKey, ActionKeys.ADD_KB_FOLDER);
+				%>
 
-						<liferay-util:include page="/admin/import_articles_button.jsp" servletContext="<%= application %>" />
+				<c:if test="<%= hasAddArticlePermission || hasAddFolderPermission %>">
+					<aui:nav-item dropdown="<%= true %>" label="add">
+						<c:if test="<%= hasAddArticlePermission %>">
+							<liferay-util:include page="/admin/common/add_article_button.jsp" servletContext="<%= application %>" />
+						</c:if>
+
+						<c:if test="<%= hasAddFolderPermission %>">
+							<liferay-util:include page="/admin/common/add_folder_button.jsp" servletContext="<%= application %>" />
+						</c:if>
+
+						<c:if test="<%= hasAddArticlePermission %>">
+							<liferay-util:include page="/admin/import_articles_button.jsp" servletContext="<%= application %>" />
+						</c:if>
 					</aui:nav-item>
 				</c:if>
 
@@ -178,6 +191,11 @@ long parentResourcePrimKey = ParamUtil.getLong(request, "parentResourcePrimKey",
 						href="<%= rowURL %>"
 						name="modified-date"
 						property="modifiedDate"
+					/>
+
+					<liferay-ui:search-container-column-jsp
+						align="right"
+						path="/admin/folder_action.jsp"
 					/>
 				</liferay-ui:search-container-row>
 
