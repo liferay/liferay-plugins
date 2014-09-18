@@ -53,15 +53,29 @@ if (entry.getPriority() > 0) {
 			User entryUser = UserLocalServiceUtil.fetchUserById(entry.getUserId());
 			%>
 
-			<a href="<%= entryUser.getDisplayURL(themeDisplay) %>">
-				<img alt="<%= HtmlUtil.escapeAttribute(entryUser.getFullName()) %>" src="<%= entryUser.getPortraitURL(themeDisplay) %>" />
-			</a>
+			<c:choose>
+				<c:when test="<%= Validator.isNull(entryUser) %>">
+					<img alt="<%= HtmlUtil.escapeAttribute(entry.getUserName()) %>" src="<%= UserConstants.getPortraitURL(themeDisplay.getPathImage(), true, 0, null) %>" />
+				</c:when>
+				<c:otherwise>
+					<a href="<%= entryUser.getDisplayURL(themeDisplay) %>">
+						<img alt="<%= HtmlUtil.escapeAttribute(entryUser.getFullName()) %>" src="<%= entryUser.getPortraitURL(themeDisplay) %>" />
+					</a>
+				</c:otherwise>
+			</c:choose>
 		</span>
 	</div>
 
 	<div class="entry-header">
 		<div class="entry-action">
-			<%= LanguageUtil.format(request, "x-to-x", new Object[] {"<a href=\"" + entryUser.getDisplayURL(themeDisplay) + "\">" + HtmlUtil.escape(entryUser.getFullName()) + "</a>", "<span class=\"scope\">" + scopeName + "</span>"}, false) %>
+			<c:choose>
+				<c:when test="<%= Validator.isNull(entryUser) %>">
+					<%= LanguageUtil.format(request, "x-to-x", new Object[] {HtmlUtil.escape(entry.getUserName()), "<span class=\"scope\">" + scopeName + "</span>"}, false) %>
+				</c:when>
+				<c:otherwise>
+					<%= LanguageUtil.format(request, "x-to-x", new Object[] {"<a href=\"" + entryUser.getDisplayURL(themeDisplay) + "\">" + HtmlUtil.escape(entryUser.getFullName()) + "</a>", "<span class=\"scope\">" + scopeName + "</span>"}, false) %>
+				</c:otherwise>
+			</c:choose>
 		</div>
 
 		<div class="entry-time">
