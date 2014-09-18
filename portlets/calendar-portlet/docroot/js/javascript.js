@@ -983,7 +983,8 @@ AUI.add(
 
 						var node = instance.get('node');
 
-						node.attr('data-endDate', instance._formatDate(val, '%m/%d/%Y %I:%M %p'));
+						node.attr('data-endDate', instance._formatDate(val, '%m/%d/%Y'));
+						node.attr('data-endDateTime', instance._formatDate(val, '%I:%M %p'));
 					},
 
 					_uiSetLoading: function(val) {
@@ -997,7 +998,8 @@ AUI.add(
 
 						var node = instance.get('node');
 
-						node.attr('data-startDate', instance._formatDate(val, '%m/%d/%Y %I:%M %p'));
+						node.attr('data-startDate', instance._formatDate(val, '%m/%d/%Y'));
+						node.attr('data-startDateTime', instance._formatDate(val, '%I:%M %p'));
 					},
 
 					_uiSetStatus: function(val) {
