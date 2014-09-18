@@ -17,9 +17,7 @@
 <%@ include file="/admin/init.jsp" %>
 
 <%
-KBArticleSearch searchContainer = (KBArticleSearch)request.getAttribute("liferay-ui:search:searchContainer");
-
-KBArticleDisplayTerms displayTerms = (KBArticleDisplayTerms)searchContainer.getDisplayTerms();
+KBArticleDisplayTerms displayTerms = (KBArticleDisplayTerms)request.getAttribute("view.jsp-displayTerms");
 %>
 
 <liferay-ui:search-toggle
