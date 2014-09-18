@@ -25,6 +25,7 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.portletfilerepository.PortletFileRepositoryUtil;
+import com.liferay.portal.util.PortalUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,6 +51,10 @@ public class KBArticleImpl extends KBArticleBaseImpl {
 
 		while (!kbArticle.isRoot()) {
 			kbArticle = kbArticle.getParentKBArticle();
+
+			if (kbArticle == null) {
+				break;
+			}
 
 			ancestorResourcePrimaryKeys.add(kbArticle.getResourcePrimKey());
 		}
@@ -81,6 +86,16 @@ public class KBArticleImpl extends KBArticleBaseImpl {
 	}
 
 	@Override
+	public long getClassNameId() {
+		if (_classNameId == 0) {
+			_classNameId = PortalUtil.getClassNameId(
+				KBArticleConstants.getClassName());
+		}
+
+		return _classNameId;
+	}
+
+	@Override
 	public long getClassPK() {
 		if (isApproved()) {
 			return getResourcePrimKey();
@@ -95,7 +110,9 @@ public class KBArticleImpl extends KBArticleBaseImpl {
 
 		long parentResourcePrimKey = getParentResourcePrimKey();
 
-		if (parentResourcePrimKey <= 0) {
+		if ((parentResourcePrimKey <= 0) ||
+			(getParentResourceClassNameId() != getClassNameId())) {
+
 			return null;
 		}
 
@@ -131,5 +148,6 @@ public class KBArticleImpl extends KBArticleBaseImpl {
 	private static Log _log = LogFactoryUtil.getLog(KBArticleImpl.class);
 
 	private long _attachmentsFolderId;
+	private long _classNameId;
 
 }

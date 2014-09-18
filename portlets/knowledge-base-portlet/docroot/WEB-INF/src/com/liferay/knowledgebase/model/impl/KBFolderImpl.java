@@ -14,6 +14,9 @@
 
 package com.liferay.knowledgebase.model.impl;
 
+import com.liferay.knowledgebase.model.KBFolderConstants;
+import com.liferay.portal.util.PortalUtil;
+
 /**
  * @author Brian Wing Shun Chan
  */
@@ -21,5 +24,17 @@ public class KBFolderImpl extends KBFolderBaseImpl {
 
 	public KBFolderImpl() {
 	}
+
+	@Override
+	public long getClassNameId() {
+		if (_classNameId == 0) {
+			_classNameId = PortalUtil.getClassNameId(
+				KBFolderConstants.getClassName());
+		}
+
+		return _classNameId;
+	}
+
+	private long _classNameId;
 
 }

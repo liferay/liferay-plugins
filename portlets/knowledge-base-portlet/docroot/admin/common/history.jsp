@@ -149,6 +149,7 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 							<portlet:param name="resourcePrimKey" value="<%= String.valueOf(kbArticle.getResourcePrimKey()) %>" />
 							<portlet:param name="status" value="<%= String.valueOf(status) %>" />
 							<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.UPDATE %>" />
+							<portlet:param name="parentResourceClassNameId" value="<%= String.valueOf(kbArticle.getParentResourceClassNameId()) %>" />
 							<portlet:param name="parentResourcePrimKey" value="<%= String.valueOf(kbArticle.getParentResourcePrimKey()) %>" />
 							<portlet:param name="title" value="<%= curKBArticle.getTitle() %>" />
 							<portlet:param name="content" value="<%= curKBArticle.getContent() %>" />

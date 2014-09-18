@@ -23,6 +23,9 @@ KBArticle kbArticle = (KBArticle)request.getAttribute(WebKeys.KNOWLEDGE_BASE_KB_
 
 long resourcePrimKey = BeanParamUtil.getLong(kbArticle, request, "resourcePrimKey");
 
+long defaultClassNameId = PortalUtil.getClassNameId(KBFolderConstants.getClassName());
+
+long parentResourceClassNameId = BeanParamUtil.getLong(kbArticle, request, "parentResourceClassNameId", defaultClassNameId);
 long parentResourcePrimKey = BeanParamUtil.getLong(kbArticle, request, "parentResourcePrimKey", KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY);
 
 long oldParentResourcePrimKey = ParamUtil.getLong(request, "oldParentResourcePrimKey");
@@ -40,6 +43,7 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 		<liferay-portlet:renderURL varImpl="iteratorURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
 			<portlet:param name="mvcPath" value='<%= templatePath + "select_article.jsp" %>' />
 			<portlet:param name="resourcePrimKey" value="<%= String.valueOf(resourcePrimKey) %>" />
+			<portlet:param name="parentResourceClassNameId" value="<%= String.valueOf(parentResourceClassNameId) %>" />
 			<portlet:param name="parentResourcePrimKey" value="<%= String.valueOf(parentResourcePrimKey) %>" />
 			<portlet:param name="oldParentResourcePrimKey" value="<%= String.valueOf(oldParentResourcePrimKey) %>" />
 			<portlet:param name="status" value="<%= String.valueOf(status) %>" />
@@ -66,6 +70,7 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 				<liferay-portlet:renderURL var="rowURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
 					<portlet:param name="mvcPath" value='<%= templatePath + "select_article.jsp" %>' />
 					<portlet:param name="resourcePrimKey" value="<%= String.valueOf(resourcePrimKey) %>" />
+					<portlet:param name="parentResourceClassNameId" value="<%= String.valueOf(curKBArticle.getClassNameId()) %>" />
 					<portlet:param name="parentResourcePrimKey" value="<%= String.valueOf(curKBArticle.getResourcePrimKey()) %>" />
 					<portlet:param name="oldParentResourcePrimKey" value="<%= String.valueOf(oldParentResourcePrimKey) %>" />
 					<portlet:param name="status" value="<%= String.valueOf(status) %>" />
@@ -104,12 +109,13 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 				>
 					<liferay-util:buffer var="html">
 						<liferay-util:include page="/admin/new_parent.jsp" servletContext="<%= application %>">
+							<liferay-util:param name="parentResourceClassNameId" value="<%= String.valueOf(curKBArticle.getClassNameId()) %>" />
 							<liferay-util:param name="parentResourcePrimKey" value="<%= String.valueOf(curKBArticle.getResourcePrimKey()) %>" />
 						</liferay-util:include>
 					</liferay-util:buffer>
 
 					<%
-					String taglibOnClick = "opener." + renderResponse.getNamespace() + "selectKBArticle('" + curKBArticle.getResourcePrimKey() + "', '" + UnicodeFormatter.toString(html) + "'); window.close();";
+					String taglibOnClick = "opener." + renderResponse.getNamespace() + "selectKBArticle('" + curKBArticle.getResourcePrimKey() + "', '" + curKBArticle.getClassNameId() + "', '" + UnicodeFormatter.toString(html) + "'); window.close();";
 					%>
 
 					<aui:button disabled="<%= (curKBArticle.getResourcePrimKey() == resourcePrimKey) || (curKBArticle.getResourcePrimKey() == oldParentResourcePrimKey) %>" onClick="<%= taglibOnClick %>" value="choose" />
@@ -122,12 +128,13 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 
 					<liferay-util:buffer var="html">
 						<liferay-util:include page="/admin/new_parent.jsp" servletContext="<%= application %>">
+							<liferay-util:param name="parentResourceClassNameId" value="<%= String.valueOf(defaultClassNameId) %>" />
 							<liferay-util:param name="parentResourcePrimKey" value="<%= String.valueOf(KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY) %>" />
 						</liferay-util:include>
 					</liferay-util:buffer>
 
 					<%
-					String taglibOnClick = "opener." + renderResponse.getNamespace() + "selectKBArticle('" + KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY + "', '" + UnicodeFormatter.toString(html) + "'); window.close();";
+					String taglibOnClick = "opener." + renderResponse.getNamespace() + "selectKBArticle('" + KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY + "', '" + defaultClassNameId + "', '" + UnicodeFormatter.toString(html) + "'); window.close();";
 					%>
 
 					<aui:button onClick="<%= taglibOnClick %>" value="remove" />
@@ -140,6 +147,7 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 				<liferay-portlet:renderURL var="breadcrumbURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
 					<portlet:param name="mvcPath" value='<%= templatePath + "select_article.jsp" %>' />
 					<portlet:param name="resourcePrimKey" value="<%= String.valueOf(resourcePrimKey) %>" />
+					<portlet:param name="parentResourceClassNameId" value="<%= String.valueOf(defaultClassNameId) %>" />
 					<portlet:param name="parentResourcePrimKey" value="<%= String.valueOf(KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY) %>" />
 					<portlet:param name="oldParentResourcePrimKey" value="<%= String.valueOf(oldParentResourcePrimKey) %>" />
 					<portlet:param name="status" value="<%= String.valueOf(status) %>" />
