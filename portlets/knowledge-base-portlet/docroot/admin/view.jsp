@@ -130,9 +130,64 @@ long parentResourcePrimKey = ParamUtil.getLong(request, "parentResourcePrimKey",
 			</div>
 		</c:if>
 
+		<c:if test="<%= parentResourceClassNameId == defaultClassNameId %>">
+			<liferay-ui:search-container
+				curParam="cur1"
+				id="kbFoldersAdminSearchContainer"
+				total="<%= KBFolderServiceUtil.getFoldersCount(scopeGroupId, parentResourcePrimKey) %>"
+			>
+
+				<%
+				searchContainer.setResults(KBFolderServiceUtil.getFolders(scopeGroupId, parentResourcePrimKey, searchContainer.getStart(), searchContainer.getEnd()));
+				%>
+
+				<liferay-ui:search-container-row
+					className="com.liferay.knowledgebase.model.KBFolder"
+					escapedModel="<%= true %>"
+					keyProperty="kbFolderId"
+					modelVar="kbFolder"
+				>
+
+					<liferay-portlet:renderURL varImpl="rowURL">
+						<portlet:param name="mvcPath" value="/admin/view.jsp" />
+						<portlet:param name="parentResourceClassNameId" value="<%= String.valueOf(kbFolder.getClassNameId()) %>" />
+						<portlet:param name="parentResourcePrimKey" value="<%= String.valueOf(kbFolder.getKbFolderId()) %>" />
+					</liferay-portlet:renderURL>
+
+					<liferay-ui:search-container-column-text
+						name="folder"
+					>
+						<a class="icon-folder-open" href="<%= rowURL %>">
+							<%= kbFolder.getName() %>
+						</a>
+					</liferay-ui:search-container-column-text>
+
+					<liferay-ui:search-container-column-text
+						href="<%= rowURL %>"
+						name="author"
+						property="userName"
+					/>
+
+					<liferay-ui:search-container-column-date
+						href="<%= rowURL %>"
+						name="create-date"
+						property="createDate"
+					/>
+
+					<liferay-ui:search-container-column-date
+						href="<%= rowURL %>"
+						name="modified-date"
+						property="modifiedDate"
+					/>
+				</liferay-ui:search-container-row>
+
+				<liferay-ui:search-iterator />
+			</liferay-ui:search-container>
+		</c:if>
+
 		<liferay-ui:search-container
-			id="kbArticlesAdminSearchContainer"
 			curParam="cur2"
+			id="kbArticlesAdminSearchContainer"
 			rowChecker="<%= AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.DELETE_KB_ARTICLES) ? new RowChecker(renderResponse) : null %>"
 			searchContainer="<%= new KBArticleSearch(renderRequest, iteratorURL) %>"
 		>
@@ -233,7 +288,7 @@ long parentResourcePrimKey = ParamUtil.getLong(request, "parentResourcePrimKey",
 				/>
 			</liferay-ui:search-container-row>
 
-			<c:if test="<%= !searchTerms.hasSearchTerms() && (parentResourcePrimKey != KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY) %>">
+			<c:if test="<%= !searchTerms.hasSearchTerms() && (parentResourceClassNameId != defaultClassNameId) && (parentResourcePrimKey != KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY) %>">
 
 				<%
 				searchContainer.setEmptyResultsMessage(null);
