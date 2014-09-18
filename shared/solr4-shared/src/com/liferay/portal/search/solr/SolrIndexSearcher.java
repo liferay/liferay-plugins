@@ -232,12 +232,15 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 
 		solrQuery.setHighlight(true);
 		solrQuery.setHighlightFragsize(queryConfig.getHighlightFragmentSize());
-		solrQuery.setHighlightRequireFieldMatch(true);
 		solrQuery.setHighlightSnippets(queryConfig.getHighlightSnippetSize());
 
-		addHighlightedField(solrQuery, queryConfig, Field.CONTENT);
-		addHighlightedField(solrQuery, queryConfig, Field.DESCRIPTION);
-		addHighlightedField(solrQuery, queryConfig, Field.TITLE);
+		for (String highlightFieldName : queryConfig.getHighlightFieldNames()) {
+			addHighlightedField(
+				solrQuery, queryConfig, highlightFieldName);
+		}
+
+		solrQuery.setHighlightRequireFieldMatch(
+			queryConfig.isHighlightRequireFieldMatch());
 	}
 
 	protected void addPagination(SolrQuery solrQuery, int start, int end) {
