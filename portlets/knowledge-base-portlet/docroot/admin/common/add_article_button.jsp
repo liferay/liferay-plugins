@@ -34,36 +34,40 @@ long parentResourcePrimKey = ParamUtil.getLong(request, "parentResourcePrimKey",
 
 <c:choose>
 	<c:when test="<%= kbTemplates.isEmpty() %>">
-		<aui:nav-item href="<%= addBasicKBArticleURL %>" label="add-article" />
+		<aui:nav-item
+			href="<%= addBasicKBArticleURL %>"
+			iconCssClass="icon-file"
+			label="add-article"
+		/>
 	</c:when>
 	<c:otherwise>
-		<aui:nav-item dropdown="<%= true %>" label="add">
+		<aui:nav-item
+			href="<%= addBasicKBArticleURL %>"
+			iconCssClass="icon-file"
+			label="basic-article"
+		/>
+
+		<%
+		for (KBTemplate kbTemplate : kbTemplates) {
+		%>
+
+			<liferay-portlet:renderURL var="addKBArticleURL">
+				<portlet:param name="mvcPath" value='<%= templatePath + "edit_article.jsp" %>' />
+				<portlet:param name="redirect" value="<%= redirect %>" />
+				<portlet:param name="parentResourceClassNameId" value="<%= String.valueOf(parentResourceClassNameId) %>" />
+				<portlet:param name="parentResourcePrimKey" value="<%= String.valueOf(parentResourcePrimKey) %>" />
+				<portlet:param name="kbTemplateId" value="<%= String.valueOf(kbTemplate.getKbTemplateId()) %>" />
+			</liferay-portlet:renderURL>
+
 			<aui:nav-item
-				href="<%= addBasicKBArticleURL %>"
-				label="basic-article"
+				href="<%= addKBArticleURL %>"
+				iconCssClass="icon-file"
+				label="<%= HtmlUtil.escape(kbTemplate.getTitle()) %>"
 			/>
 
-			<%
-			for (KBTemplate kbTemplate : kbTemplates) {
-			%>
+		<%
+		}
+		%>
 
-				<liferay-portlet:renderURL var="addKBArticleURL">
-					<portlet:param name="mvcPath" value='<%= templatePath + "edit_article.jsp" %>' />
-					<portlet:param name="redirect" value="<%= redirect %>" />
-					<portlet:param name="parentResourceClassNameId" value="<%= String.valueOf(parentResourceClassNameId) %>" />
-					<portlet:param name="parentResourcePrimKey" value="<%= String.valueOf(parentResourcePrimKey) %>" />
-					<portlet:param name="kbTemplateId" value="<%= String.valueOf(kbTemplate.getKbTemplateId()) %>" />
-				</liferay-portlet:renderURL>
-
-				<aui:nav-item
-					href="<%= addKBArticleURL %>"
-					label="<%= HtmlUtil.escape(kbTemplate.getTitle()) %>"
-				/>
-
-			<%
-			}
-			%>
-
-		</aui:nav-item>
 	</c:otherwise>
 </c:choose>
