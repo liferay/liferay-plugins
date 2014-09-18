@@ -21,6 +21,7 @@ import com.liferay.knowledgebase.NoSuchArticleException;
 import com.liferay.knowledgebase.NoSuchCommentException;
 import com.liferay.knowledgebase.NoSuchTemplateException;
 import com.liferay.knowledgebase.model.KBArticle;
+import com.liferay.knowledgebase.model.KBFolderConstants;
 import com.liferay.knowledgebase.model.KBTemplate;
 import com.liferay.knowledgebase.portlet.BaseKBPortlet;
 import com.liferay.knowledgebase.service.KBArticleServiceUtil;
@@ -118,6 +119,10 @@ public class AdminPortlet extends BaseKBPortlet {
 
 		String fileName = uploadPortletRequest.getFileName("file");
 
+		long parentKBFolderId = ParamUtil.getLong(
+			uploadPortletRequest, "parentKBFolderId",
+			KBFolderConstants.DEFAULT_PARENT_FOLDER_ID);
+
 		if (Validator.isNull(fileName)) {
 			throw new KBArticleImportException("File name is null");
 		}
@@ -133,8 +138,8 @@ public class AdminPortlet extends BaseKBPortlet {
 			serviceContext.setGuestPermissions(new String[] {ActionKeys.VIEW});
 
 			KBArticleServiceUtil.addKBArticlesMarkdown(
-				themeDisplay.getScopeGroupId(), fileName, inputStream,
-				serviceContext);
+				themeDisplay.getScopeGroupId(), parentKBFolderId, fileName,
+				inputStream, serviceContext);
 		}
 		catch (KBArticleImportException kbaie) {
 			SessionErrors.add(actionRequest, kbaie.getClass(), kbaie);

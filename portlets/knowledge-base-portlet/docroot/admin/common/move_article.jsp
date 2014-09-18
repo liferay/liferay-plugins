@@ -23,7 +23,9 @@ KBArticle kbArticle = (KBArticle)request.getAttribute(WebKeys.KNOWLEDGE_BASE_KB_
 
 long resourcePrimKey = BeanParamUtil.getLong(kbArticle, request, "resourcePrimKey");
 
+long parentResourceClassNameId = BeanParamUtil.getLong(kbArticle, request, "parentResourceClassNameId");
 long parentResourcePrimKey = BeanParamUtil.getLong(kbArticle, request, "parentResourcePrimKey");
+
 double priority = BeanParamUtil.getDouble(kbArticle, request, "priority");
 %>
 
@@ -39,6 +41,7 @@ double priority = BeanParamUtil.getDouble(kbArticle, request, "priority");
 	<aui:input name="mvcPath" type="hidden" value='<%= templatePath + "move_article.jsp" %>' />
 	<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
 	<aui:input name="resourcePrimKey" type="hidden" value="<%= String.valueOf(resourcePrimKey) %>" />
+	<aui:input name="parentResourceClassNameId" type="hidden" value="<%= parentResourceClassNameId %>" />
 	<aui:input name="parentResourcePrimKey" type="hidden" value="<%= parentResourcePrimKey %>" />
 	<aui:input name="status" type="hidden" value="<%= String.valueOf(status) %>" />
 
@@ -66,7 +69,8 @@ double priority = BeanParamUtil.getDouble(kbArticle, request, "priority");
 </aui:form>
 
 <aui:script>
-	function <portlet:namespace />selectKBArticle(parentResourcePrimKey, html) {
+	function <portlet:namespace />selectKBArticle(parentResourcePrimKey, parentResourceClassNameId, html) {
+		document.<portlet:namespace />fm.<portlet:namespace />parentResourceClassNameId.value = parentResourceClassNameId;
 		document.<portlet:namespace />fm.<portlet:namespace />parentResourcePrimKey.value = parentResourcePrimKey;
 		document.getElementById('<portlet:namespace />newParent').innerHTML = html;
 	}

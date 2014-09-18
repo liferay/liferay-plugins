@@ -23,6 +23,7 @@ import com.liferay.knowledgebase.NoSuchCommentException;
 import com.liferay.knowledgebase.model.KBArticle;
 import com.liferay.knowledgebase.model.KBComment;
 import com.liferay.knowledgebase.model.KBCommentConstants;
+import com.liferay.knowledgebase.model.KBFolderConstants;
 import com.liferay.knowledgebase.service.KBArticleServiceUtil;
 import com.liferay.knowledgebase.service.KBCommentLocalServiceUtil;
 import com.liferay.knowledgebase.service.KBCommentServiceUtil;
@@ -169,12 +170,18 @@ public abstract class BaseKBPortlet extends MVCPortlet {
 		long resourcePrimKey = ParamUtil.getLong(
 			actionRequest, "resourcePrimKey");
 
+		long parentResourceClassNameId = ParamUtil.getLong(
+			actionRequest, "parentResourceClassNameId",
+			PortalUtil.getClassNameId(KBFolderConstants.getClassName()));
 		long parentResourcePrimKey = ParamUtil.getLong(
-			actionRequest, "parentResourcePrimKey");
+			actionRequest, "parentResourcePrimKey",
+			KBFolderConstants.DEFAULT_PARENT_FOLDER_ID);
+
 		double priority = ParamUtil.getDouble(actionRequest, "priority");
 
 		KBArticleServiceUtil.moveKBArticle(
-			resourcePrimKey, parentResourcePrimKey, priority);
+			resourcePrimKey, parentResourceClassNameId, parentResourcePrimKey,
+			priority);
 	}
 
 	public void serveAttachment(
@@ -283,8 +290,13 @@ public abstract class BaseKBPortlet extends MVCPortlet {
 		long resourcePrimKey = ParamUtil.getLong(
 			actionRequest, "resourcePrimKey");
 
+		long parentResourceClassNameId = ParamUtil.getLong(
+			actionRequest, "parentResourceClassNameId",
+			PortalUtil.getClassNameId(KBFolderConstants.getClassName()));
 		long parentResourcePrimKey = ParamUtil.getLong(
-			actionRequest, "parentResourcePrimKey");
+			actionRequest, "parentResourcePrimKey",
+			KBFolderConstants.DEFAULT_PARENT_FOLDER_ID);
+
 		String title = ParamUtil.getString(actionRequest, "title");
 		String urlTitle = ParamUtil.getString(actionRequest, "urlTitle");
 		String content = ParamUtil.getString(actionRequest, "content");
@@ -305,9 +317,9 @@ public abstract class BaseKBPortlet extends MVCPortlet {
 
 		if (cmd.equals(Constants.ADD)) {
 			kbArticle = KBArticleServiceUtil.addKBArticle(
-				portletId, parentResourcePrimKey, title, urlTitle, content,
-				description, sourceURL, sections, selectedFileNames,
-				serviceContext);
+				portletId, parentResourceClassNameId, parentResourcePrimKey,
+				title, urlTitle, content, description, sourceURL, sections,
+				selectedFileNames, serviceContext);
 		}
 		else if (cmd.equals(Constants.UPDATE)) {
 			kbArticle = KBArticleServiceUtil.updateKBArticle(

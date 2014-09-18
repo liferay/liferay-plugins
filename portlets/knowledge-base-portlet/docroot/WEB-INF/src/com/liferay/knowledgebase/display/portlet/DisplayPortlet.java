@@ -17,7 +17,7 @@ package com.liferay.knowledgebase.display.portlet;
 import com.liferay.knowledgebase.NoSuchArticleException;
 import com.liferay.knowledgebase.NoSuchCommentException;
 import com.liferay.knowledgebase.model.KBArticle;
-import com.liferay.knowledgebase.model.KBArticleConstants;
+import com.liferay.knowledgebase.model.KBFolderConstants;
 import com.liferay.knowledgebase.portlet.BaseKBPortlet;
 import com.liferay.knowledgebase.service.KBArticleLocalServiceUtil;
 import com.liferay.knowledgebase.service.KBArticleServiceUtil;
@@ -74,14 +74,14 @@ public class DisplayPortlet extends BaseKBPortlet {
 
 			long parentResourcePrimKey = ParamUtil.getLong(
 				renderRequest, "parentResourcePrimKey",
-				KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY);
+				KBFolderConstants.DEFAULT_PARENT_FOLDER_ID);
 
 			if (resourcePrimKey > 0) {
 				kbArticle = KBArticleServiceUtil.getLatestKBArticle(
 					resourcePrimKey, status);
 			}
 			else if (parentResourcePrimKey ==
-						KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY) {
+						KBFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
 
 				List<KBArticle> kbArticles =
 					KBArticleLocalServiceUtil.getGroupKBArticles(

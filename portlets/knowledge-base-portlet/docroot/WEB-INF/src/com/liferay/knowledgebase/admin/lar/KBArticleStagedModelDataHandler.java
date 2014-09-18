@@ -41,7 +41,6 @@ import com.liferay.portlet.documentlibrary.DuplicateFileException;
 import com.liferay.portlet.documentlibrary.model.DLFileEntry;
 
 import java.io.InputStream;
-
 import java.util.List;
 import java.util.Map;
 
@@ -147,6 +146,8 @@ public class KBArticleStagedModelDataHandler
 			(Map<Long, Long>)portletDataContext.getNewPrimaryKeysMap(
 				KBArticle.class);
 
+		long parentResourceClassNameId =
+			kbArticle.getParentResourceClassNameId();
 		long parentResourcePrimKey = MapUtil.getLong(
 			kbArticleResourcePrimKeys, kbArticle.getParentResourcePrimKey(), 0);
 
@@ -178,7 +179,8 @@ public class KBArticleStagedModelDataHandler
 
 				if (existingKBArticle == null) {
 					importedKBArticle = KBArticleLocalServiceUtil.addKBArticle(
-						userId, parentResourcePrimKey, kbArticle.getTitle(),
+						userId, parentResourceClassNameId,
+						parentResourcePrimKey, kbArticle.getTitle(),
 						kbArticle.getUrlTitle(), kbArticle.getContent(),
 						kbArticle.getDescription(), kbArticle.getSourceURL(),
 						sections, null, serviceContext);
@@ -196,7 +198,8 @@ public class KBArticleStagedModelDataHandler
 
 					KBArticleLocalServiceUtil.moveKBArticle(
 						userId, existingKBArticle.getResourcePrimKey(),
-						parentResourcePrimKey, kbArticle.getPriority());
+						parentResourceClassNameId, parentResourcePrimKey,
+						kbArticle.getPriority());
 
 					importedKBArticle =
 						KBArticleLocalServiceUtil.getLatestKBArticle(
@@ -210,10 +213,11 @@ public class KBArticleStagedModelDataHandler
 		}
 		else {
 			importedKBArticle = KBArticleLocalServiceUtil.addKBArticle(
-				userId, parentResourcePrimKey, kbArticle.getTitle(),
-				kbArticle.getUrlTitle(), kbArticle.getContent(),
-				kbArticle.getDescription(), kbArticle.getSourceURL(), sections,
-				null, serviceContext);
+				userId,
+				parentResourceClassNameId, parentResourcePrimKey,
+				kbArticle.getTitle(), kbArticle.getUrlTitle(),
+				kbArticle.getContent(), kbArticle.getDescription(),
+				kbArticle.getSourceURL(), sections, null, serviceContext);
 
 			KBArticleLocalServiceUtil.updatePriority(
 				importedKBArticle.getResourcePrimKey(),

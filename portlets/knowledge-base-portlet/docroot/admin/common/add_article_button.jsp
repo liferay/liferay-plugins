@@ -21,12 +21,16 @@ OrderByComparator<KBTemplate> obc = OrderByComparatorFactoryUtil.create("KBTempl
 
 List<KBTemplate> kbTemplates = KBTemplateServiceUtil.getGroupKBTemplates(scopeGroupId, QueryUtil.ALL_POS, QueryUtil.ALL_POS, obc);
 
+long defaultClassNameId = PortalUtil.getClassNameId(KBFolderConstants.getClassName());
+
+long parentResourceClassNameId = ParamUtil.getLong(request, "parentResourceClassNameId", defaultClassNameId);
 long parentResourcePrimKey = ParamUtil.getLong(request, "parentResourcePrimKey", KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY);
 %>
 
 <liferay-portlet:renderURL var="addBasicKBArticleURL">
 	<portlet:param name="mvcPath" value='<%= templatePath + "edit_article.jsp" %>' />
 	<portlet:param name="redirect" value="<%= redirect %>" />
+	<portlet:param name="parentResourceClassNameId" value="<%= String.valueOf(parentResourceClassNameId) %>" />
 	<portlet:param name="parentResourcePrimKey" value="<%= String.valueOf(parentResourcePrimKey) %>" />
 </liferay-portlet:renderURL>
 
@@ -48,6 +52,7 @@ long parentResourcePrimKey = ParamUtil.getLong(request, "parentResourcePrimKey",
 				<liferay-portlet:renderURL var="addKBArticleURL">
 					<portlet:param name="mvcPath" value='<%= templatePath + "edit_article.jsp" %>' />
 					<portlet:param name="redirect" value="<%= redirect %>" />
+					<portlet:param name="parentResourceClassNameId" value="<%= String.valueOf(parentResourceClassNameId) %>" />
 					<portlet:param name="parentResourcePrimKey" value="<%= String.valueOf(parentResourcePrimKey) %>" />
 					<portlet:param name="kbTemplateId" value="<%= String.valueOf(kbTemplate.getKbTemplateId()) %>" />
 				</liferay-portlet:renderURL>
