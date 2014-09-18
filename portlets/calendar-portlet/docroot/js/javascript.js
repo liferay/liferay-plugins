@@ -1577,7 +1577,7 @@ AUI.add(
 						var offset = data.offset;
 						var schedulerEvent = data.schedulerEvent;
 
-						var showNextQuestion = A.bind(instance.queue.run, instance.queue);
+						var showNextQuestion = A.bind(instance.load, instance);
 
 						if (answers.cancel) {
 							A.soon(showNextQuestion);

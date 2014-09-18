@@ -1283,15 +1283,6 @@
 						}
 					);
 
-					instance.queue.add(
-						{
-							autoContinue: false,
-							context: instance,
-							fn: instance.load,
-							timeout: 0
-						}
-					);
-
 					instance.queue.run();
 				},
 
