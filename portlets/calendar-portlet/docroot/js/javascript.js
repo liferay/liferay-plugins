@@ -1575,7 +1575,7 @@ AUI.add(
 								args: [data],
 								autoContinue: false,
 								context: instance,
-								fn: instance._queueableQuestionResolver,
+								fn: data.resolver,
 								timeout: 0
 							}
 						);
@@ -1722,6 +1722,7 @@ AUI.add(
 							{
 								duration: instance._getCalendarBookingDuration(schedulerEvent),
 								offset: instance._getCalendarBookingOffset(schedulerEvent, changedAttributes),
+								resolver: instance._queueableQuestionResolver,
 								schedulerEvent: schedulerEvent
 							}
 						);
