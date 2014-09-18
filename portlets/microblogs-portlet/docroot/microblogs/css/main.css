@@ -266,7 +266,7 @@ $microblogs-border-color: #EAEAEA;
 		span {
 			background-color: #97D1FF;
 			border-radius: 3px;
-			color: rgba(0,0,0,0.9);
+			color: rgba(0, 0, 0, 0.9);
 			padding: 2px 0;
 			visibility: visible;
 			zoom: 1;
