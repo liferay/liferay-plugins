@@ -22,15 +22,17 @@ import java.util.List;
 
 /**
  * @author Ryan Park
+ * @author Joan Kim
  */
 public class ModuleLocalServiceImpl extends ModuleLocalServiceBaseImpl {
 
 	@Override
 	public Module addModule(
 		long userId, long appId, String bundleSymbolicName,
-		String contextName) {
+		String bundleVersion, String contextName) {
 
-		Module module = fetchModule(appId, bundleSymbolicName, contextName);
+		Module module = fetchModule(
+			appId, bundleSymbolicName, bundleVersion, contextName);
 
 		if (module != null) {
 			return module;
@@ -43,6 +45,7 @@ public class ModuleLocalServiceImpl extends ModuleLocalServiceBaseImpl {
 		module.setModuleId(moduleId);
 		module.setAppId(appId);
 		module.setBundleSymbolicName(bundleSymbolicName);
+		module.setBundleVersion(bundleVersion);
 		module.setContextName(contextName);
 
 		modulePersistence.update(module);
@@ -52,10 +55,12 @@ public class ModuleLocalServiceImpl extends ModuleLocalServiceBaseImpl {
 
 	@Override
 	public Module fetchModule(
-		long appId, String bundleSymbolicName, String contextName) {
+		long appId, String bundleSymbolicName, String bundleVersion,
+		String contextName) {
 
 		if (Validator.isNotNull(bundleSymbolicName)) {
-			return modulePersistence.fetchByA_BSN(appId, bundleSymbolicName);
+			return modulePersistence.fetchByA_BSN_BV(
+				appId, bundleSymbolicName, bundleVersion);
 		}
 		else if (Validator.isNotNull(contextName)) {
 			return modulePersistence.fetchByA_CN(appId, contextName);

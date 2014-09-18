@@ -15,6 +15,7 @@
 package com.liferay.marketplace.util;
 
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.PropertiesUtil;
 import com.liferay.portal.kernel.util.StreamUtil;
 import com.liferay.portal.kernel.util.StringPool;
@@ -26,8 +27,10 @@ import java.io.InputStream;
 
 import java.lang.management.ManagementFactory;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import java.util.zip.ZipEntry;
@@ -66,10 +69,12 @@ public class BundleUtil {
 					continue;
 				}
 
-				String bundleSymbolicName = (String)compositeData.get(
-					"SymbolicName");
+				String symbolicName = (String)compositeData.get("SymbolicName");
+				String version = (String)compositeData.get("Version");
 
-				if (Validator.isNull(bundleSymbolicName)) {
+				if (Validator.isNull(symbolicName) &&
+					Validator.isNull(version)) {
+
 					continue;
 				}
 
@@ -78,9 +83,9 @@ public class BundleUtil {
 				bundleData.put("bundleId", compositeData.get("Identifier"));
 				bundleData.put("location", compositeData.get("Location"));
 				bundleData.put("state", state);
-				bundleData.put("version", compositeData.get("Version"));
+				bundleData.put("version", version);
 
-				bundles.put(bundleSymbolicName, bundleData);
+				bundles.put(symbolicName, bundleData);
 			}
 		}
 		catch (Exception e) {
@@ -124,26 +129,73 @@ public class BundleUtil {
 		return null;
 	}
 
-	public static void uninstallBundle(String bundleSymbolicName) {
-		try {
-			MBeanServer mBeanServer =
-				ManagementFactory.getPlatformMBeanServer();
+	public static boolean isActive(
+		String bundleSymbolicName, String bundleVersion) {
 
-			ObjectName objectName = new ObjectName(_FRAMEWORK_OBJECT_NAME);
+		Map<String, Map<String, Object>> bundles = getInstalledBundles();
 
-			Map<String, Map<String, Object>> bundles = getInstalledBundles();
+		for (Map.Entry<String, Map<String, Object>> entry :
+				bundles.entrySet()) {
 
-			Map<String, Object> bundleData = bundles.get(bundleSymbolicName);
-
-			if ((bundleData == null) || bundleData.isEmpty()) {
-				return;
+			if (!bundleSymbolicName.equals(entry.getKey())) {
+				continue;
 			}
 
-			long bundleId = (Long)bundleData.get("bundleId");
+			Map<String, Object> bundleData = entry.getValue();
 
-			if (bundleId > 0) {
+			if (bundleVersion.equals(
+					GetterUtil.getString(bundleData.get("version")))) {
+
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	public static void uninstallBundle(
+		String bundleSymbolicName, String bundleVersion) {
+
+		try {
+			Map<String, Map<String, Object>> bundles = getInstalledBundles();
+
+			List<Long> bundleIds = new ArrayList<Long>();
+
+			for (Map.Entry<String, Map<String, Object>> entry :
+					bundles.entrySet()) {
+
+				Map<String, Object> bundleData = null;
+
+				if (bundleSymbolicName.equals(entry.getKey())) {
+					bundleData = entry.getValue();
+				}
+
+				if ((bundleData == null) || bundleData.isEmpty()) {
+					continue;
+				}
+
+				long bundleId = 0;
+
+				if (bundleVersion.equals(
+						GetterUtil.getString(bundleData.get("version")))) {
+
+					bundleId = GetterUtil.getLong(bundleData.get("bundleId"));
+				}
+
+				if (bundleId > 0) {
+					bundleIds.add(bundleId);
+				}
+			}
+
+			if (bundleIds.size() > 0) {
+				MBeanServer mBeanServer =
+					ManagementFactory.getPlatformMBeanServer();
+
+				ObjectName objectName = new ObjectName(_FRAMEWORK_OBJECT_NAME);
+
 				mBeanServer.invoke(
-					objectName, "uninstallBundle", new Object[] {bundleId},
+					objectName, "uninstallBundle",
+					bundleIds.toArray(new Object[bundleIds.size()]),
 					new String[] {long.class.getName()});
 			}
 		}

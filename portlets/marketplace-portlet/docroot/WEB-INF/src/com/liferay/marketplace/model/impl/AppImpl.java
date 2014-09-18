@@ -16,10 +16,12 @@ package com.liferay.marketplace.model.impl;
 
 import com.liferay.marketplace.model.Module;
 import com.liferay.marketplace.service.ModuleLocalServiceUtil;
+import com.liferay.marketplace.util.BundleUtil;
 import com.liferay.portal.kernel.deploy.DeployManagerUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.CompanyConstants;
 import com.liferay.portlet.documentlibrary.store.DLStoreUtil;
 import com.liferay.portlet.documentlibrary.store.Store;
@@ -28,6 +30,7 @@ import java.util.List;
 
 /**
  * @author Ryan Park
+ * @author Joan Kim
  */
 public class AppImpl extends AppBaseImpl {
 
@@ -91,19 +94,28 @@ public class AppImpl extends AppBaseImpl {
 
 	@Override
 	public boolean isInstalled() {
-		String[] contextNames = getContextNames();
+		List<Module> modules = ModuleLocalServiceUtil.getModules(getAppId());
 
-		if (contextNames.length == 0) {
-			return false;
-		}
+		for (Module module : modules) {
+			String contextName = module.getContextName();
 
-		for (String contextName : contextNames) {
-			if (!DeployManagerUtil.isDeployed(contextName)) {
-				return false;
+			if (Validator.isNotNull(contextName) &&
+				DeployManagerUtil.isDeployed(contextName)) {
+
+				return true;
+			}
+
+			String bundleSymbolicName = module.getBundleSymbolicName();
+
+			if (Validator.isNotNull(bundleSymbolicName) &&
+				BundleUtil.isActive(
+					bundleSymbolicName, module.getBundleVersion())) {
+
+				return true;
 			}
 		}
 
-		return true;
+		return false;
 	}
 
 	private static final String _DIR_NAME = "marketplace";

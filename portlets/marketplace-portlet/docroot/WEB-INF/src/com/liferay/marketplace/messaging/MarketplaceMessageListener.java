@@ -29,6 +29,7 @@ import java.util.Properties;
 
 /**
  * @author Ryan Park
+ * @author Joan Kim
  */
 public class MarketplaceMessageListener extends BaseMessageListener {
 
@@ -60,22 +61,24 @@ public class MarketplaceMessageListener extends BaseMessageListener {
 			0, remoteAppId, title, description, category, iconURL, version,
 			null);
 
-		String[] bundleSymoblicNames = StringUtil.split(
-			properties.getProperty("bundle-symbolic-names"));
+		String[] bundles = StringUtil.split(
+			properties.getProperty("bundles"));
 
-		for (String bundleSymoblicName : bundleSymoblicNames) {
+		for (String bundle : bundles) {
+			String bundleSymbolicName = bundle;
+			String bundleVersion = StringPool.BLANK;
 			String contextName = StringPool.BLANK;
 
-			if (bundleSymoblicName.contains(StringPool.POUND)) {
-				String[] bundleSymoblicNameParts = StringUtil.split(
-					bundleSymoblicName, StringPool.POUND);
+			String[] bundleParts = StringUtil.split(
+				bundle, StringPool.POUND);
 
-				bundleSymoblicName = bundleSymoblicNameParts[0];
-				contextName = bundleSymoblicNameParts[1];
-			}
+			bundleSymbolicName = bundleParts[0];
+			bundleVersion = bundleParts[1];
+			contextName = bundleParts[2];
 
 			ModuleLocalServiceUtil.addModule(
-				0, app.getAppId(), bundleSymoblicName, contextName);
+				0, app.getAppId(), bundleSymbolicName, bundleVersion,
+				contextName);
 		}
 
 		String[] contextNames = StringUtil.split(
@@ -83,7 +86,8 @@ public class MarketplaceMessageListener extends BaseMessageListener {
 
 		for (String contextName : contextNames) {
 			ModuleLocalServiceUtil.addModule(
-				0, app.getAppId(), StringPool.BLANK, contextName);
+				0, app.getAppId(), StringPool.BLANK, StringPool.BLANK,
+				contextName);
 		}
 
 		AppLocalServiceUtil.processMarketplaceProperties(properties);
