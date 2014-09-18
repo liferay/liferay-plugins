@@ -11,6 +11,6 @@
 	</info>
 
 	<dependencies defaultconf="default">
-		<dependency org="com.liferay" name="com.liferay.markdown.converter" rev="1.0.0-SNAPSHOT" />
+		<dependency org="com.liferay" name="com.liferay.markdown.converter" rev="1.0.0" />
 	</dependencies>
 </ivy-module>
