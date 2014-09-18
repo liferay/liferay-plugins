@@ -64,9 +64,11 @@ long parentResourcePrimKey = ParamUtil.getLong(request, "parentResourcePrimKey",
 				</c:if>
 
 				<c:if test="<%= AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_KB_ARTICLE) %>">
-					<liferay-util:include page="/admin/common/add_article_button.jsp" servletContext="<%= application %>" />
+					<aui:nav-item dropdown="<%= true %>" label="add">
+						<liferay-util:include page="/admin/common/add_article_button.jsp" servletContext="<%= application %>" />
 
-					<liferay-util:include page="/admin/import_articles_button.jsp" servletContext="<%= application %>" />
+						<liferay-util:include page="/admin/import_articles_button.jsp" servletContext="<%= application %>" />
+					</aui:nav-item>
 				</c:if>
 
 				<c:if test="<%= AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.PERMISSIONS) && GroupPermissionUtil.contains(permissionChecker, scopeGroupId, ActionKeys.PERMISSIONS) %>">
