@@ -21,7 +21,6 @@ import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.Validator;
 
-import java.util.Collection;
 import java.util.Locale;
 import java.util.Map;
 
@@ -36,9 +35,9 @@ public class DefaultSolrDocumentFactory implements SolrDocumentFactory {
 	public SolrInputDocument getSolrInputDocument(Document document) {
 		SolrInputDocument solrInputDocument = new SolrInputDocument();
 
-		Collection<Field> fields = document.getFields().values();
+		Map<String, Field> fields = document.getFields();
 
-		for (Field field : fields) {
+		for (Field field : fields.values()) {
 			String name = field.getName();
 			float boost = field.getBoost();
 
@@ -54,8 +53,7 @@ public class DefaultSolrDocumentFactory implements SolrDocumentFactory {
 
 					value = value.trim();
 
-					doAddSolrField(
-						solrInputDocument, field, boost, value, name);
+					addField(solrInputDocument, field, boost, value, name);
 				}
 			}
 			else {
@@ -87,7 +85,7 @@ public class DefaultSolrDocumentFactory implements SolrDocumentFactory {
 					String localizedName = DocumentImpl.getLocalizedName(
 						locale, name);
 
-					doAddSolrField(
+					addField(
 						solrInputDocument, field, boost, value, localizedName);
 				}
 			}
@@ -96,7 +94,7 @@ public class DefaultSolrDocumentFactory implements SolrDocumentFactory {
 		return solrInputDocument;
 	}
 
-	protected void doAddSolrField(
+	protected void addField(
 		SolrInputDocument solrInputDocument, Field field, float boost,
 		String value, String localizedName) {
 
