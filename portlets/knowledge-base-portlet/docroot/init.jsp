@@ -25,7 +25,9 @@
 <%@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 <%@ taglib uri="http://liferay.com/tld/util" prefix="liferay-util" %>
 
-<%@ page import="com.liferay.knowledgebase.KBArticleContentException" %><%@
+<%@ page import="com.liferay.compat.portal.kernel.util.ArrayUtil" %><%@
+page import="com.liferay.knowledgebase.DuplicateKBFolderNameException" %><%@
+page import="com.liferay.knowledgebase.KBArticleContentException" %><%@
 page import="com.liferay.knowledgebase.KBArticleImportException" %><%@
 page import="com.liferay.knowledgebase.KBArticlePriorityException" %><%@
 page import="com.liferay.knowledgebase.KBArticleSourceURLException" %><%@
@@ -52,6 +54,7 @@ page import="com.liferay.knowledgebase.service.permission.AdminPermission" %><%@
 page import="com.liferay.knowledgebase.service.permission.DisplayPermission" %><%@
 page import="com.liferay.knowledgebase.service.permission.KBArticlePermission" %><%@
 page import="com.liferay.knowledgebase.service.permission.KBCommentPermission" %><%@
+page import="com.liferay.knowledgebase.service.permission.KBFolderPermission" %><%@
 page import="com.liferay.knowledgebase.service.permission.KBTemplatePermission" %><%@
 page import="com.liferay.knowledgebase.util.ActionKeys" %><%@
 page import="com.liferay.knowledgebase.util.KnowledgeBaseUtil" %><%@
