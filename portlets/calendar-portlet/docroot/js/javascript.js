@@ -1727,7 +1727,6 @@ AUI.add(
 						var instance = this;
 
 						var answers = data.answers;
-						var schedulerEvent = data.schedulerEvent;
 
 						var showNextQuestion = A.bind(instance.queue.run, instance.queue);
 
@@ -1735,13 +1734,11 @@ AUI.add(
 							A.soon(showNextQuestion);
 						}
 						else {
-							var calendar = Liferay.CalendarUtil.availableCalendars[schedulerEvent.get('calendarId')];
-
 							var content = [
 								'<p class="calendar-portlet-confirmation-text">',
 								Lang.sub(
-									Liferay.Language.get('you-are-about-to-make-changes-that-will-only-affect-your-calendar-x'),
-									[LString.escapeHTML(calendar.get('name'))]
+									Liferay.Language.get('you-are-about-to-make-changes-that-will-only-effect-your-calendar-x'),
+									[LString.escapeHTML(data.calendarName)]
 								),
 								'</p>'
 							].join(STR_BLANK);
@@ -1765,8 +1762,11 @@ AUI.add(
 					_updateSchedulerEvent: function(schedulerEvent, changedAttributes) {
 						var instance = this;
 
+						var calendar = Liferay.CalendarUtil.availableCalendars[schedulerEvent.get('calendarId')];
+
 						instance._promptSchedulerEventUpdate(
 							{
+								calendarName: calendar.get('name'),
 								duration: instance._getCalendarBookingDuration(schedulerEvent),
 								hasChild: schedulerEvent.get('hasChildCalendarBookings'),
 								isRecurring: schedulerEvent.isRecurring(),
