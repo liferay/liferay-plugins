@@ -359,57 +359,15 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 				A.one('#<portlet:namespace />childCalendarIds').val(childCalendarIds.join(','));
 			</c:if>
 
-			<c:if test="<%= calendarBooking == null %>">
-				submitForm(document.<portlet:namespace />fm);
-			</c:if>
-
-			<c:if test="<%= (calendarBooking != null) && (calendar != null) %>">
-				<c:choose>
-					<c:when test="<%= recurring %>">
-						Liferay.RecurrenceUtil.openConfirmationPanel(
-							'update',
-							function() {
-								A.one('#<portlet:namespace />updateCalendarBookingInstance').val('true');
-
-								submitForm(document.<portlet:namespace />fm);
-							},
-							function() {
-								A.one('#<portlet:namespace />allFollowing').val('true');
-								A.one('#<portlet:namespace />updateCalendarBookingInstance').val('true');
-
-								submitForm(document.<portlet:namespace />fm);
-							},
-							function() {
-								submitForm(document.<portlet:namespace />fm);
-							}
-						);
-					</c:when>
-					<c:when test="<%= calendarBooking.isMasterBooking() %>">
-						submitForm(document.<portlet:namespace />fm);
-					</c:when>
-					<c:otherwise>
-						var content = [
-							'<p class="calendar-portlet-confirmation-text">',
-							'<liferay-ui:message arguments="<%= calendar.getName(locale) %>" key="you-are-about-to-make-changes-that-will-only-affect-your-calendar-x" />',
-							'</p>'
-						].join('');
-
-						Liferay.CalendarMessageUtil.confirm(
-							content,
-							'<liferay-ui:message key="save-changes" unicode="<%= true %>" />',
-							'<liferay-ui:message key="do-not-change-the-event" unicode="<%= true %>" />',
-							function() {
-								submitForm(document.<portlet:namespace />fm);
-
-								this.hide();
-							},
-							function() {
-								this.hide();
-							}
-						);
-					</c:otherwise>
-				</c:choose>
-			</c:if>
+			Liferay.CalendarMessageUtil.promptSchedulerEventUpdate(
+				{
+					calendarName: '<%= HtmlUtil.escapeJS(calendar.getName(locale)) %>',
+					hasChild: <%= hasChildCalendarBookings %>,
+					masterBooking: <%= masterBooking %>,
+					recurring: <%= recurring %>,
+					resolver: <portlet:namespace />resolver
+				}
+			);
 		},
 		['liferay-calendar-message-util', 'json']
 	);
