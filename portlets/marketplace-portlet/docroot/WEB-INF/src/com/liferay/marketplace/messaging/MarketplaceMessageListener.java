@@ -61,20 +61,14 @@ public class MarketplaceMessageListener extends BaseMessageListener {
 			0, remoteAppId, title, description, category, iconURL, version,
 			null);
 
-		String[] bundles = StringUtil.split(
-			properties.getProperty("bundles"));
+		String[] bundles = StringUtil.split(properties.getProperty("bundles"));
 
 		for (String bundle : bundles) {
-			String bundleSymbolicName = bundle;
-			String bundleVersion = StringPool.BLANK;
-			String contextName = StringPool.BLANK;
+			String[] bundleParts = StringUtil.split(bundle, StringPool.POUND);
 
-			String[] bundleParts = StringUtil.split(
-				bundle, StringPool.POUND);
-
-			bundleSymbolicName = bundleParts[0];
-			bundleVersion = bundleParts[1];
-			contextName = bundleParts[2];
+			String bundleSymbolicName = bundleParts[0];
+			String bundleVersion = bundleParts[1];
+			String contextName = bundleParts[2];
 
 			ModuleLocalServiceUtil.addModule(
 				0, app.getAppId(), bundleSymbolicName, bundleVersion,

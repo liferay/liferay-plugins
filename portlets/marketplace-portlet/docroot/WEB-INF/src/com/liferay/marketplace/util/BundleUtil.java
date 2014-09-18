@@ -46,10 +46,7 @@ import javax.management.openmbean.TabularData;
  */
 public class BundleUtil {
 
-	public static Map<String, Map<String, Object>> getInstalledBundles() {
-		Map<String, Map<String, Object>> bundles =
-			new HashMap<String, Map<String, Object>>();
-
+	public static List<Map<String, Object>> getInstalledBundles() {
 		try {
 			MBeanServer mBeanServer =
 				ManagementFactory.getPlatformMBeanServer();
@@ -62,6 +59,9 @@ public class BundleUtil {
 			Collection<CompositeData> values =
 				(Collection<CompositeData>)tabularData.values();
 
+			List<Map<String, Object>> bundles =
+				new ArrayList<Map<String, Object>>(values.size());
+
 			for (CompositeData compositeData : values) {
 				String state = (String)compositeData.get("State");
 
@@ -70,11 +70,8 @@ public class BundleUtil {
 				}
 
 				String symbolicName = (String)compositeData.get("SymbolicName");
-				String version = (String)compositeData.get("Version");
 
-				if (Validator.isNull(symbolicName) &&
-					Validator.isNull(version)) {
-
+				if (Validator.isNull(symbolicName)) {
 					continue;
 				}
 
@@ -83,16 +80,20 @@ public class BundleUtil {
 				bundleData.put("bundleId", compositeData.get("Identifier"));
 				bundleData.put("location", compositeData.get("Location"));
 				bundleData.put("state", state);
+				bundleData.put("symbolicName", symbolicName);
+
+				String version = (String)compositeData.get("Version");
+
 				bundleData.put("version", version);
 
-				bundles.put(symbolicName, bundleData);
+				bundles.add(bundleData);
 			}
+
+			return bundles;
 		}
 		catch (Exception e) {
 			throw new SystemException(e);
 		}
-
-		return bundles;
 	}
 
 	public static Properties getManifestProperties(File file) {
@@ -129,23 +130,20 @@ public class BundleUtil {
 		return null;
 	}
 
-	public static boolean isActive(
-		String bundleSymbolicName, String bundleVersion) {
+	public static boolean isActive(String symbolicName, String version) {
+		List<Map<String, Object>> bundles = getInstalledBundles();
 
-		Map<String, Map<String, Object>> bundles = getInstalledBundles();
+		for (Map<String, Object> bundle : bundles) {
+			String curSymbolicName = GetterUtil.getString(
+				bundle.get("symbolicName"));
 
-		for (Map.Entry<String, Map<String, Object>> entry :
-				bundles.entrySet()) {
-
-			if (!bundleSymbolicName.equals(entry.getKey())) {
+			if (!symbolicName.equals(curSymbolicName)) {
 				continue;
 			}
 
-			Map<String, Object> bundleData = entry.getValue();
+			String curVersion = GetterUtil.getString(bundle.get("version"));
 
-			if (bundleVersion.equals(
-					GetterUtil.getString(bundleData.get("version")))) {
-
+			if (version.equals(curVersion)) {
 				return true;
 			}
 		}
@@ -153,51 +151,46 @@ public class BundleUtil {
 		return false;
 	}
 
-	public static void uninstallBundle(
-		String bundleSymbolicName, String bundleVersion) {
-
+	public static void uninstallBundle(String symbolicName, String version) {
 		try {
-			Map<String, Map<String, Object>> bundles = getInstalledBundles();
+			List<Map<String, Object>> bundles = getInstalledBundles();
 
 			List<Long> bundleIds = new ArrayList<Long>();
 
-			for (Map.Entry<String, Map<String, Object>> entry :
-					bundles.entrySet()) {
+			for (Map<String, Object> bundle : bundles) {
+				String curSymbolicName = GetterUtil.getString(
+					bundle.get("symbolicName"));
 
-				Map<String, Object> bundleData = null;
-
-				if (bundleSymbolicName.equals(entry.getKey())) {
-					bundleData = entry.getValue();
-				}
-
-				if ((bundleData == null) || bundleData.isEmpty()) {
+				if (!symbolicName.equals(curSymbolicName)) {
 					continue;
 				}
 
-				long bundleId = 0;
+				String curVersion = GetterUtil.getString(bundle.get("version"));
 
-				if (bundleVersion.equals(
-						GetterUtil.getString(bundleData.get("version")))) {
-
-					bundleId = GetterUtil.getLong(bundleData.get("bundleId"));
+				if (!version.equals(curVersion)) {
+					continue;
 				}
+
+				long bundleId = GetterUtil.getLong(bundle.get("bundleId"));
 
 				if (bundleId > 0) {
 					bundleIds.add(bundleId);
 				}
 			}
 
-			if (bundleIds.size() > 0) {
-				MBeanServer mBeanServer =
-					ManagementFactory.getPlatformMBeanServer();
-
-				ObjectName objectName = new ObjectName(_FRAMEWORK_OBJECT_NAME);
-
-				mBeanServer.invoke(
-					objectName, "uninstallBundle",
-					bundleIds.toArray(new Object[bundleIds.size()]),
-					new String[] {long.class.getName()});
+			if (bundleIds.isEmpty()) {
+				return;
 			}
+
+			MBeanServer mBeanServer =
+				ManagementFactory.getPlatformMBeanServer();
+
+			ObjectName objectName = new ObjectName(_FRAMEWORK_OBJECT_NAME);
+
+			mBeanServer.invoke(
+				objectName, "uninstallBundle",
+				bundleIds.toArray(new Object[bundleIds.size()]),
+				new String[] {long.class.getName()});
 		}
 		catch (Exception e) {
 			throw new SystemException(e);

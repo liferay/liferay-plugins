@@ -97,25 +97,21 @@ public class AppImpl extends AppBaseImpl {
 		List<Module> modules = ModuleLocalServiceUtil.getModules(getAppId());
 
 		for (Module module : modules) {
-			String contextName = module.getContextName();
+			if (Validator.isNotNull(module.getBundleSymbolicName()) &&
+				!BundleUtil.isActive(
+					module.getBundleSymbolicName(),
+					module.getBundleVersion())) {
 
-			if (Validator.isNotNull(contextName) &&
-				DeployManagerUtil.isDeployed(contextName)) {
-
-				return true;
+				return false;
 			}
+			else if (Validator.isNotNull(module.getContextName()) &&
+					 !DeployManagerUtil.isDeployed(module.getContextName())) {
 
-			String bundleSymbolicName = module.getBundleSymbolicName();
-
-			if (Validator.isNotNull(bundleSymbolicName) &&
-				BundleUtil.isActive(
-					bundleSymbolicName, module.getBundleVersion())) {
-
-				return true;
+				return false;
 			}
 		}
 
-		return false;
+		return true;
 	}
 
 	private static final String _DIR_NAME = "marketplace";

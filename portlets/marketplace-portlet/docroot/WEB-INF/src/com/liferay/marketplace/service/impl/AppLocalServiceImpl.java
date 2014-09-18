@@ -348,9 +348,8 @@ public class AppLocalServiceImpl extends AppLocalServiceBaseImpl {
 
 						DeployManagerUtil.deploy(autoDeploymentContext);
 
-						if (Validator.isNotNull(contextName) ||
-							(Validator.isNotNull(bundleSymbolicName) &&
-							 Validator.isNotNull(bundleVersion))) {
+						if (Validator.isNotNull(bundleSymbolicName) ||
+							Validator.isNotNull(contextName)) {
 
 							moduleLocalService.addModule(
 								app.getUserId(), app.getAppId(),
