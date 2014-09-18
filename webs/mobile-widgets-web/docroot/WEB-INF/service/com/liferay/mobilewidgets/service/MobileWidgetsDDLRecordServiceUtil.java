@@ -26,7 +26,7 @@ import com.liferay.portal.service.InvokableService;
  * checks based on the propagated JAAS credentials because this service can be
  * accessed remotely.
  *
- * @author José Manuel Navarro
+ * @author Jos�� Manuel Navarro
  * @see MobileWidgetsDDLRecordService
  * @see com.liferay.mobilewidgets.service.base.MobileWidgetsDDLRecordServiceBaseImpl
  * @see com.liferay.mobilewidgets.service.impl.MobileWidgetsDDLRecordServiceImpl
@@ -61,6 +61,20 @@ public class MobileWidgetsDDLRecordServiceUtil {
 		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
 		throws java.lang.Throwable {
 		return getService().invokeMethod(name, parameterTypes, arguments);
+	}
+
+	public static int getDDLRecordsCount(long recordSetId, long userId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().getDDLRecordsCount(recordSetId, userId);
+	}
+
+	public static java.util.List<java.util.HashMap> getDDLRecords(
+		long recordSetId, long userId, int start, int end,
+		java.util.Locale locale)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService()
+				   .getDDLRecords(recordSetId, userId, start, end, locale);
 	}
 
 	public static java.util.Map<java.lang.String, java.lang.String> getDDLRecordValues(

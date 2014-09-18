@@ -17,7 +17,7 @@ package com.liferay.mobilewidgets.service;
 import com.liferay.portal.service.InvokableService;
 
 /**
- * @author José Manuel Navarro
+ * @author Jos�� Manuel Navarro
  * @generated
  */
 public class MobileWidgetsUserServiceClp implements MobileWidgetsUserService {

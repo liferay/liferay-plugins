@@ -14,6 +14,14 @@
 
 package com.liferay.mobilewidgets.service.http;
 
+import com.liferay.mobilewidgets.service.MobileWidgetsDDLRecordServiceUtil;
+
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.util.LocaleUtil;
+
+import java.rmi.RemoteException;
+
 /**
  * Provides the SOAP utility for the
  * {@link com.liferay.mobilewidgets.service.MobileWidgetsDDLRecordServiceUtil} service utility. The
@@ -38,10 +46,42 @@ package com.liferay.mobilewidgets.service.http;
  * The SOAP utility is only generated for remote services.
  * </p>
  *
- * @author José Manuel Navarro
+ * @author Jos�� Manuel Navarro
  * @see MobileWidgetsDDLRecordServiceHttp
  * @see com.liferay.mobilewidgets.service.MobileWidgetsDDLRecordServiceUtil
  * @generated
  */
 public class MobileWidgetsDDLRecordServiceSoap {
+	public static int getDDLRecordsCount(long recordSetId, long userId)
+		throws RemoteException {
+		try {
+			int returnValue = MobileWidgetsDDLRecordServiceUtil.getDDLRecordsCount(recordSetId,
+					userId);
+
+			return returnValue;
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static java.util.HashMap[] getDDLRecords(long recordSetId,
+		long userId, int start, int end, String locale)
+		throws RemoteException {
+		try {
+			java.util.List<java.util.HashMap> returnValue = MobileWidgetsDDLRecordServiceUtil.getDDLRecords(recordSetId,
+					userId, start, end, LocaleUtil.fromLanguageId(locale));
+
+			return returnValue.toArray(new java.util.HashMap[returnValue.size()]);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	private static Log _log = LogFactoryUtil.getLog(MobileWidgetsDDLRecordServiceSoap.class);
 }

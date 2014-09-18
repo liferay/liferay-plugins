@@ -19,7 +19,7 @@ import com.liferay.portal.service.ServiceWrapper;
 /**
  * Provides a wrapper for {@link MobileWidgetsDDLRecordService}.
  *
- * @author José Manuel Navarro
+ * @author Jos�� Manuel Navarro
  * @see MobileWidgetsDDLRecordService
  * @generated
  */
@@ -57,6 +57,22 @@ public class MobileWidgetsDDLRecordServiceWrapper
 		throws java.lang.Throwable {
 		return _mobileWidgetsDDLRecordService.invokeMethod(name,
 			parameterTypes, arguments);
+	}
+
+	@Override
+	public int getDDLRecordsCount(long recordSetId, long userId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _mobileWidgetsDDLRecordService.getDDLRecordsCount(recordSetId,
+			userId);
+	}
+
+	@Override
+	public java.util.List<java.util.HashMap> getDDLRecords(long recordSetId,
+		long userId, int start, int end, java.util.Locale locale)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _mobileWidgetsDDLRecordService.getDDLRecords(recordSetId,
+			userId, start, end, locale);
 	}
 
 	@Override

@@ -26,7 +26,7 @@ import com.liferay.portal.service.InvokableService;
  * checks based on the propagated JAAS credentials because this service can be
  * accessed remotely.
  *
- * @author José Manuel Navarro
+ * @author Jos�� Manuel Navarro
  * @see MobileWidgetsAssetEntryService
  * @see com.liferay.mobilewidgets.service.base.MobileWidgetsAssetEntryServiceBaseImpl
  * @see com.liferay.mobilewidgets.service.impl.MobileWidgetsAssetEntryServiceImpl

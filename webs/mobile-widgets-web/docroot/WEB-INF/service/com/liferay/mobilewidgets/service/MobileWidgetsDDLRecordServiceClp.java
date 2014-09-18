@@ -17,7 +17,7 @@ package com.liferay.mobilewidgets.service;
 import com.liferay.portal.service.InvokableService;
 
 /**
- * @author José Manuel Navarro
+ * @author Jos�� Manuel Navarro
  * @generated
  */
 public class MobileWidgetsDDLRecordServiceClp
@@ -33,9 +33,19 @@ public class MobileWidgetsDDLRecordServiceClp
 
 		_methodParameterTypes1 = new String[] { "java.lang.String" };
 
-		_methodName3 = "getDDLRecordValues";
+		_methodName3 = "getDDLRecordsCount";
 
-		_methodParameterTypes3 = new String[] { "long", "java.util.Locale" };
+		_methodParameterTypes3 = new String[] { "long", "long" };
+
+		_methodName4 = "getDDLRecords";
+
+		_methodParameterTypes4 = new String[] {
+				"long", "long", "int", "int", "java.util.Locale"
+			};
+
+		_methodName5 = "getDDLRecordValues";
+
+		_methodParameterTypes5 = new String[] { "long", "java.util.Locale" };
 	}
 
 	@Override
@@ -89,6 +99,79 @@ public class MobileWidgetsDDLRecordServiceClp
 	}
 
 	@Override
+	public int getDDLRecordsCount(long recordSetId, long userId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableService.invokeMethod(_methodName3,
+					_methodParameterTypes3, new Object[] { recordSetId, userId });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return ((Integer)returnObj).intValue();
+	}
+
+	@Override
+	public java.util.List<java.util.HashMap> getDDLRecords(long recordSetId,
+		long userId, int start, int end, java.util.Locale locale)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableService.invokeMethod(_methodName4,
+					_methodParameterTypes4,
+					new Object[] {
+						recordSetId,
+						
+					userId,
+						
+					start,
+						
+					end,
+						
+					ClpSerializer.translateInput(locale)
+					});
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.util.List<java.util.HashMap>)ClpSerializer.translateOutput(returnObj);
+	}
+
+	@Override
 	public java.util.Map<java.lang.String, java.lang.String> getDDLRecordValues(
 		long ddlRecordId, java.util.Locale locale)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -96,8 +179,8 @@ public class MobileWidgetsDDLRecordServiceClp
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableService.invokeMethod(_methodName3,
-					_methodParameterTypes3,
+			returnObj = _invokableService.invokeMethod(_methodName5,
+					_methodParameterTypes5,
 					new Object[] {
 						ddlRecordId,
 						
@@ -134,4 +217,8 @@ public class MobileWidgetsDDLRecordServiceClp
 	private String[] _methodParameterTypes1;
 	private String _methodName3;
 	private String[] _methodParameterTypes3;
+	private String _methodName4;
+	private String[] _methodParameterTypes4;
+	private String _methodName5;
+	private String[] _methodParameterTypes5;
 }

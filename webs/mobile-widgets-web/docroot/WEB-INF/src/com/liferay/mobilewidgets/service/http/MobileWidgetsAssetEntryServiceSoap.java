@@ -46,7 +46,7 @@ import java.rmi.RemoteException;
  * The SOAP utility is only generated for remote services.
  * </p>
  *
- * @author José Manuel Navarro
+ * @author Jos�� Manuel Navarro
  * @see MobileWidgetsAssetEntryServiceHttp
  * @see com.liferay.mobilewidgets.service.MobileWidgetsAssetEntryServiceUtil
  * @generated

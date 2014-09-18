@@ -53,8 +53,21 @@
 		<parameter name="wsdlTargetNamespace" value="urn:http.service.mobilewidgets.liferay.com" />
 	</service>
 	<service name="Plugin_MobileWidgets_MobileWidgetsDDLRecordService" provider="java:RPC" style="rpc" use="encoded">
-		<parameter name="allowedMethods" value="*" />
+		<arrayMapping xmlns:ns="urn:http.service.mobilewidgets.liferay.com" xmlns:cmp-ns="http://xml.apache.org/xml-soap" qname="ns:ArrayOf_apachesoap_Map" type="java:java.util.HashMap[]" innerType="cmp-ns:Map" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"></arrayMapping>
+		<operation xmlns:operNS="urn:http.service.mobilewidgets.liferay.com" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="getDDLRecordsCount" qname="operNS:getDDLRecordsCount" returnQName="getDDLRecordsCountReturn" returnType="rtns:int" soapAction="">
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="recordSetId" type="tns:long"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="userId" type="tns:long"></parameter>
+		</operation>
+		<operation xmlns:operNS="urn:http.service.mobilewidgets.liferay.com" xmlns:rtns="urn:http.service.mobilewidgets.liferay.com" xmlns:tns2="http://xml.apache.org/xml-soap" name="getDDLRecords" qname="operNS:getDDLRecords" returnQName="getDDLRecordsReturn" returnType="rtns:ArrayOf_apachesoap_Map" returnItemType="tns2:Map" soapAction="">
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="recordSetId" type="tns:long"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="userId" type="tns:long"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="start" type="tns:int"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="end" type="tns:int"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="locale" type="tns:string"></parameter>
+		</operation>
+		<parameter name="allowedMethods" value="getDDLRecords getDDLRecordsCount" />
 		<parameter name="className" value="com.liferay.mobilewidgets.service.http.MobileWidgetsDDLRecordServiceSoap" />
+		<parameter name="schemaUnqualified" value="http://xml.apache.org/xml-soap,urn:http.service.mobilewidgets.liferay.com" />
 		<parameter name="typeMappingVersion" value="1.2" />
 		<parameter name="wsdlPortType" value="MobileWidgetsDDLRecordServiceSoap" />
 		<parameter name="wsdlServiceElement" value="MobileWidgetsDDLRecordServiceSoapService" />
