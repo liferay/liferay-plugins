@@ -2110,6 +2110,7 @@ Please find a solution that does not require portal-impl.jar.
 								<jvmarg value="-Dfile.encoding=UTF-8" />
 								<jvmarg value="-Djava.net.preferIPv4Stack=true" />
 								<jvmarg value="-Duser.timezone=GMT" />
+								<jvmarg value="-Dsdk.dir=${sdk.dir}" />
 								<classpath location="@{module.dir}/test-coverage" />
 								<classpath refid="test.classpath" />
 								<formatter type="brief" usefile="false" />
