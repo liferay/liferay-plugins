@@ -195,7 +195,12 @@ iteratorURL.setParameter("mbThreadId", String.valueOf(mbThreadId));
 				</span>
 
 				<div class="body">
-					<%= StringUtil.replace(mbMessage.getBody(), "\n", "<br />") %>
+
+					<%
+					String body = _convertToHyperlink(mbMessage.getBody());
+					%>
+
+					<%= StringUtil.replace(body, "\n", "<br />") %>
 
 					<c:if test="<%= mbMessage.getAttachmentsFileEntriesCount() > 0 %>">
 						<hr />
@@ -372,3 +377,18 @@ iteratorURL.setParameter("mbThreadId", String.valueOf(mbThreadId));
 		}
 	).render();
 </aui:script>
+
+<%!
+private String _convertToHyperlink(String body) throws Exception {
+	if (body == null) {
+		return body;
+	}
+
+	Matcher matcher = _urlPattern.matcher(body);
+
+	return matcher.replaceAll("<a target=\"_blank\" href=\"$1\">$1</a>");
+}
+
+private static Pattern _urlPattern = Pattern.compile(
+	"(((https?|ftp):\\/\\/|mailto:)\\S+)");
+%>
