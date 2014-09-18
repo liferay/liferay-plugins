@@ -302,6 +302,12 @@ public class MicroblogsEntryLocalServiceImpl
 	protected void sendNotificationEvent(MicroblogsEntry microblogsEntry)
 		throws PortalException, SystemException {
 
+		if (microblogsEntry.getReceiverUserId() ==
+				microblogsEntry.getUserId()) {
+
+			return;
+		}
+
 		if (UserNotificationManagerUtil.isDeliver(
 				microblogsEntry.getReceiverUserId(), PortletKeys.MICROBLOGS, 0,
 				MicroblogsEntryConstants.TYPE_REPLY,
