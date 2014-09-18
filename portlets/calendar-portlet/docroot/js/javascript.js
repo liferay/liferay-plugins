@@ -1527,13 +1527,11 @@ AUI.add(
 					_promptSchedulerEventUpdate: function(data) {
 						var instance = this;
 
-						var schedulerEvent = data.schedulerEvent;
-
 						data.answers = {};
 
 						instance.queue = new A.AsyncQueue();
 
-						if (schedulerEvent.isRecurring()) {
+						if (data.isRecurring) {
 							instance.queue.add(
 								{
 									args: [data],
@@ -1545,8 +1543,8 @@ AUI.add(
 							);
 						}
 
-						if (schedulerEvent.isMasterBooking()) {
-							if (schedulerEvent.get('hasChildCalendarBookings')) {
+						if (data.isMaster) {
+							if (data.hasChild) {
 								instance.queue.add(
 									{
 										args: [data],
@@ -1721,6 +1719,9 @@ AUI.add(
 						instance._promptSchedulerEventUpdate(
 							{
 								duration: instance._getCalendarBookingDuration(schedulerEvent),
+								hasChild: schedulerEvent.get('hasChildCalendarBookings'),
+								isRecurring: schedulerEvent.isRecurring(),
+								isMaster:  schedulerEvent.isMasterBooking(),
 								offset: instance._getCalendarBookingOffset(schedulerEvent, changedAttributes),
 								resolver: instance._queueableQuestionResolver,
 								schedulerEvent: schedulerEvent
