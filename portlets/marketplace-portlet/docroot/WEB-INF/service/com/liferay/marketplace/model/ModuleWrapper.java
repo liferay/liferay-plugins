@@ -55,6 +55,7 @@ public class ModuleWrapper implements Module, ModelWrapper<Module> {
 		attributes.put("moduleId", getModuleId());
 		attributes.put("appId", getAppId());
 		attributes.put("bundleSymbolicName", getBundleSymbolicName());
+		attributes.put("bundleVersion", getBundleVersion());
 		attributes.put("contextName", getContextName());
 
 		return attributes;
@@ -84,6 +85,12 @@ public class ModuleWrapper implements Module, ModelWrapper<Module> {
 
 		if (bundleSymbolicName != null) {
 			setBundleSymbolicName(bundleSymbolicName);
+		}
+
+		String bundleVersion = (String)attributes.get("bundleVersion");
+
+		if (bundleVersion != null) {
+			setBundleVersion(bundleVersion);
 		}
 
 		String contextName = (String)attributes.get("contextName");
@@ -121,6 +128,16 @@ public class ModuleWrapper implements Module, ModelWrapper<Module> {
 	@Override
 	public java.lang.String getBundleSymbolicName() {
 		return _module.getBundleSymbolicName();
+	}
+
+	/**
+	* Returns the bundle version of this module.
+	*
+	* @return the bundle version of this module
+	*/
+	@Override
+	public java.lang.String getBundleVersion() {
+		return _module.getBundleVersion();
 	}
 
 	/**
@@ -216,6 +233,16 @@ public class ModuleWrapper implements Module, ModelWrapper<Module> {
 	@Override
 	public void setBundleSymbolicName(java.lang.String bundleSymbolicName) {
 		_module.setBundleSymbolicName(bundleSymbolicName);
+	}
+
+	/**
+	* Sets the bundle version of this module.
+	*
+	* @param bundleVersion the bundle version of this module
+	*/
+	@Override
+	public void setBundleVersion(java.lang.String bundleVersion) {
+		_module.setBundleVersion(bundleVersion);
 	}
 
 	@Override

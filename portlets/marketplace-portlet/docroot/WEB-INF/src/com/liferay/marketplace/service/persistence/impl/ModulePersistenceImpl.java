@@ -2136,271 +2136,6 @@ public class ModulePersistenceImpl extends BasePersistenceImpl<Module>
 	private static final String _FINDER_COLUMN_CONTEXTNAME_CONTEXTNAME_1 = "module.contextName IS NULL";
 	private static final String _FINDER_COLUMN_CONTEXTNAME_CONTEXTNAME_2 = "module.contextName = ?";
 	private static final String _FINDER_COLUMN_CONTEXTNAME_CONTEXTNAME_3 = "(module.contextName IS NULL OR module.contextName = '')";
-	public static final FinderPath FINDER_PATH_FETCH_BY_A_BSN = new FinderPath(ModuleModelImpl.ENTITY_CACHE_ENABLED,
-			ModuleModelImpl.FINDER_CACHE_ENABLED, ModuleImpl.class,
-			FINDER_CLASS_NAME_ENTITY, "fetchByA_BSN",
-			new String[] { Long.class.getName(), String.class.getName() },
-			ModuleModelImpl.APPID_COLUMN_BITMASK |
-			ModuleModelImpl.BUNDLESYMBOLICNAME_COLUMN_BITMASK);
-	public static final FinderPath FINDER_PATH_COUNT_BY_A_BSN = new FinderPath(ModuleModelImpl.ENTITY_CACHE_ENABLED,
-			ModuleModelImpl.FINDER_CACHE_ENABLED, Long.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByA_BSN",
-			new String[] { Long.class.getName(), String.class.getName() });
-
-	/**
-	 * Returns the module where appId = &#63; and bundleSymbolicName = &#63; or throws a {@link com.liferay.marketplace.NoSuchModuleException} if it could not be found.
-	 *
-	 * @param appId the app ID
-	 * @param bundleSymbolicName the bundle symbolic name
-	 * @return the matching module
-	 * @throws com.liferay.marketplace.NoSuchModuleException if a matching module could not be found
-	 */
-	@Override
-	public Module findByA_BSN(long appId, String bundleSymbolicName)
-		throws NoSuchModuleException {
-		Module module = fetchByA_BSN(appId, bundleSymbolicName);
-
-		if (module == null) {
-			StringBundler msg = new StringBundler(6);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("appId=");
-			msg.append(appId);
-
-			msg.append(", bundleSymbolicName=");
-			msg.append(bundleSymbolicName);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			if (_log.isWarnEnabled()) {
-				_log.warn(msg.toString());
-			}
-
-			throw new NoSuchModuleException(msg.toString());
-		}
-
-		return module;
-	}
-
-	/**
-	 * Returns the module where appId = &#63; and bundleSymbolicName = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
-	 *
-	 * @param appId the app ID
-	 * @param bundleSymbolicName the bundle symbolic name
-	 * @return the matching module, or <code>null</code> if a matching module could not be found
-	 */
-	@Override
-	public Module fetchByA_BSN(long appId, String bundleSymbolicName) {
-		return fetchByA_BSN(appId, bundleSymbolicName, true);
-	}
-
-	/**
-	 * Returns the module where appId = &#63; and bundleSymbolicName = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
-	 *
-	 * @param appId the app ID
-	 * @param bundleSymbolicName the bundle symbolic name
-	 * @param retrieveFromCache whether to use the finder cache
-	 * @return the matching module, or <code>null</code> if a matching module could not be found
-	 */
-	@Override
-	public Module fetchByA_BSN(long appId, String bundleSymbolicName,
-		boolean retrieveFromCache) {
-		Object[] finderArgs = new Object[] { appId, bundleSymbolicName };
-
-		Object result = null;
-
-		if (retrieveFromCache) {
-			result = FinderCacheUtil.getResult(FINDER_PATH_FETCH_BY_A_BSN,
-					finderArgs, this);
-		}
-
-		if (result instanceof Module) {
-			Module module = (Module)result;
-
-			if ((appId != module.getAppId()) ||
-					!Validator.equals(bundleSymbolicName,
-						module.getBundleSymbolicName())) {
-				result = null;
-			}
-		}
-
-		if (result == null) {
-			StringBundler query = new StringBundler(4);
-
-			query.append(_SQL_SELECT_MODULE_WHERE);
-
-			query.append(_FINDER_COLUMN_A_BSN_APPID_2);
-
-			boolean bindBundleSymbolicName = false;
-
-			if (bundleSymbolicName == null) {
-				query.append(_FINDER_COLUMN_A_BSN_BUNDLESYMBOLICNAME_1);
-			}
-			else if (bundleSymbolicName.equals(StringPool.BLANK)) {
-				query.append(_FINDER_COLUMN_A_BSN_BUNDLESYMBOLICNAME_3);
-			}
-			else {
-				bindBundleSymbolicName = true;
-
-				query.append(_FINDER_COLUMN_A_BSN_BUNDLESYMBOLICNAME_2);
-			}
-
-			String sql = query.toString();
-
-			Session session = null;
-
-			try {
-				session = openSession();
-
-				Query q = session.createQuery(sql);
-
-				QueryPos qPos = QueryPos.getInstance(q);
-
-				qPos.add(appId);
-
-				if (bindBundleSymbolicName) {
-					qPos.add(bundleSymbolicName);
-				}
-
-				List<Module> list = q.list();
-
-				if (list.isEmpty()) {
-					FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_A_BSN,
-						finderArgs, list);
-				}
-				else {
-					if ((list.size() > 1) && _log.isWarnEnabled()) {
-						_log.warn(
-							"ModulePersistenceImpl.fetchByA_BSN(long, String, boolean) with parameters (" +
-							StringUtil.merge(finderArgs) +
-							") yields a result set with more than 1 result. This violates the logical unique restriction. There is no order guarantee on which result is returned by this finder.");
-					}
-
-					Module module = list.get(0);
-
-					result = module;
-
-					cacheResult(module);
-
-					if ((module.getAppId() != appId) ||
-							(module.getBundleSymbolicName() == null) ||
-							!module.getBundleSymbolicName()
-									   .equals(bundleSymbolicName)) {
-						FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_A_BSN,
-							finderArgs, module);
-					}
-				}
-			}
-			catch (Exception e) {
-				FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_A_BSN,
-					finderArgs);
-
-				throw processException(e);
-			}
-			finally {
-				closeSession(session);
-			}
-		}
-
-		if (result instanceof List<?>) {
-			return null;
-		}
-		else {
-			return (Module)result;
-		}
-	}
-
-	/**
-	 * Removes the module where appId = &#63; and bundleSymbolicName = &#63; from the database.
-	 *
-	 * @param appId the app ID
-	 * @param bundleSymbolicName the bundle symbolic name
-	 * @return the module that was removed
-	 */
-	@Override
-	public Module removeByA_BSN(long appId, String bundleSymbolicName)
-		throws NoSuchModuleException {
-		Module module = findByA_BSN(appId, bundleSymbolicName);
-
-		return remove(module);
-	}
-
-	/**
-	 * Returns the number of modules where appId = &#63; and bundleSymbolicName = &#63;.
-	 *
-	 * @param appId the app ID
-	 * @param bundleSymbolicName the bundle symbolic name
-	 * @return the number of matching modules
-	 */
-	@Override
-	public int countByA_BSN(long appId, String bundleSymbolicName) {
-		FinderPath finderPath = FINDER_PATH_COUNT_BY_A_BSN;
-
-		Object[] finderArgs = new Object[] { appId, bundleSymbolicName };
-
-		Long count = (Long)FinderCacheUtil.getResult(finderPath, finderArgs,
-				this);
-
-		if (count == null) {
-			StringBundler query = new StringBundler(3);
-
-			query.append(_SQL_COUNT_MODULE_WHERE);
-
-			query.append(_FINDER_COLUMN_A_BSN_APPID_2);
-
-			boolean bindBundleSymbolicName = false;
-
-			if (bundleSymbolicName == null) {
-				query.append(_FINDER_COLUMN_A_BSN_BUNDLESYMBOLICNAME_1);
-			}
-			else if (bundleSymbolicName.equals(StringPool.BLANK)) {
-				query.append(_FINDER_COLUMN_A_BSN_BUNDLESYMBOLICNAME_3);
-			}
-			else {
-				bindBundleSymbolicName = true;
-
-				query.append(_FINDER_COLUMN_A_BSN_BUNDLESYMBOLICNAME_2);
-			}
-
-			String sql = query.toString();
-
-			Session session = null;
-
-			try {
-				session = openSession();
-
-				Query q = session.createQuery(sql);
-
-				QueryPos qPos = QueryPos.getInstance(q);
-
-				qPos.add(appId);
-
-				if (bindBundleSymbolicName) {
-					qPos.add(bundleSymbolicName);
-				}
-
-				count = (Long)q.uniqueResult();
-
-				FinderCacheUtil.putResult(finderPath, finderArgs, count);
-			}
-			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
-
-				throw processException(e);
-			}
-			finally {
-				closeSession(session);
-			}
-		}
-
-		return count.intValue();
-	}
-
-	private static final String _FINDER_COLUMN_A_BSN_APPID_2 = "module.appId = ? AND ";
-	private static final String _FINDER_COLUMN_A_BSN_BUNDLESYMBOLICNAME_1 = "module.bundleSymbolicName IS NULL";
-	private static final String _FINDER_COLUMN_A_BSN_BUNDLESYMBOLICNAME_2 = "module.bundleSymbolicName = ?";
-	private static final String _FINDER_COLUMN_A_BSN_BUNDLESYMBOLICNAME_3 = "(module.bundleSymbolicName IS NULL OR module.bundleSymbolicName = '')";
 	public static final FinderPath FINDER_PATH_FETCH_BY_A_CN = new FinderPath(ModuleModelImpl.ENTITY_CACHE_ENABLED,
 			ModuleModelImpl.FINDER_CACHE_ENABLED, ModuleImpl.class,
 			FINDER_CLASS_NAME_ENTITY, "fetchByA_CN",
@@ -2664,6 +2399,334 @@ public class ModulePersistenceImpl extends BasePersistenceImpl<Module>
 	private static final String _FINDER_COLUMN_A_CN_CONTEXTNAME_1 = "module.contextName IS NULL";
 	private static final String _FINDER_COLUMN_A_CN_CONTEXTNAME_2 = "module.contextName = ?";
 	private static final String _FINDER_COLUMN_A_CN_CONTEXTNAME_3 = "(module.contextName IS NULL OR module.contextName = '')";
+	public static final FinderPath FINDER_PATH_FETCH_BY_A_BSN_BV = new FinderPath(ModuleModelImpl.ENTITY_CACHE_ENABLED,
+			ModuleModelImpl.FINDER_CACHE_ENABLED, ModuleImpl.class,
+			FINDER_CLASS_NAME_ENTITY, "fetchByA_BSN_BV",
+			new String[] {
+				Long.class.getName(), String.class.getName(),
+				String.class.getName()
+			},
+			ModuleModelImpl.APPID_COLUMN_BITMASK |
+			ModuleModelImpl.BUNDLESYMBOLICNAME_COLUMN_BITMASK |
+			ModuleModelImpl.BUNDLEVERSION_COLUMN_BITMASK);
+	public static final FinderPath FINDER_PATH_COUNT_BY_A_BSN_BV = new FinderPath(ModuleModelImpl.ENTITY_CACHE_ENABLED,
+			ModuleModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByA_BSN_BV",
+			new String[] {
+				Long.class.getName(), String.class.getName(),
+				String.class.getName()
+			});
+
+	/**
+	 * Returns the module where appId = &#63; and bundleSymbolicName = &#63; and bundleVersion = &#63; or throws a {@link com.liferay.marketplace.NoSuchModuleException} if it could not be found.
+	 *
+	 * @param appId the app ID
+	 * @param bundleSymbolicName the bundle symbolic name
+	 * @param bundleVersion the bundle version
+	 * @return the matching module
+	 * @throws com.liferay.marketplace.NoSuchModuleException if a matching module could not be found
+	 */
+	@Override
+	public Module findByA_BSN_BV(long appId, String bundleSymbolicName,
+		String bundleVersion) throws NoSuchModuleException {
+		Module module = fetchByA_BSN_BV(appId, bundleSymbolicName, bundleVersion);
+
+		if (module == null) {
+			StringBundler msg = new StringBundler(8);
+
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+			msg.append("appId=");
+			msg.append(appId);
+
+			msg.append(", bundleSymbolicName=");
+			msg.append(bundleSymbolicName);
+
+			msg.append(", bundleVersion=");
+			msg.append(bundleVersion);
+
+			msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+			if (_log.isWarnEnabled()) {
+				_log.warn(msg.toString());
+			}
+
+			throw new NoSuchModuleException(msg.toString());
+		}
+
+		return module;
+	}
+
+	/**
+	 * Returns the module where appId = &#63; and bundleSymbolicName = &#63; and bundleVersion = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 *
+	 * @param appId the app ID
+	 * @param bundleSymbolicName the bundle symbolic name
+	 * @param bundleVersion the bundle version
+	 * @return the matching module, or <code>null</code> if a matching module could not be found
+	 */
+	@Override
+	public Module fetchByA_BSN_BV(long appId, String bundleSymbolicName,
+		String bundleVersion) {
+		return fetchByA_BSN_BV(appId, bundleSymbolicName, bundleVersion, true);
+	}
+
+	/**
+	 * Returns the module where appId = &#63; and bundleSymbolicName = &#63; and bundleVersion = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 *
+	 * @param appId the app ID
+	 * @param bundleSymbolicName the bundle symbolic name
+	 * @param bundleVersion the bundle version
+	 * @param retrieveFromCache whether to use the finder cache
+	 * @return the matching module, or <code>null</code> if a matching module could not be found
+	 */
+	@Override
+	public Module fetchByA_BSN_BV(long appId, String bundleSymbolicName,
+		String bundleVersion, boolean retrieveFromCache) {
+		Object[] finderArgs = new Object[] {
+				appId, bundleSymbolicName, bundleVersion
+			};
+
+		Object result = null;
+
+		if (retrieveFromCache) {
+			result = FinderCacheUtil.getResult(FINDER_PATH_FETCH_BY_A_BSN_BV,
+					finderArgs, this);
+		}
+
+		if (result instanceof Module) {
+			Module module = (Module)result;
+
+			if ((appId != module.getAppId()) ||
+					!Validator.equals(bundleSymbolicName,
+						module.getBundleSymbolicName()) ||
+					!Validator.equals(bundleVersion, module.getBundleVersion())) {
+				result = null;
+			}
+		}
+
+		if (result == null) {
+			StringBundler query = new StringBundler(5);
+
+			query.append(_SQL_SELECT_MODULE_WHERE);
+
+			query.append(_FINDER_COLUMN_A_BSN_BV_APPID_2);
+
+			boolean bindBundleSymbolicName = false;
+
+			if (bundleSymbolicName == null) {
+				query.append(_FINDER_COLUMN_A_BSN_BV_BUNDLESYMBOLICNAME_1);
+			}
+			else if (bundleSymbolicName.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_A_BSN_BV_BUNDLESYMBOLICNAME_3);
+			}
+			else {
+				bindBundleSymbolicName = true;
+
+				query.append(_FINDER_COLUMN_A_BSN_BV_BUNDLESYMBOLICNAME_2);
+			}
+
+			boolean bindBundleVersion = false;
+
+			if (bundleVersion == null) {
+				query.append(_FINDER_COLUMN_A_BSN_BV_BUNDLEVERSION_1);
+			}
+			else if (bundleVersion.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_A_BSN_BV_BUNDLEVERSION_3);
+			}
+			else {
+				bindBundleVersion = true;
+
+				query.append(_FINDER_COLUMN_A_BSN_BV_BUNDLEVERSION_2);
+			}
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(appId);
+
+				if (bindBundleSymbolicName) {
+					qPos.add(bundleSymbolicName);
+				}
+
+				if (bindBundleVersion) {
+					qPos.add(bundleVersion);
+				}
+
+				List<Module> list = q.list();
+
+				if (list.isEmpty()) {
+					FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_A_BSN_BV,
+						finderArgs, list);
+				}
+				else {
+					if ((list.size() > 1) && _log.isWarnEnabled()) {
+						_log.warn(
+							"ModulePersistenceImpl.fetchByA_BSN_BV(long, String, String, boolean) with parameters (" +
+							StringUtil.merge(finderArgs) +
+							") yields a result set with more than 1 result. This violates the logical unique restriction. There is no order guarantee on which result is returned by this finder.");
+					}
+
+					Module module = list.get(0);
+
+					result = module;
+
+					cacheResult(module);
+
+					if ((module.getAppId() != appId) ||
+							(module.getBundleSymbolicName() == null) ||
+							!module.getBundleSymbolicName()
+									   .equals(bundleSymbolicName) ||
+							(module.getBundleVersion() == null) ||
+							!module.getBundleVersion().equals(bundleVersion)) {
+						FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_A_BSN_BV,
+							finderArgs, module);
+					}
+				}
+			}
+			catch (Exception e) {
+				FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_A_BSN_BV,
+					finderArgs);
+
+				throw processException(e);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+
+		if (result instanceof List<?>) {
+			return null;
+		}
+		else {
+			return (Module)result;
+		}
+	}
+
+	/**
+	 * Removes the module where appId = &#63; and bundleSymbolicName = &#63; and bundleVersion = &#63; from the database.
+	 *
+	 * @param appId the app ID
+	 * @param bundleSymbolicName the bundle symbolic name
+	 * @param bundleVersion the bundle version
+	 * @return the module that was removed
+	 */
+	@Override
+	public Module removeByA_BSN_BV(long appId, String bundleSymbolicName,
+		String bundleVersion) throws NoSuchModuleException {
+		Module module = findByA_BSN_BV(appId, bundleSymbolicName, bundleVersion);
+
+		return remove(module);
+	}
+
+	/**
+	 * Returns the number of modules where appId = &#63; and bundleSymbolicName = &#63; and bundleVersion = &#63;.
+	 *
+	 * @param appId the app ID
+	 * @param bundleSymbolicName the bundle symbolic name
+	 * @param bundleVersion the bundle version
+	 * @return the number of matching modules
+	 */
+	@Override
+	public int countByA_BSN_BV(long appId, String bundleSymbolicName,
+		String bundleVersion) {
+		FinderPath finderPath = FINDER_PATH_COUNT_BY_A_BSN_BV;
+
+		Object[] finderArgs = new Object[] {
+				appId, bundleSymbolicName, bundleVersion
+			};
+
+		Long count = (Long)FinderCacheUtil.getResult(finderPath, finderArgs,
+				this);
+
+		if (count == null) {
+			StringBundler query = new StringBundler(4);
+
+			query.append(_SQL_COUNT_MODULE_WHERE);
+
+			query.append(_FINDER_COLUMN_A_BSN_BV_APPID_2);
+
+			boolean bindBundleSymbolicName = false;
+
+			if (bundleSymbolicName == null) {
+				query.append(_FINDER_COLUMN_A_BSN_BV_BUNDLESYMBOLICNAME_1);
+			}
+			else if (bundleSymbolicName.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_A_BSN_BV_BUNDLESYMBOLICNAME_3);
+			}
+			else {
+				bindBundleSymbolicName = true;
+
+				query.append(_FINDER_COLUMN_A_BSN_BV_BUNDLESYMBOLICNAME_2);
+			}
+
+			boolean bindBundleVersion = false;
+
+			if (bundleVersion == null) {
+				query.append(_FINDER_COLUMN_A_BSN_BV_BUNDLEVERSION_1);
+			}
+			else if (bundleVersion.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_A_BSN_BV_BUNDLEVERSION_3);
+			}
+			else {
+				bindBundleVersion = true;
+
+				query.append(_FINDER_COLUMN_A_BSN_BV_BUNDLEVERSION_2);
+			}
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(appId);
+
+				if (bindBundleSymbolicName) {
+					qPos.add(bundleSymbolicName);
+				}
+
+				if (bindBundleVersion) {
+					qPos.add(bundleVersion);
+				}
+
+				count = (Long)q.uniqueResult();
+
+				FinderCacheUtil.putResult(finderPath, finderArgs, count);
+			}
+			catch (Exception e) {
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
+
+				throw processException(e);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+
+		return count.intValue();
+	}
+
+	private static final String _FINDER_COLUMN_A_BSN_BV_APPID_2 = "module.appId = ? AND ";
+	private static final String _FINDER_COLUMN_A_BSN_BV_BUNDLESYMBOLICNAME_1 = "module.bundleSymbolicName IS NULL AND ";
+	private static final String _FINDER_COLUMN_A_BSN_BV_BUNDLESYMBOLICNAME_2 = "module.bundleSymbolicName = ? AND ";
+	private static final String _FINDER_COLUMN_A_BSN_BV_BUNDLESYMBOLICNAME_3 = "(module.bundleSymbolicName IS NULL OR module.bundleSymbolicName = '') AND ";
+	private static final String _FINDER_COLUMN_A_BSN_BV_BUNDLEVERSION_1 = "module.bundleVersion IS NULL";
+	private static final String _FINDER_COLUMN_A_BSN_BV_BUNDLEVERSION_2 = "module.bundleVersion = ?";
+	private static final String _FINDER_COLUMN_A_BSN_BV_BUNDLEVERSION_3 = "(module.bundleVersion IS NULL OR module.bundleVersion = '')";
 
 	public ModulePersistenceImpl() {
 		setModelClass(Module.class);
@@ -2679,12 +2742,14 @@ public class ModulePersistenceImpl extends BasePersistenceImpl<Module>
 		EntityCacheUtil.putResult(ModuleModelImpl.ENTITY_CACHE_ENABLED,
 			ModuleImpl.class, module.getPrimaryKey(), module);
 
-		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_A_BSN,
-			new Object[] { module.getAppId(), module.getBundleSymbolicName() },
-			module);
-
 		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_A_CN,
 			new Object[] { module.getAppId(), module.getContextName() }, module);
+
+		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_A_BSN_BV,
+			new Object[] {
+				module.getAppId(), module.getBundleSymbolicName(),
+				module.getBundleVersion()
+			}, module);
 
 		module.resetOriginalValues();
 	}
@@ -2762,33 +2827,25 @@ public class ModulePersistenceImpl extends BasePersistenceImpl<Module>
 	protected void cacheUniqueFindersCache(Module module) {
 		if (module.isNew()) {
 			Object[] args = new Object[] {
-					module.getAppId(), module.getBundleSymbolicName()
+					module.getAppId(), module.getContextName()
 				};
-
-			FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_A_BSN, args,
-				Long.valueOf(1));
-			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_A_BSN, args, module);
-
-			args = new Object[] { module.getAppId(), module.getContextName() };
 
 			FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_A_CN, args,
 				Long.valueOf(1));
 			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_A_CN, args, module);
+
+			args = new Object[] {
+					module.getAppId(), module.getBundleSymbolicName(),
+					module.getBundleVersion()
+				};
+
+			FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_A_BSN_BV, args,
+				Long.valueOf(1));
+			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_A_BSN_BV, args,
+				module);
 		}
 		else {
 			ModuleModelImpl moduleModelImpl = (ModuleModelImpl)module;
-
-			if ((moduleModelImpl.getColumnBitmask() &
-					FINDER_PATH_FETCH_BY_A_BSN.getColumnBitmask()) != 0) {
-				Object[] args = new Object[] {
-						module.getAppId(), module.getBundleSymbolicName()
-					};
-
-				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_A_BSN, args,
-					Long.valueOf(1));
-				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_A_BSN, args,
-					module);
-			}
 
 			if ((moduleModelImpl.getColumnBitmask() &
 					FINDER_PATH_FETCH_BY_A_CN.getColumnBitmask()) != 0) {
@@ -2801,31 +2858,26 @@ public class ModulePersistenceImpl extends BasePersistenceImpl<Module>
 				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_A_CN, args,
 					module);
 			}
+
+			if ((moduleModelImpl.getColumnBitmask() &
+					FINDER_PATH_FETCH_BY_A_BSN_BV.getColumnBitmask()) != 0) {
+				Object[] args = new Object[] {
+						module.getAppId(), module.getBundleSymbolicName(),
+						module.getBundleVersion()
+					};
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_A_BSN_BV, args,
+					Long.valueOf(1));
+				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_A_BSN_BV, args,
+					module);
+			}
 		}
 	}
 
 	protected void clearUniqueFindersCache(Module module) {
 		ModuleModelImpl moduleModelImpl = (ModuleModelImpl)module;
 
-		Object[] args = new Object[] {
-				module.getAppId(), module.getBundleSymbolicName()
-			};
-
-		FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_A_BSN, args);
-		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_A_BSN, args);
-
-		if ((moduleModelImpl.getColumnBitmask() &
-				FINDER_PATH_FETCH_BY_A_BSN.getColumnBitmask()) != 0) {
-			args = new Object[] {
-					moduleModelImpl.getOriginalAppId(),
-					moduleModelImpl.getOriginalBundleSymbolicName()
-				};
-
-			FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_A_BSN, args);
-			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_A_BSN, args);
-		}
-
-		args = new Object[] { module.getAppId(), module.getContextName() };
+		Object[] args = new Object[] { module.getAppId(), module.getContextName() };
 
 		FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_A_CN, args);
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_A_CN, args);
@@ -2839,6 +2891,26 @@ public class ModulePersistenceImpl extends BasePersistenceImpl<Module>
 
 			FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_A_CN, args);
 			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_A_CN, args);
+		}
+
+		args = new Object[] {
+				module.getAppId(), module.getBundleSymbolicName(),
+				module.getBundleVersion()
+			};
+
+		FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_A_BSN_BV, args);
+		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_A_BSN_BV, args);
+
+		if ((moduleModelImpl.getColumnBitmask() &
+				FINDER_PATH_FETCH_BY_A_BSN_BV.getColumnBitmask()) != 0) {
+			args = new Object[] {
+					moduleModelImpl.getOriginalAppId(),
+					moduleModelImpl.getOriginalBundleSymbolicName(),
+					moduleModelImpl.getOriginalBundleVersion()
+				};
+
+			FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_A_BSN_BV, args);
+			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_A_BSN_BV, args);
 		}
 	}
 
@@ -3080,6 +3152,7 @@ public class ModulePersistenceImpl extends BasePersistenceImpl<Module>
 		moduleImpl.setModuleId(module.getModuleId());
 		moduleImpl.setAppId(module.getAppId());
 		moduleImpl.setBundleSymbolicName(module.getBundleSymbolicName());
+		moduleImpl.setBundleVersion(module.getBundleVersion());
 		moduleImpl.setContextName(module.getContextName());
 
 		return moduleImpl;

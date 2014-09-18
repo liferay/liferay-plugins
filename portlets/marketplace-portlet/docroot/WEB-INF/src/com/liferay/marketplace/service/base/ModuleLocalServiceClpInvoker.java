@@ -130,13 +130,15 @@ public class ModuleLocalServiceClpInvoker {
 		_methodName53 = "addModule";
 
 		_methodParameterTypes53 = new String[] {
-				"long", "long", "java.lang.String", "java.lang.String"
+				"long", "long", "java.lang.String", "java.lang.String",
+				"java.lang.String"
 			};
 
 		_methodName54 = "fetchModule";
 
 		_methodParameterTypes54 = new String[] {
-				"long", "java.lang.String", "java.lang.String"
+				"long", "java.lang.String", "java.lang.String",
+				"java.lang.String"
 			};
 
 		_methodName55 = "getModules";
@@ -259,13 +261,15 @@ public class ModuleLocalServiceClpInvoker {
 				Arrays.deepEquals(_methodParameterTypes53, parameterTypes)) {
 			return ModuleLocalServiceUtil.addModule(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
-				(java.lang.String)arguments[2], (java.lang.String)arguments[3]);
+				(java.lang.String)arguments[2], (java.lang.String)arguments[3],
+				(java.lang.String)arguments[4]);
 		}
 
 		if (_methodName54.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes54, parameterTypes)) {
 			return ModuleLocalServiceUtil.fetchModule(((Long)arguments[0]).longValue(),
-				(java.lang.String)arguments[1], (java.lang.String)arguments[2]);
+				(java.lang.String)arguments[1], (java.lang.String)arguments[2],
+				(java.lang.String)arguments[3]);
 		}
 
 		if (_methodName55.equals(name) &&

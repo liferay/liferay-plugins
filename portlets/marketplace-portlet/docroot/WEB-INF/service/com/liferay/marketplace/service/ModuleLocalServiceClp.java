@@ -36,7 +36,8 @@ public class ModuleLocalServiceClp implements ModuleLocalService {
 		_methodName1 = "addModule";
 
 		_methodParameterTypes1 = new String[] {
-				"long", "long", "java.lang.String", "java.lang.String"
+				"long", "long", "java.lang.String", "java.lang.String",
+				"java.lang.String"
 			};
 
 		_methodName2 = "createModule";
@@ -98,7 +99,8 @@ public class ModuleLocalServiceClp implements ModuleLocalService {
 		_methodName12 = "fetchModule";
 
 		_methodParameterTypes12 = new String[] {
-				"long", "java.lang.String", "java.lang.String"
+				"long", "java.lang.String", "java.lang.String",
+				"java.lang.String"
 			};
 
 		_methodName13 = "fetchModule";
@@ -172,7 +174,7 @@ public class ModuleLocalServiceClp implements ModuleLocalService {
 	@Override
 	public com.liferay.marketplace.model.Module addModule(long userId,
 		long appId, java.lang.String bundleSymbolicName,
-		java.lang.String contextName) {
+		java.lang.String bundleVersion, java.lang.String contextName) {
 		Object returnObj = null;
 
 		try {
@@ -184,6 +186,8 @@ public class ModuleLocalServiceClp implements ModuleLocalService {
 					appId,
 						
 					ClpSerializer.translateInput(bundleSymbolicName),
+						
+					ClpSerializer.translateInput(bundleVersion),
 						
 					ClpSerializer.translateInput(contextName)
 					});
@@ -481,7 +485,8 @@ public class ModuleLocalServiceClp implements ModuleLocalService {
 
 	@Override
 	public com.liferay.marketplace.model.Module fetchModule(long appId,
-		java.lang.String bundleSymbolicName, java.lang.String contextName) {
+		java.lang.String bundleSymbolicName, java.lang.String bundleVersion,
+		java.lang.String contextName) {
 		Object returnObj = null;
 
 		try {
@@ -491,6 +496,8 @@ public class ModuleLocalServiceClp implements ModuleLocalService {
 						appId,
 						
 					ClpSerializer.translateInput(bundleSymbolicName),
+						
+					ClpSerializer.translateInput(bundleVersion),
 						
 					ClpSerializer.translateInput(contextName)
 					});

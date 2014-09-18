@@ -683,72 +683,6 @@ public class ModuleUtil {
 	}
 
 	/**
-	* Returns the module where appId = &#63; and bundleSymbolicName = &#63; or throws a {@link com.liferay.marketplace.NoSuchModuleException} if it could not be found.
-	*
-	* @param appId the app ID
-	* @param bundleSymbolicName the bundle symbolic name
-	* @return the matching module
-	* @throws com.liferay.marketplace.NoSuchModuleException if a matching module could not be found
-	*/
-	public static com.liferay.marketplace.model.Module findByA_BSN(long appId,
-		java.lang.String bundleSymbolicName)
-		throws com.liferay.marketplace.NoSuchModuleException {
-		return getPersistence().findByA_BSN(appId, bundleSymbolicName);
-	}
-
-	/**
-	* Returns the module where appId = &#63; and bundleSymbolicName = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
-	*
-	* @param appId the app ID
-	* @param bundleSymbolicName the bundle symbolic name
-	* @return the matching module, or <code>null</code> if a matching module could not be found
-	*/
-	public static com.liferay.marketplace.model.Module fetchByA_BSN(
-		long appId, java.lang.String bundleSymbolicName) {
-		return getPersistence().fetchByA_BSN(appId, bundleSymbolicName);
-	}
-
-	/**
-	* Returns the module where appId = &#63; and bundleSymbolicName = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
-	*
-	* @param appId the app ID
-	* @param bundleSymbolicName the bundle symbolic name
-	* @param retrieveFromCache whether to use the finder cache
-	* @return the matching module, or <code>null</code> if a matching module could not be found
-	*/
-	public static com.liferay.marketplace.model.Module fetchByA_BSN(
-		long appId, java.lang.String bundleSymbolicName,
-		boolean retrieveFromCache) {
-		return getPersistence()
-				   .fetchByA_BSN(appId, bundleSymbolicName, retrieveFromCache);
-	}
-
-	/**
-	* Removes the module where appId = &#63; and bundleSymbolicName = &#63; from the database.
-	*
-	* @param appId the app ID
-	* @param bundleSymbolicName the bundle symbolic name
-	* @return the module that was removed
-	*/
-	public static com.liferay.marketplace.model.Module removeByA_BSN(
-		long appId, java.lang.String bundleSymbolicName)
-		throws com.liferay.marketplace.NoSuchModuleException {
-		return getPersistence().removeByA_BSN(appId, bundleSymbolicName);
-	}
-
-	/**
-	* Returns the number of modules where appId = &#63; and bundleSymbolicName = &#63;.
-	*
-	* @param appId the app ID
-	* @param bundleSymbolicName the bundle symbolic name
-	* @return the number of matching modules
-	*/
-	public static int countByA_BSN(long appId,
-		java.lang.String bundleSymbolicName) {
-		return getPersistence().countByA_BSN(appId, bundleSymbolicName);
-	}
-
-	/**
 	* Returns the module where appId = &#63; and contextName = &#63; or throws a {@link com.liferay.marketplace.NoSuchModuleException} if it could not be found.
 	*
 	* @param appId the app ID
@@ -810,6 +744,85 @@ public class ModuleUtil {
 	*/
 	public static int countByA_CN(long appId, java.lang.String contextName) {
 		return getPersistence().countByA_CN(appId, contextName);
+	}
+
+	/**
+	* Returns the module where appId = &#63; and bundleSymbolicName = &#63; and bundleVersion = &#63; or throws a {@link com.liferay.marketplace.NoSuchModuleException} if it could not be found.
+	*
+	* @param appId the app ID
+	* @param bundleSymbolicName the bundle symbolic name
+	* @param bundleVersion the bundle version
+	* @return the matching module
+	* @throws com.liferay.marketplace.NoSuchModuleException if a matching module could not be found
+	*/
+	public static com.liferay.marketplace.model.Module findByA_BSN_BV(
+		long appId, java.lang.String bundleSymbolicName,
+		java.lang.String bundleVersion)
+		throws com.liferay.marketplace.NoSuchModuleException {
+		return getPersistence()
+				   .findByA_BSN_BV(appId, bundleSymbolicName, bundleVersion);
+	}
+
+	/**
+	* Returns the module where appId = &#63; and bundleSymbolicName = &#63; and bundleVersion = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	*
+	* @param appId the app ID
+	* @param bundleSymbolicName the bundle symbolic name
+	* @param bundleVersion the bundle version
+	* @return the matching module, or <code>null</code> if a matching module could not be found
+	*/
+	public static com.liferay.marketplace.model.Module fetchByA_BSN_BV(
+		long appId, java.lang.String bundleSymbolicName,
+		java.lang.String bundleVersion) {
+		return getPersistence()
+				   .fetchByA_BSN_BV(appId, bundleSymbolicName, bundleVersion);
+	}
+
+	/**
+	* Returns the module where appId = &#63; and bundleSymbolicName = &#63; and bundleVersion = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	*
+	* @param appId the app ID
+	* @param bundleSymbolicName the bundle symbolic name
+	* @param bundleVersion the bundle version
+	* @param retrieveFromCache whether to use the finder cache
+	* @return the matching module, or <code>null</code> if a matching module could not be found
+	*/
+	public static com.liferay.marketplace.model.Module fetchByA_BSN_BV(
+		long appId, java.lang.String bundleSymbolicName,
+		java.lang.String bundleVersion, boolean retrieveFromCache) {
+		return getPersistence()
+				   .fetchByA_BSN_BV(appId, bundleSymbolicName, bundleVersion,
+			retrieveFromCache);
+	}
+
+	/**
+	* Removes the module where appId = &#63; and bundleSymbolicName = &#63; and bundleVersion = &#63; from the database.
+	*
+	* @param appId the app ID
+	* @param bundleSymbolicName the bundle symbolic name
+	* @param bundleVersion the bundle version
+	* @return the module that was removed
+	*/
+	public static com.liferay.marketplace.model.Module removeByA_BSN_BV(
+		long appId, java.lang.String bundleSymbolicName,
+		java.lang.String bundleVersion)
+		throws com.liferay.marketplace.NoSuchModuleException {
+		return getPersistence()
+				   .removeByA_BSN_BV(appId, bundleSymbolicName, bundleVersion);
+	}
+
+	/**
+	* Returns the number of modules where appId = &#63; and bundleSymbolicName = &#63; and bundleVersion = &#63;.
+	*
+	* @param appId the app ID
+	* @param bundleSymbolicName the bundle symbolic name
+	* @param bundleVersion the bundle version
+	* @return the number of matching modules
+	*/
+	public static int countByA_BSN_BV(long appId,
+		java.lang.String bundleSymbolicName, java.lang.String bundleVersion) {
+		return getPersistence()
+				   .countByA_BSN_BV(appId, bundleSymbolicName, bundleVersion);
 	}
 
 	/**

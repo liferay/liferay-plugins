@@ -79,6 +79,7 @@ public class ModuleClp extends BaseModelImpl<Module> implements Module {
 		attributes.put("moduleId", getModuleId());
 		attributes.put("appId", getAppId());
 		attributes.put("bundleSymbolicName", getBundleSymbolicName());
+		attributes.put("bundleVersion", getBundleVersion());
 		attributes.put("contextName", getContextName());
 
 		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
@@ -111,6 +112,12 @@ public class ModuleClp extends BaseModelImpl<Module> implements Module {
 
 		if (bundleSymbolicName != null) {
 			setBundleSymbolicName(bundleSymbolicName);
+		}
+
+		String bundleVersion = (String)attributes.get("bundleVersion");
+
+		if (bundleVersion != null) {
+			setBundleVersion(bundleVersion);
 		}
 
 		String contextName = (String)attributes.get("contextName");
@@ -217,6 +224,29 @@ public class ModuleClp extends BaseModelImpl<Module> implements Module {
 	}
 
 	@Override
+	public String getBundleVersion() {
+		return _bundleVersion;
+	}
+
+	@Override
+	public void setBundleVersion(String bundleVersion) {
+		_bundleVersion = bundleVersion;
+
+		if (_moduleRemoteModel != null) {
+			try {
+				Class<?> clazz = _moduleRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setBundleVersion", String.class);
+
+				method.invoke(_moduleRemoteModel, bundleVersion);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
+	}
+
+	@Override
 	public String getContextName() {
 		return _contextName;
 	}
@@ -312,6 +342,7 @@ public class ModuleClp extends BaseModelImpl<Module> implements Module {
 		clone.setModuleId(getModuleId());
 		clone.setAppId(getAppId());
 		clone.setBundleSymbolicName(getBundleSymbolicName());
+		clone.setBundleVersion(getBundleVersion());
 		clone.setContextName(getContextName());
 
 		return clone;
@@ -375,7 +406,7 @@ public class ModuleClp extends BaseModelImpl<Module> implements Module {
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(11);
+		StringBundler sb = new StringBundler(13);
 
 		sb.append("{uuid=");
 		sb.append(getUuid());
@@ -385,6 +416,8 @@ public class ModuleClp extends BaseModelImpl<Module> implements Module {
 		sb.append(getAppId());
 		sb.append(", bundleSymbolicName=");
 		sb.append(getBundleSymbolicName());
+		sb.append(", bundleVersion=");
+		sb.append(getBundleVersion());
 		sb.append(", contextName=");
 		sb.append(getContextName());
 		sb.append("}");
@@ -394,7 +427,7 @@ public class ModuleClp extends BaseModelImpl<Module> implements Module {
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(19);
+		StringBundler sb = new StringBundler(22);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.marketplace.model.Module");
@@ -417,6 +450,10 @@ public class ModuleClp extends BaseModelImpl<Module> implements Module {
 		sb.append(getBundleSymbolicName());
 		sb.append("]]></column-value></column>");
 		sb.append(
+			"<column><column-name>bundleVersion</column-name><column-value><![CDATA[");
+		sb.append(getBundleVersion());
+		sb.append("]]></column-value></column>");
+		sb.append(
 			"<column><column-name>contextName</column-name><column-value><![CDATA[");
 		sb.append(getContextName());
 		sb.append("]]></column-value></column>");
@@ -430,6 +467,7 @@ public class ModuleClp extends BaseModelImpl<Module> implements Module {
 	private long _moduleId;
 	private long _appId;
 	private String _bundleSymbolicName;
+	private String _bundleVersion;
 	private String _contextName;
 	private BaseModel<?> _moduleRemoteModel;
 	private Class<?> _clpSerializerClass = com.liferay.marketplace.service.ClpSerializer.class;

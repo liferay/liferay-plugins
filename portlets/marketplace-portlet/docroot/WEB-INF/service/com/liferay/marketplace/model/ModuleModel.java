@@ -119,6 +119,21 @@ public interface ModuleModel extends BaseModel<Module> {
 	public void setBundleSymbolicName(String bundleSymbolicName);
 
 	/**
+	 * Returns the bundle version of this module.
+	 *
+	 * @return the bundle version of this module
+	 */
+	@AutoEscape
+	public String getBundleVersion();
+
+	/**
+	 * Sets the bundle version of this module.
+	 *
+	 * @param bundleVersion the bundle version of this module
+	 */
+	public void setBundleVersion(String bundleVersion);
+
+	/**
 	 * Returns the context name of this module.
 	 *
 	 * @return the context name of this module
