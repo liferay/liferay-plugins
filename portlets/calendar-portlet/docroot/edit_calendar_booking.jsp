@@ -83,7 +83,9 @@ JSONArray declinedCalendarsJSONArray = JSONFactoryUtil.createJSONArray();
 JSONArray maybeCalendarsJSONArray = JSONFactoryUtil.createJSONArray();
 JSONArray pendingCalendarsJSONArray = JSONFactoryUtil.createJSONArray();
 
+boolean hasChildCalendarBookings = false;
 boolean invitable = true;
+boolean masterBooking = false;
 Recurrence recurrence = null;
 boolean recurring = false;
 
@@ -95,7 +97,16 @@ if (calendarBooking != null) {
 	maybeCalendarsJSONArray = CalendarUtil.toCalendarBookingsJSONArray(themeDisplay, CalendarBookingServiceUtil.getChildCalendarBookings(calendarBooking.getParentCalendarBookingId(), CalendarBookingWorkflowConstants.STATUS_MAYBE));
 	pendingCalendarsJSONArray = CalendarUtil.toCalendarBookingsJSONArray(themeDisplay, CalendarBookingServiceUtil.getChildCalendarBookings(calendarBooking.getParentCalendarBookingId(), CalendarBookingWorkflowConstants.STATUS_PENDING));
 
-	if (!calendarBooking.isMasterBooking()) {
+	if (calendarBooking.isMasterBooking()) {
+		masterBooking = true;
+
+		List<CalendarBooking> childCalendarBookings = CalendarBookingServiceUtil.getChildCalendarBookings(calendarBooking.getParentCalendarBookingId());
+
+		if (childCalendarBookings.size() > 1) {
+			hasChildCalendarBookings = true;
+		}
+	}
+	else {
 		invitable = false;
 	}
 
