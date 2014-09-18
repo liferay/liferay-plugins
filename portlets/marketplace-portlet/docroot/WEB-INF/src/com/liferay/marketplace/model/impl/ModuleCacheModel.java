@@ -35,7 +35,7 @@ import java.io.ObjectOutput;
 public class ModuleCacheModel implements CacheModel<Module>, Externalizable {
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(11);
+		StringBundler sb = new StringBundler(13);
 
 		sb.append("{uuid=");
 		sb.append(uuid);
@@ -45,6 +45,8 @@ public class ModuleCacheModel implements CacheModel<Module>, Externalizable {
 		sb.append(appId);
 		sb.append(", bundleSymbolicName=");
 		sb.append(bundleSymbolicName);
+		sb.append(", bundleVersion=");
+		sb.append(bundleVersion);
 		sb.append(", contextName=");
 		sb.append(contextName);
 		sb.append("}");
@@ -73,6 +75,13 @@ public class ModuleCacheModel implements CacheModel<Module>, Externalizable {
 			moduleImpl.setBundleSymbolicName(bundleSymbolicName);
 		}
 
+		if (bundleVersion == null) {
+			moduleImpl.setBundleVersion(StringPool.BLANK);
+		}
+		else {
+			moduleImpl.setBundleVersion(bundleVersion);
+		}
+
 		if (contextName == null) {
 			moduleImpl.setContextName(StringPool.BLANK);
 		}
@@ -91,6 +100,7 @@ public class ModuleCacheModel implements CacheModel<Module>, Externalizable {
 		moduleId = objectInput.readLong();
 		appId = objectInput.readLong();
 		bundleSymbolicName = objectInput.readUTF();
+		bundleVersion = objectInput.readUTF();
 		contextName = objectInput.readUTF();
 	}
 
@@ -114,6 +124,13 @@ public class ModuleCacheModel implements CacheModel<Module>, Externalizable {
 			objectOutput.writeUTF(bundleSymbolicName);
 		}
 
+		if (bundleVersion == null) {
+			objectOutput.writeUTF(StringPool.BLANK);
+		}
+		else {
+			objectOutput.writeUTF(bundleVersion);
+		}
+
 		if (contextName == null) {
 			objectOutput.writeUTF(StringPool.BLANK);
 		}
@@ -126,5 +143,6 @@ public class ModuleCacheModel implements CacheModel<Module>, Externalizable {
 	public long moduleId;
 	public long appId;
 	public String bundleSymbolicName;
+	public String bundleVersion;
 	public String contextName;
 }

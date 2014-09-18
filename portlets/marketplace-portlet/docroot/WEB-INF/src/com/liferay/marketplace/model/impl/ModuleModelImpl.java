@@ -62,9 +62,10 @@ public class ModuleModelImpl extends BaseModelImpl<Module>
 			{ "moduleId", Types.BIGINT },
 			{ "appId", Types.BIGINT },
 			{ "bundleSymbolicName", Types.VARCHAR },
+			{ "bundleVersion", Types.VARCHAR },
 			{ "contextName", Types.VARCHAR }
 		};
-	public static final String TABLE_SQL_CREATE = "create table Marketplace_Module (uuid_ VARCHAR(75) null,moduleId LONG not null primary key,appId LONG,bundleSymbolicName VARCHAR(500) null,contextName VARCHAR(75) null)";
+	public static final String TABLE_SQL_CREATE = "create table Marketplace_Module (uuid_ VARCHAR(75) null,moduleId LONG not null primary key,appId LONG,bundleSymbolicName VARCHAR(500) null,bundleVersion VARCHAR(75) null,contextName VARCHAR(75) null)";
 	public static final String TABLE_SQL_DROP = "drop table Marketplace_Module";
 	public static final String ORDER_BY_JPQL = " ORDER BY module.moduleId ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY Marketplace_Module.moduleId ASC";
@@ -82,9 +83,10 @@ public class ModuleModelImpl extends BaseModelImpl<Module>
 			true);
 	public static long APPID_COLUMN_BITMASK = 1L;
 	public static long BUNDLESYMBOLICNAME_COLUMN_BITMASK = 2L;
-	public static long CONTEXTNAME_COLUMN_BITMASK = 4L;
-	public static long UUID_COLUMN_BITMASK = 8L;
-	public static long MODULEID_COLUMN_BITMASK = 16L;
+	public static long BUNDLEVERSION_COLUMN_BITMASK = 4L;
+	public static long CONTEXTNAME_COLUMN_BITMASK = 8L;
+	public static long UUID_COLUMN_BITMASK = 16L;
+	public static long MODULEID_COLUMN_BITMASK = 32L;
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.liferay.marketplace.model.Module"));
 
@@ -129,6 +131,7 @@ public class ModuleModelImpl extends BaseModelImpl<Module>
 		attributes.put("moduleId", getModuleId());
 		attributes.put("appId", getAppId());
 		attributes.put("bundleSymbolicName", getBundleSymbolicName());
+		attributes.put("bundleVersion", getBundleVersion());
 		attributes.put("contextName", getContextName());
 
 		return attributes;
@@ -158,6 +161,12 @@ public class ModuleModelImpl extends BaseModelImpl<Module>
 
 		if (bundleSymbolicName != null) {
 			setBundleSymbolicName(bundleSymbolicName);
+		}
+
+		String bundleVersion = (String)attributes.get("bundleVersion");
+
+		if (bundleVersion != null) {
+			setBundleVersion(bundleVersion);
 		}
 
 		String contextName = (String)attributes.get("contextName");
@@ -248,6 +257,31 @@ public class ModuleModelImpl extends BaseModelImpl<Module>
 	}
 
 	@Override
+	public String getBundleVersion() {
+		if (_bundleVersion == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _bundleVersion;
+		}
+	}
+
+	@Override
+	public void setBundleVersion(String bundleVersion) {
+		_columnBitmask |= BUNDLEVERSION_COLUMN_BITMASK;
+
+		if (_originalBundleVersion == null) {
+			_originalBundleVersion = _bundleVersion;
+		}
+
+		_bundleVersion = bundleVersion;
+	}
+
+	public String getOriginalBundleVersion() {
+		return GetterUtil.getString(_originalBundleVersion);
+	}
+
+	@Override
 	public String getContextName() {
 		if (_contextName == null) {
 			return StringPool.BLANK;
@@ -307,6 +341,7 @@ public class ModuleModelImpl extends BaseModelImpl<Module>
 		moduleImpl.setModuleId(getModuleId());
 		moduleImpl.setAppId(getAppId());
 		moduleImpl.setBundleSymbolicName(getBundleSymbolicName());
+		moduleImpl.setBundleVersion(getBundleVersion());
 		moduleImpl.setContextName(getContextName());
 
 		moduleImpl.resetOriginalValues();
@@ -368,6 +403,8 @@ public class ModuleModelImpl extends BaseModelImpl<Module>
 
 		moduleModelImpl._originalBundleSymbolicName = moduleModelImpl._bundleSymbolicName;
 
+		moduleModelImpl._originalBundleVersion = moduleModelImpl._bundleVersion;
+
 		moduleModelImpl._originalContextName = moduleModelImpl._contextName;
 
 		moduleModelImpl._columnBitmask = 0;
@@ -397,6 +434,14 @@ public class ModuleModelImpl extends BaseModelImpl<Module>
 			moduleCacheModel.bundleSymbolicName = null;
 		}
 
+		moduleCacheModel.bundleVersion = getBundleVersion();
+
+		String bundleVersion = moduleCacheModel.bundleVersion;
+
+		if ((bundleVersion != null) && (bundleVersion.length() == 0)) {
+			moduleCacheModel.bundleVersion = null;
+		}
+
 		moduleCacheModel.contextName = getContextName();
 
 		String contextName = moduleCacheModel.contextName;
@@ -410,7 +455,7 @@ public class ModuleModelImpl extends BaseModelImpl<Module>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(11);
+		StringBundler sb = new StringBundler(13);
 
 		sb.append("{uuid=");
 		sb.append(getUuid());
@@ -420,6 +465,8 @@ public class ModuleModelImpl extends BaseModelImpl<Module>
 		sb.append(getAppId());
 		sb.append(", bundleSymbolicName=");
 		sb.append(getBundleSymbolicName());
+		sb.append(", bundleVersion=");
+		sb.append(getBundleVersion());
 		sb.append(", contextName=");
 		sb.append(getContextName());
 		sb.append("}");
@@ -429,7 +476,7 @@ public class ModuleModelImpl extends BaseModelImpl<Module>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(19);
+		StringBundler sb = new StringBundler(22);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.marketplace.model.Module");
@@ -452,6 +499,10 @@ public class ModuleModelImpl extends BaseModelImpl<Module>
 		sb.append(getBundleSymbolicName());
 		sb.append("]]></column-value></column>");
 		sb.append(
+			"<column><column-name>bundleVersion</column-name><column-value><![CDATA[");
+		sb.append(getBundleVersion());
+		sb.append("]]></column-value></column>");
+		sb.append(
 			"<column><column-name>contextName</column-name><column-value><![CDATA[");
 		sb.append(getContextName());
 		sb.append("]]></column-value></column>");
@@ -471,6 +522,8 @@ public class ModuleModelImpl extends BaseModelImpl<Module>
 	private boolean _setOriginalAppId;
 	private String _bundleSymbolicName;
 	private String _originalBundleSymbolicName;
+	private String _bundleVersion;
+	private String _originalBundleVersion;
 	private String _contextName;
 	private String _originalContextName;
 	private long _columnBitmask;

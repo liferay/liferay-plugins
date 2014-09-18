@@ -27,6 +27,7 @@
 		<field name="bundleSymbolicName" type="String">
 			<hint name="max-length">500</hint>
 		</field>
+		<field name="bundleVersion" type="String" />
 		<field name="contextName" type="String" />
 	</model>
 </model-hints>

@@ -33,6 +33,7 @@ public class ModuleSoap implements Serializable {
 		soapModel.setModuleId(model.getModuleId());
 		soapModel.setAppId(model.getAppId());
 		soapModel.setBundleSymbolicName(model.getBundleSymbolicName());
+		soapModel.setBundleVersion(model.getBundleVersion());
 		soapModel.setContextName(model.getContextName());
 
 		return soapModel;
@@ -118,6 +119,14 @@ public class ModuleSoap implements Serializable {
 		_bundleSymbolicName = bundleSymbolicName;
 	}
 
+	public String getBundleVersion() {
+		return _bundleVersion;
+	}
+
+	public void setBundleVersion(String bundleVersion) {
+		_bundleVersion = bundleVersion;
+	}
+
 	public String getContextName() {
 		return _contextName;
 	}
@@ -130,5 +139,6 @@ public class ModuleSoap implements Serializable {
 	private long _moduleId;
 	private long _appId;
 	private String _bundleSymbolicName;
+	private String _bundleVersion;
 	private String _contextName;
 }
