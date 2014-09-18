@@ -49,6 +49,7 @@
 
 		<column name="appId" type="long" />
 		<column name="bundleSymbolicName" type="String" />
+		<column name="bundleVersion" type="String" />
 		<column name="contextName" type="String" />
 
 		<!-- Finder methods -->
@@ -62,13 +63,14 @@
 		<finder name="ContextName" return-type="Collection">
 			<finder-column name="contextName" />
 		</finder>
-		<finder name="A_BSN" return-type="Module">
-			<finder-column name="appId" />
-			<finder-column name="bundleSymbolicName" />
-		</finder>
 		<finder name="A_CN" return-type="Module">
 			<finder-column name="appId" />
 			<finder-column name="contextName" />
+		</finder>
+		<finder name="A_BSN_BV" return-type="Module">
+			<finder-column name="appId" />
+			<finder-column name="bundleSymbolicName" />
+			<finder-column name="bundleVersion" />
 		</finder>
 	</entity>
 	<exceptions>

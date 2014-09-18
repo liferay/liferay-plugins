@@ -18,6 +18,7 @@ import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 
 /**
  * @author Ryan Park
+ * @author Joan Kim
  */
 public class UpgradeModule extends UpgradeProcess {
 
@@ -27,18 +28,22 @@ public class UpgradeModule extends UpgradeProcess {
 	}
 
 	protected void upgradeModule() throws Exception {
-		if (tableHasColumn("Marketplace_Module", "bundleSymbolicName")) {
-			return;
+		if (!tableHasColumn("Marketplace_Module", "bundleSymbolicName")) {
+			runSQL(
+				"alter table Marketplace_Module add column " +
+					"bundleSymbolicName VARCHAR(500)");
 		}
 
-		runSQL(
-			"alter table Marketplace_Module add column bundleSymbolicName " +
-				"VARCHAR(500)");
+		if (!tableHasColumn("Marketplace_Module", "bundleVersion")) {
+			runSQL(
+				"alter table Marketplace_Module add column bundleVersion " +
+					"VARCHAR(75)");
+		}
 
 		try {
 			runSQL(
-				"create index IX_E3A93ED9 on Marketplace_Module " +
-					"(appId, bundleSymbolicName)");
+				"create index IX_5848F52D on Marketplace_Module " +
+					"(appId, bundleSymbolicName, bundleVersion)");
 			runSQL(
 				"create index IX_DD03D499 on Marketplace_Module " +
 					"(bundleSymbolicName)");

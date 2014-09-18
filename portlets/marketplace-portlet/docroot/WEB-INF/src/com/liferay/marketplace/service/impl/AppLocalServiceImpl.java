@@ -324,6 +324,7 @@ public class AppLocalServiceImpl extends AppLocalServiceBaseImpl {
 						FileUtil.write(pluginPackageFile, zipInputStream);
 
 						String bundleSymbolicName = StringPool.BLANK;
+						String bundleVersion = StringPool.BLANK;
 						String contextName = StringPool.BLANK;
 
 						if (fileName.endsWith(".jar")) {
@@ -333,6 +334,8 @@ public class AppLocalServiceImpl extends AppLocalServiceBaseImpl {
 
 							bundleSymbolicName = GetterUtil.getString(
 								properties.getProperty("Bundle-SymbolicName"));
+							bundleVersion = GetterUtil.getString(
+								properties.getProperty("Bundle-Version"));
 							contextName = GetterUtil.getString(
 								properties.getProperty("Web-ContextPath"));
 						}
@@ -348,10 +351,13 @@ public class AppLocalServiceImpl extends AppLocalServiceBaseImpl {
 
 						DeployManagerUtil.deploy(autoDeploymentContext);
 
-						if (Validator.isNotNull(contextName)) {
+						if (Validator.isNotNull(contextName) ||
+							(Validator.isNotNull(bundleSymbolicName) &&
+							 Validator.isNotNull(bundleVersion))) {
+
 							moduleLocalService.addModule(
 								app.getUserId(), app.getAppId(),
-								bundleSymbolicName, contextName);
+								bundleSymbolicName, bundleVersion, contextName);
 						}
 					}
 				}
@@ -420,6 +426,15 @@ public class AppLocalServiceImpl extends AppLocalServiceBaseImpl {
 
 		for (Module module : modules) {
 			moduleLocalService.deleteModule(module.getModuleId());
+
+			if (Validator.isNotNull(module.getBundleSymbolicName()) &&
+				Validator.isNotNull(module.getBundleVersion())) {
+
+				BundleUtil.uninstallBundle(
+					module.getBundleSymbolicName(), module.getBundleVersion());
+
+				continue;
+			}
 
 			if (hasDependentApp(module)) {
 				continue;
