@@ -331,6 +331,19 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 		return document.<portlet:namespace />fm.<portlet:namespace />title.value + ' ' + window.<portlet:namespace />description.getHTML();
 	}
 
+	function <portlet:namespace />resolver(data) {
+		var A = AUI();
+
+		var answers = data.answers;
+
+		if (!answers.cancel) {
+			A.one('#<portlet:namespace />allFollowing').val(!!answers.allFollowing);
+			A.one('#<portlet:namespace />updateCalendarBookingInstance').val(!!answers.updateInstance);
+
+			submitForm(document.<portlet:namespace />fm);
+		}
+	}
+
 	Liferay.provide(
 		window,
 		'<portlet:namespace />updateCalendarBooking',
