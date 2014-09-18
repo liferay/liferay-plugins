@@ -41,7 +41,8 @@ public class MobileWidgetsDDLRecordServiceImpl
 		return ddlRecordPersistence.countByR_U(recordSetId, userId);
 	}
 
-	public List<Map<String, String>> getDDLRecords(
+	@SuppressWarnings("rawtypes") 
+	public List<HashMap> getDDLRecords(
 				long recordSetId, long userId, int start, int end,
 				Locale locale)
 			throws PortalException, SystemException {
@@ -49,11 +50,11 @@ public class MobileWidgetsDDLRecordServiceImpl
 		List<DDLRecord> records = ddlRecordPersistence.findByR_U(
 			recordSetId, userId, start, end);
 
-		List<Map<String, String>> recordValuesMaps =
-			new ArrayList<Map<String, String>>(records.size());
+		List<HashMap> recordValuesMaps = 
+			new ArrayList<HashMap>(records.size());
 
 		for (DDLRecord record : records) {
-			Map<String, String> recordValues = getDDLRecordValues(
+			HashMap recordValues = (HashMap) getDDLRecordValues(
 				record.getRecordId(), locale);
 
 			recordValuesMaps.add(recordValues);
