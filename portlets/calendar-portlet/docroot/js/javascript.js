@@ -44,10 +44,6 @@ AUI.add(
 										'</div>' +
 									'</button>';
 
-		var TPL_MESSAGE_UPDATE_ALL_INVITED = '<p class="calendar-portlet-confirmation-text">' +
-												Liferay.Language.get('invited-users-will-be-notified') +
-											'</p>';
-
 		var COMPANY_ID = toInt(themeDisplay.getCompanyId());
 
 		var USER_ID = toInt(themeDisplay.getUserId());
@@ -1573,72 +1569,6 @@ AUI.add(
 						);
 					},
 
-					_promptSchedulerEventUpdate: function(data) {
-						var instance = this;
-
-						data.answers = {};
-
-						instance.queue = new A.AsyncQueue();
-
-						if (data.recurring) {
-							instance.queue.add(
-								{
-									args: [data],
-									autoContinue: false,
-									context: instance,
-									fn: instance._queueableQuestionUpdateRecurring,
-									timeout: 0
-								}
-							);
-						}
-
-						if (data.masterBooking) {
-							if (data.hasChild) {
-								instance.queue.add(
-									{
-										args: [data],
-										autoContinue: false,
-										context: instance,
-										fn: instance._queueableQuestionUpdateAllInvited,
-										timeout: 0
-									}
-								);
-							}
-						}
-						else {
-							instance.queue.add(
-								{
-									args: [data],
-									autoContinue: false,
-									context: instance,
-									fn: instance._queueableQuestionUserCalendarOnly,
-									timeout: 0
-								}
-							);
-						}
-
-						instance.queue.add(
-							{
-								args: [data],
-								autoContinue: false,
-								context: instance,
-								fn: data.resolver,
-								timeout: 0
-							}
-						);
-
-						instance.queue.add(
-							{
-								autoContinue: false,
-								context: instance,
-								fn: instance.load,
-								timeout: 0
-							}
-						);
-
-						instance.queue.run();
-					},
-
 					_queueableQuestionResolver: function(data) {
 						var instance = this;
 
@@ -1660,111 +1590,12 @@ AUI.add(
 						}
 					},
 
-					_queueableQuestionUpdateAllInvited: function(data) {
-						var instance = this;
-
-						var answers = data.answers;
-
-						var showNextQuestion = A.bind(instance.queue.run, instance.queue);
-
-						if (answers.cancel) {
-							A.soon(showNextQuestion);
-						}
-						else {
-							Liferay.CalendarMessageUtil.confirm(
-								TPL_MESSAGE_UPDATE_ALL_INVITED,
-								Liferay.Language.get('save-changes'),
-								Liferay.Language.get('do-not-change-the-event'),
-								function() {
-									showNextQuestion();
-								},
-								function() {
-									answers.cancel = true;
-
-									showNextQuestion();
-								}
-							);
-						}
-					},
-
-					_queueableQuestionUpdateRecurring: function(data) {
-						var instance = this;
-
-						var answers = data.answers;
-
-						var showNextQuestion = A.bind(instance.queue.run, instance.queue);
-
-						if (answers.cancel) {
-							A.soon(showNextQuestion);
-						}
-						else {
-							Liferay.RecurrenceUtil.openConfirmationPanel(
-								'update',
-								function() {
-									answers.updateInstance = true;
-
-									showNextQuestion();
-								},
-								function() {
-									answers.allFollowing = true;
-									answers.updateInstance = true;
-
-									showNextQuestion();
-								},
-								function() {
-									showNextQuestion();
-								},
-								function() {
-									answers.cancel = true;
-
-									showNextQuestion();
-								}
-							);
-						}
-					},
-
-					_queueableQuestionUserCalendarOnly: function(data) {
-						var instance = this;
-
-						var answers = data.answers;
-
-						var showNextQuestion = A.bind(instance.queue.run, instance.queue);
-
-						if (answers.cancel) {
-							A.soon(showNextQuestion);
-						}
-						else {
-							var content = [
-								'<p class="calendar-portlet-confirmation-text">',
-								Lang.sub(
-									Liferay.Language.get('you-are-about-to-make-changes-that-will-only-effect-your-calendar-x'),
-									[LString.escapeHTML(data.calendarName)]
-								),
-								'</p>'
-							].join(STR_BLANK);
-
-							Liferay.CalendarMessageUtil.confirm(
-								content,
-								Liferay.Language.get('save-changes'),
-								Liferay.Language.get('do-not-change-the-event'),
-								function() {
-									showNextQuestion();
-								},
-								function() {
-									answers.cancel = true;
-
-									showNextQuestion();
-								}
-							);
-						}
-					},
-
 					_updateSchedulerEvent: function(schedulerEvent, changedAttributes) {
 						var instance = this;
 
 						var calendar = Liferay.CalendarUtil.availableCalendars[schedulerEvent.get('calendarId')];
 
-						instance._promptSchedulerEventUpdate(
+						Liferay.CalendarMessageUtil.promptSchedulerEventUpdate(
 							{
 								calendarName: calendar.get('name'),
 								duration: instance._getCalendarBookingDuration(schedulerEvent),
@@ -1772,7 +1603,7 @@ AUI.add(
 								masterBooking: schedulerEvent.isMasterBooking(),
 								offset: instance._getCalendarBookingOffset(schedulerEvent, changedAttributes),
 								recurring: schedulerEvent.isRecurring(),
-								resolver: instance._queueableQuestionResolver,
+								resolver: A.bind(instance._queueableQuestionResolver, instance),
 								schedulerEvent: schedulerEvent
 							}
 						);
