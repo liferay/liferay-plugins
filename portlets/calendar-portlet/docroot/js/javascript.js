@@ -1527,8 +1527,9 @@ AUI.add(
 					_promptSchedulerEventUpdate: function(data) {
 						var instance = this;
 
-						var schedulerEvent = data[0];
+						var schedulerEvent = data.schedulerEvent;
 
+						data.answers = {};
 						instance.queue = new A.AsyncQueue();
 
 						if (schedulerEvent.isRecurring()) {
@@ -1593,10 +1594,10 @@ AUI.add(
 					_queueableQuestionResolver: function(data) {
 						var instance = this;
 
-						var answers = data[3];
-						var duration = data[2];
-						var offset = data[1];
-						var schedulerEvent = data[0];
+						var answers = data.answers;
+						var duration = data.duration;
+						var offset = data.offset;
+						var schedulerEvent = data.schedulerEvent;
 
 						var showNextQuestion = A.bind(instance.queue.run, instance.queue);
 
@@ -1614,7 +1615,7 @@ AUI.add(
 					_queueableQuestionUpdateAllInvited: function(data) {
 						var instance = this;
 
-						var answers = data[3];
+						var answers = data.answers;
 
 						var showNextQuestion = A.bind(instance.queue.run, instance.queue);
 
@@ -1641,7 +1642,7 @@ AUI.add(
 					_queueableQuestionUpdateRecurring: function(data) {
 						var instance = this;
 
-						var answers = data[3];
+						var answers = data.answers;
 
 						var showNextQuestion = A.bind(instance.queue.run, instance.queue);
 
@@ -1677,8 +1678,8 @@ AUI.add(
 					_queueableQuestionUserCalendarOnly: function(data) {
 						var instance = this;
 
-						var answers = data[3];
-						var schedulerEvent = data[0];
+						var answers = data.answers;
+						var schedulerEvent = data.schedulerEvent;
 
 						var showNextQuestion = A.bind(instance.queue.run, instance.queue);
 
@@ -1716,18 +1717,11 @@ AUI.add(
 					_updateSchedulerEvent: function(schedulerEvent, changedAttributes) {
 						var instance = this;
 
-						var answers = {};
-						var calendarBookingId = schedulerEvent.get('calendarBookingId');
-
-						A.batch(
-							schedulerEvent,
-							instance._getCalendarBookingOffset(schedulerEvent, changedAttributes),
-							instance._getCalendarBookingDuration(schedulerEvent),
-							answers
-						)
-						.then(
-							function(data) {
-								instance._promptSchedulerEventUpdate(data);
+						instance._promptSchedulerEventUpdate(
+							{
+								duration: instance._getCalendarBookingDuration(schedulerEvent),
+								offset: instance._getCalendarBookingOffset(schedulerEvent, changedAttributes),
+								schedulerEvent: schedulerEvent
 							}
 						);
 					}
