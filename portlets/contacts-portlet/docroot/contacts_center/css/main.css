@@ -736,6 +736,10 @@ $section-header-bg: #CCE6F7;
 				.contact-group-filter-content {
 					padding: 7px 7px 8px;
 
+					input[type="checkbox"] {
+						display: none;
+					}
+
 					> .control-group {
 						margin-left: 4px;
 						width: 85%;
@@ -791,6 +795,10 @@ $section-header-bg: #CCE6F7;
 			@include transition-property(margin-left);
 
 			z-index: 1;
+
+			.lfr-contact-checkbox {
+				display: none;
+			}
 		}
 
 		&.show-user {
