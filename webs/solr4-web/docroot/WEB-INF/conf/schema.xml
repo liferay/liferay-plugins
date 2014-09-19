@@ -478,36 +478,49 @@
 	</types>
 	<fields>
 		<field indexed="true" name="articleId" stored="true" type="string" />
+		<field indexed="true" name="assetCategoryIds" stored="true" type="string" />
+		<field indexed="true" name="assetTagIds" stored="true" type="string" />
 		<field indexed="true" name="comments" stored="true" type="text" />
-		<field indexed="true" name="companyId" omitNorms="false" stored="true" type="long" />
+		<field indexed="true" name="companyId" stored="true" type="long" />
 		<field indexed="true" name="content" stored="true" type="text" />
-		<field indexed="true" name="createDate" stored="true" type="text" />
+		<field indexed="true" name="createDate" stored="true" type="string" />
 		<field indexed="true" name="description" stored="true" type="text" />
-		<field indexed="true" name="entryClassPK" omitNorms="false" stored="true" type="string" />
-		<field indexed="true" name="entryClassName" omitNorms="false" stored="true" type="string" />
+		<field indexed="true" name="entryClassPK" stored="true" type="string" />
+		<field indexed="true" name="entryClassName" stored="true" type="string" />
+		<field indexed="true" name="expirationDate" stored="true" type="string" />
 		<field indexed="true" name="firstName" stored="true" type="string_lowercase" />
-		<field indexed="true" name="folderId" omitNorms="false" stored="true" type="string" />
-		<field indexed="true" multiValued="true" name="groupId" omitNorms="false" stored="true" type="string" />
+		<field indexed="true" name="folderId" stored="true" type="string" />
+		<field indexed="true" multiValued="true" name="groupId" stored="true" type="string" />
 		<field indexed="true" name="id" stored="true" type="string" />
 		<field indexed="true" name="keywordSearch" omitNorms="true" omitTermFreqAndPositions="true" stored="true" type="textAuto" />
 		<field indexed="true" name="languageId" stored="true" type="string" />
 		<field indexed="true" name="lastName" stored="true" type="string_lowercase" />
 		<field indexed="true" name="leftOrganizationId" stored="true" type="slong" />
+		<field indexed="true" name="modified" stored="true" type="string" />
 		<field indexed="true" name="name" stored="true" type="string" />
 		<field indexed="true" name="nodeId" stored="true" type="string" />
 		<field indexed="true" name="path" stored="true" type="string" />
-		<field indexed="true" name="portletId" omitNorms="false" stored="true" type="string" />
+		<field indexed="true" name="portletId" stored="true" type="string" />
 		<field indexed="true" name="properties" stored="true" type="string" />
+		<field indexed="true" name="publishDate" stored="true" type="string" />
+		<field indexed="true" name="removedDate" stored="true" type="string" />
+		<field indexed="true" name="removedByUser" stored="true" type="string" />
 		<field indexed="true" name="rightOrganizationId" stored="true" type="slong" />
-		<field indexed="true" multiValued="true" name="scopeGroupId" omitNorms="false" stored="true" type="string" />
+		<field indexed="true" name="rootEntryClassName" stored="true" type="string" />
+		<field indexed="true" name="rootEntryClassPK" stored="true" type="string" />
+		<field indexed="true" multiValued="true" name="scopeGroupId" stored="true" type="string" />
 		<field indexed="true" name="spellCheckWeight" stored="true" type="string" />
 		<field indexed="true" multiValued="true" name="spellCheckWord" stored="true" type="textSpell" />
+		<field indexed="true" name="status" stored="true" type="string" />
 		<field indexed="true" name="title" stored="true" type="text" />
+		<field indexed="true" name="treePath" stored="true" type="string" />
 		<field indexed="true" name="type" stored="true" type="string" />
 		<field indexed="true" name="uid" stored="true" type="string" />
+		<field indexed="true" name="userId" stored="true" type="string" />
 		<field indexed="true" name="url" stored="true" type="string" />
 		<field indexed="true" name="userName" stored="true" type="string" />
 		<field indexed="true" name="version" stored="true" type="string" />
+		<field indexed="true" name="visible" stored="true" type="string" />
 		<field indexed="true" multiValued="false" name="_version_" stored="true" type="long" />
 		<dynamicField indexed="true" multiValued="true" name="*CategoryNames" stored="true" type="string" />
 		<dynamicField indexed="true" multiValued="true" name="*CategoryIds" stored="true" type="string" />
