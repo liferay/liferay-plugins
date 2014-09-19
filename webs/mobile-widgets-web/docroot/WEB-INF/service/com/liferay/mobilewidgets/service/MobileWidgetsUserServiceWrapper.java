@@ -19,7 +19,7 @@ import com.liferay.portal.service.ServiceWrapper;
 /**
  * Provides a wrapper for {@link MobileWidgetsUserService}.
  *
- * @author Jos�� Manuel Navarro
+ * @author José Manuel Navarro
  * @see MobileWidgetsUserService
  * @generated
  */

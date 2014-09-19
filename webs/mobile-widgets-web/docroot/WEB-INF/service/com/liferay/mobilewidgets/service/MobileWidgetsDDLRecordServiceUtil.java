@@ -26,7 +26,7 @@ import com.liferay.portal.service.InvokableService;
  * checks based on the propagated JAAS credentials because this service can be
  * accessed remotely.
  *
- * @author Jos�� Manuel Navarro
+ * @author José Manuel Navarro
  * @see MobileWidgetsDDLRecordService
  * @see com.liferay.mobilewidgets.service.base.MobileWidgetsDDLRecordServiceBaseImpl
  * @see com.liferay.mobilewidgets.service.impl.MobileWidgetsDDLRecordServiceImpl
@@ -63,25 +63,25 @@ public class MobileWidgetsDDLRecordServiceUtil {
 		return getService().invokeMethod(name, parameterTypes, arguments);
 	}
 
-	public static int getDDLRecordsCount(long recordSetId, long userId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getService().getDDLRecordsCount(recordSetId, userId);
-	}
-
-	public static java.util.List<java.util.HashMap> getDDLRecords(
-		long recordSetId, long userId, int start, int end,
-		java.util.Locale locale)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return getService()
-				   .getDDLRecords(recordSetId, userId, start, end, locale);
-	}
-
-	public static java.util.Map<java.lang.String, java.lang.String> getDDLRecordValues(
+	public static com.liferay.portal.kernel.json.JSONObject getDDLRecord(
 		long ddlRecordId, java.util.Locale locale)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return getService().getDDLRecordValues(ddlRecordId, locale);
+		return getService().getDDLRecord(ddlRecordId, locale);
+	}
+
+	public static int getDDLRecordsCount(long ddlRecordSetId, long userId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().getDDLRecordsCount(ddlRecordSetId, userId);
+	}
+
+	public static com.liferay.portal.kernel.json.JSONArray getDDLRecords(
+		long ddlRecordSetId, long userId, java.util.Locale locale, int start,
+		int end)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService()
+				   .getDDLRecords(ddlRecordSetId, userId, locale, start, end);
 	}
 
 	public static void clearService() {

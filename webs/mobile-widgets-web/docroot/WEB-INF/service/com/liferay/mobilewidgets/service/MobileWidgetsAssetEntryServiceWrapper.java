@@ -19,7 +19,7 @@ import com.liferay.portal.service.ServiceWrapper;
 /**
  * Provides a wrapper for {@link MobileWidgetsAssetEntryService}.
  *
- * @author Jos�� Manuel Navarro
+ * @author José Manuel Navarro
  * @see MobileWidgetsAssetEntryService
  * @generated
  */
@@ -60,11 +60,10 @@ public class MobileWidgetsAssetEntryServiceWrapper
 	}
 
 	@Override
-	public com.liferay.portlet.asset.model.AssetEntrySoap[] getAssetEntries(
+	public com.liferay.portal.kernel.json.JSONArray getAssetEntries(
 		com.liferay.portlet.asset.service.persistence.AssetEntryQuery assetEntryQuery,
 		java.util.Locale locale)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return _mobileWidgetsAssetEntryService.getAssetEntries(assetEntryQuery,
 			locale);
 	}

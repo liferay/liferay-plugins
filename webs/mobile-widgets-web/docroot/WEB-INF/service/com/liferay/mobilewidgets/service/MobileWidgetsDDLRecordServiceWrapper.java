@@ -19,7 +19,7 @@ import com.liferay.portal.service.ServiceWrapper;
 /**
  * Provides a wrapper for {@link MobileWidgetsDDLRecordService}.
  *
- * @author Jos�� Manuel Navarro
+ * @author José Manuel Navarro
  * @see MobileWidgetsDDLRecordService
  * @generated
  */
@@ -60,28 +60,28 @@ public class MobileWidgetsDDLRecordServiceWrapper
 	}
 
 	@Override
-	public int getDDLRecordsCount(long recordSetId, long userId)
+	public com.liferay.portal.kernel.json.JSONObject getDDLRecord(
+		long ddlRecordId, java.util.Locale locale)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _mobileWidgetsDDLRecordService.getDDLRecord(ddlRecordId, locale);
+	}
+
+	@Override
+	public int getDDLRecordsCount(long ddlRecordSetId, long userId)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return _mobileWidgetsDDLRecordService.getDDLRecordsCount(recordSetId,
+		return _mobileWidgetsDDLRecordService.getDDLRecordsCount(ddlRecordSetId,
 			userId);
 	}
 
 	@Override
-	public java.util.List<java.util.HashMap> getDDLRecords(long recordSetId,
-		long userId, int start, int end, java.util.Locale locale)
+	public com.liferay.portal.kernel.json.JSONArray getDDLRecords(
+		long ddlRecordSetId, long userId, java.util.Locale locale, int start,
+		int end)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return _mobileWidgetsDDLRecordService.getDDLRecords(recordSetId,
-			userId, start, end, locale);
-	}
-
-	@Override
-	public java.util.Map<java.lang.String, java.lang.String> getDDLRecordValues(
-		long ddlRecordId, java.util.Locale locale)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return _mobileWidgetsDDLRecordService.getDDLRecordValues(ddlRecordId,
-			locale);
+		return _mobileWidgetsDDLRecordService.getDDLRecords(ddlRecordSetId,
+			userId, locale, start, end);
 	}
 
 	/**

@@ -46,20 +46,20 @@ import java.rmi.RemoteException;
  * The SOAP utility is only generated for remote services.
  * </p>
  *
- * @author Jos�� Manuel Navarro
+ * @author José Manuel Navarro
  * @see MobileWidgetsAssetEntryServiceHttp
  * @see com.liferay.mobilewidgets.service.MobileWidgetsAssetEntryServiceUtil
  * @generated
  */
 public class MobileWidgetsAssetEntryServiceSoap {
-	public static com.liferay.portlet.asset.model.AssetEntrySoap[] getAssetEntries(
+	public static java.lang.String getAssetEntries(
 		com.liferay.portlet.asset.service.persistence.AssetEntryQuery assetEntryQuery,
 		String locale) throws RemoteException {
 		try {
-			com.liferay.portlet.asset.model.AssetEntrySoap[] returnValue = MobileWidgetsAssetEntryServiceUtil.getAssetEntries(assetEntryQuery,
+			com.liferay.portal.kernel.json.JSONArray returnValue = MobileWidgetsAssetEntryServiceUtil.getAssetEntries(assetEntryQuery,
 					LocaleUtil.fromLanguageId(locale));
 
-			return returnValue;
+			return returnValue.toString();
 		}
 		catch (Exception e) {
 			_log.error(e, e);

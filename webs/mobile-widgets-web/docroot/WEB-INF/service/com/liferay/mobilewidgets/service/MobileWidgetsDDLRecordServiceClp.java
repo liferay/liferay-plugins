@@ -17,7 +17,7 @@ package com.liferay.mobilewidgets.service;
 import com.liferay.portal.service.InvokableService;
 
 /**
- * @author Jos�� Manuel Navarro
+ * @author José Manuel Navarro
  * @generated
  */
 public class MobileWidgetsDDLRecordServiceClp
@@ -33,19 +33,19 @@ public class MobileWidgetsDDLRecordServiceClp
 
 		_methodParameterTypes1 = new String[] { "java.lang.String" };
 
-		_methodName3 = "getDDLRecordsCount";
+		_methodName3 = "getDDLRecord";
 
-		_methodParameterTypes3 = new String[] { "long", "long" };
+		_methodParameterTypes3 = new String[] { "long", "java.util.Locale" };
 
-		_methodName4 = "getDDLRecords";
+		_methodName4 = "getDDLRecordsCount";
 
-		_methodParameterTypes4 = new String[] {
-				"long", "long", "int", "int", "java.util.Locale"
+		_methodParameterTypes4 = new String[] { "long", "long" };
+
+		_methodName5 = "getDDLRecords";
+
+		_methodParameterTypes5 = new String[] {
+				"long", "long", "java.util.Locale", "int", "int"
 			};
-
-		_methodName5 = "getDDLRecordValues";
-
-		_methodParameterTypes5 = new String[] { "long", "java.util.Locale" };
 	}
 
 	@Override
@@ -99,88 +99,15 @@ public class MobileWidgetsDDLRecordServiceClp
 	}
 
 	@Override
-	public int getDDLRecordsCount(long recordSetId, long userId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		Object returnObj = null;
-
-		try {
-			returnObj = _invokableService.invokeMethod(_methodName3,
-					_methodParameterTypes3, new Object[] { recordSetId, userId });
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-
-		return ((Integer)returnObj).intValue();
-	}
-
-	@Override
-	public java.util.List<java.util.HashMap> getDDLRecords(long recordSetId,
-		long userId, int start, int end, java.util.Locale locale)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		Object returnObj = null;
-
-		try {
-			returnObj = _invokableService.invokeMethod(_methodName4,
-					_methodParameterTypes4,
-					new Object[] {
-						recordSetId,
-						
-					userId,
-						
-					start,
-						
-					end,
-						
-					ClpSerializer.translateInput(locale)
-					});
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
-				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-
-		return (java.util.List<java.util.HashMap>)ClpSerializer.translateOutput(returnObj);
-	}
-
-	@Override
-	public java.util.Map<java.lang.String, java.lang.String> getDDLRecordValues(
+	public com.liferay.portal.kernel.json.JSONObject getDDLRecord(
 		long ddlRecordId, java.util.Locale locale)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableService.invokeMethod(_methodName5,
-					_methodParameterTypes5,
+			returnObj = _invokableService.invokeMethod(_methodName3,
+					_methodParameterTypes3,
 					new Object[] {
 						ddlRecordId,
 						
@@ -207,7 +134,82 @@ public class MobileWidgetsDDLRecordServiceClp
 			}
 		}
 
-		return (java.util.Map<java.lang.String, java.lang.String>)ClpSerializer.translateOutput(returnObj);
+		return (com.liferay.portal.kernel.json.JSONObject)ClpSerializer.translateOutput(returnObj);
+	}
+
+	@Override
+	public int getDDLRecordsCount(long ddlRecordSetId, long userId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableService.invokeMethod(_methodName4,
+					_methodParameterTypes4,
+					new Object[] { ddlRecordSetId, userId });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return ((Integer)returnObj).intValue();
+	}
+
+	@Override
+	public com.liferay.portal.kernel.json.JSONArray getDDLRecords(
+		long ddlRecordSetId, long userId, java.util.Locale locale, int start,
+		int end)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableService.invokeMethod(_methodName5,
+					_methodParameterTypes5,
+					new Object[] {
+						ddlRecordSetId,
+						
+					userId,
+						
+					ClpSerializer.translateInput(locale),
+						
+					start,
+						
+					end
+					});
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.liferay.portal.kernel.json.JSONArray)ClpSerializer.translateOutput(returnObj);
 	}
 
 	private InvokableService _invokableService;

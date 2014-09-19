@@ -26,7 +26,7 @@ import com.liferay.portal.service.InvokableService;
  * checks based on the propagated JAAS credentials because this service can be
  * accessed remotely.
  *
- * @author Jos�� Manuel Navarro
+ * @author José Manuel Navarro
  * @see MobileWidgetsAssetEntryService
  * @see com.liferay.mobilewidgets.service.base.MobileWidgetsAssetEntryServiceBaseImpl
  * @see com.liferay.mobilewidgets.service.impl.MobileWidgetsAssetEntryServiceImpl
@@ -63,11 +63,10 @@ public class MobileWidgetsAssetEntryServiceUtil {
 		return getService().invokeMethod(name, parameterTypes, arguments);
 	}
 
-	public static com.liferay.portlet.asset.model.AssetEntrySoap[] getAssetEntries(
+	public static com.liferay.portal.kernel.json.JSONArray getAssetEntries(
 		com.liferay.portlet.asset.service.persistence.AssetEntryQuery assetEntryQuery,
 		java.util.Locale locale)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().getAssetEntries(assetEntryQuery, locale);
 	}
 

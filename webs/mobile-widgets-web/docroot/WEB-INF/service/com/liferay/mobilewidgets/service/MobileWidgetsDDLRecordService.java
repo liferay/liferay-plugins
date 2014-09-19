@@ -29,7 +29,7 @@ import com.liferay.portal.service.InvokableService;
  * service are expected to have security checks based on the propagated JAAS
  * credentials because this service can be accessed remotely.
  *
- * @author Jos�� Manuel Navarro
+ * @author José Manuel Navarro
  * @see MobileWidgetsDDLRecordServiceUtil
  * @see com.liferay.mobilewidgets.service.base.MobileWidgetsDDLRecordServiceBaseImpl
  * @see com.liferay.mobilewidgets.service.impl.MobileWidgetsDDLRecordServiceImpl
@@ -67,18 +67,19 @@ public interface MobileWidgetsDDLRecordService extends BaseService,
 		throws java.lang.Throwable;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int getDDLRecordsCount(long recordSetId, long userId)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<java.util.HashMap> getDDLRecords(long recordSetId,
-		long userId, int start, int end, java.util.Locale locale)
+	public com.liferay.portal.kernel.json.JSONObject getDDLRecord(
+		long ddlRecordId, java.util.Locale locale)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.Map<java.lang.String, java.lang.String> getDDLRecordValues(
-		long ddlRecordId, java.util.Locale locale)
+	public int getDDLRecordsCount(long ddlRecordSetId, long userId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.liferay.portal.kernel.json.JSONArray getDDLRecords(
+		long ddlRecordSetId, long userId, java.util.Locale locale, int start,
+		int end)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 }

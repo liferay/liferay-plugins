@@ -46,16 +46,31 @@ import java.rmi.RemoteException;
  * The SOAP utility is only generated for remote services.
  * </p>
  *
- * @author Jos�� Manuel Navarro
+ * @author José Manuel Navarro
  * @see MobileWidgetsDDLRecordServiceHttp
  * @see com.liferay.mobilewidgets.service.MobileWidgetsDDLRecordServiceUtil
  * @generated
  */
 public class MobileWidgetsDDLRecordServiceSoap {
-	public static int getDDLRecordsCount(long recordSetId, long userId)
+	public static java.lang.String getDDLRecord(long ddlRecordId, String locale)
 		throws RemoteException {
 		try {
-			int returnValue = MobileWidgetsDDLRecordServiceUtil.getDDLRecordsCount(recordSetId,
+			com.liferay.portal.kernel.json.JSONObject returnValue = MobileWidgetsDDLRecordServiceUtil.getDDLRecord(ddlRecordId,
+					LocaleUtil.fromLanguageId(locale));
+
+			return returnValue.toString();
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static int getDDLRecordsCount(long ddlRecordSetId, long userId)
+		throws RemoteException {
+		try {
+			int returnValue = MobileWidgetsDDLRecordServiceUtil.getDDLRecordsCount(ddlRecordSetId,
 					userId);
 
 			return returnValue;
@@ -67,14 +82,14 @@ public class MobileWidgetsDDLRecordServiceSoap {
 		}
 	}
 
-	public static java.util.HashMap[] getDDLRecords(long recordSetId,
-		long userId, int start, int end, String locale)
+	public static java.lang.String getDDLRecords(long ddlRecordSetId,
+		long userId, String locale, int start, int end)
 		throws RemoteException {
 		try {
-			java.util.List<java.util.HashMap> returnValue = MobileWidgetsDDLRecordServiceUtil.getDDLRecords(recordSetId,
-					userId, start, end, LocaleUtil.fromLanguageId(locale));
+			com.liferay.portal.kernel.json.JSONArray returnValue = MobileWidgetsDDLRecordServiceUtil.getDDLRecords(ddlRecordSetId,
+					userId, LocaleUtil.fromLanguageId(locale), start, end);
 
-			return returnValue.toArray(new java.util.HashMap[returnValue.size()]);
+			return returnValue.toString();
 		}
 		catch (Exception e) {
 			_log.error(e, e);
