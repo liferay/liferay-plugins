@@ -509,8 +509,8 @@
 		<field indexed="true" name="treePath" stored="true" type="string" />
 		<field indexed="true" name="type" stored="true" type="string" />
 		<field indexed="true" name="uid" stored="true" type="string" />
-		<field indexed="true" name="userId" stored="true" type="string" />
 		<field indexed="true" name="url" stored="true" type="string" />
+		<field indexed="true" name="userId" stored="true" type="string" />
 		<field indexed="true" name="userName" stored="true" type="string" />
 		<field indexed="true" name="version" stored="true" type="string" />
 		<field indexed="true" name="visible" stored="true" type="string" />
