@@ -17,16 +17,16 @@ package com.liferay.mobilewidgets.service.impl;
 import com.liferay.mobilewidgets.service.base.MobileWidgetsDDLRecordServiceBaseImpl;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.json.JSONArray;
+import com.liferay.portal.kernel.json.JSONFactoryUtil;
+import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portlet.dynamicdatalists.model.DDLRecord;
 import com.liferay.portlet.dynamicdatamapping.storage.Field;
 import com.liferay.portlet.dynamicdatamapping.storage.FieldConstants;
 import com.liferay.portlet.dynamicdatamapping.storage.Fields;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
-import java.util.Map;
 import java.util.Set;
 
 /**
@@ -35,46 +35,11 @@ import java.util.Set;
 public class MobileWidgetsDDLRecordServiceImpl
 	extends MobileWidgetsDDLRecordServiceBaseImpl {
 
-	@SuppressWarnings({"rawtypes"})
-	public List<HashMap> getDDLRecords(
-			long recordSetId, long userId, int start, int end, Locale locale)
+	@Override
+	public JSONObject getDDLRecord(long ddlRecordId, Locale locale)
 		throws PortalException, SystemException {
 
-		List<DDLRecord> ddlRecords = ddlRecordPersistence.findByR_U(
-			recordSetId, userId, start, end);
-
-		List<HashMap> ddlRecordValuesMaps = new ArrayList<HashMap>(
-			ddlRecords.size());
-
-		for (DDLRecord ddlRecord : ddlRecords) {
-			Map<String, Object> ddlRecordAttributes =
-				ddlRecord.getModelAttributes();
-
-			Map<String, String> ddlRecordValues = getDDLRecordValues(
-				ddlRecord.getRecordId(), locale);
-
-			Map<String, HashMap> ddlRecordMap = new HashMap<String, HashMap>();
-
-			ddlRecordMap.put("attributes", (HashMap)ddlRecordAttributes);
-			ddlRecordMap.put("values", (HashMap)ddlRecordValues);
-
-			ddlRecordValuesMaps.add((HashMap)ddlRecordMap);
-		}
-
-		return ddlRecordValuesMaps;
-	}
-
-	public int getDDLRecordsCount(long recordSetId, long userId)
-		throws SystemException {
-
-		return ddlRecordPersistence.countByR_U(recordSetId, userId);
-	}
-
-	public Map<String, String> getDDLRecordValues(
-			long ddlRecordId, Locale locale)
-		throws PortalException, SystemException {
-
-		Map<String, String> ddlRecordValues = new HashMap<String, String>();
+		JSONObject ddlRecordJSONObject = JSONFactoryUtil.createJSONObject();
 
 		DDLRecord ddlRecord = ddlRecordPersistence.findByPrimaryKey(
 			ddlRecordId);
@@ -94,10 +59,41 @@ public class MobileWidgetsDDLRecordServiceImpl
 				fieldValue = field.getRenderedValue(locale);
 			}
 
-			ddlRecordValues.put(field.getName(), fieldValue);
+			ddlRecordJSONObject.put(field.getName(), fieldValue);
 		}
 
-		return ddlRecordValues;
+		return ddlRecordJSONObject;
+	}
+
+	@Override
+	public JSONArray getDDLRecords(
+			long ddlRecordSetId, long userId, Locale locale, int start, int end)
+		throws PortalException, SystemException {
+
+		JSONArray ddlRecordsJSONArray = JSONFactoryUtil.createJSONArray();
+
+		List<DDLRecord> ddlRecords = ddlRecordPersistence.findByR_U(
+			ddlRecordSetId, userId, start, end);
+
+		for (DDLRecord ddlRecord : ddlRecords) {
+			JSONObject ddlRecordJSONObject = getDDLRecord(
+				ddlRecord.getRecordId(), locale);
+
+			ddlRecordJSONObject.put(
+				"modelAttributes",
+				JSONFactoryUtil.looseSerialize(ddlRecord.getModelAttributes()));
+
+			ddlRecordsJSONArray.put(ddlRecordJSONObject);
+		}
+
+		return ddlRecordsJSONArray;
+	}
+
+	@Override
+	public int getDDLRecordsCount(long ddlRecordSetId, long userId)
+		throws SystemException {
+
+		return ddlRecordPersistence.countByR_U(ddlRecordSetId, userId);
 	}
 
 	protected boolean isDateField(String fieldType) {

@@ -15,10 +15,11 @@
 package com.liferay.mobilewidgets.service.impl;
 
 import com.liferay.mobilewidgets.service.base.MobileWidgetsAssetEntryServiceBaseImpl;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.json.JSONArray;
+import com.liferay.portal.kernel.json.JSONFactoryUtil;
+import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portlet.asset.model.AssetEntry;
-import com.liferay.portlet.asset.model.AssetEntrySoap;
 import com.liferay.portlet.asset.service.persistence.AssetEntryQuery;
 
 import java.util.List;
@@ -31,20 +32,25 @@ public class MobileWidgetsAssetEntryServiceImpl
 	extends MobileWidgetsAssetEntryServiceBaseImpl {
 
 	@Override
-	public AssetEntrySoap[] getAssetEntries(
+	public JSONArray getAssetEntries(
 			AssetEntryQuery assetEntryQuery, Locale locale)
-		throws PortalException, SystemException {
+		throws SystemException {
+
+		JSONArray assetEntriesJSONArray = JSONFactoryUtil.createJSONArray();
 
 		List<AssetEntry> assetEntries = assetEntryLocalService.getEntries(
 			assetEntryQuery);
 
 		for (AssetEntry assetEntry : assetEntries) {
-			String localizedTitle = assetEntry.getTitle(locale);
+			JSONObject assetEntryJSONObject =
+				JSONFactoryUtil.createJSONObject();
 
-			assetEntry.setTitle(localizedTitle);
+			assetEntryJSONObject.put("title", assetEntry.getTitle(locale));
+
+			assetEntriesJSONArray.put(assetEntryJSONObject);
 		}
 
-		return AssetEntrySoap.toSoapModels(assetEntries);
+		return assetEntriesJSONArray;
 	}
 
 }
