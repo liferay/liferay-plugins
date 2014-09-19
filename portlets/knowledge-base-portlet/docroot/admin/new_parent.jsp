@@ -39,7 +39,7 @@ double priority = BeanParamUtil.getDouble(kbArticle, request, "priority");
 	</liferay-portlet:renderURL>
 
 	<%
-	String taglibOnClick = "var selectKBArticleWindow = window.open('" + selectKBArticleURL + "&" + renderResponse.getNamespace() + "oldParentResourcePrimKey=' + document." + renderResponse.getNamespace() + "fm." + renderResponse.getNamespace() + "parentResourcePrimKey.value, 'selectKBArticle', 'directories=no,height=640,location=no,menubar=no,resizable=yes,scrollbars=yes,status=no,toolbar=no,width=680'); void(''); selectKBArticleWindow.focus();";
+	String taglibOnClick = "var selectKBArticleWindow = window.open(" + renderResponse.getNamespace() + "getSelectKBArticleWindowURL(), 'selectKBArticle', 'directories=no,height=640,location=no,menubar=no,resizable=yes,scrollbars=yes,status=no,toolbar=no,width=680'); void(''); selectKBArticleWindow.focus();";
 	%>
 
 </div>
@@ -47,3 +47,16 @@ double priority = BeanParamUtil.getDouble(kbArticle, request, "priority");
 <div class="kb-edit-link">
 	<aui:a href="javascript:;" onClick="<%= taglibOnClick %>"><liferay-ui:message key="select-article" /> &raquo;</aui:a>
 </div>
+
+<aui:script>
+	function <portlet:namespace />getSelectKBArticleWindowURL() {
+		var oldParentResourceClassNameId = document.<portlet:namespace />fm.<portlet:namespace />parentResourceClassNameId.value;
+		var oldParentResourcePrimKey = document.<portlet:namespace />fm.<portlet:namespace />parentResourcePrimKey.value;
+
+		var selectKBArticleWindowURL = '<%= selectKBArticleURL %>';
+		selectKBArticleWindowURL += '&<portlet:namespace />oldParentResourceClassNameId=' + oldParentResourceClassNameId;
+		selectKBArticleWindowURL += '&<portlet:namespace />oldParentResourcePrimKey=' + oldParentResourcePrimKey;
+
+		return selectKBArticleWindowURL;
+	}
+</aui:script>
