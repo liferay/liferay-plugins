@@ -232,8 +232,8 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 
 		solrQuery.setHighlight(true);
 		solrQuery.setHighlightFragsize(queryConfig.getHighlightFragmentSize());
-		solrQuery.setHighlightSimplePre("<lr_hl>");
-		solrQuery.setHighlightSimplePost("</lr_hl>");
+		solrQuery.setHighlightSimplePost("</liferay-hl>");
+		solrQuery.setHighlightSimplePre("<liferay-hl>");
 		solrQuery.setHighlightSnippets(queryConfig.getHighlightSnippetSize());
 
 		for (String highlightFieldName : queryConfig.getHighlightFieldNames()) {
@@ -328,8 +328,10 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 				queryTerms.add(matcher.group(1));
 			}
 
-			snippet = StringUtil.replace(snippet, "<lr_hl>", StringPool.BLANK);
-			snippet = StringUtil.replace(snippet, "</lr_hl>", StringPool.BLANK);
+			snippet = StringUtil.replace(
+				snippet, "<liferay-hl>", StringPool.BLANK);
+			snippet = StringUtil.replace(
+				snippet, "</liferay-hl>", StringPool.BLANK);
 		}
 
 		document.addText(
@@ -514,7 +516,8 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 	private static Log _log = LogFactoryUtil.getLog(SolrIndexSearcher.class);
 
 	private FacetProcessor<SolrQuery> _facetProcessor;
-	private Pattern _pattern = Pattern.compile("<lr_hl>(.*?)</lr_hl>");
+	private Pattern _pattern = Pattern.compile(
+		"<liferay-hl>(.*?)</liferay-hl>");
 	private SolrServer _solrServer;
 	private boolean _swallowException;
 
