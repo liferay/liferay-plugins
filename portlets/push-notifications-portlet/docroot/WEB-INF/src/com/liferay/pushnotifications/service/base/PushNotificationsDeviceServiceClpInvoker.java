@@ -45,13 +45,17 @@ public class PushNotificationsDeviceServiceClpInvoker {
 
 		_methodParameterTypes31 = new String[] { "java.lang.String" };
 
-		_methodName32 = "sendPushNotification";
+		_methodName32 = "hasPermission";
 
-		_methodParameterTypes32 = new String[] { "long", "java.lang.String" };
+		_methodParameterTypes32 = new String[] { "java.lang.String" };
 
 		_methodName33 = "sendPushNotification";
 
-		_methodParameterTypes33 = new String[] { "java.lang.String" };
+		_methodParameterTypes33 = new String[] { "long", "java.lang.String" };
+
+		_methodName34 = "sendPushNotification";
+
+		_methodParameterTypes34 = new String[] { "java.lang.String" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -81,14 +85,19 @@ public class PushNotificationsDeviceServiceClpInvoker {
 
 		if (_methodName32.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes32, parameterTypes)) {
+			return PushNotificationsDeviceServiceUtil.hasPermission((java.lang.String)arguments[0]);
+		}
+
+		if (_methodName33.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes33, parameterTypes)) {
 			PushNotificationsDeviceServiceUtil.sendPushNotification(((Long)arguments[0]).longValue(),
 				(java.lang.String)arguments[1]);
 
 			return null;
 		}
 
-		if (_methodName33.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes33, parameterTypes)) {
+		if (_methodName34.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes34, parameterTypes)) {
 			PushNotificationsDeviceServiceUtil.sendPushNotification((java.lang.String)arguments[0]);
 
 			return null;
@@ -109,4 +118,6 @@ public class PushNotificationsDeviceServiceClpInvoker {
 	private String[] _methodParameterTypes32;
 	private String _methodName33;
 	private String[] _methodParameterTypes33;
+	private String _methodName34;
+	private String[] _methodParameterTypes34;
 }

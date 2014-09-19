@@ -97,6 +97,20 @@ public class PushNotificationsDeviceServiceSoap {
 		}
 	}
 
+	public static boolean hasPermission(java.lang.String actionId)
+		throws RemoteException {
+		try {
+			boolean returnValue = PushNotificationsDeviceServiceUtil.hasPermission(actionId);
+
+			return returnValue;
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
 	public static void sendPushNotification(long toUserId,
 		java.lang.String payload) throws RemoteException {
 		try {

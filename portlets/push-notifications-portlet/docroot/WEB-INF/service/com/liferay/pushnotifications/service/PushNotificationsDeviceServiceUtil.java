@@ -62,6 +62,11 @@ public class PushNotificationsDeviceServiceUtil {
 		return getService().getBeanIdentifier();
 	}
 
+	public static boolean hasPermission(java.lang.String actionId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().hasPermission(actionId);
+	}
+
 	public static java.lang.Object invokeMethod(java.lang.String name,
 		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
 		throws java.lang.Throwable {
