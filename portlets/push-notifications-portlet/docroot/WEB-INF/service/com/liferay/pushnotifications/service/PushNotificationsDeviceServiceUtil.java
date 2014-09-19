@@ -77,6 +77,11 @@ public class PushNotificationsDeviceServiceUtil {
 		return getService().deletePushNotificationsDevice(token);
 	}
 
+	public static boolean hasPermission(java.lang.String actionId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().hasPermission(actionId);
+	}
+
 	public static void sendPushNotification(long toUserId,
 		java.lang.String payload)
 		throws com.liferay.portal.kernel.exception.PortalException,
