@@ -17,7 +17,6 @@ package com.liferay.mobilewidgets.service.impl;
 import com.liferay.mobilewidgets.service.base.MobileWidgetsAssetEntryServiceBaseImpl;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portlet.asset.model.AssetEntry;
 import com.liferay.portlet.asset.model.AssetEntrySoap;
 import com.liferay.portlet.asset.service.persistence.AssetEntryQuery;
@@ -41,7 +40,7 @@ public class MobileWidgetsAssetEntryServiceImpl
 
 		for (AssetEntry assetEntry : assetEntries) {
 			String localizedTitle = assetEntry.getTitle(locale);
-			
+
 			assetEntry.setTitle(localizedTitle);
 		}
 
