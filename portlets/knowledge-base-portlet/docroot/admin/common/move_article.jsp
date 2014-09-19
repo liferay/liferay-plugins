@@ -48,7 +48,7 @@ double priority = BeanParamUtil.getDouble(kbArticle, request, "priority");
 	<aui:fieldset>
 		<aui:field-wrapper label="current-parent">
 			<div class="input-append">
-				<liferay-ui:input-resource url='<%= !kbArticle.isRoot() ? BeanPropertiesUtil.getString(KBArticleServiceUtil.getLatestKBArticle(kbArticle.getParentResourcePrimKey(), status), "title") : "(" + LanguageUtil.get(pageContext, "none") + ")" %>' />
+				<liferay-ui:input-resource url="<%= kbArticle.getParentTitle(locale, status) %>" />
 
 				<liferay-ui:input-resource cssClass="input-mini" url="<%= BigDecimal.valueOf(priority).toPlainString() %>" />
 			</div>
@@ -69,9 +69,10 @@ double priority = BeanParamUtil.getDouble(kbArticle, request, "priority");
 </aui:form>
 
 <aui:script>
-	function <portlet:namespace />selectKBArticle(parentResourcePrimKey, parentResourceClassNameId, html) {
+	function <portlet:namespace />selectKBArticle(parentTitle, parentPriority, parentResourcePrimKey, parentResourceClassNameId, html) {
+		document.<portlet:namespace />fm.<portlet:namespace />parentTitle.value = parentTitle;
+		document.<portlet:namespace />fm.<portlet:namespace />parentPriority.value = parentPriority;
 		document.<portlet:namespace />fm.<portlet:namespace />parentResourceClassNameId.value = parentResourceClassNameId;
 		document.<portlet:namespace />fm.<portlet:namespace />parentResourcePrimKey.value = parentResourcePrimKey;
-		document.getElementById('<portlet:namespace />newParent').innerHTML = html;
 	}
 </aui:script>
