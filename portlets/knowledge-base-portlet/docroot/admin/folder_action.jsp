@@ -36,4 +36,16 @@ KBFolder kbFolder = (KBFolder)row.getObject();
 			url="<%= editURL %>"
 		/>
 	</c:if>
+
+	<c:if test="<%= KBFolderPermission.contains(permissionChecker, kbFolder, ActionKeys.DELETE) %>">
+		<liferay-portlet:actionURL name="deleteKBFolder" var="deleteURL">
+			<portlet:param name="mvcPath" value='<%= ParamUtil.getString(request, "mvcPath") %>' />
+			<portlet:param name="redirect" value="<%= redirect %>" />
+			<portlet:param name="kbFolderId" value="<%= String.valueOf(kbFolder.getKbFolderId()) %>" />
+		</liferay-portlet:actionURL>
+
+		<liferay-ui:icon-delete
+			url="<%= deleteURL %>"
+		/>
+	</c:if>
 </liferay-ui:icon-menu>
