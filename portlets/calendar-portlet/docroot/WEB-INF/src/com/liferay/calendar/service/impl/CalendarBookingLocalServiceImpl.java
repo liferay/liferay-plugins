@@ -362,7 +362,7 @@ public class CalendarBookingLocalServiceImpl
 
 		String recurrence = RecurrenceSerializer.serialize(recurrenceObj);
 
-		updateChildCalendarBookingRecurrences(calendarBooking, now, recurrence);
+		updateChildCalendarBookings(calendarBooking, now, recurrence);
 	}
 
 	@Override
@@ -1114,7 +1114,7 @@ public class CalendarBookingLocalServiceImpl
 		}
 	}
 
-	protected void updateChildCalendarBookingRecurrences(
+	protected void updateChildCalendarBookings(
 		CalendarBooking calendarBooking, Date modifiedDate,
 		String recurrence) {
 
