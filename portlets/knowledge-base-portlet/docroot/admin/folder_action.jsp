@@ -48,4 +48,21 @@ KBFolder kbFolder = (KBFolder)row.getObject();
 			url="<%= deleteURL %>"
 		/>
 	</c:if>
+
+	<c:if test="<%= KBFolderPermission.contains(permissionChecker, kbFolder, ActionKeys.PERMISSIONS) %>">
+		<liferay-security:permissionsURL
+			modelResource="<%= KBFolder.class.getName() %>"
+			modelResourceDescription="<%= kbFolder.getName() %>"
+			resourcePrimKey="<%= String.valueOf(kbFolder.getKbFolderId()) %>"
+			var="permissionsURL"
+			windowState="<%= LiferayWindowState.POP_UP.toString() %>"
+		/>
+
+		<liferay-ui:icon
+			image="permissions"
+			method="get"
+			url="<%= permissionsURL %>"
+			useDialog="<%= true %>"
+		/>
+	</c:if>
 </liferay-ui:icon-menu>
