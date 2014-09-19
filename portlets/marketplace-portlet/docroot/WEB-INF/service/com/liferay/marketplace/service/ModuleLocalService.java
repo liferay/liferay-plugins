@@ -248,7 +248,8 @@ public interface ModuleLocalService extends BaseLocalService,
 	public com.liferay.marketplace.model.Module addModule(long userId,
 		long appId, java.lang.String bundleSymbolicName,
 		java.lang.String bundleVersion, java.lang.String contextName)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.marketplace.model.Module fetchModule(long appId,
