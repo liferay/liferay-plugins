@@ -365,7 +365,15 @@ public class CalendarBookingLocalServiceImpl
 		String recurrence = RecurrenceSerializer.serialize(recurrenceObj);
 
 		List<CalendarBooking> childCalendarBookings =
-			getCalendarBookingWithChildren(calendarBooking);
+			new ArrayList<CalendarBooking>();
+
+		if (calendarBooking.isMasterBooking()) {
+			childCalendarBookings = getChildCalendarBookings(
+				calendarBooking.getCalendarBookingId());
+		}
+		else {
+			childCalendarBookings.add(calendarBooking);
+		}
 
 		for (CalendarBooking childCalendarBooking : childCalendarBookings) {
 			childCalendarBooking.setModifiedDate(now);
@@ -508,23 +516,6 @@ public class CalendarBookingLocalServiceImpl
 
 		return calendarBookingPersistence.countByC_P(
 			calendarId, parentCalendarBookingId);
-	}
-
-	@Override
-	public List<CalendarBooking> getCalendarBookingWithChildren(
-		CalendarBooking calendarBooking) {
-
-		if (calendarBooking.isMasterBooking()) {
-			return getChildCalendarBookings(
-				calendarBooking.getCalendarBookingId());
-		}
-
-		List<CalendarBooking> calendarBookings =
-			new ArrayList<CalendarBooking>();
-
-		calendarBookings.add(calendarBooking);
-
-		return calendarBookings;
 	}
 
 	@Override
