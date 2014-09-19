@@ -99,6 +99,12 @@ public class PushNotificationsDeviceServiceImpl
 	}
 
 	@Override
+	public boolean hasPermission(String actionId) throws PortalException {
+		return PushNotificationsPermission.contains(
+			getPermissionChecker(), actionId);
+	}
+
+	@Override
 	public void sendPushNotification(long toUserId, String payload)
 		throws PortalException {
 
