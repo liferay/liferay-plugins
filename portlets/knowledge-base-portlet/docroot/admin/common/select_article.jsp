@@ -111,7 +111,7 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 					</liferay-util:buffer>
 
 					<%
-					String taglibOnClick = "opener." + renderResponse.getNamespace() + "selectKBArticle('" + curKBArticle.getResourcePrimKey() + "', '" + curKBArticle.getClassNameId() + "', '" + UnicodeFormatter.toString(html) + "'); window.close();";
+					String taglibOnClick = "opener." + renderResponse.getNamespace() + "selectKBArticle('" + curKBArticle.getTitle() + "', '" + curKBArticle.getPriority() + "', '" + curKBArticle.getResourcePrimKey() + "', '" + curKBArticle.getClassNameId() + "', '" + UnicodeFormatter.toString(html) + "'); window.close();";
 					%>
 
 					<aui:button disabled="<%= (curKBArticle.getResourcePrimKey() == resourcePrimKey) || (curKBArticle.getResourcePrimKey() == oldParentResourcePrimKey) %>" onClick="<%= taglibOnClick %>" value="choose" />
@@ -130,7 +130,7 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 					</liferay-util:buffer>
 
 					<%
-					String taglibOnClick = "opener." + renderResponse.getNamespace() + "selectKBArticle('" + KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY + "', '" + defaultClassNameId + "', '" + UnicodeFormatter.toString(html) + "'); window.close();";
+					String taglibOnClick = "opener." + renderResponse.getNamespace() + "selectKBArticle('(" + LanguageUtil.get(locale, "none") + ")', '1.0', '" + KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY + "', '" + defaultClassNameId + "', '" + UnicodeFormatter.toString(html) + "'); window.close();";
 					%>
 
 					<aui:button onClick="<%= taglibOnClick %>" value="remove" />
