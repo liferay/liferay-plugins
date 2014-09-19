@@ -34,6 +34,7 @@ import com.liferay.portal.kernel.search.facet.Facet;
 import com.liferay.portal.kernel.search.facet.RangeFacet;
 import com.liferay.portal.kernel.search.facet.collector.FacetCollector;
 import com.liferay.portal.kernel.search.facet.config.FacetConfiguration;
+import com.liferay.portal.kernel.search.util.SearchUtil;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ListUtil;
@@ -53,8 +54,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import org.apache.commons.lang.time.StopWatch;
 import org.apache.solr.client.solrj.SolrQuery;
@@ -232,8 +231,8 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 
 		solrQuery.setHighlight(true);
 		solrQuery.setHighlightFragsize(queryConfig.getHighlightFragmentSize());
-		solrQuery.setHighlightSimplePost("</liferay-hl>");
-		solrQuery.setHighlightSimplePre("<liferay-hl>");
+		solrQuery.setHighlightSimplePost(SearchUtil.HIGHLIGHT_TAG_CLOSE);
+		solrQuery.setHighlightSimplePre(SearchUtil.HIGHLIGHT_TAG_OPEN);
 		solrQuery.setHighlightSnippets(queryConfig.getHighlightSnippetSize());
 
 		for (String highlightFieldName : queryConfig.getHighlightFieldNames()) {
@@ -321,22 +320,7 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 			}
 		}
 
-		if (!snippet.equals(StringPool.BLANK)) {
-			Matcher matcher = _pattern.matcher(snippet);
-
-			while (matcher.find()) {
-				queryTerms.add(matcher.group(1));
-			}
-
-			snippet = StringUtil.replace(
-				snippet, "<liferay-hl>", StringPool.BLANK);
-			snippet = StringUtil.replace(
-				snippet, "</liferay-hl>", StringPool.BLANK);
-		}
-
-		document.addText(
-			Field.SNIPPET.concat(StringPool.UNDERLINE).concat(snippetFieldName),
-			snippet);
+		SearchUtil.addSnippet(document, queryTerms, snippet, snippetFieldName);
 	}
 
 	protected void addSort(SolrQuery solrQuery, Sort[] sorts) {
@@ -516,8 +500,6 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 	private static Log _log = LogFactoryUtil.getLog(SolrIndexSearcher.class);
 
 	private FacetProcessor<SolrQuery> _facetProcessor;
-	private Pattern _pattern = Pattern.compile(
-		"<liferay-hl>(.*?)</liferay-hl>");
 	private SolrServer _solrServer;
 	private boolean _swallowException;
 
