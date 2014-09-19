@@ -41,7 +41,7 @@ public class MobileWidgetsDDLRecordServiceImpl
 		return ddlRecordPersistence.countByR_U(recordSetId, userId);
 	}
 
-	@SuppressWarnings({"rawtypes", "unchecked"}) 
+	@SuppressWarnings({"rawtypes"}) 
 	public List<HashMap> getDDLRecords(
 				long recordSetId, long userId, int start, int end,
 				Locale locale)
@@ -54,17 +54,17 @@ public class MobileWidgetsDDLRecordServiceImpl
 			new ArrayList<HashMap>(records.size());
 
 		for (DDLRecord record : records) {
-			HashMap recordAttributes = (HashMap) record.getModelAttributes();
+			Map<String, Object> recordAttributes = record.getModelAttributes();
 
-			HashMap recordValues = (HashMap) getDDLRecordValues(
+			Map<String, String> recordValues = getDDLRecordValues(
 				record.getRecordId(), locale);
 
-			HashMap recordMap = new HashMap();
+			Map<String, HashMap> recordMap = new HashMap<String, HashMap>();
 
-			recordMap.put("attributes", recordAttributes);
-			recordMap.put("values", recordValues);
+			recordMap.put("attributes", (HashMap) recordAttributes);
+			recordMap.put("values", (HashMap) recordValues);
 			
-			recordValuesMaps.add(recordMap);
+			recordValuesMaps.add((HashMap) recordMap);
 		}
 
 		return recordValuesMaps;
