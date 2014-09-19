@@ -480,24 +480,18 @@
 		<field indexed="true" name="articleId" stored="true" type="string" />
 		<field indexed="true" name="assetCategoryIds" stored="true" type="string" />
 		<field indexed="true" name="assetTagIds" stored="true" type="string" />
-		<field indexed="true" name="comments" stored="true" type="text" />
 		<field indexed="true" name="companyId" stored="true" type="long" />
-		<field indexed="true" name="content" stored="true" type="text" />
 		<field indexed="true" name="createDate" stored="true" type="string" />
-		<field indexed="true" name="description" stored="true" type="text" />
 		<field indexed="true" name="entryClassPK" stored="true" type="string" />
 		<field indexed="true" name="entryClassName" stored="true" type="string" />
 		<field indexed="true" name="expirationDate" stored="true" type="string" />
-		<field indexed="true" name="firstName" stored="true" type="string_lowercase" />
 		<field indexed="true" name="folderId" stored="true" type="string" />
 		<field indexed="true" multiValued="true" name="groupId" stored="true" type="string" />
 		<field indexed="true" name="id" stored="true" type="string" />
 		<field indexed="true" name="keywordSearch" omitNorms="true" omitTermFreqAndPositions="true" stored="true" type="textAuto" />
 		<field indexed="true" name="languageId" stored="true" type="string" />
-		<field indexed="true" name="lastName" stored="true" type="string_lowercase" />
 		<field indexed="true" name="leftOrganizationId" stored="true" type="slong" />
 		<field indexed="true" name="modified" stored="true" type="string" />
-		<field indexed="true" name="name" stored="true" type="string" />
 		<field indexed="true" name="nodeId" stored="true" type="string" />
 		<field indexed="true" name="path" stored="true" type="string" />
 		<field indexed="true" name="portletId" stored="true" type="string" />
@@ -512,7 +506,6 @@
 		<field indexed="true" name="spellCheckWeight" stored="true" type="string" />
 		<field indexed="true" multiValued="true" name="spellCheckWord" stored="true" type="textSpell" />
 		<field indexed="true" name="status" stored="true" type="string" />
-		<field indexed="true" name="title" stored="true" type="text" />
 		<field indexed="true" name="treePath" stored="true" type="string" />
 		<field indexed="true" name="type" stored="true" type="string" />
 		<field indexed="true" name="uid" stored="true" type="string" />
@@ -522,8 +515,6 @@
 		<field indexed="true" name="version" stored="true" type="string" />
 		<field indexed="true" name="visible" stored="true" type="string" />
 		<field indexed="true" multiValued="false" name="_version_" stored="true" type="long" />
-		<dynamicField indexed="true" multiValued="true" name="*CategoryNames" stored="true" type="string" />
-		<dynamicField indexed="true" multiValued="true" name="*CategoryIds" stored="true" type="string" />
 		<dynamicField indexed="true" multiValued="false" name="*_sortable" stored="true" type="string" />
 		<dynamicField indexed="true" multiValued="true" name="expando__*" stored="true" type="text" />
 		<dynamicField indexed="true" name="*_ar_*" stored="true" termPositions="true" termOffsets="true" termVectors="true" type="text_ar" />
@@ -563,13 +554,12 @@
 		<dynamicField indexed="true" name="*_th_*" stored="true" termPositions="true" termOffsets="true" termVectors="true" type="text_th" />
 		<dynamicField indexed="true" name="*_tr_*" stored="true" termPositions="true" termOffsets="true" termVectors="true" type="text_tr" />
 		<dynamicField indexed="true" name="*_zh_*" stored="true" termPositions="true" termOffsets="true" termVectors="true" type="text_cjk" />
-		<dynamicField indexed="true" name="web_content/*" stored="true" type="text" />
 
 		<!--
 		This must be the last entry since the fields element is an ordered set.
 		-->
 
-		<dynamicField indexed="true" multiValued="true" name="*" stored="true" type="string" />
+		<dynamicField indexed="true" name="*" stored="true" termPositions="true" termOffsets="true" termVectors="true" type="text" />
 	</fields>
 	<uniqueKey>uid</uniqueKey>
 	<defaultSearchField>content</defaultSearchField>
