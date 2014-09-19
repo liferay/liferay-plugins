@@ -333,6 +333,7 @@ public class AdminPortlet extends BaseKBPortlet {
 	protected boolean isSessionErrorException(Throwable cause) {
 		if (cause instanceof KBTemplateContentException ||
 			cause instanceof KBTemplateTitleException ||
+			cause instanceof NoSuchTemplateException ||
 			super.isSessionErrorException(cause)) {
 
 			return true;
