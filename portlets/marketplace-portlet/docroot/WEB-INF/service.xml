@@ -78,6 +78,6 @@
 		<exception>AppTitle</exception>
 		<exception>AppVersion</exception>
 		<exception>DuplicateApp</exception>
-		<exception>ModuleIdentifier</exception>
+		<exception>ModuleNamespace</exception>
 	</exceptions>
 </service-builder>
