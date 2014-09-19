@@ -56,7 +56,14 @@ public class ExtRepositoryFileVersionAdapter
 		throws PortalException {
 
 		repositoryModelOperation.execute(this);
-	} @Override
+	}
+
+	@Override
+	public String getChangeLog() {
+		return _extRepositoryFileVersion.getChangeLog();
+	}
+
+	@Override
 	public InputStream getContentStream(boolean incrementCounter)
 		throws PortalException {
 
@@ -189,10 +196,5 @@ public class ExtRepositoryFileVersionAdapter
 
 	private ExtRepositoryFileEntryAdapter _extRepositoryFileEntryAdapter;
 	private ExtRepositoryFileVersion _extRepositoryFileVersion;
-
-	@Override
-	public String getChangeLog() {
-		return _extRepositoryFileVersion.getChangeLog();
-	}
 
 }

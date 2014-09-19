@@ -50,7 +50,14 @@ public class ExtRepositoryFolderAdapter
 		throws PortalException {
 
 		repositoryModelOperation.execute(this);
-	} @Override
+	}
+
+	@Override
+	public ExtRepositoryFolder getExtRepositoryModel() {
+		return _extRepositoryFolder;
+	}
+
+	@Override
 	public long getFolderId() {
 		return getPrimaryKey();
 	}
@@ -152,10 +159,5 @@ public class ExtRepositoryFolderAdapter
 		ExtRepositoryFolderAdapter.class);
 
 	private ExtRepositoryFolder _extRepositoryFolder;
-
-	@Override
-	public ExtRepositoryFolder getExtRepositoryModel() {
-		return _extRepositoryFolder;
-	}
 
 }
