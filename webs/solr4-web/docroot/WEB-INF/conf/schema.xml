@@ -124,7 +124,7 @@
 		<dynamicField indexed="true" multiValued="true" name="*CategoryNames" stored="true" type="string" />
 		<dynamicField indexed="true" multiValued="true" name="*CategoryIds" stored="true" type="string" />
 		<dynamicField indexed="true" multiValued="false" name="*_sortable" stored="true" type="string" />
-		<dynamicField indexed="true" multiValued="true" name="expando/*" stored="true" type="text" />
+		<dynamicField indexed="true" multiValued="true" name="expando__*" stored="true" type="text" />
 		<dynamicField indexed="true" name="web_content/*" stored="true" type="text" />
 
 		<!--
