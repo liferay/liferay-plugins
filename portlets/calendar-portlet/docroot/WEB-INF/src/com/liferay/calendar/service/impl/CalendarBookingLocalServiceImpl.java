@@ -362,23 +362,7 @@ public class CalendarBookingLocalServiceImpl
 
 		String recurrence = RecurrenceSerializer.serialize(recurrenceObj);
 
-		List<CalendarBooking> childCalendarBookings =
-			new ArrayList<CalendarBooking>();
-
-		if (calendarBooking.isMasterBooking()) {
-			childCalendarBookings = getChildCalendarBookings(
-				calendarBooking.getCalendarBookingId());
-		}
-		else {
-			childCalendarBookings.add(calendarBooking);
-		}
-
-		for (CalendarBooking childCalendarBooking : childCalendarBookings) {
-			childCalendarBooking.setModifiedDate(now);
-			childCalendarBooking.setRecurrence(recurrence);
-
-			calendarBookingPersistence.update(childCalendarBooking);
-		}
+		updateChildCalendarBookingRecurrences(calendarBooking, now, recurrence);
 	}
 
 	@Override
@@ -1127,6 +1111,29 @@ public class CalendarBookingLocalServiceImpl
 			if (_log.isWarnEnabled()) {
 				_log.warn(e, e);
 			}
+		}
+	}
+
+	protected void updateChildCalendarBookingRecurrences(
+		CalendarBooking calendarBooking, Date modifiedDate,
+		String recurrence) {
+
+		List<CalendarBooking> childCalendarBookings =
+			new ArrayList<CalendarBooking>();
+
+		if (calendarBooking.isMasterBooking()) {
+			childCalendarBookings = getChildCalendarBookings(
+				calendarBooking.getCalendarBookingId());
+		}
+		else {
+			childCalendarBookings.add(calendarBooking);
+		}
+
+		for (CalendarBooking childCalendarBooking : childCalendarBookings) {
+			childCalendarBooking.setModifiedDate(modifiedDate);
+			childCalendarBooking.setRecurrence(recurrence);
+
+			calendarBookingPersistence.update(childCalendarBooking);
 		}
 	}
 
