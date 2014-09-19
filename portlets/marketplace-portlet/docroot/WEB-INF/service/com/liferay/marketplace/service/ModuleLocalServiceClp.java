@@ -174,7 +174,8 @@ public class ModuleLocalServiceClp implements ModuleLocalService {
 	@Override
 	public com.liferay.marketplace.model.Module addModule(long userId,
 		long appId, java.lang.String bundleSymbolicName,
-		java.lang.String bundleVersion, java.lang.String contextName) {
+		java.lang.String bundleVersion, java.lang.String contextName)
+		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
 		try {
@@ -194,6 +195,10 @@ public class ModuleLocalServiceClp implements ModuleLocalService {
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
 
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;

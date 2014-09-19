@@ -47,7 +47,8 @@ public class ModuleLocalServiceWrapper implements ModuleLocalService,
 	@Override
 	public com.liferay.marketplace.model.Module addModule(long userId,
 		long appId, java.lang.String bundleSymbolicName,
-		java.lang.String bundleVersion, java.lang.String contextName) {
+		java.lang.String bundleVersion, java.lang.String contextName)
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _moduleLocalService.addModule(userId, appId, bundleSymbolicName,
 			bundleVersion, contextName);
 	}
