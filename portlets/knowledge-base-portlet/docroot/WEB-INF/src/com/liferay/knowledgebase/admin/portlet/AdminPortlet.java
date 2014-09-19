@@ -86,6 +86,15 @@ public class AdminPortlet extends BaseKBPortlet {
 			themeDisplay.getScopeGroupId(), resourcePrimKeys);
 	}
 
+	public void deleteKBFolder(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws PortalException, SystemException {
+
+		long kbFolderId = ParamUtil.getLong(actionRequest, "kbFolderId");
+
+		KBFolderServiceUtil.deleteFolder(kbFolderId);
+	}
+
 	public void deleteKBTemplate(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {

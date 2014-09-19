@@ -266,14 +266,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 
 		// KB articles
 
-		List<KBArticle> kbArticles = getKBArticles(
-			groupId, KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY,
-			WorkflowConstants.STATUS_ANY, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
-			null);
-
-		for (KBArticle kbArticle : kbArticles) {
-			kbArticleLocalService.deleteKBArticle(kbArticle);
-		}
+		deleteKBArticles(groupId, KBFolderConstants.DEFAULT_PARENT_FOLDER_ID);
 
 		// Subscriptions
 
@@ -297,14 +290,10 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 
 		// Child kb articles
 
-		List<KBArticle> childKBArticles = getKBArticles(
-			kbArticle.getGroupId(), kbArticle.getResourcePrimKey(),
-			WorkflowConstants.STATUS_ANY, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
-			null);
+		long groupId = kbArticle.getGroupId();
+		long resourcePrimKey = kbArticle.getResourcePrimKey();
 
-		for (KBArticle childrenKBArticle : childKBArticles) {
-			kbArticleLocalService.deleteKBArticle(childrenKBArticle);
-		}
+		deleteKBArticles(groupId, resourcePrimKey);
 
 		// Resources
 
@@ -368,6 +357,19 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			resourcePrimKey, WorkflowConstants.STATUS_ANY);
 
 		return kbArticleLocalService.deleteKBArticle(kbArticle);
+	}
+
+	@Override
+	public void deleteKBArticles(long groupId, long parentResourcePrimKey)
+		throws PortalException, SystemException {
+
+		List<KBArticle> childKBArticles = getKBArticles(
+			groupId, parentResourcePrimKey, WorkflowConstants.STATUS_ANY,
+			QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
+
+		for (KBArticle childrenKBArticle : childKBArticles) {
+			kbArticleLocalService.deleteKBArticle(childrenKBArticle);
+		}
 	}
 
 	@Override
