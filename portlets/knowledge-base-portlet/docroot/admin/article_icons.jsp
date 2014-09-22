@@ -80,7 +80,7 @@ long resourcePrimKey = ParamUtil.getLong(request, "resourcePrimKey");
 
 			<c:if test="<%= KBArticlePermission.contains(permissionChecker, kbArticle, ActionKeys.MOVE_KB_ARTICLE) %>">
 				<liferay-portlet:renderURL var="moveKBArticleURL">
-					<portlet:param name="mvcPath" value='<%= templatePath + "move_article.jsp" %>' />
+					<portlet:param name="mvcPath" value='<%= templatePath + "move_entry.jsp" %>' />
 					<portlet:param name="redirect" value="<%= redirect %>" />
 					<portlet:param name="resourcePrimKey" value="<%= String.valueOf(kbArticle.getResourcePrimKey()) %>" />
 					<portlet:param name="status" value="<%= String.valueOf(status) %>" />
