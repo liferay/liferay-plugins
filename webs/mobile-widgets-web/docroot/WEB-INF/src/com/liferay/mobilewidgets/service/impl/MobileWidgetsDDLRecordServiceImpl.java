@@ -142,6 +142,15 @@ public class MobileWidgetsDDLRecordServiceImpl
 		else if (dataType.equals(FieldConstants.DATE)) {
 			fieldValue = field.getRenderedValue(locale);
 		}
+		else if (dataType.equals(FieldConstants.DOCUMENT_LIBRARY)) {
+			if (fieldStringValue.equals("")) {
+				fieldValue = null;
+			}
+			else {
+				fieldValue = JSONFactoryUtil.looseSerialize(
+					JSONFactoryUtil.looseDeserialize(fieldStringValue));
+			}
+		}
 		else {
 			fieldValue = fieldStringValue;
 		}
