@@ -14,6 +14,7 @@
 
 package com.liferay.notifications.notifications.portlet;
 
+import com.liferay.notifications.model.UserNotificationEvent;
 import com.liferay.notifications.util.NotificationsConstants;
 import com.liferay.notifications.util.NotificationsUtil;
 import com.liferay.notifications.util.PortletKeys;
@@ -36,7 +37,6 @@ import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.model.Portlet;
 import com.liferay.portal.model.User;
-import com.liferay.portal.model.UserNotificationEvent;
 import com.liferay.portal.service.PortletLocalServiceUtil;
 import com.liferay.portal.service.ServiceContextFactory;
 import com.liferay.portal.service.UserLocalServiceUtil;
@@ -75,9 +75,10 @@ public class NotificationsPortlet extends MVCPortlet {
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
 		try {
-			UserNotificationEvent userNotificationEvent =
-				UserNotificationEventLocalServiceUtil.
-					fetchUserNotificationEvent(userNotificationEventId);
+			com.liferay.portal.model.UserNotificationEvent
+				userNotificationEvent =
+					UserNotificationEventLocalServiceUtil.
+						fetchUserNotificationEvent(userNotificationEventId);
 
 			if (userNotificationEvent != null) {
 				UserNotificationEventLocalServiceUtil.
@@ -207,13 +208,14 @@ public class NotificationsPortlet extends MVCPortlet {
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
 		try {
-			List<UserNotificationEvent> userNotificationEvents =
-				UserNotificationEventLocalServiceUtil.
-					getDeliveredUserNotificationEvents(
-						themeDisplay.getUserId(), false);
+			List<com.liferay.portal.model.UserNotificationEvent>
+				userNotificationEvents =
+					UserNotificationEventLocalServiceUtil.
+						getDeliveredUserNotificationEvents(
+							themeDisplay.getUserId(), false);
 
-			for (UserNotificationEvent userNotificationEvent :
-					userNotificationEvents) {
+			for (com.liferay.portal.model.UserNotificationEvent
+					userNotificationEvent : userNotificationEvents) {
 
 				userNotificationEvent.setDelivered(true);
 
@@ -304,7 +306,8 @@ public class NotificationsPortlet extends MVCPortlet {
 		int start = ParamUtil.getInteger(resourceRequest, "start");
 		int end = ParamUtil.getInteger(resourceRequest, "end");
 
-		List<UserNotificationEvent> userNotificationEvents = null;
+		List<com.liferay.notifications.model.UserNotificationEvent>
+			userNotificationEvents = null;
 		int total = 0;
 
 		if (fullView) {
@@ -328,8 +331,8 @@ public class NotificationsPortlet extends MVCPortlet {
 
 		List<Long> newUserNotificationEventIds = new ArrayList<Long>();
 
-		for (UserNotificationEvent userNotificationEvent :
-				userNotificationEvents) {
+		for (com.liferay.notifications.model.UserNotificationEvent
+				userNotificationEvent : userNotificationEvents) {
 
 			String entry = renderEntry(
 				resourceRequest, resourceResponse, userNotificationEvent);
@@ -376,9 +379,13 @@ public class NotificationsPortlet extends MVCPortlet {
 		ThemeDisplay themeDisplay = (ThemeDisplay)resourceRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
+		com.liferay.portal.model.UserNotificationEvent
+			portalUserNotificationEvent =
+				userNotificationEvent.getUserNotificationEvent();
+
 		UserNotificationFeedEntry userNotificationFeedEntry =
 			UserNotificationManagerUtil.interpret(
-				StringPool.BLANK, userNotificationEvent,
+				StringPool.BLANK, portalUserNotificationEvent,
 				ServiceContextFactory.getInstance(resourceRequest));
 
 		if (userNotificationFeedEntry == null) {
@@ -483,7 +490,7 @@ public class NotificationsPortlet extends MVCPortlet {
 	protected void updateArchived(long userNotificationEventId)
 		throws Exception {
 
-		UserNotificationEvent userNotificationEvent =
+		com.liferay.portal.model.UserNotificationEvent userNotificationEvent =
 			UserNotificationEventLocalServiceUtil.getUserNotificationEvent(
 				userNotificationEventId);
 
