@@ -14,6 +14,7 @@
 		<portlet-data-handler-class>com.liferay.knowledgebase.admin.lar.AdminPortletDataHandler</portlet-data-handler-class>
 		<staged-model-data-handler-class>com.liferay.knowledgebase.admin.lar.KBArticleStagedModelDataHandler</staged-model-data-handler-class>
 		<staged-model-data-handler-class>com.liferay.knowledgebase.admin.lar.KBCommentStagedModelDataHandler</staged-model-data-handler-class>
+		<staged-model-data-handler-class>com.liferay.knowledgebase.admin.lar.KBFolderStagedModelDataHandler</staged-model-data-handler-class>
 		<staged-model-data-handler-class>com.liferay.knowledgebase.admin.lar.KBTemplateStagedModelDataHandler</staged-model-data-handler-class>
 		<social-activity-interpreter-class>com.liferay.knowledgebase.admin.social.AdminActivityInterpreter</social-activity-interpreter-class>
 		<control-panel-entry-category>site_administration.content</control-panel-entry-category>
