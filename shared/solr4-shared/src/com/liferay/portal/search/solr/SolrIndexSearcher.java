@@ -481,7 +481,8 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 
 	private static Log _log = LogFactoryUtil.getLog(SolrIndexSearcher.class);
 
-	private Pattern _pattern = Pattern.compile("<liferay-hl>(.*?)</liferay-hl>");
+	private Pattern _pattern = Pattern.compile(
+		"<liferay-hl>(.*?)</liferay-hl>");
 	private SolrServer _solrServer;
 	private boolean _swallowException;
 
