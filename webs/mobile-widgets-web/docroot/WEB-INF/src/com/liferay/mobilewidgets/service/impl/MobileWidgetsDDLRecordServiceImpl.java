@@ -20,6 +20,7 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portlet.dynamicdatalists.model.DDLRecord;
 import com.liferay.portlet.dynamicdatamapping.storage.Field;
 import com.liferay.portlet.dynamicdatamapping.storage.FieldConstants;
@@ -55,7 +56,7 @@ public class MobileWidgetsDDLRecordServiceImpl
 		}
 
 		for (Field field : fields) {
-			Object fieldValue = getTypedFieldValue(field, locale);
+			Object fieldValue = getFieldValue(field, locale);
 
 			if (fieldValue != null) {
 				ddlRecordAttributes.put(field.getName(), fieldValue);
@@ -110,49 +111,49 @@ public class MobileWidgetsDDLRecordServiceImpl
 		return ddlRecordPersistence.countByR_U(ddlRecordSetId, userId);
 	}
 
-	protected Object getTypedFieldValue(Field field, Locale locale)
+	protected Object getFieldValue(Field field, Locale locale)
 		throws PortalException, SystemException {
 
-		Object fieldValue;
+		Object fieldValue = null;
 
-		String fieldStringValue = String.valueOf(field.getValue(locale));
+		String fieldValueString = GetterUtil.getString(field.getValue(locale));
 
 		String dataType = field.getDataType();
 
-		if (fieldStringValue.equals("null")) {
+		if (fieldValueString.equals("null")) {
 			fieldValue = null;
 		}
 		else if (dataType.equals(FieldConstants.BOOLEAN)) {
-			fieldValue = Boolean.valueOf(fieldStringValue);
+			fieldValue = Boolean.valueOf(fieldValueString);
 		}
 		else if (dataType.equals(FieldConstants.INTEGER)) {
-			fieldValue = Integer.valueOf(fieldStringValue);
+			fieldValue = Integer.valueOf(fieldValueString);
 		}
 		else if (dataType.equals(FieldConstants.LONG)) {
-			fieldValue = Long.valueOf(fieldStringValue);
+			fieldValue = Long.valueOf(fieldValueString);
 		}
 		else if (dataType.equals(FieldConstants.SHORT)) {
-			fieldValue = Short.valueOf(fieldStringValue);
+			fieldValue = Short.valueOf(fieldValueString);
 		}
 		else if (dataType.equals(FieldConstants.FLOAT) ||
 				 dataType.equals(FieldConstants.NUMBER)) {
 
-			fieldValue = Float.valueOf(fieldStringValue);
+			fieldValue = Float.valueOf(fieldValueString);
 		}
 		else if (dataType.equals(FieldConstants.DATE)) {
 			fieldValue = field.getRenderedValue(locale);
 		}
 		else if (dataType.equals(FieldConstants.DOCUMENT_LIBRARY)) {
-			if (fieldStringValue.equals("")) {
+			if (fieldValueString.equals("")) {
 				fieldValue = null;
 			}
 			else {
 				fieldValue = JSONFactoryUtil.looseSerialize(
-					JSONFactoryUtil.looseDeserialize(fieldStringValue));
+					JSONFactoryUtil.looseDeserialize(fieldValueString));
 			}
 		}
 		else {
-			fieldValue = fieldStringValue;
+			fieldValue = fieldValueString;
 		}
 
 		return fieldValue;
