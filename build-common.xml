@@ -472,6 +472,7 @@ Error-Prone was automatically installed. Please rerun your task.
 								javac.classpathref="plugin.classpath"
 								javac.destdir="@{module.dir}/classes"
 								javac.srcdir="@{module.dir}/src"
+								module.dir="@{module.dir}"
 							/>
 						</else>
 					</if>
@@ -661,11 +662,63 @@ Error-Prone was automatically installed. Please rerun your task.
 		<attribute name="javac.classpathref" />
 		<attribute name="javac.destdir" />
 		<attribute name="javac.srcdir" />
+		<attribute name="module.dir" />
 
 		<sequential>
 			<copy todir="@{javac.destdir}">
 				<fileset dir="@{javac.srcdir}" excludes="**/*.java" />
 			</copy>
+
+			<if>
+				<available file="@{module.dir}" />
+				<then>
+					<set-build-xml-var
+						build.xml.var.name="javac.source"
+						module.dir="@{module.dir}"
+					/>
+
+					<if>
+						<isset property="set-build-xml-var.return" />
+						<then>
+							<var name="javac.source" value="${set-build-xml-var.return}" />
+
+							<echo>Custom javac source ${javac.source}</echo>
+						</then>
+					</if>
+
+					<set-build-xml-var
+						build.xml.var.name="javac.target"
+						module.dir="@{module.dir}"
+					/>
+
+					<if>
+						<isset property="set-build-xml-var.return" />
+						<then>
+							<var name="javac.target" value="${set-build-xml-var.return}" />
+
+							<echo>Custom javac target ${javac.target}</echo>
+						</then>
+					</if>
+				</then>
+			</if>
+
+			<if>
+				<not>
+					<isset property="javac.source" />
+				</not>
+				<then>
+					<var name="javac.source" value="${ant.build.javac.source}" />
+				</then>
+			</if>
+
+			<if>
+				<not>
+					<isset property="javac.target" />
+				</not>
+				<then>
+					<var name="javac.target" value="${ant.build.javac.target}" />
+				</then>
+			</if>
 
 			<javac
 				classpathref="@{javac.classpathref}"
@@ -676,8 +729,13 @@ Error-Prone was automatically installed. Please rerun your task.
 				encoding="${javac.encoding}"
 				includeAntRuntime="false"
 				nowarn="${javac.nowarn}"
+				source="${javac.source}"
 				srcdir="@{javac.srcdir}"
+				target="${javac.target}"
 			/>
+
+			<var name="javac.source" unset="true" />
+			<var name="javac.target" unset="true" />
 		</sequential>
 	</macrodef>
 
@@ -790,6 +848,7 @@ Please find a solution that does not require portal-impl.jar.
 						javac.classpathref="plugin.classpath"
 						javac.destdir="@{module.dir}/docroot/WEB-INF/classes"
 						javac.srcdir="@{module.dir}/docroot/WEB-INF/src"
+						module.dir="@{module.dir}"
 					/>
 				</then>
 			</if>
@@ -913,6 +972,7 @@ Please find a solution that does not require portal-impl.jar.
 						javac.classpathref="test.classpath"
 						javac.destdir="@{module.dir}/test-classes/@{test.type}"
 						javac.srcdir="@{module.dir}/test/@{test.type}"
+						module.dir="@{module.dir}"
 					/>
 				</then>
 			</if>
