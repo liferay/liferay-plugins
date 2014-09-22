@@ -70,11 +70,6 @@ public class MobileWidgetsDDLRecordServiceUtil {
 		return getService().getDDLRecord(ddlRecordId, locale);
 	}
 
-	public static int getDDLRecordsCount(long ddlRecordSetId, long userId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getService().getDDLRecordsCount(ddlRecordSetId, userId);
-	}
-
 	public static com.liferay.portal.kernel.json.JSONArray getDDLRecords(
 		long ddlRecordSetId, long userId, java.util.Locale locale, int start,
 		int end)
@@ -82,6 +77,11 @@ public class MobileWidgetsDDLRecordServiceUtil {
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService()
 				   .getDDLRecords(ddlRecordSetId, userId, locale, start, end);
+	}
+
+	public static int getDDLRecordsCount(long ddlRecordSetId, long userId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().getDDLRecordsCount(ddlRecordSetId, userId);
 	}
 
 	public static void clearService() {

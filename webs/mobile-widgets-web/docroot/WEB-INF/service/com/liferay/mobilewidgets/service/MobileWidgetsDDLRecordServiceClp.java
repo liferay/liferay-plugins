@@ -37,15 +37,15 @@ public class MobileWidgetsDDLRecordServiceClp
 
 		_methodParameterTypes3 = new String[] { "long", "java.util.Locale" };
 
-		_methodName4 = "getDDLRecordsCount";
+		_methodName4 = "getDDLRecords";
 
-		_methodParameterTypes4 = new String[] { "long", "long" };
-
-		_methodName5 = "getDDLRecords";
-
-		_methodParameterTypes5 = new String[] {
+		_methodParameterTypes4 = new String[] {
 				"long", "long", "java.util.Locale", "int", "int"
 			};
+
+		_methodName5 = "getDDLRecordsCount";
+
+		_methodParameterTypes5 = new String[] { "long", "long" };
 	}
 
 	@Override
@@ -138,35 +138,6 @@ public class MobileWidgetsDDLRecordServiceClp
 	}
 
 	@Override
-	public int getDDLRecordsCount(long ddlRecordSetId, long userId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		Object returnObj = null;
-
-		try {
-			returnObj = _invokableService.invokeMethod(_methodName4,
-					_methodParameterTypes4,
-					new Object[] { ddlRecordSetId, userId });
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-
-		return ((Integer)returnObj).intValue();
-	}
-
-	@Override
 	public com.liferay.portal.kernel.json.JSONArray getDDLRecords(
 		long ddlRecordSetId, long userId, java.util.Locale locale, int start,
 		int end)
@@ -175,8 +146,8 @@ public class MobileWidgetsDDLRecordServiceClp
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableService.invokeMethod(_methodName5,
-					_methodParameterTypes5,
+			returnObj = _invokableService.invokeMethod(_methodName4,
+					_methodParameterTypes4,
 					new Object[] {
 						ddlRecordSetId,
 						
@@ -210,6 +181,35 @@ public class MobileWidgetsDDLRecordServiceClp
 		}
 
 		return (com.liferay.portal.kernel.json.JSONArray)ClpSerializer.translateOutput(returnObj);
+	}
+
+	@Override
+	public int getDDLRecordsCount(long ddlRecordSetId, long userId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableService.invokeMethod(_methodName5,
+					_methodParameterTypes5,
+					new Object[] { ddlRecordSetId, userId });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return ((Integer)returnObj).intValue();
 	}
 
 	private InvokableService _invokableService;

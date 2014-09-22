@@ -68,13 +68,6 @@ public class MobileWidgetsDDLRecordServiceWrapper
 	}
 
 	@Override
-	public int getDDLRecordsCount(long ddlRecordSetId, long userId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return _mobileWidgetsDDLRecordService.getDDLRecordsCount(ddlRecordSetId,
-			userId);
-	}
-
-	@Override
 	public com.liferay.portal.kernel.json.JSONArray getDDLRecords(
 		long ddlRecordSetId, long userId, java.util.Locale locale, int start,
 		int end)
@@ -82,6 +75,13 @@ public class MobileWidgetsDDLRecordServiceWrapper
 			com.liferay.portal.kernel.exception.SystemException {
 		return _mobileWidgetsDDLRecordService.getDDLRecords(ddlRecordSetId,
 			userId, locale, start, end);
+	}
+
+	@Override
+	public int getDDLRecordsCount(long ddlRecordSetId, long userId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _mobileWidgetsDDLRecordService.getDDLRecordsCount(ddlRecordSetId,
+			userId);
 	}
 
 	/**

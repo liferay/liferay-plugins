@@ -67,21 +67,6 @@ public class MobileWidgetsDDLRecordServiceSoap {
 		}
 	}
 
-	public static int getDDLRecordsCount(long ddlRecordSetId, long userId)
-		throws RemoteException {
-		try {
-			int returnValue = MobileWidgetsDDLRecordServiceUtil.getDDLRecordsCount(ddlRecordSetId,
-					userId);
-
-			return returnValue;
-		}
-		catch (Exception e) {
-			_log.error(e, e);
-
-			throw new RemoteException(e.getMessage());
-		}
-	}
-
 	public static java.lang.String getDDLRecords(long ddlRecordSetId,
 		long userId, String locale, int start, int end)
 		throws RemoteException {
@@ -90,6 +75,21 @@ public class MobileWidgetsDDLRecordServiceSoap {
 					userId, LocaleUtil.fromLanguageId(locale), start, end);
 
 			return returnValue.toString();
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static int getDDLRecordsCount(long ddlRecordSetId, long userId)
+		throws RemoteException {
+		try {
+			int returnValue = MobileWidgetsDDLRecordServiceUtil.getDDLRecordsCount(ddlRecordSetId,
+					userId);
+
+			return returnValue;
 		}
 		catch (Exception e) {
 			_log.error(e, e);
