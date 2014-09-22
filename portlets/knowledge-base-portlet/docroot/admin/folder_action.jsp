@@ -37,6 +37,24 @@ KBFolder kbFolder = (KBFolder)row.getObject();
 		/>
 	</c:if>
 
+	<c:if test="<%= KBFolderPermission.contains(permissionChecker, kbFolder, ActionKeys.MOVE_KB_FOLDER) %>">
+		<liferay-portlet:renderURL var="moveKBFolderURL">
+			<portlet:param name="mvcPath" value='<%= templatePath + "move_article.jsp" %>' />
+			<portlet:param name="redirect" value="<%= redirect %>" />
+			<portlet:param name="resourceClassNameId" value="<%= String.valueOf(kbFolder.getClassNameId()) %>" />
+			<portlet:param name="resourcePrimKey" value="<%= String.valueOf(kbFolder.getKbFolderId()) %>" />
+			<portlet:param name="parentResourceClassNameId" value="<%= String.valueOf(kbFolder.getClassNameId()) %>" />
+			<portlet:param name="parentResourcePrimKey" value="<%= String.valueOf(kbFolder.getParentKBFolderId()) %>" />
+		</liferay-portlet:renderURL>
+
+		<liferay-ui:icon
+			image="forward"
+			message="move"
+			method="get"
+			url="<%= moveKBFolderURL %>"
+		/>
+	</c:if>
+
 	<c:if test="<%= KBFolderPermission.contains(permissionChecker, kbFolder, ActionKeys.DELETE) %>">
 		<liferay-portlet:actionURL name="deleteKBFolder" var="deleteURL">
 			<portlet:param name="mvcPath" value='<%= ParamUtil.getString(request, "mvcPath") %>' />

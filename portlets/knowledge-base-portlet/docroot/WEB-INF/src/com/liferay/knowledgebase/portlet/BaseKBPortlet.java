@@ -21,12 +21,14 @@ import com.liferay.knowledgebase.KBCommentContentException;
 import com.liferay.knowledgebase.NoSuchArticleException;
 import com.liferay.knowledgebase.NoSuchCommentException;
 import com.liferay.knowledgebase.model.KBArticle;
+import com.liferay.knowledgebase.model.KBArticleConstants;
 import com.liferay.knowledgebase.model.KBComment;
 import com.liferay.knowledgebase.model.KBCommentConstants;
 import com.liferay.knowledgebase.model.KBFolderConstants;
 import com.liferay.knowledgebase.service.KBArticleServiceUtil;
 import com.liferay.knowledgebase.service.KBCommentLocalServiceUtil;
 import com.liferay.knowledgebase.service.KBCommentServiceUtil;
+import com.liferay.knowledgebase.service.KBFolderServiceUtil;
 import com.liferay.knowledgebase.util.WebKeys;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
@@ -167,6 +169,8 @@ public abstract class BaseKBPortlet extends MVCPortlet {
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
+		long resourceClassNameId = ParamUtil.getLong(
+			actionRequest, "resourceClassNameId");
 		long resourcePrimKey = ParamUtil.getLong(
 			actionRequest, "resourcePrimKey");
 		long parentResourceClassNameId = ParamUtil.getLong(
@@ -177,9 +181,18 @@ public abstract class BaseKBPortlet extends MVCPortlet {
 			KBFolderConstants.DEFAULT_PARENT_FOLDER_ID);
 		double priority = ParamUtil.getDouble(actionRequest, "priority");
 
-		KBArticleServiceUtil.moveKBArticle(
-			resourcePrimKey, parentResourceClassNameId, parentResourcePrimKey,
-			priority);
+		long kbArticleClassNameId = PortalUtil.getClassNameId(
+			KBArticleConstants.getClassName());
+
+		if (resourceClassNameId == kbArticleClassNameId) {
+			KBArticleServiceUtil.moveKBArticle(
+				resourcePrimKey, parentResourceClassNameId,
+				parentResourcePrimKey, priority);
+		}
+		else {
+			KBFolderServiceUtil.moveKBFolder(
+				resourcePrimKey, parentResourcePrimKey);
+		}
 	}
 
 	public void serveAttachment(
