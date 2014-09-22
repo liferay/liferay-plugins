@@ -11,10 +11,6 @@
 	</info>
 
 	<dependencies defaultconf="default">
-		<dependency name="google-api-client" org="com.google.api-client" rev="1.19.0" />
 		<dependency name="google-api-services-admin-directory" org="com.google.apis" rev="directory_v1-rev41-1.19.0" />
-		<dependency name="google-http-client" org="com.google.http-client" rev="1.19.0" />
-		<dependency name="google-http-client-jackson2" org="com.google.http-client" rev="1.19.0" />
-		<dependency name="google-oauth-client" org="com.google.oauth-client" rev="1.19.0" />
 	</dependencies>
 </ivy-module>
