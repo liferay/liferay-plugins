@@ -61,7 +61,7 @@ import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
-import com.liferay.portal.kernel.util.TempFileUtil;
+import com.liferay.portal.kernel.util.TempFileEntryUtil;
 import com.liferay.portal.kernel.util.Time;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
@@ -252,7 +252,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			InputStream inputStream, String mimeType)
 		throws PortalException {
 
-		TempFileUtil.addTempFile(
+		TempFileEntryUtil.addTempFileEntry(
 			groupId, userId, fileName, tempFolderName, inputStream, mimeType);
 	}
 
@@ -382,7 +382,8 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			long groupId, long userId, String fileName, String tempFolderName)
 		throws PortalException {
 
-		TempFileUtil.deleteTempFile(groupId, userId, fileName, tempFolderName);
+		TempFileEntryUtil.deleteTempFileEntry(
+			groupId, userId, fileName, tempFolderName);
 	}
 
 	@Override
@@ -785,7 +786,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			long groupId, long userId, String tempFolderName)
 		throws PortalException {
 
-		return TempFileUtil.getTempFileEntryNames(
+		return TempFileEntryUtil.getTempFileNames(
 			groupId, userId, tempFolderName);
 	}
 
@@ -1194,7 +1195,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			String selectedFileName)
 		throws PortalException {
 
-		FileEntry tempFileEntry = TempFileUtil.getTempFile(
+		FileEntry tempFileEntry = TempFileEntryUtil.getTempFileEntry(
 			groupId, userId, selectedFileName, _TEMP_FOLDER_NAME);
 
 		InputStream inputStream = tempFileEntry.getContentStream();
@@ -1204,7 +1205,8 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			userId, resourcePrimKey, selectedFileName, inputStream, mimeType);
 
 		if (tempFileEntry != null) {
-			TempFileUtil.deleteTempFile(tempFileEntry.getFileEntryId());
+			TempFileEntryUtil.deleteTempFileEntry(
+				tempFileEntry.getFileEntryId());
 		}
 	}
 
