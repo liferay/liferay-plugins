@@ -100,9 +100,6 @@ public class PortletPropsKeys {
 	public static final String MARKDOWN_IMPORTER_ARTICLE_EXTENSIONS =
 		"markdown.importer.article.extensions";
 
-	public static final String MARKDOWN_IMPORTER_ARTICLE_HOME =
-		"markdown.importer.article.home";
-
 	public static final String MARKDOWN_IMPORTER_ARTICLE_INTRO =
 		"markdown.importer.article.intro";
 

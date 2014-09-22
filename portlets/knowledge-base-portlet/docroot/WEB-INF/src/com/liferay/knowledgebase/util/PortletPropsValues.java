@@ -143,10 +143,6 @@ public class PortletPropsValues {
 		PortletProps.getArray(
 			PortletPropsKeys.MARKDOWN_IMPORTER_ARTICLE_EXTENSIONS);
 
-	public static final String MARKDOWN_IMPORTER_ARTICLE_HOME =
-		GetterUtil.getString(
-			PortletProps.get(PortletPropsKeys.MARKDOWN_IMPORTER_ARTICLE_HOME));
-
 	public static final String MARKDOWN_IMPORTER_ARTICLE_INTRO =
 		GetterUtil.getString(
 			PortletProps.get(PortletPropsKeys.MARKDOWN_IMPORTER_ARTICLE_INTRO));
