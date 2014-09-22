@@ -295,6 +295,47 @@ public class MicroblogsEntryLocalServiceImpl
 		return microblogsEntry;
 	}
 
+	protected List<Long> getReceiverUserIds(MicroblogsEntry microblogsEntry) {
+		List<Long> receiverUserIds = new ArrayList<Long>();
+
+		if (microblogsEntry.getReceiverUserId()
+				!= microblogsEntry.getUserId()) {
+
+			receiverUserIds.add(microblogsEntry.getReceiverUserId());
+		}
+
+		List<MicroblogsEntry> receiverMicroblogsEntries =
+			getReceiverMicroblogsEntryMicroblogsEntries(
+				MicroblogsEntryConstants.TYPE_REPLY,
+				microblogsEntry.getReceiverMicroblogsEntryId(),
+				QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+				new EntryCreateDateComparator(true));
+
+		for (
+			MicroblogsEntry receiverMicroblogsEntry : receiverMicroblogsEntries)
+		{
+			if (microblogsEntry.getReceiverUserId() ==
+					receiverMicroblogsEntry.getUserId()) {
+
+				continue;
+			}
+
+			if (microblogsEntry.getUserId() ==
+					receiverMicroblogsEntry.getUserId()) {
+
+				continue;
+			}
+
+			if (receiverUserIds.contains(receiverMicroblogsEntry.getUserId())) {
+				continue;
+			}
+
+			receiverUserIds.add(receiverMicroblogsEntry.getUserId());
+		}
+
+		return receiverUserIds;
+	}
+
 	protected void sendNotificationEvent(
 			MicroblogsEntry microblogsEntry, ServiceContext serviceContext)
 		throws PortalException {
@@ -337,27 +378,12 @@ public class MicroblogsEntryLocalServiceImpl
 			"notificationType", microblogsEntry.getType());
 		notificationEventJSONObject.put("userId", microblogsEntry.getUserId());
 
-		if (UserNotificationManagerUtil.isDeliver(
-				microblogsEntry.getReceiverUserId(), PortletKeys.MICROBLOGS, 0,
-			MicroblogsEntryConstants.TYPE_REPLY,
-			UserNotificationDeliveryConstants.TYPE_PUSH)) {
+		List<Long> receiverUserIds = getReceiverUserIds(microblogsEntry);
 
-			UserNotificationEventLocalServiceUtil.sendUserNotificationEvents(
-				microblogsEntry.getReceiverUserId(), PortletKeys.MICROBLOGS,
-				UserNotificationDeliveryConstants.TYPE_PUSH,
-				notificationEventJSONObject);
-		}
-
-		if (UserNotificationManagerUtil.isDeliver(
-				microblogsEntry.getReceiverUserId(), PortletKeys.MICROBLOGS, 0,
-			MicroblogsEntryConstants.TYPE_REPLY,
-			UserNotificationDeliveryConstants.TYPE_WEBSITE)) {
-
-			UserNotificationEventLocalServiceUtil.sendUserNotificationEvents(
-				microblogsEntry.getReceiverUserId(), PortletKeys.MICROBLOGS,
-				UserNotificationDeliveryConstants.TYPE_WEBSITE,
-				notificationEventJSONObject);
-		}
+		MessageBusUtil.sendMessage(
+			DestinationNames.ASYNC_SERVICE,
+			new NotificationProcessCallable(
+				receiverUserIds, notificationEventJSONObject));
 	}
 
 	protected void validate(int type, long receiverMicroblogsEntryId)
