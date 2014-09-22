@@ -76,12 +76,18 @@ public class MobileWidgetsDDLRecordServiceImpl
 			ddlRecordSetId, userId, start, end);
 
 		for (DDLRecord ddlRecord : ddlRecords) {
-			JSONObject ddlRecordJSONObject = getDDLRecord(
-				ddlRecord.getRecordId(), locale);
+			JSONObject ddlRecordJSONObject = JSONFactoryUtil.createJSONObject();
 
 			ddlRecordJSONObject.put(
 				"modelAttributes",
 				JSONFactoryUtil.looseSerialize(ddlRecord.getModelAttributes()));
+
+			JSONObject ddlRecordValuesJSONObject = getDDLRecord(
+				ddlRecord.getRecordId(), locale);
+
+			ddlRecordJSONObject.put(
+				"modelValues",
+				JSONFactoryUtil.looseSerialize(ddlRecordValuesJSONObject));
 
 			ddlRecordsJSONArray.put(ddlRecordJSONObject);
 		}
