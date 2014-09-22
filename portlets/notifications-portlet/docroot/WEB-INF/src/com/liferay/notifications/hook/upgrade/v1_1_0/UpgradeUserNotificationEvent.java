@@ -60,12 +60,9 @@ public class UpgradeUserNotificationEvent extends UpgradeProcess {
 				boolean delivered = rs.getBoolean("delivered");
 				boolean archived = rs.getBoolean("archived");
 
-				List<String> actionRequiredTypes = ListUtil.fromArray(
-					NotificationsConstants.ACTIONABLE_TYPES);
-
 				boolean actionRequired = false;
 
-				if (actionRequiredTypes.contains(type)) {
+				if (_actionRequiredTypes.contains(type)) {
 					actionRequired = true;
 				}
 
@@ -83,5 +80,8 @@ public class UpgradeUserNotificationEvent extends UpgradeProcess {
 			DataAccess.cleanUp(con, ps, rs);
 		}
 	}
+
+	private List<String> _actionRequiredTypes = ListUtil.fromArray(
+		NotificationsConstants.ACTIONABLE_TYPES);
 
 }
