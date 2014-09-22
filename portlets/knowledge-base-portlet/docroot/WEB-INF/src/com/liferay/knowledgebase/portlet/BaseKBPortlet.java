@@ -165,7 +165,7 @@ public abstract class BaseKBPortlet extends MVCPortlet {
 		writeJSON(actionRequest, actionResponse, jsonObject);
 	}
 
-	public void moveKBArticle(
+	public void moveKBEntry(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
