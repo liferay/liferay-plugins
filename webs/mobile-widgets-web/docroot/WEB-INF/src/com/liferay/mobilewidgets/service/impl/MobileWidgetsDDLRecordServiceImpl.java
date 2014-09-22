@@ -42,10 +42,10 @@ public class MobileWidgetsDDLRecordServiceImpl
 	public JSONObject getDDLRecord(long ddlRecordId, Locale locale)
 		throws PortalException, SystemException {
 
+		Map<String, Object> ddlRecordMap = new HashMap<String, Object>();
+
 		DDLRecord ddlRecord = ddlRecordPersistence.findByPrimaryKey(
 			ddlRecordId);
-
-		Map<String, Object> ddlRecordAttributes = new HashMap<String, Object>();
 
 		Fields fields = ddlRecord.getFields();
 
@@ -59,15 +59,12 @@ public class MobileWidgetsDDLRecordServiceImpl
 			Object fieldValue = getFieldValue(field, locale);
 
 			if (fieldValue != null) {
-				ddlRecordAttributes.put(field.getName(), fieldValue);
+				ddlRecordMap.put(field.getName(), fieldValue);
 			}
 		}
 
-		JSONObject ddlRecordJSONObject =
-			JSONFactoryUtil.createJSONObject(
-				JSONFactoryUtil.looseSerialize(ddlRecordAttributes));
-
-		return ddlRecordJSONObject;
+		return JSONFactoryUtil.createJSONObject(
+			JSONFactoryUtil.looseSerialize(ddlRecordMap));
 	}
 
 	@Override
