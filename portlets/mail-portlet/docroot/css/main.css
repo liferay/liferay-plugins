@@ -35,7 +35,6 @@
 
 	.draft-link, .message-link {
 		cursor: pointer;
-		cursor: hand;
 	}
 
 	.compose-message-container {
