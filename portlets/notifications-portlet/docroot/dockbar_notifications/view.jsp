@@ -35,7 +35,7 @@
 	}
 	%>
 
-	<li class="dockbar-user-notifications dropdown toggle-controls" id="<portlet:namespace />userNotifications">
+	<li class="dockbar-user-notifications dropdown" id="<portlet:namespace />userNotifications">
 		<a class="dropdown-toggle user-notification-link" href="javascript:;">
 			<span class='user-notifications-count <%= (newUserNotificationsCount > 0) ? "alert" : StringPool.BLANK %>' id="<portlet:namespace />userNotificationsCount"><%= unreadUserNotificationsCount %></span>
 		</a>
