@@ -51,9 +51,9 @@ public class UpgradeUserNotificationEvent extends UpgradeProcess {
 			rs = ps.executeQuery();
 
 			while (rs.next()) {
-				int actionRequired = rs.getInt("actionRequired");
 				long userNotificationEventId = rs.getLong(
 					"userNotificationEventId");
+				int actionRequired = rs.getInt("actionRequired");
 
 				StringBundler sb = new StringBundler(4);
 
@@ -69,7 +69,7 @@ public class UpgradeUserNotificationEvent extends UpgradeProcess {
 			DataAccess.cleanUp(con, ps, rs);
 		}
 
-		runSQL("Notifications_UserNotificationEvent");
+		runSQL("drop table Notifications_UserNotificationEvent");
 	}
 
 }
