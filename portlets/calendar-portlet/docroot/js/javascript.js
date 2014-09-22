@@ -1487,6 +1487,7 @@ AUI.add(
 						var schedulerEvent = data.schedulerEvent;
 
 						data.answers = {};
+
 						instance.queue = new A.AsyncQueue();
 
 						if (schedulerEvent.isRecurring()) {
