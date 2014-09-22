@@ -24,7 +24,6 @@ import com.liferay.microblogs.model.MicroblogsEntryConstants;
 import com.liferay.microblogs.service.base.MicroblogsEntryLocalServiceBaseImpl;
 import com.liferay.microblogs.util.PortletKeys;
 import com.liferay.microblogs.util.comparator.EntryCreateDateComparator;
-import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
@@ -37,10 +36,12 @@ import com.liferay.portal.kernel.search.Indexer;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.Group;
+import com.liferay.portal.model.Subscription;
 import com.liferay.portal.model.User;
 import com.liferay.portal.model.UserNotificationDeliveryConstants;
 import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
+import com.liferay.portal.service.SubscriptionLocalServiceUtil;
 import com.liferay.portal.service.UserNotificationEventLocalServiceUtil;
 import com.liferay.portlet.asset.AssetRendererFactoryRegistryUtil;
 import com.liferay.portlet.asset.model.AssetRenderer;
@@ -128,6 +129,16 @@ public class MicroblogsEntryLocalServiceImpl
 			activityKey, extraDataJSONObject.toString(), receiverUserId);
 
 		// Notification
+
+		long microblogsSubscriptionEntryId = receiverMicroblogsEntryId;
+
+		if (microblogsSubscriptionEntryId == 0) {
+			microblogsSubscriptionEntryId = microblogsEntryId;
+		}
+
+		SubscriptionLocalServiceUtil.addSubscription(
+			userId, serviceContext.getScopeGroupId(),
+			MicroblogsEntry.class.getName(), microblogsSubscriptionEntryId);
 
 		if (type == MicroblogsEntryConstants.TYPE_REPLY) {
 			sendNotificationEvent(microblogsEntry, serviceContext);
@@ -298,39 +309,19 @@ public class MicroblogsEntryLocalServiceImpl
 	protected List<Long> getReceiverUserIds(MicroblogsEntry microblogsEntry) {
 		List<Long> receiverUserIds = new ArrayList<Long>();
 
-		if (microblogsEntry.getReceiverUserId()
-				!= microblogsEntry.getUserId()) {
+		List<Subscription> subscriptions =
+			SubscriptionLocalServiceUtil.getSubscriptions(
+				microblogsEntry.getCompanyId(), MicroblogsEntry.class.getName(),
+				microblogsEntry.getReceiverMicroblogsEntryId());
 
-			receiverUserIds.add(microblogsEntry.getReceiverUserId());
-		}
-
-		List<MicroblogsEntry> receiverMicroblogsEntries =
-			getReceiverMicroblogsEntryMicroblogsEntries(
-				MicroblogsEntryConstants.TYPE_REPLY,
-				microblogsEntry.getReceiverMicroblogsEntryId(),
-				QueryUtil.ALL_POS, QueryUtil.ALL_POS,
-				new EntryCreateDateComparator(true));
-
-		for (
-			MicroblogsEntry receiverMicroblogsEntry : receiverMicroblogsEntries)
-		{
-			if (microblogsEntry.getReceiverUserId() ==
-					receiverMicroblogsEntry.getUserId()) {
-
-				continue;
-			}
-
+		for (Subscription subscription : subscriptions) {
 			if (microblogsEntry.getUserId() ==
-					receiverMicroblogsEntry.getUserId()) {
+					subscription.getUserId()) {
 
 				continue;
 			}
 
-			if (receiverUserIds.contains(receiverMicroblogsEntry.getUserId())) {
-				continue;
-			}
-
-			receiverUserIds.add(receiverMicroblogsEntry.getUserId());
+			receiverUserIds.add(subscription.getUserId());
 		}
 
 		return receiverUserIds;
