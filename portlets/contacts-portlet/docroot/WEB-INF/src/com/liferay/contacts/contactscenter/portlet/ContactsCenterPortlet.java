@@ -17,6 +17,7 @@
 
 package com.liferay.contacts.contactscenter.portlet;
 
+import com.liferay.compat.portal.kernel.notifications.ChannelHubManagerUtil;
 import com.liferay.compat.portal.kernel.portlet.PortletResponseUtil;
 import com.liferay.compat.portal.kernel.util.StringUtil;
 import com.liferay.compat.portal.util.PortalUtil;
@@ -53,7 +54,6 @@ import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
-import com.liferay.portal.kernel.notifications.ChannelHubManagerUtil;
 import com.liferay.portal.kernel.notifications.NotificationEvent;
 import com.liferay.portal.kernel.notifications.NotificationEventFactoryUtil;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
