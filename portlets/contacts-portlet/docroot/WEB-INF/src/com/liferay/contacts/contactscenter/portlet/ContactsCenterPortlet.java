@@ -1045,6 +1045,7 @@ public class ContactsCenterPortlet extends MVCPortlet {
 			JSONObject notificationEventJSONObject =
 				JSONFactoryUtil.createJSONObject();
 
+			notificationEventJSONObject.put("actionRequired", true);
 			notificationEventJSONObject.put(
 				"classPK", socialRequest.getRequestId());
 			notificationEventJSONObject.put(

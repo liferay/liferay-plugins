@@ -425,6 +425,7 @@ public class MemberRequestLocalServiceImpl
 			JSONObject notificationEventJSONObject =
 				JSONFactoryUtil.createJSONObject();
 
+			notificationEventJSONObject.put("actionRequired", true);
 			notificationEventJSONObject.put(
 				"classPK", memberRequest.getMemberRequestId());
 			notificationEventJSONObject.put(
