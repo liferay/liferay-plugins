@@ -243,23 +243,18 @@ public class KBArticleImporter {
 				}
 			}
 
-			if (Validator.isNull(sectionIntroFileEntryName) &&
-				!sectionFileEntryNames.isEmpty()) {
+			long sectionResourcePrimaryKey = parentResourcePrimaryKey;
 
-				StringBundler sb = new StringBundler(4);
+			if (Validator.isNotNull(sectionIntroFileEntryName)) {
+				KBArticle sectionIntroKBArticle = addKBArticleMarkdown(
+					userId, groupId, parentResourcePrimaryKey,
+					zipReader.getEntryAsString(sectionIntroFileEntryName),
+					sectionIntroFileEntryName, zipReader, metadata,
+					serviceContext);
 
-				sb.append("No file entry ending in ");
-				sb.append(PortletPropsValues.MARKDOWN_IMPORTER_ARTICLE_INTRO);
-				sb.append(" accompanies file entry ");
-				sb.append(sectionFileEntryNames.get(0));
-
-				throw new KBArticleImportException(sb.toString());
+				sectionResourcePrimaryKey =
+					sectionIntroKBArticle.getResourcePrimKey();
 			}
-
-			KBArticle sectionIntroKBArticle = addKBArticleMarkdown(
-				userId, groupId, parentResourcePrimaryKey,
-				zipReader.getEntryAsString(sectionIntroFileEntryName),
-				sectionIntroFileEntryName, zipReader, metadata, serviceContext);
 
 			for (String sectionFileEntryName : sectionFileEntryNames) {
 				String sectionMarkdown = zipReader.getEntryAsString(
@@ -274,9 +269,8 @@ public class KBArticleImporter {
 				}
 
 				addKBArticleMarkdown(
-					userId, groupId, sectionIntroKBArticle.getResourcePrimKey(),
-					sectionMarkdown, sectionFileEntryName, zipReader, metadata,
-					serviceContext);
+					userId, groupId, sectionResourcePrimaryKey, sectionMarkdown,
+					sectionFileEntryName, zipReader, metadata, serviceContext);
 			}
 		}
 	}
