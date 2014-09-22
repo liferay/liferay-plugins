@@ -122,7 +122,7 @@ public class MobileWidgetsDDLRecordServiceImpl
 
 		String dataType = field.getDataType();
 
-		else if (dataType.equals(FieldConstants.BOOLEAN)) {
+		if (dataType.equals(FieldConstants.BOOLEAN)) {
 			return Boolean.valueOf(fieldValueString);
 		}
 		else if (dataType.equals(FieldConstants.DATE)) {
