@@ -132,10 +132,9 @@ public class MobileWidgetsDDLRecordServiceImpl
 			if (fieldValueString.equals("")) {
 				return null;
 			}
-			else {
-				return JSONFactoryUtil.looseSerialize(
-					JSONFactoryUtil.looseDeserialize(fieldValueString));
-			}
+
+			return JSONFactoryUtil.looseSerialize(
+				JSONFactoryUtil.looseDeserialize(fieldValueString));
 		}
 		else if (dataType.equals(FieldConstants.FLOAT) ||
 				 dataType.equals(FieldConstants.NUMBER)) {
