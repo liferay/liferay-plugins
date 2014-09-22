@@ -114,49 +114,45 @@ public class MobileWidgetsDDLRecordServiceImpl
 	protected Object getFieldValue(Field field, Locale locale)
 		throws PortalException, SystemException {
 
-		Object fieldValue = null;
-
 		String fieldValueString = GetterUtil.getString(field.getValue(locale));
+
+		if (fieldValueString.equals("null")) {
+			return null;
+		}
 
 		String dataType = field.getDataType();
 
-		if (fieldValueString.equals("null")) {
-			fieldValue = null;
-		}
 		else if (dataType.equals(FieldConstants.BOOLEAN)) {
-			fieldValue = Boolean.valueOf(fieldValueString);
+			return Boolean.valueOf(fieldValueString);
 		}
 		else if (dataType.equals(FieldConstants.INTEGER)) {
-			fieldValue = Integer.valueOf(fieldValueString);
+			return Integer.valueOf(fieldValueString);
 		}
 		else if (dataType.equals(FieldConstants.LONG)) {
-			fieldValue = Long.valueOf(fieldValueString);
+			return Long.valueOf(fieldValueString);
 		}
 		else if (dataType.equals(FieldConstants.SHORT)) {
-			fieldValue = Short.valueOf(fieldValueString);
+			return Short.valueOf(fieldValueString);
 		}
 		else if (dataType.equals(FieldConstants.FLOAT) ||
 				 dataType.equals(FieldConstants.NUMBER)) {
 
-			fieldValue = Float.valueOf(fieldValueString);
+			return Float.valueOf(fieldValueString);
 		}
 		else if (dataType.equals(FieldConstants.DATE)) {
-			fieldValue = field.getRenderedValue(locale);
+			return field.getRenderedValue(locale);
 		}
 		else if (dataType.equals(FieldConstants.DOCUMENT_LIBRARY)) {
 			if (fieldValueString.equals("")) {
-				fieldValue = null;
+				return null;
 			}
 			else {
-				fieldValue = JSONFactoryUtil.looseSerialize(
+				return JSONFactoryUtil.looseSerialize(
 					JSONFactoryUtil.looseDeserialize(fieldValueString));
 			}
 		}
-		else {
-			fieldValue = fieldValueString;
-		}
 
-		return fieldValue;
+		return fieldValueString;
 	}
 
 }
