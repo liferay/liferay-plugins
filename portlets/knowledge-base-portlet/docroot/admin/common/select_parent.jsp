@@ -62,7 +62,7 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 				</liferay-util:buffer>
 
 				<%
-				String taglibOnClick = "opener." + renderResponse.getNamespace() + "selectKBArticle('(" + LanguageUtil.get(locale, "none") + ")', '1.0', '" + KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY + "', '" + kbFolderClassNameId + "', '" + UnicodeFormatter.toString(html) + "'); window.close();";
+				String taglibOnClick = "opener." + renderResponse.getNamespace() + "selectKBEntry('(" + LanguageUtil.get(locale, "none") + ")', '1.0', '" + KBFolderConstants.DEFAULT_PARENT_FOLDER_ID + "', '" + kbFolderClassNameId + "', '" + UnicodeFormatter.toString(html) + "'); window.close();";
 				%>
 
 				<aui:button onClick="<%= taglibOnClick %>" value="remove" />
@@ -201,7 +201,7 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 						</liferay-util:buffer>
 
 						<%
-						String taglibOnClick = "opener." + renderResponse.getNamespace() + "selectKBArticle('" + kbFolder.getName() + "', '1.0', '" + kbFolder.getKbFolderId() + "', '" + kbFolder.getClassNameId() + "', '" + UnicodeFormatter.toString(html) + "'); window.close();";
+						String taglibOnClick = "opener." + renderResponse.getNamespace() + "selectKBEntry('" + kbFolder.getName() + "', '1.0', '" + kbFolder.getKbFolderId() + "', '" + kbFolder.getClassNameId() + "', '" + UnicodeFormatter.toString(html) + "'); window.close();";
 						%>
 
 						<aui:button disabled="<%= (kbFolder.getKbFolderId() == resourcePrimKey) || (kbFolder.getKbFolderId() == oldParentResourcePrimKey) %>" onClick="<%= taglibOnClick %>" value="choose" />
@@ -282,7 +282,7 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 					</liferay-util:buffer>
 
 					<%
-					String taglibOnClick = "opener." + renderResponse.getNamespace() + "selectKBArticle('" + curKBArticle.getTitle() + "', '" + curKBArticle.getPriority() + "', '" + curKBArticle.getResourcePrimKey() + "', '" + curKBArticle.getClassNameId() + "', '" + UnicodeFormatter.toString(html) + "'); window.close();";
+					String taglibOnClick = "opener." + renderResponse.getNamespace() + "selectKBEntry('" + curKBArticle.getTitle() + "', '" + curKBArticle.getPriority() + "', '" + curKBArticle.getResourcePrimKey() + "', '" + curKBArticle.getClassNameId() + "', '" + UnicodeFormatter.toString(html) + "'); window.close();";
 					%>
 
 					<aui:button disabled="<%= (resourceClassNameId == kbFolderClassNameId) || (curKBArticle.getResourcePrimKey() == resourcePrimKey) || (curKBArticle.getResourcePrimKey() == oldParentResourcePrimKey) %>" onClick="<%= taglibOnClick %>" value="choose" />
