@@ -381,7 +381,7 @@ iteratorURL.setParameter("mbThreadId", String.valueOf(mbThreadId));
 <%!
 private String _convertToHyperlink(String body) throws Exception {
 	if (body == null) {
-		return body;
+		return null;
 	}
 
 	Matcher matcher = _urlPattern.matcher(body);
@@ -389,6 +389,5 @@ private String _convertToHyperlink(String body) throws Exception {
 	return matcher.replaceAll("<a target=\"_blank\" href=\"$1\">$1</a>");
 }
 
-private static Pattern _urlPattern = Pattern.compile(
-	"(((https?|ftp):\\/\\/|mailto:)\\S+)");
+private static Pattern _urlPattern = Pattern.compile("(((https?|ftp):\\/\\/|mailto:)\\S+)");
 %>
