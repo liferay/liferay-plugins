@@ -57,7 +57,9 @@ public class MobileWidgetsDDLRecordServiceImpl
 		for (Field field : fields) {
 			Object fieldValue = getTypedFieldValue(field, locale);
 
-			ddlRecordAttributes.put(field.getName(), fieldValue);
+			if (fieldValue != null) {
+				ddlRecordAttributes.put(field.getName(), fieldValue);
+			}
 		}
 
 		JSONObject ddlRecordJSONObject =
@@ -117,7 +119,10 @@ public class MobileWidgetsDDLRecordServiceImpl
 
 		String dataType = field.getDataType();
 
-		if (dataType.equals(FieldConstants.BOOLEAN)) {
+		if (fieldStringValue.equals("null")) {
+			fieldValue = null;
+		}
+		else if (dataType.equals(FieldConstants.BOOLEAN)) {
 			fieldValue = Boolean.valueOf(fieldStringValue);
 		}
 		else if (dataType.equals(FieldConstants.INTEGER)) {
