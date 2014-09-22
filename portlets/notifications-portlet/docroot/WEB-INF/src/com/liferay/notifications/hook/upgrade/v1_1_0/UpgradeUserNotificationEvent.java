@@ -17,6 +17,7 @@ package com.liferay.notifications.hook.upgrade.v1_1_0;
 import com.liferay.compat.portal.kernel.util.ListUtil;
 import com.liferay.notifications.service.UserNotificationEventLocalServiceUtil;
 import com.liferay.notifications.util.NotificationsConstants;
+import com.liferay.portal.NoSuchUserException;
 import com.liferay.portal.kernel.dao.jdbc.DataAccess;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 
@@ -68,9 +69,14 @@ public class UpgradeUserNotificationEvent extends UpgradeProcess {
 					actionRequired = true;
 				}
 
-				UserNotificationEventLocalServiceUtil.addUserNotificationEvent(
-					userNotificationEventId, userId, timestamp, actionRequired,
-					delivered, archived);
+				try {
+					UserNotificationEventLocalServiceUtil.
+						addUserNotificationEvent(
+							userNotificationEventId, userId, timestamp,
+							actionRequired, delivered, archived);
+				}
+				catch (NoSuchUserException nsue) {
+				}
 			}
 		}
 		finally {
