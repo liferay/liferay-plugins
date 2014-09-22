@@ -285,7 +285,7 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 					String taglibOnClick = "opener." + renderResponse.getNamespace() + "selectKBArticle('" + curKBArticle.getTitle() + "', '" + curKBArticle.getPriority() + "', '" + curKBArticle.getResourcePrimKey() + "', '" + curKBArticle.getClassNameId() + "', '" + UnicodeFormatter.toString(html) + "'); window.close();";
 					%>
 
-					<aui:button disabled="<%= (curKBArticle.getResourcePrimKey() == resourcePrimKey) || (curKBArticle.getResourcePrimKey() == oldParentResourcePrimKey) %>" onClick="<%= taglibOnClick %>" value="choose" />
+					<aui:button disabled="<%= (resourceClassNameId == kbFolderClassNameId) || (curKBArticle.getResourcePrimKey() == resourcePrimKey) || (curKBArticle.getResourcePrimKey() == oldParentResourcePrimKey) %>" onClick="<%= taglibOnClick %>" value="choose" />
 				</liferay-ui:search-container-column-text>
 			</liferay-ui:search-container-row>
 
