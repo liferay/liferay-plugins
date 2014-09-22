@@ -54,7 +54,7 @@ else {
 <liferay-portlet:actionURL name="moveKBArticle" var="moveKBArticleURL" />
 
 <aui:form action="<%= moveKBArticleURL %>" method="post" name="fm">
-	<aui:input name="mvcPath" type="hidden" value='<%= templatePath + "move_article.jsp" %>' />
+	<aui:input name="mvcPath" type="hidden" value='<%= templatePath + "move_entry.jsp" %>' />
 	<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
 	<aui:input name="resourceClassNameId" type="hidden" value="<%= String.valueOf(resourceClassNameId) %>" />
 	<aui:input name="resourcePrimKey" type="hidden" value="<%= String.valueOf(resourcePrimKey) %>" />
