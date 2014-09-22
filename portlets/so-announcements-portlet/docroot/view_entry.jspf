@@ -54,7 +54,7 @@ if (entry.getPriority() > 0) {
 			%>
 
 			<c:choose>
-				<c:when test="<%= Validator.isNull(entryUser) %>">
+				<c:when test="<%= entryUser == null %>">
 					<img alt="<%= HtmlUtil.escapeAttribute(entry.getUserName()) %>" src="<%= UserConstants.getPortraitURL(themeDisplay.getPathImage(), true, 0, null) %>" />
 				</c:when>
 				<c:otherwise>
@@ -69,7 +69,7 @@ if (entry.getPriority() > 0) {
 	<div class="entry-header">
 		<div class="entry-action">
 			<c:choose>
-				<c:when test="<%= Validator.isNull(entryUser) %>">
+				<c:when test="<%= entryUser == null %>">
 					<%= LanguageUtil.format(request, "x-to-x", new Object[] {HtmlUtil.escape(entry.getUserName()), "<span class=\"scope\">" + scopeName + "</span>"}, false) %>
 				</c:when>
 				<c:otherwise>
