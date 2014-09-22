@@ -128,6 +128,15 @@ public class MobileWidgetsDDLRecordServiceImpl
 		else if (dataType.equals(FieldConstants.DATE)) {
 			return field.getRenderedValue(locale);
 		}
+		else if (dataType.equals(FieldConstants.DOCUMENT_LIBRARY)) {
+			if (fieldValueString.equals("")) {
+				return null;
+			}
+			else {
+				return JSONFactoryUtil.looseSerialize(
+					JSONFactoryUtil.looseDeserialize(fieldValueString));
+			}
+		}
 		else if (dataType.equals(FieldConstants.FLOAT) ||
 				 dataType.equals(FieldConstants.NUMBER)) {
 
@@ -141,15 +150,6 @@ public class MobileWidgetsDDLRecordServiceImpl
 		}
 		else if (dataType.equals(FieldConstants.SHORT)) {
 			return Short.valueOf(fieldValueString);
-		}
-		else if (dataType.equals(FieldConstants.DOCUMENT_LIBRARY)) {
-			if (fieldValueString.equals("")) {
-				return null;
-			}
-			else {
-				return JSONFactoryUtil.looseSerialize(
-					JSONFactoryUtil.looseDeserialize(fieldValueString));
-			}
 		}
 
 		return fieldValueString;
