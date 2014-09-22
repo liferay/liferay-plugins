@@ -1134,8 +1134,9 @@ public class CalendarBookingLocalServiceImpl
 	}
 
 	protected void updateChildCalendarBookings(
-		CalendarBooking calendarBooking, Date modifiedDate,
-		String recurrence) {
+			CalendarBooking calendarBooking, Date modifiedDate,
+			String recurrence)
+		throws SystemException {
 
 		List<CalendarBooking> childCalendarBookings =
 			new ArrayList<CalendarBooking>();
