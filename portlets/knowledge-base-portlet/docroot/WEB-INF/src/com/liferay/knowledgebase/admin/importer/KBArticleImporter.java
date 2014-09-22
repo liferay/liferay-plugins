@@ -20,6 +20,7 @@ import com.liferay.knowledgebase.model.KBArticle;
 import com.liferay.knowledgebase.model.KBArticleConstants;
 import com.liferay.knowledgebase.service.KBArticleLocalServiceUtil;
 import com.liferay.knowledgebase.util.PortletPropsValues;
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.repository.model.FileEntry;
@@ -54,7 +55,7 @@ public class KBArticleImporter {
 	public void processZipFile(
 			long userId, long groupId, InputStream inputStream,
 			ServiceContext serviceContext)
-		throws KBArticleImportException {
+		throws KBArticleImportException, SystemException {
 
 		if (inputStream == null) {
 			throw new KBArticleImportException("Input stream is null");
@@ -78,7 +79,7 @@ public class KBArticleImporter {
 			long userId, long groupId, long parentResourcePrimaryKey,
 			String markdown, String fileEntryName, ZipReader zipReader,
 			Map<String, String> metadata, ServiceContext serviceContext)
-		throws KBArticleImportException {
+		throws KBArticleImportException, SystemException {
 
 		if (Validator.isNull(markdown)) {
 			throw new KBArticleImportException(
@@ -150,9 +151,7 @@ public class KBArticleImporter {
 
 			if (!ArrayUtil.contains(
 					PortletPropsValues.MARKDOWN_IMPORTER_ARTICLE_EXTENSIONS,
-					StringPool.PERIOD.concat(extension)) ||
-				zipEntry.equals(
-					PortletPropsValues.MARKDOWN_IMPORTER_ARTICLE_HOME)) {
+					StringPool.PERIOD.concat(extension))) {
 
 				continue;
 			}
@@ -215,36 +214,13 @@ public class KBArticleImporter {
 	protected void processKBArticleFiles(
 			long userId, long groupId, ZipReader zipReader,
 			Map<String, String> metadata, ServiceContext serviceContext)
-		throws KBArticleImportException {
+		throws KBArticleImportException, SystemException {
 
-		long parentResourcePrimKey =
+		long parentResourcePrimaryKey =
 			KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY;
 
-		String markdown = zipReader.getEntryAsString(
-			PortletPropsValues.MARKDOWN_IMPORTER_ARTICLE_HOME);
-
-		if (Validator.isNotNull(markdown)) {
-			KBArticle parentKBArticle = addKBArticleMarkdown(
-				userId, groupId,
-				KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY, markdown,
-				PortletPropsValues.MARKDOWN_IMPORTER_ARTICLE_HOME, zipReader,
-				metadata, serviceContext);
-
-			parentResourcePrimKey = parentKBArticle.getResourcePrimKey();
-		}
-
-		processSectionKBArticleFiles(
-			userId, groupId, parentResourcePrimKey, zipReader,
-			getFolderNameFileEntryNamesMap(zipReader), metadata,
-			serviceContext);
-	}
-
-	protected void processSectionKBArticleFiles(
-			long userId, long groupId, long parentResourcePrimaryKey,
-			ZipReader zipReader,
-			Map<String, List<String>> folderNameFileEntryNamesMap,
-			Map<String, String> metadata, ServiceContext serviceContext)
-		throws KBArticleImportException {
+		Map<String, List<String>> folderNameFileEntryNamesMap =
+			getFolderNameFileEntryNamesMap(zipReader);
 
 		Set<String> folderNames = folderNameFileEntryNamesMap.keySet();
 
