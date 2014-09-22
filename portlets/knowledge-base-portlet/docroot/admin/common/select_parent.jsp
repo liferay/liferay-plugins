@@ -73,7 +73,7 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 
 		<div class="kb-select-article-breadcrumbs">
 			<liferay-portlet:renderURL var="breadcrumbURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
-				<portlet:param name="mvcPath" value='<%= templatePath + "select_article.jsp" %>' />
+				<portlet:param name="mvcPath" value='<%= templatePath + "select_parent.jsp" %>' />
 				<portlet:param name="resourceClassNameId" value="<%= String.valueOf(resourceClassNameId) %>" />
 				<portlet:param name="resourcePrimKey" value="<%= String.valueOf(resourcePrimKey) %>" />
 				<portlet:param name="parentResourceClassNameId" value="<%= String.valueOf(kbFolderClassNameId) %>" />
@@ -125,7 +125,7 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 		</div>
 
 		<liferay-portlet:renderURL varImpl="iteratorURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
-			<portlet:param name="mvcPath" value='<%= templatePath + "select_article.jsp" %>' />
+			<portlet:param name="mvcPath" value='<%= templatePath + "select_parent.jsp" %>' />
 			<portlet:param name="resourceClassNameId" value="<%= String.valueOf(resourceClassNameId) %>" />
 			<portlet:param name="resourcePrimKey" value="<%= String.valueOf(resourcePrimKey) %>" />
 			<portlet:param name="parentResourceClassNameId" value="<%= String.valueOf(parentResourceClassNameId) %>" />
@@ -154,7 +154,7 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 				>
 
 					<liferay-portlet:renderURL var="rowURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
-						<portlet:param name="mvcPath" value='<%= templatePath + "select_article.jsp" %>' />
+						<portlet:param name="mvcPath" value='<%= templatePath + "select_parent.jsp" %>' />
 						<portlet:param name="resourceClassNameId" value="<%= String.valueOf(resourceClassNameId) %>" />
 						<portlet:param name="resourcePrimKey" value="<%= String.valueOf(resourcePrimKey) %>" />
 						<portlet:param name="parentResourceClassNameId" value="<%= String.valueOf(kbFolder.getClassNameId()) %>" />
@@ -233,7 +233,7 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 				modelVar="curKBArticle"
 			>
 				<liferay-portlet:renderURL var="rowURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
-					<portlet:param name="mvcPath" value='<%= templatePath + "select_article.jsp" %>' />
+					<portlet:param name="mvcPath" value='<%= templatePath + "select_parent.jsp" %>' />
 					<portlet:param name="resourceClassNameId" value="<%= String.valueOf(resourceClassNameId) %>" />
 					<portlet:param name="resourcePrimKey" value="<%= String.valueOf(resourcePrimKey) %>" />
 					<portlet:param name="parentResourceClassNameId" value="<%= String.valueOf(curKBArticle.getClassNameId()) %>" />
