@@ -80,20 +80,14 @@ public class MobileWidgetsDDLRecordServiceImpl
 		for (DDLRecord ddlRecord : ddlRecords) {
 			JSONObject ddlRecordJSONObject = JSONFactoryUtil.createJSONObject();
 
-			Map<String, Object> ddlRecordModelAttributes =
-				ddlRecord.getModelAttributes();
-
-			JSONObject ddlRecordModelAttributesJSONObject =
-				JSONFactoryUtil.createJSONObject(
-					JSONFactoryUtil.looseSerialize(ddlRecordModelAttributes));
-
 			ddlRecordJSONObject.put(
-				"modelAttributes", ddlRecordModelAttributesJSONObject);
-
-			JSONObject ddlRecordValuesJSONObject = getDDLRecord(
-				ddlRecord.getRecordId(), locale);
-
-			ddlRecordJSONObject.put("modelValues", ddlRecordValuesJSONObject);
+				"modelAttributes",
+				JSONFactoryUtil.createJSONObject(
+					JSONFactoryUtil.looseSerialize(
+						ddlRecord.getModelAttributes())));
+			ddlRecordJSONObject.put(
+				"modelValues",
+				getDDLRecord(ddlRecord.getRecordId(), locale));
 
 			ddlRecordsJSONArray.put(ddlRecordJSONObject);
 		}
