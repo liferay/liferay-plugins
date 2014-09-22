@@ -122,6 +122,18 @@ long parentResourcePrimKey = ParamUtil.getLong(request, "parentResourcePrimKey",
 			</aui:nav-bar-search>
 		</aui:nav-bar>
 
+		<%
+		KnowledgeBaseUtil.addPortletBreadcrumbEntries(parentResourceClassNameId, parentResourcePrimKey, "/admin/view.jsp", request, renderResponse);
+		%>
+
+		<liferay-ui:breadcrumb
+			showCurrentGroup="<%= false %>"
+			showCurrentPortlet="<%= false %>"
+			showGuestGroup="<%= false %>"
+			showLayout="<%= false %>"
+			showParentGroups="<%= false %>"
+		/>
+
 		<c:if test="<%= AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.SUBSCRIBE) %>">
 			<div class="kb-admin-tools">
 				<c:choose>
