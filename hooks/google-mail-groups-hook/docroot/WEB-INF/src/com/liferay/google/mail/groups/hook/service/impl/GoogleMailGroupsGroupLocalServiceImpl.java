@@ -14,8 +14,6 @@
 
 package com.liferay.google.mail.groups.hook.service.impl;
 
-import com.google.api.services.admin.directory.Directory;
-
 import com.liferay.google.mail.groups.util.GoogleMailGroupsUtil;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -107,15 +105,13 @@ public class GoogleMailGroupsGroupLocalServiceImpl
 			return;
 		}
 
-		Directory directory = GoogleMailGroupsUtil.getDirectory();
-
-		GoogleMailGroupsUtil.deleteGGroup(directory, oldGroupEmailAddress);
+		GoogleMailGroupsUtil.deleteGGroup(oldGroupEmailAddress);
 
 		String groupEmailAddress = GoogleMailGroupsUtil.getGroupEmailAddress(
 			group);
 
 		GoogleMailGroupsUtil.addGGroup(
-			directory, group.getDescriptiveName(), groupEmailAddress);
+			group.getDescriptiveName(), groupEmailAddress);
 
 		LinkedHashMap<String, Object> userParams =
 			new LinkedHashMap<String, Object>();
@@ -130,7 +126,7 @@ public class GoogleMailGroupsGroupLocalServiceImpl
 
 		for (User user : users) {
 			GoogleMailGroupsUtil.addGGroupMember(
-				directory, groupEmailAddress,
+				groupEmailAddress,
 				GoogleMailGroupsUtil.getUserEmailAddress(user));
 		}
 	}
