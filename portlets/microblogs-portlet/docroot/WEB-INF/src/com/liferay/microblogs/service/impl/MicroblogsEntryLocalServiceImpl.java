@@ -28,6 +28,8 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.notifications.UserNotificationManagerUtil;
+import com.liferay.portal.kernel.process.ProcessCallable;
+import com.liferay.portal.kernel.process.ProcessException;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.Group;
@@ -42,6 +44,7 @@ import com.liferay.portlet.asset.model.AssetRendererFactory;
 import com.liferay.portlet.asset.service.AssetEntryLocalServiceUtil;
 import com.liferay.portlet.social.service.SocialActivityLocalServiceUtil;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -371,6 +374,147 @@ public class MicroblogsEntryLocalServiceImpl
 		if (type == MicroblogsEntryConstants.TYPE_REPOST) {
 			throw new UnsupportedMicroblogsEntryException();
 		}
+	}
+
+	private static class NotificationProcessCallable
+		implements ProcessCallable<Serializable> {
+
+		public NotificationProcessCallable(
+			AnnouncementsEntry announcementEntry,
+			JSONObject notificationEventJSONObject) {
+
+			_announcementEntry = announcementEntry;
+			_notificationEventJSONObject = notificationEventJSONObject;
+		}
+
+		@Override
+		public Serializable call() throws ProcessException {
+			try {
+				sendUserNotifications(
+					_announcementEntry, _notificationEventJSONObject);
+			}
+			catch (Exception e) {
+				throw new ProcessException(e);
+			}
+
+			return null;
+		}
+
+		protected void sendUserNotifications(
+				AnnouncementsEntry announcementEntry,
+				JSONObject notificationEventJSONObject)
+			throws PortalException {
+
+			int count = 0;
+			long teamId = 0;
+
+			LinkedHashMap<String, Object> params =
+				new LinkedHashMap<String, Object>();
+
+			if (announcementEntry.getClassNameId() == 0) {
+				count = UserLocalServiceUtil.getUsersCount();
+			}
+			else {
+				String className = announcementEntry.getClassName();
+
+				long classPK = announcementEntry.getClassPK();
+
+				if (classPK <= 0) {
+					return;
+				}
+
+				if (className.equals(Group.class.getName())) {
+					params.put("inherit", Boolean.TRUE);
+					params.put("usersGroups", classPK);
+				}
+				else if (className.equals(Organization.class.getName())) {
+					Organization organization =
+						OrganizationLocalServiceUtil.fetchOrganization(classPK);
+
+					if (organization == null) {
+						return;
+					}
+
+					params.put(
+						"usersOrgsTree",
+						ListUtil.fromArray(new Organization[]{organization}));
+				}
+				else if (className.equals(Role.class.getName())) {
+					Role role = RoleLocalServiceUtil.fetchRole(classPK);
+
+					if (role == null) {
+						return;
+					}
+
+					if (role.getType() == RoleConstants.TYPE_REGULAR) {
+						params.put("inherit", Boolean.TRUE);
+						params.put("usersRoles", classPK);
+					}
+					else if (role.isTeam()) {
+						teamId = role.getClassPK();
+
+						count = UserLocalServiceUtil.getTeamUsersCount(teamId);
+					}
+					else {
+						params.put(
+							"userGroupRole",
+							new Long[] {Long.valueOf(0), classPK});
+					}
+				}
+				else if (className.equals(UserGroup.class.getName())) {
+					params.put("usersUserGroups", classPK);
+				}
+
+				if (!params.isEmpty()) {
+					count = UserLocalServiceUtil.searchCount(
+						announcementEntry.getCompanyId(), null,
+						WorkflowConstants.STATUS_APPROVED, params);
+				}
+			}
+
+			int pages = count / Indexer.DEFAULT_INTERVAL;
+
+			for (int i = 0; i <= pages; i++) {
+				List<User> users = null;
+
+				int start = (i * Indexer.DEFAULT_INTERVAL);
+				int end = start + Indexer.DEFAULT_INTERVAL;
+
+				if (announcementEntry.getClassNameId() == 0) {
+					users = UserLocalServiceUtil.getUsers(start, end);
+				}
+				else if (teamId > 0) {
+					users = UserLocalServiceUtil.getTeamUsers(
+						teamId, start, end);
+				}
+				else {
+					users = UserLocalServiceUtil.search(
+						announcementEntry.getCompanyId(), null,
+						WorkflowConstants.STATUS_APPROVED, params, start, end,
+						(OrderByComparator)null);
+				}
+
+				for (User user : users) {
+					if (UserNotificationManagerUtil.isDeliver(
+							user.getUserId(), PortletKeys.SO_ANNOUNCEMENTS, 0,
+							0,
+							UserNotificationDeliveryConstants.TYPE_WEBSITE)) {
+
+						UserNotificationEventLocalServiceUtil.
+							sendUserNotificationEvents(
+								user.getUserId(), PortletKeys.SO_ANNOUNCEMENTS,
+								UserNotificationDeliveryConstants.TYPE_WEBSITE,
+								notificationEventJSONObject);
+					}
+				}
+			}
+		}
+
+		private static final long serialVersionUID = 1L;
+
+		private AnnouncementsEntry _announcementEntry;
+		private JSONObject _notificationEventJSONObject;
+
 	}
 
 }
