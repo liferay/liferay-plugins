@@ -33,6 +33,7 @@ import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.PortletURLFactoryUtil;
 import com.liferay.portlet.asset.AssetTagException;
+import com.liferay.portlet.asset.service.AssetEntryLocalServiceUtil;
 import com.liferay.portlet.messageboards.model.MBMessage;
 import com.liferay.portlet.messageboards.service.MBMessageServiceUtil;
 import com.liferay.tasks.model.TasksEntry;
@@ -248,6 +249,23 @@ public class TasksPortlet extends MVCPortlet {
 		portletURL.setWindowState(LiferayWindowState.POP_UP);
 
 		actionResponse.sendRedirect(portletURL.toString());
+	}
+
+	public void updateTasksViewCount(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws Exception {
+
+		long tasksEntryId = ParamUtil.getLong(actionRequest, "tasksEntryId");
+
+		TasksEntry tasksEntry = TasksEntryLocalServiceUtil.fetchTasksEntry(
+			tasksEntryId);
+
+		if (tasksEntry == null) {
+			return;
+		}
+
+		AssetEntryLocalServiceUtil.incrementViewCounter(
+			0, TasksEntry.class.getName(), tasksEntryId);
 	}
 
 }

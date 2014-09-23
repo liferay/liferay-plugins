@@ -15,6 +15,7 @@ AUI().use(
 				instance._setupTagsPopup();
 				instance._setupProgressBar();
 
+				instance._baseActionURL = param.baseActionURL;
 				instance._currentTab = param.currentTab;
 				instance._namespace = param.namespace;
 				instance._taskListURL = param.taskListURL;
@@ -66,8 +67,12 @@ AUI().use(
 				);
 			},
 
-			openTask: function(href) {
-				this.displayPopup(href, "Tasks");
+			openTask: function(href, tasksEntryId) {
+				var instance = this;
+
+				instance.displayPopup(href, "Tasks");
+
+				instance._updateViewCount(tasksEntryId);
 			},
 
 			toggleCommentForm: function() {
@@ -254,6 +259,19 @@ AUI().use(
 					},
 					'.progress-selector a'
 				);
+			},
+
+			_updateViewCount: function(tasksEntryId) {
+				var instance = this;
+
+				var portletURL = new Liferay.PortletURL.createURL(instance._baseActionURL);
+
+				portletURL.setParameter('javax.portlet.action', 'updateTasksViewCount');
+				portletURL.setParameter('tasksEntryId', tasksEntryId);
+
+				portletURL.setWindowState('normal');
+
+				A.io.request(portletURL.toString());
 			}
 		}
 	}
