@@ -23,7 +23,6 @@ import com.liferay.knowledgebase.service.KBArticleLocalServiceUtil;
 import com.liferay.knowledgebase.service.KBArticleServiceUtil;
 import com.liferay.knowledgebase.service.permission.KBArticlePermission;
 import com.liferay.knowledgebase.util.ActionKeys;
-import com.liferay.knowledgebase.util.PortletKeys;
 import com.liferay.knowledgebase.util.WebKeys;
 import com.liferay.knowledgebase.util.comparator.KBArticlePriorityComparator;
 import com.liferay.portal.NoSuchSubscriptionException;
@@ -150,7 +149,8 @@ public class DisplayPortlet extends BaseKBPortlet {
 		String editURL = PortalUtil.getLayoutFullURL(themeDisplay);
 
 		editURL = HttpUtil.setParameter(
-			editURL, "p_p_id", PortletKeys.KNOWLEDGE_BASE_ARTICLE);
+			editURL, "p_p_id",
+			(String)actionRequest.getAttribute(WebKeys.PORTLET_ID));
 		editURL = HttpUtil.setParameter(
 			editURL, namespace + "mvcPath", templatePath + "edit_article.jsp");
 		editURL = HttpUtil.setParameter(
