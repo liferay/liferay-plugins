@@ -216,9 +216,6 @@ public class KBArticleImporter {
 			Map<String, String> metadata, ServiceContext serviceContext)
 		throws KBArticleImportException, SystemException {
 
-		long parentResourcePrimaryKey =
-			KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY;
-
 		Map<String, List<String>> folderNameFileEntryNamesMap =
 			getFolderNameFileEntryNamesMap(zipReader);
 
@@ -242,6 +239,9 @@ public class KBArticleImporter {
 					sectionFileEntryNames.add(fileEntryName);
 				}
 			}
+
+			long parentResourcePrimaryKey =
+				KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY;
 
 			long sectionResourcePrimaryKey = parentResourcePrimaryKey;
 
