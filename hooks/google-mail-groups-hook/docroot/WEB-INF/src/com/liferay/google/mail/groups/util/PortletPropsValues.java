@@ -29,15 +29,16 @@ public class PortletPropsValues {
 		PortletProps.get(PortletPropsKeys.EMAIL_PREFIX));
 
 	public static final String SERVICE_ACCOUNT_ID = GetterUtil.getString(
-		PortletProps.get(PortletPropsKeys.SERVICE_ACCOUNT_ID));
+		PortletProps.get(PortletPropsKeys.GOOGLE_API_SERVICE_ACCOUNT_ID));
 
 	public static final String SERVICE_ACCOUNT_PRIVATE_KEY_P12_FILE =
 		GetterUtil.getString(
 			PortletProps.get(
-				PortletPropsKeys.SERVICE_ACCOUNT_PRIVATE_KEY_P12_FILE));
+				PortletPropsKeys.
+					GOOGLE_API_SERVICE_ACCOUNT_PRIVATE_KEY_P12_FILE));
 
 	public static final String SERVICE_ACCOUNT_USER = GetterUtil.getString(
-		PortletProps.get(PortletPropsKeys.SERVICE_ACCOUNT_USER));
+		PortletProps.get(PortletPropsKeys.GOOGLE_API_SERVICE_ACCOUNT_USER));
 
 	public static final boolean SYNC_ON_STARTUP = GetterUtil.getBoolean(
 		PortletProps.get(PortletPropsKeys.SYNC_ON_STARTUP));
