@@ -20,7 +20,6 @@ import com.liferay.knowledgebase.model.KBArticle;
 import com.liferay.knowledgebase.model.KBArticleConstants;
 import com.liferay.knowledgebase.service.KBArticleLocalServiceUtil;
 import com.liferay.knowledgebase.util.PortletPropsValues;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.repository.model.FileEntry;
@@ -55,7 +54,7 @@ public class KBArticleImporter {
 	public void processZipFile(
 			long userId, long groupId, InputStream inputStream,
 			ServiceContext serviceContext)
-		throws KBArticleImportException, SystemException {
+		throws KBArticleImportException {
 
 		if (inputStream == null) {
 			throw new KBArticleImportException("Input stream is null");
@@ -79,7 +78,7 @@ public class KBArticleImporter {
 			long userId, long groupId, long parentResourcePrimaryKey,
 			String markdown, String fileEntryName, ZipReader zipReader,
 			Map<String, String> metadata, ServiceContext serviceContext)
-		throws KBArticleImportException, SystemException {
+		throws KBArticleImportException {
 
 		if (Validator.isNull(markdown)) {
 			throw new KBArticleImportException(
@@ -214,7 +213,7 @@ public class KBArticleImporter {
 	protected void processKBArticleFiles(
 			long userId, long groupId, ZipReader zipReader,
 			Map<String, String> metadata, ServiceContext serviceContext)
-		throws KBArticleImportException, SystemException {
+		throws KBArticleImportException {
 
 		long parentResourcePrimaryKey =
 			KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY;
