@@ -6,7 +6,7 @@
 #end
 
 <div class="article-description-wrapper">
-	#if ($article-title != "")
+	#if ($article-title.getData() != "")
 		<h4 class="article-title"><a href="$article-url"><span>$article-title.getData()</span></a></h4>
 	#end
 
