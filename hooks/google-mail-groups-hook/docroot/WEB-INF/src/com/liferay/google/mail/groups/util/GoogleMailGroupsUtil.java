@@ -51,11 +51,12 @@ import java.util.List;
  */
 public class GoogleMailGroupsUtil {
 
-	public static void addGGroup(
-			Directory directory, String name, String groupEmailAddress)
+	public static void addGGroup(String name, String groupEmailAddress)
 		throws PortalException {
 
 		try {
+			Directory directory = getDirectory();
+
 			Directory.Groups gGroups = directory.groups();
 
 			com.google.api.services.admin.directory.model.Group gGroup =
@@ -74,10 +75,12 @@ public class GoogleMailGroupsUtil {
 	}
 
 	public static void addGGroupMember(
-			Directory directory, String groupEmailAddress, String emailAddress)
+			String groupEmailAddress, String emailAddress)
 		throws PortalException {
 
 		try {
+			Directory directory = getDirectory();
+
 			Directory.Members members = directory.members();
 
 			Member member = new Member();
@@ -101,11 +104,12 @@ public class GoogleMailGroupsUtil {
 		}
 	}
 
-	public static void deleteGGroup(
-			Directory directory, String groupEmailAddress)
+	public static void deleteGGroup(String groupEmailAddress)
 		throws PortalException {
 
 		try {
+			Directory directory = getDirectory();
+
 			Directory.Groups gGroups = directory.groups();
 
 			Directory.Groups.Delete delete = gGroups.delete(groupEmailAddress);
@@ -118,10 +122,12 @@ public class GoogleMailGroupsUtil {
 	}
 
 	public static void deleteGGroupMember(
-			Directory directory, String groupEmailAddress, String emailAddress)
+			String groupEmailAddress, String emailAddress)
 		throws PortalException {
 
 		try {
+			Directory directory = getDirectory();
+
 			Directory.Members members = directory.members();
 
 			Directory.Members.Delete delete = members.delete(
@@ -146,14 +152,16 @@ public class GoogleMailGroupsUtil {
 			googleCredential);
 
 		_directory = builder.build();
-		
+
 		return _directory;
 	}
 
-	public static com.google.api.services.admin.directory.model.Group
-		getGGroup(Directory directory, String groupEmailAddress) {
+	public static com.google.api.services.admin.directory.model.Group getGGroup(
+		String groupEmailAddress) {
 
 		try {
+			Directory directory = getDirectory();
+
 			Directory.Groups gGroups = directory.groups();
 
 			Directory.Groups.Get get = gGroups.get(groupEmailAddress);
@@ -240,12 +248,10 @@ public class GoogleMailGroupsUtil {
 				String groupEmailAddress = getGroupEmailAddress(group);
 
 				com.google.api.services.admin.directory.model.Group gGroup =
-					getGGroup(directory, groupEmailAddress);
+					getGGroup(groupEmailAddress);
 
 				if (gGroup == null) {
-					addGGroup(
-						directory, group.getDescriptiveName(),
-						groupEmailAddress);
+					addGGroup(group.getDescriptiveName(), groupEmailAddress);
 				}
 
 				Members members = getGGroupMembers(
@@ -283,7 +289,7 @@ public class GoogleMailGroupsUtil {
 					}
 
 					deleteGGroupMember(
-						directory, groupEmailAddress, gGroupMemberEmailAddress);
+						groupEmailAddress, gGroupMemberEmailAddress);
 				}
 
 				for (String emailAddress : emailAddresses) {
@@ -291,7 +297,7 @@ public class GoogleMailGroupsUtil {
 						continue;
 					}
 
-					addGGroupMember(directory, groupEmailAddress, emailAddress);
+					addGGroupMember(groupEmailAddress, emailAddress);
 				}
 			}
 		};
@@ -320,7 +326,7 @@ public class GoogleMailGroupsUtil {
 		builder.setTransport(new NetHttpTransport());
 
 		_googleCredential = builder.build();
-		
+
 		return _googleCredential;
 	}
 
@@ -329,7 +335,7 @@ public class GoogleMailGroupsUtil {
 	private static final List<String> _SCOPES_DIRECTORY = Arrays.asList(
 		"https://www.googleapis.com/auth/admin.directory.group",
 		"https://www.googleapis.com/auth/admin.directory.user");
-		
+
 	private static Directory _directory;
 	private static GoogleCredential _googleCredential;
 

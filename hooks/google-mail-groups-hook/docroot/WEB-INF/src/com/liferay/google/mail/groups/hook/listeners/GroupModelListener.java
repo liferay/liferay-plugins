@@ -14,8 +14,6 @@
 
 package com.liferay.google.mail.groups.hook.listeners;
 
-import com.google.api.services.admin.directory.Directory;
-
 import com.liferay.google.mail.groups.util.GoogleMailGroupsUtil;
 import com.liferay.portal.ModelListenerException;
 import com.liferay.portal.kernel.log.Log;
@@ -47,12 +45,10 @@ public class GroupModelListener extends BaseModelListener<Group> {
 				classPK, associationClassName, associationClassPK) {
 
 				@Override
-				public void onAssociation(
-						User user, Group group, Directory directory)
+				public void onAssociation(User user, Group group)
 					throws Exception {
 
 					GoogleMailGroupsUtil.addGGroupMember(
-						directory,
 						GoogleMailGroupsUtil.getGroupEmailAddress(group),
 						GoogleMailGroupsUtil.getUserEmailAddress(user));
 				}
@@ -72,7 +68,7 @@ public class GroupModelListener extends BaseModelListener<Group> {
 
 		try {
 			GoogleMailGroupsUtil.addGGroup(
-				GoogleMailGroupsUtil.getDirectory(), group.getDescriptiveName(),
+				group.getDescriptiveName(),
 				GoogleMailGroupsUtil.getGroupEmailAddress(group));
 		}
 		catch (Exception e) {
@@ -88,7 +84,6 @@ public class GroupModelListener extends BaseModelListener<Group> {
 
 		try {
 			GoogleMailGroupsUtil.deleteGGroup(
-				GoogleMailGroupsUtil.getDirectory(),
 				GoogleMailGroupsUtil.getGroupEmailAddress(group));
 		}
 		catch (Exception e) {
@@ -107,8 +102,7 @@ public class GroupModelListener extends BaseModelListener<Group> {
 				classPK, associationClassName, associationClassPK) {
 
 				@Override
-				public void onAssociation(
-						User user, Group group, Directory directory)
+				public void onAssociation(User user, Group group)
 					throws Exception {
 
 					if (GroupLocalServiceUtil.hasUserGroup(
@@ -118,7 +112,6 @@ public class GroupModelListener extends BaseModelListener<Group> {
 					}
 
 					GoogleMailGroupsUtil.deleteGGroupMember(
-						directory,
 						GoogleMailGroupsUtil.getGroupEmailAddress(group),
 						GoogleMailGroupsUtil.getUserEmailAddress(user));
 				}
@@ -162,15 +155,12 @@ public class GroupModelListener extends BaseModelListener<Group> {
 					(Long)associationClassPK);
 			}
 
-			Directory directory = GoogleMailGroupsUtil.getDirectory();
-
 			for (User user : users) {
-				onAssociation(user, group, directory);
+				onAssociation(user, group);
 			}
 		}
 
-		public abstract void onAssociation(
-				User user, Group group, Directory directory)
+		public abstract void onAssociation(User user, Group group)
 			throws Exception;
 	}
 
