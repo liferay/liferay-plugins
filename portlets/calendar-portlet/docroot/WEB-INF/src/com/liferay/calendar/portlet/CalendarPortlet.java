@@ -1009,6 +1009,20 @@ public class CalendarPortlet extends MVCPortlet {
 
 		long groupClassNameId = PortalUtil.getClassNameId(Group.class);
 
+		List<CalendarResource> globalCalendarResources =
+			CalendarResourceServiceUtil.search(
+				themeDisplay.getCompanyId(),
+				new long[] {themeDisplay.getCompanyGroupId()},
+				new long[] {groupClassNameId}, keywords, true, true, 0,
+				SearchContainer.DEFAULT_DELTA,
+				new CalendarResourceNameComparator());
+
+		for (CalendarResource calendarResource : globalCalendarResources) {
+			addCalendarJSONObject(
+				resourceRequest, jsonArray, calendarResource.getClassNameId(),
+				calendarResource.getClassPK());
+		}
+
 		String name = StringUtil.merge(
 			CustomSQLUtil.keywords(keywords), StringPool.BLANK);
 
