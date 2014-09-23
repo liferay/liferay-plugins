@@ -187,7 +187,6 @@ public class BundleUtil {
 				ManagementFactory.getPlatformMBeanServer();
 
 			ObjectName objectName = new ObjectName(_FRAMEWORK_OBJECT_NAME);
-
 			long[] bundleIdsArray = ArrayUtil.toArray(
 				bundleIds.toArray(new Long[bundleIds.size()]));
 
