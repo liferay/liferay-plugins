@@ -188,10 +188,11 @@ public class BundleUtil {
 
 			ObjectName objectName = new ObjectName(_FRAMEWORK_OBJECT_NAME);
 
+			long[] bundleIdsArray = ArrayUtil.toArray(
+				bundleIds.toArray(new Long[bundleIds.size()]));
+
 			mBeanServer.invoke(
-				objectName, "uninstallBundles",
-				new Object[] {ArrayUtil.toArray(
-					bundleIds.toArray(new Long[bundleIds.size()]))},
+				objectName, "uninstallBundles", new Object[] {bundleIdsArray},
 				new String[] {long[].class.getName()});
 		}
 		catch (Exception e) {
