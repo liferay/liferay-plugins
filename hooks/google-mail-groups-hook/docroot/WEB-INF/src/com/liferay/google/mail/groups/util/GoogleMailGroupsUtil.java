@@ -134,13 +134,19 @@ public class GoogleMailGroupsUtil {
 	}
 
 	public static Directory getDirectory() throws Exception {
+		if (_directory != null) {
+			return _directory;
+		}
+
 		GoogleCredential googleCredential = getGoogleCredential();
 
 		Directory.Builder builder = new Directory.Builder(
 			googleCredential.getTransport(), googleCredential.getJsonFactory(),
 			googleCredential);
 
-		return builder.build();
+		_directory = builder.build();
+		
+		return _directory;
 	}
 
 	public static com.google.api.services.admin.directory.model.Group
@@ -289,6 +295,10 @@ public class GoogleMailGroupsUtil {
 	}
 
 	protected static GoogleCredential getGoogleCredential() throws Exception {
+		if (_googleCredential != null) {
+			return _googleCredential;
+		}
+
 		GoogleCredential.Builder builder = new GoogleCredential.Builder();
 
 		builder.setJsonFactory(new JacksonFactory());
@@ -304,7 +314,9 @@ public class GoogleMailGroupsUtil {
 		builder.setServiceAccountUser(PortletPropsValues.SERVICE_ACCOUNT_USER);
 		builder.setTransport(new NetHttpTransport());
 
-		return builder.build();
+		_googleCredential = builder.build();
+		
+		return _googleCredential;
 	}
 
 	private static final int _ERROR_CONFLICT = 409;
@@ -312,5 +324,8 @@ public class GoogleMailGroupsUtil {
 	private static final List<String> _SCOPES_DIRECTORY = Arrays.asList(
 		"https://www.googleapis.com/auth/admin.directory.group",
 		"https://www.googleapis.com/auth/admin.directory.user");
+		
+	private static Directory _directory;
+	private static GoogleCredential _googleCredential;
 
 }
