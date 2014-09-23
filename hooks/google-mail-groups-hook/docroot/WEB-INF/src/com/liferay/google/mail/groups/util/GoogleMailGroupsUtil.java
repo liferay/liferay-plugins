@@ -308,16 +308,19 @@ public class GoogleMailGroupsUtil {
 		GoogleCredential.Builder builder = new GoogleCredential.Builder();
 
 		builder.setJsonFactory(new JacksonFactory());
-		builder.setServiceAccountId(PortletPropsValues.SERVICE_ACCOUNT_ID);
+		builder.setServiceAccountId(
+			PortletPropsValues.GOOGLE_API_SERVICE_ACCOUNT_ID);
 
 		File file = new File(
 			PropsUtil.get(PropsKeys.LIFERAY_HOME) +
-				PortletPropsValues.SERVICE_ACCOUNT_PRIVATE_KEY_P12_FILE);
+				PortletPropsValues.
+					GOOGLE_API_SERVICE_ACCOUNT_PRIVATE_KEY_P12_FILE);
 
 		builder.setServiceAccountPrivateKeyFromP12File(file);
 
 		builder.setServiceAccountScopes(_SCOPES_DIRECTORY);
-		builder.setServiceAccountUser(PortletPropsValues.SERVICE_ACCOUNT_USER);
+		builder.setServiceAccountUser(
+			PortletPropsValues.GOOGLE_API_SERVICE_ACCOUNT_USER);
 		builder.setTransport(new NetHttpTransport());
 
 		_googleCredential = builder.build();
