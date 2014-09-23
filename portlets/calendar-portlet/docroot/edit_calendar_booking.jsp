@@ -366,10 +366,7 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 					<c:otherwise>
 						var content = [
 							'<p class="calendar-portlet-confirmation-text">',
-							A.Lang.sub(
-								Liferay.Language.get('you-are-about-to-make-changes-that-will-only-effect-your-calendar-x'),
-								['<%= HtmlUtil.escapeJS(calendar.getName(locale)) %>']
-							),
+							'<liferay-ui:message arguments="<%= calendar.getName(locale) %>" key="you-are-about-to-make-changes-that-will-only-effect-your-calendar-x" />',
 							'</p>'
 						].join('');
 
@@ -598,11 +595,11 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 					[
 						<portlet:namespace />calendarListAccepted,
 
-						 <c:if test="<%= calendarBooking != null %>">
+						<c:if test="<%= calendarBooking != null %>">
 							<portlet:namespace />calendarListDeclined, <portlet:namespace />calendarListMaybe,
-						 </c:if>
+						</c:if>
 
-						 <portlet:namespace />calendarListPending
+						<portlet:namespace />calendarListPending
 					],
 					function(calendarList) {
 						calendarList.remove(calendarList.getCalendar(calendarId));

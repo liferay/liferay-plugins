@@ -350,6 +350,31 @@ AUI.add(
 				);
 			},
 
+			getCalendarName: function(name, calendarResourceName) {
+				var instance = this;
+
+				if (name !== calendarResourceName) {
+					name = [calendarResourceName, STR_DASH, name].join(STR_SPACE);
+				}
+
+				return name;
+			},
+
+			getCalendarRenderingRules: function(calendarIds, startDate, endDate, ruleName, callback) {
+				var instance = this;
+
+				instance.invokeResourceURL(
+					'calendarRenderingRules',
+					{
+						calendarIds: calendarIds.join(),
+						endTime: endDate.getTime(),
+						ruleName: ruleName,
+						startTime: startDate.getTime()
+					},
+					callback
+				);
+			},
+
 			getCalendarsMenu: function(config) {
 				var instance = this;
 
@@ -437,31 +462,6 @@ AUI.add(
 				}
 
 				return calendarsMenu;
-			},
-
-			getCalendarName: function(name, calendarResourceName) {
-				var instance = this;
-
-				if (name !== calendarResourceName) {
-					name = [calendarResourceName, STR_DASH, name].join(STR_SPACE);
-				}
-
-				return name;
-			},
-
-			getCalendarRenderingRules: function(calendarIds, startDate, endDate, ruleName, callback) {
-				var instance = this;
-
-				instance.invokeResourceURL(
-					'calendarRenderingRules',
-					{
-						calendarIds: calendarIds.join(),
-						endTime: endDate.getTime(),
-						ruleName: ruleName,
-						startTime: startDate.getTime()
-					},
-					callback
-				);
 			},
 
 			getDatesList: function(startDate, total) {
