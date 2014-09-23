@@ -38,6 +38,7 @@ import com.liferay.portal.kernel.upload.UploadException;
 import com.liferay.portal.kernel.upload.UploadPortletRequest;
 import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.ContentTypes;
+import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StreamUtil;
 import com.liferay.portal.kernel.util.StringPool;
@@ -389,10 +390,34 @@ public abstract class BaseKBPortlet extends MVCPortlet {
 		SessionMessages.add(actionRequest, "feedbackStatusUpdated");
 	}
 
-	protected abstract String buildEditURL(
+	protected String buildEditURL(
 			ActionRequest actionRequest, ActionResponse actionResponse,
 			KBArticle kbArticle)
-		throws PortalException, SystemException;
+		throws PortalException, SystemException {
+
+		String namespace = actionResponse.getNamespace();
+		String redirect = getRedirect(actionRequest, actionResponse);
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		String editURL = PortalUtil.getLayoutFullURL(themeDisplay);
+
+		editURL = HttpUtil.setParameter(
+			editURL, "p_p_id",
+			(String)actionRequest.getAttribute(WebKeys.PORTLET_ID));
+		editURL = HttpUtil.setParameter(
+			editURL, namespace + "mvcPath", templatePath + "edit_article.jsp");
+		editURL = HttpUtil.setParameter(
+			editURL, namespace + "redirect", redirect);
+		editURL = HttpUtil.setParameter(
+			editURL, namespace + "resourcePrimKey",
+			kbArticle.getResourcePrimKey());
+		editURL = HttpUtil.setParameter(
+			editURL, namespace + "status", WorkflowConstants.STATUS_ANY);
+
+		return editURL;
+	}
 
 	protected void checkExceededSizeLimit(HttpServletRequest request)
 		throws PortalException {
