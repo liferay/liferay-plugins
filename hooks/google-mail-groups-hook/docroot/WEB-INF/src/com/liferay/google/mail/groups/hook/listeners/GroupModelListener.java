@@ -56,7 +56,7 @@ public class GroupModelListener extends BaseModelListener<Group> {
 			};
 		}
 		catch (Exception e) {
-			_log.error(e);
+			_log.error(e, e);
 		}
 	}
 
@@ -72,7 +72,7 @@ public class GroupModelListener extends BaseModelListener<Group> {
 				GoogleMailGroupsUtil.getGroupEmailAddress(group));
 		}
 		catch (Exception e) {
-			_log.error(e);
+			_log.error(e, e);
 		}
 	}
 
@@ -87,7 +87,7 @@ public class GroupModelListener extends BaseModelListener<Group> {
 				GoogleMailGroupsUtil.getGroupEmailAddress(group));
 		}
 		catch (Exception e) {
-			_log.error(e);
+			_log.error(e, e);
 		}
 	}
 
@@ -119,7 +119,7 @@ public class GroupModelListener extends BaseModelListener<Group> {
 			};
 		}
 		catch (Exception e) {
-			_log.error(e);
+			_log.error(e, e);
 		}
 	}
 
