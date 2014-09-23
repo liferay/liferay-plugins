@@ -47,21 +47,16 @@ public class UserNotificationMessageSender
 		JSONObject jsonObject = populateJSONObject(
 			notificationMessage, executionContext);
 
-		NotificationEvent notificationEvent =
-			NotificationEventFactoryUtil.createNotificationEvent(
-				System.currentTimeMillis(), PortletKeys.MY_WORKFLOW_TASKS,
-				jsonObject);
-
-		notificationEvent.setDeliveryRequired(0);
-		notificationEvent.setDeliveryType(
-			UserNotificationDeliveryConstants.TYPE_WEBSITE);
-
 		for (NotificationRecipient notificationRecipient :
 				notificationRecipients) {
 
 			if (notificationRecipient.getUserId() > 0) {
-				UserNotificationEventLocalServiceUtil.addUserNotificationEvent(
-					notificationRecipient.getUserId(), notificationEvent);
+				UserNotificationEventLocalServiceUtil.
+					sendUserNotificationEvents(
+						notificationRecipient.getUserId(),
+						PortletKeys.MY_WORKFLOW_TASKS,
+						UserNotificationDeliveryConstants.TYPE_WEBSITE,
+						jsonObject);
 			}
 		}
 	}
