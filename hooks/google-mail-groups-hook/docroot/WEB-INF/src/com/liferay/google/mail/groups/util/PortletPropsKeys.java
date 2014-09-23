@@ -19,6 +19,12 @@ package com.liferay.google.mail.groups.util;
  */
 public class PortletPropsKeys {
 
+	public static final String EMAIL_LARGE_GROUP_ROLE =
+		"email.large.group.role";
+
+	public static final String EMAIL_LARGE_GROUP_SIZE =
+		"email.large.group.size";
+
 	public static final String EMAIL_PERMISSION = "email.permission";
 
 	public static final String EMAIL_PREFIX = "email.prefix";

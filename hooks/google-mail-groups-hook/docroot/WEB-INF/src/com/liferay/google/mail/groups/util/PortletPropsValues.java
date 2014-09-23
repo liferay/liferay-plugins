@@ -22,6 +22,12 @@ import com.liferay.util.portlet.PortletProps;
  */
 public class PortletPropsValues {
 
+	public static final String EMAIL_LARGE_GROUP_ROLE = GetterUtil.getString(
+		PortletProps.get(PortletPropsKeys.EMAIL_LARGE_GROUP_ROLE));
+
+	public static final int EMAIL_LARGE_GROUP_SIZE = GetterUtil.getInteger(
+		PortletProps.get(PortletPropsKeys.EMAIL_LARGE_GROUP_SIZE));
+
 	public static final String EMAIL_PERMISSION = GetterUtil.getString(
 		PortletProps.get(PortletPropsKeys.EMAIL_PERMISSION));
 
