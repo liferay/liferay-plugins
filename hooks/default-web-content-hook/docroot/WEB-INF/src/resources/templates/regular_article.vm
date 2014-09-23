@@ -1,27 +1,27 @@
 <div class="article-wrapper">
-	#if ($article-title != "")
+	#if ($article-title.getData() != "")
 		<h3 class="article-title">$article-title.getData()</h3>
 	#end
 
-	#if ($show-display-date)
+	#if ($show-display-date.getData() == true)
 		<div class="article-information">
 			<span class="article-display-date">Published on $reserved-article-display-date.getData()</span>
 		</div>
 	#end
 
-	#if ($article-main-image != "")
+	#if ($article-main-image.getData() != "")
 		<div class="article-main-image">
 			<img alt="$article-title.getData()" src="$article-main-image.getData()" />
 		</div>
 	#end
 
-	#if ($article-body != "")
+	#if ($article-body.getData() != "")
 		<div class="article-body">
 			$article-body.getData()
 		</div>
 	#end
 
-	#if ($show-author)
+	#if ($show-author.getData() == true)
 		<div class="author-info">
 			<span class="article-author">$reserved-article-author-name.getData() </span>
 
