@@ -412,6 +412,7 @@ AUI.add(
 							var calendarList = instance.get('host');
 
 							calendarList.activeItem.set('visible', true);
+
 							toggler.expand();
 							instance.hide();
 
@@ -435,6 +436,7 @@ AUI.add(
 								var calendarList = instance.get('host');
 
 								calendarList.remove(calendarList.activeItem);
+
 								instance.hide();
 							},
 							id: 'remove'
@@ -447,6 +449,7 @@ AUI.add(
 
 							if (event.newVal) {
 								var calendarList = instance.get('host');
+
 								var calendar = calendarList.activeItem;
 
 								var hiddenItems = [];
