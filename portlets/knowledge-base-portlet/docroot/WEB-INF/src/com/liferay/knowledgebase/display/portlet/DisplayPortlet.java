@@ -26,12 +26,9 @@ import com.liferay.knowledgebase.util.ActionKeys;
 import com.liferay.knowledgebase.util.WebKeys;
 import com.liferay.knowledgebase.util.comparator.KBArticlePriorityComparator;
 import com.liferay.portal.NoSuchSubscriptionException;
-import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.servlet.SessionMessages;
 import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
@@ -132,36 +129,6 @@ public class DisplayPortlet extends BaseKBPortlet {
 		}
 
 		super.addSuccessMessage(actionRequest, actionResponse);
-	}
-
-	@Override
-	protected String buildEditURL(
-			ActionRequest actionRequest, ActionResponse actionResponse,
-			KBArticle kbArticle)
-		throws PortalException, SystemException {
-
-		String namespace = actionResponse.getNamespace();
-		String redirect = getRedirect(actionRequest, actionResponse);
-
-		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
-			WebKeys.THEME_DISPLAY);
-
-		String editURL = PortalUtil.getLayoutFullURL(themeDisplay);
-
-		editURL = HttpUtil.setParameter(
-			editURL, "p_p_id",
-			(String)actionRequest.getAttribute(WebKeys.PORTLET_ID));
-		editURL = HttpUtil.setParameter(
-			editURL, namespace + "mvcPath", templatePath + "edit_article.jsp");
-		editURL = HttpUtil.setParameter(
-			editURL, namespace + "redirect", redirect);
-		editURL = HttpUtil.setParameter(
-			editURL, namespace + "resourcePrimKey",
-			kbArticle.getResourcePrimKey());
-		editURL = HttpUtil.setParameter(
-			editURL, namespace + "status", WorkflowConstants.STATUS_ANY);
-
-		return editURL;
 	}
 
 	@Override
