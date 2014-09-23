@@ -57,7 +57,7 @@ public class UserModelListener extends BaseModelListener<User> {
 			};
 		}
 		catch (Exception e) {
-			_log.error(e);
+			_log.error(e, e);
 		}
 	}
 
@@ -89,7 +89,7 @@ public class UserModelListener extends BaseModelListener<User> {
 			};
 		}
 		catch (Exception e) {
-			_log.error(e);
+			_log.error(e, e);
 		}
 	}
 
