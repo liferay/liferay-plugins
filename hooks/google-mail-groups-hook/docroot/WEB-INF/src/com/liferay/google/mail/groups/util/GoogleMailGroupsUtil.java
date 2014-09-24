@@ -40,6 +40,7 @@ import com.liferay.portal.model.Group;
 import com.liferay.portal.model.Role;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.CompanyLocalServiceUtil;
+import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.RoleLocalServiceUtil;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.service.persistence.GroupActionableDynamicQuery;
@@ -80,6 +81,42 @@ public class GoogleMailGroupsUtil {
 		}
 		catch (Exception e) {
 			throw new PortalException(e);
+		}
+	}
+
+	public static void addGGroupManagers(List<User> users)
+		throws PortalException {
+
+		for (User user : users) {
+			List<Group> groups = GroupLocalServiceUtil.getUserGroups(
+				user.getUserId(), true);
+
+			for (Group group : groups) {
+				if (!isSync(group)) {
+					continue;
+				}
+
+				String groupEmailAddress = getGroupEmailAddress(group);
+
+				String userEmailAddress = getUserEmailAddress(user);
+
+				Member member = getGGroupMember(
+					groupEmailAddress, userEmailAddress);
+
+				if (member == null) {
+					continue;
+				}
+
+				String gRole = member.getRole();
+
+				if (gRole.equals("MANAGER") || gRole.equals("OWNER")) {
+					continue;
+				}
+
+				member.setRole("MANAGER");
+
+				updateGGroupMember(groupEmailAddress, userEmailAddress, member);
+			}
 		}
 	}
 
@@ -351,6 +388,49 @@ public class GoogleMailGroupsUtil {
 		}
 
 		return true;
+	}
+
+	public static void removeGGroupManagers(List<User> users)
+		throws PortalException {
+
+		for (User user : users) {
+			if (RoleLocalServiceUtil.hasUserRole(
+					user.getUserId(), user.getCompanyId(),
+				PortletPropsValues.EMAIL_LARGE_GROUP_ROLE, true)) {
+
+				continue;
+			}
+
+			List<Group> groups = GroupLocalServiceUtil.getUserGroups(
+				user.getUserId(), true);
+
+			for (Group group : groups) {
+				if (!isSync(group)) {
+					continue;
+				}
+
+				String groupEmailAddress = getGroupEmailAddress(group);
+
+				String userEmailAddress = getUserEmailAddress(user);
+
+				Member member = getGGroupMember(
+					groupEmailAddress, userEmailAddress);
+
+				if (member == null) {
+					continue;
+				}
+
+				String gRole = member.getRole();
+
+				if (gRole.equals("MEMBER") || gRole.equals("OWNER")) {
+					continue;
+				}
+
+				member.setRole("MEMBER");
+
+				updateGGroupMember(groupEmailAddress, userEmailAddress, member);
+			}
+		}
 	}
 
 	public static void syncGroups() throws Exception {
