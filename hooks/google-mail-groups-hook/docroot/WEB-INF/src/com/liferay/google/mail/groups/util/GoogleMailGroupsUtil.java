@@ -460,7 +460,7 @@ public class GoogleMailGroupsUtil {
 
 				Members members = getGGroupMembers(groupEmailAddress);
 
-				if (members.getMembers() != null) {
+				if ((members != null) && (members.getMembers() != null)) {
 					for (Member member : members.getMembers()) {
 						gGroupMemberEmailAddresses.add(member.getEmail());
 					}
