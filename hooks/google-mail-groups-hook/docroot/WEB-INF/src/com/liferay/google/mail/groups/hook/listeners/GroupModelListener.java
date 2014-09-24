@@ -51,6 +51,8 @@ public class GroupModelListener extends BaseModelListener<Group> {
 					GoogleMailGroupsUtil.addGGroupMember(
 						GoogleMailGroupsUtil.getGroupEmailAddress(group),
 						GoogleMailGroupsUtil.getUserEmailAddress(user));
+
+					GoogleMailGroupsUtil.checkLargeGroup(group);
 				}
 
 			};
@@ -114,6 +116,8 @@ public class GroupModelListener extends BaseModelListener<Group> {
 					GoogleMailGroupsUtil.deleteGGroupMember(
 						GoogleMailGroupsUtil.getGroupEmailAddress(group),
 						GoogleMailGroupsUtil.getUserEmailAddress(user));
+
+					GoogleMailGroupsUtil.checkLargeGroup(group);
 				}
 
 			};
