@@ -301,8 +301,8 @@ public class AdminPortlet extends BaseKBPortlet {
 
 			return portletURL.toString();
 		}
-		catch (WindowStateException e) {
-			throw new PortalException(e);
+		catch (WindowStateException wse) {
+			throw new PortalException(wse);
 		}
 	}
 

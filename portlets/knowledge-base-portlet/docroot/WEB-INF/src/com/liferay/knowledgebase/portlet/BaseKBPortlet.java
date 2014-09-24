@@ -395,9 +395,6 @@ public abstract class BaseKBPortlet extends MVCPortlet {
 			KBArticle kbArticle)
 		throws PortalException {
 
-		String namespace = actionResponse.getNamespace();
-		String redirect = getRedirect(actionRequest, actionResponse);
-
 		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
@@ -408,14 +405,17 @@ public abstract class BaseKBPortlet extends MVCPortlet {
 		editURL = HttpUtil.setParameter(
 			editURL, "p_p_id", portletDisplay.getId());
 		editURL = HttpUtil.setParameter(
-			editURL, namespace + "mvcPath", templatePath + "edit_article.jsp");
+			editURL, actionResponse.getNamespace() + "mvcPath",
+			templatePath + "edit_article.jsp");
 		editURL = HttpUtil.setParameter(
-			editURL, namespace + "redirect", redirect);
+			editURL, actionResponse.getNamespace() + "redirect",
+			getRedirect(actionRequest, actionResponse));
 		editURL = HttpUtil.setParameter(
-			editURL, namespace + "resourcePrimKey",
+			editURL, actionResponse.getNamespace() + "resourcePrimKey",
 			kbArticle.getResourcePrimKey());
 		editURL = HttpUtil.setParameter(
-			editURL, namespace + "status", WorkflowConstants.STATUS_ANY);
+			editURL, actionResponse.getNamespace() + "status",
+			WorkflowConstants.STATUS_ANY);
 
 		return editURL;
 	}
