@@ -129,6 +129,8 @@ public class GoogleMailGroupsGroupLocalServiceImpl
 				groupEmailAddress,
 				GoogleMailGroupsUtil.getUserEmailAddress(user));
 		}
+
+		GoogleMailGroupsUtil.checkLargeGroup(group);
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(
