@@ -15,6 +15,7 @@
 package com.liferay.resourcesimporter.util;
 
 import com.liferay.portal.kernel.lar.PortletDataHandlerKeys;
+import com.liferay.portal.kernel.lar.UserIdStrategy;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.service.LayoutLocalServiceUtil;
@@ -88,7 +89,9 @@ public class LARImporter extends BaseImporter {
 			new String[] {Boolean.TRUE.toString()});
 		parameters.put(
 			PortletDataHandlerKeys.LAYOUTS_IMPORT_MODE,
-			new String[] {Boolean.TRUE.toString()});
+			new String[] {
+				PortletDataHandlerKeys.
+					LAYOUTS_IMPORT_MODE_MERGE_BY_LAYOUT_UUID});
 		parameters.put(
 			PortletDataHandlerKeys.LOGO,
 			new String[] {Boolean.TRUE.toString()});
@@ -109,7 +112,7 @@ public class LARImporter extends BaseImporter {
 			new String[] {Boolean.TRUE.toString()});
 		parameters.put(
 			PortletDataHandlerKeys.PORTLETS_MERGE_MODE,
-			new String[] {Boolean.TRUE.toString()});
+			new String[] {PortletDataHandlerKeys.PORTLETS_MERGE_MODE_REPLACE});
 		parameters.put(
 			PortletDataHandlerKeys.THEME,
 			new String[] {Boolean.FALSE.toString()});
@@ -118,7 +121,7 @@ public class LARImporter extends BaseImporter {
 			new String[] {Boolean.TRUE.toString()});
 		parameters.put(
 			PortletDataHandlerKeys.USER_ID_STRATEGY,
-			new String[] {Boolean.TRUE.toString()});
+			new String[] {UserIdStrategy.CURRENT_USER_ID});
 		parameters.put(
 			PortletDataHandlerKeys.USER_PERMISSIONS,
 			new String[] {Boolean.TRUE.toString()});
