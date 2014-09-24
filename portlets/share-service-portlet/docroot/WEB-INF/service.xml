@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 6.2.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_6_2_0.dtd">
+
+<service-builder package-path="com.liferay.share">
+	<namespace>share</namespace>
+	<entity name="EntitySocialFeed" local-service="true" remote-service="true">
+
+		<!-- PK fields -->
+
+		<column name="classNameId" type="long" primary="true" />
+		<column name="classPK" type="long" primary="true" />
+		<column name="feedClassNameId" type="long" primary="true" />
+		<column name="feedClassPK" type="long" primary="true" />
+
+		<!-- Finder methods -->
+
+		<finder name="C_C" return-type="Collection">
+			<finder-column name="classNameId" />
+			<finder-column name="classPK" />
+		</finder>
+		<finder name="F_F" return-type="Collection">
+			<finder-column name="feedClassNameId" />
+			<finder-column name="feedClassPK" />
+		</finder>
+		<finder name="C_C_F" return-type="Collection">
+			<finder-column name="classNameId" />
+			<finder-column name="classPK" />
+			<finder-column name="feedClassNameId" />
+		</finder>
+		<finder name="C_F_F"  return-type="Collection">
+			<finder-column name="classNameId" />
+			<finder-column name="feedClassNameId" />
+			<finder-column name="feedClassPK" />
+		</finder>
+	</entity>
+</service-builder>
