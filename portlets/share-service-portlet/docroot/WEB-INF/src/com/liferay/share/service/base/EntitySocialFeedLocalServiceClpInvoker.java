@@ -134,6 +134,22 @@ public class EntitySocialFeedLocalServiceClpInvoker {
 		_methodName44 = "setBeanIdentifier";
 
 		_methodParameterTypes44 = new String[] { "java.lang.String" };
+
+		_methodName49 = "addEntitySocialFeed";
+
+		_methodParameterTypes49 = new String[] { "long", "long", "long", "long" };
+
+		_methodName50 = "addEntitySocialFeeds";
+
+		_methodParameterTypes50 = new String[] { "long", "long", "java.util.Map" };
+
+		_methodName51 = "deleteEntitySocialFeeds";
+
+		_methodParameterTypes51 = new String[] { "long", "long" };
+
+		_methodName52 = "getEntitySocialFeeds";
+
+		_methodParameterTypes52 = new String[] { "long", "long" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -247,6 +263,39 @@ public class EntitySocialFeedLocalServiceClpInvoker {
 			return null;
 		}
 
+		if (_methodName49.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes49, parameterTypes)) {
+			EntitySocialFeedLocalServiceUtil.addEntitySocialFeed(((Long)arguments[0]).longValue(),
+				((Long)arguments[1]).longValue(),
+				((Long)arguments[2]).longValue(),
+				((Long)arguments[3]).longValue());
+
+			return null;
+		}
+
+		if (_methodName50.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes50, parameterTypes)) {
+			EntitySocialFeedLocalServiceUtil.addEntitySocialFeeds(((Long)arguments[0]).longValue(),
+				((Long)arguments[1]).longValue(),
+				(java.util.Map<java.lang.Long, java.util.List<java.lang.Long>>)arguments[2]);
+
+			return null;
+		}
+
+		if (_methodName51.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes51, parameterTypes)) {
+			EntitySocialFeedLocalServiceUtil.deleteEntitySocialFeeds(((Long)arguments[0]).longValue(),
+				((Long)arguments[1]).longValue());
+
+			return null;
+		}
+
+		if (_methodName52.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes52, parameterTypes)) {
+			return EntitySocialFeedLocalServiceUtil.getEntitySocialFeeds(((Long)arguments[0]).longValue(),
+				((Long)arguments[1]).longValue());
+		}
+
 		throw new UnsupportedOperationException();
 	}
 
@@ -290,4 +339,12 @@ public class EntitySocialFeedLocalServiceClpInvoker {
 	private String[] _methodParameterTypes43;
 	private String _methodName44;
 	private String[] _methodParameterTypes44;
+	private String _methodName49;
+	private String[] _methodParameterTypes49;
+	private String _methodName50;
+	private String[] _methodParameterTypes50;
+	private String _methodName51;
+	private String[] _methodParameterTypes51;
+	private String _methodName52;
+	private String[] _methodParameterTypes52;
 }

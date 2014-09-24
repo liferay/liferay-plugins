@@ -41,6 +41,12 @@ public class EntitySocialFeedLocalServiceUtil {
 	 *
 	 * Never modify this class directly. Add custom service methods to {@link com.liferay.share.service.impl.EntitySocialFeedLocalServiceImpl} and rerun ServiceBuilder to regenerate this class.
 	 */
+	public static void addEntitySocialFeed(long classNameId, long classPK,
+		long feedClassNameId, long feedClassPK) {
+		getService()
+			.addEntitySocialFeed(classNameId, classPK, feedClassNameId,
+			feedClassPK);
+	}
 
 	/**
 	* Adds the entity social feed to the database. Also notifies the appropriate model listeners.
@@ -51,6 +57,12 @@ public class EntitySocialFeedLocalServiceUtil {
 	public static com.liferay.share.model.EntitySocialFeed addEntitySocialFeed(
 		com.liferay.share.model.EntitySocialFeed entitySocialFeed) {
 		return getService().addEntitySocialFeed(entitySocialFeed);
+	}
+
+	public static void addEntitySocialFeeds(long classNameId, long classPK,
+		java.util.Map<java.lang.Long, java.util.List<java.lang.Long>> feedClassNameClassPKs) {
+		getService()
+			.addEntitySocialFeeds(classNameId, classPK, feedClassNameClassPKs);
 	}
 
 	/**
@@ -86,6 +98,10 @@ public class EntitySocialFeedLocalServiceUtil {
 		com.liferay.share.service.persistence.EntitySocialFeedPK entitySocialFeedPK)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().deleteEntitySocialFeed(entitySocialFeedPK);
+	}
+
+	public static void deleteEntitySocialFeeds(long classNameId, long classPK) {
+		getService().deleteEntitySocialFeeds(classNameId, classPK);
 	}
 
 	/**
@@ -204,6 +220,11 @@ public class EntitySocialFeedLocalServiceUtil {
 		com.liferay.share.service.persistence.EntitySocialFeedPK entitySocialFeedPK)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().getEntitySocialFeed(entitySocialFeedPK);
+	}
+
+	public static java.util.List<com.liferay.share.model.EntitySocialFeed> getEntitySocialFeeds(
+		long classNameId, long classPK) {
+		return getService().getEntitySocialFeeds(classNameId, classPK);
 	}
 
 	/**

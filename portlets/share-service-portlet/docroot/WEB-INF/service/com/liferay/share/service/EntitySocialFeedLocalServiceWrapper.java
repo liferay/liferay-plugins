@@ -34,6 +34,13 @@ public class EntitySocialFeedLocalServiceWrapper
 		_entitySocialFeedLocalService = entitySocialFeedLocalService;
 	}
 
+	@Override
+	public void addEntitySocialFeed(long classNameId, long classPK,
+		long feedClassNameId, long feedClassPK) {
+		_entitySocialFeedLocalService.addEntitySocialFeed(classNameId, classPK,
+			feedClassNameId, feedClassPK);
+	}
+
 	/**
 	* Adds the entity social feed to the database. Also notifies the appropriate model listeners.
 	*
@@ -44,6 +51,13 @@ public class EntitySocialFeedLocalServiceWrapper
 	public com.liferay.share.model.EntitySocialFeed addEntitySocialFeed(
 		com.liferay.share.model.EntitySocialFeed entitySocialFeed) {
 		return _entitySocialFeedLocalService.addEntitySocialFeed(entitySocialFeed);
+	}
+
+	@Override
+	public void addEntitySocialFeeds(long classNameId, long classPK,
+		java.util.Map<java.lang.Long, java.util.List<java.lang.Long>> feedClassNameClassPKs) {
+		_entitySocialFeedLocalService.addEntitySocialFeeds(classNameId,
+			classPK, feedClassNameClassPKs);
 	}
 
 	/**
@@ -82,6 +96,12 @@ public class EntitySocialFeedLocalServiceWrapper
 		com.liferay.share.service.persistence.EntitySocialFeedPK entitySocialFeedPK)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _entitySocialFeedLocalService.deleteEntitySocialFeed(entitySocialFeedPK);
+	}
+
+	@Override
+	public void deleteEntitySocialFeeds(long classNameId, long classPK) {
+		_entitySocialFeedLocalService.deleteEntitySocialFeeds(classNameId,
+			classPK);
 	}
 
 	/**
@@ -213,6 +233,13 @@ public class EntitySocialFeedLocalServiceWrapper
 		com.liferay.share.service.persistence.EntitySocialFeedPK entitySocialFeedPK)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _entitySocialFeedLocalService.getEntitySocialFeed(entitySocialFeedPK);
+	}
+
+	@Override
+	public java.util.List<com.liferay.share.model.EntitySocialFeed> getEntitySocialFeeds(
+		long classNameId, long classPK) {
+		return _entitySocialFeedLocalService.getEntitySocialFeeds(classNameId,
+			classPK);
 	}
 
 	/**

@@ -48,6 +48,8 @@ public interface EntitySocialFeedLocalService extends BaseLocalService,
 	 *
 	 * Never modify or reference this interface directly. Always use {@link EntitySocialFeedLocalServiceUtil} to access the entity social feed local service. Add custom service methods to {@link com.liferay.share.service.impl.EntitySocialFeedLocalServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
+	public void addEntitySocialFeed(long classNameId, long classPK,
+		long feedClassNameId, long feedClassPK);
 
 	/**
 	* Adds the entity social feed to the database. Also notifies the appropriate model listeners.
@@ -58,6 +60,9 @@ public interface EntitySocialFeedLocalService extends BaseLocalService,
 	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.REINDEX)
 	public com.liferay.share.model.EntitySocialFeed addEntitySocialFeed(
 		com.liferay.share.model.EntitySocialFeed entitySocialFeed);
+
+	public void addEntitySocialFeeds(long classNameId, long classPK,
+		java.util.Map<java.lang.Long, java.util.List<java.lang.Long>> feedClassNameClassPKs);
 
 	/**
 	* Creates a new entity social feed with the primary key. Does not add the entity social feed to the database.
@@ -89,6 +94,8 @@ public interface EntitySocialFeedLocalService extends BaseLocalService,
 	public com.liferay.share.model.EntitySocialFeed deleteEntitySocialFeed(
 		com.liferay.share.service.persistence.EntitySocialFeedPK entitySocialFeedPK)
 		throws com.liferay.portal.kernel.exception.PortalException;
+
+	public void deleteEntitySocialFeeds(long classNameId, long classPK);
 
 	/**
 	* @throws PortalException
@@ -188,6 +195,10 @@ public interface EntitySocialFeedLocalService extends BaseLocalService,
 	public com.liferay.share.model.EntitySocialFeed getEntitySocialFeed(
 		com.liferay.share.service.persistence.EntitySocialFeedPK entitySocialFeedPK)
 		throws com.liferay.portal.kernel.exception.PortalException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<com.liferay.share.model.EntitySocialFeed> getEntitySocialFeeds(
+		long classNameId, long classPK);
 
 	/**
 	* Returns a range of all the entity social feeds.
