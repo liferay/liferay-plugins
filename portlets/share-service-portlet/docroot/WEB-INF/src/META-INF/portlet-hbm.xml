@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping default-lazy="false" auto-import="false">
+	<import class="com.liferay.share.model.EntitySocialFeed" />
+	<class name="com.liferay.share.model.impl.EntitySocialFeedImpl" table="share_EntitySocialFeed">
+		<cache usage="read-write" />
+		<composite-id name="primaryKey" class="com.liferay.share.service.persistence.EntitySocialFeedPK">
+			<key-property name="classNameId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+			<key-property name="classPK" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+			<key-property name="feedClassNameId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+			<key-property name="feedClassPK" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		</composite-id>
+	</class>
+</hibernate-mapping>
