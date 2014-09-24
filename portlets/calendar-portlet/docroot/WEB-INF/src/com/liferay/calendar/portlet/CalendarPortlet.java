@@ -1012,7 +1012,7 @@ public class CalendarPortlet extends MVCPortlet {
 
 		long groupClassNameId = PortalUtil.getClassNameId(Group.class);
 
-		List<CalendarResource> globalCalendarResources =
+		List<CalendarResource> companyCalendarResources =
 			CalendarResourceServiceUtil.search(
 				themeDisplay.getCompanyId(),
 				new long[] {themeDisplay.getCompanyGroupId()},
@@ -1020,7 +1020,7 @@ public class CalendarPortlet extends MVCPortlet {
 				SearchContainer.DEFAULT_DELTA,
 				new CalendarResourceNameComparator());
 
-		for (CalendarResource calendarResource : globalCalendarResources) {
+		for (CalendarResource calendarResource : companyCalendarResources) {
 			addCalendarJSONObject(
 				resourceRequest, jsonArray, calendarResource.getClassNameId(),
 				calendarResource.getClassPK());
