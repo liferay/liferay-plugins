@@ -488,6 +488,88 @@
 		/>
 	</target>
 
+	<target name="compile-jsp">
+		<antcall target="compile" />
+
+		<if>
+			<not>
+				<equals arg1="${app.server.type}" arg2="tomcat" />
+			</not>
+			<then>
+				<fail>Compiling JSPs with ${app.server.type} is not supported.</fail>
+			</then>
+		</if>
+
+		<property name="jspc.classes.dir" value="classes/${app.server.type}" />
+
+		<if>
+			<and>
+				<equals arg1="${app.server.type}" arg2="tomcat" />
+				<equals arg1="${ant.java.version}" arg2="1.5" />
+			</and>
+			<then>
+				<var name="jspc.java.home" value="${jdk.windows.home}" />
+			</then>
+			<else>
+				<var name="jspc.java.home" value="${env.JAVA_HOME}" />
+			</else>
+		</if>
+
+		<path id="jspc.classpath">
+			<pathelement location="${jspc.java.home}/jre/lib/rt.jar" />
+			<fileset dir="${app.server.lib.global.dir}" includes="*.jar" />
+			<pathelement location="${app.server.lib.portal.dir}/ant.jar" />
+			<pathelement location="docroot/WEB-INF/classes" />
+			<fileset dir="docroot/WEB-INF/lib" includes="*.jar" />
+			<pathelement location="${app.server.dir}/bin/tomcat-juli.jar" />
+			<pathelement location="${app.server.dir}/lib/el-api.jar" />
+			<pathelement location="${app.server.dir}/lib/jasper.jar" />
+			<pathelement location="${app.server.dir}/lib/jasper-el.jar" />
+			<pathelement location="${app.server.dir}/lib/jasper-jdt.jar" />
+			<pathelement location="${app.server.dir}/lib/jsp-api.jar" />
+			<pathelement location="${app.server.dir}/lib/servlet-api.jar" />
+			<pathelement location="${app.server.dir}/lib/tomcat-api.jar" />
+			<pathelement location="${app.server.dir}/lib/tomcat-util.jar" />
+		</path>
+
+		<delete dir="${jspc.classes.dir}" quiet="true" />
+
+		<java
+			classname="org.apache.jasper.JspC"
+			classpathref="jspc.classpath"
+			fork="true"
+			jvm="${jspc.java.home}/bin/java"
+			newenvironment="true"
+			outputproperty="jspc.output"
+		>
+			<arg line="-d ${jspc.classes.dir} -webapp docroot" />
+		</java>
+
+		<echo>${jspc.output}</echo>
+
+		<if>
+			<contains string="${jspc.output}" substring="JasperException" />
+			<then>
+				<delete dir="${jspc.classes.dir}" quiet="true" />
+
+				<fail>JSPs failed to compile.</fail>
+			</then>
+		</if>
+
+		<javac
+			classpathref="jspc.classpath"
+			compiler="${javac.compiler}"
+			deprecation="${javac.deprecation}"
+			destdir="${jspc.classes.dir}"
+			encoding="${javac.encoding}"
+			includeAntRuntime="false"
+			nowarn="on"
+			srcdir="${jspc.classes.dir}"
+		/>
+
+		<delete dir="${jspc.classes.dir}" quiet="true" />
+	</target>
+
 	<target name="compile-test">
 		<compile-test
 			module.dir="${basedir}"
