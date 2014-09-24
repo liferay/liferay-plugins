@@ -29,7 +29,6 @@ import com.liferay.knowledgebase.util.PortletKeys;
 import com.liferay.knowledgebase.util.WebKeys;
 import com.liferay.portal.NoSuchSubscriptionException;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.upload.UploadPortletRequest;
 import com.liferay.portal.kernel.util.Constants;
@@ -47,6 +46,13 @@ import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.PortletURLFactoryUtil;
 
+import java.io.IOException;
+import java.io.InputStream;
+
+import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
 import javax.portlet.PortletException;
@@ -55,12 +61,6 @@ import javax.portlet.PortletURL;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
 import javax.portlet.WindowStateException;
-
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Enumeration;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * @author Peter Shin
@@ -280,7 +280,7 @@ public class AdminPortlet extends BaseKBPortlet {
 	protected String buildEditURL(
 			ActionRequest actionRequest, ActionResponse actionResponse,
 			KBArticle kbArticle)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		try {
 			ThemeDisplay themeDisplay =

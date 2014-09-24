@@ -28,7 +28,6 @@ import com.liferay.knowledgebase.service.KBCommentLocalServiceUtil;
 import com.liferay.knowledgebase.service.KBCommentServiceUtil;
 import com.liferay.knowledgebase.util.WebKeys;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.portlet.PortletResponseUtil;
@@ -50,13 +49,13 @@ import com.liferay.portal.service.ServiceContextFactory;
 import com.liferay.portal.theme.PortletDisplay;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
-import com.liferay.util.bridges.mvc.MVCPortlet;
 import com.liferay.portlet.asset.AssetCategoryException;
 import com.liferay.portlet.asset.AssetTagException;
 import com.liferay.portlet.documentlibrary.DuplicateFileException;
 import com.liferay.portlet.documentlibrary.FileNameException;
 import com.liferay.portlet.documentlibrary.FileSizeException;
 import com.liferay.portlet.documentlibrary.NoSuchFileException;
+import com.liferay.util.bridges.mvc.MVCPortlet;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -377,7 +376,7 @@ public abstract class BaseKBPortlet extends MVCPortlet {
 
 	public void updateKBCommentStatus(
 			ActionRequest actionRequest, ActionResponse actionResponse)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		long kbCommentId = ParamUtil.getLong(actionRequest, "kbCommentId");
 
@@ -394,7 +393,7 @@ public abstract class BaseKBPortlet extends MVCPortlet {
 	protected String buildEditURL(
 			ActionRequest actionRequest, ActionResponse actionResponse,
 			KBArticle kbArticle)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		String namespace = actionResponse.getNamespace();
 		String redirect = getRedirect(actionRequest, actionResponse);
