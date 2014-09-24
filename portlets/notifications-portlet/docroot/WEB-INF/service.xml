@@ -24,7 +24,7 @@
 
 		<!-- Order -->
 
-		<order by="asc">
+		<order by="desc">
 			<order-column name="timestamp" case-sensitive="false" />
 		</order>
 
