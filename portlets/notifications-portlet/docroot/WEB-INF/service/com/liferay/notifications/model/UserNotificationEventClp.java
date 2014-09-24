@@ -525,6 +525,8 @@ public class UserNotificationEventClp extends BaseModelImpl<UserNotificationEven
 			value = 0;
 		}
 
+		value = value * -1;
+
 		if (value != 0) {
 			return value;
 		}

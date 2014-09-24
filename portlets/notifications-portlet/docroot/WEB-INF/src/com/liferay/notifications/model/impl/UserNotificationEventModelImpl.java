@@ -70,8 +70,8 @@ public class UserNotificationEventModelImpl extends BaseModelImpl<UserNotificati
 		};
 	public static final String TABLE_SQL_CREATE = "create table Notifications_UserNotificationEvent (notificationEventId LONG not null primary key,companyId LONG,userId LONG,userNotificationEventId LONG,timestamp LONG,delivered BOOLEAN,actionRequired BOOLEAN,archived BOOLEAN)";
 	public static final String TABLE_SQL_DROP = "drop table Notifications_UserNotificationEvent";
-	public static final String ORDER_BY_JPQL = " ORDER BY userNotificationEvent.timestamp ASC";
-	public static final String ORDER_BY_SQL = " ORDER BY Notifications_UserNotificationEvent.timestamp ASC";
+	public static final String ORDER_BY_JPQL = " ORDER BY userNotificationEvent.timestamp DESC";
+	public static final String ORDER_BY_SQL = " ORDER BY Notifications_UserNotificationEvent.timestamp DESC";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
 	public static final String TX_MANAGER = "liferayTransactionManager";
@@ -419,6 +419,8 @@ public class UserNotificationEventModelImpl extends BaseModelImpl<UserNotificati
 		else {
 			value = 0;
 		}
+
+		value = value * -1;
 
 		if (value != 0) {
 			return value;
