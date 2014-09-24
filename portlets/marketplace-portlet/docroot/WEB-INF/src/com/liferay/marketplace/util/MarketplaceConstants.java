@@ -45,7 +45,7 @@ public class MarketplaceConstants {
 		return _pathStore + ReleaseInfo.getBuildNumber();
 	}
 
-	private static final String _MARKETPLACE_CLIENT_BUILD = "2";
+	private static final String _MARKETPLACE_CLIENT_BUILD = "3";
 
 	private static final String _MARKETPLACE_PATH_PURCHASED =
 		"/widget/web/guest/mpserver/-/mp_server/purchased/";
