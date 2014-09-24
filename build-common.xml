@@ -662,7 +662,7 @@ Error-Prone was automatically installed. Please rerun your task.
 		<attribute name="javac.classpathref" />
 		<attribute name="javac.destdir" />
 		<attribute name="javac.srcdir" />
-		<attribute name="module.dir" />
+		<attribute default="" name="module.dir" />
 
 		<sequential>
 			<copy todir="@{javac.destdir}">
@@ -670,7 +670,12 @@ Error-Prone was automatically installed. Please rerun your task.
 			</copy>
 
 			<if>
-				<available file="@{module.dir}" />
+				<and>
+					<not>
+						<equals arg1="@{module.dir}" arg2="" />
+					</not>
+					<available file="@{module.dir}" />
+				</and>
 				<then>
 					<set-build-xml-var
 						build.xml.var.name="javac.source"
