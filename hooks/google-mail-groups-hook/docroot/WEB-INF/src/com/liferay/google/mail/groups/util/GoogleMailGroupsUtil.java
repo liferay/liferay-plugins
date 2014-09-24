@@ -301,11 +301,12 @@ public class GoogleMailGroupsUtil {
 		}
 	}
 
-	public static Members getGGroupMembers(
-			Directory directory, String groupEmailAddress)
+	public static Members getGGroupMembers(String groupEmailAddress)
 		throws PortalException {
 
 		try {
+			Directory directory = getDirectory();
+
 			Directory.Members members = directory.members();
 
 			Directory.Members.List list = members.list(groupEmailAddress);
@@ -313,7 +314,7 @@ public class GoogleMailGroupsUtil {
 			return list.execute();
 		}
 		catch (Exception e) {
-			throw new PortalException(e);
+			return null;
 		}
 	}
 
@@ -434,8 +435,6 @@ public class GoogleMailGroupsUtil {
 	}
 
 	public static void syncGroups() throws Exception {
-		final Directory directory = getDirectory();
-
 		ActionableDynamicQuery actionableDynamicQuery =
 			new GroupActionableDynamicQuery() {
 
@@ -459,8 +458,7 @@ public class GoogleMailGroupsUtil {
 					addGGroup(group.getDescriptiveName(), groupEmailAddress);
 				}
 
-				Members members = getGGroupMembers(
-					directory, groupEmailAddress);
+				Members members = getGGroupMembers(groupEmailAddress);
 
 				if (members.getMembers() != null) {
 					for (Member member : members.getMembers()) {
