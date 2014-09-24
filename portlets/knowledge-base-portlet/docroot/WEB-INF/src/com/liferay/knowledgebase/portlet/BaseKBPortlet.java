@@ -47,6 +47,7 @@ import com.liferay.portal.portletfilerepository.PortletFileRepositoryUtil;
 import com.liferay.portal.security.auth.PrincipalException;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.ServiceContextFactory;
+import com.liferay.portal.theme.PortletDisplay;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.util.bridges.mvc.MVCPortlet;
@@ -401,11 +402,12 @@ public abstract class BaseKBPortlet extends MVCPortlet {
 		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
+		PortletDisplay portletDisplay = themeDisplay.getPortletDisplay();
+
 		String editURL = PortalUtil.getLayoutFullURL(themeDisplay);
 
 		editURL = HttpUtil.setParameter(
-			editURL, "p_p_id",
-			(String)actionRequest.getAttribute(WebKeys.PORTLET_ID));
+			editURL, "p_p_id", portletDisplay.getId());
 		editURL = HttpUtil.setParameter(
 			editURL, namespace + "mvcPath", templatePath + "edit_article.jsp");
 		editURL = HttpUtil.setParameter(
