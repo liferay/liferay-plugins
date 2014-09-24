@@ -58,6 +58,7 @@ page import="com.liferay.portal.security.permission.ActionKeys" %><%@
 page import="com.liferay.portal.service.ServiceContextFactory" %><%@
 page import="com.liferay.portal.service.UserLocalServiceUtil" %><%@
 page import="com.liferay.portal.util.PortalUtil" %><%@
+page import="com.liferay.portlet.PortletURLFactoryUtil" %><%@
 page import="com.liferay.portlet.social.model.SocialRelationConstants" %>
 
 <%@ page import="java.text.Format" %>
@@ -65,7 +66,8 @@ page import="com.liferay.portlet.social.model.SocialRelationConstants" %>
 <%@ page import="java.util.ArrayList" %><%@
 page import="java.util.List" %>
 
-<%@ page import="javax.portlet.PortletURL" %><%@
+<%@ page import="javax.portlet.PortletRequest" %><%@
+page import="javax.portlet.PortletURL" %><%@
 page import="javax.portlet.WindowState" %>
 
 <portlet:defineObjects />

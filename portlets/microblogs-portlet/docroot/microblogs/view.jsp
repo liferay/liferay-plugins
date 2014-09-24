@@ -173,9 +173,12 @@ portletURL.setParameter("tabs1", tabs1);
 		function() {
 			Liferay.Microblogs.init(
 				{
+					baseActionURL: '<%= PortletURLFactoryUtil.create(request, portletDisplay.getId(), themeDisplay.getPlid(), PortletRequest.ACTION_PHASE) %>',
 					microblogsEntriesURL: '<portlet:renderURL windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>"><portlet:param name="mvcPath" value="/microblogs/view.jsp" /><portlet:param name="tabs1" value="timeline" /></portlet:renderURL>'
 				}
 			);
+
+			Liferay.Microblogs.updateViewCount(<%= receiverMicroblogsEntryId %>);
 		}
 	);
 

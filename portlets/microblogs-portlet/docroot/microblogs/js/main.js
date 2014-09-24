@@ -9,6 +9,7 @@ AUI().use(
 			init: function(param) {
 				var instance = this;
 
+				instance._baseActionURL = param.baseActionURL;
 				instance._microblogsEntriesURL = param.microblogsEntriesURL;
 			},
 
@@ -103,6 +104,19 @@ AUI().use(
 				instance._micrblogsEntries.io.set('uri', url);
 
 				instance._micrblogsEntries.io.start();
+			},
+
+			updateViewCount: function(microblogsEntryId) {
+				var instance = this;
+
+				var portletURL = new Liferay.PortletURL.createURL(instance._baseActionURL);
+
+				portletURL.setParameter('javax.portlet.action', 'updateMicroblogsViewCount');
+				portletURL.setParameter('microblogsEntryId', microblogsEntryId);
+
+				portletURL.setWindowState('normal');
+
+				A.io.request(portletURL.toString());
 			}
 		};
 
