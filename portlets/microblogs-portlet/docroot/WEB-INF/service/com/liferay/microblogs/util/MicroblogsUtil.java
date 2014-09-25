@@ -117,9 +117,10 @@ public class MicroblogsUtil {
 		while (matcher.find()) {
 			String result = matcher.group();
 
-			StringBuilder sb = new StringBuilder(5);
+			StringBuilder sb = new StringBuilder(6);
 
-			sb.append("<a href=\"");
+			sb.append("<span class=\"hashtag\">#</span>");
+			sb.append("<a class=\"hashtag-link\" href=\"");
 
 			PortletURL portletURL = null;
 

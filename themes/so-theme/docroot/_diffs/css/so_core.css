@@ -1549,6 +1549,20 @@ input, textarea {
 	padding-bottom: 0;
 }
 
+/* ---------- Portlet: notifications ---------- */
+
+.dockbar-user-notifications {
+	.hashtag {
+		color: #999;
+	}
+
+	.hashtag-link {
+		&, &:hover {
+			color: #333;
+		}
+	}
+}
+
 /* ---------- Portlet: private messaging ---------- */
 
 .private-messaging-portlet {

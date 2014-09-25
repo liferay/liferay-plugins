@@ -147,6 +147,16 @@ $microblogs-border-color: #EAEAEA;
 			font-weight: bold;
 		}
 
+		.hashtag {
+			color: #999;
+		}
+
+		.hashtag-link {
+			&, &:hover {
+				color: #333;
+			}
+		}
+
 		.footer {
 			color: #CCC;
 			font-size: 0.9em;
