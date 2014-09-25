@@ -1557,8 +1557,8 @@ input, textarea {
 	}
 
 	.hashtag-link {
-		&, &:hover {
-			color: #333;
+		&, &:active, &:hover {
+			color: inherit;
 		}
 	}
 }

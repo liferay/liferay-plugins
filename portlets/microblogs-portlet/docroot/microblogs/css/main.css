@@ -150,8 +150,8 @@ $microblogs-border-color: #EAEAEA;
 		}
 
 		.hashtag-link {
-			&, &:hover {
-				color: #333;
+			&, &:active, &:hover {
+				color: inherit;
 			}
 		}
 
