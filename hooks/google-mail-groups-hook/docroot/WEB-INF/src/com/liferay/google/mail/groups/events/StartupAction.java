@@ -41,7 +41,7 @@ public class StartupAction extends SimpleAction {
 	@Override
 	public void run(String[] ids) throws ActionException {
 		try {
-			if ((PortletPropsValues.EMAIL_LARGE_GROUP_SIZE == 0) ||
+			if ((PortletPropsValues.EMAIL_LARGE_GROUP_SIZE < 0) ||
 				Validator.isNull(PortletPropsValues.EMAIL_LARGE_GROUP_ROLE)) {
 
 				return;
