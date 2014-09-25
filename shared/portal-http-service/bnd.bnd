@@ -1,6 +1,7 @@
 Bundle-Activator: com.liferay.portal.http.service.internal.HttpServiceBundleActivator
 Bundle-Name: Liferay Portal HTTP Service
-Bundle-Version: ${plugin.full.version}
+Bundle-SymbolicName: com.liferay.portal.http.service
+Bundle-Version: 1.0.1
 Export-Package:\
 	com.liferay.portal.http.service.servlet,\
 	com.liferay.portal.http.service.ws.axis
