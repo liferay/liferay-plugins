@@ -175,8 +175,8 @@ public class GoogleMailGroupsUtil {
 
 			ExpandoValueLocalServiceUtil.addValue(
 				group.getCompanyId(), Group.class.getName(),
-				ExpandoTableConstants.DEFAULT_TABLE_NAME, "googleMailGroupsLargeGroup",
-				group.getGroupId(), true);
+				ExpandoTableConstants.DEFAULT_TABLE_NAME,
+				"googleMailGroupsLargeGroup", group.getGroupId(), true);
 
 			whoCanPostMessage = "ALL_MANAGERS_CAN_POST";
 
@@ -187,8 +187,8 @@ public class GoogleMailGroupsUtil {
 
 			ExpandoValue expandoValue = ExpandoValueLocalServiceUtil.getValue(
 				group.getCompanyId(), Group.class.getName(),
-				ExpandoTableConstants.DEFAULT_TABLE_NAME, "googleMailGroupsLargeGroup",
-				group.getGroupId());
+				ExpandoTableConstants.DEFAULT_TABLE_NAME,
+				"googleMailGroupsLargeGroup", group.getGroupId());
 
 			expandoValue.setBoolean(false);
 
