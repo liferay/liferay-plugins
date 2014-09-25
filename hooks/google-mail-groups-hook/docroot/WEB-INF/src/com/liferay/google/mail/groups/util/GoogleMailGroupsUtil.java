@@ -151,7 +151,7 @@ public class GoogleMailGroupsUtil {
 	}
 
 	public static void checkLargeGroup(Group group) throws PortalException {
-		if ((PortletPropsValues.EMAIL_LARGE_GROUP_SIZE == 0) ||
+		if ((PortletPropsValues.EMAIL_LARGE_GROUP_SIZE < 0) ||
 			Validator.isNull(PortletPropsValues.EMAIL_LARGE_GROUP_ROLE)) {
 
 			return;
