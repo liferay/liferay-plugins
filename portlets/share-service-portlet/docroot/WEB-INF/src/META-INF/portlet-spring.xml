@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" default-destroy-method="destroy" default-init-method="afterPropertiesSet" xsi:schemaLocation=" http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<bean id="com.liferay.share.service.EntitySocialFeedLocalService" class="com.liferay.share.service.impl.EntitySocialFeedLocalServiceImpl" />
+	<bean id="com.liferay.share.service.EntitySocialFeedService" class="com.liferay.share.service.impl.EntitySocialFeedServiceImpl" />
+	<bean id="com.liferay.share.service.persistence.EntitySocialFeedPersistence" class="com.liferay.share.service.persistence.impl.EntitySocialFeedPersistenceImpl" parent="basePersistence" />
+</beans>
