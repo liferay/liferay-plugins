@@ -20,6 +20,7 @@ package com.liferay.microblogs.microblogs.notifications;
 import com.liferay.microblogs.model.MicroblogsEntry;
 import com.liferay.microblogs.model.MicroblogsEntryConstants;
 import com.liferay.microblogs.service.MicroblogsEntryLocalServiceUtil;
+import com.liferay.microblogs.util.MicroblogsUtil;
 import com.liferay.microblogs.util.PortletKeys;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
@@ -93,12 +94,13 @@ public class MicroblogsUserNotificationHandler
 			}
 		}
 
+		String body = MicroblogsUtil.getTaggedContent(
+			StringUtil.shorten(microblogsEntry.getContent(), 50),
+			serviceContext);
+
 		return StringUtil.replace(
 			getBodyTemplate(), new String[] {"[$BODY$]", "[$TITLE$]"},
-			new String[] {
-				HtmlUtil.escape(
-					StringUtil.shorten(microblogsEntry.getContent(), 50)), title
-			});
+			new String[] {body, title});
 	}
 
 	@Override
