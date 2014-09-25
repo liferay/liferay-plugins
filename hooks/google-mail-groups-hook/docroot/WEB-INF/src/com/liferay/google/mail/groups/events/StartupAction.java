@@ -41,17 +41,15 @@ public class StartupAction extends SimpleAction {
 	@Override
 	public void run(String[] ids) throws ActionException {
 		try {
-			if ((PortletPropsValues.EMAIL_LARGE_GROUP_SIZE < 0) ||
-				Validator.isNull(PortletPropsValues.EMAIL_LARGE_GROUP_ROLE)) {
+			if ((PortletPropsValues.EMAIL_LARGE_GROUP_SIZE >= 0) &&
+				!Validator.isNull(PortletPropsValues.EMAIL_LARGE_GROUP_ROLE)) {
 
-				return;
-			}
+				for (String id : ids) {
+					long companyId = Long.valueOf(id);
 
-			for (String id : ids) {
-				long companyId = Long.valueOf(id);
-
-				setupExpando(companyId);
-				setupRole(companyId);
+					setupExpando(companyId);
+					setupRole(companyId);
+				}
 			}
 
 			if (!PortletPropsValues.SYNC_ON_STARTUP) {
