@@ -90,6 +90,17 @@ public class MicroblogsUtil {
 			MicroblogsEntry microblogsEntry, ServiceContext serviceContext)
 		throws PortalException {
 
+		String content = replaceTags(microblogsEntry, serviceContext);
+
+		content = replaceUsers(content, serviceContext);
+
+		return content;
+	}
+
+	public static String replaceTags(
+			MicroblogsEntry microblogsEntry, ServiceContext serviceContext)
+		throws PortalException, SystemException {
+
 		String content = HtmlUtil.escape(microblogsEntry.getContent());
 
 		ThemeDisplay themeDisplay = serviceContext.getThemeDisplay();
@@ -155,7 +166,14 @@ public class MicroblogsUtil {
 			content = StringUtil.replace(content, result, tagLink);
 		}
 
-		matcher = _pattern2.matcher(content);
+		return content;
+	}
+
+	public static String replaceUsers(
+			String content, ServiceContext serviceContext)
+		throws PortalException, SystemException {
+
+		Matcher matcher = _pattern2.matcher(content);
 
 		while (matcher.find()) {
 			String result = matcher.group();
@@ -171,8 +189,10 @@ public class MicroblogsUtil {
 				assetTagScreenName = assetTagScreenName.replace(
 					"]", StringPool.BLANK);
 
+				ThemeDisplay themeDisplay = serviceContext.getThemeDisplay();
+
 				User assetTagUser = UserLocalServiceUtil.getUserByScreenName(
-					microblogsEntry.getCompanyId(), assetTagScreenName);
+					themeDisplay.getCompanyId(), assetTagScreenName);
 
 				sb.append(assetTagUser.getDisplayURL(themeDisplay));
 
