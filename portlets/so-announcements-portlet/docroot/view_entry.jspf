@@ -55,7 +55,7 @@ if (entry.getPriority() > 0) {
 
 			<c:choose>
 				<c:when test="<%= entryUser == null %>">
-					<img alt="<%= HtmlUtil.escapeAttribute(entry.getUserName()) %>" src="<%= UserConstants.getPortraitURL(themeDisplay.getPathImage(), true, 0, null) %>" />
+					<img alt="<%= HtmlUtil.escapeAttribute(entry.getUserName()) %>" src="<%= UserConstants.getPortraitURL(themeDisplay.getPathImage(), true, 0) %>" />
 				</c:when>
 				<c:otherwise>
 					<a href="<%= entryUser.getDisplayURL(themeDisplay) %>">
