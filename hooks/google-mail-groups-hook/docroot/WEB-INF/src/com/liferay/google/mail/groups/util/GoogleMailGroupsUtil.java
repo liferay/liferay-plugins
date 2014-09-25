@@ -27,6 +27,7 @@ import com.google.api.services.groupssettings.model.Groups;
 import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.PropsKeys;
@@ -85,7 +86,7 @@ public class GoogleMailGroupsUtil {
 	}
 
 	public static void addGGroupManagers(List<User> users)
-		throws PortalException {
+		throws PortalException, SystemException {
 
 		for (User user : users) {
 			List<Group> groups = GroupLocalServiceUtil.getUserGroups(
@@ -149,7 +150,9 @@ public class GoogleMailGroupsUtil {
 		}
 	}
 
-	public static void checkLargeGroup(Group group) throws PortalException {
+	public static void checkLargeGroup(Group group)
+		throws PortalException, SystemException {
+
 		if ((PortletPropsValues.EMAIL_LARGE_GROUP_SIZE < 0) ||
 			Validator.isNull(PortletPropsValues.EMAIL_LARGE_GROUP_ROLE)) {
 
@@ -316,7 +319,7 @@ public class GoogleMailGroupsUtil {
 	}
 
 	public static String getGroupEmailAddress(Group group)
-		throws PortalException {
+		throws PortalException, SystemException {
 
 		StringBundler sb = new StringBundler(4);
 
@@ -367,7 +370,9 @@ public class GoogleMailGroupsUtil {
 		}
 	}
 
-	public static String getUserEmailAddress(User user) throws PortalException {
+	public static String getUserEmailAddress(User user)
+		throws PortalException, SystemException {
+
 		return user.getUserId() + StringPool.AT + user.getCompanyMx();
 	}
 
@@ -389,7 +394,7 @@ public class GoogleMailGroupsUtil {
 	}
 
 	public static void removeGGroupManagers(List<User> users)
-		throws PortalException {
+		throws PortalException, SystemException {
 
 		for (User user : users) {
 			if (RoleLocalServiceUtil.hasUserRole(
@@ -435,7 +440,9 @@ public class GoogleMailGroupsUtil {
 			new GroupActionableDynamicQuery() {
 
 			@Override
-			protected void performAction(Object object) throws PortalException {
+			protected void performAction(Object object)
+				throws PortalException, SystemException {
+
 				Group group = (Group)object;
 
 				if (!isSync(group)) {
@@ -573,7 +580,9 @@ public class GoogleMailGroupsUtil {
 		return _googleCredential;
 	}
 
-	protected static void updateGGroupManagers(Group group) {
+	protected static void updateGGroupManagers(Group group)
+		throws SystemException {
+
 		Role role = RoleLocalServiceUtil.fetchRole(
 			group.getCompanyId(), PortletPropsValues.EMAIL_LARGE_GROUP_ROLE);
 
