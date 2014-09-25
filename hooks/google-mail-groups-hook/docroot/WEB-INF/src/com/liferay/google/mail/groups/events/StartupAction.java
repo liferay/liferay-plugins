@@ -42,7 +42,8 @@ public class StartupAction extends SimpleAction {
 	public void run(String[] ids) throws ActionException {
 		try {
 			if ((PortletPropsValues.EMAIL_LARGE_GROUP_SIZE >= 0) &&
-				!Validator.isNull(PortletPropsValues.EMAIL_LARGE_GROUP_ROLE)) {
+				Validator.isNotNull(
+					PortletPropsValues.EMAIL_LARGE_GROUP_ROLE)) {
 
 				for (String id : ids) {
 					long companyId = Long.valueOf(id);
