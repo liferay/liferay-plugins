@@ -14,12 +14,7 @@
 
 package com.liferay.portal.http.service.internal.http;
 
-import com.liferay.portal.http.service.internal.servlet.BundleServletContext;
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
-
 import org.osgi.framework.Bundle;
-import org.osgi.framework.InvalidSyntaxException;
 import org.osgi.framework.ServiceFactory;
 import org.osgi.framework.ServiceRegistration;
 import org.osgi.service.http.HttpService;
@@ -38,27 +33,7 @@ public class HttpServiceFactory implements ServiceFactory<HttpService> {
 	public HttpService getService(
 		Bundle bundle, ServiceRegistration<HttpService> serviceRegistration) {
 
-		try {
-			BundleServletContext bundleServletContext =
-				_httpSupport.getWABBundleServletContext(bundle);
-
-			if (bundleServletContext != null) {
-				return new HttpServiceWrapper(bundleServletContext);
-			}
-
-			bundleServletContext = _httpSupport.getNonWABBundleServletContext(
-				bundle);
-
-			return new NonWABHttpServiceWrapper(bundleServletContext);
-		}
-		catch (ClassCastException cce) {
-			_log.error(cce, cce);
-
-			return null;
-		}
-		catch (InvalidSyntaxException ise) {
-			throw new IllegalStateException(ise);
-		}
+		return _httpSupport.getHttpService(bundle);
 	}
 
 	@Override
@@ -66,12 +41,8 @@ public class HttpServiceFactory implements ServiceFactory<HttpService> {
 		Bundle bundle, ServiceRegistration<HttpService> serviceRegistration,
 		HttpService httpService) {
 
-		HttpServiceWrapper httpServiceWrapper = (HttpServiceWrapper)httpService;
-
-		httpServiceWrapper.close();
+		_httpSupport.ungetHttpService(bundle);
 	}
-
-	private static Log _log = LogFactoryUtil.getLog(HttpServiceFactory.class);
 
 	private HttpSupport _httpSupport;
 

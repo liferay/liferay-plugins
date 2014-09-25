@@ -17,9 +17,9 @@ package com.liferay.portal.http.service.servlet;
 import com.liferay.portal.kernel.servlet.HttpHeaders;
 import com.liferay.portal.kernel.servlet.ServletResponseUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.util.JavaConstants;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
-import com.liferay.portal.util.PortalUtil;
 import com.liferay.portal.webserver.WebServerServlet;
 
 import java.io.IOException;
@@ -59,9 +59,9 @@ public class ResourceServlet extends WebServerServlet {
 			HttpServletRequest request, HttpServletResponse response)
 		throws IOException, ServletException {
 
-		try {
-			String requestURI = getRequestURI(request);
+		String requestURI = getRequestURI(request);
 
+		try {
 			int aliasIndex = requestURI.indexOf(_alias);
 
 			if (aliasIndex == 0) {
@@ -137,8 +137,11 @@ public class ResourceServlet extends WebServerServlet {
 			}
 		}
 		catch (Exception e) {
-			PortalUtil.sendError(
-				HttpServletResponse.SC_NOT_FOUND, e, request, response);
+			request.setAttribute(
+				JavaConstants.JAVAX_SERVLET_ERROR_EXCEPTION, e);
+
+			response.sendError(
+				HttpServletResponse.SC_INTERNAL_SERVER_ERROR, e.getMessage());
 		}
 	}
 

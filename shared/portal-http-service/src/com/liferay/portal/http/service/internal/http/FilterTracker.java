@@ -16,6 +16,7 @@ package com.liferay.portal.http.service.internal.http;
 
 import com.liferay.portal.http.service.internal.servlet.BundleServletContext;
 import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 
 import java.util.Map;
@@ -62,6 +63,10 @@ public class FilterTracker
 
 		if (Validator.isNull(urlPattern)) {
 			return;
+		}
+
+		if (!urlPattern.startsWith(StringPool.SLASH)) {
+			urlPattern = StringPool.SLASH.concat(urlPattern);
 		}
 
 		bundleServletContext.registerFilter(

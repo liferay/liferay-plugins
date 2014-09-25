@@ -50,6 +50,10 @@ public class HttpServiceWrapper implements ExtendedHttpService, HttpService {
 		return bundleServletContext.getHttpContext();
 	}
 
+	public BundleServletContext getBundleServletContext() {
+		return bundleServletContext;
+	}
+
 	@Override
 	public void registerFilter(
 			String filterName, List<String> urlPatterns, Filter filter,

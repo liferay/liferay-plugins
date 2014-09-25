@@ -88,8 +88,11 @@ public abstract class BaseServiceTrackerCustomizer<S, T>
 		Bundle bundle = serviceReference.getBundle();
 
 		try {
+			HttpServiceWrapper httpServiceWrapper = httpSupport.getHttpService(
+				bundle);
+
 			BundleServletContext bundleServletContext =
-				httpSupport.getBundleServletContext(bundle);
+				httpServiceWrapper.getBundleServletContext();
 
 			if (action != ACTION_ADDING) {
 				unregisterService(bundleServletContext, serviceReference);
