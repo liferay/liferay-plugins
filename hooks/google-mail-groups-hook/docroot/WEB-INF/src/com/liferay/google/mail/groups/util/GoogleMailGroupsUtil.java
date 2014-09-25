@@ -97,7 +97,6 @@ public class GoogleMailGroupsUtil {
 				}
 
 				String groupEmailAddress = getGroupEmailAddress(group);
-
 				String userEmailAddress = getUserEmailAddress(user);
 
 				Member member = getGGroupMember(
@@ -409,7 +408,6 @@ public class GoogleMailGroupsUtil {
 				}
 
 				String groupEmailAddress = getGroupEmailAddress(group);
-
 				String userEmailAddress = getUserEmailAddress(user);
 
 				Member member = getGGroupMember(
