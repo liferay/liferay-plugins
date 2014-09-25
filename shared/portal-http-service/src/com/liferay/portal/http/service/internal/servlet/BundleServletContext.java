@@ -930,7 +930,6 @@ public class BundleServletContext
 		while (iterator.hasNext()) {
 			Map.Entry<String, Servlet> entry = iterator.next();
 
-			String alias = entry.getKey();
 			Servlet curServlet = entry.getValue();
 
 			if (curServlet != servlet) {
@@ -947,6 +946,8 @@ public class BundleServletContext
 			if (Validator.isNotNull(servletContextName)) {
 				sb.append(servletContextName);
 			}
+
+			String alias = entry.getKey();
 
 			sb.append(alias);
 
@@ -973,17 +974,17 @@ public class BundleServletContext
 
 		String dispatcher = parameters.get("dispatcher");
 
-		if (DispatcherType.FORWARD.name().equals(dispatcher)) {
-			return DispatcherType.FORWARD;
-		}
-		else if (DispatcherType.INCLUDE.name().equals(dispatcher)) {
-			return DispatcherType.INCLUDE;
+		if (DispatcherType.ASYNC.name().equals(dispatcher)) {
+			return DispatcherType.ASYNC;
 		}
 		else if (DispatcherType.ERROR.name().equals(dispatcher)) {
 			return DispatcherType.ERROR;
 		}
-		else if (DispatcherType.ASYNC.name().equals(dispatcher)) {
-			return DispatcherType.ASYNC;
+		else if (DispatcherType.FORWARD.name().equals(dispatcher)) {
+			return DispatcherType.FORWARD;
+		}
+		else if (DispatcherType.INCLUDE.name().equals(dispatcher)) {
+			return DispatcherType.INCLUDE;
 		}
 
 		return DispatcherType.REQUEST;

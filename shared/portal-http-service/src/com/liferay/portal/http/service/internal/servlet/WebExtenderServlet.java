@@ -140,7 +140,7 @@ public class WebExtenderServlet extends PortletServlet {
 		if (servletContext == null) {
 			response.sendError(
 				HttpServletResponse.SC_NOT_FOUND,
-					"No servlet or resource mapped to " + requestURI);
+				"No servlet or resource mapped to " + requestURI);
 
 			return;
 		}

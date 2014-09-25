@@ -43,7 +43,6 @@ public class HttpSupport {
 
 		_bundleContext = bundleContext;
 		_webExtenderServlet = webExtenderServlet;
-		_serviceFactoryCache = new HashMap<Bundle, HttpServiceWrapper>();
 	}
 
 	public BundleContext getBundleContext() {
@@ -108,7 +107,7 @@ public class HttpSupport {
 	}
 
 	public HttpServiceWrapper getHttpService(Bundle bundle) {
-		HttpServiceWrapper httpServiceWrapper = _serviceFactoryCache.get(
+		HttpServiceWrapper httpServiceWrapper = _httpServiceWrappers.get(
 			bundle);
 
 		if (httpServiceWrapper != null) {
@@ -117,7 +116,7 @@ public class HttpSupport {
 
 		httpServiceWrapper = doGetService(bundle);
 
-		_serviceFactoryCache.put(bundle, httpServiceWrapper);
+		_httpServiceWrappers.put(bundle, httpServiceWrapper);
 
 		return httpServiceWrapper;
 	}
@@ -149,7 +148,7 @@ public class HttpSupport {
 	}
 
 	public void ungetHttpService(Bundle bundle) {
-		HttpServiceWrapper httpServiceWrapper = _serviceFactoryCache.get(
+		HttpServiceWrapper httpServiceWrapper = _httpServiceWrappers.get(
 			bundle);
 
 		if (httpServiceWrapper == null) {
@@ -161,7 +160,7 @@ public class HttpSupport {
 
 		bundleServletContext.close();
 
-		_serviceFactoryCache.remove(bundle);
+		_httpServiceWrappers.remove(bundle);
 	}
 
 	protected HttpServiceWrapper doGetService(Bundle bundle) {
@@ -194,7 +193,8 @@ public class HttpSupport {
 	}
 
 	private BundleContext _bundleContext;
-	private Map<Bundle, HttpServiceWrapper> _serviceFactoryCache;
+	private Map<Bundle, HttpServiceWrapper> _httpServiceWrappers =
+		new HashMap<Bundle, HttpServiceWrapper>();
 	private WebExtenderServlet _webExtenderServlet;
 
 }

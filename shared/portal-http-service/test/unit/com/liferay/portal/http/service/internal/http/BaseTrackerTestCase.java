@@ -85,12 +85,6 @@ public abstract class BaseTrackerTestCase<S> extends PowerMockito {
 		);
 
 		when(
-			httpSupport.getHttpService(bundle)
-		).thenReturn(
-			httpServiceWrapper
-		);
-
-		when(
 			httpServiceWrapper.getBundleServletContext()
 		).thenReturn(
 			bundleServletContext
@@ -100,6 +94,12 @@ public abstract class BaseTrackerTestCase<S> extends PowerMockito {
 			httpSupport.getHttpContext(Mockito.anyString())
 		).thenReturn(
 			httpContext
+		);
+
+		when(
+			httpSupport.getHttpService(bundle)
+		).thenReturn(
+			httpServiceWrapper
 		);
 
 		when(
