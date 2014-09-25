@@ -175,7 +175,7 @@ public class GoogleMailGroupsUtil {
 
 			ExpandoValueLocalServiceUtil.addValue(
 				group.getCompanyId(), Group.class.getName(),
-				ExpandoTableConstants.DEFAULT_TABLE_NAME, "largeGroup",
+				ExpandoTableConstants.DEFAULT_TABLE_NAME, "googleMailGroupsLargeGroup",
 				group.getGroupId(), true);
 
 			whoCanPostMessage = "ALL_MANAGERS_CAN_POST";
@@ -187,7 +187,7 @@ public class GoogleMailGroupsUtil {
 
 			ExpandoValue expandoValue = ExpandoValueLocalServiceUtil.getValue(
 				group.getCompanyId(), Group.class.getName(),
-				ExpandoTableConstants.DEFAULT_TABLE_NAME, "largeGroup",
+				ExpandoTableConstants.DEFAULT_TABLE_NAME, "googleMailGroupsLargeGroup",
 				group.getGroupId());
 
 			expandoValue.setBoolean(false);
@@ -375,7 +375,7 @@ public class GoogleMailGroupsUtil {
 		ExpandoBridge expandoBridge = group.getExpandoBridge();
 
 		return GetterUtil.getBoolean(
-			expandoBridge.getAttribute("largeGroup", false));
+			expandoBridge.getAttribute("googleMailGroupsLargeGroup", false));
 	}
 
 	public static boolean isSync(Group group) {
