@@ -14,6 +14,7 @@
 
 package com.liferay.alloy.mvc;
 
+import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.notifications.NotificationEvent;
@@ -30,7 +31,7 @@ public abstract class AlloyNotificationEventHelper {
 
 	public abstract void addUserNotificationEvents(
 			HttpServletRequest request, String controllerPath,
-			String actionPath)
+			String actionPath, JSONArray payload)
 		throws Exception;
 
 	protected void addUserNotificationEvent(
