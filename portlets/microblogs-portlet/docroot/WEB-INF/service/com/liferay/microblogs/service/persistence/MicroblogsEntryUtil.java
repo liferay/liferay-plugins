@@ -14,6 +14,8 @@
 
 package com.liferay.microblogs.service.persistence;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.microblogs.model.MicroblogsEntry;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
@@ -36,6 +38,7 @@ import java.util.List;
  * @see MicroblogsEntryPersistenceImpl
  * @generated
  */
+@ProviderType
 public class MicroblogsEntryUtil {
 	/*
 	 * NOTE FOR DEVELOPERS:

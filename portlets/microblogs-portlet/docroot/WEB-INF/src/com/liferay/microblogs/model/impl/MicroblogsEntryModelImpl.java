@@ -14,6 +14,8 @@
 
 package com.liferay.microblogs.model.impl;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.microblogs.model.MicroblogsEntry;
 import com.liferay.microblogs.model.MicroblogsEntryModel;
 import com.liferay.microblogs.model.MicroblogsEntrySoap;
@@ -59,6 +61,7 @@ import java.util.Map;
  * @generated
  */
 @JSON(strict = true)
+@ProviderType
 public class MicroblogsEntryModelImpl extends BaseModelImpl<MicroblogsEntry>
 	implements MicroblogsEntryModel {
 	/*
@@ -96,13 +99,13 @@ public class MicroblogsEntryModelImpl extends BaseModelImpl<MicroblogsEntry>
 	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.column.bitmask.enabled.com.liferay.microblogs.model.MicroblogsEntry"),
 			true);
-	public static long COMPANYID_COLUMN_BITMASK = 1L;
-	public static long CREATEDATE_COLUMN_BITMASK = 2L;
-	public static long RECEIVERMICROBLOGSENTRYID_COLUMN_BITMASK = 4L;
-	public static long RECEIVERUSERID_COLUMN_BITMASK = 8L;
-	public static long SOCIALRELATIONTYPE_COLUMN_BITMASK = 16L;
-	public static long TYPE_COLUMN_BITMASK = 32L;
-	public static long USERID_COLUMN_BITMASK = 64L;
+	public static final long COMPANYID_COLUMN_BITMASK = 1L;
+	public static final long CREATEDATE_COLUMN_BITMASK = 2L;
+	public static final long RECEIVERMICROBLOGSENTRYID_COLUMN_BITMASK = 4L;
+	public static final long RECEIVERUSERID_COLUMN_BITMASK = 8L;
+	public static final long SOCIALRELATIONTYPE_COLUMN_BITMASK = 16L;
+	public static final long TYPE_COLUMN_BITMASK = 32L;
+	public static final long USERID_COLUMN_BITMASK = 64L;
 
 	/**
 	 * Converts the soap model instance into a normal model instance.
@@ -806,8 +809,8 @@ public class MicroblogsEntryModelImpl extends BaseModelImpl<MicroblogsEntry>
 		return sb.toString();
 	}
 
-	private static ClassLoader _classLoader = MicroblogsEntry.class.getClassLoader();
-	private static Class<?>[] _escapedModelInterfaces = new Class[] {
+	private static final ClassLoader _classLoader = MicroblogsEntry.class.getClassLoader();
+	private static final Class<?>[] _escapedModelInterfaces = new Class[] {
 			MicroblogsEntry.class
 		};
 	private long _microblogsEntryId;

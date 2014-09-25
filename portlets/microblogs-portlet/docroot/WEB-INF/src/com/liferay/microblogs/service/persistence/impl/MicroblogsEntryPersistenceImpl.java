@@ -14,6 +14,8 @@
 
 package com.liferay.microblogs.service.persistence.impl;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.microblogs.NoSuchEntryException;
 import com.liferay.microblogs.model.MicroblogsEntry;
 import com.liferay.microblogs.model.impl.MicroblogsEntryImpl;
@@ -68,6 +70,7 @@ import java.util.Set;
  * @see MicroblogsEntryUtil
  * @generated
  */
+@ProviderType
 public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<MicroblogsEntry>
 	implements MicroblogsEntryPersistence {
 	/*
@@ -6342,11 +6345,11 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No MicroblogsEntry exists with the key {";
 	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = GetterUtil.getBoolean(PropsUtil.get(
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
-	private static Log _log = LogFactoryUtil.getLog(MicroblogsEntryPersistenceImpl.class);
-	private static Set<String> _badColumnNames = SetUtil.fromArray(new String[] {
+	private static final Log _log = LogFactoryUtil.getLog(MicroblogsEntryPersistenceImpl.class);
+	private static final Set<String> _badColumnNames = SetUtil.fromArray(new String[] {
 				"type"
 			});
-	private static MicroblogsEntry _nullMicroblogsEntry = new MicroblogsEntryImpl() {
+	private static final MicroblogsEntry _nullMicroblogsEntry = new MicroblogsEntryImpl() {
 			@Override
 			public Object clone() {
 				return this;
@@ -6358,7 +6361,8 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 			}
 		};
 
-	private static CacheModel<MicroblogsEntry> _nullMicroblogsEntryCacheModel = new CacheModel<MicroblogsEntry>() {
+	private static final CacheModel<MicroblogsEntry> _nullMicroblogsEntryCacheModel =
+		new CacheModel<MicroblogsEntry>() {
 			@Override
 			public MicroblogsEntry toEntityModel() {
 				return _nullMicroblogsEntry;

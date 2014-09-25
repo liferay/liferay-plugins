@@ -14,6 +14,8 @@
 
 package com.liferay.microblogs.model;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.ModelWrapper;
 
@@ -30,6 +32,7 @@ import java.util.Map;
  * @see MicroblogsEntry
  * @generated
  */
+@ProviderType
 public class MicroblogsEntryWrapper implements MicroblogsEntry,
 	ModelWrapper<MicroblogsEntry> {
 	public MicroblogsEntryWrapper(MicroblogsEntry microblogsEntry) {
@@ -569,5 +572,5 @@ public class MicroblogsEntryWrapper implements MicroblogsEntry,
 		_microblogsEntry.resetOriginalValues();
 	}
 
-	private MicroblogsEntry _microblogsEntry;
+	private final MicroblogsEntry _microblogsEntry;
 }

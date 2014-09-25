@@ -14,12 +14,15 @@
 
 package com.liferay.microblogs.service;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.service.InvokableService;
 
 /**
  * @author Brian Wing Shun Chan
  * @generated
  */
+@ProviderType
 public class MicroblogsEntryServiceClp implements MicroblogsEntryService {
 	public MicroblogsEntryServiceClp(InvokableService invokableService) {
 		_invokableService = invokableService;

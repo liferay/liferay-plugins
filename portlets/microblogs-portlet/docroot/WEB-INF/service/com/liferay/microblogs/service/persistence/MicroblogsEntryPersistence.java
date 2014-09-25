@@ -14,6 +14,8 @@
 
 package com.liferay.microblogs.service.persistence;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.microblogs.model.MicroblogsEntry;
 
 import com.liferay.portal.service.persistence.BasePersistence;
@@ -30,6 +32,7 @@ import com.liferay.portal.service.persistence.BasePersistence;
  * @see MicroblogsEntryUtil
  * @generated
  */
+@ProviderType
 public interface MicroblogsEntryPersistence extends BasePersistence<MicroblogsEntry> {
 	/*
 	 * NOTE FOR DEVELOPERS:

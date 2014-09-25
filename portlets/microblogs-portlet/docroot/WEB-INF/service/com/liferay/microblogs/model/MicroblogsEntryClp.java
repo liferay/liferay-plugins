@@ -14,6 +14,8 @@
 
 package com.liferay.microblogs.model;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.microblogs.service.ClpSerializer;
 import com.liferay.microblogs.service.MicroblogsEntryLocalServiceUtil;
 
@@ -40,6 +42,7 @@ import java.util.Map;
 /**
  * @author Brian Wing Shun Chan
  */
+@ProviderType
 public class MicroblogsEntryClp extends BaseModelImpl<MicroblogsEntry>
 	implements MicroblogsEntry {
 	public MicroblogsEntryClp() {

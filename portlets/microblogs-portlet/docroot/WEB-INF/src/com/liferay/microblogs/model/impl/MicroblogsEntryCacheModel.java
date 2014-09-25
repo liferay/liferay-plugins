@@ -14,6 +14,8 @@
 
 package com.liferay.microblogs.model.impl;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.microblogs.model.MicroblogsEntry;
 
 import com.liferay.portal.kernel.util.StringBundler;
@@ -34,6 +36,7 @@ import java.util.Date;
  * @see MicroblogsEntry
  * @generated
  */
+@ProviderType
 public class MicroblogsEntryCacheModel implements CacheModel<MicroblogsEntry>,
 	Externalizable {
 	@Override

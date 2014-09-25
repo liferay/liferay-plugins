@@ -14,6 +14,8 @@
 
 package com.liferay.microblogs.service.base;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.microblogs.model.MicroblogsEntry;
 import com.liferay.microblogs.service.MicroblogsEntryLocalService;
 import com.liferay.microblogs.service.persistence.MicroblogsEntryFinder;
@@ -60,6 +62,7 @@ import javax.sql.DataSource;
  * @see com.liferay.microblogs.service.MicroblogsEntryLocalServiceUtil
  * @generated
  */
+@ProviderType
 public abstract class MicroblogsEntryLocalServiceBaseImpl
 	extends BaseLocalServiceImpl implements MicroblogsEntryLocalService,
 		IdentifiableBean {

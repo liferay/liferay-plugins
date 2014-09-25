@@ -14,6 +14,8 @@
 
 package com.liferay.microblogs.model;
 
+import aQute.bnd.annotation.ProviderType;
+
 import java.io.Serializable;
 
 import java.util.ArrayList;
@@ -27,6 +29,7 @@ import java.util.List;
  * @see com.liferay.microblogs.service.http.MicroblogsEntryServiceSoap
  * @generated
  */
+@ProviderType
 public class MicroblogsEntrySoap implements Serializable {
 	public static MicroblogsEntrySoap toSoapModel(MicroblogsEntry model) {
 		MicroblogsEntrySoap soapModel = new MicroblogsEntrySoap();

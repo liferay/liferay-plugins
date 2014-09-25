@@ -14,6 +14,8 @@
 
 package com.liferay.microblogs.service.base;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.microblogs.service.MicroblogsEntryLocalServiceUtil;
 
 import java.util.Arrays;
@@ -22,6 +24,7 @@ import java.util.Arrays;
  * @author Brian Wing Shun Chan
  * @generated
  */
+@ProviderType
 public class MicroblogsEntryLocalServiceClpInvoker {
 	public MicroblogsEntryLocalServiceClpInvoker() {
 		_methodName0 = "addMicroblogsEntry";

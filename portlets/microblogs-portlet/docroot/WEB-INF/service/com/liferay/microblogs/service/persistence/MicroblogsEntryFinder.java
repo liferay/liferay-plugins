@@ -14,9 +14,12 @@
 
 package com.liferay.microblogs.service.persistence;
 
+import aQute.bnd.annotation.ProviderType;
+
 /**
  * @author Brian Wing Shun Chan
  */
+@ProviderType
 public interface MicroblogsEntryFinder {
 	public int countByUserId(long userId);
 

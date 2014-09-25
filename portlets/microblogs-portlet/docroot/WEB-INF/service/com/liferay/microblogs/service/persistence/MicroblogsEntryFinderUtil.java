@@ -14,12 +14,15 @@
 
 package com.liferay.microblogs.service.persistence;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
 
 /**
  * @author Brian Wing Shun Chan
  */
+@ProviderType
 public class MicroblogsEntryFinderUtil {
 	public static int countByUserId(long userId) {
 		return getFinder().countByUserId(userId);
