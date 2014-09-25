@@ -90,7 +90,14 @@ public class MicroblogsUtil {
 			MicroblogsEntry microblogsEntry, ServiceContext serviceContext)
 		throws PortalException {
 
-		String content = replaceTags(microblogsEntry, serviceContext);
+		return getTaggedContent(microblogsEntry.getContent(), serviceContext);
+	}
+
+	public static String getTaggedContent(
+			String content, ServiceContext serviceContext)
+		throws PortalException, SystemException {
+
+		content = replaceTags(content, serviceContext);
 
 		content = replaceUsers(content, serviceContext);
 
@@ -98,14 +105,14 @@ public class MicroblogsUtil {
 	}
 
 	public static String replaceTags(
-			MicroblogsEntry microblogsEntry, ServiceContext serviceContext)
+			String content, ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
-		String content = HtmlUtil.escape(microblogsEntry.getContent());
+		String escapedContent = HtmlUtil.escape(content);
 
 		ThemeDisplay themeDisplay = serviceContext.getThemeDisplay();
 
-		Matcher matcher = _pattern1.matcher(microblogsEntry.getContent());
+		Matcher matcher = _pattern1.matcher(content);
 
 		while (matcher.find()) {
 			String result = matcher.group();
@@ -163,10 +170,11 @@ public class MicroblogsUtil {
 
 			String tagLink = sb.toString();
 
-			content = StringUtil.replace(content, result, tagLink);
+			escapedContent = StringUtil.replace(
+				escapedContent, result, tagLink);
 		}
 
-		return content;
+		return escapedContent;
 	}
 
 	public static String replaceUsers(
