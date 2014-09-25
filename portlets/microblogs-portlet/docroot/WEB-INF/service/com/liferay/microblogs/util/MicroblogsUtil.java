@@ -95,7 +95,7 @@ public class MicroblogsUtil {
 
 	public static String getTaggedContent(
 			String content, ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		content = replaceTags(content, serviceContext);
 
@@ -106,7 +106,7 @@ public class MicroblogsUtil {
 
 	public static String replaceTags(
 			String content, ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		String escapedContent = HtmlUtil.escape(content);
 
@@ -180,7 +180,7 @@ public class MicroblogsUtil {
 
 	public static String replaceUsers(
 			String content, ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		Matcher matcher = _pattern2.matcher(content);
 
