@@ -14,7 +14,6 @@
 
 package com.liferay.sync.service.impl;
 
-import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.deploy.DeployManagerUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.log.Log;
@@ -28,8 +27,8 @@ import com.liferay.portal.kernel.util.PrefsPropsUtil;
 import com.liferay.portal.kernel.util.ReleaseInfo;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.Validator;
-import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.Group;
+import com.liferay.portal.model.Repository;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portlet.documentlibrary.DuplicateFileException;
@@ -224,9 +223,22 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 		try {
 			long lastAccessTime = System.currentTimeMillis();
 
-			List<SyncDLObject> syncDLObjects = new ArrayList<SyncDLObject>();
+			long companyId = 0;
 
-			getAllSyncDLObjects(repositoryId, folderId, syncDLObjects);
+			Repository repository = repositoryLocalService.fetchRepository(
+				repositoryId);
+
+			if (repository != null) {
+				companyId = repository.getCompanyId();
+			}
+			else {
+				Group group = groupLocalService.getGroup(repositoryId);
+
+				companyId = group.getCompanyId();
+			}
+
+			List<SyncDLObject> syncDLObjects =
+				syncDLObjectPersistence.findByC_M_R(companyId, 0, repositoryId);
 
 			return new SyncDLObjectUpdate(syncDLObjects, lastAccessTime);
 		}
@@ -654,42 +666,6 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 		}
 		catch (PortalException pe) {
 			throw new PortalException(SyncUtil.buildExceptionMessage(pe), pe);
-		}
-	}
-
-	protected void getAllSyncDLObjects(
-			long repositoryId, long folderId, List<SyncDLObject> syncDLObjects)
-		throws PortalException {
-
-		List<Object> foldersAndFileEntriesAndFileShortcuts =
-			dlAppService.getFoldersAndFileEntriesAndFileShortcuts(
-				repositoryId, folderId, WorkflowConstants.STATUS_ANY, false,
-				QueryUtil.ALL_POS, QueryUtil.ALL_POS);
-
-		for (Object folderAndFileEntryAndFileShortcut :
-				foldersAndFileEntriesAndFileShortcuts) {
-
-			if (folderAndFileEntryAndFileShortcut instanceof FileEntry) {
-				FileEntry fileEntry =
-					(FileEntry)folderAndFileEntryAndFileShortcut;
-
-				syncDLObjects.add(
-					SyncUtil.toSyncDLObject(
-						fileEntry, SyncConstants.EVENT_GET));
-			}
-			else if (folderAndFileEntryAndFileShortcut instanceof Folder) {
-				Folder folder = (Folder)folderAndFileEntryAndFileShortcut;
-
-				if (!SyncUtil.isSupportedFolder(folder)) {
-					continue;
-				}
-
-				syncDLObjects.add(
-					SyncUtil.toSyncDLObject(folder, SyncConstants.EVENT_GET));
-
-				getAllSyncDLObjects(
-					repositoryId, folder.getFolderId(), syncDLObjects);
-			}
 		}
 	}
 
