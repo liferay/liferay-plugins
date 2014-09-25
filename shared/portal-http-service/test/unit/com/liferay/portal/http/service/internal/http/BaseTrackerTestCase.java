@@ -15,6 +15,7 @@
 package com.liferay.portal.http.service.internal.http;
 
 import com.liferay.portal.http.service.internal.servlet.BundleServletContext;
+import com.liferay.portal.kernel.xml.DocumentException;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -75,7 +76,7 @@ public abstract class BaseTrackerTestCase<S> extends PowerMockito {
 	protected abstract ServiceTrackerCustomizer<S, S> buildTracker();
 
 	protected void mockAction(String[] initParameters)
-		throws InvalidSyntaxException {
+		throws DocumentException, InvalidSyntaxException {
 
 		when(
 			bundleContext.getService(_serviceReference)
@@ -84,7 +85,13 @@ public abstract class BaseTrackerTestCase<S> extends PowerMockito {
 		);
 
 		when(
-			httpSupport.getBundleServletContext(bundle)
+			httpSupport.getHttpService(bundle)
+		).thenReturn(
+			httpServiceWrapper
+		);
+
+		when(
+			httpServiceWrapper.getBundleServletContext()
 		).thenReturn(
 			bundleServletContext
 		);
@@ -169,6 +176,9 @@ public abstract class BaseTrackerTestCase<S> extends PowerMockito {
 
 	@Mock
 	protected HttpContext httpContext;
+
+	@Mock
+	protected HttpServiceWrapper httpServiceWrapper;
 
 	@Mock
 	protected HttpSupport httpSupport;
