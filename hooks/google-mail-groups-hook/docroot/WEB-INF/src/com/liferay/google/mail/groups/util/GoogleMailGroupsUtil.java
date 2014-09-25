@@ -301,9 +301,7 @@ public class GoogleMailGroupsUtil {
 		}
 	}
 
-	public static Members getGGroupMembers(String groupEmailAddress)
-		throws PortalException {
-
+	public static Members getGGroupMembers(String groupEmailAddress) {
 		try {
 			Directory directory = getDirectory();
 
