@@ -77,7 +77,7 @@ public class StartupAction extends SimpleAction {
 
 		try {
 			ExpandoColumnLocalServiceUtil.addColumn(
-				expandoTable.getTableId(), "largeGroup",
+				expandoTable.getTableId(), "googleMailGroupsLargeGroup",
 				ExpandoColumnConstants.BOOLEAN);
 		}
 		catch (Exception e) {
