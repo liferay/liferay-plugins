@@ -14,6 +14,8 @@
 
 package com.liferay.sync.model;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.ModelWrapper;
 
@@ -30,6 +32,7 @@ import java.util.Map;
  * @see SyncDLObject
  * @generated
  */
+@ProviderType
 public class SyncDLObjectWrapper implements SyncDLObject,
 	ModelWrapper<SyncDLObject> {
 	public SyncDLObjectWrapper(SyncDLObject syncDLObject) {
@@ -851,5 +854,5 @@ public class SyncDLObjectWrapper implements SyncDLObject,
 		_syncDLObject.resetOriginalValues();
 	}
 
-	private SyncDLObject _syncDLObject;
+	private final SyncDLObject _syncDLObject;
 }

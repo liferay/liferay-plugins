@@ -14,6 +14,8 @@
 
 package com.liferay.sync.service.persistence.impl;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.cache.CacheRegistryUtil;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
@@ -65,6 +67,7 @@ import java.util.Set;
  * @see SyncDLFileVersionDiffUtil
  * @generated
  */
+@ProviderType
 public class SyncDLFileVersionDiffPersistenceImpl extends BasePersistenceImpl<SyncDLFileVersionDiff>
 	implements SyncDLFileVersionDiffPersistence {
 	/*
@@ -1576,11 +1579,11 @@ public class SyncDLFileVersionDiffPersistenceImpl extends BasePersistenceImpl<Sy
 	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No SyncDLFileVersionDiff exists with the key {";
 	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = GetterUtil.getBoolean(PropsUtil.get(
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
-	private static Log _log = LogFactoryUtil.getLog(SyncDLFileVersionDiffPersistenceImpl.class);
-	private static Set<String> _badColumnNames = SetUtil.fromArray(new String[] {
+	private static final Log _log = LogFactoryUtil.getLog(SyncDLFileVersionDiffPersistenceImpl.class);
+	private static final Set<String> _badColumnNames = SetUtil.fromArray(new String[] {
 				"size"
 			});
-	private static SyncDLFileVersionDiff _nullSyncDLFileVersionDiff = new SyncDLFileVersionDiffImpl() {
+	private static final SyncDLFileVersionDiff _nullSyncDLFileVersionDiff = new SyncDLFileVersionDiffImpl() {
 			@Override
 			public Object clone() {
 				return this;
@@ -1592,7 +1595,7 @@ public class SyncDLFileVersionDiffPersistenceImpl extends BasePersistenceImpl<Sy
 			}
 		};
 
-	private static CacheModel<SyncDLFileVersionDiff> _nullSyncDLFileVersionDiffCacheModel =
+	private static final CacheModel<SyncDLFileVersionDiff> _nullSyncDLFileVersionDiffCacheModel =
 		new CacheModel<SyncDLFileVersionDiff>() {
 			@Override
 			public SyncDLFileVersionDiff toEntityModel() {

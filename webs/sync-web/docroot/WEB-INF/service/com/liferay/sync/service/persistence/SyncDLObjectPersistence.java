@@ -14,6 +14,8 @@
 
 package com.liferay.sync.service.persistence;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.service.persistence.BasePersistence;
 
 import com.liferay.sync.model.SyncDLObject;
@@ -30,6 +32,7 @@ import com.liferay.sync.model.SyncDLObject;
  * @see SyncDLObjectUtil
  * @generated
  */
+@ProviderType
 public interface SyncDLObjectPersistence extends BasePersistence<SyncDLObject> {
 	/*
 	 * NOTE FOR DEVELOPERS:

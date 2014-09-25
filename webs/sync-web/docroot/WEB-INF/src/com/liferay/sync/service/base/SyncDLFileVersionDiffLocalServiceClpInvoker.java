@@ -14,6 +14,8 @@
 
 package com.liferay.sync.service.base;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.sync.service.SyncDLFileVersionDiffLocalServiceUtil;
 
 import java.util.Arrays;
@@ -22,6 +24,7 @@ import java.util.Arrays;
  * @author Brian Wing Shun Chan
  * @generated
  */
+@ProviderType
 public class SyncDLFileVersionDiffLocalServiceClpInvoker {
 	public SyncDLFileVersionDiffLocalServiceClpInvoker() {
 		_methodName0 = "addSyncDLFileVersionDiff";

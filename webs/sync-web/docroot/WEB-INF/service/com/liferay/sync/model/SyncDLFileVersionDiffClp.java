@@ -14,6 +14,8 @@
 
 package com.liferay.sync.model;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ProxyUtil;
@@ -35,6 +37,7 @@ import java.util.Map;
 /**
  * @author Brian Wing Shun Chan
  */
+@ProviderType
 public class SyncDLFileVersionDiffClp extends BaseModelImpl<SyncDLFileVersionDiff>
 	implements SyncDLFileVersionDiff {
 	public SyncDLFileVersionDiffClp() {

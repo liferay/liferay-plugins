@@ -14,6 +14,8 @@
 
 package com.liferay.sync.model;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.ModelWrapper;
 
@@ -30,6 +32,7 @@ import java.util.Map;
  * @see SyncDLFileVersionDiff
  * @generated
  */
+@ProviderType
 public class SyncDLFileVersionDiffWrapper implements SyncDLFileVersionDiff,
 	ModelWrapper<SyncDLFileVersionDiff> {
 	public SyncDLFileVersionDiffWrapper(
@@ -420,5 +423,5 @@ public class SyncDLFileVersionDiffWrapper implements SyncDLFileVersionDiff,
 		_syncDLFileVersionDiff.resetOriginalValues();
 	}
 
-	private SyncDLFileVersionDiff _syncDLFileVersionDiff;
+	private final SyncDLFileVersionDiff _syncDLFileVersionDiff;
 }

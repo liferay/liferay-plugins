@@ -14,6 +14,8 @@
 
 package com.liferay.sync.service;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
 import com.liferay.portal.service.InvokableLocalService;
@@ -32,6 +34,7 @@ import com.liferay.portal.service.InvokableLocalService;
  * @see com.liferay.sync.service.impl.SyncDLObjectLocalServiceImpl
  * @generated
  */
+@ProviderType
 public class SyncDLObjectLocalServiceUtil {
 	/*
 	 * NOTE FOR DEVELOPERS:

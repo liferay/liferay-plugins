@@ -14,6 +14,8 @@
 
 package com.liferay.sync.model.impl;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.sync.model.SyncDLObject;
 import com.liferay.sync.service.SyncDLObjectLocalServiceUtil;
 
@@ -29,6 +31,7 @@ import com.liferay.sync.service.SyncDLObjectLocalServiceUtil;
  * @see com.liferay.sync.model.SyncDLObject
  * @generated
  */
+@ProviderType
 public abstract class SyncDLObjectBaseImpl extends SyncDLObjectModelImpl
 	implements SyncDLObject {
 	/*

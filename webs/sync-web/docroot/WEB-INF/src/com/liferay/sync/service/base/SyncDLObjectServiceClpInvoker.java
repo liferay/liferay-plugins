@@ -14,6 +14,8 @@
 
 package com.liferay.sync.service.base;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.sync.service.SyncDLObjectServiceUtil;
 
 import java.util.Arrays;
@@ -22,6 +24,7 @@ import java.util.Arrays;
  * @author Brian Wing Shun Chan
  * @generated
  */
+@ProviderType
 public class SyncDLObjectServiceClpInvoker {
 	public SyncDLObjectServiceClpInvoker() {
 		_methodName58 = "getBeanIdentifier";

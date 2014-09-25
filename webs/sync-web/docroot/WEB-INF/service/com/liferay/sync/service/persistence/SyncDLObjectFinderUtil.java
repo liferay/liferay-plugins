@@ -14,12 +14,15 @@
 
 package com.liferay.sync.service.persistence;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
 
 /**
  * @author Brian Wing Shun Chan
  */
+@ProviderType
 public class SyncDLObjectFinderUtil {
 	public static java.util.List<com.liferay.sync.model.SyncDLObject> filterFindByC_M_R(
 		long companyId, long modifiedTime, long repositoryId) {

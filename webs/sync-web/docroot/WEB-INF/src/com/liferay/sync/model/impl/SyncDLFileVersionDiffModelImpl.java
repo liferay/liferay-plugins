@@ -14,6 +14,8 @@
 
 package com.liferay.sync.model.impl;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ProxyUtil;
@@ -49,6 +51,7 @@ import java.util.Map;
  * @see com.liferay.sync.model.SyncDLFileVersionDiffModel
  * @generated
  */
+@ProviderType
 public class SyncDLFileVersionDiffModelImpl extends BaseModelImpl<SyncDLFileVersionDiff>
 	implements SyncDLFileVersionDiffModel {
 	/*
@@ -82,11 +85,11 @@ public class SyncDLFileVersionDiffModelImpl extends BaseModelImpl<SyncDLFileVers
 	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.column.bitmask.enabled.com.liferay.sync.model.SyncDLFileVersionDiff"),
 			true);
-	public static long EXPIRATIONDATE_COLUMN_BITMASK = 1L;
-	public static long FILEENTRYID_COLUMN_BITMASK = 2L;
-	public static long SOURCEFILEVERSIONID_COLUMN_BITMASK = 4L;
-	public static long TARGETFILEVERSIONID_COLUMN_BITMASK = 8L;
-	public static long SYNCDLFILEVERSIONDIFFID_COLUMN_BITMASK = 16L;
+	public static final long EXPIRATIONDATE_COLUMN_BITMASK = 1L;
+	public static final long FILEENTRYID_COLUMN_BITMASK = 2L;
+	public static final long SOURCEFILEVERSIONID_COLUMN_BITMASK = 4L;
+	public static final long TARGETFILEVERSIONID_COLUMN_BITMASK = 8L;
+	public static final long SYNCDLFILEVERSIONDIFFID_COLUMN_BITMASK = 16L;
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.liferay.sync.model.SyncDLFileVersionDiff"));
 
@@ -513,8 +516,8 @@ public class SyncDLFileVersionDiffModelImpl extends BaseModelImpl<SyncDLFileVers
 		return sb.toString();
 	}
 
-	private static ClassLoader _classLoader = SyncDLFileVersionDiff.class.getClassLoader();
-	private static Class<?>[] _escapedModelInterfaces = new Class[] {
+	private static final ClassLoader _classLoader = SyncDLFileVersionDiff.class.getClassLoader();
+	private static final Class<?>[] _escapedModelInterfaces = new Class[] {
 			SyncDLFileVersionDiff.class
 		};
 	private long _syncDLFileVersionDiffId;

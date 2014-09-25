@@ -14,6 +14,8 @@
 
 package com.liferay.sync.service.persistence.impl;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.cache.CacheRegistryUtil;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
@@ -63,6 +65,7 @@ import java.util.Set;
  * @see SyncDLObjectUtil
  * @generated
  */
+@ProviderType
 public class SyncDLObjectPersistenceImpl extends BasePersistenceImpl<SyncDLObject>
 	implements SyncDLObjectPersistence {
 	/*
@@ -2215,11 +2218,11 @@ public class SyncDLObjectPersistenceImpl extends BasePersistenceImpl<SyncDLObjec
 	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No SyncDLObject exists with the key {";
 	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = GetterUtil.getBoolean(PropsUtil.get(
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
-	private static Log _log = LogFactoryUtil.getLog(SyncDLObjectPersistenceImpl.class);
-	private static Set<String> _badColumnNames = SetUtil.fromArray(new String[] {
+	private static final Log _log = LogFactoryUtil.getLog(SyncDLObjectPersistenceImpl.class);
+	private static final Set<String> _badColumnNames = SetUtil.fromArray(new String[] {
 				"size", "type"
 			});
-	private static SyncDLObject _nullSyncDLObject = new SyncDLObjectImpl() {
+	private static final SyncDLObject _nullSyncDLObject = new SyncDLObjectImpl() {
 			@Override
 			public Object clone() {
 				return this;
@@ -2231,7 +2234,7 @@ public class SyncDLObjectPersistenceImpl extends BasePersistenceImpl<SyncDLObjec
 			}
 		};
 
-	private static CacheModel<SyncDLObject> _nullSyncDLObjectCacheModel = new CacheModel<SyncDLObject>() {
+	private static final CacheModel<SyncDLObject> _nullSyncDLObjectCacheModel = new CacheModel<SyncDLObject>() {
 			@Override
 			public SyncDLObject toEntityModel() {
 				return _nullSyncDLObject;

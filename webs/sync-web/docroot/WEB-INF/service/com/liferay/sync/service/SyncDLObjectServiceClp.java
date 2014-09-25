@@ -14,12 +14,15 @@
 
 package com.liferay.sync.service;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.service.InvokableService;
 
 /**
  * @author Brian Wing Shun Chan
  * @generated
  */
+@ProviderType
 public class SyncDLObjectServiceClp implements SyncDLObjectService {
 	public SyncDLObjectServiceClp(InvokableService invokableService) {
 		_invokableService = invokableService;

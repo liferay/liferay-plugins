@@ -14,6 +14,8 @@
 
 package com.liferay.sync.service.http;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 
@@ -61,6 +63,7 @@ import java.rmi.RemoteException;
  * @see com.liferay.sync.service.SyncDLObjectServiceUtil
  * @generated
  */
+@ProviderType
 public class SyncDLObjectServiceSoap {
 	public static com.liferay.sync.model.SyncDLObjectSoap addFolder(
 		long repositoryId, long parentFolderId, java.lang.String name,

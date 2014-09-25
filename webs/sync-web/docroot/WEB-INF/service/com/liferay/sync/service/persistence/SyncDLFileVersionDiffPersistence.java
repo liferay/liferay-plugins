@@ -14,6 +14,8 @@
 
 package com.liferay.sync.service.persistence;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.service.persistence.BasePersistence;
 
 import com.liferay.sync.model.SyncDLFileVersionDiff;
@@ -30,6 +32,7 @@ import com.liferay.sync.model.SyncDLFileVersionDiff;
  * @see SyncDLFileVersionDiffUtil
  * @generated
  */
+@ProviderType
 public interface SyncDLFileVersionDiffPersistence extends BasePersistence<SyncDLFileVersionDiff> {
 	/*
 	 * NOTE FOR DEVELOPERS:

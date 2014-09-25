@@ -14,6 +14,8 @@
 
 package com.liferay.sync.model.impl;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.CacheModel;
 
@@ -33,6 +35,7 @@ import java.util.Date;
  * @see SyncDLFileVersionDiff
  * @generated
  */
+@ProviderType
 public class SyncDLFileVersionDiffCacheModel implements CacheModel<SyncDLFileVersionDiff>,
 	Externalizable {
 	@Override
