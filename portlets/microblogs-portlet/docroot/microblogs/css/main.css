@@ -110,18 +110,6 @@ $microblogs-border-color: #EAEAEA;
 		}
 	}
 
-	.microblogs-entry {
-		border-bottom: 1px solid $microblogs-border-color;
-		margin: 0 15px;
-		padding: 1em 0 0.5em;
-
-		.entry-bubble {
-			@include hyphenation;
-
-			margin-left: 60px;
-		}
-	}
-
 	.thumbnail {
 		float: left;
 		height: 45px;
@@ -143,6 +131,16 @@ $microblogs-border-color: #EAEAEA;
 	}
 
 	.microblogs-entry {
+		border-bottom: 1px solid $microblogs-border-color;
+		margin: 0 15px;
+		padding: 1em 0 0.5em;
+
+		.entry-bubble {
+			@include hyphenation;
+
+			margin-left: 60px;
+		}
+
 		.user-name a {
 			font-weight: bold;
 		}

@@ -705,7 +705,7 @@ AUI.add(
 
 									var target = event.target;
 
-									if (target.hasClass('.mark-as-read') || target.ancestor('.mark-as-read') || (target._node.tagName == "A")) {
+									if (target.hasClass('.mark-as-read') || target.ancestor('.mark-as-read') || (target._node.tagName == 'A')) {
 										return;
 									}
 
