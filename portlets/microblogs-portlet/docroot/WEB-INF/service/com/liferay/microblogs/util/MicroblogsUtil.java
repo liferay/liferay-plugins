@@ -225,7 +225,7 @@ public class MicroblogsUtil {
 		return content;
 	}
 
-	private static Pattern _pattern1 = Pattern.compile("\\#\\S*");
+	private static Pattern _pattern1 = Pattern.compile("\\#[a-zA-Z]\\w*");
 	private static Pattern _pattern2 = Pattern.compile("\\[\\@\\S*\\]");
 
 }
