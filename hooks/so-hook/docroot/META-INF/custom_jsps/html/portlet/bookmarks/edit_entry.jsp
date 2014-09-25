@@ -29,6 +29,10 @@ BookmarksEntry entry = (BookmarksEntry)request.getAttribute(WebKeys.BOOKMARKS_EN
 long entryId = BeanParamUtil.getLong(entry, request, "entryId");
 
 long folderId = BeanParamUtil.getLong(entry, request, "folderId");
+
+if (entry != null) {
+	AssetEntryLocalServiceUtil.incrementViewCounter(0, BookmarksEntry.class.getName(), entry.getEntryId(), 1);
+}
 %>
 
 <portlet:actionURL var="editEntryURL" windowState="<%= WindowState.MAXIMIZED.toString() %>">
