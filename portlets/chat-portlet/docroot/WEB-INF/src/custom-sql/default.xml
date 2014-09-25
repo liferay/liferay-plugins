@@ -45,7 +45,7 @@
 	<sql id="com.liferay.chat.service.persistence.StatusFinder.findByModifiedDate">
 		<![CDATA[
 			SELECT
-				User_.uuid_ AS userUuid, User_.userId AS userId, User_.screenName AS screenName, User_.firstName AS firstName, User_.middleName AS middleName, User_.lastName AS lastName, User_.portraitId AS portraitId, Chat_Status.awake AS awake, Contact_.male as male, Group_.groupId as groupId
+				Chat_Status.awake AS awake, User_.firstName AS firstName, Group_.groupId as groupId, User_.lastName AS lastName, Contact_.male as male, User_.middleName AS middleName, User_.portraitId AS portraitId, User_.screenName AS screenName, User_.userId AS userId, User_.uuid_ AS userUuid
 			FROM
 				Chat_Status
 			INNER JOIN
@@ -76,7 +76,7 @@
 	<sql id="com.liferay.chat.service.persistence.StatusFinder.findBySocialRelationTypes">
 		<![CDATA[
 			SELECT DISTINCT
-				User_.uuid_ AS userUuid, User_.userId AS userId, User_.screenName AS screenName, User_.firstName AS firstName, User_.middleName AS middleName, User_.lastName AS lastName, User_.portraitId AS portraitId, Chat_Status.awake AS awake, Contact_.male as male, Group_.groupId as groupId
+				Chat_Status.awake AS awake, User_.firstName AS firstName, Group_.groupId as groupId, User_.lastName AS lastName, Contact_.male as male, User_.middleName AS middleName, User_.portraitId AS portraitId, User_.screenName AS screenName, User_.userId AS userId, User_.uuid_ AS userUuid
 			FROM
 				Chat_Status
 			INNER JOIN
@@ -112,7 +112,7 @@
 	<sql id="com.liferay.chat.service.persistence.StatusFinder.findByUsersGroups">
 		<![CDATA[
 			SELECT DISTINCT
-				User_.uuid_ AS userUuid, User_.userId AS userId, User_.screenName AS screenName, User_.firstName AS firstName, User_.middleName AS middleName, User_.lastName AS lastName, User_.portraitId AS portraitId, Chat_Status.awake AS awake, Contact_.male as male, Group_.groupId as groupId
+				Chat_Status.awake AS awake, User_.firstName AS firstName, Group_.groupId as groupId, User_.lastName AS lastName, Contact_.male as male, User_.middleName AS middleName, User_.portraitId AS portraitId, User_.screenName AS screenName, User_.userId AS userId, User_.uuid_ AS userUuid
 			FROM
 				Chat_Status
 			INNER JOIN
