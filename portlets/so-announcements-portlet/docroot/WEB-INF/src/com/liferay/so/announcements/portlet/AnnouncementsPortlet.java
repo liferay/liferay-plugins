@@ -33,7 +33,7 @@ import com.liferay.portlet.announcements.EntryExpirationDateException;
 import com.liferay.portlet.announcements.EntryTitleException;
 import com.liferay.portlet.announcements.EntryURLException;
 import com.liferay.portlet.announcements.service.AnnouncementsEntryServiceUtil;
-import com.liferay.util.bridges.mvc.MVCPortlet;
+import com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet;
 
 import java.util.Calendar;
 

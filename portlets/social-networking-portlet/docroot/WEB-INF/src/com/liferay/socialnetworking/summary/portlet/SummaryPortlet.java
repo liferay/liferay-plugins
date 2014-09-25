@@ -46,7 +46,7 @@ import com.liferay.portlet.social.service.SocialRelationLocalServiceUtil;
 import com.liferay.portlet.social.service.SocialRequestLocalServiceUtil;
 import com.liferay.socialnetworking.friends.social.FriendsRequestKeys;
 import com.liferay.socialnetworking.members.social.MembersRequestKeys;
-import com.liferay.util.bridges.mvc.MVCPortlet;
+import com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet;
 
 import java.util.LinkedHashMap;
 import java.util.List;

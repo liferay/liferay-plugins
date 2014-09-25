@@ -39,7 +39,7 @@ import com.liferay.portal.service.persistence.UserActionableDynamicQuery;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.so.configurations.util.PortletKeys;
 import com.liferay.so.util.RoleConstants;
-import com.liferay.util.bridges.mvc.MVCPortlet;
+import com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet;
 
 import java.util.Map;
 

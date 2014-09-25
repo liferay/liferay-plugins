@@ -25,7 +25,7 @@ import com.liferay.portlet.blogs.service.BlogsEntryLocalServiceUtil;
 import com.liferay.testpacl.service.FooLocalService;
 import com.liferay.testpacl.service.FooLocalServiceUtil;
 import com.liferay.testpacl.util.TestPACLUtil;
-import com.liferay.util.bridges.mvc.MVCPortlet;
+import com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet;
 
 import java.io.IOException;
 
