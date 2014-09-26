@@ -17,9 +17,7 @@ package com.liferay.marketplace.util;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.kernel.util.PropertiesUtil;
 import com.liferay.portal.kernel.util.StreamUtil;
-import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 
 import java.io.File;
@@ -33,7 +31,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Properties;
+import java.util.jar.Manifest;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
@@ -97,7 +95,7 @@ public class BundleUtil {
 		}
 	}
 
-	public static Properties getManifestProperties(File file) {
+	public static Manifest getManifest(File file) {
 		InputStream inputStream = null;
 		ZipFile zipFile = null;
 
@@ -112,7 +110,7 @@ public class BundleUtil {
 
 			inputStream = zipFile.getInputStream(zipEntry);
 
-			return PropertiesUtil.load(inputStream, StringPool.UTF8);
+			return new Manifest(inputStream);
 		}
 		catch (Exception e) {
 		}

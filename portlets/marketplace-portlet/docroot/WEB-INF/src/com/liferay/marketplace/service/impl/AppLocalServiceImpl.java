@@ -57,6 +57,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
+import java.util.jar.Attributes;
+import java.util.jar.Manifest;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipException;
 import java.util.zip.ZipFile;
@@ -325,16 +327,18 @@ public class AppLocalServiceImpl extends AppLocalServiceBaseImpl {
 						String contextName = StringPool.BLANK;
 
 						if (fileName.endsWith(".jar")) {
-							Properties properties =
-								BundleUtil.getManifestProperties(
-									pluginPackageFile);
+							Manifest manifest = BundleUtil.getManifest(
+								pluginPackageFile);
+
+							Attributes attributes =
+								manifest.getMainAttributes();
 
 							bundleSymbolicName = GetterUtil.getString(
-								properties.getProperty("Bundle-SymbolicName"));
+								attributes.getValue("Bundle-SymbolicName"));
 							bundleVersion = GetterUtil.getString(
-								properties.getProperty("Bundle-Version"));
+								attributes.getValue("Bundle-Version"));
 							contextName = GetterUtil.getString(
-								properties.getProperty("Web-ContextPath"));
+								attributes.getValue("Web-ContextPath"));
 						}
 						else {
 							contextName = getContextName(fileName);
