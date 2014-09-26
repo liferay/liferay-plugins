@@ -109,14 +109,18 @@ public class ResourcesImporterHotDeployMessageListener
 		ServletContext servletContext = ServletContextPool.get(
 			servletContextName);
 
+		Properties pluginPackageProperties = getPluginPackageProperties(
+			servletContext);
+
+		String resourcesDir = pluginPackageProperties.getProperty(
+			"resources-importer-external-dir");
+
 		if ((servletContext.getResource(_RESOURCES_DIR) == null) &&
-			(servletContext.getResource(_TEMPLATES_DIR) == null)) {
+			(servletContext.getResource(_TEMPLATES_DIR) == null) &&
+			Validator.isNull(resourcesDir)) {
 
 			return;
 		}
-
-		Properties pluginPackageProperties = getPluginPackageProperties(
-			servletContext);
 
 		String targetClassName = pluginPackageProperties.getProperty(
 			"resources-importer-target-class-name",
@@ -186,15 +190,10 @@ public class ResourcesImporterHotDeployMessageListener
 					importer.setGroupId(group.getGroupId());
 					importer.setResourcesDir(_TEMPLATES_DIR);
 				}
-				else {
-					String resourcesDir = pluginPackageProperties.getProperty(
-						"resources-importer-external-dir");
+				else if (Validator.isNotNull(resourcesDir)) {
+					importer = getFileSystemImporter();
 
-					if (Validator.isNotNull(resourcesDir)) {
-						importer = getFileSystemImporter();
-
-						importer.setResourcesDir(resourcesDir);
-					}
+					importer.setResourcesDir(resourcesDir);
 				}
 
 				if (importer == null) {
