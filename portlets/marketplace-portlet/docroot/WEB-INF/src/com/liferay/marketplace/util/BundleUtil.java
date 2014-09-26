@@ -68,7 +68,7 @@ public class BundleUtil {
 			for (CompositeData compositeData : values) {
 				String state = (String)compositeData.get("State");
 
-				if ( !ArrayUtil.contains(_INSTALLED_BUNDLE_STATES, state)) {
+				if (!ArrayUtil.contains(_INSTALLED_BUNDLE_STATES, state)) {
 					continue;
 				}
 

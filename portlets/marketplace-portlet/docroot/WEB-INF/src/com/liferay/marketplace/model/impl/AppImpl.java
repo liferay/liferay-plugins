@@ -105,15 +105,15 @@ public class AppImpl extends AppBaseImpl {
 			if (Validator.isNotNull(module.getBundleSymbolicName())) {
 				if (!BundleUtil.isActive(
 						module.getBundleSymbolicName(),
-					module.getBundleVersion())) {
+						module.getBundleVersion())) {
 
 					return false;
 				}
 			}
-			else if (Validator.isNotNull(module.getContextName()) &&
-					 !DeployManagerUtil.isDeployed(module.getContextName())) {
-
-				return false;
+			else if (Validator.isNotNull(module.getContextName())) {
+				if (!DeployManagerUtil.isDeployed(module.getContextName())) {
+					return false;
+				}
 			}
 		}
 
