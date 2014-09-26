@@ -159,7 +159,15 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 				actionRequest.setAttribute(
 					CALLED_PROCESS_ACTION, Boolean.TRUE.toString());
 
-				renderError("an-unexpected-system-error-occurred");
+				String message = "an-unexpected-system-error-occurred";
+
+				Throwable rootCause = _getRootCause(e);
+
+				if (rootCause instanceof AlloyException) {
+					message = rootCause.getMessage();
+				}
+
+				renderError(message);
 
 				actionRequest.setAttribute(VIEW_PATH, viewPath);
 
@@ -1058,6 +1066,14 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 	protected ThemeDisplay themeDisplay;
 	protected User user;
 	protected String viewPath;
+
+	private Throwable _getRootCause(Throwable throwable) {
+		if (throwable.getCause() == null) {
+			return throwable;
+		}
+
+		return _getRootCause(throwable.getCause());
+	}
 
 	private static final String _VIEW_PATH_ERROR = "VIEW_PATH_ERROR";
 
