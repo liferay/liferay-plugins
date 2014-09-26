@@ -28729,6 +28729,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		kbArticleImpl.setCreateDate(kbArticle.getCreateDate());
 		kbArticleImpl.setModifiedDate(kbArticle.getModifiedDate());
 		kbArticleImpl.setRootResourcePrimKey(kbArticle.getRootResourcePrimKey());
+		kbArticleImpl.setParentResourceClassNameId(kbArticle.getParentResourceClassNameId());
 		kbArticleImpl.setParentResourcePrimKey(kbArticle.getParentResourcePrimKey());
 		kbArticleImpl.setVersion(kbArticle.getVersion());
 		kbArticleImpl.setTitle(kbArticle.getTitle());

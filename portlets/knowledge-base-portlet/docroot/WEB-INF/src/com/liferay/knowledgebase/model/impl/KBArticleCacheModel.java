@@ -41,7 +41,7 @@ public class KBArticleCacheModel implements CacheModel<KBArticle>,
 	Externalizable {
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(53);
+		StringBundler sb = new StringBundler(55);
 
 		sb.append("{uuid=");
 		sb.append(uuid);
@@ -63,6 +63,8 @@ public class KBArticleCacheModel implements CacheModel<KBArticle>,
 		sb.append(modifiedDate);
 		sb.append(", rootResourcePrimKey=");
 		sb.append(rootResourcePrimKey);
+		sb.append(", parentResourceClassNameId=");
+		sb.append(parentResourceClassNameId);
 		sb.append(", parentResourcePrimKey=");
 		sb.append(parentResourcePrimKey);
 		sb.append(", version=");
@@ -139,6 +141,7 @@ public class KBArticleCacheModel implements CacheModel<KBArticle>,
 		}
 
 		kbArticleImpl.setRootResourcePrimKey(rootResourcePrimKey);
+		kbArticleImpl.setParentResourceClassNameId(parentResourceClassNameId);
 		kbArticleImpl.setParentResourcePrimKey(parentResourcePrimKey);
 		kbArticleImpl.setVersion(version);
 
@@ -224,6 +227,7 @@ public class KBArticleCacheModel implements CacheModel<KBArticle>,
 		createDate = objectInput.readLong();
 		modifiedDate = objectInput.readLong();
 		rootResourcePrimKey = objectInput.readLong();
+		parentResourceClassNameId = objectInput.readLong();
 		parentResourcePrimKey = objectInput.readLong();
 		version = objectInput.readInt();
 		title = objectInput.readUTF();
@@ -268,6 +272,7 @@ public class KBArticleCacheModel implements CacheModel<KBArticle>,
 		objectOutput.writeLong(createDate);
 		objectOutput.writeLong(modifiedDate);
 		objectOutput.writeLong(rootResourcePrimKey);
+		objectOutput.writeLong(parentResourceClassNameId);
 		objectOutput.writeLong(parentResourcePrimKey);
 		objectOutput.writeInt(version);
 
@@ -342,6 +347,7 @@ public class KBArticleCacheModel implements CacheModel<KBArticle>,
 	public long createDate;
 	public long modifiedDate;
 	public long rootResourcePrimKey;
+	public long parentResourceClassNameId;
 	public long parentResourcePrimKey;
 	public int version;
 	public String title;
