@@ -29,6 +29,7 @@
 
 		<column name="rootResourcePrimKey" type="long" filter-primary="true" />
 		<column name="parentResourcePrimKey" type="long" />
+		<column name="parentResourceClassNameId" type="long" />
 		<column name="version" type="int" />
 		<column name="title" type="String" />
 		<column name="urlTitle" type="String" />
@@ -249,6 +250,37 @@
 		<reference package-path="com.liferay.portal" entity="PortletPreferences" />
 		<reference package-path="com.liferay.portlet.social" entity="SocialActivity" />
 	</entity>
+	<entity name="KBFolder" uuid="true" local-service="true" remote-service="true">
+
+		<!-- PK fields -->
+
+		<column name="kbFolderId" type="long" primary="true" />
+
+		<!-- Group instance -->
+
+		<column name="groupId" type="long" />
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long" />
+		<column name="userId" type="long" />
+		<column name="userName" type="String" />
+		<column name="createDate" type="Date" />
+		<column name="modifiedDate" type="Date" />
+
+		<!-- Other fields -->
+
+		<column name="name" type="String" />
+		<column name="description" type="String" />
+		<column name="parentKbFolderId" type="long" />
+
+		<!-- Finder methods -->
+
+		<finder name="G_P" return-type="Collection">
+			<finder-column name="groupId" />
+			<finder-column name="parentKbFolderId" />
+		</finder>
+	</entity>
 	<entity name="KBTemplate" uuid="true" local-service="true" remote-service="true">
 
 		<!-- PK fields -->
@@ -290,8 +322,11 @@
 		<reference package-path="com.liferay.portlet.social" entity="SocialActivity" />
 	</entity>
 	<exceptions>
+		<exception>DuplicateKBFolderName</exception>
+		<exception>InvalidKBFolder</exception>
 		<exception>KBArticleContent</exception>
 		<exception>KBArticleImport</exception>
+		<exception>KBArticleParent</exception>
 		<exception>KBArticlePriority</exception>
 		<exception>KBArticleSourceURL</exception>
 		<exception>KBArticleTitle</exception>
