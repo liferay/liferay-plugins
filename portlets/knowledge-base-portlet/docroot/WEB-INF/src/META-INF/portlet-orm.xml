@@ -25,6 +25,7 @@
 				<temporal>TIMESTAMP</temporal>
 			</basic>
 			<basic name="rootResourcePrimKey" />
+			<basic name="parentResourceClassNameId" />
 			<basic name="parentResourcePrimKey" />
 			<basic name="version" />
 			<basic name="title" />
@@ -78,6 +79,31 @@
 			<transient name="userUuid" />
 		</attributes>
 	</mapped-superclass>
+	<mapped-superclass class="com.liferay.knowledgebase.model.impl.KBFolderModelImpl">
+		<attributes>
+			<id name="kbFolderId" />
+			<basic name="uuid">
+				<column name="UUID_" />
+			</basic>
+			<basic name="groupId" />
+			<basic name="companyId" />
+			<basic name="userId" />
+			<basic name="userName" />
+			<basic name="createDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="modifiedDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="parentKBFolderId" />
+			<basic name="name" />
+			<basic name="description" />
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+			<transient name="userUuid" />
+		</attributes>
+	</mapped-superclass>
 	<mapped-superclass class="com.liferay.knowledgebase.model.impl.KBTemplateModelImpl">
 		<attributes>
 			<id name="kbTemplateId" />
@@ -108,6 +134,10 @@
 	</entity>
 	<entity class="com.liferay.knowledgebase.model.impl.KBCommentImpl" name="KBComment">
 		<table name="KBComment" />
+		<attributes />
+	</entity>
+	<entity class="com.liferay.knowledgebase.model.impl.KBFolderImpl" name="KBFolder">
+		<table name="KBFolder" />
 		<attributes />
 	</entity>
 	<entity class="com.liferay.knowledgebase.model.impl.KBTemplateImpl" name="KBTemplate">

@@ -35,6 +35,11 @@ create index IX_8E470726 on KBComment (uuid_);
 create index IX_6CB72942 on KBComment (uuid_, companyId);
 create unique index IX_791D1844 on KBComment (uuid_, groupId);
 
+create index IX_1F52AB5D on KBFolder (groupId, parentKBFolderId);
+create index IX_30B67029 on KBFolder (uuid_);
+create index IX_32D1105F on KBFolder (uuid_, companyId);
+create unique index IX_1FD022A1 on KBFolder (uuid_, groupId);
+
 create index IX_83D9CC13 on KBTemplate (groupId);
 create index IX_9909475D on KBTemplate (uuid_);
 create index IX_853770AB on KBTemplate (uuid_, companyId);

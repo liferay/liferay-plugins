@@ -4,6 +4,7 @@
 <hibernate-mapping default-lazy="false" auto-import="false">
 	<import class="com.liferay.knowledgebase.model.KBArticle" />
 	<import class="com.liferay.knowledgebase.model.KBComment" />
+	<import class="com.liferay.knowledgebase.model.KBFolder" />
 	<import class="com.liferay.knowledgebase.model.KBTemplate" />
 	<class name="com.liferay.knowledgebase.model.impl.KBArticleImpl" table="KBArticle">
 		<cache usage="read-write" />
@@ -19,6 +20,7 @@
 		<property name="createDate" type="org.hibernate.type.TimestampType" />
 		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
 		<property name="rootResourcePrimKey" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="parentResourceClassNameId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="parentResourcePrimKey" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="version" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
 		<property name="title" type="com.liferay.portal.dao.orm.hibernate.StringType" />
@@ -53,6 +55,22 @@
 		<property name="content" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="helpful" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
 		<property name="status" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+	</class>
+	<class name="com.liferay.knowledgebase.model.impl.KBFolderImpl" table="KBFolder">
+		<cache usage="read-write" />
+		<id name="kbFolderId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="uuid" type="com.liferay.portal.dao.orm.hibernate.StringType" column="uuid_" />
+		<property name="groupId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="createDate" type="org.hibernate.type.TimestampType" />
+		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
+		<property name="parentKBFolderId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="name" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="description" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 	</class>
 	<class name="com.liferay.knowledgebase.model.impl.KBTemplateImpl" table="KBTemplate">
 		<cache usage="read-write" />
