@@ -101,12 +101,13 @@ public class AppImpl extends AppBaseImpl {
 		}
 
 		for (Module module : modules) {
-			if (Validator.isNotNull(module.getBundleSymbolicName()) &&
-				!BundleUtil.isActive(
-					module.getBundleSymbolicName(),
+			if (Validator.isNotNull(module.getBundleSymbolicName())) {
+				if (!BundleUtil.isActive(
+						module.getBundleSymbolicName(),
 					module.getBundleVersion())) {
 
-				return false;
+					return false;
+				}
 			}
 			else if (Validator.isNotNull(module.getContextName()) &&
 					 !DeployManagerUtil.isDeployed(module.getContextName())) {
