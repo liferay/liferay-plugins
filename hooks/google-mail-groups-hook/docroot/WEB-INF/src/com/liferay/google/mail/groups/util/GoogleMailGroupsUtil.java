@@ -14,14 +14,8 @@
 
 package com.liferay.google.mail.groups.util;
 
-import com.google.api.client.googleapis.auth.oauth2.GoogleCredential;
-import com.google.api.client.googleapis.json.GoogleJsonResponseException;
-import com.google.api.client.http.javanet.NetHttpTransport;
-import com.google.api.client.json.jackson2.JacksonFactory;
-import com.google.api.services.admin.directory.Directory;
 import com.google.api.services.admin.directory.model.Member;
 import com.google.api.services.admin.directory.model.Members;
-import com.google.api.services.groupssettings.Groupssettings;
 import com.google.api.services.groupssettings.model.Groups;
 
 import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
@@ -29,8 +23,6 @@ import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
-import com.liferay.portal.kernel.util.PropsKeys;
-import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
@@ -49,10 +41,7 @@ import com.liferay.portlet.expando.model.ExpandoTableConstants;
 import com.liferay.portlet.expando.model.ExpandoValue;
 import com.liferay.portlet.expando.service.ExpandoValueLocalServiceUtil;
 
-import java.io.File;
-
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.List;
 
@@ -61,30 +50,7 @@ import java.util.List;
  */
 public class GoogleMailGroupsUtil {
 
-	public static void addGGroup(String name, String groupEmailAddress)
-		throws PortalException {
-
-		try {
-			Directory directory = getDirectory();
-
-			Directory.Groups gGroups = directory.groups();
-
-			com.google.api.services.admin.directory.model.Group gGroup =
-				new com.google.api.services.admin.directory.model.Group();
-
-			gGroup.setEmail(groupEmailAddress);
-			gGroup.setName(name);
-
-			Directory.Groups.Insert insert = gGroups.insert(gGroup);
-
-			insert.execute();
-		}
-		catch (Exception e) {
-			throw new PortalException(e);
-		}
-	}
-
-	public static void addGGroupManagers(List<User> users)
+	public static void addGroupManagers(List<User> users)
 		throws PortalException {
 
 		for (User user : users) {
@@ -99,7 +65,7 @@ public class GoogleMailGroupsUtil {
 				String groupEmailAddress = getGroupEmailAddress(group);
 				String userEmailAddress = getUserEmailAddress(user);
 
-				Member member = getGGroupMember(
+				Member member = GoogleDirectoryUtil.getGroupMember(
 					groupEmailAddress, userEmailAddress);
 
 				if (member == null) {
@@ -114,38 +80,9 @@ public class GoogleMailGroupsUtil {
 
 				member.setRole("MANAGER");
 
-				updateGGroupMember(groupEmailAddress, userEmailAddress, member);
+				GoogleDirectoryUtil.updateGroupMember(
+					groupEmailAddress, userEmailAddress, member);
 			}
-		}
-	}
-
-	public static void addGGroupMember(
-			String groupEmailAddress, String emailAddress)
-		throws PortalException {
-
-		try {
-			Directory directory = getDirectory();
-
-			Directory.Members members = directory.members();
-
-			Member member = new Member();
-
-			member.setEmail(emailAddress);
-
-			Directory.Members.Insert insert = members.insert(
-				groupEmailAddress, member);
-
-			insert.execute();
-		}
-		catch (GoogleJsonResponseException gjre) {
-			if (gjre.getStatusCode() == _ERROR_CONFLICT) {
-				return;
-			}
-
-			throw new PortalException(gjre);
-		}
-		catch (Exception e) {
-			throw new PortalException(e);
 		}
 	}
 
@@ -180,7 +117,7 @@ public class GoogleMailGroupsUtil {
 
 			whoCanPostMessage = "ALL_MANAGERS_CAN_POST";
 
-			updateGGroupManagers(group);
+			updateGroupManagers(group);
 		}
 		else if (largeGroup &&
 				 (count < PortletPropsValues.EMAIL_LARGE_GROUP_SIZE)) {
@@ -202,7 +139,7 @@ public class GoogleMailGroupsUtil {
 
 		String groupEmailAddress = getGroupEmailAddress(group);
 
-		Groups groups = getGroupssettingsGroup(groupEmailAddress);
+		Groups groups = GoogleGroupssettingsUtil.getGroups(groupEmailAddress);
 
 		if (groups == null) {
 			return;
@@ -210,109 +147,7 @@ public class GoogleMailGroupsUtil {
 
 		groups.setWhoCanPostMessage(whoCanPostMessage);
 
-		updateGroupssettingsGroup(groupEmailAddress, groups);
-	}
-
-	public static void deleteGGroup(String groupEmailAddress)
-		throws PortalException {
-
-		try {
-			Directory directory = getDirectory();
-
-			Directory.Groups gGroups = directory.groups();
-
-			Directory.Groups.Delete delete = gGroups.delete(groupEmailAddress);
-
-			delete.execute();
-		}
-		catch (Exception e) {
-			throw new PortalException(e);
-		}
-	}
-
-	public static void deleteGGroupMember(
-			String groupEmailAddress, String emailAddress)
-		throws PortalException {
-
-		try {
-			Directory directory = getDirectory();
-
-			Directory.Members members = directory.members();
-
-			Directory.Members.Delete delete = members.delete(
-				groupEmailAddress, emailAddress);
-
-			delete.execute();
-		}
-		catch (Exception e) {
-			throw new PortalException(e);
-		}
-	}
-
-	public static Directory getDirectory() throws Exception {
-		if (_directory != null) {
-			return _directory;
-		}
-
-		GoogleCredential googleCredential = getGoogleCredential();
-
-		Directory.Builder builder = new Directory.Builder(
-			googleCredential.getTransport(), googleCredential.getJsonFactory(),
-			googleCredential);
-
-		_directory = builder.build();
-
-		return _directory;
-	}
-
-	public static com.google.api.services.admin.directory.model.Group getGGroup(
-		String groupEmailAddress) {
-
-		try {
-			Directory directory = getDirectory();
-
-			Directory.Groups gGroups = directory.groups();
-
-			Directory.Groups.Get get = gGroups.get(groupEmailAddress);
-
-			return get.execute();
-		}
-		catch (Exception e) {
-			return null;
-		}
-	}
-
-	public static Member getGGroupMember(
-		String groupEmailAddress, String userEmailAddress) {
-
-		try {
-			Directory directory = getDirectory();
-
-			Directory.Members members = directory.members();
-
-			Directory.Members.Get get = members.get(
-				groupEmailAddress, userEmailAddress);
-
-			return get.execute();
-		}
-		catch (Exception e) {
-			return null;
-		}
-	}
-
-	public static Members getGGroupMembers(String groupEmailAddress) {
-		try {
-			Directory directory = getDirectory();
-
-			Directory.Members members = directory.members();
-
-			Directory.Members.List list = members.list(groupEmailAddress);
-
-			return list.execute();
-		}
-		catch (Exception e) {
-			return null;
-		}
+		GoogleGroupssettingsUtil.updateGroups(groupEmailAddress, groups);
 	}
 
 	public static String getGroupEmailAddress(Group group)
@@ -336,37 +171,6 @@ public class GoogleMailGroupsUtil {
 		return sb.toString();
 	}
 
-	public static Groupssettings getGroupssettings() throws Exception {
-		if (_groupssettings != null) {
-			return _groupssettings;
-		}
-
-		GoogleCredential googleCredential = getGoogleCredential();
-
-		Groupssettings.Builder builder = new Groupssettings.Builder(
-			googleCredential.getTransport(), googleCredential.getJsonFactory(),
-			googleCredential);
-
-		_groupssettings = builder.build();
-
-		return _groupssettings;
-	}
-
-	public static Groups getGroupssettingsGroup(String groupEmailAddress) {
-		try {
-			Groupssettings groupssettings = getGroupssettings();
-
-			Groupssettings.Groups groups = groupssettings.groups();
-
-			Groupssettings.Groups.Get get = groups.get(groupEmailAddress);
-
-			return get.execute();
-		}
-		catch (Exception e) {
-			return null;
-		}
-	}
-
 	public static String getUserEmailAddress(User user) throws PortalException {
 		return user.getUserId() + StringPool.AT + user.getCompanyMx();
 	}
@@ -388,7 +192,7 @@ public class GoogleMailGroupsUtil {
 		return true;
 	}
 
-	public static void removeGGroupManagers(List<User> users)
+	public static void removeGroupManagers(List<User> users)
 		throws PortalException {
 
 		for (User user : users) {
@@ -410,7 +214,7 @@ public class GoogleMailGroupsUtil {
 				String groupEmailAddress = getGroupEmailAddress(group);
 				String userEmailAddress = getUserEmailAddress(user);
 
-				Member member = getGGroupMember(
+				Member member = GoogleDirectoryUtil.getGroupMember(
 					groupEmailAddress, userEmailAddress);
 
 				if (member == null) {
@@ -425,7 +229,8 @@ public class GoogleMailGroupsUtil {
 
 				member.setRole("MEMBER");
 
-				updateGGroupMember(groupEmailAddress, userEmailAddress, member);
+				GoogleDirectoryUtil.updateGroupMember(
+					groupEmailAddress, userEmailAddress, member);
 			}
 		}
 	}
@@ -442,23 +247,25 @@ public class GoogleMailGroupsUtil {
 					return;
 				}
 
-				List<String> gGroupMemberEmailAddresses =
+				List<String> groupMemberEmailAddresses =
 					new ArrayList<String>();
 
 				String groupEmailAddress = getGroupEmailAddress(group);
 
 				com.google.api.services.admin.directory.model.Group gGroup =
-					getGGroup(groupEmailAddress);
+					GoogleDirectoryUtil.getGroup(groupEmailAddress);
 
 				if (gGroup == null) {
-					addGGroup(group.getDescriptiveName(), groupEmailAddress);
+					GoogleDirectoryUtil.addGroup(
+						group.getDescriptiveName(), groupEmailAddress);
 				}
 
-				Members members = getGGroupMembers(groupEmailAddress);
+				Members members = GoogleDirectoryUtil.getGroupMembers(
+					groupEmailAddress);
 
 				if ((members != null) && (members.getMembers() != null)) {
 					for (Member member : members.getMembers()) {
-						gGroupMemberEmailAddresses.add(member.getEmail());
+						groupMemberEmailAddresses.add(member.getEmail());
 					}
 				}
 
@@ -480,23 +287,24 @@ public class GoogleMailGroupsUtil {
 					emailAddresses.add(getUserEmailAddress(user));
 				}
 
-				for (String gGroupMemberEmailAddress :
-						gGroupMemberEmailAddresses) {
+				for (String groupMemberEmailAddress :
+						groupMemberEmailAddresses) {
 
-					if (emailAddresses.contains(gGroupMemberEmailAddress)) {
+					if (emailAddresses.contains(groupMemberEmailAddress)) {
 						continue;
 					}
 
-					deleteGGroupMember(
-						groupEmailAddress, gGroupMemberEmailAddress);
+					GoogleDirectoryUtil.deleteGroupMember(
+						groupEmailAddress, groupMemberEmailAddress);
 				}
 
 				for (String emailAddress : emailAddresses) {
-					if (gGroupMemberEmailAddresses.contains(emailAddress)) {
+					if (groupMemberEmailAddresses.contains(emailAddress)) {
 						continue;
 					}
 
-					addGGroupMember(groupEmailAddress, emailAddress);
+					GoogleDirectoryUtil.addGroupMember(
+						groupEmailAddress, emailAddress);
 				}
 
 				checkLargeGroup(group);
@@ -506,74 +314,7 @@ public class GoogleMailGroupsUtil {
 		actionableDynamicQuery.performActions();
 	}
 
-	public static void updateGGroupMember(
-			String groupEmailAddress, String userEmailAddress, Member member)
-		throws PortalException {
-
-		try {
-			Directory directory = getDirectory();
-
-			Directory.Members members = directory.members();
-
-			Directory.Members.Update update = members.update(
-				groupEmailAddress, userEmailAddress, member);
-
-			update.execute();
-		}
-		catch (Exception e) {
-			throw new PortalException(e);
-		}
-	}
-
-	public static void updateGroupssettingsGroup(
-			String groupEmailAddress, Groups groups)
-		throws PortalException {
-
-		try {
-			Groupssettings groupssettings = getGroupssettings();
-
-			Groupssettings.Groups groupssettingsGroups =
-				groupssettings.groups();
-
-			Groupssettings.Groups.Update update = groupssettingsGroups.update(
-				groupEmailAddress, groups);
-
-			update.execute();
-		}
-		catch (Exception e) {
-			throw new PortalException(e);
-		}
-	}
-
-	protected static GoogleCredential getGoogleCredential() throws Exception {
-		if (_googleCredential != null) {
-			return _googleCredential;
-		}
-
-		GoogleCredential.Builder builder = new GoogleCredential.Builder();
-
-		builder.setJsonFactory(new JacksonFactory());
-		builder.setServiceAccountId(
-			PortletPropsValues.GOOGLE_API_SERVICE_ACCOUNT_ID);
-
-		File file = new File(
-			PropsUtil.get(PropsKeys.LIFERAY_HOME) +
-				PortletPropsValues.
-					GOOGLE_API_SERVICE_ACCOUNT_PRIVATE_KEY_P12_FILE);
-
-		builder.setServiceAccountPrivateKeyFromP12File(file);
-
-		builder.setServiceAccountScopes(_SCOPES);
-		builder.setServiceAccountUser(
-			PortletPropsValues.GOOGLE_API_SERVICE_ACCOUNT_USER);
-		builder.setTransport(new NetHttpTransport());
-
-		_googleCredential = builder.build();
-
-		return _googleCredential;
-	}
-
-	protected static void updateGGroupManagers(Group group) {
+	protected static void updateGroupManagers(Group group) {
 		Role role = RoleLocalServiceUtil.fetchRole(
 			group.getCompanyId(), PortletPropsValues.EMAIL_LARGE_GROUP_ROLE);
 
@@ -588,27 +329,17 @@ public class GoogleMailGroupsUtil {
 				String groupEmailAddress = getGroupEmailAddress(group);
 				String userEmailAddress = getUserEmailAddress(user);
 
-				Member member = getGGroupMember(
+				Member member = GoogleDirectoryUtil.getGroupMember(
 					groupEmailAddress, userEmailAddress);
 
 				member.setRole("MANAGER");
 
-				updateGGroupMember(groupEmailAddress, userEmailAddress, member);
+				GoogleDirectoryUtil.updateGroupMember(
+					groupEmailAddress, userEmailAddress, member);
 			}
 			catch (Exception e) {
 			}
 		}
 	}
-
-	private static final int _ERROR_CONFLICT = 409;
-
-	private static final List<String> _SCOPES = Arrays.asList(
-		"https://www.googleapis.com/auth/admin.directory.group",
-		"https://www.googleapis.com/auth/admin.directory.user",
-		"https://www.googleapis.com/auth/apps.groups.settings");
-
-	private static Directory _directory;
-	private static GoogleCredential _googleCredential;
-	private static Groupssettings _groupssettings;
 
 }

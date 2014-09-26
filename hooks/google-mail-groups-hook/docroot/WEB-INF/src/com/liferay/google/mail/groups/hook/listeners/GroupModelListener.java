@@ -14,6 +14,7 @@
 
 package com.liferay.google.mail.groups.hook.listeners;
 
+import com.liferay.google.mail.groups.util.GoogleDirectoryUtil;
 import com.liferay.google.mail.groups.util.GoogleMailGroupsUtil;
 import com.liferay.portal.ModelListenerException;
 import com.liferay.portal.kernel.log.Log;
@@ -48,7 +49,7 @@ public class GroupModelListener extends BaseModelListener<Group> {
 				public void onAssociation(User user, Group group)
 					throws Exception {
 
-					GoogleMailGroupsUtil.addGGroupMember(
+					GoogleDirectoryUtil.addGroupMember(
 						GoogleMailGroupsUtil.getGroupEmailAddress(group),
 						GoogleMailGroupsUtil.getUserEmailAddress(user));
 
@@ -69,7 +70,7 @@ public class GroupModelListener extends BaseModelListener<Group> {
 		}
 
 		try {
-			GoogleMailGroupsUtil.addGGroup(
+			GoogleDirectoryUtil.addGroup(
 				group.getDescriptiveName(),
 				GoogleMailGroupsUtil.getGroupEmailAddress(group));
 		}
@@ -85,7 +86,7 @@ public class GroupModelListener extends BaseModelListener<Group> {
 		}
 
 		try {
-			GoogleMailGroupsUtil.deleteGGroup(
+			GoogleDirectoryUtil.deleteGroup(
 				GoogleMailGroupsUtil.getGroupEmailAddress(group));
 		}
 		catch (Exception e) {
@@ -113,7 +114,7 @@ public class GroupModelListener extends BaseModelListener<Group> {
 						return;
 					}
 
-					GoogleMailGroupsUtil.deleteGGroupMember(
+					GoogleDirectoryUtil.deleteGroupMember(
 						GoogleMailGroupsUtil.getGroupEmailAddress(group),
 						GoogleMailGroupsUtil.getUserEmailAddress(user));
 
