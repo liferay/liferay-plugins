@@ -332,6 +332,12 @@ public class GoogleMailGroupsUtil {
 				Member member = GoogleDirectoryUtil.getGroupMember(
 					groupEmailAddress, userEmailAddress);
 
+				String gRole = member.getRole();
+
+				if (gRole.equals("MANAGER") || gRole.equals("OWNER")) {
+					continue;
+				}
+
 				member.setRole("MANAGER");
 
 				GoogleDirectoryUtil.updateGroupMember(
