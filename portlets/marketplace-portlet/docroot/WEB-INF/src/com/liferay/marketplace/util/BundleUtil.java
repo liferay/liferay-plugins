@@ -206,7 +206,7 @@ public class BundleUtil {
 		"osgi.core:type=framework,version=1.5";
 
 	private static final String[] _INSTALLED_BUNDLE_STATES = {
-		"INSTALLED", "RESOLVED", "ACTIVE"
+		"ACTIVE", "INSTALLED", "RESOLVED"
 	};
 
 }
