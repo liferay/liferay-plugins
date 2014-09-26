@@ -68,7 +68,7 @@ public class BundleUtil {
 			for (CompositeData compositeData : values) {
 				String state = (String)compositeData.get("State");
 
-				if (!state.equals("ACTIVE")) {
+				if ( !ArrayUtil.contains(_INSTALLED_BUNDLE_STATES, state)) {
 					continue;
 				}
 
@@ -204,6 +204,10 @@ public class BundleUtil {
 			throw new SystemException(e);
 		}
 	}
+
+	private static final String[] _INSTALLED_BUNDLE_STATES = {
+		"INSTALLED", "RESOLVED", "ACTIVE"
+	};
 
 	private static String _BUNDLE_STATE_OBJECT_NAME =
 		"osgi.core:type=bundleState,version=1.5";
