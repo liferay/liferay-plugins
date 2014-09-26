@@ -270,7 +270,7 @@
 
 		<!-- Other fields -->
 
-		<column name="parentKbFolderId" type="long" />
+		<column name="parentKBFolderId" type="long" />
 		<column name="name" type="String" />
 		<column name="description" type="String" />
 
@@ -278,7 +278,7 @@
 
 		<finder name="G_P" return-type="Collection">
 			<finder-column name="groupId" />
-			<finder-column name="parentKbFolderId" />
+			<finder-column name="parentKBFolderId" />
 		</finder>
 	</entity>
 	<entity name="KBTemplate" uuid="true" local-service="true" remote-service="true">
