@@ -52,9 +52,10 @@ for (String importer : importers) {
 	String resourcesPath = application.getRealPath("/WEB-INF/classes/resources-importer");
 
 	FileUtil.deltree(resourcesPath);
-	FileUtil.mkdirs(resourcesPath);
 
 	if (importer.equals("lar") || importer.equals("resource")) {
+		FileUtil.mkdirs(resourcesPath);
+
 		String importerPath = application.getRealPath("WEB-INF/classes/test/" + importer);
 
 		FileUtil.copyDirectory(importerPath, resourcesPath);
