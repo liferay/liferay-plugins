@@ -270,9 +270,9 @@
 
 		<!-- Other fields -->
 
+		<column name="parentKbFolderId" type="long" />
 		<column name="name" type="String" />
 		<column name="description" type="String" />
-		<column name="parentKbFolderId" type="long" />
 
 		<!-- Finder methods -->
 
