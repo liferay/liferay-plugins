@@ -206,7 +206,7 @@ public class BundleUtil {
 	}
 
 	private static final String[] _INSTALLED_BUNDLE_STATES = {
-		"INSTALLED", "RESOLVED", "ACTIVE"
+		"ACTIVE", "INSTALLED", "RESOLVED"
 	};
 
 	private static String _BUNDLE_STATE_OBJECT_NAME =
