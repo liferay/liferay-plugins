@@ -28,8 +28,8 @@
 		<!-- Other fields -->
 
 		<column name="rootResourcePrimKey" type="long" filter-primary="true" />
-		<column name="parentResourcePrimKey" type="long" />
 		<column name="parentResourceClassNameId" type="long" />
+		<column name="parentResourcePrimKey" type="long" />
 		<column name="version" type="int" />
 		<column name="title" type="String" />
 		<column name="urlTitle" type="String" />
