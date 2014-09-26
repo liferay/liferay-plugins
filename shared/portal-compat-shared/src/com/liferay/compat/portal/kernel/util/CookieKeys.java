@@ -302,7 +302,7 @@ public class CookieKeys {
 
 	private static final boolean _SESSION_COOKIE_USE_FULL_HOSTNAME =
 		GetterUtil.getBoolean(
-			PropsUtil.get(PropsKeys.SESSION_COOKIE_USE_FULL_HOSTNAME));
+			PropsUtil.get("session.cookie.use.full.hostname"));
 
 	private static final boolean _SESSION_ENABLE_PERSISTENT_COOKIES =
 		GetterUtil.getBoolean(
