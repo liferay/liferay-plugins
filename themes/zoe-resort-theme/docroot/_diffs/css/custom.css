@@ -19,391 +19,356 @@ $dockbarOpenGradientStart: #0EA6F9;
 
 /* ---------- Base styles ---------- */
 
-.aui {
-	body {
-		background: #FFF url(../images/custom/background.png) 100% 0 repeat;
+body {
+	background: #FFF url(../images/custom/background.png) 100% 0 repeat;
+}
+
+#wrapper {
+	background: #FFF;
+	margin: 0 auto 20px;
+	width: 960px;
+}
+
+.signed-in #wrapper {
+	margin-top: 45px;
+}
+
+#sign-in {
+	color: #FFF;
+	font-size: 12px;
+	position: absolute;
+	right: 23px;
+	text-shadow: none;
+
+	&:hover {
+		font-weight: underline;
 	}
+}
 
-	#wrapper {
-		background: #FFF;
-		margin: 0 auto 20px;
-		width: 960px;
-	}
+/* ---------- Dockbar ---------- */
 
-	.signed-in #wrapper {
-		margin-top: 45px;
-	}
+.dockbar-split .dockbar {
+	.navbar-inner {
+		.nav {
+			background-color: $dockbarGradientStart;
 
-	#sign-in {
-		color: #FFF;
-		font-size: 12px;
-		position: absolute;
-		right: 23px;
-		text-shadow: none;
-
-		&:hover {
-			font-weight: underline;
-		}
-	}
-
-	/* ---------- Dockbar ---------- */
-
-	.dockbar-split .dockbar {
-		.navbar-inner {
-			.nav {
-				background-color: $dockbarGradientStart;
-
-				> li {
-					background-color: transparent;
-				}
-
-				li.dropdown {
-					&.active, &.open, &.open.active {
-						> .dropdown-toggle {
-							background-color: $dockbarOpenGradientStart;
-						}
-					}
-				}
+			> li {
+				background-color: transparent;
 			}
 
-			.nav-add-controls {
-				background: transparent;
-
-				> li > a {
-					background: #0DB5E7;
-
-					&:hover {
-						background: $dockbarOpenGradientEnd;
-					}
-
-					&.toggle-controls-link {
-						background: #BDBDBD;
+			li.dropdown {
+				&.active, &.open, &.open.active {
+					> .dropdown-toggle {
+						background-color: $dockbarOpenGradientStart;
 					}
 				}
 			}
 		}
-	}
 
-	/* ---------- Banner / Navigation ---------- */
+		.nav-add-controls {
+			background: transparent;
 
-	.home-page #banner {
-		background: url(../images/custom/banner.jpg) 0 0 no-repeat;
-		height: $bannerHeight + $navHeight;
-		position: relative;
-	}
+			> li > a {
+				background: #0DB5E7;
 
-	#banner {
-		background: url(../images/custom/small_banner.jpg) 0 0 no-repeat;
-		height: $smallBannerHeight + $navHeight;
-		position: relative;
+				&:hover {
+					background: $dockbarOpenGradientEnd;
+				}
 
-		#heading {
-			.logo {
-				float: left;
-				margin: 20px 0 20px 20px;
-			}
-
-			.site-name {
-				background: $color;
-				color: #FFF;
-				display: inline-block;
-				font-weight: bold;
-				margin: 30px 10px;
-				padding: 5px 10px;
+				&.toggle-controls-link {
+					background: #BDBDBD;
+				}
 			}
 		}
+	}
+}
 
-		#navigation {
-			background: url(../images/custom/nav_bg.png) repeat-x 0 -1px;
-			bottom: 0;
+/* ---------- Banner / Navigation ---------- */
+
+.home-page #banner {
+	background: url(../images/custom/banner.jpg) 0 0 no-repeat;
+	height: $bannerHeight + $navHeight;
+	position: relative;
+}
+
+#banner {
+	background: url(../images/custom/small_banner.jpg) 0 0 no-repeat;
+	height: $smallBannerHeight + $navHeight;
+	position: relative;
+
+	#heading {
+		.logo {
 			float: left;
-			font: 12px "Helvetica Neue", Helvetica, Arial, Verdana, sans-serif;
-			left: 0;
-			position: absolute;
-			width: 960px;
-
-			a {
-				background: url(../images/custom/nav_split.png) no-repeat right;
-				color: $color;
-				display: block;
-				padding: 15px 20px;
-				text-decoration: none;
-				text-transform: uppercase;
-
-				&:hover {
-					background: url(../images/custom/nav_hover.png) repeat-x 100%;
-					color: #FFF;
-					text-shadow: 0 -1px 0 #295F7B;
-				}
-			}
-
-			li {
-				float: left;
-				line-height: 14px;
-
-				&.lfr-nav-hover {
-					background: $color;
-
-					a {
-						background: url(../images/custom/nav_hover.png) repeat-x 100%;
-
-						span {
-							color: #FFF;
-							text-shadow: 0 -1px 0 #295F7B;
-						}
-					}
-				}
-			}
-
-			ul {
-				list-style: none;
-				margin: 0;
-			}
+			margin: 20px 0 20px 20px;
 		}
-	}
 
-	.modify-pages .delete-tab {
-		background: url(../images/custom/nav_bg.png) repeat-x 0 -1px;
-		border: 2px solid $color;
-		color: #555;
-		font-size: 16px;
-		padding: 4px;
-		right: -10px;
-		top: 0;
-		z-index: 300;
-
-		&:hover {
-			color: #CD2626;
-		}
-	}
-
-	#page-search {
-		display: inline-block;
-		float: right;
-		position: absolute;
-		right: 10px;
-		top: 30px;
-
-		#keywords {
-			background: rgba(255, 255, 255, 0.2);
-			border-width: 0;
+		.site-name {
+			background: $color;
 			color: #FFF;
-			font: italic 0.5em "Helvetica Neue", Helvetica, Arial, Verdana, sans-serif;
-			height: 30px;
-			width: 220px;
-		}
-
-		#search {
-			display: none;
+			display: inline-block;
+			font-weight: bold;
+			margin: 30px 10px;
+			padding: 5px 10px;
 		}
 	}
 
-	/* ---------- Content ---------- */
-
-	.left {
+	#navigation {
+		background: url(../images/custom/nav_bg.png) repeat-x 0 -1px;
+		bottom: 0;
 		float: left;
-		padding-left: 0;
-	}
+		font: 12px "Helvetica Neue", Helvetica, Arial, Verdana, sans-serif;
+		left: 0;
+		position: absolute;
+		width: 960px;
 
-	.right {
-		float: right;
-		padding-right: 0;
-	}
-
-	img.center {
-		display: block;
-		height: 87px;
-		margin: 0 auto 1em auto;
-	}
-
-	.button {
-		background: url(../images/custom/port_button_bg.png) repeat-x;
-		color: #27698A;
-		font: 18px "Helvetica Neue", Helvetica, Arial, Verdana, sans-serif;
-		margin: 0 5px;
-		padding: 7px 12px;
-		text-decoration: none;
-
-		&.full {
+		a {
+			background: url(../images/custom/nav_split.png) no-repeat right;
+			color: $color;
 			display: block;
-			margin: 0;
-		}
-	}
+			padding: 15px 20px;
+			text-decoration: none;
+			text-transform: uppercase;
 
-	.journal-content-article ul {
-		font: 1.14em/2 "Helvetica Neue", Helvetica, Arial, Verdana, sans-serif;
-		list-style-image: url(../images/custom/port_bullet.jpg);
-	}
-
-	.paginator-link {
-		text-align: center;
-	}
-
-	#content #main-content {
-		display: inline-block;
-		margin: 20px 0 0;
-		padding: 0 20px;
-		width: 920px;
-	}
-
-	#column-1.span4 {
-		max-width: 66%;
-	}
-
-	/* ---------- Portlet ---------- */
-
-	.portlet-column-content {
-		font-size: 12px;
-		padding: 0 5px;
-	}
-
-	.portlet-topper {
-		background: url(../images/custom/port_topper.png) 100% repeat-x;
-		height: 37px;
-		letter-spacing: .05em;
-
-		.portlet-topper-toolbar {
-			a, a:visited {
+			&:hover {
+				background: url(../images/custom/nav_hover.png) repeat-x 100%;
 				color: #FFF;
+				text-shadow: 0 -1px 0 #295F7B;
 			}
 		}
-	}
-
-	.portlet-title {
-		color: #FFF;
-		font: 21px "Helvetica Neue", Helvetica, Arial, Verdana, sans-serif;
-		margin: 0 12px 0 0;
-		padding: 6px 0 0 15px;
-
-		img {
-			display: none;
-		}
-	}
-
-	.signed-in.controls-visible .portlet-title {
-		background: none;
-	}
-
-	.portlet-icon-back {
-		color: #FFF;
-		font-weight: normal;
-		text-decoration: none;
-	}
-
-	.portlet-content {
-		margin: 15px 1px;
-		padding: 0;
-	}
-
-	.portlet-body {
-		color: $color;
-
-		.journal-content-article ul li {
-			padding-top: 7px;
-		}
-	}
-
-	.portlet-options .dropdown-toggle, .portlet-options.open .dropdown-toggle {
-		display: inline-block;
-		height: 16px;
-		vertical-align: middle;
-		width: 16px;
-
-		.caret {
-			display: none;
-		}
-	}
-
-	/* ---------- Carousel ---------- */
-
-	.portlet-column-content {
-		padding: 5px 10px;
-	}
-
-	.carousel menu {
-		background: none;
-		bottom: 11px;
-		right: 19px;
-	}
-
-	.carousel-menu-item {
-		background: #858585;
-	}
-
-	.carousel-menu-active {
-		background: #FFF;
-	}
-
-	.carousel-menu-pause, .carousel-menu-play, .carousel-menu-prev, .carousel-menu-next {
-		display: none;
-	}
-
-	/* ---------- Footer ---------- */
-
-	#footer {
-		background: url(../images/custom/footer_gradient.png) repeat-x #F6F6F6;
-		height: 101px;
-		text-align: center;
-
-		#navigation {
-			font: 15px;
-			padding: 31px 0 0;
-			width: 960px;
-
-			a {
-				color: #6E6E6E;
-				padding: 0 5px;
-				text-align: center;
-				text-decoration: none;
-				text-transform: uppercase;
-				white-space: nowrap;
-
-				&:hover {
-					color: $color;
-				}
-			}
-
-			li {
-				border-left: 1px solid #6E6E6E;
-				display: block;
-				float: left;
-
-				&.first {
-					border-left-width: 0;
-				}
-			}
-
-			ul {
-				display: inline-block;
-				list-style: none;
-				margin: 0;
-				padding: 0;
-			}
-		}
-
-		.clearer {
-			clear: both;
-		}
-	}
-
-	#social {
-		margin: 0 auto;
-		padding: 10px 0 0;
-		width: 100%;
 
 		li {
 			float: left;
-			padding: 0 3px;
+			line-height: 14px;
 
-			a {
-				display: block;
-				height: 30px;
-				text-decoration: none;
-				width: 30px;
+			&.lfr-nav-hover {
+				background: $color;
 
-				img {
-					display: block;
+				a {
+					background: url(../images/custom/nav_hover.png) repeat-x 100%;
+
+					span {
+						color: #FFF;
+						text-shadow: 0 -1px 0 #295F7B;
+					}
 				}
+			}
+		}
+
+		ul {
+			list-style: none;
+			margin: 0;
+		}
+	}
+}
+
+.modify-pages .delete-tab {
+	background: url(../images/custom/nav_bg.png) repeat-x 0 -1px;
+	border: 2px solid $color;
+	color: #555;
+	font-size: 16px;
+	padding: 4px;
+	right: -10px;
+	top: 0;
+	z-index: 300;
+
+	&:hover {
+		color: #CD2626;
+	}
+}
+
+#page-search {
+	display: inline-block;
+	float: right;
+	position: absolute;
+	right: 10px;
+	top: 30px;
+
+	#keywords {
+		background: rgba(255, 255, 255, 0.2);
+		border-width: 0;
+		color: #FFF;
+		font: italic 0.5em "Helvetica Neue", Helvetica, Arial, Verdana, sans-serif;
+		height: 30px;
+		width: 220px;
+	}
+
+	#search {
+		display: none;
+	}
+}
+
+/* ---------- Content ---------- */
+
+.left {
+	float: left;
+	padding-left: 0;
+}
+
+.right {
+	float: right;
+	padding-right: 0;
+}
+
+img.center {
+	display: block;
+	height: 87px;
+	margin: 0 auto 1em auto;
+}
+
+.button {
+	background: url(../images/custom/port_button_bg.png) repeat-x;
+	color: #27698A;
+	font: 18px "Helvetica Neue", Helvetica, Arial, Verdana, sans-serif;
+	margin: 0 5px;
+	padding: 7px 12px;
+	text-decoration: none;
+
+	&.full {
+		display: block;
+		margin: 0;
+	}
+}
+
+.journal-content-article ul {
+	font: 1.14em/2 "Helvetica Neue", Helvetica, Arial, Verdana, sans-serif;
+	list-style-image: url(../images/custom/port_bullet.jpg);
+}
+
+.paginator-link {
+	text-align: center;
+}
+
+#content #main-content {
+	display: inline-block;
+	margin: 20px 0 0;
+	padding: 0 20px;
+	width: 920px;
+}
+
+#column-1.span4 {
+	max-width: 66%;
+}
+
+/* ---------- Portlet ---------- */
+
+.portlet-column-content {
+	font-size: 12px;
+	padding: 0 5px;
+}
+
+.portlet-topper {
+	background: url(../images/custom/port_topper.png) 100% repeat-x;
+	height: 37px;
+	letter-spacing: .05em;
+
+	.portlet-topper-toolbar {
+		a, a:visited {
+			color: #FFF;
+		}
+	}
+}
+
+.portlet-title {
+	color: #FFF;
+	font: 21px "Helvetica Neue", Helvetica, Arial, Verdana, sans-serif;
+	margin: 0 12px 0 0;
+	padding: 6px 0 0 15px;
+
+	img {
+		display: none;
+	}
+}
+
+.signed-in.controls-visible .portlet-title {
+	background: none;
+}
+
+.portlet-icon-back {
+	color: #FFF;
+	font-weight: normal;
+	text-decoration: none;
+}
+
+.portlet-content {
+	margin: 15px 1px;
+	padding: 0;
+}
+
+.portlet-body {
+	color: $color;
+
+	.journal-content-article ul li {
+		padding-top: 7px;
+	}
+}
+
+.portlet-options .dropdown-toggle, .portlet-options.open .dropdown-toggle {
+	display: inline-block;
+	height: 16px;
+	vertical-align: middle;
+	width: 16px;
+
+	.caret {
+		display: none;
+	}
+}
+
+/* ---------- Carousel ---------- */
+
+.portlet-column-content {
+	padding: 5px 10px;
+}
+
+.carousel menu {
+	background: none;
+	bottom: 11px;
+	right: 19px;
+}
+
+.carousel-menu-item {
+	background: #858585;
+}
+
+.carousel-menu-active {
+	background: #FFF;
+}
+
+.carousel-menu-pause, .carousel-menu-play, .carousel-menu-prev, .carousel-menu-next {
+	display: none;
+}
+
+/* ---------- Footer ---------- */
+
+#footer {
+	background: url(../images/custom/footer_gradient.png) repeat-x #F6F6F6;
+	height: 101px;
+	text-align: center;
+
+	#navigation {
+		font: 15px;
+		padding: 31px 0 0;
+		width: 960px;
+
+		a {
+			color: #6E6E6E;
+			padding: 0 5px;
+			text-align: center;
+			text-decoration: none;
+			text-transform: uppercase;
+			white-space: nowrap;
+
+			&:hover {
+				color: $color;
+			}
+		}
+
+		li {
+			border-left: 1px solid #6E6E6E;
+			display: block;
+			float: left;
+
+			&.first {
+				border-left-width: 0;
 			}
 		}
 
@@ -415,79 +380,112 @@ $dockbarOpenGradientStart: #0EA6F9;
 		}
 	}
 
-	/* ---------- Internet explorer ---------- */
-
-	.ie #keywords {
-		background: transparent;
-		filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#20000000,endColorstr=#20000000);
-		zoom: 1;
+	.clearer {
+		clear: both;
 	}
+}
 
-	.ie6, .ie7 {
-		#social ul {
-			display: inline;
+#social {
+	margin: 0 auto;
+	padding: 10px 0 0;
+	width: 100%;
+
+	li {
+		float: left;
+		padding: 0 3px;
+
+		a {
+			display: block;
+			height: 30px;
+			text-decoration: none;
+			width: 30px;
+
+			img {
+				display: block;
+			}
 		}
 	}
 
-	/* ---------- Hidden accessible ---------- */
-
-	#footer-social a span, #navigation .child-menu, #skip-to-content, .portlet-journal-content-search .lfr-search-button, .portlet-journal-content-search .lfr-search-keywords {
-		clip: rect(0 0 0 0);
+	ul {
+		display: inline-block;
+		list-style: none;
 		margin: 0;
 		padding: 0;
-		position: absolute;
 	}
+}
 
-	/* ---------- Extras ---------- */
+/* ---------- Internet explorer ---------- */
 
-	#wrapper {
-		@include box-shadow(#000 0 0 10px);
+.ie #keywords {
+	background: transparent;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#20000000,endColorstr=#20000000);
+	zoom: 1;
+}
+
+.ie6, .ie7 {
+	#social ul {
+		display: inline;
 	}
+}
 
-	.dockbar {
-		.navbar-inner {
-			@include box-shadow(none);
+/* ---------- Hidden accessible ---------- */
 
-			.nav {
-				li.dropdown.open > .dropdown-toggle {
-					@include background-image(linear-gradient($dockbarOpenGradientStart, $dockbarOpenGradientEnd));
-					@include box-shadow(none);
-					@include filter-gradient($dockbarOpenGradientStart, $dockbarOpenGradientEnd, vertical);
-				}
-			}
+#footer-social a span, #navigation .child-menu, #skip-to-content, .portlet-journal-content-search .lfr-search-button, .portlet-journal-content-search .lfr-search-keywords {
+	clip: rect(0 0 0 0);
+	margin: 0;
+	padding: 0;
+	position: absolute;
+}
 
-			.nav-account-controls {
-				@include background-image(linear-gradient($dockbarGradientStart 0%, $dockbarGradientStart 10%, $dockbarGradientEnd 100%));
-				@include filter-gradient($dockbarGradientStart, $dockbarGradientEnd, vertical);
+/* ---------- Extras ---------- */
+
+#wrapper {
+	@include box-shadow(#000 0 0 10px);
+}
+
+.dockbar {
+	.navbar-inner {
+		@include box-shadow(none);
+
+		.nav {
+			li.dropdown.open > .dropdown-toggle {
+				@include background-image(linear-gradient($dockbarOpenGradientStart, $dockbarOpenGradientEnd));
+				@include box-shadow(none);
+				@include filter-gradient($dockbarOpenGradientStart, $dockbarOpenGradientEnd, vertical);
 			}
 		}
-	}
 
-	#banner #heading .site-name {
-		@include border-radius(4px);
-		@include box-shadow(inset 0 0 5px rgba(0, 0, 0, 0.8), 1px 1px 1px $color);
-		@include text-shadow(1px 1px rgba(0, 0, 0, 0.5));
-	}
-
-	.button {
-		@include box-shadow(#BEBEBE 0 2px 2px);
-	}
-
-	.portlet-title {
-		@include text-shadow(0 -1px 0 #295973);
-	}
-
-	.button, #banner #navigation a, #footer #navigation a:hover {
-		@include text-shadow(0 1px 0 #FFF);
-	}
-
-	.modify-pages .delete-tab {
-		@include border-radius(50%);
-		@include text-shadow(none);
-		@include transition(opacity 0.2s ease);
-
-		&:hover {
-			@include box-shadow(0 1px 1px -1px #000);
+		.nav-account-controls {
+			@include background-image(linear-gradient($dockbarGradientStart 0%, $dockbarGradientStart 10%, $dockbarGradientEnd 100%));
+			@include filter-gradient($dockbarGradientStart, $dockbarGradientEnd, vertical);
 		}
+	}
+}
+
+#banner #heading .site-name {
+	@include border-radius(4px);
+	@include box-shadow(inset 0 0 5px rgba(0, 0, 0, 0.8), 1px 1px 1px $color);
+	@include text-shadow(1px 1px rgba(0, 0, 0, 0.5));
+}
+
+.button {
+	@include box-shadow(#BEBEBE 0 2px 2px);
+}
+
+.portlet-title {
+	@include text-shadow(0 -1px 0 #295973);
+}
+
+.button, #banner #navigation a, #footer #navigation a:hover {
+	@include text-shadow(0 1px 0 #FFF);
+}
+
+.modify-pages .delete-tab {
+	@include border-radius(50%);
+	@include text-shadow(none);
+	@include transition(opacity 0.2s ease);
+
+	&:hover {
+		@include box-shadow(0 1px 1px -1px #000);
 	}
 }

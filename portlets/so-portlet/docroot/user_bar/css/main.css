@@ -14,12 +14,10 @@ $defaultTextColor: #202020;
 	background-color: rgba(0, 0, 0, 0.48);
 }
 
-.aui {
-	.so-portlet-user-bar, .portlet-dockbar {
-		&, a {
-			font: 14px/1em 'Helvetica Neue', Helvetica, Arial, sans-serif;
-			font-weight: 400;
-		}
+.so-portlet-user-bar, .portlet-dockbar {
+	&, a {
+		font: 14px/1em 'Helvetica Neue', Helvetica, Arial, sans-serif;
+		font-weight: 400;
 	}
 }
 
@@ -89,7 +87,7 @@ $defaultTextColor: #202020;
 
 /* ---------- Dockbar ---------- */
 
-.aui .dockbar-split .portlet-dockbar {
+.dockbar-split .portlet-dockbar {
 	z-index: 301;
 
 	.dockbar {
@@ -222,7 +220,7 @@ $defaultTextColor: #202020;
 	}
 }
 
-.aui .dockbar-split .portlet-dockbar {
+.dockbar-split .portlet-dockbar {
 	position: absolute;
 	right: 0;
 	top: 0;
@@ -250,7 +248,7 @@ $defaultTextColor: #202020;
 	clear: both;
 }
 
-.ie7.aui {
+.ie7 {
 	.portlet-dockbar {
 		clear: both;
 
@@ -272,35 +270,33 @@ $defaultTextColor: #202020;
 
 /* ---------- Control panel ---------- */
 
-.aui {
+.so-portlet-user-bar {
+	z-index: 1;
+}
+
+.dockbar #_145_navAccountControlsNavbarCollapse {
+	position: absolute;
+	right: 0;
+	top: 0;
+	z-index: 1;
+}
+
+.dockbar-split {
 	.so-portlet-user-bar {
-		z-index: 1;
+		z-index: auto;
 	}
 
 	.dockbar #_145_navAccountControlsNavbarCollapse {
-		position: absolute;
-		right: 0;
-		top: 0;
-		z-index: 1;
-	}
-
-	.dockbar-split {
-		.so-portlet-user-bar {
-			z-index: auto;
-		}
-
-		.dockbar #_145_navAccountControlsNavbarCollapse {
-			position: relative;
-			right: auto;
-			top: auto;
-		}
+		position: relative;
+		right: auto;
+		top: auto;
 	}
 }
 
 /* ---------- Responsive ---------- */
 
 @include respond-to(phone, tablet) {
-	.aui .so-portlet-user-bar {
+	.so-portlet-user-bar {
 		height: 3.15em;
 		z-index: auto;
 
@@ -313,7 +309,7 @@ $defaultTextColor: #202020;
 		}
 	}
 
-	.aui .portlet-dockbar {
+	.portlet-dockbar {
 		position: absolute;
 		right: 0;
 		top: 0;
@@ -494,7 +490,7 @@ $defaultTextColor: #202020;
 		}
 	}
 
-	html.aui #heading {
+	#heading {
 		position: static;
 	}
 
@@ -525,11 +521,11 @@ $defaultTextColor: #202020;
 }
 
 @include respond-to(phone) {
-	html.aui body {
+	body {
 		padding: 0;
 	}
 
-	.aui .navbar-static-top {
+	.navbar-static-top {
 		margin-left: 0;
 		margin-right: 0;
 	}

@@ -90,9 +90,9 @@
 	}
 }
 
-.aui .mail-portlet .table-bordered {
+.mail-portlet .table-bordered {
 	th, td {
-	 	&.attachments {
+		&.attachments {
 			border-left: 0;
 		}
 	}

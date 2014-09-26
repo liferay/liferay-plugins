@@ -319,7 +319,7 @@ a {
 	}
 }
 
-.aui .opens-new-window-accessible {
+.opens-new-window-accessible {
 	display: inline-block;
 	font-size: 0;
 	margin-left: 2px;
@@ -333,7 +333,7 @@ a {
 	}
 }
 
-.ie7.aui .opens-new-window-accessible {
+.ie7 .opens-new-window-accessible {
 	background: url(/html/themes/classic/images/common/open_window.png) no-repeat 0 50%;
 	height: 16px;
 	text-indent: -9999px;
@@ -342,111 +342,109 @@ a {
 
 /* ---------- Dockbar ---------- */
 
-html.aui {
-	.alert .close {
-		background: inherit;
-		border-width: 0;
+.alert .close {
+	background: inherit;
+	border-width: 0;
 
-		@include box-shadow(none);
+	@include box-shadow(none);
 
+	padding: 0;
+}
+
+.navbar .nav-navigation {
+	display: none;
+}
+
+.dockbar-split .dockbar {
+	@include transition-duration(0.2s);
+	@include transition-property(margin-left);
+
+	.container-fluid .nav-add-controls .dockbar-item .dropdown-menu {
+		background: $controlBgColor;
+		bottom: 0;
+		margin-left: -64px;
 		padding: 0;
-	}
+		top: 0;
 
-	.navbar .nav-navigation {
-		display: none;
-	}
-
-	.dockbar-split .dockbar {
 		@include transition-duration(0.2s);
 		@include transition-property(margin-left);
 
-		.container-fluid .nav-add-controls .dockbar-item .dropdown-menu {
-			background: $controlBgColor;
-			bottom: 0;
-			margin-left: -64px;
-			padding: 0;
+		.dockbar-item {
+			float: none;
+		}
+	}
+
+	&.navbar-static-top .collapse, .container-fluid .container {
+		.nav-account-controls {
 			top: 0;
 
 			@include transition-duration(0.2s);
-			@include transition-property(margin-left);
+			@include transition-property(top);
+		}
+	}
 
-			.dockbar-item {
-				float: none;
-			}
+	.info-items, .info-link-container {
+		a {
+			background: transparent none;
+		}
+	}
+
+	.info-items {
+		left: auto;
+		position: absolute;
+		right: 332px;
+		top: 44px;
+		width: 360px;
+
+		.page-customization-bar .page-customization-bar-text {
+			height: 56px;
 		}
 
-		&.navbar-static-top .collapse, .container-fluid .container {
-			.nav-account-controls {
+		.btn-link {
+			border-width: inherit;
+			padding: 4px 12px;
+			text-decoration: none;
+			text-shadow: inherit;
+		}
+	}
+
+	.info-link-container {
+		left: auto;
+		position: absolute;
+		right: 332px;
+		top: 48px;
+
+		.info-button {
+			.info-link {
+				padding: 5px 10px;
+			}
+
+			.diamond {
+				border-bottom-color: transparent;
+				border-left-color: rgba(0, 0, 0, 0.5);
+				right: -12px;
 				top: 0;
 
-				@include transition-duration(0.2s);
-				@include transition-property(top);
-			}
-		}
-
-		.info-items, .info-link-container {
-			a {
-				background: transparent none;
-			}
-		}
-
-		.info-items {
-			left: auto;
-			position: absolute;
-			right: 332px;
-			top: 44px;
-			width: 360px;
-
-			.page-customization-bar .page-customization-bar-text {
-				height: 56px;
-			}
-
-			.btn-link {
-				border-width: inherit;
-				padding: 4px 12px;
-				text-decoration: none;
-				text-shadow: inherit;
-			}
-		}
-
-		.info-link-container {
-			left: auto;
-			position: absolute;
-			right: 332px;
-			top: 48px;
-
-			.info-button {
-				.info-link {
-					padding: 5px 10px;
-				}
-
-				.diamond {
-					border-bottom-color: transparent;
-					border-left-color: rgba(0, 0, 0, 0.5);
-					right: -12px;
-					top: 0;
-
-					&:after {
-						border-top-color: transparent;
-					}
+				&:after {
+					border-top-color: transparent;
 				}
 			}
 		}
+	}
 
-		.hide + .info-link-container .info-button .diamond {
-			border-bottom-color: rgba(0, 0, 0, 0.5);
-			border-left-color: transparent;
-			right: 0;
-			top: -12px;
+	.hide + .info-link-container .info-button .diamond {
+		border-bottom-color: rgba(0, 0, 0, 0.5);
+		border-left-color: transparent;
+		right: 0;
+		top: -12px;
 
-			&:after {
-				border-top-color: rgba(0, 0, 0, 0.5);
-			}
+		&:after {
+			border-top-color: rgba(0, 0, 0, 0.5);
 		}
 	}
 }
 
-.aui .dockbar-split.show-dockbar {
+.dockbar-split.show-dockbar {
 	border-left: 63px solid $controlBgColor;
 
 	@include transition-duration(0.2s);
@@ -463,24 +461,22 @@ html.aui {
 
 /* ---------- Forms ---------- */
 
-.aui {
-	form#hrefFm {
-		margin: 0;
-	}
+form#hrefFm {
+	margin: 0;
+}
 
-	input[type="text"], input[type="password"], input[type="file"], input[type="submit"], input[type="button"], input[type="reset"], select, textarea, .textarea, button {
-		@include input-field-default;
-	}
+input[type="text"], input[type="password"], input[type="file"], input[type="submit"], input[type="button"], input[type="reset"], select, textarea, .textarea, button {
+	@include input-field-default;
+}
 
-	input, textarea {
-		&.focus {
-			@include input-field-focus;
-		}
+input, textarea {
+	&.focus {
+		@include input-field-focus;
 	}
+}
 
-	.lfr-menu-list ul .taglib-icon.aui-focus, .lfr-menu-expanded li a:focus {
-		background-color: #1D87EB;
-	}
+.lfr-menu-list ul .taglib-icon.aui-focus, .lfr-menu-expanded li a:focus {
+	background-color: #1D87EB;
 }
 
 .ie6 {
@@ -507,26 +503,24 @@ html.aui {
 	@include normal-gradient;
 }
 
-.aui {
-	.invite-members, .social-relations a {
-		@include border-radius(4px);
-		@include button-default;
+.invite-members, .social-relations a {
+	@include border-radius(4px);
+	@include button-default;
 
-		&:hover, &:focus {
-			@include button-hover;
+	&:hover, &:focus {
+		@include button-hover;
 
-			text-decoration: none;
-		}
+		text-decoration: none;
+	}
 
-		&:active {
-			@include button-active;
-		}
+	&:active {
+		@include button-active;
 	}
 }
 
 /* ---------- Layout ---------- */
 
-.aui .row {
+.row {
 	margin-left: 0;
 	margin-right: 0;
 
@@ -1786,427 +1780,425 @@ html.aui {
 
 /* ---------- Responsive ---------- */
 
-html.aui {
-	@media (max-width: 1200px) {
-		.portlet-document-library .row-fluid {
-			.span2 {
-				width: 15%;
-			}
+@media (max-width: 1200px) {
+	.portlet-document-library .row-fluid {
+		.span2 {
+			width: 15%;
+		}
 
-			.span10 {
-				width: 85%;
-			}
+		.span10 {
+			width: 85%;
 		}
 	}
+}
 
-	@include respond-to(phone, tablet) {
-		.navbar {
-			.info-items, .info-link-container {
-				display: none;
-			}
-
-			.container-fluid .nav-collapse.open .nav-add-controls .dockbar-item .dropdown-menu {
-				bottom: auto;
-				top: auto;
-			}
-		}
-
-		#banner #toggleDockbar {
-			display: none
-		}
-
-		#content, #navigation, #navigation ul {
-			border-width: 0;
-		}
-
-		#content {
-			padding-left: 0;
-		}
-
-		#navigation {
+@include respond-to(phone, tablet) {
+	.navbar {
+		.info-items, .info-link-container {
 			display: none;
 		}
 
-		.portlet-layout, .portlet-column {
-			display: block;
-			width: auto;
-		}
-
-		/* ---------- Portlet: message boards ---------- */
-
-		.portlet-asset-publisher, .portlet-message-boards {
-			.message-container .thread-top .answer {
-				@include border-radius(4px);
-
-				border-width: 2px;
-				display: block;
-				margin-bottom: 0.5em;
-				position: initial;
-				text-align: left;
-				width: auto;
-			}
+		.container-fluid .nav-collapse.open .nav-add-controls .dockbar-item .dropdown-menu {
+			bottom: auto;
+			top: auto;
 		}
 	}
 
-	@include respond-to(phone) {
-		body #banner {
-			padding: 0.5em 1em;
-			text-align: center;
+	#banner #toggleDockbar {
+		display: none
+	}
 
-			.site-title {
-				width: 100%;
-			}
+	#content, #navigation, #navigation ul {
+		border-width: 0;
+	}
 
-			.avatar, .logo img {
-				display: none;
-			}
+	#content {
+		padding-left: 0;
+	}
+
+	#navigation {
+		display: none;
+	}
+
+	.portlet-layout, .portlet-column {
+		display: block;
+		width: auto;
+	}
+
+	/* ---------- Portlet: message boards ---------- */
+
+	.portlet-asset-publisher, .portlet-message-boards {
+		.message-container .thread-top .answer {
+			@include border-radius(4px);
+
+			border-width: 2px;
+			display: block;
+			margin-bottom: 0.5em;
+			position: initial;
+			text-align: left;
+			width: auto;
 		}
+	}
+}
 
-		.row-fluid [class*="span"] {
+@include respond-to(phone) {
+	body #banner {
+		padding: 0.5em 1em;
+		text-align: center;
+
+		.site-title {
 			width: 100%;
 		}
 
-		#page-search {
+		.avatar, .logo img {
 			display: none;
 		}
+	}
 
-		/* ---------- Mobile pop ups ---------- */
+	.row-fluid [class*="span"] {
+		width: 100%;
+	}
 
-		&.dialog-iframe-root-node {
-			padding: 10px !important;
+	#page-search {
+		display: none;
+	}
+
+	/* ---------- Mobile pop ups ---------- */
+
+	&.dialog-iframe-root-node {
+		padding: 10px !important;
+	}
+
+	.modal {
+		bottom: 0;
+
+		@include border-radius(0);
+
+		border-width: 0;
+		height: 100% !important;
+		left: 0 !important;
+		position: fixed;
+		top: 0 !important;
+		width: 100% !important;
+
+		.modal-header .close {
+			font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
+			font-size: 50px;
+			line-height: 50px;
+			margin-top: -10px;
+			padding: 0;
+			width: 50px;
 		}
 
-		.modal {
-			bottom: 0;
+		.modal-body {
+			padding: 0 10px;
+			width: 100%;
 
-			@include border-radius(0);
-
-			border-width: 0;
-			height: 100% !important;
-			left: 0 !important;
-			position: fixed;
-			top: 0 !important;
-			width: 100% !important;
-
-			.modal-header .close {
-				font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
-				font-size: 50px;
-				line-height: 50px;
-				margin-top: -10px;
+			&.dialog-iframe-bd {
 				padding: 0;
-				width: 50px;
-			}
-
-			.modal-body {
-				padding: 0 10px;
-				width: 100%;
-
-				&.dialog-iframe-bd {
-					padding: 0;
-				}
 			}
 		}
+	}
 
-		.modal-body, .portal-popup {
-			.portlet-body {
-				padding: 0;
-			}
-
-			#main-content {
-				margin: 0;
-			}
-
-			.form {
-				margin: 10px 0 0;
-			}
-
-			.nav-tabs {
-				margin: 10px 0;
-			}
-
-			.tab-content {
-				overflow: initial;
-			}
-
-			.control-group, & {
-				margin-right: 0;
-				width: 100%;
-
-				input[type="email"], input[type="file"], input[type="text"], textarea {
-					height: 30px;
-					margin-left: -1px;
-					min-width: 0;
-					padding: 0;
-					text-indent: 4px;
-					width: 100%;
-				}
-
-				.lfr-input-text {
-					max-width: none !important;
-					min-width: 0;
-					width: 100%;
-				}
-
-				textarea {
-					height: auto;
-				}
-
-				select {
-					min-width: 0;
-					width: 100%;
-				}
-			}
-
-			.btn, .btn:hover {
-				display: inline-block;
-				margin: 0 0 0 5px;
-				padding: 10px;
-				width: auto;
-
-				i {
-					display: block;
-				}
-			}
-
-			.button-holder {
-				background-color: #FFF;
-				border-top: 1px solid $defaultBorderColor;
-				bottom: 0;
-				margin: 10px -10px 0;
-				padding: 10px;
-				width: 100%;
-
-				.btn {
-					float: right;
-
-					&:last-child {
-						margin-left: 0;
-					}
-				}
-			}
-		}
-
-		.portal-popup {
+	.modal-body, .portal-popup {
+		.portlet-body {
 			padding: 0;
 		}
 
-		.so-portlet-invite-members .modal-body {
-			.invite-actions {
-				background-color: #FFF;
-				border-top: 1px solid $defaultBorderColor;
-				border-width: 1px 0 0;
-				bottom: 0;
-				margin: 10px -10px 0;
-				overflow: hidden;
-				padding: 10px;
+		#main-content {
+			margin: 0;
+		}
+
+		.form {
+			margin: 10px 0 0;
+		}
+
+		.nav-tabs {
+			margin: 10px 0;
+		}
+
+		.tab-content {
+			overflow: initial;
+		}
+
+		.control-group, & {
+			margin-right: 0;
+			width: 100%;
+
+			input[type="email"], input[type="file"], input[type="text"], textarea {
+				height: 30px;
+				margin-left: -1px;
+				min-width: 0;
+				padding: 0;
+				text-indent: 4px;
 				width: 100%;
+			}
 
-				.form {
-					margin: 0;
-				}
+			.lfr-input-text {
+				max-width: none !important;
+				min-width: 0;
+				width: 100%;
+			}
 
-				.btn {
-					float: right;
+			textarea {
+				height: auto;
+			}
 
-					&:last-child {
-						margin-left: 0;
-					}
-				}
+			select {
+				min-width: 0;
+				width: 100%;
 			}
 		}
 
-		/* ---------- Portlet: activities ---------- */
+		.btn, .btn:hover {
+			display: inline-block;
+			margin: 0 0 0 5px;
+			padding: 10px;
+			width: auto;
 
-		.so-portlet-activities .activity-item {
-			padding: 1em 0;
+			i {
+				display: block;
+			}
 		}
 
-		.profile-page .so-portlet-activities .portlet-title {
+		.button-holder {
+			background-color: #FFF;
+			border-top: 1px solid $defaultBorderColor;
+			bottom: 0;
+			margin: 10px -10px 0;
+			padding: 10px;
+			width: 100%;
+
+			.btn {
+				float: right;
+
+				&:last-child {
+					margin-left: 0;
+				}
+			}
+		}
+	}
+
+	.portal-popup {
+		padding: 0;
+	}
+
+	.so-portlet-invite-members .modal-body {
+		.invite-actions {
+			background-color: #FFF;
+			border-top: 1px solid $defaultBorderColor;
+			border-width: 1px 0 0;
+			bottom: 0;
+			margin: 10px -10px 0;
+			overflow: hidden;
+			padding: 10px;
+			width: 100%;
+
+			.form {
+				margin: 0;
+			}
+
+			.btn {
+				float: right;
+
+				&:last-child {
+					margin-left: 0;
+				}
+			}
+		}
+	}
+
+	/* ---------- Portlet: activities ---------- */
+
+	.so-portlet-activities .activity-item {
+		padding: 1em 0;
+	}
+
+	.profile-page .so-portlet-activities .portlet-title {
+		text-align: left;
+	}
+
+	/* ---------- Portlet: contacts ---------- */
+
+	.contacts-portlet .contacts-profile {
+		.profile-actions {
+			margin: 10px 0;
+		}
+
+		.user-information-title {
 			text-align: left;
+			width: auto;
 		}
 
-		/* ---------- Portlet: contacts ---------- */
-
-		.contacts-portlet .contacts-profile {
-			.profile-actions {
-				margin: 10px 0;
-			}
-
-			.user-information-title {
+		.section {
+			h3 {
+				float: none;
 				text-align: left;
 				width: auto;
 			}
 
-			.section {
-				h3 {
-					float: none;
-					text-align: left;
-					width: auto;
-				}
+			.property-list {
+				margin-left: 10px;
+			}
+		}
+	}
 
-				.property-list {
-					margin-left: 10px;
+	.profile-page .contacts-portlet .projects {
+		padding: 10px;
+	}
+
+	/* ---------- Portlet: document library ---------- */
+
+	.portlet-document-library .row-fluid {
+		.span2, .span10 {
+			width: auto;
+		}
+	}
+
+	/* ---------- Portlet: message boards ---------- */
+
+	.portlet-asset-publisher, .portlet-message-boards {
+		#toggle_id_message_boards_view_message_thread, #toggle_id_message_boards_view_message_thread_image, .thread-view-controls {
+			display: none;
+		}
+
+		.accordion-inner {
+			padding: 0;
+
+			.lfr-search-container {
+				margin-top: 0;
+			}
+
+			.table {
+				border-width: 0;
+				margin-bottom: 0;
+
+				td, th {
+					&:first-child {
+						border-left-width: 0;
+					}
 				}
 			}
 		}
 
-		.profile-page .contacts-portlet .projects {
-			padding: 10px;
-		}
-
-		/* ---------- Portlet: document library ---------- */
-
-		.portlet-document-library .row-fluid {
-			.span2, .span10 {
-				width: auto;
+		#_19_mbCategoriesSearchContainerSearchContainer {
+			tr {
+				td, th {
+					&:nth-child(2), &:nth-child(3), &:nth-child(4) {
+						display: none;
+					}
+				}
 			}
 		}
 
-		/* ---------- Portlet: message boards ---------- */
+		#_19_mbThreadsSearchContainerSearchContainer {
+			tr {
+				td, th {
+					&:nth-child(2), &:nth-child(3), &:nth-child(4), &:nth-child(5), &:nth-child(6) {
+						display: none;
+					}
+				}
+			}
+		}
 
-		.portlet-asset-publisher, .portlet-message-boards {
-			#toggle_id_message_boards_view_message_thread, #toggle_id_message_boards_view_message_thread_image, .thread-view-controls {
+		.displayStyle-question #_19_mbThreadsSearchContainerSearchContainer {
+			.table {
+				border-top-width: 0;
+			}
+
+			thead {
 				display: none;
 			}
 
-			.accordion-inner {
-				padding: 0;
-
-				.lfr-search-container {
-					margin-top: 0;
-				}
-
-				.table {
-					border-width: 0;
-					margin-bottom: 0;
-
-					td, th {
-						&:first-child {
-							border-left-width: 0;
-						}
+			tr {
+				td, th {
+					&:nth-child(2), &:nth-child(4), &:nth-child(5), &:nth-child(6) {
+						display: table-cell;
 					}
 				}
 			}
 
-			#_19_mbCategoriesSearchContainerSearchContainer {
-				tr {
-					td, th {
-						&:nth-child(2), &:nth-child(3), &:nth-child(4) {
-							display: none;
-						}
+			.question-details {
+				float: none;
+
+				.status, .votes {
+					display: block;
+					margin: 5px auto;
+				}
+
+				.status {
+					background-color: transparent;
+
+					&.answered {
+						color: #5BA018;
+					}
+
+					&.unanswered {
+						color: #CF4937;
 					}
 				}
-			}
 
-			#_19_mbThreadsSearchContainerSearchContainer {
-				tr {
-					td, th {
-						&:nth-child(2), &:nth-child(3), &:nth-child(4), &:nth-child(5), &:nth-child(6) {
-							display: none;
-						}
-					}
-				}
-			}
-
-			.displayStyle-question #_19_mbThreadsSearchContainerSearchContainer {
-				.table {
-					border-top-width: 0;
-				}
-
-				thead {
+				.views {
 					display: none;
 				}
+			}
+		}
 
-				tr {
-					td, th {
-						&:nth-child(2), &:nth-child(4), &:nth-child(5), &:nth-child(6) {
-							display: table-cell;
-						}
-					}
-				}
+		/* ---------- Thread ---------- */
 
-				.question-details {
-					float: none;
+		.message-container {
+			margin-left: 0 !important;
 
-					.status, .votes {
+			.user-name {
+				margin-top: 0.9em;
+			}
+
+			.thread-top {
+				padding-left: 15px;
+
+				.subject {
+					margin-top: 2.6em;
+
+					> a {
 						display: block;
-						margin: 5px auto;
+						margin-bottom: 1.5em;
+						margin-left: 65px;
 					}
 
-					.status {
-						background-color: transparent;
-
-						&.answered {
-							color: #5BA018;
-						}
-
-						&.unanswered {
-							color: #CF4937;
-						}
-					}
-
-					.views {
+					br {
 						display: none;
 					}
 				}
 			}
 
-			/* ---------- Thread ---------- */
+			.thread-body {
+				padding-left: 15px;
+			}
 
-			.message-container {
-				margin-left: 0 !important;
+			.thread-bottom {
+				padding-left: 5px;
 
-				.user-name {
-					margin-top: 0.9em;
-				}
+				.edit-controls {
+					margin-bottom: 2.5em;
+					margin-left: 0.5em;
 
-				.thread-top {
-					padding-left: 15px;
-
-					.subject {
-						margin-top: 2.6em;
-
-						> a {
-							display: block;
-							margin-bottom: 1.5em;
-							margin-left: 65px;
-						}
-
-						br {
-							display: none;
-						}
-					}
-				}
-
-				.thread-body {
-					padding-left: 15px;
-				}
-
-				.thread-bottom {
-					padding-left: 5px;
-
-					.edit-controls {
-						margin-bottom: 2.5em;
-						margin-left: 0.5em;
-
-						li {
-							float: left;
-						}
+					li {
+						float: left;
 					}
 				}
 			}
 		}
+	}
 
-		/* ---------- Portlet: microblogs ---------- */
+	/* ---------- Portlet: microblogs ---------- */
 
-		.user-dashboard .microblogs-portlet {
-			.microblogs-entry-form {
-				margin-bottom: 0;
-			}
+	.user-dashboard .microblogs-portlet {
+		.microblogs-entry-form {
+			margin-bottom: 0;
+		}
 
-			.microblogs-status-container {
-				display: none;
-			}
+		.microblogs-status-container {
+			display: none;
 		}
 	}
 }

@@ -196,16 +196,14 @@
 
 /* ---------- Dockbar notifications ---------- */
 
-.aui {
-	.dockbar .nav li.dropdown.dockbar-user-notifications .dropdown-menu {
-		left: auto;
-		max-height: none;
-		padding: 10px;
-		right: 0;
+.dockbar .nav li.dropdown.dockbar-user-notifications .dropdown-menu {
+	left: auto;
+	max-height: none;
+	padding: 10px;
+	right: 0;
 
-		&.pull-right:after {
-			right: 20px;
-		}
+	&.pull-right:after {
+		right: 20px;
 	}
 }
 

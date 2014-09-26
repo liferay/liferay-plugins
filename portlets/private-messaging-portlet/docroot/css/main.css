@@ -247,82 +247,80 @@
 
 /* ---------- Responsive ---------- */
 
-html.aui {
-	@include respond-to(phone, tablet) {
-		.private-messaging-portlet {
-			.btn-group, .button-holder {
-				width: auto;
-			}
+@include respond-to(phone, tablet) {
+	.private-messaging-portlet {
+		.btn-group, .button-holder {
+			width: auto;
 		}
 	}
+}
 
-	@include respond-to(phone) {
-		.private-messaging-portlet {
-			.messages {
-				.button-holder{
-					padding-left: 51px;
-					position: relative;
+@include respond-to(phone) {
+	.private-messaging-portlet {
+		.messages {
+			.button-holder{
+				padding-left: 51px;
+				position: relative;
 
-					.check-all {
-						height: 24px;
-						left: 16px;
-						margin-top: -12px;
-						position: absolute;
-						top: 50%;
-						width: 24px;
-					}
-				}
-
-				.table .first input {
+				.check-all {
 					height: 24px;
-					margin-left: 6px;
+					left: 16px;
+					margin-top: -12px;
+					position: absolute;
+					top: 50%;
 					width: 24px;
 				}
 			}
 
-			button, button:hover {
-				margin-bottom: 5px;
-				width: 100%;
+			.table .first input {
+				height: 24px;
+				margin-left: 6px;
+				width: 24px;
+			}
+		}
 
-				&.close {
-					width: auto;
-				}
+		button, button:hover {
+			margin-bottom: 5px;
+			width: 100%;
 
-				&:last-child {
-					margin-bottom: 0;
-				}
+			&.close {
+				width: auto;
 			}
 
-			.message-link {
-				padding-left: 10px;
+			&:last-child {
+				margin-bottom: 0;
 			}
+		}
 
-			.user-profile-image {
-				height: 45px;
-			}
+		.message-link {
+			padding-left: 10px;
+		}
 
-			.avatar {
-				width: 45px;
-			}
+		.user-profile-image {
+			height: 45px;
+		}
 
-			.author-sender, .date, .name {
-				float: none;
-			}
+		.avatar {
+			width: 45px;
+		}
 
-			.date {
-				display: block;
-				font-size: 1em;
-				margin-top: 3px;
-			}
+		.author-sender, .date, .name {
+			float: none;
+		}
 
-			.subject {
-				margin-top: 10px;
-			}
+		.date {
+			display: block;
+			font-size: 1em;
+			margin-top: 3px;
+		}
 
-			.body {
-				clear: both;
-				margin-top: 10px;
-			}
+		.subject {
+			margin-top: 10px;
+		}
+
+		.body {
+			clear: both;
+			margin-top: 10px;
 		}
 	}
 }
