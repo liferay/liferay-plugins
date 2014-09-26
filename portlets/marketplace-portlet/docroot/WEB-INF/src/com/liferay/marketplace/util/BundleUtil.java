@@ -197,10 +197,10 @@ public class BundleUtil {
 		}
 	}
 
-	private static String _BUNDLE_STATE_OBJECT_NAME =
+	private static final String _BUNDLE_STATE_OBJECT_NAME =
 		"osgi.core:type=bundleState,version=1.5";
 
-	private static String _FRAMEWORK_OBJECT_NAME =
+	private static final String _FRAMEWORK_OBJECT_NAME =
 		"osgi.core:type=framework,version=1.5";
 
 	private static final String[] _INSTALLED_BUNDLE_STATES = {
