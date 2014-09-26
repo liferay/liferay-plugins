@@ -252,10 +252,7 @@ public class GoogleMailGroupsUtil {
 
 				String groupEmailAddress = getGroupEmailAddress(group);
 
-				com.google.api.services.admin.directory.model.Group gGroup =
-					GoogleDirectoryUtil.getGroup(groupEmailAddress);
-
-				if (gGroup == null) {
+				if (GoogleDirectoryUtil.getGroup(groupEmailAddress) == null) {
 					GoogleDirectoryUtil.addGroup(
 						group.getDescriptiveName(), groupEmailAddress);
 				}
