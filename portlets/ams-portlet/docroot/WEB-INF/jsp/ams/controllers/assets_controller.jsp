@@ -45,6 +45,16 @@ public class AlloyControllerImpl extends BaseAlloyControllerImpl {
 	public void save() throws Exception {
 		Asset asset = AssetLocalServiceUtil.createAsset(0);
 
+		String serialNumber = ParamUtil.getString(request, "serialNumber");
+
+		Pattern pattern = Pattern.compile(_SERIAL_NUMBER_REGEX);
+
+		Matcher matcher = pattern.matcher(serialNumber);
+
+		if (!matcher.find()) {
+			throw new AlloyException("invalid-serial-number");
+		}
+
 		updateModel(asset);
 
 		addSuccessMessage();
@@ -66,6 +76,8 @@ public class AlloyControllerImpl extends BaseAlloyControllerImpl {
 	protected Indexer buildIndexer() {
 		return AssetIndexer.getInstance();
 	}
+
+	private static final String _SERIAL_NUMBER_REGEX = "^[a-zA-Z0-9]+$";
 
 }
 %>
