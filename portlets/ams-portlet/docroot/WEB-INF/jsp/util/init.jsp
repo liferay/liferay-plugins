@@ -33,8 +33,8 @@ page import="com.liferay.portal.kernel.search.Summary" %><%@
 page import="com.liferay.portal.kernel.util.ParamUtil" %>
 
 <%@ page import="java.util.Locale" %><%@
-page import="java.util.regex.Pattern" %><%@
-page import="java.util.regex.Matcher" %>
+page import="java.util.regex.Matcher" %><%@
+page import="java.util.regex.Pattern" %>
 
 <%@ page import="javax.portlet.PortletRequest" %><%@
 page import="javax.portlet.PortletResponse" %><%@
