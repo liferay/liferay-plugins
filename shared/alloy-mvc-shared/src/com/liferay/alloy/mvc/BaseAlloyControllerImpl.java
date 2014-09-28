@@ -161,7 +161,7 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 
 				String message = "an-unexpected-system-error-occurred";
 
-				Throwable rootCause = _getRootCause(e);
+				Throwable rootCause = getRootCause(e);
 
 				if (rootCause instanceof AlloyException) {
 					message = rootCause.getMessage();
@@ -442,6 +442,14 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 		}
 
 		return sb.toString();
+	}
+
+	protected Throwable getRootCause(Throwable throwable) {
+		if (throwable.getCause() == null) {
+			return throwable;
+		}
+
+		return getRootCause(throwable.getCause());
 	}
 
 	protected String getSchedulerDestinationName() {
@@ -1066,14 +1074,6 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 	protected ThemeDisplay themeDisplay;
 	protected User user;
 	protected String viewPath;
-
-	private Throwable _getRootCause(Throwable throwable) {
-		if (throwable.getCause() == null) {
-			return throwable;
-		}
-
-		return _getRootCause(throwable.getCause());
-	}
 
 	private static final String _VIEW_PATH_ERROR = "VIEW_PATH_ERROR";
 
