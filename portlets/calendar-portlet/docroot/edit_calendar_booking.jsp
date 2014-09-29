@@ -585,11 +585,20 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 	);
 
 	<c:if test="<%= invitable %>">
+		var manageableCalendars = {}
+
+		A.Array.each(
+			<%= CalendarUtil.toCalendarsJSONArray(themeDisplay, manageableCalendars) %>,
+			function(calendar) {
+				manageableCalendars[calendar.calendarId] = calendar;
+			}
+		);
+
 		A.one('#<portlet:namespace />calendarId').on(
 			'valueChange',
 			function(event) {
 				var calendarId = parseInt(event.target.val(), 10);
-				var calendarJSON = Liferay.CalendarUtil.manageableCalendars[calendarId];
+				var calendarJSON = manageableCalendars[calendarId];
 
 				A.Array.each(
 					[
