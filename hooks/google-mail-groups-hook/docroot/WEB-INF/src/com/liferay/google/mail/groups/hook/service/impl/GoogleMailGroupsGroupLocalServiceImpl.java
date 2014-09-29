@@ -18,8 +18,10 @@ import com.liferay.google.mail.groups.util.GoogleDirectoryUtil;
 import com.liferay.google.mail.groups.util.GoogleMailGroupsUtil;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.messaging.DestinationNames;
+import com.liferay.portal.kernel.messaging.MessageBusUtil;
+import com.liferay.portal.kernel.process.ProcessCallable;
+import com.liferay.portal.kernel.process.ProcessException;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.Group;
@@ -29,6 +31,8 @@ import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.GroupLocalServiceWrapper;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.UserLocalServiceUtil;
+
+import java.io.Serializable;
 
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -57,12 +61,10 @@ public class GoogleMailGroupsGroupLocalServiceImpl
 
 		group = super.updateFriendlyURL(groupId, friendlyURL);
 
-		try {
-			updateGGroup(group, oldFriendlyURL, oldGroupEmailAddress);
-		}
-		catch (Exception e) {
-			_log.error(e);
-		}
+		MessageBusUtil.sendMessage(
+			DestinationNames.ASYNC_SERVICE,
+			new UpdateGGroupProcessCallable(
+				group, oldFriendlyURL, oldGroupEmailAddress));
 
 		return group;
 	}
@@ -84,57 +86,77 @@ public class GoogleMailGroupsGroupLocalServiceImpl
 			groupId, parentGroupId, name, description, type, manualMembership,
 			membershipRestriction, friendlyURL, active, serviceContext);
 
-		try {
-			updateGGroup(group, oldFriendlyURL, oldGroupEmailAddress);
-		}
-		catch (Exception e) {
-			_log.error(e);
-		}
+		MessageBusUtil.sendMessage(
+			DestinationNames.ASYNC_SERVICE,
+			new UpdateGGroupProcessCallable(
+				group, oldFriendlyURL, oldGroupEmailAddress));
 
 		return group;
 	}
 
-	protected void updateGGroup(
-			Group group, String oldFriendlyURL, String oldGroupEmailAddress)
-		throws Exception {
+	private static class UpdateGGroupProcessCallable
+		implements ProcessCallable<Serializable> {
 
-		if (oldFriendlyURL.equals(group.getFriendlyURL())) {
-			return;
+		public UpdateGGroupProcessCallable(
+			Group group, String oldFriendlyURL, String oldGroupEmailAddress) {
+
+			_group = group;
+			_oldFriendlyURL = oldFriendlyURL;
+			_oldGroupEmailAddress = oldGroupEmailAddress;
 		}
 
-		if (!GoogleMailGroupsUtil.isSync(group)) {
-			return;
+		@Override
+		public Serializable call() throws ProcessException {
+			try {
+				if (_oldFriendlyURL.equals(_group.getFriendlyURL())) {
+					return null;
+				}
+
+				if (!GoogleMailGroupsUtil.isSync(_group)) {
+					return null;
+				}
+
+				GoogleDirectoryUtil.deleteGroup(_oldGroupEmailAddress);
+
+				String groupEmailAddress =
+					GoogleMailGroupsUtil.getGroupEmailAddress(_group);
+
+				GoogleDirectoryUtil.addGroup(
+					_group.getDescriptiveName(), groupEmailAddress);
+
+				LinkedHashMap<String, Object> userParams =
+					new LinkedHashMap<String, Object>();
+
+				userParams.put("inherit", Boolean.TRUE);
+				userParams.put("usersGroups", new Long(_group.getGroupId()));
+
+				List<User> users = UserLocalServiceUtil.search(
+					_group.getCompanyId(), null,
+					WorkflowConstants.STATUS_APPROVED, userParams,
+					QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+					(OrderByComparator)null);
+
+				for (User user : users) {
+					GoogleDirectoryUtil.addGroupMember(
+						groupEmailAddress,
+						GoogleMailGroupsUtil.getUserEmailAddress(user));
+				}
+
+				GoogleMailGroupsUtil.checkLargeGroup(_group);
+			}
+			catch (Exception e) {
+				throw new ProcessException(e);
+			}
+
+			return null;
 		}
 
-		GoogleDirectoryUtil.deleteGroup(oldGroupEmailAddress);
+		private static final long serialVersionUID = 1L;
 
-		String groupEmailAddress = GoogleMailGroupsUtil.getGroupEmailAddress(
-			group);
+		private Group _group;
+		private String _oldFriendlyURL;
+		private String _oldGroupEmailAddress;
 
-		GoogleDirectoryUtil.addGroup(
-			group.getDescriptiveName(), groupEmailAddress);
-
-		LinkedHashMap<String, Object> userParams =
-			new LinkedHashMap<String, Object>();
-
-		userParams.put("inherit", Boolean.TRUE);
-		userParams.put("usersGroups", new Long(group.getGroupId()));
-
-		List<User> users = UserLocalServiceUtil.search(
-			group.getCompanyId(), null, WorkflowConstants.STATUS_APPROVED,
-			userParams, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
-			(OrderByComparator)null);
-
-		for (User user : users) {
-			GoogleDirectoryUtil.addGroupMember(
-				groupEmailAddress,
-				GoogleMailGroupsUtil.getUserEmailAddress(user));
-		}
-
-		GoogleMailGroupsUtil.checkLargeGroup(group);
 	}
-
-	private static Log _log = LogFactoryUtil.getLog(
-		GoogleMailGroupsGroupLocalServiceImpl.class);
 
 }

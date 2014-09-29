@@ -16,9 +16,12 @@ package com.liferay.google.mail.groups.hook.listeners;
 
 import com.liferay.google.mail.groups.util.GoogleDirectoryUtil;
 import com.liferay.google.mail.groups.util.GoogleMailGroupsUtil;
-import com.liferay.portal.ModelListenerException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.messaging.DestinationNames;
+import com.liferay.portal.kernel.messaging.MessageBusUtil;
+import com.liferay.portal.kernel.process.ProcessCallable;
+import com.liferay.portal.kernel.process.ProcessException;
 import com.liferay.portal.model.BaseModelListener;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.Organization;
@@ -27,6 +30,8 @@ import com.liferay.portal.model.UserGroup;
 import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.OrganizationLocalServiceUtil;
 import com.liferay.portal.service.UserLocalServiceUtil;
+
+import java.io.Serializable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,108 +43,108 @@ public class UserModelListener extends BaseModelListener<User> {
 
 	@Override
 	public void onAfterAddAssociation(
-			Object classPK, String associationClassName,
-			Object associationClassPK)
-		throws ModelListenerException {
+		Object classPK, String associationClassName,
+		Object associationClassPK) {
 
-		try {
-			new OnAssociation(
-				classPK, associationClassName, associationClassPK) {
-
-				@Override
-				public void onAssociation(User user, Group group)
-					throws Exception {
-
-					GoogleDirectoryUtil.addGroupMember(
-						GoogleMailGroupsUtil.getGroupEmailAddress(group),
-						GoogleMailGroupsUtil.getUserEmailAddress(user));
-
-					GoogleMailGroupsUtil.checkLargeGroup(group);
-				}
-
-			};
-		}
-		catch (Exception e) {
-			_log.error(e, e);
-		}
+		MessageBusUtil.sendMessage(
+			DestinationNames.ASYNC_SERVICE,
+			new OnAssociationProcessCallable(
+				classPK, associationClassName, associationClassPK,
+				"addGroupMembers"));
 	}
 
 	@Override
 	public void onAfterRemoveAssociation(
-			Object classPK, String associationClassName,
-			Object associationClassPK)
-		throws ModelListenerException {
+		Object classPK, String associationClassName,
+		Object associationClassPK) {
 
-		try {
-			new OnAssociation(
-				classPK, associationClassName, associationClassPK) {
-
-				@Override
-				public void onAssociation(User user, Group group)
-					throws Exception {
-
-					if (GroupLocalServiceUtil.hasUserGroup(
-							user.getUserId(), group.getGroupId(), true)) {
-
-						return;
-					}
-
-					GoogleDirectoryUtil.deleteGroupMember(
-						GoogleMailGroupsUtil.getGroupEmailAddress(group),
-						GoogleMailGroupsUtil.getUserEmailAddress(user));
-
-					GoogleMailGroupsUtil.checkLargeGroup(group);
-				}
-
-			};
-		}
-		catch (Exception e) {
-			_log.error(e, e);
-		}
+		MessageBusUtil.sendMessage(
+			DestinationNames.ASYNC_SERVICE,
+			new OnAssociationProcessCallable(
+				classPK, associationClassName, associationClassPK,
+				"deleteGroupMembers"));
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(UserModelListener.class);
 
-	private abstract class OnAssociation {
+	private static class OnAssociationProcessCallable
+		implements ProcessCallable<Serializable> {
 
-		public OnAssociation(
-				Object classPK, String associationClassName,
-				Object associationClassPK)
-			throws Exception {
+		public OnAssociationProcessCallable(
+			Object classPK, String associationClassName,
+			Object associationClassPK, String action) {
 
-			List<Group> groups = new ArrayList<Group>();
-
-			if (associationClassName.equals(Group.class.getName())) {
-				groups.add(
-					GroupLocalServiceUtil.getGroup((Long)associationClassPK));
-			}
-			else if (associationClassName.equals(
-						Organization.class.getName())) {
-
-				Organization organization =
-					OrganizationLocalServiceUtil.getOrganization(
-						(Long)associationClassPK);
-
-				groups.add(organization.getGroup());
-			}
-			else if (associationClassName.equals(UserGroup.class.getName())) {
-				groups = GroupLocalServiceUtil.getUserGroupGroups(
-					(Long)associationClassPK);
-			}
-
-			User user = UserLocalServiceUtil.getUser((Long)classPK);
-
-			for (Group group : groups) {
-				if (!GoogleMailGroupsUtil.isSync(group)) {
-					continue;
-				}
-
-				onAssociation(user, group);
-			}
+			_action = action;
+			_associationClassName = associationClassName;
+			_associationClassPK = (Long)associationClassPK;
+			_classPK = (Long)classPK;
 		}
 
-		public abstract void onAssociation(User user, Group group)
-			throws Exception;
+		@Override
+		public Serializable call() throws ProcessException {
+			try {
+				List<Group> groups = new ArrayList<Group>();
+
+				if (_associationClassName.equals(Group.class.getName())) {
+					groups.add(
+						GroupLocalServiceUtil.getGroup(_associationClassPK));
+				}
+				else if (_associationClassName.equals(
+							Organization.class.getName())) {
+
+					Organization organization =
+						OrganizationLocalServiceUtil.getOrganization(
+							_associationClassPK);
+
+					groups.add(organization.getGroup());
+				}
+				else if (_associationClassName.equals(
+							UserGroup.class.getName())) {
+
+					groups = GroupLocalServiceUtil.getUserGroupGroups(
+						_associationClassPK);
+				}
+
+				User user = UserLocalServiceUtil.getUser(_classPK);
+
+				for (Group group : groups) {
+					if (!GoogleMailGroupsUtil.isSync(group)) {
+						continue;
+					}
+
+					if (_action.equals("addGroupMembers")) {
+						GoogleDirectoryUtil.addGroupMember(
+							GoogleMailGroupsUtil.getGroupEmailAddress(group),
+							GoogleMailGroupsUtil.getUserEmailAddress(user));
+					}
+					else {
+						if (GroupLocalServiceUtil.hasUserGroup(
+								user.getUserId(), group.getGroupId(), true)) {
+
+							continue;
+						}
+
+						GoogleDirectoryUtil.deleteGroupMember(
+							GoogleMailGroupsUtil.getGroupEmailAddress(group),
+							GoogleMailGroupsUtil.getUserEmailAddress(user));
+					}
+
+					GoogleMailGroupsUtil.checkLargeGroup(group);
+				}
+			}
+			catch (Exception e) {
+				throw new ProcessException(e);
+			}
+
+			return null;
+		}
+
+		private static final long serialVersionUID = 1L;
+
+		private String _action;
+		private String _associationClassName;
+		private long _associationClassPK;
+		private long _classPK;
 
 	}
 
