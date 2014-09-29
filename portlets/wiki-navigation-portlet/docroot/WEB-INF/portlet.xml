@@ -4,7 +4,7 @@
 	<portlet>
 		<portlet-name>1</portlet-name>
 		<display-name>Tree Menu</display-name>
-		<portlet-class>com.liferay.util.bridges.mvc.MVCPortlet</portlet-class>
+		<portlet-class>com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet</portlet-class>
 		<init-param>
 			<name>config-template</name>
 			<value>/tree_menu/configuration.jsp</value>
@@ -41,7 +41,7 @@
 	<portlet>
 		<portlet-name>2</portlet-name>
 		<display-name>Page Menu</display-name>
-		<portlet-class>com.liferay.util.bridges.mvc.MVCPortlet</portlet-class>
+		<portlet-class>com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet</portlet-class>
 		<init-param>
 			<name>config-template</name>
 			<value>/page_menu/configuration.jsp</value>

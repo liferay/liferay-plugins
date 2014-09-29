@@ -129,7 +129,7 @@ speed-filters-enabled=false
 				</replaceregexp>
 
 				<replace file="${portlet.dir}/docroot/WEB-INF/portlet.xml">
-					<replacetoken><![CDATA[<portlet-class>com.liferay.util.bridges.mvc.MVCPortlet</portlet-class>]]></replacetoken>
+					<replacetoken><![CDATA[<portlet-class>com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet</portlet-class>]]></replacetoken>
 					<replacevalue><![CDATA[<portlet-class>javax.portlet.faces.GenericFacesPortlet</portlet-class>]]></replacevalue>
 				</replace>
 
@@ -165,7 +165,7 @@ speed-filters-enabled=false
 portal-dependency-jars=scala-library.jar</echo>
 
 				<replace file="${portlet.dir}/docroot/WEB-INF/portlet.xml">
-					<replacetoken><![CDATA[<portlet-class>com.liferay.util.bridges.mvc.MVCPortlet</portlet-class>]]></replacetoken>
+					<replacetoken><![CDATA[<portlet-class>com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet</portlet-class>]]></replacetoken>
 					<replacevalue><![CDATA[<portlet-class>@portlet.java.package.name@.@portlet.java.class.name@Portlet</portlet-class>]]></replacevalue>
 				</replace>
 
@@ -197,7 +197,7 @@ portal-dependency-jars=scala-library.jar</echo>
 portal-dependency-jars=vaadin.jar</echo>
 
 				<replace file="${portlet.dir}/docroot/WEB-INF/portlet.xml">
-					<replacetoken><![CDATA[<portlet-class>com.liferay.util.bridges.mvc.MVCPortlet</portlet-class>]]></replacetoken>
+					<replacetoken><![CDATA[<portlet-class>com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet</portlet-class>]]></replacetoken>
 					<replacevalue><![CDATA[<portlet-class>com.vaadin.terminal.gwt.server.ApplicationPortlet2</portlet-class>]]></replacevalue>
 				</replace>
 
