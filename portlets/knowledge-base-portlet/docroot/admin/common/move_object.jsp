@@ -87,7 +87,7 @@ else {
 </aui:form>
 
 <aui:script>
-	function <portlet:namespace />selectKBObject(parentTitle, parentPriority, parentResourcePrimKey, parentResourceClassNameId, html) {
+	function <portlet:namespace />selectKBObject(parentTitle, parentPriority, parentResourcePrimKey, parentResourceClassNameId) {
 		document.<portlet:namespace />fm.<portlet:namespace />parentPriority.value = parentPriority;
 		document.<portlet:namespace />fm.<portlet:namespace />parentResourceClassNameId.value = parentResourceClassNameId;
 		document.<portlet:namespace />fm.<portlet:namespace />parentResourcePrimKey.value = parentResourcePrimKey;
