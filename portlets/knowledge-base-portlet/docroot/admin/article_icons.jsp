@@ -37,7 +37,7 @@ long resourcePrimKey = ParamUtil.getLong(request, "resourcePrimKey");
 				</liferay-portlet:renderURL>
 
 				<liferay-ui:icon
-					image="edit"
+					iconCssClass="icon-edit"
 					label="<%= true %>"
 					method="get"
 					url="<%= editURL %>"
@@ -53,7 +53,7 @@ long resourcePrimKey = ParamUtil.getLong(request, "resourcePrimKey");
 				</liferay-portlet:renderURL>
 
 				<liferay-ui:icon
-					image="add_article"
+					iconCssClass="icon-plus"
 					label="<%= true %>"
 					message="add-child-article"
 					method="get"
@@ -71,8 +71,9 @@ long resourcePrimKey = ParamUtil.getLong(request, "resourcePrimKey");
 				/>
 
 				<liferay-ui:icon
-					image="permissions"
+					iconCssClass="icon-lock"
 					label="<%= true %>"
+					message="permissions"
 					method="get"
 					url="<%= permissionsURL %>"
 					useDialog="<%= true %>"
@@ -89,7 +90,7 @@ long resourcePrimKey = ParamUtil.getLong(request, "resourcePrimKey");
 				</liferay-portlet:renderURL>
 
 				<liferay-ui:icon
-					image="forward"
+					iconCssClass="icon-move"
 					label="<%= true %>"
 					message="move"
 					method="get"

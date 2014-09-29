@@ -222,11 +222,7 @@
 		}
 	}
 
-	.kb-article-comment-date {
-		margin-top: 10px;
-	}
-
-	.kb-article-comment-helpful {
+	.kb-article-comment-date, .kb-article-comment-helpful {
 		margin-top: 10px;
 	}
 
@@ -300,11 +296,7 @@
 			}
 		}
 
-		.kb-article-assets {
-			margin: 10px 0 0;
-		}
-
-		.kb-article-attachments {
+		.kb-article-assets, .kb-article-attachments {
 			margin: 10px 0 0;
 		}
 
