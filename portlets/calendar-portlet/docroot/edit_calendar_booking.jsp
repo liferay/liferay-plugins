@@ -598,7 +598,7 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 			'valueChange',
 			function(event) {
 				var calendarId = parseInt(event.target.val(), 10);
-				var calendarJSON = manageableCalendars[calendarId];
+				var calendar = manageableCalendars[calendarId];
 
 				A.Array.each(
 					[
@@ -616,7 +616,7 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 					}
 				);
 
-				<portlet:namespace />calendarListPending.add(calendarJSON);
+				<portlet:namespace />calendarListPending.add(calendar);
 
 				defaultCalendarId = calendarId;
 			}
