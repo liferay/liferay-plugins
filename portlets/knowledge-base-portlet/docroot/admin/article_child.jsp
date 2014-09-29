@@ -38,6 +38,15 @@ List<KBArticle> childKBArticles = KBArticleServiceUtil.getKBArticles(scopeGroupI
 							<c:choose>
 								<c:when test="<%= Validator.isNotNull(childrenKBArticle.getUrlTitle()) %>">
 									<portlet:param name="urlTitle" value="<%= childrenKBArticle.getUrlTitle() %>" />
+
+									<c:if test="<%= childrenKBArticle.getKbFolderId() != KBFolderConstants.DEFAULT_PARENT_FOLDER_ID %>">
+
+										<%
+										KBFolder kbFolder = KBFolderServiceUtil.getKBFolder(childrenKBArticle.getKbFolderId());
+										%>
+
+										<portlet:param name="kbFolderUrlTitle" value="<%= kbFolder.getUrlTitle() %>" />
+									</c:if>
 								</c:when>
 								<c:otherwise>
 									<portlet:param name="resourcePrimKey" value="<%= String.valueOf(childrenKBArticle.getResourcePrimKey()) %>" />

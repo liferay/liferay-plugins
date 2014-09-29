@@ -160,12 +160,24 @@ public class DisplayPortlet extends BaseKBPortlet {
 		String urlTitle = ParamUtil.getString(renderRequest, "urlTitle");
 
 		if (Validator.isNotNull(urlTitle)) {
-			KBArticle kbArticle =
-				KBArticleLocalServiceUtil.getKBArticleByUrlTitle(
+			String kbFolderUrlTitle = ParamUtil.getString(
+				renderRequest, "kbFolderUrlTitle");
+
+			KBArticle kbArticle = null;
+
+			if (Validator.isNotNull(kbFolderUrlTitle)) {
+				kbArticle = KBArticleLocalServiceUtil.fetchKBArticleByUrlTitle(
+					themeDisplay.getScopeGroupId(), kbFolderUrlTitle, urlTitle);
+			}
+			else {
+				kbArticle = KBArticleLocalServiceUtil.fetchKBArticleByUrlTitle(
 					themeDisplay.getScopeGroupId(),
 					KBFolderConstants.DEFAULT_PARENT_FOLDER_ID, urlTitle);
+			}
 
-			return kbArticle.getResourcePrimKey();
+			if (kbArticle != null) {
+				return kbArticle.getResourcePrimKey();
+			}
 		}
 
 		PortletPreferences preferences = renderRequest.getPreferences();

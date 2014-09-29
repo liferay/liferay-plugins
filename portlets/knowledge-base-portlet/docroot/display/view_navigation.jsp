@@ -49,6 +49,12 @@ else {
 
 		if (Validator.isNotNull(urlTitle)) {
 			viewURL.setParameter("urlTitle", urlTitle);
+
+			if (curKBArticle.getKbFolderId() != KBFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
+				KBFolder kbFolder = KBFolderServiceUtil.getKBFolder(curKBArticle.getKbFolderId());
+
+				viewURL.setParameter("kbFolderUrlTitle", kbFolder.getUrlTitle());
+			}
 		}
 		else {
 			viewURL.setParameter("resourcePrimKey", String.valueOf(curKBArticle.getResourcePrimKey()));
@@ -89,6 +95,12 @@ else {
 
 						if (Validator.isNotNull(urlTitle)) {
 							viewChildURL.setParameter("urlTitle", urlTitle);
+
+							if (childKBArticle.getKbFolderId() != KBFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
+								KBFolder kbFolder = KBFolderServiceUtil.getKBFolder(childKBArticle.getKbFolderId());
+
+								viewChildURL.setParameter("kbFolderUrlTitle", kbFolder.getUrlTitle());
+							}
 						}
 						else {
 							viewChildURL.setParameter("resourcePrimKey", String.valueOf(childKBArticle.getResourcePrimKey()));
@@ -129,6 +141,12 @@ else {
 
 										if (Validator.isNotNull(urlTitle)) {
 											viewCurKBArticleURL.setParameter("urlTitle", urlTitle);
+
+											if (descendantKBArticle.getKbFolderId() != KBFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
+												KBFolder kbFolder = KBFolderServiceUtil.getKBFolder(descendantKBArticle.getKbFolderId());
+
+												viewCurKBArticleURL.setParameter("kbFolderUrlTitle", kbFolder.getUrlTitle());
+											}
 										}
 										else {
 											viewCurKBArticleURL.setParameter("resourcePrimKey", String.valueOf(descendantKBArticle.getResourcePrimKey()));
