@@ -54,15 +54,8 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 					</c:otherwise>
 				</c:choose>
 
-				<liferay-util:buffer var="html">
-					<liferay-util:include page="/admin/new_parent.jsp" servletContext="<%= application %>">
-						<liferay-util:param name="parentResourceClassNameId" value="<%= String.valueOf(kbFolderClassNameId) %>" />
-						<liferay-util:param name="parentResourcePrimKey" value="<%= String.valueOf(KBFolderConstants.DEFAULT_PARENT_FOLDER_ID) %>" />
-					</liferay-util:include>
-				</liferay-util:buffer>
-
 				<%
-				String taglibOnClick = "opener." + renderResponse.getNamespace() + "selectKBObject('(" + LanguageUtil.get(locale, "none") + ")', '1.0', '" + KBFolderConstants.DEFAULT_PARENT_FOLDER_ID + "', '" + kbFolderClassNameId + "', '" + UnicodeFormatter.toString(html) + "'); window.close();";
+				String taglibOnClick = "opener." + renderResponse.getNamespace() + "selectKBObject('(" + LanguageUtil.get(locale, "none") + ")', '1.0', '" + KBFolderConstants.DEFAULT_PARENT_FOLDER_ID + "', '" + kbFolderClassNameId + "'); window.close();";
 				%>
 
 				<aui:button onClick="<%= taglibOnClick %>" value="remove" />
@@ -193,15 +186,9 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 					<liferay-ui:search-container-column-text
 						align="right"
 					>
-						<liferay-util:buffer var="html">
-							<liferay-util:include page="/admin/new_parent.jsp" servletContext="<%= application %>">
-								<liferay-util:param name="parentResourceClassNameId" value="<%= String.valueOf(kbFolder.getClassNameId()) %>" />
-								<liferay-util:param name="parentResourcePrimKey" value="<%= String.valueOf(kbFolder.getKbFolderId()) %>" />
-							</liferay-util:include>
-						</liferay-util:buffer>
 
 						<%
-						String taglibOnClick = "opener." + renderResponse.getNamespace() + "selectKBObject('" + kbFolder.getName() + "', '1.0', '" + kbFolder.getKbFolderId() + "', '" + kbFolder.getClassNameId() + "', '" + UnicodeFormatter.toString(html) + "'); window.close();";
+						String taglibOnClick = "opener." + renderResponse.getNamespace() + "selectKBObject('" + kbFolder.getName() + "', '1.0', '" + kbFolder.getKbFolderId() + "', '" + kbFolder.getClassNameId() + "'); window.close();";
 						%>
 
 						<aui:button disabled="<%= (kbFolder.getKbFolderId() == resourcePrimKey) || (kbFolder.getKbFolderId() == oldParentResourcePrimKey) %>" onClick="<%= taglibOnClick %>" value="choose" />
@@ -274,15 +261,9 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 				<liferay-ui:search-container-column-text
 					align="right"
 				>
-					<liferay-util:buffer var="html">
-						<liferay-util:include page="/admin/new_parent.jsp" servletContext="<%= application %>">
-							<liferay-util:param name="parentResourceClassNameId" value="<%= String.valueOf(curKBArticle.getClassNameId()) %>" />
-							<liferay-util:param name="parentResourcePrimKey" value="<%= String.valueOf(curKBArticle.getResourcePrimKey()) %>" />
-						</liferay-util:include>
-					</liferay-util:buffer>
 
 					<%
-					String taglibOnClick = "opener." + renderResponse.getNamespace() + "selectKBObject('" + curKBArticle.getTitle() + "', '" + curKBArticle.getPriority() + "', '" + curKBArticle.getResourcePrimKey() + "', '" + curKBArticle.getClassNameId() + "', '" + UnicodeFormatter.toString(html) + "'); window.close();";
+					String taglibOnClick = "opener." + renderResponse.getNamespace() + "selectKBObject('" + curKBArticle.getTitle() + "', '" + curKBArticle.getPriority() + "', '" + curKBArticle.getResourcePrimKey() + "', '" + curKBArticle.getClassNameId() + "'); window.close();";
 					%>
 
 					<aui:button disabled="<%= (resourceClassNameId == kbFolderClassNameId) || (curKBArticle.getResourcePrimKey() == resourcePrimKey) || (curKBArticle.getResourcePrimKey() == oldParentResourcePrimKey) %>" onClick="<%= taglibOnClick %>" value="choose" />
