@@ -32,6 +32,15 @@ KBArticle nextKBArticle = previousAndNextKBArticles[2];
 				<c:choose>
 					<c:when test="<%= Validator.isNotNull(previousKBArticle.getUrlTitle()) %>">
 						<portlet:param name="urlTitle" value="<%= previousKBArticle.getUrlTitle() %>" />
+
+						<c:if test="<%= previousKBArticle.getKbFolderId() != KBFolderConstants.DEFAULT_PARENT_FOLDER_ID %>">
+
+							<%
+							KBFolder kbFolder = KBFolderServiceUtil.getKBFolder(previousKBArticle.getKbFolderId());
+							%>
+
+							<portlet:param name="kbFolderUrlTitle" value="<%= kbFolder.getUrlTitle() %>" />
+						</c:if>
 					</c:when>
 					<c:otherwise>
 						<portlet:param name="resourcePrimKey" value="<%= String.valueOf(previousKBArticle.getResourcePrimKey()) %>" />
@@ -59,6 +68,15 @@ KBArticle nextKBArticle = previousAndNextKBArticles[2];
 				<c:choose>
 					<c:when test="<%= Validator.isNotNull(nextKBArticle.getUrlTitle()) %>">
 						<portlet:param name="urlTitle" value="<%= nextKBArticle.getUrlTitle() %>" />
+
+						<c:if test="<%= nextKBArticle.getKbFolderId() != KBFolderConstants.DEFAULT_PARENT_FOLDER_ID %>">
+
+							<%
+							KBFolder kbFolder = KBFolderServiceUtil.getKBFolder(nextKBArticle.getKbFolderId());
+							%>
+
+							<portlet:param name="kbFolderUrlTitle" value="<%= kbFolder.getUrlTitle() %>" />
+						</c:if>
 					</c:when>
 					<c:otherwise>
 						<portlet:param name="resourcePrimKey" value="<%= String.valueOf(nextKBArticle.getResourcePrimKey()) %>" />
