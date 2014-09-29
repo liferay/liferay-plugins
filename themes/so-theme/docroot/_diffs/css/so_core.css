@@ -1568,6 +1568,10 @@ html.aui {
 		margin-top: 0;
 		padding: 0 10px;
 	}
+
+	.view-meetings {
+		padding: 20px 20px 10px;
+	}
 }
 
 /* ---------- Portlet: private messaging ---------- */
