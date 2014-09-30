@@ -290,6 +290,11 @@ public class KBArticleWrapper implements KBArticle, ModelWrapper<KBArticle> {
 	}
 
 	@Override
+	public long getClassNameId() {
+		return _kbArticle.getClassNameId();
+	}
+
+	@Override
 	public long getClassPK() {
 		return _kbArticle.getClassPK();
 	}

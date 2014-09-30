@@ -30,7 +30,7 @@ public class KBArticleServiceClp implements KBArticleService {
 		_methodName0 = "addKBArticle";
 
 		_methodParameterTypes0 = new String[] {
-				"java.lang.String", "long", "java.lang.String",
+				"java.lang.String", "long", "long", "java.lang.String",
 				"java.lang.String", "java.lang.String", "java.lang.String",
 				"java.lang.String", "java.lang.String[][]",
 				"java.lang.String[][]",
@@ -40,7 +40,7 @@ public class KBArticleServiceClp implements KBArticleService {
 		_methodName1 = "addKBArticlesMarkdown";
 
 		_methodParameterTypes1 = new String[] {
-				"long", "java.lang.String", "java.io.InputStream",
+				"long", "long", "java.lang.String", "java.io.InputStream",
 				"com.liferay.portal.service.ServiceContext"
 			};
 
@@ -194,7 +194,7 @@ public class KBArticleServiceClp implements KBArticleService {
 
 		_methodName29 = "moveKBArticle";
 
-		_methodParameterTypes29 = new String[] { "long", "long", "double" };
+		_methodParameterTypes29 = new String[] { "long", "long", "long", "double" };
 
 		_methodName30 = "setBeanIdentifier";
 
@@ -232,11 +232,11 @@ public class KBArticleServiceClp implements KBArticleService {
 
 	@Override
 	public com.liferay.knowledgebase.model.KBArticle addKBArticle(
-		java.lang.String portletId, long parentResourcePrimKey,
-		java.lang.String title, java.lang.String urlTitle,
-		java.lang.String content, java.lang.String description,
-		java.lang.String sourceURL, java.lang.String[] sections,
-		java.lang.String[] selectedFileNames,
+		java.lang.String portletId, long parentResourceClassNameId,
+		long parentResourcePrimKey, java.lang.String title,
+		java.lang.String urlTitle, java.lang.String content,
+		java.lang.String description, java.lang.String sourceURL,
+		java.lang.String[] sections, java.lang.String[] selectedFileNames,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
@@ -246,6 +246,8 @@ public class KBArticleServiceClp implements KBArticleService {
 					_methodParameterTypes0,
 					new Object[] {
 						ClpSerializer.translateInput(portletId),
+						
+					parentResourceClassNameId,
 						
 					parentResourcePrimKey,
 						
@@ -286,15 +288,18 @@ public class KBArticleServiceClp implements KBArticleService {
 	}
 
 	@Override
-	public void addKBArticlesMarkdown(long groupId, java.lang.String fileName,
-		java.io.InputStream inputStream,
+	public void addKBArticlesMarkdown(long groupId, long parentKBFolderId,
+		java.lang.String fileName, java.io.InputStream inputStream,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException {
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
 		try {
 			_invokableService.invokeMethod(_methodName1,
 				_methodParameterTypes1,
 				new Object[] {
 					groupId,
+					
+				parentKBFolderId,
 					
 				ClpSerializer.translateInput(fileName),
 					
@@ -308,6 +313,10 @@ public class KBArticleServiceClp implements KBArticleService {
 
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
 
 			if (t instanceof RuntimeException) {
@@ -1207,19 +1216,33 @@ public class KBArticleServiceClp implements KBArticleService {
 	}
 
 	@Override
-	public void moveKBArticle(long resourcePrimKey, long parentResourcePrimKey,
+	public void moveKBArticle(long resourcePrimKey,
+		long parentResourceClassNameId, long parentResourcePrimKey,
 		double priority)
-		throws com.liferay.portal.kernel.exception.PortalException {
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
 		try {
 			_invokableService.invokeMethod(_methodName29,
 				_methodParameterTypes29,
-				new Object[] { resourcePrimKey, parentResourcePrimKey, priority });
+				new Object[] {
+					resourcePrimKey,
+					
+				parentResourceClassNameId,
+					
+				parentResourcePrimKey,
+					
+				priority
+				});
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
 
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
 
 			if (t instanceof RuntimeException) {

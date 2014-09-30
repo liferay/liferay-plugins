@@ -443,6 +443,25 @@ public class KBFolderClp extends BaseModelImpl<KBFolder> implements KBFolder {
 	}
 
 	@Override
+	public long getClassNameId() {
+		try {
+			String methodName = "getClassNameId";
+
+			Class<?>[] parameterTypes = new Class<?>[] {  };
+
+			Object[] parameterValues = new Object[] {  };
+
+			Long returnObj = (Long)invokeOnRemoteModel(methodName,
+					parameterTypes, parameterValues);
+
+			return returnObj;
+		}
+		catch (Exception e) {
+			throw new UnsupportedOperationException(e);
+		}
+	}
+
+	@Override
 	public StagedModelType getStagedModelType() {
 		return new StagedModelType(PortalUtil.getClassNameId(
 				KBFolder.class.getName()));

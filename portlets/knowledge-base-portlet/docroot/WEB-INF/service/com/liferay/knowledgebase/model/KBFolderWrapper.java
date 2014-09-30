@@ -147,6 +147,11 @@ public class KBFolderWrapper implements KBFolder, ModelWrapper<KBFolder> {
 		return _kbFolder.compareTo(kbFolder);
 	}
 
+	@Override
+	public long getClassNameId() {
+		return _kbFolder.getClassNameId();
+	}
+
 	/**
 	* Returns the company ID of this k b folder.
 	*

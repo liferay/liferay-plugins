@@ -155,7 +155,7 @@ public class KBArticleLocalServiceClpInvoker {
 		_methodName128 = "addKBArticle";
 
 		_methodParameterTypes128 = new String[] {
-				"long", "long", "java.lang.String", "java.lang.String",
+				"long", "long", "long", "java.lang.String", "java.lang.String",
 				"java.lang.String", "java.lang.String", "java.lang.String",
 				"java.lang.String[][]", "java.lang.String[][]",
 				"com.liferay.portal.service.ServiceContext"
@@ -188,7 +188,8 @@ public class KBArticleLocalServiceClpInvoker {
 		_methodName133 = "addKBArticlesMarkdown";
 
 		_methodParameterTypes133 = new String[] {
-				"long", "long", "java.lang.String", "java.io.InputStream",
+				"long", "long", "long", "java.lang.String",
+				"java.io.InputStream",
 				"com.liferay.portal.service.ServiceContext"
 			};
 
@@ -363,7 +364,9 @@ public class KBArticleLocalServiceClpInvoker {
 
 		_methodName165 = "moveKBArticle";
 
-		_methodParameterTypes165 = new String[] { "long", "long", "long", "double" };
+		_methodParameterTypes165 = new String[] {
+				"long", "long", "long", "long", "double"
+			};
 
 		_methodName166 = "search";
 
@@ -579,12 +582,13 @@ public class KBArticleLocalServiceClpInvoker {
 				Arrays.deepEquals(_methodParameterTypes128, parameterTypes)) {
 			return KBArticleLocalServiceUtil.addKBArticle(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
-				(java.lang.String)arguments[2], (java.lang.String)arguments[3],
-				(java.lang.String)arguments[4], (java.lang.String)arguments[5],
-				(java.lang.String)arguments[6],
-				(java.lang.String[])arguments[7],
+				((Long)arguments[2]).longValue(),
+				(java.lang.String)arguments[3], (java.lang.String)arguments[4],
+				(java.lang.String)arguments[5], (java.lang.String)arguments[6],
+				(java.lang.String)arguments[7],
 				(java.lang.String[])arguments[8],
-				(com.liferay.portal.service.ServiceContext)arguments[9]);
+				(java.lang.String[])arguments[9],
+				(com.liferay.portal.service.ServiceContext)arguments[10]);
 		}
 
 		if (_methodName129.equals(name) &&
@@ -627,9 +631,10 @@ public class KBArticleLocalServiceClpInvoker {
 				Arrays.deepEquals(_methodParameterTypes133, parameterTypes)) {
 			KBArticleLocalServiceUtil.addKBArticlesMarkdown(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
-				(java.lang.String)arguments[2],
-				(java.io.InputStream)arguments[3],
-				(com.liferay.portal.service.ServiceContext)arguments[4]);
+				((Long)arguments[2]).longValue(),
+				(java.lang.String)arguments[3],
+				(java.io.InputStream)arguments[4],
+				(com.liferay.portal.service.ServiceContext)arguments[5]);
 
 			return null;
 		}
@@ -862,7 +867,8 @@ public class KBArticleLocalServiceClpInvoker {
 			KBArticleLocalServiceUtil.moveKBArticle(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				((Long)arguments[2]).longValue(),
-				((Double)arguments[3]).doubleValue());
+				((Long)arguments[3]).longValue(),
+				((Double)arguments[4]).doubleValue());
 
 			return null;
 		}

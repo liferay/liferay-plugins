@@ -34,25 +34,27 @@ public class KBArticleServiceWrapper implements KBArticleService,
 
 	@Override
 	public com.liferay.knowledgebase.model.KBArticle addKBArticle(
-		java.lang.String portletId, long parentResourcePrimKey,
-		java.lang.String title, java.lang.String urlTitle,
-		java.lang.String content, java.lang.String description,
-		java.lang.String sourceURL, java.lang.String[] sections,
-		java.lang.String[] selectedFileNames,
+		java.lang.String portletId, long parentResourceClassNameId,
+		long parentResourcePrimKey, java.lang.String title,
+		java.lang.String urlTitle, java.lang.String content,
+		java.lang.String description, java.lang.String sourceURL,
+		java.lang.String[] sections, java.lang.String[] selectedFileNames,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
-		return _kbArticleService.addKBArticle(portletId, parentResourcePrimKey,
-			title, urlTitle, content, description, sourceURL, sections,
-			selectedFileNames, serviceContext);
+		return _kbArticleService.addKBArticle(portletId,
+			parentResourceClassNameId, parentResourcePrimKey, title, urlTitle,
+			content, description, sourceURL, sections, selectedFileNames,
+			serviceContext);
 	}
 
 	@Override
-	public void addKBArticlesMarkdown(long groupId, java.lang.String fileName,
-		java.io.InputStream inputStream,
+	public void addKBArticlesMarkdown(long groupId, long parentKBFolderId,
+		java.lang.String fileName, java.io.InputStream inputStream,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		_kbArticleService.addKBArticlesMarkdown(groupId, fileName, inputStream,
-			serviceContext);
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		_kbArticleService.addKBArticlesMarkdown(groupId, parentKBFolderId,
+			fileName, inputStream, serviceContext);
 	}
 
 	@Override
@@ -284,11 +286,13 @@ public class KBArticleServiceWrapper implements KBArticleService,
 	}
 
 	@Override
-	public void moveKBArticle(long resourcePrimKey, long parentResourcePrimKey,
+	public void moveKBArticle(long resourcePrimKey,
+		long parentResourceClassNameId, long parentResourcePrimKey,
 		double priority)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		_kbArticleService.moveKBArticle(resourcePrimKey, parentResourcePrimKey,
-			priority);
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		_kbArticleService.moveKBArticle(resourcePrimKey,
+			parentResourceClassNameId, parentResourcePrimKey, priority);
 	}
 
 	/**
