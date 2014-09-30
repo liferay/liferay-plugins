@@ -27,21 +27,23 @@ public class UpgradeKBArticle extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {
-		long classNameId = PortalUtil.getClassNameId(
+		long kbArticleClassNameId = PortalUtil.getClassNameId(
 			KBArticleConstants.getClassName());
 
 		runSQL(
-			"update KBArticle set parentResourceClassNameId = " + classNameId +
-				" where parentResourcePrimKey != " +
+			"update KBArticle set parentResourceClassNameId = " +
+				kbArticleClassNameId + " where parentResourcePrimKey != " +
 					KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY);
-
-		classNameId = PortalUtil.getClassNameId(
-			KBFolderConstants.getClassName());
 
 		StringBundler sb = new StringBundler(6);
 
 		sb.append("update KBArticle set parentResourceClassNameId = ");
-		sb.append(classNameId);
+
+		long kbFolderClassNameId = PortalUtil.getClassNameId(
+			KBFolderConstants.getClassName());
+
+		sb.append(kbFolderClassNameId);
+
 		sb.append(", parentResourcePrimKey = ");
 		sb.append(KBFolderConstants.DEFAULT_PARENT_FOLDER_ID);
 		sb.append(" where parentResourcePrimKey = ");
