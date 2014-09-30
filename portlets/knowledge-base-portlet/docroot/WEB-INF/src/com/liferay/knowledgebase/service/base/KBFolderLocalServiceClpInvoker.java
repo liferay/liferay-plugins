@@ -130,11 +130,11 @@ public class KBFolderLocalServiceClpInvoker {
 
 		_methodParameterTypes63 = new String[] { "java.lang.String" };
 
-		_methodName68 = "getFolders";
+		_methodName68 = "getKBFolders";
 
 		_methodParameterTypes68 = new String[] { "long", "long", "int", "int" };
 
-		_methodName69 = "getFoldersCount";
+		_methodName69 = "getKBFoldersCount";
 
 		_methodParameterTypes69 = new String[] { "long", "long" };
 	}
@@ -266,7 +266,7 @@ public class KBFolderLocalServiceClpInvoker {
 
 		if (_methodName68.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes68, parameterTypes)) {
-			return KBFolderLocalServiceUtil.getFolders(((Long)arguments[0]).longValue(),
+			return KBFolderLocalServiceUtil.getKBFolders(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				((Integer)arguments[2]).intValue(),
 				((Integer)arguments[3]).intValue());
@@ -274,7 +274,7 @@ public class KBFolderLocalServiceClpInvoker {
 
 		if (_methodName69.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes69, parameterTypes)) {
-			return KBFolderLocalServiceUtil.getFoldersCount(((Long)arguments[0]).longValue(),
+			return KBFolderLocalServiceUtil.getKBFoldersCount(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue());
 		}
 

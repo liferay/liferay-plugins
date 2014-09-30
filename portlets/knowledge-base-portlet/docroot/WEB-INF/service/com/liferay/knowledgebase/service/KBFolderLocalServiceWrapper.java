@@ -352,19 +352,19 @@ public class KBFolderLocalServiceWrapper implements KBFolderLocalService,
 	}
 
 	@Override
-	public java.util.List<com.liferay.knowledgebase.model.KBFolder> getFolders(
+	public java.util.List<com.liferay.knowledgebase.model.KBFolder> getKBFolders(
 		long groupId, long parentKBFolderId, int start, int end)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return _kbFolderLocalService.getFolders(groupId, parentKBFolderId,
+		return _kbFolderLocalService.getKBFolders(groupId, parentKBFolderId,
 			start, end);
 	}
 
 	@Override
-	public int getFoldersCount(long groupId, long parentKBFolderId)
+	public int getKBFoldersCount(long groupId, long parentKBFolderId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return _kbFolderLocalService.getFoldersCount(groupId, parentKBFolderId);
+		return _kbFolderLocalService.getKBFoldersCount(groupId, parentKBFolderId);
 	}
 
 	/**

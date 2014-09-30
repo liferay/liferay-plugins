@@ -130,11 +130,11 @@ public class KBFolderLocalServiceClp implements KBFolderLocalService {
 
 		_methodParameterTypes21 = new String[] { "java.lang.String" };
 
-		_methodName23 = "getFolders";
+		_methodName23 = "getKBFolders";
 
 		_methodParameterTypes23 = new String[] { "long", "long", "int", "int" };
 
-		_methodName24 = "getFoldersCount";
+		_methodName24 = "getKBFoldersCount";
 
 		_methodParameterTypes24 = new String[] { "long", "long" };
 	}
@@ -819,7 +819,7 @@ public class KBFolderLocalServiceClp implements KBFolderLocalService {
 	}
 
 	@Override
-	public java.util.List<com.liferay.knowledgebase.model.KBFolder> getFolders(
+	public java.util.List<com.liferay.knowledgebase.model.KBFolder> getKBFolders(
 		long groupId, long parentKBFolderId, int start, int end)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -854,7 +854,7 @@ public class KBFolderLocalServiceClp implements KBFolderLocalService {
 	}
 
 	@Override
-	public int getFoldersCount(long groupId, long parentKBFolderId)
+	public int getKBFoldersCount(long groupId, long parentKBFolderId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;

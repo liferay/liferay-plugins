@@ -335,17 +335,17 @@ public class KBFolderLocalServiceUtil {
 		return getService().invokeMethod(name, parameterTypes, arguments);
 	}
 
-	public static java.util.List<com.liferay.knowledgebase.model.KBFolder> getFolders(
+	public static java.util.List<com.liferay.knowledgebase.model.KBFolder> getKBFolders(
 		long groupId, long parentKBFolderId, int start, int end)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return getService().getFolders(groupId, parentKBFolderId, start, end);
+		return getService().getKBFolders(groupId, parentKBFolderId, start, end);
 	}
 
-	public static int getFoldersCount(long groupId, long parentKBFolderId)
+	public static int getKBFoldersCount(long groupId, long parentKBFolderId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return getService().getFoldersCount(groupId, parentKBFolderId);
+		return getService().getKBFoldersCount(groupId, parentKBFolderId);
 	}
 
 	public static void clearService() {
