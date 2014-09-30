@@ -48,6 +48,14 @@ public class KBFolderServiceImpl extends KBFolderServiceBaseImpl {
 	}
 
 	@Override
+	public KBFolder getKBFolder(long kbFolderId) throws PortalException {
+		KBFolderPermission.check(
+			getPermissionChecker(), kbFolderId, ActionKeys.VIEW);
+
+		return kbFolderLocalService.getKBFolder(kbFolderId);
+	}
+
+	@Override
 	public List<KBFolder> getKBFolders(
 			long groupId, long parentKBFolderId, int start, int end)
 		throws PortalException {
@@ -61,14 +69,6 @@ public class KBFolderServiceImpl extends KBFolderServiceBaseImpl {
 		throws PortalException {
 
 		return kbFolderPersistence.filterCountByG_P(groupId, parentKBFolderId);
-	}
-
-	@Override
-	public KBFolder getKBFolder(long kbFolderId) throws PortalException {
-		KBFolderPermission.check(
-			getPermissionChecker(), kbFolderId, ActionKeys.VIEW);
-
-		return kbFolderLocalService.getKBFolder(kbFolderId);
 	}
 
 	@Override
