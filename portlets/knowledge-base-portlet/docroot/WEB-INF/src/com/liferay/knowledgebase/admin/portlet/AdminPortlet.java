@@ -117,11 +117,11 @@ public class AdminPortlet extends BaseKBPortlet {
 		UploadPortletRequest uploadPortletRequest =
 			PortalUtil.getUploadPortletRequest(actionRequest);
 
-		String fileName = uploadPortletRequest.getFileName("file");
-
 		long parentKBFolderId = ParamUtil.getLong(
 			uploadPortletRequest, "parentKBFolderId",
 			KBFolderConstants.DEFAULT_PARENT_FOLDER_ID);
+
+		String fileName = uploadPortletRequest.getFileName("file");
 
 		if (Validator.isNull(fileName)) {
 			throw new KBArticleImportException("File name is null");
