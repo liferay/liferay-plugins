@@ -38,10 +38,10 @@ public class KBFolderServiceImpl extends KBFolderServiceBaseImpl {
 	}
 
 	@Override
-	public int getFoldersCount(long groupId, long parentFolderId)
+	public int getFoldersCount(long groupId, long parentKBFolderId)
 		throws PortalException {
 
-		return kbFolderPersistence.filterCountByG_P(groupId, parentFolderId);
+		return kbFolderPersistence.filterCountByG_P(groupId, parentKBFolderId);
 	}
 
 }
