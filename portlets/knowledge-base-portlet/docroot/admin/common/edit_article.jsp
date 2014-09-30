@@ -170,10 +170,10 @@ String[] sections = AdminUtil.unescapeSections(BeanPropertiesUtil.getString(kbAr
 
 		<aui:button-row cssClass="kb-submit-buttons">
 			<c:if test="<%= (kbArticle == null) || !kbArticle.isPending() %>">
-				<aui:button type="submit" onClick='<%= renderResponse.getNamespace() + "publishKBArticle();" %>' value='<%= WorkflowDefinitionLinkLocalServiceUtil.hasWorkflowDefinitionLink(themeDisplay.getCompanyId(), scopeGroupId, KBArticle.class.getName()) ? "submit-for-publication" : "publish" %>' />
+				<aui:button onClick='<%= renderResponse.getNamespace() + "publishKBArticle();" %>' type="submit" value='<%= WorkflowDefinitionLinkLocalServiceUtil.hasWorkflowDefinitionLink(themeDisplay.getCompanyId(), scopeGroupId, KBArticle.class.getName()) ? "submit-for-publication" : "publish" %>' />
 			</c:if>
 
-			<aui:button type="submit" primary="false" value='<%= ((kbArticle == null) || kbArticle.isApproved() || kbArticle.isDraft()) ? "save-as-draft" : "save" %>' />
+			<aui:button primary="false" type="submit" value='<%= ((kbArticle == null) || kbArticle.isApproved() || kbArticle.isDraft()) ? "save-as-draft" : "save" %>' />
 
 			<aui:button href="<%= redirect %>" type="cancel" />
 		</aui:button-row>
