@@ -89,11 +89,11 @@ public class KBFolderLocalServiceImpl extends KBFolderLocalServiceBaseImpl {
 		kbArticleLocalService.deleteKBArticles(
 			kbFolder.getGroupId(), kbFolder.getKbFolderId());
 
-		List<KBFolder> subfolders = kbFolderPersistence.findByG_P(
+		List<KBFolder> childKBFolders = kbFolderPersistence.findByG_P(
 			kbFolder.getGroupId(), kbFolder.getKbFolderId());
 
-		for (KBFolder subfolder : subfolders) {
-			deleteKBFolder(subfolder.getKbFolderId());
+		for (KBFolder childKBFolder : childKBFolders) {
+			deleteKBFolder(childKBFolder.getKbFolderId());
 		}
 
 		return kbFolderPersistence.remove(kbFolder);

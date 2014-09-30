@@ -290,10 +290,8 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 
 		// Child KB articles
 
-		long groupId = kbArticle.getGroupId();
-		long resourcePrimKey = kbArticle.getResourcePrimKey();
-
-		deleteKBArticles(groupId, resourcePrimKey);
+		deleteKBArticles(
+			kbArticle.getGroupId(), kbArticle.getResourcePrimKey());
 
 		// Resources
 
@@ -367,8 +365,8 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			groupId, parentResourcePrimKey, WorkflowConstants.STATUS_ANY,
 			QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 
-		for (KBArticle childrenKBArticle : childKBArticles) {
-			kbArticleLocalService.deleteKBArticle(childrenKBArticle);
+		for (KBArticle childKBArticle : childKBArticles) {
+			kbArticleLocalService.deleteKBArticle(childKBArticle);
 		}
 	}
 
