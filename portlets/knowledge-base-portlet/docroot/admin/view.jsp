@@ -17,7 +17,9 @@
 <%@ include file="/admin/init.jsp" %>
 
 <%
-long parentResourceClassNameId = ParamUtil.getLong(request, "parentResourceClassNameId", PortalUtil.getClassNameId(KBFolderConstants.getClassName()));
+long kbFolderClassNameId = PortalUtil.getClassNameId(KBFolderConstants.getClassName());
+
+long parentResourceClassNameId = ParamUtil.getLong(request, "parentResourceClassNameId", kbFolderClassNameId);
 long parentResourcePrimKey = ParamUtil.getLong(request, "parentResourcePrimKey", KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY);
 %>
 
@@ -64,8 +66,16 @@ long parentResourcePrimKey = ParamUtil.getLong(request, "parentResourcePrimKey",
 				</c:if>
 
 				<%
-				boolean hasAddKBArticlePermission = KBFolderPermission.contains(permissionChecker, scopeGroupId, parentResourcePrimKey, ActionKeys.ADD_KB_ARTICLE);
-				boolean hasAddKBFolderPermission = KBFolderPermission.contains(permissionChecker, scopeGroupId, parentResourcePrimKey, ActionKeys.ADD_KB_FOLDER);
+				boolean hasAddKBArticlePermission = false;
+				boolean hasAddKBFolderPermission = false;
+
+				if (parentResourceClassNameId == kbFolderClassNameId) {
+					hasAddKBArticlePermission = KBFolderPermission.contains(permissionChecker, scopeGroupId, parentResourcePrimKey, ActionKeys.ADD_KB_ARTICLE);
+					hasAddKBFolderPermission = KBFolderPermission.contains(permissionChecker, scopeGroupId, parentResourcePrimKey, ActionKeys.ADD_KB_FOLDER);
+				}
+				else {
+					hasAddKBArticlePermission = AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_KB_ARTICLE);
+				}
 				%>
 
 				<c:if test="<%= hasAddKBArticlePermission || hasAddKBFolderPermission %>">
@@ -78,7 +88,7 @@ long parentResourcePrimKey = ParamUtil.getLong(request, "parentResourcePrimKey",
 							<liferay-util:include page="/admin/common/add_folder_button.jsp" servletContext="<%= application %>" />
 						</c:if>
 
-						<c:if test="<%= hasAddKBArticlePermission %>">
+						<c:if test="<%= (parentResourceClassNameId == kbFolderClassNameId) && hasAddKBArticlePermission %>">
 							<liferay-util:include page="/admin/import_articles_button.jsp" servletContext="<%= application %>" />
 						</c:if>
 					</aui:nav-item>
@@ -143,7 +153,7 @@ long parentResourcePrimKey = ParamUtil.getLong(request, "parentResourcePrimKey",
 			</div>
 		</c:if>
 
-		<c:if test="<%= parentResourceClassNameId == defaultClassNameId %>">
+		<c:if test="<%= parentResourceClassNameId == kbFolderClassNameId %>">
 			<liferay-ui:search-container
 				curParam="cur1"
 				id="kbFoldersAdminSearchContainer"
@@ -306,7 +316,7 @@ long parentResourcePrimKey = ParamUtil.getLong(request, "parentResourcePrimKey",
 				/>
 			</liferay-ui:search-container-row>
 
-			<c:if test="<%= !searchTerms.hasSearchTerms() && (parentResourceClassNameId != defaultClassNameId) && (parentResourcePrimKey != KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY) %>">
+			<c:if test="<%= !searchTerms.hasSearchTerms() && (parentResourceClassNameId != kbFolderClassNameId) && (parentResourcePrimKey != KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY) %>">
 
 				<%
 				searchContainer.setEmptyResultsMessage(null);
