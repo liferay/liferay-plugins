@@ -33,6 +33,7 @@ import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.LocalizationUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
@@ -286,13 +287,7 @@ public class WebFormPortlet extends MVCPortlet {
 
 			fieldLabels.add(fieldLabel);
 
-			sb.append(CharPool.QUOTE);
-			sb.append(
-				localizedfieldLabel.replaceAll(
-					StringPool.QUOTE,
-					StringPool.BACK_SLASH + StringPool.QUOTE));
-			sb.append(CharPool.QUOTE);
-			sb.append(PortletPropsValues.CSV_SEPARATOR);
+			sb.append(prepareFieldForCSVExport(localizedfieldLabel));
 		}
 
 		sb.delete(
@@ -313,14 +308,7 @@ public class WebFormPortlet extends MVCPortlet {
 						WebFormUtil.class.getName(), databaseTableName,
 						fieldName, row.getClassPK(), StringPool.BLANK);
 
-					data = data.replaceAll(
-						StringPool.QUOTE,
-						StringPool.BACK_SLASH + StringPool.QUOTE);
-
-					sb.append(CharPool.QUOTE);
-					sb.append(data);
-					sb.append(CharPool.QUOTE);
-					sb.append(PortletPropsValues.CSV_SEPARATOR);
+					sb.append(prepareFieldForCSVExport(data));
 				}
 
 				sb.delete(
@@ -350,6 +338,19 @@ public class WebFormPortlet extends MVCPortlet {
 			sb.append(fieldValue);
 			sb.append(CharPool.NEW_LINE);
 		}
+
+		return sb.toString();
+	}
+
+	protected String prepareFieldForCSVExport(String fieldValue) {
+		StringBundler sb = new StringBundler(4);
+
+		sb.append(CharPool.QUOTE);
+		sb.append(
+			StringUtil.replace(
+				fieldValue, CharPool.QUOTE, StringPool.DOUBLE_QUOTE));
+		sb.append(CharPool.QUOTE);
+		sb.append(PortletPropsValues.CSV_SEPARATOR);
 
 		return sb.toString();
 	}
@@ -394,12 +395,7 @@ public class WebFormPortlet extends MVCPortlet {
 		for (String fieldLabel : fieldsMap.keySet()) {
 			String fieldValue = fieldsMap.get(fieldLabel);
 
-			sb.append(CharPool.QUOTE);
-			sb.append(
-				StringUtil.replace(
-					fieldValue, CharPool.QUOTE, StringPool.DOUBLE_QUOTE));
-			sb.append(CharPool.QUOTE);
-			sb.append(PortletPropsValues.CSV_SEPARATOR);
+			sb.append(prepareFieldForCSVExport(fieldValue));
 		}
 
 		String s =
