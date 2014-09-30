@@ -196,8 +196,7 @@ public class KBArticleStagedModelDataHandler
 		}
 		else {
 			importedKBArticle = KBArticleLocalServiceUtil.addKBArticle(
-				userId,
-				parentResourceClassNameId, parentResourcePrimKey,
+				userId, parentResourceClassNameId, parentResourcePrimKey,
 				kbArticle.getTitle(), kbArticle.getUrlTitle(),
 				kbArticle.getContent(), kbArticle.getDescription(),
 				kbArticle.getSourceURL(), sections, null, serviceContext);
