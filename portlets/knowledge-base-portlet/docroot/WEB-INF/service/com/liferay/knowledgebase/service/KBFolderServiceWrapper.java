@@ -42,6 +42,13 @@ public class KBFolderServiceWrapper implements KBFolderService,
 			parentResourcePrimKey, name, description, serviceContext);
 	}
 
+	@Override
+	public com.liferay.knowledgebase.model.KBFolder deleteKBFolder(
+		long kbFolderId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _kbFolderService.deleteKBFolder(kbFolderId);
+	}
+
 	/**
 	* Returns the Spring bean ID for this bean.
 	*

@@ -1043,6 +1043,27 @@ public class KBArticleClp extends BaseModelImpl<KBArticle> implements KBArticle 
 	}
 
 	@Override
+	public java.lang.String getParentTitle(java.util.Locale locale, int status) {
+		try {
+			String methodName = "getParentTitle";
+
+			Class<?>[] parameterTypes = new Class<?>[] {
+					java.util.Locale.class, int.class
+				};
+
+			Object[] parameterValues = new Object[] { locale, status };
+
+			java.lang.String returnObj = (java.lang.String)invokeOnRemoteModel(methodName,
+					parameterTypes, parameterValues);
+
+			return returnObj;
+		}
+		catch (Exception e) {
+			throw new UnsupportedOperationException(e);
+		}
+	}
+
+	@Override
 	public long getClassNameId() {
 		try {
 			String methodName = "getClassNameId";

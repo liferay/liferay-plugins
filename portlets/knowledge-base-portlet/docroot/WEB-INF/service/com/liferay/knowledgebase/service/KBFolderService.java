@@ -54,6 +54,10 @@ public interface KBFolderService extends BaseService, InvokableService {
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException;
 
+	public com.liferay.knowledgebase.model.KBFolder deleteKBFolder(
+		long kbFolderId)
+		throws com.liferay.portal.kernel.exception.PortalException;
+
 	/**
 	* Returns the Spring bean ID for this bean.
 	*

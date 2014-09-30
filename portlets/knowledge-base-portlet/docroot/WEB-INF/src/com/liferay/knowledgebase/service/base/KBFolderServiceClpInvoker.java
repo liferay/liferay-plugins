@@ -42,21 +42,25 @@ public class KBFolderServiceClpInvoker {
 				"com.liferay.portal.service.ServiceContext"
 			};
 
-		_methodName49 = "getKBFolders";
+		_methodName49 = "deleteKBFolder";
 
-		_methodParameterTypes49 = new String[] { "long", "long", "int", "int" };
+		_methodParameterTypes49 = new String[] { "long" };
 
-		_methodName50 = "getKBFoldersCount";
+		_methodName50 = "getKBFolder";
 
-		_methodParameterTypes50 = new String[] { "long", "long" };
+		_methodParameterTypes50 = new String[] { "long" };
 
-		_methodName51 = "getKBFolder";
+		_methodName51 = "getKBFolders";
 
-		_methodParameterTypes51 = new String[] { "long" };
+		_methodParameterTypes51 = new String[] { "long", "long", "int", "int" };
 
-		_methodName52 = "updateKBFolder";
+		_methodName52 = "getKBFoldersCount";
 
-		_methodParameterTypes52 = new String[] {
+		_methodParameterTypes52 = new String[] { "long", "long" };
+
+		_methodName53 = "updateKBFolder";
+
+		_methodParameterTypes53 = new String[] {
 				"long", "long", "long", "java.lang.String", "java.lang.String"
 			};
 	}
@@ -86,25 +90,30 @@ public class KBFolderServiceClpInvoker {
 
 		if (_methodName49.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes49, parameterTypes)) {
+			return KBFolderServiceUtil.deleteKBFolder(((Long)arguments[0]).longValue());
+		}
+
+		if (_methodName50.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes50, parameterTypes)) {
+			return KBFolderServiceUtil.getKBFolder(((Long)arguments[0]).longValue());
+		}
+
+		if (_methodName51.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes51, parameterTypes)) {
 			return KBFolderServiceUtil.getKBFolders(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				((Integer)arguments[2]).intValue(),
 				((Integer)arguments[3]).intValue());
 		}
 
-		if (_methodName50.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes50, parameterTypes)) {
+		if (_methodName52.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes52, parameterTypes)) {
 			return KBFolderServiceUtil.getKBFoldersCount(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue());
 		}
 
-		if (_methodName51.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes51, parameterTypes)) {
-			return KBFolderServiceUtil.getKBFolder(((Long)arguments[0]).longValue());
-		}
-
-		if (_methodName52.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes52, parameterTypes)) {
+		if (_methodName53.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes53, parameterTypes)) {
 			return KBFolderServiceUtil.updateKBFolder(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				((Long)arguments[2]).longValue(),
@@ -128,4 +137,6 @@ public class KBFolderServiceClpInvoker {
 	private String[] _methodParameterTypes51;
 	private String _methodName52;
 	private String[] _methodParameterTypes52;
+	private String _methodName53;
+	private String[] _methodParameterTypes53;
 }

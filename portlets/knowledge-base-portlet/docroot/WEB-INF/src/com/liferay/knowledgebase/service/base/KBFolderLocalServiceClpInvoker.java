@@ -159,17 +159,21 @@ public class KBFolderLocalServiceClpInvoker {
 				"java.lang.String", "com.liferay.portal.service.ServiceContext"
 			};
 
-		_methodName73 = "getKBFolders";
+		_methodName73 = "deleteKBFolder";
 
-		_methodParameterTypes73 = new String[] { "long", "long", "int", "int" };
+		_methodParameterTypes73 = new String[] { "long" };
 
-		_methodName74 = "getKBFoldersCount";
+		_methodName74 = "getKBFolders";
 
-		_methodParameterTypes74 = new String[] { "long", "long" };
+		_methodParameterTypes74 = new String[] { "long", "long", "int", "int" };
 
-		_methodName75 = "updateKBFolder";
+		_methodName75 = "getKBFoldersCount";
 
-		_methodParameterTypes75 = new String[] {
+		_methodParameterTypes75 = new String[] { "long", "long" };
+
+		_methodName76 = "updateKBFolder";
+
+		_methodParameterTypes76 = new String[] {
 				"long", "long", "long", "java.lang.String", "java.lang.String"
 			};
 	}
@@ -329,20 +333,25 @@ public class KBFolderLocalServiceClpInvoker {
 
 		if (_methodName73.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes73, parameterTypes)) {
+			return KBFolderLocalServiceUtil.deleteKBFolder(((Long)arguments[0]).longValue());
+		}
+
+		if (_methodName74.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes74, parameterTypes)) {
 			return KBFolderLocalServiceUtil.getKBFolders(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				((Integer)arguments[2]).intValue(),
 				((Integer)arguments[3]).intValue());
 		}
 
-		if (_methodName74.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes74, parameterTypes)) {
+		if (_methodName75.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes75, parameterTypes)) {
 			return KBFolderLocalServiceUtil.getKBFoldersCount(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue());
 		}
 
-		if (_methodName75.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes75, parameterTypes)) {
+		if (_methodName76.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes76, parameterTypes)) {
 			return KBFolderLocalServiceUtil.updateKBFolder(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				((Long)arguments[2]).longValue(),
@@ -410,4 +419,6 @@ public class KBFolderLocalServiceClpInvoker {
 	private String[] _methodParameterTypes74;
 	private String _methodName75;
 	private String[] _methodParameterTypes75;
+	private String _methodName76;
+	private String[] _methodParameterTypes76;
 }

@@ -161,6 +161,11 @@ public class KBArticleLocalServiceUtil {
 		return getService().deleteKBArticle(kbArticleId);
 	}
 
+	public static void deleteKBArticles(long groupId, long parentResourcePrimKey)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		getService().deleteKBArticles(groupId, parentResourcePrimKey);
+	}
+
 	public static void deleteKBArticles(long[] resourcePrimKeys)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		getService().deleteKBArticles(resourcePrimKeys);

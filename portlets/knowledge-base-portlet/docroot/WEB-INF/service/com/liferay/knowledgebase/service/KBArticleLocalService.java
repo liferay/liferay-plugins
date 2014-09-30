@@ -135,6 +135,9 @@ public interface KBArticleLocalService extends BaseLocalService,
 		long kbArticleId)
 		throws com.liferay.portal.kernel.exception.PortalException;
 
+	public void deleteKBArticles(long groupId, long parentResourcePrimKey)
+		throws com.liferay.portal.kernel.exception.PortalException;
+
 	public void deleteKBArticles(long[] resourcePrimKeys)
 		throws com.liferay.portal.kernel.exception.PortalException;
 

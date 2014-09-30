@@ -420,6 +420,12 @@ public class KBArticleWrapper implements KBArticle, ModelWrapper<KBArticle> {
 		return _kbArticle.getParentResourcePrimKey();
 	}
 
+	@Override
+	public java.lang.String getParentTitle(java.util.Locale locale, int status)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _kbArticle.getParentTitle(locale, status);
+	}
+
 	/**
 	* Returns the primary key of this k b article.
 	*
