@@ -47,7 +47,7 @@ double priority = BeanParamUtil.getDouble(kbArticle, request, "priority");
 
 	<aui:fieldset>
 		<div class="form-group">
-			<aui:input name="currentParent" type="resource" value='<%= kbArticle.getParentTitle(locale, status) %>' />
+			<aui:input name="currentParent" type="resource" value="<%= kbArticle.getParentTitle(locale, status) %>" />
 
 			<aui:input cssClass="input-mini" label="" name="priority" type="resource" value="<%= BigDecimal.valueOf(priority).toPlainString() %>" />
 		</div>
@@ -68,7 +68,7 @@ double priority = BeanParamUtil.getDouble(kbArticle, request, "priority");
 
 <aui:script>
 	function <portlet:namespace />selectKBArticle(parentTitle, parentPriority, parentResourcePrimKey, parentResourceClassNameId, html) {
-		document.<portlet:namespace />fm.<portlet:namespace />parentTitle.value = parentTitle;
+		document.<portlet:namespace />fm.<portlet:namespace />parentResource.value = parentTitle;
 		document.<portlet:namespace />fm.<portlet:namespace />parentPriority.value = parentPriority;
 		document.<portlet:namespace />fm.<portlet:namespace />parentResourceClassNameId.value = parentResourceClassNameId;
 		document.<portlet:namespace />fm.<portlet:namespace />parentResourcePrimKey.value = parentResourcePrimKey;

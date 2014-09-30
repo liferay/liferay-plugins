@@ -83,9 +83,7 @@ public class KBFolderLocalServiceImpl extends KBFolderLocalServiceBaseImpl {
 	}
 
 	@Override
-	public KBFolder deleteKBFolder(long kbFolderId)
-		throws PortalException, SystemException {
-
+	public KBFolder deleteKBFolder(long kbFolderId) throws PortalException {
 		KBFolder kbFolder = kbFolderPersistence.findByPrimaryKey(kbFolderId);
 
 		kbArticleLocalService.deleteKBArticles(

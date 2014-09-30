@@ -361,7 +361,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 
 	@Override
 	public void deleteKBArticles(long groupId, long parentResourcePrimKey)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		List<KBArticle> childKBArticles = getKBArticles(
 			groupId, parentResourcePrimKey, WorkflowConstants.STATUS_ANY,

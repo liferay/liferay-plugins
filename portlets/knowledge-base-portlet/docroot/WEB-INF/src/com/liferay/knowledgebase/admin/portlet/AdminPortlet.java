@@ -88,7 +88,7 @@ public class AdminPortlet extends BaseKBPortlet {
 
 	public void deleteKBFolder(
 			ActionRequest actionRequest, ActionResponse actionResponse)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		long kbFolderId = ParamUtil.getLong(actionRequest, "kbFolderId");
 

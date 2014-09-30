@@ -27,7 +27,7 @@ double priority = BeanParamUtil.getDouble(kbArticle, request, "priority");
 %>
 
 <div class="form-group kb-new-parent">
-	<aui:input label="" name="parentResource" type="resource" value='<%= kbArticle.getParentTitle(locale, status) %>' />
+	<aui:input label="" name="parentResource" type="resource" value="<%= kbArticle.getParentTitle(locale, status) %>" />
 
 	<aui:input cssClass="input-mini kb-priority" id="parentPriority" inlineField="<%= true %>" label="" name="priority" type="text" value="<%= BigDecimal.valueOf(priority).toPlainString() %>" />
 
