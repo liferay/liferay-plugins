@@ -66,17 +66,17 @@ public interface KBArticleService extends BaseService, InvokableService {
 		throws java.lang.Throwable;
 
 	public com.liferay.knowledgebase.model.KBArticle addKBArticle(
-		java.lang.String portletId, long parentResourcePrimKey,
-		java.lang.String title, java.lang.String urlTitle,
-		java.lang.String content, java.lang.String description,
-		java.lang.String sourceURL, java.lang.String[] sections,
-		java.lang.String[] selectedFileNames,
+		java.lang.String portletId, long parentResourceClassNameId,
+		long parentResourcePrimKey, java.lang.String title,
+		java.lang.String urlTitle, java.lang.String content,
+		java.lang.String description, java.lang.String sourceURL,
+		java.lang.String[] sections, java.lang.String[] selectedFileNames,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
-	public void addKBArticlesMarkdown(long groupId, java.lang.String fileName,
-		java.io.InputStream inputStream,
+	public void addKBArticlesMarkdown(long groupId, long parentKBFolderId,
+		java.lang.String fileName, java.io.InputStream inputStream,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
@@ -240,7 +240,8 @@ public interface KBArticleService extends BaseService, InvokableService {
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
-	public void moveKBArticle(long resourcePrimKey, long parentResourcePrimKey,
+	public void moveKBArticle(long resourcePrimKey,
+		long parentResourceClassNameId, long parentResourcePrimKey,
 		double priority)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;

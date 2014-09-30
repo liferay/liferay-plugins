@@ -64,28 +64,29 @@ public class KBArticleServiceUtil {
 	}
 
 	public static com.liferay.knowledgebase.model.KBArticle addKBArticle(
-		java.lang.String portletId, long parentResourcePrimKey,
-		java.lang.String title, java.lang.String urlTitle,
-		java.lang.String content, java.lang.String description,
-		java.lang.String sourceURL, java.lang.String[] sections,
-		java.lang.String[] selectedFileNames,
+		java.lang.String portletId, long parentResourceClassNameId,
+		long parentResourcePrimKey, java.lang.String title,
+		java.lang.String urlTitle, java.lang.String content,
+		java.lang.String description, java.lang.String sourceURL,
+		java.lang.String[] sections, java.lang.String[] selectedFileNames,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService()
-				   .addKBArticle(portletId, parentResourcePrimKey, title,
-			urlTitle, content, description, sourceURL, sections,
-			selectedFileNames, serviceContext);
+				   .addKBArticle(portletId, parentResourceClassNameId,
+			parentResourcePrimKey, title, urlTitle, content, description,
+			sourceURL, sections, selectedFileNames, serviceContext);
 	}
 
 	public static void addKBArticlesMarkdown(long groupId,
-		java.lang.String fileName, java.io.InputStream inputStream,
+		long parentKBFolderId, java.lang.String fileName,
+		java.io.InputStream inputStream,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		getService()
-			.addKBArticlesMarkdown(groupId, fileName, inputStream,
-			serviceContext);
+			.addKBArticlesMarkdown(groupId, parentKBFolderId, fileName,
+			inputStream, serviceContext);
 	}
 
 	public static void addTempAttachment(long groupId, long resourcePrimKey,
@@ -313,11 +314,13 @@ public class KBArticleServiceUtil {
 	}
 
 	public static void moveKBArticle(long resourcePrimKey,
-		long parentResourcePrimKey, double priority)
+		long parentResourceClassNameId, long parentResourcePrimKey,
+		double priority)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		getService()
-			.moveKBArticle(resourcePrimKey, parentResourcePrimKey, priority);
+			.moveKBArticle(resourcePrimKey, parentResourceClassNameId,
+			parentResourcePrimKey, priority);
 	}
 
 	public static void subscribeGroupKBArticles(long groupId,

@@ -35,7 +35,7 @@ public class KBArticleServiceClpInvoker {
 		_methodName104 = "addKBArticle";
 
 		_methodParameterTypes104 = new String[] {
-				"java.lang.String", "long", "java.lang.String",
+				"java.lang.String", "long", "long", "java.lang.String",
 				"java.lang.String", "java.lang.String", "java.lang.String",
 				"java.lang.String", "java.lang.String[][]",
 				"java.lang.String[][]",
@@ -45,7 +45,7 @@ public class KBArticleServiceClpInvoker {
 		_methodName105 = "addKBArticlesMarkdown";
 
 		_methodParameterTypes105 = new String[] {
-				"long", "java.lang.String", "java.io.InputStream",
+				"long", "long", "java.lang.String", "java.io.InputStream",
 				"com.liferay.portal.service.ServiceContext"
 			};
 
@@ -195,7 +195,7 @@ public class KBArticleServiceClpInvoker {
 
 		_methodName131 = "moveKBArticle";
 
-		_methodParameterTypes131 = new String[] { "long", "long", "double" };
+		_methodParameterTypes131 = new String[] { "long", "long", "long", "double" };
 
 		_methodName132 = "subscribeGroupKBArticles";
 
@@ -245,20 +245,22 @@ public class KBArticleServiceClpInvoker {
 				Arrays.deepEquals(_methodParameterTypes104, parameterTypes)) {
 			return KBArticleServiceUtil.addKBArticle((java.lang.String)arguments[0],
 				((Long)arguments[1]).longValue(),
-				(java.lang.String)arguments[2], (java.lang.String)arguments[3],
-				(java.lang.String)arguments[4], (java.lang.String)arguments[5],
-				(java.lang.String)arguments[6],
-				(java.lang.String[])arguments[7],
+				((Long)arguments[2]).longValue(),
+				(java.lang.String)arguments[3], (java.lang.String)arguments[4],
+				(java.lang.String)arguments[5], (java.lang.String)arguments[6],
+				(java.lang.String)arguments[7],
 				(java.lang.String[])arguments[8],
-				(com.liferay.portal.service.ServiceContext)arguments[9]);
+				(java.lang.String[])arguments[9],
+				(com.liferay.portal.service.ServiceContext)arguments[10]);
 		}
 
 		if (_methodName105.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes105, parameterTypes)) {
 			KBArticleServiceUtil.addKBArticlesMarkdown(((Long)arguments[0]).longValue(),
-				(java.lang.String)arguments[1],
-				(java.io.InputStream)arguments[2],
-				(com.liferay.portal.service.ServiceContext)arguments[3]);
+				((Long)arguments[1]).longValue(),
+				(java.lang.String)arguments[2],
+				(java.io.InputStream)arguments[3],
+				(com.liferay.portal.service.ServiceContext)arguments[4]);
 
 			return null;
 		}
@@ -468,7 +470,8 @@ public class KBArticleServiceClpInvoker {
 				Arrays.deepEquals(_methodParameterTypes131, parameterTypes)) {
 			KBArticleServiceUtil.moveKBArticle(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
-				((Double)arguments[2]).doubleValue());
+				((Long)arguments[2]).longValue(),
+				((Double)arguments[3]).doubleValue());
 
 			return null;
 		}

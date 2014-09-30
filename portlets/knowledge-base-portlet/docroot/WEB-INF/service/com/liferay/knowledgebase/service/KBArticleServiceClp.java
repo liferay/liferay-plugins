@@ -35,7 +35,7 @@ public class KBArticleServiceClp implements KBArticleService {
 		_methodName3 = "addKBArticle";
 
 		_methodParameterTypes3 = new String[] {
-				"java.lang.String", "long", "java.lang.String",
+				"java.lang.String", "long", "long", "java.lang.String",
 				"java.lang.String", "java.lang.String", "java.lang.String",
 				"java.lang.String", "java.lang.String[][]",
 				"java.lang.String[][]",
@@ -45,7 +45,7 @@ public class KBArticleServiceClp implements KBArticleService {
 		_methodName4 = "addKBArticlesMarkdown";
 
 		_methodParameterTypes4 = new String[] {
-				"long", "java.lang.String", "java.io.InputStream",
+				"long", "long", "java.lang.String", "java.io.InputStream",
 				"com.liferay.portal.service.ServiceContext"
 			};
 
@@ -195,7 +195,7 @@ public class KBArticleServiceClp implements KBArticleService {
 
 		_methodName30 = "moveKBArticle";
 
-		_methodParameterTypes30 = new String[] { "long", "long", "double" };
+		_methodParameterTypes30 = new String[] { "long", "long", "long", "double" };
 
 		_methodName31 = "subscribeGroupKBArticles";
 
@@ -279,11 +279,11 @@ public class KBArticleServiceClp implements KBArticleService {
 
 	@Override
 	public com.liferay.knowledgebase.model.KBArticle addKBArticle(
-		java.lang.String portletId, long parentResourcePrimKey,
-		java.lang.String title, java.lang.String urlTitle,
-		java.lang.String content, java.lang.String description,
-		java.lang.String sourceURL, java.lang.String[] sections,
-		java.lang.String[] selectedFileNames,
+		java.lang.String portletId, long parentResourceClassNameId,
+		long parentResourcePrimKey, java.lang.String title,
+		java.lang.String urlTitle, java.lang.String content,
+		java.lang.String description, java.lang.String sourceURL,
+		java.lang.String[] sections, java.lang.String[] selectedFileNames,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -294,6 +294,8 @@ public class KBArticleServiceClp implements KBArticleService {
 					_methodParameterTypes3,
 					new Object[] {
 						ClpSerializer.translateInput(portletId),
+						
+					parentResourceClassNameId,
 						
 					parentResourcePrimKey,
 						
@@ -338,8 +340,8 @@ public class KBArticleServiceClp implements KBArticleService {
 	}
 
 	@Override
-	public void addKBArticlesMarkdown(long groupId, java.lang.String fileName,
-		java.io.InputStream inputStream,
+	public void addKBArticlesMarkdown(long groupId, long parentKBFolderId,
+		java.lang.String fileName, java.io.InputStream inputStream,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -348,6 +350,8 @@ public class KBArticleServiceClp implements KBArticleService {
 				_methodParameterTypes4,
 				new Object[] {
 					groupId,
+					
+				parentKBFolderId,
 					
 				ClpSerializer.translateInput(fileName),
 					
@@ -1356,14 +1360,23 @@ public class KBArticleServiceClp implements KBArticleService {
 	}
 
 	@Override
-	public void moveKBArticle(long resourcePrimKey, long parentResourcePrimKey,
+	public void moveKBArticle(long resourcePrimKey,
+		long parentResourceClassNameId, long parentResourcePrimKey,
 		double priority)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		try {
 			_invokableService.invokeMethod(_methodName30,
 				_methodParameterTypes30,
-				new Object[] { resourcePrimKey, parentResourcePrimKey, priority });
+				new Object[] {
+					resourcePrimKey,
+					
+				parentResourceClassNameId,
+					
+				parentResourcePrimKey,
+					
+				priority
+				});
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);

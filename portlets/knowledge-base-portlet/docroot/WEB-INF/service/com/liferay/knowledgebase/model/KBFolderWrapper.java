@@ -501,6 +501,11 @@ public class KBFolderWrapper implements KBFolder, ModelWrapper<KBFolder> {
 	}
 
 	@Override
+	public long getClassNameId() {
+		return _kbFolder.getClassNameId();
+	}
+
+	@Override
 	public boolean equals(Object obj) {
 		if (this == obj) {
 			return true;

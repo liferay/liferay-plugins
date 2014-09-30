@@ -357,16 +357,18 @@ public class KBArticleLocalServiceWrapper implements KBArticleLocalService,
 
 	@Override
 	public com.liferay.knowledgebase.model.KBArticle addKBArticle(long userId,
-		long parentResourcePrimKey, java.lang.String title,
-		java.lang.String urlTitle, java.lang.String content,
-		java.lang.String description, java.lang.String sourceURL,
-		java.lang.String[] sections, java.lang.String[] selectedFileNames,
+		long parentResourceClassNameId, long parentResourcePrimKey,
+		java.lang.String title, java.lang.String urlTitle,
+		java.lang.String content, java.lang.String description,
+		java.lang.String sourceURL, java.lang.String[] sections,
+		java.lang.String[] selectedFileNames,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _kbArticleLocalService.addKBArticle(userId,
-			parentResourcePrimKey, title, urlTitle, content, description,
-			sourceURL, sections, selectedFileNames, serviceContext);
+			parentResourceClassNameId, parentResourcePrimKey, title, urlTitle,
+			content, description, sourceURL, sections, selectedFileNames,
+			serviceContext);
 	}
 
 	@Override
@@ -409,12 +411,13 @@ public class KBArticleLocalServiceWrapper implements KBArticleLocalService,
 
 	@Override
 	public void addKBArticlesMarkdown(long userId, long groupId,
-		java.lang.String fileName, java.io.InputStream inputStream,
+		long parentKbFolderId, java.lang.String fileName,
+		java.io.InputStream inputStream,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		_kbArticleLocalService.addKBArticlesMarkdown(userId, groupId, fileName,
-			inputStream, serviceContext);
+		_kbArticleLocalService.addKBArticlesMarkdown(userId, groupId,
+			parentKbFolderId, fileName, inputStream, serviceContext);
 	}
 
 	@Override
@@ -675,11 +678,12 @@ public class KBArticleLocalServiceWrapper implements KBArticleLocalService,
 
 	@Override
 	public void moveKBArticle(long userId, long resourcePrimKey,
-		long parentResourcePrimKey, double priority)
+		long parentResourceClassNameId, long parentResourcePrimKey,
+		double priority)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		_kbArticleLocalService.moveKBArticle(userId, resourcePrimKey,
-			parentResourcePrimKey, priority);
+			parentResourceClassNameId, parentResourcePrimKey, priority);
 	}
 
 	@Override

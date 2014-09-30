@@ -43,6 +43,8 @@ public interface KBArticle extends KBArticleModel, PersistedModel {
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
+	public long getClassNameId();
+
 	public long getClassPK();
 
 	public com.liferay.knowledgebase.model.KBArticle getParentKBArticle()
