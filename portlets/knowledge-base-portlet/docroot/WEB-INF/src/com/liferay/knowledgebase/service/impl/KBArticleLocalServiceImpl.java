@@ -288,7 +288,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 	public KBArticle deleteKBArticle(KBArticle kbArticle)
 		throws PortalException {
 
-		// Child kb articles
+		// Child KB articles
 
 		long groupId = kbArticle.getGroupId();
 		long resourcePrimKey = kbArticle.getResourcePrimKey();
