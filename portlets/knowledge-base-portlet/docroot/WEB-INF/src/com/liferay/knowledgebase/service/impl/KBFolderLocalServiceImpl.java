@@ -38,6 +38,8 @@ public class KBFolderLocalServiceImpl extends KBFolderLocalServiceBaseImpl {
 			ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
+		// KB folder
+
 		User user = userPersistence.findByPrimaryKey(userId);
 		Date now = new Date();
 
@@ -104,9 +106,7 @@ public class KBFolderLocalServiceImpl extends KBFolderLocalServiceBaseImpl {
 
 		KBFolder kbFolder = kbFolderPersistence.findByPrimaryKey(kbFolderId);
 
-		Date now = new Date();
-
-		kbFolder.setModifiedDate(now);
+		kbFolder.setModifiedDate(new Date());
 		kbFolder.setParentKBFolderId(parentResourcePrimKey);
 		kbFolder.setName(name);
 		kbFolder.setDescription(description);
@@ -160,7 +160,7 @@ public class KBFolderLocalServiceImpl extends KBFolderLocalServiceBaseImpl {
 		if (parentKBFolder == null) {
 			throw new NoSuchFolderException(
 				String.format(
-					"No KBFolder found with kbFolderId %",
+					"No KB folder found with KB folder ID %",
 					parentResourcePrimKey));
 		}
 	}
