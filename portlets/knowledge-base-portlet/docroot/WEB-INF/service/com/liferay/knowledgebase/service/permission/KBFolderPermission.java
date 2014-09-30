@@ -17,9 +17,7 @@ package com.liferay.knowledgebase.service.permission;
 import com.liferay.knowledgebase.model.KBFolder;
 import com.liferay.knowledgebase.model.KBFolderConstants;
 import com.liferay.knowledgebase.service.KBFolderLocalServiceUtil;
-import com.liferay.knowledgebase.util.ActionKeys;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.security.auth.PrincipalException;
 import com.liferay.portal.security.permission.PermissionChecker;
 
@@ -41,7 +39,7 @@ public class KBFolderPermission {
 	public static void check(
 			PermissionChecker permissionChecker, long groupId, long kbFolderId,
 			String actionId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		if (!contains(permissionChecker, groupId, kbFolderId, actionId)) {
 			throw new PrincipalException();
@@ -51,7 +49,7 @@ public class KBFolderPermission {
 	public static void check(
 			PermissionChecker permissionChecker, long kbFolderId,
 			String actionId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		KBFolder kbFolder = KBFolderLocalServiceUtil.getKBFolder(kbFolderId);
 
@@ -77,7 +75,7 @@ public class KBFolderPermission {
 	public static boolean contains(
 			PermissionChecker permissionChecker, long groupId, long kbFolderId,
 			String actionId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		if (kbFolderId == KBFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
 			return AdminPermission.contains(
