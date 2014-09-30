@@ -71,7 +71,6 @@ public class DisplayPortlet extends BaseKBPortlet {
 			KBArticle kbArticle = null;
 
 			long resourcePrimKey = getResourcePrimKey(renderRequest);
-
 			long parentResourcePrimKey = ParamUtil.getLong(
 				renderRequest, "parentResourcePrimKey",
 				KBFolderConstants.DEFAULT_PARENT_FOLDER_ID);

@@ -169,14 +169,12 @@ public abstract class BaseKBPortlet extends MVCPortlet {
 
 		long resourcePrimKey = ParamUtil.getLong(
 			actionRequest, "resourcePrimKey");
-
 		long parentResourceClassNameId = ParamUtil.getLong(
 			actionRequest, "parentResourceClassNameId",
 			PortalUtil.getClassNameId(KBFolderConstants.getClassName()));
 		long parentResourcePrimKey = ParamUtil.getLong(
 			actionRequest, "parentResourcePrimKey",
 			KBFolderConstants.DEFAULT_PARENT_FOLDER_ID);
-
 		double priority = ParamUtil.getDouble(actionRequest, "priority");
 
 		KBArticleServiceUtil.moveKBArticle(
@@ -289,7 +287,6 @@ public abstract class BaseKBPortlet extends MVCPortlet {
 
 		long resourcePrimKey = ParamUtil.getLong(
 			actionRequest, "resourcePrimKey");
-
 		long parentResourceClassNameId = ParamUtil.getLong(
 			actionRequest, "parentResourceClassNameId",
 			PortalUtil.getClassNameId(KBFolderConstants.getClassName()));
