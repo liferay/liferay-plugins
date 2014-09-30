@@ -258,7 +258,7 @@ public class AdminPortlet extends BaseKBPortlet {
 
 	public void updateKBFolder(
 			ActionRequest actionRequest, ActionResponse actionResponse)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		long groupId = PortalUtil.getScopeGroupId(actionRequest);
 		long kbFolderId = ParamUtil.getLong(actionRequest, "kbFolderId");
