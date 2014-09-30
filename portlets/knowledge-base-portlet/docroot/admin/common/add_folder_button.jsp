@@ -22,9 +22,9 @@ long parentResourcePrimKey = ParamUtil.getLong(request, "parentResourcePrimKey",
 
 <portlet:renderURL var="addFolderURL">
 	<portlet:param name="mvcPath" value="/admin/common/edit_folder.jsp" />
+	<portlet:param name="redirect" value="<%= redirect %>" />
 	<portlet:param name="parentResourceClassNameId" value="<%= String.valueOf(PortalUtil.getClassNameId(KBFolderConstants.getClassName())) %>" />
 	<portlet:param name="parentResourcePrimKey" value="<%= String.valueOf(parentResourcePrimKey) %>" />
-	<portlet:param name="redirect" value="<%= redirect %>" />
 </portlet:renderURL>
 
 <aui:nav-item
