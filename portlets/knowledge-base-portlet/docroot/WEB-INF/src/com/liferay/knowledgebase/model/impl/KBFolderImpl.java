@@ -14,8 +14,8 @@
 
 package com.liferay.knowledgebase.model.impl;
 
-
 import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.knowledgebase.model.KBFolderConstants;
 import com.liferay.portal.util.PortalUtil;
 

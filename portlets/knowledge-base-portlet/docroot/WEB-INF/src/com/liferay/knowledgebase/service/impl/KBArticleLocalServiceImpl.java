@@ -47,7 +47,6 @@ import com.liferay.portal.kernel.dao.orm.PropertyFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.dao.orm.RestrictionsFactoryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.log.Log;
@@ -244,7 +243,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 	public void addKBArticlesMarkdown(
 			long userId, long groupId, long parentKbFolderId, String fileName,
 			InputStream inputStream, ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		KBArticleImporter kbArticleImporter = new KBArticleImporter();
 
@@ -800,7 +799,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 	public void moveKBArticle(
 			long userId, long resourcePrimKey, long parentResourceClassNameId,
 			long parentResourcePrimKey, double priority)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		// KB article
 
@@ -1508,7 +1507,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 	protected long getRootResourcePrimKey(
 			long resourcePrimKey, long parentResourceClassNameId,
 			long parentResourcePrimKey)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		if (parentResourcePrimKey ==
 				KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY) {
@@ -1740,7 +1739,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 	protected void updatePermissionFields(
 			long resourcePrimKey, long parentResourceClassNameId,
 			long parentResourcePrimKey)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		// See KBArticlePermission#contains
 

@@ -19,7 +19,6 @@ import aQute.bnd.annotation.ProviderType;
 import com.liferay.knowledgebase.model.KBFolder;
 import com.liferay.knowledgebase.service.base.KBFolderLocalServiceBaseImpl;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 
 import java.util.List;
 
@@ -32,7 +31,7 @@ public class KBFolderLocalServiceImpl extends KBFolderLocalServiceBaseImpl {
 	@Override
 	public List<KBFolder> getFolders(
 			long groupId, long parentKBFolderId, int start, int end)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		return kbFolderPersistence.findByG_P(
 			groupId, parentKBFolderId, start, end);
@@ -40,7 +39,7 @@ public class KBFolderLocalServiceImpl extends KBFolderLocalServiceBaseImpl {
 
 	@Override
 	public int getFoldersCount(long groupId, long parentKBFolderId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		return kbFolderPersistence.countByG_P(groupId, parentKBFolderId);
 	}

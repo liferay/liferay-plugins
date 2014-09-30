@@ -99,7 +99,7 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 	public void addKBArticlesMarkdown(
 			long groupId, long parentKBFolderId, String fileName,
 			InputStream inputStream, ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		AdminPermission.check(
 			getPermissionChecker(), groupId, ActionKeys.ADD_KB_ARTICLE);
@@ -619,7 +619,7 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 	public void moveKBArticle(
 			long resourcePrimKey, long parentResourceClassNameId,
 			long parentResourcePrimKey, double priority)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		KBArticlePermission.check(
 			getPermissionChecker(), resourcePrimKey,
