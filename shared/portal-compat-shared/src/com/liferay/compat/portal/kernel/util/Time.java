@@ -51,12 +51,14 @@ public class Time extends com.liferay.portal.kernel.util.Time {
 
 		long millisAgo = System.currentTimeMillis() - milliseconds;
 
-		if (millisAgo <= Time.MINUTE) {
-			return LanguageUtil.get(locale, "about-a-minute-ago");
-		}
-		else if (millisAgo < Time.HOUR) {
-			return LanguageUtil.format(
-				locale, "x-minutes-ago", (millisAgo / Time.MINUTE));
+		if (millisAgo < Time.HOUR) {
+			long minutes = millisAgo / Time.MINUTE;
+
+			if (minutes <= 1) {
+				return LanguageUtil.get(locale, "about-a-minute-ago");
+			}
+
+			return LanguageUtil.format(locale, "x-minutes-ago", minutes);
 		}
 		else if ((millisAgo / Time.HOUR) == 1) {
 			return LanguageUtil.get(locale, "about-an-hour-ago");
