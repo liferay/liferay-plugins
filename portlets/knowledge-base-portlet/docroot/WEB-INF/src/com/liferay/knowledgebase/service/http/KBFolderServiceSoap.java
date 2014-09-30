@@ -65,6 +65,26 @@ import java.rmi.RemoteException;
  */
 @ProviderType
 public class KBFolderServiceSoap {
+	public static com.liferay.knowledgebase.model.KBFolderSoap addKBFolder(
+		long groupId, long parentResourceClassNameId,
+		long parentResourcePrimKey, java.lang.String name,
+		java.lang.String description,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws RemoteException {
+		try {
+			com.liferay.knowledgebase.model.KBFolder returnValue = KBFolderServiceUtil.addKBFolder(groupId,
+					parentResourceClassNameId, parentResourcePrimKey, name,
+					description, serviceContext);
+
+			return com.liferay.knowledgebase.model.KBFolderSoap.toSoapModel(returnValue);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
 	public static com.liferay.knowledgebase.model.KBFolderSoap[] getKBFolders(
 		long groupId, long parentKBFolderId, int start, int end)
 		throws RemoteException {
@@ -89,6 +109,37 @@ public class KBFolderServiceSoap {
 					parentKBFolderId);
 
 			return returnValue;
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static com.liferay.knowledgebase.model.KBFolderSoap getKBFolder(
+		long kbFolderId) throws RemoteException {
+		try {
+			com.liferay.knowledgebase.model.KBFolder returnValue = KBFolderServiceUtil.getKBFolder(kbFolderId);
+
+			return com.liferay.knowledgebase.model.KBFolderSoap.toSoapModel(returnValue);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static com.liferay.knowledgebase.model.KBFolderSoap updateKBFolder(
+		long parentResourceClassNameId, long parentResourcePrimKey,
+		long kbFolderId, java.lang.String name, java.lang.String description)
+		throws RemoteException {
+		try {
+			com.liferay.knowledgebase.model.KBFolder returnValue = KBFolderServiceUtil.updateKBFolder(parentResourceClassNameId,
+					parentResourcePrimKey, kbFolderId, name, description);
+
+			return com.liferay.knowledgebase.model.KBFolderSoap.toSoapModel(returnValue);
 		}
 		catch (Exception e) {
 			_log.error(e, e);

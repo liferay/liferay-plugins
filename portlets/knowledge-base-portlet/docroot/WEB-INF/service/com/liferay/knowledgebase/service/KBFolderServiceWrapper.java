@@ -32,6 +32,16 @@ public class KBFolderServiceWrapper implements KBFolderService,
 		_kbFolderService = kbFolderService;
 	}
 
+	@Override
+	public com.liferay.knowledgebase.model.KBFolder addKBFolder(long groupId,
+		long parentResourceClassNameId, long parentResourcePrimKey,
+		java.lang.String name, java.lang.String description,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _kbFolderService.addKBFolder(groupId, parentResourceClassNameId,
+			parentResourcePrimKey, name, description, serviceContext);
+	}
+
 	/**
 	* Returns the Spring bean ID for this bean.
 	*
@@ -40,6 +50,12 @@ public class KBFolderServiceWrapper implements KBFolderService,
 	@Override
 	public java.lang.String getBeanIdentifier() {
 		return _kbFolderService.getBeanIdentifier();
+	}
+
+	@Override
+	public com.liferay.knowledgebase.model.KBFolder getKBFolder(long kbFolderId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _kbFolderService.getKBFolder(kbFolderId);
 	}
 
 	@Override
@@ -71,6 +87,15 @@ public class KBFolderServiceWrapper implements KBFolderService,
 	@Override
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
 		_kbFolderService.setBeanIdentifier(beanIdentifier);
+	}
+
+	@Override
+	public com.liferay.knowledgebase.model.KBFolder updateKBFolder(
+		long parentResourceClassNameId, long parentResourcePrimKey,
+		long kbFolderId, java.lang.String name, java.lang.String description)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _kbFolderService.updateKBFolder(parentResourceClassNameId,
+			parentResourcePrimKey, kbFolderId, name, description);
 	}
 
 	/**

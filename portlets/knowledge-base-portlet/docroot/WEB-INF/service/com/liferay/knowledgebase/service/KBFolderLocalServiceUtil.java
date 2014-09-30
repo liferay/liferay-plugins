@@ -53,6 +53,17 @@ public class KBFolderLocalServiceUtil {
 		return getService().addKBFolder(kbFolder);
 	}
 
+	public static com.liferay.knowledgebase.model.KBFolder addKBFolder(
+		long userId, long groupId, long parentResourceClassNameId,
+		long parentResourcePrimKey, java.lang.String name,
+		java.lang.String description,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService()
+				   .addKBFolder(userId, groupId, parentResourceClassNameId,
+			parentResourcePrimKey, name, description, serviceContext);
+	}
+
 	/**
 	* Creates a new k b folder with the primary key. Does not add the k b folder to the database.
 	*
@@ -316,6 +327,15 @@ public class KBFolderLocalServiceUtil {
 	public static com.liferay.knowledgebase.model.KBFolder updateKBFolder(
 		com.liferay.knowledgebase.model.KBFolder kbFolder) {
 		return getService().updateKBFolder(kbFolder);
+	}
+
+	public static com.liferay.knowledgebase.model.KBFolder updateKBFolder(
+		long parentResourceClassNameId, long parentResourcePrimKey,
+		long kbFolderId, java.lang.String name, java.lang.String description)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService()
+				   .updateKBFolder(parentResourceClassNameId,
+			parentResourcePrimKey, kbFolderId, name, description);
 	}
 
 	public static void clearService() {
