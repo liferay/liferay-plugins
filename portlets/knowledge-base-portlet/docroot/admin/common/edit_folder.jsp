@@ -22,7 +22,7 @@ long kbFolderId = ParamUtil.getLong(request, "kbFolderId");
 KBFolder kbFolder = null;
 
 if (kbFolderId != 0) {
-	kbFolder = KBFolderServiceUtil.getFolder(kbFolderId);
+	kbFolder = KBFolderServiceUtil.getKBFolder(kbFolderId);
 }
 
 long defaultParentResourcePrimKey = KBFolderConstants.DEFAULT_PARENT_FOLDER_ID;
