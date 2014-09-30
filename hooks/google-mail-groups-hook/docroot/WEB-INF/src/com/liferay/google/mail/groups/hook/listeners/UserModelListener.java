@@ -118,9 +118,9 @@ public class UserModelListener extends BaseModelListener<User> {
 		public OnAssociationProcessCallable(
 			List<Group> groups, User user, String action) {
 
-			_action = action;
 			_groups = groups;
 			_user = user;
+			_action = action;
 		}
 
 		@Override

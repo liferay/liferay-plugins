@@ -132,8 +132,8 @@ public class RoleModelListener extends BaseModelListener<Role> {
 		implements ProcessCallable<Serializable> {
 
 		public OnAssociationProcessCallable(List<User> users, String action) {
-			_action = action;
 			_users = users;
+			_action = action;
 		}
 
 		@Override
