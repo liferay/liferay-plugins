@@ -22,10 +22,8 @@ int status = (Integer)request.getAttribute(WebKeys.KNOWLEDGE_BASE_STATUS);
 KBArticle kbArticle = (KBArticle)request.getAttribute(WebKeys.KNOWLEDGE_BASE_KB_ARTICLE);
 
 long resourcePrimKey = BeanParamUtil.getLong(kbArticle, request, "resourcePrimKey");
-
 long parentResourceClassNameId = BeanParamUtil.getLong(kbArticle, request, "parentResourceClassNameId");
 long parentResourcePrimKey = BeanParamUtil.getLong(kbArticle, request, "parentResourcePrimKey");
-
 double priority = BeanParamUtil.getDouble(kbArticle, request, "priority");
 %>
 

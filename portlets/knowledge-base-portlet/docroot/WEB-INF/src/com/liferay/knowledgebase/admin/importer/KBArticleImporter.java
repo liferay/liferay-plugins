@@ -260,9 +260,8 @@ public class KBArticleImporter {
 					sectionIntroFileEntryName, zipReader, metadata,
 					serviceContext);
 
-				sectionResourceClassNameId =
-					PortalUtil.getClassNameId(
-						KBArticleConstants.getClassName());
+				sectionResourceClassNameId = PortalUtil.getClassNameId(
+					KBArticleConstants.getClassName());
 				sectionResourcePrimaryKey =
 					sectionIntroKBArticle.getResourcePrimKey();
 			}
