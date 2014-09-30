@@ -29,7 +29,7 @@ import java.util.List;
 public class KBFolderServiceImpl extends KBFolderServiceBaseImpl {
 
 	@Override
-	public List<KBFolder> getFolders(
+	public List<KBFolder> getKBFolders(
 			long groupId, long parentKBFolderId, int start, int end)
 		throws PortalException {
 
@@ -38,7 +38,7 @@ public class KBFolderServiceImpl extends KBFolderServiceBaseImpl {
 	}
 
 	@Override
-	public int getFoldersCount(long groupId, long parentKBFolderId)
+	public int getKBFoldersCount(long groupId, long parentKBFolderId)
 		throws PortalException {
 
 		return kbFolderPersistence.filterCountByG_P(groupId, parentKBFolderId);
