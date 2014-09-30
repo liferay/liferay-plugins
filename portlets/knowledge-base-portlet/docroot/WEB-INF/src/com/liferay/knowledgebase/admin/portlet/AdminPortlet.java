@@ -93,7 +93,7 @@ public class AdminPortlet extends BaseKBPortlet {
 
 		long kbFolderId = ParamUtil.getLong(actionRequest, "kbFolderId");
 
-		KBFolderServiceUtil.deleteFolder(kbFolderId);
+		KBFolderServiceUtil.deleteKBFolder(kbFolderId);
 	}
 
 	public void deleteKBTemplate(
