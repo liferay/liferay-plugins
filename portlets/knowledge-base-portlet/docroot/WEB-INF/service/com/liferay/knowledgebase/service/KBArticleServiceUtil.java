@@ -59,8 +59,7 @@ public class KBArticleServiceUtil {
 		long parentKBFolderId, java.lang.String fileName,
 		java.io.InputStream inputStream,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		getService()
 			.addKBArticlesMarkdown(groupId, parentKBFolderId, fileName,
 			inputStream, serviceContext);
@@ -284,8 +283,7 @@ public class KBArticleServiceUtil {
 	public static void moveKBArticle(long resourcePrimKey,
 		long parentResourceClassNameId, long parentResourcePrimKey,
 		double priority)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		getService()
 			.moveKBArticle(resourcePrimKey, parentResourceClassNameId,
 			parentResourcePrimKey, priority);

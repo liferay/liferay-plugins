@@ -51,8 +51,7 @@ public class KBArticleServiceWrapper implements KBArticleService,
 	public void addKBArticlesMarkdown(long groupId, long parentKBFolderId,
 		java.lang.String fileName, java.io.InputStream inputStream,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		_kbArticleService.addKBArticlesMarkdown(groupId, parentKBFolderId,
 			fileName, inputStream, serviceContext);
 	}
@@ -289,8 +288,7 @@ public class KBArticleServiceWrapper implements KBArticleService,
 	public void moveKBArticle(long resourcePrimKey,
 		long parentResourceClassNameId, long parentResourcePrimKey,
 		double priority)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		_kbArticleService.moveKBArticle(resourcePrimKey,
 			parentResourceClassNameId, parentResourcePrimKey, priority);
 	}

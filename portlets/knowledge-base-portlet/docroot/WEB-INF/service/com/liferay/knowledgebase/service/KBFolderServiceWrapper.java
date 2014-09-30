@@ -43,6 +43,19 @@ public class KBFolderServiceWrapper implements KBFolderService,
 	}
 
 	@Override
+	public java.util.List<com.liferay.knowledgebase.model.KBFolder> getFolders(
+		long groupId, long parentKBFolderId, int start, int end)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _kbFolderService.getFolders(groupId, parentKBFolderId, start, end);
+	}
+
+	@Override
+	public int getFoldersCount(long groupId, long parentKBFolderId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _kbFolderService.getFoldersCount(groupId, parentKBFolderId);
+	}
+
+	@Override
 	public java.lang.Object invokeMethod(java.lang.String name,
 		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
 		throws java.lang.Throwable {

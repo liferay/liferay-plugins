@@ -111,44 +111,52 @@ public class KBFolderLocalServiceClp implements KBFolderLocalService {
 				"com.liferay.portal.kernel.lar.PortletDataContext"
 			};
 
-		_methodName16 = "getKBFolder";
+		_methodName16 = "getFolders";
 
-		_methodParameterTypes16 = new String[] { "long" };
+		_methodParameterTypes16 = new String[] { "long", "long", "int", "int" };
 
-		_methodName17 = "getKBFolderByUuidAndGroupId";
+		_methodName17 = "getFoldersCount";
 
-		_methodParameterTypes17 = new String[] { "java.lang.String", "long" };
+		_methodParameterTypes17 = new String[] { "long", "long" };
 
-		_methodName18 = "getKBFolders";
+		_methodName18 = "getKBFolder";
 
-		_methodParameterTypes18 = new String[] { "int", "int" };
+		_methodParameterTypes18 = new String[] { "long" };
 
-		_methodName19 = "getKBFoldersByUuidAndCompanyId";
+		_methodName19 = "getKBFolderByUuidAndGroupId";
 
 		_methodParameterTypes19 = new String[] { "java.lang.String", "long" };
 
-		_methodName20 = "getKBFoldersByUuidAndCompanyId";
+		_methodName20 = "getKBFolders";
 
-		_methodParameterTypes20 = new String[] {
+		_methodParameterTypes20 = new String[] { "int", "int" };
+
+		_methodName21 = "getKBFoldersByUuidAndCompanyId";
+
+		_methodParameterTypes21 = new String[] { "java.lang.String", "long" };
+
+		_methodName22 = "getKBFoldersByUuidAndCompanyId";
+
+		_methodParameterTypes22 = new String[] {
 				"java.lang.String", "long", "int", "int",
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			};
 
-		_methodName21 = "getKBFoldersCount";
+		_methodName23 = "getKBFoldersCount";
 
-		_methodParameterTypes21 = new String[] {  };
+		_methodParameterTypes23 = new String[] {  };
 
-		_methodName22 = "getPersistedModel";
+		_methodName24 = "getPersistedModel";
 
-		_methodParameterTypes22 = new String[] { "java.io.Serializable" };
+		_methodParameterTypes24 = new String[] { "java.io.Serializable" };
 
-		_methodName24 = "setBeanIdentifier";
+		_methodName26 = "setBeanIdentifier";
 
-		_methodParameterTypes24 = new String[] { "java.lang.String" };
+		_methodParameterTypes26 = new String[] { "java.lang.String" };
 
-		_methodName25 = "updateKBFolder";
+		_methodName27 = "updateKBFolder";
 
-		_methodParameterTypes25 = new String[] {
+		_methodParameterTypes27 = new String[] {
 				"com.liferay.knowledgebase.model.KBFolder"
 			};
 	}
@@ -579,13 +587,72 @@ public class KBFolderLocalServiceClp implements KBFolderLocalService {
 	}
 
 	@Override
-	public com.liferay.knowledgebase.model.KBFolder getKBFolder(long kbFolderId)
+	public java.util.List<com.liferay.knowledgebase.model.KBFolder> getFolders(
+		long groupId, long parentKBFolderId, int start, int end)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName16,
-					_methodParameterTypes16, new Object[] { kbFolderId });
+					_methodParameterTypes16,
+					new Object[] { groupId, parentKBFolderId, start, end });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.util.List<com.liferay.knowledgebase.model.KBFolder>)ClpSerializer.translateOutput(returnObj);
+	}
+
+	@Override
+	public int getFoldersCount(long groupId, long parentKBFolderId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName17,
+					_methodParameterTypes17,
+					new Object[] { groupId, parentKBFolderId });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return ((Integer)returnObj).intValue();
+	}
+
+	@Override
+	public com.liferay.knowledgebase.model.KBFolder getKBFolder(long kbFolderId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName18,
+					_methodParameterTypes18, new Object[] { kbFolderId });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -613,8 +680,8 @@ public class KBFolderLocalServiceClp implements KBFolderLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName17,
-					_methodParameterTypes17,
+			returnObj = _invokableLocalService.invokeMethod(_methodName19,
+					_methodParameterTypes19,
 					new Object[] { ClpSerializer.translateInput(uuid), groupId });
 		}
 		catch (Throwable t) {
@@ -642,8 +709,8 @@ public class KBFolderLocalServiceClp implements KBFolderLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName18,
-					_methodParameterTypes18, new Object[] { start, end });
+			returnObj = _invokableLocalService.invokeMethod(_methodName20,
+					_methodParameterTypes20, new Object[] { start, end });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -666,8 +733,8 @@ public class KBFolderLocalServiceClp implements KBFolderLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName19,
-					_methodParameterTypes19,
+			returnObj = _invokableLocalService.invokeMethod(_methodName21,
+					_methodParameterTypes21,
 					new Object[] { ClpSerializer.translateInput(uuid), companyId });
 		}
 		catch (Throwable t) {
@@ -692,8 +759,8 @@ public class KBFolderLocalServiceClp implements KBFolderLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName20,
-					_methodParameterTypes20,
+			returnObj = _invokableLocalService.invokeMethod(_methodName22,
+					_methodParameterTypes22,
 					new Object[] {
 						ClpSerializer.translateInput(uuid),
 						
@@ -726,8 +793,8 @@ public class KBFolderLocalServiceClp implements KBFolderLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName21,
-					_methodParameterTypes21, new Object[] {  });
+			returnObj = _invokableLocalService.invokeMethod(_methodName23,
+					_methodParameterTypes23, new Object[] {  });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -751,8 +818,8 @@ public class KBFolderLocalServiceClp implements KBFolderLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName22,
-					_methodParameterTypes22,
+			returnObj = _invokableLocalService.invokeMethod(_methodName24,
+					_methodParameterTypes24,
 					new Object[] { ClpSerializer.translateInput(primaryKeyObj) });
 		}
 		catch (Throwable t) {
@@ -784,8 +851,8 @@ public class KBFolderLocalServiceClp implements KBFolderLocalService {
 	@Override
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
 		try {
-			_invokableLocalService.invokeMethod(_methodName24,
-				_methodParameterTypes24,
+			_invokableLocalService.invokeMethod(_methodName26,
+				_methodParameterTypes26,
 				new Object[] { ClpSerializer.translateInput(beanIdentifier) });
 		}
 		catch (Throwable t) {
@@ -807,8 +874,8 @@ public class KBFolderLocalServiceClp implements KBFolderLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName25,
-					_methodParameterTypes25,
+			returnObj = _invokableLocalService.invokeMethod(_methodName27,
+					_methodParameterTypes27,
 					new Object[] { ClpSerializer.translateInput(kbFolder) });
 		}
 		catch (Throwable t) {
@@ -873,8 +940,12 @@ public class KBFolderLocalServiceClp implements KBFolderLocalService {
 	private String[] _methodParameterTypes21;
 	private String _methodName22;
 	private String[] _methodParameterTypes22;
+	private String _methodName23;
+	private String[] _methodParameterTypes23;
 	private String _methodName24;
 	private String[] _methodParameterTypes24;
-	private String _methodName25;
-	private String[] _methodParameterTypes25;
+	private String _methodName26;
+	private String[] _methodParameterTypes26;
+	private String _methodName27;
+	private String[] _methodParameterTypes27;
 }

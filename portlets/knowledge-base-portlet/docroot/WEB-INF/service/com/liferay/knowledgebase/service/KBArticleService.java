@@ -60,8 +60,7 @@ public interface KBArticleService extends BaseService, InvokableService {
 	public void addKBArticlesMarkdown(long groupId, long parentKBFolderId,
 		java.lang.String fileName, java.io.InputStream inputStream,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	public void addTempAttachment(long groupId, long resourcePrimKey,
 		java.lang.String fileName, java.lang.String tempFolderName,
@@ -215,8 +214,7 @@ public interface KBArticleService extends BaseService, InvokableService {
 	public void moveKBArticle(long resourcePrimKey,
 		long parentResourceClassNameId, long parentResourcePrimKey,
 		double priority)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	/**
 	* Sets the Spring bean ID for this bean.

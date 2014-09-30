@@ -91,8 +91,7 @@ public interface KBArticleLocalService extends BaseLocalService,
 		long parentKbFolderId, java.lang.String fileName,
 		java.io.InputStream inputStream,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	public void addTempAttachment(long groupId, long userId,
 		java.lang.String fileName, java.lang.String tempFolderName,
@@ -446,8 +445,7 @@ public interface KBArticleLocalService extends BaseLocalService,
 	public void moveKBArticle(long userId, long resourcePrimKey,
 		long parentResourceClassNameId, long parentResourcePrimKey,
 		double priority)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.knowledgebase.model.KBArticle> search(
