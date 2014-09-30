@@ -46,7 +46,7 @@ public class KBFolderServiceImpl extends KBFolderServiceBaseImpl {
 	}
 
 	@Override
-	public KBFolder getFolder(long kbFolderId)
+	public KBFolder getKBFolder(long kbFolderId)
 		throws PortalException, SystemException {
 
 		KBFolderPermission.check(
