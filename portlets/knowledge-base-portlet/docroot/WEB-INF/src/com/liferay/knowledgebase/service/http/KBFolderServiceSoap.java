@@ -65,12 +65,12 @@ import java.rmi.RemoteException;
  */
 @ProviderType
 public class KBFolderServiceSoap {
-	public static com.liferay.knowledgebase.model.KBFolderSoap[] getFolders(
+	public static com.liferay.knowledgebase.model.KBFolderSoap[] getKBFolders(
 		long groupId, long parentKBFolderId, int start, int end)
 		throws RemoteException {
 		try {
 			java.util.List<com.liferay.knowledgebase.model.KBFolder> returnValue =
-				KBFolderServiceUtil.getFolders(groupId, parentKBFolderId,
+				KBFolderServiceUtil.getKBFolders(groupId, parentKBFolderId,
 					start, end);
 
 			return com.liferay.knowledgebase.model.KBFolderSoap.toSoapModels(returnValue);
@@ -82,10 +82,10 @@ public class KBFolderServiceSoap {
 		}
 	}
 
-	public static int getFoldersCount(long groupId, long parentKBFolderId)
+	public static int getKBFoldersCount(long groupId, long parentKBFolderId)
 		throws RemoteException {
 		try {
-			int returnValue = KBFolderServiceUtil.getFoldersCount(groupId,
+			int returnValue = KBFolderServiceUtil.getKBFoldersCount(groupId,
 					parentKBFolderId);
 
 			return returnValue;

@@ -31,11 +31,11 @@ public class KBFolderServiceClp implements KBFolderService {
 
 		_methodParameterTypes0 = new String[] {  };
 
-		_methodName1 = "getFolders";
+		_methodName1 = "getKBFolders";
 
 		_methodParameterTypes1 = new String[] { "long", "long", "int", "int" };
 
-		_methodName2 = "getFoldersCount";
+		_methodName2 = "getKBFoldersCount";
 
 		_methodParameterTypes2 = new String[] { "long", "long" };
 
@@ -68,7 +68,7 @@ public class KBFolderServiceClp implements KBFolderService {
 	}
 
 	@Override
-	public java.util.List<com.liferay.knowledgebase.model.KBFolder> getFolders(
+	public java.util.List<com.liferay.knowledgebase.model.KBFolder> getKBFolders(
 		long groupId, long parentKBFolderId, int start, int end)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
@@ -98,7 +98,7 @@ public class KBFolderServiceClp implements KBFolderService {
 	}
 
 	@Override
-	public int getFoldersCount(long groupId, long parentKBFolderId)
+	public int getKBFoldersCount(long groupId, long parentKBFolderId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 

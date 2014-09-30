@@ -57,12 +57,12 @@ public interface KBFolderService extends BaseService, InvokableService {
 	public java.lang.String getBeanIdentifier();
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<com.liferay.knowledgebase.model.KBFolder> getFolders(
+	public java.util.List<com.liferay.knowledgebase.model.KBFolder> getKBFolders(
 		long groupId, long parentKBFolderId, int start, int end)
 		throws com.liferay.portal.kernel.exception.PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int getFoldersCount(long groupId, long parentKBFolderId)
+	public int getKBFoldersCount(long groupId, long parentKBFolderId)
 		throws com.liferay.portal.kernel.exception.PortalException;
 
 	@Override

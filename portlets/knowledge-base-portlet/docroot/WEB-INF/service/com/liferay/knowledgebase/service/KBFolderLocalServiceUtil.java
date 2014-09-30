@@ -210,17 +210,6 @@ public class KBFolderLocalServiceUtil {
 		return getService().getExportActionableDynamicQuery(portletDataContext);
 	}
 
-	public static java.util.List<com.liferay.knowledgebase.model.KBFolder> getFolders(
-		long groupId, long parentKBFolderId, int start, int end)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().getFolders(groupId, parentKBFolderId, start, end);
-	}
-
-	public static int getFoldersCount(long groupId, long parentKBFolderId)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().getFoldersCount(groupId, parentKBFolderId);
-	}
-
 	/**
 	* Returns the k b folder with the primary key.
 	*
@@ -246,6 +235,12 @@ public class KBFolderLocalServiceUtil {
 		java.lang.String uuid, long groupId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().getKBFolderByUuidAndGroupId(uuid, groupId);
+	}
+
+	public static java.util.List<com.liferay.knowledgebase.model.KBFolder> getKBFolders(
+		long groupId, long parentKBFolderId, int start, int end)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().getKBFolders(groupId, parentKBFolderId, start, end);
 	}
 
 	/**
@@ -284,6 +279,11 @@ public class KBFolderLocalServiceUtil {
 	*/
 	public static int getKBFoldersCount() {
 		return getService().getKBFoldersCount();
+	}
+
+	public static int getKBFoldersCount(long groupId, long parentKBFolderId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().getKBFoldersCount(groupId, parentKBFolderId);
 	}
 
 	public static com.liferay.portal.model.PersistedModel getPersistedModel(

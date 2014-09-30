@@ -217,20 +217,6 @@ public class KBFolderLocalServiceWrapper implements KBFolderLocalService,
 		return _kbFolderLocalService.getExportActionableDynamicQuery(portletDataContext);
 	}
 
-	@Override
-	public java.util.List<com.liferay.knowledgebase.model.KBFolder> getFolders(
-		long groupId, long parentKBFolderId, int start, int end)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _kbFolderLocalService.getFolders(groupId, parentKBFolderId,
-			start, end);
-	}
-
-	@Override
-	public int getFoldersCount(long groupId, long parentKBFolderId)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _kbFolderLocalService.getFoldersCount(groupId, parentKBFolderId);
-	}
-
 	/**
 	* Returns the k b folder with the primary key.
 	*
@@ -257,6 +243,14 @@ public class KBFolderLocalServiceWrapper implements KBFolderLocalService,
 		java.lang.String uuid, long groupId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _kbFolderLocalService.getKBFolderByUuidAndGroupId(uuid, groupId);
+	}
+
+	@Override
+	public java.util.List<com.liferay.knowledgebase.model.KBFolder> getKBFolders(
+		long groupId, long parentKBFolderId, int start, int end)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _kbFolderLocalService.getKBFolders(groupId, parentKBFolderId,
+			start, end);
 	}
 
 	/**
@@ -299,6 +293,12 @@ public class KBFolderLocalServiceWrapper implements KBFolderLocalService,
 	@Override
 	public int getKBFoldersCount() {
 		return _kbFolderLocalService.getKBFoldersCount();
+	}
+
+	@Override
+	public int getKBFoldersCount(long groupId, long parentKBFolderId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _kbFolderLocalService.getKBFoldersCount(groupId, parentKBFolderId);
 	}
 
 	@Override

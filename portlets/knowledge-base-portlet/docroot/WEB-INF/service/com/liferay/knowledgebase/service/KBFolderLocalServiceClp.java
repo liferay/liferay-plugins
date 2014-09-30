@@ -111,40 +111,40 @@ public class KBFolderLocalServiceClp implements KBFolderLocalService {
 				"com.liferay.portal.kernel.lar.PortletDataContext"
 			};
 
-		_methodName16 = "getFolders";
+		_methodName16 = "getKBFolder";
 
-		_methodParameterTypes16 = new String[] { "long", "long", "int", "int" };
+		_methodParameterTypes16 = new String[] { "long" };
 
-		_methodName17 = "getFoldersCount";
+		_methodName17 = "getKBFolderByUuidAndGroupId";
 
-		_methodParameterTypes17 = new String[] { "long", "long" };
+		_methodParameterTypes17 = new String[] { "java.lang.String", "long" };
 
-		_methodName18 = "getKBFolder";
+		_methodName18 = "getKBFolders";
 
-		_methodParameterTypes18 = new String[] { "long" };
+		_methodParameterTypes18 = new String[] { "long", "long", "int", "int" };
 
-		_methodName19 = "getKBFolderByUuidAndGroupId";
+		_methodName19 = "getKBFolders";
 
-		_methodParameterTypes19 = new String[] { "java.lang.String", "long" };
+		_methodParameterTypes19 = new String[] { "int", "int" };
 
-		_methodName20 = "getKBFolders";
+		_methodName20 = "getKBFoldersByUuidAndCompanyId";
 
-		_methodParameterTypes20 = new String[] { "int", "int" };
+		_methodParameterTypes20 = new String[] { "java.lang.String", "long" };
 
 		_methodName21 = "getKBFoldersByUuidAndCompanyId";
 
-		_methodParameterTypes21 = new String[] { "java.lang.String", "long" };
-
-		_methodName22 = "getKBFoldersByUuidAndCompanyId";
-
-		_methodParameterTypes22 = new String[] {
+		_methodParameterTypes21 = new String[] {
 				"java.lang.String", "long", "int", "int",
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			};
 
+		_methodName22 = "getKBFoldersCount";
+
+		_methodParameterTypes22 = new String[] {  };
+
 		_methodName23 = "getKBFoldersCount";
 
-		_methodParameterTypes23 = new String[] {  };
+		_methodParameterTypes23 = new String[] { "long", "long" };
 
 		_methodName24 = "getPersistedModel";
 
@@ -587,72 +587,13 @@ public class KBFolderLocalServiceClp implements KBFolderLocalService {
 	}
 
 	@Override
-	public java.util.List<com.liferay.knowledgebase.model.KBFolder> getFolders(
-		long groupId, long parentKBFolderId, int start, int end)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		Object returnObj = null;
-
-		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName16,
-					_methodParameterTypes16,
-					new Object[] { groupId, parentKBFolderId, start, end });
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
-				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-
-		return (java.util.List<com.liferay.knowledgebase.model.KBFolder>)ClpSerializer.translateOutput(returnObj);
-	}
-
-	@Override
-	public int getFoldersCount(long groupId, long parentKBFolderId)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		Object returnObj = null;
-
-		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName17,
-					_methodParameterTypes17,
-					new Object[] { groupId, parentKBFolderId });
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
-				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-
-		return ((Integer)returnObj).intValue();
-	}
-
-	@Override
 	public com.liferay.knowledgebase.model.KBFolder getKBFolder(long kbFolderId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName18,
-					_methodParameterTypes18, new Object[] { kbFolderId });
+			returnObj = _invokableLocalService.invokeMethod(_methodName16,
+					_methodParameterTypes16, new Object[] { kbFolderId });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -680,8 +621,8 @@ public class KBFolderLocalServiceClp implements KBFolderLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName19,
-					_methodParameterTypes19,
+			returnObj = _invokableLocalService.invokeMethod(_methodName17,
+					_methodParameterTypes17,
 					new Object[] { ClpSerializer.translateInput(uuid), groupId });
 		}
 		catch (Throwable t) {
@@ -705,12 +646,42 @@ public class KBFolderLocalServiceClp implements KBFolderLocalService {
 
 	@Override
 	public java.util.List<com.liferay.knowledgebase.model.KBFolder> getKBFolders(
+		long groupId, long parentKBFolderId, int start, int end)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName18,
+					_methodParameterTypes18,
+					new Object[] { groupId, parentKBFolderId, start, end });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.util.List<com.liferay.knowledgebase.model.KBFolder>)ClpSerializer.translateOutput(returnObj);
+	}
+
+	@Override
+	public java.util.List<com.liferay.knowledgebase.model.KBFolder> getKBFolders(
 		int start, int end) {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName20,
-					_methodParameterTypes20, new Object[] { start, end });
+			returnObj = _invokableLocalService.invokeMethod(_methodName19,
+					_methodParameterTypes19, new Object[] { start, end });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -733,8 +704,8 @@ public class KBFolderLocalServiceClp implements KBFolderLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName21,
-					_methodParameterTypes21,
+			returnObj = _invokableLocalService.invokeMethod(_methodName20,
+					_methodParameterTypes20,
 					new Object[] { ClpSerializer.translateInput(uuid), companyId });
 		}
 		catch (Throwable t) {
@@ -759,8 +730,8 @@ public class KBFolderLocalServiceClp implements KBFolderLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName22,
-					_methodParameterTypes22,
+			returnObj = _invokableLocalService.invokeMethod(_methodName21,
+					_methodParameterTypes21,
 					new Object[] {
 						ClpSerializer.translateInput(uuid),
 						
@@ -793,11 +764,40 @@ public class KBFolderLocalServiceClp implements KBFolderLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName23,
-					_methodParameterTypes23, new Object[] {  });
+			returnObj = _invokableLocalService.invokeMethod(_methodName22,
+					_methodParameterTypes22, new Object[] {  });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return ((Integer)returnObj).intValue();
+	}
+
+	@Override
+	public int getKBFoldersCount(long groupId, long parentKBFolderId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName23,
+					_methodParameterTypes23,
+					new Object[] { groupId, parentKBFolderId });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
 
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
