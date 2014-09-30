@@ -55,7 +55,7 @@ create table KBFolder (
 	modifiedDate DATE null,
 	parentKBFolderId LONG,
 	name VARCHAR(75) null,
-	description VARCHAR(75) null
+	description STRING null
 );
 
 create table KBTemplate (

@@ -602,6 +602,78 @@ public class KBFolderUtil {
 	}
 
 	/**
+	* Returns all the k b folders that the user has permission to view where groupId = &#63; and parentKBFolderId = &#63;.
+	*
+	* @param groupId the group ID
+	* @param parentKBFolderId the parent k b folder ID
+	* @return the matching k b folders that the user has permission to view
+	*/
+	public static java.util.List<com.liferay.knowledgebase.model.KBFolder> filterFindByG_P(
+		long groupId, long parentKBFolderId) {
+		return getPersistence().filterFindByG_P(groupId, parentKBFolderId);
+	}
+
+	/**
+	* Returns a range of all the k b folders that the user has permission to view where groupId = &#63; and parentKBFolderId = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.knowledgebase.model.impl.KBFolderModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param groupId the group ID
+	* @param parentKBFolderId the parent k b folder ID
+	* @param start the lower bound of the range of k b folders
+	* @param end the upper bound of the range of k b folders (not inclusive)
+	* @return the range of matching k b folders that the user has permission to view
+	*/
+	public static java.util.List<com.liferay.knowledgebase.model.KBFolder> filterFindByG_P(
+		long groupId, long parentKBFolderId, int start, int end) {
+		return getPersistence()
+				   .filterFindByG_P(groupId, parentKBFolderId, start, end);
+	}
+
+	/**
+	* Returns an ordered range of all the k b folders that the user has permissions to view where groupId = &#63; and parentKBFolderId = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.knowledgebase.model.impl.KBFolderModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param groupId the group ID
+	* @param parentKBFolderId the parent k b folder ID
+	* @param start the lower bound of the range of k b folders
+	* @param end the upper bound of the range of k b folders (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @return the ordered range of matching k b folders that the user has permission to view
+	*/
+	public static java.util.List<com.liferay.knowledgebase.model.KBFolder> filterFindByG_P(
+		long groupId, long parentKBFolderId, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBFolder> orderByComparator) {
+		return getPersistence()
+				   .filterFindByG_P(groupId, parentKBFolderId, start, end,
+			orderByComparator);
+	}
+
+	/**
+	* Returns the k b folders before and after the current k b folder in the ordered set of k b folders that the user has permission to view where groupId = &#63; and parentKBFolderId = &#63;.
+	*
+	* @param kbFolderId the primary key of the current k b folder
+	* @param groupId the group ID
+	* @param parentKBFolderId the parent k b folder ID
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the previous, current, and next k b folder
+	* @throws com.liferay.knowledgebase.NoSuchFolderException if a k b folder with the primary key could not be found
+	*/
+	public static com.liferay.knowledgebase.model.KBFolder[] filterFindByG_P_PrevAndNext(
+		long kbFolderId, long groupId, long parentKBFolderId,
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBFolder> orderByComparator)
+		throws com.liferay.knowledgebase.NoSuchFolderException {
+		return getPersistence()
+				   .filterFindByG_P_PrevAndNext(kbFolderId, groupId,
+			parentKBFolderId, orderByComparator);
+	}
+
+	/**
 	* Removes all the k b folders where groupId = &#63; and parentKBFolderId = &#63; from the database.
 	*
 	* @param groupId the group ID
@@ -620,6 +692,17 @@ public class KBFolderUtil {
 	*/
 	public static int countByG_P(long groupId, long parentKBFolderId) {
 		return getPersistence().countByG_P(groupId, parentKBFolderId);
+	}
+
+	/**
+	* Returns the number of k b folders that the user has permission to view where groupId = &#63; and parentKBFolderId = &#63;.
+	*
+	* @param groupId the group ID
+	* @param parentKBFolderId the parent k b folder ID
+	* @return the number of matching k b folders that the user has permission to view
+	*/
+	public static int filterCountByG_P(long groupId, long parentKBFolderId) {
+		return getPersistence().filterCountByG_P(groupId, parentKBFolderId);
 	}
 
 	/**
