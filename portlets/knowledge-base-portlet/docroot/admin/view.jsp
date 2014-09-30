@@ -64,21 +64,21 @@ long parentResourcePrimKey = ParamUtil.getLong(request, "parentResourcePrimKey",
 				</c:if>
 
 				<%
-				boolean hasAddArticlePermission = KBFolderPermission.contains(permissionChecker, scopeGroupId, parentResourcePrimKey, ActionKeys.ADD_KB_ARTICLE);
-				boolean hasAddFolderPermission = KBFolderPermission.contains(permissionChecker, scopeGroupId, parentResourcePrimKey, ActionKeys.ADD_KB_FOLDER);
+				boolean hasAddKBArticlePermission = KBFolderPermission.contains(permissionChecker, scopeGroupId, parentResourcePrimKey, ActionKeys.ADD_KB_ARTICLE);
+				boolean hasAddKBFolderPermission = KBFolderPermission.contains(permissionChecker, scopeGroupId, parentResourcePrimKey, ActionKeys.ADD_KB_FOLDER);
 				%>
 
-				<c:if test="<%= hasAddArticlePermission || hasAddFolderPermission %>">
+				<c:if test="<%= hasAddKBArticlePermission || hasAddKBFolderPermission %>">
 					<aui:nav-item dropdown="<%= true %>" label="add">
-						<c:if test="<%= hasAddArticlePermission %>">
+						<c:if test="<%= hasAddKBArticlePermission %>">
 							<liferay-util:include page="/admin/common/add_article_button.jsp" servletContext="<%= application %>" />
 						</c:if>
 
-						<c:if test="<%= hasAddFolderPermission %>">
+						<c:if test="<%= hasAddKBFolderPermission %>">
 							<liferay-util:include page="/admin/common/add_folder_button.jsp" servletContext="<%= application %>" />
 						</c:if>
 
-						<c:if test="<%= hasAddArticlePermission %>">
+						<c:if test="<%= hasAddKBArticlePermission %>">
 							<liferay-util:include page="/admin/import_articles_button.jsp" servletContext="<%= application %>" />
 						</c:if>
 					</aui:nav-item>
