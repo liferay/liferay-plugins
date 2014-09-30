@@ -70,9 +70,9 @@ double priority = BeanParamUtil.getDouble(kbArticle, request, "priority");
 
 <aui:script>
 	function <portlet:namespace />selectKBArticle(parentTitle, parentPriority, parentResourcePrimKey, parentResourceClassNameId, html) {
-		document.<portlet:namespace />fm.<portlet:namespace />parentTitle.value = parentTitle;
 		document.<portlet:namespace />fm.<portlet:namespace />parentPriority.value = parentPriority;
 		document.<portlet:namespace />fm.<portlet:namespace />parentResourceClassNameId.value = parentResourceClassNameId;
 		document.<portlet:namespace />fm.<portlet:namespace />parentResourcePrimKey.value = parentResourcePrimKey;
+		document.<portlet:namespace />fm.<portlet:namespace />parentTitle.value = parentTitle;
 	}
 </aui:script>
