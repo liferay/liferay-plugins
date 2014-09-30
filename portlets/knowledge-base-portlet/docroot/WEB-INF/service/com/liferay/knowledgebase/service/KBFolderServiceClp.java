@@ -39,21 +39,25 @@ public class KBFolderServiceClp implements KBFolderService {
 				"com.liferay.portal.service.ServiceContext"
 			};
 
-		_methodName4 = "getKBFolder";
+		_methodName4 = "deleteKBFolder";
 
 		_methodParameterTypes4 = new String[] { "long" };
 
-		_methodName5 = "getKBFolders";
+		_methodName5 = "getKBFolder";
 
-		_methodParameterTypes5 = new String[] { "long", "long", "int", "int" };
+		_methodParameterTypes5 = new String[] { "long" };
 
-		_methodName6 = "getKBFoldersCount";
+		_methodName6 = "getKBFolders";
 
-		_methodParameterTypes6 = new String[] { "long", "long" };
+		_methodParameterTypes6 = new String[] { "long", "long", "int", "int" };
 
-		_methodName7 = "updateKBFolder";
+		_methodName7 = "getKBFoldersCount";
 
-		_methodParameterTypes7 = new String[] {
+		_methodParameterTypes7 = new String[] { "long", "long" };
+
+		_methodName8 = "updateKBFolder";
+
+		_methodParameterTypes8 = new String[] {
 				"long", "long", "long", "java.lang.String", "java.lang.String"
 			};
 	}
@@ -158,7 +162,8 @@ public class KBFolderServiceClp implements KBFolderService {
 	}
 
 	@Override
-	public com.liferay.knowledgebase.model.KBFolder getKBFolder(long kbFolderId)
+	public com.liferay.knowledgebase.model.KBFolder deleteKBFolder(
+		long kbFolderId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -191,6 +196,39 @@ public class KBFolderServiceClp implements KBFolderService {
 	}
 
 	@Override
+	public com.liferay.knowledgebase.model.KBFolder getKBFolder(long kbFolderId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableService.invokeMethod(_methodName5,
+					_methodParameterTypes5, new Object[] { kbFolderId });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.liferay.knowledgebase.model.KBFolder)ClpSerializer.translateOutput(returnObj);
+	}
+
+	@Override
 	public java.util.List<com.liferay.knowledgebase.model.KBFolder> getKBFolders(
 		long groupId, long parentKBFolderId, int start, int end)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -198,8 +236,8 @@ public class KBFolderServiceClp implements KBFolderService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableService.invokeMethod(_methodName5,
-					_methodParameterTypes5,
+			returnObj = _invokableService.invokeMethod(_methodName6,
+					_methodParameterTypes6,
 					new Object[] { groupId, parentKBFolderId, start, end });
 		}
 		catch (Throwable t) {
@@ -232,8 +270,8 @@ public class KBFolderServiceClp implements KBFolderService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableService.invokeMethod(_methodName6,
-					_methodParameterTypes6,
+			returnObj = _invokableService.invokeMethod(_methodName7,
+					_methodParameterTypes7,
 					new Object[] { groupId, parentKBFolderId });
 		}
 		catch (Throwable t) {
@@ -268,8 +306,8 @@ public class KBFolderServiceClp implements KBFolderService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableService.invokeMethod(_methodName7,
-					_methodParameterTypes7,
+			returnObj = _invokableService.invokeMethod(_methodName8,
+					_methodParameterTypes8,
 					new Object[] {
 						parentResourceClassNameId,
 						
@@ -320,4 +358,6 @@ public class KBFolderServiceClp implements KBFolderService {
 	private String[] _methodParameterTypes6;
 	private String _methodName7;
 	private String[] _methodParameterTypes7;
+	private String _methodName8;
+	private String[] _methodParameterTypes8;
 }

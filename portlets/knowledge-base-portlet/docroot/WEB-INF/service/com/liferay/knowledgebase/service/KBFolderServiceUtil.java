@@ -75,6 +75,13 @@ public class KBFolderServiceUtil {
 			parentResourcePrimKey, name, description, serviceContext);
 	}
 
+	public static com.liferay.knowledgebase.model.KBFolder deleteKBFolder(
+		long kbFolderId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService().deleteKBFolder(kbFolderId);
+	}
+
 	public static com.liferay.knowledgebase.model.KBFolder getKBFolder(
 		long kbFolderId)
 		throws com.liferay.portal.kernel.exception.PortalException,

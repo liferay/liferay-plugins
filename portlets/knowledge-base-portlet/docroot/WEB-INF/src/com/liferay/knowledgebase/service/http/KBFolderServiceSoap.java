@@ -82,6 +82,20 @@ public class KBFolderServiceSoap {
 		}
 	}
 
+	public static com.liferay.knowledgebase.model.KBFolderSoap deleteKBFolder(
+		long kbFolderId) throws RemoteException {
+		try {
+			com.liferay.knowledgebase.model.KBFolder returnValue = KBFolderServiceUtil.deleteKBFolder(kbFolderId);
+
+			return com.liferay.knowledgebase.model.KBFolderSoap.toSoapModel(returnValue);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
 	public static com.liferay.knowledgebase.model.KBFolderSoap getKBFolder(
 		long kbFolderId) throws RemoteException {
 		try {

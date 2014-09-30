@@ -1109,6 +1109,13 @@ public class KBArticleWrapper implements KBArticle, ModelWrapper<KBArticle> {
 	}
 
 	@Override
+	public java.lang.String getParentTitle(java.util.Locale locale, int status)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _kbArticle.getParentTitle(locale, status);
+	}
+
+	@Override
 	public boolean isFirstVersion() {
 		return _kbArticle.isFirstVersion();
 	}
