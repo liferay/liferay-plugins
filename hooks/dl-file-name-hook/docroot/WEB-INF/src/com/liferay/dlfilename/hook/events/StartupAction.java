@@ -14,11 +14,14 @@
 
 package com.liferay.dlfilename.hook.events;
 
+import com.liferay.dlfilename.hook.asset.DLFileNameDLFileEntryAssetRendererFactory;
 import com.liferay.dlfilename.hook.util.FileNameUtil;
 import com.liferay.portal.kernel.events.ActionException;
 import com.liferay.portal.kernel.events.SimpleAction;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.UnicodeProperties;
+import com.liferay.portlet.asset.AssetRendererFactoryRegistryUtil;
+import com.liferay.portlet.asset.model.AssetRendererFactory;
 import com.liferay.portlet.documentlibrary.model.DLFileEntry;
 import com.liferay.portlet.documentlibrary.model.DLFileVersion;
 import com.liferay.portlet.expando.DuplicateColumnNameException;
@@ -81,6 +84,24 @@ public class StartupAction extends SimpleAction {
 			ExpandoColumnLocalServiceUtil.updateExpandoColumn(expandoColumn);
 		}
 		catch (DuplicateColumnNameException dcne) {
+		}
+
+		registerAssetRendererFactory();
+	}
+
+	protected void registerAssetRendererFactory() throws Exception {
+		AssetRendererFactory assetRendererFactory =
+			AssetRendererFactoryRegistryUtil.getAssetRendererFactoryByClassName(
+				DLFileEntry.class.getName());
+
+		if (!(assetRendererFactory instanceof
+					DLFileNameDLFileEntryAssetRendererFactory)) {
+
+			assetRendererFactory =
+				new DLFileNameDLFileEntryAssetRendererFactory(
+					assetRendererFactory);
+
+			AssetRendererFactoryRegistryUtil.register(assetRendererFactory);
 		}
 	}
 
