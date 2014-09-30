@@ -267,11 +267,11 @@ public class AdminPortlet extends BaseKBPortlet {
 		String cmd = ParamUtil.getString(actionRequest, Constants.CMD);
 
 		long kbFolderId = ParamUtil.getLong(actionRequest, "kbFolderId");
+
 		long parentResourceClassNameId = ParamUtil.getLong(
 			actionRequest, "parentResourceClassNameId");
 		long parentResourcePrimKey = ParamUtil.getLong(
 			actionRequest, "parentResourcePrimKey");
-
 		String name = ParamUtil.getString(actionRequest, "name");
 		String description = ParamUtil.getString(actionRequest, "description");
 
