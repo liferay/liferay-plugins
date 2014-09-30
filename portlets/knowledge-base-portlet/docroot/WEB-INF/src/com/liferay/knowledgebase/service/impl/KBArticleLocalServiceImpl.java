@@ -1807,7 +1807,6 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 
 		long kbArticleClassNameId = classNameLocalService.getClassNameId(
 			KBArticleConstants.getClassName());
-
 		long kbFolderClassNameId = classNameLocalService.getClassNameId(
 			KBFolderConstants.getClassName());
 
@@ -1816,7 +1815,8 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 
 			throw new KBArticleParentException(
 				String.format(
-					"Invalid parent with classNameId %s and primary key %s",
+					"Invalid parent with resource class name ID %s and " +
+						"resource primary key %s",
 					resourceClassNameId, resourcePrimKey));
 		}
 	}
