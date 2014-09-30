@@ -562,12 +562,21 @@
 			deprecation="${javac.deprecation}"
 			destdir="${jspc.classes.dir}"
 			encoding="${javac.encoding}"
+			errorProperty="jspc.javac.fail"
+			failonerror="false"
 			includeAntRuntime="false"
 			nowarn="on"
 			srcdir="${jspc.classes.dir}"
 		/>
 
 		<delete dir="${jspc.classes.dir}" quiet="true" />
+
+		<if>
+			<istrue value="${jspc.javac.fail}"/>
+			<then>
+				<fail>JSPs failed to compile.</fail>
+			</then>
+		</if>
 	</target>
 
 	<target name="compile-test">
