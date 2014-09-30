@@ -22,6 +22,9 @@ import com.liferay.util.portlet.PortletProps;
  */
 public class PortletPropsValues {
 
+	public static final String CSV_SEPARATOR = GetterUtil.getString(
+		PortletProps.get(PortletPropsKeys.CSV_SEPARATOR));
+
 	public static final String EMAIL_FROM_ADDRESS = GetterUtil.getString(
 		PortletProps.get(PortletPropsKeys.EMAIL_FROM_ADDRESS));
 

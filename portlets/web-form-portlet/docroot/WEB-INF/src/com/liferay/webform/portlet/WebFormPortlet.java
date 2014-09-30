@@ -23,6 +23,7 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.mail.MailMessage;
 import com.liferay.portal.kernel.portlet.PortletResponseUtil;
+import com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.servlet.SessionMessages;
 import com.liferay.portal.kernel.util.Constants;
@@ -44,7 +45,6 @@ import com.liferay.portlet.expando.model.ExpandoRow;
 import com.liferay.portlet.expando.service.ExpandoRowLocalServiceUtil;
 import com.liferay.portlet.expando.service.ExpandoTableLocalServiceUtil;
 import com.liferay.portlet.expando.service.ExpandoValueLocalServiceUtil;
-import com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet;
 import com.liferay.webform.util.PortletPropsValues;
 import com.liferay.webform.util.WebFormUtil;
 
@@ -287,10 +287,14 @@ public class WebFormPortlet extends MVCPortlet {
 
 			sb.append("\"");
 			sb.append(localizedfieldLabel.replaceAll("\"", "\\\""));
-			sb.append("\";");
+			sb.append("\"");
+			sb.append(PortletPropsValues.CSV_SEPARATOR);
 		}
 
-		sb.deleteCharAt(sb.length() - 1);
+		sb.delete(
+			sb.length() - PortletPropsValues.CSV_SEPARATOR.length(),
+			sb.length());
+
 		sb.append("\n");
 
 		if (Validator.isNotNull(databaseTableName)) {
@@ -309,10 +313,14 @@ public class WebFormPortlet extends MVCPortlet {
 
 					sb.append("\"");
 					sb.append(data);
-					sb.append("\";");
+					sb.append("\"");
+					sb.append(PortletPropsValues.CSV_SEPARATOR);
 				}
 
-				sb.deleteCharAt(sb.length() - 1);
+				sb.delete(
+					sb.length() - PortletPropsValues.CSV_SEPARATOR.length(),
+					sb.length());
+
 				sb.append("\n");
 			}
 		}
@@ -371,9 +379,9 @@ public class WebFormPortlet extends MVCPortlet {
 
 	protected boolean saveFile(Map<String, String> fieldsMap, String fileName) {
 
-		// Save the file as a standard Excel CSV format. Use ; as a delimiter,
-		// quote each entry with double quotes, and escape double quotes in
-		// values a two double quotes.
+		// Save the file as a CSV format. Use delimiter from property
+		// CSV_SEPARATOR, quote each entry with double quotes, and escape
+		// double quotes in values a two double quotes.
 
 		StringBuilder sb = new StringBuilder();
 
@@ -382,10 +390,12 @@ public class WebFormPortlet extends MVCPortlet {
 
 			sb.append("\"");
 			sb.append(StringUtil.replace(fieldValue, "\"", "\"\""));
-			sb.append("\";");
+			sb.append("\"");
+			sb.append(PortletPropsValues.CSV_SEPARATOR);
 		}
 
-		String s = sb.substring(0, sb.length() - 1) + "\n";
+		String s = sb.substring(
+			0, sb.length() - PortletPropsValues.CSV_SEPARATOR.length()) + "\n";
 
 		try {
 			FileUtil.write(fileName, s, false, true);

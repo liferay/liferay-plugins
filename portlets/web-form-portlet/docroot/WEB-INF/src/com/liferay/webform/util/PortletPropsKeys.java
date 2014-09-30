@@ -19,6 +19,8 @@ package com.liferay.webform.util;
  */
 public interface PortletPropsKeys {
 
+	public static final String CSV_SEPARATOR = "csv.separator";
+
 	public static final String EMAIL_FROM_ADDRESS = "email.from.address";
 
 	public static final String EMAIL_FROM_NAME = "email.from.name";
