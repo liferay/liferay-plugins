@@ -21,6 +21,7 @@ import com.liferay.knowledgebase.NoSuchArticleException;
 import com.liferay.knowledgebase.NoSuchCommentException;
 import com.liferay.knowledgebase.NoSuchTemplateException;
 import com.liferay.knowledgebase.model.KBArticle;
+import com.liferay.knowledgebase.model.KBFolder;
 import com.liferay.knowledgebase.model.KBFolderConstants;
 import com.liferay.knowledgebase.model.KBTemplate;
 import com.liferay.knowledgebase.portlet.BaseKBPortlet;
@@ -260,7 +261,11 @@ public class AdminPortlet extends BaseKBPortlet {
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws PortalException {
 
-		long groupId = PortalUtil.getScopeGroupId(actionRequest);
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		String cmd = ParamUtil.getString(actionRequest, Constants.CMD);
+
 		long kbFolderId = ParamUtil.getLong(actionRequest, "kbFolderId");
 		long parentResourceClassNameId = ParamUtil.getLong(
 			actionRequest, "parentResourceClassNameId");
@@ -270,12 +275,13 @@ public class AdminPortlet extends BaseKBPortlet {
 		String name = ParamUtil.getString(actionRequest, "name");
 		String description = ParamUtil.getString(actionRequest, "description");
 
-		String cmd = ParamUtil.getString(actionRequest, Constants.CMD);
+		ServiceContext serviceContext = ServiceContextFactory.getInstance(
+			KBFolder.class.getName(), actionRequest);
 
 		if (cmd.equals(Constants.ADD)) {
 			KBFolderServiceUtil.addKBFolder(
-				groupId, parentResourceClassNameId, parentResourcePrimKey, name,
-				description, ServiceContextFactory.getInstance(actionRequest));
+				themeDisplay.getScopeGroupId(), parentResourceClassNameId,
+				parentResourcePrimKey, name, description, serviceContext);
 		}
 		else if (cmd.equals(Constants.UPDATE)) {
 			KBFolderServiceUtil.updateKBFolder(
