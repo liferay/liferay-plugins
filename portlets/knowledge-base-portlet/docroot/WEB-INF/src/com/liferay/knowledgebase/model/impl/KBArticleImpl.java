@@ -132,7 +132,7 @@ public class KBArticleImpl extends KBArticleBaseImpl {
 			return kbArticle.getTitle();
 		}
 		else {
-			KBFolder kbFolder = KBFolderServiceUtil.getFolder(
+			KBFolder kbFolder = KBFolderServiceUtil.getKBFolder(
 				getParentResourcePrimKey());
 
 			return kbFolder.getName();
