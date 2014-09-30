@@ -38,15 +38,14 @@ public class KBFolderLocalServiceImpl extends KBFolderLocalServiceBaseImpl {
 			ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
+		User user = userPersistence.findByPrimaryKey(userId);
+		Date now = new Date();
+
 		validateParent(parentResourceClassNameId, parentResourcePrimKey);
 
 		long kbFolderId = counterLocalService.increment();
 
 		KBFolder kbFolder = kbFolderPersistence.create(kbFolderId);
-
-		User user = userPersistence.findByPrimaryKey(userId);
-
-		Date now = new Date();
 
 		kbFolder.setUuid(serviceContext.getUuid());
 		kbFolder.setGroupId(groupId);
