@@ -26,6 +26,7 @@ import com.liferay.portal.kernel.portlet.PortletResponseUtil;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.servlet.SessionMessages;
+import com.liferay.portal.kernel.util.CharPool;
 import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.FileUtil;
@@ -285,9 +286,12 @@ public class WebFormPortlet extends MVCPortlet {
 
 			fieldLabels.add(fieldLabel);
 
-			sb.append("\"");
-			sb.append(localizedfieldLabel.replaceAll("\"", "\\\""));
-			sb.append("\"");
+			sb.append(CharPool.QUOTE);
+			sb.append(
+				localizedfieldLabel.replaceAll(
+					StringPool.QUOTE,
+					StringPool.BACK_SLASH + StringPool.QUOTE));
+			sb.append(CharPool.QUOTE);
 			sb.append(PortletPropsValues.CSV_SEPARATOR);
 		}
 
@@ -295,7 +299,7 @@ public class WebFormPortlet extends MVCPortlet {
 			sb.length() - PortletPropsValues.CSV_SEPARATOR.length(),
 			sb.length());
 
-		sb.append("\n");
+		sb.append(CharPool.NEW_LINE);
 
 		if (Validator.isNotNull(databaseTableName)) {
 			List<ExpandoRow> rows = ExpandoRowLocalServiceUtil.getRows(
@@ -309,11 +313,13 @@ public class WebFormPortlet extends MVCPortlet {
 						WebFormUtil.class.getName(), databaseTableName,
 						fieldName, row.getClassPK(), StringPool.BLANK);
 
-					data = data.replaceAll("\"", "\\\"");
+					data = data.replaceAll(
+						StringPool.QUOTE,
+						StringPool.BACK_SLASH + StringPool.QUOTE);
 
-					sb.append("\"");
+					sb.append(CharPool.QUOTE);
 					sb.append(data);
-					sb.append("\"");
+					sb.append(CharPool.QUOTE);
 					sb.append(PortletPropsValues.CSV_SEPARATOR);
 				}
 
@@ -321,7 +327,7 @@ public class WebFormPortlet extends MVCPortlet {
 					sb.length() - PortletPropsValues.CSV_SEPARATOR.length(),
 					sb.length());
 
-				sb.append("\n");
+				sb.append(CharPool.NEW_LINE);
 			}
 		}
 
@@ -342,7 +348,7 @@ public class WebFormPortlet extends MVCPortlet {
 			sb.append(fieldLabel);
 			sb.append(" : ");
 			sb.append(fieldValue);
-			sb.append("\n");
+			sb.append(CharPool.NEW_LINE);
 		}
 
 		return sb.toString();
@@ -388,14 +394,19 @@ public class WebFormPortlet extends MVCPortlet {
 		for (String fieldLabel : fieldsMap.keySet()) {
 			String fieldValue = fieldsMap.get(fieldLabel);
 
-			sb.append("\"");
-			sb.append(StringUtil.replace(fieldValue, "\"", "\"\""));
-			sb.append("\"");
+			sb.append(CharPool.QUOTE);
+			sb.append(
+				StringUtil.replace(
+					fieldValue, CharPool.QUOTE, StringPool.DOUBLE_QUOTE));
+			sb.append(CharPool.QUOTE);
 			sb.append(PortletPropsValues.CSV_SEPARATOR);
 		}
 
-		String s = sb.substring(
-			0, sb.length() - PortletPropsValues.CSV_SEPARATOR.length()) + "\n";
+		String s =
+			sb.substring(
+				0,
+				sb.length() - PortletPropsValues.CSV_SEPARATOR.length()) +
+					StringPool.NEW_LINE;
 
 		try {
 			FileUtil.write(fileName, s, false, true);
