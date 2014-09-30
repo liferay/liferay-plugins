@@ -156,7 +156,7 @@ public class GroupModelListener extends BaseModelListener<Group> {
 		@Override
 		public Serializable call() throws ProcessException {
 			try {
-				if (_action.equals("addGroupMember")) {
+				if (_action.equals("addGroupMembers")) {
 					for (User user : _users) {
 						GoogleDirectoryUtil.addGroupMember(
 							GoogleMailGroupsUtil.getGroupEmailAddress(_group),
