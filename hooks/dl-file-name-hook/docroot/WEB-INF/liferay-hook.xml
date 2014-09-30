@@ -2,4 +2,22 @@
 <!DOCTYPE hook PUBLIC "-//Liferay//DTD Hook 6.2.0//EN" "http://www.liferay.com/dtd/liferay-hook_6_2_0.dtd">
 
 <hook>
+	<portal-properties>portal.properties</portal-properties>
+	<custom-jsp-dir>/META-INF/custom_jsps</custom-jsp-dir>
+	<service>
+		<service-type>com.liferay.portal.service.BackgroundTaskLocalService</service-type>
+		<service-impl>com.liferay.dlfilename.hook.service.impl.DLFileNameWrapperBackgroundTaskLocalServiceImpl</service-impl>
+	</service>
+	<service>
+		<service-type>com.liferay.portlet.documentlibrary.service.DLAppLocalService</service-type>
+		<service-impl>com.liferay.dlfilename.hook.service.impl.DLFileNameWrapperDLAppLocalServiceImpl</service-impl>
+	</service>
+	<service>
+		<service-type>com.liferay.portlet.documentlibrary.service.DLAppService</service-type>
+		<service-impl>com.liferay.dlfilename.hook.service.impl.DLFileNameWrapperDLAppServiceImpl</service-impl>
+	</service>
+	<service>
+		<service-type>com.liferay.portlet.documentlibrary.service.DLFileEntryLocalService</service-type>
+		<service-impl>com.liferay.dlfilename.hook.service.impl.DLFileNameWrapperDLFileEntryLocalServiceImpl</service-impl>
+	</service>
 </hook>
