@@ -129,6 +129,14 @@ public class KBFolderLocalServiceClpInvoker {
 		_methodName63 = "setBeanIdentifier";
 
 		_methodParameterTypes63 = new String[] { "java.lang.String" };
+
+		_methodName68 = "getFolders";
+
+		_methodParameterTypes68 = new String[] { "long", "long", "int", "int" };
+
+		_methodName69 = "getFoldersCount";
+
+		_methodParameterTypes69 = new String[] { "long", "long" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -256,6 +264,20 @@ public class KBFolderLocalServiceClpInvoker {
 			return null;
 		}
 
+		if (_methodName68.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes68, parameterTypes)) {
+			return KBFolderLocalServiceUtil.getFolders(((Long)arguments[0]).longValue(),
+				((Long)arguments[1]).longValue(),
+				((Integer)arguments[2]).intValue(),
+				((Integer)arguments[3]).intValue());
+		}
+
+		if (_methodName69.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes69, parameterTypes)) {
+			return KBFolderLocalServiceUtil.getFoldersCount(((Long)arguments[0]).longValue(),
+				((Long)arguments[1]).longValue());
+		}
+
 		throw new UnsupportedOperationException();
 	}
 
@@ -303,4 +325,8 @@ public class KBFolderLocalServiceClpInvoker {
 	private String[] _methodParameterTypes62;
 	private String _methodName63;
 	private String[] _methodParameterTypes63;
+	private String _methodName68;
+	private String[] _methodParameterTypes68;
+	private String _methodName69;
+	private String[] _methodParameterTypes69;
 }

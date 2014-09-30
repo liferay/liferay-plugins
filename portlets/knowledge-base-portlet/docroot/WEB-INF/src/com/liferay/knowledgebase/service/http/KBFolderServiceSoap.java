@@ -14,6 +14,13 @@
 
 package com.liferay.knowledgebase.service.http;
 
+import com.liferay.knowledgebase.service.KBFolderServiceUtil;
+
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+
+import java.rmi.RemoteException;
+
 /**
  * Provides the SOAP utility for the
  * {@link com.liferay.knowledgebase.service.KBFolderServiceUtil} service utility. The
@@ -55,4 +62,37 @@ package com.liferay.knowledgebase.service.http;
  * @generated
  */
 public class KBFolderServiceSoap {
+	public static com.liferay.knowledgebase.model.KBFolderSoap[] getFolders(
+		long groupId, long parentKBFolderId, int start, int end)
+		throws RemoteException {
+		try {
+			java.util.List<com.liferay.knowledgebase.model.KBFolder> returnValue =
+				KBFolderServiceUtil.getFolders(groupId, parentKBFolderId,
+					start, end);
+
+			return com.liferay.knowledgebase.model.KBFolderSoap.toSoapModels(returnValue);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static int getFoldersCount(long groupId, long parentKBFolderId)
+		throws RemoteException {
+		try {
+			int returnValue = KBFolderServiceUtil.getFoldersCount(groupId,
+					parentKBFolderId);
+
+			return returnValue;
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	private static Log _log = LogFactoryUtil.getLog(KBFolderServiceSoap.class);
 }

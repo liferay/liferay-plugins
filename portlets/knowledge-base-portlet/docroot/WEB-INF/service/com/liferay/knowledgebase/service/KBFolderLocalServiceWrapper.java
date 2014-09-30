@@ -351,6 +351,22 @@ public class KBFolderLocalServiceWrapper implements KBFolderLocalService,
 			arguments);
 	}
 
+	@Override
+	public java.util.List<com.liferay.knowledgebase.model.KBFolder> getFolders(
+		long groupId, long parentKBFolderId, int start, int end)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _kbFolderLocalService.getFolders(groupId, parentKBFolderId,
+			start, end);
+	}
+
+	@Override
+	public int getFoldersCount(long groupId, long parentKBFolderId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _kbFolderLocalService.getFoldersCount(groupId, parentKBFolderId);
+	}
+
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
 	 */
