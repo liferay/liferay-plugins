@@ -434,11 +434,11 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			new KBArticleVersionComparator();
 
 		if (status == WorkflowConstants.STATUS_ANY) {
-			kbArticles = kbArticlePersistence.findByG_KF_UT(
+			kbArticles = kbArticlePersistence.findByG_KBFI_UT(
 				groupId, kbFolderId, urlTitle, 0, 1, orderByComparator);
 		}
 		else {
-			kbArticles = kbArticlePersistence.findByG_KF_UT_ST(
+			kbArticles = kbArticlePersistence.findByG_KBFI_UT_ST(
 				groupId, kbFolderId, urlTitle, status, 0, 1, orderByComparator);
 		}
 
