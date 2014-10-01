@@ -52,7 +52,7 @@ public class RoleModelListener extends BaseModelListener<Role> {
 
 				@Override
 				public void onAssociation(List<User> users) throws Exception {
-					GoogleMailGroupsUtil.addGGroupManagers(users);
+					GoogleMailGroupsUtil.addGroupManagers(users);
 				}
 
 			};
@@ -74,7 +74,7 @@ public class RoleModelListener extends BaseModelListener<Role> {
 
 				@Override
 				public void onAssociation(List<User> users) throws Exception {
-					GoogleMailGroupsUtil.removeGGroupManagers(users);
+					GoogleMailGroupsUtil.removeGroupManagers(users);
 				}
 
 			};
