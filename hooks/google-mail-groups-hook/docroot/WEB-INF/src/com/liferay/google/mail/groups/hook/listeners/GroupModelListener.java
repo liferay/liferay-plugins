@@ -17,6 +17,7 @@ package com.liferay.google.mail.groups.hook.listeners;
 import com.liferay.google.mail.groups.util.GoogleDirectoryUtil;
 import com.liferay.google.mail.groups.util.GoogleMailGroupsUtil;
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.messaging.DestinationNames;
@@ -117,7 +118,7 @@ public class GroupModelListener extends BaseModelListener<Group> {
 	protected List<User> getUsers(
 			Object classPK, String associationClassName,
 			Object associationClassPK)
-		throws PortalException {
+		throws PortalException, SystemException {
 
 		if (!associationClassName.equals(
 				Organization.class.getName()) &&

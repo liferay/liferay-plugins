@@ -18,6 +18,7 @@ import com.liferay.google.mail.groups.util.GoogleMailGroupsUtil;
 import com.liferay.google.mail.groups.util.PortletPropsValues;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.messaging.DestinationNames;
@@ -86,7 +87,7 @@ public class RoleModelListener extends BaseModelListener<Role> {
 	protected List<User> getUsers(
 			Object classPK, String associationClassName,
 			Object associationClassPK)
-		throws PortalException {
+		throws PortalException, SystemException {
 
 		Role role = RoleLocalServiceUtil.getRole((Long)classPK);
 
