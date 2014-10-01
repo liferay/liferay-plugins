@@ -42,31 +42,46 @@ if (PortalUtil.isRSSFeedsEnabled()) {
 	<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.UPDATE %>" />
 	<aui:input name="tabs2" type="hidden" value="<%= tabs2 %>" />
 	<aui:input name="preferences--resourcePrimKey--" type="hidden" value="<%= resourcePrimKey %>" />
+	<aui:input name="preferences--resourceClassNameId--" type="hidden" value="<%= resourceClassNameId %>" />
 
 	<aui:fieldset>
 		<c:choose>
 			<c:when test='<%= tabs2.equals("general") %>'>
-				<div class="form-group kb-field-wrapper">
+				<div class="input-append kb-field-wrapper">
+					<aui:field-wrapper label="article-or-folder">
 
-					<%
-					KBArticle kbArticle = null;
+						<%
+						long kbFolderClassNameId = PortalUtil.getClassNameId(KBFolderConstants.getClassName());
 
-					try {
-						kbArticle = KBArticleLocalServiceUtil.getLatestKBArticle(resourcePrimKey, WorkflowConstants.STATUS_APPROVED);
-					}
-					catch (NoSuchArticleException nsae) {
-					}
-					%>
+						String title = StringPool.BLANK;
 
-					<aui:input label="article" name="configurationKBArticle" type="resource" value="<%= (kbArticle != null) ? kbArticle.getTitle() : StringPool.BLANK %>" />
+						if (resourceClassNameId == kbFolderClassNameId) {
+							KBArticle kbArticle = KBArticleLocalServiceUtil.fetchLatestKBArticle(resourcePrimKey, WorkflowConstants.STATUS_APPROVED);
 
-					<liferay-portlet:renderURL portletName="<%= portletResource %>" var="selectConfigurationKBArticleURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
-						<portlet:param name="mvcPath" value="/display/select_configuration_article.jsp" />
-					</liferay-portlet:renderURL>
+							if (kbArticle != null) {
+								title = kbArticle.getTitle();
+							}
+						}
+						else {
+							KBFolder kbFolder = KBFolderLocalServiceUtil.fetchKBFolder(resourcePrimKey);
 
-					<%
-					String taglibOnClick = "var selectConfigurationKBArticleWindow = window.open('" + selectConfigurationKBArticleURL + "&" + HtmlUtil.escapeJS(PortalUtil.getPortletNamespace(portletResource)) + "&selResourcePrimKey=' + document." + renderResponse.getNamespace() + "fm." + renderResponse.getNamespace() + "resourcePrimKey.value, 'selectConfigurationKBArticle', 'directories=no,height=640,location=no,menubar=no,resizable=yes,scrollbars=yes,status=no,toolbar=no,width=680'); void(''); selectConfigurationKBArticleWindow.focus();";
-					%>
+							if (kbFolder != null) {
+								title = kbFolder.getName();
+							}
+						}
+						%>
+
+						<liferay-ui:input-resource id="configurationKBArticle" url="<%= title %>" />
+
+						<liferay-portlet:renderURL portletName="<%= portletResource %>" var="selectConfigurationKBArticleURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
+							<portlet:param name="mvcPath" value="/display/select_configuration_article.jsp" />
+							<portlet:param name="parentResourceClassNameId" value="<%= String.valueOf(PortalUtil.getClassNameId(KBFolderConstants.getClassName())) %>" />
+							<portlet:param name="parentResourcePrimKey" value="<%= String.valueOf(KBFolderConstants.DEFAULT_PARENT_FOLDER_ID) %>" />
+						</liferay-portlet:renderURL>
+
+						<%
+						String taglibOnClick = "var selectConfigurationKBArticleWindow = window.open('" + selectConfigurationKBArticleURL + "', 'selectConfigurationKBArticle', 'directories=no,height=640,location=no,menubar=no,resizable=yes,scrollbars=yes,status=no,toolbar=no,width=680'); void(''); selectConfigurationKBArticleWindow.focus();";
+						%>
 
 					<aui:button onClick="<%= taglibOnClick %>" value="select" />
 				</div>
@@ -114,7 +129,8 @@ if (PortalUtil.isRSSFeedsEnabled()) {
 <c:choose>
 	<c:when test='<%= tabs2.equals("general") %>'>
 		<aui:script>
-			function <portlet:namespace />selectConfigurationKBArticle(resourcePrimKey, title) {
+			function <portlet:namespace />selectConfigurationKBArticle(resourceClassNameId, resourcePrimKey, title) {
+				document.<portlet:namespace />fm.<portlet:namespace />resourceClassNameId.value = resourceClassNameId;
 				document.<portlet:namespace />fm.<portlet:namespace />resourcePrimKey.value = resourcePrimKey;
 				document.getElementById('<portlet:namespace />configurationKBArticle').value = title;
 			}
