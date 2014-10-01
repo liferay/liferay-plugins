@@ -21,6 +21,12 @@
 			font-weight: bold;
 		}
 
+		.kbarticle-root-selector {
+			select {
+				width: 100%;
+			}
+		}
+
 		.kbarticle-selected {
 			color: #555;
 			font-weight: bold;

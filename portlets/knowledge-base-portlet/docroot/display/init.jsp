@@ -16,6 +16,9 @@
 
 <%@ include file="/init.jsp" %>
 
+<%@ page import="com.liferay.portlet.PortalPreferences" %><%@
+page import="com.liferay.portlet.PortletPreferencesFactoryUtil" %>
+
 <%
 String portletResource = ParamUtil.getString(request, "portletResource");
 
@@ -37,4 +40,6 @@ boolean enableRSS = !PortalUtil.isRSSFeedsEnabled() ? false : GetterUtil.getBool
 int rssDelta = GetterUtil.getInteger(portletPreferences.getValue("rssDelta", StringPool.BLANK), SearchContainer.DEFAULT_DELTA);
 String rssDisplayStyle = portletPreferences.getValue("rssDisplayStyle", RSSUtil.DISPLAY_STYLE_DEFAULT);
 String rssFeedType = portletPreferences.getValue("rssFeedType", RSSUtil.FEED_TYPE_DEFAULT);
+
+PortalPreferences portalPreferences = PortletPreferencesFactoryUtil.getPortalPreferences(liferayPortletRequest);
 %>
