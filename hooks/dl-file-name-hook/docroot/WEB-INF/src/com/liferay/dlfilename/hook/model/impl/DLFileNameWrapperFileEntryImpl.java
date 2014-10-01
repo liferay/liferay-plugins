@@ -75,4 +75,14 @@ public class DLFileNameWrapperFileEntryImpl extends FileEntryWrapper {
 		}
 	}
 
+	@Override
+	public FileEntry toUnescapedModel() {
+		if (isEscapedModel()) {
+			return new DLFileNameWrapperFileEntryImpl(super.toUnescapedModel());
+		}
+		else {
+			return this;
+		}
+	}
+
 }

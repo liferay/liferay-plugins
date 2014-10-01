@@ -42,4 +42,25 @@ public class DLFileNameWrapperFileVersionImpl extends FileVersionWrapper {
 		return displayTitle;
 	}
 
+	@Override
+	public FileVersion toEscapedModel() {
+		if (isEscapedModel()) {
+			return this;
+		}
+		else {
+			return new DLFileNameWrapperFileVersionImpl(super.toEscapedModel());
+		}
+	}
+
+	@Override
+	public FileVersion toUnescapedModel() {
+		if (isEscapedModel()) {
+			return new DLFileNameWrapperFileVersionImpl(
+				super.toUnescapedModel());
+		}
+		else {
+			return this;
+		}
+	}
+
 }
