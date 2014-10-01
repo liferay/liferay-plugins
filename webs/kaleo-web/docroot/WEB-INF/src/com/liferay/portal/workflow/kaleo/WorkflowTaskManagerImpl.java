@@ -112,12 +112,12 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 				userId, WorkflowTask.class.getName(), workflowTaskInstanceId,
 				String.valueOf(userId), false, 1000);
 		}
-		catch (PortalException e) {
+		catch (PortalException pe) {
 			if (e instanceof DuplicateLockException) {
 				throw new WorkflowException(
 					"Workflow task " + workflowTaskInstanceId +
 						" is locked by user " + userId,
-					e);
+					pe);
 			}
 
 			throw new WorkflowException(
