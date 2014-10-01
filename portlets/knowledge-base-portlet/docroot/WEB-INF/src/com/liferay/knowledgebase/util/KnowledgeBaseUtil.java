@@ -34,6 +34,7 @@ import com.liferay.knowledgebase.util.comparator.KBTemplateCreateDateComparator;
 import com.liferay.knowledgebase.util.comparator.KBTemplateModifiedDateComparator;
 import com.liferay.knowledgebase.util.comparator.KBTemplateTitleComparator;
 import com.liferay.knowledgebase.util.comparator.KBTemplateUserNameComparator;
+import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.io.unsync.UnsyncByteArrayInputStream;
@@ -44,6 +45,7 @@ import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.CharPool;
 import com.liferay.portal.kernel.util.FriendlyURLNormalizerUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.MimeTypesUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.PropsKeys;
@@ -57,16 +59,22 @@ import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.ModelHintsUtil;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
+import com.liferay.portlet.PortalPreferences;
+import com.liferay.portlet.PortletPreferencesFactoryUtil;
 
 import java.io.InputStream;
 
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.regex.Pattern;
 
+import javax.portlet.PortletRequest;
 import javax.portlet.PortletURL;
 import javax.portlet.RenderResponse;
 
@@ -128,6 +136,35 @@ public class KnowledgeBaseUtil {
 			PortalUtil.addPortletBreadcrumbEntry(
 				request, kbArticle.getTitle(), portletURL.toString());
 		}
+	}
+
+	public static List<KBFolder> getAlternativeRootKBFolders(
+			long groupId, long kbFolderId)
+		throws PortalException, SystemException {
+
+		List<KBFolder> kbFolders = KBFolderServiceUtil.getKBFolders(
+			groupId, kbFolderId, QueryUtil.ALL_POS, QueryUtil.ALL_POS);
+
+		kbFolders = new ArrayList<KBFolder>(kbFolders);
+
+		Iterator<KBFolder> i = kbFolders.iterator();
+
+		while (i.hasNext()) {
+			KBFolder kbFolder = i.next();
+
+			if (kbFolder.isLeaf()) {
+				i.remove();
+			}
+		}
+
+		return ListUtil.sort(kbFolders, new Comparator<KBFolder>() {
+
+			@Override
+			public int compare(KBFolder kbFolder1, KBFolder kbFolder2) {
+				return -(kbFolder1.getName().compareTo(kbFolder2.getName()));
+			}
+
+		});
 	}
 
 	public static OrderByComparator getKBArticleOrderByComparator(
@@ -381,6 +418,22 @@ public class KnowledgeBaseUtil {
 		}
 	}
 
+	public static long getRootResourcePrimKey(
+			PortletRequest portletRequest, long groupId,
+			long resourceClassNameId, long resourcePrimKey)
+		throws PortalException, SystemException {
+
+		long kbFolderClassNameId = PortalUtil.getClassNameId(
+			KBFolderConstants.getClassName());
+
+		if (resourceClassNameId == kbFolderClassNameId) {
+			return getCurrentRootKBFolder(
+				portletRequest, groupId, resourcePrimKey);
+		}
+
+		return getKBFolderId(resourceClassNameId, resourcePrimKey);
+	}
+
 	public static final String getStatusLabel(int status) {
 		if (status == KBCommentConstants.STATUS_COMPLETED) {
 			return "resolved";
@@ -498,6 +551,39 @@ public class KnowledgeBaseUtil {
 		}
 
 		return s.substring(x, s.length());
+	}
+
+	private static long getCurrentRootKBFolder(
+			PortletRequest portletRequest, long groupId, long kbFolderId)
+		throws PortalException, SystemException {
+
+		PortalPreferences portalPreferences =
+			PortletPreferencesFactoryUtil.getPortalPreferences(portletRequest);
+
+		String kbFolderUrlTitle = portalPreferences.getValue(
+			PortletKeys.KNOWLEDGE_BASE_DISPLAY, "preferredKBFolderUrlTitle",
+			null);
+
+		long childKbFolderId = KBFolderConstants.DEFAULT_PARENT_FOLDER_ID;
+
+		if (kbFolderUrlTitle == null) {
+			List<KBFolder> kbFolders = getAlternativeRootKBFolders(
+				groupId, kbFolderId);
+
+			if (!kbFolders.isEmpty()) {
+				KBFolder kbFolder = kbFolders.get(0);
+
+				childKbFolderId = kbFolder.getKbFolderId();
+			}
+		}
+		else {
+			KBFolder kbFolder = KBFolderServiceUtil.getKBFolderByUrlTitle(
+				groupId, kbFolderId, kbFolderUrlTitle);
+
+			childKbFolderId = kbFolder.getKbFolderId();
+		}
+
+		return childKbFolderId;
 	}
 
 	private static final int _SQL_DATA_MAX_PARAMETERS = GetterUtil.getInteger(
