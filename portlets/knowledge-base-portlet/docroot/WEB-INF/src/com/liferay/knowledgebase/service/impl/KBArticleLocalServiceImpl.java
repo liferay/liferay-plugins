@@ -425,7 +425,8 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 
 	@Override
 	public KBArticle fetchLatestKBArticleByUrlTitle(
-		long groupId, long kbFolderId, String urlTitle, int status) {
+			long groupId, long kbFolderId, String urlTitle, int status)
+		throws SystemException {
 
 		List<KBArticle> kbArticles = null;
 
