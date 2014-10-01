@@ -21,6 +21,7 @@ import com.liferay.knowledgebase.NoSuchArticleException;
 import com.liferay.knowledgebase.NoSuchCommentException;
 import com.liferay.knowledgebase.NoSuchTemplateException;
 import com.liferay.knowledgebase.model.KBArticle;
+import com.liferay.knowledgebase.model.KBArticleConstants;
 import com.liferay.knowledgebase.model.KBFolder;
 import com.liferay.knowledgebase.model.KBFolderConstants;
 import com.liferay.knowledgebase.model.KBTemplate;
@@ -172,10 +173,17 @@ public class AdminPortlet extends BaseKBPortlet {
 
 			KBArticle kbArticle = null;
 
+			long kbArticleClassNameId = PortalUtil.getClassNameId(
+				KBArticleConstants.getClassName());
+
+			long resourceClassNameId = ParamUtil.getLong(
+				renderRequest, "resourceClassNameId", kbArticleClassNameId);
 			long resourcePrimKey = ParamUtil.getLong(
 				renderRequest, "resourcePrimKey");
 
-			if (resourcePrimKey > 0) {
+			if ((resourcePrimKey > 0) &&
+				(resourceClassNameId == kbArticleClassNameId)) {
+
 				kbArticle = KBArticleServiceUtil.getLatestKBArticle(
 					resourcePrimKey, status);
 			}
