@@ -199,7 +199,7 @@ public class KBFolderLocalServiceImpl extends KBFolderLocalServiceBaseImpl {
 		if (kbFolder.getGroupId() != parentKBFolder.getGroupId()) {
 			throw new NoSuchFolderException(
 				String.format(
-					"No KBFolder with id %s found in group %s",
+					"No KB folder with KB folder ID %s found in group %s",
 					parentKBFolder.getKbFolderId(), kbFolder.getGroupId()));
 		}
 
