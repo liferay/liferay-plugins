@@ -27,6 +27,7 @@ import com.liferay.knowledgebase.admin.util.AdminSubscriptionSender;
 import com.liferay.knowledgebase.admin.util.AdminUtil;
 import com.liferay.knowledgebase.model.KBArticle;
 import com.liferay.knowledgebase.model.KBArticleConstants;
+import com.liferay.knowledgebase.model.KBFolder;
 import com.liferay.knowledgebase.model.KBFolderConstants;
 import com.liferay.knowledgebase.service.KBArticleLocalServiceUtil;
 import com.liferay.knowledgebase.service.base.KBArticleLocalServiceBaseImpl;
@@ -1592,14 +1593,30 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 
 		String uniqueUrlTitle = urlTitle;
 
-		int kbArticleCount = kbArticlePersistence.countByG_KBFI_UT_ST(
-			groupId, kbFolderId, uniqueUrlTitle, _STATUSES);
+		if (kbFolderId == KBFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
+			int kbArticleCount = kbArticlePersistence.countByG_KBFI_UT_ST(
+				groupId, kbFolderId, uniqueUrlTitle, _STATUSES);
+
+			for (int i = 1; kbArticleCount > 0; i++) {
+				uniqueUrlTitle = urlTitle + StringPool.DASH + i;
+
+				kbArticleCount = kbArticlePersistence.countByG_KBFI_UT_ST(
+					groupId, kbFolderId, uniqueUrlTitle, _STATUSES);
+			}
+
+			return uniqueUrlTitle;
+		}
+
+		KBFolder kbFolder = kbFolderPersistence.findByPrimaryKey(kbFolderId);
+
+		int kbArticleCount = kbArticleFinder.countByUrlTitle(
+			groupId, kbFolder.getUrlTitle(), uniqueUrlTitle, _STATUSES);
 
 		for (int i = 1; kbArticleCount > 0; i++) {
 			uniqueUrlTitle = urlTitle + StringPool.DASH + i;
 
-			kbArticleCount = kbArticlePersistence.countByG_KBFI_UT_ST(
-				groupId, kbFolderId, uniqueUrlTitle, _STATUSES);
+			kbArticleCount = kbArticleFinder.countByUrlTitle(
+				groupId, kbFolder.getUrlTitle(), uniqueUrlTitle, _STATUSES);
 		}
 
 		return uniqueUrlTitle;
