@@ -50,6 +50,7 @@ page import="com.liferay.knowledgebase.service.KBArticleLocalServiceUtil" %><%@
 page import="com.liferay.knowledgebase.service.KBArticleServiceUtil" %><%@
 page import="com.liferay.knowledgebase.service.KBCommentLocalServiceUtil" %><%@
 page import="com.liferay.knowledgebase.service.KBCommentServiceUtil" %><%@
+page import="com.liferay.knowledgebase.service.KBFolderLocalServiceUtil" %><%@
 page import="com.liferay.knowledgebase.service.KBFolderServiceUtil" %><%@
 page import="com.liferay.knowledgebase.service.KBTemplateServiceUtil" %><%@
 page import="com.liferay.knowledgebase.service.permission.AdminPermission" %><%@
