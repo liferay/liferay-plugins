@@ -5,6 +5,10 @@
 	<portal-properties>portal.properties</portal-properties>
 	<custom-jsp-dir>/META-INF/custom_jsps</custom-jsp-dir>
 	<service>
+		<service-type>com.liferay.portlet.asset.service.AssetEntryLocalService</service-type>
+		<service-impl>com.liferay.dlfilename.hook.service.impl.DLFileNameWrapperAssetEntryLocalServiceImpl</service-impl>
+	</service>
+	<service>
 		<service-type>com.liferay.portal.service.BackgroundTaskLocalService</service-type>
 		<service-impl>com.liferay.dlfilename.hook.service.impl.DLFileNameWrapperBackgroundTaskLocalServiceImpl</service-impl>
 	</service>

@@ -17,8 +17,13 @@ package com.liferay.dlfilename.hook.service.impl;
 import com.liferay.dlfilename.hook.model.impl.DLFileNameWrapperFileEntryImpl;
 import com.liferay.dlfilename.hook.model.impl.DLFileNameWrapperFileVersionImpl;
 import com.liferay.dlfilename.hook.util.DLFileNameThreadLocal;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.repository.model.FileVersion;
+import com.liferay.portlet.asset.model.AssetEntry;
+import com.liferay.portlet.documentlibrary.model.DLFileEntry;
+import com.liferay.portlet.documentlibrary.service.DLAppLocalServiceUtil;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
@@ -58,7 +63,31 @@ class DLFileNameWrapperInvocationHandler implements InvocationHandler {
 		}
 	}
 
+	protected Object setAssetEntryTitle(AssetEntry assetEntry) {
+		String className = assetEntry.getClassName();
+
+		try {
+			if (className.equals(DLFileEntry.class.getName())) {
+				FileEntry fileEntry = DLAppLocalServiceUtil.getFileEntry(
+					assetEntry.getClassPK());
+
+				assetEntry.setTitle(fileEntry.getTitle());
+			}
+		}
+		catch (Exception e) {
+			if (_log.isWarnEnabled()) {
+				_log.warn("Failed to set AssetEntry title", e);
+			}
+		}
+
+		return assetEntry;
+	}
+
 	protected Object wrap(Object object) {
+		if (object instanceof AssetEntry) {
+			return setAssetEntryTitle((AssetEntry)object);
+		}
+
 		if (object instanceof FileEntry) {
 			return new DLFileNameWrapperFileEntryImpl((FileEntry)object);
 		}
@@ -69,6 +98,9 @@ class DLFileNameWrapperInvocationHandler implements InvocationHandler {
 
 		return object;
 	}
+
+	private static Log _log = LogFactoryUtil.getLog(
+		DLFileNameWrapperInvocationHandler.class);
 
 	private Object _object;
 
