@@ -29,14 +29,14 @@ if (kbArticle != null) {
 	Collections.reverse(ancestorResourcePrimaryKeys);
 }
 else {
-	ancestorResourcePrimaryKeys.add(KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY);
+	ancestorResourcePrimaryKeys.add(KBFolderConstants.DEFAULT_PARENT_FOLDER_ID);
 }
 %>
 
 <div class="kbarticle-navigation">
 
 	<%
-	List<KBArticle> kbArticles = KBArticleLocalServiceUtil.getKBArticles(themeDisplay.getScopeGroupId(), KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY, WorkflowConstants.STATUS_APPROVED, QueryUtil.ALL_POS, QueryUtil.ALL_POS, new KBArticlePriorityComparator(true));
+	List<KBArticle> kbArticles = KBArticleLocalServiceUtil.getKBArticles(themeDisplay.getScopeGroupId(), KBFolderConstants.DEFAULT_PARENT_FOLDER_ID, WorkflowConstants.STATUS_APPROVED, QueryUtil.ALL_POS, QueryUtil.ALL_POS, new KBArticlePriorityComparator(true));
 
 	for (KBArticle curKBArticle : kbArticles) {
 		PortletURL viewURL = renderResponse.createRenderURL();
