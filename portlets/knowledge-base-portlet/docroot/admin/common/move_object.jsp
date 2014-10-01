@@ -51,10 +51,10 @@ else {
 	title="<%= title %>"
 />
 
-<liferay-portlet:actionURL name="moveKBEntry" var="moveKBEntryURL" />
+<liferay-portlet:actionURL name="moveKBObject" var="moveKBObjectURL" />
 
-<aui:form action="<%= moveKBEntryURL %>" method="post" name="fm">
-	<aui:input name="mvcPath" type="hidden" value='<%= templatePath + "move_entry.jsp" %>' />
+<aui:form action="<%= moveKBObjectURL %>" method="post" name="fm">
+	<aui:input name="mvcPath" type="hidden" value='<%= templatePath + "move_object.jsp" %>' />
 	<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
 	<aui:input name="resourceClassNameId" type="hidden" value="<%= String.valueOf(resourceClassNameId) %>" />
 	<aui:input name="resourcePrimKey" type="hidden" value="<%= String.valueOf(resourcePrimKey) %>" />
@@ -87,7 +87,7 @@ else {
 </aui:form>
 
 <aui:script>
-	function <portlet:namespace />selectKBEntry(parentTitle, parentPriority, parentResourcePrimKey, parentResourceClassNameId, html) {
+	function <portlet:namespace />selectKBObject(parentTitle, parentPriority, parentResourcePrimKey, parentResourceClassNameId, html) {
 		document.<portlet:namespace />fm.<portlet:namespace />parentPriority.value = parentPriority;
 		document.<portlet:namespace />fm.<portlet:namespace />parentResourceClassNameId.value = parentResourceClassNameId;
 		document.<portlet:namespace />fm.<portlet:namespace />parentResourcePrimKey.value = parentResourcePrimKey;
