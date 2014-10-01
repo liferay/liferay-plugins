@@ -286,7 +286,7 @@ public class KnowledgeBaseUtil {
 		return null;
 	}
 
-	public static long getKbFolderId(
+	public static long getKBFolderId(
 			long parentResourceClassNameId, long parentResourcePrimKey)
 		throws PortalException, SystemException {
 

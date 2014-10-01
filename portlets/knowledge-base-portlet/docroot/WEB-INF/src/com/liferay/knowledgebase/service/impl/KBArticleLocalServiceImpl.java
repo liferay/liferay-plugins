@@ -137,7 +137,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		kbArticle.setParentResourceClassNameId(parentResourceClassNameId);
 		kbArticle.setParentResourcePrimKey(parentResourcePrimKey);
 
-		long kbFolderId = KnowledgeBaseUtil.getKbFolderId(
+		long kbFolderId = KnowledgeBaseUtil.getKBFolderId(
 			parentResourceClassNameId, parentResourcePrimKey);
 
 		kbArticle.setKbFolderId(kbFolderId);
@@ -425,8 +425,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 
 	@Override
 	public KBArticle fetchLatestKBArticleByUrlTitle(
-			long groupId, long kbFolderId, String urlTitle, int status)
-		throws SystemException {
+		long groupId, long kbFolderId, String urlTitle, int status) {
 
 		List<KBArticle> kbArticles = null;
 
