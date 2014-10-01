@@ -22,7 +22,7 @@ OrderByComparator<KBTemplate> obc = OrderByComparatorFactoryUtil.create("KBTempl
 List<KBTemplate> kbTemplates = KBTemplateServiceUtil.getGroupKBTemplates(scopeGroupId, QueryUtil.ALL_POS, QueryUtil.ALL_POS, obc);
 
 long parentResourceClassNameId = ParamUtil.getLong(request, "parentResourceClassNameId", PortalUtil.getClassNameId(KBFolderConstants.getClassName()));
-long parentResourcePrimKey = ParamUtil.getLong(request, "parentResourcePrimKey", KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY);
+long parentResourcePrimKey = ParamUtil.getLong(request, "parentResourcePrimKey", KBFolderConstants.DEFAULT_PARENT_FOLDER_ID);
 %>
 
 <liferay-portlet:renderURL var="addBasicKBArticleURL">

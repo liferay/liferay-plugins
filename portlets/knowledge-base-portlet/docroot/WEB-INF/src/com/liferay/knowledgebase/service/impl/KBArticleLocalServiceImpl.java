@@ -720,18 +720,18 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 
 		if (status == WorkflowConstants.STATUS_ANY) {
 			return kbArticlePersistence.findByG_P_S_L(
-				groupId, KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY,
-				array, true, start, end, orderByComparator);
+				groupId, KBFolderConstants.DEFAULT_PARENT_FOLDER_ID, array,
+				true, start, end, orderByComparator);
 		}
 		else if (status == WorkflowConstants.STATUS_APPROVED) {
 			return kbArticlePersistence.findByG_P_S_M(
-				groupId, KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY,
-				array, true, start, end, orderByComparator);
+				groupId, KBFolderConstants.DEFAULT_PARENT_FOLDER_ID, array,
+				true, start, end, orderByComparator);
 		}
 
 		return kbArticlePersistence.findByG_P_S_S(
-			groupId, KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY, array,
-			status, start, end, orderByComparator);
+			groupId, KBFolderConstants.DEFAULT_PARENT_FOLDER_ID, array, status,
+			start, end, orderByComparator);
 	}
 
 	@Override
@@ -746,18 +746,17 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 
 		if (status == WorkflowConstants.STATUS_ANY) {
 			return kbArticlePersistence.countByG_P_S_L(
-				groupId, KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY,
-				array, true);
+				groupId, KBFolderConstants.DEFAULT_PARENT_FOLDER_ID, array,
+				true);
 		}
 		else if (status == WorkflowConstants.STATUS_APPROVED) {
 			return kbArticlePersistence.countByG_P_S_M(
-				groupId, KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY,
-				array, true);
+				groupId, KBFolderConstants.DEFAULT_PARENT_FOLDER_ID, array,
+				true);
 		}
 
 		return kbArticlePersistence.countByG_P_S_S(
-			groupId, KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY, array,
-			status);
+			groupId, KBFolderConstants.DEFAULT_PARENT_FOLDER_ID, array, status);
 	}
 
 	/**
@@ -1510,7 +1509,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		throws PortalException {
 
 		if (parentResourcePrimKey ==
-				KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY) {
+				KBFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
 
 			return resourcePrimKey;
 		}

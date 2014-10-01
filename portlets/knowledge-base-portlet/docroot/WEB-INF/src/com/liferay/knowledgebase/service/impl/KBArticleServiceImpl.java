@@ -16,8 +16,8 @@ package com.liferay.knowledgebase.service.impl;
 
 import com.liferay.knowledgebase.admin.util.AdminUtil;
 import com.liferay.knowledgebase.model.KBArticle;
-import com.liferay.knowledgebase.model.KBArticleConstants;
 import com.liferay.knowledgebase.model.KBArticleSearchDisplay;
+import com.liferay.knowledgebase.model.KBFolderConstants;
 import com.liferay.knowledgebase.model.impl.KBArticleSearchDisplayImpl;
 import com.liferay.knowledgebase.service.base.KBArticleServiceBaseImpl;
 import com.liferay.knowledgebase.service.permission.AdminPermission;
@@ -541,18 +541,18 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 
 		if (status == WorkflowConstants.STATUS_ANY) {
 			return kbArticlePersistence.filterFindByG_P_S_L(
-				groupId, KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY,
-				array, true, start, end, orderByComparator);
+				groupId, KBFolderConstants.DEFAULT_PARENT_FOLDER_ID, array,
+				true, start, end, orderByComparator);
 		}
 		else if (status == WorkflowConstants.STATUS_APPROVED) {
 			return kbArticlePersistence.filterFindByG_P_S_M(
-				groupId, KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY,
-				array, true, start, end, orderByComparator);
+				groupId, KBFolderConstants.DEFAULT_PARENT_FOLDER_ID, array,
+				true, start, end, orderByComparator);
 		}
 
 		return kbArticlePersistence.filterFindByG_P_S_S(
-			groupId, KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY, array,
-			status, start, end, orderByComparator);
+			groupId, KBFolderConstants.DEFAULT_PARENT_FOLDER_ID, array, status,
+			start, end, orderByComparator);
 	}
 
 	@Override
@@ -567,18 +567,17 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 
 		if (status == WorkflowConstants.STATUS_ANY) {
 			return kbArticlePersistence.filterCountByG_P_S_L(
-				groupId, KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY,
-				array, true);
+				groupId, KBFolderConstants.DEFAULT_PARENT_FOLDER_ID, array,
+				true);
 		}
 		else if (status == WorkflowConstants.STATUS_APPROVED) {
 			return kbArticlePersistence.filterCountByG_P_S_M(
-				groupId, KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY,
-				array, true);
+				groupId, KBFolderConstants.DEFAULT_PARENT_FOLDER_ID, array,
+				true);
 		}
 
 		return kbArticlePersistence.filterCountByG_P_S_S(
-			groupId, KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY, array,
-			status);
+			groupId, KBFolderConstants.DEFAULT_PARENT_FOLDER_ID, array, status);
 	}
 
 	/**

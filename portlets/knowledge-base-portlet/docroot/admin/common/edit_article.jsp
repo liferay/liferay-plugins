@@ -111,7 +111,7 @@ String[] sections = AdminUtil.unescapeSections(BeanPropertiesUtil.getString(kbAr
 			<aui:input label="source-url" name="sourceURL" />
 		</c:if>
 
-		<c:if test="<%= ArrayUtil.isNotEmpty(PortletPropsValues.ADMIN_KB_ARTICLE_SECTIONS) && (parentResourcePrimKey == KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY) %>">
+		<c:if test="<%= ArrayUtil.isNotEmpty(PortletPropsValues.ADMIN_KB_ARTICLE_SECTIONS) && (parentResourcePrimKey == KBFolderConstants.DEFAULT_PARENT_FOLDER_ID) %>">
 			<aui:model-context bean="<%= null %>" model="<%= KBArticle.class %>" />
 
 			<aui:select ignoreRequestValue="<%= true %>" multiple="<%= true %>" name="sections">

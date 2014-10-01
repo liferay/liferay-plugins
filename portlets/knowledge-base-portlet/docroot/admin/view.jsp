@@ -20,7 +20,7 @@
 long kbFolderClassNameId = PortalUtil.getClassNameId(KBFolderConstants.getClassName());
 
 long parentResourceClassNameId = ParamUtil.getLong(request, "parentResourceClassNameId", kbFolderClassNameId);
-long parentResourcePrimKey = ParamUtil.getLong(request, "parentResourcePrimKey", KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY);
+long parentResourcePrimKey = ParamUtil.getLong(request, "parentResourcePrimKey", KBFolderConstants.DEFAULT_PARENT_FOLDER_ID);
 %>
 
 <liferay-util:include page="/admin/top_tabs.jsp" servletContext="<%= application %>" />
@@ -316,7 +316,7 @@ long parentResourcePrimKey = ParamUtil.getLong(request, "parentResourcePrimKey",
 				/>
 			</liferay-ui:search-container-row>
 
-			<c:if test="<%= !searchTerms.hasSearchTerms() && (parentResourceClassNameId != kbFolderClassNameId) && (parentResourcePrimKey != KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY) %>">
+			<c:if test="<%= !searchTerms.hasSearchTerms() && (parentResourceClassNameId != kbFolderClassNameId) && (parentResourcePrimKey != KBFolderConstants.DEFAULT_PARENT_FOLDER_ID) %>">
 
 				<%
 				searchContainer.setEmptyResultsMessage(null);
