@@ -21,7 +21,9 @@ import com.liferay.knowledgebase.NoSuchFolderException;
 import com.liferay.knowledgebase.model.KBFolder;
 import com.liferay.knowledgebase.model.KBFolderConstants;
 import com.liferay.knowledgebase.service.base.KBFolderLocalServiceBaseImpl;
+import com.liferay.knowledgebase.util.KnowledgeBaseUtil;
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.ServiceContext;
 
@@ -64,6 +66,9 @@ public class KBFolderLocalServiceImpl extends KBFolderLocalServiceBaseImpl {
 		kbFolder.setModifiedDate(now);
 		kbFolder.setParentKBFolderId(parentResourcePrimKey);
 		kbFolder.setName(name);
+		kbFolder.setUrlTitle(
+			getUniqueUrlTitle(
+				groupId, parentResourcePrimKey, kbFolderId, name));
 		kbFolder.setDescription(description);
 
 		kbFolderPersistence.update(kbFolder);
@@ -101,6 +106,24 @@ public class KBFolderLocalServiceImpl extends KBFolderLocalServiceBaseImpl {
 		}
 
 		return kbFolderPersistence.remove(kbFolder);
+	}
+
+	@Override
+	public KBFolder fetchKBFolderByUrlTitle(
+			long groupId, long parentKbFolderId, String urlTitle)
+		throws PortalException, SystemException {
+
+		return kbFolderPersistence.fetchByG_P_UT(
+			groupId, parentKbFolderId, urlTitle);
+	}
+
+	@Override
+	public KBFolder getKBFolderByUrlTitle(
+			long groupId, long parentKbFolderId, String urlTitle)
+		throws PortalException, SystemException {
+
+		return kbFolderPersistence.findByG_P_UT(
+			groupId, parentKbFolderId, urlTitle);
 	}
 
 	@Override
@@ -191,6 +214,26 @@ public class KBFolderLocalServiceImpl extends KBFolderLocalServiceBaseImpl {
 		}
 
 		kbFolderIds.add(parentKBFolder.getKbFolderId());
+	}
+
+	protected String getUniqueUrlTitle(
+			long groupId, long parentKbFolderId, long kbFolderId, String name)
+		throws SystemException {
+
+		String urlTitle = KnowledgeBaseUtil.getUrlTitle(kbFolderId, name);
+
+		String uniqueUrlTitle = urlTitle;
+
+		KBFolder kbFolder = null;
+
+		for (int i = 1; kbFolder != null; i++) {
+			uniqueUrlTitle = urlTitle + StringPool.DASH + i;
+
+			kbFolder = kbFolderPersistence.fetchByG_P_UT(
+				groupId, parentKbFolderId, uniqueUrlTitle);
+		}
+
+		return uniqueUrlTitle;
 	}
 
 	protected void validateParent(KBFolder kbFolder, KBFolder parentKBFolder)
