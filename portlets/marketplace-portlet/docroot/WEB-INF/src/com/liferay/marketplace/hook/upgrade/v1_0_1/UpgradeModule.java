@@ -30,13 +30,13 @@ public class UpgradeModule extends UpgradeProcess {
 	protected void upgradeModule() throws Exception {
 		if (!tableHasColumn("Marketplace_Module", "bundleSymbolicName")) {
 			runSQL(
-				"alter table Marketplace_Module add column " +
-					"bundleSymbolicName VARCHAR(500)");
+				"alter table Marketplace_Module add bundleSymbolicName " +
+					"VARCHAR(500)");
 		}
 
 		if (!tableHasColumn("Marketplace_Module", "bundleVersion")) {
 			runSQL(
-				"alter table Marketplace_Module add column bundleVersion " +
+				"alter table Marketplace_Module add bundleVersion " +
 					"VARCHAR(75)");
 		}
 
