@@ -50,31 +50,6 @@ import java.util.List;
  */
 public class GoogleMailGroupsUtil {
 
-	public static void updateGroupMemberRoles(List<User> users, String role)
-		throws PortalException {
-
-		for (User user : users) {
-			if (role.equals("MEMBER") &&
-				RoleLocalServiceUtil.hasUserRole(
-					user.getUserId(), user.getCompanyId(),
-					PortletPropsValues.EMAIL_LARGE_GROUP_ROLE, true)) {
-
-				continue;
-			}
-
-			List<Group> groups = GroupLocalServiceUtil.getUserGroups(
-				user.getUserId(), true);
-
-			for (Group group : groups) {
-				if (!isSync(group)) {
-					continue;
-				}
-
-				updateGroupMemberRole(group, user, role);
-			}
-		}
-	}
-
 	public static void checkLargeGroup(Group group) throws PortalException {
 		if ((PortletPropsValues.EMAIL_LARGE_GROUP_SIZE < 0) ||
 			Validator.isNull(PortletPropsValues.EMAIL_LARGE_GROUP_ROLE)) {
@@ -255,6 +230,31 @@ public class GoogleMailGroupsUtil {
 		};
 
 		actionableDynamicQuery.performActions();
+	}
+
+	public static void updateGroupMemberRoles(List<User> users, String role)
+		throws PortalException {
+
+		for (User user : users) {
+			if (role.equals("MEMBER") &&
+				RoleLocalServiceUtil.hasUserRole(
+					user.getUserId(), user.getCompanyId(),
+					PortletPropsValues.EMAIL_LARGE_GROUP_ROLE, true)) {
+
+				continue;
+			}
+
+			List<Group> groups = GroupLocalServiceUtil.getUserGroups(
+				user.getUserId(), true);
+
+			for (Group group : groups) {
+				if (!isSync(group)) {
+					continue;
+				}
+
+				updateGroupMemberRole(group, user, role);
+			}
+		}
 	}
 
 	protected static void updateGroupManagers(Group group) {
