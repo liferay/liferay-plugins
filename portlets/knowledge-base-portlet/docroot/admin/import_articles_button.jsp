@@ -16,10 +16,14 @@
 
 <%@ include file="/admin/init.jsp" %>
 
+<%
+long parentResourcePrimKey = ParamUtil.getLong(request, "parentResourcePrimKey");
+%>
+
 <portlet:renderURL var="importURL">
 	<portlet:param name="mvcPath" value="/admin/import.jsp" />
 	<portlet:param name="redirect" value="<%= redirect %>" />
-	<portlet:param name="parentKBFolderId" value='<%= String.valueOf(ParamUtil.getLong(request, "parentResourcePrimKey")) %>' />
+	<portlet:param name="parentKBFolderId" value="<%= String.valueOf(parentResourcePrimKey) %>" />
 </portlet:renderURL>
 
 <aui:nav-item
