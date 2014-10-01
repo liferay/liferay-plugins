@@ -232,11 +232,12 @@ public class GoogleMailGroupsUtil {
 		actionableDynamicQuery.performActions();
 	}
 
-	public static void updateGroupMemberRoles(List<User> users, String role)
+	public static void updateGroupMemberRoles(
+			List<User> users, String groupMemberRole)
 		throws PortalException {
 
 		for (User user : users) {
-			if (role.equals("MEMBER") &&
+			if (groupMemberRole.equals("MEMBER") &&
 				RoleLocalServiceUtil.hasUserRole(
 					user.getUserId(), user.getCompanyId(),
 					PortletPropsValues.EMAIL_LARGE_GROUP_ROLE, true)) {
@@ -252,7 +253,7 @@ public class GoogleMailGroupsUtil {
 					continue;
 				}
 
-				updateGroupMemberRole(group, user, role);
+				updateGroupMemberRole(group, user, groupMemberRole);
 			}
 		}
 	}
@@ -277,7 +278,7 @@ public class GoogleMailGroupsUtil {
 	}
 
 	protected static void updateGroupMemberRole(
-			Group group, User user, String role)
+			Group group, User user, String groupMemberRole)
 		throws PortalException {
 
 		String groupEmailAddress = getGroupEmailAddress(group);
@@ -286,13 +287,15 @@ public class GoogleMailGroupsUtil {
 		Member member = GoogleDirectoryUtil.getGroupMember(
 			groupEmailAddress, userEmailAddress);
 
-		String memberRole = member.getRole();
+		String currentGroupMemberRole = member.getRole();
 
-		if (memberRole.equals(role) || memberRole.equals("OWNER")) {
+		if (currentGroupMemberRole.equals(groupMemberRole) ||
+			currentGroupMemberRole.equals("OWNER")) {
+
 			return;
 		}
 
-		member.setRole(role);
+		member.setRole(groupMemberRole);
 
 		GoogleDirectoryUtil.updateGroupMember(
 			groupEmailAddress, userEmailAddress, member);
