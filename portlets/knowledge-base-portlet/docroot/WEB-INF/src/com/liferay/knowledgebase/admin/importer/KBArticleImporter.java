@@ -79,9 +79,9 @@ public class KBArticleImporter {
 	}
 
 	protected KBArticle addKBArticleMarkdown(
-			long userId, long groupId, long parentResourceClassNameId,
-			long parentResourcePrimaryKey, String markdown,
-			String fileEntryName, ZipReader zipReader,
+			long userId, long groupId, long parentKBFolderId,
+			long parentResourceClassNameId, long parentResourcePrimaryKey,
+			String markdown, String fileEntryName, ZipReader zipReader,
 			Map<String, String> metadata, ServiceContext serviceContext)
 		throws KBArticleImportException, SystemException {
 
@@ -97,7 +97,7 @@ public class KBArticleImporter {
 
 		KBArticle kbArticle =
 			KBArticleLocalServiceUtil.fetchKBArticleByUrlTitle(
-				groupId, KBFolderConstants.DEFAULT_PARENT_FOLDER_ID, urlTitle);
+				groupId, parentKBFolderId, urlTitle);
 
 		try {
 			if (kbArticle == null) {
@@ -254,8 +254,8 @@ public class KBArticleImporter {
 
 			if (Validator.isNotNull(sectionIntroFileEntryName)) {
 				KBArticle sectionIntroKBArticle = addKBArticleMarkdown(
-					userId, groupId, parentResourceClassNameId,
-					parentResourcePrimaryKey,
+					userId, groupId, parentKBFolderId,
+					sectionResourceClassNameId, sectionResourcePrimaryKey,
 					zipReader.getEntryAsString(sectionIntroFileEntryName),
 					sectionIntroFileEntryName, zipReader, metadata,
 					serviceContext);
@@ -279,9 +279,10 @@ public class KBArticleImporter {
 				}
 
 				addKBArticleMarkdown(
-					userId, groupId, sectionResourceClassNameId,
-					sectionResourcePrimaryKey, sectionMarkdown,
-					sectionFileEntryName, zipReader, metadata, serviceContext);
+					userId, groupId, parentKBFolderId,
+					sectionResourceClassNameId, sectionResourcePrimaryKey,
+					sectionMarkdown, sectionFileEntryName, zipReader, metadata,
+					serviceContext);
 			}
 		}
 	}
