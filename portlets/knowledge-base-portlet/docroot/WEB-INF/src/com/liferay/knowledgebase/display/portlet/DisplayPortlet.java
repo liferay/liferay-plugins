@@ -147,6 +147,27 @@ public class DisplayPortlet extends BaseKBPortlet {
 		super.render(renderRequest, renderResponse);
 	}
 
+	public void updateRootKBFolderId(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws PortalException, SystemException {
+
+		long kbFolderId = ParamUtil.getLong(actionRequest, "rootKBFolderId");
+
+		if (kbFolderId == KBFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
+			return;
+		}
+
+		KBFolder kbFolder = KBFolderServiceUtil.getKBFolder(kbFolderId);
+
+		PortalPreferences portalPreferences =
+			PortletPreferencesFactoryUtil.getPortalPreferences(
+				PortalUtil.getLiferayPortletRequest(actionRequest));
+
+		portalPreferences.setValue(
+			PortletKeys.KNOWLEDGE_BASE_DISPLAY, "preferredKBFolderUrlTitle",
+			kbFolder.getUrlTitle());
+	}
+
 	@Override
 	protected void addSuccessMessage(
 		ActionRequest actionRequest, ActionResponse actionResponse) {
@@ -155,7 +176,8 @@ public class DisplayPortlet extends BaseKBPortlet {
 			actionRequest, ActionRequest.ACTION_NAME);
 
 		if (actionName.equals("deleteKBArticle") ||
-			actionName.equals("updateKBComment")) {
+			actionName.equals("updateKBComment") ||
+			actionName.equals("updateRootKBFolderId")) {
 
 			return;
 		}
