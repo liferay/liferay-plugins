@@ -112,7 +112,7 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 				userId, WorkflowTask.class.getName(), workflowTaskInstanceId,
 				String.valueOf(userId), false, 1000);
 		}
-		catch (PortalException e) {
+		catch (Exception e) {
 			if (e instanceof DuplicateLockException) {
 				throw new WorkflowException(
 					"Workflow task " + workflowTaskInstanceId +
@@ -163,7 +163,14 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 			throw new WorkflowException("Unable to complete task", e);
 		}
 		finally {
-			LockLocalServiceUtil.unlock(lock.getClassName(), lock.getKey());
+			try {
+				LockLocalServiceUtil.unlock(lock.getClassName(), lock.getKey());
+			}
+			catch (SystemException se) {
+				throw new WorkflowException(
+					"Unable to unlock workflow task " + workflowTaskInstanceId,
+					se);
+			}
 		}
 	}
 
