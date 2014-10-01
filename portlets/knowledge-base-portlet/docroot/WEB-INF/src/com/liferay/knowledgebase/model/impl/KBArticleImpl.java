@@ -104,6 +104,24 @@ public class KBArticleImpl extends KBArticleBaseImpl {
 	}
 
 	@Override
+	public long getKBFolderId() throws PortalException {
+		if (getParentResourcePrimKey() ==
+				KBFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
+
+			return getParentResourcePrimKey();
+		}
+
+		KBArticle kbArticle = this;
+
+		while (kbArticle.getParentResourceClassNameId() == getClassNameId()) {
+			kbArticle = KBArticleServiceUtil.getLatestKBArticle(
+				kbArticle.getParentResourcePrimKey(),
+				WorkflowConstants.STATUS_ANY);
+		}
+
+		return kbArticle.getParentResourcePrimKey();
+	}
+
 	public KBArticle getParentKBArticle() throws PortalException {
 		long parentResourcePrimKey = getParentResourcePrimKey();
 
