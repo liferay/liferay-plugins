@@ -15,7 +15,6 @@
 package com.liferay.knowledgebase.service.impl;
 
 import com.liferay.knowledgebase.model.KBFolder;
-import com.liferay.knowledgebase.model.KBFolderConstants;
 import com.liferay.knowledgebase.service.base.KBFolderServiceBaseImpl;
 import com.liferay.knowledgebase.service.permission.KBFolderPermission;
 import com.liferay.knowledgebase.util.ActionKeys;
