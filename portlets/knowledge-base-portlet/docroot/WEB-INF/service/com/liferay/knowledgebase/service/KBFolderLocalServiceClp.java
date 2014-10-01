@@ -137,21 +137,33 @@ public class KBFolderLocalServiceClp implements KBFolderLocalService {
 				"java.lang.String", "com.liferay.portal.service.ServiceContext"
 			};
 
-		_methodName24 = "getKBFolders";
+		_methodName24 = "fetchKBFolderByUrlTitle";
 
-		_methodParameterTypes24 = new String[] { "long", "long", "int", "int" };
+		_methodParameterTypes24 = new String[] {
+				"long", "long", "java.lang.String"
+			};
 
-		_methodName25 = "getKBFoldersCount";
+		_methodName25 = "getKBFolderByUrlTitle";
 
-		_methodParameterTypes25 = new String[] { "long", "long" };
+		_methodParameterTypes25 = new String[] {
+				"long", "long", "java.lang.String"
+			};
 
-		_methodName26 = "moveKBFolder";
+		_methodName26 = "getKBFolders";
 
-		_methodParameterTypes26 = new String[] { "long", "long" };
+		_methodParameterTypes26 = new String[] { "long", "long", "int", "int" };
 
-		_methodName27 = "updateKBFolder";
+		_methodName27 = "getKBFoldersCount";
 
-		_methodParameterTypes27 = new String[] {
+		_methodParameterTypes27 = new String[] { "long", "long" };
+
+		_methodName28 = "moveKBFolder";
+
+		_methodParameterTypes28 = new String[] { "long", "long" };
+
+		_methodName29 = "updateKBFolder";
+
+		_methodParameterTypes29 = new String[] {
 				"long", "long", "long", "java.lang.String", "java.lang.String"
 			};
 	}
@@ -888,8 +900,8 @@ public class KBFolderLocalServiceClp implements KBFolderLocalService {
 	}
 
 	@Override
-	public java.util.List<com.liferay.knowledgebase.model.KBFolder> getKBFolders(
-		long groupId, long parentKBFolderId, int start, int end)
+	public com.liferay.knowledgebase.model.KBFolder fetchKBFolderByUrlTitle(
+		long groupId, long parentKbFolderId, java.lang.String urlTitle)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -897,6 +909,88 @@ public class KBFolderLocalServiceClp implements KBFolderLocalService {
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName24,
 					_methodParameterTypes24,
+					new Object[] {
+						groupId,
+						
+					parentKbFolderId,
+						
+					ClpSerializer.translateInput(urlTitle)
+					});
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.liferay.knowledgebase.model.KBFolder)ClpSerializer.translateOutput(returnObj);
+	}
+
+	@Override
+	public com.liferay.knowledgebase.model.KBFolder getKBFolderByUrlTitle(
+		long groupId, long parentKbFolderId, java.lang.String urlTitle)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName25,
+					_methodParameterTypes25,
+					new Object[] {
+						groupId,
+						
+					parentKbFolderId,
+						
+					ClpSerializer.translateInput(urlTitle)
+					});
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.liferay.knowledgebase.model.KBFolder)ClpSerializer.translateOutput(returnObj);
+	}
+
+	@Override
+	public java.util.List<com.liferay.knowledgebase.model.KBFolder> getKBFolders(
+		long groupId, long parentKBFolderId, int start, int end)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName26,
+					_methodParameterTypes26,
 					new Object[] { groupId, parentKBFolderId, start, end });
 		}
 		catch (Throwable t) {
@@ -929,8 +1023,8 @@ public class KBFolderLocalServiceClp implements KBFolderLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName25,
-					_methodParameterTypes25,
+			returnObj = _invokableLocalService.invokeMethod(_methodName27,
+					_methodParameterTypes27,
 					new Object[] { groupId, parentKBFolderId });
 		}
 		catch (Throwable t) {
@@ -961,8 +1055,8 @@ public class KBFolderLocalServiceClp implements KBFolderLocalService {
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		try {
-			_invokableLocalService.invokeMethod(_methodName26,
-				_methodParameterTypes26,
+			_invokableLocalService.invokeMethod(_methodName28,
+				_methodParameterTypes28,
 				new Object[] { kbFolderId, parentKBFolderId });
 		}
 		catch (Throwable t) {
@@ -995,8 +1089,8 @@ public class KBFolderLocalServiceClp implements KBFolderLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName27,
-					_methodParameterTypes27,
+			returnObj = _invokableLocalService.invokeMethod(_methodName29,
+					_methodParameterTypes29,
 					new Object[] {
 						parentResourceClassNameId,
 						
@@ -1087,4 +1181,8 @@ public class KBFolderLocalServiceClp implements KBFolderLocalService {
 	private String[] _methodParameterTypes26;
 	private String _methodName27;
 	private String[] _methodParameterTypes27;
+	private String _methodName28;
+	private String[] _methodParameterTypes28;
+	private String _methodName29;
+	private String[] _methodParameterTypes29;
 }

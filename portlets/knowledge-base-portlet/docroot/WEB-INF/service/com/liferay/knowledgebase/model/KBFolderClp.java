@@ -85,6 +85,7 @@ public class KBFolderClp extends BaseModelImpl<KBFolder> implements KBFolder {
 		attributes.put("modifiedDate", getModifiedDate());
 		attributes.put("parentKBFolderId", getParentKBFolderId());
 		attributes.put("name", getName());
+		attributes.put("urlTitle", getUrlTitle());
 		attributes.put("description", getDescription());
 
 		return attributes;
@@ -150,6 +151,12 @@ public class KBFolderClp extends BaseModelImpl<KBFolder> implements KBFolder {
 
 		if (name != null) {
 			setName(name);
+		}
+
+		String urlTitle = (String)attributes.get("urlTitle");
+
+		if (urlTitle != null) {
+			setUrlTitle(urlTitle);
 		}
 
 		String description = (String)attributes.get("description");
@@ -401,6 +408,29 @@ public class KBFolderClp extends BaseModelImpl<KBFolder> implements KBFolder {
 	}
 
 	@Override
+	public String getUrlTitle() {
+		return _urlTitle;
+	}
+
+	@Override
+	public void setUrlTitle(String urlTitle) {
+		_urlTitle = urlTitle;
+
+		if (_kbFolderRemoteModel != null) {
+			try {
+				Class<?> clazz = _kbFolderRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setUrlTitle", String.class);
+
+				method.invoke(_kbFolderRemoteModel, urlTitle);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
+	}
+
+	@Override
 	public String getDescription() {
 		return _description;
 	}
@@ -546,6 +576,7 @@ public class KBFolderClp extends BaseModelImpl<KBFolder> implements KBFolder {
 		clone.setModifiedDate(getModifiedDate());
 		clone.setParentKBFolderId(getParentKBFolderId());
 		clone.setName(getName());
+		clone.setUrlTitle(getUrlTitle());
 		clone.setDescription(getDescription());
 
 		return clone;
@@ -595,7 +626,7 @@ public class KBFolderClp extends BaseModelImpl<KBFolder> implements KBFolder {
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(23);
+		StringBundler sb = new StringBundler(25);
 
 		sb.append("{uuid=");
 		sb.append(getUuid());
@@ -617,6 +648,8 @@ public class KBFolderClp extends BaseModelImpl<KBFolder> implements KBFolder {
 		sb.append(getParentKBFolderId());
 		sb.append(", name=");
 		sb.append(getName());
+		sb.append(", urlTitle=");
+		sb.append(getUrlTitle());
 		sb.append(", description=");
 		sb.append(getDescription());
 		sb.append("}");
@@ -626,7 +659,7 @@ public class KBFolderClp extends BaseModelImpl<KBFolder> implements KBFolder {
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(37);
+		StringBundler sb = new StringBundler(40);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.knowledgebase.model.KBFolder");
@@ -673,6 +706,10 @@ public class KBFolderClp extends BaseModelImpl<KBFolder> implements KBFolder {
 		sb.append(getName());
 		sb.append("]]></column-value></column>");
 		sb.append(
+			"<column><column-name>urlTitle</column-name><column-value><![CDATA[");
+		sb.append(getUrlTitle());
+		sb.append("]]></column-value></column>");
+		sb.append(
 			"<column><column-name>description</column-name><column-value><![CDATA[");
 		sb.append(getDescription());
 		sb.append("]]></column-value></column>");
@@ -693,6 +730,7 @@ public class KBFolderClp extends BaseModelImpl<KBFolder> implements KBFolder {
 	private Date _modifiedDate;
 	private long _parentKBFolderId;
 	private String _name;
+	private String _urlTitle;
 	private String _description;
 	private BaseModel<?> _kbFolderRemoteModel;
 }

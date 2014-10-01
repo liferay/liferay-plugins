@@ -82,11 +82,27 @@ public class KBFolderServiceUtil {
 		return getService().deleteKBFolder(kbFolderId);
 	}
 
+	public static com.liferay.knowledgebase.model.KBFolder fetchKBFolderByUrlTitle(
+		long groupId, long parentKbFolderId, java.lang.String urlTitle)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService()
+				   .fetchKBFolderByUrlTitle(groupId, parentKbFolderId, urlTitle);
+	}
+
 	public static com.liferay.knowledgebase.model.KBFolder getKBFolder(
 		long kbFolderId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService().getKBFolder(kbFolderId);
+	}
+
+	public static com.liferay.knowledgebase.model.KBFolder getKBFolderByUrlTitle(
+		long groupId, long parentKbFolderId, java.lang.String urlTitle)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService()
+				   .getKBFolderByUrlTitle(groupId, parentKbFolderId, urlTitle);
 	}
 
 	public static java.util.List<com.liferay.knowledgebase.model.KBFolder> getKBFolders(

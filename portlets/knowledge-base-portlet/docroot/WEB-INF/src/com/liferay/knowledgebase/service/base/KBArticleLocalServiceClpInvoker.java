@@ -208,7 +208,9 @@ public class KBArticleLocalServiceClpInvoker {
 
 		_methodName137 = "fetchKBArticleByUrlTitle";
 
-		_methodParameterTypes137 = new String[] { "long", "java.lang.String" };
+		_methodParameterTypes137 = new String[] {
+				"long", "long", "java.lang.String"
+			};
 
 		_methodName138 = "fetchLatestKBArticle";
 
@@ -217,7 +219,7 @@ public class KBArticleLocalServiceClpInvoker {
 		_methodName139 = "fetchLatestKBArticleByUrlTitle";
 
 		_methodParameterTypes139 = new String[] {
-				"long", "java.lang.String", "int"
+				"long", "long", "java.lang.String", "int"
 			};
 
 		_methodName140 = "getAllDescendantKBArticles";
@@ -269,7 +271,9 @@ public class KBArticleLocalServiceClpInvoker {
 
 		_methodName148 = "getKBArticleByUrlTitle";
 
-		_methodParameterTypes148 = new String[] { "long", "java.lang.String" };
+		_methodParameterTypes148 = new String[] {
+				"long", "long", "java.lang.String"
+			};
 
 		_methodName149 = "getKBArticles";
 
@@ -307,7 +311,7 @@ public class KBArticleLocalServiceClpInvoker {
 		_methodName155 = "getLatestKBArticleByUrlTitle";
 
 		_methodParameterTypes155 = new String[] {
-				"long", "java.lang.String", "int"
+				"long", "long", "java.lang.String", "int"
 			};
 
 		_methodName156 = "getPreviousAndNextKBArticles";
@@ -658,7 +662,7 @@ public class KBArticleLocalServiceClpInvoker {
 		if (_methodName137.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes137, parameterTypes)) {
 			return KBArticleLocalServiceUtil.fetchKBArticleByUrlTitle(((Long)arguments[0]).longValue(),
-				(java.lang.String)arguments[1]);
+				((Long)arguments[1]).longValue(), (java.lang.String)arguments[2]);
 		}
 
 		if (_methodName138.equals(name) &&
@@ -670,8 +674,9 @@ public class KBArticleLocalServiceClpInvoker {
 		if (_methodName139.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes139, parameterTypes)) {
 			return KBArticleLocalServiceUtil.fetchLatestKBArticleByUrlTitle(((Long)arguments[0]).longValue(),
-				(java.lang.String)arguments[1],
-				((Integer)arguments[2]).intValue());
+				((Long)arguments[1]).longValue(),
+				(java.lang.String)arguments[2],
+				((Integer)arguments[3]).intValue());
 		}
 
 		if (_methodName140.equals(name) &&
@@ -734,7 +739,7 @@ public class KBArticleLocalServiceClpInvoker {
 		if (_methodName148.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes148, parameterTypes)) {
 			return KBArticleLocalServiceUtil.getKBArticleByUrlTitle(((Long)arguments[0]).longValue(),
-				(java.lang.String)arguments[1]);
+				((Long)arguments[1]).longValue(), (java.lang.String)arguments[2]);
 		}
 
 		if (_methodName149.equals(name) &&
@@ -785,8 +790,9 @@ public class KBArticleLocalServiceClpInvoker {
 		if (_methodName155.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes155, parameterTypes)) {
 			return KBArticleLocalServiceUtil.getLatestKBArticleByUrlTitle(((Long)arguments[0]).longValue(),
-				(java.lang.String)arguments[1],
-				((Integer)arguments[2]).intValue());
+				((Long)arguments[1]).longValue(),
+				(java.lang.String)arguments[2],
+				((Integer)arguments[3]).intValue());
 		}
 
 		if (_methodName156.equals(name) &&

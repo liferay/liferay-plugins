@@ -11,6 +11,7 @@ create table KBArticle (
 	rootResourcePrimKey LONG,
 	parentResourceClassNameId LONG,
 	parentResourcePrimKey LONG,
+	kbFolderId LONG,
 	version INTEGER,
 	title STRING null,
 	urlTitle VARCHAR(75) null,
@@ -55,6 +56,7 @@ create table KBFolder (
 	modifiedDate DATE null,
 	parentKBFolderId LONG,
 	name VARCHAR(75) null,
+	urlTitle VARCHAR(75) null,
 	description STRING null
 );
 

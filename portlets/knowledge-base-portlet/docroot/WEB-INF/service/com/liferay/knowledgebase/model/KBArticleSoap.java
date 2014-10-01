@@ -43,6 +43,7 @@ public class KBArticleSoap implements Serializable {
 		soapModel.setRootResourcePrimKey(model.getRootResourcePrimKey());
 		soapModel.setParentResourceClassNameId(model.getParentResourceClassNameId());
 		soapModel.setParentResourcePrimKey(model.getParentResourcePrimKey());
+		soapModel.setKbFolderId(model.getKbFolderId());
 		soapModel.setVersion(model.getVersion());
 		soapModel.setTitle(model.getTitle());
 		soapModel.setUrlTitle(model.getUrlTitle());
@@ -206,6 +207,14 @@ public class KBArticleSoap implements Serializable {
 		_parentResourcePrimKey = parentResourcePrimKey;
 	}
 
+	public long getKbFolderId() {
+		return _kbFolderId;
+	}
+
+	public void setKbFolderId(long kbFolderId) {
+		_kbFolderId = kbFolderId;
+	}
+
 	public int getVersion() {
 		return _version;
 	}
@@ -346,6 +355,7 @@ public class KBArticleSoap implements Serializable {
 	private long _rootResourcePrimKey;
 	private long _parentResourceClassNameId;
 	private long _parentResourcePrimKey;
+	private long _kbFolderId;
 	private int _version;
 	private String _title;
 	private String _urlTitle;

@@ -6911,6 +6911,305 @@ public class KBArticleUtil {
 	}
 
 	/**
+	* Returns all the k b articles where groupId = &#63; and kbFolderId = &#63; and urlTitle = &#63;.
+	*
+	* @param groupId the group ID
+	* @param kbFolderId the kb folder ID
+	* @param urlTitle the url title
+	* @return the matching k b articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.knowledgebase.model.KBArticle> findByG_KBFI_UT(
+		long groupId, long kbFolderId, java.lang.String urlTitle)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().findByG_KBFI_UT(groupId, kbFolderId, urlTitle);
+	}
+
+	/**
+	* Returns a range of all the k b articles where groupId = &#63; and kbFolderId = &#63; and urlTitle = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.knowledgebase.model.impl.KBArticleModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param groupId the group ID
+	* @param kbFolderId the kb folder ID
+	* @param urlTitle the url title
+	* @param start the lower bound of the range of k b articles
+	* @param end the upper bound of the range of k b articles (not inclusive)
+	* @return the range of matching k b articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.knowledgebase.model.KBArticle> findByG_KBFI_UT(
+		long groupId, long kbFolderId, java.lang.String urlTitle, int start,
+		int end) throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByG_KBFI_UT(groupId, kbFolderId, urlTitle, start, end);
+	}
+
+	/**
+	* Returns an ordered range of all the k b articles where groupId = &#63; and kbFolderId = &#63; and urlTitle = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.knowledgebase.model.impl.KBArticleModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param groupId the group ID
+	* @param kbFolderId the kb folder ID
+	* @param urlTitle the url title
+	* @param start the lower bound of the range of k b articles
+	* @param end the upper bound of the range of k b articles (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @return the ordered range of matching k b articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.knowledgebase.model.KBArticle> findByG_KBFI_UT(
+		long groupId, long kbFolderId, java.lang.String urlTitle, int start,
+		int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByG_KBFI_UT(groupId, kbFolderId, urlTitle, start, end,
+			orderByComparator);
+	}
+
+	/**
+	* Returns the first k b article in the ordered set where groupId = &#63; and kbFolderId = &#63; and urlTitle = &#63;.
+	*
+	* @param groupId the group ID
+	* @param kbFolderId the kb folder ID
+	* @param urlTitle the url title
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching k b article
+	* @throws com.liferay.knowledgebase.NoSuchArticleException if a matching k b article could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.knowledgebase.model.KBArticle findByG_KBFI_UT_First(
+		long groupId, long kbFolderId, java.lang.String urlTitle,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.knowledgebase.NoSuchArticleException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByG_KBFI_UT_First(groupId, kbFolderId, urlTitle,
+			orderByComparator);
+	}
+
+	/**
+	* Returns the first k b article in the ordered set where groupId = &#63; and kbFolderId = &#63; and urlTitle = &#63;.
+	*
+	* @param groupId the group ID
+	* @param kbFolderId the kb folder ID
+	* @param urlTitle the url title
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching k b article, or <code>null</code> if a matching k b article could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.knowledgebase.model.KBArticle fetchByG_KBFI_UT_First(
+		long groupId, long kbFolderId, java.lang.String urlTitle,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .fetchByG_KBFI_UT_First(groupId, kbFolderId, urlTitle,
+			orderByComparator);
+	}
+
+	/**
+	* Returns the last k b article in the ordered set where groupId = &#63; and kbFolderId = &#63; and urlTitle = &#63;.
+	*
+	* @param groupId the group ID
+	* @param kbFolderId the kb folder ID
+	* @param urlTitle the url title
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching k b article
+	* @throws com.liferay.knowledgebase.NoSuchArticleException if a matching k b article could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.knowledgebase.model.KBArticle findByG_KBFI_UT_Last(
+		long groupId, long kbFolderId, java.lang.String urlTitle,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.knowledgebase.NoSuchArticleException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByG_KBFI_UT_Last(groupId, kbFolderId, urlTitle,
+			orderByComparator);
+	}
+
+	/**
+	* Returns the last k b article in the ordered set where groupId = &#63; and kbFolderId = &#63; and urlTitle = &#63;.
+	*
+	* @param groupId the group ID
+	* @param kbFolderId the kb folder ID
+	* @param urlTitle the url title
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching k b article, or <code>null</code> if a matching k b article could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.knowledgebase.model.KBArticle fetchByG_KBFI_UT_Last(
+		long groupId, long kbFolderId, java.lang.String urlTitle,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .fetchByG_KBFI_UT_Last(groupId, kbFolderId, urlTitle,
+			orderByComparator);
+	}
+
+	/**
+	* Returns the k b articles before and after the current k b article in the ordered set where groupId = &#63; and kbFolderId = &#63; and urlTitle = &#63;.
+	*
+	* @param kbArticleId the primary key of the current k b article
+	* @param groupId the group ID
+	* @param kbFolderId the kb folder ID
+	* @param urlTitle the url title
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the previous, current, and next k b article
+	* @throws com.liferay.knowledgebase.NoSuchArticleException if a k b article with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.knowledgebase.model.KBArticle[] findByG_KBFI_UT_PrevAndNext(
+		long kbArticleId, long groupId, long kbFolderId,
+		java.lang.String urlTitle,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.knowledgebase.NoSuchArticleException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByG_KBFI_UT_PrevAndNext(kbArticleId, groupId,
+			kbFolderId, urlTitle, orderByComparator);
+	}
+
+	/**
+	* Returns all the k b articles that the user has permission to view where groupId = &#63; and kbFolderId = &#63; and urlTitle = &#63;.
+	*
+	* @param groupId the group ID
+	* @param kbFolderId the kb folder ID
+	* @param urlTitle the url title
+	* @return the matching k b articles that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.knowledgebase.model.KBArticle> filterFindByG_KBFI_UT(
+		long groupId, long kbFolderId, java.lang.String urlTitle)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .filterFindByG_KBFI_UT(groupId, kbFolderId, urlTitle);
+	}
+
+	/**
+	* Returns a range of all the k b articles that the user has permission to view where groupId = &#63; and kbFolderId = &#63; and urlTitle = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.knowledgebase.model.impl.KBArticleModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param groupId the group ID
+	* @param kbFolderId the kb folder ID
+	* @param urlTitle the url title
+	* @param start the lower bound of the range of k b articles
+	* @param end the upper bound of the range of k b articles (not inclusive)
+	* @return the range of matching k b articles that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.knowledgebase.model.KBArticle> filterFindByG_KBFI_UT(
+		long groupId, long kbFolderId, java.lang.String urlTitle, int start,
+		int end) throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .filterFindByG_KBFI_UT(groupId, kbFolderId, urlTitle, start,
+			end);
+	}
+
+	/**
+	* Returns an ordered range of all the k b articles that the user has permissions to view where groupId = &#63; and kbFolderId = &#63; and urlTitle = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.knowledgebase.model.impl.KBArticleModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param groupId the group ID
+	* @param kbFolderId the kb folder ID
+	* @param urlTitle the url title
+	* @param start the lower bound of the range of k b articles
+	* @param end the upper bound of the range of k b articles (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @return the ordered range of matching k b articles that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.knowledgebase.model.KBArticle> filterFindByG_KBFI_UT(
+		long groupId, long kbFolderId, java.lang.String urlTitle, int start,
+		int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .filterFindByG_KBFI_UT(groupId, kbFolderId, urlTitle, start,
+			end, orderByComparator);
+	}
+
+	/**
+	* Returns the k b articles before and after the current k b article in the ordered set of k b articles that the user has permission to view where groupId = &#63; and kbFolderId = &#63; and urlTitle = &#63;.
+	*
+	* @param kbArticleId the primary key of the current k b article
+	* @param groupId the group ID
+	* @param kbFolderId the kb folder ID
+	* @param urlTitle the url title
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the previous, current, and next k b article
+	* @throws com.liferay.knowledgebase.NoSuchArticleException if a k b article with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.knowledgebase.model.KBArticle[] filterFindByG_KBFI_UT_PrevAndNext(
+		long kbArticleId, long groupId, long kbFolderId,
+		java.lang.String urlTitle,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.knowledgebase.NoSuchArticleException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .filterFindByG_KBFI_UT_PrevAndNext(kbArticleId, groupId,
+			kbFolderId, urlTitle, orderByComparator);
+	}
+
+	/**
+	* Removes all the k b articles where groupId = &#63; and kbFolderId = &#63; and urlTitle = &#63; from the database.
+	*
+	* @param groupId the group ID
+	* @param kbFolderId the kb folder ID
+	* @param urlTitle the url title
+	* @throws SystemException if a system exception occurred
+	*/
+	public static void removeByG_KBFI_UT(long groupId, long kbFolderId,
+		java.lang.String urlTitle)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		getPersistence().removeByG_KBFI_UT(groupId, kbFolderId, urlTitle);
+	}
+
+	/**
+	* Returns the number of k b articles where groupId = &#63; and kbFolderId = &#63; and urlTitle = &#63;.
+	*
+	* @param groupId the group ID
+	* @param kbFolderId the kb folder ID
+	* @param urlTitle the url title
+	* @return the number of matching k b articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByG_KBFI_UT(long groupId, long kbFolderId,
+		java.lang.String urlTitle)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByG_KBFI_UT(groupId, kbFolderId, urlTitle);
+	}
+
+	/**
+	* Returns the number of k b articles that the user has permission to view where groupId = &#63; and kbFolderId = &#63; and urlTitle = &#63;.
+	*
+	* @param groupId the group ID
+	* @param kbFolderId the kb folder ID
+	* @param urlTitle the url title
+	* @return the number of matching k b articles that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int filterCountByG_KBFI_UT(long groupId, long kbFolderId,
+		java.lang.String urlTitle)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .filterCountByG_KBFI_UT(groupId, kbFolderId, urlTitle);
+	}
+
+	/**
 	* Returns all the k b articles where groupId = &#63; and urlTitle = &#63; and status = &#63;.
 	*
 	* @param groupId the group ID
@@ -8734,6 +9033,506 @@ public class KBArticleUtil {
 		return getPersistence()
 				   .filterCountByG_P_S_S(groupId, parentResourcePrimKey,
 			sectionses, status);
+	}
+
+	/**
+	* Returns all the k b articles where groupId = &#63; and kbFolderId = &#63; and urlTitle = &#63; and status = &#63;.
+	*
+	* @param groupId the group ID
+	* @param kbFolderId the kb folder ID
+	* @param urlTitle the url title
+	* @param status the status
+	* @return the matching k b articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.knowledgebase.model.KBArticle> findByG_KBFI_UT_ST(
+		long groupId, long kbFolderId, java.lang.String urlTitle, int status)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByG_KBFI_UT_ST(groupId, kbFolderId, urlTitle, status);
+	}
+
+	/**
+	* Returns a range of all the k b articles where groupId = &#63; and kbFolderId = &#63; and urlTitle = &#63; and status = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.knowledgebase.model.impl.KBArticleModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param groupId the group ID
+	* @param kbFolderId the kb folder ID
+	* @param urlTitle the url title
+	* @param status the status
+	* @param start the lower bound of the range of k b articles
+	* @param end the upper bound of the range of k b articles (not inclusive)
+	* @return the range of matching k b articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.knowledgebase.model.KBArticle> findByG_KBFI_UT_ST(
+		long groupId, long kbFolderId, java.lang.String urlTitle, int status,
+		int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByG_KBFI_UT_ST(groupId, kbFolderId, urlTitle, status,
+			start, end);
+	}
+
+	/**
+	* Returns an ordered range of all the k b articles where groupId = &#63; and kbFolderId = &#63; and urlTitle = &#63; and status = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.knowledgebase.model.impl.KBArticleModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param groupId the group ID
+	* @param kbFolderId the kb folder ID
+	* @param urlTitle the url title
+	* @param status the status
+	* @param start the lower bound of the range of k b articles
+	* @param end the upper bound of the range of k b articles (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @return the ordered range of matching k b articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.knowledgebase.model.KBArticle> findByG_KBFI_UT_ST(
+		long groupId, long kbFolderId, java.lang.String urlTitle, int status,
+		int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByG_KBFI_UT_ST(groupId, kbFolderId, urlTitle, status,
+			start, end, orderByComparator);
+	}
+
+	/**
+	* Returns the first k b article in the ordered set where groupId = &#63; and kbFolderId = &#63; and urlTitle = &#63; and status = &#63;.
+	*
+	* @param groupId the group ID
+	* @param kbFolderId the kb folder ID
+	* @param urlTitle the url title
+	* @param status the status
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching k b article
+	* @throws com.liferay.knowledgebase.NoSuchArticleException if a matching k b article could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.knowledgebase.model.KBArticle findByG_KBFI_UT_ST_First(
+		long groupId, long kbFolderId, java.lang.String urlTitle, int status,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.knowledgebase.NoSuchArticleException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByG_KBFI_UT_ST_First(groupId, kbFolderId, urlTitle,
+			status, orderByComparator);
+	}
+
+	/**
+	* Returns the first k b article in the ordered set where groupId = &#63; and kbFolderId = &#63; and urlTitle = &#63; and status = &#63;.
+	*
+	* @param groupId the group ID
+	* @param kbFolderId the kb folder ID
+	* @param urlTitle the url title
+	* @param status the status
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching k b article, or <code>null</code> if a matching k b article could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.knowledgebase.model.KBArticle fetchByG_KBFI_UT_ST_First(
+		long groupId, long kbFolderId, java.lang.String urlTitle, int status,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .fetchByG_KBFI_UT_ST_First(groupId, kbFolderId, urlTitle,
+			status, orderByComparator);
+	}
+
+	/**
+	* Returns the last k b article in the ordered set where groupId = &#63; and kbFolderId = &#63; and urlTitle = &#63; and status = &#63;.
+	*
+	* @param groupId the group ID
+	* @param kbFolderId the kb folder ID
+	* @param urlTitle the url title
+	* @param status the status
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching k b article
+	* @throws com.liferay.knowledgebase.NoSuchArticleException if a matching k b article could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.knowledgebase.model.KBArticle findByG_KBFI_UT_ST_Last(
+		long groupId, long kbFolderId, java.lang.String urlTitle, int status,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.knowledgebase.NoSuchArticleException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByG_KBFI_UT_ST_Last(groupId, kbFolderId, urlTitle,
+			status, orderByComparator);
+	}
+
+	/**
+	* Returns the last k b article in the ordered set where groupId = &#63; and kbFolderId = &#63; and urlTitle = &#63; and status = &#63;.
+	*
+	* @param groupId the group ID
+	* @param kbFolderId the kb folder ID
+	* @param urlTitle the url title
+	* @param status the status
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching k b article, or <code>null</code> if a matching k b article could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.knowledgebase.model.KBArticle fetchByG_KBFI_UT_ST_Last(
+		long groupId, long kbFolderId, java.lang.String urlTitle, int status,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .fetchByG_KBFI_UT_ST_Last(groupId, kbFolderId, urlTitle,
+			status, orderByComparator);
+	}
+
+	/**
+	* Returns the k b articles before and after the current k b article in the ordered set where groupId = &#63; and kbFolderId = &#63; and urlTitle = &#63; and status = &#63;.
+	*
+	* @param kbArticleId the primary key of the current k b article
+	* @param groupId the group ID
+	* @param kbFolderId the kb folder ID
+	* @param urlTitle the url title
+	* @param status the status
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the previous, current, and next k b article
+	* @throws com.liferay.knowledgebase.NoSuchArticleException if a k b article with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.knowledgebase.model.KBArticle[] findByG_KBFI_UT_ST_PrevAndNext(
+		long kbArticleId, long groupId, long kbFolderId,
+		java.lang.String urlTitle, int status,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.knowledgebase.NoSuchArticleException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByG_KBFI_UT_ST_PrevAndNext(kbArticleId, groupId,
+			kbFolderId, urlTitle, status, orderByComparator);
+	}
+
+	/**
+	* Returns all the k b articles that the user has permission to view where groupId = &#63; and kbFolderId = &#63; and urlTitle = &#63; and status = &#63;.
+	*
+	* @param groupId the group ID
+	* @param kbFolderId the kb folder ID
+	* @param urlTitle the url title
+	* @param status the status
+	* @return the matching k b articles that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.knowledgebase.model.KBArticle> filterFindByG_KBFI_UT_ST(
+		long groupId, long kbFolderId, java.lang.String urlTitle, int status)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .filterFindByG_KBFI_UT_ST(groupId, kbFolderId, urlTitle,
+			status);
+	}
+
+	/**
+	* Returns a range of all the k b articles that the user has permission to view where groupId = &#63; and kbFolderId = &#63; and urlTitle = &#63; and status = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.knowledgebase.model.impl.KBArticleModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param groupId the group ID
+	* @param kbFolderId the kb folder ID
+	* @param urlTitle the url title
+	* @param status the status
+	* @param start the lower bound of the range of k b articles
+	* @param end the upper bound of the range of k b articles (not inclusive)
+	* @return the range of matching k b articles that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.knowledgebase.model.KBArticle> filterFindByG_KBFI_UT_ST(
+		long groupId, long kbFolderId, java.lang.String urlTitle, int status,
+		int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .filterFindByG_KBFI_UT_ST(groupId, kbFolderId, urlTitle,
+			status, start, end);
+	}
+
+	/**
+	* Returns an ordered range of all the k b articles that the user has permissions to view where groupId = &#63; and kbFolderId = &#63; and urlTitle = &#63; and status = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.knowledgebase.model.impl.KBArticleModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param groupId the group ID
+	* @param kbFolderId the kb folder ID
+	* @param urlTitle the url title
+	* @param status the status
+	* @param start the lower bound of the range of k b articles
+	* @param end the upper bound of the range of k b articles (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @return the ordered range of matching k b articles that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.knowledgebase.model.KBArticle> filterFindByG_KBFI_UT_ST(
+		long groupId, long kbFolderId, java.lang.String urlTitle, int status,
+		int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .filterFindByG_KBFI_UT_ST(groupId, kbFolderId, urlTitle,
+			status, start, end, orderByComparator);
+	}
+
+	/**
+	* Returns the k b articles before and after the current k b article in the ordered set of k b articles that the user has permission to view where groupId = &#63; and kbFolderId = &#63; and urlTitle = &#63; and status = &#63;.
+	*
+	* @param kbArticleId the primary key of the current k b article
+	* @param groupId the group ID
+	* @param kbFolderId the kb folder ID
+	* @param urlTitle the url title
+	* @param status the status
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the previous, current, and next k b article
+	* @throws com.liferay.knowledgebase.NoSuchArticleException if a k b article with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.knowledgebase.model.KBArticle[] filterFindByG_KBFI_UT_ST_PrevAndNext(
+		long kbArticleId, long groupId, long kbFolderId,
+		java.lang.String urlTitle, int status,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.knowledgebase.NoSuchArticleException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .filterFindByG_KBFI_UT_ST_PrevAndNext(kbArticleId, groupId,
+			kbFolderId, urlTitle, status, orderByComparator);
+	}
+
+	/**
+	* Returns all the k b articles that the user has permission to view where groupId = &#63; and kbFolderId = &#63; and urlTitle = &#63; and status = any &#63;.
+	*
+	* @param groupId the group ID
+	* @param kbFolderId the kb folder ID
+	* @param urlTitle the url title
+	* @param statuses the statuses
+	* @return the matching k b articles that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.knowledgebase.model.KBArticle> filterFindByG_KBFI_UT_ST(
+		long groupId, long kbFolderId, java.lang.String urlTitle, int[] statuses)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .filterFindByG_KBFI_UT_ST(groupId, kbFolderId, urlTitle,
+			statuses);
+	}
+
+	/**
+	* Returns a range of all the k b articles that the user has permission to view where groupId = &#63; and kbFolderId = &#63; and urlTitle = &#63; and status = any &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.knowledgebase.model.impl.KBArticleModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param groupId the group ID
+	* @param kbFolderId the kb folder ID
+	* @param urlTitle the url title
+	* @param statuses the statuses
+	* @param start the lower bound of the range of k b articles
+	* @param end the upper bound of the range of k b articles (not inclusive)
+	* @return the range of matching k b articles that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.knowledgebase.model.KBArticle> filterFindByG_KBFI_UT_ST(
+		long groupId, long kbFolderId, java.lang.String urlTitle,
+		int[] statuses, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .filterFindByG_KBFI_UT_ST(groupId, kbFolderId, urlTitle,
+			statuses, start, end);
+	}
+
+	/**
+	* Returns an ordered range of all the k b articles that the user has permission to view where groupId = &#63; and kbFolderId = &#63; and urlTitle = &#63; and status = any &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.knowledgebase.model.impl.KBArticleModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param groupId the group ID
+	* @param kbFolderId the kb folder ID
+	* @param urlTitle the url title
+	* @param statuses the statuses
+	* @param start the lower bound of the range of k b articles
+	* @param end the upper bound of the range of k b articles (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @return the ordered range of matching k b articles that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.knowledgebase.model.KBArticle> filterFindByG_KBFI_UT_ST(
+		long groupId, long kbFolderId, java.lang.String urlTitle,
+		int[] statuses, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .filterFindByG_KBFI_UT_ST(groupId, kbFolderId, urlTitle,
+			statuses, start, end, orderByComparator);
+	}
+
+	/**
+	* Returns all the k b articles where groupId = &#63; and kbFolderId = &#63; and urlTitle = &#63; and status = any &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.knowledgebase.model.impl.KBArticleModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param groupId the group ID
+	* @param kbFolderId the kb folder ID
+	* @param urlTitle the url title
+	* @param statuses the statuses
+	* @return the matching k b articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.knowledgebase.model.KBArticle> findByG_KBFI_UT_ST(
+		long groupId, long kbFolderId, java.lang.String urlTitle, int[] statuses)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByG_KBFI_UT_ST(groupId, kbFolderId, urlTitle, statuses);
+	}
+
+	/**
+	* Returns a range of all the k b articles where groupId = &#63; and kbFolderId = &#63; and urlTitle = &#63; and status = any &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.knowledgebase.model.impl.KBArticleModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param groupId the group ID
+	* @param kbFolderId the kb folder ID
+	* @param urlTitle the url title
+	* @param statuses the statuses
+	* @param start the lower bound of the range of k b articles
+	* @param end the upper bound of the range of k b articles (not inclusive)
+	* @return the range of matching k b articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.knowledgebase.model.KBArticle> findByG_KBFI_UT_ST(
+		long groupId, long kbFolderId, java.lang.String urlTitle,
+		int[] statuses, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByG_KBFI_UT_ST(groupId, kbFolderId, urlTitle, statuses,
+			start, end);
+	}
+
+	/**
+	* Returns an ordered range of all the k b articles where groupId = &#63; and kbFolderId = &#63; and urlTitle = &#63; and status = any &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.knowledgebase.model.impl.KBArticleModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param groupId the group ID
+	* @param kbFolderId the kb folder ID
+	* @param urlTitle the url title
+	* @param statuses the statuses
+	* @param start the lower bound of the range of k b articles
+	* @param end the upper bound of the range of k b articles (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @return the ordered range of matching k b articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.knowledgebase.model.KBArticle> findByG_KBFI_UT_ST(
+		long groupId, long kbFolderId, java.lang.String urlTitle,
+		int[] statuses, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByG_KBFI_UT_ST(groupId, kbFolderId, urlTitle, statuses,
+			start, end, orderByComparator);
+	}
+
+	/**
+	* Removes all the k b articles where groupId = &#63; and kbFolderId = &#63; and urlTitle = &#63; and status = &#63; from the database.
+	*
+	* @param groupId the group ID
+	* @param kbFolderId the kb folder ID
+	* @param urlTitle the url title
+	* @param status the status
+	* @throws SystemException if a system exception occurred
+	*/
+	public static void removeByG_KBFI_UT_ST(long groupId, long kbFolderId,
+		java.lang.String urlTitle, int status)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		getPersistence()
+			.removeByG_KBFI_UT_ST(groupId, kbFolderId, urlTitle, status);
+	}
+
+	/**
+	* Returns the number of k b articles where groupId = &#63; and kbFolderId = &#63; and urlTitle = &#63; and status = &#63;.
+	*
+	* @param groupId the group ID
+	* @param kbFolderId the kb folder ID
+	* @param urlTitle the url title
+	* @param status the status
+	* @return the number of matching k b articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByG_KBFI_UT_ST(long groupId, long kbFolderId,
+		java.lang.String urlTitle, int status)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .countByG_KBFI_UT_ST(groupId, kbFolderId, urlTitle, status);
+	}
+
+	/**
+	* Returns the number of k b articles where groupId = &#63; and kbFolderId = &#63; and urlTitle = &#63; and status = any &#63;.
+	*
+	* @param groupId the group ID
+	* @param kbFolderId the kb folder ID
+	* @param urlTitle the url title
+	* @param statuses the statuses
+	* @return the number of matching k b articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByG_KBFI_UT_ST(long groupId, long kbFolderId,
+		java.lang.String urlTitle, int[] statuses)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .countByG_KBFI_UT_ST(groupId, kbFolderId, urlTitle, statuses);
+	}
+
+	/**
+	* Returns the number of k b articles that the user has permission to view where groupId = &#63; and kbFolderId = &#63; and urlTitle = &#63; and status = &#63;.
+	*
+	* @param groupId the group ID
+	* @param kbFolderId the kb folder ID
+	* @param urlTitle the url title
+	* @param status the status
+	* @return the number of matching k b articles that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int filterCountByG_KBFI_UT_ST(long groupId, long kbFolderId,
+		java.lang.String urlTitle, int status)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .filterCountByG_KBFI_UT_ST(groupId, kbFolderId, urlTitle,
+			status);
+	}
+
+	/**
+	* Returns the number of k b articles that the user has permission to view where groupId = &#63; and kbFolderId = &#63; and urlTitle = &#63; and status = any &#63;.
+	*
+	* @param groupId the group ID
+	* @param kbFolderId the kb folder ID
+	* @param urlTitle the url title
+	* @param statuses the statuses
+	* @return the number of matching k b articles that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int filterCountByG_KBFI_UT_ST(long groupId, long kbFolderId,
+		java.lang.String urlTitle, int[] statuses)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .filterCountByG_KBFI_UT_ST(groupId, kbFolderId, urlTitle,
+			statuses);
 	}
 
 	/**

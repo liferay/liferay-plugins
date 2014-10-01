@@ -198,7 +198,9 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 
 		_methodName34 = "fetchKBArticleByUrlTitle";
 
-		_methodParameterTypes34 = new String[] { "long", "java.lang.String" };
+		_methodParameterTypes34 = new String[] {
+				"long", "long", "java.lang.String"
+			};
 
 		_methodName35 = "fetchLatestKBArticle";
 
@@ -206,7 +208,9 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 
 		_methodName36 = "fetchLatestKBArticleByUrlTitle";
 
-		_methodParameterTypes36 = new String[] { "long", "java.lang.String", "int" };
+		_methodParameterTypes36 = new String[] {
+				"long", "long", "java.lang.String", "int"
+			};
 
 		_methodName37 = "getAllDescendantKBArticles";
 
@@ -257,7 +261,9 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 
 		_methodName45 = "getKBArticleByUrlTitle";
 
-		_methodParameterTypes45 = new String[] { "long", "java.lang.String" };
+		_methodParameterTypes45 = new String[] {
+				"long", "long", "java.lang.String"
+			};
 
 		_methodName46 = "getKBArticles";
 
@@ -294,7 +300,9 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 
 		_methodName52 = "getLatestKBArticleByUrlTitle";
 
-		_methodParameterTypes52 = new String[] { "long", "java.lang.String", "int" };
+		_methodParameterTypes52 = new String[] {
+				"long", "long", "java.lang.String", "int"
+			};
 
 		_methodName53 = "getPreviousAndNextKBArticles";
 
@@ -1519,15 +1527,20 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 
 	@Override
 	public com.liferay.knowledgebase.model.KBArticle fetchKBArticleByUrlTitle(
-		long groupId, java.lang.String urlTitle)
+		long groupId, long kbFolderId, java.lang.String urlTitle)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName34,
 					_methodParameterTypes34,
-					new Object[] { groupId, ClpSerializer.translateInput(
-							urlTitle) });
+					new Object[] {
+						groupId,
+						
+					kbFolderId,
+						
+					ClpSerializer.translateInput(urlTitle)
+					});
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -1580,8 +1593,7 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 
 	@Override
 	public com.liferay.knowledgebase.model.KBArticle fetchLatestKBArticleByUrlTitle(
-		long groupId, java.lang.String urlTitle, int status)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long groupId, long kbFolderId, java.lang.String urlTitle, int status) {
 		Object returnObj = null;
 
 		try {
@@ -1590,6 +1602,8 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 					new Object[] {
 						groupId,
 						
+					kbFolderId,
+						
 					ClpSerializer.translateInput(urlTitle),
 						
 					status
@@ -1597,10 +1611,6 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
 
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
@@ -1900,7 +1910,7 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 
 	@Override
 	public com.liferay.knowledgebase.model.KBArticle getKBArticleByUrlTitle(
-		long groupId, java.lang.String urlTitle)
+		long groupId, long kbFolderId, java.lang.String urlTitle)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -1908,8 +1918,13 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName45,
 					_methodParameterTypes45,
-					new Object[] { groupId, ClpSerializer.translateInput(
-							urlTitle) });
+					new Object[] {
+						groupId,
+						
+					kbFolderId,
+						
+					ClpSerializer.translateInput(urlTitle)
+					});
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -2151,7 +2166,7 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 
 	@Override
 	public com.liferay.knowledgebase.model.KBArticle getLatestKBArticleByUrlTitle(
-		long groupId, java.lang.String urlTitle, int status)
+		long groupId, long kbFolderId, java.lang.String urlTitle, int status)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -2161,6 +2176,8 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 					_methodParameterTypes52,
 					new Object[] {
 						groupId,
+						
+					kbFolderId,
 						
 					ClpSerializer.translateInput(urlTitle),
 						

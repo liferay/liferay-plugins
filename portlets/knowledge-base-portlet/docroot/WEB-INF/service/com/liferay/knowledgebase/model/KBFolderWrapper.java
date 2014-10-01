@@ -60,6 +60,7 @@ public class KBFolderWrapper implements KBFolder, ModelWrapper<KBFolder> {
 		attributes.put("modifiedDate", getModifiedDate());
 		attributes.put("parentKBFolderId", getParentKBFolderId());
 		attributes.put("name", getName());
+		attributes.put("urlTitle", getUrlTitle());
 		attributes.put("description", getDescription());
 
 		return attributes;
@@ -125,6 +126,12 @@ public class KBFolderWrapper implements KBFolder, ModelWrapper<KBFolder> {
 
 		if (name != null) {
 			setName(name);
+		}
+
+		String urlTitle = (String)attributes.get("urlTitle");
+
+		if (urlTitle != null) {
+			setUrlTitle(urlTitle);
 		}
 
 		String description = (String)attributes.get("description");
@@ -374,6 +381,26 @@ public class KBFolderWrapper implements KBFolder, ModelWrapper<KBFolder> {
 	@Override
 	public void setName(java.lang.String name) {
 		_kbFolder.setName(name);
+	}
+
+	/**
+	* Returns the url title of this k b folder.
+	*
+	* @return the url title of this k b folder
+	*/
+	@Override
+	public java.lang.String getUrlTitle() {
+		return _kbFolder.getUrlTitle();
+	}
+
+	/**
+	* Sets the url title of this k b folder.
+	*
+	* @param urlTitle the url title of this k b folder
+	*/
+	@Override
+	public void setUrlTitle(java.lang.String urlTitle) {
+		_kbFolder.setUrlTitle(urlTitle);
 	}
 
 	/**

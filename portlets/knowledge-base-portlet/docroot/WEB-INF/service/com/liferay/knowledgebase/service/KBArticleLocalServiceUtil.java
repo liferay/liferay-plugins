@@ -437,9 +437,10 @@ public class KBArticleLocalServiceUtil {
 	}
 
 	public static com.liferay.knowledgebase.model.KBArticle fetchKBArticleByUrlTitle(
-		long groupId, java.lang.String urlTitle)
+		long groupId, long kbFolderId, java.lang.String urlTitle)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getService().fetchKBArticleByUrlTitle(groupId, urlTitle);
+		return getService()
+				   .fetchKBArticleByUrlTitle(groupId, kbFolderId, urlTitle);
 	}
 
 	public static com.liferay.knowledgebase.model.KBArticle fetchLatestKBArticle(
@@ -449,10 +450,10 @@ public class KBArticleLocalServiceUtil {
 	}
 
 	public static com.liferay.knowledgebase.model.KBArticle fetchLatestKBArticleByUrlTitle(
-		long groupId, java.lang.String urlTitle, int status)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long groupId, long kbFolderId, java.lang.String urlTitle, int status) {
 		return getService()
-				   .fetchLatestKBArticleByUrlTitle(groupId, urlTitle, status);
+				   .fetchLatestKBArticleByUrlTitle(groupId, kbFolderId,
+			urlTitle, status);
 	}
 
 	public static java.util.List<com.liferay.knowledgebase.model.KBArticle> getAllDescendantKBArticles(
@@ -523,10 +524,10 @@ public class KBArticleLocalServiceUtil {
 	}
 
 	public static com.liferay.knowledgebase.model.KBArticle getKBArticleByUrlTitle(
-		long groupId, java.lang.String urlTitle)
+		long groupId, long kbFolderId, java.lang.String urlTitle)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return getService().getKBArticleByUrlTitle(groupId, urlTitle);
+		return getService().getKBArticleByUrlTitle(groupId, kbFolderId, urlTitle);
 	}
 
 	public static java.util.List<com.liferay.knowledgebase.model.KBArticle> getKBArticles(
@@ -576,11 +577,12 @@ public class KBArticleLocalServiceUtil {
 	}
 
 	public static com.liferay.knowledgebase.model.KBArticle getLatestKBArticleByUrlTitle(
-		long groupId, java.lang.String urlTitle, int status)
+		long groupId, long kbFolderId, java.lang.String urlTitle, int status)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService()
-				   .getLatestKBArticleByUrlTitle(groupId, urlTitle, status);
+				   .getLatestKBArticleByUrlTitle(groupId, kbFolderId, urlTitle,
+			status);
 	}
 
 	public static com.liferay.knowledgebase.model.KBArticle[] getPreviousAndNextKBArticles(

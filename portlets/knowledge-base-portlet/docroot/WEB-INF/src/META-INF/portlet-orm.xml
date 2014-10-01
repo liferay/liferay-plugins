@@ -27,6 +27,7 @@
 			<basic name="rootResourcePrimKey" />
 			<basic name="parentResourceClassNameId" />
 			<basic name="parentResourcePrimKey" />
+			<basic name="kbFolderId" />
 			<basic name="version" />
 			<basic name="title" />
 			<basic name="urlTitle" />
@@ -97,6 +98,7 @@
 			</basic>
 			<basic name="parentKBFolderId" />
 			<basic name="name" />
+			<basic name="urlTitle" />
 			<basic name="description" />
 			<transient name="modelAttributes" />
 			<transient name="primaryKey" />
