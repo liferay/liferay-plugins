@@ -462,6 +462,25 @@ public class KBFolderClp extends BaseModelImpl<KBFolder> implements KBFolder {
 	}
 
 	@Override
+	public java.lang.String getParentTitle(java.util.Locale locale) {
+		try {
+			String methodName = "getParentTitle";
+
+			Class<?>[] parameterTypes = new Class<?>[] { java.util.Locale.class };
+
+			Object[] parameterValues = new Object[] { locale };
+
+			java.lang.String returnObj = (java.lang.String)invokeOnRemoteModel(methodName,
+					parameterTypes, parameterValues);
+
+			return returnObj;
+		}
+		catch (Exception e) {
+			throw new UnsupportedOperationException(e);
+		}
+	}
+
+	@Override
 	public StagedModelType getStagedModelType() {
 		return new StagedModelType(PortalUtil.getClassNameId(
 				KBFolder.class.getName()));

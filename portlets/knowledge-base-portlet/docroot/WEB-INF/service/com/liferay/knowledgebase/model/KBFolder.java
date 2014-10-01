@@ -35,4 +35,7 @@ public interface KBFolder extends KBFolderModel, PersistedModel {
 	 * Never modify this interface directly. Add methods to {@link com.liferay.knowledgebase.model.impl.KBFolderImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
 	public long getClassNameId();
+
+	public java.lang.String getParentTitle(java.util.Locale locale)
+		throws com.liferay.portal.kernel.exception.PortalException;
 }

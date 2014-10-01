@@ -328,6 +328,12 @@ public class KBFolderLocalServiceWrapper implements KBFolderLocalService,
 			arguments);
 	}
 
+	@Override
+	public void moveKBFolder(long kbFolderId, long parentKBFolderId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		_kbFolderLocalService.moveKBFolder(kbFolderId, parentKBFolderId);
+	}
+
 	/**
 	* Sets the Spring bean ID for this bean.
 	*

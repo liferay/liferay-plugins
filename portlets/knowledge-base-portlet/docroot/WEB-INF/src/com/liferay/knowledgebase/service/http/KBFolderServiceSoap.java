@@ -145,6 +145,18 @@ public class KBFolderServiceSoap {
 		}
 	}
 
+	public static void moveKBFolder(long kbFolderId, long parentKBFolderId)
+		throws RemoteException {
+		try {
+			KBFolderServiceUtil.moveKBFolder(kbFolderId, parentKBFolderId);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
 	public static com.liferay.knowledgebase.model.KBFolderSoap updateKBFolder(
 		long parentResourceClassNameId, long parentResourcePrimKey,
 		long kbFolderId, java.lang.String name, java.lang.String description)

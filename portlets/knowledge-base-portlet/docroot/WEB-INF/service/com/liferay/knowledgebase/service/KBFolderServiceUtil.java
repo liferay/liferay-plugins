@@ -90,6 +90,11 @@ public class KBFolderServiceUtil {
 		return getService().invokeMethod(name, parameterTypes, arguments);
 	}
 
+	public static void moveKBFolder(long kbFolderId, long parentKBFolderId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		getService().moveKBFolder(kbFolderId, parentKBFolderId);
+	}
+
 	/**
 	* Sets the Spring bean ID for this bean.
 	*

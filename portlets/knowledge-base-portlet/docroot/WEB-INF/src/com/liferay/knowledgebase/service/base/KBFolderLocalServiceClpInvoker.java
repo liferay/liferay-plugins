@@ -171,9 +171,13 @@ public class KBFolderLocalServiceClpInvoker {
 
 		_methodParameterTypes75 = new String[] { "long", "long" };
 
-		_methodName76 = "updateKBFolder";
+		_methodName76 = "moveKBFolder";
 
-		_methodParameterTypes76 = new String[] {
+		_methodParameterTypes76 = new String[] { "long", "long" };
+
+		_methodName77 = "updateKBFolder";
+
+		_methodParameterTypes77 = new String[] {
 				"long", "long", "long", "java.lang.String", "java.lang.String"
 			};
 	}
@@ -352,6 +356,14 @@ public class KBFolderLocalServiceClpInvoker {
 
 		if (_methodName76.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes76, parameterTypes)) {
+			KBFolderLocalServiceUtil.moveKBFolder(((Long)arguments[0]).longValue(),
+				((Long)arguments[1]).longValue());
+
+			return null;
+		}
+
+		if (_methodName77.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes77, parameterTypes)) {
 			return KBFolderLocalServiceUtil.updateKBFolder(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				((Long)arguments[2]).longValue(),
@@ -421,4 +433,6 @@ public class KBFolderLocalServiceClpInvoker {
 	private String[] _methodParameterTypes75;
 	private String _methodName76;
 	private String[] _methodParameterTypes76;
+	private String _methodName77;
+	private String[] _methodParameterTypes77;
 }

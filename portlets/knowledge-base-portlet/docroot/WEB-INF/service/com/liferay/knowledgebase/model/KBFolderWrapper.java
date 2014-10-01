@@ -237,6 +237,12 @@ public class KBFolderWrapper implements KBFolder, ModelWrapper<KBFolder> {
 		return _kbFolder.getParentKBFolderId();
 	}
 
+	@Override
+	public java.lang.String getParentTitle(java.util.Locale locale)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _kbFolder.getParentTitle(locale);
+	}
+
 	/**
 	* Returns the primary key of this k b folder.
 	*
