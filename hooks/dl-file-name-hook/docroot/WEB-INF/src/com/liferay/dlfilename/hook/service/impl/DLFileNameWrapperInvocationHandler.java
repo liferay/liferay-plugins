@@ -14,6 +14,7 @@
 
 package com.liferay.dlfilename.hook.service.impl;
 
+import com.liferay.dlfilename.hook.model.impl.DLFileNameWrapperBackgroundTaskImpl;
 import com.liferay.dlfilename.hook.model.impl.DLFileNameWrapperFileEntryImpl;
 import com.liferay.dlfilename.hook.model.impl.DLFileNameWrapperFileVersionImpl;
 import com.liferay.dlfilename.hook.util.DLFileNameThreadLocal;
@@ -21,6 +22,7 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.repository.model.FileVersion;
+import com.liferay.portal.model.BackgroundTask;
 import com.liferay.portlet.asset.model.AssetEntry;
 import com.liferay.portlet.documentlibrary.model.DLFileEntry;
 import com.liferay.portlet.documentlibrary.service.DLAppLocalServiceUtil;
@@ -86,6 +88,11 @@ class DLFileNameWrapperInvocationHandler implements InvocationHandler {
 	protected Object wrap(Object object) {
 		if (object instanceof AssetEntry) {
 			return setAssetEntryTitle((AssetEntry)object);
+		}
+
+		if (object instanceof BackgroundTask) {
+			return new DLFileNameWrapperBackgroundTaskImpl(
+				(BackgroundTask)object);
 		}
 
 		if (object instanceof FileEntry) {
