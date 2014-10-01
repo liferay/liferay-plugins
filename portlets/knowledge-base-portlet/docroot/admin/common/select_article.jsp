@@ -45,10 +45,10 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 					<c:when test="<%= oldParentResourceClassNameId == kbFolderClassNameId %>">
 
 						<%
-						KBFolder oldParentFolder = KBFolderServiceUtil.getKBFolder(oldParentResourcePrimKey);
+						KBFolder oldParentKBFolder = KBFolderServiceUtil.getKBFolder(oldParentResourcePrimKey);
 						%>
 
-						<liferay-ui:input-resource url="<%= oldParentFolder.getName() %>" />
+						<liferay-ui:input-resource url="<%= oldParentKBFolder.getName() %>" />
 					</c:when>
 					<c:otherwise>
 						<liferay-ui:input-resource url='<%= BeanPropertiesUtil.getString(KBArticleServiceUtil.getLatestKBArticle(oldParentResourcePrimKey, status), "title") %>' />
@@ -88,7 +88,7 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 			<c:if test="<%= parentResourcePrimKey != KBFolderConstants.DEFAULT_PARENT_FOLDER_ID %>">
 
 				<%
-				List<Tuple> selKBEntries = new ArrayList<Tuple>();
+				List<Tuple> tuples = new ArrayList<Tuple>();
 
 				long selParentResourcePrimKey = parentResourcePrimKey;
 				long selParentResourceClassNameId = parentResourceClassNameId;
@@ -97,7 +97,7 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 					if (selParentResourceClassNameId == kbFolderClassNameId) {
 						KBFolder selKBFolder = KBFolderServiceUtil.getKBFolder(selParentResourcePrimKey);
 
-						selKBEntries.add(new Tuple(selKBFolder.getKbFolderId(), StringUtil.shorten(selKBFolder.getName(), 30)));
+						tuples.add(new Tuple(selKBFolder.getKbFolderId(), StringUtil.shorten(selKBFolder.getName(), 30)));
 
 						selParentResourcePrimKey = selKBFolder.getParentKBFolderId();
 						selParentResourceClassNameId = selKBFolder.getClassNameId();
@@ -105,14 +105,14 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 					else {
 						KBArticle selKBArticle = KBArticleServiceUtil.getLatestKBArticle(selParentResourcePrimKey, status);
 
-						selKBEntries.add(new Tuple(selKBArticle.getResourcePrimKey(), StringUtil.shorten(selKBArticle.getTitle(), 30)));
+						tuples.add(new Tuple(selKBArticle.getResourcePrimKey(), StringUtil.shorten(selKBArticle.getTitle(), 30)));
 
 						selParentResourcePrimKey = selKBArticle.getParentResourcePrimKey();
 						selParentResourceClassNameId = selKBArticle.getParentResourceClassNameId();
 					}
 				}
 
-				for (Tuple tuple: selKBEntries) {
+				for (Tuple tuple: tuples) {
 				%>
 
 					<aui:a href='<%= HttpUtil.setParameter(breadcrumbURL, "parentResourcePrimKey", (Long)tuple.getObject(0)) %>'><%= tuple.getObject(1) %></aui:a> &raquo;
