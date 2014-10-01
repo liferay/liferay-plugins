@@ -21,13 +21,14 @@ import com.liferay.portal.kernel.cache.ThreadLocalCacheManager;
 /**
  * @author Preston Crary
  */
-public class FileNameUtil {
+public class DLFileNameThreadLocal {
 
-	public static final String DISPLAY_NAME = "DLDisplayName";
+	public static final String THREAD_LOCAL_NAME = "DLFileNameHookThreadLocal";
 
-	public static boolean isThreadLocalEnabled(String key) {
+	public static boolean isEnabled() {
 		ThreadLocalCache<Boolean> threadLocalCache =
-			ThreadLocalCacheManager.getThreadLocalCache(Lifecycle.REQUEST, key);
+			ThreadLocalCacheManager.getThreadLocalCache(
+				Lifecycle.REQUEST, THREAD_LOCAL_NAME);
 
 		Boolean enabled = threadLocalCache.get("isEnabled");
 
@@ -36,6 +37,22 @@ public class FileNameUtil {
 		}
 
 		return enabled;
+	}
+
+	public static boolean setEnabled(boolean enabled) {
+		ThreadLocalCache<Boolean> threadLocalCache =
+			ThreadLocalCacheManager.getThreadLocalCache(
+				Lifecycle.REQUEST, THREAD_LOCAL_NAME);
+
+		Boolean dlFileNameHookEnabled = threadLocalCache.get("isEnabled");
+
+		threadLocalCache.put("isEnabled", enabled);
+
+		if (dlFileNameHookEnabled == null) {
+			return false;
+		}
+
+		return dlFileNameHookEnabled;
 	}
 
 }

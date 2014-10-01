@@ -14,14 +14,12 @@
  */
 --%>
 
-<%@ include file="/html/portlet/document_library/init.jsp" %>
+<%@ page import="com.liferay.portal.kernel.cache.Lifecycle" %>
+<%@ page import="com.liferay.portal.kernel.cache.ThreadLocalCache" %>
+<%@ page import="com.liferay.portal.kernel.cache.ThreadLocalCacheManager" %>
 
 <%
-boolean threadLocalEnabled = _putThreadLocalEnabled(true, "getFileEntries");
-%>
+ThreadLocalCache<Boolean> threadLocalCache = ThreadLocalCacheManager.getThreadLocalCache(Lifecycle.REQUEST, "DLFileNameHookThreadLocal");
 
-<liferay-util:include page="/html/portlet/document_library/select_file_entry.jsp" useCustomPage="<%= false %>" />
-
-<%
-_putThreadLocalEnabled(threadLocalEnabled, "getFileEntries");
+threadLocalCache.put("isEnabled", true);
 %>

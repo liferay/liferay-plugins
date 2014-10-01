@@ -14,7 +14,7 @@
 
 package com.liferay.dlfilename.hook.service.impl;
 
-import com.liferay.dlfilename.hook.util.FileNameUtil;
+import com.liferay.dlfilename.hook.model.impl.DLFileNameWrapperFileEntryImpl;
 import com.liferay.dlfilename.hook.util.PortletPropsValues;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
@@ -108,7 +108,8 @@ public class DLFileNameWrapperDLFileEntryLocalServiceImpl
 		Map<String, Serializable> expandoBridgeAttributes =
 			serviceContext.getExpandoBridgeAttributes();
 
-		expandoBridgeAttributes.put(FileNameUtil.DISPLAY_NAME, title);
+		expandoBridgeAttributes.put(
+			DLFileNameWrapperFileEntryImpl.DISPLAY_NAME, title);
 
 		serviceContext.setExpandoBridgeAttributes(expandoBridgeAttributes);
 

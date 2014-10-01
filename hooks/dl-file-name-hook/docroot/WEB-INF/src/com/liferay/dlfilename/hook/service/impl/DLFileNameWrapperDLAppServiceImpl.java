@@ -14,16 +14,9 @@
 
 package com.liferay.dlfilename.hook.service.impl;
 
-import com.liferay.dlfilename.hook.model.impl.DLFileNameWrapperFileEntryImpl;
-import com.liferay.dlfilename.hook.util.FileNameUtil;
-import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.kernel.repository.model.FileEntry;
+import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portlet.documentlibrary.service.DLAppService;
 import com.liferay.portlet.documentlibrary.service.DLAppServiceWrapper;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * @author Preston Crary
@@ -32,29 +25,14 @@ public class DLFileNameWrapperDLAppServiceImpl extends DLAppServiceWrapper {
 
 	public DLFileNameWrapperDLAppServiceImpl(DLAppService dlAppService) {
 		super(dlAppService);
-	}
 
-	@Override
-	public List<FileEntry> getFileEntries(
-			long repositoryId, long folderId, int start, int end)
-		throws PortalException, SystemException {
+		ClassLoader classLoader = getClass().getClassLoader();
 
-		List<FileEntry> fileEntries = super.getFileEntries(
-			repositoryId, folderId, start, end);
+		dlAppService = (DLAppService)ProxyUtil.newProxyInstance(
+			classLoader, new Class<?>[] { DLAppService.class },
+			new DLFileNameWrapperInvocationHandler(dlAppService));
 
-		if (!FileNameUtil.isThreadLocalEnabled("getFileEntries")) {
-			return fileEntries;
-		}
-
-		List<FileEntry> dlFileNameFileEntries = new ArrayList<FileEntry>(
-			fileEntries.size());
-
-		for (FileEntry fileEntry : fileEntries) {
-			dlFileNameFileEntries.add(
-				new DLFileNameWrapperFileEntryImpl(fileEntry));
-		}
-
-		return dlFileNameFileEntries;
+		this.setWrappedService(dlAppService);
 	}
 
 }

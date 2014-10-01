@@ -14,7 +14,6 @@
 
 package com.liferay.dlfilename.hook.model.impl;
 
-import com.liferay.dlfilename.hook.util.FileNameUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.repository.model.FileEntry;
@@ -27,6 +26,8 @@ import com.liferay.portlet.expando.model.ExpandoBridge;
  * @author Preston Crary
  */
 public class DLFileNameWrapperFileEntryImpl extends FileEntryWrapper {
+
+	public static final String DISPLAY_NAME = "DLDisplayName";
 
 	public DLFileNameWrapperFileEntryImpl(FileEntry fileEntry) {
 		super(fileEntry);
@@ -54,14 +55,23 @@ public class DLFileNameWrapperFileEntryImpl extends FileEntryWrapper {
 	public String getTitle() {
 		ExpandoBridge expandoBridge = getExpandoBridge();
 
-		String displayTitle = (String)expandoBridge.getAttribute(
-			FileNameUtil.DISPLAY_NAME);
+		String displayTitle = (String)expandoBridge.getAttribute(DISPLAY_NAME);
 
 		if (Validator.isNull(displayTitle)) {
 			return super.getTitle();
 		}
 
 		return displayTitle;
+	}
+
+	@Override
+	public FileEntry toEscapedModel() {
+		if (isEscapedModel()) {
+			return this;
+		}
+		else {
+			return new DLFileNameWrapperFileEntryImpl(super.toEscapedModel());
+		}
 	}
 
 }

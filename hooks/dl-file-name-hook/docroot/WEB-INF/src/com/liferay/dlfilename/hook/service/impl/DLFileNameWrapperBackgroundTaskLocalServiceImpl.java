@@ -15,7 +15,7 @@
 package com.liferay.dlfilename.hook.service.impl;
 
 import com.liferay.dlfilename.hook.model.impl.DLFileNameWrapperBackgroundTaskImpl;
-import com.liferay.dlfilename.hook.util.FileNameUtil;
+import com.liferay.dlfilename.hook.util.DLFileNameThreadLocal;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.model.BackgroundTask;
@@ -46,7 +46,7 @@ public class DLFileNameWrapperBackgroundTaskLocalServiceImpl
 		List<BackgroundTask> backgroundTasks = super.getBackgroundTasks(
 			groupId, taskExecutorClassName, start, end, orderByComparator);
 
-		if (FileNameUtil.isThreadLocalEnabled("getBackgroundTasks")) {
+		if (DLFileNameThreadLocal.isEnabled()) {
 			return _wrapBackgroundTasks(backgroundTasks);
 		}
 
@@ -63,7 +63,7 @@ public class DLFileNameWrapperBackgroundTaskLocalServiceImpl
 			groupId, name, taskExecutorClassName, start, end,
 			orderByComparator);
 
-		if (FileNameUtil.isThreadLocalEnabled("getBackgroundTasks")) {
+		if (DLFileNameThreadLocal.isEnabled()) {
 			return _wrapBackgroundTasks(backgroundTasks);
 		}
 

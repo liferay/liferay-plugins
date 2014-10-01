@@ -14,11 +14,7 @@
 
 package com.liferay.dlfilename.hook.service.impl;
 
-import com.liferay.dlfilename.hook.model.impl.DLFileNameWrapperFileEntryImpl;
-import com.liferay.dlfilename.hook.util.FileNameUtil;
-import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.kernel.repository.model.FileEntry;
+import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portlet.documentlibrary.service.DLAppLocalService;
 import com.liferay.portlet.documentlibrary.service.DLAppLocalServiceWrapper;
 
@@ -32,32 +28,14 @@ public class DLFileNameWrapperDLAppLocalServiceImpl
 		DLAppLocalService dlAppLocalService) {
 
 		super(dlAppLocalService);
-	}
 
-	@Override
-	public FileEntry getFileEntry(long fileEntryId)
-		throws PortalException, SystemException {
+		ClassLoader classLoader = getClass().getClassLoader();
 
-		FileEntry fileEntry = super.getFileEntry(fileEntryId);
+		dlAppLocalService = (DLAppLocalService)ProxyUtil.newProxyInstance(
+			classLoader, new Class<?>[]{DLAppLocalService.class},
+			new DLFileNameWrapperInvocationHandler(dlAppLocalService));
 
-		if (FileNameUtil.isThreadLocalEnabled("getFileEntry")) {
-			return new DLFileNameWrapperFileEntryImpl(fileEntry);
-		}
-
-		return fileEntry;
-	}
-
-	@Override
-	public FileEntry getFileEntry(long groupId, long folderId, String title)
-		throws PortalException, SystemException {
-
-		FileEntry fileEntry = super.getFileEntry(groupId, folderId, title);
-
-		if (FileNameUtil.isThreadLocalEnabled("getFileEntry")) {
-			return new DLFileNameWrapperFileEntryImpl(fileEntry);
-		}
-
-		return fileEntry;
+		this.setWrappedService(dlAppLocalService);
 	}
 
 }

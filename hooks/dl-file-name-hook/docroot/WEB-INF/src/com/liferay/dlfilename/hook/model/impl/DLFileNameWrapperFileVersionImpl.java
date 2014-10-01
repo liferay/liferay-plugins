@@ -14,7 +14,6 @@
 
 package com.liferay.dlfilename.hook.model.impl;
 
-import com.liferay.dlfilename.hook.util.FileNameUtil;
 import com.liferay.portal.kernel.repository.model.FileVersion;
 import com.liferay.portal.kernel.repository.model.FileVersionWrapper;
 import com.liferay.portal.kernel.util.Validator;
@@ -34,7 +33,7 @@ public class DLFileNameWrapperFileVersionImpl extends FileVersionWrapper {
 		ExpandoBridge expandoBridge = getExpandoBridge();
 
 		String displayTitle = (String)expandoBridge.getAttribute(
-			FileNameUtil.DISPLAY_NAME);
+			DLFileNameWrapperFileEntryImpl.DISPLAY_NAME);
 
 		if (Validator.isNull(displayTitle)) {
 			return super.getTitle();
