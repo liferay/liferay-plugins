@@ -17,6 +17,7 @@ package com.liferay.knowledgebase.admin.lar;
 import com.liferay.knowledgebase.model.KBFolder;
 import com.liferay.knowledgebase.model.KBFolderConstants;
 import com.liferay.knowledgebase.service.KBFolderLocalServiceUtil;
+import com.liferay.knowledgebase.service.persistence.KBFolderUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.lar.BaseStagedModelDataHandler;
@@ -34,6 +35,8 @@ import java.util.Map;
 public class KBFolderStagedModelDataHandler
 	extends BaseStagedModelDataHandler<KBFolder> {
 
+	public static final String[] CLASS_NAMES = {KBFolder.class.getName()};
+
 	@Override
 	public void deleteStagedModel(
 			String uuid, long groupId, String className, String extraData)
@@ -50,7 +53,7 @@ public class KBFolderStagedModelDataHandler
 
 	@Override
 	public String[] getClassNames() {
-		return _CLASS_NAMES;
+		return CLASS_NAMES;
 	}
 
 	@Override
@@ -83,6 +86,8 @@ public class KBFolderStagedModelDataHandler
 			PortletDataContext portletDataContext, KBFolder kbFolder)
 		throws Exception {
 
+		long userId = portletDataContext.getUserId(kbFolder.getUserUuid());
+
 		if (kbFolder.getParentKBFolderId() !=
 				KBFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
 
@@ -90,17 +95,14 @@ public class KBFolderStagedModelDataHandler
 				portletDataContext, kbFolder, KBFolder.class);
 		}
 
-		long userId = portletDataContext.getUserId(kbFolder.getUserUuid());
-
 		ServiceContext serviceContext = portletDataContext.createServiceContext(
 			kbFolder);
 
 		KBFolder importedKBFolder = null;
 
 		if (portletDataContext.isDataStrategyMirror()) {
-			KBFolder existingKBFolder =
-				KBFolderLocalServiceUtil.fetchKBFolderByUuidAndGroupId(
-					kbFolder.getUuid(), portletDataContext.getScopeGroupId());
+			KBFolder existingKBFolder = KBFolderUtil.fetchByUUID_G(
+				kbFolder.getUuid(), portletDataContext.getScopeGroupId());
 
 			if (existingKBFolder == null) {
 				importedKBFolder = KBFolderLocalServiceUtil.addKBFolder(
@@ -125,14 +127,12 @@ public class KBFolderStagedModelDataHandler
 
 		portletDataContext.importClassedModel(kbFolder, importedKBFolder);
 
-		Map<Long, Long> kbFolderPrimaryKeysMap =
+		Map<Long, Long> kbFolderPrimKeysMap =
 			(Map<Long, Long>)portletDataContext.getNewPrimaryKeysMap(
 				KBFolder.class);
 
-		kbFolderPrimaryKeysMap.put(
+		kbFolderPrimKeysMap.put(
 			kbFolder.getKbFolderId(), importedKBFolder.getKbFolderId());
 	}
-
-	private static final String[] _CLASS_NAMES = { KBFolder.class.getName() };
 
 }
