@@ -97,7 +97,7 @@ public class KBArticleImporter {
 
 		KBArticle kbArticle =
 			KBArticleLocalServiceUtil.fetchKBArticleByUrlTitle(
-				groupId, urlTitle);
+				groupId, KBFolderConstants.DEFAULT_PARENT_FOLDER_ID, urlTitle);
 
 		try {
 			if (kbArticle == null) {

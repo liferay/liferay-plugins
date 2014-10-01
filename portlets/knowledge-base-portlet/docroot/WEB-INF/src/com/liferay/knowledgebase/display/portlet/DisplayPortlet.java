@@ -162,7 +162,8 @@ public class DisplayPortlet extends BaseKBPortlet {
 		if (Validator.isNotNull(urlTitle)) {
 			KBArticle kbArticle =
 				KBArticleLocalServiceUtil.getKBArticleByUrlTitle(
-					themeDisplay.getScopeGroupId(), urlTitle);
+					themeDisplay.getScopeGroupId(),
+					KBFolderConstants.DEFAULT_PARENT_FOLDER_ID, urlTitle);
 
 			return kbArticle.getResourcePrimKey();
 		}

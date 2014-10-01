@@ -18,6 +18,7 @@ import com.liferay.knowledgebase.model.KBArticle;
 import com.liferay.knowledgebase.model.KBCommentConstants;
 import com.liferay.knowledgebase.model.KBFolder;
 import com.liferay.knowledgebase.model.KBFolderConstants;
+import com.liferay.knowledgebase.service.KBArticleLocalServiceUtil;
 import com.liferay.knowledgebase.service.KBArticleServiceUtil;
 import com.liferay.knowledgebase.service.KBFolderServiceUtil;
 import com.liferay.knowledgebase.util.comparator.KBArticleCreateDateComparator;
@@ -283,6 +284,29 @@ public class KnowledgeBaseUtil {
 		}
 
 		return null;
+	}
+
+	public static long getKbFolderId(
+			long parentResourceClassNameId, long parentResourcePrimKey)
+		throws PortalException, SystemException {
+
+		long kbFolderClassNameId = PortalUtil.getClassNameId(
+			KBFolderConstants.getClassName());
+
+		if (parentResourceClassNameId == kbFolderClassNameId) {
+			return parentResourcePrimKey;
+		}
+
+		while (parentResourceClassNameId != kbFolderClassNameId) {
+			KBArticle kbArticle = KBArticleLocalServiceUtil.getLatestKBArticle(
+				parentResourcePrimKey, WorkflowConstants.STATUS_ANY);
+
+			parentResourceClassNameId =
+				kbArticle.getParentResourceClassNameId();
+			parentResourcePrimKey = kbArticle.getParentResourcePrimKey();
+		}
+
+		return parentResourcePrimKey;
 	}
 
 	public static OrderByComparator getKBTemplateOrderByComparator(
