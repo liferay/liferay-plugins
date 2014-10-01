@@ -84,8 +84,9 @@ public class RoleModelListener extends BaseModelListener<Role> {
 	}
 
 	protected List<User> getUsers(
-		Object classPK, String associationClassName,
-		Object associationClassPK) throws PortalException {
+			Object classPK, String associationClassName,
+			Object associationClassPK)
+		throws PortalException {
 
 		Role role = RoleLocalServiceUtil.getRole((Long)classPK);
 
