@@ -161,7 +161,9 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 
 		_methodName23 = "fetchKBArticleByUrlTitle";
 
-		_methodParameterTypes23 = new String[] { "long", "java.lang.String" };
+		_methodParameterTypes23 = new String[] {
+				"long", "long", "java.lang.String"
+			};
 
 		_methodName24 = "fetchKBArticleByUuidAndGroupId";
 
@@ -173,7 +175,9 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 
 		_methodName26 = "fetchLatestKBArticleByUrlTitle";
 
-		_methodParameterTypes26 = new String[] { "long", "java.lang.String", "int" };
+		_methodParameterTypes26 = new String[] {
+				"long", "long", "java.lang.String", "int"
+			};
 
 		_methodName27 = "getActionableDynamicQuery";
 
@@ -242,7 +246,9 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 
 		_methodName39 = "getKBArticleByUrlTitle";
 
-		_methodParameterTypes39 = new String[] { "long", "java.lang.String" };
+		_methodParameterTypes39 = new String[] {
+				"long", "long", "java.lang.String"
+			};
 
 		_methodName40 = "getKBArticleByUuidAndGroupId";
 
@@ -302,7 +308,9 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 
 		_methodName51 = "getLatestKBArticleByUrlTitle";
 
-		_methodParameterTypes51 = new String[] { "long", "java.lang.String", "int" };
+		_methodParameterTypes51 = new String[] {
+				"long", "long", "java.lang.String", "int"
+			};
 
 		_methodName52 = "getPersistedModel";
 
@@ -1133,14 +1141,19 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 
 	@Override
 	public com.liferay.knowledgebase.model.KBArticle fetchKBArticleByUrlTitle(
-		long groupId, java.lang.String urlTitle) {
+		long groupId, long kbFolderId, java.lang.String urlTitle) {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName23,
 					_methodParameterTypes23,
-					new Object[] { groupId, ClpSerializer.translateInput(
-							urlTitle) });
+					new Object[] {
+						groupId,
+						
+					kbFolderId,
+						
+					ClpSerializer.translateInput(urlTitle)
+					});
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -1209,7 +1222,7 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 
 	@Override
 	public com.liferay.knowledgebase.model.KBArticle fetchLatestKBArticleByUrlTitle(
-		long groupId, java.lang.String urlTitle, int status) {
+		long groupId, long kbFolderId, java.lang.String urlTitle, int status) {
 		Object returnObj = null;
 
 		try {
@@ -1217,6 +1230,8 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 					_methodParameterTypes26,
 					new Object[] {
 						groupId,
+						
+					kbFolderId,
 						
 					ClpSerializer.translateInput(urlTitle),
 						
@@ -1586,15 +1601,20 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 
 	@Override
 	public com.liferay.knowledgebase.model.KBArticle getKBArticleByUrlTitle(
-		long groupId, java.lang.String urlTitle)
+		long groupId, long kbFolderId, java.lang.String urlTitle)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName39,
 					_methodParameterTypes39,
-					new Object[] { groupId, ClpSerializer.translateInput(
-							urlTitle) });
+					new Object[] {
+						groupId,
+						
+					kbFolderId,
+						
+					ClpSerializer.translateInput(urlTitle)
+					});
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -1941,7 +1961,7 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 
 	@Override
 	public com.liferay.knowledgebase.model.KBArticle getLatestKBArticleByUrlTitle(
-		long groupId, java.lang.String urlTitle, int status)
+		long groupId, long kbFolderId, java.lang.String urlTitle, int status)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
@@ -1950,6 +1970,8 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 					_methodParameterTypes51,
 					new Object[] {
 						groupId,
+						
+					kbFolderId,
 						
 					ClpSerializer.translateInput(urlTitle),
 						

@@ -99,10 +99,42 @@ public class KBFolderServiceSoap {
 		}
 	}
 
+	public static com.liferay.knowledgebase.model.KBFolderSoap fetchKBFolderByUrlTitle(
+		long groupId, long parentKbFolderId, java.lang.String urlTitle)
+		throws RemoteException {
+		try {
+			com.liferay.knowledgebase.model.KBFolder returnValue = KBFolderServiceUtil.fetchKBFolderByUrlTitle(groupId,
+					parentKbFolderId, urlTitle);
+
+			return com.liferay.knowledgebase.model.KBFolderSoap.toSoapModel(returnValue);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
 	public static com.liferay.knowledgebase.model.KBFolderSoap getKBFolder(
 		long kbFolderId) throws RemoteException {
 		try {
 			com.liferay.knowledgebase.model.KBFolder returnValue = KBFolderServiceUtil.getKBFolder(kbFolderId);
+
+			return com.liferay.knowledgebase.model.KBFolderSoap.toSoapModel(returnValue);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static com.liferay.knowledgebase.model.KBFolderSoap getKBFolderByUrlTitle(
+		long groupId, long parentKbFolderId, java.lang.String urlTitle)
+		throws RemoteException {
+		try {
+			com.liferay.knowledgebase.model.KBFolder returnValue = KBFolderServiceUtil.getKBFolderByUrlTitle(groupId,
+					parentKbFolderId, urlTitle);
 
 			return com.liferay.knowledgebase.model.KBFolderSoap.toSoapModel(returnValue);
 		}

@@ -40,7 +40,7 @@ import java.util.Date;
 public class KBFolderCacheModel implements CacheModel<KBFolder>, Externalizable {
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(23);
+		StringBundler sb = new StringBundler(25);
 
 		sb.append("{uuid=");
 		sb.append(uuid);
@@ -62,6 +62,8 @@ public class KBFolderCacheModel implements CacheModel<KBFolder>, Externalizable 
 		sb.append(parentKBFolderId);
 		sb.append(", name=");
 		sb.append(name);
+		sb.append(", urlTitle=");
+		sb.append(urlTitle);
 		sb.append(", description=");
 		sb.append(description);
 		sb.append("}");
@@ -115,6 +117,13 @@ public class KBFolderCacheModel implements CacheModel<KBFolder>, Externalizable 
 			kbFolderImpl.setName(name);
 		}
 
+		if (urlTitle == null) {
+			kbFolderImpl.setUrlTitle(StringPool.BLANK);
+		}
+		else {
+			kbFolderImpl.setUrlTitle(urlTitle);
+		}
+
 		if (description == null) {
 			kbFolderImpl.setDescription(StringPool.BLANK);
 		}
@@ -139,6 +148,7 @@ public class KBFolderCacheModel implements CacheModel<KBFolder>, Externalizable 
 		modifiedDate = objectInput.readLong();
 		parentKBFolderId = objectInput.readLong();
 		name = objectInput.readUTF();
+		urlTitle = objectInput.readUTF();
 		description = objectInput.readUTF();
 	}
 
@@ -175,6 +185,13 @@ public class KBFolderCacheModel implements CacheModel<KBFolder>, Externalizable 
 			objectOutput.writeUTF(name);
 		}
 
+		if (urlTitle == null) {
+			objectOutput.writeUTF(StringPool.BLANK);
+		}
+		else {
+			objectOutput.writeUTF(urlTitle);
+		}
+
 		if (description == null) {
 			objectOutput.writeUTF(StringPool.BLANK);
 		}
@@ -193,5 +210,6 @@ public class KBFolderCacheModel implements CacheModel<KBFolder>, Externalizable 
 	public long modifiedDate;
 	public long parentKBFolderId;
 	public String name;
+	public String urlTitle;
 	public String description;
 }

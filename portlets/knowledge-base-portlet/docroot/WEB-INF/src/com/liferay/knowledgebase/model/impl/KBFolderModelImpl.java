@@ -82,9 +82,10 @@ public class KBFolderModelImpl extends BaseModelImpl<KBFolder>
 			{ "modifiedDate", Types.TIMESTAMP },
 			{ "parentKBFolderId", Types.BIGINT },
 			{ "name", Types.VARCHAR },
+			{ "urlTitle", Types.VARCHAR },
 			{ "description", Types.VARCHAR }
 		};
-	public static final String TABLE_SQL_CREATE = "create table KBFolder (uuid_ VARCHAR(75) null,kbFolderId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,parentKBFolderId LONG,name VARCHAR(75) null,description STRING null)";
+	public static final String TABLE_SQL_CREATE = "create table KBFolder (uuid_ VARCHAR(75) null,kbFolderId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,parentKBFolderId LONG,name VARCHAR(75) null,urlTitle VARCHAR(75) null,description STRING null)";
 	public static final String TABLE_SQL_DROP = "drop table KBFolder";
 	public static final String ORDER_BY_JPQL = " ORDER BY kbFolder.kbFolderId ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY KBFolder.kbFolderId ASC";
@@ -103,8 +104,9 @@ public class KBFolderModelImpl extends BaseModelImpl<KBFolder>
 	public static final long COMPANYID_COLUMN_BITMASK = 1L;
 	public static final long GROUPID_COLUMN_BITMASK = 2L;
 	public static final long PARENTKBFOLDERID_COLUMN_BITMASK = 4L;
-	public static final long UUID_COLUMN_BITMASK = 8L;
-	public static final long KBFOLDERID_COLUMN_BITMASK = 16L;
+	public static final long URLTITLE_COLUMN_BITMASK = 8L;
+	public static final long UUID_COLUMN_BITMASK = 16L;
+	public static final long KBFOLDERID_COLUMN_BITMASK = 32L;
 
 	/**
 	 * Converts the soap model instance into a normal model instance.
@@ -129,6 +131,7 @@ public class KBFolderModelImpl extends BaseModelImpl<KBFolder>
 		model.setModifiedDate(soapModel.getModifiedDate());
 		model.setParentKBFolderId(soapModel.getParentKBFolderId());
 		model.setName(soapModel.getName());
+		model.setUrlTitle(soapModel.getUrlTitle());
 		model.setDescription(soapModel.getDescription());
 
 		return model;
@@ -204,6 +207,7 @@ public class KBFolderModelImpl extends BaseModelImpl<KBFolder>
 		attributes.put("modifiedDate", getModifiedDate());
 		attributes.put("parentKBFolderId", getParentKBFolderId());
 		attributes.put("name", getName());
+		attributes.put("urlTitle", getUrlTitle());
 		attributes.put("description", getDescription());
 
 		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
@@ -272,6 +276,12 @@ public class KBFolderModelImpl extends BaseModelImpl<KBFolder>
 
 		if (name != null) {
 			setName(name);
+		}
+
+		String urlTitle = (String)attributes.get("urlTitle");
+
+		if (urlTitle != null) {
+			setUrlTitle(urlTitle);
 		}
 
 		String description = (String)attributes.get("description");
@@ -468,6 +478,32 @@ public class KBFolderModelImpl extends BaseModelImpl<KBFolder>
 
 	@JSON
 	@Override
+	public String getUrlTitle() {
+		if (_urlTitle == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _urlTitle;
+		}
+	}
+
+	@Override
+	public void setUrlTitle(String urlTitle) {
+		_columnBitmask |= URLTITLE_COLUMN_BITMASK;
+
+		if (_originalUrlTitle == null) {
+			_originalUrlTitle = _urlTitle;
+		}
+
+		_urlTitle = urlTitle;
+	}
+
+	public String getOriginalUrlTitle() {
+		return GetterUtil.getString(_originalUrlTitle);
+	}
+
+	@JSON
+	@Override
 	public String getDescription() {
 		if (_description == null) {
 			return StringPool.BLANK;
@@ -529,6 +565,7 @@ public class KBFolderModelImpl extends BaseModelImpl<KBFolder>
 		kbFolderImpl.setModifiedDate(getModifiedDate());
 		kbFolderImpl.setParentKBFolderId(getParentKBFolderId());
 		kbFolderImpl.setName(getName());
+		kbFolderImpl.setUrlTitle(getUrlTitle());
 		kbFolderImpl.setDescription(getDescription());
 
 		kbFolderImpl.resetOriginalValues();
@@ -606,6 +643,8 @@ public class KBFolderModelImpl extends BaseModelImpl<KBFolder>
 
 		kbFolderModelImpl._setOriginalParentKBFolderId = false;
 
+		kbFolderModelImpl._originalUrlTitle = kbFolderModelImpl._urlTitle;
+
 		kbFolderModelImpl._columnBitmask = 0;
 	}
 
@@ -665,6 +704,14 @@ public class KBFolderModelImpl extends BaseModelImpl<KBFolder>
 			kbFolderCacheModel.name = null;
 		}
 
+		kbFolderCacheModel.urlTitle = getUrlTitle();
+
+		String urlTitle = kbFolderCacheModel.urlTitle;
+
+		if ((urlTitle != null) && (urlTitle.length() == 0)) {
+			kbFolderCacheModel.urlTitle = null;
+		}
+
 		kbFolderCacheModel.description = getDescription();
 
 		String description = kbFolderCacheModel.description;
@@ -678,7 +725,7 @@ public class KBFolderModelImpl extends BaseModelImpl<KBFolder>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(23);
+		StringBundler sb = new StringBundler(25);
 
 		sb.append("{uuid=");
 		sb.append(getUuid());
@@ -700,6 +747,8 @@ public class KBFolderModelImpl extends BaseModelImpl<KBFolder>
 		sb.append(getParentKBFolderId());
 		sb.append(", name=");
 		sb.append(getName());
+		sb.append(", urlTitle=");
+		sb.append(getUrlTitle());
 		sb.append(", description=");
 		sb.append(getDescription());
 		sb.append("}");
@@ -709,7 +758,7 @@ public class KBFolderModelImpl extends BaseModelImpl<KBFolder>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(37);
+		StringBundler sb = new StringBundler(40);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.knowledgebase.model.KBFolder");
@@ -756,6 +805,10 @@ public class KBFolderModelImpl extends BaseModelImpl<KBFolder>
 		sb.append(getName());
 		sb.append("]]></column-value></column>");
 		sb.append(
+			"<column><column-name>urlTitle</column-name><column-value><![CDATA[");
+		sb.append(getUrlTitle());
+		sb.append("]]></column-value></column>");
+		sb.append(
 			"<column><column-name>description</column-name><column-value><![CDATA[");
 		sb.append(getDescription());
 		sb.append("]]></column-value></column>");
@@ -786,6 +839,8 @@ public class KBFolderModelImpl extends BaseModelImpl<KBFolder>
 	private long _originalParentKBFolderId;
 	private boolean _setOriginalParentKBFolderId;
 	private String _name;
+	private String _urlTitle;
+	private String _originalUrlTitle;
 	private String _description;
 	private long _columnBitmask;
 	private KBFolder _escapedModel;

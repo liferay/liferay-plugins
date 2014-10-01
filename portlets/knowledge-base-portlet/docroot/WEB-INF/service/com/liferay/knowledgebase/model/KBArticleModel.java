@@ -272,6 +272,20 @@ public interface KBArticleModel extends BaseModel<KBArticle>, ResourcedModel,
 	public void setParentResourcePrimKey(long parentResourcePrimKey);
 
 	/**
+	 * Returns the kb folder ID of this k b article.
+	 *
+	 * @return the kb folder ID of this k b article
+	 */
+	public long getKbFolderId();
+
+	/**
+	 * Sets the kb folder ID of this k b article.
+	 *
+	 * @param kbFolderId the kb folder ID of this k b article
+	 */
+	public void setKbFolderId(long kbFolderId);
+
+	/**
 	 * Returns the version of this k b article.
 	 *
 	 * @return the version of this k b article

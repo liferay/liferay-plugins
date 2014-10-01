@@ -237,6 +237,21 @@ public interface KBFolderModel extends BaseModel<KBFolder>, StagedGroupedModel {
 	public void setName(String name);
 
 	/**
+	 * Returns the url title of this k b folder.
+	 *
+	 * @return the url title of this k b folder
+	 */
+	@AutoEscape
+	public String getUrlTitle();
+
+	/**
+	 * Sets the url title of this k b folder.
+	 *
+	 * @param urlTitle the url title of this k b folder
+	 */
+	public void setUrlTitle(String urlTitle);
+
+	/**
 	 * Returns the description of this k b folder.
 	 *
 	 * @return the description of this k b folder

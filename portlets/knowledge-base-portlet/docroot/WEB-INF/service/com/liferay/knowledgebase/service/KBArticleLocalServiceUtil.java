@@ -271,8 +271,9 @@ public class KBArticleLocalServiceUtil {
 	}
 
 	public static com.liferay.knowledgebase.model.KBArticle fetchKBArticleByUrlTitle(
-		long groupId, java.lang.String urlTitle) {
-		return getService().fetchKBArticleByUrlTitle(groupId, urlTitle);
+		long groupId, long kbFolderId, java.lang.String urlTitle) {
+		return getService()
+				   .fetchKBArticleByUrlTitle(groupId, kbFolderId, urlTitle);
 	}
 
 	/**
@@ -293,9 +294,10 @@ public class KBArticleLocalServiceUtil {
 	}
 
 	public static com.liferay.knowledgebase.model.KBArticle fetchLatestKBArticleByUrlTitle(
-		long groupId, java.lang.String urlTitle, int status) {
+		long groupId, long kbFolderId, java.lang.String urlTitle, int status) {
 		return getService()
-				   .fetchLatestKBArticleByUrlTitle(groupId, urlTitle, status);
+				   .fetchLatestKBArticleByUrlTitle(groupId, kbFolderId,
+			urlTitle, status);
 	}
 
 	public static com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
@@ -389,9 +391,9 @@ public class KBArticleLocalServiceUtil {
 	}
 
 	public static com.liferay.knowledgebase.model.KBArticle getKBArticleByUrlTitle(
-		long groupId, java.lang.String urlTitle)
+		long groupId, long kbFolderId, java.lang.String urlTitle)
 		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().getKBArticleByUrlTitle(groupId, urlTitle);
+		return getService().getKBArticleByUrlTitle(groupId, kbFolderId, urlTitle);
 	}
 
 	/**
@@ -487,10 +489,11 @@ public class KBArticleLocalServiceUtil {
 	}
 
 	public static com.liferay.knowledgebase.model.KBArticle getLatestKBArticleByUrlTitle(
-		long groupId, java.lang.String urlTitle, int status)
+		long groupId, long kbFolderId, java.lang.String urlTitle, int status)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService()
-				   .getLatestKBArticleByUrlTitle(groupId, urlTitle, status);
+				   .getLatestKBArticleByUrlTitle(groupId, kbFolderId, urlTitle,
+			status);
 	}
 
 	public static com.liferay.portal.model.PersistedModel getPersistedModel(

@@ -706,6 +706,81 @@ public class KBFolderUtil {
 	}
 
 	/**
+	* Returns the k b folder where groupId = &#63; and parentKBFolderId = &#63; and urlTitle = &#63; or throws a {@link com.liferay.knowledgebase.NoSuchFolderException} if it could not be found.
+	*
+	* @param groupId the group ID
+	* @param parentKBFolderId the parent k b folder ID
+	* @param urlTitle the url title
+	* @return the matching k b folder
+	* @throws com.liferay.knowledgebase.NoSuchFolderException if a matching k b folder could not be found
+	*/
+	public static com.liferay.knowledgebase.model.KBFolder findByG_P_UT(
+		long groupId, long parentKBFolderId, java.lang.String urlTitle)
+		throws com.liferay.knowledgebase.NoSuchFolderException {
+		return getPersistence().findByG_P_UT(groupId, parentKBFolderId, urlTitle);
+	}
+
+	/**
+	* Returns the k b folder where groupId = &#63; and parentKBFolderId = &#63; and urlTitle = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	*
+	* @param groupId the group ID
+	* @param parentKBFolderId the parent k b folder ID
+	* @param urlTitle the url title
+	* @return the matching k b folder, or <code>null</code> if a matching k b folder could not be found
+	*/
+	public static com.liferay.knowledgebase.model.KBFolder fetchByG_P_UT(
+		long groupId, long parentKBFolderId, java.lang.String urlTitle) {
+		return getPersistence()
+				   .fetchByG_P_UT(groupId, parentKBFolderId, urlTitle);
+	}
+
+	/**
+	* Returns the k b folder where groupId = &#63; and parentKBFolderId = &#63; and urlTitle = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	*
+	* @param groupId the group ID
+	* @param parentKBFolderId the parent k b folder ID
+	* @param urlTitle the url title
+	* @param retrieveFromCache whether to use the finder cache
+	* @return the matching k b folder, or <code>null</code> if a matching k b folder could not be found
+	*/
+	public static com.liferay.knowledgebase.model.KBFolder fetchByG_P_UT(
+		long groupId, long parentKBFolderId, java.lang.String urlTitle,
+		boolean retrieveFromCache) {
+		return getPersistence()
+				   .fetchByG_P_UT(groupId, parentKBFolderId, urlTitle,
+			retrieveFromCache);
+	}
+
+	/**
+	* Removes the k b folder where groupId = &#63; and parentKBFolderId = &#63; and urlTitle = &#63; from the database.
+	*
+	* @param groupId the group ID
+	* @param parentKBFolderId the parent k b folder ID
+	* @param urlTitle the url title
+	* @return the k b folder that was removed
+	*/
+	public static com.liferay.knowledgebase.model.KBFolder removeByG_P_UT(
+		long groupId, long parentKBFolderId, java.lang.String urlTitle)
+		throws com.liferay.knowledgebase.NoSuchFolderException {
+		return getPersistence()
+				   .removeByG_P_UT(groupId, parentKBFolderId, urlTitle);
+	}
+
+	/**
+	* Returns the number of k b folders where groupId = &#63; and parentKBFolderId = &#63; and urlTitle = &#63;.
+	*
+	* @param groupId the group ID
+	* @param parentKBFolderId the parent k b folder ID
+	* @param urlTitle the url title
+	* @return the number of matching k b folders
+	*/
+	public static int countByG_P_UT(long groupId, long parentKBFolderId,
+		java.lang.String urlTitle) {
+		return getPersistence()
+				   .countByG_P_UT(groupId, parentKBFolderId, urlTitle);
+	}
+
+	/**
 	* Caches the k b folder in the entity cache if it is enabled.
 	*
 	* @param kbFolder the k b folder

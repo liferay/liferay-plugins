@@ -195,6 +195,15 @@ public class KBFolderLocalServiceWrapper implements KBFolderLocalService,
 		return _kbFolderLocalService.fetchKBFolder(kbFolderId);
 	}
 
+	@Override
+	public com.liferay.knowledgebase.model.KBFolder fetchKBFolderByUrlTitle(
+		long groupId, long parentKbFolderId, java.lang.String urlTitle)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _kbFolderLocalService.fetchKBFolderByUrlTitle(groupId,
+			parentKbFolderId, urlTitle);
+	}
+
 	/**
 	* Returns the k b folder matching the UUID and group.
 	*
@@ -240,6 +249,15 @@ public class KBFolderLocalServiceWrapper implements KBFolderLocalService,
 	public com.liferay.knowledgebase.model.KBFolder getKBFolder(long kbFolderId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _kbFolderLocalService.getKBFolder(kbFolderId);
+	}
+
+	@Override
+	public com.liferay.knowledgebase.model.KBFolder getKBFolderByUrlTitle(
+		long groupId, long parentKbFolderId, java.lang.String urlTitle)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _kbFolderLocalService.getKBFolderByUrlTitle(groupId,
+			parentKbFolderId, urlTitle);
 	}
 
 	/**

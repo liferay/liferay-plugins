@@ -174,6 +174,12 @@ public interface KBFolderLocalService extends BaseLocalService,
 	public com.liferay.knowledgebase.model.KBFolder fetchKBFolder(
 		long kbFolderId);
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.liferay.knowledgebase.model.KBFolder fetchKBFolderByUrlTitle(
+		long groupId, long parentKbFolderId, java.lang.String urlTitle)
+		throws SystemException,
+			com.liferay.portal.kernel.exception.PortalException;
+
 	/**
 	* Returns the k b folder matching the UUID and group.
 	*
@@ -209,6 +215,12 @@ public interface KBFolderLocalService extends BaseLocalService,
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.knowledgebase.model.KBFolder getKBFolder(long kbFolderId)
 		throws com.liferay.portal.kernel.exception.PortalException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.liferay.knowledgebase.model.KBFolder getKBFolderByUrlTitle(
+		long groupId, long parentKbFolderId, java.lang.String urlTitle)
+		throws SystemException,
+			com.liferay.portal.kernel.exception.PortalException;
 
 	/**
 	* Returns the k b folder matching the UUID and group.
