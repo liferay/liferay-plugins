@@ -16,8 +16,6 @@ package com.liferay.portal.workflow.kaleo.runtime.notification;
 
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
-import com.liferay.portal.kernel.notifications.NotificationEvent;
-import com.liferay.portal.kernel.notifications.NotificationEventFactoryUtil;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.UserNotificationDeliveryConstants;
 import com.liferay.portal.service.UserNotificationEventLocalServiceUtil;
