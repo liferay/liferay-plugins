@@ -19,18 +19,36 @@
 <%
 int status = (Integer)request.getAttribute(WebKeys.KNOWLEDGE_BASE_STATUS);
 
-KBArticle kbArticle = (KBArticle)request.getAttribute(WebKeys.KNOWLEDGE_BASE_KB_ARTICLE);
+long kbArticleClassNameId = PortalUtil.getClassNameId(KBArticleConstants.getClassName());
 
-long resourcePrimKey = BeanParamUtil.getLong(kbArticle, request, "resourcePrimKey");
-long parentResourceClassNameId = BeanParamUtil.getLong(kbArticle, request, "parentResourceClassNameId");
-long parentResourcePrimKey = BeanParamUtil.getLong(kbArticle, request, "parentResourcePrimKey");
-double priority = BeanParamUtil.getDouble(kbArticle, request, "priority");
+long resourceClassNameId = ParamUtil.getLong(request, "resourceClassNameId");
+long resourcePrimKey = ParamUtil.getLong(request, "resourcePrimKey");
+long parentResourceClassNameId = ParamUtil.getLong(request, "parentResourceClassNameId");
+long parentResourcePrimKey = ParamUtil.getLong(request, "parentResourcePrimKey");
+
+String title = null;
+String parentTitle = null;
+double priority = KBArticleConstants.DEFAULT_PRIORITY;
+
+if (resourceClassNameId == kbArticleClassNameId) {
+	KBArticle kbArticle = KBArticleServiceUtil.getLatestKBArticle(resourcePrimKey, status);
+
+	title = kbArticle.getTitle();
+	parentTitle = kbArticle.getParentTitle(locale, status);
+	priority = kbArticle.getPriority();
+}
+else {
+	KBFolder kbFolder = KBFolderServiceUtil.getKBFolder(resourcePrimKey);
+
+	title = kbFolder.getName();
+	parentTitle = kbFolder.getParentTitle(locale);
+}
 %>
 
 <liferay-ui:header
 	backURL="<%= redirect %>"
 	localizeTitle="<%= false %>"
-	title="<%= kbArticle.getTitle() %>"
+	title="<%= title %>"
 />
 
 <liferay-portlet:actionURL name="moveKBArticle" var="moveKBArticleURL" />
@@ -38,16 +56,18 @@ double priority = BeanParamUtil.getDouble(kbArticle, request, "priority");
 <aui:form action="<%= moveKBArticleURL %>" method="post" name="fm">
 	<aui:input name="mvcPath" type="hidden" value='<%= templatePath + "move_article.jsp" %>' />
 	<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
+	<aui:input name="resourceClassNameId" type="hidden" value="<%= String.valueOf(resourceClassNameId) %>" />
 	<aui:input name="resourcePrimKey" type="hidden" value="<%= String.valueOf(resourcePrimKey) %>" />
-	<aui:input name="parentResourceClassNameId" type="hidden" value="<%= parentResourceClassNameId %>" />
-	<aui:input name="parentResourcePrimKey" type="hidden" value="<%= parentResourcePrimKey %>" />
+	<aui:input name="parentResourceClassNameId" type="hidden" value="<%= String.valueOf(parentResourceClassNameId) %>" />
+	<aui:input name="parentResourcePrimKey" type="hidden" value="<%= String.valueOf(parentResourcePrimKey) %>" />
 	<aui:input name="status" type="hidden" value="<%= String.valueOf(status) %>" />
 
 	<liferay-ui:error exception="<%= KBArticlePriorityException.class %>" message='<%= LanguageUtil.format(request, "please-enter-a-priority-that-is-greater-than-x", "0", false) %>' translateMessage="<%= false %>" />
 
 	<aui:fieldset>
-		<div class="form-group">
-			<aui:input name="currentParent" type="resource" value="<%= kbArticle.getParentTitle(locale, status) %>" />
+		<aui:field-wrapper label="current-parent">
+			<div class="input-append">
+				<liferay-ui:input-resource url="<%= parentTitle %>" />
 
 			<aui:input cssClass="input-mini" label="" name="priority" type="resource" value="<%= BigDecimal.valueOf(priority).toPlainString() %>" />
 		</div>
@@ -69,8 +89,8 @@ double priority = BeanParamUtil.getDouble(kbArticle, request, "priority");
 <aui:script>
 	function <portlet:namespace />selectKBArticle(parentTitle, parentPriority, parentResourcePrimKey, parentResourceClassNameId, html) {
 		document.<portlet:namespace />fm.<portlet:namespace />parentPriority.value = parentPriority;
-		document.<portlet:namespace />fm.<portlet:namespace />parentResource.value = parentTitle;
 		document.<portlet:namespace />fm.<portlet:namespace />parentResourceClassNameId.value = parentResourceClassNameId;
 		document.<portlet:namespace />fm.<portlet:namespace />parentResourcePrimKey.value = parentResourcePrimKey;
+		document.<portlet:namespace />fm.<portlet:namespace />parentTitle.value = parentTitle;
 	}
 </aui:script>

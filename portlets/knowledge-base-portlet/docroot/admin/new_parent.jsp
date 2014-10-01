@@ -19,22 +19,38 @@
 <%
 int status = (Integer)request.getAttribute(WebKeys.KNOWLEDGE_BASE_STATUS);
 
-KBArticle kbArticle = (KBArticle)request.getAttribute(WebKeys.KNOWLEDGE_BASE_KB_ARTICLE);
+long kbArticleClassNameId = PortalUtil.getClassNameId(KBArticleConstants.getClassName());
 
-long resourcePrimKey = BeanParamUtil.getLong(kbArticle, request, "resourcePrimKey");
-long parentResourcePrimKey = BeanParamUtil.getLong(kbArticle, request, "parentResourcePrimKey");
-double priority = BeanParamUtil.getDouble(kbArticle, request, "priority");
+long resourceClassNameId = ParamUtil.getLong(request, "resourceClassNameId");
+long resourcePrimKey = ParamUtil.getLong(request, "resourcePrimKey");
+double priority = KBArticleConstants.DEFAULT_PRIORITY;
+
+String parentTitle = null;
+
+if (resourceClassNameId == kbArticleClassNameId) {
+	KBArticle kbArticle = KBArticleServiceUtil.getLatestKBArticle(resourcePrimKey, status);
+
+	parentTitle = kbArticle.getParentTitle(locale, status);
+	priority = kbArticle.getPriority();
+}
+else {
+	KBFolder kbFolder = KBFolderServiceUtil.getKBFolder(resourcePrimKey);
+
+	parentTitle = kbFolder.getParentTitle(locale);
+}
 %>
 
-<div class="form-group kb-new-parent">
-	<aui:input label="" name="parentResource" type="resource" value="<%= kbArticle.getParentTitle(locale, status) %>" />
+<div class="input-append kb-new-parent">
+	<aui:input label="" name="parentResource" type="resource" value="<%= parentTitle %>" />
 
 	<aui:input cssClass="input-mini kb-priority" id="parentPriority" inlineField="<%= true %>" label="" name="priority" type="text" value="<%= BigDecimal.valueOf(priority).toPlainString() %>" />
 
 	<liferay-portlet:renderURL var="selectKBArticleURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
 		<portlet:param name="mvcPath" value='<%= templatePath + "select_article.jsp" %>' />
+		<portlet:param name="resourceClassNameId" value="<%= String.valueOf(resourceClassNameId) %>" />
 		<portlet:param name="resourcePrimKey" value="<%= String.valueOf(resourcePrimKey) %>" />
-		<portlet:param name="parentResourcePrimKey" value="<%= String.valueOf(KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY) %>" />
+		<portlet:param name="parentResourceClassNameId" value="<%= String.valueOf(PortalUtil.getClassNameId(KBFolderConstants.getClassName())) %>" />
+		<portlet:param name="parentResourcePrimKey" value="<%= String.valueOf(KBFolderConstants.DEFAULT_PARENT_FOLDER_ID) %>" />
 		<portlet:param name="status" value="<%= String.valueOf(status) %>" />
 	</liferay-portlet:renderURL>
 
@@ -45,7 +61,7 @@ double priority = BeanParamUtil.getDouble(kbArticle, request, "priority");
 </div>
 
 <div class="kb-edit-link">
-	<aui:a href="javascript:;" onClick="<%= taglibOnClick %>"><liferay-ui:message key="select-article" /> &raquo;</aui:a>
+	<aui:a href="javascript:;" onClick="<%= taglibOnClick %>"><liferay-ui:message key="select-parent" /> &raquo;</aui:a>
 </div>
 
 <aui:script>

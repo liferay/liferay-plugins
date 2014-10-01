@@ -16,8 +16,15 @@ package com.liferay.knowledgebase.model.impl;
 
 import aQute.bnd.annotation.ProviderType;
 
+import com.liferay.knowledgebase.model.KBFolder;
 import com.liferay.knowledgebase.model.KBFolderConstants;
+import com.liferay.knowledgebase.service.KBFolderServiceUtil;
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.util.PortalUtil;
+
+import java.util.Locale;
 
 /**
  * @author Brian Wing Shun Chan
@@ -36,6 +43,22 @@ public class KBFolderImpl extends KBFolderBaseImpl {
 		}
 
 		return _classNameId;
+	}
+
+	@Override
+	public String getParentTitle(Locale locale)
+		throws PortalException, SystemException {
+
+		if (getParentKBFolderId() ==
+				KBFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
+
+			return "(" + LanguageUtil.get(locale, "none") + ")";
+		}
+
+		KBFolder kbFolder = KBFolderServiceUtil.getKBFolder(
+			getParentKBFolderId());
+
+		return kbFolder.getName();
 	}
 
 	private long _classNameId;

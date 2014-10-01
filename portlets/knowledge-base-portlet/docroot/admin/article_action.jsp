@@ -101,7 +101,10 @@ KBArticle kbArticle = (KBArticle)row.getObject();
 		<liferay-portlet:renderURL var="moveKBArticleURL">
 			<portlet:param name="mvcPath" value='<%= templatePath + "move_article.jsp" %>' />
 			<portlet:param name="redirect" value="<%= redirect %>" />
+			<portlet:param name="resourceClassNameId" value="<%= String.valueOf(kbArticle.getClassNameId()) %>" />
 			<portlet:param name="resourcePrimKey" value="<%= String.valueOf(kbArticle.getResourcePrimKey()) %>" />
+			<portlet:param name="parentResourceClassNameId" value="<%= String.valueOf(kbArticle.getParentResourceClassNameId()) %>" />
+			<portlet:param name="parentResourcePrimKey" value="<%= String.valueOf(kbArticle.getParentResourcePrimKey()) %>" />
 		</liferay-portlet:renderURL>
 
 		<liferay-ui:icon
