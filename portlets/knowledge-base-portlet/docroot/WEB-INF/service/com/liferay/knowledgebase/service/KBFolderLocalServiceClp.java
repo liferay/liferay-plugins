@@ -567,8 +567,7 @@ public class KBFolderLocalServiceClp implements KBFolderLocalService {
 	@Override
 	public com.liferay.knowledgebase.model.KBFolder fetchKBFolderByUrlTitle(
 		long groupId, long parentKbFolderId, java.lang.String urlTitle)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
 		try {
@@ -587,10 +586,6 @@ public class KBFolderLocalServiceClp implements KBFolderLocalService {
 
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
 
 			if (t instanceof RuntimeException) {
@@ -734,8 +729,7 @@ public class KBFolderLocalServiceClp implements KBFolderLocalService {
 	@Override
 	public com.liferay.knowledgebase.model.KBFolder getKBFolderByUrlTitle(
 		long groupId, long parentKbFolderId, java.lang.String urlTitle)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
 		try {
@@ -754,10 +748,6 @@ public class KBFolderLocalServiceClp implements KBFolderLocalService {
 
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
 
 			if (t instanceof RuntimeException) {
