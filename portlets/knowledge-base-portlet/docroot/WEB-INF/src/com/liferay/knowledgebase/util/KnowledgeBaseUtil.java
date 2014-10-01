@@ -93,8 +93,6 @@ public class KnowledgeBaseUtil {
 			"parentResourceClassNameId",
 			String.valueOf(parentResourceClassNameId));
 
-		String entryURL = portletURL.toString();
-
 		if (parentResourcePrimKey ==
 				KBFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
 
@@ -102,7 +100,7 @@ public class KnowledgeBaseUtil {
 				WebKeys.THEME_DISPLAY);
 
 			PortalUtil.addPortletBreadcrumbEntry(
-				request, themeDisplay.translate("home"), entryURL);
+				request, themeDisplay.translate("home"), portletURL.toString());
 		}
 		else if (parentResourceClassNameId ==
 					PortalUtil.getClassNameId(
@@ -116,7 +114,7 @@ public class KnowledgeBaseUtil {
 				mvcPath, request, renderResponse);
 
 			PortalUtil.addPortletBreadcrumbEntry(
-				request, kbFolder.getName(), entryURL);
+				request, kbFolder.getName(), portletURL.toString());
 		}
 		else {
 			KBArticle kbArticle = KBArticleServiceUtil.getLatestKBArticle(
@@ -128,7 +126,7 @@ public class KnowledgeBaseUtil {
 				renderResponse);
 
 			PortalUtil.addPortletBreadcrumbEntry(
-				request, kbArticle.getTitle(), entryURL);
+				request, kbArticle.getTitle(), portletURL.toString());
 		}
 	}
 
