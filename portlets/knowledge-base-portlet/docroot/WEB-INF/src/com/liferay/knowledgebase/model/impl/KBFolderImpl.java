@@ -20,7 +20,6 @@ import com.liferay.knowledgebase.model.KBFolder;
 import com.liferay.knowledgebase.model.KBFolderConstants;
 import com.liferay.knowledgebase.service.KBFolderServiceUtil;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.util.PortalUtil;
 
@@ -46,9 +45,7 @@ public class KBFolderImpl extends KBFolderBaseImpl {
 	}
 
 	@Override
-	public String getParentTitle(Locale locale)
-		throws PortalException, SystemException {
-
+	public String getParentTitle(Locale locale) throws PortalException {
 		if (getParentKBFolderId() ==
 				KBFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
 

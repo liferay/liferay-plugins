@@ -181,8 +181,7 @@ public class KBFolderLocalServiceImpl extends KBFolderLocalServiceBaseImpl {
 	}
 
 	protected void getSubfolderIds(
-			KBFolder parentKBFolder, Collection<Long> kbFolderIds)
-		throws SystemException {
+		KBFolder parentKBFolder, Collection<Long> kbFolderIds) {
 
 		Collection<KBFolder> kbFolders = kbFolderPersistence.findByG_P(
 			parentKBFolder.getGroupId(), parentKBFolder.getKbFolderId());

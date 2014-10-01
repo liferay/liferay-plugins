@@ -17,7 +17,6 @@ package com.liferay.knowledgebase.service.impl;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.knowledgebase.model.KBFolder;
-import com.liferay.knowledgebase.model.KBFolderConstants;
 import com.liferay.knowledgebase.service.base.KBFolderServiceBaseImpl;
 import com.liferay.knowledgebase.service.permission.KBFolderPermission;
 import com.liferay.knowledgebase.util.ActionKeys;
@@ -81,7 +80,7 @@ public class KBFolderServiceImpl extends KBFolderServiceBaseImpl {
 
 	@Override
 	public void moveKBFolder(long kbFolderId, long parentKBFolderId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		KBFolderPermission.check(
 			getPermissionChecker(), kbFolderId, ActionKeys.MOVE_KB_FOLDER);
