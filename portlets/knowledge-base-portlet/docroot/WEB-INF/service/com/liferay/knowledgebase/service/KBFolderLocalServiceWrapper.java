@@ -381,6 +381,13 @@ public class KBFolderLocalServiceWrapper implements KBFolderLocalService,
 	}
 
 	@Override
+	public void moveKBFolder(long kbFolderId, long parentKBFolderId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		_kbFolderLocalService.moveKBFolder(kbFolderId, parentKBFolderId);
+	}
+
+	@Override
 	public com.liferay.knowledgebase.model.KBFolder updateKBFolder(
 		long parentResourceClassNameId, long parentResourcePrimKey,
 		long kbFolderId, java.lang.String name, java.lang.String description)

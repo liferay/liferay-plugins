@@ -360,6 +360,12 @@ public class KBFolderLocalServiceUtil {
 		return getService().getKBFoldersCount(groupId, parentKBFolderId);
 	}
 
+	public static void moveKBFolder(long kbFolderId, long parentKBFolderId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		getService().moveKBFolder(kbFolderId, parentKBFolderId);
+	}
+
 	public static com.liferay.knowledgebase.model.KBFolder updateKBFolder(
 		long parentResourceClassNameId, long parentResourcePrimKey,
 		long kbFolderId, java.lang.String name, java.lang.String description)

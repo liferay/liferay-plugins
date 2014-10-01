@@ -55,9 +55,13 @@ public class KBFolderServiceClp implements KBFolderService {
 
 		_methodParameterTypes7 = new String[] { "long", "long" };
 
-		_methodName8 = "updateKBFolder";
+		_methodName8 = "moveKBFolder";
 
-		_methodParameterTypes8 = new String[] {
+		_methodParameterTypes8 = new String[] { "long", "long" };
+
+		_methodName9 = "updateKBFolder";
+
+		_methodParameterTypes9 = new String[] {
 				"long", "long", "long", "java.lang.String", "java.lang.String"
 			};
 	}
@@ -298,6 +302,36 @@ public class KBFolderServiceClp implements KBFolderService {
 	}
 
 	@Override
+	public void moveKBFolder(long kbFolderId, long parentKBFolderId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		try {
+			_invokableService.invokeMethod(_methodName8,
+				_methodParameterTypes8,
+				new Object[] { kbFolderId, parentKBFolderId });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+	}
+
+	@Override
 	public com.liferay.knowledgebase.model.KBFolder updateKBFolder(
 		long parentResourceClassNameId, long parentResourcePrimKey,
 		long kbFolderId, java.lang.String name, java.lang.String description)
@@ -306,8 +340,8 @@ public class KBFolderServiceClp implements KBFolderService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableService.invokeMethod(_methodName8,
-					_methodParameterTypes8,
+			returnObj = _invokableService.invokeMethod(_methodName9,
+					_methodParameterTypes9,
 					new Object[] {
 						parentResourceClassNameId,
 						
@@ -360,4 +394,6 @@ public class KBFolderServiceClp implements KBFolderService {
 	private String[] _methodParameterTypes7;
 	private String _methodName8;
 	private String[] _methodParameterTypes8;
+	private String _methodName9;
+	private String[] _methodParameterTypes9;
 }
