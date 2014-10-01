@@ -19,6 +19,8 @@
 <portlet:actionURL name="importFile" var="importFileURL" />
 
 <aui:form action="<%= importFileURL %>" class="lfr-dynamic-form" enctype="multipart/form-data" method="post" name="fm">
+	<aui:input name="parentKBFolderId" type="hidden" value='<%= String.valueOf(ParamUtil.getLong(request, "parentKBFolderId")) %>' />
+
 	<liferay-ui:message key="upload-your-zip-file" />
 
 	<aui:fieldset class="kb-block-labels">
