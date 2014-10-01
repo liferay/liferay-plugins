@@ -126,11 +126,11 @@ public class KBFolderStagedModelDataHandler
 
 		portletDataContext.importClassedModel(kbFolder, importedKBFolder);
 
-		Map<Long, Long> kbFolderPrimKeysMap =
+		Map<Long, Long> kbFolderIds =
 			(Map<Long, Long>)portletDataContext.getNewPrimaryKeysMap(
 				KBFolder.class);
 
-		kbFolderPrimKeysMap.put(
+		kbFolderIds.put(
 			kbFolder.getKbFolderId(), importedKBFolder.getKbFolderId());
 	}
 
