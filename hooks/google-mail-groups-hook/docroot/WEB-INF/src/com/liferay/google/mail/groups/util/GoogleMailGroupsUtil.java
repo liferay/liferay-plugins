@@ -70,26 +70,7 @@ public class GoogleMailGroupsUtil {
 					continue;
 				}
 
-				String groupEmailAddress = getGroupEmailAddress(group);
-				String userEmailAddress = getUserEmailAddress(user);
-
-				Member member = GoogleDirectoryUtil.getGroupMember(
-					groupEmailAddress, userEmailAddress);
-
-				if (member == null) {
-					continue;
-				}
-
-				String gRole = member.getRole();
-
-				if (gRole.equals(role) || gRole.equals("OWNER")) {
-					continue;
-				}
-
-				member.setRole(role);
-
-				GoogleDirectoryUtil.updateGroupMember(
-					groupEmailAddress, userEmailAddress, member);
+				updateGroupMemberRole(group, user, role);
 			}
 		}
 	}
@@ -288,26 +269,33 @@ public class GoogleMailGroupsUtil {
 
 		for (User user : users) {
 			try {
-				String groupEmailAddress = getGroupEmailAddress(group);
-				String userEmailAddress = getUserEmailAddress(user);
-
-				Member member = GoogleDirectoryUtil.getGroupMember(
-					groupEmailAddress, userEmailAddress);
-
-				String gRole = member.getRole();
-
-				if (gRole.equals("MANAGER") || gRole.equals("OWNER")) {
-					continue;
-				}
-
-				member.setRole("MANAGER");
-
-				GoogleDirectoryUtil.updateGroupMember(
-					groupEmailAddress, userEmailAddress, member);
+				updateGroupMemberRole(group, user, "MANAGER");
 			}
 			catch (Exception e) {
 			}
 		}
+	}
+
+	protected static void updateGroupMemberRole(
+			Group group, User user, String role)
+		throws PortalException {
+
+		String groupEmailAddress = getGroupEmailAddress(group);
+		String userEmailAddress = getUserEmailAddress(user);
+
+		Member member = GoogleDirectoryUtil.getGroupMember(
+			groupEmailAddress, userEmailAddress);
+
+		String memberRole = member.getRole();
+
+		if (memberRole.equals(role) || memberRole.equals("OWNER")) {
+			return;
+		}
+
+		member.setRole(role);
+
+		GoogleDirectoryUtil.updateGroupMember(
+			groupEmailAddress, userEmailAddress, member);
 	}
 
 }
