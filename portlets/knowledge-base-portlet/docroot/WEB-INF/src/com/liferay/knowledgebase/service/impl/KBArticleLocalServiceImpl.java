@@ -416,6 +416,21 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 	}
 
 	@Override
+	public KBArticle fetchKBArticleByUrlTitle(
+			long groupId, String kbFolderUrlTitle, String urlTitle)
+		throws PortalException {
+
+		List<KBArticle> kbArticles = kbArticleFinder.findByUrlTitle(
+			groupId, kbFolderUrlTitle, urlTitle, _STATUSES, 0, 1);
+
+		if (kbArticles.isEmpty()) {
+			return null;
+		}
+
+		return kbArticles.get(0);
+	}
+
+	@Override
 	public KBArticle fetchLatestKBArticle(long resourcePrimKey, int status) {
 		if (status == WorkflowConstants.STATUS_ANY) {
 			return kbArticlePersistence.fetchByResourcePrimKey_First(
@@ -566,6 +581,24 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 				"No KBArticle exists with the key {groupId=" + groupId +
 					", kbFolderId=" + kbFolderId + ", urlTitle=" + urlTitle +
 						"}");
+		}
+
+		return kbArticle;
+	}
+
+	@Override
+	public KBArticle getKBArticleByUrlTitle(
+			long groupId, String kbFolderUrlTitle, String urlTitle)
+		throws PortalException {
+
+		KBArticle kbArticle = fetchKBArticleByUrlTitle(
+			groupId, kbFolderUrlTitle, urlTitle);
+
+		if (kbArticle == null) {
+			throw new NoSuchArticleException(
+				"No KBArticle with the key {groupId=" + groupId +
+					", urlTitle=" + urlTitle + "} found within a folder " +
+						"with urlTitle " + kbFolderUrlTitle);
 		}
 
 		return kbArticle;
