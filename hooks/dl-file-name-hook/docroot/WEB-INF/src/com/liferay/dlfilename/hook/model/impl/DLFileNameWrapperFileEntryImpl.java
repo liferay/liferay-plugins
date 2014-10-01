@@ -55,7 +55,8 @@ public class DLFileNameWrapperFileEntryImpl extends FileEntryWrapper {
 	public String getTitle() {
 		ExpandoBridge expandoBridge = getExpandoBridge();
 
-		String displayTitle = (String)expandoBridge.getAttribute(DISPLAY_NAME);
+		String displayTitle = (String)expandoBridge.getAttribute(
+			DISPLAY_NAME, false);
 
 		if (Validator.isNull(displayTitle)) {
 			return super.getTitle();
