@@ -111,7 +111,7 @@ public class KBFolderLocalServiceImpl extends KBFolderLocalServiceBaseImpl {
 	@Override
 	public KBFolder fetchKBFolderByUrlTitle(
 			long groupId, long parentKbFolderId, String urlTitle)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		return kbFolderPersistence.fetchByG_P_UT(
 			groupId, parentKbFolderId, urlTitle);
@@ -120,7 +120,7 @@ public class KBFolderLocalServiceImpl extends KBFolderLocalServiceBaseImpl {
 	@Override
 	public KBFolder getKBFolderByUrlTitle(
 			long groupId, long parentKbFolderId, String urlTitle)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		return kbFolderPersistence.findByG_P_UT(
 			groupId, parentKbFolderId, urlTitle);
@@ -217,8 +217,7 @@ public class KBFolderLocalServiceImpl extends KBFolderLocalServiceBaseImpl {
 	}
 
 	protected String getUniqueUrlTitle(
-			long groupId, long parentKbFolderId, long kbFolderId, String name)
-		throws SystemException {
+		long groupId, long parentKbFolderId, long kbFolderId, String name) {
 
 		String urlTitle = KnowledgeBaseUtil.getUrlTitle(kbFolderId, name);
 

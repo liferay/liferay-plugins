@@ -56,7 +56,7 @@ public class KBFolderServiceImpl extends KBFolderServiceBaseImpl {
 
 	public KBFolder fetchKBFolderByUrlTitle(
 			long groupId, long parentKbFolderId, String urlTitle)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		KBFolder kbFolder = kbFolderLocalService.fetchKBFolderByUrlTitle(
 			groupId, parentKbFolderId, urlTitle);
@@ -81,7 +81,7 @@ public class KBFolderServiceImpl extends KBFolderServiceBaseImpl {
 
 	public KBFolder getKBFolderByUrlTitle(
 			long groupId, long parentKbFolderId, String urlTitle)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		KBFolder kbFolder = kbFolderLocalService.getKBFolderByUrlTitle(
 			groupId, parentKbFolderId, urlTitle);
