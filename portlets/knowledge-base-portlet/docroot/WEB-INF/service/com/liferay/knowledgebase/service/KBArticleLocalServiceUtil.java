@@ -450,7 +450,8 @@ public class KBArticleLocalServiceUtil {
 	}
 
 	public static com.liferay.knowledgebase.model.KBArticle fetchLatestKBArticleByUrlTitle(
-		long groupId, long kbFolderId, java.lang.String urlTitle, int status) {
+		long groupId, long kbFolderId, java.lang.String urlTitle, int status)
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService()
 				   .fetchLatestKBArticleByUrlTitle(groupId, kbFolderId,
 			urlTitle, status);

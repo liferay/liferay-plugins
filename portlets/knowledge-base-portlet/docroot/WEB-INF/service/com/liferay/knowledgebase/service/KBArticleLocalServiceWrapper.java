@@ -478,7 +478,8 @@ public class KBArticleLocalServiceWrapper implements KBArticleLocalService,
 
 	@Override
 	public com.liferay.knowledgebase.model.KBArticle fetchLatestKBArticleByUrlTitle(
-		long groupId, long kbFolderId, java.lang.String urlTitle, int status) {
+		long groupId, long kbFolderId, java.lang.String urlTitle, int status)
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return _kbArticleLocalService.fetchLatestKBArticleByUrlTitle(groupId,
 			kbFolderId, urlTitle, status);
 	}
