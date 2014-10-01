@@ -54,6 +54,7 @@ double priority = BeanParamUtil.getDouble(kbArticle, request, "priority");
 		var oldParentResourcePrimKey = document.<portlet:namespace />fm.<portlet:namespace />parentResourcePrimKey.value;
 
 		var selectKBArticleWindowURL = '<%= selectKBArticleURL %>';
+
 		selectKBArticleWindowURL += '&<portlet:namespace />oldParentResourceClassNameId=' + oldParentResourceClassNameId;
 		selectKBArticleWindowURL += '&<portlet:namespace />oldParentResourcePrimKey=' + oldParentResourcePrimKey;
 

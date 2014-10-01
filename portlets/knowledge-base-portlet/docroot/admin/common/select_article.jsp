@@ -115,7 +115,7 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 				for (Tuple tuple: selKBEntries) {
 				%>
 
-				<aui:a href='<%= HttpUtil.setParameter(breadcrumbURL, "parentResourcePrimKey", (Long)tuple.getObject(0)) %>'><%= tuple.getObject(1) %></aui:a> &raquo;
+					<aui:a href='<%= HttpUtil.setParameter(breadcrumbURL, "parentResourcePrimKey", (Long)tuple.getObject(0)) %>'><%= tuple.getObject(1) %></aui:a> &raquo;
 
 				<%
 				}
