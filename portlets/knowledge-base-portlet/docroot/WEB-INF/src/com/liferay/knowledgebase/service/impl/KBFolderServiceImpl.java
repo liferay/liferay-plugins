@@ -86,11 +86,6 @@ public class KBFolderServiceImpl extends KBFolderServiceBaseImpl {
 		KBFolderPermission.check(
 			getPermissionChecker(), kbFolderId, ActionKeys.MOVE_KB_FOLDER);
 
-		if (parentKBFolderId != KBFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
-			KBFolderPermission.check(
-				getPermissionChecker(), parentKBFolderId, ActionKeys.UPDATE);
-		}
-
 		kbFolderLocalService.moveKBFolder(kbFolderId, parentKBFolderId);
 	}
 
