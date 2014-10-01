@@ -58,7 +58,7 @@ public class RoleModelListener extends BaseModelListener<Role> {
 
 			MessageBusUtil.sendMessage(
 				DestinationNames.ASYNC_SERVICE,
-				new OnAssociationProcessCallable(users, "addGroupManagers"));
+				new OnAssociationProcessCallable(users, "MANAGER"));
 		}
 		catch (Exception e) {
 			_log.error(e, e);
@@ -76,7 +76,7 @@ public class RoleModelListener extends BaseModelListener<Role> {
 
 			MessageBusUtil.sendMessage(
 				DestinationNames.ASYNC_SERVICE,
-				new OnAssociationProcessCallable(users, "removeGroupManagers"));
+				new OnAssociationProcessCallable(users, "MEMBER"));
 		}
 		catch (Exception e) {
 			_log.error(e, e);
@@ -131,20 +131,15 @@ public class RoleModelListener extends BaseModelListener<Role> {
 	private static class OnAssociationProcessCallable
 		implements ProcessCallable<Serializable> {
 
-		public OnAssociationProcessCallable(List<User> users, String action) {
+		public OnAssociationProcessCallable(List<User> users, String role) {
 			_users = users;
-			_action = action;
+			_role = role;
 		}
 
 		@Override
 		public Serializable call() throws ProcessException {
 			try {
-				if (_action.equals("addGroupManagers")) {
-					GoogleMailGroupsUtil.addGroupManagers(_users);
-				}
-				else {
-					GoogleMailGroupsUtil.removeGroupManagers(_users);
-				}
+				GoogleMailGroupsUtil.updateGroupMemberRoles(_users, _role);
 			}
 			catch (Exception e) {
 				throw new ProcessException(e);
@@ -155,7 +150,7 @@ public class RoleModelListener extends BaseModelListener<Role> {
 
 		private static final long serialVersionUID = 1L;
 
-		private String _action;
+		private String _role;
 		private List<User> _users;
 
 	}
