@@ -366,7 +366,7 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 					<c:otherwise>
 						var content = [
 							'<p class="calendar-portlet-confirmation-text">',
-							'<liferay-ui:message arguments="<%= calendar.getName(locale) %>" key="you-are-about-to-make-changes-that-will-only-effect-your-calendar-x" />',
+							'<liferay-ui:message arguments="<%= calendar.getName(locale) %>" key="you-are-about-to-make-changes-that-will-only-affect-your-calendar-x" />',
 							'</p>'
 						].join('');
 
