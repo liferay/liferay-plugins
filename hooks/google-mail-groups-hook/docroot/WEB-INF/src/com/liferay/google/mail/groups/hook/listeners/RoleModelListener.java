@@ -131,15 +131,18 @@ public class RoleModelListener extends BaseModelListener<Role> {
 	private static class OnAssociationProcessCallable
 		implements ProcessCallable<Serializable> {
 
-		public OnAssociationProcessCallable(List<User> users, String role) {
+		public OnAssociationProcessCallable(
+			List<User> users, String groupMemberRole) {
+
 			_users = users;
-			_role = role;
+			_groupMemberRole = groupMemberRole;
 		}
 
 		@Override
 		public Serializable call() throws ProcessException {
 			try {
-				GoogleMailGroupsUtil.updateGroupMemberRoles(_users, _role);
+				GoogleMailGroupsUtil.updateGroupMemberRoles(
+					_users, _groupMemberRole);
 			}
 			catch (Exception e) {
 				throw new ProcessException(e);
@@ -150,7 +153,7 @@ public class RoleModelListener extends BaseModelListener<Role> {
 
 		private static final long serialVersionUID = 1L;
 
-		private String _role;
+		private String _groupMemberRole;
 		private List<User> _users;
 
 	}
