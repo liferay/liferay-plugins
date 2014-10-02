@@ -50,7 +50,7 @@ public class KBArticleFinderImpl extends BasePersistenceImpl<KBArticle>
 
 			sql = replaceWorkflowStatus(sql, status);
 
-			SQLQuery query = session.createSQLQuery(sql);
+			SQLQuery query = session.createSynchronizedSQLQuery(sql);
 
 			QueryPos qPos = QueryPos.getInstance(query);
 
@@ -89,7 +89,7 @@ public class KBArticleFinderImpl extends BasePersistenceImpl<KBArticle>
 
 			sql = replaceWorkflowStatus(sql, status);
 
-			SQLQuery query = session.createSQLQuery(sql);
+			SQLQuery query = session.createSynchronizedSQLQuery(sql);
 
 			query.addEntity(KBArticleImpl.TABLE_NAME, KBArticleImpl.class);
 

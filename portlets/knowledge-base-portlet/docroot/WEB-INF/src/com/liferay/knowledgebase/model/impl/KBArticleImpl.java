@@ -104,9 +104,7 @@ public class KBArticleImpl extends KBArticleBaseImpl {
 	}
 
 	@Override
-	public KBArticle getParentKBArticle()
-		throws PortalException {
-
+	public KBArticle getParentKBArticle() throws PortalException {
 		long parentResourcePrimKey = getParentResourcePrimKey();
 
 		if ((parentResourcePrimKey <= 0) ||
