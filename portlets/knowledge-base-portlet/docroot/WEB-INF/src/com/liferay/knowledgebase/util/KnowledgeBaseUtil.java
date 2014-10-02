@@ -158,17 +158,19 @@ public class KnowledgeBaseUtil {
 			}
 		}
 
-		return ListUtil.sort(kbFolders, new Comparator<KBFolder>() {
+		return ListUtil.sort(
+			kbFolders,
+			new Comparator<KBFolder>() {
 
-			@Override
-			public int compare(KBFolder kbFolder1, KBFolder kbFolder2) {
-				String name1 = kbFolder1.getName();
-				String name2 = kbFolder2.getName();
+				@Override
+				public int compare(KBFolder kbFolder1, KBFolder kbFolder2) {
+					String name1 = kbFolder1.getName();
+					String name2 = kbFolder2.getName();
 
-				return name1.compareTo(name2) * -1;
-			}
+					return name1.compareTo(name2) * -1;
+				}
 
-		});
+			});
 	}
 
 	public static OrderByComparator getKBArticleOrderByComparator(
