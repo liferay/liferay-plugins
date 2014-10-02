@@ -393,7 +393,7 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 		hits.setQuery(query);
 		hits.setQueryTerms(queryTerms.toArray(new String[queryTerms.size()]));
 
-		hits.setScores(scores.toArray(new Float[scores.size()]));
+		hits.setScores(ArrayUtil.toFloatArray(scores));
 
 		hits.setSearchTime(queryResponse.getQTime());
 		hits.setStart(startTime);

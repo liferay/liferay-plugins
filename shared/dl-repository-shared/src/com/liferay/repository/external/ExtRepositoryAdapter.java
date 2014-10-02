@@ -950,7 +950,7 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 		hits.setDocs(documents.toArray(new Document[documents.size()]));
 		hits.setLength(total);
 		hits.setQueryTerms(new String[0]);
-		hits.setScores(scores.toArray(new Float[scores.size()]));
+		hits.setScores(ArrayUtil.toFloatArray(scores));
 		hits.setSearchTime(searchTime);
 		hits.setSnippets(snippets.toArray(new String[snippets.size()]));
 		hits.setStart(startTime);
