@@ -4,6 +4,10 @@
 <hook>
 	<portal-properties>portal.properties</portal-properties>
 	<custom-jsp-dir>/META-INF/custom_jsps</custom-jsp-dir>
+	<indexer-post-processor>
+		<indexer-class-name>com.liferay.portlet.documentlibrary.model.DLFileEntry</indexer-class-name>
+		<indexer-post-processor-impl>com.liferay.dlfilename.hook.util.DLFileNameIndexerPostProcessor</indexer-post-processor-impl>
+	</indexer-post-processor>
 	<service>
 		<service-type>com.liferay.portlet.asset.service.AssetEntryLocalService</service-type>
 		<service-impl>com.liferay.dlfilename.hook.service.impl.DLFileNameWrapperAssetEntryLocalServiceImpl</service-impl>
