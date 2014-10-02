@@ -326,6 +326,12 @@ public class KBFolderWrapper implements KBFolder, ModelWrapper<KBFolder> {
 	}
 
 	@Override
+	public boolean isEmpty()
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _kbFolder.isEmpty();
+	}
+
+	@Override
 	public boolean isEscapedModel() {
 		return _kbFolder.isEscapedModel();
 	}
