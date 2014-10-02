@@ -145,6 +145,10 @@
 		}
 	}
 
+	.modal-header h3 {
+		text-transform: capitalize;
+	}
+
 	.scheduler-event-content, .scheduler-event-title {
 		font-family: inherit;
 		font-size: inherit;
