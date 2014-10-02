@@ -14,18 +14,23 @@
 
 package com.liferay.dlfilename.hook.asset;
 
+import com.liferay.dlfilename.hook.model.impl.DLFileNameWrapperFileEntryImpl;
+import com.liferay.dlfilename.hook.model.impl.DLFileNameWrapperFileVersionImpl;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.repository.model.FileVersion;
+import com.liferay.portal.kernel.util.PortalClassLoaderUtil;
 import com.liferay.portal.kernel.util.Tuple;
 import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.portlet.asset.model.AssetRenderer;
 import com.liferay.portlet.asset.model.AssetRendererFactory;
 import com.liferay.portlet.asset.model.BaseAssetRendererFactory;
 import com.liferay.portlet.documentlibrary.service.DLAppLocalServiceUtil;
+
+import java.lang.reflect.Constructor;
 
 import java.util.List;
 import java.util.Locale;
@@ -67,12 +72,24 @@ public class DLFileNameDLFileEntryAssetRendererFactory
 			fileVersion = fileEntry.getFileVersion();
 		}
 
-		DLFileNameDLFileEntryAssetRenderer fileNameDLFileEntryAssetRenderer =
-			new DLFileNameDLFileEntryAssetRenderer(fileEntry, fileVersion);
+		ClassLoader classLoader = PortalClassLoaderUtil.getClassLoader();
 
-		fileNameDLFileEntryAssetRenderer.setAssetRendererType(type);
+		try {
+			Class<?> clazz = classLoader.loadClass(
+				_DL_FILE_ENTRY_ASSET_RENDERER_CLASSPATH);
 
-		return fileNameDLFileEntryAssetRenderer;
+			Constructor<?> constructor = clazz.getConstructor(
+				FileEntry.class, FileVersion.class);
+
+			fileEntry = new DLFileNameWrapperFileEntryImpl(fileEntry);
+			fileVersion = new DLFileNameWrapperFileVersionImpl(fileVersion);
+
+			return (AssetRenderer)constructor.newInstance(
+				fileEntry, fileVersion);
+		}
+		catch (Exception e) {
+			throw new PortalException(e);
+		}
 	}
 
 	@Override
@@ -148,6 +165,9 @@ public class DLFileNameDLFileEntryAssetRendererFactory
 	public boolean isLinkable() {
 		return _dlFileEntryAssetRendererFactory.isLinkable();
 	}
+
+	private static final String _DL_FILE_ENTRY_ASSET_RENDERER_CLASSPATH =
+		"com.liferay.portlet.documentlibrary.asset.DLFileEntryAssetRenderer";
 
 	private AssetRendererFactory _dlFileEntryAssetRendererFactory;
 
