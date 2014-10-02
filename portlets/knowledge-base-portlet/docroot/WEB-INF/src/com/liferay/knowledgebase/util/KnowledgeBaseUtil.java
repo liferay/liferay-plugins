@@ -78,6 +78,7 @@ import java.util.regex.Pattern;
 import javax.portlet.PortletRequest;
 import javax.portlet.PortletURL;
 import javax.portlet.RenderResponse;
+
 import javax.servlet.http.HttpServletRequest;
 
 /**
@@ -421,7 +422,7 @@ public class KnowledgeBaseUtil {
 	public static long getRootResourcePrimKey(
 			PortletRequest portletRequest, long groupId,
 			long resourceClassNameId, long resourcePrimKey)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		long kbFolderClassNameId = PortalUtil.getClassNameId(
 			KBFolderConstants.getClassName());

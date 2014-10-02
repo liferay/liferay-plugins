@@ -33,7 +33,6 @@ import com.liferay.knowledgebase.util.WebKeys;
 import com.liferay.knowledgebase.util.comparator.KBArticlePriorityComparator;
 import com.liferay.portal.NoSuchSubscriptionException;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.servlet.SessionMessages;
 import com.liferay.portal.kernel.util.GetterUtil;
@@ -149,7 +148,7 @@ public class DisplayPortlet extends BaseKBPortlet {
 
 	public void updateRootKBFolderId(
 			ActionRequest actionRequest, ActionResponse actionResponse)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		long kbFolderId = ParamUtil.getLong(actionRequest, "rootKBFolderId");
 
@@ -337,7 +336,7 @@ public class DisplayPortlet extends BaseKBPortlet {
 
 	private KBArticle getFolderKBArticle(
 			long groupId, long kbFolderId, String kbFolderUrlTitle)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		if (Validator.isNotNull(kbFolderUrlTitle)) {
 			KBFolder kbFolder = KBFolderServiceUtil.fetchKBFolderByUrlTitle(
