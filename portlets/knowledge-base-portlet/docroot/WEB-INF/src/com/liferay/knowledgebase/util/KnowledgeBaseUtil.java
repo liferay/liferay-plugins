@@ -162,7 +162,10 @@ public class KnowledgeBaseUtil {
 
 			@Override
 			public int compare(KBFolder kbFolder1, KBFolder kbFolder2) {
-				return -(kbFolder1.getName().compareTo(kbFolder2.getName()));
+				String name1 = kbFolder1.getName();
+				String name2 = kbFolder2.getName();
+
+				return name1.compareTo(name2) * -1;
 			}
 
 		});
