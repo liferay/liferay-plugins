@@ -30,6 +30,8 @@ import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.Repository;
 import com.liferay.portal.model.User;
+import com.liferay.portal.security.permission.ActionKeys;
+import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portlet.documentlibrary.DuplicateFileException;
 import com.liferay.portlet.documentlibrary.DuplicateFolderNameException;
@@ -205,6 +207,21 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 
 			return SyncUtil.toSyncDLObject(
 				fileEntry, SyncConstants.EVENT_CHECK_OUT);
+		}
+		catch (PortalException pe) {
+			throw new PortalException(SyncUtil.buildExceptionMessage(pe), pe);
+		}
+	}
+
+	@Override
+	public List<SyncDLObject> getAllFolderSyncDLObjects(
+			long companyId, long repositoryId)
+		throws PortalException {
+
+		try {
+			repositoryService.checkRepository(repositoryId);
+
+			return syncDLObjectFinder.filterFindByC_R(companyId, repositoryId);
 		}
 		catch (PortalException pe) {
 			throw new PortalException(SyncUtil.buildExceptionMessage(pe), pe);
@@ -443,14 +460,53 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 			repositoryService.checkRepository(repositoryId);
 
 			List<SyncDLObject> syncDLObjects =
-				syncDLObjectFinder.filterFindByC_M_R(
-					companyId, lastAccessTime, repositoryId);
+				syncDLObjectFinder.filterFindByC_M_R_P(
+					companyId, lastAccessTime, repositoryId, -1);
 
 			for (SyncDLObject syncDLObject : syncDLObjects) {
 				if (syncDLObject.getModifiedTime() > lastAccessTime) {
 					lastAccessTime = syncDLObject.getModifiedTime();
 				}
 			}
+
+			return new SyncDLObjectUpdate(syncDLObjects, lastAccessTime);
+		}
+		catch (PortalException pe) {
+			throw new PortalException(SyncUtil.buildExceptionMessage(pe), pe);
+		}
+	}
+
+	@Override
+	public SyncDLObjectUpdate getSyncDLObjectUpdate(
+			long companyId, long repositoryId, long parentFolderId,
+			long lastAccessTime)
+		throws PortalException {
+
+		try {
+			repositoryService.checkRepository(repositoryId);
+
+			List<SyncDLObject> syncDLObjects = new ArrayList<SyncDLObject>();
+
+			if (parentFolderId > 0) {
+				PermissionChecker permissionChecker = getPermissionChecker();
+
+				if (permissionChecker.hasPermission(
+						repositoryId, DLFolderConstants.getClassName(),
+						parentFolderId, ActionKeys.VIEW)) {
+
+					SyncDLObject syncDLObject =
+						syncDLObjectPersistence.fetchByT_T(
+							SyncConstants.TYPE_FOLDER, parentFolderId);
+
+					if (syncDLObject != null) {
+						syncDLObjects.add(syncDLObject);
+					}
+				}
+			}
+
+			syncDLObjects = getSyncDLObjects(
+				syncDLObjects, companyId, repositoryId, parentFolderId,
+				lastAccessTime);
 
 			return new SyncDLObjectUpdate(syncDLObjects, lastAccessTime);
 		}
@@ -694,6 +750,32 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 			String.valueOf(pollInterval));
 
 		return portletPreferencesMap;
+	}
+
+	protected List<SyncDLObject> getSyncDLObjects(
+			List<SyncDLObject> syncDLObjects, long companyId, long repositoryId,
+			long parentFolderId, long lastAccessTime)
+		throws PortalException {
+
+		List<SyncDLObject> curSyncDLObjects =
+			syncDLObjectFinder.filterFindByC_M_R_P(
+				companyId, lastAccessTime, repositoryId, parentFolderId);
+
+		syncDLObjects.addAll(curSyncDLObjects);
+
+		for (SyncDLObject syncDLObject : curSyncDLObjects) {
+			String type = syncDLObject.getType();
+
+			if (type.equals("file")) {
+				continue;
+			}
+
+			getSyncDLObjects(
+				syncDLObjects, companyId, repositoryId,
+				syncDLObject.getTypePK(), lastAccessTime);
+		}
+
+		return syncDLObjects;
 	}
 
 	protected void validateChecksum(File file, String checksum)

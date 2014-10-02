@@ -19,6 +19,8 @@ import com.liferay.portal.kernel.dao.orm.SQLQuery;
 import com.liferay.portal.kernel.dao.orm.Session;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.StringBundler;
+import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.security.auth.PrincipalThreadLocal;
 import com.liferay.portal.security.permission.InlineSQLHelperUtil;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
@@ -33,6 +35,7 @@ import java.util.List;
 
 /**
  * @author Michael Young
+ * @author Shinn Lok
  */
 public class SyncDLObjectFinderImpl
 	extends BasePersistenceImpl<SyncDLObject> implements SyncDLObjectFinder {
@@ -47,8 +50,9 @@ public class SyncDLObjectFinderImpl
 		SyncDLObjectFinder.class.getName() + ".findByFolderType";
 
 	@Override
-	public List<SyncDLObject> filterFindByC_M_R(
-		long companyId, long modifiedTime, long repositoryId) {
+	public List<SyncDLObject> filterFindByC_M_R_P(
+		long companyId, long modifiedTime, long repositoryId,
+		long parentFolderId) {
 
 		Session session = null;
 
@@ -76,12 +80,16 @@ public class SyncDLObjectFinderImpl
 
 			sql = InlineSQLHelperUtil.replacePermissionCheck(
 				sql, DLFileEntry.class.getName(), "SyncDLObject.typePK", null,
-				"SyncDLObject.repositoryId", new long[] {repositoryId},
-				null);
+				"SyncDLObject.repositoryId", new long[] {repositoryId}, null);
 
 			sb.append(sql);
 
 			sql = sb.toString();
+
+			if (parentFolderId == -1) {
+				sql = StringUtil.replace(
+					sql, _PARENT_FOLDER_ID_SQL, StringPool.BLANK);
+			}
 
 			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
@@ -92,12 +100,27 @@ public class SyncDLObjectFinderImpl
 			qPos.add(companyId);
 			qPos.add(modifiedTime);
 			qPos.add(repositoryId);
+
+			if (parentFolderId != -1) {
+				qPos.add(parentFolderId);
+			}
+
 			qPos.add(companyId);
 			qPos.add(modifiedTime);
 			qPos.add(repositoryId);
+
+			if (parentFolderId != -1) {
+				qPos.add(parentFolderId);
+			}
+
 			qPos.add(companyId);
 			qPos.add(modifiedTime);
 			qPos.add(repositoryId);
+
+			if (parentFolderId != -1) {
+				qPos.add(parentFolderId);
+			}
+
 			qPos.add(PrincipalThreadLocal.getUserId());
 
 			return q.list();
@@ -109,5 +132,51 @@ public class SyncDLObjectFinderImpl
 			closeSession(session);
 		}
 	}
+
+	@Override
+	public List<SyncDLObject> filterFindByC_R(
+		long companyId, long repositoryId) {
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			String sql = CustomSQLUtil.get(FIND_BY_FOLDER_TYPE);
+
+			sql = sql.concat(_EVENT_SQL);
+
+			sql = InlineSQLHelperUtil.replacePermissionCheck(
+				sql, DLFolder.class.getName(), "SyncDLObject.typePK", null,
+				"SyncDLObject.repositoryId", new long[] {repositoryId}, null);
+
+			sql = StringUtil.replace(
+				sql, _PARENT_FOLDER_ID_SQL, StringPool.BLANK);
+
+			SQLQuery q = session.createSynchronizedSQLQuery(sql);
+
+			q.addEntity("SyncDLObject", SyncDLObjectImpl.class);
+
+			QueryPos qPos = QueryPos.getInstance(q);
+
+			qPos.add(companyId);
+			qPos.add(0);
+			qPos.add(repositoryId);
+
+			return q.list();
+		}
+		catch (Exception e) {
+			throw new SystemException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	private static final String _EVENT_SQL =
+		" AND (SyncDLObject.event != 'trash')";
+
+	private static final String _PARENT_FOLDER_ID_SQL =
+		"(SyncDLObject.parentFolderId = ?) AND";
 
 }
