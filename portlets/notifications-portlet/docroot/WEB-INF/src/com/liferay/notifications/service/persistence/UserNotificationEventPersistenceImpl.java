@@ -199,13 +199,6 @@ public class UserNotificationEventPersistenceImpl extends BasePersistenceImpl<Us
 						finderArgs, list);
 				}
 				else {
-					if ((list.size() > 1) && _log.isWarnEnabled()) {
-						_log.warn(
-							"UserNotificationEventPersistenceImpl.fetchByUserNotificationEventId(long, boolean) with parameters (" +
-							StringUtil.merge(finderArgs) +
-							") yields a result set with more than 1 result. This violates the logical unique restriction. There is no order guarantee on which result is returned by this finder.");
-					}
-
 					UserNotificationEvent userNotificationEvent = list.get(0);
 
 					result = userNotificationEvent;
