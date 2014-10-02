@@ -146,7 +146,8 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		kbArticle.setVersion(KBArticleConstants.DEFAULT_VERSION);
 		kbArticle.setTitle(title);
 		kbArticle.setUrlTitle(
-			getUniqueUrlTitle(kbArticleId, title, urlTitle, serviceContext));
+			getUniqueUrlTitle(
+				groupId, kbFolderId, kbArticleId, title, urlTitle));
 		kbArticle.setContent(content);
 		kbArticle.setDescription(description);
 		kbArticle.setPriority(priority);
@@ -1584,75 +1585,36 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 	}
 
 	protected String getUniqueUrlTitle(
-			long groupId, long kbArticleId, String title)
+			long groupId, long kbFolderId, long kbArticleId, String title)
 		throws PortalException {
 
 		String urlTitle = KnowledgeBaseUtil.getUrlTitle(kbArticleId, title);
 
-		for (int i = 1;; i++) {
-			KBArticle kbArticle = null;
+		String uniqueUrlTitle = urlTitle;
 
-			try {
-				kbArticle = getKBArticleByUrlTitle(
-					groupId, KBFolderConstants.DEFAULT_PARENT_FOLDER_ID,
-					urlTitle);
-			}
-			catch (NoSuchArticleException nsae) {
-			}
+		int kbArticleCount = kbArticlePersistence.countByG_KBFI_UT_ST(
+			groupId, kbFolderId, uniqueUrlTitle, _STATUSES);
 
-			if ((kbArticle == null) ||
-				(kbArticleId == kbArticle.getKbArticleId())) {
+		for (int i = 1; kbArticleCount > 0; i++) {
+			uniqueUrlTitle = urlTitle + StringPool.DASH + i;
 
-				break;
-			}
-			else {
-				String suffix = StringPool.DASH + i;
-
-				String prefix = urlTitle;
-
-				if (urlTitle.length() > suffix.length()) {
-					prefix = urlTitle.substring(
-						0, urlTitle.length() - suffix.length());
-				}
-
-				urlTitle = prefix + suffix;
-			}
+			kbArticleCount = kbArticlePersistence.countByG_KBFI_UT_ST(
+				groupId, kbFolderId, uniqueUrlTitle, _STATUSES);
 		}
 
-		return urlTitle;
+		return uniqueUrlTitle;
 	}
 
 	protected String getUniqueUrlTitle(
-			long kbArticleId, String title, String urlTitle,
-			ServiceContext serviceContext)
+			long groupId, long kbFolderId, long kbArticleId, String title,
+			String urlTitle)
 		throws PortalException {
 
-		if (Validator.isNotNull(urlTitle)) {
-			urlTitle = KnowledgeBaseUtil.getUrlTitle(kbArticleId, urlTitle);
-		}
-		else {
-			urlTitle = getUniqueUrlTitle(
-				serviceContext.getScopeGroupId(), kbArticleId, title);
+		if (Validator.isNull(urlTitle)) {
+			return getUniqueUrlTitle(groupId, kbFolderId, kbArticleId, title);
 		}
 
-		KBArticle kbArticle = null;
-
-		try {
-			kbArticle = getKBArticleByUrlTitle(
-				serviceContext.getScopeGroupId(),
-				KBFolderConstants.DEFAULT_PARENT_FOLDER_ID, urlTitle);
-		}
-		catch (NoSuchArticleException nsae) {
-		}
-
-		if ((kbArticle != null) &&
-			(kbArticleId != kbArticle.getKbArticleId())) {
-
-			urlTitle = getUniqueUrlTitle(
-				serviceContext.getScopeGroupId(), kbArticleId, urlTitle);
-		}
-
-		return urlTitle;
+		return getUniqueUrlTitle(groupId, kbFolderId, kbArticleId, urlTitle);
 	}
 
 	protected boolean isValidFileName(String name) {
@@ -1883,6 +1845,10 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			throw new KBArticleSourceURLException(sourceURL);
 		}
 	}
+
+	private static final int[] _STATUSES = new int[] {
+		WorkflowConstants.STATUS_APPROVED, WorkflowConstants.STATUS_PENDING
+	};
 
 	private static final String _TEMP_FOLDER_NAME =
 		AdminPortlet.class.getName();
