@@ -597,8 +597,8 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		if (kbArticle == null) {
 			throw new NoSuchArticleException(
 				"No KBArticle with the key {groupId=" + groupId +
-					", urlTitle=" + urlTitle + "} found within a folder " +
-						"with urlTitle " + kbFolderUrlTitle);
+					", urlTitle=" + urlTitle + "} found in a folder with URL " +
+						"title " + kbFolderUrlTitle);
 		}
 
 		return kbArticle;
@@ -1900,7 +1900,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		}
 	}
 
-	private static final int[] _STATUSES = new int[] {
+	private static final int[] _STATUSES = {
 		WorkflowConstants.STATUS_APPROVED, WorkflowConstants.STATUS_PENDING
 	};
 
