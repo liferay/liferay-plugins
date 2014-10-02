@@ -1129,13 +1129,6 @@ public class KBArticleWrapper implements KBArticle, ModelWrapper<KBArticle> {
 	}
 
 	@Override
-	public long getKBFolderId()
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return _kbArticle.getKBFolderId();
-	}
-
-	@Override
 	public com.liferay.knowledgebase.model.KBArticle getParentKBArticle()
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
