@@ -153,7 +153,7 @@ public class KnowledgeBaseUtil {
 		while (i.hasNext()) {
 			KBFolder kbFolder = i.next();
 
-			if (kbFolder.isLeaf()) {
+			if (kbFolder.isEmpty()) {
 				i.remove();
 			}
 		}
