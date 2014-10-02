@@ -5,6 +5,7 @@
 	<classpathentry excluding="**/.svn/**|.svn/" kind="src" path="docroot/WEB-INF/src" />
 	<classpathentry kind="src" path="/portal-6.2.x" />
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER" />
+<<<<<<< HEAD
 	<classpathentry kind="lib" path="/portal-6.2.x/lib/development/activation.jar" />
 	<classpathentry kind="lib" path="/portal-6.2.x/lib/development/annotations.jar" />
 	<classpathentry kind="lib" path="/portal-6.2.x/lib/development/jsp-api.jar" />
@@ -23,6 +24,27 @@
 	<classpathentry kind="lib" path="/portal-6.2.x/util-bridges/util-bridges.jar" />
 	<classpathentry kind="lib" path="/portal-6.2.x/util-java/util-java.jar" />
 	<classpathentry kind="lib" path="/portal-6.2.x/util-taglib/util-taglib.jar" />
+=======
+	<classpathentry kind="lib" path="/portal-master/lib/development/activation.jar" />
+	<classpathentry kind="lib" path="/portal-master/lib/development/annotations.jar" />
+	<classpathentry kind="lib" path="/portal-master/lib/development/jsp-api.jar" />
+	<classpathentry kind="lib" path="/portal-master/lib/development/mail.jar" />
+	<classpathentry kind="lib" path="/portal-master/lib/development/servlet-api.jar" />
+	<classpathentry kind="lib" path="/portal-master/lib/global/portlet.jar" />
+	<classpathentry kind="lib" path="/portal-master/lib/portal/bnd.jar" />
+	<classpathentry kind="lib" path="/portal-master/lib/portal/commons-logging.jar" />
+	<classpathentry kind="lib" path="/portal-master/lib/portal/commons-math.jar" />
+	<classpathentry kind="lib" path="/portal-master/lib/portal/jdom.jar" />
+	<classpathentry kind="lib" path="/portal-master/lib/portal/jericho-html.jar" />
+	<classpathentry kind="lib" path="/portal-master/lib/portal/jstl-api.jar" />
+	<classpathentry kind="lib" path="/portal-master/lib/portal/jstl-impl.jar" />
+	<classpathentry kind="lib" path="/portal-master/lib/portal/log4j.jar" />
+	<classpathentry kind="lib" path="/portal-master/lib/portal/rome.jar" />
+	<classpathentry kind="lib" path="/portal-master/portal-service/portal-service.jar" />
+	<classpathentry kind="lib" path="/portal-master/util-bridges/util-bridges.jar" />
+	<classpathentry kind="lib" path="/portal-master/util-java/util-java.jar" />
+	<classpathentry kind="lib" path="/portal-master/util-taglib/util-taglib.jar" />
+>>>>>>> ae730f3... LPS-50329 Fix compile error in master
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/asm-analysis.jar" />
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/asm-tree.jar" />
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/asm-util.jar" />
