@@ -239,12 +239,12 @@ public class DisplayPortlet extends BaseKBPortlet {
 			}
 		}
 
-		PortletPreferences preferences = renderRequest.getPreferences();
+		PortletPreferences portletPreferences = renderRequest.getPreferences();
 
 		long defaultResourceClassNameId = GetterUtil.getLong(
-			preferences.getValue("resourceClassNameId", null));
+			portletPreferences.getValue("resourceClassNameId", null));
 		long defaultResourcePrimKey = GetterUtil.getLong(
-			preferences.getValue("resourcePrimKey", null));
+			portletPreferences.getValue("resourcePrimKey", null));
 
 		String mvcPath = ParamUtil.getString(renderRequest, "mvcPath");
 
