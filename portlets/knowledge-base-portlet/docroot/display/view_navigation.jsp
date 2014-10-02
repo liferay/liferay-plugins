@@ -58,7 +58,6 @@ if (rootResourcePrimKey != KBFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
 %>
 
 <div class="kbarticle-navigation">
-
 	<c:if test="<%= resourceClassNameId == kbFolderClassNameId %>">
 
 		<%
@@ -71,14 +70,22 @@ if (rootResourcePrimKey != KBFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
 			<div class="kbarticle-root-selector input-append kb-field-wrapper">
 				<aui:form action="<%= updateRootKBFolderIdURL %>" name="updateRootKBFolderIdFm">
 					<aui:select label="" name="rootKBFolderId">
-						<% for (KBFolder kbFolder : kbFolders) { %>
+
+						<%
+						for (KBFolder kbFolder : kbFolders) {
+						%>
+
 							<aui:option
 								selected="<%= kbFolder.getUrlTitle().equals(currentKBFolderUrlTitle) %>"
 								value="<%= kbFolder.getKbFolderId() %>"
 							>
 								<%= kbFolder.getName() %>
 							</aui:option>
-						<% } %>
+
+						<%
+						}
+						%>
+
 					</aui:select>
 				</aui:form>
 			</div>
