@@ -139,7 +139,7 @@ public class KnowledgeBaseUtil {
 		}
 	}
 
-	public static List<KBFolder> getAlternativeRootKBFolders(
+	public static List<KBFolder> getAlternateRootKBFolders(
 			long groupId, long kbFolderId)
 		throws PortalException {
 
@@ -568,7 +568,7 @@ public class KnowledgeBaseUtil {
 		long childKbFolderId = KBFolderConstants.DEFAULT_PARENT_FOLDER_ID;
 
 		if (kbFolderUrlTitle == null) {
-			List<KBFolder> kbFolders = getAlternativeRootKBFolders(
+			List<KBFolder> kbFolders = getAlternateRootKBFolders(
 				groupId, kbFolderId);
 
 			if (!kbFolders.isEmpty()) {

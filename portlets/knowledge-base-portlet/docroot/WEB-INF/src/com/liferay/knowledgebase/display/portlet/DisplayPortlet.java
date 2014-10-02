@@ -356,7 +356,7 @@ public class DisplayPortlet extends BaseKBPortlet {
 		}
 
 		List<KBFolder> kbFolders =
-			KnowledgeBaseUtil.getAlternativeRootKBFolders(groupId, kbFolderId);
+			KnowledgeBaseUtil.getAlternateRootKBFolders(groupId, kbFolderId);
 
 		for (KBFolder kbFolder : kbFolders) {
 			KBArticle kbArticle = getFolderKBArticle(
