@@ -14,12 +14,10 @@
 
 package com.liferay.knowledgebase.service.persistence.impl;
 
-import com.liferay.knowledgebase.service.persistence.KBArticleFinder;
-import com.liferay.knowledgebase.service.persistence.KBArticleUtil;
-
 import com.liferay.compat.portal.kernel.util.StringUtil;
 import com.liferay.knowledgebase.model.KBArticle;
 import com.liferay.knowledgebase.model.impl.KBArticleImpl;
+import com.liferay.knowledgebase.service.persistence.KBArticleFinder;
 import com.liferay.portal.kernel.dao.orm.QueryPos;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.dao.orm.SQLQuery;
