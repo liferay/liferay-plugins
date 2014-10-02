@@ -24,10 +24,17 @@ import com.liferay.portal.kernel.util.ReferenceRegistry;
  */
 @ProviderType
 public class SyncDLObjectFinderUtil {
-	public static java.util.List<com.liferay.sync.model.SyncDLObject> filterFindByC_M_R(
-		long companyId, long modifiedTime, long repositoryId) {
+	public static java.util.List<com.liferay.sync.model.SyncDLObject> filterFindByC_M_R_P(
+		long companyId, long modifiedTime, long repositoryId,
+		long parentFolderId) {
 		return getFinder()
-				   .filterFindByC_M_R(companyId, modifiedTime, repositoryId);
+				   .filterFindByC_M_R_P(companyId, modifiedTime, repositoryId,
+			parentFolderId);
+	}
+
+	public static java.util.List<com.liferay.sync.model.SyncDLObject> filterFindByC_R(
+		long companyId, long repositoryId) {
+		return getFinder().filterFindByC_R(companyId, repositoryId);
 	}
 
 	public static SyncDLObjectFinder getFinder() {

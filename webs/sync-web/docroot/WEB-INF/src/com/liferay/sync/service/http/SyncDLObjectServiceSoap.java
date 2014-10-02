@@ -148,6 +148,21 @@ public class SyncDLObjectServiceSoap {
 		}
 	}
 
+	public static com.liferay.sync.model.SyncDLObjectSoap[] getAllFolderSyncDLObjects(
+		long companyId, long repositoryId) throws RemoteException {
+		try {
+			java.util.List<com.liferay.sync.model.SyncDLObject> returnValue = SyncDLObjectServiceUtil.getAllFolderSyncDLObjects(companyId,
+					repositoryId);
+
+			return com.liferay.sync.model.SyncDLObjectSoap.toSoapModels(returnValue);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
 	/**
 	* @deprecated As of 7.0.0, with no direct replacement
 	*/
@@ -290,6 +305,22 @@ public class SyncDLObjectServiceSoap {
 		try {
 			com.liferay.sync.model.SyncDLObjectUpdate returnValue = SyncDLObjectServiceUtil.getSyncDLObjectUpdate(companyId,
 					repositoryId, lastAccessTime);
+
+			return returnValue;
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static com.liferay.sync.model.SyncDLObjectUpdate getSyncDLObjectUpdate(
+		long companyId, long repositoryId, long parentFolderId,
+		long lastAccessTime) throws RemoteException {
+		try {
+			com.liferay.sync.model.SyncDLObjectUpdate returnValue = SyncDLObjectServiceUtil.getSyncDLObjectUpdate(companyId,
+					repositoryId, parentFolderId, lastAccessTime);
 
 			return returnValue;
 		}

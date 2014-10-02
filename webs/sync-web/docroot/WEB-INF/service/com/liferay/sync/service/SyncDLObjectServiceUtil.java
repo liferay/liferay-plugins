@@ -95,6 +95,12 @@ public class SyncDLObjectServiceUtil {
 		return getService().checkOutFileEntry(fileEntryId, serviceContext);
 	}
 
+	public static java.util.List<com.liferay.sync.model.SyncDLObject> getAllFolderSyncDLObjects(
+		long companyId, long repositoryId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().getAllFolderSyncDLObjects(companyId, repositoryId);
+	}
+
 	/**
 	* @deprecated As of 7.0.0, with no direct replacement
 	*/
@@ -171,6 +177,15 @@ public class SyncDLObjectServiceUtil {
 		return getService()
 				   .getSyncDLObjectUpdate(companyId, repositoryId,
 			lastAccessTime);
+	}
+
+	public static com.liferay.sync.model.SyncDLObjectUpdate getSyncDLObjectUpdate(
+		long companyId, long repositoryId, long parentFolderId,
+		long lastAccessTime)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService()
+				   .getSyncDLObjectUpdate(companyId, repositoryId,
+			parentFolderId, lastAccessTime);
 	}
 
 	public static java.util.List<com.liferay.portal.model.Group> getUserSitesGroups()
