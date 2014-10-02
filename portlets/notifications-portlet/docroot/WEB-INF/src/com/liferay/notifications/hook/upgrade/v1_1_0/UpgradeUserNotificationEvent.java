@@ -15,11 +15,10 @@
 package com.liferay.notifications.hook.upgrade.v1_1_0;
 
 import com.liferay.compat.portal.kernel.util.ListUtil;
-import com.liferay.notifications.service.UserNotificationEventLocalServiceUtil;
 import com.liferay.notifications.util.NotificationsConstants;
-import com.liferay.portal.NoSuchUserException;
 import com.liferay.portal.kernel.dao.jdbc.DataAccess;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
+import com.liferay.portal.kernel.util.StringBundler;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -31,6 +30,44 @@ import java.util.List;
  * @author Calvin Keum
  */
 public class UpgradeUserNotificationEvent extends UpgradeProcess {
+
+	protected void addUserNotificationEvent(
+			long companyId, long userId, long userNotificationEventId,
+			long timestamp, boolean actionRequired, boolean delivered,
+			boolean archived)
+		throws Exception {
+
+		Connection con = null;
+		PreparedStatement ps = null;
+
+		try {
+			con = DataAccess.getUpgradeOptimizedConnection();
+
+			StringBundler sb = new StringBundler(5);
+
+			sb.append("insert into Notifications_UserNotificationEvent (");
+			sb.append("notificationEventId, companyId, userId,");
+			sb.append("userNotificationEventId, timestamp , delivered,");
+			sb.append("actionRequired, archived) values (?, ?, ?, ?, ?, ?");
+			sb.append(", ?, ?)");
+
+			ps = con.prepareStatement(sb.toString());
+
+			ps.setLong(1, increment());
+			ps.setLong(2, companyId);
+			ps.setLong(3, userId);
+			ps.setLong(4, userNotificationEventId);
+			ps.setLong(5, timestamp);
+			ps.setBoolean(6, actionRequired);
+			ps.setBoolean(7, delivered);
+			ps.setBoolean(8, archived);
+
+			ps.executeUpdate();
+		}
+		finally {
+			DataAccess.cleanUp(con, ps);
+		}
+	}
 
 	@Override
 	protected void doUpgrade() throws Exception {
@@ -45,15 +82,14 @@ public class UpgradeUserNotificationEvent extends UpgradeProcess {
 		try {
 			con = DataAccess.getUpgradeOptimizedConnection();
 
-			ps = con.prepareStatement(
-				"select userNotificationEventId, userId, type_, timestamp, " +
-					"delivered, archived from UserNotificationEvent");
+			ps = con.prepareStatement("select * from UserNotificationEvent");
 
 			rs = ps.executeQuery();
 
 			while (rs.next()) {
 				long userNotificationEventId = rs.getLong(
 					"userNotificationEventId");
+				long companyId = rs.getLong("companyId");
 				long userId = rs.getLong("userId");
 				String type = rs.getString("type_");
 				long timestamp = rs.getLong("timestamp");
@@ -66,14 +102,9 @@ public class UpgradeUserNotificationEvent extends UpgradeProcess {
 					actionRequired = true;
 				}
 
-				try {
-					UserNotificationEventLocalServiceUtil.
-						addUserNotificationEvent(
-							userNotificationEventId, userId, timestamp,
-							actionRequired, delivered, archived);
-				}
-				catch (NoSuchUserException nsue) {
-				}
+				addUserNotificationEvent(
+					companyId, userId, userNotificationEventId, timestamp,
+					actionRequired, delivered, archived);
 			}
 		}
 		finally {
