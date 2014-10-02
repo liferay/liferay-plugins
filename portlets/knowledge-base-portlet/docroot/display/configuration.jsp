@@ -74,7 +74,7 @@ if (PortalUtil.isRSSFeedsEnabled()) {
 						<liferay-ui:input-resource id="configurationKBObject" url="<%= title %>" />
 
 						<liferay-portlet:renderURL portletName="<%= portletResource %>" var="selectConfigurationKBObjectURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
-							<portlet:param name="mvcPath" value="/display/select_configuration_article.jsp" />
+							<portlet:param name="mvcPath" value="/display/select_configuration_object.jsp" />
 							<portlet:param name="parentResourceClassNameId" value="<%= String.valueOf(kbFolderClassNameId) %>" />
 							<portlet:param name="parentResourcePrimKey" value="<%= String.valueOf(KBFolderConstants.DEFAULT_PARENT_FOLDER_ID) %>" />
 						</liferay-portlet:renderURL>
