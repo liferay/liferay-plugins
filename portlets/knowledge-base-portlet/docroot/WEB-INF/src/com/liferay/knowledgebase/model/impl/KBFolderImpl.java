@@ -69,10 +69,14 @@ public class KBFolderImpl extends KBFolderBaseImpl {
 			return false;
 		}
 
-		int kbFolderCount = KBFolderServiceUtil.getKBFoldersCount(
+		int kbFoldersCount = KBFolderServiceUtil.getKBFoldersCount(
 			getGroupId(), getKbFolderId());
 
-		return kbFolderCount == 0;
+		if (kbFoldersCount > 0) {
+			return false;
+		}
+
+		return true;
 	}
 
 	private long _classNameId;
