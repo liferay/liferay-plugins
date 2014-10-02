@@ -864,36 +864,39 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			kbFolderId = parentResourceClassNameId;
 		}
 		else {
-			KBArticle kbArticle = getLatestKBArticle(
+			KBArticle latestKBArticle = getLatestKBArticle(
 				parentResourcePrimKey, WorkflowConstants.STATUS_ANY);
 
-			kbFolderId = kbArticle.getKbFolderId();
+			kbFolderId = latestKBArticle.getKbFolderId();
 		}
 
 		List<KBArticle> kbArticles = getKBArticleVersions(
 			resourcePrimKey, WorkflowConstants.STATUS_ANY, QueryUtil.ALL_POS,
 			QueryUtil.ALL_POS, new KBArticleVersionComparator());
 
-		for (KBArticle kbArticle : kbArticles) {
-			kbArticle.setParentResourceClassNameId(parentResourceClassNameId);
-			kbArticle.setParentResourcePrimKey(parentResourcePrimKey);
+		for (KBArticle curKBArticle : kbArticles) {
+			curKBArticle.setParentResourceClassNameId(parentResourceClassNameId);
+			curKBArticle.setParentResourcePrimKey(parentResourcePrimKey);
 
 			if (parentResourceClassNameId == kbFolderClassNameId) {
-				kbArticle.setKbFolderId(kbFolderId);
+				curKBArticle.setKbFolderId(kbFolderId);
 			}
 
-			kbArticle.setPriority(priority);
+			curKBArticle.setPriority(priority);
 
-			kbArticlePersistence.update(kbArticle);
+			kbArticlePersistence.update(curKBArticle);
 		}
 
-		if (parentResourceClassNameId == kbFolderClassNameId) {
+		KBArticle kbArticle = kbArticlePersistence.findByPrimaryKey(
+			resourcePrimKey);
+
+		if (kbArticle.getKbFolderId() != kbFolderId) {
 			List<KBArticle> descendantKBArticles = getAllDescendantKBArticles(
 				resourcePrimKey, WorkflowConstants.STATUS_ANY, null);
 
-			for (KBArticle kbArticle : descendantKBArticles) {
+			for (KBArticle curKBArticle : descendantKBArticles) {
 				List<KBArticle> kbArticleVersions = getKBArticleVersions(
-					kbArticle.getResourcePrimKey(),
+					curKBArticle.getResourcePrimKey(),
 					WorkflowConstants.STATUS_ANY, QueryUtil.ALL_POS,
 					QueryUtil.ALL_POS, new KBArticleVersionComparator());
 
@@ -907,16 +910,16 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 
 		// Social
 
-		KBArticle kbArticle = getLatestKBArticle(
+		KBArticle latestKBArticle = getLatestKBArticle(
 			resourcePrimKey, WorkflowConstants.STATUS_ANY);
 
 		JSONObject extraDataJSONObject = JSONFactoryUtil.createJSONObject();
 
-		extraDataJSONObject.put("title", kbArticle.getTitle());
+		extraDataJSONObject.put("title", latestKBArticle.getTitle());
 
-		if (kbArticle.isApproved() || !kbArticle.isFirstVersion()) {
+		if (latestKBArticle.isApproved() || !latestKBArticle.isFirstVersion()) {
 			socialActivityLocalService.addActivity(
-				userId, kbArticle.getGroupId(), KBArticle.class.getName(),
+				userId, latestKBArticle.getGroupId(), KBArticle.class.getName(),
 				resourcePrimKey, AdminActivityKeys.MOVE_KB_ARTICLE,
 				extraDataJSONObject.toString(), 0);
 		}
