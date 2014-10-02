@@ -361,12 +361,6 @@ public class KBArticleWrapper implements KBArticle, ModelWrapper<KBArticle> {
 		return _kbArticle.getGroupId();
 	}
 
-	@Override
-	public long getKBFolderId()
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _kbArticle.getKBFolderId();
-	}
-
 	/**
 	* Returns the kb article ID of this k b article.
 	*

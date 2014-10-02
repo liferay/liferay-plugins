@@ -12,7 +12,10 @@
  * details.
  */
 
-package com.liferay.knowledgebase.service.persistence;
+package com.liferay.knowledgebase.service.persistence.impl;
+
+import com.liferay.knowledgebase.service.persistence.KBArticleFinder;
+import com.liferay.knowledgebase.service.persistence.KBArticleUtil;
 
 import com.liferay.compat.portal.kernel.util.StringUtil;
 import com.liferay.knowledgebase.model.KBArticle;

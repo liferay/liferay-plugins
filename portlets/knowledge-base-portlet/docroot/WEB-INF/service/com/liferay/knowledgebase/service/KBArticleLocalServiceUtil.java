@@ -276,6 +276,14 @@ public class KBArticleLocalServiceUtil {
 				   .fetchKBArticleByUrlTitle(groupId, kbFolderId, urlTitle);
 	}
 
+	public static com.liferay.knowledgebase.model.KBArticle fetchKBArticleByUrlTitle(
+		long groupId, java.lang.String kbFolderUrlTitle,
+		java.lang.String urlTitle)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService()
+				   .fetchKBArticleByUrlTitle(groupId, kbFolderUrlTitle, urlTitle);
+	}
+
 	/**
 	* Returns the k b article matching the UUID and group.
 	*
@@ -394,6 +402,14 @@ public class KBArticleLocalServiceUtil {
 		long groupId, long kbFolderId, java.lang.String urlTitle)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().getKBArticleByUrlTitle(groupId, kbFolderId, urlTitle);
+	}
+
+	public static com.liferay.knowledgebase.model.KBArticle getKBArticleByUrlTitle(
+		long groupId, java.lang.String kbFolderUrlTitle,
+		java.lang.String urlTitle)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService()
+				   .getKBArticleByUrlTitle(groupId, kbFolderUrlTitle, urlTitle);
 	}
 
 	/**
