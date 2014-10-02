@@ -58,10 +58,20 @@ public class DLFileNameWrapperDLFileEntryLocalServiceImpl
 			title = sourceFileName;
 		}
 
-		serviceContext = _setFileNameExpandoAttributes(title, serviceContext);
+		Map<String, Serializable> expandoBridgeAttributes =
+			serviceContext.getExpandoBridgeAttributes();
 
-		title = _removeWhitelistCharacters(title);
-		sourceFileName = _removeWhitelistCharacters(sourceFileName);
+		if (!expandoBridgeAttributes.containsKey(
+				DLFileNameWrapperFileEntryImpl.DISPLAY_NAME)) {
+
+			expandoBridgeAttributes.put(
+				DLFileNameWrapperFileEntryImpl.DISPLAY_NAME, title);
+
+			serviceContext.setExpandoBridgeAttributes(expandoBridgeAttributes);
+
+			title = _removeWhitelistCharacters(title);
+			sourceFileName = _removeWhitelistCharacters(sourceFileName);
+		}
 
 		return super.addFileEntry(
 			userId, groupId, repositoryId, folderId, sourceFileName, mimeType,
@@ -82,7 +92,13 @@ public class DLFileNameWrapperDLFileEntryLocalServiceImpl
 			title = sourceFileName;
 		}
 
-		serviceContext = _setFileNameExpandoAttributes(title, serviceContext);
+		Map<String, Serializable> expandoBridgeAttributes =
+			serviceContext.getExpandoBridgeAttributes();
+
+		expandoBridgeAttributes.put(
+			DLFileNameWrapperFileEntryImpl.DISPLAY_NAME, title);
+
+		serviceContext.setExpandoBridgeAttributes(expandoBridgeAttributes);
 
 		title = _removeWhitelistCharacters(title);
 		sourceFileName = _removeWhitelistCharacters(sourceFileName);
@@ -100,20 +116,6 @@ public class DLFileNameWrapperDLFileEntryLocalServiceImpl
 		}
 
 		return name;
-	}
-
-	private ServiceContext _setFileNameExpandoAttributes(
-		String title, ServiceContext serviceContext) {
-
-		Map<String, Serializable> expandoBridgeAttributes =
-			serviceContext.getExpandoBridgeAttributes();
-
-		expandoBridgeAttributes.put(
-			DLFileNameWrapperFileEntryImpl.DISPLAY_NAME, title);
-
-		serviceContext.setExpandoBridgeAttributes(expandoBridgeAttributes);
-
-		return serviceContext;
 	}
 
 }
