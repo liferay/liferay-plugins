@@ -28,6 +28,7 @@ import com.liferay.portlet.documentlibrary.model.DLFileEntry;
 import com.liferay.portlet.documentlibrary.service.DLAppLocalServiceUtil;
 
 import java.lang.reflect.InvocationHandler;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 import java.util.ArrayList;
@@ -45,23 +46,16 @@ class DLFileNameWrapperInvocationHandler implements InvocationHandler {
 	public Object invoke(Object proxy, Method method, Object[] args)
 		throws Throwable {
 
-		Object returnValue = method.invoke(_object, args);
-
-		if (!DLFileNameThreadLocal.isEnabled()) {
-			return returnValue;
-		}
-
-		if (returnValue instanceof List) {
-			List wrappedList = new ArrayList();
-
-			for (Object value : (List)returnValue) {
-				wrappedList.add(wrap(value));
+		try {
+			if (DLFileNameThreadLocal.isEnabled()) {
+				return wrap(method.invoke(_object, args));
 			}
-
-			return wrappedList;
+			else {
+				return method.invoke(_object, args);
+			}
 		}
-		else {
-			return wrap(returnValue);
+		catch (InvocationTargetException ite) {
+			throw ite.getTargetException();
 		}
 	}
 
@@ -86,6 +80,16 @@ class DLFileNameWrapperInvocationHandler implements InvocationHandler {
 	}
 
 	protected Object wrap(Object object) {
+		if (object instanceof List) {
+			List wrappedList = new ArrayList();
+
+			for (Object value : (List)object) {
+				wrappedList.add(wrap(value));
+			}
+
+			return wrappedList;
+		}
+
 		if (object instanceof AssetEntry) {
 			return setAssetEntryTitle((AssetEntry)object);
 		}
