@@ -47,11 +47,7 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 		</c:choose>
 
 		<%
-<<<<<<< HEAD
-		String taglibOnClick = "opener." + PortalUtil.getPortletNamespace(PortletKeys.PORTLET_CONFIGURATION) + "selectConfigurationKBArticle('" + kbFolderClassNameId + "', '" + KBFolderConstants.DEFAULT_PARENT_FOLDER_ID + "', ''); window.close();";
-=======
-		String taglibOnClick = "opener." + PortalUtil.getPortletNamespace(PortletKeys.PORTLET_CONFIGURATION) + "selectConfigurationKBObject('0', ''); window.close();";
->>>>>>> fe67794... LPS-50329 use the term KBObject
+		String taglibOnClick = "opener." + PortalUtil.getPortletNamespace(PortletKeys.PORTLET_CONFIGURATION) + "selectConfigurationKBObject('" + kbFolderClassNameId + "', '" + KBFolderConstants.DEFAULT_PARENT_FOLDER_ID + "', ''); window.close();";
 		%>
 
 		<aui:button onClick="<%= taglibOnClick %>" value="remove" />
@@ -62,7 +58,7 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 
 <div class="kb-select-article-breadcrumbs">
 	<liferay-portlet:renderURL var="breadcrumbURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
-		<portlet:param name="mvcPath" value='<%= templatePath + "select_configuration_article.jsp" %>' />
+		<portlet:param name="mvcPath" value='<%= templatePath + "select_configuration_object.jsp" %>' />
 	</liferay-portlet:renderURL>
 
 	<aui:a href="<%= breadcrumbURL %>"><liferay-ui:message key="home" /></aui:a> &raquo;
@@ -109,7 +105,7 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 </div>
 
 <liferay-portlet:renderURL varImpl="iteratorURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
-	<portlet:param name="mvcPath" value="/display/select_configuration_article.jsp" />
+	<portlet:param name="mvcPath" value="/display/select_configuration_object.jsp" />
 	<portlet:param name="parentResourceClassNameId" value="<%= String.valueOf(parentResourceClassNameId) %>" />
 	<portlet:param name="parentResourcePrimKey" value="<%= String.valueOf(parentResourcePrimKey) %>" />
 </liferay-portlet:renderURL>
@@ -133,7 +129,7 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 		>
 
 			<liferay-portlet:renderURL var="rowURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
-				<portlet:param name="mvcPath" value="/display/select_configuration_article.jsp" />
+				<portlet:param name="mvcPath" value="/display/select_configuration_object.jsp" />
 				<portlet:param name="parentResourceClassNameId" value="<%= String.valueOf(kbFolderClassNameId) %>" />
 				<portlet:param name="parentResourcePrimKey" value="<%= String.valueOf(kbFolder.getKbFolderId()) %>" />
 			</liferay-portlet:renderURL>
@@ -201,7 +197,7 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 		modelVar="kbArticle"
 	>
 		<liferay-portlet:renderURL var="rowURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
-			<portlet:param name="mvcPath" value="/display/select_configuration_article.jsp" />
+			<portlet:param name="mvcPath" value="/display/select_configuration_object.jsp" />
 			<portlet:param name="parentResourceClassNameId" value="<%= String.valueOf(kbArticle.getClassNameId()) %>" />
 			<portlet:param name="parentResourcePrimKey" value="<%= String.valueOf(kbArticle.getResourcePrimKey()) %>" />
 		</liferay-portlet:renderURL>
