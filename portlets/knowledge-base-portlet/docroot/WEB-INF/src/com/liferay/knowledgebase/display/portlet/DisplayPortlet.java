@@ -241,8 +241,6 @@ public class DisplayPortlet extends BaseKBPortlet {
 
 		PortletPreferences portletPreferences = renderRequest.getPreferences();
 
-		long defaultResourceClassNameId = GetterUtil.getLong(
-			portletPreferences.getValue("resourceClassNameId", null));
 		long defaultResourcePrimKey = GetterUtil.getLong(
 			portletPreferences.getValue("resourcePrimKey", null));
 
@@ -256,8 +254,12 @@ public class DisplayPortlet extends BaseKBPortlet {
 				KBFolderConstants.DEFAULT_PARENT_FOLDER_ID);
 		}
 
+		long defaultResourceClassNameId = GetterUtil.getLong(
+			portletPreferences.getValue("resourceClassNameId", null));
+
 		long resourceClassNameId = ParamUtil.getLong(
 			renderRequest, "resourceClassNameId", defaultResourceClassNameId);
+
 		long resourcePrimKey = ParamUtil.getLong(
 			renderRequest, "resourcePrimKey", defaultResourcePrimKey);
 
@@ -270,13 +272,11 @@ public class DisplayPortlet extends BaseKBPortlet {
 		long kbFolderClassNameId = PortalUtil.getClassNameId(
 			KBFolderConstants.getClassName());
 
-		PermissionChecker permissionChecker =
-			themeDisplay.getPermissionChecker();
-
 		if (resourceClassNameId == kbFolderClassNameId) {
 			if (!KBFolderPermission.contains(
-					permissionChecker, themeDisplay.getScopeGroupId(),
-					defaultResourcePrimKey, ActionKeys.VIEW)) {
+					themeDisplay.getPermissionChecker(),
+					themeDisplay.getScopeGroupId(), defaultResourcePrimKey,
+					ActionKeys.VIEW)) {
 
 				return new Tuple(
 					PortalUtil.getClassNameId(KBFolderConstants.getClassName()),
@@ -285,7 +285,7 @@ public class DisplayPortlet extends BaseKBPortlet {
 		}
 		else {
 			if (!KBArticlePermission.contains(
-					permissionChecker, defaultResourcePrimKey,
+					themeDisplay.getPermissionChecker(), defaultResourcePrimKey,
 					ActionKeys.VIEW)) {
 
 				return new Tuple(
@@ -305,31 +305,33 @@ public class DisplayPortlet extends BaseKBPortlet {
 			return WorkflowConstants.STATUS_APPROVED;
 		}
 
-		String value = renderRequest.getParameter("status");
-		int status = GetterUtil.getInteger(value);
+		String statusString = renderRequest.getParameter("status");
 
-		if ((value != null) && (status == WorkflowConstants.STATUS_APPROVED)) {
+		int status = GetterUtil.getInteger(statusString);
+
+		if ((statusString != null) &&
+			(status == WorkflowConstants.STATUS_APPROVED)) {
+
 			return WorkflowConstants.STATUS_APPROVED;
 		}
 
 		Tuple resourceTuple = getResourceTuple(renderRequest);
 
-		long resourceClassNameId = (Long)resourceTuple.getObject(0);
 		long resourcePrimKey = (Long)resourceTuple.getObject(1);
 
 		if (resourcePrimKey == KBFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
 			return WorkflowConstants.STATUS_APPROVED;
 		}
 
+		long resourceClassNameId = (Long)resourceTuple.getObject(0);
+
 		long kbArticleClassNameId = PortalUtil.getClassNameId(
 			KBArticleConstants.getClassName());
 
-		PermissionChecker permissionChecker =
-			themeDisplay.getPermissionChecker();
-
 		if ((resourceClassNameId == kbArticleClassNameId) &&
 			KBArticlePermission.contains(
-					permissionChecker, resourcePrimKey, ActionKeys.UPDATE)) {
+				themeDisplay.getPermissionChecker(), resourcePrimKey,
+				ActionKeys.UPDATE)) {
 
 			return ParamUtil.getInteger(
 				renderRequest, "status", WorkflowConstants.STATUS_ANY);
