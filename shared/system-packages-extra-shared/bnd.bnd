@@ -15,6 +15,6 @@ Export-Package: \
 	com.liferay.portal.templateparser,\
 	com.liferay.util,\
 	com.liferay.util.bean,\
-	com.liferay.util.portlet.PortletProps,\
+	com.liferay.util.portlet,\
 	com.liferay.util.service
 Fragment-Host: system.bundle;extension:=framework
