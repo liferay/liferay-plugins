@@ -47,7 +47,11 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 		</c:choose>
 
 		<%
+<<<<<<< HEAD
 		String taglibOnClick = "opener." + PortalUtil.getPortletNamespace(PortletKeys.PORTLET_CONFIGURATION) + "selectConfigurationKBArticle('" + kbFolderClassNameId + "', '" + KBFolderConstants.DEFAULT_PARENT_FOLDER_ID + "', ''); window.close();";
+=======
+		String taglibOnClick = "opener." + PortalUtil.getPortletNamespace(PortletKeys.PORTLET_CONFIGURATION) + "selectConfigurationKBObject('0', ''); window.close();";
+>>>>>>> fe67794... LPS-50329 use the term KBObject
 		%>
 
 		<aui:button onClick="<%= taglibOnClick %>" value="remove" />
@@ -165,7 +169,7 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 			>
 
 				<%
-				String taglibOnClick = "opener." + PortalUtil.getPortletNamespace(PortletKeys.PORTLET_CONFIGURATION) + "selectConfigurationKBArticle('" + kbFolderClassNameId + "', '" + kbFolder.getKbFolderId() + "', '" + UnicodeFormatter.toString(kbFolder.getName()) + "'); window.close();";
+				String taglibOnClick = "opener." + PortalUtil.getPortletNamespace(PortletKeys.PORTLET_CONFIGURATION) + "selectConfigurationKBObject('" + kbFolderClassNameId + "', '" + kbFolder.getKbFolderId() + "', '" + UnicodeFormatter.toString(kbFolder.getName()) + "'); window.close();";
 				%>
 
 				<aui:button disabled="<%= (kbFolder.getKbFolderId() == resourcePrimKey) %>" onClick="<%= taglibOnClick %>" value="choose" />
@@ -260,7 +264,7 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 		>
 
 			<%
-			String taglibOnClick = "opener." + PortalUtil.getPortletNamespace(PortletKeys.PORTLET_CONFIGURATION) + "selectConfigurationKBArticle('" + kbArticle.getClassNameId() + "', '" + kbArticle.getResourcePrimKey() + "', '" + UnicodeFormatter.toString(kbArticle.getTitle()) + "'); window.close();";
+			String taglibOnClick = "opener." + PortalUtil.getPortletNamespace(PortletKeys.PORTLET_CONFIGURATION) + "selectConfigurationKBObject('" + kbArticle.getClassNameId() + "', '" + kbArticle.getResourcePrimKey() + "', '" + UnicodeFormatter.toString(kbArticle.getTitle()) + "'); window.close();";
 			%>
 
 			<aui:button onClick="<%= taglibOnClick %>" value="choose" />
