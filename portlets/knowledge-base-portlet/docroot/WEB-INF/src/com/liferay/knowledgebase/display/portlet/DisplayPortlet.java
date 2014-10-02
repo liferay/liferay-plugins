@@ -334,7 +334,7 @@ public class DisplayPortlet extends BaseKBPortlet {
 		return WorkflowConstants.STATUS_APPROVED;
 	}
 
-	private KBArticle getKBFolderKBArticle(
+	protected KBArticle getKBFolderKBArticle(
 			long groupId, long kbFolderId, String kbFolderUrlTitle)
 		throws PortalException {
 
