@@ -66,7 +66,7 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 	<c:if test="<%= parentResourcePrimKey != KBFolderConstants.DEFAULT_PARENT_FOLDER_ID %>">
 
 		<%
-		List<Tuple> selKBEntries = new ArrayList<Tuple>();
+		List<Tuple> tuples = new ArrayList<Tuple>();
 
 		long selParentResourcePrimKey = parentResourcePrimKey;
 		long selParentResourceClassNameId = parentResourceClassNameId;
@@ -75,7 +75,7 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 			if (selParentResourceClassNameId == kbFolderClassNameId) {
 				KBFolder selKBFolder = KBFolderServiceUtil.getKBFolder(selParentResourcePrimKey);
 
-				selKBEntries.add(new Tuple(selKBFolder.getKbFolderId(), kbFolderClassNameId, StringUtil.shorten(selKBFolder.getName(), 30)));
+				tuples.add(new Tuple(selKBFolder.getKbFolderId(), kbFolderClassNameId, StringUtil.shorten(selKBFolder.getName(), 30)));
 
 				selParentResourcePrimKey = selKBFolder.getParentKBFolderId();
 				selParentResourceClassNameId = selKBFolder.getClassNameId();
@@ -83,14 +83,14 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 			else {
 				KBArticle selKBArticle = KBArticleServiceUtil.getLatestKBArticle(selParentResourcePrimKey, WorkflowConstants.STATUS_APPROVED);
 
-				selKBEntries.add(new Tuple(selKBArticle.getResourcePrimKey(), selKBArticle.getClassNameId(), StringUtil.shorten(selKBArticle.getTitle(), 30)));
+				tuples.add(new Tuple(selKBArticle.getResourcePrimKey(), selKBArticle.getClassNameId(), StringUtil.shorten(selKBArticle.getTitle(), 30)));
 
 				selParentResourcePrimKey = selKBArticle.getParentResourcePrimKey();
 				selParentResourceClassNameId = selKBArticle.getParentResourceClassNameId();
 			}
 		}
 
-		for (Tuple tuple: selKBEntries) {
+		for (Tuple tuple: tuples) {
 			breadcrumbURL = HttpUtil.setParameter(breadcrumbURL, "parentResourcePrimKey", (Long)tuple.getObject(0));
 			breadcrumbURL = HttpUtil.setParameter(breadcrumbURL, "parentResourceClassName", (Long)tuple.getObject(1));
 		%>
