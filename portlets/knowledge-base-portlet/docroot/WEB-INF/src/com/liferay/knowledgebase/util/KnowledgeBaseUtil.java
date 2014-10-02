@@ -148,13 +148,13 @@ public class KnowledgeBaseUtil {
 
 		kbFolders = new ArrayList<KBFolder>(kbFolders);
 
-		Iterator<KBFolder> i = kbFolders.iterator();
+		Iterator<KBFolder> itr = kbFolders.iterator();
 
-		while (i.hasNext()) {
-			KBFolder kbFolder = i.next();
+		while (itr.hasNext()) {
+			KBFolder kbFolder = itr.next();
 
 			if (kbFolder.isEmpty()) {
-				i.remove();
+				itr.remove();
 			}
 		}
 
