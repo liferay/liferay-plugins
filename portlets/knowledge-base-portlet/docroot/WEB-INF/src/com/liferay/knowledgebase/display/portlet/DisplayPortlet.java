@@ -78,30 +78,28 @@ public class DisplayPortlet extends BaseKBPortlet {
 
 			renderRequest.setAttribute(WebKeys.KNOWLEDGE_BASE_STATUS, status);
 
-			Tuple resourceTuple = getResourceTuple(renderRequest);
-
-			long resourceClassNameId = (Long)resourceTuple.getObject(0);
-			long resourcePrimKey = (Long)resourceTuple.getObject(1);
-
-			long kbFolderClassNameId = PortalUtil.getClassNameId(
-				KBFolderConstants.getClassName());
-
-			long parentResourcePrimKey = ParamUtil.getLong(
-				renderRequest, "parentResourcePrimKey",
-				KBFolderConstants.DEFAULT_PARENT_FOLDER_ID);
-
-			PortalPreferences portalPreferences =
-				PortletPreferencesFactoryUtil.getPortalPreferences(
-					renderRequest);
-
-			String preferredKBFolderUrlTitle = portalPreferences.getValue(
-				PortletKeys.KNOWLEDGE_BASE_DISPLAY,
-				"preferredKBFolderUrlTitle");
-
 			KBArticle kbArticle = null;
 
+			Tuple resourceTuple = getResourceTuple(renderRequest);
+
+			long resourcePrimKey = (Long)resourceTuple.getObject(1);
+
 			if (resourcePrimKey != KBFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
+				long resourceClassNameId = (Long)resourceTuple.getObject(0);
+
+				long kbFolderClassNameId = PortalUtil.getClassNameId(
+					KBFolderConstants.getClassName());
+
 				if (resourceClassNameId == kbFolderClassNameId) {
+					PortalPreferences portalPreferences =
+						PortletPreferencesFactoryUtil.getPortalPreferences(
+							renderRequest);
+		
+					String preferredKBFolderUrlTitle =
+						portalPreferences.getValue(
+							PortletKeys.KNOWLEDGE_BASE_DISPLAY,
+							"preferredKBFolderUrlTitle");
+
 					kbArticle = getKBFolderKBArticle(
 						themeDisplay.getScopeGroupId(), resourcePrimKey,
 						preferredKBFolderUrlTitle);
@@ -111,16 +109,22 @@ public class DisplayPortlet extends BaseKBPortlet {
 						resourcePrimKey, status);
 				}
 			}
-			else if (parentResourcePrimKey ==
+			else {
+				long parentResourcePrimKey = ParamUtil.getLong(
+					renderRequest, "parentResourcePrimKey",
+					KBFolderConstants.DEFAULT_PARENT_FOLDER_ID);
+
+				if (parentResourcePrimKey ==
 						KBFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
-
-				List<KBArticle> kbArticles =
-					KBArticleLocalServiceUtil.getGroupKBArticles(
-						themeDisplay.getScopeGroupId(), status, 0, 1,
-						new KBArticlePriorityComparator(true));
-
-				if (!kbArticles.isEmpty()) {
-					kbArticle = kbArticles.get(0);
+	
+					List<KBArticle> kbArticles =
+						KBArticleLocalServiceUtil.getGroupKBArticles(
+							themeDisplay.getScopeGroupId(), status, 0, 1,
+							new KBArticlePriorityComparator(true));
+	
+					if (!kbArticles.isEmpty()) {
+						kbArticle = kbArticles.get(0);
+					}
 				}
 			}
 
