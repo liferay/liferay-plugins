@@ -76,7 +76,7 @@ if (rootResourcePrimKey != KBFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
 						%>
 
 							<aui:option
-								selected="<%= kbFolder.getUrlTitle().equals(currentKBFolderUrlTitle) %>"
+								selected="<%= currentKBFolderUrlTitle.equals(kbFolder.getUrlTitle()) %>"
 								value="<%= kbFolder.getKbFolderId() %>"
 							>
 								<%= kbFolder.getName() %>
