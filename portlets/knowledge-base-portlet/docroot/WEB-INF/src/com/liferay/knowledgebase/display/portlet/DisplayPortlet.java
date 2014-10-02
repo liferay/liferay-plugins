@@ -41,7 +41,6 @@ import com.liferay.portal.kernel.util.Tuple;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.security.auth.PrincipalException;
-import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.PortalPreferences;
@@ -94,7 +93,7 @@ public class DisplayPortlet extends BaseKBPortlet {
 					PortalPreferences portalPreferences =
 						PortletPreferencesFactoryUtil.getPortalPreferences(
 							renderRequest);
-		
+
 					String preferredKBFolderUrlTitle =
 						portalPreferences.getValue(
 							PortletKeys.KNOWLEDGE_BASE_DISPLAY,
@@ -116,12 +115,12 @@ public class DisplayPortlet extends BaseKBPortlet {
 
 				if (parentResourcePrimKey ==
 						KBFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
-	
+
 					List<KBArticle> kbArticles =
 						KBArticleLocalServiceUtil.getGroupKBArticles(
 							themeDisplay.getScopeGroupId(), status, 0, 1,
 							new KBArticlePriorityComparator(true));
-	
+
 					if (!kbArticles.isEmpty()) {
 						kbArticle = kbArticles.get(0);
 					}
@@ -207,6 +206,42 @@ public class DisplayPortlet extends BaseKBPortlet {
 		else {
 			super.doDispatch(renderRequest, renderResponse);
 		}
+	}
+
+	protected KBArticle getKBFolderKBArticle(
+			long groupId, long kbFolderId, String kbFolderUrlTitle)
+		throws PortalException {
+
+		if (Validator.isNotNull(kbFolderUrlTitle)) {
+			KBFolder kbFolder = KBFolderServiceUtil.fetchKBFolderByUrlTitle(
+				groupId, kbFolderId, kbFolderUrlTitle);
+
+			if (kbFolder != null) {
+				kbFolderId = kbFolder.getKbFolderId();
+			}
+		}
+
+		List<KBArticle> kbArticles = KBArticleServiceUtil.getKBArticles(
+			groupId, kbFolderId, WorkflowConstants.STATUS_APPROVED, 0, 1,
+			new KBArticlePriorityComparator(true));
+
+		if (!kbArticles.isEmpty()) {
+			return kbArticles.get(0);
+		}
+
+		List<KBFolder> kbFolders = KnowledgeBaseUtil.getAlternateRootKBFolders(
+			groupId, kbFolderId);
+
+		for (KBFolder kbFolder : kbFolders) {
+			KBArticle kbArticle = getKBFolderKBArticle(
+				groupId, kbFolder.getKbFolderId(), kbFolder.getUrlTitle());
+
+			if (kbArticle != null) {
+				return kbArticle;
+			}
+		}
+
+		return null;
 	}
 
 	protected Tuple getResourceTuple(RenderRequest renderRequest)
@@ -338,42 +373,6 @@ public class DisplayPortlet extends BaseKBPortlet {
 		}
 
 		return WorkflowConstants.STATUS_APPROVED;
-	}
-
-	protected KBArticle getKBFolderKBArticle(
-			long groupId, long kbFolderId, String kbFolderUrlTitle)
-		throws PortalException {
-
-		if (Validator.isNotNull(kbFolderUrlTitle)) {
-			KBFolder kbFolder = KBFolderServiceUtil.fetchKBFolderByUrlTitle(
-				groupId, kbFolderId, kbFolderUrlTitle);
-
-			if (kbFolder != null) {
-				kbFolderId = kbFolder.getKbFolderId();
-			}
-		}
-
-		List<KBArticle> kbArticles = KBArticleServiceUtil.getKBArticles(
-			groupId, kbFolderId, WorkflowConstants.STATUS_APPROVED, 0, 1,
-			new KBArticlePriorityComparator(true));
-
-		if (!kbArticles.isEmpty()) {
-			return kbArticles.get(0);
-		}
-
-		List<KBFolder> kbFolders =
-			KnowledgeBaseUtil.getAlternateRootKBFolders(groupId, kbFolderId);
-
-		for (KBFolder kbFolder : kbFolders) {
-			KBArticle kbArticle = getKBFolderKBArticle(
-				groupId, kbFolder.getKbFolderId(), kbFolder.getUrlTitle());
-
-			if (kbArticle != null) {
-				return kbArticle;
-			}
-		}
-
-		return null;
 	}
 
 }
