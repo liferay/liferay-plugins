@@ -61,7 +61,7 @@ if (rootResourcePrimKey != KBFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
 	<c:if test="<%= resourceClassNameId == kbFolderClassNameId %>">
 
 		<%
-		List<KBFolder> kbFolders = KnowledgeBaseUtil.getAlternativeRootKBFolders(scopeGroupId, resourcePrimKey);
+		List<KBFolder> kbFolders = KnowledgeBaseUtil.getAlternateRootKBFolders(scopeGroupId, resourcePrimKey);
 		%>
 
 		<c:if test="<%= !kbFolders.isEmpty() %>">
