@@ -30,7 +30,7 @@ if (kbArticle != null) {
 
 	Collections.reverse(ancestorResourcePrimaryKeys);
 
-	kbFolderId = latestKBArticle.getKBFolderId();
+	kbFolderId = latestKBArticle.getKbFolderId();
 }
 else {
 	ancestorResourcePrimaryKeys.add(KBFolderConstants.DEFAULT_PARENT_FOLDER_ID);

@@ -20,7 +20,6 @@ import com.liferay.knowledgebase.model.KBCommentConstants;
 import com.liferay.knowledgebase.model.KBFolder;
 import com.liferay.knowledgebase.model.KBFolderConstants;
 import com.liferay.knowledgebase.model.KBTemplate;
-import com.liferay.knowledgebase.service.KBArticleLocalServiceUtil;
 import com.liferay.knowledgebase.service.KBArticleServiceUtil;
 import com.liferay.knowledgebase.service.KBFolderServiceUtil;
 import com.liferay.knowledgebase.util.comparator.KBArticleCreateDateComparator;
@@ -60,19 +59,16 @@ import com.liferay.portal.model.ModelHintsUtil;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
 
+import javax.portlet.PortletURL;
+import javax.portlet.RenderResponse;
+import javax.servlet.http.HttpServletRequest;
 import java.io.InputStream;
-
 import java.util.HashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.regex.Pattern;
-
-import javax.portlet.PortletURL;
-import javax.portlet.RenderResponse;
-
-import javax.servlet.http.HttpServletRequest;
 
 /**
  * @author Peter Shin
@@ -298,16 +294,10 @@ public class KnowledgeBaseUtil {
 			return parentResourcePrimKey;
 		}
 
-		while (parentResourceClassNameId != kbFolderClassNameId) {
-			KBArticle kbArticle = KBArticleLocalServiceUtil.getLatestKBArticle(
-				parentResourcePrimKey, WorkflowConstants.STATUS_ANY);
+		KBArticle kbArticle = KBArticleServiceUtil.getLatestKBArticle(
+			parentResourcePrimKey, WorkflowConstants.STATUS_ANY);
 
-			parentResourceClassNameId =
-				kbArticle.getParentResourceClassNameId();
-			parentResourcePrimKey = kbArticle.getParentResourcePrimKey();
-		}
-
-		return parentResourcePrimKey;
+		return kbArticle.getKbFolderId();
 	}
 
 	public static OrderByComparator<KBTemplate> getKBTemplateOrderByComparator(
