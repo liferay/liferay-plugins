@@ -36,8 +36,8 @@ import java.util.List;
 /**
  * @author Adolfo Pérez
  */
-public class KBArticleFinderImpl extends BasePersistenceImpl<KBArticle>
-	implements KBArticleFinder {
+public class KBArticleFinderImpl
+	extends BasePersistenceImpl<KBArticle> implements KBArticleFinder {
 
 	@Override
 	public int countByUrlTitle(
