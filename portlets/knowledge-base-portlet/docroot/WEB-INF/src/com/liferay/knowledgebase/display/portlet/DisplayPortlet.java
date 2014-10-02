@@ -102,7 +102,7 @@ public class DisplayPortlet extends BaseKBPortlet {
 
 			if (resourcePrimKey != KBFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
 				if (resourceClassNameId == kbFolderClassNameId) {
-					kbArticle = getFolderKBArticle(
+					kbArticle = getKBFolderKBArticle(
 						themeDisplay.getScopeGroupId(), resourcePrimKey,
 						preferredKBFolderUrlTitle);
 				}
@@ -334,7 +334,7 @@ public class DisplayPortlet extends BaseKBPortlet {
 		return WorkflowConstants.STATUS_APPROVED;
 	}
 
-	private KBArticle getFolderKBArticle(
+	private KBArticle getKBFolderKBArticle(
 			long groupId, long kbFolderId, String kbFolderUrlTitle)
 		throws PortalException {
 
@@ -359,7 +359,7 @@ public class DisplayPortlet extends BaseKBPortlet {
 			KnowledgeBaseUtil.getAlternateRootKBFolders(groupId, kbFolderId);
 
 		for (KBFolder kbFolder : kbFolders) {
-			KBArticle kbArticle = getFolderKBArticle(
+			KBArticle kbArticle = getKBFolderKBArticle(
 				groupId, kbFolder.getKbFolderId(), kbFolder.getUrlTitle());
 
 			if (kbArticle != null) {
