@@ -95,7 +95,7 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 			breadcrumbURL = HttpUtil.setParameter(breadcrumbURL, "parentResourceClassName", (Long)tuple.getObject(1));
 		%>
 
-		<aui:a href="<%= breadcrumbURL %>"><%= tuple.getObject(2) %></aui:a> &raquo;
+			<aui:a href="<%= breadcrumbURL %>"><%= tuple.getObject(2) %></aui:a> &raquo;
 
 		<%
 		}
@@ -103,12 +103,6 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 
 	</c:if>
 </div>
-
-<liferay-portlet:renderURL varImpl="iteratorURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
-	<portlet:param name="mvcPath" value="/display/select_configuration_object.jsp" />
-	<portlet:param name="parentResourceClassNameId" value="<%= String.valueOf(parentResourceClassNameId) %>" />
-	<portlet:param name="parentResourcePrimKey" value="<%= String.valueOf(parentResourcePrimKey) %>" />
-</liferay-portlet:renderURL>
 
 <c:if test="<%= parentResourceClassNameId == kbFolderClassNameId %>">
 	<liferay-ui:search-container
@@ -170,12 +164,17 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 
 				<aui:button disabled="<%= (kbFolder.getKbFolderId() == resourcePrimKey) %>" onClick="<%= taglibOnClick %>" value="choose" />
 			</liferay-ui:search-container-column-text>
-
 		</liferay-ui:search-container-row>
 
 		<liferay-ui:search-iterator />
 	</liferay-ui:search-container>
 </c:if>
+
+<liferay-portlet:renderURL varImpl="iteratorURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
+	<portlet:param name="mvcPath" value="/display/select_configuration_object.jsp" />
+	<portlet:param name="parentResourceClassNameId" value="<%= String.valueOf(parentResourceClassNameId) %>" />
+	<portlet:param name="parentResourcePrimKey" value="<%= String.valueOf(parentResourcePrimKey) %>" />
+</liferay-portlet:renderURL>
 
 <liferay-ui:search-container
 	curParam="cur2"

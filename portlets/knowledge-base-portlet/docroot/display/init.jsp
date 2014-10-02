@@ -16,9 +16,6 @@
 
 <%@ include file="/init.jsp" %>
 
-<%@ page import="com.liferay.portlet.PortalPreferences" %><%@
-page import="com.liferay.portlet.PortletPreferencesFactoryUtil" %>
-
 <%
 String portletResource = ParamUtil.getString(request, "portletResource");
 
