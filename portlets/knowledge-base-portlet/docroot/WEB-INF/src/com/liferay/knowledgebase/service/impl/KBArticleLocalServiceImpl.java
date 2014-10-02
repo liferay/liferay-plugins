@@ -820,6 +820,21 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		updatePermissionFields(
 			resourcePrimKey, parentResourceClassNameId, parentResourcePrimKey);
 
+		long kbFolderClassNameId = classNameLocalService.getClassNameId(
+			KBFolderConstants.getClassName());
+
+		long kbFolderId = KBFolderConstants.DEFAULT_PARENT_FOLDER_ID;
+
+		if (parentResourceClassNameId == kbFolderClassNameId) {
+			kbFolderId = parentResourceClassNameId;
+		}
+		else {
+			KBArticle kbArticle = getLatestKBArticle(
+				parentResourcePrimKey, WorkflowConstants.STATUS_ANY);
+
+			kbFolderId = kbArticle.getKbFolderId();
+		}
+
 		List<KBArticle> kbArticles = getKBArticleVersions(
 			resourcePrimKey, WorkflowConstants.STATUS_ANY, QueryUtil.ALL_POS,
 			QueryUtil.ALL_POS, new KBArticleVersionComparator());
@@ -827,22 +842,31 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		for (KBArticle kbArticle : kbArticles) {
 			kbArticle.setParentResourceClassNameId(parentResourceClassNameId);
 			kbArticle.setParentResourcePrimKey(parentResourcePrimKey);
+
+			if (parentResourceClassNameId == kbFolderClassNameId) {
+				kbArticle.setKbFolderId(kbFolderId);
+			}
+
 			kbArticle.setPriority(priority);
 
 			kbArticlePersistence.update(kbArticle);
 		}
-
-		long kbFolderClassNameId = classNameLocalService.getClassNameId(
-			KBFolderConstants.getClassName());
 
 		if (parentResourceClassNameId == kbFolderClassNameId) {
 			List<KBArticle> descendantKBArticles = getAllDescendantKBArticles(
 				resourcePrimKey, WorkflowConstants.STATUS_ANY, null);
 
 			for (KBArticle kbArticle : descendantKBArticles) {
-				kbArticle.setKbFolderId(parentResourcePrimKey);
+				List<KBArticle> kbArticleVersions = getKBArticleVersions(
+					kbArticle.getResourcePrimKey(),
+					WorkflowConstants.STATUS_ANY, QueryUtil.ALL_POS,
+					QueryUtil.ALL_POS, new KBArticleVersionComparator());
 
-				kbArticlePersistence.update(kbArticle);
+				for (KBArticle kbArticleVersion : kbArticleVersions) {
+					kbArticleVersion.setKbFolderId(kbFolderId);
+
+					kbArticlePersistence.update(kbArticleVersion);
+				}
 			}
 		}
 
