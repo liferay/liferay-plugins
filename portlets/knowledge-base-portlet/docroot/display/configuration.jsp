@@ -71,16 +71,16 @@ if (PortalUtil.isRSSFeedsEnabled()) {
 						}
 						%>
 
-						<liferay-ui:input-resource id="configurationKBArticle" url="<%= title %>" />
+						<liferay-ui:input-resource id="configurationKBObject" url="<%= title %>" />
 
-						<liferay-portlet:renderURL portletName="<%= portletResource %>" var="selectConfigurationKBArticleURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
+						<liferay-portlet:renderURL portletName="<%= portletResource %>" var="selectConfigurationKBObjectURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
 							<portlet:param name="mvcPath" value="/display/select_configuration_article.jsp" />
-							<portlet:param name="parentResourceClassNameId" value="<%= String.valueOf(PortalUtil.getClassNameId(KBFolderConstants.getClassName())) %>" />
+							<portlet:param name="parentResourceClassNameId" value="<%= String.valueOf(kbFolderClassNameId) %>" />
 							<portlet:param name="parentResourcePrimKey" value="<%= String.valueOf(KBFolderConstants.DEFAULT_PARENT_FOLDER_ID) %>" />
 						</liferay-portlet:renderURL>
 
 						<%
-						String taglibOnClick = "var selectConfigurationKBArticleWindow = window.open('" + selectConfigurationKBArticleURL + "', 'selectConfigurationKBArticle', 'directories=no,height=640,location=no,menubar=no,resizable=yes,scrollbars=yes,status=no,toolbar=no,width=680'); void(''); selectConfigurationKBArticleWindow.focus();";
+						String taglibOnClick = "var selectConfigurationKBObjectWindow = window.open('" + selectConfigurationKBObjectURL + "', 'selectConfigurationKBObject', 'directories=no,height=640,location=no,menubar=no,resizable=yes,scrollbars=yes,status=no,toolbar=no,width=680'); void(''); selectConfigurationKBObjectWindow.focus();";
 						%>
 
 					<aui:button onClick="<%= taglibOnClick %>" value="select" />
@@ -129,10 +129,10 @@ if (PortalUtil.isRSSFeedsEnabled()) {
 <c:choose>
 	<c:when test='<%= tabs2.equals("general") %>'>
 		<aui:script>
-			function <portlet:namespace />selectConfigurationKBArticle(resourceClassNameId, resourcePrimKey, title) {
+			function <portlet:namespace />selectConfigurationKBObject(resourceClassNameId, resourcePrimKey, title) {
 				document.<portlet:namespace />fm.<portlet:namespace />resourceClassNameId.value = resourceClassNameId;
 				document.<portlet:namespace />fm.<portlet:namespace />resourcePrimKey.value = resourcePrimKey;
-				document.getElementById('<portlet:namespace />configurationKBArticle').value = title;
+				document.getElementById('<portlet:namespace />configurationKBObject').value = title;
 			}
 		</aui:script>
 	</c:when>
