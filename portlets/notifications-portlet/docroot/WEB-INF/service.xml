@@ -30,7 +30,7 @@
 
 		<!-- Finder methods -->
 
-		<finder name="UserNotificationEventId" return-type="NotificationEvent">
+		<finder name="UserNotificationEventId" return-type="NotificationEvent" unique="true">
 			<finder-column name="userNotificationEventId" />
 		</finder>
 		<finder name="U_A" return-type="Collection">
