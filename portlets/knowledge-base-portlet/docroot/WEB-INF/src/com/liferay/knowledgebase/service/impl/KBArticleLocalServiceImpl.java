@@ -893,7 +893,8 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			QueryUtil.ALL_POS, new KBArticleVersionComparator());
 
 		for (KBArticle curKBArticle : kbArticles) {
-			curKBArticle.setParentResourceClassNameId(parentResourceClassNameId);
+			curKBArticle.setParentResourceClassNameId(
+				parentResourceClassNameId);
 			curKBArticle.setParentResourcePrimKey(parentResourcePrimKey);
 
 			if (parentResourceClassNameId == kbFolderClassNameId) {
