@@ -78,10 +78,10 @@ public class DisplayPortlet extends BaseKBPortlet {
 
 			renderRequest.setAttribute(WebKeys.KNOWLEDGE_BASE_STATUS, status);
 
-			Tuple resourceIds = getResourceIds(renderRequest);
+			Tuple resourceTuple = getResourceTuple(renderRequest);
 
-			long resourceClassNameId = (Long)resourceIds.getObject(0);
-			long resourcePrimKey = (Long)resourceIds.getObject(1);
+			long resourceClassNameId = (Long)resourceTuple.getObject(0);
+			long resourcePrimKey = (Long)resourceTuple.getObject(1);
 
 			long kbFolderClassNameId = PortalUtil.getClassNameId(
 				KBFolderConstants.getClassName());
@@ -205,7 +205,7 @@ public class DisplayPortlet extends BaseKBPortlet {
 		}
 	}
 
-	protected Tuple getResourceIds(RenderRequest renderRequest)
+	protected Tuple getResourceTuple(RenderRequest renderRequest)
 		throws Exception {
 
 		ThemeDisplay themeDisplay = (ThemeDisplay)renderRequest.getAttribute(
@@ -308,10 +308,10 @@ public class DisplayPortlet extends BaseKBPortlet {
 			return WorkflowConstants.STATUS_APPROVED;
 		}
 
-		Tuple resourceIds = getResourceIds(renderRequest);
+		Tuple resourceTuple = getResourceTuple(renderRequest);
 
-		long resourceClassNameId = (Long)resourceIds.getObject(0);
-		long resourcePrimKey = (Long)resourceIds.getObject(1);
+		long resourceClassNameId = (Long)resourceTuple.getObject(0);
+		long resourcePrimKey = (Long)resourceTuple.getObject(1);
 
 		if (resourcePrimKey == KBFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
 			return WorkflowConstants.STATUS_APPROVED;
