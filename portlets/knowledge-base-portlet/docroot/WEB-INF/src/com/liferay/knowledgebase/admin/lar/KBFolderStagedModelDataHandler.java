@@ -18,14 +18,17 @@ import com.liferay.knowledgebase.model.KBFolder;
 import com.liferay.knowledgebase.model.KBFolderConstants;
 import com.liferay.knowledgebase.service.KBFolderLocalServiceUtil;
 import com.liferay.knowledgebase.service.persistence.KBFolderUtil;
+import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.lar.BaseStagedModelDataHandler;
 import com.liferay.portal.kernel.lar.ExportImportPathUtil;
 import com.liferay.portal.kernel.lar.PortletDataContext;
 import com.liferay.portal.kernel.lar.StagedModelDataHandlerUtil;
+import com.liferay.portal.kernel.lar.StagedModelModifiedDateComparator;
 import com.liferay.portal.kernel.xml.Element;
 import com.liferay.portal.service.ServiceContext;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -48,6 +51,22 @@ public class KBFolderStagedModelDataHandler
 		if (kbFolder != null) {
 			KBFolderLocalServiceUtil.deleteKBFolder(kbFolder.getKbFolderId());
 		}
+	}
+
+	@Override
+	public KBFolder fetchStagedModelByUuidAndCompanyId(
+		String uuid, long companyId) {
+
+		List<KBFolder> kbFolders =
+			KBFolderLocalServiceUtil.getKBFoldersByUuidAndCompanyId(
+				uuid, companyId, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+				new StagedModelModifiedDateComparator<KBFolder>());
+
+		if (kbFolders.isEmpty()) {
+			return null;
+		}
+
+		return kbFolders.get(0);
 	}
 
 	@Override
