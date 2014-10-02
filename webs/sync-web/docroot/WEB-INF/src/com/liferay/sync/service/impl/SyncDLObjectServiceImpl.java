@@ -771,8 +771,8 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 
 		syncDLObjects.addAll(curSyncDLObjects);
 
-		for (SyncDLObject syncDLObject : curSyncDLObjects) {
-			String type = syncDLObject.getType();
+		for (SyncDLObject curSyncDLObject : curSyncDLObjects) {
+			String type = curSyncDLObject.getType();
 
 			if (type.equals("file")) {
 				continue;
@@ -780,7 +780,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 
 			getSyncDLObjects(
 				syncDLObjects, companyId, repositoryId,
-				syncDLObject.getTypePK(), lastAccessTime);
+				curSyncDLObject.getTypePK(), lastAccessTime);
 		}
 
 		return syncDLObjects;
