@@ -46,10 +46,10 @@ public class UpgradeCalendarBooking extends UpgradeProcess {
 		}
 		catch (SQLException sqle) {
 			upgradeTable(
-					CalendarBookingTable.TABLE_NAME,
-					CalendarBookingTable.TABLE_COLUMNS,
-					CalendarBookingTable.TABLE_SQL_CREATE,
-					CalendarBookingTable.TABLE_SQL_ADD_INDEXES);
+				CalendarBookingTable.TABLE_NAME,
+				CalendarBookingTable.TABLE_COLUMNS,
+				CalendarBookingTable.TABLE_SQL_CREATE,
+				CalendarBookingTable.TABLE_SQL_ADD_INDEXES);
 		}
 
 		updatePortletPreferences();
@@ -59,6 +59,12 @@ public class UpgradeCalendarBooking extends UpgradeProcess {
 		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
+
+		String calendarBookingId = String.valueOf(
+			PortalUtil.getClassNameId(CalendarBooking.class));
+
+		String calEventId = String.valueOf(
+			PortalUtil.getClassNameId(CalEvent.class));
 
 		try {
 			con = DataAccess.getUpgradeOptimizedConnection();
@@ -71,12 +77,6 @@ public class UpgradeCalendarBooking extends UpgradeProcess {
 
 			while (rs.next()) {
 				long portletPreferencesId = rs.getLong("portletPreferencesId");
-
-				String calendarBookingId = String.valueOf(
-					PortalUtil.getClassNameId(CalendarBooking.class));
-
-				String calEventId = String.valueOf(
-					PortalUtil.getClassNameId(CalEvent.class));
 
 				com.liferay.portal.model.PortletPreferences
 					portletPreferencesModel =
