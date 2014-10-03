@@ -23,7 +23,8 @@
 
 		.kbarticle-root-selector {
 			select {
-				width: 100%;
+				display: inline;
+				width: inherit;
 			}
 		}
 

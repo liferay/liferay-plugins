@@ -67,7 +67,7 @@ if (rootResourcePrimKey != KBFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
 		<c:if test="<%= !kbFolders.isEmpty() %>">
 			<liferay-portlet:actionURL name="updateRootKBFolderId" var="updateRootKBFolderIdURL" />
 
-			<div class="kbarticle-root-selector input-append kb-field-wrapper">
+			<div class="kbarticle-root-selector kb-field-wrapper">
 				<aui:form action="<%= updateRootKBFolderIdURL %>" name="updateRootKBFolderIdFm">
 					<aui:select label="" name="rootKBFolderId">
 
