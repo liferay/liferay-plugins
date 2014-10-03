@@ -50,6 +50,46 @@ public class SyncDLObjectFinderImpl
 		SyncDLObjectFinder.class.getName() + ".findByFolderType";
 
 	@Override
+	public List<SyncDLObject> filterFindByC_R(
+		long companyId, long repositoryId) {
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			String sql = CustomSQLUtil.get(FIND_BY_FOLDER_TYPE);
+
+			sql = sql.concat(_EVENT_SQL);
+
+			sql = InlineSQLHelperUtil.replacePermissionCheck(
+				sql, DLFolder.class.getName(), "SyncDLObject.typePK", null,
+				"SyncDLObject.repositoryId", new long[] {repositoryId}, null);
+
+			sql = StringUtil.replace(
+				sql, _PARENT_FOLDER_ID_SQL, StringPool.BLANK);
+
+			SQLQuery q = session.createSynchronizedSQLQuery(sql);
+
+			q.addEntity("SyncDLObject", SyncDLObjectImpl.class);
+
+			QueryPos qPos = QueryPos.getInstance(q);
+
+			qPos.add(companyId);
+			qPos.add(0);
+			qPos.add(repositoryId);
+
+			return q.list();
+		}
+		catch (Exception e) {
+			throw new SystemException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	@Override
 	public List<SyncDLObject> filterFindByC_M_R_P(
 		long companyId, long modifiedTime, long repositoryId,
 		long parentFolderId) {
@@ -122,46 +162,6 @@ public class SyncDLObjectFinderImpl
 			}
 
 			qPos.add(PrincipalThreadLocal.getUserId());
-
-			return q.list();
-		}
-		catch (Exception e) {
-			throw new SystemException(e);
-		}
-		finally {
-			closeSession(session);
-		}
-	}
-
-	@Override
-	public List<SyncDLObject> filterFindByC_R(
-		long companyId, long repositoryId) {
-
-		Session session = null;
-
-		try {
-			session = openSession();
-
-			String sql = CustomSQLUtil.get(FIND_BY_FOLDER_TYPE);
-
-			sql = sql.concat(_EVENT_SQL);
-
-			sql = InlineSQLHelperUtil.replacePermissionCheck(
-				sql, DLFolder.class.getName(), "SyncDLObject.typePK", null,
-				"SyncDLObject.repositoryId", new long[] {repositoryId}, null);
-
-			sql = StringUtil.replace(
-				sql, _PARENT_FOLDER_ID_SQL, StringPool.BLANK);
-
-			SQLQuery q = session.createSynchronizedSQLQuery(sql);
-
-			q.addEntity("SyncDLObject", SyncDLObjectImpl.class);
-
-			QueryPos qPos = QueryPos.getInstance(q);
-
-			qPos.add(companyId);
-			qPos.add(0);
-			qPos.add(repositoryId);
 
 			return q.list();
 		}
