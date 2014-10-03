@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping default-lazy="false" auto-import="false">
+	<import class="com.liferay.sharing.model.SharingEntry" />
+	<class name="com.liferay.sharing.model.impl.SharingEntryImpl" table="Sharing_SharingEntry">
+		<cache usage="read-write" />
+		<composite-id name="primaryKey" class="com.liferay.sharing.service.persistence.SharingEntryPK">
+			<key-property name="classNameId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+			<key-property name="classPK" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+			<key-property name="sharingClassNameId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+			<key-property name="sharingClassPK" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		</composite-id>
+	</class>
+</hibernate-mapping>
