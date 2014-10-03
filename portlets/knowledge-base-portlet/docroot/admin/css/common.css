@@ -201,6 +201,11 @@
 		margin-top: 10px;
 	}
 
+	.kb-article-tools {
+		float: right;
+		margin: 5px 0 5px;
+	}
+
 	.kb-attachments {
 		margin: 5px 0 0;
 	}
@@ -257,6 +262,7 @@
 			}
 
 			.kb-title {
+				display: inline;
 				margin: 5px 0 0;
 
 				a {
@@ -315,18 +321,7 @@
 		padding: 0 5px 3px;
 
 		.kb-article-source-url {
-			float: right;
-			margin-top: 10px;
-		}
-
-		@include respond-to(phone) {
-			.kb-article-source-url {
-				float: inherit;
-			}
-		}
-
-		.kb-tools {
-			float: right;
+			margin-right: 10px;
 		}
 	}
 
