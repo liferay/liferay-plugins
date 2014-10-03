@@ -29,13 +29,9 @@ if (enableKBArticleViewCountIncrement && !kbArticle.isDraft()) {
 %>
 
 <div class="float-container kb-entity-header">
-	<c:if test="<%= PortletPropsValues.KNOWLEDGE_BASE_SOURCE_URL_ENABLED && Validator.isUrl(kbArticle.getSourceURL()) %>">
-		<a href="<%= kbArticle.getSourceURL() %>" target="_blank">
-			<span class="kb-article-source-url label label-success">
-				<liferay-ui:message key="<%= PortletPropsValues.KNOWLEDGE_BASE_SOURCE_URL_EDIT_MESSAGE_KEY %>" />
-			</span>
-		</a>
-	</c:if>
+	<div class="kb-tools">
+		<liferay-util:include page="/admin/article_tools.jsp" servletContext="<%= application %>" />
+	</div>
 
 	<h1 class="kb-title">
 		<%= kbArticle.getTitle() %>
@@ -48,10 +44,6 @@ if (enableKBArticleViewCountIncrement && !kbArticle.isDraft()) {
 			<aui:workflow-status status="<%= kbArticle.getStatus() %>" />
 		</div>
 	</c:if>
-
-	<div class="kb-tools">
-		<liferay-util:include page="/admin/article_tools.jsp" servletContext="<%= application %>" />
-	</div>
 </div>
 
 <%
