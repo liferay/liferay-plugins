@@ -158,7 +158,7 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 
 	@Override
 	public KBArticle fetchLatestKBArticle(long resourcePrimKey, int status)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		KBArticle kbArticle = kbArticleLocalService.fetchLatestKBArticle(
 			resourcePrimKey, status);
