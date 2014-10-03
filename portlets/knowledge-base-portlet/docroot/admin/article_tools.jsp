@@ -23,6 +23,14 @@ KBArticle kbArticle = (KBArticle)request.getAttribute(WebKeys.KNOWLEDGE_BASE_KB_
 %>
 
 <div class="kb-article-tools">
+	<c:if test="<%= PortletPropsValues.KNOWLEDGE_BASE_SOURCE_URL_ENABLED && Validator.isUrl(kbArticle.getSourceURL()) %>">
+		<a href="<%= kbArticle.getSourceURL() %>" target="_blank">
+			<span class="kb-article-source-url label label-success">
+				<liferay-ui:message key="<%= PortletPropsValues.KNOWLEDGE_BASE_SOURCE_URL_EDIT_MESSAGE_KEY %>" />
+			</span>
+		</a>
+	</c:if>
+
 	<c:if test="<%= enableRSS && (kbArticle.isApproved() || !kbArticle.isFirstVersion()) && !Validator.equals(portletDisplay.getRootPortletId(), PortletKeys.KNOWLEDGE_BASE_ADMIN) %>">
 		<liferay-portlet:resourceURL id="kbArticleRSS" varImpl="kbArticleRSSURL">
 			<portlet:param name="resourcePrimKey" value="<%= String.valueOf(kbArticle.getResourcePrimKey()) %>" />
