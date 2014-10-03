@@ -51,7 +51,7 @@ String currentKBFolderUrlTitle = preferredKBFolderUrlTitle;
 if (rootResourcePrimKey != KBFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
 	KBFolder kbFolder = KBFolderServiceUtil.getKBFolder(rootResourcePrimKey);
 
-	PortalUtil.setPageTitle(LanguageUtil.get(locale, "liferay") + " " + kbFolder.getName(), request);
+	PortalUtil.setPageTitle(contentRootPrefix + " " + kbFolder.getName(), request);
 
 	currentKBFolderUrlTitle = kbFolder.getUrlTitle();
 }
@@ -79,7 +79,7 @@ if (rootResourcePrimKey != KBFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
 								selected="<%= currentKBFolderUrlTitle.equals(kbFolder.getUrlTitle()) %>"
 								value="<%= kbFolder.getKbFolderId() %>"
 							>
-								<%= kbFolder.getName() %>
+								<%= contentRootPrefix + " " + kbFolder.getName() %>
 							</aui:option>
 
 						<%
