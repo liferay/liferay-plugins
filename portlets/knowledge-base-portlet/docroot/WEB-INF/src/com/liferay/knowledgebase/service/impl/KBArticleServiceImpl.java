@@ -157,6 +157,23 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 	}
 
 	@Override
+	public KBArticle fetchLatestKBArticle(long resourcePrimKey, int status)
+		throws PortalException, SystemException {
+
+		KBArticle kbArticle = kbArticleLocalService.fetchLatestKBArticle(
+			resourcePrimKey, status);
+
+		if (kbArticle == null) {
+			return null;
+		}
+
+		KBArticlePermission.check(
+			getPermissionChecker(), kbArticle, ActionKeys.VIEW);
+
+		return kbArticle;
+	}
+
+	@Override
 	public List<KBArticle> getGroupKBArticles(
 			long groupId, int status, int start, int end,
 			OrderByComparator orderByComparator)
