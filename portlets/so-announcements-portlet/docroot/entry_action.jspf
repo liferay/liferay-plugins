@@ -19,7 +19,7 @@
 
 <div class="entry-footer-toolbar">
 	<div class="edit-actions">
-		<c:if test="<%= permissionChecker.hasPermission(entry.getGroupId(), AnnouncementsEntry.class.getName(), entry.getClassPK(), ActionKeys.UPDATE) %>">
+		<c:if test="<%= AnnouncementsEntryPermission.contains(permissionChecker, entry, ActionKeys.UPDATE) %>">
 			<span class="action edit-entry">
 				<portlet:renderURL var="editURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
 					<portlet:param name="mvcPath" value="/edit_entry.jsp" />
@@ -34,7 +34,7 @@
 			</span>
 		</c:if>
 
-		<c:if test="<%= permissionChecker.hasPermission(entry.getGroupId(), AnnouncementsEntry.class.getName(), entry.getClassPK(), ActionKeys.DELETE) %>">
+		<c:if test="<%= AnnouncementsEntryPermission.contains(permissionChecker, entry, ActionKeys.DELETE) %>">
 			<span class="action delete-entry">
 				<a href="javascript:;">
 					<i class="icon-remove"></i>
