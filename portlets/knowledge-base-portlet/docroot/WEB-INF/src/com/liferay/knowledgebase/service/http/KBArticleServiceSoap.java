@@ -128,6 +128,21 @@ public class KBArticleServiceSoap {
 		}
 	}
 
+	public static com.liferay.knowledgebase.model.KBArticleSoap fetchLatestKBArticle(
+		long resourcePrimKey, int status) throws RemoteException {
+		try {
+			com.liferay.knowledgebase.model.KBArticle returnValue = KBArticleServiceUtil.fetchLatestKBArticle(resourcePrimKey,
+					status);
+
+			return com.liferay.knowledgebase.model.KBArticleSoap.toSoapModel(returnValue);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
 	public static com.liferay.knowledgebase.model.KBArticleSoap[] getGroupKBArticles(
 		long groupId, int status, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBArticle> orderByComparator)

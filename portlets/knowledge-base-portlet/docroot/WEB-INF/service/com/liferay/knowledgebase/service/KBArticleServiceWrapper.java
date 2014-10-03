@@ -86,6 +86,13 @@ public class KBArticleServiceWrapper implements KBArticleService,
 			fileName, tempFolderName);
 	}
 
+	@Override
+	public com.liferay.knowledgebase.model.KBArticle fetchLatestKBArticle(
+		long resourcePrimKey, int status)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _kbArticleService.fetchLatestKBArticle(resourcePrimKey, status);
+	}
+
 	/**
 	* Returns the Spring bean ID for this bean.
 	*

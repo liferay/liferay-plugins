@@ -78,6 +78,11 @@ public interface KBArticleService extends BaseService, InvokableService {
 		java.lang.String fileName, java.lang.String tempFolderName)
 		throws com.liferay.portal.kernel.exception.PortalException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.liferay.knowledgebase.model.KBArticle fetchLatestKBArticle(
+		long resourcePrimKey, int status)
+		throws com.liferay.portal.kernel.exception.PortalException;
+
 	/**
 	* Returns the Spring bean ID for this bean.
 	*

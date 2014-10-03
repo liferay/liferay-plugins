@@ -93,6 +93,12 @@ public class KBArticleServiceUtil {
 			tempFolderName);
 	}
 
+	public static com.liferay.knowledgebase.model.KBArticle fetchLatestKBArticle(
+		long resourcePrimKey, int status)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().fetchLatestKBArticle(resourcePrimKey, status);
+	}
+
 	/**
 	* Returns the Spring bean ID for this bean.
 	*
