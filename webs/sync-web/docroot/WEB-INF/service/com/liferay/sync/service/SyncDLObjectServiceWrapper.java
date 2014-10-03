@@ -118,6 +118,15 @@ public class SyncDLObjectServiceWrapper implements SyncDLObjectService,
 			expirationTime, serviceContext);
 	}
 
+	@Override
+	public java.util.List<com.liferay.sync.model.SyncDLObject> getAllFolderSyncDLObjects(
+		long companyId, long repositoryId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _syncDLObjectService.getAllFolderSyncDLObjects(companyId,
+			repositoryId);
+	}
+
 	/**
 	* @deprecated As of 7.0.0, with no direct replacement
 	*/
@@ -208,6 +217,16 @@ public class SyncDLObjectServiceWrapper implements SyncDLObjectService,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _syncDLObjectService.getSyncDLObjectUpdate(companyId,
 			repositoryId, lastAccessTime);
+	}
+
+	@Override
+	public com.liferay.sync.model.SyncDLObjectUpdate getSyncDLObjectUpdate(
+		long companyId, long repositoryId, long parentFolderId,
+		long lastAccessTime)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _syncDLObjectService.getSyncDLObjectUpdate(companyId,
+			repositoryId, parentFolderId, lastAccessTime);
 	}
 
 	@Override
