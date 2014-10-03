@@ -43,7 +43,7 @@ boolean googleDocs = false;
 if (fileEntryTypeId > 0) {
 	DLFileEntryType dlfileEntryType = DLFileEntryTypeLocalServiceUtil.getFileEntryType(fileEntryTypeId);
 
-	if (dlfileEntryType.getFileEntryTypeKey().equals("GOOGLE-DOCUMENT")) {
+	if (dlfileEntryType.getFileEntryTypeKey().equals("GOOGLE-DOCS")) {
 		googleDocs = true;
 	}
 }

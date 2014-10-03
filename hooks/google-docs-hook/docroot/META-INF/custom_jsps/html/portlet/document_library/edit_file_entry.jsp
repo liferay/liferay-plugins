@@ -38,7 +38,7 @@ if (fileEntryTypeId != -1) {
 
 	String fileEntryTypeKey = dlfileEntryType.getFileEntryTypeKey();
 
-	if (fileEntryTypeKey.equals("GOOGLE-DOCUMENT")) {
+	if (fileEntryTypeKey.equals("GOOGLE-DOCS")) {
 		googleDocs = true;
 	}
 }
