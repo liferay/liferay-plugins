@@ -42,7 +42,7 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 				<liferay-ui:input-resource url="<%= kbFolder.getName() %>" />
 			</c:when>
 			<c:otherwise>
-				<liferay-ui:input-resource url='<%= BeanPropertiesUtil.getString(KBArticleServiceUtil.getLatestKBArticle(resourcePrimKey, WorkflowConstants.STATUS_APPROVED), "title") %>' />
+				<liferay-ui:input-resource url='<%= BeanPropertiesUtil.getString(KBArticleServiceUtil.fetchLatestKBArticle(resourcePrimKey, WorkflowConstants.STATUS_APPROVED), "title") %>' />
 			</c:otherwise>
 		</c:choose>
 
@@ -81,7 +81,7 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 				selParentResourceClassNameId = selKBFolder.getClassNameId();
 			}
 			else {
-				KBArticle selKBArticle = KBArticleServiceUtil.getLatestKBArticle(selParentResourcePrimKey, WorkflowConstants.STATUS_APPROVED);
+				KBArticle selKBArticle = KBArticleServiceUtil.fetchLatestKBArticle(selParentResourcePrimKey, WorkflowConstants.STATUS_APPROVED);
 
 				tuples.add(new Tuple(selKBArticle.getResourcePrimKey(), selKBArticle.getClassNameId(), StringUtil.shorten(selKBArticle.getTitle(), 30)));
 
