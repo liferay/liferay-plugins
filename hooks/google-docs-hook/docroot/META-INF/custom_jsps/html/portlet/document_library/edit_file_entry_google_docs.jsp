@@ -299,7 +299,7 @@ if ((checkedOut || pending) && !PropsValues.DL_FILE_ENTRY_DRAFTS_ENABLED) {
 			</aui:validator>
 		</aui:input>
 
-		<aui:field-wrapper label="google-document">
+		<aui:field-wrapper label="google-docs">
 			<aui:button cssClass="add-google-shortcut" name="pickButton" value="select" />
 
 			<img id="<portlet:namespace />pickButtonIcon" src="" style="border: 0px">
