@@ -117,9 +117,9 @@ public class PrivateMessagingUtil {
 
 			BaseModelSearchResult<User> baseModelSearchResult =
 				UserLocalServiceUtil.searchUsers(
-					user.getCompanyId(), keywords,
-					WorkflowConstants.STATUS_APPROVED, params, start, end,
-					sort);
+					user.getCompanyId(), keywords, keywords, keywords, keywords,
+					keywords, WorkflowConstants.STATUS_APPROVED, params, false,
+					start, end, sort);
 
 			jsonObject.put("total", baseModelSearchResult.getLength());
 
