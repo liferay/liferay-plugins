@@ -104,7 +104,7 @@ public class DisplayPortlet extends BaseKBPortlet {
 						preferredKBFolderUrlTitle);
 				}
 				else {
-					kbArticle = KBArticleServiceUtil.getLatestKBArticle(
+					kbArticle = KBArticleServiceUtil.fetchLatestKBArticle(
 						resourcePrimKey, status);
 				}
 			}
@@ -319,7 +319,11 @@ public class DisplayPortlet extends BaseKBPortlet {
 			}
 		}
 		else {
-			if (!KBArticlePermission.contains(
+			KBArticle kbArticle = KBArticleServiceUtil.fetchLatestKBArticle(
+				defaultResourcePrimKey, WorkflowConstants.STATUS_ANY);
+
+			if ((kbArticle != null) &&
+				!KBArticlePermission.contains(
 					themeDisplay.getPermissionChecker(), defaultResourcePrimKey,
 					ActionKeys.VIEW)) {
 
@@ -363,13 +367,21 @@ public class DisplayPortlet extends BaseKBPortlet {
 		long kbArticleClassNameId = PortalUtil.getClassNameId(
 			KBArticleConstants.getClassName());
 
-		if ((resourceClassNameId == kbArticleClassNameId) &&
-			KBArticlePermission.contains(
-				themeDisplay.getPermissionChecker(), resourcePrimKey,
-				ActionKeys.UPDATE)) {
+		if (resourceClassNameId == kbArticleClassNameId) {
+			KBArticle kbArticle = KBArticleServiceUtil.fetchLatestKBArticle(
+				resourcePrimKey, WorkflowConstants.STATUS_ANY);
 
-			return ParamUtil.getInteger(
-				renderRequest, "status", WorkflowConstants.STATUS_ANY);
+			if (kbArticle == null) {
+				return WorkflowConstants.STATUS_APPROVED;
+			}
+
+			if (KBArticlePermission.contains(
+					themeDisplay.getPermissionChecker(), resourcePrimKey,
+					ActionKeys.UPDATE)) {
+
+				return ParamUtil.getInteger(
+					renderRequest, "status", WorkflowConstants.STATUS_ANY);
+			}
 		}
 
 		return WorkflowConstants.STATUS_APPROVED;
