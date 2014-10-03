@@ -326,6 +326,9 @@ public class AppLocalServiceImpl extends AppLocalServiceBaseImpl {
 						String bundleVersion = StringPool.BLANK;
 						String contextName = StringPool.BLANK;
 
+						AutoDeploymentContext autoDeploymentContext =
+							new AutoDeploymentContext();
+
 						if (fileName.endsWith(".jar")) {
 							Manifest manifest = BundleUtil.getManifest(
 								pluginPackageFile);
@@ -342,12 +345,10 @@ public class AppLocalServiceImpl extends AppLocalServiceBaseImpl {
 						}
 						else {
 							contextName = getContextName(fileName);
+
+							autoDeploymentContext.setContext(contextName);
 						}
 
-						AutoDeploymentContext autoDeploymentContext =
-							new AutoDeploymentContext();
-
-						autoDeploymentContext.setContext(contextName);
 						autoDeploymentContext.setFile(pluginPackageFile);
 
 						DeployManagerUtil.deploy(autoDeploymentContext);
