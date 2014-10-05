@@ -12,7 +12,9 @@
 
 	<dependencies defaultconf="default">
 		<dependency name="commons-codec" org="commons-codec" rev="1.7" />
-		<dependency name="flexjson" org="net.sf.flexjson" rev="2.1" />
+		<dependency name="jackson-annotations" org="com.fasterxml.jackson.core" rev="2.4.2" />
+		<dependency name="jackson-core" org="com.fasterxml.jackson.core" rev="2.4.2" />
+		<dependency name="jackson-databind" org="com.fasterxml.jackson.core"  rev="2.4.2" />
 		<dependency name="httpclient" org="org.apache.httpcomponents" rev="4.3.3" />
 		<dependency name="httpcore" org="org.apache.httpcomponents" rev="4.3.2" />
 		<dependency name="slf4j-api" org="org.slf4j" rev="1.7.2" />
