@@ -20,6 +20,8 @@ import java.io.InterruptedIOException;
 import java.net.SocketException;
 import java.net.UnknownHostException;
 
+import java.nio.charset.StandardCharsets;
+
 import java.security.KeyStore;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
@@ -40,7 +42,6 @@ import javax.security.auth.login.CredentialException;
 
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.codec.Charsets;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpEntityEnclosingRequest;
 import org.apache.http.HttpHost;
@@ -169,7 +170,7 @@ public class JSONWebServiceClientImpl implements JSONWebServiceClient {
 
 		if (!nameValuePairs.isEmpty()) {
 			String queryString = URLEncodedUtils.format(
-				nameValuePairs, Charsets.UTF_8);
+				nameValuePairs, StandardCharsets.UTF_8);
 
 			url += "?" + queryString;
 		}
@@ -202,7 +203,7 @@ public class JSONWebServiceClientImpl implements JSONWebServiceClient {
 		List<NameValuePair> nameValuePairs = toNameValuePairs(parameters);
 
 		HttpEntity httpEntity = new UrlEncodedFormEntity(
-			nameValuePairs, Charsets.UTF_8);
+			nameValuePairs, StandardCharsets.UTF_8);
 
 		for (String key : _headers.keySet()) {
 			httpPost.addHeader(key, _headers.get(key));
@@ -333,7 +334,7 @@ public class JSONWebServiceClientImpl implements JSONWebServiceClient {
 			}
 
 			return EntityUtils.toString(
-				httpResponse.getEntity(), Charsets.UTF_8);
+				httpResponse.getEntity(), StandardCharsets.UTF_8);
 		}
 		finally {
 			httpRequestBase.releaseConnection();
