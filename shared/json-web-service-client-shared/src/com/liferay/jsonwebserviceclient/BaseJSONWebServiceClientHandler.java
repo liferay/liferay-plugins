@@ -14,7 +14,9 @@
 
 package com.liferay.jsonwebserviceclient;
 
-import flexjson.JSONDeserializer;
+import com.fasterxml.jackson.databind.JavaType;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.type.TypeFactory;
 
 import java.io.IOException;
 
@@ -58,12 +60,11 @@ public abstract class BaseJSONWebServiceClientHandler {
 			throw new Exception(getExceptionMessage(json));
 		}
 
-		JSONDeserializer<List<T>> jsonDeserializer =
-			new JSONDeserializer<List<T>>();
+		TypeFactory typeFactory = _objectMapper.getTypeFactory();
 
-		jsonDeserializer.use("values", clazz);
+		JavaType type = typeFactory.constructCollectionType(List.class, clazz);
 
-		return jsonDeserializer.deserialize(json);
+		return _objectMapper.readValue(json, type);
 	}
 
 	protected <T> T doGetToObject(
@@ -80,27 +81,7 @@ public abstract class BaseJSONWebServiceClientHandler {
 			throw new Exception(getExceptionMessage(json));
 		}
 
-		JSONDeserializer<T> jsonDeserializer = new JSONDeserializer<T>();
-
-		return jsonDeserializer.deserialize(json, clazz);
-	}
-
-	protected <T> T doGetToObject(String url, String... parametersArray)
-		throws Exception {
-
-		String json = doGet(url, parametersArray);
-
-		if ((json == null) || json.equals("")) {
-			return null;
-		}
-
-		if (json.contains("exception\":\"")) {
-			throw new Exception(getExceptionMessage(json));
-		}
-
-		JSONDeserializer<T> jsonDeserializer = new JSONDeserializer<T>();
-
-		return jsonDeserializer.deserialize(json);
+		return _objectMapper.readValue(json, clazz);
 	}
 
 	protected void doPost(String url, String... parametersArray)
@@ -122,5 +103,7 @@ public abstract class BaseJSONWebServiceClientHandler {
 
 		return json.substring(exceptionMessageStart, exceptionMessageEnd);
 	}
+
+	private ObjectMapper _objectMapper = new ObjectMapper();
 
 }
