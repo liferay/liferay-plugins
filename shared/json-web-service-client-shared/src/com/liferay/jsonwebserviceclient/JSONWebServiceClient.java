@@ -34,6 +34,9 @@ public interface JSONWebServiceClient {
 	public String doPost(String url, Map<String, String> parameters)
 		throws CredentialException, IOException;
 
+	public String doPostAsJSON(String url, String json)
+		throws CredentialException, IOException;
+
 	public void resetHttpClient();
 
 	public void setKeyStore(KeyStore keyStore);

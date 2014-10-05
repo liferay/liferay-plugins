@@ -67,6 +67,7 @@ import org.apache.http.conn.socket.PlainConnectionSocketFactory;
 import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
 import org.apache.http.conn.ssl.SSLContextBuilder;
 import org.apache.http.conn.ssl.SSLContexts;
+import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.BasicCredentialsProvider;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
@@ -208,6 +209,26 @@ public class JSONWebServiceClientImpl implements JSONWebServiceClient {
 		}
 
 		httpPost.setEntity(httpEntity);
+
+		return execute(httpPost);
+	}
+
+	@Override
+	public String doPostAsJSON(String url, String json)
+		throws CredentialException, IOException {
+
+		StringEntity entity = new StringEntity(
+			json.toString(), StandardCharsets.UTF_8);
+
+		entity.setContentType("application/json");
+
+		HttpPost httpPost = new HttpPost(url);
+
+		for (String key : _headers.keySet()) {
+			httpPost.addHeader(key, _headers.get(key));
+		}
+
+		httpPost.setEntity(entity);
 
 		return execute(httpPost);
 	}

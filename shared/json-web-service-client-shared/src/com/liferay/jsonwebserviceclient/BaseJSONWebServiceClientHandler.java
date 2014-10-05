@@ -96,6 +96,14 @@ public abstract class BaseJSONWebServiceClientHandler {
 		getJSONWebServiceClient().doPost(url, parameters);
 	}
 
+	protected void doPostAsJSON(String url, Object object)
+		throws CredentialException, IOException {
+
+		String json = _objectMapper.writeValueAsString(object);
+
+		getJSONWebServiceClient().doPostAsJSON(url, json);
+	}
+
 	protected String getExceptionMessage(String json) {
 		int exceptionMessageStart = json.indexOf("exception\":\"") + 12;
 
