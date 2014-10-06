@@ -218,18 +218,18 @@ public class JSONWebServiceClientImpl implements JSONWebServiceClient {
 	public String doPostAsJSON(String url, String json)
 		throws CredentialException, IOException {
 
-		StringEntity entity = new StringEntity(
-			json.toString(), StandardCharsets.UTF_8);
-
-		entity.setContentType("application/json");
-
 		HttpPost httpPost = new HttpPost(url);
 
 		for (String key : _headers.keySet()) {
 			httpPost.addHeader(key, _headers.get(key));
 		}
 
-		httpPost.setEntity(entity);
+		StringEntity stringEntity = new StringEntity(
+			json.toString(), StandardCharsets.UTF_8);
+
+		stringEntity.setContentType("application/json");
+
+		httpPost.setEntity(stringEntity);
 
 		return execute(httpPost);
 	}
