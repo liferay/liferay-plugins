@@ -113,7 +113,7 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 				String.valueOf(userId), false, 1000);
 		}
 		catch (PortalException pe) {
-			if (e instanceof DuplicateLockException) {
+			if (pe instanceof DuplicateLockException) {
 				throw new WorkflowException(
 					"Workflow task " + workflowTaskInstanceId +
 						" is locked by user " + userId,
@@ -121,7 +121,7 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 			}
 
 			throw new WorkflowException(
-				"Unable to lock workflow task " + workflowTaskInstanceId, e);
+				"Unable to lock workflow task " + workflowTaskInstanceId, pe);
 		}
 
 		try {
