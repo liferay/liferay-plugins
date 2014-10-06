@@ -419,9 +419,9 @@
 					/>
 
 					<path id="plugin-lib.classpath">
-						<path refid="portal.classpath" />
 						<fileset dir="@{module.dir}/lib" erroronmissingdir="false" includes="*.jar" />
 						<pathelement path="${plugin-lib.classpath.path}" />
+						<path refid="portal.classpath" />
 					</path>
 
 					<var name="plugin-lib.classpath.path" unset="true" />
