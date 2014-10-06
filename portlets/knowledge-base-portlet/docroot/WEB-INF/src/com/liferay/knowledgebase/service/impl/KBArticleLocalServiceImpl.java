@@ -861,7 +861,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		long kbFolderId = KBFolderConstants.DEFAULT_PARENT_FOLDER_ID;
 
 		if (parentResourceClassNameId == kbFolderClassNameId) {
-			kbFolderId = parentResourceClassNameId;
+			kbFolderId = parentResourcePrimKey;
 		}
 		else {
 			KBArticle latestKBArticle = getLatestKBArticle(
@@ -888,8 +888,8 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			kbArticlePersistence.update(curKBArticle);
 		}
 
-		KBArticle kbArticle = kbArticlePersistence.findByPrimaryKey(
-			resourcePrimKey);
+		KBArticle kbArticle = getLatestKBArticle(
+			resourcePrimKey, WorkflowConstants.STATUS_ANY);
 
 		if (kbArticle.getKbFolderId() != kbFolderId) {
 			List<KBArticle> descendantKBArticles = getAllDescendantKBArticles(
