@@ -131,9 +131,9 @@ public class AlloyPortlet extends GenericPortlet {
 
 			return;
 		}
-		
+
 		String format = ParamUtil.getString(actionRequest, "format");
-		
+
 		if (format.equals("json")) {
 			try {
 				AlloyAPIRequestProcessor.processAction(
