@@ -15,27 +15,18 @@
 package com.liferay.alloy.mvc;
 
 import com.liferay.compat.portal.util.PortalUtil;
-import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
-import com.liferay.portal.kernel.search.Sort;
 import com.liferay.portal.kernel.servlet.ServletResponseUtil;
 import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StackTraceUtil;
-import com.liferay.portal.kernel.util.Validator;
-import com.liferay.portal.model.BaseModel;
 
 import java.io.IOException;
-import java.io.Serializable;
 
 import java.lang.reflect.Method;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.portlet.ActionRequest;
@@ -56,9 +47,9 @@ public class AlloyAPIRequestProcessor {
 		throws Exception {
 
 		JSONObject jsonResponse = JSONFactoryUtil.createJSONObject();
-		
+
 		jsonResponse.put("success", false);
-		
+
 		String controller = ParamUtil.getString(actionRequest, "controller");
 
 		BaseAlloyControllerImpl baseAlloyControllerImpl = alloyControllers.get(
@@ -67,33 +58,35 @@ public class AlloyAPIRequestProcessor {
 		if (baseAlloyControllerImpl == null) {
 			throw new Exception("Unable to find controller " + controller);
 		}
-		
+
 		String action = ParamUtil.getString(actionRequest, "action");
-		
+
 		try {
 			Method method = baseAlloyControllerImpl.getMethod(action);
-			
-			HttpServletRequest request = PortalUtil.getHttpServletRequest(actionRequest);
-			
+
+			HttpServletRequest request = PortalUtil.getHttpServletRequest(
+				actionRequest);
+
 			baseAlloyControllerImpl.setRequest(request);
-			
+
 			baseAlloyControllerImpl.initFormat();
 			baseAlloyControllerImpl.initPortletVariables();
-			
+
 			method.invoke(baseAlloyControllerImpl);
-			
-			String JSONData = GetterUtil.getString(request.getAttribute("JSONData"));
-			
+
+			String JSONData = GetterUtil.getString(
+				request.getAttribute("JSONData"));
+
 			jsonResponse.put("data", JSONData);
 			jsonResponse.put("success", true);
 		}
 		catch (Exception e) {
 			jsonResponse.put(
 				"error", "An unexpected exception occurred: " + e.getMessage());
-			
+
 			jsonResponse.put("stacktrace", StackTraceUtil.getStackTrace(e));
 		}
-		
+
 		writeJSON(actionRequest, actionResponse, jsonResponse);
 	}
 

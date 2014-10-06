@@ -298,30 +298,32 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 
 		SessionMessages.add(portletRequest, "requestProcessed", successMessage);
 	}
-	
-	protected JSONObject asJSON(
-			Document document, String... arguments) 
+
+	protected JSONObject asJSON(Document document, String... arguments)
 		throws Exception {
-		
+
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
-		
+
 		Map<String, Field> fields = document.getFields();
-		
+
 		if (arguments.length > 0) {
-			for (int i=0; i<arguments.length; ++i) {
-				if (fields.containsKey(arguments[i])) {
-					jsonObject.put(arguments[i], document.get(arguments[i]));
+			for (int i = 0; i < arguments.length; i++) {
+				if (!fields.containsKey(arguments[i])) {
+					continue;
 				}
+
+				jsonObject.put(arguments[i], document.get(arguments[i]));
+
+				return jsonObject;
 			}
 		}
-		else {
-			for (Map.Entry<String, Field> entry: fields.entrySet()) {
-				Field field = (Field)entry.getValue();
-				
-				jsonObject.put(field.getName(), field.getValue());
-			}
+
+		for (Map.Entry<String, Field> entry : fields.entrySet()) {
+			Field field = (Field)entry.getValue();
+
+			jsonObject.put(field.getName(), field.getValue());
 		}
-		
+
 		return jsonObject;
 	}
 
@@ -542,6 +544,12 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 		classLoader = clazz.getClassLoader();
 	}
 
+	protected void initFormat() {
+		String format = ParamUtil.getString(request, "format");
+
+		jsonFormat = format.equals(_JSON);
+	}
+
 	protected void initIndexer() {
 		indexer = buildIndexer();
 
@@ -584,12 +592,6 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 		indexerInstances.add(indexer);
 	}
 
-	protected void initFormat() {
-		String format = ParamUtil.getString(request, "format");
-		
-		JSONFormat = format.equals(_JSON);
-	}	
-	
 	protected void initMessageListener(
 		String destinationName, MessageListener messageListener,
 		boolean enableScheduler) {
@@ -823,10 +825,10 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 	}
 
 	protected void redirectTo(String redirect) {
-		if (JSONFormat) {
+		if (jsonFormat) {
 			return;
 		}
-		
+
 		if (!lifecycle.equals(PortletRequest.ACTION_PHASE)) {
 			throw new IllegalArgumentException(
 				"redirectTo can only be called during the action phase");
@@ -848,16 +850,16 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 			Document document, String... arguments)
 		throws Exception {
 
-		if (!JSONFormat) {
+		if (!jsonFormat) {
 			return;
 		}
-		
+
 		if (document == null) {
 			throw new Exception("Document can not be null");
 		}
-		
+
 		String JSONData = asJSON(document, arguments).toString();
-		
+
 		if (lifecycle.equals(PortletRequest.ACTION_PHASE)) {
 			portletRequest.setAttribute("JSONData", JSONData.toString());
 		}
@@ -865,12 +867,12 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 			renderRequest.setAttribute("JSONData", JSONData.toString());
 		}
 	}
-	
+
 	protected void render(String actionPath) {
-		if (JSONFormat) {
+		if (jsonFormat) {
 			return;
 		}
-		
+
 		if (Validator.isNotNull(redirect)) {
 			throw new IllegalArgumentException(
 				"render cannot be called if redirectTo has been called");
@@ -1072,7 +1074,7 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 	protected void setPermissioned(boolean permissioned) {
 		this.permissioned = permissioned;
 	}
-	
+
 	protected void setRequest(HttpServletRequest httpServletRequest) {
 		request = httpServletRequest;
 	}
@@ -1120,9 +1122,9 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 	protected String controllerPath;
 	protected EventRequest eventRequest;
 	protected EventResponse eventResponse;
-	protected boolean JSONFormat;
 	protected Indexer indexer;
 	protected String indexerClassName;
+	protected boolean jsonFormat;
 	protected String lifecycle;
 	protected LiferayPortletConfig liferayPortletConfig;
 	protected LiferayPortletResponse liferayPortletResponse;
@@ -1151,6 +1153,7 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 	protected String viewPath;
 
 	private static final String _JSON = "json";
+
 	private static final String _VIEW_PATH_ERROR = "VIEW_PATH_ERROR";
 
 }
