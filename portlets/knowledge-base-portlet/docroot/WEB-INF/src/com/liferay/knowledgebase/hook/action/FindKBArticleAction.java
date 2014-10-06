@@ -17,7 +17,10 @@ package com.liferay.knowledgebase.hook.action;
 import com.liferay.knowledgebase.NoSuchArticleException;
 import com.liferay.knowledgebase.admin.util.AdminUtil;
 import com.liferay.knowledgebase.model.KBArticle;
+import com.liferay.knowledgebase.model.KBFolder;
+import com.liferay.knowledgebase.model.KBFolderConstants;
 import com.liferay.knowledgebase.service.KBArticleLocalServiceUtil;
+import com.liferay.knowledgebase.service.KBFolderLocalServiceUtil;
 import com.liferay.knowledgebase.service.permission.KBArticlePermission;
 import com.liferay.knowledgebase.util.ActionKeys;
 import com.liferay.knowledgebase.util.PortletKeys;
@@ -333,6 +336,16 @@ public class FindKBArticleAction extends BaseStrutsAction {
 		}
 		else {
 			portletURL.setParameter("urlTitle", kbArticle.getUrlTitle());
+
+			if (kbArticle.getKbFolderId() !=
+					KBFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
+
+				KBFolder kbFolder = KBFolderLocalServiceUtil.getKBFolder(
+					kbArticle.getKbFolderId());
+
+				portletURL.setParameter(
+					"kbFolderUrlTitle", String.valueOf(kbFolder.getUrlTitle()));
+			}
 		}
 
 		portletURL.setPortletMode(PortletMode.VIEW);
