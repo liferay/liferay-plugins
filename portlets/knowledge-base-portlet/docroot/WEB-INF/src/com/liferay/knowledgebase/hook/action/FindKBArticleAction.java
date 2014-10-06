@@ -215,6 +215,8 @@ public class FindKBArticleAction extends BaseStrutsAction {
 			HttpServletRequest request)
 		throws Exception {
 
+		PortletURL firstMatchPortletURL = null;
+
 		List<Layout> layouts = getCandidateLayouts(
 			plid, privateLayout, kbArticle);
 
@@ -229,9 +231,52 @@ public class FindKBArticleAction extends BaseStrutsAction {
 					portlet.getPortletId());
 
 				if (rootPortletId.equals(PortletKeys.KNOWLEDGE_BASE_DISPLAY)) {
-					return getKBArticleURL(
-						layout.getPlid(), portlet.getPortletId(), kbArticle,
-						request);
+					PortletPreferences preferences =
+						PortletPreferencesFactoryUtil.getPortletSetup(
+							layout, portlet.getPortletId(), StringPool.BLANK);
+
+					long kbFolderClassNameId = PortalUtil.getClassNameId(
+						KBFolderConstants.getClassName());
+
+					long resourceClassNameId = GetterUtil.getLong(
+						preferences.getValue("resourceClassNameId", null),
+						kbFolderClassNameId);
+					long resourcePrimKey = GetterUtil.getLong(
+						preferences.getValue("resourcePrimKey", null),
+						KBFolderConstants.DEFAULT_PARENT_FOLDER_ID);
+
+					if (resourceClassNameId == kbFolderClassNameId) {
+						long kbFolderId = kbArticle.getKbFolderId();
+
+						while (kbFolderId !=
+									KBFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
+
+							if (resourcePrimKey == kbFolderId) {
+								return getKBArticleURL(
+									layout.getPlid(), portlet.getPortletId(),
+									kbArticle, request);
+							}
+
+							KBFolder kbFolder =
+								KBFolderLocalServiceUtil.getKBFolder(
+									kbFolderId);
+
+							kbFolderId = kbFolder.getParentKBFolderId();
+						}
+					}
+					else if (resourcePrimKey ==
+								kbArticle.getResourcePrimKey()) {
+
+						return getKBArticleURL(
+							layout.getPlid(), portlet.getPortletId(), kbArticle,
+							request);
+					}
+
+					if (firstMatchPortletURL == null) {
+						firstMatchPortletURL = getKBArticleURL(
+							layout.getPlid(), portlet.getPortletId(), kbArticle,
+							request);
+					}
 				}
 
 				if (rootPortletId.equals(PortletKeys.KNOWLEDGE_BASE_SECTION)) {
@@ -298,11 +343,17 @@ public class FindKBArticleAction extends BaseStrutsAction {
 							layout.getPlid(), portlet.getPortletId(), kbArticle,
 							request);
 					}
+
+					if (firstMatchPortletURL == null) {
+						firstMatchPortletURL = getKBArticleURL(
+							layout.getPlid(), portlet.getPortletId(), kbArticle,
+							request);
+					}
 				}
 			}
 		}
 
-		return null;
+		return firstMatchPortletURL;
 	}
 
 	protected PortletURL getKBArticleURL(
