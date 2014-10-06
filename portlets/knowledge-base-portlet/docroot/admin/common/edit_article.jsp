@@ -114,11 +114,9 @@ String[] sections = AdminUtil.unescapeSections(BeanPropertiesUtil.getString(kbAr
 				sb.append(StringPool.SLASH);
 				sb.append(kbFolder.getUrlTitle());
 			}
-
-			String friendlyURLBase = sb.toString();
 			%>
 
-			<span class="input-group-addon" id="<portlet:namespace />urlBase"><liferay-ui:message key="<%= StringUtil.shorten(friendlyURLBase.toString(), 40) %>" /></span>
+			<span class="input-group-addon" id="<portlet:namespace />urlBase"><liferay-ui:message key="<%= StringUtil.shorten(sb.toString(), 40) %>" /></span>
 
 			<aui:input cssClass="input-medium" disabled="<%= kbArticle != null %>" label="" name="urlTitle" />
 		</aui:field-wrapper>
