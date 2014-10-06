@@ -131,6 +131,20 @@ public class AlloyPortlet extends GenericPortlet {
 
 			return;
 		}
+		
+		String format = ParamUtil.getString(actionRequest, "format");
+		
+		if (format.equals("json")) {
+			try {
+				AlloyAPIRequestProcessor.processAction(
+					actionRequest, actionResponse, _alloyControllers);
+			}
+			catch (Exception e) {
+				throw new IOException(e);
+			}
+
+			return;
+		}
 
 		String path = getPath(actionRequest);
 
