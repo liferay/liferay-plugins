@@ -64,7 +64,7 @@ if (rootResourcePrimKey != KBFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
 		List<KBFolder> kbFolders = KnowledgeBaseUtil.getAlternateRootKBFolders(scopeGroupId, resourcePrimKey);
 		%>
 
-		<c:if test="<%= !kbFolders.isEmpty() %>">
+		<c:if test="<%= kbFolders.size() > 1 %>">
 			<liferay-portlet:actionURL name="updateRootKBFolderId" var="updateRootKBFolderIdURL" />
 
 			<div class="kbarticle-root-selector kb-field-wrapper">
