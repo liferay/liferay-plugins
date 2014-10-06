@@ -62,9 +62,10 @@ public abstract class BaseJSONWebServiceClientHandler {
 
 		TypeFactory typeFactory = _objectMapper.getTypeFactory();
 
-		JavaType type = typeFactory.constructCollectionType(List.class, clazz);
+		JavaType javaType = typeFactory.constructCollectionType(
+			List.class, clazz);
 
-		return _objectMapper.readValue(json, type);
+		return _objectMapper.readValue(json, javaType);
 	}
 
 	protected <T> T doGetToObject(
