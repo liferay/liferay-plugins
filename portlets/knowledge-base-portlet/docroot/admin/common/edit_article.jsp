@@ -93,12 +93,42 @@ String[] sections = AdminUtil.unescapeSections(BeanPropertiesUtil.getString(kbAr
 	</c:if>
 
 	<aui:fieldset>
-		<aui:input name="title" />
+		<aui:input name="title" required="true" />
 
-		<aui:input disabled="<%= kbArticle != null %>" label="friendly-url" name="urlTitle" />
+		<aui:field-wrapper cssClass="input-append input-flex-add-on input-prepend" helpMessage='<%= LanguageUtil.format(pageContext, "for-example-x", "<em>introduction-to-service-builder</em>") %>' label="friendly-url">
 
-		<aui:field-wrapper label="content">
-			<liferay-ui:input-editor contents="<%= content %>" width="100%" />
+			<%
+			StringBundler sb = new StringBundler();
+
+			sb.append(PortalUtil.getPortalURL(request));
+			sb.append(StringPool.SLASH);
+			sb.append(StringPool.DASH);
+			sb.append(StringPool.SLASH);
+
+			Portlet portlet = PortletLocalServiceUtil.getPortletById(portletDisplay.getId());
+
+			sb.append(portlet.getFriendlyURLMapping());
+			sb.append(StringPool.SLASH);
+
+			long kbFolderId = KnowledgeBaseUtil.getKBFolderId(parentResourceClassNameId, parentResourcePrimKey);
+
+			if (kbFolderId != KBFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
+				KBFolder kbFolder = KBFolderLocalServiceUtil.getKBFolder(kbFolderId);
+
+				sb.append(kbFolder.getUrlTitle());
+				sb.append(StringPool.SLASH);
+			}
+
+			String friendlyURLBase = sb.toString();
+			%>
+
+			<span class="add-on" id="<portlet:namespace />urlBase"><liferay-ui:message key="<%= StringUtil.shorten(friendlyURLBase.toString(), 60) %>" /></span>
+
+			<aui:input cssClass="input-medium" disabled="<%= kbArticle != null %>" label="" name="urlTitle" />
+		</aui:field-wrapper>
+
+		<aui:field-wrapper label="content" required="true">
+			<liferay-ui:input-editor width="100%" />
 
 			<aui:input name="content" type="hidden" />
 		</aui:field-wrapper>
