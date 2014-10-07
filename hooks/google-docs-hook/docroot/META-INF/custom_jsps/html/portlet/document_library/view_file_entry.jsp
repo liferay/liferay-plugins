@@ -53,8 +53,14 @@ if (fileEntryTypeId > 0) {
 	<c:when test="<%= googleDocs %>">
 		<style>
 			.portlet-document-library .download-document,
+			.portlet-boundary_182_ .download-document,
+			.portlet-boundary_101_ .download-document,
 			.portlet-document-library .webdav-url,
-			.portlet-document-library .lfr-asset-panels {
+			.portlet-boundary_182_ .webdav-url,
+			.portlet-boundary_101_ .webdav-url,
+			.portlet-document-library .lfr-asset-panels,
+			.portlet-boundary_182_ .lfr-asset-panels,
+			.portlet-boundary_101_ .lfr-asset-panels {
 				display: none;
 			}
 		</style>
