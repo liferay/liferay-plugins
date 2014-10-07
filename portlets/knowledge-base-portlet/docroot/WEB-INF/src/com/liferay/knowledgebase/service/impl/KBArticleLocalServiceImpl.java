@@ -1673,7 +1673,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			return getUniqueUrlTitle(groupId, kbFolderId, kbArticleId, title);
 		}
 
-		return getUniqueUrlTitle(groupId, kbFolderId, kbArticleId, urlTitle);
+		return urlTitle.substring(1);
 	}
 
 	protected boolean isValidFileName(String name) {
@@ -1920,7 +1920,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		}
 
 		Collection<KBArticle> kbArticles = kbArticlePersistence.findByG_KBFI_UT(
-			groupId, kbFolderId, urlTitle);
+			groupId, kbFolderId, urlTitle.substring(1));
 
 		if (!kbArticles.isEmpty()) {
 			throw new DuplicateUrlTitleException(
