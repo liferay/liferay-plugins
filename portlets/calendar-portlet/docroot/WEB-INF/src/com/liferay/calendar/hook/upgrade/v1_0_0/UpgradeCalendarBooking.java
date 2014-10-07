@@ -71,8 +71,9 @@ public class UpgradeCalendarBooking extends UpgradeProcess {
 
 			ps = con.prepareStatement(
 				"select portletPreferencesId from PortletPreferences where " +
-					"(preferences like '%classNameIds%') or " +
-					"(preferences like '%anyAssetType%')");
+					"(preferences like " +
+						"'%classNameIds%" + calEventId + "%') or " +
+					"(preferences like '%anyAssetType%" + calEventId + "%')");
 
 			rs = ps.executeQuery();
 
