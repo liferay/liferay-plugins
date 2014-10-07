@@ -331,12 +331,6 @@ public class MicroblogsEntryLocalServiceImpl
 			MicroblogsEntry microblogsEntry, ServiceContext serviceContext)
 		throws PortalException {
 
-		if (microblogsEntry.getReceiverUserId() ==
-				microblogsEntry.getUserId()) {
-
-			return;
-		}
-
 		JSONObject notificationEventJSONObject =
 			JSONFactoryUtil.createJSONObject();
 
