@@ -43,7 +43,7 @@ long parentResourcePrimKey = ParamUtil.getLong(request, "parentResourcePrimKey",
 <liferay-portlet:actionURL name="updateKBFolder" var="updateKBFolderURL" />
 
 <aui:form action="<%= updateKBFolderURL %>" method="post" name="fm">
-	<aui:input name="mvcPath" type="hidden" value='<%= templatePath + "edit_folder.jsp" %>' />
+	<aui:input name="mvcPath" type="hidden" value='<%= templatePath + "common/edit_folder.jsp" %>' />
 	<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= (kbFolder == null) ? Constants.ADD : Constants.UPDATE %>" />
 	<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
 	<aui:input name="kbFolderId" type="hidden" value="<%= String.valueOf(kbFolderId) %>" />
@@ -51,6 +51,7 @@ long parentResourcePrimKey = ParamUtil.getLong(request, "parentResourcePrimKey",
 	<aui:input name="parentResourcePrimKey" type="hidden" value="<%= parentResourcePrimKey %>" />
 
 	<liferay-ui:error exception="<%= DuplicateKBFolderNameException.class %>" message="please-enter-a-unique-folder-name" />
+	<liferay-ui:error exception="<%= InvalidKBFolderException.class %>" message="please-enter-a-non-empty-folder-name" />
 
 	<aui:model-context bean="<%= kbFolder %>" model="<%= KBFolder.class %>" />
 
