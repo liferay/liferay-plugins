@@ -60,10 +60,10 @@ public class UpgradeCalendarBooking extends UpgradeProcess {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 
-		String calendarBookingId = String.valueOf(
+		String calendarBookingClassNameId = String.valueOf(
 			PortalUtil.getClassNameId(CalendarBooking.class));
 
-		String calEventId = String.valueOf(
+		String calEventClassNameId = String.valueOf(
 			PortalUtil.getClassNameId(CalEvent.class));
 
 		try {
@@ -72,8 +72,9 @@ public class UpgradeCalendarBooking extends UpgradeProcess {
 			ps = con.prepareStatement(
 				"select portletPreferencesId from PortletPreferences where " +
 					"(preferences like " +
-						"'%classNameIds%" + calEventId + "%') or " +
-					"(preferences like '%anyAssetType%" + calEventId + "%')");
+						"'%classNameIds%" + calEventClassNameId + "%') or " +
+					"(preferences like " +
+						"'%anyAssetType%" + calEventClassNameId + "%')");
 
 			rs = ps.executeQuery();
 
@@ -98,11 +99,11 @@ public class UpgradeCalendarBooking extends UpgradeProcess {
 						portletPreferencesModel.getPreferences());
 
 				replaceClassNameId(
-					portletPreferences, "classNameIds", calEventId,
-					calendarBookingId);
+					portletPreferences, "classNameIds", calEventClassNameId,
+					calendarBookingClassNameId);
 				replaceClassNameId(
-					portletPreferences, "anyAssetType", calEventId,
-					calendarBookingId);
+					portletPreferences, "anyAssetType", calEventClassNameId,
+					calendarBookingClassNameId);
 
 				String preferences = PortletPreferencesFactoryUtil.toXML(
 					portletPreferences);
@@ -120,17 +121,17 @@ public class UpgradeCalendarBooking extends UpgradeProcess {
 
 	private void replaceClassNameId(
 			PortletPreferences portletPreferences, String preferenceName,
-			String calEventId, String calendarBookingId)
+			String calEventClassNameId, String calendarBookingClassNameId)
 		throws Exception {
 
 		String[] classNameIds = GetterUtil.getStringValues(
 			portletPreferences.getValues(preferenceName, null));
 
 		for (String classNameId : classNameIds) {
-			if (classNameId.equals(calEventId)) {
+			if (classNameId.equals(calEventClassNameId)) {
 				ArrayUtil.replace(
 					classNameIds, String.valueOf(classNameId),
-					calendarBookingId);
+					calendarBookingClassNameId);
 
 				portletPreferences.setValues(preferenceName, classNameIds);
 
