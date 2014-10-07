@@ -127,17 +127,9 @@ public class UpgradeCalendarBooking extends UpgradeProcess {
 		String[] classNameIds = GetterUtil.getStringValues(
 			portletPreferences.getValues(preferenceName, null));
 
-		for (String classNameId : classNameIds) {
-			if (classNameId.equals(calEventClassNameId)) {
-				ArrayUtil.replace(
-					classNameIds, String.valueOf(classNameId),
-					calendarBookingClassNameId);
-
-				portletPreferences.setValues(preferenceName, classNameIds);
-
-				break;
-			}
-		}
+		ArrayUtil.replace(
+			classNameIds, calEventClassNameId, calendarBookingClassNameId);
+		portletPreferences.setValues(preferenceName, classNameIds);
 	}
 
 }
