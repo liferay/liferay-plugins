@@ -103,10 +103,11 @@ public class KBFolderModelImpl extends BaseModelImpl<KBFolder>
 			true);
 	public static final long COMPANYID_COLUMN_BITMASK = 1L;
 	public static final long GROUPID_COLUMN_BITMASK = 2L;
-	public static final long PARENTKBFOLDERID_COLUMN_BITMASK = 4L;
-	public static final long URLTITLE_COLUMN_BITMASK = 8L;
-	public static final long UUID_COLUMN_BITMASK = 16L;
-	public static final long KBFOLDERID_COLUMN_BITMASK = 32L;
+	public static final long NAME_COLUMN_BITMASK = 4L;
+	public static final long PARENTKBFOLDERID_COLUMN_BITMASK = 8L;
+	public static final long URLTITLE_COLUMN_BITMASK = 16L;
+	public static final long UUID_COLUMN_BITMASK = 32L;
+	public static final long KBFOLDERID_COLUMN_BITMASK = 64L;
 
 	/**
 	 * Converts the soap model instance into a normal model instance.
@@ -473,7 +474,17 @@ public class KBFolderModelImpl extends BaseModelImpl<KBFolder>
 
 	@Override
 	public void setName(String name) {
+		_columnBitmask |= NAME_COLUMN_BITMASK;
+
+		if (_originalName == null) {
+			_originalName = _name;
+		}
+
 		_name = name;
+	}
+
+	public String getOriginalName() {
+		return GetterUtil.getString(_originalName);
 	}
 
 	@JSON
@@ -642,6 +653,8 @@ public class KBFolderModelImpl extends BaseModelImpl<KBFolder>
 		kbFolderModelImpl._originalParentKBFolderId = kbFolderModelImpl._parentKBFolderId;
 
 		kbFolderModelImpl._setOriginalParentKBFolderId = false;
+
+		kbFolderModelImpl._originalName = kbFolderModelImpl._name;
 
 		kbFolderModelImpl._originalUrlTitle = kbFolderModelImpl._urlTitle;
 
@@ -839,6 +852,7 @@ public class KBFolderModelImpl extends BaseModelImpl<KBFolder>
 	private long _originalParentKBFolderId;
 	private boolean _setOriginalParentKBFolderId;
 	private String _name;
+	private String _originalName;
 	private String _urlTitle;
 	private String _originalUrlTitle;
 	private String _description;

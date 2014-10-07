@@ -29,6 +29,7 @@ create unique index IX_FD56A55D on KBComment (userId, classNameId, classPK);
 create index IX_6CB72942 on KBComment (uuid_, companyId);
 create unique index IX_791D1844 on KBComment (uuid_, groupId);
 
+create index IX_3FA4415C on KBFolder (groupId, parentKBFolderId, name);
 create index IX_729A89FA on KBFolder (groupId, parentKBFolderId, urlTitle);
 create index IX_32D1105F on KBFolder (uuid_, companyId);
 create unique index IX_1FD022A1 on KBFolder (uuid_, groupId);
