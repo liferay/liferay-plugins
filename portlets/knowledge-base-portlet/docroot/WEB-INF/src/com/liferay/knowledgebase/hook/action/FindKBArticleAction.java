@@ -14,7 +14,6 @@
 
 package com.liferay.knowledgebase.hook.action;
 
-import com.liferay.knowledgebase.NoSuchArticleException;
 import com.liferay.knowledgebase.admin.util.AdminUtil;
 import com.liferay.knowledgebase.model.KBArticle;
 import com.liferay.knowledgebase.model.KBFolder;
@@ -190,13 +189,10 @@ public class FindKBArticleAction extends BaseStrutsAction {
 	protected KBArticle getKBArticle(long resourcePrimKey, int status)
 		throws Exception {
 
-		KBArticle kbArticle = null;
+		KBArticle kbArticle = KBArticleLocalServiceUtil.fetchLatestKBArticle(
+			resourcePrimKey, status);
 
-		try {
-			kbArticle = KBArticleLocalServiceUtil.getLatestKBArticle(
-				resourcePrimKey, status);
-		}
-		catch (NoSuchArticleException nsae) {
+		if (kbArticle == null) {
 			return null;
 		}
 
@@ -279,15 +275,12 @@ public class FindKBArticleAction extends BaseStrutsAction {
 					String[] kbArticlesSections = preferences.getValues(
 						"kbArticlesSections", new String[0]);
 
-					KBArticle rootKBArticle = null;
+					KBArticle rootKBArticle =
+						KBArticleLocalServiceUtil.fetchLatestKBArticle(
+							kbArticle.getRootResourcePrimKey(),
+							WorkflowConstants.STATUS_APPROVED);
 
-					try {
-						rootKBArticle =
-							KBArticleLocalServiceUtil.getLatestKBArticle(
-								kbArticle.getRootResourcePrimKey(),
-								WorkflowConstants.STATUS_APPROVED);
-					}
-					catch (NoSuchArticleException nsae) {
+					if (rootKBArticle == null) {
 						continue;
 					}
 
@@ -313,15 +306,11 @@ public class FindKBArticleAction extends BaseStrutsAction {
 					long resourcePrimKey = GetterUtil.getLong(
 						preferences.getValue("resourcePrimKey", null));
 
-					KBArticle selKBArticle = null;
+					KBArticle selKBArticle =
+						KBArticleLocalServiceUtil.fetchLatestKBArticle(
+							resourcePrimKey, WorkflowConstants.STATUS_APPROVED);
 
-					try {
-						selKBArticle =
-							KBArticleLocalServiceUtil.getLatestKBArticle(
-								resourcePrimKey,
-								WorkflowConstants.STATUS_APPROVED);
-					}
-					catch (NoSuchArticleException nsae) {
+					if (selKBArticle == null) {
 						continue;
 					}
 
