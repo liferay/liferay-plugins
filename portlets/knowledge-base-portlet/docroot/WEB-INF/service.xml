@@ -284,6 +284,11 @@
 			<finder-column name="groupId" />
 			<finder-column name="parentKBFolderId" />
 		</finder>
+		<finder name="G_P_N" return-type="KBFolder">
+			<finder-column name="groupId" />
+			<finder-column name="parentKBFolderId" />
+			<finder-column name="name" />
+		</finder>
 		<finder name="G_P_UT" return-type="KBFolder">
 			<finder-column name="groupId" />
 			<finder-column name="parentKBFolderId" />
