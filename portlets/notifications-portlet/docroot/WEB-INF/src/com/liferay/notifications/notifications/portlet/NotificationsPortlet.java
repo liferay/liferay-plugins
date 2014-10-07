@@ -153,6 +153,9 @@ public class NotificationsPortlet extends MVCPortlet {
 			else if (actionName.equals("setDelivered")) {
 				setDelivered(actionRequest, actionResponse);
 			}
+			else if (actionName.equals("unsubscribe")) {
+				unsubscribe(actionRequest, actionResponse);
+			}
 			else if (actionName.equals("updateUserNotificationDelivery")) {
 				updateUserNotificationDelivery(actionRequest, actionResponse);
 			}
@@ -207,6 +210,39 @@ public class NotificationsPortlet extends MVCPortlet {
 
 				UserNotificationEventLocalServiceUtil.
 					updateUserNotificationEvent(userNotificationEvent);
+			}
+
+			jsonObject.put("success", Boolean.TRUE);
+		}
+		catch (Exception e) {
+			jsonObject.put("success", Boolean.FALSE);
+		}
+
+		writeJSON(actionRequest, actionResponse, jsonObject);
+	}
+
+	public void unsubscribe(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws Exception {
+
+		long subscriptionId = ParamUtil.getLong(
+			actionRequest, "subscriptionId");
+		long userNotificationEventId = ParamUtil.getLong(
+			actionRequest, "userNotificationEventId");
+
+		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
+
+		try {
+			SubscriptionLocalServiceUtil.deleteSubscription(subscriptionId);
+
+			UserNotificationEvent userNotificationEvent =
+				UserNotificationEventLocalServiceUtil.
+					fetchUserNotificationEvent(userNotificationEventId);
+
+			if (userNotificationEvent != null) {
+				if (!userNotificationEvent.isArchived()) {
+					updateArchived(userNotificationEventId);
+				}
 			}
 
 			jsonObject.put("success", Boolean.TRUE);
