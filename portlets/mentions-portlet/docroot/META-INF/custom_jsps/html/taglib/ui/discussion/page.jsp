@@ -23,6 +23,14 @@
 <c:if test="<%= _isMentionsEnabled(themeDisplay.getSiteGroupId()) %>">
 
 	<%
+	long cssLastModified = ServletContextUtil.getLastModified(application, "/html/css/", true);
+	%>
+
+	<liferay-util:html-top outputKey="mentions_autocomplete_css">
+		<link href="<%= PortalUtil.getStaticResourceURL(request, themeDisplay.getCDNDynamicResourcesHost() + themeDisplay.getPathContext() + "/html/css/portal/mentions.css", cssLastModified) %>" rel="stylesheet" type="text/css" />
+	</liferay-util:html-top>
+
+	<%
 	long javaScriptLastModified = ServletContextUtil.getLastModified(application, "/html/js/", true);
 	%>
 
