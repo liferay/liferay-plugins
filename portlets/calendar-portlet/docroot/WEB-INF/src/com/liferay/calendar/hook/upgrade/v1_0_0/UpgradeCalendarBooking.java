@@ -129,6 +129,7 @@ public class UpgradeCalendarBooking extends UpgradeProcess {
 
 		ArrayUtil.replace(
 			classNameIds, calEventClassNameId, calendarBookingClassNameId);
+
 		portletPreferences.setValues(preferenceName, classNameIds);
 	}
 
