@@ -28,6 +28,7 @@
 <%@ page import="com.liferay.compat.portal.kernel.util.ArrayUtil" %><%@
 page import="com.liferay.knowledgebase.DuplicateKBFolderNameException" %><%@
 page import="com.liferay.knowledgebase.DuplicateUrlTitleException" %><%@
+page import="com.liferay.knowledgebase.InvalidKBFolderException" %><%@
 page import="com.liferay.knowledgebase.InvalidUrlTitleException" %><%@
 page import="com.liferay.knowledgebase.KBArticleContentException" %><%@
 page import="com.liferay.knowledgebase.KBArticleImportException" %><%@
