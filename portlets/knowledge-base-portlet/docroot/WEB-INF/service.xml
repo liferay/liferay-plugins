@@ -332,7 +332,9 @@
 	</entity>
 	<exceptions>
 		<exception>DuplicateKBFolderName</exception>
+		<exception>DuplicateUrlTitle</exception>
 		<exception>InvalidKBFolder</exception>
+		<exception>InvalidUrlTitle</exception>
 		<exception>KBArticleContent</exception>
 		<exception>KBArticleImport</exception>
 		<exception>KBArticleParent</exception>
