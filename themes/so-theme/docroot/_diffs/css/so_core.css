@@ -1879,7 +1879,7 @@ input, textarea {
 
 	/* ---------- Mobile pop ups ---------- */
 
-	&.dialog-iframe-root-node {
+	.dialog-iframe-root-node {
 		padding: 10px !important;
 	}
 
