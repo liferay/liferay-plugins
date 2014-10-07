@@ -127,14 +127,25 @@
 
 	.kb-article-feedback {
 		clear: both;
-		margin-left: 25px;
 
 		textarea {
-			width: 500px;
+			min-width: 98%;
+			padding: 1%;
+			width: 98%;
 		}
 
 		div.control-group {
 			margin-bottom: 5px;
+		}
+	}
+
+	@include respond-to(desktop) {
+		.kb-article-feedback {
+			margin-left: 25px;
+
+			textarea {
+				width: 500px;
+			}
 		}
 	}
 
