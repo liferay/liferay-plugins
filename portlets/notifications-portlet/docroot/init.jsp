@@ -61,6 +61,4 @@ page import="java.util.TreeMap" %>
 <%
 int dockbarViewDelta = 3;
 int fullViewDelta = 10;
-
-Format simpleDateFormat = FastDateFormatFactoryUtil.getSimpleDateFormat("EEEE, MMMMM dd, yyyy 'at' h:mm a", themeDisplay.getLocale(), themeDisplay.getTimeZone());
 %>
