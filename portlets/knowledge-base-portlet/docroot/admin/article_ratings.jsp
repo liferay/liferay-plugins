@@ -98,7 +98,7 @@ boolean hasUpdatePermission = KBArticlePermission.contains(permissionChecker, kb
 				<portlet:param name="expanded" value="true" />
 
 				<c:choose>
-					<c:when test="<%= Validator.isNull(kbArticle.getUrlTitle()) %>">
+					<c:when test="<%= Validator.isNotNull(kbArticle.getUrlTitle()) %>">
 						<portlet:param name="urlTitle" value="<%= kbArticle.getUrlTitle() %>" />
 
 						<c:if test="<%= kbArticle.getKbFolderId() != KBFolderConstants.DEFAULT_PARENT_FOLDER_ID %>">
@@ -111,6 +111,7 @@ boolean hasUpdatePermission = KBArticlePermission.contains(permissionChecker, kb
 						</c:if>
 					</c:when>
 					<c:otherwise>
+						<portlet:param name="resourceClassNameId" value="<%= String.valueOf(kbArticle.getClassNameId()) %>" />
 						<portlet:param name="resourcePrimKey" value="<%= String.valueOf(kbArticle.getResourcePrimKey()) %>" />
 					</c:otherwise>
 				</c:choose>
