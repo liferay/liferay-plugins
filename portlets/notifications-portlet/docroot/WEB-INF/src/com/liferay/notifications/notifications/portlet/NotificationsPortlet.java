@@ -32,11 +32,13 @@ import com.liferay.portal.kernel.util.Time;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.model.Portlet;
+import com.liferay.portal.model.Subscription;
 import com.liferay.portal.model.User;
 import com.liferay.portal.model.UserNotificationDeliveryConstants;
 import com.liferay.portal.model.UserNotificationEvent;
 import com.liferay.portal.service.PortletLocalServiceUtil;
 import com.liferay.portal.service.ServiceContextFactory;
+import com.liferay.portal.service.SubscriptionLocalServiceUtil;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.service.UserNotificationDeliveryLocalServiceUtil;
 import com.liferay.portal.service.UserNotificationEventLocalServiceUtil;
@@ -253,7 +255,51 @@ public class NotificationsPortlet extends MVCPortlet {
 				LanguageUtil.get(themeDisplay.getLocale(), "mark-as-read"));
 		}
 
-		String listItems = markAsReadLI;
+		String unsubscribeLI = StringPool.BLANK;
+
+		JSONObject jsonObject = JSONFactoryUtil.createJSONObject(
+			userNotificationEvent.getPayload());
+
+		long subscriptionId = jsonObject.getLong("subscriptionId");
+
+		if (subscriptionId > 0) {
+			Subscription subscription =
+				SubscriptionLocalServiceUtil.fetchSubscription(subscriptionId);
+
+			if (subscription == null) {
+				subscriptionId = 0;
+			}
+		}
+
+		if (subscriptionId > 0) {
+			PortletURL unsubscribeActionURL =
+				liferayPortletResponse.createActionURL(
+					PortletKeys.NOTIFICATIONS);
+
+			unsubscribeActionURL.setParameter(
+				"subscriptionId", String.valueOf(subscriptionId));
+			unsubscribeActionURL.setParameter(
+				"userNotificationEventId",
+				String.valueOf(
+					userNotificationEvent.getUserNotificationEventId()));
+			unsubscribeActionURL.setWindowState(WindowState.NORMAL);
+			unsubscribeActionURL.setParameter(
+				"javax.portlet.action", "unsubscribe");
+
+			unsubscribeLI = StringUtil.replace(
+				_UNSUBSCRIBE_LI,
+				new String[] {
+					"[$UNSUBSCRIBE_LINK$]", "[$UNSUBSCRIBE_LABEL$]",
+					"[$UNSUBSCRIBE_INFO$]"},
+				new String[] {
+					unsubscribeActionURL.toString(),
+					LanguageUtil.get(themeDisplay.getLocale(), "unsubscribe"),
+					LanguageUtil.get(
+						themeDisplay.getLocale(),
+						"stop-receiving-notifications-from-this-asset")});
+		}
+
+		String listItems = markAsReadLI + unsubscribeLI;
 
 		if (!Validator.isBlank(listItems)) {
 			return StringUtil.replace(
@@ -529,5 +575,12 @@ public class NotificationsPortlet extends MVCPortlet {
 		"<li><a class=\"taglib-icon mark-as-read\"href=\"javascript:;\">" +
 			"<i class=\"icon-remove\"></i><span class=\"taglib-text-icon\">" +
 			"[$MARK_AS_READ_LABEL$]</span></a></li>";
+
+	private static final String _UNSUBSCRIBE_LI =
+		"<li><a class=\"taglib-icon unsubscribe\" data-unsubscribeURL=\"" +
+			"[$UNSUBSCRIBE_LINK$]\" href=\"javascript:;\">" +
+			"<i class=\"icon-rss\"></i><span class=\"taglib-text-icon\">" +
+			"[$UNSUBSCRIBE_LABEL$]</span><div class=\"unsubscribe-info\">" +
+			"[$UNSUBSCRIBE_INFO$]</div></a></li>";
 
 }

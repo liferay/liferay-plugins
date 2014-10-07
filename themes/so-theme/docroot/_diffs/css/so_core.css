@@ -1551,7 +1551,7 @@ input, textarea {
 
 /* ---------- Portlet: notifications ---------- */
 
-.dockbar-user-notifications {
+.dockbar-user-notifications, .notifications-portlet {
 	.hashtag {
 		color: #999;
 	}
@@ -1559,6 +1559,20 @@ input, textarea {
 	.hashtag-link {
 		&, &:active, &:hover {
 			color: inherit;
+		}
+	}
+
+	.non-actionable .user-notification {
+		&, &.archived {
+			.lfr-icon-menu .dropdown-menu {
+				.taglib-icon:hover .unsubscribe-info {
+					color: #FFF;
+				}
+
+				.unsubscribe-info {
+					color: #666;
+				}
+			}
 		}
 	}
 }
