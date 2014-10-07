@@ -428,8 +428,20 @@ public class ClpSerializer {
 		}
 
 		if (className.equals(
+					"com.liferay.knowledgebase.DuplicateUrlTitleException")) {
+			return new com.liferay.knowledgebase.DuplicateUrlTitleException(throwable.getMessage(),
+				throwable.getCause());
+		}
+
+		if (className.equals(
 					"com.liferay.knowledgebase.InvalidKBFolderException")) {
 			return new com.liferay.knowledgebase.InvalidKBFolderException(throwable.getMessage(),
+				throwable.getCause());
+		}
+
+		if (className.equals(
+					"com.liferay.knowledgebase.InvalidUrlTitleException")) {
+			return new com.liferay.knowledgebase.InvalidUrlTitleException(throwable.getMessage(),
 				throwable.getCause());
 		}
 
