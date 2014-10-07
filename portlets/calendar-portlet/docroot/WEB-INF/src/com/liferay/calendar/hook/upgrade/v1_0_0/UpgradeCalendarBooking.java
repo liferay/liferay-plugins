@@ -71,7 +71,8 @@ public class UpgradeCalendarBooking extends UpgradeProcess {
 
 			ps = con.prepareStatement(
 				"select portletPreferencesId from PortletPreferences where " +
-					"preferences like '%classNameIds%'");
+					"(preferences like '%classNameIds%') or " +
+					"(preferences like '%anyAssetType%')");
 
 			rs = ps.executeQuery();
 
@@ -95,21 +96,12 @@ public class UpgradeCalendarBooking extends UpgradeProcess {
 						portletPreferencesModel.getPortletId(),
 						portletPreferencesModel.getPreferences());
 
-				String[] classNameIds = GetterUtil.getStringValues(
-					portletPreferences.getValues("classNameIds", null));
-
-				for (String classNameId : classNameIds) {
-					if (classNameId.equals(calEventId)) {
-						ArrayUtil.replace(
-							classNameIds, String.valueOf(classNameId),
-							calendarBookingId);
-
-						portletPreferences.setValues(
-							"classNameIds", classNameIds);
-
-						break;
-					}
-				}
+				replaceClassNameId(
+					portletPreferences, "classNameIds", calEventId,
+					calendarBookingId);
+				replaceClassNameId(
+					portletPreferences, "anyAssetType", calEventId,
+					calendarBookingId);
 
 				String preferences = PortletPreferencesFactoryUtil.toXML(
 					portletPreferences);
@@ -122,6 +114,27 @@ public class UpgradeCalendarBooking extends UpgradeProcess {
 		}
 		finally {
 			DataAccess.cleanUp(con, ps, rs);
+		}
+	}
+
+	private void replaceClassNameId(
+			PortletPreferences portletPreferences, String preferenceName,
+			String calEventId, String calendarBookingId)
+		throws Exception {
+
+		String[] classNameIds = GetterUtil.getStringValues(
+			portletPreferences.getValues(preferenceName, null));
+
+		for (String classNameId : classNameIds) {
+			if (classNameId.equals(calEventId)) {
+				ArrayUtil.replace(
+					classNameIds, String.valueOf(classNameId),
+					calendarBookingId);
+
+				portletPreferences.setValues(preferenceName, classNameIds);
+
+				break;
+			}
 		}
 	}
 
