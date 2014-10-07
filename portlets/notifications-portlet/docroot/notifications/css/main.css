@@ -56,9 +56,50 @@
 				background-color: #F3F3F3;
 				cursor: pointer;
 
-				.mark-as-read {
-					display: block;
+				.lfr-icon-menu .dropdown-toggle {
+					visibility: visible;
 				}
+			}
+
+			.lfr-icon-menu {
+				position: absolute;
+				right: 0;
+				top: 0;
+
+				.dropdown-toggle {
+					color: #999;
+
+					@include default-border-radius;
+
+					float: right;
+					line-height: initial;
+					margin: 3px 3px 1px;
+					padding: 1px 5px;
+					visibility: hidden;
+
+					.caret {
+						border-top-color: #999;
+						margin: 0;
+						vertical-align: middle;
+					}
+				}
+
+				&.open .dropdown-toggle, .dropdown-toggle:hover {
+					background-color: rgba(0, 0, 0, 0.1);
+				}
+
+				.dropdown-menu {
+					clear: both;
+					width: auto;
+
+					.taglib-text-icon {
+						margin-left: 5px;
+					}
+				}
+			}
+
+			.user-notification-link .lfr-icon-menu ul.lfr-menu-list.dropdown-menu {
+				padding: 5px 0;
 			}
 		}
 	}
@@ -114,25 +155,6 @@
 			line-height: 20px;
 			padding: 10px;
 			position: relative;
-
-			.mark-as-read {
-				color: #999;
-
-				@include default-border-radius;
-
-				display: none;
-				position: absolute;
-				right: 4px;
-				top: 4px;
-
-				&:hover {
-					background-color: rgba(0, 0, 0, 0.1);
-				}
-
-				i {
-					padding: 4px 5px;
-				}
-			}
 
 			.btn {
 				margin-right: 10px;
@@ -295,7 +317,6 @@
 
 	.non-actionable .user-notification {
 		background-color: #EDEDED;
-		overflow: hidden;
 
 		&.archived {
 			background-color: #FFF;
@@ -379,7 +400,7 @@
 				border-bottom: 1px solid #DDD;
 			}
 
-			.mark-as-read {
+			.lfr-icon-menu .dropdown-toggle {
 				float: right;
 			}
 		}
@@ -463,8 +484,8 @@
 		.user-notification {
 			&, &.archived {
 				&, &:hover, &.hover {
-					.mark-as-read {
-						display: none;
+					.lfr-icon-menu .dropdown-toggle {
+						visibility: visible;
 					}
 				}
 			}
@@ -488,6 +509,19 @@
 						margin-left: 5%;
 						margin-right: 0;
 						width: 45%;
+					}
+				}
+
+				.user-notification-link .lfr-icon-menu {
+					z-index: 1;
+
+					.dropdown-toggle {
+						width: 22px;
+					}
+
+					ul.dropdown-menu {
+						left: auto;
+						position: initial;
 					}
 				}
 			}

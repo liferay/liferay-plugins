@@ -198,7 +198,7 @@ $defaultTextColor: #202020;
 
 /* ---------- Notifications ---------- */
 
-.dockbar-user-notifications {
+.dockbar-user-notifications, .notifications-portlet {
 	.dropdown-menu {
 		background-color: #FAFAFA;
 	}
@@ -211,11 +211,13 @@ $defaultTextColor: #202020;
 		}
 	}
 
-	.user-notification .mark-as-read {
-		color: #666;
-
-		&:hover {
+	.user-notification .lfr-icon-menu {
+		&.open .dropdown-toggle, .dropdown-toggle:hover  {
 			box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1);
+		}
+
+		.dropdown-toggle .caret {
+			border-top-color: #666;
 		}
 	}
 }

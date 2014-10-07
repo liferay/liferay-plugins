@@ -239,6 +239,30 @@ public class NotificationsPortlet extends MVCPortlet {
 		}
 	}
 
+	protected String getIconMenu(
+			UserNotificationEvent userNotificationEvent,
+			LiferayPortletResponse liferayPortletResponse,
+			ThemeDisplay themeDisplay)
+		throws Exception {
+
+		String markAsReadLI = StringPool.BLANK;
+
+		if (!userNotificationEvent.isArchived()) {
+			markAsReadLI = StringUtil.replace(
+				_MARK_AS_READ_LI, "[$MARK_AS_READ_LABEL$]",
+				LanguageUtil.get(themeDisplay.getLocale(), "mark-as-read"));
+		}
+
+		String listItems = markAsReadLI;
+
+		if (!Validator.isBlank(listItems)) {
+			return StringUtil.replace(
+				_ICON_MENU_DIV, "[$LIST_ITEMS$]", listItems);
+		}
+
+		return StringPool.BLANK;
+	}
+
 	protected void getNotificationsCount(
 			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
 		throws Exception {
@@ -398,7 +422,7 @@ public class NotificationsPortlet extends MVCPortlet {
 
 		String actionDiv = StringPool.BLANK;
 		String cssClass = StringPool.BLANK;
-		String markAsReadIcon = StringPool.BLANK;
+		String iconMenu = StringPool.BLANK;
 
 		if (userNotificationEvent.isActionRequired()) {
 			actionURL.setParameter(
@@ -423,11 +447,9 @@ public class NotificationsPortlet extends MVCPortlet {
 			if (userNotificationEvent.isArchived()) {
 				cssClass = "archived";
 			}
-			else {
-				markAsReadIcon = StringUtil.replace(
-					_MARK_AS_READ_ICON, "[$TITLE_MESSAGE$]",
-					LanguageUtil.get(themeDisplay.getLocale(), "mark-as-read"));
-			}
+
+			iconMenu = getIconMenu(
+				userNotificationEvent, liferayPortletResponse, themeDisplay);
 		}
 
 		Portlet portlet =
@@ -462,13 +484,12 @@ public class NotificationsPortlet extends MVCPortlet {
 		return StringUtil.replace(
 			ContentUtil.get(PortletPropsValues.USER_NOTIFICATION_ENTRY),
 			new String[] {
-				"[$ACTION_DIV$]", "[$BODY$]", "[$CSS_CLASS$]",
-				"[$MARK_AS_READ_ICON$]", "[$PORTLET_ICON$]", "[$PORTLET_NAME$]",
-				"[$TIMESTAMP$]", "[$TIMETITLE$]", "[$USER_FULL_NAME$]",
-				"[$USER_PORTRAIT_URL$]"},
+				"[$ACTION_DIV$]", "[$BODY$]", "[$CSS_CLASS$]","[$ICON_MENU$]",
+				"[$PORTLET_ICON$]", "[$PORTLET_NAME$]", "[$TIMESTAMP$]",
+				"[$TIMETITLE$]", "[$USER_FULL_NAME$]", "[$USER_PORTRAIT_URL$]"},
 			new String[] {
 				actionDiv, userNotificationFeedEntry.getBody(), cssClass,
-				markAsReadIcon, portletIcon, portletName,
+				iconMenu, portletIcon, portletName,
 				Time.getRelativeTimeDescription(
 					userNotificationEvent.getTimestamp(),
 					themeDisplay.getLocale(), themeDisplay.getTimeZone()),
@@ -493,12 +514,20 @@ public class NotificationsPortlet extends MVCPortlet {
 		"<div class=\"clearfix user-notification-delete\" data-deleteURL=\"" +
 			"[$DELETE_URL$]\">";
 
+	private static final String _ICON_MENU_DIV =
+		"<div class=\"lfr-icon-menu\"><a class=\"dropdown-toggle " +
+			"max-display-items-15\" href=\"javascript:;\"> " +
+			"<i class=\"caret\"></i></a>" +
+			"<ul class=\"dropdown-menu lfr-menu-list direction-left\">" +
+			"[$LIST_ITEMS$]</ul></div>";
+
 	private static final String _MARK_AS_READ_DIV =
 		"<div class=\"clearfix user-notification-link\" data-href=\"" +
 			"[$LINK$]\" data-markAsReadURL=\"[$MARK_AS_READ_URL$]\">";
 
-	private static final String _MARK_AS_READ_ICON =
-		"<div class=\"mark-as-read\" title=\"[$TITLE_MESSAGE$]\"><i class=\"" +
-			"icon-remove\"></i></div>";
+	private static final String _MARK_AS_READ_LI =
+		"<li><a class=\"taglib-icon mark-as-read\"href=\"javascript:;\">" +
+			"<i class=\"icon-remove\"></i><span class=\"taglib-text-icon\">" +
+			"[$MARK_AS_READ_LABEL$]</span></a></li>";
 
 }
