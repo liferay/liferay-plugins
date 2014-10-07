@@ -14,6 +14,8 @@
 
 package com.liferay.knowledgebase.service.impl;
 
+import com.liferay.knowledgebase.DuplicateUrlTitleException;
+import com.liferay.knowledgebase.InvalidUrlTitleException;
 import com.liferay.knowledgebase.KBArticleContentException;
 import com.liferay.knowledgebase.KBArticleParentException;
 import com.liferay.knowledgebase.KBArticlePriorityException;
@@ -83,6 +85,7 @@ import com.liferay.portlet.asset.model.AssetLinkConstants;
 import java.io.InputStream;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
@@ -117,6 +120,11 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		validate(title, content, sourceURL);
 		validateParent(parentResourceClassNameId, parentResourcePrimKey);
 
+		long kbFolderId = KnowledgeBaseUtil.getKBFolderId(
+			parentResourceClassNameId, parentResourcePrimKey);
+
+		validateUrlTitle(groupId, kbFolderId, urlTitle);
+
 		long kbArticleId = counterLocalService.increment();
 
 		long resourcePrimKey = counterLocalService.increment();
@@ -137,9 +145,6 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		kbArticle.setRootResourcePrimKey(rootResourcePrimKey);
 		kbArticle.setParentResourceClassNameId(parentResourceClassNameId);
 		kbArticle.setParentResourcePrimKey(parentResourcePrimKey);
-
-		long kbFolderId = KnowledgeBaseUtil.getKBFolderId(
-			parentResourceClassNameId, parentResourcePrimKey);
 
 		kbArticle.setKbFolderId(kbFolderId);
 
@@ -1921,6 +1926,29 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 
 		if (!Validator.isUrl(sourceURL)) {
 			throw new KBArticleSourceURLException(sourceURL);
+		}
+	}
+
+	protected void validateUrlTitle(
+			long groupId, long kbFolderId, String urlTitle)
+		throws PortalException, SystemException {
+
+		if (Validator.isNull(urlTitle)) {
+			return;
+		}
+
+		if (!KnowledgeBaseUtil.isValidUrlTitle(urlTitle)) {
+			throw new InvalidUrlTitleException(
+				"KBArticle urlTitle must start with a '/' and contain only " +
+					"alphanumeric characters, dashes and underscores");
+		}
+
+		Collection<KBArticle> kbArticles = kbArticlePersistence.findByG_KBFI_UT(
+			groupId, kbFolderId, urlTitle);
+
+		if (!kbArticles.isEmpty()) {
+			throw new DuplicateUrlTitleException(
+				"Duplicate urlTitle " + urlTitle);
 		}
 	}
 

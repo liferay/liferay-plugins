@@ -72,6 +72,7 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import javax.portlet.PortletRequest;
@@ -485,11 +486,17 @@ public class KnowledgeBaseUtil {
 		}
 		else {
 			title = FriendlyURLNormalizerUtil.normalize(
-				title, _friendlyURLPattern);
+				title, _normalizationFriendlyUrlPattern);
 		}
 
 		return ModelHintsUtil.trimString(
 			KBArticle.class.getName(), "urlTitle", title);
+	}
+
+	public static boolean isValidUrlTitle(String urlTitle) {
+		Matcher matcher = _validFriendlyUrlPattern.matcher(urlTitle);
+
+		return matcher.matches();
 	}
 
 	public static List<KBArticle> sort(
@@ -594,6 +601,9 @@ public class KnowledgeBaseUtil {
 	private static final int _SQL_DATA_MAX_PARAMETERS = GetterUtil.getInteger(
 		PropsUtil.get(PropsKeys.SQL_DATA_MAX_PARAMETERS));
 
-	private static Pattern _friendlyURLPattern = Pattern.compile("[^a-z0-9_-]");
+	private static Pattern _normalizationFriendlyUrlPattern = Pattern.compile(
+		"[^a-z0-9_-]");
+	private static Pattern _validFriendlyUrlPattern = Pattern.compile(
+		"/[a-z0-9_-]+");
 
 }
