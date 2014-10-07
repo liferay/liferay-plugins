@@ -1693,7 +1693,7 @@ AUI.add(
 							var content = [
 								'<p class="calendar-portlet-confirmation-text">',
 								Lang.sub(
-									Liferay.Language.get('you-are-about-to-make-changes-that-will-only-effect-your-calendar-x'),
+									Liferay.Language.get('you-are-about-to-make-changes-that-will-only-affect-your-calendar-x'),
 									[LString.escapeHTML(calendar.get('name'))]
 								),
 								'</p>'
