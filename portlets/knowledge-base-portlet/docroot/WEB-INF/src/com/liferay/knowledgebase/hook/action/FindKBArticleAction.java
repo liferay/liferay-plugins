@@ -24,6 +24,8 @@ import com.liferay.knowledgebase.service.KBFolderLocalServiceUtil;
 import com.liferay.knowledgebase.service.permission.KBArticlePermission;
 import com.liferay.knowledgebase.util.ActionKeys;
 import com.liferay.knowledgebase.util.PortletKeys;
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.portlet.LiferayWindowState;
 import com.liferay.portal.kernel.struts.BaseStrutsAction;
 import com.liferay.portal.kernel.struts.StrutsAction;
@@ -246,22 +248,12 @@ public class FindKBArticleAction extends BaseStrutsAction {
 						KBFolderConstants.DEFAULT_PARENT_FOLDER_ID);
 
 					if (resourceClassNameId == kbFolderClassNameId) {
-						long kbFolderId = kbArticle.getKbFolderId();
+						if (isParentFolder(
+								resourcePrimKey, kbArticle.getKbFolderId())) {
 
-						while (kbFolderId !=
-									KBFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
-
-							if (resourcePrimKey == kbFolderId) {
-								return getKBArticleURL(
-									layout.getPlid(), portlet.getPortletId(),
-									kbArticle, request);
-							}
-
-							KBFolder kbFolder =
-								KBFolderLocalServiceUtil.getKBFolder(
-									kbFolderId);
-
-							kbFolderId = kbFolder.getParentKBFolderId();
+							return getKBArticleURL(
+								layout.getPlid(), portlet.getPortletId(),
+								kbArticle, request);
 						}
 					}
 					else if (resourcePrimKey ==
@@ -421,6 +413,25 @@ public class FindKBArticleAction extends BaseStrutsAction {
 		}
 
 		return PortletKeys.KNOWLEDGE_BASE_ARTICLE_DEFAULT_INSTANCE;
+	}
+
+	protected boolean isParentFolder(long resourcePrimKey, long kbFolderId)
+		throws PortalException, SystemException {
+
+		while (kbFolderId !=
+					KBFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
+
+			if (resourcePrimKey == kbFolderId) {
+				return true;
+			}
+
+			KBFolder kbFolder = KBFolderLocalServiceUtil.getKBFolder(
+				kbFolderId);
+
+			kbFolderId = kbFolder.getParentKBFolderId();
+		}
+
+		return false;
 	}
 
 	protected boolean isValidPlid(long plid) throws Exception {
