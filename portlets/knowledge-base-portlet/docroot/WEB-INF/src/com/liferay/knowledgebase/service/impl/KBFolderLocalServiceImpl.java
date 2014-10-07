@@ -240,7 +240,7 @@ public class KBFolderLocalServiceImpl extends KBFolderLocalServiceBaseImpl {
 
 	protected void validateFolderName(
 			long groupId, long parentKBFolderId, String name)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		if (Validator.isNull(name)) {
 			throw new InvalidKBFolderException(
