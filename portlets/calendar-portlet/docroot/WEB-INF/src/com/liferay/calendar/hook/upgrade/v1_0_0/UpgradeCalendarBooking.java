@@ -15,24 +15,9 @@
 package com.liferay.calendar.hook.upgrade.v1_0_0;
 
 import com.liferay.calendar.hook.upgrade.v1_0_0.util.CalendarBookingTable;
-import com.liferay.calendar.model.CalendarBooking;
-import com.liferay.portal.kernel.dao.jdbc.DataAccess;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
-import com.liferay.portal.kernel.util.ArrayUtil;
-import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.model.Layout;
-import com.liferay.portal.service.LayoutLocalServiceUtil;
-import com.liferay.portal.service.PortletPreferencesLocalServiceUtil;
-import com.liferay.portal.util.PortalUtil;
-import com.liferay.portlet.PortletPreferencesFactoryUtil;
-import com.liferay.portlet.calendar.model.CalEvent;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-
-import javax.portlet.PortletPreferences;
 
 /**
  * @author Jenny Chen
@@ -51,86 +36,6 @@ public class UpgradeCalendarBooking extends UpgradeProcess {
 				CalendarBookingTable.TABLE_SQL_CREATE,
 				CalendarBookingTable.TABLE_SQL_ADD_INDEXES);
 		}
-
-		updatePortletPreferences();
-	}
-
-	protected void updatePortletPreferences() throws Exception {
-		Connection con = null;
-		PreparedStatement ps = null;
-		ResultSet rs = null;
-
-		String calendarBookingClassNameId = String.valueOf(
-			PortalUtil.getClassNameId(CalendarBooking.class));
-
-		String calEventClassNameId = String.valueOf(
-			PortalUtil.getClassNameId(CalEvent.class));
-
-		try {
-			con = DataAccess.getUpgradeOptimizedConnection();
-
-			ps = con.prepareStatement(
-				"select portletPreferencesId from PortletPreferences where " +
-					"(preferences like " +
-						"'%classNameIds%" + calEventClassNameId + "%') or " +
-					"(preferences like " +
-						"'%anyAssetType%" + calEventClassNameId + "%')");
-
-			rs = ps.executeQuery();
-
-			while (rs.next()) {
-				long portletPreferencesId = rs.getLong("portletPreferencesId");
-
-				com.liferay.portal.model.PortletPreferences
-					portletPreferencesModel =
-						PortletPreferencesLocalServiceUtil.
-							getPortletPreferences(portletPreferencesId);
-
-				Layout layout = LayoutLocalServiceUtil.getLayout(
-					portletPreferencesModel.getPlid());
-
-				PortletPreferences portletPreferences =
-					PortletPreferencesFactoryUtil.fromXML(
-						layout.getCompanyId(),
-						portletPreferencesModel.getOwnerId(),
-						portletPreferencesModel.getOwnerType(),
-						portletPreferencesModel.getPlid(),
-						portletPreferencesModel.getPortletId(),
-						portletPreferencesModel.getPreferences());
-
-				replaceClassNameId(
-					portletPreferences, "classNameIds", calEventClassNameId,
-					calendarBookingClassNameId);
-				replaceClassNameId(
-					portletPreferences, "anyAssetType", calEventClassNameId,
-					calendarBookingClassNameId);
-
-				String preferences = PortletPreferencesFactoryUtil.toXML(
-					portletPreferences);
-
-				portletPreferencesModel.setPreferences(preferences);
-
-				PortletPreferencesLocalServiceUtil.updatePortletPreferences(
-					portletPreferencesModel);
-			}
-		}
-		finally {
-			DataAccess.cleanUp(con, ps, rs);
-		}
-	}
-
-	private void replaceClassNameId(
-			PortletPreferences portletPreferences, String preferenceName,
-			String calEventClassNameId, String calendarBookingClassNameId)
-		throws Exception {
-
-		String[] classNameIds = GetterUtil.getStringValues(
-			portletPreferences.getValues(preferenceName, null));
-
-		ArrayUtil.replace(
-			classNameIds, calEventClassNameId, calendarBookingClassNameId);
-
-		portletPreferences.setValues(preferenceName, classNameIds);
 	}
 
 }
