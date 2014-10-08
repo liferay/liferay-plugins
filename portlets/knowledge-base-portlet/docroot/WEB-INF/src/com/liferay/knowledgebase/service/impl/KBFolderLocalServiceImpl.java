@@ -53,7 +53,7 @@ public class KBFolderLocalServiceImpl extends KBFolderLocalServiceBaseImpl {
 		User user = userPersistence.findByPrimaryKey(userId);
 		Date now = new Date();
 
-		validateFolderName(groupId, parentResourcePrimKey, name);
+		validateName(groupId, parentResourcePrimKey, name);
 		validateParent(parentResourceClassNameId, parentResourcePrimKey);
 
 		long kbFolderId = counterLocalService.increment();
@@ -238,13 +238,12 @@ public class KBFolderLocalServiceImpl extends KBFolderLocalServiceBaseImpl {
 		return uniqueUrlTitle;
 	}
 
-	protected void validateFolderName(
+	protected void validateName(
 			long groupId, long parentKBFolderId, String name)
 		throws PortalException {
 
 		if (Validator.isNull(name)) {
-			throw new InvalidKBFolderException(
-				"A KBFolder cannot have an empty name");
+			throw new InvalidKBFolderException("KB folder name is null");
 		}
 
 		KBFolder kbFolder = kbFolderPersistence.fetchByG_P_N(
@@ -252,7 +251,7 @@ public class KBFolderLocalServiceImpl extends KBFolderLocalServiceBaseImpl {
 
 		if (kbFolder != null) {
 			throw new DuplicateKBFolderNameException(
-				String.format("A KBFolder with name %s already exists", name));
+				String.format("A KB folder with name %s already exists", name));
 		}
 	}
 

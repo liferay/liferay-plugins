@@ -51,7 +51,7 @@ long parentResourcePrimKey = ParamUtil.getLong(request, "parentResourcePrimKey",
 	<aui:input name="parentResourcePrimKey" type="hidden" value="<%= parentResourcePrimKey %>" />
 
 	<liferay-ui:error exception="<%= DuplicateKBFolderNameException.class %>" message="please-enter-a-unique-folder-name" />
-	<liferay-ui:error exception="<%= InvalidKBFolderException.class %>" message="please-enter-a-non-empty-folder-name" />
+	<liferay-ui:error exception="<%= InvalidKBFolderException.class %>" message="please-enter-a-valid-folder-name" />
 
 	<aui:model-context bean="<%= kbFolder %>" model="<%= KBFolder.class %>" />
 
