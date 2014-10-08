@@ -64,6 +64,9 @@ public interface SharingEntryLocalService extends BaseLocalService,
 	public com.liferay.sharing.model.SharingEntry addSharingEntry(
 		com.liferay.sharing.model.SharingEntry sharingEntry);
 
+	public int countEntriesByUserId(long userId, long[] classNameIds,
+		java.util.Map<java.lang.Long, long[]> scopes);
+
 	public int countSharingEntriesByScope(long classNameId,
 		long sharingClassNameId, long sharingClassPK);
 
@@ -189,6 +192,11 @@ public interface SharingEntryLocalService extends BaseLocalService,
 	* @return the Spring bean ID for this bean
 	*/
 	public java.lang.String getBeanIdentifier();
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<java.lang.Object[]> getEntriesByUserId(long userId,
+		long[] classNameIds, java.util.Map<java.lang.Long, long[]> scopes,
+		int start, int end);
 
 	@Override
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)

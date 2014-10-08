@@ -59,6 +59,13 @@ public class SharingEntryLocalServiceWrapper implements SharingEntryLocalService
 	}
 
 	@Override
+	public int countEntriesByUserId(long userId, long[] classNameIds,
+		java.util.Map<java.lang.Long, long[]> scopes) {
+		return _sharingEntryLocalService.countEntriesByUserId(userId,
+			classNameIds, scopes);
+	}
+
+	@Override
 	public int countSharingEntriesByScope(long classNameId,
 		long sharingClassNameId, long sharingClassPK) {
 		return _sharingEntryLocalService.countSharingEntriesByScope(classNameId,
@@ -229,6 +236,14 @@ public class SharingEntryLocalServiceWrapper implements SharingEntryLocalService
 	@Override
 	public java.lang.String getBeanIdentifier() {
 		return _sharingEntryLocalService.getBeanIdentifier();
+	}
+
+	@Override
+	public java.util.List<java.lang.Object[]> getEntriesByUserId(long userId,
+		long[] classNameIds, java.util.Map<java.lang.Long, long[]> scopes,
+		int start, int end) {
+		return _sharingEntryLocalService.getEntriesByUserId(userId,
+			classNameIds, scopes, start, end);
 	}
 
 	@Override

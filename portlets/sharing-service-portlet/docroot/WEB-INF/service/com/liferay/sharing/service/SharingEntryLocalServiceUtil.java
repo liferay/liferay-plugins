@@ -64,6 +64,11 @@ public class SharingEntryLocalServiceUtil {
 		return getService().addSharingEntry(sharingEntry);
 	}
 
+	public static int countEntriesByUserId(long userId, long[] classNameIds,
+		java.util.Map<java.lang.Long, long[]> scopes) {
+		return getService().countEntriesByUserId(userId, classNameIds, scopes);
+	}
+
 	public static int countSharingEntriesByScope(long classNameId,
 		long sharingClassNameId, long sharingClassPK) {
 		return getService()
@@ -220,6 +225,13 @@ public class SharingEntryLocalServiceUtil {
 	*/
 	public static java.lang.String getBeanIdentifier() {
 		return getService().getBeanIdentifier();
+	}
+
+	public static java.util.List<java.lang.Object[]> getEntriesByUserId(
+		long userId, long[] classNameIds,
+		java.util.Map<java.lang.Long, long[]> scopes, int start, int end) {
+		return getService()
+				   .getEntriesByUserId(userId, classNameIds, scopes, start, end);
 	}
 
 	public static com.liferay.portal.model.PersistedModel getPersistedModel(
