@@ -1907,7 +1907,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 
 	protected void validateUrlTitle(
 			long groupId, long kbFolderId, String urlTitle)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		if (Validator.isNull(urlTitle)) {
 			return;
