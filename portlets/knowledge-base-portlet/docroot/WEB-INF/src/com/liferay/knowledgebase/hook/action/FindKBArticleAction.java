@@ -24,7 +24,6 @@ import com.liferay.knowledgebase.service.permission.KBArticlePermission;
 import com.liferay.knowledgebase.util.ActionKeys;
 import com.liferay.knowledgebase.util.PortletKeys;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.portlet.LiferayWindowState;
 import com.liferay.portal.kernel.struts.BaseStrutsAction;
 import com.liferay.portal.kernel.struts.StrutsAction;
@@ -405,7 +404,7 @@ public class FindKBArticleAction extends BaseStrutsAction {
 	}
 
 	protected boolean isParentFolder(long resourcePrimKey, long kbFolderId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		while (kbFolderId !=
 					KBFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
