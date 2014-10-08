@@ -17,7 +17,7 @@ package com.liferay.dlfilename.hook.service.impl;
 import com.liferay.dlfilename.hook.model.impl.DLFileNameWrapperBackgroundTaskImpl;
 import com.liferay.dlfilename.hook.model.impl.DLFileNameWrapperFileEntryImpl;
 import com.liferay.dlfilename.hook.model.impl.DLFileNameWrapperFileVersionImpl;
-import com.liferay.dlfilename.hook.util.DLFileNameThreadLocal;
+import com.liferay.portal.kernel.lar.ExportImportThreadLocal;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.repository.model.FileEntry;
@@ -47,7 +47,7 @@ class DLFileNameWrapperInvocationHandler implements InvocationHandler {
 		throws Throwable {
 
 		try {
-			if (DLFileNameThreadLocal.isEnabled()) {
+			if (!ExportImportThreadLocal.isExportInProcess()) {
 				return wrap(method.invoke(_object, args));
 			}
 			else {
