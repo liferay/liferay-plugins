@@ -69,8 +69,9 @@ else {
 			<div class="input-append">
 				<liferay-ui:input-resource url="<%= parentTitle %>" />
 
-			<aui:input cssClass="input-mini" label="" name="priority" type="resource" value="<%= BigDecimal.valueOf(priority).toPlainString() %>" />
-		</div>
+				<aui:input cssClass="input-mini" label="" name="priority" type="resource" value="<%= BigDecimal.valueOf(priority).toPlainString() %>" />
+			</div>
+		</aui:field-wrapper>
 
 		<aui:field-wrapper label="new-parent">
 			<div id="<portlet:namespace />newParent">
