@@ -236,8 +236,9 @@ public class FindKBArticleAction extends BaseStrutsAction {
 						KBFolderConstants.getClassName());
 
 					long resourceClassNameId = GetterUtil.getLong(
-						portletPreferences.getValue("resourceClassNameId", null),
-						kbFolderClassNameId);
+						portletPreferences.getValue(
+							"resourceClassNameId", null),
+							kbFolderClassNameId);
 					long resourcePrimKey = GetterUtil.getLong(
 						portletPreferences.getValue("resourcePrimKey", null),
 						KBFolderConstants.DEFAULT_PARENT_FOLDER_ID);
