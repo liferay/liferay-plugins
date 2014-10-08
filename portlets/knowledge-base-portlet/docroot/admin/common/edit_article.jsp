@@ -236,6 +236,10 @@ String[] sections = AdminUtil.unescapeSections(BeanPropertiesUtil.getString(kbAr
 		['aui-base']
 	);
 
+	function <portlet:namespace />initEditor() {
+		return '<%= UnicodeFormatter.toString(content) %>';
+	}
+
 	function <portlet:namespace />publishKBArticle() {
 		document.<portlet:namespace />fm.<portlet:namespace />workflowAction.value = '<%= WorkflowConstants.ACTION_PUBLISH %>';
 		<portlet:namespace />updateKBArticle();
