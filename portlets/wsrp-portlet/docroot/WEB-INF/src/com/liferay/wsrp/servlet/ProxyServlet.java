@@ -116,32 +116,32 @@ public class ProxyServlet extends HttpServlet {
 			urlConnection.setRequestProperty(HttpHeaders.COOKIE, cookie);
 		}
 
-		Enumeration<String> enu = request.getHeaderNames();
+		Enumeration<String> headerNames = request.getHeaderNames();
 
 		boolean useCaches = true;
 
-		while (enu.hasMoreElements()) {
-			String header = enu.nextElement();
+		while (headerNames.hasMoreElements()) {
+			String headerName = headerNames.nextElement();
 
-			if (StringUtil.equalsIgnoreCase(header, HttpHeaders.COOKIE) ||
+			if (StringUtil.equalsIgnoreCase(headerName, HttpHeaders.COOKIE) ||
 				StringUtil.equalsIgnoreCase(
-					header, HttpHeaders.IF_MODIFIED_SINCE)) {
+					headerName, HttpHeaders.IF_MODIFIED_SINCE)) {
 
 				continue;
 			}
 
-			String value = request.getHeader(header);
+			String headerValue = request.getHeader(headerName);
 
-			if (Validator.isNotNull(value)) {
+			if (Validator.isNotNull(headerValue)) {
 				if (StringUtil.equalsIgnoreCase(
-						header, HttpHeaders.CACHE_CONTROL) &&
-					value.contains(
+						headerName, HttpHeaders.CACHE_CONTROL) &&
+					headerValue.contains(
 						HttpHeaders.CACHE_CONTROL_NO_CACHE_VALUE)) {
 
 					useCaches = false;
 				}
 
-				urlConnection.setRequestProperty(header, value);
+				urlConnection.setRequestProperty(headerName, headerValue);
 			}
 		}
 
@@ -156,13 +156,14 @@ public class ProxyServlet extends HttpServlet {
 
 		Map<String, List<String>> headers = urlConnection.getHeaderFields();
 
-		for (Map.Entry<String, List<String>> entry : headers.entrySet()) {
-			if (Validator.isNotNull(entry.getKey()) &&
-				!response.containsHeader(entry.getKey())) {
+		for (Map.Entry<String, List<String>> headerEntry : headers.entrySet()) {
+			String headerName = headerEntry.getKey();
+
+			if (Validator.isNotNull(headerName) &&
+				!response.containsHeader(headerName)) {
 
 				response.setHeader(
-					entry.getKey(),
-					urlConnection.getHeaderField(entry.getKey()));
+					headerName, urlConnection.getHeaderField(headerName));
 			}
 		}
 
@@ -173,8 +174,6 @@ public class ProxyServlet extends HttpServlet {
 
 		ServletResponseUtil.write(response, urlConnection.getInputStream());
 	}
-
-	private static final String _SERVER_IP = "SERVER_IP";
 
 	private static Log _log = LogFactoryUtil.getLog(ProxyServlet.class);
 
