@@ -146,9 +146,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		kbArticle.setRootResourcePrimKey(rootResourcePrimKey);
 		kbArticle.setParentResourceClassNameId(parentResourceClassNameId);
 		kbArticle.setParentResourcePrimKey(parentResourcePrimKey);
-
 		kbArticle.setKbFolderId(kbFolderId);
-
 		kbArticle.setVersion(KBArticleConstants.DEFAULT_VERSION);
 		kbArticle.setTitle(title);
 		kbArticle.setUrlTitle(
@@ -1915,8 +1913,8 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 
 		if (!KnowledgeBaseUtil.isValidUrlTitle(urlTitle)) {
 			throw new InvalidUrlTitleException(
-				"KBArticle urlTitle must start with a '/' and contain only " +
-					"alphanumeric characters, dashes and underscores");
+				"URL title must start with a '/' and contain only " +
+					"alphanumeric characters, dashes, and underscores");
 		}
 
 		Collection<KBArticle> kbArticles = kbArticlePersistence.findByG_KBFI_UT(
@@ -1924,7 +1922,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 
 		if (!kbArticles.isEmpty()) {
 			throw new DuplicateUrlTitleException(
-				"Duplicate urlTitle " + urlTitle);
+				"Duplicate URL title " + urlTitle);
 		}
 	}
 
