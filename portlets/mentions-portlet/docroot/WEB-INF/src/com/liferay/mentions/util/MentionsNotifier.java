@@ -27,8 +27,6 @@ import com.liferay.portal.util.PortalUtil;
 import com.liferay.portal.util.SubscriptionSender;
 import com.liferay.portlet.asset.AssetRendererFactoryRegistryUtil;
 import com.liferay.portlet.asset.model.AssetRendererFactory;
-import com.liferay.portlet.social.util.SocialInteractionsConfiguration;
-import com.liferay.portlet.social.util.SocialInteractionsConfigurationUtil;
 
 import java.util.HashSet;
 import java.util.List;
@@ -128,11 +126,6 @@ public class MentionsNotifier {
 
 		User user = UserLocalServiceUtil.getUser(userId);
 
-		SocialInteractionsConfiguration socialInteractionsConfiguration =
-			SocialInteractionsConfigurationUtil.
-				getSocialInteractionsConfiguration(
-					user.getCompanyId(), PortletKeys.MENTIONS);
-
 		Matcher matcher = _pattern.matcher(content);
 
 		Set<String> mentionedUsersScreenNames = new HashSet<String>();
@@ -141,8 +134,7 @@ public class MentionsNotifier {
 			String mentionedUserScreenName = matcher.group(2);
 
 			List<User> users = MentionsUserFinderUtil.getUsers(
-				user.getCompanyId(), userId, mentionedUserScreenName,
-				socialInteractionsConfiguration);
+				user.getCompanyId(), userId, mentionedUserScreenName);
 
 			for (User curUser : users) {
 				if (mentionedUserScreenName.equals(curUser.getScreenName())) {

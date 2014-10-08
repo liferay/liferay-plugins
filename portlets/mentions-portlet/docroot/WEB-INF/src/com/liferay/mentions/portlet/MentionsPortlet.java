@@ -29,11 +29,8 @@ import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.model.User;
-import com.liferay.portal.theme.PortletDisplay;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
-import com.liferay.portlet.social.util.SocialInteractionsConfiguration;
-import com.liferay.portlet.social.util.SocialInteractionsConfigurationUtil;
 
 import java.util.List;
 
@@ -91,18 +88,10 @@ public class MentionsPortlet extends MVCPortlet {
 		ThemeDisplay themeDisplay = (ThemeDisplay)request.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		PortletDisplay portletDisplay = themeDisplay.getPortletDisplay();
-
-		SocialInteractionsConfiguration socialInteractionsConfiguration =
-			SocialInteractionsConfigurationUtil.
-				getSocialInteractionsConfiguration(
-					themeDisplay.getCompanyId(), portletDisplay.getId());
-
 		String query = ParamUtil.getString(request, "query");
 
 		List<User> users = MentionsUserFinderUtil.getUsers(
-			themeDisplay.getCompanyId(), themeDisplay.getUserId(), query,
-			socialInteractionsConfiguration);
+			themeDisplay.getCompanyId(), themeDisplay.getUserId(), query);
 
 		for (User user : users) {
 			if (user.isDefaultUser() ||
