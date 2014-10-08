@@ -16,28 +16,107 @@ package com.liferay.sharing.service.impl;
 
 import aQute.bnd.annotation.ProviderType;
 
+import com.liferay.sharing.model.SharingEntry;
 import com.liferay.sharing.service.base.SharingEntryLocalServiceBaseImpl;
+import com.liferay.sharing.service.persistence.SharingEntryPK;
+
+import java.util.List;
+import java.util.Map;
 
 /**
- * The implementation of the sharing entry local service.
- *
- * <p>
- * All custom service methods should be put in this class. Whenever methods are added, rerun ServiceBuilder to copy their definitions into the {@link com.liferay.sharing.service.SharingEntryLocalService} interface.
- *
- * <p>
- * This is a local service. Methods of this service will not have security checks based on the propagated JAAS credentials because this service can only be accessed from within the same VM.
- * </p>
- *
- * @author Brian Wing Shun Chan
- * @see com.liferay.sharing.service.base.SharingEntryLocalServiceBaseImpl
- * @see com.liferay.sharing.service.SharingEntryLocalServiceUtil
+ * @author Sherry Yang
  */
 @ProviderType
 public class SharingEntryLocalServiceImpl
 	extends SharingEntryLocalServiceBaseImpl {
-	/*
-	 * NOTE FOR DEVELOPERS:
-	 *
-	 * Never reference this class directly. Always use {@link com.liferay.sharing.service.SharingEntryLocalServiceUtil} to access the sharing entry local service.
-	 */
+
+	@Override
+	public void addSharingEntries(
+		long classNameId, long classPK, Map<Long, long[]> scopes) {
+
+		for (Long sharingClassNameId : scopes.keySet()) {
+			long[] sharingClassPKs = scopes.get(sharingClassNameId);
+
+			if ((sharingClassPKs == null) || (sharingClassPKs.length == 0)) {
+				continue;
+			}
+
+			for (long sharingClassPK : sharingClassPKs) {
+				addSharingEntry(
+					classNameId, classPK, sharingClassNameId, sharingClassPK);
+			}
+		}
+	}
+
+	@Override
+	public void addSharingEntry(
+		long classNameId, long classPK, long sharingClassNameId,
+		long sharingClassPK) {
+
+		SharingEntryPK pk = new SharingEntryPK(
+			classNameId, classPK, sharingClassNameId, sharingClassPK);
+
+		SharingEntry SharingEntry = sharingEntryPersistence.fetchByPrimaryKey(
+			pk);
+
+		if (SharingEntry == null) {
+			SharingEntry = sharingEntryPersistence.create(pk);
+
+			sharingEntryPersistence.update(SharingEntry);
+		}
+	}
+
+	@Override
+	public int countSharingEntriesByScope(
+		long sharingClassNameId, long sharingClassPK) {
+
+		return sharingEntryPersistence.countByS_S(
+			sharingClassNameId, sharingClassPK);
+	}
+
+	@Override
+	public int countSharingEntriesByScope(
+		long classNameId, long sharingClassNameId, long sharingClassPK) {
+
+		return sharingEntryPersistence.countByC_S_S(
+			classNameId, sharingClassNameId, sharingClassPK);
+	}
+
+	@Override
+	public void deleteSharingEntries(long classNameId, long classPK) {
+		sharingEntryPersistence.removeByC_C(classNameId, classPK);
+	}
+
+	@Override
+	public List<SharingEntry> getSharingEntries(
+		long classNameId, long classPK) {
+
+		return sharingEntryPersistence.findByC_C(classNameId, classPK);
+	}
+
+	@Override
+	public List<SharingEntry> getSharingEntries(
+		long classNameId, long classPK, long sharingClassNameId) {
+
+		return sharingEntryPersistence.findByC_C_S(
+			classNameId, classPK, sharingClassNameId);
+	}
+
+	@Override
+	public List<SharingEntry> getSharingEntriesByScope(
+		long sharingClassNameId, long sharingClassPK, int start, int end) {
+
+		return sharingEntryPersistence.findByS_S(
+			sharingClassNameId, sharingClassPK, start, end);
+	}
+
+	@Override
+	public List<SharingEntry> getSharingEntriesByScope(
+		long classNameId, long sharingClassNameId, long sharingClassPK,
+		int start, int end) {
+
+		return sharingEntryPersistence.findByC_S_S(
+			classNameId, sharingClassNameId, sharingClassPK, start, end);
+	}
+
 }
