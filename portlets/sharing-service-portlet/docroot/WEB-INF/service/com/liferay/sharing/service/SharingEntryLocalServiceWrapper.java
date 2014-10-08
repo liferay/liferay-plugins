@@ -33,6 +33,19 @@ public class SharingEntryLocalServiceWrapper implements SharingEntryLocalService
 		_sharingEntryLocalService = sharingEntryLocalService;
 	}
 
+	@Override
+	public void addSharingEntries(long classNameId, long classPK,
+		java.util.Map<java.lang.Long, long[]> scopes) {
+		_sharingEntryLocalService.addSharingEntries(classNameId, classPK, scopes);
+	}
+
+	@Override
+	public void addSharingEntry(long classNameId, long classPK,
+		long sharingClassNameId, long sharingClassPK) {
+		_sharingEntryLocalService.addSharingEntry(classNameId, classPK,
+			sharingClassNameId, sharingClassPK);
+	}
+
 	/**
 	* Adds the sharing entry to the database. Also notifies the appropriate model listeners.
 	*
@@ -43,6 +56,20 @@ public class SharingEntryLocalServiceWrapper implements SharingEntryLocalService
 	public com.liferay.sharing.model.SharingEntry addSharingEntry(
 		com.liferay.sharing.model.SharingEntry sharingEntry) {
 		return _sharingEntryLocalService.addSharingEntry(sharingEntry);
+	}
+
+	@Override
+	public int countSharingEntriesByScope(long classNameId,
+		long sharingClassNameId, long sharingClassPK) {
+		return _sharingEntryLocalService.countSharingEntriesByScope(classNameId,
+			sharingClassNameId, sharingClassPK);
+	}
+
+	@Override
+	public int countSharingEntriesByScope(long sharingClassNameId,
+		long sharingClassPK) {
+		return _sharingEntryLocalService.countSharingEntriesByScope(sharingClassNameId,
+			sharingClassPK);
 	}
 
 	/**
@@ -65,6 +92,11 @@ public class SharingEntryLocalServiceWrapper implements SharingEntryLocalService
 		com.liferay.portal.model.PersistedModel persistedModel)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _sharingEntryLocalService.deletePersistedModel(persistedModel);
+	}
+
+	@Override
+	public void deleteSharingEntries(long classNameId, long classPK) {
+		_sharingEntryLocalService.deleteSharingEntries(classNameId, classPK);
 	}
 
 	/**
@@ -206,6 +238,19 @@ public class SharingEntryLocalServiceWrapper implements SharingEntryLocalService
 		return _sharingEntryLocalService.getPersistedModel(primaryKeyObj);
 	}
 
+	@Override
+	public java.util.List<com.liferay.sharing.model.SharingEntry> getSharingEntries(
+		long classNameId, long classPK) {
+		return _sharingEntryLocalService.getSharingEntries(classNameId, classPK);
+	}
+
+	@Override
+	public java.util.List<com.liferay.sharing.model.SharingEntry> getSharingEntries(
+		long classNameId, long classPK, long sharingClassNameId) {
+		return _sharingEntryLocalService.getSharingEntries(classNameId,
+			classPK, sharingClassNameId);
+	}
+
 	/**
 	* Returns a range of all the sharing entries.
 	*
@@ -221,6 +266,21 @@ public class SharingEntryLocalServiceWrapper implements SharingEntryLocalService
 	public java.util.List<com.liferay.sharing.model.SharingEntry> getSharingEntries(
 		int start, int end) {
 		return _sharingEntryLocalService.getSharingEntries(start, end);
+	}
+
+	@Override
+	public java.util.List<com.liferay.sharing.model.SharingEntry> getSharingEntriesByScope(
+		long classNameId, long sharingClassNameId, long sharingClassPK,
+		int start, int end) {
+		return _sharingEntryLocalService.getSharingEntriesByScope(classNameId,
+			sharingClassNameId, sharingClassPK, start, end);
+	}
+
+	@Override
+	public java.util.List<com.liferay.sharing.model.SharingEntry> getSharingEntriesByScope(
+		long sharingClassNameId, long sharingClassPK, int start, int end) {
+		return _sharingEntryLocalService.getSharingEntriesByScope(sharingClassNameId,
+			sharingClassPK, start, end);
 	}
 
 	/**

@@ -41,6 +41,17 @@ public class SharingEntryLocalServiceUtil {
 	 *
 	 * Never modify this class directly. Add custom service methods to {@link com.liferay.sharing.service.impl.SharingEntryLocalServiceImpl} and rerun ServiceBuilder to regenerate this class.
 	 */
+	public static void addSharingEntries(long classNameId, long classPK,
+		java.util.Map<java.lang.Long, long[]> scopes) {
+		getService().addSharingEntries(classNameId, classPK, scopes);
+	}
+
+	public static void addSharingEntry(long classNameId, long classPK,
+		long sharingClassNameId, long sharingClassPK) {
+		getService()
+			.addSharingEntry(classNameId, classPK, sharingClassNameId,
+			sharingClassPK);
+	}
 
 	/**
 	* Adds the sharing entry to the database. Also notifies the appropriate model listeners.
@@ -51,6 +62,20 @@ public class SharingEntryLocalServiceUtil {
 	public static com.liferay.sharing.model.SharingEntry addSharingEntry(
 		com.liferay.sharing.model.SharingEntry sharingEntry) {
 		return getService().addSharingEntry(sharingEntry);
+	}
+
+	public static int countSharingEntriesByScope(long classNameId,
+		long sharingClassNameId, long sharingClassPK) {
+		return getService()
+				   .countSharingEntriesByScope(classNameId, sharingClassNameId,
+			sharingClassPK);
+	}
+
+	public static int countSharingEntriesByScope(long sharingClassNameId,
+		long sharingClassPK) {
+		return getService()
+				   .countSharingEntriesByScope(sharingClassNameId,
+			sharingClassPK);
 	}
 
 	/**
@@ -71,6 +96,10 @@ public class SharingEntryLocalServiceUtil {
 		com.liferay.portal.model.PersistedModel persistedModel)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().deletePersistedModel(persistedModel);
+	}
+
+	public static void deleteSharingEntries(long classNameId, long classPK) {
+		getService().deleteSharingEntries(classNameId, classPK);
 	}
 
 	/**
@@ -199,6 +228,17 @@ public class SharingEntryLocalServiceUtil {
 		return getService().getPersistedModel(primaryKeyObj);
 	}
 
+	public static java.util.List<com.liferay.sharing.model.SharingEntry> getSharingEntries(
+		long classNameId, long classPK) {
+		return getService().getSharingEntries(classNameId, classPK);
+	}
+
+	public static java.util.List<com.liferay.sharing.model.SharingEntry> getSharingEntries(
+		long classNameId, long classPK, long sharingClassNameId) {
+		return getService()
+				   .getSharingEntries(classNameId, classPK, sharingClassNameId);
+	}
+
 	/**
 	* Returns a range of all the sharing entries.
 	*
@@ -213,6 +253,21 @@ public class SharingEntryLocalServiceUtil {
 	public static java.util.List<com.liferay.sharing.model.SharingEntry> getSharingEntries(
 		int start, int end) {
 		return getService().getSharingEntries(start, end);
+	}
+
+	public static java.util.List<com.liferay.sharing.model.SharingEntry> getSharingEntriesByScope(
+		long classNameId, long sharingClassNameId, long sharingClassPK,
+		int start, int end) {
+		return getService()
+				   .getSharingEntriesByScope(classNameId, sharingClassNameId,
+			sharingClassPK, start, end);
+	}
+
+	public static java.util.List<com.liferay.sharing.model.SharingEntry> getSharingEntriesByScope(
+		long sharingClassNameId, long sharingClassPK, int start, int end) {
+		return getService()
+				   .getSharingEntriesByScope(sharingClassNameId,
+			sharingClassPK, start, end);
 	}
 
 	/**

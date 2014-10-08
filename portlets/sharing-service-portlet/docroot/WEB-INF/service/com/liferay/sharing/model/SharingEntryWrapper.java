@@ -93,7 +93,7 @@ public class SharingEntryWrapper implements SharingEntry,
 	}
 
 	@Override
-	public int compareTo(SharingEntry sharingEntry) {
+	public int compareTo(com.liferay.sharing.model.SharingEntry sharingEntry) {
 		return _sharingEntry.compareTo(sharingEntry);
 	}
 
@@ -282,12 +282,12 @@ public class SharingEntryWrapper implements SharingEntry,
 	}
 
 	@Override
-	public com.liferay.portal.model.CacheModel<SharingEntry> toCacheModel() {
+	public com.liferay.portal.model.CacheModel<com.liferay.sharing.model.SharingEntry> toCacheModel() {
 		return _sharingEntry.toCacheModel();
 	}
 
 	@Override
-	public SharingEntry toEscapedModel() {
+	public com.liferay.sharing.model.SharingEntry toEscapedModel() {
 		return new SharingEntryWrapper(_sharingEntry.toEscapedModel());
 	}
 
@@ -297,7 +297,7 @@ public class SharingEntryWrapper implements SharingEntry,
 	}
 
 	@Override
-	public SharingEntry toUnescapedModel() {
+	public com.liferay.sharing.model.SharingEntry toUnescapedModel() {
 		return new SharingEntryWrapper(_sharingEntry.toUnescapedModel());
 	}
 

@@ -48,6 +48,11 @@ public interface SharingEntryLocalService extends BaseLocalService,
 	 *
 	 * Never modify or reference this interface directly. Always use {@link SharingEntryLocalServiceUtil} to access the sharing entry local service. Add custom service methods to {@link com.liferay.sharing.service.impl.SharingEntryLocalServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
+	public void addSharingEntries(long classNameId, long classPK,
+		java.util.Map<java.lang.Long, long[]> scopes);
+
+	public void addSharingEntry(long classNameId, long classPK,
+		long sharingClassNameId, long sharingClassPK);
 
 	/**
 	* Adds the sharing entry to the database. Also notifies the appropriate model listeners.
@@ -58,6 +63,12 @@ public interface SharingEntryLocalService extends BaseLocalService,
 	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.REINDEX)
 	public com.liferay.sharing.model.SharingEntry addSharingEntry(
 		com.liferay.sharing.model.SharingEntry sharingEntry);
+
+	public int countSharingEntriesByScope(long classNameId,
+		long sharingClassNameId, long sharingClassPK);
+
+	public int countSharingEntriesByScope(long sharingClassNameId,
+		long sharingClassPK);
 
 	/**
 	* Creates a new sharing entry with the primary key. Does not add the sharing entry to the database.
@@ -75,6 +86,8 @@ public interface SharingEntryLocalService extends BaseLocalService,
 	public com.liferay.portal.model.PersistedModel deletePersistedModel(
 		com.liferay.portal.model.PersistedModel persistedModel)
 		throws com.liferay.portal.kernel.exception.PortalException;
+
+	public void deleteSharingEntries(long classNameId, long classPK);
 
 	/**
 	* Deletes the sharing entry from the database. Also notifies the appropriate model listeners.
@@ -183,6 +196,14 @@ public interface SharingEntryLocalService extends BaseLocalService,
 		java.io.Serializable primaryKeyObj)
 		throws com.liferay.portal.kernel.exception.PortalException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<com.liferay.sharing.model.SharingEntry> getSharingEntries(
+		long classNameId, long classPK);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<com.liferay.sharing.model.SharingEntry> getSharingEntries(
+		long classNameId, long classPK, long sharingClassNameId);
+
 	/**
 	* Returns a range of all the sharing entries.
 	*
@@ -197,6 +218,15 @@ public interface SharingEntryLocalService extends BaseLocalService,
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.sharing.model.SharingEntry> getSharingEntries(
 		int start, int end);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<com.liferay.sharing.model.SharingEntry> getSharingEntriesByScope(
+		long classNameId, long sharingClassNameId, long sharingClassPK,
+		int start, int end);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<com.liferay.sharing.model.SharingEntry> getSharingEntriesByScope(
+		long sharingClassNameId, long sharingClassPK, int start, int end);
 
 	/**
 	* Returns the number of sharing entries.
