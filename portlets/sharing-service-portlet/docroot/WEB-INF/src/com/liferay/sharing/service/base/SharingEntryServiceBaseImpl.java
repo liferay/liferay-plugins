@@ -28,6 +28,7 @@ import com.liferay.portal.util.PortalUtil;
 
 import com.liferay.sharing.model.SharingEntry;
 import com.liferay.sharing.service.SharingEntryService;
+import com.liferay.sharing.service.persistence.SharingEntryFinder;
 import com.liferay.sharing.service.persistence.SharingEntryPersistence;
 
 import javax.sql.DataSource;
@@ -107,6 +108,24 @@ public abstract class SharingEntryServiceBaseImpl extends BaseServiceImpl
 	public void setSharingEntryPersistence(
 		SharingEntryPersistence sharingEntryPersistence) {
 		this.sharingEntryPersistence = sharingEntryPersistence;
+	}
+
+	/**
+	 * Returns the sharing entry finder.
+	 *
+	 * @return the sharing entry finder
+	 */
+	public SharingEntryFinder getSharingEntryFinder() {
+		return sharingEntryFinder;
+	}
+
+	/**
+	 * Sets the sharing entry finder.
+	 *
+	 * @param sharingEntryFinder the sharing entry finder
+	 */
+	public void setSharingEntryFinder(SharingEntryFinder sharingEntryFinder) {
+		this.sharingEntryFinder = sharingEntryFinder;
 	}
 
 	/**
@@ -348,6 +367,8 @@ public abstract class SharingEntryServiceBaseImpl extends BaseServiceImpl
 	protected com.liferay.sharing.service.SharingEntryService sharingEntryService;
 	@BeanReference(type = SharingEntryPersistence.class)
 	protected SharingEntryPersistence sharingEntryPersistence;
+	@BeanReference(type = SharingEntryFinder.class)
+	protected SharingEntryFinder sharingEntryFinder;
 	@BeanReference(type = com.liferay.counter.service.CounterLocalService.class)
 	protected com.liferay.counter.service.CounterLocalService counterLocalService;
 	@BeanReference(type = com.liferay.portal.service.ClassNameLocalService.class)

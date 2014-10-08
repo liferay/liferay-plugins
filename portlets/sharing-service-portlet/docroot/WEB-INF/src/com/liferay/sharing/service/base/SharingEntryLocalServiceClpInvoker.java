@@ -127,49 +127,49 @@ public class SharingEntryLocalServiceClpInvoker {
 				"com.liferay.sharing.model.SharingEntry"
 			};
 
-		_methodName43 = "getBeanIdentifier";
+		_methodName45 = "getBeanIdentifier";
 
-		_methodParameterTypes43 = new String[] {  };
+		_methodParameterTypes45 = new String[] {  };
 
-		_methodName44 = "setBeanIdentifier";
+		_methodName46 = "setBeanIdentifier";
 
-		_methodParameterTypes44 = new String[] { "java.lang.String" };
+		_methodParameterTypes46 = new String[] { "java.lang.String" };
 
-		_methodName49 = "addSharingEntries";
+		_methodName51 = "addSharingEntries";
 
-		_methodParameterTypes49 = new String[] { "long", "long", "java.util.Map" };
+		_methodParameterTypes51 = new String[] { "long", "long", "java.util.Map" };
 
-		_methodName50 = "addSharingEntry";
+		_methodName52 = "addSharingEntry";
 
-		_methodParameterTypes50 = new String[] { "long", "long", "long", "long" };
+		_methodParameterTypes52 = new String[] { "long", "long", "long", "long" };
 
-		_methodName51 = "countSharingEntriesByScope";
-
-		_methodParameterTypes51 = new String[] { "long", "long" };
-
-		_methodName52 = "countSharingEntriesByScope";
-
-		_methodParameterTypes52 = new String[] { "long", "long", "long" };
-
-		_methodName53 = "deleteSharingEntries";
+		_methodName53 = "countSharingEntriesByScope";
 
 		_methodParameterTypes53 = new String[] { "long", "long" };
 
-		_methodName54 = "getSharingEntries";
+		_methodName54 = "countSharingEntriesByScope";
 
-		_methodParameterTypes54 = new String[] { "long", "long" };
+		_methodParameterTypes54 = new String[] { "long", "long", "long" };
 
-		_methodName55 = "getSharingEntries";
+		_methodName55 = "deleteSharingEntries";
 
-		_methodParameterTypes55 = new String[] { "long", "long", "long" };
+		_methodParameterTypes55 = new String[] { "long", "long" };
 
-		_methodName56 = "getSharingEntriesByScope";
+		_methodName56 = "getSharingEntries";
 
-		_methodParameterTypes56 = new String[] { "long", "long", "int", "int" };
+		_methodParameterTypes56 = new String[] { "long", "long" };
 
-		_methodName57 = "getSharingEntriesByScope";
+		_methodName57 = "getSharingEntries";
 
-		_methodParameterTypes57 = new String[] {
+		_methodParameterTypes57 = new String[] { "long", "long", "long" };
+
+		_methodName58 = "getSharingEntriesByScope";
+
+		_methodParameterTypes58 = new String[] { "long", "long", "int", "int" };
+
+		_methodName59 = "getSharingEntriesByScope";
+
+		_methodParameterTypes59 = new String[] {
 				"long", "long", "long", "int", "int"
 			};
 	}
@@ -273,20 +273,20 @@ public class SharingEntryLocalServiceClpInvoker {
 			return SharingEntryLocalServiceUtil.updateSharingEntry((com.liferay.sharing.model.SharingEntry)arguments[0]);
 		}
 
-		if (_methodName43.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes43, parameterTypes)) {
+		if (_methodName45.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes45, parameterTypes)) {
 			return SharingEntryLocalServiceUtil.getBeanIdentifier();
 		}
 
-		if (_methodName44.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes44, parameterTypes)) {
+		if (_methodName46.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes46, parameterTypes)) {
 			SharingEntryLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
 
 			return null;
 		}
 
-		if (_methodName49.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes49, parameterTypes)) {
+		if (_methodName51.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes51, parameterTypes)) {
 			SharingEntryLocalServiceUtil.addSharingEntries(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				(java.util.Map<java.lang.Long, long[]>)arguments[2]);
@@ -294,8 +294,8 @@ public class SharingEntryLocalServiceClpInvoker {
 			return null;
 		}
 
-		if (_methodName50.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes50, parameterTypes)) {
+		if (_methodName52.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes52, parameterTypes)) {
 			SharingEntryLocalServiceUtil.addSharingEntry(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				((Long)arguments[2]).longValue(),
@@ -304,50 +304,50 @@ public class SharingEntryLocalServiceClpInvoker {
 			return null;
 		}
 
-		if (_methodName51.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes51, parameterTypes)) {
+		if (_methodName53.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes53, parameterTypes)) {
 			return SharingEntryLocalServiceUtil.countSharingEntriesByScope(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue());
 		}
 
-		if (_methodName52.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes52, parameterTypes)) {
+		if (_methodName54.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes54, parameterTypes)) {
 			return SharingEntryLocalServiceUtil.countSharingEntriesByScope(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				((Long)arguments[2]).longValue());
 		}
 
-		if (_methodName53.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes53, parameterTypes)) {
+		if (_methodName55.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes55, parameterTypes)) {
 			SharingEntryLocalServiceUtil.deleteSharingEntries(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue());
 
 			return null;
 		}
 
-		if (_methodName54.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes54, parameterTypes)) {
+		if (_methodName56.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes56, parameterTypes)) {
 			return SharingEntryLocalServiceUtil.getSharingEntries(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue());
 		}
 
-		if (_methodName55.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes55, parameterTypes)) {
+		if (_methodName57.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes57, parameterTypes)) {
 			return SharingEntryLocalServiceUtil.getSharingEntries(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				((Long)arguments[2]).longValue());
 		}
 
-		if (_methodName56.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes56, parameterTypes)) {
+		if (_methodName58.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes58, parameterTypes)) {
 			return SharingEntryLocalServiceUtil.getSharingEntriesByScope(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				((Integer)arguments[2]).intValue(),
 				((Integer)arguments[3]).intValue());
 		}
 
-		if (_methodName57.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes57, parameterTypes)) {
+		if (_methodName59.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes59, parameterTypes)) {
 			return SharingEntryLocalServiceUtil.getSharingEntriesByScope(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				((Long)arguments[2]).longValue(),
@@ -394,14 +394,10 @@ public class SharingEntryLocalServiceClpInvoker {
 	private String[] _methodParameterTypes17;
 	private String _methodName18;
 	private String[] _methodParameterTypes18;
-	private String _methodName43;
-	private String[] _methodParameterTypes43;
-	private String _methodName44;
-	private String[] _methodParameterTypes44;
-	private String _methodName49;
-	private String[] _methodParameterTypes49;
-	private String _methodName50;
-	private String[] _methodParameterTypes50;
+	private String _methodName45;
+	private String[] _methodParameterTypes45;
+	private String _methodName46;
+	private String[] _methodParameterTypes46;
 	private String _methodName51;
 	private String[] _methodParameterTypes51;
 	private String _methodName52;
@@ -416,4 +412,8 @@ public class SharingEntryLocalServiceClpInvoker {
 	private String[] _methodParameterTypes56;
 	private String _methodName57;
 	private String[] _methodParameterTypes57;
+	private String _methodName58;
+	private String[] _methodParameterTypes58;
+	private String _methodName59;
+	private String[] _methodParameterTypes59;
 }

@@ -4,4 +4,5 @@
 	<bean id="com.liferay.sharing.service.SharingEntryLocalService" class="com.liferay.sharing.service.impl.SharingEntryLocalServiceImpl" />
 	<bean id="com.liferay.sharing.service.SharingEntryService" class="com.liferay.sharing.service.impl.SharingEntryServiceImpl" />
 	<bean id="com.liferay.sharing.service.persistence.SharingEntryPersistence" class="com.liferay.sharing.service.persistence.impl.SharingEntryPersistenceImpl" parent="basePersistence" />
+	<bean id="com.liferay.sharing.service.persistence.SharingEntryFinder" class="com.liferay.sharing.service.persistence.impl.SharingEntryFinderImpl" parent="basePersistence" />
 </beans>
