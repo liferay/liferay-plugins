@@ -21,15 +21,22 @@ import com.liferay.portal.kernel.servlet.ServletResponseUtil;
 import com.liferay.portal.kernel.util.CharPool;
 import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
+import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.wsrp.util.PortletPropsValues;
 import com.liferay.wsrp.util.WebKeys;
 
 import java.io.IOException;
 
+import java.net.HttpURLConnection;
 import java.net.InetAddress;
 import java.net.URL;
 import java.net.URLConnection;
+
+import java.util.Enumeration;
+import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -99,20 +106,70 @@ public class ProxyServlet extends HttpServlet {
 			HttpServletRequest request, HttpServletResponse response, URL url)
 		throws Exception {
 
-		HttpSession session = request.getSession();
-
 		URLConnection urlConnection = url.openConnection();
+
+		HttpSession session = request.getSession();
 
 		String cookie = (String)session.getAttribute(WebKeys.COOKIE);
 
-		if (cookie != null) {
+		if (Validator.isNotNull(cookie)) {
 			urlConnection.setRequestProperty(HttpHeaders.COOKIE, cookie);
 		}
+
+		Enumeration<String> enu = request.getHeaderNames();
+
+		boolean useCaches = true;
+
+		while (enu.hasMoreElements()) {
+			String header = enu.nextElement();
+
+			if (StringUtil.equalsIgnoreCase(header, HttpHeaders.COOKIE) ||
+				StringUtil.equalsIgnoreCase(
+					header, HttpHeaders.IF_MODIFIED_SINCE)) {
+
+				continue;
+			}
+
+			String value = request.getHeader(header);
+
+			if (Validator.isNotNull(value)) {
+				if (StringUtil.equalsIgnoreCase(
+						header, HttpHeaders.CACHE_CONTROL) &&
+					value.contains(
+						HttpHeaders.CACHE_CONTROL_NO_CACHE_VALUE)) {
+
+					useCaches = false;
+				}
+
+				urlConnection.setRequestProperty(header, value);
+			}
+		}
+
+		urlConnection.setIfModifiedSince(
+			request.getDateHeader(HttpHeaders.IF_MODIFIED_SINCE));
+		urlConnection.setUseCaches(useCaches);
 
 		urlConnection.connect();
 
 		response.setContentLength(urlConnection.getContentLength());
 		response.setContentType(urlConnection.getContentType());
+
+		Map<String, List<String>> headers = urlConnection.getHeaderFields();
+
+		for (Map.Entry<String, List<String>> entry : headers.entrySet()) {
+			if (Validator.isNotNull(entry.getKey()) &&
+				!response.containsHeader(entry.getKey())) {
+
+				response.setHeader(
+					entry.getKey(),
+					urlConnection.getHeaderField(entry.getKey()));
+			}
+		}
+
+		if (urlConnection instanceof HttpURLConnection) {
+			response.setStatus(
+				((HttpURLConnection)urlConnection).getResponseCode());
+		}
 
 		ServletResponseUtil.write(response, urlConnection.getInputStream());
 	}
