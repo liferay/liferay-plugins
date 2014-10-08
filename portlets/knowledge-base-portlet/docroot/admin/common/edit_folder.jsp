@@ -56,7 +56,7 @@ long parentResourcePrimKey = ParamUtil.getLong(request, "parentResourcePrimKey",
 	<aui:model-context bean="<%= kbFolder %>" model="<%= KBFolder.class %>" />
 
 	<aui:fieldset>
-		<aui:input name="name" required="true" />
+		<aui:input name="name" />
 
 		<aui:input name="description" />
 
