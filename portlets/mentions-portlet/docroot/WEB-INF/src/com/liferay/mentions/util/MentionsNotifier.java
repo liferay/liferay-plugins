@@ -68,8 +68,6 @@ public class MentionsNotifier {
 		SubscriptionSender subscriptionSender = new SubscriptionSender();
 
 		subscriptionSender.setBody(body);
-		subscriptionSender.setClassName(className);
-		subscriptionSender.setClassPK(classPK);
 		subscriptionSender.setCompanyId(user.getCompanyId());
 		subscriptionSender.setContextAttribute("[$CONTENT$]", content, false);
 		subscriptionSender.setContextAttributes(
@@ -77,13 +75,9 @@ public class MentionsNotifier {
 			getAssetEntryName(className, serviceContext), "[$USER_ADDRESS$]",
 			messageUserEmailAddress, "[USER_NAME$]", messageUserName,
 			"[$CONTENT_URL$]", contentURL);
-		subscriptionSender.setEntryTitle(content);
-		subscriptionSender.setEntryURL(contentURL);
 		subscriptionSender.setFrom(fromAddress, fromName);
 		subscriptionSender.setHtmlFormat(true);
 		subscriptionSender.setMailId("mb_discussion", classPK);
-		subscriptionSender.setNotificationType(
-			MentionsConstants.NOTIFICATION_TYPE_MENTION);
 		subscriptionSender.setPortletId(PortletKeys.MENTIONS);
 		subscriptionSender.setScopeGroupId(groupId);
 		subscriptionSender.setServiceContext(serviceContext);
@@ -115,7 +109,8 @@ public class MentionsNotifier {
 				className);
 
 		if (assetRendererFactory != null) {
-			return assetRendererFactory.getTypeName(serviceContext.getLocale());
+			return assetRendererFactory.getTypeName(
+				serviceContext.getLocale(), false);
 		}
 
 		return StringPool.BLANK;

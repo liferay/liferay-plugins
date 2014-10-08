@@ -21,7 +21,6 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.parsers.bbcode.BBCodeTranslatorUtil;
 import com.liferay.portal.kernel.util.HtmlUtil;
-import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.PortalUtil;
@@ -30,10 +29,6 @@ import com.liferay.portlet.messageboards.service.MBMessageLocalService;
 import com.liferay.portlet.messageboards.service.MBMessageLocalServiceUtil;
 import com.liferay.portlet.messageboards.service.MBMessageLocalServiceWrapper;
 import com.liferay.util.ContentUtil;
-
-import java.io.Serializable;
-
-import java.util.Map;
 
 /**
  * @author Sergio González
@@ -50,16 +45,14 @@ public class MentionsMessageServiceImpl extends MBMessageLocalServiceWrapper {
 	@Override
 	public MBMessage updateStatus(
 			long userId, long messageId, int status,
-			ServiceContext serviceContext,
-			Map<String, Serializable> workflowContext)
+			ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
 		MBMessage message = MBMessageLocalServiceUtil.getMessage(messageId);
 
 		int oldStatus = message.getStatus();
 
-		message = super.updateStatus(
-			userId, messageId, status, serviceContext, workflowContext);
+		message = super.updateStatus(userId, messageId, status, serviceContext);
 
 		if ((status != WorkflowConstants.STATUS_APPROVED) ||
 			(oldStatus == WorkflowConstants.STATUS_APPROVED) ||
@@ -94,13 +87,6 @@ public class MentionsMessageServiceImpl extends MBMessageLocalServiceWrapper {
 				PortletPropsValues.ASSET_ENTRY_MENTION_EMAIL_SUBJECT);
 			body = ContentUtil.get(
 				PortletPropsValues.ASSET_ENTRY_MENTION_EMAIL_BODY);
-		}
-
-		String contentURL = (String)serviceContext.getAttribute("contentURL");
-
-		if (Validator.isNull(contentURL)) {
-			serviceContext.setAttribute(
-				"contentURL", workflowContext.get("url"));
 		}
 
 		mentionsNotifier.notify(
