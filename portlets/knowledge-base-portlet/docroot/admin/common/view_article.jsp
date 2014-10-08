@@ -28,23 +28,35 @@ if (enableKBArticleViewCountIncrement && !kbArticle.isDraft()) {
 }
 %>
 
-<div class="float-container kb-entity-header">
-	<div class="kb-tools">
-		<liferay-util:include page="/admin/article_tools.jsp" servletContext="<%= application %>" />
-	</div>
-
-	<h1 class="kb-title">
-		<%= kbArticle.getTitle() %>
-	</h1>
-
-	<c:if test="<%= !kbArticle.isApproved() %>">
-		<div class="kb-article-status">
-			<aui:model-context bean="<%= kbArticle %>" model="<%= KBArticle.class %>" />
-
-			<aui:workflow-status status="<%= kbArticle.getStatus() %>" />
+<c:choose>
+	<c:when test="<%= !redirect.equals(currentURL) %>">
+		<div class="kb-tools">
+			<liferay-util:include page="/admin/article_tools.jsp" servletContext="<%= application %>" />
 		</div>
-	</c:if>
-</div>
+
+		<liferay-ui:header title="<%= kbArticle.getTitle() %>" />
+	</c:when>
+	<c:otherwise>
+		<div class="float-container kb-entity-header">
+			<div class="kb-tools">
+				<liferay-util:include page="/admin/article_tools.jsp" servletContext="<%= application %>" />
+			</div>
+
+
+			<h1 class="kb-title">
+				<%= kbArticle.getTitle() %>
+			</h1>
+
+			<c:if test="<%= !kbArticle.isApproved() %>">
+				<div class="kb-article-status">
+					<aui:model-context bean="<%= kbArticle %>" model="<%= KBArticle.class %>" />
+
+					<aui:workflow-status status="<%= kbArticle.getStatus() %>" />
+				</div>
+			</c:if>
+		</div>
+	</c:otherwise>
+</c:choose>
 
 <%
 request.setAttribute("article_icons.jsp-kb_article", kbArticle);
