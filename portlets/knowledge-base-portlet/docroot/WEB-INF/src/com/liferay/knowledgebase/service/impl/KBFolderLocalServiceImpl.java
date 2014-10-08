@@ -15,7 +15,7 @@
 package com.liferay.knowledgebase.service.impl;
 
 import com.liferay.knowledgebase.DuplicateKBFolderNameException;
-import com.liferay.knowledgebase.InvalidKBFolderException;
+import com.liferay.knowledgebase.InvalidKBFolderNameException;
 import com.liferay.knowledgebase.NoSuchFolderException;
 import com.liferay.knowledgebase.model.KBFolder;
 import com.liferay.knowledgebase.model.KBFolderConstants;
@@ -245,7 +245,7 @@ public class KBFolderLocalServiceImpl extends KBFolderLocalServiceBaseImpl {
 		throws PortalException, SystemException {
 
 		if (Validator.isNull(name)) {
-			throw new InvalidKBFolderException("KB folder name is null");
+			throw new InvalidKBFolderNameException("KB folder name is null");
 		}
 
 		KBFolder kbFolder = kbFolderPersistence.fetchByG_P_N(
@@ -272,7 +272,7 @@ public class KBFolderLocalServiceImpl extends KBFolderLocalServiceBaseImpl {
 		getSubfolderIds(kbFolder, subfolderIds);
 
 		if (subfolderIds.contains(parentKBFolder.getKbFolderId())) {
-			throw new InvalidKBFolderException(
+			throw new InvalidKBFolderNameException(
 				String.format(
 					"Cannot move KBFolder %s inside its descendant KBFolder %s",
 					kbFolder.getKbFolderId(), parentKBFolder.getKbFolderId()));
