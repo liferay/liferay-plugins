@@ -70,7 +70,9 @@
 		<field name="createDate" type="Date" />
 		<field name="modifiedDate" type="Date" />
 		<field name="parentKBFolderId" type="long" />
-		<field name="name" type="String" />
+		<field name="name" type="String">
+			<validator name="required" />
+		</field>
 		<field name="urlTitle" type="String" />
 		<field name="description" type="String">
 			<hint-collection name="TEXTAREA" />
