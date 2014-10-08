@@ -228,7 +228,7 @@ public class FindKBArticleAction extends BaseStrutsAction {
 					portlet.getPortletId());
 
 				if (rootPortletId.equals(PortletKeys.KNOWLEDGE_BASE_DISPLAY)) {
-					PortletPreferences preferences =
+					PortletPreferences portletPreferences =
 						PortletPreferencesFactoryUtil.getPortletSetup(
 							layout, portlet.getPortletId(), StringPool.BLANK);
 
@@ -236,10 +236,10 @@ public class FindKBArticleAction extends BaseStrutsAction {
 						KBFolderConstants.getClassName());
 
 					long resourceClassNameId = GetterUtil.getLong(
-						preferences.getValue("resourceClassNameId", null),
+						portletPreferences.getValue("resourceClassNameId", null),
 						kbFolderClassNameId);
 					long resourcePrimKey = GetterUtil.getLong(
-						preferences.getValue("resourcePrimKey", null),
+						portletPreferences.getValue("resourcePrimKey", null),
 						KBFolderConstants.DEFAULT_PARENT_FOLDER_ID);
 
 					if (resourceClassNameId == kbFolderClassNameId) {
@@ -267,11 +267,11 @@ public class FindKBArticleAction extends BaseStrutsAction {
 				}
 
 				if (rootPortletId.equals(PortletKeys.KNOWLEDGE_BASE_SECTION)) {
-					PortletPreferences preferences =
+					PortletPreferences portletPreferences =
 						PortletPreferencesFactoryUtil.getPortletSetup(
 							layout, portlet.getPortletId(), StringPool.BLANK);
 
-					String[] kbArticlesSections = preferences.getValues(
+					String[] kbArticlesSections = portletPreferences.getValues(
 						"kbArticlesSections", new String[0]);
 
 					KBArticle rootKBArticle =
@@ -298,12 +298,12 @@ public class FindKBArticleAction extends BaseStrutsAction {
 				}
 
 				if (rootPortletId.equals(PortletKeys.KNOWLEDGE_BASE_ARTICLE)) {
-					PortletPreferences preferences =
+					PortletPreferences portletPreferences =
 						PortletPreferencesFactoryUtil.getPortletSetup(
 							layout, portlet.getPortletId(), StringPool.BLANK);
 
 					long resourcePrimKey = GetterUtil.getLong(
-						preferences.getValue("resourcePrimKey", null));
+						portletPreferences.getValue("resourcePrimKey", null));
 
 					KBArticle selKBArticle =
 						KBArticleLocalServiceUtil.fetchLatestKBArticle(
