@@ -58,6 +58,7 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 	>
 		<liferay-portlet:renderURL varImpl="rowURL">
 			<portlet:param name="mvcPath" value="/search/view_article.jsp" />
+			<portlet:param name="redirect" value="<%= currentURL %>" />
 			<portlet:param name="resourcePrimKey" value="<%= String.valueOf(assetEntry.getClassPK()) %>" />
 		</liferay-portlet:renderURL>
 
