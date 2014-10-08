@@ -108,6 +108,9 @@ public class ProxyServlet extends HttpServlet {
 
 		URLConnection urlConnection = url.openConnection();
 
+		urlConnection.setIfModifiedSince(
+			request.getDateHeader(HttpHeaders.IF_MODIFIED_SINCE));
+
 		HttpSession session = request.getSession();
 
 		String cookie = (String)session.getAttribute(WebKeys.COOKIE);
@@ -116,12 +119,12 @@ public class ProxyServlet extends HttpServlet {
 			urlConnection.setRequestProperty(HttpHeaders.COOKIE, cookie);
 		}
 
-		Enumeration<String> headerNames = request.getHeaderNames();
-
 		boolean useCaches = true;
 
-		while (headerNames.hasMoreElements()) {
-			String headerName = headerNames.nextElement();
+		Enumeration<String> enumeration = request.getHeaderNames();
+
+		while (enumeration.hasMoreElements()) {
+			String headerName = enumeration.nextElement();
 
 			if (StringUtil.equalsIgnoreCase(headerName, HttpHeaders.COOKIE) ||
 				StringUtil.equalsIgnoreCase(
@@ -145,8 +148,6 @@ public class ProxyServlet extends HttpServlet {
 			}
 		}
 
-		urlConnection.setIfModifiedSince(
-			request.getDateHeader(HttpHeaders.IF_MODIFIED_SINCE));
 		urlConnection.setUseCaches(useCaches);
 
 		urlConnection.connect();
@@ -156,8 +157,8 @@ public class ProxyServlet extends HttpServlet {
 
 		Map<String, List<String>> headers = urlConnection.getHeaderFields();
 
-		for (Map.Entry<String, List<String>> headerEntry : headers.entrySet()) {
-			String headerName = headerEntry.getKey();
+		for (Map.Entry<String, List<String>> entry : headers.entrySet()) {
+			String headerName = entry.getKey();
 
 			if (Validator.isNotNull(headerName) &&
 				!response.containsHeader(headerName)) {
@@ -168,8 +169,10 @@ public class ProxyServlet extends HttpServlet {
 		}
 
 		if (urlConnection instanceof HttpURLConnection) {
-			response.setStatus(
-				((HttpURLConnection)urlConnection).getResponseCode());
+			HttpURLConnection httpURLConnection =
+				(HttpURLConnection)urlConnection;
+
+			response.setStatus(httpURLConnection.getResponseCode());
 		}
 
 		ServletResponseUtil.write(response, urlConnection.getInputStream());
