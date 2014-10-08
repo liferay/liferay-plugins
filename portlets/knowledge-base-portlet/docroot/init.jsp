@@ -25,8 +25,7 @@
 <%@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 <%@ taglib uri="http://liferay.com/tld/util" prefix="liferay-util" %>
 
-<%@ page import="com.liferay.compat.portal.kernel.util.ArrayUtil" %><%@
-page import="com.liferay.knowledgebase.DuplicateKBFolderNameException" %><%@
+<%@ page import="com.liferay.knowledgebase.DuplicateKBFolderNameException" %><%@
 page import="com.liferay.knowledgebase.DuplicateUrlTitleException" %><%@
 page import="com.liferay.knowledgebase.InvalidUrlTitleException" %><%@
 page import="com.liferay.knowledgebase.KBArticleContentException" %><%@

@@ -128,10 +128,10 @@ long parentResourcePrimKey = ParamUtil.getLong(request, "parentResourcePrimKey",
 
 		<liferay-ui:breadcrumb
 			showCurrentGroup="<%= false %>"
-			showCurrentPortlet="<%= false %>"
 			showGuestGroup="<%= false %>"
 			showLayout="<%= false %>"
 			showParentGroups="<%= false %>"
+			showPortletBreadcrumb="<%= false %>"
 		/>
 
 		<c:if test="<%= AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.SUBSCRIBE) %>">
