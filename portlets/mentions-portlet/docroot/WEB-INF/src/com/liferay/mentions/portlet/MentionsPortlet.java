@@ -91,7 +91,7 @@ public class MentionsPortlet extends MVCPortlet {
 		String query = ParamUtil.getString(request, "query");
 
 		List<User> users = MentionsUserFinderUtil.getUsers(
-			themeDisplay.getCompanyId(), themeDisplay.getUserId(), query);
+			themeDisplay.getCompanyId(), query);
 
 		for (User user : users) {
 			if (user.isDefaultUser() ||

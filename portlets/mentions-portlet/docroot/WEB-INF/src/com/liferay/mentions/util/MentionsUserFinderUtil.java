@@ -29,11 +29,10 @@ public class MentionsUserFinderUtil {
 		return _mentionsUserFinder;
 	}
 
-	public static List<User> getUsers(
-			long companyId, long userId, String query)
+	public static List<User> getUsers(long companyId, String query)
 		throws PortalException, SystemException {
 
-		return getMentionsUserFinder().getUsers(companyId, userId, query);
+		return getMentionsUserFinder().getUsers(companyId, query);
 	}
 
 	public void setMentionsUserFinder(MentionsUserFinder mentionsUserFinder) {

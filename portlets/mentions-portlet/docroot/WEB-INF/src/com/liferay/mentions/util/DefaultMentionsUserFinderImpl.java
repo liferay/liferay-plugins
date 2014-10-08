@@ -31,8 +31,7 @@ import java.util.List;
 public class DefaultMentionsUserFinderImpl implements MentionsUserFinder {
 
 	@Override
-	public List<User> getUsers(
-			long companyId, long userId, String query)
+	public List<User> getUsers(long companyId, String query)
 		throws PortalException, SystemException {
 
 		LinkedHashMap<String, Object> params =

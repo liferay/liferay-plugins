@@ -129,7 +129,7 @@ public class MentionsNotifier {
 			String mentionedUserScreenName = matcher.group(2);
 
 			List<User> users = MentionsUserFinderUtil.getUsers(
-				user.getCompanyId(), userId, mentionedUserScreenName);
+				user.getCompanyId(), mentionedUserScreenName);
 
 			for (User curUser : users) {
 				if (mentionedUserScreenName.equals(curUser.getScreenName())) {
