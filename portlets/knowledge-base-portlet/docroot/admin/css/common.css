@@ -342,6 +342,10 @@
 		.field-wrapper-content {
 			margin: 0;
 		}
+
+		label {
+			display: inherit;
+		}
 	}
 
 	.kb-new-parent .control-group-inline {

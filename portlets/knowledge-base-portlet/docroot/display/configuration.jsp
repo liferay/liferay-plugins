@@ -87,7 +87,7 @@ if (PortalUtil.isRSSFeedsEnabled()) {
 				</div>
 			</c:when>
 			<c:when test='<%= tabs2.equals("display-settings") %>'>
-				<aui:field-wrapper>
+				<aui:field-wrapper cssClass="kb-field-wrapper">
 					<aui:input label="enable-description" name="preferences--enableKBArticleDescription--" type="checkbox" value="<%= enableKBArticleDescription %>" />
 
 					<aui:input label="enable-ratings" name="preferences--enableKBArticleRatings--" type="checkbox" value="<%= enableKBArticleRatings %>" />
