@@ -19,6 +19,8 @@
 <%
 int status = (Integer)request.getAttribute(WebKeys.KNOWLEDGE_BASE_STATUS);
 
+KBArticle kbArticle = (KBArticle)request.getAttribute(WebKeys.KNOWLEDGE_BASE_KB_ARTICLE);
+
 long kbArticleClassNameId = PortalUtil.getClassNameId(KBArticleConstants.getClassName());
 
 long resourceClassNameId = ParamUtil.getLong(request, "resourceClassNameId");
@@ -26,12 +28,21 @@ long resourcePrimKey = ParamUtil.getLong(request, "resourcePrimKey");
 long parentResourceClassNameId = ParamUtil.getLong(request, "parentResourceClassNameId");
 long parentResourcePrimKey = ParamUtil.getLong(request, "parentResourcePrimKey");
 
+if (kbArticle != null) {
+	resourceClassNameId = kbArticle.getClassNameId();
+	resourcePrimKey = kbArticle.getResourcePrimKey();
+	parentResourceClassNameId = kbArticle.getParentResourceClassNameId();
+	parentResourcePrimKey = kbArticle.getParentResourcePrimKey();
+}
+
 String title = null;
 String parentTitle = null;
 double priority = KBArticleConstants.DEFAULT_PRIORITY;
 
 if (resourceClassNameId == kbArticleClassNameId) {
-	KBArticle kbArticle = KBArticleServiceUtil.getLatestKBArticle(resourcePrimKey, status);
+	if (kbArticle == null) {
+		kbArticle = KBArticleServiceUtil.fetchLatestKBArticle(resourcePrimKey, status);
+	}
 
 	title = kbArticle.getTitle();
 	parentTitle = kbArticle.getParentTitle(locale, status);
