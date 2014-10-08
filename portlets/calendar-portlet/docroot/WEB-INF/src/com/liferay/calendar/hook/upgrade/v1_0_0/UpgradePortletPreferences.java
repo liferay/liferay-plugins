@@ -60,18 +60,18 @@ public class UpgradePortletPreferences extends BaseUpgradePortletPreferences {
 	}
 
 	private void replaceClassNameId(
-			PortletPreferences portletPreferences, String preferenceName)
+			PortletPreferences portletPreferences, String name)
 		throws Exception {
 
-		String[] classNameIds = GetterUtil.getStringValues(
-			portletPreferences.getValues(preferenceName, null));
+		String[] values = GetterUtil.getStringValues(
+			portletPreferences.getValues(name, null));
 
 		ArrayUtil.replace(
-			classNameIds,
+			values,
 			String.valueOf(PortalUtil.getClassNameId(CalEvent.class)),
 			String.valueOf(PortalUtil.getClassNameId(CalendarBooking.class)));
 
-		portletPreferences.setValues(preferenceName, classNameIds);
+		portletPreferences.setValues(name, values);
 	}
 
 }
