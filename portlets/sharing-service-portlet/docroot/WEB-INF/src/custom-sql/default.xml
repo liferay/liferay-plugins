@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+
+<custom-sql>
+	<sql id="com.liferay.sharing.service.persistence.SharingEntryFinder.countEntriesByUserId">
+		<![CDATA[
+			SELECT
+				COUNT(DISTINCT SocialActivitySet.activitySetId) AS COUNT_VALUE
+			FROM
+				Sharing_SharingEntry
+			INNER JOIN
+				SocialActivitySet ON
+					(SocialActivitySet.classNameId = Sharing_SharingEntry.classNameId) AND
+					(SocialActivitySet.classPK = Sharing_SharingEntry.classPK)
+			LEFT JOIN
+				SocialRelation ON
+					(SocialRelation.userId2 = SocialActivitySet.userId)
+			WHERE
+				([$CLASS_NAME_IDS_CLASS_PKS])
+		]]>
+	</sql>
+	<sql id="com.liferay.sharing.service.persistence.SharingEntryFinder.findEntrisByUserId">
+		<![CDATA[
+			SELECT
+				DISTINCT Sharing_SharingEntry.classNameId as classNameId, Sharing_sharingEntry.classPK as classPK
+			FROM
+				Sharing_SharingEntry
+			INNER JOIN
+				SocialActivitySet ON
+					(SocialActivitySet.classNameId = Sharing_SharingEntry.classNameId) AND
+					(SocialActivitySet.classPK = Sharing_SharingEntry.classPK)
+			LEFT JOIN
+				SocialRelation ON
+					(SocialRelation.userId2 = SocialActivitySet.userId)
+			WHERE
+				([$CLASS_NAME_IDS_CLASS_PKS])
+			ORDER BY
+				SocialActivitySet.modifiedDate DESC
+		]]>
+	</sql>
+</custom-sql>
