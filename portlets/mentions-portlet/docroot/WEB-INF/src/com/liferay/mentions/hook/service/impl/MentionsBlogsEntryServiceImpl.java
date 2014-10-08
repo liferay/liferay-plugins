@@ -18,6 +18,7 @@ import com.liferay.mentions.util.MentionsNotifier;
 import com.liferay.mentions.util.MentionsUtil;
 import com.liferay.mentions.util.PortletPropsValues;
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.service.ServiceContext;
@@ -49,7 +50,7 @@ public class MentionsBlogsEntryServiceImpl
 			long userId, long entryId, int status,
 			ServiceContext serviceContext,
 			Map<String, Serializable> workflowContext)
-		throws PortalException {
+		throws PortalException, SystemException {
 
 		BlogsEntry entry = BlogsEntryLocalServiceUtil.getEntry(entryId);
 

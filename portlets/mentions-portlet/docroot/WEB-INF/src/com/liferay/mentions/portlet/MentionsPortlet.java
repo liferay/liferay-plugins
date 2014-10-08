@@ -17,6 +17,7 @@ package com.liferay.mentions.portlet;
 import com.liferay.mentions.util.MentionsUserFinderUtil;
 import com.liferay.mentions.util.MentionsUtil;
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
@@ -83,7 +84,7 @@ public class MentionsPortlet extends MVCPortlet {
 	}
 
 	protected JSONArray getJSONArray(HttpServletRequest request)
-		throws PortalException {
+		throws PortalException, SystemException {
 
 		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
 

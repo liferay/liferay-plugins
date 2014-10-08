@@ -15,6 +15,7 @@
 package com.liferay.mentions.portlet.notifications;
 
 import com.liferay.mentions.util.PortletKeys;
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.notifications.BaseModelUserNotificationHandler;
@@ -39,7 +40,9 @@ public class MentionsUserNotificationHandler
 	}
 
 	@Override
-	protected AssetRenderer getAssetRenderer(JSONObject jsonObject) {
+	protected AssetRenderer getAssetRenderer(JSONObject jsonObject)
+		throws SystemException {
+
 		MBMessage mbMessage = MBMessageLocalServiceUtil.fetchMBMessage(
 			jsonObject.getLong("classPK"));
 
@@ -56,8 +59,9 @@ public class MentionsUserNotificationHandler
 
 	@Override
 	protected String getTitle(
-		JSONObject jsonObject, AssetRenderer assetRenderer,
-		ServiceContext serviceContext) {
+			JSONObject jsonObject, AssetRenderer assetRenderer,
+			ServiceContext serviceContext)
+		throws SystemException {
 
 		MBMessage mbMessage = MBMessageLocalServiceUtil.fetchMBMessage(
 			jsonObject.getLong("classPK"));

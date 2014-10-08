@@ -15,6 +15,7 @@
 package com.liferay.mentions.util;
 
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.PrefsPropsUtil;
 import com.liferay.portal.kernel.util.PropsKeys;
@@ -44,7 +45,7 @@ public class MentionsNotifier {
 			long userId, long groupId, String content, String className,
 			long classPK, String subject, String body,
 			ServiceContext serviceContext)
-		throws PortalException {
+		throws PortalException, SystemException {
 
 		String[] mentionedUsersScreenNames = getMentionedUsersScreenNames(
 			userId, content);
@@ -123,7 +124,7 @@ public class MentionsNotifier {
 	}
 
 	protected String[] getMentionedUsersScreenNames(long userId, String content)
-		throws PortalException {
+		throws PortalException, SystemException {
 
 		User user = UserLocalServiceUtil.getUser(userId);
 

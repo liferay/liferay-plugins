@@ -18,6 +18,7 @@ import com.liferay.mentions.util.MentionsNotifier;
 import com.liferay.mentions.util.MentionsUtil;
 import com.liferay.mentions.util.PortletPropsValues;
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.parsers.bbcode.BBCodeTranslatorUtil;
 import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.Validator;
@@ -51,7 +52,7 @@ public class MentionsMessageServiceImpl extends MBMessageLocalServiceWrapper {
 			long userId, long messageId, int status,
 			ServiceContext serviceContext,
 			Map<String, Serializable> workflowContext)
-		throws PortalException {
+		throws PortalException, SystemException {
 
 		MBMessage message = MBMessageLocalServiceUtil.getMessage(messageId);
 
