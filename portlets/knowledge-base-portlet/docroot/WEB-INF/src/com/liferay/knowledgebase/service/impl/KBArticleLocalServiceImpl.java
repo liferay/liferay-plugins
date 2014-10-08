@@ -14,8 +14,8 @@
 
 package com.liferay.knowledgebase.service.impl;
 
-import com.liferay.knowledgebase.DuplicateUrlTitleException;
-import com.liferay.knowledgebase.InvalidUrlTitleException;
+import com.liferay.knowledgebase.DuplicateKBArticleUrlTitleException;
+import com.liferay.knowledgebase.InvalidKBArticleUrlTitleException;
 import com.liferay.knowledgebase.KBArticleContentException;
 import com.liferay.knowledgebase.KBArticleParentException;
 import com.liferay.knowledgebase.KBArticlePriorityException;
@@ -1912,7 +1912,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		}
 
 		if (!KnowledgeBaseUtil.isValidUrlTitle(urlTitle)) {
-			throw new InvalidUrlTitleException(
+			throw new InvalidKBArticleUrlTitleException(
 				"URL title must start with a '/' and contain only " +
 					"alphanumeric characters, dashes, and underscores");
 		}
@@ -1921,7 +1921,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			groupId, kbFolderId, urlTitle.substring(1));
 
 		if (!kbArticles.isEmpty()) {
-			throw new DuplicateUrlTitleException(
+			throw new DuplicateKBArticleUrlTitleException(
 				"Duplicate URL title " + urlTitle);
 		}
 	}

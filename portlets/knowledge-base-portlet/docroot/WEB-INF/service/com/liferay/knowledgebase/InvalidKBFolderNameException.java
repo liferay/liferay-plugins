@@ -22,21 +22,21 @@ import com.liferay.portal.kernel.exception.PortalException;
  * @author Brian Wing Shun Chan
  */
 @ProviderType
-public class InvalidUrlTitleException extends PortalException {
+public class InvalidKBFolderNameException extends PortalException {
 
-	public InvalidUrlTitleException() {
+	public InvalidKBFolderNameException() {
 		super();
 	}
 
-	public InvalidUrlTitleException(String msg) {
+	public InvalidKBFolderNameException(String msg) {
 		super(msg);
 	}
 
-	public InvalidUrlTitleException(String msg, Throwable cause) {
+	public InvalidKBFolderNameException(String msg, Throwable cause) {
 		super(msg, cause);
 	}
 
-	public InvalidUrlTitleException(Throwable cause) {
+	public InvalidKBFolderNameException(Throwable cause) {
 		super(cause);
 	}
 

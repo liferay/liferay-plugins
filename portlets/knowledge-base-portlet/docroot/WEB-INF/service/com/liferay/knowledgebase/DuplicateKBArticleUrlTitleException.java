@@ -22,21 +22,21 @@ import com.liferay.portal.kernel.exception.PortalException;
  * @author Brian Wing Shun Chan
  */
 @ProviderType
-public class DuplicateUrlTitleException extends PortalException {
+public class DuplicateKBArticleUrlTitleException extends PortalException {
 
-	public DuplicateUrlTitleException() {
+	public DuplicateKBArticleUrlTitleException() {
 		super();
 	}
 
-	public DuplicateUrlTitleException(String msg) {
+	public DuplicateKBArticleUrlTitleException(String msg) {
 		super(msg);
 	}
 
-	public DuplicateUrlTitleException(String msg, Throwable cause) {
+	public DuplicateKBArticleUrlTitleException(String msg, Throwable cause) {
 		super(msg, cause);
 	}
 
-	public DuplicateUrlTitleException(Throwable cause) {
+	public DuplicateKBArticleUrlTitleException(Throwable cause) {
 		super(cause);
 	}
 
