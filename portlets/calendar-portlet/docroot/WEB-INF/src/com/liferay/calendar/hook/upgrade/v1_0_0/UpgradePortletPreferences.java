@@ -34,13 +34,10 @@ public class UpgradePortletPreferences extends BaseUpgradePortletPreferences {
 	protected String getUpdatePortletPreferencesWhereClause() {
 		StringBundler sb = new StringBundler(5);
 
-		String calEventClassNameId = String.valueOf(
-			PortalUtil.getClassNameId(CalEvent.class));
-
 		sb.append("(preferences like '%classNameIds%");
-		sb.append(calEventClassNameId);
+		sb.append(PortalUtil.getClassNameId(CalEvent.class));
 		sb.append("%') or (preferences like '%anyAssetType%");
-		sb.append(calEventClassNameId);
+		sb.append(PortalUtil.getClassNameId(CalEvent.class));
 		sb.append("%')");
 
 		return sb.toString();
@@ -56,32 +53,23 @@ public class UpgradePortletPreferences extends BaseUpgradePortletPreferences {
 			PortletPreferencesFactoryUtil.fromXML(
 				companyId, ownerId, ownerType, plid, portletId, xml);
 
-		String calendarBookingClassNameId = String.valueOf(
-			PortalUtil.getClassNameId(CalendarBooking.class));
-
-		String calEventClassNameId = String.valueOf(
-			PortalUtil.getClassNameId(CalEvent.class));
-
-		replaceClassNameId(
-			portletPreferences, "classNameIds", calEventClassNameId,
-			calendarBookingClassNameId);
-		replaceClassNameId(
-			portletPreferences, "anyAssetType", calEventClassNameId,
-			calendarBookingClassNameId);
+		replaceClassNameId(portletPreferences, "anyAssetType");
+		replaceClassNameId(portletPreferences, "classNameIds");
 
 		return PortletPreferencesFactoryUtil.toXML(portletPreferences);
 	}
 
 	private void replaceClassNameId(
-			PortletPreferences portletPreferences, String preferenceName,
-			String calEventClassNameId, String calendarBookingClassNameId)
+			PortletPreferences portletPreferences, String preferenceName)
 		throws Exception {
 
 		String[] classNameIds = GetterUtil.getStringValues(
 			portletPreferences.getValues(preferenceName, null));
 
 		ArrayUtil.replace(
-			classNameIds, calEventClassNameId, calendarBookingClassNameId);
+			classNameIds,
+			String.valueOf(PortalUtil.getClassNameId(CalEvent.class)),
+			String.valueOf(PortalUtil.getClassNameId(CalendarBooking.class)));
 
 		portletPreferences.setValues(preferenceName, classNameIds);
 	}
