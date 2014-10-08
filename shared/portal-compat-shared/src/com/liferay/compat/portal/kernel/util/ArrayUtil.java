@@ -127,4 +127,14 @@ public class ArrayUtil extends com.liferay.portal.kernel.util.ArrayUtil {
 		return !isEmpty(array);
 	}
 
+	public static void replace(
+		String[] values, String oldValue, String newValue) {
+
+		for (int i = 0; i < values.length; i++) {
+			if (values[i].equals(oldValue)) {
+				values[i] = newValue;
+			}
+		}
+	}
+
 }

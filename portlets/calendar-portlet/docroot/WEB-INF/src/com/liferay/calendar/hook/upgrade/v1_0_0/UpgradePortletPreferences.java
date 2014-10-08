@@ -15,8 +15,8 @@
 package com.liferay.calendar.hook.upgrade.v1_0_0;
 
 import com.liferay.calendar.model.CalendarBooking;
+import com.liferay.compat.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.upgrade.BaseUpgradePortletPreferences;
-import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.util.PortalUtil;
@@ -67,8 +67,7 @@ public class UpgradePortletPreferences extends BaseUpgradePortletPreferences {
 			portletPreferences.getValues(name, null));
 
 		ArrayUtil.replace(
-			values,
-			String.valueOf(PortalUtil.getClassNameId(CalEvent.class)),
+			values, String.valueOf(PortalUtil.getClassNameId(CalEvent.class)),
 			String.valueOf(PortalUtil.getClassNameId(CalendarBooking.class)));
 
 		portletPreferences.setValues(name, values);
