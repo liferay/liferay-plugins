@@ -14,14 +14,17 @@
 
 package com.liferay.mentions.portlet.notifications;
 
+import com.liferay.compat.portal.kernel.notifications.BaseUserNotificationHandler;
 import com.liferay.mentions.util.PortletKeys;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.language.LanguageUtil;
-import com.liferay.portal.kernel.notifications.BaseModelUserNotificationHandler;
 import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.model.UserNotificationEvent;
 import com.liferay.portal.service.ServiceContext;
+import com.liferay.portal.service.UserNotificationEventLocalServiceUtil;
 import com.liferay.portlet.asset.AssetRendererFactoryRegistryUtil;
 import com.liferay.portlet.asset.model.AssetRenderer;
 import com.liferay.portlet.asset.model.AssetRendererFactory;
@@ -33,13 +36,12 @@ import com.liferay.portlet.messageboards.service.MBMessageLocalServiceUtil;
  * @author Sergio González
  */
 public class MentionsUserNotificationHandler
-	extends BaseModelUserNotificationHandler {
+	extends BaseUserNotificationHandler {
 
 	public MentionsUserNotificationHandler() {
 		setPortletId(PortletKeys.MENTIONS);
 	}
 
-	@Override
 	protected AssetRenderer getAssetRenderer(JSONObject jsonObject)
 		throws SystemException {
 
@@ -57,7 +59,65 @@ public class MentionsUserNotificationHandler
 		}
 	}
 
+	protected AssetRenderer getAssetRenderer(String className, long classPK) {
+		AssetRendererFactory assetRendererFactory =
+			AssetRendererFactoryRegistryUtil.getAssetRendererFactoryByClassName(
+				className);
+
+		if (assetRendererFactory == null) {
+			return null;
+		}
+
+		AssetRenderer assetRenderer = null;
+
+		try {
+			assetRenderer = assetRendererFactory.getAssetRenderer(classPK);
+		}
+		catch (Exception e) {
+		}
+
+		return assetRenderer;
+	}
+
 	@Override
+	protected String getBody(
+			UserNotificationEvent userNotificationEvent,
+			ServiceContext serviceContext)
+		throws Exception {
+
+		JSONObject jsonObject = JSONFactoryUtil.createJSONObject(
+			userNotificationEvent.getPayload());
+
+		AssetRenderer assetRenderer = getAssetRenderer(jsonObject);
+
+		if (assetRenderer == null) {
+			UserNotificationEventLocalServiceUtil.deleteUserNotificationEvent(
+				userNotificationEvent.getUserNotificationEventId());
+
+			return null;
+		}
+
+		return StringUtil.replace(
+			getBodyTemplate(), new String[] {"[$BODY$]", "[$TITLE$]"},
+			new String[] {
+				HtmlUtil.escape(
+					StringUtil.shorten(jsonObject.getString("entryTitle"), 70)),
+				getTitle(jsonObject, assetRenderer, serviceContext)
+			});
+	}
+
+	@Override
+	protected String getLink(
+			UserNotificationEvent userNotificationEvent,
+			ServiceContext serviceContext)
+		throws Exception {
+
+		JSONObject jsonObject = JSONFactoryUtil.createJSONObject(
+			userNotificationEvent.getPayload());
+
+		return jsonObject.getString("entryURL");
+	}
+
 	protected String getTitle(
 			JSONObject jsonObject, AssetRenderer assetRenderer,
 			ServiceContext serviceContext)
@@ -71,7 +131,7 @@ public class MentionsUserNotificationHandler
 				assetRenderer.getClassName());
 
 		String typeName = assetRendererFactory.getTypeName(
-			serviceContext.getLocale());
+			serviceContext.getLocale(), false);
 
 		if ((mbMessage != null) && mbMessage.isDiscussion()) {
 			return LanguageUtil.format(

@@ -21,8 +21,11 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.parsers.bbcode.BBCodeTranslatorUtil;
 import com.liferay.portal.kernel.util.HtmlUtil;
+import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.service.ServiceContext;
+import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.messageboards.model.MBMessage;
 import com.liferay.portlet.messageboards.service.MBMessageLocalService;
@@ -67,8 +70,6 @@ public class MentionsMessageServiceImpl extends MBMessageLocalServiceWrapper {
 			return message;
 		}
 
-		MentionsNotifier mentionsNotifier = new MentionsNotifier();
-
 		String content = message.getBody();
 
 		if (message.isFormatBBCode()) {
@@ -77,20 +78,40 @@ public class MentionsMessageServiceImpl extends MBMessageLocalServiceWrapper {
 
 		content = HtmlUtil.extractText(content);
 
+		String title = StringPool.BLANK;
+
 		String subject = ContentUtil.get(
 			PortletPropsValues.COMMENT_MENTION_EMAIL_SUBJECT);
 		String body = ContentUtil.get(
 			PortletPropsValues.COMMENT_MENTION_EMAIL_BODY);
 
 		if (!message.isDiscussion()) {
+			title = message.getSubject();
+
 			subject = ContentUtil.get(
 				PortletPropsValues.ASSET_ENTRY_MENTION_EMAIL_SUBJECT);
 			body = ContentUtil.get(
 				PortletPropsValues.ASSET_ENTRY_MENTION_EMAIL_BODY);
 		}
 
+		String contentURL = (String)serviceContext.getAttribute("contentURL");
+
+		if (Validator.isNull(contentURL)) {
+			ThemeDisplay themeDisplay = serviceContext.getThemeDisplay();
+
+			if (themeDisplay != null) {
+				contentURL =
+					themeDisplay.getPathMain() +
+						"/message_boards/find_message?messageId=" + messageId;
+
+				serviceContext.setAttribute("contentURL", contentURL);
+			}
+		}
+
+		MentionsNotifier mentionsNotifier = new MentionsNotifier();
+
 		mentionsNotifier.notify(
-			message.getUserId(), message.getGroupId(), content,
+			message.getUserId(), message.getGroupId(), title, content,
 			message.getModelClassName(), message.getMessageId(), subject, body,
 			serviceContext);
 

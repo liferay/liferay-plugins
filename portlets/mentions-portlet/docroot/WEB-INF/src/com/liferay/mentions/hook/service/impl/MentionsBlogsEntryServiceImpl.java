@@ -19,8 +19,10 @@ import com.liferay.mentions.util.MentionsUtil;
 import com.liferay.mentions.util.PortletPropsValues;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.service.ServiceContext;
+import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.blogs.model.BlogsEntry;
 import com.liferay.portlet.blogs.service.BlogsEntryLocalService;
@@ -65,11 +67,25 @@ public class MentionsBlogsEntryServiceImpl
 			return entry;
 		}
 
+		String contentURL = (String)serviceContext.getAttribute("contentURL");
+
+		if (Validator.isNull(contentURL)) {
+			ThemeDisplay themeDisplay = serviceContext.getThemeDisplay();
+
+			if (themeDisplay != null) {
+				contentURL =
+					themeDisplay.getPathMain() + "/blogs/find_entry?entryId=" +
+						entryId;
+
+				serviceContext.setAttribute("contentURL", contentURL);
+			}
+		}
+
 		MentionsNotifier mentionsNotifier = new MentionsNotifier();
 
 		mentionsNotifier.notify(
-			entry.getUserId(), entry.getGroupId(), entry.getContent(),
-			BlogsEntry.class.getName(), entry.getEntryId(),
+			entry.getUserId(), entry.getGroupId(), entry.getTitle(),
+			entry.getContent(), BlogsEntry.class.getName(), entry.getEntryId(),
 			ContentUtil.get(
 				PortletPropsValues.ASSET_ENTRY_MENTION_EMAIL_SUBJECT),
 			ContentUtil.get(PortletPropsValues.ASSET_ENTRY_MENTION_EMAIL_BODY),
