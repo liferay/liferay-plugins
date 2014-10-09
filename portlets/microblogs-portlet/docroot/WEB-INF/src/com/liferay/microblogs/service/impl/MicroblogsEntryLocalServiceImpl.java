@@ -22,6 +22,7 @@ import com.liferay.microblogs.microblogs.social.MicroblogsActivityKeys;
 import com.liferay.microblogs.model.MicroblogsEntry;
 import com.liferay.microblogs.model.MicroblogsEntryConstants;
 import com.liferay.microblogs.service.base.MicroblogsEntryLocalServiceBaseImpl;
+import com.liferay.microblogs.util.MicroblogsUtil;
 import com.liferay.microblogs.util.PortletKeys;
 import com.liferay.microblogs.util.comparator.EntryCreateDateComparator;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -42,6 +43,7 @@ import com.liferay.portal.model.UserNotificationDeliveryConstants;
 import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.SubscriptionLocalServiceUtil;
+import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.service.UserNotificationEventLocalServiceUtil;
 import com.liferay.portlet.asset.AssetRendererFactoryRegistryUtil;
 import com.liferay.portlet.asset.model.AssetRenderer;
@@ -395,6 +397,18 @@ public class MicroblogsEntryLocalServiceImpl
 		SubscriptionLocalServiceUtil.addSubscription(
 			microblogsEntry.getUserId(), serviceContext.getScopeGroupId(),
 			MicroblogsEntry.class.getName(), microblogsSubscriptionEntryId);
+
+		List<String> screenNames = MicroblogsUtil.getTaggedUsersScreenNames(
+			microblogsEntry.getContent());
+
+		for (String screenName : screenNames) {
+			long userId = UserLocalServiceUtil.getUserIdByScreenName(
+				serviceContext.getCompanyId(), screenName);
+
+			SubscriptionLocalServiceUtil.addSubscription(
+				userId, serviceContext.getScopeGroupId(),
+				MicroblogsEntry.class.getName(), microblogsSubscriptionEntryId);
+		}
 	}
 
 	protected void validate(int type, long receiverMicroblogsEntryId)

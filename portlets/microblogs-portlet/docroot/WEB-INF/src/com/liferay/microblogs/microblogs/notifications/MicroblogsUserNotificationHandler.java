@@ -22,6 +22,8 @@ import com.liferay.microblogs.model.MicroblogsEntryConstants;
 import com.liferay.microblogs.service.MicroblogsEntryLocalServiceUtil;
 import com.liferay.microblogs.util.MicroblogsUtil;
 import com.liferay.microblogs.util.PortletKeys;
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.notifications.BaseUserNotificationHandler;
@@ -70,6 +72,21 @@ public class MicroblogsUserNotificationHandler
 			return null;
 		}
 
+		String title = getBodyTitle(microblogsEntry, serviceContext);
+
+		String body = MicroblogsUtil.getTaggedContent(
+			StringUtil.shorten(microblogsEntry.getContent(), 50),
+			serviceContext);
+
+		return StringUtil.replace(
+			getBodyTemplate(), new String[] {"[$BODY$]", "[$TITLE$]"},
+			new String[] {body, title});
+	}
+
+	protected String getBodyTitle(
+			MicroblogsEntry microblogsEntry, ServiceContext serviceContext)
+		throws PortalException, SystemException {
+
 		String title = StringPool.BLANK;
 
 		if (microblogsEntry.getType() == MicroblogsEntryConstants.TYPE_REPLY) {
@@ -94,13 +111,7 @@ public class MicroblogsUserNotificationHandler
 			}
 		}
 
-		String body = MicroblogsUtil.getTaggedContent(
-			StringUtil.shorten(microblogsEntry.getContent(), 50),
-			serviceContext);
-
-		return StringUtil.replace(
-			getBodyTemplate(), new String[] {"[$BODY$]", "[$TITLE$]"},
-			new String[] {body, title});
+		return title;
 	}
 
 	@Override
