@@ -81,6 +81,10 @@ public class MicroblogsEntryLocalServiceImpl
 
 		long microblogsEntryId = counterLocalService.increment();
 
+		if (receiverMicroblogsEntryId == 0) {
+			receiverMicroblogsEntryId = microblogsEntryId;
+		}
+
 		MicroblogsEntry microblogsEntry = microblogsEntryPersistence.create(
 			microblogsEntryId);
 
