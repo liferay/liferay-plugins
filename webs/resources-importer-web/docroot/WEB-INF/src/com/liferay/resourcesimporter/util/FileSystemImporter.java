@@ -701,43 +701,9 @@ public class FileSystemImporter extends BaseImporter {
 			privateLayout = true;
 		}
 
-		Map<Locale, String> nameMap = new HashMap<Locale, String>();
+		Map<Locale, String> nameMap = getMap(layoutJSONObject, "name", true);
 
-		JSONObject nameMapJSONObject = layoutJSONObject.getJSONObject(
-			"nameMap");
-
-		if (nameMapJSONObject != null) {
-			nameMap = (Map<Locale, String>)LocalizationUtil.deserialize(
-				nameMapJSONObject);
-
-			if (!nameMap.containsKey(LocaleUtil.getDefault())) {
-				Collection<String> values = nameMap.values();
-
-				Iterator iterator = values.iterator();
-
-				nameMap.put(LocaleUtil.getDefault(), (String)iterator.next());
-			}
-		}
-		else {
-			String name = layoutJSONObject.getString("name");
-
-			nameMap.put(LocaleUtil.getDefault(), name);
-		}
-
-		Map<Locale, String> titleMap = new HashMap<Locale, String>();
-
-		JSONObject titleMapJSONObject = layoutJSONObject.getJSONObject(
-			"titleMap");
-
-		if (titleMapJSONObject != null) {
-			titleMap = (Map<Locale, String>)LocalizationUtil.deserialize(
-				titleMapJSONObject);
-		}
-		else {
-			String title = layoutJSONObject.getString("title");
-
-			titleMap.put(LocaleUtil.getDefault(), title);
-		}
+		Map<Locale, String> titleMap = getMap(layoutJSONObject, "title", true);
 
 		String type = GetterUtil.getString(
 			layoutJSONObject.getString("type"), LayoutConstants.TYPE_PORTLET);
@@ -1075,6 +1041,39 @@ public class FileSystemImporter extends BaseImporter {
 		name = StringUtil.replace(name, StringPool.SPACE, StringPool.DASH);
 
 		return StringUtil.toUpperCase(name) + StringPool.DASH + version;
+	}
+
+	protected Map<Locale, String> getMap(
+		JSONObject layoutJSONObject, String fieldName,
+		boolean requiresDefaultLocale) {
+
+		Map<Locale, String> localizedMap = new HashMap<Locale, String>();
+
+		JSONObject nameMapJSONObject = layoutJSONObject.getJSONObject(
+			fieldName.concat("Map"));
+
+		if (nameMapJSONObject != null) {
+			localizedMap = (Map<Locale, String>)LocalizationUtil.deserialize(
+				nameMapJSONObject);
+
+			if (!localizedMap.containsKey(LocaleUtil.getDefault()) &&
+				requiresDefaultLocale) {
+
+				Collection<String> values = localizedMap.values();
+
+				Iterator iterator = values.iterator();
+
+				localizedMap.put(
+					LocaleUtil.getDefault(), (String)iterator.next());
+			}
+		}
+		else {
+			String name = layoutJSONObject.getString(fieldName);
+
+			localizedMap.put(LocaleUtil.getDefault(), name);
+		}
+
+		return localizedMap;
 	}
 
 	protected Map<Locale, String> getMap(Locale locale, String value) {
