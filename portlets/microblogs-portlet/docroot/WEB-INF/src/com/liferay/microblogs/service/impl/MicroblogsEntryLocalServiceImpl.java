@@ -134,15 +134,7 @@ public class MicroblogsEntryLocalServiceImpl
 
 		// Notification
 
-		long microblogsSubscriptionEntryId = receiverMicroblogsEntryId;
-
-		if (microblogsSubscriptionEntryId == 0) {
-			microblogsSubscriptionEntryId = microblogsEntryId;
-		}
-
-		SubscriptionLocalServiceUtil.addSubscription(
-			userId, serviceContext.getScopeGroupId(),
-			MicroblogsEntry.class.getName(), microblogsSubscriptionEntryId);
+		subscribeUsers(microblogsEntry, serviceContext);
 
 		if (type == MicroblogsEntryConstants.TYPE_REPLY) {
 			sendNotificationEvent(microblogsEntry, serviceContext);
@@ -391,6 +383,23 @@ public class MicroblogsEntryLocalServiceImpl
 			DestinationNames.ASYNC_SERVICE,
 			new NotificationProcessCallable(
 				receiverUserIds, microblogsEntry, notificationEventJSONObject));
+	}
+
+	protected void subscribeUsers(
+			MicroblogsEntry microblogsEntry, ServiceContext serviceContext)
+		throws PortalException, SystemException {
+
+		long microblogsSubscriptionEntryId =
+			microblogsEntry.getReceiverMicroblogsEntryId();
+
+		if (microblogsSubscriptionEntryId == 0) {
+			microblogsSubscriptionEntryId =
+				microblogsEntry.getMicroblogsEntryId();
+		}
+
+		SubscriptionLocalServiceUtil.addSubscription(
+			microblogsEntry.getUserId(), serviceContext.getScopeGroupId(),
+			MicroblogsEntry.class.getName(), microblogsSubscriptionEntryId);
 	}
 
 	protected void validate(int type, long receiverMicroblogsEntryId)
