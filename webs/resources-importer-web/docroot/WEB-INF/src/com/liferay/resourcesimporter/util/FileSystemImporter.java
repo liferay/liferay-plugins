@@ -723,6 +723,23 @@ public class FileSystemImporter extends BaseImporter {
 
 		friendlyURLMap.put(LocaleUtil.getDefault(), friendlyURL);
 
+		String layoutPrototypeUuid = layoutJSONObject.getString(
+			"layoutPrototypeUuid");
+
+		ServiceContext serviceContext = new ServiceContext();
+
+		if (Validator.isNotNull(layoutPrototypeUuid)) {
+			boolean layoutPrototypeLinkEnabled = GetterUtil.getBoolean(
+				layoutJSONObject.getString("layoutPrototypeLinkEnabled"),
+				false);
+
+			serviceContext.setAttribute(
+				"layoutPrototypeLinkEnabled", layoutPrototypeLinkEnabled);
+
+			serviceContext.setAttribute(
+				"layoutPrototypeUuid", layoutPrototypeUuid);
+		}
+
 		Layout layout = LayoutLocalServiceUtil.addLayout(
 			userId, groupId, privateLayout, parentLayoutId, nameMap, titleMap,
 			null, null, null, type, typeSettings, hidden, friendlyURLMap,
