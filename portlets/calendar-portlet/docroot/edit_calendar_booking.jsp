@@ -585,7 +585,7 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 	);
 
 	<c:if test="<%= invitable %>">
-		var manageableCalendars = {}
+		var manageableCalendars = {};
 
 		A.Array.each(
 			<%= CalendarUtil.toCalendarsJSONArray(themeDisplay, manageableCalendars) %>,
@@ -598,6 +598,7 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 			'valueChange',
 			function(event) {
 				var calendarId = parseInt(event.target.val(), 10);
+
 				var calendar = manageableCalendars[calendarId];
 
 				A.Array.each(
