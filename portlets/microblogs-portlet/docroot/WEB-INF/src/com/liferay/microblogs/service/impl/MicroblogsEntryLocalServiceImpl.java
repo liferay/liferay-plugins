@@ -318,7 +318,7 @@ public class MicroblogsEntryLocalServiceImpl
 
 			return subscription.getSubscriptionId();
 		}
-		catch (PortalException PE) {
+		catch (PortalException pe) {
 		}
 
 		return 0;
