@@ -392,11 +392,6 @@ public class MicroblogsEntryLocalServiceImpl
 		long microblogsSubscriptionEntryId =
 			microblogsEntry.getReceiverMicroblogsEntryId();
 
-		if (microblogsSubscriptionEntryId == 0) {
-			microblogsSubscriptionEntryId =
-				microblogsEntry.getMicroblogsEntryId();
-		}
-
 		SubscriptionLocalServiceUtil.addSubscription(
 			microblogsEntry.getUserId(), serviceContext.getScopeGroupId(),
 			MicroblogsEntry.class.getName(), microblogsSubscriptionEntryId);
