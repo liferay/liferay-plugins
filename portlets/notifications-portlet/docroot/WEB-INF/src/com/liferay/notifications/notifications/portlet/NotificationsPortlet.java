@@ -27,6 +27,7 @@ import com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet;
 import com.liferay.portal.kernel.util.FastDateFormatFactoryUtil;
 import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Time;
@@ -277,6 +278,58 @@ public class NotificationsPortlet extends MVCPortlet {
 		}
 	}
 
+	protected static String getIconMenuDiv(String listItems) {
+		if (!Validator.isBlank(listItems)) {
+			StringBundler sb = new StringBundler(6);
+
+			sb.append("<div class=\"lfr-icon-menu\">");
+			sb.append("<a class=\"dropdown-toggle\" href=\"javascript:;\">");
+			sb.append("<i class=\"caret\"></i></a>");
+			sb.append(
+				"<ul class=\"dropdown-menu lfr-menu-list direction-left\">");
+			sb.append(listItems);
+			sb.append("</ul></div>");
+
+			return sb.toString();
+		}
+
+		return StringPool.BLANK;
+	}
+
+	protected static String getMarkAsReadLI(ThemeDisplay themeDisplay) {
+		StringBundler sb = new StringBundler(5);
+
+		sb.append(
+			"<li><a class=\"taglib-icon mark-as-read\" href=\"javascript:;\">");
+		sb.append("<i class=\"icon-remove\"></i>");
+		sb.append("<span class=\"taglib-text-icon\">");
+		sb.append(LanguageUtil.get(themeDisplay.getLocale(), "mark-as-read"));
+		sb.append("</span></a></li>");
+
+		return sb.toString();
+	}
+
+	protected static String getUnsubscribeLI(
+		String unsubscribeURL, ThemeDisplay themeDisplay) {
+
+		StringBundler sb = new StringBundler(8);
+
+		sb.append(
+			"<li><a class=\"taglib-icon unsubscribe\" data-unsubscribeURL=\"");
+		sb.append(unsubscribeURL);
+		sb.append("\" href=\"javascript:;\"><i class=\"icon-rss\"></i>");
+		sb.append("<span class=\"taglib-text-icon\">");
+		sb.append(LanguageUtil.get(themeDisplay.getLocale(), "unsubscribe"));
+		sb.append("</span><div class=\"unsubscribe-info\">");
+		sb.append(
+			LanguageUtil.get(
+				themeDisplay.getLocale(),
+				"stop-receiving-notifications-from-this-asset"));
+		sb.append("</div></a></li>");
+
+		return sb.toString();
+	}
+
 	protected String getIconMenu(
 			UserNotificationEvent userNotificationEvent,
 			LiferayPortletResponse liferayPortletResponse,
@@ -286,9 +339,7 @@ public class NotificationsPortlet extends MVCPortlet {
 		String markAsReadLI = StringPool.BLANK;
 
 		if (!userNotificationEvent.isArchived()) {
-			markAsReadLI = StringUtil.replace(
-				_MARK_AS_READ_LI, "[$MARK_AS_READ_LABEL$]",
-				LanguageUtil.get(themeDisplay.getLocale(), "mark-as-read"));
+			markAsReadLI = getMarkAsReadLI(themeDisplay);
 		}
 
 		String unsubscribeLI = StringPool.BLANK;
@@ -322,27 +373,13 @@ public class NotificationsPortlet extends MVCPortlet {
 			unsubscribeActionURL.setParameter(
 				"javax.portlet.action", "unsubscribe");
 
-			unsubscribeLI = StringUtil.replace(
-				_UNSUBSCRIBE_LI,
-				new String[] {
-					"[$UNSUBSCRIBE_LINK$]", "[$UNSUBSCRIBE_LABEL$]",
-					"[$UNSUBSCRIBE_INFO$]"},
-				new String[] {
-					unsubscribeActionURL.toString(),
-					LanguageUtil.get(themeDisplay.getLocale(), "unsubscribe"),
-					LanguageUtil.get(
-						themeDisplay.getLocale(),
-						"stop-receiving-notifications-from-this-asset")});
+			unsubscribeLI = getUnsubscribeLI(
+				unsubscribeActionURL.toString(), themeDisplay);
 		}
 
 		String listItems = markAsReadLI + unsubscribeLI;
 
-		if (!Validator.isBlank(listItems)) {
-			return StringUtil.replace(
-				_ICON_MENU_DIV, "[$LIST_ITEMS$]", listItems);
-		}
-
-		return StringPool.BLANK;
+		return getIconMenuDiv(listItems);
 	}
 
 	protected void getNotificationsCount(
@@ -596,27 +633,8 @@ public class NotificationsPortlet extends MVCPortlet {
 		"<div class=\"clearfix user-notification-delete\" data-deleteURL=\"" +
 			"[$DELETE_URL$]\">";
 
-	private static final String _ICON_MENU_DIV =
-		"<div class=\"lfr-icon-menu\"><a class=\"dropdown-toggle " +
-			"max-display-items-15\" href=\"javascript:;\"> " +
-			"<i class=\"caret\"></i></a>" +
-			"<ul class=\"dropdown-menu lfr-menu-list direction-left\">" +
-			"[$LIST_ITEMS$]</ul></div>";
-
 	private static final String _MARK_AS_READ_DIV =
 		"<div class=\"clearfix user-notification-link\" data-href=\"" +
 			"[$LINK$]\" data-markAsReadURL=\"[$MARK_AS_READ_URL$]\">";
-
-	private static final String _MARK_AS_READ_LI =
-		"<li><a class=\"taglib-icon mark-as-read\"href=\"javascript:;\">" +
-			"<i class=\"icon-remove\"></i><span class=\"taglib-text-icon\">" +
-			"[$MARK_AS_READ_LABEL$]</span></a></li>";
-
-	private static final String _UNSUBSCRIBE_LI =
-		"<li><a class=\"taglib-icon unsubscribe\" data-unsubscribeURL=\"" +
-			"[$UNSUBSCRIBE_LINK$]\" href=\"javascript:;\">" +
-			"<i class=\"icon-rss\"></i><span class=\"taglib-text-icon\">" +
-			"[$UNSUBSCRIBE_LABEL$]</span><div class=\"unsubscribe-info\">" +
-			"[$UNSUBSCRIBE_INFO$]</div></a></li>";
 
 }
