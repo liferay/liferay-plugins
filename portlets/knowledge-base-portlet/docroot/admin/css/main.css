@@ -23,3 +23,7 @@
 .knowledge-base-portlet-admin .kb-search-toggle .kb-date-field {
 	float: left;
 }
+
+.knowledge-base-portlet-admin input.kb-article-priority {
+	width: inherit;
+}
