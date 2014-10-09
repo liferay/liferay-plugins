@@ -120,7 +120,7 @@ String[] sections = AdminUtil.unescapeSections(BeanPropertiesUtil.getString(kbAr
 
 			<span class="input-group-addon" id="<portlet:namespace />urlBase"><liferay-ui:message key="<%= StringUtil.shorten(sb.toString(), 40) %>" /></span>
 
-			<aui:input cssClass="input-medium" disabled="<%= kbArticle != null %>" label="" name="urlTitle" value="<%= StringPool.SLASH + (kbArticle == null ? StringPool.BLANK : kbArticle.getUrlTitle()) %>" />
+			<aui:input cssClass="input-medium" disabled="<%= kbArticle != null %>" label="" name="urlTitle" placeholder="/sample-article-url-title" value="<%= (kbArticle == null ? StringPool.BLANK : (StringPool.SLASH + kbArticle.getUrlTitle())) %>" />
 		</aui:field-wrapper>
 
 		<aui:field-wrapper label="content" required="<%= true %>">
