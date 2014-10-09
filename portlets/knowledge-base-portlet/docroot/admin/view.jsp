@@ -266,7 +266,7 @@ long parentResourcePrimKey = ParamUtil.getLong(request, "parentResourcePrimKey",
 				>
 					<c:choose>
 						<c:when test="<%= updateArticlesPriorities %>">
-							<aui:input label="" name='<%= "priority" + kbArticle.getResourcePrimKey() %>' size="5" type="text" value="<%= BigDecimal.valueOf(kbArticle.getPriority()).toPlainString() %>" />
+							<aui:input cssClass="kb-article-priority" label="" name='<%= "priority" + kbArticle.getResourcePrimKey() %>' size="5" type="text" value="<%= BigDecimal.valueOf(kbArticle.getPriority()).toPlainString() %>" />
 						</c:when>
 						<c:otherwise>
 							<%= BigDecimal.valueOf(kbArticle.getPriority()).toPlainString() %>
