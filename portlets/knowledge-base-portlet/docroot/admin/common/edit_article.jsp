@@ -206,12 +206,76 @@ String[] sections = AdminUtil.unescapeSections(BeanPropertiesUtil.getString(kbAr
 	</aui:fieldset>
 </aui:form>
 
-<aui:script>
+<aui:script use="aui-base,event-input">
+	var A = AUI();
+
+	var titleInput = A.one('#<portlet:namespace />title');
+	var urlTitleInput = A.one('#<portlet:namespace />urlTitle');
+
+	var urlTitleCustomized = false;
+
+	titleInput.on(
+		'input',
+		function(event) {
+			if (urlTitleCustomized) {
+				return;
+			}
+
+			var urlTitle = titleInput.val();
+
+			urlTitle = urlTitle.replace(/[^a-zA-Z0-9_-]/g, '-');
+
+			if (urlTitle[0] === '-') {
+				urlTitle = urlTitle.replace(/^-+/, '');
+			}
+
+			urlTitle = urlTitle.replace(/--+/g, '-');
+
+			urlTitleInput.val('/' + urlTitle.toLowerCase());
+		}
+	);
+
+	urlTitleInput.on(
+		'input',
+		function() {
+			urlTitleCustomized = true;
+		}
+	);
+
+	Liferay.provide(
+		window,
+		'<portlet:namespace />initEditor',
+		function() {
+			return '<%= UnicodeFormatter.toString(content) %>';
+		}
+	);
+
+	Liferay.provide(
+		window,
+		'<portlet:namespace />publishKBArticle',
+		function() {
+			document.<portlet:namespace />fm.<portlet:namespace />workflowAction.value = '<%= WorkflowConstants.ACTION_PUBLISH %>';
+			<portlet:namespace />updateKBArticle();
+		}
+	);
+
+	Liferay.provide(
+		window,
+		'<portlet:namespace />updateKBArticle',
+		function() {
+			document.<portlet:namespace />fm.<portlet:namespace /><%= Constants.CMD %>.value = '<%= (kbArticle == null) ? Constants.ADD : Constants.UPDATE %>';
+			document.<portlet:namespace />fm.<portlet:namespace />content.value = window.<portlet:namespace />editor.getHTML();
+
+			<portlet:namespace />updateMultipleKBArticleAttachments();
+
+			submitForm(document.<portlet:namespace />fm);
+		}
+	);
+
 	Liferay.provide(
 		window,
 		'<portlet:namespace />updateMultipleKBArticleAttachments',
 		function() {
-			var A = AUI();
 			var Lang = A.Lang;
 
 			var selectedFileNameContainer = A.one('#<portlet:namespace />selectedFileNameContainer');
@@ -232,25 +296,6 @@ String[] sections = AdminUtil.unescapeSections(BeanPropertiesUtil.getString(kbAr
 			}
 
 			selectedFileNameContainer.html(buffer.join(''));
-		},
-		['aui-base']
+		}
 	);
-
-	function <portlet:namespace />initEditor() {
-		return '<%= UnicodeFormatter.toString(content) %>';
-	}
-
-	function <portlet:namespace />publishKBArticle() {
-		document.<portlet:namespace />fm.<portlet:namespace />workflowAction.value = '<%= WorkflowConstants.ACTION_PUBLISH %>';
-		<portlet:namespace />updateKBArticle();
-	}
-
-	function <portlet:namespace />updateKBArticle() {
-		document.<portlet:namespace />fm.<portlet:namespace /><%= Constants.CMD %>.value = '<%= (kbArticle == null) ? Constants.ADD : Constants.UPDATE %>';
-		document.<portlet:namespace />fm.<portlet:namespace />content.value = window.<portlet:namespace />editor.getHTML();
-
-		<portlet:namespace />updateMultipleKBArticleAttachments();
-
-		submitForm(document.<portlet:namespace />fm);
-	}
 </aui:script>
