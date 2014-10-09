@@ -276,13 +276,13 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 
 					<liferay-util:buffer var="html">
 						<liferay-util:include page="/admin/new_parent.jsp" servletContext="<%= application %>">
-							<liferay-util:param name="parentResourceClassNameId" value="<%= String.valueOf(defaultClassNameId) %>" />
+							<liferay-util:param name="parentResourceClassNameId" value="<%= String.valueOf(kbFolderClassNameId) %>" />
 							<liferay-util:param name="parentResourcePrimKey" value="<%= String.valueOf(KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY) %>" />
 						</liferay-util:include>
 					</liferay-util:buffer>
 
 					<%
-					String taglibOnClick = "opener." + renderResponse.getNamespace() + "selectKBArticle('(" + LanguageUtil.get(locale, "none") + ")', '1.0', '" + KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY + "', '" + defaultClassNameId + "', '" + UnicodeFormatter.toString(html) + "'); window.close();";
+					String taglibOnClick = "opener." + renderResponse.getNamespace() + "selectKBArticle('(" + LanguageUtil.get(locale, "none") + ")', '1.0', '" + KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY + "', '" + kbFolderClassNameId + "', '" + UnicodeFormatter.toString(html) + "'); window.close();";
 					%>
 
 					<aui:button onClick="<%= taglibOnClick %>" value="remove" />
@@ -295,7 +295,7 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 				<liferay-portlet:renderURL var="breadcrumbURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
 					<portlet:param name="mvcPath" value='<%= templatePath + "select_article.jsp" %>' />
 					<portlet:param name="resourcePrimKey" value="<%= String.valueOf(resourcePrimKey) %>" />
-					<portlet:param name="parentResourceClassNameId" value="<%= String.valueOf(defaultClassNameId) %>" />
+					<portlet:param name="parentResourceClassNameId" value="<%= String.valueOf(kbFolderClassNameId) %>" />
 					<portlet:param name="parentResourcePrimKey" value="<%= String.valueOf(KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY) %>" />
 					<portlet:param name="oldParentResourcePrimKey" value="<%= String.valueOf(oldParentResourcePrimKey) %>" />
 					<portlet:param name="status" value="<%= String.valueOf(status) %>" />
