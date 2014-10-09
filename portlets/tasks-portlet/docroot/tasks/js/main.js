@@ -268,7 +268,6 @@ AUI().use(
 
 				portletURL.setParameter('javax.portlet.action', 'updateTasksViewCount');
 				portletURL.setParameter('tasksEntryId', tasksEntryId);
-
 				portletURL.setWindowState('normal');
 
 				A.io.request(portletURL.toString());
