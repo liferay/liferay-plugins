@@ -260,6 +260,8 @@ AUI.add(
 
 										portletURL.setWindowState('exclusive');
 
+										notificationsConfigurationNode.plug(A.Plugin.ParseContent);
+
 										notificationsConfigurationNode.load(
 											portletURL.toString(),
 											function() {
