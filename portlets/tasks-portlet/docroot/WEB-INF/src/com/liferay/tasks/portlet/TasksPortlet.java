@@ -251,7 +251,7 @@ public class TasksPortlet extends MVCPortlet {
 		actionResponse.sendRedirect(portletURL.toString());
 	}
 
-	public void updateTasksViewCount(
+	public void updateTasksEntryViewCount(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 

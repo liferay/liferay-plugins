@@ -266,7 +266,7 @@ AUI().use(
 
 				var portletURL = new Liferay.PortletURL.createURL(instance._baseActionURL);
 
-				portletURL.setParameter('javax.portlet.action', 'updateTasksViewCount');
+				portletURL.setParameter('javax.portlet.action', 'updateTasksEntryViewCount');
 				portletURL.setParameter('tasksEntryId', tasksEntryId);
 				portletURL.setWindowState('normal');
 
