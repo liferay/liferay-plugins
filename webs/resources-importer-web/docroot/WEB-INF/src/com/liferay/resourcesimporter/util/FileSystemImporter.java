@@ -739,6 +739,8 @@ public class FileSystemImporter extends BaseImporter {
 			titleMap.put(LocaleUtil.getDefault(), title);
 		}
 
+		String type = GetterUtil.getString(
+			layoutJSONObject.getString("type"), LayoutConstants.TYPE_PORTLET);
 		String typeSettings = layoutJSONObject.getString("typeSettings");
 
 		boolean hidden = layoutJSONObject.getBoolean("hidden");
@@ -754,9 +756,6 @@ public class FileSystemImporter extends BaseImporter {
 		}
 
 		friendlyURLMap.put(LocaleUtil.getDefault(), friendlyURL);
-
-		String type = GetterUtil.getString(
-			layoutJSONObject.getString("type"), LayoutConstants.TYPE_PORTLET);
 
 		Layout layout = LayoutLocalServiceUtil.addLayout(
 			userId, groupId, privateLayout, parentLayoutId, nameMap, titleMap,
