@@ -88,7 +88,7 @@ public class MicroblogsPortlet extends MVCPortlet {
 		}
 	}
 
-	public void updateMicroblogsViewCount(
+	public void updateMicroblogsEntryViewCount(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 

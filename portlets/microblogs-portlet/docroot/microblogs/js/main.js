@@ -111,7 +111,7 @@ AUI().use(
 
 				var portletURL = new Liferay.PortletURL.createURL(instance._baseActionURL);
 
-				portletURL.setParameter('javax.portlet.action', 'updateMicroblogsViewCount');
+				portletURL.setParameter('javax.portlet.action', 'updateMicroblogsEntryViewCount');
 				portletURL.setParameter('microblogsEntryId', microblogsEntryId);
 				portletURL.setWindowState('normal');
 
