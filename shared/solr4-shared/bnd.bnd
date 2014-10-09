@@ -2,7 +2,6 @@ Bundle-Name: Liferay Portal Solr Adapter
 Bundle-SymbolicName: com.liferay.portal.search.solr
 Bundle-Version: 1.0.0
 libs: ${filterout;${lsr;lib;*.jar};.*.jar}
-
 Import-Package:\
 	com.liferay.portal.kernel.dao.orm.*,\
 	com.liferay.portal.kernel.log.*,\
