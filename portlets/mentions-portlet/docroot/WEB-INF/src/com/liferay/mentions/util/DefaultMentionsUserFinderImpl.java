@@ -14,7 +14,6 @@
 
 package com.liferay.mentions.util;
 
-import com.liferay.portal.kernel.dao.orm.WildcardMode;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
@@ -34,14 +33,10 @@ public class DefaultMentionsUserFinderImpl implements MentionsUserFinder {
 	public List<User> getUsers(long companyId, String query)
 		throws PortalException, SystemException {
 
-		LinkedHashMap<String, Object> params =
-			new LinkedHashMap<String, Object>();
-
-		params.put("wildcardMode", WildcardMode.TRAILING);
-
 		return UserLocalServiceUtil.search(
-			companyId, query, WorkflowConstants.STATUS_APPROVED, params, 0,
-			_MAX_USERS, new UserScreenNameComparator());
+			companyId, query, WorkflowConstants.STATUS_APPROVED,
+			new LinkedHashMap<String, Object>(), 0, _MAX_USERS,
+			new UserScreenNameComparator());
 	}
 
 	private static int _MAX_USERS = 100;
