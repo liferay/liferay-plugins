@@ -17,9 +17,9 @@
 <%@ include file="/admin/init.jsp" %>
 
 <%
-int status = (Integer)request.getAttribute(WebKeys.KNOWLEDGE_BASE_STATUS);
-
 KBArticle kbArticle = (KBArticle)request.getAttribute("article_icons.jsp-kb_article");
+
+int status = (Integer)request.getAttribute(WebKeys.KNOWLEDGE_BASE_STATUS);
 
 long resourcePrimKey = ParamUtil.getLong(request, "resourcePrimKey");
 %>
