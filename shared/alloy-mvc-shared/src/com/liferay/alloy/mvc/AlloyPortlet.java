@@ -14,6 +14,8 @@
 
 package com.liferay.alloy.mvc;
 
+import com.liferay.portal.kernel.json.JSONFactoryUtil;
+import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.messaging.MessageBusUtil;
@@ -26,6 +28,8 @@ import com.liferay.portal.kernel.scheduler.StorageType;
 import com.liferay.portal.kernel.search.Indexer;
 import com.liferay.portal.kernel.search.IndexerRegistryUtil;
 import com.liferay.portal.kernel.servlet.HttpMethods;
+import com.liferay.portal.kernel.servlet.ServletResponseUtil;
+import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.JavaConstants;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringBundler;
@@ -33,6 +37,8 @@ import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.Portlet;
 
 import java.io.IOException;
+
+import java.lang.reflect.Method;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -50,6 +56,9 @@ import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
 import javax.portlet.ResourceRequest;
 import javax.portlet.ResourceResponse;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * @author Brian Wing Shun Chan
@@ -132,20 +141,6 @@ public class AlloyPortlet extends GenericPortlet {
 			return;
 		}
 
-		String format = ParamUtil.getString(actionRequest, "format");
-
-		if (format.equals("json")) {
-			try {
-				AlloyAPIRequestProcessor.processAction(
-					actionRequest, actionResponse, _alloyControllers);
-			}
-			catch (Exception e) {
-				throw new IOException(e);
-			}
-
-			return;
-		}
-
 		String path = getPath(actionRequest);
 
 		include(path, actionRequest, actionResponse);
@@ -166,9 +161,7 @@ public class AlloyPortlet extends GenericPortlet {
 			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
 		throws IOException, PortletException {
 
-		String path = getPath(resourceRequest);
-
-		include(path, resourceRequest, resourceResponse);
+		responder(resourceRequest, resourceResponse);
 	}
 
 	protected Map<String, String> getDefaultRouteParameters() {
@@ -211,6 +204,14 @@ public class AlloyPortlet extends GenericPortlet {
 		return sb.toString();
 	}
 
+	protected Throwable getRootCause(Throwable throwable) {
+		if (throwable.getCause() == null) {
+			return throwable;
+		}
+
+		return getRootCause(throwable.getCause());
+	}
+
 	protected void include(
 			String path, PortletRequest portletRequest,
 			PortletResponse portletResponse)
@@ -236,6 +237,82 @@ public class AlloyPortlet extends GenericPortlet {
 		String controllerPath = baseAlloyControllerImpl.controllerPath;
 
 		_alloyControllers.put(controllerPath, baseAlloyControllerImpl);
+	}
+
+	protected void writeJSON(
+			PortletRequest portletRequest, PortletResponse portletResponse,
+			JSONObject json)
+		throws IOException {
+
+		HttpServletResponse response = PortalUtil.getHttpServletResponse(
+			portletResponse);
+
+		response.setContentType(ContentTypes.APPLICATION_JSON);
+
+		ServletResponseUtil.write(response, json.toString());
+
+		response.flushBuffer();
+	}
+
+	private void responder(
+			PortletRequest portletRequest, PortletResponse portletResponse)
+		throws IOException, PortletException {
+
+		String format = ParamUtil.getString(portletRequest, "format");
+
+		if (format.equals("json")) {
+			JSONObject jsonData = null;
+
+			String controller = ParamUtil.getString(
+				portletRequest, "controller");
+
+			BaseAlloyControllerImpl baseAlloyController = _alloyControllers.get(
+				controller);
+
+			try {
+				HttpServletRequest request = PortalUtil.getHttpServletRequest(
+					portletRequest);
+
+				baseAlloyController.setRequest(request);
+
+				baseAlloyController.initPortletVariables();
+
+				String action = ParamUtil.getString(portletRequest, "action");
+
+				Method actionMethod = baseAlloyController.getMethod(action);
+
+				actionMethod.invoke(baseAlloyController);
+
+				jsonData = JSONFactoryUtil.createJSONObject(
+					String.valueOf(request.getAttribute("jsonData")));
+			}
+			catch (Exception e) {
+				jsonData = JSONFactoryUtil.createJSONObject();
+
+				String message = "an-unexpected-system-error-occurred";
+
+				Throwable rootCause = getRootCause(e);
+
+				if (rootCause instanceof AlloyException) {
+					message = rootCause.getMessage();
+				}
+
+				jsonData.put("error", message);
+
+				HttpServletResponse response =
+					PortalUtil.getHttpServletResponse(portletResponse);
+
+				response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+			}
+
+			writeJSON(portletRequest, portletResponse, jsonData);
+
+			return;
+		}
+
+		String path = getPath(portletRequest);
+
+		include(path, portletRequest, portletResponse);
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(AlloyPortlet.class);
