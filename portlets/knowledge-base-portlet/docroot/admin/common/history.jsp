@@ -173,7 +173,7 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 
 			<div class="float-container kb-entity-header">
 				<div class="kb-title">
-					<%= HtmlUtil.escape(AdminUtil.getKBArticleDiff(kbArticle.getResourcePrimKey(), sourceVersion, targetVersion, "title")) %>
+					<liferay-ui:diff-html diffHtmlResults='<%= AdminUtil.getKBArticleDiff(kbArticle.getResourcePrimKey(), sourceVersion, targetVersion, "title") %>' />
 				</div>
 
 				<div class="kb-tools">
@@ -192,7 +192,7 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 			</div>
 
 			<div class="kb-entity-body">
-				<%= AdminUtil.getKBArticleDiff(kbArticle.getResourcePrimKey(), sourceVersion, targetVersion, "content") %>
+				<liferay-ui:diff-html diffHtmlResults='<%= AdminUtil.getKBArticleDiff(kbArticle.getResourcePrimKey(), sourceVersion, targetVersion, "content") %>' />
 			</div>
 
 			<aui:button-row cssClass="kb-bulk-action-button-holder">
