@@ -497,12 +497,21 @@
 
 									<ivy:settings file="${ivy.custom.settings.file}" />
 
+									<if>
+										<antelope:endswith string="@{module.dir}" with="solr4-shared" />
+										<then>
+											<var name="ivy.checksums" value="" />
+										</then>
+									</if>
+
 									<ivy:resolve
 										conf="default"
 										file="@{ivy.xml.dir}/ivy.xml"
 										log="download-only"
 										transitive="${plugin.ivy.resolve.transitive.dependencies}"
 									/>
+
+									<var name="ivy.checksums" unset="true" />
 
 									<if>
 										<not>
