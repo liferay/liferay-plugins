@@ -1769,8 +1769,8 @@ AUI.add(
 								calendarName: calendar.get('name'),
 								duration: instance._getCalendarBookingDuration(schedulerEvent),
 								hasChild: schedulerEvent.get('hasChildCalendarBookings'),
-								isRecurring: schedulerEvent.isRecurring(),
 								isMaster:  schedulerEvent.isMasterBooking(),
+								isRecurring: schedulerEvent.isRecurring(),
 								offset: instance._getCalendarBookingOffset(schedulerEvent, changedAttributes),
 								resolver: instance._queueableQuestionResolver,
 								schedulerEvent: schedulerEvent
