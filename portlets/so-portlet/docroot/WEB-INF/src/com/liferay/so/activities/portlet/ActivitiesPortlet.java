@@ -17,6 +17,7 @@
 
 package com.liferay.so.activities.portlet;
 
+import com.liferay.compat.portal.kernel.util.ListUtil;
 import com.liferay.compat.portal.kernel.util.Time;
 import com.liferay.compat.util.bridges.mvc.MVCPortlet;
 import com.liferay.microblogs.model.MicroblogsEntry;
@@ -29,7 +30,6 @@ import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.HtmlUtil;
-import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.WebKeys;

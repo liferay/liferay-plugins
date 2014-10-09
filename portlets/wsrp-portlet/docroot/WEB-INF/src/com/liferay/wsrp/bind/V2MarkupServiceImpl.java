@@ -15,6 +15,8 @@
 package com.liferay.wsrp.bind;
 
 import com.liferay.compat.portal.kernel.servlet.HttpHeaders;
+import com.liferay.compat.portal.kernel.util.ArrayUtil;
+import com.liferay.compat.portal.kernel.util.HttpUtil;
 import com.liferay.compat.portal.kernel.util.StringUtil;
 import com.liferay.compat.portal.util.PortalUtil;
 import com.liferay.portal.NoSuchLayoutException;
@@ -26,7 +28,6 @@ import com.liferay.portal.kernel.portlet.LiferayWindowState;
 import com.liferay.portal.kernel.util.Base64;
 import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.Http;
-import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.StringBundler;

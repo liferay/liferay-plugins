@@ -15,6 +15,7 @@
 package com.liferay.wsrp.service.impl;
 
 import com.liferay.compat.portal.kernel.util.ArrayUtil;
+import com.liferay.compat.portal.kernel.util.HttpUtil;
 import com.liferay.compat.portal.kernel.util.StringUtil;
 import com.liferay.compat.portal.util.PortalUtil;
 import com.liferay.counter.service.CounterLocalServiceUtil;
@@ -27,7 +28,6 @@ import com.liferay.portal.kernel.portlet.PortletBag;
 import com.liferay.portal.kernel.portlet.PortletBagPool;
 import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
-import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Tuple;
 import com.liferay.portal.kernel.util.Validator;

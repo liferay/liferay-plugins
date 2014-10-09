@@ -17,6 +17,7 @@
 
 package com.liferay.privatemessaging.portlet;
 
+import com.liferay.compat.portal.kernel.notifications.ChannelHubManagerUtil;
 import com.liferay.compat.portal.kernel.portlet.PortletResponseUtil;
 import com.liferay.compat.portal.kernel.util.StringUtil;
 import com.liferay.compat.portal.util.PortalUtil;
@@ -32,7 +33,6 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.notifications.Channel;
 import com.liferay.portal.kernel.notifications.ChannelException;
-import com.liferay.portal.kernel.notifications.ChannelHubManagerUtil;
 import com.liferay.portal.kernel.notifications.NotificationEvent;
 import com.liferay.portal.kernel.notifications.UnknownChannelException;
 import com.liferay.portal.kernel.servlet.ServletResponseUtil;

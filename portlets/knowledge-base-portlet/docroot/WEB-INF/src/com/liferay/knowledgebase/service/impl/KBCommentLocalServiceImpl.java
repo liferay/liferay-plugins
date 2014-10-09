@@ -14,7 +14,6 @@
 
 package com.liferay.knowledgebase.service.impl;
 
-import com.liferay.compat.portal.util.PortalUtil;
 import com.liferay.knowledgebase.KBCommentContentException;
 import com.liferay.knowledgebase.admin.social.AdminActivityKeys;
 import com.liferay.knowledgebase.model.KBArticle;

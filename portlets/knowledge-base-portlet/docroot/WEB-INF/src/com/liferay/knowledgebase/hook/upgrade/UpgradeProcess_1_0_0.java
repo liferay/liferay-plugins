@@ -14,9 +14,9 @@
 
 package com.liferay.knowledgebase.hook.upgrade;
 
+import com.liferay.compat.portal.kernel.upgrade.UpgradeProcess;
 import com.liferay.knowledgebase.hook.upgrade.v1_0_0.UpgradeRatingsEntry;
 import com.liferay.knowledgebase.hook.upgrade.v1_0_0.UpgradeRatingsStats;
-import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 
 /**
  * @author Peter Shin

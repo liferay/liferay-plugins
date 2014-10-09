@@ -15,6 +15,7 @@
 package com.liferay.knowledgebase.service.impl;
 
 import com.liferay.compat.portal.kernel.util.ArrayUtil;
+import com.liferay.compat.portal.kernel.util.ListUtil;
 import com.liferay.compat.portal.kernel.util.StringUtil;
 import com.liferay.compat.portal.kernel.util.Time;
 import com.liferay.compat.portal.util.PortalUtil;
@@ -54,7 +55,6 @@ import com.liferay.portal.kernel.search.IndexerRegistryUtil;
 import com.liferay.portal.kernel.search.SearchEngineUtil;
 import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.FileUtil;
-import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.StreamUtil;
 import com.liferay.portal.kernel.util.StringBundler;

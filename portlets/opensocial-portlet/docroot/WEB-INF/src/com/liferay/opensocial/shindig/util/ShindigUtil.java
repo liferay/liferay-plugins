@@ -17,6 +17,7 @@ package com.liferay.opensocial.shindig.util;
 import com.google.inject.Inject;
 
 import com.liferay.compat.portal.kernel.util.ArrayUtil;
+import com.liferay.compat.portal.kernel.util.HttpUtil;
 import com.liferay.compat.portal.kernel.util.StringUtil;
 import com.liferay.compat.portal.util.PortalUtil;
 import com.liferay.opensocial.GadgetURLException;
@@ -31,7 +32,6 @@ import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.repository.model.Folder;
 import com.liferay.portal.kernel.util.AutoResetThreadLocal;
 import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;

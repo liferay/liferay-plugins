@@ -1,6 +1,6 @@
 @import "compass";
 
-/* ---------- All Tasks Toggle ---------- */
+/* ---------- All tasks toggle ---------- */
 
 .tasks-portlet {
 	.taglib-search-iterator-page-iterator-bottom {
@@ -175,7 +175,7 @@
 		}
 	}
 
-	/* ---------- Result Style ---------- */
+	/* ---------- Result style ---------- */
 
 	.result-data {
 		color: #777;
@@ -186,7 +186,7 @@
 		}
 	}
 
-	/* ---------- Table Style ---------- */
+	/* ---------- Table style ---------- */
 
 	.list-wrapper {
 		.col-2 {

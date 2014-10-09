@@ -14,6 +14,7 @@
 
 package com.liferay.knowledgebase.hook.upgrade;
 
+import com.liferay.compat.portal.kernel.upgrade.UpgradeProcess;
 import com.liferay.knowledgebase.hook.upgrade.v1_1_0.UpgradeClassName;
 import com.liferay.knowledgebase.hook.upgrade.v1_1_0.UpgradeExpandoTable;
 import com.liferay.knowledgebase.hook.upgrade.v1_1_0.UpgradeKBArticle;
@@ -23,7 +24,6 @@ import com.liferay.knowledgebase.hook.upgrade.v1_1_0.UpgradePortletPreferences;
 import com.liferay.knowledgebase.hook.upgrade.v1_1_0.UpgradeResourceAction;
 import com.liferay.knowledgebase.hook.upgrade.v1_1_0.UpgradeResourcePermission;
 import com.liferay.portal.kernel.cache.MultiVMPoolUtil;
-import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 import com.liferay.portal.service.ClassNameLocalServiceUtil;
 import com.liferay.portal.service.ResourceActionLocalServiceUtil;
 

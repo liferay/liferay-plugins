@@ -27,7 +27,9 @@
 <%@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 <%@ taglib uri="http://liferay.com/tld/util" prefix="liferay-util" %>
 
-<%@ page import="com.liferay.compat.portal.kernel.util.StringUtil" %><%@
+<%@ page import="com.liferay.compat.portal.kernel.notifications.ChannelHubManagerUtil" %><%@
+page import="com.liferay.compat.portal.kernel.util.ListUtil" %><%@
+page import="com.liferay.compat.portal.kernel.util.StringUtil" %><%@
 page import="com.liferay.compat.portal.util.PortalUtil" %><%@
 page import="com.liferay.portal.NoSuchRoleException" %><%@
 page import="com.liferay.portal.kernel.dao.orm.QueryUtil" %><%@
@@ -37,7 +39,6 @@ page import="com.liferay.portal.kernel.json.JSONObject" %><%@
 page import="com.liferay.portal.kernel.language.LanguageUtil" %><%@
 page import="com.liferay.portal.kernel.language.UnicodeLanguageUtil" %><%@
 page import="com.liferay.portal.kernel.notifications.Channel" %><%@
-page import="com.liferay.portal.kernel.notifications.ChannelHubManagerUtil" %><%@
 page import="com.liferay.portal.kernel.notifications.NotificationEvent" %><%@
 page import="com.liferay.portal.kernel.notifications.NotificationEventComparator" %><%@
 page import="com.liferay.portal.kernel.notifications.UnknownChannelException" %><%@
@@ -50,7 +51,6 @@ page import="com.liferay.portal.kernel.util.DateUtil" %><%@
 page import="com.liferay.portal.kernel.util.FastDateFormatFactoryUtil" %><%@
 page import="com.liferay.portal.kernel.util.GetterUtil" %><%@
 page import="com.liferay.portal.kernel.util.HtmlUtil" %><%@
-page import="com.liferay.portal.kernel.util.ListUtil" %><%@
 page import="com.liferay.portal.kernel.util.ParamUtil" %><%@
 page import="com.liferay.portal.kernel.util.StringPool" %><%@
 page import="com.liferay.portal.kernel.util.UnicodeProperties" %><%@

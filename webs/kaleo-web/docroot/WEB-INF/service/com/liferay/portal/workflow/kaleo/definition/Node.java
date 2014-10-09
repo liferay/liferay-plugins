@@ -14,7 +14,7 @@
 
 package com.liferay.portal.workflow.kaleo.definition;
 
-import com.liferay.portal.kernel.util.ListUtil;
+import com.liferay.compat.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.Validator;
 
 import java.util.Collections;

@@ -14,7 +14,7 @@
 
 package com.liferay.portal.workflow.kaleo.hook.upgrade;
 
-import com.liferay.portal.kernel.upgrade.UpgradeProcess;
+import com.liferay.compat.portal.kernel.upgrade.UpgradeProcess;
 import com.liferay.portal.workflow.kaleo.hook.upgrade.v1_1_0.UpgradeWorkflowContext;
 
 /**

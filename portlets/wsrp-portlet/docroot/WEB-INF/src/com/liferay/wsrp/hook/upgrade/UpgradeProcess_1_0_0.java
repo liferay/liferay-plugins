@@ -14,7 +14,7 @@
 
 package com.liferay.wsrp.hook.upgrade;
 
-import com.liferay.portal.kernel.upgrade.UpgradeProcess;
+import com.liferay.compat.portal.kernel.upgrade.UpgradeProcess;
 import com.liferay.wsrp.hook.upgrade.v1_0_0.UpgradeWSRPConsumer;
 import com.liferay.wsrp.hook.upgrade.v1_0_0.UpgradeWSRPConsumerPortlet;
 import com.liferay.wsrp.hook.upgrade.v1_0_0.UpgradeWSRPProducer;

@@ -24,11 +24,11 @@
 <%@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 <%@ taglib uri="http://liferay.com/tld/util" prefix="liferay-util" %>
 
-<%@ page import="com.liferay.compat.portal.util.PortalUtil" %><%@
+<%@ page import="com.liferay.compat.portal.kernel.util.HttpUtil" %><%@
+page import="com.liferay.compat.portal.util.PortalUtil" %><%@
 page import="com.liferay.netvibeswidget.util.NetvibesWidgetUtil" %><%@
 page import="com.liferay.portal.kernel.util.Constants" %><%@
 page import="com.liferay.portal.kernel.util.GetterUtil" %><%@
-page import="com.liferay.portal.kernel.util.HttpUtil" %><%@
 page import="com.liferay.portal.kernel.util.ParamUtil" %><%@
 page import="com.liferay.portal.kernel.util.StringBundler" %><%@
 page import="com.liferay.portal.kernel.util.UnicodeFormatter" %><%@
@@ -37,8 +37,7 @@ page import="com.liferay.portal.kernel.util.WebKeys" %>
 
 <%@ page import="java.util.List" %>
 
-<%@ page import="javax.portlet.PortletPreferences" %><%@
-page import="javax.portlet.WindowState" %>
+<%@ page import="javax.portlet.WindowState" %>
 
 <portlet:defineObjects />
 

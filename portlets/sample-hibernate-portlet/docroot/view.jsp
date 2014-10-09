@@ -18,10 +18,10 @@
 
 <%@ taglib uri="http://liferay.com/tld/aui" prefix="aui" %>
 
+<%@ page import="com.liferay.compat.portal.kernel.util.HttpUtil" %>
 <%@ page import="com.liferay.compat.portal.util.PortalUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.Constants" %>
 <%@ page import="com.liferay.portal.kernel.util.HtmlUtil" %>
-<%@ page import="com.liferay.portal.kernel.util.HttpUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.ParamUtil" %>
 <%@ page import="com.liferay.samplehibernate.model.FoodItem" %>
 <%@ page import="com.liferay.samplehibernate.util.FoodItemUtil" %>

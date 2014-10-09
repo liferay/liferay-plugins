@@ -14,9 +14,9 @@
 
 package com.liferay.testhook.hook.upgrade;
 
+import com.liferay.compat.portal.kernel.upgrade.UpgradeProcess;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 
 /**
  * @author Brian Wing Shun Chan

@@ -17,8 +17,8 @@
 
 package com.liferay.privatemessaging.hook.upgrade.v1_0_0;
 
+import com.liferay.compat.portal.kernel.upgrade.UpgradeProcess;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
-import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 import com.liferay.portal.model.GroupConstants;
 import com.liferay.portlet.messageboards.service.MBThreadLocalServiceUtil;
 import com.liferay.privatemessaging.model.UserThread;

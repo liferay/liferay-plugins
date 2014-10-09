@@ -25,6 +25,7 @@
 <%@ taglib uri="http://liferay.com/tld/util" prefix="liferay-util" %>
 
 <%@ page import="com.liferay.compat.portal.kernel.util.ArrayUtil" %><%@
+page import="com.liferay.compat.portal.kernel.util.ListUtil" %><%@
 page import="com.liferay.compat.portal.kernel.util.StringUtil" %><%@
 page import="com.liferay.compat.portal.util.PortalUtil" %><%@
 page import="com.liferay.portal.kernel.bi.rules.Fact" %><%@
@@ -37,7 +38,6 @@ page import="com.liferay.portal.kernel.util.Constants" %><%@
 page import="com.liferay.portal.kernel.util.GetterUtil" %><%@
 page import="com.liferay.portal.kernel.util.KeyValuePair" %><%@
 page import="com.liferay.portal.kernel.util.KeyValuePairComparator" %><%@
-page import="com.liferay.portal.kernel.util.ListUtil" %><%@
 page import="com.liferay.portal.kernel.util.ParamUtil" %><%@
 page import="com.liferay.portal.kernel.util.PortalClassInvoker" %><%@
 page import="com.liferay.portal.kernel.util.PortalClassLoaderUtil" %><%@

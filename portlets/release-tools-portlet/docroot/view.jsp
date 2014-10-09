@@ -20,7 +20,7 @@
 
 <%@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 
-<%@ page import="com.liferay.portal.kernel.util.HttpUtil" %>
+<%@ page import="com.liferay.compat.portal.kernel.util.HttpUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.ParamUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.ReleaseInfo" %>
 <%@ page import="com.liferay.portal.kernel.util.StringPool" %>

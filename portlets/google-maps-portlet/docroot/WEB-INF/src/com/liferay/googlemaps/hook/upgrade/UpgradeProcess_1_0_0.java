@@ -14,8 +14,8 @@
 
 package com.liferay.googlemaps.hook.upgrade;
 
+import com.liferay.compat.portal.kernel.upgrade.UpgradeProcess;
 import com.liferay.googlemaps.hook.upgrade.v1_0_0.UpgradePortletPreferences;
-import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 
 /**
  * @author Julio Camarero

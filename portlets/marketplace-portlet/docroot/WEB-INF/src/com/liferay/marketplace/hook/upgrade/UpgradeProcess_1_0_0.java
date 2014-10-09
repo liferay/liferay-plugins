@@ -14,8 +14,8 @@
 
 package com.liferay.marketplace.hook.upgrade;
 
+import com.liferay.compat.portal.kernel.upgrade.UpgradeProcess;
 import com.liferay.marketplace.hook.upgrade.v1_0_0.UpgradeExpando;
-import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 
 /**
  * @author Peter Shin

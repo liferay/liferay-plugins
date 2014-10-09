@@ -14,12 +14,12 @@
 
 package com.liferay.so.activities.hook.social;
 
+import com.liferay.compat.portal.kernel.dao.orm.ProjectionFactoryUtil;
 import com.liferay.compat.portal.kernel.util.StringUtil;
 import com.liferay.compat.portal.kernel.util.Time;
 import com.liferay.compat.portal.service.ServiceContext;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
-import com.liferay.portal.kernel.dao.orm.ProjectionFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.dao.orm.RestrictionsFactoryUtil;
 import com.liferay.portal.kernel.exception.SystemException;

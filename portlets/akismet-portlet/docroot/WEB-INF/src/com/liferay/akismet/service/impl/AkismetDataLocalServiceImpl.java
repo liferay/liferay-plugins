@@ -16,7 +16,6 @@ package com.liferay.akismet.service.impl;
 
 import com.liferay.akismet.model.AkismetData;
 import com.liferay.akismet.service.base.AkismetDataLocalServiceBaseImpl;
-import com.liferay.compat.portal.util.PortalUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 

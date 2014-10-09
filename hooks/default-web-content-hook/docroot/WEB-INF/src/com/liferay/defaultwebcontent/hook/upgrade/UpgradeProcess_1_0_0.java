@@ -14,8 +14,8 @@
 
 package com.liferay.defaultwebcontent.hook.upgrade;
 
+import com.liferay.compat.portal.kernel.upgrade.UpgradeProcess;
 import com.liferay.defaultwebcontent.hook.upgrade.v1_0_0.UpgradeJournal;
-import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 
 /**
  * @author Ryan Park

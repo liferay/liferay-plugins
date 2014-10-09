@@ -14,10 +14,10 @@
 
 package com.liferay.knowledgebase.hook.upgrade;
 
+import com.liferay.compat.portal.kernel.upgrade.UpgradeProcess;
 import com.liferay.knowledgebase.hook.upgrade.v1_2_0.UpgradeKBArticle;
 import com.liferay.knowledgebase.hook.upgrade.v1_2_0.UpgradeKBStructure;
 import com.liferay.knowledgebase.hook.upgrade.v1_2_0.UpgradeKBTemplate;
-import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 
 /**
  * @author Peter Shin

@@ -14,8 +14,8 @@
 
 package com.liferay.knowledgebase.hook.upgrade.v1_1_0;
 
+import com.liferay.compat.portal.kernel.upgrade.UpgradeProcess;
 import com.liferay.compat.portal.util.PortalUtil;
-import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 import com.liferay.portal.model.Subscription;
 import com.liferay.portlet.expando.NoSuchTableException;
 import com.liferay.portlet.expando.model.ExpandoTable;

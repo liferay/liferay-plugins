@@ -15,6 +15,7 @@
 package com.liferay.opensocial.shindig.service;
 
 import com.liferay.compat.portal.kernel.servlet.HttpHeaders;
+import com.liferay.compat.portal.kernel.util.HttpUtil;
 import com.liferay.opensocial.shindig.util.SerializerUtil;
 import com.liferay.opensocial.shindig.util.ShindigUtil;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
@@ -25,7 +26,6 @@ import com.liferay.portal.kernel.repository.model.FileVersion;
 import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.Http;
-import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.MimeTypesUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.Group;

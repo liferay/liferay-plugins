@@ -14,8 +14,8 @@
 
 package com.liferay.compat.hook.filter;
 
+import com.liferay.compat.portal.kernel.util.HttpUtil;
 import com.liferay.compat.portal.kernel.webdav.WebDAVUtil;
-import com.liferay.portal.kernel.util.HttpUtil;
 
 import java.io.IOException;
 

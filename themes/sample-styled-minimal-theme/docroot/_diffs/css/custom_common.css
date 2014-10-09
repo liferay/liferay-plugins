@@ -83,7 +83,7 @@
 	padding: 0;
 }
 
-/* ---------- Hidden Accessible ---------- */
+/* ---------- Hidden accessible ---------- */
 
 #skip-to-content, #banner h2, #banner h3, #navigation h1, .site-breadcrumbs h1 {
 	clip: rect(0 0 0 0);

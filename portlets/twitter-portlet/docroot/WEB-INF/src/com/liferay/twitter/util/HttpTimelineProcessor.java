@@ -15,6 +15,7 @@
 package com.liferay.twitter.util;
 
 import com.liferay.compat.portal.kernel.servlet.HttpHeaders;
+import com.liferay.compat.portal.kernel.util.HttpUtil;
 import com.liferay.compat.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
@@ -25,7 +26,6 @@ import com.liferay.portal.kernel.util.FastDateFormatFactoryUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.Http;
-import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.StringPool;
 
 import java.text.Format;

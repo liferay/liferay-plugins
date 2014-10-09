@@ -15,6 +15,7 @@
 package com.liferay.knowledgebase.display.portlet;
 
 import com.liferay.compat.portal.kernel.portlet.PortletResponseUtil;
+import com.liferay.compat.portal.kernel.util.HttpUtil;
 import com.liferay.compat.portal.util.PortalUtil;
 import com.liferay.compat.util.bridges.mvc.MVCPortlet;
 import com.liferay.knowledgebase.KBArticleContentException;
@@ -44,7 +45,6 @@ import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.MimeTypesUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StreamUtil;

@@ -18,7 +18,7 @@ h1 {
 	width: 700px;
 }
 
-/* ---------- Skip to Content ---------- */
+/* ---------- Skip to content ---------- */
 
 #skip-to-content {
 	clip: rect(0 0 0 0);
@@ -57,7 +57,7 @@ h1 {
 	}
 }
 
-/* ---------- Sign In ---------- */
+/* ---------- Sign in ---------- */
 
 #sign-in {
 	background: #2CABE2;
@@ -348,7 +348,7 @@ h1 {
 	}
 }
 
-/* ---------- Internet Explorer ---------- */
+/* ---------- Internet explorer ---------- */
 
 .ie6 {
 	#skip-to-content {

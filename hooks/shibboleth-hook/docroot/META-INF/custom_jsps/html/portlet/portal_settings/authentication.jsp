@@ -14,7 +14,7 @@
  */
 --%>
 
-<%@include file="/html/portlet/portal_settings/init.jsp" %>
+<%@ include file="/html/portlet/portal_settings/init.jsp" %>
 
 <liferay-ui:error-marker key="errorSection" value="authentication" />
 
@@ -53,7 +53,7 @@ html = html.concat(section);
 <%= html %>
 
 <aui:script use="aui-base">
-    var curTabs = "<%= tabNamesJS %>";
+	var curTabs = "<%= tabNamesJS %>";
 	var tabs = <%= tabNamesJS %>;
 
 	for (i = 0; i < tabs.length; i++) {
@@ -71,9 +71,9 @@ html = html.concat(section);
 			tabNode.removeClass('last');
 		}
 
-        if (i == (tabs.length - 1)) {
-            tabNode.addClass('last');
-        }
+		if (i == (tabs.length - 1)) {
+			tabNode.addClass('last');
+		}
 	}
 </aui:script>
 

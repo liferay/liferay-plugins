@@ -14,12 +14,12 @@
 
 package com.liferay.knowledgebase.hook.events;
 
+import com.liferay.compat.portal.kernel.util.HttpUtil;
 import com.liferay.knowledgebase.util.PortletKeys;
 import com.liferay.portal.kernel.events.Action;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.PropsUtil;

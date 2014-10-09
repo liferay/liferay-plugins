@@ -14,7 +14,7 @@
 
 package com.liferay.akismet.hook.upgrade;
 
-import com.liferay.portal.kernel.upgrade.UpgradeProcess;
+import com.liferay.compat.portal.kernel.upgrade.UpgradeProcess;
 
 /**
  * @author Peter Shin

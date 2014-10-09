@@ -19,6 +19,7 @@ package com.liferay.contacts.contactscenter.portlet;
 
 import com.liferay.compat.portal.kernel.notifications.ChannelHubManagerUtil;
 import com.liferay.compat.portal.kernel.portlet.PortletResponseUtil;
+import com.liferay.compat.portal.kernel.util.ListUtil;
 import com.liferay.compat.portal.kernel.util.StringUtil;
 import com.liferay.compat.portal.util.PortalUtil;
 import com.liferay.compat.util.bridges.mvc.MVCPortlet;
@@ -59,7 +60,6 @@ import com.liferay.portal.kernel.notifications.NotificationEventFactoryUtil;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.portlet.LiferayWindowState;
 import com.liferay.portal.kernel.util.CalendarFactoryUtil;
-import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringPool;

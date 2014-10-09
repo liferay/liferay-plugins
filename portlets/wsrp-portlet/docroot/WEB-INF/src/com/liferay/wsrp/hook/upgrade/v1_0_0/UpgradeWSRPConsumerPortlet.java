@@ -14,8 +14,8 @@
 
 package com.liferay.wsrp.hook.upgrade.v1_0_0;
 
+import com.liferay.compat.portal.kernel.upgrade.UpgradeProcess;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
-import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 import com.liferay.wsrp.model.WSRPConsumerPortlet;
 import com.liferay.wsrp.service.WSRPConsumerPortletLocalServiceUtil;
 

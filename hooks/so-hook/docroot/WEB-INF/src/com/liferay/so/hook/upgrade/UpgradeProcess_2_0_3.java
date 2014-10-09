@@ -17,7 +17,7 @@
 
 package com.liferay.so.hook.upgrade;
 
-import com.liferay.portal.kernel.upgrade.UpgradeProcess;
+import com.liferay.compat.portal.kernel.upgrade.UpgradeProcess;
 import com.liferay.so.hook.upgrade.v2_0_3.UpgradeBookmarks;
 
 /**
