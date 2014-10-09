@@ -113,7 +113,6 @@ AUI().use(
 
 				portletURL.setParameter('javax.portlet.action', 'updateMicroblogsViewCount');
 				portletURL.setParameter('microblogsEntryId', microblogsEntryId);
-
 				portletURL.setWindowState('normal');
 
 				A.io.request(portletURL.toString());
