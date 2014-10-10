@@ -701,8 +701,8 @@ public class FileSystemImporter extends BaseImporter {
 			privateLayout = true;
 		}
 
-		Map<Locale, String> nameMap = getMap(layoutJSONObject, "name", true);
-		Map<Locale, String> titleMap = getMap(layoutJSONObject, "title", true);
+		Map<Locale, String> nameMap = getMap(layoutJSONObject, "name");
+		Map<Locale, String> titleMap = getMap(layoutJSONObject, "title");
 		String type = GetterUtil.getString(
 			layoutJSONObject.getString("type"), LayoutConstants.TYPE_PORTLET);
 		String typeSettings = layoutJSONObject.getString("typeSettings");
@@ -871,9 +871,9 @@ public class FileSystemImporter extends BaseImporter {
 		throws Exception {
 
 		Map<Locale, String> nameMap = getMap(
-			layoutPrototypeJSONObject, "name", true);
+			layoutPrototypeJSONObject, "name");
 		Map<Locale, String> descriptionMap = getMap(
-			layoutPrototypeJSONObject, "description", true);
+			layoutPrototypeJSONObject, "description");
 
 		ServiceContext serviceContext = new ServiceContext();
 
@@ -1115,8 +1115,7 @@ public class FileSystemImporter extends BaseImporter {
 	}
 
 	protected Map<Locale, String> getMap(
-		JSONObject layoutJSONObject, String name,
-		boolean requiresDefaultLocale) {
+		JSONObject layoutJSONObject, String name) {
 
 		Map<Locale, String> map = new HashMap<Locale, String>();
 
@@ -1126,9 +1125,7 @@ public class FileSystemImporter extends BaseImporter {
 		if (jsonObject != null) {
 			map = (Map<Locale, String>)LocalizationUtil.deserialize(jsonObject);
 
-			if (!map.containsKey(LocaleUtil.getDefault()) &&
-				requiresDefaultLocale) {
-
+			if (!map.containsKey(LocaleUtil.getDefault())) {
 				Collection<String> values = map.values();
 
 				Iterator<String> iterator = values.iterator();
