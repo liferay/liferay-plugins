@@ -42,7 +42,6 @@ if (enableKBArticleViewCountIncrement && !kbArticle.isDraft()) {
 				<liferay-util:include page="/admin/article_tools.jsp" servletContext="<%= application %>" />
 			</div>
 
-
 			<h1 class="kb-title">
 				<%= kbArticle.getTitle() %>
 			</h1>
