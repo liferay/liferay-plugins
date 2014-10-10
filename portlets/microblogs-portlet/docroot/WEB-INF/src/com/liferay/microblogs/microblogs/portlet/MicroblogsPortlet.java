@@ -18,6 +18,7 @@
 package com.liferay.microblogs.microblogs.portlet;
 
 import com.liferay.microblogs.model.MicroblogsEntry;
+import com.liferay.microblogs.service.MicroblogsEntryLocalServiceUtil;
 import com.liferay.microblogs.service.MicroblogsEntryServiceUtil;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet;
 import com.liferay.portal.kernel.util.ParamUtil;
