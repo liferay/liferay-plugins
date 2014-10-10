@@ -893,12 +893,14 @@ public class FileSystemImporter extends BaseImporter {
 		if (layoutPrototype == null) {
 			layoutPrototype =
 				LayoutPrototypeLocalServiceUtil.addLayoutPrototype(
-					userId, companyId, nameMap, descriptionMap, true,
+					userId, companyId, nameMap,
+					descriptionMap.get(LocaleUtil.getDefault()), true,
 					serviceContext);
 		}
 		else {
 			LayoutPrototypeLocalServiceUtil.updateLayoutPrototype(
-				layoutPrototype.getLayoutPrototypeId(), nameMap, descriptionMap,
+				layoutPrototype.getLayoutPrototypeId(), nameMap,
+				descriptionMap.get(LocaleUtil.getDefault()),
 				layoutPrototype.isActive(), serviceContext);
 		}
 
