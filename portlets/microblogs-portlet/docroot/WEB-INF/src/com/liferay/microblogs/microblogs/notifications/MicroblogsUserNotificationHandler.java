@@ -96,7 +96,7 @@ public class MicroblogsUserNotificationHandler
 			MicroblogsUtil.getParentMicroblogsEntryId(microblogsEntry);
 
 		if (microblogsEntry.getType() == MicroblogsEntryConstants.TYPE_REPLY) {
-			if (microblogsEntry.getReceiverUserId() ==
+			if (MicroblogsUtil.getParentMicroblogsUserId(microblogsEntry) ==
 					serviceContext.getUserId()) {
 
 				title = serviceContext.translate(

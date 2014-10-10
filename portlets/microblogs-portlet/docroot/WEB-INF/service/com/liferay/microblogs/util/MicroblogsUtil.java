@@ -117,6 +117,16 @@ public class MicroblogsUtil {
 		return microblogsEntry.getReceiverMicroblogsEntryId();
 	}
 
+	public static long getParentMicroblogsUserId(
+		MicroblogsEntry microblogsEntry) {
+
+		if (microblogsEntry.getType() == MicroblogsEntryConstants.TYPE_REPOST) {
+			return microblogsEntry.getUserId();
+		}
+
+		return microblogsEntry.getReceiverUserId();
+	}
+
 	public static List<Long> getSubscriberUserIds(
 		MicroblogsEntry microblogsEntry) {
 
