@@ -138,9 +138,7 @@ public class MicroblogsEntryLocalServiceImpl
 
 		subscribeUsers(microblogsEntry, serviceContext);
 
-		if (type == MicroblogsEntryConstants.TYPE_REPLY) {
-			sendNotificationEvent(microblogsEntry, serviceContext);
-		}
+		sendNotificationEvent(microblogsEntry, serviceContext);
 
 		return microblogsEntry;
 	}
@@ -391,12 +389,12 @@ public class MicroblogsEntryLocalServiceImpl
 			MicroblogsEntry microblogsEntry, ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
-		long microblogsSubscriptionEntryId =
-			microblogsEntry.getReceiverMicroblogsEntryId();
+		long parentMicroblogsEntryId =
+			MicroblogsUtil.getParentMicroblogsEntryId(microblogsEntry);
 
 		SubscriptionLocalServiceUtil.addSubscription(
 			microblogsEntry.getUserId(), serviceContext.getScopeGroupId(),
-			MicroblogsEntry.class.getName(), microblogsSubscriptionEntryId);
+			MicroblogsEntry.class.getName(), parentMicroblogsEntryId);
 
 		List<String> screenNames = MicroblogsUtil.getTaggedUsersScreenNames(
 			microblogsEntry.getContent());
@@ -407,7 +405,7 @@ public class MicroblogsEntryLocalServiceImpl
 
 			SubscriptionLocalServiceUtil.addSubscription(
 				userId, serviceContext.getScopeGroupId(),
-				MicroblogsEntry.class.getName(), microblogsSubscriptionEntryId);
+				MicroblogsEntry.class.getName(), parentMicroblogsEntryId);
 		}
 	}
 

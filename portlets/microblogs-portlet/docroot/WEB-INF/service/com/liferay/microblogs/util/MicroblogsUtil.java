@@ -105,6 +105,16 @@ public class MicroblogsUtil {
 		return jsonArray;
 	}
 
+	public static long getParentMicroblogsEntryId(
+		MicroblogsEntry microblogsEntry) {
+
+		if (microblogsEntry.getType() == MicroblogsEntryConstants.TYPE_REPOST) {
+			return microblogsEntry.getMicroblogsEntryId();
+		}
+
+		return microblogsEntry.getReceiverMicroblogsEntryId();
+	}
+
 	public static String getTaggedContent(
 			MicroblogsEntry microblogsEntry, ServiceContext serviceContext)
 		throws PortalException {
