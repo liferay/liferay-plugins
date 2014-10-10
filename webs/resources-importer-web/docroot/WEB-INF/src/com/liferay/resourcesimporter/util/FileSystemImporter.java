@@ -702,9 +702,7 @@ public class FileSystemImporter extends BaseImporter {
 		}
 
 		Map<Locale, String> nameMap = getMap(layoutJSONObject, "name", true);
-
 		Map<Locale, String> titleMap = getMap(layoutJSONObject, "title", true);
-
 		String type = GetterUtil.getString(
 			layoutJSONObject.getString("type"), LayoutConstants.TYPE_PORTLET);
 		String typeSettings = layoutJSONObject.getString("typeSettings");
@@ -723,10 +721,10 @@ public class FileSystemImporter extends BaseImporter {
 
 		friendlyURLMap.put(LocaleUtil.getDefault(), friendlyURL);
 
+		ServiceContext serviceContext = new ServiceContext();
+
 		String layoutPrototypeUuid = layoutJSONObject.getString(
 			"layoutPrototypeUuid");
-
-		ServiceContext serviceContext = new ServiceContext();
 
 		if (Validator.isNotNull(layoutPrototypeUuid)) {
 			boolean layoutPrototypeLinkEnabled = GetterUtil.getBoolean(
@@ -735,7 +733,6 @@ public class FileSystemImporter extends BaseImporter {
 
 			serviceContext.setAttribute(
 				"layoutPrototypeLinkEnabled", layoutPrototypeLinkEnabled);
-
 			serviceContext.setAttribute(
 				"layoutPrototypeUuid", layoutPrototypeUuid);
 		}
@@ -875,7 +872,6 @@ public class FileSystemImporter extends BaseImporter {
 
 		Map<Locale, String> nameMap = getMap(
 			layoutPrototypeJSONObject, "name", true);
-
 		Map<Locale, String> descriptionMap = getMap(
 			layoutPrototypeJSONObject, "description", true);
 
