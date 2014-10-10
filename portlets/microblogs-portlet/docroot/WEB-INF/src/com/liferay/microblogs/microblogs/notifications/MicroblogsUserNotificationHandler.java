@@ -23,7 +23,6 @@ import com.liferay.microblogs.service.MicroblogsEntryLocalServiceUtil;
 import com.liferay.microblogs.util.MicroblogsUtil;
 import com.liferay.microblogs.util.PortletKeys;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.notifications.BaseUserNotificationHandler;
@@ -85,7 +84,7 @@ public class MicroblogsUserNotificationHandler
 
 	protected String getBodyTitle(
 			MicroblogsEntry microblogsEntry, ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		String title = StringPool.BLANK;
 
@@ -97,11 +96,15 @@ public class MicroblogsUserNotificationHandler
 			MicroblogsUtil.getParentMicroblogsEntryId(microblogsEntry);
 
 		if (microblogsEntry.getType() == MicroblogsEntryConstants.TYPE_REPLY) {
-			title = serviceContext.translate(
-				"x-commented-on-your-post", userFullName);
-
-			if (microblogsEntry.getReceiverUserId() !=
+			if (microblogsEntry.getReceiverUserId() ==
 					serviceContext.getUserId()) {
+
+				title = serviceContext.translate(
+					"x-commented-on-your-post", userFullName);
+			}
+			else if (MicroblogsUtil.hasReplied(
+						parentMicroblogsEntryId,
+				serviceContext.getUserId())) {
 
 				User receiverUser = UserLocalServiceUtil.fetchUser(
 					microblogsEntry.getReceiverUserId());

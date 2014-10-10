@@ -32,9 +32,11 @@ import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.model.Group;
+import com.liferay.portal.model.Subscription;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
+import com.liferay.portal.service.SubscriptionLocalServiceUtil;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
@@ -115,6 +117,27 @@ public class MicroblogsUtil {
 		return microblogsEntry.getReceiverMicroblogsEntryId();
 	}
 
+	public static List<Long> getSubscriberUserIds(
+		MicroblogsEntry microblogsEntry) {
+
+		List<Long> receiverUserIds = new ArrayList<Long>();
+
+		List<Subscription> subscriptions =
+			SubscriptionLocalServiceUtil.getSubscriptions(
+				microblogsEntry.getCompanyId(), MicroblogsEntry.class.getName(),
+				MicroblogsUtil.getParentMicroblogsEntryId(microblogsEntry));
+
+		for (Subscription subscription : subscriptions) {
+			if (microblogsEntry.getUserId() == subscription.getUserId()) {
+				continue;
+			}
+
+			receiverUserIds.add(subscription.getUserId());
+		}
+
+		return receiverUserIds;
+	}
+
 	public static String getTaggedContent(
 			MicroblogsEntry microblogsEntry, ServiceContext serviceContext)
 		throws PortalException {
@@ -150,9 +173,35 @@ public class MicroblogsUtil {
 		return screenNames;
 	}
 
+	public static boolean hasReplied(long parentMicroblogsEntryId, long userId)
+		throws PortalException {
+
+		List<MicroblogsEntry> microblogsEntries =
+			new ArrayList<MicroblogsEntry>();
+
+		microblogsEntries.addAll(
+			MicroblogsEntryLocalServiceUtil.
+				getReceiverMicroblogsEntryMicroblogsEntries(
+					MicroblogsEntryConstants.TYPE_REPLY,
+					parentMicroblogsEntryId, QueryUtil.ALL_POS,
+					QueryUtil.ALL_POS));
+
+		microblogsEntries.add(
+			MicroblogsEntryLocalServiceUtil.getMicroblogsEntry(
+				parentMicroblogsEntryId));
+
+		for (MicroblogsEntry microblogsEntry : microblogsEntries) {
+			if (microblogsEntry.getUserId() == userId) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
 	public static boolean isTaggedUser(
 			long parentMicroblogsEntryId, long userId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		List<MicroblogsEntry> microblogsEntries =
 			new ArrayList<MicroblogsEntry>();

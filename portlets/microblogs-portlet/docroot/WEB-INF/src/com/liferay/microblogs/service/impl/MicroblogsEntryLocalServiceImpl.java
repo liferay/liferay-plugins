@@ -53,7 +53,6 @@ import com.liferay.portlet.social.service.SocialActivityLocalServiceUtil;
 
 import java.io.Serializable;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -320,27 +319,6 @@ public class MicroblogsEntryLocalServiceImpl
 		return 0;
 	}
 
-	protected List<Long> getReceiverUserIds(MicroblogsEntry microblogsEntry) {
-		List<Long> receiverUserIds = new ArrayList<Long>();
-
-		List<Subscription> subscriptions =
-			SubscriptionLocalServiceUtil.getSubscriptions(
-				microblogsEntry.getCompanyId(), MicroblogsEntry.class.getName(),
-				microblogsEntry.getReceiverMicroblogsEntryId());
-
-		for (Subscription subscription : subscriptions) {
-			if (microblogsEntry.getUserId() ==
-					subscription.getUserId()) {
-
-				continue;
-			}
-
-			receiverUserIds.add(subscription.getUserId());
-		}
-
-		return receiverUserIds;
-	}
-
 	protected void sendNotificationEvent(
 			MicroblogsEntry microblogsEntry, ServiceContext serviceContext)
 		throws PortalException {
@@ -377,7 +355,8 @@ public class MicroblogsEntryLocalServiceImpl
 			"notificationType", microblogsEntry.getType());
 		notificationEventJSONObject.put("userId", microblogsEntry.getUserId());
 
-		List<Long> receiverUserIds = getReceiverUserIds(microblogsEntry);
+		List<Long> receiverUserIds = MicroblogsUtil.getSubscriberUserIds(
+			microblogsEntry);
 
 		MessageBusUtil.sendMessage(
 			DestinationNames.ASYNC_SERVICE,
@@ -387,7 +366,7 @@ public class MicroblogsEntryLocalServiceImpl
 
 	protected void subscribeUsers(
 			MicroblogsEntry microblogsEntry, ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		long parentMicroblogsEntryId =
 			MicroblogsUtil.getParentMicroblogsEntryId(microblogsEntry);
