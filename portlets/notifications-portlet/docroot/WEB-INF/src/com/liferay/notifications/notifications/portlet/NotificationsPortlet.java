@@ -282,11 +282,10 @@ public class NotificationsPortlet extends MVCPortlet {
 		if (!Validator.isBlank(listItems)) {
 			StringBundler sb = new StringBundler(6);
 
-			sb.append("<div class=\"lfr-icon-menu\">");
-			sb.append("<a class=\"dropdown-toggle\" href=\"javascript:;\">");
-			sb.append("<i class=\"caret\"></i></a>");
-			sb.append(
-				"<ul class=\"dropdown-menu lfr-menu-list direction-left\">");
+			sb.append("<div class=\"lfr-icon-menu\"><a ");
+			sb.append("class=\"dropdown-toggle\" href=\"javascript:;\"><i ");
+			sb.append("class=\"caret\"></i></a><ul class=\"dropdown-menu ");
+			sb.append("lfr-menu-list direction-left\">");
 			sb.append(listItems);
 			sb.append("</ul></div>");
 
@@ -299,10 +298,9 @@ public class NotificationsPortlet extends MVCPortlet {
 	protected static String getMarkAsReadLI(ThemeDisplay themeDisplay) {
 		StringBundler sb = new StringBundler(5);
 
-		sb.append(
-			"<li><a class=\"taglib-icon mark-as-read\" href=\"javascript:;\">");
-		sb.append("<i class=\"icon-remove\"></i>");
-		sb.append("<span class=\"taglib-text-icon\">");
+		sb.append("<li><a class=\"taglib-icon mark-as-read\" ");
+		sb.append("href=\"javascript:;\"><i class=\"icon-remove\"></i><span ");
+		sb.append("class=\"taglib-text-icon\">");
 		sb.append(LanguageUtil.get(themeDisplay.getLocale(), "mark-as-read"));
 		sb.append("</span></a></li>");
 
@@ -314,11 +312,11 @@ public class NotificationsPortlet extends MVCPortlet {
 
 		StringBundler sb = new StringBundler(8);
 
-		sb.append(
-			"<li><a class=\"taglib-icon unsubscribe\" data-unsubscribeURL=\"");
+		sb.append("<li><a class=\"taglib-icon unsubscribe\" ");
+		sb.append("data-unsubscribeURL=\"");
 		sb.append(unsubscribeURL);
-		sb.append("\" href=\"javascript:;\"><i class=\"icon-rss\"></i>");
-		sb.append("<span class=\"taglib-text-icon\">");
+		sb.append("\" href=\"javascript:;\"><i class=\"icon-rss\"></i><span ");
+		sb.append("class=\"taglib-text-icon\">");
 		sb.append(LanguageUtil.get(themeDisplay.getLocale(), "unsubscribe"));
 		sb.append("</span><div class=\"unsubscribe-info\">");
 		sb.append(
