@@ -1136,10 +1136,9 @@ public class FileSystemImporter extends BaseImporter {
 
 				Collection<String> values = localizedMap.values();
 
-				Iterator iterator = values.iterator();
+				Iterator<String> iterator = values.iterator();
 
-				localizedMap.put(
-					LocaleUtil.getDefault(), (String)iterator.next());
+				localizedMap.put(LocaleUtil.getDefault(), iterator.next());
 			}
 		}
 		else {
