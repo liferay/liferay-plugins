@@ -55,6 +55,7 @@ import com.liferay.portal.service.LayoutSetLocalServiceUtil;
 import com.liferay.portal.service.LayoutSetPrototypeLocalServiceUtil;
 import com.liferay.portal.service.RepositoryLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
+import com.liferay.portal.service.ServiceContextThreadLocal;
 import com.liferay.portal.service.ThemeLocalServiceUtil;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portal.util.PortletKeys;
@@ -703,6 +704,7 @@ public class FileSystemImporter extends BaseImporter {
 
 		Map<Locale, String> nameMap = getMap(layoutJSONObject, "name");
 		Map<Locale, String> titleMap = getMap(layoutJSONObject, "title");
+
 		String type = layoutJSONObject.getString("type");
 
 		if (Validator.isNull(type)) {
@@ -727,52 +729,64 @@ public class FileSystemImporter extends BaseImporter {
 
 		ServiceContext serviceContext = new ServiceContext();
 
-		String layoutPrototypeName = layoutJSONObject.getString(
-			"layoutPrototypeName");
+		serviceContext.setCompanyId(companyId);
+		serviceContext.setScopeGroupId(groupId);
+		serviceContext.setUserId(userId);
 
-		if (Validator.isNotNull(layoutPrototypeName)) {
-			boolean layoutPrototypeLinkEnabled = GetterUtil.getBoolean(
-				layoutJSONObject.getString("layoutPrototypeLinkEnabled"),
-				false);
+		ServiceContextThreadLocal.pushServiceContext(serviceContext);
 
-			serviceContext.setAttribute(
-				"layoutPrototypeLinkEnabled", layoutPrototypeLinkEnabled);
+		try {
 
-			LayoutPrototype layoutPrototype = getLayoutPrototype(
-				companyId, layoutPrototypeName);
+			String layoutPrototypeName = layoutJSONObject.getString(
+				"layoutPrototypeName");
 
-			serviceContext.setAttribute(
-				"layoutPrototypeUuid", layoutPrototype.getUuid());
+			if (Validator.isNotNull(layoutPrototypeName)) {
+				boolean layoutPrototypeLinkEnabled = GetterUtil.getBoolean(
+					layoutJSONObject.getString("layoutPrototypeLinkEnabled"),
+					false);
+
+				serviceContext.setAttribute(
+					"layoutPrototypeLinkEnabled", layoutPrototypeLinkEnabled);
+
+				LayoutPrototype layoutPrototype = getLayoutPrototype(
+					companyId, layoutPrototypeName);
+
+				serviceContext.setAttribute(
+					"layoutPrototypeUuid", layoutPrototype.getUuid());
+			}
+
+			Layout layout = LayoutLocalServiceUtil.addLayout(
+				userId, groupId, privateLayout, parentLayoutId, nameMap, titleMap,
+				null, null, null, type, typeSettings, hidden, friendlyURLMap,
+				serviceContext);
+
+			LayoutTypePortlet layoutTypePortlet =
+				(LayoutTypePortlet) layout.getLayoutType();
+
+			String layoutTemplateId = layoutJSONObject.getString(
+				"layoutTemplateId", _defaultLayoutTemplateId);
+
+			if (Validator.isNotNull(layoutTemplateId)) {
+				layoutTypePortlet.setLayoutTemplateId(
+					userId, layoutTemplateId, false);
+			}
+
+			JSONArray columnsJSONArray = layoutJSONObject.getJSONArray("columns");
+
+			addLayoutColumns(
+				layout, LayoutTypePortletConstants.COLUMN_PREFIX, columnsJSONArray);
+
+			LayoutLocalServiceUtil.updateLayout(
+				groupId, layout.isPrivateLayout(), layout.getLayoutId(),
+				layout.getTypeSettings());
+
+			JSONArray layoutsJSONArray = layoutJSONObject.getJSONArray("layouts");
+
+			addLayouts(privateLayout, layout.getLayoutId(), layoutsJSONArray);
 		}
-
-		Layout layout = LayoutLocalServiceUtil.addLayout(
-			userId, groupId, privateLayout, parentLayoutId, nameMap, titleMap,
-			null, null, null, type, typeSettings, hidden, friendlyURLMap,
-			serviceContext);
-
-		LayoutTypePortlet layoutTypePortlet =
-			(LayoutTypePortlet)layout.getLayoutType();
-
-		String layoutTemplateId = layoutJSONObject.getString(
-			"layoutTemplateId", _defaultLayoutTemplateId);
-
-		if (Validator.isNotNull(layoutTemplateId)) {
-			layoutTypePortlet.setLayoutTemplateId(
-				userId, layoutTemplateId, false);
+		finally {
+			ServiceContextThreadLocal.popServiceContext();
 		}
-
-		JSONArray columnsJSONArray = layoutJSONObject.getJSONArray("columns");
-
-		addLayoutColumns(
-			layout, LayoutTypePortletConstants.COLUMN_PREFIX, columnsJSONArray);
-
-		LayoutLocalServiceUtil.updateLayout(
-			groupId, layout.isPrivateLayout(), layout.getLayoutId(),
-			layout.getTypeSettings());
-
-		JSONArray layoutsJSONArray = layoutJSONObject.getJSONArray("layouts");
-
-		addLayouts(privateLayout, layout.getLayoutId(), layoutsJSONArray);
 	}
 
 	protected void addLayoutColumn(
