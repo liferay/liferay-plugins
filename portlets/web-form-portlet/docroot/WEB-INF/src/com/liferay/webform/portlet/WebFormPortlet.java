@@ -270,7 +270,7 @@ public class WebFormPortlet extends MVCPortlet {
 			"databaseTableName", StringPool.BLANK);
 		String title = preferences.getValue("title", "no-title");
 
-		StringBuilder sb = new StringBuilder();
+		StringBundler sb = new StringBundler();
 
 		List<String> fieldLabels = new ArrayList<String>();
 
@@ -287,12 +287,11 @@ public class WebFormPortlet extends MVCPortlet {
 
 			fieldLabels.add(fieldLabel);
 
-			sb.append(prepareFieldForCSVExport(localizedfieldLabel));
+			sb.append(getCSVFormatedValue(localizedfieldLabel));
+			sb.append(PortletPropsValues.CSV_SEPARATOR);
 		}
 
-		sb.delete(
-			sb.length() - PortletPropsValues.CSV_SEPARATOR.length(),
-			sb.length());
+		sb.setIndex(sb.index() - 1);
 
 		sb.append(CharPool.NEW_LINE);
 
@@ -308,12 +307,11 @@ public class WebFormPortlet extends MVCPortlet {
 						WebFormUtil.class.getName(), databaseTableName,
 						fieldName, row.getClassPK(), StringPool.BLANK);
 
-					sb.append(prepareFieldForCSVExport(data));
+					sb.append(getCSVFormatedValue(data));
+					sb.append(PortletPropsValues.CSV_SEPARATOR);
 				}
 
-				sb.delete(
-					sb.length() - PortletPropsValues.CSV_SEPARATOR.length(),
-					sb.length());
+				sb.setIndex(sb.index() - 1);
 
 				sb.append(CharPool.NEW_LINE);
 			}
@@ -327,8 +325,19 @@ public class WebFormPortlet extends MVCPortlet {
 			resourceRequest, resourceResponse, fileName, bytes, contentType);
 	}
 
+	protected String getCSVFormatedValue(String value) {
+		StringBundler sb = new StringBundler(3);
+
+		sb.append(CharPool.QUOTE);
+		sb.append(
+			StringUtil.replace(value, CharPool.QUOTE, StringPool.DOUBLE_QUOTE));
+		sb.append(CharPool.QUOTE);
+
+		return sb.toString();
+	}
+
 	protected String getMailBody(Map<String, String> fieldsMap) {
-		StringBuilder sb = new StringBuilder();
+		StringBundler sb = new StringBundler();
 
 		for (String fieldLabel : fieldsMap.keySet()) {
 			String fieldValue = fieldsMap.get(fieldLabel);
@@ -338,19 +347,6 @@ public class WebFormPortlet extends MVCPortlet {
 			sb.append(fieldValue);
 			sb.append(CharPool.NEW_LINE);
 		}
-
-		return sb.toString();
-	}
-
-	protected String prepareFieldForCSVExport(String fieldValue) {
-		StringBundler sb = new StringBundler(4);
-
-		sb.append(CharPool.QUOTE);
-		sb.append(
-			StringUtil.replace(
-				fieldValue, CharPool.QUOTE, StringPool.DOUBLE_QUOTE));
-		sb.append(CharPool.QUOTE);
-		sb.append(PortletPropsValues.CSV_SEPARATOR);
 
 		return sb.toString();
 	}
@@ -390,22 +386,21 @@ public class WebFormPortlet extends MVCPortlet {
 		// CSV_SEPARATOR, quote each entry with double quotes, and escape
 		// double quotes in values a two double quotes.
 
-		StringBuilder sb = new StringBuilder();
+		StringBundler sb = new StringBundler();
 
 		for (String fieldLabel : fieldsMap.keySet()) {
 			String fieldValue = fieldsMap.get(fieldLabel);
 
-			sb.append(prepareFieldForCSVExport(fieldValue));
+			sb.append(getCSVFormatedValue(fieldValue));
+			sb.append(PortletPropsValues.CSV_SEPARATOR);
 		}
 
-		String s =
-			sb.substring(
-				0,
-				sb.length() - PortletPropsValues.CSV_SEPARATOR.length()) +
-					StringPool.NEW_LINE;
+		sb.setIndex(sb.index() - 1);
+
+		sb.append(CharPool.NEW_LINE);
 
 		try {
-			FileUtil.write(fileName, s, false, true);
+			FileUtil.write(fileName, sb.toString(), false, true);
 
 			return true;
 		}
