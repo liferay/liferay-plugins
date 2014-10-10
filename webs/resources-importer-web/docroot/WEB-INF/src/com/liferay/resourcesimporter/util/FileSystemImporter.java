@@ -1115,35 +1115,34 @@ public class FileSystemImporter extends BaseImporter {
 	}
 
 	protected Map<Locale, String> getMap(
-		JSONObject layoutJSONObject, String fieldName,
+		JSONObject layoutJSONObject, String name,
 		boolean requiresDefaultLocale) {
 
-		Map<Locale, String> localizedMap = new HashMap<Locale, String>();
+		Map<Locale, String> map = new HashMap<Locale, String>();
 
-		JSONObject nameMapJSONObject = layoutJSONObject.getJSONObject(
-			fieldName.concat("Map"));
+		JSONObject jsonObject = layoutJSONObject.getJSONObject(
+			name.concat("Map"));
 
-		if (nameMapJSONObject != null) {
-			localizedMap = (Map<Locale, String>)LocalizationUtil.deserialize(
-				nameMapJSONObject);
+		if (jsonObject != null) {
+			map = (Map<Locale, String>)LocalizationUtil.deserialize(jsonObject);
 
-			if (!localizedMap.containsKey(LocaleUtil.getDefault()) &&
+			if (!map.containsKey(LocaleUtil.getDefault()) &&
 				requiresDefaultLocale) {
 
-				Collection<String> values = localizedMap.values();
+				Collection<String> values = map.values();
 
 				Iterator<String> iterator = values.iterator();
 
-				localizedMap.put(LocaleUtil.getDefault(), iterator.next());
+				map.put(LocaleUtil.getDefault(), iterator.next());
 			}
 		}
 		else {
-			String name = layoutJSONObject.getString(fieldName);
+			String value = layoutJSONObject.getString(name);
 
-			localizedMap.put(LocaleUtil.getDefault(), name);
+			map.put(LocaleUtil.getDefault(), value);
 		}
 
-		return localizedMap;
+		return map;
 	}
 
 	protected Map<Locale, String> getMap(Locale locale, String value) {
