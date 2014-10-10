@@ -40,6 +40,7 @@ import com.liferay.portal.util.comparator.UserFirstNameComparator;
 import com.liferay.portlet.PortletURLFactoryUtil;
 import com.liferay.portlet.social.model.SocialRelationConstants;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -53,6 +54,22 @@ import javax.portlet.WindowStateException;
  * @author Jonathan Lee
  */
 public class MicroblogsUtil {
+
+	public static List<String> getHashtags(String content) {
+		List<String> hashtags = new ArrayList<String>();
+
+		Matcher matcher = _hashtagPattern.matcher(content);
+
+		while (matcher.find()) {
+			String hashtag = matcher.group();
+
+			hashtag = hashtag.substring(1);
+
+			hashtags.add(hashtag);
+		}
+
+		return hashtags;
+	}
 
 	public static JSONArray getJSONRecipients(
 			long userId, ThemeDisplay themeDisplay)
@@ -104,6 +121,23 @@ public class MicroblogsUtil {
 		return content;
 	}
 
+	public static List<String> getTaggedUsersScreenNames(String content) {
+		List<String> screenNames = new ArrayList<String>();
+
+		Matcher matcher = _userTagPattern.matcher(content);
+
+		while (matcher.find()) {
+			String screenName = matcher.group();
+
+			screenName = screenName.replace("[@", StringPool.BLANK);
+			screenName = screenName.replace("]", StringPool.BLANK);
+
+			screenNames.add(screenName);
+		}
+
+		return screenNames;
+	}
+
 	public static String replaceTags(
 			String content, ServiceContext serviceContext)
 		throws PortalException {
@@ -112,7 +146,7 @@ public class MicroblogsUtil {
 
 		ThemeDisplay themeDisplay = serviceContext.getThemeDisplay();
 
-		Matcher matcher = _pattern1.matcher(content);
+		Matcher matcher = _hashtagPattern.matcher(content);
 
 		while (matcher.find()) {
 			String result = matcher.group();
@@ -182,7 +216,7 @@ public class MicroblogsUtil {
 			String content, ServiceContext serviceContext)
 		throws PortalException {
 
-		Matcher matcher = _pattern2.matcher(content);
+		Matcher matcher = _userTagPattern.matcher(content);
 
 		while (matcher.find()) {
 			String result = matcher.group();
@@ -225,7 +259,7 @@ public class MicroblogsUtil {
 		return content;
 	}
 
-	private static Pattern _pattern1 = Pattern.compile("\\#[a-zA-Z]\\w*");
-	private static Pattern _pattern2 = Pattern.compile("\\[\\@\\S*\\]");
+	private static Pattern _hashtagPattern = Pattern.compile("\\#[a-zA-Z]\\w*");
+	private static Pattern _userTagPattern = Pattern.compile("\\[\\@\\S*\\]");
 
 }
