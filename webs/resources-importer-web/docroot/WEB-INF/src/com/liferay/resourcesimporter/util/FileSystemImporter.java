@@ -703,8 +703,12 @@ public class FileSystemImporter extends BaseImporter {
 
 		Map<Locale, String> nameMap = getMap(layoutJSONObject, "name");
 		Map<Locale, String> titleMap = getMap(layoutJSONObject, "title");
-		String type = GetterUtil.getString(
-			layoutJSONObject.getString("type"), LayoutConstants.TYPE_PORTLET);
+		String type = layoutJSONObject.getString("type");
+
+		if (Validator.isNull(type)) {
+			type =LayoutConstants.TYPE_PORTLET;
+		}
+
 		String typeSettings = layoutJSONObject.getString("typeSettings");
 
 		boolean hidden = layoutJSONObject.getBoolean("hidden");
