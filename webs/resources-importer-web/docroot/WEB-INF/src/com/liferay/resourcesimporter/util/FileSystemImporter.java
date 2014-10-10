@@ -1011,10 +1011,10 @@ public class FileSystemImporter extends BaseImporter {
 		serviceContext.setAddGuestPermissions(true);
 		serviceContext.setScopeGroupId(groupId);
 
-		setupAssets("assets.json");
-		setupLayoutPrototypes("layout_prototypes.json");
-		setupSettings("settings.json");
-		setupSitemap("sitemap.json");
+		setUpAssets("assets.json");
+		setUpLayoutPrototypes("layout_prototypes.json");
+		setUpSettings("settings.json");
+		setUpSitemap("sitemap.json");
 	}
 
 	protected String getDDMTemplateLanguage(String fileName) {
@@ -1259,7 +1259,7 @@ public class FileSystemImporter extends BaseImporter {
 		serviceContext.setAssetTagNames(assetTagNames);
 	}
 
-	protected void setupAssets(JSONArray assetsJSONArray) {
+	protected void setUpAssets(JSONArray assetsJSONArray) {
 		if (assetsJSONArray == null) {
 			return;
 		}
@@ -1273,7 +1273,7 @@ public class FileSystemImporter extends BaseImporter {
 		}
 	}
 
-	protected void setupAssets(String fileName) throws Exception {
+	protected void setUpAssets(String fileName) throws Exception {
 		if (!isCompanyGroup()) {
 			List<AssetTag> assetTags = AssetTagLocalServiceUtil.getGroupTags(
 				groupId);
@@ -1296,7 +1296,7 @@ public class FileSystemImporter extends BaseImporter {
 		if (jsonObject != null) {
 			JSONArray assetsJSONArray = jsonObject.getJSONArray("assets");
 
-			setupAssets(assetsJSONArray);
+			setUpAssets(assetsJSONArray);
 		}
 
 		addDLFileEntries(_DL_DOCUMENTS_DIR_NAME);
@@ -1315,7 +1315,7 @@ public class FileSystemImporter extends BaseImporter {
 		addLayoutTemplate(_LAYOUT_TEMPLATE_DIR_NAME);
 	}
 
-	protected void setupLayoutPrototypes(String fileName) throws Exception {
+	protected void setUpLayoutPrototypes(String fileName) throws Exception {
 		JSONObject jsonObject = getJSONObject(fileName);
 
 		JSONArray layoutPrototypesJSONArray = jsonObject.getJSONArray(
@@ -1333,7 +1333,7 @@ public class FileSystemImporter extends BaseImporter {
 		}
 	}
 
-	protected void setupSettings(String fileName) throws Exception {
+	protected void setUpSettings(String fileName) throws Exception {
 		if (targetClassName.equals(Group.class.getName())) {
 			return;
 		}
@@ -1357,7 +1357,7 @@ public class FileSystemImporter extends BaseImporter {
 			layoutSetPrototype);
 	}
 
-	protected void setupSitemap(String fileName) throws Exception {
+	protected void setUpSitemap(String fileName) throws Exception {
 		LayoutLocalServiceUtil.deleteLayouts(
 			groupId, true, new ServiceContext());
 
