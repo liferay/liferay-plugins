@@ -88,6 +88,19 @@ $red: #8F0920;
 	text-transform: none;
 }
 
+@mixin hashtag {
+	.hashtag {
+		color: #999;
+		padding-right: 0;
+	}
+
+	.hashtag-link {
+		&, &:active, &:hover {
+			color: inherit;
+		}
+	}
+}
+
 @mixin header {
 	background: $controlBgColor;
 

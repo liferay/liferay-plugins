@@ -1552,15 +1552,7 @@ input, textarea {
 /* ---------- Portlet: notifications ---------- */
 
 .dockbar-user-notifications, .notifications-portlet {
-	.hashtag {
-		color: #999;
-	}
-
-	.hashtag-link {
-		&, &:active, &:hover {
-			color: inherit;
-		}
-	}
+	@include hashtag;
 
 	.non-actionable .user-notification {
 		&, &.archived {
