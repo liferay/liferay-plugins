@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" default-destroy-method="destroy" default-init-method="afterPropertiesSet" xsi:schemaLocation=" http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<bean id="com.liferay.asset.sharing.service.AssetSharingEntryLocalService" class="com.liferay.asset.sharing.service.impl.AssetSharingEntryLocalServiceImpl" />
+	<bean id="com.liferay.asset.sharing.service.AssetSharingEntryService" class="com.liferay.asset.sharing.service.impl.AssetSharingEntryServiceImpl" />
+	<bean id="com.liferay.asset.sharing.service.persistence.AssetSharingEntryPersistence" class="com.liferay.asset.sharing.service.persistence.impl.AssetSharingEntryPersistenceImpl" parent="basePersistence" />
+</beans>
