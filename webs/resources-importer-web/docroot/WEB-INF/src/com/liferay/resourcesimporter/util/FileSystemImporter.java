@@ -939,7 +939,7 @@ public class FileSystemImporter extends BaseImporter {
 		}
 	}
 
-	protected void addLayoutTemplate(InputStream inputStream) throws Exception {
+	protected void addLayoutPrototype(InputStream inputStream) throws Exception {
 		String content = StringUtil.read(inputStream);
 
 		if (Validator.isNull(content)) {
@@ -987,7 +987,7 @@ public class FileSystemImporter extends BaseImporter {
 			layout.getTypeSettings());
 	}
 
-	protected void addLayoutTemplate(String dirName) throws Exception {
+	protected void addLayoutPrototype(String dirName) throws Exception {
 		File layoutTemplatesDir = new File(_resourcesDir, dirName);
 
 		if (!layoutTemplatesDir.isDirectory() ||
@@ -999,7 +999,7 @@ public class FileSystemImporter extends BaseImporter {
 		File[] files = listFiles(layoutTemplatesDir);
 
 		for (File file : files) {
-			addLayoutTemplate(getInputStream(file));
+			addLayoutPrototype(getInputStream(file));
 		}
 	}
 
@@ -1277,7 +1277,7 @@ public class FileSystemImporter extends BaseImporter {
 
 		addDDMTemplates(StringPool.BLANK, _JOURNAL_DDM_TEMPLATES_DIR_NAME);
 
-		addLayoutTemplate(_LAYOUT_TEMPLATE_DIR_NAME);
+		addLayoutPrototype(_LAYOUT_PROTOTYPE_DIR_NAME);
 	}
 
 	protected void setUpLayoutPrototypes(String fileName) throws Exception {
@@ -1441,7 +1441,7 @@ public class FileSystemImporter extends BaseImporter {
 	private static final String _JOURNAL_DDM_TEMPLATES_DIR_NAME =
 		"/journal/templates/";
 
-	private static final String _LAYOUT_TEMPLATE_DIR_NAME = "/templates/page";
+	private static final String _LAYOUT_PROTOTYPE_DIR_NAME = "/templates/page";
 
 	private static Log _log = LogFactoryUtil.getLog(FileSystemImporter.class);
 
