@@ -867,62 +867,6 @@ public class FileSystemImporter extends BaseImporter {
 		}
 	}
 
-	protected void addLayoutPrototype(JSONObject layoutPrototypeJSONObject)
-		throws Exception {
-
-		Map<Locale, String> nameMap = getMap(
-			layoutPrototypeJSONObject, "name");
-		Map<Locale, String> descriptionMap = getMap(
-			layoutPrototypeJSONObject, "description");
-
-		ServiceContext serviceContext = new ServiceContext();
-
-		String uuid = layoutPrototypeJSONObject.getString("uuid");
-
-		LayoutPrototype layoutPrototype = null;
-
-		if (Validator.isNotNull(uuid)) {
-			serviceContext.setUuid(uuid);
-
-			layoutPrototype =
-				LayoutPrototypeLocalServiceUtil.
-					fetchLayoutPrototypeByUuidAndCompanyId(uuid, companyId);
-		}
-
-		if (layoutPrototype == null) {
-			layoutPrototype =
-				LayoutPrototypeLocalServiceUtil.addLayoutPrototype(
-					userId, companyId, nameMap, descriptionMap, true,
-					serviceContext);
-		}
-		else {
-			LayoutPrototypeLocalServiceUtil.updateLayoutPrototype(
-				layoutPrototype.getLayoutPrototypeId(), nameMap, descriptionMap,
-				layoutPrototype.isActive(), serviceContext);
-		}
-
-		Layout layout = layoutPrototype.getLayout();
-
-		String typeSettings = layoutPrototypeJSONObject.getString(
-			"typeSettings");
-
-		if (Validator.isNotNull(typeSettings)) {
-			layout = LayoutLocalServiceUtil.updateLayout(
-				layout.getGroupId(), layout.isPrivateLayout(),
-				layout.getLayoutId(), typeSettings);
-		}
-
-		JSONArray columnsJSONArray = layoutPrototypeJSONObject.getJSONArray(
-			"columns");
-
-		addLayoutColumns(
-			layout, LayoutTypePortletConstants.COLUMN_PREFIX, columnsJSONArray);
-
-		LayoutLocalServiceUtil.updateLayout(
-			layout.getGroupId(), layout.isPrivateLayout(), layout.getLayoutId(),
-			layout.getTypeSettings());
-	}
-
 	protected void addLayouts(
 			boolean privateLayout, long parentLayoutId,
 			JSONArray layoutsJSONArray)
@@ -1011,7 +955,6 @@ public class FileSystemImporter extends BaseImporter {
 		serviceContext.setScopeGroupId(groupId);
 
 		setUpAssets("assets.json");
-		setUpLayoutPrototypes("layout_prototypes.json");
 		setUpSettings("settings.json");
 		setUpSitemap("sitemap.json");
 	}
@@ -1278,24 +1221,6 @@ public class FileSystemImporter extends BaseImporter {
 		addDDMTemplates(StringPool.BLANK, _JOURNAL_DDM_TEMPLATES_DIR_NAME);
 
 		addLayoutPrototype(_LAYOUT_PROTOTYPE_DIR_NAME);
-	}
-
-	protected void setUpLayoutPrototypes(String fileName) throws Exception {
-		JSONObject jsonObject = getJSONObject(fileName);
-
-		JSONArray layoutPrototypesJSONArray = jsonObject.getJSONArray(
-			"layoutPrototypes");
-
-		if (layoutPrototypesJSONArray == null) {
-			return;
-		}
-
-		for (int i = 0; i < layoutPrototypesJSONArray.length(); i++) {
-			JSONObject layoutPrototypeJSONObject =
-				layoutPrototypesJSONArray.getJSONObject(i);
-
-			addLayoutPrototype(layoutPrototypeJSONObject);
-		}
 	}
 
 	protected void setUpSettings(String fileName) throws Exception {
