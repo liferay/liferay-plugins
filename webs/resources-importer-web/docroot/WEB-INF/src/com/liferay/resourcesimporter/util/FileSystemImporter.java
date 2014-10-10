@@ -723,18 +723,22 @@ public class FileSystemImporter extends BaseImporter {
 
 		ServiceContext serviceContext = new ServiceContext();
 
-		String layoutPrototypeUuid = layoutJSONObject.getString(
-			"layoutPrototypeUuid");
+		String layoutPrototypeName = layoutJSONObject.getString(
+			"layoutPrototypeName");
 
-		if (Validator.isNotNull(layoutPrototypeUuid)) {
+		if (Validator.isNotNull(layoutPrototypeName)) {
 			boolean layoutPrototypeLinkEnabled = GetterUtil.getBoolean(
 				layoutJSONObject.getString("layoutPrototypeLinkEnabled"),
 				false);
 
 			serviceContext.setAttribute(
 				"layoutPrototypeLinkEnabled", layoutPrototypeLinkEnabled);
+
+			LayoutPrototype layoutPrototype = getLayoutPrototype(
+				companyId, layoutPrototypeName);
+
 			serviceContext.setAttribute(
-				"layoutPrototypeUuid", layoutPrototypeUuid);
+				"layoutPrototypeUuid", layoutPrototype.getUuid());
 		}
 
 		Layout layout = LayoutLocalServiceUtil.addLayout(
@@ -895,7 +899,13 @@ public class FileSystemImporter extends BaseImporter {
 		JSONObject layoutTemplateJSONObject = jsonObject.getJSONObject(
 			"layoutTemplate");
 
-		String name = getName(layoutTemplateJSONObject.getString("name"));
+		Map<Locale, String> nameMap =
+			getMap(layoutTemplateJSONObject.getString("name"));
+
+		String name = nameMap.get(Locale.getDefault());
+
+		Map<Locale, String> descriptionMap = getMap(
+			layoutTemplateJSONObject, "description");
 
 		LayoutPrototype layoutPrototype = getLayoutPrototype(companyId, name);
 
@@ -916,7 +926,8 @@ public class FileSystemImporter extends BaseImporter {
 
 		layoutPrototype =
 			LayoutPrototypeLocalServiceUtil.addLayoutPrototype(
-				userId, companyId, getMap(name), name, true, serviceContext);
+				userId, companyId, getMap(name), descriptionMap, true,
+				serviceContext);
 
 		JSONArray columnsJSONArray = layoutTemplateJSONObject.getJSONArray(
 			"columns");
