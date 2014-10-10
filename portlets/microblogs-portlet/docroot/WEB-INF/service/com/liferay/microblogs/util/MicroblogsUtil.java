@@ -18,6 +18,8 @@
 package com.liferay.microblogs.util;
 
 import com.liferay.microblogs.model.MicroblogsEntry;
+import com.liferay.microblogs.model.MicroblogsEntryConstants;
+import com.liferay.microblogs.service.MicroblogsEntryLocalServiceUtil;
 import com.liferay.portal.NoSuchUserException;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -136,6 +138,41 @@ public class MicroblogsUtil {
 		}
 
 		return screenNames;
+	}
+
+	public static boolean isTaggedUser(
+			long parentMicroblogsEntryId, long userId)
+		throws PortalException, SystemException {
+
+		List<MicroblogsEntry> microblogsEntries =
+			new ArrayList<MicroblogsEntry>();
+
+		microblogsEntries.addAll(
+			MicroblogsEntryLocalServiceUtil.
+				getReceiverMicroblogsEntryMicroblogsEntries(
+					MicroblogsEntryConstants.TYPE_REPLY,
+					parentMicroblogsEntryId, QueryUtil.ALL_POS,
+					QueryUtil.ALL_POS));
+
+		microblogsEntries.add(
+			MicroblogsEntryLocalServiceUtil.getMicroblogsEntry(
+				parentMicroblogsEntryId));
+
+		for (MicroblogsEntry microblogsEntry : microblogsEntries) {
+			List<String> userTagNames = getTaggedUsersScreenNames(
+				microblogsEntry.getContent());
+
+			for (String userTagName : userTagNames) {
+				if (UserLocalServiceUtil.getUserIdByScreenName(
+						microblogsEntry.getCompanyId(), userTagName) ==
+							userId) {
+
+					return true;
+				}
+			}
+		}
+
+		return false;
 	}
 
 	public static String replaceTags(
