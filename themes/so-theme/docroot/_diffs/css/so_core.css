@@ -660,6 +660,9 @@ input, textarea {
 
 	.activity-item {
 		border-bottom: 1px solid $defaultBorderColor;
+
+		@include hashtag;
+
 		line-height: 1.5em;
 		padding: 1em;
 	}
