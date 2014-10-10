@@ -1011,8 +1011,8 @@ public class FileSystemImporter extends BaseImporter {
 		serviceContext.setScopeGroupId(groupId);
 
 		setupAssets("assets.json");
-		setupSettings("settings.json");
 		setupLayoutPrototypes("layout_prototypes.json");
+		setupSettings("settings.json");
 		setupSitemap("sitemap.json");
 	}
 
