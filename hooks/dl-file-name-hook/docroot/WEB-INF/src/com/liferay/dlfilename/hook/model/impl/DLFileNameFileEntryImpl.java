@@ -27,8 +27,7 @@ import com.liferay.portlet.expando.model.ExpandoBridge;
  */
 public class DLFileNameFileEntryImpl extends FileEntryWrapper {
 
-	public static final String DISPLAY_NAME =
-		"dlFileNameFileEntryDisplayName";
+	public static final String DISPLAY_NAME = "dlFileNameFileEntryDisplayName";
 
 	public DLFileNameFileEntryImpl(FileEntry fileEntry) {
 		super(fileEntry);
