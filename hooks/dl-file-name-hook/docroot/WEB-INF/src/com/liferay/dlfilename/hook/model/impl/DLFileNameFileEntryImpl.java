@@ -70,9 +70,8 @@ public class DLFileNameFileEntryImpl extends FileEntryWrapper {
 		if (isEscapedModel()) {
 			return this;
 		}
-		else {
-			return new DLFileNameFileEntryImpl(super.toEscapedModel());
-		}
+
+		return new DLFileNameFileEntryImpl(super.toEscapedModel());
 	}
 
 	@Override
@@ -80,9 +79,8 @@ public class DLFileNameFileEntryImpl extends FileEntryWrapper {
 		if (isEscapedModel()) {
 			return new DLFileNameFileEntryImpl(super.toUnescapedModel());
 		}
-		else {
-			return this;
-		}
+
+		return this;
 	}
 
 }

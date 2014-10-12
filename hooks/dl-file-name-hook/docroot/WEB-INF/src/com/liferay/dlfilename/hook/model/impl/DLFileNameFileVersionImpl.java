@@ -47,20 +47,17 @@ public class DLFileNameFileVersionImpl extends FileVersionWrapper {
 		if (isEscapedModel()) {
 			return this;
 		}
-		else {
-			return new DLFileNameFileVersionImpl(super.toEscapedModel());
-		}
+
+		return new DLFileNameFileVersionImpl(super.toEscapedModel());
 	}
 
 	@Override
 	public FileVersion toUnescapedModel() {
 		if (isEscapedModel()) {
-			return new DLFileNameFileVersionImpl(
-				super.toUnescapedModel());
+			return new DLFileNameFileVersionImpl(super.toUnescapedModel());
 		}
-		else {
-			return this;
-		}
+
+		return this;
 	}
 
 }
