@@ -28,13 +28,15 @@ public class DLFileNameDLAppLocalServiceImpl extends DLAppLocalServiceWrapper {
 
 		super(dlAppLocalService);
 
-		ClassLoader classLoader = getClass().getClassLoader();
+		Class<?> clazz = getClass();
+
+		ClassLoader classLoader = clazz.getClassLoader();
 
 		dlAppLocalService = (DLAppLocalService)ProxyUtil.newProxyInstance(
-			classLoader, new Class<?>[]{DLAppLocalService.class},
+			classLoader, new Class<?>[] {DLAppLocalService.class},
 			new DLFileNameInvocationHandler(dlAppLocalService));
 
-		this.setWrappedService(dlAppLocalService);
+		setWrappedService(dlAppLocalService);
 	}
 
 }

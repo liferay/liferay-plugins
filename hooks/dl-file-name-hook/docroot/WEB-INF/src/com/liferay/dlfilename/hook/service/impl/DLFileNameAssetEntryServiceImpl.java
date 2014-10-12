@@ -28,13 +28,15 @@ public class DLFileNameAssetEntryServiceImpl extends AssetEntryServiceWrapper {
 
 		super(assetEntryService);
 
-		ClassLoader classLoader = getClass().getClassLoader();
+		Class<?> clazz = getClass();
+
+		ClassLoader classLoader = clazz.getClassLoader();
 
 		assetEntryService = (AssetEntryService)ProxyUtil.newProxyInstance(
-			classLoader, new Class<?>[]{AssetEntryService.class},
+			classLoader, new Class<?>[] {AssetEntryService.class},
 			new DLFileNameInvocationHandler(assetEntryService));
 
-		this.setWrappedService(assetEntryService);
+		setWrappedService(assetEntryService);
 	}
 
 }

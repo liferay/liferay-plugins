@@ -29,14 +29,16 @@ public class DLFileNameAssetEntryLocalServiceImpl
 
 		super(assetEntryLocalService);
 
-		ClassLoader classLoader = getClass().getClassLoader();
+		Class<?> clazz = getClass();
+
+		ClassLoader classLoader = clazz.getClassLoader();
 
 		assetEntryLocalService =
 			(AssetEntryLocalService)ProxyUtil.newProxyInstance(
-				classLoader, new Class<?>[]{AssetEntryLocalService.class},
+				classLoader, new Class<?>[] {AssetEntryLocalService.class},
 				new DLFileNameInvocationHandler(assetEntryLocalService));
 
-		this.setWrappedService(assetEntryLocalService);
+		setWrappedService(assetEntryLocalService);
 	}
 
 }

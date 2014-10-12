@@ -29,14 +29,16 @@ public class DLFileNameBackgroundTaskLocalServiceImpl
 
 		super(backgroundTaskLocalService);
 
-		ClassLoader classLoader = getClass().getClassLoader();
+		Class<?> clazz = getClass();
+
+		ClassLoader classLoader = clazz.getClassLoader();
 
 		backgroundTaskLocalService =
 			(BackgroundTaskLocalService)ProxyUtil.newProxyInstance(
-				classLoader, new Class<?>[]{BackgroundTaskLocalService.class},
+				classLoader, new Class<?>[] {BackgroundTaskLocalService.class},
 				new DLFileNameInvocationHandler(backgroundTaskLocalService));
 
-		this.setWrappedService(backgroundTaskLocalService);
+		setWrappedService(backgroundTaskLocalService);
 	}
 
 }

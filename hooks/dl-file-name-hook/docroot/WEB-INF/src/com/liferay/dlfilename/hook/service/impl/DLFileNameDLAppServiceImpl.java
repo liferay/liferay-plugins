@@ -26,13 +26,15 @@ public class DLFileNameDLAppServiceImpl extends DLAppServiceWrapper {
 	public DLFileNameDLAppServiceImpl(DLAppService dlAppService) {
 		super(dlAppService);
 
-		ClassLoader classLoader = getClass().getClassLoader();
+		Class<?> clazz = getClass();
+
+		ClassLoader classLoader = clazz.getClassLoader();
 
 		dlAppService = (DLAppService)ProxyUtil.newProxyInstance(
-			classLoader, new Class<?>[] { DLAppService.class },
+			classLoader, new Class<?>[] {DLAppService.class},
 			new DLFileNameInvocationHandler(dlAppService));
 
-		this.setWrappedService(dlAppService);
+		setWrappedService(dlAppService);
 	}
 
 }
