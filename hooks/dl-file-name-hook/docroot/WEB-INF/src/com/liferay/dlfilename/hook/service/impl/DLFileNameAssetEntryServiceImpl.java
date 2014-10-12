@@ -21,8 +21,7 @@ import com.liferay.portlet.asset.service.AssetEntryServiceWrapper;
 /**
  * @author Preston Crary
  */
-public class DLFileNameAssetEntryServiceImpl
-	extends AssetEntryServiceWrapper {
+public class DLFileNameAssetEntryServiceImpl extends AssetEntryServiceWrapper {
 
 	public DLFileNameAssetEntryServiceImpl(
 		AssetEntryService assetEntryService) {

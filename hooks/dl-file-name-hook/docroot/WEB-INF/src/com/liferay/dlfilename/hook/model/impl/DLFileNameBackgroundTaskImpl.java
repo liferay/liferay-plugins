@@ -42,8 +42,7 @@ public class DLFileNameBackgroundTaskImpl extends BackgroundTaskWrapper {
 			fileEntries.size());
 
 		for (FileEntry fileEntry : fileEntries) {
-			dlFileNameFileEntries.add(
-				new DLFileNameFileEntryImpl(fileEntry));
+			dlFileNameFileEntries.add(new DLFileNameFileEntryImpl(fileEntry));
 		}
 
 		return dlFileNameFileEntries;

@@ -34,8 +34,7 @@ public class DLFileNameBackgroundTaskLocalServiceImpl
 		backgroundTaskLocalService =
 			(BackgroundTaskLocalService)ProxyUtil.newProxyInstance(
 				classLoader, new Class<?>[]{BackgroundTaskLocalService.class},
-				new DLFileNameInvocationHandler(
-					backgroundTaskLocalService));
+				new DLFileNameInvocationHandler(backgroundTaskLocalService));
 
 		this.setWrappedService(backgroundTaskLocalService);
 	}

@@ -96,8 +96,7 @@ class DLFileNameInvocationHandler implements InvocationHandler {
 		}
 
 		if (object instanceof BackgroundTask) {
-			return new DLFileNameBackgroundTaskImpl(
-				(BackgroundTask)object);
+			return new DLFileNameBackgroundTaskImpl((BackgroundTask)object);
 		}
 
 		if (object instanceof FileEntry) {

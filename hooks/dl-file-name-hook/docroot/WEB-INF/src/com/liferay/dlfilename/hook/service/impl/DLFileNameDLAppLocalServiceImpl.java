@@ -21,8 +21,7 @@ import com.liferay.portlet.documentlibrary.service.DLAppLocalServiceWrapper;
 /**
  * @author Preston Crary
  */
-public class DLFileNameDLAppLocalServiceImpl
-	extends DLAppLocalServiceWrapper {
+public class DLFileNameDLAppLocalServiceImpl extends DLAppLocalServiceWrapper {
 
 	public DLFileNameDLAppLocalServiceImpl(
 		DLAppLocalService dlAppLocalService) {
