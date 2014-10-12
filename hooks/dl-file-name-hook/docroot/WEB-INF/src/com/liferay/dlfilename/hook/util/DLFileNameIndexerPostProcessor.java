@@ -42,6 +42,6 @@ public class DLFileNameIndexerPostProcessor extends BaseIndexerPostProcessor {
 
 	private static final String _DL_FILE_NAME_TITLE_FIELD_NAME =
 		ExpandoBridgeIndexerUtil.encodeFieldName(
-			DLFileNameFileEntryImpl.DISPLAY_NAME);
+			DLFileNameFileEntryImpl.EXPAND_COLUMN_NAME_DISPLAY_NAME);
 
 }

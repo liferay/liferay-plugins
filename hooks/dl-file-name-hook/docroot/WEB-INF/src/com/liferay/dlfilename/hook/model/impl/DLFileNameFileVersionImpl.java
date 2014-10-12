@@ -33,7 +33,7 @@ public class DLFileNameFileVersionImpl extends FileVersionWrapper {
 		ExpandoBridge expandoBridge = getExpandoBridge();
 
 		String displayTitle = (String)expandoBridge.getAttribute(
-			DLFileNameFileEntryImpl.DISPLAY_NAME, false);
+			DLFileNameFileEntryImpl.EXPAND_COLUMN_NAME_DISPLAY_NAME, false);
 
 		if (Validator.isNull(displayTitle)) {
 			return super.getTitle();
