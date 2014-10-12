@@ -64,7 +64,7 @@ public class StartupAction extends SimpleAction {
 			ExpandoColumn expandoColumn =
 				ExpandoColumnLocalServiceUtil.addColumn(
 					expandoTable.getTableId(),
-					DLFileNameFileEntryImpl.EXPAND_COLUMN_NAME_DISPLAY_NAME,
+					DLFileNameFileEntryImpl.EXPAND_COLUMN_NAME_DISPLAY_TITLE,
 					ExpandoColumnConstants.STRING);
 
 			UnicodeProperties typeSettingsProperties = new UnicodeProperties();

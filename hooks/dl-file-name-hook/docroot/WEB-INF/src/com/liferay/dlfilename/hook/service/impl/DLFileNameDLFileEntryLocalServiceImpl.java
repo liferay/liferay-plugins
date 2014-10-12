@@ -62,10 +62,10 @@ public class DLFileNameDLFileEntryLocalServiceImpl
 			serviceContext.getExpandoBridgeAttributes();
 
 		if (!expandoBridgeAttributes.containsKey(
-				DLFileNameFileEntryImpl.EXPAND_COLUMN_NAME_DISPLAY_NAME)) {
+				DLFileNameFileEntryImpl.EXPAND_COLUMN_NAME_DISPLAY_TITLE)) {
 
 			expandoBridgeAttributes.put(
-				DLFileNameFileEntryImpl.EXPAND_COLUMN_NAME_DISPLAY_NAME, title);
+				DLFileNameFileEntryImpl.EXPAND_COLUMN_NAME_DISPLAY_TITLE, title);
 
 			serviceContext.setExpandoBridgeAttributes(expandoBridgeAttributes);
 
@@ -96,7 +96,7 @@ public class DLFileNameDLFileEntryLocalServiceImpl
 			serviceContext.getExpandoBridgeAttributes();
 
 		expandoBridgeAttributes.put(
-			DLFileNameFileEntryImpl.EXPAND_COLUMN_NAME_DISPLAY_NAME, title);
+			DLFileNameFileEntryImpl.EXPAND_COLUMN_NAME_DISPLAY_TITLE, title);
 
 		serviceContext.setExpandoBridgeAttributes(expandoBridgeAttributes);
 

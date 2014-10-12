@@ -27,8 +27,8 @@ import com.liferay.portlet.expando.model.ExpandoBridge;
  */
 public class DLFileNameFileEntryImpl extends FileEntryWrapper {
 
-	public static final String EXPAND_COLUMN_NAME_DISPLAY_NAME =
-		"dlFileNameFileEntryDisplayName";
+	public static final String EXPAND_COLUMN_NAME_DISPLAY_TITLE =
+		"dlFileNameFileEntryDisplayTitle";
 
 	public DLFileNameFileEntryImpl(FileEntry fileEntry) {
 		super(fileEntry);
@@ -57,7 +57,7 @@ public class DLFileNameFileEntryImpl extends FileEntryWrapper {
 		ExpandoBridge expandoBridge = getExpandoBridge();
 
 		String displayTitle = (String)expandoBridge.getAttribute(
-			EXPAND_COLUMN_NAME_DISPLAY_NAME, false);
+			EXPAND_COLUMN_NAME_DISPLAY_TITLE, false);
 
 		if (Validator.isNull(displayTitle)) {
 			return super.getTitle();
