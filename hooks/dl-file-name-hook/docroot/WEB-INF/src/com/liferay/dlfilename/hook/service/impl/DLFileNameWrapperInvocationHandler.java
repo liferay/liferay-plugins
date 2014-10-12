@@ -38,6 +38,7 @@ import java.util.List;
 * @author Preston Crary
 */
 class DLFileNameWrapperInvocationHandler implements InvocationHandler {
+
 	public DLFileNameWrapperInvocationHandler(Object object) {
 		_object = object;
 	}
@@ -81,9 +82,9 @@ class DLFileNameWrapperInvocationHandler implements InvocationHandler {
 
 	protected Object wrap(Object object) {
 		if (object instanceof List) {
-			List wrappedList = new ArrayList();
+			List<Object> wrappedList = new ArrayList<Object>();
 
-			for (Object value : (List)object) {
+			for (Object value : (List<Object>)object) {
 				wrappedList.add(wrap(value));
 			}
 
