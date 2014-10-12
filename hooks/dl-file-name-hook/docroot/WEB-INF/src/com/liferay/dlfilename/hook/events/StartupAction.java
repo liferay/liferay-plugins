@@ -67,17 +67,16 @@ public class StartupAction extends SimpleAction {
 					DLFileNameFileEntryImpl.DISPLAY_NAME,
 					ExpandoColumnConstants.STRING);
 
-			UnicodeProperties properties = new UnicodeProperties();
+			UnicodeProperties typeSettingsProperties = new UnicodeProperties();
 
-			properties.setProperty(
+			typeSettingsProperties.setProperty(
+				ExpandoColumnConstants.INDEX_TYPE,
+				String.valueOf(ExpandoColumnConstants.INDEX_TYPE_TEXT));
+			typeSettingsProperties.setProperty(
 				ExpandoColumnConstants.PROPERTY_HIDDEN,
 				Boolean.TRUE.toString());
 
-			properties.setProperty(
-				ExpandoColumnConstants.INDEX_TYPE,
-				String.valueOf(ExpandoColumnConstants.INDEX_TYPE_TEXT));
-
-			expandoColumn.setTypeSettingsProperties(properties);
+			expandoColumn.setTypeSettingsProperties(typeSettingsProperties);
 
 			ExpandoColumnLocalServiceUtil.updateExpandoColumn(expandoColumn);
 		}
