@@ -14,7 +14,7 @@
 
 package com.liferay.dlfilename.hook.util;
 
-import com.liferay.dlfilename.hook.model.impl.DLFileNameWrapperFileEntryImpl;
+import com.liferay.dlfilename.hook.model.impl.DLFileNameFileEntryImpl;
 import com.liferay.portal.kernel.search.BaseIndexerPostProcessor;
 import com.liferay.portal.kernel.search.Document;
 import com.liferay.portal.kernel.search.Field;
@@ -42,6 +42,6 @@ public class DLFileNameIndexerPostProcessor extends BaseIndexerPostProcessor {
 
 	private static final String _DL_FILE_NAME_TITLE_FIELD_NAME =
 		ExpandoBridgeIndexerUtil.encodeFieldName(
-			DLFileNameWrapperFileEntryImpl.DISPLAY_NAME);
+			DLFileNameFileEntryImpl.DISPLAY_NAME);
 
 }

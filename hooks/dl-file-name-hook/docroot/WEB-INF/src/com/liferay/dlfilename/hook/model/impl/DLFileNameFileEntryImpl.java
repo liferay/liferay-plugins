@@ -25,11 +25,11 @@ import com.liferay.portlet.expando.model.ExpandoBridge;
 /**
  * @author Preston Crary
  */
-public class DLFileNameWrapperFileEntryImpl extends FileEntryWrapper {
+public class DLFileNameFileEntryImpl extends FileEntryWrapper {
 
 	public static final String DISPLAY_NAME = "DLDisplayName";
 
-	public DLFileNameWrapperFileEntryImpl(FileEntry fileEntry) {
+	public DLFileNameFileEntryImpl(FileEntry fileEntry) {
 		super(fileEntry);
 	}
 
@@ -39,7 +39,7 @@ public class DLFileNameWrapperFileEntryImpl extends FileEntryWrapper {
 
 		FileVersion fileVersion = super.getFileVersion();
 
-		return new DLFileNameWrapperFileVersionImpl(fileVersion);
+		return new DLFileNameFileVersionImpl(fileVersion);
 	}
 
 	@Override
@@ -48,7 +48,7 @@ public class DLFileNameWrapperFileEntryImpl extends FileEntryWrapper {
 
 		FileVersion fileVersion = super.getLatestFileVersion();
 
-		return new DLFileNameWrapperFileVersionImpl(fileVersion);
+		return new DLFileNameFileVersionImpl(fileVersion);
 	}
 
 	@Override
@@ -71,14 +71,14 @@ public class DLFileNameWrapperFileEntryImpl extends FileEntryWrapper {
 			return this;
 		}
 		else {
-			return new DLFileNameWrapperFileEntryImpl(super.toEscapedModel());
+			return new DLFileNameFileEntryImpl(super.toEscapedModel());
 		}
 	}
 
 	@Override
 	public FileEntry toUnescapedModel() {
 		if (isEscapedModel()) {
-			return new DLFileNameWrapperFileEntryImpl(super.toUnescapedModel());
+			return new DLFileNameFileEntryImpl(super.toUnescapedModel());
 		}
 		else {
 			return this;

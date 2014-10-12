@@ -22,9 +22,9 @@ import com.liferay.portlet.expando.model.ExpandoBridge;
 /**
  * @author Preston Crary
  */
-public class DLFileNameWrapperFileVersionImpl extends FileVersionWrapper {
+public class DLFileNameFileVersionImpl extends FileVersionWrapper {
 
-	public DLFileNameWrapperFileVersionImpl(FileVersion fileVersion) {
+	public DLFileNameFileVersionImpl(FileVersion fileVersion) {
 		super(fileVersion);
 	}
 
@@ -33,7 +33,7 @@ public class DLFileNameWrapperFileVersionImpl extends FileVersionWrapper {
 		ExpandoBridge expandoBridge = getExpandoBridge();
 
 		String displayTitle = (String)expandoBridge.getAttribute(
-			DLFileNameWrapperFileEntryImpl.DISPLAY_NAME, false);
+			DLFileNameFileEntryImpl.DISPLAY_NAME, false);
 
 		if (Validator.isNull(displayTitle)) {
 			return super.getTitle();
@@ -48,14 +48,14 @@ public class DLFileNameWrapperFileVersionImpl extends FileVersionWrapper {
 			return this;
 		}
 		else {
-			return new DLFileNameWrapperFileVersionImpl(super.toEscapedModel());
+			return new DLFileNameFileVersionImpl(super.toEscapedModel());
 		}
 	}
 
 	@Override
 	public FileVersion toUnescapedModel() {
 		if (isEscapedModel()) {
-			return new DLFileNameWrapperFileVersionImpl(
+			return new DLFileNameFileVersionImpl(
 				super.toUnescapedModel());
 		}
 		else {

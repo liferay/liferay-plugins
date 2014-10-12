@@ -15,28 +15,24 @@
 package com.liferay.dlfilename.hook.service.impl;
 
 import com.liferay.portal.kernel.util.ProxyUtil;
-import com.liferay.portlet.asset.service.AssetEntryLocalService;
-import com.liferay.portlet.asset.service.AssetEntryLocalServiceWrapper;
+import com.liferay.portlet.documentlibrary.service.DLAppService;
+import com.liferay.portlet.documentlibrary.service.DLAppServiceWrapper;
 
 /**
  * @author Preston Crary
  */
-public class DLFileNameWrapperAssetEntryLocalServiceImpl
-	extends AssetEntryLocalServiceWrapper {
+public class DLFileNameDLAppServiceImpl extends DLAppServiceWrapper {
 
-	public DLFileNameWrapperAssetEntryLocalServiceImpl(
-		AssetEntryLocalService assetEntryLocalService) {
-
-		super(assetEntryLocalService);
+	public DLFileNameDLAppServiceImpl(DLAppService dlAppService) {
+		super(dlAppService);
 
 		ClassLoader classLoader = getClass().getClassLoader();
 
-		assetEntryLocalService =
-			(AssetEntryLocalService)ProxyUtil.newProxyInstance(
-				classLoader, new Class<?>[]{AssetEntryLocalService.class},
-				new DLFileNameWrapperInvocationHandler(assetEntryLocalService));
+		dlAppService = (DLAppService)ProxyUtil.newProxyInstance(
+			classLoader, new Class<?>[] { DLAppService.class },
+			new DLFileNameInvocationHandler(dlAppService));
 
-		this.setWrappedService(assetEntryLocalService);
+		this.setWrappedService(dlAppService);
 	}
 
 }

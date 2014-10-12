@@ -15,27 +15,29 @@
 package com.liferay.dlfilename.hook.service.impl;
 
 import com.liferay.portal.kernel.util.ProxyUtil;
-import com.liferay.portlet.documentlibrary.service.DLAppLocalService;
-import com.liferay.portlet.documentlibrary.service.DLAppLocalServiceWrapper;
+import com.liferay.portal.service.BackgroundTaskLocalService;
+import com.liferay.portal.service.BackgroundTaskLocalServiceWrapper;
 
 /**
  * @author Preston Crary
  */
-public class DLFileNameWrapperDLAppLocalServiceImpl
-	extends DLAppLocalServiceWrapper {
+public class DLFileNameBackgroundTaskLocalServiceImpl
+	extends BackgroundTaskLocalServiceWrapper {
 
-	public DLFileNameWrapperDLAppLocalServiceImpl(
-		DLAppLocalService dlAppLocalService) {
+	public DLFileNameBackgroundTaskLocalServiceImpl(
+		BackgroundTaskLocalService backgroundTaskLocalService) {
 
-		super(dlAppLocalService);
+		super(backgroundTaskLocalService);
 
 		ClassLoader classLoader = getClass().getClassLoader();
 
-		dlAppLocalService = (DLAppLocalService)ProxyUtil.newProxyInstance(
-			classLoader, new Class<?>[]{DLAppLocalService.class},
-			new DLFileNameWrapperInvocationHandler(dlAppLocalService));
+		backgroundTaskLocalService =
+			(BackgroundTaskLocalService)ProxyUtil.newProxyInstance(
+				classLoader, new Class<?>[]{BackgroundTaskLocalService.class},
+				new DLFileNameInvocationHandler(
+					backgroundTaskLocalService));
 
-		this.setWrappedService(dlAppLocalService);
+		this.setWrappedService(backgroundTaskLocalService);
 	}
 
 }

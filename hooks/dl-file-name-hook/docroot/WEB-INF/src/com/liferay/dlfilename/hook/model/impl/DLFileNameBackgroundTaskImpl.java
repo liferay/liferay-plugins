@@ -25,9 +25,9 @@ import java.util.List;
 /**
  * @author Preston Crary
  */
-public class DLFileNameWrapperBackgroundTaskImpl extends BackgroundTaskWrapper {
+public class DLFileNameBackgroundTaskImpl extends BackgroundTaskWrapper {
 
-	public DLFileNameWrapperBackgroundTaskImpl(BackgroundTask backgroundTask) {
+	public DLFileNameBackgroundTaskImpl(BackgroundTask backgroundTask) {
 		super(backgroundTask);
 	}
 
@@ -43,7 +43,7 @@ public class DLFileNameWrapperBackgroundTaskImpl extends BackgroundTaskWrapper {
 
 		for (FileEntry fileEntry : fileEntries) {
 			dlFileNameFileEntries.add(
-				new DLFileNameWrapperFileEntryImpl(fileEntry));
+				new DLFileNameFileEntryImpl(fileEntry));
 		}
 
 		return dlFileNameFileEntries;

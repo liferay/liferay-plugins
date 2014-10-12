@@ -9,30 +9,30 @@
 	</indexer-post-processor>
 	<service>
 		<service-type>com.liferay.portlet.asset.service.AssetEntryLocalService</service-type>
-		<service-impl>com.liferay.dlfilename.hook.service.impl.DLFileNameWrapperAssetEntryLocalServiceImpl</service-impl>
+		<service-impl>com.liferay.dlfilename.hook.service.impl.DLFileNameAssetEntryLocalServiceImpl</service-impl>
 	</service>
 	<service>
 		<service-type>com.liferay.portlet.asset.service.AssetEntryService</service-type>
-		<service-impl>com.liferay.dlfilename.hook.service.impl.DLFileNameWrapperAssetEntryServiceImpl</service-impl>
+		<service-impl>com.liferay.dlfilename.hook.service.impl.DLFileNameAssetEntryServiceImpl</service-impl>
 	</service>
 	<service>
 		<service-type>com.liferay.portal.service.BackgroundTaskLocalService</service-type>
-		<service-impl>com.liferay.dlfilename.hook.service.impl.DLFileNameWrapperBackgroundTaskLocalServiceImpl</service-impl>
+		<service-impl>com.liferay.dlfilename.hook.service.impl.DLFileNameBackgroundTaskLocalServiceImpl</service-impl>
 	</service>
 	<service>
 		<service-type>com.liferay.portal.service.BackgroundTaskService</service-type>
-		<service-impl>com.liferay.dlfilename.hook.service.impl.DLFileNameWrapperBackgroundTaskServiceImpl</service-impl>
+		<service-impl>com.liferay.dlfilename.hook.service.impl.DLFileNameBackgroundTaskServiceImpl</service-impl>
 	</service>
 	<service>
 		<service-type>com.liferay.portlet.documentlibrary.service.DLAppLocalService</service-type>
-		<service-impl>com.liferay.dlfilename.hook.service.impl.DLFileNameWrapperDLAppLocalServiceImpl</service-impl>
+		<service-impl>com.liferay.dlfilename.hook.service.impl.DLFileNameDLAppLocalServiceImpl</service-impl>
 	</service>
 	<service>
 		<service-type>com.liferay.portlet.documentlibrary.service.DLAppService</service-type>
-		<service-impl>com.liferay.dlfilename.hook.service.impl.DLFileNameWrapperDLAppServiceImpl</service-impl>
+		<service-impl>com.liferay.dlfilename.hook.service.impl.DLFileNameDLAppServiceImpl</service-impl>
 	</service>
 	<service>
 		<service-type>com.liferay.portlet.documentlibrary.service.DLFileEntryLocalService</service-type>
-		<service-impl>com.liferay.dlfilename.hook.service.impl.DLFileNameWrapperDLFileEntryLocalServiceImpl</service-impl>
+		<service-impl>com.liferay.dlfilename.hook.service.impl.DLFileNameDLFileEntryLocalServiceImpl</service-impl>
 	</service>
 </hook>

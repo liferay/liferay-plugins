@@ -14,7 +14,7 @@
 
 package com.liferay.dlfilename.hook.events;
 
-import com.liferay.dlfilename.hook.model.impl.DLFileNameWrapperFileEntryImpl;
+import com.liferay.dlfilename.hook.model.impl.DLFileNameFileEntryImpl;
 import com.liferay.portal.kernel.events.ActionException;
 import com.liferay.portal.kernel.events.SimpleAction;
 import com.liferay.portal.kernel.util.GetterUtil;
@@ -64,7 +64,7 @@ public class StartupAction extends SimpleAction {
 			ExpandoColumn expandoColumn =
 				ExpandoColumnLocalServiceUtil.addColumn(
 					expandoTable.getTableId(),
-					DLFileNameWrapperFileEntryImpl.DISPLAY_NAME,
+					DLFileNameFileEntryImpl.DISPLAY_NAME,
 					ExpandoColumnConstants.STRING);
 
 			UnicodeProperties properties = new UnicodeProperties();

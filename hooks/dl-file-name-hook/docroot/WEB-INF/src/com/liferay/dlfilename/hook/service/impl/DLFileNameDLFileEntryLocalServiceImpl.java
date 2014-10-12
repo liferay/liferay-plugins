@@ -14,7 +14,7 @@
 
 package com.liferay.dlfilename.hook.service.impl;
 
-import com.liferay.dlfilename.hook.model.impl.DLFileNameWrapperFileEntryImpl;
+import com.liferay.dlfilename.hook.model.impl.DLFileNameFileEntryImpl;
 import com.liferay.dlfilename.hook.util.PortletPropsValues;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
@@ -36,10 +36,10 @@ import java.util.Map;
 /**
  * @author Preston Crary
  */
-public class DLFileNameWrapperDLFileEntryLocalServiceImpl
+public class DLFileNameDLFileEntryLocalServiceImpl
 	extends DLFileEntryLocalServiceWrapper {
 
-	public DLFileNameWrapperDLFileEntryLocalServiceImpl(
+	public DLFileNameDLFileEntryLocalServiceImpl(
 		DLFileEntryLocalService dlFileEntryLocalService) {
 
 		super(dlFileEntryLocalService);
@@ -62,10 +62,10 @@ public class DLFileNameWrapperDLFileEntryLocalServiceImpl
 			serviceContext.getExpandoBridgeAttributes();
 
 		if (!expandoBridgeAttributes.containsKey(
-				DLFileNameWrapperFileEntryImpl.DISPLAY_NAME)) {
+				DLFileNameFileEntryImpl.DISPLAY_NAME)) {
 
 			expandoBridgeAttributes.put(
-				DLFileNameWrapperFileEntryImpl.DISPLAY_NAME, title);
+				DLFileNameFileEntryImpl.DISPLAY_NAME, title);
 
 			serviceContext.setExpandoBridgeAttributes(expandoBridgeAttributes);
 
@@ -96,7 +96,7 @@ public class DLFileNameWrapperDLFileEntryLocalServiceImpl
 			serviceContext.getExpandoBridgeAttributes();
 
 		expandoBridgeAttributes.put(
-			DLFileNameWrapperFileEntryImpl.DISPLAY_NAME, title);
+			DLFileNameFileEntryImpl.DISPLAY_NAME, title);
 
 		serviceContext.setExpandoBridgeAttributes(expandoBridgeAttributes);
 

@@ -14,9 +14,9 @@
 
 package com.liferay.dlfilename.hook.service.impl;
 
-import com.liferay.dlfilename.hook.model.impl.DLFileNameWrapperBackgroundTaskImpl;
-import com.liferay.dlfilename.hook.model.impl.DLFileNameWrapperFileEntryImpl;
-import com.liferay.dlfilename.hook.model.impl.DLFileNameWrapperFileVersionImpl;
+import com.liferay.dlfilename.hook.model.impl.DLFileNameBackgroundTaskImpl;
+import com.liferay.dlfilename.hook.model.impl.DLFileNameFileEntryImpl;
+import com.liferay.dlfilename.hook.model.impl.DLFileNameFileVersionImpl;
 import com.liferay.portal.kernel.lar.ExportImportThreadLocal;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -37,9 +37,9 @@ import java.util.List;
 /**
 * @author Preston Crary
 */
-class DLFileNameWrapperInvocationHandler implements InvocationHandler {
+class DLFileNameInvocationHandler implements InvocationHandler {
 
-	public DLFileNameWrapperInvocationHandler(Object object) {
+	public DLFileNameInvocationHandler(Object object) {
 		_object = object;
 	}
 
@@ -96,23 +96,23 @@ class DLFileNameWrapperInvocationHandler implements InvocationHandler {
 		}
 
 		if (object instanceof BackgroundTask) {
-			return new DLFileNameWrapperBackgroundTaskImpl(
+			return new DLFileNameBackgroundTaskImpl(
 				(BackgroundTask)object);
 		}
 
 		if (object instanceof FileEntry) {
-			return new DLFileNameWrapperFileEntryImpl((FileEntry)object);
+			return new DLFileNameFileEntryImpl((FileEntry)object);
 		}
 
 		if (object instanceof FileVersion) {
-			return new DLFileNameWrapperFileVersionImpl((FileVersion)object);
+			return new DLFileNameFileVersionImpl((FileVersion)object);
 		}
 
 		return object;
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(
-		DLFileNameWrapperInvocationHandler.class);
+		DLFileNameInvocationHandler.class);
 
 	private Object _object;
 
