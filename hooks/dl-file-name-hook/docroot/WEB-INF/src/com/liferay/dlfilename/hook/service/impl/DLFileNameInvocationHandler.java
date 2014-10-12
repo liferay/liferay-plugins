@@ -73,7 +73,7 @@ class DLFileNameInvocationHandler implements InvocationHandler {
 		}
 		catch (Exception e) {
 			if (_log.isWarnEnabled()) {
-				_log.warn("Failed to set AssetEntry title", e);
+				_log.warn("Unable to update asset entry title", e);
 			}
 		}
 
@@ -94,16 +94,13 @@ class DLFileNameInvocationHandler implements InvocationHandler {
 		if (object instanceof AssetEntry) {
 			return setAssetEntryTitle((AssetEntry)object);
 		}
-
-		if (object instanceof BackgroundTask) {
+		else if (object instanceof BackgroundTask) {
 			return new DLFileNameBackgroundTaskImpl((BackgroundTask)object);
 		}
-
-		if (object instanceof FileEntry) {
+		else if (object instanceof FileEntry) {
 			return new DLFileNameFileEntryImpl((FileEntry)object);
 		}
-
-		if (object instanceof FileVersion) {
+		else if (object instanceof FileVersion) {
 			return new DLFileNameFileVersionImpl((FileVersion)object);
 		}
 
