@@ -69,8 +69,8 @@ public class DLFileNameDLFileEntryLocalServiceImpl
 
 			serviceContext.setExpandoBridgeAttributes(expandoBridgeAttributes);
 
-			title = _removeWhitelistCharacters(title);
-			sourceFileName = _removeWhitelistCharacters(sourceFileName);
+			title = removeWhitelistCharacters(title);
+			sourceFileName = removeWhitelistCharacters(sourceFileName);
 		}
 
 		return super.addFileEntry(
@@ -100,8 +100,8 @@ public class DLFileNameDLFileEntryLocalServiceImpl
 
 		serviceContext.setExpandoBridgeAttributes(expandoBridgeAttributes);
 
-		title = _removeWhitelistCharacters(title);
-		sourceFileName = _removeWhitelistCharacters(sourceFileName);
+		title = removeWhitelistCharacters(title);
+		sourceFileName = removeWhitelistCharacters(sourceFileName);
 
 		return super.updateFileEntry(
 			userId, fileEntryId, sourceFileName, mimeType, title, description,
@@ -109,7 +109,7 @@ public class DLFileNameDLFileEntryLocalServiceImpl
 			serviceContext);
 	}
 
-	private String _removeWhitelistCharacters(String name) {
+	protected String removeWhitelistCharacters(String name) {
 		for (String whitelistCharacter : PortletPropsValues.DL_CHAR_WHITELIST) {
 			name = StringUtil.replace(
 				name, whitelistCharacter, StringPool.BLANK);
