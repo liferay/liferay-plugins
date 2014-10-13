@@ -152,6 +152,12 @@ public class GoogleDirectoryUtil {
 		try {
 			Directory directory = getDirectory();
 
+			Group group = getGroup(groupEmailAddress);
+
+			if (group == null) {
+				return;
+			}
+
 			Directory.Members members = directory.members();
 
 			Directory.Members.Delete delete = members.delete(
