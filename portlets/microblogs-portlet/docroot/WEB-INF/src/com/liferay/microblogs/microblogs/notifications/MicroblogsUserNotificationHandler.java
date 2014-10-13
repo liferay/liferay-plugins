@@ -104,7 +104,7 @@ public class MicroblogsUserNotificationHandler
 			}
 			else if (MicroblogsUtil.hasReplied(
 						parentMicroblogsEntryId,
-				serviceContext.getUserId())) {
+						serviceContext.getUserId())) {
 
 				User receiverUser = UserLocalServiceUtil.fetchUser(
 					microblogsEntry.getReceiverUserId());
@@ -117,7 +117,7 @@ public class MicroblogsUserNotificationHandler
 			}
 			else if (MicroblogsUtil.isTaggedUser(
 						parentMicroblogsEntryId,
-				serviceContext.getUserId())) {
+						serviceContext.getUserId())) {
 
 				title = serviceContext.translate(
 					"x-commented-on-a-post-you-are-tagged-in", userFullName);
