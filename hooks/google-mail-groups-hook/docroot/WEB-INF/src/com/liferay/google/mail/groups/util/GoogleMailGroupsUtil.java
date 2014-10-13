@@ -170,6 +170,7 @@ public class GoogleMailGroupsUtil {
 
 				List<String> groupMemberEmailAddresses =
 					new ArrayList<String>();
+				Members members = null;
 
 				String groupEmailAddress = getGroupEmailAddress(group);
 
@@ -177,9 +178,10 @@ public class GoogleMailGroupsUtil {
 					GoogleDirectoryUtil.addGroup(
 						group.getDescriptiveName(), groupEmailAddress);
 				}
-
-				Members members = GoogleDirectoryUtil.getGroupMembers(
-					groupEmailAddress);
+				else {
+					members = GoogleDirectoryUtil.getGroupMembers(
+						groupEmailAddress);
+				}
 
 				if ((members != null) && (members.getMembers() != null)) {
 					for (Member member : members.getMembers()) {
