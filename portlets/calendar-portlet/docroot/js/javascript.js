@@ -1531,7 +1531,7 @@ AUI.add(
 
 						instance.queue = new A.AsyncQueue();
 
-						if (data.isRecurring) {
+						if (data.recurring) {
 							instance.queue.add(
 								{
 									args: [data],
@@ -1543,7 +1543,7 @@ AUI.add(
 							);
 						}
 
-						if (data.isMaster) {
+						if (data.masterBooking) {
 							if (data.hasChild) {
 								instance.queue.add(
 									{
@@ -1720,9 +1720,9 @@ AUI.add(
 								calendarName: calendar.get('name'),
 								duration: instance._getCalendarBookingDuration(schedulerEvent),
 								hasChild: schedulerEvent.get('hasChildCalendarBookings'),
-								isMaster:  schedulerEvent.isMasterBooking(),
-								isRecurring: schedulerEvent.isRecurring(),
+								masterBooking: schedulerEvent.isMasterBooking(),
 								offset: instance._getCalendarBookingOffset(schedulerEvent, changedAttributes),
+								recurring: schedulerEvent.isRecurring(),
 								resolver: instance._queueableQuestionResolver,
 								schedulerEvent: schedulerEvent
 							}
