@@ -118,7 +118,7 @@ for (String importer : importers) {
 		%>
 
 		Layout#getNameMap=<%= _assertTrue(nameMap.containsValue("Bienvenue")) %><br />
-		LayoutLocalServiceUtil#getLayoutsCount(group, false)=<%= _assertEquals(5, LayoutLocalServiceUtil.getLayoutsCount(group, false)) %><br />
+		LayoutLocalServiceUtil#getLayoutsCount(group, false)=<%= _assertEquals(9, LayoutLocalServiceUtil.getLayoutsCount(group, false)) %><br />
 		LayoutLocalServiceUtil#getLayoutsCount(group, true)=<%= _assertEquals(1, LayoutLocalServiceUtil.getLayoutsCount(group, true)) %><br />
 
 		<%
@@ -137,12 +137,10 @@ for (String importer : importers) {
 
 		String[] assetTagNames = null;
 
-		try {
-			dlFileEntry = DLFileEntryLocalServiceUtil.fetchFileEntry(groupId, DLFolderConstants.DEFAULT_PARENT_FOLDER_ID, "company_logo");
+		dlFileEntry = DLFileEntryLocalServiceUtil.fetchFileEntry(groupId, DLFolderConstants.DEFAULT_PARENT_FOLDER_ID, "company_logo");
 
+		if (dlFileEntry != null) {
 			assetTagNames = AssetTagLocalServiceUtil.getTagNames(DLFileEntry.class.getName(), dlFileEntry.getFileEntryId());
-		}
-		catch (Exception e) {
 		}
 		%>
 
@@ -154,7 +152,9 @@ for (String importer : importers) {
 		<%
 		DLFolder dlFolder = DLFolderLocalServiceUtil.fetchFolder(groupId, DLFolderConstants.DEFAULT_PARENT_FOLDER_ID, "Parent Folder");
 
-		dlFileEntry = DLFileEntryLocalServiceUtil.fetchFileEntry(groupId, dlFolder.getFolderId(), "child_document");
+		if (dlFolder != null) {
+			dlFileEntry = DLFileEntryLocalServiceUtil.fetchFileEntry(groupId, dlFolder.getFolderId(), "child_document");
+		}
 		%>
 
 		DLFolderLocalServiceUtil#fetchFolder=<%= _assertTrue(dlFolder != null) %><br />
@@ -165,14 +165,25 @@ for (String importer : importers) {
 	<p>
 
 		<%
-		JournalArticle journalArticle = JournalArticleLocalServiceUtil.getArticle(groupId, "CHILD-WEB-CONTENT-1");
+			JournalArticle journalArticle = null;
+
+			try {
+				journalArticle = JournalArticleLocalServiceUtil.getArticle(groupId, "CHILD-WEB-CONTENT-1");
+			}
+			catch (NoSuchArticleException nsae) {
+			}
 		%>
-
-		JournalArticle#getDescription=<%= _assertTrue(Validator.isNotNull(journalArticle.getDescription())) %><br />
-		JournalArticle#isSmallImage=<%= _assertTrue(journalArticle.isSmallImage()) %><br />
-		JournalArticle#isTemplateDriven=<%= _assertTrue(journalArticle.isTemplateDriven()) %><br />
-		JournalArticleLocalService#getArticlesCount=<%= _assertEquals(5, JournalArticleLocalServiceUtil.getArticlesCount(groupId)) %><br />
-
+		<c:choose>
+			<c:when test='<%= journalArticle == null %>'>
+				JournalArticleLocalServiceUtil#getArticle=<%= _assertTrue(journalArticle != null) %><br />
+			</c:when>
+			<c:when test='<%= journalArticle != null %>'>
+				JournalArticle#getDescription=<%= _assertTrue(Validator.isNotNull(journalArticle.getDescription())) %><br />
+				JournalArticle#isSmallImage=<%= _assertTrue(journalArticle.isSmallImage()) %><br />
+				JournalArticle#isTemplateDriven=<%= _assertTrue(journalArticle.isTemplateDriven()) %><br />
+				JournalArticleLocalService#getArticlesCount=<%= _assertEquals(2, JournalArticleLocalServiceUtil.getArticlesCount(groupId)) %><br />
+			</c:when>
+		</c:choose>
 	</p>
 
 	<p>
@@ -182,8 +193,8 @@ for (String importer : importers) {
 
 		dynamicQuery.setProjection(ProjectionFactoryUtil.distinct(ProjectionFactoryUtil.property("name")));
 
-		Criterion layout1Criterion = RestrictionsFactoryUtil.eq("description", "Page 1 - " + pluginPackage.getVersion());
-		Criterion layout2Criterion = RestrictionsFactoryUtil.eq("description", "Page 2 - " + pluginPackage.getVersion());
+		Criterion layout1Criterion = RestrictionsFactoryUtil.like("name", "%Page 1%");
+		Criterion layout2Criterion = RestrictionsFactoryUtil.like("name", "%Page 2%");
 
 		dynamicQuery.add(RestrictionsFactoryUtil.or(layout1Criterion, layout2Criterion));
 
@@ -196,48 +207,75 @@ for (String importer : importers) {
 	<p>
 
 		<%
-		DDMStructure ddmStructure = DDMStructureLocalServiceUtil.getStructure(groupId, PortalUtil.getClassNameId(JournalArticle.class), "CHILD-STRUCTURE-1" + keySuffix);
-
-		long parentStructureId = ddmStructure.getParentStructureId();
-
+		DDMStructure ddmStructure = null;
 		String parentStructureKey = StringPool.BLANK;
 
-		DDMStructure parentDDMStructure = DDMStructureLocalServiceUtil.fetchStructure(parentStructureId);
+		try {
+			ddmStructure = DDMStructureLocalServiceUtil.getStructure(groupId, PortalUtil.getClassNameId(JournalArticle.class), "CHILD-STRUCTURE-1" + keySuffix);
 
-		if (parentDDMStructure != null) {
-			parentStructureKey = parentDDMStructure.getStructureKey();
+			long parentStructureId = ddmStructure.getParentStructureId();
+
+			DDMStructure parentDDMStructure = DDMStructureLocalServiceUtil.fetchStructure(parentStructureId);
+
+			if (parentDDMStructure != null) {
+				parentStructureKey = parentDDMStructure.getStructureKey();
+			}
+		}
+		catch (NoSuchStructureException nsse) {
 		}
 		%>
-
-		DDMStructure#getParentStructureId=<%= _assertEquals("PARENT-STRUCTURE" + keySuffix, parentStructureKey) %><br />
-		DDMStructureLocalServiceUtil#getStructuresCount(groupId, DDLRecordSet)=<%= _assertEquals(2, DDMStructureLocalServiceUtil.getStructuresCount(groupId, PortalUtil.getClassNameId(DDLRecordSet.class))) %><br />
-		DDMStructureLocalServiceUtil#getStructuresCount=<%= _assertEquals(5, DDMStructureLocalServiceUtil.getStructuresCount(groupId)) %>
+		<c:choose>
+			<c:when test='<%= ddmStructure == null %>'>
+				DDMStructureLocalServiceUtil#getStructure=<%= _assertTrue(ddmStructure != null) %><br />
+			</c:when>
+			<c:when test='<%= ddmStructure != null %>'>
+				DDMStructure#getParentStructureId=<%= _assertEquals("PARENT-STRUCTURE" + keySuffix, parentStructureKey) %><br />
+				DDMStructureLocalServiceUtil#getStructuresCount(groupId, DDLRecordSet)=<%= _assertEquals(2, DDMStructureLocalServiceUtil.getStructuresCount(groupId, PortalUtil.getClassNameId(DDLRecordSet.class))) %><br />
+				DDMStructureLocalServiceUtil#getStructuresCount=<%= _assertEquals(5, DDMStructureLocalServiceUtil.getStructuresCount(groupId)) %>
+			</c:when>
+		</c:choose>
 	</p>
 
 	<p>
 
 		<%
-		DDMTemplate ddmTemplate = DDMTemplateLocalServiceUtil.getTemplate(groupId, PortalUtil.getClassNameId(DDMStructure.class), "CHILD-TEMPLATE-1" + keySuffix);
-
-		DDMStructure ddmTemplateStructure = DDMStructureLocalServiceUtil.fetchDDMStructure(ddmTemplate.getClassPK());
-
+		DDMTemplate ddmTemplate = null;
 		String ddmStructureKey = StringPool.BLANK;
 
-		if (ddmTemplateStructure != null) {
-			ddmStructureKey = ddmTemplateStructure.getStructureKey();
+		try {
+			ddmTemplate = DDMTemplateLocalServiceUtil.getTemplate(
+					groupId, PortalUtil.getClassNameId(DDMStructure.class), "CHILD-TEMPLATE-1" + keySuffix);
+
+			DDMStructure ddmTemplateStructure = null;
+
+			if (ddmTemplate != null) {
+				ddmTemplateStructure = DDMStructureLocalServiceUtil.fetchDDMStructure(ddmTemplate.getClassPK());
+			}
+
+			if (ddmTemplateStructure != null) {
+				ddmStructureKey = ddmTemplateStructure.getStructureKey();
+			}
+		}
+		catch (NoSuchTemplateException nste) {
 		}
 		%>
-
-		DDMTemplate#getStructureId=<%= _assertEquals("CHILD-STRUCTURE-1" + keySuffix, ddmStructureKey) %><br />
-		DDMTemplateLocalServiceUtil#getTemplatesCount(groupId, AssetCategory)=<%= _assertEquals(1, DDMTemplateLocalServiceUtil.getTemplatesCount(groupId, PortalUtil.getClassNameId(AssetCategory.class))) %><br />
-		DDMTemplateLocalServiceUtil#getTemplatesCount(groupId, AssetEntry)=<%= _assertEquals(2, DDMTemplateLocalServiceUtil.getTemplatesCount(groupId, PortalUtil.getClassNameId(AssetEntry.class))) %><br />
-		DDMTemplateLocalServiceUtil#getTemplatesCount(groupId, AssetTag)=<%= _assertEquals(1, DDMTemplateLocalServiceUtil.getTemplatesCount(groupId, PortalUtil.getClassNameId(AssetTag.class))) %><br />
-		DDMTemplateLocalServiceUtil#getTemplatesCount(groupId, BlogsEntry)=<%= _assertEquals(1, DDMTemplateLocalServiceUtil.getTemplatesCount(groupId, PortalUtil.getClassNameId(BlogsEntry.class))) %><br />
-		DDMTemplateLocalServiceUtil#getTemplatesCount(groupId, DDMStructure)=<%= _assertEquals(8, DDMTemplateLocalServiceUtil.getTemplatesCount(groupId, PortalUtil.getClassNameId(DDMStructure.class))) %><br />
-		DDMTemplateLocalServiceUtil#getTemplatesCount(groupId, FileEntry)=<%= _assertEquals(1, DDMTemplateLocalServiceUtil.getTemplatesCount(groupId, PortalUtil.getClassNameId(FileEntry.class))) %><br />
-		DDMTemplateLocalServiceUtil#getTemplatesCount(groupId, LayoutSet)=<%= _assertEquals(1, DDMTemplateLocalServiceUtil.getTemplatesCount(groupId, PortalUtil.getClassNameId(LayoutSet.class))) %><br />
-		DDMTemplateLocalServiceUtil#getTemplatesCount(groupId, WikiPage)=<%= _assertEquals(1, DDMTemplateLocalServiceUtil.getTemplatesCount(groupId, PortalUtil.getClassNameId(WikiPage.class))) %><br />
-		DDMTemplateLocalServiceUtil#getTemplatesCount=<%= _assertEquals(16, DDMTemplateLocalServiceUtil.getTemplatesCount(groupId)) %><br />
+		<c:choose>
+			<c:when test='<%= ddmTemplate == null %>'>
+				DDMTemplateLocalServiceUtil#getTemplate=<%= _assertTrue(ddmStructure != null) %><br />
+			</c:when>
+			<c:when test='<%= ddmTemplate != null %>'>
+				DDMTemplate#getStructureId=<%= _assertEquals("CHILD-STRUCTURE-1" + keySuffix, ddmStructureKey) %><br />
+				DDMTemplateLocalServiceUtil#getTemplatesCount(groupId, AssetCategory)=<%= _assertEquals(1, DDMTemplateLocalServiceUtil.getTemplatesCount(groupId, PortalUtil.getClassNameId(AssetCategory.class))) %><br />
+				DDMTemplateLocalServiceUtil#getTemplatesCount(groupId, AssetEntry)=<%= _assertEquals(2, DDMTemplateLocalServiceUtil.getTemplatesCount(groupId, PortalUtil.getClassNameId(AssetEntry.class))) %><br />
+				DDMTemplateLocalServiceUtil#getTemplatesCount(groupId, AssetTag)=<%= _assertEquals(1, DDMTemplateLocalServiceUtil.getTemplatesCount(groupId, PortalUtil.getClassNameId(AssetTag.class))) %><br />
+				DDMTemplateLocalServiceUtil#getTemplatesCount(groupId, BlogsEntry)=<%= _assertEquals(1, DDMTemplateLocalServiceUtil.getTemplatesCount(groupId, PortalUtil.getClassNameId(BlogsEntry.class))) %><br />
+				DDMTemplateLocalServiceUtil#getTemplatesCount(groupId, DDMStructure)=<%= _assertEquals(8, DDMTemplateLocalServiceUtil.getTemplatesCount(groupId, PortalUtil.getClassNameId(DDMStructure.class))) %><br />
+				DDMTemplateLocalServiceUtil#getTemplatesCount(groupId, FileEntry)=<%= _assertEquals(1, DDMTemplateLocalServiceUtil.getTemplatesCount(groupId, PortalUtil.getClassNameId(FileEntry.class))) %><br />
+				DDMTemplateLocalServiceUtil#getTemplatesCount(groupId, LayoutSet)=<%= _assertEquals(1, DDMTemplateLocalServiceUtil.getTemplatesCount(groupId, PortalUtil.getClassNameId(LayoutSet.class))) %><br />
+				DDMTemplateLocalServiceUtil#getTemplatesCount(groupId, WikiPage)=<%= _assertEquals(1, DDMTemplateLocalServiceUtil.getTemplatesCount(groupId, PortalUtil.getClassNameId(WikiPage.class))) %><br />
+				DDMTemplateLocalServiceUtil#getTemplatesCount=<%= _assertEquals(16, DDMTemplateLocalServiceUtil.getTemplatesCount(groupId)) %><br />
+			</c:when>
+		</c:choose>
 	</p>
 
 <%
@@ -261,7 +299,19 @@ private static String _assertTrue(boolean value) {
 private static File _exportLayoutsAsFile(Group group, boolean privateLayout) throws PortalException, SystemException {
 	Map<String, String[]> parameters = new HashMap<String, String[]>();
 
+	parameters.put(PortletDataHandlerKeys.IGNORE_LAST_PUBLISH_DATE, new String[] {Boolean.TRUE.toString()});
+	parameters.put(PortletDataHandlerKeys.LAYOUT_SET_SETTINGS, new String[] {Boolean.TRUE.toString()});
+	parameters.put(PortletDataHandlerKeys.LAYOUT_SET_PROTOTYPE_LINK_ENABLED, new String[] {Boolean.TRUE.toString()});
+	parameters.put(PortletDataHandlerKeys.LOGO, new String[] {Boolean.TRUE.toString()});
+	parameters.put(PortletDataHandlerKeys.PERMISSIONS, new String[] {Boolean.TRUE.toString()});
+	parameters.put(PortletDataHandlerKeys.PORTLET_CONFIGURATION, new String[] {Boolean.TRUE.toString()});
+	parameters.put(PortletDataHandlerKeys.PORTLET_CONFIGURATION_ALL, new String[] {Boolean.TRUE.toString()});
+	parameters.put(PortletDataHandlerKeys.PORTLET_DATA, new String[] {Boolean.TRUE.toString()});
 	parameters.put(PortletDataHandlerKeys.PORTLET_DATA_ALL, new String[] {Boolean.TRUE.toString()});
+	parameters.put(PortletDataHandlerKeys.PORTLET_DATA + StringPool.UNDERLINE + PortletKeys.ASSET_CATEGORIES_ADMIN, new String[] {Boolean.TRUE.toString()});
+	parameters.put(PortletDataHandlerKeys.PORTLET_SETUP_ALL, new String[] {Boolean.TRUE.toString()});
+	parameters.put(PortletDataHandlerKeys.THEME_REFERENCE, new String[] {Boolean.TRUE.toString()});
+	parameters.put(PortletDataHandlerKeys.PORTLET_SETUP_ALL, new String[] {Boolean.TRUE.toString()});
 
 	List<Layout> layouts = LayoutLocalServiceUtil.getLayouts(group.getGroupId(), privateLayout);
 
