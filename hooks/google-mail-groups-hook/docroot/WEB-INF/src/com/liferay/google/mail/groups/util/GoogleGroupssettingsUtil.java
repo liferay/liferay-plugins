@@ -70,7 +70,7 @@ public class GoogleGroupssettingsUtil {
 			Groupssettings.Groups.Update update = groupssettingsGroups.update(
 				groupEmailAddress, groups);
 
-			for (int i = 0; i < PortletPropsValues.GOOGLE_API_MAX_RETRIES;
+			for (int i = 0; i < PortletPropsValues.GOOGLE_API_RETRY_ATTEMPTS;
 					i++) {
 
 				try {
@@ -79,12 +79,12 @@ public class GoogleGroupssettingsUtil {
 					return;
 				}
 				catch (GoogleJsonResponseException gjre) {
-					if (i >= (PortletPropsValues.GOOGLE_API_MAX_RETRIES - 1)) {
+					if (i >= (PortletPropsValues.GOOGLE_API_RETRY_ATTEMPTS - 1)) {
 						throw new PortalException(gjre);
 					}
 					else {
 						Thread.sleep(
-							PortletPropsValues.GOOGLE_API_RETRY_WAIT_TIME);
+							PortletPropsValues.GOOGLE_API_RETRY_INTERVAL);
 					}
 				}
 			}
