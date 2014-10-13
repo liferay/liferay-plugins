@@ -11,7 +11,8 @@
  * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
  * details.
  */
-	package com.liferay.asset.sharing;
+
+package com.liferay.asset.sharing;
 
 import aQute.bnd.annotation.ProviderType;
 
