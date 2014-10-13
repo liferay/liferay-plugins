@@ -589,8 +589,8 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 
 		A.Array.each(
 			<%= CalendarUtil.toCalendarsJSONArray(themeDisplay, manageableCalendars) %>,
-			function(calendar) {
-				manageableCalendars[calendar.calendarId] = calendar;
+			function(item, index) {
+				manageableCalendars[item.calendarId] = item;
 			}
 		);
 
