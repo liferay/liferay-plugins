@@ -254,6 +254,10 @@ public class KBArticleMarkdownConverter {
 			urlTitle = StringUtil.toLowerCase(urlTitle);
 		}
 
+		if (!urlTitle.startsWith(StringPool.SLASH)) {
+			urlTitle = StringPool.SLASH + urlTitle;
+		}
+
 		return urlTitle;
 	}
 
