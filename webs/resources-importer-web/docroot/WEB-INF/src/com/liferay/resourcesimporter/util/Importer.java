@@ -50,6 +50,8 @@ public interface Importer {
 
 	public void setTargetValue(String targetValue);
 
+	public void setUpdateModeEnabled(boolean updateModeEnabled);
+
 	public void setVersion(String version);
 
 }
