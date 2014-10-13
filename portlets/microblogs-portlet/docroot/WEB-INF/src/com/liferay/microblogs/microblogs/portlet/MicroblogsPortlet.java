@@ -111,7 +111,7 @@ public class MicroblogsPortlet extends MVCPortlet {
 
 		assetTagNames.addAll(MicroblogsUtil.getHashtags(content));
 
-		assetTagNames.addAll(MicroblogsUtil.getTaggedUsersScreenNames(content));
+		assetTagNames.addAll(MicroblogsUtil.getScreenNames(content));
 
 		return assetTagNames.toArray(new String[assetTagNames.size()]);
 	}
