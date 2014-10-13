@@ -190,7 +190,7 @@ public class GoogleMailGroupsUtil {
 					}
 					catch (Exception e) {
 						_log.error(
-							"Unable to add Google Group for " +
+							"Unable to add Google group for " +
 								group.getDescriptiveName(),
 							e);
 
@@ -242,7 +242,7 @@ public class GoogleMailGroupsUtil {
 
 						sb.append("Unable to delete ");
 						sb.append(groupMemberEmailAddress);
-						sb.append(" from the Google Group ");
+						sb.append(" from the Google group ");
 						sb.append(groupEmailAddress);
 
 						_log.error(sb.toString(), e);
@@ -263,7 +263,7 @@ public class GoogleMailGroupsUtil {
 
 						sb.append("Unable to add ");
 						sb.append(emailAddress);
-						sb.append(" to the Google Group ");
+						sb.append(" to the Google group ");
 						sb.append(groupEmailAddress);
 
 						_log.error(sb.toString(), e);
