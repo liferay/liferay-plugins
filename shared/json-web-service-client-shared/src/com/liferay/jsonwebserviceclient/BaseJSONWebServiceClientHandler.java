@@ -14,6 +14,9 @@
 
 package com.liferay.jsonwebserviceclient;
 
+import com.fasterxml.jackson.core.JsonFactory;
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.type.TypeFactory;
@@ -52,7 +55,9 @@ public abstract class BaseJSONWebServiceClientHandler {
 
 		String json = doGet(url, parametersArray);
 
-		if ((json == null) || json.equals("{}") || json.equals("[]")) {
+		if ((json == null) || json.equals("") || json.equals("{}") ||
+				json.equals("[]")) {
+
 			return Collections.emptyList();
 		}
 
