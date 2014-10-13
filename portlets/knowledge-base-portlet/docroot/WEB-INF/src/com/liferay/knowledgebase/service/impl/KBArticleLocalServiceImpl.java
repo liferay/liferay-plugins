@@ -14,6 +14,7 @@
 
 package com.liferay.knowledgebase.service.impl;
 
+import com.liferay.compat.portal.kernel.util.StringUtil;
 import com.liferay.knowledgebase.DuplicateKBArticleUrlTitleException;
 import com.liferay.knowledgebase.InvalidKBArticleUrlTitleException;
 import com.liferay.knowledgebase.KBArticleContentException;
@@ -61,11 +62,11 @@ import com.liferay.portal.kernel.search.IndexerRegistryUtil;
 import com.liferay.portal.kernel.search.SearchEngineUtil;
 import com.liferay.portal.kernel.systemevent.SystemEventHierarchyEntryThreadLocal;
 import com.liferay.portal.kernel.util.ArrayUtil;
+import com.liferay.portal.kernel.util.CharPool;
 import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.StringPool;
-import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.TempFileUtil;
 import com.liferay.portal.kernel.util.Time;
 import com.liferay.portal.kernel.util.Validator;
@@ -403,6 +404,8 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			long groupId, long kbFolderId, String urlTitle)
 		throws SystemException {
 
+		urlTitle = StringUtil.removeLeading(urlTitle, CharPool.SLASH);
+
 		KBArticle kbArticle = fetchLatestKBArticleByUrlTitle(
 			groupId, kbFolderId, urlTitle, WorkflowConstants.STATUS_APPROVED);
 
@@ -419,6 +422,8 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 	public KBArticle fetchKBArticleByUrlTitle(
 			long groupId, String kbFolderUrlTitle, String urlTitle)
 		throws PortalException {
+
+		urlTitle = StringUtil.removeLeading(urlTitle, CharPool.SLASH);
 
 		List<KBArticle> kbArticles = kbArticleFinder.findByUrlTitle(
 			groupId, kbFolderUrlTitle, urlTitle, _STATUSES, 0, 1);
@@ -447,6 +452,8 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 	public KBArticle fetchLatestKBArticleByUrlTitle(
 			long groupId, long kbFolderId, String urlTitle, int status)
 		throws SystemException {
+
+		urlTitle = StringUtil.removeLeading(urlTitle, CharPool.SLASH);
 
 		List<KBArticle> kbArticles = null;
 
@@ -581,6 +588,8 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			long groupId, long kbFolderId, String urlTitle)
 		throws PortalException, SystemException {
 
+		urlTitle = StringUtil.removeLeading(urlTitle, CharPool.SLASH);
+
 		// Get the latest KB article that is approved, if none are approved, get
 		// the latest unapproved KB article
 
@@ -601,6 +610,8 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 	public KBArticle getKBArticleByUrlTitle(
 			long groupId, String kbFolderUrlTitle, String urlTitle)
 		throws PortalException {
+
+		urlTitle = StringUtil.removeLeading(urlTitle, CharPool.SLASH);
 
 		KBArticle kbArticle = fetchKBArticleByUrlTitle(
 			groupId, kbFolderUrlTitle, urlTitle);
@@ -737,6 +748,8 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 	public KBArticle getLatestKBArticleByUrlTitle(
 			long groupId, long kbFolderId, String urlTitle, int status)
 		throws PortalException, SystemException {
+
+		urlTitle = StringUtil.removeLeading(urlTitle, CharPool.SLASH);
 
 		KBArticle latestKBArticle = fetchLatestKBArticleByUrlTitle(
 			groupId, kbFolderId, urlTitle, status);
