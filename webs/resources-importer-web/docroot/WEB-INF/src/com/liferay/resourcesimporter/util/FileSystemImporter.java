@@ -709,7 +709,7 @@ public class FileSystemImporter extends BaseImporter {
 		String type = layoutJSONObject.getString("type");
 
 		if (Validator.isNull(type)) {
-			type =LayoutConstants.TYPE_PORTLET;
+			type = LayoutConstants.TYPE_PORTLET;
 		}
 
 		String typeSettings = layoutJSONObject.getString("typeSettings");
@@ -737,7 +737,6 @@ public class FileSystemImporter extends BaseImporter {
 		ServiceContextThreadLocal.pushServiceContext(serviceContext);
 
 		try {
-
 			String layoutPrototypeName = layoutJSONObject.getString(
 				"layoutPrototypeName");
 
@@ -767,12 +766,12 @@ public class FileSystemImporter extends BaseImporter {
 			}
 
 			Layout layout = LayoutLocalServiceUtil.addLayout(
-				userId, groupId, privateLayout, parentLayoutId, nameMap, titleMap,
-				null, null, null, type, typeSettings, hidden, friendlyURLMap,
-				serviceContext);
+				userId, groupId, privateLayout, parentLayoutId, nameMap,
+				titleMap, null, null, null, type, typeSettings, hidden,
+				friendlyURLMap, serviceContext);
 
 			LayoutTypePortlet layoutTypePortlet =
-				(LayoutTypePortlet) layout.getLayoutType();
+				(LayoutTypePortlet)layout.getLayoutType();
 
 			String layoutTemplateId = layoutJSONObject.getString(
 				"layoutTemplateId", _defaultLayoutTemplateId);
@@ -782,16 +781,19 @@ public class FileSystemImporter extends BaseImporter {
 					userId, layoutTemplateId, false);
 			}
 
-			JSONArray columnsJSONArray = layoutJSONObject.getJSONArray("columns");
+			JSONArray columnsJSONArray = layoutJSONObject.getJSONArray(
+				"columns");
 
 			addLayoutColumns(
-				layout, LayoutTypePortletConstants.COLUMN_PREFIX, columnsJSONArray);
+				layout, LayoutTypePortletConstants.COLUMN_PREFIX,
+				columnsJSONArray);
 
 			LayoutLocalServiceUtil.updateLayout(
 				groupId, layout.isPrivateLayout(), layout.getLayoutId(),
 				layout.getTypeSettings());
 
-			JSONArray layoutsJSONArray = layoutJSONObject.getJSONArray("layouts");
+			JSONArray layoutsJSONArray = layoutJSONObject.getJSONArray(
+				"layouts");
 
 			addLayouts(privateLayout, layout.getLayoutId(), layoutsJSONArray);
 		}
@@ -900,23 +902,9 @@ public class FileSystemImporter extends BaseImporter {
 		}
 	}
 
-	protected void addLayouts(
-			boolean privateLayout, long parentLayoutId,
-			JSONArray layoutsJSONArray)
+	protected void addLayoutPrototype(InputStream inputStream)
 		throws Exception {
 
-		if (layoutsJSONArray == null) {
-			return;
-		}
-
-		for (int i = 0; i < layoutsJSONArray.length(); i++) {
-			JSONObject layoutJSONObject = layoutsJSONArray.getJSONObject(i);
-
-			addLayout(privateLayout, parentLayoutId, layoutJSONObject);
-		}
-	}
-
-	protected void addLayoutPrototype(InputStream inputStream) throws Exception {
 		String content = StringUtil.read(inputStream);
 
 		if (Validator.isNull(content)) {
@@ -928,8 +916,8 @@ public class FileSystemImporter extends BaseImporter {
 		JSONObject layoutTemplateJSONObject = jsonObject.getJSONObject(
 			"layoutTemplate");
 
-		Map<Locale, String> nameMap =
-			getMap(layoutTemplateJSONObject.getString("name"));
+		Map<Locale, String> nameMap = getMap(
+			layoutTemplateJSONObject.getString("name"));
 
 		String name = nameMap.get(Locale.getDefault());
 
@@ -994,6 +982,22 @@ public class FileSystemImporter extends BaseImporter {
 
 		for (File file : files) {
 			addLayoutPrototype(getInputStream(file));
+		}
+	}
+
+	protected void addLayouts(
+			boolean privateLayout, long parentLayoutId,
+			JSONArray layoutsJSONArray)
+		throws Exception {
+
+		if (layoutsJSONArray == null) {
+			return;
+		}
+
+		for (int i = 0; i < layoutsJSONArray.length(); i++) {
+			JSONObject layoutJSONObject = layoutsJSONArray.getJSONObject(i);
+
+			addLayout(privateLayout, parentLayoutId, layoutJSONObject);
 		}
 	}
 
