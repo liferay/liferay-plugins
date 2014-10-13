@@ -944,6 +944,7 @@ public class FileSystemImporter extends BaseImporter {
 		}
 
 		ServiceContext serviceContext = new ServiceContext();
+
 		serviceContext.setCompanyId(companyId);
 		serviceContext.setUserId(userId);
 
