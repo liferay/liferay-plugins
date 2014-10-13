@@ -663,11 +663,16 @@ public class FileSystemImporter extends BaseImporter {
 
 		Map<Locale, String> descriptionMap = null;
 
+		boolean indexable = true;
+
 		if (assetJSONObject != null) {
 			String abstractSummary = assetJSONObject.getString(
 				"abstractSummary");
 
 			descriptionMap = getMap(abstractSummary);
+
+			indexable = GetterUtil.getBoolean(
+				assetJSONObject.getString("indexable"), true);
 		}
 
 		String content = StringUtil.read(inputStream);
@@ -698,15 +703,36 @@ public class FileSystemImporter extends BaseImporter {
 
 		setServiceContext(fileName);
 
+		String journalArticleId = getJournalId(fileName);
+
 		JournalArticle journalArticle =
-			JournalArticleLocalServiceUtil.addArticle(
-				userId, groupId, 0, 0, 0, getJournalId(fileName), false,
-				JournalArticleConstants.VERSION_DEFAULT,
-				getMap(articleDefaultLocale, title), descriptionMap, content,
-				"general", ddmStructureKey, ddmTemplateKey, StringPool.BLANK, 1,
-				1, 2010, 0, 0, 0, 0, 0, 0, 0, true, 0, 0, 0, 0, 0, true, true,
-				smallImage, smallImageURL, null, new HashMap<String, byte[]>(),
-				StringPool.BLANK, serviceContext);
+			JournalArticleLocalServiceUtil.fetchLatestArticle(
+				groupId, journalArticleId, WorkflowConstants.STATUS_ANY);
+
+		if (journalArticle == null) {
+			journalArticle =
+				JournalArticleLocalServiceUtil.addArticle(
+					userId, groupId, 0, 0, 0, journalArticleId, false,
+					JournalArticleConstants.VERSION_DEFAULT,
+					getMap(articleDefaultLocale, title), descriptionMap,
+					content, "general", ddmStructureKey, ddmTemplateKey,
+					StringPool.BLANK, 1, 1, 2010, 0, 0, 0, 0, 0, 0, 0, true, 0,
+					0, 0, 0, 0, true, indexable, smallImage, smallImageURL,
+					null, new HashMap<String, byte[]>(), StringPool.BLANK,
+					serviceContext);
+		}
+		else {
+			journalArticle =
+				JournalArticleLocalServiceUtil.updateArticle(
+					userId, groupId, 0, journalArticleId,
+					journalArticle.getVersion(),
+					getMap(articleDefaultLocale, title), descriptionMap,
+					content, "general", ddmStructureKey, ddmTemplateKey,
+					StringPool.BLANK, 1, 1, 2010, 0, 0, 0, 0, 0, 0, 0, true, 0,
+					0, 0, 0, 0, true, indexable, smallImage, smallImageURL,
+					null, new HashMap<String, byte[]>(), StringPool.BLANK,
+					serviceContext);
+		}
 
 		JournalArticleLocalServiceUtil.updateStatus(
 			userId, groupId, journalArticle.getArticleId(),
