@@ -56,7 +56,7 @@ public abstract class BaseJSONWebServiceClientHandler {
 		String json = doGet(url, parametersArray);
 
 		if ((json == null) || json.equals("") || json.equals("{}") ||
-				json.equals("[]")) {
+			json.equals("[]")) {
 
 			return Collections.emptyList();
 		}
