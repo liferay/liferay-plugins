@@ -162,7 +162,8 @@ public class MicroblogsActivityInterpreter extends SOSocialActivityInterpreter {
 
 		sb.append("\"/></a></span></div><span class=\"microblog-content\">");
 		sb.append(
-			MicroblogsUtil.getTaggedContent(microblogsEntry, serviceContext));
+			MicroblogsUtil.getProcessedContent(
+				microblogsEntry, serviceContext));
 		sb.append("</span></div></div>");
 
 		return sb.toString();
@@ -237,7 +238,7 @@ public class MicroblogsActivityInterpreter extends SOSocialActivityInterpreter {
 					SocialActivityKeyConstants.MICROBLOGS_ADD_ENTRY) {
 
 				sb.append(
-					MicroblogsUtil.getTaggedContent(
+					MicroblogsUtil.getProcessedContent(
 						microblogsEntry, serviceContext));
 			}
 			else if (activityType ==

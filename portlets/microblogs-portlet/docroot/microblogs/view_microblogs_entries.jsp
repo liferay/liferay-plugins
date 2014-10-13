@@ -85,7 +85,7 @@ if (microblogsEntries != null) {
 				<div class="content">
 
 					<%
-					String content = MicroblogsUtil.getTaggedContent(microblogsEntry, ServiceContextFactory.getInstance(request));
+					String content = MicroblogsUtil.getProcessedContent(microblogsEntry, ServiceContextFactory.getInstance(request));
 					%>
 
 					<span>

@@ -73,7 +73,7 @@ public class MicroblogsUserNotificationHandler
 
 		String title = getBodyTitle(microblogsEntry, serviceContext);
 
-		String body = MicroblogsUtil.getTaggedContent(
+		String body = MicroblogsUtil.getProcessedContent(
 			StringUtil.shorten(microblogsEntry.getContent(), 50),
 			serviceContext);
 

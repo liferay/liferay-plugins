@@ -148,14 +148,14 @@ public class MicroblogsUtil {
 		return receiverUserIds;
 	}
 
-	public static String getTaggedContent(
+	public static String getProcessedContent(
 			MicroblogsEntry microblogsEntry, ServiceContext serviceContext)
 		throws PortalException {
 
-		return getTaggedContent(microblogsEntry.getContent(), serviceContext);
+		return getProcessedContent(microblogsEntry.getContent(), serviceContext);
 	}
 
-	public static String getTaggedContent(
+	public static String getProcessedContent(
 			String content, ServiceContext serviceContext)
 		throws PortalException {
 
