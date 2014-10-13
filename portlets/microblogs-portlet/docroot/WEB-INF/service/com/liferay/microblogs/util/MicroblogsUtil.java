@@ -127,32 +127,12 @@ public class MicroblogsUtil {
 		return microblogsEntry.getReceiverUserId();
 	}
 
-	public static List<Long> getSubscriberUserIds(
-		MicroblogsEntry microblogsEntry) {
-
-		List<Long> receiverUserIds = new ArrayList<Long>();
-
-		List<Subscription> subscriptions =
-			SubscriptionLocalServiceUtil.getSubscriptions(
-				microblogsEntry.getCompanyId(), MicroblogsEntry.class.getName(),
-				MicroblogsUtil.getParentMicroblogsEntryId(microblogsEntry));
-
-		for (Subscription subscription : subscriptions) {
-			if (microblogsEntry.getUserId() == subscription.getUserId()) {
-				continue;
-			}
-
-			receiverUserIds.add(subscription.getUserId());
-		}
-
-		return receiverUserIds;
-	}
-
 	public static String getProcessedContent(
 			MicroblogsEntry microblogsEntry, ServiceContext serviceContext)
 		throws PortalException {
 
-		return getProcessedContent(microblogsEntry.getContent(), serviceContext);
+		return getProcessedContent(
+			microblogsEntry.getContent(), serviceContext);
 	}
 
 	public static String getProcessedContent(
@@ -181,6 +161,27 @@ public class MicroblogsUtil {
 		}
 
 		return screenNames;
+	}
+
+	public static List<Long> getSubscriberUserIds(
+		MicroblogsEntry microblogsEntry) {
+
+		List<Long> receiverUserIds = new ArrayList<Long>();
+
+		List<Subscription> subscriptions =
+			SubscriptionLocalServiceUtil.getSubscriptions(
+				microblogsEntry.getCompanyId(), MicroblogsEntry.class.getName(),
+				MicroblogsUtil.getParentMicroblogsEntryId(microblogsEntry));
+
+		for (Subscription subscription : subscriptions) {
+			if (microblogsEntry.getUserId() == subscription.getUserId()) {
+				continue;
+			}
+
+			receiverUserIds.add(subscription.getUserId());
+		}
+
+		return receiverUserIds;
 	}
 
 	public static boolean hasReplied(long parentMicroblogsEntryId, long userId)
@@ -237,7 +238,6 @@ public class MicroblogsUtil {
 						microblogsEntry.getCompanyId(), screenName);
 
 				if (screenNameUserId == userId) {
-
 					return true;
 				}
 			}
