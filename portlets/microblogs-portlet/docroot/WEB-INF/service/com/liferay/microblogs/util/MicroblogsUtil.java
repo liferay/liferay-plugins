@@ -166,7 +166,7 @@ public class MicroblogsUtil {
 		return content;
 	}
 
-	public static List<String> getTaggedUsersScreenNames(String content) {
+	public static List<String> getScreenNames(String content) {
 		List<String> screenNames = new ArrayList<String>();
 
 		Matcher matcher = _userTagPattern.matcher(content);
@@ -228,13 +228,15 @@ public class MicroblogsUtil {
 				parentMicroblogsEntryId));
 
 		for (MicroblogsEntry microblogsEntry : microblogsEntries) {
-			List<String> userTagNames = getTaggedUsersScreenNames(
+			List<String> screenNames = getScreenNames(
 				microblogsEntry.getContent());
 
-			for (String userTagName : userTagNames) {
-				if (UserLocalServiceUtil.getUserIdByScreenName(
-						microblogsEntry.getCompanyId(), userTagName) ==
-							userId) {
+			for (String screenName : screenNames) {
+				long screenNameUserId =
+					UserLocalServiceUtil.getUserIdByScreenName(
+						microblogsEntry.getCompanyId(), screenName);
+
+				if (screenNameUserId == userId) {
 
 					return true;
 				}
