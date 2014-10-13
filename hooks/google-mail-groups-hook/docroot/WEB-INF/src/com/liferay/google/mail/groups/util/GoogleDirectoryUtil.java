@@ -44,7 +44,7 @@ public class GoogleDirectoryUtil {
 			Directory.Groups.Insert insert = groups.insert(group);
 
 			for (int i = 0; i < PortletPropsValues.GOOGLE_API_MAX_RETRIES;
-				i++) {
+					i++) {
 
 				try {
 					insert.execute();
@@ -84,7 +84,7 @@ public class GoogleDirectoryUtil {
 				groupEmailAddress, member);
 
 			for (int i = 0; i < PortletPropsValues.GOOGLE_API_MAX_RETRIES;
-				i++) {
+					i++) {
 
 				try {
 					insert.execute();
@@ -122,7 +122,7 @@ public class GoogleDirectoryUtil {
 			Directory.Groups.Delete delete = groups.delete(groupEmailAddress);
 
 			for (int i = 0; i < PortletPropsValues.GOOGLE_API_MAX_RETRIES;
-				i++) {
+					i++) {
 
 				try {
 					delete.execute();
@@ -164,7 +164,7 @@ public class GoogleDirectoryUtil {
 				groupEmailAddress, emailAddress);
 
 			for (int i = 0; i < PortletPropsValues.GOOGLE_API_MAX_RETRIES;
-				i++) {
+					i++) {
 
 				try {
 					delete.execute();
@@ -265,7 +265,7 @@ public class GoogleDirectoryUtil {
 				groupEmailAddress, userEmailAddress, member);
 
 			for (int i = 0; i < PortletPropsValues.GOOGLE_API_MAX_RETRIES;
-				i++) {
+					i++) {
 
 				try {
 					update.execute();
