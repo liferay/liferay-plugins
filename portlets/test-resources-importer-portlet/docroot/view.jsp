@@ -133,11 +133,9 @@ for (String importer : importers) {
 	<p>
 
 		<%
-		DLFileEntry dlFileEntry = null;
-
 		String[] assetTagNames = null;
 
-		dlFileEntry = DLFileEntryLocalServiceUtil.fetchFileEntry(groupId, DLFolderConstants.DEFAULT_PARENT_FOLDER_ID, "company_logo");
+		DLFileEntry dlFileEntry = DLFileEntryLocalServiceUtil.fetchFileEntry(groupId, DLFolderConstants.DEFAULT_PARENT_FOLDER_ID, "company_logo");
 
 		if (dlFileEntry != null) {
 			assetTagNames = AssetTagLocalServiceUtil.getTagNames(DLFileEntry.class.getName(), dlFileEntry.getFileEntryId());
@@ -173,11 +171,12 @@ for (String importer : importers) {
 			catch (NoSuchArticleException nsae) {
 			}
 		%>
+
 		<c:choose>
-			<c:when test='<%= journalArticle == null %>'>
+			<c:when test="<%= journalArticle == null %>">
 				JournalArticleLocalServiceUtil#getArticle=<%= _assertTrue(journalArticle != null) %><br />
 			</c:when>
-			<c:when test='<%= journalArticle != null %>'>
+			<c:when test="<%= journalArticle != null %>">
 				JournalArticle#getDescription=<%= _assertTrue(Validator.isNotNull(journalArticle.getDescription())) %><br />
 				JournalArticle#isSmallImage=<%= _assertTrue(journalArticle.isSmallImage()) %><br />
 				JournalArticle#isTemplateDriven=<%= _assertTrue(journalArticle.isTemplateDriven()) %><br />
@@ -208,28 +207,28 @@ for (String importer : importers) {
 
 		<%
 		DDMStructure ddmStructure = null;
-		String parentStructureKey = StringPool.BLANK;
+
+		String parentDDMStructureKey = StringPool.BLANK;
 
 		try {
 			ddmStructure = DDMStructureLocalServiceUtil.getStructure(groupId, PortalUtil.getClassNameId(JournalArticle.class), "CHILD-STRUCTURE-1" + keySuffix);
 
-			long parentStructureId = ddmStructure.getParentStructureId();
-
-			DDMStructure parentDDMStructure = DDMStructureLocalServiceUtil.fetchStructure(parentStructureId);
+			DDMStructure parentDDMStructure = DDMStructureLocalServiceUtil.fetchStructure(ddmStructure.getParentStructureId());
 
 			if (parentDDMStructure != null) {
-				parentStructureKey = parentDDMStructure.getStructureKey();
+				parentDDMStructureKey = parentDDMStructure.getStructureKey();
 			}
 		}
 		catch (NoSuchStructureException nsse) {
 		}
 		%>
+
 		<c:choose>
-			<c:when test='<%= ddmStructure == null %>'>
+			<c:when test="<%= ddmStructure == null %>">
 				DDMStructureLocalServiceUtil#getStructure=<%= _assertTrue(ddmStructure != null) %><br />
 			</c:when>
-			<c:when test='<%= ddmStructure != null %>'>
-				DDMStructure#getParentStructureId=<%= _assertEquals("PARENT-STRUCTURE" + keySuffix, parentStructureKey) %><br />
+			<c:when test="<%= ddmStructure != null %>">
+				DDMStructure#getParentStructureId=<%= _assertEquals("PARENT-STRUCTURE" + keySuffix, parentDDMStructureKey) %><br />
 				DDMStructureLocalServiceUtil#getStructuresCount(groupId, DDLRecordSet)=<%= _assertEquals(2, DDMStructureLocalServiceUtil.getStructuresCount(groupId, PortalUtil.getClassNameId(DDLRecordSet.class))) %><br />
 				DDMStructureLocalServiceUtil#getStructuresCount=<%= _assertEquals(5, DDMStructureLocalServiceUtil.getStructuresCount(groupId)) %>
 			</c:when>
@@ -240,11 +239,11 @@ for (String importer : importers) {
 
 		<%
 		DDMTemplate ddmTemplate = null;
+
 		String ddmStructureKey = StringPool.BLANK;
 
 		try {
-			ddmTemplate = DDMTemplateLocalServiceUtil.getTemplate(
-					groupId, PortalUtil.getClassNameId(DDMStructure.class), "CHILD-TEMPLATE-1" + keySuffix);
+			ddmTemplate = DDMTemplateLocalServiceUtil.getTemplate(groupId, PortalUtil.getClassNameId(DDMStructure.class), "CHILD-TEMPLATE-1" + keySuffix);
 
 			DDMStructure ddmTemplateStructure = null;
 
@@ -259,11 +258,12 @@ for (String importer : importers) {
 		catch (NoSuchTemplateException nste) {
 		}
 		%>
+
 		<c:choose>
-			<c:when test='<%= ddmTemplate == null %>'>
+			<c:when test="<%= ddmTemplate == null %>">
 				DDMTemplateLocalServiceUtil#getTemplate=<%= _assertTrue(ddmStructure != null) %><br />
 			</c:when>
-			<c:when test='<%= ddmTemplate != null %>'>
+			<c:when test="<%= ddmTemplate != null %>">
 				DDMTemplate#getStructureId=<%= _assertEquals("CHILD-STRUCTURE-1" + keySuffix, ddmStructureKey) %><br />
 				DDMTemplateLocalServiceUtil#getTemplatesCount(groupId, AssetCategory)=<%= _assertEquals(1, DDMTemplateLocalServiceUtil.getTemplatesCount(groupId, PortalUtil.getClassNameId(AssetCategory.class))) %><br />
 				DDMTemplateLocalServiceUtil#getTemplatesCount(groupId, AssetEntry)=<%= _assertEquals(2, DDMTemplateLocalServiceUtil.getTemplatesCount(groupId, PortalUtil.getClassNameId(AssetEntry.class))) %><br />
