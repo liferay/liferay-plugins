@@ -15,6 +15,7 @@
 package com.liferay.resourcesimporter.messaging;
 
 import com.liferay.portal.kernel.deploy.DeployManagerUtil;
+import com.liferay.portal.kernel.lar.ExportImportThreadLocal;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.messaging.HotDeployMessageListener;
@@ -147,6 +148,9 @@ public class ResourcesImporterHotDeployMessageListener
 		for (Company company : companies) {
 			long companyId = CompanyThreadLocal.getCompanyId();
 
+			ExportImportThreadLocal.setLayoutImportInProcess(true);
+			ExportImportThreadLocal.setPortletImportInProcess(true);
+
 			try {
 				CompanyThreadLocal.setCompanyId(company.getCompanyId());
 
@@ -227,6 +231,12 @@ public class ResourcesImporterHotDeployMessageListener
 
 				importer.setDeveloperModeEnabled(developerModeEnabled);
 
+				boolean updateModeEnabled = GetterUtil.getBoolean(
+					pluginPackageProperties.getProperty(
+						"resources-importer-update-mode-enabled"));
+
+				importer.setUpdateModeEnabled(updateModeEnabled);
+
 				importer.afterPropertiesSet();
 
 				if (!developerModeEnabled && importer.isExisting() &&
@@ -293,6 +303,9 @@ public class ResourcesImporterHotDeployMessageListener
 			}
 			finally {
 				CompanyThreadLocal.setCompanyId(companyId);
+
+				ExportImportThreadLocal.setLayoutImportInProcess(false);
+				ExportImportThreadLocal.setPortletImportInProcess(false);
 			}
 		}
 	}

@@ -212,6 +212,11 @@ public abstract class BaseImporter implements Importer {
 	}
 
 	@Override
+	public void setUpdateModeEnabled(boolean updateModeEnabled) {
+		this.updateModeEnabled = updateModeEnabled;
+	}
+
+	@Override
 	public void setVersion(String version) {
 		this.version = version;
 	}
@@ -261,6 +266,7 @@ public abstract class BaseImporter implements Importer {
 	protected String targetClassName;
 	protected long targetClassPK;
 	protected String targetValue;
+	protected boolean updateModeEnabled;
 	protected long userId;
 	protected String version;
 
