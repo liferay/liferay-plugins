@@ -16,12 +16,109 @@ package com.liferay.asset.sharing.service.impl;
 
 import aQute.bnd.annotation.ProviderType;
 
+import com.liferay.asset.sharing.model.AssetSharingEntry;
 import com.liferay.asset.sharing.service.base.AssetSharingEntryLocalServiceBaseImpl;
+import com.liferay.asset.sharing.service.persistence.AssetSharingEntryPK;
+
+import java.util.List;
+import java.util.Map;
 
 /**
- * @author Brian Wing Shun Chan
+ * @author Sherry Yang
  */
 @ProviderType
 public class AssetSharingEntryLocalServiceImpl
 	extends AssetSharingEntryLocalServiceBaseImpl {
+
+	@Override
+	public void addAssetSharingEntries(
+		long classNameId, long classPK,
+		Map<Long, long[]> sharedToClassNameIdsClassPKs) {
+
+		for (Long sharedToClassNameId : sharedToClassNameIdsClassPKs.keySet()) {
+			long[] sharedToClassPKs = sharedToClassNameIdsClassPKs.get(
+				sharedToClassNameId);
+
+			if (sharedToClassPKs.length == 0) {
+				continue;
+			}
+
+			for (long sharedToClassPK : sharedToClassPKs) {
+				addAssetSharingEntry(
+					classNameId, classPK, sharedToClassNameId, sharedToClassPK);
+			}
+		}
+	}
+
+	@Override
+	public void addAssetSharingEntry(
+		long classNameId, long classPK, long sharedToClassNameId,
+		long sharedToClassPK) {
+
+		AssetSharingEntryPK pk = new AssetSharingEntryPK(
+			classNameId, classPK, sharedToClassNameId, sharedToClassPK);
+
+		AssetSharingEntry assetSharingEntry =
+			assetSharingEntryPersistence.fetchByPrimaryKey(pk);
+
+		if (assetSharingEntry == null) {
+			assetSharingEntry = assetSharingEntryPersistence.create(pk);
+
+			assetSharingEntryPersistence.update(assetSharingEntry);
+		}
+	}
+
+	@Override
+	public void deleteAssetSharingEntries(long classNameId, long classPK) {
+		assetSharingEntryPersistence.removeByC_C(classNameId, classPK);
+	}
+
+	@Override
+	public List<AssetSharingEntry> getAssetSharingEntries(
+		long classNameId, long classPK) {
+
+		return assetSharingEntryPersistence.findByC_C(classNameId, classPK);
+	}
+
+	@Override
+	public List<AssetSharingEntry> getAssetSharingEntries(
+		long classNameId, long classPK, long sharedToClassNameId) {
+
+		return assetSharingEntryPersistence.findByC_C_S(
+			classNameId, classPK, sharedToClassNameId);
+	}
+
+	@Override
+	public List<AssetSharingEntry> getSharedToAssetSharingEntries(
+		long sharedToClassNameId, long sharedToClassPK, int start, int end) {
+
+		return assetSharingEntryPersistence.findByS_S(
+			sharedToClassNameId, sharedToClassPK, start, end);
+	}
+
+	@Override
+	public List<AssetSharingEntry> getSharedToAssetSharingEntries(
+		long classNameId, long sharedToClassNameId, long sharedToClassPK,
+		int start, int end) {
+
+		return assetSharingEntryPersistence.findByC_S_S(
+			classNameId, sharedToClassNameId, sharedToClassPK, start, end);
+	}
+
+	@Override
+	public int getSharedToAssetSharingEntriesCount(
+		long sharedToClassNameId, long sharedToClassPK) {
+
+		return assetSharingEntryPersistence.countByS_S(
+			sharedToClassNameId, sharedToClassPK);
+	}
+
+	@Override
+	public int getSharedToAssetSharingEntriesCount(
+		long classNameId, long sharedToClassNameId, long sharedToClassPK) {
+
+		return assetSharingEntryPersistence.countByC_S_S(
+			classNameId, sharedToClassNameId, sharedToClassPK);
+	}
+
 }
