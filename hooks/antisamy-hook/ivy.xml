@@ -11,7 +11,7 @@
 	</info>
 
 	<dependencies defaultconf="default">
-		<dependency name="antisamy" org="org.owasp.antisamy" rev="1.4.4" />
+		<dependency name="antisamy" org="org.owasp.antisamy" rev="1.5.3" />
 		<dependency name="batik-css" org="org.apache.xmlgraphics" rev="1.7" />
 		<dependency name="batik-util" org="org.apache.xmlgraphics" rev="1.7" />
 		<dependency name="xml-apis-ext" org="xml-apis" rev="1.3.04" />

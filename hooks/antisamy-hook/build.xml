@@ -22,7 +22,7 @@
 
 				<get
 					dest="docroot/WEB-INF/classes/sanitizer-configuration.xml"
-					src="http://owaspantisamy.googlecode.com/files/antisamy-ebay-1.3.xml"
+					src="https://owaspantisamy.googlecode.com/files/antisamy-ebay-1.4.4.xml"
 				/>
 
 				<replace file="docroot/WEB-INF/classes/sanitizer-configuration.xml">
