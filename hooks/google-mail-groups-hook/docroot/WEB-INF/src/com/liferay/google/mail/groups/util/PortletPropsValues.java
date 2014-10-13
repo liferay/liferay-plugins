@@ -34,6 +34,12 @@ public class PortletPropsValues {
 	public static final String EMAIL_PREFIX = GetterUtil.getString(
 		PortletProps.get(PortletPropsKeys.EMAIL_PREFIX));
 
+	public static final int GOOGLE_API_MAX_RETRIES = GetterUtil.getInteger(
+		PortletProps.get(PortletPropsKeys.GOOGLE_API_MAX_RETRIES));
+
+	public static final int GOOGLE_API_RETRY_WAIT_TIME = GetterUtil.getInteger(
+		PortletProps.get(PortletPropsKeys.GOOGLE_API_RETRY_WAIT_TIME));
+
 	public static final String GOOGLE_API_SERVICE_ACCOUNT_ID =
 		GetterUtil.getString(
 			PortletProps.get(PortletPropsKeys.GOOGLE_API_SERVICE_ACCOUNT_ID));
