@@ -1046,8 +1046,10 @@ public class FileSystemImporter extends BaseImporter {
 				return;
 			}
 
-			LayoutPrototypeLocalServiceUtil.deleteLayoutPrototype(
-				layoutPrototype);
+			if (!updateModeEnabled) {
+				LayoutPrototypeLocalServiceUtil.deleteLayoutPrototype(
+					layoutPrototype);
+			}
 		}
 
 		ServiceContext serviceContext = new ServiceContext();
@@ -1059,11 +1061,20 @@ public class FileSystemImporter extends BaseImporter {
 			serviceContext.setUuid(uuid);
 		}
 
-		layoutPrototype =
-			LayoutPrototypeLocalServiceUtil.addLayoutPrototype(
-				userId, companyId, getMap(name),
-				descriptionMap.get(LocaleUtil.getDefault()), true,
-				serviceContext);
+		if (!updateModeEnabled || (layoutPrototype == null)) {
+			layoutPrototype =
+				LayoutPrototypeLocalServiceUtil.addLayoutPrototype(
+					userId, companyId, getMap(name),
+					descriptionMap.get(LocaleUtil.getDefault()), true,
+					serviceContext);
+		}
+		else {
+			layoutPrototype =
+				LayoutPrototypeLocalServiceUtil.updateLayoutPrototype(
+					layoutPrototype.getLayoutPrototypeId(), getMap(name),
+					descriptionMap.get(LocaleUtil.getDefault()),
+					layoutPrototype.isActive(), serviceContext);
+		}
 
 		JSONArray columnsJSONArray = layoutTemplateJSONObject.getJSONArray(
 			"columns");
