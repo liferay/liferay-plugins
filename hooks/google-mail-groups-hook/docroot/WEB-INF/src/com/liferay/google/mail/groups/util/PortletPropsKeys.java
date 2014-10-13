@@ -29,6 +29,12 @@ public class PortletPropsKeys {
 
 	public static final String EMAIL_PREFIX = "email.prefix";
 
+	public static final String GOOGLE_API_MAX_RETRIES =
+		"google.api.max.retries";
+
+	public static final String GOOGLE_API_RETRY_WAIT_TIME =
+		"google.api.retry.wait.time";
+
 	public static final String GOOGLE_API_SERVICE_ACCOUNT_ID =
 		"google.api.service.account.id";
 
