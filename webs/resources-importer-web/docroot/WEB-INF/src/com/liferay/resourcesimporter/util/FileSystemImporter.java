@@ -1269,7 +1269,7 @@ public class FileSystemImporter extends BaseImporter {
 	}
 
 	protected void setUpAssets(String fileName) throws Exception {
-		if (!isCompanyGroup()) {
+		if (!isCompanyGroup() || !updateModeEnabled) {
 			List<AssetTag> assetTags = AssetTagLocalServiceUtil.getGroupTags(
 				groupId);
 
