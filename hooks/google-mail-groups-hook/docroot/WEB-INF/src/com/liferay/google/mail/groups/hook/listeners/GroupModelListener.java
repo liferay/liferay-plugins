@@ -23,6 +23,7 @@ import com.liferay.portal.kernel.messaging.DestinationNames;
 import com.liferay.portal.kernel.messaging.MessageBusUtil;
 import com.liferay.portal.kernel.process.ProcessCallable;
 import com.liferay.portal.kernel.process.ProcessException;
+import com.liferay.portal.kernel.transaction.TransactionCommitCallbackRegistryUtil;
 import com.liferay.portal.model.BaseModelListener;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.Organization;
@@ -35,6 +36,7 @@ import java.io.Serializable;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Callable;
 
 /**
  * @author Matthew Kong
@@ -47,15 +49,26 @@ public class GroupModelListener extends BaseModelListener<Group> {
 		Object associationClassPK) {
 
 		try {
-			Group group = GroupLocalServiceUtil.getGroup((Long)classPK);
+			final Group group = GroupLocalServiceUtil.getGroup((Long)classPK);
 
-			List<User> users = getUsers(
+			final List<User> users = getUsers(
 				classPK, associationClassName, associationClassPK);
 
-			MessageBusUtil.sendMessage(
-				DestinationNames.ASYNC_SERVICE,
-				new OnAssociationProcessCallable(
-					group, users, "addGroupMembers"));
+			Callable<Void> callable = new Callable<Void>() {
+
+				@Override
+				public Void call() throws Exception {
+					MessageBusUtil.sendMessage(
+						DestinationNames.ASYNC_SERVICE,
+						new OnAssociationProcessCallable(
+							group, users, "addGroupMembers"));
+
+					return null;
+				}
+
+			};
+
+			TransactionCommitCallbackRegistryUtil.registerCallback(callable);
 		}
 		catch (Exception e) {
 			_log.error(e, e);
@@ -99,15 +112,26 @@ public class GroupModelListener extends BaseModelListener<Group> {
 		Object associationClassPK) {
 
 		try {
-			Group group = GroupLocalServiceUtil.getGroup((Long)classPK);
+			final Group group = GroupLocalServiceUtil.getGroup((Long)classPK);
 
-			List<User> users = getUsers(
+			final List<User> users = getUsers(
 				classPK, associationClassName, associationClassPK);
 
-			MessageBusUtil.sendMessage(
-				DestinationNames.ASYNC_SERVICE,
-				new OnAssociationProcessCallable(
-					group, users, "deleteGroupMembers"));
+			Callable<Void> callable = new Callable<Void>() {
+
+				@Override
+				public Void call() throws Exception {
+					MessageBusUtil.sendMessage(
+						DestinationNames.ASYNC_SERVICE,
+						new OnAssociationProcessCallable(
+							group, users, "deleteGroupMembers"));
+
+					return null;
+				}
+
+			};
+
+			TransactionCommitCallbackRegistryUtil.registerCallback(callable);
 		}
 		catch (Exception e) {
 			_log.error(e, e);

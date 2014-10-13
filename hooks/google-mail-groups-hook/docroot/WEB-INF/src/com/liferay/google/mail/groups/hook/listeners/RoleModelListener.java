@@ -24,6 +24,7 @@ import com.liferay.portal.kernel.messaging.DestinationNames;
 import com.liferay.portal.kernel.messaging.MessageBusUtil;
 import com.liferay.portal.kernel.process.ProcessCallable;
 import com.liferay.portal.kernel.process.ProcessException;
+import com.liferay.portal.kernel.transaction.TransactionCommitCallbackRegistryUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.BaseModelListener;
@@ -41,6 +42,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.concurrent.Callable;
 
 /**
  * @author Matthew Kong
@@ -53,12 +55,23 @@ public class RoleModelListener extends BaseModelListener<Role> {
 		Object associationClassPK) {
 
 		try {
-			List<User> users = getUsers(
+			final List<User> users = getUsers(
 				classPK, associationClassName, associationClassPK);
 
-			MessageBusUtil.sendMessage(
-				DestinationNames.ASYNC_SERVICE,
-				new OnAssociationProcessCallable(users, "MANAGER"));
+			Callable<Void> callable = new Callable<Void>() {
+
+				@Override
+				public Void call() throws Exception {
+					MessageBusUtil.sendMessage(
+						DestinationNames.ASYNC_SERVICE,
+						new OnAssociationProcessCallable(users, "MANAGER"));
+
+					return null;
+				}
+
+			};
+
+			TransactionCommitCallbackRegistryUtil.registerCallback(callable);
 		}
 		catch (Exception e) {
 			_log.error(e, e);
@@ -71,12 +84,23 @@ public class RoleModelListener extends BaseModelListener<Role> {
 		Object associationClassPK) {
 
 		try {
-			List<User> users = getUsers(
+			final List<User> users = getUsers(
 				classPK, associationClassName, associationClassPK);
 
-			MessageBusUtil.sendMessage(
-				DestinationNames.ASYNC_SERVICE,
-				new OnAssociationProcessCallable(users, "MEMBER"));
+			Callable<Void> callable = new Callable<Void>() {
+
+				@Override
+				public Void call() throws Exception {
+					MessageBusUtil.sendMessage(
+						DestinationNames.ASYNC_SERVICE,
+						new OnAssociationProcessCallable(users, "MEMBER"));
+
+					return null;
+				}
+
+			};
+
+			TransactionCommitCallbackRegistryUtil.registerCallback(callable);
 		}
 		catch (Exception e) {
 			_log.error(e, e);
