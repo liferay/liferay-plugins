@@ -71,7 +71,7 @@ public class GoogleGroupssettingsUtil {
 				groupEmailAddress, groups);
 
 			for (int i = 0; i < PortletPropsValues.GOOGLE_API_MAX_RETRIES;
-				i++) {
+					i++) {
 
 				try {
 					update.execute();
