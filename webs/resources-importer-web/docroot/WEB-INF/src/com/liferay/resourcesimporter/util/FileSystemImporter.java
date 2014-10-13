@@ -954,7 +954,8 @@ public class FileSystemImporter extends BaseImporter {
 
 		layoutPrototype =
 			LayoutPrototypeLocalServiceUtil.addLayoutPrototype(
-				userId, companyId, getMap(name), descriptionMap, true,
+				userId, companyId, getMap(name),
+				descriptionMap.get(LocaleUtil.getDefault()), true,
 				serviceContext);
 
 		JSONArray columnsJSONArray = layoutTemplateJSONObject.getJSONArray(
