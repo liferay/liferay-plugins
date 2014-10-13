@@ -741,7 +741,20 @@ public class FileSystemImporter extends BaseImporter {
 			String layoutPrototypeName = layoutJSONObject.getString(
 				"layoutPrototypeName");
 
+			String layoutPrototypeUuid = null;
+
 			if (Validator.isNotNull(layoutPrototypeName)) {
+				LayoutPrototype layoutPrototype = getLayoutPrototype(
+					companyId, layoutPrototypeName);
+
+				layoutPrototypeUuid = layoutPrototype.getUuid();
+			}
+			else {
+				layoutPrototypeUuid = layoutJSONObject.getString(
+					"layoutPrototypeUuid");
+			}
+
+			if (Validator.isNotNull(layoutPrototypeUuid)) {
 				boolean layoutPrototypeLinkEnabled = GetterUtil.getBoolean(
 					layoutJSONObject.getString("layoutPrototypeLinkEnabled"),
 					false);
@@ -749,11 +762,8 @@ public class FileSystemImporter extends BaseImporter {
 				serviceContext.setAttribute(
 					"layoutPrototypeLinkEnabled", layoutPrototypeLinkEnabled);
 
-				LayoutPrototype layoutPrototype = getLayoutPrototype(
-					companyId, layoutPrototypeName);
-
 				serviceContext.setAttribute(
-					"layoutPrototypeUuid", layoutPrototype.getUuid());
+					"layoutPrototypeUuid", layoutPrototypeUuid);
 			}
 
 			Layout layout = LayoutLocalServiceUtil.addLayout(
@@ -926,6 +936,8 @@ public class FileSystemImporter extends BaseImporter {
 		Map<Locale, String> descriptionMap = getMap(
 			layoutTemplateJSONObject, "description");
 
+		String uuid = layoutTemplateJSONObject.getString("uuid");
+
 		LayoutPrototype layoutPrototype = getLayoutPrototype(companyId, name);
 
 		if (layoutPrototype != null) {
@@ -941,6 +953,14 @@ public class FileSystemImporter extends BaseImporter {
 
 			LayoutPrototypeLocalServiceUtil.deleteLayoutPrototype(
 				layoutPrototype);
+		}
+
+		ServiceContext serviceContext = new ServiceContext();
+		serviceContext.setCompanyId(companyId);
+		serviceContext.setUserId(userId);
+
+		if (Validator.isNotNull(uuid)) {
+			serviceContext.setUuid(uuid);
 		}
 
 		layoutPrototype =
