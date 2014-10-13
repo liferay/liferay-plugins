@@ -65,9 +65,11 @@ import com.liferay.portlet.asset.model.AssetEntry;
 import com.liferay.portlet.asset.model.AssetTag;
 import com.liferay.portlet.asset.service.AssetTagLocalServiceUtil;
 import com.liferay.portlet.blogs.model.BlogsEntry;
+import com.liferay.portlet.documentlibrary.DuplicateFileException;
 import com.liferay.portlet.documentlibrary.model.DLFolder;
 import com.liferay.portlet.documentlibrary.model.DLFolderConstants;
 import com.liferay.portlet.documentlibrary.service.DLAppLocalServiceUtil;
+import com.liferay.portlet.documentlibrary.service.DLFileEntryLocalServiceUtil;
 import com.liferay.portlet.documentlibrary.service.DLFolderLocalServiceUtil;
 import com.liferay.portlet.documentlibrary.util.DLUtil;
 import com.liferay.portlet.dynamicdatalists.model.DDLRecordSet;
@@ -552,11 +554,31 @@ public class FileSystemImporter extends BaseImporter {
 
 		setServiceContext(fileName);
 
-		FileEntry fileEntry = DLAppLocalServiceUtil.addFileEntry(
-			userId, groupId, parentFolderId, fileName,
-			MimeTypesUtil.getContentType(fileName),
-			FileUtil.stripExtension(fileName), StringPool.BLANK,
-			StringPool.BLANK, inputStream, length, serviceContext);
+		String title = FileUtil.stripExtension(fileName);
+
+		FileEntry fileEntry = null;
+
+		try {
+			fileEntry = DLAppLocalServiceUtil.addFileEntry(
+				userId, groupId, parentFolderId, fileName,
+				MimeTypesUtil.getContentType(fileName), title, StringPool.BLANK,
+				StringPool.BLANK, inputStream, length, serviceContext);
+		}
+		catch (DuplicateFileException e) {
+			fileEntry = DLAppLocalServiceUtil.getFileEntry(
+				groupId, parentFolderId, title);
+
+			String previousVersion = fileEntry.getVersion();
+
+			fileEntry = DLAppLocalServiceUtil.updateFileEntry(
+				userId, fileEntry.getFileEntryId(), fileName,
+				MimeTypesUtil.getContentType(fileName), title, StringPool.BLANK,
+				StringPool.BLANK, true, inputStream, length, serviceContext);
+
+			DLFileEntryLocalServiceUtil.deleteFileVersion(
+				fileEntry.getUserId(), fileEntry.getFileEntryId(),
+				previousVersion);
+		}
 
 		_fileEntries.put(fileName, fileEntry);
 	}
