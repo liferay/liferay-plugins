@@ -287,7 +287,7 @@ public class WebFormPortlet extends MVCPortlet {
 
 			fieldLabels.add(fieldLabel);
 
-			sb.append(getCSVFormatedValue(localizedfieldLabel));
+			sb.append(getCSVFormattedValue(localizedfieldLabel));
 			sb.append(PortletPropsValues.CSV_SEPARATOR);
 		}
 
@@ -307,7 +307,7 @@ public class WebFormPortlet extends MVCPortlet {
 						WebFormUtil.class.getName(), databaseTableName,
 						fieldName, row.getClassPK(), StringPool.BLANK);
 
-					sb.append(getCSVFormatedValue(data));
+					sb.append(getCSVFormattedValue(data));
 					sb.append(PortletPropsValues.CSV_SEPARATOR);
 				}
 
@@ -325,7 +325,7 @@ public class WebFormPortlet extends MVCPortlet {
 			resourceRequest, resourceResponse, fileName, bytes, contentType);
 	}
 
-	protected String getCSVFormatedValue(String value) {
+	protected String getCSVFormattedValue(String value) {
 		StringBundler sb = new StringBundler(3);
 
 		sb.append(CharPool.QUOTE);
@@ -391,7 +391,7 @@ public class WebFormPortlet extends MVCPortlet {
 		for (String fieldLabel : fieldsMap.keySet()) {
 			String fieldValue = fieldsMap.get(fieldLabel);
 
-			sb.append(getCSVFormatedValue(fieldValue));
+			sb.append(getCSVFormattedValue(fieldValue));
 			sb.append(PortletPropsValues.CSV_SEPARATOR);
 		}
 
