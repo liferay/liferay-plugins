@@ -22,6 +22,7 @@ import com.google.api.services.admin.directory.model.Member;
 import com.google.api.services.admin.directory.model.Members;
 
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.util.StringPool;
 
 /**
  * @author Matthew Kong
@@ -42,6 +43,8 @@ public class GoogleDirectoryUtil {
 			group.setName(name);
 
 			Directory.Groups.Insert insert = groups.insert(group);
+
+			insert.setFields(StringPool.BLANK);
 
 			for (int i = 1; i <= PortletPropsValues.GOOGLE_API_RETRY_ATTEMPTS;
 					i++) {
@@ -83,6 +86,8 @@ public class GoogleDirectoryUtil {
 			Directory.Members.Insert insert = members.insert(
 				groupEmailAddress, member);
 
+			insert.setFields(StringPool.BLANK);
+
 			for (int i = 1; i <= PortletPropsValues.GOOGLE_API_RETRY_ATTEMPTS;
 					i++) {
 
@@ -120,6 +125,8 @@ public class GoogleDirectoryUtil {
 			Directory.Groups groups = directory.groups();
 
 			Directory.Groups.Delete delete = groups.delete(groupEmailAddress);
+
+			delete.setFields(StringPool.BLANK);
 
 			for (int i = 1; i <= PortletPropsValues.GOOGLE_API_RETRY_ATTEMPTS;
 					i++) {
@@ -162,6 +169,8 @@ public class GoogleDirectoryUtil {
 
 			Directory.Members.Delete delete = members.delete(
 				groupEmailAddress, emailAddress);
+
+			delete.setFields(StringPool.BLANK);
 
 			for (int i = 1; i <= PortletPropsValues.GOOGLE_API_RETRY_ATTEMPTS;
 					i++) {
@@ -263,6 +272,8 @@ public class GoogleDirectoryUtil {
 
 			Directory.Members.Update update = members.update(
 				groupEmailAddress, userEmailAddress, member);
+
+			update.setFields(StringPool.BLANK);
 
 			for (int i = 1; i <= PortletPropsValues.GOOGLE_API_RETRY_ATTEMPTS;
 					i++) {
