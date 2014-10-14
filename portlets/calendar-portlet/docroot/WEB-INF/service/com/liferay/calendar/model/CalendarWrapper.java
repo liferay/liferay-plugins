@@ -65,6 +65,7 @@ public class CalendarWrapper implements Calendar, ModelWrapper<Calendar> {
 		attributes.put("calendarResourceId", getCalendarResourceId());
 		attributes.put("name", getName());
 		attributes.put("description", getDescription());
+		attributes.put("timeZoneId", getTimeZoneId());
 		attributes.put("color", getColor());
 		attributes.put("defaultCalendar", getDefaultCalendar());
 		attributes.put("enableComments", getEnableComments());
@@ -145,6 +146,12 @@ public class CalendarWrapper implements Calendar, ModelWrapper<Calendar> {
 
 		if (description != null) {
 			setDescription(description);
+		}
+
+		String timeZoneId = (String)attributes.get("timeZoneId");
+
+		if (timeZoneId != null) {
+			setTimeZoneId(timeZoneId);
 		}
 
 		Integer color = (Integer)attributes.get("color");
@@ -487,6 +494,16 @@ public class CalendarWrapper implements Calendar, ModelWrapper<Calendar> {
 	public java.util.TimeZone getTimeZone()
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _calendar.getTimeZone();
+	}
+
+	/**
+	* Returns the time zone ID of this calendar.
+	*
+	* @return the time zone ID of this calendar
+	*/
+	@Override
+	public java.lang.String getTimeZoneId() {
+		return _calendar.getTimeZoneId();
 	}
 
 	/**
@@ -875,6 +892,16 @@ public class CalendarWrapper implements Calendar, ModelWrapper<Calendar> {
 	@Override
 	public void setResourceBlockId(long resourceBlockId) {
 		_calendar.setResourceBlockId(resourceBlockId);
+	}
+
+	/**
+	* Sets the time zone ID of this calendar.
+	*
+	* @param timeZoneId the time zone ID of this calendar
+	*/
+	@Override
+	public void setTimeZoneId(java.lang.String timeZoneId) {
+		_calendar.setTimeZoneId(timeZoneId);
 	}
 
 	/**

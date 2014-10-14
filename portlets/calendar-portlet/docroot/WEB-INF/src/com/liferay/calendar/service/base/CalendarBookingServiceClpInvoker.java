@@ -74,13 +74,13 @@ public class CalendarBookingServiceClpInvoker {
 
 		_methodParameterTypes110 = new String[] { "long" };
 
-		_methodName111 = "getCalendarBookingInstance";
+		_methodName111 = "getCalendarBooking";
 
-		_methodParameterTypes111 = new String[] { "long", "int" };
+		_methodParameterTypes111 = new String[] { "long", "long" };
 
-		_methodName112 = "getCalendarBooking";
+		_methodName112 = "getCalendarBookingInstance";
 
-		_methodParameterTypes112 = new String[] { "long", "long" };
+		_methodParameterTypes112 = new String[] { "long", "int" };
 
 		_methodName113 = "getCalendarBookings";
 
@@ -322,14 +322,14 @@ public class CalendarBookingServiceClpInvoker {
 
 		if (_methodName111.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes111, parameterTypes)) {
-			return CalendarBookingServiceUtil.getCalendarBookingInstance(((Long)arguments[0]).longValue(),
-				((Integer)arguments[1]).intValue());
+			return CalendarBookingServiceUtil.getCalendarBooking(((Long)arguments[0]).longValue(),
+				((Long)arguments[1]).longValue());
 		}
 
 		if (_methodName112.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes112, parameterTypes)) {
-			return CalendarBookingServiceUtil.getCalendarBooking(((Long)arguments[0]).longValue(),
-				((Long)arguments[1]).longValue());
+			return CalendarBookingServiceUtil.getCalendarBookingInstance(((Long)arguments[0]).longValue(),
+				((Integer)arguments[1]).intValue());
 		}
 
 		if (_methodName113.equals(name) &&

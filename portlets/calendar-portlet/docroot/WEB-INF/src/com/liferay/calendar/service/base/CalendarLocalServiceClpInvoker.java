@@ -155,8 +155,8 @@ public class CalendarLocalServiceClpInvoker {
 		_methodName80 = "addCalendar";
 
 		_methodParameterTypes80 = new String[] {
-				"long", "long", "long", "java.util.Map", "java.util.Map", "int",
-				"boolean", "boolean", "boolean",
+				"long", "long", "long", "java.util.Map", "java.util.Map",
+				"java.lang.String", "int", "boolean", "boolean", "boolean",
 				"com.liferay.portal.service.ServiceContext"
 			};
 
@@ -231,15 +231,15 @@ public class CalendarLocalServiceClpInvoker {
 		_methodName94 = "updateCalendar";
 
 		_methodParameterTypes94 = new String[] {
-				"long", "java.util.Map", "java.util.Map", "int", "boolean",
-				"boolean", "boolean",
+				"long", "java.util.Map", "java.util.Map", "int",
 				"com.liferay.portal.service.ServiceContext"
 			};
 
 		_methodName95 = "updateCalendar";
 
 		_methodParameterTypes95 = new String[] {
-				"long", "java.util.Map", "java.util.Map", "int",
+				"long", "java.util.Map", "java.util.Map", "java.lang.String",
+				"int", "boolean", "boolean", "boolean",
 				"com.liferay.portal.service.ServiceContext"
 			};
 
@@ -400,11 +400,12 @@ public class CalendarLocalServiceClpInvoker {
 				((Long)arguments[2]).longValue(),
 				(java.util.Map<java.util.Locale, java.lang.String>)arguments[3],
 				(java.util.Map<java.util.Locale, java.lang.String>)arguments[4],
-				((Integer)arguments[5]).intValue(),
-				((Boolean)arguments[6]).booleanValue(),
+				(java.lang.String)arguments[5],
+				((Integer)arguments[6]).intValue(),
 				((Boolean)arguments[7]).booleanValue(),
 				((Boolean)arguments[8]).booleanValue(),
-				(com.liferay.portal.service.ServiceContext)arguments[9]);
+				((Boolean)arguments[9]).booleanValue(),
+				(com.liferay.portal.service.ServiceContext)arguments[10]);
 		}
 
 		if (_methodName81.equals(name) &&
@@ -506,10 +507,7 @@ public class CalendarLocalServiceClpInvoker {
 				(java.util.Map<java.util.Locale, java.lang.String>)arguments[1],
 				(java.util.Map<java.util.Locale, java.lang.String>)arguments[2],
 				((Integer)arguments[3]).intValue(),
-				((Boolean)arguments[4]).booleanValue(),
-				((Boolean)arguments[5]).booleanValue(),
-				((Boolean)arguments[6]).booleanValue(),
-				(com.liferay.portal.service.ServiceContext)arguments[7]);
+				(com.liferay.portal.service.ServiceContext)arguments[4]);
 		}
 
 		if (_methodName95.equals(name) &&
@@ -517,8 +515,12 @@ public class CalendarLocalServiceClpInvoker {
 			return CalendarLocalServiceUtil.updateCalendar(((Long)arguments[0]).longValue(),
 				(java.util.Map<java.util.Locale, java.lang.String>)arguments[1],
 				(java.util.Map<java.util.Locale, java.lang.String>)arguments[2],
-				((Integer)arguments[3]).intValue(),
-				(com.liferay.portal.service.ServiceContext)arguments[4]);
+				(java.lang.String)arguments[3],
+				((Integer)arguments[4]).intValue(),
+				((Boolean)arguments[5]).booleanValue(),
+				((Boolean)arguments[6]).booleanValue(),
+				((Boolean)arguments[7]).booleanValue(),
+				(com.liferay.portal.service.ServiceContext)arguments[8]);
 		}
 
 		if (_methodName96.equals(name) &&

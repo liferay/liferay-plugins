@@ -16,6 +16,7 @@
 		<field name="description" type="String" localized="true">
 			<hint-collection name="TEXTAREA" />
 		</field>
+		<field name="timeZoneId" type="String" />
 		<field name="color" type="int" />
 		<field name="defaultCalendar" type="boolean" />
 		<field name="enableComments" type="boolean" />

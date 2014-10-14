@@ -11,6 +11,7 @@ create table Calendar (
 	calendarResourceId LONG,
 	name STRING null,
 	description STRING null,
+	timeZoneId VARCHAR(75) null,
 	color INTEGER,
 	defaultCalendar BOOLEAN,
 	enableComments BOOLEAN,

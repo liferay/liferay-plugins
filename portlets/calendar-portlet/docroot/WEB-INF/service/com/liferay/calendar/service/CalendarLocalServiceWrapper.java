@@ -50,12 +50,12 @@ public class CalendarLocalServiceWrapper implements CalendarLocalService,
 		long groupId, long calendarResourceId,
 		java.util.Map<java.util.Locale, java.lang.String> nameMap,
 		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
-		int color, boolean defaultCalendar, boolean enableComments,
-		boolean enableRatings,
+		java.lang.String timeZoneId, int color, boolean defaultCalendar,
+		boolean enableComments, boolean enableRatings,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _calendarLocalService.addCalendar(userId, groupId,
-			calendarResourceId, nameMap, descriptionMap, color,
+			calendarResourceId, nameMap, descriptionMap, timeZoneId, color,
 			defaultCalendar, enableComments, enableRatings, serviceContext);
 	}
 
@@ -410,23 +410,23 @@ public class CalendarLocalServiceWrapper implements CalendarLocalService,
 	public com.liferay.calendar.model.Calendar updateCalendar(long calendarId,
 		java.util.Map<java.util.Locale, java.lang.String> nameMap,
 		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
-		int color, boolean defaultCalendar, boolean enableComments,
-		boolean enableRatings,
-		com.liferay.portal.service.ServiceContext serviceContext)
+		int color, com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _calendarLocalService.updateCalendar(calendarId, nameMap,
-			descriptionMap, color, defaultCalendar, enableComments,
-			enableRatings, serviceContext);
+			descriptionMap, color, serviceContext);
 	}
 
 	@Override
 	public com.liferay.calendar.model.Calendar updateCalendar(long calendarId,
 		java.util.Map<java.util.Locale, java.lang.String> nameMap,
 		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
-		int color, com.liferay.portal.service.ServiceContext serviceContext)
+		java.lang.String timeZoneId, int color, boolean defaultCalendar,
+		boolean enableComments, boolean enableRatings,
+		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _calendarLocalService.updateCalendar(calendarId, nameMap,
-			descriptionMap, color, serviceContext);
+			descriptionMap, timeZoneId, color, defaultCalendar, enableComments,
+			enableRatings, serviceContext);
 	}
 
 	@Override

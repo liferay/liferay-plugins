@@ -858,19 +858,20 @@ public interface CalendarBookingModel extends BaseModel<CalendarBooking>,
 	public Object clone();
 
 	@Override
-	public int compareTo(CalendarBooking calendarBooking);
+	public int compareTo(
+		com.liferay.calendar.model.CalendarBooking calendarBooking);
 
 	@Override
 	public int hashCode();
 
 	@Override
-	public CacheModel<CalendarBooking> toCacheModel();
+	public CacheModel<com.liferay.calendar.model.CalendarBooking> toCacheModel();
 
 	@Override
-	public CalendarBooking toEscapedModel();
+	public com.liferay.calendar.model.CalendarBooking toEscapedModel();
 
 	@Override
-	public CalendarBooking toUnescapedModel();
+	public com.liferay.calendar.model.CalendarBooking toUnescapedModel();
 
 	@Override
 	public String toString();
