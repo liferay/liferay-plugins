@@ -20,6 +20,7 @@ import com.google.api.services.groupssettings.Groupssettings;
 import com.google.api.services.groupssettings.model.Groups;
 
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.util.StringPool;
 
 /**
  * @author Matthew Kong
@@ -69,6 +70,8 @@ public class GoogleGroupssettingsUtil {
 
 			Groupssettings.Groups.Update update = groupssettingsGroups.update(
 				groupEmailAddress, groups);
+
+			update.setFields(StringPool.BLANK);
 
 			for (int i = 1; i <= PortletPropsValues.GOOGLE_API_RETRY_ATTEMPTS;
 					i++) {
