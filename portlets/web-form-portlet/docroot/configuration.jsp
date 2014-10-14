@@ -271,6 +271,7 @@ if (WebFormUtil.getTableRowsCount(company.getCompanyId(), databaseTableName) > 0
 			{
 				contentBox: webFields,
 				fieldIndexes: '<portlet:namespace />formFieldsIndexes',
+				namespace: '<portlet:namespace />',
 				sortable: true,
 				sortableHandle: '.field-label',
 
