@@ -28,7 +28,6 @@ import com.liferay.portlet.documentlibrary.model.DLFileEntry;
 import com.liferay.portlet.documentlibrary.model.DLFolder;
 import com.liferay.sync.model.SyncDLObject;
 import com.liferay.sync.model.impl.SyncDLObjectImpl;
-import com.liferay.sync.service.persistence.SyncDLObjectFinder;
 import com.liferay.util.dao.orm.CustomSQLUtil;
 
 import java.util.List;
@@ -50,8 +49,7 @@ public class SyncDLObjectFinderImpl
 		SyncDLObjectFinder.class.getName() + ".findByFolderType";
 
 	@Override
-	public List<SyncDLObject> filterFindByC_R(
-			long companyId, long repositoryId)
+	public List<SyncDLObject> filterFindByC_R(long companyId, long repositoryId)
 		throws SystemException {
 
 		Session session = null;
