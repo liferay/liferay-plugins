@@ -20,7 +20,6 @@ _sass_cache_*.css
 /*/*/classes
 /*/*/javadoc
 /*/*/temp
-/*/*/test/integration/arquillian.xml
 /*/*/test-classes
 /*/*/test-results
 /*/*/tmp
@@ -31,6 +30,9 @@ _sass_cache_*.css
 /baseline-reports
 /build.*.properties
 /dist
+
+/hooks/*/test/integration/arquillian.xml
+/portlets/*/test/integration/arquillian.xml
 
 /themes/*/docroot/css
 /themes/*/docroot/images
