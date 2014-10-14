@@ -211,8 +211,23 @@ public class MicroblogsUtil {
 	}
 
 	public static boolean isTaggedUser(
-			long parentMicroblogsEntryId, long userId)
+			long microblogsEntryId, boolean checkParent, long userId)
 		throws PortalException {
+
+		MicroblogsEntry microblogsEntry =
+			MicroblogsEntryLocalServiceUtil.fetchMicroblogsEntry(
+				microblogsEntryId);
+
+		if (microblogsEntry == null) {
+			return false;
+		}
+
+		if (!checkParent) {
+			return isTaggedUser(microblogsEntry, userId);
+		}
+
+		long parentMicroblogsEntryId = getParentMicroblogsEntryId(
+			microblogsEntry);
 
 		List<MicroblogsEntry> microblogsEntries =
 			new ArrayList<MicroblogsEntry>();
@@ -228,18 +243,28 @@ public class MicroblogsUtil {
 			MicroblogsEntryLocalServiceUtil.getMicroblogsEntry(
 				parentMicroblogsEntryId));
 
-		for (MicroblogsEntry microblogsEntry : microblogsEntries) {
-			List<String> screenNames = getScreenNames(
-				microblogsEntry.getContent());
+		for (MicroblogsEntry curMicroblogsEntry : microblogsEntries) {
+			if (isTaggedUser(curMicroblogsEntry, userId)) {
+				return true;
+			}
+		}
 
-			for (String screenName : screenNames) {
-				long screenNameUserId =
-					UserLocalServiceUtil.getUserIdByScreenName(
-						microblogsEntry.getCompanyId(), screenName);
+		return false;
+	}
 
-				if (screenNameUserId == userId) {
-					return true;
-				}
+	protected static boolean isTaggedUser(
+			MicroblogsEntry microblogsEntry, long userId)
+		throws PortalException {
+
+		List<String> screenNames = getScreenNames(microblogsEntry.getContent());
+
+		for (String screenName : screenNames) {
+			long screenNameUserId =
+				UserLocalServiceUtil.getUserIdByScreenName(
+					microblogsEntry.getCompanyId(), screenName);
+
+			if (screenNameUserId == userId) {
+				return true;
 			}
 		}
 
