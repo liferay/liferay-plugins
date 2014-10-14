@@ -32,6 +32,7 @@ import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.Lock;
+import com.liferay.portlet.documentlibrary.NoSuchFileVersionException;
 import com.liferay.portlet.documentlibrary.model.DLFileEntry;
 import com.liferay.portlet.documentlibrary.model.DLFileEntryConstants;
 import com.liferay.portlet.documentlibrary.model.DLFileVersion;
@@ -340,14 +341,27 @@ public class SyncUtil {
 			type = SyncConstants.TYPE_FILE;
 		}
 		else {
-			dlFileVersion = DLFileVersionLocalServiceUtil.getFileVersion(
-				dlFileEntry.getFileEntryId(),
-				DLFileEntryConstants.PRIVATE_WORKING_COPY_VERSION);
+			try {
+				dlFileVersion = DLFileVersionLocalServiceUtil.getFileVersion(
+					dlFileEntry.getFileEntryId(),
+					DLFileEntryConstants.PRIVATE_WORKING_COPY_VERSION);
 
-			lockExpirationDate = lock.getExpirationDate();
-			lockUserId = lock.getUserId();
-			lockUserName = lock.getUserName();
-			type = SyncConstants.TYPE_PRIVATE_WORKING_COPY;
+				lockExpirationDate = lock.getExpirationDate();
+				lockUserId = lock.getUserId();
+				lockUserName = lock.getUserName();
+				type = SyncConstants.TYPE_PRIVATE_WORKING_COPY;
+			}
+			catch (NoSuchFileVersionException nsfve) {
+
+				// Publishing a checked out fileEntry on a staged site will
+				// get the staged fileEntry's lock even though the live
+				// fileEntry is not checked out.
+
+				dlFileVersion = DLFileVersionLocalServiceUtil.getFileVersion(
+					dlFileEntry.getFileEntryId(), dlFileEntry.getVersion());
+
+				type = SyncConstants.TYPE_FILE;
+			}
 		}
 
 		SyncDLObject syncDLObject = new SyncDLObjectImpl();

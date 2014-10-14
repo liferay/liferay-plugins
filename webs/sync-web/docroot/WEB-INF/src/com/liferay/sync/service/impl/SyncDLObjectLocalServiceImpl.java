@@ -94,6 +94,19 @@ public class SyncDLObjectLocalServiceImpl
 				}
 			}
 		}
+		else if (type.equals(SyncConstants.TYPE_PRIVATE_WORKING_COPY)) {
+			if (event.equals(SyncConstants.EVENT_RESTORE) ||
+				event.equals(SyncConstants.EVENT_TRASH)) {
+
+				SyncDLObject approvedSyncDLObject =
+					syncDLObjectPersistence.fetchByT_T(
+						SyncConstants.TYPE_FILE, typePK);
+
+				approvedSyncDLObject.setEvent(event);
+
+				syncDLObjectPersistence.update(approvedSyncDLObject);
+			}
+		}
 
 		syncDLObject.setModifiedTime(modifiedTime);
 		syncDLObject.setParentFolderId(parentFolderId);
