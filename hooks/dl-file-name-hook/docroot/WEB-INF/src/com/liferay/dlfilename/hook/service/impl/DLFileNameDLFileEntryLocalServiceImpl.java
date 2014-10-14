@@ -65,7 +65,8 @@ public class DLFileNameDLFileEntryLocalServiceImpl
 				DLFileNameFileEntryImpl.EXPAND_COLUMN_NAME_DISPLAY_TITLE)) {
 
 			expandoBridgeAttributes.put(
-				DLFileNameFileEntryImpl.EXPAND_COLUMN_NAME_DISPLAY_TITLE, title);
+				DLFileNameFileEntryImpl.EXPAND_COLUMN_NAME_DISPLAY_TITLE,
+				title);
 
 			serviceContext.setExpandoBridgeAttributes(expandoBridgeAttributes);
 
