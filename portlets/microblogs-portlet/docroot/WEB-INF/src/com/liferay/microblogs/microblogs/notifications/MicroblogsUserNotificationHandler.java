@@ -95,7 +95,16 @@ public class MicroblogsUserNotificationHandler
 		long parentMicroblogsEntryId =
 			MicroblogsUtil.getParentMicroblogsEntryId(microblogsEntry);
 
-		if (microblogsEntry.getType() == MicroblogsEntryConstants.TYPE_REPLY) {
+		if (MicroblogsUtil.isTaggedUser(
+				microblogsEntry.getMicroblogsEntryId(), false,
+				serviceContext.getUserId())) {
+
+			title = serviceContext.translate(
+				"x-tagged-you-in-a-post", userFullName);
+		}
+		else if (microblogsEntry.getType() ==
+					MicroblogsEntryConstants.TYPE_REPLY) {
+
 			if (MicroblogsUtil.getParentMicroblogsUserId(microblogsEntry) ==
 					serviceContext.getUserId()) {
 
@@ -116,17 +125,12 @@ public class MicroblogsUserNotificationHandler
 				}
 			}
 			else if (MicroblogsUtil.isTaggedUser(
-						parentMicroblogsEntryId, serviceContext.getUserId())) {
+						parentMicroblogsEntryId, true,
+						serviceContext.getUserId())) {
 
 				title = serviceContext.translate(
 					"x-commented-on-a-post-you-are-tagged-in", userFullName);
 			}
-		}
-		else if (MicroblogsUtil.isTaggedUser(
-					parentMicroblogsEntryId, serviceContext.getUserId())) {
-
-			title = serviceContext.translate(
-				"x-tagged-you-in-a-post", userFullName);
 		}
 
 		return title;
