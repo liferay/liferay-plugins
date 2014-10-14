@@ -61,7 +61,6 @@ import com.liferay.portal.kernel.search.SearchEngineUtil;
 import com.liferay.portal.kernel.systemevent.SystemEvent;
 import com.liferay.portal.kernel.systemevent.SystemEventHierarchyEntryThreadLocal;
 import com.liferay.portal.kernel.util.ArrayUtil;
-import com.liferay.portal.kernel.util.CharPool;
 import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
@@ -407,7 +406,8 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 	public KBArticle fetchKBArticleByUrlTitle(
 		long groupId, long kbFolderId, String urlTitle) {
 
-		urlTitle = StringUtil.removeLeading(urlTitle, CharPool.SLASH);
+		urlTitle = StringUtil.replaceFirst(
+			urlTitle, StringPool.SLASH, StringPool.BLANK);
 
 		KBArticle kbArticle = fetchLatestKBArticleByUrlTitle(
 			groupId, kbFolderId, urlTitle, WorkflowConstants.STATUS_APPROVED);
@@ -426,7 +426,8 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			long groupId, String kbFolderUrlTitle, String urlTitle)
 		throws PortalException {
 
-		urlTitle = StringUtil.removeLeading(urlTitle, CharPool.SLASH);
+		urlTitle = StringUtil.replaceFirst(
+			urlTitle, StringPool.SLASH, StringPool.BLANK);
 
 		List<KBArticle> kbArticles = kbArticleFinder.findByUrlTitle(
 			groupId, kbFolderUrlTitle, urlTitle, _STATUSES, 0, 1);
@@ -453,7 +454,8 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 	public KBArticle fetchLatestKBArticleByUrlTitle(
 		long groupId, long kbFolderId, String urlTitle, int status) {
 
-		urlTitle = StringUtil.removeLeading(urlTitle, CharPool.SLASH);
+		urlTitle = StringUtil.replaceFirst(
+			urlTitle, StringPool.SLASH, StringPool.BLANK);
 
 		List<KBArticle> kbArticles = null;
 
@@ -580,7 +582,8 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			long groupId, long kbFolderId, String urlTitle)
 		throws PortalException {
 
-		urlTitle = StringUtil.removeLeading(urlTitle, CharPool.SLASH);
+		urlTitle = StringUtil.replaceFirst(
+			urlTitle, StringPool.SLASH, StringPool.BLANK);
 
 		// Get the latest KB article that is approved, if none are approved, get
 		// the latest unapproved KB article
@@ -603,7 +606,8 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			long groupId, String kbFolderUrlTitle, String urlTitle)
 		throws PortalException {
 
-		urlTitle = StringUtil.removeLeading(urlTitle, CharPool.SLASH);
+		urlTitle = StringUtil.replaceFirst(
+			urlTitle, StringPool.SLASH, StringPool.BLANK);
 
 		KBArticle kbArticle = fetchKBArticleByUrlTitle(
 			groupId, kbFolderUrlTitle, urlTitle);
@@ -735,7 +739,8 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			long groupId, long kbFolderId, String urlTitle, int status)
 		throws PortalException {
 
-		urlTitle = StringUtil.removeLeading(urlTitle, CharPool.SLASH);
+		urlTitle = StringUtil.replaceFirst(
+			urlTitle, StringPool.SLASH, StringPool.BLANK);
 
 		KBArticle latestKBArticle = fetchLatestKBArticleByUrlTitle(
 			groupId, kbFolderId, urlTitle, status);
