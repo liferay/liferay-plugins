@@ -15,12 +15,16 @@
 package com.liferay.dlfilename.hook.events;
 
 import com.liferay.dlfilename.hook.model.impl.DLFileNameFileEntryImpl;
+import com.liferay.dlfilename.hook.util.DLFileNameDLImpl;
 import com.liferay.portal.kernel.events.ActionException;
 import com.liferay.portal.kernel.events.SimpleAction;
 import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.util.PortalClassLoaderUtil;
 import com.liferay.portal.kernel.util.UnicodeProperties;
 import com.liferay.portlet.documentlibrary.model.DLFileEntry;
 import com.liferay.portlet.documentlibrary.model.DLFileVersion;
+import com.liferay.portlet.documentlibrary.util.DL;
+import com.liferay.portlet.documentlibrary.util.DLUtil;
 import com.liferay.portlet.expando.DuplicateColumnNameException;
 import com.liferay.portlet.expando.DuplicateTableNameException;
 import com.liferay.portlet.expando.model.ExpandoColumn;
@@ -29,6 +33,8 @@ import com.liferay.portlet.expando.model.ExpandoTable;
 import com.liferay.portlet.expando.model.ExpandoTableConstants;
 import com.liferay.portlet.expando.service.ExpandoColumnLocalServiceUtil;
 import com.liferay.portlet.expando.service.ExpandoTableLocalServiceUtil;
+
+import java.lang.reflect.Field;
 
 /**
  * @author Preston Crary
@@ -81,6 +87,24 @@ public class StartupAction extends SimpleAction {
 			ExpandoColumnLocalServiceUtil.updateExpandoColumn(expandoColumn);
 		}
 		catch (DuplicateColumnNameException dcne) {
+		}
+
+		setDLImpl();
+	}
+
+	protected void setDLImpl() throws Exception {
+		ClassLoader classLoader = PortalClassLoaderUtil.getClassLoader();
+
+		Class<?> clazz = classLoader.loadClass(DLUtil.class.getName());
+
+		Field field = clazz.getDeclaredField("_dl");
+
+		field.setAccessible(true);
+
+		DL dl = (DL)field.get(null);
+
+		if (!(dl instanceof DLFileNameDLImpl)) {
+			field.set(null, new DLFileNameDLImpl(dl));
 		}
 	}
 
