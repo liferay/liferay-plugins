@@ -19,9 +19,11 @@
 		'liferay-calendar-simple-menu',
 		function(A) {
 			var AArray = A.Array;
+
 			var Lang = A.Lang;
 
 			var getClassName = A.getClassName;
+
 			var isArray = Lang.isArray;
 
 			var owns = A.Object.owns;
