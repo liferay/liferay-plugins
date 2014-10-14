@@ -270,67 +270,6 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 				</liferay-ui:search-container-column-text>
 			</liferay-ui:search-container-row>
 
-			<c:if test="<%= oldParentResourcePrimKey != KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY %>">
-				<aui:button-row cssClass="input-append">
-					<liferay-ui:input-resource url='<%= BeanPropertiesUtil.getString(KBArticleServiceUtil.getLatestKBArticle(oldParentResourcePrimKey, status), "title") %>' />
-
-					<liferay-util:buffer var="html">
-						<liferay-util:include page="/admin/new_parent.jsp" servletContext="<%= application %>">
-							<liferay-util:param name="parentResourceClassNameId" value="<%= String.valueOf(kbFolderClassNameId) %>" />
-							<liferay-util:param name="parentResourcePrimKey" value="<%= String.valueOf(KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY) %>" />
-						</liferay-util:include>
-					</liferay-util:buffer>
-
-					<%
-					String taglibOnClick = "opener." + renderResponse.getNamespace() + "selectKBArticle('(" + LanguageUtil.get(locale, "none") + ")', '1.0', '" + KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY + "', '" + kbFolderClassNameId + "', '" + UnicodeFormatter.toString(html) + "'); window.close();";
-					%>
-
-					<aui:button onClick="<%= taglibOnClick %>" value="remove" />
-				</aui:button-row>
-
-				<div class="separator"><!-- --></div>
-			</c:if>
-
-			<div class="kb-select-article-breadcrumbs">
-				<liferay-portlet:renderURL var="breadcrumbURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
-					<portlet:param name="mvcPath" value='<%= templatePath + "select_article.jsp" %>' />
-					<portlet:param name="resourcePrimKey" value="<%= String.valueOf(resourcePrimKey) %>" />
-					<portlet:param name="parentResourceClassNameId" value="<%= String.valueOf(kbFolderClassNameId) %>" />
-					<portlet:param name="parentResourcePrimKey" value="<%= String.valueOf(KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY) %>" />
-					<portlet:param name="oldParentResourcePrimKey" value="<%= String.valueOf(oldParentResourcePrimKey) %>" />
-					<portlet:param name="status" value="<%= String.valueOf(status) %>" />
-				</liferay-portlet:renderURL>
-
-				<aui:a href="<%= breadcrumbURL %>"><liferay-ui:message key="home" /></aui:a> &raquo;
-
-				<c:if test="<%= parentResourcePrimKey != KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY %>">
-
-					<%
-					List<KBArticle> selKBArticles = new ArrayList<KBArticle>();
-
-					long selParentResourcePrimKey = parentResourcePrimKey;
-
-					while (selParentResourcePrimKey != KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY) {
-						KBArticle selKBArticle = KBArticleServiceUtil.getLatestKBArticle(selParentResourcePrimKey, status);
-
-						selKBArticles.add(selKBArticle);
-
-						selParentResourcePrimKey = selKBArticle.getParentResourcePrimKey();
-					}
-
-					for (int i = selKBArticles.size(); i > 0; i--) {
-						KBArticle selKBArticle = selKBArticles.get(i - 1);
-					%>
-
-						<aui:a href='<%= HttpUtil.setParameter(breadcrumbURL, "parentResourcePrimKey", selKBArticle.getResourcePrimKey()) %>'><%= (i == 1) ? selKBArticle.getTitle() : StringUtil.shorten(selKBArticle.getTitle(), 30) %></aui:a> &raquo;
-
-					<%
-					}
-					%>
-
-				</c:if>
-			</div>
-
 			<liferay-ui:search-iterator />
 		</liferay-ui:search-container>
 	</aui:fieldset>
