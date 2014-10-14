@@ -14,6 +14,7 @@
 
 package com.liferay.dlfilename.hook.model.impl;
 
+import com.liferay.dlfilename.hook.util.DLFileNameThreadLocal;
 import com.liferay.portal.kernel.repository.model.FileVersion;
 import com.liferay.portal.kernel.repository.model.FileVersionWrapper;
 import com.liferay.portal.kernel.util.Validator;
@@ -30,6 +31,10 @@ public class DLFileNameFileVersionImpl extends FileVersionWrapper {
 
 	@Override
 	public String getTitle() {
+		if (DLFileNameThreadLocal.isEnabled()) {
+			return super.getTitle();
+		}
+
 		ExpandoBridge expandoBridge = getExpandoBridge();
 
 		String displayTitle = (String)expandoBridge.getAttribute(

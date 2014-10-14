@@ -14,6 +14,7 @@
 
 package com.liferay.dlfilename.hook.model.impl;
 
+import com.liferay.dlfilename.hook.util.DLFileNameThreadLocal;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.repository.model.FileEntry;
@@ -59,6 +60,10 @@ public class DLFileNameFileEntryImpl extends FileEntryWrapper {
 
 	@Override
 	public String getTitle() {
+		if (DLFileNameThreadLocal.isEnabled()) {
+			return super.getTitle();
+		}
+
 		ExpandoBridge expandoBridge = getExpandoBridge();
 
 		String displayTitle = (String)expandoBridge.getAttribute(
