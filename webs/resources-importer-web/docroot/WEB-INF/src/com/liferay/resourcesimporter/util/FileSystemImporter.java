@@ -415,16 +415,16 @@ public class FileSystemImporter extends BaseImporter {
 					groupId, PortalUtil.getClassNameId(JournalArticle.class),
 					parentDDMStructureKey);
 
-			long parentStructureId =
+			long parentDDMStructureId =
 				DDMStructureConstants.DEFAULT_PARENT_STRUCTURE_ID;
 
 			if (parentStructure != null) {
-				parentStructureId = parentStructure.getStructureId();
+				parentDDMStructureId = parentStructure.getStructureId();
 			}
 
 			ddmStructure = DDMStructureLocalServiceUtil.updateStructure(
-				ddmStructure.getStructureId(), parentStructureId, getMap(name),
-				null, xsd, serviceContext);
+				ddmStructure.getStructureId(), parentDDMStructureId,
+				getMap(name), null, xsd, serviceContext);
 		}
 
 		addDDMTemplates(
