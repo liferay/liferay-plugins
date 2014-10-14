@@ -172,24 +172,31 @@ public class DisplayPortlet extends BaseKBPortlet {
 
 		String urlTitle = ParamUtil.getString(actionRequest, "urlTitle");
 
-		if (Validator.isNotNull(urlTitle)) {
-			KBArticle kbArticle =
-				KBArticleLocalServiceUtil.fetchKBArticleByUrlTitle(
-					kbFolder.getGroupId(), kbFolder.getUrlTitle(), urlTitle);
-
-			ThemeDisplay themeDisplay =
-				(ThemeDisplay)actionRequest.getAttribute(WebKeys.THEME_DISPLAY);
-
-			if ((kbArticle != null) &&
-				KBArticlePermission.contains(
-						themeDisplay.getPermissionChecker(), kbArticle,
-						ActionKeys.VIEW)) {
-
-				actionResponse.setRenderParameter(
-					"kbFolderUrlTitle", kbFolder.getUrlTitle());
-				actionResponse.setRenderParameter("urlTitle", urlTitle);
-			}
+		if (Validator.isNull(urlTitle)) {
+			return;
 		}
+
+		KBArticle kbArticle =
+			KBArticleLocalServiceUtil.fetchKBArticleByUrlTitle(
+				kbFolder.getGroupId(), kbFolder.getUrlTitle(), urlTitle);
+
+		if (kbArticle == null) {
+			return;
+		}
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		if (!KBArticlePermission.contains(
+				themeDisplay.getPermissionChecker(), kbArticle,
+				ActionKeys.VIEW)) {
+
+			return;
+		}
+
+		actionResponse.setRenderParameter(
+			"kbFolderUrlTitle", kbFolder.getUrlTitle());
+		actionResponse.setRenderParameter("urlTitle", urlTitle);
 	}
 
 	@Override
