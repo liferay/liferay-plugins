@@ -611,9 +611,9 @@ public class FileSystemImporter extends BaseImporter {
 			long length)
 		throws Exception {
 
-		setServiceContext(fileName);
-
 		String title = FileUtil.stripExtension(fileName);
+
+		setServiceContext(fileName);
 
 		FileEntry fileEntry = null;
 
@@ -623,7 +623,7 @@ public class FileSystemImporter extends BaseImporter {
 				MimeTypesUtil.getContentType(fileName), title, StringPool.BLANK,
 				StringPool.BLANK, inputStream, length, serviceContext);
 		}
-		catch (DuplicateFileException e) {
+		catch (DuplicateFileException dfe) {
 			fileEntry = DLAppLocalServiceUtil.getFileEntry(
 				groupId, parentFolderId, title);
 
@@ -769,16 +769,15 @@ public class FileSystemImporter extends BaseImporter {
 				groupId, journalArticleId, WorkflowConstants.STATUS_ANY);
 
 		if (journalArticle == null) {
-			journalArticle =
-				JournalArticleLocalServiceUtil.addArticle(
-					userId, groupId, 0, 0, 0, journalArticleId, false,
-					JournalArticleConstants.VERSION_DEFAULT,
-					getMap(articleDefaultLocale, title), descriptionMap,
-					content, "general", ddmStructureKey, ddmTemplateKey,
-					StringPool.BLANK, 1, 1, 2010, 0, 0, 0, 0, 0, 0, 0, true, 0,
-					0, 0, 0, 0, true, indexable, smallImage, smallImageURL,
-					null, new HashMap<String, byte[]>(), StringPool.BLANK,
-					serviceContext);
+			journalArticle = JournalArticleLocalServiceUtil.addArticle(
+				userId, groupId, 0, 0, 0, journalArticleId, false,
+				JournalArticleConstants.VERSION_DEFAULT,
+				getMap(articleDefaultLocale, title), descriptionMap, content,
+				"general", ddmStructureKey, ddmTemplateKey, StringPool.BLANK, 1,
+				1, 2010, 0, 0, 0, 0, 0, 0, 0, true, 0, 0, 0, 0, 0, true,
+				indexable, smallImage, smallImageURL, null,
+				new HashMap<String, byte[]>(), StringPool.BLANK,
+				serviceContext);
 		}
 		else {
 			journalArticle =
@@ -1356,7 +1355,7 @@ public class FileSystemImporter extends BaseImporter {
 	}
 
 	protected void setUpAssets(String fileName) throws Exception {
-		if (!isCompanyGroup() && !updateModeEnabled) {
+		if (!updateModeEnabled && !isCompanyGroup()) {
 			List<AssetTag> assetTags = AssetTagLocalServiceUtil.getGroupTags(
 				groupId);
 
