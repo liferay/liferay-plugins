@@ -676,7 +676,7 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 		);
 
 		A.one('#<portlet:namespace />calendarId').on(
-			'valueChange',
+			'change',
 			function(event) {
 				var calendarId = parseInt(event.target.val(), 10);
 
