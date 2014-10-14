@@ -258,16 +258,15 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 			return;
 		}
 
-		Set<String> selectedFieldNamesSet = SetUtil.fromArray(
+		Set<String> selectedFieldNames = SetUtil.fromArray(
 			queryConfig.getSelectedFieldNames());
 
-		if (!selectedFieldNamesSet.contains(Field.UID)) {
-			selectedFieldNamesSet.add(Field.UID);
+		if (!selectedFieldNames.contains(Field.UID)) {
+			selectedFieldNames.add(Field.UID);
 		}
 
 		solrQuery.setFields(
-			selectedFieldNamesSet.toArray(
-				new String[selectedFieldNamesSet.size()]));
+			selectedFieldNames.toArray(new String[selectedFieldNames.size()]));
 	}
 
 	protected void addSnippets(
