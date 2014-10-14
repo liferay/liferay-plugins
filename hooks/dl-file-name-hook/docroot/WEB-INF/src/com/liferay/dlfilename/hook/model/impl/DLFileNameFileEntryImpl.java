@@ -53,6 +53,11 @@ public class DLFileNameFileEntryImpl extends FileEntryWrapper {
 	}
 
 	@Override
+	public Object getModel() {
+		return this;
+	}
+
+	@Override
 	public String getTitle() {
 		ExpandoBridge expandoBridge = getExpandoBridge();
 
