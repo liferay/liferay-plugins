@@ -353,9 +353,9 @@ public class SyncUtil {
 			}
 			catch (NoSuchFileVersionException nsfve) {
 
-				// Publishing a checked out fileEntry on a staged site will
-				// get the staged fileEntry's lock even though the live
-				// fileEntry is not checked out.
+				// Publishing a checked out file entry on a staged site will
+				// get the staged file entry's lock even though the live
+				// file entry is not checked out
 
 				dlFileVersion = DLFileVersionLocalServiceUtil.getFileVersion(
 					dlFileEntry.getFileEntryId(), dlFileEntry.getVersion());
