@@ -116,12 +116,12 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 			if (e instanceof DuplicateLockException) {
 				throw new WorkflowException(
 					"Workflow task " + workflowTaskInstanceId +
-						" currently locked by user: " + userId,
+						" is locked by user " + userId,
 					e);
 			}
 
 			throw new WorkflowException(
-				"Unable to lock workflow task: " + workflowTaskInstanceId, e);
+				"Unable to lock workflow task " + workflowTaskInstanceId, e);
 		}
 
 		try {
