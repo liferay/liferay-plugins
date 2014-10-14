@@ -235,6 +235,9 @@ portal-dependency-jars=vaadin.jar</echo>
 		</if>
 
 		<replace dir="${portlet.dir}">
+			<replacefilter token="@app.server.tomcat.manager.password@" value="${app.server.tomcat.manager.password}" />
+			<replacefilter token="@app.server.tomcat.manager.user@" value="${app.server.tomcat.manager.user}" />
+			<replacefilter token="@jmx.remote.port@" value="${jmx.remote.port}" />
 			<replacefilter token="@plugin.type.dir@" value="${plugin.type.dir}" />
 			<replacefilter token="@portlet.display.name@" value="${portlet.display.name}" />
 			<replacefilter token="@portlet.java.class.name@" value="${portlet.java.class.name}" />

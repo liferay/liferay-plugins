@@ -36,8 +36,11 @@
 		</copy>
 
 		<replace dir="${hook.dir}">
+			<replacefilter token="@app.server.tomcat.manager.password@" value="${app.server.tomcat.manager.password}" />
+			<replacefilter token="@app.server.tomcat.manager.user@" value="${app.server.tomcat.manager.user}" />
 			<replacefilter token="@hook.display.name@" value="${hook.display.name}" />
 			<replacefilter token="@hook.name@" value="${hook.name}" />
+			<replacefilter token="@jmx.remote.port@" value="${jmx.remote.port}" />
 			<replacefilter token="@plugin.type.dir@" value="${plugin.type.dir}" />
 		</replace>
 	</target>
