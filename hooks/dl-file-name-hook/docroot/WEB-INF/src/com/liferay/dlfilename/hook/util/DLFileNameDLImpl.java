@@ -147,6 +147,10 @@ public class DLFileNameDLImpl implements DL {
 		return _dl.getDividedPath(id);
 	}
 
+	public DL getDL() {
+		return _dl;
+	}
+
 	@Override
 	public String getDLFileEntryControlPanelLink(
 			PortletRequest portletRequest, long fileEntryId)
