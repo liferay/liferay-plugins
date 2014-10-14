@@ -161,7 +161,7 @@ public class FileSystemImporter extends BaseImporter {
 				ddmTemplate.getTemplateId(), ddmTemplate.getClassPK(),
 				getMap(name), null, DDMTemplateConstants.TEMPLATE_TYPE_DISPLAY,
 				StringPool.BLANK, getDDMTemplateLanguage(name), script, false,
-				serviceContext);
+				false, StringPool.BLANK, null, serviceContext);
 		}
 	}
 
