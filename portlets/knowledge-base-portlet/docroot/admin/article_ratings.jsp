@@ -283,19 +283,15 @@ boolean hasUpdatePermission = KBArticlePermission.contains(permissionChecker, kb
 			A.one('#<portlet:namespace />cancelFeedback').on(
 				'click',
 				function(event) {
-					this.each(
-						function(node) {
-							var container = node.ancestor('#<portlet:namespace />feedbackContainer');
+					var container = this.ancestor('#<portlet:namespace />feedbackContainer');
 
-							container.hide();
+					container.hide();
 
-							var content = container.one('#content');
+					var content = container.one('#content');
 
-							if (content) {
-								content.val('');
-							}
-						}
-					);
+					if (content) {
+						content.val('');
+					}
 				}
 			);
 		</aui:script>
