@@ -38,6 +38,7 @@ import com.liferay.portal.kernel.search.facet.collector.FacetCollector;
 import com.liferay.portal.kernel.search.facet.config.FacetConfiguration;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.util.SetUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -263,7 +264,16 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 			return;
 		}
 
-		solrQuery.setFields(selectedFieldNames);
+		Set<String> selectedFieldNamesSet = SetUtil.fromArray(
+			selectedFieldNames);
+
+		if (!selectedFieldNamesSet.contains(Field.UID)) {
+			selectedFieldNamesSet.add(Field.UID);
+		}
+
+		solrQuery.setFields(
+			selectedFieldNamesSet.toArray(
+				new String[selectedFieldNamesSet.size()]));
 	}
 
 	protected void addSnippets(
