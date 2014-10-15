@@ -39,7 +39,7 @@ String[] sections = AdminUtil.unescapeSections(BeanPropertiesUtil.getString(kbAr
 
 <aui:form action="<%= updateKBArticleURL %>" method="post" name="fm">
 	<aui:input name="mvcPath" type="hidden" value='<%= templatePath + "edit_article.jsp" %>' />
-	<aui:input name="<%= Constants.CMD %>" type="hidden" />
+	<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= (kbArticle == null) ? Constants.ADD : Constants.UPDATE %>" />
 	<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
 	<aui:input name="resourcePrimKey" type="hidden" value="<%= String.valueOf(resourcePrimKey) %>" />
 	<aui:input name="parentResourceClassNameId" type="hidden" value="<%= parentResourceClassNameId %>" />
@@ -263,10 +263,6 @@ String[] sections = AdminUtil.unescapeSections(BeanPropertiesUtil.getString(kbAr
 	form.on(
 		'submit',
 		function() {
-			var cmdInput = form.one('#<portlet:namespace /><%= Constants.CMD %>');
-
-			cmdInput.val('<%= (kbArticle == null) ? Constants.ADD : Constants.UPDATE %>');
-
 			var contentInput = form.one('#<portlet:namespace />content');
 
 			contentInput.val(<portlet:namespace />editor.getHTML());
