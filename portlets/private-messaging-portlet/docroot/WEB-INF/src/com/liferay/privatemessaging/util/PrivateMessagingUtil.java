@@ -24,15 +24,8 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
-import com.liferay.portal.kernel.search.Hits;
-import com.liferay.portal.kernel.search.Sort;
-import com.liferay.portal.kernel.search.SortFactoryUtil;
 import com.liferay.portal.kernel.util.CharPool;
-import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.kernel.util.PropsKeys;
-import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.StringBundler;
-import com.liferay.portal.kernel.util.Tuple;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.Role;
@@ -46,7 +39,6 @@ import com.liferay.portlet.messageboards.service.MBMessageLocalServiceUtil;
 import com.liferay.portlet.messageboards.util.comparator.MessageCreateDateComparator;
 import com.liferay.portlet.sites.util.SitesUtil;
 import com.liferay.portlet.social.model.SocialRelationConstants;
-import com.liferay.portlet.usersadmin.util.UsersAdminUtil;
 import com.liferay.privatemessaging.NoSuchUserThreadException;
 import com.liferay.privatemessaging.model.UserThread;
 import com.liferay.privatemessaging.service.UserThreadLocalServiceUtil;
@@ -113,45 +105,15 @@ public class PrivateMessagingUtil {
 		catch (NoSuchRoleException nsre) {
 		}
 
-		List<User> users = new ArrayList<User>();
+		int total = UserLocalServiceUtil.searchCount(
+			user.getCompanyId(), keywords, WorkflowConstants.STATUS_APPROVED,
+			params);
 
-		if (_USERS_INDEXER_ENABLED && _USERS_SEARCH_WITH_INDEX) {
-			Sort sort = SortFactoryUtil.getSort(User.class, "firstName", "asc");
+		jsonObject.put("total", total);
 
-			boolean corruptIndex = false;
-
-			Hits hits = null;
-			Tuple tuple = null;
-
-			do {
-				hits =
-					UserLocalServiceUtil.search(
-						user.getCompanyId(), keywords,
-						WorkflowConstants.STATUS_APPROVED, params, start, end,
-						sort);
-
-				tuple = UsersAdminUtil.getUsers(hits);
-
-				corruptIndex = (Boolean)tuple.getObject(1);
-			}
-			while (corruptIndex);
-
-			jsonObject.put("total", hits.getLength());
-
-			users = (List<User>)tuple.getObject(0);
-		}
-		else {
-			int total = UserLocalServiceUtil.searchCount(
-				user.getCompanyId(), keywords,
-				WorkflowConstants.STATUS_APPROVED, params);
-
-			jsonObject.put("total", total);
-
-			users = UserLocalServiceUtil.search(
-				user.getCompanyId(), keywords,
-				WorkflowConstants.STATUS_APPROVED, params, start, end,
-				new UserFirstNameComparator(true));
-		}
+		List<User> users = UserLocalServiceUtil.search(
+			user.getCompanyId(), keywords, WorkflowConstants.STATUS_APPROVED,
+			params, start, end, new UserFirstNameComparator(true));
 
 		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
 
@@ -286,11 +248,5 @@ public class PrivateMessagingUtil {
 			return false;
 		}
 	}
-
-	private static final boolean _USERS_INDEXER_ENABLED = GetterUtil.getBoolean(
-		PropsUtil.get(PropsKeys.USERS_INDEXER_ENABLED));
-
-	private static final boolean _USERS_SEARCH_WITH_INDEX =
-		GetterUtil.getBoolean(PropsUtil.get(PropsKeys.USERS_SEARCH_WITH_INDEX));
 
 }
