@@ -61,7 +61,7 @@ if (group.isUser() && !showManageEntries) {
 		}
 	);
 
-	var announcementEntries = A.one('#p_p_id<portlet:namespace /> .portlet-content-container');
+	var announcementEntries = A.one('#p_p_id<portlet:namespace />');
 
 	announcementEntries.delegate(
 		'click',
