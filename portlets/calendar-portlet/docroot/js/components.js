@@ -1236,10 +1236,10 @@
 
 					data.answers = {};
 
-					instance.queue = new A.AsyncQueue();
+					var queue = new A.AsyncQueue();
 
 					if (data.recurring) {
-						instance.queue.add(
+						queue.add(
 							{
 								args: [data],
 								autoContinue: false,
@@ -1252,7 +1252,7 @@
 
 					if (data.masterBooking) {
 						if (data.hasChild) {
-							instance.queue.add(
+							queue.add(
 								{
 									args: [data],
 									autoContinue: false,
@@ -1264,7 +1264,7 @@
 						}
 					}
 					else {
-						instance.queue.add(
+						queue.add(
 							{
 								args: [data],
 								autoContinue: false,
@@ -1275,7 +1275,7 @@
 						);
 					}
 
-					instance.queue.add(
+					queue.add(
 						{
 							args: [data],
 							autoContinue: false,
@@ -1285,7 +1285,9 @@
 						}
 					);
 
-					instance.queue.run();
+					instance.queue = queue;
+
+					queue.run();
 				},
 
 				_queueableQuestionUpdateAllInvited: function(data) {
