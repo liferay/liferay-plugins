@@ -278,18 +278,11 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 			return;
 		}
 
-		addSnippets(
-			solrDocument, document, queryTerms, highlights,
-			Field.ASSET_CATEGORY_TITLES, queryConfig.getLocale());
-		addSnippets(
-			solrDocument, document, queryTerms, highlights, Field.CONTENT,
-			queryConfig.getLocale());
-		addSnippets(
-			solrDocument, document, queryTerms, highlights, Field.DESCRIPTION,
-			queryConfig.getLocale());
-		addSnippets(
-			solrDocument, document, queryTerms, highlights, Field.TITLE,
-			queryConfig.getLocale());
+		for (String highlightFieldName : queryConfig.getHighlightFieldNames()) {
+			addSnippets(
+				solrDocument, document, queryTerms, highlights,
+				highlightFieldName, queryConfig.getLocale());
+		}
 	}
 
 	protected void addSnippets(
