@@ -80,7 +80,7 @@ else if (kbArticle != null) {
 				</c:if>
 			</liferay-portlet:actionURL>
 
-			<div class="kbarticle-root-selector kb-field-wrapper">
+			<div class="kb-field-wrapper kbarticle-root-selector">
 				<aui:form action="<%= updateRootKBFolderIdURL %>" name="updateRootKBFolderIdFm">
 					<aui:select label="" name="rootKBFolderId">
 
