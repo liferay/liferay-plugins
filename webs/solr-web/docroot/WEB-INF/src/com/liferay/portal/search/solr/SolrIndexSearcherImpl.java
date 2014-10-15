@@ -379,7 +379,7 @@ public class SolrIndexSearcherImpl implements IndexSearcher {
 			}
 		}
 
-		hits.setScores(scoresArray);
+		hits.setScores(ArrayUtil.toFloatArray(scores));
 
 		float searchTime =
 			(float)(System.currentTimeMillis() - startTime) / Time.SECOND;
