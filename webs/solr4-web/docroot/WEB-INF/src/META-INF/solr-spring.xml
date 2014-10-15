@@ -10,6 +10,24 @@
 >
 	<bean class="com.liferay.portal.spring.context.PortletBeanFactoryPostProcessor" />
 
+	<!-- Solr document -->
+
+	<bean class="com.liferay.portal.search.solr.document.DefaultSolrDocumentFactory" id="com.liferay.portal.search.solr.document.SolrDocumentFactory" />
+
+	<!-- Solr facet -->
+
+	<bean id="com.liferay.portal.search.solr.facet.CompositeFacetProcessor" class="com.liferay.portal.search.solr.facet.CompositeFacetProcessor">
+		<property name="defaultFacetProcessor" ref="com.liferay.portal.search.solr.facet.DefaultFacetProcessor" />
+		<property name="facetProcessors">
+			<map>
+				<entry key="com.liferay.portal.kernel.search.facet.ModifiedFacet" value-ref="com.liferay.portal.search.solr.facet.RangeFacetProcessor" />
+				<entry key="com.liferay.portal.kernel.search.facet.RangeFacet" value-ref="com.liferay.portal.search.solr.facet.RangeFacetProcessor" />
+			</map>
+		</property>
+	</bean>
+	<bean id="com.liferay.portal.search.solr.facet.DefaultFacetProcessor" class="com.liferay.portal.search.solr.facet.DefaultFacetProcessor" />
+	<bean id="com.liferay.portal.search.solr.facet.RangeFacetProcessor" class="com.liferay.portal.search.solr.facet.RangeFacetProcessor" />
+
 	<!-- Solr search engine client -->
 
 	<bean id="com.liferay.portal.search.solr.server.BasicAuthSolrServer" class="com.liferay.portal.search.solr.server.BasicAuthSolrServer">
@@ -42,12 +60,14 @@
 	<!-- Solr search engine adapter -->
 
 	<bean id="com.liferay.portal.search.solr.SolrIndexSearcher" class="com.liferay.portal.search.solr.SolrIndexSearcher">
+		<property name="facetProcessor" ref="com.liferay.portal.search.solr.facet.CompositeFacetProcessor" />
 		<property name="querySuggester" ref="com.liferay.portal.search.solr.SolrQuerySuggester" />
 		<property name="solrServer" ref="com.liferay.portal.search.solr.server.BasicAuthSolrServer" />
 		<property name="swallowException" value="true" />
 	</bean>
 	<bean id="com.liferay.portal.search.solr.SolrIndexWriter" class="com.liferay.portal.search.solr.SolrIndexWriter">
 		<property name="commit" value="true" />
+		<property name="solrDocumentFactory" ref="com.liferay.portal.search.solr.document.SolrDocumentFactory" />
 		<property name="solrServer" ref="com.liferay.portal.search.solr.server.BasicAuthSolrServer" />
 		<property name="spellCheckIndexWriter" ref="com.liferay.portal.search.solr.SolrSpellCheckIndexWriter" />
 	</bean>

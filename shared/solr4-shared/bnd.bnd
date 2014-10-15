@@ -1,9 +1,17 @@
-libs: ${filterout;${lsr;lib;*.jar};.*portal-compat-shared.jar}
-
-Import-Package: \
-	com.liferay.*,\
-	javax.servlet.*,\
+Bundle-Name: Liferay Portal Solr Adapter
+Bundle-SymbolicName: com.liferay.portal.search.solr
+Bundle-Version: 1.0.0
+libs: ${filterout;${lsr;lib;*.jar};.*.jar}
+Import-Package:\
+	com.liferay.portal.kernel.dao.orm.*,\
+	com.liferay.portal.kernel.log.*,\
+	com.liferay.portal.kernel.messaging.*,\
+	com.liferay.portal.kernel.search.*,\
+	com.liferay.portal.kernel.util.*,\
+	com.liferay.portal.model.*,\
+	com.liferay.portal.service.*,\
+	com.liferay.portal.util.*,\
 	*;resolution:="optional"
-Include-Resource: \
+Include-Resource:\
 	${replace;${libs};^;@lib/},\
 	classes
