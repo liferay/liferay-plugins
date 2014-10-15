@@ -382,8 +382,8 @@
 
 							contentBox.delegate(
 								'hover',
-								A.bind(instance._onHoverOver, instance),
-								A.bind(instance._onHoverOut, instance),
+								A.bind('_onHoverOver', instance),
+								A.bind('_onHoverOut', instance),
 								STR_DOT + CSS_CALENDAR_LIST_ITEM
 							);
 						},
@@ -1293,7 +1293,7 @@
 
 					var answers = data.answers;
 
-					var showNextQuestion = A.bind(instance.queue.run, instance.queue);
+					var showNextQuestion = A.bind('run', instance.queue);
 
 					if (answers.cancel) {
 						A.soon(showNextQuestion);
@@ -1320,7 +1320,7 @@
 
 					var answers = data.answers;
 
-					var showNextQuestion = A.bind(instance.queue.run, instance.queue);
+					var showNextQuestion = A.bind('run', instance.queue);
 
 					if (answers.cancel) {
 						A.soon(showNextQuestion);
@@ -1357,7 +1357,7 @@
 					var answers = data.answers;
 					var schedulerEvent = data.schedulerEvent;
 
-					var showNextQuestion = A.bind(instance.queue.run, instance.queue);
+					var showNextQuestion = A.bind('run', instance.queue);
 
 					if (answers.cancel) {
 						A.soon(showNextQuestion);
