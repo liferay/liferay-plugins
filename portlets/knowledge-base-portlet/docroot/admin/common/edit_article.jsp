@@ -206,6 +206,12 @@ String[] sections = AdminUtil.unescapeSections(BeanPropertiesUtil.getString(kbAr
 	</aui:fieldset>
 </aui:form>
 
+<aui:script>
+	function <portlet:namespace />initEditor() {
+		return '<%= UnicodeFormatter.toString(content) %>';
+	}
+</aui:script>
+
 <aui:script use="aui-base,event-input">
 	var A = AUI();
 
@@ -239,14 +245,6 @@ String[] sections = AdminUtil.unescapeSections(BeanPropertiesUtil.getString(kbAr
 		'input',
 		function() {
 			urlTitleCustomized = true;
-		}
-	);
-
-	Liferay.provide(
-		window,
-		'<portlet:namespace />initEditor',
-		function() {
-			return '<%= UnicodeFormatter.toString(content) %>';
 		}
 	);
 
