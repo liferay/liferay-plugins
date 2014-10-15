@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+
+<custom-sql>
+	<sql id="com.liferay.asset.sharing.service.persistence.AssetSharingEntryFinder.countAssetEntriesByUserId">
+		<![CDATA[
+			SELECT
+				COUNT(DISTINCT SocialActivitySet.activitySetId) AS COUNT_VALUE
+			FROM
+				AssetSharing_AssetSharingEntry
+			INNER JOIN
+				SocialActivitySet ON
+					(SocialActivitySet.classNameId = AssetSharing_AssetSharingEntry.classNameId) AND
+					(SocialActivitySet.classPK = AssetSharing_AssetSharingEntry.classPK)
+			LEFT JOIN
+				SocialRelation ON
+					(SocialRelation.userId2 = SocialActivitySet.userId)
+			WHERE
+				([$CLASS_NAME_IDS_CLASS_PKS])
+		]]>
+	</sql>
+	<sql id="com.liferay.asset.sharing.service.persistence.AssetSharingEntryFinder.findAssetEntriesByUserId">
+		<![CDATA[
+			SELECT
+				DISTINCT AssetSharing_AssetSharingEntry.classNameId as classNameId, AssetSharing_AssetSharingEntry.classPK as classPK
+			FROM
+				AssetSharing_AssetSharingEntry
+			INNER JOIN
+				SocialActivitySet ON
+					(SocialActivitySet.classNameId = AssetSharing_AssetSharingEntry.classNameId) AND
+					(SocialActivitySet.classPK = AssetSharing_AssetSharingEntry.classPK)
+			LEFT JOIN
+				SocialRelation ON
+					(SocialRelation.userId2 = SocialActivitySet.userId)
+			WHERE
+				([$CLASS_NAME_IDS_CLASS_PKS])
+			ORDER BY
+				SocialActivitySet.modifiedDate DESC
+		]]>
+	</sql>
+</custom-sql>
