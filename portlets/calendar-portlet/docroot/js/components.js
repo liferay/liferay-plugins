@@ -1353,7 +1353,6 @@
 					var instance = this;
 
 					var answers = data.answers;
-					var schedulerEvent = data.schedulerEvent;
 
 					var showNextQuestion = A.bind('run', instance.queue);
 
