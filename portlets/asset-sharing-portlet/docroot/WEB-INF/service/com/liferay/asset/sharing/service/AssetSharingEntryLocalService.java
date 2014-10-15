@@ -48,6 +48,8 @@ public interface AssetSharingEntryLocalService extends BaseLocalService,
 	 *
 	 * Never modify or reference this interface directly. Always use {@link AssetSharingEntryLocalServiceUtil} to access the asset sharing entry local service. Add custom service methods to {@link com.liferay.asset.sharing.service.impl.AssetSharingEntryLocalServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
+	public void addAssetSharingEntries(long classNameId, long classPK,
+		java.util.Map<java.lang.Long, long[]> sharedToClassNameIdsClassPKs);
 
 	/**
 	* Adds the asset sharing entry to the database. Also notifies the appropriate model listeners.
@@ -59,6 +61,9 @@ public interface AssetSharingEntryLocalService extends BaseLocalService,
 	public com.liferay.asset.sharing.model.AssetSharingEntry addAssetSharingEntry(
 		com.liferay.asset.sharing.model.AssetSharingEntry assetSharingEntry);
 
+	public void addAssetSharingEntry(long classNameId, long classPK,
+		long sharedToClassNameId, long sharedToClassPK);
+
 	/**
 	* Creates a new asset sharing entry with the primary key. Does not add the asset sharing entry to the database.
 	*
@@ -67,6 +72,8 @@ public interface AssetSharingEntryLocalService extends BaseLocalService,
 	*/
 	public com.liferay.asset.sharing.model.AssetSharingEntry createAssetSharingEntry(
 		com.liferay.asset.sharing.service.persistence.AssetSharingEntryPK assetSharingEntryPK);
+
+	public void deleteAssetSharingEntries(long classNameId, long classPK);
 
 	/**
 	* Deletes the asset sharing entry from the database. Also notifies the appropriate model listeners.
@@ -170,6 +177,14 @@ public interface AssetSharingEntryLocalService extends BaseLocalService,
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery();
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<com.liferay.asset.sharing.model.AssetSharingEntry> getAssetSharingEntries(
+		long classNameId, long classPK);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<com.liferay.asset.sharing.model.AssetSharingEntry> getAssetSharingEntries(
+		long classNameId, long classPK, long sharedToClassNameId);
+
 	/**
 	* Returns a range of all the asset sharing entries.
 	*
@@ -217,6 +232,23 @@ public interface AssetSharingEntryLocalService extends BaseLocalService,
 	public com.liferay.portal.model.PersistedModel getPersistedModel(
 		java.io.Serializable primaryKeyObj)
 		throws com.liferay.portal.kernel.exception.PortalException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<com.liferay.asset.sharing.model.AssetSharingEntry> getSharedToAssetSharingEntries(
+		long classNameId, long sharedToClassNameId, long sharedToClassPK,
+		int start, int end);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<com.liferay.asset.sharing.model.AssetSharingEntry> getSharedToAssetSharingEntries(
+		long sharedToClassNameId, long sharedToClassPK, int start, int end);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public int getSharedToAssetSharingEntriesCount(long classNameId,
+		long sharedToClassNameId, long sharedToClassPK);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public int getSharedToAssetSharingEntriesCount(long sharedToClassNameId,
+		long sharedToClassPK);
 
 	@Override
 	public java.lang.Object invokeMethod(java.lang.String name,

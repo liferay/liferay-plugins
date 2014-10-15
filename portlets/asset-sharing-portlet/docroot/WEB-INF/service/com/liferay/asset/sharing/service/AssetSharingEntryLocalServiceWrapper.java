@@ -34,6 +34,13 @@ public class AssetSharingEntryLocalServiceWrapper
 		_assetSharingEntryLocalService = assetSharingEntryLocalService;
 	}
 
+	@Override
+	public void addAssetSharingEntries(long classNameId, long classPK,
+		java.util.Map<java.lang.Long, long[]> sharedToClassNameIdsClassPKs) {
+		_assetSharingEntryLocalService.addAssetSharingEntries(classNameId,
+			classPK, sharedToClassNameIdsClassPKs);
+	}
+
 	/**
 	* Adds the asset sharing entry to the database. Also notifies the appropriate model listeners.
 	*
@@ -46,6 +53,13 @@ public class AssetSharingEntryLocalServiceWrapper
 		return _assetSharingEntryLocalService.addAssetSharingEntry(assetSharingEntry);
 	}
 
+	@Override
+	public void addAssetSharingEntry(long classNameId, long classPK,
+		long sharedToClassNameId, long sharedToClassPK) {
+		_assetSharingEntryLocalService.addAssetSharingEntry(classNameId,
+			classPK, sharedToClassNameId, sharedToClassPK);
+	}
+
 	/**
 	* Creates a new asset sharing entry with the primary key. Does not add the asset sharing entry to the database.
 	*
@@ -56,6 +70,12 @@ public class AssetSharingEntryLocalServiceWrapper
 	public com.liferay.asset.sharing.model.AssetSharingEntry createAssetSharingEntry(
 		com.liferay.asset.sharing.service.persistence.AssetSharingEntryPK assetSharingEntryPK) {
 		return _assetSharingEntryLocalService.createAssetSharingEntry(assetSharingEntryPK);
+	}
+
+	@Override
+	public void deleteAssetSharingEntries(long classNameId, long classPK) {
+		_assetSharingEntryLocalService.deleteAssetSharingEntries(classNameId,
+			classPK);
 	}
 
 	/**
@@ -191,6 +211,20 @@ public class AssetSharingEntryLocalServiceWrapper
 		return _assetSharingEntryLocalService.getActionableDynamicQuery();
 	}
 
+	@Override
+	public java.util.List<com.liferay.asset.sharing.model.AssetSharingEntry> getAssetSharingEntries(
+		long classNameId, long classPK) {
+		return _assetSharingEntryLocalService.getAssetSharingEntries(classNameId,
+			classPK);
+	}
+
+	@Override
+	public java.util.List<com.liferay.asset.sharing.model.AssetSharingEntry> getAssetSharingEntries(
+		long classNameId, long classPK, long sharedToClassNameId) {
+		return _assetSharingEntryLocalService.getAssetSharingEntries(classNameId,
+			classPK, sharedToClassNameId);
+	}
+
 	/**
 	* Returns a range of all the asset sharing entries.
 	*
@@ -247,6 +281,35 @@ public class AssetSharingEntryLocalServiceWrapper
 		java.io.Serializable primaryKeyObj)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _assetSharingEntryLocalService.getPersistedModel(primaryKeyObj);
+	}
+
+	@Override
+	public java.util.List<com.liferay.asset.sharing.model.AssetSharingEntry> getSharedToAssetSharingEntries(
+		long classNameId, long sharedToClassNameId, long sharedToClassPK,
+		int start, int end) {
+		return _assetSharingEntryLocalService.getSharedToAssetSharingEntries(classNameId,
+			sharedToClassNameId, sharedToClassPK, start, end);
+	}
+
+	@Override
+	public java.util.List<com.liferay.asset.sharing.model.AssetSharingEntry> getSharedToAssetSharingEntries(
+		long sharedToClassNameId, long sharedToClassPK, int start, int end) {
+		return _assetSharingEntryLocalService.getSharedToAssetSharingEntries(sharedToClassNameId,
+			sharedToClassPK, start, end);
+	}
+
+	@Override
+	public int getSharedToAssetSharingEntriesCount(long classNameId,
+		long sharedToClassNameId, long sharedToClassPK) {
+		return _assetSharingEntryLocalService.getSharedToAssetSharingEntriesCount(classNameId,
+			sharedToClassNameId, sharedToClassPK);
+	}
+
+	@Override
+	public int getSharedToAssetSharingEntriesCount(long sharedToClassNameId,
+		long sharedToClassPK) {
+		return _assetSharingEntryLocalService.getSharedToAssetSharingEntriesCount(sharedToClassNameId,
+			sharedToClassPK);
 	}
 
 	@Override
