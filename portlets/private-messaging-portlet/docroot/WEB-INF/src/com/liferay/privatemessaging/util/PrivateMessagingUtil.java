@@ -124,10 +124,11 @@ public class PrivateMessagingUtil {
 			Tuple tuple = null;
 
 			do {
-				hits = UserLocalServiceUtil.search(
-					user.getCompanyId(), keywords, keywords, keywords,
-					keywords, keywords, WorkflowConstants.STATUS_APPROVED,
-					params, false, start, end, sort);
+				hits =
+					UserLocalServiceUtil.search(
+						user.getCompanyId(), keywords, keywords, keywords,
+						keywords, keywords, WorkflowConstants.STATUS_APPROVED,
+						params, false, start, end, sort);
 
 				tuple = UsersAdminUtil.getUsers(hits);
 
