@@ -381,11 +381,6 @@ public class WebFormPortlet extends MVCPortlet {
 	}
 
 	protected boolean saveFile(Map<String, String> fieldsMap, String fileName) {
-
-		// Save the file as a CSV format. Use delimiter from property
-		// CSV_SEPARATOR, quote each entry with double quotes, and escape
-		// double quotes in values a two double quotes.
-
 		StringBundler sb = new StringBundler();
 
 		for (String fieldLabel : fieldsMap.keySet()) {
