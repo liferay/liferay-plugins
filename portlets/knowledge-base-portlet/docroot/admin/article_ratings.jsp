@@ -271,7 +271,7 @@ boolean hasUpdatePermission = KBArticlePermission.contains(permissionChecker, kb
 
 					showNode.toggleView();
 
-					var content = showNode.one('#content');
+					var content = showNode.one('#<portlet:namespace />content');
 
 					if (content) {
 						content.focus();
@@ -287,7 +287,7 @@ boolean hasUpdatePermission = KBArticlePermission.contains(permissionChecker, kb
 
 					container.hide();
 
-					var content = container.one('#content');
+					var content = container.one('#<portlet:namespace />content');
 
 					if (content) {
 						content.val('');
