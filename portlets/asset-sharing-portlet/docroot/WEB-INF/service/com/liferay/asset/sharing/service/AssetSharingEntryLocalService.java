@@ -248,4 +248,46 @@ public interface AssetSharingEntryLocalService extends BaseLocalService,
 	public java.lang.Object invokeMethod(java.lang.String name,
 		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
 		throws java.lang.Throwable;
+
+	public void addAssetSharingEntries(long classNameId, long classPK,
+		java.util.Map<java.lang.Long, long[]> sharedToClassNameIdsClassPKs)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	public void addAssetSharingEntry(long classNameId, long classPK,
+		long sharedToClassNameId, long sharedToClassPK)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	public void deleteAssetSharingEntries(long classNameId, long classPK)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<com.liferay.asset.sharing.model.AssetSharingEntry> getAssetSharingEntries(
+		long classNameId, long classPK)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<com.liferay.asset.sharing.model.AssetSharingEntry> getAssetSharingEntries(
+		long classNameId, long classPK, long sharedToClassNameId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<com.liferay.asset.sharing.model.AssetSharingEntry> getSharedToAssetSharingEntries(
+		long sharedToClassNameId, long sharedToClassPK, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<com.liferay.asset.sharing.model.AssetSharingEntry> getSharedToAssetSharingEntries(
+		long classNameId, long sharedToClassNameId, long sharedToClassPK,
+		int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public int getSharedToAssetSharingEntriesCount(long sharedToClassNameId,
+		long sharedToClassPK)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public int getSharedToAssetSharingEntriesCount(long classNameId,
+		long sharedToClassNameId, long sharedToClassPK)
+		throws com.liferay.portal.kernel.exception.SystemException;
 }

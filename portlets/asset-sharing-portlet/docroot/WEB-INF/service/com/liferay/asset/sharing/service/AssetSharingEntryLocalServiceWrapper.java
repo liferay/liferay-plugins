@@ -289,6 +289,78 @@ public class AssetSharingEntryLocalServiceWrapper
 			parameterTypes, arguments);
 	}
 
+	@Override
+	public void addAssetSharingEntries(long classNameId, long classPK,
+		java.util.Map<java.lang.Long, long[]> sharedToClassNameIdsClassPKs)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		_assetSharingEntryLocalService.addAssetSharingEntries(classNameId,
+			classPK, sharedToClassNameIdsClassPKs);
+	}
+
+	@Override
+	public void addAssetSharingEntry(long classNameId, long classPK,
+		long sharedToClassNameId, long sharedToClassPK)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		_assetSharingEntryLocalService.addAssetSharingEntry(classNameId,
+			classPK, sharedToClassNameId, sharedToClassPK);
+	}
+
+	@Override
+	public void deleteAssetSharingEntries(long classNameId, long classPK)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		_assetSharingEntryLocalService.deleteAssetSharingEntries(classNameId,
+			classPK);
+	}
+
+	@Override
+	public java.util.List<com.liferay.asset.sharing.model.AssetSharingEntry> getAssetSharingEntries(
+		long classNameId, long classPK)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _assetSharingEntryLocalService.getAssetSharingEntries(classNameId,
+			classPK);
+	}
+
+	@Override
+	public java.util.List<com.liferay.asset.sharing.model.AssetSharingEntry> getAssetSharingEntries(
+		long classNameId, long classPK, long sharedToClassNameId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _assetSharingEntryLocalService.getAssetSharingEntries(classNameId,
+			classPK, sharedToClassNameId);
+	}
+
+	@Override
+	public java.util.List<com.liferay.asset.sharing.model.AssetSharingEntry> getSharedToAssetSharingEntries(
+		long sharedToClassNameId, long sharedToClassPK, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _assetSharingEntryLocalService.getSharedToAssetSharingEntries(sharedToClassNameId,
+			sharedToClassPK, start, end);
+	}
+
+	@Override
+	public java.util.List<com.liferay.asset.sharing.model.AssetSharingEntry> getSharedToAssetSharingEntries(
+		long classNameId, long sharedToClassNameId, long sharedToClassPK,
+		int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _assetSharingEntryLocalService.getSharedToAssetSharingEntries(classNameId,
+			sharedToClassNameId, sharedToClassPK, start, end);
+	}
+
+	@Override
+	public int getSharedToAssetSharingEntriesCount(long sharedToClassNameId,
+		long sharedToClassPK)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _assetSharingEntryLocalService.getSharedToAssetSharingEntriesCount(sharedToClassNameId,
+			sharedToClassPK);
+	}
+
+	@Override
+	public int getSharedToAssetSharingEntriesCount(long classNameId,
+		long sharedToClassNameId, long sharedToClassPK)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _assetSharingEntryLocalService.getSharedToAssetSharingEntriesCount(classNameId,
+			sharedToClassNameId, sharedToClassPK);
+	}
+
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
 	 */

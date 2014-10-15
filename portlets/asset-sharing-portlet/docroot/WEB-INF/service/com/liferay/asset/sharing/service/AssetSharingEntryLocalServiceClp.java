@@ -123,6 +123,44 @@ public class AssetSharingEntryLocalServiceClp
 		_methodName17 = "setBeanIdentifier";
 
 		_methodParameterTypes17 = new String[] { "java.lang.String" };
+
+		_methodName19 = "addAssetSharingEntries";
+
+		_methodParameterTypes19 = new String[] { "long", "long", "java.util.Map" };
+
+		_methodName20 = "addAssetSharingEntry";
+
+		_methodParameterTypes20 = new String[] { "long", "long", "long", "long" };
+
+		_methodName21 = "deleteAssetSharingEntries";
+
+		_methodParameterTypes21 = new String[] { "long", "long" };
+
+		_methodName22 = "getAssetSharingEntries";
+
+		_methodParameterTypes22 = new String[] { "long", "long" };
+
+		_methodName23 = "getAssetSharingEntries";
+
+		_methodParameterTypes23 = new String[] { "long", "long", "long" };
+
+		_methodName24 = "getSharedToAssetSharingEntries";
+
+		_methodParameterTypes24 = new String[] { "long", "long", "int", "int" };
+
+		_methodName25 = "getSharedToAssetSharingEntries";
+
+		_methodParameterTypes25 = new String[] {
+				"long", "long", "long", "int", "int"
+			};
+
+		_methodName26 = "getSharedToAssetSharingEntriesCount";
+
+		_methodParameterTypes26 = new String[] { "long", "long" };
+
+		_methodName27 = "getSharedToAssetSharingEntriesCount";
+
+		_methodParameterTypes27 = new String[] { "long", "long", "long" };
 	}
 
 	@Override
@@ -690,6 +728,301 @@ public class AssetSharingEntryLocalServiceClp
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
+	public void addAssetSharingEntries(long classNameId, long classPK,
+		java.util.Map<java.lang.Long, long[]> sharedToClassNameIdsClassPKs)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		try {
+			_invokableLocalService.invokeMethod(_methodName19,
+				_methodParameterTypes19,
+				new Object[] {
+					classNameId,
+					
+				classPK,
+					
+				ClpSerializer.translateInput(sharedToClassNameIdsClassPKs)
+				});
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+	}
+
+	@Override
+	public void addAssetSharingEntry(long classNameId, long classPK,
+		long sharedToClassNameId, long sharedToClassPK)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		try {
+			_invokableLocalService.invokeMethod(_methodName20,
+				_methodParameterTypes20,
+				new Object[] {
+					classNameId,
+					
+				classPK,
+					
+				sharedToClassNameId,
+					
+				sharedToClassPK
+				});
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+	}
+
+	@Override
+	public void deleteAssetSharingEntries(long classNameId, long classPK)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		try {
+			_invokableLocalService.invokeMethod(_methodName21,
+				_methodParameterTypes21, new Object[] { classNameId, classPK });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+	}
+
+	@Override
+	public java.util.List<com.liferay.asset.sharing.model.AssetSharingEntry> getAssetSharingEntries(
+		long classNameId, long classPK)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName22,
+					_methodParameterTypes22,
+					new Object[] { classNameId, classPK });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.util.List<com.liferay.asset.sharing.model.AssetSharingEntry>)ClpSerializer.translateOutput(returnObj);
+	}
+
+	@Override
+	public java.util.List<com.liferay.asset.sharing.model.AssetSharingEntry> getAssetSharingEntries(
+		long classNameId, long classPK, long sharedToClassNameId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName23,
+					_methodParameterTypes23,
+					new Object[] { classNameId, classPK, sharedToClassNameId });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.util.List<com.liferay.asset.sharing.model.AssetSharingEntry>)ClpSerializer.translateOutput(returnObj);
+	}
+
+	@Override
+	public java.util.List<com.liferay.asset.sharing.model.AssetSharingEntry> getSharedToAssetSharingEntries(
+		long sharedToClassNameId, long sharedToClassPK, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName24,
+					_methodParameterTypes24,
+					new Object[] {
+						sharedToClassNameId,
+						
+					sharedToClassPK,
+						
+					start,
+						
+					end
+					});
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.util.List<com.liferay.asset.sharing.model.AssetSharingEntry>)ClpSerializer.translateOutput(returnObj);
+	}
+
+	@Override
+	public java.util.List<com.liferay.asset.sharing.model.AssetSharingEntry> getSharedToAssetSharingEntries(
+		long classNameId, long sharedToClassNameId, long sharedToClassPK,
+		int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName25,
+					_methodParameterTypes25,
+					new Object[] {
+						classNameId,
+						
+					sharedToClassNameId,
+						
+					sharedToClassPK,
+						
+					start,
+						
+					end
+					});
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.util.List<com.liferay.asset.sharing.model.AssetSharingEntry>)ClpSerializer.translateOutput(returnObj);
+	}
+
+	@Override
+	public int getSharedToAssetSharingEntriesCount(long sharedToClassNameId,
+		long sharedToClassPK)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName26,
+					_methodParameterTypes26,
+					new Object[] { sharedToClassNameId, sharedToClassPK });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return ((Integer)returnObj).intValue();
+	}
+
+	@Override
+	public int getSharedToAssetSharingEntriesCount(long classNameId,
+		long sharedToClassNameId, long sharedToClassPK)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName27,
+					_methodParameterTypes27,
+					new Object[] {
+						classNameId,
+						
+					sharedToClassNameId,
+						
+					sharedToClassPK
+					});
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return ((Integer)returnObj).intValue();
+	}
+
 	private InvokableLocalService _invokableLocalService;
 	private String _methodName0;
 	private String[] _methodParameterTypes0;
@@ -727,4 +1060,22 @@ public class AssetSharingEntryLocalServiceClp
 	private String[] _methodParameterTypes16;
 	private String _methodName17;
 	private String[] _methodParameterTypes17;
+	private String _methodName19;
+	private String[] _methodParameterTypes19;
+	private String _methodName20;
+	private String[] _methodParameterTypes20;
+	private String _methodName21;
+	private String[] _methodParameterTypes21;
+	private String _methodName22;
+	private String[] _methodParameterTypes22;
+	private String _methodName23;
+	private String[] _methodParameterTypes23;
+	private String _methodName24;
+	private String[] _methodParameterTypes24;
+	private String _methodName25;
+	private String[] _methodParameterTypes25;
+	private String _methodName26;
+	private String[] _methodParameterTypes26;
+	private String _methodName27;
+	private String[] _methodParameterTypes27;
 }

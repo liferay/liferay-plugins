@@ -264,7 +264,8 @@ public class AssetSharingEntryWrapper implements AssetSharingEntry,
 	}
 
 	@Override
-	public int compareTo(AssetSharingEntry assetSharingEntry) {
+	public int compareTo(
+		com.liferay.asset.sharing.model.AssetSharingEntry assetSharingEntry) {
 		return _assetSharingEntry.compareTo(assetSharingEntry);
 	}
 
@@ -274,17 +275,17 @@ public class AssetSharingEntryWrapper implements AssetSharingEntry,
 	}
 
 	@Override
-	public com.liferay.portal.model.CacheModel<AssetSharingEntry> toCacheModel() {
+	public com.liferay.portal.model.CacheModel<com.liferay.asset.sharing.model.AssetSharingEntry> toCacheModel() {
 		return _assetSharingEntry.toCacheModel();
 	}
 
 	@Override
-	public AssetSharingEntry toEscapedModel() {
+	public com.liferay.asset.sharing.model.AssetSharingEntry toEscapedModel() {
 		return new AssetSharingEntryWrapper(_assetSharingEntry.toEscapedModel());
 	}
 
 	@Override
-	public AssetSharingEntry toUnescapedModel() {
+	public com.liferay.asset.sharing.model.AssetSharingEntry toUnescapedModel() {
 		return new AssetSharingEntryWrapper(_assetSharingEntry.toUnescapedModel());
 	}
 

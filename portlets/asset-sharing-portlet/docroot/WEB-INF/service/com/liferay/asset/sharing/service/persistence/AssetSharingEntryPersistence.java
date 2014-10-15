@@ -159,8 +159,8 @@ public interface AssetSharingEntryPersistence extends BasePersistence<AssetShari
 	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.asset.sharing.model.AssetSharingEntry[] findByC_C_PrevAndNext(
-		AssetSharingEntryPK assetSharingEntryPK, long classNameId,
-		long classPK,
+		com.liferay.asset.sharing.service.persistence.AssetSharingEntryPK assetSharingEntryPK,
+		long classNameId, long classPK,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.asset.sharing.NoSuchEntryException,
 			com.liferay.portal.kernel.exception.SystemException;
@@ -308,8 +308,8 @@ public interface AssetSharingEntryPersistence extends BasePersistence<AssetShari
 	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.asset.sharing.model.AssetSharingEntry[] findByS_S_PrevAndNext(
-		AssetSharingEntryPK assetSharingEntryPK, long sharedToClassNameId,
-		long sharedToClassPK,
+		com.liferay.asset.sharing.service.persistence.AssetSharingEntryPK assetSharingEntryPK,
+		long sharedToClassNameId, long sharedToClassPK,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.asset.sharing.NoSuchEntryException,
 			com.liferay.portal.kernel.exception.SystemException;
@@ -466,8 +466,8 @@ public interface AssetSharingEntryPersistence extends BasePersistence<AssetShari
 	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.asset.sharing.model.AssetSharingEntry[] findByC_C_S_PrevAndNext(
-		AssetSharingEntryPK assetSharingEntryPK, long classNameId,
-		long classPK, long sharedToClassNameId,
+		com.liferay.asset.sharing.service.persistence.AssetSharingEntryPK assetSharingEntryPK,
+		long classNameId, long classPK, long sharedToClassNameId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.asset.sharing.NoSuchEntryException,
 			com.liferay.portal.kernel.exception.SystemException;
@@ -629,8 +629,8 @@ public interface AssetSharingEntryPersistence extends BasePersistence<AssetShari
 	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.asset.sharing.model.AssetSharingEntry[] findByC_S_S_PrevAndNext(
-		AssetSharingEntryPK assetSharingEntryPK, long classNameId,
-		long sharedToClassNameId, long sharedToClassPK,
+		com.liferay.asset.sharing.service.persistence.AssetSharingEntryPK assetSharingEntryPK,
+		long classNameId, long sharedToClassNameId, long sharedToClassPK,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.asset.sharing.NoSuchEntryException,
 			com.liferay.portal.kernel.exception.SystemException;
@@ -683,7 +683,7 @@ public interface AssetSharingEntryPersistence extends BasePersistence<AssetShari
 	* @return the new asset sharing entry
 	*/
 	public com.liferay.asset.sharing.model.AssetSharingEntry create(
-		AssetSharingEntryPK assetSharingEntryPK);
+		com.liferay.asset.sharing.service.persistence.AssetSharingEntryPK assetSharingEntryPK);
 
 	/**
 	* Removes the asset sharing entry with the primary key from the database. Also notifies the appropriate model listeners.
@@ -694,7 +694,7 @@ public interface AssetSharingEntryPersistence extends BasePersistence<AssetShari
 	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.asset.sharing.model.AssetSharingEntry remove(
-		AssetSharingEntryPK assetSharingEntryPK)
+		com.liferay.asset.sharing.service.persistence.AssetSharingEntryPK assetSharingEntryPK)
 		throws com.liferay.asset.sharing.NoSuchEntryException,
 			com.liferay.portal.kernel.exception.SystemException;
 
@@ -711,7 +711,7 @@ public interface AssetSharingEntryPersistence extends BasePersistence<AssetShari
 	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.asset.sharing.model.AssetSharingEntry findByPrimaryKey(
-		AssetSharingEntryPK assetSharingEntryPK)
+		com.liferay.asset.sharing.service.persistence.AssetSharingEntryPK assetSharingEntryPK)
 		throws com.liferay.asset.sharing.NoSuchEntryException,
 			com.liferay.portal.kernel.exception.SystemException;
 
@@ -723,7 +723,7 @@ public interface AssetSharingEntryPersistence extends BasePersistence<AssetShari
 	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.asset.sharing.model.AssetSharingEntry fetchByPrimaryKey(
-		AssetSharingEntryPK assetSharingEntryPK)
+		com.liferay.asset.sharing.service.persistence.AssetSharingEntryPK assetSharingEntryPK)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**

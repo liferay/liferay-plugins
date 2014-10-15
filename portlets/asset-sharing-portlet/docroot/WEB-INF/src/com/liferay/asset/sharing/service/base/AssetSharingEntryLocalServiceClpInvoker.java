@@ -121,6 +121,44 @@ public class AssetSharingEntryLocalServiceClpInvoker {
 		_methodName41 = "setBeanIdentifier";
 
 		_methodParameterTypes41 = new String[] { "java.lang.String" };
+
+		_methodName46 = "addAssetSharingEntries";
+
+		_methodParameterTypes46 = new String[] { "long", "long", "java.util.Map" };
+
+		_methodName47 = "addAssetSharingEntry";
+
+		_methodParameterTypes47 = new String[] { "long", "long", "long", "long" };
+
+		_methodName48 = "deleteAssetSharingEntries";
+
+		_methodParameterTypes48 = new String[] { "long", "long" };
+
+		_methodName49 = "getAssetSharingEntries";
+
+		_methodParameterTypes49 = new String[] { "long", "long" };
+
+		_methodName50 = "getAssetSharingEntries";
+
+		_methodParameterTypes50 = new String[] { "long", "long", "long" };
+
+		_methodName51 = "getSharedToAssetSharingEntries";
+
+		_methodParameterTypes51 = new String[] { "long", "long", "int", "int" };
+
+		_methodName52 = "getSharedToAssetSharingEntries";
+
+		_methodParameterTypes52 = new String[] {
+				"long", "long", "long", "int", "int"
+			};
+
+		_methodName53 = "getSharedToAssetSharingEntriesCount";
+
+		_methodParameterTypes53 = new String[] { "long", "long" };
+
+		_methodName54 = "getSharedToAssetSharingEntriesCount";
+
+		_methodParameterTypes54 = new String[] { "long", "long", "long" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -224,6 +262,76 @@ public class AssetSharingEntryLocalServiceClpInvoker {
 			return null;
 		}
 
+		if (_methodName46.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes46, parameterTypes)) {
+			AssetSharingEntryLocalServiceUtil.addAssetSharingEntries(((Long)arguments[0]).longValue(),
+				((Long)arguments[1]).longValue(),
+				(java.util.Map<java.lang.Long, long[]>)arguments[2]);
+
+			return null;
+		}
+
+		if (_methodName47.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes47, parameterTypes)) {
+			AssetSharingEntryLocalServiceUtil.addAssetSharingEntry(((Long)arguments[0]).longValue(),
+				((Long)arguments[1]).longValue(),
+				((Long)arguments[2]).longValue(),
+				((Long)arguments[3]).longValue());
+
+			return null;
+		}
+
+		if (_methodName48.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes48, parameterTypes)) {
+			AssetSharingEntryLocalServiceUtil.deleteAssetSharingEntries(((Long)arguments[0]).longValue(),
+				((Long)arguments[1]).longValue());
+
+			return null;
+		}
+
+		if (_methodName49.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes49, parameterTypes)) {
+			return AssetSharingEntryLocalServiceUtil.getAssetSharingEntries(((Long)arguments[0]).longValue(),
+				((Long)arguments[1]).longValue());
+		}
+
+		if (_methodName50.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes50, parameterTypes)) {
+			return AssetSharingEntryLocalServiceUtil.getAssetSharingEntries(((Long)arguments[0]).longValue(),
+				((Long)arguments[1]).longValue(),
+				((Long)arguments[2]).longValue());
+		}
+
+		if (_methodName51.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes51, parameterTypes)) {
+			return AssetSharingEntryLocalServiceUtil.getSharedToAssetSharingEntries(((Long)arguments[0]).longValue(),
+				((Long)arguments[1]).longValue(),
+				((Integer)arguments[2]).intValue(),
+				((Integer)arguments[3]).intValue());
+		}
+
+		if (_methodName52.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes52, parameterTypes)) {
+			return AssetSharingEntryLocalServiceUtil.getSharedToAssetSharingEntries(((Long)arguments[0]).longValue(),
+				((Long)arguments[1]).longValue(),
+				((Long)arguments[2]).longValue(),
+				((Integer)arguments[3]).intValue(),
+				((Integer)arguments[4]).intValue());
+		}
+
+		if (_methodName53.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes53, parameterTypes)) {
+			return AssetSharingEntryLocalServiceUtil.getSharedToAssetSharingEntriesCount(((Long)arguments[0]).longValue(),
+				((Long)arguments[1]).longValue());
+		}
+
+		if (_methodName54.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes54, parameterTypes)) {
+			return AssetSharingEntryLocalServiceUtil.getSharedToAssetSharingEntriesCount(((Long)arguments[0]).longValue(),
+				((Long)arguments[1]).longValue(),
+				((Long)arguments[2]).longValue());
+		}
+
 		throw new UnsupportedOperationException();
 	}
 
@@ -263,4 +371,22 @@ public class AssetSharingEntryLocalServiceClpInvoker {
 	private String[] _methodParameterTypes40;
 	private String _methodName41;
 	private String[] _methodParameterTypes41;
+	private String _methodName46;
+	private String[] _methodParameterTypes46;
+	private String _methodName47;
+	private String[] _methodParameterTypes47;
+	private String _methodName48;
+	private String[] _methodParameterTypes48;
+	private String _methodName49;
+	private String[] _methodParameterTypes49;
+	private String _methodName50;
+	private String[] _methodParameterTypes50;
+	private String _methodName51;
+	private String[] _methodParameterTypes51;
+	private String _methodName52;
+	private String[] _methodParameterTypes52;
+	private String _methodName53;
+	private String[] _methodParameterTypes53;
+	private String _methodName54;
+	private String[] _methodParameterTypes54;
 }
