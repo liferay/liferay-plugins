@@ -19,7 +19,6 @@
 		'liferay-calendar-simple-menu',
 		function(A) {
 			var AArray = A.Array;
-
 			var Lang = A.Lang;
 
 			var getClassName = A.getClassName;
