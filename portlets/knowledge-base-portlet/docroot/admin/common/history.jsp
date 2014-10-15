@@ -173,7 +173,7 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 
 			<div class="float-container kb-entity-header">
 				<div class="kb-title">
-					<liferay-ui:diff-html diffHtmlResults='<%= AdminUtil.getKBArticleDiff(kbArticle.getResourcePrimKey(), sourceVersion, targetVersion, "title") %>' />
+					<liferay-ui:diff-html diffHtmlResults='<%= _removeXMLDeclaration(AdminUtil.getKBArticleDiff(kbArticle.getResourcePrimKey(), sourceVersion, targetVersion, "title")) %>' />
 				</div>
 
 				<div class="kb-tools">
@@ -193,7 +193,7 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 			</div>
 
 			<div class="kb-entity-body">
-				<liferay-ui:diff-html diffHtmlResults='<%= AdminUtil.getKBArticleDiff(kbArticle.getResourcePrimKey(), sourceVersion, targetVersion, "content") %>' />
+				<liferay-ui:diff-html diffHtmlResults='<%= _removeXMLDeclaration(AdminUtil.getKBArticleDiff(kbArticle.getResourcePrimKey(), sourceVersion, targetVersion, "content")) %>' />
 			</div>
 
 			<aui:button-row cssClass="kb-bulk-action-button-holder">
@@ -289,3 +289,15 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 		}
 	);
 </aui:script>
+
+<%!
+private static String _removeXMLDeclaration(String string) {
+	if (string.startsWith("<?xml")) {
+		int index = string.indexOf("?>");
+
+		string = string.substring(index + 2);
+	}
+
+	return string;
+}
+%>
