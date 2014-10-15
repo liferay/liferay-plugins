@@ -1305,9 +1305,7 @@
 							TPL_MESSAGE_UPDATE_ALL_INVITED,
 							Liferay.Language.get('save-changes'),
 							Liferay.Language.get('do-not-change-the-event'),
-							function() {
-								showNextQuestion();
-							},
+							showNextQuestion,
 							function() {
 								answers.cancel = true;
 
@@ -1341,9 +1339,7 @@
 
 								showNextQuestion();
 							},
-							function() {
-								showNextQuestion();
-							},
+							showNextQuestion,
 							function() {
 								answers.cancel = true;
 
@@ -1378,9 +1374,7 @@
 							content,
 							Liferay.Language.get('save-changes'),
 							Liferay.Language.get('do-not-change-the-event'),
-							function() {
-								showNextQuestion();
-							},
+							showNextQuestion,
 							function() {
 								answers.cancel = true;
 
