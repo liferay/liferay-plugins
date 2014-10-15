@@ -51,9 +51,18 @@ String currentKBFolderUrlTitle = preferredKBFolderUrlTitle;
 if (rootResourcePrimKey != KBFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
 	KBFolder kbFolder = KBFolderServiceUtil.getKBFolder(rootResourcePrimKey);
 
-	PortalUtil.setPageTitle(contentRootPrefix + " " + kbFolder.getName(), request);
+	String pageTitle = contentRootPrefix + " " + kbFolder.getName();
+
+	if (kbArticle != null) {
+		pageTitle = kbArticle.getTitle() + " - " + pageTitle;
+	}
+
+	PortalUtil.setPageTitle(pageTitle, request);
 
 	currentKBFolderUrlTitle = kbFolder.getUrlTitle();
+}
+else if (kbArticle != null) {
+	PortalUtil.setPageTitle(kbArticle.getTitle(), request);
 }
 %>
 
