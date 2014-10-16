@@ -38,6 +38,8 @@
 
 		<aui:input name="description" />
 
+		<aui:input label="time-zone" name="timeZoneId" type="timeZone" />
+
 		<aui:input name="color" type="hidden" />
 
 		<aui:field-wrapper inlineLabel="left" label="color">

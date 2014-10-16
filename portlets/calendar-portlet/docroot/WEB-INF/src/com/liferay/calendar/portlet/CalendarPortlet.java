@@ -257,6 +257,7 @@ public class CalendarPortlet extends MVCPortlet {
 			actionRequest, "name");
 		Map<Locale, String> descriptionMap =
 			LocalizationUtil.getLocalizationMap(actionRequest, "description");
+		String timeZoneId = ParamUtil.getString(actionRequest, "timeZoneId");
 		int color = ParamUtil.getInteger(actionRequest, "color");
 		boolean defaultCalendar = ParamUtil.getBoolean(
 			actionRequest, "defaultCalendar");
@@ -277,13 +278,13 @@ public class CalendarPortlet extends MVCPortlet {
 
 			calendar = CalendarServiceUtil.addCalendar(
 				calendarResource.getGroupId(), calendarResourceId, nameMap,
-				descriptionMap, color, defaultCalendar, enableComments,
-				enableRatings, serviceContext);
+				descriptionMap, timeZoneId, color, defaultCalendar,
+				enableComments, enableRatings, serviceContext);
 		}
 		else {
 			calendar = CalendarServiceUtil.updateCalendar(
-				calendarId, nameMap, descriptionMap, color, defaultCalendar,
-				enableComments, enableRatings, serviceContext);
+				calendarId, nameMap, descriptionMap, timeZoneId, color,
+				defaultCalendar, enableComments, enableRatings, serviceContext);
 		}
 
 		String redirect = getEditCalendarURL(
