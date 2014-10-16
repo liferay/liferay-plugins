@@ -57,53 +57,17 @@ String eventName = PortalUtil.getPortletNamespace(PortletKeys.PORTLET_CONFIGURAT
 		<div class="separator"><!-- --></div>
 	</c:if>
 
-	<div class="kb-select-article-breadcrumbs">
-		<liferay-portlet:renderURL var="breadcrumbURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
-			<portlet:param name="mvcPath" value='<%= templatePath + "select_configuration_object.jsp" %>' />
-		</liferay-portlet:renderURL>
+	<%
+	KnowledgeBaseUtil.addPortletBreadcrumbEntries(parentResourceClassNameId, parentResourcePrimKey, "/display/select_configuration_object.jsp", request, renderResponse);
+	%>
 
-		<aui:a href="<%= breadcrumbURL %>"><liferay-ui:message key="home" /></aui:a> &raquo;
-
-		<c:if test="<%= parentResourcePrimKey != KBFolderConstants.DEFAULT_PARENT_FOLDER_ID %>">
-
-			<%
-			List<Tuple> tuples = new ArrayList<Tuple>();
-
-			long selParentResourcePrimKey = parentResourcePrimKey;
-			long selParentResourceClassNameId = parentResourceClassNameId;
-
-			while (selParentResourcePrimKey != KBFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
-				if (selParentResourceClassNameId == kbFolderClassNameId) {
-					KBFolder selKBFolder = KBFolderServiceUtil.getKBFolder(selParentResourcePrimKey);
-
-					tuples.add(new Tuple(selKBFolder.getKbFolderId(), kbFolderClassNameId, StringUtil.shorten(selKBFolder.getName(), 30)));
-
-					selParentResourcePrimKey = selKBFolder.getParentKBFolderId();
-					selParentResourceClassNameId = selKBFolder.getClassNameId();
-				}
-				else {
-					KBArticle selKBArticle = KBArticleServiceUtil.fetchLatestKBArticle(selParentResourcePrimKey, WorkflowConstants.STATUS_APPROVED);
-
-					tuples.add(new Tuple(selKBArticle.getResourcePrimKey(), selKBArticle.getClassNameId(), StringUtil.shorten(selKBArticle.getTitle(), 30)));
-
-					selParentResourcePrimKey = selKBArticle.getParentResourcePrimKey();
-					selParentResourceClassNameId = selKBArticle.getParentResourceClassNameId();
-				}
-			}
-
-			for (Tuple tuple: tuples) {
-				breadcrumbURL = HttpUtil.setParameter(breadcrumbURL, "parentResourcePrimKey", (Long)tuple.getObject(0));
-				breadcrumbURL = HttpUtil.setParameter(breadcrumbURL, "parentResourceClassName", (Long)tuple.getObject(1));
-			%>
-
-				<aui:a href="<%= breadcrumbURL %>"><%= tuple.getObject(2) %></aui:a> &raquo;
-
-			<%
-			}
-			%>
-
-		</c:if>
-	</div>
+	<liferay-ui:breadcrumb
+		showCurrentGroup="<%= false %>"
+		showCurrentPortlet="<%= false %>"
+		showGuestGroup="<%= false %>"
+		showLayout="<%= false %>"
+		showParentGroups="<%= false %>"
+	/>
 
 	<c:if test="<%= parentResourceClassNameId == kbFolderClassNameId %>">
 		<liferay-ui:search-container
