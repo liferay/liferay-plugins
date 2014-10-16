@@ -33,6 +33,9 @@ public interface PortletPropsKeys {
 	public static final String SITE_PROTOTYPE_PORTLETS =
 		"site.prototype.portlets.";
 
+	public static final String SO_USER_DEFAULT_LANDING_PAGE_PATH =
+		"so.user.default.landing.page.path";
+
 	public static final String USER_PRIVATE_LAYOUT_PORTLETS =
 		"user.private.layout.portlets.";
 
