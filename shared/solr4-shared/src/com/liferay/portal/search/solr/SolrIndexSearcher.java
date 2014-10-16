@@ -14,13 +14,15 @@
 
 package com.liferay.portal.search.solr;
 
+import com.liferay.compat.portal.kernel.search.DocumentImpl;
+import com.liferay.compat.portal.kernel.util.ListUtil;
+import com.liferay.compat.portal.kernel.util.MapUtil;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.dao.search.SearchPaginationUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.search.BaseIndexSearcher;
 import com.liferay.portal.kernel.search.Document;
-import com.liferay.portal.kernel.search.DocumentImpl;
 import com.liferay.portal.kernel.search.Field;
 import com.liferay.portal.kernel.search.Hits;
 import com.liferay.portal.kernel.search.HitsImpl;
@@ -36,8 +38,6 @@ import com.liferay.portal.kernel.search.facet.collector.FacetCollector;
 import com.liferay.portal.kernel.search.facet.config.FacetConfiguration;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.kernel.util.ListUtil;
-import com.liferay.portal.kernel.util.MapUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -127,41 +127,15 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 			int start, int end)
 		throws SearchException {
 
-		try {
-			SolrQuery solrQuery = translateQuery(
-				companyId, query, sorts, start, end);
+		SearchContext searchContext = new SearchContext();
 
-			QueryResponse queryResponse = _solrServer.query(
-				solrQuery, METHOD.POST);
+		searchContext.setCompanyId(companyId);
+		searchContext.setEnd(end);
+		searchContext.setSearchEngineId(searchEngineId);
+		searchContext.setSorts(sorts);
+		searchContext.setStart(start);
 
-			boolean allResults = false;
-
-			if (solrQuery.getRows() == 0) {
-				allResults = true;
-			}
-
-			return subset(
-				solrQuery, query, query.getQueryConfig(), queryResponse,
-				allResults);
-		}
-		catch (Exception e) {
-			_log.error(e, e);
-
-			if (!_swallowException) {
-				throw new SearchException(e.getMessage());
-			}
-
-			return new HitsImpl();
-		}
-		finally {
-			if (_log.isInfoEnabled()) {
-				stopWatch.stop();
-
-				_log.info(
-					"Searching " + query.toString() + " took " +
-						stopWatch.getTime() + " ms");
-			}
-		}
+		return search(searchContext, query);
 	}
 
 	public long searchCount(SearchContext searchContext, Query query)
@@ -244,8 +218,7 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 	}
 
 	protected void addHighlightedField(
-		SolrQuery solrQuery, QueryConfig queryConfig,
-		String fieldName) {
+		SolrQuery solrQuery, QueryConfig queryConfig, String fieldName) {
 
 		solrQuery.addHighlightField(fieldName);
 
@@ -265,7 +238,8 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 		solrQuery.setHighlightRequireFieldMatch(true);
 		solrQuery.setHighlightSnippets(queryConfig.getHighlightSnippetSize());
 
-		addHighlightedField(solrQuery, queryConfig, Field.ASSET_CATEGORY_TITLES);
+		addHighlightedField(
+			solrQuery, queryConfig, Field.ASSET_CATEGORY_TITLES);
 		addHighlightedField(solrQuery, queryConfig, Field.CONTENT);
 		addHighlightedField(solrQuery, queryConfig, Field.DESCRIPTION);
 		addHighlightedField(solrQuery, queryConfig, Field.TITLE);
@@ -279,11 +253,15 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 	protected void addSelectedFields(
 		SolrQuery solrQuery, QueryConfig queryConfig) {
 
-		if (queryConfig.isAllFieldsSelected()) {
+		String[] selectedFieldNames = (String[])queryConfig.getAttribute(
+			"selectedFieldNames");
+
+		if (ArrayUtil.isEmpty(selectedFieldNames) ||
+			((selectedFieldNames.length == 1) &&
+			 selectedFieldNames[0].equals("*"))) {
+
 			return;
 		}
-
-		String[] selectedFieldNames = queryConfig.getSelectedFieldNames();
 
 		solrQuery.setFields(selectedFieldNames);
 	}
@@ -433,7 +411,7 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 		hits.setQuery(query);
 		hits.setQueryTerms(queryTerms.toArray(new String[queryTerms.size()]));
 
-		hits.setScores(scores.toArray(new Float[scores.size()]));
+		hits.setScores(ArrayUtil.toFloatArray(scores));
 
 		hits.setSearchTime(queryResponse.getQTime());
 		hits.setStart(startTime);

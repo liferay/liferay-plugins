@@ -14,8 +14,8 @@
 
 package com.liferay.portal.search.solr.document;
 
+import com.liferay.compat.portal.kernel.search.DocumentImpl;
 import com.liferay.portal.kernel.search.Document;
-import com.liferay.portal.kernel.search.DocumentImpl;
 import com.liferay.portal.kernel.search.Field;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
@@ -100,7 +100,7 @@ public class DefaultSolrDocumentFactory implements SolrDocumentFactory {
 
 		solrInputDocument.addField(localizedName, value, boost);
 
-		if (field.isSortable()) {
+		if (com.liferay.compat.portal.kernel.search.Field.isSortable(field)) {
 			String sortableFieldName = DocumentImpl.getSortableFieldName(
 				localizedName);
 
