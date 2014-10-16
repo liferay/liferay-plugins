@@ -28,10 +28,6 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 String eventName = PortalUtil.getPortletNamespace(PortletKeys.PORTLET_CONFIGURATION) + "selectConfigurationKBObject";
 %>
 
-<liferay-ui:header
-	title="article"
-/>
-
 <div class="kb-select-article-search-containers">
 	<c:if test="<%= resourcePrimKey != KBFolderConstants.DEFAULT_PARENT_FOLDER_ID %>">
 		<aui:button-row cssClass="input-append">
