@@ -590,10 +590,12 @@ public class KnowledgeBaseUtil {
 			}
 		}
 		else {
-			KBFolder kbFolder = KBFolderServiceUtil.getKBFolderByUrlTitle(
+			KBFolder kbFolder = KBFolderServiceUtil.fetchKBFolderByUrlTitle(
 				groupId, kbFolderId, kbFolderUrlTitle);
 
-			childKbFolderId = kbFolder.getKbFolderId();
+			if (kbFolder != null) {
+				childKbFolderId = kbFolder.getKbFolderId();
+			}
 		}
 
 		return childKbFolderId;
