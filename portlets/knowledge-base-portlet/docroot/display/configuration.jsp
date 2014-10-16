@@ -24,6 +24,8 @@ String tabs2Names = Validator.equals(portletResource, PortletKeys.KNOWLEDGE_BASE
 if (PortalUtil.isRSSFeedsEnabled()) {
 	tabs2Names += ",rss";
 }
+
+long kbFolderClassNameId = PortalUtil.getClassNameId(KBFolderConstants.getClassName());
 %>
 
 <liferay-portlet:actionURL portletConfiguration="true" var="configurationActionURL" />
@@ -51,8 +53,6 @@ if (PortalUtil.isRSSFeedsEnabled()) {
 					<aui:field-wrapper label="article-or-folder">
 
 						<%
-						long kbFolderClassNameId = PortalUtil.getClassNameId(KBFolderConstants.getClassName());
-
 						String title = StringPool.BLANK;
 
 						if (resourceClassNameId == kbFolderClassNameId) {
@@ -73,17 +73,7 @@ if (PortalUtil.isRSSFeedsEnabled()) {
 
 						<liferay-ui:input-resource id="configurationKBObject" url="<%= title %>" />
 
-						<liferay-portlet:renderURL portletName="<%= portletResource %>" var="selectConfigurationKBObjectURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
-							<portlet:param name="mvcPath" value="/display/select_configuration_object.jsp" />
-							<portlet:param name="parentResourceClassNameId" value="<%= String.valueOf(kbFolderClassNameId) %>" />
-							<portlet:param name="parentResourcePrimKey" value="<%= String.valueOf(KBFolderConstants.DEFAULT_PARENT_FOLDER_ID) %>" />
-						</liferay-portlet:renderURL>
-
-						<%
-						String taglibOnClick = "var selectConfigurationKBObjectWindow = window.open('" + selectConfigurationKBObjectURL + "', 'selectConfigurationKBObject', 'directories=no,height=640,location=no,menubar=no,resizable=yes,scrollbars=yes,status=no,toolbar=no,width=680'); void(''); selectConfigurationKBObjectWindow.focus();";
-						%>
-
-						<aui:button onClick="<%= taglibOnClick %>" value="select" />
+						<aui:button name="selectKBObjectButton" value="select" />
 					</aui:field-wrapper>
 				</div>
 			</c:when>
@@ -135,12 +125,36 @@ if (PortalUtil.isRSSFeedsEnabled()) {
 
 <c:choose>
 	<c:when test='<%= tabs2.equals("general") %>'>
-		<aui:script>
-			function <portlet:namespace />selectConfigurationKBObject(resourceClassNameId, resourcePrimKey, title) {
-				document.<portlet:namespace />fm.<portlet:namespace />resourceClassNameId.value = resourceClassNameId;
-				document.<portlet:namespace />fm.<portlet:namespace />resourcePrimKey.value = resourcePrimKey;
-				document.getElementById('<portlet:namespace />configurationKBObject').value = title;
-			}
+		<aui:script use="aui-base">
+			<liferay-portlet:renderURL portletName="<%= portletResource %>" var="selectConfigurationKBObjectURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
+				<portlet:param name="mvcPath" value="/display/select_configuration_object.jsp" />
+				<portlet:param name="parentResourceClassNameId" value="<%= String.valueOf(kbFolderClassNameId) %>" />
+				<portlet:param name="parentResourcePrimKey" value="<%= String.valueOf(KBFolderConstants.DEFAULT_PARENT_FOLDER_ID) %>" />
+			</liferay-portlet:renderURL>
+
+			var A = AUI();
+
+			A.one('#<portlet:namespace />selectKBObjectButton').on(
+				'click',
+				function(event) {
+					Liferay.Util.selectEntity(
+						{
+							dialog: {
+								constrain: true,
+								modal: true
+							},
+							id: '<portlet:namespace />selectConfigurationKBObject',
+							title: '<liferay-ui:message key="select-parent" />',
+							uri: '<%= selectConfigurationKBObjectURL %>'
+						},
+						function(event) {
+							document.<portlet:namespace />fm.<portlet:namespace />resourceClassNameId.value = event.resourceclassnameid;
+							document.<portlet:namespace />fm.<portlet:namespace />resourcePrimKey.value = event.resourceprimkey;
+							document.getElementById('<portlet:namespace />configurationKBObject').value = event.title;
+						}
+					);
+				}
+			);
 		</aui:script>
 	</c:when>
 	<c:when test='<%= tabs2.equals("display-settings") %>'>
