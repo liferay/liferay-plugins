@@ -32,4 +32,3 @@
 		<appender-ref ref="TEXT_FILE" />
 	</root>
 </log4j:configuration>
-
