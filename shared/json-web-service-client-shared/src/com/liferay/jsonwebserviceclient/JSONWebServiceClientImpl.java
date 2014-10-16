@@ -40,7 +40,6 @@ import javax.security.auth.login.CredentialException;
 
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.codec.Charsets;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpEntityEnclosingRequest;
 import org.apache.http.HttpHost;
@@ -168,8 +167,7 @@ public class JSONWebServiceClientImpl implements JSONWebServiceClient {
 		List<NameValuePair> nameValuePairs = toNameValuePairs(parameters);
 
 		if (!nameValuePairs.isEmpty()) {
-			String queryString = URLEncodedUtils.format(
-				nameValuePairs, Charsets.UTF_8);
+			String queryString = URLEncodedUtils.format(nameValuePairs, "utf8");
 
 			url += "?" + queryString;
 		}
@@ -202,7 +200,7 @@ public class JSONWebServiceClientImpl implements JSONWebServiceClient {
 		List<NameValuePair> nameValuePairs = toNameValuePairs(parameters);
 
 		HttpEntity httpEntity = new UrlEncodedFormEntity(
-			nameValuePairs, Charsets.UTF_8);
+			nameValuePairs, "utf8");
 
 		for (String key : _headers.keySet()) {
 			httpPost.addHeader(key, _headers.get(key));
@@ -223,8 +221,7 @@ public class JSONWebServiceClientImpl implements JSONWebServiceClient {
 			httpPost.addHeader(key, _headers.get(key));
 		}
 
-		StringEntity stringEntity = new StringEntity(
-			json.toString(), Charsets.UTF_8);
+		StringEntity stringEntity = new StringEntity(json.toString(), "utf8");
 
 		stringEntity.setContentType("application/json");
 
@@ -332,8 +329,7 @@ public class JSONWebServiceClientImpl implements JSONWebServiceClient {
 					"Service unavailable");
 			}
 
-			return EntityUtils.toString(
-				httpResponse.getEntity(), Charsets.UTF_8);
+			return EntityUtils.toString(httpResponse.getEntity(), "utf8");
 		}
 		finally {
 			httpRequestBase.releaseConnection();
