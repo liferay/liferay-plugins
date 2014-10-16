@@ -379,7 +379,7 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 			}
 		}
 
-		hits.setScores(scoresArray);
+		hits.setScores(ArrayUtil.toFloatArray(scores));
 
 		float searchTime =
 			(float)(System.currentTimeMillis() - startTime) / Time.SECOND;
