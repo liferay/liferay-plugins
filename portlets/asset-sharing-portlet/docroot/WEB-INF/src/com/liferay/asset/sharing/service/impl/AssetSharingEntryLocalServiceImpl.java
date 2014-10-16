@@ -59,8 +59,7 @@ public class AssetSharingEntryLocalServiceImpl
 			classNameId, classPK, sharedToClassNameId, sharedToClassPK);
 
 		AssetSharingEntry assetSharingEntry =
-			assetSharingEntryPersistence.fetchByPrimaryKey(
-				assetSharingEntryPK);
+			assetSharingEntryPersistence.fetchByPrimaryKey(assetSharingEntryPK);
 
 		if (assetSharingEntry == null) {
 			assetSharingEntry = assetSharingEntryPersistence.create(
