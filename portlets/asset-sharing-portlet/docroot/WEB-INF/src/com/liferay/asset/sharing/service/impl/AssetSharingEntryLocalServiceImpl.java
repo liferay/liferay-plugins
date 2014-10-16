@@ -31,11 +31,11 @@ public class AssetSharingEntryLocalServiceImpl
 	@Override
 	public void addAssetSharingEntries(
 			long classNameId, long classPK,
-			Map<Long, long[]> sharedToClassNameIdsClassPKs)
+			Map<Long, long[]> sharedToClassPKsMap)
 		throws SystemException {
 
-		for (Long sharedToClassNameId : sharedToClassNameIdsClassPKs.keySet()) {
-			long[] sharedToClassPKs = sharedToClassNameIdsClassPKs.get(
+		for (Long sharedToClassNameId : sharedToClassPKsMap.keySet()) {
+			long[] sharedToClassPKs = sharedToClassPKsMap.get(
 				sharedToClassNameId);
 
 			if (sharedToClassPKs.length == 0) {
@@ -55,14 +55,16 @@ public class AssetSharingEntryLocalServiceImpl
 			long sharedToClassPK)
 		throws SystemException {
 
-		AssetSharingEntryPK pk = new AssetSharingEntryPK(
+		AssetSharingEntryPK assetSharingEntryPK = new AssetSharingEntryPK(
 			classNameId, classPK, sharedToClassNameId, sharedToClassPK);
 
 		AssetSharingEntry assetSharingEntry =
-			assetSharingEntryPersistence.fetchByPrimaryKey(pk);
+			assetSharingEntryPersistence.fetchByPrimaryKey(
+				assetSharingEntryPK);
 
 		if (assetSharingEntry == null) {
-			assetSharingEntry = assetSharingEntryPersistence.create(pk);
+			assetSharingEntry = assetSharingEntryPersistence.create(
+				assetSharingEntryPK);
 
 			assetSharingEntryPersistence.update(assetSharingEntry);
 		}
