@@ -32,10 +32,6 @@ String orderByCol = ParamUtil.getString(request, "orderByCol", "priority");
 String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 %>
 
-<liferay-ui:header
-	title="parent-article"
-/>
-
 <aui:form method="post" name="fm">
 	<aui:fieldset>
 		<c:if test="<%= oldParentResourcePrimKey != KBFolderConstants.DEFAULT_PARENT_FOLDER_ID %>">
