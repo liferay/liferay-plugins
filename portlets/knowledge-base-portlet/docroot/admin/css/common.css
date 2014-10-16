@@ -110,6 +110,14 @@
 		border-top: 1px dotted;
 		margin: 20px;
 		padding: 10px;
+
+		.lfr-table {
+			width: 100%;
+
+			.kb-article-comment-user {
+				width: 30%;
+			}
+		}
 	}
 
 	.kb-article-previous-comments {
