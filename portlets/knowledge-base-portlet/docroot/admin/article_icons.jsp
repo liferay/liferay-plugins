@@ -82,6 +82,7 @@ long resourcePrimKey = ParamUtil.getLong(request, "resourcePrimKey");
 				<liferay-portlet:renderURL var="moveKBArticleURL">
 					<portlet:param name="mvcPath" value='<%= templatePath + "move_object.jsp" %>' />
 					<portlet:param name="redirect" value="<%= redirect %>" />
+					<portlet:param name="resourceClassNameId" value="<%= String.valueOf(kbArticle.getClassNameId()) %>" />
 					<portlet:param name="resourcePrimKey" value="<%= String.valueOf(kbArticle.getResourcePrimKey()) %>" />
 					<portlet:param name="status" value="<%= String.valueOf(status) %>" />
 				</liferay-portlet:renderURL>
