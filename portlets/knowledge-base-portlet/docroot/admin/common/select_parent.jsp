@@ -68,10 +68,10 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 
 		<liferay-ui:breadcrumb
 			showCurrentGroup="<%= false %>"
-			showCurrentPortlet="<%= false %>"
 			showGuestGroup="<%= false %>"
 			showLayout="<%= false %>"
 			showParentGroups="<%= false %>"
+			showPortletBreadcrumb="<%= false %>"
 		/>
 
 		<liferay-portlet:renderURL varImpl="iteratorURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">

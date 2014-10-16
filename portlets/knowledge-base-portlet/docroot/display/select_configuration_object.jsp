@@ -63,10 +63,10 @@ String eventName = PortalUtil.getPortletNamespace(PortletKeys.PORTLET_CONFIGURAT
 
 	<liferay-ui:breadcrumb
 		showCurrentGroup="<%= false %>"
-		showCurrentPortlet="<%= false %>"
 		showGuestGroup="<%= false %>"
 		showLayout="<%= false %>"
 		showParentGroups="<%= false %>"
+		showPortletBreadcrumb="<%= false %>"
 	/>
 
 	<c:if test="<%= parentResourceClassNameId == kbFolderClassNameId %>">
@@ -209,7 +209,7 @@ String eventName = PortalUtil.getPortletNamespace(PortletKeys.PORTLET_CONFIGURAT
 				href="<%= rowURL %>"
 				name="status"
 				orderable="<%= true %>"
-				value='<%= kbArticle.getStatus() + " (" + LanguageUtil.get(pageContext, WorkflowConstants.getStatusLabel(kbArticle.getStatus())) + ")" %>'
+				value='<%= kbArticle.getStatus() + " (" + LanguageUtil.get(request, WorkflowConstants.getStatusLabel(kbArticle.getStatus())) + ")" %>'
 			/>
 
 			<liferay-ui:search-container-column-text

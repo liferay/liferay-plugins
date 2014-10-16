@@ -111,7 +111,7 @@ public class KnowledgeBaseUtil {
 			long parentResourceClassNameId, long parentResourcePrimKey,
 			String mvcPath, HttpServletRequest request,
 			RenderResponse renderResponse)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		Map<String, Object> parameters = new HashMap<String, Object>();
 
@@ -551,7 +551,7 @@ public class KnowledgeBaseUtil {
 	protected static void addPortletBreadcrumbEntries(
 			Map<String, Object> parameters, HttpServletRequest request,
 			RenderResponse renderResponse)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		PortletURL portletURL = renderResponse.createRenderURL();
 
