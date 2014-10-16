@@ -35,4 +35,9 @@ public class PortletPropsValues {
 		GetterUtil.getString(
 			PortletProps.get(PortletPropsKeys.SITE_PROTOTYPE_LAYOUT_TEMPLATE));
 
+	public static final String SO_USER_DEFAULT_LANDING_PAGE_PATH =
+		GetterUtil.getString(
+			PortletProps.get(
+				PortletPropsKeys.SO_USER_DEFAULT_LANDING_PAGE_PATH));
+
 }

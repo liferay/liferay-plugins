@@ -1,40 +1,40 @@
 /**
  * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
  *
- * This library is free software; you can redistribute it and/or modify it under
- * the terms of the GNU Lesser General Public License as published by the Free
- * Software Foundation; either version 2.1 of the License, or (at your option)
- * any later version.
+ * This file is part of Liferay Social Office. Liferay Social Office is free
+ * software: you can redistribute it and/or modify it under the terms of the GNU
+ * Affero General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
  *
- * This library is distributed in the hope that it will be useful, but WITHOUT
- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
- * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
- * details.
+ * Liferay Social Office is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+ * FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License
+ * for more details.
+ *
+ * You should have received a copy of the GNU General Public License along with
+ * Liferay Social Office. If not, see http://www.gnu.org/licenses/agpl-3.0.html.
  */
 
-package com.liferay.portal.events;
+package com.liferay.so.hook.events;
 
 import com.liferay.portal.kernel.events.Action;
 import com.liferay.portal.kernel.events.ActionException;
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.struts.LastPath;
 import com.liferay.portal.kernel.util.HtmlUtil;
-import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.model.User;
-import com.liferay.portal.util.PortalUtil;
-import com.liferay.portal.util.PrefsPropsUtil;
-import com.liferay.portal.util.WebKeys;
+import com.liferay.so.service.SocialOfficeServiceUtil;
+import com.liferay.so.util.PortletPropsValues;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- * @author Michael Young
+ * @author Matthew Kong
  */
 public class SOUserDefaultLandingPageAction extends Action {
 
@@ -51,18 +51,10 @@ public class SOUserDefaultLandingPageAction extends Action {
 	}
 
 	protected void doRun(
-		HttpServletRequest request, HttpServletResponse response)
+			HttpServletRequest request, HttpServletResponse response)
 		throws Exception {
 
-		long companyId = PortalUtil.getCompanyId(request);
-
-		String path = PrefsPropsUtil.getString(
-			companyId, PropsKeys.DEFAULT_LANDING_PAGE_PATH);
-
-		if (_log.isInfoEnabled()) {
-			_log.info(
-				PropsKeys.DEFAULT_LANDING_PAGE_PATH + StringPool.EQUAL + path);
-		}
+		String path = PortletPropsValues.SO_USER_DEFAULT_LANDING_PAGE_PATH;
 
 		if (Validator.isNull(path)) {
 			return;
@@ -70,14 +62,16 @@ public class SOUserDefaultLandingPageAction extends Action {
 
 		HttpSession session = request.getSession();
 
+		User user = (User)session.getAttribute(WebKeys.USER);
+
+		if ((user == null) ||
+			!SocialOfficeServiceUtil.isSocialOfficeGroup(user.getGroupId())) {
+
+			return;
+		}
+
 		if (path.contains("${liferay:screenName}") ||
 			path.contains("${liferay:userId}")) {
-
-			User user = (User)session.getAttribute(WebKeys.USER);
-
-			if (user == null) {
-				return;
-			}
 
 			path = StringUtil.replace(
 				path,
@@ -91,22 +85,6 @@ public class SOUserDefaultLandingPageAction extends Action {
 		LastPath lastPath = new LastPath(StringPool.BLANK, path);
 
 		session.setAttribute(WebKeys.LAST_PATH, lastPath);
-
-		// The commented code shows how you can programmaticaly set the user's
-		// landing page. You can modify this class to utilize a custom algorithm
-		// for forwarding a user to his landing page. See the references to this
-		// class in portal.properties.
-
-		/*Map<String, String[]> params = new HashMap<String, String[]>();
-
-		params.put("p_l_id", new String[] {"1806"});
-
-		LastPath lastPath = new LastPath("/c", "/portal/layout", params);
-
-		session.setAttribute(WebKeys.LAST_PATH, lastPath);*/
 	}
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		DefaultLandingPageAction.class);
 
 }
