@@ -250,7 +250,7 @@ public interface AssetSharingEntryLocalService extends BaseLocalService,
 		throws java.lang.Throwable;
 
 	public void addAssetSharingEntries(long classNameId, long classPK,
-		java.util.Map<java.lang.Long, long[]> sharedToClassNameIdsClassPKs)
+		java.util.Map<java.lang.Long, long[]> sharedToClassPKsMap)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public void addAssetSharingEntry(long classNameId, long classPK,

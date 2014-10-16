@@ -276,11 +276,10 @@ public class AssetSharingEntryLocalServiceUtil {
 	}
 
 	public static void addAssetSharingEntries(long classNameId, long classPK,
-		java.util.Map<java.lang.Long, long[]> sharedToClassNameIdsClassPKs)
+		java.util.Map<java.lang.Long, long[]> sharedToClassPKsMap)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		getService()
-			.addAssetSharingEntries(classNameId, classPK,
-			sharedToClassNameIdsClassPKs);
+			.addAssetSharingEntries(classNameId, classPK, sharedToClassPKsMap);
 	}
 
 	public static void addAssetSharingEntry(long classNameId, long classPK,
