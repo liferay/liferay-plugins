@@ -27,14 +27,14 @@ KBFeedbackListDisplayContext kbFeedbackListDisplayContext = (KBFeedbackListDispl
 <div class="kb-article-comment">
 	<table class="lfr-table">
 	<tr>
-		<td class="kb-article-comment-user" align="center" valign="top">
+		<td class="kb-article-comment-user">
 			<liferay-ui:user-display
 				displayStyle="2"
 				userId="<%= kbComment.getUserId() %>"
 				userName="<%= kbComment.getUserName() %>"
 			/>
 		</td>
-		<td valign="top">
+		<td>
 			<portlet:renderURL var="viewKBArticleURL">
 				<portlet:param name="mvcPath" value='<%= templatePath + "view_article.jsp" %>' />
 				<portlet:param name="resourcePrimKey" value="<%= String.valueOf(kbArticle.getResourcePrimKey()) %>" />
