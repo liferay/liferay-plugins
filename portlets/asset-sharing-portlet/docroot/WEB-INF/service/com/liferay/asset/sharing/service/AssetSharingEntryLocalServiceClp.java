@@ -178,7 +178,7 @@ public class AssetSharingEntryLocalServiceClp
 
 	@Override
 	public void addAssetSharingEntries(long classNameId, long classPK,
-		java.util.Map<java.lang.Long, long[]> sharedToClassNameIdsClassPKs) {
+		java.util.Map<java.lang.Long, long[]> sharedToClassPKsMap) {
 		try {
 			_invokableLocalService.invokeMethod(_methodName0,
 				_methodParameterTypes0,
@@ -187,7 +187,7 @@ public class AssetSharingEntryLocalServiceClp
 					
 				classPK,
 					
-				ClpSerializer.translateInput(sharedToClassNameIdsClassPKs)
+				ClpSerializer.translateInput(sharedToClassPKsMap)
 				});
 		}
 		catch (Throwable t) {

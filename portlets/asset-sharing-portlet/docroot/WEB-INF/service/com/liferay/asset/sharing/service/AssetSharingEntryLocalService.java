@@ -49,7 +49,7 @@ public interface AssetSharingEntryLocalService extends BaseLocalService,
 	 * Never modify or reference this interface directly. Always use {@link AssetSharingEntryLocalServiceUtil} to access the asset sharing entry local service. Add custom service methods to {@link com.liferay.asset.sharing.service.impl.AssetSharingEntryLocalServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
 	public void addAssetSharingEntries(long classNameId, long classPK,
-		java.util.Map<java.lang.Long, long[]> sharedToClassNameIdsClassPKs);
+		java.util.Map<java.lang.Long, long[]> sharedToClassPKsMap);
 
 	/**
 	* Adds the asset sharing entry to the database. Also notifies the appropriate model listeners.

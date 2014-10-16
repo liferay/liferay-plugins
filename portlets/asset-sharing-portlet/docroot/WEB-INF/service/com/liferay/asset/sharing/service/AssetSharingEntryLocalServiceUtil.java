@@ -42,10 +42,9 @@ public class AssetSharingEntryLocalServiceUtil {
 	 * Never modify this class directly. Add custom service methods to {@link com.liferay.asset.sharing.service.impl.AssetSharingEntryLocalServiceImpl} and rerun ServiceBuilder to regenerate this class.
 	 */
 	public static void addAssetSharingEntries(long classNameId, long classPK,
-		java.util.Map<java.lang.Long, long[]> sharedToClassNameIdsClassPKs) {
+		java.util.Map<java.lang.Long, long[]> sharedToClassPKsMap) {
 		getService()
-			.addAssetSharingEntries(classNameId, classPK,
-			sharedToClassNameIdsClassPKs);
+			.addAssetSharingEntries(classNameId, classPK, sharedToClassPKsMap);
 	}
 
 	/**
