@@ -36,6 +36,11 @@
 				<type>long</type>
 				<comment><![CDATA[]]></comment>
 			</param>
+			<param>
+				<name>locale</name>
+				<type>java.util.Locale</type>
+				<comment><![CDATA[]]></comment>
+			</param>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
@@ -52,6 +57,11 @@
 			<param>
 				<name>userId</name>
 				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>locale</name>
+				<type>java.util.Locale</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
@@ -84,5 +94,8 @@
 				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
+		<field>
+			<name>_ddmStructureIds</name>
+		</field>
 	</javadoc>
 </javadocs>

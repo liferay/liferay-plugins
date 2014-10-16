@@ -264,6 +264,7 @@
 		<name>MarketplaceMessageListener</name>
 		<type>com.liferay.marketplace.messaging.MarketplaceMessageListener</type>
 		<author><![CDATA[Ryan Park]]></author>
+		<author><![CDATA[Joan Kim]]></author>
 		<method>
 			<name>doReceive</name>
 			<param>
@@ -282,6 +283,7 @@
 		<name>AppImpl</name>
 		<type>com.liferay.marketplace.model.impl.AppImpl</type>
 		<author><![CDATA[Ryan Park]]></author>
+		<author><![CDATA[Joan Kim]]></author>
 		<method>
 			<name>AppImpl</name>
 		</method>
@@ -301,11 +303,6 @@
 			<return>
 				<comment><![CDATA[]]></comment>
 			</return>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<method>
 			<name>getFileDir</name>
@@ -335,22 +332,12 @@
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<method>
 			<name>isInstalled</name>
 			<return>
 				<comment><![CDATA[]]></comment>
 			</return>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<field>
 			<name>_DIR_NAME</name>
@@ -374,6 +361,7 @@
 		<name>AppLocalServiceImpl</name>
 		<type>com.liferay.marketplace.service.impl.AppLocalServiceImpl</type>
 		<author><![CDATA[Ryan Park]]></author>
+		<author><![CDATA[Joan Kim]]></author>
 		<method>
 			<name>clearInstalledAppsCache</name>
 		</method>
@@ -387,11 +375,6 @@
 			<return>
 				<comment><![CDATA[]]></comment>
 			</return>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<method>
 			<name>deleteApp</name>
@@ -408,11 +391,6 @@
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<method>
 			<name>fetchRemoteApp</name>
@@ -424,11 +402,6 @@
 			<return>
 				<comment><![CDATA[]]></comment>
 			</return>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<method>
 			<name>getApps</name>
@@ -440,11 +413,6 @@
 			<return>
 				<comment><![CDATA[]]></comment>
 			</return>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<method>
 			<name>getBundledApps</name>
@@ -457,11 +425,6 @@
 			<return>
 				<comment><![CDATA[]]></comment>
 			</return>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<method>
 			<name>installApp</name>
@@ -473,11 +436,6 @@
 			<throws>
 				<name>PortalException</name>
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
@@ -493,11 +451,6 @@
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<method>
 			<name>uninstallApp</name>
@@ -509,11 +462,6 @@
 			<throws>
 				<name>PortalException</name>
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
@@ -545,11 +493,6 @@
 			<throws>
 				<name>PortalException</name>
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
@@ -603,11 +546,6 @@
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<method>
 			<name>getContextName</name>
@@ -646,11 +584,6 @@
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<method>
 			<name>validate</name>
@@ -667,11 +600,6 @@
 			<throws>
 				<name>PortalException</name>
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
@@ -704,11 +632,6 @@
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<method>
 			<name>installApp</name>
@@ -722,11 +645,6 @@
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<method>
 			<name>uninstallApp</name>
@@ -738,11 +656,6 @@
 			<throws>
 				<name>PortalException</name>
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
@@ -771,17 +684,13 @@
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 	</javadoc>
 	<javadoc>
 		<name>ModuleLocalServiceImpl</name>
 		<type>com.liferay.marketplace.service.impl.ModuleLocalServiceImpl</type>
 		<author><![CDATA[Ryan Park]]></author>
+		<author><![CDATA[Joan Kim]]></author>
 		<method>
 			<name>addModule</name>
 			<param>
@@ -795,6 +704,16 @@
 				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
+				<name>bundleSymbolicName</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>bundleVersion</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
 				<name>contextName</name>
 				<type>java.lang.String</type>
 				<comment><![CDATA[]]></comment>
@@ -803,8 +722,8 @@
 				<comment><![CDATA[]]></comment>
 			</return>
 			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<name>PortalException</name>
+				<type>com.liferay.portal.kernel.exception.PortalException</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
@@ -816,6 +735,16 @@
 				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
+				<name>bundleSymbolicName</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>bundleVersion</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
 				<name>contextName</name>
 				<type>java.lang.String</type>
 				<comment><![CDATA[]]></comment>
@@ -823,11 +752,6 @@
 			<return>
 				<comment><![CDATA[]]></comment>
 			</return>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<method>
 			<name>getModules</name>
@@ -839,9 +763,22 @@
 			<return>
 				<comment><![CDATA[]]></comment>
 			</return>
+		</method>
+		<method>
+			<name>validate</name>
+			<param>
+				<name>bundleSymbolicName</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>contextName</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
 			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<name>PortalException</name>
+				<type>com.liferay.portal.kernel.exception.PortalException</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
@@ -862,11 +799,6 @@
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<method>
 			<name>contains</name>
@@ -881,11 +813,6 @@
 			<throws>
 				<name>PortalException</name>
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
@@ -1160,6 +1087,66 @@
 		</field>
 	</javadoc>
 	<javadoc>
+		<name>BundleUtil</name>
+		<type>com.liferay.marketplace.util.BundleUtil</type>
+		<author><![CDATA[Joan Kim]]></author>
+		<method>
+			<name>getInstalledBundles</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<method>
+			<name>getManifest</name>
+			<param>
+				<name>file</name>
+				<type>java.io.File</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<method>
+			<name>isActive</name>
+			<param>
+				<name>symbolicName</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>version</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<method>
+			<name>uninstallBundle</name>
+			<param>
+				<name>symbolicName</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>version</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+		</method>
+		<field>
+			<name>_BUNDLE_STATE_OBJECT_NAME</name>
+		</field>
+		<field>
+			<name>_FRAMEWORK_OBJECT_NAME</name>
+		</field>
+		<field>
+			<name>_INSTALLED_BUNDLE_STATES</name>
+		</field>
+	</javadoc>
+	<javadoc>
 		<name>MarketplaceConstants</name>
 		<type>com.liferay.marketplace.util.MarketplaceConstants</type>
 		<author><![CDATA[Ryan Park]]></author>
@@ -1192,6 +1179,59 @@
 		</field>
 		<field>
 			<name>_pathStore</name>
+		</field>
+	</javadoc>
+	<javadoc>
+		<name>MarketplaceLicenseUtil</name>
+		<type>com.liferay.marketplace.util.MarketplaceLicenseUtil</type>
+		<author><![CDATA[Joan Kim]]></author>
+		<method>
+			<name>getOrder</name>
+			<param>
+				<name>productEntryName</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>getServerIdBytes</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>registerOrder</name>
+			<param>
+				<name>orderUuid</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>productEntryName</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<field>
+			<name>_LICENSE_SERVER_ID_FILE_NAME</name>
 		</field>
 	</javadoc>
 	<javadoc>
@@ -1239,11 +1279,6 @@
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<method>
 			<name>hasMarketplaceAdmin</name>
@@ -1255,11 +1290,6 @@
 			<return>
 				<comment><![CDATA[]]></comment>
 			</return>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<method>
 			<name>isMarketplaceAdmin</name>
@@ -1274,11 +1304,6 @@
 			<throws>
 				<name>PortalException</name>
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
@@ -1318,7 +1343,7 @@
 			<name>MARKETPLACE_STORE_ENABLED</name>
 		</field>
 		<field>
-			<name>MARKETPLACE_URL_LOGOUT</name>
+			<name>MARKETPLACE_URL</name>
 		</field>
 	</javadoc>
 	<javadoc>
@@ -1329,7 +1354,7 @@
 			<name>MARKETPLACE_STORE_ENABLED</name>
 		</field>
 		<field>
-			<name>MARKETPLACE_URL_LOGOUT</name>
+			<name>MARKETPLACE_URL</name>
 		</field>
 	</javadoc>
 	<javadoc>
@@ -1350,13 +1375,13 @@
 		<method>
 			<name>compare</name>
 			<param>
-				<name>obj1</name>
-				<type>java.lang.Object</type>
+				<name>app1</name>
+				<type>com.liferay.marketplace.model.App</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
-				<name>obj2</name>
-				<type>java.lang.Object</type>
+				<name>app2</name>
+				<type>com.liferay.marketplace.model.App</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<return>

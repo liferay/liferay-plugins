@@ -2,14 +2,27 @@
 
 <javadocs>
 	<javadoc>
-		<name>ByteChannelReader</name>
-		<type>com.liferay.sync.io.delta.ByteChannelReader</type>
-		<author><![CDATA[Connor McKay]]></author>
+		<name>SyncJSONFilter</name>
+		<type>com.liferay.sync.filter.SyncJSONFilter</type>
+		<author><![CDATA[Shinn Lok]]></author>
 		<method>
-			<name>ByteChannelReader</name>
+			<name>destroy</name>
+		</method>
+		<method>
+			<name>doFilter</name>
 			<param>
-				<name>readableByteChannel</name>
-				<type>java.nio.channels.ReadableByteChannel</type>
+				<name>servletRequest</name>
+				<type>javax.servlet.ServletRequest</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>servletResponse</name>
+				<type>javax.servlet.ServletResponse</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>filterChain</name>
+				<type>javax.servlet.FilterChain</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
@@ -17,49 +30,69 @@
 				<type>java.io.IOException</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
-		</method>
-		<method>
-			<name>ByteChannelReader</name>
-			<param>
-				<name>readableByteChannel</name>
-				<type>java.nio.channels.ReadableByteChannel</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
-				<name>bufferLength</name>
-				<type>int</type>
-				<comment><![CDATA[]]></comment>
-			</param>
 			<throws>
-				<name>IOException</name>
-				<type>java.io.IOException</type>
+				<name>ServletException</name>
+				<type>javax.servlet.ServletException</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
-			<name>ensureData</name>
+			<name>init</name>
 			<param>
-				<name>length</name>
-				<type>int</type>
+				<name>filterConfig</name>
+				<type>javax.servlet.FilterConfig</type>
 				<comment><![CDATA[]]></comment>
 			</param>
+		</method>
+	</javadoc>
+	<javadoc>
+		<name>SyncAuthVerifier</name>
+		<type>com.liferay.sync.hook.security.auth.SyncAuthVerifier</type>
+		<author><![CDATA[Michael Young]]></author>
+		<author><![CDATA[Dennis Ju]]></author>
+		<method>
+			<name>getAuthType</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<method>
+			<name>getUserId</name>
+			<param>
+				<name>tokenString</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<method>
+			<name>verify</name>
+			<param>
+				<name>accessControlContext</name>
+				<type>com.liferay.portal.security.auth.AccessControlContext</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>properties</name>
+				<type>java.util.Properties</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
-				<name>IOException</name>
-				<type>java.io.IOException</type>
+				<name>AuthException</name>
+				<type>com.liferay.portal.security.auth.AuthException</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
-			<name>get</name>
-			<return>
-				<comment><![CDATA[]]></comment>
-			</return>
-		</method>
-		<method>
-			<name>get</name>
+			<name>createToken</name>
 			<param>
-				<name>offset</name>
-				<type>int</type>
+				<name>userId</name>
+				<type>long</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<return>
@@ -67,545 +100,152 @@
 			</return>
 		</method>
 		<method>
-			<name>getBuffer</name>
-			<return>
-				<comment><![CDATA[]]></comment>
-			</return>
-		</method>
-		<method>
-			<name>hasRemaining</name>
-			<return>
-				<comment><![CDATA[]]></comment>
-			</return>
-		</method>
-		<method>
-			<name>maybeRead</name>
+			<name>doLogin</name>
 			<param>
-				<name>length</name>
-				<type>int</type>
+				<name>request</name>
+				<type>javax.servlet.http.HttpServletRequest</type>
 				<comment><![CDATA[]]></comment>
 			</param>
+			<param>
+				<name>response</name>
+				<type>javax.servlet.http.HttpServletResponse</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
-				<name>IOException</name>
-				<type>java.io.IOException</type>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
-			<name>read</name>
+			<name>getJsonTokenParser</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
-				<name>IOException</name>
-				<type>java.io.IOException</type>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
-			<name>remaining</name>
-			<return>
-				<comment><![CDATA[]]></comment>
-			</return>
-		</method>
-		<method>
-			<name>resizeBuffer</name>
-			<param>
-				<name>minBufferLength</name>
-				<type>int</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-		</method>
-		<method>
-			<name>skip</name>
-			<param>
-				<name>length</name>
-				<type>int</type>
-				<comment><![CDATA[]]></comment>
-			</param>
+			<name>getSigner</name>
 			<return>
 				<comment><![CDATA[]]></comment>
 			</return>
 		</method>
 		<field>
-			<name>_byteBuffer</name>
+			<name>_TOKEN_HEADER</name>
 		</field>
 		<field>
-			<name>_eof</name>
+			<name>_autoLoginClassNames</name>
 		</field>
 		<field>
-			<name>_readableByteChannel</name>
+			<name>_expiration</name>
+		</field>
+		<field>
+			<name>_jsonTokenParser</name>
+		</field>
+		<field>
+			<name>_secret</name>
+		</field>
+		<field>
+			<name>_signer</name>
 		</field>
 	</javadoc>
 	<javadoc>
-		<name>ByteChannelWriter</name>
-		<type>com.liferay.sync.io.delta.ByteChannelWriter</type>
-		<author><![CDATA[Connor McKay]]></author>
+		<name>UpgradeProcess_1_0_0</name>
+		<type>com.liferay.sync.hook.upgrade.UpgradeProcess_1_0_0</type>
+		<author><![CDATA[Dennis Ju]]></author>
 		<method>
-			<name>ByteChannelWriter</name>
-			<param>
-				<name>writableByteChannel</name>
-				<type>java.nio.channels.WritableByteChannel</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-		</method>
-		<method>
-			<name>ByteChannelWriter</name>
-			<param>
-				<name>writableByteChannel</name>
-				<type>java.nio.channels.WritableByteChannel</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
-				<name>bufferLength</name>
-				<type>int</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-		</method>
-		<method>
-			<name>ensureSpace</name>
-			<param>
-				<name>length</name>
-				<type>int</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<throws>
-				<name>IOException</name>
-				<type>java.io.IOException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
-		</method>
-		<method>
-			<name>finish</name>
-			<throws>
-				<name>IOException</name>
-				<type>java.io.IOException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
-		</method>
-		<method>
-			<name>getBuffer</name>
+			<name>getThreshold</name>
 			<return>
 				<comment><![CDATA[]]></comment>
 			</return>
 		</method>
 		<method>
-			<name>resizeBuffer</name>
-			<param>
-				<name>minBufferLength</name>
-				<type>int</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-		</method>
-		<method>
-			<name>write</name>
+			<name>doUpgrade</name>
 			<throws>
-				<name>IOException</name>
-				<type>java.io.IOException</type>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
-		<field>
-			<name>_byteBuffer</name>
-		</field>
-		<field>
-			<name>_writableByteChannel</name>
-		</field>
 	</javadoc>
 	<javadoc>
-		<name>DeltaUtil</name>
-		<type>com.liferay.sync.io.delta.DeltaUtil</type>
-		<author><![CDATA[Connor McKay]]></author>
+		<name>UpgradeSyncDLObject</name>
+		<type>com.liferay.sync.hook.upgrade.v1_0_0.UpgradeSyncDLObject</type>
+		<author><![CDATA[Dennis Ju]]></author>
 		<method>
-			<name>checksums</name>
-			<param>
-				<name>originalFileChannel</name>
-				<type>java.nio.channels.FileChannel</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
-				<name>checksumsByteChannelWriter</name>
-				<type>ByteChannelWriter</type>
-				<comment><![CDATA[]]></comment>
-			</param>
+			<name>doUpgrade</name>
 			<throws>
-				<name>IOException</name>
-				<type>java.io.IOException</type>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
-			<name>checksums</name>
+			<name>populateAllSyncDLObjects</name>
 			<param>
-				<name>originalFileChannel</name>
-				<type>java.nio.channels.FileChannel</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
-				<name>checksumsByteChannelWriter</name>
-				<type>ByteChannelWriter</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
-				<name>blockLength</name>
-				<type>int</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<throws>
-				<name>IOException</name>
-				<type>java.io.IOException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
-		</method>
-		<method>
-			<name>delta</name>
-			<param>
-				<name>modifiedReadableByteChannel</name>
-				<type>java.nio.channels.ReadableByteChannel</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
-				<name>checksumsByteChannelReader</name>
-				<type>ByteChannelReader</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
-				<name>deltaByteChannelWriter</name>
-				<type>ByteChannelWriter</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<throws>
-				<name>IOException</name>
-				<type>java.io.IOException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
-		</method>
-		<method>
-			<name>patch</name>
-			<param>
-				<name>originalFileChannel</name>
-				<type>java.nio.channels.FileChannel</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
-				<name>patchedWritableByteChannel</name>
-				<type>java.nio.channels.WritableByteChannel</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
-				<name>deltaByteChannelReader</name>
-				<type>ByteChannelReader</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<throws>
-				<name>IOException</name>
-				<type>java.io.IOException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
-		</method>
-		<field>
-			<name>BUFFER_FACTOR</name>
-		</field>
-		<field>
-			<name>DATA_KEY</name>
-		</field>
-		<field>
-			<name>EOF_KEY</name>
-		</field>
-		<field>
-			<name>PROTOCOL_VERSION</name>
-		</field>
-		<field>
-			<name>REFERENCE_KEY</name>
-		</field>
-		<field>
-			<name>REFERENCE_RANGE_KEY</name>
-		</field>
-	</javadoc>
-	<javadoc>
-		<name>Differ</name>
-		<type>com.liferay.sync.io.delta.Differ</type>
-		<author><![CDATA[Connor McKay]]></author>
-		<method>
-			<name>delta</name>
-			<param>
-				<name>modifiedReadableByteChannel</name>
-				<type>java.nio.channels.ReadableByteChannel</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
-				<name>checksumsByteChannelReader</name>
-				<type>ByteChannelReader</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
-				<name>deltaByteChannelWriter</name>
-				<type>ByteChannelWriter</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<throws>
-				<name>IOException</name>
-				<type>java.io.IOException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
-		</method>
-		<method>
-			<name>readChecksums</name>
-			<throws>
-				<name>IOException</name>
-				<type>java.io.IOException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
-		</method>
-		<method>
-			<name>readChecksumsHeader</name>
-			<throws>
-				<name>IOException</name>
-				<type>java.io.IOException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
-		</method>
-		<method>
-			<name>writeDataBlock</name>
-			<throws>
-				<name>IOException</name>
-				<type>java.io.IOException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
-		</method>
-		<method>
-			<name>writeDeltaBlocks</name>
-			<throws>
-				<name>IOException</name>
-				<type>java.io.IOException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
-		</method>
-		<method>
-			<name>writeDeltaHeader</name>
-			<throws>
-				<name>IOException</name>
-				<type>java.io.IOException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
-		</method>
-		<method>
-			<name>writeReferenceBlock</name>
-			<throws>
-				<name>IOException</name>
-				<type>java.io.IOException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
-		</method>
-		<field>
-			<name>_blockDatas</name>
-		</field>
-		<field>
-			<name>_blockLength</name>
-		</field>
-		<field>
-			<name>_blocksCount</name>
-		</field>
-		<field>
-			<name>_checksumsByteBuffer</name>
-		</field>
-		<field>
-			<name>_checksumsByteChannelReader</name>
-		</field>
-		<field>
-			<name>_dataByteBuffer</name>
-		</field>
-		<field>
-			<name>_deltaByteBuffer</name>
-		</field>
-		<field>
-			<name>_deltaByteChannelWriter</name>
-		</field>
-		<field>
-			<name>_firstBlockNumber</name>
-		</field>
-		<field>
-			<name>_lastBlockNumber</name>
-		</field>
-		<field>
-			<name>_modifiedReadableByteChannel</name>
-		</field>
-		<field>
-			<name>_rollingChecksum</name>
-		</field>
-	</javadoc>
-	<javadoc>
-		<name>Patcher</name>
-		<type>com.liferay.sync.io.delta.Patcher</type>
-		<author><![CDATA[Connor McKay]]></author>
-		<method>
-			<name>patch</name>
-			<param>
-				<name>originalFileChannel</name>
-				<type>java.nio.channels.FileChannel</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
-				<name>patchedWritableByteChannel</name>
-				<type>java.nio.channels.WritableByteChannel</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
-				<name>deltaByteChannelReader</name>
-				<type>ByteChannelReader</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<throws>
-				<name>IOException</name>
-				<type>java.io.IOException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
-		</method>
-		<method>
-			<name>transfer</name>
-			<param>
-				<name>source</name>
-				<type>java.nio.channels.FileChannel</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
-				<name>destination</name>
-				<type>java.nio.channels.WritableByteChannel</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
-				<name>position</name>
+				<name>groupId</name>
 				<type>long</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
-				<name>length</name>
+				<name>folderId</name>
 				<type>long</type>
 				<comment><![CDATA[]]></comment>
 			</param>
-			<throws>
-				<name>IOException</name>
-				<type>java.io.IOException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
-		</method>
-		<field>
-			<name>_NATIVE_TRANSFER_THRESHOLD</name>
-		</field>
-		<field>
-			<name>_transferByteBuffer</name>
-		</field>
-	</javadoc>
-	<javadoc>
-		<name>RollingChecksum</name>
-		<type>com.liferay.sync.io.delta.RollingChecksum</type>
-		<author><![CDATA[Connor McKay]]></author>
-		<method>
-			<name>RollingChecksum</name>
 			<param>
-				<name>readableByteChannel</name>
-				<type>java.nio.channels.ReadableByteChannel</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
-				<name>blockLength</name>
-				<type>int</type>
+				<name>syncDLObjects</name>
+				<type>java.util.List</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
-				<name>IOException</name>
-				<type>java.io.IOException</type>
+				<name>PortalException</name>
+				<type>com.liferay.portal.kernel.exception.PortalException</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
-			<name>currentBlockLength</name>
-			<return>
-				<comment><![CDATA[]]></comment>
-			</return>
-		</method>
-		<method>
-			<name>getFirstByte</name>
-			<comment><![CDATA[Returns the first byte of data in the current block.]]></comment>
-			<return>
-				<comment><![CDATA[]]></comment>
-			</return>
-		</method>
-		<method>
-			<name>getPosition</name>
-			<comment><![CDATA[Returns the position of the start of the current block in the file.]]></comment>
-			<return>
-				<comment><![CDATA[]]></comment>
-			</return>
-		</method>
-		<method>
-			<name>hasNext</name>
-			<return>
-				<comment><![CDATA[]]></comment>
-			</return>
+			<name>updateSyncDLObjects</name>
 			<throws>
-				<name>IOException</name>
-				<type>java.io.IOException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
-		</method>
-		<method>
-			<name>nextBlock</name>
-			<throws>
-				<name>IOException</name>
-				<type>java.io.IOException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
-		</method>
-		<method>
-			<name>nextByte</name>
-			<throws>
-				<name>IOException</name>
-				<type>java.io.IOException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
-		</method>
-		<method>
-			<name>strongChecksum</name>
-			<comment><![CDATA[Returns the strong checksum of the current block.]]></comment>
-			<return>
-				<comment><![CDATA[]]></comment>
-			</return>
-		</method>
-		<method>
-			<name>weakChecksum</name>
-			<comment><![CDATA[Returns the weak checksum of the current block.]]></comment>
-			<return>
-				<comment><![CDATA[]]></comment>
-			</return>
-		</method>
-		<method>
-			<name>generateWeakChecksum</name>
-			<throws>
-				<name>IOException</name>
-				<type>java.io.IOException</type>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<field>
-			<name>_messageDigest</name>
-		</field>
-		<field>
-			<name>_a</name>
-		</field>
-		<field>
-			<name>_b</name>
-		</field>
-		<field>
-			<name>_blockLength</name>
-		</field>
-		<field>
-			<name>_byteChannelReader</name>
-		</field>
-		<field>
-			<name>_filePosition</name>
+			<name>_log</name>
 		</field>
 	</javadoc>
 	<javadoc>
-		<name>SyncMessageListener</name>
-		<type>com.liferay.sync.messaging.SyncMessageListener</type>
+		<name>SyncDLFileVersionDiffMessageListener</name>
+		<type>com.liferay.sync.messaging.SyncDLFileVersionDiffMessageListener</type>
+		<author><![CDATA[Dennis Ju]]></author>
+		<method>
+			<name>doReceive</name>
+			<param>
+				<name>message</name>
+				<type>com.liferay.portal.kernel.messaging.Message</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<field>
+			<name>DESTINATION_NAME</name>
+		</field>
+	</javadoc>
+	<javadoc>
+		<name>SyncDLObjectMessageListener</name>
+		<type>com.liferay.sync.messaging.SyncDLObjectMessageListener</type>
 		<author><![CDATA[Dennis Ju]]></author>
 		<method>
 			<name>addSyncDLObject</name>
@@ -650,6 +290,22 @@
 		</method>
 	</javadoc>
 	<javadoc>
+		<name>SyncConstants</name>
+		<type>com.liferay.sync.model.SyncConstants</type>
+		<author><![CDATA[Dennis Ju]]></author>
+		<field>
+			<name>TYPE_PRIVATE_WORKING_COPY</name>
+		</field>
+	</javadoc>
+	<javadoc>
+		<name>SyncDLFileVersionDiffImpl</name>
+		<type>com.liferay.sync.model.impl.SyncDLFileVersionDiffImpl</type>
+		<author><![CDATA[Brian Wing Shun Chan]]></author>
+		<method>
+			<name>SyncDLFileVersionDiffImpl</name>
+		</method>
+	</javadoc>
+	<javadoc>
 		<name>SyncDLObjectImpl</name>
 		<type>com.liferay.sync.model.impl.SyncDLObjectImpl</type>
 		<author><![CDATA[Brian Wing Shun Chan]]></author>
@@ -671,6 +327,171 @@
 				<type>java.util.Date</type>
 				<comment><![CDATA[]]></comment>
 			</param>
+		</method>
+	</javadoc>
+	<javadoc>
+		<name>SyncDLObjectUpgradeTableListener</name>
+		<type>com.liferay.sync.model.upgrade.SyncDLObjectUpgradeTableListener</type>
+		<author><![CDATA[Dennis Ju]]></author>
+		<method>
+			<name>onAfterUpdateTable</name>
+			<param>
+				<name>previousServiceComponent</name>
+				<type>com.liferay.portal.model.ServiceComponent</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>upgradeTable</name>
+				<type>com.liferay.portal.kernel.upgrade.util.UpgradeTable</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>onBeforeUpdateTable</name>
+			<param>
+				<name>previousServiceComponent</name>
+				<type>com.liferay.portal.model.ServiceComponent</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>upgradeTable</name>
+				<type>com.liferay.portal.kernel.upgrade.util.UpgradeTable</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>getSyncDLObjectIds</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<method>
+			<name>updateSyncDLObjectIds</name>
+			<param>
+				<name>keyValueMap</name>
+				<type>java.util.Map</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<field>
+			<name>_log</name>
+		</field>
+		<field>
+			<name>_syncDLObjectIds</name>
+		</field>
+	</javadoc>
+	<javadoc>
+		<name>SyncDLFileVersionDiffLocalServiceImpl</name>
+		<type>com.liferay.sync.service.impl.SyncDLFileVersionDiffLocalServiceImpl</type>
+		<author><![CDATA[Dennis Ju]]></author>
+		<method>
+			<name>addSyncDLFileVersionDiff</name>
+			<param>
+				<name>fileEntryId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>sourceFileVersionId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>targetFileVersionId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>file</name>
+				<type>java.io.File</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>PortalException</name>
+				<type>com.liferay.portal.kernel.exception.PortalException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>deleteExpiredSyncDLFileVersionDiffs</name>
+			<throws>
+				<name>PortalException</name>
+				<type>com.liferay.portal.kernel.exception.PortalException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>fetchSyncDLFileVersionDiff</name>
+			<param>
+				<name>fileEntryId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>sourceFileVersionId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>targetFileVersionId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<method>
+			<name>refreshExpirationDate</name>
+			<param>
+				<name>syncDLFileVersionDiffId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>PortalException</name>
+				<type>com.liferay.portal.kernel.exception.PortalException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>getDataFileName</name>
+			<param>
+				<name>fileEntryId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>sourceFileVersionId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>targetFileVersionId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 	</javadoc>
 	<javadoc>
@@ -788,38 +609,25 @@
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<method>
-			<name>fetchSyncDLObject</name>
+			<name>deleteSyncDLObjects</name>
 			<param>
-				<name>typePK</name>
-				<type>long</type>
+				<name>version</name>
+				<type>java.lang.String</type>
 				<comment><![CDATA[]]></comment>
 			</param>
-			<return>
+			<param>
+				<name>type</name>
+				<type>java.lang.String</type>
 				<comment><![CDATA[]]></comment>
-			</return>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
+			</param>
 		</method>
 		<method>
 			<name>getLatestModifiedTime</name>
 			<return>
 				<comment><![CDATA[]]></comment>
 			</return>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<method>
 			<name>isDefaultRepository</name>
@@ -834,11 +642,6 @@
 			<throws>
 				<name>PortalException</name>
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
@@ -908,11 +711,6 @@
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<method>
 			<name>addFolder</name>
@@ -949,11 +747,6 @@
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<method>
 			<name>cancelCheckOut</name>
@@ -968,11 +761,6 @@
 			<throws>
 				<name>PortalException</name>
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
@@ -1006,11 +794,6 @@
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<method>
 			<name>checkOutFileEntry</name>
@@ -1030,11 +813,6 @@
 			<throws>
 				<name>PortalException</name>
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
@@ -1068,9 +846,25 @@
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
+		</method>
+		<method>
+			<name>getAllFolderSyncDLObjects</name>
+			<param>
+				<name>companyId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>repositoryId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<name>PortalException</name>
+				<type>com.liferay.portal.kernel.exception.PortalException</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
@@ -1094,11 +888,7 @@
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
+			<deprecated><![CDATA[As of 7.0.0, with no direct replacement]]></deprecated>
 		</method>
 		<method>
 			<name>getFileEntrySyncDLObject</name>
@@ -1125,11 +915,6 @@
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<method>
 			<name>getFileEntrySyncDLObjects</name>
@@ -1151,11 +936,6 @@
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<method>
 			<name>getFolderSyncDLObject</name>
@@ -1172,9 +952,30 @@
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
+		</method>
+		<method>
+			<name>getFolderSyncDLObject</name>
+			<param>
+				<name>repositoryId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>parentFolderId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>name</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<name>PortalException</name>
+				<type>com.liferay.portal.kernel.exception.PortalException</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
@@ -1198,11 +999,6 @@
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<method>
 			<name>getGroup</name>
@@ -1219,25 +1015,21 @@
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<method>
 			<name>getLatestModifiedTime</name>
 			<return>
 				<comment><![CDATA[]]></comment>
 			</return>
+		</method>
+		<method>
+			<name>getPortletPreferences</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>PortalException</name>
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
@@ -1254,11 +1046,6 @@
 			<throws>
 				<name>PortalException</name>
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
@@ -1287,9 +1074,35 @@
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
+		</method>
+		<method>
+			<name>getSyncDLObjectUpdate</name>
+			<param>
+				<name>companyId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>repositoryId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>parentFolderId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>lastAccessTime</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<name>PortalException</name>
+				<type>com.liferay.portal.kernel.exception.PortalException</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
@@ -1301,11 +1114,6 @@
 			<throws>
 				<name>PortalException</name>
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
@@ -1334,11 +1142,6 @@
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<method>
 			<name>moveFileEntryToTrash</name>
@@ -1353,11 +1156,6 @@
 			<throws>
 				<name>PortalException</name>
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
@@ -1386,11 +1184,6 @@
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<method>
 			<name>moveFolderToTrash</name>
@@ -1405,11 +1198,6 @@
 			<throws>
 				<name>PortalException</name>
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
@@ -1478,11 +1266,6 @@
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<method>
 			<name>restoreFileEntryFromTrash</name>
@@ -1499,11 +1282,6 @@
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<method>
 			<name>restoreFolderFromTrash</name>
@@ -1518,11 +1296,6 @@
 			<throws>
 				<name>PortalException</name>
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
@@ -1586,11 +1359,6 @@
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<method>
 			<name>updateFolder</name>
@@ -1622,63 +1390,51 @@
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
+		</method>
+		<method>
+			<name>getPortletPreferencesMap</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<name>PortalException</name>
+				<type>com.liferay.portal.kernel.exception.PortalException</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
-			<name>getAllSyncDLObjects</name>
+			<name>getSyncDLObjects</name>
+			<param>
+				<name>syncDLObjects</name>
+				<type>java.util.List</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>companyId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
 			<param>
 				<name>repositoryId</name>
 				<type>long</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
-				<name>folderId</name>
+				<name>parentFolderId</name>
 				<type>long</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
-				<name>syncDLObjects</name>
-				<type>java.util.List</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<throws>
-				<name>PortalException</name>
-				<type>com.liferay.portal.kernel.exception.PortalException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
-		</method>
-		<method>
-			<name>getLicenseDigest</name>
-			<param>
-				<name>productId</name>
-				<type>java.lang.String</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
-				<name>uuid</name>
-				<type>java.lang.String</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
-				<name>licenseState</name>
-				<type>int</type>
+				<name>lastAccessTime</name>
+				<type>long</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<return>
 				<comment><![CDATA[]]></comment>
 			</return>
 			<throws>
-				<name>Exception</name>
-				<type>java.lang.Exception</type>
+				<name>PortalException</name>
+				<type>com.liferay.portal.kernel.exception.PortalException</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
@@ -1700,13 +1456,33 @@
 				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
+		<field>
+			<name>_log</name>
+		</field>
 	</javadoc>
 	<javadoc>
 		<name>SyncDLObjectFinderImpl</name>
-		<type>com.liferay.sync.service.persistence.SyncDLObjectFinderImpl</type>
+		<type>com.liferay.sync.service.persistence.impl.SyncDLObjectFinderImpl</type>
 		<author><![CDATA[Michael Young]]></author>
+		<author><![CDATA[Shinn Lok]]></author>
 		<method>
-			<name>filterFindByC_M_R</name>
+			<name>filterFindByC_R</name>
+			<param>
+				<name>companyId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>repositoryId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<method>
+			<name>filterFindByC_M_R_P</name>
 			<param>
 				<name>companyId</name>
 				<type>long</type>
@@ -1722,20 +1498,29 @@
 				<type>long</type>
 				<comment><![CDATA[]]></comment>
 			</param>
+			<param>
+				<name>parentFolderId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
 			<return>
 				<comment><![CDATA[]]></comment>
 			</return>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<field>
-			<name>FIND_BY_C_M_R_E</name>
+			<name>FIND_BY_DELETE_EVENT</name>
 		</field>
 		<field>
-			<name>FIND_BY_C_M_R_T</name>
+			<name>FIND_BY_FILE_OR_PWC_TYPE</name>
+		</field>
+		<field>
+			<name>FIND_BY_FOLDER_TYPE</name>
+		</field>
+		<field>
+			<name>_EVENT_SQL</name>
+		</field>
+		<field>
+			<name>_PARENT_FOLDER_ID_SQL</name>
 		</field>
 	</javadoc>
 	<javadoc>
@@ -1766,6 +1551,37 @@
 			</throws>
 		</method>
 		<method>
+			<name>getDeltaFile</name>
+			<param>
+				<name>userId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>fileEntryId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>sourceVersion</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>targetVersion</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>PortalException</name>
+				<type>com.liferay.portal.kernel.exception.PortalException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
 			<name>sendFile</name>
 			<param>
 				<name>request</name>
@@ -1778,11 +1594,6 @@
 				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
-				<name>user</name>
-				<type>com.liferay.portal.model.User</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
 				<name>groupId</name>
 				<type>long</type>
 				<comment><![CDATA[]]></comment>
@@ -1790,6 +1601,24 @@
 			<param>
 				<name>uuid</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>sendImage</name>
+			<param>
+				<name>response</name>
+				<type>javax.servlet.http.HttpServletResponse</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>imageId</name>
+				<type>long</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
@@ -1854,6 +1683,9 @@
 			</param>
 		</method>
 		<method>
+			<name>consumeDLSyncEvents</name>
+		</method>
+		<method>
 			<name>doPortalDestroy</name>
 			<throws>
 				<name>Exception</name>
@@ -1864,17 +1696,96 @@
 		<method>
 			<name>doPortalInit</name>
 		</method>
+		<method>
+			<name>registerMessageListener</name>
+			<param>
+				<name>messageListener</name>
+				<type>com.liferay.portal.kernel.messaging.MessageListener</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>destinationName</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+		</method>
+		<method>
+			<name>scheduleDLFileVersionDiffMessageListener</name>
+		</method>
 		<field>
 			<name>_log</name>
 		</field>
 		<field>
-			<name>_messageListener</name>
+			<name>_syncDLFileVersionDiffMessageListener</name>
+		</field>
+		<field>
+			<name>_syncDLObjectMessageListener</name>
+		</field>
+	</javadoc>
+	<javadoc>
+		<name>PortletPropsKeys</name>
+		<type>com.liferay.sync.util.PortletPropsKeys</type>
+		<author><![CDATA[Dennis Ju]]></author>
+		<field>
+			<name>SYNC_AUTH_VERIFIER_PIPELINE</name>
+		</field>
+		<field>
+			<name>SYNC_FILE_CHECKSUM_THRESHOLD_SIZE</name>
+		</field>
+		<field>
+			<name>SYNC_FILE_DIFF_CACHE_DELETE_INTERVAL</name>
+		</field>
+		<field>
+			<name>SYNC_FILE_DIFF_CACHE_ENABLED</name>
+		</field>
+		<field>
+			<name>SYNC_FILE_DIFF_CACHE_EXPIRATION_TIME</name>
+		</field>
+	</javadoc>
+	<javadoc>
+		<name>PortletPropsValues</name>
+		<type>com.liferay.sync.util.PortletPropsValues</type>
+		<author><![CDATA[Dennis Ju]]></author>
+		<field>
+			<name>SYNC_AUTH_VERIFIER_PIPELINE</name>
+		</field>
+		<field>
+			<name>SYNC_CLIENT_MAX_CONNECTIONS</name>
+		</field>
+		<field>
+			<name>SYNC_CLIENT_POLL_INTERVAL</name>
+		</field>
+		<field>
+			<name>SYNC_FILE_CHECKSUM_THRESHOLD_SIZE</name>
+		</field>
+		<field>
+			<name>SYNC_FILE_DIFF_CACHE_DELETE_INTERVAL</name>
+		</field>
+		<field>
+			<name>SYNC_FILE_DIFF_CACHE_ENABLED</name>
+		</field>
+		<field>
+			<name>SYNC_FILE_DIFF_CACHE_EXPIRATION_TIME</name>
+		</field>
+		<field>
+			<name>SYNC_SERVICES_ENABLED</name>
 		</field>
 	</javadoc>
 	<javadoc>
 		<name>SyncUtil</name>
 		<type>com.liferay.sync.util.SyncUtil</type>
 		<author><![CDATA[Dennis Ju]]></author>
+		<method>
+			<name>buildExceptionMessage</name>
+			<param>
+				<name>throwable</name>
+				<type>java.lang.Throwable</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
 		<method>
 			<name>getChecksum</name>
 			<param>
@@ -1888,11 +1799,6 @@
 			<throws>
 				<name>PortalException</name>
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
@@ -1913,36 +1819,15 @@
 			</throws>
 		</method>
 		<method>
-			<name>getChecksum</name>
+			<name>getFileDelta</name>
 			<param>
-				<name>inputStream</name>
-				<type>java.io.InputStream</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<return>
-				<comment><![CDATA[]]></comment>
-			</return>
-		</method>
-		<method>
-			<name>getFileDeltaAsStream</name>
-			<param>
-				<name>userId</name>
-				<type>long</type>
+				<name>sourceFile</name>
+				<type>java.io.File</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
-				<name>fileEntryId</name>
-				<type>long</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
-				<name>sourceVersion</name>
-				<type>java.lang.String</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
-				<name>destinationVersion</name>
-				<type>java.lang.String</type>
+				<name>targetFile</name>
+				<type>java.io.File</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<return>
@@ -1953,6 +1838,28 @@
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
+		</method>
+		<method>
+			<name>isSupportedFolder</name>
+			<param>
+				<name>dlFolder</name>
+				<type>com.liferay.portlet.documentlibrary.model.DLFolder</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<method>
+			<name>isSupportedFolder</name>
+			<param>
+				<name>folder</name>
+				<type>com.liferay.portal.kernel.repository.model.Folder</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>patchFile</name>
@@ -1980,8 +1887,8 @@
 		<method>
 			<name>toSyncDLObject</name>
 			<param>
-				<name>fileEntry</name>
-				<type>com.liferay.portal.kernel.repository.model.FileEntry</type>
+				<name>dlFileEntry</name>
+				<type>com.liferay.portlet.documentlibrary.model.DLFileEntry</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
@@ -1997,9 +1904,67 @@
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
+		</method>
+		<method>
+			<name>toSyncDLObject</name>
+			<param>
+				<name>dlFileEntry</name>
+				<type>com.liferay.portlet.documentlibrary.model.DLFileEntry</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>event</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>excludeWorkingCopy</name>
+				<type>boolean</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<name>PortalException</name>
+				<type>com.liferay.portal.kernel.exception.PortalException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>toSyncDLObject</name>
+			<param>
+				<name>dlFolder</name>
+				<type>com.liferay.portlet.documentlibrary.model.DLFolder</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>event</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<method>
+			<name>toSyncDLObject</name>
+			<param>
+				<name>fileEntry</name>
+				<type>com.liferay.portal.kernel.repository.model.FileEntry</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>event</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>PortalException</name>
+				<type>com.liferay.portal.kernel.exception.PortalException</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
@@ -2018,6 +1983,11 @@
 			<return>
 				<comment><![CDATA[]]></comment>
 			</return>
+			<throws>
+				<name>PortalException</name>
+				<type>com.liferay.portal.kernel.exception.PortalException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
 		</method>
 	</javadoc>
 </javadocs>

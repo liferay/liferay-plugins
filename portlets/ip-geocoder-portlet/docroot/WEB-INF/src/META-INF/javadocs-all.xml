@@ -2,168 +2,42 @@
 
 <javadocs>
 	<javadoc>
-		<name>IPGeocoderMessageListener</name>
-		<type>com.liferay.ipgeocoder.messaging.IPGeocoderMessageListener</type>
-		<author><![CDATA[Brian Wing Shun Chan]]></author>
+		<name>IPGeocoderPortlet</name>
+		<type>com.liferay.ip.geocoder.portlet.IPGeocoderPortlet</type>
+		<author><![CDATA[Julio Camarero]]></author>
 		<method>
-			<name>doReceive</name>
+			<name>doView</name>
 			<param>
-				<name>message</name>
-				<type>com.liferay.portal.kernel.messaging.Message</type>
+				<name>renderRequest</name>
+				<type>javax.portlet.RenderRequest</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>renderResponse</name>
+				<type>javax.portlet.RenderResponse</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
-				<name>Exception</name>
-				<type>java.lang.Exception</type>
+				<name>IOException</name>
+				<type>java.io.IOException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+			<throws>
+				<name>PortletException</name>
+				<type>javax.portlet.PortletException</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
-	</javadoc>
-	<javadoc>
-		<name>IPInfo</name>
-		<type>com.liferay.ipgeocoder.model.IPInfo</type>
-		<author><![CDATA[Brian Wing Shun Chan]]></author>
 		<method>
-			<name>IPInfo</name>
-			<param>
-				<name>ipAddress</name>
-				<type>java.lang.String</type>
+			<name>init</name>
+			<throws>
+				<name>PortletException</name>
+				<type>javax.portlet.PortletException</type>
 				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
-				<name>location</name>
-				<type>com.maxmind.geoip.Location</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-		</method>
-		<method>
-			<name>getCity</name>
-			<return>
-				<comment><![CDATA[]]></comment>
-			</return>
-		</method>
-		<method>
-			<name>getCountryCode</name>
-			<return>
-				<comment><![CDATA[]]></comment>
-			</return>
-		</method>
-		<method>
-			<name>getCountryName</name>
-			<return>
-				<comment><![CDATA[]]></comment>
-			</return>
-		</method>
-		<method>
-			<name>getIpAddress</name>
-			<return>
-				<comment><![CDATA[]]></comment>
-			</return>
-		</method>
-		<method>
-			<name>getLatitude</name>
-			<return>
-				<comment><![CDATA[]]></comment>
-			</return>
-		</method>
-		<method>
-			<name>getLongitude</name>
-			<return>
-				<comment><![CDATA[]]></comment>
-			</return>
-		</method>
-		<method>
-			<name>getPostalCode</name>
-			<return>
-				<comment><![CDATA[]]></comment>
-			</return>
-		</method>
-		<method>
-			<name>getRegion</name>
-			<return>
-				<comment><![CDATA[]]></comment>
-			</return>
+			</throws>
 		</method>
 		<field>
-			<name>_ipAddress</name>
-		</field>
-		<field>
-			<name>_location</name>
-		</field>
-	</javadoc>
-	<javadoc>
-		<name>IPGeocoderServletContextListener</name>
-		<type>com.liferay.ipgeocoder.servlet.IPGeocoderServletContextListener</type>
-		<author><![CDATA[Brian Wing Shun Chan]]></author>
-		<method>
-			<name>contextDestroyed</name>
-			<param>
-				<name>servletContextEvent</name>
-				<type>javax.servlet.ServletContextEvent</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-		</method>
-		<method>
-			<name>contextInitialized</name>
-			<param>
-				<name>servletContextEvent</name>
-				<type>javax.servlet.ServletContextEvent</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-		</method>
-		<method>
-			<name>doPortalDestroy</name>
-		</method>
-		<method>
-			<name>doPortalInit</name>
-		</method>
-		<field>
-			<name>_ipGeocoderDestination</name>
-		</field>
-		<field>
-			<name>_ipGeocoderMessageListener</name>
-		</field>
-	</javadoc>
-	<javadoc>
-		<name>IPGeocoderUtil</name>
-		<type>com.liferay.ipgeocoder.util.IPGeocoderUtil</type>
-		<author><![CDATA[Brian Wing Shun Chan]]></author>
-		<method>
-			<name>getIPInfo</name>
-			<param>
-				<name>ipAddress</name>
-				<type>java.lang.String</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<return>
-				<comment><![CDATA[]]></comment>
-			</return>
-		</method>
-		<method>
-			<name>IPGeocoderUtil</name>
-		</method>
-		<method>
-			<name>_getIPInfo</name>
-			<param>
-				<name>ipAddress</name>
-				<type>java.lang.String</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<return>
-				<comment><![CDATA[]]></comment>
-			</return>
-		</method>
-		<method>
-			<name>_init</name>
-		</method>
-		<field>
-			<name>_log</name>
-		</field>
-		<field>
-			<name>_instance</name>
-		</field>
-		<field>
-			<name>_lookupService</name>
+			<name>_bundleContext</name>
 		</field>
 	</javadoc>
 </javadocs>

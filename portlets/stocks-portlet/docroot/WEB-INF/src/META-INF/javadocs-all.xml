@@ -345,6 +345,14 @@
 		</method>
 	</javadoc>
 	<javadoc>
+		<name>PortletKeys</name>
+		<type>com.liferay.stocks.util.PortletKeys</type>
+		<author><![CDATA[Shinn Lok]]></author>
+		<field>
+			<name>STOCKS</name>
+		</field>
+	</javadoc>
+	<javadoc>
 		<name>StocksUtil</name>
 		<type>com.liferay.stocks.util.StocksUtil</type>
 		<author><![CDATA[Brian Wing Shun Chan]]></author>

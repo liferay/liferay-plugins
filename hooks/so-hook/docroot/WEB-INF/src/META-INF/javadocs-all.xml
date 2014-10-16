@@ -48,13 +48,11 @@
 		</method>
 	</javadoc>
 	<javadoc>
-		<name>ServicePreAction</name>
-		<type>com.liferay.so.hook.events.ServicePreAction</type>
-		<author><![CDATA[Brett Swaim]]></author>
-		<author><![CDATA[Ryan Park]]></author>
-		<author><![CDATA[Jonathan Lee]]></author>
+		<name>FindUserAction</name>
+		<type>com.liferay.so.hook.action.FindUserAction</type>
+		<author><![CDATA[Matthew Kong]]></author>
 		<method>
-			<name>run</name>
+			<name>execute</name>
 			<param>
 				<name>request</name>
 				<type>javax.servlet.http.HttpServletRequest</type>
@@ -65,28 +63,15 @@
 				<type>javax.servlet.http.HttpServletResponse</type>
 				<comment><![CDATA[]]></comment>
 			</param>
-		</method>
-		<method>
-			<name>doRun</name>
-			<param>
-				<name>request</name>
-				<type>javax.servlet.http.HttpServletRequest</type>
+			<return>
 				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
-				<name>response</name>
-				<type>javax.servlet.http.HttpServletResponse</type>
-				<comment><![CDATA[]]></comment>
-			</param>
+			</return>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
-		<field>
-			<name>_log</name>
-		</field>
 	</javadoc>
 	<javadoc>
 		<name>StartupAction</name>
@@ -121,8 +106,61 @@
 		</method>
 	</javadoc>
 	<javadoc>
-		<name>GroupListener</name>
-		<type>com.liferay.so.hook.listeners.GroupListener</type>
+		<name>SOFilter</name>
+		<type>com.liferay.so.hook.filter.SOFilter</type>
+		<author><![CDATA[Sherry Yang]]></author>
+		<method>
+			<name>isFilterEnabled</name>
+			<param>
+				<name>request</name>
+				<type>javax.servlet.http.HttpServletRequest</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>response</name>
+				<type>javax.servlet.http.HttpServletResponse</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<method>
+			<name>getLog</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<method>
+			<name>processFilter</name>
+			<param>
+				<name>request</name>
+				<type>javax.servlet.http.HttpServletRequest</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>response</name>
+				<type>javax.servlet.http.HttpServletResponse</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>filterChain</name>
+				<type>javax.servlet.FilterChain</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<field>
+			<name>_log</name>
+		</field>
+	</javadoc>
+	<javadoc>
+		<name>GroupModelListener</name>
+		<type>com.liferay.so.hook.listeners.GroupModelListener</type>
 		<author><![CDATA[Ryan Park]]></author>
 		<method>
 			<name>onAfterCreate</name>
@@ -178,8 +216,8 @@
 		</method>
 	</javadoc>
 	<javadoc>
-		<name>RoleListener</name>
-		<type>com.liferay.so.hook.listeners.RoleListener</type>
+		<name>RoleModelListener</name>
+		<type>com.liferay.so.hook.listeners.RoleModelListener</type>
 		<author><![CDATA[Jonathan Lee]]></author>
 		<method>
 			<name>onAfterAddAssociation</name>
@@ -228,13 +266,17 @@
 			</throws>
 		</method>
 		<field>
-			<name>_MAPPING_TABLE_USERS_ROLES_NAME</name>
-			<comment><![CDATA[{@link com.liferay.portal.model.impl.RoleModelImpl#MAPPING_TABLE_USERS_ROLES_NAME}]]></comment>
+			<name>_MAPPING_TABLE_USERS_ROLES_NAME_LEFT_TO_RIGHT</name>
+			<comment><![CDATA[{@link com.liferay.portal.service.persistence.impl.TableMapperImpl}]]></comment>
+		</field>
+		<field>
+			<name>_MAPPING_TABLE_USERS_ROLES_NAME_RIGHT_TO_LEFT</name>
+			<comment><![CDATA[{@link com.liferay.portal.service.persistence.impl.TableMapperImpl}]]></comment>
 		</field>
 	</javadoc>
 	<javadoc>
-		<name>UserListener</name>
-		<type>com.liferay.so.hook.listeners.UserListener</type>
+		<name>UserModelListener</name>
+		<type>com.liferay.so.hook.listeners.UserModelListener</type>
 		<author><![CDATA[Jonathan Lee]]></author>
 		<author><![CDATA[Eudaldo Alonso]]></author>
 		<method>
@@ -310,8 +352,12 @@
 			</throws>
 		</method>
 		<field>
-			<name>_MAPPING_TABLE_USERS_ROLES_NAME</name>
-			<comment><![CDATA[{@link com.liferay.portal.model.impl.RoleModelImpl#MAPPING_TABLE_USERS_ROLES_NAME}]]></comment>
+			<name>_MAPPING_TABLE_USERS_ROLES_NAME_LEFT_TO_RIGHT</name>
+			<comment><![CDATA[{@link com.liferay.portal.service.persistence.impl.TableMapperImpl}]]></comment>
+		</field>
+		<field>
+			<name>_MAPPING_TABLE_USERS_ROLES_NAME_RIGHT_TO_LEFT</name>
+			<comment><![CDATA[{@link com.liferay.portal.service.persistence.impl.TableMapperImpl}]]></comment>
 		</field>
 	</javadoc>
 	<javadoc>
@@ -437,11 +483,6 @@
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<method>
 			<name>checkEntries</name>
@@ -450,22 +491,12 @@
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<method>
 			<name>sendNotificationEvent</name>
 			<throws>
 				<name>PortalException</name>
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
@@ -479,11 +510,6 @@
 			<throws>
 				<name>PortalException</name>
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
@@ -614,11 +640,6 @@
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 	</javadoc>
 	<javadoc>
@@ -646,11 +667,6 @@
 			<throws>
 				<name>PortalException</name>
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
@@ -697,6 +713,25 @@
 		<name>UpgradeProcess_2_0_4</name>
 		<type>com.liferay.so.hook.upgrade.UpgradeProcess_2_0_4</type>
 		<author><![CDATA[Jonathan Lee]]></author>
+		<method>
+			<name>getThreshold</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<method>
+			<name>doUpgrade</name>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+	</javadoc>
+	<javadoc>
+		<name>UpgradeProcess_3_0_0</name>
+		<type>com.liferay.so.hook.upgrade.UpgradeProcess_3_0_0</type>
+		<author><![CDATA[Matthew Kong]]></author>
 		<method>
 			<name>getThreshold</name>
 			<return>
@@ -916,6 +951,100 @@
 		</method>
 	</javadoc>
 	<javadoc>
+		<name>UpgradeDocumentLibrary</name>
+		<type>com.liferay.so.hook.upgrade.v3_0_0.UpgradeDocumentLibrary</type>
+		<author><![CDATA[Matthew Kong]]></author>
+		<method>
+			<name>doUpgrade</name>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>updateManualCheckInRequired</name>
+			<param>
+				<name>companyId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+	</javadoc>
+	<javadoc>
+		<name>UpgradeGroup</name>
+		<type>com.liferay.so.hook.upgrade.v3_0_0.UpgradeGroup</type>
+		<author><![CDATA[Jonathan Lee]]></author>
+		<method>
+			<name>doUpgrade</name>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+	</javadoc>
+	<javadoc>
+		<name>UpgradeLayout</name>
+		<type>com.liferay.so.hook.upgrade.v3_0_0.UpgradeLayout</type>
+		<author><![CDATA[Matthew Kong]]></author>
+		<method>
+			<name>doUpgrade</name>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>updateSOAnnouncements</name>
+			<param>
+				<name>companyId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+	</javadoc>
+	<javadoc>
+		<name>UpgradeLayoutSetPrototype</name>
+		<type>com.liferay.so.hook.upgrade.v3_0_0.UpgradeLayoutSetPrototype</type>
+		<author><![CDATA[Lin Cui]]></author>
+		<method>
+			<name>doUpgrade</name>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>updateLayoutSetPrototype</name>
+			<param>
+				<name>companyId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<field>
+			<name>_LAYOUT_SET_PROTOTYPE_KEYS</name>
+		</field>
+	</javadoc>
+	<javadoc>
 		<name>SODeployListenerMessageListener</name>
 		<type>com.liferay.so.messaging.SODeployListenerMessageListener</type>
 		<author><![CDATA[Brian Wing Shun Chan]]></author>
@@ -984,11 +1113,6 @@
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<method>
 			<name>updateLayoutSetPrototype</name>
@@ -1005,11 +1129,6 @@
 			<throws>
 				<name>PortalException</name>
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
@@ -1322,8 +1441,8 @@
 				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
-				<name>Exception</name>
-				<type>java.lang.Exception</type>
+				<name>PortalException</name>
+				<type>com.liferay.portal.kernel.exception.PortalException</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
@@ -1458,17 +1577,12 @@
 		</method>
 	</javadoc>
 	<javadoc>
-		<name>PortletKeys</name>
-		<type>com.liferay.so.util.PortletKeys</type>
-		<author><![CDATA[Evan Thibodeau]]></author>
-		<field>
-			<name>BREADCRUMB</name>
-		</field>
-	</javadoc>
-	<javadoc>
 		<name>PortletPropsKeys</name>
 		<type>com.liferay.so.util.PortletPropsKeys</type>
 		<author><![CDATA[Ryan Park]]></author>
+		<field>
+			<name>LOGIN_REDIRECT</name>
+		</field>
 		<field>
 			<name>SITE_AUTO_CREATE_TEAM_NAMES</name>
 		</field>
@@ -1489,6 +1603,9 @@
 		<name>PortletPropsValues</name>
 		<type>com.liferay.so.util.PortletPropsValues</type>
 		<author><![CDATA[Ryan Park]]></author>
+		<field>
+			<name>LOGIN_REDIRECT</name>
+		</field>
 		<field>
 			<name>SITE_AUTO_CREATE_TEAM_NAMES</name>
 		</field>

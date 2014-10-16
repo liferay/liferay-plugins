@@ -65,6 +65,9 @@
 			<name>_RESOURCES_DIR</name>
 		</field>
 		<field>
+			<name>_TEMPLATES_DIR</name>
+		</field>
+		<field>
 			<name>_log</name>
 		</field>
 	</javadoc>
@@ -100,6 +103,17 @@
 			</return>
 		</method>
 		<method>
+			<name>isCompanyGroup</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
 			<name>isExisting</name>
 			<return>
 				<comment><![CDATA[]]></comment>
@@ -109,6 +123,22 @@
 			<name>setCompanyId</name>
 			<param>
 				<name>companyId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+		</method>
+		<method>
+			<name>setDeveloperModeEnabled</name>
+			<param>
+				<name>developerModeEnabled</name>
+				<type>boolean</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+		</method>
+		<method>
+			<name>setGroupId</name>
+			<param>
+				<name>groupId</name>
 				<type>long</type>
 				<comment><![CDATA[]]></comment>
 			</param>
@@ -154,6 +184,38 @@
 			</param>
 		</method>
 		<method>
+			<name>setUpdateModeEnabled</name>
+			<param>
+				<name>updateModeEnabled</name>
+				<type>boolean</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+		</method>
+		<method>
+			<name>setVersion</name>
+			<param>
+				<name>version</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+		</method>
+		<method>
+			<name>getLayoutPrototype</name>
+			<param>
+				<name>companyId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>name</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<method>
 			<name>getLayoutSetPrototype</name>
 			<param>
 				<name>companyId</name>
@@ -176,6 +238,9 @@
 		</method>
 		<field>
 			<name>companyId</name>
+		</field>
+		<field>
+			<name>developerModeEnabled</name>
 		</field>
 		<field>
 			<name>existing</name>
@@ -202,7 +267,13 @@
 			<name>targetValue</name>
 		</field>
 		<field>
+			<name>updateModeEnabled</name>
+		</field>
+		<field>
 			<name>userId</name>
+		</field>
+		<field>
+			<name>version</name>
 		</field>
 	</javadoc>
 	<javadoc>
@@ -219,6 +290,142 @@
 			</throws>
 		</method>
 		<method>
+			<name>addApplicationDisplayTemplate</name>
+			<param>
+				<name>script</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>file</name>
+				<type>java.io.File</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>classNameId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>PortalException</name>
+				<type>com.liferay.portal.kernel.exception.PortalException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>addApplicationDisplayTemplate</name>
+			<param>
+				<name>parentDirName</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>dirName</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>classNameId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>addApplicationDisplayTemplates</name>
+			<param>
+				<name>dirName</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>addDDLDisplayTemplates</name>
+			<param>
+				<name>ddmStructureKey</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>dirName</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>fileName</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>addDDLFormTemplates</name>
+			<param>
+				<name>ddmStructureKey</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>dirName</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>fileName</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>addDDLStructures</name>
+			<param>
+				<name>dirName</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>addDDMStructures</name>
+			<param>
+				<name>fileName</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>inputStream</name>
+				<type>java.io.InputStream</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
 			<name>addDDMStructures</name>
 			<param>
 				<name>parentDDMStructureKey</name>
@@ -226,7 +433,7 @@
 				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
-				<name>structuresDirName</name>
+				<name>dirName</name>
 				<type>java.lang.String</type>
 				<comment><![CDATA[]]></comment>
 			</param>
@@ -260,6 +467,49 @@
 			</throws>
 		</method>
 		<method>
+			<name>addDDMTemplate</name>
+			<param>
+				<name>templateGroupId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>ddmStructureId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>fileName</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>language</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>script</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>type</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>mode</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
 			<name>addDDMTemplates</name>
 			<param>
 				<name>ddmStructureKey</name>
@@ -267,7 +517,7 @@
 				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
-				<name>templatesDirName</name>
+				<name>dirName</name>
 				<type>java.lang.String</type>
 				<comment><![CDATA[]]></comment>
 			</param>
@@ -303,7 +553,7 @@
 		<method>
 			<name>addDLFileEntries</name>
 			<param>
-				<name>fileEntriesDirName</name>
+				<name>dirName</name>
 				<type>java.lang.String</type>
 				<comment><![CDATA[]]></comment>
 			</param>
@@ -414,7 +664,7 @@
 				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
-				<name>articlesDirName</name>
+				<name>dirName</name>
 				<type>java.lang.String</type>
 				<comment><![CDATA[]]></comment>
 			</param>
@@ -545,6 +795,32 @@
 			</throws>
 		</method>
 		<method>
+			<name>addLayoutPrototype</name>
+			<param>
+				<name>inputStream</name>
+				<type>java.io.InputStream</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>addLayoutPrototype</name>
+			<param>
+				<name>dirName</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
 			<name>addLayouts</name>
 			<param>
 				<name>privateLayout</name>
@@ -596,6 +872,22 @@
 			<return>
 				<comment><![CDATA[]]></comment>
 			</return>
+		</method>
+		<method>
+			<name>getInputStream</name>
+			<param>
+				<name>file</name>
+				<type>java.io.File</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
 		</method>
 		<method>
 			<name>getInputStream</name>
@@ -657,6 +949,33 @@
 			</throws>
 		</method>
 		<method>
+			<name>getKey</name>
+			<param>
+				<name>name</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<method>
+			<name>getMap</name>
+			<param>
+				<name>layoutJSONObject</name>
+				<type>com.liferay.portal.kernel.json.JSONObject</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>name</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<method>
 			<name>getMap</name>
 			<param>
 				<name>locale</name>
@@ -676,6 +995,17 @@
 			<name>getMap</name>
 			<param>
 				<name>value</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<method>
+			<name>getName</name>
+			<param>
+				<name>name</name>
 				<type>java.lang.String</type>
 				<comment><![CDATA[]]></comment>
 			</param>
@@ -711,22 +1041,6 @@
 			</return>
 		</method>
 		<method>
-			<name>processJournalArticleContent</name>
-			<param>
-				<name>content</name>
-				<type>java.lang.String</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<return>
-				<comment><![CDATA[]]></comment>
-			</return>
-			<throws>
-				<name>Exception</name>
-				<type>java.lang.Exception</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
-		</method>
-		<method>
 			<name>replaceFileEntryURL</name>
 			<param>
 				<name>content</name>
@@ -751,7 +1065,7 @@
 			</param>
 		</method>
 		<method>
-			<name>setupAssets</name>
+			<name>setUpAssets</name>
 			<param>
 				<name>assetsJSONArray</name>
 				<type>com.liferay.portal.kernel.json.JSONArray</type>
@@ -759,7 +1073,7 @@
 			</param>
 		</method>
 		<method>
-			<name>setupAssets</name>
+			<name>setUpAssets</name>
 			<param>
 				<name>fileName</name>
 				<type>java.lang.String</type>
@@ -772,7 +1086,7 @@
 			</throws>
 		</method>
 		<method>
-			<name>setupSettings</name>
+			<name>setUpSettings</name>
 			<param>
 				<name>fileName</name>
 				<type>java.lang.String</type>
@@ -785,7 +1099,7 @@
 			</throws>
 		</method>
 		<method>
-			<name>setupSitemap</name>
+			<name>setUpSitemap</name>
 			<param>
 				<name>fileName</name>
 				<type>java.lang.String</type>
@@ -814,6 +1128,21 @@
 			<name>serviceContext</name>
 		</field>
 		<field>
+			<name>_APPLICATION_DISPLAY_TEMPLATE_DIR_NAME</name>
+		</field>
+		<field>
+			<name>_APPLICATION_DISPLAY_TEMPLATE_TYPES</name>
+		</field>
+		<field>
+			<name>_DDL_STRUCTURE_DIR_NAME</name>
+		</field>
+		<field>
+			<name>_DDL_STRUCTURE_DISPLAY_TEMPLATE_DIR_NAME</name>
+		</field>
+		<field>
+			<name>_DDL_STRUCTURE_FORM_TEMPLATE_DIR_NAME</name>
+		</field>
+		<field>
 			<name>_DL_DOCUMENTS_DIR_NAME</name>
 		</field>
 		<field>
@@ -824,6 +1153,12 @@
 		</field>
 		<field>
 			<name>_JOURNAL_DDM_TEMPLATES_DIR_NAME</name>
+		</field>
+		<field>
+			<name>_LAYOUT_PROTOTYPE_DIR_NAME</name>
+		</field>
+		<field>
+			<name>_log</name>
 		</field>
 		<field>
 			<name>_assetJSONObjectMap</name>
@@ -875,6 +1210,17 @@
 			</throws>
 		</method>
 		<method>
+			<name>isCompanyGroup</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
 			<name>isExisting</name>
 			<return>
 				<comment><![CDATA[]]></comment>
@@ -884,6 +1230,22 @@
 			<name>setCompanyId</name>
 			<param>
 				<name>companyId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+		</method>
+		<method>
+			<name>setDeveloperModeEnabled</name>
+			<param>
+				<name>developerModeEnabled</name>
+				<type>boolean</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+		</method>
+		<method>
+			<name>setGroupId</name>
+			<param>
+				<name>groupId</name>
 				<type>long</type>
 				<comment><![CDATA[]]></comment>
 			</param>
@@ -924,6 +1286,22 @@
 			<name>setTargetValue</name>
 			<param>
 				<name>targetValue</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+		</method>
+		<method>
+			<name>setUpdateModeEnabled</name>
+			<param>
+				<name>updateModeEnabled</name>
+				<type>boolean</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+		</method>
+		<method>
+			<name>setVersion</name>
+			<param>
+				<name>version</name>
 				<type>java.lang.String</type>
 				<comment><![CDATA[]]></comment>
 			</param>
@@ -1041,6 +1419,88 @@
 			</throws>
 		</method>
 		<method>
+			<name>addApplicationDisplayTemplate</name>
+			<param>
+				<name>parentDirName</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>dirName</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>classNameId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>addDDLDisplayTemplates</name>
+			<param>
+				<name>ddmStructureKey</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>dirName</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>fileName</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>addDDLFormTemplates</name>
+			<param>
+				<name>ddmStructureKey</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>dirName</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>fileName</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>addDDLStructures</name>
+			<param>
+				<name>dirName</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
 			<name>addDDMStructures</name>
 			<param>
 				<name>parentStructureId</name>
@@ -1048,7 +1508,7 @@
 				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
-				<name>structuresDirName</name>
+				<name>dirName</name>
 				<type>java.lang.String</type>
 				<comment><![CDATA[]]></comment>
 			</param>
@@ -1066,7 +1526,7 @@
 				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
-				<name>templatesDirName</name>
+				<name>dirName</name>
 				<type>java.lang.String</type>
 				<comment><![CDATA[]]></comment>
 			</param>
@@ -1079,7 +1539,7 @@
 		<method>
 			<name>addDLFileEntries</name>
 			<param>
-				<name>fileEntriesDirName</name>
+				<name>dirName</name>
 				<type>java.lang.String</type>
 				<comment><![CDATA[]]></comment>
 			</param>
@@ -1136,7 +1596,20 @@
 				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
-				<name>articlesDirName</name>
+				<name>dirName</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>addLayoutPrototype</name>
+			<param>
+				<name>dirName</name>
 				<type>java.lang.String</type>
 				<comment><![CDATA[]]></comment>
 			</param>

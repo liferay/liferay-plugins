@@ -310,6 +310,9 @@
 			</return>
 		</method>
 		<field>
+			<name>_pattern</name>
+		</field>
+		<field>
 			<name>_children</name>
 		</field>
 		<field>

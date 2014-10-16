@@ -181,6 +181,17 @@
 			</throws>
 		</method>
 		<method>
+			<name>getCSVFormattedValue</name>
+			<param>
+				<name>value</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<method>
 			<name>getMailBody</name>
 			<param>
 				<name>fieldsMap</name>
@@ -307,6 +318,9 @@
 		<type>com.liferay.webform.util.PortletPropsKeys</type>
 		<author><![CDATA[Brian Wing Shun Chan]]></author>
 		<field>
+			<name>CSV_SEPARATOR</name>
+		</field>
+		<field>
 			<name>EMAIL_FROM_ADDRESS</name>
 		</field>
 		<field>
@@ -320,6 +334,9 @@
 		<name>PortletPropsValues</name>
 		<type>com.liferay.webform.util.PortletPropsValues</type>
 		<author><![CDATA[Brian Wing Shun Chan]]></author>
+		<field>
+			<name>CSV_SEPARATOR</name>
+		</field>
 		<field>
 			<name>EMAIL_FROM_ADDRESS</name>
 		</field>
@@ -356,11 +373,6 @@
 			<throws>
 				<name>PortalException</name>
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
@@ -405,11 +417,6 @@
 			<return>
 				<comment><![CDATA[]]></comment>
 			</return>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<method>
 			<name>getEmailFromName</name>
@@ -426,11 +433,6 @@
 			<return>
 				<comment><![CDATA[]]></comment>
 			</return>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<method>
 			<name>getNewDatabaseTableName</name>
@@ -442,11 +444,6 @@
 			<return>
 				<comment><![CDATA[]]></comment>
 			</return>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<method>
 			<name>getTableRowsCount</name>
@@ -463,11 +460,6 @@
 			<return>
 				<comment><![CDATA[]]></comment>
 			</return>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<method>
 			<name>split</name>

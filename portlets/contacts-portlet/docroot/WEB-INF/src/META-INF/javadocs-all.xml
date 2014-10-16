@@ -2,6 +2,72 @@
 
 <javadocs>
 	<javadoc>
+		<name>ContactsCenterUserNotificationHandler</name>
+		<type>com.liferay.contacts.contactscenter.notifications.ContactsCenterUserNotificationHandler</type>
+		<author><![CDATA[Jonathan Lee]]></author>
+		<method>
+			<name>ContactsCenterUserNotificationHandler</name>
+		</method>
+		<method>
+			<name>getBody</name>
+			<param>
+				<name>userNotificationEvent</name>
+				<type>com.liferay.portal.model.UserNotificationEvent</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>serviceContext</name>
+				<type>com.liferay.portal.service.ServiceContext</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>getLink</name>
+			<param>
+				<name>userNotificationEvent</name>
+				<type>com.liferay.portal.model.UserNotificationEvent</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>serviceContext</name>
+				<type>com.liferay.portal.service.ServiceContext</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>getUserNameLink</name>
+			<param>
+				<name>userId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>serviceContext</name>
+				<type>com.liferay.portal.service.ServiceContext</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+	</javadoc>
+	<javadoc>
 		<name>ContactsCenterPortlet</name>
 		<type>com.liferay.contacts.contactscenter.portlet.ContactsCenterPortlet</type>
 		<author><![CDATA[Ryan Park]]></author>
@@ -413,11 +479,6 @@
 				<type>com.liferay.portlet.social.model.SocialRequest</type>
 				<comment><![CDATA[]]></comment>
 			</param>
-			<param>
-				<name>themeDisplay</name>
-				<type>com.liferay.portal.theme.ThemeDisplay</type>
-				<comment><![CDATA[]]></comment>
-			</param>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
@@ -502,60 +563,6 @@
 				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
-	</javadoc>
-	<javadoc>
-		<name>ContactsCenterRequestInterpreter</name>
-		<type>com.liferay.contacts.contactscenter.social.ContactsCenterRequestInterpreter</type>
-		<author><![CDATA[Ryan Park]]></author>
-		<method>
-			<name>getClassNames</name>
-			<return>
-				<comment><![CDATA[]]></comment>
-			</return>
-		</method>
-		<method>
-			<name>doInterpret</name>
-			<param>
-				<name>request</name>
-				<type>com.liferay.portlet.social.model.SocialRequest</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
-				<name>themeDisplay</name>
-				<type>com.liferay.portal.theme.ThemeDisplay</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<return>
-				<comment><![CDATA[]]></comment>
-			</return>
-			<throws>
-				<name>Exception</name>
-				<type>java.lang.Exception</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
-		</method>
-		<method>
-			<name>doProcessConfirmation</name>
-			<param>
-				<name>request</name>
-				<type>com.liferay.portlet.social.model.SocialRequest</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
-				<name>themeDisplay</name>
-				<type>com.liferay.portal.theme.ThemeDisplay</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<return>
-				<comment><![CDATA[]]></comment>
-			</return>
-		</method>
-		<field>
-			<name>_CLASS_NAMES</name>
-		</field>
-		<field>
-			<name>_log</name>
-		</field>
 	</javadoc>
 	<javadoc>
 		<name>UpgradeProcess_2_0_0</name>
@@ -673,11 +680,6 @@
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<method>
 			<name>getEntries</name>
@@ -699,11 +701,6 @@
 			<return>
 				<comment><![CDATA[]]></comment>
 			</return>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<method>
 			<name>getEntriesCount</name>
@@ -715,11 +712,6 @@
 			<return>
 				<comment><![CDATA[]]></comment>
 			</return>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<method>
 			<name>search</name>
@@ -746,11 +738,6 @@
 			<return>
 				<comment><![CDATA[]]></comment>
 			</return>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<method>
 			<name>searchCount</name>
@@ -767,11 +754,6 @@
 			<return>
 				<comment><![CDATA[]]></comment>
 			</return>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<method>
 			<name>searchUsersAndContacts</name>
@@ -803,11 +785,6 @@
 			<return>
 				<comment><![CDATA[]]></comment>
 			</return>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<method>
 			<name>searchUsersAndContactsCount</name>
@@ -829,11 +806,6 @@
 			<return>
 				<comment><![CDATA[]]></comment>
 			</return>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<method>
 			<name>updateEntry</name>
@@ -865,14 +837,14 @@
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<method>
 			<name>validate</name>
+			<param>
+				<name>companyId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
 			<param>
 				<name>entryId</name>
 				<type>long</type>
@@ -898,14 +870,14 @@
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<method>
 			<name>validateEmailAddress</name>
+			<param>
+				<name>companyId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
 			<param>
 				<name>userId</name>
 				<type>long</type>
@@ -921,16 +893,47 @@
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
+		</method>
+	</javadoc>
+	<javadoc>
+		<name>EntryServiceImpl</name>
+		<type>com.liferay.contacts.service.impl.EntryServiceImpl</type>
+		<author><![CDATA[Bruno Farache]]></author>
+		<method>
+			<name>searchUsersAndContacts</name>
+			<param>
+				<name>companyId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>keywords</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>start</name>
+				<type>int</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>end</name>
+				<type>int</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<name>PortalException</name>
+				<type>com.liferay.portal.kernel.exception.PortalException</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 	</javadoc>
 	<javadoc>
 		<name>EntryFinderImpl</name>
-		<type>com.liferay.contacts.service.persistence.EntryFinderImpl</type>
+		<type>com.liferay.contacts.service.persistence.impl.EntryFinderImpl</type>
 		<author><![CDATA[Brian Wing Shun Chan]]></author>
 		<method>
 			<name>countByKeywords</name>
@@ -952,11 +955,6 @@
 			<return>
 				<comment><![CDATA[]]></comment>
 			</return>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<method>
 			<name>countByKeywords</name>
@@ -973,11 +971,63 @@
 			<return>
 				<comment><![CDATA[]]></comment>
 			</return>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
+		</method>
+		<method>
+			<name>findByKeywords</name>
+			<param>
+				<name>companyId</name>
+				<type>long</type>
 				<comment><![CDATA[]]></comment>
-			</throws>
+			</param>
+			<param>
+				<name>userId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>keywords</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>start</name>
+				<type>int</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>end</name>
+				<type>int</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<method>
+			<name>findByKeywords</name>
+			<param>
+				<name>userId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>keywords</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>start</name>
+				<type>int</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>end</name>
+				<type>int</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>countByU_FN_EA</name>
@@ -996,122 +1046,9 @@
 				<type>java.lang.String[]</type>
 				<comment><![CDATA[]]></comment>
 			</param>
-			<param>
-				<name>andOperator</name>
-				<type>boolean</type>
-				<comment><![CDATA[]]></comment>
-			</param>
 			<return>
 				<comment><![CDATA[]]></comment>
 			</return>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
-		</method>
-		<method>
-			<name>countByC_U_FN_EA</name>
-			<param>
-				<name>companyId</name>
-				<type>long</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
-				<name>userId</name>
-				<type>long</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
-				<name>fullNames</name>
-				<type>java.lang.String[]</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
-				<name>emailAddresses</name>
-				<type>java.lang.String[]</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
-				<name>andOperator</name>
-				<type>boolean</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<return>
-				<comment><![CDATA[]]></comment>
-			</return>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
-		</method>
-		<method>
-			<name>findByKeywords</name>
-			<param>
-				<name>companyId</name>
-				<type>long</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
-				<name>userId</name>
-				<type>long</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
-				<name>keywords</name>
-				<type>java.lang.String</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
-				<name>start</name>
-				<type>int</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
-				<name>end</name>
-				<type>int</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<return>
-				<comment><![CDATA[]]></comment>
-			</return>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
-		</method>
-		<method>
-			<name>findByKeywords</name>
-			<param>
-				<name>userId</name>
-				<type>long</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
-				<name>keywords</name>
-				<type>java.lang.String</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
-				<name>start</name>
-				<type>int</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
-				<name>end</name>
-				<type>int</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<return>
-				<comment><![CDATA[]]></comment>
-			</return>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<method>
 			<name>findByU_FN_EA</name>
@@ -1131,11 +1068,6 @@
 				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
-				<name>andOperator</name>
-				<type>boolean</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
 				<name>start</name>
 				<type>int</type>
 				<comment><![CDATA[]]></comment>
@@ -1148,69 +1080,12 @@
 			<return>
 				<comment><![CDATA[]]></comment>
 			</return>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
-		</method>
-		<method>
-			<name>findByC_U_FN_EA</name>
-			<param>
-				<name>companyId</name>
-				<type>long</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
-				<name>userId</name>
-				<type>long</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
-				<name>fullNames</name>
-				<type>java.lang.String[]</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
-				<name>emailAddresses</name>
-				<type>java.lang.String[]</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
-				<name>andOperator</name>
-				<type>boolean</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
-				<name>start</name>
-				<type>int</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
-				<name>end</name>
-				<type>int</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<return>
-				<comment><![CDATA[]]></comment>
-			</return>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<field>
 			<name>COUNT_BY_U_FN_EA</name>
 		</field>
 		<field>
-			<name>COUNT_BY_C_U_FN_EA</name>
-		</field>
-		<field>
 			<name>FIND_BY_U_FN_EA</name>
-		</field>
-		<field>
-			<name>FIND_BY_C_U_FN_EA</name>
 		</field>
 	</javadoc>
 	<javadoc>
@@ -1251,6 +1126,9 @@
 		</field>
 		<field>
 			<name>FILTER_BY_DEFAULT</name>
+		</field>
+		<field>
+			<name>FILTER_BY_FOLLOWERS</name>
 		</field>
 		<field>
 			<name>FILTER_BY_GROUP</name>
@@ -1345,6 +1223,17 @@
 		<author><![CDATA[Ryan Park]]></author>
 		<author><![CDATA[Jonathan Lee]]></author>
 		<method>
+			<name>getEntryJSONObject</name>
+			<param>
+				<name>entry</name>
+				<type>com.liferay.contacts.model.Entry</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<method>
 			<name>getGroupId</name>
 			<param>
 				<name>filterBy</name>
@@ -1376,6 +1265,27 @@
 			<return>
 				<comment><![CDATA[]]></comment>
 			</return>
+		</method>
+		<method>
+			<name>getUserJSONObject</name>
+			<param>
+				<name>userId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>user</name>
+				<type>com.liferay.portal.model.User</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>PortalException</name>
+				<type>com.liferay.portal.kernel.exception.PortalException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
 		</method>
 		<method>
 			<name>getVCard</name>
@@ -1513,6 +1423,17 @@
 			</throws>
 		</method>
 		<method>
+			<name>_getVCardListTypeName</name>
+			<param>
+				<name>listType</name>
+				<type>com.liferay.portal.model.ListType</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<method>
 			<name>_getWebsites</name>
 			<param>
 				<name>user</name>
@@ -1530,23 +1451,12 @@
 		</method>
 	</javadoc>
 	<javadoc>
-		<name>PortletKeys</name>
-		<type>com.liferay.contacts.util.PortletKeys</type>
-		<author><![CDATA[Ryan Park]]></author>
-		<field>
-			<name>CONTACTS_CENTER</name>
-		</field>
-		<field>
-			<name>MEMBERS</name>
-		</field>
-		<field>
-			<name>PROFILE</name>
-		</field>
-	</javadoc>
-	<javadoc>
 		<name>SocialRelationConstants</name>
 		<type>com.liferay.contacts.util.SocialRelationConstants</type>
 		<author><![CDATA[Eudaldo Alonso]]></author>
+		<field>
+			<name>SOCIAL_RELATION_REQUEST</name>
+		</field>
 		<field>
 			<name>TYPE_MY_CONTACTS</name>
 		</field>

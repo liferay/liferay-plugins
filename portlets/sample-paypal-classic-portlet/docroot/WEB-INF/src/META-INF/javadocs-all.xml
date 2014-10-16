@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+
+<javadocs>
+	<javadoc>
+		<name>PayPalClassicUtil</name>
+		<type>com.liferay.samplepaypalclassic.util.PayPalClassicUtil</type>
+		<author><![CDATA[Douglas Wong]]></author>
+		<method>
+			<name>getAdaptivePaymentsService</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+	</javadoc>
+	<javadoc>
+		<name>PortletPropsKeys</name>
+		<type>com.liferay.samplepaypalclassic.util.PortletPropsKeys</type>
+		<author><![CDATA[Douglas Wong]]></author>
+		<field>
+			<name>PAYPAL_APP_ID</name>
+		</field>
+		<field>
+			<name>PAYPAL_PASSWORD</name>
+		</field>
+		<field>
+			<name>PAYPAL_PRIMARY_RECEIVER_EMAIL</name>
+		</field>
+		<field>
+			<name>PAYPAL_SANDBOX_MODE</name>
+		</field>
+		<field>
+			<name>PAYPAL_SIGNATURE</name>
+		</field>
+		<field>
+			<name>PAYPAL_USER_NAME</name>
+		</field>
+	</javadoc>
+	<javadoc>
+		<name>PortletPropsValues</name>
+		<type>com.liferay.samplepaypalclassic.util.PortletPropsValues</type>
+		<author><![CDATA[Douglas Wong]]></author>
+		<field>
+			<name>PAYPAL_APP_ID</name>
+		</field>
+		<field>
+			<name>PAYPAL_PASSWORD</name>
+		</field>
+		<field>
+			<name>PAYPAL_PRIMARY_RECEIVER_EMAIL</name>
+		</field>
+		<field>
+			<name>PAYPAL_SANDBOX_MODE</name>
+		</field>
+		<field>
+			<name>PAYPAL_SIGNATURE</name>
+		</field>
+		<field>
+			<name>PAYPAL_USER_NAME</name>
+		</field>
+	</javadoc>
+</javadocs>

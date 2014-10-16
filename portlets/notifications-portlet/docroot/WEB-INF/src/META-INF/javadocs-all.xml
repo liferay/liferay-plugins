@@ -12,11 +12,9 @@
 				<type>com.liferay.portal.kernel.poller.PollerRequest</type>
 				<comment><![CDATA[]]></comment>
 			</param>
-			<param>
-				<name>pollerResponse</name>
-				<type>com.liferay.portal.kernel.poller.PollerResponse</type>
+			<return>
 				<comment><![CDATA[]]></comment>
-			</param>
+			</return>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
@@ -43,11 +41,112 @@
 				<type>com.liferay.portal.kernel.poller.PollerRequest</type>
 				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+	</javadoc>
+	<javadoc>
+		<name>UpgradeProcess_1_0_0</name>
+		<type>com.liferay.notifications.hook.upgrade.UpgradeProcess_1_0_0</type>
+		<author><![CDATA[Matthew Kong]]></author>
+		<method>
+			<name>getThreshold</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<method>
+			<name>doUpgrade</name>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+	</javadoc>
+	<javadoc>
+		<name>UpgradeProcess_2_0_0</name>
+		<type>com.liferay.notifications.hook.upgrade.UpgradeProcess_2_0_0</type>
+		<author><![CDATA[Jonathan Lee]]></author>
+		<method>
+			<name>getThreshold</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<method>
+			<name>doUpgrade</name>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+	</javadoc>
+	<javadoc>
+		<name>UpgradeUserNotificationEvent</name>
+		<type>com.liferay.notifications.hook.upgrade.v1_0_0.UpgradeUserNotificationEvent</type>
+		<author><![CDATA[Matthew Kong]]></author>
+		<method>
+			<name>doUpgrade</name>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>updateNotification</name>
 			<param>
-				<name>pollerResponse</name>
-				<type>com.liferay.portal.kernel.poller.PollerResponse</type>
+				<name>userNotificationEventId</name>
+				<type>long</type>
 				<comment><![CDATA[]]></comment>
 			</param>
+			<param>
+				<name>type</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>jsonObject</name>
+				<type>com.liferay.portal.kernel.json.JSONObject</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>upgradeNotifications</name>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+	</javadoc>
+	<javadoc>
+		<name>UpgradeUserNotificationEvent</name>
+		<type>com.liferay.notifications.hook.upgrade.v2_0_0.UpgradeUserNotificationEvent</type>
+		<author><![CDATA[Jonathan Lee]]></author>
+		<method>
+			<name>doUpgrade</name>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>upgradeNotifications</name>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
@@ -59,6 +158,42 @@
 		<name>NotificationsPortlet</name>
 		<type>com.liferay.notifications.notifications.portlet.NotificationsPortlet</type>
 		<author><![CDATA[Jonathan Lee]]></author>
+		<method>
+			<name>deleteUserNotificationEvent</name>
+			<param>
+				<name>actionRequest</name>
+				<type>javax.portlet.ActionRequest</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>actionResponse</name>
+				<type>javax.portlet.ActionResponse</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>markAllAsRead</name>
+			<param>
+				<name>actionRequest</name>
+				<type>javax.portlet.ActionRequest</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>actionResponse</name>
+				<type>javax.portlet.ActionResponse</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
 		<method>
 			<name>markAsRead</name>
 			<param>
@@ -96,7 +231,43 @@
 			</throws>
 		</method>
 		<method>
+			<name>serveResource</name>
+			<param>
+				<name>resourceRequest</name>
+				<type>javax.portlet.ResourceRequest</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>resourceResponse</name>
+				<type>javax.portlet.ResourceResponse</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>PortletException</name>
+				<type>javax.portlet.PortletException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
 			<name>setDelivered</name>
+			<param>
+				<name>actionRequest</name>
+				<type>javax.portlet.ActionRequest</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>actionResponse</name>
+				<type>javax.portlet.ActionResponse</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>unsubscribe</name>
 			<param>
 				<name>actionRequest</name>
 				<type>javax.portlet.ActionRequest</type>
@@ -131,16 +302,150 @@
 				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
-	</javadoc>
-	<javadoc>
-		<name>PortletKeys</name>
-		<type>com.liferay.notifications.util.PortletKeys</type>
-		<author><![CDATA[Jonathan Lee]]></author>
+		<method>
+			<name>getIconMenuDiv</name>
+			<param>
+				<name>listItems</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<method>
+			<name>getMarkAsReadLI</name>
+			<param>
+				<name>themeDisplay</name>
+				<type>com.liferay.portal.theme.ThemeDisplay</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<method>
+			<name>getUnsubscribeLI</name>
+			<param>
+				<name>unsubscribeURL</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>themeDisplay</name>
+				<type>com.liferay.portal.theme.ThemeDisplay</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<method>
+			<name>getIconMenu</name>
+			<param>
+				<name>userNotificationEvent</name>
+				<type>com.liferay.portal.model.UserNotificationEvent</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>liferayPortletResponse</name>
+				<type>com.liferay.portal.kernel.portlet.LiferayPortletResponse</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>themeDisplay</name>
+				<type>com.liferay.portal.theme.ThemeDisplay</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>getNotificationsCount</name>
+			<param>
+				<name>resourceRequest</name>
+				<type>javax.portlet.ResourceRequest</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>resourceResponse</name>
+				<type>javax.portlet.ResourceResponse</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>getUserNotificationEvents</name>
+			<param>
+				<name>resourceRequest</name>
+				<type>javax.portlet.ResourceRequest</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>resourceResponse</name>
+				<type>javax.portlet.ResourceResponse</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>renderEntry</name>
+			<param>
+				<name>resourceRequest</name>
+				<type>javax.portlet.ResourceRequest</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>resourceResponse</name>
+				<type>javax.portlet.ResourceResponse</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>userNotificationEvent</name>
+				<type>com.liferay.portal.model.UserNotificationEvent</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>updateArchived</name>
+			<param>
+				<name>userNotificationEventId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
 		<field>
-			<name>DOCKBAR_NOTIFICATIONS</name>
+			<name>_DELETE_DIV</name>
 		</field>
 		<field>
-			<name>NOTIFICATIONS</name>
+			<name>_MARK_AS_READ_DIV</name>
 		</field>
 	</javadoc>
 	<javadoc>
@@ -148,7 +453,10 @@
 		<type>com.liferay.notifications.util.PortletPropsKeys</type>
 		<author><![CDATA[Jonathan Lee]]></author>
 		<field>
-			<name>NOTIFICATIONS_DOCKBAR_DISPLAY_ENABLED</name>
+			<name>USER_NOTIFICATION_ENTRY</name>
+		</field>
+		<field>
+			<name>USER_NOTIFICATIONS_DOCKBAR_DISPLAY_ENABLED</name>
 		</field>
 	</javadoc>
 	<javadoc>
@@ -156,7 +464,42 @@
 		<type>com.liferay.notifications.util.PortletPropsValues</type>
 		<author><![CDATA[Jonathan Lee]]></author>
 		<field>
-			<name>NOTIFICATIONS_DOCKBAR_DISPLAY_ENABLED</name>
+			<name>USER_NOTIFICATION_ENTRY</name>
+		</field>
+		<field>
+			<name>USER_NOTIFICATIONS_DOCKBAR_DISPLAY_ENABLED</name>
+		</field>
+	</javadoc>
+	<javadoc>
+		<name>PortletIdComparator</name>
+		<type>com.liferay.notifications.util.comparator.PortletIdComparator</type>
+		<author><![CDATA[Matthew Kong]]></author>
+		<method>
+			<name>PortletIdComparator</name>
+			<param>
+				<name>locale</name>
+				<type>java.util.Locale</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+		</method>
+		<method>
+			<name>compare</name>
+			<param>
+				<name>portletId1</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>portletId2</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<field>
+			<name>_locale</name>
 		</field>
 	</javadoc>
 </javadocs>

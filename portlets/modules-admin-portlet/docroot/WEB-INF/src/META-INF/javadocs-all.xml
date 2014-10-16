@@ -183,7 +183,7 @@
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
-			<see><![CDATA[{@link com.liferay.osgi.bootstrap.ModuleFrameworkImpl#getBundle( BundleContext, InputStream)}]]></see>
+			<see><![CDATA[com.liferay.osgi.bootstrap.ModuleFrameworkImpl#getBundle(BundleContext, InputStream)]]></see>
 		</method>
 		<method>
 			<name>getBundle</name>

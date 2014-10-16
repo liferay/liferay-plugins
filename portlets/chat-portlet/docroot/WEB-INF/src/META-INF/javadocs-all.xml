@@ -33,8 +33,8 @@
 		</method>
 	</javadoc>
 	<javadoc>
-		<name>UserListener</name>
-		<type>com.liferay.chat.hook.listeners.UserListener</type>
+		<name>UserModelListener</name>
+		<type>com.liferay.chat.hook.listeners.UserModelListener</type>
 		<author><![CDATA[Scott Lee]]></author>
 		<author><![CDATA[Bruno Farache]]></author>
 		<method>
@@ -683,11 +683,9 @@
 				<type>com.liferay.portal.kernel.poller.PollerRequest</type>
 				<comment><![CDATA[]]></comment>
 			</param>
-			<param>
-				<name>pollerResponse</name>
-				<type>com.liferay.portal.kernel.poller.PollerResponse</type>
+			<return>
 				<comment><![CDATA[]]></comment>
-			</param>
+			</return>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
@@ -786,11 +784,6 @@
 			<return>
 				<comment><![CDATA[]]></comment>
 			</return>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<method>
 			<name>addEntry</name>
@@ -812,11 +805,6 @@
 			<return>
 				<comment><![CDATA[]]></comment>
 			</return>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<method>
 			<name>deleteEntries</name>
@@ -825,11 +813,6 @@
 				<type>long</type>
 				<comment><![CDATA[]]></comment>
 			</param>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<method>
 			<name>getNewEntries</name>
@@ -856,11 +839,6 @@
 			<return>
 				<comment><![CDATA[]]></comment>
 			</return>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<method>
 			<name>getOldEntries</name>
@@ -882,17 +860,13 @@
 			<return>
 				<comment><![CDATA[]]></comment>
 			</return>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 	</javadoc>
 	<javadoc>
 		<name>StatusLocalServiceImpl</name>
 		<type>com.liferay.chat.service.impl.StatusLocalServiceImpl</type>
 		<author><![CDATA[Brian Wing Shun Chan]]></author>
+		<author><![CDATA[Tibor Lipusz]]></author>
 		<method>
 			<name>getAllStatuses</name>
 			<param>
@@ -923,11 +897,6 @@
 			<return>
 				<comment><![CDATA[]]></comment>
 			</return>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<method>
 			<name>getGroupStatuses</name>
@@ -959,11 +928,6 @@
 			<return>
 				<comment><![CDATA[]]></comment>
 			</return>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<method>
 			<name>getSocialStatuses</name>
@@ -995,11 +959,37 @@
 			<return>
 				<comment><![CDATA[]]></comment>
 			</return>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
+		</method>
+		<method>
+			<name>getSocialStatuses</name>
+			<param>
+				<name>userId</name>
+				<type>long</type>
 				<comment><![CDATA[]]></comment>
-			</throws>
+			</param>
+			<param>
+				<name>types</name>
+				<type>int[]</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>modifiedDate</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>start</name>
+				<type>int</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>end</name>
+				<type>int</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>getUserStatus</name>
@@ -1011,11 +1001,6 @@
 			<return>
 				<comment><![CDATA[]]></comment>
 			</return>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<method>
 			<name>updateStatus</name>
@@ -1032,11 +1017,6 @@
 			<return>
 				<comment><![CDATA[]]></comment>
 			</return>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<method>
 			<name>updateStatus</name>
@@ -1078,11 +1058,6 @@
 			<return>
 				<comment><![CDATA[]]></comment>
 			</return>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<field>
 			<name>_log</name>
@@ -1090,7 +1065,7 @@
 	</javadoc>
 	<javadoc>
 		<name>EntryFinderImpl</name>
-		<type>com.liferay.chat.service.persistence.EntryFinderImpl</type>
+		<type>com.liferay.chat.service.persistence.impl.EntryFinderImpl</type>
 		<author><![CDATA[Brian Wing Shun Chan]]></author>
 		<method>
 			<name>findByEmptyContent</name>
@@ -1117,11 +1092,6 @@
 			<return>
 				<comment><![CDATA[]]></comment>
 			</return>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<method>
 			<name>findByNew</name>
@@ -1148,11 +1118,6 @@
 			<return>
 				<comment><![CDATA[]]></comment>
 			</return>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<method>
 			<name>findByOld</name>
@@ -1174,11 +1139,6 @@
 			<return>
 				<comment><![CDATA[]]></comment>
 			</return>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<field>
 			<name>FIND_BY_EMPTY_CONTENT</name>
@@ -1198,8 +1158,9 @@
 	</javadoc>
 	<javadoc>
 		<name>StatusFinderImpl</name>
-		<type>com.liferay.chat.service.persistence.StatusFinderImpl</type>
+		<type>com.liferay.chat.service.persistence.impl.StatusFinderImpl</type>
 		<author><![CDATA[Brian Wing Shun Chan]]></author>
+		<author><![CDATA[Tibor Lipusz]]></author>
 		<method>
 			<name>findByModifiedDate</name>
 			<param>
@@ -1230,22 +1191,17 @@
 			<return>
 				<comment><![CDATA[]]></comment>
 			</return>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<method>
-			<name>findBySocialRelationType</name>
+			<name>findBySocialRelationTypes</name>
 			<param>
 				<name>userId</name>
 				<type>long</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
-				<name>type</name>
-				<type>int</type>
+				<name>types</name>
+				<type>int[]</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
@@ -1266,11 +1222,6 @@
 			<return>
 				<comment><![CDATA[]]></comment>
 			</return>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<method>
 			<name>findByUsersGroups</name>
@@ -1302,11 +1253,25 @@
 			<return>
 				<comment><![CDATA[]]></comment>
 			</return>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
+		</method>
+		<method>
+			<name>addScalars</name>
+			<param>
+				<name>sqlQuery</name>
+				<type>com.liferay.portal.kernel.dao.orm.SQLQuery</type>
 				<comment><![CDATA[]]></comment>
-			</throws>
+			</param>
+		</method>
+		<method>
+			<name>getFindBySocialRelationTypes_SQL</name>
+			<param>
+				<name>types</name>
+				<type>int[]</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>getFindByUsersGroups_SQL</name>
@@ -1319,11 +1284,27 @@
 				<comment><![CDATA[]]></comment>
 			</return>
 		</method>
+		<method>
+			<name>toObjectArray</name>
+			<param>
+				<name>list</name>
+				<type>java.util.List</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
 		<field>
 			<name>FIND_BY_MODIFIED_DATE</name>
 		</field>
 		<field>
-			<name>FIND_BY_SOCIAL_RELATION_TYPE</name>
+			<name>FIND_BY_SOCIAL_RELATION_TYPES</name>
 		</field>
 		<field>
 			<name>FIND_BY_USERS_GROUPS</name>
@@ -1348,11 +1329,6 @@
 			<return>
 				<comment><![CDATA[]]></comment>
 			</return>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 	</javadoc>
 	<javadoc>
@@ -1375,11 +1351,6 @@
 			<return>
 				<comment><![CDATA[]]></comment>
 			</return>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<method>
 			<name>getBuddyFinder</name>
@@ -1482,6 +1453,7 @@
 		<name>DefaultBuddyFinderImpl</name>
 		<type>com.liferay.chat.util.DefaultBuddyFinderImpl</type>
 		<author><![CDATA[Ankit Srivastava]]></author>
+		<author><![CDATA[Tibor Lipusz]]></author>
 		<method>
 			<name>getBuddies</name>
 			<param>
@@ -1497,17 +1469,16 @@
 			<return>
 				<comment><![CDATA[]]></comment>
 			</return>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 	</javadoc>
 	<javadoc>
 		<name>PortletPropsKeys</name>
 		<type>com.liferay.chat.util.PortletPropsKeys</type>
 		<author><![CDATA[Brian Wing Shun Chan]]></author>
+		<author><![CDATA[Tibor Lipusz]]></author>
+		<field>
+			<name>BUDDY_LIST_ALLOWED_SOCIAL_RELATION_TYPES</name>
+		</field>
 		<field>
 			<name>BUDDY_LIST_MAX_BUDDIES</name>
 		</field>
@@ -1546,6 +1517,10 @@
 		<name>PortletPropsValues</name>
 		<type>com.liferay.chat.util.PortletPropsValues</type>
 		<author><![CDATA[Brian Wing Shun Chan]]></author>
+		<author><![CDATA[Tibor Lipusz]]></author>
+		<field>
+			<name>BUDDY_LIST_ALLOWED_SOCIAL_RELATION_TYPES</name>
+		</field>
 		<field>
 			<name>BUDDY_LIST_MAX_BUDDIES</name>
 		</field>
