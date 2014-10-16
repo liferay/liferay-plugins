@@ -24,6 +24,8 @@ long parentResourcePrimKey = ParamUtil.getLong(request, "parentResourcePrimKey",
 
 String orderByCol = ParamUtil.getString(request, "orderByCol", "modified-date");
 String orderByType = ParamUtil.getString(request, "orderByType", "desc");
+
+String eventName = PortalUtil.getPortletNamespace(PortletKeys.PORTLET_CONFIGURATION) + "selectConfigurationKBObject";
 %>
 
 <liferay-ui:header
@@ -46,11 +48,13 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 			</c:otherwise>
 		</c:choose>
 
-		<%
-		String taglibOnClick = "opener." + PortalUtil.getPortletNamespace(PortletKeys.PORTLET_CONFIGURATION) + "selectConfigurationKBObject('" + kbFolderClassNameId + "', '" + KBFolderConstants.DEFAULT_PARENT_FOLDER_ID + "', ''); window.close();";
-		%>
-
-		<aui:button onClick="<%= taglibOnClick %>" value="remove" />
+		<aui:button
+			cssClass="selector-button"
+			data-resourceClassNameId="<%= kbFolderClassNameId %>"
+			data-resourcePrimKey="<%= KBFolderConstants.DEFAULT_PARENT_FOLDER_ID %>"
+			data-title=""
+			value="remove"
+		/>
 	</aui:button-row>
 
 	<div class="separator"><!-- --></div>
@@ -157,12 +161,14 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 			<liferay-ui:search-container-column-text
 				align="right"
 			>
-
-				<%
-				String taglibOnClick = "opener." + PortalUtil.getPortletNamespace(PortletKeys.PORTLET_CONFIGURATION) + "selectConfigurationKBObject('" + kbFolderClassNameId + "', '" + kbFolder.getKbFolderId() + "', '" + UnicodeFormatter.toString(kbFolder.getName()) + "'); window.close();";
-				%>
-
-				<aui:button disabled="<%= (kbFolder.getKbFolderId() == resourcePrimKey) %>" onClick="<%= taglibOnClick %>" value="choose" />
+				<aui:button
+					cssClass="selector-button"
+					data-resourceClassNameId="<%= kbFolder.getClassNameId() %>"
+					data-resourcePrimKey="<%= kbFolder.getKbFolderId() %>"
+					data-title="<%= HtmlUtil.escapeAttribute(kbFolder.getName()) %>"
+					disabled="<%= (kbFolder.getKbFolderId() == resourcePrimKey) %>"
+					value="choose"
+				/>
 			</liferay-ui:search-container-column-text>
 		</liferay-ui:search-container-row>
 
@@ -257,14 +263,30 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 		<liferay-ui:search-container-column-text
 			align="right"
 		>
-
-			<%
-			String taglibOnClick = "opener." + PortalUtil.getPortletNamespace(PortletKeys.PORTLET_CONFIGURATION) + "selectConfigurationKBObject('" + kbArticle.getClassNameId() + "', '" + kbArticle.getResourcePrimKey() + "', '" + UnicodeFormatter.toString(kbArticle.getTitle()) + "'); window.close();";
-			%>
-
-			<aui:button onClick="<%= taglibOnClick %>" value="choose" />
+			<aui:button
+				cssClass="selector-button"
+				data-resourceClassNameId="<%= kbArticle.getClassNameId() %>"
+				data-resourcePrimKey="<%= kbArticle.getResourcePrimKey() %>"
+				data-title="<%= HtmlUtil.escapeAttribute(kbArticle.getTitle()) %>"
+				value="choose"
+			/>
 		</liferay-ui:search-container-column-text>
 	</liferay-ui:search-container-row>
 
 	<liferay-ui:search-iterator />
 </liferay-ui:search-container>
+
+<aui:script use="aui-base">
+	var Util = Liferay.Util;
+
+	A.all('.selector-button').on(
+		'click',
+		function(event) {
+			var result = Util.getAttributes(event.currentTarget, 'data-');
+
+			Util.getOpener().Liferay.fire('<%= HtmlUtil.escapeJS(eventName) %>', result);
+
+			Util.getWindow().destroy();
+		}
+	);
+</aui:script>
