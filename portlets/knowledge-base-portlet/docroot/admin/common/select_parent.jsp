@@ -54,11 +54,13 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 					</c:otherwise>
 				</c:choose>
 
-				<%
-				String taglibOnClick = "opener." + renderResponse.getNamespace() + "selectKBObject('(" + LanguageUtil.get(locale, "none") + ")', '1.0', '" + KBFolderConstants.DEFAULT_PARENT_FOLDER_ID + "', '" + kbFolderClassNameId + "'); window.close();";
-				%>
-
-				<aui:button onClick="<%= taglibOnClick %>" value="remove" />
+				<aui:button
+					cssClass="selector-button"
+					data-priority="<%= KBArticleConstants.DEFAULT_PRIORITY %>"
+					data-resourceClassNameId="<%= kbFolderClassNameId %>"
+					data-resourcePrimKey="<%= KBFolderConstants.DEFAULT_PARENT_FOLDER_ID %>"
+					data-title=""
+					value="remove" />
 			</aui:button-row>
 
 			<div class="separator"><!-- --></div>
@@ -186,12 +188,14 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 					<liferay-ui:search-container-column-text
 						align="right"
 					>
-
-						<%
-						String taglibOnClick = "opener." + renderResponse.getNamespace() + "selectKBObject('" + kbFolder.getName() + "', '1.0', '" + kbFolder.getKbFolderId() + "', '" + kbFolder.getClassNameId() + "'); window.close();";
-						%>
-
-						<aui:button disabled="<%= (kbFolder.getKbFolderId() == resourcePrimKey) || (kbFolder.getKbFolderId() == oldParentResourcePrimKey) %>" onClick="<%= taglibOnClick %>" value="choose" />
+						<aui:button
+							cssClass="selector-button"
+							data-priority="<%= KBArticleConstants.DEFAULT_PRIORITY %>"
+							data-resourceClassNameId="<%= kbFolder.getClassNameId() %>"
+							data-resourcePrimKey="<%= kbFolder.getKbFolderId() %>"
+							data-title="<%= HtmlUtil.escapeAttribute(kbFolder.getName()) %>"
+							disabled="<%= (kbFolder.getKbFolderId() == resourcePrimKey) || (kbFolder.getKbFolderId() == oldParentResourcePrimKey) %>"
+							value="choose" />
 					</liferay-ui:search-container-column-text>
 
 				</liferay-ui:search-container-row>
@@ -261,12 +265,14 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 				<liferay-ui:search-container-column-text
 					align="right"
 				>
-
-					<%
-					String taglibOnClick = "opener." + renderResponse.getNamespace() + "selectKBObject('" + curKBArticle.getTitle() + "', '" + curKBArticle.getPriority() + "', '" + curKBArticle.getResourcePrimKey() + "', '" + curKBArticle.getClassNameId() + "'); window.close();";
-					%>
-
-					<aui:button disabled="<%= (resourceClassNameId == kbFolderClassNameId) || (curKBArticle.getResourcePrimKey() == resourcePrimKey) || (curKBArticle.getResourcePrimKey() == oldParentResourcePrimKey) %>" onClick="<%= taglibOnClick %>" value="choose" />
+					<aui:button
+						cssClass="selector-button"
+						data-priority="<%= curKBArticle.getPriority() %>"
+						data-resourceClassNameId="<%= curKBArticle.getClassNameId() %>"
+						data-resourcePrimKey="<%= curKBArticle.getResourcePrimKey() %>"
+						data-title="<%= HtmlUtil.escapeAttribute(curKBArticle.getTitle()) %>"
+						disabled="<%= (resourceClassNameId == kbFolderClassNameId) || (curKBArticle.getResourcePrimKey() == resourcePrimKey) || (curKBArticle.getResourcePrimKey() == oldParentResourcePrimKey) %>"
+						value="choose" />
 				</liferay-ui:search-container-column-text>
 			</liferay-ui:search-container-row>
 
@@ -274,3 +280,19 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 		</liferay-ui:search-container>
 	</aui:fieldset>
 </aui:form>
+
+<aui:script use="aui-base">
+	var Util = Liferay.Util;
+
+	A.one('#<portlet:namespace />fm').delegate(
+		'click',
+		function(event) {
+			var result = Util.getAttributes(event.currentTarget, 'data-');
+
+			Util.getOpener().Liferay.fire('<portlet:namespace />selectKBObject', result);
+
+			Util.getWindow().destroy();
+		},
+		'.selector-button'
+	);
+</aui:script>

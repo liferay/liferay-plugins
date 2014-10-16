@@ -97,12 +97,3 @@ else {
 		</aui:button-row>
 	</aui:fieldset>
 </aui:form>
-
-<aui:script>
-	function <portlet:namespace />selectKBObject(parentResource, parentPriority, parentResourcePrimKey, parentResourceClassNameId) {
-		document.<portlet:namespace />fm.<portlet:namespace />parentPriority.value = parentPriority;
-		document.<portlet:namespace />fm.<portlet:namespace />parentResource.value = parentResource;
-		document.<portlet:namespace />fm.<portlet:namespace />parentResourceClassNameId.value = parentResourceClassNameId;
-		document.<portlet:namespace />fm.<portlet:namespace />parentResourcePrimKey.value = parentResourcePrimKey;
-	}
-</aui:script>
