@@ -51,6 +51,23 @@ KBArticle kbArticle = (KBArticle)row.getObject();
 		/>
 	</c:if>
 
+	<c:if test="<%= (AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_KB_ARTICLE) && rootPortletId.equals(PortletKeys.KNOWLEDGE_BASE_ADMIN)) || (DisplayPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_KB_ARTICLE) && DisplayPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADMINISTRATOR) && rootPortletId.equals(PortletKeys.KNOWLEDGE_BASE_DISPLAY)) %>">
+		<liferay-portlet:renderURL var="addKBArticleURL">
+			<portlet:param name="mvcPath" value='<%= templatePath + "edit_article.jsp" %>' />
+			<portlet:param name="redirect" value="<%= redirect %>" />
+			<portlet:param name="parentResourceClassNameId" value="<%= String.valueOf(kbArticle.getClassNameId()) %>" />
+			<portlet:param name="parentResourcePrimKey" value="<%= String.valueOf(kbArticle.getResourcePrimKey()) %>" />
+		</liferay-portlet:renderURL>
+
+		<liferay-ui:icon
+			image="add_article"
+			label="<%= true %>"
+			message="add-child-article"
+			method="get"
+			url="<%= addKBArticleURL %>"
+		/>
+	</c:if>
+
 	<c:if test="<%= kbArticle.isRoot() && KBArticlePermission.contains(permissionChecker, kbArticle, ActionKeys.PERMISSIONS) %>">
 		<liferay-security:permissionsURL
 			modelResource="<%= KBArticle.class.getName() %>"
