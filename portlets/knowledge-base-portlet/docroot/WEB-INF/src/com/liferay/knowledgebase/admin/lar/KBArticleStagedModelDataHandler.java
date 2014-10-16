@@ -135,9 +135,8 @@ public class KBArticleStagedModelDataHandler
 					PortletDataContext.REFERENCE_TYPE_PARENT);
 			}
 			else {
-				KBFolder parentKBFolder =
-					KBFolderLocalServiceUtil.getKBFolder(
-						kbArticle.getParentResourcePrimKey());
+				KBFolder parentKBFolder = KBFolderLocalServiceUtil.getKBFolder(
+					kbArticle.getParentResourcePrimKey());
 
 				StagedModelDataHandlerUtil.exportReferenceStagedModel(
 					portletDataContext, kbArticle, parentKBFolder,

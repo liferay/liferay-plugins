@@ -303,9 +303,8 @@ public class KBCommentLocalServiceImpl extends KBCommentLocalServiceBaseImpl {
 		String fromAddress = AdminUtil.getEmailFromAddress(
 			preferences, kbComment.getCompanyId());
 
-		String subject =
-			AdminUtil.getEmailKBArticleFeedbackNotificationSubject(
-				kbComment.getStatus(), preferences);
+		String subject = AdminUtil.getEmailKBArticleFeedbackNotificationSubject(
+			kbComment.getStatus(), preferences);
 		String body = AdminUtil.getEmailKBArticleFeedbackNotificationBody(
 			kbComment.getStatus(), preferences);
 

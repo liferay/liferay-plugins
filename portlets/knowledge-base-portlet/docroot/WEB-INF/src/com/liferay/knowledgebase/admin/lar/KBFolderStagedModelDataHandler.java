@@ -82,9 +82,8 @@ public class KBFolderStagedModelDataHandler
 		if (kbFolder.getParentKBFolderId() !=
 				KBFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
 
-			KBFolder parentKBFolder =
-				KBFolderLocalServiceUtil.getKBFolder(
-					kbFolder.getParentKBFolderId());
+			KBFolder parentKBFolder = KBFolderLocalServiceUtil.getKBFolder(
+				kbFolder.getParentKBFolderId());
 
 			StagedModelDataHandlerUtil.exportReferenceStagedModel(
 				portletDataContext, kbFolder, parentKBFolder,
