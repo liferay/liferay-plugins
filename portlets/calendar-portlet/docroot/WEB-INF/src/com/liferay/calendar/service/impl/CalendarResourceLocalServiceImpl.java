@@ -30,6 +30,7 @@ import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.TimeZoneUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.ResourceConstants;
 import com.liferay.portal.model.SystemEventConstants;
@@ -40,6 +41,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.TimeZone;
 
 /**
  * @author Eduardo Lundgren
@@ -116,9 +118,17 @@ public class CalendarResourceLocalServiceImpl
 			serviceContext.setAddGroupPermissions(true);
 			serviceContext.setAddGuestPermissions(true);
 
+			TimeZone timeZone = TimeZoneUtil.getDefault();
+
+			if (calendarResource.getClassNameId() ==
+					classNameLocalService.getClassNameId(User.class)) {
+
+				timeZone = user.getTimeZone();
+			}
+
 			calendarLocalService.addCalendar(
 				userId, calendarResource.getGroupId(), calendarResourceId,
-				nameMap, descriptionMap,
+				nameMap, descriptionMap, timeZone.getID(),
 				PortletPropsValues.CALENDAR_COLOR_DEFAULT, true, false, false,
 				serviceContext);
 		}
