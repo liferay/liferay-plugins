@@ -70,7 +70,7 @@ public class KBArticleMarkdownConverter {
 
 		_urlTitle = getUrlTitle(heading);
 
-		_title = stripIds(heading);
+		_title = HtmlUtil.unescape(stripIds(heading));
 
 		html = stripIds(html);
 
