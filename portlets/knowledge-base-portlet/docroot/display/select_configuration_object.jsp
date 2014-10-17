@@ -45,13 +45,15 @@ String eventName = PortalUtil.getPortletNamespace(PortletKeys.PORTLET_CONFIGURAT
 				</c:otherwise>
 			</c:choose>
 
-			<aui:button
-				cssClass="selector-button"
-				data-resourceClassNameId="<%= kbFolderClassNameId %>"
-				data-resourcePrimKey="<%= KBFolderConstants.DEFAULT_PARENT_FOLDER_ID %>"
-				data-title=""
-				value="remove"
-			/>
+			<%
+			Map<String, Object> data = new HashMap<>();
+
+			data.put("resourceClassNameId", kbFolderClassNameId);
+			data.put("resourcePrimKey", KBFolderConstants.DEFAULT_PARENT_FOLDER_ID);
+			data.put("title", StringPool.BLANK);
+			%>
+
+			<aui:button cssClass="selector-button" data="<%= data %>" value="remove" />
 		</aui:button-row>
 
 		<div class="separator"><!-- --></div>
@@ -122,11 +124,19 @@ String eventName = PortalUtil.getPortletNamespace(PortletKeys.PORTLET_CONFIGURAT
 				<liferay-ui:search-container-column-text
 					align="right"
 				>
+
+					<%
+					Map<String, Object> data = new HashMap<>();
+
+					data.put("priority", KBArticleConstants.DEFAULT_PRIORITY);
+					data.put("resourceClassNameId", kbFolder.getClassNameId());
+					data.put("resourcePrimKey", kbFolder.getKbFolderId());
+					data.put("title", HtmlUtil.escapeAttribute(kbFolder.getName()));
+					%>
+
 					<aui:button
 						cssClass="selector-button"
-						data-resourceClassNameId="<%= kbFolder.getClassNameId() %>"
-						data-resourcePrimKey="<%= kbFolder.getKbFolderId() %>"
-						data-title="<%= HtmlUtil.escapeAttribute(kbFolder.getName()) %>"
+						data="<%= data %>"
 						disabled="<%= (kbFolder.getKbFolderId() == resourcePrimKey) %>"
 						value="choose"
 					/>
@@ -224,13 +234,16 @@ String eventName = PortalUtil.getPortletNamespace(PortletKeys.PORTLET_CONFIGURAT
 			<liferay-ui:search-container-column-text
 				align="right"
 			>
-				<aui:button
-					cssClass="selector-button"
-					data-resourceClassNameId="<%= kbArticle.getClassNameId() %>"
-					data-resourcePrimKey="<%= kbArticle.getResourcePrimKey() %>"
-					data-title="<%= HtmlUtil.escapeAttribute(kbArticle.getTitle()) %>"
-					value="choose"
-				/>
+
+				<%
+				Map<String, Object> data = new HashMap<>();
+
+				data.put("resourceClassNameId", kbArticle.getClassNameId());
+				data.put("resourcePrimKey", kbArticle.getResourcePrimKey());
+				data.put("title", HtmlUtil.escapeAttribute(kbArticle.getTitle()));
+				%>
+
+				<aui:button cssClass="selector-button" data="<%= data %>" value="choose" />
 			</liferay-ui:search-container-column-text>
 		</liferay-ui:search-container-row>
 

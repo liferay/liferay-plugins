@@ -50,13 +50,16 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 					</c:otherwise>
 				</c:choose>
 
-				<aui:button
-					cssClass="selector-button"
-					data-priority="<%= KBArticleConstants.DEFAULT_PRIORITY %>"
-					data-resourceClassNameId="<%= kbFolderClassNameId %>"
-					data-resourcePrimKey="<%= KBFolderConstants.DEFAULT_PARENT_FOLDER_ID %>"
-					data-title=""
-					value="remove" />
+				<%
+				Map<String, Object> data = new HashMap<>();
+
+				data.put("priority", KBArticleConstants.DEFAULT_PRIORITY);
+				data.put("resourceClassNameId", kbFolderClassNameId);
+				data.put("resourcePrimKey", KBFolderConstants.DEFAULT_PARENT_FOLDER_ID);
+				data.put("title", StringPool.BLANK);
+				%>
+
+				<aui:button cssClass="selector-button" data="<%= data %>" value="remove" />
 			</aui:button-row>
 
 			<div class="separator"><!-- --></div>
@@ -143,14 +146,22 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 					<liferay-ui:search-container-column-text
 						align="right"
 					>
+
+						<%
+						Map<String, Object> data = new HashMap<>();
+
+						data.put("priority", KBArticleConstants.DEFAULT_PRIORITY);
+						data.put("resourceClassNameId", kbFolder.getClassNameId());
+						data.put("resourcePrimKey", kbFolder.getKbFolderId());
+						data.put("title", HtmlUtil.escapeAttribute(kbFolder.getName()));
+						%>
+
 						<aui:button
 							cssClass="selector-button"
-							data-priority="<%= KBArticleConstants.DEFAULT_PRIORITY %>"
-							data-resourceClassNameId="<%= kbFolder.getClassNameId() %>"
-							data-resourcePrimKey="<%= kbFolder.getKbFolderId() %>"
-							data-title="<%= HtmlUtil.escapeAttribute(kbFolder.getName()) %>"
+							data="<%= data %>"
 							disabled="<%= (kbFolder.getKbFolderId() == resourcePrimKey) || (kbFolder.getKbFolderId() == oldParentResourcePrimKey) %>"
-							value="choose" />
+							value="choose"
+						/>
 					</liferay-ui:search-container-column-text>
 
 				</liferay-ui:search-container-row>
@@ -220,14 +231,22 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 				<liferay-ui:search-container-column-text
 					align="right"
 				>
+
+					<%
+					Map<String, Object> data = new HashMap<>();
+
+					data.put("priority", curKBArticle.getPriority());
+					data.put("resourceClassNameId", curKBArticle.getClassNameId());
+					data.put("resourcePrimKey", curKBArticle.getResourcePrimKey());
+					data.put("title", HtmlUtil.escapeAttribute(curKBArticle.getTitle()));
+					%>
+
 					<aui:button
 						cssClass="selector-button"
-						data-priority="<%= curKBArticle.getPriority() %>"
-						data-resourceClassNameId="<%= curKBArticle.getClassNameId() %>"
-						data-resourcePrimKey="<%= curKBArticle.getResourcePrimKey() %>"
-						data-title="<%= HtmlUtil.escapeAttribute(curKBArticle.getTitle()) %>"
+						data="<%= data %>"
 						disabled="<%= (resourceClassNameId == kbFolderClassNameId) || (curKBArticle.getResourcePrimKey() == resourcePrimKey) || (curKBArticle.getResourcePrimKey() == oldParentResourcePrimKey) %>"
-						value="choose" />
+						value="choose"
+					/>
 				</liferay-ui:search-container-column-text>
 			</liferay-ui:search-container-row>
 

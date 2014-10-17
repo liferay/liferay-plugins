@@ -579,9 +579,7 @@ public class KnowledgeBaseUtil {
 			PortalUtil.addPortletBreadcrumbEntry(
 				request, themeDisplay.translate("home"), portletURL.toString());
 		}
-		else if (parentResourceClassNameId ==
-					kbFolderClassNameId) {
-
+		else if (parentResourceClassNameId == kbFolderClassNameId) {
 			KBFolder kbFolder = KBFolderServiceUtil.getKBFolder(
 				parentResourcePrimKey);
 
