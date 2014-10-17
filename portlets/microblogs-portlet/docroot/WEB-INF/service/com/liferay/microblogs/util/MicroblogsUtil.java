@@ -109,7 +109,7 @@ public class MicroblogsUtil {
 
 	public static int getNotificationType(
 			MicroblogsEntry microblogsEntry, long userId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		if (isTaggedUser(
 				microblogsEntry.getMicroblogsEntryId(), false, userId)) {
@@ -123,11 +123,9 @@ public class MicroblogsUtil {
 				microblogsEntry);
 
 			if ((getParentMicroblogsUserId(microblogsEntry) == userId)) {
-
 				return MicroblogsEntryConstants.TYPE_REPLY;
 			}
 			else if (hasReplied(parentMicroblogsEntryId, userId)) {
-
 				return MicroblogsEntryConstants.TYPE_REPLY_TO_REPLY;
 			}
 			else if (MicroblogsUtil.isTaggedUser(

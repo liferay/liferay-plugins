@@ -71,7 +71,10 @@ public class MicroblogsUserNotificationHandler
 			return null;
 		}
 
-		String title = getBodyTitle(microblogsEntry, serviceContext);
+		int notificationType = jsonObject.getInt("notificationType");
+
+		String title = getBodyTitle(
+			microblogsEntry, notificationType, serviceContext);
 
 		String body = MicroblogsUtil.getProcessedContent(
 			StringUtil.shorten(microblogsEntry.getContent(), 50),
@@ -83,7 +86,8 @@ public class MicroblogsUserNotificationHandler
 	}
 
 	protected String getBodyTitle(
-			MicroblogsEntry microblogsEntry, ServiceContext serviceContext)
+			MicroblogsEntry microblogsEntry, int notificationType,
+			ServiceContext serviceContext)
 		throws PortalException {
 
 		String title = StringPool.BLANK;
@@ -92,45 +96,31 @@ public class MicroblogsUserNotificationHandler
 			PortalUtil.getUserName(
 				microblogsEntry.getUserId(), StringPool.BLANK));
 
-		long parentMicroblogsEntryId =
-			MicroblogsUtil.getParentMicroblogsEntryId(microblogsEntry);
-
-		if (MicroblogsUtil.isTaggedUser(
-				microblogsEntry.getMicroblogsEntryId(), false,
-				serviceContext.getUserId())) {
-
+		if (notificationType == MicroblogsEntryConstants.TYPE_TAG) {
 			title = serviceContext.translate(
 				"x-tagged-you-in-a-post", userFullName);
 		}
-		else if (microblogsEntry.getType() ==
-					MicroblogsEntryConstants.TYPE_REPLY) {
+		else if (notificationType == MicroblogsEntryConstants.TYPE_REPLY) {
+			title = serviceContext.translate(
+				"x-commented-on-your-post", userFullName);
+		}
+		else if (notificationType ==
+					MicroblogsEntryConstants.TYPE_REPLY_TO_REPLY) {
 
-			if (MicroblogsUtil.getParentMicroblogsUserId(microblogsEntry) ==
-					serviceContext.getUserId()) {
+			User receiverUser = UserLocalServiceUtil.fetchUser(
+				microblogsEntry.getReceiverUserId());
 
+			if (receiverUser != null) {
 				title = serviceContext.translate(
-					"x-commented-on-your-post", userFullName);
+					"x-also-commented-on-x's-post", userFullName,
+					receiverUser.getFullName());
 			}
-			else if (MicroblogsUtil.hasReplied(
-						parentMicroblogsEntryId,
-						serviceContext.getUserId())) {
+		}
+		else if (notificationType ==
+					MicroblogsEntryConstants.TYPE_REPLY_TO_TAG) {
 
-				User receiverUser = UserLocalServiceUtil.fetchUser(
-					microblogsEntry.getReceiverUserId());
-
-				if (receiverUser != null) {
-					title = serviceContext.translate(
-						"x-also-commented-on-x's-post", userFullName,
-						receiverUser.getFullName());
-				}
-			}
-			else if (MicroblogsUtil.isTaggedUser(
-						parentMicroblogsEntryId, true,
-						serviceContext.getUserId())) {
-
-				title = serviceContext.translate(
-					"x-commented-on-a-post-you-are-tagged-in", userFullName);
-			}
+			title = serviceContext.translate(
+				"x-commented-on-a-post-you-are-tagged-in", userFullName);
 		}
 
 		return title;
