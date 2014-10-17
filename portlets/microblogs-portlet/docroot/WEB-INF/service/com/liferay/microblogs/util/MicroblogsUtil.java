@@ -111,45 +111,33 @@ public class MicroblogsUtil {
 			MicroblogsEntry microblogsEntry, long userId)
 		throws PortalException, SystemException {
 
-		long parentMicroblogsEntryId =
-			MicroblogsUtil.getParentMicroblogsEntryId(microblogsEntry);
+		if (isTaggedUser(
+				microblogsEntry.getMicroblogsEntryId(), false, userId)) {
 
-		if (MicroblogsUtil.isTaggedUser(
-				microblogsEntry.getMicroblogsEntryId(), false,
-				serviceContext.getUserId())) {
-
-			title = serviceContext.translate(
-				"x-tagged-you-in-a-post", userFullName);
+			return MicroblogsEntryConstants.TYPE_TAG;
 		}
 		else if (microblogsEntry.getType() ==
 					MicroblogsEntryConstants.TYPE_REPLY) {
 
-			if (MicroblogsUtil.getParentMicroblogsUserId(microblogsEntry) ==
-					serviceContext.getUserId()) {
+			long parentMicroblogsEntryId = getParentMicroblogsEntryId(
+				microblogsEntry);
 
-				title = serviceContext.translate(
-					"x-commented-on-your-post", userFullName);
+			if ((getParentMicroblogsUserId(microblogsEntry) == userId)) {
+
+				return MicroblogsEntryConstants.TYPE_REPLY;
 			}
-			else if (MicroblogsUtil.hasReplied(
-						parentMicroblogsEntryId, serviceContext.getUserId())) {
+			else if (hasReplied(parentMicroblogsEntryId, userId)) {
 
-				User receiverUser = UserLocalServiceUtil.fetchUser(
-					microblogsEntry.getReceiverUserId());
-
-				if (receiverUser != null) {
-					title = serviceContext.translate(
-						"x-also-commented-on-x's-post", userFullName,
-						receiverUser.getFullName());
-				}
+				return MicroblogsEntryConstants.TYPE_REPLY_TO_REPLY;
 			}
 			else if (MicroblogsUtil.isTaggedUser(
-						parentMicroblogsEntryId, true,
-						serviceContext.getUserId())) {
+						parentMicroblogsEntryId, true, userId)) {
 
-				title = serviceContext.translate(
-					"x-commented-on-a-post-you-are-tagged-in", userFullName);
+				return MicroblogsEntryConstants.TYPE_REPLY_TO_TAG;
 			}
 		}
+
+		return 0;
 	}
 
 	public static long getParentMicroblogsEntryId(
