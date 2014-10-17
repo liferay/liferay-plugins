@@ -851,15 +851,15 @@ public class CalendarClp extends BaseModelImpl<Calendar> implements Calendar {
 	}
 
 	@Override
-	public java.util.TimeZone getTimeZone() {
+	public com.liferay.calendar.model.CalendarResource getCalendarResource() {
 		try {
-			String methodName = "getTimeZone";
+			String methodName = "getCalendarResource";
 
 			Class<?>[] parameterTypes = new Class<?>[] {  };
 
 			Object[] parameterValues = new Object[] {  };
 
-			java.util.TimeZone returnObj = (java.util.TimeZone)invokeOnRemoteModel(methodName,
+			com.liferay.calendar.model.CalendarResource returnObj = (com.liferay.calendar.model.CalendarResource)invokeOnRemoteModel(methodName,
 					parameterTypes, parameterValues);
 
 			return returnObj;
@@ -870,15 +870,15 @@ public class CalendarClp extends BaseModelImpl<Calendar> implements Calendar {
 	}
 
 	@Override
-	public com.liferay.calendar.model.CalendarResource getCalendarResource() {
+	public java.util.TimeZone getTimeZone() {
 		try {
-			String methodName = "getCalendarResource";
+			String methodName = "getTimeZone";
 
 			Class<?>[] parameterTypes = new Class<?>[] {  };
 
 			Object[] parameterValues = new Object[] {  };
 
-			com.liferay.calendar.model.CalendarResource returnObj = (com.liferay.calendar.model.CalendarResource)invokeOnRemoteModel(methodName,
+			java.util.TimeZone returnObj = (java.util.TimeZone)invokeOnRemoteModel(methodName,
 					parameterTypes, parameterValues);
 
 			return returnObj;

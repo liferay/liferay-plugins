@@ -504,6 +504,18 @@ public class CalendarResourceWrapper implements CalendarResource,
 		return _calendarResource.getResourceBlockId();
 	}
 
+	@Override
+	public java.util.TimeZone getTimeZone()
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _calendarResource.getTimeZone();
+	}
+
+	@Override
+	public java.lang.String getTimeZoneId()
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _calendarResource.getTimeZoneId();
+	}
+
 	/**
 	* Returns the user ID of this calendar resource.
 	*

@@ -829,15 +829,15 @@ public class CalendarResourceClp extends BaseModelImpl<CalendarResource>
 	}
 
 	@Override
-	public com.liferay.calendar.model.Calendar getDefaultCalendar() {
+	public java.lang.String getTimeZoneId() {
 		try {
-			String methodName = "getDefaultCalendar";
+			String methodName = "getTimeZoneId";
 
 			Class<?>[] parameterTypes = new Class<?>[] {  };
 
 			Object[] parameterValues = new Object[] {  };
 
-			com.liferay.calendar.model.Calendar returnObj = (com.liferay.calendar.model.Calendar)invokeOnRemoteModel(methodName,
+			java.lang.String returnObj = (java.lang.String)invokeOnRemoteModel(methodName,
 					parameterTypes, parameterValues);
 
 			return returnObj;
@@ -848,15 +848,15 @@ public class CalendarResourceClp extends BaseModelImpl<CalendarResource>
 	}
 
 	@Override
-	public boolean isUser() {
+	public java.util.List<com.liferay.calendar.model.Calendar> getCalendars() {
 		try {
-			String methodName = "isUser";
+			String methodName = "getCalendars";
 
 			Class<?>[] parameterTypes = new Class<?>[] {  };
 
 			Object[] parameterValues = new Object[] {  };
 
-			Boolean returnObj = (Boolean)invokeOnRemoteModel(methodName,
+			java.util.List<com.liferay.calendar.model.Calendar> returnObj = (java.util.List<com.liferay.calendar.model.Calendar>)invokeOnRemoteModel(methodName,
 					parameterTypes, parameterValues);
 
 			return returnObj;
@@ -905,15 +905,53 @@ public class CalendarResourceClp extends BaseModelImpl<CalendarResource>
 	}
 
 	@Override
-	public java.util.List<com.liferay.calendar.model.Calendar> getCalendars() {
+	public boolean isUser() {
 		try {
-			String methodName = "getCalendars";
+			String methodName = "isUser";
 
 			Class<?>[] parameterTypes = new Class<?>[] {  };
 
 			Object[] parameterValues = new Object[] {  };
 
-			java.util.List<com.liferay.calendar.model.Calendar> returnObj = (java.util.List<com.liferay.calendar.model.Calendar>)invokeOnRemoteModel(methodName,
+			Boolean returnObj = (Boolean)invokeOnRemoteModel(methodName,
+					parameterTypes, parameterValues);
+
+			return returnObj;
+		}
+		catch (Exception e) {
+			throw new UnsupportedOperationException(e);
+		}
+	}
+
+	@Override
+	public com.liferay.calendar.model.Calendar getDefaultCalendar() {
+		try {
+			String methodName = "getDefaultCalendar";
+
+			Class<?>[] parameterTypes = new Class<?>[] {  };
+
+			Object[] parameterValues = new Object[] {  };
+
+			com.liferay.calendar.model.Calendar returnObj = (com.liferay.calendar.model.Calendar)invokeOnRemoteModel(methodName,
+					parameterTypes, parameterValues);
+
+			return returnObj;
+		}
+		catch (Exception e) {
+			throw new UnsupportedOperationException(e);
+		}
+	}
+
+	@Override
+	public java.util.TimeZone getTimeZone() {
+		try {
+			String methodName = "getTimeZone";
+
+			Class<?>[] parameterTypes = new Class<?>[] {  };
+
+			Object[] parameterValues = new Object[] {  };
+
+			java.util.TimeZone returnObj = (java.util.TimeZone)invokeOnRemoteModel(methodName,
 					parameterTypes, parameterValues);
 
 			return returnObj;
