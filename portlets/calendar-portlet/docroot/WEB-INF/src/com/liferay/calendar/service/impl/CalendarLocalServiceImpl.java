@@ -52,8 +52,9 @@ public class CalendarLocalServiceImpl extends CalendarLocalServiceBaseImpl {
 	public Calendar addCalendar(
 			long userId, long groupId, long calendarResourceId,
 			Map<Locale, String> nameMap, Map<Locale, String> descriptionMap,
-			int color, boolean defaultCalendar, boolean enableComments,
-			boolean enableRatings, ServiceContext serviceContext)
+			String timeZoneId, int color, boolean defaultCalendar,
+			boolean enableComments, boolean enableRatings,
+			ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
 		// Calendar
@@ -82,6 +83,7 @@ public class CalendarLocalServiceImpl extends CalendarLocalServiceBaseImpl {
 		calendar.setCalendarResourceId(calendarResourceId);
 		calendar.setNameMap(nameMap);
 		calendar.setDescriptionMap(descriptionMap);
+		calendar.setTimeZoneId(timeZoneId);
 		calendar.setColor(color);
 		calendar.setDefaultCalendar(defaultCalendar);
 		calendar.setEnableComments(enableComments);
@@ -258,7 +260,7 @@ public class CalendarLocalServiceImpl extends CalendarLocalServiceBaseImpl {
 	@Override
 	public Calendar updateCalendar(
 			long calendarId, Map<Locale, String> nameMap,
-			Map<Locale, String> descriptionMap, int color,
+			Map<Locale, String> descriptionMap, String timeZoneId, int color,
 			boolean defaultCalendar, boolean enableComments,
 			boolean enableRatings, ServiceContext serviceContext)
 		throws PortalException, SystemException {
@@ -276,6 +278,7 @@ public class CalendarLocalServiceImpl extends CalendarLocalServiceBaseImpl {
 		calendar.setModifiedDate(serviceContext.getModifiedDate(null));
 		calendar.setNameMap(nameMap);
 		calendar.setDescriptionMap(descriptionMap);
+		calendar.setTimeZoneId(timeZoneId);
 		calendar.setColor(color);
 		calendar.setDefaultCalendar(defaultCalendar);
 		calendar.setEnableComments(enableComments);
@@ -300,8 +303,8 @@ public class CalendarLocalServiceImpl extends CalendarLocalServiceBaseImpl {
 		Calendar calendar = calendarPersistence.findByPrimaryKey(calendarId);
 
 		return updateCalendar(
-			calendarId, nameMap, descriptionMap, color,
-			calendar.isDefaultCalendar(), calendar.isEnableComments(),
+			calendarId, nameMap, descriptionMap, calendar.getTimeZoneId(),
+			color, calendar.isDefaultCalendar(), calendar.isEnableComments(),
 			calendar.isEnableRatings(), serviceContext);
 	}
 
