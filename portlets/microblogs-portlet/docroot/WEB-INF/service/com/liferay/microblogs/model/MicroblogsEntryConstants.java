@@ -26,6 +26,12 @@ public class MicroblogsEntryConstants {
 
 	public static final int TYPE_REPLY = 1;
 
+	public static final int TYPE_REPLY_TO_REPLY = 4;
+
+	public static final int TYPE_REPLY_TO_TAG = 5;
+
 	public static final int TYPE_REPOST = 2;
+
+	public static final int TYPE_TAG = 3;
 
 }
