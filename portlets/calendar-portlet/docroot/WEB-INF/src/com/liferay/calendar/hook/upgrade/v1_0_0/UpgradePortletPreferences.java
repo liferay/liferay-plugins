@@ -67,8 +67,7 @@ public class UpgradePortletPreferences extends BaseUpgradePortletPreferences {
 			portletPreferences.getValues(name, null));
 
 		ArrayUtil.replace(
-			values,
-			String.valueOf(PortalUtil.getClassNameId(CalEvent.class)),
+			values, String.valueOf(PortalUtil.getClassNameId(CalEvent.class)),
 			String.valueOf(PortalUtil.getClassNameId(CalendarBooking.class)));
 
 		portletPreferences.setValues(name, values);

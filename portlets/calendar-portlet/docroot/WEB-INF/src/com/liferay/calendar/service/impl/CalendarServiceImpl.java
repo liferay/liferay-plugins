@@ -238,6 +238,20 @@ public class CalendarServiceImpl extends CalendarServiceBaseImpl {
 	@Override
 	public Calendar updateCalendar(
 			long calendarId, Map<Locale, String> nameMap,
+			Map<Locale, String> descriptionMap, int color,
+			ServiceContext serviceContext)
+		throws PortalException {
+
+		CalendarPermission.check(
+			getPermissionChecker(), calendarId, ActionKeys.UPDATE);
+
+		return calendarLocalService.updateCalendar(
+			calendarId, nameMap, descriptionMap, color, serviceContext);
+	}
+
+	@Override
+	public Calendar updateCalendar(
+			long calendarId, Map<Locale, String> nameMap,
 			Map<Locale, String> descriptionMap, String timeZoneId, int color,
 			boolean defaultCalendar, boolean enableComments,
 			boolean enableRatings, ServiceContext serviceContext)
@@ -249,20 +263,6 @@ public class CalendarServiceImpl extends CalendarServiceBaseImpl {
 		return calendarLocalService.updateCalendar(
 			calendarId, nameMap, descriptionMap, timeZoneId, color,
 			defaultCalendar, enableComments, enableRatings, serviceContext);
-	}
-
-	@Override
-	public Calendar updateCalendar(
-			long calendarId, Map<Locale, String> nameMap,
-			Map<Locale, String> descriptionMap, int color,
-			ServiceContext serviceContext)
-		throws PortalException {
-
-		CalendarPermission.check(
-			getPermissionChecker(), calendarId, ActionKeys.UPDATE);
-
-		return calendarLocalService.updateCalendar(
-			calendarId, nameMap, descriptionMap, color, serviceContext);
 	}
 
 	@Override

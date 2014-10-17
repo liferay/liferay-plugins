@@ -244,6 +244,21 @@ public class CalendarLocalServiceImpl extends CalendarLocalServiceBaseImpl {
 	@Override
 	public Calendar updateCalendar(
 			long calendarId, Map<Locale, String> nameMap,
+			Map<Locale, String> descriptionMap, int color,
+			ServiceContext serviceContext)
+		throws PortalException {
+
+		Calendar calendar = calendarPersistence.findByPrimaryKey(calendarId);
+
+		return updateCalendar(
+			calendarId, nameMap, descriptionMap, calendar.getTimeZoneId(),
+			color, calendar.isDefaultCalendar(), calendar.isEnableComments(),
+			calendar.isEnableRatings(), serviceContext);
+	}
+
+	@Override
+	public Calendar updateCalendar(
+			long calendarId, Map<Locale, String> nameMap,
 			Map<Locale, String> descriptionMap, String timeZoneId, int color,
 			boolean defaultCalendar, boolean enableComments,
 			boolean enableRatings, ServiceContext serviceContext)
@@ -275,21 +290,6 @@ public class CalendarLocalServiceImpl extends CalendarLocalServiceBaseImpl {
 		updateDefaultCalendar(calendar);
 
 		return calendar;
-	}
-
-	@Override
-	public Calendar updateCalendar(
-			long calendarId, Map<Locale, String> nameMap,
-			Map<Locale, String> descriptionMap, int color,
-			ServiceContext serviceContext)
-		throws PortalException {
-
-		Calendar calendar = calendarPersistence.findByPrimaryKey(calendarId);
-
-		return updateCalendar(
-			calendarId, nameMap, descriptionMap, calendar.getTimeZoneId(),
-			color, calendar.isDefaultCalendar(), calendar.isEnableComments(),
-			calendar.isEnableRatings(), serviceContext);
 	}
 
 	@Override
