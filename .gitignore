@@ -32,6 +32,7 @@ _sass_cache_*.css
 /dist
 
 /hooks/*/test/integration/arquillian.xml
+
 /portlets/*/test/integration/arquillian.xml
 
 /themes/*/docroot/css
