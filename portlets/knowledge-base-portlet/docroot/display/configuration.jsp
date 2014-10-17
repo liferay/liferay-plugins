@@ -132,8 +132,6 @@ long kbFolderClassNameId = PortalUtil.getClassNameId(KBFolderConstants.getClassN
 				<portlet:param name="parentResourcePrimKey" value="<%= String.valueOf(KBFolderConstants.DEFAULT_PARENT_FOLDER_ID) %>" />
 			</liferay-portlet:renderURL>
 
-			var A = AUI();
-
 			A.one('#<portlet:namespace />selectKBObjectButton').on(
 				'click',
 				function(event) {
@@ -141,6 +139,7 @@ long kbFolderClassNameId = PortalUtil.getClassNameId(KBFolderConstants.getClassN
 						{
 							dialog: {
 								constrain: true,
+								destroyOnHide: true,
 								modal: true
 							},
 							id: '<portlet:namespace />selectConfigurationKBObject',
