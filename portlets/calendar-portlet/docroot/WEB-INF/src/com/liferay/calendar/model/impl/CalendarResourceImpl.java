@@ -17,12 +17,16 @@ package com.liferay.calendar.model.impl;
 import com.liferay.calendar.model.Calendar;
 import com.liferay.calendar.model.CalendarResource;
 import com.liferay.calendar.service.CalendarLocalServiceUtil;
+import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.lar.StagedModelType;
+import com.liferay.portal.kernel.util.TimeZoneUtil;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.User;
+import com.liferay.portal.service.UserServiceUtil;
 import com.liferay.portal.util.PortalUtil;
 
 import java.util.List;
+import java.util.TimeZone;
 
 /**
  * @author Eduardo Lundgren
@@ -67,6 +71,24 @@ public class CalendarResourceImpl extends CalendarResourceBaseImpl {
 	public StagedModelType getStagedModelType() {
 		return new StagedModelType(
 			PortalUtil.getClassNameId(CalendarResource.class.getName()));
+	}
+
+	@Override
+	public TimeZone getTimeZone() throws PortalException {
+		if (isUser()) {
+			User user = UserServiceUtil.getUserById(getClassPK());
+
+			return user.getTimeZone();
+		}
+
+		return TimeZoneUtil.getDefault();
+	}
+
+	@Override
+	public String getTimeZoneId() throws PortalException {
+		TimeZone timeZone = getTimeZone();
+
+		return timeZone.getID();
 	}
 
 	@Override
