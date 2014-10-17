@@ -107,6 +107,51 @@ public class MicroblogsUtil {
 		return jsonArray;
 	}
 
+	public static int getNotificationType(
+			MicroblogsEntry microblogsEntry, long userId)
+		throws PortalException, SystemException {
+
+		long parentMicroblogsEntryId =
+			MicroblogsUtil.getParentMicroblogsEntryId(microblogsEntry);
+
+		if (MicroblogsUtil.isTaggedUser(
+				microblogsEntry.getMicroblogsEntryId(), false,
+				serviceContext.getUserId())) {
+
+			title = serviceContext.translate(
+				"x-tagged-you-in-a-post", userFullName);
+		}
+		else if (microblogsEntry.getType() ==
+					MicroblogsEntryConstants.TYPE_REPLY) {
+
+			if (MicroblogsUtil.getParentMicroblogsUserId(microblogsEntry) ==
+					serviceContext.getUserId()) {
+
+				title = serviceContext.translate(
+					"x-commented-on-your-post", userFullName);
+			}
+			else if (MicroblogsUtil.hasReplied(
+						parentMicroblogsEntryId, serviceContext.getUserId())) {
+
+				User receiverUser = UserLocalServiceUtil.fetchUser(
+					microblogsEntry.getReceiverUserId());
+
+				if (receiverUser != null) {
+					title = serviceContext.translate(
+						"x-also-commented-on-x's-post", userFullName,
+						receiverUser.getFullName());
+				}
+			}
+			else if (MicroblogsUtil.isTaggedUser(
+						parentMicroblogsEntryId, true,
+						serviceContext.getUserId())) {
+
+				title = serviceContext.translate(
+					"x-commented-on-a-post-you-are-tagged-in", userFullName);
+			}
+		}
+	}
+
 	public static long getParentMicroblogsEntryId(
 		MicroblogsEntry microblogsEntry) {
 
