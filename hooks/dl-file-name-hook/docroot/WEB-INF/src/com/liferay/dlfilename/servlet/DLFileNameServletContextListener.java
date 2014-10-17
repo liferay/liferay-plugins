@@ -17,6 +17,7 @@ package com.liferay.dlfilename.servlet;
 import com.liferay.dlfilename.hook.util.DLFileNameDLImpl;
 import com.liferay.portal.kernel.util.BasePortalLifecycle;
 import com.liferay.portal.kernel.util.PortalClassLoaderUtil;
+import com.liferay.portal.kernel.util.ReflectionUtil;
 import com.liferay.portlet.documentlibrary.util.DL;
 import com.liferay.portlet.documentlibrary.util.DLUtil;
 
@@ -56,9 +57,7 @@ public class DLFileNameServletContextListener
 
 		Class<?> clazz = classLoader.loadClass(DLUtil.class.getName());
 
-		Field dlField = clazz.getDeclaredField("_dl");
-
-		dlField.setAccessible(true);
+		Field dlField = ReflectionUtil.getDeclaredField(clazz, "_dl");
 
 		DL dl = (DL)dlField.get(null);
 
