@@ -5,8 +5,8 @@
 	xmlns:m2="http://ant.apache.org/ivy/maven"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:noNamespaceSchemaLocation="http://ant.apache.org/ivy/schemas/ivy.xsd"
-	>
-	<info module="@portlet.name@-portlet" organisation="com.liferay">
+>
+	<info module="@portlet.name@-hook" organisation="com.liferay">
 		<extends extendType="configurations,description,info" location="${sdk.dir}/ivy.xml" module="com.liferay.sdk" organisation="com.liferay" revision="latest.integration" />
 	</info>
 
