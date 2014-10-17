@@ -254,14 +254,14 @@ String eventName = PortalUtil.getPortletNamespace(PortletKeys.PORTLET_CONFIGURAT
 <aui:script use="aui-base">
 	var Util = Liferay.Util;
 
-	A.one('div.kb-select-article-search-containers').delegate(
+	A.one('.kb-select-article-search-containers').delegate(
 		'click',
 		function(event) {
 			var result = Util.getAttributes(event.currentTarget, 'data-');
 
 			Util.getOpener().Liferay.fire('<%= HtmlUtil.escapeJS(eventName) %>', result);
 
-			Util.getWindow().destroy();
+			Util.getWindow().hide();
 		},
 		'.selector-button'
 	);

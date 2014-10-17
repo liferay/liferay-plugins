@@ -265,7 +265,7 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 
 			Util.getOpener().Liferay.fire('<portlet:namespace />selectKBObject', result);
 
-			Util.getWindow().destroy();
+			Util.getWindow().hide();
 		},
 		'.selector-button'
 	);

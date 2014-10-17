@@ -69,8 +69,6 @@ else {
 		<portlet:param name="status" value="<%= String.valueOf(status) %>" />
 	</liferay-portlet:renderURL>
 
-	var A = AUI();
-
 	A.one('#<portlet:namespace />selectKBObjectLink').on(
 		'click',
 		function(event) {
@@ -78,6 +76,7 @@ else {
 				{
 					dialog: {
 						constrain: true,
+						destroyOnHide: true,
 						modal: true
 					},
 					id: '<portlet:namespace />selectKBObject',
