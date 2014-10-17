@@ -26,6 +26,7 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.notifications.UserNotificationManagerUtil;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.portlet.LiferayWindowState;
 import com.liferay.portal.kernel.util.HtmlUtil;
@@ -34,6 +35,7 @@ import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.Subscription;
 import com.liferay.portal.model.User;
+import com.liferay.portal.model.UserNotificationDeliveryConstants;
 import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.SubscriptionLocalServiceUtil;
@@ -112,7 +114,11 @@ public class MicroblogsUtil {
 		throws PortalException {
 
 		if (isTaggedUser(
-				microblogsEntry.getMicroblogsEntryId(), false, userId)) {
+				microblogsEntry.getMicroblogsEntryId(), false, userId) &&
+			UserNotificationManagerUtil.isDeliver(
+				userId, PortletKeys.MICROBLOGS, 0,
+				MicroblogsEntryConstants.TYPE_TAG,
+				UserNotificationDeliveryConstants.TYPE_WEBSITE)) {
 
 			return MicroblogsEntryConstants.TYPE_TAG;
 		}
@@ -122,14 +128,28 @@ public class MicroblogsUtil {
 			long parentMicroblogsEntryId = getParentMicroblogsEntryId(
 				microblogsEntry);
 
-			if ((getParentMicroblogsUserId(microblogsEntry) == userId)) {
+			if ((getParentMicroblogsUserId(microblogsEntry) == userId) &&
+				UserNotificationManagerUtil.isDeliver(
+						userId, PortletKeys.MICROBLOGS, 0,
+						MicroblogsEntryConstants.TYPE_REPLY,
+						UserNotificationDeliveryConstants.TYPE_WEBSITE)) {
+
 				return MicroblogsEntryConstants.TYPE_REPLY;
 			}
-			else if (hasReplied(parentMicroblogsEntryId, userId)) {
+			else if (hasReplied(parentMicroblogsEntryId, userId) &&
+					 UserNotificationManagerUtil.isDeliver(
+						userId, PortletKeys.MICROBLOGS, 0,
+						MicroblogsEntryConstants.TYPE_REPLY_TO_REPLY,
+						UserNotificationDeliveryConstants.TYPE_WEBSITE)) {
+
 				return MicroblogsEntryConstants.TYPE_REPLY_TO_REPLY;
 			}
 			else if (MicroblogsUtil.isTaggedUser(
-						parentMicroblogsEntryId, true, userId)) {
+						parentMicroblogsEntryId, true, userId) &&
+					 UserNotificationManagerUtil.isDeliver(
+						userId, PortletKeys.MICROBLOGS, 0,
+						MicroblogsEntryConstants.TYPE_REPLY_TO_TAG,
+						UserNotificationDeliveryConstants.TYPE_WEBSITE)) {
 
 				return MicroblogsEntryConstants.TYPE_REPLY_TO_TAG;
 			}
