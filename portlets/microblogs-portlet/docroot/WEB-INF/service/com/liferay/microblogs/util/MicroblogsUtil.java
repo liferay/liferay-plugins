@@ -35,7 +35,6 @@ import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.Subscription;
 import com.liferay.portal.model.User;
-import com.liferay.portal.model.UserNotificationDeliveryConstants;
 import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.SubscriptionLocalServiceUtil;
@@ -110,15 +109,14 @@ public class MicroblogsUtil {
 	}
 
 	public static int getNotificationType(
-			MicroblogsEntry microblogsEntry, long userId)
+			MicroblogsEntry microblogsEntry, long userId, int deliveryType)
 		throws PortalException {
 
 		if (isTaggedUser(
 				microblogsEntry.getMicroblogsEntryId(), false, userId) &&
 			UserNotificationManagerUtil.isDeliver(
 				userId, PortletKeys.MICROBLOGS, 0,
-				MicroblogsEntryConstants.TYPE_TAG,
-				UserNotificationDeliveryConstants.TYPE_WEBSITE)) {
+				MicroblogsEntryConstants.TYPE_TAG, deliveryType)) {
 
 			return MicroblogsEntryConstants.TYPE_TAG;
 		}
@@ -131,8 +129,7 @@ public class MicroblogsUtil {
 			if ((getParentMicroblogsUserId(microblogsEntry) == userId) &&
 				UserNotificationManagerUtil.isDeliver(
 						userId, PortletKeys.MICROBLOGS, 0,
-						MicroblogsEntryConstants.TYPE_REPLY,
-						UserNotificationDeliveryConstants.TYPE_WEBSITE)) {
+						MicroblogsEntryConstants.TYPE_REPLY, deliveryType)) {
 
 				return MicroblogsEntryConstants.TYPE_REPLY;
 			}
@@ -140,7 +137,7 @@ public class MicroblogsUtil {
 					 UserNotificationManagerUtil.isDeliver(
 						userId, PortletKeys.MICROBLOGS, 0,
 						MicroblogsEntryConstants.TYPE_REPLY_TO_REPLY,
-						UserNotificationDeliveryConstants.TYPE_WEBSITE)) {
+						deliveryType)) {
 
 				return MicroblogsEntryConstants.TYPE_REPLY_TO_REPLY;
 			}
@@ -149,7 +146,7 @@ public class MicroblogsUtil {
 					 UserNotificationManagerUtil.isDeliver(
 						userId, PortletKeys.MICROBLOGS, 0,
 						MicroblogsEntryConstants.TYPE_REPLY_TO_TAG,
-						UserNotificationDeliveryConstants.TYPE_WEBSITE)) {
+						deliveryType)) {
 
 				return MicroblogsEntryConstants.TYPE_REPLY_TO_TAG;
 			}

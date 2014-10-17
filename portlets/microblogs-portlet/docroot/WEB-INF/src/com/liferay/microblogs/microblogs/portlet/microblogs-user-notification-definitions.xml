@@ -22,6 +22,12 @@
 		<notification-type>${com.liferay.microblogs.model.MicroblogsEntryConstants.TYPE_TAG}</notification-type>
 		<description>receive-a-notification-when-someone-tags-you-in-a-microblog</description>
 		<delivery-type>
+			<name>mobile</name>
+			<type>${com.liferay.portal.model.UserNotificationDeliveryConstants.TYPE_PUSH}</type>
+			<default>true</default>
+			<modifiable>true</modifiable>
+		</delivery-type>
+		<delivery-type>
 			<name>website</name>
 			<type>${com.liferay.portal.model.UserNotificationDeliveryConstants.TYPE_WEBSITE}</type>
 			<default>true</default>
@@ -32,6 +38,12 @@
 		<notification-type>${com.liferay.microblogs.model.MicroblogsEntryConstants.TYPE_REPLY_TO_REPLY}</notification-type>
 		<description>receive-a-notification-when-someone-comments-on-a-microblog-you-commented-on</description>
 		<delivery-type>
+			<name>mobile</name>
+			<type>${com.liferay.portal.model.UserNotificationDeliveryConstants.TYPE_PUSH}</type>
+			<default>true</default>
+			<modifiable>true</modifiable>
+		</delivery-type>
+		<delivery-type>
 			<name>website</name>
 			<type>${com.liferay.portal.model.UserNotificationDeliveryConstants.TYPE_WEBSITE}</type>
 			<default>true</default>
@@ -41,6 +53,12 @@
 	<definition>
 		<notification-type>${com.liferay.microblogs.model.MicroblogsEntryConstants.TYPE_REPLY_TO_TAG}</notification-type>
 		<description>receive-a-notification-when-someone-comments-on-a-microblog-you-are-tagged-in</description>
+		<delivery-type>
+			<name>mobile</name>
+			<type>${com.liferay.portal.model.UserNotificationDeliveryConstants.TYPE_PUSH}</type>
+			<default>true</default>
+			<modifiable>true</modifiable>
+		</delivery-type>
 		<delivery-type>
 			<name>website</name>
 			<type>${com.liferay.portal.model.UserNotificationDeliveryConstants.TYPE_WEBSITE}</type>
