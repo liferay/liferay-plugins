@@ -86,6 +86,7 @@
 
 				&.open .dropdown-toggle, .dropdown-toggle:hover {
 					background-color: rgba(0, 0, 0, 0.1);
+					visibility: visible;
 				}
 
 				.dropdown-menu {
