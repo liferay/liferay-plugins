@@ -73,9 +73,9 @@ String viewCalendarBookingURL = ParamUtil.getString(request, "viewCalendarBookin
 				isoTime: <%= isoTimeFormat %>,
 				readOnly: <%= readOnly %>,
 				strings: {
+					close: '<liferay-ui:message key="close" />',
 					show: '<liferay-ui:message key="show" />',
 					more: String('<liferay-ui:message key="more" />').toLowerCase()			
-
 				}
 			}
 		);
