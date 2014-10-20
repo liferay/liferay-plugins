@@ -38,7 +38,7 @@
 
 		<aui:input name="description" />
 
-		<aui:input label="time-zone" name="timeZoneId" type="timeZone" />
+		<aui:input label="time-zone" name="timeZoneId" type="timeZone" value="<%= (calendar != null) ? calendar.getTimeZoneId() : calendarResource.getTimeZoneId() %>" />
 
 		<aui:input name="color" type="hidden" />
 
