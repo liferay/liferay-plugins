@@ -1759,6 +1759,8 @@ AUI.add(
 						);
 
 						instance.popover.headerNode.toggleClass('hide', !templateData.permissions.VIEW_BOOKING_DETAILS);
+
+						instance._syncInvitees();
 					},
 
 					_afterPopoverVisibleChange: function(event) {
@@ -1805,10 +1807,6 @@ AUI.add(
 
 						if (eventRecorderCalendar) {
 							eventRecorderCalendar.val(calendarId.toString());
-						}
-
-						if (event.newVal) {
-							instance._syncInvitees();
 						}
 					},
 
