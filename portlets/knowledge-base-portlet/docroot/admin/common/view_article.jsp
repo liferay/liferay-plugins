@@ -43,7 +43,7 @@ if (enableKBArticleViewCountIncrement && !kbArticle.isDraft()) {
 			</div>
 
 			<h1 class="kb-title">
-				<%= kbArticle.getTitle() %>
+				<%= HtmlUtil.escape(kbArticle.getTitle()) %>
 			</h1>
 
 			<c:if test="<%= !kbArticle.isApproved() %>">
