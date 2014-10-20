@@ -722,6 +722,28 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 		}
 	}
 
+	protected SyncDLObject checkModifiedTime(
+			SyncDLObject syncDLObject, long typePk)
+		throws PortalException {
+	
+		DynamicQuery dynamicQuery = DLSyncEventLocalServiceUtil.dynamicQuery();
+	
+		dynamicQuery.add(RestrictionsFactoryUtil.eq("typePK", typePk));
+	
+		List<DLSyncEvent> dlSyncEvents =
+			DLSyncEventLocalServiceUtil.dynamicQuery(dynamicQuery);
+	
+		if (dlSyncEvents.isEmpty()) {
+			return syncDLObject;
+		}
+	
+		DLSyncEvent dlSyncEvent = dlSyncEvents.get(0);
+	
+		syncDLObject.setModifiedTime(dlSyncEvent.getModifiedTime());
+	
+		return syncDLObject;
+	}
+
 	protected Map<String, String> getPortletPreferencesMap()
 		throws PortalException {
 
@@ -780,7 +802,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 
 		SyncDLObject syncDLObject = SyncUtil.toSyncDLObject(fileEntry, event);
 
-		return toSyncDLObject(syncDLObject, fileEntry.getFileEntryId());
+		return checkModifiedTime(syncDLObject, fileEntry.getFileEntryId());
 	}
 
 	protected SyncDLObject toSyncDLObject(Folder folder, String event)
@@ -788,29 +810,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 
 		SyncDLObject syncDLObject = SyncUtil.toSyncDLObject(folder, event);
 
-		return toSyncDLObject(syncDLObject, folder.getFolderId());
-	}
-
-	protected SyncDLObject toSyncDLObject(
-			SyncDLObject syncDLObject, long typePk)
-		throws PortalException {
-
-		DynamicQuery dynamicQuery = DLSyncEventLocalServiceUtil.dynamicQuery();
-
-		dynamicQuery.add(RestrictionsFactoryUtil.eq("typePK", typePk));
-
-		List<DLSyncEvent> dlSyncEvents =
-			DLSyncEventLocalServiceUtil.dynamicQuery(dynamicQuery);
-
-		if (dlSyncEvents.isEmpty()) {
-			return syncDLObject;
-		}
-
-		DLSyncEvent dlSyncEvent = dlSyncEvents.get(0);
-
-		syncDLObject.setModifiedTime(dlSyncEvent.getModifiedTime());
-
-		return syncDLObject;
+		return checkModifiedTime(syncDLObject, folder.getFolderId());
 	}
 
 	protected void validateChecksum(File file, String checksum)
