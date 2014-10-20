@@ -159,7 +159,7 @@ else if (kbArticle != null) {
 				}
 				%>
 
-				<a class="<%= kbArticleClass %>" href="<%= viewURL %>"><%= curKBArticle.getTitle() %></a>
+				<a class="<%= kbArticleClass %>" href="<%= viewURL %>"><%= HtmlUtil.escape(curKBArticle.getTitle()) %></a>
 
 				<c:if test="<%= kbArticleExpanded %>">
 
@@ -205,7 +205,7 @@ else if (kbArticle != null) {
 								}
 								%>
 
-								<a class="<%= childKBArticleClass %>" href="<%= viewChildURL %>"><%= childKBArticle.getTitle() %></a>
+								<a class="<%= childKBArticleClass %>" href="<%= viewChildURL %>"><%= HtmlUtil.escape(childKBArticle.getTitle()) %></a>
 
 								<c:if test="<%= childKBArticleExpanded %>">
 
@@ -233,7 +233,7 @@ else if (kbArticle != null) {
 
 										<ul>
 											<li>
-												<a class="<%= descendantKBArticle.getResourcePrimKey() == kbArticle.getResourcePrimKey() ? "kbarticle-selected" : StringPool.BLANK %>" href="<%= viewCurKBArticleURL %>"><%= descendantKBArticle.getTitle() %></a>
+												<a class="<%= descendantKBArticle.getResourcePrimKey() == kbArticle.getResourcePrimKey() ? "kbarticle-selected" : StringPool.BLANK %>" href="<%= viewCurKBArticleURL %>"><%= HtmlUtil.escape(descendantKBArticle.getTitle()) %></a>
 											</li>
 										</ul>
 
