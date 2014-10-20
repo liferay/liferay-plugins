@@ -23,6 +23,10 @@
 long microblogsEntryId = ParamUtil.getLong(request, "microblogsEntryId");
 
 MicroblogsEntry microblogsEntry = MicroblogsEntryLocalServiceUtil.fetchMicroblogsEntry(microblogsEntryId);
+
+Format dateFormat = FastDateFormatFactoryUtil.getDate(DateFormat.FULL, themeDisplay.getLocale(), themeDisplay.getTimeZone());
+
+Date modifiedDate = microblogsEntry.getModifiedDate();
 %>
 
 <div class="repost-header">
@@ -51,7 +55,7 @@ MicroblogsEntry microblogsEntry = MicroblogsEntryLocalServiceUtil.fetchMicroblog
 
 				<div class="activity-header">
 					<div class="activity-time">
-						<%= Time.getRelativeTimeDescription(microblogsEntry.getModifiedDate(), themeDisplay.getLocale(), themeDisplay.getTimeZone()) %>
+						<%= Time.getRelativeTimeDescription(modifiedDate.getTime(), themeDisplay.getLocale(), themeDisplay.getTimeZone(), dateFormat) %>
 					</div>
 
 					<div class="activity-user-name">

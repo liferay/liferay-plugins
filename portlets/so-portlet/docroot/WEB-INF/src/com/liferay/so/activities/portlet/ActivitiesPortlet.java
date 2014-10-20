@@ -26,6 +26,7 @@ import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.util.Constants;
+import com.liferay.portal.kernel.util.FastDateFormatFactoryUtil;
 import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
@@ -51,7 +52,8 @@ import com.liferay.so.activities.util.ActivitiesUtil;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet;
 
 import java.io.IOException;
-
+import java.text.DateFormat;
+import java.text.Format;
 import java.util.Date;
 import java.util.List;
 
@@ -394,11 +396,17 @@ public class ActivitiesPortlet extends MVCPortlet {
 
 		jsonObject.put(
 			"mbMessageIdOrMicroblogsEntryId", mbMessageIdOrMicroblogsEntryId);
+
+		Format dateFormat =
+			FastDateFormatFactoryUtil.getDate(
+				DateFormat.FULL, themeDisplay.getLocale(),
+				themeDisplay.getTimeZone());
+
 		jsonObject.put(
 			"modifiedDate",
 			Time.getRelativeTimeDescription(
-				modifiedDate, themeDisplay.getLocale(),
-				themeDisplay.getTimeZone()));
+				modifiedDate.getTime(), themeDisplay.getLocale(),
+				themeDisplay.getTimeZone(), dateFormat));
 
 		User user = UserLocalServiceUtil.fetchUser(userId);
 
