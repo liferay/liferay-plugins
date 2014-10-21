@@ -33,4 +33,20 @@
 			<finder-column name="platform" />
 		</finder>
 	</entity>
+	<entity name="PushNotificationsEntry" local-service="true" remote-service="true">
+
+		<!-- PK fields -->
+
+		<column name="pushNotificationsEntryId" type="long" primary="true" />
+
+		<!-- Audit fields -->
+
+		<column name="userId" type="long" />
+		<column name="createDate" type="Date" />
+
+		<!-- Other fields -->
+
+		<column name="parentEntryId" type="long" />
+		<column name="payload" type="String" />
+	</entity>
 </service-builder>
