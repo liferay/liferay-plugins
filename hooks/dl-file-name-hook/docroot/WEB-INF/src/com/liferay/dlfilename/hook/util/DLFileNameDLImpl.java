@@ -264,12 +264,12 @@ public class DLFileNameDLImpl implements DL {
 
 		DLFileNameThreadLocal.setEnabled(true);
 
-		String imagePreviewURL = _dl.getImagePreviewURL(
-			fileEntry, fileVersion, themeDisplay);
-
-		DLFileNameThreadLocal.setEnabled(dlFileNameEnabled);
-
-		return imagePreviewURL;
+		try {
+			return _dl.getImagePreviewURL(fileEntry, fileVersion, themeDisplay);
+		}
+		finally {
+			DLFileNameThreadLocal.setEnabled(dlFileNameEnabled);
+		}
 	}
 
 	@Override
@@ -281,12 +281,12 @@ public class DLFileNameDLImpl implements DL {
 
 		DLFileNameThreadLocal.setEnabled(true);
 
-		String imagePreviewURL = _dl.getImagePreviewURL(
-			fileEntry, themeDisplay);
-
-		DLFileNameThreadLocal.setEnabled(dlFileNameEnabled);
-
-		return imagePreviewURL;
+		try {
+			return _dl.getImagePreviewURL(fileEntry, themeDisplay);
+		}
+		finally {
+			DLFileNameThreadLocal.setEnabled(dlFileNameEnabled);
+		}
 	}
 
 	@Override
@@ -305,12 +305,13 @@ public class DLFileNameDLImpl implements DL {
 
 		DLFileNameThreadLocal.setEnabled(true);
 
-		String previewURL = _dl.getPreviewURL(
-			fileEntry, fileVersion, themeDisplay, queryString);
-
-		DLFileNameThreadLocal.setEnabled(dlFileNameEnabled);
-
-		return previewURL;
+		try {
+			return _dl.getPreviewURL(
+				fileEntry, fileVersion, themeDisplay, queryString);
+		}
+		finally {
+			DLFileNameThreadLocal.setEnabled(dlFileNameEnabled);
+		}
 	}
 
 	@Override
@@ -322,12 +323,13 @@ public class DLFileNameDLImpl implements DL {
 
 		DLFileNameThreadLocal.setEnabled(true);
 
-		String previewURL = _dl.getPreviewURL(
-			fileEntry, fileVersion, themeDisplay, queryString, appendToken);
-
-		DLFileNameThreadLocal.setEnabled(dlFileNameEnabled);
-
-		return previewURL;
+		try {
+			return _dl.getPreviewURL(
+				fileEntry, fileVersion, themeDisplay, queryString, appendToken);
+		}
+		finally {
+			DLFileNameThreadLocal.setEnabled(dlFileNameEnabled);
+		}
 	}
 
 	@Override
@@ -339,13 +341,14 @@ public class DLFileNameDLImpl implements DL {
 
 		DLFileNameThreadLocal.setEnabled(true);
 
-		String previewURL = _dl.getPreviewURL(
-			fileEntry, fileVersion, themeDisplay, queryString, appendVersion,
-			absoluteURL);
-
-		DLFileNameThreadLocal.setEnabled(dlFileNameEnabled);
-
-		return previewURL;
+		try {
+			return _dl.getPreviewURL(
+				fileEntry, fileVersion, themeDisplay, queryString,
+				appendVersion, absoluteURL);
+		}
+		finally {
+			DLFileNameThreadLocal.setEnabled(dlFileNameEnabled);
+		}
 	}
 
 	@Override
@@ -375,12 +378,12 @@ public class DLFileNameDLImpl implements DL {
 
 		DLFileNameThreadLocal.setEnabled(true);
 
-		String thumbnailSrc = _dl.getThumbnailSrc(
-			fileEntry, dlFileShortcut, themeDisplay);
-
-		DLFileNameThreadLocal.setEnabled(dlFileNameEnabled);
-
-		return thumbnailSrc;
+		try {
+			return _dl.getThumbnailSrc(fileEntry, dlFileShortcut, themeDisplay);
+		}
+		finally {
+			DLFileNameThreadLocal.setEnabled(dlFileNameEnabled);
+		}
 	}
 
 	@Override
@@ -393,12 +396,13 @@ public class DLFileNameDLImpl implements DL {
 
 		DLFileNameThreadLocal.setEnabled(true);
 
-		String thumbnailSrc = _dl.getThumbnailSrc(
-			fileEntry, fileVersion, dlFileShortcut, themeDisplay);
-
-		DLFileNameThreadLocal.setEnabled(dlFileNameEnabled);
-
-		return thumbnailSrc;
+		try {
+			return _dl.getThumbnailSrc(
+				fileEntry, fileVersion, dlFileShortcut, themeDisplay);
+		}
+		finally {
+			DLFileNameThreadLocal.setEnabled(dlFileNameEnabled);
+		}
 	}
 
 	@Override
