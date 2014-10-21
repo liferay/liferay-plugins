@@ -22,6 +22,8 @@ import com.liferay.portal.kernel.messaging.Message;
 import java.util.List;
 
 /**
+ * Verifies client presence of all WebRTC managers, at a regular interval.
+ *
  * @author Philippe Proulx
  */
 public class WebRTCPresenceMessageListener extends BaseMessageListener {

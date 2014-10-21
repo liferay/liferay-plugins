@@ -18,6 +18,8 @@ import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
+ * Creates and stores a list of WebRTC managers.
+ *
  * @author Brian Wing Shun Chan
  * @author Philippe Proulx
  */

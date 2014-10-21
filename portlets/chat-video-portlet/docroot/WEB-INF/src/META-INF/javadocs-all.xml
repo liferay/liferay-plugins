@@ -4,6 +4,7 @@
 	<javadoc>
 		<name>ConnectionStateWebRTCMail</name>
 		<type>com.liferay.chat.video.ConnectionStateWebRTCMail</type>
+		<comment><![CDATA[Represents connection state WebRTC mail, providing a destination WebRTC client the state of its connection with a source WebRTC client.]]></comment>
 		<author><![CDATA[Philippe Proulx]]></author>
 		<method>
 			<name>ConnectionStateWebRTCMail</name>
@@ -39,6 +40,7 @@
 	<javadoc>
 		<name>DescriptionWebRTCSDPMail</name>
 		<type>com.liferay.chat.video.DescriptionWebRTCSDPMail</type>
+		<comment><![CDATA[Represents SDP description WebRTC mail, providing a destination WebRTC client an SDP description (either a call or an answer) from a source WebRTC client.]]></comment>
 		<author><![CDATA[Philippe Proulx]]></author>
 		<method>
 			<name>DescriptionWebRTCSDPMail</name>
@@ -74,6 +76,7 @@
 	<javadoc>
 		<name>ErrorWebRTCMail</name>
 		<type>com.liferay.chat.video.ErrorWebRTCMail</type>
+		<comment><![CDATA[Represents error WebRTC mail, providing a destination WebRTC client a single error from a source WebRTC client.]]></comment>
 		<author><![CDATA[Philippe Proulx]]></author>
 		<method>
 			<name>ErrorWebRTCMail</name>
@@ -109,6 +112,7 @@
 	<javadoc>
 		<name>ICECandidateWebRTCMail</name>
 		<type>com.liferay.chat.video.ICECandidateWebRTCMail</type>
+		<comment><![CDATA[Represents ICE candidate WebRTC mail, providing a destination WebRTC client a single ICE candidate from a source WebRTC client.]]></comment>
 		<author><![CDATA[Philippe Proulx]]></author>
 		<method>
 			<name>ICECandidateWebRTCMail</name>
@@ -144,6 +148,7 @@
 	<javadoc>
 		<name>WebRTCClient</name>
 		<type>com.liferay.chat.video.WebRTCClient</type>
+		<comment><![CDATA[Represents a <a href="http://en.wikipedia.org/wiki/WebRTC">Web Real-Time Communication</a> (WebRTC) client. The clients are not thread-safe.]]></comment>
 		<author><![CDATA[Philippe Proulx]]></author>
 		<method>
 			<name>WebRTCClient</name>
@@ -270,6 +275,7 @@
 	<javadoc>
 		<name>WebRTCConnection</name>
 		<type>com.liferay.chat.video.WebRTCConnection</type>
+		<comment><![CDATA[Represents a <a href="http://en.wikipedia.org/wiki/WebRTC">Web Real-Time Communication</a> (WebRTC) connection between two clients. It is owned by both connected clients, but still holds a reference to the original (source) caller. The connections are thread-safe.]]></comment>
 		<author><![CDATA[Philippe Proulx]]></author>
 		<method>
 			<name>WebRTCConnection</name>
@@ -318,6 +324,7 @@
 	<javadoc>
 		<name>WebRTCMail</name>
 		<type>com.liferay.chat.video.WebRTCMail</type>
+		<comment><![CDATA[Represents WebRTC mail, which is sent from a source WebRTC client to a destination WebRTC client.]]></comment>
 		<author><![CDATA[Philippe Proulx]]></author>
 		<method>
 			<name>WebRTCMail</name>
@@ -368,6 +375,7 @@
 	<javadoc>
 		<name>WebRTCMailbox</name>
 		<type>com.liferay.chat.video.WebRTCMailbox</type>
+		<comment><![CDATA[Represents a WebRTC mailbox, which can contain WebRTC mail.]]></comment>
 		<author><![CDATA[Philippe Proulx]]></author>
 		<method>
 			<name>popWebRTCMails</name>
@@ -390,6 +398,7 @@
 	<javadoc>
 		<name>WebRTCManager</name>
 		<type>com.liferay.chat.video.WebRTCManager</type>
+		<comment><![CDATA[Manages <a href="http://en.wikipedia.org/wiki/WebRTC">Web Real-Time Communication</a> (WebRTC) clients by connecting them, checking and updating client connection states, and managing client mail.]]></comment>
 		<author><![CDATA[Philippe Proulx]]></author>
 		<method>
 			<name>answer</name>
@@ -424,9 +433,11 @@
 		</method>
 		<method>
 			<name>checkWebRTCClients</name>
+			<comment><![CDATA[Checks the presence of all registered WebRTC clients. This method should be called by a message listener.]]></comment>
 		</method>
 		<method>
 			<name>checkWebRTCConnectionsStates</name>
+			<comment><![CDATA[Checks the WebRTC client connection states for timeout handling. This method should be called by a message listener.]]></comment>
 		</method>
 		<method>
 			<name>getAvailableWebRTCClientIds</name>
@@ -656,6 +667,7 @@
 	<javadoc>
 		<name>WebRTCManagerFactory</name>
 		<type>com.liferay.chat.video.WebRTCManagerFactory</type>
+		<comment><![CDATA[Creates and stores a list of WebRTC managers.]]></comment>
 		<author><![CDATA[Brian Wing Shun Chan]]></author>
 		<author><![CDATA[Philippe Proulx]]></author>
 		<method>
@@ -677,6 +689,7 @@
 	<javadoc>
 		<name>WebRTCConnectionStateMessageListener</name>
 		<type>com.liferay.chat.video.messaging.WebRTCConnectionStateMessageListener</type>
+		<comment><![CDATA[Verifies the connection states of all WebRTC managers at a regular interval.]]></comment>
 		<author><![CDATA[Philippe Proulx]]></author>
 		<method>
 			<name>doReceive</name>
@@ -695,6 +708,7 @@
 	<javadoc>
 		<name>WebRTCPresenceMessageListener</name>
 		<type>com.liferay.chat.video.messaging.WebRTCPresenceMessageListener</type>
+		<comment><![CDATA[Verifies client presence of all WebRTC managers, at a regular interval.]]></comment>
 		<author><![CDATA[Philippe Proulx]]></author>
 		<method>
 			<name>doReceive</name>
