@@ -732,7 +732,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 
 	protected SyncDLObject checkModifiedTime(
 			SyncDLObject syncDLObject, long typePk)
-		throws PortalException {
+		throws PortalException, SystemException {
 	
 		DynamicQuery dynamicQuery = DLSyncEventLocalServiceUtil.dynamicQuery();
 	
@@ -806,7 +806,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 	}
 
 	protected SyncDLObject toSyncDLObject(FileEntry fileEntry, String event)
-		throws PortalException {
+		throws PortalException, SystemException {
 
 		SyncDLObject syncDLObject = SyncUtil.toSyncDLObject(fileEntry, event);
 
@@ -814,7 +814,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 	}
 
 	protected SyncDLObject toSyncDLObject(Folder folder, String event)
-		throws PortalException {
+		throws PortalException, SystemException {
 
 		SyncDLObject syncDLObject = SyncUtil.toSyncDLObject(folder, event);
 
