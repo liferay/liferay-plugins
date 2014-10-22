@@ -24,10 +24,12 @@ import java.util.Map;
  */
 public class CompositeFacetProcessor<T> implements FacetProcessor<T> {
 
+	@Override
 	public void processFacet(T searchQuery, Facet facet) {
 		Class<?> clazz = facet.getClass();
 
-		FacetProcessor facetProcessor = _facetProcessors.get(clazz.getName());
+		FacetProcessor<T> facetProcessor = _facetProcessors.get(
+			clazz.getName());
 
 		if (facetProcessor == null) {
 			facetProcessor = _defaultFacetProcessor;
@@ -37,19 +39,19 @@ public class CompositeFacetProcessor<T> implements FacetProcessor<T> {
 	}
 
 	public void setDefaultFacetProcessor(
-		FacetProcessor<?> defaultFacetProcessor) {
+		FacetProcessor<T> defaultFacetProcessor) {
 
 		_defaultFacetProcessor = defaultFacetProcessor;
 	}
 
 	public void setFacetProcessors(
-		Map<String, FacetProcessor<?>> facetProcessors) {
+		Map<String, FacetProcessor<T>> facetProcessors) {
 
 		_facetProcessors = facetProcessors;
 	}
 
-	private FacetProcessor _defaultFacetProcessor;
-	private Map<String, FacetProcessor<?>> _facetProcessors =
-		new HashMap<String, FacetProcessor<?>>();
+	private FacetProcessor<T> _defaultFacetProcessor;
+	private Map<String, FacetProcessor<T>> _facetProcessors =
+		new HashMap<String, FacetProcessor<T>>();
 
 }

@@ -30,14 +30,14 @@
 				<tokenizer class="solr.WhitespaceTokenizerFactory" />
 				<filter class="solr.LowerCaseFilterFactory" />
 				<filter class="solr.RemoveDuplicatesTokenFilterFactory" />
-				<filter class="solr.StopFilterFactory" ignoreCase="true" words="stopwords.txt" />
+				<filter class="solr.StopFilterFactory" enablePositionIncrements="true" ignoreCase="true" words="stopwords.txt" />
 				<filter catenateAll="0" catenateNumbers="1" catenateWords="1" class="solr.WordDelimiterFilterFactory" generateNumberParts="1" generateWordParts="1" />
 			</analyzer>
 			<analyzer type="query">
 				<tokenizer class="solr.WhitespaceTokenizerFactory" />
 				<filter class="solr.LowerCaseFilterFactory" />
 				<filter class="solr.RemoveDuplicatesTokenFilterFactory" />
-				<filter class="solr.StopFilterFactory" ignoreCase="true" words="stopwords.txt" />
+				<filter class="solr.StopFilterFactory" enablePositionIncrements="true" ignoreCase="true" words="stopwords.txt" />
 				<filter class="solr.SynonymFilterFactory" expand="true" ignoreCase="true" synonyms="synonyms.txt" />
 				<filter catenateAll="0" catenateNumbers="0" catenateWords="0" class="solr.WordDelimiterFilterFactory" generateNumberParts="1" generateWordParts="1" />
 			</analyzer>

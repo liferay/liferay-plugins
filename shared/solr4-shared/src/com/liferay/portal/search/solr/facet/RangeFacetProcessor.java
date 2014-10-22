@@ -47,8 +47,7 @@ public class RangeFacetProcessor implements FacetProcessor<SolrQuery> {
 			String range = rangeJSONObject.getString("range");
 
 			String facetQuery =
-				facetConfiguration.getFieldName() +
-					StringPool.COLON + range;
+				facetConfiguration.getFieldName() + StringPool.COLON + range;
 
 			solrQuery.addFacetQuery(facetQuery);
 		}

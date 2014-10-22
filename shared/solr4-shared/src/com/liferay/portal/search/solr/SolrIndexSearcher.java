@@ -493,7 +493,10 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 		sb.append(StringPool.COLON);
 		sb.append(searchContext.getCompanyId());
 
-		solrQuery.setQuery(sb.toString());
+		SolrPostProcesor solrPostProcesor = new SolrPostProcesor(
+			sb.toString(), searchContext.getKeywords());
+
+		solrQuery.setQuery(solrPostProcesor.postProcess());
 	}
 
 	protected void updateFacetCollectors(
