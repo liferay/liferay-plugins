@@ -16,7 +16,7 @@ package com.liferay.pushnotifications.service.base;
 
 import aQute.bnd.annotation.ProviderType;
 
-import com.liferay.pushnotifications.service.PushNotificationsDeviceLocalServiceUtil;
+import com.liferay.pushnotifications.service.PushNotificationsEntryLocalServiceUtil;
 
 import java.util.Arrays;
 
@@ -25,26 +25,26 @@ import java.util.Arrays;
  * @generated
  */
 @ProviderType
-public class PushNotificationsDeviceLocalServiceClpInvoker {
-	public PushNotificationsDeviceLocalServiceClpInvoker() {
-		_methodName0 = "addPushNotificationsDevice";
+public class PushNotificationsEntryLocalServiceClpInvoker {
+	public PushNotificationsEntryLocalServiceClpInvoker() {
+		_methodName0 = "addPushNotificationsEntry";
 
 		_methodParameterTypes0 = new String[] {
-				"com.liferay.pushnotifications.model.PushNotificationsDevice"
+				"com.liferay.pushnotifications.model.PushNotificationsEntry"
 			};
 
-		_methodName1 = "createPushNotificationsDevice";
+		_methodName1 = "createPushNotificationsEntry";
 
 		_methodParameterTypes1 = new String[] { "long" };
 
-		_methodName2 = "deletePushNotificationsDevice";
+		_methodName2 = "deletePushNotificationsEntry";
 
 		_methodParameterTypes2 = new String[] { "long" };
 
-		_methodName3 = "deletePushNotificationsDevice";
+		_methodName3 = "deletePushNotificationsEntry";
 
 		_methodParameterTypes3 = new String[] {
-				"com.liferay.pushnotifications.model.PushNotificationsDevice"
+				"com.liferay.pushnotifications.model.PushNotificationsEntry"
 			};
 
 		_methodName4 = "dynamicQuery";
@@ -83,11 +83,11 @@ public class PushNotificationsDeviceLocalServiceClpInvoker {
 				"com.liferay.portal.kernel.dao.orm.Projection"
 			};
 
-		_methodName10 = "fetchPushNotificationsDevice";
+		_methodName10 = "fetchPushNotificationsEntry";
 
 		_methodParameterTypes10 = new String[] { "long" };
 
-		_methodName11 = "getPushNotificationsDevice";
+		_methodName11 = "getPushNotificationsEntry";
 
 		_methodParameterTypes11 = new String[] { "long" };
 
@@ -105,18 +105,18 @@ public class PushNotificationsDeviceLocalServiceClpInvoker {
 
 		_methodParameterTypes15 = new String[] { "java.io.Serializable" };
 
-		_methodName16 = "getPushNotificationsDevices";
+		_methodName16 = "getPushNotificationsEntries";
 
 		_methodParameterTypes16 = new String[] { "int", "int" };
 
-		_methodName17 = "getPushNotificationsDevicesCount";
+		_methodName17 = "getPushNotificationsEntriesCount";
 
 		_methodParameterTypes17 = new String[] {  };
 
-		_methodName18 = "updatePushNotificationsDevice";
+		_methodName18 = "updatePushNotificationsEntry";
 
 		_methodParameterTypes18 = new String[] {
-				"com.liferay.pushnotifications.model.PushNotificationsDevice"
+				"com.liferay.pushnotifications.model.PushNotificationsEntry"
 			};
 
 		_methodName49 = "getBeanIdentifier";
@@ -126,73 +126,50 @@ public class PushNotificationsDeviceLocalServiceClpInvoker {
 		_methodName50 = "setBeanIdentifier";
 
 		_methodParameterTypes50 = new String[] { "java.lang.String" };
-
-		_methodName55 = "addPushNotificationsDevice";
-
-		_methodParameterTypes55 = new String[] {
-				"long", "java.lang.String", "java.lang.String"
-			};
-
-		_methodName56 = "deletePushNotificationsDevice";
-
-		_methodParameterTypes56 = new String[] { "java.lang.String" };
-
-		_methodName57 = "sendPushNotification";
-
-		_methodParameterTypes57 = new String[] {
-				"com.liferay.portal.kernel.json.JSONObject", "int", "int"
-			};
-
-		_methodName58 = "sendPushNotification";
-
-		_methodParameterTypes58 = new String[] {
-				"long", "com.liferay.portal.kernel.json.JSONObject", "int",
-				"int"
-			};
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
 		Object[] arguments) throws Throwable {
 		if (_methodName0.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes0, parameterTypes)) {
-			return PushNotificationsDeviceLocalServiceUtil.addPushNotificationsDevice((com.liferay.pushnotifications.model.PushNotificationsDevice)arguments[0]);
+			return PushNotificationsEntryLocalServiceUtil.addPushNotificationsEntry((com.liferay.pushnotifications.model.PushNotificationsEntry)arguments[0]);
 		}
 
 		if (_methodName1.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes1, parameterTypes)) {
-			return PushNotificationsDeviceLocalServiceUtil.createPushNotificationsDevice(((Long)arguments[0]).longValue());
+			return PushNotificationsEntryLocalServiceUtil.createPushNotificationsEntry(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName2.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes2, parameterTypes)) {
-			return PushNotificationsDeviceLocalServiceUtil.deletePushNotificationsDevice(((Long)arguments[0]).longValue());
+			return PushNotificationsEntryLocalServiceUtil.deletePushNotificationsEntry(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName3.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes3, parameterTypes)) {
-			return PushNotificationsDeviceLocalServiceUtil.deletePushNotificationsDevice((com.liferay.pushnotifications.model.PushNotificationsDevice)arguments[0]);
+			return PushNotificationsEntryLocalServiceUtil.deletePushNotificationsEntry((com.liferay.pushnotifications.model.PushNotificationsEntry)arguments[0]);
 		}
 
 		if (_methodName4.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes4, parameterTypes)) {
-			return PushNotificationsDeviceLocalServiceUtil.dynamicQuery();
+			return PushNotificationsEntryLocalServiceUtil.dynamicQuery();
 		}
 
 		if (_methodName5.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes5, parameterTypes)) {
-			return PushNotificationsDeviceLocalServiceUtil.dynamicQuery((com.liferay.portal.kernel.dao.orm.DynamicQuery)arguments[0]);
+			return PushNotificationsEntryLocalServiceUtil.dynamicQuery((com.liferay.portal.kernel.dao.orm.DynamicQuery)arguments[0]);
 		}
 
 		if (_methodName6.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes6, parameterTypes)) {
-			return PushNotificationsDeviceLocalServiceUtil.dynamicQuery((com.liferay.portal.kernel.dao.orm.DynamicQuery)arguments[0],
+			return PushNotificationsEntryLocalServiceUtil.dynamicQuery((com.liferay.portal.kernel.dao.orm.DynamicQuery)arguments[0],
 				((Integer)arguments[1]).intValue(),
 				((Integer)arguments[2]).intValue());
 		}
 
 		if (_methodName7.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes7, parameterTypes)) {
-			return PushNotificationsDeviceLocalServiceUtil.dynamicQuery((com.liferay.portal.kernel.dao.orm.DynamicQuery)arguments[0],
+			return PushNotificationsEntryLocalServiceUtil.dynamicQuery((com.liferay.portal.kernel.dao.orm.DynamicQuery)arguments[0],
 				((Integer)arguments[1]).intValue(),
 				((Integer)arguments[2]).intValue(),
 				(com.liferay.portal.kernel.util.OrderByComparator<?>)arguments[3]);
@@ -200,94 +177,64 @@ public class PushNotificationsDeviceLocalServiceClpInvoker {
 
 		if (_methodName8.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes8, parameterTypes)) {
-			return PushNotificationsDeviceLocalServiceUtil.dynamicQueryCount((com.liferay.portal.kernel.dao.orm.DynamicQuery)arguments[0]);
+			return PushNotificationsEntryLocalServiceUtil.dynamicQueryCount((com.liferay.portal.kernel.dao.orm.DynamicQuery)arguments[0]);
 		}
 
 		if (_methodName9.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes9, parameterTypes)) {
-			return PushNotificationsDeviceLocalServiceUtil.dynamicQueryCount((com.liferay.portal.kernel.dao.orm.DynamicQuery)arguments[0],
+			return PushNotificationsEntryLocalServiceUtil.dynamicQueryCount((com.liferay.portal.kernel.dao.orm.DynamicQuery)arguments[0],
 				(com.liferay.portal.kernel.dao.orm.Projection)arguments[1]);
 		}
 
 		if (_methodName10.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes10, parameterTypes)) {
-			return PushNotificationsDeviceLocalServiceUtil.fetchPushNotificationsDevice(((Long)arguments[0]).longValue());
+			return PushNotificationsEntryLocalServiceUtil.fetchPushNotificationsEntry(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName11.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes11, parameterTypes)) {
-			return PushNotificationsDeviceLocalServiceUtil.getPushNotificationsDevice(((Long)arguments[0]).longValue());
+			return PushNotificationsEntryLocalServiceUtil.getPushNotificationsEntry(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName12.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes12, parameterTypes)) {
-			return PushNotificationsDeviceLocalServiceUtil.getActionableDynamicQuery();
+			return PushNotificationsEntryLocalServiceUtil.getActionableDynamicQuery();
 		}
 
 		if (_methodName14.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes14, parameterTypes)) {
-			return PushNotificationsDeviceLocalServiceUtil.deletePersistedModel((com.liferay.portal.model.PersistedModel)arguments[0]);
+			return PushNotificationsEntryLocalServiceUtil.deletePersistedModel((com.liferay.portal.model.PersistedModel)arguments[0]);
 		}
 
 		if (_methodName15.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes15, parameterTypes)) {
-			return PushNotificationsDeviceLocalServiceUtil.getPersistedModel((java.io.Serializable)arguments[0]);
+			return PushNotificationsEntryLocalServiceUtil.getPersistedModel((java.io.Serializable)arguments[0]);
 		}
 
 		if (_methodName16.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes16, parameterTypes)) {
-			return PushNotificationsDeviceLocalServiceUtil.getPushNotificationsDevices(((Integer)arguments[0]).intValue(),
+			return PushNotificationsEntryLocalServiceUtil.getPushNotificationsEntries(((Integer)arguments[0]).intValue(),
 				((Integer)arguments[1]).intValue());
 		}
 
 		if (_methodName17.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes17, parameterTypes)) {
-			return PushNotificationsDeviceLocalServiceUtil.getPushNotificationsDevicesCount();
+			return PushNotificationsEntryLocalServiceUtil.getPushNotificationsEntriesCount();
 		}
 
 		if (_methodName18.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes18, parameterTypes)) {
-			return PushNotificationsDeviceLocalServiceUtil.updatePushNotificationsDevice((com.liferay.pushnotifications.model.PushNotificationsDevice)arguments[0]);
+			return PushNotificationsEntryLocalServiceUtil.updatePushNotificationsEntry((com.liferay.pushnotifications.model.PushNotificationsEntry)arguments[0]);
 		}
 
 		if (_methodName49.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes49, parameterTypes)) {
-			return PushNotificationsDeviceLocalServiceUtil.getBeanIdentifier();
+			return PushNotificationsEntryLocalServiceUtil.getBeanIdentifier();
 		}
 
 		if (_methodName50.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes50, parameterTypes)) {
-			PushNotificationsDeviceLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
-
-			return null;
-		}
-
-		if (_methodName55.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes55, parameterTypes)) {
-			return PushNotificationsDeviceLocalServiceUtil.addPushNotificationsDevice(((Long)arguments[0]).longValue(),
-				(java.lang.String)arguments[1], (java.lang.String)arguments[2]);
-		}
-
-		if (_methodName56.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes56, parameterTypes)) {
-			return PushNotificationsDeviceLocalServiceUtil.deletePushNotificationsDevice((java.lang.String)arguments[0]);
-		}
-
-		if (_methodName57.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes57, parameterTypes)) {
-			PushNotificationsDeviceLocalServiceUtil.sendPushNotification((com.liferay.portal.kernel.json.JSONObject)arguments[0],
-				((Integer)arguments[1]).intValue(),
-				((Integer)arguments[2]).intValue());
-
-			return null;
-		}
-
-		if (_methodName58.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes58, parameterTypes)) {
-			PushNotificationsDeviceLocalServiceUtil.sendPushNotification(((Long)arguments[0]).longValue(),
-				(com.liferay.portal.kernel.json.JSONObject)arguments[1],
-				((Integer)arguments[2]).intValue(),
-				((Integer)arguments[3]).intValue());
+			PushNotificationsEntryLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
 
 			return null;
 		}
@@ -335,12 +282,4 @@ public class PushNotificationsDeviceLocalServiceClpInvoker {
 	private String[] _methodParameterTypes49;
 	private String _methodName50;
 	private String[] _methodParameterTypes50;
-	private String _methodName55;
-	private String[] _methodParameterTypes55;
-	private String _methodName56;
-	private String[] _methodParameterTypes56;
-	private String _methodName57;
-	private String[] _methodParameterTypes57;
-	private String _methodName58;
-	private String[] _methodParameterTypes58;
 }

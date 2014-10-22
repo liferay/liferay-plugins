@@ -26,6 +26,7 @@ import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.BaseModel;
 
 import com.liferay.pushnotifications.model.PushNotificationsDeviceClp;
+import com.liferay.pushnotifications.model.PushNotificationsEntryClp;
 
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -107,6 +108,10 @@ public class ClpSerializer {
 			return translateInputPushNotificationsDevice(oldModel);
 		}
 
+		if (oldModelClassName.equals(PushNotificationsEntryClp.class.getName())) {
+			return translateInputPushNotificationsEntry(oldModel);
+		}
+
 		return oldModel;
 	}
 
@@ -133,6 +138,17 @@ public class ClpSerializer {
 		return newModel;
 	}
 
+	public static Object translateInputPushNotificationsEntry(
+		BaseModel<?> oldModel) {
+		PushNotificationsEntryClp oldClpModel = (PushNotificationsEntryClp)oldModel;
+
+		BaseModel<?> newModel = oldClpModel.getPushNotificationsEntryRemoteModel();
+
+		newModel.setModelAttributes(oldClpModel.getModelAttributes());
+
+		return newModel;
+	}
+
 	public static Object translateInput(Object obj) {
 		if (obj instanceof BaseModel<?>) {
 			return translateInput((BaseModel<?>)obj);
@@ -153,6 +169,43 @@ public class ClpSerializer {
 		if (oldModelClassName.equals(
 					"com.liferay.pushnotifications.model.impl.PushNotificationsDeviceImpl")) {
 			return translateOutputPushNotificationsDevice(oldModel);
+		}
+		else if (oldModelClassName.endsWith("Clp")) {
+			try {
+				ClassLoader classLoader = ClpSerializer.class.getClassLoader();
+
+				Method getClpSerializerClassMethod = oldModelClass.getMethod(
+						"getClpSerializerClass");
+
+				Class<?> oldClpSerializerClass = (Class<?>)getClpSerializerClassMethod.invoke(oldModel);
+
+				Class<?> newClpSerializerClass = classLoader.loadClass(oldClpSerializerClass.getName());
+
+				Method translateOutputMethod = newClpSerializerClass.getMethod("translateOutput",
+						BaseModel.class);
+
+				Class<?> oldModelModelClass = oldModel.getModelClass();
+
+				Method getRemoteModelMethod = oldModelClass.getMethod("get" +
+						oldModelModelClass.getSimpleName() + "RemoteModel");
+
+				Object oldRemoteModel = getRemoteModelMethod.invoke(oldModel);
+
+				BaseModel<?> newModel = (BaseModel<?>)translateOutputMethod.invoke(null,
+						oldRemoteModel);
+
+				return newModel;
+			}
+			catch (Throwable t) {
+				if (_log.isInfoEnabled()) {
+					_log.info("Unable to translate " + oldModelClassName, t);
+				}
+			}
+		}
+
+		if (oldModelClassName.equals(
+					"com.liferay.pushnotifications.model.impl.PushNotificationsEntryImpl")) {
+			return translateOutputPushNotificationsEntry(oldModel);
 		}
 		else if (oldModelClassName.endsWith("Clp")) {
 			try {
@@ -272,6 +325,12 @@ public class ClpSerializer {
 				throwable.getCause());
 		}
 
+		if (className.equals(
+					"com.liferay.pushnotifications.NoSuchEntryException")) {
+			return new com.liferay.pushnotifications.NoSuchEntryException(throwable.getMessage(),
+				throwable.getCause());
+		}
+
 		return throwable;
 	}
 
@@ -282,6 +341,17 @@ public class ClpSerializer {
 		newModel.setModelAttributes(oldModel.getModelAttributes());
 
 		newModel.setPushNotificationsDeviceRemoteModel(oldModel);
+
+		return newModel;
+	}
+
+	public static Object translateOutputPushNotificationsEntry(
+		BaseModel<?> oldModel) {
+		PushNotificationsEntryClp newModel = new PushNotificationsEntryClp();
+
+		newModel.setModelAttributes(oldModel.getModelAttributes());
+
+		newModel.setPushNotificationsEntryRemoteModel(oldModel);
 
 		return newModel;
 	}

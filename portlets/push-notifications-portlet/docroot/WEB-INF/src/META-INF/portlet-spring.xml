@@ -4,4 +4,7 @@
 	<bean id="com.liferay.pushnotifications.service.PushNotificationsDeviceLocalService" class="com.liferay.pushnotifications.service.impl.PushNotificationsDeviceLocalServiceImpl" />
 	<bean id="com.liferay.pushnotifications.service.PushNotificationsDeviceService" class="com.liferay.pushnotifications.service.impl.PushNotificationsDeviceServiceImpl" />
 	<bean id="com.liferay.pushnotifications.service.persistence.PushNotificationsDevicePersistence" class="com.liferay.pushnotifications.service.persistence.impl.PushNotificationsDevicePersistenceImpl" parent="basePersistence" />
+	<bean id="com.liferay.pushnotifications.service.PushNotificationsEntryLocalService" class="com.liferay.pushnotifications.service.impl.PushNotificationsEntryLocalServiceImpl" />
+	<bean id="com.liferay.pushnotifications.service.PushNotificationsEntryService" class="com.liferay.pushnotifications.service.impl.PushNotificationsEntryServiceImpl" />
+	<bean id="com.liferay.pushnotifications.service.persistence.PushNotificationsEntryPersistence" class="com.liferay.pushnotifications.service.persistence.impl.PushNotificationsEntryPersistenceImpl" parent="basePersistence" />
 </beans>

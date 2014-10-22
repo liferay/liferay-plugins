@@ -185,19 +185,20 @@ public interface PushNotificationsDeviceModel extends BaseModel<PushNotification
 	public Object clone();
 
 	@Override
-	public int compareTo(PushNotificationsDevice pushNotificationsDevice);
+	public int compareTo(
+		com.liferay.pushnotifications.model.PushNotificationsDevice pushNotificationsDevice);
 
 	@Override
 	public int hashCode();
 
 	@Override
-	public CacheModel<PushNotificationsDevice> toCacheModel();
+	public CacheModel<com.liferay.pushnotifications.model.PushNotificationsDevice> toCacheModel();
 
 	@Override
-	public PushNotificationsDevice toEscapedModel();
+	public com.liferay.pushnotifications.model.PushNotificationsDevice toEscapedModel();
 
 	@Override
-	public PushNotificationsDevice toUnescapedModel();
+	public com.liferay.pushnotifications.model.PushNotificationsDevice toUnescapedModel();
 
 	@Override
 	public String toString();

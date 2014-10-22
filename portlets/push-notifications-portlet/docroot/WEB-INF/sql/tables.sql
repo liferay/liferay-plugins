@@ -5,3 +5,11 @@ create table PushNotificationsDevice (
 	platform VARCHAR(75) null,
 	token STRING null
 );
+
+create table PushNotificationsEntry (
+	pushNotificationsEntryId LONG not null primary key,
+	userId LONG,
+	createDate DATE null,
+	parentPushNotificationsEntryId LONG,
+	payload VARCHAR(75) null
+);
