@@ -51,7 +51,6 @@ public class PushNotificationsEntryLocalServiceImpl
 		pushNotificationsEntry.setCreateDate(new Date());
 		pushNotificationsEntry.setParentPushNotificationsEntryId(
 			parentPushNotificationsEntryId);
-
 		pushNotificationsEntry.setPayload(payload.toString());
 
 		pushNotificationsEntryPersistence.update(pushNotificationsEntry);
@@ -72,8 +71,10 @@ public class PushNotificationsEntryLocalServiceImpl
 		throws PortalException {
 
 		long fromUserId = addFromUserDetails(jsonObject);
+
 		JSONObject payload = jsonObject.getJSONObject(
 			PushNotificationsConstants.KEY_PAYLOAD);
+
 		long parentEntryId = jsonObject.getLong(
 			PushNotificationsConstants.PARENT_ENTRY_ID,
 			PushNotificationsConstants.DEFAULT_PARENT_ENTRY_ID);
