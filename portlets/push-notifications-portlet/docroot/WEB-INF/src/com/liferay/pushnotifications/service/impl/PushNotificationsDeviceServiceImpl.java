@@ -15,6 +15,7 @@
 package com.liferay.pushnotifications.service.impl;
 
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.security.ac.AccessControlled;
@@ -34,7 +35,7 @@ public class PushNotificationsDeviceServiceImpl
 	@Override
 	public PushNotificationsDevice addPushNotificationsDevice(
 			String token, String platform)
-		throws PortalException {
+		throws PortalException, SystemException {
 
 		PushNotificationsPermission.check(
 			getPermissionChecker(), ActionKeys.ADD_DEVICE);
@@ -66,7 +67,7 @@ public class PushNotificationsDeviceServiceImpl
 
 	@Override
 	public PushNotificationsDevice deletePushNotificationsDevice(String token)
-		throws PortalException {
+		throws PortalException, SystemException {
 
 		PushNotificationsDevice pushNotificationsDevice =
 			pushNotificationsDevicePersistence.fetchByToken(token);
@@ -95,7 +96,9 @@ public class PushNotificationsDeviceServiceImpl
 	}
 
 	@Override
-	public boolean hasPermission(String actionId) throws PortalException {
+	public boolean hasPermission(String actionId)
+		throws PortalException {
+
 		return PushNotificationsPermission.contains(
 			getPermissionChecker(), actionId);
 	}

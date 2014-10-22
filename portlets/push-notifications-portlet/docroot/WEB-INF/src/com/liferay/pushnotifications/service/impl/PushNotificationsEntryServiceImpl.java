@@ -18,6 +18,7 @@ import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.log.Log;
@@ -36,7 +37,7 @@ public class PushNotificationsEntryServiceImpl
 
 	@Override
 	public void sendPushNotification(long toUserId, String payload)
-		throws PortalException {
+		throws PortalException, SystemException {
 
 		PushNotificationsPermission.check(
 			getPermissionChecker(), ActionKeys.SEND_NOTIFICATION);
@@ -53,7 +54,9 @@ public class PushNotificationsEntryServiceImpl
 	}
 
 	@Override
-	public void sendPushNotification(String payload) throws PortalException {
+	public void sendPushNotification(String payload)
+		throws PortalException, SystemException {
+
 		PushNotificationsPermission.check(
 			getPermissionChecker(), ActionKeys.SEND_NOTIFICATION);
 

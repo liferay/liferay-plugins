@@ -18,6 +18,7 @@ import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.portal.kernel.bean.BeanReference;
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.model.User;
 import com.liferay.pushnotifications.model.PushNotificationsDevice;
@@ -40,8 +41,9 @@ public class PushNotificationsEntryLocalServiceImpl
 
 	@Override
 	public PushNotificationsEntry addPushNotificationsEntry(
-		long userId, long parentPushNotificationsEntryId,
-		JSONObject payloadJSONObject) {
+			long userId, long parentPushNotificationsEntryId,
+			JSONObject payloadJSONObject)
+		throws SystemException {
 
 		long pushNotificationsEntryId = counterLocalService.increment();
 
@@ -61,7 +63,7 @@ public class PushNotificationsEntryLocalServiceImpl
 
 	@Override
 	public void sendPushNotification(JSONObject jsonObject, int start, int end)
-		throws PortalException {
+		throws PortalException, SystemException {
 
 		sendPushNotification(0, jsonObject, start, end);
 	}
@@ -69,7 +71,7 @@ public class PushNotificationsEntryLocalServiceImpl
 	@Override
 	public void sendPushNotification(
 			long toUserId, JSONObject jsonObject, int start, int end)
-		throws PortalException {
+		throws PortalException, SystemException {
 
 		long fromUserId = addFromUserDetails(jsonObject);
 
@@ -118,7 +120,7 @@ public class PushNotificationsEntryLocalServiceImpl
 	}
 
 	protected long addFromUserDetails(JSONObject jsonObject)
-		throws PortalException {
+		throws PortalException, SystemException {
 
 		JSONObject fromUserJSONObject = jsonObject.getJSONObject(
 			PushNotificationsConstants.KEY_FROM_USER);
