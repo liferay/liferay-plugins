@@ -46,6 +46,14 @@ public class PushNotificationsEntryLocalServiceWrapper
 		return _pushNotificationsEntryLocalService.addPushNotificationsEntry(pushNotificationsEntry);
 	}
 
+	@Override
+	public com.liferay.pushnotifications.model.PushNotificationsEntry addPushNotificationsEntry(
+		long userId, long parentPushNotificationsEntryId,
+		com.liferay.portal.kernel.json.JSONObject payloadJSONObject) {
+		return _pushNotificationsEntryLocalService.addPushNotificationsEntry(userId,
+			parentPushNotificationsEntryId, payloadJSONObject);
+	}
+
 	/**
 	* Creates a new push notifications entry with the primary key. Does not add the push notifications entry to the database.
 	*
@@ -256,6 +264,22 @@ public class PushNotificationsEntryLocalServiceWrapper
 		throws java.lang.Throwable {
 		return _pushNotificationsEntryLocalService.invokeMethod(name,
 			parameterTypes, arguments);
+	}
+
+	@Override
+	public void sendPushNotification(
+		com.liferay.portal.kernel.json.JSONObject jsonObject, int start, int end)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		_pushNotificationsEntryLocalService.sendPushNotification(jsonObject,
+			start, end);
+	}
+
+	@Override
+	public void sendPushNotification(long toUserId,
+		com.liferay.portal.kernel.json.JSONObject jsonObject, int start, int end)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		_pushNotificationsEntryLocalService.sendPushNotification(toUserId,
+			jsonObject, start, end);
 	}
 
 	/**

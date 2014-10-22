@@ -243,6 +243,12 @@ public class PushNotificationsDeviceLocalServiceUtil {
 		return getService().getPushNotificationsDevices(start, end);
 	}
 
+	public static java.util.List<com.liferay.pushnotifications.model.PushNotificationsDevice> getPushNotificationsDevices(
+		long toUserId, java.lang.String platform, int start, int end) {
+		return getService()
+				   .getPushNotificationsDevices(toUserId, platform, start, end);
+	}
+
 	/**
 	* Returns the number of push notifications devices.
 	*
@@ -256,18 +262,6 @@ public class PushNotificationsDeviceLocalServiceUtil {
 		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
 		throws java.lang.Throwable {
 		return getService().invokeMethod(name, parameterTypes, arguments);
-	}
-
-	public static void sendPushNotification(
-		com.liferay.portal.kernel.json.JSONObject jsonObject, int start, int end)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		getService().sendPushNotification(jsonObject, start, end);
-	}
-
-	public static void sendPushNotification(long toUserId,
-		com.liferay.portal.kernel.json.JSONObject jsonObject, int start, int end)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		getService().sendPushNotification(toUserId, jsonObject, start, end);
 	}
 
 	/**

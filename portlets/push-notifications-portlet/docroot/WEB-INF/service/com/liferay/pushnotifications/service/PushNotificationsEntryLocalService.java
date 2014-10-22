@@ -59,6 +59,10 @@ public interface PushNotificationsEntryLocalService extends BaseLocalService,
 	public com.liferay.pushnotifications.model.PushNotificationsEntry addPushNotificationsEntry(
 		com.liferay.pushnotifications.model.PushNotificationsEntry pushNotificationsEntry);
 
+	public com.liferay.pushnotifications.model.PushNotificationsEntry addPushNotificationsEntry(
+		long userId, long parentPushNotificationsEntryId,
+		com.liferay.portal.kernel.json.JSONObject payloadJSONObject);
+
 	/**
 	* Creates a new push notifications entry with the primary key. Does not add the push notifications entry to the database.
 	*
@@ -222,6 +226,14 @@ public interface PushNotificationsEntryLocalService extends BaseLocalService,
 	public java.lang.Object invokeMethod(java.lang.String name,
 		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
 		throws java.lang.Throwable;
+
+	public void sendPushNotification(
+		com.liferay.portal.kernel.json.JSONObject jsonObject, int start, int end)
+		throws com.liferay.portal.kernel.exception.PortalException;
+
+	public void sendPushNotification(long toUserId,
+		com.liferay.portal.kernel.json.JSONObject jsonObject, int start, int end)
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	/**
 	* Sets the Spring bean ID for this bean.

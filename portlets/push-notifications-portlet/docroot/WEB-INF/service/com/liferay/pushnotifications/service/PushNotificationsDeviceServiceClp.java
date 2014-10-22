@@ -46,17 +46,9 @@ public class PushNotificationsDeviceServiceClp
 
 		_methodParameterTypes3 = new String[] { "java.lang.String" };
 
-		_methodName5 = "sendPushNotification";
+		_methodName5 = "setBeanIdentifier";
 
 		_methodParameterTypes5 = new String[] { "java.lang.String" };
-
-		_methodName6 = "sendPushNotification";
-
-		_methodParameterTypes6 = new String[] { "long", "java.lang.String" };
-
-		_methodName7 = "setBeanIdentifier";
-
-		_methodParameterTypes7 = new String[] { "java.lang.String" };
 	}
 
 	@Override
@@ -183,60 +175,10 @@ public class PushNotificationsDeviceServiceClp
 	}
 
 	@Override
-	public void sendPushNotification(java.lang.String payload)
-		throws com.liferay.portal.kernel.exception.PortalException {
+	public void setBeanIdentifier(java.lang.String beanIdentifier) {
 		try {
 			_invokableService.invokeMethod(_methodName5,
 				_methodParameterTypes5,
-				new Object[] { ClpSerializer.translateInput(payload) });
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
-				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-	}
-
-	@Override
-	public void sendPushNotification(long toUserId, java.lang.String payload)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		try {
-			_invokableService.invokeMethod(_methodName6,
-				_methodParameterTypes6,
-				new Object[] { toUserId, ClpSerializer.translateInput(payload) });
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
-				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-	}
-
-	@Override
-	public void setBeanIdentifier(java.lang.String beanIdentifier) {
-		try {
-			_invokableService.invokeMethod(_methodName7,
-				_methodParameterTypes7,
 				new Object[] { ClpSerializer.translateInput(beanIdentifier) });
 		}
 		catch (Throwable t) {
@@ -263,8 +205,4 @@ public class PushNotificationsDeviceServiceClp
 	private String[] _methodParameterTypes3;
 	private String _methodName5;
 	private String[] _methodParameterTypes5;
-	private String _methodName6;
-	private String[] _methodParameterTypes6;
-	private String _methodName7;
-	private String[] _methodParameterTypes7;
 }

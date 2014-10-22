@@ -111,30 +111,5 @@ public class PushNotificationsDeviceServiceSoap {
 		}
 	}
 
-	public static void sendPushNotification(long toUserId,
-		java.lang.String payload) throws RemoteException {
-		try {
-			PushNotificationsDeviceServiceUtil.sendPushNotification(toUserId,
-				payload);
-		}
-		catch (Exception e) {
-			_log.error(e, e);
-
-			throw new RemoteException(e.getMessage());
-		}
-	}
-
-	public static void sendPushNotification(java.lang.String payload)
-		throws RemoteException {
-		try {
-			PushNotificationsDeviceServiceUtil.sendPushNotification(payload);
-		}
-		catch (Exception e) {
-			_log.error(e, e);
-
-			throw new RemoteException(e.getMessage());
-		}
-	}
-
 	private static Log _log = LogFactoryUtil.getLog(PushNotificationsDeviceServiceSoap.class);
 }

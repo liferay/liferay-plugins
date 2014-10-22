@@ -57,6 +57,17 @@ public class PushNotificationsEntryServiceUtil {
 		return getService().invokeMethod(name, parameterTypes, arguments);
 	}
 
+	public static void sendPushNotification(java.lang.String payload)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		getService().sendPushNotification(payload);
+	}
+
+	public static void sendPushNotification(long toUserId,
+		java.lang.String payload)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		getService().sendPushNotification(toUserId, payload);
+	}
+
 	/**
 	* Sets the Spring bean ID for this bean.
 	*
