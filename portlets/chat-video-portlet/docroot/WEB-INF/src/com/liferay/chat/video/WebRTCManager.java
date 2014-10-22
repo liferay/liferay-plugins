@@ -24,6 +24,10 @@ import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
+ * Manages <a href="http://en.wikipedia.org/wiki/WebRTC">Web Real-Time
+ * Communication</a> (WebRTC) clients by connecting them, checking and updating
+ * client connection states, and managing client mail.
+ *
  * @author Philippe Proulx
  */
 public class WebRTCManager {
@@ -134,6 +138,10 @@ public class WebRTCManager {
 			sourceWebRTCClient, destinationWebRTCClient, messageJSONObject);
 	}
 
+	/**
+	 * Checks the presence of all registered WebRTC clients. This method should
+	 * be called by a message listener.
+	 */
 	public void checkWebRTCClients() {
 		long time = System.currentTimeMillis();
 
@@ -150,6 +158,10 @@ public class WebRTCManager {
 		}
 	}
 
+	/**
+	 * Checks the WebRTC client connection states for timeout handling. This
+	 * method should be called by a message listener.
+	 */
 	public void checkWebRTCConnectionsStates() {
 		for (WebRTCClient webRTCClient : _webRTCClients.values()) {
 			for (WebRTCClient otherWebRTCClient :

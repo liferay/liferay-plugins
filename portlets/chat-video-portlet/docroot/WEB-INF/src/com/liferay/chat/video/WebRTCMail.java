@@ -17,6 +17,9 @@ package com.liferay.chat.video;
 import com.liferay.portal.kernel.json.JSONObject;
 
 /**
+ * Represents WebRTC mail, which is sent from a source WebRTC client to a
+ * destination WebRTC client.
+ *
  * @author Philippe Proulx
  */
 public abstract class WebRTCMail {

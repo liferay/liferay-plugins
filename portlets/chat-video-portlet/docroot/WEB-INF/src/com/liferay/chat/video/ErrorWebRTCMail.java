@@ -17,6 +17,9 @@ package com.liferay.chat.video;
 import com.liferay.portal.kernel.json.JSONObject;
 
 /**
+ * Represents error WebRTC mail, providing a destination WebRTC client a single
+ * error from a source WebRTC client.
+ *
  * @author Philippe Proulx
  */
 public class ErrorWebRTCMail extends WebRTCMail {

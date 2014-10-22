@@ -17,6 +17,9 @@ package com.liferay.chat.video;
 import com.liferay.portal.kernel.json.JSONObject;
 
 /**
+ * Represents SDP description WebRTC mail, providing a destination WebRTC client
+ * an SDP description (either a call or an answer) from a source WebRTC client.
+ *
  * @author Philippe Proulx
  */
 public class DescriptionWebRTCSDPMail extends WebRTCMail {
