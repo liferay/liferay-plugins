@@ -14,19 +14,12 @@
 
 package com.liferay.pushnotifications.service.impl;
 
-import com.liferay.portal.kernel.bean.BeanReference;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.json.JSONObject;
-import com.liferay.portal.model.User;
 import com.liferay.pushnotifications.model.PushNotificationsDevice;
-import com.liferay.pushnotifications.sender.PushNotificationsSender;
 import com.liferay.pushnotifications.service.base.PushNotificationsDeviceLocalServiceBaseImpl;
-import com.liferay.pushnotifications.util.PushNotificationsConstants;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 /**
  * @author Silvio Santos
@@ -68,72 +61,7 @@ public class PushNotificationsDeviceLocalServiceImpl
 	}
 
 	@Override
-	public void sendPushNotification(JSONObject jsonObject, int start, int end)
-		throws PortalException {
-
-		sendPushNotification(0, jsonObject, start, end);
-	}
-
-	@Override
-	public void sendPushNotification(
-			long toUserId, JSONObject jsonObject, int start, int end)
-		throws PortalException {
-
-		addFromUserDetails(jsonObject);
-
-		for (Map.Entry<String, PushNotificationsSender> entry :
-				_pushNotificationsSenders.entrySet()) {
-
-			List<String> tokens = new ArrayList<String>();
-
-			List<PushNotificationsDevice> pushNotificationsDevices =
-				getPushNotificationsDevices(
-					toUserId, entry.getKey(), start, end);
-
-			for (PushNotificationsDevice pushNotificationsDevice :
-					pushNotificationsDevices) {
-
-				tokens.add(pushNotificationsDevice.getToken());
-			}
-
-			if (tokens.isEmpty()) {
-				continue;
-			}
-
-			PushNotificationsSender pushNotificationsSender = entry.getValue();
-
-			try {
-				pushNotificationsSender.send(tokens, jsonObject);
-			}
-			catch (PortalException pe) {
-				throw pe;
-			}
-			catch (Exception e) {
-				throw new PortalException(e);
-			}
-		}
-	}
-
-	protected void addFromUserDetails(JSONObject jsonObject)
-		throws PortalException {
-
-		JSONObject fromUserJSONObject = jsonObject.getJSONObject(
-			PushNotificationsConstants.KEY_FROM_USER);
-
-		long fromUserId = fromUserJSONObject.getLong(
-			PushNotificationsConstants.KEY_USER_ID);
-
-		User user = userLocalService.getUser(fromUserId);
-
-		fromUserJSONObject.put(
-			PushNotificationsConstants.KEY_FULL_NAME, user.getFullName());
-		fromUserJSONObject.put(
-			PushNotificationsConstants.KEY_PORTRAIT_ID, user.getPortraitId());
-		fromUserJSONObject.put(
-			PushNotificationsConstants.KEY_UUID, user.getUuid());
-	}
-
-	protected List<PushNotificationsDevice> getPushNotificationsDevices(
+	public List<PushNotificationsDevice> getPushNotificationsDevices(
 		long toUserId, String platform, int start, int end) {
 
 		if (toUserId == 0) {
@@ -144,8 +72,5 @@ public class PushNotificationsDeviceLocalServiceImpl
 		return pushNotificationsDevicePersistence.findByU_P(
 			toUserId, platform, start, end);
 	}
-
-	@BeanReference(name = "pushNotificationsSenders")
-	private Map<String, PushNotificationsSender> _pushNotificationsSenders;
 
 }

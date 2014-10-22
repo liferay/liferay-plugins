@@ -16,7 +16,18 @@ package com.liferay.pushnotifications.service.impl;
 
 import aQute.bnd.annotation.ProviderType;
 
+import com.liferay.portal.kernel.bean.BeanReference;
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.model.User;
+import com.liferay.pushnotifications.model.PushNotificationsDevice;
+import com.liferay.pushnotifications.sender.PushNotificationsSender;
 import com.liferay.pushnotifications.service.base.PushNotificationsEntryLocalServiceBaseImpl;
+import com.liferay.pushnotifications.util.PushNotificationsConstants;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @author Silvio Santos
@@ -24,4 +35,74 @@ import com.liferay.pushnotifications.service.base.PushNotificationsEntryLocalSer
 @ProviderType
 public class PushNotificationsEntryLocalServiceImpl
 	extends PushNotificationsEntryLocalServiceBaseImpl {
+
+	@Override
+	public void sendPushNotification(JSONObject jsonObject, int start, int end)
+		throws PortalException {
+
+		sendPushNotification(0, jsonObject, start, end);
+	}
+
+	@Override
+	public void sendPushNotification(
+			long toUserId, JSONObject jsonObject, int start, int end)
+		throws PortalException {
+
+		addFromUserDetails(jsonObject);
+
+		for (Map.Entry<String, PushNotificationsSender> entry :
+				_pushNotificationsSenders.entrySet()) {
+
+			List<String> tokens = new ArrayList<String>();
+
+			List<PushNotificationsDevice> pushNotificationsDevices =
+				pushNotificationsDeviceLocalService.getPushNotificationsDevices(
+					toUserId, entry.getKey(), start, end);
+
+			for (PushNotificationsDevice pushNotificationsDevice :
+					pushNotificationsDevices) {
+
+				tokens.add(pushNotificationsDevice.getToken());
+			}
+
+			if (tokens.isEmpty()) {
+				continue;
+			}
+
+			PushNotificationsSender pushNotificationsSender = entry.getValue();
+
+			try {
+				pushNotificationsSender.send(tokens, jsonObject);
+			}
+			catch (PortalException pe) {
+				throw pe;
+			}
+			catch (Exception e) {
+				throw new PortalException(e);
+			}
+		}
+	}
+
+	protected void addFromUserDetails(JSONObject jsonObject)
+		throws PortalException {
+
+		JSONObject fromUserJSONObject = jsonObject.getJSONObject(
+			PushNotificationsConstants.KEY_FROM_USER);
+
+		long fromUserId = fromUserJSONObject.getLong(
+			PushNotificationsConstants.KEY_USER_ID);
+
+		User user = userLocalService.getUser(fromUserId);
+
+		fromUserJSONObject.put(
+			PushNotificationsConstants.KEY_FULL_NAME, user.getFullName());
+		fromUserJSONObject.put(
+			PushNotificationsConstants.KEY_PORTRAIT_ID, user.getPortraitId());
+		fromUserJSONObject.put(
+			PushNotificationsConstants.KEY_UUID, user.getUuid());
+	}
+
+	@BeanReference(name = "pushNotificationsSenders")
+	private Map<String, PushNotificationsSender> _pushNotificationsSenders;
+
 }

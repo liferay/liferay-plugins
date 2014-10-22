@@ -46,7 +46,7 @@
 			}
 
 			Liferay.Service(
-				'/push-notifications-portlet.pushnotificationsdevice/send-push-notification',
+				'/push-notifications-portlet.pushnotificationsentry/send-push-notification',
 				{
 					payload: A.JSON.stringify(
 						{
