@@ -63,6 +63,19 @@ public class PushNotificationsEntryServiceUtil {
 		return getService().invokeMethod(name, parameterTypes, arguments);
 	}
 
+	public static void sendPushNotification(long toUserId,
+		java.lang.String payload)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		getService().sendPushNotification(toUserId, payload);
+	}
+
+	public static void sendPushNotification(java.lang.String payload)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		getService().sendPushNotification(payload);
+	}
+
 	public static void clearService() {
 		_service = null;
 	}

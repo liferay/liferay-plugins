@@ -59,6 +59,20 @@ public class PushNotificationsEntryServiceWrapper
 			parameterTypes, arguments);
 	}
 
+	@Override
+	public void sendPushNotification(long toUserId, java.lang.String payload)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		_pushNotificationsEntryService.sendPushNotification(toUserId, payload);
+	}
+
+	@Override
+	public void sendPushNotification(java.lang.String payload)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		_pushNotificationsEntryService.sendPushNotification(payload);
+	}
+
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
 	 */

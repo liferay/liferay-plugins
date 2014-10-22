@@ -124,17 +124,10 @@ public class PushNotificationsDeviceLocalServiceClpInvoker {
 
 		_methodParameterTypes53 = new String[] { "java.lang.String" };
 
-		_methodName54 = "sendPushNotification";
+		_methodName54 = "getPushNotificationsDevices";
 
 		_methodParameterTypes54 = new String[] {
-				"com.liferay.portal.kernel.json.JSONObject", "int", "int"
-			};
-
-		_methodName55 = "sendPushNotification";
-
-		_methodParameterTypes55 = new String[] {
-				"long", "com.liferay.portal.kernel.json.JSONObject", "int",
-				"int"
+				"long", "java.lang.String", "int", "int"
 			};
 	}
 
@@ -252,21 +245,10 @@ public class PushNotificationsDeviceLocalServiceClpInvoker {
 
 		if (_methodName54.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes54, parameterTypes)) {
-			PushNotificationsDeviceLocalServiceUtil.sendPushNotification((com.liferay.portal.kernel.json.JSONObject)arguments[0],
-				((Integer)arguments[1]).intValue(),
-				((Integer)arguments[2]).intValue());
-
-			return null;
-		}
-
-		if (_methodName55.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes55, parameterTypes)) {
-			PushNotificationsDeviceLocalServiceUtil.sendPushNotification(((Long)arguments[0]).longValue(),
-				(com.liferay.portal.kernel.json.JSONObject)arguments[1],
+			return PushNotificationsDeviceLocalServiceUtil.getPushNotificationsDevices(((Long)arguments[0]).longValue(),
+				(java.lang.String)arguments[1],
 				((Integer)arguments[2]).intValue(),
 				((Integer)arguments[3]).intValue());
-
-			return null;
 		}
 
 		throw new UnsupportedOperationException();
@@ -314,6 +296,4 @@ public class PushNotificationsDeviceLocalServiceClpInvoker {
 	private String[] _methodParameterTypes53;
 	private String _methodName54;
 	private String[] _methodParameterTypes54;
-	private String _methodName55;
-	private String[] _methodParameterTypes55;
 }

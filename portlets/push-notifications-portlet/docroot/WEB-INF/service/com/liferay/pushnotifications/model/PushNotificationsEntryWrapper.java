@@ -303,7 +303,8 @@ public class PushNotificationsEntryWrapper implements PushNotificationsEntry,
 	}
 
 	@Override
-	public int compareTo(PushNotificationsEntry pushNotificationsEntry) {
+	public int compareTo(
+		com.liferay.pushnotifications.model.PushNotificationsEntry pushNotificationsEntry) {
 		return _pushNotificationsEntry.compareTo(pushNotificationsEntry);
 	}
 
@@ -313,17 +314,17 @@ public class PushNotificationsEntryWrapper implements PushNotificationsEntry,
 	}
 
 	@Override
-	public com.liferay.portal.model.CacheModel<PushNotificationsEntry> toCacheModel() {
+	public com.liferay.portal.model.CacheModel<com.liferay.pushnotifications.model.PushNotificationsEntry> toCacheModel() {
 		return _pushNotificationsEntry.toCacheModel();
 	}
 
 	@Override
-	public PushNotificationsEntry toEscapedModel() {
+	public com.liferay.pushnotifications.model.PushNotificationsEntry toEscapedModel() {
 		return new PushNotificationsEntryWrapper(_pushNotificationsEntry.toEscapedModel());
 	}
 
 	@Override
-	public PushNotificationsEntry toUnescapedModel() {
+	public com.liferay.pushnotifications.model.PushNotificationsEntry toUnescapedModel() {
 		return new PushNotificationsEntryWrapper(_pushNotificationsEntry.toUnescapedModel());
 	}
 

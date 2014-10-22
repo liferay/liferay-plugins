@@ -78,21 +78,9 @@ public class PushNotificationsDeviceServiceUtil {
 	}
 
 	public static boolean hasPermission(java.lang.String actionId)
-		throws com.liferay.portal.kernel.exception.PortalException {
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
 		return getService().hasPermission(actionId);
-	}
-
-	public static void sendPushNotification(long toUserId,
-		java.lang.String payload)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		getService().sendPushNotification(toUserId, payload);
-	}
-
-	public static void sendPushNotification(java.lang.String payload)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		getService().sendPushNotification(payload);
 	}
 
 	public static void clearService() {

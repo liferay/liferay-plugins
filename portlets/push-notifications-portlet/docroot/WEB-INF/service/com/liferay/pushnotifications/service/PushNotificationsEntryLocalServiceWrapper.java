@@ -290,6 +290,33 @@ public class PushNotificationsEntryLocalServiceWrapper
 			parameterTypes, arguments);
 	}
 
+	@Override
+	public com.liferay.pushnotifications.model.PushNotificationsEntry addPushNotificationsEntry(
+		long userId, long parentPushNotificationsEntryId,
+		com.liferay.portal.kernel.json.JSONObject payloadJSONObject)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _pushNotificationsEntryLocalService.addPushNotificationsEntry(userId,
+			parentPushNotificationsEntryId, payloadJSONObject);
+	}
+
+	@Override
+	public void sendPushNotification(
+		com.liferay.portal.kernel.json.JSONObject jsonObject, int start, int end)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		_pushNotificationsEntryLocalService.sendPushNotification(jsonObject,
+			start, end);
+	}
+
+	@Override
+	public void sendPushNotification(long toUserId,
+		com.liferay.portal.kernel.json.JSONObject jsonObject, int start, int end)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		_pushNotificationsEntryLocalService.sendPushNotification(toUserId,
+			jsonObject, start, end);
+	}
+
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
 	 */

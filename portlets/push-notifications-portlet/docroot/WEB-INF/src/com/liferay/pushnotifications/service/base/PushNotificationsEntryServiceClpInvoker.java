@@ -31,6 +31,14 @@ public class PushNotificationsEntryServiceClpInvoker {
 		_methodName31 = "setBeanIdentifier";
 
 		_methodParameterTypes31 = new String[] { "java.lang.String" };
+
+		_methodName36 = "sendPushNotification";
+
+		_methodParameterTypes36 = new String[] { "long", "java.lang.String" };
+
+		_methodName37 = "sendPushNotification";
+
+		_methodParameterTypes37 = new String[] { "java.lang.String" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -47,6 +55,21 @@ public class PushNotificationsEntryServiceClpInvoker {
 			return null;
 		}
 
+		if (_methodName36.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes36, parameterTypes)) {
+			PushNotificationsEntryServiceUtil.sendPushNotification(((Long)arguments[0]).longValue(),
+				(java.lang.String)arguments[1]);
+
+			return null;
+		}
+
+		if (_methodName37.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes37, parameterTypes)) {
+			PushNotificationsEntryServiceUtil.sendPushNotification((java.lang.String)arguments[0]);
+
+			return null;
+		}
+
 		throw new UnsupportedOperationException();
 	}
 
@@ -54,4 +77,8 @@ public class PushNotificationsEntryServiceClpInvoker {
 	private String[] _methodParameterTypes30;
 	private String _methodName31;
 	private String[] _methodParameterTypes31;
+	private String _methodName36;
+	private String[] _methodParameterTypes36;
+	private String _methodName37;
+	private String[] _methodParameterTypes37;
 }

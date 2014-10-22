@@ -14,6 +14,13 @@
 
 package com.liferay.pushnotifications.service.http;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+
+import com.liferay.pushnotifications.service.PushNotificationsEntryServiceUtil;
+
+import java.rmi.RemoteException;
+
 /**
  * Provides the SOAP utility for the
  * {@link com.liferay.pushnotifications.service.PushNotificationsEntryServiceUtil} service utility. The
@@ -55,4 +62,30 @@ package com.liferay.pushnotifications.service.http;
  * @generated
  */
 public class PushNotificationsEntryServiceSoap {
+	public static void sendPushNotification(long toUserId,
+		java.lang.String payload) throws RemoteException {
+		try {
+			PushNotificationsEntryServiceUtil.sendPushNotification(toUserId,
+				payload);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static void sendPushNotification(java.lang.String payload)
+		throws RemoteException {
+		try {
+			PushNotificationsEntryServiceUtil.sendPushNotification(payload);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	private static Log _log = LogFactoryUtil.getLog(PushNotificationsEntryServiceSoap.class);
 }

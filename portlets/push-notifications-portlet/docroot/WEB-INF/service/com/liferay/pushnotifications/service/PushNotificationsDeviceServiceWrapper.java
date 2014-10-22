@@ -78,22 +78,9 @@ public class PushNotificationsDeviceServiceWrapper
 
 	@Override
 	public boolean hasPermission(java.lang.String actionId)
-		throws com.liferay.portal.kernel.exception.PortalException {
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
 		return _pushNotificationsDeviceService.hasPermission(actionId);
-	}
-
-	@Override
-	public void sendPushNotification(long toUserId, java.lang.String payload)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		_pushNotificationsDeviceService.sendPushNotification(toUserId, payload);
-	}
-
-	@Override
-	public void sendPushNotification(java.lang.String payload)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		_pushNotificationsDeviceService.sendPushNotification(payload);
 	}
 
 	/**
