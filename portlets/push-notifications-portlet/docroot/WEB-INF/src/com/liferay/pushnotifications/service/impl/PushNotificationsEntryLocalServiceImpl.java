@@ -40,7 +40,8 @@ public class PushNotificationsEntryLocalServiceImpl
 
 	@Override
 	public PushNotificationsEntry addPushNotificationsEntry(
-		long userId, long parentPushNotificationsEntryId, JSONObject payload) {
+		long userId, long parentPushNotificationsEntryId,
+		JSONObject payloadJSONObject) {
 
 		long pushNotificationsEntryId = counterLocalService.increment();
 
@@ -51,7 +52,7 @@ public class PushNotificationsEntryLocalServiceImpl
 		pushNotificationsEntry.setCreateDate(new Date());
 		pushNotificationsEntry.setParentPushNotificationsEntryId(
 			parentPushNotificationsEntryId);
-		pushNotificationsEntry.setPayload(payload.toString());
+		pushNotificationsEntry.setPayload(payloadJSONObject.toString());
 
 		pushNotificationsEntryPersistence.update(pushNotificationsEntry);
 
@@ -72,14 +73,16 @@ public class PushNotificationsEntryLocalServiceImpl
 
 		long fromUserId = addFromUserDetails(jsonObject);
 
-		JSONObject payload = jsonObject.getJSONObject(
+		JSONObject payloadJSONObject = jsonObject.getJSONObject(
 			PushNotificationsConstants.KEY_PAYLOAD);
 
-		long parentEntryId = jsonObject.getLong(
-			PushNotificationsConstants.PARENT_ENTRY_ID,
-			PushNotificationsConstants.DEFAULT_PARENT_ENTRY_ID);
+		long parentPushNotificationsEntryId = jsonObject.getLong(
+			PushNotificationsConstants.KEY_PARENT_PUSH_NOTIFICATIONS_ENTRY_ID,
+			PushNotificationsConstants.
+				VALUE_PARENT_PUSH_NOTIFICATIONS_ENTRY_ID_DEFAULT);
 
-		addPushNotificationsEntry(fromUserId, parentEntryId, payload);
+		addPushNotificationsEntry(
+			fromUserId, parentPushNotificationsEntryId, payloadJSONObject);
 
 		for (Map.Entry<String, PushNotificationsSender> entry :
 				_pushNotificationsSenders.entrySet()) {
