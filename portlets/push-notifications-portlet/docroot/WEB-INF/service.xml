@@ -46,7 +46,7 @@
 
 		<!-- Other fields -->
 
-		<column name="parentEntryId" type="long" />
+		<column name="parentPushNotificationsEntryId" type="long" />
 		<column name="payload" type="String" />
 	</entity>
 </service-builder>
