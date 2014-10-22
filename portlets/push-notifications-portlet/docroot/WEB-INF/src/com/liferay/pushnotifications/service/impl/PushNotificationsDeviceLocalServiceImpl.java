@@ -118,18 +118,19 @@ public class PushNotificationsDeviceLocalServiceImpl
 		throws PortalException {
 
 		JSONObject fromUserJSONObject = jsonObject.getJSONObject(
-			PushNotificationsConstants.FROM_USER);
+			PushNotificationsConstants.KEY_FROM_USER);
 
 		long fromUserId = fromUserJSONObject.getLong(
-			PushNotificationsConstants.USER_ID);
+			PushNotificationsConstants.KEY_USER_ID);
 
 		User user = userLocalService.getUser(fromUserId);
 
 		fromUserJSONObject.put(
-			PushNotificationsConstants.FULL_NAME, user.getFullName());
+			PushNotificationsConstants.KEY_FULL_NAME, user.getFullName());
 		fromUserJSONObject.put(
-			PushNotificationsConstants.PORTRAIT_ID, user.getPortraitId());
-		fromUserJSONObject.put(PushNotificationsConstants.UUID, user.getUuid());
+			PushNotificationsConstants.KEY_PORTRAIT_ID, user.getPortraitId());
+		fromUserJSONObject.put(
+			PushNotificationsConstants.KEY_UUID, user.getUuid());
 	}
 
 	protected List<PushNotificationsDevice> getPushNotificationsDevices(
