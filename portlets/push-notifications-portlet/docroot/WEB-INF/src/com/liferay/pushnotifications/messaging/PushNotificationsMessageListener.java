@@ -34,10 +34,10 @@ public class PushNotificationsMessageListener implements MessageListener {
 		JSONObject jsonObject = (JSONObject)message.getPayload();
 
 		JSONObject toUserJSONObject = jsonObject.getJSONObject(
-			PushNotificationsConstants.TO_USER);
+			PushNotificationsConstants.KEY_TO_USER);
 
 		long toUserId = toUserJSONObject.getLong(
-			PushNotificationsConstants.USER_ID);
+			PushNotificationsConstants.KEY_USER_ID);
 
 		if (_log.isDebugEnabled()) {
 			_log.debug(
