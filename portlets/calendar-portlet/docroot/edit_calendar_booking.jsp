@@ -105,8 +105,8 @@ if (calendarBooking != null) {
 		}
 	}
 	else {
-		masterBooking = false;
 		invitable = false;
+		masterBooking = false;
 	}
 
 	if (calendarBooking.isRecurring()) {
