@@ -85,7 +85,7 @@ JSONArray pendingCalendarsJSONArray = JSONFactoryUtil.createJSONArray();
 
 boolean hasChildCalendarBookings = false;
 boolean invitable = true;
-boolean masterBooking = false;
+boolean masterBooking = true;
 Recurrence recurrence = null;
 boolean recurring = false;
 
@@ -98,8 +98,6 @@ if (calendarBooking != null) {
 	pendingCalendarsJSONArray = CalendarUtil.toCalendarBookingsJSONArray(themeDisplay, CalendarBookingServiceUtil.getChildCalendarBookings(calendarBooking.getParentCalendarBookingId(), CalendarBookingWorkflowConstants.STATUS_PENDING));
 
 	if (calendarBooking.isMasterBooking()) {
-		masterBooking = true;
-
 		List<CalendarBooking> childCalendarBookings = CalendarBookingServiceUtil.getChildCalendarBookings(calendarBooking.getParentCalendarBookingId());
 
 		if (childCalendarBookings.size() > 1) {
@@ -107,6 +105,7 @@ if (calendarBooking != null) {
 		}
 	}
 	else {
+		masterBooking = false;
 		invitable = false;
 	}
 
