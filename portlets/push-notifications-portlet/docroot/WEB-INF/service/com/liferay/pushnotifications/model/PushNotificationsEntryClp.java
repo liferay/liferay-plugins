@@ -23,7 +23,7 @@ import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.util.PortalUtil;
 
 import com.liferay.pushnotifications.service.ClpSerializer;
-import com.liferay.pushnotifications.service.PushNotificationsDeviceLocalServiceUtil;
+import com.liferay.pushnotifications.service.PushNotificationsEntryLocalServiceUtil;
 
 import java.io.Serializable;
 
@@ -36,34 +36,34 @@ import java.util.Map;
 /**
  * @author Silvio Santos
  */
-public class PushNotificationsDeviceClp extends BaseModelImpl<PushNotificationsDevice>
-	implements PushNotificationsDevice {
-	public PushNotificationsDeviceClp() {
+public class PushNotificationsEntryClp extends BaseModelImpl<PushNotificationsEntry>
+	implements PushNotificationsEntry {
+	public PushNotificationsEntryClp() {
 	}
 
 	@Override
 	public Class<?> getModelClass() {
-		return PushNotificationsDevice.class;
+		return PushNotificationsEntry.class;
 	}
 
 	@Override
 	public String getModelClassName() {
-		return PushNotificationsDevice.class.getName();
+		return PushNotificationsEntry.class.getName();
 	}
 
 	@Override
 	public long getPrimaryKey() {
-		return _pushNotificationsDeviceId;
+		return _pushNotificationsEntryId;
 	}
 
 	@Override
 	public void setPrimaryKey(long primaryKey) {
-		setPushNotificationsDeviceId(primaryKey);
+		setPushNotificationsEntryId(primaryKey);
 	}
 
 	@Override
 	public Serializable getPrimaryKeyObj() {
-		return _pushNotificationsDeviceId;
+		return _pushNotificationsEntryId;
 	}
 
 	@Override
@@ -75,23 +75,23 @@ public class PushNotificationsDeviceClp extends BaseModelImpl<PushNotificationsD
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		attributes.put("pushNotificationsDeviceId",
-			getPushNotificationsDeviceId());
+		attributes.put("pushNotificationsEntryId", getPushNotificationsEntryId());
 		attributes.put("userId", getUserId());
 		attributes.put("createDate", getCreateDate());
-		attributes.put("platform", getPlatform());
-		attributes.put("token", getToken());
+		attributes.put("parentPushNotificationsEntryId",
+			getParentPushNotificationsEntryId());
+		attributes.put("payload", getPayload());
 
 		return attributes;
 	}
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Long pushNotificationsDeviceId = (Long)attributes.get(
-				"pushNotificationsDeviceId");
+		Long pushNotificationsEntryId = (Long)attributes.get(
+				"pushNotificationsEntryId");
 
-		if (pushNotificationsDeviceId != null) {
-			setPushNotificationsDeviceId(pushNotificationsDeviceId);
+		if (pushNotificationsEntryId != null) {
+			setPushNotificationsEntryId(pushNotificationsEntryId);
 		}
 
 		Long userId = (Long)attributes.get("userId");
@@ -106,37 +106,38 @@ public class PushNotificationsDeviceClp extends BaseModelImpl<PushNotificationsD
 			setCreateDate(createDate);
 		}
 
-		String platform = (String)attributes.get("platform");
+		Long parentPushNotificationsEntryId = (Long)attributes.get(
+				"parentPushNotificationsEntryId");
 
-		if (platform != null) {
-			setPlatform(platform);
+		if (parentPushNotificationsEntryId != null) {
+			setParentPushNotificationsEntryId(parentPushNotificationsEntryId);
 		}
 
-		String token = (String)attributes.get("token");
+		String payload = (String)attributes.get("payload");
 
-		if (token != null) {
-			setToken(token);
+		if (payload != null) {
+			setPayload(payload);
 		}
 	}
 
 	@Override
-	public long getPushNotificationsDeviceId() {
-		return _pushNotificationsDeviceId;
+	public long getPushNotificationsEntryId() {
+		return _pushNotificationsEntryId;
 	}
 
 	@Override
-	public void setPushNotificationsDeviceId(long pushNotificationsDeviceId) {
-		_pushNotificationsDeviceId = pushNotificationsDeviceId;
+	public void setPushNotificationsEntryId(long pushNotificationsEntryId) {
+		_pushNotificationsEntryId = pushNotificationsEntryId;
 
-		if (_pushNotificationsDeviceRemoteModel != null) {
+		if (_pushNotificationsEntryRemoteModel != null) {
 			try {
-				Class<?> clazz = _pushNotificationsDeviceRemoteModel.getClass();
+				Class<?> clazz = _pushNotificationsEntryRemoteModel.getClass();
 
-				Method method = clazz.getMethod("setPushNotificationsDeviceId",
+				Method method = clazz.getMethod("setPushNotificationsEntryId",
 						long.class);
 
-				method.invoke(_pushNotificationsDeviceRemoteModel,
-					pushNotificationsDeviceId);
+				method.invoke(_pushNotificationsEntryRemoteModel,
+					pushNotificationsEntryId);
 			}
 			catch (Exception e) {
 				throw new UnsupportedOperationException(e);
@@ -153,13 +154,13 @@ public class PushNotificationsDeviceClp extends BaseModelImpl<PushNotificationsD
 	public void setUserId(long userId) {
 		_userId = userId;
 
-		if (_pushNotificationsDeviceRemoteModel != null) {
+		if (_pushNotificationsEntryRemoteModel != null) {
 			try {
-				Class<?> clazz = _pushNotificationsDeviceRemoteModel.getClass();
+				Class<?> clazz = _pushNotificationsEntryRemoteModel.getClass();
 
 				Method method = clazz.getMethod("setUserId", long.class);
 
-				method.invoke(_pushNotificationsDeviceRemoteModel, userId);
+				method.invoke(_pushNotificationsEntryRemoteModel, userId);
 			}
 			catch (Exception e) {
 				throw new UnsupportedOperationException(e);
@@ -186,13 +187,13 @@ public class PushNotificationsDeviceClp extends BaseModelImpl<PushNotificationsD
 	public void setCreateDate(Date createDate) {
 		_createDate = createDate;
 
-		if (_pushNotificationsDeviceRemoteModel != null) {
+		if (_pushNotificationsEntryRemoteModel != null) {
 			try {
-				Class<?> clazz = _pushNotificationsDeviceRemoteModel.getClass();
+				Class<?> clazz = _pushNotificationsEntryRemoteModel.getClass();
 
 				Method method = clazz.getMethod("setCreateDate", Date.class);
 
-				method.invoke(_pushNotificationsDeviceRemoteModel, createDate);
+				method.invoke(_pushNotificationsEntryRemoteModel, createDate);
 			}
 			catch (Exception e) {
 				throw new UnsupportedOperationException(e);
@@ -201,21 +202,24 @@ public class PushNotificationsDeviceClp extends BaseModelImpl<PushNotificationsD
 	}
 
 	@Override
-	public String getPlatform() {
-		return _platform;
+	public long getParentPushNotificationsEntryId() {
+		return _parentPushNotificationsEntryId;
 	}
 
 	@Override
-	public void setPlatform(String platform) {
-		_platform = platform;
+	public void setParentPushNotificationsEntryId(
+		long parentPushNotificationsEntryId) {
+		_parentPushNotificationsEntryId = parentPushNotificationsEntryId;
 
-		if (_pushNotificationsDeviceRemoteModel != null) {
+		if (_pushNotificationsEntryRemoteModel != null) {
 			try {
-				Class<?> clazz = _pushNotificationsDeviceRemoteModel.getClass();
+				Class<?> clazz = _pushNotificationsEntryRemoteModel.getClass();
 
-				Method method = clazz.getMethod("setPlatform", String.class);
+				Method method = clazz.getMethod("setParentPushNotificationsEntryId",
+						long.class);
 
-				method.invoke(_pushNotificationsDeviceRemoteModel, platform);
+				method.invoke(_pushNotificationsEntryRemoteModel,
+					parentPushNotificationsEntryId);
 			}
 			catch (Exception e) {
 				throw new UnsupportedOperationException(e);
@@ -224,21 +228,21 @@ public class PushNotificationsDeviceClp extends BaseModelImpl<PushNotificationsD
 	}
 
 	@Override
-	public String getToken() {
-		return _token;
+	public String getPayload() {
+		return _payload;
 	}
 
 	@Override
-	public void setToken(String token) {
-		_token = token;
+	public void setPayload(String payload) {
+		_payload = payload;
 
-		if (_pushNotificationsDeviceRemoteModel != null) {
+		if (_pushNotificationsEntryRemoteModel != null) {
 			try {
-				Class<?> clazz = _pushNotificationsDeviceRemoteModel.getClass();
+				Class<?> clazz = _pushNotificationsEntryRemoteModel.getClass();
 
-				Method method = clazz.getMethod("setToken", String.class);
+				Method method = clazz.getMethod("setPayload", String.class);
 
-				method.invoke(_pushNotificationsDeviceRemoteModel, token);
+				method.invoke(_pushNotificationsEntryRemoteModel, payload);
 			}
 			catch (Exception e) {
 				throw new UnsupportedOperationException(e);
@@ -246,13 +250,13 @@ public class PushNotificationsDeviceClp extends BaseModelImpl<PushNotificationsD
 		}
 	}
 
-	public BaseModel<?> getPushNotificationsDeviceRemoteModel() {
-		return _pushNotificationsDeviceRemoteModel;
+	public BaseModel<?> getPushNotificationsEntryRemoteModel() {
+		return _pushNotificationsEntryRemoteModel;
 	}
 
-	public void setPushNotificationsDeviceRemoteModel(
-		BaseModel<?> pushNotificationsDeviceRemoteModel) {
-		_pushNotificationsDeviceRemoteModel = pushNotificationsDeviceRemoteModel;
+	public void setPushNotificationsEntryRemoteModel(
+		BaseModel<?> pushNotificationsEntryRemoteModel) {
+		_pushNotificationsEntryRemoteModel = pushNotificationsEntryRemoteModel;
 	}
 
 	public Object invokeOnRemoteModel(String methodName,
@@ -266,7 +270,7 @@ public class PushNotificationsDeviceClp extends BaseModelImpl<PushNotificationsD
 			}
 		}
 
-		Class<?> remoteModelClass = _pushNotificationsDeviceRemoteModel.getClass();
+		Class<?> remoteModelClass = _pushNotificationsEntryRemoteModel.getClass();
 
 		ClassLoader remoteModelClassLoader = remoteModelClass.getClassLoader();
 
@@ -286,7 +290,7 @@ public class PushNotificationsDeviceClp extends BaseModelImpl<PushNotificationsD
 		Method method = remoteModelClass.getMethod(methodName,
 				remoteParameterTypes);
 
-		Object returnValue = method.invoke(_pushNotificationsDeviceRemoteModel,
+		Object returnValue = method.invoke(_pushNotificationsEntryRemoteModel,
 				remoteParameterValues);
 
 		if (returnValue != null) {
@@ -299,36 +303,36 @@ public class PushNotificationsDeviceClp extends BaseModelImpl<PushNotificationsD
 	@Override
 	public void persist() throws SystemException {
 		if (this.isNew()) {
-			PushNotificationsDeviceLocalServiceUtil.addPushNotificationsDevice(this);
+			PushNotificationsEntryLocalServiceUtil.addPushNotificationsEntry(this);
 		}
 		else {
-			PushNotificationsDeviceLocalServiceUtil.updatePushNotificationsDevice(this);
+			PushNotificationsEntryLocalServiceUtil.updatePushNotificationsEntry(this);
 		}
 	}
 
 	@Override
-	public PushNotificationsDevice toEscapedModel() {
-		return (PushNotificationsDevice)ProxyUtil.newProxyInstance(PushNotificationsDevice.class.getClassLoader(),
-			new Class[] { PushNotificationsDevice.class },
+	public PushNotificationsEntry toEscapedModel() {
+		return (PushNotificationsEntry)ProxyUtil.newProxyInstance(PushNotificationsEntry.class.getClassLoader(),
+			new Class[] { PushNotificationsEntry.class },
 			new AutoEscapeBeanHandler(this));
 	}
 
 	@Override
 	public Object clone() {
-		PushNotificationsDeviceClp clone = new PushNotificationsDeviceClp();
+		PushNotificationsEntryClp clone = new PushNotificationsEntryClp();
 
-		clone.setPushNotificationsDeviceId(getPushNotificationsDeviceId());
+		clone.setPushNotificationsEntryId(getPushNotificationsEntryId());
 		clone.setUserId(getUserId());
 		clone.setCreateDate(getCreateDate());
-		clone.setPlatform(getPlatform());
-		clone.setToken(getToken());
+		clone.setParentPushNotificationsEntryId(getParentPushNotificationsEntryId());
+		clone.setPayload(getPayload());
 
 		return clone;
 	}
 
 	@Override
-	public int compareTo(PushNotificationsDevice pushNotificationsDevice) {
-		long primaryKey = pushNotificationsDevice.getPrimaryKey();
+	public int compareTo(PushNotificationsEntry pushNotificationsEntry) {
+		long primaryKey = pushNotificationsEntry.getPrimaryKey();
 
 		if (getPrimaryKey() < primaryKey) {
 			return -1;
@@ -347,13 +351,13 @@ public class PushNotificationsDeviceClp extends BaseModelImpl<PushNotificationsD
 			return true;
 		}
 
-		if (!(obj instanceof PushNotificationsDeviceClp)) {
+		if (!(obj instanceof PushNotificationsEntryClp)) {
 			return false;
 		}
 
-		PushNotificationsDeviceClp pushNotificationsDevice = (PushNotificationsDeviceClp)obj;
+		PushNotificationsEntryClp pushNotificationsEntry = (PushNotificationsEntryClp)obj;
 
-		long primaryKey = pushNotificationsDevice.getPrimaryKey();
+		long primaryKey = pushNotificationsEntry.getPrimaryKey();
 
 		if (getPrimaryKey() == primaryKey) {
 			return true;
@@ -376,16 +380,16 @@ public class PushNotificationsDeviceClp extends BaseModelImpl<PushNotificationsD
 	public String toString() {
 		StringBundler sb = new StringBundler(11);
 
-		sb.append("{pushNotificationsDeviceId=");
-		sb.append(getPushNotificationsDeviceId());
+		sb.append("{pushNotificationsEntryId=");
+		sb.append(getPushNotificationsEntryId());
 		sb.append(", userId=");
 		sb.append(getUserId());
 		sb.append(", createDate=");
 		sb.append(getCreateDate());
-		sb.append(", platform=");
-		sb.append(getPlatform());
-		sb.append(", token=");
-		sb.append(getToken());
+		sb.append(", parentPushNotificationsEntryId=");
+		sb.append(getParentPushNotificationsEntryId());
+		sb.append(", payload=");
+		sb.append(getPayload());
 		sb.append("}");
 
 		return sb.toString();
@@ -396,12 +400,12 @@ public class PushNotificationsDeviceClp extends BaseModelImpl<PushNotificationsD
 		StringBundler sb = new StringBundler(19);
 
 		sb.append("<model><model-name>");
-		sb.append("com.liferay.pushnotifications.model.PushNotificationsDevice");
+		sb.append("com.liferay.pushnotifications.model.PushNotificationsEntry");
 		sb.append("</model-name>");
 
 		sb.append(
-			"<column><column-name>pushNotificationsDeviceId</column-name><column-value><![CDATA[");
-		sb.append(getPushNotificationsDeviceId());
+			"<column><column-name>pushNotificationsEntryId</column-name><column-value><![CDATA[");
+		sb.append(getPushNotificationsEntryId());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>userId</column-name><column-value><![CDATA[");
@@ -412,12 +416,12 @@ public class PushNotificationsDeviceClp extends BaseModelImpl<PushNotificationsD
 		sb.append(getCreateDate());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>platform</column-name><column-value><![CDATA[");
-		sb.append(getPlatform());
+			"<column><column-name>parentPushNotificationsEntryId</column-name><column-value><![CDATA[");
+		sb.append(getParentPushNotificationsEntryId());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>token</column-name><column-value><![CDATA[");
-		sb.append(getToken());
+			"<column><column-name>payload</column-name><column-value><![CDATA[");
+		sb.append(getPayload());
 		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
@@ -425,12 +429,12 @@ public class PushNotificationsDeviceClp extends BaseModelImpl<PushNotificationsD
 		return sb.toString();
 	}
 
-	private long _pushNotificationsDeviceId;
+	private long _pushNotificationsEntryId;
 	private long _userId;
 	private String _userUuid;
 	private Date _createDate;
-	private String _platform;
-	private String _token;
-	private BaseModel<?> _pushNotificationsDeviceRemoteModel;
+	private long _parentPushNotificationsEntryId;
+	private String _payload;
+	private BaseModel<?> _pushNotificationsEntryRemoteModel;
 	private Class<?> _clpSerializerClass = com.liferay.pushnotifications.service.ClpSerializer.class;
 }

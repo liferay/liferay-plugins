@@ -22,8 +22,27 @@
 			<transient name="userUuid" />
 		</attributes>
 	</mapped-superclass>
+	<mapped-superclass class="com.liferay.pushnotifications.model.impl.PushNotificationsEntryModelImpl">
+		<attributes>
+			<id name="pushNotificationsEntryId" />
+			<basic name="userId" />
+			<basic name="createDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="parentPushNotificationsEntryId" />
+			<basic name="payload" />
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+			<transient name="userUuid" />
+		</attributes>
+	</mapped-superclass>
 	<entity class="com.liferay.pushnotifications.model.impl.PushNotificationsDeviceImpl" name="PushNotificationsDevice">
 		<table name="PushNotificationsDevice" />
+		<attributes />
+	</entity>
+	<entity class="com.liferay.pushnotifications.model.impl.PushNotificationsEntryImpl" name="PushNotificationsEntry">
+		<table name="PushNotificationsEntry" />
 		<attributes />
 	</entity>
 </entity-mappings>
