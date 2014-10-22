@@ -19,25 +19,9 @@ import aQute.bnd.annotation.ProviderType;
 import com.liferay.pushnotifications.service.base.PushNotificationsEntryServiceBaseImpl;
 
 /**
- * The implementation of the push notifications entry remote service.
- *
- * <p>
- * All custom service methods should be put in this class. Whenever methods are added, rerun ServiceBuilder to copy their definitions into the {@link com.liferay.pushnotifications.service.PushNotificationsEntryService} interface.
- *
- * <p>
- * This is a remote service. Methods of this service are expected to have security checks based on the propagated JAAS credentials because this service can be accessed remotely.
- * </p>
- *
  * @author Silvio Santos
- * @see com.liferay.pushnotifications.service.base.PushNotificationsEntryServiceBaseImpl
- * @see com.liferay.pushnotifications.service.PushNotificationsEntryServiceUtil
  */
 @ProviderType
 public class PushNotificationsEntryServiceImpl
 	extends PushNotificationsEntryServiceBaseImpl {
-	/*
-	 * NOTE FOR DEVELOPERS:
-	 *
-	 * Never reference this class directly. Always use {@link com.liferay.pushnotifications.service.PushNotificationsEntryServiceUtil} to access the push notifications entry remote service.
-	 */
 }
