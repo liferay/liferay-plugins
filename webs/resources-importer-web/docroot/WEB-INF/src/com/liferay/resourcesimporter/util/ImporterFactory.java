@@ -14,13 +14,20 @@
 
 package com.liferay.resourcesimporter.util;
 
+import com.liferay.portal.kernel.deploy.DeployManagerUtil;
+import com.liferay.portal.kernel.plugin.PluginPackage;
+import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.util.PortalRunMode;
+import com.liferay.portal.kernel.util.TextFormatter;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.Group;
+import com.liferay.portal.model.LayoutSetPrototype;
 import com.liferay.portal.service.GroupLocalServiceUtil;
 
 import java.net.URL;
 import java.net.URLConnection;
 
+import java.util.Properties;
 import java.util.Set;
 
 import javax.servlet.ServletContext;
@@ -40,8 +47,17 @@ public class ImporterFactory {
 		return _instance;
 	}
 
+	public static String getTargetClassName(
+		Properties pluginPackageProperties) {
+
+		return pluginPackageProperties.getProperty(
+					"resources-importer-target-class-name",
+					LayoutSetPrototype.class.getName());
+	}
+
 	public Importer createImporter(
-			long companyId, ServletContext servletContext, String resourcesDir)
+			long companyId, ServletContext servletContext,
+			Properties pluginPackageProperties, String resourcesDir)
 		throws Exception {
 
 		Set<String> resourcePaths = servletContext.getResourcePaths(
@@ -109,7 +125,62 @@ public class ImporterFactory {
 			throw new ImporterException("No valid importer found");
 		}
 
+		configureImporter(
+			companyId, importer, servletContext, pluginPackageProperties);
+
 		return importer;
+	}
+
+	protected void configureImporter(
+			long companyId, Importer importer, ServletContext servletContext,
+			Properties pluginPackageProperties)
+		throws Exception {
+
+		boolean appendVersion = GetterUtil.getBoolean(
+			pluginPackageProperties.getProperty(
+				"resources-importer-append-version"),
+			true);
+
+		importer.setAppendVersion(appendVersion);
+
+		importer.setCompanyId(companyId);
+
+		boolean developerModeEnabled = GetterUtil.getBoolean(
+			pluginPackageProperties.getProperty(
+				"resources-importer-developer-mode-enabled")) ||
+			PortalRunMode.isTestMode();
+
+		importer.setDeveloperModeEnabled(developerModeEnabled);
+
+		importer.setServletContext(servletContext);
+		importer.setServletContextName(servletContext.getServletContextName());
+
+		importer.setTargetClassName(
+			getTargetClassName(pluginPackageProperties));
+
+		String targetValue = pluginPackageProperties.getProperty(
+			"resources-importer-target-value");
+
+		if (Validator.isNull(targetValue)) {
+			targetValue = TextFormatter.format(
+				servletContext.getServletContextName(), TextFormatter.J);
+		}
+
+		importer.setTargetValue(targetValue);
+
+		boolean updateModeEnabled = GetterUtil.getBoolean(
+			pluginPackageProperties.getProperty(
+				"resources-importer-update-mode-enabled"));
+
+		importer.setUpdateModeEnabled(updateModeEnabled);
+
+		PluginPackage pluginPackage =
+			DeployManagerUtil.getInstalledPluginPackage(
+				servletContext.getServletContextName());
+
+		importer.setVersion(pluginPackage.getVersion());
+
+		importer.afterPropertiesSet();
 	}
 
 	protected FileSystemImporter getFileSystemImporter() {
