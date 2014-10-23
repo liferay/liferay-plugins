@@ -15,6 +15,7 @@
 package com.liferay.resourcesimporter.messaging;
 
 import com.liferay.portal.kernel.deploy.DeployManagerUtil;
+import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.lar.ExportImportThreadLocal;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -61,6 +62,62 @@ import javax.servlet.ServletContext;
  */
 public class ResourcesImporterHotDeployMessageListener
 	extends HotDeployMessageListener {
+
+	protected Importer createImporter(
+			long companyId, String resourcesDir, Set<String> resourcePaths,
+			Set<String> templatePaths, URL privateLARURL, URL publicLARURL)
+		throws IOException, PortalException {
+
+		Importer importer = null;
+
+		if ((privateLARURL != null) || (publicLARURL != null)) {
+			LARImporter larImporter = getLARImporter();
+
+			URLConnection privateLARURLConnection = null;
+
+			if (privateLARURL != null) {
+				privateLARURLConnection = privateLARURL.openConnection();
+
+				larImporter.setPrivateLARInputStream(
+					privateLARURLConnection.getInputStream());
+			}
+
+			URLConnection publicLARURLConnection = null;
+
+			if (publicLARURL != null) {
+				publicLARURLConnection = publicLARURL.openConnection();
+
+				larImporter.setPublicLARInputStream(
+					publicLARURLConnection.getInputStream());
+			}
+
+			importer = larImporter;
+		}
+		else if ((resourcePaths != null) && !resourcePaths.isEmpty()) {
+			importer = getResourceImporter();
+
+			importer.setResourcesDir(_RESOURCES_DIR);
+		}
+		else if ((templatePaths != null) && !templatePaths.isEmpty()) {
+			importer = getResourceImporter();
+
+			Group group = GroupLocalServiceUtil.getCompanyGroup(companyId);
+
+			importer.setGroupId(group.getGroupId());
+			importer.setResourcesDir(_TEMPLATES_DIR);
+		}
+		else if (Validator.isNotNull(resourcesDir)) {
+			importer = getFileSystemImporter();
+
+			importer.setResourcesDir(resourcesDir);
+		}
+
+		if (importer == null) {
+			throw new ImporterException("No valid importer found");
+		}
+
+		return importer;
+	}
 
 	protected FileSystemImporter getFileSystemImporter() {
 		return new FileSystemImporter();
@@ -155,55 +212,9 @@ public class ResourcesImporterHotDeployMessageListener
 			try {
 				CompanyThreadLocal.setCompanyId(company.getCompanyId());
 
-				Importer importer = null;
-
-				if ((privateLARURL != null) || (publicLARURL != null)) {
-					LARImporter larImporter = getLARImporter();
-
-					URLConnection privateLARURLConnection = null;
-
-					if (privateLARURL != null) {
-						privateLARURLConnection =
-							privateLARURL.openConnection();
-
-						larImporter.setPrivateLARInputStream(
-							privateLARURLConnection.getInputStream());
-					}
-
-					URLConnection publicLARURLConnection = null;
-
-					if (publicLARURL != null) {
-						publicLARURLConnection = publicLARURL.openConnection();
-
-						larImporter.setPublicLARInputStream(
-							publicLARURLConnection.getInputStream());
-					}
-
-					importer = larImporter;
-				}
-				else if ((resourcePaths != null) && !resourcePaths.isEmpty()) {
-					importer = getResourceImporter();
-
-					importer.setResourcesDir(_RESOURCES_DIR);
-				}
-				else if ((templatePaths != null) && !templatePaths.isEmpty()) {
-					importer = getResourceImporter();
-
-					Group group = GroupLocalServiceUtil.getCompanyGroup(
-						company.getCompanyId());
-
-					importer.setGroupId(group.getGroupId());
-					importer.setResourcesDir(_TEMPLATES_DIR);
-				}
-				else if (Validator.isNotNull(resourcesDir)) {
-					importer = getFileSystemImporter();
-
-					importer.setResourcesDir(resourcesDir);
-				}
-
-				if (importer == null) {
-					throw new ImporterException("No valid importer found");
-				}
+				Importer importer = createImporter(
+					company.getCompanyId(), resourcesDir, resourcePaths,
+					templatePaths, privateLARURL, publicLARURL);
 
 				boolean appendVersion = GetterUtil.getBoolean(
 					pluginPackageProperties.getProperty(
