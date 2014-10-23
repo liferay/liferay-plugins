@@ -172,6 +172,11 @@ public abstract class BaseImporter implements Importer {
 	}
 
 	@Override
+	public void setAppendVersion(boolean appendVersion) {
+		this.appendVersion = appendVersion;
+	}
+
+	@Override
 	public void setCompanyId(long companyId) {
 		this.companyId = companyId;
 	}
@@ -256,6 +261,7 @@ public abstract class BaseImporter implements Importer {
 		return null;
 	}
 
+	protected boolean appendVersion;
 	protected long companyId;
 	protected boolean developerModeEnabled;
 	protected boolean existing;

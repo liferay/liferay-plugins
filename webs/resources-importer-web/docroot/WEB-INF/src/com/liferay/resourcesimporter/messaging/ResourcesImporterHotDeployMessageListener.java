@@ -225,6 +225,13 @@ public class ResourcesImporterHotDeployMessageListener
 
 				importer.setVersion(pluginPackage.getVersion());
 
+				boolean appendVersion = GetterUtil.getBoolean(
+					pluginPackageProperties.getProperty(
+						"resources-importer-append-version"),
+					true);
+
+				importer.setAppendVersion(appendVersion);
+
 				boolean developerModeEnabled = GetterUtil.getBoolean(
 					pluginPackageProperties.getProperty(
 						"resources-importer-developer-mode-enabled"));

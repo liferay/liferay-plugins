@@ -1231,7 +1231,13 @@ public class FileSystemImporter extends BaseImporter {
 	protected String getKey(String name) {
 		name = StringUtil.replace(name, StringPool.SPACE, StringPool.DASH);
 
-		return StringUtil.toUpperCase(name) + StringPool.DASH + version;
+		name = StringUtil.toUpperCase(name);
+
+		if (appendVersion) {
+			name = name + StringPool.DASH + version;
+		}
+
+		return name;
 	}
 
 	protected Map<Locale, String> getMap(
@@ -1275,6 +1281,10 @@ public class FileSystemImporter extends BaseImporter {
 	}
 
 	protected String getName(String name) {
+		if (!appendVersion) {
+			return name;
+		}
+
 		return name + " - " + version;
 	}
 
