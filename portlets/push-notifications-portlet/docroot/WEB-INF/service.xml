@@ -42,7 +42,7 @@
 		<!-- Audit fields -->
 
 		<column name="userId" type="long" />
-		<column name="createDate" type="Date" />
+		<column name="createTime" type="long" />
 
 		<!-- Other fields -->
 

@@ -27,12 +27,11 @@ import com.liferay.pushnotifications.service.base.PushNotificationsEntryLocalSer
 import com.liferay.pushnotifications.util.PushNotificationsConstants;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
 /**
- * @author Silvio Santos
+ * @author Bruno Farache
  */
 @ProviderType
 public class PushNotificationsEntryLocalServiceImpl
@@ -49,7 +48,7 @@ public class PushNotificationsEntryLocalServiceImpl
 			pushNotificationsEntryPersistence.create(pushNotificationsEntryId);
 
 		pushNotificationsEntry.setUserId(userId);
-		pushNotificationsEntry.setCreateDate(new Date());
+		pushNotificationsEntry.setCreateTime(System.currentTimeMillis());
 		pushNotificationsEntry.setParentPushNotificationsEntryId(
 			parentPushNotificationsEntryId);
 		pushNotificationsEntry.setPayload(payloadJSONObject.toString());

@@ -28,7 +28,7 @@ import com.liferay.pushnotifications.util.ActionKeys;
 import com.liferay.pushnotifications.util.PushNotificationsConstants;
 
 /**
- * @author Silvio Santos
+ * @author Bruno Farache
  */
 @ProviderType
 public class PushNotificationsEntryServiceImpl
