@@ -352,12 +352,6 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 		}
 	}
 
-	protected String postProcessQueryString(String query, String keywords) {
-		SolrPostProcesor solrPostProcesor = new SolrPostProcesor(query, keywords);
-
-		return solrPostProcesor.postProcess();
-	}
-
 	protected Hits processQueryResponse(
 			QueryResponse queryResponse, SearchContext searchContext,
 			Query query)
@@ -468,8 +462,10 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 		sb.append(StringPool.COLON);
 		sb.append(searchContext.getCompanyId());
 
-		solrQuery.setQuery(
-			postProcessQueryString(sb.toString(), searchContext.getKeywords()));
+		SolrPostProcesor solrPostProcesor = new SolrPostProcesor(
+			sb.toString(), searchContext.getKeywords());
+
+		solrQuery.setQuery(solrPostProcesor.postProcess());
 	}
 
 	protected void updateFacetCollectors(
