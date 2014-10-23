@@ -15,7 +15,6 @@
 package com.liferay.resourcesimporter.messaging;
 
 import com.liferay.portal.kernel.deploy.DeployManagerUtil;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.lar.ExportImportThreadLocal;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -32,27 +31,19 @@ import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.TextFormatter;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.Company;
-import com.liferay.portal.model.Group;
 import com.liferay.portal.model.LayoutSetPrototype;
 import com.liferay.portal.security.auth.CompanyThreadLocal;
 import com.liferay.portal.service.CompanyLocalServiceUtil;
-import com.liferay.portal.service.GroupLocalServiceUtil;
-import com.liferay.resourcesimporter.util.FileSystemImporter;
 import com.liferay.resourcesimporter.util.Importer;
 import com.liferay.resourcesimporter.util.ImporterException;
-import com.liferay.resourcesimporter.util.LARImporter;
-import com.liferay.resourcesimporter.util.ResourceImporter;
+import com.liferay.resourcesimporter.util.ImporterFactory;
 
 import java.io.IOException;
-
-import java.net.URL;
-import java.net.URLConnection;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
-import java.util.Set;
 
 import javax.servlet.ServletContext;
 
@@ -62,86 +53,6 @@ import javax.servlet.ServletContext;
  */
 public class ResourcesImporterHotDeployMessageListener
 	extends HotDeployMessageListener {
-
-	protected Importer createImporter(
-			long companyId, ServletContext servletContext, String resourcesDir)
-		throws IOException, PortalException {
-
-		Set<String> resourcePaths = servletContext.getResourcePaths(
-			_RESOURCES_DIR);
-		Set<String> templatePaths = servletContext.getResourcePaths(
-			_TEMPLATES_DIR);
-
-		URL privateLARURL = null;
-		URL publicLARURL = servletContext.getResource(
-			_RESOURCES_DIR.concat("archive.lar"));
-
-		if (publicLARURL == null) {
-			privateLARURL = servletContext.getResource(
-				_RESOURCES_DIR.concat("private.lar"));
-
-			publicLARURL = servletContext.getResource(
-				_RESOURCES_DIR.concat("public.lar"));
-		}
-
-		Importer importer = null;
-
-		if ((privateLARURL != null) || (publicLARURL != null)) {
-			LARImporter larImporter = getLARImporter();
-
-			URLConnection privateLARURLConnection = null;
-
-			if (privateLARURL != null) {
-				privateLARURLConnection = privateLARURL.openConnection();
-
-				larImporter.setPrivateLARInputStream(
-					privateLARURLConnection.getInputStream());
-			}
-
-			URLConnection publicLARURLConnection = null;
-
-			if (publicLARURL != null) {
-				publicLARURLConnection = publicLARURL.openConnection();
-
-				larImporter.setPublicLARInputStream(
-					publicLARURLConnection.getInputStream());
-			}
-
-			importer = larImporter;
-		}
-		else if ((resourcePaths != null) && !resourcePaths.isEmpty()) {
-			importer = getResourceImporter();
-
-			importer.setResourcesDir(_RESOURCES_DIR);
-		}
-		else if ((templatePaths != null) && !templatePaths.isEmpty()) {
-			importer = getResourceImporter();
-
-			Group group = GroupLocalServiceUtil.getCompanyGroup(companyId);
-
-			importer.setGroupId(group.getGroupId());
-			importer.setResourcesDir(_TEMPLATES_DIR);
-		}
-		else if (Validator.isNotNull(resourcesDir)) {
-			importer = getFileSystemImporter();
-
-			importer.setResourcesDir(resourcesDir);
-		}
-
-		if (importer == null) {
-			throw new ImporterException("No valid importer found");
-		}
-
-		return importer;
-	}
-
-	protected FileSystemImporter getFileSystemImporter() {
-		return new FileSystemImporter();
-	}
-
-	protected LARImporter getLARImporter() {
-		return new LARImporter();
-	}
 
 	protected Properties getPluginPackageProperties(
 		ServletContext servletContext) {
@@ -174,10 +85,6 @@ public class ResourcesImporterHotDeployMessageListener
 		return properties;
 	}
 
-	protected ResourceImporter getResourceImporter() {
-		return new ResourceImporter();
-	}
-
 	protected String getTargetClassName(Properties pluginPackageProperties) {
 		return pluginPackageProperties.getProperty(
 					"resources-importer-target-class-name",
@@ -196,8 +103,10 @@ public class ResourcesImporterHotDeployMessageListener
 		String resourcesDir = pluginPackageProperties.getProperty(
 			"resources-importer-external-dir");
 
-		if ((servletContext.getResource(_RESOURCES_DIR) == null) &&
-			(servletContext.getResource(_TEMPLATES_DIR) == null) &&
+		if ((servletContext.getResource(
+				ImporterFactory.RESOURCES_DIR) == null) &&
+			(servletContext.getResource(
+				ImporterFactory.TEMPLATES_DIR) == null) &&
 			Validator.isNull(resourcesDir)) {
 
 			return;
@@ -288,7 +197,9 @@ public class ResourcesImporterHotDeployMessageListener
 		try {
 			CompanyThreadLocal.setCompanyId(company.getCompanyId());
 
-			Importer importer = createImporter(
+			ImporterFactory importerFactory = ImporterFactory.getInstance();
+
+			Importer importer = importerFactory.createImporter(
 				company.getCompanyId(), servletContext, resourcesDir);
 
 			configureImporter(
@@ -365,12 +276,6 @@ public class ResourcesImporterHotDeployMessageListener
 			CompanyThreadLocal.setCompanyId(companyId);
 		}
 	}
-
-	private static final String _RESOURCES_DIR =
-		"/WEB-INF/classes/resources-importer/";
-
-	private static final String _TEMPLATES_DIR =
-		"/WEB-INF/classes/templates-importer/";
 
 	private static Log _log = LogFactoryUtil.getLog(
 		ResourcesImporterHotDeployMessageListener.class);
