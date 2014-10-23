@@ -32,6 +32,8 @@ public interface Importer {
 
 	public boolean isCompanyGroup() throws Exception;
 
+	public boolean isDeveloperModeEnabled();
+
 	public boolean isExisting();
 
 	public void setAppendVersion(boolean appendVersion);

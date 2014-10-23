@@ -167,6 +167,11 @@ public abstract class BaseImporter implements Importer {
 	}
 
 	@Override
+	public boolean isDeveloperModeEnabled() {
+		return developerModeEnabled;
+	}
+
+	@Override
 	public boolean isExisting() {
 		return existing;
 	}
