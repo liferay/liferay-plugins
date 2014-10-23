@@ -28,7 +28,7 @@ import com.liferay.portal.service.InvokableService;
  * checks based on the propagated JAAS credentials because this service can be
  * accessed remotely.
  *
- * @author Silvio Santos
+ * @author Bruno Farache
  * @see PushNotificationsDeviceService
  * @see com.liferay.pushnotifications.service.base.PushNotificationsDeviceServiceBaseImpl
  * @see com.liferay.pushnotifications.service.impl.PushNotificationsDeviceServiceImpl

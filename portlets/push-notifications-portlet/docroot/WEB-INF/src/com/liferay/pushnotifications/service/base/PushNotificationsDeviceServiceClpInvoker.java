@@ -21,7 +21,7 @@ import com.liferay.pushnotifications.service.PushNotificationsDeviceServiceUtil;
 import java.util.Arrays;
 
 /**
- * @author Silvio Santos
+ * @author Bruno Farache
  * @generated
  */
 @ProviderType

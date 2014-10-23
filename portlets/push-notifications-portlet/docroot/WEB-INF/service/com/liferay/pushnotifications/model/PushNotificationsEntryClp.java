@@ -34,12 +34,11 @@ import java.io.Serializable;
 
 import java.lang.reflect.Method;
 
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @author Silvio Santos
+ * @author Bruno Farache
  */
 @ProviderType
 public class PushNotificationsEntryClp extends BaseModelImpl<PushNotificationsEntry>
@@ -83,7 +82,7 @@ public class PushNotificationsEntryClp extends BaseModelImpl<PushNotificationsEn
 
 		attributes.put("pushNotificationsEntryId", getPushNotificationsEntryId());
 		attributes.put("userId", getUserId());
-		attributes.put("createDate", getCreateDate());
+		attributes.put("createTime", getCreateTime());
 		attributes.put("parentPushNotificationsEntryId",
 			getParentPushNotificationsEntryId());
 		attributes.put("payload", getPayload());
@@ -109,10 +108,10 @@ public class PushNotificationsEntryClp extends BaseModelImpl<PushNotificationsEn
 			setUserId(userId);
 		}
 
-		Date createDate = (Date)attributes.get("createDate");
+		Long createTime = (Long)attributes.get("createTime");
 
-		if (createDate != null) {
-			setCreateDate(createDate);
+		if (createTime != null) {
+			setCreateTime(createTime);
 		}
 
 		Long parentPushNotificationsEntryId = (Long)attributes.get(
@@ -197,21 +196,21 @@ public class PushNotificationsEntryClp extends BaseModelImpl<PushNotificationsEn
 	}
 
 	@Override
-	public Date getCreateDate() {
-		return _createDate;
+	public long getCreateTime() {
+		return _createTime;
 	}
 
 	@Override
-	public void setCreateDate(Date createDate) {
-		_createDate = createDate;
+	public void setCreateTime(long createTime) {
+		_createTime = createTime;
 
 		if (_pushNotificationsEntryRemoteModel != null) {
 			try {
 				Class<?> clazz = _pushNotificationsEntryRemoteModel.getClass();
 
-				Method method = clazz.getMethod("setCreateDate", Date.class);
+				Method method = clazz.getMethod("setCreateTime", long.class);
 
-				method.invoke(_pushNotificationsEntryRemoteModel, createDate);
+				method.invoke(_pushNotificationsEntryRemoteModel, createTime);
 			}
 			catch (Exception e) {
 				throw new UnsupportedOperationException(e);
@@ -341,7 +340,7 @@ public class PushNotificationsEntryClp extends BaseModelImpl<PushNotificationsEn
 
 		clone.setPushNotificationsEntryId(getPushNotificationsEntryId());
 		clone.setUserId(getUserId());
-		clone.setCreateDate(getCreateDate());
+		clone.setCreateTime(getCreateTime());
 		clone.setParentPushNotificationsEntryId(getParentPushNotificationsEntryId());
 		clone.setPayload(getPayload());
 
@@ -350,17 +349,23 @@ public class PushNotificationsEntryClp extends BaseModelImpl<PushNotificationsEn
 
 	@Override
 	public int compareTo(PushNotificationsEntry pushNotificationsEntry) {
-		long primaryKey = pushNotificationsEntry.getPrimaryKey();
+		int value = 0;
 
-		if (getPrimaryKey() < primaryKey) {
-			return -1;
+		if (getCreateTime() < pushNotificationsEntry.getCreateTime()) {
+			value = -1;
 		}
-		else if (getPrimaryKey() > primaryKey) {
-			return 1;
+		else if (getCreateTime() > pushNotificationsEntry.getCreateTime()) {
+			value = 1;
 		}
 		else {
-			return 0;
+			value = 0;
 		}
+
+		if (value != 0) {
+			return value;
+		}
+
+		return 0;
 	}
 
 	@Override
@@ -412,8 +417,8 @@ public class PushNotificationsEntryClp extends BaseModelImpl<PushNotificationsEn
 		sb.append(getPushNotificationsEntryId());
 		sb.append(", userId=");
 		sb.append(getUserId());
-		sb.append(", createDate=");
-		sb.append(getCreateDate());
+		sb.append(", createTime=");
+		sb.append(getCreateTime());
 		sb.append(", parentPushNotificationsEntryId=");
 		sb.append(getParentPushNotificationsEntryId());
 		sb.append(", payload=");
@@ -440,8 +445,8 @@ public class PushNotificationsEntryClp extends BaseModelImpl<PushNotificationsEn
 		sb.append(getUserId());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>createDate</column-name><column-value><![CDATA[");
-		sb.append(getCreateDate());
+			"<column><column-name>createTime</column-name><column-value><![CDATA[");
+		sb.append(getCreateTime());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>parentPushNotificationsEntryId</column-name><column-value><![CDATA[");
@@ -459,7 +464,7 @@ public class PushNotificationsEntryClp extends BaseModelImpl<PushNotificationsEn
 
 	private long _pushNotificationsEntryId;
 	private long _userId;
-	private Date _createDate;
+	private long _createTime;
 	private long _parentPushNotificationsEntryId;
 	private String _payload;
 	private BaseModel<?> _pushNotificationsEntryRemoteModel;

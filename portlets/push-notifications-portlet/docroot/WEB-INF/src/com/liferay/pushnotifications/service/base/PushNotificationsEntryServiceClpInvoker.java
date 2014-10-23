@@ -21,7 +21,7 @@ import com.liferay.pushnotifications.service.PushNotificationsEntryServiceUtil;
 import java.util.Arrays;
 
 /**
- * @author Silvio Santos
+ * @author Bruno Farache
  * @generated
  */
 @ProviderType
@@ -35,13 +35,17 @@ public class PushNotificationsEntryServiceClpInvoker {
 
 		_methodParameterTypes31 = new String[] { "java.lang.String" };
 
-		_methodName36 = "sendPushNotification";
+		_methodName36 = "getPushNotificationsEntries";
 
-		_methodParameterTypes36 = new String[] { "long", "java.lang.String" };
+		_methodParameterTypes36 = new String[] { "long", "long", "int", "int" };
 
 		_methodName37 = "sendPushNotification";
 
-		_methodParameterTypes37 = new String[] { "java.lang.String" };
+		_methodParameterTypes37 = new String[] { "long", "java.lang.String" };
+
+		_methodName38 = "sendPushNotification";
+
+		_methodParameterTypes38 = new String[] { "java.lang.String" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -60,14 +64,22 @@ public class PushNotificationsEntryServiceClpInvoker {
 
 		if (_methodName36.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes36, parameterTypes)) {
+			return PushNotificationsEntryServiceUtil.getPushNotificationsEntries(((Long)arguments[0]).longValue(),
+				((Long)arguments[1]).longValue(),
+				((Integer)arguments[2]).intValue(),
+				((Integer)arguments[3]).intValue());
+		}
+
+		if (_methodName37.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes37, parameterTypes)) {
 			PushNotificationsEntryServiceUtil.sendPushNotification(((Long)arguments[0]).longValue(),
 				(java.lang.String)arguments[1]);
 
 			return null;
 		}
 
-		if (_methodName37.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes37, parameterTypes)) {
+		if (_methodName38.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes38, parameterTypes)) {
 			PushNotificationsEntryServiceUtil.sendPushNotification((java.lang.String)arguments[0]);
 
 			return null;
@@ -84,4 +96,6 @@ public class PushNotificationsEntryServiceClpInvoker {
 	private String[] _methodParameterTypes36;
 	private String _methodName37;
 	private String[] _methodParameterTypes37;
+	private String _methodName38;
+	private String[] _methodParameterTypes38;
 }

@@ -37,7 +37,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author Silvio Santos
+ * @author Bruno Farache
  */
 @ProviderType
 public class ClpSerializer {

@@ -19,7 +19,7 @@ import aQute.bnd.annotation.ProviderType;
 import com.liferay.portal.service.InvokableLocalService;
 
 /**
- * @author Silvio Santos
+ * @author Bruno Farache
  * @generated
  */
 @ProviderType
@@ -115,36 +115,40 @@ public class PushNotificationsEntryLocalServiceClp
 
 		_methodName16 = "getPushNotificationsEntries";
 
-		_methodParameterTypes16 = new String[] { "int", "int" };
+		_methodParameterTypes16 = new String[] { "long", "long", "int", "int" };
 
-		_methodName17 = "getPushNotificationsEntriesCount";
+		_methodName17 = "getPushNotificationsEntries";
 
-		_methodParameterTypes17 = new String[] {  };
+		_methodParameterTypes17 = new String[] { "int", "int" };
 
-		_methodName18 = "getPushNotificationsEntry";
+		_methodName18 = "getPushNotificationsEntriesCount";
 
-		_methodParameterTypes18 = new String[] { "long" };
+		_methodParameterTypes18 = new String[] {  };
 
-		_methodName20 = "sendPushNotification";
+		_methodName19 = "getPushNotificationsEntry";
 
-		_methodParameterTypes20 = new String[] {
-				"com.liferay.portal.kernel.json.JSONObject", "int", "int"
-			};
+		_methodParameterTypes19 = new String[] { "long" };
 
 		_methodName21 = "sendPushNotification";
 
 		_methodParameterTypes21 = new String[] {
+				"com.liferay.portal.kernel.json.JSONObject", "int", "int"
+			};
+
+		_methodName22 = "sendPushNotification";
+
+		_methodParameterTypes22 = new String[] {
 				"long", "com.liferay.portal.kernel.json.JSONObject", "int",
 				"int"
 			};
 
-		_methodName22 = "setBeanIdentifier";
+		_methodName23 = "setBeanIdentifier";
 
-		_methodParameterTypes22 = new String[] { "java.lang.String" };
+		_methodParameterTypes23 = new String[] { "java.lang.String" };
 
-		_methodName23 = "updatePushNotificationsEntry";
+		_methodName24 = "updatePushNotificationsEntry";
 
-		_methodParameterTypes23 = new String[] {
+		_methodParameterTypes24 = new String[] {
 				"com.liferay.pushnotifications.model.PushNotificationsEntry"
 			};
 	}
@@ -593,12 +597,46 @@ public class PushNotificationsEntryLocalServiceClp
 
 	@Override
 	public java.util.List<com.liferay.pushnotifications.model.PushNotificationsEntry> getPushNotificationsEntries(
-		int start, int end) {
+		long parentPushNotificationsEntryId, long lastAccessTime, int start,
+		int end) {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName16,
-					_methodParameterTypes16, new Object[] { start, end });
+					_methodParameterTypes16,
+					new Object[] {
+						parentPushNotificationsEntryId,
+						
+					lastAccessTime,
+						
+					start,
+						
+					end
+					});
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.util.List<com.liferay.pushnotifications.model.PushNotificationsEntry>)ClpSerializer.translateOutput(returnObj);
+	}
+
+	@Override
+	public java.util.List<com.liferay.pushnotifications.model.PushNotificationsEntry> getPushNotificationsEntries(
+		int start, int end) {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName17,
+					_methodParameterTypes17, new Object[] { start, end });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -620,8 +658,8 @@ public class PushNotificationsEntryLocalServiceClp
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName17,
-					_methodParameterTypes17, new Object[] {  });
+			returnObj = _invokableLocalService.invokeMethod(_methodName18,
+					_methodParameterTypes18, new Object[] {  });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -645,8 +683,8 @@ public class PushNotificationsEntryLocalServiceClp
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName18,
-					_methodParameterTypes18,
+			returnObj = _invokableLocalService.invokeMethod(_methodName19,
+					_methodParameterTypes19,
 					new Object[] { pushNotificationsEntryId });
 		}
 		catch (Throwable t) {
@@ -680,8 +718,8 @@ public class PushNotificationsEntryLocalServiceClp
 		com.liferay.portal.kernel.json.JSONObject jsonObject, int start, int end)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		try {
-			_invokableLocalService.invokeMethod(_methodName20,
-				_methodParameterTypes20,
+			_invokableLocalService.invokeMethod(_methodName21,
+				_methodParameterTypes21,
 				new Object[] {
 					ClpSerializer.translateInput(jsonObject),
 					
@@ -712,8 +750,8 @@ public class PushNotificationsEntryLocalServiceClp
 		com.liferay.portal.kernel.json.JSONObject jsonObject, int start, int end)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		try {
-			_invokableLocalService.invokeMethod(_methodName21,
-				_methodParameterTypes21,
+			_invokableLocalService.invokeMethod(_methodName22,
+				_methodParameterTypes22,
 				new Object[] {
 					toUserId,
 					
@@ -744,8 +782,8 @@ public class PushNotificationsEntryLocalServiceClp
 	@Override
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
 		try {
-			_invokableLocalService.invokeMethod(_methodName22,
-				_methodParameterTypes22,
+			_invokableLocalService.invokeMethod(_methodName23,
+				_methodParameterTypes23,
 				new Object[] { ClpSerializer.translateInput(beanIdentifier) });
 		}
 		catch (Throwable t) {
@@ -767,8 +805,8 @@ public class PushNotificationsEntryLocalServiceClp
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName23,
-					_methodParameterTypes23,
+			returnObj = _invokableLocalService.invokeMethod(_methodName24,
+					_methodParameterTypes24,
 					new Object[] {
 						ClpSerializer.translateInput(pushNotificationsEntry)
 					});
@@ -827,12 +865,14 @@ public class PushNotificationsEntryLocalServiceClp
 	private String[] _methodParameterTypes17;
 	private String _methodName18;
 	private String[] _methodParameterTypes18;
-	private String _methodName20;
-	private String[] _methodParameterTypes20;
+	private String _methodName19;
+	private String[] _methodParameterTypes19;
 	private String _methodName21;
 	private String[] _methodParameterTypes21;
 	private String _methodName22;
 	private String[] _methodParameterTypes22;
 	private String _methodName23;
 	private String[] _methodParameterTypes23;
+	private String _methodName24;
+	private String[] _methodParameterTypes24;
 }

@@ -26,7 +26,7 @@ import com.liferay.pushnotifications.service.PushNotificationsEntryLocalServiceU
 import com.liferay.pushnotifications.service.PushNotificationsEntryServiceUtil;
 
 /**
- * @author Silvio Santos
+ * @author Bruno Farache
  */
 @ProviderType
 public class ClpMessageListener extends BaseMessageListener {

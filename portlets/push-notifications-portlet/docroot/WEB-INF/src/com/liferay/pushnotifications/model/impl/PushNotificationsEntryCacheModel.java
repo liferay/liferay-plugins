@@ -27,12 +27,10 @@ import java.io.IOException;
 import java.io.ObjectInput;
 import java.io.ObjectOutput;
 
-import java.util.Date;
-
 /**
  * The cache model class for representing PushNotificationsEntry in entity cache.
  *
- * @author Silvio Santos
+ * @author Bruno Farache
  * @see PushNotificationsEntry
  * @generated
  */
@@ -47,8 +45,8 @@ public class PushNotificationsEntryCacheModel implements CacheModel<PushNotifica
 		sb.append(pushNotificationsEntryId);
 		sb.append(", userId=");
 		sb.append(userId);
-		sb.append(", createDate=");
-		sb.append(createDate);
+		sb.append(", createTime=");
+		sb.append(createTime);
 		sb.append(", parentPushNotificationsEntryId=");
 		sb.append(parentPushNotificationsEntryId);
 		sb.append(", payload=");
@@ -64,14 +62,7 @@ public class PushNotificationsEntryCacheModel implements CacheModel<PushNotifica
 
 		pushNotificationsEntryImpl.setPushNotificationsEntryId(pushNotificationsEntryId);
 		pushNotificationsEntryImpl.setUserId(userId);
-
-		if (createDate == Long.MIN_VALUE) {
-			pushNotificationsEntryImpl.setCreateDate(null);
-		}
-		else {
-			pushNotificationsEntryImpl.setCreateDate(new Date(createDate));
-		}
-
+		pushNotificationsEntryImpl.setCreateTime(createTime);
 		pushNotificationsEntryImpl.setParentPushNotificationsEntryId(parentPushNotificationsEntryId);
 
 		if (payload == null) {
@@ -90,7 +81,7 @@ public class PushNotificationsEntryCacheModel implements CacheModel<PushNotifica
 	public void readExternal(ObjectInput objectInput) throws IOException {
 		pushNotificationsEntryId = objectInput.readLong();
 		userId = objectInput.readLong();
-		createDate = objectInput.readLong();
+		createTime = objectInput.readLong();
 		parentPushNotificationsEntryId = objectInput.readLong();
 		payload = objectInput.readUTF();
 	}
@@ -100,7 +91,7 @@ public class PushNotificationsEntryCacheModel implements CacheModel<PushNotifica
 		throws IOException {
 		objectOutput.writeLong(pushNotificationsEntryId);
 		objectOutput.writeLong(userId);
-		objectOutput.writeLong(createDate);
+		objectOutput.writeLong(createTime);
 		objectOutput.writeLong(parentPushNotificationsEntryId);
 
 		if (payload == null) {
@@ -113,7 +104,7 @@ public class PushNotificationsEntryCacheModel implements CacheModel<PushNotifica
 
 	public long pushNotificationsEntryId;
 	public long userId;
-	public long createDate;
+	public long createTime;
 	public long parentPushNotificationsEntryId;
 	public String payload;
 }

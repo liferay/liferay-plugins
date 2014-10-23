@@ -19,7 +19,7 @@ import aQute.bnd.annotation.ProviderType;
 import com.liferay.portal.service.InvokableService;
 
 /**
- * @author Silvio Santos
+ * @author Bruno Farache
  * @generated
  */
 @ProviderType

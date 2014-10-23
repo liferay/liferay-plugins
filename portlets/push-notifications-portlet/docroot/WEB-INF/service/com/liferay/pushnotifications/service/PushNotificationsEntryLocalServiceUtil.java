@@ -28,7 +28,7 @@ import com.liferay.portal.service.InvokableLocalService;
  * based on the propagated JAAS credentials because this service can only be
  * accessed from within the same VM.
  *
- * @author Silvio Santos
+ * @author Bruno Farache
  * @see PushNotificationsEntryLocalService
  * @see com.liferay.pushnotifications.service.base.PushNotificationsEntryLocalServiceBaseImpl
  * @see com.liferay.pushnotifications.service.impl.PushNotificationsEntryLocalServiceImpl
@@ -207,6 +207,14 @@ public class PushNotificationsEntryLocalServiceUtil {
 		java.io.Serializable primaryKeyObj)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().getPersistedModel(primaryKeyObj);
+	}
+
+	public static java.util.List<com.liferay.pushnotifications.model.PushNotificationsEntry> getPushNotificationsEntries(
+		long parentPushNotificationsEntryId, long lastAccessTime, int start,
+		int end) {
+		return getService()
+				   .getPushNotificationsEntries(parentPushNotificationsEntryId,
+			lastAccessTime, start, end);
 	}
 
 	/**

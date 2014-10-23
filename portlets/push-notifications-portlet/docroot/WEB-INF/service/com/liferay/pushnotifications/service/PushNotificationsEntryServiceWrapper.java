@@ -21,7 +21,7 @@ import com.liferay.portal.service.ServiceWrapper;
 /**
  * Provides a wrapper for {@link PushNotificationsEntryService}.
  *
- * @author Silvio Santos
+ * @author Bruno Farache
  * @see PushNotificationsEntryService
  * @generated
  */
@@ -42,6 +42,14 @@ public class PushNotificationsEntryServiceWrapper
 	@Override
 	public java.lang.String getBeanIdentifier() {
 		return _pushNotificationsEntryService.getBeanIdentifier();
+	}
+
+	@Override
+	public java.util.List<com.liferay.pushnotifications.model.PushNotificationsEntry> getPushNotificationsEntries(
+		long parentPushNotificationsEntryId, long lastAccessTime, int start,
+		int end) {
+		return _pushNotificationsEntryService.getPushNotificationsEntries(parentPushNotificationsEntryId,
+			lastAccessTime, start, end);
 	}
 
 	@Override

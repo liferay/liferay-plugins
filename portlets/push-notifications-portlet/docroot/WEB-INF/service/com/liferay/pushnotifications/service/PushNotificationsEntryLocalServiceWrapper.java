@@ -21,7 +21,7 @@ import com.liferay.portal.service.ServiceWrapper;
 /**
  * Provides a wrapper for {@link PushNotificationsEntryLocalService}.
  *
- * @author Silvio Santos
+ * @author Bruno Farache
  * @see PushNotificationsEntryLocalService
  * @generated
  */
@@ -214,6 +214,14 @@ public class PushNotificationsEntryLocalServiceWrapper
 		java.io.Serializable primaryKeyObj)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _pushNotificationsEntryLocalService.getPersistedModel(primaryKeyObj);
+	}
+
+	@Override
+	public java.util.List<com.liferay.pushnotifications.model.PushNotificationsEntry> getPushNotificationsEntries(
+		long parentPushNotificationsEntryId, long lastAccessTime, int start,
+		int end) {
+		return _pushNotificationsEntryLocalService.getPushNotificationsEntries(parentPushNotificationsEntryId,
+			lastAccessTime, start, end);
 	}
 
 	/**

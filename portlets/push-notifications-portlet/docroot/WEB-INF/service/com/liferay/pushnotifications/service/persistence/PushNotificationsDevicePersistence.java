@@ -27,7 +27,7 @@ import com.liferay.pushnotifications.model.PushNotificationsDevice;
  * Caching information and settings can be found in <code>portal.properties</code>
  * </p>
  *
- * @author Silvio Santos
+ * @author Bruno Farache
  * @see PushNotificationsDevicePersistenceImpl
  * @see PushNotificationsDeviceUtil
  * @generated

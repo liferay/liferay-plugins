@@ -32,7 +32,7 @@ import com.liferay.portal.service.PersistedModelLocalService;
  * credentials because this service can only be accessed from within the same
  * VM.
  *
- * @author Silvio Santos
+ * @author Bruno Farache
  * @see PushNotificationsEntryLocalServiceUtil
  * @see com.liferay.pushnotifications.service.base.PushNotificationsEntryLocalServiceBaseImpl
  * @see com.liferay.pushnotifications.service.impl.PushNotificationsEntryLocalServiceImpl
@@ -186,6 +186,11 @@ public interface PushNotificationsEntryLocalService extends BaseLocalService,
 	public com.liferay.portal.model.PersistedModel getPersistedModel(
 		java.io.Serializable primaryKeyObj)
 		throws com.liferay.portal.kernel.exception.PortalException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<com.liferay.pushnotifications.model.PushNotificationsEntry> getPushNotificationsEntries(
+		long parentPushNotificationsEntryId, long lastAccessTime, int start,
+		int end);
 
 	/**
 	* Returns a range of all the push notifications entries.

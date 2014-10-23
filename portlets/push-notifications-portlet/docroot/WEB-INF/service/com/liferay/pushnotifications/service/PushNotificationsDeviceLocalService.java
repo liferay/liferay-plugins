@@ -32,7 +32,7 @@ import com.liferay.portal.service.PersistedModelLocalService;
  * credentials because this service can only be accessed from within the same
  * VM.
  *
- * @author Silvio Santos
+ * @author Bruno Farache
  * @see PushNotificationsDeviceLocalServiceUtil
  * @see com.liferay.pushnotifications.service.base.PushNotificationsDeviceLocalServiceBaseImpl
  * @see com.liferay.pushnotifications.service.impl.PushNotificationsDeviceLocalServiceImpl

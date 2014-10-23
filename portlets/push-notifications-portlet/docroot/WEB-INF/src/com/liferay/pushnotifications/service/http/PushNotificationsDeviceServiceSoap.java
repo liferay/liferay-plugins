@@ -57,7 +57,7 @@ import java.rmi.RemoteException;
  * The SOAP utility is only generated for remote services.
  * </p>
  *
- * @author Silvio Santos
+ * @author Bruno Farache
  * @see PushNotificationsDeviceServiceHttp
  * @see com.liferay.pushnotifications.model.PushNotificationsDeviceSoap
  * @see com.liferay.pushnotifications.service.PushNotificationsDeviceServiceUtil

@@ -28,7 +28,7 @@ import com.liferay.portal.service.InvokableLocalService;
  * based on the propagated JAAS credentials because this service can only be
  * accessed from within the same VM.
  *
- * @author Silvio Santos
+ * @author Bruno Farache
  * @see PushNotificationsDeviceLocalService
  * @see com.liferay.pushnotifications.service.base.PushNotificationsDeviceLocalServiceBaseImpl
  * @see com.liferay.pushnotifications.service.impl.PushNotificationsDeviceLocalServiceImpl

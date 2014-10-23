@@ -20,7 +20,7 @@ import com.liferay.pushnotifications.model.PushNotificationsDevice;
 import com.liferay.pushnotifications.service.PushNotificationsDeviceLocalServiceUtil;
 
 /**
- * @author Silvio Santos
+ * @author Bruno Farache
  * @deprecated As of 7.0.0, replaced by {@link PushNotificationsDeviceLocalServiceUtil#getActionableDynamicQuery()}
  * @generated
  */
