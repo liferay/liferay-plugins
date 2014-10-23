@@ -14,6 +14,8 @@
 
 package com.liferay.portal.search.solr;
 
+import com.liferay.portal.kernel.util.StringPool;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -23,9 +25,9 @@ import java.util.regex.Pattern;
 public class SolrPostProcesor {
 
 	public SolrPostProcesor(String query, String keywords) {
-		this._query = query;
-		this._keywords = keywords;
-		this._sb = new StringBuilder(query.length());
+		this.query = query;
+		this.keywords = keywords;
+		sb = new StringBuilder(query.length());
 	}
 
 	public String postProcess() {
@@ -35,35 +37,35 @@ public class SolrPostProcesor {
 
 		appendRemainder();
 
-		return _sb.toString();
+		return sb.toString();
 	}
 
 	protected void appendPhrase() {
-		String before = _query.substring(i, a);
+		String before = query.substring(index, firstQuoteIndex);
 
-		_sb.append(before);
+		sb.append(before);
 
-		i = b + 1;
+		index = secondQuoteIndex + 1;
 
-		String phrase = _query.substring(a, i);
+		String phrase = query.substring(firstQuoteIndex, index);
 
 		if (questionMark) {
 			String regex = buildRegex(phrase);
 
 			Pattern pattern = Pattern.compile(regex);
-			Matcher matcher = pattern.matcher(_keywords);
+			Matcher matcher = pattern.matcher(keywords);
 
 			if (matcher.find()) {
-				_sb.append(matcher.group());
+				sb.append(matcher.group());
 				return;
 			}
 		}
 
-		_sb.append(phrase);
+		sb.append(phrase);
 	}
 
 	protected void appendRemainder() {
-		_sb.append(_query.substring(i));
+		sb.append(query.substring(index));
 	}
 
 	protected String buildRegex(String phrase) {
@@ -72,7 +74,7 @@ public class SolrPostProcesor {
 		int p = 0;
 
 		while (true) {
-			int q = phrase.indexOf('?', p);
+			int q = phrase.indexOf(StringPool.QUESTION, p);
 
 			if (q == -1) {
 				break;
@@ -80,7 +82,8 @@ public class SolrPostProcesor {
 
 			String part = phrase.substring(p, q);
 			regex.append(Pattern.quote(part));
-			regex.append(".+");
+			regex.append(StringPool.PERIOD);
+			regex.append(StringPool.PLUS);
 			p = q + 1;
 		}
 
@@ -91,21 +94,23 @@ public class SolrPostProcesor {
 	}
 
 	protected boolean findPhrase() {
-		a = _query.indexOf('"', i);
+		firstQuoteIndex = query.indexOf(StringPool.QUOTE, index);
 
-		if (a == -1) {
+		if (firstQuoteIndex == -1) {
 			return false;
 		}
 
-		b = _query.indexOf('"', a + 1);
+		secondQuoteIndex = query.indexOf(
+			StringPool.QUOTE, firstQuoteIndex + 1);
 
-		if (b == -1) {
+		if (secondQuoteIndex == -1) {
 			return false;
 		}
 
-		int q = _query.indexOf('?', a);
+		int questionMarkIndex = query.indexOf(
+			StringPool.QUESTION, firstQuoteIndex);
 
-		if (q == -1) {
+		if (questionMarkIndex == -1) {
 			questionMark = false;
 		}
 		else {
@@ -115,11 +120,13 @@ public class SolrPostProcesor {
 		return true;
 	}
 
-	protected int a, b, i;
+	protected int firstQuoteIndex;
+	protected int index;
+	protected String keywords;
+	protected String query;
 	protected boolean questionMark;
+	protected StringBuilder sb;
+	protected int secondQuoteIndex;
 
-	private final String _keywords;
-	private final String _query;
-	private final StringBuilder _sb;
 
 }
