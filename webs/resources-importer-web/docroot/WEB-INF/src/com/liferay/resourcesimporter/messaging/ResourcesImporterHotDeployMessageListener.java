@@ -64,9 +64,25 @@ public class ResourcesImporterHotDeployMessageListener
 	extends HotDeployMessageListener {
 
 	protected Importer createImporter(
-			long companyId, String resourcesDir, Set<String> resourcePaths,
-			Set<String> templatePaths, URL privateLARURL, URL publicLARURL)
+			long companyId, ServletContext servletContext, String resourcesDir)
 		throws IOException, PortalException {
+
+		Set<String> resourcePaths = servletContext.getResourcePaths(
+			_RESOURCES_DIR);
+		Set<String> templatePaths = servletContext.getResourcePaths(
+			_TEMPLATES_DIR);
+
+		URL privateLARURL = null;
+		URL publicLARURL = servletContext.getResource(
+			_RESOURCES_DIR.concat("archive.lar"));
+
+		if (publicLARURL == null) {
+			privateLARURL = servletContext.getResource(
+				_RESOURCES_DIR.concat("private.lar"));
+
+			publicLARURL = servletContext.getResource(
+				_RESOURCES_DIR.concat("public.lar"));
+		}
 
 		Importer importer = null;
 
@@ -187,22 +203,6 @@ public class ResourcesImporterHotDeployMessageListener
 			return;
 		}
 
-		Set<String> resourcePaths = servletContext.getResourcePaths(
-			_RESOURCES_DIR);
-		Set<String> templatePaths = servletContext.getResourcePaths(
-			_TEMPLATES_DIR);
-
-		URL privateLARURL = null;
-		URL publicLARURL = servletContext.getResource(
-			_RESOURCES_DIR.concat("archive.lar"));
-
-		if (publicLARURL == null) {
-			privateLARURL = servletContext.getResource(
-				_RESOURCES_DIR.concat("private.lar"));
-			publicLARURL = servletContext.getResource(
-				_RESOURCES_DIR.concat("public.lar"));
-		}
-
 		List<Company> companies = CompanyLocalServiceUtil.getCompanies();
 
 		try {
@@ -212,8 +212,7 @@ public class ResourcesImporterHotDeployMessageListener
 			for (Company company : companies) {
 				importResources(
 					company, servletContext, message, pluginPackageProperties,
-					resourcesDir, resourcePaths, templatePaths, privateLARURL,
-					publicLARURL);
+					resourcesDir);
 			}
 		}
 		finally {
@@ -281,9 +280,7 @@ public class ResourcesImporterHotDeployMessageListener
 
 	private void importResources(
 			Company company, ServletContext servletContext, Message message,
-			Properties pluginPackageProperties, String resourcesDir,
-			Set<String> resourcePaths, Set<String> templatePaths,
-			URL privateLARURL, URL publicLARURL)
+			Properties pluginPackageProperties, String resourcesDir)
 		throws Exception {
 
 		long companyId = CompanyThreadLocal.getCompanyId();
@@ -292,8 +289,7 @@ public class ResourcesImporterHotDeployMessageListener
 			CompanyThreadLocal.setCompanyId(company.getCompanyId());
 
 			Importer importer = createImporter(
-				company.getCompanyId(), resourcesDir, resourcePaths,
-				templatePaths, privateLARURL, publicLARURL);
+				company.getCompanyId(), servletContext, resourcesDir);
 
 			configureImporter(
 				company.getCompanyId(), importer, servletContext,
