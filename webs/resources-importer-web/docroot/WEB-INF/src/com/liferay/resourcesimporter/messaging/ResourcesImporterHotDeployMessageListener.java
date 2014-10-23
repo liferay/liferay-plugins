@@ -71,7 +71,8 @@ public class ResourcesImporterHotDeployMessageListener
 
 			for (Company company : companies) {
 				importResources(
-					company, servletContext, message, pluginPackageProperties);
+					company, servletContext, pluginPackageProperties,
+					message.getResponseId());
 			}
 		}
 		finally {
@@ -86,8 +87,9 @@ public class ResourcesImporterHotDeployMessageListener
 	}
 
 	private void importResources(
-			Company company, ServletContext servletContext, Message message,
-			PluginPackageProperties pluginPackageProperties)
+			Company company, ServletContext servletContext,
+			PluginPackageProperties pluginPackageProperties,
+			String messageResponseId)
 		throws Exception {
 
 		long companyId = CompanyThreadLocal.getCompanyId();
@@ -131,41 +133,39 @@ public class ResourcesImporterHotDeployMessageListener
 							endTime + " ms");
 			}
 
-			Message newMessage = new Message();
+			Message message = new Message();
 
-			newMessage.put("companyId", company.getCompanyId());
-			newMessage.put(
+			message.put("companyId", company.getCompanyId());
+			message.put(
 				"servletContextName", servletContext.getServletContextName());
-			newMessage.put("targetClassName", importer.getTargetClassName());
-			newMessage.put("targetClassPK", importer.getTargetClassPK());
+			message.put("targetClassName", importer.getTargetClassName());
+			message.put("targetClassPK", importer.getTargetClassPK());
 
-			if (message.getResponseId() != null) {
+			if (Validator.isNotNull(messageResponseId)) {
 				Map<String, Object> responseMap = new HashMap<String, Object>();
 
 				responseMap.put("groupId", importer.getTargetClassPK());
 
-				newMessage.setPayload(responseMap);
+				message.setPayload(responseMap);
 
-				newMessage.setResponseId(message.getResponseId());
+				message.setResponseId(messageResponseId);
 			}
 
-			MessageBusUtil.sendMessage(
-				"liferay/resources_importer", newMessage);
+			MessageBusUtil.sendMessage("liferay/resources_importer", message);
 		}
 		catch (ImporterException ie) {
-			Message newMessage = new Message();
+			Message message = new Message();
 
-			newMessage.put("companyId", company.getCompanyId());
-			newMessage.put("error", ie.getMessage());
-			newMessage.put(
+			message.put("companyId", company.getCompanyId());
+			message.put("error", ie.getMessage());
+			message.put(
 				"servletContextName", servletContext.getServletContextName());
-			newMessage.put(
+			message.put(
 				"targetClassName",
 				pluginPackageProperties.getTargetClassName());
-			newMessage.put("targetClassPK", 0);
+			message.put("targetClassPK", 0);
 
-			MessageBusUtil.sendMessage(
-				"liferay/resources_importer", newMessage);
+			MessageBusUtil.sendMessage("liferay/resources_importer", message);
 		}
 		finally {
 			CompanyThreadLocal.setCompanyId(companyId);
