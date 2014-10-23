@@ -43,8 +43,6 @@ if (readEntry) {
 if (entry.getPriority() > 0) {
 	className += " important-entry";
 }
-
-Date displayDate = entry.getDisplayDate();
 %>
 
 <div class="clearfix entry<%= className %>" data-entryId="<%= entry.getEntryId() %>" id="<portlet:namespace /><%= entry.getEntryId() %>">
@@ -81,7 +79,7 @@ Date displayDate = entry.getDisplayDate();
 		</div>
 
 		<div class="entry-time">
-			<%= Time.getRelativeTimeDescription(displayDate.getTime(), locale, timeZone, dateFormatDate) %>
+			<%= Time.getRelativeTimeDescription(entry.getDisplayDate(), locale, timeZone, dateFormatDate) %>
 		</div>
 	</div>
 
