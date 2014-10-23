@@ -61,6 +61,15 @@ public class PushNotificationsEntryLocalServiceImpl
 	}
 
 	@Override
+	public List<PushNotificationsEntry> getPushNotificationsEntries(
+		long parentPushNotificationsEntryId, long lastAccessTime, int start,
+		int end) {
+
+		return pushNotificationsEntryPersistence.findByC_P(
+			lastAccessTime, parentPushNotificationsEntryId, start, end);
+	}
+
+	@Override
 	public void sendPushNotification(JSONObject jsonObject, int start, int end)
 		throws PortalException, SystemException {
 
