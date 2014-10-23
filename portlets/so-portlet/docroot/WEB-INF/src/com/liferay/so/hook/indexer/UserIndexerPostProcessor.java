@@ -91,7 +91,7 @@ public class UserIndexerPostProcessor extends BaseIndexerPostProcessor {
 		int count = UserLocalServiceUtil.getSocialUsersCount(
 			user.getUserId(), SocialRelationConstants.TYPE_BI_CONNECTION);
 
-		List<Long> socialRelationshipIds = new ArrayList<Long>();
+		List<Long> socialRelationshipUserIds = new ArrayList<Long>();
 
 		int pages = count / Indexer.DEFAULT_INTERVAL;
 
@@ -106,13 +106,13 @@ public class UserIndexerPostProcessor extends BaseIndexerPostProcessor {
 					new UserFirstNameComparator(true));
 
 			for (User socialRelationship : socialRelationships) {
-				socialRelationshipIds.add(socialRelationship.getUserId());
+				socialRelationshipUserIds.add(socialRelationship.getUserId());
 			}
 		}
 
 		document.addKeyword(
 			"socialRelationships",
-			ArrayUtil.toLongArray(socialRelationshipIds));
+			ArrayUtil.toLongArray(socialRelationshipUserIds));
 	}
 
 	@Override
