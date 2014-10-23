@@ -162,6 +162,12 @@ public class ResourcesImporterHotDeployMessageListener
 		return new ResourceImporter();
 	}
 
+	protected String getTargetClassName(Properties pluginPackageProperties) {
+		return pluginPackageProperties.getProperty(
+					"resources-importer-target-class-name",
+					LayoutSetPrototype.class.getName());
+	}
+
 	protected void initialize(Message message) throws Exception {
 		String servletContextName = message.getString("servletContextName");
 
@@ -180,10 +186,6 @@ public class ResourcesImporterHotDeployMessageListener
 
 			return;
 		}
-
-		String targetClassName = pluginPackageProperties.getProperty(
-			"resources-importer-target-class-name",
-			LayoutSetPrototype.class.getName());
 
 		Set<String> resourcePaths = servletContext.getResourcePaths(
 			_RESOURCES_DIR);
@@ -210,8 +212,8 @@ public class ResourcesImporterHotDeployMessageListener
 			for (Company company : companies) {
 				importResources(
 					company, servletContext, message, pluginPackageProperties,
-					resourcesDir, targetClassName, resourcePaths, templatePaths,
-					privateLARURL, publicLARURL);
+					resourcesDir, resourcePaths, templatePaths, privateLARURL,
+					publicLARURL);
 			}
 		}
 		finally {
@@ -227,7 +229,7 @@ public class ResourcesImporterHotDeployMessageListener
 
 	private void configureImporter(
 			long companyId, Importer importer, ServletContext servletContext,
-			Properties pluginPackageProperties, String targetClassName)
+			Properties pluginPackageProperties)
 		throws Exception {
 
 		boolean appendVersion = GetterUtil.getBoolean(
@@ -248,7 +250,9 @@ public class ResourcesImporterHotDeployMessageListener
 
 		importer.setServletContext(servletContext);
 		importer.setServletContextName(servletContext.getServletContextName());
-		importer.setTargetClassName(targetClassName);
+
+		importer.setTargetClassName(
+			getTargetClassName(pluginPackageProperties));
 
 		String targetValue = pluginPackageProperties.getProperty(
 			"resources-importer-target-value");
@@ -278,8 +282,8 @@ public class ResourcesImporterHotDeployMessageListener
 	private void importResources(
 			Company company, ServletContext servletContext, Message message,
 			Properties pluginPackageProperties, String resourcesDir,
-			String targetClassName, Set<String> resourcePaths,
-			Set<String> templatePaths, URL privateLARURL, URL publicLARURL)
+			Set<String> resourcePaths, Set<String> templatePaths,
+			URL privateLARURL, URL publicLARURL)
 		throws Exception {
 
 		long companyId = CompanyThreadLocal.getCompanyId();
@@ -293,7 +297,7 @@ public class ResourcesImporterHotDeployMessageListener
 
 			configureImporter(
 				company.getCompanyId(), importer, servletContext,
-				pluginPackageProperties, targetClassName);
+				pluginPackageProperties);
 
 			if (!importer.isDeveloperModeEnabled() && importer.isExisting() &&
 				!importer.isCompanyGroup()) {
@@ -330,7 +334,7 @@ public class ResourcesImporterHotDeployMessageListener
 			newMessage.put("companyId", company.getCompanyId());
 			newMessage.put(
 				"servletContextName", servletContext.getServletContextName());
-			newMessage.put("targetClassName", targetClassName);
+			newMessage.put("targetClassName", importer.getTargetClassName());
 			newMessage.put("targetClassPK", importer.getTargetClassPK());
 
 			if (message.getResponseId() != null) {
@@ -353,7 +357,9 @@ public class ResourcesImporterHotDeployMessageListener
 			newMessage.put("error", ie.getMessage());
 			newMessage.put(
 				"servletContextName", servletContext.getServletContextName());
-			newMessage.put("targetClassName", targetClassName);
+
+			newMessage.put(
+				"targetClassName", getTargetClassName(pluginPackageProperties));
 			newMessage.put("targetClassPK", 0);
 
 			MessageBusUtil.sendMessage(

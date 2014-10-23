@@ -26,6 +26,8 @@ public interface Importer {
 
 	public long getGroupId();
 
+	public String getTargetClassName();
+
 	public long getTargetClassPK();
 
 	public void importResources() throws Exception;
