@@ -19,7 +19,7 @@ import com.liferay.portal.service.ServiceWrapper;
 /**
  * Provides a wrapper for {@link PushNotificationsDeviceService}.
  *
- * @author Silvio Santos
+ * @author Bruno Farache
  * @see PushNotificationsDeviceService
  * @generated
  */
@@ -78,8 +78,7 @@ public class PushNotificationsDeviceServiceWrapper
 
 	@Override
 	public boolean hasPermission(java.lang.String actionId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _pushNotificationsDeviceService.hasPermission(actionId);
 	}
 

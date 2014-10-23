@@ -13,7 +13,7 @@
 	<model name="com.liferay.pushnotifications.model.PushNotificationsEntry">
 		<field name="pushNotificationsEntryId" type="long" />
 		<field name="userId" type="long" />
-		<field name="createDate" type="Date" />
+		<field name="createTime" type="long" />
 		<field name="parentPushNotificationsEntryId" type="long" />
 		<field name="payload" type="String" />
 	</model>

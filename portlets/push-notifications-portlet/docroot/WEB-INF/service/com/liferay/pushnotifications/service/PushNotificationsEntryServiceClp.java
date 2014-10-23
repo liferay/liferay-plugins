@@ -17,7 +17,7 @@ package com.liferay.pushnotifications.service;
 import com.liferay.portal.service.InvokableService;
 
 /**
- * @author Silvio Santos
+ * @author Bruno Farache
  * @generated
  */
 public class PushNotificationsEntryServiceClp
@@ -33,13 +33,17 @@ public class PushNotificationsEntryServiceClp
 
 		_methodParameterTypes1 = new String[] { "java.lang.String" };
 
-		_methodName3 = "sendPushNotification";
+		_methodName3 = "getPushNotificationsEntries";
 
-		_methodParameterTypes3 = new String[] { "long", "java.lang.String" };
+		_methodParameterTypes3 = new String[] { "long", "long", "int", "int" };
 
 		_methodName4 = "sendPushNotification";
 
-		_methodParameterTypes4 = new String[] { "java.lang.String" };
+		_methodParameterTypes4 = new String[] { "long", "java.lang.String" };
+
+		_methodName5 = "sendPushNotification";
+
+		_methodParameterTypes5 = new String[] { "java.lang.String" };
 	}
 
 	@Override
@@ -93,12 +97,50 @@ public class PushNotificationsEntryServiceClp
 	}
 
 	@Override
+	public java.util.List<com.liferay.pushnotifications.model.PushNotificationsEntry> getPushNotificationsEntries(
+		long parentPushNotificationsEntryId, long lastAccessTime, int start,
+		int end) throws com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableService.invokeMethod(_methodName3,
+					_methodParameterTypes3,
+					new Object[] {
+						parentPushNotificationsEntryId,
+						
+					lastAccessTime,
+						
+					start,
+						
+					end
+					});
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.util.List<com.liferay.pushnotifications.model.PushNotificationsEntry>)ClpSerializer.translateOutput(returnObj);
+	}
+
+	@Override
 	public void sendPushNotification(long toUserId, java.lang.String payload)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		try {
-			_invokableService.invokeMethod(_methodName3,
-				_methodParameterTypes3,
+			_invokableService.invokeMethod(_methodName4,
+				_methodParameterTypes4,
 				new Object[] { toUserId, ClpSerializer.translateInput(payload) });
 		}
 		catch (Throwable t) {
@@ -127,8 +169,8 @@ public class PushNotificationsEntryServiceClp
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		try {
-			_invokableService.invokeMethod(_methodName4,
-				_methodParameterTypes4,
+			_invokableService.invokeMethod(_methodName5,
+				_methodParameterTypes5,
 				new Object[] { ClpSerializer.translateInput(payload) });
 		}
 		catch (Throwable t) {
@@ -161,4 +203,6 @@ public class PushNotificationsEntryServiceClp
 	private String[] _methodParameterTypes3;
 	private String _methodName4;
 	private String[] _methodParameterTypes4;
+	private String _methodName5;
+	private String[] _methodParameterTypes5;
 }

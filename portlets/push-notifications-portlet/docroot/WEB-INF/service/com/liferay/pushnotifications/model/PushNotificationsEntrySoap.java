@@ -17,13 +17,12 @@ package com.liferay.pushnotifications.model;
 import java.io.Serializable;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
  * This class is used by SOAP remote services, specifically {@link com.liferay.pushnotifications.service.http.PushNotificationsEntryServiceSoap}.
  *
- * @author Silvio Santos
+ * @author Bruno Farache
  * @see com.liferay.pushnotifications.service.http.PushNotificationsEntryServiceSoap
  * @generated
  */
@@ -34,7 +33,7 @@ public class PushNotificationsEntrySoap implements Serializable {
 
 		soapModel.setPushNotificationsEntryId(model.getPushNotificationsEntryId());
 		soapModel.setUserId(model.getUserId());
-		soapModel.setCreateDate(model.getCreateDate());
+		soapModel.setCreateTime(model.getCreateTime());
 		soapModel.setParentPushNotificationsEntryId(model.getParentPushNotificationsEntryId());
 		soapModel.setPayload(model.getPayload());
 
@@ -108,12 +107,12 @@ public class PushNotificationsEntrySoap implements Serializable {
 		_userId = userId;
 	}
 
-	public Date getCreateDate() {
-		return _createDate;
+	public long getCreateTime() {
+		return _createTime;
 	}
 
-	public void setCreateDate(Date createDate) {
-		_createDate = createDate;
+	public void setCreateTime(long createTime) {
+		_createTime = createTime;
 	}
 
 	public long getParentPushNotificationsEntryId() {
@@ -135,7 +134,7 @@ public class PushNotificationsEntrySoap implements Serializable {
 
 	private long _pushNotificationsEntryId;
 	private long _userId;
-	private Date _createDate;
+	private long _createTime;
 	private long _parentPushNotificationsEntryId;
 	private String _payload;
 }

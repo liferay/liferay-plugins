@@ -26,9 +26,7 @@
 		<attributes>
 			<id name="pushNotificationsEntryId" />
 			<basic name="userId" />
-			<basic name="createDate">
-				<temporal>TIMESTAMP</temporal>
-			</basic>
+			<basic name="createTime" />
 			<basic name="parentPushNotificationsEntryId" />
 			<basic name="payload" />
 			<transient name="modelAttributes" />

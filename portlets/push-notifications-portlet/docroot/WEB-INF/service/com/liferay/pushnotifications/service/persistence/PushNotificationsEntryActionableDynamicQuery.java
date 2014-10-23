@@ -21,7 +21,7 @@ import com.liferay.pushnotifications.model.PushNotificationsEntry;
 import com.liferay.pushnotifications.service.PushNotificationsEntryLocalServiceUtil;
 
 /**
- * @author Silvio Santos
+ * @author Bruno Farache
  * @generated
  */
 public abstract class PushNotificationsEntryActionableDynamicQuery
