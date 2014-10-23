@@ -88,8 +88,8 @@ public class ResourcesImporterHotDeployMessageListener
 		Properties pluginPackageProperties = getPluginPackageProperties(
 			servletContext);
 
-		String resourcesDir = pluginPackageProperties.getProperty(
-			"resources-importer-external-dir");
+		String resourcesDir = ImporterFactory.getResourcesDir(
+			pluginPackageProperties);
 
 		if ((servletContext.getResource(
 				ImporterFactory.RESOURCES_DIR) == null) &&
@@ -108,8 +108,7 @@ public class ResourcesImporterHotDeployMessageListener
 
 			for (Company company : companies) {
 				importResources(
-					company, servletContext, message, pluginPackageProperties,
-					resourcesDir);
+					company, servletContext, message, pluginPackageProperties);
 			}
 		}
 		finally {
@@ -125,7 +124,7 @@ public class ResourcesImporterHotDeployMessageListener
 
 	private void importResources(
 			Company company, ServletContext servletContext, Message message,
-			Properties pluginPackageProperties, String resourcesDir)
+			Properties pluginPackageProperties)
 		throws Exception {
 
 		long companyId = CompanyThreadLocal.getCompanyId();
@@ -136,8 +135,8 @@ public class ResourcesImporterHotDeployMessageListener
 			ImporterFactory importerFactory = ImporterFactory.getInstance();
 
 			Importer importer = importerFactory.createImporter(
-				company.getCompanyId(), servletContext, pluginPackageProperties,
-				resourcesDir);
+				company.getCompanyId(), servletContext,
+				pluginPackageProperties);
 
 			if (!importer.isDeveloperModeEnabled() && importer.isExisting() &&
 				!importer.isCompanyGroup()) {

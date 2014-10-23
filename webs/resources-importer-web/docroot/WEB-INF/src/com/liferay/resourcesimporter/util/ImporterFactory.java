@@ -47,6 +47,11 @@ public class ImporterFactory {
 		return _instance;
 	}
 
+	public static String getResourcesDir(Properties pluginPackageProperties) {
+		return pluginPackageProperties.getProperty(
+					"resources-importer-external-dir");
+	}
+
 	public static String getTargetClassName(
 		Properties pluginPackageProperties) {
 
@@ -57,8 +62,11 @@ public class ImporterFactory {
 
 	public Importer createImporter(
 			long companyId, ServletContext servletContext,
-			Properties pluginPackageProperties, String resourcesDir)
+			Properties pluginPackageProperties)
 		throws Exception {
+
+		String resourcesDir = ImporterFactory.getResourcesDir(
+			pluginPackageProperties);
 
 		Set<String> resourcePaths = servletContext.getResourcePaths(
 			RESOURCES_DIR);
