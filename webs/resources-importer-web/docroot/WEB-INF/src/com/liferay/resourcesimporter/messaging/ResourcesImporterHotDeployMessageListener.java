@@ -205,7 +205,27 @@ public class ResourcesImporterHotDeployMessageListener
 					throw new ImporterException("No valid importer found");
 				}
 
+				boolean appendVersion = GetterUtil.getBoolean(
+					pluginPackageProperties.getProperty(
+						"resources-importer-append-version"),
+					true);
+
+				importer.setAppendVersion(appendVersion);
+
 				importer.setCompanyId(company.getCompanyId());
+
+				boolean developerModeEnabled = false;
+
+				if (GetterUtil.getBoolean(
+						pluginPackageProperties.getProperty(
+							"resources-importer-developer-mode-enabled")) ||
+					PortalRunMode.isTestMode()) {
+
+					developerModeEnabled = true;
+				}
+
+				importer.setDeveloperModeEnabled(developerModeEnabled);
+
 				importer.setServletContext(servletContext);
 				importer.setServletContextName(servletContextName);
 				importer.setTargetClassName(targetClassName);
@@ -220,31 +240,17 @@ public class ResourcesImporterHotDeployMessageListener
 
 				importer.setTargetValue(targetValue);
 
-				PluginPackage pluginPackage =
-					DeployManagerUtil.getInstalledPluginPackage(
-						servletContextName);
-
-				importer.setVersion(pluginPackage.getVersion());
-
-				boolean appendVersion = GetterUtil.getBoolean(
-					pluginPackageProperties.getProperty(
-						"resources-importer-append-version"),
-					true);
-
-				importer.setAppendVersion(appendVersion);
-
-				boolean developerModeEnabled = GetterUtil.getBoolean(
-					pluginPackageProperties.getProperty(
-						"resources-importer-developer-mode-enabled")) ||
-					PortalRunMode.isTestMode();
-
-				importer.setDeveloperModeEnabled(developerModeEnabled);
-
 				boolean updateModeEnabled = GetterUtil.getBoolean(
 					pluginPackageProperties.getProperty(
 						"resources-importer-update-mode-enabled"));
 
 				importer.setUpdateModeEnabled(updateModeEnabled);
+
+				PluginPackage pluginPackage =
+					DeployManagerUtil.getInstalledPluginPackage(
+						servletContextName);
+
+				importer.setVersion(pluginPackage.getVersion());
 
 				importer.afterPropertiesSet();
 
