@@ -34,6 +34,8 @@ public interface Importer {
 
 	public boolean isExisting();
 
+	public void setAppendVersion(boolean appendVersion);
+
 	public void setCompanyId(long companyId);
 
 	public void setDeveloperModeEnabled(boolean developerModeEnabled);
