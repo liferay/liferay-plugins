@@ -21,9 +21,6 @@ import com.liferay.portal.kernel.messaging.HotDeployMessageListener;
 import com.liferay.portal.kernel.messaging.Message;
 import com.liferay.portal.kernel.messaging.MessageBusUtil;
 import com.liferay.portal.kernel.servlet.ServletContextPool;
-import com.liferay.portal.kernel.util.PropertiesUtil;
-import com.liferay.portal.kernel.util.StringPool;
-import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.Company;
 import com.liferay.portal.security.auth.CompanyThreadLocal;
@@ -31,13 +28,11 @@ import com.liferay.portal.service.CompanyLocalServiceUtil;
 import com.liferay.resourcesimporter.util.Importer;
 import com.liferay.resourcesimporter.util.ImporterException;
 import com.liferay.resourcesimporter.util.ImporterFactory;
-
-import java.io.IOException;
+import com.liferay.resourcesimporter.util.PluginPackageProperties;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Properties;
 
 import javax.servlet.ServletContext;
 
@@ -48,48 +43,16 @@ import javax.servlet.ServletContext;
 public class ResourcesImporterHotDeployMessageListener
 	extends HotDeployMessageListener {
 
-	protected Properties getPluginPackageProperties(
-		ServletContext servletContext) {
-
-		Properties properties = new Properties();
-
-		try {
-			String propertiesString = StringUtil.read(
-				servletContext.getResourceAsStream(
-					"/WEB-INF/liferay-plugin-package.properties"));
-
-			if (propertiesString == null) {
-				return properties;
-			}
-
-			String contextPath = servletContext.getRealPath(StringPool.SLASH);
-
-			contextPath = StringUtil.replace(
-				contextPath, StringPool.BACK_SLASH, StringPool.SLASH);
-
-			propertiesString = propertiesString.replace(
-				"${context.path}", contextPath);
-
-			PropertiesUtil.load(properties, propertiesString);
-		}
-		catch (IOException ioe) {
-			_log.error(ioe, ioe);
-		}
-
-		return properties;
-	}
-
 	protected void initialize(Message message) throws Exception {
 		String servletContextName = message.getString("servletContextName");
 
 		ServletContext servletContext = ServletContextPool.get(
 			servletContextName);
 
-		Properties pluginPackageProperties = getPluginPackageProperties(
-			servletContext);
+		PluginPackageProperties pluginPackageProperties =
+			new PluginPackageProperties(servletContext);
 
-		String resourcesDir = ImporterFactory.getResourcesDir(
-			pluginPackageProperties);
+		String resourcesDir = pluginPackageProperties.getResourcesDir();
 
 		if ((servletContext.getResource(
 				ImporterFactory.RESOURCES_DIR) == null) &&
@@ -124,7 +87,7 @@ public class ResourcesImporterHotDeployMessageListener
 
 	private void importResources(
 			Company company, ServletContext servletContext, Message message,
-			Properties pluginPackageProperties)
+			PluginPackageProperties pluginPackageProperties)
 		throws Exception {
 
 		long companyId = CompanyThreadLocal.getCompanyId();
@@ -196,10 +159,9 @@ public class ResourcesImporterHotDeployMessageListener
 			newMessage.put("error", ie.getMessage());
 			newMessage.put(
 				"servletContextName", servletContext.getServletContextName());
-
 			newMessage.put(
 				"targetClassName",
-				ImporterFactory.getTargetClassName(pluginPackageProperties));
+				pluginPackageProperties.getTargetClassName());
 			newMessage.put("targetClassPK", 0);
 
 			MessageBusUtil.sendMessage(
