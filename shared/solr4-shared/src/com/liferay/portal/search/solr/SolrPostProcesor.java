@@ -20,9 +20,9 @@ import java.util.regex.Pattern;
 /**
  * @author André de Oliveira
  */
-public class SolrPostProcess {
+public class SolrPostProcesor {
 
-	public SolrPostProcess(String query, String keywords) {
+	public SolrPostProcesor(String query, String keywords) {
 		this._query = query;
 		this._keywords = keywords;
 		this._sb = new StringBuilder(query.length());

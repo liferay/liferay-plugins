@@ -79,8 +79,8 @@ public class SolrPostProcessTest {
 	protected void assertPostProcess(
 		String expected, String query, String keywords) {
 
-		SolrPostProcess solrPostProcess = new SolrPostProcess(query, keywords);
-		String actual = solrPostProcess.postProcess();
+		SolrPostProcesor solrPostProcesor = new SolrPostProcesor(query, keywords);
+		String actual = solrPostProcesor.postProcess();
 
 		Assert.assertEquals(expected, actual);
 	}

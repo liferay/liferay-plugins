@@ -353,9 +353,9 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 	}
 
 	protected String postProcessQueryString(String query, String keywords) {
-		SolrPostProcess solrPostProcess = new SolrPostProcess(query, keywords);
+		SolrPostProcesor solrPostProcesor = new SolrPostProcesor(query, keywords);
 
-		return solrPostProcess.postProcess();
+		return solrPostProcesor.postProcess();
 	}
 
 	protected Hits processQueryResponse(
