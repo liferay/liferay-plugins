@@ -203,91 +203,20 @@ public class ResourcesImporterHotDeployMessageListener
 
 		List<Company> companies = CompanyLocalServiceUtil.getCompanies();
 
-		for (Company company : companies) {
-			long companyId = CompanyThreadLocal.getCompanyId();
+		ExportImportThreadLocal.setLayoutImportInProcess(true);
+		ExportImportThreadLocal.setPortletImportInProcess(true);
 
-			ExportImportThreadLocal.setLayoutImportInProcess(true);
-			ExportImportThreadLocal.setPortletImportInProcess(true);
-
-			try {
-				CompanyThreadLocal.setCompanyId(company.getCompanyId());
-
-				Importer importer = createImporter(
-					company.getCompanyId(), resourcesDir, resourcePaths,
-					templatePaths, privateLARURL, publicLARURL);
-
-				boolean developerModeEnabled = configureImporter(
-					company.getCompanyId(), importer, servletContext,
-					pluginPackageProperties, targetClassName);
-
-				if (!developerModeEnabled && importer.isExisting() &&
-					!importer.isCompanyGroup()) {
-
-					if (_log.isInfoEnabled()) {
-						_log.info(
-							"Group or layout set prototype already exists " +
-								"for company " + company.getWebId());
-					}
-
-					continue;
-				}
-
-				long startTime = 0;
-
-				if (_log.isInfoEnabled()) {
-					startTime = System.currentTimeMillis();
-				}
-
-				importer.importResources();
-
-				if (_log.isInfoEnabled()) {
-					long endTime = System.currentTimeMillis() - startTime;
-
-					_log.info(
-						"Importing resources from " + servletContextName +
-							" to group " + importer.getGroupId() + " takes " +
-								endTime + " ms");
-				}
-
-				Message newMessage = new Message();
-
-				newMessage.put("companyId", company.getCompanyId());
-				newMessage.put("servletContextName", servletContextName);
-				newMessage.put("targetClassName", targetClassName);
-				newMessage.put("targetClassPK", importer.getTargetClassPK());
-
-				if (message.getResponseId() != null) {
-					Map<String, Object> responseMap =
-						new HashMap<String, Object>();
-
-					responseMap.put("groupId", importer.getTargetClassPK());
-
-					newMessage.setPayload(responseMap);
-
-					newMessage.setResponseId(message.getResponseId());
-				}
-
-				MessageBusUtil.sendMessage(
-					"liferay/resources_importer", newMessage);
+		try {
+			for (Company company : companies) {
+				importResources(
+					company, servletContext, message, pluginPackageProperties,
+					resourcesDir, targetClassName, resourcePaths, templatePaths,
+					privateLARURL, publicLARURL);
 			}
-			catch (ImporterException ie) {
-				Message newMessage = new Message();
-
-				newMessage.put("companyId", company.getCompanyId());
-				newMessage.put("error", ie.getMessage());
-				newMessage.put("servletContextName", servletContextName);
-				newMessage.put("targetClassName", targetClassName);
-				newMessage.put("targetClassPK", 0);
-
-				MessageBusUtil.sendMessage(
-					"liferay/resources_importer", newMessage);
-			}
-			finally {
-				CompanyThreadLocal.setCompanyId(companyId);
-
-				ExportImportThreadLocal.setLayoutImportInProcess(false);
-				ExportImportThreadLocal.setPortletImportInProcess(false);
-			}
+		}
+		finally {
+			ExportImportThreadLocal.setLayoutImportInProcess(false);
+			ExportImportThreadLocal.setPortletImportInProcess(false);
 		}
 	}
 
@@ -346,6 +275,95 @@ public class ResourcesImporterHotDeployMessageListener
 		importer.afterPropertiesSet();
 
 		return developerModeEnabled;
+	}
+
+	private void importResources(
+			Company company, ServletContext servletContext, Message message,
+			Properties pluginPackageProperties, String resourcesDir,
+			String targetClassName, Set<String> resourcePaths,
+			Set<String> templatePaths, URL privateLARURL, URL publicLARURL)
+		throws Exception {
+
+		long companyId = CompanyThreadLocal.getCompanyId();
+
+		try {
+			CompanyThreadLocal.setCompanyId(company.getCompanyId());
+
+			Importer importer = createImporter(
+				company.getCompanyId(), resourcesDir, resourcePaths,
+				templatePaths, privateLARURL, publicLARURL);
+
+			boolean developerModeEnabled = configureImporter(
+				company.getCompanyId(), importer, servletContext,
+				pluginPackageProperties, targetClassName);
+
+			if (!developerModeEnabled && importer.isExisting() &&
+				!importer.isCompanyGroup()) {
+
+				if (_log.isInfoEnabled()) {
+					_log.info(
+						"Group or layout set prototype already exists " +
+							"for company " + company.getWebId());
+				}
+
+				return;
+			}
+
+			long startTime = 0;
+
+			if (_log.isInfoEnabled()) {
+				startTime = System.currentTimeMillis();
+			}
+
+			importer.importResources();
+
+			if (_log.isInfoEnabled()) {
+				long endTime = System.currentTimeMillis() - startTime;
+
+				_log.info(
+					"Importing resources from " +
+						servletContext.getServletContextName() +
+						" to group " + importer.getGroupId() + " takes " +
+							endTime + " ms");
+			}
+
+			Message newMessage = new Message();
+
+			newMessage.put("companyId", company.getCompanyId());
+			newMessage.put(
+				"servletContextName", servletContext.getServletContextName());
+			newMessage.put("targetClassName", targetClassName);
+			newMessage.put("targetClassPK", importer.getTargetClassPK());
+
+			if (message.getResponseId() != null) {
+				Map<String, Object> responseMap = new HashMap<String, Object>();
+
+				responseMap.put("groupId", importer.getTargetClassPK());
+
+				newMessage.setPayload(responseMap);
+
+				newMessage.setResponseId(message.getResponseId());
+			}
+
+			MessageBusUtil.sendMessage(
+				"liferay/resources_importer", newMessage);
+		}
+		catch (ImporterException ie) {
+			Message newMessage = new Message();
+
+			newMessage.put("companyId", company.getCompanyId());
+			newMessage.put("error", ie.getMessage());
+			newMessage.put(
+				"servletContextName", servletContext.getServletContextName());
+			newMessage.put("targetClassName", targetClassName);
+			newMessage.put("targetClassPK", 0);
+
+			MessageBusUtil.sendMessage(
+				"liferay/resources_importer", newMessage);
+		}
+		finally {
+			CompanyThreadLocal.setCompanyId(companyId);
+		}
 	}
 
 	private static final String _RESOURCES_DIR =
