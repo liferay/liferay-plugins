@@ -51,7 +51,7 @@ public class SolrPostProcessorTest {
 	}
 
 	@Test
-	public void testExactPhraseWithoutStopwords() {
+	public void testExactPhraseWithoutStopWords() {
 		assertPostProcess(
 			"k:\"Liferay rocks\"", "k:\"Liferay rocks\"", "\"Liferay rocks\"");
 	}
