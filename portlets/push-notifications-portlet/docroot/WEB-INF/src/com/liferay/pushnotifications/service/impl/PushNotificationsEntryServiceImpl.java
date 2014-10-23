@@ -22,10 +22,13 @@ import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.pushnotifications.model.PushNotificationsEntry;
 import com.liferay.pushnotifications.service.base.PushNotificationsEntryServiceBaseImpl;
 import com.liferay.pushnotifications.service.permission.PushNotificationsPermission;
 import com.liferay.pushnotifications.util.ActionKeys;
 import com.liferay.pushnotifications.util.PushNotificationsConstants;
+
+import java.util.List;
 
 /**
  * @author Bruno Farache
@@ -33,6 +36,15 @@ import com.liferay.pushnotifications.util.PushNotificationsConstants;
 @ProviderType
 public class PushNotificationsEntryServiceImpl
 	extends PushNotificationsEntryServiceBaseImpl {
+
+	@Override
+	public List<PushNotificationsEntry> getPushNotificationsEntries(
+		long parentPushNotificationsEntryId, long lastAccessTime, int start,
+		int end) {
+
+		return pushNotificationsEntryLocalService.getPushNotificationsEntries(
+			parentPushNotificationsEntryId, lastAccessTime, start, end);
+	}
 
 	@Override
 	public void sendPushNotification(long toUserId, String payload)

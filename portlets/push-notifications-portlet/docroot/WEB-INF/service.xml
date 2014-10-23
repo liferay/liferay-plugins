@@ -48,5 +48,18 @@
 
 		<column name="parentPushNotificationsEntryId" type="long" />
 		<column name="payload" type="String" />
+
+		<!-- Order -->
+
+		<order by="asc">
+			<order-column name="createTime" />
+		</order>
+
+		<!-- Finder methods -->
+
+		<finder name="C_P" return-type="Collection">
+			<finder-column name="createTime" comparator="&gt;" />
+			<finder-column name="parentPushNotificationsEntryId" />
+		</finder>
 	</entity>
 </service-builder>
