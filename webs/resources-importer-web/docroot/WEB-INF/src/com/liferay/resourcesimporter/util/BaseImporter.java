@@ -142,6 +142,11 @@ public abstract class BaseImporter implements Importer {
 	}
 
 	@Override
+	public String getTargetClassName() {
+		return targetClassName;
+	}
+
+	@Override
 	public long getTargetClassPK() {
 		return targetClassPK;
 	}
