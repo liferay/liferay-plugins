@@ -24,6 +24,7 @@ import com.liferay.portal.kernel.messaging.MessageBusUtil;
 import com.liferay.portal.kernel.plugin.PluginPackage;
 import com.liferay.portal.kernel.servlet.ServletContextPool;
 import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.util.PortalRunMode;
 import com.liferay.portal.kernel.util.PropertiesUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -234,7 +235,8 @@ public class ResourcesImporterHotDeployMessageListener
 
 				boolean developerModeEnabled = GetterUtil.getBoolean(
 					pluginPackageProperties.getProperty(
-						"resources-importer-developer-mode-enabled"));
+						"resources-importer-developer-mode-enabled")) ||
+					PortalRunMode.isTestMode();
 
 				importer.setDeveloperModeEnabled(developerModeEnabled);
 
