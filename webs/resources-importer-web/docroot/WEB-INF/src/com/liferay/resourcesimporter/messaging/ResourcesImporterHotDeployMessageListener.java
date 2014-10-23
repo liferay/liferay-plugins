@@ -216,54 +216,9 @@ public class ResourcesImporterHotDeployMessageListener
 					company.getCompanyId(), resourcesDir, resourcePaths,
 					templatePaths, privateLARURL, publicLARURL);
 
-				boolean appendVersion = GetterUtil.getBoolean(
-					pluginPackageProperties.getProperty(
-						"resources-importer-append-version"),
-					true);
-
-				importer.setAppendVersion(appendVersion);
-
-				importer.setCompanyId(company.getCompanyId());
-
-				boolean developerModeEnabled = false;
-
-				if (GetterUtil.getBoolean(
-						pluginPackageProperties.getProperty(
-							"resources-importer-developer-mode-enabled")) ||
-					PortalRunMode.isTestMode()) {
-
-					developerModeEnabled = true;
-				}
-
-				importer.setDeveloperModeEnabled(developerModeEnabled);
-
-				importer.setServletContext(servletContext);
-				importer.setServletContextName(servletContextName);
-				importer.setTargetClassName(targetClassName);
-
-				String targetValue = pluginPackageProperties.getProperty(
-					"resources-importer-target-value");
-
-				if (Validator.isNull(targetValue)) {
-					targetValue = TextFormatter.format(
-						servletContextName, TextFormatter.J);
-				}
-
-				importer.setTargetValue(targetValue);
-
-				boolean updateModeEnabled = GetterUtil.getBoolean(
-					pluginPackageProperties.getProperty(
-						"resources-importer-update-mode-enabled"));
-
-				importer.setUpdateModeEnabled(updateModeEnabled);
-
-				PluginPackage pluginPackage =
-					DeployManagerUtil.getInstalledPluginPackage(
-						servletContextName);
-
-				importer.setVersion(pluginPackage.getVersion());
-
-				importer.afterPropertiesSet();
+				boolean developerModeEnabled = configureImporter(
+					company.getCompanyId(), importer, servletContext,
+					pluginPackageProperties, targetClassName);
 
 				if (!developerModeEnabled && importer.isExisting() &&
 					!importer.isCompanyGroup()) {
@@ -339,6 +294,58 @@ public class ResourcesImporterHotDeployMessageListener
 	@Override
 	protected void onDeploy(Message message) throws Exception {
 		initialize(message);
+	}
+
+	private boolean configureImporter(
+			long companyId, Importer importer, ServletContext servletContext,
+			Properties pluginPackageProperties, String targetClassName)
+		throws Exception {
+
+		boolean appendVersion = GetterUtil.getBoolean(
+			pluginPackageProperties.getProperty(
+				"resources-importer-append-version"),
+			true);
+
+		importer.setAppendVersion(appendVersion);
+
+		importer.setCompanyId(companyId);
+
+		boolean developerModeEnabled = GetterUtil.getBoolean(
+			pluginPackageProperties.getProperty(
+				"resources-importer-developer-mode-enabled")) ||
+			PortalRunMode.isTestMode();
+
+		importer.setDeveloperModeEnabled(developerModeEnabled);
+
+		importer.setServletContext(servletContext);
+		importer.setServletContextName(servletContext.getServletContextName());
+		importer.setTargetClassName(targetClassName);
+
+		String targetValue = pluginPackageProperties.getProperty(
+			"resources-importer-target-value");
+
+		if (Validator.isNull(targetValue)) {
+			targetValue = TextFormatter.format(
+				servletContext.getServletContextName(), TextFormatter.J);
+		}
+
+		importer.setTargetValue(targetValue);
+
+		boolean updateModeEnabled = GetterUtil.getBoolean(
+			pluginPackageProperties.getProperty(
+				"resources-importer-update-mode-enabled"));
+
+		importer.setUpdateModeEnabled(updateModeEnabled);
+
+		PluginPackage pluginPackage =
+			DeployManagerUtil.getInstalledPluginPackage(
+				servletContext.getServletContextName());
+
+		importer.setVersion(pluginPackage.getVersion());
+
+		importer.afterPropertiesSet();
+
+		return developerModeEnabled;
 	}
 
 	private static final String _RESOURCES_DIR =
