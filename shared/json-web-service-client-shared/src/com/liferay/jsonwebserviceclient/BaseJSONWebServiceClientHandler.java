@@ -36,8 +36,6 @@ public abstract class BaseJSONWebServiceClientHandler {
 	public abstract JSONWebServiceClient getJSONWebServiceClient();
 
 	protected BaseJSONWebServiceClientHandler() {
-		_objectMapper = new ObjectMapper();
-
 		_objectMapper.configure(
 			DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 	}
@@ -123,6 +121,6 @@ public abstract class BaseJSONWebServiceClientHandler {
 		return json.substring(exceptionMessageStart, exceptionMessageEnd);
 	}
 
-	private ObjectMapper _objectMapper = null;
+	private ObjectMapper _objectMapper = new ObjectMapper();
 
 }
