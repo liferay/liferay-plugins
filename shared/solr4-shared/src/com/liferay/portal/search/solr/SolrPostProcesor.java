@@ -100,8 +100,7 @@ public class SolrPostProcesor {
 			return false;
 		}
 
-		secondQuoteIndex = query.indexOf(
-			StringPool.QUOTE, firstQuoteIndex + 1);
+		secondQuoteIndex = query.indexOf(StringPool.QUOTE, firstQuoteIndex + 1);
 
 		if (secondQuoteIndex == -1) {
 			return false;
@@ -127,6 +126,5 @@ public class SolrPostProcesor {
 	protected boolean questionMark;
 	protected StringBuilder sb;
 	protected int secondQuoteIndex;
-
 
 }

@@ -214,8 +214,7 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 	}
 
 	protected void addHighlightedField(
-		SolrQuery solrQuery, QueryConfig queryConfig,
-		String fieldName) {
+		SolrQuery solrQuery, QueryConfig queryConfig, String fieldName) {
 
 		solrQuery.addHighlightField(fieldName);
 
