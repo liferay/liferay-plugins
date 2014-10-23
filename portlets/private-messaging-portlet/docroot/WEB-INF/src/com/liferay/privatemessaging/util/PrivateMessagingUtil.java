@@ -125,9 +125,9 @@ public class PrivateMessagingUtil {
 
 			do {
 				hits = UserLocalServiceUtil.search(
-					user.getCompanyId(), keywords,
-					WorkflowConstants.STATUS_APPROVED, params, start, end,
-					sort);
+					user.getCompanyId(), keywords, keywords, keywords,
+					keywords, keywords, WorkflowConstants.STATUS_APPROVED,
+					params, false, start, end, sort);
 
 				tuple = UsersAdminUtil.getUsers(hits);
 
