@@ -28,7 +28,8 @@ public class CompositeFacetProcessor<T> implements FacetProcessor<T> {
 	public void processFacet(T searchQuery, Facet facet) {
 		Class<?> clazz = facet.getClass();
 
-		FacetProcessor<T> facetProcessor = _facetProcessors.get(clazz.getName());
+		FacetProcessor<T> facetProcessor = _facetProcessors.get(
+			clazz.getName());
 
 		if (facetProcessor == null) {
 			facetProcessor = _defaultFacetProcessor;

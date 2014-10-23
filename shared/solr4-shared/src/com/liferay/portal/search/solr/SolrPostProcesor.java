@@ -42,22 +42,24 @@ public class SolrPostProcesor {
 	}
 
 	protected void appendPhrase() {
-		String before = _query.substring(_index, firstQuoteIndex);
+		String before = _query.substring(_index, _firstQuoteIndex);
 
 		_sb.append(before);
 
 		_index = _secondQuoteIndex + 1;
 
-		String phrase = _query.substring(firstQuoteIndex, _index);
+		String phrase = _query.substring(_firstQuoteIndex, _index);
 
-		if (_questionMark) {
+		if (_hasQuestionMark) {
 			String regex = buildRegex(phrase);
 
 			Pattern pattern = Pattern.compile(regex);
+
 			Matcher matcher = pattern.matcher(_keywords);
 
 			if (matcher.find()) {
 				_sb.append(matcher.group());
+
 				return;
 			}
 		}
@@ -70,62 +72,61 @@ public class SolrPostProcesor {
 	}
 
 	protected String buildRegex(String phrase) {
-		StringBuilder regex = new StringBuilder(phrase.length());
+		StringBuilder sb = new StringBuilder(phrase.length());
 
-		int p = 0;
+		int x = 0;
 
 		while (true) {
-			int q = phrase.indexOf(StringPool.QUESTION, p);
+			int y = phrase.indexOf(StringPool.QUESTION, x);
 
-			if (q == -1) {
+			if (y == -1) {
 				break;
 			}
 
-			String part = phrase.substring(p, q);
-			regex.append(Pattern.quote(part));
-			regex.append(StringPool.PERIOD);
-			regex.append(StringPool.PLUS);
-			p = q + 1;
+			sb.append(Pattern.quote(phrase.substring(x, y)));
+			sb.append(StringPool.PERIOD);
+			sb.append(StringPool.PLUS);
+
+			x = y + 1;
 		}
 
-		String remainder = phrase.substring(p);
-		regex.append(Pattern.quote(remainder));
+		sb.append(Pattern.quote(phrase.substring(x)));
 
-		return regex.toString();
+		return sb.toString();
 	}
 
 	protected boolean findPhrase() {
-		firstQuoteIndex = _query.indexOf(StringPool.QUOTE, _index);
+		_firstQuoteIndex = _query.indexOf(StringPool.QUOTE, _index);
 
-		if (firstQuoteIndex == -1) {
+		if (_firstQuoteIndex == -1) {
 			return false;
 		}
 
 		_secondQuoteIndex = _query.indexOf(
-			StringPool.QUOTE, firstQuoteIndex + 1);
+			StringPool.QUOTE, _firstQuoteIndex + 1);
 
 		if (_secondQuoteIndex == -1) {
 			return false;
 		}
 
 		int questionMarkIndex = _query.indexOf(
-			StringPool.QUESTION, firstQuoteIndex);
+			StringPool.QUESTION, _firstQuoteIndex);
 
 		if (questionMarkIndex == -1) {
-			_questionMark = false;
+			_hasQuestionMark = false;
 		}
 		else {
-			_questionMark = true;
+			_hasQuestionMark = true;
 		}
 
 		return true;
 	}
 
-	private int firstQuoteIndex;
+	private int _firstQuoteIndex;
+	private boolean _hasQuestionMark;
 	private int _index;
 	private String _keywords;
 	private String _query;
-	private boolean _questionMark;
 	private StringBuilder _sb;
 	private int _secondQuoteIndex;
 
