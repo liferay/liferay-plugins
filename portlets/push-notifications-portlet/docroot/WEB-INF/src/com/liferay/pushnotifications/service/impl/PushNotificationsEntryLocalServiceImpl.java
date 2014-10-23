@@ -62,8 +62,9 @@ public class PushNotificationsEntryLocalServiceImpl
 
 	@Override
 	public List<PushNotificationsEntry> getPushNotificationsEntries(
-		long parentPushNotificationsEntryId, long lastAccessTime, int start,
-		int end) {
+			long parentPushNotificationsEntryId, long lastAccessTime, int start,
+			int end)
+		throws SystemException {
 
 		return pushNotificationsEntryPersistence.findByC_P(
 			lastAccessTime, parentPushNotificationsEntryId, start, end);
