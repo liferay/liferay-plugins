@@ -20,7 +20,7 @@ import org.junit.Test;
 /**
  * @author André de Oliveira
  */
-public class SolrPostProcessTest {
+public class SolrPostProcessorTest {
 
 	@Test
 	public void testBasicSearch() {
