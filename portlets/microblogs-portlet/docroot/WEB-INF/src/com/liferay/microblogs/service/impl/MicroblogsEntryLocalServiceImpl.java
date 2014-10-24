@@ -202,13 +202,8 @@ public class MicroblogsEntryLocalServiceImpl
 			long creatorClassNameId, long creatorClassPK)
 		throws PortalException {
 
-		List<MicroblogsEntry> microblogsEntries =
-			microblogsEntryPersistence.findByCCNI_CCPK(
-				creatorClassNameId, creatorClassPK);
-
-		for (MicroblogsEntry microblogsEntry : microblogsEntries) {
-			deleteMicroblogsEntry(microblogsEntry);
-		}
+		microblogsEntryPersistence.removeByCCNI_CCPK(
+			creatorClassNameId, creatorClassPK);
 	}
 
 	@Override
@@ -271,7 +266,7 @@ public class MicroblogsEntryLocalServiceImpl
 		long creatorClassNameId, int type, int start, int end,
 		OrderByComparator obc) {
 
-		return microblogsEntryPersistence.filterFindByCCNI_T(
+		return microblogsEntryPersistence.findByCCNI_T(
 			creatorClassNameId, type, start, end, obc);
 	}
 
