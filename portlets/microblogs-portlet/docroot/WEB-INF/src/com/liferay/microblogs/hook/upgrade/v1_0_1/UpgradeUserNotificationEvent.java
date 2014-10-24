@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License along with
  * Liferay Social Office. If not, see http://www.gnu.org/licenses/agpl-3.0.html.
  */
-package com.liferay.microblogs.hook.upgrade.v1_0_0;
+package com.liferay.microblogs.hook.upgrade.v1_0_1;
 
 import com.liferay.microblogs.model.MicroblogsEntry;
 import com.liferay.microblogs.model.MicroblogsEntryConstants;
@@ -22,26 +22,61 @@ import com.liferay.microblogs.service.MicroblogsEntryLocalServiceUtil;
 import com.liferay.microblogs.util.MicroblogsUtil;
 import com.liferay.portal.kernel.dao.jdbc.DataAccess;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
-import com.liferay.portal.kernel.util.StringBundler;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.List;
 
 /**
  * @author Evan Thibodeau
  */
 public class UpgradeUserNotificationEvent extends UpgradeProcess {
 
-	protected void addUserNotificationEvent(
-			long companyId, long userId, long userNotificationEventId,
-			long timestamp, boolean actionRequired, boolean delivered,
-			boolean archived)
+	public static int getNotificationType(
+			MicroblogsEntry microblogsEntry, long userId)
+		throws PortalException {
+
+		if (MicroblogsUtil.isTaggedUser(
+				microblogsEntry.getMicroblogsEntryId(), false, userId)) {
+
+			return MicroblogsEntryConstants.TYPE_TAG;
+		}
+		else if (microblogsEntry.getType() ==
+					MicroblogsEntryConstants.TYPE_REPLY) {
+
+			long parentMicroblogsEntryId =
+				MicroblogsUtil.getParentMicroblogsEntryId(microblogsEntry);
+
+			if (MicroblogsUtil.getParentMicroblogsUserId(microblogsEntry) ==
+					userId) {
+
+				return MicroblogsEntryConstants.TYPE_REPLY;
+			}
+			else if (MicroblogsUtil.hasReplied(
+						parentMicroblogsEntryId, userId)) {
+
+				return MicroblogsEntryConstants.TYPE_REPLY_TO_REPLY;
+			}
+			else if (MicroblogsUtil.isTaggedUser(
+						parentMicroblogsEntryId, true, userId)) {
+
+				return MicroblogsEntryConstants.TYPE_REPLY_TO_TAG;
+			}
+		}
+
+		return 0;
+	}
+
+	@Override
+	protected void doUpgrade() throws Exception {
+		upgradeNotifications();
+	}
+
+	protected void updateNotification(
+			long userNotificationEventId, JSONObject jsonObject)
 		throws Exception {
 
 		Connection con = null;
@@ -50,24 +85,12 @@ public class UpgradeUserNotificationEvent extends UpgradeProcess {
 		try {
 			con = DataAccess.getUpgradeOptimizedConnection();
 
-			StringBundler sb = new StringBundler(5);
+			ps = con.prepareStatement(
+				"update UserNotificationEvent set payload = ? " +
+					"where userNotificationEventId = ?");
 
-			sb.append("insert into Notifications_UserNotificationEvent (");
-			sb.append("notificationEventId, companyId, userId,");
-			sb.append("userNotificationEventId, timestamp , delivered,");
-			sb.append("actionRequired, archived) values (?, ?, ?, ?, ?, ?");
-			sb.append(", ?, ?)");
-
-			ps = con.prepareStatement(sb.toString());
-
-			ps.setLong(1, increment());
-			ps.setLong(2, companyId);
-			ps.setLong(3, userId);
-			ps.setLong(4, userNotificationEventId);
-			ps.setLong(5, timestamp);
-			ps.setBoolean(6, actionRequired);
-			ps.setBoolean(7, delivered);
-			ps.setBoolean(8, archived);
+			ps.setString(1, jsonObject.toString());
+			ps.setLong(2, userNotificationEventId);
 
 			ps.executeUpdate();
 		}
@@ -76,12 +99,7 @@ public class UpgradeUserNotificationEvent extends UpgradeProcess {
 		}
 	}
 
-	@Override
-	protected void doUpgrade() throws Exception {
-		upgradeNotificationEvents();
-	}
-
-	protected void upgradeNotificationEvents() throws Exception {
+	protected void upgradeNotifications() throws Exception {
 		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
@@ -89,37 +107,51 @@ public class UpgradeUserNotificationEvent extends UpgradeProcess {
 		try {
 			con = DataAccess.getUpgradeOptimizedConnection();
 
-			ps = con.prepareStatement("select * from UserNotificationEvent");
+			ps = con.prepareStatement(
+				"select userNotificationEventId, userId, payload from " +
+					"UserNotificationEvent where type_ = ?");
+
+			ps.setString(1, "1_WAR_microblogsportlet");
 
 			rs = ps.executeQuery();
 
 			while (rs.next()) {
 				long userNotificationEventId = rs.getLong(
 					"userNotificationEventId");
-				long companyId = rs.getLong("companyId");
-				long userId = rs.getLong("userId");
-				String type = rs.getString("type_");
-				long timestamp = rs.getLong("timestamp");
-				boolean delivered = rs.getBoolean("delivered");
-				boolean archived = rs.getBoolean("archived");
+				String payload = rs.getString("payload");
 
-				boolean actionRequired = false;
+				JSONObject payloadJSONObject = JSONFactoryUtil.createJSONObject(
+					payload);
 
-				if (_actionRequiredTypes.contains(type)) {
-					actionRequired = true;
+				long microblogsEntryId = payloadJSONObject.getLong("classPK");
+
+				MicroblogsEntry microblogsEntry =
+					MicroblogsEntryLocalServiceUtil.fetchMicroblogsEntry(
+						microblogsEntryId);
+
+				if (microblogsEntry == null) {
+					return;
 				}
 
-				addUserNotificationEvent(
-					companyId, userId, userNotificationEventId, timestamp,
-					actionRequired, delivered, archived);
+				int notificationType = payloadJSONObject.getInt(
+					"notificationType");
+
+				if (notificationType != 0) {
+					return;
+				}
+
+				long userId = rs.getLong("userId");
+
+				notificationType = getNotificationType(microblogsEntry, userId);
+
+				payloadJSONObject.put("notificationType", notificationType);
+
+				updateNotification(userNotificationEventId, payloadJSONObject);
 			}
 		}
 		finally {
 			DataAccess.cleanUp(con, ps, rs);
 		}
 	}
-
-	private List<String> _actionRequiredTypes = ListUtil.fromArray(
-		NotificationsConstants.ACTIONABLE_TYPES);
 
 }
