@@ -40,6 +40,10 @@ public class AlloyControllerImpl extends BaseAlloyControllerImpl {
 		AlloySearchResult alloySearchResult = search(null);
 
 		renderRequest.setAttribute("alloySearchResult", alloySearchResult);
+
+		if (Validator.isNotNull(format) && format.equals("json")) {
+			setJSONData(alloySearchResult);
+		}
 	}
 
 	public void save() throws Exception {
@@ -70,6 +74,10 @@ public class AlloyControllerImpl extends BaseAlloyControllerImpl {
 		Asset asset = AssetLocalServiceUtil.getAsset(assetId);
 
 		renderRequest.setAttribute("asset", asset);
+
+		if (Validator.isNotNull(format) && format.equals("json")) {
+			setJSONData(asset);
+		}
 	}
 
 	@Override
