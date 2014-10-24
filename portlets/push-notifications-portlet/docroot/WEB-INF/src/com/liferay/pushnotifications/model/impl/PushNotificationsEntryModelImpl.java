@@ -75,7 +75,7 @@ public class PushNotificationsEntryModelImpl extends BaseModelImpl<PushNotificat
 			{ "parentPushNotificationsEntryId", Types.BIGINT },
 			{ "payload", Types.VARCHAR }
 		};
-	public static final String TABLE_SQL_CREATE = "create table PushNotificationsEntry (pushNotificationsEntryId LONG not null primary key,userId LONG,createTime LONG,parentPushNotificationsEntryId LONG,payload VARCHAR(75) null)";
+	public static final String TABLE_SQL_CREATE = "create table PushNotificationsEntry (pushNotificationsEntryId LONG not null primary key,userId LONG,createTime LONG,parentPushNotificationsEntryId LONG,payload STRING null)";
 	public static final String TABLE_SQL_DROP = "drop table PushNotificationsEntry";
 	public static final String ORDER_BY_JPQL = " ORDER BY pushNotificationsEntry.createTime ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY PushNotificationsEntry.createTime ASC";

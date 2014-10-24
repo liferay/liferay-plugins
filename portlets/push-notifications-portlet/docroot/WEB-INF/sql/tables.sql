@@ -11,5 +11,5 @@ create table PushNotificationsEntry (
 	userId LONG,
 	createTime LONG,
 	parentPushNotificationsEntryId LONG,
-	payload VARCHAR(75) null
+	payload STRING null
 );
