@@ -112,8 +112,6 @@ import java.util.regex.Pattern;
 
 import javax.portlet.PortletPreferences;
 
-import org.apache.commons.lang.time.StopWatch;
-
 /**
  * @author Ryan Park
  * @author Raymond Augé
@@ -180,7 +178,7 @@ public class FileSystemImporter extends BaseImporter {
 		catch (PortalException e) {
 			if (_log.isWarnEnabled()) {
 				_log.warn(
-					"Error importing application display template: " +
+					"Unable to import application display template " +
 						file.getName(),
 					e);
 			}
@@ -355,7 +353,7 @@ public class FileSystemImporter extends BaseImporter {
 		}
 		catch (Exception e) {
 			if (_log.isWarnEnabled()) {
-				_log.warn("Error importing DDMStructure: " + fileName, e);
+				_log.warn("Unable to import DDM structure " + fileName, e);
 			}
 
 			throw e;
@@ -467,7 +465,7 @@ public class FileSystemImporter extends BaseImporter {
 		}
 		catch (PortalException e) {
 			if (_log.isWarnEnabled()) {
-				_log.warn("Error importing DDMStructure: " + fileName, e);
+				_log.warn("Unable to import DDM structure " + fileName, e);
 			}
 
 			throw e;
@@ -536,7 +534,7 @@ public class FileSystemImporter extends BaseImporter {
 		}
 		catch (PortalException e) {
 			if (_log.isWarnEnabled()) {
-				_log.warn("Error importing DDMTemplate: " + fileName, e);
+				_log.warn("Unable to import DDM template " + fileName, e);
 			}
 
 			throw e;
@@ -629,7 +627,7 @@ public class FileSystemImporter extends BaseImporter {
 		}
 		catch (PortalException e) {
 			if (_log.isWarnEnabled()) {
-				_log.warn("Error importing DDMTemplate: " + fileName, e);
+				_log.warn("Unable to import DDM template " + fileName, e);
 			}
 
 			throw e;
@@ -720,7 +718,7 @@ public class FileSystemImporter extends BaseImporter {
 		}
 		catch (PortalException e) {
 			if (_log.isWarnEnabled()) {
-				_log.warn("Error importing document: " + fileName, e);
+				_log.warn("Unable to import DL file entry " + fileName, e);
 			}
 
 			throw e;
@@ -892,7 +890,7 @@ public class FileSystemImporter extends BaseImporter {
 		}
 		catch (PortalException e) {
 			if (_log.isWarnEnabled()) {
-				_log.warn("Error importing journal article: " + fileName, e);
+				_log.warn("Unable to import journal article " + fileName, e);
 			}
 
 			throw e;
@@ -1007,7 +1005,7 @@ public class FileSystemImporter extends BaseImporter {
 		}
 		catch (Exception e) {
 			if (_log.isWarnEnabled()) {
-				_log.warn("Error importing layout: " + layoutJSONObject, e);
+				_log.warn("Unable to import layout " + layoutJSONObject, e);
 			}
 
 			throw e;
@@ -1186,7 +1184,7 @@ public class FileSystemImporter extends BaseImporter {
 		}
 		catch (Exception e) {
 			if (_log.isWarnEnabled()) {
-				_log.warn("Error importing layout prototype: " + name, e);
+				_log.warn("Unable to import layout prototype " + name, e);
 			}
 
 			throw e;
@@ -1267,21 +1265,18 @@ public class FileSystemImporter extends BaseImporter {
 
 			SearchEngineUtil.setIndexReadOnly(false);
 
-			StopWatch stopWatch = new StopWatch();
+			long startTime = System.currentTimeMillis();
 
 			if (_log.isDebugEnabled()) {
 				_log.debug("Commence indexing");
-
-				stopWatch.start();
 			}
 
 			index();
 
 			if (_log.isDebugEnabled()) {
-				stopWatch.stop();
-
 				_log.debug(
-					"Indexing completed in: " + stopWatch.getTime() + "ms");
+					"Indexing completed in " +
+						(System.currentTimeMillis() - startTime) + "ms");
 			}
 		}
 		finally {
