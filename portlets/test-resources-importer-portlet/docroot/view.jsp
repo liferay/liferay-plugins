@@ -281,25 +281,25 @@ for (String importer : importers) {
 	<p>
 
 		<%
-			SearchContext searchContext = SearchContextFactory.getInstance(request);
+		SearchContext searchContext = SearchContextFactory.getInstance(request);
 
-			Facet assetEntriesFacet = new AssetEntriesFacet(searchContext);
+		Facet assetEntriesFacet = new AssetEntriesFacet(searchContext);
 
-			assetEntriesFacet.setStatic(true);
+		assetEntriesFacet.setStatic(true);
 
-			searchContext.addFacet(assetEntriesFacet);
+		searchContext.addFacet(assetEntriesFacet);
 
-			Facet scopeFacet = new ScopeFacet(searchContext);
+		Facet scopeFacet = new ScopeFacet(searchContext);
 
-			scopeFacet.setStatic(true);
+		scopeFacet.setStatic(true);
 
-			searchContext.addFacet(scopeFacet);
+		searchContext.addFacet(scopeFacet);
 
-			searchContext.setKeywords("Child");
+		searchContext.setKeywords("Child");
 
-			Indexer indexer = FacetedSearcher.getInstance();
+		Indexer indexer = FacetedSearcher.getInstance();
 
-			Hits hits = indexer.search(searchContext);
+		Hits hits = indexer.search(searchContext);
 		%>
 
 		Indexer#search=<%= _assertTrue(hits.getLength() == 2) %><br />
