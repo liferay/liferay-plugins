@@ -25,6 +25,7 @@
 page import="com.liferay.chat.service.StatusLocalServiceUtil" %><%@
 page import="com.liferay.chat.util.BuddyFinderUtil" %><%@
 page import="com.liferay.chat.util.ChatExtensionsUtil" %><%@
+page import="com.liferay.compat.portal.model.UserConstants" %><%@
 page import="com.liferay.portal.kernel.json.JSONFactoryUtil" %><%@
 page import="com.liferay.portal.kernel.json.JSONObject" %><%@
 page import="com.liferay.portal.kernel.language.LanguageUtil" %><%@
@@ -35,7 +36,6 @@ page import="com.liferay.portal.kernel.util.StringPool" %><%@
 page import="com.liferay.portal.kernel.util.Validator" %><%@
 page import="com.liferay.portal.model.ContactConstants" %><%@
 page import="com.liferay.portal.model.Portlet" %><%@
-page import="com.liferay.portal.model.UserConstants" %><%@
 page import="com.liferay.portal.service.PortletLocalServiceUtil" %><%@
 page import="com.liferay.portal.util.PortalUtil" %>
 

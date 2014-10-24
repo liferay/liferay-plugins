@@ -21,6 +21,7 @@ import com.liferay.chat.service.StatusLocalServiceUtil;
 import com.liferay.chat.util.BuddyFinderUtil;
 import com.liferay.chat.util.ChatConstants;
 import com.liferay.chat.util.PortletPropsValues;
+import com.liferay.compat.portal.model.UserConstants;
 import com.liferay.portal.NoSuchUserException;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
@@ -34,7 +35,6 @@ import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Time;
 import com.liferay.portal.model.ContactConstants;
 import com.liferay.portal.model.User;
-import com.liferay.portal.model.UserConstants;
 import com.liferay.portal.service.UserLocalServiceUtil;
 
 import java.util.Collections;
