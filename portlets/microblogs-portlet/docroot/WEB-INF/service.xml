@@ -19,6 +19,8 @@
 
 		<!-- Other fields -->
 
+		<column name="creatorClassNameId" type="long" />
+		<column name="creatorClassPK" type="long" />
 		<column name="content" type="String" />
 		<column name="type" type="int" />
 		<column name="receiverUserId" type="long" />
@@ -43,6 +45,14 @@
 			<finder-column name="userId" />
 			<finder-column name="type" />
 		</finder>
+		<finder name="CCNI_CCPK" return-type="Collection">
+			<finder-column name="creatorClassNameId" />
+			<finder-column name="creatorClassPK" arrayable-operator="OR" />
+		</finder>
+		<finder name="CCNI_T" return-type="Collection">
+			<finder-column name="creatorClassNameId" />
+			<finder-column name="type" />
+		</finder>
 		<finder name="T_R" return-type="Collection">
 			<finder-column name="type" />
 			<finder-column name="receiverUserId" />
@@ -50,6 +60,11 @@
 		<finder name="T_RMEI" return-type="Collection">
 			<finder-column name="type" />
 			<finder-column name="receiverMicroblogsEntryId" />
+		</finder>
+		<finder name="CCNI_CCPK_T" return-type="Collection">
+			<finder-column name="creatorClassNameId" />
+			<finder-column name="creatorClassPK" arrayable-operator="OR" />
+			<finder-column name="type" />
 		</finder>
 		<finder name="U_C_T_S" return-type="Collection">
 			<finder-column name="userId" />
