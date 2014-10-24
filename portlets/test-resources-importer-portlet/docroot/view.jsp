@@ -278,6 +278,33 @@ for (String importer : importers) {
 		</c:choose>
 	</p>
 
+	<p>
+
+		<%
+			SearchContext searchContext = SearchContextFactory.getInstance(request);
+
+			Facet assetEntriesFacet = new AssetEntriesFacet(searchContext);
+
+			assetEntriesFacet.setStatic(true);
+
+			searchContext.addFacet(assetEntriesFacet);
+
+			Facet scopeFacet = new ScopeFacet(searchContext);
+
+			scopeFacet.setStatic(true);
+
+			searchContext.addFacet(scopeFacet);
+
+			searchContext.setKeywords("Child");
+
+			Indexer indexer = FacetedSearcher.getInstance();
+
+			Hits hits = indexer.search(searchContext);
+		%>
+
+		Indexer#search=<%= _assertTrue(hits.getLength() == 2) %><br />
+	</p>
+
 <%
 }
 %>
