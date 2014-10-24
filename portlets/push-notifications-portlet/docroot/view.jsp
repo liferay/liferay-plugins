@@ -17,7 +17,7 @@
 <%@ include file="/init.jsp" %>
 
 <aui:form name="fm">
-	<aui:input label="message" name="message" type="textarea" />
+	<aui:input label="message" name="message" rows="6" type="textarea" />
 
 	<aui:input label="url" name="url" />
 
