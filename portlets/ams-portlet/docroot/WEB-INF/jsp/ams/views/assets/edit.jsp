@@ -19,7 +19,6 @@
 <portlet:renderURL var="viewAssetsURL">
 	<portlet:param name="controller" value="assets" />
 	<portlet:param name="action" value="index" />
-	<portlet:param name="format" value="html" />
 </portlet:renderURL>
 
 <div>
@@ -31,7 +30,6 @@
 <portlet:actionURL var="saveAssetURL">
 	<portlet:param name="controller" value="assets" />
 	<portlet:param name="action" value="save" />
-	<portlet:param name="format" value="html" />
 </portlet:actionURL>
 
 <aui:form action='<%= saveAssetURL + "&p_p_state=normal" %>' method="post">

@@ -19,7 +19,6 @@
 <portlet:renderURL var="editAssetURL">
 	<portlet:param name="controller" value="assets" />
 	<portlet:param name="action" value="edit" />
-	<portlet:param name="format" value="html" />
 </portlet:renderURL>
 
 <aui:button-row>
@@ -29,7 +28,6 @@
 <portlet:renderURL var="viewAssetsURL">
 	<portlet:param name="controller" value="assets" />
 	<portlet:param name="action" value="index" />
-	<portlet:param name="format" value="html" />
 </portlet:renderURL>
 
 <aui:form action="${viewAssetsURL}" method="get" name="fm">
@@ -56,7 +54,6 @@
 			<portlet:param name="controller" value="assets" />
 			<portlet:param name="action" value="view" />
 			<portlet:param name="id" value="${asset.assetId}" />
-			<portlet:param name="format" value="html" />
 		</portlet:renderURL>
 
 		<liferay-ui:search-container-column-text
@@ -75,7 +72,6 @@
 			<portlet:param name="controller" value="assets" />
 			<portlet:param name="action" value="delete" />
 			<portlet:param name="id" value="${asset.assetId}" />
-			<portlet:param name="format" value="html" />
 		</portlet:actionURL>
 
 		<c:if test='${alloyPermission:contains(themeDisplay, "assets", "delete")}'>
