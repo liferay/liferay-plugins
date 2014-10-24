@@ -24,6 +24,10 @@ public class JSONWebServiceUnavailableException extends IOException {
 	public JSONWebServiceUnavailableException() {
 	}
 
+	public JSONWebServiceUnavailableException(int status) {
+		_status = status;
+	}
+
 	public JSONWebServiceUnavailableException(String message) {
 		super(message);
 	}
@@ -35,5 +39,11 @@ public class JSONWebServiceUnavailableException extends IOException {
 	public JSONWebServiceUnavailableException(Throwable cause) {
 		super(cause);
 	}
+
+	public int getStatus() {
+		return _status;
+	}
+
+	private int _status;
 
 }
