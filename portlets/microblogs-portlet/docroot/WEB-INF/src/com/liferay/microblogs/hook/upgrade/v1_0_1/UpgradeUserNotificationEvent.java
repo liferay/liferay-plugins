@@ -42,7 +42,7 @@ public class UpgradeUserNotificationEvent extends UpgradeProcess {
 		if (MicroblogsUtil.isTaggedUser(
 				microblogsEntry.getMicroblogsEntryId(), false, userId)) {
 
-			return MicroblogsEntryConstants.TYPE_TAG;
+			return MicroblogsEntryConstants.NOTIFICATION_TYPE_TAG;
 		}
 		else if (microblogsEntry.getType() ==
 					MicroblogsEntryConstants.TYPE_REPLY) {
@@ -53,17 +53,19 @@ public class UpgradeUserNotificationEvent extends UpgradeProcess {
 			if (MicroblogsUtil.getParentMicroblogsUserId(microblogsEntry) ==
 					userId) {
 
-				return MicroblogsEntryConstants.TYPE_REPLY;
+				return MicroblogsEntryConstants.NOTIFICATION_TYPE_REPLY;
 			}
 			else if (MicroblogsUtil.hasReplied(
 						parentMicroblogsEntryId, userId)) {
 
-				return MicroblogsEntryConstants.TYPE_REPLY_TO_REPLY;
+				return MicroblogsEntryConstants.
+					NOTIFICATION_TYPE_REPLY_TO_REPLIED;
 			}
 			else if (MicroblogsUtil.isTaggedUser(
 						parentMicroblogsEntryId, true, userId)) {
 
-				return MicroblogsEntryConstants.TYPE_REPLY_TO_TAG;
+				return MicroblogsEntryConstants.
+					NOTIFICATION_TYPE_REPLY_TO_TAGGED;
 			}
 		}
 

@@ -116,9 +116,9 @@ public class MicroblogsUtil {
 				microblogsEntry.getMicroblogsEntryId(), false, userId) &&
 			UserNotificationManagerUtil.isDeliver(
 				userId, PortletKeys.MICROBLOGS, 0,
-				MicroblogsEntryConstants.TYPE_TAG, deliveryType)) {
+				MicroblogsEntryConstants.NOTIFICATION_TYPE_TAG, deliveryType)) {
 
-			return MicroblogsEntryConstants.TYPE_TAG;
+			return MicroblogsEntryConstants.NOTIFICATION_TYPE_TAG;
 		}
 		else if (microblogsEntry.getType() ==
 					MicroblogsEntryConstants.TYPE_REPLY) {
@@ -128,31 +128,36 @@ public class MicroblogsUtil {
 
 			if ((getParentMicroblogsUserId(microblogsEntry) == userId) &&
 				UserNotificationManagerUtil.isDeliver(
-						userId, PortletKeys.MICROBLOGS, 0,
-						MicroblogsEntryConstants.TYPE_REPLY, deliveryType)) {
+					userId, PortletKeys.MICROBLOGS, 0,
+					MicroblogsEntryConstants.NOTIFICATION_TYPE_REPLY,
+					deliveryType)) {
 
-				return MicroblogsEntryConstants.TYPE_REPLY;
+				return MicroblogsEntryConstants.NOTIFICATION_TYPE_REPLY;
 			}
 			else if (hasReplied(parentMicroblogsEntryId, userId) &&
 					 UserNotificationManagerUtil.isDeliver(
 						userId, PortletKeys.MICROBLOGS, 0,
-						MicroblogsEntryConstants.TYPE_REPLY_TO_REPLY,
+						MicroblogsEntryConstants.
+							NOTIFICATION_TYPE_REPLY_TO_REPLIED,
 						deliveryType)) {
 
-				return MicroblogsEntryConstants.TYPE_REPLY_TO_REPLY;
+				return MicroblogsEntryConstants.
+					NOTIFICATION_TYPE_REPLY_TO_REPLIED;
 			}
 			else if (MicroblogsUtil.isTaggedUser(
 						parentMicroblogsEntryId, true, userId) &&
 					 UserNotificationManagerUtil.isDeliver(
 						userId, PortletKeys.MICROBLOGS, 0,
-						MicroblogsEntryConstants.TYPE_REPLY_TO_TAG,
+						MicroblogsEntryConstants.
+							NOTIFICATION_TYPE_REPLY_TO_TAGGED,
 						deliveryType)) {
 
-				return MicroblogsEntryConstants.TYPE_REPLY_TO_TAG;
+				return MicroblogsEntryConstants.
+					NOTIFICATION_TYPE_REPLY_TO_TAGGED;
 			}
 		}
 
-		return 0;
+		return MicroblogsEntryConstants.NOTIFICATION_TYPE_UNKNOWN;
 	}
 
 	public static long getParentMicroblogsEntryId(
