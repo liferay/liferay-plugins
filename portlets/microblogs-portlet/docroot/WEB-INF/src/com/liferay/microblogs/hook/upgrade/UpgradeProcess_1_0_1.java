@@ -16,11 +16,22 @@
  */
 package com.liferay.microblogs.hook.upgrade;
 
+import com.liferay.microblogs.hook.upgrade.v1_0_1.UpgradeUserNotificationEvent;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 
 /**
  * @author Evan Thibodeau
  */
 public class UpgradeProcess_1_0_1 extends UpgradeProcess {
+
+	@Override
+	public int getThreshold() {
+		return 100;
+	}
+
+	@Override
+	protected void doUpgrade() throws Exception {
+		upgrade(UpgradeUserNotificationEvent.class);
+	}
 
 }
