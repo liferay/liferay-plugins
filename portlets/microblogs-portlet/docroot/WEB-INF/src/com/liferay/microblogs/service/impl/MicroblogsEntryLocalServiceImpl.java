@@ -63,6 +63,62 @@ public class MicroblogsEntryLocalServiceImpl
 	extends MicroblogsEntryLocalServiceBaseImpl {
 
 	public MicroblogsEntry addMicroblogsEntry(
+			long userId, long creatorClassNameId, long creatorClassPK,
+			String content, int type, long receiverUserId,
+			long receiverMicroblogsEntryId, int socialRelationType,
+			ServiceContext serviceContext)
+		throws PortalException {
+
+		// Microblogs entry
+
+		User user = userPersistence.findByPrimaryKey(userId);
+
+		if (receiverUserId == 0) {
+			receiverUserId = userId;
+		}
+
+		Date now = new Date();
+
+		validate(type, receiverMicroblogsEntryId);
+
+		long microblogsEntryId = counterLocalService.increment();
+
+		if (receiverMicroblogsEntryId == 0) {
+			receiverMicroblogsEntryId = microblogsEntryId;
+		}
+
+		MicroblogsEntry microblogsEntry = microblogsEntryPersistence.create(
+			microblogsEntryId);
+
+		microblogsEntry.setCompanyId(user.getCompanyId());
+		microblogsEntry.setUserId(user.getUserId());
+		microblogsEntry.setUserName(user.getFullName());
+		microblogsEntry.setCreateDate(now);
+		microblogsEntry.setModifiedDate(now);
+		microblogsEntry.setCreatorClassNameId(creatorClassNameId);
+		microblogsEntry.setCreatorClassPK(creatorClassPK);
+		microblogsEntry.setContent(content);
+		microblogsEntry.setType(type);
+		microblogsEntry.setReceiverUserId(receiverUserId);
+		microblogsEntry.setReceiverMicroblogsEntryId(receiverMicroblogsEntryId);
+		microblogsEntry.setSocialRelationType(socialRelationType);
+
+		microblogsEntryPersistence.update(microblogsEntry);
+
+		// Resources
+
+		resourceLocalService.addModelResources(microblogsEntry, serviceContext);
+
+		// Asset
+
+		updateAsset(
+			microblogsEntry, serviceContext.getAssetCategoryIds(),
+			serviceContext.getAssetTagNames());
+
+		return microblogsEntry;
+	}
+
+	public MicroblogsEntry addMicroblogsEntry(
 			long userId, String content, int type, long receiverUserId,
 			long receiverMicroblogsEntryId, int socialRelationType,
 			ServiceContext serviceContext)
@@ -142,6 +198,19 @@ public class MicroblogsEntryLocalServiceImpl
 		return microblogsEntry;
 	}
 
+	public void deleteMicroblogsEntries(
+			long creatorClassNameId, long creatorClassPK)
+		throws PortalException {
+
+		List<MicroblogsEntry> microblogsEntries =
+			microblogsEntryPersistence.findByCCNI_CCPK(
+				creatorClassNameId, creatorClassPK);
+
+		for (MicroblogsEntry microblogsEntry : microblogsEntries) {
+			deleteMicroblogsEntry(microblogsEntry);
+		}
+	}
+
 	@Override
 	public MicroblogsEntry deleteMicroblogsEntry(long microblogsEntryId)
 		throws PortalException {
@@ -196,6 +265,43 @@ public class MicroblogsEntryLocalServiceImpl
 
 	public int getCompanyMicroblogsEntriesCount(long companyId) {
 		return microblogsEntryPersistence.countByCompanyId(companyId);
+	}
+
+	public List<MicroblogsEntry> getMicroblogsEntries(
+		long creatorClassNameId, int type, int start, int end,
+		OrderByComparator obc) {
+
+		return microblogsEntryPersistence.filterFindByCCNI_T(
+			creatorClassNameId, type, start, end, obc);
+	}
+
+	public List<MicroblogsEntry> getMicroblogsEntries(
+		long creatorClassNameId, long creatorClassPK, int start, int end) {
+
+		return microblogsEntryPersistence.findByCCNI_CCPK(
+			creatorClassNameId, creatorClassPK, start, end);
+	}
+
+	public List<MicroblogsEntry> getMicroblogsEntries(
+		long creatorClassNameId, long creatorClassPK, int type, int start,
+		int end) {
+
+		return microblogsEntryPersistence.findByCCNI_CCPK_T(
+			creatorClassNameId, creatorClassPK, type, start, end);
+	}
+
+	public int getMicroblogsEntriesCount(
+		long creatorClassNameId, long creatorClassPK) {
+
+		return microblogsEntryPersistence.countByCCNI_CCPK(
+			creatorClassNameId, creatorClassPK);
+	}
+
+	public int getMicroblogsEntriesCount(
+		long creatorClassNameId, long creatorClassPK, int type) {
+
+		return microblogsEntryPersistence.countByCCNI_CCPK_T(
+			creatorClassNameId, creatorClassPK, type);
 	}
 
 	@Override
