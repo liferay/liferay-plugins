@@ -86,9 +86,11 @@
 
 	function <portlet:namespace />onSendPushNotification(result) {
 		var success = A.one('#<portlet:namespace />success');
-		var error = A.one('#<portlet:namespace />error');
 
 		success.hide();
+
+		var error = A.one('#<portlet:namespace />error');
+
 		error.hide();
 
 		if (A.Object.isEmpty(result)) {
@@ -96,6 +98,7 @@
 		}
 		else {
 			error.one('p').text(result);
+
 			error.show();
 		}
 	}
