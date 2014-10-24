@@ -51,7 +51,7 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 				</c:choose>
 
 				<%
-				Map<String, Object> data = new HashMap<>();
+				Map<String, Object> data = new HashMap<String, Object>();
 
 				data.put("priority", KBArticleConstants.DEFAULT_PRIORITY);
 				data.put("resourceClassNameId", kbFolderClassNameId);
@@ -147,7 +147,7 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 					>
 
 						<%
-						Map<String, Object> data = new HashMap<>();
+						Map<String, Object> data = new HashMap<String, Object>();
 
 						data.put("priority", KBArticleConstants.DEFAULT_PRIORITY);
 						data.put("resourceClassNameId", kbFolder.getClassNameId());
@@ -232,7 +232,7 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 				>
 
 					<%
-					Map<String, Object> data = new HashMap<>();
+					Map<String, Object> data = new HashMap<String, Object>();
 
 					data.put("priority", curKBArticle.getPriority());
 					data.put("resourceClassNameId", curKBArticle.getClassNameId());
