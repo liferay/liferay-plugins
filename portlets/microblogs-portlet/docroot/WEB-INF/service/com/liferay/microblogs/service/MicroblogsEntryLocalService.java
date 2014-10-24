@@ -65,6 +65,13 @@ public interface MicroblogsEntryLocalService extends BaseLocalService,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException;
 
+	public com.liferay.microblogs.model.MicroblogsEntry addMicroblogsEntry(
+		long userId, long creatorClassNameId, long creatorClassPK,
+		java.lang.String content, int type, long receiverUserId,
+		long receiverMicroblogsEntryId, int socialRelationType,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException;
+
 	/**
 	* Creates a new microblogs entry with the primary key. Does not add the microblogs entry to the database.
 	*
@@ -73,6 +80,10 @@ public interface MicroblogsEntryLocalService extends BaseLocalService,
 	*/
 	public com.liferay.microblogs.model.MicroblogsEntry createMicroblogsEntry(
 		long microblogsEntryId);
+
+	public void deleteMicroblogsEntries(long creatorClassNameId,
+		long creatorClassPK)
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	/**
 	* Deletes the microblogs entry from the database. Also notifies the appropriate model listeners.
@@ -195,6 +206,20 @@ public interface MicroblogsEntryLocalService extends BaseLocalService,
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getCompanyMicroblogsEntriesCount(long companyId);
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<com.liferay.microblogs.model.MicroblogsEntry> getMicroblogsEntries(
+		long creatorClassNameId, long creatorClassPK, int start, int end);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<com.liferay.microblogs.model.MicroblogsEntry> getMicroblogsEntries(
+		long creatorClassNameId, long creatorClassPK, int type, int start,
+		int end);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<com.liferay.microblogs.model.MicroblogsEntry> getMicroblogsEntries(
+		long creatorClassNameId, int type, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator obc);
+
 	/**
 	* Returns a range of all the microblogs entries.
 	*
@@ -217,6 +242,14 @@ public interface MicroblogsEntryLocalService extends BaseLocalService,
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getMicroblogsEntriesCount();
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public int getMicroblogsEntriesCount(long creatorClassNameId,
+		long creatorClassPK);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public int getMicroblogsEntriesCount(long creatorClassNameId,
+		long creatorClassPK, int type);
 
 	/**
 	* Returns the microblogs entry with the primary key.

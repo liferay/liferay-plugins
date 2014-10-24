@@ -59,6 +59,8 @@ public class MicroblogsEntryWrapper implements MicroblogsEntry,
 		attributes.put("userName", getUserName());
 		attributes.put("createDate", getCreateDate());
 		attributes.put("modifiedDate", getModifiedDate());
+		attributes.put("creatorClassNameId", getCreatorClassNameId());
+		attributes.put("creatorClassPK", getCreatorClassPK());
 		attributes.put("content", getContent());
 		attributes.put("type", getType());
 		attributes.put("receiverUserId", getReceiverUserId());
@@ -105,6 +107,18 @@ public class MicroblogsEntryWrapper implements MicroblogsEntry,
 
 		if (modifiedDate != null) {
 			setModifiedDate(modifiedDate);
+		}
+
+		Long creatorClassNameId = (Long)attributes.get("creatorClassNameId");
+
+		if (creatorClassNameId != null) {
+			setCreatorClassNameId(creatorClassNameId);
+		}
+
+		Long creatorClassPK = (Long)attributes.get("creatorClassPK");
+
+		if (creatorClassPK != null) {
+			setCreatorClassPK(creatorClassPK);
 		}
 
 		String content = (String)attributes.get("content");
@@ -179,6 +193,26 @@ public class MicroblogsEntryWrapper implements MicroblogsEntry,
 	@Override
 	public java.util.Date getCreateDate() {
 		return _microblogsEntry.getCreateDate();
+	}
+
+	/**
+	* Returns the creator class name ID of this microblogs entry.
+	*
+	* @return the creator class name ID of this microblogs entry
+	*/
+	@Override
+	public long getCreatorClassNameId() {
+		return _microblogsEntry.getCreatorClassNameId();
+	}
+
+	/**
+	* Returns the creator class p k of this microblogs entry.
+	*
+	* @return the creator class p k of this microblogs entry
+	*/
+	@Override
+	public long getCreatorClassPK() {
+		return _microblogsEntry.getCreatorClassPK();
 	}
 
 	@Override
@@ -359,6 +393,26 @@ public class MicroblogsEntryWrapper implements MicroblogsEntry,
 	@Override
 	public void setCreateDate(java.util.Date createDate) {
 		_microblogsEntry.setCreateDate(createDate);
+	}
+
+	/**
+	* Sets the creator class name ID of this microblogs entry.
+	*
+	* @param creatorClassNameId the creator class name ID of this microblogs entry
+	*/
+	@Override
+	public void setCreatorClassNameId(long creatorClassNameId) {
+		_microblogsEntry.setCreatorClassNameId(creatorClassNameId);
+	}
+
+	/**
+	* Sets the creator class p k of this microblogs entry.
+	*
+	* @param creatorClassPK the creator class p k of this microblogs entry
+	*/
+	@Override
+	public void setCreatorClassPK(long creatorClassPK) {
+		_microblogsEntry.setCreatorClassPK(creatorClassPK);
 	}
 
 	@Override

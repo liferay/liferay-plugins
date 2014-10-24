@@ -8,6 +8,8 @@
 		<field name="userName" type="String" />
 		<field name="createDate" type="Date" />
 		<field name="modifiedDate" type="Date" />
+		<field name="creatorClassNameId" type="long" />
+		<field name="creatorClassPK" type="long" />
 		<field name="content" type="String">
 			<hint-collection name="TEXTAREA" />
 			<validator name="required" />

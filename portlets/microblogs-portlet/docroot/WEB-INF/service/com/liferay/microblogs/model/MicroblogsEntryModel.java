@@ -176,6 +176,34 @@ public interface MicroblogsEntryModel extends AuditedModel,
 	public void setModifiedDate(Date modifiedDate);
 
 	/**
+	 * Returns the creator class name ID of this microblogs entry.
+	 *
+	 * @return the creator class name ID of this microblogs entry
+	 */
+	public long getCreatorClassNameId();
+
+	/**
+	 * Sets the creator class name ID of this microblogs entry.
+	 *
+	 * @param creatorClassNameId the creator class name ID of this microblogs entry
+	 */
+	public void setCreatorClassNameId(long creatorClassNameId);
+
+	/**
+	 * Returns the creator class p k of this microblogs entry.
+	 *
+	 * @return the creator class p k of this microblogs entry
+	 */
+	public long getCreatorClassPK();
+
+	/**
+	 * Sets the creator class p k of this microblogs entry.
+	 *
+	 * @param creatorClassPK the creator class p k of this microblogs entry
+	 */
+	public void setCreatorClassPK(long creatorClassPK);
+
+	/**
 	 * Returns the content of this microblogs entry.
 	 *
 	 * @return the content of this microblogs entry

@@ -259,9 +259,8 @@ public class MicroblogsUtil {
 		List<String> screenNames = getScreenNames(microblogsEntry.getContent());
 
 		for (String screenName : screenNames) {
-			long screenNameUserId =
-				UserLocalServiceUtil.getUserIdByScreenName(
-					microblogsEntry.getCompanyId(), screenName);
+			long screenNameUserId = UserLocalServiceUtil.getUserIdByScreenName(
+				microblogsEntry.getCompanyId(), screenName);
 
 			if (screenNameUserId == userId) {
 				return true;

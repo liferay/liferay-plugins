@@ -63,6 +63,18 @@ public class MicroblogsEntryLocalServiceUtil {
 			receiverMicroblogsEntryId, socialRelationType, serviceContext);
 	}
 
+	public static com.liferay.microblogs.model.MicroblogsEntry addMicroblogsEntry(
+		long userId, long creatorClassNameId, long creatorClassPK,
+		java.lang.String content, int type, long receiverUserId,
+		long receiverMicroblogsEntryId, int socialRelationType,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService()
+				   .addMicroblogsEntry(userId, creatorClassNameId,
+			creatorClassPK, content, type, receiverUserId,
+			receiverMicroblogsEntryId, socialRelationType, serviceContext);
+	}
+
 	/**
 	* Creates a new microblogs entry with the primary key. Does not add the microblogs entry to the database.
 	*
@@ -72,6 +84,12 @@ public class MicroblogsEntryLocalServiceUtil {
 	public static com.liferay.microblogs.model.MicroblogsEntry createMicroblogsEntry(
 		long microblogsEntryId) {
 		return getService().createMicroblogsEntry(microblogsEntryId);
+	}
+
+	public static void deleteMicroblogsEntries(long creatorClassNameId,
+		long creatorClassPK)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		getService().deleteMicroblogsEntries(creatorClassNameId, creatorClassPK);
 	}
 
 	/**
@@ -219,6 +237,29 @@ public class MicroblogsEntryLocalServiceUtil {
 		return getService().getCompanyMicroblogsEntriesCount(companyId);
 	}
 
+	public static java.util.List<com.liferay.microblogs.model.MicroblogsEntry> getMicroblogsEntries(
+		long creatorClassNameId, long creatorClassPK, int start, int end) {
+		return getService()
+				   .getMicroblogsEntries(creatorClassNameId, creatorClassPK,
+			start, end);
+	}
+
+	public static java.util.List<com.liferay.microblogs.model.MicroblogsEntry> getMicroblogsEntries(
+		long creatorClassNameId, long creatorClassPK, int type, int start,
+		int end) {
+		return getService()
+				   .getMicroblogsEntries(creatorClassNameId, creatorClassPK,
+			type, start, end);
+	}
+
+	public static java.util.List<com.liferay.microblogs.model.MicroblogsEntry> getMicroblogsEntries(
+		long creatorClassNameId, int type, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator obc) {
+		return getService()
+				   .getMicroblogsEntries(creatorClassNameId, type, start, end,
+			obc);
+	}
+
 	/**
 	* Returns a range of all the microblogs entries.
 	*
@@ -242,6 +283,19 @@ public class MicroblogsEntryLocalServiceUtil {
 	*/
 	public static int getMicroblogsEntriesCount() {
 		return getService().getMicroblogsEntriesCount();
+	}
+
+	public static int getMicroblogsEntriesCount(long creatorClassNameId,
+		long creatorClassPK) {
+		return getService()
+				   .getMicroblogsEntriesCount(creatorClassNameId, creatorClassPK);
+	}
+
+	public static int getMicroblogsEntriesCount(long creatorClassNameId,
+		long creatorClassPK, int type) {
+		return getService()
+				   .getMicroblogsEntriesCount(creatorClassNameId,
+			creatorClassPK, type);
 	}
 
 	/**

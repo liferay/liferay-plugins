@@ -13,6 +13,8 @@
 		<property name="userName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="createDate" type="org.hibernate.type.TimestampType" />
 		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
+		<property name="creatorClassNameId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="creatorClassPK" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="content" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="type" type="com.liferay.portal.dao.orm.hibernate.IntegerType" column="type_" />
 		<property name="receiverUserId" type="com.liferay.portal.dao.orm.hibernate.LongType" />

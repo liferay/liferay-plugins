@@ -77,13 +77,15 @@ public class MicroblogsEntryModelImpl extends BaseModelImpl<MicroblogsEntry>
 			{ "userName", Types.VARCHAR },
 			{ "createDate", Types.TIMESTAMP },
 			{ "modifiedDate", Types.TIMESTAMP },
+			{ "creatorClassNameId", Types.BIGINT },
+			{ "creatorClassPK", Types.BIGINT },
 			{ "content", Types.VARCHAR },
 			{ "type_", Types.INTEGER },
 			{ "receiverUserId", Types.BIGINT },
 			{ "receiverMicroblogsEntryId", Types.BIGINT },
 			{ "socialRelationType", Types.INTEGER }
 		};
-	public static final String TABLE_SQL_CREATE = "create table MicroblogsEntry (microblogsEntryId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,content STRING null,type_ INTEGER,receiverUserId LONG,receiverMicroblogsEntryId LONG,socialRelationType INTEGER)";
+	public static final String TABLE_SQL_CREATE = "create table MicroblogsEntry (microblogsEntryId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,creatorClassNameId LONG,creatorClassPK LONG,content STRING null,type_ INTEGER,receiverUserId LONG,receiverMicroblogsEntryId LONG,socialRelationType INTEGER)";
 	public static final String TABLE_SQL_DROP = "drop table MicroblogsEntry";
 	public static final String ORDER_BY_JPQL = " ORDER BY microblogsEntry.createDate DESC";
 	public static final String ORDER_BY_SQL = " ORDER BY MicroblogsEntry.createDate DESC";
@@ -101,11 +103,13 @@ public class MicroblogsEntryModelImpl extends BaseModelImpl<MicroblogsEntry>
 			true);
 	public static final long COMPANYID_COLUMN_BITMASK = 1L;
 	public static final long CREATEDATE_COLUMN_BITMASK = 2L;
-	public static final long RECEIVERMICROBLOGSENTRYID_COLUMN_BITMASK = 4L;
-	public static final long RECEIVERUSERID_COLUMN_BITMASK = 8L;
-	public static final long SOCIALRELATIONTYPE_COLUMN_BITMASK = 16L;
-	public static final long TYPE_COLUMN_BITMASK = 32L;
-	public static final long USERID_COLUMN_BITMASK = 64L;
+	public static final long CREATORCLASSNAMEID_COLUMN_BITMASK = 4L;
+	public static final long CREATORCLASSPK_COLUMN_BITMASK = 8L;
+	public static final long RECEIVERMICROBLOGSENTRYID_COLUMN_BITMASK = 16L;
+	public static final long RECEIVERUSERID_COLUMN_BITMASK = 32L;
+	public static final long SOCIALRELATIONTYPE_COLUMN_BITMASK = 64L;
+	public static final long TYPE_COLUMN_BITMASK = 128L;
+	public static final long USERID_COLUMN_BITMASK = 256L;
 
 	/**
 	 * Converts the soap model instance into a normal model instance.
@@ -126,6 +130,8 @@ public class MicroblogsEntryModelImpl extends BaseModelImpl<MicroblogsEntry>
 		model.setUserName(soapModel.getUserName());
 		model.setCreateDate(soapModel.getCreateDate());
 		model.setModifiedDate(soapModel.getModifiedDate());
+		model.setCreatorClassNameId(soapModel.getCreatorClassNameId());
+		model.setCreatorClassPK(soapModel.getCreatorClassPK());
 		model.setContent(soapModel.getContent());
 		model.setType(soapModel.getType());
 		model.setReceiverUserId(soapModel.getReceiverUserId());
@@ -202,6 +208,8 @@ public class MicroblogsEntryModelImpl extends BaseModelImpl<MicroblogsEntry>
 		attributes.put("userName", getUserName());
 		attributes.put("createDate", getCreateDate());
 		attributes.put("modifiedDate", getModifiedDate());
+		attributes.put("creatorClassNameId", getCreatorClassNameId());
+		attributes.put("creatorClassPK", getCreatorClassPK());
 		attributes.put("content", getContent());
 		attributes.put("type", getType());
 		attributes.put("receiverUserId", getReceiverUserId());
@@ -251,6 +259,18 @@ public class MicroblogsEntryModelImpl extends BaseModelImpl<MicroblogsEntry>
 
 		if (modifiedDate != null) {
 			setModifiedDate(modifiedDate);
+		}
+
+		Long creatorClassNameId = (Long)attributes.get("creatorClassNameId");
+
+		if (creatorClassNameId != null) {
+			setCreatorClassNameId(creatorClassNameId);
+		}
+
+		Long creatorClassPK = (Long)attributes.get("creatorClassPK");
+
+		if (creatorClassPK != null) {
+			setCreatorClassPK(creatorClassPK);
 		}
 
 		String content = (String)attributes.get("content");
@@ -405,6 +425,52 @@ public class MicroblogsEntryModelImpl extends BaseModelImpl<MicroblogsEntry>
 	@Override
 	public void setModifiedDate(Date modifiedDate) {
 		_modifiedDate = modifiedDate;
+	}
+
+	@JSON
+	@Override
+	public long getCreatorClassNameId() {
+		return _creatorClassNameId;
+	}
+
+	@Override
+	public void setCreatorClassNameId(long creatorClassNameId) {
+		_columnBitmask |= CREATORCLASSNAMEID_COLUMN_BITMASK;
+
+		if (!_setOriginalCreatorClassNameId) {
+			_setOriginalCreatorClassNameId = true;
+
+			_originalCreatorClassNameId = _creatorClassNameId;
+		}
+
+		_creatorClassNameId = creatorClassNameId;
+	}
+
+	public long getOriginalCreatorClassNameId() {
+		return _originalCreatorClassNameId;
+	}
+
+	@JSON
+	@Override
+	public long getCreatorClassPK() {
+		return _creatorClassPK;
+	}
+
+	@Override
+	public void setCreatorClassPK(long creatorClassPK) {
+		_columnBitmask |= CREATORCLASSPK_COLUMN_BITMASK;
+
+		if (!_setOriginalCreatorClassPK) {
+			_setOriginalCreatorClassPK = true;
+
+			_originalCreatorClassPK = _creatorClassPK;
+		}
+
+		_creatorClassPK = creatorClassPK;
+	}
+
+	public long getOriginalCreatorClassPK() {
+		return _originalCreatorClassPK;
 	}
 
 	@JSON
@@ -568,6 +634,8 @@ public class MicroblogsEntryModelImpl extends BaseModelImpl<MicroblogsEntry>
 		microblogsEntryImpl.setUserName(getUserName());
 		microblogsEntryImpl.setCreateDate(getCreateDate());
 		microblogsEntryImpl.setModifiedDate(getModifiedDate());
+		microblogsEntryImpl.setCreatorClassNameId(getCreatorClassNameId());
+		microblogsEntryImpl.setCreatorClassPK(getCreatorClassPK());
 		microblogsEntryImpl.setContent(getContent());
 		microblogsEntryImpl.setType(getType());
 		microblogsEntryImpl.setReceiverUserId(getReceiverUserId());
@@ -646,6 +714,14 @@ public class MicroblogsEntryModelImpl extends BaseModelImpl<MicroblogsEntry>
 
 		microblogsEntryModelImpl._originalCreateDate = microblogsEntryModelImpl._createDate;
 
+		microblogsEntryModelImpl._originalCreatorClassNameId = microblogsEntryModelImpl._creatorClassNameId;
+
+		microblogsEntryModelImpl._setOriginalCreatorClassNameId = false;
+
+		microblogsEntryModelImpl._originalCreatorClassPK = microblogsEntryModelImpl._creatorClassPK;
+
+		microblogsEntryModelImpl._setOriginalCreatorClassPK = false;
+
 		microblogsEntryModelImpl._originalType = microblogsEntryModelImpl._type;
 
 		microblogsEntryModelImpl._setOriginalType = false;
@@ -701,6 +777,10 @@ public class MicroblogsEntryModelImpl extends BaseModelImpl<MicroblogsEntry>
 			microblogsEntryCacheModel.modifiedDate = Long.MIN_VALUE;
 		}
 
+		microblogsEntryCacheModel.creatorClassNameId = getCreatorClassNameId();
+
+		microblogsEntryCacheModel.creatorClassPK = getCreatorClassPK();
+
 		microblogsEntryCacheModel.content = getContent();
 
 		String content = microblogsEntryCacheModel.content;
@@ -722,7 +802,7 @@ public class MicroblogsEntryModelImpl extends BaseModelImpl<MicroblogsEntry>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(23);
+		StringBundler sb = new StringBundler(27);
 
 		sb.append("{microblogsEntryId=");
 		sb.append(getMicroblogsEntryId());
@@ -736,6 +816,10 @@ public class MicroblogsEntryModelImpl extends BaseModelImpl<MicroblogsEntry>
 		sb.append(getCreateDate());
 		sb.append(", modifiedDate=");
 		sb.append(getModifiedDate());
+		sb.append(", creatorClassNameId=");
+		sb.append(getCreatorClassNameId());
+		sb.append(", creatorClassPK=");
+		sb.append(getCreatorClassPK());
 		sb.append(", content=");
 		sb.append(getContent());
 		sb.append(", type=");
@@ -753,7 +837,7 @@ public class MicroblogsEntryModelImpl extends BaseModelImpl<MicroblogsEntry>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(37);
+		StringBundler sb = new StringBundler(43);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.microblogs.model.MicroblogsEntry");
@@ -782,6 +866,14 @@ public class MicroblogsEntryModelImpl extends BaseModelImpl<MicroblogsEntry>
 		sb.append(
 			"<column><column-name>modifiedDate</column-name><column-value><![CDATA[");
 		sb.append(getModifiedDate());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>creatorClassNameId</column-name><column-value><![CDATA[");
+		sb.append(getCreatorClassNameId());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>creatorClassPK</column-name><column-value><![CDATA[");
+		sb.append(getCreatorClassPK());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>content</column-name><column-value><![CDATA[");
@@ -824,6 +916,12 @@ public class MicroblogsEntryModelImpl extends BaseModelImpl<MicroblogsEntry>
 	private Date _createDate;
 	private Date _originalCreateDate;
 	private Date _modifiedDate;
+	private long _creatorClassNameId;
+	private long _originalCreatorClassNameId;
+	private boolean _setOriginalCreatorClassNameId;
+	private long _creatorClassPK;
+	private long _originalCreatorClassPK;
+	private boolean _setOriginalCreatorClassPK;
 	private String _content;
 	private int _type;
 	private int _originalType;

@@ -41,7 +41,7 @@ public class MicroblogsEntryCacheModel implements CacheModel<MicroblogsEntry>,
 	Externalizable {
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(23);
+		StringBundler sb = new StringBundler(27);
 
 		sb.append("{microblogsEntryId=");
 		sb.append(microblogsEntryId);
@@ -55,6 +55,10 @@ public class MicroblogsEntryCacheModel implements CacheModel<MicroblogsEntry>,
 		sb.append(createDate);
 		sb.append(", modifiedDate=");
 		sb.append(modifiedDate);
+		sb.append(", creatorClassNameId=");
+		sb.append(creatorClassNameId);
+		sb.append(", creatorClassPK=");
+		sb.append(creatorClassPK);
 		sb.append(", content=");
 		sb.append(content);
 		sb.append(", type=");
@@ -99,6 +103,9 @@ public class MicroblogsEntryCacheModel implements CacheModel<MicroblogsEntry>,
 			microblogsEntryImpl.setModifiedDate(new Date(modifiedDate));
 		}
 
+		microblogsEntryImpl.setCreatorClassNameId(creatorClassNameId);
+		microblogsEntryImpl.setCreatorClassPK(creatorClassPK);
+
 		if (content == null) {
 			microblogsEntryImpl.setContent(StringPool.BLANK);
 		}
@@ -124,6 +131,8 @@ public class MicroblogsEntryCacheModel implements CacheModel<MicroblogsEntry>,
 		userName = objectInput.readUTF();
 		createDate = objectInput.readLong();
 		modifiedDate = objectInput.readLong();
+		creatorClassNameId = objectInput.readLong();
+		creatorClassPK = objectInput.readLong();
 		content = objectInput.readUTF();
 		type = objectInput.readInt();
 		receiverUserId = objectInput.readLong();
@@ -147,6 +156,8 @@ public class MicroblogsEntryCacheModel implements CacheModel<MicroblogsEntry>,
 
 		objectOutput.writeLong(createDate);
 		objectOutput.writeLong(modifiedDate);
+		objectOutput.writeLong(creatorClassNameId);
+		objectOutput.writeLong(creatorClassPK);
 
 		if (content == null) {
 			objectOutput.writeUTF(StringPool.BLANK);
@@ -167,6 +178,8 @@ public class MicroblogsEntryCacheModel implements CacheModel<MicroblogsEntry>,
 	public String userName;
 	public long createDate;
 	public long modifiedDate;
+	public long creatorClassNameId;
+	public long creatorClassPK;
 	public String content;
 	public int type;
 	public long receiverUserId;
