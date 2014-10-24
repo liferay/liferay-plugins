@@ -173,7 +173,7 @@ public class FileSystemImporter extends BaseImporter {
 					getMap(name), null,
 					DDMTemplateConstants.TEMPLATE_TYPE_DISPLAY,
 					StringPool.BLANK, getDDMTemplateLanguage(name), script,
-					false, serviceContext);
+					false, false, StringPool.BLANK, null, serviceContext);
 			}
 		}
 		catch (PortalException e) {
@@ -1438,7 +1438,7 @@ public class FileSystemImporter extends BaseImporter {
 		return name + " - " + version;
 	}
 
-	protected void index() {
+	protected void index() throws Exception {
 		for (Map.Entry<String, Set<Long>> primaryKeysEntry :
 				_primaryKeys.entrySet()) {
 
