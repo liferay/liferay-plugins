@@ -97,13 +97,7 @@ public class MicroblogsUserNotificationHandler
 				microblogsEntry.getUserId(), StringPool.BLANK));
 
 		if (notificationType ==
-				MicroblogsEntryConstants.NOTIFICATION_TYPE_TAG) {
-
-			title = serviceContext.translate(
-				"x-tagged-you-in-a-post", userFullName);
-		}
-		else if (notificationType ==
-					MicroblogsEntryConstants.NOTIFICATION_TYPE_REPLY) {
+				MicroblogsEntryConstants.NOTIFICATION_TYPE_REPLY) {
 
 			title = serviceContext.translate(
 				"x-commented-on-your-post", userFullName);
@@ -127,6 +121,12 @@ public class MicroblogsUserNotificationHandler
 
 			title = serviceContext.translate(
 				"x-commented-on-a-post-you-are-tagged-in", userFullName);
+		}
+		else if (notificationType ==
+					MicroblogsEntryConstants.NOTIFICATION_TYPE_TAG) {
+
+			title = serviceContext.translate(
+				"x-tagged-you-in-a-post", userFullName);
 		}
 
 		return title;
