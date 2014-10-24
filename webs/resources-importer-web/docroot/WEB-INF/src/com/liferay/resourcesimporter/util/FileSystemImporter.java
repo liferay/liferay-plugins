@@ -159,19 +159,33 @@ public class FileSystemImporter extends BaseImporter {
 			}
 		}
 
-		if (!updateModeEnabled || (ddmTemplate == null)) {
-			DDMTemplateLocalServiceUtil.addTemplate(
-				userId, groupId, classNameId, 0, getKey(fileName), getMap(name),
-				null, DDMTemplateConstants.TEMPLATE_TYPE_DISPLAY,
-				StringPool.BLANK, getDDMTemplateLanguage(name), script, false,
-				false, StringPool.BLANK, null, serviceContext);
+		try {
+			if (!updateModeEnabled || (ddmTemplate == null)) {
+				DDMTemplateLocalServiceUtil.addTemplate(
+					userId, groupId, classNameId, 0, getKey(fileName),
+					getMap(name), null,
+					DDMTemplateConstants.TEMPLATE_TYPE_DISPLAY,
+					StringPool.BLANK, getDDMTemplateLanguage(name), script,
+					false, false, StringPool.BLANK, null, serviceContext);
+			}
+			else {
+				DDMTemplateLocalServiceUtil.updateTemplate(
+					ddmTemplate.getTemplateId(), ddmTemplate.getClassPK(),
+					getMap(name), null,
+					DDMTemplateConstants.TEMPLATE_TYPE_DISPLAY,
+					StringPool.BLANK, getDDMTemplateLanguage(name), script,
+					false, serviceContext);
+			}
 		}
-		else {
-			DDMTemplateLocalServiceUtil.updateTemplate(
-				ddmTemplate.getTemplateId(), ddmTemplate.getClassPK(),
-				getMap(name), null, DDMTemplateConstants.TEMPLATE_TYPE_DISPLAY,
-				StringPool.BLANK, getDDMTemplateLanguage(name), script, false,
-				serviceContext);
+		catch (PortalException e) {
+			if (_log.isWarnEnabled()) {
+				_log.warn(
+					"Error importing application display template: " +
+						file.getName(),
+					e);
+			}
+
+			throw e;
 		}
 	}
 
@@ -320,20 +334,31 @@ public class FileSystemImporter extends BaseImporter {
 			}
 		}
 
-		if (!updateModeEnabled || (ddmStructure == null)) {
-			ddmStructure = DDMStructureLocalServiceUtil.addStructure(
-				userId, groupId,
-				DDMStructureConstants.DEFAULT_PARENT_STRUCTURE_ID,
-				PortalUtil.getClassNameId(DDLRecordSet.class), getKey(fileName),
-				getMap(name), null, StringUtil.read(inputStream),
-				PropsUtil.get(PropsKeys.DYNAMIC_DATA_LISTS_STORAGE_TYPE),
-				DDMStructureConstants.TYPE_DEFAULT, serviceContext);
+		try {
+			if (!updateModeEnabled || (ddmStructure == null)) {
+				ddmStructure = DDMStructureLocalServiceUtil.addStructure(
+					userId, groupId,
+					DDMStructureConstants.DEFAULT_PARENT_STRUCTURE_ID,
+					PortalUtil.getClassNameId(DDLRecordSet.class),
+					getKey(fileName), getMap(name), null,
+					StringUtil.read(inputStream),
+					PropsUtil.get(PropsKeys.DYNAMIC_DATA_LISTS_STORAGE_TYPE),
+					DDMStructureConstants.TYPE_DEFAULT, serviceContext);
+			}
+			else {
+				ddmStructure = DDMStructureLocalServiceUtil.updateStructure(
+					ddmStructure.getStructureId(),
+					DDMStructureConstants.DEFAULT_PARENT_STRUCTURE_ID,
+					getMap(name), null, StringUtil.read(inputStream),
+					serviceContext);
+			}
 		}
-		else {
-			ddmStructure = DDMStructureLocalServiceUtil.updateStructure(
-				ddmStructure.getStructureId(),
-				DDMStructureConstants.DEFAULT_PARENT_STRUCTURE_ID, getMap(name),
-				null, StringUtil.read(inputStream), serviceContext);
+		catch (Exception e) {
+			if (_log.isWarnEnabled()) {
+				_log.warn("Error importing DDMStructure: " + fileName, e);
+			}
+
+			throw e;
 		}
 
 		addDDLDisplayTemplates(
@@ -412,30 +437,40 @@ public class FileSystemImporter extends BaseImporter {
 
 		setServiceContext(fileName);
 
-		if (!updateModeEnabled || (ddmStructure == null)) {
-			ddmStructure = DDMStructureLocalServiceUtil.addStructure(
-				userId, groupId, parentDDMStructureKey,
-				PortalUtil.getClassNameId(JournalArticle.class),
-				getKey(fileName), getMap(name), null, xsd,
-				PropsUtil.get(PropsKeys.JOURNAL_ARTICLE_STORAGE_TYPE),
-				DDMStructureConstants.TYPE_DEFAULT, serviceContext);
+		try {
+			if (!updateModeEnabled || (ddmStructure == null)) {
+				ddmStructure = DDMStructureLocalServiceUtil.addStructure(
+					userId, groupId, parentDDMStructureKey,
+					PortalUtil.getClassNameId(JournalArticle.class),
+					getKey(fileName), getMap(name), null, xsd,
+					PropsUtil.get(PropsKeys.JOURNAL_ARTICLE_STORAGE_TYPE),
+					DDMStructureConstants.TYPE_DEFAULT, serviceContext);
+			}
+			else {
+				DDMStructure parentStructure =
+					DDMStructureLocalServiceUtil.fetchStructure(
+						groupId,
+						PortalUtil.getClassNameId(JournalArticle.class),
+						parentDDMStructureKey);
+
+				long parentDDMStructureId =
+					DDMStructureConstants.DEFAULT_PARENT_STRUCTURE_ID;
+
+				if (parentStructure != null) {
+					parentDDMStructureId = parentStructure.getStructureId();
+				}
+
+				ddmStructure = DDMStructureLocalServiceUtil.updateStructure(
+					ddmStructure.getStructureId(), parentDDMStructureId,
+					getMap(name), null, xsd, serviceContext);
+			}
 		}
-		else {
-			DDMStructure parentStructure =
-				DDMStructureLocalServiceUtil.fetchStructure(
-					groupId, PortalUtil.getClassNameId(JournalArticle.class),
-					parentDDMStructureKey);
-
-			long parentDDMStructureId =
-				DDMStructureConstants.DEFAULT_PARENT_STRUCTURE_ID;
-
-			if (parentStructure != null) {
-				parentDDMStructureId = parentStructure.getStructureId();
+		catch (PortalException e) {
+			if (_log.isWarnEnabled()) {
+				_log.warn("Error importing DDMStructure: " + fileName, e);
 			}
 
-			ddmStructure = DDMStructureLocalServiceUtil.updateStructure(
-				ddmStructure.getStructureId(), parentDDMStructureId,
-				getMap(name), null, xsd, serviceContext);
+			throw e;
 		}
 
 		_ddmStructures.add(ddmStructure.getStructureKey());
@@ -482,19 +517,29 @@ public class FileSystemImporter extends BaseImporter {
 			}
 		}
 
-		if (!updateModeEnabled || (ddmTemplate == null)) {
-			DDMTemplateLocalServiceUtil.addTemplate(
-				userId, templateGroupId,
-				PortalUtil.getClassNameId(DDMStructure.class), ddmStructureId,
-				getKey(fileName), getMap(name), null, type, mode, language,
-				script, false, false, StringPool.BLANK, null, serviceContext);
+		try {
+			if (!updateModeEnabled || (ddmTemplate == null)) {
+				DDMTemplateLocalServiceUtil.addTemplate(
+					userId, templateGroupId,
+					PortalUtil.getClassNameId(DDMStructure.class),
+					ddmStructureId, getKey(fileName), getMap(name), null, type,
+					mode, language, script, false, false, StringPool.BLANK,
+					null, serviceContext);
+			}
+			else {
+				DDMTemplateLocalServiceUtil.updateTemplate(
+					ddmTemplate.getTemplateId(),
+					PortalUtil.getClassNameId(DDMStructure.class), getMap(name),
+					null, DDMTemplateConstants.TEMPLATE_TYPE_DISPLAY, null,
+					language, script, false, false, null, null, serviceContext);
+			}
 		}
-		else {
-			DDMTemplateLocalServiceUtil.updateTemplate(
-				ddmTemplate.getTemplateId(),
-				PortalUtil.getClassNameId(DDMStructure.class), getMap(name),
-				null, DDMTemplateConstants.TEMPLATE_TYPE_DISPLAY, null,
-				language, script, false, false, null, null, serviceContext);
+		catch (PortalException e) {
+			if (_log.isWarnEnabled()) {
+				_log.warn("Error importing DDMTemplate: " + fileName, e);
+			}
+
+			throw e;
 		}
 	}
 
@@ -562,21 +607,32 @@ public class FileSystemImporter extends BaseImporter {
 			}
 		}
 
-		if (!updateModeEnabled || (ddmTemplate == null)) {
-			ddmTemplate = DDMTemplateLocalServiceUtil.addTemplate(
-				userId, groupId, PortalUtil.getClassNameId(DDMStructure.class),
-				ddmStructure.getStructureId(), getKey(fileName), getMap(name),
-				null, DDMTemplateConstants.TEMPLATE_TYPE_DISPLAY, null,
-				getDDMTemplateLanguage(fileName), replaceFileEntryURL(xsl),
-				false, false, null, null, serviceContext);
+		try {
+			if (!updateModeEnabled || (ddmTemplate == null)) {
+				ddmTemplate = DDMTemplateLocalServiceUtil.addTemplate(
+					userId, groupId,
+					PortalUtil.getClassNameId(DDMStructure.class),
+					ddmStructure.getStructureId(), getKey(fileName),
+					getMap(name), null,
+					DDMTemplateConstants.TEMPLATE_TYPE_DISPLAY, null,
+					getDDMTemplateLanguage(fileName), replaceFileEntryURL(xsl),
+					false, false, null, null, serviceContext);
+			}
+			else {
+				ddmTemplate = DDMTemplateLocalServiceUtil.updateTemplate(
+					ddmTemplate.getTemplateId(),
+					PortalUtil.getClassNameId(DDMStructure.class), getMap(name),
+					null, DDMTemplateConstants.TEMPLATE_TYPE_DISPLAY, null,
+					getDDMTemplateLanguage(fileName), replaceFileEntryURL(xsl),
+					false, false, null, null, serviceContext);
+			}
 		}
-		else {
-			ddmTemplate = DDMTemplateLocalServiceUtil.updateTemplate(
-				ddmTemplate.getTemplateId(),
-				PortalUtil.getClassNameId(DDMStructure.class), getMap(name),
-				null, DDMTemplateConstants.TEMPLATE_TYPE_DISPLAY, null,
-				getDDMTemplateLanguage(fileName), replaceFileEntryURL(xsl),
-				false, false, null, null, serviceContext);
+		catch (PortalException e) {
+			if (_log.isWarnEnabled()) {
+				_log.warn("Error importing DDMTemplate: " + fileName, e);
+			}
+
+			throw e;
 		}
 
 		addJournalArticles(
@@ -638,25 +694,36 @@ public class FileSystemImporter extends BaseImporter {
 		FileEntry fileEntry = null;
 
 		try {
-			fileEntry = DLAppLocalServiceUtil.addFileEntry(
-				userId, groupId, parentFolderId, fileName,
-				MimeTypesUtil.getContentType(fileName), title, StringPool.BLANK,
-				StringPool.BLANK, inputStream, length, serviceContext);
+			try {
+				fileEntry = DLAppLocalServiceUtil.addFileEntry(
+					userId, groupId, parentFolderId, fileName,
+					MimeTypesUtil.getContentType(fileName), title,
+					StringPool.BLANK, StringPool.BLANK, inputStream, length,
+					serviceContext);
+			}
+			catch (DuplicateFileException dfe) {
+				fileEntry = DLAppLocalServiceUtil.getFileEntry(
+					groupId, parentFolderId, title);
+
+				String previousVersion = fileEntry.getVersion();
+
+				fileEntry = DLAppLocalServiceUtil.updateFileEntry(
+					userId, fileEntry.getFileEntryId(), fileName,
+					MimeTypesUtil.getContentType(fileName), title,
+					StringPool.BLANK, StringPool.BLANK, true, inputStream,
+					length, serviceContext);
+
+				DLFileEntryLocalServiceUtil.deleteFileVersion(
+					fileEntry.getUserId(), fileEntry.getFileEntryId(),
+					previousVersion);
+			}
 		}
-		catch (DuplicateFileException dfe) {
-			fileEntry = DLAppLocalServiceUtil.getFileEntry(
-				groupId, parentFolderId, title);
+		catch (PortalException e) {
+			if (_log.isWarnEnabled()) {
+				_log.warn("Error importing document: " + fileName, e);
+			}
 
-			String previousVersion = fileEntry.getVersion();
-
-			fileEntry = DLAppLocalServiceUtil.updateFileEntry(
-				userId, fileEntry.getFileEntryId(), fileName,
-				MimeTypesUtil.getContentType(fileName), title, StringPool.BLANK,
-				StringPool.BLANK, true, inputStream, length, serviceContext);
-
-			DLFileEntryLocalServiceUtil.deleteFileVersion(
-				fileEntry.getUserId(), fileEntry.getFileEntryId(),
-				previousVersion);
+			throw e;
 		}
 
 		addPrimaryKey(DLFileEntry.class.getName(), fileEntry.getPrimaryKey());
@@ -792,35 +859,44 @@ public class FileSystemImporter extends BaseImporter {
 			JournalArticleLocalServiceUtil.fetchLatestArticle(
 				groupId, journalArticleId, WorkflowConstants.STATUS_ANY);
 
-		if (journalArticle == null) {
-			journalArticle = JournalArticleLocalServiceUtil.addArticle(
-				userId, groupId, 0, 0, 0, journalArticleId, false,
-				JournalArticleConstants.VERSION_DEFAULT,
-				getMap(articleDefaultLocale, title), descriptionMap, content,
-				"general", ddmStructureKey, ddmTemplateKey, StringPool.BLANK, 1,
-				1, 2010, 0, 0, 0, 0, 0, 0, 0, true, 0, 0, 0, 0, 0, true,
-				indexable, smallImage, smallImageURL, null,
-				new HashMap<String, byte[]>(), StringPool.BLANK,
-				serviceContext);
-		}
-		else {
-			journalArticle =
-				JournalArticleLocalServiceUtil.updateArticle(
-					userId, groupId, 0, journalArticleId,
-					journalArticle.getVersion(),
+		try {
+			if (journalArticle == null) {
+				journalArticle = JournalArticleLocalServiceUtil.addArticle(
+					userId, groupId, 0, 0, 0, journalArticleId, false,
+					JournalArticleConstants.VERSION_DEFAULT,
 					getMap(articleDefaultLocale, title), descriptionMap,
 					content, "general", ddmStructureKey, ddmTemplateKey,
 					StringPool.BLANK, 1, 1, 2010, 0, 0, 0, 0, 0, 0, 0, true, 0,
 					0, 0, 0, 0, true, indexable, smallImage, smallImageURL,
 					null, new HashMap<String, byte[]>(), StringPool.BLANK,
 					serviceContext);
-		}
+			}
+			else {
+				journalArticle =
+					JournalArticleLocalServiceUtil.updateArticle(
+						userId, groupId, 0, journalArticleId,
+						journalArticle.getVersion(),
+						getMap(articleDefaultLocale, title), descriptionMap,
+						content, "general", ddmStructureKey, ddmTemplateKey,
+						StringPool.BLANK, 1, 1, 2010, 0, 0, 0, 0, 0, 0, 0, true,
+						0, 0, 0, 0, 0, true, indexable, smallImage,
+						smallImageURL, null, new HashMap<String, byte[]>(),
+						StringPool.BLANK, serviceContext);
+			}
 
-		JournalArticleLocalServiceUtil.updateStatus(
-			userId, groupId, journalArticle.getArticleId(),
-			journalArticle.getVersion(), WorkflowConstants.STATUS_APPROVED,
-			StringPool.BLANK, new HashMap<String, Serializable>(),
-			serviceContext);
+			JournalArticleLocalServiceUtil.updateStatus(
+				userId, groupId, journalArticle.getArticleId(),
+				journalArticle.getVersion(), WorkflowConstants.STATUS_APPROVED,
+				StringPool.BLANK, new HashMap<String, Serializable>(),
+				serviceContext);
+		}
+		catch (PortalException e) {
+			if (_log.isWarnEnabled()) {
+				_log.warn("Error importing journal article: " + fileName, e);
+			}
+
+			throw e;
+		}
 
 		addPrimaryKey(
 			JournalArticle.class.getName(), journalArticle.getPrimaryKey());
@@ -928,6 +1004,13 @@ public class FileSystemImporter extends BaseImporter {
 				"layouts");
 
 			addLayouts(privateLayout, layout.getLayoutId(), layoutsJSONArray);
+		}
+		catch (Exception e) {
+			if (_log.isWarnEnabled()) {
+				_log.warn("Error importing layout: " + layoutJSONObject, e);
+			}
+
+			throw e;
 		}
 		finally {
 			ServiceContextThreadLocal.popServiceContext();
@@ -1086,17 +1169,27 @@ public class FileSystemImporter extends BaseImporter {
 			serviceContext.setUuid(uuid);
 		}
 
-		if (!updateModeEnabled || (layoutPrototype == null)) {
-			layoutPrototype =
-				LayoutPrototypeLocalServiceUtil.addLayoutPrototype(
-					userId, companyId, getMap(name), descriptionMap, true,
-					serviceContext);
+		try {
+			if (!updateModeEnabled || (layoutPrototype == null)) {
+				layoutPrototype =
+					LayoutPrototypeLocalServiceUtil.addLayoutPrototype(
+						userId, companyId, getMap(name), descriptionMap, true,
+						serviceContext);
+			}
+			else {
+				layoutPrototype =
+					LayoutPrototypeLocalServiceUtil.updateLayoutPrototype(
+						layoutPrototype.getLayoutPrototypeId(), getMap(name),
+						descriptionMap, layoutPrototype.isActive(),
+						serviceContext);
+			}
 		}
-		else {
-			layoutPrototype =
-				LayoutPrototypeLocalServiceUtil.updateLayoutPrototype(
-					layoutPrototype.getLayoutPrototypeId(), getMap(name),
-					descriptionMap, layoutPrototype.isActive(), serviceContext);
+		catch (Exception e) {
+			if (_log.isWarnEnabled()) {
+				_log.warn("Error importing layout prototype: " + name, e);
+			}
+
+			throw e;
 		}
 
 		JSONArray columnsJSONArray = layoutTemplateJSONObject.getJSONArray(
