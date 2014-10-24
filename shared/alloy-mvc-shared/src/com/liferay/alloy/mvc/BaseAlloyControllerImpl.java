@@ -310,12 +310,6 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 		sb.append(portlet.getFriendlyURLMapping());
 		sb.append("/views/");
 
-		if (Validator.isNotNull(format)) {
-			sb.append("format.jsp");
-
-			return sb.toString();
-		}
-
 		if (viewPath.equals(_VIEW_PATH_ERROR)) {
 			sb.append("error.jsp");
 
@@ -374,6 +368,19 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 
 		if (Validator.isNull(viewPath)) {
 			viewPath = actionPath;
+		}
+
+		if (Validator.isNotNull(format)) {
+			if (format.equals("json")) {
+				renderResponse.setContentType(ContentTypes.APPLICATION_JSON);
+			}
+
+			HttpServletResponse response = PortalUtil.getHttpServletResponse(
+				renderResponse);
+
+			ServletResponseUtil.write(response, _data);
+
+			return;
 		}
 
 		String includePath = buildIncludePath(viewPath);
@@ -1044,11 +1051,11 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 	}
 
 	protected void setJSONData(BaseModel baseModel) throws Exception {
-		request.setAttribute("data", toJSONObject(baseModel));
+		_data = String.valueOf(toJSONObject(baseModel));
 	}
 
 	protected void setJSONData(Document document) throws Exception {
-		request.setAttribute("data", toJSONObject(document));
+		_data = String.valueOf(toJSONObject(document));
 	}
 
 	protected void setJSONData(Document[] documents) throws Exception {
@@ -1062,7 +1069,7 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 
 		jsonData.put(controllerPath, jsonArray);
 
-		request.setAttribute("data", jsonData);
+		_data = jsonData.toString();
 	}
 
 	protected void setJSONData(List<BaseModel<?>> baseModels) throws Exception {
@@ -1076,7 +1083,7 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 
 		jsonData.put(controllerPath, jsonArray);
 
-		request.setAttribute("data", jsonData);
+		_data = jsonData.toString();
 	}
 
 	protected void setPermissioned(boolean permissioned) {
@@ -1185,5 +1192,7 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 	protected String viewPath;
 
 	private static final String _VIEW_PATH_ERROR = "VIEW_PATH_ERROR";
+
+	private String _data = StringPool.BLANK;
 
 }
