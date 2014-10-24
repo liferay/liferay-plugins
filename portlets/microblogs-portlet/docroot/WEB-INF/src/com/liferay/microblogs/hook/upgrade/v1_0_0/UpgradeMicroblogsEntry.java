@@ -17,14 +17,9 @@
 
 package com.liferay.microblogs.hook.upgrade.v1_0_0;
 
-import com.liferay.microblogs.model.MicroblogsEntry;
-import com.liferay.microblogs.service.MicroblogsEntryLocalServiceUtil;
-import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 import com.liferay.portal.model.User;
 import com.liferay.portal.util.PortalUtil;
-
-import java.util.List;
 
 /**
  * @author Calvin Keum
@@ -52,21 +47,10 @@ public class UpgradeMicroblogsEntry extends UpgradeProcess {
 			"create index IX_14ACFA9 on MicroblogsEntry (creatorClassNameId, " +
 				"creatorClassPK, type_)");
 
-		long classNameId = PortalUtil.getClassNameId(User.class);
-
-		List<MicroblogsEntry> microBlogsEntries =
-			MicroblogsEntryLocalServiceUtil.getMicroblogsEntries(
-				QueryUtil.ALL_POS, QueryUtil.ALL_POS);
-
-		for (MicroblogsEntry microblogsEntry : microBlogsEntries) {
-			runSQL(
-				"update MicroblogsEntry set creatorClassNameId = " +
-					classNameId);
-
-			runSQL(
-				"update MicroblogsEntry set creatorClassPK = " +
-					microblogsEntry.getUserId());
-		}
+		runSQL(
+			"update MicroblogsEntry set creatorClassNameId = " +
+				PortalUtil.getClassNameId(User.class) +
+					", creatorClassPK = MicroblogsEntry.userId");
 	}
 
 }
