@@ -33,6 +33,7 @@ import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.Repository;
 import com.liferay.portal.model.User;
+import com.liferay.portal.security.ac.AccessControlled;
 import com.liferay.portal.security.permission.ActionKeys;
 import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.portal.service.ServiceContext;
@@ -422,11 +423,14 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 		return portletPreferences;
 	}
 
+	@AccessControlled(guestAccessEnabled = true)
 	@Override
 	public SyncContext getSyncContext(String uuid)
 		throws PortalException, SystemException {
 
 		try {
+			User user = getGuestOrUser();
+
 			SyncContext syncContext = new SyncContext();
 
 			PluginPackage syncWebPluginPackage =
@@ -434,22 +438,25 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 
 			syncContext.setPluginVersion(syncWebPluginPackage.getVersion());
 
-			syncContext.setPortalBuildNumber(ReleaseInfo.getBuildNumber());
+			if (!user.isDefaultUser()) {
+				syncContext.setPortalBuildNumber(ReleaseInfo.getBuildNumber());
 
-			PluginPackage soPortletPluginPackage =
-				DeployManagerUtil.getInstalledPluginPackage("so-portlet");
+				PluginPackage soPortletPluginPackage =
+					DeployManagerUtil.getInstalledPluginPackage("so-portlet");
 
-			syncContext.setPortletPreferencesMap(getPortletPreferencesMap());
+				syncContext.setPortletPreferencesMap(
+					getPortletPreferencesMap());
 
-			if (soPortletPluginPackage != null) {
-				syncContext.setSocialOfficeInstalled(true);
+				if (soPortletPluginPackage != null) {
+					syncContext.setSocialOfficeInstalled(true);
+				}
+				else {
+					syncContext.setSocialOfficeInstalled(false);
+				}
+
+				syncContext.setUser(user);
+				syncContext.setUserSitesGroups(getUserSitesGroups());
 			}
-			else {
-				syncContext.setSocialOfficeInstalled(false);
-			}
-
-			syncContext.setUser(getUser());
-			syncContext.setUserSitesGroups(getUserSitesGroups());
 
 			return syncContext;
 		}
