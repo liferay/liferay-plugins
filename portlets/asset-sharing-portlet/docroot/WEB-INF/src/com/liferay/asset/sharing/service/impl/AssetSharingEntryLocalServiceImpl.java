@@ -77,26 +77,6 @@ public class AssetSharingEntryLocalServiceImpl
 	}
 
 	@Override
-	public List<Object[]> getAssetEntriesByUserId(
-			long userId, long[] classNameIds,
-			Map<Long, long[]> sharedToClassPKsMap, int start, int end)
-		throws SystemException {
-
-		return assetSharingEntryFinder.findAssetEntriesByUserId(
-			userId, classNameIds, sharedToClassPKsMap, start, end);
-	}
-
-	@Override
-	public int getAssetEntriesByUserIdCount(
-			long userId, long[] classNameIds,
-			Map<Long, long[]> sharedToClassPKsMap)
-		throws SystemException {
-
-		return assetSharingEntryFinder.countAssetEntriesByUserId(
-			userId, classNameIds, sharedToClassPKsMap);
-	}
-
-	@Override
 	public List<AssetSharingEntry> getAssetSharingEntries(
 			long classNameId, long classPK)
 		throws SystemException {
@@ -148,6 +128,26 @@ public class AssetSharingEntryLocalServiceImpl
 
 		return assetSharingEntryPersistence.countByC_S_S(
 			classNameId, sharedToClassNameId, sharedToClassPK);
+	}
+
+	@Override
+	public List<Object[]> search(
+			long userId, long[] classNameIds, Map<Long,
+			long[]> sharedToClassPKsMap, int start, int end)
+		throws SystemException {
+
+		return assetSharingEntryFinder.findByUserId(
+			userId, classNameIds, sharedToClassPKsMap, start, end);
+	}
+
+	@Override
+	public int searchCount(
+			long userId, long[] classNameIds, Map<Long,
+			long[]> sharedToClassPKsMap)
+		throws SystemException {
+
+		return assetSharingEntryFinder.countByUserId(
+			userId, classNameIds, sharedToClassPKsMap);
 	}
 
 }

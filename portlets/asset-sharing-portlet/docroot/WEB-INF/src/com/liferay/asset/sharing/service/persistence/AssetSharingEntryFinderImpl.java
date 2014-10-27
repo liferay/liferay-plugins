@@ -43,12 +43,12 @@ public class AssetSharingEntryFinderImpl
 	implements AssetSharingEntryFinder {
 
 	public static final String COUNT_ASSET_ENTRIES_BY_USER_ID =
-		AssetSharingEntryFinder.class.getName() + ".countAssetEntriesByUserId";
+		AssetSharingEntryFinder.class.getName() + ".countByUserId";
 
 	public static final String FIND_ASSET_ENTRIES_BY_USER_ID =
-		AssetSharingEntryFinder.class.getName() + ".findAssetEntriesByUserId";
+		AssetSharingEntryFinder.class.getName() + ".findByUserId";
 
-	public int countAssetEntriesByUserId(
+	public int countByUserId(
 			long userId, long[] classNameIds,
 			Map<Long, long[]> sharedToClassPKsMap)
 		throws SystemException {
@@ -94,7 +94,7 @@ public class AssetSharingEntryFinderImpl
 		}
 	}
 
-	public List<Object[]> findAssetEntriesByUserId(
+	public List<Object[]> findByUserId(
 			long userId, long[] classNameIds,
 			Map<Long, long[]> sharedToClassPKsMap, int start, int end)
 		throws SystemException {
@@ -169,8 +169,7 @@ public class AssetSharingEntryFinderImpl
 		return sb.toString();
 	}
 
-	protected String getSharedToClassPKsMap(
-		long sharedToClassNameId, long[] sharedToClassPKs) {
+	protected String getSharedToClassPKsMap(long[] sharedToClassPKs) {
 
 		StringBundler sb = new StringBundler(sharedToClassPKs.length * 2 + 3);
 
@@ -219,8 +218,7 @@ public class AssetSharingEntryFinderImpl
 				}
 				else {
 					sb.append(
-						getSharedToClassPKsMap(
-							sharedToClassNameId, sharedToClassPKs));
+						getSharedToClassPKsMap(sharedToClassPKs));
 				}
 
 				sb.append(StringPool.CLOSE_PARENTHESIS);

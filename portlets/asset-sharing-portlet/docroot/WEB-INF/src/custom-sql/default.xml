@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 
 <custom-sql>
-	<sql id="com.liferay.asset.sharing.service.persistence.AssetSharingEntryFinder.countAssetEntriesByUserId">
+	<sql id="com.liferay.asset.sharing.service.persistence.AssetSharingEntryFinder.countByUserId">
 		<![CDATA[
 			SELECT
 				COUNT(DISTINCT SocialActivitySet.activitySetId) AS COUNT_VALUE
@@ -18,7 +18,7 @@
 				([$CLASS_NAME_IDS_CLASS_PKS])
 		]]>
 	</sql>
-	<sql id="com.liferay.asset.sharing.service.persistence.AssetSharingEntryFinder.findAssetEntriesByUserId">
+	<sql id="com.liferay.asset.sharing.service.persistence.AssetSharingEntryFinder.findByUserId">
 		<![CDATA[
 			SELECT
 				DISTINCT AssetSharing_AssetSharingEntry.classNameId as classNameId, AssetSharing_AssetSharingEntry.classPK as classPK
