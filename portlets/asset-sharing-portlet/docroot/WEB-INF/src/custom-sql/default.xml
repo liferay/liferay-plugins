@@ -15,7 +15,10 @@
 				SocialRelation ON
 					(SocialRelation.userId2 = SocialActivitySet.userId)
 			WHERE
-				([$CLASS_NAME_IDS_CLASS_PKS])
+				(
+					[$CLASS_NAME_IDS]
+					[$SHARED_TO_CLASS_PKS_MAP]
+				)
 		]]>
 	</sql>
 	<sql id="com.liferay.asset.sharing.service.persistence.AssetSharingEntryFinder.findByUserId">
@@ -32,7 +35,10 @@
 				SocialRelation ON
 					(SocialRelation.userId2 = SocialActivitySet.userId)
 			WHERE
-				([$CLASS_NAME_IDS_CLASS_PKS])
+				(
+					[$CLASS_NAME_IDS]
+					[$SHARED_TO_CLASS_PKS_MAP]
+				)
 			ORDER BY
 				SocialActivitySet.modifiedDate DESC
 		]]>

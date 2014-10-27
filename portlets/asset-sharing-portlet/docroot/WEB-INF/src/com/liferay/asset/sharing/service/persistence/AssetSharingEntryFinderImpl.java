@@ -61,9 +61,11 @@ public class AssetSharingEntryFinderImpl
 			String sql = CustomSQLUtil.get(COUNT_ASSET_ENTRIES_BY_USER_ID);
 
 			sql = StringUtil.replace(
-				sql, "[$CLASS_NAME_IDS_CLASS_PKS]",
-				getClassNameIdsSharedToClassPKsMap(
-					classNameIds, sharedToClassPKsMap));
+				sql, "[$CLASS_NAME_IDS]", getClassNameIds(classNameIds));
+
+			sql = StringUtil.replace(
+				sql, "[$SHARED_TO_CLASS_PKS_MAP]",
+				getSharedToClassPKsMap(sharedToClassPKsMap));
 
 			SQLQuery q = session.createSQLQuery(sql);
 
@@ -71,8 +73,9 @@ public class AssetSharingEntryFinderImpl
 
 			QueryPos qPos = QueryPos.getInstance(q);
 
-			setClassNameIdsSharedToClassPKsMap(
-				qPos, userId, classNameIds, sharedToClassPKsMap);
+			setClassNameIds(qPos, userId, classNameIds);
+
+			setSharedToClassPKsMap(qPos, userId, sharedToClassPKsMap);
 
 			Iterator<Long> itr = q.iterate();
 
@@ -107,9 +110,11 @@ public class AssetSharingEntryFinderImpl
 			String sql = CustomSQLUtil.get(FIND_ASSET_ENTRIES_BY_USER_ID);
 
 			sql = StringUtil.replace(
-				sql, "[$CLASS_NAME_IDS_CLASS_PKS]",
-				getClassNameIdsSharedToClassPKsMap(
-					classNameIds, sharedToClassPKsMap));
+				sql, "[$CLASS_NAME_IDS]", getClassNameIds(classNameIds));
+
+			sql = StringUtil.replace(
+				sql, "[$SHARED_TO_CLASS_PKS_MAP]",
+				getSharedToClassPKsMap(sharedToClassPKsMap));
 
 			SQLQuery q = session.createSQLQuery(sql);
 
@@ -118,8 +123,9 @@ public class AssetSharingEntryFinderImpl
 
 			QueryPos qPos = QueryPos.getInstance(q);
 
-			setClassNameIdsSharedToClassPKsMap(
-				qPos, userId, classNameIds, sharedToClassPKsMap);
+			setClassNameIds(qPos, userId, classNameIds);
+
+			setSharedToClassPKsMap(qPos, userId, sharedToClassPKsMap);
 
 			return (List<Object[]>)QueryUtil.list(q, getDialect(), start, end);
 		}
@@ -155,21 +161,7 @@ public class AssetSharingEntryFinderImpl
 		return sb.toString();
 	}
 
-	protected String getClassNameIdsSharedToClassPKsMap(
-		long[] classNameIds, Map<Long, long[]> sharedToClassPKsMap) {
-
-		StringBundler sb = new StringBundler();
-
-		if (classNameIds != null) {
-			sb.append(getClassNameIds(classNameIds));
-		}
-
-		sb.append(getSharedToClassPKsMap(sharedToClassPKsMap));
-
-		return sb.toString();
-	}
-
-	protected String getSharedToClassPKsMap(long[] sharedToClassPKs) {
+	protected String getSharedToClassPKs(long[] sharedToClassPKs) {
 
 		StringBundler sb = new StringBundler(sharedToClassPKs.length * 2 + 3);
 
@@ -218,7 +210,7 @@ public class AssetSharingEntryFinderImpl
 				}
 				else {
 					sb.append(
-						getSharedToClassPKsMap(sharedToClassPKs));
+						getSharedToClassPKs(sharedToClassPKs));
 				}
 
 				sb.append(StringPool.CLOSE_PARENTHESIS);
@@ -325,15 +317,18 @@ public class AssetSharingEntryFinderImpl
 		return sb.toString();
 	}
 
-	protected void setClassNameIdsSharedToClassPKsMap(
-		QueryPos qPos, long userId, long[] classNameIds,
-		Map<Long, long[]> sharedToClassPKsMap) {
+	protected void setClassNameIds(
+		QueryPos qPos, long userId, long[] classNameIds) {
 
 		if (classNameIds != null) {
 			for (long classNameId : classNameIds) {
 				qPos.add(classNameId);
 			}
 		}
+	}
+
+	protected void setSharedToClassPKsMap(
+		QueryPos qPos, long userId, Map<Long, long[]> sharedToClassPKsMap) {
 
 		if (sharedToClassPKsMap != null) {
 			for (Long sharedToClassNameId : sharedToClassPKsMap.keySet()) {
