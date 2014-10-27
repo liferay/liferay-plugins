@@ -7,24 +7,27 @@
 				COUNT(DISTINCT MicroblogsEntry.microblogsEntryId) AS COUNT_VALUE
 			FROM
 				MicroblogsEntry
-			INNER JOIN
+			LEFT JOIN
 				SocialRelation ON
+					(MicroblogsEntry.userId = SocialRelation.userId2)
+			WHERE
+				(
 					(
-						(MicroblogsEntry.userId = SocialRelation.userId2) AND
 						(MicroblogsEntry.socialRelationType = ?) AND
 						(SocialRelation.userId1 = ?) AND
 						(SocialRelation.type_ <> ?)
 					) OR
 					(
 						(MicroblogsEntry.socialRelationType = SocialRelation.type_) AND
-						(MicroblogsEntry.userId = SocialRelation.userId2) AND
 						(SocialRelation.userId1 = ?)
 					) OR
 					(
 						MicroblogsEntry.userId = ?
 					)
-			WHERE
-				(MicroblogsEntry.type_ <> ?)
+				) AND
+				(
+					MicroblogsEntry.type_ <> ?
+				)
 		]]>
 	</sql>
 	<sql id="com.liferay.microblogs.service.persistence.MicroblogsEntryFinder.countByU_MU">
@@ -114,24 +117,27 @@
 				DISTINCT MicroblogsEntry.microblogsEntryId, MicroblogsEntry.createDate
 			FROM
 				MicroblogsEntry
-			INNER JOIN
+			LEFT JOIN
 				SocialRelation ON
+					(MicroblogsEntry.userId = SocialRelation.userId2)
+			WHERE
+				(
 					(
-						(MicroblogsEntry.userId = SocialRelation.userId2) AND
 						(MicroblogsEntry.socialRelationType = ?) AND
 						(SocialRelation.userId1 = ?) AND
 						(SocialRelation.type_ <> ?)
 					) OR
 					(
 						(MicroblogsEntry.socialRelationType = SocialRelation.type_) AND
-						(MicroblogsEntry.userId = SocialRelation.userId2) AND
 						(SocialRelation.userId1 = ?)
 					) OR
 					(
 						MicroblogsEntry.userId = ?
 					)
-			WHERE
-				(MicroblogsEntry.type_ <> ?)
+				) AND
+				(
+					MicroblogsEntry.type_ <> ?
+				)
 			ORDER BY
 				MicroblogsEntry.createDate DESC
 		]]>
