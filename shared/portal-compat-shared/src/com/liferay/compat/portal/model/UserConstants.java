@@ -22,8 +22,7 @@ import java.lang.reflect.Method;
 public class UserConstants extends com.liferay.portal.model.UserConstants {
 
 	public static String getPortraitURL(
-			String imagePath, boolean male, long portraitId, String userUuid)
-		throws Exception {
+		String imagePath, boolean male, long portraitId, String userUuid) {
 
 		try {
 			Class<?> clazz = UserConstants.class;
@@ -35,7 +34,7 @@ public class UserConstants extends com.liferay.portal.model.UserConstants {
 			return (String)method.invoke(
 				clazz, imagePath, male, portraitId, userUuid);
 		}
-		catch (NoSuchMethodException nsme) {
+		catch (Exception e) {
 			return UserConstants.getPortraitURL(imagePath, male, portraitId);
 		}
 	}
