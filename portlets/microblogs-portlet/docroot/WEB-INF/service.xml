@@ -23,7 +23,6 @@
 		<column name="creatorClassPK" type="long" />
 		<column name="content" type="String" />
 		<column name="type" type="int" />
-		<column name="receiverUserId" type="long" />
 		<column name="receiverMicroblogsEntryId" type="long" />
 		<column name="socialRelationType" type="int" />
 
@@ -52,10 +51,6 @@
 		<finder name="CCNI_T" return-type="Collection">
 			<finder-column name="creatorClassNameId" />
 			<finder-column name="type" />
-		</finder>
-		<finder name="T_R" return-type="Collection">
-			<finder-column name="type" />
-			<finder-column name="receiverUserId" />
 		</finder>
 		<finder name="T_RMEI" return-type="Collection">
 			<finder-column name="type" />
