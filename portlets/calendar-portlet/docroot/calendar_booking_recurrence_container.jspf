@@ -23,7 +23,8 @@ PositionalWeekday positionalWeekday = new PositionalWeekday(Weekday.getWeekday(s
 java.util.Calendar untilJCalendar = startTimeJCalendar;
 List<Weekday> weekdays = new ArrayList<Weekday>();
 
-Weekday[] days  = Weekday.values();
+Weekday[] days = Weekday.values();
+
 Collections.rotate(Arrays.asList(days), -weekStartsOn);
 
 boolean afterChecked = false;
