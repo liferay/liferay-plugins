@@ -26,14 +26,14 @@ public class UserConstants extends com.liferay.portal.model.UserConstants {
 		throws Exception {
 
 		try {
-			Class<?> userConstantsClass = UserConstants.class;
+			Class<?> clazz = UserConstants.class;
 
-			Method method = userConstantsClass.getMethod(
+			Method method = clazz.getMethod(
 				"getPortraitURL", String.class, Boolean.class, Long.class,
 				String.class);
 
 			return (String)method.invoke(
-				userConstantsClass, imagePath, male, portraitId, userUuid);
+				clazz, imagePath, male, portraitId, userUuid);
 		}
 		catch (NoSuchMethodException nsme) {
 			return UserConstants.getPortraitURL(imagePath, male, portraitId);
