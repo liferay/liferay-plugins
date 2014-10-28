@@ -14,6 +14,7 @@
 
 package com.liferay.knowledgebase.admin.importer.util;
 
+import com.liferay.compat.portal.kernel.util.HtmlUtil;
 import com.liferay.knowledgebase.KBArticleImportException;
 import com.liferay.knowledgebase.model.KBArticle;
 import com.liferay.markdown.converter.MarkdownConverter;
@@ -24,7 +25,6 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.util.CharPool;
-import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -71,7 +71,7 @@ public class KBArticleMarkdownConverter {
 
 		_urlTitle = getUrlTitle(heading);
 
-		_title = _unescape(stripIds(heading));
+		_title = HtmlUtil.unescape(stripIds(heading));
 
 		html = stripIds(html);
 
@@ -319,39 +319,6 @@ public class KBArticleMarkdownConverter {
 		sb.append(content);
 
 		return sb.toString();
-	}
-
-	/**
-	 * @see {@link com.liferay.portal.kernel.util.HtmlUtil.unescape(String)
-	 */
-	private static String _unescape(String text) {
-		if (text == null) {
-			return null;
-		}
-
-		if (text.length() == 0) {
-			return StringPool.BLANK;
-		}
-
-		// Optimize this
-
-		text = StringUtil.replace(text, "&lt;", "<");
-		text = StringUtil.replace(text, "&gt;", ">");
-		text = StringUtil.replace(text, "&amp;", "&");
-		text = StringUtil.replace(text, "&rsquo;", "\u2019");
-		text = StringUtil.replace(text, "&#034;", "\"");
-		text = StringUtil.replace(text, "&#039;", "'");
-		text = StringUtil.replace(text, "&#040;", "(");
-		text = StringUtil.replace(text, "&#041;", ")");
-		text = StringUtil.replace(text, "&#044;", ",");
-		text = StringUtil.replace(text, "&#035;", "#");
-		text = StringUtil.replace(text, "&#037;", "%");
-		text = StringUtil.replace(text, "&#059;", ";");
-		text = StringUtil.replace(text, "&#061;", "=");
-		text = StringUtil.replace(text, "&#043;", "+");
-		text = StringUtil.replace(text, "&#045;", "-");
-
-		return text;
 	}
 
 	private static final String _METADATA_BASE_SOURCE_URL = "base.source.url";
