@@ -64,6 +64,22 @@ public class UserIndexerPostProcessor extends BaseIndexerPostProcessor {
 				contextQuery.addRequiredTerm(
 					"socialRelationships", socialRelationTypeValues[0]);
 			}
+
+			Object usersGroups = params.get("usersGroups");
+
+			if (Validator.isNotNull(usersGroups)) {
+				if (usersGroups instanceof Long[]) {
+					Long[] groupIds = (Long[])usersGroups;
+
+					for (long groupId : groupIds) {
+						contextQuery.addRequiredTerm("groupIds", groupId);
+					}
+				}
+				else {
+					contextQuery.addRequiredTerm(
+						"groupIds", String.valueOf(usersGroups));
+				}
+			}
 		}
 	}
 
