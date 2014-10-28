@@ -68,7 +68,8 @@ public abstract class BaseImporter implements Importer {
 				layoutSetPrototype =
 					LayoutSetPrototypeLocalServiceUtil.addLayoutSetPrototype(
 						userId, companyId, getTargetValueMap(),
-						StringPool.BLANK, true, true, new ServiceContext());
+						new HashMap<Locale, String>(), true, true,
+						new ServiceContext());
 			}
 
 			group = layoutSetPrototype.getGroup();
