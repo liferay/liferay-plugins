@@ -390,6 +390,10 @@ boolean columnOptionsVisible = GetterUtil.getBoolean(SessionClicks.get(request, 
 		<portlet:namespace />miniCalendar.set('date', viewDate);
 	};
 
+	window.<portlet:namespace />refreshSchedulerEventTooltipTitle = function(schedulerEvent) {
+		schedulerEvent.get('node').attr('title', A.Lang.String.unescapeHTML(schedulerEvent.get('content')));
+	};
+
 	window.<portlet:namespace />refreshVisibleCalendarRenderingRules = function() {
 		var miniCalendarStartDate = DateMath.subtract(DateMath.toMidnight(window.<portlet:namespace />miniCalendar.get('date')), DateMath.WEEK, 1);
 
@@ -451,6 +455,10 @@ boolean columnOptionsVisible = GetterUtil.getBoolean(SessionClicks.get(request, 
 		['*:add', '*:change', '*:load', '*:remove', '*:reset'],
 		A.debounce(<portlet:namespace />refreshVisibleCalendarRenderingRules, 100)
 	);
+
+	<portlet:namespace />scheduler.after(['scheduler-events:load'], function(event) {
+		event.currentTarget.eachEvent(<portlet:namespace />refreshSchedulerEventTooltipTitle);
+	});
 
 	<portlet:namespace />scheduler.after(
 		['activeViewChange', 'dateChange'],
