@@ -338,6 +338,10 @@ public class AssetSharingEntryClp extends BaseModelImpl<AssetSharingEntry>
 		}
 	}
 
+	public Class<?> getClpSerializerClass() {
+		return _clpSerializerClass;
+	}
+
 	@Override
 	public int hashCode() {
 		return getPrimaryKey().hashCode();
@@ -395,4 +399,5 @@ public class AssetSharingEntryClp extends BaseModelImpl<AssetSharingEntry>
 	private long _sharedToClassNameId;
 	private long _sharedToClassPK;
 	private BaseModel<?> _assetSharingEntryRemoteModel;
+	private Class<?> _clpSerializerClass = com.liferay.asset.sharing.service.ClpSerializer.class;
 }

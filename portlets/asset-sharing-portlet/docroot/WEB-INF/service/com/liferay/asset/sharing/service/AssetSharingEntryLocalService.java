@@ -16,6 +16,7 @@ package com.liferay.asset.sharing.service;
 
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.search.IndexableType;
 import com.liferay.portal.kernel.transaction.Isolation;
 import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
@@ -52,6 +53,7 @@ public interface AssetSharingEntryLocalService extends BaseLocalService,
 	* @return the asset sharing entry that was added
 	* @throws SystemException if a system exception occurred
 	*/
+	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.REINDEX)
 	public com.liferay.asset.sharing.model.AssetSharingEntry addAssetSharingEntry(
 		com.liferay.asset.sharing.model.AssetSharingEntry assetSharingEntry)
 		throws com.liferay.portal.kernel.exception.SystemException;
@@ -73,6 +75,7 @@ public interface AssetSharingEntryLocalService extends BaseLocalService,
 	* @throws PortalException if a asset sharing entry with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
+	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.DELETE)
 	public com.liferay.asset.sharing.model.AssetSharingEntry deleteAssetSharingEntry(
 		com.liferay.asset.sharing.service.persistence.AssetSharingEntryPK assetSharingEntryPK)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -85,6 +88,7 @@ public interface AssetSharingEntryLocalService extends BaseLocalService,
 	* @return the asset sharing entry that was removed
 	* @throws SystemException if a system exception occurred
 	*/
+	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.DELETE)
 	public com.liferay.asset.sharing.model.AssetSharingEntry deleteAssetSharingEntry(
 		com.liferay.asset.sharing.model.AssetSharingEntry assetSharingEntry)
 		throws com.liferay.portal.kernel.exception.SystemException;
@@ -226,6 +230,7 @@ public interface AssetSharingEntryLocalService extends BaseLocalService,
 	* @return the asset sharing entry that was updated
 	* @throws SystemException if a system exception occurred
 	*/
+	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.REINDEX)
 	public com.liferay.asset.sharing.model.AssetSharingEntry updateAssetSharingEntry(
 		com.liferay.asset.sharing.model.AssetSharingEntry assetSharingEntry)
 		throws com.liferay.portal.kernel.exception.SystemException;
@@ -289,5 +294,16 @@ public interface AssetSharingEntryLocalService extends BaseLocalService,
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getSharedToAssetSharingEntriesCount(long classNameId,
 		long sharedToClassNameId, long sharedToClassPK)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<java.lang.Object[]> search(long userId,
+		long[] classNameIds,
+		java.util.Map<java.lang.Long, long[]> sharedToClassPKsMap, int start,
+		int end) throws com.liferay.portal.kernel.exception.SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public int searchCount(long userId, long[] classNameIds,
+		java.util.Map<java.lang.Long, long[]> sharedToClassPKsMap)
 		throws com.liferay.portal.kernel.exception.SystemException;
 }
