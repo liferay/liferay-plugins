@@ -69,9 +69,7 @@ public class PluginPackageProperties {
 	}
 
 	public String getTargetValue() {
-		return _properties.getProperty(
-			"resources-importer-target-value",
-			LayoutSetPrototype.class.getName());
+		return _properties.getProperty("resources-importer-target-value");
 	}
 
 	public boolean isAppendVersion() {
