@@ -131,7 +131,6 @@ long parentResourcePrimKey = ParamUtil.getLong(request, "parentResourcePrimKey",
 			showGuestGroup="<%= false %>"
 			showLayout="<%= false %>"
 			showParentGroups="<%= false %>"
-			showPortletBreadcrumb="<%= true %>"
 		/>
 
 		<c:if test="<%= AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.SUBSCRIBE) %>">
