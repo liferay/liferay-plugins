@@ -142,7 +142,7 @@ public class AssetSharingEntryFinderImpl
 			return StringPool.SPACE;
 		}
 
-		StringBundler sb = new StringBundler((classNameIds.length + 1) * 2);
+		StringBundler sb = new StringBundler();
 
 		sb.append(StringPool.OPEN_PARENTHESIS);
 
@@ -162,7 +162,7 @@ public class AssetSharingEntryFinderImpl
 	}
 
 	protected String getSharedToClassPKs(long[] sharedToClassPKs) {
-		StringBundler sb = new StringBundler(sharedToClassPKs.length * 2 + 3);
+		StringBundler sb = new StringBundler();
 
 		sb.append("(AssetSharing_AssetSharingEntry.sharedToClassNameId = ?)");
 		sb.append(" AND ");
