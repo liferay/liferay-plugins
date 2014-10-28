@@ -74,7 +74,6 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 			showGuestGroup="<%= false %>"
 			showLayout="<%= false %>"
 			showParentGroups="<%= false %>"
-			showPortletBreadcrumb="<%= false %>"
 		/>
 
 		<liferay-portlet:renderURL varImpl="iteratorURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
