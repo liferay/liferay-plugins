@@ -290,6 +290,14 @@ public class MicroblogsEntryLocalServiceImpl
 			creatorClassNameId, creatorClassPK, type, start, end);
 	}
 
+	public List<MicroblogsEntry> getMicroblogsEntries(
+		long creatorClassNameId, long creatorClassPK, String assetTagName,
+		int start, int end) {
+
+		return microblogsEntryFinder.findByCCNI_CCPK_ATN(
+			creatorClassNameId, creatorClassPK, assetTagName, start, end);
+	}
+
 	public int getMicroblogsEntriesCount(
 		long creatorClassNameId, long creatorClassPK) {
 
@@ -302,6 +310,13 @@ public class MicroblogsEntryLocalServiceImpl
 
 		return microblogsEntryPersistence.countByCCNI_CCPK_T(
 			creatorClassNameId, creatorClassPK, type);
+	}
+
+	public int getMicroblogsEntriesCount(
+		long creatorClassNameId, long creatorClassPK, String assetTagName) {
+
+		return microblogsEntryFinder.countByCCNI_CCPK_ATN(
+			creatorClassNameId, creatorClassPK, assetTagName);
 	}
 
 	@Override

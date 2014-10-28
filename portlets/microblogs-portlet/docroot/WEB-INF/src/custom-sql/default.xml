@@ -111,6 +111,27 @@
 				)
 		]]>
 	</sql>
+	<sql id="com.liferay.microblogs.service.persistence.MicroblogsEntryFinder.countByCCNI_CCPK_ATN">
+		<![CDATA[
+			SELECT
+				COUNT(DISTINCT MicroblogsEntry.microblogsEntryId) AS COUNT_VALUE
+			FROM
+				MicroblogsEntry
+			INNER JOIN
+				AssetEntry ON
+					(AssetEntry.classPK = MicroblogsEntry.microblogsEntryId)
+			INNER JOIN
+				AssetEntries_AssetTags ON
+					(AssetEntries_AssetTags.entryId = AssetEntry.entryId)
+			INNER JOIN
+				AssetTag ON
+					(AssetTag.tagId = AssetEntries_AssetTags.tagId)
+			WHERE
+				(MicroblogsEntry.creatorClassNameId = ?) AND
+				(MicroblogsEntry.creatorClassPK = ?) AND
+				(AssetTag.name = ?)
+		]]>
+	</sql>
 	<sql id="com.liferay.microblogs.service.persistence.MicroblogsEntryFinder.findByUserId">
 		<![CDATA[
 			SELECT
@@ -225,6 +246,29 @@
 				(
 					MicroblogsEntry.userId = ?
 				)
+			ORDER BY
+				MicroblogsEntry.createDate DESC
+		]]>
+	</sql>
+	<sql id="com.liferay.microblogs.service.persistence.MicroblogsEntryFinder.findByCCNI_CCPK_ATN">
+		<![CDATA[
+			SELECT
+				DISTINCT {MicroblogsEntry.*}
+			FROM
+				MicroblogsEntry
+			INNER JOIN
+				AssetEntry ON
+					(AssetEntry.classPK = MicroblogsEntry.microblogsEntryId)
+			INNER JOIN
+				AssetEntries_AssetTags ON
+					(AssetEntries_AssetTags.entryId = AssetEntry.entryId)
+			INNER JOIN
+				AssetTag ON
+					(AssetTag.tagId = AssetEntries_AssetTags.tagId)
+			WHERE
+				(MicroblogsEntry.creatorClassNameId = ?) AND
+				(MicroblogsEntry.creatorClassPK = ?) AND
+				(AssetTag.name = ?)
 			ORDER BY
 				MicroblogsEntry.createDate DESC
 		]]>
