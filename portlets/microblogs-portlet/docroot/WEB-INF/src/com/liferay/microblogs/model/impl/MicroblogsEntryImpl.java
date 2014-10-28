@@ -17,12 +17,28 @@
 
 package com.liferay.microblogs.model.impl;
 
+import com.liferay.microblogs.model.MicroblogsEntry;
+import com.liferay.microblogs.service.MicroblogsEntryLocalServiceUtil;
+import com.liferay.portal.kernel.exception.PortalException;
+
 /**
  * @author Brian Wing Shun Chan
  */
 public class MicroblogsEntryImpl extends MicroblogsEntryBaseImpl {
 
 	public MicroblogsEntryImpl() {
+	}
+
+	public long getReceiverUserId() throws PortalException {
+		if (getMicroblogsEntryId() == getReceiverMicroblogsEntryId()) {
+			return getUserId();
+		}
+
+		MicroblogsEntry microblogsEntry =
+			MicroblogsEntryLocalServiceUtil.getMicroblogsEntry(
+				getReceiverMicroblogsEntryId());
+
+		return microblogsEntry.getUserId();
 	}
 
 }

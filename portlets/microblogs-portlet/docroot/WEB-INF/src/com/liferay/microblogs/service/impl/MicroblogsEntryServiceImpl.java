@@ -33,7 +33,7 @@ import java.util.List;
 public class MicroblogsEntryServiceImpl extends MicroblogsEntryServiceBaseImpl {
 
 	public MicroblogsEntry addMicroblogsEntry(
-			long userId, String content, int type, long receiverUserId,
+			long userId, String content, int type,
 			long receiverMicroblogsEntryId, int socialRelationType,
 			ServiceContext serviceContext)
 		throws PortalException {
@@ -43,7 +43,7 @@ public class MicroblogsEntryServiceImpl extends MicroblogsEntryServiceBaseImpl {
 			ActionKeys.ADD_ENTRY);
 
 		return microblogsEntryLocalService.addMicroblogsEntry(
-			userId, content, type, receiverUserId, receiverMicroblogsEntryId,
+			userId, content, type, receiverMicroblogsEntryId,
 			socialRelationType, serviceContext);
 	}
 

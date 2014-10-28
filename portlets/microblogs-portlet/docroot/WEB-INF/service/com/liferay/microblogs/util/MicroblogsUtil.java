@@ -171,7 +171,8 @@ public class MicroblogsUtil {
 	}
 
 	public static long getParentMicroblogsUserId(
-		MicroblogsEntry microblogsEntry) {
+			MicroblogsEntry microblogsEntry)
+		throws PortalException {
 
 		if (microblogsEntry.getType() == MicroblogsEntryConstants.TYPE_REPOST) {
 			return microblogsEntry.getUserId();
