@@ -138,7 +138,7 @@ public class AssetSharingEntryFinderImpl
 	}
 
 	protected String getClassNameIds(long[] classNameIds) {
-		if (classNameIds.length == 0) {
+		if ((classNameIds == null) || (classNameIds.length == 0)) {
 			return StringPool.SPACE;
 		}
 
@@ -162,7 +162,6 @@ public class AssetSharingEntryFinderImpl
 	}
 
 	protected String getSharedToClassPKs(long[] sharedToClassPKs) {
-
 		StringBundler sb = new StringBundler(sharedToClassPKs.length * 2 + 3);
 
 		sb.append("(AssetSharing_AssetSharingEntry.sharedToClassNameId = ?)");
@@ -209,8 +208,7 @@ public class AssetSharingEntryFinderImpl
 					sb.append(getSocialRelationClassPKs(sharedToClassPKs));
 				}
 				else {
-					sb.append(
-						getSharedToClassPKs(sharedToClassPKs));
+					sb.append(getSharedToClassPKs(sharedToClassPKs));
 				}
 
 				sb.append(StringPool.CLOSE_PARENTHESIS);
