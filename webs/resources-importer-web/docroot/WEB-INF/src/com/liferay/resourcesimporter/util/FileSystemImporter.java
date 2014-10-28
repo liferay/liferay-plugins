@@ -863,10 +863,10 @@ public class FileSystemImporter extends BaseImporter {
 					userId, groupId, 0, 0, 0, journalArticleId, false,
 					JournalArticleConstants.VERSION_DEFAULT,
 					getMap(articleDefaultLocale, title), descriptionMap,
-					content, ddmStructureKey, ddmTemplateKey,
-					StringPool.BLANK, 1, 1, 2010, 0, 0, 0, 0, 0, 0, 0, true, 0,
-					0, 0, 0, 0, true, indexable, smallImage, smallImageURL,
-					null, new HashMap<String, byte[]>(), StringPool.BLANK,
+					content, ddmStructureKey, ddmTemplateKey, StringPool.BLANK,
+					1, 1, 2010, 0, 0, 0, 0, 0, 0, 0, true, 0, 0, 0, 0, 0, true,
+					indexable, smallImage, smallImageURL, null,
+					new HashMap<String, byte[]>(), StringPool.BLANK,
 					serviceContext);
 			}
 			else {
