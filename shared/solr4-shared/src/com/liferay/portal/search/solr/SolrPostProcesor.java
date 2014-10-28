@@ -53,7 +53,7 @@ public class SolrPostProcesor {
 		if (_hasQuestionMark) {
 			String regex = buildRegex(phrase);
 
-			Pattern pattern = Pattern.compile(regex);
+			Pattern pattern = Pattern.compile(regex, Pattern.CASE_INSENSITIVE);
 
 			Matcher matcher = pattern.matcher(_keywords);
 
