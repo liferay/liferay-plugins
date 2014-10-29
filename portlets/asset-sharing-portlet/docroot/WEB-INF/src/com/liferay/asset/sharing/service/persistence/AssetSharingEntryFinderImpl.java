@@ -15,7 +15,7 @@
 package com.liferay.asset.sharing.service.persistence;
 
 import com.liferay.asset.sharing.model.AssetSharingEntry;
-import com.liferay.asset.sharing.util.AssetSharingEntryConstants;
+import com.liferay.asset.sharing.model.AssetSharingEntryConstants;
 import com.liferay.portal.kernel.dao.orm.QueryPos;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.dao.orm.SQLQuery;
