@@ -66,8 +66,6 @@ public class AssetSharingUtil {
 
 		// Organization
 
-		List<Group> groupsList = new ArrayList<Group>();
-
 		List<Organization> organizations =
 			OrganizationLocalServiceUtil.getUserOrganizations(userId);
 
@@ -78,15 +76,12 @@ public class AssetSharingUtil {
 			organizationsList.addAll(organizations);
 
 			for (Organization organization : organizations) {
-				groupsList.add(organization.getGroup());
-
 				List<Organization> parentOrganizations =
 					OrganizationLocalServiceUtil.getParentOrganizations(
 						organization.getOrganizationId());
 
 				for (Organization parentOrganization : parentOrganizations) {
 					organizationsList.add(parentOrganization);
-					groupsList.add(parentOrganization.getGroup());
 				}
 			}
 
@@ -101,8 +96,6 @@ public class AssetSharingUtil {
 
 		if (!groups.isEmpty()) {
 			scopes.put(_GROUP_CLASS_NAME_ID, _getGroupIds(groups));
-
-			groupsList.addAll(groups);
 		}
 
 		// User group
@@ -112,38 +105,13 @@ public class AssetSharingUtil {
 
 		if (!userGroups.isEmpty()) {
 			scopes.put(_USER_GROUP_CLASS_NAME_ID, _getUserGroupIds(userGroups));
-
-			for (UserGroup userGroup : userGroups) {
-				groupsList.add(userGroup.getGroup());
-			}
 		}
 
 		// Role
 
 		Set<Role> roles = new LinkedHashSet<Role>();
 
-		if (!groupsList.isEmpty()) {
-			roles.addAll(
-				RoleLocalServiceUtil.getUserRelatedRoles(userId, groupsList));
-
-			for (Group group : groupsList) {
-				roles.addAll(
-					RoleLocalServiceUtil.getUserGroupRoles(
-						userId, group.getGroupId()));
-				roles.addAll(
-					RoleLocalServiceUtil.getUserGroupGroupRoles(
-						userId, group.getGroupId()));
-			}
-		}
-		else {
-			roles.addAll(RoleLocalServiceUtil.getUserRoles(userId));
-		}
-
-		List<Team> teams = TeamLocalServiceUtil.getUserTeams(userId);
-
-		for (Team team : teams) {
-			roles.add(team.getRole());
-		}
+		roles.addAll(RoleLocalServiceUtil.getUserRoles(userId));
 
 		if (_PERMISSIONS_CHECK_GUEST_ENABLED) {
 			User user = UserLocalServiceUtil.getUserById(userId);
@@ -159,6 +127,8 @@ public class AssetSharingUtil {
 		}
 
 		// Team
+
+		List<Team> teams = TeamLocalServiceUtil.getUserTeams(userId);
 
 		if (!teams.isEmpty()) {
 			scopes.put(_TEAM_CLASS_NAME_ID, _getTeamIds(teams));
