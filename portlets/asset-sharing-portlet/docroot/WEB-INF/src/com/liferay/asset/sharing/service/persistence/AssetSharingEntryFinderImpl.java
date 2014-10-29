@@ -63,7 +63,6 @@ public class AssetSharingEntryFinderImpl
 
 			sql = StringUtil.replace(
 				sql, "[$CLASS_NAME_IDS]", getClassNameIds(classNameIds));
-
 			sql = StringUtil.replace(
 				sql, "[$SHARED_TO_CLASS_PKS_MAP]",
 				getSharedToClassPKsMap(sharedToClassPKsMap));
@@ -75,7 +74,6 @@ public class AssetSharingEntryFinderImpl
 			QueryPos qPos = QueryPos.getInstance(q);
 
 			setClassNameIds(qPos, userId, classNameIds);
-
 			setSharedToClassPKsMap(qPos, userId, sharedToClassPKsMap);
 
 			Iterator<Long> itr = q.iterate();
@@ -113,7 +111,6 @@ public class AssetSharingEntryFinderImpl
 
 			sql = StringUtil.replace(
 				sql, "[$CLASS_NAME_IDS]", getClassNameIds(classNameIds));
-
 			sql = StringUtil.replace(
 				sql, "[$SHARED_TO_CLASS_PKS_MAP]",
 				getSharedToClassPKsMap(sharedToClassPKsMap));
@@ -126,7 +123,6 @@ public class AssetSharingEntryFinderImpl
 			QueryPos qPos = QueryPos.getInstance(q);
 
 			setClassNameIds(qPos, userId, classNameIds);
-
 			setSharedToClassPKsMap(qPos, userId, sharedToClassPKsMap);
 
 			return (List<Object[]>)QueryUtil.list(q, getDialect(), start, end);
@@ -149,16 +145,14 @@ public class AssetSharingEntryFinderImpl
 		sb.append(StringPool.OPEN_PARENTHESIS);
 
 		for (int i = 0; i < classNameIds.length; i++) {
-			sb.append("(AssetSharing_AssetSharingEntry.classNameId = ? )");
+			sb.append("(AssetSharing_AssetSharingEntry.classNameId = ?)");
 
 			if ((i + 1) < classNameIds.length) {
 				sb.append(" OR ");
 			}
 		}
 
-		sb.append(StringPool.CLOSE_PARENTHESIS);
-
-		sb.append("AND");
+		sb.append(") AND");
 
 		return sb.toString();
 	}
@@ -166,12 +160,11 @@ public class AssetSharingEntryFinderImpl
 	protected String getSharedToClassPKs(long[] sharedToClassPKs) {
 		StringBundler sb = new StringBundler();
 
-		sb.append("(AssetSharing_AssetSharingEntry.sharedToClassNameId = ?)");
-		sb.append(" AND ");
-		sb.append(StringPool.OPEN_PARENTHESIS);
+		sb.append(_SHARED_TO_CLASS_NAME_ID_SQL);
+		sb.append(" AND (");
 
 		for (int i = 0; i < sharedToClassPKs.length; i++) {
-			sb.append("(AssetSharing_AssetSharingEntry.sharedToClassPK = ?)");
+			sb.append(_SHARED_TO_CLASS_PK_SQL);
 
 			if ((i + 1) < sharedToClassPKs.length) {
 				sb.append(" OR ");
@@ -213,13 +206,11 @@ public class AssetSharingEntryFinderImpl
 					sb.append(getSharedToClassPKs(sharedToClassPKs));
 				}
 
-				sb.append(StringPool.CLOSE_PARENTHESIS);
-				sb.append(" OR ");
+				sb.append(") OR ");
 			}
 		}
 
-		sb.append("(SocialActivitySet.userId = ?)");
-		sb.append(StringPool.CLOSE_PARENTHESIS);
+		sb.append("(SocialActivitySet.userId = ?))");
 
 		return sb.toString();
 	}
@@ -233,25 +224,20 @@ public class AssetSharingEntryFinderImpl
 			if (sharedToClassPKs[0] ==
 					AssetSharingEntryConstants.TYPE_EVERYONE) {
 
-				sb = new StringBundler(2);
+				sb = new StringBundler(3);
 
-				sb.append(
-					"(AssetSharing_AssetSharingEntry.sharedToClassNameId = ?)" +
-					" AND ");
-				sb.append(
-					"(AssetSharing_AssetSharingEntry.sharedToClassPK = ?)");
+				sb.append(_SHARED_TO_CLASS_NAME_ID_SQL);
+				sb.append(" AND ");
+				sb.append(_SHARED_TO_CLASS_PK_SQL);
 			}
 			else {
-				sb = new StringBundler(5);
+				sb = new StringBundler(6);
 
-				sb.append(
-					"(AssetSharing_AssetSharingEntry.sharedToClassNameId = ?)" +
-					" AND ");
-				sb.append(StringPool.OPEN_PARENTHESIS);
-				sb.append(
-					"(AssetSharing_AssetSharingEntry.sharedToClassPK = ?)" +
-					" AND ");
-				sb.append("(SocialRelation.userId1 = ?)");
+				sb.append(_SHARED_TO_CLASS_NAME_ID_SQL);
+				sb.append(" AND (");
+				sb.append(_SHARED_TO_CLASS_PK_SQL);
+				sb.append(" AND ");
+				sb.append(_USER_ID_1_SQL);
 				sb.append(StringPool.CLOSE_PARENTHESIS);
 			}
 		}
@@ -261,57 +247,41 @@ public class AssetSharingEntryFinderImpl
 
 				sb = new StringBundler(8);
 
-				sb.append(
-					"(AssetSharing_AssetSharingEntry.sharedToClassNameId = ?)" +
-					" AND ");
-				sb.append(StringPool.OPEN_PARENTHESIS);
-				sb.append(
-					"(AssetSharing_AssetSharingEntry.sharedToClassPK = ?) OR ");
-				sb.append(StringPool.OPEN_PARENTHESIS);
-				sb.append(
-					"(AssetSharing_AssetSharingEntry.sharedToClassPK = ?)" +
-					" AND ");
-				sb.append("(SocialRelation.userId1 = ?)");
-				sb.append(StringPool.CLOSE_PARENTHESIS);
-				sb.append(StringPool.CLOSE_PARENTHESIS);
+				sb.append(_SHARED_TO_CLASS_NAME_ID_SQL);
+				sb.append(" AND (");
+				sb.append(_SHARED_TO_CLASS_PK_SQL);
+				sb.append(" OR (");
+				sb.append(_SHARED_TO_CLASS_PK_SQL);
+				sb.append(" AND ");
+				sb.append(_USER_ID_1_SQL);
+				sb.append("))");
 			}
 			else {
-				sb = new StringBundler(9);
+				sb = new StringBundler(8);
 
-				sb.append(
-					"(AssetSharing_AssetSharingEntry.sharedToClassNameId = ?)" +
-					" AND ");
-				sb.append(StringPool.OPEN_PARENTHESIS);
-				sb.append(StringPool.OPEN_PARENTHESIS);
-				sb.append(
-					"(AssetSharing_AssetSharingEntry.sharedToClassPK = ?) OR ");
-				sb.append(
-					"(AssetSharing_AssetSharingEntry.sharedToClassPK = ?)");
-				sb.append(StringPool.CLOSE_PARENTHESIS);
-				sb.append(" AND ");
-				sb.append("(SocialRelation.userId1 = ?)");
+				sb.append(_SHARED_TO_CLASS_NAME_ID_SQL);
+				sb.append(" AND ((");
+				sb.append(_SHARED_TO_CLASS_PK_SQL);
+				sb.append(" OR ");
+				sb.append(_SHARED_TO_CLASS_PK_SQL);
+				sb.append(") AND ");
+				sb.append(_USER_ID_1_SQL);
 				sb.append(StringPool.CLOSE_PARENTHESIS);
 			}
 		}
 		else {
-			sb = new StringBundler(12);
+			sb = new StringBundler(10);
 
-			sb.append(
-				"(AssetSharing_AssetSharingEntry.sharedToClassNameId = ?)" +
-				" AND ");
-			sb.append(StringPool.OPEN_PARENTHESIS);
-			sb.append(
-				"(AssetSharing_AssetSharingEntry.sharedToClassPK = ?) OR ");
-			sb.append(StringPool.OPEN_PARENTHESIS);
-			sb.append(StringPool.OPEN_PARENTHESIS);
-			sb.append(
-				"(AssetSharing_AssetSharingEntry.sharedToClassPK = ?) OR ");
-			sb.append("(AssetSharing_AssetSharingEntry.sharedToClassPK = ?)");
-			sb.append(StringPool.CLOSE_PARENTHESIS);
-			sb.append(" AND ");
-			sb.append("(SocialRelation.userId1 = ?)");
-			sb.append(StringPool.CLOSE_PARENTHESIS);
-			sb.append(StringPool.CLOSE_PARENTHESIS);
+			sb.append(_SHARED_TO_CLASS_NAME_ID_SQL);
+			sb.append(" AND (");
+			sb.append(_SHARED_TO_CLASS_PK_SQL);
+			sb.append(" OR ((");
+			sb.append(_SHARED_TO_CLASS_PK_SQL);
+			sb.append(" OR ");
+			sb.append(_SHARED_TO_CLASS_PK_SQL);
+			sb.append(") AND ");
+			sb.append(_USER_ID_1_SQL);
+			sb.append("))");
 		}
 
 		return sb.toString();
@@ -370,7 +340,15 @@ public class AssetSharingEntryFinderImpl
 		qPos.add(userId);
 	}
 
+	private static final String _SHARED_TO_CLASS_NAME_ID_SQL =
+		"(AssetSharing_AssetSharingEntry.sharedToClassNameId = ?)";
+
+	private static final String _SHARED_TO_CLASS_PK_SQL =
+		"(AssetSharing_AssetSharingEntry.sharedToClassPK = ?)";
+
 	private static final long _SOCIAL_RELATION_CLASS_NAME_ID =
 		ClassNameServiceUtil.fetchClassNameId(SocialRelation.class);
+
+	private static final String _USER_ID_1_SQL = "(SocialRelation.userId1 = ?)";
 
 }
