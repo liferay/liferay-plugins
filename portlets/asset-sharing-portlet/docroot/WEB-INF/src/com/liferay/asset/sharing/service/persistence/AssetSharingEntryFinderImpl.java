@@ -48,6 +48,7 @@ public class AssetSharingEntryFinderImpl
 	public static final String FIND_ASSET_ENTRIES_BY_USER_ID =
 		AssetSharingEntryFinder.class.getName() + ".findByUserId";
 
+	@Override
 	public int countByUserId(
 			long userId, long[] classNameIds,
 			Map<Long, long[]> sharedToClassPKsMap)
@@ -97,6 +98,7 @@ public class AssetSharingEntryFinderImpl
 		}
 	}
 
+	@Override
 	public List<Object[]> findByUserId(
 			long userId, long[] classNameIds,
 			Map<Long, long[]> sharedToClassPKsMap, int start, int end)
