@@ -42,10 +42,10 @@ public class AssetSharingEntryFinderImpl
 	extends BasePersistenceImpl<AssetSharingEntry>
 	implements AssetSharingEntryFinder {
 
-	public static final String COUNT_ASSET_ENTRIES_BY_USER_ID =
+	public static final String COUNT_BY_USER_ID =
 		AssetSharingEntryFinder.class.getName() + ".countByUserId";
 
-	public static final String FIND_ASSET_ENTRIES_BY_USER_ID =
+	public static final String FIND_BY_USER_ID =
 		AssetSharingEntryFinder.class.getName() + ".findByUserId";
 
 	@Override
@@ -59,7 +59,7 @@ public class AssetSharingEntryFinderImpl
 		try {
 			session = openSession();
 
-			String sql = CustomSQLUtil.get(COUNT_ASSET_ENTRIES_BY_USER_ID);
+			String sql = CustomSQLUtil.get(COUNT_BY_USER_ID);
 
 			sql = StringUtil.replace(
 				sql, "[$CLASS_NAME_IDS]", getClassNameIds(classNameIds));
@@ -109,7 +109,7 @@ public class AssetSharingEntryFinderImpl
 		try {
 			session = openSession();
 
-			String sql = CustomSQLUtil.get(FIND_ASSET_ENTRIES_BY_USER_ID);
+			String sql = CustomSQLUtil.get(FIND_BY_USER_ID);
 
 			sql = StringUtil.replace(
 				sql, "[$CLASS_NAME_IDS]", getClassNameIds(classNameIds));
