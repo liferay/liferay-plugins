@@ -16,6 +16,7 @@ package com.liferay.asset.sharing.util;
 
 import com.liferay.asset.sharing.model.AssetSharingEntryConstants;
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.PropsUtil;
@@ -49,7 +50,7 @@ public class AssetSharingUtil {
 
 	public static LinkedHashMap<Long, long[]> getSharedToClassPKsMap(
 			long userId)
-		throws PortalException {
+		throws PortalException, SystemException {
 
 		LinkedHashMap<Long, long[]> scopes = new LinkedHashMap<Long, long[]>();
 
