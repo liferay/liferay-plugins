@@ -99,7 +99,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 
 					fileEntry = dlAppService.updateFileEntry(
 						fileEntry.getFileEntryId(), sourceFileName, mimeType,
-						title, description, changeLog, true, file,
+						title, description, changeLog, false, file,
 						serviceContext);
 
 					return toSyncDLObject(
