@@ -32,6 +32,8 @@ import com.liferay.portal.service.TeamLocalServiceUtil;
 import com.liferay.portal.service.UserGroupLocalServiceUtil;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.util.PortalUtil;
+import com.liferay.portlet.social.model.SocialRelation;
+import com.liferay.portlet.social.model.SocialRelationConstants;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -50,15 +52,17 @@ public class AssetSharingUtil {
 
 		LinkedHashMap<Long, long[]> scopes = new LinkedHashMap<Long, long[]>();
 
-		// General announcements
+		// Everyone, followed, and connected
 
-		scopes.put(new Long(0), new long[] {0});
+		scopes.put(_SOCIAL_RELATION_CLASS_NAME_ID, new long[] {
+			0, SocialRelationConstants.TYPE_UNI_FOLLOWER,
+			SocialRelationConstants.TYPE_BI_CONNECTION});
 
-		// Personal announcements
+		// User
 
 		scopes.put(_USER_CLASS_NAME_ID, new long[] {userId});
 
-		// Organization announcements
+		// Organization
 
 		List<Group> groupsList = new ArrayList<Group>();
 
@@ -89,7 +93,7 @@ public class AssetSharingUtil {
 				_getOrganizationIds(organizationsList));
 		}
 
-		// Site announcements
+		// Site
 
 		List<Group> groups = GroupLocalServiceUtil.getUserGroups(userId, true);
 
@@ -99,7 +103,7 @@ public class AssetSharingUtil {
 			groupsList.addAll(groups);
 		}
 
-		// User group announcements
+		// User group
 
 		List<UserGroup> userGroups =
 			UserGroupLocalServiceUtil.getUserUserGroups(userId);
@@ -112,7 +116,7 @@ public class AssetSharingUtil {
 			}
 		}
 
-		// Role announcements
+		// Role
 
 		Set<Role> roles = new LinkedHashSet<Role>();
 
@@ -150,6 +154,12 @@ public class AssetSharingUtil {
 
 		if (!roles.isEmpty()) {
 			scopes.put(_ROLE_CLASS_NAME_ID, _getRoleIds(roles));
+		}
+
+		// Team
+
+		if (!teams.isEmpty()) {
+			scopes.put(_TEAM_CLASS_NAME_ID, _getTeamIds(teams));
 		}
 
 		return scopes;
@@ -193,6 +203,18 @@ public class AssetSharingUtil {
 		return roleIds;
 	}
 
+	private static long[] _getTeamIds(List<Team> teams) {
+		long[] teamIds = new long[teams.size()];
+
+		int i = 0;
+
+		for (Team team : teams) {
+			teamIds[i++] = team.getTeamId();
+		}
+
+		return teamIds;
+	}
+
 	private static long[] _getUserGroupIds(List<UserGroup> userGroups) {
 		long[] userGroupIds = new long[userGroups.size()];
 
@@ -217,6 +239,12 @@ public class AssetSharingUtil {
 
 	private static final long _ROLE_CLASS_NAME_ID = PortalUtil.getClassNameId(
 		Role.class.getName());
+
+	private static final long _SOCIAL_RELATION_CLASS_NAME_ID =
+		PortalUtil.getClassNameId(SocialRelation.class.getName());
+
+	private static final long _TEAM_CLASS_NAME_ID = PortalUtil.getClassNameId(
+		Team.class.getName());
 
 	private static final long _USER_CLASS_NAME_ID = PortalUtil.getClassNameId(
 		User.class.getName());
