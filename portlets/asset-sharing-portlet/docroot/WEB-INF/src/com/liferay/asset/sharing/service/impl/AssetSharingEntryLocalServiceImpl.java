@@ -132,8 +132,8 @@ public class AssetSharingEntryLocalServiceImpl
 
 	@Override
 	public List<Object[]> search(
-			long userId, long[] classNameIds, Map<Long,
-			long[]> sharedToClassPKsMap, int start, int end)
+			long userId, long[] classNameIds,
+			Map<Long, long[]> sharedToClassPKsMap, int start, int end)
 		throws SystemException {
 
 		return assetSharingEntryFinder.findByUserId(
@@ -142,8 +142,8 @@ public class AssetSharingEntryLocalServiceImpl
 
 	@Override
 	public int searchCount(
-			long userId, long[] classNameIds, Map<Long,
-			long[]> sharedToClassPKsMap)
+			long userId, long[] classNameIds,
+			Map<Long, long[]> sharedToClassPKsMap)
 		throws SystemException {
 
 		return assetSharingEntryFinder.countByUserId(
