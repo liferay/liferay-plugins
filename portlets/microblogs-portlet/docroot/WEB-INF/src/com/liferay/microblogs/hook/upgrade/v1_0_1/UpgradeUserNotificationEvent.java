@@ -16,12 +16,8 @@
  */
 package com.liferay.microblogs.hook.upgrade.v1_0_1;
 
-import com.liferay.microblogs.model.MicroblogsEntry;
 import com.liferay.microblogs.model.MicroblogsEntryConstants;
-import com.liferay.microblogs.service.MicroblogsEntryLocalServiceUtil;
-import com.liferay.microblogs.util.MicroblogsUtil;
 import com.liferay.portal.kernel.dao.jdbc.DataAccess;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
@@ -34,43 +30,6 @@ import java.sql.ResultSet;
  * @author Evan Thibodeau
  */
 public class UpgradeUserNotificationEvent extends UpgradeProcess {
-
-	public static int getNotificationType(
-			MicroblogsEntry microblogsEntry, long userId)
-		throws PortalException {
-
-		if (MicroblogsUtil.isTaggedUser(
-				microblogsEntry.getMicroblogsEntryId(), false, userId)) {
-
-			return MicroblogsEntryConstants.NOTIFICATION_TYPE_TAG;
-		}
-		else if (microblogsEntry.getType() ==
-					MicroblogsEntryConstants.TYPE_REPLY) {
-
-			long parentMicroblogsEntryId =
-				MicroblogsUtil.getParentMicroblogsEntryId(microblogsEntry);
-
-			if (MicroblogsUtil.getParentMicroblogsUserId(microblogsEntry) ==
-					userId) {
-
-				return MicroblogsEntryConstants.NOTIFICATION_TYPE_REPLY;
-			}
-			else if (MicroblogsUtil.hasReplied(
-						parentMicroblogsEntryId, userId)) {
-
-				return MicroblogsEntryConstants.
-					NOTIFICATION_TYPE_REPLY_TO_REPLIED;
-			}
-			else if (MicroblogsUtil.isTaggedUser(
-						parentMicroblogsEntryId, true, userId)) {
-
-				return MicroblogsEntryConstants.
-					NOTIFICATION_TYPE_REPLY_TO_TAGGED;
-			}
-		}
-
-		return 0;
-	}
 
 	@Override
 	protected void doUpgrade() throws Exception {
@@ -110,7 +69,7 @@ public class UpgradeUserNotificationEvent extends UpgradeProcess {
 			con = DataAccess.getUpgradeOptimizedConnection();
 
 			ps = con.prepareStatement(
-				"select userNotificationEventId, userId, payload from " +
+				"select userNotificationEventId, payload from " +
 					"UserNotificationEvent where type_ = ?");
 
 			ps.setString(1, "1_WAR_microblogsportlet");
@@ -125,16 +84,6 @@ public class UpgradeUserNotificationEvent extends UpgradeProcess {
 				JSONObject payloadJSONObject = JSONFactoryUtil.createJSONObject(
 					payload);
 
-				long microblogsEntryId = payloadJSONObject.getLong("classPK");
-
-				MicroblogsEntry microblogsEntry =
-					MicroblogsEntryLocalServiceUtil.fetchMicroblogsEntry(
-						microblogsEntryId);
-
-				if (microblogsEntry == null) {
-					return;
-				}
-
 				int notificationType = payloadJSONObject.getInt(
 					"notificationType");
 
@@ -142,11 +91,9 @@ public class UpgradeUserNotificationEvent extends UpgradeProcess {
 					return;
 				}
 
-				long userId = rs.getLong("userId");
-
-				notificationType = getNotificationType(microblogsEntry, userId);
-
-				payloadJSONObject.put("notificationType", notificationType);
+				payloadJSONObject.put(
+					"notificationType",
+					MicroblogsEntryConstants.NOTIFICATION_TYPE_REPLY);
 
 				updateNotification(userNotificationEventId, payloadJSONObject);
 			}

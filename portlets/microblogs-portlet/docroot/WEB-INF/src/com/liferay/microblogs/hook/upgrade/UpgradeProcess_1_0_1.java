@@ -26,7 +26,7 @@ public class UpgradeProcess_1_0_1 extends UpgradeProcess {
 
 	@Override
 	public int getThreshold() {
-		return 100;
+		return 101;
 	}
 
 	@Override
