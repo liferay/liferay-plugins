@@ -14,6 +14,7 @@
 
 package com.liferay.asset.sharing.util;
 
+import com.liferay.asset.sharing.model.AssetSharingEntryConstants;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.PropsKeys;
@@ -55,7 +56,8 @@ public class AssetSharingUtil {
 		// Everyone, followed, and connected
 
 		scopes.put(_SOCIAL_RELATION_CLASS_NAME_ID, new long[] {
-			0, SocialRelationConstants.TYPE_UNI_FOLLOWER,
+			AssetSharingEntryConstants.TYPE_EVERYONE,
+			SocialRelationConstants.TYPE_UNI_FOLLOWER,
 			SocialRelationConstants.TYPE_BI_CONNECTION});
 
 		// User
