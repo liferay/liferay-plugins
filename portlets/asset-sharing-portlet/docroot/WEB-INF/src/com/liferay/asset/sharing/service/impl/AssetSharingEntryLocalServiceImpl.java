@@ -17,6 +17,8 @@ package com.liferay.asset.sharing.service.impl;
 import com.liferay.asset.sharing.model.AssetSharingEntry;
 import com.liferay.asset.sharing.service.base.AssetSharingEntryLocalServiceBaseImpl;
 import com.liferay.asset.sharing.service.persistence.AssetSharingEntryPK;
+import com.liferay.asset.sharing.util.AssetSharingUtil;
+import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 
 import java.util.List;
@@ -134,7 +136,14 @@ public class AssetSharingEntryLocalServiceImpl
 	public List<Object[]> search(
 			long userId, long[] classNameIds,
 			Map<Long, long[]> sharedToClassPKsMap, int start, int end)
-		throws SystemException {
+		throws PortalException, SystemException {
+
+		if ((sharedToClassPKsMap == null) ||
+			(sharedToClassPKsMap.size() == 0)) {
+
+			sharedToClassPKsMap = AssetSharingUtil.getSharedToClassPKsMap(
+				userId);
+		}
 
 		return assetSharingEntryFinder.findByUserId(
 			userId, classNameIds, sharedToClassPKsMap, start, end);
@@ -144,7 +153,14 @@ public class AssetSharingEntryLocalServiceImpl
 	public int searchCount(
 			long userId, long[] classNameIds,
 			Map<Long, long[]> sharedToClassPKsMap)
-		throws SystemException {
+		throws PortalException, SystemException {
+
+		if ((sharedToClassPKsMap == null) ||
+			(sharedToClassPKsMap.size() == 0)) {
+
+			sharedToClassPKsMap = AssetSharingUtil.getSharedToClassPKsMap(
+				userId);
+		}
 
 		return assetSharingEntryFinder.countByUserId(
 			userId, classNameIds, sharedToClassPKsMap);
