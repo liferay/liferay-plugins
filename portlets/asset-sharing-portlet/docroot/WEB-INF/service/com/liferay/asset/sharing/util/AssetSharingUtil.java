@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.portlet.announcements.util;
+package com.liferay.asset.sharing.util;
 
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.util.GetterUtil;
@@ -40,11 +40,12 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * @author Raymond Aug茅
+ * @author Sherry Yang
  */
-public class AnnouncementsUtil {
+public class AssetSharingUtil {
 
-	public static LinkedHashMap<Long, long[]> getAnnouncementScopes(long userId)
+	public static LinkedHashMap<Long, long[]> getSharedToClassPKsMap(
+			long userId)
 		throws PortalException {
 
 		LinkedHashMap<Long, long[]> scopes = new LinkedHashMap<Long, long[]>();
