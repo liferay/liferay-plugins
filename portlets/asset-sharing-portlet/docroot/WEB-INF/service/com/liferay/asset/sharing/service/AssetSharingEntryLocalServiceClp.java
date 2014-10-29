@@ -1039,7 +1039,9 @@ public class AssetSharingEntryLocalServiceClp
 	public java.util.List<java.lang.Object[]> search(long userId,
 		long[] classNameIds,
 		java.util.Map<java.lang.Long, long[]> sharedToClassPKsMap, int start,
-		int end) throws com.liferay.portal.kernel.exception.SystemException {
+		int end)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
@@ -1060,6 +1062,10 @@ public class AssetSharingEntryLocalServiceClp
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
 
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
 				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
@@ -1079,7 +1085,8 @@ public class AssetSharingEntryLocalServiceClp
 	@Override
 	public int searchCount(long userId, long[] classNameIds,
 		java.util.Map<java.lang.Long, long[]> sharedToClassPKsMap)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
@@ -1095,6 +1102,10 @@ public class AssetSharingEntryLocalServiceClp
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
 
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
 				throw (com.liferay.portal.kernel.exception.SystemException)t;

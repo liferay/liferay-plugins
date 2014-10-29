@@ -345,14 +345,17 @@ public class AssetSharingEntryLocalServiceUtil {
 	public static java.util.List<java.lang.Object[]> search(long userId,
 		long[] classNameIds,
 		java.util.Map<java.lang.Long, long[]> sharedToClassPKsMap, int start,
-		int end) throws com.liferay.portal.kernel.exception.SystemException {
+		int end)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
 		return getService()
 				   .search(userId, classNameIds, sharedToClassPKsMap, start, end);
 	}
 
 	public static int searchCount(long userId, long[] classNameIds,
 		java.util.Map<java.lang.Long, long[]> sharedToClassPKsMap)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
 		return getService()
 				   .searchCount(userId, classNameIds, sharedToClassPKsMap);
 	}

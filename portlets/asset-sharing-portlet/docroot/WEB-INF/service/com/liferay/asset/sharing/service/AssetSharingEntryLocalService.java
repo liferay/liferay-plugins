@@ -300,10 +300,13 @@ public interface AssetSharingEntryLocalService extends BaseLocalService,
 	public java.util.List<java.lang.Object[]> search(long userId,
 		long[] classNameIds,
 		java.util.Map<java.lang.Long, long[]> sharedToClassPKsMap, int start,
-		int end) throws com.liferay.portal.kernel.exception.SystemException;
+		int end)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int searchCount(long userId, long[] classNameIds,
 		java.util.Map<java.lang.Long, long[]> sharedToClassPKsMap)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
 }
