@@ -1760,12 +1760,6 @@ AUI.add(
 
 						instance.popover.headerNode.toggleClass('hide', !templateData.permissions.VIEW_BOOKING_DETAILS);
 
-						instance._syncInvitees();
-					},
-
-					_afterPopoverVisibleChange: function(event) {
-						var instance = this;
-
 						var schedulerEvent = instance.get('event');
 
 						var popoverBB = instance.popover.get('boundingBox');
@@ -1799,8 +1793,6 @@ AUI.add(
 							}
 						);
 
-						SchedulerEventRecorder.superclass._afterPopoverVisibleChange.apply(this, arguments);
-
 						var portletNamespace = instance.get('portletNamespace');
 
 						var eventRecorderCalendar = A.one('#' + portletNamespace + 'eventRecorderCalendar');
@@ -1808,6 +1800,8 @@ AUI.add(
 						if (eventRecorderCalendar) {
 							eventRecorderCalendar.val(calendarId.toString());
 						}
+
+						instance._syncInvitees();
 					},
 
 					_getFooterToolbar: function() {
