@@ -404,15 +404,6 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 		if (method != null) {
 			method.invoke(this);
 		}
-
-		if (format.equals("json")) {
-			JSONObject jsonData = JSONFactoryUtil.createJSONObject(
-					String.valueOf(request.getAttribute("jsonData")));
-
-			writeJSON(resourceRequest, resourceResponse, jsonData);
-
-			return;
-		}
 	}
 
 	protected Object getConstantsBean(Class<?> clazz) {
@@ -798,7 +789,7 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 		user = themeDisplay.getUser();
 	}
 
-	protected String processDataRequest(PortletRequest portletRequest) {
+	protected String processDataRequest(ActionRequest actionRequest) {
 		return null;
 	}
 
@@ -1020,8 +1011,6 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 
 		Hits hits = alloySearchResult.getHits();
 
-		hits.setLength(500);
-
 		Document[] documents = hits.getDocs();
 
 		setJSONData(documents);
@@ -1075,17 +1064,20 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 		return LanguageUtil.format(locale, pattern, arguments);
 	}
 
-	protected void writeJSON(
-			PortletRequest portletRequest, PortletResponse portletResponse,
-			JSONObject json)
-		throws Exception {
+	protected void writeJSON(Object json) throws Exception {
+		if (actionResponse != null) {
+			HttpServletResponse response = PortalUtil.getHttpServletResponse(
+				actionResponse);
 
-		HttpServletResponse response = PortalUtil.getHttpServletResponse(
-			portletResponse);
+			response.setContentType(ContentTypes.APPLICATION_JSON);
 
-		response.getWriter().write(json.toString());
+			ServletResponseUtil.write(response, json.toString());
+		}
+		else if (mimeResponse != null) {
+			mimeResponse.setContentType(ContentTypes.APPLICATION_JSON);
 
-		response.flushBuffer();
+			PortletResponseUtil.write(mimeResponse, json.toString());
+		}
 	}
 
 	protected static final String CALLED_PROCESS_ACTION =
