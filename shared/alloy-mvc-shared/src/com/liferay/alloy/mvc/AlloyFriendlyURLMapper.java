@@ -23,6 +23,8 @@ import com.liferay.portal.kernel.servlet.HttpMethods;
 import com.liferay.portal.kernel.util.CharPool;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.Validator;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -124,12 +126,17 @@ public class AlloyFriendlyURLMapper extends DefaultFriendlyURLMapper {
 		String namespace = PortalUtil.getPortletNamespace(portletId);
 
 		addParameter(namespace, parameterMap, "p_p_id", portletId);
-		addParameter(parameterMap, "p_p_lifecycle", getLifecycle(request));
+		addParameter(parameterMap, "p_p_lifecycle", getLifecycle(
+			request, routeParameters.get("format")));
 
 		populateParams(parameterMap, namespace, routeParameters);
 	}
 
-	protected String getLifecycle(HttpServletRequest request) {
+	protected String getLifecycle(HttpServletRequest request, String format) {
+		if (Validator.isNotNull(format) && !format.equalsIgnoreCase("html")) {
+			return "2";
+		}
+
 		String method = request.getMethod();
 
 		if (method.equalsIgnoreCase(HttpMethods.POST)) {

@@ -161,13 +161,13 @@ public class AlloyPortlet extends GenericPortlet {
 
 		String format = ParamUtil.getString(resourceRequest, "format");
 
-		if (format.equals("json")) {
+		if (Validator.isNotNull(format) && !format.equals("html")) {
 			BaseAlloyControllerImpl alloyController = _alloyControllers.get(
-					getControllerPath(resourceRequest));
+				getControllerPath(resourceRequest));
 
 			try {
 				alloyController.afterPropertiesSet(
-						resourceRequest, resourceResponse);
+					resourceRequest, resourceResponse);
 
 				alloyController.execute();
 			}
@@ -277,67 +277,6 @@ public class AlloyPortlet extends GenericPortlet {
 		ServletResponseUtil.write(response, json.toString());
 
 		response.flushBuffer();
-	}
-
-	private void responder(
-			PortletRequest portletRequest, PortletResponse portletResponse)
-		throws IOException, PortletException {
-
-		String format = ParamUtil.getString(portletRequest, "format");
-
-		if (format.equals("json")) {
-			JSONObject jsonData = null;
-
-			String controller = ParamUtil.getString(
-				portletRequest, "controller");
-
-			BaseAlloyControllerImpl baseAlloyController = _alloyControllers.get(
-				controller);
-
-			try {
-				HttpServletRequest request = PortalUtil.getHttpServletRequest(
-					portletRequest);
-
-				baseAlloyController.setRequest(request);
-
-				baseAlloyController.initPortletVariables();
-
-				String action = ParamUtil.getString(portletRequest, "action");
-
-				Method actionMethod = baseAlloyController.getMethod(action);
-
-				actionMethod.invoke(baseAlloyController);
-
-				jsonData = JSONFactoryUtil.createJSONObject(
-					String.valueOf(request.getAttribute("jsonData")));
-			}
-			catch (Exception e) {
-				jsonData = JSONFactoryUtil.createJSONObject();
-
-				String message = "an-unexpected-system-error-occurred";
-
-				Throwable rootCause = getRootCause(e);
-
-				if (rootCause instanceof AlloyException) {
-					message = rootCause.getMessage();
-				}
-
-				jsonData.put("error", message);
-
-				HttpServletResponse response =
-					PortalUtil.getHttpServletResponse(portletResponse);
-
-				response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-			}
-
-			writeJSON(portletRequest, portletResponse, jsonData);
-
-			return;
-		}
-
-		String path = getPath(portletRequest);
-
-		include(path, portletRequest, portletResponse);
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(AlloyPortlet.class);

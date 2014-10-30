@@ -349,15 +349,6 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 			method.invoke(this);
 		}
 
-		if (format.equals(JSON)) {
-			JSONObject jsonData = JSONFactoryUtil.createJSONObject(
-					String.valueOf(request.getAttribute("jsonData")));
-
-			writeJSON(actionRequest, actionResponse, jsonData);
-
-			return;
-		}
-
 		actionRequest.setAttribute(
 			CALLED_PROCESS_ACTION, Boolean.TRUE.toString());
 
@@ -429,7 +420,7 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 			method.invoke(this);
 		}
 
-		if (format.equals(JSON)) {
+		if (format.equals("json")) {
 			JSONObject jsonData = JSONFactoryUtil.createJSONObject(
 					String.valueOf(request.getAttribute("jsonData")));
 
@@ -816,10 +807,8 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 	protected void initServletVariables(
 		PortletRequest portletRequest, PortletResponse portletResponse) {
 
-		request = (HttpServletRequest)PortalUtil.getHttpServletRequest(
-			portletRequest);
-		response = (HttpServletResponse)PortalUtil.getHttpServletResponse(
-			portletResponse);
+		request = PortalUtil.getHttpServletRequest(portletRequest);
+		response = PortalUtil.getHttpServletResponse(portletResponse);
 	}
 
 	protected void initThemeDisplayVariables() {
@@ -1125,8 +1114,6 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 
 	protected static final String CALLED_PROCESS_ACTION =
 		BaseAlloyControllerImpl.class.getName() + "#CALLED_PROCESS_ACTION";
-
-	protected static final String JSON = "json";
 
 	protected static final String VIEW_PATH =
 		BaseAlloyControllerImpl.class.getName() + "#VIEW_PATH";

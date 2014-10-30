@@ -37,25 +37,21 @@
 		<pattern>GET/{controller}/{id:\d+}.{format}</pattern>
 		<implicit-parameter name="action">view</implicit-parameter>
 		<implicit-parameter name="method">GET</implicit-parameter>
-		<implicit-parameter name="p_p_lifecycle">2</implicit-parameter>
 	</route>
 	<route>
 		<pattern>POST/{controller}/{id:\d+}.{format}</pattern>
 		<implicit-parameter name="action">update</implicit-parameter>
 		<implicit-parameter name="method">POST</implicit-parameter>
-		<implicit-parameter name="p_p_lifecycle">2</implicit-parameter>
 	</route>
 	<route>
 		<pattern>GET/{controller}.{format}</pattern>
 		<implicit-parameter name="action">index</implicit-parameter>
 		<implicit-parameter name="method">GET</implicit-parameter>
-		<implicit-parameter name="p_p_lifecycle">2</implicit-parameter>
 	</route>
 	<route>
 		<pattern>POST/{controller}.{format}</pattern>
 		<implicit-parameter name="action">create</implicit-parameter>
 		<implicit-parameter name="method">POST</implicit-parameter>
-		<implicit-parameter name="p_p_lifecycle">2</implicit-parameter>
 	</route>
 	<route>
 		<pattern>{method}/{controller}/{id:\d+}/{action}</pattern>
@@ -63,7 +59,6 @@
 	</route>
 	<route>
 		<pattern>{method}/{controller}/{id:\d+}/{action}.{format}</pattern>
-		<implicit-parameter name="p_p_lifecycle">2</implicit-parameter>
 	</route>
 	<route>
 		<pattern>{method}/{controller}/{action}</pattern>
@@ -71,7 +66,6 @@
 	</route>
 	<route>
 		<pattern>{method}/{controller}/{action}.{format}</pattern>
-		<implicit-parameter name="p_p_lifecycle">2</implicit-parameter>
 	</route>
 	<route>
 		<pattern>{method}/{controller}/{action}/{className}/{folderId:\d+}/{fileName:[^/]+}</pattern>
