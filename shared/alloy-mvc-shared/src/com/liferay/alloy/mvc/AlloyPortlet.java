@@ -159,25 +159,6 @@ public class AlloyPortlet extends GenericPortlet {
 			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
 		throws IOException, PortletException {
 
-		String format = ParamUtil.getString(resourceRequest, "format");
-
-		if (Validator.isNotNull(format) && !format.equals("html")) {
-			BaseAlloyControllerImpl alloyController = _alloyControllers.get(
-				getControllerPath(resourceRequest));
-
-			try {
-				alloyController.afterPropertiesSet(
-					resourceRequest, resourceResponse);
-
-				alloyController.execute();
-			}
-			catch (Exception e) {
-				throw new IOException(e);
-			}
-
-			return;
-		}
-
 		String path = getPath(resourceRequest);
 
 		include(path, resourceRequest, resourceResponse);
@@ -262,21 +243,6 @@ public class AlloyPortlet extends GenericPortlet {
 		String controllerPath = baseAlloyControllerImpl.controllerPath;
 
 		_alloyControllers.put(controllerPath, baseAlloyControllerImpl);
-	}
-
-	protected void writeJSON(
-			PortletRequest portletRequest, PortletResponse portletResponse,
-			JSONObject json)
-		throws IOException {
-
-		HttpServletResponse response = PortalUtil.getHttpServletResponse(
-			portletResponse);
-
-		response.setContentType(ContentTypes.APPLICATION_JSON);
-
-		ServletResponseUtil.write(response, json.toString());
-
-		response.flushBuffer();
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(AlloyPortlet.class);

@@ -129,21 +129,6 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 		registerAlloyController();
 	}
 
-	public void afterPropertiesSet(
-		PortletRequest portletRequest, PortletResponse portletResponse) {
-
-		initClass();
-		initServletVariables(portletRequest, portletResponse);
-		initPortletVariables();
-		initThemeDisplayVariables();
-		initMethods();
-		initPaths();
-		initIndexer();
-		initMessageListeners();
-
-		registerAlloyController();
-	}
-
 	@Override
 	public void execute() throws Exception {
 		Method method = getMethod(actionPath);
@@ -804,13 +789,6 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 		response = (HttpServletResponse)pageContext.getResponse();
 	}
 
-	protected void initServletVariables(
-		PortletRequest portletRequest, PortletResponse portletResponse) {
-
-		request = PortalUtil.getHttpServletRequest(portletRequest);
-		response = PortalUtil.getHttpServletResponse(portletResponse);
-	}
-
 	protected void initThemeDisplayVariables() {
 		themeDisplay = (ThemeDisplay)request.getAttribute(
 			WebKeys.THEME_DISPLAY);
@@ -1105,9 +1083,7 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 		HttpServletResponse response = PortalUtil.getHttpServletResponse(
 			portletResponse);
 
-		response.setContentType(ContentTypes.APPLICATION_JSON);
-
-		ServletResponseUtil.write(response, json.toString());
+		response.getWriter().write(json.toString());
 
 		response.flushBuffer();
 	}
