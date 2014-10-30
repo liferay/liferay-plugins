@@ -14,8 +14,6 @@
 
 package com.liferay.alloy.mvc;
 
-import com.liferay.portal.kernel.json.JSONFactoryUtil;
-import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.messaging.MessageBusUtil;
@@ -161,7 +159,42 @@ public class AlloyPortlet extends GenericPortlet {
 			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
 		throws IOException, PortletException {
 
-		responder(resourceRequest, resourceResponse);
+		String format = ParamUtil.getString(resourceRequest, "format");
+
+		if (format.equals("json")) {
+			BaseAlloyControllerImpl alloyController = _alloyControllers.get(
+					getControllerPath(resourceRequest));
+
+			try {
+				alloyController.afterPropertiesSet(
+						resourceRequest, resourceResponse);
+
+				alloyController.execute();
+			}
+			catch (Exception e) {
+				throw new IOException(e);
+			}
+
+			return;
+		}
+
+		String path = getPath(resourceRequest);
+
+		include(path, resourceRequest, resourceResponse);
+	}
+
+	protected String getControllerPath(PortletRequest portletRequest) {
+		String controllerPath = ParamUtil.getString(
+				portletRequest, "controller");
+
+		if (Validator.isNull(controllerPath)) {
+			Map<String, String> defaultRouteParameters =
+				getDefaultRouteParameters();
+
+			controllerPath = defaultRouteParameters.get("controller");
+		}
+
+		return controllerPath;
 	}
 
 	protected Map<String, String> getDefaultRouteParameters() {
@@ -183,15 +216,7 @@ public class AlloyPortlet extends GenericPortlet {
 
 		Portlet portlet = liferayPortletConfig.getPortlet();
 
-		String controllerPath = ParamUtil.getString(
-			portletRequest, "controller");
-
-		if (Validator.isNull(controllerPath)) {
-			Map<String, String> defaultRouteParameters =
-				getDefaultRouteParameters();
-
-			controllerPath = defaultRouteParameters.get("controller");
-		}
+		String controllerPath = getControllerPath(portletRequest);
 
 		StringBundler sb = new StringBundler(5);
 
