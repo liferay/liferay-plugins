@@ -126,17 +126,18 @@ public class AlloyFriendlyURLMapper extends DefaultFriendlyURLMapper {
 		String namespace = PortalUtil.getPortletNamespace(portletId);
 
 		addParameter(namespace, parameterMap, "p_p_id", portletId);
-		addParameter(parameterMap, "p_p_lifecycle", getLifecycle(
-			request, routeParameters.get("format")));
+		addParameter(parameterMap, "p_p_lifecycle", getLifecycle(request));
+
+		String format = routeParameters.get("format");
+
+		if (Validator.isNotNull(format)) {
+			addParameter(parameterMap, "p_p_state", "exclusive");
+		}
 
 		populateParams(parameterMap, namespace, routeParameters);
 	}
 
-	protected String getLifecycle(HttpServletRequest request, String format) {
-		if (Validator.isNotNull(format) && !format.equalsIgnoreCase("html")) {
-			return "2";
-		}
-
+	protected String getLifecycle(HttpServletRequest request) {
 		String method = request.getMethod();
 
 		if (StringUtil.equalsIgnoreCase(method, HttpMethods.POST)) {

@@ -304,16 +304,26 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 	}
 
 	protected String buildIncludePath(String viewPath) {
-		if (viewPath.equals(_VIEW_PATH_ERROR)) {
-			return "/WEB-INF/jsp/".concat(
-				portlet.getFriendlyURLMapping()).concat("/views/error.jsp");
-		}
-
-		StringBundler sb = new StringBundler(7);
+		StringBundler sb = new StringBundler(4);
 
 		sb.append("/WEB-INF/jsp/");
 		sb.append(portlet.getFriendlyURLMapping());
 		sb.append("/views/");
+
+		if (Validator.isNotNull(format)) {
+			sb.append("format.jsp");
+
+			return sb.toString();
+		}
+
+		if (viewPath.equals(_VIEW_PATH_ERROR)) {
+			sb.append("error.jsp");
+
+			return sb.toString();
+		}
+
+		sb = new StringBundler(new String[] {sb.toString()}, 4);
+
 		sb.append(controllerPath);
 		sb.append(StringPool.SLASH);
 		sb.append(viewPath);
@@ -726,7 +736,10 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 
 			portletURL.setParameter("action", actionPath);
 			portletURL.setParameter("controller", controllerPath);
-			portletURL.setParameter("format", format);
+
+			if (Validator.isNotNull(format)) {
+				portletURL.setParameter("format", format);
+			}
 
 			if (log.isDebugEnabled()) {
 				log.debug("Portlet URL " + portletURL);
@@ -1031,11 +1044,11 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 	}
 
 	protected void setJSONData(BaseModel baseModel) throws Exception {
-		request.setAttribute("jsonData", toJSONObject(baseModel));
+		request.setAttribute("data", toJSONObject(baseModel));
 	}
 
 	protected void setJSONData(Document document) throws Exception {
-		request.setAttribute("jsonData", toJSONObject(document));
+		request.setAttribute("data", toJSONObject(document));
 	}
 
 	protected void setJSONData(Document[] documents) throws Exception {
@@ -1049,7 +1062,7 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 
 		jsonData.put(controllerPath, jsonArray);
 
-		request.setAttribute("jsonData", jsonData);
+		request.setAttribute("data", jsonData);
 	}
 
 	protected void setJSONData(List<BaseModel<?>> baseModels) throws Exception {
@@ -1063,15 +1076,39 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 
 		jsonData.put(controllerPath, jsonArray);
 
-		request.setAttribute("jsonData", jsonData);
+		request.setAttribute("data", jsonData);
 	}
 
 	protected void setPermissioned(boolean permissioned) {
 		this.permissioned = permissioned;
 	}
 
-	protected void setRequest(HttpServletRequest httpServletRequest) {
-		request = httpServletRequest;
+	protected JSONObject toJSONObject(BaseModel baseModel) {
+		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
+
+		Map<String, Object> modelAttributes = baseModel.getModelAttributes();
+
+		for (String key : modelAttributes.keySet()) {
+			Object value = modelAttributes.get(key);
+
+			jsonObject.put(String.valueOf(key), String.valueOf(value));
+		}
+
+		return jsonObject;
+	}
+
+	protected JSONObject toJSONObject(Document document) {
+		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
+
+		Map<String, Field> fields = document.getFields();
+
+		for (String key : fields.keySet()) {
+			Field field = fields.get(key);
+
+			jsonObject.put(field.getName(), field.getValue());
+		}
+
+		return jsonObject;
 	}
 
 	protected String translate(String pattern, Object... arguments) {
@@ -1146,34 +1183,6 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 	protected ThemeDisplay themeDisplay;
 	protected User user;
 	protected String viewPath;
-
-	private JSONObject toJSONObject(BaseModel baseModel) {
-		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
-
-		Map<String, Object> modelAttributes = baseModel.getModelAttributes();
-
-		for (String key : modelAttributes.keySet()) {
-			Object value = modelAttributes.get(key);
-
-			jsonObject.put(String.valueOf(key), String.valueOf(value));
-		}
-
-		return jsonObject;
-	}
-
-	private JSONObject toJSONObject(Document document) {
-		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
-
-		Map<String, Field> fields = document.getFields();
-
-		for (String key : fields.keySet()) {
-			Field field = fields.get(key);
-
-			jsonObject.put(field.getName(), field.getValue());
-		}
-
-		return jsonObject;
-	}
 
 	private static final String _VIEW_PATH_ERROR = "VIEW_PATH_ERROR";
 
