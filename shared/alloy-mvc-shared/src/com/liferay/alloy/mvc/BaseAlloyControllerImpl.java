@@ -1109,7 +1109,7 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 		return LanguageUtil.format(locale, pattern, arguments);
 	}
 
-	protected void writeResponse(Object payload, String contentType)
+	protected void writeResponse(Object content, String contentType)
 		throws Exception {
 
 		if (actionResponse != null) {
@@ -1118,7 +1118,7 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 
 			response.setContentType(contentType);
 
-			ServletResponseUtil.write(response, payload.toString());
+			ServletResponseUtil.write(response, content.toString());
 		}
 		else if (renderResponse != null) {
 			renderResponse.setContentType(contentType);
@@ -1126,7 +1126,7 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 			HttpServletResponse response = PortalUtil.getHttpServletResponse(
 				renderResponse);
 
-			ServletResponseUtil.write(response, payload.toString());
+			ServletResponseUtil.write(response, content.toString());
 		}
 	}
 
