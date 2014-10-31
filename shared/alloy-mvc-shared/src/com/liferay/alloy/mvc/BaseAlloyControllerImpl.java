@@ -15,7 +15,6 @@
 package com.liferay.alloy.mvc;
 
 import com.liferay.compat.portal.kernel.bean.ConstantsBeanFactoryUtil;
-import com.liferay.compat.portal.kernel.portlet.PortletResponseUtil;
 import com.liferay.compat.portal.kernel.scheduler.SchedulerEngineHelperUtil;
 import com.liferay.compat.portal.kernel.util.ArrayUtil;
 import com.liferay.compat.portal.kernel.util.ServiceBeanMethodInvocationFactoryUtil;
