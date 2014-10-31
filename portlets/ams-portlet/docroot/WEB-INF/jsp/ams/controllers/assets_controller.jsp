@@ -42,7 +42,7 @@ public class AlloyControllerImpl extends BaseAlloyControllerImpl {
 		renderRequest.setAttribute("alloySearchResult", alloySearchResult);
 
 		if (Validator.isNotNull(format) && format.equals("json")) {
-			setJSONData(alloySearchResult);
+			setJSONResponseContent(alloySearchResult);
 		}
 	}
 
@@ -76,7 +76,7 @@ public class AlloyControllerImpl extends BaseAlloyControllerImpl {
 		renderRequest.setAttribute("asset", asset);
 
 		if (Validator.isNotNull(format) && format.equals("json")) {
-			setJSONData(asset);
+			setJSONResponseContent(asset);
 		}
 	}
 
