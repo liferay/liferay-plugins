@@ -34,7 +34,6 @@ import com.liferay.portal.kernel.portlet.LiferayPortletConfig;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.portlet.PortletBag;
 import com.liferay.portal.kernel.portlet.PortletBagPool;
-import com.liferay.portal.kernel.portlet.PortletResponseUtil;
 import com.liferay.portal.kernel.scheduler.CronText;
 import com.liferay.portal.kernel.scheduler.CronTrigger;
 import com.liferay.portal.kernel.scheduler.SchedulerEngineHelperUtil;
@@ -372,13 +371,8 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 
 		if (Validator.isNotNull(format)) {
 			if (format.equals("json")) {
-				renderResponse.setContentType(ContentTypes.APPLICATION_JSON);
+				writeResponse(responseContent, ContentTypes.APPLICATION_JSON);
 			}
-
-			HttpServletResponse response = PortalUtil.getHttpServletResponse(
-				renderResponse);
-
-			ServletResponseUtil.write(response, _data);
 
 			return;
 		}
@@ -1040,26 +1034,30 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 		groupedModel.setGroupId(themeDisplay.getScopeGroupId());
 	}
 
-	protected void setJSONData(AlloySearchResult alloySearchResult)
+	protected void setJSONResponseContent(AlloySearchResult alloySearchResult)
 		throws Exception {
 
 		Hits hits = alloySearchResult.getHits();
 
 		Document[] documents = hits.getDocs();
 
-		setJSONData(documents);
+		setJSONResponseContent(documents);
 	}
 
-	protected void setJSONData(BaseModel baseModel) throws Exception {
-		_data = String.valueOf(toJSONObject(baseModel));
+	protected void setJSONResponseContent(BaseModel<?> baseModel)
+		throws Exception {
+
+		responseContent = String.valueOf(toJSONObject(baseModel));
 	}
 
-	protected void setJSONData(Document document) throws Exception {
-		_data = String.valueOf(toJSONObject(document));
+	protected void setJSONResponseContent(Document document) throws Exception {
+		responseContent = String.valueOf(toJSONObject(document));
 	}
 
-	protected void setJSONData(Document[] documents) throws Exception {
-		JSONObject jsonData = JSONFactoryUtil.createJSONObject();
+	protected void setJSONResponseContent(Document[] documents)
+		throws Exception {
+
+		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
 		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
 
@@ -1067,30 +1065,32 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 			jsonArray.put(toJSONObject(document));
 		}
 
-		jsonData.put(controllerPath, jsonArray);
+		jsonObject.put(controllerPath, jsonArray);
 
-		_data = jsonData.toString();
+		responseContent = jsonObject.toString();
 	}
 
-	protected void setJSONData(List<BaseModel<?>> baseModels) throws Exception {
-		JSONObject jsonData = JSONFactoryUtil.createJSONObject();
+	protected void setJSONResponseContent(List<BaseModel<?>> baseModels)
+		throws Exception {
+
+		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
 		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
 
-		for (BaseModel baseModel : baseModels) {
+		for (BaseModel<?> baseModel : baseModels) {
 			jsonArray.put(toJSONObject(baseModel));
 		}
 
-		jsonData.put(controllerPath, jsonArray);
+		jsonObject.put(controllerPath, jsonArray);
 
-		_data = jsonData.toString();
+		responseContent = jsonObject.toString();
 	}
 
 	protected void setPermissioned(boolean permissioned) {
 		this.permissioned = permissioned;
 	}
 
-	protected JSONObject toJSONObject(BaseModel baseModel) {
+	protected JSONObject toJSONObject(BaseModel<?> baseModel) {
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
 		Map<String, Object> modelAttributes = baseModel.getModelAttributes();
@@ -1122,19 +1122,24 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 		return LanguageUtil.format(locale, pattern, arguments);
 	}
 
-	protected void writeJSON(Object json) throws Exception {
+	protected void writeResponse(Object payload, String contentType)
+		throws Exception {
+
 		if (actionResponse != null) {
 			HttpServletResponse response = PortalUtil.getHttpServletResponse(
 				actionResponse);
 
-			response.setContentType(ContentTypes.APPLICATION_JSON);
+			response.setContentType(contentType);
 
-			ServletResponseUtil.write(response, json.toString());
+			ServletResponseUtil.write(response, payload.toString());
 		}
-		else if (mimeResponse != null) {
-			mimeResponse.setContentType(ContentTypes.APPLICATION_JSON);
+		else if (renderResponse != null) {
+			renderResponse.setContentType(contentType);
 
-			PortletResponseUtil.write(mimeResponse, json.toString());
+			HttpServletResponse response = PortalUtil.getHttpServletResponse(
+				renderResponse);
+
+			ServletResponseUtil.write(response, payload.toString());
 		}
 	}
 
@@ -1184,6 +1189,7 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 	protected ResourceRequest resourceRequest;
 	protected ResourceResponse resourceResponse;
 	protected HttpServletResponse response;
+	protected String responseContent = StringPool.BLANK;
 	protected MessageListener schedulerMessageListener;
 	protected ServletConfig servletConfig;
 	protected ServletContext servletContext;
@@ -1192,7 +1198,5 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 	protected String viewPath;
 
 	private static final String _VIEW_PATH_ERROR = "VIEW_PATH_ERROR";
-
-	private String _data = StringPool.BLANK;
 
 }
