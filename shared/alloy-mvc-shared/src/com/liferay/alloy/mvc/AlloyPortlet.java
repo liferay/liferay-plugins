@@ -159,7 +159,7 @@ public class AlloyPortlet extends GenericPortlet {
 
 	protected String getControllerPath(PortletRequest portletRequest) {
 		String controllerPath = ParamUtil.getString(
-				portletRequest, "controller");
+			portletRequest, "controller");
 
 		if (Validator.isNull(controllerPath)) {
 			Map<String, String> defaultRouteParameters =
@@ -201,14 +201,6 @@ public class AlloyPortlet extends GenericPortlet {
 		sb.append("_controller.jsp");
 
 		return sb.toString();
-	}
-
-	protected Throwable getRootCause(Throwable throwable) {
-		if (throwable.getCause() == null) {
-			return throwable;
-		}
-
-		return getRootCause(throwable.getCause());
 	}
 
 	protected void include(
