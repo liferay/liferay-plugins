@@ -14,31 +14,22 @@
 
 package com.liferay.jsonwebserviceclient;
 
-import java.security.KeyStore;
-
-import java.util.Map;
-
 /**
  * @author Ivica Cardic
  * @author Igor Beslic
  */
-public interface JSONWebServiceClient {
+public class JSONWebServiceInvocationException extends Exception {
 
-	public String doGet(String url, Map<String, String> parameters)
-		throws JSONWebServiceTransportException;
+	public JSONWebServiceInvocationException(String message) {
+		super(message);
+	}
 
-	public String doPost(String url, Map<String, String> parameters)
-		throws JSONWebServiceTransportException;
+	public JSONWebServiceInvocationException(String message, Throwable cause) {
+		super(message, cause);
+	}
 
-	public String doPostAsJSON(String url, String json)
-		throws JSONWebServiceTransportException;
-
-	public void resetHttpClient();
-
-	public void setKeyStore(KeyStore keyStore);
-
-	public void setLogin(String login);
-
-	public void setPassword(String password);
+	public JSONWebServiceInvocationException(Throwable cause) {
+		super(cause);
+	}
 
 }
