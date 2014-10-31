@@ -17,7 +17,7 @@ package com.liferay.microblogs.service.persistence;
 import aQute.bnd.annotation.ProviderType;
 
 /**
- * @author Brian Wing Shun Chan
+ * @generated
  */
 @ProviderType
 public interface MicroblogsEntryFinder {
@@ -28,6 +28,9 @@ public interface MicroblogsEntryFinder {
 	public int countByU_ATN(long userId, java.lang.String assetTagName);
 
 	public int countByU_T_MU(long userId, int type, long microblogsEntryUserId);
+
+	public int countByCCNI_CCPK_ATN(long creatorClassNameId,
+		long creatorClassPK, java.lang.String assetTagName);
 
 	public java.util.List<com.liferay.microblogs.model.MicroblogsEntry> findByUserId(
 		long userId, int start, int end);
@@ -40,4 +43,8 @@ public interface MicroblogsEntryFinder {
 
 	public java.util.List<com.liferay.microblogs.model.MicroblogsEntry> findByU_T_MU(
 		long userId, int type, long microblogsEntryUserId, int start, int end);
+
+	public java.util.List<com.liferay.microblogs.model.MicroblogsEntry> findByCCNI_CCPK_ATN(
+		long creatorClassNameId, long creatorClassPK,
+		java.lang.String assetTagName, int start, int end);
 }

@@ -254,6 +254,14 @@ public class MicroblogsEntryLocalServiceWrapper
 
 	@Override
 	public java.util.List<com.liferay.microblogs.model.MicroblogsEntry> getMicroblogsEntries(
+		long creatorClassNameId, long creatorClassPK,
+		java.lang.String assetTagName, int start, int end) {
+		return _microblogsEntryLocalService.getMicroblogsEntries(creatorClassNameId,
+			creatorClassPK, assetTagName, start, end);
+	}
+
+	@Override
+	public java.util.List<com.liferay.microblogs.model.MicroblogsEntry> getMicroblogsEntries(
 		long creatorClassNameId, long creatorClassPK, int start, int end) {
 		return _microblogsEntryLocalService.getMicroblogsEntries(creatorClassNameId,
 			creatorClassPK, start, end);
@@ -307,6 +315,13 @@ public class MicroblogsEntryLocalServiceWrapper
 		long creatorClassPK) {
 		return _microblogsEntryLocalService.getMicroblogsEntriesCount(creatorClassNameId,
 			creatorClassPK);
+	}
+
+	@Override
+	public int getMicroblogsEntriesCount(long creatorClassNameId,
+		long creatorClassPK, java.lang.String assetTagName) {
+		return _microblogsEntryLocalService.getMicroblogsEntriesCount(creatorClassNameId,
+			creatorClassPK, assetTagName);
 	}
 
 	@Override
