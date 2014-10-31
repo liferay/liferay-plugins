@@ -36,9 +36,12 @@
 				COUNT(DISTINCT MicroblogsEntry.microblogsEntryId) AS COUNT_VALUE
 			FROM
 				MicroblogsEntry
+			LLEFT JOIN
+				MicroblogsEntry AS TEMP_TABLE ON
+					(MicroblogsEntry.receiverMicroblogsEntryId = TEMP_TABLE.microblogsEntryId)
 			LEFT JOIN
 				SocialRelation ON
-					(MicroblogsEntry.receiverUserId = SocialRelation.userId2) AND
+					(TEMP_TABLE.userId = SocialRelation.userId2) AND
 					(MicroblogsEntry.socialRelationType = SocialRelation.type_)
 			WHERE
 				(
@@ -60,8 +63,11 @@
 			FROM
 				MicroblogsEntry
 			LEFT JOIN
+				MicroblogsEntry AS TEMP_TABLE ON
+					(MicroblogsEntry.receiverMicroblogsEntryId = TEMP_TABLE.microblogsEntryId)
+			LEFT JOIN
 				SocialRelation ON
-					(MicroblogsEntry.receiverUserId = SocialRelation.userId2) AND
+					(TEMP_TABLE.userId = SocialRelation.userId2) AND
 					(MicroblogsEntry.socialRelationType = SocialRelation.type_)
 			INNER JOIN
 				AssetEntry ON
@@ -95,8 +101,11 @@
 			FROM
 				MicroblogsEntry
 			LEFT JOIN
+				MicroblogsEntry AS TEMP_TABLE ON
+					(MicroblogsEntry.receiverMicroblogsEntryId = TEMP_TABLE.microblogsEntryId)
+			LEFT JOIN
 				SocialRelation ON
-					(MicroblogsEntry.receiverUserId = SocialRelation.userId2) AND
+					(TEMP_TABLE.userId = SocialRelation.userId2) AND
 					(MicroblogsEntry.socialRelationType = SocialRelation.type_)
 			WHERE
 				(
@@ -170,8 +179,11 @@
 			FROM
 				MicroblogsEntry
 			LEFT JOIN
+				MicroblogsEntry AS TEMP_TABLE ON
+					(MicroblogsEntry.receiverMicroblogsEntryId = TEMP_TABLE.microblogsEntryId)
+			LEFT JOIN
 				SocialRelation ON
-					(MicroblogsEntry.receiverUserId = SocialRelation.userId2) AND
+					(TEMP_TABLE.userId = SocialRelation.userId2) AND
 					(MicroblogsEntry.socialRelationType = SocialRelation.type_)
 			WHERE
 				(
@@ -195,8 +207,11 @@
 			FROM
 				MicroblogsEntry
 			LEFT JOIN
+				MicroblogsEntry AS TEMP_TABLE ON
+					(MicroblogsEntry.receiverMicroblogsEntryId = TEMP_TABLE.microblogsEntryId)
+			LEFT JOIN
 				SocialRelation ON
-					(MicroblogsEntry.receiverUserId = SocialRelation.userId2) AND
+					(TEMP_TABLE.userId = SocialRelation.userId2) AND
 					(MicroblogsEntry.socialRelationType = SocialRelation.type_)
 			INNER JOIN
 				AssetEntry ON
@@ -232,8 +247,11 @@
 			FROM
 				MicroblogsEntry
 			LEFT JOIN
+				MicroblogsEntry AS TEMP_TABLE ON
+					(MicroblogsEntry.receiverMicroblogsEntryId = TEMP_TABLE.microblogsEntryId)
+			LEFT JOIN
 				SocialRelation ON
-					(MicroblogsEntry.receiverUserId = SocialRelation.userId2) AND
+					(TEMP_TABLE.userId = SocialRelation.userId2) AND
 					(MicroblogsEntry.socialRelationType = SocialRelation.type_)
 			WHERE
 				(
