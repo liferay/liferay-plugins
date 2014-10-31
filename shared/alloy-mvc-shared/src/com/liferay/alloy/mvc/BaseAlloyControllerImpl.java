@@ -809,7 +809,9 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 		user = themeDisplay.getUser();
 	}
 
-	protected String processDataRequest(ActionRequest actionRequest) {
+	protected String processDataRequest(ActionRequest actionRequest)
+		throws Exception {
+
 		return null;
 	}
 
