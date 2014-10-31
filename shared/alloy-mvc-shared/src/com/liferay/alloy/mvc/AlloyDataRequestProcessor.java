@@ -21,6 +21,7 @@ import com.liferay.portal.kernel.search.Sort;
 import com.liferay.portal.kernel.servlet.ServletResponseUtil;
 import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.ParamUtil;
+import com.liferay.portal.kernel.util.ServiceBeanMethodInvocationFactoryUtil;
 import com.liferay.portal.kernel.util.StackTraceUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.BaseModel;
@@ -28,6 +29,8 @@ import com.liferay.portal.util.PortalUtil;
 
 import java.io.IOException;
 import java.io.Serializable;
+
+import java.lang.reflect.Method;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -66,8 +69,16 @@ public class AlloyDataRequestProcessor {
 
 		try {
 			if (action.equals("custom")) {
-				jsonString = baseAlloyControllerImpl.processDataRequest(
-					actionRequest);
+				Class<?> clazz = BaseAlloyControllerImpl.class;
+
+				Method method = clazz.getDeclaredMethod(
+					"processDataRequest", new Class<?>[] {ActionRequest.class});
+
+				jsonString =
+					(String)ServiceBeanMethodInvocationFactoryUtil.proceed(
+						baseAlloyControllerImpl, clazz, method,
+						new Object[] {actionRequest},
+						new String[] {"transactionAdvice"});
 			}
 			else if (action.equals("dynamicQuery")) {
 				jsonString = executeDynamicQuery(
@@ -81,9 +92,17 @@ public class AlloyDataRequestProcessor {
 		catch (Exception e) {
 			JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
-			jsonObject.put(
-				"error", "An unexpected exception occurred: " + e.getMessage());
+			String message = e.getMessage();
+
+			if (Validator.isNull(message)) {
+				message = baseAlloyControllerImpl.translate(
+					"an-unexpected-error-occurred");
+			}
+
+			jsonObject.put("message", message);
+
 			jsonObject.put("stacktrace", StackTraceUtil.getStackTrace(e));
+			jsonObject.put("success", false);
 
 			jsonString = jsonObject.toString();
 		}
