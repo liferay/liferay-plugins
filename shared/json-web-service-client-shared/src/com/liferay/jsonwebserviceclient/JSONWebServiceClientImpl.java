@@ -210,8 +210,9 @@ public class JSONWebServiceClientImpl implements JSONWebServiceClient {
 
 			return execute(httpPost);
 		}
-		catch (UnsupportedEncodingException e) {
-			throw new JSONWebServiceTransportException.CommunicationFailure(e);
+		catch (UnsupportedEncodingException uee) {
+			throw new JSONWebServiceTransportException.CommunicationFailure(
+				uee);
 		}
 	}
 
@@ -325,9 +326,9 @@ public class JSONWebServiceClientImpl implements JSONWebServiceClient {
 
 			return EntityUtils.toString(httpResponse.getEntity(), "utf8");
 		}
-		catch (IOException ie) {
+		catch (IOException ioe) {
 			throw new JSONWebServiceTransportException.CommunicationFailure(
-				"Error while transmitting request", ie);
+				"Unable to transmit request", ioe);
 		}
 		finally {
 			httpRequestBase.releaseConnection();
