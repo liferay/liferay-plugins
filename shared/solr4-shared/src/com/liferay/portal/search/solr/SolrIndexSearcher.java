@@ -345,9 +345,9 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 			}
 
 			snippet = StringUtil.replace(
-				snippet, "<liferay-hl>", StringPool.BLANK);
+				snippet, _HIGHLIGHT_TAG_OPEN, StringPool.BLANK);
 			snippet = StringUtil.replace(
-				snippet, "</liferay-hl>", StringPool.BLANK);
+				snippet, _HIGHLIGHT_TAG_CLOSE, StringPool.BLANK);
 		}
 
 		document.addText(
@@ -532,11 +532,15 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 		}
 	}
 
+	private static final String _HIGHLIGHT_TAG_CLOSE = "</liferay-hl>";
+
+	private static final String _HIGHLIGHT_TAG_OPEN = "<liferay-hl>";
+
 	private static Log _log = LogFactoryUtil.getLog(SolrIndexSearcher.class);
 
 	private FacetProcessor<SolrQuery> _facetProcessor;
 	private Pattern _pattern = Pattern.compile(
-		"<liferay-hl>(.*?)</liferay-hl>");
+		_HIGHLIGHT_TAG_OPEN + "(.*?)" + _HIGHLIGHT_TAG_CLOSE);
 	private SolrServer _solrServer;
 	private boolean _swallowException;
 
