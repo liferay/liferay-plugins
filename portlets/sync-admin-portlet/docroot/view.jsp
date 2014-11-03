@@ -26,13 +26,51 @@ int maxConnections = PrefsPropsUtil.getInteger(portletPreferences, themeDisplay.
 int pollInterval = PrefsPropsUtil.getInteger(portletPreferences, themeDisplay.getCompanyId(), PortletPropsKeys.SYNC_CLIENT_POLL_INTERVAL);
 %>
 
-<liferay-portlet:actionURL name="updatePreferences" var="updatePreferencesURL" />
+<liferay-portlet:actionURL var="configurationActionURL" />
 
-<aui:form action="<%= updatePreferencesURL %>" method="post" name="fm">
+<aui:form action="<%= configurationActionURL %>" method="post" name="fm" onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "submit();" %>'>
 	<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
+	<aui:input name="disabledGroupIds" type="hidden" />
+	<aui:input name="enabledGroupIds" type="hidden" />
 
 	<aui:fieldset>
 		<aui:input name="enabled" type="checkbox" value="<%= enabled %>" />
+	</aui:fieldset>
+
+	<aui:fieldset label="sync-sites">
+
+		<%
+		List<Group> groups = GroupLocalServiceUtil.getGroups(themeDisplay.getCompanyId(), GroupConstants.ANY_PARENT_GROUP_ID, true);
+
+		List<KeyValuePair> leftList = new ArrayList<KeyValuePair>();
+		List<KeyValuePair> rightList = new ArrayList<KeyValuePair>();
+
+		for (Group group : groups) {
+			if (group.isCompany()) {
+				continue;
+			}
+
+			KeyValuePair keyValuePair = new KeyValuePair(String.valueOf(group.getGroupId()), group.getDescriptiveName());
+
+			boolean syncEnabled = GetterUtil.getBoolean(group.getTypeSettingsProperty("syncEnabled"), true);
+
+			if (syncEnabled) {
+				leftList.add(keyValuePair);
+			}
+			else {
+				rightList.add(keyValuePair);
+			}
+		}
+		%>
+
+		<liferay-ui:input-move-boxes
+			leftBoxName="currentGroupIds"
+			leftList="<%= ListUtil.sort(leftList, new KeyValuePairComparator(false, true)) %>"
+			leftTitle="current"
+			rightBoxName="availableGroupIds"
+			rightList="<%= ListUtil.sort(rightList, new KeyValuePairComparator(false, true)) %>"
+			rightTitle="available"
+		/>
 	</aui:fieldset>
 
 	<aui:fieldset label="sync-client">
@@ -51,3 +89,17 @@ int pollInterval = PrefsPropsUtil.getInteger(portletPreferences, themeDisplay.ge
 		<aui:button type="submit" />
 	</aui:button-row>
 </aui:form>
+
+<aui:script>
+	Liferay.provide(
+		window,
+		'<portlet:namespace />submit',
+		function() {
+			document.<portlet:namespace />fm.<portlet:namespace />enabledGroupIds.value = Liferay.Util.listSelect(document.<portlet:namespace />fm.<portlet:namespace />currentGroupIds);
+			document.<portlet:namespace />fm.<portlet:namespace />disabledGroupIds.value = Liferay.Util.listSelect(document.<portlet:namespace />fm.<portlet:namespace />availableGroupIds);
+
+			submitForm(document.<portlet:namespace />fm);
+		},
+		['liferay-util-list-fields']
+	);
+</aui:script>
