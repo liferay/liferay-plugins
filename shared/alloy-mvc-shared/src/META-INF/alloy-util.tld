@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+
+<taglib
+	version="2.4"
+	xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-jsptaglibrary_2_4.xsd"
+>
+	<tlib-version>1.0</tlib-version>
+	<short-name>alloy-util</short-name>
+	<uri>http://liferay.com/tld/alloy-util</uri>
+	<function>
+		<name>unescape</name>
+		<function-class>com.liferay.portal.kernel.util.HtmlUtil</function-class>
+		<function-signature>java.lang.String unescape(java.lang.String)</function-signature>
+	</function>
+	<function>
+		<name>unicodeFormat</name>
+		<function-class>com.liferay.portal.kernel.util.UnicodeFormatter</function-class>
+		<function-signature>java.lang.String toString(java.lang.String)</function-signature>
+	</function>
+</taglib>
