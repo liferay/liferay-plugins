@@ -23,7 +23,7 @@
 		<column name="creatorClassPK" type="long" />
 		<column name="content" type="String" />
 		<column name="type" type="int" />
-		<column name="receiverMicroblogsEntryId" type="long" />
+		<column name="parentMicroblogsEntryId" type="long" />
 		<column name="socialRelationType" type="int" />
 
 		<!-- Order -->
@@ -52,9 +52,9 @@
 			<finder-column name="creatorClassNameId" />
 			<finder-column name="type" />
 		</finder>
-		<finder name="T_RMEI" return-type="Collection">
+		<finder name="T_P" return-type="Collection">
 			<finder-column name="type" />
-			<finder-column name="receiverMicroblogsEntryId" />
+			<finder-column name="parentMicroblogsEntryId" />
 		</finder>
 		<finder name="CCNI_CCPK_T" return-type="Collection">
 			<finder-column name="creatorClassNameId" />
