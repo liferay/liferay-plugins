@@ -17,7 +17,6 @@
 
 package com.liferay.microblogs.service.impl;
 
-import com.liferay.compat.portal.util.PortalUtil;
 import com.liferay.microblogs.UnsupportedMicroblogsEntryException;
 import com.liferay.microblogs.microblogs.social.MicroblogsActivityKeys;
 import com.liferay.microblogs.model.MicroblogsEntry;
@@ -153,7 +152,7 @@ public class MicroblogsEntryLocalServiceImpl
 		microblogsEntry.setCreateDate(now);
 		microblogsEntry.setModifiedDate(now);
 		microblogsEntry.setCreatorClassNameId(
-			PortalUtil.getClassNameId(User.class));
+			classNameLocalService.getClassNameId(User.class));
 		microblogsEntry.setCreatorClassPK(user.getUserId());
 		microblogsEntry.setContent(content);
 		microblogsEntry.setType(type);
