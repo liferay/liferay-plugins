@@ -14,14 +14,21 @@
 
 package com.liferay.sync.admin.portlet;
 
+import com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.PrefsPropsUtil;
+import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.UnicodeProperties;
+import com.liferay.portal.model.Group;
 import com.liferay.portal.security.auth.CompanyThreadLocal;
+import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.sync.shared.util.PortletPropsKeys;
-import com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet;
+
+import java.io.IOException;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
+import javax.portlet.PortletException;
 import javax.portlet.PortletPreferences;
 
 /**
@@ -29,7 +36,39 @@ import javax.portlet.PortletPreferences;
  */
 public class AdminPortlet extends MVCPortlet {
 
-	public void updatePreferences(
+	@Override
+	public void processAction(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws IOException, PortletException {
+
+		try {
+			updatePreferences(actionRequest, actionResponse);
+			updateTypeSettingsProperties(actionRequest, actionResponse);
+
+			addSuccessMessage(actionRequest, actionResponse);
+
+			sendRedirect(actionRequest, actionResponse);
+		}
+		catch (Exception e) {
+			throw new PortletException(e);
+		}
+	}
+
+	protected void updateGroup(long groupId, boolean syncEnabled) {
+		Group group = GroupLocalServiceUtil.fetchGroup(groupId);
+
+		UnicodeProperties typeSettingsProperties =
+			group.getTypeSettingsProperties();
+
+		typeSettingsProperties.setProperty(
+			"syncEnabled", String.valueOf(syncEnabled));
+
+		group.setTypeSettingsProperties(typeSettingsProperties);
+
+		GroupLocalServiceUtil.updateGroup(group);
+	}
+
+	protected void updatePreferences(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
@@ -55,6 +94,25 @@ public class AdminPortlet extends MVCPortlet {
 			PortletPropsKeys.SYNC_SERVICES_ENABLED, String.valueOf(enabled));
 
 		portletPreferences.store();
+	}
+
+	protected void updateTypeSettingsProperties(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws Exception {
+
+		String disabledGroupIds = ParamUtil.getString(
+			actionRequest, "disabledGroupIds");
+
+		for (String groupId : StringUtil.split(disabledGroupIds)) {
+			updateGroup(Long.valueOf(groupId), false);
+		}
+
+		String enabledGroupIds = ParamUtil.getString(
+			actionRequest, "enabledGroupIds");
+
+		for (String groupId : StringUtil.split(enabledGroupIds)) {
+			updateGroup(Long.valueOf(groupId), true);
+		}
 	}
 
 }

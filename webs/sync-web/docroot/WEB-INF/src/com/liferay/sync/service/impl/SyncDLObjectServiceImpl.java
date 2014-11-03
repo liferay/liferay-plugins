@@ -525,7 +525,23 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 	@Override
 	public List<Group> getUserSitesGroups() throws PortalException {
 		try {
-			return groupService.getUserSitesGroups();
+			List<Group> groups = new ArrayList<Group>();
+
+			for (Group userSiteGroup : groupService.getUserSitesGroups()) {
+				boolean syncEnabled = GetterUtil.getBoolean(
+					userSiteGroup.getTypeSettingsProperty("syncEnabled"), true);
+
+				if (syncEnabled) {
+					if (userSiteGroup.isGuest()) {
+						userSiteGroup.setName(
+							userSiteGroup.getDescriptiveName());
+					}
+
+					groups.add(userSiteGroup);
+				}
+			}
+
+			return groups;
 		}
 		catch (PortalException pe) {
 			throw new PortalException(pe.getClass().getName(), pe);
@@ -732,22 +748,22 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 	protected SyncDLObject checkModifiedTime(
 			SyncDLObject syncDLObject, long typePk)
 		throws PortalException {
-	
+
 		DynamicQuery dynamicQuery = DLSyncEventLocalServiceUtil.dynamicQuery();
-	
+
 		dynamicQuery.add(RestrictionsFactoryUtil.eq("typePK", typePk));
-	
+
 		List<DLSyncEvent> dlSyncEvents =
 			DLSyncEventLocalServiceUtil.dynamicQuery(dynamicQuery);
-	
+
 		if (dlSyncEvents.isEmpty()) {
 			return syncDLObject;
 		}
-	
+
 		DLSyncEvent dlSyncEvent = dlSyncEvents.get(0);
-	
+
 		syncDLObject.setModifiedTime(dlSyncEvent.getModifiedTime());
-	
+
 		return syncDLObject;
 	}
 
