@@ -95,8 +95,8 @@ int pollInterval = PrefsPropsUtil.getInteger(portletPreferences, themeDisplay.ge
 		window,
 		'<portlet:namespace />submit',
 		function() {
-			document.<portlet:namespace />fm.<portlet:namespace />enabledGroupIds.value = Liferay.Util.listSelect(document.<portlet:namespace />fm.<portlet:namespace />currentGroupIds);
 			document.<portlet:namespace />fm.<portlet:namespace />disabledGroupIds.value = Liferay.Util.listSelect(document.<portlet:namespace />fm.<portlet:namespace />availableGroupIds);
+			document.<portlet:namespace />fm.<portlet:namespace />enabledGroupIds.value = Liferay.Util.listSelect(document.<portlet:namespace />fm.<portlet:namespace />currentGroupIds);
 
 			submitForm(document.<portlet:namespace />fm);
 		},

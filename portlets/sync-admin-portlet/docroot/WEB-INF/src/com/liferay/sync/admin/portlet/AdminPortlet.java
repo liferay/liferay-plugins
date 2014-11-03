@@ -103,15 +103,15 @@ public class AdminPortlet extends MVCPortlet {
 		String disabledGroupIds = ParamUtil.getString(
 			actionRequest, "disabledGroupIds");
 
-		for (String groupId : StringUtil.split(disabledGroupIds)) {
-			updateGroup(Long.valueOf(groupId), false);
+		for (long groupId : StringUtil.split(disabledGroupIds, 0L)) {
+			updateGroup(groupId, false);
 		}
 
 		String enabledGroupIds = ParamUtil.getString(
 			actionRequest, "enabledGroupIds");
 
-		for (String groupId : StringUtil.split(enabledGroupIds)) {
-			updateGroup(Long.valueOf(groupId), true);
+		for (long groupId : StringUtil.split(enabledGroupIds, 0L)) {
+			updateGroup(groupId, true);
 		}
 	}
 
