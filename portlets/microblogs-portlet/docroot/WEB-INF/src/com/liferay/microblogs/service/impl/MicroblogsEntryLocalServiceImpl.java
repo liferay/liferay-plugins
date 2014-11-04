@@ -181,7 +181,7 @@ public class MicroblogsEntryLocalServiceImpl
 		SocialActivityLocalServiceUtil.addActivity(
 			userId, 0, MicroblogsEntry.class.getName(), microblogsEntryId,
 			activityKey, extraDataJSONObject.toString(),
-			microblogsEntry.getReceiverUserId());
+			microblogsEntry.getParentMicroblogsUserId());
 
 		// Notification
 

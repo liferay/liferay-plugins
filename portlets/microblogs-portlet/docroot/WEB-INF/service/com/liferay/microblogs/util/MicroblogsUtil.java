@@ -178,7 +178,7 @@ public class MicroblogsUtil {
 			return microblogsEntry.getUserId();
 		}
 
-		return microblogsEntry.getReceiverUserId();
+		return microblogsEntry.getParentMicroblogsUserId();
 	}
 
 	public static String getProcessedContent(

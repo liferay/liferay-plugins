@@ -106,13 +106,13 @@ public class MicroblogsUserNotificationHandler
 					MicroblogsEntryConstants.
 						NOTIFICATION_TYPE_REPLY_TO_REPLIED) {
 
-			User receiverUser = UserLocalServiceUtil.fetchUser(
-				microblogsEntry.getReceiverUserId());
+			User user = UserLocalServiceUtil.fetchUser(
+				microblogsEntry.getParentMicroblogsUserId());
 
-			if (receiverUser != null) {
+			if (user != null) {
 				title = serviceContext.translate(
 					"x-also-commented-on-x's-post", userFullName,
-					receiverUser.getFullName());
+					user.getFullName());
 			}
 		}
 		else if (notificationType ==

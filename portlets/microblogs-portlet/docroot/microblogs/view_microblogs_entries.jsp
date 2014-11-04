@@ -78,7 +78,7 @@ if (microblogsEntries != null) {
 					<span><a href="<%= userDisplayURL %>"><%= userFullName %></a></span>
 
 					<c:if test="<%= microblogsEntry.getType() == MicroblogsEntryConstants.TYPE_REPOST %>">
-						<span class="small"><liferay-ui:message key="reposted-from" /></span> <span><%= HtmlUtil.escape(PortalUtil.getUserName(microblogsEntry.getReceiverUserId(), StringPool.BLANK)) %></span>
+						<span class="small"><liferay-ui:message key="reposted-from" /></span> <span><%= HtmlUtil.escape(PortalUtil.getUserName(microblogsEntry.getParentMicroblogsUserId(), StringPool.BLANK)) %></span>
 					</c:if>
 				</div>
 
