@@ -140,6 +140,12 @@ $defaultTextColor: #202020;
 			position: relative;
 		}
 
+		.split > .dropdown-toggle:before {
+			color: #FFF;
+			display: block;
+			height: 24px;
+		}
+
 		.user-notifications-count {
 			background-color: #FFF;
 

@@ -7,6 +7,22 @@
 	@include border-radius(4px);
 }
 
+@mixin font-awesome($icon) {
+	-webkit-font-smoothing: antialiased;
+	color: #0066B3;
+	content: $icon;
+	display: block;
+	font-family: 'fontawesome-alloy';
+	font-size: 22px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: normal;
+	line-height: 1;
+	speak: none;
+	text-transform: none;
+	vertical-align: middle;
+}
+
 @mixin keyframes($name) {
 	@-o-keyframes #{$name} {
 		@content;
@@ -232,30 +248,75 @@
 	&.pull-right:after {
 		right: 20px;
 	}
+
+	.dockbar.navbar .nav .dockbar-user-notifications.split > .dropdown-toggle {
+		height: 23px;
+		padding: 10px;
+	}
 }
 
 .dockbar-user-notifications {
-	.dropdown-toggle .user-notifications-count {
-		background-color: #0066B3;
-		border: 1px solid #0066B3;
-
-		@include default-border-radius;
-
-		display: block;
-		line-height: 1.25em;
-		margin: 4px 0;
-		padding: 2px 6px;
+	> .dropdown-toggle {
 		position: relative;
 
-		&.alert {
-			background-color: #FAA732;
-			border: 1px solid #FAA732;
-			color: #FFF;
+		.actionable-user-notifications-count, .non-actionable-user-notifications-count, .user-notifications-count {
+			background-color: #0066B3;
+			border: 1px solid #0066B3;
 
-			@include experimental(animation, shakeNotificationCount 0.8s linear infinite);
-			@include experimental(animation-iteration-count, 2);
-			@include experimental(transform-origin, 50% 50%);
+			@include default-border-radius;
+
+			display: block;
+			line-height: 1.25em;
+			margin: 4px 0;
+			padding: 2px 6px;
+			position: relative;
+
+			&.alert {
+				background-color: #FAA732;
+				border: 1px solid #FAA732;
+				color: #FFF;
+
+				@include experimental(animation, shakeNotificationCount 0.8s linear infinite);
+				@include experimental(animation-iteration-count, 2);
+				@include experimental(transform-origin, 50% 50%);
+			}
 		}
+
+		.actionable-user-notifications-count, .non-actionable-user-notifications-count {
+			background-color: #2AAAE6;
+
+			@include border-radius(8px);
+
+			border-width: 0;
+
+			@include box-shadow(-1px 1px 1px #00518E);
+
+			font-size: 10px;
+			font-weight: 200;
+			height: 16px;
+			line-height: 16px;
+			padding: 0;
+			position: absolute;
+			right: 4px;
+			text-align: center;
+			top: 2px;
+			white-space: nowrap;
+			width: 16px;
+
+			&.alert {
+				border-width: 0;
+
+				@include box-shadow(-1px 1px 1px #C87501);
+			}
+		}
+	}
+
+	&.actionable-container.split > .dropdown-toggle:before {
+		@include font-awesome('\f0c0');
+	}
+
+	&.non-actionable-container.split > .dropdown-toggle:before {
+		@include font-awesome('\f0f3');
 	}
 
 	.dropdown-menu {
@@ -266,10 +327,18 @@
 		background-color: #FFF;
 
 		@include default-border-radius;
+
+		> .user-notifications {
+			overflow: hidden;
+		}
 	}
 
 	.non-actionable {
 		margin-bottom: 10px;
+	}
+
+	&.split .non-actionable {
+		margin-bottom: 0;
 	}
 
 	.user-notifications-header {
