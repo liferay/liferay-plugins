@@ -114,7 +114,16 @@ AUI.add(
 
 						portletURL.setWindowState('normal');
 
-						A.io.request(portletURL.toString());
+						A.io.request(
+							portletURL.toString(),
+							{
+								on: {
+									success: function() {
+										instance._getNotificationsCount();
+									}
+								}
+							}
+						);
 					},
 
 					_updateDockbarNotificationsCount: function(response) {
