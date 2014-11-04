@@ -14,6 +14,7 @@
 
 package com.liferay.notifications.dockbarnotifications.poller;
 
+import com.liferay.notifications.util.PortletPropsValues;
 import com.liferay.portal.kernel.poller.BasePollerProcessor;
 import com.liferay.portal.kernel.poller.PollerRequest;
 import com.liferay.portal.kernel.poller.PollerResponse;
@@ -42,28 +43,75 @@ public class DockbarNotificationsPollerProcessor extends BasePollerProcessor {
 
 		PollerResponse pollerResponse = pollerRequest.createPollerResponse();
 
-		int newUserNotificationsCount =
-			UserNotificationEventLocalServiceUtil.
-				getDeliveredUserNotificationEventsCount(
-					pollerRequest.getUserId(),
-					UserNotificationDeliveryConstants.TYPE_WEBSITE, false);
-
-		pollerResponse.setParameter(
-			"newUserNotificationsCount",
-			String.valueOf(newUserNotificationsCount));
-
 		pollerResponse.setParameter(
 			"timestamp", String.valueOf(System.currentTimeMillis()));
 
-		int unreadUserNotificationsCount =
-			UserNotificationEventLocalServiceUtil.
-				getArchivedUserNotificationEventsCount(
-					pollerRequest.getUserId(),
-					UserNotificationDeliveryConstants.TYPE_WEBSITE, false);
+		if (PortletPropsValues.USER_NOTIFICATION_DOCKBAR_SPLIT) {
+			int newActionableUserNotificationsCount =
+				UserNotificationEventLocalServiceUtil.
+					getDeliveredUserNotificationEventsCount(
+						pollerRequest.getUserId(),
+						UserNotificationDeliveryConstants.TYPE_WEBSITE, false,
+						true);
 
-		pollerResponse.setParameter(
-			"unreadUserNotificationsCount",
-			String.valueOf(unreadUserNotificationsCount));
+			pollerResponse.setParameter(
+				"newActionableUserNotificationsCount",
+				String.valueOf(newActionableUserNotificationsCount));
+
+			int newNonActionableUserNotificationsCount =
+				UserNotificationEventLocalServiceUtil.
+					getDeliveredUserNotificationEventsCount(
+						pollerRequest.getUserId(),
+						UserNotificationDeliveryConstants.TYPE_WEBSITE, false,
+						false);
+
+			pollerResponse.setParameter(
+				"newNonActionableUserNotificationsCount",
+				String.valueOf(newNonActionableUserNotificationsCount));
+
+			int unreadActionableUserNotificationsCount =
+				UserNotificationEventLocalServiceUtil.
+					getArchivedUserNotificationEventsCount(
+						pollerRequest.getUserId(),
+						UserNotificationDeliveryConstants.TYPE_WEBSITE, true,
+						false);
+
+			pollerResponse.setParameter(
+				"unreadActionableUserNotificationsCount",
+				String.valueOf(unreadActionableUserNotificationsCount));
+
+			int unreadNonActionableUserNotificationsCount =
+				UserNotificationEventLocalServiceUtil.
+					getArchivedUserNotificationEventsCount(
+						pollerRequest.getUserId(),
+						UserNotificationDeliveryConstants.TYPE_WEBSITE, false,
+						false);
+
+			pollerResponse.setParameter(
+				"unreadNonActionableUserNotificationsCount",
+				String.valueOf(unreadNonActionableUserNotificationsCount));
+		}
+		else {
+			int newUserNotificationsCount =
+				UserNotificationEventLocalServiceUtil.
+					getDeliveredUserNotificationEventsCount(
+						pollerRequest.getUserId(),
+						UserNotificationDeliveryConstants.TYPE_WEBSITE, false);
+
+			pollerResponse.setParameter(
+				"newUserNotificationsCount",
+				String.valueOf(newUserNotificationsCount));
+
+			int unreadUserNotificationsCount =
+				UserNotificationEventLocalServiceUtil.
+					getArchivedUserNotificationEventsCount(
+						pollerRequest.getUserId(),
+						UserNotificationDeliveryConstants.TYPE_WEBSITE, false);
+
+			pollerResponse.setParameter(
+				"unreadUserNotificationsCount",
+				String.valueOf(unreadUserNotificationsCount));
+		}
 
 		return pollerResponse;
 	}

@@ -30,9 +30,9 @@ AUI.add(
 									return;
 								}
 
-								instance._setDelivered();
-
 								var currentTarget = event.currentTarget;
+
+								instance._setDelivered(currentTarget.hasClass('actionable-container'));
 
 								var container = currentTarget.one('.dockbar-user-notifications-container');
 
@@ -89,11 +89,7 @@ AUI.add(
 										var response = this.get('responseData');
 
 										if (response) {
-											var newUserNotificationsCount = response.newUserNotificationsCount;
-											var timestamp = response.timestamp;
-											var unreadUserNotificationsCount = response.unreadUserNotificationsCount;
-
-											instance._updateDockbarNotificationsCount(newUserNotificationsCount, timestamp, unreadUserNotificationsCount);
+											instance._updateDockbarNotificationsCount(response);
 										}
 									}
 								}
@@ -104,23 +100,27 @@ AUI.add(
 					_onPollerUpdate: function(response) {
 						var instance = this;
 
-						instance._updateDockbarNotificationsCount(response.newUserNotificationsCount, response.timestamp, response.unreadUserNotificationsCount);
+						instance._updateDockbarNotificationsCount(response);
 					},
 
-					_setDelivered: function() {
+					_setDelivered: function(actionable) {
 						var instance = this;
 
 						var portletURL = new Liferay.PortletURL.createURL(instance._baseActionURL);
 
 						portletURL.setParameter('javax.portlet.action', 'setDelivered');
 
+						portletURL.setParameter('actionable', actionable);
+
 						portletURL.setWindowState('normal');
 
 						A.io.request(portletURL.toString());
 					},
 
-					_updateDockbarNotificationsCount: function(newUserNotificationsCount, timestamp, unreadUserNotificationsCount) {
+					_updateDockbarNotificationsCount: function(response) {
 						var instance = this;
+
+						var timestamp = response.timestamp;
 
 						if (!instance._previousTimestamp || (instance._previousTimestamp < timestamp)) {
 							instance._previousTimestamp = timestamp;
@@ -128,9 +128,27 @@ AUI.add(
 							var dockbarUserNotificationsCount = A.one('.dockbar-user-notifications .user-notifications-count');
 
 							if (dockbarUserNotificationsCount) {
-								dockbarUserNotificationsCount.toggleClass('alert', (newUserNotificationsCount > 0));
+								dockbarUserNotificationsCount.toggleClass('alert', (response.newUserNotificationsCount > 0));
 
-								dockbarUserNotificationsCount.setHTML(unreadUserNotificationsCount);
+								dockbarUserNotificationsCount.setHTML(response.unreadUserNotificationsCount);
+							}
+
+							var dockbarActionableUserNotificationsCount = A.one('.dockbar-user-notifications .actionable-user-notifications-count');
+
+							if (dockbarActionableUserNotificationsCount) {
+								dockbarActionableUserNotificationsCount.toggleClass('alert', (response.newActionableUserNotificationsCount > 0));
+								dockbarActionableUserNotificationsCount.toggleClass('hide', (response.unreadActionableUserNotificationsCount == 0));
+
+								dockbarActionableUserNotificationsCount.setHTML(response.unreadActionableUserNotificationsCount);
+							}
+
+							var dockbarNonActionableUserNotificationsCount = A.one('.dockbar-user-notifications .non-actionable-user-notifications-count');
+
+							if (dockbarNonActionableUserNotificationsCount) {
+								dockbarNonActionableUserNotificationsCount.toggleClass('alert', (response.newNonActionableUserNotificationsCount > 0));
+								dockbarNonActionableUserNotificationsCount.toggleClass('hide', (response.unreadNonActionableUserNotificationsCount == 0));
+
+								dockbarNonActionableUserNotificationsCount.setHTML(response.unreadNonActionableUserNotificationsCount);
 							}
 						}
 					}
@@ -372,6 +390,21 @@ AUI.add(
 
 											if (notificationsCountNode) {
 												notificationsCountNode.setHTML(newTotalUuserNotificationEventsCount);
+											}
+
+											if (instance._actionable) {
+												var actionableNotificationsCountNode = A.one('#' + instance._namespace + 'actionableUserNotificationsCount');
+
+												if (actionableNotificationsCountNode) {
+													actionableNotificationsCountNode.setHTML(newTotalUuserNotificationEventsCount);
+												}
+											}
+											else {
+												var nonActionableNotificationsCountNode = A.one('#' + instance._namespace + 'nonActionableUserNotificationsCount');
+
+												if (nonActionableNotificationsCountNode) {
+													nonActionableNotificationsCountNode.setHTML(newTotalUuserNotificationEventsCount);
+												}
 											}
 
 											var entries = [];
