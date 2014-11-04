@@ -1557,7 +1557,7 @@ input, textarea {
 .dockbar-user-notifications, .notifications-portlet {
 	@include hashtag;
 
-	.non-actionable .user-notification {
+	.nonactionable .user-notification {
 		&, &.archived {
 			.lfr-icon-menu .dropdown-menu {
 				.taglib-icon:hover .unsubscribe-info {

@@ -14,7 +14,7 @@
  */
 --%>
 
-<div class="non-actionable">
+<div class="nonactionable">
 	<div class="user-notifications-header">
 		<liferay-portlet:renderURL plid="<%= notificationsPlid %>" portletName="<%= PortletKeys.NOTIFICATIONS %>" var="viewAllNonActionableNotifications" windowState="<%= LiferayWindowState.MAXIMIZED.toString() %>">
 			<portlet:param name="mvcPath" value="/notifications/view.jsp" />

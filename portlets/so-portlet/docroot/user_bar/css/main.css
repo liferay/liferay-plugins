@@ -209,7 +209,7 @@ $defaultTextColor: #202020;
 		background-color: #FAFAFA;
 	}
 
-	.actionable, .non-actionable {
+	.actionable, .nonactionable {
 		border: 1px solid #EEE;
 
 		.user-notifications-header {
@@ -481,7 +481,7 @@ $defaultTextColor: #202020;
 							padding-left: 30px;
 						}
 
-						.non-actionable .user-notification:hover {
+						.nonactionable .user-notification:hover {
 							background-color: rgba(0, 0, 0, 0.2);
 						}
 					}
@@ -507,7 +507,7 @@ $defaultTextColor: #202020;
 	/* ---------- Notifications ---------- */
 
 	.dockbar-user-notifications {
-		.actionable, .non-actionable {
+		.actionable, .nonactionable {
 			background: transparent;
 			border-bottom-width: 0;
 

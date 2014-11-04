@@ -67,7 +67,7 @@
 				</div>
 			</li>
 
-			<li class="dockbar-user-notifications dropdown non-actionable-container split toggle-controls" id="<portlet:namespace />nonActionableUserNotifications">
+			<li class="dockbar-user-notifications dropdown nonactionable-container split toggle-controls" id="<portlet:namespace />nonactionableUserNotifications">
 				<a class="dropdown-toggle user-notification-link" href="javascript:;">
 
 					<%
@@ -83,25 +83,25 @@
 					}
 					%>
 
-					<span class="non-actionable-user-notifications-count <%= nonActionablableCssClass %>" id="<portlet:namespace />nonActionableUserNotificationsCount"><%= unreadNonActionableUserNotificationsCount %></span>
+					<span class="nonactionable-user-notifications-count <%= nonActionablableCssClass %>" id="<portlet:namespace />nonactionableUserNotificationsCount"><%= unreadNonActionableUserNotificationsCount %></span>
 				</a>
 
 				<div class="dockbar-user-notifications-container">
 					<ul class="dropdown-menu pull-right user-notifications-list">
-						<%@ include file="/dockbar_notifications/non_actionable_notifications.jspf" %>
+						<%@ include file="/dockbar_notifications/nonactionable_notifications.jspf" %>
 					</ul>
 				</div>
 			</li>
 		</c:when>
 		<c:otherwise>
-			<li class="actionable-container dockbar-user-notifications dropdown non-actionable-container toggle-controls" id="<portlet:namespace />userNotifications">
+			<li class="actionable-container dockbar-user-notifications dropdown nonactionable-container toggle-controls" id="<portlet:namespace />userNotifications">
 				<a class="dropdown-toggle user-notification-link" href="javascript:;">
 					<span class='user-notifications-count <%= (newUserNotificationsCount > 0) ? "alert" : StringPool.BLANK %>' id="<portlet:namespace />userNotificationsCount"><%= unreadUserNotificationsCount %></span>
 				</a>
 
 				<div class="dockbar-user-notifications-container">
 					<ul class="dropdown-menu pull-right user-notifications-list">
-						<%@ include file="/dockbar_notifications/non_actionable_notifications.jspf" %>
+						<%@ include file="/dockbar_notifications/nonactionable_notifications.jspf" %>
 
 						<%@ include file="/dockbar_notifications/actionable_notifications.jspf" %>
 					</ul>
@@ -111,7 +111,7 @@
 	</c:choose>
 
 	<aui:script use="aui-base,liferay-plugin-dockbar-notifications,liferay-plugin-notifications-list">
-		var nonActionableNotificationsList = new Liferay.NotificationsList(
+		var nonactionableNotificationsList = new Liferay.NotificationsList(
 			{
 				actionable: <%= false %>,
 				baseActionURL: '<%= PortletURLFactoryUtil.create(request, portletDisplay.getId(), themeDisplay.getPlid(), PortletRequest.ACTION_PHASE) %>',
@@ -121,7 +121,7 @@
 				fullView: <%= false %>,
 				markAllAsReadNode: '.mark-all-as-read',
 				namespace: '<portlet:namespace />',
-				notificationsContainer: '.dockbar-user-notifications .dockbar-user-notifications-container .user-notifications-list .non-actionable',
+				notificationsContainer: '.dockbar-user-notifications .dockbar-user-notifications-container .user-notifications-list .nonactionable',
 				notificationsCount: '.count',
 				notificationsNode: '.user-notifications',
 				portletKey: '<%= portletDisplay.getId() %>',
@@ -151,7 +151,7 @@
 				actionableNotificationsList: actionableNotificationsList,
 				baseActionURL: '<%= PortletURLFactoryUtil.create(request, portletDisplay.getId(), themeDisplay.getPlid(), PortletRequest.ACTION_PHASE) %>',
 				baseResourceURL: '<%= PortletURLFactoryUtil.create(request, portletDisplay.getId(), themeDisplay.getPlid(), PortletRequest.RESOURCE_PHASE) %>',
-				nonActionableNotificationsList: nonActionableNotificationsList,
+				nonactionableNotificationsList: nonactionableNotificationsList,
 				portletKey: '<%= portletDisplay.getId() %>'
 			}
 		);

@@ -20,11 +20,11 @@
 boolean actionable = ParamUtil.getBoolean(request, "actionable");
 %>
 
-<div class="clearfix user-notifications-container <%= actionable ? "actionable" : "non-actionable" %>">
+<div class="clearfix user-notifications-container <%= actionable ? "actionable" : "nonactionable" %>">
 	<aui:row>
 		<aui:col cssClass="nav-bar user-notifications-sidebar" width="<%= 25 %>">
 			<div class="nav">
-				<a class="clearfix non-actionable <%= !actionable ? "selected" : "" %>" href="javascript:;">
+				<a class="clearfix nonactionable <%= !actionable ? "selected" : "" %>" href="javascript:;">
 					<span class="title"><liferay-ui:message key="notifications" /></span>
 
 					<%
@@ -83,7 +83,7 @@ boolean actionable = ParamUtil.getBoolean(request, "actionable");
 </div>
 
 <aui:script use="aui-base,liferay-plugin-notifications">
-	var notificationsCount = '.non-actionable .count';
+	var notificationsCount = '.nonactionable .count';
 
 	if (<%= actionable %>) {
 		notificationsCount = '.actionable .count'

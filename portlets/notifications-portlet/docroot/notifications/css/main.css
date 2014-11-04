@@ -66,7 +66,7 @@
 /* ---------- Dockbar & notifications portlet ---------- */
 
 .dockbar-user-notifications, .notifications-portlet {
-	.non-actionable .user-notification {
+	.nonactionable .user-notification {
 		&, &.archived {
 			&:hover, &.hover {
 				background-color: #F3F3F3;
@@ -258,7 +258,7 @@
 	> .dropdown-toggle {
 		position: relative;
 
-		.actionable-user-notifications-count, .non-actionable-user-notifications-count, .user-notifications-count {
+		.actionable-user-notifications-count, .nonactionable-user-notifications-count, .user-notifications-count {
 			background-color: #0066B3;
 			border: 1px solid #0066B3;
 
@@ -281,7 +281,7 @@
 			}
 		}
 
-		.actionable-user-notifications-count, .non-actionable-user-notifications-count {
+		.actionable-user-notifications-count, .nonactionable-user-notifications-count {
 			background-color: #2AAAE6;
 
 			@include border-radius(8px);
@@ -314,7 +314,7 @@
 		@include font-awesome('\f0c0');
 	}
 
-	&.non-actionable-container.split > .dropdown-toggle:before {
+	&.nonactionable-container.split > .dropdown-toggle:before {
 		@include font-awesome('\f0f3');
 	}
 
@@ -322,7 +322,7 @@
 		width: 350px;
 	}
 
-	.actionable, .non-actionable {
+	.actionable, .nonactionable {
 		background-color: #FFF;
 
 		@include default-border-radius;
@@ -332,11 +332,11 @@
 		}
 	}
 
-	.non-actionable {
+	.nonactionable {
 		margin-bottom: 10px;
 	}
 
-	&.split .non-actionable {
+	&.split .nonactionable {
 		margin-bottom: 0;
 	}
 
@@ -388,7 +388,7 @@
 		}
 	}
 
-	.non-actionable .user-notification {
+	.nonactionable .user-notification {
 		background-color: #EDEDED;
 
 		&.archived {
