@@ -16,7 +16,6 @@ package com.liferay.notifications.notifications.portlet;
 
 import com.liferay.notifications.util.PortletKeys;
 import com.liferay.notifications.util.PortletPropsValues;
-import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
@@ -615,9 +614,8 @@ public class NotificationsPortlet extends MVCPortlet {
 			actionURL.setParameter(
 				"javax.portlet.action", "deleteUserNotificationEvent");
 
-			actionDiv =
-				StringUtil.replace(
-					_DELETE_DIV, "[$DELETE_URL$]", actionURL.toString());
+			actionDiv = StringUtil.replace(
+				_DELETE_DIV, "[$DELETE_URL$]", actionURL.toString());
 		}
 		else {
 			actionURL.setParameter("javax.portlet.action", "markAsRead");
@@ -639,9 +637,8 @@ public class NotificationsPortlet extends MVCPortlet {
 				userNotificationEvent, liferayPortletResponse, themeDisplay);
 		}
 
-		Portlet portlet =
-			PortletLocalServiceUtil.getPortletById(
-				themeDisplay.getCompanyId(), userNotificationEvent.getType());
+		Portlet portlet = PortletLocalServiceUtil.getPortletById(
+			themeDisplay.getCompanyId(), userNotificationEvent.getType());
 
 		String portletName = portlet.getDisplayName();
 		String portletIcon = portlet.getContextPath() + portlet.getIcon();
