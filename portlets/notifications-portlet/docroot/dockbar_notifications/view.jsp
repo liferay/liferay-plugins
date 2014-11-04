@@ -47,52 +47,52 @@
 				<%@ include file="/dockbar_notifications/actionable_notifications.jspf" %>
 			</ul>
 		</div>
-
-		<aui:script use="aui-base,liferay-plugin-dockbar-notifications,liferay-plugin-notifications-list">
-			var nonActionableNotificationsList = new Liferay.NotificationsList(
-				{
-					actionable: <%= false %>,
-					baseActionURL: '<%= PortletURLFactoryUtil.create(request, portletDisplay.getId(), themeDisplay.getPlid(), PortletRequest.ACTION_PHASE) %>',
-					baseRenderURL: '<%= PortletURLFactoryUtil.create(request, portletDisplay.getId(), themeDisplay.getPlid(), PortletRequest.RENDER_PHASE) %>',
-					baseResourceURL: '<%= PortletURLFactoryUtil.create(request, portletDisplay.getId(), themeDisplay.getPlid(), PortletRequest.RESOURCE_PHASE) %>',
-					delta: <%= dockbarViewDelta %>,
-					fullView: <%= false %>,
-					markAllAsReadNode: '.mark-all-as-read',
-					namespace: '<portlet:namespace />',
-					notificationsContainer: '.dockbar-user-notifications .dockbar-user-notifications-container .user-notifications-list .non-actionable',
-					notificationsCount: '.count',
-					notificationsNode: '.user-notifications',
-					portletKey: '<%= portletDisplay.getId() %>',
-					start: 0
-				}
-			);
-
-			var actionableNotificationsList = new Liferay.NotificationsList(
-				{
-					actionable: <%= true %>,
-					baseActionURL: '<%= PortletURLFactoryUtil.create(request, portletDisplay.getId(), themeDisplay.getPlid(), PortletRequest.ACTION_PHASE) %>',
-					baseRenderURL: '<%= PortletURLFactoryUtil.create(request, portletDisplay.getId(), themeDisplay.getPlid(), PortletRequest.RENDER_PHASE) %>',
-					baseResourceURL: '<%= PortletURLFactoryUtil.create(request, portletDisplay.getId(), themeDisplay.getPlid(), PortletRequest.RESOURCE_PHASE) %>',
-					delta: <%= dockbarViewDelta %>,
-					fullView: <%= false %>,
-					namespace: '<portlet:namespace />',
-					notificationsContainer: '.dockbar-user-notifications .dockbar-user-notifications-container .user-notifications-list .actionable',
-					notificationsCount: '.count',
-					notificationsNode: '.user-notifications',
-					portletKey: '<%= portletDisplay.getId() %>',
-					start: 0
-				}
-			);
-
-			new Liferay.DockbarNotifications(
-				{
-					actionableNotificationsList: actionableNotificationsList,
-					baseActionURL: '<%= PortletURLFactoryUtil.create(request, portletDisplay.getId(), themeDisplay.getPlid(), PortletRequest.ACTION_PHASE) %>',
-					baseResourceURL: '<%= PortletURLFactoryUtil.create(request, portletDisplay.getId(), themeDisplay.getPlid(), PortletRequest.RESOURCE_PHASE) %>',
-					nonActionableNotificationsList: nonActionableNotificationsList,
-					portletKey: '<%= portletDisplay.getId() %>'
-				}
-			);
-		</aui:script>
 	</li>
+
+	<aui:script use="aui-base,liferay-plugin-dockbar-notifications,liferay-plugin-notifications-list">
+		var nonActionableNotificationsList = new Liferay.NotificationsList(
+			{
+				actionable: <%= false %>,
+				baseActionURL: '<%= PortletURLFactoryUtil.create(request, portletDisplay.getId(), themeDisplay.getPlid(), PortletRequest.ACTION_PHASE) %>',
+				baseRenderURL: '<%= PortletURLFactoryUtil.create(request, portletDisplay.getId(), themeDisplay.getPlid(), PortletRequest.RENDER_PHASE) %>',
+				baseResourceURL: '<%= PortletURLFactoryUtil.create(request, portletDisplay.getId(), themeDisplay.getPlid(), PortletRequest.RESOURCE_PHASE) %>',
+				delta: <%= dockbarViewDelta %>,
+				fullView: <%= false %>,
+				markAllAsReadNode: '.mark-all-as-read',
+				namespace: '<portlet:namespace />',
+				notificationsContainer: '.dockbar-user-notifications .dockbar-user-notifications-container .user-notifications-list .non-actionable',
+				notificationsCount: '.count',
+				notificationsNode: '.user-notifications',
+				portletKey: '<%= portletDisplay.getId() %>',
+				start: 0
+			}
+		);
+
+		var actionableNotificationsList = new Liferay.NotificationsList(
+			{
+				actionable: <%= true %>,
+				baseActionURL: '<%= PortletURLFactoryUtil.create(request, portletDisplay.getId(), themeDisplay.getPlid(), PortletRequest.ACTION_PHASE) %>',
+				baseRenderURL: '<%= PortletURLFactoryUtil.create(request, portletDisplay.getId(), themeDisplay.getPlid(), PortletRequest.RENDER_PHASE) %>',
+				baseResourceURL: '<%= PortletURLFactoryUtil.create(request, portletDisplay.getId(), themeDisplay.getPlid(), PortletRequest.RESOURCE_PHASE) %>',
+				delta: <%= dockbarViewDelta %>,
+				fullView: <%= false %>,
+				namespace: '<portlet:namespace />',
+				notificationsContainer: '.dockbar-user-notifications .dockbar-user-notifications-container .user-notifications-list .actionable',
+				notificationsCount: '.count',
+				notificationsNode: '.user-notifications',
+				portletKey: '<%= portletDisplay.getId() %>',
+				start: 0
+			}
+		);
+
+		new Liferay.DockbarNotifications(
+			{
+				actionableNotificationsList: actionableNotificationsList,
+				baseActionURL: '<%= PortletURLFactoryUtil.create(request, portletDisplay.getId(), themeDisplay.getPlid(), PortletRequest.ACTION_PHASE) %>',
+				baseResourceURL: '<%= PortletURLFactoryUtil.create(request, portletDisplay.getId(), themeDisplay.getPlid(), PortletRequest.RESOURCE_PHASE) %>',
+				nonActionableNotificationsList: nonActionableNotificationsList,
+				portletKey: '<%= portletDisplay.getId() %>'
+			}
+		);
+	</aui:script>
 </c:if>
