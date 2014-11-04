@@ -13,7 +13,7 @@
 	content: $icon;
 	display: block;
 	font-family: 'fontawesome-alloy';
-	font-size: 22px;
+	font-size: 23px;
 	font-style: normal;
 	font-variant: normal;
 	font-weight: normal;
@@ -248,11 +248,10 @@
 	&.pull-right:after {
 		right: 20px;
 	}
+}
 
-	.dockbar.navbar .nav .dockbar-user-notifications.split > .dropdown-toggle {
-		height: 23px;
-		padding: 10px;
-	}
+.dockbar.navbar .nav .dockbar-user-notifications.split > .dropdown-toggle {
+	padding: 10px;
 }
 
 .dockbar-user-notifications {
