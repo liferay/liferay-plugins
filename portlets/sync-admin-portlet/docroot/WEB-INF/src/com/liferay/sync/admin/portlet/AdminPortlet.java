@@ -97,8 +97,7 @@ public class AdminPortlet extends MVCPortlet {
 	}
 
 	protected void updateTypeSettingsProperties(
-			ActionRequest actionRequest, ActionResponse actionResponse)
-		throws Exception {
+		ActionRequest actionRequest, ActionResponse actionResponse) {
 
 		String disabledGroupIds = ParamUtil.getString(
 			actionRequest, "disabledGroupIds");
