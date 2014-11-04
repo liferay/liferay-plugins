@@ -19,9 +19,9 @@ AUI.add(
 						instance._nonActionableNotificationsList = config.nonActionableNotificationsList;
 						instance._portletKey = config.portletKey;
 
-						var userNotifications = A.one('.dockbar-user-notifications');
+						var navAccountControls =  A.one('.nav-account-controls');
 
-						userNotifications.on(
+						navAccountControls.delegate(
 							'click',
 							function(event) {
 								var target = event.target;
@@ -51,10 +51,16 @@ AUI.add(
 										}
 									);
 
-									instance._nonActionableNotificationsList.render();
-									instance._actionableNotificationsList.render();
+									if (currentTarget.hasClass('actionable-container')) {
+										instance._actionableNotificationsList.render();
+									}
+
+									if (currentTarget.hasClass('non-actionable-container')) {
+										instance._nonActionableNotificationsList.render();
+									}
 								}
-							}
+							},
+							'.dockbar-user-notifications'
 						);
 
 						A.on(

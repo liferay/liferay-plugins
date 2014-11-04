@@ -35,19 +35,48 @@
 	}
 	%>
 
-	<li class="dockbar-user-notifications dropdown" id="<portlet:namespace />userNotifications">
-		<a class="dropdown-toggle user-notification-link" href="javascript:;">
-			<span class='user-notifications-count <%= (newUserNotificationsCount > 0) ? "alert" : StringPool.BLANK %>' id="<portlet:namespace />userNotificationsCount"><%= unreadUserNotificationsCount %></span>
-		</a>
+	<c:choose>
+		<c:when test="<%= PortletPropsValues.USER_NOTIFICATION_DOCKBAR_SPLIT %>">
+			<li class="actionable-container dockbar-user-notifications dropdown split toggle-controls" id="<portlet:namespace />actionableUserNotifications">
+				<a class="dropdown-toggle user-notification-link" href="javascript:;">
+					<span class='user-notifications-count <%= (newUserNotificationsCount > 0) ? "alert" : StringPool.BLANK %>'><%= unreadUserNotificationsCount %></span>
+				</a>
 
-		<div class="dockbar-user-notifications-container">
-			<ul class="dropdown-menu pull-right user-notifications-list">
-				<%@ include file="/dockbar_notifications/non_actionable_notifications.jspf" %>
+				<div class="dockbar-user-notifications-container">
+					<ul class="dropdown-menu pull-right user-notifications-list">
+						<%@ include file="/dockbar_notifications/actionable_notifications.jspf" %>
+					</ul>
+				</div>
+			</li>
 
-				<%@ include file="/dockbar_notifications/actionable_notifications.jspf" %>
-			</ul>
-		</div>
-	</li>
+			<li class="dockbar-user-notifications dropdown non-actionable-container split toggle-controls" id="<portlet:namespace />nonActionableUserNotifications">
+				<a class="dropdown-toggle user-notification-link" href="javascript:;">
+					<span class='user-notifications-count <%= (newUserNotificationsCount > 0) ? "alert" : StringPool.BLANK %>'><%= unreadUserNotificationsCount %></span>
+				</a>
+
+				<div class="dockbar-user-notifications-container">
+					<ul class="dropdown-menu pull-right user-notifications-list">
+						<%@ include file="/dockbar_notifications/non_actionable_notifications.jspf" %>
+					</ul>
+				</div>
+			</li>
+		</c:when>
+		<c:otherwise>
+			<li class="actionable-container dockbar-user-notifications dropdown non-actionable-container toggle-controls" id="<portlet:namespace />userNotifications">
+				<a class="dropdown-toggle user-notification-link" href="javascript:;">
+					<span class='user-notifications-count <%= (newUserNotificationsCount > 0) ? "alert" : StringPool.BLANK %>'><%= unreadUserNotificationsCount %></span>
+				</a>
+
+				<div class="dockbar-user-notifications-container">
+					<ul class="dropdown-menu pull-right user-notifications-list">
+						<%@ include file="/dockbar_notifications/non_actionable_notifications.jspf" %>
+
+						<%@ include file="/dockbar_notifications/actionable_notifications.jspf" %>
+					</ul>
+				</div>
+			</li>
+		</c:otherwise>
+	</c:choose>
 
 	<aui:script use="aui-base,liferay-plugin-dockbar-notifications,liferay-plugin-notifications-list">
 		var nonActionableNotificationsList = new Liferay.NotificationsList(
