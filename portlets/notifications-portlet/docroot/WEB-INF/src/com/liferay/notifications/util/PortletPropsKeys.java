@@ -19,6 +19,9 @@ package com.liferay.notifications.util;
  */
 public class PortletPropsKeys {
 
+	public static final String USER_NOTIFICATION_DOCKBAR_SPLIT =
+		"user.notifications.dockbar.split";
+
 	public static final String USER_NOTIFICATION_ENTRY =
 		"user.notification.entry";
 
