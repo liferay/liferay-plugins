@@ -27,17 +27,17 @@
 
 <script type="text/javascript">
 	AUI().ready(
-	'aui-carousel',
-	function(A) {
-		var component = new A.Carousel(
-			{
-				activeIndex: 'rand',
-				contentBox: '#$contentClass',
-				height: $height.getData(),
-				intervalTime: $duration.getData(),
-				width: $width.getData()
-			}
-		)
-		.render();
-	});
+		'aui-carousel',
+		function(A) {
+			new A.Carousel(
+				{
+					activeIndex: 'rand',
+					contentBox: '#$contentClass',
+					height: $height.getData(),
+					intervalTime: $duration.getData(),
+					width: $width.getData()
+				}
+			).render();
+		}
+	);
 </script>
