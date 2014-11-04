@@ -54,7 +54,9 @@ public class AdminPortlet extends MVCPortlet {
 		}
 	}
 
-	protected void updateGroup(long groupId, boolean syncEnabled) {
+	protected void updateGroup(long groupId, boolean syncEnabled)
+		throws Exception {
+
 		Group group = GroupLocalServiceUtil.fetchGroup(groupId);
 
 		UnicodeProperties typeSettingsProperties =
