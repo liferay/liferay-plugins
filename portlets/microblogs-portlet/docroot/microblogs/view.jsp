@@ -27,7 +27,7 @@ int cur = ParamUtil.getInteger(request, SearchContainer.DEFAULT_CUR_PARAM);
 String redirect = ParamUtil.getString(request, "redirect");
 
 long receiverUserId = ParamUtil.getLong(request, "receiverUserId");
-long receiverMicroblogsEntryId = ParamUtil.getLong(request, "receiverMicroblogsEntryId");
+long parentMicroblogsEntryId = ParamUtil.getLong(request, "parentMicroblogsEntryId");
 
 String assetTagName = ParamUtil.getString(request, "assetTagName");
 
@@ -95,15 +95,15 @@ portletURL.setParameter("tabs1", tabs1);
 
 		results = MicroblogsEntryServiceUtil.getMicroblogsEntries(assetTagName, searchContainer.getStart(), searchContainer.getEnd());
 	}
-	else if (receiverMicroblogsEntryId > 0) {
-		MicroblogsEntry microblogsEntry = MicroblogsEntryLocalServiceUtil.fetchMicroblogsEntry(receiverMicroblogsEntryId);
+	else if (parentMicroblogsEntryId > 0) {
+		MicroblogsEntry microblogsEntry = MicroblogsEntryLocalServiceUtil.fetchMicroblogsEntry(parentMicroblogsEntryId);
 
 		if (microblogsEntry != null) {
 			results.add(microblogsEntry);
 			total = 1;
 		}
 
-		portletURL.setParameter("receiverMicroblogsEntryId", String.valueOf(receiverMicroblogsEntryId));
+		portletURL.setParameter("parentMicroblogsEntryId", String.valueOf(parentMicroblogsEntryId));
 	}
 	else if ((receiverUserId > 0) && (receiverUserId == themeDisplay.getUserId())) {
 		total = MicroblogsEntryLocalServiceUtil.getUserMicroblogsEntriesCount(receiverUserId);
@@ -178,7 +178,7 @@ portletURL.setParameter("tabs1", tabs1);
 				}
 			);
 
-			Liferay.Microblogs.updateViewCount(<%= receiverMicroblogsEntryId %>);
+			Liferay.Microblogs.updateViewCount(<%= parentMicroblogsEntryId %>);
 		}
 	);
 
@@ -187,7 +187,7 @@ portletURL.setParameter("tabs1", tabs1);
 	var showComments = function(microblogsEntryId) {
 		var uri = '<portlet:renderURL windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>"><portlet:param name="mvcPath" value="/microblogs/view_comments.jsp" /></portlet:renderURL>';
 
-		uri = Liferay.Util.addParams('<portlet:namespace />receiverMicroblogsEntryId=' + microblogsEntryId, uri) || uri;
+		uri = Liferay.Util.addParams('<portlet:namespace />parentMicroblogsEntryId=' + microblogsEntryId, uri) || uri;
 
 		var commentsContainer = A.one('#<portlet:namespace />commentsContainer' + microblogsEntryId);
 
@@ -288,7 +288,7 @@ portletURL.setParameter("tabs1", tabs1);
 		'.microblogs-entry .delete a'
 	);
 
-	<c:if test="<%= receiverMicroblogsEntryId > 0 %>">
-		showComments('<%= receiverMicroblogsEntryId %>');
+	<c:if test="<%= parentMicroblogsEntryId > 0 %>">
+		showComments('<%= parentMicroblogsEntryId %>');
 	</c:if>
 </aui:script>

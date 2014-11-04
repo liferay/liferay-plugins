@@ -109,12 +109,13 @@ public class MicroblogsEntryAssetRenderer extends BaseAssetRenderer {
 
 			long microblogsEntryId = _entry.getMicroblogsEntryId();
 
-			if (_entry.getReceiverMicroblogsEntryId() > 0) {
-				microblogsEntryId =_entry.getReceiverMicroblogsEntryId();
+			if (_entry.getParentMicroblogsEntryId() > 0) {
+				microblogsEntryId =_entry.getParentMicroblogsEntryId();
 			}
 
 			portletURL.setParameter(
-				"receiverMicroblogsEntryId", String.valueOf(microblogsEntryId));
+				"parentMicroblogsEntryId",
+				String.valueOf(microblogsEntryId));
 
 			return portletURL.toString();
 		}

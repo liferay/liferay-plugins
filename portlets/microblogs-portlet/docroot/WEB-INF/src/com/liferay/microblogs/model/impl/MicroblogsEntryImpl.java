@@ -30,13 +30,13 @@ public class MicroblogsEntryImpl extends MicroblogsEntryBaseImpl {
 	}
 
 	public long getReceiverUserId() throws PortalException {
-		if (getMicroblogsEntryId() == getReceiverMicroblogsEntryId()) {
+		if (getMicroblogsEntryId() == getParentMicroblogsEntryId()) {
 			return getUserId();
 		}
 
 		MicroblogsEntry microblogsEntry =
 			MicroblogsEntryLocalServiceUtil.getMicroblogsEntry(
-				getReceiverMicroblogsEntryId());
+				getParentMicroblogsEntryId());
 
 		return microblogsEntry.getUserId();
 	}

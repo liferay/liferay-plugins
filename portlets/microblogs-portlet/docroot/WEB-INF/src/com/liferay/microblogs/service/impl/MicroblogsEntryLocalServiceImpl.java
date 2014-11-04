@@ -65,7 +65,7 @@ public class MicroblogsEntryLocalServiceImpl
 
 	public MicroblogsEntry addMicroblogsEntry(
 			long userId, long creatorClassNameId, long creatorClassPK,
-			String content, int type, long receiverMicroblogsEntryId,
+			String content, int type, long parentMicroblogsEntryId,
 			int socialRelationType, ServiceContext serviceContext)
 		throws PortalException {
 
@@ -75,12 +75,12 @@ public class MicroblogsEntryLocalServiceImpl
 
 		Date now = new Date();
 
-		validate(type, receiverMicroblogsEntryId);
+		validate(type, parentMicroblogsEntryId);
 
 		long microblogsEntryId = counterLocalService.increment();
 
-		if (receiverMicroblogsEntryId == 0) {
-			receiverMicroblogsEntryId = microblogsEntryId;
+		if (parentMicroblogsEntryId == 0) {
+			parentMicroblogsEntryId = microblogsEntryId;
 		}
 
 		MicroblogsEntry microblogsEntry = microblogsEntryPersistence.create(
@@ -95,7 +95,7 @@ public class MicroblogsEntryLocalServiceImpl
 		microblogsEntry.setCreatorClassPK(creatorClassPK);
 		microblogsEntry.setContent(content);
 		microblogsEntry.setType(type);
-		microblogsEntry.setReceiverMicroblogsEntryId(receiverMicroblogsEntryId);
+		microblogsEntry.setParentMicroblogsEntryId(parentMicroblogsEntryId);
 		microblogsEntry.setSocialRelationType(socialRelationType);
 
 		microblogsEntryPersistence.update(microblogsEntry);
@@ -115,7 +115,7 @@ public class MicroblogsEntryLocalServiceImpl
 
 	public MicroblogsEntry addMicroblogsEntry(
 			long userId, String content, int type,
-			long receiverMicroblogsEntryId, int socialRelationType,
+			long parentMicroblogsEntryId, int socialRelationType,
 			ServiceContext serviceContext)
 		throws PortalException {
 
@@ -125,12 +125,12 @@ public class MicroblogsEntryLocalServiceImpl
 
 		Date now = new Date();
 
-		validate(type, receiverMicroblogsEntryId);
+		validate(type, parentMicroblogsEntryId);
 
 		long microblogsEntryId = counterLocalService.increment();
 
-		if (receiverMicroblogsEntryId == 0) {
-			receiverMicroblogsEntryId = microblogsEntryId;
+		if (parentMicroblogsEntryId == 0) {
+			parentMicroblogsEntryId = microblogsEntryId;
 		}
 
 		MicroblogsEntry microblogsEntry = microblogsEntryPersistence.create(
@@ -146,7 +146,7 @@ public class MicroblogsEntryLocalServiceImpl
 		microblogsEntry.setCreatorClassPK(user.getUserId());
 		microblogsEntry.setContent(content);
 		microblogsEntry.setType(type);
-		microblogsEntry.setReceiverMicroblogsEntryId(receiverMicroblogsEntryId);
+		microblogsEntry.setParentMicroblogsEntryId(parentMicroblogsEntryId);
 		microblogsEntry.setSocialRelationType(socialRelationType);
 
 		microblogsEntryPersistence.update(microblogsEntry);
@@ -176,7 +176,7 @@ public class MicroblogsEntryLocalServiceImpl
 
 		extraDataJSONObject.put("content", microblogsEntry.getContent());
 		extraDataJSONObject.put(
-			"receiverMicroblogsEntryId", receiverMicroblogsEntryId);
+			"parentMicroblogsEntryId", parentMicroblogsEntryId);
 
 		SocialActivityLocalServiceUtil.addActivity(
 			userId, 0, MicroblogsEntry.class.getName(), microblogsEntryId,
@@ -315,27 +315,27 @@ public class MicroblogsEntryLocalServiceImpl
 		return microblogsEntryPersistence.findByPrimaryKey(microblogsEntryId);
 	}
 
-	public List<MicroblogsEntry> getReceiverMicroblogsEntryMicroblogsEntries(
-		int type, long receiverMicroblogsEntryId, int start, int end) {
+	public List<MicroblogsEntry> getParentMicroblogsEntryMicroblogsEntries(
+		int type, long parentMicroblogsEntryId, int start, int end) {
 
-		return microblogsEntryPersistence.findByT_RMEI(
-			type, receiverMicroblogsEntryId, start, end,
+		return microblogsEntryPersistence.findByT_P(
+			type, parentMicroblogsEntryId, start, end,
 			new EntryCreateDateComparator(true));
 	}
 
-	public List<MicroblogsEntry> getReceiverMicroblogsEntryMicroblogsEntries(
-		int type, long receiverMicroblogsEntryId, int start, int end,
+	public List<MicroblogsEntry> getParentMicroblogsEntryMicroblogsEntries(
+		int type, long parentMicroblogsEntryId, int start, int end,
 		OrderByComparator<MicroblogsEntry> orderByComparator) {
 
-		return microblogsEntryPersistence.findByT_RMEI(
-			type, receiverMicroblogsEntryId, start, end, orderByComparator);
+		return microblogsEntryPersistence.findByT_P(
+			type, parentMicroblogsEntryId, start, end, orderByComparator);
 	}
 
-	public int getReceiverMicroblogsEntryMicroblogsEntriesCount(
-		int type, long receiverMicroblogsEntryId) {
+	public int getParentMicroblogsEntryMicroblogsEntriesCount(
+		int type, long parentMicroblogsEntryId) {
 
-		return microblogsEntryPersistence.countByT_RMEI(
-			type, receiverMicroblogsEntryId);
+		return microblogsEntryPersistence.countByT_P(
+			type, parentMicroblogsEntryId);
 	}
 
 	public List<MicroblogsEntry> getUserMicroblogsEntries(
@@ -406,7 +406,7 @@ public class MicroblogsEntryLocalServiceImpl
 				SubscriptionLocalServiceUtil.getSubscription(
 					microblogsEntry.getCompanyId(), userId,
 					MicroblogsEntry.class.getName(),
-					microblogsEntry.getReceiverMicroblogsEntryId());
+					microblogsEntry.getParentMicroblogsEntryId());
 
 			return subscription.getSubscriptionId();
 		}
@@ -496,16 +496,16 @@ public class MicroblogsEntryLocalServiceImpl
 		}
 	}
 
-	protected void validate(int type, long receiverMicroblogsEntryId)
+	protected void validate(int type, long parentMicroblogsEntryId)
 		throws PortalException {
 
-		if (receiverMicroblogsEntryId == 0) {
+		if (parentMicroblogsEntryId == 0) {
 			return;
 		}
 
 		MicroblogsEntry microblogsEntry =
 			microblogsEntryPersistence.findByPrimaryKey(
-				receiverMicroblogsEntryId);
+				parentMicroblogsEntryId);
 
 		if (microblogsEntry.getSocialRelationType() ==
 				MicroblogsEntryConstants.TYPE_EVERYONE) {

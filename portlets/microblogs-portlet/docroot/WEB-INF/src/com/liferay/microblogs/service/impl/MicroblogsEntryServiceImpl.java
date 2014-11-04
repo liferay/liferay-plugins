@@ -33,9 +33,8 @@ import java.util.List;
 public class MicroblogsEntryServiceImpl extends MicroblogsEntryServiceBaseImpl {
 
 	public MicroblogsEntry addMicroblogsEntry(
-			long userId, String content, int type,
-			long receiverMicroblogsEntryId, int socialRelationType,
-			ServiceContext serviceContext)
+			long userId, String content, int type, long parentMicroblogsEntryId,
+			int socialRelationType, ServiceContext serviceContext)
 		throws PortalException {
 
 		MicroblogsPermission.check(
@@ -43,8 +42,8 @@ public class MicroblogsEntryServiceImpl extends MicroblogsEntryServiceBaseImpl {
 			ActionKeys.ADD_ENTRY);
 
 		return microblogsEntryLocalService.addMicroblogsEntry(
-			userId, content, type, receiverMicroblogsEntryId,
-			socialRelationType, serviceContext);
+			userId, content, type, parentMicroblogsEntryId, socialRelationType,
+			serviceContext);
 	}
 
 	public MicroblogsEntry deleteMicroblogsEntry(long microblogsEntryId)

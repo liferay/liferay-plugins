@@ -38,7 +38,7 @@
 				MicroblogsEntry
 			LLEFT JOIN
 				MicroblogsEntry AS TEMP_TABLE ON
-					(MicroblogsEntry.receiverMicroblogsEntryId = TEMP_TABLE.microblogsEntryId)
+					(MicroblogsEntry.parentMicroblogsEntryId = TEMP_TABLE.microblogsEntryId)
 			LEFT JOIN
 				SocialRelation ON
 					(TEMP_TABLE.userId = SocialRelation.userId2) AND
@@ -64,7 +64,7 @@
 				MicroblogsEntry
 			LEFT JOIN
 				MicroblogsEntry AS TEMP_TABLE ON
-					(MicroblogsEntry.receiverMicroblogsEntryId = TEMP_TABLE.microblogsEntryId)
+					(MicroblogsEntry.parentMicroblogsEntryId = TEMP_TABLE.microblogsEntryId)
 			LEFT JOIN
 				SocialRelation ON
 					(TEMP_TABLE.userId = SocialRelation.userId2) AND
@@ -102,7 +102,7 @@
 				MicroblogsEntry
 			LEFT JOIN
 				MicroblogsEntry AS TEMP_TABLE ON
-					(MicroblogsEntry.receiverMicroblogsEntryId = TEMP_TABLE.microblogsEntryId)
+					(MicroblogsEntry.parentMicroblogsEntryId = TEMP_TABLE.microblogsEntryId)
 			LEFT JOIN
 				SocialRelation ON
 					(TEMP_TABLE.userId = SocialRelation.userId2) AND
@@ -180,7 +180,7 @@
 				MicroblogsEntry
 			LEFT JOIN
 				MicroblogsEntry AS TEMP_TABLE ON
-					(MicroblogsEntry.receiverMicroblogsEntryId = TEMP_TABLE.microblogsEntryId)
+					(MicroblogsEntry.parentMicroblogsEntryId = TEMP_TABLE.microblogsEntryId)
 			LEFT JOIN
 				SocialRelation ON
 					(TEMP_TABLE.userId = SocialRelation.userId2) AND
@@ -208,7 +208,7 @@
 				MicroblogsEntry
 			LEFT JOIN
 				MicroblogsEntry AS TEMP_TABLE ON
-					(MicroblogsEntry.receiverMicroblogsEntryId = TEMP_TABLE.microblogsEntryId)
+					(MicroblogsEntry.parentMicroblogsEntryId = TEMP_TABLE.microblogsEntryId)
 			LEFT JOIN
 				SocialRelation ON
 					(TEMP_TABLE.userId = SocialRelation.userId2) AND
@@ -248,7 +248,7 @@
 				MicroblogsEntry
 			LEFT JOIN
 				MicroblogsEntry AS TEMP_TABLE ON
-					(MicroblogsEntry.receiverMicroblogsEntryId = TEMP_TABLE.microblogsEntryId)
+					(MicroblogsEntry.parentMicroblogsEntryId = TEMP_TABLE.microblogsEntryId)
 			LEFT JOIN
 				SocialRelation ON
 					(TEMP_TABLE.userId = SocialRelation.userId2) AND

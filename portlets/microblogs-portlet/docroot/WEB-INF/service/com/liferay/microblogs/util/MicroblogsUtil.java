@@ -167,7 +167,7 @@ public class MicroblogsUtil {
 			return microblogsEntry.getMicroblogsEntryId();
 		}
 
-		return microblogsEntry.getReceiverMicroblogsEntryId();
+		return microblogsEntry.getParentMicroblogsEntryId();
 	}
 
 	public static long getParentMicroblogsUserId(
@@ -246,7 +246,7 @@ public class MicroblogsUtil {
 
 		microblogsEntries.addAll(
 			MicroblogsEntryLocalServiceUtil.
-				getReceiverMicroblogsEntryMicroblogsEntries(
+				getParentMicroblogsEntryMicroblogsEntries(
 					MicroblogsEntryConstants.TYPE_REPLY,
 					parentMicroblogsEntryId, QueryUtil.ALL_POS,
 					QueryUtil.ALL_POS));
@@ -288,7 +288,7 @@ public class MicroblogsUtil {
 
 		microblogsEntries.addAll(
 			MicroblogsEntryLocalServiceUtil.
-				getReceiverMicroblogsEntryMicroblogsEntries(
+				getParentMicroblogsEntryMicroblogsEntries(
 					MicroblogsEntryConstants.TYPE_REPLY,
 					parentMicroblogsEntryId, QueryUtil.ALL_POS,
 					QueryUtil.ALL_POS));
