@@ -8,7 +8,7 @@
 		width: $width.getData()px;
 	}
 
-	#$contentClass .carousel-item {
+	#$contentClass .image-viewer-base-node-content {
 		height: $height.getData()px;
 		overflow: hidden;
 		width: $width.getData()px;
@@ -19,7 +19,7 @@
 
 <div id="$contentClass">
 	#foreach ($item in $content.getSiblings())
-		<div class="carousel-item">
+		<div class="image-viewer-base-node-content">
 			$item.getData()
 		</div>
 	#end
