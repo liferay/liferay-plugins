@@ -123,10 +123,10 @@ public class MicroblogsUtil {
 		else if (microblogsEntry.getType() ==
 					MicroblogsEntryConstants.TYPE_REPLY) {
 
-			long parentMicroblogsEntryId = getParentMicroblogsEntryId(
+			long rootMicroblogsEntryId = getRootMicroblogsEntryId(
 				microblogsEntry);
 
-			if ((getParentMicroblogsUserId(microblogsEntry) == userId) &&
+			if ((getRootMicroblogsUserId(microblogsEntry) == userId) &&
 				UserNotificationManagerUtil.isDeliver(
 					userId, PortletKeys.MICROBLOGS, 0,
 					MicroblogsEntryConstants.NOTIFICATION_TYPE_REPLY,
@@ -134,7 +134,7 @@ public class MicroblogsUtil {
 
 				return MicroblogsEntryConstants.NOTIFICATION_TYPE_REPLY;
 			}
-			else if (hasReplied(parentMicroblogsEntryId, userId) &&
+			else if (hasReplied(rootMicroblogsEntryId, userId) &&
 					 UserNotificationManagerUtil.isDeliver(
 						userId, PortletKeys.MICROBLOGS, 0,
 						MicroblogsEntryConstants.
@@ -145,7 +145,7 @@ public class MicroblogsUtil {
 					NOTIFICATION_TYPE_REPLY_TO_REPLIED;
 			}
 			else if (MicroblogsUtil.isTaggedUser(
-						parentMicroblogsEntryId, true, userId) &&
+						rootMicroblogsEntryId, true, userId) &&
 					 UserNotificationManagerUtil.isDeliver(
 						userId, PortletKeys.MICROBLOGS, 0,
 						MicroblogsEntryConstants.
@@ -160,7 +160,7 @@ public class MicroblogsUtil {
 		return MicroblogsEntryConstants.NOTIFICATION_TYPE_UNKNOWN;
 	}
 
-	public static long getParentMicroblogsEntryId(
+	public static long getRootMicroblogsEntryId(
 		MicroblogsEntry microblogsEntry) {
 
 		if (microblogsEntry.getType() == MicroblogsEntryConstants.TYPE_REPOST) {
@@ -170,7 +170,7 @@ public class MicroblogsUtil {
 		return microblogsEntry.getParentMicroblogsEntryId();
 	}
 
-	public static long getParentMicroblogsUserId(
+	public static long getRootMicroblogsUserId(
 			MicroblogsEntry microblogsEntry)
 		throws PortalException {
 
@@ -225,7 +225,7 @@ public class MicroblogsUtil {
 		List<Subscription> subscriptions =
 			SubscriptionLocalServiceUtil.getSubscriptions(
 				microblogsEntry.getCompanyId(), MicroblogsEntry.class.getName(),
-				MicroblogsUtil.getParentMicroblogsEntryId(microblogsEntry));
+				getRootMicroblogsEntryId(microblogsEntry));
 
 		for (Subscription subscription : subscriptions) {
 			if (microblogsEntry.getUserId() == subscription.getUserId()) {
@@ -280,7 +280,7 @@ public class MicroblogsUtil {
 			return isTaggedUser(microblogsEntry, userId);
 		}
 
-		long parentMicroblogsEntryId = getParentMicroblogsEntryId(
+		long rootMicroblogsEntryId = getRootMicroblogsEntryId(
 			microblogsEntry);
 
 		List<MicroblogsEntry> microblogsEntries =
@@ -290,12 +290,12 @@ public class MicroblogsUtil {
 			MicroblogsEntryLocalServiceUtil.
 				getParentMicroblogsEntryMicroblogsEntries(
 					MicroblogsEntryConstants.TYPE_REPLY,
-					parentMicroblogsEntryId, QueryUtil.ALL_POS,
+					rootMicroblogsEntryId, QueryUtil.ALL_POS,
 					QueryUtil.ALL_POS));
 
 		microblogsEntries.add(
 			MicroblogsEntryLocalServiceUtil.getMicroblogsEntry(
-				parentMicroblogsEntryId));
+				rootMicroblogsEntryId));
 
 		for (MicroblogsEntry curMicroblogsEntry : microblogsEntries) {
 			if (isTaggedUser(curMicroblogsEntry, userId)) {

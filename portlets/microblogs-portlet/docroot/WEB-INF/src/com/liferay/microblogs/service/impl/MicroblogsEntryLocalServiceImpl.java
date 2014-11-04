@@ -476,12 +476,12 @@ public class MicroblogsEntryLocalServiceImpl
 			MicroblogsEntry microblogsEntry, ServiceContext serviceContext)
 		throws PortalException {
 
-		long parentMicroblogsEntryId =
-			MicroblogsUtil.getParentMicroblogsEntryId(microblogsEntry);
+		long rootMicroblogsEntryId =
+			MicroblogsUtil.getRootMicroblogsEntryId(microblogsEntry);
 
 		SubscriptionLocalServiceUtil.addSubscription(
 			microblogsEntry.getUserId(), serviceContext.getScopeGroupId(),
-			MicroblogsEntry.class.getName(), parentMicroblogsEntryId);
+			MicroblogsEntry.class.getName(), rootMicroblogsEntryId);
 
 		List<String> screenNames = MicroblogsUtil.getScreenNames(
 			microblogsEntry.getContent());
@@ -492,7 +492,7 @@ public class MicroblogsEntryLocalServiceImpl
 
 			SubscriptionLocalServiceUtil.addSubscription(
 				userId, serviceContext.getScopeGroupId(),
-				MicroblogsEntry.class.getName(), parentMicroblogsEntryId);
+				MicroblogsEntry.class.getName(), rootMicroblogsEntryId);
 		}
 	}
 
