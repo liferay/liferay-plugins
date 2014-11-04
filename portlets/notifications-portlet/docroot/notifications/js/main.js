@@ -38,7 +38,7 @@ AUI.add(
 
 								container.toggleClass('open');
 
-								userNotifications.toggleClass('open');
+								currentTarget.toggleClass('open');
 
 								var menuOpen = container.hasClass('open');
 
@@ -47,7 +47,7 @@ AUI.add(
 										'clickoutside',
 										function(event) {
 											container.removeClass('open');
-											userNotifications.removeClass('open');
+											currentTarget.removeClass('open');
 										}
 									);
 
