@@ -114,8 +114,7 @@ public class MicroblogsEntryAssetRenderer extends BaseAssetRenderer {
 			}
 
 			portletURL.setParameter(
-				"parentMicroblogsEntryId",
-				String.valueOf(microblogsEntryId));
+				"parentMicroblogsEntryId", String.valueOf(microblogsEntryId));
 
 			return portletURL.toString();
 		}

@@ -114,9 +114,8 @@ public class MicroblogsEntryLocalServiceImpl
 	}
 
 	public MicroblogsEntry addMicroblogsEntry(
-			long userId, String content, int type,
-			long parentMicroblogsEntryId, int socialRelationType,
-			ServiceContext serviceContext)
+			long userId, String content, int type, long parentMicroblogsEntryId,
+			int socialRelationType, ServiceContext serviceContext)
 		throws PortalException {
 
 		// Microblogs entry
@@ -476,8 +475,8 @@ public class MicroblogsEntryLocalServiceImpl
 			MicroblogsEntry microblogsEntry, ServiceContext serviceContext)
 		throws PortalException {
 
-		long rootMicroblogsEntryId =
-			MicroblogsUtil.getRootMicroblogsEntryId(microblogsEntry);
+		long rootMicroblogsEntryId = MicroblogsUtil.getRootMicroblogsEntryId(
+			microblogsEntry);
 
 		SubscriptionLocalServiceUtil.addSubscription(
 			microblogsEntry.getUserId(), serviceContext.getScopeGroupId(),

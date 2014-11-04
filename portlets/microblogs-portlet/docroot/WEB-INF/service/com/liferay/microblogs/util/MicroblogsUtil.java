@@ -160,27 +160,6 @@ public class MicroblogsUtil {
 		return MicroblogsEntryConstants.NOTIFICATION_TYPE_UNKNOWN;
 	}
 
-	public static long getRootMicroblogsEntryId(
-		MicroblogsEntry microblogsEntry) {
-
-		if (microblogsEntry.getType() == MicroblogsEntryConstants.TYPE_REPOST) {
-			return microblogsEntry.getMicroblogsEntryId();
-		}
-
-		return microblogsEntry.getParentMicroblogsEntryId();
-	}
-
-	public static long getRootMicroblogsUserId(
-			MicroblogsEntry microblogsEntry)
-		throws PortalException {
-
-		if (microblogsEntry.getType() == MicroblogsEntryConstants.TYPE_REPOST) {
-			return microblogsEntry.getUserId();
-		}
-
-		return microblogsEntry.getParentMicroblogsUserId();
-	}
-
 	public static String getProcessedContent(
 			MicroblogsEntry microblogsEntry, ServiceContext serviceContext)
 		throws PortalException {
@@ -198,6 +177,26 @@ public class MicroblogsUtil {
 		content = replaceUserTags(content, serviceContext);
 
 		return content;
+	}
+
+	public static long getRootMicroblogsEntryId(
+		MicroblogsEntry microblogsEntry) {
+
+		if (microblogsEntry.getType() == MicroblogsEntryConstants.TYPE_REPOST) {
+			return microblogsEntry.getMicroblogsEntryId();
+		}
+
+		return microblogsEntry.getParentMicroblogsEntryId();
+	}
+
+	public static long getRootMicroblogsUserId(MicroblogsEntry microblogsEntry)
+		throws PortalException {
+
+		if (microblogsEntry.getType() == MicroblogsEntryConstants.TYPE_REPOST) {
+			return microblogsEntry.getUserId();
+		}
+
+		return microblogsEntry.getParentMicroblogsUserId();
 	}
 
 	public static List<String> getScreenNames(String content) {
@@ -280,8 +279,7 @@ public class MicroblogsUtil {
 			return isTaggedUser(microblogsEntry, userId);
 		}
 
-		long rootMicroblogsEntryId = getRootMicroblogsEntryId(
-			microblogsEntry);
+		long rootMicroblogsEntryId = getRootMicroblogsEntryId(microblogsEntry);
 
 		List<MicroblogsEntry> microblogsEntries =
 			new ArrayList<MicroblogsEntry>();
@@ -289,9 +287,8 @@ public class MicroblogsUtil {
 		microblogsEntries.addAll(
 			MicroblogsEntryLocalServiceUtil.
 				getParentMicroblogsEntryMicroblogsEntries(
-					MicroblogsEntryConstants.TYPE_REPLY,
-					rootMicroblogsEntryId, QueryUtil.ALL_POS,
-					QueryUtil.ALL_POS));
+					MicroblogsEntryConstants.TYPE_REPLY, rootMicroblogsEntryId,
+					QueryUtil.ALL_POS, QueryUtil.ALL_POS));
 
 		microblogsEntries.add(
 			MicroblogsEntryLocalServiceUtil.getMicroblogsEntry(
