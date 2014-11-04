@@ -392,21 +392,6 @@ AUI.add(
 												notificationsCountNode.setHTML(newTotalUuserNotificationEventsCount);
 											}
 
-											if (instance._actionable) {
-												var actionableNotificationsCountNode = A.one('#' + instance._namespace + 'actionableUserNotificationsCount');
-
-												if (actionableNotificationsCountNode) {
-													actionableNotificationsCountNode.setHTML(newTotalUuserNotificationEventsCount);
-												}
-											}
-											else {
-												var nonActionableNotificationsCountNode = A.one('#' + instance._namespace + 'nonActionableUserNotificationsCount');
-
-												if (nonActionableNotificationsCountNode) {
-													nonActionableNotificationsCountNode.setHTML(newTotalUuserNotificationEventsCount);
-												}
-											}
-
 											var entries = [];
 
 											var entriesJSONArray = response.entries;
