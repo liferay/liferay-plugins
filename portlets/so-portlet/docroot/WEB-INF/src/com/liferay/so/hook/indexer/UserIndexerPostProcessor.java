@@ -101,15 +101,16 @@ public class UserIndexerPostProcessor extends BaseIndexerPostProcessor {
 			int start = (i * Indexer.DEFAULT_INTERVAL);
 			int end = start + Indexer.DEFAULT_INTERVAL;
 
-			List<User> socialRelationships =
+			List<User> socialRelationshipUsers =
 				UserLocalServiceUtil.getSocialUsers(
 					user.getUserId(),
 					SocialRelationConstants.TYPE_BI_CONNECTION,
 					StringPool.EQUAL, start, end,
 					new UserFirstNameComparator(true));
 
-			for (User socialRelationship : socialRelationships) {
-				socialRelationshipUserIds.add(socialRelationship.getUserId());
+			for (User socialRelationshipUser : socialRelationshipUsers) {
+				socialRelationshipUserIds.add(
+					socialRelationshipUser.getUserId());
 			}
 		}
 
