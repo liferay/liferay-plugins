@@ -75,7 +75,7 @@ public class UpgradeGroup extends UpgradeProcess {
 
 				Group group = (Group)object;
 
-				if (!group.isRegularSite() || group.isGuest()) {
+				if (group.isGuest()) {
 					continue;
 				}
 
