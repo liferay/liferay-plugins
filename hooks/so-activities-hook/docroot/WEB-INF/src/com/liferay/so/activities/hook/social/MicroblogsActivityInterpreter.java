@@ -57,11 +57,11 @@ public class MicroblogsActivityInterpreter extends SOSocialActivityInterpreter {
 		JSONObject extraDataJSONObject = JSONFactoryUtil.createJSONObject(
 			activity.getExtraData());
 
-		long receiverMicroblogsEntryId = extraDataJSONObject.getLong(
-			"receiverMicroblogsEntryId");
+		long parentMicroblogsEntryId = extraDataJSONObject.getLong(
+			"parentMicroblogsEntryId");
 
 		long activitySetId = getActivitySetId(
-			activityId, receiverMicroblogsEntryId);
+			activityId, parentMicroblogsEntryId);
 
 		if (activitySetId > 0) {
 			SocialActivitySetLocalServiceUtil.incrementActivityCount(
@@ -74,7 +74,7 @@ public class MicroblogsActivityInterpreter extends SOSocialActivityInterpreter {
 			if (activity.getType() ==
 					SocialActivityKeyConstants.MICROBLOGS_REPLY_ENTRY) {
 
-				activitySet.setClassPK(receiverMicroblogsEntryId);
+				activitySet.setClassPK(parentMicroblogsEntryId);
 
 				SocialActivitySetLocalServiceUtil.updateSocialActivitySet(
 					activitySet);
@@ -83,7 +83,7 @@ public class MicroblogsActivityInterpreter extends SOSocialActivityInterpreter {
 	}
 
 	protected long getActivitySetId(
-		long activityId, long receiverMicroblogsEntryId) {
+		long activityId, long parentMicroblogsEntryId) {
 
 		try {
 			SocialActivitySet activitySet = null;
@@ -96,7 +96,7 @@ public class MicroblogsActivityInterpreter extends SOSocialActivityInterpreter {
 
 				activitySet =
 					SocialActivitySetLocalServiceUtil.getClassActivitySet(
-						activity.getClassNameId(), receiverMicroblogsEntryId,
+						activity.getClassNameId(), parentMicroblogsEntryId,
 						activity.getType());
 			}
 
@@ -125,10 +125,10 @@ public class MicroblogsActivityInterpreter extends SOSocialActivityInterpreter {
 			return StringPool.BLANK;
 		}
 
-		if (microblogsEntry.getReceiverMicroblogsEntryId() > 0) {
+		if (microblogsEntry.getParentMicroblogsEntryId() > 0) {
 			microblogsEntry =
 				MicroblogsEntryLocalServiceUtil.fetchMicroblogsEntry(
-					microblogsEntry.getReceiverMicroblogsEntryId());
+					microblogsEntry.getParentMicroblogsEntryId());
 
 			if (microblogsEntry == null) {
 				return StringPool.BLANK;
@@ -248,7 +248,7 @@ public class MicroblogsActivityInterpreter extends SOSocialActivityInterpreter {
 					serviceContext.translate(
 						"reposted-a-microblog-entry-from-x",
 						getUserName(
-							microblogsEntry.getReceiverUserId(),
+							microblogsEntry.getParentMicroblogsUserId(),
 							serviceContext)));
 			}
 			else {
@@ -295,13 +295,13 @@ public class MicroblogsActivityInterpreter extends SOSocialActivityInterpreter {
 				activity.getClassPK());
 
 		if (microblogsEntry.getType() == MicroblogsEntryConstants.TYPE_REPLY) {
-			MicroblogsEntry receiverMicroblogsEntry =
+			MicroblogsEntry parentMicroblogsEntry =
 				MicroblogsEntryLocalServiceUtil.fetchMicroblogsEntry(
-					microblogsEntry.getReceiverMicroblogsEntryId());
+					microblogsEntry.getParentMicroblogsEntryId());
 
-			if ((receiverMicroblogsEntry == null) ||
+			if ((parentMicroblogsEntry == null) ||
 				!MicroblogsEntryPermission.contains(
-					permissionChecker, receiverMicroblogsEntry,
+					permissionChecker, parentMicroblogsEntry,
 					ActionKeys.VIEW)) {
 
 				return false;
