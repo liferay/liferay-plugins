@@ -23,6 +23,7 @@ import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.service.LayoutSetLocalServiceUtil;
 import com.liferay.portal.util.PortalUtil;
+import com.liferay.portlet.expando.model.ExpandoTableConstants;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -43,18 +44,21 @@ public class UpgradeGroup extends UpgradeProcess {
 		try {
 			con = DataAccess.getUpgradeOptimizedConnection();
 
-			ps = con.prepareStatement(
-				"select classPK from ExpandoValue inner join ExpandoColumn " +
-					"on (ExpandoValue.columnId = ExpandoColumn.columnId and " +
-						"ExpandoColumn.name = 'socialOfficeEnabled') " +
-							"inner join ExpandoTable on (ExpandoValue." +
-								"tableId = ExpandoTable.tableId and " +
-									"ExpandoTable.name = 'CUSTOM_FIELDS') " +
-										"where ExpandoValue.classNameId = " +
-											PortalUtil.getClassNameId(
-												Group.class) +
-													" and ExpandoValue.data_ " +
-														"= 'true'");
+			StringBuilder sb = new StringBuilder(11);
+
+			sb.append("select classPK from ExpandoValue ");
+			sb.append("inner join ExpandoColumn on ");
+			sb.append("((ExpandoValue.columnId = ExpandoColumn.columnId) and ");
+			sb.append("(ExpandoColumn.name = 'socialOfficeEnabled')) ");
+			sb.append("inner join ExpandoTable on ");
+			sb.append("((ExpandoValue.tableId = ExpandoTable.tableId) and ");
+			sb.append("(ExpandoTable.name = '");
+			sb.append(ExpandoTableConstants.DEFAULT_TABLE_NAME);
+			sb.append("')) where (ExpandoValue.classNameId = '");
+			sb.append(PortalUtil.getClassNameId(Group.class));
+			sb.append("') and (ExpandoValue.data_ = 'true')");
+
+			ps = con.prepareStatement(sb.toString());
 
 			rs = ps.executeQuery();
 
