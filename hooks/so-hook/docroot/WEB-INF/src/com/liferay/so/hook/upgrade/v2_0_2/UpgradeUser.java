@@ -51,47 +51,45 @@ public class UpgradeUser extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {
-		ActionableDynamicQuery actionableDynamicQuery = new UserActionableDynamicQuery() {
+		ActionableDynamicQuery actionableDynamicQuery =
+			new UserActionableDynamicQuery() {
 
 			@Override
 			protected void performAction(Object object)
 				throws PortalException, SystemException {
 
+				User user = (User)object;
+
+				try {
+					if (user.isDefaultUser()) {
+						continue;
+					}
+
+					Group group = user.getGroup();
+
+					LayoutSet layoutSet =
+						LayoutSetLocalServiceUtil.getLayoutSet(
+							group.getGroupId(), false);
+
+					String themeId = layoutSet.getThemeId();
+
+					if (!themeId.equals("so_WAR_sotheme")) {
+						return;
+					}
+
+					Role role = RoleLocalServiceUtil.getRole(
+						user.getCompanyId(), RoleConstants.SOCIAL_OFFICE_USER);
+
+					UserLocalServiceUtil.addRoleUsers(
+						role.getRoleId(), new long[] {user.getUserId()});
+
+					updateUserGroup(group);
+					updateSocialRelations(user);
+				}
+				catch (Exception e) {
+				}
 			}
 		};
-
-		List<User> users = UserLocalServiceUtil.getUsers(
-			QueryUtil.ALL_POS, QueryUtil.ALL_POS);
-
-		for (User user : users) {
-			try {
-				if (user.isDefaultUser()) {
-					continue;
-				}
-
-				Group group = user.getGroup();
-
-				LayoutSet layoutSet = LayoutSetLocalServiceUtil.getLayoutSet(
-					group.getGroupId(), false);
-
-				String themeId = layoutSet.getThemeId();
-
-				if (!themeId.equals("so_WAR_sotheme")) {
-					return;
-				}
-
-				Role role = RoleLocalServiceUtil.getRole(
-					user.getCompanyId(), RoleConstants.SOCIAL_OFFICE_USER);
-
-				UserLocalServiceUtil.addRoleUsers(
-					role.getRoleId(), new long[] {user.getUserId()});
-
-				updateUserGroup(group);
-				updateSocialRelations(user);
-			}
-			catch (Exception e) {
-			}
-		}
 	}
 
 	protected void updateSocialRelations(User user) throws Exception {
