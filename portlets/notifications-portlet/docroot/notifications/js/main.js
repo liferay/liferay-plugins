@@ -151,13 +151,13 @@ AUI.add(
 								dockbarActionableUserNotificationsCount.setHTML(response.unreadActionableUserNotificationsCount);
 							}
 
-							var dockbarNonActionableUserNotificationsCount = A.one('.dockbar-user-notifications .nonactionable-user-notifications-count');
+							var dockbarNonactionableUserNotificationsCount = A.one('.dockbar-user-notifications .nonactionable-user-notifications-count');
 
-							if (dockbarNonActionableUserNotificationsCount) {
-								dockbarNonActionableUserNotificationsCount.toggleClass('alert', (response.newNonActionableUserNotificationsCount > 0));
-								dockbarNonActionableUserNotificationsCount.toggleClass('hide', (response.unreadNonActionableUserNotificationsCount == 0));
+							if (dockbarNonactionableUserNotificationsCount) {
+								dockbarNonactionableUserNotificationsCount.toggleClass('alert', (response.newNonactionableUserNotificationsCount > 0));
+								dockbarNonactionableUserNotificationsCount.toggleClass('hide', (response.unreadNonactionableUserNotificationsCount == 0));
 
-								dockbarNonActionableUserNotificationsCount.setHTML(response.unreadNonActionableUserNotificationsCount);
+								dockbarNonactionableUserNotificationsCount.setHTML(response.unreadNonactionableUserNotificationsCount);
 							}
 						}
 					}

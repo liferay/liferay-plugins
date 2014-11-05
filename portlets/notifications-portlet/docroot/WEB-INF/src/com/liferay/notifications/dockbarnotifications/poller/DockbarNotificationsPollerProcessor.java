@@ -58,7 +58,7 @@ public class DockbarNotificationsPollerProcessor extends BasePollerProcessor {
 				"newActionableUserNotificationsCount",
 				String.valueOf(newActionableUserNotificationsCount));
 
-			int newNonActionableUserNotificationsCount =
+			int newNonactionableUserNotificationsCount =
 				UserNotificationEventLocalServiceUtil.
 					getDeliveredUserNotificationEventsCount(
 						pollerRequest.getUserId(),
@@ -66,8 +66,8 @@ public class DockbarNotificationsPollerProcessor extends BasePollerProcessor {
 						false);
 
 			pollerResponse.setParameter(
-				"newNonActionableUserNotificationsCount",
-				String.valueOf(newNonActionableUserNotificationsCount));
+				"newNonactionableUserNotificationsCount",
+				String.valueOf(newNonactionableUserNotificationsCount));
 
 			int unreadActionableUserNotificationsCount =
 				UserNotificationEventLocalServiceUtil.
@@ -80,7 +80,7 @@ public class DockbarNotificationsPollerProcessor extends BasePollerProcessor {
 				"unreadActionableUserNotificationsCount",
 				String.valueOf(unreadActionableUserNotificationsCount));
 
-			int unreadNonActionableUserNotificationsCount =
+			int unreadNonactionableUserNotificationsCount =
 				UserNotificationEventLocalServiceUtil.
 					getArchivedUserNotificationEventsCount(
 						pollerRequest.getUserId(),
@@ -88,8 +88,8 @@ public class DockbarNotificationsPollerProcessor extends BasePollerProcessor {
 						false);
 
 			pollerResponse.setParameter(
-				"unreadNonActionableUserNotificationsCount",
-				String.valueOf(unreadNonActionableUserNotificationsCount));
+				"unreadNonactionableUserNotificationsCount",
+				String.valueOf(unreadNonactionableUserNotificationsCount));
 		}
 		else {
 			int newUserNotificationsCount =

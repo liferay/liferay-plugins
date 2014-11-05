@@ -424,7 +424,7 @@ public class NotificationsPortlet extends MVCPortlet {
 					"newActionableUserNotificationsCount",
 					newActionableUserNotificationsCount);
 
-				int newNonActionableUserNotificationsCount =
+				int newNonactionableUserNotificationsCount =
 					UserNotificationEventLocalServiceUtil.
 						getDeliveredUserNotificationEventsCount(
 							themeDisplay.getUserId(),
@@ -432,8 +432,8 @@ public class NotificationsPortlet extends MVCPortlet {
 							false, false);
 
 				jsonObject.put(
-					"newNonActionableUserNotificationsCount",
-					newNonActionableUserNotificationsCount);
+					"newNonactionableUserNotificationsCount",
+					newNonactionableUserNotificationsCount);
 
 				int unreadActionableUserNotificationsCount =
 					UserNotificationEventLocalServiceUtil.
@@ -446,7 +446,7 @@ public class NotificationsPortlet extends MVCPortlet {
 					"unreadActionableUserNotificationsCount",
 					unreadActionableUserNotificationsCount);
 
-				int unreadNonActionableUserNotificationsCount =
+				int unreadNonactionableUserNotificationsCount =
 					UserNotificationEventLocalServiceUtil.
 						getArchivedUserNotificationEventsCount(
 							themeDisplay.getUserId(),
@@ -454,8 +454,8 @@ public class NotificationsPortlet extends MVCPortlet {
 							false, false);
 
 				jsonObject.put(
-					"unreadNonActionableUserNotificationsCount",
-					unreadNonActionableUserNotificationsCount);
+					"unreadNonactionableUserNotificationsCount",
+					unreadNonactionableUserNotificationsCount);
 			}
 			else {
 				int newUserNotificationsCount =
