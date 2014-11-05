@@ -88,7 +88,7 @@ public class UpgradeGroup extends UpgradeProcess {
 				}
 
 				try {
-					PortletPreferences portletPreferences = 
+					PortletPreferences portletPreferences =
 						getPortletPreferences(
 							group.getGroupId(), privateLayout);
 
