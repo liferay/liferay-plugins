@@ -17,7 +17,10 @@
 
 package com.liferay.so.hook.upgrade.v2_0_2;
 
+import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 import com.liferay.portal.kernel.util.ClassResolverUtil;
 import com.liferay.portal.kernel.util.MethodKey;
@@ -32,6 +35,7 @@ import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.LayoutLocalServiceUtil;
 import com.liferay.portal.service.LayoutSetLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
+import com.liferay.portal.service.persistence.GroupActionableDynamicQuery;
 import com.liferay.portlet.PortletPreferencesFactoryUtil;
 import com.liferay.so.util.LayoutSetPrototypeUtil;
 import com.liferay.so.util.SocialOfficeConstants;
@@ -49,6 +53,18 @@ public class UpgradeGroup extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {
+		ActionableDynamicQuery actionableDynamicQuery = new GroupActionableDynamicQuery() {
+
+			@Override
+			protected void performAction(Object object)
+				throws PortalException, SystemException {
+
+			}
+
+		};
+
+		actionableDynamicQuery.performActions();
+
 		List<Group> groups = GroupLocalServiceUtil.getGroups(
 			QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 
