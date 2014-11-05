@@ -156,7 +156,7 @@ public class InviteMembersUserNotificationHandler
 				serviceContext.getLiferayPortletResponse();
 
 			PortletURL portletURL = liferayPortletResponse.createActionURL(
-				PortletKeys.MY_SITES);
+				PortletKeys.SITE_REDIRECTOR);
 
 			portletURL.setWindowState(WindowState.NORMAL);
 
