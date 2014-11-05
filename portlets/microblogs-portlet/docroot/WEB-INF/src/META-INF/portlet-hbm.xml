@@ -17,8 +17,7 @@
 		<property name="creatorClassPK" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="content" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="type" type="com.liferay.portal.dao.orm.hibernate.IntegerType" column="type_" />
-		<property name="receiverUserId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="receiverMicroblogsEntryId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="parentMicroblogsEntryId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="socialRelationType" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
 	</class>
 </hibernate-mapping>

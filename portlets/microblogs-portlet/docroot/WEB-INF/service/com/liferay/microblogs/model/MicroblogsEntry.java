@@ -34,4 +34,6 @@ public interface MicroblogsEntry extends MicroblogsEntryModel, PersistedModel {
 	 *
 	 * Never modify this interface directly. Add methods to {@link com.liferay.microblogs.model.impl.MicroblogsEntryImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
+	public long getParentMicroblogsUserId()
+		throws com.liferay.portal.kernel.exception.PortalException;
 }

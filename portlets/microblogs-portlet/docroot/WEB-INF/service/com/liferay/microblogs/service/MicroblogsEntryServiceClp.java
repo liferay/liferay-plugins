@@ -30,7 +30,7 @@ public class MicroblogsEntryServiceClp implements MicroblogsEntryService {
 		_methodName0 = "addMicroblogsEntry";
 
 		_methodParameterTypes0 = new String[] {
-				"long", "java.lang.String", "int", "long", "long", "int",
+				"long", "java.lang.String", "int", "long", "int",
 				"com.liferay.portal.service.ServiceContext"
 			};
 
@@ -92,8 +92,8 @@ public class MicroblogsEntryServiceClp implements MicroblogsEntryService {
 
 	@Override
 	public com.liferay.microblogs.model.MicroblogsEntry addMicroblogsEntry(
-		long userId, java.lang.String content, int type, long receiverUserId,
-		long receiverMicroblogsEntryId, int socialRelationType,
+		long userId, java.lang.String content, int type,
+		long parentMicroblogsEntryId, int socialRelationType,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
@@ -108,9 +108,7 @@ public class MicroblogsEntryServiceClp implements MicroblogsEntryService {
 						
 					type,
 						
-					receiverUserId,
-						
-					receiverMicroblogsEntryId,
+					parentMicroblogsEntryId,
 						
 					socialRelationType,
 						

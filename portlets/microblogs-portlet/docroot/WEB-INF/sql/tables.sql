@@ -9,7 +9,6 @@ create table MicroblogsEntry (
 	creatorClassPK LONG,
 	content STRING null,
 	type_ INTEGER,
-	receiverUserId LONG,
-	receiverMicroblogsEntryId LONG,
+	parentMicroblogsEntryId LONG,
 	socialRelationType INTEGER
 );

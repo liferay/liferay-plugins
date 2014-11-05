@@ -233,46 +233,18 @@ public interface MicroblogsEntryModel extends AuditedModel,
 	public void setType(int type);
 
 	/**
-	 * Returns the receiver user ID of this microblogs entry.
+	 * Returns the parent microblogs entry ID of this microblogs entry.
 	 *
-	 * @return the receiver user ID of this microblogs entry
+	 * @return the parent microblogs entry ID of this microblogs entry
 	 */
-	public long getReceiverUserId();
+	public long getParentMicroblogsEntryId();
 
 	/**
-	 * Sets the receiver user ID of this microblogs entry.
+	 * Sets the parent microblogs entry ID of this microblogs entry.
 	 *
-	 * @param receiverUserId the receiver user ID of this microblogs entry
+	 * @param parentMicroblogsEntryId the parent microblogs entry ID of this microblogs entry
 	 */
-	public void setReceiverUserId(long receiverUserId);
-
-	/**
-	 * Returns the receiver user uuid of this microblogs entry.
-	 *
-	 * @return the receiver user uuid of this microblogs entry
-	 */
-	public String getReceiverUserUuid();
-
-	/**
-	 * Sets the receiver user uuid of this microblogs entry.
-	 *
-	 * @param receiverUserUuid the receiver user uuid of this microblogs entry
-	 */
-	public void setReceiverUserUuid(String receiverUserUuid);
-
-	/**
-	 * Returns the receiver microblogs entry ID of this microblogs entry.
-	 *
-	 * @return the receiver microblogs entry ID of this microblogs entry
-	 */
-	public long getReceiverMicroblogsEntryId();
-
-	/**
-	 * Sets the receiver microblogs entry ID of this microblogs entry.
-	 *
-	 * @param receiverMicroblogsEntryId the receiver microblogs entry ID of this microblogs entry
-	 */
-	public void setReceiverMicroblogsEntryId(long receiverMicroblogsEntryId);
+	public void setParentMicroblogsEntryId(long parentMicroblogsEntryId);
 
 	/**
 	 * Returns the social relation type of this microblogs entry.

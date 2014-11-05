@@ -63,9 +63,7 @@ public class MicroblogsEntryWrapper implements MicroblogsEntry,
 		attributes.put("creatorClassPK", getCreatorClassPK());
 		attributes.put("content", getContent());
 		attributes.put("type", getType());
-		attributes.put("receiverUserId", getReceiverUserId());
-		attributes.put("receiverMicroblogsEntryId",
-			getReceiverMicroblogsEntryId());
+		attributes.put("parentMicroblogsEntryId", getParentMicroblogsEntryId());
 		attributes.put("socialRelationType", getSocialRelationType());
 
 		return attributes;
@@ -133,17 +131,11 @@ public class MicroblogsEntryWrapper implements MicroblogsEntry,
 			setType(type);
 		}
 
-		Long receiverUserId = (Long)attributes.get("receiverUserId");
+		Long parentMicroblogsEntryId = (Long)attributes.get(
+				"parentMicroblogsEntryId");
 
-		if (receiverUserId != null) {
-			setReceiverUserId(receiverUserId);
-		}
-
-		Long receiverMicroblogsEntryId = (Long)attributes.get(
-				"receiverMicroblogsEntryId");
-
-		if (receiverMicroblogsEntryId != null) {
-			setReceiverMicroblogsEntryId(receiverMicroblogsEntryId);
+		if (parentMicroblogsEntryId != null) {
+			setParentMicroblogsEntryId(parentMicroblogsEntryId);
 		}
 
 		Integer socialRelationType = (Integer)attributes.get(
@@ -241,6 +233,22 @@ public class MicroblogsEntryWrapper implements MicroblogsEntry,
 	}
 
 	/**
+	* Returns the parent microblogs entry ID of this microblogs entry.
+	*
+	* @return the parent microblogs entry ID of this microblogs entry
+	*/
+	@Override
+	public long getParentMicroblogsEntryId() {
+		return _microblogsEntry.getParentMicroblogsEntryId();
+	}
+
+	@Override
+	public long getParentMicroblogsUserId()
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _microblogsEntry.getParentMicroblogsUserId();
+	}
+
+	/**
 	* Returns the primary key of this microblogs entry.
 	*
 	* @return the primary key of this microblogs entry
@@ -253,36 +261,6 @@ public class MicroblogsEntryWrapper implements MicroblogsEntry,
 	@Override
 	public java.io.Serializable getPrimaryKeyObj() {
 		return _microblogsEntry.getPrimaryKeyObj();
-	}
-
-	/**
-	* Returns the receiver microblogs entry ID of this microblogs entry.
-	*
-	* @return the receiver microblogs entry ID of this microblogs entry
-	*/
-	@Override
-	public long getReceiverMicroblogsEntryId() {
-		return _microblogsEntry.getReceiverMicroblogsEntryId();
-	}
-
-	/**
-	* Returns the receiver user ID of this microblogs entry.
-	*
-	* @return the receiver user ID of this microblogs entry
-	*/
-	@Override
-	public long getReceiverUserId() {
-		return _microblogsEntry.getReceiverUserId();
-	}
-
-	/**
-	* Returns the receiver user uuid of this microblogs entry.
-	*
-	* @return the receiver user uuid of this microblogs entry
-	*/
-	@Override
-	public java.lang.String getReceiverUserUuid() {
-		return _microblogsEntry.getReceiverUserUuid();
 	}
 
 	/**
@@ -459,6 +437,16 @@ public class MicroblogsEntryWrapper implements MicroblogsEntry,
 	}
 
 	/**
+	* Sets the parent microblogs entry ID of this microblogs entry.
+	*
+	* @param parentMicroblogsEntryId the parent microblogs entry ID of this microblogs entry
+	*/
+	@Override
+	public void setParentMicroblogsEntryId(long parentMicroblogsEntryId) {
+		_microblogsEntry.setParentMicroblogsEntryId(parentMicroblogsEntryId);
+	}
+
+	/**
 	* Sets the primary key of this microblogs entry.
 	*
 	* @param primaryKey the primary key of this microblogs entry
@@ -471,36 +459,6 @@ public class MicroblogsEntryWrapper implements MicroblogsEntry,
 	@Override
 	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
 		_microblogsEntry.setPrimaryKeyObj(primaryKeyObj);
-	}
-
-	/**
-	* Sets the receiver microblogs entry ID of this microblogs entry.
-	*
-	* @param receiverMicroblogsEntryId the receiver microblogs entry ID of this microblogs entry
-	*/
-	@Override
-	public void setReceiverMicroblogsEntryId(long receiverMicroblogsEntryId) {
-		_microblogsEntry.setReceiverMicroblogsEntryId(receiverMicroblogsEntryId);
-	}
-
-	/**
-	* Sets the receiver user ID of this microblogs entry.
-	*
-	* @param receiverUserId the receiver user ID of this microblogs entry
-	*/
-	@Override
-	public void setReceiverUserId(long receiverUserId) {
-		_microblogsEntry.setReceiverUserId(receiverUserId);
-	}
-
-	/**
-	* Sets the receiver user uuid of this microblogs entry.
-	*
-	* @param receiverUserUuid the receiver user uuid of this microblogs entry
-	*/
-	@Override
-	public void setReceiverUserUuid(java.lang.String receiverUserUuid) {
-		_microblogsEntry.setReceiverUserUuid(receiverUserUuid);
 	}
 
 	/**

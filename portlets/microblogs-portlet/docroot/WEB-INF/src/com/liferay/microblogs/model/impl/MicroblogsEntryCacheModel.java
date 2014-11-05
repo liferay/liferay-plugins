@@ -41,7 +41,7 @@ public class MicroblogsEntryCacheModel implements CacheModel<MicroblogsEntry>,
 	Externalizable {
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(27);
+		StringBundler sb = new StringBundler(25);
 
 		sb.append("{microblogsEntryId=");
 		sb.append(microblogsEntryId);
@@ -63,10 +63,8 @@ public class MicroblogsEntryCacheModel implements CacheModel<MicroblogsEntry>,
 		sb.append(content);
 		sb.append(", type=");
 		sb.append(type);
-		sb.append(", receiverUserId=");
-		sb.append(receiverUserId);
-		sb.append(", receiverMicroblogsEntryId=");
-		sb.append(receiverMicroblogsEntryId);
+		sb.append(", parentMicroblogsEntryId=");
+		sb.append(parentMicroblogsEntryId);
 		sb.append(", socialRelationType=");
 		sb.append(socialRelationType);
 		sb.append("}");
@@ -114,8 +112,7 @@ public class MicroblogsEntryCacheModel implements CacheModel<MicroblogsEntry>,
 		}
 
 		microblogsEntryImpl.setType(type);
-		microblogsEntryImpl.setReceiverUserId(receiverUserId);
-		microblogsEntryImpl.setReceiverMicroblogsEntryId(receiverMicroblogsEntryId);
+		microblogsEntryImpl.setParentMicroblogsEntryId(parentMicroblogsEntryId);
 		microblogsEntryImpl.setSocialRelationType(socialRelationType);
 
 		microblogsEntryImpl.resetOriginalValues();
@@ -135,8 +132,7 @@ public class MicroblogsEntryCacheModel implements CacheModel<MicroblogsEntry>,
 		creatorClassPK = objectInput.readLong();
 		content = objectInput.readUTF();
 		type = objectInput.readInt();
-		receiverUserId = objectInput.readLong();
-		receiverMicroblogsEntryId = objectInput.readLong();
+		parentMicroblogsEntryId = objectInput.readLong();
 		socialRelationType = objectInput.readInt();
 	}
 
@@ -167,8 +163,7 @@ public class MicroblogsEntryCacheModel implements CacheModel<MicroblogsEntry>,
 		}
 
 		objectOutput.writeInt(type);
-		objectOutput.writeLong(receiverUserId);
-		objectOutput.writeLong(receiverMicroblogsEntryId);
+		objectOutput.writeLong(parentMicroblogsEntryId);
 		objectOutput.writeInt(socialRelationType);
 	}
 
@@ -182,7 +177,6 @@ public class MicroblogsEntryCacheModel implements CacheModel<MicroblogsEntry>,
 	public long creatorClassPK;
 	public String content;
 	public int type;
-	public long receiverUserId;
-	public long receiverMicroblogsEntryId;
+	public long parentMicroblogsEntryId;
 	public int socialRelationType;
 }

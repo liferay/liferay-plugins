@@ -92,9 +92,7 @@ public class MicroblogsEntryClp extends BaseModelImpl<MicroblogsEntry>
 		attributes.put("creatorClassPK", getCreatorClassPK());
 		attributes.put("content", getContent());
 		attributes.put("type", getType());
-		attributes.put("receiverUserId", getReceiverUserId());
-		attributes.put("receiverMicroblogsEntryId",
-			getReceiverMicroblogsEntryId());
+		attributes.put("parentMicroblogsEntryId", getParentMicroblogsEntryId());
 		attributes.put("socialRelationType", getSocialRelationType());
 
 		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
@@ -165,17 +163,11 @@ public class MicroblogsEntryClp extends BaseModelImpl<MicroblogsEntry>
 			setType(type);
 		}
 
-		Long receiverUserId = (Long)attributes.get("receiverUserId");
+		Long parentMicroblogsEntryId = (Long)attributes.get(
+				"parentMicroblogsEntryId");
 
-		if (receiverUserId != null) {
-			setReceiverUserId(receiverUserId);
-		}
-
-		Long receiverMicroblogsEntryId = (Long)attributes.get(
-				"receiverMicroblogsEntryId");
-
-		if (receiverMicroblogsEntryId != null) {
-			setReceiverMicroblogsEntryId(receiverMicroblogsEntryId);
+		if (parentMicroblogsEntryId != null) {
+			setParentMicroblogsEntryId(parentMicroblogsEntryId);
 		}
 
 		Integer socialRelationType = (Integer)attributes.get(
@@ -438,62 +430,23 @@ public class MicroblogsEntryClp extends BaseModelImpl<MicroblogsEntry>
 	}
 
 	@Override
-	public long getReceiverUserId() {
-		return _receiverUserId;
+	public long getParentMicroblogsEntryId() {
+		return _parentMicroblogsEntryId;
 	}
 
 	@Override
-	public void setReceiverUserId(long receiverUserId) {
-		_receiverUserId = receiverUserId;
+	public void setParentMicroblogsEntryId(long parentMicroblogsEntryId) {
+		_parentMicroblogsEntryId = parentMicroblogsEntryId;
 
 		if (_microblogsEntryRemoteModel != null) {
 			try {
 				Class<?> clazz = _microblogsEntryRemoteModel.getClass();
 
-				Method method = clazz.getMethod("setReceiverUserId", long.class);
-
-				method.invoke(_microblogsEntryRemoteModel, receiverUserId);
-			}
-			catch (Exception e) {
-				throw new UnsupportedOperationException(e);
-			}
-		}
-	}
-
-	@Override
-	public String getReceiverUserUuid() {
-		try {
-			User user = UserLocalServiceUtil.getUserById(getReceiverUserId());
-
-			return user.getUuid();
-		}
-		catch (PortalException pe) {
-			return StringPool.BLANK;
-		}
-	}
-
-	@Override
-	public void setReceiverUserUuid(String receiverUserUuid) {
-	}
-
-	@Override
-	public long getReceiverMicroblogsEntryId() {
-		return _receiverMicroblogsEntryId;
-	}
-
-	@Override
-	public void setReceiverMicroblogsEntryId(long receiverMicroblogsEntryId) {
-		_receiverMicroblogsEntryId = receiverMicroblogsEntryId;
-
-		if (_microblogsEntryRemoteModel != null) {
-			try {
-				Class<?> clazz = _microblogsEntryRemoteModel.getClass();
-
-				Method method = clazz.getMethod("setReceiverMicroblogsEntryId",
+				Method method = clazz.getMethod("setParentMicroblogsEntryId",
 						long.class);
 
 				method.invoke(_microblogsEntryRemoteModel,
-					receiverMicroblogsEntryId);
+					parentMicroblogsEntryId);
 			}
 			catch (Exception e) {
 				throw new UnsupportedOperationException(e);
@@ -522,6 +475,25 @@ public class MicroblogsEntryClp extends BaseModelImpl<MicroblogsEntry>
 			catch (Exception e) {
 				throw new UnsupportedOperationException(e);
 			}
+		}
+	}
+
+	@Override
+	public long getParentMicroblogsUserId() {
+		try {
+			String methodName = "getParentMicroblogsUserId";
+
+			Class<?>[] parameterTypes = new Class<?>[] {  };
+
+			Object[] parameterValues = new Object[] {  };
+
+			Long returnObj = (Long)invokeOnRemoteModel(methodName,
+					parameterTypes, parameterValues);
+
+			return returnObj;
+		}
+		catch (Exception e) {
+			throw new UnsupportedOperationException(e);
 		}
 	}
 
@@ -606,8 +578,7 @@ public class MicroblogsEntryClp extends BaseModelImpl<MicroblogsEntry>
 		clone.setCreatorClassPK(getCreatorClassPK());
 		clone.setContent(getContent());
 		clone.setType(getType());
-		clone.setReceiverUserId(getReceiverUserId());
-		clone.setReceiverMicroblogsEntryId(getReceiverMicroblogsEntryId());
+		clone.setParentMicroblogsEntryId(getParentMicroblogsEntryId());
 		clone.setSocialRelationType(getSocialRelationType());
 
 		return clone;
@@ -672,7 +643,7 @@ public class MicroblogsEntryClp extends BaseModelImpl<MicroblogsEntry>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(27);
+		StringBundler sb = new StringBundler(25);
 
 		sb.append("{microblogsEntryId=");
 		sb.append(getMicroblogsEntryId());
@@ -694,10 +665,8 @@ public class MicroblogsEntryClp extends BaseModelImpl<MicroblogsEntry>
 		sb.append(getContent());
 		sb.append(", type=");
 		sb.append(getType());
-		sb.append(", receiverUserId=");
-		sb.append(getReceiverUserId());
-		sb.append(", receiverMicroblogsEntryId=");
-		sb.append(getReceiverMicroblogsEntryId());
+		sb.append(", parentMicroblogsEntryId=");
+		sb.append(getParentMicroblogsEntryId());
 		sb.append(", socialRelationType=");
 		sb.append(getSocialRelationType());
 		sb.append("}");
@@ -707,7 +676,7 @@ public class MicroblogsEntryClp extends BaseModelImpl<MicroblogsEntry>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(43);
+		StringBundler sb = new StringBundler(40);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.microblogs.model.MicroblogsEntry");
@@ -754,12 +723,8 @@ public class MicroblogsEntryClp extends BaseModelImpl<MicroblogsEntry>
 		sb.append(getType());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>receiverUserId</column-name><column-value><![CDATA[");
-		sb.append(getReceiverUserId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>receiverMicroblogsEntryId</column-name><column-value><![CDATA[");
-		sb.append(getReceiverMicroblogsEntryId());
+			"<column><column-name>parentMicroblogsEntryId</column-name><column-value><![CDATA[");
+		sb.append(getParentMicroblogsEntryId());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>socialRelationType</column-name><column-value><![CDATA[");
@@ -781,8 +746,7 @@ public class MicroblogsEntryClp extends BaseModelImpl<MicroblogsEntry>
 	private long _creatorClassPK;
 	private String _content;
 	private int _type;
-	private long _receiverUserId;
-	private long _receiverMicroblogsEntryId;
+	private long _parentMicroblogsEntryId;
 	private int _socialRelationType;
 	private BaseModel<?> _microblogsEntryRemoteModel;
 	private Class<?> _clpSerializerClass = com.liferay.microblogs.service.ClpSerializer.class;
