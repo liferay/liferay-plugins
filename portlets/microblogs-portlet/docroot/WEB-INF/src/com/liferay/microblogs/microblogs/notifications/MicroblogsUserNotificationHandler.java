@@ -58,39 +58,39 @@ public class MicroblogsUserNotificationHandler
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject(
 			userNotificationEvent.getPayload());
 
-		long microblogsEntryId = jsonObject.getLong("classPK");
+		AssetRenderer assetRenderer = getAssetRenderer(jsonObject);
 
-		MicroblogsEntry microblogsEntry =
-			MicroblogsEntryLocalServiceUtil.fetchMicroblogsEntry(
-				microblogsEntryId);
-
-		if (microblogsEntry == null) {
+		if (assetRenderer == null) {
 			UserNotificationEventLocalServiceUtil.deleteUserNotificationEvent(
 				userNotificationEvent.getUserNotificationEventId());
 
 			return null;
 		}
 
-		int notificationType = jsonObject.getInt("notificationType");
-
 		return StringUtil.replace(
 			getBodyTemplate(), new String[] {"[$BODY$]", "[$TITLE$]"},
 			new String[] {
 				HtmlUtil.escape(jsonObject.getString("entryTitle")),
-				getBodyTitle(microblogsEntry, notificationType, serviceContext)
+				getBodyTitle(jsonObject, assetRenderer, serviceContext)
 			});
 	}
 
 	protected String getBodyTitle(
-			MicroblogsEntry microblogsEntry, int notificationType,
+			JSONObject jsonObject, AssetRenderer assetRenderer,
 			ServiceContext serviceContext)
 		throws PortalException {
+
+		MicroblogsEntry microblogsEntry =
+			MicroblogsEntryLocalServiceUtil.fetchMicroblogsEntry(
+				assetRenderer.getClassPK());
 
 		String title = StringPool.BLANK;
 
 		String userFullName = HtmlUtil.escape(
 			PortalUtil.getUserName(
 				microblogsEntry.getUserId(), StringPool.BLANK));
+
+		int notificationType = jsonObject.getInt("notificationType");
 
 		if (notificationType ==
 				MicroblogsEntryConstants.NOTIFICATION_TYPE_REPLY) {
