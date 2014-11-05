@@ -60,11 +60,20 @@ public class UpgradeGroup extends UpgradeProcess {
 		ActionableDynamicQuery actionableDynamicQuery = new GroupActionableDynamicQuery() {
 
 			@Override
+			protected void addCriteria(DynamicQuery dynamicQuery) {
+				Property classNameIdProperty = PropertyFactoryUtil.forName(
+					"classNameId");
+
+				long classNameId = PortalUtil.getClassNameId(Group.class);
+
+				dynamicQuery.add(classNameIdProperty.eq(classNameId));
+			}
+
+			@Override
 			protected void performAction(Object object)
 				throws PortalException, SystemException {
 
 			}
-
 		};
 
 		actionableDynamicQuery.performActions();
