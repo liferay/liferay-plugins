@@ -35,11 +35,13 @@ import com.liferay.portal.model.Layout;
 import com.liferay.portal.model.LayoutSetPrototype;
 import com.liferay.portal.model.LayoutTemplate;
 import com.liferay.portal.model.LayoutTypePortlet;
+import com.liferay.portal.model.User;
 import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.LayoutLocalServiceUtil;
 import com.liferay.portal.service.LayoutSetLocalServiceUtil;
 import com.liferay.portal.service.persistence.LayoutActionableDynamicQuery;
 import com.liferay.portal.util.PortalUtil;
+import com.liferay.portlet.expando.model.ExpandoTableConstants;
 import com.liferay.so.service.SocialOfficeServiceUtil;
 import com.liferay.so.util.LayoutSetPrototypeUtil;
 import com.liferay.so.util.LayoutUtil;
@@ -62,7 +64,6 @@ public class UpgradeLayout extends UpgradeProcess {
 
 			ps = con.prepareStatement(null);
 
-
 			rs = ps.executeQuery();
 
 			while (rs.next()) {
@@ -76,6 +77,34 @@ public class UpgradeLayout extends UpgradeProcess {
 		for (long companyId : PortalUtil.getCompanyIds()) {
 			updateSOAnnouncements(companyId);
 		}
+	}
+
+	protected String getJoinSQL() {
+		StringBuilder sb = new StringBuilder();
+
+		sb.append("inner join ExpandoValue on ");
+		sb.append("((ExpandoValue.classPK = Layout.groupId) and ");
+		sb.append("(ExpandoValue.data_ = 'true')) ");
+
+		sb.append("inner join ExpandoColumn on ");
+		sb.append("((ExpandoColumn.columnId = ExpandoValue.columnId) and ");
+		sb.append("(ExpandoColumn.name = 'socialOfficeEnabled')) ");
+
+		sb.append("inner join ExpandoTable on ");
+		sb.append("((ExpandoTable.tableId = ExpandoValue.tableId) and ");
+		sb.append("(ExpandoTable.name = '");
+		sb.append(ExpandoTableConstants.DEFAULT_TABLE_NAME);
+		sb.append("')) ");
+
+		sb.append("inner join Group_ on ");
+		sb.append("((Group_.groupId == Layout.groupId) and ");
+		sb.append("((Layout.privateLayout = true) or ");
+		sb.append("((Layout.privateLayout = false) and ");
+		sb.append("(Group_.classNameId != ");
+		sb.append(PortalUtil.getClassNameId(User.class));
+		sb.append("))))");
+
+		return sb.toString();
 	}
 
 	protected void updateSOAnnouncements(final long companyId)
