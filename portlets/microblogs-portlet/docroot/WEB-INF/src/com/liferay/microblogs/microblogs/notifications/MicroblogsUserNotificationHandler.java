@@ -128,27 +128,4 @@ public class MicroblogsUserNotificationHandler
 		return title;
 	}
 
-	@Override
-	protected String getLink(
-			UserNotificationEvent userNotificationEvent,
-			ServiceContext serviceContext)
-		throws Exception {
-
-		JSONObject jsonObject = JSONFactoryUtil.createJSONObject(
-			userNotificationEvent.getPayload());
-
-		long microblogsEntryId = jsonObject.getLong("classPK");
-
-		AssetRendererFactory assetRendererFactory =
-			AssetRendererFactoryRegistryUtil.getAssetRendererFactoryByClassName(
-				MicroblogsEntry.class.getName());
-
-		AssetRenderer assetRenderer = assetRendererFactory.getAssetRenderer(
-			microblogsEntryId);
-
-		return assetRenderer.getURLViewInContext(
-			serviceContext.getLiferayPortletRequest(),
-			serviceContext.getLiferayPortletResponse(), null);
-	}
-
 }
