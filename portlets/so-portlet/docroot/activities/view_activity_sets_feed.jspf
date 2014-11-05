@@ -74,7 +74,7 @@ for (SocialActivitySet activitySet : results) {
 						long classPK = (Long)commentsClassNameAndClassPK[1];
 
 						if (className.equals(MicroblogsEntry.class.getName())) {
-							commentsCount = MicroblogsEntryLocalServiceUtil.getReceiverMicroblogsEntryMicroblogsEntriesCount(MicroblogsEntryConstants.TYPE_REPLY, classPK);
+							commentsCount = MicroblogsEntryLocalServiceUtil.getParentMicroblogsEntryMicroblogsEntriesCount(MicroblogsEntryConstants.TYPE_REPLY, classPK);
 						}
 						else {
 							commentsCount = MBMessageLocalServiceUtil.getDiscussionMessagesCount(className, classPK, WorkflowConstants.STATUS_APPROVED);

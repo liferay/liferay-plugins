@@ -130,7 +130,7 @@ public class ActivitiesPortlet extends MVCPortlet {
 
 		List<MicroblogsEntry> microblogsEntries =
 			MicroblogsEntryLocalServiceUtil.
-				getReceiverMicroblogsEntryMicroblogsEntries(
+				getParentMicroblogsEntryMicroblogsEntries(
 					MicroblogsEntryConstants.TYPE_REPLY,
 					activitySet.getClassPK(), QueryUtil.ALL_POS,
 					QueryUtil.ALL_POS);
