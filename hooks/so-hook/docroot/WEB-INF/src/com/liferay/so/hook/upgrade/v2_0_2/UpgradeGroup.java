@@ -21,9 +21,7 @@ import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.dao.orm.Property;
 import com.liferay.portal.kernel.dao.orm.PropertyFactoryUtil;
-import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 import com.liferay.portal.kernel.util.ClassResolverUtil;
 import com.liferay.portal.kernel.util.MethodKey;
@@ -34,7 +32,6 @@ import com.liferay.portal.model.Layout;
 import com.liferay.portal.model.LayoutConstants;
 import com.liferay.portal.model.LayoutSet;
 import com.liferay.portal.model.LayoutTypePortlet;
-import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.LayoutLocalServiceUtil;
 import com.liferay.portal.service.LayoutSetLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
@@ -44,8 +41,6 @@ import com.liferay.portlet.PortletPreferencesFactoryUtil;
 import com.liferay.so.util.LayoutSetPrototypeUtil;
 import com.liferay.so.util.SocialOfficeConstants;
 import com.liferay.so.util.SocialOfficeUtil;
-
-import java.util.List;
 
 import javax.portlet.PortletPreferences;
 
@@ -57,7 +52,8 @@ public class UpgradeGroup extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {
-		ActionableDynamicQuery actionableDynamicQuery = new GroupActionableDynamicQuery() {
+		ActionableDynamicQuery actionableDynamicQuery = 
+			new GroupActionableDynamicQuery() {
 
 			@Override
 			protected void addCriteria(DynamicQuery dynamicQuery) {
@@ -70,9 +66,7 @@ public class UpgradeGroup extends UpgradeProcess {
 			}
 
 			@Override
-			protected void performAction(Object object)
-				throws PortalException, SystemException {
-
+			protected void performAction(Object object) throws PortalException {
 				Group group = (Group)object;
 
 				if (group.isGuest()) {
@@ -91,28 +85,28 @@ public class UpgradeGroup extends UpgradeProcess {
 				}
 
 				try {
-					PortletPreferences portletPreferences = 
+					PortletPreferences portletPreferences =
 						getPortletPreferences(
 							group.getGroupId(), privateLayout);
-	
+
 					LayoutLocalServiceUtil.deleteLayouts(
 						group.getGroupId(), privateLayout,
 						new ServiceContext());
-	
+
 					LayoutSetPrototypeUtil.updateLayoutSetPrototype(
 						group, privateLayout,
 						SocialOfficeConstants.LAYOUT_SET_PROTOTYPE_KEY_SITE);
-	
+
 					layoutSet = LayoutSetLocalServiceUtil.getLayoutSet(
 						group.getGroupId(), privateLayout);
-	
+
 					PortalClassInvoker.invoke(
 						_mergeLayoutSetPrototypeLayoutsMethodKey, group,
 						layoutSet);
-	
+
 					updatePortletPreferences(
 						group.getGroupId(), privateLayout, portletPreferences);
-	
+
 					SocialOfficeUtil.enableSocialOffice(group);
 				}
 				catch (Exception e) {
