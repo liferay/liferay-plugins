@@ -20,7 +20,6 @@ package com.liferay.so.hook.upgrade.v2_0_2;
 import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 import com.liferay.portal.kernel.util.ClassResolverUtil;
 import com.liferay.portal.kernel.util.MethodKey;
@@ -55,9 +54,7 @@ public class UpgradeUser extends UpgradeProcess {
 			new UserActionableDynamicQuery() {
 
 			@Override
-			protected void performAction(Object object)
-				throws PortalException, SystemException {
-
+			protected void performAction(Object object) throws PortalException {
 				User user = (User)object;
 
 				try {
