@@ -62,7 +62,7 @@ public class UpgradeUser extends UpgradeProcess {
 
 				try {
 					if (user.isDefaultUser()) {
-						continue;
+						return;
 					}
 
 					Group group = user.getGroup();
