@@ -52,7 +52,7 @@ public class UpgradeGroup extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {
-		ActionableDynamicQuery actionableDynamicQuery = 
+		ActionableDynamicQuery actionableDynamicQuery =
 			new GroupActionableDynamicQuery() {
 
 			@Override

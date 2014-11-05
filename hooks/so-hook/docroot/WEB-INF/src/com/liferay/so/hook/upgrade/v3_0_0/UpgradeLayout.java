@@ -17,36 +17,27 @@
 
 package com.liferay.so.hook.upgrade.v3_0_0;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-
 import com.liferay.portal.kernel.dao.jdbc.DataAccess;
-import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
-import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
-import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.UnicodeProperties;
 import com.liferay.portal.kernel.util.Validator;
-import com.liferay.portal.model.Group;
 import com.liferay.portal.model.Layout;
 import com.liferay.portal.model.LayoutSetPrototype;
 import com.liferay.portal.model.LayoutTemplate;
 import com.liferay.portal.model.LayoutTypePortlet;
 import com.liferay.portal.model.User;
-import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.LayoutLocalServiceUtil;
-import com.liferay.portal.service.LayoutSetLocalServiceUtil;
-import com.liferay.portal.service.persistence.LayoutActionableDynamicQuery;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.expando.model.ExpandoTableConstants;
-import com.liferay.so.service.SocialOfficeServiceUtil;
 import com.liferay.so.util.LayoutSetPrototypeUtil;
 import com.liferay.so.util.LayoutUtil;
 import com.liferay.so.util.PortletKeys;
 import com.liferay.so.util.SocialOfficeConstants;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 /**
  * @author Matthew Kong
@@ -99,8 +90,7 @@ public class UpgradeLayout extends UpgradeProcess {
 						columnValue, PortletKeys.ANNOUNCEMENTS,
 						PortletKeys.SO_ANNOUNCEMENTS);
 
-					typeSettingsProperties.setProperty(
-						columnName, columnValue);
+					typeSettingsProperties.setProperty(columnName, columnValue);
 				}
 
 				layout.setTypeSettingsProperties(typeSettingsProperties);
@@ -167,7 +157,6 @@ public class UpgradeLayout extends UpgradeProcess {
 
 				LayoutUtil.addResources(layout, PortletKeys.SO_ANNOUNCEMENTS);
 			}
-
 		}
 		finally {
 			DataAccess.cleanUp(con, ps, rs);
