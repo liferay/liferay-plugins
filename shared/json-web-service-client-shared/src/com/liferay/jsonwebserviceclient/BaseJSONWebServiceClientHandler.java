@@ -39,7 +39,6 @@ public abstract class BaseJSONWebServiceClientHandler {
 	}
 
 	protected String doGet(String url, String... parametersArray) {
-
 		Map<String, String> parameters = new HashMap<String, String>();
 
 		for (int i = 0; i < parametersArray.length; i += 2) {
@@ -102,9 +101,7 @@ public abstract class BaseJSONWebServiceClientHandler {
 		}
 	}
 
-	protected String doPost(String url, String... parametersArray)
-		throws JSONWebServiceInvocationException {
-
+	protected String doPost(String url, String... parametersArray) {
 		Map<String, String> parameters = new HashMap<String, String>();
 
 		for (int i = 0; i < parametersArray.length; i += 2) {
