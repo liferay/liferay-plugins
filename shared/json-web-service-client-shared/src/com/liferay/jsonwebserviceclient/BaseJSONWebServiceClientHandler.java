@@ -102,7 +102,7 @@ public abstract class BaseJSONWebServiceClientHandler {
 		}
 	}
 
-	protected void doPost(String url, String... parametersArray)
+	protected String doPost(String url, String... parametersArray)
 		throws JSONWebServiceInvocationException {
 
 		Map<String, String> parameters = new HashMap<String, String>();
@@ -111,16 +111,16 @@ public abstract class BaseJSONWebServiceClientHandler {
 			parameters.put(parametersArray[i], parametersArray[i + 1]);
 		}
 
-		getJSONWebServiceClient().doPost(url, parameters);
+		return getJSONWebServiceClient().doPost(url, parameters);
 	}
 
-	protected void doPostAsJSON(String url, Object object)
+	protected String doPostAsJSON(String url, Object object)
 		throws JSONWebServiceInvocationException {
 
 		try {
 			String json = _objectMapper.writeValueAsString(object);
 
-			getJSONWebServiceClient().doPostAsJSON(url, json);
+			return getJSONWebServiceClient().doPostAsJSON(url, json);
 		}
 		catch (IOException ie) {
 			throw new JSONWebServiceInvocationException(ie);
