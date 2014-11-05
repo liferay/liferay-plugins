@@ -62,12 +62,38 @@ public class UpgradeLayout extends UpgradeProcess {
 		try {
 			con = DataAccess.getUpgradeOptimizedConnection();
 
-			ps = con.prepareStatement(null);
+			StringBuilder sb = new StringBuilder(8);
+
+			sb.append("select Layout.plid from Layout ");
+			sb.append(getJoinSQL());
+			sb.append("where (Layout.typeSettings like '%");
+			sb.append(PortletKeys.ANNOUNCEMENTS);
+			sb.append("%') and ");
+			sb.append("(Layout.typeSettings not like '%");
+			sb.append(PortletKeys.SO_ANNOUNCEMENTS);
+			sb.append("%')");
+
+			ps = con.prepareStatement(sb.toString());
 
 			rs = ps.executeQuery();
 
 			while (rs.next()) {
+			}
 
+			sb = new StringBuilder(6);
+			sb.append("select Layout.plid from Layout ");
+			sb.append(getJoinSQL());
+			sb.append("where (Layout.typeSettings not like '%");
+			sb.append(PortletKeys.SO_ANNOUNCEMENTS);
+			sb.append("%') and ");
+			sb.append("(Layout.priority = 0)");
+
+			ps = con.prepareStatement(sb.toString());
+
+			rs = ps.executeQuery();
+
+			while (rs.next()) {
+				
 			}
 		}
 		finally {
@@ -80,7 +106,7 @@ public class UpgradeLayout extends UpgradeProcess {
 	}
 
 	protected String getJoinSQL() {
-		StringBuilder sb = new StringBuilder();
+		StringBuilder sb = new StringBuilder(18);
 
 		sb.append("inner join ExpandoValue on ");
 		sb.append("((ExpandoValue.classPK = Layout.groupId) and ");
@@ -97,12 +123,12 @@ public class UpgradeLayout extends UpgradeProcess {
 		sb.append("')) ");
 
 		sb.append("inner join Group_ on ");
-		sb.append("((Group_.groupId == Layout.groupId) and ");
+		sb.append("((Group_.groupId = Layout.groupId) and ");
 		sb.append("((Layout.privateLayout = true) or ");
 		sb.append("((Layout.privateLayout = false) and ");
 		sb.append("(Group_.classNameId != ");
 		sb.append(PortalUtil.getClassNameId(User.class));
-		sb.append("))))");
+		sb.append(")))) ");
 
 		return sb.toString();
 	}
