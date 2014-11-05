@@ -25,7 +25,7 @@ import com.liferay.microblogs.util.PortletKeys;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
-import com.liferay.portal.kernel.notifications.BaseUserNotificationHandler;
+import com.liferay.portal.kernel.notifications.BaseModelUserNotificationHandler;
 import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -43,7 +43,7 @@ import com.liferay.portlet.asset.model.AssetRendererFactory;
  * @author Jonathan Lee
  */
 public class MicroblogsUserNotificationHandler
-	extends BaseUserNotificationHandler {
+	extends BaseModelUserNotificationHandler {
 
 	public MicroblogsUserNotificationHandler() {
 		setPortletId(PortletKeys.MICROBLOGS);
