@@ -76,7 +76,7 @@ public class UpgradeGroup extends UpgradeProcess {
 				Group group = (Group)object;
 
 				if (group.isGuest()) {
-					continue;
+					return;
 				}
 
 				boolean privateLayout = group.hasPrivateLayouts();
@@ -87,30 +87,36 @@ public class UpgradeGroup extends UpgradeProcess {
 				String themeId = layoutSet.getThemeId();
 
 				if (!themeId.equals("so_WAR_sotheme")) {
-					continue;
+					return;
 				}
 
-				PortletPreferences portletPreferences = getPortletPreferences(
-					group.getGroupId(), privateLayout);
-
-				LayoutLocalServiceUtil.deleteLayouts(
-					group.getGroupId(), privateLayout, new ServiceContext());
-
-				LayoutSetPrototypeUtil.updateLayoutSetPrototype(
-					group, privateLayout,
-					SocialOfficeConstants.LAYOUT_SET_PROTOTYPE_KEY_SITE);
-
-				layoutSet = LayoutSetLocalServiceUtil.getLayoutSet(
-					group.getGroupId(), privateLayout);
-
-				PortalClassInvoker.invoke(
-					_mergeLayoutSetPrototypeLayoutsMethodKey, group,
-					layoutSet);
-
-				updatePortletPreferences(
-					group.getGroupId(), privateLayout, portletPreferences);
-
-				SocialOfficeUtil.enableSocialOffice(group);
+				try {
+					PortletPreferences portletPreferences = 
+						getPortletPreferences(
+							group.getGroupId(), privateLayout);
+	
+					LayoutLocalServiceUtil.deleteLayouts(
+						group.getGroupId(), privateLayout,
+						new ServiceContext());
+	
+					LayoutSetPrototypeUtil.updateLayoutSetPrototype(
+						group, privateLayout,
+						SocialOfficeConstants.LAYOUT_SET_PROTOTYPE_KEY_SITE);
+	
+					layoutSet = LayoutSetLocalServiceUtil.getLayoutSet(
+						group.getGroupId(), privateLayout);
+	
+					PortalClassInvoker.invoke(
+						_mergeLayoutSetPrototypeLayoutsMethodKey, group,
+						layoutSet);
+	
+					updatePortletPreferences(
+						group.getGroupId(), privateLayout, portletPreferences);
+	
+					SocialOfficeUtil.enableSocialOffice(group);
+				}
+				catch (Exception e) {
+				}
 			}
 		};
 
