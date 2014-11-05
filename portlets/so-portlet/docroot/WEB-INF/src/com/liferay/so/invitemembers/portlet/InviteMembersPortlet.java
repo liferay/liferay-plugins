@@ -25,6 +25,7 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.model.Group;
@@ -220,6 +221,7 @@ public class InviteMembersPortlet extends MVCPortlet {
 			PortletRequest.RENDER_PHASE);
 
 		portletURL.setParameter("mvcPath", "/notifications/view.jsp");
+		portletURL.setParameter("actionable", StringPool.TRUE);
 		portletURL.setWindowState(WindowState.MAXIMIZED);
 
 		serviceContext.setAttribute("redirectURL", portletURL.toString());
