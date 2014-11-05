@@ -73,52 +73,48 @@ public class UpgradeGroup extends UpgradeProcess {
 			protected void performAction(Object object)
 				throws PortalException, SystemException {
 
-			}
+				Group group = (Group)object;
 
+				if (!group.isRegularSite() || group.isGuest()) {
+					continue;
+				}
+
+				boolean privateLayout = group.hasPrivateLayouts();
+
+				LayoutSet layoutSet = LayoutSetLocalServiceUtil.getLayoutSet(
+					group.getGroupId(), privateLayout);
+
+				String themeId = layoutSet.getThemeId();
+
+				if (!themeId.equals("so_WAR_sotheme")) {
+					continue;
+				}
+
+				PortletPreferences portletPreferences = getPortletPreferences(
+					group.getGroupId(), privateLayout);
+
+				LayoutLocalServiceUtil.deleteLayouts(
+					group.getGroupId(), privateLayout, new ServiceContext());
+
+				LayoutSetPrototypeUtil.updateLayoutSetPrototype(
+					group, privateLayout,
+					SocialOfficeConstants.LAYOUT_SET_PROTOTYPE_KEY_SITE);
+
+				layoutSet = LayoutSetLocalServiceUtil.getLayoutSet(
+					group.getGroupId(), privateLayout);
+
+				PortalClassInvoker.invoke(
+					_mergeLayoutSetPrototypeLayoutsMethodKey, group,
+					layoutSet);
+
+				updatePortletPreferences(
+					group.getGroupId(), privateLayout, portletPreferences);
+
+				SocialOfficeUtil.enableSocialOffice(group);
+			}
 		};
 
 		actionableDynamicQuery.performActions();
-
-		List<Group> groups = GroupLocalServiceUtil.getGroups(
-			QueryUtil.ALL_POS, QueryUtil.ALL_POS);
-
-		for (Group group : groups) {
-			if (!group.isRegularSite() || group.isGuest()) {
-				continue;
-			}
-
-			boolean privateLayout = group.hasPrivateLayouts();
-
-			LayoutSet layoutSet = LayoutSetLocalServiceUtil.getLayoutSet(
-				group.getGroupId(), privateLayout);
-
-			String themeId = layoutSet.getThemeId();
-
-			if (!themeId.equals("so_WAR_sotheme")) {
-				continue;
-			}
-
-			PortletPreferences portletPreferences = getPortletPreferences(
-				group.getGroupId(), privateLayout);
-
-			LayoutLocalServiceUtil.deleteLayouts(
-				group.getGroupId(), privateLayout, new ServiceContext());
-
-			LayoutSetPrototypeUtil.updateLayoutSetPrototype(
-				group, privateLayout,
-				SocialOfficeConstants.LAYOUT_SET_PROTOTYPE_KEY_SITE);
-
-			layoutSet = LayoutSetLocalServiceUtil.getLayoutSet(
-				group.getGroupId(), privateLayout);
-
-			PortalClassInvoker.invoke(
-				_mergeLayoutSetPrototypeLayoutsMethodKey, group, layoutSet);
-
-			updatePortletPreferences(
-				group.getGroupId(), privateLayout, portletPreferences);
-
-			SocialOfficeUtil.enableSocialOffice(group);
-		}
 	}
 
 	protected PortletPreferences getPortletPreferences(
