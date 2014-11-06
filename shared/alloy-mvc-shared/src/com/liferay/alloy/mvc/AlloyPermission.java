@@ -78,16 +78,17 @@ public class AlloyPermission {
 			return true;
 		}
 
-		if (ownerId <= 0) {
-			ownerId = getOwnerId(name, primKey);
-		}
+		if (name.indexOf(CharPool.PERIOD) != -1) {
+			if (ownerId <= 0) {
+				ownerId = getOwnerId(name, primKey);
+			}
 
-		if ((name.indexOf(CharPool.PERIOD) != -1) &&
-			permissionChecker.hasOwnerPermission(
-				permissionChecker.getCompanyId(), name, primKey, ownerId,
-				actionId)) {
+			if (permissionChecker.hasOwnerPermission(
+					permissionChecker.getCompanyId(), name, primKey, ownerId,
+					actionId)) {
 
-			return true;
+				return true;
+			}
 		}
 
 		return permissionChecker.hasPermission(
