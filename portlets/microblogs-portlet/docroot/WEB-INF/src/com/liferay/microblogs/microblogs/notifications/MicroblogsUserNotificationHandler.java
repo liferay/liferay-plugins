@@ -73,16 +73,12 @@ public class MicroblogsUserNotificationHandler
 
 		int notificationType = jsonObject.getInt("notificationType");
 
-		String title = getBodyTitle(
-			microblogsEntry, notificationType, serviceContext);
-
-		String body = MicroblogsUtil.getProcessedContent(
-			StringUtil.shorten(microblogsEntry.getContent(), 50),
-			serviceContext);
-
 		return StringUtil.replace(
 			getBodyTemplate(), new String[] {"[$BODY$]", "[$TITLE$]"},
-			new String[] {body, title});
+			new String[] {
+				HtmlUtil.escape(jsonObject.getString("entryTitle")),
+				getBodyTitle(microblogsEntry, notificationType, serviceContext)
+			});
 	}
 
 	protected String getBodyTitle(
