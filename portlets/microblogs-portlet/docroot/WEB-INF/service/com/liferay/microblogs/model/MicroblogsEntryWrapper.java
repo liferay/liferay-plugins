@@ -243,9 +243,9 @@ public class MicroblogsEntryWrapper implements MicroblogsEntry,
 	}
 
 	@Override
-	public long getParentMicroblogsUserId()
+	public long getParentMicroblogsEntryUserId()
 		throws com.liferay.portal.kernel.exception.PortalException {
-		return _microblogsEntry.getParentMicroblogsUserId();
+		return _microblogsEntry.getParentMicroblogsEntryUserId();
 	}
 
 	/**

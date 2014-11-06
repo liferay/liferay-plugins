@@ -479,9 +479,9 @@ public class MicroblogsEntryClp extends BaseModelImpl<MicroblogsEntry>
 	}
 
 	@Override
-	public long getParentMicroblogsUserId() {
+	public long getParentMicroblogsEntryUserId() {
 		try {
-			String methodName = "getParentMicroblogsUserId";
+			String methodName = "getParentMicroblogsEntryUserId";
 
 			Class<?>[] parameterTypes = new Class<?>[] {  };
 
