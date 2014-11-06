@@ -196,7 +196,7 @@ public class MicroblogsUtil {
 			return microblogsEntry.getUserId();
 		}
 
-		return microblogsEntry.getParentMicroblogsUserId();
+		return microblogsEntry.getParentMicroblogsEntryUserId();
 	}
 
 	public static List<String> getScreenNames(String content) {

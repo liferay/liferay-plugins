@@ -29,7 +29,7 @@ public class MicroblogsEntryImpl extends MicroblogsEntryBaseImpl {
 	public MicroblogsEntryImpl() {
 	}
 
-	public long getParentMicroblogsUserId() throws PortalException {
+	public long getParentMicroblogsEntryUserId() throws PortalException {
 		if (getMicroblogsEntryId() == getParentMicroblogsEntryId()) {
 			return getUserId();
 		}

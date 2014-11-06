@@ -107,7 +107,7 @@ public class MicroblogsUserNotificationHandler
 						NOTIFICATION_TYPE_REPLY_TO_REPLIED) {
 
 			User user = UserLocalServiceUtil.fetchUser(
-				microblogsEntry.getParentMicroblogsUserId());
+				microblogsEntry.getParentMicroblogsEntryUserId());
 
 			if (user != null) {
 				title = serviceContext.translate(

@@ -248,7 +248,7 @@ public class MicroblogsActivityInterpreter extends SOSocialActivityInterpreter {
 					serviceContext.translate(
 						"reposted-a-microblog-entry-from-x",
 						getUserName(
-							microblogsEntry.getParentMicroblogsUserId(),
+							microblogsEntry.getParentMicroblogsEntryUserId(),
 							serviceContext)));
 			}
 			else {
