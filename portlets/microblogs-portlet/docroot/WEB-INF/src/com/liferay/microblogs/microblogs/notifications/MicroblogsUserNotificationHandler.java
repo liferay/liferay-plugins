@@ -20,24 +20,18 @@ package com.liferay.microblogs.microblogs.notifications;
 import com.liferay.microblogs.model.MicroblogsEntry;
 import com.liferay.microblogs.model.MicroblogsEntryConstants;
 import com.liferay.microblogs.service.MicroblogsEntryLocalServiceUtil;
-import com.liferay.microblogs.util.MicroblogsUtil;
 import com.liferay.microblogs.util.PortletKeys;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.notifications.BaseModelUserNotificationHandler;
 import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.StringPool;
-import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.model.User;
-import com.liferay.portal.model.UserNotificationEvent;
+import com.liferay.portal.model.UserConstants;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.UserLocalServiceUtil;
-import com.liferay.portal.service.UserNotificationEventLocalServiceUtil;
 import com.liferay.portal.util.PortalUtil;
-import com.liferay.portlet.asset.AssetRendererFactoryRegistryUtil;
 import com.liferay.portlet.asset.model.AssetRenderer;
-import com.liferay.portlet.asset.model.AssetRendererFactory;
 
 /**
  * @author Jonathan Lee
@@ -50,35 +44,9 @@ public class MicroblogsUserNotificationHandler
 	}
 
 	@Override
-	protected String getBody(
-			UserNotificationEvent userNotificationEvent,
-			ServiceContext serviceContext)
-		throws Exception {
-
-		JSONObject jsonObject = JSONFactoryUtil.createJSONObject(
-			userNotificationEvent.getPayload());
-
-		AssetRenderer assetRenderer = getAssetRenderer(jsonObject);
-
-		if (assetRenderer == null) {
-			UserNotificationEventLocalServiceUtil.deleteUserNotificationEvent(
-				userNotificationEvent.getUserNotificationEventId());
-
-			return null;
-		}
-
-		return StringUtil.replace(
-			getBodyTemplate(), new String[] {"[$BODY$]", "[$TITLE$]"},
-			new String[] {
-				HtmlUtil.escape(jsonObject.getString("entryTitle")),
-				getBodyTitle(jsonObject, assetRenderer, serviceContext)
-			});
-	}
-
-	protected String getBodyTitle(
-			JSONObject jsonObject, AssetRenderer assetRenderer,
-			ServiceContext serviceContext)
-		throws PortalException {
+	protected String getTitle(
+		JSONObject jsonObject, AssetRenderer assetRenderer,
+		ServiceContext serviceContext) {
 
 		MicroblogsEntry microblogsEntry =
 			MicroblogsEntryLocalServiceUtil.fetchMicroblogsEntry(
@@ -102,13 +70,24 @@ public class MicroblogsUserNotificationHandler
 					MicroblogsEntryConstants.
 						NOTIFICATION_TYPE_REPLY_TO_REPLIED) {
 
-			User user = UserLocalServiceUtil.fetchUser(
-				microblogsEntry.getParentMicroblogsEntryUserId());
+			long parentMicroblogsEntryUserId = UserConstants.USER_ID_DEFAULT;
 
-			if (user != null) {
-				title = serviceContext.translate(
-					"x-also-commented-on-x's-post", userFullName,
-					user.getFullName());
+			try {
+				parentMicroblogsEntryUserId =
+					microblogsEntry.getParentMicroblogsEntryUserId();
+			}
+			catch (PortalException pe) {
+			}
+
+			if (parentMicroblogsEntryUserId > UserConstants.USER_ID_DEFAULT) {
+				User user = UserLocalServiceUtil.fetchUser(
+					parentMicroblogsEntryUserId);
+
+				if (user != null) {
+					title = serviceContext.translate(
+						"x-also-commented-on-x's-post", userFullName,
+						user.getFullName());
+				}
 			}
 		}
 		else if (notificationType ==
