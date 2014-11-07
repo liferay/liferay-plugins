@@ -67,28 +67,12 @@ public class AssetSharingUtil {
 
 		// Organization
 
-		List<Organization> organizations =
-			OrganizationLocalServiceUtil.getUserOrganizations(userId);
+		List<Organization> organizations = _getOrganizations(userId);
 
-		if (!organizations.isEmpty()) {
-			List<Organization> organizationsList =
-				new ArrayList<Organization>();
-
-			organizationsList.addAll(organizations);
-
-			for (Organization organization : organizations) {
-				List<Organization> parentOrganizations =
-					OrganizationLocalServiceUtil.getParentOrganizations(
-						organization.getOrganizationId());
-
-				for (Organization parentOrganization : parentOrganizations) {
-					organizationsList.add(parentOrganization);
-				}
-			}
-
+		if (organizations != null) {
 			scopes.put(
 				_ORGANIZATION_CLASS_NAME_ID,
-				_getOrganizationIds(organizationsList));
+				_getOrganizationIds(organizations));
 		}
 
 		// Site
@@ -110,18 +94,7 @@ public class AssetSharingUtil {
 
 		// Role
 
-		Set<Role> roles = new LinkedHashSet<Role>();
-
-		roles.addAll(RoleLocalServiceUtil.getUserRoles(userId));
-
-		if (_PERMISSIONS_CHECK_GUEST_ENABLED) {
-			User user = UserLocalServiceUtil.getUserById(userId);
-
-			Role guestRole = RoleLocalServiceUtil.getRole(
-				user.getCompanyId(), RoleConstants.GUEST);
-
-			roles.add(guestRole);
-		}
+		Set<Role> roles = _getRoles(userId);
 
 		if (!roles.isEmpty()) {
 			scopes.put(_ROLE_CLASS_NAME_ID, _getRoleIds(roles));
@@ -164,6 +137,33 @@ public class AssetSharingUtil {
 		return organizationIds;
 	}
 
+	private static List<Organization> _getOrganizations(long userId)
+		throws PortalException, SystemException {
+
+		List<Organization> organizations =
+			OrganizationLocalServiceUtil.getUserOrganizations(userId);
+
+		if (organizations.isEmpty()) {
+			return null;
+		}
+
+		List<Organization> organizationsList = new ArrayList<Organization>();
+
+		organizationsList.addAll(organizations);
+
+		for (Organization organization : organizations) {
+			List<Organization> parentOrganizations =
+				OrganizationLocalServiceUtil.getParentOrganizations(
+					organization.getOrganizationId());
+
+			for (Organization parentOrganization : parentOrganizations) {
+				organizationsList.add(parentOrganization);
+			}
+		}
+
+		return organizationsList;
+	}
+
 	private static long[] _getRoleIds(Set<Role> roles) {
 		long[] roleIds = new long[roles.size()];
 
@@ -174,6 +174,25 @@ public class AssetSharingUtil {
 		}
 
 		return roleIds;
+	}
+
+	private static Set<Role> _getRoles(long userId)
+		throws PortalException, SystemException {
+
+		Set<Role> roles = new LinkedHashSet<Role>();
+
+		roles.addAll(RoleLocalServiceUtil.getUserRoles(userId));
+
+		if (_PERMISSIONS_CHECK_GUEST_ENABLED) {
+			User user = UserLocalServiceUtil.getUserById(userId);
+
+			Role guestRole = RoleLocalServiceUtil.getRole(
+				user.getCompanyId(), RoleConstants.GUEST);
+
+			roles.add(guestRole);
+		}
+
+		return roles;
 	}
 
 	private static long[] _getTeamIds(List<Team> teams) {
