@@ -98,7 +98,7 @@ public class ApplePushNotificationsSender implements PushNotificationsSender {
 			builder.alertBody(message);
 		}
 
-		jsonObject.remove(PushNotificationsConstants.KEY_PAYLOAD);
+		payloadJSONObject.remove(PushNotificationsConstants.KEY_MESSAGE);
 
 		Iterator<String> keys = jsonObject.keys();
 
