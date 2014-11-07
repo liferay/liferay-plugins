@@ -36,4 +36,6 @@ public interface MicroblogsEntry extends MicroblogsEntryModel, PersistedModel {
 	 */
 	public long getParentMicroblogsEntryUserId()
 		throws com.liferay.portal.kernel.exception.PortalException;
+
+	public long fetchParentMicroblogsEntryUserId();
 }

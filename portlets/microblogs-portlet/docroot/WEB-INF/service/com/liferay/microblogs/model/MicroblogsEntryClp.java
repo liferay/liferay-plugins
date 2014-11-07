@@ -497,6 +497,25 @@ public class MicroblogsEntryClp extends BaseModelImpl<MicroblogsEntry>
 		}
 	}
 
+	@Override
+	public long fetchParentMicroblogsEntryUserId() {
+		try {
+			String methodName = "fetchParentMicroblogsEntryUserId";
+
+			Class<?>[] parameterTypes = new Class<?>[] {  };
+
+			Object[] parameterValues = new Object[] {  };
+
+			Long returnObj = (Long)invokeOnRemoteModel(methodName,
+					parameterTypes, parameterValues);
+
+			return returnObj;
+		}
+		catch (Exception e) {
+			throw new UnsupportedOperationException(e);
+		}
+	}
+
 	public BaseModel<?> getMicroblogsEntryRemoteModel() {
 		return _microblogsEntryRemoteModel;
 	}

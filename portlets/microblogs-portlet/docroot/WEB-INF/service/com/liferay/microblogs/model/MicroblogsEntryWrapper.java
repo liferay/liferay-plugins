@@ -157,6 +157,11 @@ public class MicroblogsEntryWrapper implements MicroblogsEntry,
 		return _microblogsEntry.compareTo(microblogsEntry);
 	}
 
+	@Override
+	public long fetchParentMicroblogsEntryUserId() {
+		return _microblogsEntry.fetchParentMicroblogsEntryUserId();
+	}
+
 	/**
 	* Returns the company ID of this microblogs entry.
 	*
