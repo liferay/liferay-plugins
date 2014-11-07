@@ -21,13 +21,11 @@ import com.liferay.microblogs.model.MicroblogsEntry;
 import com.liferay.microblogs.model.MicroblogsEntryConstants;
 import com.liferay.microblogs.service.MicroblogsEntryLocalServiceUtil;
 import com.liferay.microblogs.util.PortletKeys;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.notifications.BaseModelUserNotificationHandler;
 import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.User;
-import com.liferay.portal.model.UserConstants;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.util.PortalUtil;
@@ -70,24 +68,16 @@ public class MicroblogsUserNotificationHandler
 					MicroblogsEntryConstants.
 						NOTIFICATION_TYPE_REPLY_TO_REPLIED) {
 
-			long parentMicroblogsEntryUserId = UserConstants.USER_ID_DEFAULT;
+			long parentMicroblogsEntryUserId =
+				microblogsEntry.fetchParentMicroblogsEntryUserId();
 
-			try {
-				parentMicroblogsEntryUserId =
-					microblogsEntry.getParentMicroblogsEntryUserId();
-			}
-			catch (PortalException pe) {
-			}
+			User user = UserLocalServiceUtil.fetchUser(
+				parentMicroblogsEntryUserId);
 
-			if (parentMicroblogsEntryUserId > UserConstants.USER_ID_DEFAULT) {
-				User user = UserLocalServiceUtil.fetchUser(
-					parentMicroblogsEntryUserId);
-
-				if (user != null) {
-					title = serviceContext.translate(
-						"x-also-commented-on-x's-post", userFullName,
-						user.getFullName());
-				}
+			if (user != null) {
+				title = serviceContext.translate(
+					"x-also-commented-on-x's-post", userFullName,
+					user.getFullName());
 			}
 		}
 		else if (notificationType ==

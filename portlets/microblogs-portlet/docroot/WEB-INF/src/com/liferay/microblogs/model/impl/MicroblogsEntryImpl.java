@@ -29,6 +29,22 @@ public class MicroblogsEntryImpl extends MicroblogsEntryBaseImpl {
 	public MicroblogsEntryImpl() {
 	}
 
+	public long fetchParentMicroblogsEntryUserId() {
+		if (getMicroblogsEntryId() == getParentMicroblogsEntryId()) {
+			return getUserId();
+		}
+
+		MicroblogsEntry microblogsEntry =
+			MicroblogsEntryLocalServiceUtil.fetchMicroblogsEntry(
+				getParentMicroblogsEntryId());
+
+		if (microblogsEntry == null) {
+			return 0;
+		}
+
+		return microblogsEntry.getUserId();
+	}
+
 	public long getParentMicroblogsEntryUserId() throws PortalException {
 		if (getMicroblogsEntryId() == getParentMicroblogsEntryId()) {
 			return getUserId();
