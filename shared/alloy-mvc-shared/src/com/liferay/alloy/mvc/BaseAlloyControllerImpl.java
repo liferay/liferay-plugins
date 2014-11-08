@@ -184,7 +184,9 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 			executeResource(method);
 		}
 
-		if (alloyNotificationEventHelper != null) {
+		if ((alloyNotificationEventHelper != null) &&
+			!viewPath.equals(_VIEW_PATH_ERROR)) {
+
 			alloyNotificationEventHelper.addUserNotificationEvents(
 				request, controllerPath, actionPath,
 				alloyNotificationEventHelperPayload);
@@ -1162,7 +1164,7 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 	protected ActionRequest actionRequest;
 	protected ActionResponse actionResponse;
 	protected AlloyNotificationEventHelper alloyNotificationEventHelper;
-	protected Object alloyNotificationEventHelperPayload;
+	protected JSONObject alloyNotificationEventHelperPayload;
 	protected AlloyPortlet alloyPortlet;
 	protected AlloyServiceInvoker alloyServiceInvoker;
 	protected ClassLoader classLoader;
