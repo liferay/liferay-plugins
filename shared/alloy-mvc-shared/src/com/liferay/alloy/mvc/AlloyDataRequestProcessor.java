@@ -109,6 +109,20 @@ public class AlloyDataRequestProcessor {
 
 		if (jsonString != null) {
 			writeJSON(actionRequest, actionResponse, jsonString);
+
+			JSONObject jsonObject = JSONFactoryUtil.createJSONObject(
+				jsonString);
+
+			if (jsonObject.getBoolean("success")) {
+				AlloyNotificationEventHelper alloyNotificationEventHelper =
+					baseAlloyControllerImpl.alloyNotificationEventHelper;
+
+				alloyNotificationEventHelper.addUserNotificationEvents(
+					PortalUtil.getHttpServletRequest(actionRequest), controller,
+					action,
+					jsonObject.getJSONObject(
+						"alloyNotificationEventHelperPayload"));
+			}
 		}
 	}
 
