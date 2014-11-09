@@ -19,6 +19,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
 
 import com.liferay.portal.kernel.util.PortalClassLoaderUtil;
+import com.liferay.portal.kernel.util.PwdGenerator;
 import com.liferay.portal.kernel.util.ReflectionUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
@@ -29,7 +30,6 @@ import com.liferay.portal.security.auth.AuthVerifierResult;
 import com.liferay.portal.security.auth.AutoLoginException;
 import com.liferay.portal.security.auth.BaseAutoLogin;
 import com.liferay.sync.util.PortletPropsValues;
-import com.liferay.util.PwdGenerator;
 
 import java.lang.reflect.Method;
 
