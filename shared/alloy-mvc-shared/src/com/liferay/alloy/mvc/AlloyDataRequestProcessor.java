@@ -121,7 +121,7 @@ public class AlloyDataRequestProcessor {
 					PortalUtil.getHttpServletRequest(actionRequest), controller,
 					action,
 					jsonObject.getJSONObject(
-						"alloyNotificationEventHelperPayload"));
+						"alloyNotificationEventHelperPayloadJSONObject"));
 			}
 		}
 	}
