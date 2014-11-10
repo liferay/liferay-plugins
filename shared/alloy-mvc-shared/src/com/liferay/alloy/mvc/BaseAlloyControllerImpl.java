@@ -189,7 +189,7 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 
 			alloyNotificationEventHelper.addUserNotificationEvents(
 				request, controllerPath, actionPath,
-				alloyNotificationEventHelperPayload);
+				alloyNotificationEventHelperPayloadJSONObject);
 		}
 	}
 
@@ -980,7 +980,7 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 
 		this.alloyNotificationEventHelper = alloyNotificationEventHelper;
 
-		alloyNotificationEventHelperPayload = null;
+		alloyNotificationEventHelperPayloadJSONObject = null;
 	}
 
 	protected void setAlloyServiceInvokerClass(Class<?> clazz) {
@@ -1164,7 +1164,7 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 	protected ActionRequest actionRequest;
 	protected ActionResponse actionResponse;
 	protected AlloyNotificationEventHelper alloyNotificationEventHelper;
-	protected JSONObject alloyNotificationEventHelperPayload;
+	protected JSONObject alloyNotificationEventHelperPayloadJSONObject;
 	protected AlloyPortlet alloyPortlet;
 	protected AlloyServiceInvoker alloyServiceInvoker;
 	protected ClassLoader classLoader;
