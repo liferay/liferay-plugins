@@ -1,0 +1,17 @@
+/calendar-portlet-service.jar
+/commons-logging.jar
+/contacts-portlet-service.jar
+/deploy-listener-shared.jar
+/log4j.jar
+/microblogs-portlet-service.jar
+/microblogs-shared.jar
+/portal-compat-shared.jar
+/private-messaging-portlet-service.jar
+/so-announcements-shared.jar
+/so-configurations-shared.jar
+/so-portlet-service.jar
+/so-shared.jar
+/tasks-portlet-service.jar
+/util-bridges.jar
+/util-java.jar
+/util-taglib.jar
