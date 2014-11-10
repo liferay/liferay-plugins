@@ -39,13 +39,13 @@ public class SocialActivityKeyConstants {
 
 	/**
 	 * {@link
-	 * com.liferay.portlet.bookmarks.social.BookmarksActivityKeys#ADD_ENTRY}
+	 * com.liferay.bookmarks.social.BookmarksActivityKeys#ADD_ENTRY}
 	 */
 	public static final int BOOKMARKS_ADD_ENTRY = 1;
 
 	/**
 	 * {@link
-	 * com.liferay.portlet.bookmarks.social.BookmarksActivityKeys#UPDATE_ENTRY}
+	 * com.liferay.bookmarks.social.BookmarksActivityKeys#UPDATE_ENTRY}
 	 */
 	public static final int BOOKMARKS_UPDATE_ENTRY = 2;
 

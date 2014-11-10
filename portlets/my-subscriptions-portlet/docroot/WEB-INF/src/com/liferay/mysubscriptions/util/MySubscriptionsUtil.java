@@ -14,6 +14,7 @@
 
 package com.liferay.mysubscriptions.util;
 
+import com.liferay.bookmarks.model.BookmarksFolder;
 import com.liferay.knowledgebase.util.PortletKeys;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.language.LanguageUtil;
@@ -36,7 +37,6 @@ import com.liferay.portlet.asset.AssetRendererFactoryRegistryUtil;
 import com.liferay.portlet.asset.model.AssetRenderer;
 import com.liferay.portlet.asset.model.AssetRendererFactory;
 import com.liferay.portlet.blogs.model.BlogsEntry;
-import com.liferay.portlet.bookmarks.model.BookmarksFolder;
 import com.liferay.portlet.documentlibrary.model.DLFileEntryType;
 import com.liferay.portlet.documentlibrary.model.DLFolder;
 import com.liferay.portlet.documentlibrary.service.DLFileEntryTypeLocalServiceUtil;
