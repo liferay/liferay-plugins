@@ -15,11 +15,16 @@
 package com.liferay.asset.sharing.util;
 
 import com.liferay.asset.sharing.model.AssetSharingEntryConstants;
+import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.json.JSONArray;
+import com.liferay.portal.kernel.json.JSONFactoryUtil;
+import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.PropsUtil;
+import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.Organization;
 import com.liferay.portal.model.Role;
@@ -33,11 +38,14 @@ import com.liferay.portal.service.RoleLocalServiceUtil;
 import com.liferay.portal.service.TeamLocalServiceUtil;
 import com.liferay.portal.service.UserGroupLocalServiceUtil;
 import com.liferay.portal.service.UserLocalServiceUtil;
+import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
+import com.liferay.portal.util.comparator.UserFirstNameComparator;
 import com.liferay.portlet.social.model.SocialRelation;
 import com.liferay.portlet.social.model.SocialRelationConstants;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -47,6 +55,192 @@ import java.util.Set;
  * @author Sherry Yang
  */
 public class AssetSharingUtil {
+
+	public static JSONArray getJSONSharedToRecipients(
+			long userId, ThemeDisplay themeDisplay)
+		throws PortalException, SystemException {
+
+		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
+
+		Set<User> userSet = new HashSet<User>();
+
+		//Social Relations
+
+		JSONObject everyoneObject = JSONFactoryUtil.createJSONObject();
+
+		everyoneObject.put("classNameId", _SOCIAL_RELATION_CLASS_NAME_ID);
+		everyoneObject.put("id", AssetSharingEntryConstants.TYPE_EVERYONE);
+		everyoneObject.put("name", "everyone");
+
+		jsonArray.put(everyoneObject);
+
+		JSONObject followersObject = JSONFactoryUtil.createJSONObject();
+
+		followersObject.put("classNameId", _SOCIAL_RELATION_CLASS_NAME_ID);
+		followersObject.put("id", SocialRelationConstants.TYPE_UNI_FOLLOWER);
+		followersObject.put("name", "followers");
+
+		jsonArray.put(followersObject);
+
+		JSONObject connectorsObject = JSONFactoryUtil.createJSONObject();
+
+		connectorsObject.put("classNameId", _SOCIAL_RELATION_CLASS_NAME_ID);
+		connectorsObject.put("id", SocialRelationConstants.TYPE_BI_CONNECTION);
+		connectorsObject.put("name", "connections");
+
+		jsonArray.put(connectorsObject);
+
+		LinkedHashMap<String, Object> socialRelationParams =
+			new LinkedHashMap<String, Object>();
+
+		socialRelationParams.put("inherit", Boolean.TRUE);
+
+		socialRelationParams.put(
+			"socialRelationType",
+			new Long[] {
+				userId, (long)SocialRelationConstants.TYPE_BI_CONNECTION});
+
+		User currentUser = UserLocalServiceUtil.getUser(userId);
+
+		List<User> connectedUsers = UserLocalServiceUtil.search(
+			currentUser.getCompanyId(), null, WorkflowConstants.STATUS_APPROVED,
+			socialRelationParams, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+			new UserFirstNameComparator(true));
+
+		userSet.addAll(connectedUsers);
+
+		// Organization
+
+		List<Organization> organizations = _getOrganizations(userId);
+
+		if (organizations != null) {
+			for (Organization organization : organizations) {
+				JSONObject organizationObject =
+					JSONFactoryUtil.createJSONObject();
+
+				organizationObject.put(
+					"classNameId", _ORGANIZATION_CLASS_NAME_ID);
+				organizationObject.put("id", organization.getOrganizationId());
+				organizationObject.put("name", organization.getName());
+
+				jsonArray.put(organizationObject);
+
+				LinkedHashMap<String, Object> userParams =
+					new LinkedHashMap<String, Object>();
+
+				userParams.put(
+					"usersOrgs", new Long(organization.getOrganizationId()));
+
+				List<User> orgUsers = UserLocalServiceUtil.search(
+					organization.getCompanyId(), null,
+					WorkflowConstants.STATUS_APPROVED, userParams,
+					QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+					new UserFirstNameComparator(true));
+
+				userSet.addAll(orgUsers);
+			}
+		}
+
+		// Site
+
+		List<Group> groups = GroupLocalServiceUtil.getUserGroups(userId, true);
+
+		for (Group group : groups) {
+			JSONObject groupObject = JSONFactoryUtil.createJSONObject();
+
+			groupObject.put("classNameId", _GROUP_CLASS_NAME_ID);
+			groupObject.put("id", group.getGroupId());
+			groupObject.put("name", group.getName());
+
+			jsonArray.put(groupObject);
+
+			LinkedHashMap<String, Object> userParams =
+				new LinkedHashMap<String, Object>();
+
+			userParams.put("inherit", Boolean.TRUE);
+			userParams.put("usersGroups", new Long(group.getGroupId()));
+
+			List<User> groupUsers = UserLocalServiceUtil.search(
+				group.getCompanyId(), null, WorkflowConstants.STATUS_APPROVED,
+				userParams, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+				new UserFirstNameComparator(true));
+
+			userSet.addAll(groupUsers);
+		}
+
+		// User group
+
+		List<UserGroup> userGroups =
+			UserGroupLocalServiceUtil.getUserUserGroups(userId);
+
+		for (UserGroup userGroup : userGroups) {
+			JSONObject userGroupObject = JSONFactoryUtil.createJSONObject();
+
+			userGroupObject.put("classNameId", _USER_GROUP_CLASS_NAME_ID);
+			userGroupObject.put("id", userGroup.getUserGroupId());
+			userGroupObject.put("name", userGroup.getName());
+
+			jsonArray.put(userGroupObject);
+
+			LinkedHashMap<String, Object> userParams =
+				new LinkedHashMap<String, Object>();
+
+			userParams.put(
+				"usersUserGroups", new Long(userGroup.getUserGroupId()));
+
+			List<User> userGroupUsers = UserLocalServiceUtil.search(
+				userGroup.getCompanyId(), null,
+				WorkflowConstants.STATUS_APPROVED, userParams,
+				QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+				new UserFirstNameComparator(true));
+
+			userSet.addAll(userGroupUsers);
+		}
+
+		// Role
+
+		Set<Role> roles = _getRoles(userId);
+
+		for (Role role : roles) {
+			JSONObject roleObject = JSONFactoryUtil.createJSONObject();
+
+			roleObject.put("classNameId", _ROLE_CLASS_NAME_ID);
+			roleObject.put("id", role.getRoleId());
+			roleObject.put("name", role.getName());
+
+			jsonArray.put(roleObject);
+		}
+
+		// Team
+
+		List<Team> teams = TeamLocalServiceUtil.getUserTeams(userId);
+
+		for (Team team : teams) {
+			JSONObject teamObject = JSONFactoryUtil.createJSONObject();
+			teamObject.put("classNameId", _TEAM_CLASS_NAME_ID);
+			teamObject.put("id", team.getTeamId());
+			teamObject.put("name", team.getName());
+
+			jsonArray.put(teamObject);
+		}
+
+		// User
+
+		for (User user : userSet) {
+			JSONObject userObject = JSONFactoryUtil.createJSONObject();
+
+			userObject.put("classNameId", _USER_CLASS_NAME_ID);
+			userObject.put("email", user.getEmailAddress());
+			userObject.put("id", user.getUserId());
+			userObject.put("name", user.getFullName());
+			userObject.put("portraitURL", user.getPortraitURL(themeDisplay));
+			userObject.put("screenName", user.getScreenName());
+
+			jsonArray.put(userObject);
+		}
+
+		return jsonArray;
+	}
 
 	public static LinkedHashMap<Long, long[]> getSharedToClassPKsMap(
 			long userId)
