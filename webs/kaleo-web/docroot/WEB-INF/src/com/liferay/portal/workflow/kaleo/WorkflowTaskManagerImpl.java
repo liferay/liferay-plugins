@@ -168,6 +168,30 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 	}
 
 	@Override
+	public WorkflowTask fetchWorkflowTask(
+			long companyId, long workflowTaskInstanceId)
+		throws WorkflowException {
+
+		KaleoTaskInstanceToken kaleoTaskInstanceToken =
+			KaleoTaskInstanceTokenLocalServiceUtil.fetchKaleoTaskInstanceToken(
+				workflowTaskInstanceId);
+
+		if (kaleoTaskInstanceToken == null) {
+			return null;
+		}
+
+		try {
+			return WorkflowModelUtil.toWorkflowTask(
+				kaleoTaskInstanceToken,
+				WorkflowContextUtil.convert(
+					kaleoTaskInstanceToken.getWorkflowContext()));
+		}
+		catch (Exception e) {
+			throw new WorkflowException(e);
+		}
+	}
+
+	@Override
 	public List<String> getNextTransitionNames(
 			long companyId, long userId, long workflowTaskInstanceId)
 		throws WorkflowException {
