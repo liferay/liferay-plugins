@@ -38,6 +38,9 @@ int pollInterval = PrefsPropsUtil.getInteger(portletPreferences, themeDisplay.ge
 	</aui:fieldset>
 
 	<aui:fieldset label="sync-sites">
+		<div class="alert alert-info">
+			<liferay-ui:message key="deactivating-a-site-will-delete-all-associated-files-from-all-clients" />
+		</div>
 
 		<%
 		List<Group> groups = GroupLocalServiceUtil.getGroups(themeDisplay.getCompanyId(), GroupConstants.ANY_PARENT_GROUP_ID, true);
