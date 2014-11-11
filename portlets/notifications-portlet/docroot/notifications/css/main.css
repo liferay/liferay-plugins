@@ -527,8 +527,9 @@
 			}
 
 			.checkbox {
+				clear: both;
 				float: left;
-				margin-left: 40px;
+				margin: 5px 0 5px 40px;
 				position: relative;
 			}
 
