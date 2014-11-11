@@ -1760,6 +1760,12 @@ AUI.add(
 
 						instance.popover.headerNode.toggleClass('hide', !templateData.permissions.VIEW_BOOKING_DETAILS);
 
+						instance._showResources();
+					},
+
+					_showResources: function() {
+						var instance = this;
+
 						var schedulerEvent = instance.get('event');
 
 						var popoverBB = instance.popover.get('boundingBox');
