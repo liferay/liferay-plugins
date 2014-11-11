@@ -24,6 +24,7 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.service.BaseServiceImpl;
 import com.liferay.portal.service.persistence.ClassNamePersistence;
 import com.liferay.portal.service.persistence.GroupPersistence;
+import com.liferay.portal.service.persistence.OrganizationPersistence;
 import com.liferay.portal.service.persistence.RepositoryPersistence;
 import com.liferay.portal.service.persistence.UserPersistence;
 import com.liferay.portal.util.PortalUtil;
@@ -302,6 +303,63 @@ public abstract class SyncDLObjectServiceBaseImpl extends BaseServiceImpl
 	 */
 	public void setGroupPersistence(GroupPersistence groupPersistence) {
 		this.groupPersistence = groupPersistence;
+	}
+
+	/**
+	 * Returns the organization local service.
+	 *
+	 * @return the organization local service
+	 */
+	public com.liferay.portal.service.OrganizationLocalService getOrganizationLocalService() {
+		return organizationLocalService;
+	}
+
+	/**
+	 * Sets the organization local service.
+	 *
+	 * @param organizationLocalService the organization local service
+	 */
+	public void setOrganizationLocalService(
+		com.liferay.portal.service.OrganizationLocalService organizationLocalService) {
+		this.organizationLocalService = organizationLocalService;
+	}
+
+	/**
+	 * Returns the organization remote service.
+	 *
+	 * @return the organization remote service
+	 */
+	public com.liferay.portal.service.OrganizationService getOrganizationService() {
+		return organizationService;
+	}
+
+	/**
+	 * Sets the organization remote service.
+	 *
+	 * @param organizationService the organization remote service
+	 */
+	public void setOrganizationService(
+		com.liferay.portal.service.OrganizationService organizationService) {
+		this.organizationService = organizationService;
+	}
+
+	/**
+	 * Returns the organization persistence.
+	 *
+	 * @return the organization persistence
+	 */
+	public OrganizationPersistence getOrganizationPersistence() {
+		return organizationPersistence;
+	}
+
+	/**
+	 * Sets the organization persistence.
+	 *
+	 * @param organizationPersistence the organization persistence
+	 */
+	public void setOrganizationPersistence(
+		OrganizationPersistence organizationPersistence) {
+		this.organizationPersistence = organizationPersistence;
 	}
 
 	/**
@@ -696,6 +754,12 @@ public abstract class SyncDLObjectServiceBaseImpl extends BaseServiceImpl
 	protected com.liferay.portal.service.GroupService groupService;
 	@BeanReference(type = GroupPersistence.class)
 	protected GroupPersistence groupPersistence;
+	@BeanReference(type = com.liferay.portal.service.OrganizationLocalService.class)
+	protected com.liferay.portal.service.OrganizationLocalService organizationLocalService;
+	@BeanReference(type = com.liferay.portal.service.OrganizationService.class)
+	protected com.liferay.portal.service.OrganizationService organizationService;
+	@BeanReference(type = OrganizationPersistence.class)
+	protected OrganizationPersistence organizationPersistence;
 	@BeanReference(type = com.liferay.portal.service.RepositoryLocalService.class)
 	protected com.liferay.portal.service.RepositoryLocalService repositoryLocalService;
 	@BeanReference(type = com.liferay.portal.service.RepositoryService.class)
