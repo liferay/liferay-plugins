@@ -104,6 +104,15 @@
 						data: {
 							<portlet:namespace />deliver: currentTarget.attr('checked'),
 							<portlet:namespace />userNotificationDeliveryId: currentTarget.attr('data-userNotificationDeliveryId')
+						},
+						dataType: 'json',
+						on: {
+							success: function() {
+								var responseData = this.get('responseData');
+
+								if (responseData.success) {
+								}
+							}
 						}
 					}
 				);
