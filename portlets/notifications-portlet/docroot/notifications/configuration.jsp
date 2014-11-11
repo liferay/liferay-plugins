@@ -124,7 +124,7 @@
 									checkboxContainer.insertBefore('<span class="saved" style="background: #0A85E4; color: #FFF;"><liferay-ui:message key="saved" /></span>', input);
 
 									setInterval(
-										function () {
+										function() {
 											var saved = checkboxContainer.one('.saved');
 
 											if (saved) {
@@ -133,7 +133,7 @@
 											}
 
 											setInterval(
-												function () {
+												function() {
 													if (saved) {
 														saved.remove();
 													}

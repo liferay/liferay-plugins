@@ -19,7 +19,7 @@
 <c:choose>
 	<c:when test="<%= !themeDisplay.isSignedIn() %>">
 		<div class="alert alert-info">
-			<liferay-ui:message key="please-sign-in-to-access-this-application"/>
+			<liferay-ui:message key="please-sign-in-to-access-this-application" />
 		</div>
 	</c:when>
 	<c:otherwise>
