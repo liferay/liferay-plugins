@@ -53,14 +53,13 @@ public class UpgradeLayout extends UpgradeProcess {
 		try {
 			con = DataAccess.getUpgradeOptimizedConnection();
 
-			StringBuilder sb = new StringBuilder(8);
+			StringBuilder sb = new StringBuilder(7);
 
 			sb.append("select Layout.plid from Layout ");
 			sb.append(getJoinSQL());
 			sb.append("where (Layout.typeSettings like '%");
 			sb.append(PortletKeys.ANNOUNCEMENTS);
-			sb.append("%') and ");
-			sb.append("(Layout.typeSettings not like '%");
+			sb.append("%') and (Layout.typeSettings not like '%");
 			sb.append(PortletKeys.SO_ANNOUNCEMENTS);
 			sb.append("%')");
 
@@ -100,13 +99,13 @@ public class UpgradeLayout extends UpgradeProcess {
 				LayoutUtil.addResources(layout, PortletKeys.SO_ANNOUNCEMENTS);
 			}
 
-			sb = new StringBuilder(6);
+			sb = new StringBuilder(5);
+
 			sb.append("select Layout.plid from Layout ");
 			sb.append(getJoinSQL());
 			sb.append("where (Layout.typeSettings not like '%");
 			sb.append(PortletKeys.SO_ANNOUNCEMENTS);
-			sb.append("%') and ");
-			sb.append("(Layout.priority = 0)");
+			sb.append("%') and (Layout.priority = 0)");
 
 			ps = con.prepareStatement(sb.toString());
 
@@ -141,8 +140,7 @@ public class UpgradeLayout extends UpgradeProcess {
 				int columnPos = 0;
 
 				if (StringUtil.contains(
-						columnValue,
-						PortletKeys.MICROBLOGS_STATUS_UPDATE)) {
+						columnValue, PortletKeys.MICROBLOGS_STATUS_UPDATE)) {
 
 					columnPos = 1;
 				}
@@ -163,30 +161,43 @@ public class UpgradeLayout extends UpgradeProcess {
 		}
 	}
 
+	protected String getJoinExpandoColumnSQL() {
+		return "inner join ExpandoColumn on ((ExpandoColumn.columnId = " +
+			"ExpandoValue.columnId) and (ExpandoColumn.name = " +
+				"'socialOfficeEnabled')) ";
+	}
+
+	protected String getJoinExpandoTableSQL() {
+		return "inner join ExpandoTable on ((ExpandoTable.tableId = " +
+			"ExpandoValue.tableId) and (ExpandoTable.name = '" +
+				ExpandoTableConstants.DEFAULT_TABLE_NAME + "')) ";
+	}
+
+	protected String getJoinExpandoValueSQL() {
+		return "inner join ExpandoValue on ((ExpandoValue.classPK = " +
+			"Layout.groupId) and (ExpandoValue.data_ = 'true')) ";
+	}
+
+	protected String getJoinGroupSQL() {
+		StringBuilder sb = new StringBuilder(6);
+
+		sb.append("inner join Group_ on ((Group_.groupId = Layout.groupId) ");
+		sb.append("and ((Layout.privateLayout = true) or ");
+		sb.append("((Layout.privateLayout = false) and (Group_.classNameId ");
+		sb.append("!= ");
+		sb.append(PortalUtil.getClassNameId(User.class));
+		sb.append(")))) ");
+
+		return sb.toString();
+	}
+
 	protected String getJoinSQL() {
 		StringBuilder sb = new StringBuilder(18);
 
-		sb.append("inner join ExpandoValue on ");
-		sb.append("((ExpandoValue.classPK = Layout.groupId) and ");
-		sb.append("(ExpandoValue.data_ = 'true')) ");
-
-		sb.append("inner join ExpandoColumn on ");
-		sb.append("((ExpandoColumn.columnId = ExpandoValue.columnId) and ");
-		sb.append("(ExpandoColumn.name = 'socialOfficeEnabled')) ");
-
-		sb.append("inner join ExpandoTable on ");
-		sb.append("((ExpandoTable.tableId = ExpandoValue.tableId) and ");
-		sb.append("(ExpandoTable.name = '");
-		sb.append(ExpandoTableConstants.DEFAULT_TABLE_NAME);
-		sb.append("')) ");
-
-		sb.append("inner join Group_ on ");
-		sb.append("((Group_.groupId = Layout.groupId) and ");
-		sb.append("((Layout.privateLayout = true) or ");
-		sb.append("((Layout.privateLayout = false) and ");
-		sb.append("(Group_.classNameId != ");
-		sb.append(PortalUtil.getClassNameId(User.class));
-		sb.append(")))) ");
+		sb.append(getJoinExpandoValueSQL());
+		sb.append(getJoinExpandoColumnSQL());
+		sb.append(getJoinExpandoTableSQL());
+		sb.append(getJoinGroupSQL());
 
 		return sb.toString();
 	}

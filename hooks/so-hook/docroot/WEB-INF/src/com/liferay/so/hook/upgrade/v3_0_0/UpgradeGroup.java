@@ -44,13 +44,12 @@ public class UpgradeGroup extends UpgradeProcess {
 		try {
 			con = DataAccess.getUpgradeOptimizedConnection();
 
-			StringBuilder sb = new StringBuilder(11);
+			StringBuilder sb = new StringBuilder(10);
 
-			sb.append("select classPK from ExpandoValue ");
-			sb.append("inner join ExpandoColumn on ");
-			sb.append("((ExpandoValue.columnId = ExpandoColumn.columnId) and ");
-			sb.append("(ExpandoColumn.name = 'socialOfficeEnabled')) ");
-			sb.append("inner join ExpandoTable on ");
+			sb.append("select classPK from ExpandoValue inner join ");
+			sb.append("ExpandoColumn on ((ExpandoValue.columnId = ");
+			sb.append("ExpandoColumn.columnId) and (ExpandoColumn.name = ");
+			sb.append("'socialOfficeEnabled')) inner join ExpandoTable on ");
 			sb.append("((ExpandoValue.tableId = ExpandoTable.tableId) and ");
 			sb.append("(ExpandoTable.name = '");
 			sb.append(ExpandoTableConstants.DEFAULT_TABLE_NAME);
