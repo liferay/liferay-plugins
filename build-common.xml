@@ -914,8 +914,9 @@ Please find a solution that does not require portal-impl.jar.
 				module.dir="@{module.dir}"
 			/>
 
-			<compile-test-integration
+			<compile-test-cmd
 				module.dir="@{module.dir}"
+				test.type="integration"
 			/>
 
 			<compile-test-cmd
@@ -982,17 +983,6 @@ Please find a solution that does not require portal-impl.jar.
 					/>
 				</then>
 			</if>
-		</sequential>
-	</macrodef>
-
-	<macrodef name="compile-test-integration">
-		<attribute name="module.dir" />
-
-		<sequential>
-			<compile-test-cmd
-				module.dir="@{module.dir}"
-				test.type="integration"
-			/>
 		</sequential>
 	</macrodef>
 
