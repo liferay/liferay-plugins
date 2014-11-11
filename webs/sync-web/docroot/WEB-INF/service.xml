@@ -93,6 +93,7 @@
 		<!-- References -->
 
 		<reference package-path="com.liferay.portal" entity="Group" />
+		<reference package-path="com.liferay.portal" entity="Organization" />
 		<reference package-path="com.liferay.portal" entity="Repository" />
 		<reference package-path="com.liferay.portlet.documentlibrary" entity="DLApp" />
 		<reference package-path="com.liferay.portlet.documentlibrary" entity="DLFileEntry" />
