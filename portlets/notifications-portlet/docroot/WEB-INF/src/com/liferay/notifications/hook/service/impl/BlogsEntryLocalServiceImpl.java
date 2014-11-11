@@ -20,6 +20,7 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.ObjectValuePair;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.PortletKeys;
 import com.liferay.portlet.asset.AssetRendererFactoryRegistryUtil;
@@ -63,15 +64,24 @@ public class BlogsEntryLocalServiceImpl extends BlogsEntryLocalServiceWrapper {
 		AssetRenderer assetRenderer = _assetRendererFactory.getAssetRenderer(
 			blogsEntry.getEntryId());
 
-		String entryURL = NotificationsUtil.getEntryURL(
-			assetRenderer, PortletKeys.BLOGS, serviceContext);
+		String entryURL = (String)serviceContext.getAttribute("entryURL");
 
-		if (Validator.isNotNull(entryURL)) {
+		if (Validator.isNull(entryURL)) {
+			entryURL = NotificationsUtil.getEntryURL(
+				assetRenderer, PortletKeys.BLOGS, serviceContext);
+		}
+
+		if ((status == WorkflowConstants.STATUS_APPROVED) &&
+			Validator.isNotNull(entryURL)) {
+
 			NotificationsUtil.sendNotificationEvent(
 				blogsEntry.getCompanyId(), PortletKeys.BLOGS,
 				_BLOGS_ENTRY_CLASS_NAME, blogsEntry.getEntryId(),
 				assetRenderer.getTitle(serviceContext.getLocale()), entryURL,
 				notificationType, getSubscribersOVPs(blogsEntry), userId);
+		}
+		else {
+			serviceContext.setAttribute("entryURL", entryURL);
 		}
 
 		return blogsEntry;

@@ -20,6 +20,7 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.ObjectValuePair;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.PortletKeys;
 import com.liferay.portlet.asset.AssetRendererFactoryRegistryUtil;
@@ -68,10 +69,16 @@ public class WikiPageLocalServiceImpl extends WikiPageLocalServiceWrapper {
 		AssetRenderer assetRenderer = _assetRendererFactory.getAssetRenderer(
 			wikiPage.getPageId());
 
-		String entryURL = NotificationsUtil.getEntryURL(
-			assetRenderer, PortletKeys.WIKI, serviceContext);
+		String entryURL = (String)serviceContext.getAttribute("entryURL");
 
-		if (Validator.isNotNull(entryURL)) {
+		if (Validator.isNull(entryURL)) {
+			entryURL = NotificationsUtil.getEntryURL(
+				assetRenderer, PortletKeys.WIKI, serviceContext);
+		}
+
+		if ((status == WorkflowConstants.STATUS_APPROVED) &&
+			Validator.isNotNull(entryURL)) {
+
 			NotificationsUtil.sendNotificationEvent(
 				wikiPage.getCompanyId(), PortletKeys.WIKI,
 				_WIKI_PAGE_CLASS_NAME, wikiPage.getPageId(),
@@ -80,6 +87,9 @@ public class WikiPageLocalServiceImpl extends WikiPageLocalServiceWrapper {
 				getSubscribersOVPs(
 					wikiPage, subscriptionClassName, subscriptionClassPK),
 				userId);
+		}
+		else {
+			serviceContext.setAttribute("entryURL", entryURL);
 		}
 
 		return wikiPage;

@@ -23,6 +23,7 @@ import com.liferay.portal.kernel.repository.model.FileVersion;
 import com.liferay.portal.kernel.repository.model.Folder;
 import com.liferay.portal.kernel.util.ObjectValuePair;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.PortletKeys;
 import com.liferay.portlet.asset.AssetRendererFactoryRegistryUtil;
@@ -73,16 +74,25 @@ public class DLAppHelperLocalServiceImpl
 		AssetRenderer assetRenderer = _assetRendererFactory.getAssetRenderer(
 			latestFileVersion.getFileEntryId());
 
-		String entryURL = NotificationsUtil.getEntryURL(
-			assetRenderer, PortletKeys.DOCUMENT_LIBRARY, serviceContext);
+		String entryURL = (String)serviceContext.getAttribute("entryURL");
 
-		if (Validator.isNotNull(entryURL)) {
+		if (Validator.isNull(entryURL)) {
+			entryURL = NotificationsUtil.getEntryURL(
+				assetRenderer, PortletKeys.DOCUMENT_LIBRARY, serviceContext);
+		}
+
+		if ((newStatus == WorkflowConstants.STATUS_APPROVED) &&
+			Validator.isNotNull(entryURL)) {
+
 			NotificationsUtil.sendNotificationEvent(
 				latestFileVersion.getCompanyId(), PortletKeys.DOCUMENT_LIBRARY,
 				_DL_FILE_ENTRY_CLASS_NAME, latestFileVersion.getFileEntryId(),
 				assetRenderer.getTitle(serviceContext.getLocale()), entryURL,
 				notificationType, getSubscribersOVPs(latestFileVersion),
 				userId);
+		}
+		else {
+			serviceContext.setAttribute("entryURL", entryURL);
 		}
 	}
 
