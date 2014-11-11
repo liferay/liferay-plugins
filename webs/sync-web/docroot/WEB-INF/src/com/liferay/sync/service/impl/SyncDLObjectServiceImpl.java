@@ -15,6 +15,7 @@
 package com.liferay.sync.service.impl;
 
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
+import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.dao.orm.RestrictionsFactoryUtil;
 import com.liferay.portal.kernel.deploy.DeployManagerUtil;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -25,17 +26,22 @@ import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.repository.model.Folder;
 import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.PrefsPropsUtil;
+import com.liferay.portal.kernel.util.PropsKeys;
+import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.ReleaseInfo;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.Group;
+import com.liferay.portal.model.Organization;
 import com.liferay.portal.model.Repository;
 import com.liferay.portal.model.User;
 import com.liferay.portal.security.ac.AccessControlled;
 import com.liferay.portal.security.permission.ActionKeys;
 import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.portal.service.ServiceContext;
+import com.liferay.portal.util.comparator.GroupNameComparator;
 import com.liferay.portlet.documentlibrary.DuplicateFileException;
 import com.liferay.portlet.documentlibrary.DuplicateFolderNameException;
 import com.liferay.portlet.documentlibrary.NoSuchFileEntryException;
@@ -60,7 +66,9 @@ import com.liferay.util.portlet.PortletProps;
 import java.io.File;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
@@ -525,13 +533,24 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 	@Override
 	public List<Group> getUserSitesGroups() throws PortalException {
 		try {
+			User user = getUser();
+
 			List<Group> groups = new ArrayList<Group>();
 
-			for (Group userSiteGroup : groupService.getUserSitesGroups()) {
-				boolean syncEnabled = GetterUtil.getBoolean(
-					userSiteGroup.getTypeSettingsProperty("syncEnabled"), true);
+			new ArrayList<Group>();
 
-				if (syncEnabled) {
+			LinkedHashMap<String, Object> groupParams =
+				new LinkedHashMap<String, Object>();
+
+			groupParams.put("active", true);
+			groupParams.put("usersGroups", user.getUserId());
+
+			List<Group> userSiteGroups = groupLocalService.search(
+					user.getCompanyId(), null, groupParams, QueryUtil.ALL_POS,
+					QueryUtil.ALL_POS);
+
+			for (Group userSiteGroup : userSiteGroups) {
+				if (isSyncEnabled(userSiteGroup)) {
 					if (userSiteGroup.isGuest()) {
 						userSiteGroup.setName(
 							userSiteGroup.getDescriptiveName());
@@ -541,8 +560,42 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 				}
 			}
 
-			return groups;
+			List<Organization> organizations =
+				organizationLocalService.getOrganizations(
+					user.getUserId(), QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+					null);
+
+			for (Organization organization : organizations) {
+				Group userOrganizationGroup = organization.getGroup();
+
+				if (isSyncEnabled(userOrganizationGroup)) {
+					groups.add(userOrganizationGroup);
+				}
+
+				if (!GetterUtil.getBoolean(
+						PropsUtil.get(
+								PropsKeys.ORGANIZATIONS_MEMBERSHIP_STRICT))) {
+
+					for (Organization ancestorOrganization :
+							organization.getAncestors()) {
+
+						Group userAncestorOrganizationGroup =
+							ancestorOrganization.getGroup();
+
+						if (isSyncEnabled(userAncestorOrganizationGroup)) {
+							groups.add(userAncestorOrganizationGroup);
+						}
+					}
+				}
+			}
+
+			groups.add(user.getGroup());
+
+			Collections.sort(groups, new GroupNameComparator());
+
+			return ListUtil.unique(groups);
 		}
+
 		catch (PortalException pe) {
 			throw new PortalException(pe.getClass().getName(), pe);
 		}
@@ -818,6 +871,11 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 		}
 
 		return syncDLObjects;
+	}
+
+	protected boolean isSyncEnabled(Group group) {
+		return GetterUtil.getBoolean(
+			group.getTypeSettingsProperty("syncEnabled"), true);
 	}
 
 	protected SyncDLObject toSyncDLObject(FileEntry fileEntry, String event)
