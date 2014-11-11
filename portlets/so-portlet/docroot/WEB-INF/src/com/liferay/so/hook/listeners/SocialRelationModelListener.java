@@ -55,26 +55,31 @@ public class SocialRelationModelListener
 	}
 
 	protected void reindex(SocialRelation socialRelation) {
-		SocialRelationReindexerCallable callable = _callable.get();
+		SocialRelationReindexerCallable socialRelationReindexerCallable =
+			_socialRelationReindexerCallable.get();
 
-		if (callable == null) {
-			callable = new SocialRelationReindexerCallable();
+		if (socialRelationReindexerCallable == null) {
+			socialRelationReindexerCallable =
+				new SocialRelationReindexerCallable();
 
-			TransactionCommitCallbackRegistryUtil.registerCallback(callable);
+			TransactionCommitCallbackRegistryUtil.registerCallback(
+				socialRelationReindexerCallable);
 
-			_callable.set(callable);
+			_socialRelationReindexerCallable.set(
+				socialRelationReindexerCallable);
 		}
 
-		callable.addUserId(socialRelation.getUserId1());
-		callable.addUserId(socialRelation.getUserId2());
+		socialRelationReindexerCallable.addUserId(socialRelation.getUserId1());
+		socialRelationReindexerCallable.addUserId(socialRelation.getUserId2());
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(
 		SocialRelationModelListener.class);
 
-	private AutoResetThreadLocal<SocialRelationReindexerCallable> _callable =
-		new AutoResetThreadLocal<SocialRelationReindexerCallable>(
-			SocialRelationModelListener.class.getName());
+	private AutoResetThreadLocal<SocialRelationReindexerCallable>
+		_socialRelationReindexerCallable =
+			new AutoResetThreadLocal<SocialRelationReindexerCallable>(
+				SocialRelationModelListener.class.getName());
 
 	private class SocialRelationReindexerCallable implements Callable<Void> {
 
@@ -102,6 +107,7 @@ public class SocialRelationModelListener
 		}
 
 		private Set<Long> _userIds = new HashSet<Long>();
+
 	}
 
 }
