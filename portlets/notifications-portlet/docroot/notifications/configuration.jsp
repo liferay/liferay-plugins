@@ -52,24 +52,24 @@
 					<td class="span8">
 						<liferay-ui:message key="<%= userNotificationDefinition.getDescription() %>" />
 					</td>
+					<td class="span1">
 
-					<%
-					Map<Integer, UserNotificationDeliveryType> userNotificationDeliveryTypesMap = userNotificationDefinition.getUserNotificationDeliveryTypes();
+						<%
+						Map<Integer, UserNotificationDeliveryType> userNotificationDeliveryTypesMap = userNotificationDefinition.getUserNotificationDeliveryTypes();
 
-					for (Map.Entry<Integer, UserNotificationDeliveryType> userNotificationDeliveryTypeEntry : userNotificationDeliveryTypesMap.entrySet()) {
-						UserNotificationDeliveryType userNotificationDeliveryType = userNotificationDeliveryTypeEntry.getValue();
+						for (Map.Entry<Integer, UserNotificationDeliveryType> userNotificationDeliveryTypeEntry : userNotificationDeliveryTypesMap.entrySet()) {
+							UserNotificationDeliveryType userNotificationDeliveryType = userNotificationDeliveryTypeEntry.getValue();
 
-						UserNotificationDelivery userNotificationDelivery = UserNotificationDeliveryLocalServiceUtil.getUserNotificationDelivery(themeDisplay.getUserId(), entry.getKey(), userNotificationDefinition.getClassNameId(), userNotificationDefinition.getNotificationType(), userNotificationDeliveryType.getType(), userNotificationDeliveryType.isDefault());
-					%>
+							UserNotificationDelivery userNotificationDelivery = UserNotificationDeliveryLocalServiceUtil.getUserNotificationDelivery(themeDisplay.getUserId(), entry.getKey(), userNotificationDefinition.getClassNameId(), userNotificationDefinition.getNotificationType(), userNotificationDeliveryType.getType(), userNotificationDeliveryType.isDefault());
+						%>
 
-						<td class="span1">
 							<aui:input cssClass="notification-delivery" data-userNotificationDeliveryId="<%= String.valueOf(userNotificationDelivery.getUserNotificationDeliveryId()) %>" disabled="<%= !userNotificationDeliveryType.isModifiable() %>" inlineLabel="true" label="<%= userNotificationDeliveryType.getName() %>" name="<%= String.valueOf(userNotificationDelivery.getUserNotificationDeliveryId()) %>" type="checkbox" value="<%= userNotificationDelivery.isDeliver() %>" />
-						</td>
 
-					<%
-					}
-					%>
+						<%
+						}
+						%>
 
+					</td>
 				</tr>
 
 			<%
@@ -111,6 +111,38 @@
 								var responseData = this.get('responseData');
 
 								if (responseData.success) {
+									var checkboxContainer = currentTarget.ancestor('.checkbox');
+
+									var saved = checkboxContainer.one('.saved');
+
+									if (saved) {
+										saved.remove();
+									}
+
+									var input = checkboxContainer.one('input');
+
+									checkboxContainer.insertBefore('<span class="saved" style="background: #0A85E4; color: #FFF;"><liferay-ui:message key="saved" /></span>', input);
+
+									setInterval(
+										function () {
+											var saved = checkboxContainer.one('.saved');
+
+											if (saved) {
+												saved.setStyle('background', 'rgba(0, 0, 0, 0)');
+												saved.setStyle('color', 'rgba(0, 0, 0, 0)');
+											}
+
+											setInterval(
+												function () {
+													if (saved) {
+														saved.remove();
+													}
+												},
+												3000
+											);
+										},
+										500
+									);
 								}
 							}
 						}

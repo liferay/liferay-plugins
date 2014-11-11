@@ -525,6 +525,25 @@
 				background-color: transparent;
 				border-top-width: 0;
 			}
+
+			.checkbox {
+				float: left;
+				margin-left: 40px;
+				position: relative;
+			}
+
+			.saved {
+				border-radius: 6px;
+				font-size: 10px;
+				line-height: 1.5em;
+				margin-right: 5px;
+				margin-top: 2px;
+				padding: 0 3px;
+				position: absolute;
+				right: 100%;
+
+				@include transition(background 3s, color 3s);
+			}
 		}
 	}
 }
