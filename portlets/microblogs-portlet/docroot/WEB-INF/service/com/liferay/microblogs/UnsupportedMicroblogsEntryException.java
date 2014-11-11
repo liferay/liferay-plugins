@@ -25,7 +25,6 @@ import com.liferay.portal.kernel.exception.PortalException;
 public class UnsupportedMicroblogsEntryException extends PortalException {
 
 	public UnsupportedMicroblogsEntryException() {
-		super();
 	}
 
 	public UnsupportedMicroblogsEntryException(String msg) {

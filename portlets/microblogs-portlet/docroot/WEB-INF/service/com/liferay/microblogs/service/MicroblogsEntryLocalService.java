@@ -208,6 +208,11 @@ public interface MicroblogsEntryLocalService extends BaseLocalService,
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.microblogs.model.MicroblogsEntry> getMicroblogsEntries(
+		long creatorClassNameId, java.lang.String assetTagName, int start,
+		int end);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<com.liferay.microblogs.model.MicroblogsEntry> getMicroblogsEntries(
 		long creatorClassNameId, long creatorClassPK,
 		java.lang.String assetTagName, int start, int end);
 
@@ -247,6 +252,10 @@ public interface MicroblogsEntryLocalService extends BaseLocalService,
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getMicroblogsEntriesCount();
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public int getMicroblogsEntriesCount(long creatorClassNameId,
+		java.lang.String assetTagName);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getMicroblogsEntriesCount(long creatorClassNameId,
