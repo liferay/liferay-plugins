@@ -429,9 +429,10 @@ public class MicroblogsEntryLocalServiceImpl
 		notificationEventJSONObject.put(
 			"classPK", microblogsEntry.getMicroblogsEntryId());
 		notificationEventJSONObject.put(
-			"entryTitle", MicroblogsUtil.getProcessedContent(
+			"entryTitle",
+			MicroblogsUtil.getProcessedContent(
 				StringUtil.shorten(microblogsEntry.getContent(), 50),
-				serviceContext));
+			serviceContext));
 
 		AssetRendererFactory assetRendererFactory =
 			AssetRendererFactoryRegistryUtil.getAssetRendererFactoryByClassName(
