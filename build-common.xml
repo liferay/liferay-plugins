@@ -918,8 +918,9 @@ Please find a solution that does not require portal-impl.jar.
 				module.dir="@{module.dir}"
 			/>
 
-			<compile-test-unit
+			<compile-test-cmd
 				module.dir="@{module.dir}"
+				test.type="unit"
 			/>
 		</sequential>
 	</macrodef>
@@ -991,17 +992,6 @@ Please find a solution that does not require portal-impl.jar.
 			<compile-test-cmd
 				module.dir="@{module.dir}"
 				test.type="integration"
-			/>
-		</sequential>
-	</macrodef>
-
-	<macrodef name="compile-test-unit">
-		<attribute name="module.dir" />
-
-		<sequential>
-			<compile-test-cmd
-				module.dir="@{module.dir}"
-				test.type="unit"
 			/>
 		</sequential>
 	</macrodef>
