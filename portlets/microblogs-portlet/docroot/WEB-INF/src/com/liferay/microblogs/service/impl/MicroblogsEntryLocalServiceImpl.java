@@ -287,6 +287,13 @@ public class MicroblogsEntryLocalServiceImpl
 			creatorClassNameId, creatorClassPK, assetTagName, start, end);
 	}
 
+	public List<MicroblogsEntry> getMicroblogsEntries(
+		long creatorClassNameId, String assetTagName, int start, int end) {
+
+		return microblogsEntryFinder.findByCCNI_ATN(
+			creatorClassNameId, assetTagName, start, end);
+	}
+
 	public int getMicroblogsEntriesCount(
 		long creatorClassNameId, long creatorClassPK) {
 
@@ -306,6 +313,13 @@ public class MicroblogsEntryLocalServiceImpl
 
 		return microblogsEntryFinder.countByCCNI_CCPK_ATN(
 			creatorClassNameId, creatorClassPK, assetTagName);
+	}
+
+	public int getMicroblogsEntriesCount(
+		long creatorClassNameId, String assetTagName) {
+
+		return microblogsEntryFinder.countByCCNI_ATN(
+			creatorClassNameId, assetTagName);
 	}
 
 	@Override

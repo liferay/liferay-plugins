@@ -52,6 +52,9 @@ public class MicroblogsEntryFinderImpl
 	public static final String COUNT_BY_U_ATN =
 		MicroblogsEntryFinder.class.getName() + ".countByU_ATN";
 
+	public static final String COUNT_BY_CCNI_ATN =
+		MicroblogsEntryFinder.class.getName() + ".countByCCNI_ATN";
+
 	public static final String COUNT_BY_U_T_MU =
 		MicroblogsEntryFinder.class.getName() + ".countByU_T_MU";
 
@@ -66,6 +69,9 @@ public class MicroblogsEntryFinderImpl
 
 	public static final String FIND_BY_U_ATN =
 		MicroblogsEntryFinder.class.getName() + ".findByU_ATN";
+
+	public static final String FIND_BY_CCNI_ATN =
+		MicroblogsEntryFinder.class.getName() + ".findByCCNI_ATN";
 
 	public static final String FIND_BY_U_T_MU =
 		MicroblogsEntryFinder.class.getName() + ".findByU_T_MU";
@@ -171,6 +177,43 @@ public class MicroblogsEntryFinderImpl
 			qPos.add(userId);
 			qPos.add(assetTagName);
 			qPos.add(userId);
+			qPos.add(assetTagName);
+
+			Iterator<Long> itr = q.iterate();
+
+			if (itr.hasNext()) {
+				Long count = itr.next();
+
+				if (count != null) {
+					return count.intValue();
+				}
+			}
+
+			return 0;
+		}
+		catch (Exception e) {
+			throw new SystemException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	public int countByCCNI_ATN(long creatorClassNameId, String assetTagName) {
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			String sql = CustomSQLUtil.get(COUNT_BY_CCNI_ATN);
+
+			SQLQuery q = session.createSynchronizedSQLQuery(sql);
+
+			q.addScalar(COUNT_COLUMN_NAME, Type.LONG);
+
+			QueryPos qPos = QueryPos.getInstance(q);
+
+			qPos.add(creatorClassNameId);
 			qPos.add(assetTagName);
 
 			Iterator<Long> itr = q.iterate();
@@ -369,6 +412,36 @@ public class MicroblogsEntryFinderImpl
 			qPos.add(userId);
 			qPos.add(assetTagName);
 			qPos.add(userId);
+			qPos.add(assetTagName);
+
+			return (List<MicroblogsEntry>)QueryUtil.list(
+				q, getDialect(), start, end);
+		}
+		catch (Exception e) {
+			throw new SystemException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	public List<MicroblogsEntry> findByCCNI_ATN(
+		long creatorClassNameId, String assetTagName, int start, int end) {
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			String sql = CustomSQLUtil.get(FIND_BY_CCNI_ATN);
+
+			SQLQuery q = session.createSynchronizedSQLQuery(sql);
+
+			q.addEntity("MicroblogsEntry", MicroblogsEntryImpl.class);
+
+			QueryPos qPos = QueryPos.getInstance(q);
+
+			qPos.add(creatorClassNameId);
 			qPos.add(assetTagName);
 
 			return (List<MicroblogsEntry>)QueryUtil.list(
