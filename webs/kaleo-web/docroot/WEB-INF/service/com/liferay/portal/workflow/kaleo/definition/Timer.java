@@ -24,8 +24,8 @@ public class Timer implements ActionAware, NotificationAware {
 
 	public Timer(String name, String description, boolean blocking) {
 		_name = name;
-		_blocking = blocking;
 		_description = description;
+		_blocking = blocking;
 	}
 
 	@Override

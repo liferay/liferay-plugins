@@ -38,8 +38,8 @@ public class HttpServletResponseAdapterImpl
 	public HttpServletResponseAdapterImpl(
 		PortletResponse portletResponse, Locale locale) {
 
-		_locale = locale;
 		_portletResponse = portletResponse;
+		_locale = locale;
 	}
 
 	@Override

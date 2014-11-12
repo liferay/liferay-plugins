@@ -41,8 +41,8 @@ public class PluginComparator implements Comparator, Serializable {
 	}
 
 	public PluginComparator(ServletContext servletContext, Locale locale) {
-		_locale = locale;
 		_servletContext = servletContext;
+		_locale = locale;
 	}
 
 	@Override
