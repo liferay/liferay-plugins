@@ -7,14 +7,14 @@
 		<implicit-parameter name="mvcPath">/view.jsp</implicit-parameter>
 	</route>
 	<route>
+		<pattern>/{mvcPath}</pattern>
+		<implicit-parameter name="p_p_state">exclusive</implicit-parameter>
+	</route>
+	<route>
 		<pattern>/thread/{mbThreadId:\d+}</pattern>
 		<implicit-parameter name="p_p_state">normal</implicit-parameter>
 	</route>
 	<route>
 		<pattern>/thread/{mbThreadId:\d+}/{p_p_state}</pattern>
-	</route>
-	<route>
-		<pattern>/{mvcPath}</pattern>
-		<implicit-parameter name="p_p_state">exclusive</implicit-parameter>
 	</route>
 </routes>
