@@ -20,6 +20,7 @@ package com.liferay.so.announcements.portlet;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
+import com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.servlet.SessionMessages;
 import com.liferay.portal.kernel.util.GetterUtil;
@@ -33,7 +34,6 @@ import com.liferay.portlet.announcements.EntryExpirationDateException;
 import com.liferay.portlet.announcements.EntryTitleException;
 import com.liferay.portlet.announcements.EntryURLException;
 import com.liferay.portlet.announcements.service.AnnouncementsEntryServiceUtil;
-import com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet;
 
 import java.util.Calendar;
 

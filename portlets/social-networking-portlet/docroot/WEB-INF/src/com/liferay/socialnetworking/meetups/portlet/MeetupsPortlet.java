@@ -14,6 +14,7 @@
 
 package com.liferay.socialnetworking.meetups.portlet;
 
+import com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet;
 import com.liferay.portal.kernel.upload.UploadPortletRequest;
 import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
@@ -23,7 +24,6 @@ import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.socialnetworking.service.MeetupsEntryLocalServiceUtil;
 import com.liferay.socialnetworking.service.MeetupsRegistrationLocalServiceUtil;
-import com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet;
 
 import java.io.File;
 
