@@ -51,8 +51,7 @@ public class UserModelListener extends BaseModelListener<User> {
 		try {
 			if (_log.isDebugEnabled()) {
 				_log.debug(
-					"Removing private messages for user " +
-						user.getUserId());
+					"Removing private messages for user " + user.getUserId());
 			}
 
 			UserThreadLocalServiceUtil.deleteUser(user.getUserId());

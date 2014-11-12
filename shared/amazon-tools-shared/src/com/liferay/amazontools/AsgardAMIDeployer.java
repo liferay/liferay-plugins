@@ -486,9 +486,8 @@ public class AsgardAMIDeployer extends BaseAMITool {
 	protected boolean isInService(
 		JSONObject loadBalancerJSONObject, String autoScalingGroupName) {
 
-		List<JSONObject> instanceStateJSONObjects =
-			getInstanceStateJSONObjects(
-				loadBalancerJSONObject, autoScalingGroupName);
+		List<JSONObject> instanceStateJSONObjects = getInstanceStateJSONObjects(
+			loadBalancerJSONObject, autoScalingGroupName);
 
 		if (instanceStateJSONObjects.isEmpty()) {
 			return false;

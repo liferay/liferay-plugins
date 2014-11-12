@@ -136,10 +136,10 @@ public class EmailToMBMessageFilterSanitizerImpl implements Sanitizer {
 		return sb.toString();
 	}
 
-	private static final Pattern _pattern = Pattern.compile(
-		PortletPropsValues.PLAIN_TEXT_EMAIL_REGEXP);
-
 	private static Log _log = LogFactoryUtil.getLog(
 		EmailToMBMessageFilterSanitizerImpl.class);
+
+	private static final Pattern _pattern = Pattern.compile(
+		PortletPropsValues.PLAIN_TEXT_EMAIL_REGEXP);
 
 }

@@ -56,6 +56,7 @@ public class JSONWebServiceTransportException extends RuntimeException {
 		public AuthenticationFailure(Throwable cause) {
 			super(cause);
 		}
+
 	}
 
 	public static class CommunicationFailure
@@ -72,6 +73,7 @@ public class JSONWebServiceTransportException extends RuntimeException {
 		public CommunicationFailure(Throwable cause) {
 			super(cause);
 		}
+
 	}
 
 	private int _status;

@@ -119,7 +119,6 @@ public class ExtRepositoryAdapterCache implements Cloneable {
 				ExtRepositoryAdapterCache.class.getName(),
 				new ExtRepositoryAdapterCache());
 
-	private Map<String, ExtRepositoryModelAdapter<?>>
-		_extRepositoryAdapters;
+	private Map<String, ExtRepositoryModelAdapter<?>> _extRepositoryAdapters;
 
 }

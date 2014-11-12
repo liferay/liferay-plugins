@@ -46,9 +46,9 @@ public class IMAPConnection {
 	}
 
 	public IMAPConnection(
-			String incomingHostName, int incomingPort, boolean incomingSecure,
-			String outgoingHostName, int outgoingPort, boolean outgoingSecure,
-			String login, String password) {
+		String incomingHostName, int incomingPort, boolean incomingSecure,
+		String outgoingHostName, int outgoingPort, boolean outgoingSecure,
+		String login, String password) {
 
 		_incomingHostName = incomingHostName;
 		_incomingPort = incomingPort;
