@@ -25,7 +25,6 @@ import com.liferay.portal.kernel.exception.PortalException;
 public class ModuleNamespaceException extends PortalException {
 
 	public ModuleNamespaceException() {
-		super();
 	}
 
 	public ModuleNamespaceException(String msg) {

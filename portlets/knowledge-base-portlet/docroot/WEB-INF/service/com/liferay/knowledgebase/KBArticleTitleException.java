@@ -22,7 +22,6 @@ import com.liferay.portal.kernel.exception.PortalException;
 public class KBArticleTitleException extends PortalException {
 
 	public KBArticleTitleException() {
-		super();
 	}
 
 	public KBArticleTitleException(String msg) {

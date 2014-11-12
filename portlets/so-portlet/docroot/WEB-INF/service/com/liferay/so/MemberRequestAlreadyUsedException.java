@@ -25,7 +25,6 @@ import com.liferay.portal.kernel.exception.PortalException;
 public class MemberRequestAlreadyUsedException extends PortalException {
 
 	public MemberRequestAlreadyUsedException() {
-		super();
 	}
 
 	public MemberRequestAlreadyUsedException(String msg) {

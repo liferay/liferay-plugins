@@ -22,7 +22,6 @@ import com.liferay.portal.NoSuchModelException;
 public class NoSuchTaskInstanceTokenException extends NoSuchModelException {
 
 	public NoSuchTaskInstanceTokenException() {
-		super();
 	}
 
 	public NoSuchTaskInstanceTokenException(String msg) {

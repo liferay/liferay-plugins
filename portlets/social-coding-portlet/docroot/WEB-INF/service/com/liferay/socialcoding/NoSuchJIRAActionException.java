@@ -22,7 +22,6 @@ import com.liferay.portal.NoSuchModelException;
 public class NoSuchJIRAActionException extends NoSuchModelException {
 
 	public NoSuchJIRAActionException() {
-		super();
 	}
 
 	public NoSuchJIRAActionException(String msg) {

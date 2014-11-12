@@ -22,7 +22,6 @@ import com.liferay.portal.NoSuchModelException;
 public class NoSuchTimerInstanceTokenException extends NoSuchModelException {
 
 	public NoSuchTimerInstanceTokenException() {
-		super();
 	}
 
 	public NoSuchTimerInstanceTokenException(String msg) {

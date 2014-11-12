@@ -22,7 +22,6 @@ import com.liferay.portal.kernel.exception.PortalException;
 public class AppPropertiesException extends PortalException {
 
 	public AppPropertiesException() {
-		super();
 	}
 
 	public AppPropertiesException(String msg) {

@@ -22,7 +22,6 @@ import com.liferay.portal.NoSuchModelException;
 public class NoSuchAssetException extends NoSuchModelException {
 
 	public NoSuchAssetException() {
-		super();
 	}
 
 	public NoSuchAssetException(String msg) {

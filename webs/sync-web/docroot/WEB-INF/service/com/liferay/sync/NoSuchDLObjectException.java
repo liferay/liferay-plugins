@@ -22,7 +22,6 @@ import com.liferay.portal.NoSuchModelException;
 public class NoSuchDLObjectException extends NoSuchModelException {
 
 	public NoSuchDLObjectException() {
-		super();
 	}
 
 	public NoSuchDLObjectException(String msg) {

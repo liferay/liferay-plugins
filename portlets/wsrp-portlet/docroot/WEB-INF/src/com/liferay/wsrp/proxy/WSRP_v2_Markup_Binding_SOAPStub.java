@@ -28,7 +28,6 @@ public class WSRP_v2_Markup_Binding_SOAPStub
 	implements Stub {
 
 	public WSRP_v2_Markup_Binding_SOAPStub() throws AxisFault {
-		super();
 	}
 
 	public WSRP_v2_Markup_Binding_SOAPStub(Service service) throws AxisFault {

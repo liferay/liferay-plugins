@@ -22,7 +22,6 @@ import com.liferay.portal.NoSuchModelException;
 public class NoSuchCheckoutException extends NoSuchModelException {
 
 	public NoSuchCheckoutException() {
-		super();
 	}
 
 	public NoSuchCheckoutException(String msg) {

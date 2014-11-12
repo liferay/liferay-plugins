@@ -22,7 +22,6 @@ import com.liferay.portal.kernel.exception.PortalException;
 public class GoogleAppsException extends PortalException {
 
 	public GoogleAppsException() {
-		super();
 	}
 
 	public GoogleAppsException(String msg) {

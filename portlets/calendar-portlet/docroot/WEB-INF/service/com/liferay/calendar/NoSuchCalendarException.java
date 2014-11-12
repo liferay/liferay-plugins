@@ -22,7 +22,6 @@ import com.liferay.portal.NoSuchModelException;
 public class NoSuchCalendarException extends NoSuchModelException {
 
 	public NoSuchCalendarException() {
-		super();
 	}
 
 	public NoSuchCalendarException(String msg) {

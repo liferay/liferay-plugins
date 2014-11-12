@@ -22,7 +22,6 @@ import com.liferay.portal.NoSuchModelException;
 public class NoSuchSVNRevisionException extends NoSuchModelException {
 
 	public NoSuchSVNRevisionException() {
-		super();
 	}
 
 	public NoSuchSVNRevisionException(String msg) {

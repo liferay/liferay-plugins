@@ -22,7 +22,6 @@ import com.liferay.portal.kernel.workflow.WorkflowException;
 public class ActionExecutorException extends WorkflowException {
 
 	public ActionExecutorException() {
-		super();
 	}
 
 	public ActionExecutorException(String msg) {

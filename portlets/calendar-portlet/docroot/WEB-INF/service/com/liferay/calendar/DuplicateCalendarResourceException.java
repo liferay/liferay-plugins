@@ -22,7 +22,6 @@ import com.liferay.portal.kernel.exception.PortalException;
 public class DuplicateCalendarResourceException extends PortalException {
 
 	public DuplicateCalendarResourceException() {
-		super();
 	}
 
 	public DuplicateCalendarResourceException(String msg) {

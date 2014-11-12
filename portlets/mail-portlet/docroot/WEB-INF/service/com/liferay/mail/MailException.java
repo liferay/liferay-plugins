@@ -56,7 +56,6 @@ public class MailException extends PortalException {
 	public static final int MESSAGE_NOT_SELECTED = 17;
 
 	public MailException() {
-		super();
 	}
 
 	public MailException(int type) {

@@ -22,7 +22,6 @@ import com.liferay.portal.kernel.exception.PortalException;
 public class NotificationSenderException extends PortalException {
 
 	public NotificationSenderException() {
-		super();
 	}
 
 	public NotificationSenderException(String msg) {

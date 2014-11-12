@@ -22,7 +22,6 @@ import com.liferay.portal.kernel.exception.PortalException;
 public class SyncDLObjectChecksumException extends PortalException {
 
 	public SyncDLObjectChecksumException() {
-		super();
 	}
 
 	public SyncDLObjectChecksumException(String msg) {

@@ -25,7 +25,6 @@ import com.liferay.portal.kernel.exception.PortalException;
 public class EntryFullNameException extends PortalException {
 
 	public EntryFullNameException() {
-		super();
 	}
 
 	public EntryFullNameException(String msg) {

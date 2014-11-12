@@ -25,7 +25,6 @@ import com.liferay.portal.kernel.exception.PortalException;
 public class EntryEmailAddressException extends PortalException {
 
 	public EntryEmailAddressException() {
-		super();
 	}
 
 	public EntryEmailAddressException(String msg) {

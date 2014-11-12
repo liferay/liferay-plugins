@@ -25,7 +25,6 @@ import com.liferay.portal.NoSuchModelException;
 public class NoSuchProjectsEntryException extends NoSuchModelException {
 
 	public NoSuchProjectsEntryException() {
-		super();
 	}
 
 	public NoSuchProjectsEntryException(String msg) {

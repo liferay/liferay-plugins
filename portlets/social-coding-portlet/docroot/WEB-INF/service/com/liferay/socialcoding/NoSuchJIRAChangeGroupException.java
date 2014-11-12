@@ -22,7 +22,6 @@ import com.liferay.portal.NoSuchModelException;
 public class NoSuchJIRAChangeGroupException extends NoSuchModelException {
 
 	public NoSuchJIRAChangeGroupException() {
-		super();
 	}
 
 	public NoSuchJIRAChangeGroupException(String msg) {

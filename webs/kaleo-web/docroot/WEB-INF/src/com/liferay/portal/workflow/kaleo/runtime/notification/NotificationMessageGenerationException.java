@@ -22,7 +22,6 @@ import com.liferay.portal.kernel.workflow.WorkflowException;
 public class NotificationMessageGenerationException extends WorkflowException {
 
 	public NotificationMessageGenerationException() {
-		super();
 	}
 
 	public NotificationMessageGenerationException(String msg) {

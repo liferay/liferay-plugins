@@ -22,7 +22,6 @@ import com.liferay.portal.kernel.exception.PortalException;
 public class RequiredCalendarException extends PortalException {
 
 	public RequiredCalendarException() {
-		super();
 	}
 
 	public RequiredCalendarException(String msg) {

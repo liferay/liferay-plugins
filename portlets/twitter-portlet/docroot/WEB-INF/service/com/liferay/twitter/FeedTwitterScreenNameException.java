@@ -22,7 +22,6 @@ import com.liferay.portal.kernel.exception.PortalException;
 public class FeedTwitterScreenNameException extends PortalException {
 
 	public FeedTwitterScreenNameException() {
-		super();
 	}
 
 	public FeedTwitterScreenNameException(String msg) {

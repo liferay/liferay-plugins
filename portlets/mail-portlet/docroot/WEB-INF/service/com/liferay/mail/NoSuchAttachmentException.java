@@ -22,7 +22,6 @@ import com.liferay.portal.NoSuchModelException;
 public class NoSuchAttachmentException extends NoSuchModelException {
 
 	public NoSuchAttachmentException() {
-		super();
 	}
 
 	public NoSuchAttachmentException(String msg) {

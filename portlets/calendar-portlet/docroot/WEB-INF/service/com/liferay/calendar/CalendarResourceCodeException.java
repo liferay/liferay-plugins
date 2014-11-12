@@ -22,7 +22,6 @@ import com.liferay.portal.kernel.exception.PortalException;
 public class CalendarResourceCodeException extends PortalException {
 
 	public CalendarResourceCodeException() {
-		super();
 	}
 
 	public CalendarResourceCodeException(String msg) {

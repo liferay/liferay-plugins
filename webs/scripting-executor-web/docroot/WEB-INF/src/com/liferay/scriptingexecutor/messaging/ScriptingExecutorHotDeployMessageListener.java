@@ -47,7 +47,6 @@ public class ScriptingExecutorHotDeployMessageListener
 	extends HotDeployMessageListener {
 
 	public ScriptingExecutorHotDeployMessageListener() {
-		super();
 	}
 
 	public ScriptingExecutorHotDeployMessageListener(

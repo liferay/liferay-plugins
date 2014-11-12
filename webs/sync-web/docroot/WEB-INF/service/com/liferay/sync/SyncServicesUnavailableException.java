@@ -22,7 +22,6 @@ import com.liferay.portal.kernel.exception.PortalException;
 public class SyncServicesUnavailableException extends PortalException {
 
 	public SyncServicesUnavailableException() {
-		super();
 	}
 
 	public SyncServicesUnavailableException(String msg) {

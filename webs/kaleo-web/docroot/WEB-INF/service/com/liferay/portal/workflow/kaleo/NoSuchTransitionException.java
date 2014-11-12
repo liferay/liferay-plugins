@@ -22,7 +22,6 @@ import com.liferay.portal.NoSuchModelException;
 public class NoSuchTransitionException extends NoSuchModelException {
 
 	public NoSuchTransitionException() {
-		super();
 	}
 
 	public NoSuchTransitionException(String msg) {

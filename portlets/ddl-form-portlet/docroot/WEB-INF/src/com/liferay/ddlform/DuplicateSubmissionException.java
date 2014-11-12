@@ -22,7 +22,6 @@ import com.liferay.portal.kernel.exception.PortalException;
 public class DuplicateSubmissionException extends PortalException {
 
 	public DuplicateSubmissionException() {
-		super();
 	}
 
 	public DuplicateSubmissionException(String msg) {

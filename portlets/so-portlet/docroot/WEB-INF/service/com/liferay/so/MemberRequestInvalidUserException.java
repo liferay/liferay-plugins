@@ -25,7 +25,6 @@ import com.liferay.portal.kernel.exception.PortalException;
 public class MemberRequestInvalidUserException extends PortalException {
 
 	public MemberRequestInvalidUserException() {
-		super();
 	}
 
 	public MemberRequestInvalidUserException(String msg) {

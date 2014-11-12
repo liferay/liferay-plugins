@@ -25,7 +25,6 @@ import com.liferay.portal.kernel.exception.PortalException;
 public class TasksEntryTitleException extends PortalException {
 
 	public TasksEntryTitleException() {
-		super();
 	}
 
 	public TasksEntryTitleException(String msg) {

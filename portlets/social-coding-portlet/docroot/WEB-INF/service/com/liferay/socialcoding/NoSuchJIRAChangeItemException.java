@@ -22,7 +22,6 @@ import com.liferay.portal.NoSuchModelException;
 public class NoSuchJIRAChangeItemException extends NoSuchModelException {
 
 	public NoSuchJIRAChangeItemException() {
-		super();
 	}
 
 	public NoSuchJIRAChangeItemException(String msg) {

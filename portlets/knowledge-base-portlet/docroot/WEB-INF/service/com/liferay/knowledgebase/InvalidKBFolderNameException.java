@@ -25,7 +25,6 @@ import com.liferay.portal.kernel.exception.PortalException;
 public class InvalidKBFolderNameException extends PortalException {
 
 	public InvalidKBFolderNameException() {
-		super();
 	}
 
 	public InvalidKBFolderNameException(String msg) {

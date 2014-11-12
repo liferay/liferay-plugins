@@ -22,7 +22,6 @@ import com.liferay.portal.kernel.exception.PortalException;
 public class DuplicateGadgetURLException extends PortalException {
 
 	public DuplicateGadgetURLException() {
-		super();
 	}
 
 	public DuplicateGadgetURLException(String msg) {

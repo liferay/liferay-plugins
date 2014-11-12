@@ -22,7 +22,6 @@ import com.liferay.portal.kernel.exception.PortalException;
 public class KBArticlePriorityException extends PortalException {
 
 	public KBArticlePriorityException() {
-		super();
 	}
 
 	public KBArticlePriorityException(String msg) {

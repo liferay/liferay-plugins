@@ -22,7 +22,6 @@ import com.liferay.portal.NoSuchModelException;
 public class NoSuchAccountException extends NoSuchModelException {
 
 	public NoSuchAccountException() {
-		super();
 	}
 
 	public NoSuchAccountException(String msg) {

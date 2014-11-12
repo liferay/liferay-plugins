@@ -22,7 +22,6 @@ import com.liferay.portal.NoSuchModelException;
 public class NoSuchOAuthTokenException extends NoSuchModelException {
 
 	public NoSuchOAuthTokenException() {
-		super();
 	}
 
 	public NoSuchOAuthTokenException(String msg) {

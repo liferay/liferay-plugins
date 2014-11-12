@@ -22,7 +22,6 @@ import com.liferay.portal.kernel.exception.PortalException;
 public class CalendarBookingEndTimeException extends PortalException {
 
 	public CalendarBookingEndTimeException() {
-		super();
 	}
 
 	public CalendarBookingEndTimeException(String msg) {

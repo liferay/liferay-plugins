@@ -22,7 +22,6 @@ import com.liferay.portal.NoSuchModelException;
 public class NoSuchProducerException extends NoSuchModelException {
 
 	public NoSuchProducerException() {
-		super();
 	}
 
 	public NoSuchProducerException(String msg) {

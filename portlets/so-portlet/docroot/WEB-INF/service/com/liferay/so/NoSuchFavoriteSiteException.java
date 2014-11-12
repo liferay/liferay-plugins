@@ -25,7 +25,6 @@ import com.liferay.portal.NoSuchModelException;
 public class NoSuchFavoriteSiteException extends NoSuchModelException {
 
 	public NoSuchFavoriteSiteException() {
-		super();
 	}
 
 	public NoSuchFavoriteSiteException(String msg) {

@@ -22,7 +22,6 @@ import com.liferay.portal.NoSuchModelException;
 public class NoSuchSVNRepositoryException extends NoSuchModelException {
 
 	public NoSuchSVNRepositoryException() {
-		super();
 	}
 
 	public NoSuchSVNRepositoryException(String msg) {

@@ -22,7 +22,6 @@ import com.liferay.portal.NoSuchModelException;
 public class NoSuchTaskFormException extends NoSuchModelException {
 
 	public NoSuchTaskFormException() {
-		super();
 	}
 
 	public NoSuchTaskFormException(String msg) {

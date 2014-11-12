@@ -22,7 +22,6 @@ import org.apache.commons.lang.exception.NestableException;
 public class SampleException extends NestableException {
 
 	public SampleException() {
-		super();
 	}
 
 	public SampleException(String msg) {

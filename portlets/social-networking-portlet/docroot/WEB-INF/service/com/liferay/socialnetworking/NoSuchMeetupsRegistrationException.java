@@ -22,7 +22,6 @@ import com.liferay.portal.NoSuchModelException;
 public class NoSuchMeetupsRegistrationException extends NoSuchModelException {
 
 	public NoSuchMeetupsRegistrationException() {
-		super();
 	}
 
 	public NoSuchMeetupsRegistrationException(String msg) {

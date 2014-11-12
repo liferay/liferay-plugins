@@ -22,7 +22,6 @@ import com.liferay.portal.NoSuchModelException;
 public class NoSuchDLFileVersionDiffException extends NoSuchModelException {
 
 	public NoSuchDLFileVersionDiffException() {
-		super();
 	}
 
 	public NoSuchDLFileVersionDiffException(String msg) {

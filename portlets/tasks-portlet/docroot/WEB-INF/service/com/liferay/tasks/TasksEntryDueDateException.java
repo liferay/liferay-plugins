@@ -25,7 +25,6 @@ import com.liferay.portal.kernel.exception.PortalException;
 public class TasksEntryDueDateException extends PortalException {
 
 	public TasksEntryDueDateException() {
-		super();
 	}
 
 	public TasksEntryDueDateException(String msg) {

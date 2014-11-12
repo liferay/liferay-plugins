@@ -22,7 +22,6 @@ import com.liferay.portal.NoSuchModelException;
 public class NoSuchNotificationTemplateException extends NoSuchModelException {
 
 	public NoSuchNotificationTemplateException() {
-		super();
 	}
 
 	public NoSuchNotificationTemplateException(String msg) {

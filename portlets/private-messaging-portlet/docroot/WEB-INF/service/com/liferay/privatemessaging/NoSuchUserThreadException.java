@@ -25,7 +25,6 @@ import com.liferay.portal.NoSuchModelException;
 public class NoSuchUserThreadException extends NoSuchModelException {
 
 	public NoSuchUserThreadException() {
-		super();
 	}
 
 	public NoSuchUserThreadException(String msg) {

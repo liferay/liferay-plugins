@@ -25,7 +25,6 @@ import com.liferay.portal.kernel.exception.PortalException;
 public class DuplicateEntryEmailAddressException extends PortalException {
 
 	public DuplicateEntryEmailAddressException() {
-		super();
 	}
 
 	public DuplicateEntryEmailAddressException(String msg) {

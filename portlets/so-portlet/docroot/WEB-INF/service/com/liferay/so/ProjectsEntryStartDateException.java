@@ -25,7 +25,6 @@ import com.liferay.portal.kernel.exception.PortalException;
 public class ProjectsEntryStartDateException extends PortalException {
 
 	public ProjectsEntryStartDateException() {
-		super();
 	}
 
 	public ProjectsEntryStartDateException(String msg) {

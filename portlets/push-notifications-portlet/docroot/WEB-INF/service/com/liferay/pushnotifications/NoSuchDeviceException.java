@@ -22,7 +22,6 @@ import com.liferay.portal.NoSuchModelException;
 public class NoSuchDeviceException extends NoSuchModelException {
 
 	public NoSuchDeviceException() {
-		super();
 	}
 
 	public NoSuchDeviceException(String msg) {

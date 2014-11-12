@@ -23,7 +23,6 @@ import java.io.Serializable;
 public class Book implements Serializable {
 
 	public Book() {
-		super();
 	}
 
 	public Book(String isbn, String title) {

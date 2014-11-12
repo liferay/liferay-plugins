@@ -25,7 +25,6 @@ import com.liferay.portal.kernel.exception.PortalException;
 public class InvalidKBArticleUrlTitleException extends PortalException {
 
 	public InvalidKBArticleUrlTitleException() {
-		super();
 	}
 
 	public InvalidKBArticleUrlTitleException(String msg) {

@@ -22,7 +22,6 @@ import com.liferay.portal.NoSuchModelException;
 public class NoSuchDefinitionException extends NoSuchModelException {
 
 	public NoSuchDefinitionException() {
-		super();
 	}
 
 	public NoSuchDefinitionException(String msg) {

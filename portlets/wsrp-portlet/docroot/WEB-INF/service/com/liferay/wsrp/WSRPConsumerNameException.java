@@ -22,7 +22,6 @@ import com.liferay.portal.kernel.exception.PortalException;
 public class WSRPConsumerNameException extends PortalException {
 
 	public WSRPConsumerNameException() {
-		super();
 	}
 
 	public WSRPConsumerNameException(String msg) {

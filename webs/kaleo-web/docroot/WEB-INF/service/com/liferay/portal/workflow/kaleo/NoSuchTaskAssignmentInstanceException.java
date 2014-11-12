@@ -23,7 +23,6 @@ public class NoSuchTaskAssignmentInstanceException
 	extends NoSuchModelException {
 
 	public NoSuchTaskAssignmentInstanceException() {
-		super();
 	}
 
 	public NoSuchTaskAssignmentInstanceException(String msg) {

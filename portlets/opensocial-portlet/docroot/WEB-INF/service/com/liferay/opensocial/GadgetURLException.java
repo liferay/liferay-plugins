@@ -22,7 +22,6 @@ import com.liferay.portal.kernel.exception.PortalException;
 public class GadgetURLException extends PortalException {
 
 	public GadgetURLException() {
-		super();
 	}
 
 	public GadgetURLException(String msg) {

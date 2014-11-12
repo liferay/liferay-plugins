@@ -22,7 +22,6 @@ import com.liferay.portal.NoSuchModelException;
 public class NoSuchBookingException extends NoSuchModelException {
 
 	public NoSuchBookingException() {
-		super();
 	}
 
 	public NoSuchBookingException(String msg) {

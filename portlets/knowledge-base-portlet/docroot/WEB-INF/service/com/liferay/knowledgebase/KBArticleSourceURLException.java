@@ -25,7 +25,6 @@ import com.liferay.portal.kernel.exception.PortalException;
 public class KBArticleSourceURLException extends PortalException {
 
 	public KBArticleSourceURLException() {
-		super();
 	}
 
 	public KBArticleSourceURLException(String msg) {

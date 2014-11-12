@@ -22,7 +22,6 @@ import com.liferay.portal.kernel.exception.PortalException;
 public class GadgetPortletCategoryNamesException extends PortalException {
 
 	public GadgetPortletCategoryNamesException() {
-		super();
 	}
 
 	public GadgetPortletCategoryNamesException(String msg) {

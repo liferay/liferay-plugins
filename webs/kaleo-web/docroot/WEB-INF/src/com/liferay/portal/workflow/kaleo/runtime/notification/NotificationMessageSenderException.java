@@ -22,7 +22,6 @@ import com.liferay.portal.kernel.workflow.WorkflowException;
 public class NotificationMessageSenderException extends WorkflowException {
 
 	public NotificationMessageSenderException() {
-		super();
 	}
 
 	public NotificationMessageSenderException(String msg) {

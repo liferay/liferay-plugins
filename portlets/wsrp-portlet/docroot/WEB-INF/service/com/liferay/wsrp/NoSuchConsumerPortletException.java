@@ -22,7 +22,6 @@ import com.liferay.portal.NoSuchModelException;
 public class NoSuchConsumerPortletException extends NoSuchModelException {
 
 	public NoSuchConsumerPortletException() {
-		super();
 	}
 
 	public NoSuchConsumerPortletException(String msg) {
