@@ -545,8 +545,6 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 
 			List<Group> groups = new ArrayList<Group>();
 
-			new ArrayList<Group>();
-
 			LinkedHashMap<String, Object> groupParams =
 				new LinkedHashMap<String, Object>();
 
@@ -554,8 +552,8 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 			groupParams.put("usersGroups", user.getUserId());
 
 			List<Group> userSiteGroups = groupLocalService.search(
-					user.getCompanyId(), null, groupParams, QueryUtil.ALL_POS,
-					QueryUtil.ALL_POS);
+				user.getCompanyId(), null, groupParams, QueryUtil.ALL_POS,
+				QueryUtil.ALL_POS);
 
 			for (Group userSiteGroup : userSiteGroups) {
 				if (isSyncEnabled(userSiteGroup)) {
@@ -582,7 +580,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 
 				if (!GetterUtil.getBoolean(
 						PropsUtil.get(
-								PropsKeys.ORGANIZATIONS_MEMBERSHIP_STRICT))) {
+							PropsKeys.ORGANIZATIONS_MEMBERSHIP_STRICT))) {
 
 					for (Organization ancestorOrganization :
 							organization.getAncestors()) {
