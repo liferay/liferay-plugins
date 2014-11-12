@@ -572,7 +572,7 @@
 		<delete dir="${jspc.classes.dir}" quiet="true" />
 
 		<if>
-			<istrue value="${jspc.javac.fail}"/>
+			<istrue value="${jspc.javac.fail}" />
 			<then>
 				<fail>JSPs failed to compile.</fail>
 			</then>
