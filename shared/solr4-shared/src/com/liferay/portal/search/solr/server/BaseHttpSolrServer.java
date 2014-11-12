@@ -14,6 +14,8 @@
 
 package com.liferay.portal.search.solr.server;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.Validator;
 
 import java.io.IOException;
@@ -137,6 +139,10 @@ public class BaseHttpSolrServer extends SolrServer {
 		_stopped = true;
 
 		_server.shutdown();
+
+		if (_log.isInfoEnabled()) {
+			_log.info(toString() + " has been shut down.");
+		}
 	}
 
 	protected HttpSolrServer getServer() {
@@ -176,6 +182,8 @@ public class BaseHttpSolrServer extends SolrServer {
 
 		_server = server;
 	}
+
+	private static Log _log = LogFactoryUtil.getLog(BaseHttpSolrServer.class);
 
 	private Boolean _allowCompression;
 	private String _baseURL;
