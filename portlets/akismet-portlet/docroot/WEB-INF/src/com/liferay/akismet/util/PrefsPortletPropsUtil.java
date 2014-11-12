@@ -43,11 +43,11 @@ public class PrefsPortletPropsUtil {
 		PortletPreferences portletPreferences = getPortletPreferences(
 			companyId);
 
-		return _getString(portletPreferences, companyId, name);
+		return _getString(portletPreferences, name);
 	}
 
 	private static String _getString(
-		PortletPreferences portletPreferences, long companyId, String name) {
+		PortletPreferences portletPreferences, String name) {
 
 		String defaultValue = PortletProps.get(name);
 
