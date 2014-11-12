@@ -507,11 +507,9 @@ public class CalendarImporterLocalServiceImpl
 
 		serviceContext.setScopeGroupId(groupId);
 
-		User user = null;
+		User user = userPersistence.fetchByC_U(companyId, userId);
 
-		try {
-			user = userPersistence.findByPrimaryKey(userId);
-		} catch (NoSuchUserException e) {
+		if (user == null) {
 			user = userPersistence.fetchByC_DU(companyId, true);
 
 			userId = user.getUserId();
