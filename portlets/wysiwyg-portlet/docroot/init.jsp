@@ -21,8 +21,7 @@
 <%@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 
 <%@ page import="com.liferay.portal.kernel.util.Constants" %><%@
-page import="com.liferay.portal.kernel.util.StringPool" %><%@
-page import="com.liferay.portal.kernel.util.UnicodeFormatter" %>
+page import="com.liferay.portal.kernel.util.StringPool" %>
 
 <portlet:defineObjects />
 
