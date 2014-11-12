@@ -22,7 +22,8 @@ import org.junit.runner.RunWith;
  * @author Sergio González
  */
 @RunWith(Arquillian.class)
-public class MBMessageMentionsNotifierTest extends BaseMentionsNotifierTestCase {
+public class MBMessageMentionsNotifierTest
+	extends BaseMentionsNotifierTestCase {
 
 	public MBMessageMentionsNotifierTest() {
 		super(
