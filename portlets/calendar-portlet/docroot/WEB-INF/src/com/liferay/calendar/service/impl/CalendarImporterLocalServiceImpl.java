@@ -24,6 +24,7 @@ import com.liferay.calendar.recurrence.RecurrenceSerializer;
 import com.liferay.calendar.recurrence.Weekday;
 import com.liferay.calendar.service.base.CalendarImporterLocalServiceBaseImpl;
 import com.liferay.calendar.util.CalendarResourceUtil;
+import com.liferay.portal.NoSuchUserException;
 import com.liferay.portal.kernel.cal.DayAndPosition;
 import com.liferay.portal.kernel.cal.TZSRecurrence;
 import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
@@ -39,6 +40,7 @@ import com.liferay.portal.model.ResourceBlockConstants;
 import com.liferay.portal.model.ResourceConstants;
 import com.liferay.portal.model.ResourcePermission;
 import com.liferay.portal.model.Subscription;
+import com.liferay.portal.model.User;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portlet.asset.model.AssetCategory;
@@ -495,7 +497,7 @@ public class CalendarImporterLocalServiceImpl
 	}
 
 	protected AssetCategory getAssetCategory(
-			long userId, long groupId, String name)
+			long userId, long groupId, long companyId, String name)
 		throws PortalException {
 
 		AssetVocabulary assetVocabulary = assetVocabularyPersistence.fetchByG_N(
@@ -504,6 +506,17 @@ public class CalendarImporterLocalServiceImpl
 		ServiceContext serviceContext = new ServiceContext();
 
 		serviceContext.setScopeGroupId(groupId);
+
+		User user = null;
+
+		try {
+			user = userPersistence.findByPrimaryKey(userId);
+		} catch (NoSuchUserException e) {
+			user = userPersistence.fetchByC_DU(companyId, true);
+
+			userId = user.getUserId();
+		}
+
 		serviceContext.setUserId(userId);
 
 		if (assetVocabulary == null) {
@@ -723,7 +736,7 @@ public class CalendarImporterLocalServiceImpl
 		assetCategories.add(
 			getAssetCategory(
 				calEvent.getUserId(), calEvent.getGroupId(),
-				calEvent.getType()));
+				calEvent.getCompanyId(), calEvent.getType()));
 
 		for (AssetCategory assetCategory : assetCategories) {
 			assetEntryLocalService.addAssetCategoryAssetEntry(
