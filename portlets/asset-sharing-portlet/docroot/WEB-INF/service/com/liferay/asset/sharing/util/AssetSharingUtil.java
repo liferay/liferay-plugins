@@ -45,7 +45,6 @@ import com.liferay.portlet.social.model.SocialRelation;
 import com.liferay.portlet.social.model.SocialRelationConstants;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -62,7 +61,7 @@ public class AssetSharingUtil {
 
 		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
 
-		Set<User> userSet = new HashSet<User>();
+		Set<User> userSet = new LinkedHashSet<User>();
 
 		//Social Relations
 
