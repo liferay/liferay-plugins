@@ -14,7 +14,10 @@
 
 package com.liferay.compat.portal.kernel.util;
 
+import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * @author Brian Wing Shun Chan
@@ -31,6 +34,18 @@ public class ListUtil extends com.liferay.portal.kernel.util.ListUtil {
 
 	public static boolean isNotEmpty(List<?> list) {
 		return !isEmpty(list);
+	}
+
+	public static <T> List<T> unique(List<T> list) {
+		Set<T> set = new LinkedHashSet<T>();
+
+		set.addAll(list);
+
+		if (list.size() == set.size()) {
+			return list;
+		}
+
+		return new ArrayList<T>(set);
 	}
 
 }
