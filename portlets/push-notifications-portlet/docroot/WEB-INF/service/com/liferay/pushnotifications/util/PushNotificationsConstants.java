@@ -30,9 +30,21 @@ public class PushNotificationsConstants {
 
 	public static final String KEY_PAYLOAD = "payload";
 
+	public static final String KEY_POLLS_CHOICE_DESCRIPTION = "description";
+
+	public static final String KEY_POLLS_CHOICE_ID = "choiceId";
+
+	public static final String KEY_POLLS_CHOICES = "choices";
+
+	public static final String KEY_POLLS_QUESTION = "question";
+
+	public static final String KEY_POLLS_QUESTION_ID = "questionId";
+
 	public static final String KEY_PORTRAIT_ID = "portraitId";
 
 	public static final String KEY_TO_USER = "toUser";
+
+	public static final String KEY_TYPE = "type";
 
 	public static final String KEY_USER_ID = "userId";
 
@@ -40,5 +52,7 @@ public class PushNotificationsConstants {
 
 	public static final long VALUE_PARENT_PUSH_NOTIFICATIONS_ENTRY_ID_DEFAULT =
 		0;
+
+	public static final String VALUE_POLLS_TYPE = "polls";
 
 }
