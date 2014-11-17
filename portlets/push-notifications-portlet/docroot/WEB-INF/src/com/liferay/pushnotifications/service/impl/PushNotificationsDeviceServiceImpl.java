@@ -96,9 +96,7 @@ public class PushNotificationsDeviceServiceImpl
 	}
 
 	@Override
-	public boolean hasPermission(String actionId)
-		throws PortalException {
-
+	public boolean hasPermission(String actionId) throws PortalException {
 		return PushNotificationsPermission.contains(
 			getPermissionChecker(), actionId);
 	}
