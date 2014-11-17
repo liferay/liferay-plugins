@@ -30,10 +30,10 @@ kbFeedbackListDisplayContext.getViewFeedbackURL(iteratorURL, navItem);
 	<liferay-ui:search-container
 		emptyResultsMessage="<%= emptyResultsMessage %>"
 		iteratorURL="<%= iteratorURL %>"
-		total="<%= KBCommentServiceUtil.getKBCommentsCount(scopeGroupId, feedbackStatus) %>"
+		total="<%= kbFeedbackListDisplayContext.getKBCommentsCount(feedbackStatus) %>"
 	>
 		<liferay-ui:search-container-results
-			results="<%= KBCommentServiceUtil.getKBComments(scopeGroupId, feedbackStatus, searchContainer.getStart(), searchContainer.getEnd()) %>"
+			results="<%= kbFeedbackListDisplayContext.getKBComments(feedbackStatus, searchContainer) %>"
 		/>
 
 		<liferay-ui:search-container-row
