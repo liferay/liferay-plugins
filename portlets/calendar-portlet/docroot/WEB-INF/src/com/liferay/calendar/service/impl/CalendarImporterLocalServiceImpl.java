@@ -24,7 +24,6 @@ import com.liferay.calendar.recurrence.RecurrenceSerializer;
 import com.liferay.calendar.recurrence.Weekday;
 import com.liferay.calendar.service.base.CalendarImporterLocalServiceBaseImpl;
 import com.liferay.calendar.util.CalendarResourceUtil;
-import com.liferay.portal.NoSuchUserException;
 import com.liferay.portal.kernel.cal.DayAndPosition;
 import com.liferay.portal.kernel.cal.TZSRecurrence;
 import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
