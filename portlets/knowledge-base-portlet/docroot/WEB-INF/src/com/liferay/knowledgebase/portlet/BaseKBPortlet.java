@@ -132,7 +132,7 @@ public abstract class BaseKBPortlet extends MVCPortlet {
 
 		KBCommentServiceUtil.deleteKBComment(kbCommentId);
 
-		SessionMessages.add(actionRequest, "feedbackDeleted");
+		SessionMessages.add(actionRequest, "suggestionDeleted");
 	}
 
 	public void deleteTempAttachment(
