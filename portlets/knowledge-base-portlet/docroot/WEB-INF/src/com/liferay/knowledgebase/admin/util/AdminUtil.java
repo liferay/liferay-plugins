@@ -130,7 +130,7 @@ public class AdminUtil {
 
 		return ContentUtil.get(
 			PortletPropsValues.
-				ADMIN_EMAIL_KB_ARTICLE_FEEDBACK_IN_PROGRESS_BODY);
+				ADMIN_EMAIL_KB_ARTICLE_SUGGESTION_IN_PROGRESS_BODY);
 	}
 
 	public static boolean getEmailKBArticleFeedbackInProgressEnabled(
@@ -145,7 +145,7 @@ public class AdminUtil {
 		}
 
 		return PortletPropsValues.
-			ADMIN_EMAIL_KB_ARTICLE_FEEDBACK_IN_PROGRESS_ENABLED;
+			ADMIN_EMAIL_KB_ARTICLE_SUGGESTION_IN_PROGRESS_ENABLED;
 	}
 
 	public static String getEmailKBArticleFeedbackInProgressSubject(
@@ -160,7 +160,7 @@ public class AdminUtil {
 
 		return ContentUtil.get(
 			PortletPropsValues.
-				ADMIN_EMAIL_KB_ARTICLE_FEEDBACK_IN_PROGRESS_SUBJECT);
+				ADMIN_EMAIL_KB_ARTICLE_SUGGESTION_IN_PROGRESS_SUBJECT);
 	}
 
 	public static String getEmailKBArticleFeedbackNotificationBody(
@@ -216,7 +216,7 @@ public class AdminUtil {
 		}
 
 		return ContentUtil.get(
-			PortletPropsValues.ADMIN_EMAIL_KB_ARTICLE_FEEDBACK_RECEIVED_BODY);
+			PortletPropsValues.ADMIN_EMAIL_KB_ARTICLE_SUGGESTION_RECEIVED_BODY);
 	}
 
 	public static boolean getEmailKBArticleFeedbackReceivedEnabled(
@@ -230,7 +230,7 @@ public class AdminUtil {
 		}
 
 		return PortletPropsValues.
-			ADMIN_EMAIL_KB_ARTICLE_FEEDBACK_RECEIVED_ENABLED;
+			ADMIN_EMAIL_KB_ARTICLE_SUGGESTION_RECEIVED_ENABLED;
 	}
 
 	public static String getEmailKBArticleFeedbackReceivedSubject(
@@ -245,7 +245,7 @@ public class AdminUtil {
 
 		return ContentUtil.get(
 			PortletPropsValues.
-				ADMIN_EMAIL_KB_ARTICLE_FEEDBACK_RECEIVED_SUBJECT);
+				ADMIN_EMAIL_KB_ARTICLE_SUGGESTION_RECEIVED_SUBJECT);
 	}
 
 	public static String getEmailKBArticleFeedbackResolvedBody(
@@ -259,7 +259,7 @@ public class AdminUtil {
 		}
 
 		return ContentUtil.get(
-			PortletPropsValues.ADMIN_EMAIL_KB_ARTICLE_FEEDBACK_RESOLVED_BODY);
+			PortletPropsValues.ADMIN_EMAIL_KB_ARTICLE_SUGGESTION_RESOLVED_BODY);
 	}
 
 	public static boolean getEmailKBArticleFeedbackResolvedEnabled(
@@ -273,7 +273,7 @@ public class AdminUtil {
 		}
 
 		return PortletPropsValues.
-			ADMIN_EMAIL_KB_ARTICLE_FEEDBACK_RESOLVED_ENABLED;
+			ADMIN_EMAIL_KB_ARTICLE_SUGGESTION_RESOLVED_ENABLED;
 	}
 
 	public static String getEmailKBArticleFeedbackResolvedSubject(
@@ -288,7 +288,7 @@ public class AdminUtil {
 
 		return ContentUtil.get(
 			PortletPropsValues.
-				ADMIN_EMAIL_KB_ARTICLE_FEEDBACK_RESOLVED_SUBJECT);
+				ADMIN_EMAIL_KB_ARTICLE_SUGGESTION_RESOLVED_SUBJECT);
 	}
 
 	public static String getEmailKBArticleUpdatedBody(
