@@ -134,7 +134,8 @@ public class AssetSharingUtil {
 		JSONObject everyoneJSONObject = JSONFactoryUtil.createJSONObject();
 
 		everyoneJSONObject.put("classNameId", _SOCIAL_RELATION_CLASS_NAME_ID);
-		everyoneJSONObject.put("classPK", AssetSharingEntryConstants.TYPE_EVERYONE);
+		everyoneJSONObject.put(
+			"classPK", AssetSharingEntryConstants.TYPE_EVERYONE);
 		everyoneJSONObject.put("name", "everyone");
 
 		jsonArray.put(everyoneJSONObject);
@@ -299,8 +300,8 @@ public class AssetSharingUtil {
 			JSONObject userJSONObject = JSONFactoryUtil.createJSONObject();
 
 			userJSONObject.put("classNameId", _USER_CLASS_NAME_ID);
-			userJSONObject.put("email", currentUser.getEmailAddress());
 			userJSONObject.put("classPK", currentUser.getUserId());
+			userJSONObject.put("email", currentUser.getEmailAddress());
 			userJSONObject.put("name", currentUser.getFullName());
 			userJSONObject.put(
 				"portraitURL", currentUser.getPortraitURL(themeDisplay));
