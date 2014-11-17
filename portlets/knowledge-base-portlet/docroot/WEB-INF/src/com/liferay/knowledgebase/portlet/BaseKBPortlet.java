@@ -410,7 +410,7 @@ public abstract class BaseKBPortlet extends MVCPortlet {
 
 		KBCommentServiceUtil.updateStatus(kbCommentId, status, serviceContext);
 
-		SessionMessages.add(actionRequest, "feedbackStatusUpdated");
+		SessionMessages.add(actionRequest, "suggestionStatusUpdated");
 	}
 
 	protected String buildEditURL(
