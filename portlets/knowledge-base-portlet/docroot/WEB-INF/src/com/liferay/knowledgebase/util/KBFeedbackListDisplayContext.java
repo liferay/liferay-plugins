@@ -65,9 +65,10 @@ public class KBFeedbackListDisplayContext {
 				searchContainer.getEnd());
 		}
 		else {
-			return KBCommentLocalServiceUtil.getKBComments(
-				KBArticleConstants.getClassName(), _kbArticle.getClassPK(),
-				status, searchContainer.getStart(), searchContainer.getEnd());
+			return KBCommentServiceUtil.getKBComments(
+				_groupId, KBArticleConstants.getClassName(),
+				_kbArticle.getClassPK(), status, searchContainer.getStart(),
+				searchContainer.getEnd());
 		}
 	}
 
@@ -78,9 +79,9 @@ public class KBFeedbackListDisplayContext {
 			return KBCommentServiceUtil.getKBCommentsCount(_groupId, status);
 		}
 		else {
-			return KBCommentLocalServiceUtil.getKBCommentsCount(
-				KBArticleConstants.getClassName(), _kbArticle.getClassPK(),
-				status);
+			return KBCommentServiceUtil.getKBCommentsCount(
+				_groupId, KBArticleConstants.getClassName(),
+				_kbArticle.getClassPK(), status);
 		}
 	}
 
