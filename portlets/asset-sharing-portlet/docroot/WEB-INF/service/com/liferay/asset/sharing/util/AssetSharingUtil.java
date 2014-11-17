@@ -63,7 +63,7 @@ public class AssetSharingUtil {
 
 		Set<User> userSet = new LinkedHashSet<User>();
 
-		//Social Relations
+		// Social relations
 
 		JSONObject everyoneObject = JSONFactoryUtil.createJSONObject();
 
@@ -333,28 +333,28 @@ public class AssetSharingUtil {
 	private static List<Organization> _getOrganizations(long userId)
 		throws PortalException, SystemException {
 
-		List<Organization> organizations =
+		List<Organization> userOrganizations =
 			OrganizationLocalServiceUtil.getUserOrganizations(userId);
 
-		if (organizations.isEmpty()) {
+		if (userOrganizations.isEmpty()) {
 			return null;
 		}
 
-		List<Organization> organizationsList = new ArrayList<Organization>();
+		List<Organization> organizations = new ArrayList<Organization>();
 
-		organizationsList.addAll(organizations);
+		organizations.addAll(userOrganizations);
 
-		for (Organization organization : organizations) {
+		for (Organization organization : userOrganizations) {
 			List<Organization> parentOrganizations =
 				OrganizationLocalServiceUtil.getParentOrganizations(
 					organization.getOrganizationId());
 
 			for (Organization parentOrganization : parentOrganizations) {
-				organizationsList.add(parentOrganization);
+				organizations.add(parentOrganization);
 			}
 		}
 
-		return organizationsList;
+		return organizations;
 	}
 
 	private static long[] _getRoleIds(Set<Role> roles) {
