@@ -15,11 +15,17 @@
 package com.liferay.knowledgebase.util;
 
 import com.liferay.knowledgebase.model.KBArticle;
+import com.liferay.knowledgebase.model.KBComment;
 import com.liferay.knowledgebase.model.KBCommentConstants;
 import com.liferay.knowledgebase.service.KBCommentLocalServiceUtil;
+import com.liferay.knowledgebase.service.KBCommentServiceUtil;
+import com.liferay.portal.kernel.dao.search.SearchContainer;
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.exception.SystemException;
 
 import javax.portlet.PortletURL;
 import javax.portlet.RenderResponse;
+import java.util.List;
 
 /**
  * @author Adolfo Pérez
@@ -47,7 +53,22 @@ public class KBFeedbackListDisplayContext {
 			KBCommentConstants.STATUS_IN_PROGRESS);
 	}
 
-	public int getNewKBCommentsCount() {
+	public int getKBCommentsCount(int status)
+		throws PortalException, SystemException {
+
+		return KBCommentServiceUtil.getKBCommentsCount(_groupId, status);
+	}
+
+	public List<KBComment> getKBComments(
+			int status, SearchContainer<KBComment> searchContainer)
+		throws PortalException, SystemException {
+
+		return KBCommentServiceUtil.getKBComments(
+			_groupId, status, searchContainer.getStart(),
+			searchContainer.getEnd());
+	}
+
+	public int getNewKBCommentsCount() throws SystemException {
 		return getKBCommentsCountByStatus(KBCommentConstants.STATUS_NEW);
 	}
 
