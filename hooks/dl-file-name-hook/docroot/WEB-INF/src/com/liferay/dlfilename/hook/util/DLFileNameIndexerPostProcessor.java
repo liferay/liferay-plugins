@@ -37,7 +37,9 @@ public class DLFileNameIndexerPostProcessor extends BaseIndexerPostProcessor {
 
 		Field field = document.getField(_DL_FILE_NAME_TITLE_FIELD_NAME);
 
-		summary.setTitle(field.getValue());
+		if (field != null) {
+			summary.setTitle(field.getValue());
+		}
 	}
 
 	private static final String _DL_FILE_NAME_TITLE_FIELD_NAME =
