@@ -22,6 +22,6 @@ public class ActionKeys
 
 	public static final String ADD_DEVICE = "ADD_DEVICE";
 
-	public static final String SEND_NOTIFICATION = "SEND_NOTIFICATION";
+	public static final String ADD_ENTRY = "ADD_ENTRY";
 
 }
