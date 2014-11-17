@@ -22,7 +22,6 @@ import com.liferay.knowledgebase.util.ActionKeys;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.service.ServiceContext;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -61,17 +60,14 @@ public class KBCommentServiceImpl extends KBCommentServiceBaseImpl {
 			long groupId, int status, int start, int end)
 		throws PortalException {
 
-		List<KBComment> kbComments = new ArrayList<KBComment>();
-
 		if (AdminPermission.contains(
 				getPermissionChecker(), groupId,
 				ActionKeys.VIEW_KB_SUGGESTIONS)) {
 
-			kbComments = kbCommentPersistence.findByG_S(
-				groupId, status, start, end);
+			return kbCommentPersistence.findByG_S(groupId, status, start, end);
 		}
 
-		return kbComments;
+		return Collections.emptyList();
 	}
 
 	@Override
@@ -94,16 +90,14 @@ public class KBCommentServiceImpl extends KBCommentServiceBaseImpl {
 	public int getKBCommentsCount(long groupId, int status)
 		throws PortalException {
 
-		int kbCommentsCount = 0;
-
 		if (AdminPermission.contains(
 				getPermissionChecker(), groupId,
 				ActionKeys.VIEW_KB_SUGGESTIONS)) {
 
-			kbCommentsCount = kbCommentPersistence.countByG_S(groupId, status);
+			return kbCommentPersistence.countByG_S(groupId, status);
 		}
 
-		return kbCommentsCount;
+		return 0;
 	}
 
 	@Override
