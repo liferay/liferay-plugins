@@ -149,8 +149,8 @@ boolean hasUpdatePermission = KBArticlePermission.contains(permissionChecker, kb
 		</div>
 
 		<liferay-ui:success
-			key="feedbackDeleted"
-			message="feedback-deleted-successfully"
+			key="suggestionDeleted"
+			message="suggestion-deleted-successfully"
 		/>
 
 		<liferay-ui:success

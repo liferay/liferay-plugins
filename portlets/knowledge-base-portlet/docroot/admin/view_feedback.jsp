@@ -19,8 +19,8 @@
 <liferay-util:include page="/admin/top_tabs.jsp" servletContext="<%= application %>" />
 
 <liferay-ui:success
-	key="feedbackDeleted"
-	message="feedback-deleted-successfully"
+	key="suggestionDeleted"
+	message="suggestion-deleted-successfully"
 />
 
 <liferay-ui:success
