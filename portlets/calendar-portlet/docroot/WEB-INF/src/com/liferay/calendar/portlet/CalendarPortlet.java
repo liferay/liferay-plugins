@@ -778,7 +778,8 @@ public class CalendarPortlet extends MVCPortlet {
 						actionRequest, "startTimeMonth");
 
 					List<Integer> months = new ArrayList<Integer>();
-					months.add(new Integer(month));
+
+					months.add(month);
 					recurrence.setMonths(months);
 				}
 			}
