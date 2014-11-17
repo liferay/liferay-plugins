@@ -32,8 +32,6 @@ import com.liferay.portal.kernel.util.PrefsPropsUtil;
 import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.ReleaseInfo;
-import com.liferay.portal.kernel.util.StringBundler;
-import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.Organization;
 import com.liferay.portal.model.Repository;
@@ -53,7 +51,6 @@ import com.liferay.portlet.documentlibrary.model.DLFolderConstants;
 import com.liferay.portlet.documentlibrary.model.DLSyncEvent;
 import com.liferay.portlet.documentlibrary.service.DLSyncEventLocalServiceUtil;
 import com.liferay.portlet.trash.util.TrashUtil;
-import com.liferay.sync.SyncDLObjectChecksumException;
 import com.liferay.sync.model.SyncConstants;
 import com.liferay.sync.model.SyncContext;
 import com.liferay.sync.model.SyncDLObject;
@@ -90,8 +87,6 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 		throws PortalException, SystemException {
 
 		try {
-			validateChecksum(file, checksum);
-
 			FileEntry fileEntry = dlAppService.addFileEntry(
 				repositoryId, folderId, sourceFileName, mimeType, title,
 				description, changeLog, file, serviceContext);
@@ -772,10 +767,6 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 		throws PortalException, SystemException {
 
 		try {
-			if (file != null) {
-				validateChecksum(file, checksum);
-			}
-
 			FileEntry fileEntry = dlAppService.updateFileEntry(
 				fileEntryId, sourceFileName, mimeType, title, description,
 				changeLog, majorVersion, file, serviceContext);
@@ -898,29 +889,6 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 		SyncDLObject syncDLObject = SyncUtil.toSyncDLObject(folder, event);
 
 		return checkModifiedTime(syncDLObject, folder.getFolderId());
-	}
-
-	protected void validateChecksum(File file, String checksum)
-		throws PortalException {
-
-		if (Validator.isNull(checksum)) {
-			return;
-		}
-
-		String fileChecksum = SyncUtil.getChecksum(file);
-
-		if (Validator.isNull(fileChecksum) || fileChecksum.equals(checksum)) {
-			return;
-		}
-
-		StringBundler sb = new StringBundler(4);
-
-		sb.append("Expected checksum ");
-		sb.append(checksum);
-		sb.append(" does not match actual checksum ");
-		sb.append(fileChecksum);
-
-		throw new SyncDLObjectChecksumException(sb.toString());
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(
