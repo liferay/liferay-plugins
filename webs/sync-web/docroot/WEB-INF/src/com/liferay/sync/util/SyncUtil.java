@@ -379,7 +379,14 @@ public class SyncUtil {
 		syncDLObject.setExtraSettings(dlFileVersion.getExtraSettings());
 		syncDLObject.setVersion(dlFileVersion.getVersion());
 		syncDLObject.setSize(dlFileVersion.getSize());
-		syncDLObject.setChecksum(getChecksum(dlFileVersion));
+
+		if (Validator.isNull(dlFileVersion.getChecksum())) {
+			syncDLObject.setChecksum(getChecksum(dlFileVersion));
+		}
+		else {
+			syncDLObject.setChecksum(dlFileVersion.getChecksum());
+		}
+
 		syncDLObject.setEvent(event);
 		syncDLObject.setLockExpirationDate(lockExpirationDate);
 		syncDLObject.setLockUserId(lockUserId);
