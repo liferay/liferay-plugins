@@ -63,25 +63,18 @@ public class PushNotificationsEntryServiceUtil {
 		return getService().invokeMethod(name, parameterTypes, arguments);
 	}
 
+	public static void addPushNotificationsEntry(java.lang.String payload)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		getService().addPushNotificationsEntry(payload);
+	}
+
 	public static java.util.List<com.liferay.pushnotifications.model.PushNotificationsEntry> getPushNotificationsEntries(
 		long parentPushNotificationsEntryId, long lastAccessTime, int start,
 		int end) throws com.liferay.portal.kernel.exception.SystemException {
 		return getService()
 				   .getPushNotificationsEntries(parentPushNotificationsEntryId,
 			lastAccessTime, start, end);
-	}
-
-	public static void sendPushNotification(long toUserId,
-		java.lang.String payload)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		getService().sendPushNotification(toUserId, payload);
-	}
-
-	public static void sendPushNotification(java.lang.String payload)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		getService().sendPushNotification(payload);
 	}
 
 	public static void clearService() {

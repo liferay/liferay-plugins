@@ -278,12 +278,10 @@ public class PushNotificationsEntryLocalServiceUtil {
 	}
 
 	public static com.liferay.pushnotifications.model.PushNotificationsEntry addPushNotificationsEntry(
-		long userId, long parentPushNotificationsEntryId,
-		com.liferay.portal.kernel.json.JSONObject payloadJSONObject)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getService()
-				   .addPushNotificationsEntry(userId,
-			parentPushNotificationsEntryId, payloadJSONObject);
+		long userId, com.liferay.portal.kernel.json.JSONObject payloadJSONObject)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService().addPushNotificationsEntry(userId, payloadJSONObject);
 	}
 
 	public static java.util.List<com.liferay.pushnotifications.model.PushNotificationsEntry> getPushNotificationsEntries(
@@ -294,18 +292,19 @@ public class PushNotificationsEntryLocalServiceUtil {
 			lastAccessTime, start, end);
 	}
 
-	public static void sendPushNotification(
-		com.liferay.portal.kernel.json.JSONObject jsonObject, int start, int end)
+	public static void sendPushNotification(long fromUserId,
+		com.liferay.portal.kernel.json.JSONObject payloadJSONObject)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		getService().sendPushNotification(jsonObject, start, end);
+		getService().sendPushNotification(fromUserId, payloadJSONObject);
 	}
 
-	public static void sendPushNotification(long toUserId,
-		com.liferay.portal.kernel.json.JSONObject jsonObject, int start, int end)
+	public static void sendPushNotification(long fromUserId, long toUserId,
+		com.liferay.portal.kernel.json.JSONObject payloadJSONObject)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		getService().sendPushNotification(toUserId, jsonObject, start, end);
+		getService()
+			.sendPushNotification(fromUserId, toUserId, payloadJSONObject);
 	}
 
 	public static void clearService() {
