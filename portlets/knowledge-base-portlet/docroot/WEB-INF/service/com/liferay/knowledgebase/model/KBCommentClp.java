@@ -640,6 +640,10 @@ public class KBCommentClp extends BaseModelImpl<KBComment> implements KBComment 
 		}
 	}
 
+	public Class<?> getClpSerializerClass() {
+		return _clpSerializerClass;
+	}
+
 	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
@@ -761,4 +765,5 @@ public class KBCommentClp extends BaseModelImpl<KBComment> implements KBComment 
 	private boolean _helpful;
 	private int _status;
 	private BaseModel<?> _kbCommentRemoteModel;
+	private Class<?> _clpSerializerClass = com.liferay.knowledgebase.service.ClpSerializer.class;
 }

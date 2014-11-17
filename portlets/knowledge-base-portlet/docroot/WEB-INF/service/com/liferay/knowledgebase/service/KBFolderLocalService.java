@@ -16,6 +16,7 @@ package com.liferay.knowledgebase.service;
 
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.search.IndexableType;
 import com.liferay.portal.kernel.transaction.Isolation;
 import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
@@ -52,6 +53,7 @@ public interface KBFolderLocalService extends BaseLocalService,
 	* @return the k b folder that was added
 	* @throws SystemException if a system exception occurred
 	*/
+	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.REINDEX)
 	public com.liferay.knowledgebase.model.KBFolder addKBFolder(
 		com.liferay.knowledgebase.model.KBFolder kbFolder)
 		throws com.liferay.portal.kernel.exception.SystemException;
@@ -73,6 +75,7 @@ public interface KBFolderLocalService extends BaseLocalService,
 	* @throws PortalException if a k b folder with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
+	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.DELETE)
 	public com.liferay.knowledgebase.model.KBFolder deleteKBFolder(
 		long kbFolderId)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -85,6 +88,7 @@ public interface KBFolderLocalService extends BaseLocalService,
 	* @return the k b folder that was removed
 	* @throws SystemException if a system exception occurred
 	*/
+	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.DELETE)
 	public com.liferay.knowledgebase.model.KBFolder deleteKBFolder(
 		com.liferay.knowledgebase.model.KBFolder kbFolder)
 		throws com.liferay.portal.kernel.exception.SystemException;
@@ -281,6 +285,7 @@ public interface KBFolderLocalService extends BaseLocalService,
 	* @return the k b folder that was updated
 	* @throws SystemException if a system exception occurred
 	*/
+	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.REINDEX)
 	public com.liferay.knowledgebase.model.KBFolder updateKBFolder(
 		com.liferay.knowledgebase.model.KBFolder kbFolder)
 		throws com.liferay.portal.kernel.exception.SystemException;

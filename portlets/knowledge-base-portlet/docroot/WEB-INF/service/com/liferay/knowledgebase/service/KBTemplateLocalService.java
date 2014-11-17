@@ -16,6 +16,7 @@ package com.liferay.knowledgebase.service;
 
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.search.IndexableType;
 import com.liferay.portal.kernel.transaction.Isolation;
 import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
@@ -52,6 +53,7 @@ public interface KBTemplateLocalService extends BaseLocalService,
 	* @return the k b template that was added
 	* @throws SystemException if a system exception occurred
 	*/
+	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.REINDEX)
 	public com.liferay.knowledgebase.model.KBTemplate addKBTemplate(
 		com.liferay.knowledgebase.model.KBTemplate kbTemplate)
 		throws com.liferay.portal.kernel.exception.SystemException;
@@ -73,6 +75,7 @@ public interface KBTemplateLocalService extends BaseLocalService,
 	* @throws PortalException if a k b template with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
+	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.DELETE)
 	public com.liferay.knowledgebase.model.KBTemplate deleteKBTemplate(
 		long kbTemplateId)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -86,6 +89,7 @@ public interface KBTemplateLocalService extends BaseLocalService,
 	* @throws PortalException
 	* @throws SystemException if a system exception occurred
 	*/
+	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.DELETE)
 	public com.liferay.knowledgebase.model.KBTemplate deleteKBTemplate(
 		com.liferay.knowledgebase.model.KBTemplate kbTemplate)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -284,6 +288,7 @@ public interface KBTemplateLocalService extends BaseLocalService,
 	* @return the k b template that was updated
 	* @throws SystemException if a system exception occurred
 	*/
+	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.REINDEX)
 	public com.liferay.knowledgebase.model.KBTemplate updateKBTemplate(
 		com.liferay.knowledgebase.model.KBTemplate kbTemplate)
 		throws com.liferay.portal.kernel.exception.SystemException;

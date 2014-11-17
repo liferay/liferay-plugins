@@ -638,6 +638,10 @@ public class KBFolderClp extends BaseModelImpl<KBFolder> implements KBFolder {
 		}
 	}
 
+	public Class<?> getClpSerializerClass() {
+		return _clpSerializerClass;
+	}
+
 	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
@@ -752,4 +756,5 @@ public class KBFolderClp extends BaseModelImpl<KBFolder> implements KBFolder {
 	private String _urlTitle;
 	private String _description;
 	private BaseModel<?> _kbFolderRemoteModel;
+	private Class<?> _clpSerializerClass = com.liferay.knowledgebase.service.ClpSerializer.class;
 }

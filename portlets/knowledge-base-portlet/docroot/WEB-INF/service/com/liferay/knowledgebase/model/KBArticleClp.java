@@ -1378,6 +1378,10 @@ public class KBArticleClp extends BaseModelImpl<KBArticle> implements KBArticle 
 		}
 	}
 
+	public Class<?> getClpSerializerClass() {
+		return _clpSerializerClass;
+	}
+
 	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
@@ -1606,4 +1610,5 @@ public class KBArticleClp extends BaseModelImpl<KBArticle> implements KBArticle 
 	private String _statusByUserName;
 	private Date _statusDate;
 	private BaseModel<?> _kbArticleRemoteModel;
+	private Class<?> _clpSerializerClass = com.liferay.knowledgebase.service.ClpSerializer.class;
 }

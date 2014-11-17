@@ -521,6 +521,10 @@ public class KBTemplateClp extends BaseModelImpl<KBTemplate>
 		}
 	}
 
+	public Class<?> getClpSerializerClass() {
+		return _clpSerializerClass;
+	}
+
 	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
@@ -621,4 +625,5 @@ public class KBTemplateClp extends BaseModelImpl<KBTemplate>
 	private String _title;
 	private String _content;
 	private BaseModel<?> _kbTemplateRemoteModel;
+	private Class<?> _clpSerializerClass = com.liferay.knowledgebase.service.ClpSerializer.class;
 }
