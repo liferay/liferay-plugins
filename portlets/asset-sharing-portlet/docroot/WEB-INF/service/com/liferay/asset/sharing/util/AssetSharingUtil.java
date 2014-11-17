@@ -55,15 +55,15 @@ import java.util.Set;
  */
 public class AssetSharingUtil {
 
-	public static JSONArray getJSONSharedToRecipients(
+	public static JSONArray getSharedToJSONArray(
 			long userId, ThemeDisplay themeDisplay)
 		throws PortalException, SystemException {
 
 		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
 
-		Set<User> users = new LinkedHashSet<User>();
-
 		// Social relations
+
+		Set<User> users = new LinkedHashSet<User>();
 
 		JSONObject everyoneJSONObject = JSONFactoryUtil.createJSONObject();
 
