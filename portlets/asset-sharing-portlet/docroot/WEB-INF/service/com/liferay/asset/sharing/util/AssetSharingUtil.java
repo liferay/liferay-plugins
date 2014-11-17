@@ -61,7 +61,7 @@ public class AssetSharingUtil {
 
 		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
 
-		Set<User> userSet = new LinkedHashSet<User>();
+		Set<User> users = new LinkedHashSet<User>();
 
 		// Social relations
 
@@ -106,7 +106,7 @@ public class AssetSharingUtil {
 			socialRelationParams, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
 			new UserFirstNameComparator(true));
 
-		userSet.addAll(connectedUsers);
+		users.addAll(connectedUsers);
 
 		// Organization
 
@@ -136,7 +136,7 @@ public class AssetSharingUtil {
 					QueryUtil.ALL_POS, QueryUtil.ALL_POS,
 					new UserFirstNameComparator(true));
 
-				userSet.addAll(orgUsers);
+				users.addAll(orgUsers);
 			}
 		}
 
@@ -164,7 +164,7 @@ public class AssetSharingUtil {
 				userParams, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
 				new UserFirstNameComparator(true));
 
-			userSet.addAll(groupUsers);
+			users.addAll(groupUsers);
 		}
 
 		// User group
@@ -193,7 +193,7 @@ public class AssetSharingUtil {
 				QueryUtil.ALL_POS, QueryUtil.ALL_POS,
 				new UserFirstNameComparator(true));
 
-			userSet.addAll(userGroupUsers);
+			users.addAll(userGroupUsers);
 		}
 
 		// Role
@@ -225,7 +225,7 @@ public class AssetSharingUtil {
 
 		// User
 
-		for (User user : userSet) {
+		for (User user : users) {
 			JSONObject userObject = JSONFactoryUtil.createJSONObject();
 
 			userObject.put("classNameId", _USER_CLASS_NAME_ID);
