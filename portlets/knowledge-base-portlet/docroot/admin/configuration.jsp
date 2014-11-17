@@ -58,7 +58,7 @@ else if (tabs2.equals("suggestion-in-progress-email")) {
 	editorParam = "emailKBArticleFeedbackInProgressBody";
 	editorBody = emailKBArticleFeedbackInProgressBody;
 }
-else if (tabs2.equals("feedback-received-email")) {
+else if (tabs2.equals("suggestion-received-email")) {
 	editorParam = "emailKBArticleFeedbackReceivedBody";
 	editorBody = emailKBArticleFeedbackReceivedBody;
 }
@@ -76,7 +76,7 @@ else if (tabs2.equals("feedback-resolved-email")) {
 </liferay-portlet:renderURL>
 
 <liferay-ui:tabs
-	names="general,email-from,article-added-email,article-updated-email,feedback-received-email,suggestion-in-progress-email,feedback-resolved-email,display-settings"
+	names="general,email-from,article-added-email,article-updated-email,suggestion-received-email,suggestion-in-progress-email,feedback-resolved-email,display-settings"
 	param="tabs2"
 	url="<%= configurationRenderURL %>"
 />
@@ -316,7 +316,7 @@ else if (tabs2.equals("feedback-resolved-email")) {
 					<c:when test='<%= tabs2.equals("suggestion-in-progress-email") %>'>
 						<aui:input label="enabled" name="preferences--emailKBArticleFeedbackInProgressEnabled--" type="checkbox" value="<%= emailKBArticleFeedbackInProgressEnabled %>" />
 					</c:when>
-					<c:when test='<%= tabs2.equals("feedback-received-email") %>'>
+					<c:when test='<%= tabs2.equals("suggestion-received-email") %>'>
 						<aui:input label="enabled" name="preferences--emailKBArticleFeedbackReceivedEnabled--" type="checkbox" value="<%= emailKBArticleFeedbackReceivedEnabled %>" />
 					</c:when>
 					<c:when test='<%= tabs2.equals("feedback-resolved-email") %>'>
@@ -328,7 +328,7 @@ else if (tabs2.equals("feedback-resolved-email")) {
 					<c:when test='<%= tabs2.equals("suggestion-in-progress-email") %>'>
 						<aui:input cssClass="lfr-input-text-container" label="subject" name="preferences--emailKBArticleFeedbackInProgressSubject--" value="<%= emailKBArticleFeedbackInProgressSubject %>" />
 					</c:when>
-					<c:when test='<%= tabs2.equals("feedback-received-email") %>'>
+					<c:when test='<%= tabs2.equals("suggestion-received-email") %>'>
 						<aui:input cssClass="lfr-input-text-container" label="subject" name="preferences--emailKBArticleFeedbackReceivedSubject--" value="<%= emailKBArticleFeedbackReceivedSubject %>" />
 					</c:when>
 					<c:when test='<%= tabs2.equals("feedback-resolved-email") %>'>
