@@ -65,44 +65,45 @@ public class AssetSharingUtil {
 
 		// Social relations
 
-		JSONObject everyoneObject = JSONFactoryUtil.createJSONObject();
+		JSONObject everyoneJSONObject = JSONFactoryUtil.createJSONObject();
 
-		everyoneObject.put("classNameId", _SOCIAL_RELATION_CLASS_NAME_ID);
-		everyoneObject.put("id", AssetSharingEntryConstants.TYPE_EVERYONE);
-		everyoneObject.put("name", "everyone");
+		everyoneJSONObject.put("classNameId", _SOCIAL_RELATION_CLASS_NAME_ID);
+		everyoneJSONObject.put("id", AssetSharingEntryConstants.TYPE_EVERYONE);
+		everyoneJSONObject.put("name", "everyone");
 
-		jsonArray.put(everyoneObject);
+		jsonArray.put(everyoneJSONObject);
 
-		JSONObject followersObject = JSONFactoryUtil.createJSONObject();
+		JSONObject followersJSONObject = JSONFactoryUtil.createJSONObject();
 
-		followersObject.put("classNameId", _SOCIAL_RELATION_CLASS_NAME_ID);
-		followersObject.put("id", SocialRelationConstants.TYPE_UNI_FOLLOWER);
-		followersObject.put("name", "followers");
+		followersJSONObject.put("classNameId", _SOCIAL_RELATION_CLASS_NAME_ID);
+		followersJSONObject.put(
+			"id", SocialRelationConstants.TYPE_UNI_FOLLOWER);
+		followersJSONObject.put("name", "followers");
 
-		jsonArray.put(followersObject);
+		jsonArray.put(followersJSONObject);
 
-		JSONObject connectorsObject = JSONFactoryUtil.createJSONObject();
+		JSONObject connectorsJSONObject = JSONFactoryUtil.createJSONObject();
 
-		connectorsObject.put("classNameId", _SOCIAL_RELATION_CLASS_NAME_ID);
-		connectorsObject.put("id", SocialRelationConstants.TYPE_BI_CONNECTION);
-		connectorsObject.put("name", "connections");
+		connectorsJSONObject.put("classNameId", _SOCIAL_RELATION_CLASS_NAME_ID);
+		connectorsJSONObject.put(
+			"id", SocialRelationConstants.TYPE_BI_CONNECTION);
+		connectorsJSONObject.put("name", "connections");
 
-		jsonArray.put(connectorsObject);
+		jsonArray.put(connectorsJSONObject);
 
 		LinkedHashMap<String, Object> socialRelationParams =
 			new LinkedHashMap<String, Object>();
 
 		socialRelationParams.put("inherit", Boolean.TRUE);
-
 		socialRelationParams.put(
 			"socialRelationType",
 			new Long[] {
 				userId, (long)SocialRelationConstants.TYPE_BI_CONNECTION});
 
-		User currentUser = UserLocalServiceUtil.getUser(userId);
+		User user = UserLocalServiceUtil.getUser(userId);
 
 		List<User> connectedUsers = UserLocalServiceUtil.search(
-			currentUser.getCompanyId(), null, WorkflowConstants.STATUS_APPROVED,
+			user.getCompanyId(), null, WorkflowConstants.STATUS_APPROVED,
 			socialRelationParams, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
 			new UserFirstNameComparator(true));
 
@@ -114,15 +115,16 @@ public class AssetSharingUtil {
 
 		if (organizations != null) {
 			for (Organization organization : organizations) {
-				JSONObject organizationObject =
+				JSONObject organizationJSONObject =
 					JSONFactoryUtil.createJSONObject();
 
-				organizationObject.put(
+				organizationJSONObject.put(
 					"classNameId", _ORGANIZATION_CLASS_NAME_ID);
-				organizationObject.put("id", organization.getOrganizationId());
-				organizationObject.put("name", organization.getName());
+				organizationJSONObject.put(
+					"id", organization.getOrganizationId());
+				organizationJSONObject.put("name", organization.getName());
 
-				jsonArray.put(organizationObject);
+				jsonArray.put(organizationJSONObject);
 
 				LinkedHashMap<String, Object> userParams =
 					new LinkedHashMap<String, Object>();
@@ -130,13 +132,13 @@ public class AssetSharingUtil {
 				userParams.put(
 					"usersOrgs", new Long(organization.getOrganizationId()));
 
-				List<User> orgUsers = UserLocalServiceUtil.search(
+				List<User> organizationUsers = UserLocalServiceUtil.search(
 					organization.getCompanyId(), null,
 					WorkflowConstants.STATUS_APPROVED, userParams,
 					QueryUtil.ALL_POS, QueryUtil.ALL_POS,
 					new UserFirstNameComparator(true));
 
-				users.addAll(orgUsers);
+				users.addAll(organizationUsers);
 			}
 		}
 
@@ -145,13 +147,13 @@ public class AssetSharingUtil {
 		List<Group> groups = GroupLocalServiceUtil.getUserGroups(userId, true);
 
 		for (Group group : groups) {
-			JSONObject groupObject = JSONFactoryUtil.createJSONObject();
+			JSONObject groupJSONObject = JSONFactoryUtil.createJSONObject();
 
-			groupObject.put("classNameId", _GROUP_CLASS_NAME_ID);
-			groupObject.put("id", group.getGroupId());
-			groupObject.put("name", group.getName());
+			groupJSONObject.put("classNameId", _GROUP_CLASS_NAME_ID);
+			groupJSONObject.put("id", group.getGroupId());
+			groupJSONObject.put("name", group.getName());
 
-			jsonArray.put(groupObject);
+			jsonArray.put(groupJSONObject);
 
 			LinkedHashMap<String, Object> userParams =
 				new LinkedHashMap<String, Object>();
@@ -173,13 +175,13 @@ public class AssetSharingUtil {
 			UserGroupLocalServiceUtil.getUserUserGroups(userId);
 
 		for (UserGroup userGroup : userGroups) {
-			JSONObject userGroupObject = JSONFactoryUtil.createJSONObject();
+			JSONObject userGroupJSONObject = JSONFactoryUtil.createJSONObject();
 
-			userGroupObject.put("classNameId", _USER_GROUP_CLASS_NAME_ID);
-			userGroupObject.put("id", userGroup.getUserGroupId());
-			userGroupObject.put("name", userGroup.getName());
+			userGroupJSONObject.put("classNameId", _USER_GROUP_CLASS_NAME_ID);
+			userGroupJSONObject.put("id", userGroup.getUserGroupId());
+			userGroupJSONObject.put("name", userGroup.getName());
 
-			jsonArray.put(userGroupObject);
+			jsonArray.put(userGroupJSONObject);
 
 			LinkedHashMap<String, Object> userParams =
 				new LinkedHashMap<String, Object>();
@@ -201,13 +203,13 @@ public class AssetSharingUtil {
 		Set<Role> roles = _getRoles(userId);
 
 		for (Role role : roles) {
-			JSONObject roleObject = JSONFactoryUtil.createJSONObject();
+			JSONObject roleJSONObject = JSONFactoryUtil.createJSONObject();
 
-			roleObject.put("classNameId", _ROLE_CLASS_NAME_ID);
-			roleObject.put("id", role.getRoleId());
-			roleObject.put("name", role.getName());
+			roleJSONObject.put("classNameId", _ROLE_CLASS_NAME_ID);
+			roleJSONObject.put("id", role.getRoleId());
+			roleJSONObject.put("name", role.getName());
 
-			jsonArray.put(roleObject);
+			jsonArray.put(roleJSONObject);
 		}
 
 		// Team
@@ -215,27 +217,29 @@ public class AssetSharingUtil {
 		List<Team> teams = TeamLocalServiceUtil.getUserTeams(userId);
 
 		for (Team team : teams) {
-			JSONObject teamObject = JSONFactoryUtil.createJSONObject();
-			teamObject.put("classNameId", _TEAM_CLASS_NAME_ID);
-			teamObject.put("id", team.getTeamId());
-			teamObject.put("name", team.getName());
+			JSONObject teamJSONObject = JSONFactoryUtil.createJSONObject();
 
-			jsonArray.put(teamObject);
+			teamJSONObject.put("classNameId", _TEAM_CLASS_NAME_ID);
+			teamJSONObject.put("id", team.getTeamId());
+			teamJSONObject.put("name", team.getName());
+
+			jsonArray.put(teamJSONObject);
 		}
 
 		// User
 
-		for (User user : users) {
-			JSONObject userObject = JSONFactoryUtil.createJSONObject();
+		for (User currentUser : users) {
+			JSONObject userJSONObject = JSONFactoryUtil.createJSONObject();
 
-			userObject.put("classNameId", _USER_CLASS_NAME_ID);
-			userObject.put("email", user.getEmailAddress());
-			userObject.put("id", user.getUserId());
-			userObject.put("name", user.getFullName());
-			userObject.put("portraitURL", user.getPortraitURL(themeDisplay));
-			userObject.put("screenName", user.getScreenName());
+			userJSONObject.put("classNameId", _USER_CLASS_NAME_ID);
+			userJSONObject.put("email", currentUser.getEmailAddress());
+			userJSONObject.put("id", currentUser.getUserId());
+			userJSONObject.put("name", currentUser.getFullName());
+			userJSONObject.put(
+				"portraitURL", currentUser.getPortraitURL(themeDisplay));
+			userJSONObject.put("screenName", currentUser.getScreenName());
 
-			jsonArray.put(userObject);
+			jsonArray.put(userJSONObject);
 		}
 
 		return jsonArray;
