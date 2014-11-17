@@ -110,7 +110,7 @@
 				<action-key>PERMISSIONS</action-key>
 				<action-key>SUBSCRIBE</action-key>
 				<action-key>UPDATE_KB_ARTICLES_PRIORITIES</action-key>
-				<action-key>VIEW_KB_FEEDBACK</action-key>
+				<action-key>VIEW_KB_SUGGESTIONS</action-key>
 				<action-key>VIEW_KB_TEMPLATES</action-key>
 			</supports>
 			<site-member-defaults>
@@ -126,7 +126,7 @@
 				<action-key>PERMISSIONS</action-key>
 				<action-key>SUBSCRIBE</action-key>
 				<action-key>UPDATE_KB_ARTICLES_PRIORITIES</action-key>
-				<action-key>VIEW_KB_FEEDBACK</action-key>
+				<action-key>VIEW_KB_SUGGESTIONS</action-key>
 				<action-key>VIEW_KB_TEMPLATES</action-key>
 			</guest-unsupported>
 		</permissions>

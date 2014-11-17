@@ -63,7 +63,8 @@ public class KBCommentServiceImpl extends KBCommentServiceBaseImpl {
 		List<KBComment> kbComments = new ArrayList<KBComment>();
 
 		if (AdminPermission.contains(
-				getPermissionChecker(), groupId, ActionKeys.VIEW_KB_FEEDBACK)) {
+				getPermissionChecker(), groupId,
+				ActionKeys.VIEW_KB_SUGGESTIONS)) {
 
 			kbComments = kbCommentPersistence.findByG_S(
 				groupId, status, start, end);
@@ -78,7 +79,8 @@ public class KBCommentServiceImpl extends KBCommentServiceBaseImpl {
 		int kbCommentsCount = 0;
 
 		if (AdminPermission.contains(
-				getPermissionChecker(), groupId, ActionKeys.VIEW_KB_FEEDBACK)) {
+				getPermissionChecker(), groupId,
+				ActionKeys.VIEW_KB_SUGGESTIONS)) {
 
 			kbCommentsCount = kbCommentPersistence.countByG_S(groupId, status);
 		}
