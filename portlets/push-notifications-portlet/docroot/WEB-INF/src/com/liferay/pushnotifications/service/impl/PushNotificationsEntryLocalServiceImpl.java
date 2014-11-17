@@ -49,15 +49,17 @@ public class PushNotificationsEntryLocalServiceImpl
 		PushNotificationsEntry pushNotificationsEntry =
 			pushNotificationsEntryPersistence.create(pushNotificationsEntryId);
 
+		pushNotificationsEntry.setUserId(userId);
+		pushNotificationsEntry.setCreateTime(System.currentTimeMillis());
+
 		long parentPushNotificationsEntryId = payloadJSONObject.getLong(
 			PushNotificationsConstants.KEY_PARENT_PUSH_NOTIFICATIONS_ENTRY_ID,
 			PushNotificationsConstants.
 				VALUE_PARENT_PUSH_NOTIFICATIONS_ENTRY_ID_DEFAULT);
 
-		pushNotificationsEntry.setUserId(userId);
-		pushNotificationsEntry.setCreateTime(System.currentTimeMillis());
 		pushNotificationsEntry.setParentPushNotificationsEntryId(
 			parentPushNotificationsEntryId);
+
 		pushNotificationsEntry.setPayload(payloadJSONObject.toString());
 
 		pushNotificationsEntryPersistence.update(pushNotificationsEntry);
@@ -131,24 +133,24 @@ public class PushNotificationsEntryLocalServiceImpl
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
-		jsonObject.put(
-			PushNotificationsConstants.KEY_PAYLOAD, payloadJSONObject);
-
 		JSONObject fromUserJSONObject = JSONFactoryUtil.createJSONObject();
 
 		User user = userLocalService.getUser(fromUserId);
 
 		fromUserJSONObject.put(
-			PushNotificationsConstants.KEY_USER_ID, fromUserId);
-		fromUserJSONObject.put(
 			PushNotificationsConstants.KEY_FULL_NAME, user.getFullName());
 		fromUserJSONObject.put(
 			PushNotificationsConstants.KEY_PORTRAIT_ID, user.getPortraitId());
+		fromUserJSONObject.put(
+			PushNotificationsConstants.KEY_USER_ID, fromUserId);
 		fromUserJSONObject.put(
 			PushNotificationsConstants.KEY_UUID, user.getUuid());
 
 		jsonObject.put(
 			PushNotificationsConstants.KEY_FROM_USER, fromUserJSONObject);
+
+		jsonObject.put(
+			PushNotificationsConstants.KEY_PAYLOAD, payloadJSONObject);
 
 		return jsonObject;
 	}
