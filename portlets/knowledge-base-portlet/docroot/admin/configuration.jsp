@@ -400,7 +400,7 @@ else if (tabs2.equals("feedback-resolved-email")) {
 						<aui:input label="enable-view-count-increment" name="preferences--enableKBArticleViewCountIncrement--" type="checkbox" value="<%= enableKBArticleViewCountIncrement %>" />
 					</c:when>
 					<c:when test='<%= tabs3.equals("template") %>'>
-						<aui:input label="enable-feedback" name="preferences--enableKBTemplateKBComments--" type="checkbox" value="<%= enableKBTemplateKBComments %>" />
+						<aui:input label="enable-suggestions" name="preferences--enableKBTemplateKBComments--" type="checkbox" value="<%= enableKBTemplateKBComments %>" />
 
 						<aui:input label="show-feedback" name="preferences--showKBTemplateKBComments--" type="checkbox" value="<%= showKBTemplateKBComments %>" />
 					</c:when>
