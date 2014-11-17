@@ -134,7 +134,7 @@ public class AssetSharingUtil {
 		JSONObject everyoneJSONObject = JSONFactoryUtil.createJSONObject();
 
 		everyoneJSONObject.put("classNameId", _SOCIAL_RELATION_CLASS_NAME_ID);
-		everyoneJSONObject.put("id", AssetSharingEntryConstants.TYPE_EVERYONE);
+		everyoneJSONObject.put("classPK", AssetSharingEntryConstants.TYPE_EVERYONE);
 		everyoneJSONObject.put("name", "everyone");
 
 		jsonArray.put(everyoneJSONObject);
@@ -143,7 +143,7 @@ public class AssetSharingUtil {
 
 		followersJSONObject.put("classNameId", _SOCIAL_RELATION_CLASS_NAME_ID);
 		followersJSONObject.put(
-			"id", SocialRelationConstants.TYPE_UNI_FOLLOWER);
+			"classPK", SocialRelationConstants.TYPE_UNI_FOLLOWER);
 		followersJSONObject.put("name", "followers");
 
 		jsonArray.put(followersJSONObject);
@@ -152,7 +152,7 @@ public class AssetSharingUtil {
 
 		connectorsJSONObject.put("classNameId", _SOCIAL_RELATION_CLASS_NAME_ID);
 		connectorsJSONObject.put(
-			"id", SocialRelationConstants.TYPE_BI_CONNECTION);
+			"classPK", SocialRelationConstants.TYPE_BI_CONNECTION);
 		connectorsJSONObject.put("name", "connections");
 
 		jsonArray.put(connectorsJSONObject);
@@ -188,7 +188,7 @@ public class AssetSharingUtil {
 				organizationJSONObject.put(
 					"classNameId", _ORGANIZATION_CLASS_NAME_ID);
 				organizationJSONObject.put(
-					"id", organization.getOrganizationId());
+					"classPK", organization.getOrganizationId());
 				organizationJSONObject.put("name", organization.getName());
 
 				jsonArray.put(organizationJSONObject);
@@ -217,7 +217,7 @@ public class AssetSharingUtil {
 			JSONObject groupJSONObject = JSONFactoryUtil.createJSONObject();
 
 			groupJSONObject.put("classNameId", _GROUP_CLASS_NAME_ID);
-			groupJSONObject.put("id", group.getGroupId());
+			groupJSONObject.put("classPK", group.getGroupId());
 			groupJSONObject.put("name", group.getName());
 
 			jsonArray.put(groupJSONObject);
@@ -245,7 +245,7 @@ public class AssetSharingUtil {
 			JSONObject userGroupJSONObject = JSONFactoryUtil.createJSONObject();
 
 			userGroupJSONObject.put("classNameId", _USER_GROUP_CLASS_NAME_ID);
-			userGroupJSONObject.put("id", userGroup.getUserGroupId());
+			userGroupJSONObject.put("classPK", userGroup.getUserGroupId());
 			userGroupJSONObject.put("name", userGroup.getName());
 
 			jsonArray.put(userGroupJSONObject);
@@ -273,7 +273,7 @@ public class AssetSharingUtil {
 			JSONObject roleJSONObject = JSONFactoryUtil.createJSONObject();
 
 			roleJSONObject.put("classNameId", _ROLE_CLASS_NAME_ID);
-			roleJSONObject.put("id", role.getRoleId());
+			roleJSONObject.put("classPK", role.getRoleId());
 			roleJSONObject.put("name", role.getName());
 
 			jsonArray.put(roleJSONObject);
@@ -287,7 +287,7 @@ public class AssetSharingUtil {
 			JSONObject teamJSONObject = JSONFactoryUtil.createJSONObject();
 
 			teamJSONObject.put("classNameId", _TEAM_CLASS_NAME_ID);
-			teamJSONObject.put("id", team.getTeamId());
+			teamJSONObject.put("classPK", team.getTeamId());
 			teamJSONObject.put("name", team.getName());
 
 			jsonArray.put(teamJSONObject);
@@ -300,7 +300,7 @@ public class AssetSharingUtil {
 
 			userJSONObject.put("classNameId", _USER_CLASS_NAME_ID);
 			userJSONObject.put("email", currentUser.getEmailAddress());
-			userJSONObject.put("id", currentUser.getUserId());
+			userJSONObject.put("classPK", currentUser.getUserId());
 			userJSONObject.put("name", currentUser.getFullName());
 			userJSONObject.put(
 				"portraitURL", currentUser.getPortraitURL(themeDisplay));
