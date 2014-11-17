@@ -161,7 +161,8 @@ public class AssetSharingUtil {
 		socialRelationParams.put(
 			"socialRelationType",
 			new Long[] {
-				userId, (long)SocialRelationConstants.TYPE_BI_CONNECTION});
+				userId, (long)SocialRelationConstants.TYPE_BI_CONNECTION
+			});
 
 		User user = UserLocalServiceUtil.getUser(userId);
 
