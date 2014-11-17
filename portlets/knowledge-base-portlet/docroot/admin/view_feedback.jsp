@@ -29,8 +29,8 @@
 />
 
 <liferay-ui:success
-	key="feedbackSaved"
-	message="feedback-saved-successfully"
+	key="suggestionSaved"
+	message="suggestion-saved-successfully"
 />
 
 <%

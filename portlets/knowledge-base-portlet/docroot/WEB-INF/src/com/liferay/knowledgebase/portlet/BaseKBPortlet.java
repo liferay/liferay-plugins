@@ -394,7 +394,7 @@ public abstract class BaseKBPortlet extends MVCPortlet {
 				serviceContext);
 		}
 
-		SessionMessages.add(actionRequest, "feedbackSaved");
+		SessionMessages.add(actionRequest, "suggestionSaved");
 	}
 
 	public void updateKBCommentStatus(
