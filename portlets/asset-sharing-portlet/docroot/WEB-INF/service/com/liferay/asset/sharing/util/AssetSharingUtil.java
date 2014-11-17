@@ -301,7 +301,7 @@ public class AssetSharingUtil {
 
 			userJSONObject.put("classNameId", _USER_CLASS_NAME_ID);
 			userJSONObject.put("classPK", currentUser.getUserId());
-			userJSONObject.put("email", currentUser.getEmailAddress());
+			userJSONObject.put("emailAddress", currentUser.getEmailAddress());
 			userJSONObject.put("name", currentUser.getFullName());
 			userJSONObject.put(
 				"portraitURL", currentUser.getPortraitURL(themeDisplay));
