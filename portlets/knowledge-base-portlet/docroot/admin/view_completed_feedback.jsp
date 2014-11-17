@@ -17,7 +17,7 @@
 <%@ include file="/admin/init.jsp" %>
 
 <%
-String emptyResultsMessage = "no-completed-feedback-was-found";
+String emptyResultsMessage = "no-completed-suggestion-was-found";
 int feedbackStatus = KBCommentConstants.STATUS_COMPLETED;
 String navItem = "viewCompletedFeedback";
 %>
