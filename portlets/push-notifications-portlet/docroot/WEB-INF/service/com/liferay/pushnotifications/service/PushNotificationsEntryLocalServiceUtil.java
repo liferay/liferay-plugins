@@ -54,11 +54,9 @@ public class PushNotificationsEntryLocalServiceUtil {
 	}
 
 	public static com.liferay.pushnotifications.model.PushNotificationsEntry addPushNotificationsEntry(
-		long userId, long parentPushNotificationsEntryId,
-		com.liferay.portal.kernel.json.JSONObject payloadJSONObject) {
-		return getService()
-				   .addPushNotificationsEntry(userId,
-			parentPushNotificationsEntryId, payloadJSONObject);
+		long userId, com.liferay.portal.kernel.json.JSONObject payloadJSONObject)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().addPushNotificationsEntry(userId, payloadJSONObject);
 	}
 
 	/**
@@ -261,16 +259,17 @@ public class PushNotificationsEntryLocalServiceUtil {
 		return getService().invokeMethod(name, parameterTypes, arguments);
 	}
 
-	public static void sendPushNotification(
-		com.liferay.portal.kernel.json.JSONObject jsonObject, int start, int end)
+	public static void sendPushNotification(long fromUserId,
+		com.liferay.portal.kernel.json.JSONObject payloadJSONObject)
 		throws com.liferay.portal.kernel.exception.PortalException {
-		getService().sendPushNotification(jsonObject, start, end);
+		getService().sendPushNotification(fromUserId, payloadJSONObject);
 	}
 
-	public static void sendPushNotification(long toUserId,
-		com.liferay.portal.kernel.json.JSONObject jsonObject, int start, int end)
+	public static void sendPushNotification(long fromUserId, long toUserId,
+		com.liferay.portal.kernel.json.JSONObject payloadJSONObject)
 		throws com.liferay.portal.kernel.exception.PortalException {
-		getService().sendPushNotification(toUserId, jsonObject, start, end);
+		getService()
+			.sendPushNotification(fromUserId, toUserId, payloadJSONObject);
 	}
 
 	/**

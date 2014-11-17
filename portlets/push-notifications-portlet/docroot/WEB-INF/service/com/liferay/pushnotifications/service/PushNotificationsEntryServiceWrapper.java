@@ -34,6 +34,12 @@ public class PushNotificationsEntryServiceWrapper
 		_pushNotificationsEntryService = pushNotificationsEntryService;
 	}
 
+	@Override
+	public void addPushNotificationsEntry(java.lang.String payload)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		_pushNotificationsEntryService.addPushNotificationsEntry(payload);
+	}
+
 	/**
 	* Returns the Spring bean ID for this bean.
 	*
@@ -58,18 +64,6 @@ public class PushNotificationsEntryServiceWrapper
 		throws java.lang.Throwable {
 		return _pushNotificationsEntryService.invokeMethod(name,
 			parameterTypes, arguments);
-	}
-
-	@Override
-	public void sendPushNotification(java.lang.String payload)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		_pushNotificationsEntryService.sendPushNotification(payload);
-	}
-
-	@Override
-	public void sendPushNotification(long toUserId, java.lang.String payload)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		_pushNotificationsEntryService.sendPushNotification(toUserId, payload);
 	}
 
 	/**

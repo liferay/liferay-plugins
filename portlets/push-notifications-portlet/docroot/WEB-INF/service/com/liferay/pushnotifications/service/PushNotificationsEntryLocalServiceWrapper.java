@@ -48,10 +48,10 @@ public class PushNotificationsEntryLocalServiceWrapper
 
 	@Override
 	public com.liferay.pushnotifications.model.PushNotificationsEntry addPushNotificationsEntry(
-		long userId, long parentPushNotificationsEntryId,
-		com.liferay.portal.kernel.json.JSONObject payloadJSONObject) {
+		long userId, com.liferay.portal.kernel.json.JSONObject payloadJSONObject)
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _pushNotificationsEntryLocalService.addPushNotificationsEntry(userId,
-			parentPushNotificationsEntryId, payloadJSONObject);
+			payloadJSONObject);
 	}
 
 	/**
@@ -275,19 +275,19 @@ public class PushNotificationsEntryLocalServiceWrapper
 	}
 
 	@Override
-	public void sendPushNotification(
-		com.liferay.portal.kernel.json.JSONObject jsonObject, int start, int end)
+	public void sendPushNotification(long fromUserId,
+		com.liferay.portal.kernel.json.JSONObject payloadJSONObject)
 		throws com.liferay.portal.kernel.exception.PortalException {
-		_pushNotificationsEntryLocalService.sendPushNotification(jsonObject,
-			start, end);
+		_pushNotificationsEntryLocalService.sendPushNotification(fromUserId,
+			payloadJSONObject);
 	}
 
 	@Override
-	public void sendPushNotification(long toUserId,
-		com.liferay.portal.kernel.json.JSONObject jsonObject, int start, int end)
+	public void sendPushNotification(long fromUserId, long toUserId,
+		com.liferay.portal.kernel.json.JSONObject payloadJSONObject)
 		throws com.liferay.portal.kernel.exception.PortalException {
-		_pushNotificationsEntryLocalService.sendPushNotification(toUserId,
-			jsonObject, start, end);
+		_pushNotificationsEntryLocalService.sendPushNotification(fromUserId,
+			toUserId, payloadJSONObject);
 	}
 
 	/**

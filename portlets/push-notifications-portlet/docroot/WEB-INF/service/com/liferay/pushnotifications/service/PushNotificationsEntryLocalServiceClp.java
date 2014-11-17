@@ -38,7 +38,7 @@ public class PushNotificationsEntryLocalServiceClp
 		_methodName1 = "addPushNotificationsEntry";
 
 		_methodParameterTypes1 = new String[] {
-				"long", "long", "com.liferay.portal.kernel.json.JSONObject"
+				"long", "com.liferay.portal.kernel.json.JSONObject"
 			};
 
 		_methodName2 = "createPushNotificationsEntry";
@@ -132,14 +132,13 @@ public class PushNotificationsEntryLocalServiceClp
 		_methodName21 = "sendPushNotification";
 
 		_methodParameterTypes21 = new String[] {
-				"com.liferay.portal.kernel.json.JSONObject", "int", "int"
+				"long", "com.liferay.portal.kernel.json.JSONObject"
 			};
 
 		_methodName22 = "sendPushNotification";
 
 		_methodParameterTypes22 = new String[] {
-				"long", "com.liferay.portal.kernel.json.JSONObject", "int",
-				"int"
+				"long", "long", "com.liferay.portal.kernel.json.JSONObject"
 			};
 
 		_methodName23 = "setBeanIdentifier";
@@ -182,8 +181,8 @@ public class PushNotificationsEntryLocalServiceClp
 
 	@Override
 	public com.liferay.pushnotifications.model.PushNotificationsEntry addPushNotificationsEntry(
-		long userId, long parentPushNotificationsEntryId,
-		com.liferay.portal.kernel.json.JSONObject payloadJSONObject) {
+		long userId, com.liferay.portal.kernel.json.JSONObject payloadJSONObject)
+		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
 		try {
@@ -192,13 +191,15 @@ public class PushNotificationsEntryLocalServiceClp
 					new Object[] {
 						userId,
 						
-					parentPushNotificationsEntryId,
-						
 					ClpSerializer.translateInput(payloadJSONObject)
 					});
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
 
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
@@ -714,18 +715,16 @@ public class PushNotificationsEntryLocalServiceClp
 	}
 
 	@Override
-	public void sendPushNotification(
-		com.liferay.portal.kernel.json.JSONObject jsonObject, int start, int end)
+	public void sendPushNotification(long fromUserId,
+		com.liferay.portal.kernel.json.JSONObject payloadJSONObject)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		try {
 			_invokableLocalService.invokeMethod(_methodName21,
 				_methodParameterTypes21,
 				new Object[] {
-					ClpSerializer.translateInput(jsonObject),
+					fromUserId,
 					
-				start,
-					
-				end
+				ClpSerializer.translateInput(payloadJSONObject)
 				});
 		}
 		catch (Throwable t) {
@@ -746,20 +745,18 @@ public class PushNotificationsEntryLocalServiceClp
 	}
 
 	@Override
-	public void sendPushNotification(long toUserId,
-		com.liferay.portal.kernel.json.JSONObject jsonObject, int start, int end)
+	public void sendPushNotification(long fromUserId, long toUserId,
+		com.liferay.portal.kernel.json.JSONObject payloadJSONObject)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		try {
 			_invokableLocalService.invokeMethod(_methodName22,
 				_methodParameterTypes22,
 				new Object[] {
-					toUserId,
+					fromUserId,
 					
-				ClpSerializer.translateInput(jsonObject),
+				toUserId,
 					
-				start,
-					
-				end
+				ClpSerializer.translateInput(payloadJSONObject)
 				});
 		}
 		catch (Throwable t) {

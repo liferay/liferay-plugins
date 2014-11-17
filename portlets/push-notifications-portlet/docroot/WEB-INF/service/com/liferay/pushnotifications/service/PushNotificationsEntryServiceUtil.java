@@ -41,6 +41,10 @@ public class PushNotificationsEntryServiceUtil {
 	 *
 	 * Never modify this class directly. Add custom service methods to {@link com.liferay.pushnotifications.service.impl.PushNotificationsEntryServiceImpl} and rerun ServiceBuilder to regenerate this class.
 	 */
+	public static void addPushNotificationsEntry(java.lang.String payload)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		getService().addPushNotificationsEntry(payload);
+	}
 
 	/**
 	* Returns the Spring bean ID for this bean.
@@ -63,17 +67,6 @@ public class PushNotificationsEntryServiceUtil {
 		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
 		throws java.lang.Throwable {
 		return getService().invokeMethod(name, parameterTypes, arguments);
-	}
-
-	public static void sendPushNotification(java.lang.String payload)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		getService().sendPushNotification(payload);
-	}
-
-	public static void sendPushNotification(long toUserId,
-		java.lang.String payload)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		getService().sendPushNotification(toUserId, payload);
 	}
 
 	/**

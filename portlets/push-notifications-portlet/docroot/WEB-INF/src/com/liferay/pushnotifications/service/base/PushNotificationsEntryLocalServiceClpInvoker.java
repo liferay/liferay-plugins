@@ -130,7 +130,7 @@ public class PushNotificationsEntryLocalServiceClpInvoker {
 		_methodName55 = "addPushNotificationsEntry";
 
 		_methodParameterTypes55 = new String[] {
-				"long", "long", "com.liferay.portal.kernel.json.JSONObject"
+				"long", "com.liferay.portal.kernel.json.JSONObject"
 			};
 
 		_methodName56 = "getPushNotificationsEntries";
@@ -140,14 +140,13 @@ public class PushNotificationsEntryLocalServiceClpInvoker {
 		_methodName57 = "sendPushNotification";
 
 		_methodParameterTypes57 = new String[] {
-				"com.liferay.portal.kernel.json.JSONObject", "int", "int"
+				"long", "com.liferay.portal.kernel.json.JSONObject"
 			};
 
 		_methodName58 = "sendPushNotification";
 
 		_methodParameterTypes58 = new String[] {
-				"long", "com.liferay.portal.kernel.json.JSONObject", "int",
-				"int"
+				"long", "long", "com.liferay.portal.kernel.json.JSONObject"
 			};
 	}
 
@@ -265,8 +264,7 @@ public class PushNotificationsEntryLocalServiceClpInvoker {
 		if (_methodName55.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes55, parameterTypes)) {
 			return PushNotificationsEntryLocalServiceUtil.addPushNotificationsEntry(((Long)arguments[0]).longValue(),
-				((Long)arguments[1]).longValue(),
-				(com.liferay.portal.kernel.json.JSONObject)arguments[2]);
+				(com.liferay.portal.kernel.json.JSONObject)arguments[1]);
 		}
 
 		if (_methodName56.equals(name) &&
@@ -279,9 +277,8 @@ public class PushNotificationsEntryLocalServiceClpInvoker {
 
 		if (_methodName57.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes57, parameterTypes)) {
-			PushNotificationsEntryLocalServiceUtil.sendPushNotification((com.liferay.portal.kernel.json.JSONObject)arguments[0],
-				((Integer)arguments[1]).intValue(),
-				((Integer)arguments[2]).intValue());
+			PushNotificationsEntryLocalServiceUtil.sendPushNotification(((Long)arguments[0]).longValue(),
+				(com.liferay.portal.kernel.json.JSONObject)arguments[1]);
 
 			return null;
 		}
@@ -289,9 +286,8 @@ public class PushNotificationsEntryLocalServiceClpInvoker {
 		if (_methodName58.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes58, parameterTypes)) {
 			PushNotificationsEntryLocalServiceUtil.sendPushNotification(((Long)arguments[0]).longValue(),
-				(com.liferay.portal.kernel.json.JSONObject)arguments[1],
-				((Integer)arguments[2]).intValue(),
-				((Integer)arguments[3]).intValue());
+				((Long)arguments[1]).longValue(),
+				(com.liferay.portal.kernel.json.JSONObject)arguments[2]);
 
 			return null;
 		}
