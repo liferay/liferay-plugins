@@ -23,6 +23,7 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.service.ServiceContext;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -73,6 +74,23 @@ public class KBCommentServiceImpl extends KBCommentServiceBaseImpl {
 		return kbComments;
 	}
 
+	@Override
+	public List<KBComment> getKBComments(
+			long groupId, String className, long classPK, int status, int start,
+			int end)
+		throws PortalException, SystemException {
+
+		if (AdminPermission.contains(
+				getPermissionChecker(), groupId,
+				ActionKeys.VIEW_KB_SUGGESTIONS)) {
+
+			return kbCommentLocalService.getKBComments(
+				className, classPK, status, start, end);
+		}
+
+		return Collections.emptyList();
+	}
+
 	public int getKBCommentsCount(long groupId, int status)
 		throws PortalException {
 
@@ -86,6 +104,22 @@ public class KBCommentServiceImpl extends KBCommentServiceBaseImpl {
 		}
 
 		return kbCommentsCount;
+	}
+
+	@Override
+	public int getKBCommentsCount(
+			long groupId, String className, long classPK, int status)
+		throws PortalException, SystemException {
+
+		if (AdminPermission.contains(
+				getPermissionChecker(), groupId,
+				ActionKeys.VIEW_KB_SUGGESTIONS)) {
+
+			return kbCommentLocalService.getKBCommentsCount(
+				className, classPK, status);
+		}
+
+		return 0;
 	}
 
 	public KBComment updateKBComment(
