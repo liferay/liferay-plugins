@@ -55,6 +55,69 @@ import java.util.Set;
  */
 public class AssetSharingUtil {
 
+	public static LinkedHashMap<Long, long[]> getSharedToClassPKsMap(
+			long userId)
+		throws PortalException, SystemException {
+
+		LinkedHashMap<Long, long[]> scopes = new LinkedHashMap<Long, long[]>();
+
+		// Everyone, followed, and connected
+
+		scopes.put(_SOCIAL_RELATION_CLASS_NAME_ID, new long[] {
+			AssetSharingEntryConstants.TYPE_EVERYONE,
+			SocialRelationConstants.TYPE_UNI_FOLLOWER,
+			SocialRelationConstants.TYPE_BI_CONNECTION});
+
+		// User
+
+		scopes.put(_USER_CLASS_NAME_ID, new long[] {userId});
+
+		// Organization
+
+		List<Organization> organizations = _getOrganizations(userId);
+
+		if (organizations != null) {
+			scopes.put(
+				_ORGANIZATION_CLASS_NAME_ID,
+				_getOrganizationIds(organizations));
+		}
+
+		// Site
+
+		List<Group> groups = GroupLocalServiceUtil.getUserGroups(userId, true);
+
+		if (!groups.isEmpty()) {
+			scopes.put(_GROUP_CLASS_NAME_ID, _getGroupIds(groups));
+		}
+
+		// User group
+
+		List<UserGroup> userGroups =
+			UserGroupLocalServiceUtil.getUserUserGroups(userId);
+
+		if (!userGroups.isEmpty()) {
+			scopes.put(_USER_GROUP_CLASS_NAME_ID, _getUserGroupIds(userGroups));
+		}
+
+		// Role
+
+		Set<Role> roles = _getRoles(userId);
+
+		if (!roles.isEmpty()) {
+			scopes.put(_ROLE_CLASS_NAME_ID, _getRoleIds(roles));
+		}
+
+		// Team
+
+		List<Team> teams = TeamLocalServiceUtil.getUserTeams(userId);
+
+		if (!teams.isEmpty()) {
+			scopes.put(_TEAM_CLASS_NAME_ID, _getTeamIds(teams));
+		}
+
+		return scopes;
+	}
+
 	public static JSONArray getSharedToJSONArray(
 			long userId, ThemeDisplay themeDisplay)
 		throws PortalException, SystemException {
@@ -243,69 +306,6 @@ public class AssetSharingUtil {
 		}
 
 		return jsonArray;
-	}
-
-	public static LinkedHashMap<Long, long[]> getSharedToClassPKsMap(
-			long userId)
-		throws PortalException, SystemException {
-
-		LinkedHashMap<Long, long[]> scopes = new LinkedHashMap<Long, long[]>();
-
-		// Everyone, followed, and connected
-
-		scopes.put(_SOCIAL_RELATION_CLASS_NAME_ID, new long[] {
-			AssetSharingEntryConstants.TYPE_EVERYONE,
-			SocialRelationConstants.TYPE_UNI_FOLLOWER,
-			SocialRelationConstants.TYPE_BI_CONNECTION});
-
-		// User
-
-		scopes.put(_USER_CLASS_NAME_ID, new long[] {userId});
-
-		// Organization
-
-		List<Organization> organizations = _getOrganizations(userId);
-
-		if (organizations != null) {
-			scopes.put(
-				_ORGANIZATION_CLASS_NAME_ID,
-				_getOrganizationIds(organizations));
-		}
-
-		// Site
-
-		List<Group> groups = GroupLocalServiceUtil.getUserGroups(userId, true);
-
-		if (!groups.isEmpty()) {
-			scopes.put(_GROUP_CLASS_NAME_ID, _getGroupIds(groups));
-		}
-
-		// User group
-
-		List<UserGroup> userGroups =
-			UserGroupLocalServiceUtil.getUserUserGroups(userId);
-
-		if (!userGroups.isEmpty()) {
-			scopes.put(_USER_GROUP_CLASS_NAME_ID, _getUserGroupIds(userGroups));
-		}
-
-		// Role
-
-		Set<Role> roles = _getRoles(userId);
-
-		if (!roles.isEmpty()) {
-			scopes.put(_ROLE_CLASS_NAME_ID, _getRoleIds(roles));
-		}
-
-		// Team
-
-		List<Team> teams = TeamLocalServiceUtil.getUserTeams(userId);
-
-		if (!teams.isEmpty()) {
-			scopes.put(_TEAM_CLASS_NAME_ID, _getTeamIds(teams));
-		}
-
-		return scopes;
 	}
 
 	private static long[] _getGroupIds(List<Group> groups) {
