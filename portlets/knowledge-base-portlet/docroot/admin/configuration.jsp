@@ -54,7 +54,7 @@ else if (tabs2.equals("article-updated-email")) {
 	editorParam = "emailKBArticleUpdatedBody";
 	editorBody = emailKBArticleUpdatedBody;
 }
-else if (tabs2.equals("feedback-in-progress-email")) {
+else if (tabs2.equals("suggestion-in-progress-email")) {
 	editorParam = "emailKBArticleFeedbackInProgressBody";
 	editorBody = emailKBArticleFeedbackInProgressBody;
 }
@@ -76,7 +76,7 @@ else if (tabs2.equals("feedback-resolved-email")) {
 </liferay-portlet:renderURL>
 
 <liferay-ui:tabs
-	names="general,email-from,article-added-email,article-updated-email,feedback-received-email,feedback-in-progress-email,feedback-resolved-email,display-settings"
+	names="general,email-from,article-added-email,article-updated-email,feedback-received-email,suggestion-in-progress-email,feedback-resolved-email,display-settings"
 	param="tabs2"
 	url="<%= configurationRenderURL %>"
 />
@@ -313,7 +313,7 @@ else if (tabs2.equals("feedback-resolved-email")) {
 			</c:when>
 			<c:when test='<%= tabs2.startsWith("feedback-") %>'>
 				<c:choose>
-					<c:when test='<%= tabs2.equals("feedback-in-progress-email") %>'>
+					<c:when test='<%= tabs2.equals("suggestion-in-progress-email") %>'>
 						<aui:input label="enabled" name="preferences--emailKBArticleFeedbackInProgressEnabled--" type="checkbox" value="<%= emailKBArticleFeedbackInProgressEnabled %>" />
 					</c:when>
 					<c:when test='<%= tabs2.equals("feedback-received-email") %>'>
@@ -325,7 +325,7 @@ else if (tabs2.equals("feedback-resolved-email")) {
 				</c:choose>
 
 				<c:choose>
-					<c:when test='<%= tabs2.equals("feedback-in-progress-email") %>'>
+					<c:when test='<%= tabs2.equals("suggestion-in-progress-email") %>'>
 						<aui:input cssClass="lfr-input-text-container" label="subject" name="preferences--emailKBArticleFeedbackInProgressSubject--" value="<%= emailKBArticleFeedbackInProgressSubject %>" />
 					</c:when>
 					<c:when test='<%= tabs2.equals("feedback-received-email") %>'>
