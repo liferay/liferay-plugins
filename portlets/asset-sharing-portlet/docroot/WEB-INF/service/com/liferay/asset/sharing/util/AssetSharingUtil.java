@@ -63,10 +63,13 @@ public class AssetSharingUtil {
 
 		// Everyone, followed, and connected
 
-		scopes.put(_SOCIAL_RELATION_CLASS_NAME_ID, new long[] {
-			AssetSharingEntryConstants.TYPE_EVERYONE,
-			SocialRelationConstants.TYPE_UNI_FOLLOWER,
-			SocialRelationConstants.TYPE_BI_CONNECTION});
+		scopes.put(
+			_SOCIAL_RELATION_CLASS_NAME_ID,
+			new long[] {
+				AssetSharingEntryConstants.TYPE_EVERYONE,
+				SocialRelationConstants.TYPE_UNI_FOLLOWER,
+				SocialRelationConstants.TYPE_BI_CONNECTION
+			});
 
 		// User
 
