@@ -15,6 +15,7 @@
 package com.liferay.knowledgebase.util;
 
 import com.liferay.knowledgebase.model.KBArticle;
+import com.liferay.knowledgebase.model.KBArticleConstants;
 import com.liferay.knowledgebase.model.KBComment;
 import com.liferay.knowledgebase.model.KBCommentConstants;
 import com.liferay.knowledgebase.service.KBCommentLocalServiceUtil;
@@ -23,9 +24,10 @@ import com.liferay.portal.kernel.dao.search.SearchContainer;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 
+import java.util.List;
+
 import javax.portlet.PortletURL;
 import javax.portlet.RenderResponse;
-import java.util.List;
 
 /**
  * @author Adolfo Pérez
@@ -53,19 +55,34 @@ public class KBFeedbackListDisplayContext {
 			KBCommentConstants.STATUS_IN_PROGRESS);
 	}
 
-	public int getKBCommentsCount(int status)
-		throws PortalException, SystemException {
-
-		return KBCommentServiceUtil.getKBCommentsCount(_groupId, status);
-	}
-
 	public List<KBComment> getKBComments(
 			int status, SearchContainer<KBComment> searchContainer)
 		throws PortalException, SystemException {
 
-		return KBCommentServiceUtil.getKBComments(
-			_groupId, status, searchContainer.getStart(),
-			searchContainer.getEnd());
+		if (_kbArticle == null) {
+			return KBCommentServiceUtil.getKBComments(
+				_groupId, status, searchContainer.getStart(),
+				searchContainer.getEnd());
+		}
+		else {
+			return KBCommentLocalServiceUtil.getKBComments(
+				KBArticleConstants.getClassName(), _kbArticle.getClassPK(),
+				new int[] {status}, searchContainer.getStart(),
+				searchContainer.getEnd());
+		}
+	}
+
+	public int getKBCommentsCount(int status)
+		throws PortalException, SystemException {
+
+		if (_kbArticle == null) {
+			return KBCommentServiceUtil.getKBCommentsCount(_groupId, status);
+		}
+		else {
+			return KBCommentLocalServiceUtil.getKBCommentsCount(
+				KBArticleConstants.getClassName(), _kbArticle.getClassPK(),
+				status);
+		}
 	}
 
 	public int getNewKBCommentsCount() throws SystemException {
