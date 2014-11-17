@@ -105,6 +105,7 @@ long resourcePrimKey = ParamUtil.getLong(request, "resourcePrimKey");
 				<liferay-portlet:actionURL name="deleteKBArticle" var="deleteURL">
 					<portlet:param name="mvcPath" value='<%= templatePath + "view_article.jsp" %>' />
 					<portlet:param name="redirect" value="<%= (kbArticle.getResourcePrimKey() == resourcePrimKey) ? homeURL : currentURL %>" />
+					<portlet:param name="resourceClassNameId" value="<%= String.valueOf(kbArticle.getClassNameId()) %>" />
 					<portlet:param name="resourcePrimKey" value="<%= String.valueOf(kbArticle.getResourcePrimKey()) %>" />
 					<portlet:param name="status" value="<%= String.valueOf(status) %>" />
 				</liferay-portlet:actionURL>
