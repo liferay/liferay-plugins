@@ -24,8 +24,8 @@
 />
 
 <liferay-ui:success
-	key="feedbackStatusUpdated"
-	message="feedback-status-updated-successfully"
+	key="suggestionStatusUpdated"
+	message="suggestion-status-updated-successfully"
 />
 
 <liferay-ui:success
