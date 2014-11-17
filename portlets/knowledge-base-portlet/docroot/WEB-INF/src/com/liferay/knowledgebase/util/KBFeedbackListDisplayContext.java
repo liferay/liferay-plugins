@@ -67,8 +67,7 @@ public class KBFeedbackListDisplayContext {
 		else {
 			return KBCommentLocalServiceUtil.getKBComments(
 				KBArticleConstants.getClassName(), _kbArticle.getClassPK(),
-				new int[] {status}, searchContainer.getStart(),
-				searchContainer.getEnd());
+				status, searchContainer.getStart(), searchContainer.getEnd());
 		}
 	}
 
