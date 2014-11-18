@@ -90,7 +90,7 @@
 			</aui:row>
 		</div>
 
-		<aui:script use="aui-base,liferay-plugin-notifications">
+		<aui:script use="aui-base,liferay-plugin-notifications,liferay-plugin-notifications-list">
 			var notificationsCount = '.nonactionable .count';
 
 			if (<%= actionable %>) {
