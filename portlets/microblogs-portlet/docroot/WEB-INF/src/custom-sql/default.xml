@@ -149,15 +149,17 @@
 			INNER JOIN
 				AssetEntry ON
 					(AssetEntry.classPK = MicroblogsEntry.microblogsEntryId)
-			INNER JOIN
+			LEFT JOIN
 				AssetEntries_AssetTags ON
 					(AssetEntries_AssetTags.entryId = AssetEntry.entryId)
-			INNER JOIN
+			LEFT JOIN
 				AssetTag ON
 					(AssetTag.tagId = AssetEntries_AssetTags.tagId)
 			WHERE
-				(MicroblogsEntry.creatorClassNameId = ?) AND
-				(MicroblogsEntry.creatorClassPK = ?) AND
+				(
+					(MicroblogsEntry.creatorClassNameId = ?) AND
+					(MicroblogsEntry.creatorClassPK = ?)
+				) [$AND_OR_CONNECTOR$]
 				(AssetTag.name = ?)
 		]]>
 	</sql>
@@ -319,15 +321,17 @@
 			INNER JOIN
 				AssetEntry ON
 					(AssetEntry.classPK = MicroblogsEntry.microblogsEntryId)
-			INNER JOIN
+			LEFT JOIN
 				AssetEntries_AssetTags ON
 					(AssetEntries_AssetTags.entryId = AssetEntry.entryId)
-			INNER JOIN
+			LEFT JOIN
 				AssetTag ON
 					(AssetTag.tagId = AssetEntries_AssetTags.tagId)
 			WHERE
-				(MicroblogsEntry.creatorClassNameId = ?) AND
-				(MicroblogsEntry.creatorClassPK = ?) AND
+				(
+					(MicroblogsEntry.creatorClassNameId = ?) AND
+					(MicroblogsEntry.creatorClassPK = ?)
+				) [$AND_OR_CONNECTOR$]
 				(AssetTag.name = ?)
 			ORDER BY
 				MicroblogsEntry.createDate DESC

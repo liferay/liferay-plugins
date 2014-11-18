@@ -278,7 +278,8 @@ public class MicroblogsEntryFinderImpl
 	}
 
 	public int countByCCNI_CCPK_ATN(
-		long creatorClassNameId, long creatorClassPK, String assetTagName) {
+		long creatorClassNameId, long creatorClassPK, String assetTagName,
+		boolean andOperator) {
 
 		Session session = null;
 
@@ -286,6 +287,8 @@ public class MicroblogsEntryFinderImpl
 			session = openSession();
 
 			String sql = CustomSQLUtil.get(COUNT_BY_CCNI_CCPK_ATN);
+
+			sql = CustomSQLUtil.replaceAndOperator(sql, andOperator);
 
 			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
@@ -489,7 +492,7 @@ public class MicroblogsEntryFinderImpl
 
 	public List<MicroblogsEntry> findByCCNI_CCPK_ATN(
 		long creatorClassNameId, long creatorClassPK, String assetTagName,
-		int start, int end) {
+		boolean andOperator, int start, int end) {
 
 		Session session = null;
 
@@ -497,6 +500,8 @@ public class MicroblogsEntryFinderImpl
 			session = openSession();
 
 			String sql = CustomSQLUtil.get(FIND_BY_CCNI_CCPK_ATN);
+
+			sql = CustomSQLUtil.replaceAndOperator(sql, andOperator);
 
 			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
