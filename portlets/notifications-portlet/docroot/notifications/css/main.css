@@ -531,6 +531,10 @@
 				float: left;
 				margin: 5px 0 5px 40px;
 				position: relative;
+
+				.form-group {
+					margin-bottom: 0;
+				}
 			}
 
 			.saved {
