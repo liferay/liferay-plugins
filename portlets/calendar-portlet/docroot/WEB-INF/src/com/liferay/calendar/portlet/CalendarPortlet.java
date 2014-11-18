@@ -497,7 +497,7 @@ public class CalendarPortlet extends MVCPortlet {
 	}
 
 	protected void addCalendar(
-			PortletRequest portletRequest, Set<Calendar> calendarSet,
+			PortletRequest portletRequest, Set<Calendar> calendarsSet,
 			long classNameId, long classPK)
 		throws PortalException {
 
@@ -527,7 +527,7 @@ public class CalendarPortlet extends MVCPortlet {
 				continue;
 			}
 
-			calendarSet.add(calendar);
+			calendarsSet.add(calendar);
 		}
 	}
 
@@ -1009,8 +1009,7 @@ public class CalendarPortlet extends MVCPortlet {
 
 		String keywords = ParamUtil.getString(resourceRequest, "keywords");
 
-		Set<Calendar> calendarSet = new LinkedHashSet<Calendar>();
-		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
+		Set<Calendar> calendarsSet = new LinkedHashSet<Calendar>();
 
 		Hits hits = search(
 			themeDisplay.getCompanyId(), themeDisplay.getUserId(), keywords);
@@ -1020,7 +1019,7 @@ public class CalendarPortlet extends MVCPortlet {
 				document.get(Field.ENTRY_CLASS_PK));
 			Calendar calendar = CalendarServiceUtil.getCalendar(calendarId);
 
-			calendarSet.add(calendar);
+			calendarsSet.add(calendar);
 		}
 
 		long groupClassNameId = PortalUtil.getClassNameId(Group.class);
@@ -1039,7 +1038,7 @@ public class CalendarPortlet extends MVCPortlet {
 
 		for (Group group : groups) {
 			addCalendar(
-				resourceRequest, calendarSet, groupClassNameId,
+				resourceRequest, calendarsSet, groupClassNameId,
 				group.getGroupId());
 		}
 
@@ -1051,11 +1050,13 @@ public class CalendarPortlet extends MVCPortlet {
 
 		for (User user : users) {
 			addCalendar(
-				resourceRequest, calendarSet, userClassNameId,
+				resourceRequest, calendarsSet, userClassNameId,
 				user.getUserId());
 		}
 
-		for (Calendar calendar : calendarSet) {
+		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
+
+		for (Calendar calendar : calendarsSet) {
 			JSONObject jsonObject = CalendarUtil.toCalendarJSONObject(
 				themeDisplay, calendar);
 
