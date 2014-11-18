@@ -32,13 +32,13 @@ public class PushNotificationsConstants {
 
 	public static final String KEY_POLLS_CHOICE_DESCRIPTION = "description";
 
-	public static final String KEY_POLLS_CHOICE_ID = "choiceId";
+	public static final String KEY_POLLS_CHOICE_ID = "pollsChoiceId";
 
-	public static final String KEY_POLLS_CHOICES = "choices";
+	public static final String KEY_POLLS_CHOICES = "pollsChoices";
 
-	public static final String KEY_POLLS_QUESTION = "question";
+	public static final String KEY_POLLS_QUESTION = "pollsQuestion";
 
-	public static final String KEY_POLLS_QUESTION_ID = "questionId";
+	public static final String KEY_POLLS_QUESTION_ID = "pollsQuestionId";
 
 	public static final String KEY_PORTRAIT_ID = "portraitId";
 

@@ -51,68 +51,69 @@ public class PushNotificationsPollsQuestionLocalServiceImpl
 			Map<Locale, String> descriptionMap, int expirationDateMonth,
 			int expirationDateDay, int expirationDateYear,
 			int expirationDateHour, int expirationDateMinute,
-			boolean neverExpire, List<PollsChoice> choices,
+			boolean neverExpire, List<PollsChoice> pollsChoices,
 			ServiceContext serviceContext)
 		throws PortalException {
 
-		PollsQuestion question = super.addQuestion(
+		PollsQuestion pollsQuestion = super.addQuestion(
 			userId, titleMap, descriptionMap, expirationDateMonth,
 			expirationDateDay, expirationDateYear, expirationDateHour,
-			expirationDateMinute, neverExpire, choices, serviceContext);
+			expirationDateMinute, neverExpire, pollsChoices, serviceContext);
 
-		sendPushNotification(question);
+		sendPushNotification(pollsQuestion);
 
-		return question;
+		return pollsQuestion;
 	}
 
-	public void sendPushNotification(PollsQuestion question) {
-		JSONObject payloadJSONObject = JSONFactoryUtil.createJSONObject();
-
-		String description = question.getDescription(Locale.US);
-
-		payloadJSONObject.put(
-			PushNotificationsConstants.KEY_MESSAGE, description);
-
-		payloadJSONObject.put(
-			PushNotificationsConstants.KEY_TYPE,
-			PushNotificationsConstants.VALUE_POLLS_TYPE);
-
-		JSONObject questionJSONObject = JSONFactoryUtil.createJSONObject();
-
-		long questionId = question.getQuestionId();
-
-		questionJSONObject.put(
-			PushNotificationsConstants.KEY_POLLS_QUESTION_ID, questionId);
-
-		payloadJSONObject.put(
-			PushNotificationsConstants.KEY_POLLS_QUESTION, questionJSONObject);
-
-		JSONArray choicesJSONArray = JSONFactoryUtil.createJSONArray();
-
+	public void sendPushNotification(PollsQuestion pollsQuestion) {
 		try {
-			List<PollsChoice> choices = PollsChoiceLocalServiceUtil.getChoices(
-				questionId);
+			JSONObject payloadJSONObject = JSONFactoryUtil.createJSONObject();
 
-			for (PollsChoice choice : choices) {
-				JSONObject choiceJSONObject =
+			payloadJSONObject.put(
+				PushNotificationsConstants.KEY_MESSAGE,
+				pollsQuestion.getDescription(Locale.US));
+
+			JSONObject pollsQuestionJSONObject =
+				JSONFactoryUtil.createJSONObject();
+
+			pollsQuestionJSONObject.put(
+				PushNotificationsConstants.KEY_POLLS_QUESTION_ID,
+				pollsQuestion.getQuestionId());
+
+			JSONArray pollsChoicesJSONArray = JSONFactoryUtil.createJSONArray();
+
+			List<PollsChoice> pollsChoices =
+				PollsChoiceLocalServiceUtil.getChoices(
+					pollsQuestion.getQuestionId());
+
+			for (PollsChoice pollsChoice : pollsChoices) {
+				JSONObject pollsChoiceJSONObject =
 					JSONFactoryUtil.createJSONObject();
 
-				choiceJSONObject.put(
+				pollsChoiceJSONObject.put(
 					PushNotificationsConstants.KEY_POLLS_CHOICE_ID,
-					choice.getChoiceId());
-
-				choiceJSONObject.put(
+					pollsChoice.getChoiceId());
+				pollsChoiceJSONObject.put(
 					PushNotificationsConstants.KEY_POLLS_CHOICE_DESCRIPTION,
-					choice.getDescription(Locale.US));
+					pollsChoice.getDescription(Locale.US));
 
-				choicesJSONArray.put(choiceJSONObject);
+				pollsChoicesJSONArray.put(pollsChoiceJSONObject);
 			}
 
-			questionJSONObject.put(
-				PushNotificationsConstants.KEY_POLLS_CHOICES, choicesJSONArray);
+			pollsQuestionJSONObject.put(
+				PushNotificationsConstants.KEY_POLLS_CHOICES,
+				pollsChoicesJSONArray);
+
+			payloadJSONObject.put(
+				PushNotificationsConstants.KEY_POLLS_QUESTION,
+				pollsQuestionJSONObject);
+
+			payloadJSONObject.put(
+				PushNotificationsConstants.KEY_TYPE,
+				PushNotificationsConstants.VALUE_POLLS_TYPE);
 
 			PushNotificationsEntryLocalServiceUtil.sendPushNotification(
-				question.getUserId(), payloadJSONObject);
+				pollsQuestion.getUserId(), payloadJSONObject);
 		}
 		catch (Exception e) {
 			_log.error(
