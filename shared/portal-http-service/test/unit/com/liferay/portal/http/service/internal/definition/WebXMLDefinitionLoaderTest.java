@@ -15,7 +15,6 @@
 package com.liferay.portal.http.service.internal.definition;
 
 import com.liferay.portal.http.service.test.MockBundle;
-import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.xml.DocumentException;
 import com.liferay.portal.kernel.xml.SAXReaderUtil;
 import com.liferay.portal.xml.SAXReaderImpl;
@@ -25,15 +24,12 @@ import java.net.URL;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.Servlet;
 import javax.servlet.ServletContextListener;
 
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-
-import org.mockito.Mock;
 
 import org.osgi.framework.Bundle;
 
@@ -60,18 +56,7 @@ public class WebXMLDefinitionLoaderTest {
 	public void testLoadCustomDependencies() throws Exception {
 		Bundle bundle = new EntryLoaderMockBundle();
 
-		testLoadDependencies(
-			bundle, _LISTENER_DEFAULT_CLASS_NAMES.length + 1, 1,
-			_SERVLET_DEFAULT_CLASSE_NAMES.length + 1);
-	}
-
-	@Test
-	public void testLoadDefaultDependencies() throws Exception {
-		Bundle bundle = new CustomClassLoaderMockBundle();
-
-		testLoadDependencies(
-			bundle, _LISTENER_DEFAULT_CLASS_NAMES.length, 0,
-			_SERVLET_DEFAULT_CLASSE_NAMES.length);
+		testLoadDependencies(bundle, 1, 1, 1);
 	}
 
 	protected void testLoadDependencies(
@@ -104,46 +89,9 @@ public class WebXMLDefinitionLoaderTest {
 		Assert.assertEquals(numOfFilters, filterDefinitions.size());
 	}
 
-	private static final String[] _LISTENER_DEFAULT_CLASS_NAMES = {
-		"org.eclipse.jetty.servlet.listener.ELContextCleaner",
-		"org.eclipse.jetty.servlet.listener.IntrospectorCleaner"
-	};
-
-	private static final String[] _SERVLET_DEFAULT_CLASSE_NAMES = {
-		"com.liferay.portal.http.service.servlet.ResourceServlet",
-		"org.apache.jasper.servlet.JspServlet"
-	};
-
-	@Mock
-	private Servlet _servlet;
-
-	@Mock
-	private ServletContextListener _servletContextListener;
-
 	private WebXMLDefinitionLoader _webXMLDefinitionLoader;
 
-	private class CustomClassLoaderMockBundle extends MockBundle {
-
-		@Override
-		public Class<?> loadClass(String className)
-			throws ClassNotFoundException {
-
-			if (ArrayUtil.contains(_LISTENER_DEFAULT_CLASS_NAMES, className)) {
-				return _servletContextListener.getClass();
-			}
-			else if (ArrayUtil.contains(
-						_SERVLET_DEFAULT_CLASSE_NAMES, className)) {
-
-				return _servlet.getClass();
-			}
-			else {
-				return super.loadClass(className);
-			}
-		}
-
-	}
-
-	private class EntryLoaderMockBundle extends CustomClassLoaderMockBundle {
+	private class EntryLoaderMockBundle extends MockBundle {
 
 		@Override
 		public URL getEntry(String path) {
