@@ -44,7 +44,8 @@ if (rootResourcePrimKey != KBFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
 
 	currentKBFolderUrlTitle = kbFolder.getUrlTitle();
 }
-else if (kbArticle != null) {
+
+if ((rootResourcePrimKey == KBFolderConstants.DEFAULT_PARENT_FOLDER_ID) && (kbArticle != null)) {
 	PortalUtil.setPageTitle(kbArticle.getTitle(), request);
 }
 %>
