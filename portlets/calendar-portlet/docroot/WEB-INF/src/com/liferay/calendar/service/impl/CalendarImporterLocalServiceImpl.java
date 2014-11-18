@@ -742,8 +742,8 @@ public class CalendarImporterLocalServiceImpl
 
 		assetCategories.add(
 			getAssetCategory(
-				calEvent.getUserId(), calEvent.getGroupId(),
-				calEvent.getCompanyId(), calEvent.getType()));
+				calEvent.getUserId(), calEvent.getCompanyId(),
+				calEvent.getGroupId(), calEvent.getType()));
 
 		for (AssetCategory assetCategory : assetCategories) {
 			assetEntryLocalService.addAssetCategoryAssetEntry(
