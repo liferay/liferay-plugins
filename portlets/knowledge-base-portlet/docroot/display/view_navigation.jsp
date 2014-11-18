@@ -19,6 +19,8 @@
 <%
 KBArticle kbArticle = (KBArticle)request.getAttribute(WebKeys.KNOWLEDGE_BASE_KB_ARTICLE);
 
+KBNavigationDisplayContext kbNavigationDisplayContext = new KBNavigationDisplayContext(renderRequest, portletPreferences, kbArticle);
+
 List<Long> ancestorResourcePrimaryKeys = new ArrayList<Long>();
 
 if (kbArticle != null) {
@@ -34,15 +36,7 @@ else {
 
 long kbFolderClassNameId = PortalUtil.getClassNameId(KBFolderConstants.getClassName());
 
-long rootResourcePrimKey = KBFolderConstants.DEFAULT_PARENT_FOLDER_ID;
-
-if (kbArticle != null) {
-	rootResourcePrimKey = KnowledgeBaseUtil.getKBFolderId(kbArticle.getParentResourceClassNameId(), kbArticle.getParentResourcePrimKey());
-}
-
-if (rootResourcePrimKey == KBFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
-	rootResourcePrimKey = KnowledgeBaseUtil.getRootResourcePrimKey(renderRequest, scopeGroupId, resourceClassNameId, resourcePrimKey);
-}
+long rootResourcePrimKey = kbNavigationDisplayContext.getRootResourcePrimKey();
 
 String preferredKBFolderUrlTitle = portalPreferences.getValue(PortletKeys.KNOWLEDGE_BASE_DISPLAY, "preferredKBFolderUrlTitle");
 
