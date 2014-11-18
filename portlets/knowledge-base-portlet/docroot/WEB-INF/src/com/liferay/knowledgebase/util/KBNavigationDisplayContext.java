@@ -20,7 +20,6 @@ import com.liferay.knowledgebase.model.KBFolderConstants;
 import com.liferay.knowledgebase.service.KBArticleLocalServiceUtil;
 import com.liferay.knowledgebase.service.KBFolderServiceUtil;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.util.PortalUtil;
@@ -52,9 +51,7 @@ public class KBNavigationDisplayContext {
 		_request = request;
 	}
 
-	public List<Long> getAncestorResourcePrimaryKeys()
-		throws PortalException, SystemException {
-
+	public List<Long> getAncestorResourcePrimaryKeys() throws PortalException {
 		List<Long> ancestorResourcePrimaryKeys = new ArrayList<Long>();
 
 		if (_kbArticle != null) {
@@ -76,9 +73,7 @@ public class KBNavigationDisplayContext {
 		return ancestorResourcePrimaryKeys;
 	}
 
-	public String getCurrentKBFolderURLTitle()
-		throws PortalException, SystemException {
-
+	public String getCurrentKBFolderURLTitle() throws PortalException {
 		String currentKBFolderUrlTitle = _portalPreferences.getValue(
 			PortletKeys.KNOWLEDGE_BASE_DISPLAY, "preferredKBFolderUrlTitle");
 
@@ -103,9 +98,7 @@ public class KBNavigationDisplayContext {
 		return currentKBFolderUrlTitle;
 	}
 
-	public long getRootResourcePrimKey()
-		throws PortalException, SystemException {
-
+	public long getRootResourcePrimKey() throws PortalException {
 		if (_rootResourcePrimKey == null) {
 			_rootResourcePrimKey = KBFolderConstants.DEFAULT_PARENT_FOLDER_ID;
 
@@ -128,7 +121,7 @@ public class KBNavigationDisplayContext {
 		return _rootResourcePrimKey;
 	}
 
-	public boolean isShowNavigation() throws PortalException, SystemException {
+	public boolean isShowNavigation() throws PortalException {
 		boolean showNavigation = true;
 
 		long scopeGroupId = PortalUtil.getScopeGroupId(_portletRequest);
