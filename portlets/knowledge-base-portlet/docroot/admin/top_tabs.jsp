@@ -52,7 +52,7 @@ String mvcPath = ParamUtil.getString(request, "mvcPath");
 
 		kbFeedbackURL.setParameter("mvcPath", "/admin/view_feedback.jsp");
 
-		names.add("feedback");
+		names.add("suggestions");
 		urls.add(kbFeedbackURL.toString());
 		value = mvcPath.contains("feedback") ? names.get(names.size() - 1) : value;
 	}
