@@ -255,7 +255,6 @@ public class CalendarLocalServiceImpl extends CalendarLocalServiceBaseImpl {
 		updateDefaultCalendar(calendar);
 	}
 
-	@Indexable(type = IndexableType.REINDEX)
 	@Override
 	public Calendar updateCalendar(
 			long calendarId, Map<Locale, String> nameMap,
