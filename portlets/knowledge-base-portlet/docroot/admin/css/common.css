@@ -130,12 +130,12 @@
 			margin: 10px 25px;
 		}
 
-		.kb-feedback-actions {
+		.kb-suggestion-actions {
 			margin: 10px 0;
 		}
 	}
 
-	.kb-article-feedback {
+	.kb-article-suggestion {
 		clear: both;
 
 		textarea {
@@ -150,7 +150,7 @@
 	}
 
 	@include respond-to(desktop) {
-		.kb-article-feedback {
+		.kb-article-suggestion {
 			margin-left: 25px;
 
 			textarea {
@@ -159,7 +159,7 @@
 		}
 	}
 
-	.kb-article-feedback-actions {
+	.kb-article-suggestion-actions {
 		clear: both;
 		display: block;
 		padding: 10px 0 10px 5px;
@@ -314,7 +314,7 @@
 			.kb-helpful-container {
 				margin: 25px, 0, 25px, 5px;
 
-				.kb-feedback-title {
+				.kb-suggestion-title {
 					padding: 0;
 				}
 			}
@@ -424,7 +424,7 @@
 				font-weight: bold;
 			}
 
-			.kb-helpful-container .kb-feedback-title {
+			.kb-helpful-container .kb-suggestion-title {
 				font-size: 1.2em;
 				font-weight: bold;
 			}

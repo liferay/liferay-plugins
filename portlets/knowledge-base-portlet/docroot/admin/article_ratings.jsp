@@ -46,7 +46,7 @@ boolean hasUpdatePermission = KBArticlePermission.contains(permissionChecker, kb
 	/>
 
 	<c:if test='<%= kbArticleRatingsType.equals("thumbs") && themeDisplay.isSignedIn() %>'>
-		<div class="kb-article-feedback-actions" id="<portlet:namespace />additionalSuggestionActionsContainer">
+		<div class="kb-article-suggestion-actions" id="<portlet:namespace />additionalSuggestionActionsContainer">
 			<a data-show-node-id="<portlet:namespace />suggestionContainer" href="javascript:void(0)">
 				<liferay-ui:message key="do-you-have-any-suggestions" />
 			</a>
@@ -93,7 +93,7 @@ boolean hasUpdatePermission = KBArticlePermission.contains(permissionChecker, kb
 
 		<a name="kbFeedback"></a>
 
-		<div class="hide kb-article-feedback" id="<portlet:namespace />suggestionContainer">
+		<div class="hide kb-article-suggestion" id="<portlet:namespace />suggestionContainer">
 			<liferay-portlet:renderURL var="viewKBArticle">
 				<portlet:param name="expanded" value="true" />
 

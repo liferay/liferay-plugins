@@ -64,6 +64,6 @@ kbFeedbackListDisplayContext.getViewFeedbackURL(iteratorURL, navItem);
 				e.halt();
 			}
 		},
-		'.kb-feedback-actions .kb-feedback-delete'
+		'.kb-suggestion-actions .kb-suggestion-delete'
 	);
 </aui:script>
