@@ -187,7 +187,7 @@ public class MicroblogsEntryLocalServiceClpInvoker {
 		_methodName62 = "getMicroblogsEntries";
 
 		_methodParameterTypes62 = new String[] {
-				"long", "long", "java.lang.String", "int", "int"
+				"long", "long", "java.lang.String", "boolean", "int", "int"
 			};
 
 		_methodName63 = "getMicroblogsEntries";
@@ -207,7 +207,7 @@ public class MicroblogsEntryLocalServiceClpInvoker {
 		_methodName66 = "getMicroblogsEntriesCount";
 
 		_methodParameterTypes66 = new String[] {
-				"long", "long", "java.lang.String"
+				"long", "long", "java.lang.String", "boolean"
 			};
 
 		_methodName67 = "getMicroblogsEntriesCount";
@@ -465,8 +465,9 @@ public class MicroblogsEntryLocalServiceClpInvoker {
 			return MicroblogsEntryLocalServiceUtil.getMicroblogsEntries(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				(java.lang.String)arguments[2],
-				((Integer)arguments[3]).intValue(),
-				((Integer)arguments[4]).intValue());
+				((Boolean)arguments[3]).booleanValue(),
+				((Integer)arguments[4]).intValue(),
+				((Integer)arguments[5]).intValue());
 		}
 
 		if (_methodName63.equals(name) &&
@@ -493,7 +494,9 @@ public class MicroblogsEntryLocalServiceClpInvoker {
 		if (_methodName66.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes66, parameterTypes)) {
 			return MicroblogsEntryLocalServiceUtil.getMicroblogsEntriesCount(((Long)arguments[0]).longValue(),
-				((Long)arguments[1]).longValue(), (java.lang.String)arguments[2]);
+				((Long)arguments[1]).longValue(),
+				(java.lang.String)arguments[2],
+				((Boolean)arguments[3]).booleanValue());
 		}
 
 		if (_methodName67.equals(name) &&

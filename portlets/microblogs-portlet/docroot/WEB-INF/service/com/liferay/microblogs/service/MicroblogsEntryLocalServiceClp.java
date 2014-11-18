@@ -142,7 +142,7 @@ public class MicroblogsEntryLocalServiceClp
 		_methodName21 = "getMicroblogsEntries";
 
 		_methodParameterTypes21 = new String[] {
-				"long", "long", "java.lang.String", "int", "int"
+				"long", "long", "java.lang.String", "boolean", "int", "int"
 			};
 
 		_methodName22 = "getMicroblogsEntries";
@@ -181,7 +181,7 @@ public class MicroblogsEntryLocalServiceClp
 		_methodName29 = "getMicroblogsEntriesCount";
 
 		_methodParameterTypes29 = new String[] {
-				"long", "long", "java.lang.String"
+				"long", "long", "java.lang.String", "boolean"
 			};
 
 		_methodName30 = "getMicroblogsEntriesCount";
@@ -858,7 +858,7 @@ public class MicroblogsEntryLocalServiceClp
 	@Override
 	public java.util.List<com.liferay.microblogs.model.MicroblogsEntry> getMicroblogsEntries(
 		long creatorClassNameId, long creatorClassPK,
-		java.lang.String assetTagName, int start, int end) {
+		java.lang.String assetTagName, boolean andOperator, int start, int end) {
 		Object returnObj = null;
 
 		try {
@@ -870,6 +870,8 @@ public class MicroblogsEntryLocalServiceClp
 					creatorClassPK,
 						
 					ClpSerializer.translateInput(assetTagName),
+						
+					andOperator,
 						
 					start,
 						
@@ -1091,7 +1093,7 @@ public class MicroblogsEntryLocalServiceClp
 
 	@Override
 	public int getMicroblogsEntriesCount(long creatorClassNameId,
-		long creatorClassPK, java.lang.String assetTagName) {
+		long creatorClassPK, java.lang.String assetTagName, boolean andOperator) {
 		Object returnObj = null;
 
 		try {
@@ -1102,7 +1104,9 @@ public class MicroblogsEntryLocalServiceClp
 						
 					creatorClassPK,
 						
-					ClpSerializer.translateInput(assetTagName)
+					ClpSerializer.translateInput(assetTagName),
+						
+					andOperator
 					});
 		}
 		catch (Throwable t) {

@@ -33,7 +33,7 @@ public interface MicroblogsEntryFinder {
 	public int countByU_T_MU(long userId, int type, long microblogsEntryUserId);
 
 	public int countByCCNI_CCPK_ATN(long creatorClassNameId,
-		long creatorClassPK, java.lang.String assetTagName);
+		long creatorClassPK, java.lang.String assetTagName, boolean andOperator);
 
 	public java.util.List<com.liferay.microblogs.model.MicroblogsEntry> findByUserId(
 		long userId, int start, int end);
@@ -53,5 +53,5 @@ public interface MicroblogsEntryFinder {
 
 	public java.util.List<com.liferay.microblogs.model.MicroblogsEntry> findByCCNI_CCPK_ATN(
 		long creatorClassNameId, long creatorClassPK,
-		java.lang.String assetTagName, int start, int end);
+		java.lang.String assetTagName, boolean andOperator, int start, int end);
 }

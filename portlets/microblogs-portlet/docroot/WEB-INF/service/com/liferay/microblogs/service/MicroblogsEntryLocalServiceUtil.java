@@ -247,10 +247,10 @@ public class MicroblogsEntryLocalServiceUtil {
 
 	public static java.util.List<com.liferay.microblogs.model.MicroblogsEntry> getMicroblogsEntries(
 		long creatorClassNameId, long creatorClassPK,
-		java.lang.String assetTagName, int start, int end) {
+		java.lang.String assetTagName, boolean andOperator, int start, int end) {
 		return getService()
 				   .getMicroblogsEntries(creatorClassNameId, creatorClassPK,
-			assetTagName, start, end);
+			assetTagName, andOperator, start, end);
 	}
 
 	public static java.util.List<com.liferay.microblogs.model.MicroblogsEntry> getMicroblogsEntries(
@@ -314,10 +314,10 @@ public class MicroblogsEntryLocalServiceUtil {
 	}
 
 	public static int getMicroblogsEntriesCount(long creatorClassNameId,
-		long creatorClassPK, java.lang.String assetTagName) {
+		long creatorClassPK, java.lang.String assetTagName, boolean andOperator) {
 		return getService()
 				   .getMicroblogsEntriesCount(creatorClassNameId,
-			creatorClassPK, assetTagName);
+			creatorClassPK, assetTagName, andOperator);
 	}
 
 	public static int getMicroblogsEntriesCount(long creatorClassNameId,

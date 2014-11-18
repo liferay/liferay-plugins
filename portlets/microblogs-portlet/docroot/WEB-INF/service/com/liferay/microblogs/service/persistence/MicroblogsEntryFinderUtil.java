@@ -47,10 +47,10 @@ public class MicroblogsEntryFinderUtil {
 	}
 
 	public static int countByCCNI_CCPK_ATN(long creatorClassNameId,
-		long creatorClassPK, java.lang.String assetTagName) {
+		long creatorClassPK, java.lang.String assetTagName, boolean andOperator) {
 		return getFinder()
 				   .countByCCNI_CCPK_ATN(creatorClassNameId, creatorClassPK,
-			assetTagName);
+			assetTagName, andOperator);
 	}
 
 	public static java.util.List<com.liferay.microblogs.model.MicroblogsEntry> findByUserId(
@@ -83,10 +83,10 @@ public class MicroblogsEntryFinderUtil {
 
 	public static java.util.List<com.liferay.microblogs.model.MicroblogsEntry> findByCCNI_CCPK_ATN(
 		long creatorClassNameId, long creatorClassPK,
-		java.lang.String assetTagName, int start, int end) {
+		java.lang.String assetTagName, boolean andOperator, int start, int end) {
 		return getFinder()
 				   .findByCCNI_CCPK_ATN(creatorClassNameId, creatorClassPK,
-			assetTagName, start, end);
+			assetTagName, andOperator, start, end);
 	}
 
 	public static MicroblogsEntryFinder getFinder() {
