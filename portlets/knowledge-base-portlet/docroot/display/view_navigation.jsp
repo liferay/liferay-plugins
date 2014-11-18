@@ -47,28 +47,9 @@ if (rootResourcePrimKey != KBFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
 else if (kbArticle != null) {
 	PortalUtil.setPageTitle(kbArticle.getTitle(), request);
 }
-
-boolean showNavigation = true;
-
-int kbArticleCount = KBArticleLocalServiceUtil.getKBArticlesCount(scopeGroupId, rootResourcePrimKey, WorkflowConstants.STATUS_APPROVED);
-
-if (kbArticleCount == 0) {
-	showNavigation = false;
-}
-else if (kbArticleCount == 1) {
-	List<KBArticle> kbArticles = KBArticleLocalServiceUtil.getKBArticles(scopeGroupId, rootResourcePrimKey, WorkflowConstants.STATUS_APPROVED, 0, 1, null);
-
-	KBArticle navigationKBArticle = kbArticles.get(0);
-
-	int navigationKBArticleChildCount = KBArticleLocalServiceUtil.getKBArticlesCount(scopeGroupId, navigationKBArticle.getResourcePrimKey(), WorkflowConstants.STATUS_APPROVED);
-
-	if (navigationKBArticleChildCount == 0) {
-		showNavigation = false;
-	}
-}
 %>
 
-<c:if test="<%= showNavigation %>">
+<c:if test="<%= kbNavigationDisplayContext.isShowNavigation() %>">
 	<div class="kbarticle-navigation">
 		<c:if test="<%= resourceClassNameId == kbFolderClassNameId %>">
 
