@@ -53,6 +53,6 @@ public class PushNotificationsConstants {
 	public static final long VALUE_PARENT_PUSH_NOTIFICATIONS_ENTRY_ID_DEFAULT =
 		0;
 
-	public static final String VALUE_POLLS_TYPE = "polls";
+	public static final String VALUE_TYPE_POLLS = "polls";
 
 }
