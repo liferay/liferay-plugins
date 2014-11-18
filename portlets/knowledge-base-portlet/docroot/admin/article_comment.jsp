@@ -71,19 +71,19 @@ KBFeedbackListDisplayContext kbFeedbackListDisplayContext = (KBFeedbackListDispl
 
 				dateSearchEntry.setDate(kbComment.getModifiedDate());
 
-				int feedbackStatus = kbComment.getStatus();
+				int suggestionStatus = kbComment.getStatus();
 				%>
 
 				<span class="icon icon-calendar"></span> <%= dateSearchEntry.getName(request) %>
 
 				<aui:model-context bean="<%= kbComment %>" model="<%= KBComment.class %>" />
 
-				<aui:workflow-status status="<%= feedbackStatus %>" statusMessage="<%= KnowledgeBaseUtil.getStatusLabel(feedbackStatus) %>" />
+				<aui:workflow-status status="<%= suggestionStatus %>" statusMessage="<%= KnowledgeBaseUtil.getStatusLabel(suggestionStatus) %>" />
 			</div>
 
 			<%
-			int previousStatus = KnowledgeBaseUtil.getPreviousStatus(feedbackStatus);
-			int nextStatus = KnowledgeBaseUtil.getNextStatus(feedbackStatus);
+			int previousStatus = KnowledgeBaseUtil.getPreviousStatus(suggestionStatus);
+			int nextStatus = KnowledgeBaseUtil.getNextStatus(suggestionStatus);
 			%>
 
 			<div class="kb-feedback-actions">
@@ -105,7 +105,7 @@ KBFeedbackListDisplayContext kbFeedbackListDisplayContext = (KBFeedbackListDispl
 					<aui:button href="<%= kbFeedbackListDisplayContext.getViewFeedbackURL(nextStatusURL, kbFeedbackListDisplayContext.getSelectedNavItem()) %>" value="<%= KnowledgeBaseUtil.getStatusTransitionLabel(nextStatus) %>" />
 				</c:if>
 
-				<c:if test="<%= (feedbackStatus == KBCommentConstants.STATUS_COMPLETED) && KBCommentPermission.contains(permissionChecker, kbComment, ActionKeys.DELETE) %>">
+				<c:if test="<%= (suggestionStatus == KBCommentConstants.STATUS_COMPLETED) && KBCommentPermission.contains(permissionChecker, kbComment, ActionKeys.DELETE) %>">
 					<liferay-portlet:actionURL name="deleteKBComment" varImpl="deleteURL">
 						<portlet:param name="kbCommentId" value="<%= String.valueOf(kbComment.getKbCommentId()) %>" />
 					</liferay-portlet:actionURL>
