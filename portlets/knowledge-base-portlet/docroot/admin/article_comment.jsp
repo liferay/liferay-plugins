@@ -86,7 +86,7 @@ KBFeedbackListDisplayContext kbFeedbackListDisplayContext = (KBFeedbackListDispl
 			int nextStatus = KnowledgeBaseUtil.getNextStatus(suggestionStatus);
 			%>
 
-			<div class="kb-feedback-actions">
+			<div class="kb-suggestion-actions">
 				<c:if test="<%= previousStatus != KBCommentConstants.STATUS_NONE %>">
 					<liferay-portlet:actionURL name="updateKBCommentStatus" varImpl="previousStatusURL">
 						<portlet:param name="kbCommentId" value="<%= String.valueOf(kbComment.getKbCommentId()) %>" />
@@ -110,7 +110,7 @@ KBFeedbackListDisplayContext kbFeedbackListDisplayContext = (KBFeedbackListDispl
 						<portlet:param name="kbCommentId" value="<%= String.valueOf(kbComment.getKbCommentId()) %>" />
 					</liferay-portlet:actionURL>
 
-					<aui:button cssClass="kb-feedback-delete" href="<%= kbFeedbackListDisplayContext.getViewFeedbackURL(deleteURL, kbFeedbackListDisplayContext.getSelectedNavItem()) %>" value="delete" />
+					<aui:button cssClass="kb-suggestion-delete" href="<%= kbFeedbackListDisplayContext.getViewFeedbackURL(deleteURL, kbFeedbackListDisplayContext.getSelectedNavItem()) %>" value="delete" />
 				</c:if>
 			</div>
 		</td>
