@@ -15,13 +15,16 @@
 package com.liferay.knowledgebase.util;
 
 import com.liferay.knowledgebase.model.KBArticle;
+import com.liferay.knowledgebase.model.KBFolder;
 import com.liferay.knowledgebase.model.KBFolderConstants;
 import com.liferay.knowledgebase.service.KBArticleLocalServiceUtil;
+import com.liferay.knowledgebase.service.KBFolderServiceUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.util.PortalUtil;
+import com.liferay.portlet.PortalPreferences;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -30,18 +33,23 @@ import java.util.List;
 import javax.portlet.PortletPreferences;
 import javax.portlet.PortletRequest;
 
+import javax.servlet.http.HttpServletRequest;
+
 /**
  * @author Adolfo Pérez
  */
 public class KBNavigationDisplayContext {
 
 	public KBNavigationDisplayContext(
-		PortletRequest portletRequest, PortletPreferences portletPreferences,
-		KBArticle kbArticle) {
+		HttpServletRequest request, PortletRequest portletRequest,
+		PortalPreferences portalPreferences,
+		PortletPreferences portletPreferences, KBArticle kbArticle) {
 
 		_kbArticle = kbArticle;
+		_portalPreferences = portalPreferences;
 		_portletPreferences = portletPreferences;
 		_portletRequest = portletRequest;
+		_request = request;
 	}
 
 	public List<Long> getAncestorResourcePrimaryKeys()
@@ -66,6 +74,33 @@ public class KBNavigationDisplayContext {
 		}
 
 		return ancestorResourcePrimaryKeys;
+	}
+
+	public String getCurrentKBFolderURLTitle()
+		throws PortalException, SystemException {
+
+		String currentKBFolderUrlTitle = _portalPreferences.getValue(
+			PortletKeys.KNOWLEDGE_BASE_DISPLAY, "preferredKBFolderUrlTitle");
+
+		long rootResourcePrimKey = getRootResourcePrimKey();
+
+		if (rootResourcePrimKey != KBFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
+			KBFolder kbFolder = KBFolderServiceUtil.getKBFolder(
+				rootResourcePrimKey);
+
+			String pageTitle =
+				getContentRootPrefix() + " " + kbFolder.getName();
+
+			if (_kbArticle != null) {
+				pageTitle = _kbArticle.getTitle() + " - " + pageTitle;
+			}
+
+			PortalUtil.setPageTitle(pageTitle, _request);
+
+			currentKBFolderUrlTitle = kbFolder.getUrlTitle();
+		}
+
+		return currentKBFolderUrlTitle;
 	}
 
 	public long getRootResourcePrimKey()
@@ -123,6 +158,11 @@ public class KBNavigationDisplayContext {
 		return showNavigation;
 	}
 
+	protected String getContentRootPrefix() {
+		return GetterUtil.getString(
+			_portletPreferences.getValue("contentRootPrefix", null));
+	}
+
 	protected long getResourceClassNameId() {
 		return GetterUtil.getLong(
 			_portletPreferences.getValue("resourceClassNameId", null),
@@ -135,7 +175,9 @@ public class KBNavigationDisplayContext {
 	}
 
 	private final KBArticle _kbArticle;
+	private final PortalPreferences _portalPreferences;
 	private final PortletPreferences _portletPreferences;
 	private final PortletRequest _portletRequest;
+	private final HttpServletRequest _request;
 
 }
