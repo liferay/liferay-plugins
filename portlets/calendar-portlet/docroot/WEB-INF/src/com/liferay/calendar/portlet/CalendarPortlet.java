@@ -863,7 +863,7 @@ public class CalendarPortlet extends MVCPortlet {
 		searchContext.setAttribute("resourceName", keywords);
 		searchContext.setCompanyId(companyId);
 		searchContext.setEnd(SearchContainer.DEFAULT_DELTA);
-		searchContext.setGroupIds(new long[]{});
+		searchContext.setGroupIds(new long[0]);
 		searchContext.setStart(0);
 		searchContext.setUserId(userId);
 

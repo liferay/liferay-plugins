@@ -116,9 +116,7 @@ public class CalendarIndexer extends BaseIndexer {
 		document.addLocalizedText(
 			"resourceName", calendarResource.getNameMap());
 
-		String calendarId = String.valueOf(calendar.getCalendarId());
-
-		document.addKeyword("calendarId", calendarId);
+		document.addKeyword("calendarId", calendar.getCalendarId());
 
 		document.addText("defaultLanguageId", defaultLanguageId);
 
@@ -151,7 +149,8 @@ public class CalendarIndexer extends BaseIndexer {
 		Document document = getDocument(calendar);
 
 		SearchEngineUtil.updateDocument(
-			getSearchEngineId(), calendar.getCompanyId(), document);
+			getSearchEngineId(), calendar.getCompanyId(), document,
+			isCommitImmediately());
 	}
 
 	@Override
@@ -191,6 +190,7 @@ public class CalendarIndexer extends BaseIndexer {
 			}
 
 		});
+
 		actionableDynamicQuery.setSearchEngineId(getSearchEngineId());
 
 		actionableDynamicQuery.performActions();
