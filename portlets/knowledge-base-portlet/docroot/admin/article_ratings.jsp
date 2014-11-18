@@ -91,7 +91,7 @@ boolean hasUpdatePermission = KBArticlePermission.contains(permissionChecker, kb
 			</c:choose>
 		</div>
 
-		<a name="kbFeedback"></a>
+		<a name="kbSuggestions"></a>
 
 		<div class="hide kb-article-suggestion" id="<portlet:namespace />suggestionContainer">
 			<liferay-portlet:renderURL var="viewKBArticle">
@@ -121,7 +121,7 @@ boolean hasUpdatePermission = KBArticlePermission.contains(permissionChecker, kb
 				<portlet:param name="redirect" value="<%= viewKBArticle %>" />
 			</liferay-portlet:actionURL>
 
-			<aui:form action='<%= updateKBCommentURL + "#kbFeedback" %>' method="post" name="suggestionFm">
+			<aui:form action='<%= updateKBCommentURL + "#kbSuggestions" %>' method="post" name="suggestionFm">
 				<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.ADD %>" />
 				<aui:input name="classNameId" type="hidden" value="<%= PortalUtil.getClassNameId(KBArticle.class) %>" />
 				<aui:input name="classPK" type="hidden" value="<%= kbArticle.getResourcePrimKey() %>" />
