@@ -19,7 +19,7 @@
 <%
 KBArticle kbArticle = (KBArticle)request.getAttribute(WebKeys.KNOWLEDGE_BASE_KB_ARTICLE);
 
-KBNavigationDisplayContext kbNavigationDisplayContext = new KBNavigationDisplayContext(renderRequest, portletPreferences, kbArticle);
+KBNavigationDisplayContext kbNavigationDisplayContext = new KBNavigationDisplayContext(request, renderRequest, portalPreferences, portletPreferences, kbArticle);
 
 List<Long> ancestorResourcePrimaryKeys = kbNavigationDisplayContext.getAncestorResourcePrimaryKeys();
 
@@ -27,23 +27,7 @@ long kbFolderClassNameId = PortalUtil.getClassNameId(KBFolderConstants.getClassN
 
 long rootResourcePrimKey = kbNavigationDisplayContext.getRootResourcePrimKey();
 
-String preferredKBFolderUrlTitle = portalPreferences.getValue(PortletKeys.KNOWLEDGE_BASE_DISPLAY, "preferredKBFolderUrlTitle");
-
-String currentKBFolderUrlTitle = preferredKBFolderUrlTitle;
-
-if (rootResourcePrimKey != KBFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
-	KBFolder kbFolder = KBFolderServiceUtil.getKBFolder(rootResourcePrimKey);
-
-	String pageTitle = contentRootPrefix + " " + kbFolder.getName();
-
-	if (kbArticle != null) {
-		pageTitle = kbArticle.getTitle() + " - " + pageTitle;
-	}
-
-	PortalUtil.setPageTitle(pageTitle, request);
-
-	currentKBFolderUrlTitle = kbFolder.getUrlTitle();
-}
+String currentKBFolderUrlTitle = kbNavigationDisplayContext.getCurrentKBFolderURLTitle();
 
 if ((rootResourcePrimKey == KBFolderConstants.DEFAULT_PARENT_FOLDER_ID) && (kbArticle != null)) {
 	PortalUtil.setPageTitle(kbArticle.getTitle(), request);
