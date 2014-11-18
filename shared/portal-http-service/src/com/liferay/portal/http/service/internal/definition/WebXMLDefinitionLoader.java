@@ -37,29 +37,11 @@ import org.osgi.framework.Bundle;
  */
 public class WebXMLDefinitionLoader {
 
-	public WebXMLDefinitionLoader() throws DocumentException {
-		Class<?> clazz = getClass();
-
-		ClassLoader classLoader = clazz.getClassLoader();
-
-		Document document = SAXReaderUtil.read(
-			classLoader.getResource(
-				"com/liferay/portal/http/service/internal/servlet" +
-					"/dependencies/default-web.xml"));
-
-		_defaultWebXmlRootElement = document.getRootElement();
-	}
-
 	public WebXMLDefinition loadWebXML(Bundle bundle)
 		throws DocumentException, IllegalAccessException,
 			   InstantiationException {
 
 		WebXMLDefinition webXML = new WebXMLDefinition();
-
-		readContextParameters(bundle, _defaultWebXmlRootElement, webXML);
-		readFilters(bundle, _defaultWebXmlRootElement, webXML);
-		readListeners(bundle, _defaultWebXmlRootElement, webXML);
-		readServlets(bundle, _defaultWebXmlRootElement, webXML);
 
 		URL url = bundle.getEntry("WEB-INF/web.xml");
 
@@ -254,7 +236,5 @@ public class WebXMLDefinitionLoader {
 
 	private static Log _log = LogFactoryUtil.getLog(
 		WebXMLDefinitionLoader.class);
-
-	private Element _defaultWebXmlRootElement;
 
 }
