@@ -103,7 +103,8 @@ public class NotificationTemplateContextFactory {
 
 		attributes.put("location", calendarBooking.getLocation());
 
-		Group group = user.getGroup();
+		Group group = GroupLocalServiceUtil.getGroup(
+			user.getCompanyId(), GroupConstants.GUEST);
 
 		String portalURL = _getPortalURL(
 			group.getCompanyId(), group.getGroupId());
