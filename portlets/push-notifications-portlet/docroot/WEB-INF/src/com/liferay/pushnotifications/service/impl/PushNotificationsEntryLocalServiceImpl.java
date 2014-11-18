@@ -64,6 +64,8 @@ public class PushNotificationsEntryLocalServiceImpl
 
 		pushNotificationsEntryPersistence.update(pushNotificationsEntry);
 
+		updateEntryCount(parentPushNotificationsEntryId);
+
 		sendPushNotification(userId, payloadJSONObject);
 
 		return pushNotificationsEntry;
@@ -125,6 +127,35 @@ public class PushNotificationsEntryLocalServiceImpl
 				throw new PortalException(e);
 			}
 		}
+	}
+
+	@Override
+	public PushNotificationsEntry updateEntryCount(
+			long parentPushNotificationsEntryId)
+		throws PortalException {
+
+		if (parentPushNotificationsEntryId ==
+				PushNotificationsConstants.
+					VALUE_PARENT_PUSH_NOTIFICATIONS_ENTRY_ID_DEFAULT) {
+
+			return null;
+		}
+
+		int childrenPushNotificationsEntryCount =
+			pushNotificationsEntryPersistence.
+				countByParentPushNotificationsEntryId(
+					parentPushNotificationsEntryId);
+
+		PushNotificationsEntry pushNotificationsEntry =
+			pushNotificationsEntryPersistence.findByPrimaryKey(
+				parentPushNotificationsEntryId);
+
+		pushNotificationsEntry.setChildrenPushNotificationsEntryCount(
+			childrenPushNotificationsEntryCount);
+
+		pushNotificationsEntryPersistence.update(pushNotificationsEntry);
+
+		return pushNotificationsEntry;
 	}
 
 	protected JSONObject createJSONObject(
