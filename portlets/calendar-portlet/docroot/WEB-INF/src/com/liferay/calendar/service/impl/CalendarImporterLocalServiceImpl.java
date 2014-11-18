@@ -496,7 +496,7 @@ public class CalendarImporterLocalServiceImpl
 	}
 
 	protected AssetCategory getAssetCategory(
-			long userId, long groupId, long companyId, String name)
+			long userId, long companyId, long groupId, String name)
 		throws PortalException {
 
 		AssetVocabulary assetVocabulary = assetVocabularyPersistence.fetchByG_N(
@@ -732,8 +732,8 @@ public class CalendarImporterLocalServiceImpl
 
 		assetCategories.add(
 			getAssetCategory(
-				calEvent.getUserId(), calEvent.getGroupId(),
-				calEvent.getCompanyId(), calEvent.getType()));
+				calEvent.getUserId(), calEvent.getCompanyId(),
+				calEvent.getGroupId(), calEvent.getType()));
 
 		for (AssetCategory assetCategory : assetCategories) {
 			assetEntryLocalService.addAssetCategoryAssetEntry(
