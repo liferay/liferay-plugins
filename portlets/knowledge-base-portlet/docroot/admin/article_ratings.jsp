@@ -46,8 +46,8 @@ boolean hasUpdatePermission = KBArticlePermission.contains(permissionChecker, kb
 	/>
 
 	<c:if test='<%= kbArticleRatingsType.equals("thumbs") && themeDisplay.isSignedIn() %>'>
-		<div class="kb-article-feedback-actions" id="<portlet:namespace />additionalFeedbackActionsContainer">
-			<a data-show-node-id="<portlet:namespace />feedbackContainer" href="javascript:void(0)">
+		<div class="kb-article-feedback-actions" id="<portlet:namespace />additionalSuggestionActionsContainer">
+			<a data-show-node-id="<portlet:namespace />suggestionContainer" href="javascript:void(0)">
 				<liferay-ui:message key="do-you-have-any-suggestions" />
 			</a>
 
@@ -93,7 +93,7 @@ boolean hasUpdatePermission = KBArticlePermission.contains(permissionChecker, kb
 
 		<a name="kbFeedback"></a>
 
-		<div class="hide kb-article-feedback" id="<portlet:namespace />feedbackContainer">
+		<div class="hide kb-article-feedback" id="<portlet:namespace />suggestionContainer">
 			<liferay-portlet:renderURL var="viewKBArticle">
 				<portlet:param name="expanded" value="true" />
 
@@ -121,7 +121,7 @@ boolean hasUpdatePermission = KBArticlePermission.contains(permissionChecker, kb
 				<portlet:param name="redirect" value="<%= viewKBArticle %>" />
 			</liferay-portlet:actionURL>
 
-			<aui:form action='<%= updateKBCommentURL + "#kbFeedback" %>' method="post" name="feedbackFm">
+			<aui:form action='<%= updateKBCommentURL + "#kbFeedback" %>' method="post" name="suggestionFm">
 				<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.ADD %>" />
 				<aui:input name="classNameId" type="hidden" value="<%= PortalUtil.getClassNameId(KBArticle.class) %>" />
 				<aui:input name="classPK" type="hidden" value="<%= kbArticle.getResourcePrimKey() %>" />
@@ -247,9 +247,9 @@ boolean hasUpdatePermission = KBArticlePermission.contains(permissionChecker, kb
 		</c:choose>
 
 		<aui:script use="aui-base">
-			var feedbackFm = A.one('#<portlet:namespace />feedbackFm');
+			var suggestionFm = A.one('#<portlet:namespace />suggestionFm');
 
-			feedbackFm.on(
+			suggestionFm.on(
 				'submit',
 				function(event) {
 					var ratingThumb = A.one('.kb-article-container input[name="<portlet:namespace />ratingThumb"]');
@@ -264,7 +264,7 @@ boolean hasUpdatePermission = KBArticlePermission.contains(permissionChecker, kb
 				}
 			);
 
-			A.one('#<portlet:namespace />additionalFeedbackActionsContainer').delegate(
+			A.one('#<portlet:namespace />additionalSuggestionActionsContainer').delegate(
 				'click',
 				function(event) {
 					var showNode = A.one('#' + event.currentTarget.getData('show-node-id'));
@@ -283,7 +283,7 @@ boolean hasUpdatePermission = KBArticlePermission.contains(permissionChecker, kb
 			A.one('#<portlet:namespace />cancelFeedback').on(
 				'click',
 				function(event) {
-					var container = this.ancestor('#<portlet:namespace />feedbackContainer');
+					var container = this.ancestor('#<portlet:namespace />suggestionContainer');
 
 					container.hide();
 
