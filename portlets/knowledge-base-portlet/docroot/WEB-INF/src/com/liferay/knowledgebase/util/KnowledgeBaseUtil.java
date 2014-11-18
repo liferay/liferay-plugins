@@ -434,7 +434,7 @@ public class KnowledgeBaseUtil {
 		}
 		else {
 			throw new IllegalArgumentException(
-				String.format("Invalid feedback status %s", status));
+				String.format("Invalid suggestion status %s", status));
 		}
 	}
 
@@ -450,7 +450,7 @@ public class KnowledgeBaseUtil {
 		}
 		else {
 			throw new IllegalArgumentException(
-				String.format("Invalid feedback status %s", status));
+				String.format("Invalid suggestion status %s", status));
 		}
 	}
 
