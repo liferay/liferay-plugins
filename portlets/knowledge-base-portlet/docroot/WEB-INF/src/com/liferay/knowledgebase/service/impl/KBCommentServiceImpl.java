@@ -74,7 +74,7 @@ public class KBCommentServiceImpl extends KBCommentServiceBaseImpl {
 	public List<KBComment> getKBComments(
 			long groupId, String className, long classPK, int status, int start,
 			int end)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		if (AdminPermission.contains(
 				getPermissionChecker(), groupId,
@@ -103,7 +103,7 @@ public class KBCommentServiceImpl extends KBCommentServiceBaseImpl {
 	@Override
 	public int getKBCommentsCount(
 			long groupId, String className, long classPK, int status)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		if (AdminPermission.contains(
 				getPermissionChecker(), groupId,

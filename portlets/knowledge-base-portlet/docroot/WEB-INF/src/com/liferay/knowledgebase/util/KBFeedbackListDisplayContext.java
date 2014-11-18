@@ -44,16 +44,11 @@ public class KBFeedbackListDisplayContext {
 		_selectedNavItem = selectedNavItem;
 	}
 
-
-	public int getCompletedKBCommentsCount()
-		throws PortalException {
-
+	public int getCompletedKBCommentsCount() throws PortalException {
 		return getKBCommentsCount(KBCommentConstants.STATUS_COMPLETED);
 	}
 
-	public int getInProgressKBCommentsCount()
-		throws PortalException {
-
+	public int getInProgressKBCommentsCount() throws PortalException {
 		return getKBCommentsCount(KBCommentConstants.STATUS_IN_PROGRESS);
 	}
 
@@ -74,9 +69,7 @@ public class KBFeedbackListDisplayContext {
 		}
 	}
 
-	public int getKBCommentsCount(int status)
-		throws PortalException {
-
+	public int getKBCommentsCount(int status) throws PortalException {
 		if (_kbArticle == null) {
 			return KBCommentServiceUtil.getKBCommentsCount(_groupId, status);
 		}
