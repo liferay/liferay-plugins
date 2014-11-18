@@ -63,7 +63,9 @@
 							UserNotificationDelivery userNotificationDelivery = UserNotificationDeliveryLocalServiceUtil.getUserNotificationDelivery(themeDisplay.getUserId(), entry.getKey(), userNotificationDefinition.getClassNameId(), userNotificationDefinition.getNotificationType(), userNotificationDeliveryType.getType(), userNotificationDeliveryType.isDefault());
 						%>
 
-							<aui:input cssClass="notification-delivery" data-userNotificationDeliveryId="<%= String.valueOf(userNotificationDelivery.getUserNotificationDeliveryId()) %>" disabled="<%= !userNotificationDeliveryType.isModifiable() %>" inlineLabel="true" label="<%= userNotificationDeliveryType.getName() %>" name="<%= String.valueOf(userNotificationDelivery.getUserNotificationDeliveryId()) %>" type="checkbox" value="<%= userNotificationDelivery.isDeliver() %>" />
+							<div class="checkbox-container">
+								<aui:input cssClass="notification-delivery" data-userNotificationDeliveryId="<%= String.valueOf(userNotificationDelivery.getUserNotificationDeliveryId()) %>" disabled="<%= !userNotificationDeliveryType.isModifiable() %>" inlineLabel="true" label="<%= userNotificationDeliveryType.getName() %>" name="<%= String.valueOf(userNotificationDelivery.getUserNotificationDeliveryId()) %>" type="checkbox" value="<%= userNotificationDelivery.isDeliver() %>" />
+							</div>
 
 						<%
 						}
@@ -111,7 +113,7 @@
 								var responseData = this.get('responseData');
 
 								if (responseData.success) {
-									var checkboxContainer = currentTarget.ancestor('.checkbox');
+									var checkboxContainer = currentTarget.ancestor('.checkbox-container');
 
 									var saved = checkboxContainer.one('.saved');
 
@@ -128,8 +130,8 @@
 											var saved = checkboxContainer.one('.saved');
 
 											if (saved) {
-												saved.setStyle('background', 'rgba(0, 0, 0, 0)');
-												saved.setStyle('color', 'rgba(0, 0, 0, 0)');
+												saved.setStyle('background', 'transparent');
+												saved.setStyle('color', 'transparent');
 											}
 
 											setInterval(

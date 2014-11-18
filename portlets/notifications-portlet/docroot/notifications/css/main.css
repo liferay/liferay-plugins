@@ -526,7 +526,7 @@
 				border-top-width: 0;
 			}
 
-			.checkbox {
+			.checkbox-container {
 				clear: both;
 				float: left;
 				margin: 5px 0 5px 40px;
