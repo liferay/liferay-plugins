@@ -3,4 +3,8 @@
 
 <hook>
 	<language-properties>content/Language*.properties</language-properties>
+	<service>
+		<service-type>com.liferay.polls.service.PollsQuestionLocalService</service-type>
+		<service-impl>com.liferay.pushnotifications.hook.service.impl.PushNotificationsPollsQuestionLocalServiceImpl</service-impl>
+	</service>
 </hook>
