@@ -106,21 +106,26 @@ public class KBNavigationDisplayContext {
 	public long getRootResourcePrimKey()
 		throws PortalException, SystemException {
 
-		long rootResourcePrimKey = KBFolderConstants.DEFAULT_PARENT_FOLDER_ID;
+		if (_rootResourcePrimKey == null) {
+			_rootResourcePrimKey = KBFolderConstants.DEFAULT_PARENT_FOLDER_ID;
 
-		if (_kbArticle != null) {
-			rootResourcePrimKey = KnowledgeBaseUtil.getKBFolderId(
-				_kbArticle.getParentResourceClassNameId(),
-				_kbArticle.getParentResourcePrimKey());
+			if (_kbArticle != null) {
+				_rootResourcePrimKey = KnowledgeBaseUtil.getKBFolderId(
+					_kbArticle.getParentResourceClassNameId(),
+					_kbArticle.getParentResourcePrimKey());
+			}
+
+			if (_rootResourcePrimKey ==
+					KBFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
+
+				_rootResourcePrimKey = KnowledgeBaseUtil.getRootResourcePrimKey(
+					_portletRequest,
+					PortalUtil.getScopeGroupId(_portletRequest),
+					getResourceClassNameId(), getResourcePrimKey());
+			}
 		}
 
-		if (rootResourcePrimKey == KBFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
-			rootResourcePrimKey = KnowledgeBaseUtil.getRootResourcePrimKey(
-				_portletRequest, PortalUtil.getScopeGroupId(_portletRequest),
-				getResourceClassNameId(), getResourcePrimKey());
-		}
-
-		return rootResourcePrimKey;
+		return _rootResourcePrimKey;
 	}
 
 	public boolean isShowNavigation() throws PortalException, SystemException {
@@ -164,14 +169,22 @@ public class KBNavigationDisplayContext {
 	}
 
 	protected long getResourceClassNameId() {
-		return GetterUtil.getLong(
-			_portletPreferences.getValue("resourceClassNameId", null),
-			PortalUtil.getClassNameId(KBFolderConstants.getClassName()));
+		if (_resourceClassNameId == null) {
+			_resourceClassNameId = GetterUtil.getLong(
+				_portletPreferences.getValue("resourceClassNameId", null),
+				PortalUtil.getClassNameId(KBFolderConstants.getClassName()));
+		}
+
+		return _resourceClassNameId;
 	}
 
 	protected long getResourcePrimKey() {
-		return GetterUtil.getLong(
-			_portletPreferences.getValue("resourcePrimKey", null));
+		if (_resourcePrimKey == null) {
+			_resourcePrimKey = GetterUtil.getLong(
+				_portletPreferences.getValue("resourcePrimKey", null));
+		}
+
+		return _resourcePrimKey;
 	}
 
 	private final KBArticle _kbArticle;
@@ -179,5 +192,8 @@ public class KBNavigationDisplayContext {
 	private final PortletPreferences _portletPreferences;
 	private final PortletRequest _portletRequest;
 	private final HttpServletRequest _request;
+	private Long _resourceClassNameId;
+	private Long _resourcePrimKey;
+	private Long _rootResourcePrimKey;
 
 }
