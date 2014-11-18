@@ -18,15 +18,19 @@
 
 <%
 KBArticle kbArticle = (KBArticle)request.getAttribute(WebKeys.KNOWLEDGE_BASE_KB_ARTICLE);
+
+KBNavigationDisplayContext kbNavigationDisplayContext = new KBNavigationDisplayContext(request, renderRequest, portalPreferences, portletPreferences, kbArticle);
 %>
 
 <c:choose>
 	<c:when test="<%= kbArticle != null %>">
 		<div class="row-fluid">
-			<div class="span3">
-				<liferay-util:include page="/display/view_navigation.jsp" servletContext="<%= application %>" />
-			</div>
-			<div class="span9">
+			<c:if test="<%= kbNavigationDisplayContext.isShowNavigation() %>">
+				<div class="span3">
+					<liferay-util:include page="/display/view_navigation.jsp" servletContext="<%= application %>" />
+				</div>
+			</c:if>
+			<div class='<%= kbNavigationDisplayContext.isShowNavigation() ? "span9" : "span12" %>'>
 				<liferay-util:include page="/display/view_article.jsp" servletContext="<%= application %>" />
 			</div>
 		</div>
