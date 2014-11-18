@@ -64,197 +64,218 @@ if (rootResourcePrimKey != KBFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
 else if (kbArticle != null) {
 	PortalUtil.setPageTitle(kbArticle.getTitle(), request);
 }
+
+boolean showNavigation = true;
+
+int kbArticleCount = KBArticleLocalServiceUtil.getKBArticlesCount(scopeGroupId, rootResourcePrimKey, WorkflowConstants.STATUS_APPROVED);
+
+if (kbArticleCount == 0) {
+	showNavigation = false;
+}
+else if (kbArticleCount == 1) {
+	List<KBArticle> kbArticles = KBArticleLocalServiceUtil.getKBArticles(scopeGroupId, rootResourcePrimKey, WorkflowConstants.STATUS_APPROVED, 0, 1, null);
+
+	KBArticle navigationKBArticle = kbArticles.get(0);
+
+	int navigationKBArticleChildCount = KBArticleLocalServiceUtil.getKBArticlesCount(scopeGroupId, navigationKBArticle.getResourcePrimKey(), WorkflowConstants.STATUS_APPROVED);
+
+	if (navigationKBArticleChildCount == 0) {
+		showNavigation = false;
+	}
+}
 %>
 
-<div class="kbarticle-navigation">
-	<c:if test="<%= resourceClassNameId == kbFolderClassNameId %>">
+<c:if test="<%= showNavigation %>">
+	<div class="kbarticle-navigation">
+		<c:if test="<%= resourceClassNameId == kbFolderClassNameId %>">
+
+			<%
+			List<KBFolder> kbFolders = KnowledgeBaseUtil.getAlternateRootKBFolders(scopeGroupId, resourcePrimKey);
+			%>
+
+			<c:if test="<%= kbFolders.size() > 1 %>">
+				<liferay-portlet:actionURL name="updateRootKBFolderId" var="updateRootKBFolderIdURL">
+					<c:if test="<%= kbArticle != null %>">
+						<portlet:param name="urlTitle" value="<%= kbArticle.getUrlTitle() %>" />
+					</c:if>
+				</liferay-portlet:actionURL>
+
+				<div class="kb-field-wrapper kbarticle-root-selector">
+					<aui:form action="<%= updateRootKBFolderIdURL %>" name="updateRootKBFolderIdFm">
+						<aui:select label="" name="rootKBFolderId">
+
+							<%
+							for (KBFolder kbFolder : kbFolders) {
+							%>
+
+								<aui:option
+									selected="<%= currentKBFolderUrlTitle.equals(kbFolder.getUrlTitle()) %>"
+									value="<%= kbFolder.getKbFolderId() %>"
+								>
+									<%= contentRootPrefix + " " + kbFolder.getName() %>
+								</aui:option>
+
+							<%
+							}
+							%>
+
+						</aui:select>
+					</aui:form>
+				</div>
+
+				<aui:script use="aui-base">
+					var updateRootKBFolderIdFm = A.one('#<portlet:namespace />updateRootKBFolderIdFm');
+					var rootKBFolderIdSelect = A.one('#<portlet:namespace />rootKBFolderId');
+
+					rootKBFolderIdSelect.on(
+						'change',
+						function() {
+							updateRootKBFolderIdFm.submit();
+						}
+					);
+				</aui:script>
+			</c:if>
+		</c:if>
 
 		<%
-		List<KBFolder> kbFolders = KnowledgeBaseUtil.getAlternateRootKBFolders(scopeGroupId, resourcePrimKey);
+		List<KBArticle> kbArticles = KBArticleLocalServiceUtil.getKBArticles(themeDisplay.getScopeGroupId(), rootResourcePrimKey, WorkflowConstants.STATUS_APPROVED, QueryUtil.ALL_POS, QueryUtil.ALL_POS, new KBArticlePriorityComparator(true));
+
+		for (KBArticle curKBArticle : kbArticles) {
+			PortletURL viewURL = renderResponse.createRenderURL();
+
+			String urlTitle = curKBArticle.getUrlTitle();
+
+			if (Validator.isNotNull(urlTitle)) {
+				viewURL.setParameter("urlTitle", urlTitle);
+
+				if (curKBArticle.getKbFolderId() != KBFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
+					KBFolder kbFolder = KBFolderServiceUtil.getKBFolder(curKBArticle.getKbFolderId());
+
+					viewURL.setParameter("kbFolderUrlTitle", kbFolder.getUrlTitle());
+				}
+			}
+			else {
+				viewURL.setParameter("resourcePrimKey", String.valueOf(curKBArticle.getResourcePrimKey()));
+			}
 		%>
 
-		<c:if test="<%= kbFolders.size() > 1 %>">
-			<liferay-portlet:actionURL name="updateRootKBFolderId" var="updateRootKBFolderIdURL">
-				<c:if test="<%= kbArticle != null %>">
-					<portlet:param name="urlTitle" value="<%= kbArticle.getUrlTitle() %>" />
-				</c:if>
-			</liferay-portlet:actionURL>
-
-			<div class="kb-field-wrapper kbarticle-root-selector">
-				<aui:form action="<%= updateRootKBFolderIdURL %>" name="updateRootKBFolderIdFm">
-					<aui:select label="" name="rootKBFolderId">
-
-						<%
-						for (KBFolder kbFolder : kbFolders) {
-						%>
-
-							<aui:option
-								selected="<%= currentKBFolderUrlTitle.equals(kbFolder.getUrlTitle()) %>"
-								value="<%= kbFolder.getKbFolderId() %>"
-							>
-								<%= contentRootPrefix + " " + kbFolder.getName() %>
-							</aui:option>
-
-						<%
-						}
-						%>
-
-					</aui:select>
-				</aui:form>
-			</div>
-
-			<aui:script use="aui-base">
-				var updateRootKBFolderIdFm = A.one('#<portlet:namespace />updateRootKBFolderIdFm');
-				var rootKBFolderIdSelect = A.one('#<portlet:namespace />rootKBFolderId');
-
-				rootKBFolderIdSelect.on(
-					'change',
-					function() {
-						updateRootKBFolderIdFm.submit();
-					}
-				);
-			</aui:script>
-		</c:if>
-	</c:if>
-
-	<%
-	List<KBArticle> kbArticles = KBArticleLocalServiceUtil.getKBArticles(themeDisplay.getScopeGroupId(), rootResourcePrimKey, WorkflowConstants.STATUS_APPROVED, QueryUtil.ALL_POS, QueryUtil.ALL_POS, new KBArticlePriorityComparator(true));
-
-	for (KBArticle curKBArticle : kbArticles) {
-		PortletURL viewURL = renderResponse.createRenderURL();
-
-		String urlTitle = curKBArticle.getUrlTitle();
-
-		if (Validator.isNotNull(urlTitle)) {
-			viewURL.setParameter("urlTitle", urlTitle);
-
-			if (curKBArticle.getKbFolderId() != KBFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
-				KBFolder kbFolder = KBFolderServiceUtil.getKBFolder(curKBArticle.getKbFolderId());
-
-				viewURL.setParameter("kbFolderUrlTitle", kbFolder.getUrlTitle());
-			}
-		}
-		else {
-			viewURL.setParameter("resourcePrimKey", String.valueOf(curKBArticle.getResourcePrimKey()));
-		}
-	%>
-
-		<ul>
-			<li>
-
-				<%
-				boolean kbArticleExpanded = false;
-
-				if ((ancestorResourcePrimaryKeys.size() > 0) && (curKBArticle.getResourcePrimKey() == ancestorResourcePrimaryKeys.get(0))) {
-					kbArticleExpanded = true;
-				}
-
-				String kbArticleClass = StringPool.BLANK;
-
-				if (curKBArticle.getResourcePrimKey() == kbArticle.getResourcePrimKey()) {
-					kbArticleClass = "kbarticle-selected";
-				}
-				else if (kbArticleExpanded) {
-					kbArticleClass = "kbarticle-expanded";
-				}
-				%>
-
-				<a class="<%= kbArticleClass %>" href="<%= viewURL %>"><%= HtmlUtil.escape(curKBArticle.getTitle()) %></a>
-
-				<c:if test="<%= kbArticleExpanded %>">
+			<ul>
+				<li>
 
 					<%
-					List<KBArticle> childKBArticles = KBArticleLocalServiceUtil.getKBArticles(themeDisplay.getScopeGroupId(), curKBArticle.getResourcePrimKey(), WorkflowConstants.STATUS_APPROVED, QueryUtil.ALL_POS, QueryUtil.ALL_POS, new KBArticlePriorityComparator(true));
+					boolean kbArticleExpanded = false;
 
-					for (KBArticle childKBArticle : childKBArticles) {
-						PortletURL viewChildURL = renderResponse.createRenderURL();
+					if ((ancestorResourcePrimaryKeys.size() > 0) && (curKBArticle.getResourcePrimKey() == ancestorResourcePrimaryKeys.get(0))) {
+						kbArticleExpanded = true;
+					}
 
-						urlTitle = childKBArticle.getUrlTitle();
+					String kbArticleClass = StringPool.BLANK;
 
-						if (Validator.isNotNull(urlTitle)) {
-							viewChildURL.setParameter("urlTitle", urlTitle);
-
-							if (childKBArticle.getKbFolderId() != KBFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
-								KBFolder kbFolder = KBFolderServiceUtil.getKBFolder(childKBArticle.getKbFolderId());
-
-								viewChildURL.setParameter("kbFolderUrlTitle", kbFolder.getUrlTitle());
-							}
-						}
-						else {
-							viewChildURL.setParameter("resourcePrimKey", String.valueOf(childKBArticle.getResourcePrimKey()));
-						}
+					if (curKBArticle.getResourcePrimKey() == kbArticle.getResourcePrimKey()) {
+						kbArticleClass = "kbarticle-selected";
+					}
+					else if (kbArticleExpanded) {
+						kbArticleClass = "kbarticle-expanded";
+					}
 					%>
 
-						<ul>
-							<li>
+					<a class="<%= kbArticleClass %>" href="<%= viewURL %>"><%= HtmlUtil.escape(curKBArticle.getTitle()) %></a>
 
-								<%
-								boolean childKBArticleExpanded = false;
+					<c:if test="<%= kbArticleExpanded %>">
 
-								if ((ancestorResourcePrimaryKeys.size() > 1) && (childKBArticle.getResourcePrimKey() == ancestorResourcePrimaryKeys.get(1))) {
-									childKBArticleExpanded = true;
+						<%
+						List<KBArticle> childKBArticles = KBArticleLocalServiceUtil.getKBArticles(themeDisplay.getScopeGroupId(), curKBArticle.getResourcePrimKey(), WorkflowConstants.STATUS_APPROVED, QueryUtil.ALL_POS, QueryUtil.ALL_POS, new KBArticlePriorityComparator(true));
+
+						for (KBArticle childKBArticle : childKBArticles) {
+							PortletURL viewChildURL = renderResponse.createRenderURL();
+
+							urlTitle = childKBArticle.getUrlTitle();
+
+							if (Validator.isNotNull(urlTitle)) {
+								viewChildURL.setParameter("urlTitle", urlTitle);
+
+								if (childKBArticle.getKbFolderId() != KBFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
+									KBFolder kbFolder = KBFolderServiceUtil.getKBFolder(childKBArticle.getKbFolderId());
+
+									viewChildURL.setParameter("kbFolderUrlTitle", kbFolder.getUrlTitle());
 								}
+							}
+							else {
+								viewChildURL.setParameter("resourcePrimKey", String.valueOf(childKBArticle.getResourcePrimKey()));
+							}
+						%>
 
-								String childKBArticleClass = StringPool.BLANK;
-
-								if (childKBArticle.getResourcePrimKey() == kbArticle.getResourcePrimKey()) {
-									childKBArticleClass = "kbarticle-selected";
-								}
-								else if (childKBArticleExpanded) {
-									childKBArticleClass = "kbarticle-expanded";
-								}
-								%>
-
-								<a class="<%= childKBArticleClass %>" href="<%= viewChildURL %>"><%= HtmlUtil.escape(childKBArticle.getTitle()) %></a>
-
-								<c:if test="<%= childKBArticleExpanded %>">
+							<ul>
+								<li>
 
 									<%
-									List<KBArticle> allDescendantKBArticles = KBArticleLocalServiceUtil.getAllDescendantKBArticles(childKBArticle.getResourcePrimKey(), WorkflowConstants.STATUS_APPROVED, new KBArticlePriorityComparator(true));
+									boolean childKBArticleExpanded = false;
 
-									for (KBArticle descendantKBArticle : allDescendantKBArticles) {
-										PortletURL viewCurKBArticleURL = renderResponse.createRenderURL();
+									if ((ancestorResourcePrimaryKeys.size() > 1) && (childKBArticle.getResourcePrimKey() == ancestorResourcePrimaryKeys.get(1))) {
+										childKBArticleExpanded = true;
+									}
 
-										urlTitle = descendantKBArticle.getUrlTitle();
+									String childKBArticleClass = StringPool.BLANK;
 
-										if (Validator.isNotNull(urlTitle)) {
-											viewCurKBArticleURL.setParameter("urlTitle", urlTitle);
-
-											if (descendantKBArticle.getKbFolderId() != KBFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
-												KBFolder kbFolder = KBFolderServiceUtil.getKBFolder(descendantKBArticle.getKbFolderId());
-
-												viewCurKBArticleURL.setParameter("kbFolderUrlTitle", kbFolder.getUrlTitle());
-											}
-										}
-										else {
-											viewCurKBArticleURL.setParameter("resourcePrimKey", String.valueOf(descendantKBArticle.getResourcePrimKey()));
-										}
-									%>
-
-										<ul>
-											<li>
-												<a class="<%= descendantKBArticle.getResourcePrimKey() == kbArticle.getResourcePrimKey() ? "kbarticle-selected" : StringPool.BLANK %>" href="<%= viewCurKBArticleURL %>"><%= HtmlUtil.escape(descendantKBArticle.getTitle()) %></a>
-											</li>
-										</ul>
-
-									<%
+									if (childKBArticle.getResourcePrimKey() == kbArticle.getResourcePrimKey()) {
+										childKBArticleClass = "kbarticle-selected";
+									}
+									else if (childKBArticleExpanded) {
+										childKBArticleClass = "kbarticle-expanded";
 									}
 									%>
 
-								</c:if>
-							</li>
-						</ul>
+									<a class="<%= childKBArticleClass %>" href="<%= viewChildURL %>"><%= HtmlUtil.escape(childKBArticle.getTitle()) %></a>
 
-					<%
-					}
-					%>
+									<c:if test="<%= childKBArticleExpanded %>">
 
-				</c:if>
-			</li>
-		</ul>
+										<%
+										List<KBArticle> allDescendantKBArticles = KBArticleLocalServiceUtil.getAllDescendantKBArticles(childKBArticle.getResourcePrimKey(), WorkflowConstants.STATUS_APPROVED, new KBArticlePriorityComparator(true));
 
-	<%
-	}
-	%>
+										for (KBArticle descendantKBArticle : allDescendantKBArticles) {
+											PortletURL viewCurKBArticleURL = renderResponse.createRenderURL();
 
-</div>
+											urlTitle = descendantKBArticle.getUrlTitle();
+
+											if (Validator.isNotNull(urlTitle)) {
+												viewCurKBArticleURL.setParameter("urlTitle", urlTitle);
+
+												if (descendantKBArticle.getKbFolderId() != KBFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
+													KBFolder kbFolder = KBFolderServiceUtil.getKBFolder(descendantKBArticle.getKbFolderId());
+
+													viewCurKBArticleURL.setParameter("kbFolderUrlTitle", kbFolder.getUrlTitle());
+												}
+											}
+											else {
+												viewCurKBArticleURL.setParameter("resourcePrimKey", String.valueOf(descendantKBArticle.getResourcePrimKey()));
+											}
+										%>
+
+											<ul>
+												<li>
+													<a class="<%= descendantKBArticle.getResourcePrimKey() == kbArticle.getResourcePrimKey() ? "kbarticle-selected" : StringPool.BLANK %>" href="<%= viewCurKBArticleURL %>"><%= HtmlUtil.escape(descendantKBArticle.getTitle()) %></a>
+												</li>
+											</ul>
+
+										<%
+										}
+										%>
+
+									</c:if>
+								</li>
+							</ul>
+
+						<%
+						}
+						%>
+
+					</c:if>
+				</li>
+			</ul>
+
+		<%
+		}
+		%>
+
+	</div>
+</c:if>
