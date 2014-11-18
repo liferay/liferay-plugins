@@ -19,7 +19,7 @@ KBFeedbackListDisplayContext kbFeedbackListDisplayContext = (KBFeedbackListDispl
 %>
 
 <liferay-portlet:renderURL varImpl="iteratorURL">
-	<portlet:param name="feedbackStatus" value="<%= String.valueOf(feedbackStatus) %>" />
+	<portlet:param name="suggestionStatus" value="<%= String.valueOf(suggestionStatus) %>" />
 </liferay-portlet:renderURL>
 
 <%
