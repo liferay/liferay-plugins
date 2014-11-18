@@ -18,15 +18,19 @@
 
 <%
 KBArticle kbArticle = (KBArticle)request.getAttribute(WebKeys.KNOWLEDGE_BASE_KB_ARTICLE);
+
+KBNavigationDisplayContext kbNavigationDisplayContext = new KBNavigationDisplayContext(request, renderRequest, portalPreferences, portletPreferences, kbArticle);
 %>
 
 <c:choose>
 	<c:when test="<%= kbArticle != null %>">
 		<div class="row">
-			<div class="col-md-3">
-				<liferay-util:include page="/display/view_navigation.jsp" servletContext="<%= application %>" />
-			</div>
-			<div class="col-md-9">
+			<c:if test="<%= kbNavigationDisplayContext.isShowNavigation() %>">
+				<div class="col-md-3">
+					<liferay-util:include page="/display/view_navigation.jsp" servletContext="<%= application %>" />
+				</div>
+			</c:if>
+			<div class='<%= kbNavigationDisplayContext.isShowNavigation() ? "col-md-9" : "col-md-12" %>'>
 				<liferay-util:include page="/display/view_article.jsp" servletContext="<%= application %>" />
 			</div>
 		</div>
