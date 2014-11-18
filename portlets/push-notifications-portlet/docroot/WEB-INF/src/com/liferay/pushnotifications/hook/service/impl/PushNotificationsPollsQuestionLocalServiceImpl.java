@@ -110,7 +110,7 @@ public class PushNotificationsPollsQuestionLocalServiceImpl
 
 			payloadJSONObject.put(
 				PushNotificationsConstants.KEY_TYPE,
-				PushNotificationsConstants.VALUE_POLLS_TYPE);
+				PushNotificationsConstants.VALUE_TYPE_POLLS);
 
 			PushNotificationsEntryLocalServiceUtil.sendPushNotification(
 				pollsQuestion.getUserId(), payloadJSONObject);
