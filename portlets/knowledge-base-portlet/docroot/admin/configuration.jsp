@@ -311,7 +311,7 @@ else if (tabs2.equals("suggestion-resolved-email")) {
 					</dl>
 				</div>
 			</c:when>
-			<c:when test='<%= tabs2.startsWith("feedback-") %>'>
+			<c:when test='<%= tabs2.startsWith("suggestion-") %>'>
 				<c:choose>
 					<c:when test='<%= tabs2.equals("suggestion-in-progress-email") %>'>
 						<aui:input label="enabled" name="preferences--emailKBArticleFeedbackInProgressEnabled--" type="checkbox" value="<%= emailKBArticleFeedbackInProgressEnabled %>" />
