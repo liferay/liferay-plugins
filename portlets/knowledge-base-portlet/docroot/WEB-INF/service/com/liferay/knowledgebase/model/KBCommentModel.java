@@ -338,19 +338,19 @@ public interface KBCommentModel extends AttachedModel, BaseModel<KBComment>,
 	public Object clone();
 
 	@Override
-	public int compareTo(KBComment kbComment);
+	public int compareTo(com.liferay.knowledgebase.model.KBComment kbComment);
 
 	@Override
 	public int hashCode();
 
 	@Override
-	public CacheModel<KBComment> toCacheModel();
+	public CacheModel<com.liferay.knowledgebase.model.KBComment> toCacheModel();
 
 	@Override
-	public KBComment toEscapedModel();
+	public com.liferay.knowledgebase.model.KBComment toEscapedModel();
 
 	@Override
-	public KBComment toUnescapedModel();
+	public com.liferay.knowledgebase.model.KBComment toUnescapedModel();
 
 	@Override
 	public String toString();

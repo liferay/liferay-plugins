@@ -303,19 +303,19 @@ public interface KBFolderModel extends BaseModel<KBFolder>, StagedGroupedModel {
 	public Object clone();
 
 	@Override
-	public int compareTo(KBFolder kbFolder);
+	public int compareTo(com.liferay.knowledgebase.model.KBFolder kbFolder);
 
 	@Override
 	public int hashCode();
 
 	@Override
-	public CacheModel<KBFolder> toCacheModel();
+	public CacheModel<com.liferay.knowledgebase.model.KBFolder> toCacheModel();
 
 	@Override
-	public KBFolder toEscapedModel();
+	public com.liferay.knowledgebase.model.KBFolder toEscapedModel();
 
 	@Override
-	public KBFolder toUnescapedModel();
+	public com.liferay.knowledgebase.model.KBFolder toUnescapedModel();
 
 	@Override
 	public String toString();

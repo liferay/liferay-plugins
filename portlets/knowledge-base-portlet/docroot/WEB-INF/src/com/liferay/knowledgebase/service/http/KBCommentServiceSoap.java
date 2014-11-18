@@ -124,11 +124,44 @@ public class KBCommentServiceSoap {
 		}
 	}
 
+	public static com.liferay.knowledgebase.model.KBCommentSoap[] getKBComments(
+		long groupId, java.lang.String className, long classPK, int status,
+		int start, int end) throws RemoteException {
+		try {
+			java.util.List<com.liferay.knowledgebase.model.KBComment> returnValue =
+				KBCommentServiceUtil.getKBComments(groupId, className, classPK,
+					status, start, end);
+
+			return com.liferay.knowledgebase.model.KBCommentSoap.toSoapModels(returnValue);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
 	public static int getKBCommentsCount(long groupId, int status)
 		throws RemoteException {
 		try {
 			int returnValue = KBCommentServiceUtil.getKBCommentsCount(groupId,
 					status);
+
+			return returnValue;
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static int getKBCommentsCount(long groupId,
+		java.lang.String className, long classPK, int status)
+		throws RemoteException {
+		try {
+			int returnValue = KBCommentServiceUtil.getKBCommentsCount(groupId,
+					className, classPK, status);
 
 			return returnValue;
 		}

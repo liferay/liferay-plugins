@@ -53,27 +53,39 @@ public class KBCommentServiceClpInvoker {
 
 		_methodParameterTypes65 = new String[] { "long", "int", "int", "int" };
 
-		_methodName66 = "getKBCommentsCount";
+		_methodName66 = "getKBComments";
 
-		_methodParameterTypes66 = new String[] { "long", "int" };
+		_methodParameterTypes66 = new String[] {
+				"long", "java.lang.String", "long", "int", "int", "int"
+			};
 
-		_methodName67 = "updateKBComment";
+		_methodName67 = "getKBCommentsCount";
 
-		_methodParameterTypes67 = new String[] {
+		_methodParameterTypes67 = new String[] { "long", "int" };
+
+		_methodName68 = "getKBCommentsCount";
+
+		_methodParameterTypes68 = new String[] {
+				"long", "java.lang.String", "long", "int"
+			};
+
+		_methodName69 = "updateKBComment";
+
+		_methodParameterTypes69 = new String[] {
 				"long", "long", "long", "java.lang.String", "boolean", "int",
 				"com.liferay.portal.service.ServiceContext"
 			};
 
-		_methodName68 = "updateKBComment";
+		_methodName70 = "updateKBComment";
 
-		_methodParameterTypes68 = new String[] {
+		_methodParameterTypes70 = new String[] {
 				"long", "long", "long", "java.lang.String", "boolean",
 				"com.liferay.portal.service.ServiceContext"
 			};
 
-		_methodName69 = "updateStatus";
+		_methodName71 = "updateStatus";
 
-		_methodParameterTypes69 = new String[] {
+		_methodParameterTypes71 = new String[] {
 				"long", "int", "com.liferay.portal.service.ServiceContext"
 			};
 	}
@@ -117,12 +129,30 @@ public class KBCommentServiceClpInvoker {
 
 		if (_methodName66.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes66, parameterTypes)) {
-			return KBCommentServiceUtil.getKBCommentsCount(((Long)arguments[0]).longValue(),
-				((Integer)arguments[1]).intValue());
+			return KBCommentServiceUtil.getKBComments(((Long)arguments[0]).longValue(),
+				(java.lang.String)arguments[1],
+				((Long)arguments[2]).longValue(),
+				((Integer)arguments[3]).intValue(),
+				((Integer)arguments[4]).intValue(),
+				((Integer)arguments[5]).intValue());
 		}
 
 		if (_methodName67.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes67, parameterTypes)) {
+			return KBCommentServiceUtil.getKBCommentsCount(((Long)arguments[0]).longValue(),
+				((Integer)arguments[1]).intValue());
+		}
+
+		if (_methodName68.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes68, parameterTypes)) {
+			return KBCommentServiceUtil.getKBCommentsCount(((Long)arguments[0]).longValue(),
+				(java.lang.String)arguments[1],
+				((Long)arguments[2]).longValue(),
+				((Integer)arguments[3]).intValue());
+		}
+
+		if (_methodName69.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes69, parameterTypes)) {
 			return KBCommentServiceUtil.updateKBComment(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				((Long)arguments[2]).longValue(),
@@ -132,8 +162,8 @@ public class KBCommentServiceClpInvoker {
 				(com.liferay.portal.service.ServiceContext)arguments[6]);
 		}
 
-		if (_methodName68.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes68, parameterTypes)) {
+		if (_methodName70.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes70, parameterTypes)) {
 			return KBCommentServiceUtil.updateKBComment(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				((Long)arguments[2]).longValue(),
@@ -142,8 +172,8 @@ public class KBCommentServiceClpInvoker {
 				(com.liferay.portal.service.ServiceContext)arguments[5]);
 		}
 
-		if (_methodName69.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes69, parameterTypes)) {
+		if (_methodName71.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes71, parameterTypes)) {
 			return KBCommentServiceUtil.updateStatus(((Long)arguments[0]).longValue(),
 				((Integer)arguments[1]).intValue(),
 				(com.liferay.portal.service.ServiceContext)arguments[2]);
@@ -172,4 +202,8 @@ public class KBCommentServiceClpInvoker {
 	private String[] _methodParameterTypes68;
 	private String _methodName69;
 	private String[] _methodParameterTypes69;
+	private String _methodName70;
+	private String[] _methodParameterTypes70;
+	private String _methodName71;
+	private String[] _methodParameterTypes71;
 }

@@ -65,9 +65,26 @@ public class KBCommentServiceWrapper implements KBCommentService,
 
 	@Override
 	public java.util.List<com.liferay.knowledgebase.model.KBComment> getKBComments(
+		long groupId, java.lang.String className, long classPK, int status,
+		int start, int end)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _kbCommentService.getKBComments(groupId, className, classPK,
+			status, start, end);
+	}
+
+	@Override
+	public java.util.List<com.liferay.knowledgebase.model.KBComment> getKBComments(
 		long groupId, int status, int start, int end)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _kbCommentService.getKBComments(groupId, status, start, end);
+	}
+
+	@Override
+	public int getKBCommentsCount(long groupId, java.lang.String className,
+		long classPK, int status)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _kbCommentService.getKBCommentsCount(groupId, className,
+			classPK, status);
 	}
 
 	@Override
