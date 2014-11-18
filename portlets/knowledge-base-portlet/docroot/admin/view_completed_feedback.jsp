@@ -18,7 +18,7 @@
 
 <%
 String emptyResultsMessage = "no-completed-suggestion-was-found";
-int feedbackStatus = KBCommentConstants.STATUS_COMPLETED;
+int suggestionStatus = KBCommentConstants.STATUS_COMPLETED;
 String navItem = "viewCompletedFeedback";
 %>
 

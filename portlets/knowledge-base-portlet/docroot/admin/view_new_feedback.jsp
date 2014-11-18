@@ -18,7 +18,7 @@
 
 <%
 String emptyResultsMessage = "no-new-suggestion-was-found";
-int feedbackStatus = KBCommentConstants.STATUS_NEW;
+int suggestionStatus = KBCommentConstants.STATUS_NEW;
 String navItem = "viewNewFeedback";
 %>
 
