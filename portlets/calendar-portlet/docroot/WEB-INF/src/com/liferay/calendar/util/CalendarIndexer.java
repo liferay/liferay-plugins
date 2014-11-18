@@ -103,22 +103,21 @@ public class CalendarIndexer extends BaseIndexer {
 
 		Document document = getBaseModelDocument(PORTLET_ID, calendar);
 
+		document.addLocalizedText(
+			Field.DESCRIPTION, calendar.getDescriptionMap());
+		document.addLocalizedText(Field.NAME, calendar.getNameMap());
+		document.addKeyword("calendarId", calendar.getCalendarId());
+
 		Locale defaultLocale = LocaleUtil.getSiteDefault();
 
 		String defaultLanguageId = LocaleUtil.toLanguageId(defaultLocale);
 
-		document.addLocalizedText(
-			Field.DESCRIPTION, calendar.getDescriptionMap());
-		document.addLocalizedText(Field.NAME, calendar.getNameMap());
+		document.addText("defaultLanguageId", defaultLanguageId);
 
 		CalendarResource calendarResource = calendar.getCalendarResource();
 
 		document.addLocalizedText(
 			"resourceName", calendarResource.getNameMap());
-
-		document.addKeyword("calendarId", calendar.getCalendarId());
-
-		document.addText("defaultLanguageId", defaultLanguageId);
 
 		return document;
 	}
