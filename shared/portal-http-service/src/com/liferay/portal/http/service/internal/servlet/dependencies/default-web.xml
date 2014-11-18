@@ -11,13 +11,5 @@ http://git.eclipse.org/c/jetty/org.eclipse.jetty.project.git/tree/jetty-webapp/s
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_6.xsd"
 >
-	<servlet>
-		<servlet-name>default</servlet-name>
-		<servlet-class>com.liferay.portal.http.service.servlet.ResourceServlet</servlet-class>
-		<load-on-startup>0</load-on-startup>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>default</servlet-name>
-		<url-pattern>/</url-pattern>
-	</servlet-mapping>
+
 </web-app>
