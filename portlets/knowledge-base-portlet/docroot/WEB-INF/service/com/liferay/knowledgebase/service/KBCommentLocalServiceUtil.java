@@ -378,6 +378,12 @@ public class KBCommentLocalServiceUtil {
 	}
 
 	public static java.util.List<com.liferay.knowledgebase.model.KBComment> getKBComments(
+		java.lang.String className, long classPK, int status, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().getKBComments(className, classPK, status, start, end);
+	}
+
+	public static java.util.List<com.liferay.knowledgebase.model.KBComment> getKBComments(
 		java.lang.String className, long classPK, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException {

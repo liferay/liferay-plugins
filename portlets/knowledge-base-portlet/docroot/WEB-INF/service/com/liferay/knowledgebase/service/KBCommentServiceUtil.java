@@ -91,10 +91,28 @@ public class KBCommentServiceUtil {
 		return getService().getKBComments(groupId, status, start, end);
 	}
 
+	public static java.util.List<com.liferay.knowledgebase.model.KBComment> getKBComments(
+		long groupId, java.lang.String className, long classPK, int status,
+		int start, int end)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService()
+				   .getKBComments(groupId, className, classPK, status, start,
+			end);
+	}
+
 	public static int getKBCommentsCount(long groupId, int status)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService().getKBCommentsCount(groupId, status);
+	}
+
+	public static int getKBCommentsCount(long groupId,
+		java.lang.String className, long classPK, int status)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService()
+				   .getKBCommentsCount(groupId, className, classPK, status);
 	}
 
 	public static com.liferay.knowledgebase.model.KBComment updateKBComment(
