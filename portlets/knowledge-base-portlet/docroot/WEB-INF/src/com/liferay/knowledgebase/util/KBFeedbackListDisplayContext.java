@@ -18,11 +18,9 @@ import com.liferay.knowledgebase.model.KBArticle;
 import com.liferay.knowledgebase.model.KBArticleConstants;
 import com.liferay.knowledgebase.model.KBComment;
 import com.liferay.knowledgebase.model.KBCommentConstants;
-import com.liferay.knowledgebase.service.KBCommentLocalServiceUtil;
 import com.liferay.knowledgebase.service.KBCommentServiceUtil;
 import com.liferay.portal.kernel.dao.search.SearchContainer;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 
 import java.util.List;
 
@@ -46,18 +44,22 @@ public class KBFeedbackListDisplayContext {
 		_selectedNavItem = selectedNavItem;
 	}
 
-	public int getCompletedKBCommentsCount() {
-		return getKBCommentsCountByStatus(KBCommentConstants.STATUS_COMPLETED);
+
+	public int getCompletedKBCommentsCount()
+		throws PortalException {
+
+		return getKBCommentsCount(KBCommentConstants.STATUS_COMPLETED);
 	}
 
-	public int getInProgressKBCommentsCount() {
-		return getKBCommentsCountByStatus(
-			KBCommentConstants.STATUS_IN_PROGRESS);
+	public int getInProgressKBCommentsCount()
+		throws PortalException {
+
+		return getKBCommentsCount(KBCommentConstants.STATUS_IN_PROGRESS);
 	}
 
 	public List<KBComment> getKBComments(
 			int status, SearchContainer<KBComment> searchContainer)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		if (_kbArticle == null) {
 			return KBCommentServiceUtil.getKBComments(
@@ -73,7 +75,7 @@ public class KBFeedbackListDisplayContext {
 	}
 
 	public int getKBCommentsCount(int status)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		if (_kbArticle == null) {
 			return KBCommentServiceUtil.getKBCommentsCount(_groupId, status);
@@ -85,8 +87,8 @@ public class KBFeedbackListDisplayContext {
 		}
 	}
 
-	public int getNewKBCommentsCount() throws SystemException {
-		return getKBCommentsCountByStatus(KBCommentConstants.STATUS_NEW);
+	public int getNewKBCommentsCount() throws PortalException {
+		return getKBCommentsCount(KBCommentConstants.STATUS_NEW);
 	}
 
 	public String getSelectedNavItem() {
@@ -112,21 +114,6 @@ public class KBFeedbackListDisplayContext {
 
 	public boolean isShowKBArticleTitle() {
 		return _kbArticle == null;
-	}
-
-	protected int getKBCommentsCountByStatus(int status) {
-		int kbCommentsCount = 0;
-
-		if (_kbArticle == null) {
-			kbCommentsCount = KBCommentLocalServiceUtil.getKBCommentsCount(
-				_groupId, status);
-		}
-		else {
-			kbCommentsCount = KBCommentLocalServiceUtil.getKBCommentsCount(
-				KBArticle.class.getName(), _kbArticle.getClassPK(), status);
-		}
-
-		return kbCommentsCount;
 	}
 
 	private long _groupId;
