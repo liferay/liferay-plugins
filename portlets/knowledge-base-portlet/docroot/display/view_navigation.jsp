@@ -21,18 +21,7 @@ KBArticle kbArticle = (KBArticle)request.getAttribute(WebKeys.KNOWLEDGE_BASE_KB_
 
 KBNavigationDisplayContext kbNavigationDisplayContext = new KBNavigationDisplayContext(renderRequest, portletPreferences, kbArticle);
 
-List<Long> ancestorResourcePrimaryKeys = new ArrayList<Long>();
-
-if (kbArticle != null) {
-	KBArticle latestKBArticle = KBArticleLocalServiceUtil.getLatestKBArticle(kbArticle.getResourcePrimKey(), WorkflowConstants.STATUS_APPROVED);
-
-	ancestorResourcePrimaryKeys = latestKBArticle.getAncestorResourcePrimaryKeys();
-
-	Collections.reverse(ancestorResourcePrimaryKeys);
-}
-else {
-	ancestorResourcePrimaryKeys.add(KBFolderConstants.DEFAULT_PARENT_FOLDER_ID);
-}
+List<Long> ancestorResourcePrimaryKeys = kbNavigationDisplayContext.getAncestorResourcePrimaryKeys();
 
 long kbFolderClassNameId = PortalUtil.getClassNameId(KBFolderConstants.getClassName());
 
