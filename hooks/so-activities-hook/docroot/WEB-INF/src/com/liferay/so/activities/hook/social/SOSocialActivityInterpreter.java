@@ -48,6 +48,7 @@ import com.liferay.portlet.social.model.SocialActivitySet;
 import com.liferay.portlet.social.service.SocialActivityLocalServiceUtil;
 import com.liferay.portlet.social.service.SocialActivitySetLocalServiceUtil;
 import com.liferay.portlet.trash.util.TrashUtil;
+import com.liferay.portlet.wiki.model.WikiPageResource;
 import com.liferay.so.activities.util.PortletPropsValues;
 
 import java.text.Format;
@@ -133,6 +134,14 @@ public abstract class SOSocialActivityInterpreter
 				className);
 
 		return assetRendererFactory.getAssetRenderer(classPK);
+	}
+
+	protected String getAttachmentTitle(
+			SocialActivity activity, WikiPageResource pageResource,
+			ServiceContext serviceContext)
+		throws Exception {
+
+		return null;
 	}
 
 	protected String getBody(
