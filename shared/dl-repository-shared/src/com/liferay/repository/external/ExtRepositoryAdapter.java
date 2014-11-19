@@ -630,10 +630,6 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 			ExtRepositoryObjectAdapterType.FOLDER, parentFolder);
 	}
 
-	public String getRootFolderId() throws PortalException {
-		return _extRepository.getRootFolderKey();
-	}
-
 	@Override
 	public void getSubfolderIds(List<Long> folderIds, long folderId)
 		throws PortalException {
