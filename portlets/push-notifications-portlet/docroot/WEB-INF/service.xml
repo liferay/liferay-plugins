@@ -49,6 +49,7 @@
 		<column name="parentPushNotificationsEntryId" type="long" />
 		<column name="childrenPushNotificationsEntriesCount" type="int" />
 		<column name="payload" type="String" />
+		<column name="ratingsTotalScore" type="long" />
 
 		<!-- Order -->
 
@@ -65,5 +66,10 @@
 			<finder-column name="createTime" comparator="&gt;" />
 			<finder-column name="parentPushNotificationsEntryId" />
 		</finder>
+
+		<!-- References -->
+
+		<reference package-path="com.liferay.portlet.ratings" entity="RatingsEntry" />
+		<reference package-path="com.liferay.portlet.ratings" entity="RatingsStats" />
 	</entity>
 </service-builder>

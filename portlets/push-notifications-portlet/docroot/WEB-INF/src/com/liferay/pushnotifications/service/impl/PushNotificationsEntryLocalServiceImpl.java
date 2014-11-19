@@ -23,6 +23,8 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.model.User;
+import com.liferay.portal.service.ServiceContext;
+import com.liferay.portlet.ratings.model.RatingsStats;
 import com.liferay.pushnotifications.model.PushNotificationsDevice;
 import com.liferay.pushnotifications.model.PushNotificationsEntry;
 import com.liferay.pushnotifications.sender.PushNotificationsSender;
@@ -155,6 +157,31 @@ public class PushNotificationsEntryLocalServiceImpl
 
 		pushNotificationsEntry.setChildrenPushNotificationsEntriesCount(
 			childrenPushNotificationsEntriesCount);
+
+		pushNotificationsEntryPersistence.update(pushNotificationsEntry);
+
+		return pushNotificationsEntry;
+	}
+
+	public PushNotificationsEntry updateRatingsEntry(
+			long userId, long pushNotificationsEntryId, long score)
+		throws PortalException, SystemException {
+
+		String className = PushNotificationsEntry.class.getName();
+
+		ratingsEntryLocalService.updateEntry(
+			userId, className, pushNotificationsEntryId, score,
+			new ServiceContext());
+
+		PushNotificationsEntry pushNotificationsEntry =
+			pushNotificationsEntryPersistence.findByPrimaryKey(
+				pushNotificationsEntryId);
+
+		RatingsStats ratingsStats = ratingsStatsLocalService.getStats(
+			className, pushNotificationsEntryId);
+
+		pushNotificationsEntry.setRatingsTotalScore(
+			(long)ratingsStats.getTotalScore());
 
 		pushNotificationsEntryPersistence.update(pushNotificationsEntry);
 
