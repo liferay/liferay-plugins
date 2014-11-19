@@ -79,6 +79,8 @@ public class PushNotificationsEntryClp extends BaseModelImpl<PushNotificationsEn
 		attributes.put("createTime", getCreateTime());
 		attributes.put("parentPushNotificationsEntryId",
 			getParentPushNotificationsEntryId());
+		attributes.put("childrenPushNotificationsEntriesCount",
+			getChildrenPushNotificationsEntriesCount());
 		attributes.put("payload", getPayload());
 
 		return attributes;
@@ -110,6 +112,13 @@ public class PushNotificationsEntryClp extends BaseModelImpl<PushNotificationsEn
 
 		if (parentPushNotificationsEntryId != null) {
 			setParentPushNotificationsEntryId(parentPushNotificationsEntryId);
+		}
+
+		Integer childrenPushNotificationsEntriesCount = (Integer)attributes.get(
+				"childrenPushNotificationsEntriesCount");
+
+		if (childrenPushNotificationsEntriesCount != null) {
+			setChildrenPushNotificationsEntriesCount(childrenPushNotificationsEntriesCount);
 		}
 
 		String payload = (String)attributes.get("payload");
@@ -227,6 +236,32 @@ public class PushNotificationsEntryClp extends BaseModelImpl<PushNotificationsEn
 	}
 
 	@Override
+	public int getChildrenPushNotificationsEntriesCount() {
+		return _childrenPushNotificationsEntriesCount;
+	}
+
+	@Override
+	public void setChildrenPushNotificationsEntriesCount(
+		int childrenPushNotificationsEntriesCount) {
+		_childrenPushNotificationsEntriesCount = childrenPushNotificationsEntriesCount;
+
+		if (_pushNotificationsEntryRemoteModel != null) {
+			try {
+				Class<?> clazz = _pushNotificationsEntryRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setChildrenPushNotificationsEntriesCount",
+						int.class);
+
+				method.invoke(_pushNotificationsEntryRemoteModel,
+					childrenPushNotificationsEntriesCount);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
+	}
+
+	@Override
 	public String getPayload() {
 		return _payload;
 	}
@@ -324,6 +359,7 @@ public class PushNotificationsEntryClp extends BaseModelImpl<PushNotificationsEn
 		clone.setUserId(getUserId());
 		clone.setCreateTime(getCreateTime());
 		clone.setParentPushNotificationsEntryId(getParentPushNotificationsEntryId());
+		clone.setChildrenPushNotificationsEntriesCount(getChildrenPushNotificationsEntriesCount());
 		clone.setPayload(getPayload());
 
 		return clone;
@@ -383,7 +419,7 @@ public class PushNotificationsEntryClp extends BaseModelImpl<PushNotificationsEn
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(11);
+		StringBundler sb = new StringBundler(13);
 
 		sb.append("{pushNotificationsEntryId=");
 		sb.append(getPushNotificationsEntryId());
@@ -393,6 +429,8 @@ public class PushNotificationsEntryClp extends BaseModelImpl<PushNotificationsEn
 		sb.append(getCreateTime());
 		sb.append(", parentPushNotificationsEntryId=");
 		sb.append(getParentPushNotificationsEntryId());
+		sb.append(", childrenPushNotificationsEntriesCount=");
+		sb.append(getChildrenPushNotificationsEntriesCount());
 		sb.append(", payload=");
 		sb.append(getPayload());
 		sb.append("}");
@@ -402,7 +440,7 @@ public class PushNotificationsEntryClp extends BaseModelImpl<PushNotificationsEn
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(19);
+		StringBundler sb = new StringBundler(22);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.pushnotifications.model.PushNotificationsEntry");
@@ -425,6 +463,10 @@ public class PushNotificationsEntryClp extends BaseModelImpl<PushNotificationsEn
 		sb.append(getParentPushNotificationsEntryId());
 		sb.append("]]></column-value></column>");
 		sb.append(
+			"<column><column-name>childrenPushNotificationsEntriesCount</column-name><column-value><![CDATA[");
+		sb.append(getChildrenPushNotificationsEntriesCount());
+		sb.append("]]></column-value></column>");
+		sb.append(
 			"<column><column-name>payload</column-name><column-value><![CDATA[");
 		sb.append(getPayload());
 		sb.append("]]></column-value></column>");
@@ -439,6 +481,7 @@ public class PushNotificationsEntryClp extends BaseModelImpl<PushNotificationsEn
 	private String _userUuid;
 	private long _createTime;
 	private long _parentPushNotificationsEntryId;
+	private int _childrenPushNotificationsEntriesCount;
 	private String _payload;
 	private BaseModel<?> _pushNotificationsEntryRemoteModel;
 	private Class<?> _clpSerializerClass = com.liferay.pushnotifications.service.ClpSerializer.class;

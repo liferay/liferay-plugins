@@ -307,6 +307,13 @@ public class PushNotificationsEntryLocalServiceUtil {
 			.sendPushNotification(fromUserId, toUserId, payloadJSONObject);
 	}
 
+	public static com.liferay.pushnotifications.model.PushNotificationsEntry updateChildrenPushNotificationsEntriesCount(
+		long parentPushNotificationsEntryId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService()
+				   .updateChildrenPushNotificationsEntriesCount(parentPushNotificationsEntryId);
+	}
+
 	public static void clearService() {
 		_service = null;
 	}

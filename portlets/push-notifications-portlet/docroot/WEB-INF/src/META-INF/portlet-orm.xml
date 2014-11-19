@@ -28,6 +28,7 @@
 			<basic name="userId" />
 			<basic name="createTime" />
 			<basic name="parentPushNotificationsEntryId" />
+			<basic name="childrenPushNotificationsEntriesCount" />
 			<basic name="payload" />
 			<transient name="modelAttributes" />
 			<transient name="primaryKey" />

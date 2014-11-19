@@ -36,7 +36,7 @@ public class PushNotificationsEntryCacheModel implements CacheModel<PushNotifica
 	Externalizable {
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(11);
+		StringBundler sb = new StringBundler(13);
 
 		sb.append("{pushNotificationsEntryId=");
 		sb.append(pushNotificationsEntryId);
@@ -46,6 +46,8 @@ public class PushNotificationsEntryCacheModel implements CacheModel<PushNotifica
 		sb.append(createTime);
 		sb.append(", parentPushNotificationsEntryId=");
 		sb.append(parentPushNotificationsEntryId);
+		sb.append(", childrenPushNotificationsEntriesCount=");
+		sb.append(childrenPushNotificationsEntriesCount);
 		sb.append(", payload=");
 		sb.append(payload);
 		sb.append("}");
@@ -61,6 +63,7 @@ public class PushNotificationsEntryCacheModel implements CacheModel<PushNotifica
 		pushNotificationsEntryImpl.setUserId(userId);
 		pushNotificationsEntryImpl.setCreateTime(createTime);
 		pushNotificationsEntryImpl.setParentPushNotificationsEntryId(parentPushNotificationsEntryId);
+		pushNotificationsEntryImpl.setChildrenPushNotificationsEntriesCount(childrenPushNotificationsEntriesCount);
 
 		if (payload == null) {
 			pushNotificationsEntryImpl.setPayload(StringPool.BLANK);
@@ -80,6 +83,7 @@ public class PushNotificationsEntryCacheModel implements CacheModel<PushNotifica
 		userId = objectInput.readLong();
 		createTime = objectInput.readLong();
 		parentPushNotificationsEntryId = objectInput.readLong();
+		childrenPushNotificationsEntriesCount = objectInput.readInt();
 		payload = objectInput.readUTF();
 	}
 
@@ -90,6 +94,7 @@ public class PushNotificationsEntryCacheModel implements CacheModel<PushNotifica
 		objectOutput.writeLong(userId);
 		objectOutput.writeLong(createTime);
 		objectOutput.writeLong(parentPushNotificationsEntryId);
+		objectOutput.writeInt(childrenPushNotificationsEntriesCount);
 
 		if (payload == null) {
 			objectOutput.writeUTF(StringPool.BLANK);
@@ -103,5 +108,6 @@ public class PushNotificationsEntryCacheModel implements CacheModel<PushNotifica
 	public long userId;
 	public long createTime;
 	public long parentPushNotificationsEntryId;
+	public int childrenPushNotificationsEntriesCount;
 	public String payload;
 }

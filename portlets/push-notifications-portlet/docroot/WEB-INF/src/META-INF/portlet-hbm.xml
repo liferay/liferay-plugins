@@ -22,6 +22,7 @@
 		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="createTime" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="parentPushNotificationsEntryId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="childrenPushNotificationsEntriesCount" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
 		<property name="payload" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 	</class>
 </hibernate-mapping>

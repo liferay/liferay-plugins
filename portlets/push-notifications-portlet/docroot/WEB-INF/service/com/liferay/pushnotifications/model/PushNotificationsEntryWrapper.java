@@ -55,6 +55,8 @@ public class PushNotificationsEntryWrapper implements PushNotificationsEntry,
 		attributes.put("createTime", getCreateTime());
 		attributes.put("parentPushNotificationsEntryId",
 			getParentPushNotificationsEntryId());
+		attributes.put("childrenPushNotificationsEntriesCount",
+			getChildrenPushNotificationsEntriesCount());
 		attributes.put("payload", getPayload());
 
 		return attributes;
@@ -86,6 +88,13 @@ public class PushNotificationsEntryWrapper implements PushNotificationsEntry,
 
 		if (parentPushNotificationsEntryId != null) {
 			setParentPushNotificationsEntryId(parentPushNotificationsEntryId);
+		}
+
+		Integer childrenPushNotificationsEntriesCount = (Integer)attributes.get(
+				"childrenPushNotificationsEntriesCount");
+
+		if (childrenPushNotificationsEntriesCount != null) {
+			setChildrenPushNotificationsEntriesCount(childrenPushNotificationsEntriesCount);
 		}
 
 		String payload = (String)attributes.get("payload");
@@ -216,6 +225,27 @@ public class PushNotificationsEntryWrapper implements PushNotificationsEntry,
 	public void setParentPushNotificationsEntryId(
 		long parentPushNotificationsEntryId) {
 		_pushNotificationsEntry.setParentPushNotificationsEntryId(parentPushNotificationsEntryId);
+	}
+
+	/**
+	* Returns the children push notifications entries count of this push notifications entry.
+	*
+	* @return the children push notifications entries count of this push notifications entry
+	*/
+	@Override
+	public int getChildrenPushNotificationsEntriesCount() {
+		return _pushNotificationsEntry.getChildrenPushNotificationsEntriesCount();
+	}
+
+	/**
+	* Sets the children push notifications entries count of this push notifications entry.
+	*
+	* @param childrenPushNotificationsEntriesCount the children push notifications entries count of this push notifications entry
+	*/
+	@Override
+	public void setChildrenPushNotificationsEntriesCount(
+		int childrenPushNotificationsEntriesCount) {
+		_pushNotificationsEntry.setChildrenPushNotificationsEntriesCount(childrenPushNotificationsEntriesCount);
 	}
 
 	/**
