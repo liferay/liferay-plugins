@@ -12,26 +12,22 @@
  * details.
  */
 
-package com.liferay.knowledgebase.hook.upgrade;
+package com.liferay.knowledgebase.hook.upgrade.v1_3_4;
 
-import com.liferay.knowledgebase.hook.upgrade.v1_3_4.UpgradePortletPreferences;
-import com.liferay.knowledgebase.hook.upgrade.v1_3_4.UpgradeResourceAction;
+import com.liferay.knowledgebase.util.ActionKeys;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 
 /**
  * @author Adolfo Pérez
  */
-public class UpgradeProcess_1_3_4 extends UpgradeProcess {
-
-	@Override
-	public int getThreshold() {
-		return 134;
-	}
+public class UpgradeResourceAction extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {
-		upgrade(UpgradePortletPreferences.class);
-		upgrade(UpgradeResourceAction.class);
+		runSQL(
+			"update ResourceAction set actionId = '" +
+				ActionKeys.VIEW_KB_SUGGESTIONS + "' where actionId = " +
+					"'VIEW_KB_FEEDBACK'");
 	}
 
 }
