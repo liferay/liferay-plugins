@@ -102,6 +102,10 @@ public interface PushNotificationsEntryLocalService extends BaseLocalService,
 		long pushNotificationsEntryId)
 		throws com.liferay.portal.kernel.exception.PortalException;
 
+	public com.liferay.pushnotifications.model.PushNotificationsEntry dislikePushNotificationsEntry(
+		long userId, long pushNotificationsEntryId)
+		throws com.liferay.portal.kernel.exception.PortalException;
+
 	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery();
 
 	/**
@@ -232,6 +236,10 @@ public interface PushNotificationsEntryLocalService extends BaseLocalService,
 		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
 		throws java.lang.Throwable;
 
+	public com.liferay.pushnotifications.model.PushNotificationsEntry likePushNotificationsEntry(
+		long userId, long pushNotificationsEntryId)
+		throws com.liferay.portal.kernel.exception.PortalException;
+
 	public void sendPushNotification(long fromUserId,
 		com.liferay.portal.kernel.json.JSONObject payloadJSONObject)
 		throws com.liferay.portal.kernel.exception.PortalException;
@@ -260,8 +268,4 @@ public interface PushNotificationsEntryLocalService extends BaseLocalService,
 	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.REINDEX)
 	public com.liferay.pushnotifications.model.PushNotificationsEntry updatePushNotificationsEntry(
 		com.liferay.pushnotifications.model.PushNotificationsEntry pushNotificationsEntry);
-
-	public com.liferay.pushnotifications.model.PushNotificationsEntry updateRatingsEntry(
-		long userId, long pushNotificationsEntryId, long score)
-		throws com.liferay.portal.kernel.exception.PortalException;
 }

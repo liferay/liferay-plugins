@@ -103,6 +103,14 @@ public class PushNotificationsEntryLocalServiceWrapper
 	}
 
 	@Override
+	public com.liferay.pushnotifications.model.PushNotificationsEntry dislikePushNotificationsEntry(
+		long userId, long pushNotificationsEntryId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _pushNotificationsEntryLocalService.dislikePushNotificationsEntry(userId,
+			pushNotificationsEntryId);
+	}
+
+	@Override
 	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
 		return _pushNotificationsEntryLocalService.dynamicQuery();
 	}
@@ -275,6 +283,14 @@ public class PushNotificationsEntryLocalServiceWrapper
 	}
 
 	@Override
+	public com.liferay.pushnotifications.model.PushNotificationsEntry likePushNotificationsEntry(
+		long userId, long pushNotificationsEntryId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _pushNotificationsEntryLocalService.likePushNotificationsEntry(userId,
+			pushNotificationsEntryId);
+	}
+
+	@Override
 	public void sendPushNotification(long fromUserId,
 		com.liferay.portal.kernel.json.JSONObject payloadJSONObject)
 		throws com.liferay.portal.kernel.exception.PortalException {
@@ -317,14 +333,6 @@ public class PushNotificationsEntryLocalServiceWrapper
 	public com.liferay.pushnotifications.model.PushNotificationsEntry updatePushNotificationsEntry(
 		com.liferay.pushnotifications.model.PushNotificationsEntry pushNotificationsEntry) {
 		return _pushNotificationsEntryLocalService.updatePushNotificationsEntry(pushNotificationsEntry);
-	}
-
-	@Override
-	public com.liferay.pushnotifications.model.PushNotificationsEntry updateRatingsEntry(
-		long userId, long pushNotificationsEntryId, long score)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _pushNotificationsEntryLocalService.updateRatingsEntry(userId,
-			pushNotificationsEntryId, score);
 	}
 
 	/**

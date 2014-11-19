@@ -133,29 +133,33 @@ public class PushNotificationsEntryLocalServiceClpInvoker {
 				"long", "com.liferay.portal.kernel.json.JSONObject"
 			};
 
-		_methodName66 = "getPushNotificationsEntries";
+		_methodName66 = "dislikePushNotificationsEntry";
 
-		_methodParameterTypes66 = new String[] { "long", "long", "int", "int" };
+		_methodParameterTypes66 = new String[] { "long", "long" };
 
-		_methodName67 = "sendPushNotification";
+		_methodName67 = "getPushNotificationsEntries";
 
-		_methodParameterTypes67 = new String[] {
+		_methodParameterTypes67 = new String[] { "long", "long", "int", "int" };
+
+		_methodName68 = "likePushNotificationsEntry";
+
+		_methodParameterTypes68 = new String[] { "long", "long" };
+
+		_methodName69 = "sendPushNotification";
+
+		_methodParameterTypes69 = new String[] {
 				"long", "com.liferay.portal.kernel.json.JSONObject"
 			};
 
-		_methodName68 = "sendPushNotification";
+		_methodName70 = "sendPushNotification";
 
-		_methodParameterTypes68 = new String[] {
+		_methodParameterTypes70 = new String[] {
 				"long", "long", "com.liferay.portal.kernel.json.JSONObject"
 			};
 
-		_methodName69 = "updateChildrenPushNotificationsEntriesCount";
+		_methodName71 = "updateChildrenPushNotificationsEntriesCount";
 
-		_methodParameterTypes69 = new String[] { "long" };
-
-		_methodName70 = "updateRatingsEntry";
-
-		_methodParameterTypes70 = new String[] { "long", "long", "long" };
+		_methodParameterTypes71 = new String[] { "long" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -277,22 +281,34 @@ public class PushNotificationsEntryLocalServiceClpInvoker {
 
 		if (_methodName66.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes66, parameterTypes)) {
+			return PushNotificationsEntryLocalServiceUtil.dislikePushNotificationsEntry(((Long)arguments[0]).longValue(),
+				((Long)arguments[1]).longValue());
+		}
+
+		if (_methodName67.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes67, parameterTypes)) {
 			return PushNotificationsEntryLocalServiceUtil.getPushNotificationsEntries(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				((Integer)arguments[2]).intValue(),
 				((Integer)arguments[3]).intValue());
 		}
 
-		if (_methodName67.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes67, parameterTypes)) {
+		if (_methodName68.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes68, parameterTypes)) {
+			return PushNotificationsEntryLocalServiceUtil.likePushNotificationsEntry(((Long)arguments[0]).longValue(),
+				((Long)arguments[1]).longValue());
+		}
+
+		if (_methodName69.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes69, parameterTypes)) {
 			PushNotificationsEntryLocalServiceUtil.sendPushNotification(((Long)arguments[0]).longValue(),
 				(com.liferay.portal.kernel.json.JSONObject)arguments[1]);
 
 			return null;
 		}
 
-		if (_methodName68.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes68, parameterTypes)) {
+		if (_methodName70.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes70, parameterTypes)) {
 			PushNotificationsEntryLocalServiceUtil.sendPushNotification(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				(com.liferay.portal.kernel.json.JSONObject)arguments[2]);
@@ -300,16 +316,9 @@ public class PushNotificationsEntryLocalServiceClpInvoker {
 			return null;
 		}
 
-		if (_methodName69.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes69, parameterTypes)) {
+		if (_methodName71.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes71, parameterTypes)) {
 			return PushNotificationsEntryLocalServiceUtil.updateChildrenPushNotificationsEntriesCount(((Long)arguments[0]).longValue());
-		}
-
-		if (_methodName70.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes70, parameterTypes)) {
-			return PushNotificationsEntryLocalServiceUtil.updateRatingsEntry(((Long)arguments[0]).longValue(),
-				((Long)arguments[1]).longValue(),
-				((Long)arguments[2]).longValue());
 		}
 
 		throw new UnsupportedOperationException();
@@ -367,4 +376,6 @@ public class PushNotificationsEntryLocalServiceClpInvoker {
 	private String[] _methodParameterTypes69;
 	private String _methodName70;
 	private String[] _methodParameterTypes70;
+	private String _methodName71;
+	private String[] _methodParameterTypes71;
 }
