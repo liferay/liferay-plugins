@@ -17,46 +17,46 @@
 <%@ include file="/admin/init.jsp" %>
 
 <%
-KBFeedbackListDisplayContext kbFeedbackListDisplayContext = (KBFeedbackListDisplayContext)request.getAttribute(WebKeys.KNOWLEDGE_BASE_KB_SUGGESTION_LIST_DISPLAY_CONTEXT);
+KBSuggestionListDisplayContext kbSuggestionListDisplayContext = (KBSuggestionListDisplayContext)request.getAttribute(WebKeys.KNOWLEDGE_BASE_KB_SUGGESTION_LIST_DISPLAY_CONTEXT);
 
-String navItem = kbFeedbackListDisplayContext.getSelectedNavItem();
+String navItem = kbSuggestionListDisplayContext.getSelectedNavItem();
 %>
 
 <aui:nav-bar>
 	<aui:nav cssClass="navbar-nav">
 
 		<%
-		int newKBCommentsCount = kbFeedbackListDisplayContext.getNewKBCommentsCount();
+		int newKBCommentsCount = kbSuggestionListDisplayContext.getNewKBCommentsCount();
 
 		String newKBCommentsLabel = String.format("%s (%s)", LanguageUtil.get(request, "new"), newKBCommentsCount);
 		%>
 
 		<aui:nav-item
-			href='<%= kbFeedbackListDisplayContext.getViewFeedbackURL(renderResponse, "viewNewFeedback") %>'
+			href='<%= kbSuggestionListDisplayContext.getViewSuggestionURL(renderResponse, "viewNewFeedback") %>'
 			label="<%= newKBCommentsLabel %>"
 			selected='<%= navItem.equals("viewNewFeedback") %>'
 		/>
 
 		<%
-		int inProgressKBCommentsCount = kbFeedbackListDisplayContext.getInProgressKBCommentsCount();
+		int inProgressKBCommentsCount = kbSuggestionListDisplayContext.getInProgressKBCommentsCount();
 
 		String inProgressKBCommentsLabel = String.format("%s (%s)", LanguageUtil.get(request, "in-progress"), inProgressKBCommentsCount);
 		%>
 
 		<aui:nav-item
-			href='<%= kbFeedbackListDisplayContext.getViewFeedbackURL(renderResponse, "viewInProgressFeedback") %>'
+			href='<%= kbSuggestionListDisplayContext.getViewSuggestionURL(renderResponse, "viewInProgressFeedback") %>'
 			label="<%= inProgressKBCommentsLabel %>"
 			selected='<%= navItem.equals("viewInProgressFeedback") %>'
 		/>
 
 		<%
-		int completedKBCommentsCount = kbFeedbackListDisplayContext.getCompletedKBCommentsCount();
+		int completedKBCommentsCount = kbSuggestionListDisplayContext.getCompletedKBCommentsCount();
 
 		String completedLabel = String.format("%s (%s)", LanguageUtil.get(request, "resolved"), completedKBCommentsCount);
 		%>
 
 		<aui:nav-item
-			href='<%= kbFeedbackListDisplayContext.getViewFeedbackURL(renderResponse, "viewCompletedFeedback") %>'
+			href='<%= kbSuggestionListDisplayContext.getViewSuggestionURL(renderResponse, "viewCompletedFeedback") %>'
 			label="<%= completedLabel %>"
 			selected='<%= navItem.equals("viewCompletedFeedback") %>'
 		/>

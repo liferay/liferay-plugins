@@ -25,7 +25,7 @@ page import="com.liferay.knowledgebase.admin.search.KBTemplateSearchTerms" %><%@
 page import="com.liferay.knowledgebase.admin.util.AdminUtil" %><%@
 page import="com.liferay.knowledgebase.admin.util.KBArticleAssetEntriesUtil" %><%@
 page import="com.liferay.knowledgebase.model.KBCommentConstants" %><%@
-page import="com.liferay.knowledgebase.util.KBFeedbackListDisplayContext" %><%@
+page import="com.liferay.knowledgebase.util.KBSuggestionListDisplayContext" %><%@
 page import="com.liferay.portal.model.Portlet" %><%@
 page import="com.liferay.portal.service.PortletLocalServiceUtil" %>
 
