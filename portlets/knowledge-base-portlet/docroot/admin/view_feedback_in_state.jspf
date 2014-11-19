@@ -15,7 +15,7 @@
 --%>
 
 <%
-KBFeedbackListDisplayContext kbFeedbackListDisplayContext = (KBFeedbackListDisplayContext)request.getAttribute(WebKeys.KNOWLEDGE_BASE_KB_SUGGESTION_LIST_DISPLAY_CONTEXT);
+KBSuggestionListDisplayContext kbSuggestionListDisplayContext = (KBSuggestionListDisplayContext)request.getAttribute(WebKeys.KNOWLEDGE_BASE_KB_SUGGESTION_LIST_DISPLAY_CONTEXT);
 %>
 
 <liferay-portlet:renderURL varImpl="iteratorURL">
@@ -23,17 +23,17 @@ KBFeedbackListDisplayContext kbFeedbackListDisplayContext = (KBFeedbackListDispl
 </liferay-portlet:renderURL>
 
 <%
-kbFeedbackListDisplayContext.getViewFeedbackURL(iteratorURL, navItem);
+kbSuggestionListDisplayContext.getViewSuggestionURL(iteratorURL, navItem);
 %>
 
 <div id="<portlet:namespace />kbArticleCommentsWrapper">
 	<liferay-ui:search-container
 		emptyResultsMessage="<%= emptyResultsMessage %>"
 		iteratorURL="<%= iteratorURL %>"
-		total="<%= kbFeedbackListDisplayContext.getKBCommentsCount(suggestionStatus) %>"
+		total="<%= kbSuggestionListDisplayContext.getKBCommentsCount(suggestionStatus) %>"
 	>
 		<liferay-ui:search-container-results
-			results="<%= kbFeedbackListDisplayContext.getKBComments(suggestionStatus, searchContainer) %>"
+			results="<%= kbSuggestionListDisplayContext.getKBComments(suggestionStatus, searchContainer) %>"
 		/>
 
 		<liferay-ui:search-container-row

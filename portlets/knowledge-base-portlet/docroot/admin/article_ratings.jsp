@@ -1,3 +1,5 @@
+<%@ page
+		import="com.liferay.knowledgebase.util.KBSuggestionListDisplayContext" %>
 <%--
 /**
  * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
@@ -173,9 +175,9 @@ boolean hasUpdatePermission = KBArticlePermission.contains(permissionChecker, kb
 				<%
 				String navItem = ParamUtil.getString(request, "navItem", "viewNewFeedback");
 
-				KBFeedbackListDisplayContext kbFeedbackListDisplayContext = new KBFeedbackListDisplayContext(kbArticle, navItem);
+				KBSuggestionListDisplayContext kbSuggestionListDisplayContext = new KBSuggestionListDisplayContext(kbArticle, navItem);
 
-				request.setAttribute(WebKeys.KNOWLEDGE_BASE_KB_SUGGESTION_LIST_DISPLAY_CONTEXT, kbFeedbackListDisplayContext);
+				request.setAttribute(WebKeys.KNOWLEDGE_BASE_KB_SUGGESTION_LIST_DISPLAY_CONTEXT, kbSuggestionListDisplayContext);
 				%>
 
 				<div class='kb-article-previous-comments <%= expanded ? StringPool.BLANK : "hide" %>' id="<portlet:namespace />previousCommentsContainer">

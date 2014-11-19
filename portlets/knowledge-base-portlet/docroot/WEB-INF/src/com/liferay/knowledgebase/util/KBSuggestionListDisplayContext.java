@@ -31,16 +31,18 @@ import javax.portlet.RenderResponse;
 /**
  * @author Adolfo Pérez
  */
-public class KBFeedbackListDisplayContext {
+public class KBSuggestionListDisplayContext {
 
-	public KBFeedbackListDisplayContext(
+	public KBSuggestionListDisplayContext(
 		KBArticle kbArticle, String selectedNavItem) {
 
 		_kbArticle = kbArticle;
 		_selectedNavItem = selectedNavItem;
 	}
 
-	public KBFeedbackListDisplayContext(long groupId, String selectedNavItem) {
+	public KBSuggestionListDisplayContext(
+		long groupId, String selectedNavItem) {
+
 		_groupId = groupId;
 		_selectedNavItem = selectedNavItem;
 	}
@@ -95,7 +97,7 @@ public class KBFeedbackListDisplayContext {
 		return _selectedNavItem;
 	}
 
-	public String getViewFeedbackURL(PortletURL portletURL, String navItem) {
+	public String getViewSuggestionURL(PortletURL portletURL, String navItem) {
 		portletURL.setParameter("navItem", navItem);
 		portletURL.setParameter("expanded", Boolean.TRUE.toString());
 
@@ -103,13 +105,13 @@ public class KBFeedbackListDisplayContext {
 			portletURL.setParameter("mvcPath", "/admin/view_feedback.jsp");
 		}
 
-		return portletURL.toString() + "#kbFeedback";
+		return portletURL.toString() + "#kbSuggestions";
 	}
 
-	public String getViewFeedbackURL(
+	public String getViewSuggestionURL(
 		RenderResponse renderResponse, String navItem) {
 
-		return getViewFeedbackURL(renderResponse.createRenderURL(), navItem);
+		return getViewSuggestionURL(renderResponse.createRenderURL(), navItem);
 	}
 
 	public boolean isShowKBArticleTitle() {
