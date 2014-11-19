@@ -122,7 +122,7 @@ public class AdminUtil {
 		PortletPreferences preferences) {
 
 		String emailKBArticleSuggestionInProgressBody = preferences.getValue(
-			"emailKBArticleFeedbackInProgressBody", StringPool.BLANK);
+			"emailKBArticleSuggestionInProgressBody", StringPool.BLANK);
 
 		if (Validator.isNotNull(emailKBArticleSuggestionInProgressBody)) {
 			return emailKBArticleSuggestionInProgressBody;
@@ -137,7 +137,7 @@ public class AdminUtil {
 		PortletPreferences preferences) {
 
 		String emailKBArticleSuggestionInProgressEnabled = preferences.getValue(
-			"emailKBArticleFeedbackInProgressEnabled", StringPool.BLANK);
+			"emailKBArticleSuggestionInProgressEnabled", StringPool.BLANK);
 
 		if (Validator.isNotNull(emailKBArticleSuggestionInProgressEnabled)) {
 			return GetterUtil.getBoolean(
@@ -152,7 +152,7 @@ public class AdminUtil {
 		PortletPreferences preferences) {
 
 		String emailKBArticleSuggestionInProgressSubject = preferences.getValue(
-			"emailKBArticleFeedbackInProgressSubject", StringPool.BLANK);
+			"emailKBArticleSuggestionInProgressSubject", StringPool.BLANK);
 
 		if (Validator.isNotNull(emailKBArticleSuggestionInProgressSubject)) {
 			return emailKBArticleSuggestionInProgressSubject;
@@ -209,7 +209,7 @@ public class AdminUtil {
 		PortletPreferences preferences) {
 
 		String emailKBArticleSuggestionReceivedBody = preferences.getValue(
-			"emailKBArticleFeedbackReceivedBody", StringPool.BLANK);
+			"emailKBArticleSuggestionReceivedBody", StringPool.BLANK);
 
 		if (Validator.isNotNull(emailKBArticleSuggestionReceivedBody)) {
 			return emailKBArticleSuggestionReceivedBody;
@@ -223,7 +223,7 @@ public class AdminUtil {
 		PortletPreferences preferences) {
 
 		String emailKBArticleSuggestionReceivedEnabled = preferences.getValue(
-			"emailKBArticleFeedbackReceivedEnabled", StringPool.BLANK);
+			"emailKBArticleSuggestionReceivedEnabled", StringPool.BLANK);
 
 		if (Validator.isNotNull(emailKBArticleSuggestionReceivedEnabled)) {
 			return GetterUtil.getBoolean(
@@ -238,7 +238,7 @@ public class AdminUtil {
 		PortletPreferences preferences) {
 
 		String emailKBArticleSuggestionReceivedSubject = preferences.getValue(
-			"emailKBArticleFeedbackReceivedSubject", StringPool.BLANK);
+			"emailKBArticleSuggestionReceivedSubject", StringPool.BLANK);
 
 		if (Validator.isNotNull(emailKBArticleSuggestionReceivedSubject)) {
 			return emailKBArticleSuggestionReceivedSubject;
@@ -253,7 +253,7 @@ public class AdminUtil {
 		PortletPreferences preferences) {
 
 		String emailKBArticleSuggestionResolvedBody = preferences.getValue(
-			"emailKBArticleFeedbackResolvedBody", StringPool.BLANK);
+			"emailKBArticleSuggestionResolvedBody", StringPool.BLANK);
 
 		if (Validator.isNotNull(emailKBArticleSuggestionResolvedBody)) {
 			return emailKBArticleSuggestionResolvedBody;
@@ -267,7 +267,7 @@ public class AdminUtil {
 		PortletPreferences preferences) {
 
 		String emailKBArticleSuggestionResolvedEnabled = preferences.getValue(
-			"emailKBArticleFeedbackResolvedEnabled", StringPool.BLANK);
+			"emailKBArticleSuggestionResolvedEnabled", StringPool.BLANK);
 
 		if (Validator.isNotNull(emailKBArticleSuggestionResolvedEnabled)) {
 			return GetterUtil.getBoolean(
@@ -282,7 +282,7 @@ public class AdminUtil {
 		PortletPreferences preferences) {
 
 		String emailKBArticleSuggestionResolvedSubject = preferences.getValue(
-			"emailKBArticleFeedbackResolvedSubject", StringPool.BLANK);
+			"emailKBArticleSuggestionResolvedSubject", StringPool.BLANK);
 
 		if (Validator.isNotNull(emailKBArticleSuggestionResolvedSubject)) {
 			return emailKBArticleSuggestionResolvedSubject;

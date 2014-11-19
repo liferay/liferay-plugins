@@ -27,17 +27,17 @@ boolean emailKBArticleAddedEnabled = ParamUtil.getBoolean(request, "emailKBArtic
 String emailKBArticleAddedSubject = ParamUtil.getString(request, "emailKBArticleAddedSubject", AdminUtil.getEmailKBArticleAddedSubject(portletPreferences));
 String emailKBArticleAddedBody = ParamUtil.getString(request, "emailKBArticleAddedBody", AdminUtil.getEmailKBArticleAddedBody(portletPreferences));
 
-boolean emailKBArticleFeedbackInProgressEnabled = ParamUtil.getBoolean(request, "emailKBArticleFeedbackInProgressEnabled", AdminUtil.getEmailKBArticleSuggestionInProgressEnabled(portletPreferences));
-String emailKBArticleFeedbackInProgressSubject = ParamUtil.getString(request, "emailKBArticleFeedbackInProgressSubject", AdminUtil.getEmailKBArticleSuggestionInProgressSubject(portletPreferences));
-String emailKBArticleFeedbackInProgressBody = ParamUtil.getString(request, "emailKBArticleFeedbackInProgressBody", AdminUtil.getEmailKBArticleSuggestionInProgressBody(portletPreferences));
+boolean emailKBArticleSuggestionInProgressEnabled = ParamUtil.getBoolean(request, "emailKBArticleSuggestionInProgressEnabled", AdminUtil.getEmailKBArticleSuggestionInProgressEnabled(portletPreferences));
+String emailKBArticleSuggestionInProgressSubject = ParamUtil.getString(request, "emailKBArticleSuggestionInProgressSubject", AdminUtil.getEmailKBArticleSuggestionInProgressSubject(portletPreferences));
+String emailKBArticleSuggestionInProgressBody = ParamUtil.getString(request, "emailKBArticleSuggestionInProgressBody", AdminUtil.getEmailKBArticleSuggestionInProgressBody(portletPreferences));
 
-boolean emailKBArticleFeedbackReceivedEnabled = ParamUtil.getBoolean(request, "emailKBArticleFeedbackReceivedEnabled", AdminUtil.getEmailKBArticleSuggestionReceivedEnabled(portletPreferences));
-String emailKBArticleFeedbackReceivedSubject = ParamUtil.getString(request, "emailKBArticleFeedbackReceivedSubject", AdminUtil.getEmailKBArticleSuggestionReceivedSubject(portletPreferences));
-String emailKBArticleFeedbackReceivedBody = ParamUtil.getString(request, "emailKBArticleFeedbackReceivedBody", AdminUtil.getEmailKBArticleSuggestionReceivedBody(portletPreferences));
+boolean emailKBArticleSuggestionReceivedEnabled = ParamUtil.getBoolean(request, "emailKBArticleSuggestionReceivedEnabled", AdminUtil.getEmailKBArticleSuggestionReceivedEnabled(portletPreferences));
+String emailKBArticleSuggestionReceivedSubject = ParamUtil.getString(request, "emailKBArticleSuggestionReceivedSubject", AdminUtil.getEmailKBArticleSuggestionReceivedSubject(portletPreferences));
+String emailKBArticleSuggestionReceivedBody = ParamUtil.getString(request, "emailKBArticleSuggestionReceivedBody", AdminUtil.getEmailKBArticleSuggestionReceivedBody(portletPreferences));
 
-boolean emailKBArticleFeedbackResolvedEnabled = ParamUtil.getBoolean(request, "emailKBArticleFeedbackResolvedEnabled", AdminUtil.getEmailKBArticleSuggestionResolvedEnabled(portletPreferences));
-String emailKBArticleFeedbackResolvedSubject = ParamUtil.getString(request, "emailKBArticleFeedbackResolvedSubject", AdminUtil.getEmailKBArticleSuggestionResolvedSubject(portletPreferences));
-String emailKBArticleFeedbackResolvedBody = ParamUtil.getString(request, "emailKBArticleFeedbackResolvedBody", AdminUtil.getEmailKBArticleSuggestionResolvedBody(portletPreferences));
+boolean emailKBArticleSuggestionResolvedEnabled = ParamUtil.getBoolean(request, "emailKBArticleSuggestionResolvedEnabled", AdminUtil.getEmailKBArticleSuggestionResolvedEnabled(portletPreferences));
+String emailKBArticleSuggestionResolvedSubject = ParamUtil.getString(request, "emailKBArticleSuggestionResolvedSubject", AdminUtil.getEmailKBArticleSuggestionResolvedSubject(portletPreferences));
+String emailKBArticleSuggestionResolvedBody = ParamUtil.getString(request, "emailKBArticleSuggestionResolvedBody", AdminUtil.getEmailKBArticleSuggestionResolvedBody(portletPreferences));
 
 boolean emailKBArticleUpdatedEnabled = ParamUtil.getBoolean(request, "emailKBArticleUpdatedEnabled", AdminUtil.getEmailKBArticleUpdatedEnabled(portletPreferences));
 String emailKBArticleUpdatedSubject = ParamUtil.getString(request, "emailKBArticleUpdatedSubject", AdminUtil.getEmailKBArticleUpdatedSubject(portletPreferences));
@@ -55,16 +55,16 @@ else if (tabs2.equals("article-updated-email")) {
 	editorBody = emailKBArticleUpdatedBody;
 }
 else if (tabs2.equals("suggestion-in-progress-email")) {
-	editorParam = "emailKBArticleFeedbackInProgressBody";
-	editorBody = emailKBArticleFeedbackInProgressBody;
+	editorParam = "emailKBArticleSuggestionInProgressBody";
+	editorBody = emailKBArticleSuggestionInProgressBody;
 }
 else if (tabs2.equals("suggestion-received-email")) {
-	editorParam = "emailKBArticleFeedbackReceivedBody";
-	editorBody = emailKBArticleFeedbackReceivedBody;
+	editorParam = "emailKBArticleSuggestionReceivedBody";
+	editorBody = emailKBArticleSuggestionReceivedBody;
 }
 else if (tabs2.equals("suggestion-resolved-email")) {
-	editorParam = "emailKBArticleFeedbackResolvedBody";
-	editorBody = emailKBArticleFeedbackResolvedBody;
+	editorParam = "emailKBArticleSuggestionResolvedBody";
+	editorBody = emailKBArticleSuggestionResolvedBody;
 }
 %>
 
@@ -314,25 +314,25 @@ else if (tabs2.equals("suggestion-resolved-email")) {
 			<c:when test='<%= tabs2.startsWith("suggestion-") %>'>
 				<c:choose>
 					<c:when test='<%= tabs2.equals("suggestion-in-progress-email") %>'>
-						<aui:input label="enabled" name="preferences--emailKBArticleFeedbackInProgressEnabled--" type="checkbox" value="<%= emailKBArticleFeedbackInProgressEnabled %>" />
+						<aui:input label="enabled" name="preferences--emailKBArticleSuggestionInProgressEnabled--" type="checkbox" value="<%= emailKBArticleSuggestionInProgressEnabled %>" />
 					</c:when>
 					<c:when test='<%= tabs2.equals("suggestion-received-email") %>'>
-						<aui:input label="enabled" name="preferences--emailKBArticleFeedbackReceivedEnabled--" type="checkbox" value="<%= emailKBArticleFeedbackReceivedEnabled %>" />
+						<aui:input label="enabled" name="preferences--emailKBArticleSuggestionReceivedEnabled--" type="checkbox" value="<%= emailKBArticleSuggestionReceivedEnabled %>" />
 					</c:when>
 					<c:when test='<%= tabs2.equals("suggestion-resolved-email") %>'>
-						<aui:input label="enabled" name="preferences--emailKBArticleFeedbackResolvedEnabled--" type="checkbox" value="<%= emailKBArticleFeedbackResolvedEnabled %>" />
+						<aui:input label="enabled" name="preferences--emailKBArticleSuggestionResolvedEnabled--" type="checkbox" value="<%= emailKBArticleSuggestionResolvedEnabled %>" />
 					</c:when>
 				</c:choose>
 
 				<c:choose>
 					<c:when test='<%= tabs2.equals("suggestion-in-progress-email") %>'>
-						<aui:input cssClass="lfr-input-text-container" label="subject" name="preferences--emailKBArticleFeedbackInProgressSubject--" value="<%= emailKBArticleFeedbackInProgressSubject %>" />
+						<aui:input cssClass="lfr-input-text-container" label="subject" name="preferences--emailKBArticleSuggestionInProgressSubject--" value="<%= emailKBArticleSuggestionInProgressSubject %>" />
 					</c:when>
 					<c:when test='<%= tabs2.equals("suggestion-received-email") %>'>
-						<aui:input cssClass="lfr-input-text-container" label="subject" name="preferences--emailKBArticleFeedbackReceivedSubject--" value="<%= emailKBArticleFeedbackReceivedSubject %>" />
+						<aui:input cssClass="lfr-input-text-container" label="subject" name="preferences--emailKBArticleSuggestionReceivedSubject--" value="<%= emailKBArticleSuggestionReceivedSubject %>" />
 					</c:when>
 					<c:when test='<%= tabs2.equals("suggestion-resolved-email") %>'>
-						<aui:input cssClass="lfr-input-text-container" label="subject" name="preferences--emailKBArticleFeedbackResolvedSubject--" value="<%= emailKBArticleFeedbackResolvedSubject %>" />
+						<aui:input cssClass="lfr-input-text-container" label="subject" name="preferences--emailKBArticleSuggestionResolvedSubject--" value="<%= emailKBArticleSuggestionResolvedSubject %>" />
 					</c:when>
 				</c:choose>
 
