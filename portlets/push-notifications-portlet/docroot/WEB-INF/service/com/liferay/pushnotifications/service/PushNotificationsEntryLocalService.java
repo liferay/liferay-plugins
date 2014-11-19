@@ -247,7 +247,7 @@ public interface PushNotificationsEntryLocalService extends BaseLocalService,
 	*/
 	public void setBeanIdentifier(java.lang.String beanIdentifier);
 
-	public com.liferay.pushnotifications.model.PushNotificationsEntry updateEntryCount(
+	public com.liferay.pushnotifications.model.PushNotificationsEntry updateChildrenPushNotificationsEntriesCount(
 		long parentPushNotificationsEntryId)
 		throws com.liferay.portal.kernel.exception.PortalException;
 

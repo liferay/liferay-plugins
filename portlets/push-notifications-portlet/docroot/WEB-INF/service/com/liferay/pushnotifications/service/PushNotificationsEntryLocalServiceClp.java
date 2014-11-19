@@ -145,7 +145,7 @@ public class PushNotificationsEntryLocalServiceClp
 
 		_methodParameterTypes23 = new String[] { "java.lang.String" };
 
-		_methodName24 = "updateEntryCount";
+		_methodName24 = "updateChildrenPushNotificationsEntriesCount";
 
 		_methodParameterTypes24 = new String[] { "long" };
 
@@ -801,7 +801,7 @@ public class PushNotificationsEntryLocalServiceClp
 	}
 
 	@Override
-	public com.liferay.pushnotifications.model.PushNotificationsEntry updateEntryCount(
+	public com.liferay.pushnotifications.model.PushNotificationsEntry updateChildrenPushNotificationsEntriesCount(
 		long parentPushNotificationsEntryId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;

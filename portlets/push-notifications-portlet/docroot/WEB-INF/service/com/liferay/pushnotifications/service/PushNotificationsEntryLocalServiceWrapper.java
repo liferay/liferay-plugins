@@ -301,10 +301,10 @@ public class PushNotificationsEntryLocalServiceWrapper
 	}
 
 	@Override
-	public com.liferay.pushnotifications.model.PushNotificationsEntry updateEntryCount(
+	public com.liferay.pushnotifications.model.PushNotificationsEntry updateChildrenPushNotificationsEntriesCount(
 		long parentPushNotificationsEntryId)
 		throws com.liferay.portal.kernel.exception.PortalException {
-		return _pushNotificationsEntryLocalService.updateEntryCount(parentPushNotificationsEntryId);
+		return _pushNotificationsEntryLocalService.updateChildrenPushNotificationsEntriesCount(parentPushNotificationsEntryId);
 	}
 
 	/**

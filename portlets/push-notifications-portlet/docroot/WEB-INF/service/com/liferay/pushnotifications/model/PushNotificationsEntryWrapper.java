@@ -56,10 +56,10 @@ public class PushNotificationsEntryWrapper implements PushNotificationsEntry,
 		attributes.put("pushNotificationsEntryId", getPushNotificationsEntryId());
 		attributes.put("userId", getUserId());
 		attributes.put("createTime", getCreateTime());
-		attributes.put("childrenPushNotificationsEntryCount",
-			getChildrenPushNotificationsEntryCount());
 		attributes.put("parentPushNotificationsEntryId",
 			getParentPushNotificationsEntryId());
+		attributes.put("childrenPushNotificationsEntriesCount",
+			getChildrenPushNotificationsEntriesCount());
 		attributes.put("payload", getPayload());
 
 		return attributes;
@@ -86,18 +86,18 @@ public class PushNotificationsEntryWrapper implements PushNotificationsEntry,
 			setCreateTime(createTime);
 		}
 
-		Integer childrenPushNotificationsEntryCount = (Integer)attributes.get(
-				"childrenPushNotificationsEntryCount");
-
-		if (childrenPushNotificationsEntryCount != null) {
-			setChildrenPushNotificationsEntryCount(childrenPushNotificationsEntryCount);
-		}
-
 		Long parentPushNotificationsEntryId = (Long)attributes.get(
 				"parentPushNotificationsEntryId");
 
 		if (parentPushNotificationsEntryId != null) {
 			setParentPushNotificationsEntryId(parentPushNotificationsEntryId);
+		}
+
+		Integer childrenPushNotificationsEntriesCount = (Integer)attributes.get(
+				"childrenPushNotificationsEntriesCount");
+
+		if (childrenPushNotificationsEntriesCount != null) {
+			setChildrenPushNotificationsEntriesCount(childrenPushNotificationsEntriesCount);
 		}
 
 		String payload = (String)attributes.get("payload");
@@ -119,13 +119,13 @@ public class PushNotificationsEntryWrapper implements PushNotificationsEntry,
 	}
 
 	/**
-	* Returns the children push notifications entry count of this push notifications entry.
+	* Returns the children push notifications entries count of this push notifications entry.
 	*
-	* @return the children push notifications entry count of this push notifications entry
+	* @return the children push notifications entries count of this push notifications entry
 	*/
 	@Override
-	public int getChildrenPushNotificationsEntryCount() {
-		return _pushNotificationsEntry.getChildrenPushNotificationsEntryCount();
+	public int getChildrenPushNotificationsEntriesCount() {
+		return _pushNotificationsEntry.getChildrenPushNotificationsEntriesCount();
 	}
 
 	/**
@@ -239,14 +239,14 @@ public class PushNotificationsEntryWrapper implements PushNotificationsEntry,
 	}
 
 	/**
-	* Sets the children push notifications entry count of this push notifications entry.
+	* Sets the children push notifications entries count of this push notifications entry.
 	*
-	* @param childrenPushNotificationsEntryCount the children push notifications entry count of this push notifications entry
+	* @param childrenPushNotificationsEntriesCount the children push notifications entries count of this push notifications entry
 	*/
 	@Override
-	public void setChildrenPushNotificationsEntryCount(
-		int childrenPushNotificationsEntryCount) {
-		_pushNotificationsEntry.setChildrenPushNotificationsEntryCount(childrenPushNotificationsEntryCount);
+	public void setChildrenPushNotificationsEntriesCount(
+		int childrenPushNotificationsEntriesCount) {
+		_pushNotificationsEntry.setChildrenPushNotificationsEntriesCount(childrenPushNotificationsEntriesCount);
 	}
 
 	/**

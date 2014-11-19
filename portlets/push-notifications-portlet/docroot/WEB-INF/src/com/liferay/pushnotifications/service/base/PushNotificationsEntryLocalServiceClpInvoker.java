@@ -149,7 +149,7 @@ public class PushNotificationsEntryLocalServiceClpInvoker {
 				"long", "long", "com.liferay.portal.kernel.json.JSONObject"
 			};
 
-		_methodName59 = "updateEntryCount";
+		_methodName59 = "updateChildrenPushNotificationsEntriesCount";
 
 		_methodParameterTypes59 = new String[] { "long" };
 	}
@@ -298,7 +298,7 @@ public class PushNotificationsEntryLocalServiceClpInvoker {
 
 		if (_methodName59.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes59, parameterTypes)) {
-			return PushNotificationsEntryLocalServiceUtil.updateEntryCount(((Long)arguments[0]).longValue());
+			return PushNotificationsEntryLocalServiceUtil.updateChildrenPushNotificationsEntriesCount(((Long)arguments[0]).longValue());
 		}
 
 		throw new UnsupportedOperationException();

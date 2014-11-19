@@ -37,8 +37,8 @@ public class PushNotificationsEntrySoap implements Serializable {
 		soapModel.setPushNotificationsEntryId(model.getPushNotificationsEntryId());
 		soapModel.setUserId(model.getUserId());
 		soapModel.setCreateTime(model.getCreateTime());
-		soapModel.setChildrenPushNotificationsEntryCount(model.getChildrenPushNotificationsEntryCount());
 		soapModel.setParentPushNotificationsEntryId(model.getParentPushNotificationsEntryId());
+		soapModel.setChildrenPushNotificationsEntriesCount(model.getChildrenPushNotificationsEntriesCount());
 		soapModel.setPayload(model.getPayload());
 
 		return soapModel;
@@ -119,15 +119,6 @@ public class PushNotificationsEntrySoap implements Serializable {
 		_createTime = createTime;
 	}
 
-	public int getChildrenPushNotificationsEntryCount() {
-		return _childrenPushNotificationsEntryCount;
-	}
-
-	public void setChildrenPushNotificationsEntryCount(
-		int childrenPushNotificationsEntryCount) {
-		_childrenPushNotificationsEntryCount = childrenPushNotificationsEntryCount;
-	}
-
 	public long getParentPushNotificationsEntryId() {
 		return _parentPushNotificationsEntryId;
 	}
@@ -135,6 +126,15 @@ public class PushNotificationsEntrySoap implements Serializable {
 	public void setParentPushNotificationsEntryId(
 		long parentPushNotificationsEntryId) {
 		_parentPushNotificationsEntryId = parentPushNotificationsEntryId;
+	}
+
+	public int getChildrenPushNotificationsEntriesCount() {
+		return _childrenPushNotificationsEntriesCount;
+	}
+
+	public void setChildrenPushNotificationsEntriesCount(
+		int childrenPushNotificationsEntriesCount) {
+		_childrenPushNotificationsEntriesCount = childrenPushNotificationsEntriesCount;
 	}
 
 	public String getPayload() {
@@ -148,7 +148,7 @@ public class PushNotificationsEntrySoap implements Serializable {
 	private long _pushNotificationsEntryId;
 	private long _userId;
 	private long _createTime;
-	private int _childrenPushNotificationsEntryCount;
 	private long _parentPushNotificationsEntryId;
+	private int _childrenPushNotificationsEntriesCount;
 	private String _payload;
 }

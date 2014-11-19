@@ -47,10 +47,10 @@ public class PushNotificationsEntryCacheModel implements CacheModel<PushNotifica
 		sb.append(userId);
 		sb.append(", createTime=");
 		sb.append(createTime);
-		sb.append(", childrenPushNotificationsEntryCount=");
-		sb.append(childrenPushNotificationsEntryCount);
 		sb.append(", parentPushNotificationsEntryId=");
 		sb.append(parentPushNotificationsEntryId);
+		sb.append(", childrenPushNotificationsEntriesCount=");
+		sb.append(childrenPushNotificationsEntriesCount);
 		sb.append(", payload=");
 		sb.append(payload);
 		sb.append("}");
@@ -65,8 +65,8 @@ public class PushNotificationsEntryCacheModel implements CacheModel<PushNotifica
 		pushNotificationsEntryImpl.setPushNotificationsEntryId(pushNotificationsEntryId);
 		pushNotificationsEntryImpl.setUserId(userId);
 		pushNotificationsEntryImpl.setCreateTime(createTime);
-		pushNotificationsEntryImpl.setChildrenPushNotificationsEntryCount(childrenPushNotificationsEntryCount);
 		pushNotificationsEntryImpl.setParentPushNotificationsEntryId(parentPushNotificationsEntryId);
+		pushNotificationsEntryImpl.setChildrenPushNotificationsEntriesCount(childrenPushNotificationsEntriesCount);
 
 		if (payload == null) {
 			pushNotificationsEntryImpl.setPayload(StringPool.BLANK);
@@ -85,8 +85,8 @@ public class PushNotificationsEntryCacheModel implements CacheModel<PushNotifica
 		pushNotificationsEntryId = objectInput.readLong();
 		userId = objectInput.readLong();
 		createTime = objectInput.readLong();
-		childrenPushNotificationsEntryCount = objectInput.readInt();
 		parentPushNotificationsEntryId = objectInput.readLong();
+		childrenPushNotificationsEntriesCount = objectInput.readInt();
 		payload = objectInput.readUTF();
 	}
 
@@ -96,8 +96,8 @@ public class PushNotificationsEntryCacheModel implements CacheModel<PushNotifica
 		objectOutput.writeLong(pushNotificationsEntryId);
 		objectOutput.writeLong(userId);
 		objectOutput.writeLong(createTime);
-		objectOutput.writeInt(childrenPushNotificationsEntryCount);
 		objectOutput.writeLong(parentPushNotificationsEntryId);
+		objectOutput.writeInt(childrenPushNotificationsEntriesCount);
 
 		if (payload == null) {
 			objectOutput.writeUTF(StringPool.BLANK);
@@ -110,7 +110,7 @@ public class PushNotificationsEntryCacheModel implements CacheModel<PushNotifica
 	public long pushNotificationsEntryId;
 	public long userId;
 	public long createTime;
-	public int childrenPushNotificationsEntryCount;
 	public long parentPushNotificationsEntryId;
+	public int childrenPushNotificationsEntriesCount;
 	public String payload;
 }

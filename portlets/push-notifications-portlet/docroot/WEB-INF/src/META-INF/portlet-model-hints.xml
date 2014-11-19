@@ -14,8 +14,8 @@
 		<field name="pushNotificationsEntryId" type="long" />
 		<field name="userId" type="long" />
 		<field name="createTime" type="long" />
-		<field name="childrenPushNotificationsEntryCount" type="int" />
 		<field name="parentPushNotificationsEntryId" type="long" />
+		<field name="childrenPushNotificationsEntriesCount" type="int" />
 		<field name="payload" type="String">
 			<hint name="max-length">4000</hint>
 		</field>

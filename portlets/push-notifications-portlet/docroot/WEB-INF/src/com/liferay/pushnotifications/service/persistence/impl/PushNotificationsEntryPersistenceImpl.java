@@ -1389,8 +1389,8 @@ public class PushNotificationsEntryPersistenceImpl extends BasePersistenceImpl<P
 		pushNotificationsEntryImpl.setPushNotificationsEntryId(pushNotificationsEntry.getPushNotificationsEntryId());
 		pushNotificationsEntryImpl.setUserId(pushNotificationsEntry.getUserId());
 		pushNotificationsEntryImpl.setCreateTime(pushNotificationsEntry.getCreateTime());
-		pushNotificationsEntryImpl.setChildrenPushNotificationsEntryCount(pushNotificationsEntry.getChildrenPushNotificationsEntryCount());
 		pushNotificationsEntryImpl.setParentPushNotificationsEntryId(pushNotificationsEntry.getParentPushNotificationsEntryId());
+		pushNotificationsEntryImpl.setChildrenPushNotificationsEntriesCount(pushNotificationsEntry.getChildrenPushNotificationsEntriesCount());
 		pushNotificationsEntryImpl.setPayload(pushNotificationsEntry.getPayload());
 
 		return pushNotificationsEntryImpl;
