@@ -44,9 +44,9 @@ String navItem = kbSuggestionListDisplayContext.getSelectedNavItem();
 		%>
 
 		<aui:nav-item
-			href='<%= kbSuggestionListDisplayContext.getViewSuggestionURL(renderResponse, "viewInProgressFeedback") %>'
+			href='<%= kbSuggestionListDisplayContext.getViewSuggestionURL(renderResponse, "viewInProgressSuggestions") %>'
 			label="<%= inProgressKBCommentsLabel %>"
-			selected='<%= navItem.equals("viewInProgressFeedback") %>'
+			selected='<%= navItem.equals("viewInProgressSuggestions") %>'
 		/>
 
 		<%
@@ -64,7 +64,7 @@ String navItem = kbSuggestionListDisplayContext.getSelectedNavItem();
 </aui:nav-bar>
 
 <c:choose>
-	<c:when test='<%= navItem.equals("viewInProgressFeedback") %>'>
+	<c:when test='<%= navItem.equals("viewInProgressSuggestions") %>'>
 		<liferay-util:include page="/admin/view_in_progress_feedback.jsp" servletContext="<%= application %>" />
 	</c:when>
 	<c:when test='<%= navItem.equals("viewNewSuggestions") %>'>
