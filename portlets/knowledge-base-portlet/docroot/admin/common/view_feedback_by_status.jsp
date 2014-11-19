@@ -56,9 +56,9 @@ String navItem = kbSuggestionListDisplayContext.getSelectedNavItem();
 		%>
 
 		<aui:nav-item
-			href='<%= kbSuggestionListDisplayContext.getViewSuggestionURL(renderResponse, "viewCompletedFeedback") %>'
+			href='<%= kbSuggestionListDisplayContext.getViewSuggestionURL(renderResponse, "viewCompletedSuggestions") %>'
 			label="<%= completedLabel %>"
-			selected='<%= navItem.equals("viewCompletedFeedback") %>'
+			selected='<%= navItem.equals("viewCompletedSuggestions") %>'
 		/>
 	</aui:nav>
 </aui:nav-bar>
