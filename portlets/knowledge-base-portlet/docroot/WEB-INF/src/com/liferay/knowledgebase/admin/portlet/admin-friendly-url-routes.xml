@@ -27,7 +27,7 @@
 	<route>
 		<pattern>/suggestions/completed/{p_p_state}</pattern>
 		<implicit-parameter name="mvcPath">/admin/view_feedback.jsp</implicit-parameter>
-		<implicit-parameter name="navItem">viewCompletedFeedback</implicit-parameter>
+		<implicit-parameter name="navItem">viewCompletedSuggestions</implicit-parameter>
 	</route>
 	<route>
 		<pattern>/suggestions/in_progress/{p_p_state}</pattern>
