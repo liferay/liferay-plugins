@@ -61,21 +61,21 @@ PortletURL portletURL = renderResponse.createRenderURL();
 	<div>
 		<c:if test="<%= GadgetPermission.contains(permissionChecker, themeDisplay.getScopeGroupId(), ActionKeys.PUBLISH_GADGET) %>">
 			<span>
-				<portlet:renderURL var="publishGadget">
+				<portlet:renderURL var="publishGadgetURL">
 					<portlet:param name="mvcPath" value="/admin/edit_gadget.jsp" />
 					<portlet:param name="redirect" value="<%= currentURL %>" />
 				</portlet:renderURL>
 
-				<aui:button onClick="<%= publishGadget %>" type="button" value="publish-gadget" />
+				<aui:button onClick="<%= publishGadgetURL %>" type="button" value="publish-gadget" />
 			</span>
 		</c:if>
 
 		<span>
-			<portlet:actionURL name="refreshGadgets" var="refreshGadgets">
+			<portlet:actionURL name="refreshGadgetsURL" var="refreshGadgets">
 				<portlet:param name="redirect" value="<%= currentURL %>" />
 			</portlet:actionURL>
 
-			<aui:button onClick="<%= refreshGadgets %>" type="button" value="refresh-gadgets" />
+			<aui:button onClick="<%= refreshGadgetsURL %>" type="button" value="refresh-gadgets" />
 		</span>
 	</div>
 
