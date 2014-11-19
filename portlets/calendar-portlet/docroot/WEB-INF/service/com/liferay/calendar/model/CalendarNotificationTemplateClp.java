@@ -550,25 +550,6 @@ public class CalendarNotificationTemplateClp extends BaseModelImpl<CalendarNotif
 	}
 
 	@Override
-	public com.liferay.portal.kernel.util.UnicodeProperties getNotificationTypeSettingsProperties() {
-		try {
-			String methodName = "getNotificationTypeSettingsProperties";
-
-			Class<?>[] parameterTypes = new Class<?>[] {  };
-
-			Object[] parameterValues = new Object[] {  };
-
-			com.liferay.portal.kernel.util.UnicodeProperties returnObj = (com.liferay.portal.kernel.util.UnicodeProperties)invokeOnRemoteModel(methodName,
-					parameterTypes, parameterValues);
-
-			return returnObj;
-		}
-		catch (Exception e) {
-			throw new UnsupportedOperationException(e);
-		}
-	}
-
-	@Override
 	public void setTypeSettingsProperties(
 		com.liferay.portal.kernel.util.UnicodeProperties notificationTypeSettingsProperties) {
 		try {
@@ -583,6 +564,25 @@ public class CalendarNotificationTemplateClp extends BaseModelImpl<CalendarNotif
 				};
 
 			invokeOnRemoteModel(methodName, parameterTypes, parameterValues);
+		}
+		catch (Exception e) {
+			throw new UnsupportedOperationException(e);
+		}
+	}
+
+	@Override
+	public com.liferay.portal.kernel.util.UnicodeProperties getNotificationTypeSettingsProperties() {
+		try {
+			String methodName = "getNotificationTypeSettingsProperties";
+
+			Class<?>[] parameterTypes = new Class<?>[] {  };
+
+			Object[] parameterValues = new Object[] {  };
+
+			com.liferay.portal.kernel.util.UnicodeProperties returnObj = (com.liferay.portal.kernel.util.UnicodeProperties)invokeOnRemoteModel(methodName,
+					parameterTypes, parameterValues);
+
+			return returnObj;
 		}
 		catch (Exception e) {
 			throw new UnsupportedOperationException(e);

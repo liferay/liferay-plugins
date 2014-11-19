@@ -21,6 +21,7 @@ import com.liferay.portal.kernel.util.ReferenceRegistry;
 
 /**
  * @author Eduardo Lundgren
+ * @generated
  */
 @ProviderType
 public class CalendarFinderUtil {

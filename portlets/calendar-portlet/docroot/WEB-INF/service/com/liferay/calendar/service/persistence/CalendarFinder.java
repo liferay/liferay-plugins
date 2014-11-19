@@ -18,6 +18,7 @@ import aQute.bnd.annotation.ProviderType;
 
 /**
  * @author Eduardo Lundgren
+ * @generated
  */
 @ProviderType
 public interface CalendarFinder {
