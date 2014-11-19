@@ -37,7 +37,7 @@
 	<route>
 		<pattern>/suggestions/new/{p_p_state}</pattern>
 		<implicit-parameter name="mvcPath">/admin/view_feedback.jsp</implicit-parameter>
-		<implicit-parameter name="navItem">viewNewFeedback</implicit-parameter>
+		<implicit-parameter name="navItem">viewNewSuggestions</implicit-parameter>
 	</route>
 	<route>
 		<pattern>/article/{resourcePrimKey:\d+}/{p_p_state}</pattern>
