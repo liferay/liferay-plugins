@@ -61,7 +61,7 @@
 					A.merge(
 						autocompleteConfig,
 						{
-							inputNode: discussionNode.one(actionClass + ' textarea'),
+							inputNode: discussionNode.one(actionClass + ' textarea')
 						}
 					)
 				).render();
