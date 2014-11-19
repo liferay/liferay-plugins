@@ -56,6 +56,8 @@ public class PushNotificationsEntryWrapper implements PushNotificationsEntry,
 		attributes.put("pushNotificationsEntryId", getPushNotificationsEntryId());
 		attributes.put("userId", getUserId());
 		attributes.put("createTime", getCreateTime());
+		attributes.put("childrenPushNotificationsEntryCount",
+			getChildrenPushNotificationsEntryCount());
 		attributes.put("parentPushNotificationsEntryId",
 			getParentPushNotificationsEntryId());
 		attributes.put("payload", getPayload());
@@ -84,6 +86,13 @@ public class PushNotificationsEntryWrapper implements PushNotificationsEntry,
 			setCreateTime(createTime);
 		}
 
+		Integer childrenPushNotificationsEntryCount = (Integer)attributes.get(
+				"childrenPushNotificationsEntryCount");
+
+		if (childrenPushNotificationsEntryCount != null) {
+			setChildrenPushNotificationsEntryCount(childrenPushNotificationsEntryCount);
+		}
+
 		Long parentPushNotificationsEntryId = (Long)attributes.get(
 				"parentPushNotificationsEntryId");
 
@@ -107,6 +116,16 @@ public class PushNotificationsEntryWrapper implements PushNotificationsEntry,
 	public int compareTo(
 		com.liferay.pushnotifications.model.PushNotificationsEntry pushNotificationsEntry) {
 		return _pushNotificationsEntry.compareTo(pushNotificationsEntry);
+	}
+
+	/**
+	* Returns the children push notifications entry count of this push notifications entry.
+	*
+	* @return the children push notifications entry count of this push notifications entry
+	*/
+	@Override
+	public int getChildrenPushNotificationsEntryCount() {
+		return _pushNotificationsEntry.getChildrenPushNotificationsEntryCount();
 	}
 
 	/**
@@ -217,6 +236,17 @@ public class PushNotificationsEntryWrapper implements PushNotificationsEntry,
 	@Override
 	public void setCachedModel(boolean cachedModel) {
 		_pushNotificationsEntry.setCachedModel(cachedModel);
+	}
+
+	/**
+	* Sets the children push notifications entry count of this push notifications entry.
+	*
+	* @param childrenPushNotificationsEntryCount the children push notifications entry count of this push notifications entry
+	*/
+	@Override
+	public void setChildrenPushNotificationsEntryCount(
+		int childrenPushNotificationsEntryCount) {
+		_pushNotificationsEntry.setChildrenPushNotificationsEntryCount(childrenPushNotificationsEntryCount);
 	}
 
 	/**

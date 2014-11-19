@@ -83,6 +83,8 @@ public class PushNotificationsEntryClp extends BaseModelImpl<PushNotificationsEn
 		attributes.put("pushNotificationsEntryId", getPushNotificationsEntryId());
 		attributes.put("userId", getUserId());
 		attributes.put("createTime", getCreateTime());
+		attributes.put("childrenPushNotificationsEntryCount",
+			getChildrenPushNotificationsEntryCount());
 		attributes.put("parentPushNotificationsEntryId",
 			getParentPushNotificationsEntryId());
 		attributes.put("payload", getPayload());
@@ -112,6 +114,13 @@ public class PushNotificationsEntryClp extends BaseModelImpl<PushNotificationsEn
 
 		if (createTime != null) {
 			setCreateTime(createTime);
+		}
+
+		Integer childrenPushNotificationsEntryCount = (Integer)attributes.get(
+				"childrenPushNotificationsEntryCount");
+
+		if (childrenPushNotificationsEntryCount != null) {
+			setChildrenPushNotificationsEntryCount(childrenPushNotificationsEntryCount);
 		}
 
 		Long parentPushNotificationsEntryId = (Long)attributes.get(
@@ -211,6 +220,32 @@ public class PushNotificationsEntryClp extends BaseModelImpl<PushNotificationsEn
 				Method method = clazz.getMethod("setCreateTime", long.class);
 
 				method.invoke(_pushNotificationsEntryRemoteModel, createTime);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
+	}
+
+	@Override
+	public int getChildrenPushNotificationsEntryCount() {
+		return _childrenPushNotificationsEntryCount;
+	}
+
+	@Override
+	public void setChildrenPushNotificationsEntryCount(
+		int childrenPushNotificationsEntryCount) {
+		_childrenPushNotificationsEntryCount = childrenPushNotificationsEntryCount;
+
+		if (_pushNotificationsEntryRemoteModel != null) {
+			try {
+				Class<?> clazz = _pushNotificationsEntryRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setChildrenPushNotificationsEntryCount",
+						int.class);
+
+				method.invoke(_pushNotificationsEntryRemoteModel,
+					childrenPushNotificationsEntryCount);
 			}
 			catch (Exception e) {
 				throw new UnsupportedOperationException(e);
@@ -341,6 +376,7 @@ public class PushNotificationsEntryClp extends BaseModelImpl<PushNotificationsEn
 		clone.setPushNotificationsEntryId(getPushNotificationsEntryId());
 		clone.setUserId(getUserId());
 		clone.setCreateTime(getCreateTime());
+		clone.setChildrenPushNotificationsEntryCount(getChildrenPushNotificationsEntryCount());
 		clone.setParentPushNotificationsEntryId(getParentPushNotificationsEntryId());
 		clone.setPayload(getPayload());
 
@@ -411,7 +447,7 @@ public class PushNotificationsEntryClp extends BaseModelImpl<PushNotificationsEn
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(11);
+		StringBundler sb = new StringBundler(13);
 
 		sb.append("{pushNotificationsEntryId=");
 		sb.append(getPushNotificationsEntryId());
@@ -419,6 +455,8 @@ public class PushNotificationsEntryClp extends BaseModelImpl<PushNotificationsEn
 		sb.append(getUserId());
 		sb.append(", createTime=");
 		sb.append(getCreateTime());
+		sb.append(", childrenPushNotificationsEntryCount=");
+		sb.append(getChildrenPushNotificationsEntryCount());
 		sb.append(", parentPushNotificationsEntryId=");
 		sb.append(getParentPushNotificationsEntryId());
 		sb.append(", payload=");
@@ -430,7 +468,7 @@ public class PushNotificationsEntryClp extends BaseModelImpl<PushNotificationsEn
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(19);
+		StringBundler sb = new StringBundler(22);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.pushnotifications.model.PushNotificationsEntry");
@@ -449,6 +487,10 @@ public class PushNotificationsEntryClp extends BaseModelImpl<PushNotificationsEn
 		sb.append(getCreateTime());
 		sb.append("]]></column-value></column>");
 		sb.append(
+			"<column><column-name>childrenPushNotificationsEntryCount</column-name><column-value><![CDATA[");
+		sb.append(getChildrenPushNotificationsEntryCount());
+		sb.append("]]></column-value></column>");
+		sb.append(
 			"<column><column-name>parentPushNotificationsEntryId</column-name><column-value><![CDATA[");
 		sb.append(getParentPushNotificationsEntryId());
 		sb.append("]]></column-value></column>");
@@ -465,6 +507,7 @@ public class PushNotificationsEntryClp extends BaseModelImpl<PushNotificationsEn
 	private long _pushNotificationsEntryId;
 	private long _userId;
 	private long _createTime;
+	private int _childrenPushNotificationsEntryCount;
 	private long _parentPushNotificationsEntryId;
 	private String _payload;
 	private BaseModel<?> _pushNotificationsEntryRemoteModel;

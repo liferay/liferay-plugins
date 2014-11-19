@@ -145,9 +145,13 @@ public class PushNotificationsEntryLocalServiceClp
 
 		_methodParameterTypes23 = new String[] { "java.lang.String" };
 
-		_methodName24 = "updatePushNotificationsEntry";
+		_methodName24 = "updateEntryCount";
 
-		_methodParameterTypes24 = new String[] {
+		_methodParameterTypes24 = new String[] { "long" };
+
+		_methodName25 = "updatePushNotificationsEntry";
+
+		_methodParameterTypes25 = new String[] {
 				"com.liferay.pushnotifications.model.PushNotificationsEntry"
 			};
 	}
@@ -797,13 +801,43 @@ public class PushNotificationsEntryLocalServiceClp
 	}
 
 	@Override
-	public com.liferay.pushnotifications.model.PushNotificationsEntry updatePushNotificationsEntry(
-		com.liferay.pushnotifications.model.PushNotificationsEntry pushNotificationsEntry) {
+	public com.liferay.pushnotifications.model.PushNotificationsEntry updateEntryCount(
+		long parentPushNotificationsEntryId)
+		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName24,
 					_methodParameterTypes24,
+					new Object[] { parentPushNotificationsEntryId });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.liferay.pushnotifications.model.PushNotificationsEntry)ClpSerializer.translateOutput(returnObj);
+	}
+
+	@Override
+	public com.liferay.pushnotifications.model.PushNotificationsEntry updatePushNotificationsEntry(
+		com.liferay.pushnotifications.model.PushNotificationsEntry pushNotificationsEntry) {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName25,
+					_methodParameterTypes25,
 					new Object[] {
 						ClpSerializer.translateInput(pushNotificationsEntry)
 					});
@@ -872,4 +906,6 @@ public class PushNotificationsEntryLocalServiceClp
 	private String[] _methodParameterTypes23;
 	private String _methodName24;
 	private String[] _methodParameterTypes24;
+	private String _methodName25;
+	private String[] _methodParameterTypes25;
 }

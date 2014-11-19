@@ -37,6 +37,7 @@ public class PushNotificationsEntrySoap implements Serializable {
 		soapModel.setPushNotificationsEntryId(model.getPushNotificationsEntryId());
 		soapModel.setUserId(model.getUserId());
 		soapModel.setCreateTime(model.getCreateTime());
+		soapModel.setChildrenPushNotificationsEntryCount(model.getChildrenPushNotificationsEntryCount());
 		soapModel.setParentPushNotificationsEntryId(model.getParentPushNotificationsEntryId());
 		soapModel.setPayload(model.getPayload());
 
@@ -118,6 +119,15 @@ public class PushNotificationsEntrySoap implements Serializable {
 		_createTime = createTime;
 	}
 
+	public int getChildrenPushNotificationsEntryCount() {
+		return _childrenPushNotificationsEntryCount;
+	}
+
+	public void setChildrenPushNotificationsEntryCount(
+		int childrenPushNotificationsEntryCount) {
+		_childrenPushNotificationsEntryCount = childrenPushNotificationsEntryCount;
+	}
+
 	public long getParentPushNotificationsEntryId() {
 		return _parentPushNotificationsEntryId;
 	}
@@ -138,6 +148,7 @@ public class PushNotificationsEntrySoap implements Serializable {
 	private long _pushNotificationsEntryId;
 	private long _userId;
 	private long _createTime;
+	private int _childrenPushNotificationsEntryCount;
 	private long _parentPushNotificationsEntryId;
 	private String _payload;
 }

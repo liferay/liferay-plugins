@@ -281,6 +281,12 @@ public class PushNotificationsEntryLocalServiceUtil {
 		getService().setBeanIdentifier(beanIdentifier);
 	}
 
+	public static com.liferay.pushnotifications.model.PushNotificationsEntry updateEntryCount(
+		long parentPushNotificationsEntryId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().updateEntryCount(parentPushNotificationsEntryId);
+	}
+
 	/**
 	* Updates the push notifications entry in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
 	*

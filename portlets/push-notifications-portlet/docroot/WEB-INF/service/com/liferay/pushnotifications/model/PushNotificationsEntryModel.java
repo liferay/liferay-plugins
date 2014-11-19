@@ -117,6 +117,21 @@ public interface PushNotificationsEntryModel extends BaseModel<PushNotifications
 	public void setCreateTime(long createTime);
 
 	/**
+	 * Returns the children push notifications entry count of this push notifications entry.
+	 *
+	 * @return the children push notifications entry count of this push notifications entry
+	 */
+	public int getChildrenPushNotificationsEntryCount();
+
+	/**
+	 * Sets the children push notifications entry count of this push notifications entry.
+	 *
+	 * @param childrenPushNotificationsEntryCount the children push notifications entry count of this push notifications entry
+	 */
+	public void setChildrenPushNotificationsEntryCount(
+		int childrenPushNotificationsEntryCount);
+
+	/**
 	 * Returns the parent push notifications entry ID of this push notifications entry.
 	 *
 	 * @return the parent push notifications entry ID of this push notifications entry
