@@ -276,5 +276,6 @@ public interface PushNotificationsEntryLocalService extends BaseLocalService,
 
 	public com.liferay.pushnotifications.model.PushNotificationsEntry updateChildrenPushNotificationsEntriesCount(
 		long parentPushNotificationsEntryId)
-		throws com.liferay.portal.kernel.exception.PortalException;
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
 }

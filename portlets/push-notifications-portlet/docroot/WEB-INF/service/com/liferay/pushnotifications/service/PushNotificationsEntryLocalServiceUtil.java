@@ -309,7 +309,8 @@ public class PushNotificationsEntryLocalServiceUtil {
 
 	public static com.liferay.pushnotifications.model.PushNotificationsEntry updateChildrenPushNotificationsEntriesCount(
 		long parentPushNotificationsEntryId)
-		throws com.liferay.portal.kernel.exception.PortalException {
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
 		return getService()
 				   .updateChildrenPushNotificationsEntriesCount(parentPushNotificationsEntryId);
 	}
