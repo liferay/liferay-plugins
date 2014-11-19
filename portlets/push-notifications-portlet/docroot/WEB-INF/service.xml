@@ -46,8 +46,8 @@
 
 		<!-- Other fields -->
 
-		<column name="childrenPushNotificationsEntryCount" type="int" />
 		<column name="parentPushNotificationsEntryId" type="long" />
+		<column name="childrenPushNotificationsEntriesCount" type="int" />
 		<column name="payload" type="String" />
 
 		<!-- Order -->
@@ -61,7 +61,6 @@
 		<finder name="ParentPushNotificationsEntryId" return-type="Collection">
 			<finder-column name="parentPushNotificationsEntryId" />
 		</finder>
-
 		<finder name="C_P" return-type="Collection">
 			<finder-column name="createTime" comparator="&gt;" />
 			<finder-column name="parentPushNotificationsEntryId" />

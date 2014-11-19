@@ -65,7 +65,8 @@ public class PushNotificationsEntryLocalServiceImpl
 
 		pushNotificationsEntryPersistence.update(pushNotificationsEntry);
 
-		updateEntryCount(parentPushNotificationsEntryId);
+		updateChildrenPushNotificationsEntriesCount(
+			parentPushNotificationsEntryId);
 
 		sendPushNotification(userId, payloadJSONObject);
 
@@ -132,7 +133,7 @@ public class PushNotificationsEntryLocalServiceImpl
 	}
 
 	@Override
-	public PushNotificationsEntry updateEntryCount(
+	public PushNotificationsEntry updateChildrenPushNotificationsEntriesCount(
 			long parentPushNotificationsEntryId)
 		throws PortalException {
 
@@ -143,17 +144,17 @@ public class PushNotificationsEntryLocalServiceImpl
 			return null;
 		}
 
-		int childrenPushNotificationsEntryCount =
-			pushNotificationsEntryPersistence.
-				countByParentPushNotificationsEntryId(
-					parentPushNotificationsEntryId);
-
 		PushNotificationsEntry pushNotificationsEntry =
 			pushNotificationsEntryPersistence.findByPrimaryKey(
 				parentPushNotificationsEntryId);
 
-		pushNotificationsEntry.setChildrenPushNotificationsEntryCount(
-			childrenPushNotificationsEntryCount);
+		int childrenPushNotificationsEntriesCount =
+			pushNotificationsEntryPersistence.
+				countByParentPushNotificationsEntryId(
+					parentPushNotificationsEntryId);
+
+		pushNotificationsEntry.setChildrenPushNotificationsEntriesCount(
+			childrenPushNotificationsEntriesCount);
 
 		pushNotificationsEntryPersistence.update(pushNotificationsEntry);
 
