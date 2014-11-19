@@ -135,7 +135,7 @@ public class PushNotificationsEntryLocalServiceImpl
 	@Override
 	public PushNotificationsEntry updateChildrenPushNotificationsEntriesCount(
 			long parentPushNotificationsEntryId)
-		throws PortalException {
+		throws PortalException, SystemException {
 
 		if (parentPushNotificationsEntryId ==
 				PushNotificationsConstants.
