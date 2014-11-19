@@ -144,7 +144,7 @@ boolean hasUpdatePermission = KBArticlePermission.contains(permissionChecker, kb
 					<aui:button-row cssClass="kb-submit-buttons">
 						<aui:button type="submit" value="submit" />
 
-						<aui:button name="cancelFeedback" value="cancel" />
+						<aui:button name="cancelSuggestion" value="cancel" />
 					</aui:button-row>
 				</aui:fieldset>
 			</aui:form>
@@ -282,7 +282,7 @@ boolean hasUpdatePermission = KBArticlePermission.contains(permissionChecker, kb
 				'a'
 			);
 
-			A.one('#<portlet:namespace />cancelFeedback').on(
+			A.one('#<portlet:namespace />cancelSuggestion').on(
 				'click',
 				function(event) {
 					var container = this.ancestor('#<portlet:namespace />suggestionContainer');
