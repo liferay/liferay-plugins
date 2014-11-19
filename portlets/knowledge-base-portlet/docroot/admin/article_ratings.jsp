@@ -173,7 +173,7 @@ boolean hasUpdatePermission = KBArticlePermission.contains(permissionChecker, kb
 			<c:when test="<%= hasUpdatePermission %>">
 
 				<%
-				String navItem = ParamUtil.getString(request, "navItem", "viewNewFeedback");
+				String navItem = ParamUtil.getString(request, "navItem", "viewNewSuggestions");
 
 				KBSuggestionListDisplayContext kbSuggestionListDisplayContext = new KBSuggestionListDisplayContext(kbArticle, navItem);
 

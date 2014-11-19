@@ -34,7 +34,7 @@
 />
 
 <%
-String navItem = ParamUtil.getString(request, "navItem", "viewNewFeedback");
+String navItem = ParamUtil.getString(request, "navItem", "viewNewSuggestions");
 
 KBSuggestionListDisplayContext kbSuggestionListDisplayContext = new KBSuggestionListDisplayContext(scopeGroupId, navItem);
 
