@@ -6,7 +6,7 @@
 	<property name="javac.target" value="1.6" />
 	<property name="osgi.ide.dependencies" value="axis.jar" />
 	<property name="osgi.runtime.dependencies" value="org.eclipse.osgi.services.jar" />
-	<property name="plugin.full.version" value="1.0.1" />
+	<property name="plugin.full.version" value="1.0.2" />
 	<property name="plugin.name" value="com.liferay.portal.http.service" />
 
 	<import file="../../build-common-osgi-plugin.xml" />
