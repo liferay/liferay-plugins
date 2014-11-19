@@ -106,39 +106,43 @@ public class PushNotificationsEntryLocalServiceClpInvoker {
 				"com.liferay.pushnotifications.model.PushNotificationsEntry"
 			};
 
-		_methodName46 = "getBeanIdentifier";
+		_methodName56 = "getBeanIdentifier";
 
-		_methodParameterTypes46 = new String[] {  };
+		_methodParameterTypes56 = new String[] {  };
 
-		_methodName47 = "setBeanIdentifier";
+		_methodName57 = "setBeanIdentifier";
 
-		_methodParameterTypes47 = new String[] { "java.lang.String" };
+		_methodParameterTypes57 = new String[] { "java.lang.String" };
 
-		_methodName52 = "addPushNotificationsEntry";
+		_methodName62 = "addPushNotificationsEntry";
 
-		_methodParameterTypes52 = new String[] {
+		_methodParameterTypes62 = new String[] {
 				"long", "com.liferay.portal.kernel.json.JSONObject"
 			};
 
-		_methodName53 = "getPushNotificationsEntries";
+		_methodName63 = "getPushNotificationsEntries";
 
-		_methodParameterTypes53 = new String[] { "long", "long", "int", "int" };
+		_methodParameterTypes63 = new String[] { "long", "long", "int", "int" };
 
-		_methodName54 = "sendPushNotification";
+		_methodName64 = "sendPushNotification";
 
-		_methodParameterTypes54 = new String[] {
+		_methodParameterTypes64 = new String[] {
 				"long", "com.liferay.portal.kernel.json.JSONObject"
 			};
 
-		_methodName55 = "sendPushNotification";
+		_methodName65 = "sendPushNotification";
 
-		_methodParameterTypes55 = new String[] {
+		_methodParameterTypes65 = new String[] {
 				"long", "long", "com.liferay.portal.kernel.json.JSONObject"
 			};
 
-		_methodName56 = "updateChildrenPushNotificationsEntriesCount";
+		_methodName66 = "updateChildrenPushNotificationsEntriesCount";
 
-		_methodParameterTypes56 = new String[] { "long" };
+		_methodParameterTypes66 = new String[] { "long" };
+
+		_methodName67 = "updateRatingsEntry";
+
+		_methodParameterTypes67 = new String[] { "long", "long", "long" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -230,42 +234,42 @@ public class PushNotificationsEntryLocalServiceClpInvoker {
 			return PushNotificationsEntryLocalServiceUtil.updatePushNotificationsEntry((com.liferay.pushnotifications.model.PushNotificationsEntry)arguments[0]);
 		}
 
-		if (_methodName46.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes46, parameterTypes)) {
+		if (_methodName56.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes56, parameterTypes)) {
 			return PushNotificationsEntryLocalServiceUtil.getBeanIdentifier();
 		}
 
-		if (_methodName47.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes47, parameterTypes)) {
+		if (_methodName57.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes57, parameterTypes)) {
 			PushNotificationsEntryLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
 
 			return null;
 		}
 
-		if (_methodName52.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes52, parameterTypes)) {
+		if (_methodName62.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes62, parameterTypes)) {
 			return PushNotificationsEntryLocalServiceUtil.addPushNotificationsEntry(((Long)arguments[0]).longValue(),
 				(com.liferay.portal.kernel.json.JSONObject)arguments[1]);
 		}
 
-		if (_methodName53.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes53, parameterTypes)) {
+		if (_methodName63.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes63, parameterTypes)) {
 			return PushNotificationsEntryLocalServiceUtil.getPushNotificationsEntries(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				((Integer)arguments[2]).intValue(),
 				((Integer)arguments[3]).intValue());
 		}
 
-		if (_methodName54.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes54, parameterTypes)) {
+		if (_methodName64.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes64, parameterTypes)) {
 			PushNotificationsEntryLocalServiceUtil.sendPushNotification(((Long)arguments[0]).longValue(),
 				(com.liferay.portal.kernel.json.JSONObject)arguments[1]);
 
 			return null;
 		}
 
-		if (_methodName55.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes55, parameterTypes)) {
+		if (_methodName65.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes65, parameterTypes)) {
 			PushNotificationsEntryLocalServiceUtil.sendPushNotification(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				(com.liferay.portal.kernel.json.JSONObject)arguments[2]);
@@ -273,9 +277,16 @@ public class PushNotificationsEntryLocalServiceClpInvoker {
 			return null;
 		}
 
-		if (_methodName56.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes56, parameterTypes)) {
+		if (_methodName66.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes66, parameterTypes)) {
 			return PushNotificationsEntryLocalServiceUtil.updateChildrenPushNotificationsEntriesCount(((Long)arguments[0]).longValue());
+		}
+
+		if (_methodName67.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes67, parameterTypes)) {
+			return PushNotificationsEntryLocalServiceUtil.updateRatingsEntry(((Long)arguments[0]).longValue(),
+				((Long)arguments[1]).longValue(),
+				((Long)arguments[2]).longValue());
 		}
 
 		throw new UnsupportedOperationException();
@@ -313,18 +324,20 @@ public class PushNotificationsEntryLocalServiceClpInvoker {
 	private String[] _methodParameterTypes14;
 	private String _methodName15;
 	private String[] _methodParameterTypes15;
-	private String _methodName46;
-	private String[] _methodParameterTypes46;
-	private String _methodName47;
-	private String[] _methodParameterTypes47;
-	private String _methodName52;
-	private String[] _methodParameterTypes52;
-	private String _methodName53;
-	private String[] _methodParameterTypes53;
-	private String _methodName54;
-	private String[] _methodParameterTypes54;
-	private String _methodName55;
-	private String[] _methodParameterTypes55;
 	private String _methodName56;
 	private String[] _methodParameterTypes56;
+	private String _methodName57;
+	private String[] _methodParameterTypes57;
+	private String _methodName62;
+	private String[] _methodParameterTypes62;
+	private String _methodName63;
+	private String[] _methodParameterTypes63;
+	private String _methodName64;
+	private String[] _methodParameterTypes64;
+	private String _methodName65;
+	private String[] _methodParameterTypes65;
+	private String _methodName66;
+	private String[] _methodParameterTypes66;
+	private String _methodName67;
+	private String[] _methodParameterTypes67;
 }

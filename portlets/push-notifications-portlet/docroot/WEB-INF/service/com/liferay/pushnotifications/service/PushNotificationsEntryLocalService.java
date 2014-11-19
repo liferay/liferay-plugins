@@ -278,4 +278,9 @@ public interface PushNotificationsEntryLocalService extends BaseLocalService,
 		long parentPushNotificationsEntryId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
+
+	public com.liferay.pushnotifications.model.PushNotificationsEntry updateRatingsEntry(
+		long userId, long pushNotificationsEntryId, long score)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
 }

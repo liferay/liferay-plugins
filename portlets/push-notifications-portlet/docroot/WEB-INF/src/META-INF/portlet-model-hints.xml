@@ -19,5 +19,6 @@
 		<field name="payload" type="String">
 			<hint name="max-length">4000</hint>
 		</field>
+		<field name="ratingsTotalScore" type="long" />
 	</model>
 </model-hints>

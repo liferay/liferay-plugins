@@ -67,7 +67,13 @@ public interface PushNotificationsEntryService extends BaseService,
 		throws java.lang.Throwable;
 
 	@com.liferay.portal.security.ac.AccessControlled(guestAccessEnabled = true)
-	public void addPushNotificationsEntry(java.lang.String payload)
+	public com.liferay.pushnotifications.model.PushNotificationsEntry addPushNotificationsEntry(
+		java.lang.String payload)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
+
+	public com.liferay.pushnotifications.model.PushNotificationsEntry dislikePushNotificationsEntry(
+		long pushNotificationsEntryId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
@@ -75,4 +81,9 @@ public interface PushNotificationsEntryService extends BaseService,
 	public java.util.List<com.liferay.pushnotifications.model.PushNotificationsEntry> getPushNotificationsEntries(
 		long parentPushNotificationsEntryId, long lastAccessTime, int start,
 		int end) throws com.liferay.portal.kernel.exception.SystemException;
+
+	public com.liferay.pushnotifications.model.PushNotificationsEntry likePushNotificationsEntry(
+		long pushNotificationsEntryId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
 }

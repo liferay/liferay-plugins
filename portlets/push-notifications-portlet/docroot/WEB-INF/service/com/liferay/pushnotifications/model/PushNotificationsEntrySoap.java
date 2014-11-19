@@ -37,6 +37,7 @@ public class PushNotificationsEntrySoap implements Serializable {
 		soapModel.setParentPushNotificationsEntryId(model.getParentPushNotificationsEntryId());
 		soapModel.setChildrenPushNotificationsEntriesCount(model.getChildrenPushNotificationsEntriesCount());
 		soapModel.setPayload(model.getPayload());
+		soapModel.setRatingsTotalScore(model.getRatingsTotalScore());
 
 		return soapModel;
 	}
@@ -142,10 +143,19 @@ public class PushNotificationsEntrySoap implements Serializable {
 		_payload = payload;
 	}
 
+	public long getRatingsTotalScore() {
+		return _ratingsTotalScore;
+	}
+
+	public void setRatingsTotalScore(long ratingsTotalScore) {
+		_ratingsTotalScore = ratingsTotalScore;
+	}
+
 	private long _pushNotificationsEntryId;
 	private long _userId;
 	private long _createTime;
 	private long _parentPushNotificationsEntryId;
 	private int _childrenPushNotificationsEntriesCount;
 	private String _payload;
+	private long _ratingsTotalScore;
 }

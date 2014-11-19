@@ -60,10 +60,19 @@ public class PushNotificationsEntryServiceWrapper
 	}
 
 	@Override
-	public void addPushNotificationsEntry(java.lang.String payload)
+	public com.liferay.pushnotifications.model.PushNotificationsEntry addPushNotificationsEntry(
+		java.lang.String payload)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		_pushNotificationsEntryService.addPushNotificationsEntry(payload);
+		return _pushNotificationsEntryService.addPushNotificationsEntry(payload);
+	}
+
+	@Override
+	public com.liferay.pushnotifications.model.PushNotificationsEntry dislikePushNotificationsEntry(
+		long pushNotificationsEntryId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _pushNotificationsEntryService.dislikePushNotificationsEntry(pushNotificationsEntryId);
 	}
 
 	@Override
@@ -72,6 +81,14 @@ public class PushNotificationsEntryServiceWrapper
 		int end) throws com.liferay.portal.kernel.exception.SystemException {
 		return _pushNotificationsEntryService.getPushNotificationsEntries(parentPushNotificationsEntryId,
 			lastAccessTime, start, end);
+	}
+
+	@Override
+	public com.liferay.pushnotifications.model.PushNotificationsEntry likePushNotificationsEntry(
+		long pushNotificationsEntryId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _pushNotificationsEntryService.likePushNotificationsEntry(pushNotificationsEntryId);
 	}
 
 	/**

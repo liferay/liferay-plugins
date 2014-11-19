@@ -30,6 +30,7 @@
 			<basic name="parentPushNotificationsEntryId" />
 			<basic name="childrenPushNotificationsEntriesCount" />
 			<basic name="payload" />
+			<basic name="ratingsTotalScore" />
 			<transient name="modelAttributes" />
 			<transient name="primaryKey" />
 			<transient name="primaryKeyObj" />

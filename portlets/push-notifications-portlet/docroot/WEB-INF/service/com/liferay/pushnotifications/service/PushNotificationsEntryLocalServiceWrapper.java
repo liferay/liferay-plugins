@@ -333,6 +333,15 @@ public class PushNotificationsEntryLocalServiceWrapper
 		return _pushNotificationsEntryLocalService.updateChildrenPushNotificationsEntriesCount(parentPushNotificationsEntryId);
 	}
 
+	@Override
+	public com.liferay.pushnotifications.model.PushNotificationsEntry updateRatingsEntry(
+		long userId, long pushNotificationsEntryId, long score)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _pushNotificationsEntryLocalService.updateRatingsEntry(userId,
+			pushNotificationsEntryId, score);
+	}
+
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
 	 */
