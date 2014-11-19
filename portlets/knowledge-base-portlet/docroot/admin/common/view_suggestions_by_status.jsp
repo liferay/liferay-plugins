@@ -65,12 +65,12 @@ String navItem = kbSuggestionListDisplayContext.getSelectedNavItem();
 
 <c:choose>
 	<c:when test='<%= navItem.equals("viewInProgressSuggestions") %>'>
-		<liferay-util:include page="/admin/view_in_progress_feedback.jsp" servletContext="<%= application %>" />
+		<liferay-util:include page="/admin/view_in_progress_suggestions.jsp" servletContext="<%= application %>" />
 	</c:when>
 	<c:when test='<%= navItem.equals("viewNewSuggestions") %>'>
-		<liferay-util:include page="/admin/view_new_feedback.jsp" servletContext="<%= application %>" />
+		<liferay-util:include page="/admin/view_new_suggestions.jsp" servletContext="<%= application %>" />
 	</c:when>
 	<c:otherwise>
-		<liferay-util:include page="/admin/view_completed_feedback.jsp" servletContext="<%= application %>" />
+		<liferay-util:include page="/admin/view_completed_suggestions.jsp" servletContext="<%= application %>" />
 	</c:otherwise>
 </c:choose>

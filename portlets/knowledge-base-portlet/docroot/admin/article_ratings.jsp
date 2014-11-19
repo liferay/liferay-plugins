@@ -181,7 +181,7 @@ boolean hasUpdatePermission = KBArticlePermission.contains(permissionChecker, kb
 				%>
 
 				<div class='kb-article-previous-comments <%= expanded ? StringPool.BLANK : "hide" %>' id="<portlet:namespace />previousCommentsContainer">
-					<liferay-util:include page="/admin/common/view_feedback_by_status.jsp" servletContext="<%= application %>" />
+					<liferay-util:include page="/admin/common/view_suggestions_by_status.jsp" servletContext="<%= application %>" />
 				</div>
 			</c:when>
 			<c:otherwise>

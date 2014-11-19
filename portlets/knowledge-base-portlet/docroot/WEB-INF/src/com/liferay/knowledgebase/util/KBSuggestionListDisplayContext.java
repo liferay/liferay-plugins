@@ -102,7 +102,7 @@ public class KBSuggestionListDisplayContext {
 		portletURL.setParameter("expanded", Boolean.TRUE.toString());
 
 		if (_kbArticle == null) {
-			portletURL.setParameter("mvcPath", "/admin/view_feedback.jsp");
+			portletURL.setParameter("mvcPath", "/admin/view_suggestions.jsp");
 		}
 
 		return portletURL.toString() + "#kbSuggestions";
