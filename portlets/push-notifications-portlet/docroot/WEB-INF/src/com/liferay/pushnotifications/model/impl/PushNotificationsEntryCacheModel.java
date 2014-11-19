@@ -39,7 +39,7 @@ public class PushNotificationsEntryCacheModel implements CacheModel<PushNotifica
 	Externalizable {
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(13);
+		StringBundler sb = new StringBundler(15);
 
 		sb.append("{pushNotificationsEntryId=");
 		sb.append(pushNotificationsEntryId);
@@ -53,6 +53,8 @@ public class PushNotificationsEntryCacheModel implements CacheModel<PushNotifica
 		sb.append(childrenPushNotificationsEntriesCount);
 		sb.append(", payload=");
 		sb.append(payload);
+		sb.append(", ratingsTotalScore=");
+		sb.append(ratingsTotalScore);
 		sb.append("}");
 
 		return sb.toString();
@@ -75,6 +77,8 @@ public class PushNotificationsEntryCacheModel implements CacheModel<PushNotifica
 			pushNotificationsEntryImpl.setPayload(payload);
 		}
 
+		pushNotificationsEntryImpl.setRatingsTotalScore(ratingsTotalScore);
+
 		pushNotificationsEntryImpl.resetOriginalValues();
 
 		return pushNotificationsEntryImpl;
@@ -88,6 +92,7 @@ public class PushNotificationsEntryCacheModel implements CacheModel<PushNotifica
 		parentPushNotificationsEntryId = objectInput.readLong();
 		childrenPushNotificationsEntriesCount = objectInput.readInt();
 		payload = objectInput.readUTF();
+		ratingsTotalScore = objectInput.readLong();
 	}
 
 	@Override
@@ -105,6 +110,8 @@ public class PushNotificationsEntryCacheModel implements CacheModel<PushNotifica
 		else {
 			objectOutput.writeUTF(payload);
 		}
+
+		objectOutput.writeLong(ratingsTotalScore);
 	}
 
 	public long pushNotificationsEntryId;
@@ -113,4 +120,5 @@ public class PushNotificationsEntryCacheModel implements CacheModel<PushNotifica
 	public long parentPushNotificationsEntryId;
 	public int childrenPushNotificationsEntriesCount;
 	public String payload;
+	public long ratingsTotalScore;
 }

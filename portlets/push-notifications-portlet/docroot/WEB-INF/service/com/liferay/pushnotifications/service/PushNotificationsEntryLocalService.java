@@ -260,4 +260,8 @@ public interface PushNotificationsEntryLocalService extends BaseLocalService,
 	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.REINDEX)
 	public com.liferay.pushnotifications.model.PushNotificationsEntry updatePushNotificationsEntry(
 		com.liferay.pushnotifications.model.PushNotificationsEntry pushNotificationsEntry);
+
+	public com.liferay.pushnotifications.model.PushNotificationsEntry updateRatingsEntry(
+		long userId, long pushNotificationsEntryId, long score)
+		throws com.liferay.portal.kernel.exception.PortalException;
 }

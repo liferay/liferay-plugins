@@ -61,6 +61,7 @@ public class PushNotificationsEntryWrapper implements PushNotificationsEntry,
 		attributes.put("childrenPushNotificationsEntriesCount",
 			getChildrenPushNotificationsEntriesCount());
 		attributes.put("payload", getPayload());
+		attributes.put("ratingsTotalScore", getRatingsTotalScore());
 
 		return attributes;
 	}
@@ -104,6 +105,12 @@ public class PushNotificationsEntryWrapper implements PushNotificationsEntry,
 
 		if (payload != null) {
 			setPayload(payload);
+		}
+
+		Long ratingsTotalScore = (Long)attributes.get("ratingsTotalScore");
+
+		if (ratingsTotalScore != null) {
+			setRatingsTotalScore(ratingsTotalScore);
 		}
 	}
 
@@ -186,6 +193,16 @@ public class PushNotificationsEntryWrapper implements PushNotificationsEntry,
 	@Override
 	public long getPushNotificationsEntryId() {
 		return _pushNotificationsEntry.getPushNotificationsEntryId();
+	}
+
+	/**
+	* Returns the ratings total score of this push notifications entry.
+	*
+	* @return the ratings total score of this push notifications entry
+	*/
+	@Override
+	public long getRatingsTotalScore() {
+		return _pushNotificationsEntry.getRatingsTotalScore();
 	}
 
 	/**
@@ -326,6 +343,16 @@ public class PushNotificationsEntryWrapper implements PushNotificationsEntry,
 	@Override
 	public void setPushNotificationsEntryId(long pushNotificationsEntryId) {
 		_pushNotificationsEntry.setPushNotificationsEntryId(pushNotificationsEntryId);
+	}
+
+	/**
+	* Sets the ratings total score of this push notifications entry.
+	*
+	* @param ratingsTotalScore the ratings total score of this push notifications entry
+	*/
+	@Override
+	public void setRatingsTotalScore(long ratingsTotalScore) {
+		_pushNotificationsEntry.setRatingsTotalScore(ratingsTotalScore);
 	}
 
 	/**

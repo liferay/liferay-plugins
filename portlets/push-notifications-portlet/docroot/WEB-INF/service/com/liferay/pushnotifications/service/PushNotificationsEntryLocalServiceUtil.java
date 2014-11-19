@@ -299,6 +299,13 @@ public class PushNotificationsEntryLocalServiceUtil {
 		return getService().updatePushNotificationsEntry(pushNotificationsEntry);
 	}
 
+	public static com.liferay.pushnotifications.model.PushNotificationsEntry updateRatingsEntry(
+		long userId, long pushNotificationsEntryId, long score)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService()
+				   .updateRatingsEntry(userId, pushNotificationsEntryId, score);
+	}
+
 	public static void clearService() {
 		_service = null;
 	}

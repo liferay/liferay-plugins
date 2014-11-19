@@ -161,6 +161,20 @@ public interface PushNotificationsEntryModel extends BaseModel<PushNotifications
 	 */
 	public void setPayload(String payload);
 
+	/**
+	 * Returns the ratings total score of this push notifications entry.
+	 *
+	 * @return the ratings total score of this push notifications entry
+	 */
+	public long getRatingsTotalScore();
+
+	/**
+	 * Sets the ratings total score of this push notifications entry.
+	 *
+	 * @param ratingsTotalScore the ratings total score of this push notifications entry
+	 */
+	public void setRatingsTotalScore(long ratingsTotalScore);
+
 	@Override
 	public boolean isNew();
 

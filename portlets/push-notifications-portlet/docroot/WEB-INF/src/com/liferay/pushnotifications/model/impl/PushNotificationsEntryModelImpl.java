@@ -74,9 +74,10 @@ public class PushNotificationsEntryModelImpl extends BaseModelImpl<PushNotificat
 			{ "createTime", Types.BIGINT },
 			{ "parentPushNotificationsEntryId", Types.BIGINT },
 			{ "childrenPushNotificationsEntriesCount", Types.INTEGER },
-			{ "payload", Types.VARCHAR }
+			{ "payload", Types.VARCHAR },
+			{ "ratingsTotalScore", Types.BIGINT }
 		};
-	public static final String TABLE_SQL_CREATE = "create table PushNotificationsEntry (pushNotificationsEntryId LONG not null primary key,userId LONG,createTime LONG,parentPushNotificationsEntryId LONG,childrenPushNotificationsEntriesCount INTEGER,payload STRING null)";
+	public static final String TABLE_SQL_CREATE = "create table PushNotificationsEntry (pushNotificationsEntryId LONG not null primary key,userId LONG,createTime LONG,parentPushNotificationsEntryId LONG,childrenPushNotificationsEntriesCount INTEGER,payload STRING null,ratingsTotalScore LONG)";
 	public static final String TABLE_SQL_DROP = "drop table PushNotificationsEntry";
 	public static final String ORDER_BY_JPQL = " ORDER BY pushNotificationsEntry.createTime ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY PushNotificationsEntry.createTime ASC";
@@ -115,6 +116,7 @@ public class PushNotificationsEntryModelImpl extends BaseModelImpl<PushNotificat
 		model.setParentPushNotificationsEntryId(soapModel.getParentPushNotificationsEntryId());
 		model.setChildrenPushNotificationsEntriesCount(soapModel.getChildrenPushNotificationsEntriesCount());
 		model.setPayload(soapModel.getPayload());
+		model.setRatingsTotalScore(soapModel.getRatingsTotalScore());
 
 		return model;
 	}
@@ -188,6 +190,7 @@ public class PushNotificationsEntryModelImpl extends BaseModelImpl<PushNotificat
 		attributes.put("childrenPushNotificationsEntriesCount",
 			getChildrenPushNotificationsEntriesCount());
 		attributes.put("payload", getPayload());
+		attributes.put("ratingsTotalScore", getRatingsTotalScore());
 
 		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
 		attributes.put("finderCacheEnabled", isFinderCacheEnabled());
@@ -234,6 +237,12 @@ public class PushNotificationsEntryModelImpl extends BaseModelImpl<PushNotificat
 
 		if (payload != null) {
 			setPayload(payload);
+		}
+
+		Long ratingsTotalScore = (Long)attributes.get("ratingsTotalScore");
+
+		if (ratingsTotalScore != null) {
+			setRatingsTotalScore(ratingsTotalScore);
 		}
 	}
 
@@ -350,6 +359,17 @@ public class PushNotificationsEntryModelImpl extends BaseModelImpl<PushNotificat
 		_payload = payload;
 	}
 
+	@JSON
+	@Override
+	public long getRatingsTotalScore() {
+		return _ratingsTotalScore;
+	}
+
+	@Override
+	public void setRatingsTotalScore(long ratingsTotalScore) {
+		_ratingsTotalScore = ratingsTotalScore;
+	}
+
 	public long getColumnBitmask() {
 		return _columnBitmask;
 	}
@@ -387,6 +407,7 @@ public class PushNotificationsEntryModelImpl extends BaseModelImpl<PushNotificat
 		pushNotificationsEntryImpl.setParentPushNotificationsEntryId(getParentPushNotificationsEntryId());
 		pushNotificationsEntryImpl.setChildrenPushNotificationsEntriesCount(getChildrenPushNotificationsEntriesCount());
 		pushNotificationsEntryImpl.setPayload(getPayload());
+		pushNotificationsEntryImpl.setRatingsTotalScore(getRatingsTotalScore());
 
 		pushNotificationsEntryImpl.resetOriginalValues();
 
@@ -488,12 +509,14 @@ public class PushNotificationsEntryModelImpl extends BaseModelImpl<PushNotificat
 			pushNotificationsEntryCacheModel.payload = null;
 		}
 
+		pushNotificationsEntryCacheModel.ratingsTotalScore = getRatingsTotalScore();
+
 		return pushNotificationsEntryCacheModel;
 	}
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(13);
+		StringBundler sb = new StringBundler(15);
 
 		sb.append("{pushNotificationsEntryId=");
 		sb.append(getPushNotificationsEntryId());
@@ -507,6 +530,8 @@ public class PushNotificationsEntryModelImpl extends BaseModelImpl<PushNotificat
 		sb.append(getChildrenPushNotificationsEntriesCount());
 		sb.append(", payload=");
 		sb.append(getPayload());
+		sb.append(", ratingsTotalScore=");
+		sb.append(getRatingsTotalScore());
 		sb.append("}");
 
 		return sb.toString();
@@ -514,7 +539,7 @@ public class PushNotificationsEntryModelImpl extends BaseModelImpl<PushNotificat
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(22);
+		StringBundler sb = new StringBundler(25);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.pushnotifications.model.PushNotificationsEntry");
@@ -544,6 +569,10 @@ public class PushNotificationsEntryModelImpl extends BaseModelImpl<PushNotificat
 			"<column><column-name>payload</column-name><column-value><![CDATA[");
 		sb.append(getPayload());
 		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>ratingsTotalScore</column-name><column-value><![CDATA[");
+		sb.append(getRatingsTotalScore());
+		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
 
@@ -564,6 +593,7 @@ public class PushNotificationsEntryModelImpl extends BaseModelImpl<PushNotificat
 	private boolean _setOriginalParentPushNotificationsEntryId;
 	private int _childrenPushNotificationsEntriesCount;
 	private String _payload;
+	private long _ratingsTotalScore;
 	private long _columnBitmask;
 	private PushNotificationsEntry _escapedModel;
 }

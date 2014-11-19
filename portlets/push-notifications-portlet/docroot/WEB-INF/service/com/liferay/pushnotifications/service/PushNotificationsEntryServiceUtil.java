@@ -41,9 +41,17 @@ public class PushNotificationsEntryServiceUtil {
 	 *
 	 * Never modify this class directly. Add custom service methods to {@link com.liferay.pushnotifications.service.impl.PushNotificationsEntryServiceImpl} and rerun ServiceBuilder to regenerate this class.
 	 */
-	public static void addPushNotificationsEntry(java.lang.String payload)
+	public static com.liferay.pushnotifications.model.PushNotificationsEntry addPushNotificationsEntry(
+		java.lang.String payload)
 		throws com.liferay.portal.kernel.exception.PortalException {
-		getService().addPushNotificationsEntry(payload);
+		return getService().addPushNotificationsEntry(payload);
+	}
+
+	public static com.liferay.pushnotifications.model.PushNotificationsEntry dislikePushNotificationsEntry(
+		long pushNotificationsEntryId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService()
+				   .dislikePushNotificationsEntry(pushNotificationsEntryId);
 	}
 
 	/**
@@ -67,6 +75,12 @@ public class PushNotificationsEntryServiceUtil {
 		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
 		throws java.lang.Throwable {
 		return getService().invokeMethod(name, parameterTypes, arguments);
+	}
+
+	public static com.liferay.pushnotifications.model.PushNotificationsEntry likePushNotificationsEntry(
+		long pushNotificationsEntryId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().likePushNotificationsEntry(pushNotificationsEntryId);
 	}
 
 	/**

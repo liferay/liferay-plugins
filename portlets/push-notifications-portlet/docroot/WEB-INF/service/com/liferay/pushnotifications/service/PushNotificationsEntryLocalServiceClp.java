@@ -154,6 +154,10 @@ public class PushNotificationsEntryLocalServiceClp
 		_methodParameterTypes25 = new String[] {
 				"com.liferay.pushnotifications.model.PushNotificationsEntry"
 			};
+
+		_methodName26 = "updateRatingsEntry";
+
+		_methodParameterTypes26 = new String[] { "long", "long", "long" };
 	}
 
 	@Override
@@ -857,6 +861,36 @@ public class PushNotificationsEntryLocalServiceClp
 		return (com.liferay.pushnotifications.model.PushNotificationsEntry)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
+	public com.liferay.pushnotifications.model.PushNotificationsEntry updateRatingsEntry(
+		long userId, long pushNotificationsEntryId, long score)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName26,
+					_methodParameterTypes26,
+					new Object[] { userId, pushNotificationsEntryId, score });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.liferay.pushnotifications.model.PushNotificationsEntry)ClpSerializer.translateOutput(returnObj);
+	}
+
 	private InvokableLocalService _invokableLocalService;
 	private String _methodName0;
 	private String[] _methodParameterTypes0;
@@ -908,4 +942,6 @@ public class PushNotificationsEntryLocalServiceClp
 	private String[] _methodParameterTypes24;
 	private String _methodName25;
 	private String[] _methodParameterTypes25;
+	private String _methodName26;
+	private String[] _methodParameterTypes26;
 }

@@ -65,10 +65,28 @@ import java.rmi.RemoteException;
  */
 @ProviderType
 public class PushNotificationsEntryServiceSoap {
-	public static void addPushNotificationsEntry(java.lang.String payload)
-		throws RemoteException {
+	public static com.liferay.pushnotifications.model.PushNotificationsEntrySoap addPushNotificationsEntry(
+		java.lang.String payload) throws RemoteException {
 		try {
-			PushNotificationsEntryServiceUtil.addPushNotificationsEntry(payload);
+			com.liferay.pushnotifications.model.PushNotificationsEntry returnValue =
+				PushNotificationsEntryServiceUtil.addPushNotificationsEntry(payload);
+
+			return com.liferay.pushnotifications.model.PushNotificationsEntrySoap.toSoapModel(returnValue);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static com.liferay.pushnotifications.model.PushNotificationsEntrySoap dislikePushNotificationsEntry(
+		long pushNotificationsEntryId) throws RemoteException {
+		try {
+			com.liferay.pushnotifications.model.PushNotificationsEntry returnValue =
+				PushNotificationsEntryServiceUtil.dislikePushNotificationsEntry(pushNotificationsEntryId);
+
+			return com.liferay.pushnotifications.model.PushNotificationsEntrySoap.toSoapModel(returnValue);
 		}
 		catch (Exception e) {
 			_log.error(e, e);
@@ -86,6 +104,21 @@ public class PushNotificationsEntryServiceSoap {
 					lastAccessTime, start, end);
 
 			return com.liferay.pushnotifications.model.PushNotificationsEntrySoap.toSoapModels(returnValue);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static com.liferay.pushnotifications.model.PushNotificationsEntrySoap likePushNotificationsEntry(
+		long pushNotificationsEntryId) throws RemoteException {
+		try {
+			com.liferay.pushnotifications.model.PushNotificationsEntry returnValue =
+				PushNotificationsEntryServiceUtil.likePushNotificationsEntry(pushNotificationsEntryId);
+
+			return com.liferay.pushnotifications.model.PushNotificationsEntrySoap.toSoapModel(returnValue);
 		}
 		catch (Exception e) {
 			_log.error(e, e);
