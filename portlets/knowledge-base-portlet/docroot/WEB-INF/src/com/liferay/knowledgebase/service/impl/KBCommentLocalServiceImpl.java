@@ -318,7 +318,7 @@ public class KBCommentLocalServiceImpl extends KBCommentLocalServiceBaseImpl {
 				PortletKeys.PREFS_PLID_SHARED, PortletKeys.KNOWLEDGE_BASE_ADMIN,
 				null);
 
-		if (!AdminUtil.isFeedbackStatusChangeNotificationEnabled(
+		if (!AdminUtil.isSuggestionStatusChangeNotificationEnabled(
 				kbComment.getStatus(), preferences)) {
 
 			return;
@@ -330,9 +330,9 @@ public class KBCommentLocalServiceImpl extends KBCommentLocalServiceBaseImpl {
 			preferences, kbComment.getCompanyId());
 
 		String subject =
-			AdminUtil.getEmailKBArticleFeedbackNotificationSubject(
+			AdminUtil.getEmailKBArticleSuggestionNotificationSubject(
 				kbComment.getStatus(), preferences);
-		String body = AdminUtil.getEmailKBArticleFeedbackNotificationBody(
+		String body = AdminUtil.getEmailKBArticleSuggestionNotificationBody(
 			kbComment.getStatus(), preferences);
 
 		KBArticle kbArticle = kbArticleLocalService.getLatestKBArticle(

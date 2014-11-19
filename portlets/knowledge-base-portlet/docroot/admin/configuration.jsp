@@ -27,17 +27,17 @@ boolean emailKBArticleAddedEnabled = ParamUtil.getBoolean(request, "emailKBArtic
 String emailKBArticleAddedSubject = ParamUtil.getString(request, "emailKBArticleAddedSubject", AdminUtil.getEmailKBArticleAddedSubject(portletPreferences));
 String emailKBArticleAddedBody = ParamUtil.getString(request, "emailKBArticleAddedBody", AdminUtil.getEmailKBArticleAddedBody(portletPreferences));
 
-boolean emailKBArticleFeedbackInProgressEnabled = ParamUtil.getBoolean(request, "emailKBArticleFeedbackInProgressEnabled", AdminUtil.getEmailKBArticleFeedbackInProgressEnabled(portletPreferences));
-String emailKBArticleFeedbackInProgressSubject = ParamUtil.getString(request, "emailKBArticleFeedbackInProgressSubject", AdminUtil.getEmailKBArticleFeedbackInProgressSubject(portletPreferences));
-String emailKBArticleFeedbackInProgressBody = ParamUtil.getString(request, "emailKBArticleFeedbackInProgressBody", AdminUtil.getEmailKBArticleFeedbackInProgressBody(portletPreferences));
+boolean emailKBArticleFeedbackInProgressEnabled = ParamUtil.getBoolean(request, "emailKBArticleFeedbackInProgressEnabled", AdminUtil.getEmailKBArticleSuggestionInProgressEnabled(portletPreferences));
+String emailKBArticleFeedbackInProgressSubject = ParamUtil.getString(request, "emailKBArticleFeedbackInProgressSubject", AdminUtil.getEmailKBArticleSuggestionInProgressSubject(portletPreferences));
+String emailKBArticleFeedbackInProgressBody = ParamUtil.getString(request, "emailKBArticleFeedbackInProgressBody", AdminUtil.getEmailKBArticleSuggestionInProgressBody(portletPreferences));
 
-boolean emailKBArticleFeedbackReceivedEnabled = ParamUtil.getBoolean(request, "emailKBArticleFeedbackReceivedEnabled", AdminUtil.getEmailKBArticleFeedbackReceivedEnabled(portletPreferences));
-String emailKBArticleFeedbackReceivedSubject = ParamUtil.getString(request, "emailKBArticleFeedbackReceivedSubject", AdminUtil.getEmailKBArticleFeedbackReceivedSubject(portletPreferences));
-String emailKBArticleFeedbackReceivedBody = ParamUtil.getString(request, "emailKBArticleFeedbackReceivedBody", AdminUtil.getEmailKBArticleFeedbackReceivedBody(portletPreferences));
+boolean emailKBArticleFeedbackReceivedEnabled = ParamUtil.getBoolean(request, "emailKBArticleFeedbackReceivedEnabled", AdminUtil.getEmailKBArticleSuggestionReceivedEnabled(portletPreferences));
+String emailKBArticleFeedbackReceivedSubject = ParamUtil.getString(request, "emailKBArticleFeedbackReceivedSubject", AdminUtil.getEmailKBArticleSuggestionReceivedSubject(portletPreferences));
+String emailKBArticleFeedbackReceivedBody = ParamUtil.getString(request, "emailKBArticleFeedbackReceivedBody", AdminUtil.getEmailKBArticleSuggestionReceivedBody(portletPreferences));
 
-boolean emailKBArticleFeedbackResolvedEnabled = ParamUtil.getBoolean(request, "emailKBArticleFeedbackResolvedEnabled", AdminUtil.getEmailKBArticleFeedbackResolvedEnabled(portletPreferences));
-String emailKBArticleFeedbackResolvedSubject = ParamUtil.getString(request, "emailKBArticleFeedbackResolvedSubject", AdminUtil.getEmailKBArticleFeedbackResolvedSubject(portletPreferences));
-String emailKBArticleFeedbackResolvedBody = ParamUtil.getString(request, "emailKBArticleFeedbackResolvedBody", AdminUtil.getEmailKBArticleFeedbackResolvedBody(portletPreferences));
+boolean emailKBArticleFeedbackResolvedEnabled = ParamUtil.getBoolean(request, "emailKBArticleFeedbackResolvedEnabled", AdminUtil.getEmailKBArticleSuggestionResolvedEnabled(portletPreferences));
+String emailKBArticleFeedbackResolvedSubject = ParamUtil.getString(request, "emailKBArticleFeedbackResolvedSubject", AdminUtil.getEmailKBArticleSuggestionResolvedSubject(portletPreferences));
+String emailKBArticleFeedbackResolvedBody = ParamUtil.getString(request, "emailKBArticleFeedbackResolvedBody", AdminUtil.getEmailKBArticleSuggestionResolvedBody(portletPreferences));
 
 boolean emailKBArticleUpdatedEnabled = ParamUtil.getBoolean(request, "emailKBArticleUpdatedEnabled", AdminUtil.getEmailKBArticleUpdatedEnabled(portletPreferences));
 String emailKBArticleUpdatedSubject = ParamUtil.getString(request, "emailKBArticleUpdatedSubject", AdminUtil.getEmailKBArticleUpdatedSubject(portletPreferences));
