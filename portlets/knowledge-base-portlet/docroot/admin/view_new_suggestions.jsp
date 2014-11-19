@@ -17,9 +17,9 @@
 <%@ include file="/admin/init.jsp" %>
 
 <%
-String emptyResultsMessage = "no-completed-suggestion-was-found";
-int suggestionStatus = KBCommentConstants.STATUS_COMPLETED;
-String navItem = "viewCompletedSuggestions";
+String emptyResultsMessage = "no-new-suggestion-was-found";
+int suggestionStatus = KBCommentConstants.STATUS_NEW;
+String navItem = "viewNewSuggestions";
 %>
 
-<%@ include file="/admin/view_feedback_in_state.jspf" %>
+<%@ include file="/admin/view_suggestions_in_state.jspf" %>
