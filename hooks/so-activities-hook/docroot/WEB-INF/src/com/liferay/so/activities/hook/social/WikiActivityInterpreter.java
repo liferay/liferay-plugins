@@ -14,16 +14,21 @@
 
 package com.liferay.so.activities.hook.social;
 
+import com.liferay.portal.NoSuchModelException;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.repository.model.FileEntry;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HtmlUtil;
+import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.MathUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.LayoutConstants;
+import com.liferay.portal.portletfilerepository.PortletFileRepositoryUtil;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portal.util.PortletKeys;
@@ -197,6 +202,59 @@ public class WikiActivityInterpreter extends SOSocialActivityInterpreter {
 		}
 
 		return 0;
+	}
+
+	@Override
+	protected String getAttachmentTitle(
+			SocialActivity activity, WikiPageResource pageResource,
+			ServiceContext serviceContext)
+		throws Exception {
+
+		int activityType = activity.getType();
+
+		if ((activityType == SocialActivityConstants.TYPE_ADD_ATTACHMENT) ||
+			(activityType ==
+				SocialActivityConstants.TYPE_MOVE_ATTACHMENT_TO_TRASH) ||
+			(activityType ==
+				SocialActivityConstants.TYPE_RESTORE_ATTACHMENT_FROM_TRASH)) {
+
+			String link = null;
+
+			FileEntry fileEntry = null;
+
+			try {
+				long fileEntryId = GetterUtil.getLong(
+					activity.getExtraDataValue("fileEntryId"));
+
+				fileEntry = PortletFileRepositoryUtil.getPortletFileEntry(
+					fileEntryId);
+			}
+			catch (NoSuchModelException nsme) {
+			}
+
+			String fileEntryTitle = activity.getExtraDataValue(
+				"fileEntryTitle");
+
+			if ((fileEntry != null) && !fileEntry.isInTrash()) {
+				StringBundler sb = new StringBundler(9);
+
+				sb.append(serviceContext.getPathMain());
+				sb.append("/wiki/get_page_attachment?p_l_id=");
+				sb.append(serviceContext.getPlid());
+				sb.append("&nodeId=");
+				sb.append(pageResource.getNodeId());
+				sb.append("&title=");
+				sb.append(HttpUtil.encodeURL(pageResource.getTitle()));
+				sb.append("&fileName=");
+				sb.append(fileEntryTitle);
+
+				link = sb.toString();
+			}
+
+			return wrapLink(link, fileEntryTitle);
+		}
+
+		return StringPool.BLANK;
 	}
 
 	@Override
@@ -393,10 +451,16 @@ public class WikiActivityInterpreter extends SOSocialActivityInterpreter {
 			String title, ServiceContext serviceContext)
 		throws Exception {
 
+		WikiPageResource pageResource =
+			WikiPageResourceLocalServiceUtil.fetchWikiPageResource(
+				activity.getClassPK());
+
 		String nodeTitle = getNodeTitle(
 			activity.getClassPK(), activity.getGroupId(), serviceContext);
 
-		return new Object[] {nodeTitle};
+		return new Object[] {
+			nodeTitle,
+			getAttachmentTitle(activity, pageResource, serviceContext)};
 	}
 
 	@Override
@@ -439,6 +503,22 @@ public class WikiActivityInterpreter extends SOSocialActivityInterpreter {
 			titlePattern = "created-a-new-wiki-page";
 		}
 		else if (activity.getType() ==
+					SocialActivityConstants.TYPE_ADD_ATTACHMENT) {
+
+			titlePattern = "added-an-attachment-x-to-a-wiki-page";
+		}
+		else if (activity.getType() ==
+					SocialActivityConstants.TYPE_MOVE_ATTACHMENT_TO_TRASH) {
+
+			titlePattern = "removed-an-attachment-x-from-a-wiki-page";
+		}
+		else if (activity.getType() ==
+					SocialActivityConstants.
+						TYPE_RESTORE_ATTACHMENT_FROM_TRASH) {
+
+			titlePattern = "restored-an-attachment-x-to-a-wiki-page";
+		}
+		else if (activity.getType() ==
 					SocialActivityKeyConstants.WIKI_UPDATE_PAGE) {
 
 			titlePattern = "updated-a-wiki-page";
@@ -468,6 +548,22 @@ public class WikiActivityInterpreter extends SOSocialActivityInterpreter {
 					SocialActivityKeyConstants.WIKI_ADD_PAGE) {
 
 			titlePattern = "created-x-new-wiki-pages";
+		}
+		else if (activitySet.getType() ==
+					SocialActivityConstants.TYPE_ADD_ATTACHMENT) {
+
+			titlePattern = "added-x-attachments-to-a-wiki-page";
+		}
+		else if (activitySet.getType() ==
+					SocialActivityConstants.TYPE_MOVE_ATTACHMENT_TO_TRASH) {
+
+			titlePattern = "removed-x-attachments-from-a-wiki-page";
+		}
+		else if (activitySet.getType() ==
+					SocialActivityConstants.
+						TYPE_RESTORE_ATTACHMENT_FROM_TRASH) {
+
+			titlePattern = "restored-x-attachments-to-a-wiki-page";
 		}
 		else if (activitySet.getType() ==
 					SocialActivityKeyConstants.WIKI_UPDATE_PAGE) {
