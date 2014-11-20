@@ -38,8 +38,7 @@ import javax.portlet.PortletRequest;
 public class KBNavigationDisplayContext {
 
 	public KBNavigationDisplayContext(
-		PortletRequest portletRequest,
-		PortalPreferences portalPreferences,
+		PortletRequest portletRequest, PortalPreferences portalPreferences,
 		PortletPreferences portletPreferences, KBArticle kbArticle) {
 
 		_kbArticle = kbArticle;
@@ -80,20 +79,34 @@ public class KBNavigationDisplayContext {
 			KBFolder kbFolder = KBFolderServiceUtil.getKBFolder(
 				rootResourcePrimKey);
 
-			String pageTitle =
-				getContentRootPrefix() + " " + kbFolder.getName();
-
-			if (_kbArticle != null) {
-				pageTitle = _kbArticle.getTitle() + " - " + pageTitle;
-			}
-
-			PortalUtil.setPageTitle(
-				pageTitle, PortalUtil.getHttpServletRequest(_portletRequest));
-
 			currentKBFolderUrlTitle = kbFolder.getUrlTitle();
 		}
 
 		return currentKBFolderUrlTitle;
+	}
+
+	public String getPageTitle() throws PortalException {
+		long rootResourcePrimKey = getRootResourcePrimKey();
+
+		String pageTitle = null;
+
+		if (rootResourcePrimKey != KBFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
+			KBFolder kbFolder = KBFolderServiceUtil.getKBFolder(
+				rootResourcePrimKey);
+
+			pageTitle = getContentRootPrefix() + " " + kbFolder.getName();
+
+			if (_kbArticle != null) {
+				pageTitle = _kbArticle.getTitle() + " - " + pageTitle;
+			}
+		}
+		else {
+			if (_kbArticle != null) {
+				pageTitle = _kbArticle.getTitle();
+			}
+		}
+
+		return pageTitle;
 	}
 
 	public long getRootResourcePrimKey() throws PortalException {

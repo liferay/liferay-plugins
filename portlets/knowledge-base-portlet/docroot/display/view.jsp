@@ -30,6 +30,7 @@ KBNavigationDisplayContext kbNavigationDisplayContext = new KBNavigationDisplayC
 					<liferay-util:include page="/display/view_navigation.jsp" servletContext="<%= application %>" />
 				</div>
 			</c:if>
+
 			<div class='<%= kbNavigationDisplayContext.isShowNavigation() ? "col-md-9" : "col-md-12" %>'>
 				<liferay-util:include page="/display/view_article.jsp" servletContext="<%= application %>" />
 			</div>
