@@ -75,7 +75,7 @@ String viewCalendarBookingURL = ParamUtil.getString(request, "viewCalendarBookin
 				readOnly: <%= readOnly %>,
 				strings: {
 					close: '<liferay-ui:message key="close" />',
-					more: '<%= StringUtil.toLowerCase(LanguageUtil.get(request, "more")) %>',
+					more: '<%= StringUtil.toLowerCase(LanguageUtil.get(pageContext, "more")) %>',
 					show: '<liferay-ui:message key="show" />'
 				}
 			}
