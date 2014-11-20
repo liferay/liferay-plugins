@@ -18,8 +18,8 @@
 
 <%
 String emptyResultsMessage = "no-new-suggestion-was-found";
-int suggestionStatus = KBCommentConstants.STATUS_NEW;
 String navItem = "viewNewSuggestions";
+int suggestionStatus = KBCommentConstants.STATUS_NEW;
 %>
 
 <%@ include file="/admin/view_suggestions_in_state.jspf" %>

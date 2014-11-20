@@ -18,8 +18,8 @@
 
 <%
 String emptyResultsMessage = "no-in-progress-suggestion-was-found";
-int suggestionStatus = KBCommentConstants.STATUS_IN_PROGRESS;
 String navItem = "viewInProgressSuggestions";
+int suggestionStatus = KBCommentConstants.STATUS_IN_PROGRESS;
 %>
 
 <%@ include file="/admin/view_suggestions_in_state.jspf" %>

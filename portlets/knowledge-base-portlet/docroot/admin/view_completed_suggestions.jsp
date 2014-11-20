@@ -18,8 +18,8 @@
 
 <%
 String emptyResultsMessage = "no-completed-suggestion-was-found";
-int suggestionStatus = KBCommentConstants.STATUS_COMPLETED;
 String navItem = "viewCompletedSuggestions";
+int suggestionStatus = KBCommentConstants.STATUS_COMPLETED;
 %>
 
 <%@ include file="/admin/view_suggestions_in_state.jspf" %>
