@@ -335,6 +335,18 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 		return null;
 	}
 
+	protected String createJSONResponseContent(
+		String status, JSONObject jsonData, String message) {
+
+		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
+
+		jsonObject.put("status", status);
+		jsonObject.put("data", jsonData);
+		jsonObject.put("message", message);
+
+		return jsonObject.toString();
+	}
+
 	@Transactional(
 		isolation = Isolation.PORTAL, propagation = Propagation.REQUIRES_NEW,
 		rollbackFor = {Exception.class}
@@ -346,6 +358,14 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 
 		actionRequest.setAttribute(
 			CALLED_PROCESS_ACTION, Boolean.TRUE.toString());
+
+		if (Validator.isNotNull(format)) {
+			if (format.equals("json")) {
+				writeResponse(responseContent, ContentTypes.APPLICATION_JSON);
+			}
+
+			return;
+		}
 
 		if (Validator.isNotNull(viewPath)) {
 			actionRequest.setAttribute(VIEW_PATH, viewPath);
@@ -853,6 +873,13 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 	}
 
 	protected void renderError(String pattern, Object... arguments) {
+		if (Validator.isNotNull(format) && format.equals("json")) {
+			responseContent = createJSONResponseContent(
+				"error", null, translate(pattern, arguments));
+
+			return;
+		}
+
 		portletRequest.setAttribute("arguments", arguments);
 		portletRequest.setAttribute("pattern", pattern);
 
@@ -1055,11 +1082,13 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 	protected void setJSONResponseContent(BaseModel<?> baseModel)
 		throws Exception {
 
-		responseContent = String.valueOf(toJSONObject(baseModel));
+		responseContent = createJSONResponseContent(
+			"success", toJSONObject(baseModel), null);
 	}
 
 	protected void setJSONResponseContent(Document document) throws Exception {
-		responseContent = String.valueOf(toJSONObject(document));
+		responseContent = createJSONResponseContent(
+			"success", toJSONObject(document), null);
 	}
 
 	protected void setJSONResponseContent(Document[] documents)
@@ -1075,7 +1104,8 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 
 		jsonObject.put(controllerPath, jsonArray);
 
-		responseContent = jsonObject.toString();
+		responseContent = createJSONResponseContent(
+			"success", jsonObject, null);
 	}
 
 	protected void setJSONResponseContent(List<BaseModel<?>> baseModels)
@@ -1091,7 +1121,8 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 
 		jsonObject.put(controllerPath, jsonArray);
 
-		responseContent = jsonObject.toString();
+		responseContent = createJSONResponseContent(
+			"success", jsonObject, null);
 	}
 
 	protected void setPermissioned(boolean permissioned) {
