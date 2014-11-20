@@ -76,7 +76,7 @@ public class KBNavigationDisplayContext {
 		throws PortalException, SystemException {
 
 		String currentKBFolderURLTitle = _portalPreferences.getValue(
-			PortletKeys.KNOWLEDGE_BASE_DISPLAY, "preferredKBFolderUrlTitle");
+			PortletKeys.KNOWLEDGE_BASE_DISPLAY, "preferredKBFolderURLTitle");
 
 		long rootResourcePrimKey = getRootResourcePrimKey();
 

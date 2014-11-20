@@ -611,13 +611,13 @@ public class KnowledgeBaseUtil {
 		PortalPreferences portalPreferences =
 			PortletPreferencesFactoryUtil.getPortalPreferences(portletRequest);
 
-		String kbFolderUrlTitle = portalPreferences.getValue(
-			PortletKeys.KNOWLEDGE_BASE_DISPLAY, "preferredKBFolderUrlTitle",
+		String kbFolderURLTitle = portalPreferences.getValue(
+			PortletKeys.KNOWLEDGE_BASE_DISPLAY, "preferredKBFolderURLTitle",
 			null);
 
 		long childKbFolderId = KBFolderConstants.DEFAULT_PARENT_FOLDER_ID;
 
-		if (kbFolderUrlTitle == null) {
+		if (kbFolderURLTitle == null) {
 			List<KBFolder> kbFolders = getAlternateRootKBFolders(
 				groupId, kbFolderId);
 
@@ -629,7 +629,7 @@ public class KnowledgeBaseUtil {
 		}
 		else {
 			KBFolder kbFolder = KBFolderServiceUtil.fetchKBFolderByUrlTitle(
-				groupId, kbFolderId, kbFolderUrlTitle);
+				groupId, kbFolderId, kbFolderURLTitle);
 
 			if (kbFolder != null) {
 				childKbFolderId = kbFolder.getKbFolderId();
