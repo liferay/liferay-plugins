@@ -18,8 +18,10 @@ import com.liferay.calendar.model.Calendar;
 import com.liferay.calendar.model.CalendarResource;
 import com.liferay.calendar.service.CalendarLocalServiceUtil;
 import com.liferay.calendar.service.permission.CalendarPermission;
+import com.liferay.calendar.service.persistence.CalendarActionableDynamicQuery;
 import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.search.BaseIndexer;
 import com.liferay.portal.kernel.search.BooleanQuery;
 import com.liferay.portal.kernel.search.Document;
@@ -34,8 +36,6 @@ import com.liferay.portal.security.permission.PermissionChecker;
 
 import java.util.Locale;
 
-import javax.portlet.PortletRequest;
-import javax.portlet.PortletResponse;
 import javax.portlet.PortletURL;
 
 /**
@@ -48,14 +48,8 @@ public class CalendarIndexer extends BaseIndexer {
 	public static final String PORTLET_ID = PortletKeys.CALENDAR;
 
 	public CalendarIndexer() {
-		setDefaultSelectedFieldNames(
-			Field.COMPANY_ID, Field.ENTRY_CLASS_NAME, Field.ENTRY_CLASS_PK,
-			Field.UID);
-		setDefaultSelectedLocalizedFieldNames(
-			Field.DESCRIPTION, Field.NAME, "resourceName");
 		setFilterSearch(true);
 		setPermissionAware(true);
-		setSelectAllLocales(true);
 	}
 
 	@Override
@@ -124,8 +118,8 @@ public class CalendarIndexer extends BaseIndexer {
 
 	@Override
 	protected Summary doGetSummary(
-		Document document, Locale locale, String snippet, PortletURL portletURL,
-		PortletRequest portletRequest, PortletResponse portletResponse) {
+		Document document, Locale locale, String snippet,
+		PortletURL portletURL) {
 
 		String calendarId = document.get(Field.ENTRY_CLASS_PK);
 
@@ -148,8 +142,7 @@ public class CalendarIndexer extends BaseIndexer {
 		Document document = getDocument(calendar);
 
 		SearchEngineUtil.updateDocument(
-			getSearchEngineId(), calendar.getCompanyId(), document,
-			isCommitImmediately());
+			getSearchEngineId(), calendar.getCompanyId(), document);
 	}
 
 	@Override
@@ -171,13 +164,11 @@ public class CalendarIndexer extends BaseIndexer {
 		return PORTLET_ID;
 	}
 
-	protected void reindexCalendars(long companyId) throws PortalException {
-		final ActionableDynamicQuery actionableDynamicQuery =
-			CalendarLocalServiceUtil.getActionableDynamicQuery();
+	protected void reindexCalendars(long companyId)
+		throws PortalException, SystemException {
 
-		actionableDynamicQuery.setCompanyId(companyId);
-		actionableDynamicQuery.setPerformActionMethod(
-			new ActionableDynamicQuery.PerformActionMethod() {
+		ActionableDynamicQuery actionableDynamicQuery =
+			new CalendarActionableDynamicQuery() {
 
 			@Override
 			public void performAction(Object object) throws PortalException {
@@ -185,11 +176,11 @@ public class CalendarIndexer extends BaseIndexer {
 
 				Document document = getDocument(calendar);
 
-				actionableDynamicQuery.addDocument(document);
+				addDocument(document);
 			}
+		};
 
-		});
-
+		actionableDynamicQuery.setCompanyId(companyId);
 		actionableDynamicQuery.setSearchEngineId(getSearchEngineId());
 
 		actionableDynamicQuery.performActions();

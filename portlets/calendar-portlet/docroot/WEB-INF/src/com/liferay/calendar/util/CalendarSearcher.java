@@ -16,8 +16,16 @@ package com.liferay.calendar.util;
 
 import com.liferay.calendar.model.Calendar;
 import com.liferay.portal.kernel.search.BaseSearcher;
+import com.liferay.portal.kernel.search.Document;
 import com.liferay.portal.kernel.search.Field;
 import com.liferay.portal.kernel.search.Indexer;
+import com.liferay.portal.kernel.search.IndexerPostProcessor;
+import com.liferay.portal.kernel.search.SearchContext;
+import com.liferay.portal.kernel.search.Summary;
+
+import java.util.Locale;
+
+import javax.portlet.PortletURL;
 
 /**
  * @author Adam Brandizzi
@@ -31,14 +39,8 @@ public class CalendarSearcher extends BaseSearcher {
 	}
 
 	public CalendarSearcher() {
-		setDefaultSelectedFieldNames(
-			Field.COMPANY_ID, Field.ENTRY_CLASS_NAME, Field.ENTRY_CLASS_PK,
-			Field.UID);
-		setDefaultSelectedLocalizedFieldNames(
-			Field.DESCRIPTION, Field.NAME, "resourceName");
 		setFilterSearch(true);
 		setPermissionAware(true);
-		setSelectAllLocales(true);
 	}
 
 	@Override
@@ -46,4 +48,59 @@ public class CalendarSearcher extends BaseSearcher {
 		return CLASS_NAMES;
 	}
 
+	@Override
+	public IndexerPostProcessor[] getIndexerPostProcessors() {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public String getPortletId() {
+		return null;
+	}
+
+	@Override
+	public void registerIndexerPostProcessor(
+		IndexerPostProcessor indexerPostProcessor) {
+
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	protected void doDelete(Object obj) throws Exception {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	protected Document doGetDocument(Object obj) throws Exception {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	protected Summary doGetSummary(
+			Document document, Locale locale, String snippet,
+			PortletURL portletURL)
+		throws Exception {
+
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	protected void doReindex(Object obj) throws Exception {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	protected void doReindex(String className, long classPK) throws Exception {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	protected void doReindex(String[] ids) throws Exception {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	protected String getPortletId(SearchContext searchContext) {
+		return null;
+	}
 }
