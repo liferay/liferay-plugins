@@ -27,7 +27,7 @@ long kbFolderClassNameId = PortalUtil.getClassNameId(KBFolderConstants.getClassN
 
 long rootResourcePrimKey = kbNavigationDisplayContext.getRootResourcePrimKey();
 
-String currentKBFolderUrlTitle = kbNavigationDisplayContext.getCurrentKBFolderURLTitle();
+String currentKBFolderURLTitle = kbNavigationDisplayContext.getCurrentKBFolderURLTitle();
 
 String pageTitle = kbNavigationDisplayContext.getPageTitle();
 
@@ -59,7 +59,7 @@ if (Validator.isNotNull(pageTitle)) {
 						%>
 
 							<aui:option
-								selected="<%= currentKBFolderUrlTitle.equals(kbFolder.getUrlTitle()) %>"
+								selected="<%= currentKBFolderURLTitle.equals(kbFolder.getUrlTitle()) %>"
 								value="<%= kbFolder.getKbFolderId() %>"
 							>
 								<%= contentRootPrefix + " " + kbFolder.getName() %>
