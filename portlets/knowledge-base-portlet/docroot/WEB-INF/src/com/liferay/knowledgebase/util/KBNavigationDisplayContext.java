@@ -32,15 +32,13 @@ import java.util.List;
 import javax.portlet.PortletPreferences;
 import javax.portlet.PortletRequest;
 
-import javax.servlet.http.HttpServletRequest;
-
 /**
  * @author Adolfo Pérez
  */
 public class KBNavigationDisplayContext {
 
 	public KBNavigationDisplayContext(
-		HttpServletRequest request, PortletRequest portletRequest,
+		PortletRequest portletRequest,
 		PortalPreferences portalPreferences,
 		PortletPreferences portletPreferences, KBArticle kbArticle) {
 
@@ -48,7 +46,6 @@ public class KBNavigationDisplayContext {
 		_portalPreferences = portalPreferences;
 		_portletPreferences = portletPreferences;
 		_portletRequest = portletRequest;
-		_request = request;
 	}
 
 	public List<Long> getAncestorResourcePrimaryKeys() throws PortalException {
@@ -90,7 +87,8 @@ public class KBNavigationDisplayContext {
 				pageTitle = _kbArticle.getTitle() + " - " + pageTitle;
 			}
 
-			PortalUtil.setPageTitle(pageTitle, _request);
+			PortalUtil.setPageTitle(
+				pageTitle, PortalUtil.getHttpServletRequest(_portletRequest));
 
 			currentKBFolderUrlTitle = kbFolder.getUrlTitle();
 		}
@@ -184,7 +182,6 @@ public class KBNavigationDisplayContext {
 	private final PortalPreferences _portalPreferences;
 	private final PortletPreferences _portletPreferences;
 	private final PortletRequest _portletRequest;
-	private final HttpServletRequest _request;
 	private Long _resourceClassNameId;
 	private Long _resourcePrimKey;
 	private Long _rootResourcePrimKey;
