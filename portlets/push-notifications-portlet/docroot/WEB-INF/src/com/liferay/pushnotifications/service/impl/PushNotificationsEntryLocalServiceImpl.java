@@ -76,6 +76,14 @@ public class PushNotificationsEntryLocalServiceImpl
 	}
 
 	@Override
+	public PushNotificationsEntry dislikePushNotificationsEntry(
+			long userId, long pushNotificationsEntryId)
+		throws PortalException, SystemException {
+
+		return updateRatingsEntry(userId, pushNotificationsEntryId, 0);
+	}
+
+	@Override
 	public List<PushNotificationsEntry> getPushNotificationsEntries(
 			long parentPushNotificationsEntryId, long lastAccessTime, int start,
 			int end)
@@ -83,6 +91,14 @@ public class PushNotificationsEntryLocalServiceImpl
 
 		return pushNotificationsEntryPersistence.findByC_P(
 			lastAccessTime, parentPushNotificationsEntryId, start, end);
+	}
+
+	@Override
+	public PushNotificationsEntry likePushNotificationsEntry(
+			long userId, long pushNotificationsEntryId)
+		throws PortalException, SystemException {
+
+		return updateRatingsEntry(userId, pushNotificationsEntryId, 1);
 	}
 
 	@Override
@@ -163,31 +179,6 @@ public class PushNotificationsEntryLocalServiceImpl
 		return pushNotificationsEntry;
 	}
 
-	public PushNotificationsEntry updateRatingsEntry(
-			long userId, long pushNotificationsEntryId, long score)
-		throws PortalException, SystemException {
-
-		String className = PushNotificationsEntry.class.getName();
-
-		ratingsEntryLocalService.updateEntry(
-			userId, className, pushNotificationsEntryId, score,
-			new ServiceContext());
-
-		PushNotificationsEntry pushNotificationsEntry =
-			pushNotificationsEntryPersistence.findByPrimaryKey(
-				pushNotificationsEntryId);
-
-		RatingsStats ratingsStats = ratingsStatsLocalService.getStats(
-			className, pushNotificationsEntryId);
-
-		pushNotificationsEntry.setRatingsTotalScore(
-			(long)ratingsStats.getTotalScore());
-
-		pushNotificationsEntryPersistence.update(pushNotificationsEntry);
-
-		return pushNotificationsEntry;
-	}
-
 	protected JSONObject createJSONObject(
 			long fromUserId, JSONObject payloadJSONObject)
 		throws PortalException, SystemException {
@@ -214,6 +205,31 @@ public class PushNotificationsEntryLocalServiceImpl
 			PushNotificationsConstants.KEY_PAYLOAD, payloadJSONObject);
 
 		return jsonObject;
+	}
+
+	protected PushNotificationsEntry updateRatingsEntry(
+			long userId, long pushNotificationsEntryId, long score)
+		throws PortalException, SystemException {
+
+		String className = PushNotificationsEntry.class.getName();
+
+		ratingsEntryLocalService.updateEntry(
+			userId, className, pushNotificationsEntryId, score,
+			new ServiceContext());
+
+		PushNotificationsEntry pushNotificationsEntry =
+			pushNotificationsEntryPersistence.findByPrimaryKey(
+				pushNotificationsEntryId);
+
+		RatingsStats ratingsStats = ratingsStatsLocalService.getStats(
+			className, pushNotificationsEntryId);
+
+		pushNotificationsEntry.setRatingsTotalScore(
+			(long)ratingsStats.getTotalScore());
+
+		pushNotificationsEntryPersistence.update(pushNotificationsEntry);
+
+		return pushNotificationsEntry;
 	}
 
 	@BeanReference(name = "pushNotificationsSenders")

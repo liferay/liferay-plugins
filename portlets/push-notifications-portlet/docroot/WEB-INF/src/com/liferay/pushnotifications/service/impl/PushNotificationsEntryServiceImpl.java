@@ -55,8 +55,8 @@ public class PushNotificationsEntryServiceImpl
 			long pushNotificationsEntryId)
 		throws PortalException, SystemException {
 
-		return pushNotificationsEntryLocalService.updateRatingsEntry(
-			getUserId(), pushNotificationsEntryId, 0);
+		return pushNotificationsEntryLocalService.dislikePushNotificationsEntry(
+			getUserId(), pushNotificationsEntryId);
 	}
 
 	@Override
@@ -74,8 +74,8 @@ public class PushNotificationsEntryServiceImpl
 			long pushNotificationsEntryId)
 		throws PortalException, SystemException {
 
-		return pushNotificationsEntryLocalService.updateRatingsEntry(
-			getUserId(), pushNotificationsEntryId, 1);
+		return pushNotificationsEntryLocalService.likePushNotificationsEntry(
+			getUserId(), pushNotificationsEntryId);
 	}
 
 }
