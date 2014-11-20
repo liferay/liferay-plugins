@@ -95,14 +95,14 @@ public class DisplayPortlet extends BaseKBPortlet {
 						PortletPreferencesFactoryUtil.getPortalPreferences(
 							renderRequest);
 
-					String preferredKBFolderUrlTitle =
+					String preferredKBFolderURLTitle =
 						portalPreferences.getValue(
 							PortletKeys.KNOWLEDGE_BASE_DISPLAY,
-							"preferredKBFolderUrlTitle");
+							"preferredKBFolderURLTitle");
 
 					kbArticle = getKBFolderKBArticle(
 						themeDisplay.getScopeGroupId(), resourcePrimKey,
-						preferredKBFolderUrlTitle);
+						preferredKBFolderURLTitle);
 				}
 				else {
 					kbArticle = KBArticleServiceUtil.fetchLatestKBArticle(
@@ -167,7 +167,7 @@ public class DisplayPortlet extends BaseKBPortlet {
 				PortalUtil.getLiferayPortletRequest(actionRequest));
 
 		portalPreferences.setValue(
-			PortletKeys.KNOWLEDGE_BASE_DISPLAY, "preferredKBFolderUrlTitle",
+			PortletKeys.KNOWLEDGE_BASE_DISPLAY, "preferredKBFolderURLTitle",
 			kbFolder.getUrlTitle());
 
 		String urlTitle = ParamUtil.getString(actionRequest, "urlTitle");
