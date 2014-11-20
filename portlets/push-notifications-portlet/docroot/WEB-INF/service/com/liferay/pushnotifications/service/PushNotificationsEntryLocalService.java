@@ -259,10 +259,20 @@ public interface PushNotificationsEntryLocalService extends BaseLocalService,
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
+	public com.liferay.pushnotifications.model.PushNotificationsEntry dislikePushNotificationsEntry(
+		long userId, long pushNotificationsEntryId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
+
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.pushnotifications.model.PushNotificationsEntry> getPushNotificationsEntries(
 		long parentPushNotificationsEntryId, long lastAccessTime, int start,
 		int end) throws com.liferay.portal.kernel.exception.SystemException;
+
+	public com.liferay.pushnotifications.model.PushNotificationsEntry likePushNotificationsEntry(
+		long userId, long pushNotificationsEntryId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
 
 	public void sendPushNotification(long fromUserId,
 		com.liferay.portal.kernel.json.JSONObject payloadJSONObject)
@@ -276,11 +286,6 @@ public interface PushNotificationsEntryLocalService extends BaseLocalService,
 
 	public com.liferay.pushnotifications.model.PushNotificationsEntry updateChildrenPushNotificationsEntriesCount(
 		long parentPushNotificationsEntryId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
-
-	public com.liferay.pushnotifications.model.PushNotificationsEntry updateRatingsEntry(
-		long userId, long pushNotificationsEntryId, long score)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 }

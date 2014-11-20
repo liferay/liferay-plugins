@@ -300,11 +300,29 @@ public class PushNotificationsEntryLocalServiceWrapper
 	}
 
 	@Override
+	public com.liferay.pushnotifications.model.PushNotificationsEntry dislikePushNotificationsEntry(
+		long userId, long pushNotificationsEntryId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _pushNotificationsEntryLocalService.dislikePushNotificationsEntry(userId,
+			pushNotificationsEntryId);
+	}
+
+	@Override
 	public java.util.List<com.liferay.pushnotifications.model.PushNotificationsEntry> getPushNotificationsEntries(
 		long parentPushNotificationsEntryId, long lastAccessTime, int start,
 		int end) throws com.liferay.portal.kernel.exception.SystemException {
 		return _pushNotificationsEntryLocalService.getPushNotificationsEntries(parentPushNotificationsEntryId,
 			lastAccessTime, start, end);
+	}
+
+	@Override
+	public com.liferay.pushnotifications.model.PushNotificationsEntry likePushNotificationsEntry(
+		long userId, long pushNotificationsEntryId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _pushNotificationsEntryLocalService.likePushNotificationsEntry(userId,
+			pushNotificationsEntryId);
 	}
 
 	@Override
@@ -331,15 +349,6 @@ public class PushNotificationsEntryLocalServiceWrapper
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _pushNotificationsEntryLocalService.updateChildrenPushNotificationsEntriesCount(parentPushNotificationsEntryId);
-	}
-
-	@Override
-	public com.liferay.pushnotifications.model.PushNotificationsEntry updateRatingsEntry(
-		long userId, long pushNotificationsEntryId, long score)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return _pushNotificationsEntryLocalService.updateRatingsEntry(userId,
-			pushNotificationsEntryId, score);
 	}
 
 	/**

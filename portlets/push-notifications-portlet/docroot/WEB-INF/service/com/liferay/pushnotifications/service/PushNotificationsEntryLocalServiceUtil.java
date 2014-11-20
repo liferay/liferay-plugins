@@ -284,12 +284,29 @@ public class PushNotificationsEntryLocalServiceUtil {
 		return getService().addPushNotificationsEntry(userId, payloadJSONObject);
 	}
 
+	public static com.liferay.pushnotifications.model.PushNotificationsEntry dislikePushNotificationsEntry(
+		long userId, long pushNotificationsEntryId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService()
+				   .dislikePushNotificationsEntry(userId,
+			pushNotificationsEntryId);
+	}
+
 	public static java.util.List<com.liferay.pushnotifications.model.PushNotificationsEntry> getPushNotificationsEntries(
 		long parentPushNotificationsEntryId, long lastAccessTime, int start,
 		int end) throws com.liferay.portal.kernel.exception.SystemException {
 		return getService()
 				   .getPushNotificationsEntries(parentPushNotificationsEntryId,
 			lastAccessTime, start, end);
+	}
+
+	public static com.liferay.pushnotifications.model.PushNotificationsEntry likePushNotificationsEntry(
+		long userId, long pushNotificationsEntryId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService()
+				   .likePushNotificationsEntry(userId, pushNotificationsEntryId);
 	}
 
 	public static void sendPushNotification(long fromUserId,
@@ -313,14 +330,6 @@ public class PushNotificationsEntryLocalServiceUtil {
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService()
 				   .updateChildrenPushNotificationsEntriesCount(parentPushNotificationsEntryId);
-	}
-
-	public static com.liferay.pushnotifications.model.PushNotificationsEntry updateRatingsEntry(
-		long userId, long pushNotificationsEntryId, long score)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return getService()
-				   .updateRatingsEntry(userId, pushNotificationsEntryId, score);
 	}
 
 	public static void clearService() {
