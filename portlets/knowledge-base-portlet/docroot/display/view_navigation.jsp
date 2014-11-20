@@ -29,8 +29,10 @@ long rootResourcePrimKey = kbNavigationDisplayContext.getRootResourcePrimKey();
 
 String currentKBFolderUrlTitle = kbNavigationDisplayContext.getCurrentKBFolderURLTitle();
 
-if ((rootResourcePrimKey == KBFolderConstants.DEFAULT_PARENT_FOLDER_ID) && (kbArticle != null)) {
-	PortalUtil.setPageTitle(kbArticle.getTitle(), request);
+String pageTitle = kbNavigationDisplayContext.getPageTitle();
+
+if (Validator.isNotNull(pageTitle)) {
+	PortalUtil.setPageTitle(pageTitle, request);
 }
 %>
 
