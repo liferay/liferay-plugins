@@ -39,9 +39,9 @@ public class UpgradePortletPreferences extends BaseUpgradePortletPreferences {
 			PortletPreferencesFactoryUtil.fromXML(
 				companyId, ownerId, ownerType, plid, portletId, xml);
 
-		for (int i = 0; i < _NAME_MAPPING.length; i++) {
-			String sourcePreferenceName = _NAME_MAPPING[i][0];
-			String targetPreferenceName = _NAME_MAPPING[i][1];
+		for (int i = 0; i < _PREFERENCE_NAMES.length; i++) {
+			String sourcePreferenceName = _PREFERENCE_NAMES[i][0];
+			String targetPreferenceName = _PREFERENCE_NAMES[i][1];
 
 			String value = portletPreferences.getValue(
 				sourcePreferenceName, null);
@@ -53,29 +53,47 @@ public class UpgradePortletPreferences extends BaseUpgradePortletPreferences {
 		return PortletPreferencesFactoryUtil.toXML(portletPreferences);
 	}
 
-	private static final String[][] _NAME_MAPPING = {
-		{"emailKBArticleFeedbackInProgressEnabled",
-			"emailKBArticleSuggestionInProgressEnabled"},
-		{"emailKBArticleFeedbackInProgressSubject",
-			"emailKBArticleSuggestionInProgressSubject"},
-		{"emailKBArticleFeedbackInProgressBody",
-			"emailKBArticleSuggestionInProgressBody"},
-		{"emailKBArticleFeedbackReceivedEnabled",
-			"emailKBArticleSuggestionReceivedEnabled"},
-		{"emailKBArticleFeedbackReceivedSubject",
-			"emailKBArticleSuggestionReceivedSubject"},
-		{"emailKBArticleFeedbackReceivedBody",
-			"emailKBArticleSuggestionReceivedBody"},
-		{"emailKBArticleFeedbackResolvedEnabled",
-			"emailKBArticleSuggestionResolvedEnabled"},
-		{"emailKBArticleFeedbackResolvedSubject",
-			"emailKBArticleSuggestionResolvedSubject"},
-		{"emailKBArticleFeedbackResolvedBody",
-			"emailKBArticleSuggestionResolvedBody"}
-	};
-
 	private static final String[] _PORTLET_IDS = {
 		"1_WAR_knowledgebaseportlet"
+	};
+
+	private static final String[][] _PREFERENCE_NAMES = {
+		{
+			"emailKBArticleFeedbackInProgressEnabled",
+			"emailKBArticleSuggestionInProgressEnabled"
+		},
+		{
+			"emailKBArticleFeedbackInProgressSubject",
+			"emailKBArticleSuggestionInProgressSubject"
+		},
+		{
+			"emailKBArticleFeedbackInProgressBody",
+			"emailKBArticleSuggestionInProgressBody"
+		},
+		{
+			"emailKBArticleFeedbackReceivedEnabled",
+			"emailKBArticleSuggestionReceivedEnabled"
+		},
+		{
+			"emailKBArticleFeedbackReceivedSubject",
+			"emailKBArticleSuggestionReceivedSubject"
+		},
+		{
+			"emailKBArticleFeedbackReceivedBody",
+			"emailKBArticleSuggestionReceivedBody"
+		},
+		{
+			"emailKBArticleFeedbackResolvedEnabled",
+			"emailKBArticleSuggestionResolvedEnabled"
+		},
+		{
+			"emailKBArticleFeedbackResolvedSubject",
+			"emailKBArticleSuggestionResolvedSubject"
+		},
+		{
+			"emailKBArticleFeedbackResolvedBody",
+			"emailKBArticleSuggestionResolvedBody"
+		}
 	};
 
 }

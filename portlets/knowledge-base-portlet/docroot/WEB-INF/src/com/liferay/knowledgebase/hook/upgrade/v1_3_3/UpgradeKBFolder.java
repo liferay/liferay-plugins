@@ -99,7 +99,7 @@ public class UpgradeKBFolder extends UpgradeProcess {
 		try {
 			ps = con.prepareStatement(
 				"select kbFolderId, name from KBFolder where " +
-					"(KBFolder.urlTitle is null or KBFolder.urlTitle = '')");
+					"(KBFolder.urlTitle is null) or (KBFolder.urlTitle = '')");
 
 			rs = ps.executeQuery();
 
