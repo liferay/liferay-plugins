@@ -18,7 +18,6 @@ import com.liferay.knowledgebase.model.KBArticleConstants;
 import com.liferay.knowledgebase.model.KBFolderConstants;
 import com.liferay.knowledgebase.util.ActionKeys;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.security.auth.PrincipalException;
 import com.liferay.portal.security.permission.PermissionChecker;
 
@@ -50,7 +49,7 @@ public class AdminPermission {
 	public static boolean hasAccessToSuggestions(
 			PermissionChecker permissionChecker, long groupId, String className,
 			long classPK)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		if (!AdminPermission.contains(
 				permissionChecker, groupId, ActionKeys.VIEW_KB_SUGGESTIONS)) {
