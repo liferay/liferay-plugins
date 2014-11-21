@@ -81,9 +81,8 @@ public class KBCommentServiceImpl extends KBCommentServiceBaseImpl {
 			int end)
 		throws PortalException, SystemException {
 
-		if (AdminPermission.contains(
-				getPermissionChecker(), groupId,
-				ActionKeys.VIEW_KB_SUGGESTIONS)) {
+		if (AdminPermission.hasAccessToSuggestions(
+				getPermissionChecker(), groupId, className, classPK)) {
 
 			return kbCommentLocalService.getKBComments(
 				className, classPK, status, start, end);
@@ -110,9 +109,8 @@ public class KBCommentServiceImpl extends KBCommentServiceBaseImpl {
 			long groupId, String className, long classPK, int status)
 		throws PortalException, SystemException {
 
-		if (AdminPermission.contains(
-				getPermissionChecker(), groupId,
-				ActionKeys.VIEW_KB_SUGGESTIONS)) {
+		if (AdminPermission.hasAccessToSuggestions(
+				getPermissionChecker(), groupId, className, classPK)) {
 
 			return kbCommentLocalService.getKBCommentsCount(
 				className, classPK, status);
