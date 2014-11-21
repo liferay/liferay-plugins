@@ -296,7 +296,7 @@ public class JSONWebServiceClientImpl implements JSONWebServiceClient {
 					AuthenticationFailure(
 						"Not authorized to access JSON web service");
 			}
-			else if (statusLine.getStatusCode() != HttpServletResponse.SC_OK) {
+			else if (statusLine.getStatusCode() >= 400) {
 				throw new JSONWebServiceTransportException.CommunicationFailure(
 					statusLine.getStatusCode());
 			}
