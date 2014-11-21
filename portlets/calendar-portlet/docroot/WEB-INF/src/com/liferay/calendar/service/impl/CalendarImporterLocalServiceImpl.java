@@ -43,6 +43,7 @@ import com.liferay.portal.model.Subscription;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.UserLocalServiceUtil;
+import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.asset.model.AssetCategory;
 import com.liferay.portlet.asset.model.AssetCategoryConstants;
 import com.liferay.portlet.asset.model.AssetEntry;
@@ -165,6 +166,36 @@ public class CalendarImporterLocalServiceImpl
 			});
 
 		actionableDynamicQuery.performActions();
+	}
+
+	@Override
+	public void importRolePermisions() throws PortalException {
+		long[] companyIds = PortalUtil.getCompanyIds();
+
+		String[][] className = {
+			new String[] {
+				"com.liferay.portlet.calendar",
+				"com.liferay.calendar.model.Calendar"
+			},
+			new String[] {
+				"com.liferay.portlet.calendar.model.CalEvent",
+				"com.liferay.calendar.model.CalendarBooking"
+			},
+		};
+
+		for (int i = 0; i < className.length; i++) {
+			for (int j = 0; j < companyIds.length; j++) {
+				importResourcePermissions(
+					className[i][0], className[i][1], companyIds[j],
+					ResourceConstants.SCOPE_COMPANY);
+				importResourcePermissions(
+					className[i][0], className[i][1], companyIds[j],
+					ResourceConstants.SCOPE_GROUP_TEMPLATE);
+				importResourcePermissions(
+					className[i][0], className[i][1], companyIds[j],
+					ResourceConstants.SCOPE_GROUP);
+			}
+		}
 	}
 
 	protected void addAssetEntry(
@@ -938,6 +969,43 @@ public class CalendarImporterLocalServiceImpl
 			counterLocalService.increment(), classNameId, classPK,
 			ratingsStats.getTotalEntries(), ratingsStats.getTotalScore(),
 			ratingsStats.getAverageScore());
+	}
+
+	protected void importResourcePermissions(
+			String oldClassName, String newClassName, long companyId, int scope)
+		throws PortalException {
+
+		List<ResourcePermission> resourcePermissions =
+			resourcePermissionPersistence.findByC_N_S(
+				companyId, oldClassName, scope);
+
+		for (ResourcePermission resourcePermission : resourcePermissions) {
+			importScopePermission(
+				companyId, newClassName, oldClassName, resourcePermission,
+				scope);
+
+			resourcePermissionPersistence.remove(
+				resourcePermission.getResourcePermissionId());
+		}
+	}
+
+	protected void importScopePermission(
+		long companyId, String newClassName, String oldClassName,
+		ResourcePermission resourcePermission, int scope) {
+
+		long actionIds = getActionIds(
+			resourcePermission, oldClassName, newClassName);
+
+		if (scope == ResourceConstants.SCOPE_GROUP) {
+			resourceBlockLocalService.addGroupScopePermissions(
+				companyId, Long.parseLong(resourcePermission.getPrimKey()),
+				newClassName, resourcePermission.getRoleId(), actionIds);
+		}
+		else {
+			resourceBlockLocalService.addCompanyScopePermissions(
+				companyId, newClassName, resourcePermission.getRoleId(),
+				actionIds);
+		}
 	}
 
 	protected void importSocialActivities(
