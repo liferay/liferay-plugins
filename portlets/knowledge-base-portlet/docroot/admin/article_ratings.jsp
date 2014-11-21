@@ -193,15 +193,11 @@ boolean showAdminSuggestionView = AdminPermission.hasAccessToSuggestions(permiss
 							emptyResultsMessage="no-comments-found"
 							iteratorURL="<%= iteratorURL %>"
 							orderByComparator='<%= KnowledgeBaseUtil.getKBCommentOrderByComparator("modified-date", "desc") %>'
+							total="<%= kbCommentsCount %>"
 						>
 
-							<%
-							List<KBComment> kbComments = KBCommentLocalServiceUtil.getKBComments(themeDisplay.getUserId(), KBArticle.class.getName(), kbArticle.getClassPK(), searchContainer.getStart(), searchContainer.getEnd(), searchContainer.getOrderByComparator());
-							%>
-
 							<liferay-ui:search-container-results
-								results="<%= kbComments %>"
-								total="<%= kbCommentsCount %>"
+								results="<%= KBCommentLocalServiceUtil.getKBComments(themeDisplay.getUserId(), KBArticle.class.getName(), kbArticle.getClassPK(), searchContainer.getStart(), searchContainer.getEnd(), searchContainer.getOrderByComparator()) %>"
 							/>
 
 							<liferay-ui:search-container-row
