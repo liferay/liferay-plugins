@@ -196,14 +196,7 @@ boolean showAdminSuggestionView = AdminPermission.hasAccessToSuggestions(permiss
 						>
 
 							<%
-							List<KBComment> kbComments = null;
-
-							if (showAdminSuggestionView) {
-								kbComments = KBCommentLocalServiceUtil.getKBComments(KBArticle.class.getName(), kbArticle.getClassPK(), searchContainer.getStart(), searchContainer.getEnd(), searchContainer.getOrderByComparator());
-							}
-							else {
-								kbComments = KBCommentLocalServiceUtil.getKBComments(themeDisplay.getUserId(), KBArticle.class.getName(), kbArticle.getClassPK(), searchContainer.getStart(), searchContainer.getEnd(), searchContainer.getOrderByComparator());
-							}
+							List<KBComment> kbComments = KBCommentLocalServiceUtil.getKBComments(themeDisplay.getUserId(), KBArticle.class.getName(), kbArticle.getClassPK(), searchContainer.getStart(), searchContainer.getEnd(), searchContainer.getOrderByComparator());
 							%>
 
 							<liferay-ui:search-container-results
