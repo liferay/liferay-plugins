@@ -429,6 +429,11 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 
 			SyncContext syncContext = new SyncContext();
 
+			String authType = PropsUtil.get(
+				PropsKeys.COMPANY_SECURITY_AUTH_TYPE);
+
+			syncContext.setAuthType(authType);
+
 			PluginPackage syncWebPluginPackage =
 				DeployManagerUtil.getInstalledPluginPackage("sync-web");
 

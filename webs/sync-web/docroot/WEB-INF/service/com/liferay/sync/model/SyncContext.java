@@ -27,6 +27,10 @@ import java.util.Map;
 @JSON
 public class SyncContext {
 
+	public String getAuthType() {
+		return _authType;
+	}
+
 	public String getPluginVersion() {
 		return _pluginVersion;
 	}
@@ -52,6 +56,10 @@ public class SyncContext {
 
 	public boolean isSocialOfficeInstalled() {
 		return _socialOfficeInstalled;
+	}
+
+	public void setAuthType(String authType) {
+		_authType = authType;
 	}
 
 	public void setPluginVersion(String pluginVersion) {
@@ -80,6 +88,7 @@ public class SyncContext {
 		_userSitesGroups = userSitesGroups;
 	}
 
+	private String _authType;
 	private String _pluginVersion;
 	private int _portalBuildNumber;
 	private Map<String, String> _portletPreferencesMap;
