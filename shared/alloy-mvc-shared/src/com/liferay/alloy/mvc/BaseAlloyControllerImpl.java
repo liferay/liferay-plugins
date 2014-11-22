@@ -276,32 +276,6 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 				SessionMessages.KEY_SUFFIX_REFRESH_PORTLET_DATA, data);
 	}
 
-	protected void fetchOpenerSuccessMessage() {
-		Map<String, String> data = (
-			Map<String, String>)SessionMessages.get(
-				request,
-				portlet.getPortletId() +
-					SessionMessages.KEY_SUFFIX_REFRESH_PORTLET_DATA);
-
-		if (data == null) {
-			return;
-		}
-
-		boolean addSuccessMessage = GetterUtil.getBoolean(
-			data.get("addSuccessMessage"));
-
-		if (addSuccessMessage) {
-			addSuccessMessage();
-		}
-
-		data.put("addSuccessMessage", StringPool.FALSE);
-
-		SessionMessages.add(
-			request,
-			portlet.getPortletId() +
-				SessionMessages.KEY_SUFFIX_REFRESH_PORTLET_DATA, data);
-	}
-
 	protected void addSuccessMessage() {
 		String successMessage = ParamUtil.getString(
 			portletRequest, "successMessage");
@@ -480,6 +454,32 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 				writeResponse(responseContent, contentType);
 			}
 		}
+	}
+
+	protected void fetchOpenerSuccessMessage() {
+		Map<String, String> data = (
+			Map<String, String>)SessionMessages.get(
+				request,
+				portlet.getPortletId() +
+					SessionMessages.KEY_SUFFIX_REFRESH_PORTLET_DATA);
+
+		if (data == null) {
+			return;
+		}
+
+		boolean addSuccessMessage = GetterUtil.getBoolean(
+			data.get("addSuccessMessage"));
+
+		if (addSuccessMessage) {
+			addSuccessMessage();
+		}
+
+		data.put("addSuccessMessage", StringPool.FALSE);
+
+		SessionMessages.add(
+			request,
+			portlet.getPortletId() +
+				SessionMessages.KEY_SUFFIX_REFRESH_PORTLET_DATA, data);
 	}
 
 	protected Object getConstantsBean(Class<?> clazz) {
