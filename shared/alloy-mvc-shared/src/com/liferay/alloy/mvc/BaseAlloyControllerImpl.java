@@ -336,11 +336,11 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 	}
 
 	protected String createJSONResponseContent(
-		JSONObject jsonData, String message, String status) {
+		JSONObject dataJSONObject, String message, String status) {
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
-		jsonObject.put("data", jsonData);
+		jsonObject.put("data", dataJSONObject);
 		jsonObject.put("message", message);
 		jsonObject.put("status", status);
 
