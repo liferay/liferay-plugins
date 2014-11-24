@@ -980,31 +980,22 @@ public class CalendarImporterLocalServiceImpl
 				companyId, oldClassName, scope);
 
 		for (ResourcePermission resourcePermission : resourcePermissions) {
-			importScopePermission(
-				companyId, newClassName, oldClassName, resourcePermission,
-				scope);
+			long actionIds = getActionIds(
+				resourcePermission, oldClassName, newClassName);
+
+			if (scope == ResourceConstants.SCOPE_GROUP) {
+				resourceBlockLocalService.addGroupScopePermissions(
+					companyId, Long.parseLong(resourcePermission.getPrimKey()),
+					newClassName, resourcePermission.getRoleId(), actionIds);
+			}
+			else {
+				resourceBlockLocalService.addCompanyScopePermissions(
+					companyId, newClassName, resourcePermission.getRoleId(),
+					actionIds);
+			}
 
 			resourcePermissionPersistence.remove(
 				resourcePermission.getResourcePermissionId());
-		}
-	}
-
-	protected void importScopePermission(
-		long companyId, String newClassName, String oldClassName,
-		ResourcePermission resourcePermission, int scope) {
-
-		long actionIds = getActionIds(
-			resourcePermission, oldClassName, newClassName);
-
-		if (scope == ResourceConstants.SCOPE_GROUP) {
-			resourceBlockLocalService.addGroupScopePermissions(
-				companyId, Long.parseLong(resourcePermission.getPrimKey()),
-				newClassName, resourcePermission.getRoleId(), actionIds);
-		}
-		else {
-			resourceBlockLocalService.addCompanyScopePermissions(
-				companyId, newClassName, resourcePermission.getRoleId(),
-				actionIds);
 		}
 	}
 
