@@ -16,6 +16,7 @@ package com.liferay.calendar.service;
 
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.search.IndexableType;
 import com.liferay.portal.kernel.transaction.Isolation;
 import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
@@ -52,6 +53,7 @@ public interface CalendarNotificationTemplateLocalService
 	* @return the calendar notification template that was added
 	* @throws SystemException if a system exception occurred
 	*/
+	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.REINDEX)
 	public com.liferay.calendar.model.CalendarNotificationTemplate addCalendarNotificationTemplate(
 		com.liferay.calendar.model.CalendarNotificationTemplate calendarNotificationTemplate)
 		throws com.liferay.portal.kernel.exception.SystemException;
@@ -73,6 +75,7 @@ public interface CalendarNotificationTemplateLocalService
 	* @throws PortalException if a calendar notification template with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
+	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.DELETE)
 	public com.liferay.calendar.model.CalendarNotificationTemplate deleteCalendarNotificationTemplate(
 		long calendarNotificationTemplateId)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -85,6 +88,7 @@ public interface CalendarNotificationTemplateLocalService
 	* @return the calendar notification template that was removed
 	* @throws SystemException if a system exception occurred
 	*/
+	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.DELETE)
 	public com.liferay.calendar.model.CalendarNotificationTemplate deleteCalendarNotificationTemplate(
 		com.liferay.calendar.model.CalendarNotificationTemplate calendarNotificationTemplate)
 		throws com.liferay.portal.kernel.exception.SystemException;
@@ -282,6 +286,7 @@ public interface CalendarNotificationTemplateLocalService
 	* @return the calendar notification template that was updated
 	* @throws SystemException if a system exception occurred
 	*/
+	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.REINDEX)
 	public com.liferay.calendar.model.CalendarNotificationTemplate updateCalendarNotificationTemplate(
 		com.liferay.calendar.model.CalendarNotificationTemplate calendarNotificationTemplate)
 		throws com.liferay.portal.kernel.exception.SystemException;

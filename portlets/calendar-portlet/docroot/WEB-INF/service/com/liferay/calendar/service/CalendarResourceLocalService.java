@@ -16,6 +16,7 @@ package com.liferay.calendar.service;
 
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.search.IndexableType;
 import com.liferay.portal.kernel.transaction.Isolation;
 import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
@@ -52,6 +53,7 @@ public interface CalendarResourceLocalService extends BaseLocalService,
 	* @return the calendar resource that was added
 	* @throws SystemException if a system exception occurred
 	*/
+	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.REINDEX)
 	public com.liferay.calendar.model.CalendarResource addCalendarResource(
 		com.liferay.calendar.model.CalendarResource calendarResource)
 		throws com.liferay.portal.kernel.exception.SystemException;
@@ -73,6 +75,7 @@ public interface CalendarResourceLocalService extends BaseLocalService,
 	* @throws PortalException if a calendar resource with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
+	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.DELETE)
 	public com.liferay.calendar.model.CalendarResource deleteCalendarResource(
 		long calendarResourceId)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -86,6 +89,7 @@ public interface CalendarResourceLocalService extends BaseLocalService,
 	* @throws PortalException
 	* @throws SystemException if a system exception occurred
 	*/
+	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.DELETE)
 	public com.liferay.calendar.model.CalendarResource deleteCalendarResource(
 		com.liferay.calendar.model.CalendarResource calendarResource)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -284,6 +288,7 @@ public interface CalendarResourceLocalService extends BaseLocalService,
 	* @return the calendar resource that was updated
 	* @throws SystemException if a system exception occurred
 	*/
+	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.REINDEX)
 	public com.liferay.calendar.model.CalendarResource updateCalendarResource(
 		com.liferay.calendar.model.CalendarResource calendarResource)
 		throws com.liferay.portal.kernel.exception.SystemException;

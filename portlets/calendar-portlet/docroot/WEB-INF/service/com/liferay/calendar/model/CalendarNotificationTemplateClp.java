@@ -703,6 +703,10 @@ public class CalendarNotificationTemplateClp extends BaseModelImpl<CalendarNotif
 		}
 	}
 
+	public Class<?> getClpSerializerClass() {
+		return _clpSerializerClass;
+	}
+
 	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
@@ -831,4 +835,5 @@ public class CalendarNotificationTemplateClp extends BaseModelImpl<CalendarNotif
 	private String _subject;
 	private String _body;
 	private BaseModel<?> _calendarNotificationTemplateRemoteModel;
+	private Class<?> _clpSerializerClass = com.liferay.calendar.service.ClpSerializer.class;
 }

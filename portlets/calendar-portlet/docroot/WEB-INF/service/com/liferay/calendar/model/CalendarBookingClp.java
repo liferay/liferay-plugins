@@ -1675,7 +1675,9 @@ public class CalendarBookingClp extends BaseModelImpl<CalendarBooking>
 			return StringPool.BLANK;
 		}
 
-		return LocalizationUtil.getDefaultLanguageId(xml);
+		Locale defaultLocale = LocaleUtil.getSiteDefault();
+
+		return LocalizationUtil.getDefaultLanguageId(xml, defaultLocale);
 	}
 
 	@Override
@@ -1687,7 +1689,7 @@ public class CalendarBookingClp extends BaseModelImpl<CalendarBooking>
 	@SuppressWarnings("unused")
 	public void prepareLocalizedFieldsForImport(Locale defaultImportLocale)
 		throws LocaleException {
-		Locale defaultLocale = LocaleUtil.getDefault();
+		Locale defaultLocale = LocaleUtil.getSiteDefault();
 
 		String modelDefaultLanguageId = getDefaultLanguageId();
 
@@ -1800,6 +1802,10 @@ public class CalendarBookingClp extends BaseModelImpl<CalendarBooking>
 		else {
 			return false;
 		}
+	}
+
+	public Class<?> getClpSerializerClass() {
+		return _clpSerializerClass;
 	}
 
 	@Override
@@ -2024,4 +2030,5 @@ public class CalendarBookingClp extends BaseModelImpl<CalendarBooking>
 	private String _statusByUserName;
 	private Date _statusDate;
 	private BaseModel<?> _calendarBookingRemoteModel;
+	private Class<?> _clpSerializerClass = com.liferay.calendar.service.ClpSerializer.class;
 }
