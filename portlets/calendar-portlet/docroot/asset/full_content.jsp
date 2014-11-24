@@ -18,10 +18,6 @@
 
 <div>
 
-	<%
-	CalendarBooking calendarBooking = (CalendarBooking)request.getAttribute(WebKeys.CALENDAR_BOOKING);
-	%>
-
 	<c:if test="<%= Validator.isNotNull(calendarBooking.getDescription(locale)) %>">
 		<div>
 			<%= calendarBooking.getDescription(locale) %>
