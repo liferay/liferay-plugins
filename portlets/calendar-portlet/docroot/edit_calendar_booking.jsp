@@ -19,10 +19,6 @@
 <%
 String activeView = ParamUtil.getString(request, "activeView", defaultView);
 
-CalendarBooking calendarBooking = (CalendarBooking)request.getAttribute(WebKeys.CALENDAR_BOOKING);
-
-boolean allDay = BeanParamUtil.getBoolean(calendarBooking, request, "allDay");
-
 TimeZone calendarBookingTimeZone = userTimeZone;
 
 if (allDay) {

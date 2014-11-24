@@ -24,8 +24,6 @@
 		/>
 
 		<%
-		CalendarBooking calendarBooking = (CalendarBooking)request.getAttribute(WebKeys.CALENDAR_BOOKING);
-
 		Calendar calendar = calendarBooking.getCalendar();
 		%>
 

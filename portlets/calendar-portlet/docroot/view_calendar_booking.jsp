@@ -19,8 +19,6 @@
 <%
 String backURL = ParamUtil.getString(request, "backURL");
 
-CalendarBooking calendarBooking = (CalendarBooking)request.getAttribute(WebKeys.CALENDAR_BOOKING);
-
 int instanceIndex = BeanParamUtil.getInteger(calendarBooking, request, "instanceIndex");
 
 calendarBooking = RecurrenceUtil.getCalendarBookingInstance(calendarBooking, instanceIndex);
@@ -34,8 +32,6 @@ java.util.Calendar startTimeJCalendar = JCalendarUtil.getJCalendar(startTime, us
 long endTime = calendarBooking.getEndTime();
 
 java.util.Calendar endTimeJCalendar = JCalendarUtil.getJCalendar(endTime, userTimeZone);
-
-boolean allDay = BeanParamUtil.getBoolean(calendarBooking, request, "allDay");
 
 AssetEntry layoutAssetEntry = AssetEntryLocalServiceUtil.getEntry(CalendarBooking.class.getName(), calendarBooking.getCalendarBookingId());
 %>
