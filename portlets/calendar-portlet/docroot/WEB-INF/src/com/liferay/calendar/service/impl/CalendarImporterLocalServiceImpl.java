@@ -172,7 +172,7 @@ public class CalendarImporterLocalServiceImpl
 	public void importRolePermisions() throws PortalException {
 		long[] companyIds = PortalUtil.getCompanyIds();
 
-		String[][] className = {
+		String[][] renameClassNamesArray = {
 			new String[] {
 				"com.liferay.portlet.calendar",
 				"com.liferay.calendar.model.Calendar"
@@ -183,17 +183,17 @@ public class CalendarImporterLocalServiceImpl
 			},
 		};
 
-		for (int i = 0; i < className.length; i++) {
+		for (int i = 0; i < renameClassNamesArray.length; i++) {
 			for (int j = 0; j < companyIds.length; j++) {
 				importResourcePermissions(
-					className[i][0], className[i][1], companyIds[j],
-					ResourceConstants.SCOPE_COMPANY);
+					renameClassNamesArray[i][0], renameClassNamesArray[i][1],
+					companyIds[j], ResourceConstants.SCOPE_COMPANY);
 				importResourcePermissions(
-					className[i][0], className[i][1], companyIds[j],
-					ResourceConstants.SCOPE_GROUP_TEMPLATE);
+					renameClassNamesArray[i][0], renameClassNamesArray[i][1],
+					companyIds[j], ResourceConstants.SCOPE_GROUP_TEMPLATE);
 				importResourcePermissions(
-					className[i][0], className[i][1], companyIds[j],
-					ResourceConstants.SCOPE_GROUP);
+					renameClassNamesArray[i][0], renameClassNamesArray[i][1],
+					companyIds[j], ResourceConstants.SCOPE_GROUP);
 			}
 		}
 	}
