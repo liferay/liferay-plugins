@@ -186,14 +186,16 @@ public class CalendarImporterLocalServiceImpl
 		for (int i = 0; i < renameClassNamesArray.length; i++) {
 			for (int j = 0; j < companyIds.length; j++) {
 				importResourcePermissions(
-					renameClassNamesArray[i][0], renameClassNamesArray[i][1],
-					companyIds[j], ResourceConstants.SCOPE_COMPANY);
+					companyIds[j], renameClassNamesArray[i][0],
+					renameClassNamesArray[i][1],
+					ResourceConstants.SCOPE_COMPANY);
 				importResourcePermissions(
-					renameClassNamesArray[i][0], renameClassNamesArray[i][1],
-					companyIds[j], ResourceConstants.SCOPE_GROUP_TEMPLATE);
+					companyIds[j], renameClassNamesArray[i][0],
+					renameClassNamesArray[i][1],
+					ResourceConstants.SCOPE_GROUP_TEMPLATE);
 				importResourcePermissions(
-					renameClassNamesArray[i][0], renameClassNamesArray[i][1],
-					companyIds[j], ResourceConstants.SCOPE_GROUP);
+					companyIds[j], renameClassNamesArray[i][0],
+					renameClassNamesArray[i][1], ResourceConstants.SCOPE_GROUP);
 			}
 		}
 	}
@@ -972,7 +974,7 @@ public class CalendarImporterLocalServiceImpl
 	}
 
 	protected void importResourcePermissions(
-			String oldClassName, String newClassName, long companyId, int scope)
+			long companyId, String oldClassName, String newClassName, int scope)
 		throws PortalException {
 
 		List<ResourcePermission> resourcePermissions =
