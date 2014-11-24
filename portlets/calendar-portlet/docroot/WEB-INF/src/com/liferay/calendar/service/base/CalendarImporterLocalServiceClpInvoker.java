@@ -44,6 +44,10 @@ public class CalendarImporterLocalServiceClpInvoker {
 		_methodName139 = "importCalEvents";
 
 		_methodParameterTypes139 = new String[] {  };
+
+		_methodName140 = "importRolePermissions";
+
+		_methodParameterTypes140 = new String[] {  };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -74,6 +78,13 @@ public class CalendarImporterLocalServiceClpInvoker {
 			return null;
 		}
 
+		if (_methodName140.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes140, parameterTypes)) {
+			CalendarImporterLocalServiceUtil.importRolePermissions();
+
+			return null;
+		}
+
 		throw new UnsupportedOperationException();
 	}
 
@@ -85,4 +96,6 @@ public class CalendarImporterLocalServiceClpInvoker {
 	private String[] _methodParameterTypes138;
 	private String _methodName139;
 	private String[] _methodParameterTypes139;
+	private String _methodName140;
+	private String[] _methodParameterTypes140;
 }

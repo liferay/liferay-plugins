@@ -30,6 +30,7 @@ import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.util.ArrayUtil;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.Time;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.uuid.PortalUUIDUtil;
@@ -183,19 +184,20 @@ public class CalendarImporterLocalServiceImpl
 			},
 		};
 
-		for (int i = 0; i < renameClassNamesArray.length; i++) {
-			for (int j = 0; j < companyIds.length; j++) {
+		for (String[] renameClassNames : renameClassNamesArray) {
+			String oldClassName = renameClassNames[0];
+			String newClassName = renameClassNames[1];
+
+			for (long companyId : companyIds) {
 				importResourcePermissions(
-					companyIds[j], renameClassNamesArray[i][0],
-					renameClassNamesArray[i][1],
+					companyId, oldClassName, newClassName,
 					ResourceConstants.SCOPE_COMPANY);
 				importResourcePermissions(
-					companyIds[j], renameClassNamesArray[i][0],
-					renameClassNamesArray[i][1],
-					ResourceConstants.SCOPE_GROUP_TEMPLATE);
+					companyId, oldClassName, newClassName,
+					ResourceConstants.SCOPE_GROUP);
 				importResourcePermissions(
-					companyIds[j], renameClassNamesArray[i][0],
-					renameClassNamesArray[i][1], ResourceConstants.SCOPE_GROUP);
+					companyId, oldClassName, newClassName,
+					ResourceConstants.SCOPE_GROUP_TEMPLATE);
 			}
 		}
 	}
@@ -987,7 +989,8 @@ public class CalendarImporterLocalServiceImpl
 
 			if (scope == ResourceConstants.SCOPE_GROUP) {
 				resourceBlockLocalService.addGroupScopePermissions(
-					companyId, Long.parseLong(resourcePermission.getPrimKey()),
+					companyId,
+					GetterUtil.getLong(resourcePermission.getPrimKey()),
 					newClassName, resourcePermission.getRoleId(), actionIds);
 			}
 			else {
