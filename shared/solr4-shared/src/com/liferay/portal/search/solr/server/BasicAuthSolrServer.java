@@ -14,23 +14,18 @@
 
 package com.liferay.portal.search.solr.server;
 
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.search.solr.http.BasicAuthPoolingHttpClientFactory;
+import com.liferay.portal.search.solr.http.HttpClientFactory;
 
 import java.io.IOException;
 
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 import org.apache.http.HttpRequestInterceptor;
 import org.apache.http.auth.AuthScope;
-import org.apache.http.auth.UsernamePasswordCredentials;
-import org.apache.http.client.CredentialsProvider;
 import org.apache.http.client.HttpClient;
-import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.impl.conn.PoolingClientConnectionManager;
-import org.apache.http.pool.PoolStats;
 import org.apache.solr.client.solrj.ResponseParser;
 import org.apache.solr.client.solrj.SolrRequest;
 import org.apache.solr.client.solrj.SolrServer;
@@ -45,30 +40,24 @@ import org.apache.solr.common.util.NamedList;
 public class BasicAuthSolrServer extends SolrServer {
 
 	public void afterPropertiesSet() {
-		DefaultHttpClient defaultHttpClient = new DefaultHttpClient(
-			_poolingClientConnectionManager);
+		PoolingClientConnectionManager poolingClientConnectionManager =
+			new PoolingClientConnectionManager();
 
-		if ((_username != null) && (_password != null)) {
-			if (_authScope == null) {
-				_authScope = AuthScope.ANY;
-			}
+		BasicAuthPoolingHttpClientFactory httpClientFactory =
+			new BasicAuthPoolingHttpClientFactory(
+				poolingClientConnectionManager);
 
-			CredentialsProvider credentialsProvider =
-				defaultHttpClient.getCredentialsProvider();
+		httpClientFactory.setAuthScope(_authScope);
+		httpClientFactory.setDefaultMaxConnectionsPerRoute(
+			_defaultMaxConnectionsPerRoute);
+		httpClientFactory.setHttpRequestInterceptors(_httpRequestInterceptors);
+		httpClientFactory.setMaxTotalConnections(_maxTotalConnections);
+		httpClientFactory.setPassword(_password);
+		httpClientFactory.setUsername(_username);
 
-			credentialsProvider.setCredentials(
-				_authScope,
-				new UsernamePasswordCredentials(_username, _password));
+		_httpClientFactory = httpClientFactory;
 
-			for (HttpRequestInterceptor httpRequestInterceptor :
-					_httpRequestInterceptors) {
-
-				defaultHttpClient.addRequestInterceptor(
-					httpRequestInterceptor, 0);
-			}
-		}
-
-		_server = new HttpSolrServer(_url, defaultHttpClient);
+		_server = new HttpSolrServer(_url, httpClientFactory.createInstance());
 
 		if (_allowCompression != null) {
 			_server.setAllowCompression(_allowCompression);
@@ -82,20 +71,8 @@ public class BasicAuthSolrServer extends SolrServer {
 			_server.setConnectionTimeout(_connectionTimeout);
 		}
 
-		if (_defaultMaxConnectionsPerRoute != null) {
-			_poolingClientConnectionManager.setDefaultMaxPerRoute(
-				_defaultMaxConnectionsPerRoute);
-			//_server.setDefaultMaxConnectionsPerHost(
-			//	_defaultMaxConnectionsPerRoute);
-		}
-
 		if (_followRedirects != null) {
 			_server.setFollowRedirects(_followRedirects);
-		}
-
-		if (_maxTotalConnections != null) {
-			_poolingClientConnectionManager.setMaxTotal(_maxTotalConnections);
-			//_server.setMaxTotalConnections(_maxTotalConnections);
 		}
 
 		if (_maxRetries != null) {
@@ -252,44 +229,8 @@ public class BasicAuthSolrServer extends SolrServer {
 
 		_server.shutdown();
 
-		int retry = 0;
-
-		while (retry < 10) {
-			PoolStats poolStats =
-				_poolingClientConnectionManager.getTotalStats();
-
-			int availableConnections = poolStats.getAvailable();
-
-			if (availableConnections <= 0) {
-				break;
-			}
-
-			if (_log.isDebugEnabled()) {
-				_log.debug(
-					toString() + " waiting on " + availableConnections +
-						" connections");
-			}
-
-			_poolingClientConnectionManager.closeIdleConnections(
-				200, TimeUnit.MILLISECONDS);
-
-			try {
-				Thread.sleep(500);
-			}
-			catch (InterruptedException ie) {
-			}
-
-			retry++;
-		}
-
-		_poolingClientConnectionManager.shutdown();
-
-		if (_log.isDebugEnabled()) {
-			_log.debug(toString() + " is shutdown");
-		}
+		_httpClientFactory.shutdown();
 	}
-
-	private static Log _log = LogFactoryUtil.getLog(BasicAuthSolrServer.class);
 
 	private Boolean _allowCompression;
 	private AuthScope _authScope;
@@ -297,12 +238,11 @@ public class BasicAuthSolrServer extends SolrServer {
 	private Integer _connectionTimeout;
 	private Integer _defaultMaxConnectionsPerRoute;
 	private Boolean _followRedirects;
+	private HttpClientFactory _httpClientFactory;
 	private List<HttpRequestInterceptor> _httpRequestInterceptors;
 	private Integer _maxRetries;
 	private Integer _maxTotalConnections;
 	private String _password;
-	private PoolingClientConnectionManager _poolingClientConnectionManager =
-		new PoolingClientConnectionManager();
 	private ResponseParser _responseParser;
 	private HttpSolrServer _server;
 	private Integer _soTimeout;
