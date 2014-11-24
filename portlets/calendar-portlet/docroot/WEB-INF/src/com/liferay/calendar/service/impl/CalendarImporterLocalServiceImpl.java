@@ -169,7 +169,7 @@ public class CalendarImporterLocalServiceImpl
 	}
 
 	@Override
-	public void importRolePermisions() throws PortalException {
+	public void importRolePermissions() throws PortalException {
 		long[] companyIds = PortalUtil.getCompanyIds();
 
 		String[][] renameClassNamesArray = {
