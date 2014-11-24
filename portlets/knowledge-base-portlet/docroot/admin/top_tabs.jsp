@@ -47,7 +47,7 @@ String mvcPath = ParamUtil.getString(request, "mvcPath");
 		value = mvcPath.contains("template") ? names.get(names.size() - 1) : value;
 	}
 
-	if (AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.VIEW_KB_SUGGESTIONS)) {
+	if (AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.VIEW_SUGGESTIONS)) {
 		PortletURL kbSuggestionsURL = renderResponse.createRenderURL();
 
 		kbSuggestionsURL.setParameter("mvcPath", "/admin/view_suggestions.jsp");

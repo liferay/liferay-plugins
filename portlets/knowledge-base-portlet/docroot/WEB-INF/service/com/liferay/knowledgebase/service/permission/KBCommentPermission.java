@@ -64,7 +64,7 @@ public class KBCommentPermission {
 		if (actionId.equals(ActionKeys.VIEW)) {
 			return AdminPermission.contains(
 				permissionChecker, kbComment.getGroupId(),
-				ActionKeys.VIEW_KB_SUGGESTIONS);
+				ActionKeys.VIEW_SUGGESTIONS);
 		}
 
 		if (!actionId.equals(ActionKeys.DELETE) &&
