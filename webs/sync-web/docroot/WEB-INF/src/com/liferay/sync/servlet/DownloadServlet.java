@@ -27,6 +27,7 @@ import com.liferay.portal.kernel.util.MimeTypesUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.model.Group;
 import com.liferay.portal.model.Image;
 import com.liferay.portal.model.ImageConstants;
 import com.liferay.portal.model.User;
@@ -34,6 +35,7 @@ import com.liferay.portal.portletfilerepository.PortletFileRepositoryUtil;
 import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.portal.security.permission.PermissionCheckerFactoryUtil;
 import com.liferay.portal.security.permission.PermissionThreadLocal;
+import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.ImageServiceUtil;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.documentlibrary.NoSuchFileEntryException;
@@ -41,6 +43,7 @@ import com.liferay.portlet.documentlibrary.model.DLFileVersion;
 import com.liferay.portlet.documentlibrary.service.DLAppServiceUtil;
 import com.liferay.portlet.documentlibrary.service.DLFileEntryLocalServiceUtil;
 import com.liferay.portlet.documentlibrary.service.DLFileVersionLocalServiceUtil;
+import com.liferay.sync.SyncSiteUnavailableException;
 import com.liferay.sync.model.SyncDLFileVersionDiff;
 import com.liferay.sync.service.SyncDLFileVersionDiffLocalServiceUtil;
 import com.liferay.sync.util.PortletPropsValues;
@@ -92,6 +95,18 @@ public class DownloadServlet extends HttpServlet {
 			else {
 				long groupId = GetterUtil.getLong(pathArray[0]);
 				String uuid = pathArray[1];
+
+				Group group = GroupLocalServiceUtil.fetchGroup(groupId);
+
+				if ((group == null) || !SyncUtil.isSyncEnabled(group)) {
+					response.setHeader(
+						_ERROR_HEADER,
+						SyncSiteUnavailableException.class.getName());
+
+					ServletResponseUtil.write(response, new byte[0]);
+
+					return;
+				}
 
 				boolean patch = ParamUtil.getBoolean(request, "patch");
 
@@ -233,5 +248,7 @@ public class DownloadServlet extends HttpServlet {
 			response, dataFileEntry.getContentStream(),
 			dataFileEntry.getSize());
 	}
+
+	private static final String _ERROR_HEADER = "Sync-Error";
 
 }
