@@ -23,10 +23,6 @@ PositionalWeekday positionalWeekday = new PositionalWeekday(Weekday.getWeekday(s
 java.util.Calendar untilJCalendar = startTimeJCalendar;
 List<Weekday> weekdays = new ArrayList<Weekday>();
 
-Weekday[] days = Weekday.values();
-
-Collections.rotate(Arrays.asList(days), -weekStartsOn);
-
 boolean afterChecked = false;
 boolean onChecked = false;
 
@@ -132,7 +128,11 @@ if (recurrence != null) {
 					<aui:field-wrapper inlineField="<%= true %>" label="">
 
 						<%
-						for (Weekday weekday : days) {
+						Weekday[] weekdaysArray = Weekday.values();
+
+						Collections.rotate(Arrays.asList(weekdaysArray), -weekStartsOn);
+
+						for (Weekday weekday : weekdaysArray) {
 						%>
 
 							<aui:input checked="<%= weekdays.contains(weekday) %>" data-weekday='<%= LanguageUtil.get(request, "weekday." + weekday.getValue()) %>' label="<%= weekday.getValue() %>" name="<%= weekday.getValue() %>" type="checkbox" />
@@ -167,7 +167,7 @@ if (recurrence != null) {
 						<aui:select inlineField="<%= true %>" label="" name="weekday">
 
 							<%
-							for (Weekday weekday : days) {
+							for (Weekday weekday : weekdaysArray) {
 							%>
 
 								<aui:option label='<%= "weekday." + weekday.getValue() %>' selected="<%= weekday == positionalWeekday.getWeekday() %>" value="<%= weekday.getValue() %>" />
