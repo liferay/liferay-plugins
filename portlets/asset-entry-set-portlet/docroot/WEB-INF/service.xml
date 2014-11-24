@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 6.2.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_6_2_0.dtd">
+
+<service-builder package-path="com.liferay.asset.entry.set" auto-namespace-tables="false">
+	<namespace>AssetEntrySet</namespace>
+	<entity name="AssetEntrySet" local-service="true" remote-service="true">
+
+		<!-- PK fields -->
+
+		<column name="assetEntrySetId" type="long" primary="true" />
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long" />
+		<column name="userId" type="long" />
+		<column name="userName" type="String" />
+		<column name="createDate" type="Date" />
+		<column name="modifiedDate" type="Date" />
+
+		<!-- Other fields -->
+
+		<column name="assetEntryId" type="String" />
+		<column name="creatorClassNameId" type="long" />
+		<column name="creatorClassPK" type="long" />
+		<column name="content" type="String" />
+		<column name="parentAssetEntrySetId" type="long" />
+		<column name="data" type="String" />
+
+		<!-- Order -->
+
+		<order by="desc">
+			<order-column name="createDate" />
+		</order>
+	</entity>
+</service-builder>
