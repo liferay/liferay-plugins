@@ -133,7 +133,7 @@ public class SyncUtil {
 	}
 
 	public static void checkSyncEnabled(long groupId)
-		throws SyncSiteUnavailableException {
+		throws PortalException, SystemException {
 
 		Group group = GroupLocalServiceUtil.fetchGroup(groupId);
 
