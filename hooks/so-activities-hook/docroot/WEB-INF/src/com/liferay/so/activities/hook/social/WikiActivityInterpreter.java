@@ -491,16 +491,11 @@ public class WikiActivityInterpreter extends SOSocialActivityInterpreter {
 
 		String titlePattern = null;
 
-		if ((activity.getType() ==
-				SocialActivityKeyConstants.WIKI_ADD_COMMENT) ||
-			(activity.getType() == SocialActivityConstants.TYPE_ADD_COMMENT)) {
+		if ((activity.getType() == SocialActivityConstants.TYPE_ADD_COMMENT) ||
+			(activity.getType() ==
+				SocialActivityKeyConstants.WIKI_ADD_COMMENT)) {
 
 			titlePattern = "commented-on-a-wiki-page";
-		}
-		else if (activity.getType() ==
-					SocialActivityKeyConstants.WIKI_ADD_PAGE) {
-
-			titlePattern = "created-a-new-wiki-page";
 		}
 		else if (activity.getType() ==
 					SocialActivityConstants.TYPE_ADD_ATTACHMENT) {
@@ -517,6 +512,11 @@ public class WikiActivityInterpreter extends SOSocialActivityInterpreter {
 						TYPE_RESTORE_ATTACHMENT_FROM_TRASH) {
 
 			titlePattern = "restored-an-attachment-x-to-a-wiki-page";
+		}
+		else if (activity.getType() ==
+					SocialActivityKeyConstants.WIKI_ADD_PAGE) {
+
+			titlePattern = "created-a-new-wiki-page";
 		}
 		else if (activity.getType() ==
 					SocialActivityKeyConstants.WIKI_UPDATE_PAGE) {
@@ -538,16 +538,11 @@ public class WikiActivityInterpreter extends SOSocialActivityInterpreter {
 		String titlePattern = null;
 
 		if ((activitySet.getType() ==
-				SocialActivityKeyConstants.WIKI_ADD_COMMENT) ||
+				SocialActivityConstants.TYPE_ADD_COMMENT) ||
 			(activitySet.getType() ==
-				SocialActivityConstants.TYPE_ADD_COMMENT)) {
+				SocialActivityKeyConstants.WIKI_ADD_COMMENT)) {
 
 			titlePattern = "commented-on-a-wiki-page";
-		}
-		else if (activitySet.getType() ==
-					SocialActivityKeyConstants.WIKI_ADD_PAGE) {
-
-			titlePattern = "created-x-new-wiki-pages";
 		}
 		else if (activitySet.getType() ==
 					SocialActivityConstants.TYPE_ADD_ATTACHMENT) {
@@ -564,6 +559,11 @@ public class WikiActivityInterpreter extends SOSocialActivityInterpreter {
 						TYPE_RESTORE_ATTACHMENT_FROM_TRASH) {
 
 			titlePattern = "restored-x-attachments-to-a-wiki-page";
+		}
+		else if (activitySet.getType() ==
+					SocialActivityKeyConstants.WIKI_ADD_PAGE) {
+
+			titlePattern = "created-x-new-wiki-pages";
 		}
 		else if (activitySet.getType() ==
 					SocialActivityKeyConstants.WIKI_UPDATE_PAGE) {
