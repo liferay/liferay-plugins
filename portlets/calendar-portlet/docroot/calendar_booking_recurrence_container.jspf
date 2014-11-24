@@ -125,13 +125,16 @@ if (recurrence != null) {
 					<liferay-ui:message key="repeat-on" />:
 				</th>
 				<td class="calendar-portlet-recurrence-content calendar-recurrence-weekday-checkbox">
+
+					<%
+					Weekday[] weekdaysArray = Weekday.values();
+
+					Collections.rotate(Arrays.asList(weekdaysArray), -weekStartsOn);
+					%>
+
 					<aui:field-wrapper inlineField="<%= true %>" label="">
 
 						<%
-						Weekday[] weekdaysArray = Weekday.values();
-
-						Collections.rotate(Arrays.asList(weekdaysArray), -weekStartsOn);
-
 						for (Weekday weekday : weekdaysArray) {
 						%>
 
