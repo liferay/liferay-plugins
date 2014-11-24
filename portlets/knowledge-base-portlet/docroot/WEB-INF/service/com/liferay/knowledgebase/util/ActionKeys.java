@@ -40,8 +40,8 @@ public class ActionKeys
 	public static final String UPDATE_KB_ARTICLES_PRIORITIES =
 		"UPDATE_KB_ARTICLES_PRIORITIES";
 
-	public static final String VIEW_KB_SUGGESTIONS = "VIEW_KB_SUGGESTIONS";
-
 	public static final String VIEW_KB_TEMPLATES = "VIEW_KB_TEMPLATES";
+
+	public static final String VIEW_SUGGESTIONS = "VIEW_SUGGESTIONS";
 
 }

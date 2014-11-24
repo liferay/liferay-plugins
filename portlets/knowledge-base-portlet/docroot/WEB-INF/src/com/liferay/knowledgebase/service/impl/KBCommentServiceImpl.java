@@ -61,9 +61,7 @@ public class KBCommentServiceImpl extends KBCommentServiceBaseImpl {
 		throws PortalException {
 
 		if (AdminPermission.contains(
-				getPermissionChecker(), groupId,
-				ActionKeys.VIEW_KB_SUGGESTIONS)) {
-
+				getPermissionChecker(), groupId, ActionKeys.VIEW_SUGGESTIONS)) {
 			return kbCommentPersistence.findByG_S(groupId, status, start, end);
 		}
 
@@ -90,9 +88,7 @@ public class KBCommentServiceImpl extends KBCommentServiceBaseImpl {
 		throws PortalException {
 
 		if (AdminPermission.contains(
-				getPermissionChecker(), groupId,
-				ActionKeys.VIEW_KB_SUGGESTIONS)) {
-
+				getPermissionChecker(), groupId, ActionKeys.VIEW_SUGGESTIONS)) {
 			return kbCommentPersistence.countByG_S(groupId, status);
 		}
 

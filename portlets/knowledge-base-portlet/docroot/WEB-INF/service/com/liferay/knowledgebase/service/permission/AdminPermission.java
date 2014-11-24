@@ -52,7 +52,7 @@ public class AdminPermission {
 		throws PortalException {
 
 		if (!AdminPermission.contains(
-				permissionChecker, groupId, ActionKeys.VIEW_KB_SUGGESTIONS)) {
+				permissionChecker, groupId, ActionKeys.VIEW_SUGGESTIONS)) {
 
 			return false;
 		}

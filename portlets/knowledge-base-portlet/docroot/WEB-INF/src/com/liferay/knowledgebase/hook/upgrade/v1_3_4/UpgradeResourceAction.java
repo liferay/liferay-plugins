@@ -26,7 +26,7 @@ public class UpgradeResourceAction extends UpgradeProcess {
 	protected void doUpgrade() throws Exception {
 		runSQL(
 			"update ResourceAction set actionId = '" +
-				ActionKeys.VIEW_KB_SUGGESTIONS + "' where actionId = " +
+				ActionKeys.VIEW_SUGGESTIONS + "' where actionId = " +
 					"'VIEW_KB_FEEDBACK'");
 	}
 
