@@ -336,13 +336,13 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 	}
 
 	protected String createJSONResponseContent(
-		String status, JSONObject jsonData, String message) {
+		JSONObject jsonData, String message, String status) {
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
-		jsonObject.put("status", status);
 		jsonObject.put("data", jsonData);
 		jsonObject.put("message", message);
+		jsonObject.put("status", status);
 
 		return jsonObject.toString();
 	}
@@ -875,7 +875,7 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 	protected void renderError(String pattern, Object... arguments) {
 		if (Validator.isNotNull(format) && format.equals("json")) {
 			responseContent = createJSONResponseContent(
-				"error", null, translate(pattern, arguments));
+				null, translate(pattern, arguments), "error");
 
 			return;
 		}
@@ -1083,12 +1083,12 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 		throws Exception {
 
 		responseContent = createJSONResponseContent(
-			"success", toJSONObject(baseModel), null);
+			toJSONObject(baseModel), null, "success");
 	}
 
 	protected void setJSONResponseContent(Document document) throws Exception {
 		responseContent = createJSONResponseContent(
-			"success", toJSONObject(document), null);
+			toJSONObject(document), null, "success");
 	}
 
 	protected void setJSONResponseContent(Document[] documents)
@@ -1105,7 +1105,7 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 		jsonObject.put(controllerPath, jsonArray);
 
 		responseContent = createJSONResponseContent(
-			"success", jsonObject, null);
+			jsonObject, null, "success");
 	}
 
 	protected void setJSONResponseContent(List<BaseModel<?>> baseModels)
@@ -1122,7 +1122,7 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 		jsonObject.put(controllerPath, jsonArray);
 
 		responseContent = createJSONResponseContent(
-			"success", jsonObject, null);
+			jsonObject, null, "success");
 	}
 
 	protected void setPermissioned(boolean permissioned) {
