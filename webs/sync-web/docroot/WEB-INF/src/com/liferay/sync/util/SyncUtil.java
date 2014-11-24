@@ -131,9 +131,7 @@ public class SyncUtil {
 		return StringUtil.unquote(sb.toString());
 	}
 
-	public static void checkSyncEnabled(long groupId)
-		throws SyncSiteUnavailableException {
-
+	public static void checkSyncEnabled(long groupId) throws PortalException {
 		Group group = GroupLocalServiceUtil.fetchGroup(groupId);
 
 		if ((group == null) || !isSyncEnabled(group)) {
