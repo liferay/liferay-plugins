@@ -66,7 +66,14 @@ public class InviteMembersUserNotificationHandler
 		MemberRequest memberRequest =
 			MemberRequestLocalServiceUtil.fetchMemberRequest(memberRequestId);
 
-		if (memberRequest == null) {
+		Group group = null;
+
+		if (memberRequest != null) {
+			group = GroupLocalServiceUtil.fetchGroup(
+				memberRequest.getGroupId());
+		}
+
+		if ((memberRequest == null) || (group == null)) {
 			UserNotificationEventLocalServiceUtil.deleteUserNotificationEvent(
 				userNotificationEvent.getUserNotificationEventId());
 
