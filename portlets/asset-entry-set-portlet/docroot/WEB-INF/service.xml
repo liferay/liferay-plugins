@@ -31,5 +31,20 @@
 		<order by="desc">
 			<order-column name="createTime" />
 		</order>
+
+		<!-- Finder methods -->
+
+		<finder name="ParentAssetEntrySetId" return-type="Collection">
+			<finder-column name="parentAssetEntrySetId" />
+		</finder>
+		<finder name="PAESI_CCNI" return-type="Collection">
+			<finder-column name="parentAssetEntrySetId" />
+			<finder-column name="creatorClassNameId" />
+		</finder>
+		<finder name="PAESI_CCNI_CCPK" return-type="AssetEntrySet">
+			<finder-column name="parentAssetEntrySetId" />
+			<finder-column name="creatorClassNameId" />
+			<finder-column name="creatorClassPK" />
+		</finder>
 	</entity>
 </service-builder>
