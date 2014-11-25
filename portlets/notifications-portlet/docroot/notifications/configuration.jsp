@@ -1,3 +1,4 @@
+<%@ page import="com.liferay.registry.collections.ServiceTrackerMap" %>
 <%--
 /**
  * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
@@ -33,7 +34,11 @@
 	<%
 	Map<String, List<UserNotificationDefinition>> userNotificationDefinitionsMap = new TreeMap<String, List<UserNotificationDefinition>>(new PortletIdComparator(locale));
 
-	userNotificationDefinitionsMap.putAll(UserNotificationManagerUtil.getUserNotificationDefinitions());
+	ServiceTrackerMap<String, List<UserNotificationDefinition>> userNotificationServiceTrackerMap = UserNotificationManagerUtil.getUserNotificationDefinitions();
+
+	for (String key : userNotificationServiceTrackerMap.keySet()) {
+		userNotificationDefinitionsMap.put(key, userNotificationServiceTrackerMap.getService(key));
+	}
 
 	for (Map.Entry<String, List<UserNotificationDefinition>> entry : userNotificationDefinitionsMap.entrySet()) {
 	%>
