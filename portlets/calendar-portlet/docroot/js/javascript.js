@@ -339,11 +339,8 @@ AUI.add(
 
 				instance.invokeResourceURL(
 					'calendarBookingInvitees',
-					'1_WAR_calendarportlet',
 					{
-						calendarBookingId: calendarBookingId,
-						inviteesURL: instance.INVITEES_URL,
-						portletNamespace: instance.PORTLET_NAMESPACE
+						calendarBookingId: calendarBookingId
 					}
 				);
 			},
@@ -360,11 +357,9 @@ AUI.add(
 
 			getCalendarRenderingRules: function(calendarIds, startDate, endDate, ruleName, callback) {
 				var instance = this;
-				var instance = this;
 
 				instance.invokeResourceURL(
 					'calendarRenderingRules',
-					'1_WAR_calendarportlet',
 					{
 						calendarIds: calendarIds.join(),
 						endTime: endDate.getTime(),
@@ -420,7 +415,6 @@ AUI.add(
 
 				instance.invokeResourceURL(
 					'calendarBookings',
-					'1_WAR_calendarportlet',
 					{
 						calendarIds: calendarIds.join(','),
 						endTime: endDate.getTime(),
@@ -446,7 +440,6 @@ AUI.add(
 
 				instance.invokeResourceURL(
 					'resourceCalendars',
-					'1_WAR_calendarportlet',
 					{
 						calendarResourceId: calendarResourceId,
 					},
@@ -454,12 +447,12 @@ AUI.add(
 				);
 			},
 
-			invokeResourceURL: function(resourceId, portletId, parameters, callback) {
+			invokeResourceURL: function(resourceId, parameters, callback) {
 				var instance = this;
 
 				var url = Liferay.PortletURL.createResourceURL()
 
-				url.setParameter('p_p_id', portletId);
+				url.setPortletId('1_WAR_calendarportlet');
 				url.setResourceId(resourceId);
 
 				A.each(
