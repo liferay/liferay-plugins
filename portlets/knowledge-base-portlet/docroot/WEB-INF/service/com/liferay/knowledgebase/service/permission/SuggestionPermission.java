@@ -19,7 +19,6 @@ import com.liferay.knowledgebase.model.KBArticleConstants;
 import com.liferay.knowledgebase.service.KBArticleLocalServiceUtil;
 import com.liferay.knowledgebase.util.ActionKeys;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.security.auth.PrincipalException;
 import com.liferay.portal.security.permission.PermissionChecker;
@@ -55,7 +54,7 @@ public class SuggestionPermission {
 	public static boolean contains(
 			PermissionChecker permissionChecker, long groupId, String className,
 			long classPK, String actionId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		if (!className.equals(KBArticleConstants.getClassName())) {
 			throw new IllegalArgumentException(
