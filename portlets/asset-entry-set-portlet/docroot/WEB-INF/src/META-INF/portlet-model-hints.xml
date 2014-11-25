@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+
+<model-hints>
+	<model name="com.liferay.asset.entry.set.model.AssetEntrySet">
+		<field name="assetEntrySetId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="userId" type="long" />
+		<field name="userName" type="String" />
+		<field name="createDate" type="Date" />
+		<field name="modifiedDate" type="Date" />
+		<field name="assetEntryId" type="String" />
+		<field name="parentAssetEntrySetId" type="long" />
+		<field name="creatorClassNameId" type="long" />
+		<field name="creatorClassPK" type="long" />
+		<field name="content" type="String" />
+		<field name="data" type="String" />
+	</model>
+</model-hints>
