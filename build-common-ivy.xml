@@ -505,7 +505,7 @@
 									</if>
 
 									<ivy:resolve
-										conf="default"
+										conf="default,internal"
 										file="@{ivy.xml.dir}/ivy.xml"
 										log="download-only"
 										transitive="${plugin.ivy.resolve.transitive.dependencies}"
