@@ -17,6 +17,15 @@
 <%@ include file="/html/js/editor/ckeditor.portal.jsp" %>
 
 <c:if test="<%= portletId.equals(PortletKeys.BLOGS) || portletId.equals(PortletKeys.BLOGS_ADMIN) || portletId.equals(PortletKeys.MESSAGE_BOARDS) || portletId.equals(PortletKeys.MESSAGE_BOARDS_ADMIN) %>">
+
+	<%
+	long javaScriptLastModified = ServletContextUtil.getLastModified(application, "/html/js/", true);
+	%>
+
+	<liferay-util:html-bottom outputKey="mentions_autocomplete_js">
+		<script defer="defer" src="<%= PortalUtil.getStaticResourceURL(request, themeDisplay.getCDNDynamicResourcesHost() + themeDisplay.getPathJavaScript() + "/liferay/modules-ext.js", "", javaScriptLastModified) %>" type="text/javascript"></script>
+	</liferay-util:html-bottom>
+
 	<liferay-portlet:resourceURL portletName="1_WAR_mentionsportlet" var="autoCompleteUserURL" />
 
 	<aui:script>

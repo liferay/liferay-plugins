@@ -21,6 +21,15 @@
 <%@ page import="java.lang.reflect.Method" %>
 
 <c:if test="<%= _isMentionsEnabled(themeDisplay.getSiteGroupId()) %>">
+
+	<%
+	long javaScriptLastModified = ServletContextUtil.getLastModified(application, "/html/js/", true);
+	%>
+
+	<liferay-util:html-bottom outputKey="mentions_autocomplete_js">
+		<script defer="defer" src="<%= PortalUtil.getStaticResourceURL(request, themeDisplay.getCDNDynamicResourcesHost() + themeDisplay.getPathJavaScript() + "/liferay/modules-ext.js", "", javaScriptLastModified) %>" type="text/javascript"></script>
+	</liferay-util:html-bottom>
+
 	<liferay-portlet:resourceURL portletName="1_WAR_mentionsportlet" var="autoCompleteUserURL" />
 
 	<aui:script use="liferay-autocomplete-textarea">
