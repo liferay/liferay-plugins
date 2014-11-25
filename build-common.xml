@@ -175,15 +175,24 @@ Error-Prone was automatically installed. Please rerun your task.
 			<java
 				classname="com.liferay.portal.tools.SassToCssBuilder"
 				classpathref="portal.classpath"
-				failonerror="true"
 				fork="true"
 				newenvironment="true"
+				outputproperty="build-css.output"
 			>
 				<jvmarg value="-Dliferay.lib.portal.dir=${app.server.lib.portal.dir}" />
 				<arg value="sass.dir=/" />
 				<arg value="sass.docroot.dir=${module.dir.unix}/docroot" />
 				<arg value="sass.portal.common.dir=${app.server.portal.dir}/html/css/common" />
 			</java>
+
+			<echo>${build-css.output}</echo>
+
+			<if>
+				<contains string="${build-css.output}" substring="Error" />
+				<then>
+					<fail>CSS Builder generated exceptions.</fail>
+				</then>
+			</if>
 		</sequential>
 	</macrodef>
 
