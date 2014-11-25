@@ -23,10 +23,10 @@
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/google-collections.jar" />
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/gson.jar" />
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/httpcore.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/io-delta-shared.jar" />
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/joda-time.jar" />
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/jsontoken.jar" />
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/portal-compat-shared.jar" />
-	<classpathentry kind="lib" path="docroot/WEB-INF/lib/servlet-api.jar" />
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/sync-shared.jar" />
 	<classpathentry kind="output" path="bin" />
 </classpath>
