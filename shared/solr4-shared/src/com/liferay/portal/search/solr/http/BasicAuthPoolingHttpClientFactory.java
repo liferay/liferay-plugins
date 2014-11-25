@@ -14,11 +14,10 @@
 
 package com.liferay.portal.search.solr.http;
 
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.Validator;
 
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 import org.apache.http.HttpRequestInterceptor;
 import org.apache.http.auth.AuthScope;
@@ -27,7 +26,6 @@ import org.apache.http.client.CredentialsProvider;
 import org.apache.http.client.HttpClient;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.impl.conn.PoolingClientConnectionManager;
-import org.apache.http.pool.PoolStats;
 
 /**
  * @author László Csontos
@@ -39,15 +37,16 @@ public class BasicAuthPoolingHttpClientFactory implements HttpClientFactory {
 	public BasicAuthPoolingHttpClientFactory(
 		PoolingClientConnectionManager poolingClientConnectionManager) {
 
-		_poolingClientConnectionManager = poolingClientConnectionManager;
+		_basePoolingHttpClientFactory = new BasePoolingHttpClientFactory(
+			poolingClientConnectionManager);
 	}
 
 	@Override
 	public HttpClient createInstance() {
-		DefaultHttpClient defaultHttpClient = new DefaultHttpClient(
-			_poolingClientConnectionManager);
+		DefaultHttpClient defaultHttpClient =
+			_basePoolingHttpClientFactory.createInstance();
 
-		if ((_username != null) && (_password != null)) {
+		if (!Validator.isBlank(_username)) {
 			if (_authScope == null) {
 				_authScope = AuthScope.ANY;
 			}
@@ -55,15 +54,13 @@ public class BasicAuthPoolingHttpClientFactory implements HttpClientFactory {
 			CredentialsProvider credentialsProvider =
 				defaultHttpClient.getCredentialsProvider();
 
+			if (Validator.isNull(_password)) {
+				_password = StringPool.BLANK;
+			}
+
 			credentialsProvider.setCredentials(
 				_authScope,
 				new UsernamePasswordCredentials(_username, _password));
-		}
-
-		for (HttpRequestInterceptor httpRequestInterceptor :
-				_httpRequestInterceptors) {
-
-			defaultHttpClient.addRequestInterceptor(httpRequestInterceptor, 0);
 		}
 
 		return defaultHttpClient;
@@ -76,23 +73,20 @@ public class BasicAuthPoolingHttpClientFactory implements HttpClientFactory {
 	public void setDefaultMaxConnectionsPerRoute(
 		Integer defaultMaxConnectionsPerRoute) {
 
-		if (defaultMaxConnectionsPerRoute != null) {
-			_poolingClientConnectionManager.setDefaultMaxPerRoute(
-				defaultMaxConnectionsPerRoute.intValue());
-		}
+		_basePoolingHttpClientFactory.setDefaultMaxConnectionsPerRoute(
+			defaultMaxConnectionsPerRoute);
 	}
 
 	public void setHttpRequestInterceptors(
 		List<HttpRequestInterceptor> httpRequestInterceptors) {
 
-		_httpRequestInterceptors = httpRequestInterceptors;
+		_basePoolingHttpClientFactory.setHttpRequestInterceptors(
+			httpRequestInterceptors);
 	}
 
 	public void setMaxTotalConnections(Integer maxTotalConnections) {
-		if (maxTotalConnections != null) {
-			_poolingClientConnectionManager.setMaxTotal(
-				maxTotalConnections.intValue());
-		}
+		_basePoolingHttpClientFactory.setMaxTotalConnections(
+			maxTotalConnections);
 	}
 
 	public void setPassword(String password) {
@@ -105,50 +99,12 @@ public class BasicAuthPoolingHttpClientFactory implements HttpClientFactory {
 
 	@Override
 	public void shutdown() {
-		int retry = 0;
-
-		while (retry < 10) {
-			PoolStats poolStats =
-				_poolingClientConnectionManager.getTotalStats();
-
-			int availableConnections = poolStats.getAvailable();
-
-			if (availableConnections <= 0) {
-				break;
-			}
-
-			if (_log.isDebugEnabled()) {
-				_log.debug(
-					toString() + " waiting on " + availableConnections +
-						" connections");
-			}
-
-			_poolingClientConnectionManager.closeIdleConnections(
-				200, TimeUnit.MILLISECONDS);
-
-			try {
-				Thread.sleep(500);
-			}
-			catch (InterruptedException ie) {
-			}
-
-			retry++;
-		}
-
-		_poolingClientConnectionManager.shutdown();
-
-		if (_log.isDebugEnabled()) {
-			_log.debug(toString() + " is shutdown");
-		}
+		_basePoolingHttpClientFactory.shutdown();
 	}
 
-	private static Log _log = LogFactoryUtil.getLog(
-		BasicAuthPoolingHttpClientFactory.class);
-
 	private AuthScope _authScope;
-	private List<HttpRequestInterceptor> _httpRequestInterceptors;
+	private BasePoolingHttpClientFactory _basePoolingHttpClientFactory;
 	private String _password;
-	private PoolingClientConnectionManager _poolingClientConnectionManager;
 	private String _username;
 
 }
