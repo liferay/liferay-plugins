@@ -19,7 +19,7 @@
 <%
 KBArticle kbArticle = (KBArticle)request.getAttribute(WebKeys.KNOWLEDGE_BASE_KB_ARTICLE);
 
-boolean showAdminSuggestionView = AdminPermission.hasAccessToSuggestions(permissionChecker, scopeGroupId, KBArticleConstants.getClassName(), kbArticle.getClassPK());
+boolean showAdminSuggestionView = SuggestionPermission.contains(permissionChecker, scopeGroupId, kbArticle, ActionKeys.VIEW_SUGGESTIONS);
 %>
 
 <c:if test="<%= enableKBArticleRatings %>">
