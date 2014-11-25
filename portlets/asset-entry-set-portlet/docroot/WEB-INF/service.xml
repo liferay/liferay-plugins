@@ -3,7 +3,7 @@
 
 <service-builder package-path="com.liferay.asset.entry.set" auto-namespace-tables="false">
 	<namespace>AssetEntrySet</namespace>
-	<entity name="AssetEntrySet" local-service="true" remote-service="true">
+	<entity name="AssetEntrySet" local-service="true" remote-service="false">
 
 		<!-- PK fields -->
 
@@ -20,10 +20,10 @@
 		<!-- Other fields -->
 
 		<column name="assetEntryId" type="String" />
+		<column name="parentAssetEntrySetId" type="long" />
 		<column name="creatorClassNameId" type="long" />
 		<column name="creatorClassPK" type="long" />
 		<column name="content" type="String" />
-		<column name="parentAssetEntrySetId" type="long" />
 		<column name="data" type="String" />
 
 		<!-- Order -->
