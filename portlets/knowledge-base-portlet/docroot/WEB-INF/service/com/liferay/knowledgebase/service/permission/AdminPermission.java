@@ -14,11 +14,7 @@
 
 package com.liferay.knowledgebase.service.permission;
 
-import com.liferay.knowledgebase.model.KBArticleConstants;
-import com.liferay.knowledgebase.model.KBFolderConstants;
-import com.liferay.knowledgebase.util.ActionKeys;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.security.auth.PrincipalException;
 import com.liferay.portal.security.permission.PermissionChecker;
 
@@ -45,33 +41,6 @@ public class AdminPermission {
 
 		return permissionChecker.hasPermission(
 			groupId, RESOURCE_NAME, groupId, actionId);
-	}
-
-	public static boolean hasAccessToSuggestions(
-			PermissionChecker permissionChecker, long groupId, String className,
-			long classPK)
-		throws PortalException, SystemException {
-
-		if (!AdminPermission.contains(
-				permissionChecker, groupId, ActionKeys.VIEW_SUGGESTIONS)) {
-
-			return false;
-		}
-
-		if (className.equals(KBArticleConstants.getClassName())) {
-			return KBArticlePermission.contains(
-				permissionChecker, classPK, ActionKeys.UPDATE);
-		}
-		else if (className.equals(KBFolderConstants.getClassName())) {
-			throw new IllegalArgumentException(
-				"KBFolders don't support comments");
-		}
-		else {
-			throw new IllegalArgumentException(
-				String.format(
-					"Received className %s; expected %s", className,
-					KBArticleConstants.getClassName()));
-		}
 	}
 
 }
