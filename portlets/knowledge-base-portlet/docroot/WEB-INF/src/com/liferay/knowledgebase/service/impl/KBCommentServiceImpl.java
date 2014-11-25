@@ -18,6 +18,7 @@ import com.liferay.knowledgebase.model.KBComment;
 import com.liferay.knowledgebase.service.base.KBCommentServiceBaseImpl;
 import com.liferay.knowledgebase.service.permission.AdminPermission;
 import com.liferay.knowledgebase.service.permission.KBCommentPermission;
+import com.liferay.knowledgebase.service.permission.SuggestionPermission;
 import com.liferay.knowledgebase.util.ActionKeys;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
@@ -67,6 +68,7 @@ public class KBCommentServiceImpl extends KBCommentServiceBaseImpl {
 
 		if (AdminPermission.contains(
 				getPermissionChecker(), groupId, ActionKeys.VIEW_SUGGESTIONS)) {
+
 			return kbCommentPersistence.findByG_S(groupId, status, start, end);
 		}
 
@@ -79,8 +81,9 @@ public class KBCommentServiceImpl extends KBCommentServiceBaseImpl {
 			int end)
 		throws PortalException, SystemException {
 
-		if (AdminPermission.hasAccessToSuggestions(
-				getPermissionChecker(), groupId, className, classPK)) {
+		if (SuggestionPermission.contains(
+				getPermissionChecker(), groupId, className, classPK,
+				ActionKeys.VIEW_SUGGESTIONS)) {
 
 			return kbCommentLocalService.getKBComments(
 				className, classPK, status, start, end);
@@ -94,6 +97,7 @@ public class KBCommentServiceImpl extends KBCommentServiceBaseImpl {
 
 		if (AdminPermission.contains(
 				getPermissionChecker(), groupId, ActionKeys.VIEW_SUGGESTIONS)) {
+
 			return kbCommentPersistence.countByG_S(groupId, status);
 		}
 
@@ -105,8 +109,9 @@ public class KBCommentServiceImpl extends KBCommentServiceBaseImpl {
 			long groupId, String className, long classPK, int status)
 		throws PortalException, SystemException {
 
-		if (AdminPermission.hasAccessToSuggestions(
-				getPermissionChecker(), groupId, className, classPK)) {
+		if (SuggestionPermission.contains(
+				getPermissionChecker(), groupId, className, classPK,
+				ActionKeys.VIEW_SUGGESTIONS)) {
 
 			return kbCommentLocalService.getKBCommentsCount(
 				className, classPK, status);
