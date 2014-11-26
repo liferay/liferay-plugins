@@ -46,9 +46,8 @@ public class SuggestionPermission {
 
 			return true;
 		}
-		else {
-			return false;
-		}
+
+		return false;
 	}
 
 	public static boolean contains(
@@ -58,7 +57,7 @@ public class SuggestionPermission {
 
 		if (!className.equals(KBArticleConstants.getClassName())) {
 			throw new IllegalArgumentException(
-				"Only KBArticles support suggestions");
+				"Only KB articles support suggestions");
 		}
 
 		KBArticle kbArticle = KBArticleLocalServiceUtil.getLatestKBArticle(
