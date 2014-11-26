@@ -14,13 +14,7 @@
 
 package com.liferay.portal.search.solr.server;
 
-import com.liferay.portal.search.solr.http.CertAuthPoolingHttpClientFactory;
-import com.liferay.portal.search.solr.http.SSLSocketFactoryBuilder;
-
-import java.util.List;
-
-import org.apache.http.HttpRequestInterceptor;
-import org.apache.http.conn.ssl.SSLSocketFactory;
+import com.liferay.portal.search.solr.http.HttpClientFactory;
 
 /**
  * @author László Csontos
@@ -28,25 +22,14 @@ import org.apache.http.conn.ssl.SSLSocketFactory;
  */
 public class HttpSolrServer extends BaseHttpSolrServer {
 
-	public void afterPropertiesSet() throws Exception {
-		SSLSocketFactoryBuilder sslSocketFactoryBuilder =
-			new SSLSocketFactoryBuilder();
-
-		SSLSocketFactory sslSocketFactory = sslSocketFactoryBuilder.build();
-
-		CertAuthPoolingHttpClientFactory httpClientFactory =
-			new CertAuthPoolingHttpClientFactory(sslSocketFactory);
-
-		httpClientFactory.setDefaultMaxConnectionsPerRoute(
-			_defaultMaxConnectionsPerRoute);
-		httpClientFactory.setHttpRequestInterceptors(_httpRequestInterceptors);
-		httpClientFactory.setMaxTotalConnections(_maxTotalConnections);
-
-		initServer(httpClientFactory.createInstance());
+	public void afterPropertiesSet() {
+		initServer(_httpClientFactory.createInstance());
 	}
 
-	private Integer _defaultMaxConnectionsPerRoute;
-	private List<HttpRequestInterceptor> _httpRequestInterceptors;
-	private Integer _maxTotalConnections;
+	public void setHttpClientFactory(HttpClientFactory httpClientFactory) {
+		_httpClientFactory = httpClientFactory;
+	}
+
+	private HttpClientFactory _httpClientFactory;
 
 }
