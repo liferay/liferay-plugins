@@ -22,6 +22,6 @@ SearchContainer searchContainer = (SearchContainer)request.getAttribute("liferay
 DisplayTerms displayTerms = searchContainer.getDisplayTerms();
 %>
 
-<aui:input inlineField="<%= true %>" label="" name="<%= displayTerms.KEYWORDS %>" size="30" type="text" value="<%= displayTerms.getKeywords() %>" />
+<aui:input inlineField="<%= true %>" label="" name="<%= DisplayTerms.KEYWORDS %>" size="30" type="text" value="<%= displayTerms.getKeywords() %>" />
 
 <aui:button type="submit" value="search" />

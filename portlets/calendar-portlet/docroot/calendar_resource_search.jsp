@@ -26,18 +26,18 @@ CalendarResourceDisplayTerms displayTerms = new CalendarResourceDisplayTerms(ren
 	id="toggle_id_calendar_resource_search"
 >
 	<aui:fieldset>
-		<aui:input name="<%= displayTerms.CODE %>" value="<%= displayTerms.getCode() %>" />
+		<aui:input name="<%= CalendarResourceDisplayTerms.CODE %>" value="<%= displayTerms.getCode() %>" />
 
-		<aui:input name="<%= displayTerms.NAME %>" value="<%= displayTerms.getName() %>" />
+		<aui:input name="<%= CalendarResourceDisplayTerms.NAME %>" value="<%= displayTerms.getName() %>" />
 
-		<aui:input name="<%= displayTerms.DESCRIPTION %>" value="<%= displayTerms.getDescription() %>" />
+		<aui:input name="<%= CalendarResourceDisplayTerms.DESCRIPTION %>" value="<%= displayTerms.getDescription() %>" />
 
-		<aui:select name="<%= displayTerms.ACTIVE %>">
+		<aui:select name="<%= CalendarResourceDisplayTerms.ACTIVE %>">
 			<aui:option label="yes" selected="<%= displayTerms.isActive() %>" value="true" />
 			<aui:option label="no" selected="<%= !displayTerms.isActive() %>" value="false" />
 		</aui:select>
 
-		<aui:select name="<%= displayTerms.SCOPE %>">
+		<aui:select name="<%= CalendarResourceDisplayTerms.SCOPE %>">
 			<aui:option label="current" selected="<%= (displayTerms.getScope() == themeDisplay.getScopeGroupId()) %>" value="<%= themeDisplay.getScopeGroupId() %>" />
 			<aui:option label="global" selected="<%= (displayTerms.getScope() == themeDisplay.getCompanyGroupId()) %>" value="<%= themeDisplay.getCompanyGroupId() %>" />
 		</aui:select>

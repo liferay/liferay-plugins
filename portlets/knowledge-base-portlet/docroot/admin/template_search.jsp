@@ -29,35 +29,35 @@ KBTemplateDisplayTerms displayTerms = (KBTemplateDisplayTerms)searchContainer.ge
 >
 	<aui:fieldset cssClass="kb-block-labels kb-search-toggle">
 		<div class="kb-field-wrapper">
-			<aui:input inlineField="<%= true %>" name="<%= displayTerms.TITLE %>" size="40" value="<%= displayTerms.getTitle() %>" />
+			<aui:input inlineField="<%= true %>" name="<%= KBTemplateDisplayTerms.TITLE %>" size="40" value="<%= displayTerms.getTitle() %>" />
 
-			<aui:input inlineField="<%= true %>" name="<%= displayTerms.CONTENT %>" size="40" value="<%= displayTerms.getContent() %>" />
+			<aui:input inlineField="<%= true %>" name="<%= KBTemplateDisplayTerms.CONTENT %>" size="40" value="<%= displayTerms.getContent() %>" />
 		</div>
 
 		<aui:field-wrapper cssClass="float-container kb-field-wrapper" label="date">
-			<aui:select cssClass="kb-date-field" ignoreRequestValue="<%= true %>" inlineField="<%= true %>" label="" name="<%= displayTerms.ANYTIME %>">
+			<aui:select cssClass="kb-date-field" ignoreRequestValue="<%= true %>" inlineField="<%= true %>" label="" name="<%= KBTemplateDisplayTerms.ANYTIME %>">
 				<aui:option label="anytime" selected="<%= displayTerms.isAnytime() %>" value="<%= true %>" />
 				<aui:option label="between" selected="<%= !displayTerms.isAnytime() %>" value="<%= false %>" />
 			</aui:select>
 
 			<span class='<%= displayTerms.isAnytime() ? "hide kb-date-field" : "kb-date-field" %>' id="<portlet:namespace />datesOptions">
 				<liferay-ui:input-date
-					dayParam="<%= displayTerms.START_DATE_DAY %>"
+					dayParam="<%= KBTemplateDisplayTerms.START_DATE_DAY %>"
 					dayValue="<%= displayTerms.getStartDateDay() %>"
 					firstDayOfWeek="<%= displayTerms.getFirstDayOfWeek() %>"
-					monthParam="<%= displayTerms.START_DATE_MONTH %>"
+					monthParam="<%= KBTemplateDisplayTerms.START_DATE_MONTH %>"
 					monthValue="<%= displayTerms.getStartDateMonth() %>"
-					yearParam="<%= displayTerms.START_DATE_YEAR %>"
+					yearParam="<%= KBTemplateDisplayTerms.START_DATE_YEAR %>"
 					yearValue="<%= displayTerms.getStartDateYear() %>"
 				/>
 
 				<liferay-ui:input-date
-					dayParam="<%= displayTerms.END_DATE_DAY %>"
+					dayParam="<%= KBTemplateDisplayTerms.END_DATE_DAY %>"
 					dayValue="<%= displayTerms.getEndDateDay() %>"
 					firstDayOfWeek="<%= displayTerms.getFirstDayOfWeek() %>"
-					monthParam="<%= displayTerms.END_DATE_MONTH %>"
+					monthParam="<%= KBTemplateDisplayTerms.END_DATE_MONTH %>"
 					monthValue="<%= displayTerms.getEndDateMonth() %>"
-					yearParam="<%= displayTerms.END_DATE_YEAR %>"
+					yearParam="<%= KBTemplateDisplayTerms.END_DATE_YEAR %>"
 					yearValue="<%= displayTerms.getEndDateYear() %>"
 				/>
 			</span>
@@ -66,5 +66,5 @@ KBTemplateDisplayTerms displayTerms = (KBTemplateDisplayTerms)searchContainer.ge
 </liferay-ui:search-toggle>
 
 <aui:script>
-	Liferay.Util.toggleSelectBox('<portlet:namespace /><%= displayTerms.ANYTIME %>', '<%= false %>', '<portlet:namespace />datesOptions');
+	Liferay.Util.toggleSelectBox('<portlet:namespace /><%= KBTemplateDisplayTerms.ANYTIME %>', '<%= false %>', '<portlet:namespace />datesOptions');
 </aui:script>
