@@ -62,6 +62,7 @@ import com.liferay.portal.kernel.util.JavaConstants;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.model.AttachedModel;
@@ -74,10 +75,13 @@ import com.liferay.portal.model.Portlet;
 import com.liferay.portal.model.User;
 import com.liferay.portal.theme.ThemeDisplay;
 
+import java.io.PrintWriter;
 import java.io.Serializable;
+import java.io.StringWriter;
 
 import java.lang.reflect.Method;
 
+import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -151,31 +155,9 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 			Method executeActionMethod = superClass.getDeclaredMethod(
 				"executeAction", new Class<?>[] {Method.class});
 
-			try {
-				ServiceBeanMethodInvocationFactoryUtil.proceed(
-					this, BaseAlloyControllerImpl.class, executeActionMethod,
-					new Object[] {method}, new String[] {"transactionAdvice"});
-			}
-			catch (Exception e) {
-				log.error(e, e);
-
-				actionRequest.setAttribute(
-					CALLED_PROCESS_ACTION, Boolean.TRUE.toString());
-
-				String message = "an-unexpected-system-error-occurred";
-
-				Throwable rootCause = getRootCause(e);
-
-				if (rootCause instanceof AlloyException) {
-					message = rootCause.getMessage();
-				}
-
-				renderError(message);
-
-				actionRequest.setAttribute(VIEW_PATH, viewPath);
-
-				PortalUtil.copyRequestParameters(actionRequest, actionResponse);
-			}
+			ServiceBeanMethodInvocationFactoryUtil.proceed(
+				this, BaseAlloyControllerImpl.class, executeActionMethod,
+				new Object[] {method}, new String[] {"transactionAdvice"});
 		}
 		else if (lifecycle.equals(PortletRequest.RENDER_PHASE)) {
 			executeRender(method);
@@ -324,41 +306,49 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 		return null;
 	}
 
+	protected String buildResponseContent(
+			Object data, String message, int status)
+		throws Exception {
+
+		String responseContent = StringPool.BLANK;
+
+		if (respondingTo("json")) {
+			JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
+
+			if (data instanceof Exception) {
+				String stackTrace = getStackTrace((Exception)data);
+
+				jsonObject.put("data", stackTrace);
+			}
+			else {
+				jsonObject.put(
+					"data",
+						JSONFactoryUtil.createJSONObject(String.valueOf(data)));
+			}
+
+			jsonObject.put("message", message);
+			jsonObject.put("status", status);
+
+			responseContent = jsonObject.toString();
+		}
+
+		return responseContent;
+	}
+
 	protected MessageListener buildSchedulerMessageListener() {
 		return null;
 	}
 
-	protected String createJSONResponseContent(
-		JSONObject dataJSONObject, String message, String status) {
-
-		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
-
-		jsonObject.put("data", dataJSONObject);
-		jsonObject.put("message", message);
-		jsonObject.put("status", status);
-
-		return jsonObject.toString();
-	}
-
+	@SuppressWarnings("unused")
 	@Transactional(
 		isolation = Isolation.PORTAL, propagation = Propagation.REQUIRES_NEW,
 		rollbackFor = {Exception.class}
 	)
 	protected void executeAction(Method method) throws Exception {
-		if (method != null) {
-			method.invoke(this);
-		}
+		executeResource(method);
 
 		actionRequest.setAttribute(
 			CALLED_PROCESS_ACTION, Boolean.TRUE.toString());
-
-		if (Validator.isNotNull(format)) {
-			if (format.equals("json")) {
-				writeResponse(responseContent, ContentTypes.APPLICATION_JSON);
-			}
-
-			return;
-		}
 
 		if (Validator.isNotNull(viewPath)) {
 			actionRequest.setAttribute(VIEW_PATH, viewPath);
@@ -375,21 +365,11 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 			(String)request.getAttribute(CALLED_PROCESS_ACTION));
 
 		if (!calledProcessAction) {
-			if (method != null) {
-				method.invoke(this);
-			}
+			executeResource(method);
 		}
 
 		if (Validator.isNull(viewPath)) {
 			viewPath = actionPath;
-		}
-
-		if (Validator.isNotNull(format)) {
-			if (format.equals("json")) {
-				writeResponse(responseContent, ContentTypes.APPLICATION_JSON);
-			}
-
-			return;
 		}
 
 		String includePath = buildIncludePath(viewPath);
@@ -432,8 +412,34 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 	}
 
 	protected void executeResource(Method method) throws Exception {
-		if (method != null) {
-			method.invoke(this);
+		try {
+			if (method != null) {
+				method.invoke(this);
+			}
+		}
+		catch (Exception e) {
+			log.error(e, e);
+
+			String message = "an-unexpected-system-error-occurred";
+
+			Throwable rootCause = getRootCause(e);
+
+			if (rootCause instanceof AlloyException) {
+				message = rootCause.getMessage();
+			}
+
+			renderError(HTTP_STATUS_BAD_REQUEST, e, message);
+		}
+		finally {
+			if (respondingTo()) {
+				String contentType = response.getContentType();
+
+				if (respondingTo("json")) {
+					contentType = ContentTypes.APPLICATION_JSON;
+				}
+
+				writeResponse(responseContent, contentType);
+			}
 		}
 	}
 
@@ -519,6 +525,41 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 		}
 
 		return attributesMap;
+	}
+
+	protected String getStackTrace(Exception e) {
+		StringWriter stringWriter = new StringWriter();
+
+		PrintWriter printWriter = new PrintWriter(stringWriter);
+
+		e.printStackTrace(printWriter);
+
+		return stringWriter.toString();
+	}
+
+	protected String getStatusLabel(int status) {
+		String statusLabel = StringPool.BLANK;
+
+		if (status == HTTP_STATUS_OK) {
+			statusLabel = "ok";
+		}
+		else if (status == HTTP_STATUS_CREATED) {
+			statusLabel = "created";
+		}
+		else if (status == HTTP_STATUS_TEMPORARY_REDIRECT) {
+			statusLabel = "temporary-redirect";
+		}
+		else if (status == HTTP_STATUS_BAD_REQUEST) {
+			statusLabel = "bad-request";
+		}
+		else if (status == HTTP_STATUS_NOT_FOUND) {
+			statusLabel = "not-found";
+		}
+		else if (status == HTTP_STATUS_INTERNAL_SERVER_ERROR) {
+			statusLabel = "internal-server-error";
+		}
+
+		return statusLabel;
 	}
 
 	protected boolean hasPermission() {
@@ -823,6 +864,7 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 		user = themeDisplay.getUser();
 	}
 
+	@SuppressWarnings("unused")
 	@Transactional(
 		isolation = Isolation.PORTAL, propagation = Propagation.REQUIRES_NEW,
 		rollbackFor = {Exception.class}
@@ -864,18 +906,99 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 		viewPath = actionPath;
 	}
 
-	protected void renderError(String pattern, Object... arguments) {
-		if (Validator.isNotNull(format) && format.equals("json")) {
-			responseContent = createJSONResponseContent(
-				null, translate(pattern, arguments), "error");
+	protected void renderError(
+			int status, Exception e, String pattern, Object... arguments)
+		throws Exception {
+
+		Throwable rootCause = getRootCause(e);
+
+		if (respondingTo()) {
+			responseContent = buildResponseContent(
+				rootCause, translate(pattern, arguments), status);
 
 			return;
 		}
 
 		portletRequest.setAttribute("arguments", arguments);
+
+		String stackTrace = getStackTrace((Exception)rootCause);
+
+		portletRequest.setAttribute("data", stackTrace);
+
 		portletRequest.setAttribute("pattern", pattern);
+		portletRequest.setAttribute("status", status);
 
 		render(_VIEW_PATH_ERROR);
+	}
+
+	protected void renderError(int status, String pattern, Object... arguments)
+		throws Exception {
+
+		AlloyException alloyException = new AlloyException(
+			translate("unspecified-cause"));
+
+		renderError(status, alloyException, pattern, arguments);
+	}
+
+	protected void renderError(String pattern, Object... arguments)
+		throws Exception {
+
+		renderError(HTTP_STATUS_BAD_REQUEST, pattern, arguments);
+	}
+
+	protected boolean respondingTo() {
+		if (Validator.isNotNull(format)) {
+			return true;
+		}
+
+		return false;
+	}
+
+	protected boolean respondingTo(String format) {
+		if (StringUtil.equalsIgnoreCase(
+				String.valueOf(this.format), String.valueOf(format))) {
+
+			return true;
+		}
+
+		return false;
+	}
+
+	protected boolean respondWith(int status, Object object) throws Exception {
+		String data = StringPool.BLANK;
+
+		if (respondingTo("json")) {
+			JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
+
+			if (object instanceof AlloySearchResult) {
+				Hits hits = ((AlloySearchResult)object).getHits();
+
+				Document[] documents = hits.getDocs();
+
+				jsonObject.put(controllerPath, toJSONArray(documents));
+			}
+			else if (object instanceof Collection) {
+				Object[] objects =
+					((Collection)object).toArray(new BaseModel[0]);
+
+				jsonObject.put(controllerPath, toJSONArray(objects));
+			}
+			else {
+				jsonObject = toJSONObject(object);
+			}
+
+			data = jsonObject.toString();
+		}
+
+		responseContent = buildResponseContent(
+			data, getStatusLabel(status), status);
+
+		return true;
+	}
+
+	@SuppressWarnings("unused")
+	protected boolean respondWith(Object object) throws Exception {
+		return respondWith(HTTP_STATUS_OK, object);
 	}
 
 	protected AlloySearchResult search(
@@ -1053,67 +1176,21 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 		groupedModel.setGroupId(themeDisplay.getScopeGroupId());
 	}
 
-	protected void setJSONResponseContent(AlloySearchResult alloySearchResult)
-		throws Exception {
-
-		Hits hits = alloySearchResult.getHits();
-
-		Document[] documents = hits.getDocs();
-
-		setJSONResponseContent(documents);
-	}
-
-	protected void setJSONResponseContent(BaseModel<?> baseModel)
-		throws Exception {
-
-		responseContent = createJSONResponseContent(
-			toJSONObject(baseModel), null, "success");
-	}
-
-	protected void setJSONResponseContent(Document document) throws Exception {
-		responseContent = createJSONResponseContent(
-			toJSONObject(document), null, "success");
-	}
-
-	protected void setJSONResponseContent(Document[] documents)
-		throws Exception {
-
-		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
-
-		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
-
-		for (Document document : documents) {
-			jsonArray.put(toJSONObject(document));
-		}
-
-		jsonObject.put(controllerPath, jsonArray);
-
-		responseContent = createJSONResponseContent(
-			jsonObject, null, "success");
-	}
-
-	protected void setJSONResponseContent(List<BaseModel<?>> baseModels)
-		throws Exception {
-
-		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
-
-		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
-
-		for (BaseModel<?> baseModel : baseModels) {
-			jsonArray.put(toJSONObject(baseModel));
-		}
-
-		jsonObject.put(controllerPath, jsonArray);
-
-		responseContent = createJSONResponseContent(
-			jsonObject, null, "success");
-	}
-
 	protected void setPermissioned(boolean permissioned) {
 		this.permissioned = permissioned;
 	}
 
-	protected JSONObject toJSONObject(BaseModel<?> baseModel) {
+	protected JSONArray toJSONArray(Object[] objects) throws Exception {
+		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
+
+		for (Object object : objects) {
+			jsonArray.put(toJSONObject(object));
+		}
+
+		return jsonArray;
+	}
+
+	protected JSONObject toJSONObject(BaseModel<?> baseModel) throws Exception {
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
 		Map<String, Object> modelAttributes = baseModel.getModelAttributes();
@@ -1127,7 +1204,7 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 		return jsonObject;
 	}
 
-	protected JSONObject toJSONObject(Document document) {
+	protected JSONObject toJSONObject(Document document) throws Exception {
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
 		Map<String, Field> fields = document.getFields();
@@ -1139,6 +1216,17 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 		}
 
 		return jsonObject;
+	}
+
+	protected JSONObject toJSONObject(Object object) throws Exception {
+		if (object instanceof Document) {
+			return toJSONObject((Document)object);
+		}
+		else if (object instanceof BaseModel<?>) {
+			return toJSONObject((BaseModel<?>)object);
+		}
+
+		throw new AlloyException(translate("invalid-object"));
 	}
 
 	protected String translate(String pattern, Object... arguments) {
@@ -1174,6 +1262,18 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 
 	protected static Log log = LogFactoryUtil.getLog(
 		BaseAlloyControllerImpl.class);
+
+	protected int HTTP_STATUS_BAD_REQUEST = 400;
+
+	protected int HTTP_STATUS_CREATED = 201;
+
+	protected int HTTP_STATUS_INTERNAL_SERVER_ERROR = 500;
+
+	protected int HTTP_STATUS_NOT_FOUND = 404;
+
+	protected int HTTP_STATUS_OK = 200;
+
+	protected int HTTP_STATUS_TEMPORARY_REDIRECT = 307;
 
 	protected String actionPath;
 	protected ActionRequest actionRequest;
