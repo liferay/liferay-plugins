@@ -41,22 +41,18 @@ public class AlloyControllerImpl extends BaseAlloyControllerImpl {
 
 		renderRequest.setAttribute("alloySearchResult", alloySearchResult);
 
-		if (Validator.isNotNull(format) && format.equals("json")) {
-			setJSONResponseContent(alloySearchResult);
-		}
+		respondWith(alloySearchResult);
 	}
 
 	public void save() throws Exception {
 		Asset asset = AssetLocalServiceUtil.createAsset(0);
 
-		String serialNumber = ParamUtil.getString(request, "serialNumber");
+		String message = _validateSave(asset);
 
-		Pattern pattern = Pattern.compile(_SERIAL_NUMBER_REGEX);
+		if (Validator.isNotNull(message)) {
+			renderError(message);
 
-		Matcher matcher = pattern.matcher(serialNumber);
-
-		if (!matcher.find()) {
-			throw new AlloyException("invalid-serial-number");
+			return;
 		}
 
 		updateModel(asset);
@@ -66,6 +62,8 @@ public class AlloyControllerImpl extends BaseAlloyControllerImpl {
 		String redirect = ParamUtil.getString(request, "redirect");
 
 		redirectTo(redirect);
+
+		respondWith(asset);
 	}
 
 	public void view() throws Exception {
@@ -75,14 +73,26 @@ public class AlloyControllerImpl extends BaseAlloyControllerImpl {
 
 		renderRequest.setAttribute("asset", asset);
 
-		if (Validator.isNotNull(format) && format.equals("json")) {
-			setJSONResponseContent(asset);
-		}
+		respondWith(indexer.getDocument(asset));
 	}
 
 	@Override
 	protected Indexer buildIndexer() {
 		return AssetIndexer.getInstance();
+	}
+
+	private String _validateSave(Asset asset) throws Exception {
+		String serialNumber = ParamUtil.getString(request, "serialNumber");
+
+		Pattern pattern = Pattern.compile(_SERIAL_NUMBER_REGEX);
+
+		Matcher matcher = pattern.matcher(serialNumber);
+
+		if (!matcher.find()) {
+			return "invalid-serial-number";
+		}
+
+		return StringPool.BLANK;
 	}
 
 	private static final String _SERIAL_NUMBER_REGEX = "^[a-zA-Z0-9]+$";
