@@ -6,8 +6,8 @@
 		<field name="companyId" type="long" />
 		<field name="userId" type="long" />
 		<field name="userName" type="String" />
-		<field name="createDate" type="Date" />
-		<field name="modifiedDate" type="Date" />
+		<field name="createTime" type="long" />
+		<field name="modifiedTime" type="long" />
 		<field name="assetEntryId" type="String" />
 		<field name="parentAssetEntrySetId" type="long" />
 		<field name="creatorClassNameId" type="long" />

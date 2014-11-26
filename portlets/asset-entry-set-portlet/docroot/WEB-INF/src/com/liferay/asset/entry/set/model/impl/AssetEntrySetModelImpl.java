@@ -19,7 +19,6 @@ import com.liferay.asset.entry.set.model.AssetEntrySetModel;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.kernel.util.DateUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
@@ -36,7 +35,6 @@ import java.io.Serializable;
 
 import java.sql.Types;
 
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -66,8 +64,8 @@ public class AssetEntrySetModelImpl extends BaseModelImpl<AssetEntrySet>
 			{ "companyId", Types.BIGINT },
 			{ "userId", Types.BIGINT },
 			{ "userName", Types.VARCHAR },
-			{ "createDate", Types.TIMESTAMP },
-			{ "modifiedDate", Types.TIMESTAMP },
+			{ "createTime", Types.BIGINT },
+			{ "modifiedTime", Types.BIGINT },
 			{ "assetEntryId", Types.VARCHAR },
 			{ "parentAssetEntrySetId", Types.BIGINT },
 			{ "creatorClassNameId", Types.BIGINT },
@@ -75,10 +73,10 @@ public class AssetEntrySetModelImpl extends BaseModelImpl<AssetEntrySet>
 			{ "content", Types.VARCHAR },
 			{ "data_", Types.VARCHAR }
 		};
-	public static final String TABLE_SQL_CREATE = "create table AssetEntrySet (assetEntrySetId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,assetEntryId VARCHAR(75) null,parentAssetEntrySetId LONG,creatorClassNameId LONG,creatorClassPK LONG,content VARCHAR(75) null,data_ VARCHAR(75) null)";
+	public static final String TABLE_SQL_CREATE = "create table AssetEntrySet (assetEntrySetId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createTime LONG,modifiedTime LONG,assetEntryId VARCHAR(75) null,parentAssetEntrySetId LONG,creatorClassNameId LONG,creatorClassPK LONG,content VARCHAR(75) null,data_ VARCHAR(75) null)";
 	public static final String TABLE_SQL_DROP = "drop table AssetEntrySet";
-	public static final String ORDER_BY_JPQL = " ORDER BY assetEntrySet.createDate DESC";
-	public static final String ORDER_BY_SQL = " ORDER BY AssetEntrySet.createDate DESC";
+	public static final String ORDER_BY_JPQL = " ORDER BY assetEntrySet.createTime DESC";
+	public static final String ORDER_BY_SQL = " ORDER BY AssetEntrySet.createTime DESC";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
 	public static final String TX_MANAGER = "liferayTransactionManager";
@@ -133,8 +131,8 @@ public class AssetEntrySetModelImpl extends BaseModelImpl<AssetEntrySet>
 		attributes.put("companyId", getCompanyId());
 		attributes.put("userId", getUserId());
 		attributes.put("userName", getUserName());
-		attributes.put("createDate", getCreateDate());
-		attributes.put("modifiedDate", getModifiedDate());
+		attributes.put("createTime", getCreateTime());
+		attributes.put("modifiedTime", getModifiedTime());
 		attributes.put("assetEntryId", getAssetEntryId());
 		attributes.put("parentAssetEntrySetId", getParentAssetEntrySetId());
 		attributes.put("creatorClassNameId", getCreatorClassNameId());
@@ -171,16 +169,16 @@ public class AssetEntrySetModelImpl extends BaseModelImpl<AssetEntrySet>
 			setUserName(userName);
 		}
 
-		Date createDate = (Date)attributes.get("createDate");
+		Long createTime = (Long)attributes.get("createTime");
 
-		if (createDate != null) {
-			setCreateDate(createDate);
+		if (createTime != null) {
+			setCreateTime(createTime);
 		}
 
-		Date modifiedDate = (Date)attributes.get("modifiedDate");
+		Long modifiedTime = (Long)attributes.get("modifiedTime");
 
-		if (modifiedDate != null) {
-			setModifiedDate(modifiedDate);
+		if (modifiedTime != null) {
+			setModifiedTime(modifiedTime);
 		}
 
 		String assetEntryId = (String)attributes.get("assetEntryId");
@@ -277,23 +275,23 @@ public class AssetEntrySetModelImpl extends BaseModelImpl<AssetEntrySet>
 	}
 
 	@Override
-	public Date getCreateDate() {
-		return _createDate;
+	public long getCreateTime() {
+		return _createTime;
 	}
 
 	@Override
-	public void setCreateDate(Date createDate) {
-		_createDate = createDate;
+	public void setCreateTime(long createTime) {
+		_createTime = createTime;
 	}
 
 	@Override
-	public Date getModifiedDate() {
-		return _modifiedDate;
+	public long getModifiedTime() {
+		return _modifiedTime;
 	}
 
 	@Override
-	public void setModifiedDate(Date modifiedDate) {
-		_modifiedDate = modifiedDate;
+	public void setModifiedTime(long modifiedTime) {
+		_modifiedTime = modifiedTime;
 	}
 
 	@Override
@@ -402,8 +400,8 @@ public class AssetEntrySetModelImpl extends BaseModelImpl<AssetEntrySet>
 		assetEntrySetImpl.setCompanyId(getCompanyId());
 		assetEntrySetImpl.setUserId(getUserId());
 		assetEntrySetImpl.setUserName(getUserName());
-		assetEntrySetImpl.setCreateDate(getCreateDate());
-		assetEntrySetImpl.setModifiedDate(getModifiedDate());
+		assetEntrySetImpl.setCreateTime(getCreateTime());
+		assetEntrySetImpl.setModifiedTime(getModifiedTime());
 		assetEntrySetImpl.setAssetEntryId(getAssetEntryId());
 		assetEntrySetImpl.setParentAssetEntrySetId(getParentAssetEntrySetId());
 		assetEntrySetImpl.setCreatorClassNameId(getCreatorClassNameId());
@@ -420,8 +418,15 @@ public class AssetEntrySetModelImpl extends BaseModelImpl<AssetEntrySet>
 	public int compareTo(AssetEntrySet assetEntrySet) {
 		int value = 0;
 
-		value = DateUtil.compareTo(getCreateDate(),
-				assetEntrySet.getCreateDate());
+		if (getCreateTime() < assetEntrySet.getCreateTime()) {
+			value = -1;
+		}
+		else if (getCreateTime() > assetEntrySet.getCreateTime()) {
+			value = 1;
+		}
+		else {
+			value = 0;
+		}
 
 		value = value * -1;
 
@@ -481,23 +486,9 @@ public class AssetEntrySetModelImpl extends BaseModelImpl<AssetEntrySet>
 			assetEntrySetCacheModel.userName = null;
 		}
 
-		Date createDate = getCreateDate();
+		assetEntrySetCacheModel.createTime = getCreateTime();
 
-		if (createDate != null) {
-			assetEntrySetCacheModel.createDate = createDate.getTime();
-		}
-		else {
-			assetEntrySetCacheModel.createDate = Long.MIN_VALUE;
-		}
-
-		Date modifiedDate = getModifiedDate();
-
-		if (modifiedDate != null) {
-			assetEntrySetCacheModel.modifiedDate = modifiedDate.getTime();
-		}
-		else {
-			assetEntrySetCacheModel.modifiedDate = Long.MIN_VALUE;
-		}
+		assetEntrySetCacheModel.modifiedTime = getModifiedTime();
 
 		assetEntrySetCacheModel.assetEntryId = getAssetEntryId();
 
@@ -544,10 +535,10 @@ public class AssetEntrySetModelImpl extends BaseModelImpl<AssetEntrySet>
 		sb.append(getUserId());
 		sb.append(", userName=");
 		sb.append(getUserName());
-		sb.append(", createDate=");
-		sb.append(getCreateDate());
-		sb.append(", modifiedDate=");
-		sb.append(getModifiedDate());
+		sb.append(", createTime=");
+		sb.append(getCreateTime());
+		sb.append(", modifiedTime=");
+		sb.append(getModifiedTime());
 		sb.append(", assetEntryId=");
 		sb.append(getAssetEntryId());
 		sb.append(", parentAssetEntrySetId=");
@@ -590,12 +581,12 @@ public class AssetEntrySetModelImpl extends BaseModelImpl<AssetEntrySet>
 		sb.append(getUserName());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>createDate</column-name><column-value><![CDATA[");
-		sb.append(getCreateDate());
+			"<column><column-name>createTime</column-name><column-value><![CDATA[");
+		sb.append(getCreateTime());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>modifiedDate</column-name><column-value><![CDATA[");
-		sb.append(getModifiedDate());
+			"<column><column-name>modifiedTime</column-name><column-value><![CDATA[");
+		sb.append(getModifiedTime());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>assetEntryId</column-name><column-value><![CDATA[");
@@ -636,8 +627,8 @@ public class AssetEntrySetModelImpl extends BaseModelImpl<AssetEntrySet>
 	private long _userId;
 	private String _userUuid;
 	private String _userName;
-	private Date _createDate;
-	private Date _modifiedDate;
+	private long _createTime;
+	private long _modifiedTime;
 	private String _assetEntryId;
 	private long _parentAssetEntrySetId;
 	private long _creatorClassNameId;

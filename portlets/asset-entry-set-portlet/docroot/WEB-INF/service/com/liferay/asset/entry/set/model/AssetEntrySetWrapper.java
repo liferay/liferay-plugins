@@ -17,7 +17,6 @@ package com.liferay.asset.entry.set.model;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.ModelWrapper;
 
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -54,8 +53,8 @@ public class AssetEntrySetWrapper implements AssetEntrySet,
 		attributes.put("companyId", getCompanyId());
 		attributes.put("userId", getUserId());
 		attributes.put("userName", getUserName());
-		attributes.put("createDate", getCreateDate());
-		attributes.put("modifiedDate", getModifiedDate());
+		attributes.put("createTime", getCreateTime());
+		attributes.put("modifiedTime", getModifiedTime());
 		attributes.put("assetEntryId", getAssetEntryId());
 		attributes.put("parentAssetEntrySetId", getParentAssetEntrySetId());
 		attributes.put("creatorClassNameId", getCreatorClassNameId());
@@ -92,16 +91,16 @@ public class AssetEntrySetWrapper implements AssetEntrySet,
 			setUserName(userName);
 		}
 
-		Date createDate = (Date)attributes.get("createDate");
+		Long createTime = (Long)attributes.get("createTime");
 
-		if (createDate != null) {
-			setCreateDate(createDate);
+		if (createTime != null) {
+			setCreateTime(createTime);
 		}
 
-		Date modifiedDate = (Date)attributes.get("modifiedDate");
+		Long modifiedTime = (Long)attributes.get("modifiedTime");
 
-		if (modifiedDate != null) {
-			setModifiedDate(modifiedDate);
+		if (modifiedTime != null) {
+			setModifiedTime(modifiedTime);
 		}
 
 		String assetEntryId = (String)attributes.get("assetEntryId");
@@ -265,43 +264,43 @@ public class AssetEntrySetWrapper implements AssetEntrySet,
 	}
 
 	/**
-	* Returns the create date of this asset entry set.
+	* Returns the create time of this asset entry set.
 	*
-	* @return the create date of this asset entry set
+	* @return the create time of this asset entry set
 	*/
 	@Override
-	public java.util.Date getCreateDate() {
-		return _assetEntrySet.getCreateDate();
+	public long getCreateTime() {
+		return _assetEntrySet.getCreateTime();
 	}
 
 	/**
-	* Sets the create date of this asset entry set.
+	* Sets the create time of this asset entry set.
 	*
-	* @param createDate the create date of this asset entry set
+	* @param createTime the create time of this asset entry set
 	*/
 	@Override
-	public void setCreateDate(java.util.Date createDate) {
-		_assetEntrySet.setCreateDate(createDate);
+	public void setCreateTime(long createTime) {
+		_assetEntrySet.setCreateTime(createTime);
 	}
 
 	/**
-	* Returns the modified date of this asset entry set.
+	* Returns the modified time of this asset entry set.
 	*
-	* @return the modified date of this asset entry set
+	* @return the modified time of this asset entry set
 	*/
 	@Override
-	public java.util.Date getModifiedDate() {
-		return _assetEntrySet.getModifiedDate();
+	public long getModifiedTime() {
+		return _assetEntrySet.getModifiedTime();
 	}
 
 	/**
-	* Sets the modified date of this asset entry set.
+	* Sets the modified time of this asset entry set.
 	*
-	* @param modifiedDate the modified date of this asset entry set
+	* @param modifiedTime the modified time of this asset entry set
 	*/
 	@Override
-	public void setModifiedDate(java.util.Date modifiedDate) {
-		_assetEntrySet.setModifiedDate(modifiedDate);
+	public void setModifiedTime(long modifiedTime) {
+		_assetEntrySet.setModifiedTime(modifiedTime);
 	}
 
 	/**
@@ -488,7 +487,8 @@ public class AssetEntrySetWrapper implements AssetEntrySet,
 	}
 
 	@Override
-	public int compareTo(AssetEntrySet assetEntrySet) {
+	public int compareTo(
+		com.liferay.asset.entry.set.model.AssetEntrySet assetEntrySet) {
 		return _assetEntrySet.compareTo(assetEntrySet);
 	}
 
@@ -498,17 +498,17 @@ public class AssetEntrySetWrapper implements AssetEntrySet,
 	}
 
 	@Override
-	public com.liferay.portal.model.CacheModel<AssetEntrySet> toCacheModel() {
+	public com.liferay.portal.model.CacheModel<com.liferay.asset.entry.set.model.AssetEntrySet> toCacheModel() {
 		return _assetEntrySet.toCacheModel();
 	}
 
 	@Override
-	public AssetEntrySet toEscapedModel() {
+	public com.liferay.asset.entry.set.model.AssetEntrySet toEscapedModel() {
 		return new AssetEntrySetWrapper(_assetEntrySet.toEscapedModel());
 	}
 
 	@Override
-	public AssetEntrySet toUnescapedModel() {
+	public com.liferay.asset.entry.set.model.AssetEntrySet toUnescapedModel() {
 		return new AssetEntrySetWrapper(_assetEntrySet.toUnescapedModel());
 	}
 

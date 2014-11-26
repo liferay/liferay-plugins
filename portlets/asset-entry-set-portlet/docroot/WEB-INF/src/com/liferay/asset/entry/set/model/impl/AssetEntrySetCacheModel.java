@@ -25,8 +25,6 @@ import java.io.IOException;
 import java.io.ObjectInput;
 import java.io.ObjectOutput;
 
-import java.util.Date;
-
 /**
  * The cache model class for representing AssetEntrySet in entity cache.
  *
@@ -48,10 +46,10 @@ public class AssetEntrySetCacheModel implements CacheModel<AssetEntrySet>,
 		sb.append(userId);
 		sb.append(", userName=");
 		sb.append(userName);
-		sb.append(", createDate=");
-		sb.append(createDate);
-		sb.append(", modifiedDate=");
-		sb.append(modifiedDate);
+		sb.append(", createTime=");
+		sb.append(createTime);
+		sb.append(", modifiedTime=");
+		sb.append(modifiedTime);
 		sb.append(", assetEntryId=");
 		sb.append(assetEntryId);
 		sb.append(", parentAssetEntrySetId=");
@@ -84,19 +82,8 @@ public class AssetEntrySetCacheModel implements CacheModel<AssetEntrySet>,
 			assetEntrySetImpl.setUserName(userName);
 		}
 
-		if (createDate == Long.MIN_VALUE) {
-			assetEntrySetImpl.setCreateDate(null);
-		}
-		else {
-			assetEntrySetImpl.setCreateDate(new Date(createDate));
-		}
-
-		if (modifiedDate == Long.MIN_VALUE) {
-			assetEntrySetImpl.setModifiedDate(null);
-		}
-		else {
-			assetEntrySetImpl.setModifiedDate(new Date(modifiedDate));
-		}
+		assetEntrySetImpl.setCreateTime(createTime);
+		assetEntrySetImpl.setModifiedTime(modifiedTime);
 
 		if (assetEntryId == null) {
 			assetEntrySetImpl.setAssetEntryId(StringPool.BLANK);
@@ -134,8 +121,8 @@ public class AssetEntrySetCacheModel implements CacheModel<AssetEntrySet>,
 		companyId = objectInput.readLong();
 		userId = objectInput.readLong();
 		userName = objectInput.readUTF();
-		createDate = objectInput.readLong();
-		modifiedDate = objectInput.readLong();
+		createTime = objectInput.readLong();
+		modifiedTime = objectInput.readLong();
 		assetEntryId = objectInput.readUTF();
 		parentAssetEntrySetId = objectInput.readLong();
 		creatorClassNameId = objectInput.readLong();
@@ -158,8 +145,8 @@ public class AssetEntrySetCacheModel implements CacheModel<AssetEntrySet>,
 			objectOutput.writeUTF(userName);
 		}
 
-		objectOutput.writeLong(createDate);
-		objectOutput.writeLong(modifiedDate);
+		objectOutput.writeLong(createTime);
+		objectOutput.writeLong(modifiedTime);
 
 		if (assetEntryId == null) {
 			objectOutput.writeUTF(StringPool.BLANK);
@@ -191,8 +178,8 @@ public class AssetEntrySetCacheModel implements CacheModel<AssetEntrySet>,
 	public long companyId;
 	public long userId;
 	public String userName;
-	public long createDate;
-	public long modifiedDate;
+	public long createTime;
+	public long modifiedTime;
 	public String assetEntryId;
 	public long parentAssetEntrySetId;
 	public long creatorClassNameId;

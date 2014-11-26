@@ -13,12 +13,8 @@
 			<basic name="companyId" />
 			<basic name="userId" />
 			<basic name="userName" />
-			<basic name="createDate">
-				<temporal>TIMESTAMP</temporal>
-			</basic>
-			<basic name="modifiedDate">
-				<temporal>TIMESTAMP</temporal>
-			</basic>
+			<basic name="createTime" />
+			<basic name="modifiedTime" />
 			<basic name="assetEntryId" />
 			<basic name="parentAssetEntrySetId" />
 			<basic name="creatorClassNameId" />

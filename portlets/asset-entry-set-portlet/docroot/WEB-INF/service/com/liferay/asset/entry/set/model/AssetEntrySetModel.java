@@ -16,7 +16,6 @@ package com.liferay.asset.entry.set.model;
 
 import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.model.AuditedModel;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.service.ServiceContext;
@@ -24,8 +23,6 @@ import com.liferay.portal.service.ServiceContext;
 import com.liferay.portlet.expando.model.ExpandoBridge;
 
 import java.io.Serializable;
-
-import java.util.Date;
 
 /**
  * The base model interface for the AssetEntrySet service. Represents a row in the &quot;AssetEntrySet&quot; database table, with each column mapped to a property of this class.
@@ -40,8 +37,7 @@ import java.util.Date;
  * @see com.liferay.asset.entry.set.model.impl.AssetEntrySetModelImpl
  * @generated
  */
-public interface AssetEntrySetModel extends AuditedModel,
-	BaseModel<AssetEntrySet> {
+public interface AssetEntrySetModel extends BaseModel<AssetEntrySet> {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -81,7 +77,6 @@ public interface AssetEntrySetModel extends AuditedModel,
 	 *
 	 * @return the company ID of this asset entry set
 	 */
-	@Override
 	public long getCompanyId();
 
 	/**
@@ -89,7 +84,6 @@ public interface AssetEntrySetModel extends AuditedModel,
 	 *
 	 * @param companyId the company ID of this asset entry set
 	 */
-	@Override
 	public void setCompanyId(long companyId);
 
 	/**
@@ -97,7 +91,6 @@ public interface AssetEntrySetModel extends AuditedModel,
 	 *
 	 * @return the user ID of this asset entry set
 	 */
-	@Override
 	public long getUserId();
 
 	/**
@@ -105,7 +98,6 @@ public interface AssetEntrySetModel extends AuditedModel,
 	 *
 	 * @param userId the user ID of this asset entry set
 	 */
-	@Override
 	public void setUserId(long userId);
 
 	/**
@@ -114,7 +106,6 @@ public interface AssetEntrySetModel extends AuditedModel,
 	 * @return the user uuid of this asset entry set
 	 * @throws SystemException if a system exception occurred
 	 */
-	@Override
 	public String getUserUuid() throws SystemException;
 
 	/**
@@ -122,7 +113,6 @@ public interface AssetEntrySetModel extends AuditedModel,
 	 *
 	 * @param userUuid the user uuid of this asset entry set
 	 */
-	@Override
 	public void setUserUuid(String userUuid);
 
 	/**
@@ -131,7 +121,6 @@ public interface AssetEntrySetModel extends AuditedModel,
 	 * @return the user name of this asset entry set
 	 */
 	@AutoEscape
-	@Override
 	public String getUserName();
 
 	/**
@@ -139,40 +128,35 @@ public interface AssetEntrySetModel extends AuditedModel,
 	 *
 	 * @param userName the user name of this asset entry set
 	 */
-	@Override
 	public void setUserName(String userName);
 
 	/**
-	 * Returns the create date of this asset entry set.
+	 * Returns the create time of this asset entry set.
 	 *
-	 * @return the create date of this asset entry set
+	 * @return the create time of this asset entry set
 	 */
-	@Override
-	public Date getCreateDate();
+	public long getCreateTime();
 
 	/**
-	 * Sets the create date of this asset entry set.
+	 * Sets the create time of this asset entry set.
 	 *
-	 * @param createDate the create date of this asset entry set
+	 * @param createTime the create time of this asset entry set
 	 */
-	@Override
-	public void setCreateDate(Date createDate);
+	public void setCreateTime(long createTime);
 
 	/**
-	 * Returns the modified date of this asset entry set.
+	 * Returns the modified time of this asset entry set.
 	 *
-	 * @return the modified date of this asset entry set
+	 * @return the modified time of this asset entry set
 	 */
-	@Override
-	public Date getModifiedDate();
+	public long getModifiedTime();
 
 	/**
-	 * Sets the modified date of this asset entry set.
+	 * Sets the modified time of this asset entry set.
 	 *
-	 * @param modifiedDate the modified date of this asset entry set
+	 * @param modifiedTime the modified time of this asset entry set
 	 */
-	@Override
-	public void setModifiedDate(Date modifiedDate);
+	public void setModifiedTime(long modifiedTime);
 
 	/**
 	 * Returns the asset entry ID of this asset entry set.
@@ -298,19 +282,20 @@ public interface AssetEntrySetModel extends AuditedModel,
 	public Object clone();
 
 	@Override
-	public int compareTo(AssetEntrySet assetEntrySet);
+	public int compareTo(
+		com.liferay.asset.entry.set.model.AssetEntrySet assetEntrySet);
 
 	@Override
 	public int hashCode();
 
 	@Override
-	public CacheModel<AssetEntrySet> toCacheModel();
+	public CacheModel<com.liferay.asset.entry.set.model.AssetEntrySet> toCacheModel();
 
 	@Override
-	public AssetEntrySet toEscapedModel();
+	public com.liferay.asset.entry.set.model.AssetEntrySet toEscapedModel();
 
 	@Override
-	public AssetEntrySet toUnescapedModel();
+	public com.liferay.asset.entry.set.model.AssetEntrySet toUnescapedModel();
 
 	@Override
 	public String toString();

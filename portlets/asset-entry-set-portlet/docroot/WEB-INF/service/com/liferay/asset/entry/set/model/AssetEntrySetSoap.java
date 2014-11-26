@@ -17,7 +17,6 @@ package com.liferay.asset.entry.set.model;
 import java.io.Serializable;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -34,8 +33,8 @@ public class AssetEntrySetSoap implements Serializable {
 		soapModel.setCompanyId(model.getCompanyId());
 		soapModel.setUserId(model.getUserId());
 		soapModel.setUserName(model.getUserName());
-		soapModel.setCreateDate(model.getCreateDate());
-		soapModel.setModifiedDate(model.getModifiedDate());
+		soapModel.setCreateTime(model.getCreateTime());
+		soapModel.setModifiedTime(model.getModifiedTime());
 		soapModel.setAssetEntryId(model.getAssetEntryId());
 		soapModel.setParentAssetEntrySetId(model.getParentAssetEntrySetId());
 		soapModel.setCreatorClassNameId(model.getCreatorClassNameId());
@@ -126,20 +125,20 @@ public class AssetEntrySetSoap implements Serializable {
 		_userName = userName;
 	}
 
-	public Date getCreateDate() {
-		return _createDate;
+	public long getCreateTime() {
+		return _createTime;
 	}
 
-	public void setCreateDate(Date createDate) {
-		_createDate = createDate;
+	public void setCreateTime(long createTime) {
+		_createTime = createTime;
 	}
 
-	public Date getModifiedDate() {
-		return _modifiedDate;
+	public long getModifiedTime() {
+		return _modifiedTime;
 	}
 
-	public void setModifiedDate(Date modifiedDate) {
-		_modifiedDate = modifiedDate;
+	public void setModifiedTime(long modifiedTime) {
+		_modifiedTime = modifiedTime;
 	}
 
 	public String getAssetEntryId() {
@@ -194,8 +193,8 @@ public class AssetEntrySetSoap implements Serializable {
 	private long _companyId;
 	private long _userId;
 	private String _userName;
-	private Date _createDate;
-	private Date _modifiedDate;
+	private long _createTime;
+	private long _modifiedTime;
 	private String _assetEntryId;
 	private long _parentAssetEntrySetId;
 	private long _creatorClassNameId;
