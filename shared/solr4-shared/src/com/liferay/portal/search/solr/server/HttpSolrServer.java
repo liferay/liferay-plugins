@@ -21,13 +21,12 @@ import java.util.List;
 
 import org.apache.http.HttpRequestInterceptor;
 import org.apache.http.conn.ssl.SSLSocketFactory;
-import org.apache.solr.client.solrj.SolrServer;
 
 /**
  * @author László Csontos
  * @author André de Oliveira
  */
-public abstract class HttpSolrServer extends SolrServer {
+public class HttpSolrServer extends BaseHttpSolrServer {
 
 	public void afterPropertiesSet() throws Exception {
 		SSLSocketFactoryBuilder sslSocketFactoryBuilder =
@@ -42,6 +41,8 @@ public abstract class HttpSolrServer extends SolrServer {
 			_defaultMaxConnectionsPerRoute);
 		httpClientFactory.setHttpRequestInterceptors(_httpRequestInterceptors);
 		httpClientFactory.setMaxTotalConnections(_maxTotalConnections);
+
+		initServer(httpClientFactory.createInstance());
 	}
 
 	private Integer _defaultMaxConnectionsPerRoute;
