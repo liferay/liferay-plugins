@@ -14,8 +14,8 @@
 		<column name="companyId" type="long" />
 		<column name="userId" type="long" />
 		<column name="userName" type="String" />
-		<column name="createDate" type="Date" />
-		<column name="modifiedDate" type="Date" />
+		<column name="createTime" type="long" />
+		<column name="modifiedTime" type="long" />
 
 		<!-- Other fields -->
 
@@ -29,7 +29,7 @@
 		<!-- Order -->
 
 		<order by="desc">
-			<order-column name="createDate" />
+			<order-column name="createTime" />
 		</order>
 	</entity>
 </service-builder>
