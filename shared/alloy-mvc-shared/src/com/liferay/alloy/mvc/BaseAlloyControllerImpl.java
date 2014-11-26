@@ -457,20 +457,16 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 	}
 
 	protected void fetchOpenerSuccessMessage() {
-		Map<String, String> data = (
-			Map<String, String>)SessionMessages.get(
-				request,
-				portlet.getPortletId() +
-					SessionMessages.KEY_SUFFIX_REFRESH_PORTLET_DATA);
+		Map<String, String> data = (Map<String, String>)SessionMessages.get(
+			request,
+			portlet.getPortletId() +
+				SessionMessages.KEY_SUFFIX_REFRESH_PORTLET_DATA);
 
 		if (data == null) {
 			return;
 		}
 
-		boolean addSuccessMessage = GetterUtil.getBoolean(
-			data.get("addSuccessMessage"));
-
-		if (addSuccessMessage) {
+		if (GetterUtil.getBoolean(data.get("addSuccessMessage"))) {
 			addSuccessMessage();
 		}
 
