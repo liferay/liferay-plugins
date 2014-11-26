@@ -20,6 +20,8 @@ import com.liferay.portal.kernel.util.Validator;
 
 import java.io.IOException;
 
+import java.util.concurrent.atomic.AtomicBoolean;
+
 import org.apache.http.client.HttpClient;
 import org.apache.solr.client.solrj.ResponseParser;
 import org.apache.solr.client.solrj.SolrRequest;
@@ -56,7 +58,7 @@ public class BaseHttpSolrServer extends SolrServer {
 	public NamedList<Object> request(SolrRequest solrRequest)
 		throws IOException, SolrServerException {
 
-		if (_stopped) {
+		if (_stopped.get()) {
 			return null;
 		}
 
@@ -67,7 +69,7 @@ public class BaseHttpSolrServer extends SolrServer {
 			SolrRequest solrRequest, ResponseParser responseParser)
 		throws IOException, SolrServerException {
 
-		if (_stopped) {
+		if (_stopped.get()) {
 			return null;
 		}
 
@@ -136,7 +138,7 @@ public class BaseHttpSolrServer extends SolrServer {
 
 	@Override
 	public void shutdown() {
-		_stopped = true;
+		_stopped.set(true);
 
 		_server.shutdown();
 
@@ -193,7 +195,7 @@ public class BaseHttpSolrServer extends SolrServer {
 	private ResponseParser _responseParser;
 	private HttpSolrServer _server;
 	private Integer _soTimeout;
-	private boolean _stopped;
+	private AtomicBoolean _stopped = new AtomicBoolean(false);
 	private String _url;
 
 }
