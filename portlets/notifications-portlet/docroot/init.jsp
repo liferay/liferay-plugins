@@ -43,7 +43,8 @@ page import="com.liferay.portal.service.LayoutLocalServiceUtil" %><%@
 page import="com.liferay.portal.service.UserNotificationDeliveryLocalServiceUtil" %><%@
 page import="com.liferay.portal.service.UserNotificationEventLocalServiceUtil" %><%@
 page import="com.liferay.portal.util.PortalUtil" %><%@
-page import="com.liferay.portlet.PortletURLFactoryUtil" %>
+page import="com.liferay.portlet.PortletURLFactoryUtil" %><%@
+page import="com.liferay.registry.collections.ServiceTrackerMap" %>
 
 <%@ page import="java.util.List" %><%@
 page import="java.util.Map" %><%@
