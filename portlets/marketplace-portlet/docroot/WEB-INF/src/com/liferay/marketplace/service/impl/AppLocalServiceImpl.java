@@ -190,7 +190,7 @@ public class AppLocalServiceImpl extends AppLocalServiceBaseImpl {
 		coreApp.setDescription("Plugins bundled with Liferay Portal.");
 		coreApp.setVersion(ReleaseInfo.getVersion());
 
-		coreApp.addContextName(PortalUtil.getPathContext());
+		coreApp.addContextName(PortalUtil.getServletContextName());
 
 		installedApps.add(coreApp);
 
