@@ -40,10 +40,15 @@
 	}
 
 	for (Map.Entry<String, List<UserNotificationDefinition>> entry : userNotificationDefinitionsMap.entrySet()) {
+		Portlet portlet = PortletLocalServiceUtil.getPortletById(entry.getKey());
+
+		PortletConfig userNotificationPortletConfig = PortletConfigFactoryUtil.create(portlet, application);
+
+		ResourceBundle resourceBundle = userNotificationPortletConfig.getResourceBundle(locale);
 	%>
 
 		<table class="notification-deliveries table table-condensed">
-			<caption><%= PortalUtil.getPortletTitle(entry.getKey(), locale) %></caption>
+			<caption><%= LanguageUtil.get(resourceBundle, JavaConstants.JAVAX_PORTLET_TITLE.concat(StringPool.PERIOD).concat(entry.getKey())) %></caption>
 			<tbody>
 
 			<%
