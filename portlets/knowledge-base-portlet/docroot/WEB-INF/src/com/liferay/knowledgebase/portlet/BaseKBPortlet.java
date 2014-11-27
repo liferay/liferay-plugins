@@ -370,7 +370,6 @@ public abstract class BaseKBPortlet extends MVCPortlet {
 		long classNameId = ParamUtil.getLong(actionRequest, "classNameId");
 		long classPK = ParamUtil.getLong(actionRequest, "classPK");
 		String content = ParamUtil.getString(actionRequest, "content");
-		boolean helpful = ParamUtil.getBoolean(actionRequest, "helpful");
 		int status = ParamUtil.getInteger(
 			actionRequest, "status", KBCommentConstants.STATUS_ANY);
 
@@ -380,7 +379,7 @@ public abstract class BaseKBPortlet extends MVCPortlet {
 		if (cmd.equals(Constants.ADD)) {
 			KBCommentLocalServiceUtil.addKBComment(
 				themeDisplay.getUserId(), classNameId, classPK, content,
-				helpful, serviceContext);
+				serviceContext);
 		}
 		else if (cmd.equals(Constants.UPDATE)) {
 			if (status == KBCommentConstants.STATUS_ANY) {
@@ -391,7 +390,7 @@ public abstract class BaseKBPortlet extends MVCPortlet {
 			}
 
 			KBCommentServiceUtil.updateKBComment(
-				kbCommentId, classNameId, classPK, content, helpful, status,
+				kbCommentId, classNameId, classPK, content, status,
 				serviceContext);
 		}
 
