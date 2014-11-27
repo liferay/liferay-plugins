@@ -55,7 +55,7 @@ public class KBCommentLocalServiceImpl extends KBCommentLocalServiceBaseImpl {
 	@Override
 	public KBComment addKBComment(
 			long userId, long classNameId, long classPK, String content,
-			boolean helpful, ServiceContext serviceContext)
+			ServiceContext serviceContext)
 		throws PortalException {
 
 		// KB comment
@@ -80,7 +80,6 @@ public class KBCommentLocalServiceImpl extends KBCommentLocalServiceBaseImpl {
 		kbComment.setClassNameId(classNameId);
 		kbComment.setClassPK(classPK);
 		kbComment.setContent(content);
-		kbComment.setHelpful(helpful);
 		kbComment.setStatus(KBCommentConstants.STATUS_NEW);
 
 		kbCommentPersistence.update(kbComment);
@@ -242,7 +241,7 @@ public class KBCommentLocalServiceImpl extends KBCommentLocalServiceBaseImpl {
 	@Override
 	public KBComment updateKBComment(
 			long kbCommentId, long classNameId, long classPK, String content,
-			boolean helpful, int status, ServiceContext serviceContext)
+			int status, ServiceContext serviceContext)
 		throws PortalException {
 
 		// KB comment
@@ -256,7 +255,6 @@ public class KBCommentLocalServiceImpl extends KBCommentLocalServiceBaseImpl {
 		kbComment.setClassNameId(classNameId);
 		kbComment.setClassPK(classPK);
 		kbComment.setContent(content);
-		kbComment.setHelpful(helpful);
 		kbComment.setStatus(status);
 
 		kbCommentPersistence.update(kbComment);

@@ -117,28 +117,27 @@ public class KBCommentServiceImpl extends KBCommentServiceBaseImpl {
 
 	public KBComment updateKBComment(
 			long kbCommentId, long classNameId, long classPK, String content,
-			boolean helpful, int status, ServiceContext serviceContext)
+			int status, ServiceContext serviceContext)
 		throws PortalException {
 
 		KBCommentPermission.check(
 			getPermissionChecker(), kbCommentId, ActionKeys.UPDATE);
 
 		return kbCommentLocalService.updateKBComment(
-			kbCommentId, classNameId, classPK, content, helpful, status,
-			serviceContext);
+			kbCommentId, classNameId, classPK, content, status, serviceContext);
 	}
 
 	public KBComment updateKBComment(
 			long kbCommentId, long classNameId, long classPK, String content,
-			boolean helpful, ServiceContext serviceContext)
+			ServiceContext serviceContext)
 		throws PortalException {
 
 		KBComment kbComment = kbCommentPersistence.findByPrimaryKey(
 			kbCommentId);
 
 		return updateKBComment(
-			kbCommentId, classNameId, classPK, content, helpful,
-			kbComment.getStatus(), serviceContext);
+			kbCommentId, classNameId, classPK, content, kbComment.getStatus(),
+			serviceContext);
 	}
 
 	public KBComment updateStatus(
