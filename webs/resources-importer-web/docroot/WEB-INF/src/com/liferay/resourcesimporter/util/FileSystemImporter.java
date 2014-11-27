@@ -1074,7 +1074,7 @@ public class FileSystemImporter extends BaseImporter {
 
 			String value = portletPreferencesJSONObject.getString(key);
 
-			if (rootPortletId.equals(_JOURNAL_CONTENT) &&
+			if (rootPortletId.equals(_JOURNAL_CONTENT_PORTLET_ID) &&
 				key.equals("articleId")) {
 
 				value = getJournalId(value);
@@ -1301,7 +1301,7 @@ public class FileSystemImporter extends BaseImporter {
 	protected JSONObject getDefaultPortletJSONObject(String journalArticleId) {
 		JSONObject portletJSONObject = JSONFactoryUtil.createJSONObject();
 
-		portletJSONObject.put("portletId", _JOURNAL_CONTENT);
+		portletJSONObject.put("portletId", _JOURNAL_CONTENT_PORTLET_ID);
 
 		JSONObject portletPreferencesJSONObject =
 			JSONFactoryUtil.createJSONObject();
@@ -1776,7 +1776,7 @@ public class FileSystemImporter extends BaseImporter {
 	private static final String _JOURNAL_ARTICLES_DIR_NAME =
 		"/journal/articles/";
 
-	private static final String _JOURNAL_CONTENT =
+	private static final String _JOURNAL_CONTENT_PORTLET_ID =
 		"com_liferay_journal_content_web_portlet_JournalContentPortlet";
 
 	private static final String _JOURNAL_DDM_STRUCTURES_DIR_NAME =
