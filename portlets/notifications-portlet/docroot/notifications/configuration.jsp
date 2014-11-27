@@ -33,10 +33,10 @@
 	<%
 	Map<String, List<UserNotificationDefinition>> userNotificationDefinitionsMap = new TreeMap<String, List<UserNotificationDefinition>>(new PortletIdComparator(locale));
 
-	ServiceTrackerMap<String, List<UserNotificationDefinition>> userNotificationServiceTrackerMap = UserNotificationManagerUtil.getUserNotificationDefinitions();
+	ServiceTrackerMap<String, List<UserNotificationDefinition>> userNotificationDefinitionsServiceTrackerMap = UserNotificationManagerUtil.getUserNotificationDefinitions();
 
-	for (String key : userNotificationServiceTrackerMap.keySet()) {
-		userNotificationDefinitionsMap.put(key, userNotificationServiceTrackerMap.getService(key));
+	for (String key : userNotificationDefinitionsServiceTrackerMap.keySet()) {
+		userNotificationDefinitionsMap.put(key, userNotificationDefinitionsServiceTrackerMap.getService(key));
 	}
 
 	for (Map.Entry<String, List<UserNotificationDefinition>> entry : userNotificationDefinitionsMap.entrySet()) {
