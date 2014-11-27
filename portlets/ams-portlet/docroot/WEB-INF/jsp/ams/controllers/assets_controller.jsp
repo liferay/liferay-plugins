@@ -47,7 +47,7 @@ public class AlloyControllerImpl extends BaseAlloyControllerImpl {
 	public void save() throws Exception {
 		Asset asset = AssetLocalServiceUtil.createAsset(0);
 
-		String message = _validateSave(asset);
+		String message = _validateSave();
 
 		if (Validator.isNotNull(message)) {
 			renderError(message);
@@ -81,7 +81,7 @@ public class AlloyControllerImpl extends BaseAlloyControllerImpl {
 		return AssetIndexer.getInstance();
 	}
 
-	private String _validateSave(Asset asset) throws Exception {
+	private String _validateSave() throws Exception {
 		String serialNumber = ParamUtil.getString(request, "serialNumber");
 
 		Pattern pattern = Pattern.compile(_SERIAL_NUMBER_REGEX);
