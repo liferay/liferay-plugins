@@ -150,14 +150,7 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 		}
 
 		if (lifecycle.equals(PortletRequest.ACTION_PHASE)) {
-			Class<?> superClass = clazz.getSuperclass();
-
-			Method executeActionMethod = superClass.getDeclaredMethod(
-				"executeAction", new Class<?>[] {Method.class});
-
-			ServiceBeanMethodInvocationFactoryUtil.proceed(
-				this, BaseAlloyControllerImpl.class, executeActionMethod,
-				new Object[] {method}, new String[] {"transactionAdvice"});
+			executeAction(method);
 		}
 		else if (lifecycle.equals(PortletRequest.RENDER_PHASE)) {
 			executeRender(method);
@@ -346,11 +339,6 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 		return null;
 	}
 
-	@SuppressWarnings("unused")
-	@Transactional(
-		isolation = Isolation.PORTAL, propagation = Propagation.REQUIRES_NEW,
-		rollbackFor = {Exception.class}
-	)
 	protected void executeAction(Method method) throws Exception {
 		executeResource(method);
 
@@ -422,7 +410,14 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 	protected void executeResource(Method method) throws Exception {
 		try {
 			if (method != null) {
-				method.invoke(this);
+				Class<?> superClass = clazz.getSuperclass();
+
+				Method invokeMethod = superClass.getDeclaredMethod(
+					"invoke", new Class<?>[] {Method.class});
+
+				ServiceBeanMethodInvocationFactoryUtil.proceed(
+					this, BaseAlloyControllerImpl.class, invokeMethod,
+					new Object[] {method}, new String[] {"transactionAdvice"});
 			}
 		}
 		catch (Exception e) {
@@ -436,7 +431,7 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 				message = rootCause.getMessage();
 			}
 
-			renderError(HTTP_STATUS_BAD_REQUEST, e, message);
+			renderError(HttpServletResponse.SC_BAD_REQUEST, e, message);
 		}
 		finally {
 			if (respondingTo()) {
@@ -543,31 +538,6 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 		e.printStackTrace(printWriter);
 
 		return stringWriter.toString();
-	}
-
-	protected String getStatusLabel(int status) {
-		String statusLabel = StringPool.BLANK;
-
-		if (status == HTTP_STATUS_OK) {
-			statusLabel = "ok";
-		}
-		else if (status == HTTP_STATUS_CREATED) {
-			statusLabel = "created";
-		}
-		else if (status == HTTP_STATUS_TEMPORARY_REDIRECT) {
-			statusLabel = "temporary-redirect";
-		}
-		else if (status == HTTP_STATUS_BAD_REQUEST) {
-			statusLabel = "bad-request";
-		}
-		else if (status == HTTP_STATUS_NOT_FOUND) {
-			statusLabel = "not-found";
-		}
-		else if (status == HTTP_STATUS_INTERNAL_SERVER_ERROR) {
-			statusLabel = "internal-server-error";
-		}
-
-		return statusLabel;
 	}
 
 	protected boolean hasPermission() {
@@ -877,6 +847,15 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 		isolation = Isolation.PORTAL, propagation = Propagation.REQUIRES_NEW,
 		rollbackFor = {Exception.class}
 	)
+	protected void invoke(Method method) throws Exception {
+		method.invoke(this);
+	}
+
+	@SuppressWarnings("unused")
+	@Transactional(
+		isolation = Isolation.PORTAL, propagation = Propagation.REQUIRES_NEW,
+		rollbackFor = {Exception.class}
+	)
 	protected String processDataRequest(ActionRequest actionRequest)
 		throws Exception {
 
@@ -951,25 +930,15 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 	protected void renderError(String pattern, Object... arguments)
 		throws Exception {
 
-		renderError(HTTP_STATUS_BAD_REQUEST, pattern, arguments);
+		renderError(HttpServletResponse.SC_BAD_REQUEST, pattern, arguments);
 	}
 
 	protected boolean respondingTo() {
-		if (Validator.isNotNull(format)) {
-			return true;
-		}
-
-		return false;
+		return Validator.isNotNull(format);
 	}
 
 	protected boolean respondingTo(String format) {
-		if (StringUtil.equalsIgnoreCase(
-				String.valueOf(this.format), String.valueOf(format))) {
-
-			return true;
-		}
-
-		return false;
+		return StringUtil.equalsIgnoreCase(this.format, format);
 	}
 
 	protected boolean respondWith(int status, Object object) throws Exception {
@@ -998,15 +967,14 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 			data = jsonObject.toString();
 		}
 
-		responseContent = buildResponseContent(
-			data, getStatusLabel(status), status);
+		responseContent = buildResponseContent(data, StringPool.BLANK, status);
 
 		return true;
 	}
 
 	@SuppressWarnings("unused")
 	protected boolean respondWith(Object object) throws Exception {
-		return respondWith(HTTP_STATUS_OK, object);
+		return respondWith(HttpServletResponse.SC_OK, object);
 	}
 
 	protected AlloySearchResult search(
@@ -1278,18 +1246,6 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 
 	protected static Log log = LogFactoryUtil.getLog(
 		BaseAlloyControllerImpl.class);
-
-	protected int HTTP_STATUS_BAD_REQUEST = 400;
-
-	protected int HTTP_STATUS_CREATED = 201;
-
-	protected int HTTP_STATUS_INTERNAL_SERVER_ERROR = 500;
-
-	protected int HTTP_STATUS_NOT_FOUND = 404;
-
-	protected int HTTP_STATUS_OK = 200;
-
-	protected int HTTP_STATUS_TEMPORARY_REDIRECT = 307;
 
 	protected String actionPath;
 	protected ActionRequest actionRequest;
