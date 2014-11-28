@@ -69,6 +69,34 @@ public class MobileWidgetsDDLRecordServiceImpl
 
 	@Override
 	public JSONArray getDDLRecords(
+			long ddlRecordSetId, Locale locale, int start, int end)
+		throws PortalException, SystemException {
+
+		JSONArray ddlRecordsJSONArray = JSONFactoryUtil.createJSONArray();
+
+		List<DDLRecord> ddlRecords = ddlRecordPersistence.findByRecordSetId(
+			ddlRecordSetId, start, end);
+
+		for (DDLRecord ddlRecord : ddlRecords) {
+			JSONObject ddlRecordJSONObject = JSONFactoryUtil.createJSONObject();
+
+			ddlRecordJSONObject.put(
+				"modelAttributes",
+				JSONFactoryUtil.createJSONObject(
+					JSONFactoryUtil.looseSerialize(
+						ddlRecord.getModelAttributes())));
+			ddlRecordJSONObject.put(
+				"modelValues",
+				getDDLRecord(ddlRecord.getRecordId(), locale));
+
+			ddlRecordsJSONArray.put(ddlRecordJSONObject);
+		}
+
+		return ddlRecordsJSONArray;
+	}
+
+	@Override
+	public JSONArray getDDLRecords(
 			long ddlRecordSetId, long userId, Locale locale, int start, int end)
 		throws PortalException, SystemException {
 
@@ -93,6 +121,11 @@ public class MobileWidgetsDDLRecordServiceImpl
 		}
 
 		return ddlRecordsJSONArray;
+	}
+
+	@Override
+	public int getDDLRecordsCount(long ddlRecordSetId) throws SystemException {
+		return ddlRecordPersistence.countByRecordSetId(ddlRecordSetId);
 	}
 
 	@Override
