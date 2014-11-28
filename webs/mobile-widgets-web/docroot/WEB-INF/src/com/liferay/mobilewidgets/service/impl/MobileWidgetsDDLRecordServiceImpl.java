@@ -72,25 +72,11 @@ public class MobileWidgetsDDLRecordServiceImpl
 			long ddlRecordSetId, Locale locale, int start, int end)
 		throws PortalException, SystemException {
 
-		JSONArray ddlRecordsJSONArray = JSONFactoryUtil.createJSONArray();
-
 		List<DDLRecord> ddlRecords = ddlRecordPersistence.findByRecordSetId(
 			ddlRecordSetId, start, end);
 
-		for (DDLRecord ddlRecord : ddlRecords) {
-			JSONObject ddlRecordJSONObject = JSONFactoryUtil.createJSONObject();
-
-			ddlRecordJSONObject.put(
-				"modelAttributes",
-				JSONFactoryUtil.createJSONObject(
-					JSONFactoryUtil.looseSerialize(
-						ddlRecord.getModelAttributes())));
-			ddlRecordJSONObject.put(
-				"modelValues",
-				getDDLRecord(ddlRecord.getRecordId(), locale));
-
-			ddlRecordsJSONArray.put(ddlRecordJSONObject);
-		}
+		JSONArray ddlRecordsJSONArray = getDDLRecordsJSONArray(
+			ddlRecords, locale);
 
 		return ddlRecordsJSONArray;
 	}
@@ -100,10 +86,20 @@ public class MobileWidgetsDDLRecordServiceImpl
 			long ddlRecordSetId, long userId, Locale locale, int start, int end)
 		throws PortalException, SystemException {
 
-		JSONArray ddlRecordsJSONArray = JSONFactoryUtil.createJSONArray();
-
 		List<DDLRecord> ddlRecords = ddlRecordPersistence.findByR_U(
 			ddlRecordSetId, userId, start, end);
+
+		JSONArray ddlRecordsJSONArray = getDDLRecordsJSONArray(
+			ddlRecords, locale);
+
+		return ddlRecordsJSONArray;
+	}
+
+	protected JSONArray getDDLRecordsJSONArray(
+			List<DDLRecord> ddlRecords, Locale locale)
+		throws PortalException, SystemException {
+
+		JSONArray ddlRecordsJSONArray = JSONFactoryUtil.createJSONArray();
 
 		for (DDLRecord ddlRecord : ddlRecords) {
 			JSONObject ddlRecordJSONObject = JSONFactoryUtil.createJSONObject();
