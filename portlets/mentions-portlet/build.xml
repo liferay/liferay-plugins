@@ -11,9 +11,7 @@
 
 		<sequential>
 			<if>
-				<not>
-					<available file="docroot/META-INF/custom_jsps/html/js/@{target.dir}/@{source.file}" />
-				</not>
+				<available file="docroot/META-INF/custom_jsps/html/js/@{target.dir}/@{source.file}" />
 				<then>
 					<mkdir dir="docroot/META-INF/custom_jsps/html/js/@{target.dir}" />
 
