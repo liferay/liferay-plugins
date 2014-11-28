@@ -17,7 +17,6 @@ package com.liferay.calendar.util;
 import com.liferay.calendar.model.Calendar;
 import com.liferay.portal.kernel.search.BaseSearcher;
 import com.liferay.portal.kernel.search.Document;
-import com.liferay.portal.kernel.search.Field;
 import com.liferay.portal.kernel.search.Indexer;
 import com.liferay.portal.kernel.search.IndexerPostProcessor;
 import com.liferay.portal.kernel.search.SearchContext;
@@ -103,4 +102,5 @@ public class CalendarSearcher extends BaseSearcher {
 	protected String getPortletId(SearchContext searchContext) {
 		return null;
 	}
+
 }
