@@ -42,6 +42,8 @@ public class PushNotificationsConstants {
 
 	public static final String KEY_PORTRAIT_ID = "portraitId";
 
+	public static final String KEY_PUSH_NOTIFICATIONS_ENTRY_ID = "entryId";
+
 	public static final String KEY_TO_USER = "toUser";
 
 	public static final String KEY_TYPE = "type";

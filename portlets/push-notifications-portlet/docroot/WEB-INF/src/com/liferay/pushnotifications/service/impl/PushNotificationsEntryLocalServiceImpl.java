@@ -51,6 +51,10 @@ public class PushNotificationsEntryLocalServiceImpl
 		PushNotificationsEntry pushNotificationsEntry =
 			pushNotificationsEntryPersistence.create(pushNotificationsEntryId);
 
+		payloadJSONObject.put(
+			PushNotificationsConstants.KEY_PUSH_NOTIFICATIONS_ENTRY_ID,
+			pushNotificationsEntryId);
+
 		pushNotificationsEntry.setUserId(userId);
 		pushNotificationsEntry.setCreateTime(System.currentTimeMillis());
 
