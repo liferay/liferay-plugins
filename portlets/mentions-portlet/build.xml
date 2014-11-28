@@ -3,4 +3,132 @@
 
 <project name="mentions-portlet" basedir="." default="deploy">
 	<import file="../build-common-portlet.xml" />
+
+	<target name="update-from-portal">
+		<property name="liferay.js.folder" value="docroot/META-INF/custom_jsps/html/js" />
+
+		<property name="github.commit.id" value="ac7e6f6c91926b69b89dc3a76cd78aa2f8ca8e51" />
+
+		<property name="raw.github.liferay.js.url" value="https://raw.githubusercontent.com/liferay/liferay-portal/${github.commit.id}/portal-web/docroot/html/js" />
+
+		<if>
+			<not>
+				<available file="${liferay.js.folder}/aui/autocomplete_input.js" />
+			</not>
+			<then>
+				<mkdir dir="${liferay.js.folder}/aui" />
+
+				<get
+					dest="${liferay.js.folder}/aui/autocomplete_input.js"
+					src="${raw.github.liferay.js.url}/liferay/autocomplete_input.js"
+					verbose="true"
+				/>
+			</then>
+		</if>
+
+		<if>
+			<not>
+				<available file="${liferay.js.folder}/aui/autocomplete_input_caretindex.js" />
+			</not>
+			<then>
+				<mkdir dir="${liferay.js.folder}/aui" />
+
+				<get
+					dest="${liferay.js.folder}/aui/autocomplete_input_caretindex.js"
+					src="${raw.github.liferay.js.url}/liferay/autocomplete_input_caretindex.js"
+					verbose="true"
+				/>
+			</then>
+		</if>
+
+		<if>
+			<not>
+				<available file="${liferay.js.folder}/aui/autocomplete_input_caretindex_sel.js" />
+			</not>
+			<then>
+				<mkdir dir="${liferay.js.folder}/aui" />
+
+				<get
+					dest="${liferay.js.folder}/aui/autocomplete_input_caretindex_sel.js"
+					src="${raw.github.liferay.js.url}/liferay/autocomplete_input_caretindex_sel.js"
+					verbose="true"
+				/>
+			</then>
+		</if>
+
+		<if>
+			<not>
+				<available file="${liferay.js.folder}/aui/autocomplete_input_caretoffset.js" />
+			</not>
+			<then>
+				<mkdir dir="${liferay.js.folder}/aui" />
+
+				<get
+					dest="${liferay.js.folder}/aui/autocomplete_input_caretoffset.js"
+					src="${raw.github.liferay.js.url}/liferay/autocomplete_input_caretoffset.js"
+					verbose="true"
+				/>
+			</then>
+		</if>
+
+		<if>
+			<not>
+				<available file="${liferay.js.folder}/aui/autocomplete_input_caretoffset_sel.js" />
+			</not>
+			<then>
+				<mkdir dir="${liferay.js.folder}/aui" />
+
+				<get
+					dest="${liferay.js.folder}/aui/autocomplete_input_caretoffset_sel.js"
+					src="${raw.github.liferay.js.url}/liferay/autocomplete_input_caretoffset_sel.js"
+					verbose="true"
+				/>
+			</then>
+		</if>
+
+		<if>
+			<not>
+				<available file="${liferay.js.folder}/aui/autocomplete_textarea.js" />
+			</not>
+			<then>
+				<mkdir dir="${liferay.js.folder}/aui" />
+
+				<get
+					dest="${liferay.js.folder}/aui/autocomplete_textarea.js"
+					src="${raw.github.liferay.js.url}/liferay/autocomplete_textarea.js"
+					verbose="true"
+				/>
+			</then>
+		</if>
+
+		<if>
+			<not>
+				<available file="${liferay.js.folder}/editor/ckeditor/plugins/autocomplete/autocomplete.js" />
+			</not>
+			<then>
+				<mkdir dir="${liferay.js.folder}/editor/ckeditor/plugins/autocomplete" />
+
+				<get
+					dest="${liferay.js.folder}/editor/ckeditor/plugins/autocomplete/autocomplete.js"
+					src="${raw.github.liferay.js.url}/editor/ckeditor_diffs/plugins/autocomplete/autocomplete.js"
+					verbose="true"
+				/>
+			</then>
+		</if>
+
+		<if>
+			<not>
+				<available file="${liferay.js.folder}/editor/ckeditor/plugins/autocomplete/plugin.js" />
+			</not>
+			<then>
+				<mkdir dir="${liferay.js.folder}/editor/ckeditor/plugins/autocomplete" />
+
+				<get
+					dest="${liferay.js.folder}/editor/ckeditor/plugins/autocomplete/plugin.js"
+					src="${raw.github.liferay.js.url}/editor/ckeditor_diffs/plugins/autocomplete/plugin.js"
+					verbose="true"
+				/>
+			</then>
+		</if>
+	</target>
 </project>
