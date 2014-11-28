@@ -33,11 +33,9 @@ int pos = html.indexOf("config.extraPlugins");
 
 pos = html.indexOf(";", pos);
 
-String appendPluginHtml = html;
-
 if (portletId.equals(PortletKeys.MESSAGE_BOARDS) || portletId.equals(PortletKeys.MESSAGE_BOARDS_ADMIN)) {
-	appendPluginHtml = html.substring(0, pos) + ";\nconfig.extraPlugins += ',autocomplete';\n" + html.substring(pos, html.length());
+	html = html.substring(0, pos) + ";\nconfig.extraPlugins += ',autocomplete';\n" + html.substring(pos, html.length());
 }
 %>
 
-<%= appendPluginHtml %>
+<%= html %>
