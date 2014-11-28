@@ -69,12 +69,27 @@ public class MobileWidgetsDDLRecordServiceWrapper
 
 	@Override
 	public com.liferay.portal.kernel.json.JSONArray getDDLRecords(
+		long ddlRecordSetId, java.util.Locale locale, int start, int end)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _mobileWidgetsDDLRecordService.getDDLRecords(ddlRecordSetId,
+			locale, start, end);
+	}
+
+	@Override
+	public com.liferay.portal.kernel.json.JSONArray getDDLRecords(
 		long ddlRecordSetId, long userId, java.util.Locale locale, int start,
 		int end)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _mobileWidgetsDDLRecordService.getDDLRecords(ddlRecordSetId,
 			userId, locale, start, end);
+	}
+
+	@Override
+	public int getDDLRecordsCount(long ddlRecordSetId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _mobileWidgetsDDLRecordService.getDDLRecordsCount(ddlRecordSetId);
 	}
 
 	@Override

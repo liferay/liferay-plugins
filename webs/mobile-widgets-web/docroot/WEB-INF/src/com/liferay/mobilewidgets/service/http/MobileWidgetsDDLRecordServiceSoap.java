@@ -68,6 +68,21 @@ public class MobileWidgetsDDLRecordServiceSoap {
 	}
 
 	public static java.lang.String getDDLRecords(long ddlRecordSetId,
+		String locale, int start, int end) throws RemoteException {
+		try {
+			com.liferay.portal.kernel.json.JSONArray returnValue = MobileWidgetsDDLRecordServiceUtil.getDDLRecords(ddlRecordSetId,
+					LocaleUtil.fromLanguageId(locale), start, end);
+
+			return returnValue.toString();
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static java.lang.String getDDLRecords(long ddlRecordSetId,
 		long userId, String locale, int start, int end)
 		throws RemoteException {
 		try {
@@ -75,6 +90,20 @@ public class MobileWidgetsDDLRecordServiceSoap {
 					userId, LocaleUtil.fromLanguageId(locale), start, end);
 
 			return returnValue.toString();
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static int getDDLRecordsCount(long ddlRecordSetId)
+		throws RemoteException {
+		try {
+			int returnValue = MobileWidgetsDDLRecordServiceUtil.getDDLRecordsCount(ddlRecordSetId);
+
+			return returnValue;
 		}
 		catch (Exception e) {
 			_log.error(e, e);
