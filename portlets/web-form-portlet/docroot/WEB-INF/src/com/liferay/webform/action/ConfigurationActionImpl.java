@@ -132,6 +132,7 @@ public class ConfigurationActionImpl extends DefaultConfigurationAction {
 				preferences.setValue("fieldType" + i, fieldType);
 				preferences.setValue(
 					"fieldOptional" + i, String.valueOf(fieldOptional));
+				preferences.setValue("fieldOptions" + i, StringPool.BLANK);
 				preferences.setValue(
 					"fieldValidationScript" + i, fieldValidationScript);
 				preferences.setValue(
