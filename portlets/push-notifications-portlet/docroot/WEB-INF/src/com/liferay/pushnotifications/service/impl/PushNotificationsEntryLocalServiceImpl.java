@@ -83,7 +83,7 @@ public class PushNotificationsEntryLocalServiceImpl
 			long userId, long pushNotificationsEntryId)
 		throws PortalException {
 
-		return updateRatingsEntry(userId, pushNotificationsEntryId, 0);
+		return updateRatingsTotalScore(userId, pushNotificationsEntryId, 0);
 	}
 
 	@Override
@@ -100,7 +100,7 @@ public class PushNotificationsEntryLocalServiceImpl
 			long userId, long pushNotificationsEntryId)
 		throws PortalException {
 
-		return updateRatingsEntry(userId, pushNotificationsEntryId, 1);
+		return updateRatingsTotalScore(userId, pushNotificationsEntryId, 1);
 	}
 
 	@Override
@@ -209,7 +209,7 @@ public class PushNotificationsEntryLocalServiceImpl
 		return jsonObject;
 	}
 
-	protected PushNotificationsEntry updateRatingsEntry(
+	protected PushNotificationsEntry updateRatingsTotalScore(
 			long userId, long pushNotificationsEntryId, long score)
 		throws PortalException {
 
