@@ -67,6 +67,8 @@ public class MentionsBlogsEntryServiceImpl
 			return entry;
 		}
 
+		MentionsNotifier mentionsNotifier = new MentionsNotifier();
+
 		String contentURL = (String)serviceContext.getAttribute("contentURL");
 
 		if (Validator.isNull(contentURL)) {
@@ -80,8 +82,6 @@ public class MentionsBlogsEntryServiceImpl
 				serviceContext.setAttribute("contentURL", contentURL);
 			}
 		}
-
-		MentionsNotifier mentionsNotifier = new MentionsNotifier();
 
 		mentionsNotifier.notify(
 			entry.getUserId(), entry.getGroupId(), entry.getTitle(),

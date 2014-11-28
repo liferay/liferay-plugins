@@ -70,6 +70,8 @@ public class MentionsMessageServiceImpl extends MBMessageLocalServiceWrapper {
 			return message;
 		}
 
+		MentionsNotifier mentionsNotifier = new MentionsNotifier();
+
 		String content = message.getBody();
 
 		if (message.isFormatBBCode()) {
@@ -107,8 +109,6 @@ public class MentionsMessageServiceImpl extends MBMessageLocalServiceWrapper {
 				serviceContext.setAttribute("contentURL", contentURL);
 			}
 		}
-
-		MentionsNotifier mentionsNotifier = new MentionsNotifier();
 
 		mentionsNotifier.notify(
 			message.getUserId(), message.getGroupId(), title, content,
