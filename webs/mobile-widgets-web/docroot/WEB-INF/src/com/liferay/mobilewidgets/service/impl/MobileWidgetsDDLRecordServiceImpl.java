@@ -95,6 +95,18 @@ public class MobileWidgetsDDLRecordServiceImpl
 		return ddlRecordsJSONArray;
 	}
 
+	@Override
+	public int getDDLRecordsCount(long ddlRecordSetId) throws SystemException {
+		return ddlRecordPersistence.countByRecordSetId(ddlRecordSetId);
+	}
+
+	@Override
+	public int getDDLRecordsCount(long ddlRecordSetId, long userId)
+		throws SystemException {
+
+		return ddlRecordPersistence.countByR_U(ddlRecordSetId, userId);
+	}
+
 	protected JSONArray getDDLRecordsJSONArray(
 			List<DDLRecord> ddlRecords, Locale locale)
 		throws PortalException, SystemException {
@@ -117,18 +129,6 @@ public class MobileWidgetsDDLRecordServiceImpl
 		}
 
 		return ddlRecordsJSONArray;
-	}
-
-	@Override
-	public int getDDLRecordsCount(long ddlRecordSetId) throws SystemException {
-		return ddlRecordPersistence.countByRecordSetId(ddlRecordSetId);
-	}
-
-	@Override
-	public int getDDLRecordsCount(long ddlRecordSetId, long userId)
-		throws SystemException {
-
-		return ddlRecordPersistence.countByR_U(ddlRecordSetId, userId);
 	}
 
 	protected Object getFieldValue(Field field, Locale locale)
