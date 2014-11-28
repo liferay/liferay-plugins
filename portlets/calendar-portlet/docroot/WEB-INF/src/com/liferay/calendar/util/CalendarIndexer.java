@@ -178,6 +178,7 @@ public class CalendarIndexer extends BaseIndexer {
 
 				addDocument(document);
 			}
+
 		};
 
 		actionableDynamicQuery.setCompanyId(companyId);
