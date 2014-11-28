@@ -18,8 +18,6 @@ import com.liferay.knowledgebase.util.ActionKeys;
 import com.liferay.portal.kernel.dao.jdbc.DataAccess;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 
-import java.io.IOException;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -32,20 +30,19 @@ public class UpgradeResourceAction extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {
-		if (_hasOldResourceAction()) {
-			_deleteNewResourceAction();
+		if (_hasViewFeedbackResourceAction()) {
+			runSQL(
+				"delete from ResourceAction where actionId = '" +
+					ActionKeys.VIEW_SUGGESTIONS + "'");
 
-			_renameOldResourceAction();
+			runSQL(
+				"update ResourceAction set actionId = '" +
+					ActionKeys.VIEW_SUGGESTIONS + "' where actionId = '" +
+						_ACTION_ID_VIEW_KB_FEEDBACK + "'");
 		}
 	}
 
-	private void _deleteNewResourceAction() throws Exception {
-		runSQL(
-			"delete from ResourceAction where actionId = '" +
-				ActionKeys.VIEW_SUGGESTIONS + "'");
-	}
-
-	private boolean _hasOldResourceAction() throws SQLException {
+	private boolean _hasViewFeedbackResourceAction() throws SQLException {
 		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
@@ -56,7 +53,7 @@ public class UpgradeResourceAction extends UpgradeProcess {
 			ps = con.prepareStatement(
 				"select count(*) from ResourceAction where actionId = ?");
 
-			ps.setString(1, _OLD_RESOURCE_ACTION_NAME);
+			ps.setString(1, _ACTION_ID_VIEW_KB_FEEDBACK);
 
 			rs = ps.executeQuery();
 
@@ -71,13 +68,7 @@ public class UpgradeResourceAction extends UpgradeProcess {
 		}
 	}
 
-	private void _renameOldResourceAction() throws IOException, SQLException {
-		runSQL(
-			"update ResourceAction set actionId = '" +
-				ActionKeys.VIEW_SUGGESTIONS + "' where actionId = " +
-					"'" + _OLD_RESOURCE_ACTION_NAME + "'");
-	}
-
-	private static final String _OLD_RESOURCE_ACTION_NAME = "VIEW_KB_FEEDBACK";
+	private static final String _ACTION_ID_VIEW_KB_FEEDBACK =
+		"VIEW_KB_FEEDBACK";
 
 }
