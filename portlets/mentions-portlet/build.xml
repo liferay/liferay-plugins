@@ -75,5 +75,10 @@
 			source.file="plugin.js"
 			target.dir="editor/ckeditor/plugins/autocomplete"
 		/>
+
+		<replace file="docroot/META-INF/custom_jsps/html/js/editor/ckeditor/plugins/autocomplete/plugin.js">
+			<replacetoken>CKEDITOR.scriptLoader.loadScripts</replacetoken>
+			<replacevalue>CKEDITOR.scriptLoader.load</replacevalue>
+		</replace>
 	</target>
 </project>
