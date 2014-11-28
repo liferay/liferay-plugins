@@ -34,6 +34,7 @@ public class UpgradeResourceAction extends UpgradeProcess {
 	protected void doUpgrade() throws Exception {
 		if (_hasOldResourceAction()) {
 			_deleteNewResourceAction();
+
 			_renameOldResourceAction();
 		}
 	}
