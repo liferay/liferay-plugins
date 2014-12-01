@@ -1,5 +1,9 @@
 var A = AUI();
 
+var INPUT_EL = document.createElement('input');
+
+var SUPPORTS_INPUT_SELECTION = ((typeof INPUT_EL.selectionStart === 'number') && (typeof INPUT_EL.selectionEnd === 'number'));
+
 A.applyConfig(
 	{
 		modules: {
