@@ -89,7 +89,7 @@ public class AlloyControllerImpl extends BaseAlloyControllerImpl {
 		Matcher matcher = pattern.matcher(serialNumber);
 
 		if (!matcher.find()) {
-			return "invalid-serial-number";
+			return "the-serial-number-is-invalid";
 		}
 
 		return StringPool.BLANK;
