@@ -26,6 +26,7 @@ import com.liferay.portal.model.CompanyConstants;
 import com.liferay.portlet.documentlibrary.store.DLStoreUtil;
 import com.liferay.portlet.documentlibrary.store.Store;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -57,15 +58,17 @@ public class AppImpl extends AppBaseImpl {
 
 		List<Module> modules = ModuleLocalServiceUtil.getModules(getAppId());
 
-		String[] contextNames = new String[modules.size()];
+		List<String> contextNames = new ArrayList<String>(modules.size());
 
-		for (int i = 0; i < modules.size(); i++) {
-			Module module = modules.get(i);
+		for (Module module : modules) {
+			if (Validator.isNull(module.getContextName())) {
+				continue;
+			}
 
-			contextNames[i] = module.getContextName();
+			contextNames.add(module.getContextName());
 		}
 
-		_contextNames = contextNames;
+		_contextNames = contextNames.toArray(new String[contextNames.size()]);
 
 		return _contextNames;
 	}

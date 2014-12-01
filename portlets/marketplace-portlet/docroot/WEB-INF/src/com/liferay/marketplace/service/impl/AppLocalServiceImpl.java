@@ -21,6 +21,7 @@ import com.liferay.marketplace.model.App;
 import com.liferay.marketplace.model.Module;
 import com.liferay.marketplace.service.base.AppLocalServiceBaseImpl;
 import com.liferay.marketplace.util.BundleUtil;
+import com.liferay.marketplace.util.ContextUtil;
 import com.liferay.marketplace.util.comparator.AppTitleComparator;
 import com.liferay.portal.kernel.deploy.DeployManagerUtil;
 import com.liferay.portal.kernel.deploy.auto.context.AutoDeploymentContext;
@@ -340,11 +341,15 @@ public class AppLocalServiceImpl extends AppLocalServiceBaseImpl {
 								attributes.getValue("Bundle-SymbolicName"));
 							bundleVersion = GetterUtil.getString(
 								attributes.getValue("Bundle-Version"));
-							contextName = GetterUtil.getString(
+
+							String webContextPath = GetterUtil.getString(
 								attributes.getValue("Web-ContextPath"));
+
+							contextName = ContextUtil.getContextName(
+								webContextPath);
 						}
 						else {
-							contextName = getContextName(fileName);
+							contextName = ContextUtil.getContextName(fileName);
 
 							autoDeploymentContext.setContext(contextName);
 						}
@@ -426,9 +431,7 @@ public class AppLocalServiceImpl extends AppLocalServiceBaseImpl {
 		for (Module module : modules) {
 			moduleLocalService.deleteModule(module.getModuleId());
 
-			if (Validator.isNotNull(module.getBundleSymbolicName()) &&
-				Validator.isNotNull(module.getBundleVersion())) {
-
+			if (module.isBundle()) {
 				BundleUtil.uninstallBundle(
 					module.getBundleSymbolicName(), module.getBundleVersion());
 
@@ -527,31 +530,6 @@ public class AppLocalServiceImpl extends AppLocalServiceBaseImpl {
 		clearInstalledAppsCache();
 
 		return app;
-	}
-
-	protected String getContextName(String fileName) {
-		String context = fileName;
-
-		while (context.contains(StringPool.DASH)) {
-			if (context.endsWith("-ext") || context.endsWith("-hook") ||
-				context.endsWith("-layouttpl") ||
-				context.endsWith("-portlet") || context.endsWith("-theme") ||
-				context.endsWith("-web")) {
-
-				return context;
-			}
-
-			int pos = context.lastIndexOf(StringPool.DASH);
-
-			if (pos > 0) {
-				context = context.substring(0, pos);
-			}
-			else {
-				break;
-			}
-		}
-
-		return fileName;
 	}
 
 	protected Properties getMarketplaceProperties(File liferayPackageFile) {

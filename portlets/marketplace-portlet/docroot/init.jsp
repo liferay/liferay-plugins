@@ -28,7 +28,6 @@ page import="com.liferay.marketplace.service.AppLocalServiceUtil" %><%@
 page import="com.liferay.marketplace.util.MarketplaceConstants" %><%@
 page import="com.liferay.marketplace.util.PortletKeys" %><%@
 page import="com.liferay.marketplace.util.comparator.PluginComparator" %><%@
-page import="com.liferay.portal.kernel.dao.orm.QueryUtil" %><%@
 page import="com.liferay.portal.kernel.deploy.DeployManagerUtil" %><%@
 page import="com.liferay.portal.kernel.plugin.RequiredPluginPackageException" %><%@
 page import="com.liferay.portal.kernel.portlet.LiferayPortletURL" %><%@
