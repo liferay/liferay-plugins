@@ -12,28 +12,33 @@
  * details.
  */
 
-package com.liferay.knowledgebase.hook.upgrade;
+package com.liferay.knowledgebase.hook.upgrade.v1_3_4;
 
-import com.liferay.knowledgebase.hook.upgrade.v1_3_4.UpgradeKBComment;
-import com.liferay.knowledgebase.hook.upgrade.v1_3_4.UpgradePortletPreferences;
-import com.liferay.knowledgebase.hook.upgrade.v1_3_4.UpgradeResourceAction;
+import com.liferay.knowledgebase.model.KBCommentConstants;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 
 /**
  * @author Adolfo Pérez
  */
-public class UpgradeProcess_1_3_4 extends UpgradeProcess {
-
-	@Override
-	public int getThreshold() {
-		return 134;
-	}
+public class UpgradeKBComment extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {
-		upgrade(UpgradePortletPreferences.class);
-		upgrade(UpgradeResourceAction.class);
-		upgrade(UpgradeKBComment.class);
+		if (!tableHasColumn("KBComment", "helpful")) {
+			return;
+		}
+
+		runSQL(
+			"update KBComment set userOpinion = " +
+				KBCommentConstants.OPINION_LIKED_IT +
+					" where helpful = TRUE");
+
+		runSQL(
+			"update KBComment set userOpinion = " +
+				KBCommentConstants.OPINION_DID_NOT_LIKE_IT +
+					" where helpful = FALSE");
+
+		runSQL("alter table KBComment drop column helpful");
 	}
 
 }
