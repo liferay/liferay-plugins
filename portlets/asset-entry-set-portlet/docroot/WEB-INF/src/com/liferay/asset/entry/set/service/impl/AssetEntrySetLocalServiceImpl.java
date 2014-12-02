@@ -36,7 +36,7 @@ public class AssetEntrySetLocalServiceImpl
 
 	public AssetEntrySet addAssetEntrySet(
 			long userId, long parentAssetEntrySetId, long creatorClassNameId,
-			long creatorClassPK, String content, int type,
+			long creatorClassPK, String payload, int type,
 			int socialRelationType, ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
@@ -57,7 +57,7 @@ public class AssetEntrySetLocalServiceImpl
 		assetEntrySet.setParentAssetEntrySetId(parentAssetEntrySetId);
 		assetEntrySet.setCreatorClassNameId(creatorClassNameId);
 		assetEntrySet.setCreatorClassPK(creatorClassPK);
-		assetEntrySet.setContent(content);
+		assetEntrySet.setPayload(payload);
 
 		assetEntrySetPersistence.update(assetEntrySet);
 
@@ -199,7 +199,7 @@ public class AssetEntrySetLocalServiceImpl
 	}
 
 	public AssetEntrySet updateAssetEntrySet(
-			long assetEntrySetId, String content, ServiceContext serviceContext)
+			long assetEntrySetId, String payload, ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
 		AssetEntrySet assetEntrySet = assetEntrySetPersistence.findByPrimaryKey(
@@ -208,7 +208,7 @@ public class AssetEntrySetLocalServiceImpl
 		Date now = new Date();
 
 		assetEntrySet.setModifiedTime(now.getTime());
-		assetEntrySet.setContent(content);
+		assetEntrySet.setPayload(payload);
 
 		assetEntrySetPersistence.update(assetEntrySet);
 
