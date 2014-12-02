@@ -101,20 +101,22 @@ public class KBCommentStagedModelDataHandler
 
 				importedKBComment = KBCommentLocalServiceUtil.addKBComment(
 					userId, kbComment.getClassNameId(), newClassPK,
-					kbComment.getContent(), serviceContext);
+					kbComment.getContent(), kbComment.getUserOpinion(),
+					serviceContext);
 			}
 			else {
 				importedKBComment = KBCommentLocalServiceUtil.updateKBComment(
 					existingKBComment.getKbCommentId(),
 					kbComment.getClassNameId(), newClassPK,
-					kbComment.getContent(), kbComment.getStatus(),
-					serviceContext);
+					kbComment.getContent(), kbComment.getUserOpinion(),
+					kbComment.getStatus(), serviceContext);
 			}
 		}
 		else {
 			importedKBComment = KBCommentLocalServiceUtil.addKBComment(
 				userId, kbComment.getClassNameId(), newClassPK,
-				kbComment.getContent(), serviceContext);
+				kbComment.getContent(), kbComment.getUserOpinion(),
+				serviceContext);
 		}
 
 		portletDataContext.importClassedModel(kbComment, importedKBComment);
