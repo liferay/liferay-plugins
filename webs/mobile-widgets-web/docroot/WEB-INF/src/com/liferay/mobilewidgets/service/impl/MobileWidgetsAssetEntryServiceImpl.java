@@ -44,14 +44,12 @@ public class MobileWidgetsAssetEntryServiceImpl
 
 		for (AssetEntry assetEntry : assetEntries) {
 			JSONObject assetEntryJSONObject = JSONFactoryUtil.createJSONObject(
-					JSONFactoryUtil.looseSerialize(assetEntry));
+				JSONFactoryUtil.looseSerialize(assetEntry));
 
-			assetEntryJSONObject.put("title",
-					assetEntry.getTitle(locale, true));
+			assetEntryJSONObject.put("title", assetEntry.getTitle(locale));
 			assetEntryJSONObject.put("description",
-						assetEntry.getDescription(locale, true));
-			assetEntryJSONObject.put("summary",
-						assetEntry.getSummary(locale, true));
+				assetEntry.getDescription(locale));
+			assetEntryJSONObject.put("summary", assetEntry.getSummary(locale));
 
 			assetEntriesJSONArray.put(assetEntryJSONObject);
 		}
