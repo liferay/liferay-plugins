@@ -21,8 +21,8 @@ import com.liferay.portal.kernel.util.StringPool;
  */
 public class ContextUtil {
 
-	public static String getContextName(String context) {
-		String contextName = context;
+	public static String getContextName(String contextPath) {
+		String contextName = contextPath;
 
 		if (contextName.length() == 0) {
 			return StringPool.BLANK;
