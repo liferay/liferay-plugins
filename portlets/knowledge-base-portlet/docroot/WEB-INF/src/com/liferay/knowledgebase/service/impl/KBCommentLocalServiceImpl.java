@@ -37,10 +37,12 @@ import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
+import com.liferay.portal.model.ClassName;
 import com.liferay.portal.model.SystemEventConstants;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.SubscriptionSender;
+import com.liferay.portlet.ratings.model.RatingsEntry;
 
 import java.util.Date;
 import java.util.List;
@@ -81,7 +83,8 @@ public class KBCommentLocalServiceImpl extends KBCommentLocalServiceBaseImpl {
 		kbComment.setClassPK(classPK);
 		kbComment.setContent(content);
 		kbComment.setStatus(KBCommentConstants.STATUS_NEW);
-
+		kbComment.setUserOpinion(
+			getCurrentUserOpinion(userId, classNameId, classPK));
 		kbCommentPersistence.update(kbComment);
 
 		// Social
@@ -288,6 +291,26 @@ public class KBCommentLocalServiceImpl extends KBCommentLocalServiceBaseImpl {
 		notifySubscribers(kbComment, serviceContext);
 
 		return kbComment;
+	}
+
+	protected int getCurrentUserOpinion(
+			long userId, long classNameId, long classPK)
+		throws PortalException, SystemException {
+
+		ClassName className = classNameLocalService.getClassName(classNameId);
+
+		RatingsEntry ratingsEntry = ratingsEntryLocalService.fetchEntry(
+			userId, className.getValue(), classPK);
+
+		if (ratingsEntry == null) {
+			return KBCommentConstants.OPINION_NONE;
+		}
+
+		if (ratingsEntry.getScore() > 0) {
+			return KBCommentConstants.OPINION_LIKED_IT;
+		}
+
+		return KBCommentConstants.OPINION_DID_NOT_LIKE_IT;
 	}
 
 	protected void notifySubscribers(

@@ -251,6 +251,7 @@
 		<!-- References -->
 
 		<reference package-path="com.liferay.portal" entity="PortletPreferences" />
+		<reference package-path="com.liferay.portlet.ratings" entity="RatingsEntry" />
 		<reference package-path="com.liferay.portlet.social" entity="SocialActivity" />
 	</entity>
 	<entity name="KBFolder" uuid="true" local-service="true" remote-service="true">
