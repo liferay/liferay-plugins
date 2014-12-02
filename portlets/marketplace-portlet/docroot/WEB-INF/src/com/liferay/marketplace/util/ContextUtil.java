@@ -15,7 +15,6 @@
 package com.liferay.marketplace.util;
 
 import com.liferay.portal.kernel.util.StringPool;
-import com.liferay.portal.kernel.util.StringUtil;
 
 /**
  * @author Joan Kim
@@ -34,8 +33,7 @@ public class ContextUtil {
 		}
 
 		if (contextName.endsWith(StringPool.FORWARD_SLASH)) {
-			contextName = StringUtil.replaceLast(
-				contextName, StringPool.FORWARD_SLASH, StringPool.BLANK);
+			contextName = contextName.substring(0, contextName.length() - 1);
 		}
 
 		while (contextName.contains(StringPool.DASH)) {

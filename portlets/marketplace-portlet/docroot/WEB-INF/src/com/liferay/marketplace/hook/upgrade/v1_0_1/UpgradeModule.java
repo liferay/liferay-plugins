@@ -38,12 +38,14 @@ public class UpgradeModule extends UpgradeProcess {
 			QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 
 		for (Module module : modules) {
-			if (Validator.isNotNull(module.getContextName())) {
-				runSQL(
-					"update Marketplace_Module set contextName = '" +
-						ContextUtil.getContextName(module.getContextName()) +
-						"' where moduleId = " + module.getModuleId());
+			if (Validator.isNull(module.getContextName())) {
+				continue;
 			}
+
+			runSQL(
+				"update Marketplace_Module set contextName = '" +
+					ContextUtil.getContextName(module.getContextName()) +
+						"' where moduleId = " + module.getModuleId());
 		}
 	}
 

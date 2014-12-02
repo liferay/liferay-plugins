@@ -342,11 +342,11 @@ public class AppLocalServiceImpl extends AppLocalServiceBaseImpl {
 							bundleVersion = GetterUtil.getString(
 								attributes.getValue("Bundle-Version"));
 
-							String webContextPath = GetterUtil.getString(
+							String contextPath = GetterUtil.getString(
 								attributes.getValue("Web-ContextPath"));
 
 							contextName = ContextUtil.getContextName(
-								webContextPath);
+								contextPath);
 						}
 						else {
 							contextName = ContextUtil.getContextName(fileName);
