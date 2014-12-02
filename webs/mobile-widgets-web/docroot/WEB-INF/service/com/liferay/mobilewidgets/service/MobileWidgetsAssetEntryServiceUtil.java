@@ -66,7 +66,8 @@ public class MobileWidgetsAssetEntryServiceUtil {
 	public static com.liferay.portal.kernel.json.JSONArray getAssetEntries(
 		com.liferay.portlet.asset.service.persistence.AssetEntryQuery assetEntryQuery,
 		java.util.Locale locale)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
 		return getService().getAssetEntries(assetEntryQuery, locale);
 	}
 
