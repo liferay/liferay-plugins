@@ -261,14 +261,20 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 	}
 
 	protected void addOpenerSuccessMessage() {
-		SessionMessages.add(
-			portletRequest,
-			portlet.getPortletId() + SessionMessages.KEY_SUFFIX_REFRESH_PORTLET,
-			portlet.getPortletId());
+		Map<String, String> data = (Map<String, String>)SessionMessages.get(
+			request,
+			portlet.getPortletId() +
+				SessionMessages.KEY_SUFFIX_REFRESH_PORTLET_DATA);
 
-		Map<String, String> data = new HashMap<String, String>();
+		if ((data == null) ||
+			!GetterUtil.getBoolean(data.get("addSuccessMessage"))) {
 
-		data.put("addSuccessMessage", StringPool.TRUE);
+			return;
+		}
+
+		addSuccessMessage();
+
+		data.put("addSuccessMessage", StringPool.FALSE);
 
 		SessionMessages.add(
 			request,
@@ -371,7 +377,7 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 		if (!calledProcessAction) {
 			executeResource(method);
 
-			fetchOpenerSuccessMessage();
+			addOpenerSuccessMessage();
 		}
 
 		if (Validator.isNull(viewPath)) {
@@ -454,28 +460,6 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 				writeResponse(responseContent, contentType);
 			}
 		}
-	}
-
-	protected void fetchOpenerSuccessMessage() {
-		Map<String, String> data = (Map<String, String>)SessionMessages.get(
-			request,
-			portlet.getPortletId() +
-				SessionMessages.KEY_SUFFIX_REFRESH_PORTLET_DATA);
-
-		if (data == null) {
-			return;
-		}
-
-		if (GetterUtil.getBoolean(data.get("addSuccessMessage"))) {
-			addSuccessMessage();
-		}
-
-		data.put("addSuccessMessage", StringPool.FALSE);
-
-		SessionMessages.add(
-			request,
-			portlet.getPortletId() +
-				SessionMessages.KEY_SUFFIX_REFRESH_PORTLET_DATA, data);
 	}
 
 	protected Object getConstantsBean(Class<?> clazz) {
@@ -1182,6 +1166,22 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 		GroupedModel groupedModel = (GroupedModel)baseModel;
 
 		groupedModel.setGroupId(themeDisplay.getScopeGroupId());
+	}
+
+	protected void setOpenerSuccessMessage() {
+		SessionMessages.add(
+			portletRequest,
+			portlet.getPortletId() + SessionMessages.KEY_SUFFIX_REFRESH_PORTLET,
+			portlet.getPortletId());
+
+		Map<String, String> data = new HashMap<String, String>();
+
+		data.put("addSuccessMessage", StringPool.TRUE);
+
+		SessionMessages.add(
+			request,
+			portlet.getPortletId() +
+				SessionMessages.KEY_SUFFIX_REFRESH_PORTLET_DATA, data);
 	}
 
 	protected void setPermissioned(boolean permissioned) {
