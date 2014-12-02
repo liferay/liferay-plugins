@@ -73,7 +73,7 @@ public class InviteMembersUserNotificationHandler
 				memberRequest.getGroupId());
 		}
 
-		if ((memberRequest == null) || (group == null)) {
+		if ((group == null) || (memberRequest == null)) {
 			UserNotificationEventLocalServiceUtil.deleteUserNotificationEvent(
 				userNotificationEvent.getUserNotificationEventId());
 
