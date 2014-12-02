@@ -8,11 +8,20 @@
 		</operation>
 		<operation xmlns:operNS="urn:http.service.mobilewidgets.liferay.com" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="getDDLRecordsCount" qname="operNS:getDDLRecordsCount" returnQName="getDDLRecordsCountReturn" returnType="rtns:int" soapAction="">
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="ddlRecordSetId" type="tns:long"></parameter>
+		</operation>
+		<operation xmlns:operNS="urn:http.service.mobilewidgets.liferay.com" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="getDDLRecordsCount" qname="operNS:getDDLRecordsCount" returnQName="getDDLRecordsCountReturn" returnType="rtns:int" soapAction="">
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="ddlRecordSetId" type="tns:long"></parameter>
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="userId" type="tns:long"></parameter>
 		</operation>
 		<operation xmlns:operNS="urn:http.service.mobilewidgets.liferay.com" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="getDDLRecords" qname="operNS:getDDLRecords" returnQName="getDDLRecordsReturn" returnType="rtns:string" soapAction="">
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="ddlRecordSetId" type="tns:long"></parameter>
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="userId" type="tns:long"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="locale" type="tns:string"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="start" type="tns:int"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="end" type="tns:int"></parameter>
+		</operation>
+		<operation xmlns:operNS="urn:http.service.mobilewidgets.liferay.com" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="getDDLRecords" qname="operNS:getDDLRecords" returnQName="getDDLRecordsReturn" returnType="rtns:string" soapAction="">
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="ddlRecordSetId" type="tns:long"></parameter>
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="locale" type="tns:string"></parameter>
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="start" type="tns:int"></parameter>
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="end" type="tns:int"></parameter>
