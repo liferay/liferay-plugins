@@ -37,12 +37,12 @@ KBComment kbComment = (KBComment)request.getAttribute("template_comment.jsp-kb_c
 				<strong class="kb-question"><liferay-ui:message key="was-this-information-helpful" /></strong>
 
 				<c:choose>
-					<c:when test="<%= kbComment.getHelpful() %>">
+					<c:when test="<%= kbComment.getUserOpinion() == KBCommentConstants.OPINION_LIKED_IT %>">
 						<strong class="kb-yes"><liferay-ui:message key="yes" /></strong>
 					</c:when>
-					<c:otherwise>
+					<c:when test="<%= kbComment.getUserOpinion() == KBCommentConstants.OPINION_DID_NOT_LIKE_IT %>">
 						<strong class="kb-no"><liferay-ui:message key="no" /></strong>
-					</c:otherwise>
+					</c:when>
 				</c:choose>
 			</div>
 
