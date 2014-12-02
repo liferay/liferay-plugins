@@ -61,6 +61,8 @@ public class AssetEntrySetLocalServiceImpl
 
 		assetEntrySetPersistence.update(assetEntrySet);
 
+		updateChildrenAssetEntrySetCount(parentAssetEntrySetId);
+
 		updateAsset(
 			assetEntrySet, serviceContext.getAssetCategoryIds(),
 			serviceContext.getAssetTagNames());
@@ -215,6 +217,29 @@ public class AssetEntrySetLocalServiceImpl
 		updateAsset(
 			assetEntrySet, serviceContext.getAssetCategoryIds(),
 			serviceContext.getAssetTagNames());
+
+		return assetEntrySet;
+	}
+
+	@Override
+	public AssetEntrySet updateChildrenAssetEntrySetCount(
+			long parentAssetEntrySetId)
+		throws PortalException, SystemException {
+
+		if (parentAssetEntrySetId == 0) {
+			return null;
+		}
+
+		AssetEntrySet assetEntrySet = assetEntrySetPersistence.findByPrimaryKey(
+			parentAssetEntrySetId);
+
+		int childrenAssetEntrySetCount =
+			assetEntrySetPersistence.countByParentAssetEntrySetId(
+				parentAssetEntrySetId);
+
+		assetEntrySet.setChildrenAssetEntrySetCount(childrenAssetEntrySetCount);
+
+		assetEntrySetPersistence.update(assetEntrySet);
 
 		return assetEntrySet;
 	}
