@@ -109,7 +109,7 @@ public class KBCommentLocalServiceImpl extends KBCommentLocalServiceBaseImpl {
 	public KBComment addKBComment(
 			long userId, long classNameId, long classPK, String content,
 			ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		int userOpinion = getCurrentUserOpinion(userId, classNameId, classPK);
 
@@ -294,7 +294,7 @@ public class KBCommentLocalServiceImpl extends KBCommentLocalServiceBaseImpl {
 	public KBComment updateKBComment(
 			long kbCommentId, long classNameId, long classPK, String content,
 			int status, ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		KBComment kbComment = kbCommentPersistence.findByPrimaryKey(
 			kbCommentId);
@@ -322,7 +322,7 @@ public class KBCommentLocalServiceImpl extends KBCommentLocalServiceBaseImpl {
 
 	protected int getCurrentUserOpinion(
 			long userId, long classNameId, long classPK)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		ClassName className = classNameLocalService.getClassName(classNameId);
 

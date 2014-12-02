@@ -30,8 +30,7 @@ public class UpgradeKBComment extends UpgradeProcess {
 
 		runSQL(
 			"update KBComment set userOpinion = " +
-				KBCommentConstants.OPINION_LIKED_IT +
-					" where helpful = TRUE");
+				KBCommentConstants.OPINION_LIKED_IT + " where helpful = TRUE");
 
 		runSQL(
 			"update KBComment set userOpinion = " +
