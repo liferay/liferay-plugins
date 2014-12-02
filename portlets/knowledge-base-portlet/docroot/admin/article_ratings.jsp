@@ -135,8 +135,6 @@ boolean showAdminSuggestionView = SuggestionPermission.contains(permissionChecke
 						<liferay-ui:message key="what-did-you-like-the-most-what-would-you-improve" />
 					</span>
 
-					<aui:input name="helpful" type="hidden" value="0" />
-
 					<aui:input label="" name="content" />
 
 					<aui:button-row cssClass="kb-submit-buttons">
@@ -236,23 +234,6 @@ boolean showAdminSuggestionView = SuggestionPermission.contains(permissionChecke
 		</c:choose>
 
 		<aui:script use="aui-base">
-			var suggestionFm = A.one('#<portlet:namespace />suggestionFm');
-
-			suggestionFm.on(
-				'submit',
-				function(event) {
-					var ratingThumb = A.one('.kb-article-container input[name="<portlet:namespace />ratingThumb"]');
-
-					if (!ratingThumb) {
-						return;
-					}
-
-					var helpful = this.one('#<portlet:namespace />helpful');
-
-					helpful.val(ratingThumb.val() === 'up');
-				}
-			);
-
 			A.one('#<portlet:namespace />additionalSuggestionActionsContainer').delegate(
 				'click',
 				function(event) {
