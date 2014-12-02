@@ -3,7 +3,7 @@
 
 <service-builder package-path="com.liferay.asset.entry.set" auto-namespace-tables="false">
 	<namespace>AssetEntrySet</namespace>
-	<entity name="AssetEntrySet" local-service="true" remote-service="false">
+	<entity name="AssetEntrySet" local-service="true" remote-service="true">
 
 		<!-- PK fields -->
 
@@ -21,10 +21,11 @@
 
 		<column name="assetEntryId" type="String" />
 		<column name="parentAssetEntrySetId" type="long" />
+		<column name="childrenAssetEntrySetCount" type="int" />
 		<column name="creatorClassNameId" type="long" />
 		<column name="creatorClassPK" type="long" />
-		<column name="content" type="String" />
-		<column name="data" type="String" />
+		<column name="payload" type="String" />
+		<column name="ratingsTotalScore" type="long" />
 
 		<!-- Order -->
 
@@ -37,6 +38,10 @@
 		<finder name="ParentAssetEntrySetId" return-type="Collection">
 			<finder-column name="parentAssetEntrySetId" />
 		</finder>
+		<finder name="CT_PASEI" return-type="Collection">
+			<finder-column name="createTime" comparator="&gt;" />
+			<finder-column name="parentAssetEntrySetId" />
+		</finder>
 		<finder name="PAESI_CCNI" return-type="Collection">
 			<finder-column name="parentAssetEntrySetId" />
 			<finder-column name="creatorClassNameId" />
@@ -46,5 +51,10 @@
 			<finder-column name="creatorClassNameId" />
 			<finder-column name="creatorClassPK" />
 		</finder>
+
+		<!-- References -->
+
+		<reference package-path="com.liferay.portlet.ratings" entity="RatingsEntry" />
+		<reference package-path="com.liferay.portlet.ratings" entity="RatingsStats" />
 	</entity>
 </service-builder>
