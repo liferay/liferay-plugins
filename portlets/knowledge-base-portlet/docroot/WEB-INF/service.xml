@@ -212,6 +212,7 @@
 		<column name="classPK" type="long" />
 		<column name="content" type="String" />
 		<column name="status" type="int" />
+		<column name="userOpinion" type="int" />
 
 		<!-- Order -->
 
