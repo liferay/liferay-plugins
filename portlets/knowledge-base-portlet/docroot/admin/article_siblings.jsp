@@ -90,7 +90,7 @@ KBArticle nextKBArticle = previousAndNextKBArticles[2];
 				<i class="icon icon-circle-arrow-right"></i>
 			</aui:a>
 
-			<aui:a cssClass="next visible-phone" href="<%= nextKBArticleURL %>">
+			<aui:a cssClass="next visible-xs" href="<%= nextKBArticleURL %>">
 				<span class="title"><liferay-ui:message key="next" /></span>
 
 				<i class="icon icon-circle-arrow-right"></i>
