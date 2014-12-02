@@ -196,6 +196,11 @@ public class ModuleWrapper implements Module, ModelWrapper<Module> {
 	}
 
 	@Override
+	public boolean isBundle() {
+		return _module.isBundle();
+	}
+
+	@Override
 	public boolean isCachedModel() {
 		return _module.isCachedModel();
 	}

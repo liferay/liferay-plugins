@@ -317,19 +317,19 @@ public interface AppModel extends BaseModel<App>, StagedAuditedModel {
 	public Object clone();
 
 	@Override
-	public int compareTo(App app);
+	public int compareTo(com.liferay.marketplace.model.App app);
 
 	@Override
 	public int hashCode();
 
 	@Override
-	public CacheModel<App> toCacheModel();
+	public CacheModel<com.liferay.marketplace.model.App> toCacheModel();
 
 	@Override
-	public App toEscapedModel();
+	public com.liferay.marketplace.model.App toEscapedModel();
 
 	@Override
-	public App toUnescapedModel();
+	public com.liferay.marketplace.model.App toUnescapedModel();
 
 	@Override
 	public String toString();

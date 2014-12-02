@@ -185,19 +185,19 @@ public interface ModuleModel extends BaseModel<Module> {
 	public Object clone();
 
 	@Override
-	public int compareTo(Module module);
+	public int compareTo(com.liferay.marketplace.model.Module module);
 
 	@Override
 	public int hashCode();
 
 	@Override
-	public CacheModel<Module> toCacheModel();
+	public CacheModel<com.liferay.marketplace.model.Module> toCacheModel();
 
 	@Override
-	public Module toEscapedModel();
+	public com.liferay.marketplace.model.Module toEscapedModel();
 
 	@Override
-	public Module toUnescapedModel();
+	public com.liferay.marketplace.model.Module toUnescapedModel();
 
 	@Override
 	public String toString();

@@ -34,4 +34,5 @@ public interface Module extends ModuleModel, PersistedModel {
 	 *
 	 * Never modify this interface directly. Add methods to {@link com.liferay.marketplace.model.impl.ModuleImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
+	public boolean isBundle();
 }

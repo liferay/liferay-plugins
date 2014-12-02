@@ -269,6 +269,25 @@ public class ModuleClp extends BaseModelImpl<Module> implements Module {
 		}
 	}
 
+	@Override
+	public boolean isBundle() {
+		try {
+			String methodName = "isBundle";
+
+			Class<?>[] parameterTypes = new Class<?>[] {  };
+
+			Object[] parameterValues = new Object[] {  };
+
+			Boolean returnObj = (Boolean)invokeOnRemoteModel(methodName,
+					parameterTypes, parameterValues);
+
+			return returnObj;
+		}
+		catch (Exception e) {
+			throw new UnsupportedOperationException(e);
+		}
+	}
+
 	public BaseModel<?> getModuleRemoteModel() {
 		return _moduleRemoteModel;
 	}
