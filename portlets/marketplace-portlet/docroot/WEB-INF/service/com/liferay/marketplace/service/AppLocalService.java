@@ -16,6 +16,7 @@ package com.liferay.marketplace.service;
 
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.search.IndexableType;
 import com.liferay.portal.kernel.transaction.Isolation;
 import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
@@ -52,6 +53,7 @@ public interface AppLocalService extends BaseLocalService, InvokableLocalService
 	* @return the app that was added
 	* @throws SystemException if a system exception occurred
 	*/
+	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.REINDEX)
 	public com.liferay.marketplace.model.App addApp(
 		com.liferay.marketplace.model.App app)
 		throws com.liferay.portal.kernel.exception.SystemException;
@@ -72,6 +74,7 @@ public interface AppLocalService extends BaseLocalService, InvokableLocalService
 	* @throws PortalException if a app with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
+	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.DELETE)
 	public com.liferay.marketplace.model.App deleteApp(long appId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
@@ -83,6 +86,7 @@ public interface AppLocalService extends BaseLocalService, InvokableLocalService
 	* @return the app that was removed
 	* @throws SystemException if a system exception occurred
 	*/
+	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.DELETE)
 	public com.liferay.marketplace.model.App deleteApp(
 		com.liferay.marketplace.model.App app)
 		throws com.liferay.portal.kernel.exception.SystemException;
@@ -250,6 +254,7 @@ public interface AppLocalService extends BaseLocalService, InvokableLocalService
 	* @return the app that was updated
 	* @throws SystemException if a system exception occurred
 	*/
+	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.REINDEX)
 	public com.liferay.marketplace.model.App updateApp(
 		com.liferay.marketplace.model.App app)
 		throws com.liferay.portal.kernel.exception.SystemException;

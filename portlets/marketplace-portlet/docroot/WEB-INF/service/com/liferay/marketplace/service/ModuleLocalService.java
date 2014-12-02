@@ -16,6 +16,7 @@ package com.liferay.marketplace.service;
 
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.search.IndexableType;
 import com.liferay.portal.kernel.transaction.Isolation;
 import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
@@ -52,6 +53,7 @@ public interface ModuleLocalService extends BaseLocalService,
 	* @return the module that was added
 	* @throws SystemException if a system exception occurred
 	*/
+	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.REINDEX)
 	public com.liferay.marketplace.model.Module addModule(
 		com.liferay.marketplace.model.Module module)
 		throws com.liferay.portal.kernel.exception.SystemException;
@@ -72,6 +74,7 @@ public interface ModuleLocalService extends BaseLocalService,
 	* @throws PortalException if a module with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
+	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.DELETE)
 	public com.liferay.marketplace.model.Module deleteModule(long moduleId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
@@ -83,6 +86,7 @@ public interface ModuleLocalService extends BaseLocalService,
 	* @return the module that was removed
 	* @throws SystemException if a system exception occurred
 	*/
+	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.DELETE)
 	public com.liferay.marketplace.model.Module deleteModule(
 		com.liferay.marketplace.model.Module module)
 		throws com.liferay.portal.kernel.exception.SystemException;
@@ -222,6 +226,7 @@ public interface ModuleLocalService extends BaseLocalService,
 	* @return the module that was updated
 	* @throws SystemException if a system exception occurred
 	*/
+	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.REINDEX)
 	public com.liferay.marketplace.model.Module updateModule(
 		com.liferay.marketplace.model.Module module)
 		throws com.liferay.portal.kernel.exception.SystemException;
