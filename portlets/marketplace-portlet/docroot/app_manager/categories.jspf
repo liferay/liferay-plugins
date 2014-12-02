@@ -15,7 +15,7 @@
 --%>
 
 <%
-List<App> allApps = AppLocalServiceUtil.getApps(QueryUtil.ALL_POS, QueryUtil.ALL_POS);
+List<App> allApps = AppLocalServiceUtil.getInstalledApps();
 
 List<String> categories = ListUtil.fromArray(StringUtil.split(ListUtil.toString(allApps, "category")));
 

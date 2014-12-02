@@ -14,12 +14,26 @@
 
 package com.liferay.marketplace.model.impl;
 
+import com.liferay.portal.kernel.util.Validator;
+
 /**
  * @author Ryan Park
+ * @author Joan Kim
  */
 public class ModuleImpl extends ModuleBaseImpl {
 
 	public ModuleImpl() {
+	}
+
+	@Override
+	public boolean isBundle() {
+		if (Validator.isNull(getBundleSymbolicName()) &&
+			Validator.isNull(getBundleVersion())) {
+
+			return false;
+		}
+
+		return true;
 	}
 
 }
