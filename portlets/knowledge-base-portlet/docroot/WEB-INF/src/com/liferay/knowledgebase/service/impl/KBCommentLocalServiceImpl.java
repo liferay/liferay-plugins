@@ -57,7 +57,7 @@ public class KBCommentLocalServiceImpl extends KBCommentLocalServiceBaseImpl {
 	@Override
 	public KBComment addKBComment(
 			long userId, long classNameId, long classPK, String content,
-			ServiceContext serviceContext)
+			int userOpinion, ServiceContext serviceContext)
 		throws PortalException {
 
 		// KB comment
@@ -82,9 +82,9 @@ public class KBCommentLocalServiceImpl extends KBCommentLocalServiceBaseImpl {
 		kbComment.setClassNameId(classNameId);
 		kbComment.setClassPK(classPK);
 		kbComment.setContent(content);
+		kbComment.setUserOpinion(userOpinion);
 		kbComment.setStatus(KBCommentConstants.STATUS_NEW);
-		kbComment.setUserOpinion(
-			getCurrentUserOpinion(userId, classNameId, classPK));
+
 		kbCommentPersistence.update(kbComment);
 
 		// Social
@@ -103,6 +103,18 @@ public class KBCommentLocalServiceImpl extends KBCommentLocalServiceBaseImpl {
 		notifySubscribers(kbComment, serviceContext);
 
 		return kbComment;
+	}
+
+	@Override
+	public KBComment addKBComment(
+			long userId, long classNameId, long classPK, String content,
+			ServiceContext serviceContext)
+		throws PortalException, SystemException {
+
+		int userOpinion = getCurrentUserOpinion(userId, classNameId, classPK);
+
+		return addKBComment(
+			userId, classNameId, classPK, content, userOpinion, serviceContext);
 	}
 
 	@Override
@@ -244,7 +256,7 @@ public class KBCommentLocalServiceImpl extends KBCommentLocalServiceBaseImpl {
 	@Override
 	public KBComment updateKBComment(
 			long kbCommentId, long classNameId, long classPK, String content,
-			int status, ServiceContext serviceContext)
+			int userOpinion, int status, ServiceContext serviceContext)
 		throws PortalException {
 
 		// KB comment
@@ -258,6 +270,7 @@ public class KBCommentLocalServiceImpl extends KBCommentLocalServiceBaseImpl {
 		kbComment.setClassNameId(classNameId);
 		kbComment.setClassPK(classPK);
 		kbComment.setContent(content);
+		kbComment.setUserOpinion(userOpinion);
 		kbComment.setStatus(status);
 
 		kbCommentPersistence.update(kbComment);
@@ -275,6 +288,20 @@ public class KBCommentLocalServiceImpl extends KBCommentLocalServiceBaseImpl {
 			0);
 
 		return kbComment;
+	}
+
+	@Override
+	public KBComment updateKBComment(
+			long kbCommentId, long classNameId, long classPK, String content,
+			int status, ServiceContext serviceContext)
+		throws PortalException, SystemException {
+
+		KBComment kbComment = kbCommentPersistence.findByPrimaryKey(
+			kbCommentId);
+
+		return updateKBComment(
+			kbCommentId, classNameId, classPK, content,
+			kbComment.getUserOpinion(), status, serviceContext);
 	}
 
 	public KBComment updateStatus(
