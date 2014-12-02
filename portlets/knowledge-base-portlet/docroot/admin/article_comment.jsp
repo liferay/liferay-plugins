@@ -51,16 +51,16 @@ KBSuggestionListDisplayContext kbSuggestionListDisplayContext = (KBSuggestionLis
 
 			<div class="kb-article-comment-helpful">
 				<c:choose>
-					<c:when test="<%= kbComment.getHelpful() %>">
+					<c:when test="<%= kbComment.getUserOpinion() == KBCommentConstants.OPINION_LIKED_IT %>">
 						<span class="icon icon-thumbs-up"></span>
 
 						<liferay-ui:message key="the-user-liked-the-article" />
 					</c:when>
-					<c:otherwise>
+					<c:when test="<%= kbComment.getUserOpinion() == KBCommentConstants.OPINION_DID_NOT_LIKE_IT %>">
 						<span class="icon icon-thumbs-down"></span>
 
 						<liferay-ui:message key="the-user-did-not-like-the-article" />
-					</c:otherwise>
+					</c:when>
 				</c:choose>
 			</div>
 
