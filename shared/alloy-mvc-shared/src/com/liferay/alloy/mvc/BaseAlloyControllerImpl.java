@@ -305,7 +305,7 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 
 		String responseContent = StringPool.BLANK;
 
-		if (respondingTo("json")) {
+		if (isRespondingTo("json")) {
 			JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
 			if (data instanceof Exception) {
@@ -426,10 +426,10 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 			renderError(HttpServletResponse.SC_BAD_REQUEST, e, message);
 		}
 		finally {
-			if (respondingTo()) {
+			if (isRespondingTo()) {
 				String contentType = response.getContentType();
 
-				if (respondingTo("json")) {
+				if (isRespondingTo("json")) {
 					contentType = ContentTypes.APPLICATION_JSON;
 				}
 
@@ -891,7 +891,7 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 
 		Throwable rootCause = getRootCause(e);
 
-		if (respondingTo()) {
+		if (isRespondingTo()) {
 			responseContent = buildResponseContent(
 				rootCause, translate(pattern, arguments), status);
 
@@ -925,18 +925,18 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 		renderError(HttpServletResponse.SC_BAD_REQUEST, pattern, arguments);
 	}
 
-	protected boolean respondingTo() {
+	protected boolean isRespondingTo() {
 		return Validator.isNotNull(format);
 	}
 
-	protected boolean respondingTo(String format) {
+	protected boolean isRespondingTo(String format) {
 		return StringUtil.equalsIgnoreCase(this.format, format);
 	}
 
 	protected boolean respondWith(int status, Object object) throws Exception {
 		String data = StringPool.BLANK;
 
-		if (respondingTo("json")) {
+		if (isRespondingTo("json")) {
 			JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
 			if (object instanceof AlloySearchResult) {
