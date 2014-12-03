@@ -50,15 +50,6 @@ public class PushNotificationsEntryServiceImpl
 	}
 
 	@Override
-	public PushNotificationsEntry dislikePushNotificationsEntry(
-			long pushNotificationsEntryId)
-		throws PortalException {
-
-		return pushNotificationsEntryLocalService.dislikePushNotificationsEntry(
-			getUserId(), pushNotificationsEntryId);
-	}
-
-	@Override
 	public List<PushNotificationsEntry> getPushNotificationsEntries(
 		long parentPushNotificationsEntryId, long lastAccessTime, int start,
 		int end) {
@@ -73,6 +64,15 @@ public class PushNotificationsEntryServiceImpl
 		throws PortalException {
 
 		return pushNotificationsEntryLocalService.likePushNotificationsEntry(
+			getUserId(), pushNotificationsEntryId);
+	}
+
+	@Override
+	public PushNotificationsEntry unlikePushNotificationsEntry(
+			long pushNotificationsEntryId)
+		throws PortalException {
+
+		return pushNotificationsEntryLocalService.unlikePushNotificationsEntry(
 			getUserId(), pushNotificationsEntryId);
 	}
 
