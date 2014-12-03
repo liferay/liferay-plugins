@@ -323,7 +323,7 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 			else {
 				jsonObject.put(
 					"data",
-						JSONFactoryUtil.createJSONObject(String.valueOf(data)));
+					JSONFactoryUtil.createJSONObject(String.valueOf(data)));
 			}
 
 			jsonObject.put("message", message);
