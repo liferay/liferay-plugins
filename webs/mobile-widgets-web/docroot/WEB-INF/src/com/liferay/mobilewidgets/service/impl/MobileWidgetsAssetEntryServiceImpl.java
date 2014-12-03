@@ -46,8 +46,8 @@ public class MobileWidgetsAssetEntryServiceImpl
 			JSONObject assetEntryJSONObject = JSONFactoryUtil.createJSONObject(
 				JSONFactoryUtil.looseSerialize(assetEntry));
 
-			assetEntryJSONObject.put("description",
-				assetEntry.getDescription(locale));
+			assetEntryJSONObject.put(
+				"description", assetEntry.getDescription(locale));
 			assetEntryJSONObject.put("summary", assetEntry.getSummary(locale));
 			assetEntryJSONObject.put("title", assetEntry.getTitle(locale));
 
