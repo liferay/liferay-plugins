@@ -112,7 +112,7 @@ public class PushNotificationsPollsQuestionLocalServiceImpl
 				PushNotificationsConstants.KEY_TYPE,
 				PushNotificationsConstants.VALUE_TYPE_POLLS);
 
-			PushNotificationsEntryLocalServiceUtil.sendPushNotification(
+			PushNotificationsEntryLocalServiceUtil.addPushNotificationsEntry(
 				pollsQuestion.getUserId(), payloadJSONObject);
 		}
 		catch (Exception e) {
