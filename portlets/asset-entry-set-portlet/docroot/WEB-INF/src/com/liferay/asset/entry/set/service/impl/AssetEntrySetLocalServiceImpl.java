@@ -109,6 +109,15 @@ public class AssetEntrySetLocalServiceImpl
 			parentAssetEntrySetId, creatorClassNameId, creatorClassPK);
 	}
 
+	@Override
+	public List<AssetEntrySet> getAssetEntrySets(
+			long parentAssetEntrySetId, long lastAccessTime, int start, int end)
+		throws SystemException {
+
+		return assetEntrySetPersistence.findByCT_PASEI(
+			lastAccessTime, parentAssetEntrySetId, start, end);
+	}
+
 	public List<AssetEntrySet> getAssetEntrySets(
 			long parentAssetEntrySetId, long creatorClassNameId, int type,
 			int start, int end, OrderByComparator obc)

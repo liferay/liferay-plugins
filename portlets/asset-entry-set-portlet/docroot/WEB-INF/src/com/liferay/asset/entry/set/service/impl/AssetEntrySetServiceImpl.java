@@ -21,11 +21,22 @@ import com.liferay.asset.entry.set.service.base.AssetEntrySetServiceBaseImpl;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 
+import java.util.List;
+
 /**
  * @author Matthew Kong
  */
 @ProviderType
 public class AssetEntrySetServiceImpl extends AssetEntrySetServiceBaseImpl {
+
+	@Override
+	public List<AssetEntrySet> getAssetEntrySets(
+			long assetEntrySetId, long lastAccessTime, int start, int end)
+		throws SystemException {
+
+		return assetEntrySetLocalService.getAssetEntrySets(
+			assetEntrySetId, lastAccessTime, start, end);
+	}
 
 	@Override
 	public AssetEntrySet likeAssetEntrySet(long pushNotificationsEntryId)
