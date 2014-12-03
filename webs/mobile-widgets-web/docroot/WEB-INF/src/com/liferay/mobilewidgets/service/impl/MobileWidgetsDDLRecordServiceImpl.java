@@ -75,10 +75,7 @@ public class MobileWidgetsDDLRecordServiceImpl
 		List<DDLRecord> ddlRecords = ddlRecordPersistence.findByRecordSetId(
 			ddlRecordSetId, start, end);
 
-		JSONArray ddlRecordsJSONArray = getDDLRecordsJSONArray(
-			ddlRecords, locale);
-
-		return ddlRecordsJSONArray;
+		return getDDLRecordsJSONArray(ddlRecords, locale);
 	}
 
 	@Override
@@ -89,10 +86,7 @@ public class MobileWidgetsDDLRecordServiceImpl
 		List<DDLRecord> ddlRecords = ddlRecordPersistence.findByR_U(
 			ddlRecordSetId, userId, start, end);
 
-		JSONArray ddlRecordsJSONArray = getDDLRecordsJSONArray(
-			ddlRecords, locale);
-
-		return ddlRecordsJSONArray;
+		return getDDLRecordsJSONArray(ddlRecords, locale);
 	}
 
 	@Override
