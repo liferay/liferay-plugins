@@ -40,6 +40,15 @@ public class AssetEntrySetLocalServiceImpl
 	extends AssetEntrySetLocalServiceBaseImpl {
 
 	public AssetEntrySet addAssetEntrySet(
+			long userId, JSONObject payloadJSONObject)
+		throws PortalException, SystemException {
+
+		return addAssetEntrySet(
+			userId, classNameLocalService.getClassNameId(User.class), userId,
+			payloadJSONObject);
+	}
+
+	public AssetEntrySet addAssetEntrySet(
 			long userId, long creatorClassNameId, long creatorClassPK,
 			JSONObject payloadJSONObject)
 		throws PortalException, SystemException {
