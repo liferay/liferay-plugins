@@ -1194,7 +1194,8 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 			return toJSONObject((Document)object);
 		}
 
-		throw new AlloyException(translate("invalid-object"));
+		throw new AlloyException(
+			"Unable to convert " + object + " to a JSON object");
 	}
 
 	protected String translate(String pattern, Object... arguments) {
