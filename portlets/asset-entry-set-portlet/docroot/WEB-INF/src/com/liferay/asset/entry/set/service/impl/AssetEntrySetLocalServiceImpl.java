@@ -24,6 +24,7 @@ import com.liferay.portal.model.User;
 import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portlet.asset.service.AssetEntryLocalServiceUtil;
+import com.liferay.portlet.ratings.model.RatingsStats;
 
 import java.util.Date;
 import java.util.List;
@@ -186,6 +187,20 @@ public class AssetEntrySetLocalServiceImpl
 			parentAssetEntrySetId);
 	}
 
+	@Override
+	public AssetEntrySet likeAssetEntrySet(long userId, long assetEntrySetId)
+		throws PortalException, SystemException {
+
+		return updateRatingsEntry(userId, assetEntrySetId, 1);
+	}
+
+	@Override
+	public AssetEntrySet unlikeAssetEntrySet(long userId, long assetEntrySetId)
+		throws PortalException, SystemException {
+
+		return updateRatingsEntry(userId, assetEntrySetId, 0);
+	}
+
 	public void updateAsset(
 			AssetEntrySet assetEntrySet, long[] assetCategoryIds,
 			String[] assetTagNames)
@@ -238,6 +253,28 @@ public class AssetEntrySetLocalServiceImpl
 				parentAssetEntrySetId);
 
 		assetEntrySet.setChildrenAssetEntrySetCount(childrenAssetEntrySetCount);
+
+		assetEntrySetPersistence.update(assetEntrySet);
+
+		return assetEntrySet;
+	}
+
+	protected AssetEntrySet updateRatingsEntry(
+			long userId, long assetEntrySetId, long score)
+		throws PortalException, SystemException {
+
+		String className = AssetEntrySet.class.getName();
+
+		ratingsEntryLocalService.updateEntry(
+			userId, className, assetEntrySetId, score, new ServiceContext());
+
+		AssetEntrySet assetEntrySet = assetEntrySetPersistence.findByPrimaryKey(
+			assetEntrySetId);
+
+		RatingsStats ratingsStats = ratingsStatsLocalService.getStats(
+			className, assetEntrySetId);
+
+		assetEntrySet.setRatingsTotalScore((long)ratingsStats.getTotalScore());
 
 		assetEntrySetPersistence.update(assetEntrySet);
 
