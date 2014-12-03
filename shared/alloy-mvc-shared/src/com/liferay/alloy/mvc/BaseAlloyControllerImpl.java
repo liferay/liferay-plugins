@@ -843,6 +843,14 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 		method.invoke(this);
 	}
 
+	protected boolean isRespondingTo() {
+		return Validator.isNotNull(format);
+	}
+
+	protected boolean isRespondingTo(String format) {
+		return StringUtil.equalsIgnoreCase(this.format, format);
+	}
+
 	@SuppressWarnings("unused")
 	@Transactional(
 		isolation = Isolation.PORTAL, propagation = Propagation.REQUIRES_NEW,
@@ -923,14 +931,6 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 		throws Exception {
 
 		renderError(HttpServletResponse.SC_BAD_REQUEST, pattern, arguments);
-	}
-
-	protected boolean isRespondingTo() {
-		return Validator.isNotNull(format);
-	}
-
-	protected boolean isRespondingTo(String format) {
-		return StringUtil.equalsIgnoreCase(this.format, format);
 	}
 
 	protected boolean respondWith(int status, Object object) throws Exception {
