@@ -16,8 +16,12 @@ package com.liferay.asset.entry.set.service.impl;
 
 import com.liferay.asset.entry.set.model.AssetEntrySet;
 import com.liferay.asset.entry.set.service.base.AssetEntrySetLocalServiceBaseImpl;
+import com.liferay.asset.entry.set.util.AssetEntrySetConstants;
+import com.liferay.compat.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.User;
@@ -36,9 +40,8 @@ public class AssetEntrySetLocalServiceImpl
 	extends AssetEntrySetLocalServiceBaseImpl {
 
 	public AssetEntrySet addAssetEntrySet(
-			long userId, long parentAssetEntrySetId, long creatorClassNameId,
-			long creatorClassPK, String payload, int type,
-			int socialRelationType, ServiceContext serviceContext)
+			long userId, long creatorClassNameId, long creatorClassPK,
+			JSONObject payloadJSONObject, int type)
 		throws PortalException, SystemException {
 
 		User user = userPersistence.findByPrimaryKey(userId);
@@ -55,18 +58,30 @@ public class AssetEntrySetLocalServiceImpl
 		assetEntrySet.setUserName(user.getFullName());
 		assetEntrySet.setCreateTime(now.getTime());
 		assetEntrySet.setModifiedTime(now.getTime());
+
+		long parentAssetEntrySetId = payloadJSONObject.getLong(
+			AssetEntrySetConstants.KEY_PARENT_ASSET_ENTRY_SET_ID,
+			AssetEntrySetConstants.VALUE_PARENT_ASSET_ENTRY_SET_ID_DEFAULT);
+
 		assetEntrySet.setParentAssetEntrySetId(parentAssetEntrySetId);
+
 		assetEntrySet.setCreatorClassNameId(creatorClassNameId);
 		assetEntrySet.setCreatorClassPK(creatorClassPK);
-		assetEntrySet.setPayload(payload);
+		assetEntrySet.setPayload(payloadJSONObject.toString());
 
 		assetEntrySetPersistence.update(assetEntrySet);
 
 		updateChildrenAssetEntrySetCount(parentAssetEntrySetId);
 
 		updateAsset(
-			assetEntrySet, serviceContext.getAssetCategoryIds(),
-			serviceContext.getAssetTagNames());
+			assetEntrySet,
+			GetterUtil.getLongValues(
+				StringUtil.split(
+					payloadJSONObject.getString(
+						AssetEntrySetConstants.KEY_ASSET_CATEGORY_IDS))),
+			StringUtil.split(
+				payloadJSONObject.getString(
+					AssetEntrySetConstants.KEY_ASSET_TAG_NAMES)));
 
 		return assetEntrySet;
 	}
@@ -225,7 +240,7 @@ public class AssetEntrySetLocalServiceImpl
 	}
 
 	public AssetEntrySet updateAssetEntrySet(
-			long assetEntrySetId, String payload, ServiceContext serviceContext)
+			long assetEntrySetId, JSONObject payloadJSONObject)
 		throws PortalException, SystemException {
 
 		AssetEntrySet assetEntrySet = assetEntrySetPersistence.findByPrimaryKey(
@@ -234,13 +249,19 @@ public class AssetEntrySetLocalServiceImpl
 		Date now = new Date();
 
 		assetEntrySet.setModifiedTime(now.getTime());
-		assetEntrySet.setPayload(payload);
+		assetEntrySet.setPayload(payloadJSONObject.toString());
 
 		assetEntrySetPersistence.update(assetEntrySet);
 
 		updateAsset(
-			assetEntrySet, serviceContext.getAssetCategoryIds(),
-			serviceContext.getAssetTagNames());
+			assetEntrySet,
+			GetterUtil.getLongValues(
+				StringUtil.split(
+					payloadJSONObject.getString(
+						AssetEntrySetConstants.KEY_ASSET_CATEGORY_IDS))),
+			StringUtil.split(
+				payloadJSONObject.getString(
+					AssetEntrySetConstants.KEY_ASSET_TAG_NAMES)));
 
 		return assetEntrySet;
 	}
