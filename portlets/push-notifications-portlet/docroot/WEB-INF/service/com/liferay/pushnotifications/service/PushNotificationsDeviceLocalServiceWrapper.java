@@ -254,13 +254,6 @@ public class PushNotificationsDeviceLocalServiceWrapper
 			end);
 	}
 
-	@Override
-	public java.util.List<com.liferay.pushnotifications.model.PushNotificationsDevice> getPushNotificationsDevices(
-		long toUserId, java.lang.String platform, int start, int end) {
-		return _pushNotificationsDeviceLocalService.getPushNotificationsDevices(toUserId,
-			platform, start, end);
-	}
-
 	/**
 	* Returns the number of push notifications devices.
 	*
@@ -277,6 +270,22 @@ public class PushNotificationsDeviceLocalServiceWrapper
 		throws java.lang.Throwable {
 		return _pushNotificationsDeviceLocalService.invokeMethod(name,
 			parameterTypes, arguments);
+	}
+
+	@Override
+	public void sendPushNotification(long fromUserId,
+		com.liferay.portal.kernel.json.JSONObject jsonObject)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		_pushNotificationsDeviceLocalService.sendPushNotification(fromUserId,
+			jsonObject);
+	}
+
+	@Override
+	public void sendPushNotification(long fromUserId, long toUserId,
+		com.liferay.portal.kernel.json.JSONObject jsonObject)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		_pushNotificationsDeviceLocalService.sendPushNotification(fromUserId,
+			toUserId, jsonObject);
 	}
 
 	/**

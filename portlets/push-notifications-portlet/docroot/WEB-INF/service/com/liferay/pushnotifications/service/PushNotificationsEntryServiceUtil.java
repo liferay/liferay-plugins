@@ -47,13 +47,6 @@ public class PushNotificationsEntryServiceUtil {
 		return getService().addPushNotificationsEntry(payload);
 	}
 
-	public static com.liferay.pushnotifications.model.PushNotificationsEntry dislikePushNotificationsEntry(
-		long pushNotificationsEntryId)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService()
-				   .dislikePushNotificationsEntry(pushNotificationsEntryId);
-	}
-
 	/**
 	* Returns the Spring bean ID for this bean.
 	*
@@ -90,6 +83,13 @@ public class PushNotificationsEntryServiceUtil {
 	*/
 	public static void setBeanIdentifier(java.lang.String beanIdentifier) {
 		getService().setBeanIdentifier(beanIdentifier);
+	}
+
+	public static com.liferay.pushnotifications.model.PushNotificationsEntry unlikePushNotificationsEntry(
+		long pushNotificationsEntryId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService()
+				   .unlikePushNotificationsEntry(pushNotificationsEntryId);
 	}
 
 	public static void clearService() {

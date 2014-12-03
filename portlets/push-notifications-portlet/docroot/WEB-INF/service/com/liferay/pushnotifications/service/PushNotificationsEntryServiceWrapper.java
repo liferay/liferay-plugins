@@ -41,13 +41,6 @@ public class PushNotificationsEntryServiceWrapper
 		return _pushNotificationsEntryService.addPushNotificationsEntry(payload);
 	}
 
-	@Override
-	public com.liferay.pushnotifications.model.PushNotificationsEntry dislikePushNotificationsEntry(
-		long pushNotificationsEntryId)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _pushNotificationsEntryService.dislikePushNotificationsEntry(pushNotificationsEntryId);
-	}
-
 	/**
 	* Returns the Spring bean ID for this bean.
 	*
@@ -89,6 +82,13 @@ public class PushNotificationsEntryServiceWrapper
 	@Override
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
 		_pushNotificationsEntryService.setBeanIdentifier(beanIdentifier);
+	}
+
+	@Override
+	public com.liferay.pushnotifications.model.PushNotificationsEntry unlikePushNotificationsEntry(
+		long pushNotificationsEntryId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _pushNotificationsEntryService.unlikePushNotificationsEntry(pushNotificationsEntryId);
 	}
 
 	/**

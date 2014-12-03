@@ -133,9 +133,11 @@ public class PushNotificationsEntryLocalServiceClpInvoker {
 				"long", "com.liferay.portal.kernel.json.JSONObject"
 			};
 
-		_methodName66 = "dislikePushNotificationsEntry";
+		_methodName66 = "addPushNotificationsEntry";
 
-		_methodParameterTypes66 = new String[] { "long", "long" };
+		_methodParameterTypes66 = new String[] {
+				"long", "long", "com.liferay.portal.kernel.json.JSONObject"
+			};
 
 		_methodName67 = "getPushNotificationsEntries";
 
@@ -148,14 +150,13 @@ public class PushNotificationsEntryLocalServiceClpInvoker {
 		_methodName69 = "sendPushNotification";
 
 		_methodParameterTypes69 = new String[] {
-				"long", "com.liferay.portal.kernel.json.JSONObject"
+				"long",
+				"com.liferay.pushnotifications.model.PushNotificationsEntry"
 			};
 
-		_methodName70 = "sendPushNotification";
+		_methodName70 = "unlikePushNotificationsEntry";
 
-		_methodParameterTypes70 = new String[] {
-				"long", "long", "com.liferay.portal.kernel.json.JSONObject"
-			};
+		_methodParameterTypes70 = new String[] { "long", "long" };
 
 		_methodName71 = "updateChildrenPushNotificationsEntriesCount";
 
@@ -281,8 +282,9 @@ public class PushNotificationsEntryLocalServiceClpInvoker {
 
 		if (_methodName66.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes66, parameterTypes)) {
-			return PushNotificationsEntryLocalServiceUtil.dislikePushNotificationsEntry(((Long)arguments[0]).longValue(),
-				((Long)arguments[1]).longValue());
+			return PushNotificationsEntryLocalServiceUtil.addPushNotificationsEntry(((Long)arguments[0]).longValue(),
+				((Long)arguments[1]).longValue(),
+				(com.liferay.portal.kernel.json.JSONObject)arguments[2]);
 		}
 
 		if (_methodName67.equals(name) &&
@@ -302,18 +304,15 @@ public class PushNotificationsEntryLocalServiceClpInvoker {
 		if (_methodName69.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes69, parameterTypes)) {
 			PushNotificationsEntryLocalServiceUtil.sendPushNotification(((Long)arguments[0]).longValue(),
-				(com.liferay.portal.kernel.json.JSONObject)arguments[1]);
+				(com.liferay.pushnotifications.model.PushNotificationsEntry)arguments[1]);
 
 			return null;
 		}
 
 		if (_methodName70.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes70, parameterTypes)) {
-			PushNotificationsEntryLocalServiceUtil.sendPushNotification(((Long)arguments[0]).longValue(),
-				((Long)arguments[1]).longValue(),
-				(com.liferay.portal.kernel.json.JSONObject)arguments[2]);
-
-			return null;
+			return PushNotificationsEntryLocalServiceUtil.unlikePushNotificationsEntry(((Long)arguments[0]).longValue(),
+				((Long)arguments[1]).longValue());
 		}
 
 		if (_methodName71.equals(name) &&

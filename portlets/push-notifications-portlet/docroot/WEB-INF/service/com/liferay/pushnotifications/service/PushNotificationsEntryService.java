@@ -54,10 +54,6 @@ public interface PushNotificationsEntryService extends BaseService,
 		java.lang.String payload)
 		throws com.liferay.portal.kernel.exception.PortalException;
 
-	public com.liferay.pushnotifications.model.PushNotificationsEntry dislikePushNotificationsEntry(
-		long pushNotificationsEntryId)
-		throws com.liferay.portal.kernel.exception.PortalException;
-
 	/**
 	* Returns the Spring bean ID for this bean.
 	*
@@ -85,4 +81,8 @@ public interface PushNotificationsEntryService extends BaseService,
 	* @param beanIdentifier the Spring bean ID for this bean
 	*/
 	public void setBeanIdentifier(java.lang.String beanIdentifier);
+
+	public com.liferay.pushnotifications.model.PushNotificationsEntry unlikePushNotificationsEntry(
+		long pushNotificationsEntryId)
+		throws com.liferay.portal.kernel.exception.PortalException;
 }

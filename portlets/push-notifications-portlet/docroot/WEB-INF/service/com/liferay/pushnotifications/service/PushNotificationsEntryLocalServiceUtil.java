@@ -54,6 +54,15 @@ public class PushNotificationsEntryLocalServiceUtil {
 	}
 
 	public static com.liferay.pushnotifications.model.PushNotificationsEntry addPushNotificationsEntry(
+		long userId, long parentPushNotificationsEntryId,
+		com.liferay.portal.kernel.json.JSONObject payloadJSONObject)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService()
+				   .addPushNotificationsEntry(userId,
+			parentPushNotificationsEntryId, payloadJSONObject);
+	}
+
+	public static com.liferay.pushnotifications.model.PushNotificationsEntry addPushNotificationsEntry(
 		long userId, com.liferay.portal.kernel.json.JSONObject payloadJSONObject)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().addPushNotificationsEntry(userId, payloadJSONObject);
@@ -103,14 +112,6 @@ public class PushNotificationsEntryLocalServiceUtil {
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService()
 				   .deletePushNotificationsEntry(pushNotificationsEntryId);
-	}
-
-	public static com.liferay.pushnotifications.model.PushNotificationsEntry dislikePushNotificationsEntry(
-		long userId, long pushNotificationsEntryId)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService()
-				   .dislikePushNotificationsEntry(userId,
-			pushNotificationsEntryId);
 	}
 
 	public static com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
@@ -275,16 +276,9 @@ public class PushNotificationsEntryLocalServiceUtil {
 	}
 
 	public static void sendPushNotification(long fromUserId,
-		com.liferay.portal.kernel.json.JSONObject payloadJSONObject)
+		com.liferay.pushnotifications.model.PushNotificationsEntry pushNotificationsEntry)
 		throws com.liferay.portal.kernel.exception.PortalException {
-		getService().sendPushNotification(fromUserId, payloadJSONObject);
-	}
-
-	public static void sendPushNotification(long fromUserId, long toUserId,
-		com.liferay.portal.kernel.json.JSONObject payloadJSONObject)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		getService()
-			.sendPushNotification(fromUserId, toUserId, payloadJSONObject);
+		getService().sendPushNotification(fromUserId, pushNotificationsEntry);
 	}
 
 	/**
@@ -294,6 +288,14 @@ public class PushNotificationsEntryLocalServiceUtil {
 	*/
 	public static void setBeanIdentifier(java.lang.String beanIdentifier) {
 		getService().setBeanIdentifier(beanIdentifier);
+	}
+
+	public static com.liferay.pushnotifications.model.PushNotificationsEntry unlikePushNotificationsEntry(
+		long userId, long pushNotificationsEntryId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService()
+				   .unlikePushNotificationsEntry(userId,
+			pushNotificationsEntryId);
 	}
 
 	public static com.liferay.pushnotifications.model.PushNotificationsEntry updateChildrenPushNotificationsEntriesCount(

@@ -80,21 +80,6 @@ public class PushNotificationsEntryServiceSoap {
 		}
 	}
 
-	public static com.liferay.pushnotifications.model.PushNotificationsEntrySoap dislikePushNotificationsEntry(
-		long pushNotificationsEntryId) throws RemoteException {
-		try {
-			com.liferay.pushnotifications.model.PushNotificationsEntry returnValue =
-				PushNotificationsEntryServiceUtil.dislikePushNotificationsEntry(pushNotificationsEntryId);
-
-			return com.liferay.pushnotifications.model.PushNotificationsEntrySoap.toSoapModel(returnValue);
-		}
-		catch (Exception e) {
-			_log.error(e, e);
-
-			throw new RemoteException(e.getMessage());
-		}
-	}
-
 	public static com.liferay.pushnotifications.model.PushNotificationsEntrySoap[] getPushNotificationsEntries(
 		long parentPushNotificationsEntryId, long lastAccessTime, int start,
 		int end) throws RemoteException {
@@ -117,6 +102,21 @@ public class PushNotificationsEntryServiceSoap {
 		try {
 			com.liferay.pushnotifications.model.PushNotificationsEntry returnValue =
 				PushNotificationsEntryServiceUtil.likePushNotificationsEntry(pushNotificationsEntryId);
+
+			return com.liferay.pushnotifications.model.PushNotificationsEntrySoap.toSoapModel(returnValue);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static com.liferay.pushnotifications.model.PushNotificationsEntrySoap unlikePushNotificationsEntry(
+		long pushNotificationsEntryId) throws RemoteException {
+		try {
+			com.liferay.pushnotifications.model.PushNotificationsEntry returnValue =
+				PushNotificationsEntryServiceUtil.unlikePushNotificationsEntry(pushNotificationsEntryId);
 
 			return com.liferay.pushnotifications.model.PushNotificationsEntrySoap.toSoapModel(returnValue);
 		}

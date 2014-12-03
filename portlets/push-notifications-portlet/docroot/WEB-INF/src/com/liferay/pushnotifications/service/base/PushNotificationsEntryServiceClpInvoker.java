@@ -39,15 +39,15 @@ public class PushNotificationsEntryServiceClpInvoker {
 
 		_methodParameterTypes46 = new String[] { "java.lang.String" };
 
-		_methodName47 = "dislikePushNotificationsEntry";
+		_methodName47 = "getPushNotificationsEntries";
 
-		_methodParameterTypes47 = new String[] { "long" };
+		_methodParameterTypes47 = new String[] { "long", "long", "int", "int" };
 
-		_methodName48 = "getPushNotificationsEntries";
+		_methodName48 = "likePushNotificationsEntry";
 
-		_methodParameterTypes48 = new String[] { "long", "long", "int", "int" };
+		_methodParameterTypes48 = new String[] { "long" };
 
-		_methodName49 = "likePushNotificationsEntry";
+		_methodName49 = "unlikePushNotificationsEntry";
 
 		_methodParameterTypes49 = new String[] { "long" };
 	}
@@ -73,20 +73,20 @@ public class PushNotificationsEntryServiceClpInvoker {
 
 		if (_methodName47.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes47, parameterTypes)) {
-			return PushNotificationsEntryServiceUtil.dislikePushNotificationsEntry(((Long)arguments[0]).longValue());
-		}
-
-		if (_methodName48.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes48, parameterTypes)) {
 			return PushNotificationsEntryServiceUtil.getPushNotificationsEntries(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				((Integer)arguments[2]).intValue(),
 				((Integer)arguments[3]).intValue());
 		}
 
+		if (_methodName48.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes48, parameterTypes)) {
+			return PushNotificationsEntryServiceUtil.likePushNotificationsEntry(((Long)arguments[0]).longValue());
+		}
+
 		if (_methodName49.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes49, parameterTypes)) {
-			return PushNotificationsEntryServiceUtil.likePushNotificationsEntry(((Long)arguments[0]).longValue());
+			return PushNotificationsEntryServiceUtil.unlikePushNotificationsEntry(((Long)arguments[0]).longValue());
 		}
 
 		throw new UnsupportedOperationException();

@@ -217,10 +217,6 @@ public interface PushNotificationsDeviceLocalService extends BaseLocalService,
 	public java.util.List<com.liferay.pushnotifications.model.PushNotificationsDevice> getPushNotificationsDevices(
 		int start, int end);
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<com.liferay.pushnotifications.model.PushNotificationsDevice> getPushNotificationsDevices(
-		long toUserId, java.lang.String platform, int start, int end);
-
 	/**
 	* Returns the number of push notifications devices.
 	*
@@ -233,6 +229,14 @@ public interface PushNotificationsDeviceLocalService extends BaseLocalService,
 	public java.lang.Object invokeMethod(java.lang.String name,
 		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
 		throws java.lang.Throwable;
+
+	public void sendPushNotification(long fromUserId,
+		com.liferay.portal.kernel.json.JSONObject jsonObject)
+		throws com.liferay.portal.kernel.exception.PortalException;
+
+	public void sendPushNotification(long fromUserId, long toUserId,
+		com.liferay.portal.kernel.json.JSONObject jsonObject)
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	/**
 	* Sets the Spring bean ID for this bean.
