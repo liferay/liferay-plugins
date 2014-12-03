@@ -93,7 +93,7 @@
 
 		error.hide();
 
-		if (A.Object.isEmpty(result)) {
+		if (A.Object.hasKey(result, 'pushNotificationsEntryId')) {
 			success.show();
 		}
 		else {
