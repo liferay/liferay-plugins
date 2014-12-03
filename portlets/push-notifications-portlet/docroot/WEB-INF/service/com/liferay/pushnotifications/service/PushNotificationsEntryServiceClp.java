@@ -35,11 +35,11 @@ public class PushNotificationsEntryServiceClp
 
 		_methodName3 = "addPushNotificationsEntry";
 
-		_methodParameterTypes3 = new String[] { "java.lang.String" };
+		_methodParameterTypes3 = new String[] { "long", "java.lang.String" };
 
-		_methodName4 = "dislikePushNotificationsEntry";
+		_methodName4 = "addPushNotificationsEntry";
 
-		_methodParameterTypes4 = new String[] { "long" };
+		_methodParameterTypes4 = new String[] { "java.lang.String" };
 
 		_methodName5 = "getPushNotificationsEntries";
 
@@ -48,6 +48,10 @@ public class PushNotificationsEntryServiceClp
 		_methodName6 = "likePushNotificationsEntry";
 
 		_methodParameterTypes6 = new String[] { "long" };
+
+		_methodName7 = "unlikePushNotificationsEntry";
+
+		_methodParameterTypes7 = new String[] { "long" };
 	}
 
 	@Override
@@ -102,7 +106,7 @@ public class PushNotificationsEntryServiceClp
 
 	@Override
 	public com.liferay.pushnotifications.model.PushNotificationsEntry addPushNotificationsEntry(
-		java.lang.String payload)
+		long parentPushNotificationsEntryId, java.lang.String payload)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -110,7 +114,11 @@ public class PushNotificationsEntryServiceClp
 		try {
 			returnObj = _invokableService.invokeMethod(_methodName3,
 					_methodParameterTypes3,
-					new Object[] { ClpSerializer.translateInput(payload) });
+					new Object[] {
+						parentPushNotificationsEntryId,
+						
+					ClpSerializer.translateInput(payload)
+					});
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -136,8 +144,8 @@ public class PushNotificationsEntryServiceClp
 	}
 
 	@Override
-	public com.liferay.pushnotifications.model.PushNotificationsEntry dislikePushNotificationsEntry(
-		long pushNotificationsEntryId)
+	public com.liferay.pushnotifications.model.PushNotificationsEntry addPushNotificationsEntry(
+		java.lang.String payload)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -145,7 +153,7 @@ public class PushNotificationsEntryServiceClp
 		try {
 			returnObj = _invokableService.invokeMethod(_methodName4,
 					_methodParameterTypes4,
-					new Object[] { pushNotificationsEntryId });
+					new Object[] { ClpSerializer.translateInput(payload) });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -243,6 +251,41 @@ public class PushNotificationsEntryServiceClp
 		return (com.liferay.pushnotifications.model.PushNotificationsEntry)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
+	public com.liferay.pushnotifications.model.PushNotificationsEntry unlikePushNotificationsEntry(
+		long pushNotificationsEntryId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableService.invokeMethod(_methodName7,
+					_methodParameterTypes7,
+					new Object[] { pushNotificationsEntryId });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.liferay.pushnotifications.model.PushNotificationsEntry)ClpSerializer.translateOutput(returnObj);
+	}
+
 	private InvokableService _invokableService;
 	private String _methodName0;
 	private String[] _methodParameterTypes0;
@@ -256,4 +299,6 @@ public class PushNotificationsEntryServiceClp
 	private String[] _methodParameterTypes5;
 	private String _methodName6;
 	private String[] _methodParameterTypes6;
+	private String _methodName7;
+	private String[] _methodParameterTypes7;
 }

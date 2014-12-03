@@ -63,10 +63,12 @@ import java.rmi.RemoteException;
  */
 public class PushNotificationsEntryServiceSoap {
 	public static com.liferay.pushnotifications.model.PushNotificationsEntrySoap addPushNotificationsEntry(
-		java.lang.String payload) throws RemoteException {
+		long parentPushNotificationsEntryId, java.lang.String payload)
+		throws RemoteException {
 		try {
 			com.liferay.pushnotifications.model.PushNotificationsEntry returnValue =
-				PushNotificationsEntryServiceUtil.addPushNotificationsEntry(payload);
+				PushNotificationsEntryServiceUtil.addPushNotificationsEntry(parentPushNotificationsEntryId,
+					payload);
 
 			return com.liferay.pushnotifications.model.PushNotificationsEntrySoap.toSoapModel(returnValue);
 		}
@@ -77,11 +79,11 @@ public class PushNotificationsEntryServiceSoap {
 		}
 	}
 
-	public static com.liferay.pushnotifications.model.PushNotificationsEntrySoap dislikePushNotificationsEntry(
-		long pushNotificationsEntryId) throws RemoteException {
+	public static com.liferay.pushnotifications.model.PushNotificationsEntrySoap addPushNotificationsEntry(
+		java.lang.String payload) throws RemoteException {
 		try {
 			com.liferay.pushnotifications.model.PushNotificationsEntry returnValue =
-				PushNotificationsEntryServiceUtil.dislikePushNotificationsEntry(pushNotificationsEntryId);
+				PushNotificationsEntryServiceUtil.addPushNotificationsEntry(payload);
 
 			return com.liferay.pushnotifications.model.PushNotificationsEntrySoap.toSoapModel(returnValue);
 		}
@@ -114,6 +116,21 @@ public class PushNotificationsEntryServiceSoap {
 		try {
 			com.liferay.pushnotifications.model.PushNotificationsEntry returnValue =
 				PushNotificationsEntryServiceUtil.likePushNotificationsEntry(pushNotificationsEntryId);
+
+			return com.liferay.pushnotifications.model.PushNotificationsEntrySoap.toSoapModel(returnValue);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static com.liferay.pushnotifications.model.PushNotificationsEntrySoap unlikePushNotificationsEntry(
+		long pushNotificationsEntryId) throws RemoteException {
+		try {
+			com.liferay.pushnotifications.model.PushNotificationsEntry returnValue =
+				PushNotificationsEntryServiceUtil.unlikePushNotificationsEntry(pushNotificationsEntryId);
 
 			return com.liferay.pushnotifications.model.PushNotificationsEntrySoap.toSoapModel(returnValue);
 		}

@@ -284,13 +284,14 @@ public class PushNotificationsEntryLocalServiceUtil {
 		return getService().addPushNotificationsEntry(userId, payloadJSONObject);
 	}
 
-	public static com.liferay.pushnotifications.model.PushNotificationsEntry dislikePushNotificationsEntry(
-		long userId, long pushNotificationsEntryId)
+	public static com.liferay.pushnotifications.model.PushNotificationsEntry addPushNotificationsEntry(
+		long userId, long parentPushNotificationsEntryId,
+		com.liferay.portal.kernel.json.JSONObject payloadJSONObject)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService()
-				   .dislikePushNotificationsEntry(userId,
-			pushNotificationsEntryId);
+				   .addPushNotificationsEntry(userId,
+			parentPushNotificationsEntryId, payloadJSONObject);
 	}
 
 	public static java.util.List<com.liferay.pushnotifications.model.PushNotificationsEntry> getPushNotificationsEntries(
@@ -310,18 +311,19 @@ public class PushNotificationsEntryLocalServiceUtil {
 	}
 
 	public static void sendPushNotification(long fromUserId,
-		com.liferay.portal.kernel.json.JSONObject payloadJSONObject)
+		com.liferay.pushnotifications.model.PushNotificationsEntry pushNotificationsEntry)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		getService().sendPushNotification(fromUserId, payloadJSONObject);
+		getService().sendPushNotification(fromUserId, pushNotificationsEntry);
 	}
 
-	public static void sendPushNotification(long fromUserId, long toUserId,
-		com.liferay.portal.kernel.json.JSONObject payloadJSONObject)
+	public static com.liferay.pushnotifications.model.PushNotificationsEntry unlikePushNotificationsEntry(
+		long userId, long pushNotificationsEntryId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		getService()
-			.sendPushNotification(fromUserId, toUserId, payloadJSONObject);
+		return getService()
+				   .unlikePushNotificationsEntry(userId,
+			pushNotificationsEntryId);
 	}
 
 	public static com.liferay.pushnotifications.model.PushNotificationsEntry updateChildrenPushNotificationsEntriesCount(
