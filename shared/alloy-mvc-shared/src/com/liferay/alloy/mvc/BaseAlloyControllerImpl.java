@@ -1203,11 +1203,11 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 	}
 
 	protected JSONObject toJSONObject(Object object) throws Exception {
-		if (object instanceof Document) {
-			return toJSONObject((Document)object);
-		}
-		else if (object instanceof BaseModel<?>) {
+		if (object instanceof BaseModel<?>) {
 			return toJSONObject((BaseModel<?>)object);
+		}
+		else if (object instanceof Document) {
+			return toJSONObject((Document)object);
 		}
 
 		throw new AlloyException(translate("invalid-object"));
