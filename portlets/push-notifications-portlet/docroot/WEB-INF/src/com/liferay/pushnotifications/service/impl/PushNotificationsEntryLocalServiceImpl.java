@@ -115,10 +115,6 @@ public class PushNotificationsEntryLocalServiceImpl
 			PushNotificationsConstants.KEY_FROM_USER, fromUserJSONObject);
 
 		jsonObject.put(
-			PushNotificationsConstants.KEY_PUSH_NOTIFICATIONS_ENTRY_ID,
-			pushNotificationsEntry.getPushNotificationsEntryId());
-
-		jsonObject.put(
 			PushNotificationsConstants.KEY_PARENT_PUSH_NOTIFICATIONS_ENTRY_ID,
 			pushNotificationsEntry.getParentPushNotificationsEntryId());
 
@@ -127,6 +123,10 @@ public class PushNotificationsEntryLocalServiceImpl
 
 		jsonObject.put(
 			PushNotificationsConstants.KEY_PAYLOAD, payloadJSONObject);
+
+		jsonObject.put(
+			PushNotificationsConstants.KEY_PUSH_NOTIFICATIONS_ENTRY_ID,
+			pushNotificationsEntry.getPushNotificationsEntryId());
 
 		pushNotificationsDeviceLocalService.sendPushNotification(
 			fromUserId, jsonObject);
