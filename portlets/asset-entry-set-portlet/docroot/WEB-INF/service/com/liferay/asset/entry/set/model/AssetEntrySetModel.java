@@ -216,34 +216,47 @@ public interface AssetEntrySetModel extends BaseModel<AssetEntrySet> {
 	public void setCreatorClassPK(long creatorClassPK);
 
 	/**
-	 * Returns the content of this asset entry set.
+	 * Returns the payload of this asset entry set.
 	 *
-	 * @return the content of this asset entry set
+	 * @return the payload of this asset entry set
 	 */
 	@AutoEscape
-	public String getContent();
+	public String getPayload();
 
 	/**
-	 * Sets the content of this asset entry set.
+	 * Sets the payload of this asset entry set.
 	 *
-	 * @param content the content of this asset entry set
+	 * @param payload the payload of this asset entry set
 	 */
-	public void setContent(String content);
+	public void setPayload(String payload);
 
 	/**
-	 * Returns the data of this asset entry set.
+	 * Returns the child asset entry sets count of this asset entry set.
 	 *
-	 * @return the data of this asset entry set
+	 * @return the child asset entry sets count of this asset entry set
 	 */
-	@AutoEscape
-	public String getData();
+	public int getChildAssetEntrySetsCount();
 
 	/**
-	 * Sets the data of this asset entry set.
+	 * Sets the child asset entry sets count of this asset entry set.
 	 *
-	 * @param data the data of this asset entry set
+	 * @param childAssetEntrySetsCount the child asset entry sets count of this asset entry set
 	 */
-	public void setData(String data);
+	public void setChildAssetEntrySetsCount(int childAssetEntrySetsCount);
+
+	/**
+	 * Returns the ratings stats total score of this asset entry set.
+	 *
+	 * @return the ratings stats total score of this asset entry set
+	 */
+	public int getRatingsStatsTotalScore();
+
+	/**
+	 * Sets the ratings stats total score of this asset entry set.
+	 *
+	 * @param ratingsStatsTotalScore the ratings stats total score of this asset entry set
+	 */
+	public void setRatingsStatsTotalScore(int ratingsStatsTotalScore);
 
 	@Override
 	public boolean isNew();

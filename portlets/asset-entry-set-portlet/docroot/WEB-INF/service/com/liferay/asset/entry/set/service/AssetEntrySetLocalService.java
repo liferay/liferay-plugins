@@ -86,12 +86,14 @@ public interface AssetEntrySetLocalService extends BaseLocalService,
 	*
 	* @param assetEntrySet the asset entry set
 	* @return the asset entry set that was removed
+	* @throws PortalException
 	* @throws SystemException if a system exception occurred
 	*/
 	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.DELETE)
 	public com.liferay.asset.entry.set.model.AssetEntrySet deleteAssetEntrySet(
 		com.liferay.asset.entry.set.model.AssetEntrySet assetEntrySet)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
 
 	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery();
 
@@ -253,4 +255,93 @@ public interface AssetEntrySetLocalService extends BaseLocalService,
 	public java.lang.Object invokeMethod(java.lang.String name,
 		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
 		throws java.lang.Throwable;
+
+	public com.liferay.asset.entry.set.model.AssetEntrySet addAssetEntrySet(
+		long userId, com.liferay.portal.kernel.json.JSONObject payloadJSONObject)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
+
+	public com.liferay.asset.entry.set.model.AssetEntrySet addAssetEntrySet(
+		long userId, long parentAssetEntrySetId,
+		com.liferay.portal.kernel.json.JSONObject payloadJSONObject)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
+
+	public com.liferay.asset.entry.set.model.AssetEntrySet addAssetEntrySet(
+		long userId, long parentAssetEntrySetId, long creatorClassNameId,
+		long creatorClassPK,
+		com.liferay.portal.kernel.json.JSONObject payloadJSONObject)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.liferay.asset.entry.set.model.AssetEntrySet getAssetEntrySet(
+		long parentAssetEntrySetId, long creatorClassNameId,
+		long creatorClassPK, int start, int end)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> getAssetEntrySets(
+		long parentAssetEntrySetId, long lastAccessTime, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> getAssetEntrySets(
+		long parentAssetEntrySetId, long creatorClassNameId, int start,
+		int end, com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> getAssetEntrySets(
+		long creatorClassNameId, long creatorClassPK,
+		java.lang.String assetTagName, boolean andOperator, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> getAssetEntrySets(
+		long creatorClassNameId, java.lang.String assetTagName, int start,
+		int end) throws com.liferay.portal.kernel.exception.SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public int getAssetEntrySetsCount(long creatorClassNameId,
+		long creatorClassPK, java.lang.String assetTagName, boolean andOperator)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public int getAssetEntrySetsCount(long creatorClassNameId,
+		java.lang.String assetTagName)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> getChildAssetEntrySets(
+		long parentAssetEntrySetId, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	public com.liferay.asset.entry.set.model.AssetEntrySet likeAssetEntrySet(
+		long userId, long assetEntrySetId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
+
+	public com.liferay.asset.entry.set.model.AssetEntrySet unlikeAssetEntrySet(
+		long userId, long assetEntrySetId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
+
+	public void updateAssetEntry(long assetEntrySetId,
+		java.lang.String[] assetTagNames)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
+
+	public com.liferay.asset.entry.set.model.AssetEntrySet updateAssetEntrySet(
+		long assetEntrySetId,
+		com.liferay.portal.kernel.json.JSONObject payloadJSONObject)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
+
+	public com.liferay.asset.entry.set.model.AssetEntrySet updateChildAssetEntrySetsCount(
+		long parentAssetEntrySetId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
 }

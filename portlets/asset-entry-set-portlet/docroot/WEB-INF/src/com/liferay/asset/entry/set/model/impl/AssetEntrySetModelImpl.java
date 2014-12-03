@@ -16,9 +16,11 @@ package com.liferay.asset.entry.set.model.impl;
 
 import com.liferay.asset.entry.set.model.AssetEntrySet;
 import com.liferay.asset.entry.set.model.AssetEntrySetModel;
+import com.liferay.asset.entry.set.model.AssetEntrySetSoap;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.json.JSON;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
@@ -35,7 +37,9 @@ import java.io.Serializable;
 
 import java.sql.Types;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -51,6 +55,7 @@ import java.util.Map;
  * @see com.liferay.asset.entry.set.model.AssetEntrySetModel
  * @generated
  */
+@JSON(strict = true)
 public class AssetEntrySetModelImpl extends BaseModelImpl<AssetEntrySet>
 	implements AssetEntrySetModel {
 	/*
@@ -70,10 +75,11 @@ public class AssetEntrySetModelImpl extends BaseModelImpl<AssetEntrySet>
 			{ "parentAssetEntrySetId", Types.BIGINT },
 			{ "creatorClassNameId", Types.BIGINT },
 			{ "creatorClassPK", Types.BIGINT },
-			{ "content", Types.VARCHAR },
-			{ "data_", Types.VARCHAR }
+			{ "payload", Types.VARCHAR },
+			{ "childAssetEntrySetsCount", Types.INTEGER },
+			{ "ratingsStatsTotalScore", Types.INTEGER }
 		};
-	public static final String TABLE_SQL_CREATE = "create table AssetEntrySet (assetEntrySetId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createTime LONG,modifiedTime LONG,assetEntryId VARCHAR(75) null,parentAssetEntrySetId LONG,creatorClassNameId LONG,creatorClassPK LONG,content VARCHAR(75) null,data_ VARCHAR(75) null)";
+	public static final String TABLE_SQL_CREATE = "create table AssetEntrySet (assetEntrySetId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createTime LONG,modifiedTime LONG,assetEntryId VARCHAR(75) null,parentAssetEntrySetId LONG,creatorClassNameId LONG,creatorClassPK LONG,payload VARCHAR(75) null,childAssetEntrySetsCount INTEGER,ratingsStatsTotalScore INTEGER)";
 	public static final String TABLE_SQL_DROP = "drop table AssetEntrySet";
 	public static final String ORDER_BY_JPQL = " ORDER BY assetEntrySet.createTime DESC";
 	public static final String ORDER_BY_SQL = " ORDER BY AssetEntrySet.createTime DESC";
@@ -86,7 +92,64 @@ public class AssetEntrySetModelImpl extends BaseModelImpl<AssetEntrySet>
 	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.finder.cache.enabled.com.liferay.asset.entry.set.model.AssetEntrySet"),
 			true);
-	public static final boolean COLUMN_BITMASK_ENABLED = false;
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
+				"value.object.column.bitmask.enabled.com.liferay.asset.entry.set.model.AssetEntrySet"),
+			true);
+	public static long CREATETIME_COLUMN_BITMASK = 1L;
+	public static long CREATORCLASSNAMEID_COLUMN_BITMASK = 2L;
+	public static long CREATORCLASSPK_COLUMN_BITMASK = 4L;
+	public static long PARENTASSETENTRYSETID_COLUMN_BITMASK = 8L;
+
+	/**
+	 * Converts the soap model instance into a normal model instance.
+	 *
+	 * @param soapModel the soap model instance to convert
+	 * @return the normal model instance
+	 */
+	public static AssetEntrySet toModel(AssetEntrySetSoap soapModel) {
+		if (soapModel == null) {
+			return null;
+		}
+
+		AssetEntrySet model = new AssetEntrySetImpl();
+
+		model.setAssetEntrySetId(soapModel.getAssetEntrySetId());
+		model.setCompanyId(soapModel.getCompanyId());
+		model.setUserId(soapModel.getUserId());
+		model.setUserName(soapModel.getUserName());
+		model.setCreateTime(soapModel.getCreateTime());
+		model.setModifiedTime(soapModel.getModifiedTime());
+		model.setAssetEntryId(soapModel.getAssetEntryId());
+		model.setParentAssetEntrySetId(soapModel.getParentAssetEntrySetId());
+		model.setCreatorClassNameId(soapModel.getCreatorClassNameId());
+		model.setCreatorClassPK(soapModel.getCreatorClassPK());
+		model.setPayload(soapModel.getPayload());
+		model.setChildAssetEntrySetsCount(soapModel.getChildAssetEntrySetsCount());
+		model.setRatingsStatsTotalScore(soapModel.getRatingsStatsTotalScore());
+
+		return model;
+	}
+
+	/**
+	 * Converts the soap model instances into normal model instances.
+	 *
+	 * @param soapModels the soap model instances to convert
+	 * @return the normal model instances
+	 */
+	public static List<AssetEntrySet> toModels(AssetEntrySetSoap[] soapModels) {
+		if (soapModels == null) {
+			return null;
+		}
+
+		List<AssetEntrySet> models = new ArrayList<AssetEntrySet>(soapModels.length);
+
+		for (AssetEntrySetSoap soapModel : soapModels) {
+			models.add(toModel(soapModel));
+		}
+
+		return models;
+	}
+
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.liferay.asset.entry.set.model.AssetEntrySet"));
 
@@ -137,8 +200,9 @@ public class AssetEntrySetModelImpl extends BaseModelImpl<AssetEntrySet>
 		attributes.put("parentAssetEntrySetId", getParentAssetEntrySetId());
 		attributes.put("creatorClassNameId", getCreatorClassNameId());
 		attributes.put("creatorClassPK", getCreatorClassPK());
-		attributes.put("content", getContent());
-		attributes.put("data", getData());
+		attributes.put("payload", getPayload());
+		attributes.put("childAssetEntrySetsCount", getChildAssetEntrySetsCount());
+		attributes.put("ratingsStatsTotalScore", getRatingsStatsTotalScore());
 
 		return attributes;
 	}
@@ -206,19 +270,28 @@ public class AssetEntrySetModelImpl extends BaseModelImpl<AssetEntrySet>
 			setCreatorClassPK(creatorClassPK);
 		}
 
-		String content = (String)attributes.get("content");
+		String payload = (String)attributes.get("payload");
 
-		if (content != null) {
-			setContent(content);
+		if (payload != null) {
+			setPayload(payload);
 		}
 
-		String data = (String)attributes.get("data");
+		Integer childAssetEntrySetsCount = (Integer)attributes.get(
+				"childAssetEntrySetsCount");
 
-		if (data != null) {
-			setData(data);
+		if (childAssetEntrySetsCount != null) {
+			setChildAssetEntrySetsCount(childAssetEntrySetsCount);
+		}
+
+		Integer ratingsStatsTotalScore = (Integer)attributes.get(
+				"ratingsStatsTotalScore");
+
+		if (ratingsStatsTotalScore != null) {
+			setRatingsStatsTotalScore(ratingsStatsTotalScore);
 		}
 	}
 
+	@JSON
 	@Override
 	public long getAssetEntrySetId() {
 		return _assetEntrySetId;
@@ -229,6 +302,7 @@ public class AssetEntrySetModelImpl extends BaseModelImpl<AssetEntrySet>
 		_assetEntrySetId = assetEntrySetId;
 	}
 
+	@JSON
 	@Override
 	public long getCompanyId() {
 		return _companyId;
@@ -239,6 +313,7 @@ public class AssetEntrySetModelImpl extends BaseModelImpl<AssetEntrySet>
 		_companyId = companyId;
 	}
 
+	@JSON
 	@Override
 	public long getUserId() {
 		return _userId;
@@ -259,6 +334,7 @@ public class AssetEntrySetModelImpl extends BaseModelImpl<AssetEntrySet>
 		_userUuid = userUuid;
 	}
 
+	@JSON
 	@Override
 	public String getUserName() {
 		if (_userName == null) {
@@ -274,6 +350,7 @@ public class AssetEntrySetModelImpl extends BaseModelImpl<AssetEntrySet>
 		_userName = userName;
 	}
 
+	@JSON
 	@Override
 	public long getCreateTime() {
 		return _createTime;
@@ -281,9 +358,22 @@ public class AssetEntrySetModelImpl extends BaseModelImpl<AssetEntrySet>
 
 	@Override
 	public void setCreateTime(long createTime) {
+		_columnBitmask = -1L;
+
+		if (!_setOriginalCreateTime) {
+			_setOriginalCreateTime = true;
+
+			_originalCreateTime = _createTime;
+		}
+
 		_createTime = createTime;
 	}
 
+	public long getOriginalCreateTime() {
+		return _originalCreateTime;
+	}
+
+	@JSON
 	@Override
 	public long getModifiedTime() {
 		return _modifiedTime;
@@ -294,6 +384,7 @@ public class AssetEntrySetModelImpl extends BaseModelImpl<AssetEntrySet>
 		_modifiedTime = modifiedTime;
 	}
 
+	@JSON
 	@Override
 	public String getAssetEntryId() {
 		if (_assetEntryId == null) {
@@ -309,6 +400,7 @@ public class AssetEntrySetModelImpl extends BaseModelImpl<AssetEntrySet>
 		_assetEntryId = assetEntryId;
 	}
 
+	@JSON
 	@Override
 	public long getParentAssetEntrySetId() {
 		return _parentAssetEntrySetId;
@@ -316,9 +408,22 @@ public class AssetEntrySetModelImpl extends BaseModelImpl<AssetEntrySet>
 
 	@Override
 	public void setParentAssetEntrySetId(long parentAssetEntrySetId) {
+		_columnBitmask |= PARENTASSETENTRYSETID_COLUMN_BITMASK;
+
+		if (!_setOriginalParentAssetEntrySetId) {
+			_setOriginalParentAssetEntrySetId = true;
+
+			_originalParentAssetEntrySetId = _parentAssetEntrySetId;
+		}
+
 		_parentAssetEntrySetId = parentAssetEntrySetId;
 	}
 
+	public long getOriginalParentAssetEntrySetId() {
+		return _originalParentAssetEntrySetId;
+	}
+
+	@JSON
 	@Override
 	public long getCreatorClassNameId() {
 		return _creatorClassNameId;
@@ -326,9 +431,22 @@ public class AssetEntrySetModelImpl extends BaseModelImpl<AssetEntrySet>
 
 	@Override
 	public void setCreatorClassNameId(long creatorClassNameId) {
+		_columnBitmask |= CREATORCLASSNAMEID_COLUMN_BITMASK;
+
+		if (!_setOriginalCreatorClassNameId) {
+			_setOriginalCreatorClassNameId = true;
+
+			_originalCreatorClassNameId = _creatorClassNameId;
+		}
+
 		_creatorClassNameId = creatorClassNameId;
 	}
 
+	public long getOriginalCreatorClassNameId() {
+		return _originalCreatorClassNameId;
+	}
+
+	@JSON
 	@Override
 	public long getCreatorClassPK() {
 		return _creatorClassPK;
@@ -336,37 +454,61 @@ public class AssetEntrySetModelImpl extends BaseModelImpl<AssetEntrySet>
 
 	@Override
 	public void setCreatorClassPK(long creatorClassPK) {
+		_columnBitmask |= CREATORCLASSPK_COLUMN_BITMASK;
+
+		if (!_setOriginalCreatorClassPK) {
+			_setOriginalCreatorClassPK = true;
+
+			_originalCreatorClassPK = _creatorClassPK;
+		}
+
 		_creatorClassPK = creatorClassPK;
 	}
 
+	public long getOriginalCreatorClassPK() {
+		return _originalCreatorClassPK;
+	}
+
+	@JSON
 	@Override
-	public String getContent() {
-		if (_content == null) {
+	public String getPayload() {
+		if (_payload == null) {
 			return StringPool.BLANK;
 		}
 		else {
-			return _content;
+			return _payload;
 		}
 	}
 
 	@Override
-	public void setContent(String content) {
-		_content = content;
+	public void setPayload(String payload) {
+		_payload = payload;
+	}
+
+	@JSON
+	@Override
+	public int getChildAssetEntrySetsCount() {
+		return _childAssetEntrySetsCount;
 	}
 
 	@Override
-	public String getData() {
-		if (_data == null) {
-			return StringPool.BLANK;
-		}
-		else {
-			return _data;
-		}
+	public void setChildAssetEntrySetsCount(int childAssetEntrySetsCount) {
+		_childAssetEntrySetsCount = childAssetEntrySetsCount;
+	}
+
+	@JSON
+	@Override
+	public int getRatingsStatsTotalScore() {
+		return _ratingsStatsTotalScore;
 	}
 
 	@Override
-	public void setData(String data) {
-		_data = data;
+	public void setRatingsStatsTotalScore(int ratingsStatsTotalScore) {
+		_ratingsStatsTotalScore = ratingsStatsTotalScore;
+	}
+
+	public long getColumnBitmask() {
+		return _columnBitmask;
 	}
 
 	@Override
@@ -406,8 +548,9 @@ public class AssetEntrySetModelImpl extends BaseModelImpl<AssetEntrySet>
 		assetEntrySetImpl.setParentAssetEntrySetId(getParentAssetEntrySetId());
 		assetEntrySetImpl.setCreatorClassNameId(getCreatorClassNameId());
 		assetEntrySetImpl.setCreatorClassPK(getCreatorClassPK());
-		assetEntrySetImpl.setContent(getContent());
-		assetEntrySetImpl.setData(getData());
+		assetEntrySetImpl.setPayload(getPayload());
+		assetEntrySetImpl.setChildAssetEntrySetsCount(getChildAssetEntrySetsCount());
+		assetEntrySetImpl.setRatingsStatsTotalScore(getRatingsStatsTotalScore());
 
 		assetEntrySetImpl.resetOriginalValues();
 
@@ -466,6 +609,25 @@ public class AssetEntrySetModelImpl extends BaseModelImpl<AssetEntrySet>
 
 	@Override
 	public void resetOriginalValues() {
+		AssetEntrySetModelImpl assetEntrySetModelImpl = this;
+
+		assetEntrySetModelImpl._originalCreateTime = assetEntrySetModelImpl._createTime;
+
+		assetEntrySetModelImpl._setOriginalCreateTime = false;
+
+		assetEntrySetModelImpl._originalParentAssetEntrySetId = assetEntrySetModelImpl._parentAssetEntrySetId;
+
+		assetEntrySetModelImpl._setOriginalParentAssetEntrySetId = false;
+
+		assetEntrySetModelImpl._originalCreatorClassNameId = assetEntrySetModelImpl._creatorClassNameId;
+
+		assetEntrySetModelImpl._setOriginalCreatorClassNameId = false;
+
+		assetEntrySetModelImpl._originalCreatorClassPK = assetEntrySetModelImpl._creatorClassPK;
+
+		assetEntrySetModelImpl._setOriginalCreatorClassPK = false;
+
+		assetEntrySetModelImpl._columnBitmask = 0;
 	}
 
 	@Override
@@ -504,28 +666,24 @@ public class AssetEntrySetModelImpl extends BaseModelImpl<AssetEntrySet>
 
 		assetEntrySetCacheModel.creatorClassPK = getCreatorClassPK();
 
-		assetEntrySetCacheModel.content = getContent();
+		assetEntrySetCacheModel.payload = getPayload();
 
-		String content = assetEntrySetCacheModel.content;
+		String payload = assetEntrySetCacheModel.payload;
 
-		if ((content != null) && (content.length() == 0)) {
-			assetEntrySetCacheModel.content = null;
+		if ((payload != null) && (payload.length() == 0)) {
+			assetEntrySetCacheModel.payload = null;
 		}
 
-		assetEntrySetCacheModel.data = getData();
+		assetEntrySetCacheModel.childAssetEntrySetsCount = getChildAssetEntrySetsCount();
 
-		String data = assetEntrySetCacheModel.data;
-
-		if ((data != null) && (data.length() == 0)) {
-			assetEntrySetCacheModel.data = null;
-		}
+		assetEntrySetCacheModel.ratingsStatsTotalScore = getRatingsStatsTotalScore();
 
 		return assetEntrySetCacheModel;
 	}
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(25);
+		StringBundler sb = new StringBundler(27);
 
 		sb.append("{assetEntrySetId=");
 		sb.append(getAssetEntrySetId());
@@ -547,10 +705,12 @@ public class AssetEntrySetModelImpl extends BaseModelImpl<AssetEntrySet>
 		sb.append(getCreatorClassNameId());
 		sb.append(", creatorClassPK=");
 		sb.append(getCreatorClassPK());
-		sb.append(", content=");
-		sb.append(getContent());
-		sb.append(", data=");
-		sb.append(getData());
+		sb.append(", payload=");
+		sb.append(getPayload());
+		sb.append(", childAssetEntrySetsCount=");
+		sb.append(getChildAssetEntrySetsCount());
+		sb.append(", ratingsStatsTotalScore=");
+		sb.append(getRatingsStatsTotalScore());
 		sb.append("}");
 
 		return sb.toString();
@@ -558,7 +718,7 @@ public class AssetEntrySetModelImpl extends BaseModelImpl<AssetEntrySet>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(40);
+		StringBundler sb = new StringBundler(43);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.asset.entry.set.model.AssetEntrySet");
@@ -605,12 +765,16 @@ public class AssetEntrySetModelImpl extends BaseModelImpl<AssetEntrySet>
 		sb.append(getCreatorClassPK());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>content</column-name><column-value><![CDATA[");
-		sb.append(getContent());
+			"<column><column-name>payload</column-name><column-value><![CDATA[");
+		sb.append(getPayload());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>data</column-name><column-value><![CDATA[");
-		sb.append(getData());
+			"<column><column-name>childAssetEntrySetsCount</column-name><column-value><![CDATA[");
+		sb.append(getChildAssetEntrySetsCount());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>ratingsStatsTotalScore</column-name><column-value><![CDATA[");
+		sb.append(getRatingsStatsTotalScore());
 		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
@@ -628,12 +792,22 @@ public class AssetEntrySetModelImpl extends BaseModelImpl<AssetEntrySet>
 	private String _userUuid;
 	private String _userName;
 	private long _createTime;
+	private long _originalCreateTime;
+	private boolean _setOriginalCreateTime;
 	private long _modifiedTime;
 	private String _assetEntryId;
 	private long _parentAssetEntrySetId;
+	private long _originalParentAssetEntrySetId;
+	private boolean _setOriginalParentAssetEntrySetId;
 	private long _creatorClassNameId;
+	private long _originalCreatorClassNameId;
+	private boolean _setOriginalCreatorClassNameId;
 	private long _creatorClassPK;
-	private String _content;
-	private String _data;
+	private long _originalCreatorClassPK;
+	private boolean _setOriginalCreatorClassPK;
+	private String _payload;
+	private int _childAssetEntrySetsCount;
+	private int _ratingsStatsTotalScore;
+	private long _columnBitmask;
 	private AssetEntrySet _escapedModel;
 }

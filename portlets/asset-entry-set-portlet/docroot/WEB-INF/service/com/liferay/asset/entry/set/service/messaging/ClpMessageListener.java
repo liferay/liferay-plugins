@@ -15,6 +15,7 @@
 package com.liferay.asset.entry.set.service.messaging;
 
 import com.liferay.asset.entry.set.service.AssetEntrySetLocalServiceUtil;
+import com.liferay.asset.entry.set.service.AssetEntrySetServiceUtil;
 import com.liferay.asset.entry.set.service.ClpSerializer;
 
 import com.liferay.portal.kernel.messaging.BaseMessageListener;
@@ -36,6 +37,8 @@ public class ClpMessageListener extends BaseMessageListener {
 		if (command.equals("undeploy") &&
 				servletContextName.equals(getServletContextName())) {
 			AssetEntrySetLocalServiceUtil.clearService();
+
+			AssetEntrySetServiceUtil.clearService();
 		}
 	}
 }

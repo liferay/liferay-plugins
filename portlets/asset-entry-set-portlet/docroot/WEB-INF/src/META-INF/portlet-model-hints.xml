@@ -12,7 +12,8 @@
 		<field name="parentAssetEntrySetId" type="long" />
 		<field name="creatorClassNameId" type="long" />
 		<field name="creatorClassPK" type="long" />
-		<field name="content" type="String" />
-		<field name="data" type="String" />
+		<field name="payload" type="String" />
+		<field name="childAssetEntrySetsCount" type="int" />
+		<field name="ratingsStatsTotalScore" type="int" />
 	</model>
 </model-hints>

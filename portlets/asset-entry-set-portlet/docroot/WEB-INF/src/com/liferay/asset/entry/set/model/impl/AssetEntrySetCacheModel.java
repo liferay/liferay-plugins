@@ -36,7 +36,7 @@ public class AssetEntrySetCacheModel implements CacheModel<AssetEntrySet>,
 	Externalizable {
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(25);
+		StringBundler sb = new StringBundler(27);
 
 		sb.append("{assetEntrySetId=");
 		sb.append(assetEntrySetId);
@@ -58,10 +58,12 @@ public class AssetEntrySetCacheModel implements CacheModel<AssetEntrySet>,
 		sb.append(creatorClassNameId);
 		sb.append(", creatorClassPK=");
 		sb.append(creatorClassPK);
-		sb.append(", content=");
-		sb.append(content);
-		sb.append(", data=");
-		sb.append(data);
+		sb.append(", payload=");
+		sb.append(payload);
+		sb.append(", childAssetEntrySetsCount=");
+		sb.append(childAssetEntrySetsCount);
+		sb.append(", ratingsStatsTotalScore=");
+		sb.append(ratingsStatsTotalScore);
 		sb.append("}");
 
 		return sb.toString();
@@ -96,19 +98,15 @@ public class AssetEntrySetCacheModel implements CacheModel<AssetEntrySet>,
 		assetEntrySetImpl.setCreatorClassNameId(creatorClassNameId);
 		assetEntrySetImpl.setCreatorClassPK(creatorClassPK);
 
-		if (content == null) {
-			assetEntrySetImpl.setContent(StringPool.BLANK);
+		if (payload == null) {
+			assetEntrySetImpl.setPayload(StringPool.BLANK);
 		}
 		else {
-			assetEntrySetImpl.setContent(content);
+			assetEntrySetImpl.setPayload(payload);
 		}
 
-		if (data == null) {
-			assetEntrySetImpl.setData(StringPool.BLANK);
-		}
-		else {
-			assetEntrySetImpl.setData(data);
-		}
+		assetEntrySetImpl.setChildAssetEntrySetsCount(childAssetEntrySetsCount);
+		assetEntrySetImpl.setRatingsStatsTotalScore(ratingsStatsTotalScore);
 
 		assetEntrySetImpl.resetOriginalValues();
 
@@ -127,8 +125,9 @@ public class AssetEntrySetCacheModel implements CacheModel<AssetEntrySet>,
 		parentAssetEntrySetId = objectInput.readLong();
 		creatorClassNameId = objectInput.readLong();
 		creatorClassPK = objectInput.readLong();
-		content = objectInput.readUTF();
-		data = objectInput.readUTF();
+		payload = objectInput.readUTF();
+		childAssetEntrySetsCount = objectInput.readInt();
+		ratingsStatsTotalScore = objectInput.readInt();
 	}
 
 	@Override
@@ -159,19 +158,15 @@ public class AssetEntrySetCacheModel implements CacheModel<AssetEntrySet>,
 		objectOutput.writeLong(creatorClassNameId);
 		objectOutput.writeLong(creatorClassPK);
 
-		if (content == null) {
+		if (payload == null) {
 			objectOutput.writeUTF(StringPool.BLANK);
 		}
 		else {
-			objectOutput.writeUTF(content);
+			objectOutput.writeUTF(payload);
 		}
 
-		if (data == null) {
-			objectOutput.writeUTF(StringPool.BLANK);
-		}
-		else {
-			objectOutput.writeUTF(data);
-		}
+		objectOutput.writeInt(childAssetEntrySetsCount);
+		objectOutput.writeInt(ratingsStatsTotalScore);
 	}
 
 	public long assetEntrySetId;
@@ -184,6 +179,7 @@ public class AssetEntrySetCacheModel implements CacheModel<AssetEntrySet>,
 	public long parentAssetEntrySetId;
 	public long creatorClassNameId;
 	public long creatorClassPK;
-	public String content;
-	public String data;
+	public String payload;
+	public int childAssetEntrySetsCount;
+	public int ratingsStatsTotalScore;
 }

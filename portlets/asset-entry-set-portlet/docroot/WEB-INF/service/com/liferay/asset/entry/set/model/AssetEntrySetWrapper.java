@@ -59,8 +59,9 @@ public class AssetEntrySetWrapper implements AssetEntrySet,
 		attributes.put("parentAssetEntrySetId", getParentAssetEntrySetId());
 		attributes.put("creatorClassNameId", getCreatorClassNameId());
 		attributes.put("creatorClassPK", getCreatorClassPK());
-		attributes.put("content", getContent());
-		attributes.put("data", getData());
+		attributes.put("payload", getPayload());
+		attributes.put("childAssetEntrySetsCount", getChildAssetEntrySetsCount());
+		attributes.put("ratingsStatsTotalScore", getRatingsStatsTotalScore());
 
 		return attributes;
 	}
@@ -128,16 +129,24 @@ public class AssetEntrySetWrapper implements AssetEntrySet,
 			setCreatorClassPK(creatorClassPK);
 		}
 
-		String content = (String)attributes.get("content");
+		String payload = (String)attributes.get("payload");
 
-		if (content != null) {
-			setContent(content);
+		if (payload != null) {
+			setPayload(payload);
 		}
 
-		String data = (String)attributes.get("data");
+		Integer childAssetEntrySetsCount = (Integer)attributes.get(
+				"childAssetEntrySetsCount");
 
-		if (data != null) {
-			setData(data);
+		if (childAssetEntrySetsCount != null) {
+			setChildAssetEntrySetsCount(childAssetEntrySetsCount);
+		}
+
+		Integer ratingsStatsTotalScore = (Integer)attributes.get(
+				"ratingsStatsTotalScore");
+
+		if (ratingsStatsTotalScore != null) {
+			setRatingsStatsTotalScore(ratingsStatsTotalScore);
 		}
 	}
 
@@ -384,43 +393,63 @@ public class AssetEntrySetWrapper implements AssetEntrySet,
 	}
 
 	/**
-	* Returns the content of this asset entry set.
+	* Returns the payload of this asset entry set.
 	*
-	* @return the content of this asset entry set
+	* @return the payload of this asset entry set
 	*/
 	@Override
-	public java.lang.String getContent() {
-		return _assetEntrySet.getContent();
+	public java.lang.String getPayload() {
+		return _assetEntrySet.getPayload();
 	}
 
 	/**
-	* Sets the content of this asset entry set.
+	* Sets the payload of this asset entry set.
 	*
-	* @param content the content of this asset entry set
+	* @param payload the payload of this asset entry set
 	*/
 	@Override
-	public void setContent(java.lang.String content) {
-		_assetEntrySet.setContent(content);
+	public void setPayload(java.lang.String payload) {
+		_assetEntrySet.setPayload(payload);
 	}
 
 	/**
-	* Returns the data of this asset entry set.
+	* Returns the child asset entry sets count of this asset entry set.
 	*
-	* @return the data of this asset entry set
+	* @return the child asset entry sets count of this asset entry set
 	*/
 	@Override
-	public java.lang.String getData() {
-		return _assetEntrySet.getData();
+	public int getChildAssetEntrySetsCount() {
+		return _assetEntrySet.getChildAssetEntrySetsCount();
 	}
 
 	/**
-	* Sets the data of this asset entry set.
+	* Sets the child asset entry sets count of this asset entry set.
 	*
-	* @param data the data of this asset entry set
+	* @param childAssetEntrySetsCount the child asset entry sets count of this asset entry set
 	*/
 	@Override
-	public void setData(java.lang.String data) {
-		_assetEntrySet.setData(data);
+	public void setChildAssetEntrySetsCount(int childAssetEntrySetsCount) {
+		_assetEntrySet.setChildAssetEntrySetsCount(childAssetEntrySetsCount);
+	}
+
+	/**
+	* Returns the ratings stats total score of this asset entry set.
+	*
+	* @return the ratings stats total score of this asset entry set
+	*/
+	@Override
+	public int getRatingsStatsTotalScore() {
+		return _assetEntrySet.getRatingsStatsTotalScore();
+	}
+
+	/**
+	* Sets the ratings stats total score of this asset entry set.
+	*
+	* @param ratingsStatsTotalScore the ratings stats total score of this asset entry set
+	*/
+	@Override
+	public void setRatingsStatsTotalScore(int ratingsStatsTotalScore) {
+		_assetEntrySet.setRatingsStatsTotalScore(ratingsStatsTotalScore);
 	}
 
 	@Override

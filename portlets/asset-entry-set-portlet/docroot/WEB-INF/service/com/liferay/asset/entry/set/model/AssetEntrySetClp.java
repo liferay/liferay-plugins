@@ -84,8 +84,9 @@ public class AssetEntrySetClp extends BaseModelImpl<AssetEntrySet>
 		attributes.put("parentAssetEntrySetId", getParentAssetEntrySetId());
 		attributes.put("creatorClassNameId", getCreatorClassNameId());
 		attributes.put("creatorClassPK", getCreatorClassPK());
-		attributes.put("content", getContent());
-		attributes.put("data", getData());
+		attributes.put("payload", getPayload());
+		attributes.put("childAssetEntrySetsCount", getChildAssetEntrySetsCount());
+		attributes.put("ratingsStatsTotalScore", getRatingsStatsTotalScore());
 
 		return attributes;
 	}
@@ -153,16 +154,24 @@ public class AssetEntrySetClp extends BaseModelImpl<AssetEntrySet>
 			setCreatorClassPK(creatorClassPK);
 		}
 
-		String content = (String)attributes.get("content");
+		String payload = (String)attributes.get("payload");
 
-		if (content != null) {
-			setContent(content);
+		if (payload != null) {
+			setPayload(payload);
 		}
 
-		String data = (String)attributes.get("data");
+		Integer childAssetEntrySetsCount = (Integer)attributes.get(
+				"childAssetEntrySetsCount");
 
-		if (data != null) {
-			setData(data);
+		if (childAssetEntrySetsCount != null) {
+			setChildAssetEntrySetsCount(childAssetEntrySetsCount);
+		}
+
+		Integer ratingsStatsTotalScore = (Integer)attributes.get(
+				"ratingsStatsTotalScore");
+
+		if (ratingsStatsTotalScore != null) {
+			setRatingsStatsTotalScore(ratingsStatsTotalScore);
 		}
 	}
 
@@ -409,21 +418,21 @@ public class AssetEntrySetClp extends BaseModelImpl<AssetEntrySet>
 	}
 
 	@Override
-	public String getContent() {
-		return _content;
+	public String getPayload() {
+		return _payload;
 	}
 
 	@Override
-	public void setContent(String content) {
-		_content = content;
+	public void setPayload(String payload) {
+		_payload = payload;
 
 		if (_assetEntrySetRemoteModel != null) {
 			try {
 				Class<?> clazz = _assetEntrySetRemoteModel.getClass();
 
-				Method method = clazz.getMethod("setContent", String.class);
+				Method method = clazz.getMethod("setPayload", String.class);
 
-				method.invoke(_assetEntrySetRemoteModel, content);
+				method.invoke(_assetEntrySetRemoteModel, payload);
 			}
 			catch (Exception e) {
 				throw new UnsupportedOperationException(e);
@@ -432,21 +441,47 @@ public class AssetEntrySetClp extends BaseModelImpl<AssetEntrySet>
 	}
 
 	@Override
-	public String getData() {
-		return _data;
+	public int getChildAssetEntrySetsCount() {
+		return _childAssetEntrySetsCount;
 	}
 
 	@Override
-	public void setData(String data) {
-		_data = data;
+	public void setChildAssetEntrySetsCount(int childAssetEntrySetsCount) {
+		_childAssetEntrySetsCount = childAssetEntrySetsCount;
 
 		if (_assetEntrySetRemoteModel != null) {
 			try {
 				Class<?> clazz = _assetEntrySetRemoteModel.getClass();
 
-				Method method = clazz.getMethod("setData", String.class);
+				Method method = clazz.getMethod("setChildAssetEntrySetsCount",
+						int.class);
 
-				method.invoke(_assetEntrySetRemoteModel, data);
+				method.invoke(_assetEntrySetRemoteModel,
+					childAssetEntrySetsCount);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
+	}
+
+	@Override
+	public int getRatingsStatsTotalScore() {
+		return _ratingsStatsTotalScore;
+	}
+
+	@Override
+	public void setRatingsStatsTotalScore(int ratingsStatsTotalScore) {
+		_ratingsStatsTotalScore = ratingsStatsTotalScore;
+
+		if (_assetEntrySetRemoteModel != null) {
+			try {
+				Class<?> clazz = _assetEntrySetRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setRatingsStatsTotalScore",
+						int.class);
+
+				method.invoke(_assetEntrySetRemoteModel, ratingsStatsTotalScore);
 			}
 			catch (Exception e) {
 				throw new UnsupportedOperationException(e);
@@ -534,8 +569,9 @@ public class AssetEntrySetClp extends BaseModelImpl<AssetEntrySet>
 		clone.setParentAssetEntrySetId(getParentAssetEntrySetId());
 		clone.setCreatorClassNameId(getCreatorClassNameId());
 		clone.setCreatorClassPK(getCreatorClassPK());
-		clone.setContent(getContent());
-		clone.setData(getData());
+		clone.setPayload(getPayload());
+		clone.setChildAssetEntrySetsCount(getChildAssetEntrySetsCount());
+		clone.setRatingsStatsTotalScore(getRatingsStatsTotalScore());
 
 		return clone;
 	}
@@ -596,7 +632,7 @@ public class AssetEntrySetClp extends BaseModelImpl<AssetEntrySet>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(25);
+		StringBundler sb = new StringBundler(27);
 
 		sb.append("{assetEntrySetId=");
 		sb.append(getAssetEntrySetId());
@@ -618,10 +654,12 @@ public class AssetEntrySetClp extends BaseModelImpl<AssetEntrySet>
 		sb.append(getCreatorClassNameId());
 		sb.append(", creatorClassPK=");
 		sb.append(getCreatorClassPK());
-		sb.append(", content=");
-		sb.append(getContent());
-		sb.append(", data=");
-		sb.append(getData());
+		sb.append(", payload=");
+		sb.append(getPayload());
+		sb.append(", childAssetEntrySetsCount=");
+		sb.append(getChildAssetEntrySetsCount());
+		sb.append(", ratingsStatsTotalScore=");
+		sb.append(getRatingsStatsTotalScore());
 		sb.append("}");
 
 		return sb.toString();
@@ -629,7 +667,7 @@ public class AssetEntrySetClp extends BaseModelImpl<AssetEntrySet>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(40);
+		StringBundler sb = new StringBundler(43);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.asset.entry.set.model.AssetEntrySet");
@@ -676,12 +714,16 @@ public class AssetEntrySetClp extends BaseModelImpl<AssetEntrySet>
 		sb.append(getCreatorClassPK());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>content</column-name><column-value><![CDATA[");
-		sb.append(getContent());
+			"<column><column-name>payload</column-name><column-value><![CDATA[");
+		sb.append(getPayload());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>data</column-name><column-value><![CDATA[");
-		sb.append(getData());
+			"<column><column-name>childAssetEntrySetsCount</column-name><column-value><![CDATA[");
+		sb.append(getChildAssetEntrySetsCount());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>ratingsStatsTotalScore</column-name><column-value><![CDATA[");
+		sb.append(getRatingsStatsTotalScore());
 		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
@@ -700,8 +742,9 @@ public class AssetEntrySetClp extends BaseModelImpl<AssetEntrySet>
 	private long _parentAssetEntrySetId;
 	private long _creatorClassNameId;
 	private long _creatorClassPK;
-	private String _content;
-	private String _data;
+	private String _payload;
+	private int _childAssetEntrySetsCount;
+	private int _ratingsStatsTotalScore;
 	private BaseModel<?> _assetEntrySetRemoteModel;
 	private Class<?> _clpSerializerClass = com.liferay.asset.entry.set.service.ClpSerializer.class;
 }

@@ -20,9 +20,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * This class is used by SOAP remote services.
+ * This class is used by SOAP remote services, specifically {@link com.liferay.asset.entry.set.service.http.AssetEntrySetServiceSoap}.
  *
  * @author Brian Wing Shun Chan
+ * @see com.liferay.asset.entry.set.service.http.AssetEntrySetServiceSoap
  * @generated
  */
 public class AssetEntrySetSoap implements Serializable {
@@ -39,8 +40,9 @@ public class AssetEntrySetSoap implements Serializable {
 		soapModel.setParentAssetEntrySetId(model.getParentAssetEntrySetId());
 		soapModel.setCreatorClassNameId(model.getCreatorClassNameId());
 		soapModel.setCreatorClassPK(model.getCreatorClassPK());
-		soapModel.setContent(model.getContent());
-		soapModel.setData(model.getData());
+		soapModel.setPayload(model.getPayload());
+		soapModel.setChildAssetEntrySetsCount(model.getChildAssetEntrySetsCount());
+		soapModel.setRatingsStatsTotalScore(model.getRatingsStatsTotalScore());
 
 		return soapModel;
 	}
@@ -173,20 +175,28 @@ public class AssetEntrySetSoap implements Serializable {
 		_creatorClassPK = creatorClassPK;
 	}
 
-	public String getContent() {
-		return _content;
+	public String getPayload() {
+		return _payload;
 	}
 
-	public void setContent(String content) {
-		_content = content;
+	public void setPayload(String payload) {
+		_payload = payload;
 	}
 
-	public String getData() {
-		return _data;
+	public int getChildAssetEntrySetsCount() {
+		return _childAssetEntrySetsCount;
 	}
 
-	public void setData(String data) {
-		_data = data;
+	public void setChildAssetEntrySetsCount(int childAssetEntrySetsCount) {
+		_childAssetEntrySetsCount = childAssetEntrySetsCount;
+	}
+
+	public int getRatingsStatsTotalScore() {
+		return _ratingsStatsTotalScore;
+	}
+
+	public void setRatingsStatsTotalScore(int ratingsStatsTotalScore) {
+		_ratingsStatsTotalScore = ratingsStatsTotalScore;
 	}
 
 	private long _assetEntrySetId;
@@ -199,6 +209,7 @@ public class AssetEntrySetSoap implements Serializable {
 	private long _parentAssetEntrySetId;
 	private long _creatorClassNameId;
 	private long _creatorClassPK;
-	private String _content;
-	private String _data;
+	private String _payload;
+	private int _childAssetEntrySetsCount;
+	private int _ratingsStatsTotalScore;
 }

@@ -9,6 +9,7 @@ create table AssetEntrySet (
 	parentAssetEntrySetId LONG,
 	creatorClassNameId LONG,
 	creatorClassPK LONG,
-	content VARCHAR(75) null,
-	data_ VARCHAR(75) null
+	payload VARCHAR(75) null,
+	childAssetEntrySetsCount INTEGER,
+	ratingsStatsTotalScore INTEGER
 );

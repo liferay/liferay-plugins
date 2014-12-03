@@ -19,10 +19,9 @@
 			<basic name="parentAssetEntrySetId" />
 			<basic name="creatorClassNameId" />
 			<basic name="creatorClassPK" />
-			<basic name="content" />
-			<basic name="data">
-				<column name="DATA_" />
-			</basic>
+			<basic name="payload" />
+			<basic name="childAssetEntrySetsCount" />
+			<basic name="ratingsStatsTotalScore" />
 			<transient name="modelAttributes" />
 			<transient name="primaryKey" />
 			<transient name="primaryKeyObj" />
