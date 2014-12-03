@@ -41,7 +41,7 @@ public class AssetEntrySetLocalServiceImpl
 
 	public AssetEntrySet addAssetEntrySet(
 			long userId, long creatorClassNameId, long creatorClassPK,
-			JSONObject payloadJSONObject, int type)
+			JSONObject payloadJSONObject)
 		throws PortalException, SystemException {
 
 		User user = userPersistence.findByPrimaryKey(userId);
@@ -134,8 +134,8 @@ public class AssetEntrySetLocalServiceImpl
 	}
 
 	public List<AssetEntrySet> getAssetEntrySets(
-			long parentAssetEntrySetId, long creatorClassNameId, int type,
-			int start, int end, OrderByComparator obc)
+			long parentAssetEntrySetId, long creatorClassNameId, int start,
+			int end, OrderByComparator obc)
 		throws SystemException {
 
 		return assetEntrySetPersistence.findByPAESI_CCNI(
