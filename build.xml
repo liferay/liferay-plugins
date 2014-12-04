@@ -16,27 +16,48 @@
 	</target>
 
 	<target name="build-summary">
-		<java
-			classname="com.liferay.portal.tools.PluginsSummaryBuilder"
-			classpathref="portal.classpath"
-			fork="true"
-			newenvironment="true"
-		>
-			<jvmarg value="-Dexternal-properties=com/liferay/portal/tools/dependencies/portal-tools.properties" />
-			<jvmarg value="-Dplugins.dir=${sdk.dir}" />
-		</java>
+		<exec executable="git" outputproperty="git.branch">
+			<arg line="rev-parse --abbrev-ref HEAD"/>
+		</exec>
 
-		<java
-			classname="com.liferay.portal.tools.XSLTBuilder"
-			classpathref="portal.classpath"
-			fork="true"
-			newenvironment="true"
-		>
-			<jvmarg value="-Dexternal-properties=com/liferay/portal/tools/dependencies/portal-tools.properties" />
-			<arg value="${sdk.dir}/summary.xml" />
-			<arg value="${sdk.dir}/summary.xsl" />
-			<arg value="${sdk.dir}/summary.html" />
-		</java>
+		<if>
+		 <equals arg1="${git.branch}" arg2="${development.plugins.branch}" />
+		 <then>
+		 	<delete>
+		 		<fileset dir="." includes="**/liferay-releng.changelog"/>
+		 		<fileset dir="." includes="**/liferay-releng.changelog.md5"/>
+		 	</delete>
+		 	
+		 	<copy todir="${sdk.dir}" overwrite="true">
+		 		<fileset dir="${release.plugins.dir}">
+		 			<include name="**/liferay-plugin-package.properties" />
+		 		</fileset>
+		 	</copy>
+		 </then> 
+ 		 <else>
+			<java
+				classname="com.liferay.portal.tools.PluginsSummaryBuilder"
+				classpathref="portal.classpath"
+				fork="true"
+				newenvironment="true"
+			>
+				<jvmarg value="-Dexternal-properties=com/liferay/portal/tools/dependencies/portal-tools.properties" />
+				<jvmarg value="-Dplugins.dir=${sdk.dir}" />
+			</java>
+
+			<java
+				classname="com.liferay.portal.tools.XSLTBuilder"
+				classpathref="portal.classpath"
+				fork="true"
+				newenvironment="true"
+			>
+				<jvmarg value="-Dexternal-properties=com/liferay/portal/tools/dependencies/portal-tools.properties" />
+				<arg value="${sdk.dir}/summary.xml" />
+				<arg value="${sdk.dir}/summary.xsl" />
+				<arg value="${sdk.dir}/summary.html" />
+			</java>
+		 </else>
+		</if>
 	</target>
 
 	<target name="clean">
