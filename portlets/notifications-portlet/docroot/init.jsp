@@ -27,12 +27,10 @@
 <%@ page import="com.liferay.notifications.util.PortletKeys" %><%@
 page import="com.liferay.notifications.util.PortletPropsValues" %><%@
 page import="com.liferay.notifications.util.comparator.PortletIdComparator" %><%@
-page import="com.liferay.portal.kernel.language.LanguageUtil" %><%@
 page import="com.liferay.portal.kernel.notifications.UserNotificationDefinition" %><%@
 page import="com.liferay.portal.kernel.notifications.UserNotificationDeliveryType" %><%@
 page import="com.liferay.portal.kernel.notifications.UserNotificationManagerUtil" %><%@
 page import="com.liferay.portal.kernel.portlet.LiferayWindowState" %><%@
-page import="com.liferay.portal.kernel.util.JavaConstants" %><%@
 page import="com.liferay.portal.kernel.util.ParamUtil" %><%@
 page import="com.liferay.portal.kernel.util.StringPool" %><%@
 page import="com.liferay.portal.model.Group" %><%@
@@ -46,16 +44,13 @@ page import="com.liferay.portal.service.LayoutLocalServiceUtil" %><%@
 page import="com.liferay.portal.service.PortletLocalServiceUtil" %><%@
 page import="com.liferay.portal.service.UserNotificationDeliveryLocalServiceUtil" %><%@
 page import="com.liferay.portal.service.UserNotificationEventLocalServiceUtil" %><%@
-page import="com.liferay.portlet.PortletConfigFactoryUtil" %><%@
 page import="com.liferay.portlet.PortletURLFactoryUtil" %>
 
 <%@ page import="java.util.List" %><%@
 page import="java.util.Map" %><%@
-page import="java.util.ResourceBundle" %><%@
 page import="java.util.TreeMap" %>
 
-<%@ page import="javax.portlet.PortletConfig" %><%@
-page import="javax.portlet.PortletRequest" %>
+<%@ page import="javax.portlet.PortletRequest" %>
 
 <portlet:defineObjects />
 
