@@ -30,6 +30,7 @@ import com.liferay.portal.kernel.util.StreamUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.kernel.zip.ZipReader;
 import com.liferay.portal.kernel.zip.ZipReaderFactoryUtil;
 import com.liferay.portal.service.ServiceContext;
@@ -100,11 +101,18 @@ public class KBArticleImporter {
 
 		try {
 			if (kbArticle == null) {
+				int workflowAction = serviceContext.getWorkflowAction();
+
+				serviceContext.setWorkflowAction(
+					WorkflowConstants.ACTION_SAVE_DRAFT);
+
 				kbArticle = KBArticleLocalServiceUtil.addKBArticle(
 					userId, parentResourceClassNameId, parentResourcePrimaryKey,
 					kbArticleMarkdownConverter.getTitle(), urlTitle, markdown,
 					null, kbArticleMarkdownConverter.getSourceURL(), null, null,
 					serviceContext);
+
+				serviceContext.setWorkflowAction(workflowAction);
 			}
 		}
 		catch (Exception e) {
