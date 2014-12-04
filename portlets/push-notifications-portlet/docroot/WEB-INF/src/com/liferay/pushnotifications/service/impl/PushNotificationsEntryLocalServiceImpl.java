@@ -74,11 +74,24 @@ public class PushNotificationsEntryLocalServiceImpl
 
 	@Override
 	public List<PushNotificationsEntry> getPushNotificationsEntries(
-		long parentPushNotificationsEntryId, long lastAccessTime, int start,
-		int end) {
+			long parentPushNotificationsEntryId, long lastAccessTime, int start,
+			int end)
+		throws PortalException {
 
-		return pushNotificationsEntryPersistence.findByC_P(
-			lastAccessTime, parentPushNotificationsEntryId, start, end);
+		List<PushNotificationsEntry> pushNotificationsEntries =
+			pushNotificationsEntryPersistence.findByC_P(
+				lastAccessTime, parentPushNotificationsEntryId, start, end);
+
+		for (PushNotificationsEntry pushNotificationsEntry :
+				pushNotificationsEntries) {
+
+			JSONObject userJSONObject = createUserJSONObject(
+				pushNotificationsEntry.getUserId());
+
+			pushNotificationsEntry.setUser(userJSONObject);
+		}
+
+		return pushNotificationsEntries;
 	}
 
 	@Override
@@ -96,21 +109,9 @@ public class PushNotificationsEntryLocalServiceImpl
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
-		JSONObject fromUserJSONObject = JSONFactoryUtil.createJSONObject();
+		JSONObject userJSONObject = createUserJSONObject(fromUserId);
 
-		User user = userLocalService.getUser(fromUserId);
-
-		fromUserJSONObject.put(
-			PushNotificationsConstants.KEY_FULL_NAME, user.getFullName());
-		fromUserJSONObject.put(
-			PushNotificationsConstants.KEY_PORTRAIT_ID, user.getPortraitId());
-		fromUserJSONObject.put(
-			PushNotificationsConstants.KEY_USER_ID, fromUserId);
-		fromUserJSONObject.put(
-			PushNotificationsConstants.KEY_UUID, user.getUuid());
-
-		jsonObject.put(
-			PushNotificationsConstants.KEY_FROM_USER, fromUserJSONObject);
+		jsonObject.put(PushNotificationsConstants.KEY_USER, userJSONObject);
 
 		jsonObject.put(
 			PushNotificationsConstants.KEY_PARENT_PUSH_NOTIFICATIONS_ENTRY_ID,
@@ -162,6 +163,23 @@ public class PushNotificationsEntryLocalServiceImpl
 		pushNotificationsEntryPersistence.update(pushNotificationsEntry);
 
 		return pushNotificationsEntry;
+	}
+
+	protected JSONObject createUserJSONObject(long userId)
+		throws PortalException {
+
+		JSONObject userJSONObject = JSONFactoryUtil.createJSONObject();
+
+		User user = userLocalService.getUser(userId);
+
+		userJSONObject.put(
+			PushNotificationsConstants.KEY_FULL_NAME, user.getFullName());
+		userJSONObject.put(
+			PushNotificationsConstants.KEY_PORTRAIT_ID, user.getPortraitId());
+		userJSONObject.put(PushNotificationsConstants.KEY_USER_ID, userId);
+		userJSONObject.put(PushNotificationsConstants.KEY_UUID, user.getUuid());
+
+		return userJSONObject;
 	}
 
 	protected PushNotificationsEntry updateRatingsTotalScore(

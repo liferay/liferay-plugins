@@ -67,8 +67,9 @@ public class PushNotificationsEntryServiceImpl
 
 	@Override
 	public List<PushNotificationsEntry> getPushNotificationsEntries(
-		long parentPushNotificationsEntryId, long lastAccessTime, int start,
-		int end) {
+			long parentPushNotificationsEntryId, long lastAccessTime, int start,
+			int end)
+		throws PortalException {
 
 		return pushNotificationsEntryLocalService.getPushNotificationsEntries(
 			parentPushNotificationsEntryId, lastAccessTime, start, end);
