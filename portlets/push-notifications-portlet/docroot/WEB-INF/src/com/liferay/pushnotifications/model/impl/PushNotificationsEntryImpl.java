@@ -14,12 +14,28 @@
 
 package com.liferay.pushnotifications.model.impl;
 
+import com.liferay.portal.kernel.json.JSON;
+import com.liferay.portal.kernel.json.JSONObject;
+
 /**
- * @author Silvio Santos
+ * @author Bruno Farache
  */
 public class PushNotificationsEntryImpl extends PushNotificationsEntryBaseImpl {
 
 	public PushNotificationsEntryImpl() {
 	}
+
+	@JSON
+	@Override
+	public JSONObject getUser() {
+		return _user;
+	}
+
+	@Override
+	public void setUser(JSONObject user) {
+		_user = user;
+	}
+
+	private JSONObject _user;
 
 }

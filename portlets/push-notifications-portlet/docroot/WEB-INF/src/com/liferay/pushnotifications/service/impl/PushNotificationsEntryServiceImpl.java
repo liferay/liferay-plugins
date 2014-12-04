@@ -70,7 +70,7 @@ public class PushNotificationsEntryServiceImpl
 	public List<PushNotificationsEntry> getPushNotificationsEntries(
 			long parentPushNotificationsEntryId, long lastAccessTime, int start,
 			int end)
-		throws SystemException {
+		throws PortalException, SystemException {
 
 		return pushNotificationsEntryLocalService.getPushNotificationsEntries(
 			parentPushNotificationsEntryId, lastAccessTime, start, end);

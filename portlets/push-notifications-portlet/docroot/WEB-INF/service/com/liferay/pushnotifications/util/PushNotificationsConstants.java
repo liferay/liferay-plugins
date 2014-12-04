@@ -19,8 +19,6 @@ package com.liferay.pushnotifications.util;
  */
 public class PushNotificationsConstants {
 
-	public static final String KEY_FROM_USER = "fromUser";
-
 	public static final String KEY_FULL_NAME = "fullName";
 
 	public static final String KEY_MESSAGE = "message";
@@ -48,6 +46,8 @@ public class PushNotificationsConstants {
 	public static final String KEY_TO_USER = "toUser";
 
 	public static final String KEY_TYPE = "type";
+
+	public static final String KEY_USER = "user";
 
 	public static final String KEY_USER_ID = "userId";
 
