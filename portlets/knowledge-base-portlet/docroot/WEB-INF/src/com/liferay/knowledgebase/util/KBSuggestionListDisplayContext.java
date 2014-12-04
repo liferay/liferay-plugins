@@ -18,9 +18,13 @@ import com.liferay.knowledgebase.model.KBArticle;
 import com.liferay.knowledgebase.model.KBArticleConstants;
 import com.liferay.knowledgebase.model.KBComment;
 import com.liferay.knowledgebase.model.KBCommentConstants;
+import com.liferay.knowledgebase.model.KBFolder;
+import com.liferay.knowledgebase.model.KBFolderConstants;
 import com.liferay.knowledgebase.service.KBCommentServiceUtil;
+import com.liferay.knowledgebase.service.KBFolderLocalServiceUtil;
 import com.liferay.portal.kernel.dao.search.SearchContainer;
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.util.Validator;
 
 import java.util.List;
 
@@ -90,19 +94,43 @@ public class KBSuggestionListDisplayContext {
 		return _selectedNavItem;
 	}
 
-	public String getViewSuggestionURL(PortletURL portletURL, String navItem) {
+	public String getViewSuggestionURL(PortletURL portletURL, String navItem)
+		throws PortalException {
+
 		portletURL.setParameter("navItem", navItem);
 		portletURL.setParameter("expanded", Boolean.TRUE.toString());
 
 		if (_kbArticle == null) {
 			portletURL.setParameter("mvcPath", "/admin/view_suggestions.jsp");
 		}
+		else if (Validator.isNull(_kbArticle.getUrlTitle())) {
+			portletURL.setParameter(
+				"resourceClassNameId",
+				String.valueOf(_kbArticle.getClassNameId()));
+			portletURL.setParameter(
+				"resourcePrimKey",
+				String.valueOf(_kbArticle.getResourcePrimKey()));
+		}
+		else {
+			portletURL.setParameter("urlTitle", _kbArticle.getUrlTitle());
+
+			if (_kbArticle.getKbFolderId() !=
+					KBFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
+
+				KBFolder kbFolder = KBFolderLocalServiceUtil.getKBFolder(
+					_kbArticle.getKbFolderId());
+
+				portletURL.setParameter(
+					"kbFolderUrlTitle", kbFolder.getUrlTitle());
+			}
+		}
 
 		return portletURL.toString() + "#kbSuggestions";
 	}
 
 	public String getViewSuggestionURL(
-		RenderResponse renderResponse, String navItem) {
+			RenderResponse renderResponse, String navItem)
+		throws PortalException {
 
 		return getViewSuggestionURL(renderResponse.createRenderURL(), navItem);
 	}
