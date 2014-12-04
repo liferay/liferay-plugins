@@ -92,10 +92,17 @@ public class CalendarResourceUtil {
 
 		Map<Locale, String> descriptionMap = new HashMap<Locale, String>();
 
+		long userId = group.getCreatorUserId();
+		User user = UserLocalServiceUtil.fetchUserById(userId);
+
+		if (user == null) {
+			userId = UserLocalServiceUtil.getDefaultUserId(
+				group.getCompanyId());
+		}
+
 		return CalendarResourceLocalServiceUtil.addCalendarResource(
-			group.getCreatorUserId(), groupId,
-			PortalUtil.getClassNameId(Group.class), groupId, null, null,
-			nameMap, descriptionMap, true, serviceContext);
+			userId, groupId, PortalUtil.getClassNameId(Group.class),
+			groupId, null, null, nameMap, descriptionMap, true, serviceContext);
 	}
 
 	public static CalendarResource getGroupCalendarResource(
