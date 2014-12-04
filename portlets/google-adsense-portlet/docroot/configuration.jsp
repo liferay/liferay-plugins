@@ -22,9 +22,9 @@
 	<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.UPDATE %>" />
 
 	<aui:fieldset>
-		<aui:input cssClass="lfr-input-text-container" name="preferences--adClient--" type="text" value="<%= adClient %>" />
+		<aui:input name="preferences--adClient--" type="text" value="<%= adClient %>" wrapperCssClass="lfr-input-text-container" />
 
-		<aui:input cssClass="lfr-input-text-container" name="preferences--adChannel--" type="text" value="<%= adChannel %>" />
+		<aui:input name="preferences--adChannel--" type="text" value="<%= adChannel %>" wrapperCssClass="lfr-input-text-container" />
 
 		<aui:select name="preferences--adType--">
 
@@ -54,15 +54,15 @@
 
 		</aui:select>
 
-		<aui:input cssClass="lfr-input-text-container" name="preferences--colorBorder--" type="text" value="<%= colorBorder %>" />
+		<aui:input name="preferences--colorBorder--" type="text" value="<%= colorBorder %>" wrapperCssClass="lfr-input-text-container" />
 
-		<aui:input cssClass="lfr-input-text-container" label="color-background" name="preferences--colorBg--" type="text" value="<%= colorBg %>" />
+		<aui:input label="color-background" name="preferences--colorBg--" type="text" value="<%= colorBg %>" wrapperCssClass="lfr-input-text-container" />
 
-		<aui:input cssClass="lfr-input-text-container" name="preferences--colorLink--" type="text" value="<%= colorLink %>" />
+		<aui:input name="preferences--colorLink--" type="text" value="<%= colorLink %>" wrapperCssClass="lfr-input-text-container" />
 
-		<aui:input cssClass="lfr-input-text-container" name="preferences--colorText--" type="text" value="<%= colorText %>" />
+		<aui:input name="preferences--colorText--" type="text" value="<%= colorText %>" wrapperCssClass="lfr-input-text-container" />
 
-		<aui:input cssClass="lfr-input-text-container" name="preferences--colorUrl--" type="text" value="<%= colorUrl %>" />
+		<aui:input name="preferences--colorUrl--" type="text" value="<%= colorUrl %>" wrapperCssClass="lfr-input-text-container" />
 	</aui:fieldset>
 
 	<aui:button-row>

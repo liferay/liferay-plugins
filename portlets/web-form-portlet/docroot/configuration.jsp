@@ -64,7 +64,7 @@ if (WebFormUtil.getTableRowsCount(company.getCompanyId(), databaseTableName) > 0
 
 				<aui:input name="preferences--requireCaptcha--" type="checkbox" value="<%= requireCaptcha %>" />
 
-				<aui:input cssClass="lfr-input-text-container" label="redirect-url-on-success" name="preferences--successURL--" value="<%= HtmlUtil.toInputSafe(successURL) %>" />
+				<aui:input label="redirect-url-on-success" name="preferences--successURL--" value="<%= HtmlUtil.toInputSafe(successURL) %>" wrapperCssClass="lfr-input-text-container" />
 			</aui:fieldset>
 		</liferay-ui:panel>
 
@@ -79,14 +79,14 @@ if (WebFormUtil.getTableRowsCount(company.getCompanyId(), databaseTableName) > 0
 				<aui:input label="send-as-email" name="preferences--sendAsEmail--" type="checkbox" value="<%= sendAsEmail %>" />
 
 				<aui:fieldset>
-					<aui:input cssClass="lfr-input-text-container" label="name-from" name="preferences--emailFromName--" value="<%= emailFromName %>" />
+					<aui:input label="name-from" name="preferences--emailFromName--" value="<%= emailFromName %>" wrapperCssClass="lfr-input-text-container" />
 
-					<aui:input cssClass="lfr-input-text-container" label="address-from" name="preferences--emailFromAddress--" value="<%= emailFromAddress %>" />
+					<aui:input label="address-from" name="preferences--emailFromAddress--" value="<%= emailFromAddress %>" wrapperCssClass="lfr-input-text-container" />
 				</aui:fieldset>
 
-				<aui:input cssClass="lfr-input-text-container" helpMessage="add-email-addresses-separated-by-commas" label="addresses-to" name="preferences--emailAddress--" value="<%= emailAddress %>" />
+				<aui:input helpMessage="add-email-addresses-separated-by-commas" label="addresses-to" name="preferences--emailAddress--" value="<%= emailAddress %>" wrapperCssClass="lfr-input-text-container" />
 
-				<aui:input cssClass="lfr-input-text-container" name="preferences--subject--" value="<%= subject %>" />
+				<aui:input name="preferences--subject--" value="<%= subject %>" wrapperCssClass="lfr-input-text-container" />
 
 			</aui:fieldset>
 
@@ -97,7 +97,7 @@ if (WebFormUtil.getTableRowsCount(company.getCompanyId(), databaseTableName) > 0
 			<aui:fieldset cssClass="handle-data" label="file">
 				<aui:input name="preferences--saveToFile--" type="checkbox" value="<%= saveToFile %>" />
 
-				<aui:input cssClass="lfr-input-text-container" label="path-and-file-name" name="preferences--fileName--" value="<%= fileName %>" />
+				<aui:input label="path-and-file-name" name="preferences--fileName--" value="<%= fileName %>" wrapperCssClass="lfr-input-text-container" />
 			</aui:fieldset>
 		</liferay-ui:panel>
 

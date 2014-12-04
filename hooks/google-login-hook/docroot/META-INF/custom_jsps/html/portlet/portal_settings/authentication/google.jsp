@@ -25,7 +25,7 @@ String googleClientSecret = PrefsPropsUtil.getString(company.getCompanyId(), "go
 <aui:fieldset>
 	<aui:input label="enabled" name='<%= "settings--google-auth-enabled--" %>' type="checkbox" value="<%= googleAuthEnabled %>" />
 
-	<aui:input cssClass="lfr-input-text-container" label="google-client-id" name='<%= "settings--google-client-id--" %>' type="text" value="<%= googleClientId %>" />
+	<aui:input label="google-client-id" name='<%= "settings--google-client-id--" %>' type="text" value="<%= googleClientId %>" wrapperCssClass="lfr-input-text-container" />
 
-	<aui:input cssClass="lfr-input-text-container" label="google-client-secret" name='<%= "settings--google-client-secret--" %>' type="text" value="<%= googleClientSecret %>" />
+	<aui:input label="google-client-secret" name='<%= "settings--google-client-secret--" %>' type="text" value="<%= googleClientSecret %>" wrapperCssClass="lfr-input-text-container" />
 </aui:fieldset>

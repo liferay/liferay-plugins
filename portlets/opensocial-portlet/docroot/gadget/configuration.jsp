@@ -69,7 +69,7 @@ JSONObject jsonObject = ExpandoValueServiceUtil.getJSONData(themeDisplay.getComp
 				<c:when test="<%= dataType == UserPref.DataType.HIDDEN %>">
 				</c:when>
 				<c:otherwise>
-					<aui:input cssClass="lfr-input-text-container" label="<%= displayName %>" name="<%= name %>" type="text" value="<%= value %>" />
+					<aui:input label="<%= displayName %>" name="<%= name %>" type="text" value="<%= value %>" wrapperCssClass="lfr-input-text-container" />
 				</c:otherwise>
 			</c:choose>
 

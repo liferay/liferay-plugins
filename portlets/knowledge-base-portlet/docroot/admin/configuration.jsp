@@ -116,9 +116,9 @@ else if (tabs2.equals("suggestion-resolved-email")) {
 				</div>
 			</c:when>
 			<c:when test='<%= tabs2.equals("email-from") %>'>
-				<aui:input cssClass="lfr-input-text-container" label="name" name="preferences--emailFromName--" value="<%= emailFromName %>" />
+				<aui:input label="name" name="preferences--emailFromName--" value="<%= emailFromName %>" wrapperCssClass="lfr-input-text-container" />
 
-				<aui:input cssClass="lfr-input-text-container" label="address" name="preferences--emailFromAddress--" value="<%= emailFromAddress %>" />
+				<aui:input label="address" name="preferences--emailFromAddress--" value="<%= emailFromAddress %>" wrapperCssClass="lfr-input-text-container" />
 
 				<div class="definition-of-terms">
 					<h4><liferay-ui:message key="definition-of-terms" /></h4>
@@ -181,10 +181,10 @@ else if (tabs2.equals("suggestion-resolved-email")) {
 
 				<c:choose>
 					<c:when test='<%= tabs2.equals("article-added-email") %>'>
-						<aui:input cssClass="lfr-input-text-container" label="subject" name="preferences--emailKBArticleAddedSubject--" value="<%= emailKBArticleAddedSubject %>" />
+						<aui:input label="subject" name="preferences--emailKBArticleAddedSubject--" value="<%= emailKBArticleAddedSubject %>" wrapperCssClass="lfr-input-text-container" />
 					</c:when>
 					<c:when test='<%= tabs2.equals("article-updated-email") %>'>
-						<aui:input cssClass="lfr-input-text-container" label="subject" name="preferences--emailKBArticleUpdatedSubject--" value="<%= emailKBArticleUpdatedSubject %>" />
+						<aui:input label="subject" name="preferences--emailKBArticleUpdatedSubject--" value="<%= emailKBArticleUpdatedSubject %>" wrapperCssClass="lfr-input-text-container" />
 					</c:when>
 				</c:choose>
 

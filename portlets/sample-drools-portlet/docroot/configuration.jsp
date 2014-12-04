@@ -66,7 +66,7 @@ long[] classNameIdValues = StringUtil.split(ParamUtil.getString(request, "classN
 		}
 		%>
 
-		<aui:input cssClass="lfr-input-text-container" name="userCustomAttributeNames" value="<%= userCustomAttributeNamesValue %>" />
+		<aui:input name="userCustomAttributeNames" value="<%= userCustomAttributeNamesValue %>" wrapperCssClass="lfr-input-text-container" />
 
 		<liferay-ui:input-move-boxes
 			leftBoxName="currentClassNameIds"
