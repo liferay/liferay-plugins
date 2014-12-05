@@ -31,9 +31,9 @@ public class UpgradeProcess_1_3_4 extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {
+		upgrade(UpgradeKBComment.class);
 		upgrade(UpgradePortletPreferences.class);
 		upgrade(UpgradeResourceAction.class);
-		upgrade(UpgradeKBComment.class);
 	}
 
 }
