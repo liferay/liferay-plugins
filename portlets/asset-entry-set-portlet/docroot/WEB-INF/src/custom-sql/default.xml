@@ -2,7 +2,7 @@
 
 <custom-sql>
 
-	<sql id="com.liferay.microblogs.service.persistence.AssetEntrySetFinder.countByCCNI_ATN">
+	<sql id="com.liferay.asset.entry.set.service.persistence.AssetEntrySetFinder.countByCCNI_ATN">
 		<![CDATA[
 			SELECT
 				COUNT(DISTINCT AssetEntrySet.assetEntrySetId) AS COUNT_VALUE
@@ -22,7 +22,7 @@
 				(AssetTag.name = ?)
 		]]>
 	</sql>
-	<sql id="com.liferay.microblogs.service.persistence.AssetEntrySetFinder.countByCCNI_CCPK_ATN">
+	<sql id="com.liferay.asset.entry.set.service.persistence.AssetEntrySetFinder.countByCCNI_CCPK_ATN">
 		<![CDATA[
 			SELECT
 				COUNT(DISTINCT AssetEntrySet.assetEntrySetId) AS COUNT_VALUE
@@ -45,7 +45,7 @@
 				(AssetTag.name = ?)
 		]]>
 	</sql>
-	<sql id="com.liferay.microblogs.service.persistence.AssetEntrySetFinder.findByCCNI_ATN">
+	<sql id="com.liferay.asset.entry.set.service.persistence.AssetEntrySetFinder.findByCCNI_ATN">
 		<![CDATA[
 			SELECT
 				DISTINCT {AssetEntrySet.*}
@@ -67,7 +67,7 @@
 				AssetEntrySet.createDate DESC
 		]]>
 	</sql>
-	<sql id="com.liferay.microblogs.service.persistence.AssetEntrySetFinder.findByCCNI_CCPK_ATN">
+	<sql id="com.liferay.asset.entry.set.service.persistence.AssetEntrySetFinder.findByCCNI_CCPK_ATN">
 		<![CDATA[
 			SELECT
 				DISTINCT {AssetEntrySet.*}
