@@ -35,7 +35,7 @@
 		<if>
 			<or>
 				<equals arg1="${git.branch}" arg2="master" />
-				<matches pattern="ee-.*x$" string="ee-6.1.x" />
+				<matches pattern="ee-.*x$" string="${git.branch}" />
 			</or>
 			<then>
 				<delete>
