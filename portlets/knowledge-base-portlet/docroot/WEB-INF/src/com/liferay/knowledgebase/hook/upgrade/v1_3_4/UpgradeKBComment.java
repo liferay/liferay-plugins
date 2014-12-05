@@ -29,13 +29,12 @@ public class UpgradeKBComment extends UpgradeProcess {
 		}
 
 		runSQL(
-			"update KBComment set userOpinion = " +
-				KBCommentConstants.OPINION_LIKED_IT + " where helpful = TRUE");
+			"update KBComment set userRating = " +
+				KBCommentConstants.RATING_LIKE + " where helpful = TRUE");
 
 		runSQL(
-			"update KBComment set userOpinion = " +
-				KBCommentConstants.OPINION_DID_NOT_LIKE_IT +
-					" where helpful = FALSE");
+			"update KBComment set userRating = " +
+				KBCommentConstants.RATING_DISLIKE + " where helpful = FALSE");
 
 		runSQL("alter table KBComment drop column helpful");
 	}
