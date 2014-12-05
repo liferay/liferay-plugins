@@ -41,8 +41,8 @@ create table KBComment (
 	classNameId LONG,
 	classPK LONG,
 	content STRING null,
-	status INTEGER,
-	userRating INTEGER
+	userRating INTEGER,
+	status INTEGER
 );
 
 create table KBFolder (

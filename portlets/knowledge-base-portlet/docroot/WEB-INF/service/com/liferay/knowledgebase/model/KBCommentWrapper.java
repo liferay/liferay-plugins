@@ -64,8 +64,8 @@ public class KBCommentWrapper implements KBComment, ModelWrapper<KBComment> {
 		attributes.put("classNameId", getClassNameId());
 		attributes.put("classPK", getClassPK());
 		attributes.put("content", getContent());
-		attributes.put("status", getStatus());
 		attributes.put("userRating", getUserRating());
+		attributes.put("status", getStatus());
 
 		return attributes;
 	}
@@ -138,16 +138,16 @@ public class KBCommentWrapper implements KBComment, ModelWrapper<KBComment> {
 			setContent(content);
 		}
 
-		Integer status = (Integer)attributes.get("status");
-
-		if (status != null) {
-			setStatus(status);
-		}
-
 		Integer userRating = (Integer)attributes.get("userRating");
 
 		if (userRating != null) {
 			setUserRating(userRating);
+		}
+
+		Integer status = (Integer)attributes.get("status");
+
+		if (status != null) {
+			setStatus(status);
 		}
 	}
 
