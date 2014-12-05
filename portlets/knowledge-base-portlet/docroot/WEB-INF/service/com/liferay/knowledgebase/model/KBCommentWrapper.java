@@ -61,8 +61,8 @@ public class KBCommentWrapper implements KBComment, ModelWrapper<KBComment> {
 		attributes.put("classNameId", getClassNameId());
 		attributes.put("classPK", getClassPK());
 		attributes.put("content", getContent());
-		attributes.put("helpful", getHelpful());
 		attributes.put("status", getStatus());
+		attributes.put("userRating", getUserRating());
 
 		return attributes;
 	}
@@ -135,16 +135,16 @@ public class KBCommentWrapper implements KBComment, ModelWrapper<KBComment> {
 			setContent(content);
 		}
 
-		Boolean helpful = (Boolean)attributes.get("helpful");
-
-		if (helpful != null) {
-			setHelpful(helpful);
-		}
-
 		Integer status = (Integer)attributes.get("status");
 
 		if (status != null) {
 			setStatus(status);
+		}
+
+		Integer userRating = (Integer)attributes.get("userRating");
+
+		if (userRating != null) {
+			setUserRating(userRating);
 		}
 	}
 
@@ -426,36 +426,6 @@ public class KBCommentWrapper implements KBComment, ModelWrapper<KBComment> {
 	}
 
 	/**
-	* Returns the helpful of this k b comment.
-	*
-	* @return the helpful of this k b comment
-	*/
-	@Override
-	public boolean getHelpful() {
-		return _kbComment.getHelpful();
-	}
-
-	/**
-	* Returns <code>true</code> if this k b comment is helpful.
-	*
-	* @return <code>true</code> if this k b comment is helpful; <code>false</code> otherwise
-	*/
-	@Override
-	public boolean isHelpful() {
-		return _kbComment.isHelpful();
-	}
-
-	/**
-	* Sets whether this k b comment is helpful.
-	*
-	* @param helpful the helpful of this k b comment
-	*/
-	@Override
-	public void setHelpful(boolean helpful) {
-		_kbComment.setHelpful(helpful);
-	}
-
-	/**
 	* Returns the status of this k b comment.
 	*
 	* @return the status of this k b comment
@@ -473,6 +443,26 @@ public class KBCommentWrapper implements KBComment, ModelWrapper<KBComment> {
 	@Override
 	public void setStatus(int status) {
 		_kbComment.setStatus(status);
+	}
+
+	/**
+	* Returns the user rating of this k b comment.
+	*
+	* @return the user rating of this k b comment
+	*/
+	@Override
+	public int getUserRating() {
+		return _kbComment.getUserRating();
+	}
+
+	/**
+	* Sets the user rating of this k b comment.
+	*
+	* @param userRating the user rating of this k b comment
+	*/
+	@Override
+	public void setUserRating(int userRating) {
+		_kbComment.setUserRating(userRating);
 	}
 
 	@Override

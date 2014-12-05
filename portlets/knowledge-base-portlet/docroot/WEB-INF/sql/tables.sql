@@ -41,8 +41,8 @@ create table KBComment (
 	classNameId LONG,
 	classPK LONG,
 	content STRING null,
-	helpful BOOLEAN,
-	status INTEGER
+	status INTEGER,
+	userRating INTEGER
 );
 
 create table KBFolder (

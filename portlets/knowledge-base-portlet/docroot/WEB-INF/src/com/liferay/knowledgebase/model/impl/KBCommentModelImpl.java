@@ -80,10 +80,10 @@ public class KBCommentModelImpl extends BaseModelImpl<KBComment>
 			{ "classNameId", Types.BIGINT },
 			{ "classPK", Types.BIGINT },
 			{ "content", Types.VARCHAR },
-			{ "helpful", Types.BOOLEAN },
-			{ "status", Types.INTEGER }
+			{ "status", Types.INTEGER },
+			{ "userRating", Types.INTEGER }
 		};
-	public static final String TABLE_SQL_CREATE = "create table KBComment (uuid_ VARCHAR(75) null,kbCommentId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,classNameId LONG,classPK LONG,content STRING null,helpful BOOLEAN,status INTEGER)";
+	public static final String TABLE_SQL_CREATE = "create table KBComment (uuid_ VARCHAR(75) null,kbCommentId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,classNameId LONG,classPK LONG,content STRING null,status INTEGER,userRating INTEGER)";
 	public static final String TABLE_SQL_DROP = "drop table KBComment";
 	public static final String ORDER_BY_JPQL = " ORDER BY kbComment.modifiedDate DESC";
 	public static final String ORDER_BY_SQL = " ORDER BY KBComment.modifiedDate DESC";
@@ -132,8 +132,8 @@ public class KBCommentModelImpl extends BaseModelImpl<KBComment>
 		model.setClassNameId(soapModel.getClassNameId());
 		model.setClassPK(soapModel.getClassPK());
 		model.setContent(soapModel.getContent());
-		model.setHelpful(soapModel.getHelpful());
 		model.setStatus(soapModel.getStatus());
+		model.setUserRating(soapModel.getUserRating());
 
 		return model;
 	}
@@ -209,8 +209,8 @@ public class KBCommentModelImpl extends BaseModelImpl<KBComment>
 		attributes.put("classNameId", getClassNameId());
 		attributes.put("classPK", getClassPK());
 		attributes.put("content", getContent());
-		attributes.put("helpful", getHelpful());
 		attributes.put("status", getStatus());
+		attributes.put("userRating", getUserRating());
 
 		return attributes;
 	}
@@ -283,16 +283,16 @@ public class KBCommentModelImpl extends BaseModelImpl<KBComment>
 			setContent(content);
 		}
 
-		Boolean helpful = (Boolean)attributes.get("helpful");
-
-		if (helpful != null) {
-			setHelpful(helpful);
-		}
-
 		Integer status = (Integer)attributes.get("status");
 
 		if (status != null) {
 			setStatus(status);
+		}
+
+		Integer userRating = (Integer)attributes.get("userRating");
+
+		if (userRating != null) {
+			setUserRating(userRating);
 		}
 	}
 
@@ -534,22 +534,6 @@ public class KBCommentModelImpl extends BaseModelImpl<KBComment>
 
 	@JSON
 	@Override
-	public boolean getHelpful() {
-		return _helpful;
-	}
-
-	@Override
-	public boolean isHelpful() {
-		return _helpful;
-	}
-
-	@Override
-	public void setHelpful(boolean helpful) {
-		_helpful = helpful;
-	}
-
-	@JSON
-	@Override
 	public int getStatus() {
 		return _status;
 	}
@@ -569,6 +553,17 @@ public class KBCommentModelImpl extends BaseModelImpl<KBComment>
 
 	public int getOriginalStatus() {
 		return _originalStatus;
+	}
+
+	@JSON
+	@Override
+	public int getUserRating() {
+		return _userRating;
+	}
+
+	@Override
+	public void setUserRating(int userRating) {
+		_userRating = userRating;
 	}
 
 	@Override
@@ -619,8 +614,8 @@ public class KBCommentModelImpl extends BaseModelImpl<KBComment>
 		kbCommentImpl.setClassNameId(getClassNameId());
 		kbCommentImpl.setClassPK(getClassPK());
 		kbCommentImpl.setContent(getContent());
-		kbCommentImpl.setHelpful(getHelpful());
 		kbCommentImpl.setStatus(getStatus());
+		kbCommentImpl.setUserRating(getUserRating());
 
 		kbCommentImpl.resetOriginalValues();
 
@@ -761,9 +756,9 @@ public class KBCommentModelImpl extends BaseModelImpl<KBComment>
 			kbCommentCacheModel.content = null;
 		}
 
-		kbCommentCacheModel.helpful = getHelpful();
-
 		kbCommentCacheModel.status = getStatus();
+
+		kbCommentCacheModel.userRating = getUserRating();
 
 		return kbCommentCacheModel;
 	}
@@ -794,10 +789,10 @@ public class KBCommentModelImpl extends BaseModelImpl<KBComment>
 		sb.append(getClassPK());
 		sb.append(", content=");
 		sb.append(getContent());
-		sb.append(", helpful=");
-		sb.append(getHelpful());
 		sb.append(", status=");
 		sb.append(getStatus());
+		sb.append(", userRating=");
+		sb.append(getUserRating());
 		sb.append("}");
 
 		return sb.toString();
@@ -856,12 +851,12 @@ public class KBCommentModelImpl extends BaseModelImpl<KBComment>
 		sb.append(getContent());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>helpful</column-name><column-value><![CDATA[");
-		sb.append(getHelpful());
-		sb.append("]]></column-value></column>");
-		sb.append(
 			"<column><column-name>status</column-name><column-value><![CDATA[");
 		sb.append(getStatus());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>userRating</column-name><column-value><![CDATA[");
+		sb.append(getUserRating());
 		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
@@ -896,10 +891,10 @@ public class KBCommentModelImpl extends BaseModelImpl<KBComment>
 	private long _originalClassPK;
 	private boolean _setOriginalClassPK;
 	private String _content;
-	private boolean _helpful;
 	private int _status;
 	private int _originalStatus;
 	private boolean _setOriginalStatus;
+	private int _userRating;
 	private long _columnBitmask;
 	private KBComment _escapedModel;
 }

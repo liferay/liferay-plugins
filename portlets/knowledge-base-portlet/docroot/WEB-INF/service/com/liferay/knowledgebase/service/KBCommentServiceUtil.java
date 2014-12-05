@@ -117,24 +117,24 @@ public class KBCommentServiceUtil {
 
 	public static com.liferay.knowledgebase.model.KBComment updateKBComment(
 		long kbCommentId, long classNameId, long classPK,
-		java.lang.String content, boolean helpful, int status,
+		java.lang.String content, int status,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService()
 				   .updateKBComment(kbCommentId, classNameId, classPK, content,
-			helpful, status, serviceContext);
+			status, serviceContext);
 	}
 
 	public static com.liferay.knowledgebase.model.KBComment updateKBComment(
 		long kbCommentId, long classNameId, long classPK,
-		java.lang.String content, boolean helpful,
+		java.lang.String content,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService()
 				   .updateKBComment(kbCommentId, classNameId, classPK, content,
-			helpful, serviceContext);
+			serviceContext);
 	}
 
 	public static com.liferay.knowledgebase.model.KBComment updateStatus(

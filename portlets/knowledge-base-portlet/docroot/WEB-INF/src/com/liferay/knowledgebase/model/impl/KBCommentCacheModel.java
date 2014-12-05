@@ -62,10 +62,10 @@ public class KBCommentCacheModel implements CacheModel<KBComment>,
 		sb.append(classPK);
 		sb.append(", content=");
 		sb.append(content);
-		sb.append(", helpful=");
-		sb.append(helpful);
 		sb.append(", status=");
 		sb.append(status);
+		sb.append(", userRating=");
+		sb.append(userRating);
 		sb.append("}");
 
 		return sb.toString();
@@ -118,8 +118,8 @@ public class KBCommentCacheModel implements CacheModel<KBComment>,
 			kbCommentImpl.setContent(content);
 		}
 
-		kbCommentImpl.setHelpful(helpful);
 		kbCommentImpl.setStatus(status);
+		kbCommentImpl.setUserRating(userRating);
 
 		kbCommentImpl.resetOriginalValues();
 
@@ -139,8 +139,8 @@ public class KBCommentCacheModel implements CacheModel<KBComment>,
 		classNameId = objectInput.readLong();
 		classPK = objectInput.readLong();
 		content = objectInput.readUTF();
-		helpful = objectInput.readBoolean();
 		status = objectInput.readInt();
+		userRating = objectInput.readInt();
 	}
 
 	@Override
@@ -177,8 +177,8 @@ public class KBCommentCacheModel implements CacheModel<KBComment>,
 			objectOutput.writeUTF(content);
 		}
 
-		objectOutput.writeBoolean(helpful);
 		objectOutput.writeInt(status);
+		objectOutput.writeInt(userRating);
 	}
 
 	public String uuid;
@@ -192,6 +192,6 @@ public class KBCommentCacheModel implements CacheModel<KBComment>,
 	public long classNameId;
 	public long classPK;
 	public String content;
-	public boolean helpful;
 	public int status;
+	public int userRating;
 }

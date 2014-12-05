@@ -69,14 +69,14 @@ public class KBCommentServiceClp implements KBCommentService {
 		_methodName10 = "updateKBComment";
 
 		_methodParameterTypes10 = new String[] {
-				"long", "long", "long", "java.lang.String", "boolean", "int",
+				"long", "long", "long", "java.lang.String", "int",
 				"com.liferay.portal.service.ServiceContext"
 			};
 
 		_methodName11 = "updateKBComment";
 
 		_methodParameterTypes11 = new String[] {
-				"long", "long", "long", "java.lang.String", "boolean",
+				"long", "long", "long", "java.lang.String",
 				"com.liferay.portal.service.ServiceContext"
 			};
 
@@ -402,7 +402,7 @@ public class KBCommentServiceClp implements KBCommentService {
 	@Override
 	public com.liferay.knowledgebase.model.KBComment updateKBComment(
 		long kbCommentId, long classNameId, long classPK,
-		java.lang.String content, boolean helpful, int status,
+		java.lang.String content, int status,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -419,8 +419,6 @@ public class KBCommentServiceClp implements KBCommentService {
 					classPK,
 						
 					ClpSerializer.translateInput(content),
-						
-					helpful,
 						
 					status,
 						
@@ -453,7 +451,7 @@ public class KBCommentServiceClp implements KBCommentService {
 	@Override
 	public com.liferay.knowledgebase.model.KBComment updateKBComment(
 		long kbCommentId, long classNameId, long classPK,
-		java.lang.String content, boolean helpful,
+		java.lang.String content,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -470,8 +468,6 @@ public class KBCommentServiceClp implements KBCommentService {
 					classPK,
 						
 					ClpSerializer.translateInput(content),
-						
-					helpful,
 						
 					ClpSerializer.translateInput(serviceContext)
 					});
