@@ -55,10 +55,8 @@
 		<field name="content" type="String">
 			<hint-collection name="TEXTAREA" />
 		</field>
-		<field name="helpful" type="boolean">
-			<hint name="default-value">true</hint>
-		</field>
 		<field name="status" type="int" />
+		<field name="userRating" type="int" />
 	</model>
 	<model name="com.liferay.knowledgebase.model.KBFolder">
 		<field name="uuid" type="String" />

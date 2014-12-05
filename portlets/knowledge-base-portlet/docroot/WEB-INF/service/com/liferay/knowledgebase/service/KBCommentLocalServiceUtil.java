@@ -55,12 +55,20 @@ public class KBCommentLocalServiceUtil {
 
 	public static com.liferay.knowledgebase.model.KBComment addKBComment(
 		long userId, long classNameId, long classPK, java.lang.String content,
-		boolean helpful,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService()
 				   .addKBComment(userId, classNameId, classPK, content,
-			helpful, serviceContext);
+			serviceContext);
+	}
+
+	public static com.liferay.knowledgebase.model.KBComment addKBComment(
+		long userId, long classNameId, long classPK, java.lang.String content,
+		int userRating, com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService()
+				   .addKBComment(userId, classNameId, classPK, content,
+			userRating, serviceContext);
 	}
 
 	/**
@@ -406,12 +414,22 @@ public class KBCommentLocalServiceUtil {
 
 	public static com.liferay.knowledgebase.model.KBComment updateKBComment(
 		long kbCommentId, long classNameId, long classPK,
-		java.lang.String content, boolean helpful, int status,
+		java.lang.String content, int status,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService()
 				   .updateKBComment(kbCommentId, classNameId, classPK, content,
-			helpful, status, serviceContext);
+			status, serviceContext);
+	}
+
+	public static com.liferay.knowledgebase.model.KBComment updateKBComment(
+		long kbCommentId, long classNameId, long classPK,
+		java.lang.String content, int userRating, int status,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService()
+				   .updateKBComment(kbCommentId, classNameId, classPK, content,
+			userRating, status, serviceContext);
 	}
 
 	public static com.liferay.knowledgebase.model.KBComment updateStatus(

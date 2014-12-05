@@ -56,6 +56,7 @@ import com.liferay.portal.service.persistence.PortletPreferencesPersistence;
 import com.liferay.portal.service.persistence.UserPersistence;
 import com.liferay.portal.util.PortalUtil;
 
+import com.liferay.portlet.ratings.service.persistence.RatingsEntryPersistence;
 import com.liferay.portlet.social.service.persistence.SocialActivityPersistence;
 
 import java.io.Serializable;
@@ -889,6 +890,63 @@ public abstract class KBCommentLocalServiceBaseImpl extends BaseLocalServiceImpl
 	}
 
 	/**
+	 * Returns the ratings entry local service.
+	 *
+	 * @return the ratings entry local service
+	 */
+	public com.liferay.portlet.ratings.service.RatingsEntryLocalService getRatingsEntryLocalService() {
+		return ratingsEntryLocalService;
+	}
+
+	/**
+	 * Sets the ratings entry local service.
+	 *
+	 * @param ratingsEntryLocalService the ratings entry local service
+	 */
+	public void setRatingsEntryLocalService(
+		com.liferay.portlet.ratings.service.RatingsEntryLocalService ratingsEntryLocalService) {
+		this.ratingsEntryLocalService = ratingsEntryLocalService;
+	}
+
+	/**
+	 * Returns the ratings entry remote service.
+	 *
+	 * @return the ratings entry remote service
+	 */
+	public com.liferay.portlet.ratings.service.RatingsEntryService getRatingsEntryService() {
+		return ratingsEntryService;
+	}
+
+	/**
+	 * Sets the ratings entry remote service.
+	 *
+	 * @param ratingsEntryService the ratings entry remote service
+	 */
+	public void setRatingsEntryService(
+		com.liferay.portlet.ratings.service.RatingsEntryService ratingsEntryService) {
+		this.ratingsEntryService = ratingsEntryService;
+	}
+
+	/**
+	 * Returns the ratings entry persistence.
+	 *
+	 * @return the ratings entry persistence
+	 */
+	public RatingsEntryPersistence getRatingsEntryPersistence() {
+		return ratingsEntryPersistence;
+	}
+
+	/**
+	 * Sets the ratings entry persistence.
+	 *
+	 * @param ratingsEntryPersistence the ratings entry persistence
+	 */
+	public void setRatingsEntryPersistence(
+		RatingsEntryPersistence ratingsEntryPersistence) {
+		this.ratingsEntryPersistence = ratingsEntryPersistence;
+	}
+
+	/**
 	 * Returns the social activity local service.
 	 *
 	 * @return the social activity local service
@@ -1080,6 +1138,12 @@ public abstract class KBCommentLocalServiceBaseImpl extends BaseLocalServiceImpl
 	protected com.liferay.portal.service.UserService userService;
 	@BeanReference(type = UserPersistence.class)
 	protected UserPersistence userPersistence;
+	@BeanReference(type = com.liferay.portlet.ratings.service.RatingsEntryLocalService.class)
+	protected com.liferay.portlet.ratings.service.RatingsEntryLocalService ratingsEntryLocalService;
+	@BeanReference(type = com.liferay.portlet.ratings.service.RatingsEntryService.class)
+	protected com.liferay.portlet.ratings.service.RatingsEntryService ratingsEntryService;
+	@BeanReference(type = RatingsEntryPersistence.class)
+	protected RatingsEntryPersistence ratingsEntryPersistence;
 	@BeanReference(type = com.liferay.portlet.social.service.SocialActivityLocalService.class)
 	protected com.liferay.portlet.social.service.SocialActivityLocalService socialActivityLocalService;
 	@BeanReference(type = com.liferay.portlet.social.service.SocialActivityService.class)

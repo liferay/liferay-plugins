@@ -113,21 +113,21 @@ public class KBCommentServiceWrapper implements KBCommentService,
 	@Override
 	public com.liferay.knowledgebase.model.KBComment updateKBComment(
 		long kbCommentId, long classNameId, long classPK,
-		java.lang.String content, boolean helpful,
+		java.lang.String content,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _kbCommentService.updateKBComment(kbCommentId, classNameId,
-			classPK, content, helpful, serviceContext);
+			classPK, content, serviceContext);
 	}
 
 	@Override
 	public com.liferay.knowledgebase.model.KBComment updateKBComment(
 		long kbCommentId, long classNameId, long classPK,
-		java.lang.String content, boolean helpful, int status,
+		java.lang.String content, int status,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _kbCommentService.updateKBComment(kbCommentId, classNameId,
-			classPK, content, helpful, status, serviceContext);
+			classPK, content, status, serviceContext);
 	}
 
 	@Override
