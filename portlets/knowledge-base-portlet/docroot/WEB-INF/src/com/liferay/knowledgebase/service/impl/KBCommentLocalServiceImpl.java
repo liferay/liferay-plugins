@@ -58,7 +58,7 @@ public class KBCommentLocalServiceImpl extends KBCommentLocalServiceBaseImpl {
 	@Override
 	public KBComment addKBComment(
 			long userId, long classNameId, long classPK, String content,
-			int userOpinion, ServiceContext serviceContext)
+			int userRating, ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
 		// KB comment
@@ -83,7 +83,7 @@ public class KBCommentLocalServiceImpl extends KBCommentLocalServiceBaseImpl {
 		kbComment.setClassNameId(classNameId);
 		kbComment.setClassPK(classPK);
 		kbComment.setContent(content);
-		kbComment.setUserOpinion(userOpinion);
+		kbComment.setUserRating(userRating);
 		kbComment.setStatus(KBCommentConstants.STATUS_NEW);
 
 		kbCommentPersistence.update(kbComment);
@@ -112,10 +112,10 @@ public class KBCommentLocalServiceImpl extends KBCommentLocalServiceBaseImpl {
 			ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
-		int userOpinion = getCurrentUserOpinion(userId, classNameId, classPK);
+		int userRating = getCurrentUserRating(userId, classNameId, classPK);
 
 		return addKBComment(
-			userId, classNameId, classPK, content, userOpinion, serviceContext);
+			userId, classNameId, classPK, content, userRating, serviceContext);
 	}
 
 	@Override
@@ -271,7 +271,7 @@ public class KBCommentLocalServiceImpl extends KBCommentLocalServiceBaseImpl {
 	@Override
 	public KBComment updateKBComment(
 			long kbCommentId, long classNameId, long classPK, String content,
-			int userOpinion, int status, ServiceContext serviceContext)
+			int userRating, int status, ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
 		// KB comment
@@ -285,7 +285,7 @@ public class KBCommentLocalServiceImpl extends KBCommentLocalServiceBaseImpl {
 		kbComment.setClassNameId(classNameId);
 		kbComment.setClassPK(classPK);
 		kbComment.setContent(content);
-		kbComment.setUserOpinion(userOpinion);
+		kbComment.setUserRating(userRating);
 		kbComment.setStatus(status);
 
 		kbCommentPersistence.update(kbComment);
@@ -316,7 +316,7 @@ public class KBCommentLocalServiceImpl extends KBCommentLocalServiceBaseImpl {
 
 		return updateKBComment(
 			kbCommentId, classNameId, classPK, content,
-			kbComment.getUserOpinion(), status, serviceContext);
+			kbComment.getUserRating(), status, serviceContext);
 	}
 
 	public KBComment updateStatus(
@@ -335,7 +335,7 @@ public class KBCommentLocalServiceImpl extends KBCommentLocalServiceBaseImpl {
 		return kbComment;
 	}
 
-	protected int getCurrentUserOpinion(
+	protected int getCurrentUserRating(
 			long userId, long classNameId, long classPK)
 		throws PortalException, SystemException {
 
@@ -345,14 +345,14 @@ public class KBCommentLocalServiceImpl extends KBCommentLocalServiceBaseImpl {
 			userId, className.getValue(), classPK);
 
 		if (ratingsEntry == null) {
-			return KBCommentConstants.OPINION_NONE;
+			return KBCommentConstants.RATING_NONE;
 		}
 
 		if (ratingsEntry.getScore() > 0) {
-			return KBCommentConstants.OPINION_LIKED_IT;
+			return KBCommentConstants.RATING_LIKE;
 		}
 
-		return KBCommentConstants.OPINION_DID_NOT_LIKE_IT;
+		return KBCommentConstants.RATING_DISLIKE;
 	}
 
 	protected void notifySubscribers(
