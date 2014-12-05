@@ -111,7 +111,7 @@ public class KBCommentLocalServiceImpl extends KBCommentLocalServiceBaseImpl {
 			ServiceContext serviceContext)
 		throws PortalException {
 
-		int userRating = getCurrentUserRating(userId, classNameId, classPK);
+		int userRating = getUserRating(userId, classNameId, classPK);
 
 		return addKBComment(
 			userId, classNameId, classPK, content, userRating, serviceContext);
@@ -319,8 +319,7 @@ public class KBCommentLocalServiceImpl extends KBCommentLocalServiceBaseImpl {
 		return kbComment;
 	}
 
-	protected int getCurrentUserRating(
-			long userId, long classNameId, long classPK)
+	protected int getUserRating(long userId, long classNameId, long classPK)
 		throws PortalException {
 
 		ClassName className = classNameLocalService.getClassName(classNameId);
