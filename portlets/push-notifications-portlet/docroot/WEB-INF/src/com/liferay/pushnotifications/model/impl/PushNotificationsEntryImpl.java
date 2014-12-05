@@ -32,14 +32,14 @@ public class PushNotificationsEntryImpl extends PushNotificationsEntryBaseImpl {
 	@JSON
 	@Override
 	public JSONObject getUser() {
-		return _user;
+		return _userJSONObject;
 	}
 
 	@Override
-	public void setUser(JSONObject user) {
-		_user = user;
+	public void setUser(JSONObject userJSONObject) {
+		_userJSONObject = userJSONObject;
 	}
 
-	private JSONObject _user;
+	private JSONObject _userJSONObject;
 
 }
