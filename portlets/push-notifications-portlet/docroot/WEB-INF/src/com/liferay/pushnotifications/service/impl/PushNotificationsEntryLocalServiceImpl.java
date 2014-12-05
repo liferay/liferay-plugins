@@ -110,10 +110,6 @@ public class PushNotificationsEntryLocalServiceImpl
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
-		JSONObject userJSONObject = createUserJSONObject(fromUserId);
-
-		jsonObject.put(PushNotificationsConstants.KEY_USER, userJSONObject);
-
 		jsonObject.put(
 			PushNotificationsConstants.KEY_PARENT_PUSH_NOTIFICATIONS_ENTRY_ID,
 			pushNotificationsEntry.getParentPushNotificationsEntryId());
@@ -127,6 +123,10 @@ public class PushNotificationsEntryLocalServiceImpl
 		jsonObject.put(
 			PushNotificationsConstants.KEY_PUSH_NOTIFICATIONS_ENTRY_ID,
 			pushNotificationsEntry.getPushNotificationsEntryId());
+
+		JSONObject userJSONObject = createUserJSONObject(fromUserId);
+
+		jsonObject.put(PushNotificationsConstants.KEY_USER, userJSONObject);
 
 		pushNotificationsDeviceLocalService.sendPushNotification(
 			fromUserId, jsonObject);
