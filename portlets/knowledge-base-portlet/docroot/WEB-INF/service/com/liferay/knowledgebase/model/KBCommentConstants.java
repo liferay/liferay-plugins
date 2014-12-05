@@ -19,12 +19,6 @@ package com.liferay.knowledgebase.model;
  */
 public class KBCommentConstants {
 
-	public static final int RATING_DISLIKE = 0;
-
-	public static final int RATING_LIKE = 1;
-
-	public static final int RATING_NONE = 2;
-
 	public static final int STATUS_ANY = -1;
 
 	public static final int STATUS_COMPLETED = 0;
@@ -34,5 +28,11 @@ public class KBCommentConstants {
 	public static final int STATUS_NEW = 1;
 
 	public static final int STATUS_NONE = -2;
+
+	public static final int USER_RATING_DISLIKE = 0;
+
+	public static final int USER_RATING_LIKE = 1;
+
+	public static final int USER_RATING_NONE = 2;
 
 }
