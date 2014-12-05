@@ -66,16 +66,16 @@ PortletURL portletURL = renderResponse.createRenderURL();
 					<portlet:param name="redirect" value="<%= currentURL %>" />
 				</portlet:renderURL>
 
-				<aui:button onClick="<%= publishGadgetURL %>" type="button" value="publish-gadget" />
+				<aui:button onClick="<%= publishGadgetURL %>" value="publish-gadget" />
 			</span>
 		</c:if>
 
 		<span>
-			<portlet:actionURL name="refreshGadgetsURL" var="refreshGadgets">
+			<portlet:actionURL name="refreshGadgets" var="refreshGadgetsURL">
 				<portlet:param name="redirect" value="<%= currentURL %>" />
 			</portlet:actionURL>
 
-			<aui:button onClick="<%= refreshGadgetsURL %>" type="button" value="refresh-gadgets" />
+			<aui:button onClick="<%= refreshGadgetsURL %>" value="refresh-gadgets" />
 		</span>
 	</div>
 
