@@ -37,19 +37,23 @@ public class PushNotificationsEntryServiceClpInvoker {
 
 		_methodName46 = "addPushNotificationsEntry";
 
-		_methodParameterTypes46 = new String[] { "java.lang.String" };
+		_methodParameterTypes46 = new String[] { "long", "java.lang.String" };
 
-		_methodName47 = "getPushNotificationsEntries";
+		_methodName47 = "addPushNotificationsEntry";
 
-		_methodParameterTypes47 = new String[] { "long", "long", "int", "int" };
+		_methodParameterTypes47 = new String[] { "java.lang.String" };
 
-		_methodName48 = "likePushNotificationsEntry";
+		_methodName48 = "getPushNotificationsEntries";
 
-		_methodParameterTypes48 = new String[] { "long" };
+		_methodParameterTypes48 = new String[] { "long", "long", "int", "int" };
 
-		_methodName49 = "unlikePushNotificationsEntry";
+		_methodName49 = "likePushNotificationsEntry";
 
 		_methodParameterTypes49 = new String[] { "long" };
+
+		_methodName50 = "unlikePushNotificationsEntry";
+
+		_methodParameterTypes50 = new String[] { "long" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -68,24 +72,30 @@ public class PushNotificationsEntryServiceClpInvoker {
 
 		if (_methodName46.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes46, parameterTypes)) {
-			return PushNotificationsEntryServiceUtil.addPushNotificationsEntry((java.lang.String)arguments[0]);
+			return PushNotificationsEntryServiceUtil.addPushNotificationsEntry(((Long)arguments[0]).longValue(),
+				(java.lang.String)arguments[1]);
 		}
 
 		if (_methodName47.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes47, parameterTypes)) {
+			return PushNotificationsEntryServiceUtil.addPushNotificationsEntry((java.lang.String)arguments[0]);
+		}
+
+		if (_methodName48.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes48, parameterTypes)) {
 			return PushNotificationsEntryServiceUtil.getPushNotificationsEntries(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				((Integer)arguments[2]).intValue(),
 				((Integer)arguments[3]).intValue());
 		}
 
-		if (_methodName48.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes48, parameterTypes)) {
+		if (_methodName49.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes49, parameterTypes)) {
 			return PushNotificationsEntryServiceUtil.likePushNotificationsEntry(((Long)arguments[0]).longValue());
 		}
 
-		if (_methodName49.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes49, parameterTypes)) {
+		if (_methodName50.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes50, parameterTypes)) {
 			return PushNotificationsEntryServiceUtil.unlikePushNotificationsEntry(((Long)arguments[0]).longValue());
 		}
 
@@ -104,4 +114,6 @@ public class PushNotificationsEntryServiceClpInvoker {
 	private String[] _methodParameterTypes48;
 	private String _methodName49;
 	private String[] _methodParameterTypes49;
+	private String _methodName50;
+	private String[] _methodParameterTypes50;
 }

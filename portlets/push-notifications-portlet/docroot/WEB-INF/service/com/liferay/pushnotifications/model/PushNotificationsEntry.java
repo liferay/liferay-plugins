@@ -35,4 +35,8 @@ public interface PushNotificationsEntry extends PushNotificationsEntryModel,
 	 *
 	 * Never modify this interface directly. Add methods to {@link com.liferay.pushnotifications.model.impl.PushNotificationsEntryImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
+	@com.liferay.portal.kernel.json.JSON()
+	public com.liferay.portal.kernel.json.JSONObject getUser();
+
+	public void setUser(com.liferay.portal.kernel.json.JSONObject user);
 }

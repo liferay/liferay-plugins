@@ -66,6 +66,23 @@ import java.rmi.RemoteException;
 @ProviderType
 public class PushNotificationsEntryServiceSoap {
 	public static com.liferay.pushnotifications.model.PushNotificationsEntrySoap addPushNotificationsEntry(
+		long parentPushNotificationsEntryId, java.lang.String payload)
+		throws RemoteException {
+		try {
+			com.liferay.pushnotifications.model.PushNotificationsEntry returnValue =
+				PushNotificationsEntryServiceUtil.addPushNotificationsEntry(parentPushNotificationsEntryId,
+					payload);
+
+			return com.liferay.pushnotifications.model.PushNotificationsEntrySoap.toSoapModel(returnValue);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static com.liferay.pushnotifications.model.PushNotificationsEntrySoap addPushNotificationsEntry(
 		java.lang.String payload) throws RemoteException {
 		try {
 			com.liferay.pushnotifications.model.PushNotificationsEntry returnValue =
