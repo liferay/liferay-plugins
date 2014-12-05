@@ -23,9 +23,4 @@ public class AssetEntrySetConstants {
 
 	public static final String KEY_ASSET_TAG_NAMES = "assetTagNames";
 
-	public static final String KEY_PARENT_ASSET_ENTRY_SET_ID =
-		"parentAssetEntrySetId";
-
-	public static final long VALUE_PARENT_ASSET_ENTRY_SET_ID_DEFAULT = 0;
-
 }

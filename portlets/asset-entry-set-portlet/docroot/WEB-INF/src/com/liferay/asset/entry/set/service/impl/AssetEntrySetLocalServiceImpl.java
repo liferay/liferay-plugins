@@ -43,14 +43,23 @@ public class AssetEntrySetLocalServiceImpl
 			long userId, JSONObject payloadJSONObject)
 		throws PortalException, SystemException {
 
+		return addAssetEntrySet(userId, 0, payloadJSONObject);
+	}
+
+	public AssetEntrySet addAssetEntrySet(
+			long userId, long parentAssetEntrySetId,
+			JSONObject payloadJSONObject)
+		throws PortalException, SystemException {
+
 		return addAssetEntrySet(
-			userId, classNameLocalService.getClassNameId(User.class), userId,
+			userId, parentAssetEntrySetId,
+			classNameLocalService.getClassNameId(User.class), userId,
 			payloadJSONObject);
 	}
 
 	public AssetEntrySet addAssetEntrySet(
-			long userId, long creatorClassNameId, long creatorClassPK,
-			JSONObject payloadJSONObject)
+			long userId, long parentAssetEntrySetId, long creatorClassNameId,
+			long creatorClassPK, JSONObject payloadJSONObject)
 		throws PortalException, SystemException {
 
 		User user = userPersistence.findByPrimaryKey(userId);
@@ -67,13 +76,7 @@ public class AssetEntrySetLocalServiceImpl
 		assetEntrySet.setUserName(user.getFullName());
 		assetEntrySet.setCreateTime(now.getTime());
 		assetEntrySet.setModifiedTime(now.getTime());
-
-		long parentAssetEntrySetId = payloadJSONObject.getLong(
-			AssetEntrySetConstants.KEY_PARENT_ASSET_ENTRY_SET_ID,
-			AssetEntrySetConstants.VALUE_PARENT_ASSET_ENTRY_SET_ID_DEFAULT);
-
 		assetEntrySet.setParentAssetEntrySetId(parentAssetEntrySetId);
-
 		assetEntrySet.setCreatorClassNameId(creatorClassNameId);
 		assetEntrySet.setCreatorClassPK(creatorClassPK);
 		assetEntrySet.setPayload(payloadJSONObject.toString());

@@ -20,6 +20,7 @@ import com.liferay.asset.entry.set.model.AssetEntrySet;
 import com.liferay.asset.entry.set.service.base.AssetEntrySetServiceBaseImpl;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.json.JSONObject;
 
 import java.util.List;
 
@@ -28,6 +29,21 @@ import java.util.List;
  */
 @ProviderType
 public class AssetEntrySetServiceImpl extends AssetEntrySetServiceBaseImpl {
+
+	public AssetEntrySet addAssetEntrySet(JSONObject payloadJSONObject)
+		throws PortalException, SystemException {
+
+		return assetEntrySetLocalService.addAssetEntrySet(
+			getUserId(), payloadJSONObject);
+	}
+
+	public AssetEntrySet addAssetEntrySet(
+			long parentAssetEntrySetId, JSONObject payloadJSONObject)
+		throws PortalException, SystemException {
+
+		return assetEntrySetLocalService.addAssetEntrySet(
+			getUserId(), parentAssetEntrySetId, payloadJSONObject);
+	}
 
 	@Override
 	public List<AssetEntrySet> getAssetEntrySets(
@@ -39,19 +55,19 @@ public class AssetEntrySetServiceImpl extends AssetEntrySetServiceBaseImpl {
 	}
 
 	@Override
-	public AssetEntrySet likeAssetEntrySet(long pushNotificationsEntryId)
+	public AssetEntrySet likeAssetEntrySet(long assetEntrySetId)
 		throws PortalException, SystemException {
 
 		return assetEntrySetLocalService.likeAssetEntrySet(
-			getUserId(), pushNotificationsEntryId);
+			getUserId(), assetEntrySetId);
 	}
 
 	@Override
-	public AssetEntrySet unlikeAssetEntrySet(long pushNotificationsEntryId)
+	public AssetEntrySet unlikeAssetEntrySet(long assetEntrySetId)
 		throws PortalException, SystemException {
 
 		return assetEntrySetLocalService.unlikeAssetEntrySet(
-			getUserId(), pushNotificationsEntryId);
+			getUserId(), assetEntrySetId);
 	}
 
 }
