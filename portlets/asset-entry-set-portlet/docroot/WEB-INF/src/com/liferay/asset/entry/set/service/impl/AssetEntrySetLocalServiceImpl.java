@@ -39,6 +39,7 @@ import java.util.List;
 public class AssetEntrySetLocalServiceImpl
 	extends AssetEntrySetLocalServiceBaseImpl {
 
+	@Override
 	public AssetEntrySet addAssetEntrySet(
 			long userId, JSONObject payloadJSONObject)
 		throws PortalException, SystemException {
@@ -46,6 +47,7 @@ public class AssetEntrySetLocalServiceImpl
 		return addAssetEntrySet(userId, 0, payloadJSONObject);
 	}
 
+	@Override
 	public AssetEntrySet addAssetEntrySet(
 			long userId, long parentAssetEntrySetId,
 			JSONObject payloadJSONObject)
@@ -57,6 +59,7 @@ public class AssetEntrySetLocalServiceImpl
 			payloadJSONObject);
 	}
 
+	@Override
 	public AssetEntrySet addAssetEntrySet(
 			long userId, long parentAssetEntrySetId, long creatorClassNameId,
 			long creatorClassPK, JSONObject payloadJSONObject)
@@ -127,6 +130,7 @@ public class AssetEntrySetLocalServiceImpl
 		return assetEntrySetPersistence.findByPrimaryKey(assetEntrySetId);
 	}
 
+	@Override
 	public AssetEntrySet getAssetEntrySet(
 			long parentAssetEntrySetId, long creatorClassNameId,
 			long creatorClassPK, int start, int end)
@@ -145,6 +149,7 @@ public class AssetEntrySetLocalServiceImpl
 			lastAccessTime, parentAssetEntrySetId, start, end);
 	}
 
+	@Override
 	public List<AssetEntrySet> getAssetEntrySets(
 			long parentAssetEntrySetId, long creatorClassNameId, int start,
 			int end, OrderByComparator obc)
@@ -154,6 +159,7 @@ public class AssetEntrySetLocalServiceImpl
 			parentAssetEntrySetId, creatorClassNameId, start, end, obc);
 	}
 
+	@Override
 	public List<AssetEntrySet> getAssetEntrySets(
 			long creatorClassNameId, long creatorClassPK, String assetTagName,
 			boolean andOperator, int start, int end)
@@ -164,6 +170,7 @@ public class AssetEntrySetLocalServiceImpl
 			start, end);
 	}
 
+	@Override
 	public List<AssetEntrySet> getAssetEntrySets(
 			long creatorClassNameId, String assetTagName, int start, int end)
 		throws SystemException {
@@ -172,6 +179,7 @@ public class AssetEntrySetLocalServiceImpl
 			creatorClassNameId, assetTagName, start, end);
 	}
 
+	@Override
 	public int getAssetEntrySetsCount(
 			long parentAssetEntrySetId, long creatorClassNameId)
 		throws SystemException {
@@ -180,6 +188,7 @@ public class AssetEntrySetLocalServiceImpl
 			parentAssetEntrySetId, creatorClassNameId);
 	}
 
+	@Override
 	public int getAssetEntrySetsCount(
 			long creatorClassNameId, long creatorClassPK,
 			long parentAssetEntrySetId)
@@ -189,6 +198,7 @@ public class AssetEntrySetLocalServiceImpl
 			parentAssetEntrySetId, creatorClassNameId, creatorClassPK);
 	}
 
+	@Override
 	public int getAssetEntrySetsCount(
 			long creatorClassNameId, long creatorClassPK, String assetTagName,
 			boolean andOperator)
@@ -198,6 +208,7 @@ public class AssetEntrySetLocalServiceImpl
 			creatorClassNameId, creatorClassPK, assetTagName, andOperator);
 	}
 
+	@Override
 	public int getAssetEntrySetsCount(
 			long creatorClassNameId, String assetTagName)
 		throws SystemException {
@@ -206,6 +217,7 @@ public class AssetEntrySetLocalServiceImpl
 			creatorClassNameId, assetTagName);
 	}
 
+	@Override
 	public List<AssetEntrySet> getParentAssetEntrySetAssetEntrySets(
 			long parentAssetEntrySetId, int start, int end,
 			OrderByComparator orderByComparator)
@@ -215,6 +227,7 @@ public class AssetEntrySetLocalServiceImpl
 			parentAssetEntrySetId, start, end, orderByComparator);
 	}
 
+	@Override
 	public int getParentAssetEntrySetAssetEntrySetsCount(
 			long parentAssetEntrySetId)
 		throws SystemException {
@@ -227,16 +240,17 @@ public class AssetEntrySetLocalServiceImpl
 	public AssetEntrySet likeAssetEntrySet(long userId, long assetEntrySetId)
 		throws PortalException, SystemException {
 
-		return updateRatingsEntry(userId, assetEntrySetId, 1);
+		return updateRatingsTotalScore(userId, assetEntrySetId, 1);
 	}
 
 	@Override
 	public AssetEntrySet unlikeAssetEntrySet(long userId, long assetEntrySetId)
 		throws PortalException, SystemException {
 
-		return updateRatingsEntry(userId, assetEntrySetId, 0);
+		return updateRatingsTotalScore(userId, assetEntrySetId, 0);
 	}
 
+	@Override
 	public void updateAsset(
 			AssetEntrySet assetEntrySet, long[] assetCategoryIds,
 			String[] assetTagNames)
@@ -251,6 +265,7 @@ public class AssetEntrySetLocalServiceImpl
 			assetCategoryIds, assetTagNames);
 	}
 
+	@Override
 	public AssetEntrySet updateAssetEntrySet(
 			long assetEntrySetId, JSONObject payloadJSONObject)
 		throws PortalException, SystemException {
@@ -301,7 +316,7 @@ public class AssetEntrySetLocalServiceImpl
 		return assetEntrySet;
 	}
 
-	protected AssetEntrySet updateRatingsEntry(
+	protected AssetEntrySet updateRatingsTotalScore(
 			long userId, long assetEntrySetId, long score)
 		throws PortalException, SystemException {
 

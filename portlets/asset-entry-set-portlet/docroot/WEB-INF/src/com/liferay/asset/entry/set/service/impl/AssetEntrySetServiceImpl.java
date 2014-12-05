@@ -30,6 +30,7 @@ import java.util.List;
 @ProviderType
 public class AssetEntrySetServiceImpl extends AssetEntrySetServiceBaseImpl {
 
+	@Override
 	public AssetEntrySet addAssetEntrySet(JSONObject payloadJSONObject)
 		throws PortalException, SystemException {
 
@@ -37,6 +38,7 @@ public class AssetEntrySetServiceImpl extends AssetEntrySetServiceBaseImpl {
 			getUserId(), payloadJSONObject);
 	}
 
+	@Override
 	public AssetEntrySet addAssetEntrySet(
 			long parentAssetEntrySetId, JSONObject payloadJSONObject)
 		throws PortalException, SystemException {
