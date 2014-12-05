@@ -328,14 +328,14 @@ public class KBCommentLocalServiceImpl extends KBCommentLocalServiceBaseImpl {
 			userId, className.getValue(), classPK);
 
 		if (ratingsEntry == null) {
-			return KBCommentConstants.RATING_NONE;
+			return KBCommentConstants.USER_RATING_NONE;
 		}
 
 		if (ratingsEntry.getScore() > 0) {
-			return KBCommentConstants.RATING_LIKE;
+			return KBCommentConstants.USER_RATING_LIKE;
 		}
 
-		return KBCommentConstants.RATING_DISLIKE;
+		return KBCommentConstants.USER_RATING_DISLIKE;
 	}
 
 	protected void notifySubscribers(
