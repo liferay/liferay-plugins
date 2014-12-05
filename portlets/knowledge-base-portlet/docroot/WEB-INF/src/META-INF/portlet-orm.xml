@@ -71,8 +71,8 @@
 			<basic name="classNameId" />
 			<basic name="classPK" />
 			<basic name="content" />
-			<basic name="status" />
 			<basic name="userRating" />
+			<basic name="status" />
 			<transient name="className" />
 			<transient name="modelAttributes" />
 			<transient name="primaryKey" />

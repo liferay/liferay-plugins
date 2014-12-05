@@ -61,8 +61,8 @@ public class KBCommentWrapper implements KBComment, ModelWrapper<KBComment> {
 		attributes.put("classNameId", getClassNameId());
 		attributes.put("classPK", getClassPK());
 		attributes.put("content", getContent());
-		attributes.put("status", getStatus());
 		attributes.put("userRating", getUserRating());
+		attributes.put("status", getStatus());
 
 		return attributes;
 	}
@@ -135,16 +135,16 @@ public class KBCommentWrapper implements KBComment, ModelWrapper<KBComment> {
 			setContent(content);
 		}
 
-		Integer status = (Integer)attributes.get("status");
-
-		if (status != null) {
-			setStatus(status);
-		}
-
 		Integer userRating = (Integer)attributes.get("userRating");
 
 		if (userRating != null) {
 			setUserRating(userRating);
+		}
+
+		Integer status = (Integer)attributes.get("status");
+
+		if (status != null) {
+			setStatus(status);
 		}
 	}
 
@@ -426,26 +426,6 @@ public class KBCommentWrapper implements KBComment, ModelWrapper<KBComment> {
 	}
 
 	/**
-	* Returns the status of this k b comment.
-	*
-	* @return the status of this k b comment
-	*/
-	@Override
-	public int getStatus() {
-		return _kbComment.getStatus();
-	}
-
-	/**
-	* Sets the status of this k b comment.
-	*
-	* @param status the status of this k b comment
-	*/
-	@Override
-	public void setStatus(int status) {
-		_kbComment.setStatus(status);
-	}
-
-	/**
 	* Returns the user rating of this k b comment.
 	*
 	* @return the user rating of this k b comment
@@ -463,6 +443,26 @@ public class KBCommentWrapper implements KBComment, ModelWrapper<KBComment> {
 	@Override
 	public void setUserRating(int userRating) {
 		_kbComment.setUserRating(userRating);
+	}
+
+	/**
+	* Returns the status of this k b comment.
+	*
+	* @return the status of this k b comment
+	*/
+	@Override
+	public int getStatus() {
+		return _kbComment.getStatus();
+	}
+
+	/**
+	* Sets the status of this k b comment.
+	*
+	* @param status the status of this k b comment
+	*/
+	@Override
+	public void setStatus(int status) {
+		_kbComment.setStatus(status);
 	}
 
 	@Override

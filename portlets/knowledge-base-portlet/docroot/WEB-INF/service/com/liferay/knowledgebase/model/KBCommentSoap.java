@@ -42,8 +42,8 @@ public class KBCommentSoap implements Serializable {
 		soapModel.setClassNameId(model.getClassNameId());
 		soapModel.setClassPK(model.getClassPK());
 		soapModel.setContent(model.getContent());
-		soapModel.setStatus(model.getStatus());
 		soapModel.setUserRating(model.getUserRating());
+		soapModel.setStatus(model.getStatus());
 
 		return soapModel;
 	}
@@ -184,20 +184,20 @@ public class KBCommentSoap implements Serializable {
 		_content = content;
 	}
 
-	public int getStatus() {
-		return _status;
-	}
-
-	public void setStatus(int status) {
-		_status = status;
-	}
-
 	public int getUserRating() {
 		return _userRating;
 	}
 
 	public void setUserRating(int userRating) {
 		_userRating = userRating;
+	}
+
+	public int getStatus() {
+		return _status;
+	}
+
+	public void setStatus(int status) {
+		_status = status;
 	}
 
 	private String _uuid;
@@ -211,6 +211,6 @@ public class KBCommentSoap implements Serializable {
 	private long _classNameId;
 	private long _classPK;
 	private String _content;
-	private int _status;
 	private int _userRating;
+	private int _status;
 }

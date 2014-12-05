@@ -5460,8 +5460,8 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 		kbCommentImpl.setClassNameId(kbComment.getClassNameId());
 		kbCommentImpl.setClassPK(kbComment.getClassPK());
 		kbCommentImpl.setContent(kbComment.getContent());
-		kbCommentImpl.setStatus(kbComment.getStatus());
 		kbCommentImpl.setUserRating(kbComment.getUserRating());
+		kbCommentImpl.setStatus(kbComment.getStatus());
 
 		return kbCommentImpl;
 	}

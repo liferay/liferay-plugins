@@ -266,20 +266,6 @@ public interface KBCommentModel extends AttachedModel, BaseModel<KBComment>,
 	public void setContent(String content);
 
 	/**
-	 * Returns the status of this k b comment.
-	 *
-	 * @return the status of this k b comment
-	 */
-	public int getStatus();
-
-	/**
-	 * Sets the status of this k b comment.
-	 *
-	 * @param status the status of this k b comment
-	 */
-	public void setStatus(int status);
-
-	/**
 	 * Returns the user rating of this k b comment.
 	 *
 	 * @return the user rating of this k b comment
@@ -292,6 +278,20 @@ public interface KBCommentModel extends AttachedModel, BaseModel<KBComment>,
 	 * @param userRating the user rating of this k b comment
 	 */
 	public void setUserRating(int userRating);
+
+	/**
+	 * Returns the status of this k b comment.
+	 *
+	 * @return the status of this k b comment
+	 */
+	public int getStatus();
+
+	/**
+	 * Sets the status of this k b comment.
+	 *
+	 * @param status the status of this k b comment
+	 */
+	public void setStatus(int status);
 
 	@Override
 	public boolean isNew();

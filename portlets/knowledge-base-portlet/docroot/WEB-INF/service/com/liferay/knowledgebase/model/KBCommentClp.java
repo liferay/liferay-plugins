@@ -89,8 +89,8 @@ public class KBCommentClp extends BaseModelImpl<KBComment> implements KBComment 
 		attributes.put("classNameId", getClassNameId());
 		attributes.put("classPK", getClassPK());
 		attributes.put("content", getContent());
-		attributes.put("status", getStatus());
 		attributes.put("userRating", getUserRating());
+		attributes.put("status", getStatus());
 
 		return attributes;
 	}
@@ -163,16 +163,16 @@ public class KBCommentClp extends BaseModelImpl<KBComment> implements KBComment 
 			setContent(content);
 		}
 
-		Integer status = (Integer)attributes.get("status");
-
-		if (status != null) {
-			setStatus(status);
-		}
-
 		Integer userRating = (Integer)attributes.get("userRating");
 
 		if (userRating != null) {
 			setUserRating(userRating);
+		}
+
+		Integer status = (Integer)attributes.get("status");
+
+		if (status != null) {
+			setStatus(status);
 		}
 	}
 
@@ -460,29 +460,6 @@ public class KBCommentClp extends BaseModelImpl<KBComment> implements KBComment 
 	}
 
 	@Override
-	public int getStatus() {
-		return _status;
-	}
-
-	@Override
-	public void setStatus(int status) {
-		_status = status;
-
-		if (_kbCommentRemoteModel != null) {
-			try {
-				Class<?> clazz = _kbCommentRemoteModel.getClass();
-
-				Method method = clazz.getMethod("setStatus", int.class);
-
-				method.invoke(_kbCommentRemoteModel, status);
-			}
-			catch (Exception e) {
-				throw new UnsupportedOperationException(e);
-			}
-		}
-	}
-
-	@Override
 	public int getUserRating() {
 		return _userRating;
 	}
@@ -498,6 +475,29 @@ public class KBCommentClp extends BaseModelImpl<KBComment> implements KBComment 
 				Method method = clazz.getMethod("setUserRating", int.class);
 
 				method.invoke(_kbCommentRemoteModel, userRating);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
+	}
+
+	@Override
+	public int getStatus() {
+		return _status;
+	}
+
+	@Override
+	public void setStatus(int status) {
+		_status = status;
+
+		if (_kbCommentRemoteModel != null) {
+			try {
+				Class<?> clazz = _kbCommentRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setStatus", int.class);
+
+				method.invoke(_kbCommentRemoteModel, status);
 			}
 			catch (Exception e) {
 				throw new UnsupportedOperationException(e);
@@ -591,8 +591,8 @@ public class KBCommentClp extends BaseModelImpl<KBComment> implements KBComment 
 		clone.setClassNameId(getClassNameId());
 		clone.setClassPK(getClassPK());
 		clone.setContent(getContent());
-		clone.setStatus(getStatus());
 		clone.setUserRating(getUserRating());
+		clone.setStatus(getStatus());
 
 		return clone;
 	}
@@ -670,10 +670,10 @@ public class KBCommentClp extends BaseModelImpl<KBComment> implements KBComment 
 		sb.append(getClassPK());
 		sb.append(", content=");
 		sb.append(getContent());
-		sb.append(", status=");
-		sb.append(getStatus());
 		sb.append(", userRating=");
 		sb.append(getUserRating());
+		sb.append(", status=");
+		sb.append(getStatus());
 		sb.append("}");
 
 		return sb.toString();
@@ -732,12 +732,12 @@ public class KBCommentClp extends BaseModelImpl<KBComment> implements KBComment 
 		sb.append(getContent());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>status</column-name><column-value><![CDATA[");
-		sb.append(getStatus());
-		sb.append("]]></column-value></column>");
-		sb.append(
 			"<column><column-name>userRating</column-name><column-value><![CDATA[");
 		sb.append(getUserRating());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>status</column-name><column-value><![CDATA[");
+		sb.append(getStatus());
 		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
@@ -757,8 +757,8 @@ public class KBCommentClp extends BaseModelImpl<KBComment> implements KBComment 
 	private long _classNameId;
 	private long _classPK;
 	private String _content;
-	private int _status;
 	private int _userRating;
+	private int _status;
 	private BaseModel<?> _kbCommentRemoteModel;
 	private Class<?> _clpSerializerClass = com.liferay.knowledgebase.service.ClpSerializer.class;
 }
