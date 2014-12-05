@@ -211,8 +211,8 @@
 		<column name="classNameId" type="long" />
 		<column name="classPK" type="long" />
 		<column name="content" type="String" />
-		<column name="status" type="int" />
 		<column name="userRating" type="int" />
+		<column name="status" type="int" />
 
 		<!-- Order -->
 
