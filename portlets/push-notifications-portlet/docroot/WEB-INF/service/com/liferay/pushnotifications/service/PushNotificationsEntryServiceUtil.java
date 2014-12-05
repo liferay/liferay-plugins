@@ -81,7 +81,9 @@ public class PushNotificationsEntryServiceUtil {
 
 	public static java.util.List<com.liferay.pushnotifications.model.PushNotificationsEntry> getPushNotificationsEntries(
 		long parentPushNotificationsEntryId, long lastAccessTime, int start,
-		int end) throws com.liferay.portal.kernel.exception.SystemException {
+		int end)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
 		return getService()
 				   .getPushNotificationsEntries(parentPushNotificationsEntryId,
 			lastAccessTime, start, end);

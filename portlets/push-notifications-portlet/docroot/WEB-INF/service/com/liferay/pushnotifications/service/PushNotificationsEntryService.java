@@ -81,7 +81,9 @@ public interface PushNotificationsEntryService extends BaseService,
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.pushnotifications.model.PushNotificationsEntry> getPushNotificationsEntries(
 		long parentPushNotificationsEntryId, long lastAccessTime, int start,
-		int end) throws com.liferay.portal.kernel.exception.SystemException;
+		int end)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
 
 	public com.liferay.pushnotifications.model.PushNotificationsEntry likePushNotificationsEntry(
 		long pushNotificationsEntryId)

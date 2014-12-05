@@ -43,6 +43,8 @@
 	</entity>
 	<entity class="com.liferay.pushnotifications.model.impl.PushNotificationsEntryImpl" name="PushNotificationsEntry">
 		<table name="PushNotificationsEntry" />
-		<attributes />
+		<attributes>
+			<transient name="user" />
+		</attributes>
 	</entity>
 </entity-mappings>
