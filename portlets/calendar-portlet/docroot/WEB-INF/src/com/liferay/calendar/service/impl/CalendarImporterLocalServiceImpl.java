@@ -998,9 +998,6 @@ public class CalendarImporterLocalServiceImpl
 					companyId, newClassName, resourcePermission.getRoleId(),
 					actionIds);
 			}
-
-			resourcePermissionPersistence.remove(
-				resourcePermission.getResourcePermissionId());
 		}
 	}
 
