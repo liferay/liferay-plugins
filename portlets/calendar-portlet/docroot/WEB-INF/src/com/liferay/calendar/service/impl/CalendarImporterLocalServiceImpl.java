@@ -484,6 +484,23 @@ public class CalendarImporterLocalServiceImpl
 		subscriptionPersistence.update(subscription);
 	}
 
+	protected long convertActionId(
+		ResourcePermission resourcePermission, String oldResourceModelName,
+		String oldActionId, String newResourceModelName, String newActionId) {
+
+		ResourceAction oldResourceAction = resourceActionPersistence.fetchByN_A(
+			oldResourceModelName, oldActionId);
+
+		boolean hasActionId = resourcePermissionLocalService.hasActionId(
+			resourcePermission, oldResourceAction);
+
+		if (!hasActionId) {
+			return 0;
+		}
+
+		return getActionId(newResourceModelName, newActionId);
+	}
+
 	protected CalendarBooking fetchCalendarBooking(CalEvent calEvent)
 		throws PortalException {
 
@@ -499,6 +516,17 @@ public class CalendarImporterLocalServiceImpl
 
 		ResourceAction newResourceAction = resourceActionPersistence.fetchByN_A(
 			newClassName, oldResourceAction.getActionId());
+
+		if (newResourceAction == null) {
+			return 0;
+		}
+
+		return newResourceAction.getBitwiseValue();
+	}
+
+	protected long getActionId(String resourceModelName, String actionId) {
+		ResourceAction newResourceAction = resourceActionPersistence.fetchByN_A(
+			resourceModelName, actionId);
 
 		if (newResourceAction == null) {
 			return 0;
