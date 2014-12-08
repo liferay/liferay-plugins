@@ -30,6 +30,7 @@ import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.util.ArrayUtil;
+import com.liferay.portal.kernel.util.DateUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.Time;
 import com.liferay.portal.kernel.util.Validator;
@@ -40,6 +41,7 @@ import com.liferay.portal.model.ResourceAction;
 import com.liferay.portal.model.ResourceBlockConstants;
 import com.liferay.portal.model.ResourceConstants;
 import com.liferay.portal.model.ResourcePermission;
+import com.liferay.portal.model.Role;
 import com.liferay.portal.model.Subscription;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.ServiceContext;
@@ -65,8 +67,10 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * @author Marcellus Tavares
@@ -176,33 +180,45 @@ public class CalendarImporterLocalServiceImpl
 			ResourceConstants.SCOPE_COMPANY, ResourceConstants.SCOPE_GROUP,
 			ResourceConstants.SCOPE_GROUP_TEMPLATE
 		};
+		Set<Long> roleIds = new HashSet<Long>();
 
 		for (long companyId : companyIds) {
 			for (int scope : scopes) {
 				importResourcePermissions(
 					companyId, _OLD_CALENDAR_MODEL_NAME, "ADD_EVENT",
-					_NEW_CALENDAR_MODEL_NAME, "MANAGE_BOOKINGS", scope);
+					_NEW_CALENDAR_MODEL_NAME, "MANAGE_BOOKINGS", scope,
+					roleIds);
 				importResourcePermissions(
 					companyId, _OLD_CALENDAR_MODEL_NAME, "ADD_EVENT",
-					_NEW_CALENDAR_MODEL_NAME, "VIEW_BOOKING_DETAILS", scope);
+					_NEW_CALENDAR_MODEL_NAME, "VIEW_BOOKING_DETAILS", scope,
+					roleIds);
 				importResourcePermissions(
 					companyId, _OLD_CALENDAR_MODEL_NAME, "PERMISSIONS",
-					_NEW_CALENDAR_MODEL_NAME, "PERMISSIONS", scope);
+					_NEW_CALENDAR_MODEL_NAME, "PERMISSIONS", scope, roleIds);
 
 				importResourcePermissions(
 					companyId, _CAL_EVENT_MODEL_NAME, "ADD_DISCUSSION",
-					_CALENDAR_BOOKING_MODEL_NAME, "ADD_DISCUSSION", scope);
+					_CALENDAR_BOOKING_MODEL_NAME, "ADD_DISCUSSION", scope,
+					roleIds);
 				importResourcePermissions(
 					companyId, _CAL_EVENT_MODEL_NAME, "DELETE_DISCUSSION",
-					_CALENDAR_BOOKING_MODEL_NAME, "DELETE_DISCUSSION", scope);
+					_CALENDAR_BOOKING_MODEL_NAME, "DELETE_DISCUSSION", scope,
+					roleIds);
 				importResourcePermissions(
 					companyId, _CAL_EVENT_MODEL_NAME, "PERMISSIONS",
-					_CALENDAR_BOOKING_MODEL_NAME, "PERMISSIONS", scope);
+					_CALENDAR_BOOKING_MODEL_NAME, "PERMISSIONS", scope,
+					roleIds);
 				importResourcePermissions(
 					companyId, _CAL_EVENT_MODEL_NAME, "UPDATE_DISCUSSION",
-					_CALENDAR_BOOKING_MODEL_NAME, "UPDATE_DISCUSSION", scope);
+					_CALENDAR_BOOKING_MODEL_NAME, "UPDATE_DISCUSSION", scope,
+					roleIds);
 			}
 		}
+
+		List<Role> roles = roleLocalService.getRoles(
+			ArrayUtil.toLongArray(roleIds));
+
+		updateRoleModifiedDate(roles);
 	}
 
 	protected void addAssetEntry(
@@ -997,7 +1013,7 @@ public class CalendarImporterLocalServiceImpl
 
 	protected void importResourcePermissions(
 			long companyId, String oldClassName, String oldAction,
-			String newClassName, String newAction, int scope)
+			String newClassName, String newAction, int scope, Set<Long> roleIds)
 		throws PortalException {
 
 		List<ResourcePermission> resourcePermissions =
@@ -1005,6 +1021,13 @@ public class CalendarImporterLocalServiceImpl
 				companyId, oldClassName, scope);
 
 		for (ResourcePermission resourcePermission : resourcePermissions) {
+			long roleId = resourcePermission.getRoleId();
+			Role role = roleLocalService.getRole(roleId);
+
+			if (role.getModifiedDate().after(role.getCreateDate())) {
+				continue;
+			}
+
 			long actionIds = convertActionId(
 				resourcePermission, oldClassName, oldAction, newClassName,
 				newAction);
@@ -1013,13 +1036,14 @@ public class CalendarImporterLocalServiceImpl
 				resourceBlockLocalService.addGroupScopePermissions(
 					companyId,
 					GetterUtil.getLong(resourcePermission.getPrimKey()),
-					newClassName, resourcePermission.getRoleId(), actionIds);
+					newClassName, roleId, actionIds);
 			}
 			else {
 				resourceBlockLocalService.addCompanyScopePermissions(
-					companyId, newClassName, resourcePermission.getRoleId(),
-					actionIds);
+					companyId, newClassName, roleId, actionIds);
 			}
+
+			roleIds.add(roleId);
 		}
 	}
 
@@ -1092,6 +1116,16 @@ public class CalendarImporterLocalServiceImpl
 		mbThread.setRootMessageId(rootMessageId);
 
 		mbThreadPersistence.update(mbThread);
+	}
+
+	protected void updateRoleModifiedDate(List<Role> roles) {
+		Date modifiedDate = DateUtil.newDate(DateUtil.newTime() + 1000);
+
+		for (Role role : roles) {
+			role.setModifiedDate(modifiedDate);
+
+			roleLocalService.updateRole(role);
+		}
 	}
 
 	protected void verifyCalendarBooking(

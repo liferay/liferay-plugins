@@ -150,6 +150,7 @@
 		<reference package-path="com.liferay.portal" entity="ResourceAction" />
 		<reference package-path="com.liferay.portal" entity="ResourceBlock" />
 		<reference package-path="com.liferay.portal" entity="ResourcePermission" />
+		<reference package-path="com.liferay.portal" entity="Role" />
 		<reference package-path="com.liferay.portal" entity="Subscription" />
 		<reference package-path="com.liferay.portlet.asset" entity="AssetCategory" />
 		<reference package-path="com.liferay.portlet.asset" entity="AssetEntry" />
