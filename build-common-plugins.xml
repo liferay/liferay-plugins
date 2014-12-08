@@ -53,6 +53,7 @@
 	</target>
 
 	<target name="loop-modules">
+		<echo>"Looping modules ${plugins.includes}" />
 		<if>
 			<not>
 				<equals arg1="${plugins.includes}" arg2="" />
@@ -84,5 +85,15 @@
 
 	<target name="setup-eclipse-module">
 		<ant dir="${module.name}" target="setup-eclipse" inheritAll="false" />
+	</target>
+
+	<target name="test-class-group">
+		<antcall target="loop-modules">
+			<param name="loop.modules.cmd" value="test-class-group-module" />
+		</antcall>
+	</target>
+
+	<target name="test-class-group-module">
+		<ant dir="${module.name}" target="test-class-group" inheritAll="false" />
 	</target>
 </project>
