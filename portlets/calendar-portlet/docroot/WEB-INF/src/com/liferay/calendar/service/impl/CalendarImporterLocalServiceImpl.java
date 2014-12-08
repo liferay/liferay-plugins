@@ -514,19 +514,6 @@ public class CalendarImporterLocalServiceImpl
 			calEvent.getUuid(), calendarResource.getGroupId());
 	}
 
-	protected long getActionId(
-		ResourceAction oldResourceAction, String newClassName) {
-
-		ResourceAction newResourceAction = resourceActionPersistence.fetchByN_A(
-			newClassName, oldResourceAction.getActionId());
-
-		if (newResourceAction == null) {
-			return 0;
-		}
-
-		return newResourceAction.getBitwiseValue();
-	}
-
 	protected long getActionId(String resourceModelName, String actionId) {
 		ResourceAction newResourceAction = resourceActionPersistence.fetchByN_A(
 			resourceModelName, actionId);
@@ -555,8 +542,10 @@ public class CalendarImporterLocalServiceImpl
 				continue;
 			}
 
-			actionIds = actionIds | getActionId(
-				oldResourceAction, newClassName);
+			String action = oldResourceAction.getActionId();
+
+			actionIds = actionIds | convertActionId(
+				resourcePermission, oldClassName, action, newClassName, action);
 		}
 
 		return actionIds;
