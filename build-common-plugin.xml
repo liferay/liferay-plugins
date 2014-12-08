@@ -798,31 +798,31 @@
 	</target>
 
 	<target name="test-class-group" depends="compile,compile-test">
-			<if>
-				<not>
-				 	<isset property="test.class.group.index" />
-				</not>
-				<then>
-					<fail>Use "ant test-class-group -Dtest.class.group.index=0".</fail>
-				</then>
-			</if>
+		<if>
+			<not>
+				<isset property="test.class.group.index" />
+			</not>
+			<then>
+				<fail>Use "ant test-class-group -Dtest.class.group.index=0".</fail>
+			</then>
+		</if>
 
-			<property file="${portal.dir}/test.class.file.names.properties" />
+		<property file="${portal.dir}/test.class.file.names.properties" />
 
-			<propertycopy from="TEST_CLASS_GROUP_${test.class.group.index}" name="test.classes" />
+		<propertycopy from="TEST_CLASS_GROUP_${test.class.group.index}" name="test.classes" />
 
-			<test-cmd
-				module.dir="${basedir}"
-				junit.forkmode="once" 
-				test.class="${test.classes}"
-				test.type="integration"
-			/>
+		<test-cmd
+			module.dir="${basedir}"
+			junit.forkmode="once" 
+			test.class="${test.classes}"
+			test.type="integration"
+		/>
 
-			<test-cmd
-				module.dir="${basedir}"
-				junit.forkmode="perTest"
-				test.class="${test.classes}"
-				test.type="unit"
-			/>
+		<test-cmd
+			module.dir="${basedir}"
+			junit.forkmode="perTest"
+			test.class="${test.classes}"
+			test.type="unit"
+		/>
 	</target>
 </project>
