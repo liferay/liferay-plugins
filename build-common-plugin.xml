@@ -818,11 +818,11 @@
 				test.type="integration"
 			/>
 
-            <test-cmd
-            	module.dir="${basedir}"
+			<test-cmd
+				module.dir="${basedir}"
 				junit.forkmode="perTest"
 				test.class="${test.classes}"
 				test.type="unit"
-            />
+			/>
 	</target>
 </project>
