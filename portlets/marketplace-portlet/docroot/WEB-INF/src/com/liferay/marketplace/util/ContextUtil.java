@@ -36,27 +36,29 @@ public class ContextUtil {
 			contextName = contextName.substring(0, contextName.length() - 1);
 		}
 
-		while (contextName.contains(StringPool.DASH)) {
-			if (contextName.endsWith("-ext") || contextName.endsWith("-hook") ||
-				contextName.endsWith("-layouttpl") ||
-				contextName.endsWith("-portlet") ||
-				contextName.endsWith("-theme") ||
-				contextName.endsWith("-web")) {
+		int pos = getPluginTypeEndingIndex(contextName);
 
-				return contextName;
-			}
-
-			int pos = contextName.lastIndexOf(StringPool.DASH);
-
-			if (pos > 0) {
-				contextName = contextName.substring(0, pos);
-			}
-			else {
-				break;
-			}
+		if (pos >= 0) {
+			contextName = contextName.substring(0, pos);
 		}
 
 		return contextName;
 	}
+
+	protected static int getPluginTypeEndingIndex(String contextName) {
+		for (String pluginType : _PLUGIN_TYPES) {
+			int pos = contextName.lastIndexOf(pluginType);
+
+			if (pos >= 0) {
+				return pos + pluginType.length();
+			}
+		}
+
+		return -1;
+	}
+
+	private static final String[] _PLUGIN_TYPES = {
+		"-ext", "-hook", "-layouttpl", "-portlet", "-theme", "-web"
+	};
 
 }
