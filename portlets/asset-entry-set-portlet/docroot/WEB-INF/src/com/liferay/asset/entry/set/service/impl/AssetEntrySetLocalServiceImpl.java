@@ -21,13 +21,10 @@ import com.liferay.compat.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSONObject;
-import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.User;
-import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
-import com.liferay.portlet.asset.service.AssetEntryLocalServiceUtil;
 import com.liferay.portlet.ratings.model.RatingsStats;
 
 import java.util.Date;
@@ -65,20 +62,22 @@ public class AssetEntrySetLocalServiceImpl
 			long creatorClassPK, JSONObject payloadJSONObject)
 		throws PortalException, SystemException {
 
-		User user = userPersistence.findByPrimaryKey(userId);
-
-		Date now = new Date();
-
 		long assetEntrySetId = counterLocalService.increment();
 
 		AssetEntrySet assetEntrySet = assetEntrySetPersistence.create(
 			assetEntrySetId);
 
+		User user = userPersistence.findByPrimaryKey(userId);
+
 		assetEntrySet.setCompanyId(user.getCompanyId());
 		assetEntrySet.setUserId(user.getUserId());
 		assetEntrySet.setUserName(user.getFullName());
+
+		Date now = new Date();
+
 		assetEntrySet.setCreateTime(now.getTime());
 		assetEntrySet.setModifiedTime(now.getTime());
+
 		assetEntrySet.setParentAssetEntrySetId(parentAssetEntrySetId);
 		assetEntrySet.setCreatorClassNameId(creatorClassNameId);
 		assetEntrySet.setCreatorClassPK(creatorClassPK);
@@ -88,12 +87,8 @@ public class AssetEntrySetLocalServiceImpl
 
 		updateChildrenAssetEntrySetCount(parentAssetEntrySetId);
 
-		updateAsset(
+		updateAssetEntry(
 			assetEntrySet,
-			GetterUtil.getLongValues(
-				StringUtil.split(
-					payloadJSONObject.getString(
-						AssetEntrySetConstants.KEY_ASSET_CATEGORY_IDS))),
 			StringUtil.split(
 				payloadJSONObject.getString(
 					AssetEntrySetConstants.KEY_ASSET_TAG_NAMES)));
@@ -107,7 +102,7 @@ public class AssetEntrySetLocalServiceImpl
 
 		assetEntrySetPersistence.remove(assetEntrySet);
 
-		AssetEntryLocalServiceUtil.deleteEntry(
+		assetEntryLocalService.deleteEntry(
 			AssetEntrySet.class.getName(), assetEntrySet.getAssetEntrySetId());
 
 		return assetEntrySet;
@@ -181,25 +176,6 @@ public class AssetEntrySetLocalServiceImpl
 
 	@Override
 	public int getAssetEntrySetsCount(
-			long parentAssetEntrySetId, long creatorClassNameId)
-		throws SystemException {
-
-		return assetEntrySetPersistence.countByPAESI_CCNI(
-			parentAssetEntrySetId, creatorClassNameId);
-	}
-
-	@Override
-	public int getAssetEntrySetsCount(
-			long creatorClassNameId, long creatorClassPK,
-			long parentAssetEntrySetId)
-		throws SystemException {
-
-		return assetEntrySetPersistence.countByPAESI_CCNI_CCPK(
-			parentAssetEntrySetId, creatorClassNameId, creatorClassPK);
-	}
-
-	@Override
-	public int getAssetEntrySetsCount(
 			long creatorClassNameId, long creatorClassPK, String assetTagName,
 			boolean andOperator)
 		throws SystemException {
@@ -218,7 +194,7 @@ public class AssetEntrySetLocalServiceImpl
 	}
 
 	@Override
-	public List<AssetEntrySet> getParentAssetEntrySetAssetEntrySets(
+	public List<AssetEntrySet> getChildrenAssetEntrySets(
 			long parentAssetEntrySetId, int start, int end,
 			OrderByComparator orderByComparator)
 		throws SystemException {
@@ -228,41 +204,27 @@ public class AssetEntrySetLocalServiceImpl
 	}
 
 	@Override
-	public int getParentAssetEntrySetAssetEntrySetsCount(
-			long parentAssetEntrySetId)
-		throws SystemException {
-
-		return assetEntrySetPersistence.countByParentAssetEntrySetId(
-			parentAssetEntrySetId);
-	}
-
-	@Override
 	public AssetEntrySet likeAssetEntrySet(long userId, long assetEntrySetId)
 		throws PortalException, SystemException {
 
-		return updateRatingsTotalScore(userId, assetEntrySetId, 1);
+		return updateRatingsStatsTotalScore(userId, assetEntrySetId, 1);
 	}
 
 	@Override
 	public AssetEntrySet unlikeAssetEntrySet(long userId, long assetEntrySetId)
 		throws PortalException, SystemException {
 
-		return updateRatingsTotalScore(userId, assetEntrySetId, 0);
+		return updateRatingsStatsTotalScore(userId, assetEntrySetId, 0);
 	}
 
 	@Override
-	public void updateAsset(
-			AssetEntrySet assetEntrySet, long[] assetCategoryIds,
-			String[] assetTagNames)
+	public void updateAssetEntry(long assetEntrySetId, String[] assetTagNames)
 		throws PortalException, SystemException {
 
-		Group group = GroupLocalServiceUtil.getCompanyGroup(
-			assetEntrySet.getCompanyId());
+		AssetEntrySet assetEntrySet = assetEntrySetPersistence.findByPrimaryKey(
+			assetEntrySetId);
 
-		AssetEntryLocalServiceUtil.updateEntry(
-			assetEntrySet.getUserId(), group.getGroupId(),
-			AssetEntrySet.class.getName(), assetEntrySet.getAssetEntrySetId(),
-			assetCategoryIds, assetTagNames);
+		updateAssetEntry(assetEntrySet, assetTagNames);
 	}
 
 	@Override
@@ -280,12 +242,8 @@ public class AssetEntrySetLocalServiceImpl
 
 		assetEntrySetPersistence.update(assetEntrySet);
 
-		updateAsset(
+		updateAssetEntry(
 			assetEntrySet,
-			GetterUtil.getLongValues(
-				StringUtil.split(
-					payloadJSONObject.getString(
-						AssetEntrySetConstants.KEY_ASSET_CATEGORY_IDS))),
 			StringUtil.split(
 				payloadJSONObject.getString(
 					AssetEntrySetConstants.KEY_ASSET_TAG_NAMES)));
@@ -316,7 +274,20 @@ public class AssetEntrySetLocalServiceImpl
 		return assetEntrySet;
 	}
 
-	protected AssetEntrySet updateRatingsTotalScore(
+	protected void updateAssetEntry(
+			AssetEntrySet assetEntrySet, String[] assetTagNames)
+		throws PortalException, SystemException {
+
+		Group group = groupLocalService.getCompanyGroup(
+			assetEntrySet.getCompanyId());
+
+		assetEntryLocalService.updateEntry(
+			assetEntrySet.getUserId(), group.getGroupId(),
+			AssetEntrySet.class.getName(), assetEntrySet.getAssetEntrySetId(),
+			null, assetTagNames);
+	}
+
+	protected AssetEntrySet updateRatingsStatsTotalScore(
 			long userId, long assetEntrySetId, long score)
 		throws PortalException, SystemException {
 
@@ -331,7 +302,8 @@ public class AssetEntrySetLocalServiceImpl
 		RatingsStats ratingsStats = ratingsStatsLocalService.getStats(
 			className, assetEntrySetId);
 
-		assetEntrySet.setRatingsTotalScore((long)ratingsStats.getTotalScore());
+		assetEntrySet.setRatingsStatsTotalScore(
+			(int)ratingsStats.getTotalScore());
 
 		assetEntrySetPersistence.update(assetEntrySet);
 

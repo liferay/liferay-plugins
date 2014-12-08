@@ -19,8 +19,6 @@ package com.liferay.asset.entry.set.util;
  */
 public class AssetEntrySetConstants {
 
-	public static final String KEY_ASSET_CATEGORY_IDS = "assetCategoryIds";
-
 	public static final String KEY_ASSET_TAG_NAMES = "assetTagNames";
 
 }
