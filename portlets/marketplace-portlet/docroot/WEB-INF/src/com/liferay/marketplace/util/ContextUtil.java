@@ -36,21 +36,21 @@ public class ContextUtil {
 			contextName = contextName.substring(0, contextName.length() - 1);
 		}
 
-		int pos = getPluginTypeEndingIndex(contextName);
+		int index = getPluginTypeIndex(contextName);
 
-		if (pos >= 0) {
-			contextName = contextName.substring(0, pos);
+		if (index >= 0) {
+			contextName = contextName.substring(0, index);
 		}
 
 		return contextName;
 	}
 
-	protected static int getPluginTypeEndingIndex(String contextName) {
+	protected static int getPluginTypeIndex(String contextName) {
 		for (String pluginType : _PLUGIN_TYPES) {
-			int pos = contextName.lastIndexOf(pluginType);
+			int index = contextName.lastIndexOf(pluginType);
 
-			if (pos >= 0) {
-				return pos + pluginType.length();
+			if (index >= 0) {
+				return index + pluginType.length();
 			}
 		}
 
