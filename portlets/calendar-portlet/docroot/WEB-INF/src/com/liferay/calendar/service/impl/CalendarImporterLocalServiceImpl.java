@@ -1004,7 +1004,8 @@ public class CalendarImporterLocalServiceImpl
 	}
 
 	protected void importResourcePermissions(
-			long companyId, String oldClassName, String newClassName, int scope)
+			long companyId, String oldClassName, String oldAction,
+			String newClassName, String newAction, int scope)
 		throws PortalException {
 
 		List<ResourcePermission> resourcePermissions =
@@ -1012,8 +1013,9 @@ public class CalendarImporterLocalServiceImpl
 				companyId, oldClassName, scope);
 
 		for (ResourcePermission resourcePermission : resourcePermissions) {
-			long actionIds = getActionIds(
-				resourcePermission, oldClassName, newClassName);
+			long actionIds = convertActionId(
+				resourcePermission, oldClassName, oldAction, newClassName,
+				newAction);
 
 			if (scope == ResourceConstants.SCOPE_GROUP) {
 				resourceBlockLocalService.addGroupScopePermissions(
