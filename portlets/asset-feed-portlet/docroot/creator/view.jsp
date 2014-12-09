@@ -16,30 +16,53 @@
 
 <%@ include file="/init.jsp" %>
 
-<aui:form name="fm">
-	<aui:input name="content" type="hidden" />
-	<aui:input name="to" type="hidden" />
-	<aui:input name="type" type="hidden" value="text" />
+<aui:form name='fm'>
+	<liferay-ui:tabs
+		formName="fm"
+		names="text,link,image,announcement"
+		param="type"
+		refresh="<%= false %>"
+		tabsValues="text,link,image,announcement"
+		type="pills"
+	>
+		<liferay-ui:section></liferay-ui:section>
 
-	<aui:field-wrapper label="content">
-		<div class="content-editable-wrapper" id="<portlet:namespace />textAssetEdit">
-			<div class="placeholder"><liferay-ui:message key="enter-a-message" /></div>
+		<liferay-ui:section>
+			<%@ include file="link.jspf" %>
+		</liferay-ui:section>
 
-			<div class="content-editable content-editable-area"></div>
-		</div>
-	</aui:field-wrapper>
+		<liferay-ui:section>
+			<%@ include file="image.jspf" %>
+		</liferay-ui:section>
 
-	<aui:field-wrapper label="to">
-		<div class="content-editable-wrapper" id="<portlet:namespace />textAssetTo">
-			<div class="placeholder"><liferay-ui:message key="enter-a-name" /></div>
+		<liferay-ui:section>
+			<%@ include file="announcement.jspf" %>
+		</liferay-ui:section>
 
-			<div class="content-editable content-editable-inline"></div>
-		</div>
-	</aui:field-wrapper>
+		<aui:input name="content" type="hidden" />
+		<aui:input name="to" type="hidden" />
+		<aui:input name="type" type="hidden" value="text" />
 
-	<aui:button-row>
-		<aui:button cssClass="pull-right" type="submit" value="Submit" />
-	</aui:button-row>
+		<aui:field-wrapper label="content">
+			<div class="content-editable-wrapper" id="<portlet:namespace />textAssetEdit">
+				<div class="placeholder"><liferay-ui:message key="enter-your-message" /></div>
+
+				<div class="content-editable content-editable-area"></div>
+			</div>
+		</aui:field-wrapper>
+
+		<aui:field-wrapper label="to">
+			<div class="content-editable-wrapper" id="<portlet:namespace />textAssetTo">
+				<div class="placeholder"><liferay-ui:message key="enter-a-name" /></div>
+
+				<div class="content-editable content-editable-inline"></div>
+			</div>
+		</aui:field-wrapper>
+
+		<aui:button-row>
+			<aui:button cssClass="pull-right" type="submit" value="Submit" />
+		</aui:button-row>
+	</liferay-ui:tabs>
 </aui:form>
 
 <aui:script use="aui-io,liferay-asset-feed-input,liferay-portlet-request">
