@@ -9,6 +9,7 @@
 		<friendly-url-mapper-class>com.liferay.portal.kernel.portlet.DefaultFriendlyURLMapper</friendly-url-mapper-class>
 		<friendly-url-mapping>contacts</friendly-url-mapping>
 		<friendly-url-routes>com/liferay/contacts/contactscenter/portlet/contacts-friendly-url-routes.xml</friendly-url-routes>
+		<social-activity-interpreter-class>com.liferay.contacts.contactscenter.social.ContactsCenterActivityInterpreter</social-activity-interpreter-class>
 		<social-request-interpreter-class>com.liferay.contacts.contactscenter.social.ContactsCenterRequestInterpreter</social-request-interpreter-class>
 		<user-notification-definitions>com/liferay/contacts/contactscenter/portlet/contacts-center-user-notification-definitions.xml</user-notification-definitions>
 		<user-notification-handler-class>com.liferay.contacts.contactscenter.notifications.ContactsCenterUserNotificationHandler</user-notification-handler-class>
