@@ -194,7 +194,7 @@ public class AssetEntrySetLocalServiceImpl
 	}
 
 	@Override
-	public List<AssetEntrySet> getChildrenAssetEntrySets(
+	public List<AssetEntrySet> getChildAssetEntrySets(
 			long parentAssetEntrySetId, int start, int end,
 			OrderByComparator orderByComparator)
 		throws SystemException {
@@ -238,6 +238,7 @@ public class AssetEntrySetLocalServiceImpl
 		Date now = new Date();
 
 		assetEntrySet.setModifiedTime(now.getTime());
+
 		assetEntrySet.setPayload(payloadJSONObject.toString());
 
 		assetEntrySetPersistence.update(assetEntrySet);
