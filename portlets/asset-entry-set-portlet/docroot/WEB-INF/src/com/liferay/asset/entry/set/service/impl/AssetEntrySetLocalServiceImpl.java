@@ -85,13 +85,13 @@ public class AssetEntrySetLocalServiceImpl
 
 		assetEntrySetPersistence.update(assetEntrySet);
 
-		updateChildrenAssetEntrySetCount(parentAssetEntrySetId);
+		updateChildAssetEntrySetsCount(parentAssetEntrySetId);
 
 		updateAssetEntry(
 			assetEntrySet,
 			StringUtil.split(
 				payloadJSONObject.getString(
-					AssetEntrySetConstants.KEY_ASSET_TAG_NAMES)));
+					AssetEntrySetConstants.PAYLOAD_KEY_ASSET_TAG_NAMES)));
 
 		return assetEntrySet;
 	}
@@ -246,13 +246,13 @@ public class AssetEntrySetLocalServiceImpl
 			assetEntrySet,
 			StringUtil.split(
 				payloadJSONObject.getString(
-					AssetEntrySetConstants.KEY_ASSET_TAG_NAMES)));
+					AssetEntrySetConstants.PAYLOAD_KEY_ASSET_TAG_NAMES)));
 
 		return assetEntrySet;
 	}
 
 	@Override
-	public AssetEntrySet updateChildrenAssetEntrySetCount(
+	public AssetEntrySet updateChildAssetEntrySetsCount(
 			long parentAssetEntrySetId)
 		throws PortalException, SystemException {
 
@@ -263,11 +263,11 @@ public class AssetEntrySetLocalServiceImpl
 		AssetEntrySet assetEntrySet = assetEntrySetPersistence.findByPrimaryKey(
 			parentAssetEntrySetId);
 
-		int childrenAssetEntrySetCount =
+		int childAssetEntrySetsCount =
 			assetEntrySetPersistence.countByParentAssetEntrySetId(
 				parentAssetEntrySetId);
 
-		assetEntrySet.setChildrenAssetEntrySetCount(childrenAssetEntrySetCount);
+		assetEntrySet.setChildAssetEntrySetsCount(childAssetEntrySetsCount);
 
 		assetEntrySetPersistence.update(assetEntrySet);
 

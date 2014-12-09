@@ -24,7 +24,7 @@
 		<column name="creatorClassNameId" type="long" />
 		<column name="creatorClassPK" type="long" />
 		<column name="payload" type="String" />
-		<column name="childrenAssetEntrySetCount" type="int" />
+		<column name="childAssetEntrySetsCount" type="int" />
 		<column name="ratingsStatsTotalScore" type="int" />
 
 		<!-- Order -->

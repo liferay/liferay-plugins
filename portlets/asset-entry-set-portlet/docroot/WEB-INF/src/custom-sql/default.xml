@@ -1,7 +1,6 @@
 <?xml version="1.0"?>
 
 <custom-sql>
-
 	<sql id="com.liferay.asset.entry.set.service.persistence.AssetEntrySetFinder.countByCCNI_ATN">
 		<![CDATA[
 			SELECT
