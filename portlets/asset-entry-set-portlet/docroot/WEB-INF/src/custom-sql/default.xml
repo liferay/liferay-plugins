@@ -44,6 +44,26 @@
 				(AssetTag.name = ?)
 		]]>
 	</sql>
+	<sql id="com.liferay.asset.sharing.service.persistence.AssetSharingEntryFinder.countByUserId">
+		<![CDATA[
+			SELECT
+				COUNT(DISTINCT SocialActivitySet.activitySetId) AS COUNT_VALUE
+			FROM
+				AssetSharing_AssetSharingEntry
+			INNER JOIN
+				SocialActivitySet ON
+					(SocialActivitySet.classNameId = AssetSharing_AssetSharingEntry.classNameId) AND
+					(SocialActivitySet.classPK = AssetSharing_AssetSharingEntry.classPK)
+			LEFT JOIN
+				SocialRelation ON
+					(SocialRelation.userId2 = SocialActivitySet.userId)
+			WHERE
+				(
+					[$CLASS_NAME_IDS]
+					[$SHARED_TO_CLASS_PKS_MAP]
+				)
+		]]>
+	</sql>
 	<sql id="com.liferay.asset.entry.set.service.persistence.AssetEntrySetFinder.findByCCNI_ATN">
 		<![CDATA[
 			SELECT
@@ -89,6 +109,28 @@
 				(AssetTag.name = ?)
 			ORDER BY
 				AssetEntrySet.createDate DESC
+		]]>
+	</sql>
+	<sql id="com.liferay.asset.sharing.service.persistence.AssetSharingEntryFinder.findByUserId">
+		<![CDATA[
+			SELECT
+				DISTINCT AssetSharing_AssetSharingEntry.classNameId as classNameId, AssetSharing_AssetSharingEntry.classPK as classPK
+			FROM
+				AssetSharing_AssetSharingEntry
+			INNER JOIN
+				SocialActivitySet ON
+					(SocialActivitySet.classNameId = AssetSharing_AssetSharingEntry.classNameId) AND
+					(SocialActivitySet.classPK = AssetSharing_AssetSharingEntry.classPK)
+			LEFT JOIN
+				SocialRelation ON
+					(SocialRelation.userId2 = SocialActivitySet.userId)
+			WHERE
+				(
+					[$CLASS_NAME_IDS]
+					[$SHARED_TO_CLASS_PKS_MAP]
+				)
+			ORDER BY
+				SocialActivitySet.modifiedDate DESC
 		]]>
 	</sql>
 </custom-sql>
