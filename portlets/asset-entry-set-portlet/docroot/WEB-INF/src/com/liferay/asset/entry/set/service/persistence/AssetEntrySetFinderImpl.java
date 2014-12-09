@@ -44,7 +44,7 @@ public class AssetEntrySetFinderImpl
 		AssetEntrySetFinder.class.getName() + ".countByCCNI_CCPK_ATN";
 
 	public static final String COUNT_BY_USER_ID =
-		AssetSharingEntryFinder.class.getName() + ".countByUserId";
+		AssetEntrySetFinder.class.getName() + ".countByUserId";
 
 	public static final String FIND_BY_CCNI_ATN =
 		AssetEntrySetFinder.class.getName() + ".findByCCNI_ATN";
@@ -53,7 +53,7 @@ public class AssetEntrySetFinderImpl
 		AssetEntrySetFinder.class.getName() + ".findByCCNI_CCPK_ATN";
 
 	public static final String FIND_BY_USER_ID =
-		AssetSharingEntryFinder.class.getName() + ".findByUserId";
+		AssetEntrySetFinder.class.getName() + ".findByUserId";
 
 	public int countByCCNI_ATN(long creatorClassNameId, String assetTagName)
 		throws SystemException {
