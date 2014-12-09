@@ -55,10 +55,8 @@
 					(AssetSharing_AssetSharingEntry.classNameId = ?) AND
 					(AssetSharing_AssetSharingEntry.classPK = AssetEntrySet.assetEntrySetId)
 			WHERE
-				(
-					[$CLASS_NAME_IDS]
-					[$SHARED_TO_CLASS_PKS_MAP]
-				)
+				[$SHARED_TO_CLASS_PKS_MAP]
+
 		]]>
 	</sql>
 	<sql id="com.liferay.asset.entry.set.service.persistence.AssetEntrySetFinder.findByCCNI_ATN">
@@ -119,10 +117,7 @@
 					(AssetSharing_AssetSharingEntry.classNameId = ?) AND
 					(AssetSharing_AssetSharingEntry.classPK = AssetEntrySet.assetEntrySetId)
 			WHERE
-				(
-					[$CLASS_NAME_IDS]
-					[$SHARED_TO_CLASS_PKS_MAP]
-				)
+				[$SHARED_TO_CLASS_PKS_MAP]
 			ORDER BY
 				AssetEntrySet.modifiedTime DESC
 		]]>
