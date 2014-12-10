@@ -22,7 +22,7 @@ import com.liferay.portal.model.Company;
 import com.liferay.portal.model.CompanyConstants;
 import com.liferay.portal.model.User;
 import com.liferay.portal.security.auth.BaseAutoLogin;
-import com.liferay.portal.security.ldap.PortalLDAPImporterUtil;
+import com.liferay.portal.security.exportimport.UserImporterUtil;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.shibboleth.util.PropsKeys;
@@ -69,11 +69,11 @@ public class ShibbolethAutoLogin extends BaseAutoLogin {
 
 			try {
 				if (authType.equals(CompanyConstants.AUTH_TYPE_EA)) {
-					user = PortalLDAPImporterUtil.importLDAPUser(
+					user = UserImporterUtil.importUser(
 						companyId, shibbolethUserHeader, StringPool.BLANK);
 				}
 				else {
-					user = PortalLDAPImporterUtil.importLDAPUser(
+					user = UserImporterUtil.importUser(
 						companyId, StringPool.BLANK, shibbolethUserHeader);
 				}
 			}
