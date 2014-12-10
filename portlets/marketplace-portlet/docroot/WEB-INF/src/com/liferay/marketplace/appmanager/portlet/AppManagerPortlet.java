@@ -24,7 +24,6 @@ import com.liferay.portal.kernel.upload.UploadException;
 import com.liferay.portal.kernel.upload.UploadPortletRequest;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.CharPool;
-import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.Http;
@@ -281,13 +280,7 @@ public class AppManagerPortlet extends MVCPortlet {
 
 			options.setFollowRedirects(false);
 			options.setLocation(url);
-			options.setPortletRequest(actionRequest);
 			options.setPost(false);
-
-			String progressId = ParamUtil.getString(
-				uploadPortletRequest, Constants.PROGRESS_ID);
-
-			options.setProgressId(progressId);
 
 			byte[] bytes = HttpUtil.URLtoByteArray(options);
 
