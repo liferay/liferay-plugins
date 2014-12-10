@@ -143,9 +143,7 @@ public class AssetEntrySetFinderImpl
 	}
 
 	@Override
-	public int countByUserId(
-			long userId, long[] classNameIds,
-			Map<Long, long[]> sharedToClassPKsMap)
+	public int countByUserId(long userId, Map<Long, long[]> sharedToClassPKsMap)
 		throws SystemException {
 
 		Session session = null;
@@ -156,8 +154,6 @@ public class AssetEntrySetFinderImpl
 			String sql = CustomSQLUtil.get(COUNT_BY_USER_ID);
 
 			sql = StringUtil.replace(
-				sql, "[$CLASS_NAME_IDS]", getClassNameIds(classNameIds));
-			sql = StringUtil.replace(
 				sql, "[$SHARED_TO_CLASS_PKS_MAP]",
 				getSharedToClassPKsMap(sharedToClassPKsMap));
 
@@ -167,7 +163,6 @@ public class AssetEntrySetFinderImpl
 
 			QueryPos qPos = QueryPos.getInstance(q);
 
-			setClassNameIds(qPos, userId, classNameIds);
 			setSharedToClassPKsMap(qPos, userId, sharedToClassPKsMap);
 
 			Iterator<Long> itr = q.iterate();
@@ -258,8 +253,8 @@ public class AssetEntrySetFinderImpl
 
 	@Override
 	public List<AssetEntrySet> findByUserId(
-			long userId, long[] classNameIds,
-			Map<Long, long[]> sharedToClassPKsMap, int start, int end)
+			long userId, Map<Long, long[]> sharedToClassPKsMap, int start,
+			int end)
 		throws SystemException {
 
 		Session session = null;
@@ -270,8 +265,6 @@ public class AssetEntrySetFinderImpl
 			String sql = CustomSQLUtil.get(FIND_BY_USER_ID);
 
 			sql = StringUtil.replace(
-				sql, "[$CLASS_NAME_IDS]", getClassNameIds(classNameIds));
-			sql = StringUtil.replace(
 				sql, "[$SHARED_TO_CLASS_PKS_MAP]",
 				getSharedToClassPKsMap(sharedToClassPKsMap));
 
@@ -281,7 +274,6 @@ public class AssetEntrySetFinderImpl
 
 			QueryPos qPos = QueryPos.getInstance(q);
 
-			setClassNameIds(qPos, userId, classNameIds);
 			setSharedToClassPKsMap(qPos, userId, sharedToClassPKsMap);
 
 			return (List<AssetEntrySet>)QueryUtil.list(
@@ -293,28 +285,6 @@ public class AssetEntrySetFinderImpl
 		finally {
 			closeSession(session);
 		}
-	}
-
-	protected String getClassNameIds(long[] classNameIds) {
-		if ((classNameIds == null) || (classNameIds.length == 0)) {
-			return StringPool.SPACE;
-		}
-
-		StringBundler sb = new StringBundler();
-
-		sb.append(StringPool.OPEN_PARENTHESIS);
-
-		for (int i = 0; i < classNameIds.length; i++) {
-			sb.append("(AssetSharing_AssetSharingEntry.classNameId = ?)");
-
-			if ((i + 1) < classNameIds.length) {
-				sb.append(" OR ");
-			}
-		}
-
-		sb.append(") AND");
-
-		return sb.toString();
 	}
 
 	protected String getSharedToClassPKs(long[] sharedToClassPKs) {
@@ -367,16 +337,6 @@ public class AssetEntrySetFinderImpl
 		sb.append("(AssetEntrySet.userId = ?))");
 
 		return sb.toString();
-	}
-
-	protected void setClassNameIds(
-		QueryPos qPos, long userId, long[] classNameIds) {
-
-		if (classNameIds != null) {
-			for (long classNameId : classNameIds) {
-				qPos.add(classNameId);
-			}
-		}
 	}
 
 	protected void setSharedToClassPKsMap(
