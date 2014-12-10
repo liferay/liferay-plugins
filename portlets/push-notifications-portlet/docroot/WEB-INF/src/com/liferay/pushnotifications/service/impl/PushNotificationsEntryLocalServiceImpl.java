@@ -172,15 +172,15 @@ public class PushNotificationsEntryLocalServiceImpl
 
 		JSONObject userJSONObject = JSONFactoryUtil.createJSONObject();
 
-		long userId = pushNotificationsEntry.getUserId();
-
-		User user = userLocalService.getUser(userId);
+		User user = userPersistence.findByPrimaryKey(
+			pushNotificationsEntry.getUserId());
 
 		userJSONObject.put(
 			PushNotificationsConstants.KEY_FULL_NAME, user.getFullName());
 		userJSONObject.put(
 			PushNotificationsConstants.KEY_PORTRAIT_ID, user.getPortraitId());
-		userJSONObject.put(PushNotificationsConstants.KEY_USER_ID, userId);
+		userJSONObject.put(
+			PushNotificationsConstants.KEY_USER_ID, user.getUserId());
 		userJSONObject.put(PushNotificationsConstants.KEY_UUID, user.getUuid());
 
 		pushNotificationsEntry.setUser(userJSONObject);
