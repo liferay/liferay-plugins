@@ -408,9 +408,7 @@ public class FindKBArticleAction extends BaseStrutsAction {
 	protected boolean isParentFolder(long resourcePrimKey, long kbFolderId)
 		throws PortalException, SystemException {
 
-		while (kbFolderId !=
-					KBFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
-
+		while (kbFolderId != KBFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
 			if (resourcePrimKey == kbFolderId) {
 				return true;
 			}
