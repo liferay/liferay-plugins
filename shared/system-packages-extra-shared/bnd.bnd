@@ -18,3 +18,5 @@ Export-Package: \
 	com.liferay.util.portlet,\
 	com.liferay.util.service
 Fragment-Host: system.bundle;extension:=framework
+Provide-Capability: system.packages.extra;\
+	version:Version="1.0.0"
