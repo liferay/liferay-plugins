@@ -41,10 +41,10 @@ public class KBNavigationDisplayContext {
 		PortletRequest portletRequest, PortalPreferences portalPreferences,
 		PortletPreferences portletPreferences, KBArticle kbArticle) {
 
-		_kbArticle = kbArticle;
+		_portletRequest = portletRequest;
 		_portalPreferences = portalPreferences;
 		_portletPreferences = portletPreferences;
-		_portletRequest = portletRequest;
+		_kbArticle = kbArticle;
 	}
 
 	public List<Long> getAncestorResourcePrimaryKeys() throws PortalException {
@@ -139,8 +139,8 @@ public class KBNavigationDisplayContext {
 			KBFolderConstants.getClassName());
 
 		if (getResourceClassNameId() == kbFolderClassNameId) {
-			List<KBFolder> kbFolders = KnowledgeBaseUtil.
-				getAlternateRootKBFolders(
+			List<KBFolder> kbFolders =
+				KnowledgeBaseUtil.getAlternateRootKBFolders(
 					PortalUtil.getScopeGroupId(_portletRequest),
 					getResourcePrimKey());
 
