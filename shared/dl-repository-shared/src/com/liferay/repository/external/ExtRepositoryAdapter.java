@@ -109,7 +109,7 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 
 	@Override
 	public ExtRepositoryFolderAdapter addFolder(
-			long parentFolderId, String name, String description,
+			long userId, long parentFolderId, String name, String description,
 			ServiceContext serviceContext)
 		throws PortalException {
 
@@ -726,7 +726,8 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 
 	@Override
 	public FileEntry moveFileEntry(
-			long fileEntryId, long newFolderId, ServiceContext serviceContext)
+			long userId, long fileEntryId, long newFolderId,
+			ServiceContext serviceContext)
 		throws PortalException {
 
 		String extRepositoryFileEntryKey = getExtRepositoryObjectKey(
@@ -750,7 +751,7 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 
 	@Override
 	public ExtRepositoryFolderAdapter moveFolder(
-			long folderId, long newParentFolderId,
+			long userId, long folderId, long newParentFolderId,
 			ServiceContext serviceContext)
 		throws PortalException {
 
