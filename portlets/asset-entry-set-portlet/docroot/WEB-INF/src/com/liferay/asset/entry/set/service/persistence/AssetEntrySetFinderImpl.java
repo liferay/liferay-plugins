@@ -23,15 +23,19 @@ import com.liferay.portal.kernel.dao.orm.Session;
 import com.liferay.portal.kernel.dao.orm.Type;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.StringBundler;
+import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.service.ClassNameLocalServiceUtil;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 import com.liferay.util.dao.orm.CustomSQLUtil;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author Calvin Keum
+ * @author Sherry Yang
  */
 public class AssetEntrySetFinderImpl
 	extends BasePersistenceImpl<AssetEntrySet>
@@ -140,7 +144,7 @@ public class AssetEntrySetFinderImpl
 
 	@Override
 	public int countByUserId(
-			long userId, long[] classNameIds, 
+			long userId, long[] classNameIds,
 			Map<Long, long[]> sharedToClassPKsMap)
 		throws SystemException {
 
@@ -253,7 +257,7 @@ public class AssetEntrySetFinderImpl
 	}
 
 	@Override
-	public List<Object[]> findByUserId(
+	public List<AssetEntrySet> findByUserId(
 			long userId, long[] classNameIds,
 			Map<Long, long[]> sharedToClassPKsMap, int start, int end)
 		throws SystemException {
@@ -273,15 +277,15 @@ public class AssetEntrySetFinderImpl
 
 			SQLQuery q = session.createSQLQuery(sql);
 
-			q.addScalar("classNameId", Type.LONG);
-			q.addScalar("classPK", Type.LONG);
+			q.addEntity("AssetEntrySet", AssetEntrySetImpl.class);
 
 			QueryPos qPos = QueryPos.getInstance(q);
 
 			setClassNameIds(qPos, userId, classNameIds);
 			setSharedToClassPKsMap(qPos, userId, sharedToClassPKsMap);
 
-			return (List<Object[]>)QueryUtil.list(q, getDialect(), start, end);
+			return (List<AssetEntrySet>)QueryUtil.list(
+				q, getDialect(), start, end);
 		}
 		catch (Exception e) {
 			throw new SystemException(e);
@@ -344,7 +348,6 @@ public class AssetEntrySetFinderImpl
 			for (Map.Entry<Long, long[]> entry :
 					sharedToClassPKsMap.entrySet()) {
 
-				Long sharedToClassNameId = entry.getKey();
 				long[] sharedToClassPKs = entry.getValue();
 
 				if ((sharedToClassPKs == null) ||
@@ -355,90 +358,13 @@ public class AssetEntrySetFinderImpl
 
 				sb.append(StringPool.OPEN_PARENTHESIS);
 
-				if (sharedToClassNameId == _SOCIAL_RELATION_CLASS_NAME_ID) {
-					sb.append(getSocialRelationClassPKs(sharedToClassPKs));
-				}
-				else {
-					sb.append(getSharedToClassPKs(sharedToClassPKs));
-				}
+				sb.append(getSharedToClassPKs(sharedToClassPKs));
 
 				sb.append(") OR ");
 			}
 		}
 
-		sb.append("(SocialActivitySet.userId = ?))");
-
-		return sb.toString();
-	}
-
-	protected String getSocialRelationClassPKs(long[] sharedToClassPKs) {
-		StringBundler sb = null;
-
-		Arrays.sort(sharedToClassPKs);
-
-		if (sharedToClassPKs.length == 1) {
-			if (sharedToClassPKs[0] ==
-					AssetSharingEntryConstants.TYPE_EVERYONE) {
-
-				sb = new StringBundler(3);
-
-				sb.append(_SHARED_TO_CLASS_NAME_ID_SQL);
-				sb.append(" AND ");
-				sb.append(_SHARED_TO_CLASS_PK_SQL);
-			}
-			else {
-				sb = new StringBundler(6);
-
-				sb.append(_SHARED_TO_CLASS_NAME_ID_SQL);
-				sb.append(" AND (");
-				sb.append(_SHARED_TO_CLASS_PK_SQL);
-				sb.append(" AND ");
-				sb.append(_USER_ID_1_SQL);
-				sb.append(StringPool.CLOSE_PARENTHESIS);
-			}
-		}
-		else if (sharedToClassPKs.length == 2) {
-			if (sharedToClassPKs[0] ==
-					AssetSharingEntryConstants.TYPE_EVERYONE) {
-
-				sb = new StringBundler(8);
-
-				sb.append(_SHARED_TO_CLASS_NAME_ID_SQL);
-				sb.append(" AND (");
-				sb.append(_SHARED_TO_CLASS_PK_SQL);
-				sb.append(" OR (");
-				sb.append(_SHARED_TO_CLASS_PK_SQL);
-				sb.append(" AND ");
-				sb.append(_USER_ID_1_SQL);
-				sb.append("))");
-			}
-			else {
-				sb = new StringBundler(8);
-
-				sb.append(_SHARED_TO_CLASS_NAME_ID_SQL);
-				sb.append(" AND ((");
-				sb.append(_SHARED_TO_CLASS_PK_SQL);
-				sb.append(" OR ");
-				sb.append(_SHARED_TO_CLASS_PK_SQL);
-				sb.append(") AND ");
-				sb.append(_USER_ID_1_SQL);
-				sb.append(StringPool.CLOSE_PARENTHESIS);
-			}
-		}
-		else {
-			sb = new StringBundler(10);
-
-			sb.append(_SHARED_TO_CLASS_NAME_ID_SQL);
-			sb.append(" AND (");
-			sb.append(_SHARED_TO_CLASS_PK_SQL);
-			sb.append(" OR ((");
-			sb.append(_SHARED_TO_CLASS_PK_SQL);
-			sb.append(" OR ");
-			sb.append(_SHARED_TO_CLASS_PK_SQL);
-			sb.append(") AND ");
-			sb.append(_USER_ID_1_SQL);
-			sb.append("))");
-		}
+		sb.append("(AssetEntrySet.userId = ?))");
 
 		return sb.toString();
 	}
@@ -456,6 +382,8 @@ public class AssetEntrySetFinderImpl
 	protected void setSharedToClassPKsMap(
 		QueryPos qPos, long userId, Map<Long, long[]> sharedToClassPKsMap) {
 
+		qPos.add(_ASSET_ENTRY_SET_CLASS_NAME_ID);
+
 		if (sharedToClassPKsMap != null) {
 			for (Long sharedToClassNameId : sharedToClassPKsMap.keySet()) {
 				qPos.add(sharedToClassNameId);
@@ -463,32 +391,8 @@ public class AssetEntrySetFinderImpl
 				long[] sharedToClassPKs = sharedToClassPKsMap.get(
 					sharedToClassNameId);
 
-				if (sharedToClassNameId == _SOCIAL_RELATION_CLASS_NAME_ID) {
-					Arrays.sort(sharedToClassPKs);
-
-					if (sharedToClassPKs.length == 1) {
-						if (sharedToClassPKs[0] ==
-								AssetSharingEntryConstants.TYPE_EVERYONE) {
-
-							qPos.add(sharedToClassPKs[0]);
-						}
-						else {
-							qPos.add(sharedToClassPKs[0]);
-							qPos.add(userId);
-						}
-					}
-					else {
-						for (long sharedToClasPK : sharedToClassPKs) {
-							qPos.add(sharedToClasPK);
-						}
-
-						qPos.add(userId);
-					}
-				}
-				else {
-					for (long sharedToClassPK : sharedToClassPKs) {
-						qPos.add(sharedToClassPK);
-					}
+				for (long sharedToClassPK : sharedToClassPKs) {
+					qPos.add(sharedToClassPK);
 				}
 			}
 		}
@@ -496,15 +400,13 @@ public class AssetEntrySetFinderImpl
 		qPos.add(userId);
 	}
 
+	private static final long _ASSET_ENTRY_SET_CLASS_NAME_ID =
+		ClassNameLocalServiceUtil.getClassNameId(AssetEntrySet.class);
+
 	private static final String _SHARED_TO_CLASS_NAME_ID_SQL =
 		"(AssetSharing_AssetSharingEntry.sharedToClassNameId = ?)";
 
 	private static final String _SHARED_TO_CLASS_PK_SQL =
 		"(AssetSharing_AssetSharingEntry.sharedToClassPK = ?)";
-
-	private static final long _SOCIAL_RELATION_CLASS_NAME_ID =
-		ClassNameLocalServiceUtil.fetchClassNameId(SocialRelation.class);
-
-	private static final String _USER_ID_1_SQL = "(SocialRelation.userId1 = ?)";
 
 }
