@@ -4,8 +4,10 @@
 <display>
 	<category name="category.collaboration">
 		<portlet id="1" />
+		<portlet id="2" />
 	</category>
 	<category name="category.community">
 		<portlet id="1" />
+		<portlet id="2" />
 	</category>
 </display>

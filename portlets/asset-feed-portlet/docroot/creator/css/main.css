@@ -1,0 +1,51 @@
+@import "compass";
+
+.asset-creator {
+	.content-editable-wrapper {
+		margin-bottom: 15px;
+		position: relative;
+
+		.content-editable {
+			border: 1px solid #8C8C8C;
+			outline: none;
+			padding: 10px;
+			white-space: pre-wrap;
+
+			&.content-editable-area {
+				min-height: 80px;
+			}
+
+			&.content-editable-inline {
+				height: 20px;
+				overflow: hidden;
+				white-space: nowrap;
+			}
+
+			&:focus {
+				border-color: #118ADE;
+			}
+		}
+
+		.placeholder {
+			color: #A5A5A5;
+			font-style: italic;
+			left: 11px;
+			pointer-events: none;
+			position: absolute;
+			top: 11px;
+		}
+	}
+
+	/* ---------- Extras ---------- */
+
+	.content-editable-wrapper {
+		.content-editable {
+			@include border-radius(4px);
+			@include transition(box-shadow 0.5s);
+
+			&:focus {
+				@include box-shadow(0 0 4px #118ADE inset);
+			}
+		}
+	}
+}

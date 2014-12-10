@@ -4,11 +4,13 @@
 <liferay-portlet-app>
 	<portlet>
 		<portlet-name>1</portlet-name>
-		<friendly-url-mapper-class>com.liferay.portal.kernel.portlet.DefaultFriendlyURLMapper</friendly-url-mapper-class>
-		<friendly-url-mapping>asset_feed</friendly-url-mapping>
-		<friendly-url-routes>com/liferay/portal/kernel/portlet/rss-friendly-url-routes.xml</friendly-url-routes>
-		<header-portlet-css>/asset_feed/css/main.css</header-portlet-css>
-		<footer-portlet-javascript>/asset_feed/js/main.js</footer-portlet-javascript>
+		<header-portlet-css>/creator/css/main.css</header-portlet-css>
+		<footer-portlet-javascript>/creator/js/main.js</footer-portlet-javascript>
+		<css-class-wrapper>asset-creator</css-class-wrapper>
+	</portlet>
+	<portlet>
+		<portlet-name>2</portlet-name>
+		<header-portlet-css>/feed/css/main.css</header-portlet-css>
 		<css-class-wrapper>asset-feed</css-class-wrapper>
 	</portlet>
 	<role-mapper>
