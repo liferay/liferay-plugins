@@ -14,7 +14,6 @@
 
 package com.liferay.asset.sharing.util;
 
-import com.liferay.asset.sharing.model.AssetSharingEntryConstants;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
@@ -42,7 +41,6 @@ import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portal.util.comparator.UserFirstNameComparator;
 import com.liferay.portlet.social.model.SocialRelation;
-import com.liferay.portlet.social.model.SocialRelationConstants;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -60,16 +58,6 @@ public class AssetSharingUtil {
 		throws PortalException, SystemException {
 
 		LinkedHashMap<Long, long[]> scopes = new LinkedHashMap<Long, long[]>();
-
-		// Everyone, followed, and connected
-
-		scopes.put(
-			_SOCIAL_RELATION_CLASS_NAME_ID,
-			new long[] {
-				AssetSharingEntryConstants.TYPE_EVERYONE,
-				SocialRelationConstants.TYPE_UNI_FOLLOWER,
-				SocialRelationConstants.TYPE_BI_CONNECTION
-			});
 
 		// User
 
@@ -127,55 +115,7 @@ public class AssetSharingUtil {
 
 		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
 
-		// Social relations
-
 		Set<User> users = new LinkedHashSet<User>();
-
-		JSONObject everyoneJSONObject = JSONFactoryUtil.createJSONObject();
-
-		everyoneJSONObject.put("classNameId", _SOCIAL_RELATION_CLASS_NAME_ID);
-		everyoneJSONObject.put(
-			"classPK", AssetSharingEntryConstants.TYPE_EVERYONE);
-		everyoneJSONObject.put("name", "everyone");
-
-		jsonArray.put(everyoneJSONObject);
-
-		JSONObject followersJSONObject = JSONFactoryUtil.createJSONObject();
-
-		followersJSONObject.put("classNameId", _SOCIAL_RELATION_CLASS_NAME_ID);
-		followersJSONObject.put(
-			"classPK", SocialRelationConstants.TYPE_UNI_FOLLOWER);
-		followersJSONObject.put("name", "followers");
-
-		jsonArray.put(followersJSONObject);
-
-		JSONObject connectorsJSONObject = JSONFactoryUtil.createJSONObject();
-
-		connectorsJSONObject.put("classNameId", _SOCIAL_RELATION_CLASS_NAME_ID);
-		connectorsJSONObject.put(
-			"classPK", SocialRelationConstants.TYPE_BI_CONNECTION);
-		connectorsJSONObject.put("name", "connections");
-
-		jsonArray.put(connectorsJSONObject);
-
-		LinkedHashMap<String, Object> socialRelationParams =
-			new LinkedHashMap<String, Object>();
-
-		socialRelationParams.put("inherit", Boolean.TRUE);
-		socialRelationParams.put(
-			"socialRelationType",
-			new Long[] {
-				userId, (long)SocialRelationConstants.TYPE_BI_CONNECTION
-			});
-
-		User user = UserLocalServiceUtil.getUser(userId);
-
-		List<User> connectedUsers = UserLocalServiceUtil.search(
-			user.getCompanyId(), null, WorkflowConstants.STATUS_APPROVED,
-			socialRelationParams, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
-			new UserFirstNameComparator(true));
-
-		users.addAll(connectedUsers);
 
 		// Organization
 
