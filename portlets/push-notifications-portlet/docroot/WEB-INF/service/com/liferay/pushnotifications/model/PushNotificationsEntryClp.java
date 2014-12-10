@@ -335,7 +335,8 @@ public class PushNotificationsEntryClp extends BaseModelImpl<PushNotificationsEn
 	}
 
 	@Override
-	public void setUser(com.liferay.portal.kernel.json.JSONObject user) {
+	public void setUser(
+		com.liferay.portal.kernel.json.JSONObject userJSONObject) {
 		try {
 			String methodName = "setUser";
 
@@ -343,7 +344,7 @@ public class PushNotificationsEntryClp extends BaseModelImpl<PushNotificationsEn
 					com.liferay.portal.kernel.json.JSONObject.class
 				};
 
-			Object[] parameterValues = new Object[] { user };
+			Object[] parameterValues = new Object[] { userJSONObject };
 
 			invokeOnRemoteModel(methodName, parameterTypes, parameterValues);
 		}

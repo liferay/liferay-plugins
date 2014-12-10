@@ -38,5 +38,6 @@ public interface PushNotificationsEntry extends PushNotificationsEntryModel,
 	@com.liferay.portal.kernel.json.JSON()
 	public com.liferay.portal.kernel.json.JSONObject getUser();
 
-	public void setUser(com.liferay.portal.kernel.json.JSONObject user);
+	public void setUser(
+		com.liferay.portal.kernel.json.JSONObject userJSONObject);
 }

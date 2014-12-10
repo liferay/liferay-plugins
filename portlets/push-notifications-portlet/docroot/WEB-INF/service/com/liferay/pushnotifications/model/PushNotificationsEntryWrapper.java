@@ -361,8 +361,9 @@ public class PushNotificationsEntryWrapper implements PushNotificationsEntry,
 	}
 
 	@Override
-	public void setUser(com.liferay.portal.kernel.json.JSONObject user) {
-		_pushNotificationsEntry.setUser(user);
+	public void setUser(
+		com.liferay.portal.kernel.json.JSONObject userJSONObject) {
+		_pushNotificationsEntry.setUser(userJSONObject);
 	}
 
 	/**
