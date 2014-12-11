@@ -13,6 +13,9 @@
 			<maxTime>15000</maxTime>
 			<openSearcher>false</openSearcher>
 		</autoCommit>
+		<autoSoftCommit>
+  			<maxTime>1000</maxTime>
+		</autoSoftCommit>
 		<updateLog>
 			<str name="dir">${solr.data.dir:}</str>
 		</updateLog>
