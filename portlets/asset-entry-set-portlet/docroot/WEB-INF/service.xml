@@ -25,6 +25,7 @@
 		<column name="payload" type="String" />
 		<column name="childAssetEntrySetsCount" type="int" />
 		<column name="ratingsStatsTotalScore" type="int" />
+		<column name="privateAssetEntrySet" type="boolean" />
 
 		<!-- Order -->
 
