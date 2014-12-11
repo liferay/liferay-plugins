@@ -14,5 +14,6 @@
  */
 --%>
 
-<aui:input type="text" label="link-title" name="linkTitle" />
-<aui:input type="text" label="url" name="linkURL" />
+<aui:input name="linkTitle" type="text" />
+
+<aui:input label="url" name="linkURL" type="text" />

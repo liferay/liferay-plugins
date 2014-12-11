@@ -16,7 +16,7 @@
 
 <%@ include file="/init.jsp" %>
 
-<aui:form name='fm'>
+<aui:form name="fm">
 	<liferay-ui:tabs
 		formName="fm"
 		names="text,link,image,announcement"
