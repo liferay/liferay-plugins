@@ -143,7 +143,9 @@ public class AssetEntrySetFinderImpl
 	}
 
 	@Override
-	public int countByUserId(long userId, Map<Long, long[]> sharedToClassPKsMap)
+	public int countByUserId(
+			long userId, Map<Long, long[]> sharedToClassPKsMap,
+			boolean showSelfPost)
 		throws SystemException {
 
 		Session session = null;
@@ -155,7 +157,8 @@ public class AssetEntrySetFinderImpl
 
 			sql = StringUtil.replace(
 				sql, "[$SHARED_TO_CLASS_PKS_MAP]",
-				getSharedToClassPKsMap(sharedToClassPKsMap));
+				getSharedToClassPKsMap(
+					userId, sharedToClassPKsMap, showSelfPost));
 
 			SQLQuery q = session.createSQLQuery(sql);
 
@@ -165,7 +168,8 @@ public class AssetEntrySetFinderImpl
 
 			qPos.add(_ASSET_ENTRY_SET_CLASS_NAME_ID);
 
-			setSharedToClassPKsMap(qPos, userId, sharedToClassPKsMap);
+			setSharedToClassPKsMap(
+				qPos, userId, sharedToClassPKsMap, showSelfPost);
 
 			Iterator<Long> itr = q.iterate();
 
@@ -255,8 +259,8 @@ public class AssetEntrySetFinderImpl
 
 	@Override
 	public List<AssetEntrySet> findByUserId(
-			long userId, Map<Long, long[]> sharedToClassPKsMap, int start,
-			int end)
+			long userId, Map<Long, long[]> sharedToClassPKsMap,
+			boolean showSelfPost, int start, int end)
 		throws SystemException {
 
 		Session session = null;
@@ -268,7 +272,8 @@ public class AssetEntrySetFinderImpl
 
 			sql = StringUtil.replace(
 				sql, "[$SHARED_TO_CLASS_PKS_MAP]",
-				getSharedToClassPKsMap(sharedToClassPKsMap));
+				getSharedToClassPKsMap(
+					userId, sharedToClassPKsMap, showSelfPost));
 
 			SQLQuery q = session.createSQLQuery(sql);
 
@@ -278,7 +283,8 @@ public class AssetEntrySetFinderImpl
 
 			qPos.add(_ASSET_ENTRY_SET_CLASS_NAME_ID);
 
-			setSharedToClassPKsMap(qPos, userId, sharedToClassPKsMap);
+			setSharedToClassPKsMap(
+				qPos, userId, sharedToClassPKsMap, showSelfPost);
 
 			return (List<AssetEntrySet>)QueryUtil.list(
 				q, getDialect(), start, end);
@@ -292,7 +298,8 @@ public class AssetEntrySetFinderImpl
 	}
 
 	protected String getSharedToClassPKs(long[] sharedToClassPKs) {
-		StringBundler sb = new StringBundler();
+		StringBundler sb = new StringBundler(
+			(sharedToClassPKs.length + 1) * 2 );
 
 		sb.append(_SHARED_TO_CLASS_NAME_ID_SQL);
 		sb.append(" AND (");
@@ -312,11 +319,14 @@ public class AssetEntrySetFinderImpl
 	}
 
 	protected String getSharedToClassPKsMap(
-		Map<Long, long[]> sharedToClassPKsMap) {
+		long userId, Map<Long, long[]> sharedToClassPKsMap,
+		boolean showSelfPost) {
 
 		StringBundler sb = new StringBundler();
 
 		sb.append(StringPool.OPEN_PARENTHESIS);
+
+		int i = 0;
 
 		if (sharedToClassPKsMap != null) {
 			for (Map.Entry<Long, long[]> entry :
@@ -334,19 +344,34 @@ public class AssetEntrySetFinderImpl
 
 				sb.append(getSharedToClassPKs(sharedToClassPKs));
 
-				sb.append(") OR ");
+				if (showSelfPost) {
+					sb.append(") OR ");
+				}
+				else {
+					if ((i + 1) < sharedToClassPKsMap.size()) {
+						sb.append(") OR ");
+					}
+					else {
+						sb.append(")");
+					}
+
+					i++;
+				}
 			}
 		}
 
-		sb.append("(AssetEntrySet.userId = ?))");
+		if (showSelfPost) {
+			sb.append("(AssetEntrySet.userId = ?)");
+		}
+
+		sb.append(StringPool.CLOSE_PARENTHESIS);
 
 		return sb.toString();
 	}
 
 	protected void setSharedToClassPKsMap(
-		QueryPos qPos, long userId, Map<Long, long[]> sharedToClassPKsMap) {
-
-		qPos.add(_ASSET_ENTRY_SET_CLASS_NAME_ID);
+		QueryPos qPos, long userId, Map<Long, long[]> sharedToClassPKsMap,
+		boolean showSelfPost) {
 
 		if (sharedToClassPKsMap != null) {
 			for (Long sharedToClassNameId : sharedToClassPKsMap.keySet()) {
@@ -361,7 +386,9 @@ public class AssetEntrySetFinderImpl
 			}
 		}
 
-		qPos.add(userId);
+		if (showSelfPost) {
+			qPos.add(userId);
+		}
 	}
 
 	private static final long _ASSET_ENTRY_SET_CLASS_NAME_ID =

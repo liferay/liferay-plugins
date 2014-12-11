@@ -164,8 +164,8 @@ public class AssetEntrySetLocalServiceImpl
 
 	@Override
 	public List<AssetEntrySet> getAssetEntrySets(
-			long userId, Map<Long, long[]> sharedToClassPKsMap, int start,
-			int end)
+			long userId, Map<Long, long[]> sharedToClassPKsMap,
+			boolean showSelfPost, int start, int end)
 		throws PortalException, SystemException {
 
 		if ((sharedToClassPKsMap == null) || sharedToClassPKsMap.isEmpty()) {
@@ -174,7 +174,7 @@ public class AssetEntrySetLocalServiceImpl
 		}
 
 		return assetEntrySetFinder.findByUserId(
-			userId, sharedToClassPKsMap, start, end);
+			userId, sharedToClassPKsMap, showSelfPost, start, end);
 	}
 
 	@Override
@@ -202,7 +202,8 @@ public class AssetEntrySetLocalServiceImpl
 
 	@Override
 	public int getAssetEntrySetsCount(
-			long userId, Map<Long, long[]> sharedToClassPKsMap)
+			long userId, Map<Long, long[]> sharedToClassPKsMap,
+			boolean showSelfPost)
 		throws PortalException, SystemException {
 
 		if ((sharedToClassPKsMap == null) || sharedToClassPKsMap.isEmpty()) {
@@ -210,7 +211,8 @@ public class AssetEntrySetLocalServiceImpl
 				userId);
 		}
 
-		return assetEntrySetFinder.countByUserId(userId, sharedToClassPKsMap);
+		return assetEntrySetFinder.countByUserId(
+			userId, sharedToClassPKsMap, showSelfPost);
 	}
 
 	@Override
