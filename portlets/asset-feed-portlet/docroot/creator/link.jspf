@@ -13,3 +13,6 @@
  * details.
  */
 --%>
+
+<aui:input type="text" label="link-title" name="linkTitle" />
+<aui:input type="text" label="url" name="linkURL" />

@@ -6,7 +6,7 @@
 		position: relative;
 
 		.content-editable {
-			border: 1px solid #8C8C8C;
+			border: 1px solid #DDD;
 			outline: none;
 			padding: 10px;
 			white-space: pre-wrap;
@@ -22,7 +22,7 @@
 			}
 
 			&:focus {
-				border-color: #118ADE;
+				border-color: rgba(0, 172, 255, 0.8);
 			}
 		}
 
@@ -40,11 +40,10 @@
 
 	.content-editable-wrapper {
 		.content-editable {
-			@include border-radius(4px);
-			@include transition(box-shadow 0.5s);
+			@include transition(border-color 0.2s, box-shadow 0.2s);
 
 			&:focus {
-				@include box-shadow(0 0 4px #118ADE inset);
+				@include box-shadow(inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6));
 			}
 		}
 	}
