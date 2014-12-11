@@ -163,6 +163,8 @@ public class AssetEntrySetFinderImpl
 
 			QueryPos qPos = QueryPos.getInstance(q);
 
+			qPos.add(_ASSET_ENTRY_SET_CLASS_NAME_ID);
+
 			setSharedToClassPKsMap(qPos, userId, sharedToClassPKsMap);
 
 			Iterator<Long> itr = q.iterate();
@@ -273,6 +275,8 @@ public class AssetEntrySetFinderImpl
 			q.addEntity("AssetEntrySet", AssetEntrySetImpl.class);
 
 			QueryPos qPos = QueryPos.getInstance(q);
+
+			qPos.add(_ASSET_ENTRY_SET_CLASS_NAME_ID);
 
 			setSharedToClassPKsMap(qPos, userId, sharedToClassPKsMap);
 
