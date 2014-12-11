@@ -807,7 +807,7 @@
 			</then>
 		</if>
 
-		<property file="${portal.dir}/test.class.file.names.properties" />
+		<property file="${env.WORKSPACE}/test.class.file.names.properties" />
 
 		<propertycopy from="TEST_CLASS_GROUP_${test.class.group.index}" name="test.classes" />
 
