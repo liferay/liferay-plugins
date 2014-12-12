@@ -12,6 +12,9 @@
 .sass-cache
 .sass_cache_*.css
 _sass_cache_*.css
+.classpath
+rebel.xml
+.project
 
 /.bnd
 /.ivy
@@ -23,6 +26,10 @@ _sass_cache_*.css
 /*/*/test-classes
 /*/*/test-results
 /*/*/tmp
+/*/*/.settings
+/*/*/.classpath
+/*/*/.project
+
 
 /*/*/docroot/WEB-INF/classes
 /*/*/docroot/WEB-INF/lib/portal-compat-shared.jar
