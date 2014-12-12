@@ -14,13 +14,17 @@
  */
 --%>
 
+<%@page import="java.util.HashMap"%>
+<%@page import="java.util.Map"%>
 <%
 List<Folder> folders = FolderLocalServiceUtil.getFolders(accountId);
+Map<String, Long> data = new HashMap<String, Long>();
 
 for (Folder curFolder : folders) {
+	data.put("folderid", curFolder.getFolderId());
 %>
 
-	<aui:nav-item cssClass="move-messages" label="<%= curFolder.getDisplayName() %>" />
+	<aui:nav-item cssClass="move-messages" label="<%= curFolder.getDisplayName() %>" data="<%= data %>" />
 
 <%
 }
