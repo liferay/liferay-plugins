@@ -28,15 +28,15 @@
 		<liferay-ui:section></liferay-ui:section>
 
 		<liferay-ui:section>
-			<%@ include file="link.jspf" %>
+			<%@ include file="/creator/link.jspf" %>
 		</liferay-ui:section>
 
 		<liferay-ui:section>
-			<%@ include file="image.jspf" %>
+			<%@ include file="/creator/image.jspf" %>
 		</liferay-ui:section>
 
 		<liferay-ui:section>
-			<%@ include file="announcement.jspf" %>
+			<%@ include file="/creator/announcement.jspf" %>
 		</liferay-ui:section>
 
 		<aui:input name="content" type="hidden" />
