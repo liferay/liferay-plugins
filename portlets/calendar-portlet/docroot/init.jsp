@@ -157,14 +157,8 @@ String rssDisplayStyle = portletPreferences.getValue("rssDisplayStyle", RSSUtil.
 String rssFeedType = portletPreferences.getValue("rssFeedType", RSSUtil.FEED_TYPE_DEFAULT);
 long rssTimeInterval = GetterUtil.getLong(portletPreferences.getValue("rssTimeInterval", StringPool.BLANK), Time.WEEK);
 
-TimeZone userTimeZone = TimeZone.getTimeZone(timeZoneId);
+TimeZone userTimeZone = CalendarUtil.getCalendarBookingDisplayTimeZone(calendarBooking, TimeZone.getTimeZone(timeZoneId));
 TimeZone utcTimeZone = TimeZone.getTimeZone(StringPool.UTC);
-
-boolean allDay = BeanParamUtil.getBoolean(calendarBooking, request, "allDay");
-
-if (allDay) {
-	userTimeZone = utcTimeZone;
-}
 
 Format dateFormatDate = FastDateFormatFactoryUtil.getDate(locale, userTimeZone);
 Format dateFormatLongDate = FastDateFormatFactoryUtil.getDate(FastDateFormatConstants.LONG, locale, userTimeZone);
