@@ -34,6 +34,8 @@ import com.liferay.so.activities.util.SocialActivityKeyConstants;
 
 import java.text.Format;
 
+import java.util.TimeZone;
+
 import javax.portlet.PortletRequest;
 import javax.portlet.PortletURL;
 
@@ -112,11 +114,20 @@ public class CalendarActivityInterpreter extends SOSocialActivityInterpreter {
 		sb.append(serviceContext.translate("date"));
 		sb.append(": </strong>");
 
-		Format dateFormatDate = getFormatDateTime(
-			serviceContext.getLocale(), serviceContext.getTimeZone());
-
 		CalendarBooking calendarBooking =
 			CalendarBookingLocalServiceUtil.fetchCalendarBooking(classPK);
+
+		Format dateFormatDate = null;
+
+		if (calendarBooking.isAllDay()) {
+			dateFormatDate = getFormatDateTime(
+				serviceContext.getLocale(),
+				TimeZone.getTimeZone(StringPool.UTC));
+		}
+		else {
+			dateFormatDate = getFormatDateTime(
+				serviceContext.getLocale(), serviceContext.getTimeZone());
+		}
 
 		sb.append(dateFormatDate.format(calendarBooking.getStartTime()));
 
