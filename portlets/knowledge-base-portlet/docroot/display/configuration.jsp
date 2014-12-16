@@ -55,7 +55,7 @@ long kbFolderClassNameId = PortalUtil.getClassNameId(KBFolderConstants.getClassN
 						<%
 						String title = StringPool.BLANK;
 
-						if (resourceClassNameId == kbFolderClassNameId) {
+						if (resourceClassNameId != kbFolderClassNameId) {
 							KBArticle kbArticle = KBArticleLocalServiceUtil.fetchLatestKBArticle(resourcePrimKey, WorkflowConstants.STATUS_APPROVED);
 
 							if (kbArticle != null) {
