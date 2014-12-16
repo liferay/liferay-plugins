@@ -34,15 +34,11 @@ public class AssetEntrySetServiceClp implements AssetEntrySetService {
 
 		_methodName3 = "addAssetEntrySet";
 
-		_methodParameterTypes3 = new String[] {
-				"com.liferay.portal.kernel.json.JSONObject"
-			};
+		_methodParameterTypes3 = new String[] { "java.lang.String" };
 
 		_methodName4 = "addAssetEntrySet";
 
-		_methodParameterTypes4 = new String[] {
-				"long", "com.liferay.portal.kernel.json.JSONObject"
-			};
+		_methodParameterTypes4 = new String[] { "long", "java.lang.String" };
 
 		_methodName5 = "getAssetEntrySets";
 
@@ -109,7 +105,7 @@ public class AssetEntrySetServiceClp implements AssetEntrySetService {
 
 	@Override
 	public com.liferay.asset.entry.set.model.AssetEntrySet addAssetEntrySet(
-		com.liferay.portal.kernel.json.JSONObject payloadJSONObject)
+		java.lang.String payload)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -117,8 +113,7 @@ public class AssetEntrySetServiceClp implements AssetEntrySetService {
 		try {
 			returnObj = _invokableService.invokeMethod(_methodName3,
 					_methodParameterTypes3,
-					new Object[] { ClpSerializer.translateInput(
-							payloadJSONObject) });
+					new Object[] { ClpSerializer.translateInput(payload) });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -145,8 +140,7 @@ public class AssetEntrySetServiceClp implements AssetEntrySetService {
 
 	@Override
 	public com.liferay.asset.entry.set.model.AssetEntrySet addAssetEntrySet(
-		long parentAssetEntrySetId,
-		com.liferay.portal.kernel.json.JSONObject payloadJSONObject)
+		long parentAssetEntrySetId, java.lang.String payload)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -157,7 +151,7 @@ public class AssetEntrySetServiceClp implements AssetEntrySetService {
 					new Object[] {
 						parentAssetEntrySetId,
 						
-					ClpSerializer.translateInput(payloadJSONObject)
+					ClpSerializer.translateInput(payload)
 					});
 		}
 		catch (Throwable t) {

@@ -66,13 +66,12 @@ public interface AssetEntrySetService extends BaseService, InvokableService {
 		throws java.lang.Throwable;
 
 	public com.liferay.asset.entry.set.model.AssetEntrySet addAssetEntrySet(
-		com.liferay.portal.kernel.json.JSONObject payloadJSONObject)
+		java.lang.String payload)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
 	public com.liferay.asset.entry.set.model.AssetEntrySet addAssetEntrySet(
-		long parentAssetEntrySetId,
-		com.liferay.portal.kernel.json.JSONObject payloadJSONObject)
+		long parentAssetEntrySetId, java.lang.String payload)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
