@@ -22,6 +22,28 @@
 
 		.table-container {
 			overflow: auto;
+
+			table {
+				table-layout: fixed;
+				word-wrap: break-word;
+
+				.address {
+					width: 25%;
+				}
+
+				.check {
+					text-align: center;
+					width: 5%;
+				}
+
+				.date {
+					width: 20%;
+				}
+
+				.subject {
+					width: 48%;
+				}
+			}
 		}
 	}
 

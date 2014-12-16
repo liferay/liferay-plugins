@@ -186,15 +186,15 @@ MailManager mailManager = MailManager.getInstance(request);
 						%>
 
 							<tr class="<%= rowCssClass %>">
-								<td>
+								<td class="check">
 									<aui:input id='<%= "message" + message.getMessageId() %>' label="" messageId="<%= message.getMessageId() %>" name="message" type="checkbox" value="<%= message.getMessageId() %>" />
 								</td>
-								<td>
+								<td class="address">
 									<div class="<%= messageCssClass %>" data-folderId="<%= folderId %>" data-keywords="<%= keywords %>" data-messageId="<%= message.getMessageId() %>" data-messageNumber="<%= messageNumber %>" data-orderByField="<%= orderByField %>" data-orderByType="<%= orderByType %>">
 										<%= HtmlUtil.escape(address) %>
 									</div>
 								</td>
-								<td>
+								<td class="subject">
 									<div class="<%= messageCssClass + (Validator.isNull(message.getSubject()) ? " no-subject" : StringPool.BLANK) %>" data-folderId="<%= folderId %>" data-keywords="<%= keywords %>" data-messageId="<%= message.getMessageId() %>" data-messageNumber="<%= messageNumber %>" data-orderByField="<%= orderByField %>" data-orderByType="<%= orderByType %>">
 										<%= Validator.isNull(message.getSubject()) ? LanguageUtil.get(request, "no-subject") : HtmlUtil.escape(message.getSubject()) %>
 									</div>
@@ -209,7 +209,7 @@ MailManager mailManager = MailManager.getInstance(request);
 										</c:if>
 									</div>
 								</td>
-								<td>
+								<td class="date">
 									<div class="<%= messageCssClass %>" data-folderId="<%= folderId %>" data-keywords="<%= keywords %>" data-messageId="<%= message.getMessageId() %>" data-messageNumber="<%= messageNumber %>" data-orderByField="<%= orderByField %>" data-orderByType="<%= orderByType %>">
 										<%= HtmlUtil.escape(date) %>
 									</div>
