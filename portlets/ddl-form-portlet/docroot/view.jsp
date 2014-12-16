@@ -87,7 +87,7 @@ try {
 									/>
 
 									<aui:button-row>
-										<aui:button onClick='<%= renderResponse.getNamespace() + "publishRecord();" %>' type="submit" value="send" />
+										<aui:button type="submit" value="send" />
 									</aui:button-row>
 								</aui:fieldset>
 							</c:when>
