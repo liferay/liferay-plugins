@@ -73,7 +73,8 @@ public class GoogleMailGroupsGroupLocalServiceImpl
 	public Group updateGroup(
 			long groupId, long parentGroupId, String name, String description,
 			int type, boolean manualMembership, int membershipRestriction,
-			String friendlyURL, boolean active, ServiceContext serviceContext)
+			String friendlyURL, boolean inheritContent, boolean active,
+			ServiceContext serviceContext)
 		throws PortalException {
 
 		Group group = GroupLocalServiceUtil.getGroup(groupId);
@@ -84,7 +85,8 @@ public class GoogleMailGroupsGroupLocalServiceImpl
 
 		group = super.updateGroup(
 			groupId, parentGroupId, name, description, type, manualMembership,
-			membershipRestriction, friendlyURL, active, serviceContext);
+			membershipRestriction, friendlyURL, inheritContent, active,
+			serviceContext);
 
 		MessageBusUtil.sendMessage(
 			DestinationNames.ASYNC_SERVICE,
