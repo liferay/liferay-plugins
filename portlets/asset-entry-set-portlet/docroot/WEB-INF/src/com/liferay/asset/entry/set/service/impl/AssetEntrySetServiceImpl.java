@@ -20,6 +20,7 @@ import com.liferay.asset.entry.set.model.AssetEntrySet;
 import com.liferay.asset.entry.set.service.base.AssetEntrySetServiceBaseImpl;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 
 import java.util.List;
@@ -31,20 +32,26 @@ import java.util.List;
 public class AssetEntrySetServiceImpl extends AssetEntrySetServiceBaseImpl {
 
 	@Override
-	public AssetEntrySet addAssetEntrySet(JSONObject payloadJSONObject)
-		throws PortalException, SystemException {
-
-		return assetEntrySetLocalService.addAssetEntrySet(
-			getUserId(), payloadJSONObject);
-	}
-
-	@Override
 	public AssetEntrySet addAssetEntrySet(
-			long parentAssetEntrySetId, JSONObject payloadJSONObject)
+			long parentAssetEntrySetId, String payload)
 		throws PortalException, SystemException {
+
+		JSONObject payloadJSONObject = JSONFactoryUtil.createJSONObject(
+			payload);
 
 		return assetEntrySetLocalService.addAssetEntrySet(
 			getUserId(), parentAssetEntrySetId, payloadJSONObject);
+	}
+
+	@Override
+	public AssetEntrySet addAssetEntrySet(String payload)
+		throws PortalException, SystemException {
+
+		JSONObject payloadJSONObject = JSONFactoryUtil.createJSONObject(
+			payload);
+
+		return assetEntrySetLocalService.addAssetEntrySet(
+			getUserId(), payloadJSONObject);
 	}
 
 	@Override
