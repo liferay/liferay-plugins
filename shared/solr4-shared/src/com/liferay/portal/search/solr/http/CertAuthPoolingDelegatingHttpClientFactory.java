@@ -50,6 +50,12 @@ public class CertAuthPoolingDelegatingHttpClientFactory
 		_sslSocketFactoryBuilder.setKeyStoreType(keyStoreType);
 	}
 
+	public void setSslSocketFactoryBuilder(
+		SSLSocketFactoryBuilder sslSocketFactoryBuilder) {
+
+		_sslSocketFactoryBuilder = sslSocketFactoryBuilder;
+	}
+
 	public void setTrustStoreLocation(String trustStoreLocation) {
 		_sslSocketFactoryBuilder.setTrustStoreLocation(trustStoreLocation);
 	}
@@ -71,7 +77,6 @@ public class CertAuthPoolingDelegatingHttpClientFactory
 		_sslSocketFactoryBuilder.setVerifyServerHostname(verifyServerHostname);
 	}
 
-	private final SSLSocketFactoryBuilder _sslSocketFactoryBuilder =
-		new SSLSocketFactoryBuilder();
+	private SSLSocketFactoryBuilder _sslSocketFactoryBuilder;
 
 }

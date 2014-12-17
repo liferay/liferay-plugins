@@ -12,7 +12,7 @@
 
 	<!-- Solr document -->
 
-	<bean class="com.liferay.portal.search.solr.document.DefaultSolrDocumentFactory" id="com.liferay.portal.search.solr.document.SolrDocumentFactory" />
+	<bean id="com.liferay.portal.search.solr.document.SolrDocumentFactory" class="com.liferay.portal.search.solr.document.DefaultSolrDocumentFactory" />
 
 	<!-- Solr facet -->
 
@@ -30,7 +30,7 @@
 
 	<!-- Solr search engine client -->
 
-	<bean class="com.liferay.portal.search.solr.http.BasicAuthPoolingDelegatingHttpClientFactory" destroy-method="shutdown" id="com.liferay.portal.search.solr.http.HttpClientFactory">
+	<bean id="com.liferay.portal.search.solr.http.HttpClientFactory" class="com.liferay.portal.search.solr.http.BasicAuthPoolingDelegatingHttpClientFactory" destroy-method="shutdown">
 		<property name="defaultMaxConnectionsPerRoute" value="20" />
 		<property name="httpRequestInterceptors">
 			<list>
@@ -46,13 +46,19 @@
 
 	</bean>
 
-	<!--
-	<bean class="com.liferay.portal.search.solr.http.CertAuthPoolingDelegatingHttpClientFactory" destroy-method="shutdown" id="com.liferay.portal.search.solr.http.HttpClientFactory">
+	<!--<bean id="com.liferay.portal.search.solr.http.HttpClientFactory" class="com.liferay.portal.search.solr.http.CertAuthPoolingDelegatingHttpClientFactory" destroy-method="shutdown" init-method="afterPropertiesSet">
 		<property name="defaultMaxConnectionsPerRoute" value="20" />
 		<property name="httpRequestInterceptors">
 			<list>
 				<bean class="com.liferay.portal.search.solr.interceptor.PreemptiveAuthInterceptor" />
 			</list>
+		</property>
+		<property name="sslSocketFactoryBuilder">
+			<bean class="com.liferay.portal.search.solr.http.SSLSocketFactoryBuilderImpl">
+				<property name="keyStoreLoader">
+					<bean class="com.liferay.portal.search.solr.http.KeyStoreLoaderImpl" />
+				</property>
+			</bean>
 		</property>
 		<property name="keyStoreLocation" value="/etc/pki/cert/client/keystore.jks" />
 		<property name="keyStorePassword" value="secret" />
@@ -66,7 +72,7 @@
 	</bean>
 	-->
 
-	<bean class="com.liferay.portal.search.solr.server.HttpSolrServer" id="com.liferay.portal.search.solr.server.HttpSolrServer">
+	<bean id="com.liferay.portal.search.solr.server.HttpSolrServer" class="com.liferay.portal.search.solr.server.HttpSolrServer">
 		<property name="httpClientFactory" ref="com.liferay.portal.search.solr.http.HttpClientFactory" />
 		<property name="url" value="http://localhost:8080/solr" />
 	</bean>
