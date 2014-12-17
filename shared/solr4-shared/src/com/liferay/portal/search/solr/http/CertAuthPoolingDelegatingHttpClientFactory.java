@@ -20,7 +20,7 @@ import org.apache.http.conn.ssl.SSLSocketFactory;
  * @author László Csontos
  * @author André de Oliveira
  */
-public class CertAuthPoolingHttpClientFactoryBean
+public class CertAuthPoolingDelegatingHttpClientFactory
 	extends DelegatingHttpClientFactory {
 
 	public void afterPropertiesSet() throws Exception {
