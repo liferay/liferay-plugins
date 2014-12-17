@@ -56,11 +56,11 @@ public class AssetEntrySetServiceImpl extends AssetEntrySetServiceBaseImpl {
 
 	@Override
 	public List<AssetEntrySet> getAssetEntrySets(
-			long assetEntrySetId, long lastAccessTime, int start, int end)
-		throws SystemException {
+			long parentAssetEntrySetId, long lastAccessTime, int start, int end)
+		throws PortalException, SystemException {
 
 		return assetEntrySetLocalService.getAssetEntrySets(
-			assetEntrySetId, lastAccessTime, start, end);
+			parentAssetEntrySetId, lastAccessTime, start, end);
 	}
 
 	@Override

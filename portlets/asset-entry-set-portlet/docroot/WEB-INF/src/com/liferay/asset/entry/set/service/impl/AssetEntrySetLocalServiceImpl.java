@@ -95,7 +95,7 @@ public class AssetEntrySetLocalServiceImpl
 				payloadJSONObject.getString(
 					AssetEntrySetConstants.KEY_ASSET_TAG_NAMES)));
 
-		updateUserJSONObject(assetEntrySet);
+		updateUser(assetEntrySet);
 
 		return assetEntrySet;
 	}
@@ -142,10 +142,17 @@ public class AssetEntrySetLocalServiceImpl
 	@Override
 	public List<AssetEntrySet> getAssetEntrySets(
 			long parentAssetEntrySetId, long lastAccessTime, int start, int end)
-		throws SystemException {
+		throws PortalException, SystemException {
 
-		return assetEntrySetPersistence.findByCT_PASEI(
-			lastAccessTime, parentAssetEntrySetId, start, end);
+		List<AssetEntrySet> assetEntrySets =
+			assetEntrySetPersistence.findByCT_PASEI(
+				lastAccessTime, parentAssetEntrySetId, start, end);
+
+		for (AssetEntrySet assetEntrySet : assetEntrySets) {
+			updateUser(assetEntrySet);
+		}
+
+		return assetEntrySets;
 	}
 
 	@Override
@@ -315,7 +322,7 @@ public class AssetEntrySetLocalServiceImpl
 		return assetEntrySet;
 	}
 
-	protected JSONObject updateUserJSONObject(AssetEntrySet assetEntrySet)
+	protected void updateUser(AssetEntrySet assetEntrySet)
 		throws PortalException, SystemException {
 
 		JSONObject userJSONObject = JSONFactoryUtil.createJSONObject();
@@ -332,8 +339,6 @@ public class AssetEntrySetLocalServiceImpl
 			AssetEntrySetConstants.KEY_PORTRAIT_URL, portraitURL);
 
 		assetEntrySet.setUser(userJSONObject);
-
-		return userJSONObject;
 	}
 
 }
