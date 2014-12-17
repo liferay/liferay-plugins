@@ -14,6 +14,9 @@
 
 package com.liferay.asset.entry.set.model.impl;
 
+import com.liferay.portal.kernel.json.JSON;
+import com.liferay.portal.kernel.json.JSONObject;
+
 /**
  * @author Brian Wing Shun Chan
  */
@@ -21,5 +24,18 @@ public class AssetEntrySetImpl extends AssetEntrySetBaseImpl {
 
 	public AssetEntrySetImpl() {
 	}
+
+	@JSON
+	@Override
+	public JSONObject getUser() {
+		return _userJSONObject;
+	}
+
+	@Override
+	public void setUser(JSONObject userJSONObject) {
+		_userJSONObject = userJSONObject;
+	}
+
+	private JSONObject _userJSONObject;
 
 }

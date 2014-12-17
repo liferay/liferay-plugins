@@ -20,11 +20,14 @@ import com.liferay.asset.entry.set.util.AssetEntrySetConstants;
 import com.liferay.compat.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.User;
+import com.liferay.portal.model.UserConstants;
 import com.liferay.portal.service.ServiceContext;
+import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.ratings.model.RatingsStats;
 
 import java.util.Date;
@@ -90,7 +93,9 @@ public class AssetEntrySetLocalServiceImpl
 			assetEntrySet,
 			StringUtil.split(
 				payloadJSONObject.getString(
-					AssetEntrySetConstants.PAYLOAD_KEY_ASSET_TAG_NAMES)));
+					AssetEntrySetConstants.KEY_ASSET_TAG_NAMES)));
+
+		updateUserJSONObject(assetEntrySet);
 
 		return assetEntrySet;
 	}
@@ -246,7 +251,7 @@ public class AssetEntrySetLocalServiceImpl
 			assetEntrySet,
 			StringUtil.split(
 				payloadJSONObject.getString(
-					AssetEntrySetConstants.PAYLOAD_KEY_ASSET_TAG_NAMES)));
+					AssetEntrySetConstants.KEY_ASSET_TAG_NAMES)));
 
 		return assetEntrySet;
 	}
@@ -308,6 +313,27 @@ public class AssetEntrySetLocalServiceImpl
 		assetEntrySetPersistence.update(assetEntrySet);
 
 		return assetEntrySet;
+	}
+
+	protected JSONObject updateUserJSONObject(AssetEntrySet assetEntrySet)
+		throws PortalException, SystemException {
+
+		JSONObject userJSONObject = JSONFactoryUtil.createJSONObject();
+
+		User user = userPersistence.findByPrimaryKey(assetEntrySet.getUserId());
+
+		userJSONObject.put(
+			AssetEntrySetConstants.KEY_FULL_NAME, user.getFullName());
+
+		String portraitURL = UserConstants.getPortraitURL(
+			PortalUtil.getPathImage(), user.isMale(), user.getPortraitId());
+
+		userJSONObject.put(
+			AssetEntrySetConstants.KEY_PORTRAIT_URL, portraitURL);
+
+		assetEntrySet.setUser(userJSONObject);
+
+		return userJSONObject;
 	}
 
 }

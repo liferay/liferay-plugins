@@ -19,6 +19,10 @@ package com.liferay.asset.entry.set.util;
  */
 public class AssetEntrySetConstants {
 
-	public static final String PAYLOAD_KEY_ASSET_TAG_NAMES = "assetTagNames";
+	public static final String KEY_ASSET_TAG_NAMES = "assetTagNames";
+
+	public static final String KEY_FULL_NAME = "fullName";
+
+	public static final String KEY_PORTRAIT_URL = "portraitURL";
 
 }
