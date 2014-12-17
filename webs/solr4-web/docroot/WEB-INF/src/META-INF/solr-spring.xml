@@ -30,7 +30,7 @@
 
 	<!-- Solr search engine client -->
 
-	<bean class="com.liferay.portal.search.solr.http.BasicAuthPoolingDelegatingHttpClientFactory" destroy-method="shutdown" id="com.liferay.portal.search.solr.http.HttpClientFactory" init-method="afterPropertiesSet">
+	<bean class="com.liferay.portal.search.solr.http.BasicAuthPoolingDelegatingHttpClientFactory" destroy-method="shutdown" id="com.liferay.portal.search.solr.http.HttpClientFactory">
 		<property name="defaultMaxConnectionsPerRoute" value="20" />
 		<property name="httpRequestInterceptors">
 			<list>
@@ -47,7 +47,7 @@
 	</bean>
 
 	<!--
-	<bean class="com.liferay.portal.search.solr.http.CertAuthPoolingDelegatingHttpClientFactory" destroy-method="shutdown" id="com.liferay.portal.search.solr.http.HttpClientFactory" init-method="afterPropertiesSet">
+	<bean class="com.liferay.portal.search.solr.http.CertAuthPoolingDelegatingHttpClientFactory" destroy-method="shutdown" id="com.liferay.portal.search.solr.http.HttpClientFactory">
 		<property name="defaultMaxConnectionsPerRoute" value="20" />
 		<property name="httpRequestInterceptors">
 			<list>
@@ -66,7 +66,7 @@
 	</bean>
 	-->
 
-	<bean class="com.liferay.portal.search.solr.server.HttpSolrServer" id="com.liferay.portal.search.solr.server.HttpSolrServer" init-method="afterPropertiesSet">
+	<bean class="com.liferay.portal.search.solr.server.HttpSolrServer" id="com.liferay.portal.search.solr.server.HttpSolrServer">
 		<property name="httpClientFactory" ref="com.liferay.portal.search.solr.http.HttpClientFactory" />
 		<property name="url" value="http://localhost:8080/solr" />
 	</bean>
