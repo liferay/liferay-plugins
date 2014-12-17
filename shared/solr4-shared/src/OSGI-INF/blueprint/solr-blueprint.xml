@@ -38,13 +38,19 @@
 
 	</bean>
 
-	<!--
-	<bean class="com.liferay.portal.search.solr.http.CertAuthPoolingDelegatingHttpClientFactory" destroy-method="shutdown" id="com.liferay.portal.search.solr.http.HttpClientFactory" init-method="afterPropertiesSet">
+	<!--<bean class="com.liferay.portal.search.solr.http.CertAuthPoolingDelegatingHttpClientFactory" destroy-method="shutdown" id="com.liferay.portal.search.solr.http.HttpClientFactory" init-method="afterPropertiesSet">
 		<property name="defaultMaxConnectionsPerRoute" value="20" />
 		<property name="httpRequestInterceptors">
 			<list>
 				<bean class="com.liferay.portal.search.solr.interceptor.PreemptiveAuthInterceptor" />
 			</list>
+		</property>
+		<property name="sslSocketFactoryBuilder">
+			<bean class="com.liferay.portal.search.solr.http.SSLSocketFactoryBuilderImpl">
+				<property name="keyStoreLoader">
+					<bean class="com.liferay.portal.search.solr.http.KeyStoreLoaderImpl" />
+				</property>
+			</bean>
 		</property>
 		<property name="keyStoreLocation" value="/etc/pki/cert/client/keystore.jks" />
 		<property name="keyStorePassword" value="secret" />
