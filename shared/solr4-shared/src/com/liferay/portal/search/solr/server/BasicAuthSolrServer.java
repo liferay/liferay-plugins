@@ -16,7 +16,6 @@ package com.liferay.portal.search.solr.server;
 
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.search.solr.http.BasicAuthPoolingHttpClientFactory;
 import com.liferay.portal.search.solr.http.HttpClientFactory;
 
@@ -37,14 +36,10 @@ public class BasicAuthSolrServer extends BaseHttpSolrServer {
 
 	public void afterPropertiesSet() {
 		if (_log.isWarnEnabled()) {
-			StringBundler sb = new StringBundler(4);
-
-			sb.append(BasicAuthSolrServer.class);
-			sb.append(" has been deprecated; please use ");
-			sb.append(HttpSolrServer.class);
-			sb.append(" instead.");
-
-			_log.warn(sb.toString());
+			_log.warn(
+				getClass().getName() + " has been deprecated. Please use " +
+				com.liferay.portal.search.solr.server.HttpSolrServer.class.
+					getName());
 		}
 
 		PoolingClientConnectionManager poolingClientConnectionManager =
