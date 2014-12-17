@@ -21,7 +21,7 @@ import org.apache.http.conn.ssl.SSLSocketFactory;
  * @author André de Oliveira
  */
 public class CertAuthPoolingHttpClientFactoryBean
-	extends BaseHttpClientFactoryBean {
+	extends DelegatingHttpClientFactory {
 
 	public void afterPropertiesSet() throws Exception {
 		SSLSocketFactory sslSocketFactory = _sslSocketFactoryBuilder.build();

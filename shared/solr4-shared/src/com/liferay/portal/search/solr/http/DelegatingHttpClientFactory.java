@@ -24,7 +24,7 @@ import org.apache.http.client.HttpClient;
  * @author Bruno Farache
  * @author André de Oliveira
  */
-public class BaseHttpClientFactoryBean implements HttpClientFactory {
+public class DelegatingHttpClientFactory implements HttpClientFactory {
 
 	@Override
 	public HttpClient createInstance() {
