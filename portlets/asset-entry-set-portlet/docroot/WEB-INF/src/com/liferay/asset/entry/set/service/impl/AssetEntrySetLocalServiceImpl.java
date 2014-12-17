@@ -71,7 +71,6 @@ public class AssetEntrySetLocalServiceImpl
 
 		assetEntrySet.setCompanyId(user.getCompanyId());
 		assetEntrySet.setUserId(user.getUserId());
-		assetEntrySet.setUserName(user.getFullName());
 
 		Date now = new Date();
 
