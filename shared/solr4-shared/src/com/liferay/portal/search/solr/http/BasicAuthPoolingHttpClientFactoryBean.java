@@ -23,7 +23,7 @@ import org.apache.http.impl.conn.PoolingClientConnectionManager;
  * @author André de Oliveira
  */
 public class BasicAuthPoolingHttpClientFactoryBean
-	extends BaseHttpClientFactoryBean {
+	extends DelegatingHttpClientFactory {
 
 	public void afterPropertiesSet() {
 		PoolingClientConnectionManager poolingClientConnectionManager =
