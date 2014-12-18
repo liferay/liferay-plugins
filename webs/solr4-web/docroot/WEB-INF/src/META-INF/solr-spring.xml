@@ -4,10 +4,24 @@
 	default-destroy-method="destroy"
 	default-init-method="afterPropertiesSet"
 	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:util="http://www.springframework.org/schema/util"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/context
+		http://www.springframework.org/schema/context/spring-context-3.0.xsd
+		http://www.springframework.org/schema/util
+		http://www.springframework.org/schema/util/spring-util-3.0.xsd
+		"
 >
+
+	<context:property-placeholder
+		ignore-resource-not-found="true" ignore-unresolvable="true"
+		location="/WEB-INF/classes/solr.properties,/WEB-INF/classes/solr-ext.properties"
+	/>
+
 	<bean class="com.liferay.portal.spring.context.PortletBeanFactoryPostProcessor" />
 
 	<!-- Solr document -->
@@ -38,13 +52,11 @@
 			</list>
 		</property>
 		<property name="maxTotalConnections" value="20" />
-
-		<!--
-		<property name="username" value="solr" />
-		<property name="password" value="solr" />
-		-->
-
+		<property name="password" value="${basic.auth.password}" />
+		<property name="username" value="${basic.auth.username}" />
 	</bean>
+
+	<!-- Solr search engine client with 2-way SSL authentication -->
 
 	<!--<bean id="com.liferay.portal.search.solr.http.HttpClientFactory" class="com.liferay.portal.search.solr.http.CertAuthPoolingDelegatingHttpClientFactory" destroy-method="shutdown" init-method="afterPropertiesSet">
 		<property name="defaultMaxConnectionsPerRoute" value="20" />
@@ -60,13 +72,13 @@
 				</property>
 			</bean>
 		</property>
-		<property name="keyStoreLocation" value="/etc/pki/cert/client/keystore.jks" />
-		<property name="keyStorePassword" value="secret" />
-		<property name="keyStoreType" value="JKS" />
+		<property name="keyStorePassword" value="${digital.signature.key.store.password}" />
+		<property name="keyStorePath" value="${digital.signature.key.store.path}" />
+		<property name="keyStoreType" value="${digital.signature.key.store.type}" />
 		<property name="maxTotalConnections" value="20" />
-		<property name="trustStoreLocation" value="/etc/pki/cert/ca/truststore.jks" />
-		<property name="trustStorePassword" value="secret" />
-		<property name="trustStoreType" value="JKS" />
+		<property name="trustStorePassword" value="${digital.signature.trust.store.password}" />
+		<property name="trustStorePath" value="${digital.signature.trust.store.path}" />
+		<property name="trustStoreType" value="${digital.signature.trust.store.type}" />
 		<property name="verifyServerCertificate" value="true" />
 		<property name="verifyServerHostname" value="true" />
 	</bean>
@@ -74,7 +86,7 @@
 
 	<bean id="com.liferay.portal.search.solr.server.HttpSolrServer" class="com.liferay.portal.search.solr.server.HttpSolrServer">
 		<property name="httpClientFactory" ref="com.liferay.portal.search.solr.http.HttpClientFactory" />
-		<property name="url" value="http://localhost:8080/solr" />
+		<property name="url" value="${server.http.url}" />
 	</bean>
 	<bean id="com.liferay.portal.search.solr.server.LiveServerChecker" class="com.liferay.portal.search.solr.server.LiveServerChecker">
 		<property name="delay" value="10" />

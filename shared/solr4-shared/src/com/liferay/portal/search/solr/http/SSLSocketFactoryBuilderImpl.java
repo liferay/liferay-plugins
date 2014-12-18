@@ -33,7 +33,7 @@ public class SSLSocketFactoryBuilderImpl implements SSLSocketFactoryBuilder {
 	@Override
 	public SSLSocketFactory build() throws Exception {
 		KeyStore keyStore = _keyStoreLoader.load(
-			_keyStoreType, _keyStoreLocation, _keyStorePassword);
+			_keyStoreType, _keyStorePath, _keyStorePassword);
 
 		if (keyStore == null) {
 			if (_log.isDebugEnabled()) {
@@ -51,7 +51,7 @@ public class SSLSocketFactoryBuilderImpl implements SSLSocketFactoryBuilder {
 
 		if (_verifyServerCertificate) {
 			trustStore = _keyStoreLoader.load(
-				_trustStoreType, _trustStoreLocation, _trustStorePassword);
+				_trustStoreType, _trustStorePath, _trustStorePassword);
 
 			if (trustStore == null) {
 				if (_log.isDebugEnabled()) {
@@ -95,13 +95,13 @@ public class SSLSocketFactoryBuilderImpl implements SSLSocketFactoryBuilder {
 	}
 
 	@Override
-	public void setKeyStoreLocation(String keyStoreLocation) {
-		_keyStoreLocation = keyStoreLocation;
+	public void setKeyStorePassword(char[] keyStorePassword) {
+		_keyStorePassword = keyStorePassword;
 	}
 
 	@Override
-	public void setKeyStorePassword(char[] keyStorePassword) {
-		_keyStorePassword = keyStorePassword;
+	public void setKeyStorePath(String keyStorePath) {
+		_keyStorePath = keyStorePath;
 	}
 
 	@Override
@@ -110,13 +110,13 @@ public class SSLSocketFactoryBuilderImpl implements SSLSocketFactoryBuilder {
 	}
 
 	@Override
-	public void setTrustStoreLocation(String trustStoreLocation) {
-		_trustStoreLocation = trustStoreLocation;
+	public void setTrustStorePassword(char[] trustStorePassword) {
+		_trustStorePassword = trustStorePassword;
 	}
 
 	@Override
-	public void setTrustStorePassword(char[] trustStorePassword) {
-		_trustStorePassword = trustStorePassword;
+	public void setTrustStorePath(String trustStorePath) {
+		_trustStorePath = trustStorePath;
 	}
 
 	@Override
@@ -143,11 +143,11 @@ public class SSLSocketFactoryBuilderImpl implements SSLSocketFactoryBuilder {
 		SSLSocketFactoryBuilderImpl.class);
 
 	private KeyStoreLoader _keyStoreLoader;
-	private String _keyStoreLocation;
 	private char[] _keyStorePassword;
+	private String _keyStorePath;
 	private String _keyStoreType = _DEFAULT_KEYSTORE_TYPE;
-	private String _trustStoreLocation;
 	private char[] _trustStorePassword;
+	private String _trustStorePath;
 	private String _trustStoreType = _DEFAULT_KEYSTORE_TYPE;
 	private boolean _verifyServerCertificate = true;
 	private boolean _verifyServerHostname = true;
