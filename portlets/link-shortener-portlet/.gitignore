@@ -1,0 +1,9 @@
+*.bak
+*.iml
+*.ipr
+*.iws
+.classpath
+.idea/
+.project
+docroot/WEB-INF/lib/
+
