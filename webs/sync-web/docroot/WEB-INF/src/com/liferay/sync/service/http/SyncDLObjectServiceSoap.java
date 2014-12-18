@@ -285,6 +285,24 @@ public class SyncDLObjectServiceSoap {
 		}
 	}
 
+	public static com.liferay.sync.model.SyncContext getSyncContext()
+		throws RemoteException {
+		try {
+			com.liferay.sync.model.SyncContext returnValue = SyncDLObjectServiceUtil.getSyncContext();
+
+			return returnValue;
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	/**
+	* @deprecated As of 7.0.0, replaced by {@link #getSyncContext()}
+	*/
+	@Deprecated
 	public static com.liferay.sync.model.SyncContext getSyncContext(
 		java.lang.String uuid) throws RemoteException {
 		try {

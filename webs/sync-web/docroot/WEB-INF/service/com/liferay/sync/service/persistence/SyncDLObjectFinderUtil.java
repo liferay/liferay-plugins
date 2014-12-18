@@ -20,6 +20,7 @@ import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
 
 /**
+ * @author Brian Wing Shun Chan
  * @generated
  */
 @ProviderType

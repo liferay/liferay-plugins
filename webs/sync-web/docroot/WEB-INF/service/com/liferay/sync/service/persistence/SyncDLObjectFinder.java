@@ -17,6 +17,7 @@ package com.liferay.sync.service.persistence;
 import aQute.bnd.annotation.ProviderType;
 
 /**
+ * @author Brian Wing Shun Chan
  * @generated
  */
 @ProviderType
