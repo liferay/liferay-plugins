@@ -1,0 +1,30 @@
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 6.2.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_6_2_0.dtd">
+
+<service-builder package-path="com.liferay.linkshortener">
+	<namespace>LinkShortener</namespace>
+	<entity name="Link" uuid="true" local-service="true" remote-service="true">
+
+		<!-- PK fields -->
+
+		<column name="linkId" type="long" primary="true" />
+
+		<column name="createDate" type="Date" />
+		<column name="modifiedDate" type="Date" />
+
+
+		<column name="longLink" type="String" />
+		<column name="shortLink" type="String" />
+		<column name="active" type="boolean" />
+		<column name="autoGen" type="boolean" />
+
+
+		<finder name="SL_AG" return-type="Link" db-index="true">
+			<finder-column name="shortLink" />
+			<finder-column name="autoGen" />
+		</finder>
+
+		<finder name="AG" return-type="Collection">
+			<finder-column name="autoGen" />
+		</finder>
+	</entity>
+</service-builder>
