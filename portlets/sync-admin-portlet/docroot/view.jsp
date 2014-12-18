@@ -69,10 +69,10 @@ int pollInterval = PrefsPropsUtil.getInteger(portletPreferences, themeDisplay.ge
 		<liferay-ui:input-move-boxes
 			leftBoxName="currentGroupIds"
 			leftList="<%= ListUtil.sort(leftList, new KeyValuePairComparator(false, true)) %>"
-			leftTitle="current"
+			leftTitle="enabled"
 			rightBoxName="availableGroupIds"
 			rightList="<%= ListUtil.sort(rightList, new KeyValuePairComparator(false, true)) %>"
-			rightTitle="available"
+			rightTitle="disabled"
 		/>
 	</aui:fieldset>
 
