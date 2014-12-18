@@ -339,14 +339,12 @@ public class AssetEntrySetFinderImpl
 
 		for (int i = 0; i < sharedToClassPKs.length; i++) {
 			sb.append(_SHARED_TO_CLASS_PK_SQL);
-
-			if ((i + 1) < sharedToClassPKs.length) {
-				sb.append(" OR ");
-			}
-			else {
-				sb.append(StringPool.CLOSE_PARENTHESIS);
-			}
+			sb.append(" OR ");
 		}
+
+		sb.setIndex(sb.index() - 1);
+
+		sb.append(StringPool.CLOSE_PARENTHESIS);
 
 		return sb.toString();
 	}
@@ -358,8 +356,6 @@ public class AssetEntrySetFinderImpl
 		StringBundler sb = new StringBundler();
 
 		sb.append(StringPool.OPEN_PARENTHESIS);
-
-		int i = 0;
 
 		if (sharedToClassPKsMap != null) {
 			for (Map.Entry<Long, long[]> entry :
@@ -374,27 +370,18 @@ public class AssetEntrySetFinderImpl
 				}
 
 				sb.append(StringPool.OPEN_PARENTHESIS);
-
 				sb.append(getSharedToClassPKs(sharedToClassPKs));
-
-				if (showSelfPost) {
-					sb.append(") OR ");
-				}
-				else {
-					if ((i + 1) < sharedToClassPKsMap.size()) {
-						sb.append(") OR ");
-					}
-					else {
-						sb.append(")");
-					}
-
-					i++;
-				}
+				sb.append(") OR ");
 			}
 		}
 
 		if (showSelfPost) {
 			sb.append("(AssetEntrySet.userId = ?)");
+		}
+		else {
+			sb.setIndex(sb.index() - 1);
+
+			sb.append(StringPool.CLOSE_PARENTHESIS);
 		}
 
 		sb.append(StringPool.CLOSE_PARENTHESIS);
