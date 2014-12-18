@@ -24,10 +24,7 @@
 				(AssetTag.name = ?) AND
 				(AssetSharing_AssetSharingEntry.classNameId = ?) AND
 				(
-					(
-						([$SHARED_TO_CLASS_PKS_MAP]) AND
-						(AssetEntrySet.privateAssetEntrySet = [$TRUE$])
-					) OR
+					([$SHARED_TO_CLASS_PKS_MAP]) OR
 					(AssetEntrySet.privateAssetEntrySet = [$FALSE$])
 				)
 		]]>
@@ -60,10 +57,7 @@
 				) AND
 				(AssetSharing_AssetSharingEntry.classNameId = ?) AND
 				(
-					(
-						([$SHARED_TO_CLASS_PKS_MAP]) AND
-						(AssetEntrySet.privateAssetEntrySet = [$TRUE$])
-					) OR
+					([$SHARED_TO_CLASS_PKS_MAP]) OR
 					(AssetEntrySet.privateAssetEntrySet = [$FALSE$])
 				)
 		]]>
@@ -106,10 +100,7 @@
 				(AssetTag.name = ?) AND
 				(AssetSharing_AssetSharingEntry.classNameId = ?) AND
 				(
-					(
-						([$SHARED_TO_CLASS_PKS_MAP]) AND
-						(AssetEntrySet.privateAssetEntrySet = [$TRUE$])
-					) OR
+					([$SHARED_TO_CLASS_PKS_MAP]) OR
 					(AssetEntrySet.privateAssetEntrySet = [$FALSE$])
 				)
 			ORDER BY
@@ -144,10 +135,7 @@
 				) AND
 				(AssetSharing_AssetSharingEntry.classNameId = ?) AND
 				(
-					(
-						([$SHARED_TO_CLASS_PKS_MAP]) AND
-						(AssetEntrySet.privateAssetEntrySet = [$TRUE$])
-					) OR
+					([$SHARED_TO_CLASS_PKS_MAP]) OR
 					(AssetEntrySet.privateAssetEntrySet = [$FALSE$])
 				)
 			ORDER BY
