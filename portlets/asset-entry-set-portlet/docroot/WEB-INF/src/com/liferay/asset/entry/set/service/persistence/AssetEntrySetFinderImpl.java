@@ -74,7 +74,7 @@ public class AssetEntrySetFinderImpl
 
 			sql = StringUtil.replace(
 				sql, "[$SHARED_TO_CLASS_PKS_MAP]",
-				getSharedToClassPKsMap(userId, sharedToClassPKsMap, true));
+				getSharedToClassPKsMap(sharedToClassPKsMap, true));
 
 			SQLQuery q = session.createSQLQuery(sql);
 
@@ -125,7 +125,7 @@ public class AssetEntrySetFinderImpl
 
 			sql = StringUtil.replace(
 				sql, "[$SHARED_TO_CLASS_PKS_MAP]",
-				getSharedToClassPKsMap(userId, sharedToClassPKsMap, true));
+				getSharedToClassPKsMap(sharedToClassPKsMap, true));
 
 			SQLQuery q = session.createSQLQuery(sql);
 
@@ -175,8 +175,7 @@ public class AssetEntrySetFinderImpl
 
 			sql = StringUtil.replace(
 				sql, "[$SHARED_TO_CLASS_PKS_MAP]",
-				getSharedToClassPKsMap(
-					userId, sharedToClassPKsMap, showSelfPost));
+				getSharedToClassPKsMap(sharedToClassPKsMap, showSelfPost));
 
 			SQLQuery q = session.createSQLQuery(sql);
 
@@ -223,7 +222,7 @@ public class AssetEntrySetFinderImpl
 
 			sql = StringUtil.replace(
 				sql, "[$SHARED_TO_CLASS_PKS_MAP]",
-				getSharedToClassPKsMap(userId, sharedToClassPKsMap, true));
+				getSharedToClassPKsMap(sharedToClassPKsMap, true));
 
 			SQLQuery q = session.createSQLQuery(sql);
 
@@ -265,7 +264,7 @@ public class AssetEntrySetFinderImpl
 
 			sql = StringUtil.replace(
 				sql, "[$SHARED_TO_CLASS_PKS_MAP]",
-				getSharedToClassPKsMap(userId, sharedToClassPKsMap, true));
+				getSharedToClassPKsMap(sharedToClassPKsMap, true));
 
 			SQLQuery q = session.createSQLQuery(sql);
 
@@ -306,8 +305,7 @@ public class AssetEntrySetFinderImpl
 
 			sql = StringUtil.replace(
 				sql, "[$SHARED_TO_CLASS_PKS_MAP]",
-				getSharedToClassPKsMap(
-					userId, sharedToClassPKsMap, showSelfPost));
+				getSharedToClassPKsMap(sharedToClassPKsMap, showSelfPost));
 
 			SQLQuery q = session.createSQLQuery(sql);
 
@@ -351,8 +349,7 @@ public class AssetEntrySetFinderImpl
 	}
 
 	protected String getSharedToClassPKsMap(
-		long userId, Map<Long, long[]> sharedToClassPKsMap,
-		boolean showSelfPost) {
+		Map<Long, long[]> sharedToClassPKsMap, boolean showSelfPost) {
 
 		StringBundler sb = new StringBundler();
 
