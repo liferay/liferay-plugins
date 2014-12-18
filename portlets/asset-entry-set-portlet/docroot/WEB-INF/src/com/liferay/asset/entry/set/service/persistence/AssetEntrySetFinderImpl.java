@@ -22,6 +22,7 @@ import com.liferay.portal.kernel.dao.orm.SQLQuery;
 import com.liferay.portal.kernel.dao.orm.Session;
 import com.liferay.portal.kernel.dao.orm.Type;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -357,22 +358,16 @@ public class AssetEntrySetFinderImpl
 
 		sb.append(StringPool.OPEN_PARENTHESIS);
 
-		if (sharedToClassPKsMap != null) {
-			for (Map.Entry<Long, long[]> entry :
-					sharedToClassPKsMap.entrySet()) {
+		for (Map.Entry<Long, long[]> entry : sharedToClassPKsMap.entrySet()) {
+			long[] sharedToClassPKs = entry.getValue();
 
-				long[] sharedToClassPKs = entry.getValue();
-
-				if ((sharedToClassPKs == null) ||
-					(sharedToClassPKs.length == 0)) {
-
-					continue;
-				}
-
-				sb.append(StringPool.OPEN_PARENTHESIS);
-				sb.append(getSharedToClassPKs(sharedToClassPKs));
-				sb.append(") OR ");
+			if (ArrayUtil.isEmpty(sharedToClassPKs)) {
+				continue;
 			}
+
+			sb.append(StringPool.OPEN_PARENTHESIS);
+			sb.append(getSharedToClassPKs(sharedToClassPKs));
+			sb.append(") OR ");
 		}
 
 		if (showSelfPost) {
