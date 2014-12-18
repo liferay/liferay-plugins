@@ -113,7 +113,7 @@
 					(AssetEntrySet.privateAssetEntrySet = [$FALSE$])
 				)
 			ORDER BY
-				AssetEntrySet.createDate DESC
+				AssetEntrySet.createTime DESC
 		]]>
 	</sql>
 	<sql id="com.liferay.asset.entry.set.service.persistence.AssetEntrySetFinder.findByCCNI_CCPK_ATN">
@@ -151,7 +151,7 @@
 					(AssetEntrySet.privateAssetEntrySet = [$FALSE$])
 				)
 			ORDER BY
-				AssetEntrySet.createDate DESC
+				AssetEntrySet.createTime DESC
 		]]>
 	</sql>
 	<sql id="com.liferay.asset.entry.set.service.persistence.AssetEntrySetFinder.findByUserId">
