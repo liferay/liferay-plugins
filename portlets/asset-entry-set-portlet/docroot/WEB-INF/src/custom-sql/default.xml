@@ -1,6 +1,20 @@
 <?xml version="1.0"?>
 
 <custom-sql>
+	<sql id="com.liferay.asset.entry.set.service.persistence.AssetEntrySetFinder.countByUserId">
+		<![CDATA[
+			SELECT
+				COUNT(DISTINCT AssetEntrySet.assetEntrySetId) AS COUNT_VALUE
+			FROM
+				AssetEntrySet
+			INNER JOIN
+				AssetSharing_AssetSharingEntry ON
+					(AssetSharing_AssetSharingEntry.classPK = AssetEntrySet.assetEntrySetId)
+			WHERE
+				(AssetSharing_AssetSharingEntry.classNameId = ?) AND
+				[$SHARED_TO_CLASS_PKS_MAP]
+		]]>
+	</sql>
 	<sql id="com.liferay.asset.entry.set.service.persistence.AssetEntrySetFinder.countByCCNI_ATN">
 		<![CDATA[
 			SELECT
@@ -62,10 +76,10 @@
 				)
 		]]>
 	</sql>
-	<sql id="com.liferay.asset.entry.set.service.persistence.AssetEntrySetFinder.countByUserId">
+	<sql id="com.liferay.asset.entry.set.service.persistence.AssetEntrySetFinder.findByUserId">
 		<![CDATA[
 			SELECT
-				COUNT(DISTINCT AssetEntrySet.assetEntrySetId) AS COUNT_VALUE
+				DISTINCT {AssetEntrySet.*}
 			FROM
 				AssetEntrySet
 			INNER JOIN
@@ -74,7 +88,8 @@
 			WHERE
 				(AssetSharing_AssetSharingEntry.classNameId = ?) AND
 				[$SHARED_TO_CLASS_PKS_MAP]
-
+			ORDER BY
+				AssetEntrySet.modifiedTime DESC
 		]]>
 	</sql>
 	<sql id="com.liferay.asset.entry.set.service.persistence.AssetEntrySetFinder.findByCCNI_ATN">
@@ -140,22 +155,6 @@
 				)
 			ORDER BY
 				AssetEntrySet.createTime DESC
-		]]>
-	</sql>
-	<sql id="com.liferay.asset.entry.set.service.persistence.AssetEntrySetFinder.findByUserId">
-		<![CDATA[
-			SELECT
-				DISTINCT {AssetEntrySet.*}
-			FROM
-				AssetEntrySet
-			INNER JOIN
-				AssetSharing_AssetSharingEntry ON
-					(AssetSharing_AssetSharingEntry.classPK = AssetEntrySet.assetEntrySetId)
-			WHERE
-				(AssetSharing_AssetSharingEntry.classNameId = ?) AND
-				[$SHARED_TO_CLASS_PKS_MAP]
-			ORDER BY
-				AssetEntrySet.modifiedTime DESC
 		]]>
 	</sql>
 </custom-sql>
