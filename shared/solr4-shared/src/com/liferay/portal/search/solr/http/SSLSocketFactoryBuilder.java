@@ -23,15 +23,15 @@ public interface SSLSocketFactoryBuilder {
 
 	public SSLSocketFactory build() throws Exception;
 
-	public void setKeyStoreLocation(String keyStoreLocation);
-
 	public void setKeyStorePassword(char[] keyStorePassword);
+
+	public void setKeyStorePath(String keyStorePath);
 
 	public void setKeyStoreType(String keyStoreType);
 
-	public void setTrustStoreLocation(String trustStoreLocation);
-
 	public void setTrustStorePassword(char[] trustStorePassword);
+
+	public void setTrustStorePath(String trustStoreLocation);
 
 	public void setTrustStoreType(String trustStoreType);
 
