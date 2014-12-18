@@ -353,8 +353,6 @@ public class AssetEntrySetFinderImpl
 
 		StringBundler sb = new StringBundler();
 
-		sb.append(StringPool.OPEN_PARENTHESIS);
-
 		for (Map.Entry<Long, long[]> entry : sharedToClassPKsMap.entrySet()) {
 			long[] sharedToClassPKs = entry.getValue();
 
@@ -375,8 +373,6 @@ public class AssetEntrySetFinderImpl
 
 			sb.append(StringPool.CLOSE_PARENTHESIS);
 		}
-
-		sb.append(StringPool.CLOSE_PARENTHESIS);
 
 		return sb.toString();
 	}
