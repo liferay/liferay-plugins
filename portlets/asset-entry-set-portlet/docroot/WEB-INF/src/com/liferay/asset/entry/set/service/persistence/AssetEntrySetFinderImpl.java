@@ -61,7 +61,7 @@ public class AssetEntrySetFinderImpl
 		AssetEntrySetFinder.class.getName() + ".findByUserId";
 
 	@Override
-	public int countByUserId(Map<Long, long[]> sharedToClassPKsMap)
+	public int countBySharedToClassPKsMap(Map<Long, long[]> sharedToClassPKsMap)
 		throws SystemException {
 
 		Session session = null;
@@ -205,7 +205,7 @@ public class AssetEntrySetFinderImpl
 	}
 
 	@Override
-	public List<AssetEntrySet> findByUserId(
+	public List<AssetEntrySet> findBySharedToClassPKsMap(
 			Map<Long, long[]> sharedToClassPKsMap, int start, int end)
 		throws SystemException {
 

@@ -212,7 +212,7 @@ public class AssetEntrySetLocalServiceImpl
 				userId);
 		}
 
-		return assetEntrySetFinder.findByUserId(
+		return assetEntrySetFinder.findBySharedToClassPKs(
 			sharedToClassPKsMap, start, end);
 	}
 
@@ -252,7 +252,7 @@ public class AssetEntrySetLocalServiceImpl
 				userId);
 		}
 
-		return assetEntrySetFinder.countByUserId(sharedToClassPKsMap);
+		return assetEntrySetFinder.countBySharedToClassPKs(sharedToClassPKsMap);
 	}
 
 	@Override
