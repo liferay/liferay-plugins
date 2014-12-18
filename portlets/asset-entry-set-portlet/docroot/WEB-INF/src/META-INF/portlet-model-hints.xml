@@ -5,10 +5,9 @@
 		<field name="assetEntrySetId" type="long" />
 		<field name="companyId" type="long" />
 		<field name="userId" type="long" />
-		<field name="userName" type="String" />
 		<field name="createTime" type="long" />
 		<field name="modifiedTime" type="long" />
-		<field name="assetEntryId" type="String" />
+		<field name="assetEntryId" type="long" />
 		<field name="parentAssetEntrySetId" type="long" />
 		<field name="creatorClassNameId" type="long" />
 		<field name="creatorClassPK" type="long" />

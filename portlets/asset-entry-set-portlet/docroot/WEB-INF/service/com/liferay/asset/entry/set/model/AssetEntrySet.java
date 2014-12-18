@@ -31,4 +31,9 @@ public interface AssetEntrySet extends AssetEntrySetModel, PersistedModel {
 	 *
 	 * Never modify this interface directly. Add methods to {@link com.liferay.asset.entry.set.model.impl.AssetEntrySetImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
+	@com.liferay.portal.kernel.json.JSON()
+	public com.liferay.portal.kernel.json.JSONObject getCreator();
+
+	public void setCreator(
+		com.liferay.portal.kernel.json.JSONObject creatorJSONObject);
 }

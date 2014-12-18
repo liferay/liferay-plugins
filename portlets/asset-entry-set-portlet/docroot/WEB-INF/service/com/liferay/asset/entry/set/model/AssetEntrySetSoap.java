@@ -33,7 +33,6 @@ public class AssetEntrySetSoap implements Serializable {
 		soapModel.setAssetEntrySetId(model.getAssetEntrySetId());
 		soapModel.setCompanyId(model.getCompanyId());
 		soapModel.setUserId(model.getUserId());
-		soapModel.setUserName(model.getUserName());
 		soapModel.setCreateTime(model.getCreateTime());
 		soapModel.setModifiedTime(model.getModifiedTime());
 		soapModel.setAssetEntryId(model.getAssetEntryId());
@@ -119,14 +118,6 @@ public class AssetEntrySetSoap implements Serializable {
 		_userId = userId;
 	}
 
-	public String getUserName() {
-		return _userName;
-	}
-
-	public void setUserName(String userName) {
-		_userName = userName;
-	}
-
 	public long getCreateTime() {
 		return _createTime;
 	}
@@ -143,11 +134,11 @@ public class AssetEntrySetSoap implements Serializable {
 		_modifiedTime = modifiedTime;
 	}
 
-	public String getAssetEntryId() {
+	public long getAssetEntryId() {
 		return _assetEntryId;
 	}
 
-	public void setAssetEntryId(String assetEntryId) {
+	public void setAssetEntryId(long assetEntryId) {
 		_assetEntryId = assetEntryId;
 	}
 
@@ -202,10 +193,9 @@ public class AssetEntrySetSoap implements Serializable {
 	private long _assetEntrySetId;
 	private long _companyId;
 	private long _userId;
-	private String _userName;
 	private long _createTime;
 	private long _modifiedTime;
-	private String _assetEntryId;
+	private long _assetEntryId;
 	private long _parentAssetEntrySetId;
 	private long _creatorClassNameId;
 	private long _creatorClassPK;

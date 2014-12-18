@@ -60,14 +60,6 @@ public class AssetEntrySetServiceWrapper implements AssetEntrySetService,
 
 	@Override
 	public com.liferay.asset.entry.set.model.AssetEntrySet addAssetEntrySet(
-		java.lang.String payload)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return _assetEntrySetService.addAssetEntrySet(payload);
-	}
-
-	@Override
-	public com.liferay.asset.entry.set.model.AssetEntrySet addAssetEntrySet(
 		long parentAssetEntrySetId, java.lang.String payload)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -76,10 +68,19 @@ public class AssetEntrySetServiceWrapper implements AssetEntrySetService,
 	}
 
 	@Override
+	public com.liferay.asset.entry.set.model.AssetEntrySet addAssetEntrySet(
+		java.lang.String payload)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _assetEntrySetService.addAssetEntrySet(payload);
+	}
+
+	@Override
 	public java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> getAssetEntrySets(
-		long assetEntrySetId, long lastAccessTime, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return _assetEntrySetService.getAssetEntrySets(assetEntrySetId,
+		long parentAssetEntrySetId, long lastAccessTime, int start, int end)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _assetEntrySetService.getAssetEntrySets(parentAssetEntrySetId,
 			lastAccessTime, start, end);
 	}
 

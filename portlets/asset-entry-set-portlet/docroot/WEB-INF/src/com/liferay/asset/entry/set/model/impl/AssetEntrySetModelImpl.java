@@ -68,10 +68,9 @@ public class AssetEntrySetModelImpl extends BaseModelImpl<AssetEntrySet>
 			{ "assetEntrySetId", Types.BIGINT },
 			{ "companyId", Types.BIGINT },
 			{ "userId", Types.BIGINT },
-			{ "userName", Types.VARCHAR },
 			{ "createTime", Types.BIGINT },
 			{ "modifiedTime", Types.BIGINT },
-			{ "assetEntryId", Types.VARCHAR },
+			{ "assetEntryId", Types.BIGINT },
 			{ "parentAssetEntrySetId", Types.BIGINT },
 			{ "creatorClassNameId", Types.BIGINT },
 			{ "creatorClassPK", Types.BIGINT },
@@ -79,7 +78,7 @@ public class AssetEntrySetModelImpl extends BaseModelImpl<AssetEntrySet>
 			{ "childAssetEntrySetsCount", Types.INTEGER },
 			{ "ratingsStatsTotalScore", Types.INTEGER }
 		};
-	public static final String TABLE_SQL_CREATE = "create table AssetEntrySet (assetEntrySetId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createTime LONG,modifiedTime LONG,assetEntryId VARCHAR(75) null,parentAssetEntrySetId LONG,creatorClassNameId LONG,creatorClassPK LONG,payload VARCHAR(75) null,childAssetEntrySetsCount INTEGER,ratingsStatsTotalScore INTEGER)";
+	public static final String TABLE_SQL_CREATE = "create table AssetEntrySet (assetEntrySetId LONG not null primary key,companyId LONG,userId LONG,createTime LONG,modifiedTime LONG,assetEntryId LONG,parentAssetEntrySetId LONG,creatorClassNameId LONG,creatorClassPK LONG,payload STRING null,childAssetEntrySetsCount INTEGER,ratingsStatsTotalScore INTEGER)";
 	public static final String TABLE_SQL_DROP = "drop table AssetEntrySet";
 	public static final String ORDER_BY_JPQL = " ORDER BY assetEntrySet.createTime DESC";
 	public static final String ORDER_BY_SQL = " ORDER BY AssetEntrySet.createTime DESC";
@@ -116,7 +115,6 @@ public class AssetEntrySetModelImpl extends BaseModelImpl<AssetEntrySet>
 		model.setAssetEntrySetId(soapModel.getAssetEntrySetId());
 		model.setCompanyId(soapModel.getCompanyId());
 		model.setUserId(soapModel.getUserId());
-		model.setUserName(soapModel.getUserName());
 		model.setCreateTime(soapModel.getCreateTime());
 		model.setModifiedTime(soapModel.getModifiedTime());
 		model.setAssetEntryId(soapModel.getAssetEntryId());
@@ -193,7 +191,6 @@ public class AssetEntrySetModelImpl extends BaseModelImpl<AssetEntrySet>
 		attributes.put("assetEntrySetId", getAssetEntrySetId());
 		attributes.put("companyId", getCompanyId());
 		attributes.put("userId", getUserId());
-		attributes.put("userName", getUserName());
 		attributes.put("createTime", getCreateTime());
 		attributes.put("modifiedTime", getModifiedTime());
 		attributes.put("assetEntryId", getAssetEntryId());
@@ -227,12 +224,6 @@ public class AssetEntrySetModelImpl extends BaseModelImpl<AssetEntrySet>
 			setUserId(userId);
 		}
 
-		String userName = (String)attributes.get("userName");
-
-		if (userName != null) {
-			setUserName(userName);
-		}
-
 		Long createTime = (Long)attributes.get("createTime");
 
 		if (createTime != null) {
@@ -245,7 +236,7 @@ public class AssetEntrySetModelImpl extends BaseModelImpl<AssetEntrySet>
 			setModifiedTime(modifiedTime);
 		}
 
-		String assetEntryId = (String)attributes.get("assetEntryId");
+		Long assetEntryId = (Long)attributes.get("assetEntryId");
 
 		if (assetEntryId != null) {
 			setAssetEntryId(assetEntryId);
@@ -336,22 +327,6 @@ public class AssetEntrySetModelImpl extends BaseModelImpl<AssetEntrySet>
 
 	@JSON
 	@Override
-	public String getUserName() {
-		if (_userName == null) {
-			return StringPool.BLANK;
-		}
-		else {
-			return _userName;
-		}
-	}
-
-	@Override
-	public void setUserName(String userName) {
-		_userName = userName;
-	}
-
-	@JSON
-	@Override
 	public long getCreateTime() {
 		return _createTime;
 	}
@@ -386,17 +361,12 @@ public class AssetEntrySetModelImpl extends BaseModelImpl<AssetEntrySet>
 
 	@JSON
 	@Override
-	public String getAssetEntryId() {
-		if (_assetEntryId == null) {
-			return StringPool.BLANK;
-		}
-		else {
-			return _assetEntryId;
-		}
+	public long getAssetEntryId() {
+		return _assetEntryId;
 	}
 
 	@Override
-	public void setAssetEntryId(String assetEntryId) {
+	public void setAssetEntryId(long assetEntryId) {
 		_assetEntryId = assetEntryId;
 	}
 
@@ -541,7 +511,6 @@ public class AssetEntrySetModelImpl extends BaseModelImpl<AssetEntrySet>
 		assetEntrySetImpl.setAssetEntrySetId(getAssetEntrySetId());
 		assetEntrySetImpl.setCompanyId(getCompanyId());
 		assetEntrySetImpl.setUserId(getUserId());
-		assetEntrySetImpl.setUserName(getUserName());
 		assetEntrySetImpl.setCreateTime(getCreateTime());
 		assetEntrySetImpl.setModifiedTime(getModifiedTime());
 		assetEntrySetImpl.setAssetEntryId(getAssetEntryId());
@@ -640,25 +609,11 @@ public class AssetEntrySetModelImpl extends BaseModelImpl<AssetEntrySet>
 
 		assetEntrySetCacheModel.userId = getUserId();
 
-		assetEntrySetCacheModel.userName = getUserName();
-
-		String userName = assetEntrySetCacheModel.userName;
-
-		if ((userName != null) && (userName.length() == 0)) {
-			assetEntrySetCacheModel.userName = null;
-		}
-
 		assetEntrySetCacheModel.createTime = getCreateTime();
 
 		assetEntrySetCacheModel.modifiedTime = getModifiedTime();
 
 		assetEntrySetCacheModel.assetEntryId = getAssetEntryId();
-
-		String assetEntryId = assetEntrySetCacheModel.assetEntryId;
-
-		if ((assetEntryId != null) && (assetEntryId.length() == 0)) {
-			assetEntrySetCacheModel.assetEntryId = null;
-		}
 
 		assetEntrySetCacheModel.parentAssetEntrySetId = getParentAssetEntrySetId();
 
@@ -683,7 +638,7 @@ public class AssetEntrySetModelImpl extends BaseModelImpl<AssetEntrySet>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(27);
+		StringBundler sb = new StringBundler(25);
 
 		sb.append("{assetEntrySetId=");
 		sb.append(getAssetEntrySetId());
@@ -691,8 +646,6 @@ public class AssetEntrySetModelImpl extends BaseModelImpl<AssetEntrySet>
 		sb.append(getCompanyId());
 		sb.append(", userId=");
 		sb.append(getUserId());
-		sb.append(", userName=");
-		sb.append(getUserName());
 		sb.append(", createTime=");
 		sb.append(getCreateTime());
 		sb.append(", modifiedTime=");
@@ -718,7 +671,7 @@ public class AssetEntrySetModelImpl extends BaseModelImpl<AssetEntrySet>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(43);
+		StringBundler sb = new StringBundler(40);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.asset.entry.set.model.AssetEntrySet");
@@ -735,10 +688,6 @@ public class AssetEntrySetModelImpl extends BaseModelImpl<AssetEntrySet>
 		sb.append(
 			"<column><column-name>userId</column-name><column-value><![CDATA[");
 		sb.append(getUserId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>userName</column-name><column-value><![CDATA[");
-		sb.append(getUserName());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>createTime</column-name><column-value><![CDATA[");
@@ -790,12 +739,11 @@ public class AssetEntrySetModelImpl extends BaseModelImpl<AssetEntrySet>
 	private long _companyId;
 	private long _userId;
 	private String _userUuid;
-	private String _userName;
 	private long _createTime;
 	private long _originalCreateTime;
 	private boolean _setOriginalCreateTime;
 	private long _modifiedTime;
-	private String _assetEntryId;
+	private long _assetEntryId;
 	private long _parentAssetEntrySetId;
 	private long _originalParentAssetEntrySetId;
 	private boolean _setOriginalParentAssetEntrySetId;

@@ -322,37 +322,20 @@ public class AssetEntrySetLocalServiceWrapper
 	}
 
 	@Override
-	public com.liferay.asset.entry.set.model.AssetEntrySet getAssetEntrySet(
-		long parentAssetEntrySetId, long creatorClassNameId,
-		long creatorClassPK, int start, int end)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return _assetEntrySetLocalService.getAssetEntrySet(parentAssetEntrySetId,
-			creatorClassNameId, creatorClassPK, start, end);
-	}
-
-	@Override
 	public java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> getAssetEntrySets(
 		long parentAssetEntrySetId, long lastAccessTime, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
 		return _assetEntrySetLocalService.getAssetEntrySets(parentAssetEntrySetId,
 			lastAccessTime, start, end);
 	}
 
 	@Override
 	public java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> getAssetEntrySets(
-		long parentAssetEntrySetId, long creatorClassNameId, int start,
-		int end, com.liferay.portal.kernel.util.OrderByComparator obc)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return _assetEntrySetLocalService.getAssetEntrySets(parentAssetEntrySetId,
-			creatorClassNameId, start, end, obc);
-	}
-
-	@Override
-	public java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> getAssetEntrySets(
 		long creatorClassNameId, long creatorClassPK,
 		java.lang.String assetTagName, boolean andOperator, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
 		return _assetEntrySetLocalService.getAssetEntrySets(creatorClassNameId,
 			creatorClassPK, assetTagName, andOperator, start, end);
 	}
@@ -360,7 +343,9 @@ public class AssetEntrySetLocalServiceWrapper
 	@Override
 	public java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> getAssetEntrySets(
 		long creatorClassNameId, java.lang.String assetTagName, int start,
-		int end) throws com.liferay.portal.kernel.exception.SystemException {
+		int end)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
 		return _assetEntrySetLocalService.getAssetEntrySets(creatorClassNameId,
 			assetTagName, start, end);
 	}

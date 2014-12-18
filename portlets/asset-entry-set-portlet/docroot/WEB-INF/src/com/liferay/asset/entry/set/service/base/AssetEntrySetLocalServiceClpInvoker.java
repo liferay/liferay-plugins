@@ -143,77 +143,60 @@ public class AssetEntrySetLocalServiceClpInvoker {
 
 		_methodParameterTypes74 = new String[] { "long" };
 
-		_methodName75 = "getAssetEntrySet";
+		_methodName75 = "getAssetEntrySets";
 
-		_methodParameterTypes75 = new String[] { "long" };
+		_methodParameterTypes75 = new String[] { "long", "long", "int", "int" };
 
-		_methodName76 = "getAssetEntrySet";
+		_methodName76 = "getAssetEntrySets";
 
 		_methodParameterTypes76 = new String[] {
-				"long", "long", "long", "int", "int"
+				"long", "long", "java.lang.String", "boolean", "int", "int"
 			};
 
 		_methodName77 = "getAssetEntrySets";
 
-		_methodParameterTypes77 = new String[] { "long", "long", "int", "int" };
-
-		_methodName78 = "getAssetEntrySets";
-
-		_methodParameterTypes78 = new String[] {
-				"long", "long", "int", "int",
-				"com.liferay.portal.kernel.util.OrderByComparator"
-			};
-
-		_methodName79 = "getAssetEntrySets";
-
-		_methodParameterTypes79 = new String[] {
-				"long", "long", "java.lang.String", "boolean", "int", "int"
-			};
-
-		_methodName80 = "getAssetEntrySets";
-
-		_methodParameterTypes80 = new String[] {
+		_methodParameterTypes77 = new String[] {
 				"long", "java.lang.String", "int", "int"
 			};
 
-		_methodName81 = "getAssetEntrySetsCount";
+		_methodName78 = "getAssetEntrySetsCount";
 
-		_methodParameterTypes81 = new String[] {
+		_methodParameterTypes78 = new String[] {
 				"long", "long", "java.lang.String", "boolean"
 			};
 
-		_methodName82 = "getAssetEntrySetsCount";
+		_methodName79 = "getAssetEntrySetsCount";
 
-		_methodParameterTypes82 = new String[] { "long", "java.lang.String" };
+		_methodParameterTypes79 = new String[] { "long", "java.lang.String" };
 
-		_methodName83 = "getChildAssetEntrySets";
+		_methodName80 = "getChildAssetEntrySets";
 
-		_methodParameterTypes83 = new String[] {
+		_methodParameterTypes80 = new String[] {
 				"long", "int", "int",
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			};
 
-		_methodName84 = "likeAssetEntrySet";
+		_methodName81 = "likeAssetEntrySet";
 
-		_methodParameterTypes84 = new String[] { "long", "long" };
+		_methodParameterTypes81 = new String[] { "long", "long" };
 
-		_methodName85 = "unlikeAssetEntrySet";
+		_methodName82 = "unlikeAssetEntrySet";
 
-		_methodParameterTypes85 = new String[] { "long", "long" };
+		_methodParameterTypes82 = new String[] { "long", "long" };
 
-		_methodName86 = "updateAssetEntry";
+		_methodName83 = "updateAssetEntry";
 
-		_methodParameterTypes86 = new String[] { "long", "java.lang.String[][]" };
+		_methodParameterTypes83 = new String[] { "long", "java.lang.String[][]" };
 
-		_methodName87 = "updateAssetEntrySet";
+		_methodName84 = "updateAssetEntrySet";
 
-		_methodParameterTypes87 = new String[] {
+		_methodParameterTypes84 = new String[] {
 				"long", "com.liferay.portal.kernel.json.JSONObject"
 			};
 
-		_methodName88 = "updateChildAssetEntrySetsCount";
+		_methodName85 = "updateChildAssetEntrySetsCount";
 
-		_methodParameterTypes88 = new String[] { "long" };
+		_methodParameterTypes85 = new String[] { "long" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -351,37 +334,14 @@ public class AssetEntrySetLocalServiceClpInvoker {
 
 		if (_methodName75.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes75, parameterTypes)) {
-			return AssetEntrySetLocalServiceUtil.getAssetEntrySet(((Long)arguments[0]).longValue());
-		}
-
-		if (_methodName76.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes76, parameterTypes)) {
-			return AssetEntrySetLocalServiceUtil.getAssetEntrySet(((Long)arguments[0]).longValue(),
-				((Long)arguments[1]).longValue(),
-				((Long)arguments[2]).longValue(),
-				((Integer)arguments[3]).intValue(),
-				((Integer)arguments[4]).intValue());
-		}
-
-		if (_methodName77.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes77, parameterTypes)) {
 			return AssetEntrySetLocalServiceUtil.getAssetEntrySets(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				((Integer)arguments[2]).intValue(),
 				((Integer)arguments[3]).intValue());
 		}
 
-		if (_methodName78.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes78, parameterTypes)) {
-			return AssetEntrySetLocalServiceUtil.getAssetEntrySets(((Long)arguments[0]).longValue(),
-				((Long)arguments[1]).longValue(),
-				((Integer)arguments[2]).intValue(),
-				((Integer)arguments[3]).intValue(),
-				(com.liferay.portal.kernel.util.OrderByComparator)arguments[4]);
-		}
-
-		if (_methodName79.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes79, parameterTypes)) {
+		if (_methodName76.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes76, parameterTypes)) {
 			return AssetEntrySetLocalServiceUtil.getAssetEntrySets(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				(java.lang.String)arguments[2],
@@ -390,64 +350,64 @@ public class AssetEntrySetLocalServiceClpInvoker {
 				((Integer)arguments[5]).intValue());
 		}
 
-		if (_methodName80.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes80, parameterTypes)) {
+		if (_methodName77.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes77, parameterTypes)) {
 			return AssetEntrySetLocalServiceUtil.getAssetEntrySets(((Long)arguments[0]).longValue(),
 				(java.lang.String)arguments[1],
 				((Integer)arguments[2]).intValue(),
 				((Integer)arguments[3]).intValue());
 		}
 
-		if (_methodName81.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes81, parameterTypes)) {
+		if (_methodName78.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes78, parameterTypes)) {
 			return AssetEntrySetLocalServiceUtil.getAssetEntrySetsCount(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				(java.lang.String)arguments[2],
 				((Boolean)arguments[3]).booleanValue());
 		}
 
-		if (_methodName82.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes82, parameterTypes)) {
+		if (_methodName79.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes79, parameterTypes)) {
 			return AssetEntrySetLocalServiceUtil.getAssetEntrySetsCount(((Long)arguments[0]).longValue(),
 				(java.lang.String)arguments[1]);
 		}
 
-		if (_methodName83.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes83, parameterTypes)) {
+		if (_methodName80.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes80, parameterTypes)) {
 			return AssetEntrySetLocalServiceUtil.getChildAssetEntrySets(((Long)arguments[0]).longValue(),
 				((Integer)arguments[1]).intValue(),
 				((Integer)arguments[2]).intValue(),
 				(com.liferay.portal.kernel.util.OrderByComparator)arguments[3]);
 		}
 
-		if (_methodName84.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes84, parameterTypes)) {
+		if (_methodName81.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes81, parameterTypes)) {
 			return AssetEntrySetLocalServiceUtil.likeAssetEntrySet(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue());
 		}
 
-		if (_methodName85.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes85, parameterTypes)) {
+		if (_methodName82.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes82, parameterTypes)) {
 			return AssetEntrySetLocalServiceUtil.unlikeAssetEntrySet(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue());
 		}
 
-		if (_methodName86.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes86, parameterTypes)) {
+		if (_methodName83.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes83, parameterTypes)) {
 			AssetEntrySetLocalServiceUtil.updateAssetEntry(((Long)arguments[0]).longValue(),
 				(java.lang.String[])arguments[1]);
 
 			return null;
 		}
 
-		if (_methodName87.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes87, parameterTypes)) {
+		if (_methodName84.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes84, parameterTypes)) {
 			return AssetEntrySetLocalServiceUtil.updateAssetEntrySet(((Long)arguments[0]).longValue(),
 				(com.liferay.portal.kernel.json.JSONObject)arguments[1]);
 		}
 
-		if (_methodName88.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes88, parameterTypes)) {
+		if (_methodName85.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes85, parameterTypes)) {
 			return AssetEntrySetLocalServiceUtil.updateChildAssetEntrySetsCount(((Long)arguments[0]).longValue());
 		}
 
@@ -522,10 +482,4 @@ public class AssetEntrySetLocalServiceClpInvoker {
 	private String[] _methodParameterTypes84;
 	private String _methodName85;
 	private String[] _methodParameterTypes85;
-	private String _methodName86;
-	private String[] _methodParameterTypes86;
-	private String _methodName87;
-	private String[] _methodParameterTypes87;
-	private String _methodName88;
-	private String[] _methodParameterTypes88;
 }

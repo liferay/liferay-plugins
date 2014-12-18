@@ -116,21 +116,6 @@ public interface AssetEntrySetModel extends BaseModel<AssetEntrySet> {
 	public void setUserUuid(String userUuid);
 
 	/**
-	 * Returns the user name of this asset entry set.
-	 *
-	 * @return the user name of this asset entry set
-	 */
-	@AutoEscape
-	public String getUserName();
-
-	/**
-	 * Sets the user name of this asset entry set.
-	 *
-	 * @param userName the user name of this asset entry set
-	 */
-	public void setUserName(String userName);
-
-	/**
 	 * Returns the create time of this asset entry set.
 	 *
 	 * @return the create time of this asset entry set
@@ -163,15 +148,14 @@ public interface AssetEntrySetModel extends BaseModel<AssetEntrySet> {
 	 *
 	 * @return the asset entry ID of this asset entry set
 	 */
-	@AutoEscape
-	public String getAssetEntryId();
+	public long getAssetEntryId();
 
 	/**
 	 * Sets the asset entry ID of this asset entry set.
 	 *
 	 * @param assetEntryId the asset entry ID of this asset entry set
 	 */
-	public void setAssetEntryId(String assetEntryId);
+	public void setAssetEntryId(long assetEntryId);
 
 	/**
 	 * Returns the parent asset entry set ID of this asset entry set.

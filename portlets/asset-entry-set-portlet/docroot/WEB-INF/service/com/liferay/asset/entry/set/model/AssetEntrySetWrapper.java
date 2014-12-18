@@ -52,7 +52,6 @@ public class AssetEntrySetWrapper implements AssetEntrySet,
 		attributes.put("assetEntrySetId", getAssetEntrySetId());
 		attributes.put("companyId", getCompanyId());
 		attributes.put("userId", getUserId());
-		attributes.put("userName", getUserName());
 		attributes.put("createTime", getCreateTime());
 		attributes.put("modifiedTime", getModifiedTime());
 		attributes.put("assetEntryId", getAssetEntryId());
@@ -86,12 +85,6 @@ public class AssetEntrySetWrapper implements AssetEntrySet,
 			setUserId(userId);
 		}
 
-		String userName = (String)attributes.get("userName");
-
-		if (userName != null) {
-			setUserName(userName);
-		}
-
 		Long createTime = (Long)attributes.get("createTime");
 
 		if (createTime != null) {
@@ -104,7 +97,7 @@ public class AssetEntrySetWrapper implements AssetEntrySet,
 			setModifiedTime(modifiedTime);
 		}
 
-		String assetEntryId = (String)attributes.get("assetEntryId");
+		Long assetEntryId = (Long)attributes.get("assetEntryId");
 
 		if (assetEntryId != null) {
 			setAssetEntryId(assetEntryId);
@@ -253,26 +246,6 @@ public class AssetEntrySetWrapper implements AssetEntrySet,
 	}
 
 	/**
-	* Returns the user name of this asset entry set.
-	*
-	* @return the user name of this asset entry set
-	*/
-	@Override
-	public java.lang.String getUserName() {
-		return _assetEntrySet.getUserName();
-	}
-
-	/**
-	* Sets the user name of this asset entry set.
-	*
-	* @param userName the user name of this asset entry set
-	*/
-	@Override
-	public void setUserName(java.lang.String userName) {
-		_assetEntrySet.setUserName(userName);
-	}
-
-	/**
 	* Returns the create time of this asset entry set.
 	*
 	* @return the create time of this asset entry set
@@ -318,7 +291,7 @@ public class AssetEntrySetWrapper implements AssetEntrySet,
 	* @return the asset entry ID of this asset entry set
 	*/
 	@Override
-	public java.lang.String getAssetEntryId() {
+	public long getAssetEntryId() {
 		return _assetEntrySet.getAssetEntryId();
 	}
 
@@ -328,7 +301,7 @@ public class AssetEntrySetWrapper implements AssetEntrySet,
 	* @param assetEntryId the asset entry ID of this asset entry set
 	*/
 	@Override
-	public void setAssetEntryId(java.lang.String assetEntryId) {
+	public void setAssetEntryId(long assetEntryId) {
 		_assetEntrySet.setAssetEntryId(assetEntryId);
 	}
 
@@ -555,6 +528,17 @@ public class AssetEntrySetWrapper implements AssetEntrySet,
 	public void persist()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		_assetEntrySet.persist();
+	}
+
+	@Override
+	public com.liferay.portal.kernel.json.JSONObject getCreator() {
+		return _assetEntrySet.getCreator();
+	}
+
+	@Override
+	public void setCreator(
+		com.liferay.portal.kernel.json.JSONObject creatorJSONObject) {
+		_assetEntrySet.setCreator(creatorJSONObject);
 	}
 
 	@Override

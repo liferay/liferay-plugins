@@ -63,20 +63,6 @@ import java.rmi.RemoteException;
  */
 public class AssetEntrySetServiceSoap {
 	public static com.liferay.asset.entry.set.model.AssetEntrySetSoap addAssetEntrySet(
-		java.lang.String payload) throws RemoteException {
-		try {
-			com.liferay.asset.entry.set.model.AssetEntrySet returnValue = AssetEntrySetServiceUtil.addAssetEntrySet(payload);
-
-			return com.liferay.asset.entry.set.model.AssetEntrySetSoap.toSoapModel(returnValue);
-		}
-		catch (Exception e) {
-			_log.error(e, e);
-
-			throw new RemoteException(e.getMessage());
-		}
-	}
-
-	public static com.liferay.asset.entry.set.model.AssetEntrySetSoap addAssetEntrySet(
 		long parentAssetEntrySetId, java.lang.String payload)
 		throws RemoteException {
 		try {
@@ -92,12 +78,26 @@ public class AssetEntrySetServiceSoap {
 		}
 	}
 
+	public static com.liferay.asset.entry.set.model.AssetEntrySetSoap addAssetEntrySet(
+		java.lang.String payload) throws RemoteException {
+		try {
+			com.liferay.asset.entry.set.model.AssetEntrySet returnValue = AssetEntrySetServiceUtil.addAssetEntrySet(payload);
+
+			return com.liferay.asset.entry.set.model.AssetEntrySetSoap.toSoapModel(returnValue);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
 	public static com.liferay.asset.entry.set.model.AssetEntrySetSoap[] getAssetEntrySets(
-		long assetEntrySetId, long lastAccessTime, int start, int end)
+		long parentAssetEntrySetId, long lastAccessTime, int start, int end)
 		throws RemoteException {
 		try {
 			java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> returnValue =
-				AssetEntrySetServiceUtil.getAssetEntrySets(assetEntrySetId,
+				AssetEntrySetServiceUtil.getAssetEntrySets(parentAssetEntrySetId,
 					lastAccessTime, start, end);
 
 			return com.liferay.asset.entry.set.model.AssetEntrySetSoap.toSoapModels(returnValue);

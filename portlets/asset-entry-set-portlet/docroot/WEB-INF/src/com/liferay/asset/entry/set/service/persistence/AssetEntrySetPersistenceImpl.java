@@ -2306,7 +2306,6 @@ public class AssetEntrySetPersistenceImpl extends BasePersistenceImpl<AssetEntry
 		assetEntrySetImpl.setAssetEntrySetId(assetEntrySet.getAssetEntrySetId());
 		assetEntrySetImpl.setCompanyId(assetEntrySet.getCompanyId());
 		assetEntrySetImpl.setUserId(assetEntrySet.getUserId());
-		assetEntrySetImpl.setUserName(assetEntrySet.getUserName());
 		assetEntrySetImpl.setCreateTime(assetEntrySet.getCreateTime());
 		assetEntrySetImpl.setModifiedTime(assetEntrySet.getModifiedTime());
 		assetEntrySetImpl.setAssetEntryId(assetEntrySet.getAssetEntryId());

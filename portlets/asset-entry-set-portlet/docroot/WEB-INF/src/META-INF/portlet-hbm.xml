@@ -10,10 +10,9 @@
 		</id>
 		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="userName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="createTime" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="modifiedTime" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="assetEntryId" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="assetEntryId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="parentAssetEntrySetId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="creatorClassNameId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="creatorClassPK" type="com.liferay.portal.dao.orm.hibernate.LongType" />

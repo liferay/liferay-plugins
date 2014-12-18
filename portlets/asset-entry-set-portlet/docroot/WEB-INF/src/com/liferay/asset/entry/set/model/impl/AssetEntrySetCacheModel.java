@@ -36,7 +36,7 @@ public class AssetEntrySetCacheModel implements CacheModel<AssetEntrySet>,
 	Externalizable {
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(27);
+		StringBundler sb = new StringBundler(25);
 
 		sb.append("{assetEntrySetId=");
 		sb.append(assetEntrySetId);
@@ -44,8 +44,6 @@ public class AssetEntrySetCacheModel implements CacheModel<AssetEntrySet>,
 		sb.append(companyId);
 		sb.append(", userId=");
 		sb.append(userId);
-		sb.append(", userName=");
-		sb.append(userName);
 		sb.append(", createTime=");
 		sb.append(createTime);
 		sb.append(", modifiedTime=");
@@ -76,24 +74,9 @@ public class AssetEntrySetCacheModel implements CacheModel<AssetEntrySet>,
 		assetEntrySetImpl.setAssetEntrySetId(assetEntrySetId);
 		assetEntrySetImpl.setCompanyId(companyId);
 		assetEntrySetImpl.setUserId(userId);
-
-		if (userName == null) {
-			assetEntrySetImpl.setUserName(StringPool.BLANK);
-		}
-		else {
-			assetEntrySetImpl.setUserName(userName);
-		}
-
 		assetEntrySetImpl.setCreateTime(createTime);
 		assetEntrySetImpl.setModifiedTime(modifiedTime);
-
-		if (assetEntryId == null) {
-			assetEntrySetImpl.setAssetEntryId(StringPool.BLANK);
-		}
-		else {
-			assetEntrySetImpl.setAssetEntryId(assetEntryId);
-		}
-
+		assetEntrySetImpl.setAssetEntryId(assetEntryId);
 		assetEntrySetImpl.setParentAssetEntrySetId(parentAssetEntrySetId);
 		assetEntrySetImpl.setCreatorClassNameId(creatorClassNameId);
 		assetEntrySetImpl.setCreatorClassPK(creatorClassPK);
@@ -118,10 +101,9 @@ public class AssetEntrySetCacheModel implements CacheModel<AssetEntrySet>,
 		assetEntrySetId = objectInput.readLong();
 		companyId = objectInput.readLong();
 		userId = objectInput.readLong();
-		userName = objectInput.readUTF();
 		createTime = objectInput.readLong();
 		modifiedTime = objectInput.readLong();
-		assetEntryId = objectInput.readUTF();
+		assetEntryId = objectInput.readLong();
 		parentAssetEntrySetId = objectInput.readLong();
 		creatorClassNameId = objectInput.readLong();
 		creatorClassPK = objectInput.readLong();
@@ -136,24 +118,9 @@ public class AssetEntrySetCacheModel implements CacheModel<AssetEntrySet>,
 		objectOutput.writeLong(assetEntrySetId);
 		objectOutput.writeLong(companyId);
 		objectOutput.writeLong(userId);
-
-		if (userName == null) {
-			objectOutput.writeUTF(StringPool.BLANK);
-		}
-		else {
-			objectOutput.writeUTF(userName);
-		}
-
 		objectOutput.writeLong(createTime);
 		objectOutput.writeLong(modifiedTime);
-
-		if (assetEntryId == null) {
-			objectOutput.writeUTF(StringPool.BLANK);
-		}
-		else {
-			objectOutput.writeUTF(assetEntryId);
-		}
-
+		objectOutput.writeLong(assetEntryId);
 		objectOutput.writeLong(parentAssetEntrySetId);
 		objectOutput.writeLong(creatorClassNameId);
 		objectOutput.writeLong(creatorClassPK);
@@ -172,10 +139,9 @@ public class AssetEntrySetCacheModel implements CacheModel<AssetEntrySet>,
 	public long assetEntrySetId;
 	public long companyId;
 	public long userId;
-	public String userName;
 	public long createTime;
 	public long modifiedTime;
-	public String assetEntryId;
+	public long assetEntryId;
 	public long parentAssetEntrySetId;
 	public long creatorClassNameId;
 	public long creatorClassPK;

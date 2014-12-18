@@ -77,7 +77,6 @@ public class AssetEntrySetClp extends BaseModelImpl<AssetEntrySet>
 		attributes.put("assetEntrySetId", getAssetEntrySetId());
 		attributes.put("companyId", getCompanyId());
 		attributes.put("userId", getUserId());
-		attributes.put("userName", getUserName());
 		attributes.put("createTime", getCreateTime());
 		attributes.put("modifiedTime", getModifiedTime());
 		attributes.put("assetEntryId", getAssetEntryId());
@@ -111,12 +110,6 @@ public class AssetEntrySetClp extends BaseModelImpl<AssetEntrySet>
 			setUserId(userId);
 		}
 
-		String userName = (String)attributes.get("userName");
-
-		if (userName != null) {
-			setUserName(userName);
-		}
-
 		Long createTime = (Long)attributes.get("createTime");
 
 		if (createTime != null) {
@@ -129,7 +122,7 @@ public class AssetEntrySetClp extends BaseModelImpl<AssetEntrySet>
 			setModifiedTime(modifiedTime);
 		}
 
-		String assetEntryId = (String)attributes.get("assetEntryId");
+		Long assetEntryId = (Long)attributes.get("assetEntryId");
 
 		if (assetEntryId != null) {
 			setAssetEntryId(assetEntryId);
@@ -255,29 +248,6 @@ public class AssetEntrySetClp extends BaseModelImpl<AssetEntrySet>
 	}
 
 	@Override
-	public String getUserName() {
-		return _userName;
-	}
-
-	@Override
-	public void setUserName(String userName) {
-		_userName = userName;
-
-		if (_assetEntrySetRemoteModel != null) {
-			try {
-				Class<?> clazz = _assetEntrySetRemoteModel.getClass();
-
-				Method method = clazz.getMethod("setUserName", String.class);
-
-				method.invoke(_assetEntrySetRemoteModel, userName);
-			}
-			catch (Exception e) {
-				throw new UnsupportedOperationException(e);
-			}
-		}
-	}
-
-	@Override
 	public long getCreateTime() {
 		return _createTime;
 	}
@@ -324,19 +294,19 @@ public class AssetEntrySetClp extends BaseModelImpl<AssetEntrySet>
 	}
 
 	@Override
-	public String getAssetEntryId() {
+	public long getAssetEntryId() {
 		return _assetEntryId;
 	}
 
 	@Override
-	public void setAssetEntryId(String assetEntryId) {
+	public void setAssetEntryId(long assetEntryId) {
 		_assetEntryId = assetEntryId;
 
 		if (_assetEntrySetRemoteModel != null) {
 			try {
 				Class<?> clazz = _assetEntrySetRemoteModel.getClass();
 
-				Method method = clazz.getMethod("setAssetEntryId", String.class);
+				Method method = clazz.getMethod("setAssetEntryId", long.class);
 
 				method.invoke(_assetEntrySetRemoteModel, assetEntryId);
 			}
@@ -489,6 +459,44 @@ public class AssetEntrySetClp extends BaseModelImpl<AssetEntrySet>
 		}
 	}
 
+	@Override
+	public com.liferay.portal.kernel.json.JSONObject getCreator() {
+		try {
+			String methodName = "getCreator";
+
+			Class<?>[] parameterTypes = new Class<?>[] {  };
+
+			Object[] parameterValues = new Object[] {  };
+
+			com.liferay.portal.kernel.json.JSONObject returnObj = (com.liferay.portal.kernel.json.JSONObject)invokeOnRemoteModel(methodName,
+					parameterTypes, parameterValues);
+
+			return returnObj;
+		}
+		catch (Exception e) {
+			throw new UnsupportedOperationException(e);
+		}
+	}
+
+	@Override
+	public void setCreator(
+		com.liferay.portal.kernel.json.JSONObject creatorJSONObject) {
+		try {
+			String methodName = "setCreator";
+
+			Class<?>[] parameterTypes = new Class<?>[] {
+					com.liferay.portal.kernel.json.JSONObject.class
+				};
+
+			Object[] parameterValues = new Object[] { creatorJSONObject };
+
+			invokeOnRemoteModel(methodName, parameterTypes, parameterValues);
+		}
+		catch (Exception e) {
+			throw new UnsupportedOperationException(e);
+		}
+	}
+
 	public BaseModel<?> getAssetEntrySetRemoteModel() {
 		return _assetEntrySetRemoteModel;
 	}
@@ -562,7 +570,6 @@ public class AssetEntrySetClp extends BaseModelImpl<AssetEntrySet>
 		clone.setAssetEntrySetId(getAssetEntrySetId());
 		clone.setCompanyId(getCompanyId());
 		clone.setUserId(getUserId());
-		clone.setUserName(getUserName());
 		clone.setCreateTime(getCreateTime());
 		clone.setModifiedTime(getModifiedTime());
 		clone.setAssetEntryId(getAssetEntryId());
@@ -632,7 +639,7 @@ public class AssetEntrySetClp extends BaseModelImpl<AssetEntrySet>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(27);
+		StringBundler sb = new StringBundler(25);
 
 		sb.append("{assetEntrySetId=");
 		sb.append(getAssetEntrySetId());
@@ -640,8 +647,6 @@ public class AssetEntrySetClp extends BaseModelImpl<AssetEntrySet>
 		sb.append(getCompanyId());
 		sb.append(", userId=");
 		sb.append(getUserId());
-		sb.append(", userName=");
-		sb.append(getUserName());
 		sb.append(", createTime=");
 		sb.append(getCreateTime());
 		sb.append(", modifiedTime=");
@@ -667,7 +672,7 @@ public class AssetEntrySetClp extends BaseModelImpl<AssetEntrySet>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(43);
+		StringBundler sb = new StringBundler(40);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.asset.entry.set.model.AssetEntrySet");
@@ -684,10 +689,6 @@ public class AssetEntrySetClp extends BaseModelImpl<AssetEntrySet>
 		sb.append(
 			"<column><column-name>userId</column-name><column-value><![CDATA[");
 		sb.append(getUserId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>userName</column-name><column-value><![CDATA[");
-		sb.append(getUserName());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>createTime</column-name><column-value><![CDATA[");
@@ -735,10 +736,9 @@ public class AssetEntrySetClp extends BaseModelImpl<AssetEntrySet>
 	private long _companyId;
 	private long _userId;
 	private String _userUuid;
-	private String _userName;
 	private long _createTime;
 	private long _modifiedTime;
-	private String _assetEntryId;
+	private long _assetEntryId;
 	private long _parentAssetEntrySetId;
 	private long _creatorClassNameId;
 	private long _creatorClassPK;
