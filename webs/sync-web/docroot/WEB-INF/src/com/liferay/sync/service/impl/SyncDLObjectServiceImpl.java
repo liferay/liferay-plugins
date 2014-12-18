@@ -466,7 +466,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 
 	@AccessControlled(guestAccessEnabled = true)
 	@Override
-	public SyncContext getSyncContext(String uuid)
+	public SyncContext getSyncContext()
 		throws PortalException, SystemException {
 
 		try {
@@ -509,6 +509,17 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 		catch (PortalException pe) {
 			throw new PortalException(SyncUtil.buildExceptionMessage(pe), pe);
 		}
+	}
+
+	/**
+	 * @deprecated As of 7.0.0, replaced by {@link #getSyncContext()}
+	 */
+	@Deprecated
+	@Override
+	public SyncContext getSyncContext(String uuid)
+		throws PortalException, SystemException {
+
+		return getSyncContext();
 	}
 
 	@Override
