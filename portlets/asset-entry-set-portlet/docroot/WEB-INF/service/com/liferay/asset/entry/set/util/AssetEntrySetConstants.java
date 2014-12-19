@@ -21,8 +21,8 @@ public class AssetEntrySetConstants {
 
 	public static final String KEY_ASSET_TAG_NAMES = "assetTagNames";
 
-	public static final String KEY_FULL_NAME = "fullName";
+	public static final String KEY_CREATOR_FULL_NAME = "creatorFullName";
 
-	public static final String KEY_PORTRAIT_URL = "portraitURL";
+	public static final String KEY_CREATOR_PORTRAIT_URL = "creatorPortraitURL";
 
 }

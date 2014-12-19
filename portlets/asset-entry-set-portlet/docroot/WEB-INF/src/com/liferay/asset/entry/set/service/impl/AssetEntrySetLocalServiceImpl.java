@@ -23,11 +23,14 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.User;
 import com.liferay.portal.model.UserConstants;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.PortalUtil;
+import com.liferay.portlet.asset.model.AssetEntry;
+import com.liferay.portlet.asset.service.AssetEntryLocalServiceUtil;
 import com.liferay.portlet.ratings.model.RatingsStats;
 
 import java.util.Date;
@@ -95,7 +98,7 @@ public class AssetEntrySetLocalServiceImpl
 				payloadJSONObject.getString(
 					AssetEntrySetConstants.KEY_ASSET_TAG_NAMES)));
 
-		updateUser(assetEntrySet);
+		updateCreator(assetEntrySet);
 
 		return assetEntrySet;
 	}
@@ -149,7 +152,7 @@ public class AssetEntrySetLocalServiceImpl
 				lastAccessTime, parentAssetEntrySetId, start, end);
 
 		for (AssetEntrySet assetEntrySet : assetEntrySets) {
-			updateUser(assetEntrySet);
+			updateCreator(assetEntrySet);
 		}
 
 		return assetEntrySets;
@@ -299,6 +302,50 @@ public class AssetEntrySetLocalServiceImpl
 			null, assetTagNames);
 	}
 
+	protected void updateCreator(AssetEntrySet assetEntrySet)
+		throws PortalException, SystemException {
+
+		String creatorFullName = StringPool.BLANK;
+		String creatorPortraitURL = StringPool.BLANK;
+
+		if (assetEntrySet.getCreatorClassNameId() ==
+				PortalUtil.getClassNameId(User.class)) {
+
+			User user = userPersistence.findByPrimaryKey(
+				assetEntrySet.getUserId());
+
+			creatorFullName = user.getFullName();
+
+			creatorPortraitURL = UserConstants.getPortraitURL(
+				PortalUtil.getPathImage(), user.isMale(), user.getPortraitId());
+		}
+		else {
+			AssetEntry assetEntry = AssetEntryLocalServiceUtil.getEntry(
+				PortalUtil.getClassName(assetEntrySet.getCreatorClassNameId()),
+				assetEntrySet.getCreatorClassPK());
+
+			JSONObject jsonObject = JSONFactoryUtil.createJSONObject(
+				assetEntry.getDescription());
+
+			creatorFullName = jsonObject.getString(
+				AssetEntrySetConstants.KEY_CREATOR_FULL_NAME);
+
+			creatorPortraitURL = jsonObject.getString(
+				AssetEntrySetConstants.KEY_CREATOR_PORTRAIT_URL);
+		}
+
+		JSONObject creatorJSONObject = JSONFactoryUtil.createJSONObject();
+
+		creatorJSONObject.put(
+			AssetEntrySetConstants.KEY_CREATOR_FULL_NAME, creatorFullName);
+
+		creatorJSONObject.put(
+			AssetEntrySetConstants.KEY_CREATOR_PORTRAIT_URL,
+			creatorPortraitURL);
+
+		assetEntrySet.setCreator(creatorJSONObject);
+	}
+
 	protected AssetEntrySet updateRatingsStatsTotalScore(
 			long userId, long assetEntrySetId, long score)
 		throws PortalException, SystemException {
@@ -320,25 +367,6 @@ public class AssetEntrySetLocalServiceImpl
 		assetEntrySetPersistence.update(assetEntrySet);
 
 		return assetEntrySet;
-	}
-
-	protected void updateUser(AssetEntrySet assetEntrySet)
-		throws PortalException, SystemException {
-
-		JSONObject userJSONObject = JSONFactoryUtil.createJSONObject();
-
-		User user = userPersistence.findByPrimaryKey(assetEntrySet.getUserId());
-
-		userJSONObject.put(
-			AssetEntrySetConstants.KEY_FULL_NAME, user.getFullName());
-
-		String portraitURL = UserConstants.getPortraitURL(
-			PortalUtil.getPathImage(), user.isMale(), user.getPortraitId());
-
-		userJSONObject.put(
-			AssetEntrySetConstants.KEY_PORTRAIT_URL, portraitURL);
-
-		assetEntrySet.setUser(userJSONObject);
 	}
 
 }

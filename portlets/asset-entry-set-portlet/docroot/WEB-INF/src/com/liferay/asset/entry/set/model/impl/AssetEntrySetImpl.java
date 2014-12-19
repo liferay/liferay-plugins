@@ -27,15 +27,15 @@ public class AssetEntrySetImpl extends AssetEntrySetBaseImpl {
 
 	@JSON
 	@Override
-	public JSONObject getUser() {
-		return _userJSONObject;
+	public JSONObject getCreator() {
+		return _creatorJSONObject;
 	}
 
 	@Override
-	public void setUser(JSONObject userJSONObject) {
-		_userJSONObject = userJSONObject;
+	public void setCreator(JSONObject creatorJSONObject) {
+		_creatorJSONObject = creatorJSONObject;
 	}
 
-	private JSONObject _userJSONObject;
+	private JSONObject _creatorJSONObject;
 
 }
