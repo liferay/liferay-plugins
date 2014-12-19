@@ -27,6 +27,7 @@ import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.MimeTypesUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.zip.ZipWriter;
@@ -97,17 +98,18 @@ public class DownloadServlet extends HttpServlet {
 				sendImage(response, imageId);
 			}
 			else if (pathArray[0].equals("zip")) {
-				String zipIdsJSONString = ParamUtil.get(request, "zipIds", "");
+				String zipFileIds = ParamUtil.get(
+					request, "zipFileIds", StringPool.BLANK);
 
-				if (Validator.isNull(zipIdsJSONString)) {
+				if (Validator.isNull(zipFileIds)) {
 					throw new IllegalArgumentException(
-						"Missing parameter zipIds");
+						"Missing parameter zipFileIds");
 				}
 
-				JSONArray zipIdsJSONArray = JSONFactoryUtil.createJSONArray(
-					zipIdsJSONString);
+				JSONArray jsonArray = JSONFactoryUtil.createJSONArray(
+					zipFileIds);
 
-				sendZipFile(response, user, zipIdsJSONArray);
+				sendZipFile(response, user, jsonArray);
 			}
 			else {
 				long groupId = GetterUtil.getLong(pathArray[0]);
@@ -157,145 +159,7 @@ public class DownloadServlet extends HttpServlet {
 		return SyncUtil.getFileDelta(sourceFile, targetFile);
 	}
 
-	protected void sendFile(
-			HttpServletRequest request, HttpServletResponse response,
-			long groupId, String uuid)
-		throws Exception {
-
-		String version = ParamUtil.getString(request, "version");
-
-		DownloadServletInputStream downloadServletInputStream =
-			_getFileDownloadServletInputStream(groupId, uuid, version);
-
-		response.setContentType(downloadServletInputStream.getMimeType());
-
-		ServletResponseUtil.write(
-			response, downloadServletInputStream,
-			downloadServletInputStream.getSize());
-	}
-
-	protected void sendImage(HttpServletResponse response, long imageId)
-		throws Exception {
-
-		Image image = ImageServiceUtil.getImage(imageId);
-
-		String type = image.getType();
-
-		if (!type.equals(ImageConstants.TYPE_NOT_AVAILABLE)) {
-			String contentType = MimeTypesUtil.getExtensionContentType(type);
-
-			response.setContentType(contentType);
-		}
-
-		ServletResponseUtil.write(response, image.getTextObj());
-	}
-
-	protected void sendPatch(
-			HttpServletRequest request, HttpServletResponse response, User user,
-			long groupId, String uuid)
-		throws Exception {
-
-		String sourceVersion = ParamUtil.getString(request, "sourceVersion");
-
-		if (Validator.isNull(sourceVersion)) {
-			throw new IllegalArgumentException("Missing source version");
-		}
-
-		String targetVersion = ParamUtil.getString(request, "targetVersion");
-
-		if (Validator.isNull(targetVersion)) {
-			throw new IllegalArgumentException("Missing target version");
-		}
-
-		DownloadServletInputStream downloadServletInputStream =
-			_getPatchDownloadServletInputStream(
-				user, groupId, uuid, sourceVersion, targetVersion);
-
-		ServletResponseUtil.write(
-			response, downloadServletInputStream,
-			downloadServletInputStream.getSize());
-	}
-
-	protected void sendZipFile(
-			HttpServletResponse response, User user,
-			JSONArray zipObjectsJSONArray)
-		throws Exception {
-
-		ZipWriter zipWriter = ZipWriterFactoryUtil.getZipWriter();
-
-		JSONArray errorsJSONArray = JSONFactoryUtil.createJSONArray();
-
-		for (int i = 0; i < zipObjectsJSONArray.length(); i++) {
-			JSONObject zipObjectJSONObject = zipObjectsJSONArray.getJSONObject(
-				i);
-
-			long groupId = zipObjectJSONObject.getLong("groupId");
-			String zipId = zipObjectJSONObject.getString("zipId");
-
-			Group group = GroupLocalServiceUtil.fetchGroup(groupId);
-
-			if ((group == null) || !SyncUtil.isSyncEnabled(group)) {
-				_writeExceptionJSONObject(
-					zipId, SyncSiteUnavailableException.class.getName(),
-					errorsJSONArray);
-
-				continue;
-			}
-
-			boolean patch = zipObjectJSONObject.getBoolean("patch");
-			String uuid = zipObjectJSONObject.getString("uuid");
-
-			try {
-				if (patch) {
-					String sourceVersion = zipObjectJSONObject.getString(
-						"sourceVersion");
-
-					String targetVersion = zipObjectJSONObject.getString(
-						"targetVersion");
-
-					if (Validator.isNull(sourceVersion) ||
-						Validator.isNull(targetVersion)) {
-
-						_writeExceptionJSONObject(
-							zipId, IllegalArgumentException.class.getName(),
-							errorsJSONArray);
-
-						continue;
-					}
-
-					InputStream inputStream =
-						_getPatchDownloadServletInputStream(
-							user, groupId, uuid, sourceVersion, targetVersion);
-
-					zipWriter.addEntry(zipId, inputStream);
-				}
-				else {
-					String version = zipObjectJSONObject.getString("version");
-
-					InputStream inputStream =
-						_getFileDownloadServletInputStream(
-							groupId, uuid, version);
-
-					zipWriter.addEntry(zipId, inputStream);
-				}
-			}
-			catch (Exception e) {
-				_writeExceptionJSONObject(
-					zipId, e.getClass().getName(), errorsJSONArray);
-
-				continue;
-			}
-		}
-
-		zipWriter.addEntry("errors.json", errorsJSONArray.toString());
-
-		File file = zipWriter.getFile();
-
-		ServletResponseUtil.write(
-			response, new FileInputStream(file), file.length());
-	}
-
-	private DownloadServletInputStream _getFileDownloadServletInputStream(
+	protected DownloadServletInputStream getFileDownloadServletInputStream(
 			long groupId, String uuid, String version)
 		throws Exception {
 
@@ -314,7 +178,7 @@ public class DownloadServlet extends HttpServlet {
 			inputStream, fileVersion.getSize(), fileVersion.getMimeType());
 	}
 
-	private DownloadServletInputStream _getPatchDownloadServletInputStream(
+	protected DownloadServletInputStream getPatchDownloadServletInputStream(
 			User user, long groupId, String uuid, String sourceVersion,
 			String targetVersion)
 		throws Exception {
@@ -367,8 +231,8 @@ public class DownloadServlet extends HttpServlet {
 			dataFileEntry.getContentStream(), dataFileEntry.getSize());
 	}
 
-	private void _writeExceptionJSONObject(
-		String zipId, String exception, JSONArray errorsJSONArray) {
+	protected void processException(
+		String zipFileId, String exception, JSONArray errorsJSONArray) {
 
 		JSONObject errorJSONObject = JSONFactoryUtil.createJSONObject();
 
@@ -376,9 +240,142 @@ public class DownloadServlet extends HttpServlet {
 
 		exceptionJSONObject.put("exception", exception);
 
-		errorJSONObject.put(zipId, exceptionJSONObject);
+		errorJSONObject.put(zipFileId, exceptionJSONObject);
 
 		errorsJSONArray.put(errorJSONObject);
+	}
+
+	protected void sendFile(
+			HttpServletRequest request, HttpServletResponse response,
+			long groupId, String uuid)
+		throws Exception {
+
+		String version = ParamUtil.getString(request, "version");
+
+		DownloadServletInputStream downloadServletInputStream =
+			getFileDownloadServletInputStream(groupId, uuid, version);
+
+		ServletResponseUtil.write(
+			response, downloadServletInputStream.getInputStream(),
+			downloadServletInputStream.getSize());
+	}
+
+	protected void sendImage(HttpServletResponse response, long imageId)
+		throws Exception {
+
+		Image image = ImageServiceUtil.getImage(imageId);
+
+		String type = image.getType();
+
+		if (!type.equals(ImageConstants.TYPE_NOT_AVAILABLE)) {
+			String contentType = MimeTypesUtil.getExtensionContentType(type);
+
+			response.setContentType(contentType);
+		}
+
+		ServletResponseUtil.write(response, image.getTextObj());
+	}
+
+	protected void sendPatch(
+			HttpServletRequest request, HttpServletResponse response, User user,
+			long groupId, String uuid)
+		throws Exception {
+
+		String sourceVersion = ParamUtil.getString(request, "sourceVersion");
+
+		if (Validator.isNull(sourceVersion)) {
+			throw new IllegalArgumentException("Missing source version");
+		}
+
+		String targetVersion = ParamUtil.getString(request, "targetVersion");
+
+		if (Validator.isNull(targetVersion)) {
+			throw new IllegalArgumentException("Missing target version");
+		}
+
+		DownloadServletInputStream downloadServletInputStream =
+			getPatchDownloadServletInputStream(
+				user, groupId, uuid, sourceVersion, targetVersion);
+
+		ServletResponseUtil.write(
+			response, downloadServletInputStream.getInputStream(),
+			downloadServletInputStream.getSize());
+	}
+
+	protected void sendZipFile(
+			HttpServletResponse response, User user,
+			JSONArray zipObjectsJSONArray)
+		throws Exception {
+
+		ZipWriter zipWriter = ZipWriterFactoryUtil.getZipWriter();
+
+		JSONArray errorsJSONArray = JSONFactoryUtil.createJSONArray();
+
+		for (int i = 0; i < zipObjectsJSONArray.length(); i++) {
+			JSONObject zipObjectJSONObject = zipObjectsJSONArray.getJSONObject(
+				i);
+
+			long groupId = zipObjectJSONObject.getLong("groupId");
+			String zipFileId = zipObjectJSONObject.getString("zipFileId");
+
+			Group group = GroupLocalServiceUtil.fetchGroup(groupId);
+
+			if ((group == null) || !SyncUtil.isSyncEnabled(group)) {
+				processException(
+					zipFileId, SyncSiteUnavailableException.class.getName(),
+					errorsJSONArray);
+
+				continue;
+			}
+
+			try {
+				String uuid = zipObjectJSONObject.getString("uuid");
+
+				if (zipObjectJSONObject.getBoolean("patch")) {
+					String sourceVersion = zipObjectJSONObject.getString(
+						"sourceVersion");
+					String targetVersion = zipObjectJSONObject.getString(
+						"targetVersion");
+
+					if (Validator.isNull(sourceVersion) ||
+						Validator.isNull(targetVersion)) {
+
+						processException(
+							zipFileId, IllegalArgumentException.class.getName(),
+							errorsJSONArray);
+
+						continue;
+					}
+
+					DownloadServletInputStream downloadServletInputStream =
+						getPatchDownloadServletInputStream(
+							user, groupId, uuid, sourceVersion, targetVersion);
+
+					zipWriter.addEntry(
+						zipFileId, downloadServletInputStream.getInputStream());
+				}
+				else {
+					DownloadServletInputStream downloadServletInputStream =
+						getFileDownloadServletInputStream(
+							groupId, uuid,
+							zipObjectJSONObject.getString("version"));
+
+					zipWriter.addEntry(
+						zipFileId, downloadServletInputStream.getInputStream());
+				}
+			}
+			catch (Exception e) {
+				processException(
+					zipFileId, e.getClass().getName(), errorsJSONArray);
+			}
+		}
+
+		zipWriter.addEntry("errors.json", errorsJSONArray.toString());
+
+		File file = zipWriter.getFile();
+
+		ServletResponseUtil.write(
+			response, new FileInputStream(file), file.length());
 	}
 
 	private static final String _ERROR_HEADER = "Sync-Error";
