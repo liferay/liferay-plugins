@@ -290,6 +290,13 @@ public class SyncDLObjectServiceWrapper implements SyncDLObjectService,
 	}
 
 	@Override
+	public java.util.Map<java.lang.String, java.lang.Object> updateFileEntries(
+		java.io.File zipFile)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _syncDLObjectService.updateFileEntries(zipFile);
+	}
+
+	@Override
 	public com.liferay.sync.model.SyncDLObject updateFileEntry(
 		long fileEntryId, java.lang.String sourceFileName,
 		java.lang.String mimeType, java.lang.String title,

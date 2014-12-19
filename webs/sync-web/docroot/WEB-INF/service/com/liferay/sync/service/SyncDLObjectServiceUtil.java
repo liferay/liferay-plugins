@@ -270,6 +270,12 @@ public class SyncDLObjectServiceUtil {
 		getService().setBeanIdentifier(beanIdentifier);
 	}
 
+	public static java.util.Map<java.lang.String, java.lang.Object> updateFileEntries(
+		java.io.File zipFile)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().updateFileEntries(zipFile);
+	}
+
 	public static com.liferay.sync.model.SyncDLObject updateFileEntry(
 		long fileEntryId, java.lang.String sourceFileName,
 		java.lang.String mimeType, java.lang.String title,

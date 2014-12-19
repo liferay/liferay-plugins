@@ -176,18 +176,22 @@ public class SyncDLObjectServiceClpInvoker {
 
 		_methodParameterTypes97 = new String[] { "long" };
 
-		_methodName98 = "updateFileEntry";
+		_methodName98 = "updateFileEntries";
 
-		_methodParameterTypes98 = new String[] {
+		_methodParameterTypes98 = new String[] { "java.io.File" };
+
+		_methodName99 = "updateFileEntry";
+
+		_methodParameterTypes99 = new String[] {
 				"long", "java.lang.String", "java.lang.String",
 				"java.lang.String", "java.lang.String", "java.lang.String",
 				"boolean", "java.io.File", "java.lang.String",
 				"com.liferay.portal.service.ServiceContext"
 			};
 
-		_methodName99 = "updateFolder";
+		_methodName100 = "updateFolder";
 
-		_methodParameterTypes99 = new String[] {
+		_methodParameterTypes100 = new String[] {
 				"long", "java.lang.String", "java.lang.String",
 				"com.liferay.portal.service.ServiceContext"
 			};
@@ -386,6 +390,11 @@ public class SyncDLObjectServiceClpInvoker {
 
 		if (_methodName98.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes98, parameterTypes)) {
+			return SyncDLObjectServiceUtil.updateFileEntries((java.io.File)arguments[0]);
+		}
+
+		if (_methodName99.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes99, parameterTypes)) {
 			return SyncDLObjectServiceUtil.updateFileEntry(((Long)arguments[0]).longValue(),
 				(java.lang.String)arguments[1], (java.lang.String)arguments[2],
 				(java.lang.String)arguments[3], (java.lang.String)arguments[4],
@@ -395,8 +404,8 @@ public class SyncDLObjectServiceClpInvoker {
 				(com.liferay.portal.service.ServiceContext)arguments[9]);
 		}
 
-		if (_methodName99.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes99, parameterTypes)) {
+		if (_methodName100.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes100, parameterTypes)) {
 			return SyncDLObjectServiceUtil.updateFolder(((Long)arguments[0]).longValue(),
 				(java.lang.String)arguments[1], (java.lang.String)arguments[2],
 				(com.liferay.portal.service.ServiceContext)arguments[3]);
@@ -469,4 +478,6 @@ public class SyncDLObjectServiceClpInvoker {
 	private String[] _methodParameterTypes98;
 	private String _methodName99;
 	private String[] _methodParameterTypes99;
+	private String _methodName100;
+	private String[] _methodParameterTypes100;
 }
