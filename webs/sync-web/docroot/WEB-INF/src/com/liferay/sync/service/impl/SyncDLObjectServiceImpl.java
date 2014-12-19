@@ -19,18 +19,25 @@ import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.dao.orm.RestrictionsFactoryUtil;
 import com.liferay.portal.kernel.deploy.DeployManagerUtil;
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.json.JSONArray;
+import com.liferay.portal.kernel.json.JSONFactoryUtil;
+import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.plugin.PluginPackage;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.repository.model.Folder;
+import com.liferay.portal.kernel.transaction.Transactional;
 import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ListUtil;
+import com.liferay.portal.kernel.util.MapUtil;
 import com.liferay.portal.kernel.util.PrefsPropsUtil;
 import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.ReleaseInfo;
+import com.liferay.portal.kernel.zip.ZipReader;
+import com.liferay.portal.kernel.zip.ZipReaderFactoryUtil;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.Organization;
 import com.liferay.portal.model.Repository;
@@ -55,12 +62,14 @@ import com.liferay.sync.model.SyncContext;
 import com.liferay.sync.model.SyncDLObject;
 import com.liferay.sync.model.SyncDLObjectUpdate;
 import com.liferay.sync.service.base.SyncDLObjectServiceBaseImpl;
+import com.liferay.sync.util.JSONWebServiceActionParametersMap;
 import com.liferay.sync.util.PortletPropsKeys;
 import com.liferay.sync.util.PortletPropsValues;
 import com.liferay.sync.util.SyncUtil;
 import com.liferay.util.portlet.PortletProps;
 
 import java.io.File;
+import java.io.InputStream;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -71,6 +80,10 @@ import java.util.Map;
 import java.util.Properties;
 
 import javax.portlet.PortletPreferences;
+
+import jodd.bean.BeanUtil;
+
+import jodd.util.NameValue;
 
 /**
  * @author Michael Young
@@ -833,6 +846,196 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 		catch (PortalException pe) {
 			throw new PortalException(SyncUtil.buildExceptionMessage(pe), pe);
 		}
+	}
+
+	@Override
+	@Transactional(enabled = false)
+	public Map<String, Object> updateFileEntries(File zipFile)
+		throws PortalException {
+
+		Map<String, Object> responseMap = new HashMap<String, Object>();
+
+		ZipReader zipReader = ZipReaderFactoryUtil.getZipReader(zipFile);
+
+		String manifest = zipReader.getEntryAsString("/manifest.json");
+
+		JSONArray jsonArray = JSONFactoryUtil.createJSONArray(manifest);
+
+		for (int i = 0; i < jsonArray.length(); i++) {
+			JSONObject jsonObject = jsonArray.getJSONObject(i);
+
+			JSONWebServiceActionParametersMap parameters =
+				JSONFactoryUtil.looseDeserialize(
+					jsonObject.toString(),
+					JSONWebServiceActionParametersMap.class);
+
+			String zipFileId = MapUtil.getString(parameters, "zipFileId");
+
+			try {
+				SyncDLObject syncDLObject = null;
+
+				ServiceContext serviceContext = new ServiceContext();
+
+				List<NameValue<String, Object>> innerParameters =
+					parameters.getInnerParameters("serviceContext");
+
+				if (innerParameters != null) {
+					for (NameValue<String, Object> innerParameter :
+							innerParameters) {
+
+						try {
+							BeanUtil.setProperty(
+								serviceContext, innerParameter.getName(),
+								innerParameter.getValue());
+						}
+						catch (Exception e) {
+							if (_log.isDebugEnabled()) {
+								_log.debug(e.getMessage(), e);
+							}
+						}
+					}
+				}
+
+				String urlPath = MapUtil.getString(parameters, "urlPath");
+
+				if (urlPath.endsWith("/add-file-entry")) {
+					long repositoryId = MapUtil.getLong(
+						parameters, "repositoryId");
+					long folderId = MapUtil.getLong(parameters, "folderId");
+					String sourceFileName = MapUtil.getString(
+						parameters, "sourceFileName");
+					String mimeType = MapUtil.getString(parameters, "mimeType");
+					String title = MapUtil.getString(parameters, "title");
+					String description = MapUtil.getString(
+						parameters, "description");
+					String changeLog = MapUtil.getString(
+						parameters, "changeLog");
+
+					InputStream inputStream = zipReader.getEntryAsInputStream(
+						zipFileId);
+
+					File tempFile = FileUtil.createTempFile(inputStream);
+
+					String checksum = MapUtil.getString(parameters, "checksum");
+
+					syncDLObject = addFileEntry(
+						repositoryId, folderId, sourceFileName, mimeType, title,
+						description, changeLog, tempFile, checksum,
+						serviceContext);
+				}
+				else if (urlPath.endsWith("/add-folder")) {
+					long repositoryId = MapUtil.getLong(
+						parameters, "repositoryId");
+					long parentFolderId = MapUtil.getLong(
+						parameters, "parentFolderId");
+					String name = MapUtil.getString(parameters, "name");
+					String description = MapUtil.getString(
+						parameters, "description");
+
+					syncDLObject = addFolder(
+						repositoryId, parentFolderId, name, description,
+						serviceContext);
+				}
+				else if (urlPath.endsWith("/move-file-entry")) {
+					long fileEntryId = MapUtil.getLong(
+						parameters, "fileEntryId");
+					long newFolderId = MapUtil.getLong(
+						parameters, "newFolderId");
+
+					syncDLObject = moveFileEntry(
+						fileEntryId, newFolderId, serviceContext);
+				}
+				else if (urlPath.endsWith("/move-file-entry-to-trash")) {
+					long fileEntryId = MapUtil.getLong(
+						parameters, "fileEntryId");
+
+					syncDLObject = moveFileEntryToTrash(fileEntryId);
+				}
+				else if (urlPath.endsWith("/move-folder")) {
+					long folderId = MapUtil.getLong(parameters, "folderId");
+					long parentFolderId = MapUtil.getLong(
+						parameters, "parentFolderId");
+
+					syncDLObject = moveFolder(
+						folderId, parentFolderId, serviceContext);
+				}
+				else if (urlPath.endsWith("/move-folder-to-trash")) {
+					long folderId = MapUtil.getLong(parameters, "folderId");
+
+					syncDLObject = moveFolderToTrash(folderId);
+				}
+				else if (urlPath.endsWith("/patch-file-entry")) {
+					long fileEntryId = MapUtil.getLong(
+						parameters, "fileEntryId");
+					String sourceVersion = MapUtil.getString(
+						parameters, "sourceVersion");
+					String sourceFileName = MapUtil.getString(
+						parameters, "sourceFileName");
+					String mimeType = MapUtil.getString(parameters, "mimeType");
+					String title = MapUtil.getString(parameters, "title");
+					String description = MapUtil.getString(
+						parameters, "description");
+					String changeLog = MapUtil.getString(
+						parameters, "changeLog");
+					boolean majorVersion = MapUtil.getBoolean(
+						parameters, "majorVersion");
+
+					InputStream inputStream = zipReader.getEntryAsInputStream(
+						zipFileId);
+
+					File tempFile = FileUtil.createTempFile(inputStream);
+
+					String checksum = MapUtil.getString(parameters, "checksum");
+
+					syncDLObject = patchFileEntry(
+						fileEntryId, sourceVersion, sourceFileName, mimeType,
+						title, description, changeLog, majorVersion, tempFile,
+						checksum, serviceContext);
+				}
+				else if (urlPath.endsWith("/update-file-entry")) {
+					long fileEntryId = MapUtil.getLong(
+						parameters, "fileEntryId");
+					String sourceFileName = MapUtil.getString(
+						parameters, "sourceFileName");
+					String mimeType = MapUtil.getString(parameters, "mimeType");
+					String title = MapUtil.getString(parameters, "title");
+					String description = MapUtil.getString(
+						parameters, "description");
+					String changeLog = MapUtil.getString(
+						parameters, "changeLog");
+					boolean majorVersion = MapUtil.getBoolean(
+						parameters, "majorVersion");
+
+					InputStream inputStream = zipReader.getEntryAsInputStream(
+						zipFileId);
+
+					File tempFile = FileUtil.createTempFile(inputStream);
+
+					String checksum = MapUtil.getString(parameters, "checksum");
+
+					syncDLObject = updateFileEntry(
+						fileEntryId, sourceFileName, mimeType, title,
+						description, changeLog, majorVersion, tempFile,
+						checksum, serviceContext);
+				}
+				else if (urlPath.endsWith("/update-folder")) {
+					long folderId = MapUtil.getLong(parameters, "folderId");
+					String name = MapUtil.getString(parameters, "name");
+					String description = MapUtil.getString(
+						parameters, "description");
+
+					syncDLObject = updateFolder(
+						folderId, name, description, serviceContext);
+				}
+			}
+			catch (Exception e) {
+				String json = "{\"exception\": \"" + e.getMessage() + "\"}";
+
+				responseMap.put(zipFileId, json);
+			}
+		}
+
+		return responseMap;
 	}
 
 	@Override
