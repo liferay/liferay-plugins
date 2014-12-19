@@ -203,6 +203,16 @@ public class SyncDLObjectServiceWrapper implements SyncDLObjectService,
 	}
 
 	@Override
+	public com.liferay.sync.model.SyncContext getSyncContext()
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _syncDLObjectService.getSyncContext();
+	}
+
+	/**
+	* @deprecated As of 7.0.0, replaced by {@link #getSyncContext()}
+	*/
+	@Override
 	public com.liferay.sync.model.SyncContext getSyncContext(
 		java.lang.String uuid)
 		throws com.liferay.portal.kernel.exception.PortalException,
