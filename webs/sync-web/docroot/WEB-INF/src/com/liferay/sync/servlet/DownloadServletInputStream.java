@@ -14,16 +14,17 @@
 
 package com.liferay.sync.servlet;
 
-import java.io.IOException;
+import com.liferay.portal.kernel.util.StringPool;
+
 import java.io.InputStream;
 
 /**
  * @author Dennis Ju
  */
-public class DownloadServletInputStream extends InputStream {
+public class DownloadServletInputStream {
 
 	public DownloadServletInputStream(InputStream inputStream, long size) {
-		this(inputStream, size, "");
+		this(inputStream, size, StringPool.BLANK);
 	}
 
 	public DownloadServletInputStream(
@@ -34,17 +35,16 @@ public class DownloadServletInputStream extends InputStream {
 		_mimeType = mimeType;
 	}
 
+	public InputStream getInputStream() {
+		return _inputStream;
+	}
+
 	public String getMimeType() {
 		return _mimeType;
 	}
 
 	public long getSize() {
 		return _size;
-	}
-
-	@Override
-	public int read() throws IOException {
-		return _inputStream.read();
 	}
 
 	private InputStream _inputStream;
