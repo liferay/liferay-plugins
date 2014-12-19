@@ -460,6 +460,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 	}
 
 	@AccessControlled(guestAccessEnabled = true)
+	@Override
 	public SyncContext getSyncContext() throws PortalException {
 		try {
 			User user = getGuestOrUser();
