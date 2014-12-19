@@ -1739,7 +1739,7 @@ Please find a solution that does not require portal-impl.jar.
 												/>
 												<fileset
 													dir="${temp.deployed.plugin.dir}"
-													includes="WEB-INF/web.xml"
+													includes="WEB-INF/liferay-web.xml,WEB-INF/web.xml"
 												/>
 												<fileset
 													dir="${temp.deployed.plugin.dir}"
