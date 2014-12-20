@@ -18,7 +18,7 @@
 
 		<!-- Other fields -->
 
-		<column name="assetEntryId" type="String" />
+		<column name="assetEntryId" type="long" />
 		<column name="parentAssetEntrySetId" type="long" />
 		<column name="creatorClassNameId" type="long" />
 		<column name="creatorClassPK" type="long" />
