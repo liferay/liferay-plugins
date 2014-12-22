@@ -171,7 +171,7 @@ public class CalendarImporterLocalServiceImpl
 
 	@Override
 	public void importRolePermissions() throws PortalException {
-		int[] scopes = new int[] {
+		int[] scopes = {
 			ResourceConstants.SCOPE_COMPANY, ResourceConstants.SCOPE_GROUP,
 			ResourceConstants.SCOPE_GROUP_TEMPLATE
 		};
