@@ -9,7 +9,10 @@
 	<classpathentry excluding="**/.svn/**|.svn/" kind="src" path="test/unit" />
 	<classpathentry kind="lib" path="/portal-master/lib/development/junit.jar" />
 	<classpathentry kind="lib" path="/portal-master/lib/development/mockito.jar" />
-	<classpathentry kind="lib" path="/portal-master/lib/development/powermock-mockito.jar" />
+	<classpathentry kind="lib" path="/portal-master/lib/development/powermock-api-mockito.jar" />
+	<classpathentry kind="lib" path="/portal-master/lib/development/powermock-api-support.jar" />
+	<classpathentry kind="lib" path="/portal-master/lib/development/powermock-module-junit4.jar" />
+	<classpathentry kind="lib" path="/portal-master/lib/development/powermock-module-junit4-common.jar" />
 	<classpathentry kind="lib" path="/portal-master/lib/development/spring-test.jar" />
 	<classpathentry kind="lib" path="/portal-master/lib/development/activation.jar" />
 	<classpathentry kind="lib" path="/portal-master/lib/development/annotations.jar" />
@@ -36,7 +39,5 @@
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/com.google.ical.jar" />
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/joda-time.jar" />
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/portal-compat-shared.jar" />
-	<classpathentry kind="lib" path="../../.ivy/cache/org.jboss.arquillian.junit/arquillian-junit-core/jars/arquillian-junit-core-1.1.3.Final.jar" />
-	<classpathentry kind="lib" path="../../.ivy/cache/org.jboss.arquillian.test/arquillian-test-api/jars/arquillian-test-api-1.1.3.Final.jar" />
 	<classpathentry kind="output" path="bin" />
 </classpath>
