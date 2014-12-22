@@ -1000,9 +1000,8 @@ public class CalendarImporterLocalServiceImpl
 	}
 
 	protected void importResourcePermissions(
-			long companyId, String oldClassName, String oldAction,
-			String newClassName, String newAction, int scope)
-		throws PortalException {
+		long companyId, String oldClassName, String oldAction,
+		String newClassName, String newAction, int scope) {
 
 		List<ResourcePermission> resourcePermissions =
 			resourcePermissionPersistence.findByC_N_S(
