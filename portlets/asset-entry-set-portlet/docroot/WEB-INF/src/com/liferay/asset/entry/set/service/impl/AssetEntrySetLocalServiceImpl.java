@@ -23,6 +23,8 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portal.kernel.util.PropsKeys;
+import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.User;
@@ -96,7 +98,7 @@ public class AssetEntrySetLocalServiceImpl
 			assetEntrySet,
 			StringUtil.split(
 				payloadJSONObject.getString(
-					AssetEntrySetConstants.KEY_ASSET_TAG_NAMES)));
+					AssetEntrySetConstants.PAYLOAD_KEY_ASSET_TAG_NAMES)));
 
 		updateCreator(assetEntrySet);
 
@@ -261,7 +263,7 @@ public class AssetEntrySetLocalServiceImpl
 			assetEntrySet,
 			StringUtil.split(
 				payloadJSONObject.getString(
-					AssetEntrySetConstants.KEY_ASSET_TAG_NAMES)));
+					AssetEntrySetConstants.PAYLOAD_KEY_ASSET_TAG_NAMES)));
 
 		return assetEntrySet;
 	}
@@ -307,9 +309,10 @@ public class AssetEntrySetLocalServiceImpl
 
 		String creatorFullName = StringPool.BLANK;
 		String creatorPortraitURL = StringPool.BLANK;
+		String creatorURL = StringPool.BLANK;
 
 		if (assetEntrySet.getCreatorClassNameId() ==
-				PortalUtil.getClassNameId(User.class)) {
+				classNameLocalService.getClassNameId(User.class)) {
 
 			User user = userPersistence.findByPrimaryKey(
 				assetEntrySet.getUserId());
@@ -318,6 +321,13 @@ public class AssetEntrySetLocalServiceImpl
 
 			creatorPortraitURL = UserConstants.getPortraitURL(
 				PortalUtil.getPathImage(), user.isMale(), user.getPortraitId());
+
+			Group group = user.getGroup();
+
+			creatorURL =
+				PropsUtil.get(
+						PropsKeys.LAYOUT_FRIENDLY_URL_PUBLIC_SERVLET_MAPPING) +
+					group.getFriendlyURL();
 		}
 		else {
 			AssetEntry assetEntry = AssetEntryLocalServiceUtil.getEntry(
@@ -328,20 +338,27 @@ public class AssetEntrySetLocalServiceImpl
 				assetEntry.getDescription());
 
 			creatorFullName = jsonObject.getString(
-				AssetEntrySetConstants.KEY_CREATOR_FULL_NAME);
+				AssetEntrySetConstants.ASSET_ENTRY_KEY_CREATOR_FULL_NAME);
 
 			creatorPortraitURL = jsonObject.getString(
-				AssetEntrySetConstants.KEY_CREATOR_PORTRAIT_URL);
+				AssetEntrySetConstants.ASSET_ENTRY_KEY_CREATOR_PORTRAIT_URL);
+
+			creatorURL = jsonObject.getString(
+				AssetEntrySetConstants.ASSET_ENTRY_KEY_CREATOR_URL);
 		}
 
 		JSONObject creatorJSONObject = JSONFactoryUtil.createJSONObject();
 
 		creatorJSONObject.put(
-			AssetEntrySetConstants.KEY_CREATOR_FULL_NAME, creatorFullName);
+			AssetEntrySetConstants.ASSET_ENTRY_KEY_CREATOR_FULL_NAME,
+			creatorFullName);
 
 		creatorJSONObject.put(
-			AssetEntrySetConstants.KEY_CREATOR_PORTRAIT_URL,
+			AssetEntrySetConstants.ASSET_ENTRY_KEY_CREATOR_PORTRAIT_URL,
 			creatorPortraitURL);
+
+		creatorJSONObject.put(
+			AssetEntrySetConstants.ASSET_ENTRY_KEY_CREATOR_URL, creatorURL);
 
 		assetEntrySet.setCreator(creatorJSONObject);
 	}
