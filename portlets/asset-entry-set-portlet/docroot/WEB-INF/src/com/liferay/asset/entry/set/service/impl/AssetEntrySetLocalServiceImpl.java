@@ -92,7 +92,7 @@ public class AssetEntrySetLocalServiceImpl
 
 		assetEntrySetPersistence.update(assetEntrySet);
 
-		setCreator(assetEntrySet);
+		setCreatorJSONObject(assetEntrySet);
 
 		updateChildAssetEntrySetsCount(parentAssetEntrySetId);
 
@@ -136,7 +136,7 @@ public class AssetEntrySetLocalServiceImpl
 			assetEntrySetPersistence.findByCT_PASEI(
 				lastAccessTime, parentAssetEntrySetId, start, end);
 
-		setCreators(assetEntrySets);
+		setCreatorJSONObjects(assetEntrySets);
 
 		return assetEntrySets;
 	}
@@ -152,7 +152,7 @@ public class AssetEntrySetLocalServiceImpl
 				creatorClassNameId, creatorClassPK, assetTagName, andOperator,
 				start, end);
 
-		setCreators(assetEntrySets);
+		setCreatorJSONObjects(assetEntrySets);
 
 		return assetEntrySets;
 	}
@@ -165,7 +165,7 @@ public class AssetEntrySetLocalServiceImpl
 		List<AssetEntrySet> assetEntrySets = assetEntrySetFinder.findByCCNI_ATN(
 			creatorClassNameId, assetTagName, start, end);
 
-		setCreators(assetEntrySets);
+		setCreatorJSONObjects(assetEntrySets);
 
 		return assetEntrySets;
 	}
@@ -239,7 +239,7 @@ public class AssetEntrySetLocalServiceImpl
 
 		assetEntrySetPersistence.update(assetEntrySet);
 
-		setCreator(assetEntrySet);
+		setCreatorJSONObject(assetEntrySet);
 
 		updateAssetEntry(
 			assetEntrySet,
@@ -273,7 +273,7 @@ public class AssetEntrySetLocalServiceImpl
 		return assetEntrySet;
 	}
 
-	protected void setCreator(AssetEntrySet assetEntrySet)
+	protected void setCreatorJSONObject(AssetEntrySet assetEntrySet)
 		throws PortalException, SystemException {
 
 		JSONObject creatorJSONObject = JSONFactoryUtil.createJSONObject();
@@ -295,10 +295,10 @@ public class AssetEntrySetLocalServiceImpl
 
 			Group group = user.getGroup();
 
-			creatorURL =
-				PropsUtil.get(
-						PropsKeys.LAYOUT_FRIENDLY_URL_PUBLIC_SERVLET_MAPPING) +
-					group.getFriendlyURL();
+			creatorURL = PropsUtil.get(
+				PropsKeys.LAYOUT_FRIENDLY_URL_PUBLIC_SERVLET_MAPPING);
+
+			creatorURL += group.getFriendlyURL();
 		}
 		else {
 			AssetEntry assetEntry = AssetEntryLocalServiceUtil.getEntry(
@@ -310,10 +310,8 @@ public class AssetEntrySetLocalServiceImpl
 
 			creatorFullName = jsonObject.getString(
 				AssetEntrySetConstants.ASSET_ENTRY_KEY_CREATOR_FULL_NAME);
-
 			creatorPortraitURL = jsonObject.getString(
 				AssetEntrySetConstants.ASSET_ENTRY_KEY_CREATOR_PORTRAIT_URL);
-
 			creatorURL = jsonObject.getString(
 				AssetEntrySetConstants.ASSET_ENTRY_KEY_CREATOR_URL);
 		}
@@ -321,22 +319,20 @@ public class AssetEntrySetLocalServiceImpl
 		creatorJSONObject.put(
 			AssetEntrySetConstants.ASSET_ENTRY_KEY_CREATOR_FULL_NAME,
 			creatorFullName);
-
 		creatorJSONObject.put(
 			AssetEntrySetConstants.ASSET_ENTRY_KEY_CREATOR_PORTRAIT_URL,
 			creatorPortraitURL);
-
 		creatorJSONObject.put(
 			AssetEntrySetConstants.ASSET_ENTRY_KEY_CREATOR_URL, creatorURL);
 
-		assetEntrySet.setCreator(creatorJSONObject);
+		assetEntrySet.setCreatorJSONObject(creatorJSONObject);
 	}
 
-	protected void setCreators(List<AssetEntrySet> assetEntrySets)
+	protected void setCreatorJSONObjects(List<AssetEntrySet> assetEntrySets)
 		throws PortalException, SystemException {
 
 		for (AssetEntrySet assetEntrySet : assetEntrySets) {
-			setCreator(assetEntrySet);
+			setCreatorJSONObject(assetEntrySet);
 		}
 	}
 
