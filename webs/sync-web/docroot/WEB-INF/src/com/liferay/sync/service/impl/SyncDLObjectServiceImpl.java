@@ -864,12 +864,14 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 		for (int i = 0; i < jsonArray.length(); i++) {
 			JSONObject jsonObject = jsonArray.getJSONObject(i);
 
-			JSONWebServiceActionParametersMap parameters =
-				JSONFactoryUtil.looseDeserialize(
-					jsonObject.toString(),
-					JSONWebServiceActionParametersMap.class);
+			JSONWebServiceActionParametersMap
+				jsonWebServiceActionParametersMap =
+					JSONFactoryUtil.looseDeserialize(
+						jsonObject.toString(),
+						JSONWebServiceActionParametersMap.class);
 
-			String zipFileId = MapUtil.getString(parameters, "zipFileId");
+			String zipFileId = MapUtil.getString(
+				jsonWebServiceActionParametersMap, "zipFileId");
 
 			try {
 				SyncDLObject syncDLObject = null;
@@ -877,7 +879,8 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 				ServiceContext serviceContext = new ServiceContext();
 
 				List<NameValue<String, Object>> innerParameters =
-					parameters.getInnerParameters("serviceContext");
+					jsonWebServiceActionParametersMap.getInnerParameters(
+						"serviceContext");
 
 				if (innerParameters != null) {
 					for (NameValue<String, Object> innerParameter :
@@ -896,27 +899,32 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 					}
 				}
 
-				String urlPath = MapUtil.getString(parameters, "urlPath");
+				String urlPath = MapUtil.getString(
+					jsonWebServiceActionParametersMap, "urlPath");
 
 				if (urlPath.endsWith("/add-file-entry")) {
 					long repositoryId = MapUtil.getLong(
-						parameters, "repositoryId");
-					long folderId = MapUtil.getLong(parameters, "folderId");
+						jsonWebServiceActionParametersMap, "repositoryId");
+					long folderId = MapUtil.getLong(
+						jsonWebServiceActionParametersMap, "folderId");
 					String sourceFileName = MapUtil.getString(
-						parameters, "sourceFileName");
-					String mimeType = MapUtil.getString(parameters, "mimeType");
-					String title = MapUtil.getString(parameters, "title");
+						jsonWebServiceActionParametersMap, "sourceFileName");
+					String mimeType = MapUtil.getString(
+						jsonWebServiceActionParametersMap, "mimeType");
+					String title = MapUtil.getString(
+						jsonWebServiceActionParametersMap, "title");
 					String description = MapUtil.getString(
-						parameters, "description");
+						jsonWebServiceActionParametersMap, "description");
 					String changeLog = MapUtil.getString(
-						parameters, "changeLog");
+						jsonWebServiceActionParametersMap, "changeLog");
 
 					InputStream inputStream = zipReader.getEntryAsInputStream(
 						zipFileId);
 
 					File tempFile = FileUtil.createTempFile(inputStream);
 
-					String checksum = MapUtil.getString(parameters, "checksum");
+					String checksum = MapUtil.getString(
+						jsonWebServiceActionParametersMap, "checksum");
 
 					syncDLObject = addFileEntry(
 						repositoryId, folderId, sourceFileName, mimeType, title,
@@ -925,12 +933,13 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 				}
 				else if (urlPath.endsWith("/add-folder")) {
 					long repositoryId = MapUtil.getLong(
-						parameters, "repositoryId");
+						jsonWebServiceActionParametersMap, "repositoryId");
 					long parentFolderId = MapUtil.getLong(
-						parameters, "parentFolderId");
-					String name = MapUtil.getString(parameters, "name");
+						jsonWebServiceActionParametersMap, "parentFolderId");
+					String name = MapUtil.getString(
+						jsonWebServiceActionParametersMap, "name");
 					String description = MapUtil.getString(
-						parameters, "description");
+						jsonWebServiceActionParametersMap, "description");
 
 					syncDLObject = addFolder(
 						repositoryId, parentFolderId, name, description,
@@ -938,54 +947,59 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 				}
 				else if (urlPath.endsWith("/move-file-entry")) {
 					long fileEntryId = MapUtil.getLong(
-						parameters, "fileEntryId");
+						jsonWebServiceActionParametersMap, "fileEntryId");
 					long newFolderId = MapUtil.getLong(
-						parameters, "newFolderId");
+						jsonWebServiceActionParametersMap, "newFolderId");
 
 					syncDLObject = moveFileEntry(
 						fileEntryId, newFolderId, serviceContext);
 				}
 				else if (urlPath.endsWith("/move-file-entry-to-trash")) {
 					long fileEntryId = MapUtil.getLong(
-						parameters, "fileEntryId");
+						jsonWebServiceActionParametersMap, "fileEntryId");
 
 					syncDLObject = moveFileEntryToTrash(fileEntryId);
 				}
 				else if (urlPath.endsWith("/move-folder")) {
-					long folderId = MapUtil.getLong(parameters, "folderId");
+					long folderId = MapUtil.getLong(
+						jsonWebServiceActionParametersMap, "folderId");
 					long parentFolderId = MapUtil.getLong(
-						parameters, "parentFolderId");
+						jsonWebServiceActionParametersMap, "parentFolderId");
 
 					syncDLObject = moveFolder(
 						folderId, parentFolderId, serviceContext);
 				}
 				else if (urlPath.endsWith("/move-folder-to-trash")) {
-					long folderId = MapUtil.getLong(parameters, "folderId");
+					long folderId = MapUtil.getLong(
+						jsonWebServiceActionParametersMap, "folderId");
 
 					syncDLObject = moveFolderToTrash(folderId);
 				}
 				else if (urlPath.endsWith("/patch-file-entry")) {
 					long fileEntryId = MapUtil.getLong(
-						parameters, "fileEntryId");
+						jsonWebServiceActionParametersMap, "fileEntryId");
 					String sourceVersion = MapUtil.getString(
-						parameters, "sourceVersion");
+						jsonWebServiceActionParametersMap, "sourceVersion");
 					String sourceFileName = MapUtil.getString(
-						parameters, "sourceFileName");
-					String mimeType = MapUtil.getString(parameters, "mimeType");
-					String title = MapUtil.getString(parameters, "title");
+						jsonWebServiceActionParametersMap, "sourceFileName");
+					String mimeType = MapUtil.getString(
+						jsonWebServiceActionParametersMap, "mimeType");
+					String title = MapUtil.getString(
+						jsonWebServiceActionParametersMap, "title");
 					String description = MapUtil.getString(
-						parameters, "description");
+						jsonWebServiceActionParametersMap, "description");
 					String changeLog = MapUtil.getString(
-						parameters, "changeLog");
+						jsonWebServiceActionParametersMap, "changeLog");
 					boolean majorVersion = MapUtil.getBoolean(
-						parameters, "majorVersion");
+						jsonWebServiceActionParametersMap, "majorVersion");
 
 					InputStream inputStream = zipReader.getEntryAsInputStream(
 						zipFileId);
 
 					File tempFile = FileUtil.createTempFile(inputStream);
 
-					String checksum = MapUtil.getString(parameters, "checksum");
+					String checksum = MapUtil.getString(
+						jsonWebServiceActionParametersMap, "checksum");
 
 					syncDLObject = patchFileEntry(
 						fileEntryId, sourceVersion, sourceFileName, mimeType,
@@ -994,24 +1008,27 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 				}
 				else if (urlPath.endsWith("/update-file-entry")) {
 					long fileEntryId = MapUtil.getLong(
-						parameters, "fileEntryId");
+						jsonWebServiceActionParametersMap, "fileEntryId");
 					String sourceFileName = MapUtil.getString(
-						parameters, "sourceFileName");
-					String mimeType = MapUtil.getString(parameters, "mimeType");
-					String title = MapUtil.getString(parameters, "title");
+						jsonWebServiceActionParametersMap, "sourceFileName");
+					String mimeType = MapUtil.getString(
+						jsonWebServiceActionParametersMap, "mimeType");
+					String title = MapUtil.getString(
+						jsonWebServiceActionParametersMap, "title");
 					String description = MapUtil.getString(
-						parameters, "description");
+						jsonWebServiceActionParametersMap, "description");
 					String changeLog = MapUtil.getString(
-						parameters, "changeLog");
+						jsonWebServiceActionParametersMap, "changeLog");
 					boolean majorVersion = MapUtil.getBoolean(
-						parameters, "majorVersion");
+						jsonWebServiceActionParametersMap, "majorVersion");
 
 					InputStream inputStream = zipReader.getEntryAsInputStream(
 						zipFileId);
 
 					File tempFile = FileUtil.createTempFile(inputStream);
 
-					String checksum = MapUtil.getString(parameters, "checksum");
+					String checksum = MapUtil.getString(
+						jsonWebServiceActionParametersMap, "checksum");
 
 					syncDLObject = updateFileEntry(
 						fileEntryId, sourceFileName, mimeType, title,
@@ -1019,10 +1036,12 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 						checksum, serviceContext);
 				}
 				else if (urlPath.endsWith("/update-folder")) {
-					long folderId = MapUtil.getLong(parameters, "folderId");
-					String name = MapUtil.getString(parameters, "name");
+					long folderId = MapUtil.getLong(
+						jsonWebServiceActionParametersMap, "folderId");
+					String name = MapUtil.getString(
+						jsonWebServiceActionParametersMap, "name");
 					String description = MapUtil.getString(
-						parameters, "description");
+						jsonWebServiceActionParametersMap, "description");
 
 					syncDLObject = updateFolder(
 						folderId, name, description, serviceContext);
