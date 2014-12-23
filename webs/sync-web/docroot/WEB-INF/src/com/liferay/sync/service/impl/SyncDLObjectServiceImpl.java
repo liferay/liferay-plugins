@@ -933,8 +933,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 	}
 
 	protected SyncDLObject checkModifiedTime(
-			SyncDLObject syncDLObject, long typePk)
-		throws PortalException {
+		SyncDLObject syncDLObject, long typePk) {
 
 		DynamicQuery dynamicQuery = DLSyncEventLocalServiceUtil.dynamicQuery();
 
