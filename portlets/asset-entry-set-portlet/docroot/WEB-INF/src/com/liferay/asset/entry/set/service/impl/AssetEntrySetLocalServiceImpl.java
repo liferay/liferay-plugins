@@ -92,6 +92,8 @@ public class AssetEntrySetLocalServiceImpl
 
 		assetEntrySetPersistence.update(assetEntrySet);
 
+		setCreator(assetEntrySet);
+
 		updateChildAssetEntrySetsCount(parentAssetEntrySetId);
 
 		updateAssetEntry(
@@ -99,8 +101,6 @@ public class AssetEntrySetLocalServiceImpl
 			StringUtil.split(
 				payloadJSONObject.getString(
 					AssetEntrySetConstants.PAYLOAD_KEY_ASSET_TAG_NAMES)));
-
-		updateCreator(assetEntrySet);
 
 		return assetEntrySet;
 	}
@@ -128,23 +128,6 @@ public class AssetEntrySetLocalServiceImpl
 	}
 
 	@Override
-	public AssetEntrySet getAssetEntrySet(long assetEntrySetId)
-		throws PortalException, SystemException {
-
-		return assetEntrySetPersistence.findByPrimaryKey(assetEntrySetId);
-	}
-
-	@Override
-	public AssetEntrySet getAssetEntrySet(
-			long parentAssetEntrySetId, long creatorClassNameId,
-			long creatorClassPK, int start, int end)
-		throws PortalException, SystemException {
-
-		return assetEntrySetPersistence.findByPAESI_CCNI_CCPK(
-			parentAssetEntrySetId, creatorClassNameId, creatorClassPK);
-	}
-
-	@Override
 	public List<AssetEntrySet> getAssetEntrySets(
 			long parentAssetEntrySetId, long lastAccessTime, int start, int end)
 		throws PortalException, SystemException {
@@ -153,41 +136,38 @@ public class AssetEntrySetLocalServiceImpl
 			assetEntrySetPersistence.findByCT_PASEI(
 				lastAccessTime, parentAssetEntrySetId, start, end);
 
-		for (AssetEntrySet assetEntrySet : assetEntrySets) {
-			updateCreator(assetEntrySet);
-		}
+		setCreators(assetEntrySets);
 
 		return assetEntrySets;
 	}
 
 	@Override
 	public List<AssetEntrySet> getAssetEntrySets(
-			long parentAssetEntrySetId, long creatorClassNameId, int start,
-			int end, OrderByComparator obc)
-		throws SystemException {
-
-		return assetEntrySetPersistence.findByPAESI_CCNI(
-			parentAssetEntrySetId, creatorClassNameId, start, end, obc);
-	}
-
-	@Override
-	public List<AssetEntrySet> getAssetEntrySets(
 			long creatorClassNameId, long creatorClassPK, String assetTagName,
 			boolean andOperator, int start, int end)
-		throws SystemException {
+		throws PortalException, SystemException {
 
-		return assetEntrySetFinder.findByCCNI_CCPK_ATN(
-			creatorClassNameId, creatorClassPK, assetTagName, andOperator,
-			start, end);
+		List<AssetEntrySet> assetEntrySets =
+			assetEntrySetFinder.findByCCNI_CCPK_ATN(
+				creatorClassNameId, creatorClassPK, assetTagName, andOperator,
+				start, end);
+
+		setCreators(assetEntrySets);
+
+		return assetEntrySets;
 	}
 
 	@Override
 	public List<AssetEntrySet> getAssetEntrySets(
 			long creatorClassNameId, String assetTagName, int start, int end)
-		throws SystemException {
+		throws PortalException, SystemException {
 
-		return assetEntrySetFinder.findByCCNI_ATN(
+		List<AssetEntrySet> assetEntrySets = assetEntrySetFinder.findByCCNI_ATN(
 			creatorClassNameId, assetTagName, start, end);
+
+		setCreators(assetEntrySets);
+
+		return assetEntrySets;
 	}
 
 	@Override
@@ -259,6 +239,8 @@ public class AssetEntrySetLocalServiceImpl
 
 		assetEntrySetPersistence.update(assetEntrySet);
 
+		setCreator(assetEntrySet);
+
 		updateAssetEntry(
 			assetEntrySet,
 			StringUtil.split(
@@ -291,21 +273,10 @@ public class AssetEntrySetLocalServiceImpl
 		return assetEntrySet;
 	}
 
-	protected void updateAssetEntry(
-			AssetEntrySet assetEntrySet, String[] assetTagNames)
+	protected void setCreator(AssetEntrySet assetEntrySet)
 		throws PortalException, SystemException {
 
-		Group group = groupLocalService.getCompanyGroup(
-			assetEntrySet.getCompanyId());
-
-		assetEntryLocalService.updateEntry(
-			assetEntrySet.getUserId(), group.getGroupId(),
-			AssetEntrySet.class.getName(), assetEntrySet.getAssetEntrySetId(),
-			null, assetTagNames);
-	}
-
-	protected void updateCreator(AssetEntrySet assetEntrySet)
-		throws PortalException, SystemException {
+		JSONObject creatorJSONObject = JSONFactoryUtil.createJSONObject();
 
 		String creatorFullName = StringPool.BLANK;
 		String creatorPortraitURL = StringPool.BLANK;
@@ -347,8 +318,6 @@ public class AssetEntrySetLocalServiceImpl
 				AssetEntrySetConstants.ASSET_ENTRY_KEY_CREATOR_URL);
 		}
 
-		JSONObject creatorJSONObject = JSONFactoryUtil.createJSONObject();
-
 		creatorJSONObject.put(
 			AssetEntrySetConstants.ASSET_ENTRY_KEY_CREATOR_FULL_NAME,
 			creatorFullName);
@@ -361,6 +330,27 @@ public class AssetEntrySetLocalServiceImpl
 			AssetEntrySetConstants.ASSET_ENTRY_KEY_CREATOR_URL, creatorURL);
 
 		assetEntrySet.setCreator(creatorJSONObject);
+	}
+
+	protected void setCreators(List<AssetEntrySet> assetEntrySets)
+		throws PortalException, SystemException {
+
+		for (AssetEntrySet assetEntrySet : assetEntrySets) {
+			setCreator(assetEntrySet);
+		}
+	}
+
+	protected void updateAssetEntry(
+			AssetEntrySet assetEntrySet, String[] assetTagNames)
+		throws PortalException, SystemException {
+
+		Group group = groupLocalService.getCompanyGroup(
+			assetEntrySet.getCompanyId());
+
+		assetEntryLocalService.updateEntry(
+			assetEntrySet.getUserId(), group.getGroupId(),
+			AssetEntrySet.class.getName(), assetEntrySet.getAssetEntrySetId(),
+			null, assetTagNames);
 	}
 
 	protected AssetEntrySet updateRatingsStatsTotalScore(
