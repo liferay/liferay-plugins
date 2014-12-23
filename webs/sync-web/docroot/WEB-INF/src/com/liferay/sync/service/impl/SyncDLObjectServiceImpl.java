@@ -876,7 +876,6 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 			try {
 				updateFileEntries(
 					zipReader, zipFileId, jsonWebServiceActionParametersMap);
-				
 			}
 			catch (Exception e) {
 				String json = "{\"exception\": \"" + e.getMessage() + "\"}";
@@ -886,183 +885,6 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 		}
 
 		return responseMap;
-	}
-
-	protected void updateFileEntries(
-			ZipReader zipReader, String zipFileId,
-			JSONWebServiceActionParametersMap jsonWebServiceActionParametersMap)
-		throws Exception {
-
-		ServiceContext serviceContext = new ServiceContext();
-
-		List<NameValue<String, Object>> innerParameters =
-			jsonWebServiceActionParametersMap.getInnerParameters(
-				"serviceContext");
-
-		if (innerParameters != null) {
-			for (NameValue<String, Object> innerParameter :
-					innerParameters) {
-
-				try {
-					BeanUtil.setProperty(
-						serviceContext, innerParameter.getName(),
-						innerParameter.getValue());
-				}
-				catch (Exception e) {
-					if (_log.isDebugEnabled()) {
-						_log.debug(e.getMessage(), e);
-					}
-				}
-			}
-		}
-
-		String urlPath = MapUtil.getString(
-			jsonWebServiceActionParametersMap, "urlPath");
-
-		if (urlPath.endsWith("/add-file-entry")) {
-			long repositoryId = MapUtil.getLong(
-				jsonWebServiceActionParametersMap, "repositoryId");
-			long folderId = MapUtil.getLong(
-				jsonWebServiceActionParametersMap, "folderId");
-			String sourceFileName = MapUtil.getString(
-				jsonWebServiceActionParametersMap, "sourceFileName");
-			String mimeType = MapUtil.getString(
-				jsonWebServiceActionParametersMap, "mimeType");
-			String title = MapUtil.getString(
-				jsonWebServiceActionParametersMap, "title");
-			String description = MapUtil.getString(
-				jsonWebServiceActionParametersMap, "description");
-			String changeLog = MapUtil.getString(
-				jsonWebServiceActionParametersMap, "changeLog");
-
-			InputStream inputStream = zipReader.getEntryAsInputStream(
-				zipFileId);
-
-			File tempFile = FileUtil.createTempFile(inputStream);
-
-			String checksum = MapUtil.getString(
-				jsonWebServiceActionParametersMap, "checksum");
-
-			addFileEntry(
-				repositoryId, folderId, sourceFileName, mimeType, title,
-				description, changeLog, tempFile, checksum,
-				serviceContext);
-		}
-		else if (urlPath.endsWith("/add-folder")) {
-			long repositoryId = MapUtil.getLong(
-				jsonWebServiceActionParametersMap, "repositoryId");
-			long parentFolderId = MapUtil.getLong(
-				jsonWebServiceActionParametersMap, "parentFolderId");
-			String name = MapUtil.getString(
-				jsonWebServiceActionParametersMap, "name");
-			String description = MapUtil.getString(
-				jsonWebServiceActionParametersMap, "description");
-
-			addFolder(
-				repositoryId, parentFolderId, name, description,
-				serviceContext);
-		}
-		else if (urlPath.endsWith("/move-file-entry")) {
-			long fileEntryId = MapUtil.getLong(
-				jsonWebServiceActionParametersMap, "fileEntryId");
-			long newFolderId = MapUtil.getLong(
-				jsonWebServiceActionParametersMap, "newFolderId");
-
-			moveFileEntry(
-				fileEntryId, newFolderId, serviceContext);
-		}
-		else if (urlPath.endsWith("/move-file-entry-to-trash")) {
-			long fileEntryId = MapUtil.getLong(
-				jsonWebServiceActionParametersMap, "fileEntryId");
-
-			moveFileEntryToTrash(fileEntryId);
-		}
-		else if (urlPath.endsWith("/move-folder")) {
-			long folderId = MapUtil.getLong(
-				jsonWebServiceActionParametersMap, "folderId");
-			long parentFolderId = MapUtil.getLong(
-				jsonWebServiceActionParametersMap, "parentFolderId");
-
-			moveFolder(
-				folderId, parentFolderId, serviceContext);
-		}
-		else if (urlPath.endsWith("/move-folder-to-trash")) {
-			long folderId = MapUtil.getLong(
-				jsonWebServiceActionParametersMap, "folderId");
-
-			moveFolderToTrash(folderId);
-		}
-		else if (urlPath.endsWith("/patch-file-entry")) {
-			long fileEntryId = MapUtil.getLong(
-				jsonWebServiceActionParametersMap, "fileEntryId");
-			String sourceVersion = MapUtil.getString(
-				jsonWebServiceActionParametersMap, "sourceVersion");
-			String sourceFileName = MapUtil.getString(
-				jsonWebServiceActionParametersMap, "sourceFileName");
-			String mimeType = MapUtil.getString(
-				jsonWebServiceActionParametersMap, "mimeType");
-			String title = MapUtil.getString(
-				jsonWebServiceActionParametersMap, "title");
-			String description = MapUtil.getString(
-				jsonWebServiceActionParametersMap, "description");
-			String changeLog = MapUtil.getString(
-				jsonWebServiceActionParametersMap, "changeLog");
-			boolean majorVersion = MapUtil.getBoolean(
-				jsonWebServiceActionParametersMap, "majorVersion");
-
-			InputStream inputStream = zipReader.getEntryAsInputStream(
-				zipFileId);
-
-			File tempFile = FileUtil.createTempFile(inputStream);
-
-			String checksum = MapUtil.getString(
-				jsonWebServiceActionParametersMap, "checksum");
-
-			patchFileEntry(
-				fileEntryId, sourceVersion, sourceFileName, mimeType,
-				title, description, changeLog, majorVersion, tempFile,
-				checksum, serviceContext);
-		}
-		else if (urlPath.endsWith("/update-file-entry")) {
-			long fileEntryId = MapUtil.getLong(
-				jsonWebServiceActionParametersMap, "fileEntryId");
-			String sourceFileName = MapUtil.getString(
-				jsonWebServiceActionParametersMap, "sourceFileName");
-			String mimeType = MapUtil.getString(
-				jsonWebServiceActionParametersMap, "mimeType");
-			String title = MapUtil.getString(
-				jsonWebServiceActionParametersMap, "title");
-			String description = MapUtil.getString(
-				jsonWebServiceActionParametersMap, "description");
-			String changeLog = MapUtil.getString(
-				jsonWebServiceActionParametersMap, "changeLog");
-			boolean majorVersion = MapUtil.getBoolean(
-				jsonWebServiceActionParametersMap, "majorVersion");
-
-			InputStream inputStream = zipReader.getEntryAsInputStream(
-				zipFileId);
-
-			File tempFile = FileUtil.createTempFile(inputStream);
-
-			String checksum = MapUtil.getString(
-				jsonWebServiceActionParametersMap, "checksum");
-
-			updateFileEntry(
-				fileEntryId, sourceFileName, mimeType, title,
-				description, changeLog, majorVersion, tempFile,
-				checksum, serviceContext);
-		}
-		else if (urlPath.endsWith("/update-folder")) {
-			long folderId = MapUtil.getLong(
-				jsonWebServiceActionParametersMap, "folderId");
-			String name = MapUtil.getString(
-				jsonWebServiceActionParametersMap, "name");
-			String description = MapUtil.getString(
-				jsonWebServiceActionParametersMap, "description");
-
-			updateFolder(
-				folderId, name, description, serviceContext);
-		}
 	}
 
 	@Override
@@ -1199,6 +1021,176 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 		SyncDLObject syncDLObject = SyncUtil.toSyncDLObject(folder, event);
 
 		return checkModifiedTime(syncDLObject, folder.getFolderId());
+	}
+
+	protected void updateFileEntries(
+			ZipReader zipReader, String zipFileId,
+			JSONWebServiceActionParametersMap jsonWebServiceActionParametersMap)
+		throws Exception {
+
+		ServiceContext serviceContext = new ServiceContext();
+
+		List<NameValue<String, Object>> innerParameters =
+			jsonWebServiceActionParametersMap.getInnerParameters(
+				"serviceContext");
+
+		if (innerParameters != null) {
+			for (NameValue<String, Object> innerParameter : innerParameters) {
+				try {
+					BeanUtil.setProperty(
+						serviceContext, innerParameter.getName(),
+						innerParameter.getValue());
+				}
+				catch (Exception e) {
+					if (_log.isDebugEnabled()) {
+						_log.debug(e.getMessage(), e);
+					}
+				}
+			}
+		}
+
+		String urlPath = MapUtil.getString(
+			jsonWebServiceActionParametersMap, "urlPath");
+
+		if (urlPath.endsWith("/add-file-entry")) {
+			long repositoryId = MapUtil.getLong(
+				jsonWebServiceActionParametersMap, "repositoryId");
+			long folderId = MapUtil.getLong(
+				jsonWebServiceActionParametersMap, "folderId");
+			String sourceFileName = MapUtil.getString(
+				jsonWebServiceActionParametersMap, "sourceFileName");
+			String mimeType = MapUtil.getString(
+				jsonWebServiceActionParametersMap, "mimeType");
+			String title = MapUtil.getString(
+				jsonWebServiceActionParametersMap, "title");
+			String description = MapUtil.getString(
+				jsonWebServiceActionParametersMap, "description");
+			String changeLog = MapUtil.getString(
+				jsonWebServiceActionParametersMap, "changeLog");
+
+			InputStream inputStream = zipReader.getEntryAsInputStream(
+				zipFileId);
+
+			File tempFile = FileUtil.createTempFile(inputStream);
+
+			String checksum = MapUtil.getString(
+				jsonWebServiceActionParametersMap, "checksum");
+
+			addFileEntry(
+				repositoryId, folderId, sourceFileName, mimeType, title,
+				description, changeLog, tempFile, checksum, serviceContext);
+		}
+		else if (urlPath.endsWith("/add-folder")) {
+			long repositoryId = MapUtil.getLong(
+				jsonWebServiceActionParametersMap, "repositoryId");
+			long parentFolderId = MapUtil.getLong(
+				jsonWebServiceActionParametersMap, "parentFolderId");
+			String name = MapUtil.getString(
+				jsonWebServiceActionParametersMap, "name");
+			String description = MapUtil.getString(
+				jsonWebServiceActionParametersMap, "description");
+
+			addFolder(
+				repositoryId, parentFolderId, name, description,
+				serviceContext);
+		}
+		else if (urlPath.endsWith("/move-file-entry")) {
+			long fileEntryId = MapUtil.getLong(
+				jsonWebServiceActionParametersMap, "fileEntryId");
+			long newFolderId = MapUtil.getLong(
+				jsonWebServiceActionParametersMap, "newFolderId");
+
+			moveFileEntry(fileEntryId, newFolderId, serviceContext);
+		}
+		else if (urlPath.endsWith("/move-file-entry-to-trash")) {
+			long fileEntryId = MapUtil.getLong(
+				jsonWebServiceActionParametersMap, "fileEntryId");
+
+			moveFileEntryToTrash(fileEntryId);
+		}
+		else if (urlPath.endsWith("/move-folder")) {
+			long folderId = MapUtil.getLong(
+				jsonWebServiceActionParametersMap, "folderId");
+			long parentFolderId = MapUtil.getLong(
+				jsonWebServiceActionParametersMap, "parentFolderId");
+
+			moveFolder(folderId, parentFolderId, serviceContext);
+		}
+		else if (urlPath.endsWith("/move-folder-to-trash")) {
+			long folderId = MapUtil.getLong(
+				jsonWebServiceActionParametersMap, "folderId");
+
+			moveFolderToTrash(folderId);
+		}
+		else if (urlPath.endsWith("/patch-file-entry")) {
+			long fileEntryId = MapUtil.getLong(
+				jsonWebServiceActionParametersMap, "fileEntryId");
+			String sourceVersion = MapUtil.getString(
+				jsonWebServiceActionParametersMap, "sourceVersion");
+			String sourceFileName = MapUtil.getString(
+				jsonWebServiceActionParametersMap, "sourceFileName");
+			String mimeType = MapUtil.getString(
+				jsonWebServiceActionParametersMap, "mimeType");
+			String title = MapUtil.getString(
+				jsonWebServiceActionParametersMap, "title");
+			String description = MapUtil.getString(
+				jsonWebServiceActionParametersMap, "description");
+			String changeLog = MapUtil.getString(
+				jsonWebServiceActionParametersMap, "changeLog");
+			boolean majorVersion = MapUtil.getBoolean(
+				jsonWebServiceActionParametersMap, "majorVersion");
+
+			InputStream inputStream = zipReader.getEntryAsInputStream(
+				zipFileId);
+
+			File tempFile = FileUtil.createTempFile(inputStream);
+
+			String checksum = MapUtil.getString(
+				jsonWebServiceActionParametersMap, "checksum");
+
+			patchFileEntry(
+				fileEntryId, sourceVersion, sourceFileName, mimeType, title,
+				description, changeLog, majorVersion, tempFile, checksum,
+				serviceContext);
+		}
+		else if (urlPath.endsWith("/update-file-entry")) {
+			long fileEntryId = MapUtil.getLong(
+				jsonWebServiceActionParametersMap, "fileEntryId");
+			String sourceFileName = MapUtil.getString(
+				jsonWebServiceActionParametersMap, "sourceFileName");
+			String mimeType = MapUtil.getString(
+				jsonWebServiceActionParametersMap, "mimeType");
+			String title = MapUtil.getString(
+				jsonWebServiceActionParametersMap, "title");
+			String description = MapUtil.getString(
+				jsonWebServiceActionParametersMap, "description");
+			String changeLog = MapUtil.getString(
+				jsonWebServiceActionParametersMap, "changeLog");
+			boolean majorVersion = MapUtil.getBoolean(
+				jsonWebServiceActionParametersMap, "majorVersion");
+
+			InputStream inputStream = zipReader.getEntryAsInputStream(
+				zipFileId);
+
+			File tempFile = FileUtil.createTempFile(inputStream);
+
+			String checksum = MapUtil.getString(
+				jsonWebServiceActionParametersMap, "checksum");
+
+			updateFileEntry(
+				fileEntryId, sourceFileName, mimeType, title, description,
+				changeLog, majorVersion, tempFile, checksum, serviceContext);
+		}
+		else if (urlPath.endsWith("/update-folder")) {
+			long folderId = MapUtil.getLong(
+				jsonWebServiceActionParametersMap, "folderId");
+			String name = MapUtil.getString(
+				jsonWebServiceActionParametersMap, "name");
+			String description = MapUtil.getString(
+				jsonWebServiceActionParametersMap, "description");
+
+			updateFolder(folderId, name, description, serviceContext);
+		}
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(
