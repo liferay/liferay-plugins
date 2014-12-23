@@ -170,7 +170,7 @@ public class CalendarImporterLocalServiceImpl
 	}
 
 	@Override
-	public void importRolePermissions() throws PortalException {
+	public void importRolePermissions() {
 		int[] scopes = {
 			ResourceConstants.SCOPE_COMPANY, ResourceConstants.SCOPE_GROUP,
 			ResourceConstants.SCOPE_GROUP_TEMPLATE
@@ -179,32 +179,42 @@ public class CalendarImporterLocalServiceImpl
 		for (long companyId : PortalUtil.getCompanyIds()) {
 			for (int scope : scopes) {
 				importResourcePermissions(
-					companyId, _OLD_CALENDAR_MODEL_NAME, "ADD_EVENT",
-					_NEW_CALENDAR_MODEL_NAME, "MANAGE_BOOKINGS", scope);
+					companyId, "com.liferay.portlet.calendar", "ADD_EVENT",
+					"com.liferay.calendar.model.Calendar", "MANAGE_BOOKINGS",
+					scope);
 
 				importResourcePermissions(
-					companyId, _OLD_CALENDAR_MODEL_NAME, "ADD_EVENT",
-					_NEW_CALENDAR_MODEL_NAME, "VIEW_BOOKING_DETAILS", scope);
+					companyId, "com.liferay.portlet.calendar", "ADD_EVENT",
+					"com.liferay.calendar.model.Calendar",
+					"VIEW_BOOKING_DETAILS", scope);
 
 				importResourcePermissions(
-					companyId, _OLD_CALENDAR_MODEL_NAME, "PERMISSIONS",
-					_NEW_CALENDAR_MODEL_NAME, "PERMISSIONS", scope);
+					companyId, "com.liferay.portlet.calendar", "PERMISSIONS",
+					"com.liferay.calendar.model.Calendar", "PERMISSIONS",
+					scope);
 
 				importResourcePermissions(
-					companyId, _CAL_EVENT_MODEL_NAME, "ADD_DISCUSSION",
-					_CALENDAR_BOOKING_MODEL_NAME, "ADD_DISCUSSION", scope);
+					companyId, "com.liferay.portlet.calendar.model.CalEvent",
+					"ADD_DISCUSSION",
+					"com.liferay.calendar.model.CalendarBooking",
+					"ADD_DISCUSSION", scope);
 
 				importResourcePermissions(
-					companyId, _CAL_EVENT_MODEL_NAME, "DELETE_DISCUSSION",
-					_CALENDAR_BOOKING_MODEL_NAME, "DELETE_DISCUSSION", scope);
+					companyId, "com.liferay.portlet.calendar.model.CalEvent",
+					"DELETE_DISCUSSION",
+					"com.liferay.calendar.model.CalendarBooking",
+					"DELETE_DISCUSSION", scope);
 
 				importResourcePermissions(
-					companyId, _CAL_EVENT_MODEL_NAME, "PERMISSIONS",
-					_CALENDAR_BOOKING_MODEL_NAME, "PERMISSIONS", scope);
+					companyId, "com.liferay.portlet.calendar.model.CalEvent",
+					"PERMISSIONS", "com.liferay.calendar.model.CalendarBooking",
+					"PERMISSIONS", scope);
 
 				importResourcePermissions(
-					companyId, _CAL_EVENT_MODEL_NAME, "UPDATE_DISCUSSION",
-					_CALENDAR_BOOKING_MODEL_NAME, "UPDATE_DISCUSSION", scope);
+					companyId, "com.liferay.portlet.calendar.model.CalEvent",
+					"UPDATE_DISCUSSION",
+					"com.liferay.calendar.model.CalendarBooking",
+					"UPDATE_DISCUSSION", scope);
 			}
 		}
 	}
@@ -546,10 +556,12 @@ public class CalendarImporterLocalServiceImpl
 				continue;
 			}
 
-			String action = oldResourceAction.getActionId();
-
-			actionIds = actionIds | convertActionId(
-				resourcePermission, oldClassName, action, newClassName, action);
+			actionIds =
+				actionIds |
+					convertActionId(
+						resourcePermission, oldClassName,
+						oldResourceAction.getActionId(), newClassName,
+						oldResourceAction.getActionId());
 		}
 
 		return actionIds;
@@ -1120,18 +1132,6 @@ public class CalendarImporterLocalServiceImpl
 	}
 
 	private static final String _ASSET_VOCABULARY_NAME = "Calendar Event Types";
-
-	private static final String _CAL_EVENT_MODEL_NAME =
-		"com.liferay.portlet.calendar.model.CalEvent";
-
-	private static final String _CALENDAR_BOOKING_MODEL_NAME =
-		"com.liferay.calendar.model.CalendarBooking";
-
-	private static final String _NEW_CALENDAR_MODEL_NAME =
-		"com.liferay.calendar.model.Calendar";
-
-	private static final String _OLD_CALENDAR_MODEL_NAME =
-		"com.liferay.portlet.calendar";
 
 	private static Map<Integer, Frequency> _frequencyMap =
 		new HashMap<Integer, Frequency>();
