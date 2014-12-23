@@ -10,6 +10,7 @@
 	<classpathentry kind="lib" path="/portal-master/lib/development/mail.jar" />
 	<classpathentry kind="lib" path="/portal-master/lib/development/servlet-api.jar" />
 	<classpathentry kind="lib" path="/portal-master/lib/global/portlet.jar" />
+	<classpathentry kind="lib" path="/portal-master/lib/portal/bnd.jar" />
 	<classpathentry kind="lib" path="/portal-master/lib/portal/commons-logging.jar" />
 	<classpathentry kind="lib" path="/portal-master/lib/portal/log4j.jar" />
 	<classpathentry kind="lib" path="/portal-master/lib/portal/slf4j-api.jar" />
@@ -18,18 +19,37 @@
 	<classpathentry kind="lib" path="/portal-master/util-java/util-java.jar" />
 	<classpathentry kind="lib" path="/portal-master/util-slf4j/util-slf4j.jar" />
 	<classpathentry kind="lib" path="/portal-master/util-taglib/util-taglib.jar" />
-	<classpathentry kind="lib" path="docroot/WEB-INF/lib/commons-io-2.1.jar" />
-	<classpathentry kind="lib" path="docroot/WEB-INF/lib/httpclient-4.2.3.jar" />
-	<classpathentry kind="lib" path="docroot/WEB-INF/lib/httpcore-4.2.2.jar" />
-	<classpathentry kind="lib" path="docroot/WEB-INF/lib/httpmime-4.2.3.jar" />
-	<classpathentry kind="lib" path="docroot/WEB-INF/lib/noggit-0.5.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/com.liferay.portal.search.solr.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/commons-cli.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/commons-codec.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/commons-fileupload.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/commons-io.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/commons-lang.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/guava.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/httpclient.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/httpcore.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/httpmime.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/lucene-analyzers-common.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/lucene-analyzers-kuromoji.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/lucene-analyzers-phonetic.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/lucene-codecs.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/lucene-core.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/lucene-grouping.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/lucene-highlighter.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/lucene-memory.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/lucene-misc.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/lucene-queries.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/lucene-queryparser.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/lucene-spatial.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/lucene-suggest.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/noggit.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/org.restlet.ext.servlet.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/org.restlet.jar" />
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/portal-compat-shared.jar" />
-	<classpathentry kind="lib" path="docroot/WEB-INF/lib/slf4j-api-1.6.6.jar" />
-	<classpathentry kind="lib" path="docroot/WEB-INF/lib/slf4j-log4j12-1.6.6.jar" />
-	<classpathentry kind="lib" path="docroot/WEB-INF/lib/solr-core-4.3.1.jar" />
-	<classpathentry kind="lib" path="docroot/WEB-INF/lib/solr-solrj-4.3.1.jar" />
-	<classpathentry kind="lib" path="docroot/WEB-INF/lib/solr4-shared.jar" />
-	<classpathentry kind="lib" path="docroot/WEB-INF/lib/wstx-asl-3.2.7.jar" />
-	<classpathentry kind="lib" path="docroot/WEB-INF/lib/zookeeper-3.4.5.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/solr-core.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/solr-solrj.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/spatial4j.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/wstx-asl.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/zookeeper.jar" />
 	<classpathentry kind="output" path="bin" />
 </classpath>
