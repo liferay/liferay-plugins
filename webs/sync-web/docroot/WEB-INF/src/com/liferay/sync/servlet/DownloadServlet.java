@@ -106,10 +106,10 @@ public class DownloadServlet extends HttpServlet {
 						"Missing parameter zipFileIds");
 				}
 
-				JSONArray jsonArray = JSONFactoryUtil.createJSONArray(
+				JSONArray zipFileIdsJSONArray = JSONFactoryUtil.createJSONArray(
 					zipFileIds);
 
-				sendZipFile(response, user, jsonArray);
+				sendZipFile(response, user, zipFileIdsJSONArray);
 			}
 			else {
 				long groupId = GetterUtil.getLong(pathArray[0]);
@@ -175,7 +175,7 @@ public class DownloadServlet extends HttpServlet {
 		InputStream inputStream = fileVersion.getContentStream(false);
 
 		return new DownloadServletInputStream(
-			inputStream, fileVersion.getSize(), fileVersion.getMimeType());
+			inputStream, fileVersion.getMimeType(), fileVersion.getSize());
 	}
 
 	protected DownloadServletInputStream getPatchDownloadServletInputStream(
@@ -304,15 +304,15 @@ public class DownloadServlet extends HttpServlet {
 
 	protected void sendZipFile(
 			HttpServletResponse response, User user,
-			JSONArray zipObjectsJSONArray)
+			JSONArray zipFileIdsJSONArray)
 		throws Exception {
 
 		ZipWriter zipWriter = ZipWriterFactoryUtil.getZipWriter();
 
 		JSONArray errorsJSONArray = JSONFactoryUtil.createJSONArray();
 
-		for (int i = 0; i < zipObjectsJSONArray.length(); i++) {
-			JSONObject zipObjectJSONObject = zipObjectsJSONArray.getJSONObject(
+		for (int i = 0; i < zipFileIdsJSONArray.length(); i++) {
+			JSONObject zipObjectJSONObject = zipFileIdsJSONArray.getJSONObject(
 				i);
 
 			long groupId = zipObjectJSONObject.getLong("groupId");
