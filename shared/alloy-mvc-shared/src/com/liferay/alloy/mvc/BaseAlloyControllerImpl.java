@@ -1249,6 +1249,9 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 		else if (object instanceof Document) {
 			return toJSONObject((Document)object);
 		}
+		else if (object instanceof JSONObject) {
+			return (JSONObject)object;
+		}
 
 		throw new AlloyException(
 			"Unable to convert " + object + " to a JSON object");
