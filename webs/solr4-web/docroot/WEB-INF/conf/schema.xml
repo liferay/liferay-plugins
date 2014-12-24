@@ -462,6 +462,7 @@
 		<field indexed="true" name="content" stored="true" termPositions="true" termVectors="true" type="text" />
 		<field indexed="true" name="description" stored="true" termPositions="true" termVectors="true" type="text" />
 		<field indexed="true" name="createDate" stored="true" type="string" />
+		<field indexed="true" name="createDate_sortable" stored="true" type="long" />
 		<field indexed="true" name="dataRepositoryId" stored="true" type="string" />
 		<field indexed="true" name="ddmContent" stored="true" termPositions="true" termVectors="true" type="text" />
 		<field indexed="true" name="ddmStructureKey" stored="true" type="string" />
@@ -472,6 +473,7 @@
 		<field indexed="true" name="entryClassPK" stored="true" type="string" />
 		<field indexed="true" name="entryClassName" stored="true" type="string" />
 		<field indexed="true" name="expirationDate" stored="true" type="string" />
+		<field indexed="true" name="expirationDate_sortable" stored="true" type="long" />
 		<field indexed="true" name="extension" stored="true" type="string" />
 		<field indexed="true" name="fileEntryTypeId" stored="true" type="string" />
 		<field indexed="true" name="folderId" stored="true" type="string" />
@@ -485,6 +487,7 @@
 		<field indexed="true" name="leftOrganizationId" stored="true" type="slong" />
 		<field indexed="true" name="mimeType" stored="true" type="string" />
 		<field indexed="true" name="modified" stored="true" type="string" />
+		<field indexed="true" name="modified_sortable" stored="true" type="long" />
 		<field indexed="true" name="nodeId" stored="true" type="string" />
 		<field indexed="true" name="organizationId" stored="true" type="string" />
 		<field indexed="true" multiValued="true" name="organizationIds" stored="true" type="string" />
@@ -493,6 +496,7 @@
 		<field indexed="true" name="path" stored="true" type="string" />
 		<field indexed="true" name="portletId" stored="true" type="string" />
 		<field indexed="true" name="publishDate" stored="true" type="string" />
+		<field indexed="true" name="publishDate_sortable" stored="true" type="long" />
 		<field indexed="true" name="readCount" stored="true" type="string" />
 		<field indexed="true" name="recordSetId" stored="true" type="string" />
 		<field indexed="true" name="removedDate" stored="true" type="string" />
