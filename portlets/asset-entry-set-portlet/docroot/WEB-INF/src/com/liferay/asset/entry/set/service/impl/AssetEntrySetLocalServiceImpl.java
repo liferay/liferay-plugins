@@ -50,28 +50,31 @@ public class AssetEntrySetLocalServiceImpl
 
 	@Override
 	public AssetEntrySet addAssetEntrySet(
-			long userId, JSONObject payloadJSONObject)
+			long userId, JSONObject payloadJSONObject,
+			boolean privateAssetEntrySet)
 		throws PortalException, SystemException {
 
-		return addAssetEntrySet(userId, 0, payloadJSONObject);
+		return addAssetEntrySet(
+			userId, 0, payloadJSONObject, privateAssetEntrySet);
 	}
 
 	@Override
 	public AssetEntrySet addAssetEntrySet(
 			long userId, long parentAssetEntrySetId,
-			JSONObject payloadJSONObject)
+			JSONObject payloadJSONObject, boolean privateAssetEntrySet)
 		throws PortalException, SystemException {
 
 		return addAssetEntrySet(
 			userId, parentAssetEntrySetId,
 			classNameLocalService.getClassNameId(User.class), userId,
-			payloadJSONObject);
+			payloadJSONObject, privateAssetEntrySet);
 	}
 
 	@Override
 	public AssetEntrySet addAssetEntrySet(
 			long userId, long parentAssetEntrySetId, long creatorClassNameId,
-			long creatorClassPK, JSONObject payloadJSONObject)
+			long creatorClassPK, JSONObject payloadJSONObject,
+			boolean privateAssetEntrySet)
 		throws PortalException, SystemException {
 
 		long assetEntrySetId = counterLocalService.increment();
@@ -94,6 +97,7 @@ public class AssetEntrySetLocalServiceImpl
 		assetEntrySet.setCreatorClassPK(creatorClassPK);
 		assetEntrySet.setPayload(
 			AssetEntrySetManagerUtil.interpret(payloadJSONObject));
+		assetEntrySet.setPrivateAssetEntrySet(privateAssetEntrySet);
 
 		assetEntrySetPersistence.update(assetEntrySet);
 
@@ -260,7 +264,8 @@ public class AssetEntrySetLocalServiceImpl
 
 	@Override
 	public AssetEntrySet updateAssetEntrySet(
-			long assetEntrySetId, JSONObject payloadJSONObject)
+			long assetEntrySetId, JSONObject payloadJSONObject,
+			boolean privateAssetEntrySet)
 		throws PortalException, SystemException {
 
 		AssetEntrySet assetEntrySet = assetEntrySetPersistence.findByPrimaryKey(
@@ -272,6 +277,8 @@ public class AssetEntrySetLocalServiceImpl
 
 		assetEntrySet.setPayload(
 			AssetEntrySetManagerUtil.interpret(payloadJSONObject));
+
+		assetEntrySet.setPrivateAssetEntrySet(privateAssetEntrySet);
 
 		assetEntrySetPersistence.update(assetEntrySet);
 

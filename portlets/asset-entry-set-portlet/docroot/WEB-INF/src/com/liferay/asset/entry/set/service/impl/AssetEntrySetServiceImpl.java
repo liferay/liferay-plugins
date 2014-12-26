@@ -33,25 +33,28 @@ public class AssetEntrySetServiceImpl extends AssetEntrySetServiceBaseImpl {
 
 	@Override
 	public AssetEntrySet addAssetEntrySet(
-			long parentAssetEntrySetId, String payload)
+			long parentAssetEntrySetId, String payload,
+			boolean privateAssetEntrySet)
 		throws PortalException, SystemException {
 
 		JSONObject payloadJSONObject = JSONFactoryUtil.createJSONObject(
 			payload);
 
 		return assetEntrySetLocalService.addAssetEntrySet(
-			getUserId(), parentAssetEntrySetId, payloadJSONObject);
+			getUserId(), parentAssetEntrySetId, payloadJSONObject,
+			privateAssetEntrySet);
 	}
 
 	@Override
-	public AssetEntrySet addAssetEntrySet(String payload)
+	public AssetEntrySet addAssetEntrySet(
+			String payload, boolean privateAssetEntrySet)
 		throws PortalException, SystemException {
 
 		JSONObject payloadJSONObject = JSONFactoryUtil.createJSONObject(
 			payload);
 
 		return assetEntrySetLocalService.addAssetEntrySet(
-			getUserId(), payloadJSONObject);
+			getUserId(), payloadJSONObject, privateAssetEntrySet);
 	}
 
 	@Override
