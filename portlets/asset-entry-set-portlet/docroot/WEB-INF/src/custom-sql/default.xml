@@ -18,17 +18,17 @@
 					(AssetTag.tagId = AssetEntries_AssetTags.tagId)
 			INNER JOIN
 				AssetSharing_AssetSharingEntry ON
-					(AssetSharing_AssetSharingEntry.classNameId = ?) AND
 					(AssetSharing_AssetSharingEntry.classPK = AssetEntrySet.assetEntrySetId)
 			WHERE
 				(AssetEntrySet.creatorClassNameId = ?) AND
-				(AssetTag.name = ?) AND 
+				(AssetTag.name = ?) AND
+				(AssetSharing_AssetSharingEntry.classNameId = ?) AND
 				(
 					(
 						([$SHARED_TO_CLASS_PKS_MAP]) AND
-						(AssetEntrySet.privateSet = [$TRUE$])
+						(AssetEntrySet.privateAssetEntrySet = [$TRUE$])
 					) OR
-					(AssetEntrySet.privateSet = [$FALSE$])
+					(AssetEntrySet.privateAssetEntrySet = [$FALSE$])
 				)
 		]]>
 	</sql>
@@ -43,7 +43,6 @@
 					(AssetEntry.classPK = AssetEntrySet.assetEntrySetId)
 			INNER JOIN
 				AssetSharing_AssetSharingEntry ON
-					(AssetSharing_AssetSharingEntry.classNameId = ?) AND
 					(AssetSharing_AssetSharingEntry.classPK = AssetEntrySet.assetEntrySetId)
 			LEFT JOIN
 				AssetEntries_AssetTags ON
@@ -53,16 +52,19 @@
 					(AssetTag.tagId = AssetEntries_AssetTags.tagId)
 			WHERE
 				(
-					(AssetEntrySet.creatorClassNameId = ?) AND
-					(AssetEntrySet.creatorClassPK = ?)
-				) [$AND_OR_CONNECTOR$]
-				(AssetTag.name = ?) AND 
+					(
+						(AssetEntrySet.creatorClassNameId = ?) AND
+						(AssetEntrySet.creatorClassPK = ?)
+					) [$AND_OR_CONNECTOR$]
+					(AssetTag.name = ?)
+				) AND
+				(AssetSharing_AssetSharingEntry.classNameId = ?) AND
 				(
 					(
 						([$SHARED_TO_CLASS_PKS_MAP]) AND
-						(AssetEntrySet.privateSet = [$TRUE$])
+						(AssetEntrySet.privateAssetEntrySet = [$TRUE$])
 					) OR
-					(AssetEntrySet.privateSet = [$FALSE$])
+					(AssetEntrySet.privateAssetEntrySet = [$FALSE$])
 				)
 		]]>
 	</sql>
@@ -74,9 +76,9 @@
 				AssetEntrySet
 			INNER JOIN
 				AssetSharing_AssetSharingEntry ON
-					(AssetSharing_AssetSharingEntry.classNameId = ?) AND
 					(AssetSharing_AssetSharingEntry.classPK = AssetEntrySet.assetEntrySetId)
 			WHERE
+				(AssetSharing_AssetSharingEntry.classNameId = ?) AND
 				[$SHARED_TO_CLASS_PKS_MAP]
 
 		]]>
@@ -98,17 +100,17 @@
 					(AssetTag.tagId = AssetEntries_AssetTags.tagId)
 			INNER JOIN
 				AssetSharing_AssetSharingEntry ON
-					(AssetSharing_AssetSharingEntry.classNameId = ?) AND
 					(AssetSharing_AssetSharingEntry.classPK = AssetEntrySet.assetEntrySetId)
 			WHERE
 				(AssetEntrySet.creatorClassNameId = ?) AND
-				(AssetTag.name = ?) AND 
+				(AssetTag.name = ?) AND
+				(AssetSharing_AssetSharingEntry.classNameId = ?) AND
 				(
 					(
 						([$SHARED_TO_CLASS_PKS_MAP]) AND
-						(AssetEntrySet.privateSet = [$TRUE$])
+						(AssetEntrySet.privateAssetEntrySet = [$TRUE$])
 					) OR
-					(AssetEntrySet.privateSet = [$FALSE$])
+					(AssetEntrySet.privateAssetEntrySet = [$FALSE$])
 				)
 			ORDER BY
 				AssetEntrySet.createDate DESC
@@ -125,7 +127,6 @@
 					(AssetEntry.classPK = AssetEntrySet.assetEntrySetId)
 			INNER JOIN
 				AssetSharing_AssetSharingEntry ON
-					(AssetSharing_AssetSharingEntry.classNameId = ?) AND
 					(AssetSharing_AssetSharingEntry.classPK = AssetEntrySet.assetEntrySetId)
 			LEFT JOIN
 				AssetEntries_AssetTags ON
@@ -135,16 +136,19 @@
 					(AssetTag.tagId = AssetEntries_AssetTags.tagId)
 			WHERE
 				(
-					(AssetEntrySet.creatorClassNameId = ?) AND
-					(AssetEntrySet.creatorClassPK = ?)
-				) [$AND_OR_CONNECTOR$]
-				(AssetTag.name = ?) AND 
+					(
+						(AssetEntrySet.creatorClassNameId = ?) AND
+						(AssetEntrySet.creatorClassPK = ?)
+					) [$AND_OR_CONNECTOR$]
+					(AssetTag.name = ?)
+				) AND
+				(AssetSharing_AssetSharingEntry.classNameId = ?) AND
 				(
 					(
 						([$SHARED_TO_CLASS_PKS_MAP]) AND
-						(AssetEntrySet.privateSet = [$TRUE$])
+						(AssetEntrySet.privateAssetEntrySet = [$TRUE$])
 					) OR
-					(AssetEntrySet.privateSet = [$FALSE$])
+					(AssetEntrySet.privateAssetEntrySet = [$FALSE$])
 				)
 			ORDER BY
 				AssetEntrySet.createDate DESC
@@ -158,9 +162,9 @@
 				AssetEntrySet
 			INNER JOIN
 				AssetSharing_AssetSharingEntry ON
-					(AssetSharing_AssetSharingEntry.classNameId = ?) AND
 					(AssetSharing_AssetSharingEntry.classPK = AssetEntrySet.assetEntrySetId)
 			WHERE
+				(AssetSharing_AssetSharingEntry.classNameId = ?) AND
 				[$SHARED_TO_CLASS_PKS_MAP]
 			ORDER BY
 				AssetEntrySet.modifiedTime DESC
