@@ -61,6 +61,7 @@ public class AssetEntrySetWrapper implements AssetEntrySet,
 		attributes.put("payload", getPayload());
 		attributes.put("childAssetEntrySetsCount", getChildAssetEntrySetsCount());
 		attributes.put("ratingsStatsTotalScore", getRatingsStatsTotalScore());
+		attributes.put("privateAssetEntrySet", getPrivateAssetEntrySet());
 
 		return attributes;
 	}
@@ -140,6 +141,13 @@ public class AssetEntrySetWrapper implements AssetEntrySet,
 
 		if (ratingsStatsTotalScore != null) {
 			setRatingsStatsTotalScore(ratingsStatsTotalScore);
+		}
+
+		Boolean privateAssetEntrySet = (Boolean)attributes.get(
+				"privateAssetEntrySet");
+
+		if (privateAssetEntrySet != null) {
+			setPrivateAssetEntrySet(privateAssetEntrySet);
 		}
 	}
 
@@ -423,6 +431,36 @@ public class AssetEntrySetWrapper implements AssetEntrySet,
 	@Override
 	public void setRatingsStatsTotalScore(int ratingsStatsTotalScore) {
 		_assetEntrySet.setRatingsStatsTotalScore(ratingsStatsTotalScore);
+	}
+
+	/**
+	* Returns the private asset entry set of this asset entry set.
+	*
+	* @return the private asset entry set of this asset entry set
+	*/
+	@Override
+	public boolean getPrivateAssetEntrySet() {
+		return _assetEntrySet.getPrivateAssetEntrySet();
+	}
+
+	/**
+	* Returns <code>true</code> if this asset entry set is private asset entry set.
+	*
+	* @return <code>true</code> if this asset entry set is private asset entry set; <code>false</code> otherwise
+	*/
+	@Override
+	public boolean isPrivateAssetEntrySet() {
+		return _assetEntrySet.isPrivateAssetEntrySet();
+	}
+
+	/**
+	* Sets whether this asset entry set is private asset entry set.
+	*
+	* @param privateAssetEntrySet the private asset entry set of this asset entry set
+	*/
+	@Override
+	public void setPrivateAssetEntrySet(boolean privateAssetEntrySet) {
+		_assetEntrySet.setPrivateAssetEntrySet(privateAssetEntrySet);
 	}
 
 	@Override

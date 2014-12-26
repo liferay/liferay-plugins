@@ -19,5 +19,6 @@
 		<property name="payload" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="childAssetEntrySetsCount" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
 		<property name="ratingsStatsTotalScore" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property name="privateAssetEntrySet" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
 	</class>
 </hibernate-mapping>

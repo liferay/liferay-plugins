@@ -16,5 +16,6 @@
 		</field>
 		<field name="childAssetEntrySetsCount" type="int" />
 		<field name="ratingsStatsTotalScore" type="int" />
+		<field name="privateAssetEntrySet" type="boolean" />
 	</model>
 </model-hints>

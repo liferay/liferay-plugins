@@ -10,5 +10,6 @@ create table AssetEntrySet (
 	creatorClassPK LONG,
 	payload STRING null,
 	childAssetEntrySetsCount INTEGER,
-	ratingsStatsTotalScore INTEGER
+	ratingsStatsTotalScore INTEGER,
+	privateAssetEntrySet BOOLEAN
 );

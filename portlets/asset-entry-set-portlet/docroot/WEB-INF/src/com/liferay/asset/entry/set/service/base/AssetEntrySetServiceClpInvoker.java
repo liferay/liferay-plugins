@@ -34,11 +34,13 @@ public class AssetEntrySetServiceClpInvoker {
 
 		_methodName54 = "addAssetEntrySet";
 
-		_methodParameterTypes54 = new String[] { "long", "java.lang.String" };
+		_methodParameterTypes54 = new String[] {
+				"long", "java.lang.String", "boolean"
+			};
 
 		_methodName55 = "addAssetEntrySet";
 
-		_methodParameterTypes55 = new String[] { "java.lang.String" };
+		_methodParameterTypes55 = new String[] { "java.lang.String", "boolean" };
 
 		_methodName56 = "getAssetEntrySets";
 
@@ -70,12 +72,14 @@ public class AssetEntrySetServiceClpInvoker {
 		if (_methodName54.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes54, parameterTypes)) {
 			return AssetEntrySetServiceUtil.addAssetEntrySet(((Long)arguments[0]).longValue(),
-				(java.lang.String)arguments[1]);
+				(java.lang.String)arguments[1],
+				((Boolean)arguments[2]).booleanValue());
 		}
 
 		if (_methodName55.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes55, parameterTypes)) {
-			return AssetEntrySetServiceUtil.addAssetEntrySet((java.lang.String)arguments[0]);
+			return AssetEntrySetServiceUtil.addAssetEntrySet((java.lang.String)arguments[0],
+				((Boolean)arguments[1]).booleanValue());
 		}
 
 		if (_methodName56.equals(name) &&

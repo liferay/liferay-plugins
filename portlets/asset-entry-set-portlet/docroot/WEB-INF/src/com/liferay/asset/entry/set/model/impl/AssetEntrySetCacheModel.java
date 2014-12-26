@@ -36,7 +36,7 @@ public class AssetEntrySetCacheModel implements CacheModel<AssetEntrySet>,
 	Externalizable {
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(25);
+		StringBundler sb = new StringBundler(27);
 
 		sb.append("{assetEntrySetId=");
 		sb.append(assetEntrySetId);
@@ -62,6 +62,8 @@ public class AssetEntrySetCacheModel implements CacheModel<AssetEntrySet>,
 		sb.append(childAssetEntrySetsCount);
 		sb.append(", ratingsStatsTotalScore=");
 		sb.append(ratingsStatsTotalScore);
+		sb.append(", privateAssetEntrySet=");
+		sb.append(privateAssetEntrySet);
 		sb.append("}");
 
 		return sb.toString();
@@ -90,6 +92,7 @@ public class AssetEntrySetCacheModel implements CacheModel<AssetEntrySet>,
 
 		assetEntrySetImpl.setChildAssetEntrySetsCount(childAssetEntrySetsCount);
 		assetEntrySetImpl.setRatingsStatsTotalScore(ratingsStatsTotalScore);
+		assetEntrySetImpl.setPrivateAssetEntrySet(privateAssetEntrySet);
 
 		assetEntrySetImpl.resetOriginalValues();
 
@@ -110,6 +113,7 @@ public class AssetEntrySetCacheModel implements CacheModel<AssetEntrySet>,
 		payload = objectInput.readUTF();
 		childAssetEntrySetsCount = objectInput.readInt();
 		ratingsStatsTotalScore = objectInput.readInt();
+		privateAssetEntrySet = objectInput.readBoolean();
 	}
 
 	@Override
@@ -134,6 +138,7 @@ public class AssetEntrySetCacheModel implements CacheModel<AssetEntrySet>,
 
 		objectOutput.writeInt(childAssetEntrySetsCount);
 		objectOutput.writeInt(ratingsStatsTotalScore);
+		objectOutput.writeBoolean(privateAssetEntrySet);
 	}
 
 	public long assetEntrySetId;
@@ -148,4 +153,5 @@ public class AssetEntrySetCacheModel implements CacheModel<AssetEntrySet>,
 	public String payload;
 	public int childAssetEntrySetsCount;
 	public int ratingsStatsTotalScore;
+	public boolean privateAssetEntrySet;
 }

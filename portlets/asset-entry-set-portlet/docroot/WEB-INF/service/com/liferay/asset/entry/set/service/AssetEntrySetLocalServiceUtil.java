@@ -278,31 +278,45 @@ public class AssetEntrySetLocalServiceUtil {
 	}
 
 	public static com.liferay.asset.entry.set.model.AssetEntrySet addAssetEntrySet(
-		long userId, com.liferay.portal.kernel.json.JSONObject payloadJSONObject)
+		long userId,
+		com.liferay.portal.kernel.json.JSONObject payloadJSONObject,
+		boolean privateAssetEntrySet)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return getService().addAssetEntrySet(userId, payloadJSONObject);
+		return getService()
+				   .addAssetEntrySet(userId, payloadJSONObject,
+			privateAssetEntrySet);
 	}
 
 	public static com.liferay.asset.entry.set.model.AssetEntrySet addAssetEntrySet(
 		long userId, long parentAssetEntrySetId,
-		com.liferay.portal.kernel.json.JSONObject payloadJSONObject)
+		com.liferay.portal.kernel.json.JSONObject payloadJSONObject,
+		boolean privateAssetEntrySet)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService()
 				   .addAssetEntrySet(userId, parentAssetEntrySetId,
-			payloadJSONObject);
+			payloadJSONObject, privateAssetEntrySet);
 	}
 
 	public static com.liferay.asset.entry.set.model.AssetEntrySet addAssetEntrySet(
 		long userId, long parentAssetEntrySetId, long creatorClassNameId,
 		long creatorClassPK,
-		com.liferay.portal.kernel.json.JSONObject payloadJSONObject)
+		com.liferay.portal.kernel.json.JSONObject payloadJSONObject,
+		boolean privateAssetEntrySet)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService()
 				   .addAssetEntrySet(userId, parentAssetEntrySetId,
-			creatorClassNameId, creatorClassPK, payloadJSONObject);
+			creatorClassNameId, creatorClassPK, payloadJSONObject,
+			privateAssetEntrySet);
+	}
+
+	public static java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> getAssetEntrySets(
+		long userId, int start, int end)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService().getAssetEntrySets(userId, start, end);
 	}
 
 	public static java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> getAssetEntrySets(
@@ -315,38 +329,48 @@ public class AssetEntrySetLocalServiceUtil {
 	}
 
 	public static java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> getAssetEntrySets(
-		long creatorClassNameId, long creatorClassPK,
+		long userId, long creatorClassNameId, long creatorClassPK,
 		java.lang.String assetTagName, boolean andOperator, int start, int end)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService()
-				   .getAssetEntrySets(creatorClassNameId, creatorClassPK,
-			assetTagName, andOperator, start, end);
+				   .getAssetEntrySets(userId, creatorClassNameId,
+			creatorClassPK, assetTagName, andOperator, start, end);
 	}
 
 	public static java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> getAssetEntrySets(
-		long creatorClassNameId, java.lang.String assetTagName, int start,
-		int end)
+		long userId, long creatorClassNameId, java.lang.String assetTagName,
+		int start, int end)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService()
-				   .getAssetEntrySets(creatorClassNameId, assetTagName, start,
-			end);
+				   .getAssetEntrySets(userId, creatorClassNameId, assetTagName,
+			start, end);
 	}
 
-	public static int getAssetEntrySetsCount(long creatorClassNameId,
-		long creatorClassPK, java.lang.String assetTagName, boolean andOperator)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getService()
-				   .getAssetEntrySetsCount(creatorClassNameId, creatorClassPK,
-			assetTagName, andOperator);
+	public static int getAssetEntrySetsCount(long userId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService().getAssetEntrySetsCount(userId);
 	}
 
-	public static int getAssetEntrySetsCount(long creatorClassNameId,
-		java.lang.String assetTagName)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static int getAssetEntrySetsCount(long userId,
+		long creatorClassNameId, long creatorClassPK,
+		java.lang.String assetTagName, boolean andOperator)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
 		return getService()
-				   .getAssetEntrySetsCount(creatorClassNameId, assetTagName);
+				   .getAssetEntrySetsCount(userId, creatorClassNameId,
+			creatorClassPK, assetTagName, andOperator);
+	}
+
+	public static int getAssetEntrySetsCount(long userId,
+		long creatorClassNameId, java.lang.String assetTagName)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService()
+				   .getAssetEntrySetsCount(userId, creatorClassNameId,
+			assetTagName);
 	}
 
 	public static java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> getChildAssetEntrySets(
@@ -381,11 +405,13 @@ public class AssetEntrySetLocalServiceUtil {
 
 	public static com.liferay.asset.entry.set.model.AssetEntrySet updateAssetEntrySet(
 		long assetEntrySetId,
-		com.liferay.portal.kernel.json.JSONObject payloadJSONObject)
+		com.liferay.portal.kernel.json.JSONObject payloadJSONObject,
+		boolean privateAssetEntrySet)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService()
-				   .updateAssetEntrySet(assetEntrySetId, payloadJSONObject);
+				   .updateAssetEntrySet(assetEntrySetId, payloadJSONObject,
+			privateAssetEntrySet);
 	}
 
 	public static com.liferay.asset.entry.set.model.AssetEntrySet updateChildAssetEntrySetsCount(

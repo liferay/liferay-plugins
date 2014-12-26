@@ -34,11 +34,13 @@ public class AssetEntrySetServiceClp implements AssetEntrySetService {
 
 		_methodName3 = "addAssetEntrySet";
 
-		_methodParameterTypes3 = new String[] { "long", "java.lang.String" };
+		_methodParameterTypes3 = new String[] {
+				"long", "java.lang.String", "boolean"
+			};
 
 		_methodName4 = "addAssetEntrySet";
 
-		_methodParameterTypes4 = new String[] { "java.lang.String" };
+		_methodParameterTypes4 = new String[] { "java.lang.String", "boolean" };
 
 		_methodName5 = "getAssetEntrySets";
 
@@ -105,7 +107,8 @@ public class AssetEntrySetServiceClp implements AssetEntrySetService {
 
 	@Override
 	public com.liferay.asset.entry.set.model.AssetEntrySet addAssetEntrySet(
-		long parentAssetEntrySetId, java.lang.String payload)
+		long parentAssetEntrySetId, java.lang.String payload,
+		boolean privateAssetEntrySet)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -116,7 +119,9 @@ public class AssetEntrySetServiceClp implements AssetEntrySetService {
 					new Object[] {
 						parentAssetEntrySetId,
 						
-					ClpSerializer.translateInput(payload)
+					ClpSerializer.translateInput(payload),
+						
+					privateAssetEntrySet
 					});
 		}
 		catch (Throwable t) {
@@ -144,7 +149,7 @@ public class AssetEntrySetServiceClp implements AssetEntrySetService {
 
 	@Override
 	public com.liferay.asset.entry.set.model.AssetEntrySet addAssetEntrySet(
-		java.lang.String payload)
+		java.lang.String payload, boolean privateAssetEntrySet)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -152,7 +157,11 @@ public class AssetEntrySetServiceClp implements AssetEntrySetService {
 		try {
 			returnObj = _invokableService.invokeMethod(_methodName4,
 					_methodParameterTypes4,
-					new Object[] { ClpSerializer.translateInput(payload) });
+					new Object[] {
+						ClpSerializer.translateInput(payload),
+						
+					privateAssetEntrySet
+					});
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);

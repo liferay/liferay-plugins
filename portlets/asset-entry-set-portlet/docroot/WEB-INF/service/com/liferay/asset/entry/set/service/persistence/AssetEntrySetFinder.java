@@ -18,20 +18,34 @@ package com.liferay.asset.entry.set.service.persistence;
  * @author Brian Wing Shun Chan
  */
 public interface AssetEntrySetFinder {
+	public int countBySharedToClassPKsMap(
+		java.util.Map<java.lang.Long, long[]> sharedToClassPKsMap)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
 	public int countByCCNI_ATN(long creatorClassNameId,
-		java.lang.String assetTagName)
+		java.lang.String assetTagName,
+		java.util.Map<java.lang.Long, long[]> sharedToClassPKsMap)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public int countByCCNI_CCPK_ATN(long creatorClassNameId,
-		long creatorClassPK, java.lang.String assetTagName, boolean andOperator)
+		long creatorClassPK, java.lang.String assetTagName,
+		java.util.Map<java.lang.Long, long[]> sharedToClassPKsMap,
+		boolean andOperator)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
+	public java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> findBySharedToClassPKsMap(
+		java.util.Map<java.lang.Long, long[]> sharedToClassPKsMap, int start,
+		int end) throws com.liferay.portal.kernel.exception.SystemException;
+
 	public java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> findByCCNI_ATN(
-		long creatorClassNameId, java.lang.String assetTagName, int start,
+		long creatorClassNameId, java.lang.String assetTagName,
+		java.util.Map<java.lang.Long, long[]> sharedToClassPKsMap, int start,
 		int end) throws com.liferay.portal.kernel.exception.SystemException;
 
 	public java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> findByCCNI_CCPK_ATN(
 		long creatorClassNameId, long creatorClassPK,
-		java.lang.String assetTagName, boolean andOperator, int start, int end)
+		java.lang.String assetTagName,
+		java.util.Map<java.lang.Long, long[]> sharedToClassPKsMap,
+		boolean andOperator, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException;
 }

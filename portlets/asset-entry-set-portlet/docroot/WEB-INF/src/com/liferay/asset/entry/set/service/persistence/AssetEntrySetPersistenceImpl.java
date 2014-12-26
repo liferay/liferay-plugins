@@ -2315,6 +2315,7 @@ public class AssetEntrySetPersistenceImpl extends BasePersistenceImpl<AssetEntry
 		assetEntrySetImpl.setPayload(assetEntrySet.getPayload());
 		assetEntrySetImpl.setChildAssetEntrySetsCount(assetEntrySet.getChildAssetEntrySetsCount());
 		assetEntrySetImpl.setRatingsStatsTotalScore(assetEntrySet.getRatingsStatsTotalScore());
+		assetEntrySetImpl.setPrivateAssetEntrySet(assetEntrySet.isPrivateAssetEntrySet());
 
 		return assetEntrySetImpl;
 	}

@@ -63,11 +63,11 @@ import java.rmi.RemoteException;
  */
 public class AssetEntrySetServiceSoap {
 	public static com.liferay.asset.entry.set.model.AssetEntrySetSoap addAssetEntrySet(
-		long parentAssetEntrySetId, java.lang.String payload)
-		throws RemoteException {
+		long parentAssetEntrySetId, java.lang.String payload,
+		boolean privateAssetEntrySet) throws RemoteException {
 		try {
 			com.liferay.asset.entry.set.model.AssetEntrySet returnValue = AssetEntrySetServiceUtil.addAssetEntrySet(parentAssetEntrySetId,
-					payload);
+					payload, privateAssetEntrySet);
 
 			return com.liferay.asset.entry.set.model.AssetEntrySetSoap.toSoapModel(returnValue);
 		}
@@ -79,9 +79,11 @@ public class AssetEntrySetServiceSoap {
 	}
 
 	public static com.liferay.asset.entry.set.model.AssetEntrySetSoap addAssetEntrySet(
-		java.lang.String payload) throws RemoteException {
+		java.lang.String payload, boolean privateAssetEntrySet)
+		throws RemoteException {
 		try {
-			com.liferay.asset.entry.set.model.AssetEntrySet returnValue = AssetEntrySetServiceUtil.addAssetEntrySet(payload);
+			com.liferay.asset.entry.set.model.AssetEntrySet returnValue = AssetEntrySetServiceUtil.addAssetEntrySet(payload,
+					privateAssetEntrySet);
 
 			return com.liferay.asset.entry.set.model.AssetEntrySetSoap.toSoapModel(returnValue);
 		}

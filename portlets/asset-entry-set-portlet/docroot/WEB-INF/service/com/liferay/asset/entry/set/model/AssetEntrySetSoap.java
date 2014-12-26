@@ -42,6 +42,7 @@ public class AssetEntrySetSoap implements Serializable {
 		soapModel.setPayload(model.getPayload());
 		soapModel.setChildAssetEntrySetsCount(model.getChildAssetEntrySetsCount());
 		soapModel.setRatingsStatsTotalScore(model.getRatingsStatsTotalScore());
+		soapModel.setPrivateAssetEntrySet(model.getPrivateAssetEntrySet());
 
 		return soapModel;
 	}
@@ -190,6 +191,18 @@ public class AssetEntrySetSoap implements Serializable {
 		_ratingsStatsTotalScore = ratingsStatsTotalScore;
 	}
 
+	public boolean getPrivateAssetEntrySet() {
+		return _privateAssetEntrySet;
+	}
+
+	public boolean isPrivateAssetEntrySet() {
+		return _privateAssetEntrySet;
+	}
+
+	public void setPrivateAssetEntrySet(boolean privateAssetEntrySet) {
+		_privateAssetEntrySet = privateAssetEntrySet;
+	}
+
 	private long _assetEntrySetId;
 	private long _companyId;
 	private long _userId;
@@ -202,4 +215,5 @@ public class AssetEntrySetSoap implements Serializable {
 	private String _payload;
 	private int _childAssetEntrySetsCount;
 	private int _ratingsStatsTotalScore;
+	private boolean _privateAssetEntrySet;
 }

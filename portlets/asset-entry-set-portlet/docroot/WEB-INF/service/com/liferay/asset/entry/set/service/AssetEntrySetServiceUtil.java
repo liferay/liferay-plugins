@@ -64,17 +64,20 @@ public class AssetEntrySetServiceUtil {
 	}
 
 	public static com.liferay.asset.entry.set.model.AssetEntrySet addAssetEntrySet(
-		long parentAssetEntrySetId, java.lang.String payload)
+		long parentAssetEntrySetId, java.lang.String payload,
+		boolean privateAssetEntrySet)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return getService().addAssetEntrySet(parentAssetEntrySetId, payload);
+		return getService()
+				   .addAssetEntrySet(parentAssetEntrySetId, payload,
+			privateAssetEntrySet);
 	}
 
 	public static com.liferay.asset.entry.set.model.AssetEntrySet addAssetEntrySet(
-		java.lang.String payload)
+		java.lang.String payload, boolean privateAssetEntrySet)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return getService().addAssetEntrySet(payload);
+		return getService().addAssetEntrySet(payload, privateAssetEntrySet);
 	}
 
 	public static java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> getAssetEntrySets(

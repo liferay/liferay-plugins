@@ -21,6 +21,7 @@
 			<basic name="payload" />
 			<basic name="childAssetEntrySetsCount" />
 			<basic name="ratingsStatsTotalScore" />
+			<basic name="privateAssetEntrySet" />
 			<transient name="modelAttributes" />
 			<transient name="primaryKey" />
 			<transient name="primaryKeyObj" />

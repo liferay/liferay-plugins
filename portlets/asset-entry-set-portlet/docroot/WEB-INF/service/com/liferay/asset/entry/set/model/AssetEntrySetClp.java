@@ -86,6 +86,7 @@ public class AssetEntrySetClp extends BaseModelImpl<AssetEntrySet>
 		attributes.put("payload", getPayload());
 		attributes.put("childAssetEntrySetsCount", getChildAssetEntrySetsCount());
 		attributes.put("ratingsStatsTotalScore", getRatingsStatsTotalScore());
+		attributes.put("privateAssetEntrySet", getPrivateAssetEntrySet());
 
 		return attributes;
 	}
@@ -165,6 +166,13 @@ public class AssetEntrySetClp extends BaseModelImpl<AssetEntrySet>
 
 		if (ratingsStatsTotalScore != null) {
 			setRatingsStatsTotalScore(ratingsStatsTotalScore);
+		}
+
+		Boolean privateAssetEntrySet = (Boolean)attributes.get(
+				"privateAssetEntrySet");
+
+		if (privateAssetEntrySet != null) {
+			setPrivateAssetEntrySet(privateAssetEntrySet);
 		}
 	}
 
@@ -460,6 +468,35 @@ public class AssetEntrySetClp extends BaseModelImpl<AssetEntrySet>
 	}
 
 	@Override
+	public boolean getPrivateAssetEntrySet() {
+		return _privateAssetEntrySet;
+	}
+
+	@Override
+	public boolean isPrivateAssetEntrySet() {
+		return _privateAssetEntrySet;
+	}
+
+	@Override
+	public void setPrivateAssetEntrySet(boolean privateAssetEntrySet) {
+		_privateAssetEntrySet = privateAssetEntrySet;
+
+		if (_assetEntrySetRemoteModel != null) {
+			try {
+				Class<?> clazz = _assetEntrySetRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setPrivateAssetEntrySet",
+						boolean.class);
+
+				method.invoke(_assetEntrySetRemoteModel, privateAssetEntrySet);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
+	}
+
+	@Override
 	public com.liferay.portal.kernel.json.JSONObject getCreator() {
 		try {
 			String methodName = "getCreator";
@@ -579,6 +616,7 @@ public class AssetEntrySetClp extends BaseModelImpl<AssetEntrySet>
 		clone.setPayload(getPayload());
 		clone.setChildAssetEntrySetsCount(getChildAssetEntrySetsCount());
 		clone.setRatingsStatsTotalScore(getRatingsStatsTotalScore());
+		clone.setPrivateAssetEntrySet(getPrivateAssetEntrySet());
 
 		return clone;
 	}
@@ -639,7 +677,7 @@ public class AssetEntrySetClp extends BaseModelImpl<AssetEntrySet>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(25);
+		StringBundler sb = new StringBundler(27);
 
 		sb.append("{assetEntrySetId=");
 		sb.append(getAssetEntrySetId());
@@ -665,6 +703,8 @@ public class AssetEntrySetClp extends BaseModelImpl<AssetEntrySet>
 		sb.append(getChildAssetEntrySetsCount());
 		sb.append(", ratingsStatsTotalScore=");
 		sb.append(getRatingsStatsTotalScore());
+		sb.append(", privateAssetEntrySet=");
+		sb.append(getPrivateAssetEntrySet());
 		sb.append("}");
 
 		return sb.toString();
@@ -672,7 +712,7 @@ public class AssetEntrySetClp extends BaseModelImpl<AssetEntrySet>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(40);
+		StringBundler sb = new StringBundler(43);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.asset.entry.set.model.AssetEntrySet");
@@ -726,6 +766,10 @@ public class AssetEntrySetClp extends BaseModelImpl<AssetEntrySet>
 			"<column><column-name>ratingsStatsTotalScore</column-name><column-value><![CDATA[");
 		sb.append(getRatingsStatsTotalScore());
 		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>privateAssetEntrySet</column-name><column-value><![CDATA[");
+		sb.append(getPrivateAssetEntrySet());
+		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
 
@@ -745,6 +789,7 @@ public class AssetEntrySetClp extends BaseModelImpl<AssetEntrySet>
 	private String _payload;
 	private int _childAssetEntrySetsCount;
 	private int _ratingsStatsTotalScore;
+	private boolean _privateAssetEntrySet;
 	private BaseModel<?> _assetEntrySetRemoteModel;
 	private Class<?> _clpSerializerClass = com.liferay.asset.entry.set.service.ClpSerializer.class;
 }

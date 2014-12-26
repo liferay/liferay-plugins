@@ -242,6 +242,27 @@ public interface AssetEntrySetModel extends BaseModel<AssetEntrySet> {
 	 */
 	public void setRatingsStatsTotalScore(int ratingsStatsTotalScore);
 
+	/**
+	 * Returns the private asset entry set of this asset entry set.
+	 *
+	 * @return the private asset entry set of this asset entry set
+	 */
+	public boolean getPrivateAssetEntrySet();
+
+	/**
+	 * Returns <code>true</code> if this asset entry set is private asset entry set.
+	 *
+	 * @return <code>true</code> if this asset entry set is private asset entry set; <code>false</code> otherwise
+	 */
+	public boolean isPrivateAssetEntrySet();
+
+	/**
+	 * Sets whether this asset entry set is private asset entry set.
+	 *
+	 * @param privateAssetEntrySet the private asset entry set of this asset entry set
+	 */
+	public void setPrivateAssetEntrySet(boolean privateAssetEntrySet);
+
 	@Override
 	public boolean isNew();
 

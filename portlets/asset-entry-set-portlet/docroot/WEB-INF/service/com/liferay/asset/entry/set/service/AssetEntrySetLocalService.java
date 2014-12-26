@@ -257,20 +257,30 @@ public interface AssetEntrySetLocalService extends BaseLocalService,
 		throws java.lang.Throwable;
 
 	public com.liferay.asset.entry.set.model.AssetEntrySet addAssetEntrySet(
-		long userId, com.liferay.portal.kernel.json.JSONObject payloadJSONObject)
+		long userId,
+		com.liferay.portal.kernel.json.JSONObject payloadJSONObject,
+		boolean privateAssetEntrySet)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
 	public com.liferay.asset.entry.set.model.AssetEntrySet addAssetEntrySet(
 		long userId, long parentAssetEntrySetId,
-		com.liferay.portal.kernel.json.JSONObject payloadJSONObject)
+		com.liferay.portal.kernel.json.JSONObject payloadJSONObject,
+		boolean privateAssetEntrySet)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
 	public com.liferay.asset.entry.set.model.AssetEntrySet addAssetEntrySet(
 		long userId, long parentAssetEntrySetId, long creatorClassNameId,
 		long creatorClassPK,
-		com.liferay.portal.kernel.json.JSONObject payloadJSONObject)
+		com.liferay.portal.kernel.json.JSONObject payloadJSONObject,
+		boolean privateAssetEntrySet)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> getAssetEntrySets(
+		long userId, int start, int end)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
@@ -282,27 +292,34 @@ public interface AssetEntrySetLocalService extends BaseLocalService,
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> getAssetEntrySets(
-		long creatorClassNameId, long creatorClassPK,
+		long userId, long creatorClassNameId, long creatorClassPK,
 		java.lang.String assetTagName, boolean andOperator, int start, int end)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> getAssetEntrySets(
-		long creatorClassNameId, java.lang.String assetTagName, int start,
-		int end)
+		long userId, long creatorClassNameId, java.lang.String assetTagName,
+		int start, int end)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int getAssetEntrySetsCount(long creatorClassNameId,
-		long creatorClassPK, java.lang.String assetTagName, boolean andOperator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public int getAssetEntrySetsCount(long userId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int getAssetEntrySetsCount(long creatorClassNameId,
+	public int getAssetEntrySetsCount(long userId, long creatorClassNameId,
+		long creatorClassPK, java.lang.String assetTagName, boolean andOperator)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public int getAssetEntrySetsCount(long userId, long creatorClassNameId,
 		java.lang.String assetTagName)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> getChildAssetEntrySets(
@@ -327,7 +344,8 @@ public interface AssetEntrySetLocalService extends BaseLocalService,
 
 	public com.liferay.asset.entry.set.model.AssetEntrySet updateAssetEntrySet(
 		long assetEntrySetId,
-		com.liferay.portal.kernel.json.JSONObject payloadJSONObject)
+		com.liferay.portal.kernel.json.JSONObject payloadJSONObject,
+		boolean privateAssetEntrySet)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 

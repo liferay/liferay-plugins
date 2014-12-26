@@ -76,9 +76,10 @@ public class AssetEntrySetModelImpl extends BaseModelImpl<AssetEntrySet>
 			{ "creatorClassPK", Types.BIGINT },
 			{ "payload", Types.VARCHAR },
 			{ "childAssetEntrySetsCount", Types.INTEGER },
-			{ "ratingsStatsTotalScore", Types.INTEGER }
+			{ "ratingsStatsTotalScore", Types.INTEGER },
+			{ "privateAssetEntrySet", Types.BOOLEAN }
 		};
-	public static final String TABLE_SQL_CREATE = "create table AssetEntrySet (assetEntrySetId LONG not null primary key,companyId LONG,userId LONG,createTime LONG,modifiedTime LONG,assetEntryId LONG,parentAssetEntrySetId LONG,creatorClassNameId LONG,creatorClassPK LONG,payload STRING null,childAssetEntrySetsCount INTEGER,ratingsStatsTotalScore INTEGER)";
+	public static final String TABLE_SQL_CREATE = "create table AssetEntrySet (assetEntrySetId LONG not null primary key,companyId LONG,userId LONG,createTime LONG,modifiedTime LONG,assetEntryId LONG,parentAssetEntrySetId LONG,creatorClassNameId LONG,creatorClassPK LONG,payload STRING null,childAssetEntrySetsCount INTEGER,ratingsStatsTotalScore INTEGER,privateAssetEntrySet BOOLEAN)";
 	public static final String TABLE_SQL_DROP = "drop table AssetEntrySet";
 	public static final String ORDER_BY_JPQL = " ORDER BY assetEntrySet.createTime DESC";
 	public static final String ORDER_BY_SQL = " ORDER BY AssetEntrySet.createTime DESC";
@@ -124,6 +125,7 @@ public class AssetEntrySetModelImpl extends BaseModelImpl<AssetEntrySet>
 		model.setPayload(soapModel.getPayload());
 		model.setChildAssetEntrySetsCount(soapModel.getChildAssetEntrySetsCount());
 		model.setRatingsStatsTotalScore(soapModel.getRatingsStatsTotalScore());
+		model.setPrivateAssetEntrySet(soapModel.getPrivateAssetEntrySet());
 
 		return model;
 	}
@@ -200,6 +202,7 @@ public class AssetEntrySetModelImpl extends BaseModelImpl<AssetEntrySet>
 		attributes.put("payload", getPayload());
 		attributes.put("childAssetEntrySetsCount", getChildAssetEntrySetsCount());
 		attributes.put("ratingsStatsTotalScore", getRatingsStatsTotalScore());
+		attributes.put("privateAssetEntrySet", getPrivateAssetEntrySet());
 
 		return attributes;
 	}
@@ -279,6 +282,13 @@ public class AssetEntrySetModelImpl extends BaseModelImpl<AssetEntrySet>
 
 		if (ratingsStatsTotalScore != null) {
 			setRatingsStatsTotalScore(ratingsStatsTotalScore);
+		}
+
+		Boolean privateAssetEntrySet = (Boolean)attributes.get(
+				"privateAssetEntrySet");
+
+		if (privateAssetEntrySet != null) {
+			setPrivateAssetEntrySet(privateAssetEntrySet);
 		}
 	}
 
@@ -477,6 +487,22 @@ public class AssetEntrySetModelImpl extends BaseModelImpl<AssetEntrySet>
 		_ratingsStatsTotalScore = ratingsStatsTotalScore;
 	}
 
+	@JSON
+	@Override
+	public boolean getPrivateAssetEntrySet() {
+		return _privateAssetEntrySet;
+	}
+
+	@Override
+	public boolean isPrivateAssetEntrySet() {
+		return _privateAssetEntrySet;
+	}
+
+	@Override
+	public void setPrivateAssetEntrySet(boolean privateAssetEntrySet) {
+		_privateAssetEntrySet = privateAssetEntrySet;
+	}
+
 	public long getColumnBitmask() {
 		return _columnBitmask;
 	}
@@ -520,6 +546,7 @@ public class AssetEntrySetModelImpl extends BaseModelImpl<AssetEntrySet>
 		assetEntrySetImpl.setPayload(getPayload());
 		assetEntrySetImpl.setChildAssetEntrySetsCount(getChildAssetEntrySetsCount());
 		assetEntrySetImpl.setRatingsStatsTotalScore(getRatingsStatsTotalScore());
+		assetEntrySetImpl.setPrivateAssetEntrySet(getPrivateAssetEntrySet());
 
 		assetEntrySetImpl.resetOriginalValues();
 
@@ -633,12 +660,14 @@ public class AssetEntrySetModelImpl extends BaseModelImpl<AssetEntrySet>
 
 		assetEntrySetCacheModel.ratingsStatsTotalScore = getRatingsStatsTotalScore();
 
+		assetEntrySetCacheModel.privateAssetEntrySet = getPrivateAssetEntrySet();
+
 		return assetEntrySetCacheModel;
 	}
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(25);
+		StringBundler sb = new StringBundler(27);
 
 		sb.append("{assetEntrySetId=");
 		sb.append(getAssetEntrySetId());
@@ -664,6 +693,8 @@ public class AssetEntrySetModelImpl extends BaseModelImpl<AssetEntrySet>
 		sb.append(getChildAssetEntrySetsCount());
 		sb.append(", ratingsStatsTotalScore=");
 		sb.append(getRatingsStatsTotalScore());
+		sb.append(", privateAssetEntrySet=");
+		sb.append(getPrivateAssetEntrySet());
 		sb.append("}");
 
 		return sb.toString();
@@ -671,7 +702,7 @@ public class AssetEntrySetModelImpl extends BaseModelImpl<AssetEntrySet>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(40);
+		StringBundler sb = new StringBundler(43);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.asset.entry.set.model.AssetEntrySet");
@@ -725,6 +756,10 @@ public class AssetEntrySetModelImpl extends BaseModelImpl<AssetEntrySet>
 			"<column><column-name>ratingsStatsTotalScore</column-name><column-value><![CDATA[");
 		sb.append(getRatingsStatsTotalScore());
 		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>privateAssetEntrySet</column-name><column-value><![CDATA[");
+		sb.append(getPrivateAssetEntrySet());
+		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
 
@@ -756,6 +791,7 @@ public class AssetEntrySetModelImpl extends BaseModelImpl<AssetEntrySet>
 	private String _payload;
 	private int _childAssetEntrySetsCount;
 	private int _ratingsStatsTotalScore;
+	private boolean _privateAssetEntrySet;
 	private long _columnBitmask;
 	private AssetEntrySet _escapedModel;
 }
