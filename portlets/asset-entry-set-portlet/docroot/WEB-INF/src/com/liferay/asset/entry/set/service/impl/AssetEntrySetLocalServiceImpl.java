@@ -176,7 +176,7 @@ public class AssetEntrySetLocalServiceImpl
 
 		List<AssetEntrySet> assetEntrySets =
 			assetEntrySetFinder.findByCCNI_CCPK_ATN(
-				creatorClassNameId, creatorClassPK, userId, assetTagName,
+				creatorClassNameId, creatorClassPK, assetTagName,
 				sharedToClassPKsMap, andOperator, start, end);
 
 		setCreatorJSONObjects(assetEntrySets);
@@ -194,8 +194,7 @@ public class AssetEntrySetLocalServiceImpl
 			AssetSharingUtil.getSharedToClassPKsMap(userId);
 
 		List<AssetEntrySet> assetEntrySets = assetEntrySetFinder.findByCCNI_ATN(
-			creatorClassNameId, userId, assetTagName, sharedToClassPKsMap,
-			start, end);
+			creatorClassNameId, assetTagName, sharedToClassPKsMap, start, end);
 
 		setCreatorJSONObjects(assetEntrySets);
 
@@ -204,8 +203,8 @@ public class AssetEntrySetLocalServiceImpl
 
 	@Override
 	public List<AssetEntrySet> getAssetEntrySets(
-			long userId, Map<Long, long[]> sharedToClassPKsMap,
-			boolean showSelfPost, int start, int end)
+			long userId, Map<Long, long[]> sharedToClassPKsMap, int start,
+			int end)
 		throws PortalException, SystemException {
 
 		if ((sharedToClassPKsMap == null) || sharedToClassPKsMap.isEmpty()) {
@@ -214,7 +213,7 @@ public class AssetEntrySetLocalServiceImpl
 		}
 
 		return assetEntrySetFinder.findByUserId(
-			userId, sharedToClassPKsMap, showSelfPost, start, end);
+			sharedToClassPKsMap, start, end);
 	}
 
 	@Override
@@ -227,7 +226,7 @@ public class AssetEntrySetLocalServiceImpl
 			AssetSharingUtil.getSharedToClassPKsMap(userId);
 
 		return assetEntrySetFinder.countByCCNI_CCPK_ATN(
-			creatorClassNameId, creatorClassPK, userId, assetTagName,
+			creatorClassNameId, creatorClassPK, assetTagName,
 			sharedToClassPKsMap, andOperator);
 	}
 
@@ -240,13 +239,12 @@ public class AssetEntrySetLocalServiceImpl
 			AssetSharingUtil.getSharedToClassPKsMap(userId);
 
 		return assetEntrySetFinder.countByCCNI_ATN(
-			creatorClassNameId, userId, assetTagName, sharedToClassPKsMap);
+			creatorClassNameId, assetTagName, sharedToClassPKsMap);
 	}
 
 	@Override
 	public int getAssetEntrySetsCount(
-			long userId, Map<Long, long[]> sharedToClassPKsMap,
-			boolean showSelfPost)
+			long userId, Map<Long, long[]> sharedToClassPKsMap)
 		throws PortalException, SystemException {
 
 		if ((sharedToClassPKsMap == null) || sharedToClassPKsMap.isEmpty()) {
@@ -254,8 +252,7 @@ public class AssetEntrySetLocalServiceImpl
 				userId);
 		}
 
-		return assetEntrySetFinder.countByUserId(
-			userId, sharedToClassPKsMap, showSelfPost);
+		return assetEntrySetFinder.countByUserId(sharedToClassPKsMap);
 	}
 
 	@Override
