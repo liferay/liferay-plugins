@@ -120,11 +120,11 @@ public class AssetEntrySetLocalServiceImpl
 		Map<Long, long[]> sharedToClassPKsMap = getSharedToClassPKsMap(
 			payloadJSONObject);
 
-		if ((sharedToClassPKsMap != null) && !sharedToClassPKsMap.isEmpty()) {
-			AssetSharingEntryLocalServiceUtil.addAssetSharingEntries(
-				_ASSET_ENTRY_SET_CLASS_NAME_ID, assetEntrySetId,
-				sharedToClassPKsMap);
-		}
+		sharedToClassPKsMap = shareToUser(sharedToClassPKsMap, userId);
+
+		AssetSharingEntryLocalServiceUtil.addAssetSharingEntries(
+			_ASSET_ENTRY_SET_CLASS_NAME_ID, assetEntrySetId,
+			sharedToClassPKsMap);
 
 		return assetEntrySet;
 	}
@@ -323,14 +323,15 @@ public class AssetEntrySetLocalServiceImpl
 		Map<Long, long[]> sharedToClassPKsMap = getSharedToClassPKsMap(
 			payloadJSONObject);
 
-		if ((sharedToClassPKsMap != null) && !sharedToClassPKsMap.isEmpty()) {
-			AssetSharingEntryLocalServiceUtil.deleteAssetSharingEntries(
-				_ASSET_ENTRY_SET_CLASS_NAME_ID, assetEntrySetId);
+		AssetSharingEntryLocalServiceUtil.deleteAssetSharingEntries(
+			_ASSET_ENTRY_SET_CLASS_NAME_ID, assetEntrySetId);
 
-			AssetSharingEntryLocalServiceUtil.addAssetSharingEntries(
-				_ASSET_ENTRY_SET_CLASS_NAME_ID, assetEntrySetId,
-				sharedToClassPKsMap);
-		}
+		sharedToClassPKsMap = shareToUser(
+			sharedToClassPKsMap, assetEntrySet.getUserId());
+
+		AssetSharingEntryLocalServiceUtil.addAssetSharingEntries(
+			_ASSET_ENTRY_SET_CLASS_NAME_ID, assetEntrySetId,
+			sharedToClassPKsMap);
 
 		return assetEntrySet;
 	}
@@ -468,6 +469,29 @@ public class AssetEntrySetLocalServiceImpl
 		for (AssetEntrySet assetEntrySet : assetEntrySets) {
 			setCreatorJSONObject(assetEntrySet);
 		}
+	}
+
+	protected Map<Long, long[]> shareToUser(
+		Map<Long, long[]> sharedToClassPKsMap, long userId) {
+
+		if (sharedToClassPKsMap == null) {
+			sharedToClassPKsMap = new LinkedHashMap<Long, long[]>();
+		}
+
+		long userClassNameId = classNameLocalService.getClassNameId(User.class);
+
+		long[] sharedToUserIds = sharedToClassPKsMap.get(userClassNameId);
+
+		if (sharedToUserIds == null) {
+			sharedToClassPKsMap.put(userClassNameId, new long[] {userId});
+		}
+		else if (!ArrayUtil.contains(sharedToUserIds, userId)) {
+			ArrayUtil.append(sharedToUserIds, userId);
+
+			sharedToClassPKsMap.put(userClassNameId, sharedToUserIds);
+		}
+
+		return sharedToClassPKsMap;
 	}
 
 	protected void updateAssetEntry(
