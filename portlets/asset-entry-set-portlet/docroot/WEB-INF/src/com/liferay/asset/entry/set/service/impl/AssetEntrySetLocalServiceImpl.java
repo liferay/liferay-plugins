@@ -18,12 +18,15 @@ import com.liferay.asset.entry.set.model.AssetEntrySet;
 import com.liferay.asset.entry.set.service.base.AssetEntrySetLocalServiceBaseImpl;
 import com.liferay.asset.entry.set.util.AssetEntrySetConstants;
 import com.liferay.asset.entry.set.util.AssetEntrySetManagerUtil;
+import com.liferay.asset.sharing.service.AssetSharingEntryLocalServiceUtil;
 import com.liferay.asset.sharing.util.AssetSharingUtil;
 import com.liferay.compat.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.PropsUtil;
@@ -31,13 +34,16 @@ import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.User;
 import com.liferay.portal.model.UserConstants;
+import com.liferay.portal.service.ClassNameLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.asset.model.AssetEntry;
 import com.liferay.portlet.asset.service.AssetEntryLocalServiceUtil;
 import com.liferay.portlet.ratings.model.RatingsStats;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -110,6 +116,15 @@ public class AssetEntrySetLocalServiceImpl
 			StringUtil.split(
 				payloadJSONObject.getString(
 					AssetEntrySetConstants.PAYLOAD_KEY_ASSET_TAG_NAMES)));
+
+		Map<Long, long[]> sharedToClassPKsMap = getSharedToClassPKsMap(
+			payloadJSONObject);
+
+		if ((sharedToClassPKsMap != null) && !sharedToClassPKsMap.isEmpty()) {
+			AssetSharingEntryLocalServiceUtil.addAssetSharingEntries(
+				_ASSET_ENTRY_SET_CLASS_NAME_ID, assetEntrySetId,
+				sharedToClassPKsMap);
+		}
 
 		return assetEntrySet;
 	}
@@ -305,6 +320,18 @@ public class AssetEntrySetLocalServiceImpl
 				payloadJSONObject.getString(
 					AssetEntrySetConstants.PAYLOAD_KEY_ASSET_TAG_NAMES)));
 
+		Map<Long, long[]> sharedToClassPKsMap = getSharedToClassPKsMap(
+			payloadJSONObject);
+
+		if ((sharedToClassPKsMap != null) && !sharedToClassPKsMap.isEmpty()) {
+			AssetSharingEntryLocalServiceUtil.deleteAssetSharingEntries(
+				_ASSET_ENTRY_SET_CLASS_NAME_ID, assetEntrySetId);
+
+			AssetSharingEntryLocalServiceUtil.addAssetSharingEntries(
+				_ASSET_ENTRY_SET_CLASS_NAME_ID, assetEntrySetId,
+				sharedToClassPKsMap);
+		}
+
 		return assetEntrySet;
 	}
 
@@ -329,6 +356,55 @@ public class AssetEntrySetLocalServiceImpl
 		assetEntrySetPersistence.update(assetEntrySet);
 
 		return assetEntrySet;
+	}
+
+	protected Map<Long, long[]> getSharedToClassPKsMap(
+		JSONObject payloadJSONObject) {
+
+		JSONArray sharedToClassPKsMapJsonArray = payloadJSONObject.getJSONArray(
+			AssetEntrySetConstants.PAYLOAD_KEY_SHARED_TO_CLASS_PKS_MAP);
+
+		if (sharedToClassPKsMapJsonArray == null) {
+			return null;
+		}
+
+		Map<Long, List<Long>> tempMap = new LinkedHashMap<Long, List<Long>>();
+
+		for (int i = 0; i < sharedToClassPKsMapJsonArray.length(); i++) {
+			JSONObject sharedToClassNameClassPKJsonObject =
+				sharedToClassPKsMapJsonArray.getJSONObject(i);
+
+			long classNameId = sharedToClassNameClassPKJsonObject.getLong(
+				"classNameId");
+			long classPK = sharedToClassNameClassPKJsonObject.getLong(
+				"classPK");
+
+			if (tempMap.containsKey(classNameId)) {
+				List<Long> classPKs = tempMap.get(classNameId);
+
+				classPKs.add(classPK);
+
+				tempMap.put(classNameId, classPKs);
+			}
+			else {
+				List<Long> classPKs = new ArrayList<Long>();
+
+				classPKs.add(classPK);
+
+				tempMap.put(classNameId, classPKs);
+			}
+		}
+
+		Map<Long, long[]> sharedToClassPKsMap =
+			new LinkedHashMap<Long, long[]>();
+
+		for (Long classNameId : tempMap.keySet()) {
+			long[] classPKs = ArrayUtil.toLongArray(tempMap.get(classNameId));
+
+			sharedToClassPKsMap.put(classNameId, classPKs);
+		}
+
+		return sharedToClassPKsMap;
 	}
 
 	protected void setCreatorJSONObject(AssetEntrySet assetEntrySet)
@@ -429,5 +505,8 @@ public class AssetEntrySetLocalServiceImpl
 
 		return assetEntrySet;
 	}
+
+	private static final long _ASSET_ENTRY_SET_CLASS_NAME_ID =
+		ClassNameLocalServiceUtil.getClassNameId(AssetEntrySet.class);
 
 }
