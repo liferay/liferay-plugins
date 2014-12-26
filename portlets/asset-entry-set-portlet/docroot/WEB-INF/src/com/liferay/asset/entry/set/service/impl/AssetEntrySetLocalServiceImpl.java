@@ -18,6 +18,7 @@ import com.liferay.asset.entry.set.model.AssetEntrySet;
 import com.liferay.asset.entry.set.service.base.AssetEntrySetLocalServiceBaseImpl;
 import com.liferay.asset.entry.set.util.AssetEntrySetConstants;
 import com.liferay.asset.entry.set.util.AssetEntrySetManagerUtil;
+import com.liferay.asset.sharing.util.AssetSharingUtil;
 import com.liferay.compat.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
@@ -38,9 +39,11 @@ import com.liferay.portlet.ratings.model.RatingsStats;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author Calvin Keum
+ * @author Sherry Yang
  */
 public class AssetEntrySetLocalServiceImpl
 	extends AssetEntrySetLocalServiceBaseImpl {
@@ -161,6 +164,21 @@ public class AssetEntrySetLocalServiceImpl
 
 	@Override
 	public List<AssetEntrySet> getAssetEntrySets(
+			long userId, Map<Long, long[]> sharedToClassPKsMap, int start,
+			int end)
+		throws PortalException, SystemException {
+
+		if ((sharedToClassPKsMap == null) || sharedToClassPKsMap.isEmpty()) {
+			sharedToClassPKsMap = AssetSharingUtil.getSharedToClassPKsMap(
+				userId);
+		}
+
+		return assetEntrySetFinder.findByUserId(
+			userId, sharedToClassPKsMap, start, end);
+	}
+
+	@Override
+	public List<AssetEntrySet> getAssetEntrySets(
 			long creatorClassNameId, String assetTagName, int start, int end)
 		throws PortalException, SystemException {
 
@@ -180,6 +198,19 @@ public class AssetEntrySetLocalServiceImpl
 
 		return assetEntrySetFinder.countByCCNI_CCPK_ATN(
 			creatorClassNameId, creatorClassPK, assetTagName, andOperator);
+	}
+
+	@Override
+	public int getAssetEntrySetsCount(
+			long userId, Map<Long, long[]> sharedToClassPKsMap)
+		throws PortalException, SystemException {
+
+		if ((sharedToClassPKsMap == null) || sharedToClassPKsMap.isEmpty()) {
+			sharedToClassPKsMap = AssetSharingUtil.getSharedToClassPKsMap(
+				userId);
+		}
+
+		return assetEntrySetFinder.countByUserId(userId, sharedToClassPKsMap);
 	}
 
 	@Override
