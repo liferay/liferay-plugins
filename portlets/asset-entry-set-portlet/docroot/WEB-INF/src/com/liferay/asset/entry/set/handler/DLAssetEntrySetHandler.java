@@ -86,6 +86,11 @@ public class DLAssetEntrySetHandler extends BaseAssetEntrySetHandler {
 		jsonObject.put("type", payload.getString("type"));
 		jsonObject.put("url", payload.getString("url"));
 
+		jsonObject.put(
+			AssetEntrySetConstants.PAYLOAD_KEY_SHARED_TO_CLASS_PKS_MAP,
+			payload.getJSONObject(
+				AssetEntrySetConstants.PAYLOAD_KEY_SHARED_TO_CLASS_PKS_MAP));
+
 		return JSONFactoryUtil.looseSerialize(jsonObject);
 	}
 

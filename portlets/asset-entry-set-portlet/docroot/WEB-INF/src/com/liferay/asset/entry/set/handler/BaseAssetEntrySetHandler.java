@@ -14,6 +14,7 @@
 
 package com.liferay.asset.entry.set.handler;
 
+import com.liferay.asset.entry.set.util.AssetEntrySetConstants;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
@@ -42,6 +43,11 @@ public class BaseAssetEntrySetHandler implements AssetEntrySetHandler {
 		jsonObject.put("message", payloadJSONObject.getString("message"));
 		jsonObject.put("type", payloadJSONObject.getString("type"));
 		jsonObject.put("url", payloadJSONObject.getString("url"));
+
+		jsonObject.put(
+			AssetEntrySetConstants.PAYLOAD_KEY_SHARED_TO_CLASS_PKS_MAP,
+			payload.getJSONObject(
+				AssetEntrySetConstants.PAYLOAD_KEY_SHARED_TO_CLASS_PKS_MAP));
 
 		return JSONFactoryUtil.looseSerialize(jsonObject);
 	}
