@@ -32,7 +32,6 @@ boolean saveToDatabase = GetterUtil.getBoolean(portletPreferences.getValue("save
 String databaseTableName = portletPreferences.getValue("databaseTableName", StringPool.BLANK);
 
 boolean saveToFile = GetterUtil.getBoolean(portletPreferences.getValue("saveToFile", StringPool.BLANK));
-String fileName = portletPreferences.getValue("fileName", StringPool.BLANK);
 
 boolean fieldsEditingDisabled = false;
 
@@ -97,7 +96,7 @@ if (WebFormUtil.getTableRowsCount(company.getCompanyId(), databaseTableName) > 0
 			<aui:fieldset cssClass="handle-data" label="file">
 				<aui:input name="preferences--saveToFile--" type="checkbox" value="<%= saveToFile %>" />
 
-				<aui:input label="path-and-file-name" name="preferences--fileName--" value="<%= fileName %>" wrapperCssClass="lfr-input-text-container" />
+				<liferay-ui:message key="<%= WebFormUtil.getFileName(themeDisplay, portletResource) %>" />
 			</aui:fieldset>
 		</liferay-ui:panel>
 

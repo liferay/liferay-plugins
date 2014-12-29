@@ -21,12 +21,17 @@ import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.LocalizationUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
+import com.liferay.portal.kernel.util.PropsKeys;
+import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.kernel.util.WebKeys;
+import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portlet.expando.DuplicateColumnNameException;
 import com.liferay.webform.util.WebFormUtil;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 
@@ -265,11 +270,33 @@ public class ConfigurationActionImpl extends DefaultConfigurationAction {
 		}
 
 		if (saveToFile) {
-			String fileName = getParameter(actionRequest, "fileName");
+			ThemeDisplay themeDisplay =
+				(ThemeDisplay)actionRequest.getAttribute(WebKeys.THEME_DISPLAY);
+
+			String portletResource = ParamUtil.getString(
+				actionRequest, "portletResource");
+
+			String fileName = WebFormUtil.getFileName(
+				themeDisplay, portletResource);
+
+			fileName = PropsUtil.get(PropsKeys.LIFERAY_HOME) + fileName;
 
 			// Check if server can create a file as specified
 
 			try {
+				File file = new File(fileName);
+
+				if (!file.exists()) {
+					int endIndex = fileName.lastIndexOf(
+						StringPool.FORWARD_SLASH);
+
+					String folderName = fileName.substring(0, endIndex);
+
+					file = new File(folderName);
+
+					file.mkdirs();
+				}
+
 				FileOutputStream fileOutputStream = new FileOutputStream(
 					fileName, true);
 
