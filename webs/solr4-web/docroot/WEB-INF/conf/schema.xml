@@ -524,8 +524,8 @@
 		<field indexed="true" multiValued="false" name="_version_" stored="true" type="long" />
 		<dynamicField indexed="true" multiValued="false" name="*_sortable" stored="true" type="string" />
 		<dynamicField indexed="true" multiValued="true" name="assetCategoryTitles*" stored="true" termPositions="true" termVectors="true" type="text" />
-		<dynamicField indexed="true" multiValued="true" name="expando__*" stored="true" type="text" />
-		<dynamicField indexed="true" multiValued="true" name="ddm__*" stored="true" type="string" />
+		<dynamicField indexed="true" multiValued="true" name="expando/*" stored="true" type="text" />
+		<dynamicField indexed="true" multiValued="true" name="ddm/*" stored="true" type="string" />
 		<dynamicField indexed="true" multiValued="true" name="*_ar" stored="true" termPositions="true" termOffsets="true" termVectors="true" type="text_ar" />
 		<dynamicField indexed="true" multiValued="true" name="*_ar_BH" stored="true" termPositions="true" termOffsets="true" termVectors="true" type="text_ar" />
 		<dynamicField indexed="true" multiValued="true" name="*_ar_DZ" stored="true" termPositions="true" termOffsets="true" termVectors="true" type="text_ar" />
