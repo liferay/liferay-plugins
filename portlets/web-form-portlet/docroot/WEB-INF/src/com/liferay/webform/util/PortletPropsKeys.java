@@ -25,6 +25,8 @@ public interface PortletPropsKeys {
 
 	public static final String EMAIL_FROM_NAME = "email.from.name";
 
+	public static final String FILE_DIRECTORY = "file.directory";
+
 	public static final String VALIDATION_SCRIPT_ENABLED =
 		"validation.script.enabled";
 
