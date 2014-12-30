@@ -27,15 +27,17 @@
 			INNER JOIN
 				AssetEntries_AssetTags ON
 					(AssetEntries_AssetTags.entryId = AssetEntry.entryId)
-			INNER JOIN
+			LEFT JOIN
 				AssetTag ON
 					(AssetTag.tagId = AssetEntries_AssetTags.tagId)
 			INNER JOIN
 				AssetSharingEntry ON
 					(AssetSharingEntry.classPK = AssetEntrySet.assetEntrySetId)
 			WHERE
-				(AssetEntrySet.creatorClassNameId = ?) AND
-				(AssetTag.name = ?) AND
+				(
+					(AssetEntrySet.creatorClassNameId = ?) [$AND_OR_CONNECTOR$]
+					(AssetTag.name = ?)
+				) AND
 				(AssetSharingEntry.classNameId = ?) AND
 				(
 					([$SHARED_TO_CLASS_PKS_MAP]) OR
@@ -104,15 +106,17 @@
 			INNER JOIN
 				AssetEntries_AssetTags ON
 					(AssetEntries_AssetTags.entryId = AssetEntry.entryId)
-			INNER JOIN
+			LEFT JOIN
 				AssetTag ON
 					(AssetTag.tagId = AssetEntries_AssetTags.tagId)
 			INNER JOIN
 				AssetSharingEntry ON
 					(AssetSharingEntry.classPK = AssetEntrySet.assetEntrySetId)
 			WHERE
-				(AssetEntrySet.creatorClassNameId = ?) AND
-				(AssetTag.name = ?) AND
+				(
+					(AssetEntrySet.creatorClassNameId = ?) [$AND_OR_CONNECTOR$]
+					(AssetTag.name = ?)
+				) AND
 				(AssetSharingEntry.classNameId = ?) AND
 				(
 					([$SHARED_TO_CLASS_PKS_MAP]) OR
