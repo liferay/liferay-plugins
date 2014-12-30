@@ -127,7 +127,7 @@ public class WebFormUtil {
 
 		StringBuffer defaultFileNameSB = new StringBuffer(8);
 
-		defaultFileNameSB.append(PortletPropsValues.FILE_DIRECTORY);
+		defaultFileNameSB.append(PortletPropsValues.DATA_ROOT_DIR);
 		defaultFileNameSB.append(StringPool.FORWARD_SLASH);
 		defaultFileNameSB.append(themeDisplay.getScopeGroupId());
 		defaultFileNameSB.append(StringPool.FORWARD_SLASH);
