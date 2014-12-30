@@ -134,8 +134,6 @@ public class WebFormPortlet extends MVCPortlet {
 		String fileName = WebFormUtil.getFileName(
 			themeDisplay, portletResource);
 
-		fileName = PropsUtil.get(PropsKeys.LIFERAY_HOME) + fileName;
-
 		if (requireCaptcha) {
 			try {
 				CaptchaUtil.check(actionRequest);

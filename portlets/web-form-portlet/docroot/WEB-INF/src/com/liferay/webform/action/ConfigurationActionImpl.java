@@ -279,8 +279,6 @@ public class ConfigurationActionImpl extends DefaultConfigurationAction {
 			String fileName = WebFormUtil.getFileName(
 				themeDisplay, portletResource);
 
-			fileName = PropsUtil.get(PropsKeys.LIFERAY_HOME) + fileName;
-
 			// Check if server can create a file as specified
 
 			try {
