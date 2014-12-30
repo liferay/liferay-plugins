@@ -31,6 +31,9 @@ public class PortletPropsValues {
 	public static final String EMAIL_FROM_NAME = GetterUtil.getString(
 		PortletProps.get(PortletPropsKeys.EMAIL_FROM_NAME));
 
+	public static final String FILE_DIRECTORY = GetterUtil.getString(
+		PortletProps.get(PortletPropsKeys.FILE_DIRECTORY));
+
 	public static final boolean VALIDATION_SCRIPT_ENABLED =
 		GetterUtil.getBoolean(
 			PortletProps.get(PortletPropsKeys.VALIDATION_SCRIPT_ENABLED));
