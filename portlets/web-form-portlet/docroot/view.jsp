@@ -28,8 +28,6 @@ String successURL = portletPreferences.getValue("successURL", StringPool.BLANK);
 </portlet:actionURL>
 
 <aui:form action="<%= saveDataURL %>" method="post" name="fm">
-	<aui:input name="portletResource" type="hidden" value="<%= portletDisplay.getId() %>" />
-
 	<c:if test="<%= Validator.isNull(successURL) %>">
 		<aui:input name="redirect" type="hidden" value="<%= currentURL %>" />
 	</c:if>

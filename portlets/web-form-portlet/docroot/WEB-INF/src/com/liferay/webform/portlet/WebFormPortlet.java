@@ -128,11 +128,8 @@ public class WebFormPortlet extends MVCPortlet {
 		boolean saveToFile = GetterUtil.getBoolean(
 			preferences.getValue("saveToFile", StringPool.BLANK));
 
-		String portletResource = ParamUtil.getString(
-			actionRequest, "portletResource");
-
 		String fileName = WebFormUtil.getFileName(
-			themeDisplay, portletResource);
+			themeDisplay, portletId);
 
 		if (requireCaptcha) {
 			try {

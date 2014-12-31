@@ -123,7 +123,7 @@ public class WebFormUtil {
 	}
 
 	public static String getFileName(
-		ThemeDisplay themeDisplay, String portletResource) {
+		ThemeDisplay themeDisplay, String portletId) {
 
 		StringBuffer defaultFileNameSB = new StringBuffer(8);
 
@@ -133,7 +133,7 @@ public class WebFormUtil {
 		defaultFileNameSB.append(StringPool.FORWARD_SLASH);
 		defaultFileNameSB.append(themeDisplay.getPlid());
 		defaultFileNameSB.append(StringPool.FORWARD_SLASH);
-		defaultFileNameSB.append(portletResource);
+		defaultFileNameSB.append(portletId);
 		defaultFileNameSB.append(".csv");
 
 		return defaultFileNameSB.toString();
