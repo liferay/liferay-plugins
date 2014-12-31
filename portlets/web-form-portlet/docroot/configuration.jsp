@@ -95,7 +95,7 @@ if (WebFormUtil.getTableRowsCount(company.getCompanyId(), databaseTableName) > 0
 			<aui:fieldset cssClass="handle-data" label="file">
 				<aui:input name="preferences--saveToFile--" type="checkbox" value="<%= saveToFile %>" />
 
-				<liferay-ui:message key="<%= WebFormUtil.getFileName(themeDisplay, portletResource) %>" />
+				<liferay-ui:message arguments="<%= HtmlUtil.escape(WebFormUtil.getFileName(themeDisplay, portletResource)) %>" key="form-data-will-be-saved-to-x" />
 			</aui:fieldset>
 		</liferay-ui:panel>
 
