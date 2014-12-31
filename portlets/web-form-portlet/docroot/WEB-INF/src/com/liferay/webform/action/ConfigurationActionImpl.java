@@ -269,45 +269,6 @@ public class ConfigurationActionImpl extends DefaultConfigurationAction {
 			}
 		}
 
-		if (saveToFile) {
-			ThemeDisplay themeDisplay =
-				(ThemeDisplay)actionRequest.getAttribute(WebKeys.THEME_DISPLAY);
-
-			String portletResource = ParamUtil.getString(
-				actionRequest, "portletResource");
-
-			String fileName = WebFormUtil.getFileName(
-				themeDisplay, portletResource);
-
-			// Check if server can create a file as specified
-
-			try {
-				File file = new File(fileName);
-
-				if (!file.exists()) {
-					int endIndex = fileName.lastIndexOf(
-						StringPool.FORWARD_SLASH);
-
-					String folderName = fileName.substring(0, endIndex);
-
-					file = new File(folderName);
-
-					file.mkdirs();
-				}
-
-				FileOutputStream fileOutputStream = new FileOutputStream(
-					fileName, true);
-
-				fileOutputStream.close();
-			}
-			catch (SecurityException se) {
-				SessionErrors.add(actionRequest, "fileNameInvalid");
-			}
-			catch (FileNotFoundException fnfe) {
-				SessionErrors.add(actionRequest, "fileNameInvalid");
-			}
-		}
-
 		if (saveToDatabase) {
 			int i = 1;
 

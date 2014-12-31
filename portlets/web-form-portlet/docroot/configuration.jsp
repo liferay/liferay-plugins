@@ -71,7 +71,6 @@ if (WebFormUtil.getTableRowsCount(company.getCompanyId(), databaseTableName) > 0
 			<aui:fieldset cssClass="handle-data" label="email">
 				<liferay-ui:error key="emailAddressInvalid" message="please-enter-a-valid-email-address" />
 				<liferay-ui:error key="emailAddressRequired" message="please-enter-an-email-address" />
-				<liferay-ui:error key="fileNameInvalid" message="please-enter-a-valid-path-and-file-name" />
 				<liferay-ui:error key="handlingRequired" message="please-select-an-action-for-the-handling-of-form-data" />
 				<liferay-ui:error key="subjectRequired" message="please-enter-a-subject" />
 
