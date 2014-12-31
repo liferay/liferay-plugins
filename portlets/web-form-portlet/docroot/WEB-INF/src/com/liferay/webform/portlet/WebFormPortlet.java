@@ -33,8 +33,6 @@ import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.LocalizationUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
-import com.liferay.portal.kernel.util.PropsKeys;
-import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -128,9 +126,6 @@ public class WebFormPortlet extends MVCPortlet {
 		boolean saveToFile = GetterUtil.getBoolean(
 			preferences.getValue("saveToFile", StringPool.BLANK));
 
-		String fileName = WebFormUtil.getFileName(
-			themeDisplay, portletId);
-
 		if (requireCaptcha) {
 			try {
 				CaptchaUtil.check(actionRequest);
@@ -202,6 +197,9 @@ public class WebFormPortlet extends MVCPortlet {
 			}
 
 			if (saveToFile) {
+				String fileName = WebFormUtil.getFileName(
+					themeDisplay, portletId);
+
 				fileSuccess = saveFile(fieldsMap, fileName);
 			}
 

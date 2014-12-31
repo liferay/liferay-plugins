@@ -125,18 +125,18 @@ public class WebFormUtil {
 	public static String getFileName(
 		ThemeDisplay themeDisplay, String portletId) {
 
-		StringBuffer defaultFileNameSB = new StringBuffer(8);
+		StringBuffer sb = new StringBuffer(8);
 
-		defaultFileNameSB.append(PortletPropsValues.DATA_ROOT_DIR);
-		defaultFileNameSB.append(StringPool.FORWARD_SLASH);
-		defaultFileNameSB.append(themeDisplay.getScopeGroupId());
-		defaultFileNameSB.append(StringPool.FORWARD_SLASH);
-		defaultFileNameSB.append(themeDisplay.getPlid());
-		defaultFileNameSB.append(StringPool.FORWARD_SLASH);
-		defaultFileNameSB.append(portletId);
-		defaultFileNameSB.append(".csv");
+		sb.append(PortletPropsValues.DATA_ROOT_DIR);
+		sb.append(StringPool.FORWARD_SLASH);
+		sb.append(themeDisplay.getScopeGroupId());
+		sb.append(StringPool.FORWARD_SLASH);
+		sb.append(themeDisplay.getPlid());
+		sb.append(StringPool.FORWARD_SLASH);
+		sb.append(portletId);
+		sb.append(".csv");
 
-		return defaultFileNameSB.toString();
+		return sb.toString();
 	}
 
 	public static String getNewDatabaseTableName(String portletId) {
