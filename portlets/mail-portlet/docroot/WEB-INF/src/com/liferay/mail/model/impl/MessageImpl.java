@@ -46,16 +46,7 @@ public class MessageImpl extends MessageBaseImpl {
 	public boolean hasAttachments() {
 		String contentType = getContentType();
 
-		int pos = contentType.indexOf(CharPool.SEMICOLON);
-
-		if (pos != -1) {
-			contentType = contentType.substring(0, pos);
-		}
-
-		contentType = contentType.toLowerCase();
-
-		if (contentType != null &&
-			contentType.startsWith(ContentTypes.MULTIPART_MIXED)) {
+		if (contentType != null && contentType.startsWith(_MULTIPART_MIXED)) {
 
 			return true;
 		}
@@ -71,5 +62,7 @@ public class MessageImpl extends MessageBaseImpl {
 
 		return ArrayUtil.contains(flags, flag);
 	}
+
+	private static final String _MULTIPART_MIXED = "multipart/MIXED";
 
 }
