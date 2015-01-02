@@ -46,6 +46,8 @@ try {
 			<aui:form action="<%= saveDataURL %>" cssClass="lfr-dynamic-form" enctype="multipart/form-data" method="post" name="fm">
 				<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
 				<aui:input name="recordSetId" type="hidden" value="<%= recordSet.getRecordSetId() %>" />
+				<aui:input name="defaultLanguageId" type="hidden" value="<%= themeDisplay.getLanguageId() %>" />
+				<aui:input name="languageId" type="hidden" value="<%= themeDisplay.getLanguageId() %>" />
 				<aui:input name="multipleSubmissions" type="hidden" value="<%= multipleSubmissions %>" />
 				<aui:input name="workflowAction" type="hidden" value="<%= WorkflowConstants.ACTION_PUBLISH %>" />
 
@@ -67,6 +69,11 @@ try {
 							</c:when>
 							<c:when test="<%= multipleSubmissions || !(DDLFormUtil.hasSubmitted(request, recordSet.getRecordSetId())) %>">
 								<aui:fieldset>
+									<aui:translation-manager
+										availableLocales="<%= new Locale[] {LocaleUtil.fromLanguageId(themeDisplay.getLanguageId())} %>"
+										defaultLanguageId="<%= themeDisplay.getLanguageId() %>"
+										id="translationManager"
+									/>
 
 									<%
 									long classNameId = PortalUtil.getClassNameId(DDMStructure.class);
