@@ -14,12 +14,18 @@
 
 package com.liferay.mail.model.impl;
 
+import com.liferay.mail.model.Attachment;
+import com.liferay.mail.service.AttachmentLocalServiceUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.util.ArrayUtil;
+import com.liferay.portal.kernel.util.CharPool;
+import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.UserLocalServiceUtil;
+
+import java.util.List;
 
 /**
  * @author Brian Wing Shun Chan
@@ -35,6 +41,29 @@ public class MessageImpl extends MessageBaseImpl {
 		Group group = user.getGroup();
 
 		return group.getGroupId();
+	}
+
+	public boolean hasAttachments() {
+		String contentType = getContentType();
+
+		int pos = contentType.indexOf(CharPool.SEMICOLON);
+
+		if (pos != -1) {
+			contentType = contentType.substring(0, pos);
+		}
+
+		contentType = contentType.toLowerCase();
+
+		if (contentType != null &&
+			contentType.startsWith(ContentTypes.MULTIPART_MIXED)) {
+
+			return true;
+		}
+
+		List<Attachment> attachments =
+			AttachmentLocalServiceUtil.getAttachments(getMessageId());
+
+		return !attachments.isEmpty();
 	}
 
 	public boolean hasFlag(int flag) {
