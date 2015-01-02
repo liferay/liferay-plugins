@@ -149,6 +149,7 @@
 		<column name="flags" type="String" />
 		<column name="size" type="long" />
 		<column name="remoteMessageId" type="long" />
+		<column name="contentType" type="String" />
 
 		<!-- Order -->
 
