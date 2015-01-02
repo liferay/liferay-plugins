@@ -201,7 +201,7 @@ MailManager mailManager = MailManager.getInstance(request);
 								</td>
 								<td class="attachments">
 									<div class="<%= messageCssClass %>" data-folderId="<%= folderId %>" data-keywords="<%= keywords %>" data-messageId="<%= message.getMessageId() %>" data-messageNumber="<%= messageNumber %>" data-orderByField="<%= orderByField %>" data-orderByType="<%= orderByType %>">
-										<c:if test="<%= !AttachmentLocalServiceUtil.getAttachments(message.getMessageId()).isEmpty() %>">
+										<c:if test="<%= message.hasAttachments() %>">
 											<liferay-ui:icon
 												iconCssClass="icon-paper-clip"
 												message="attachments"
