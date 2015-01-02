@@ -673,7 +673,7 @@ public class CalendarImporterLocalServiceImpl
 				List<Integer> monthsList = new ArrayList<Integer>();
 
 				for (int month : months) {
-					monthsList.add(month + 1);
+					monthsList.add(month);
 				}
 
 				recurrence.setMonths(monthsList);
