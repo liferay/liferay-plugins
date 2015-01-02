@@ -33,7 +33,6 @@ page import="com.liferay.mail.model.Message" %><%@
 page import="com.liferay.mail.model.MessageDisplay" %><%@
 page import="com.liferay.mail.model.MessagesDisplay" %><%@
 page import="com.liferay.mail.service.AccountLocalServiceUtil" %><%@
-page import="com.liferay.mail.service.AttachmentLocalServiceUtil" %><%@
 page import="com.liferay.mail.service.FolderLocalServiceUtil" %><%@
 page import="com.liferay.mail.service.MessageLocalServiceUtil" %><%@
 page import="com.liferay.mail.util.MailConstants" %><%@
