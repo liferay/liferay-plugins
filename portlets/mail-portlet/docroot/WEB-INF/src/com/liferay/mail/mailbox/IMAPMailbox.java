@@ -293,7 +293,7 @@ public class IMAPMailbox extends BaseMailbox {
 			message = MessageLocalServiceUtil.addMessage(
 				user.getUserId(), account.getDraftFolderId(), sender, to, cc,
 				bcc, null, subject, body,
-				String.valueOf(MailConstants.FLAG_DRAFT), 0);
+				String.valueOf(MailConstants.FLAG_DRAFT), 0, null);
 		}
 
 		if (mailFiles == null) {
