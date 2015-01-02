@@ -14,6 +14,8 @@
 
 package com.liferay.mail.model;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.ModelWrapper;
 
@@ -30,6 +32,7 @@ import java.util.Map;
  * @see Folder
  * @generated
  */
+@ProviderType
 public class FolderWrapper implements Folder, ModelWrapper<Folder> {
 	public FolderWrapper(Folder folder) {
 		_folder = folder;
@@ -517,5 +520,5 @@ public class FolderWrapper implements Folder, ModelWrapper<Folder> {
 		_folder.resetOriginalValues();
 	}
 
-	private Folder _folder;
+	private final Folder _folder;
 }

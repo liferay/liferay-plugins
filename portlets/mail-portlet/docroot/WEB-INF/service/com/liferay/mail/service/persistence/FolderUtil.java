@@ -14,6 +14,8 @@
 
 package com.liferay.mail.service.persistence;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.mail.model.Folder;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
@@ -36,6 +38,7 @@ import java.util.List;
  * @see FolderPersistenceImpl
  * @generated
  */
+@ProviderType
 public class FolderUtil {
 	/*
 	 * NOTE FOR DEVELOPERS:

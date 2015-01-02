@@ -14,6 +14,8 @@
 
 package com.liferay.mail.model;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.model.PersistedModel;
 
 /**
@@ -25,6 +27,7 @@ import com.liferay.portal.model.PersistedModel;
  * @see com.liferay.mail.model.impl.AttachmentModelImpl
  * @generated
  */
+@ProviderType
 public interface Attachment extends AttachmentModel, PersistedModel {
 	/*
 	 * NOTE FOR DEVELOPERS:

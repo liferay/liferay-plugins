@@ -14,6 +14,8 @@
 
 package com.liferay.mail.model.impl;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.mail.model.Attachment;
 import com.liferay.mail.service.AttachmentLocalServiceUtil;
 
@@ -29,6 +31,7 @@ import com.liferay.mail.service.AttachmentLocalServiceUtil;
  * @see com.liferay.mail.model.Attachment
  * @generated
  */
+@ProviderType
 public abstract class AttachmentBaseImpl extends AttachmentModelImpl
 	implements Attachment {
 	/*

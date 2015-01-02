@@ -14,6 +14,8 @@
 
 package com.liferay.mail.service.persistence;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.mail.model.Message;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
@@ -36,6 +38,7 @@ import java.util.List;
  * @see MessagePersistenceImpl
  * @generated
  */
+@ProviderType
 public class MessageUtil {
 	/*
 	 * NOTE FOR DEVELOPERS:

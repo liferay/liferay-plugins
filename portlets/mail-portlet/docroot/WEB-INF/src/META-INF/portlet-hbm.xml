@@ -89,5 +89,6 @@
 		<property name="flags" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="size" type="com.liferay.portal.dao.orm.hibernate.LongType" column="size_" />
 		<property name="remoteMessageId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="contentType" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 	</class>
 </hibernate-mapping>

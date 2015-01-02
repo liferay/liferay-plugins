@@ -14,12 +14,15 @@
 
 package com.liferay.mail.service;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.service.InvokableLocalService;
 
 /**
  * @author Brian Wing Shun Chan
  * @generated
  */
+@ProviderType
 public class MessageLocalServiceClp implements MessageLocalService {
 	public MessageLocalServiceClp(InvokableLocalService invokableLocalService) {
 		_invokableLocalService = invokableLocalService;
@@ -34,7 +37,7 @@ public class MessageLocalServiceClp implements MessageLocalService {
 				"long", "long", "java.lang.String", "java.lang.String",
 				"java.lang.String", "java.lang.String", "java.util.Date",
 				"java.lang.String", "java.lang.String", "java.lang.String",
-				"long"
+				"long", "java.lang.String"
 			};
 
 		_methodName2 = "createMessage";
@@ -220,7 +223,8 @@ public class MessageLocalServiceClp implements MessageLocalService {
 		long folderId, java.lang.String sender, java.lang.String to,
 		java.lang.String cc, java.lang.String bcc, java.util.Date sentDate,
 		java.lang.String subject, java.lang.String body,
-		java.lang.String flags, long remoteMessageId)
+		java.lang.String flags, long remoteMessageId,
+		java.lang.String contentType)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
@@ -248,7 +252,9 @@ public class MessageLocalServiceClp implements MessageLocalService {
 						
 					ClpSerializer.translateInput(flags),
 						
-					remoteMessageId
+					remoteMessageId,
+						
+					ClpSerializer.translateInput(contentType)
 					});
 		}
 		catch (Throwable t) {

@@ -14,6 +14,8 @@
 
 package com.liferay.mail.model;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.ModelWrapper;
 
@@ -29,6 +31,7 @@ import java.util.Map;
  * @see Attachment
  * @generated
  */
+@ProviderType
 public class AttachmentWrapper implements Attachment, ModelWrapper<Attachment> {
 	public AttachmentWrapper(Attachment attachment) {
 		_attachment = attachment;
@@ -488,5 +491,5 @@ public class AttachmentWrapper implements Attachment, ModelWrapper<Attachment> {
 		_attachment.resetOriginalValues();
 	}
 
-	private Attachment _attachment;
+	private final Attachment _attachment;
 }

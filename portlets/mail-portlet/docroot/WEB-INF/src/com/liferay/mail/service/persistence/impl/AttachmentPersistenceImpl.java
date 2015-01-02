@@ -14,6 +14,8 @@
 
 package com.liferay.mail.service.persistence.impl;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.mail.NoSuchAttachmentException;
 import com.liferay.mail.model.Attachment;
 import com.liferay.mail.model.impl.AttachmentImpl;
@@ -62,6 +64,7 @@ import java.util.Set;
  * @see AttachmentUtil
  * @generated
  */
+@ProviderType
 public class AttachmentPersistenceImpl extends BasePersistenceImpl<Attachment>
 	implements AttachmentPersistence {
 	/*
@@ -1216,11 +1219,11 @@ public class AttachmentPersistenceImpl extends BasePersistenceImpl<Attachment>
 	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No Attachment exists with the key {";
 	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = GetterUtil.getBoolean(PropsUtil.get(
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
-	private static Log _log = LogFactoryUtil.getLog(AttachmentPersistenceImpl.class);
-	private static Set<String> _badColumnNames = SetUtil.fromArray(new String[] {
+	private static final Log _log = LogFactoryUtil.getLog(AttachmentPersistenceImpl.class);
+	private static final Set<String> _badColumnNames = SetUtil.fromArray(new String[] {
 				"size"
 			});
-	private static Attachment _nullAttachment = new AttachmentImpl() {
+	private static final Attachment _nullAttachment = new AttachmentImpl() {
 			@Override
 			public Object clone() {
 				return this;
@@ -1232,7 +1235,7 @@ public class AttachmentPersistenceImpl extends BasePersistenceImpl<Attachment>
 			}
 		};
 
-	private static CacheModel<Attachment> _nullAttachmentCacheModel = new CacheModel<Attachment>() {
+	private static final CacheModel<Attachment> _nullAttachmentCacheModel = new CacheModel<Attachment>() {
 			@Override
 			public Attachment toEntityModel() {
 				return _nullAttachment;

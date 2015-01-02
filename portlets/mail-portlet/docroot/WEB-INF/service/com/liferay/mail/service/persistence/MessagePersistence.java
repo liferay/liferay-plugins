@@ -14,6 +14,8 @@
 
 package com.liferay.mail.service.persistence;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.mail.model.Message;
 
 import com.liferay.portal.service.persistence.BasePersistence;
@@ -30,6 +32,7 @@ import com.liferay.portal.service.persistence.BasePersistence;
  * @see MessageUtil
  * @generated
  */
+@ProviderType
 public interface MessagePersistence extends BasePersistence<Message> {
 	/*
 	 * NOTE FOR DEVELOPERS:

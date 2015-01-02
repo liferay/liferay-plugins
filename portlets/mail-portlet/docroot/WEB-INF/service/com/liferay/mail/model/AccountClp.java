@@ -14,6 +14,8 @@
 
 package com.liferay.mail.model;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.mail.service.AccountLocalServiceUtil;
 import com.liferay.mail.service.ClpSerializer;
 
@@ -39,6 +41,7 @@ import java.util.Map;
 /**
  * @author Brian Wing Shun Chan
  */
+@ProviderType
 public class AccountClp extends BaseModelImpl<Account> implements Account {
 	public AccountClp() {
 	}

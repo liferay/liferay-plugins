@@ -14,6 +14,8 @@
 
 package com.liferay.mail.service.messaging;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.mail.service.AccountLocalServiceUtil;
 import com.liferay.mail.service.AttachmentLocalServiceUtil;
 import com.liferay.mail.service.ClpSerializer;
@@ -26,6 +28,7 @@ import com.liferay.portal.kernel.messaging.Message;
 /**
  * @author Brian Wing Shun Chan
  */
+@ProviderType
 public class ClpMessageListener extends BaseMessageListener {
 	public static String getServletContextName() {
 		return ClpSerializer.getServletContextName();

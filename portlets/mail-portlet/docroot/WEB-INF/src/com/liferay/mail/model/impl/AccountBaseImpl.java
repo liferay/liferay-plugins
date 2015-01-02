@@ -14,6 +14,8 @@
 
 package com.liferay.mail.model.impl;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.mail.model.Account;
 import com.liferay.mail.service.AccountLocalServiceUtil;
 
@@ -29,6 +31,7 @@ import com.liferay.mail.service.AccountLocalServiceUtil;
  * @see com.liferay.mail.model.Account
  * @generated
  */
+@ProviderType
 public abstract class AccountBaseImpl extends AccountModelImpl
 	implements Account {
 	/*

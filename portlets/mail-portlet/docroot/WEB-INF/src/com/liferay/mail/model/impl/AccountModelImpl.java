@@ -14,6 +14,8 @@
 
 package com.liferay.mail.model.impl;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.mail.model.Account;
 import com.liferay.mail.model.AccountModel;
 
@@ -53,6 +55,7 @@ import java.util.Map;
  * @see com.liferay.mail.model.AccountModel
  * @generated
  */
+@ProviderType
 public class AccountModelImpl extends BaseModelImpl<Account>
 	implements AccountModel {
 	/*
@@ -105,8 +108,8 @@ public class AccountModelImpl extends BaseModelImpl<Account>
 	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.column.bitmask.enabled.com.liferay.mail.model.Account"),
 			true);
-	public static long ADDRESS_COLUMN_BITMASK = 1L;
-	public static long USERID_COLUMN_BITMASK = 2L;
+	public static final long ADDRESS_COLUMN_BITMASK = 1L;
+	public static final long USERID_COLUMN_BITMASK = 2L;
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.liferay.mail.model.Account"));
 
@@ -1150,8 +1153,8 @@ public class AccountModelImpl extends BaseModelImpl<Account>
 		return sb.toString();
 	}
 
-	private static ClassLoader _classLoader = Account.class.getClassLoader();
-	private static Class<?>[] _escapedModelInterfaces = new Class[] {
+	private static final ClassLoader _classLoader = Account.class.getClassLoader();
+	private static final Class<?>[] _escapedModelInterfaces = new Class[] {
 			Account.class
 		};
 	private long _accountId;

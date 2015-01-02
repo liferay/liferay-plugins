@@ -14,6 +14,8 @@
 
 package com.liferay.mail.service.base;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.mail.model.Folder;
 import com.liferay.mail.service.FolderLocalService;
 import com.liferay.mail.service.persistence.AccountPersistence;
@@ -62,6 +64,7 @@ import javax.sql.DataSource;
  * @see com.liferay.mail.service.FolderLocalServiceUtil
  * @generated
  */
+@ProviderType
 public abstract class FolderLocalServiceBaseImpl extends BaseLocalServiceImpl
 	implements FolderLocalService, IdentifiableBean {
 	/*
@@ -179,10 +182,10 @@ public abstract class FolderLocalServiceBaseImpl extends BaseLocalServiceImpl
 	}
 
 	/**
-	 * Returns the number of rows that match the dynamic query.
+	 * Returns the number of rows matching the dynamic query.
 	 *
 	 * @param dynamicQuery the dynamic query
-	 * @return the number of rows that match the dynamic query
+	 * @return the number of rows matching the dynamic query
 	 */
 	@Override
 	public long dynamicQueryCount(DynamicQuery dynamicQuery) {
@@ -190,11 +193,11 @@ public abstract class FolderLocalServiceBaseImpl extends BaseLocalServiceImpl
 	}
 
 	/**
-	 * Returns the number of rows that match the dynamic query.
+	 * Returns the number of rows matching the dynamic query.
 	 *
 	 * @param dynamicQuery the dynamic query
 	 * @param projection the projection to apply to the query
-	 * @return the number of rows that match the dynamic query
+	 * @return the number of rows matching the dynamic query
 	 */
 	@Override
 	public long dynamicQueryCount(DynamicQuery dynamicQuery,

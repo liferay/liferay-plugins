@@ -14,6 +14,8 @@
 
 package com.liferay.mail.model;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.mail.service.AttachmentLocalServiceUtil;
 import com.liferay.mail.service.ClpSerializer;
 
@@ -38,6 +40,7 @@ import java.util.Map;
 /**
  * @author Brian Wing Shun Chan
  */
+@ProviderType
 public class AttachmentClp extends BaseModelImpl<Attachment>
 	implements Attachment {
 	public AttachmentClp() {

@@ -14,6 +14,8 @@
 
 package com.liferay.mail.service.persistence.impl;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.mail.NoSuchAccountException;
 import com.liferay.mail.model.Account;
 import com.liferay.mail.model.impl.AccountImpl;
@@ -64,6 +66,7 @@ import java.util.Set;
  * @see AccountUtil
  * @generated
  */
+@ProviderType
 public class AccountPersistenceImpl extends BasePersistenceImpl<Account>
 	implements AccountPersistence {
 	/*
@@ -1546,11 +1549,11 @@ public class AccountPersistenceImpl extends BasePersistenceImpl<Account>
 	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No Account exists with the key {";
 	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = GetterUtil.getBoolean(PropsUtil.get(
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
-	private static Log _log = LogFactoryUtil.getLog(AccountPersistenceImpl.class);
-	private static Set<String> _badColumnNames = SetUtil.fromArray(new String[] {
+	private static final Log _log = LogFactoryUtil.getLog(AccountPersistenceImpl.class);
+	private static final Set<String> _badColumnNames = SetUtil.fromArray(new String[] {
 				"password"
 			});
-	private static Account _nullAccount = new AccountImpl() {
+	private static final Account _nullAccount = new AccountImpl() {
 			@Override
 			public Object clone() {
 				return this;
@@ -1562,7 +1565,7 @@ public class AccountPersistenceImpl extends BasePersistenceImpl<Account>
 			}
 		};
 
-	private static CacheModel<Account> _nullAccountCacheModel = new CacheModel<Account>() {
+	private static final CacheModel<Account> _nullAccountCacheModel = new CacheModel<Account>() {
 			@Override
 			public Account toEntityModel() {
 				return _nullAccount;

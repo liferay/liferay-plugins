@@ -84,5 +84,6 @@
 		<field name="flags" type="String" />
 		<field name="size" type="long" />
 		<field name="remoteMessageId" type="long" />
+		<field name="contentType" type="String" />
 	</model>
 </model-hints>
