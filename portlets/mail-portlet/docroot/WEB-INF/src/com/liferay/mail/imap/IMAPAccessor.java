@@ -639,6 +639,7 @@ public class IMAPAccessor {
 				String subject = jxMessage.getSubject();
 				String flags = getFlags(jxMessage);
 				long remoteMessageId = getUID(jxFolder, jxMessage);
+				String contentType = jxMessage.getContentType();
 
 				try {
 					MessageLocalServiceUtil.getMessage(
@@ -648,7 +649,7 @@ public class IMAPAccessor {
 					MessageLocalServiceUtil.addMessage(
 						_user.getUserId(), folderId, sender, to, cc, bcc,
 						sentDate, subject, StringPool.BLANK, flags,
-						remoteMessageId);
+						remoteMessageId, contentType);
 				}
 			}
 

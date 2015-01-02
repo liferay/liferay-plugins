@@ -45,7 +45,7 @@ public class MessageLocalServiceImpl extends MessageLocalServiceBaseImpl {
 	public Message addMessage(
 			long userId, long folderId, String sender, String to, String cc,
 			String bcc, Date sentDate, String subject, String body,
-			String flags, long remoteMessageId)
+			String flags, long remoteMessageId, String contentType)
 		throws PortalException, SystemException {
 
 		// Message
@@ -76,6 +76,7 @@ public class MessageLocalServiceImpl extends MessageLocalServiceBaseImpl {
 		message.setFlags(flags);
 		message.setSize(getSize(messageId, body));
 		message.setRemoteMessageId(remoteMessageId);
+		message.setContentType(contentType);
 
 		messagePersistence.update(message);
 
