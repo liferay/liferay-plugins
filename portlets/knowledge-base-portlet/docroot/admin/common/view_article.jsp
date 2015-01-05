@@ -28,6 +28,10 @@ if (enableKBArticleViewCountIncrement && !kbArticle.isDraft()) {
 }
 %>
 
+<c:if test='<%= enableSocialBookmarks && socialBookmarksDisplayPosition.equals("top") %>'>
+	<liferay-util:include page="/admin/article_social_bookmarks.jsp" servletContext="<%= application %>" />
+</c:if>
+
 <c:choose>
 	<c:when test="<%= !redirect.equals(currentURL) %>">
 		<div class="kb-tools">
@@ -82,5 +86,7 @@ request.setAttribute("article_icons.jsp-kb_article", kbArticle);
 
 	<liferay-util:include page="/admin/article_ratings.jsp" servletContext="<%= application %>" />
 
-	<liferay-util:include page="/admin/article_social_bookmarks.jsp" servletContext="<%= application %>" />
+	<c:if test='<%= enableSocialBookmarks && socialBookmarksDisplayPosition.equals("bottom") %>'>
+		<liferay-util:include page="/admin/article_social_bookmarks.jsp" servletContext="<%= application %>" />
+	</c:if>
 </div>
