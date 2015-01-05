@@ -18,8 +18,6 @@ import com.liferay.mail.model.Attachment;
 import com.liferay.mail.service.AttachmentLocalServiceUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.util.ArrayUtil;
-import com.liferay.portal.kernel.util.CharPool;
-import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.User;
@@ -46,8 +44,7 @@ public class MessageImpl extends MessageBaseImpl {
 	public boolean hasAttachments() {
 		String contentType = getContentType();
 
-		if (contentType != null && contentType.startsWith(_MULTIPART_MIXED)) {
-
+		if ((contentType != null) && contentType.startsWith(_MULTIPART_MIXED)) {
 			return true;
 		}
 
