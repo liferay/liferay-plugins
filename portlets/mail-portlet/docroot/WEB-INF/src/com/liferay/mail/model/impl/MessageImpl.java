@@ -47,8 +47,7 @@ public class MessageImpl extends MessageBaseImpl {
 	public boolean hasAttachments() {
 		String contentType = getContentType();
 
-		if (contentType != null && contentType.startsWith(_MULTIPART_MIXED)) {
-
+		if ((contentType != null) && contentType.startsWith(_MULTIPART_MIXED)) {
 			return true;
 		}
 
