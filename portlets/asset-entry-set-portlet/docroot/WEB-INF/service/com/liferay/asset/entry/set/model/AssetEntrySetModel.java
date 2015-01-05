@@ -279,19 +279,20 @@ public interface AssetEntrySetModel extends BaseModel<AssetEntrySet> {
 	public Object clone();
 
 	@Override
-	public int compareTo(AssetEntrySet assetEntrySet);
+	public int compareTo(
+		com.liferay.asset.entry.set.model.AssetEntrySet assetEntrySet);
 
 	@Override
 	public int hashCode();
 
 	@Override
-	public CacheModel<AssetEntrySet> toCacheModel();
+	public CacheModel<com.liferay.asset.entry.set.model.AssetEntrySet> toCacheModel();
 
 	@Override
-	public AssetEntrySet toEscapedModel();
+	public com.liferay.asset.entry.set.model.AssetEntrySet toEscapedModel();
 
 	@Override
-	public AssetEntrySet toUnescapedModel();
+	public com.liferay.asset.entry.set.model.AssetEntrySet toUnescapedModel();
 
 	@Override
 	public String toString();

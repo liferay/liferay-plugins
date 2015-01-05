@@ -17,6 +17,7 @@ package com.liferay.asset.entry.set.service.impl;
 import com.liferay.asset.entry.set.model.AssetEntrySet;
 import com.liferay.asset.entry.set.service.base.AssetEntrySetLocalServiceBaseImpl;
 import com.liferay.asset.entry.set.util.AssetEntrySetConstants;
+import com.liferay.asset.entry.set.util.AssetEntrySetManagerUtil;
 import com.liferay.compat.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
@@ -88,7 +89,8 @@ public class AssetEntrySetLocalServiceImpl
 		assetEntrySet.setParentAssetEntrySetId(parentAssetEntrySetId);
 		assetEntrySet.setCreatorClassNameId(creatorClassNameId);
 		assetEntrySet.setCreatorClassPK(creatorClassPK);
-		assetEntrySet.setPayload(payloadJSONObject.toString());
+		assetEntrySet.setPayload(
+			AssetEntrySetManagerUtil.interpret(payloadJSONObject));
 
 		assetEntrySetPersistence.update(assetEntrySet);
 
@@ -235,7 +237,8 @@ public class AssetEntrySetLocalServiceImpl
 
 		assetEntrySet.setModifiedTime(now.getTime());
 
-		assetEntrySet.setPayload(payloadJSONObject.toString());
+		assetEntrySet.setPayload(
+			AssetEntrySetManagerUtil.interpret(payloadJSONObject));
 
 		assetEntrySetPersistence.update(assetEntrySet);
 
@@ -325,7 +328,7 @@ public class AssetEntrySetLocalServiceImpl
 		creatorJSONObject.put(
 			AssetEntrySetConstants.ASSET_ENTRY_KEY_CREATOR_URL, creatorURL);
 
-		assetEntrySet.setCreatorJSONObject(creatorJSONObject);
+		assetEntrySet.setCreator(creatorJSONObject);
 	}
 
 	protected void setCreatorJSONObjects(List<AssetEntrySet> assetEntrySets)
