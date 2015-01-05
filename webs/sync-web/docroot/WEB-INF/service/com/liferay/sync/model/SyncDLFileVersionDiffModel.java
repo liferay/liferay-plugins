@@ -193,20 +193,19 @@ public interface SyncDLFileVersionDiffModel extends BaseModel<SyncDLFileVersionD
 	public Object clone();
 
 	@Override
-	public int compareTo(
-		com.liferay.sync.model.SyncDLFileVersionDiff syncDLFileVersionDiff);
+	public int compareTo(SyncDLFileVersionDiff syncDLFileVersionDiff);
 
 	@Override
 	public int hashCode();
 
 	@Override
-	public CacheModel<com.liferay.sync.model.SyncDLFileVersionDiff> toCacheModel();
+	public CacheModel<SyncDLFileVersionDiff> toCacheModel();
 
 	@Override
-	public com.liferay.sync.model.SyncDLFileVersionDiff toEscapedModel();
+	public SyncDLFileVersionDiff toEscapedModel();
 
 	@Override
-	public com.liferay.sync.model.SyncDLFileVersionDiff toUnescapedModel();
+	public SyncDLFileVersionDiff toUnescapedModel();
 
 	@Override
 	public String toString();
