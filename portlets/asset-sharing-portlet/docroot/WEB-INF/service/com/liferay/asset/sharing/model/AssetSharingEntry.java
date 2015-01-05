@@ -17,7 +17,7 @@ package com.liferay.asset.sharing.model;
 import com.liferay.portal.model.PersistedModel;
 
 /**
- * The extended model interface for the AssetSharingEntry service. Represents a row in the &quot;AssetSharing_AssetSharingEntry&quot; database table, with each column mapped to a property of this class.
+ * The extended model interface for the AssetSharingEntry service. Represents a row in the &quot;AssetSharingEntry&quot; database table, with each column mapped to a property of this class.
  *
  * @author Brian Wing Shun Chan
  * @see AssetSharingEntryModel

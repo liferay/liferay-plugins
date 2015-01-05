@@ -1,4 +1,4 @@
-create table AssetSharing_AssetSharingEntry (
+create table AssetSharingEntry (
 	classNameId LONG not null,
 	classPK LONG not null,
 	sharedToClassNameId LONG not null,

@@ -3,7 +3,7 @@
 
 <hibernate-mapping default-lazy="false" auto-import="false">
 	<import class="com.liferay.asset.sharing.model.AssetSharingEntry" />
-	<class name="com.liferay.asset.sharing.model.impl.AssetSharingEntryImpl" table="AssetSharing_AssetSharingEntry">
+	<class name="com.liferay.asset.sharing.model.impl.AssetSharingEntryImpl" table="AssetSharingEntry">
 		<cache usage="read-write" />
 		<composite-id name="primaryKey" class="com.liferay.asset.sharing.service.persistence.AssetSharingEntryPK">
 			<key-property name="classNameId" type="com.liferay.portal.dao.orm.hibernate.LongType" />

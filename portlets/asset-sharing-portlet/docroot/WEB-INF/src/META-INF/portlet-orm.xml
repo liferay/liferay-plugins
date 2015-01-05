@@ -21,7 +21,7 @@
 		</attributes>
 	</mapped-superclass>
 	<entity class="com.liferay.asset.sharing.model.impl.AssetSharingEntryImpl" name="AssetSharingEntry">
-		<table name="AssetSharing_AssetSharingEntry" />
+		<table name="AssetSharingEntry" />
 		<attributes />
 	</entity>
 </entity-mappings>

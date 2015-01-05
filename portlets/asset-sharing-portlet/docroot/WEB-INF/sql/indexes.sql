@@ -1,4 +1,4 @@
-create index IX_F847A6EE on AssetSharing_AssetSharingEntry (classNameId, classPK);
-create index IX_B3378B40 on AssetSharing_AssetSharingEntry (classNameId, classPK, sharedToClassNameId);
-create index IX_2241A12A on AssetSharing_AssetSharingEntry (classNameId, sharedToClassNameId, sharedToClassPK);
-create index IX_ED6D16EE on AssetSharing_AssetSharingEntry (sharedToClassNameId, sharedToClassPK);
+create index IX_8F03D381 on AssetSharingEntry (classNameId, classPK);
+create index IX_24D9088D on AssetSharingEntry (classNameId, classPK, sharedToClassNameId);
+create index IX_65AB8177 on AssetSharingEntry (classNameId, sharedToClassNameId, sharedToClassPK);
+create index IX_FDBBD81 on AssetSharingEntry (sharedToClassNameId, sharedToClassPK);
