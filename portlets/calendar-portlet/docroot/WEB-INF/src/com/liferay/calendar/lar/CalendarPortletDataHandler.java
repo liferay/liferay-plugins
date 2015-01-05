@@ -158,7 +158,7 @@ public class CalendarPortletDataHandler extends BasePortletDataHandler {
 				NAMESPACE, "calendar-bookings")) {
 
 			ActionableDynamicQuery calendarBookingActionableDynamicQuery =
-				CalendarLocalServiceUtil.getExportActionableDynamicQuery(
+				CalendarBookingLocalServiceUtil.getExportActionableDynamicQuery(
 					portletDataContext);
 
 			calendarBookingActionableDynamicQuery.performActions();
