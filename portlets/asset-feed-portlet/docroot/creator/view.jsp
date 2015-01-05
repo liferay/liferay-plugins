@@ -17,6 +17,17 @@
 <%@ include file="/init.jsp" %>
 
 <aui:form name="fm">
+	<aui:input name="content" type="hidden" />
+	<aui:input name="type" type="hidden" value="text" />
+
+	<aui:field-wrapper label="content">
+		<div class="content-editable-wrapper" id="<portlet:namespace />textAssetEdit">
+			<div class="placeholder"><liferay-ui:message key="enter-your-message" /></div>
+
+			<div class="content-editable content-editable-area"></div>
+		</div>
+	</aui:field-wrapper>
+
 	<liferay-ui:tabs
 		formName="fm"
 		names="text,link,image,announcement"
@@ -38,35 +49,24 @@
 		<liferay-ui:section>
 			<%@ include file="/creator/announcement.jspf" %>
 		</liferay-ui:section>
-
-		<aui:input name="content" type="hidden" />
-		<aui:input name="to" type="hidden" />
-		<aui:input name="type" type="hidden" value="text" />
-
-		<aui:field-wrapper label="content">
-			<div class="content-editable-wrapper" id="<portlet:namespace />textAssetEdit">
-				<div class="placeholder"><liferay-ui:message key="enter-your-message" /></div>
-
-				<div class="content-editable content-editable-area"></div>
-			</div>
-		</aui:field-wrapper>
-
-		<aui:field-wrapper label="to">
-			<div class="content-editable-wrapper" id="<portlet:namespace />textAssetTo">
-				<div class="placeholder"><liferay-ui:message key="enter-a-name" /></div>
-
-				<div class="content-editable content-editable-inline"></div>
-			</div>
-		</aui:field-wrapper>
-
-		<aui:button-row>
-			<aui:button cssClass="pull-right" type="submit" value="Submit" />
-		</aui:button-row>
 	</liferay-ui:tabs>
+
+	<aui:field-wrapper label="to">
+		<div class="asset-feed-list-content" id="<portlet:namespace />textAssetTo">
+			<div class="asset-feed-list-container" id="<portlet:namespace />textAssetToContainer"></div>
+
+			<aui:input cssClass="asset-feed-list-input" label="" name="textAssetToInput" type="text" />
+		</div>
+	</aui:field-wrapper>
+
+	<aui:button-row>
+		<aui:button cssClass="pull-right" type="submit" value="Submit" />
+	</aui:button-row>
 </aui:form>
 
-<aui:script use="aui-io,liferay-asset-feed-input,liferay-portlet-request">
-	var contentInput = new Liferay.AssetFeedInput(
+<aui:script use="aui-form-validator,aui-io,liferay-asset-feed-autocomplete,liferay-asset-feed-input-list,liferay-asset-feed-input,liferay-portlet-request">
+	var contentInputComponent = new Liferay.AssetFeedInput(
+
 		{
 			container: 'textAssetEdit',
 			hiddenInput: 'content',
@@ -74,11 +74,11 @@
 		}
 	).render();
 
-	var toInput = new Liferay.AssetFeedInput(
+	var toInputComponent = new Liferay.AssetFeedInputList(
 		{
-			container: 'textAssetTo',
-			hiddenInput: 'to',
-			inline: true,
+			container: 'textAssetToContainer',
+			contentBox: 'textAssetTo',
+			inputNode: 'textAssetToInput',
 			namespace: '<portlet:namespace />'
 		}
 	).render();
@@ -90,30 +90,51 @@
 		function(event) {
 			event.halt();
 
-			var actionURL = Liferay.PortletURL.createActionURL();
+			var message = form.one('#<portlet:namespace />content');
+			var type = form.one('#<portlet:namespace />type');
 
-			A.io.request(
-				actionURL.toString(),
-				{
-					dataType: 'JSON',
-					form: {
-						id: form
-					},
-					on: {
-						success: function(event, id, obj) {
-							var response = this.get('responseData');
-
-							if (response.success) {
-								Liferay.fire('assetFeedNewPost', response);
-
-								contentInput.clearValue();
-
-								toInput.clearValue();
+			if (message && type) {
+				Liferay.Service(
+					'/asset-entry-set-portlet.assetentryset/add-asset-entry-set',
+					{
+						payload: A.JSON.stringify(
+							{
+								message: message.val(),
+								type: type.val()
 							}
+						)
+					},
+					function(result) {
+						if (A.Object.hasKey(result, 'assetEntrySetId')) {
+							Liferay.fire('assetFeedNewPost', result);
+
+							contentInputComponent.clearValue();
+							toInputComponent.clearValue();
 						}
 					}
+				);
+			}
+		}
+	);
+
+	var contentInput = A.one('#<portlet:namespace />textAssetEdit .content-editable');
+
+	new Liferay.AssetFeedAutoComplete(
+		{
+			inputNode: [contentInput],
+			namespace: '<portlet:namespace />'
+		}
+	);
+
+	new A.FormValidator(
+		{
+			boundingBox: '#<portlet:namespace />fm',
+			rules: {
+				<portlet:namespace />linkURL: {
+					required: false,
+					url: true
 				}
-			);
+			}
 		}
 	);
 </aui:script>

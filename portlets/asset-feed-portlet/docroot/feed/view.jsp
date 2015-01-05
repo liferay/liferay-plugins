@@ -15,3 +15,27 @@
 --%>
 
 <%@ include file="/init.jsp" %>
+
+<liferay-util:html-bottom>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.4/moment-with-locales.min.js" type="text/javascript"></script>
+</liferay-util:html-bottom>
+
+<aui:row id="assetCardEntries"></aui:row>
+
+<aui:script use="liferay-asset-feed">
+	var AssetFeed = new Liferay.AssetFeed(
+		{
+			contentNode: 'assetCardEntries',
+			locale: '<%= locale %>',
+			namespace: '<portlet:namespace />',
+			timeZoneOffset: '<%= (timeZone.getRawOffset() / Time.HOUR) * -1 %>'
+		}
+	).render();
+
+	Liferay.on(
+		'assetFeedNewPost',
+		function(event) {
+			AssetFeed.renderPosts([event]);
+		}
+	);
+</aui:script>

@@ -1,0 +1,38 @@
+@import "compass";
+
+.asset-feed {
+	.asset-card {
+		border: 1px solid #DDD;
+		margin-bottom: 20px;
+		padding: 20px;
+
+		.card-header {
+			padding-bottom: 10px;
+
+			.creator-thumbnail {
+				height: auto;
+				width: 50px;
+			}
+
+			.header-text {
+				display: inline-block;
+				margin-left: 10px;
+				vertical-align: middle;
+
+				.creator-name {
+					@include ellipsis;
+				}
+
+				.creator-date {
+					color: #999;
+					float: right;
+					font-style: italic;
+				}
+			}
+		}
+
+		.card-content > div {
+			margin-bottom: 10px;
+		}
+	}
+}

@@ -1,6 +1,40 @@
 @import "compass";
 
 .asset-creator {
+	.asset-feed-list-content {
+		border: 1px solid #DDD;
+		cursor: text;
+		min-height: 28px;
+		padding: 10px;
+
+		.asset-feed-list-container {
+			display: inline;
+
+			.asset-feed-list-item {
+				background-color: #0AF;
+				color: #FFF;
+				float: left;
+				font-size: 18px;
+				margin: 0 5px 5px 0;
+				padding: 3px 5px;
+
+				.remove {
+					margin-left: 2px;
+
+					&:hover {
+						color: #CF4343;
+						cursor: pointer;
+					}
+				}
+			}
+		}
+
+		.asset-feed-list-input[type="text"] {
+			border-width: 0;
+			margin: 0;
+		}
+	}
+
 	.content-editable-wrapper {
 		margin-bottom: 15px;
 		position: relative;
@@ -45,6 +79,16 @@
 			&:focus {
 				@include box-shadow(inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6));
 			}
+		}
+	}
+
+	.asset-feed-list-content {
+		.asset-feed-list-input[type="text"] {
+			@include box-shadow(none);
+		}
+
+		.asset-feed-list-item {
+			@include border-radius(4px);
 		}
 	}
 }
