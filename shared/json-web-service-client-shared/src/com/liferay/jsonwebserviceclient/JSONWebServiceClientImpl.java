@@ -220,7 +220,7 @@ public class JSONWebServiceClientImpl implements JSONWebServiceClient {
 		return _hostName;
 	}
 
-	public int getPort() {
+	public int getHostPort() {
 		return _hostPort;
 	}
 
