@@ -18,7 +18,7 @@
 package com.liferay.so.sites.portlet;
 
 import com.liferay.portal.DuplicateGroupException;
-import com.liferay.portal.GroupNameException;
+import com.liferay.portal.GroupKeyException;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
@@ -113,7 +113,7 @@ public class SitesPortlet extends MVCPortlet {
 				if (e instanceof DuplicateGroupException) {
 					message = "please-enter-a-unique-name";
 				}
-				else if (e instanceof GroupNameException) {
+				else if (e instanceof GroupKeyException) {
 					message = "please-enter-a-valid-name";
 				}
 				else {
