@@ -33,12 +33,24 @@ public interface JSONWebServiceClient {
 	public String doPostAsJSON(String url, String json)
 		throws JSONWebServiceTransportException;
 
+	public String getHostName();
+
+	public int getHostPort();
+
+	public String getProtocol();
+
 	public void resetHttpClient();
+
+	public void setHostName(String hostName);
+
+	public void setHostPort(int hostPort);
 
 	public void setKeyStore(KeyStore keyStore);
 
 	public void setLogin(String login);
 
 	public void setPassword(String password);
+
+	public void setProtocol(String protocol);
 
 }
