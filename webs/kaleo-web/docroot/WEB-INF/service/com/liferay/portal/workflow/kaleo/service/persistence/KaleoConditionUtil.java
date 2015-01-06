@@ -14,6 +14,8 @@
 
 package com.liferay.portal.workflow.kaleo.service.persistence;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.util.OrderByComparator;
@@ -35,6 +37,7 @@ import java.util.List;
  * @see KaleoConditionPersistenceImpl
  * @generated
  */
+@ProviderType
 public class KaleoConditionUtil {
 	/*
 	 * NOTE FOR DEVELOPERS:

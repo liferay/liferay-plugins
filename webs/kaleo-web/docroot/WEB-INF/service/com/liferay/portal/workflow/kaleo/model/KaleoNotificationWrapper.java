@@ -14,6 +14,8 @@
 
 package com.liferay.portal.workflow.kaleo.model;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.ModelWrapper;
 
@@ -30,6 +32,7 @@ import java.util.Map;
  * @see KaleoNotification
  * @generated
  */
+@ProviderType
 public class KaleoNotificationWrapper implements KaleoNotification,
 	ModelWrapper<KaleoNotification> {
 	public KaleoNotificationWrapper(KaleoNotification kaleoNotification) {
@@ -708,5 +711,5 @@ public class KaleoNotificationWrapper implements KaleoNotification,
 		_kaleoNotification.resetOriginalValues();
 	}
 
-	private KaleoNotification _kaleoNotification;
+	private final KaleoNotification _kaleoNotification;
 }

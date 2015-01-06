@@ -14,6 +14,8 @@
 
 package com.liferay.portal.workflow.kaleo.model;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.model.PersistedModel;
 
 /**
@@ -25,6 +27,7 @@ import com.liferay.portal.model.PersistedModel;
  * @see com.liferay.portal.workflow.kaleo.model.impl.KaleoLogModelImpl
  * @generated
  */
+@ProviderType
 public interface KaleoLog extends KaleoLogModel, PersistedModel {
 	/*
 	 * NOTE FOR DEVELOPERS:

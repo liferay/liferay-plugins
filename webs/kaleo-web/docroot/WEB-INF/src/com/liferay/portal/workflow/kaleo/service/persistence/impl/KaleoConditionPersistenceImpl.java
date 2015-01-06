@@ -14,6 +14,8 @@
 
 package com.liferay.portal.workflow.kaleo.service.persistence.impl;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.cache.CacheRegistryUtil;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
@@ -61,6 +63,7 @@ import java.util.Set;
  * @see KaleoConditionUtil
  * @generated
  */
+@ProviderType
 public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCondition>
 	implements KaleoConditionPersistence {
 	/*
@@ -1999,8 +2002,8 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No KaleoCondition exists with the key {";
 	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = GetterUtil.getBoolean(PropsUtil.get(
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
-	private static Log _log = LogFactoryUtil.getLog(KaleoConditionPersistenceImpl.class);
-	private static KaleoCondition _nullKaleoCondition = new KaleoConditionImpl() {
+	private static final Log _log = LogFactoryUtil.getLog(KaleoConditionPersistenceImpl.class);
+	private static final KaleoCondition _nullKaleoCondition = new KaleoConditionImpl() {
 			@Override
 			public Object clone() {
 				return this;
@@ -2012,7 +2015,8 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 			}
 		};
 
-	private static CacheModel<KaleoCondition> _nullKaleoConditionCacheModel = new CacheModel<KaleoCondition>() {
+	private static final CacheModel<KaleoCondition> _nullKaleoConditionCacheModel =
+		new CacheModel<KaleoCondition>() {
 			@Override
 			public KaleoCondition toEntityModel() {
 				return _nullKaleoCondition;

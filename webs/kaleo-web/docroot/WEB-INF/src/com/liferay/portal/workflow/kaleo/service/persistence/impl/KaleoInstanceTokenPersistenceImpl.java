@@ -14,6 +14,8 @@
 
 package com.liferay.portal.workflow.kaleo.service.persistence.impl;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.cache.CacheRegistryUtil;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
@@ -64,6 +66,7 @@ import java.util.Set;
  * @see KaleoInstanceTokenUtil
  * @generated
  */
+@ProviderType
 public class KaleoInstanceTokenPersistenceImpl extends BasePersistenceImpl<KaleoInstanceToken>
 	implements KaleoInstanceTokenPersistence {
 	/*
@@ -3463,8 +3466,8 @@ public class KaleoInstanceTokenPersistenceImpl extends BasePersistenceImpl<Kaleo
 	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No KaleoInstanceToken exists with the key {";
 	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = GetterUtil.getBoolean(PropsUtil.get(
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
-	private static Log _log = LogFactoryUtil.getLog(KaleoInstanceTokenPersistenceImpl.class);
-	private static KaleoInstanceToken _nullKaleoInstanceToken = new KaleoInstanceTokenImpl() {
+	private static final Log _log = LogFactoryUtil.getLog(KaleoInstanceTokenPersistenceImpl.class);
+	private static final KaleoInstanceToken _nullKaleoInstanceToken = new KaleoInstanceTokenImpl() {
 			@Override
 			public Object clone() {
 				return this;
@@ -3476,7 +3479,7 @@ public class KaleoInstanceTokenPersistenceImpl extends BasePersistenceImpl<Kaleo
 			}
 		};
 
-	private static CacheModel<KaleoInstanceToken> _nullKaleoInstanceTokenCacheModel =
+	private static final CacheModel<KaleoInstanceToken> _nullKaleoInstanceTokenCacheModel =
 		new CacheModel<KaleoInstanceToken>() {
 			@Override
 			public KaleoInstanceToken toEntityModel() {

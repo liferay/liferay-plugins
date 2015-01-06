@@ -14,6 +14,8 @@
 
 package com.liferay.portal.workflow.kaleo.model;
 
+import aQute.bnd.annotation.ProviderType;
+
 import java.io.Serializable;
 
 import java.util.ArrayList;
@@ -27,6 +29,7 @@ import java.util.List;
  * @see com.liferay.portal.workflow.kaleo.service.http.KaleoDefinitionServiceSoap
  * @generated
  */
+@ProviderType
 public class KaleoDefinitionSoap implements Serializable {
 	public static KaleoDefinitionSoap toSoapModel(KaleoDefinition model) {
 		KaleoDefinitionSoap soapModel = new KaleoDefinitionSoap();

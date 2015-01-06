@@ -14,6 +14,8 @@
 
 package com.liferay.portal.workflow.kaleo.service.persistence;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.service.persistence.BasePersistence;
 import com.liferay.portal.workflow.kaleo.model.KaleoInstance;
 
@@ -29,6 +31,7 @@ import com.liferay.portal.workflow.kaleo.model.KaleoInstance;
  * @see KaleoInstanceUtil
  * @generated
  */
+@ProviderType
 public interface KaleoInstancePersistence extends BasePersistence<KaleoInstance> {
 	/*
 	 * NOTE FOR DEVELOPERS:

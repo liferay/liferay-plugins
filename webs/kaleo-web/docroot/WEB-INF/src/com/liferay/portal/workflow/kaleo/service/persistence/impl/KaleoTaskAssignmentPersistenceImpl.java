@@ -14,6 +14,8 @@
 
 package com.liferay.portal.workflow.kaleo.service.persistence.impl;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.cache.CacheRegistryUtil;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
@@ -61,6 +63,7 @@ import java.util.Set;
  * @see KaleoTaskAssignmentUtil
  * @generated
  */
+@ProviderType
 public class KaleoTaskAssignmentPersistenceImpl extends BasePersistenceImpl<KaleoTaskAssignment>
 	implements KaleoTaskAssignmentPersistence {
 	/*
@@ -3041,8 +3044,8 @@ public class KaleoTaskAssignmentPersistenceImpl extends BasePersistenceImpl<Kale
 	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No KaleoTaskAssignment exists with the key {";
 	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = GetterUtil.getBoolean(PropsUtil.get(
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
-	private static Log _log = LogFactoryUtil.getLog(KaleoTaskAssignmentPersistenceImpl.class);
-	private static KaleoTaskAssignment _nullKaleoTaskAssignment = new KaleoTaskAssignmentImpl() {
+	private static final Log _log = LogFactoryUtil.getLog(KaleoTaskAssignmentPersistenceImpl.class);
+	private static final KaleoTaskAssignment _nullKaleoTaskAssignment = new KaleoTaskAssignmentImpl() {
 			@Override
 			public Object clone() {
 				return this;
@@ -3054,7 +3057,7 @@ public class KaleoTaskAssignmentPersistenceImpl extends BasePersistenceImpl<Kale
 			}
 		};
 
-	private static CacheModel<KaleoTaskAssignment> _nullKaleoTaskAssignmentCacheModel =
+	private static final CacheModel<KaleoTaskAssignment> _nullKaleoTaskAssignmentCacheModel =
 		new CacheModel<KaleoTaskAssignment>() {
 			@Override
 			public KaleoTaskAssignment toEntityModel() {

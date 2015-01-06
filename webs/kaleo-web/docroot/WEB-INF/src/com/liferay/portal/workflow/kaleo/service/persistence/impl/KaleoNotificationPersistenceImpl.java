@@ -14,6 +14,8 @@
 
 package com.liferay.portal.workflow.kaleo.service.persistence.impl;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.cache.CacheRegistryUtil;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
@@ -61,6 +63,7 @@ import java.util.Set;
  * @see KaleoNotificationUtil
  * @generated
  */
+@ProviderType
 public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoNotification>
 	implements KaleoNotificationPersistence {
 	/*
@@ -3033,8 +3036,8 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No KaleoNotification exists with the key {";
 	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = GetterUtil.getBoolean(PropsUtil.get(
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
-	private static Log _log = LogFactoryUtil.getLog(KaleoNotificationPersistenceImpl.class);
-	private static KaleoNotification _nullKaleoNotification = new KaleoNotificationImpl() {
+	private static final Log _log = LogFactoryUtil.getLog(KaleoNotificationPersistenceImpl.class);
+	private static final KaleoNotification _nullKaleoNotification = new KaleoNotificationImpl() {
 			@Override
 			public Object clone() {
 				return this;
@@ -3046,7 +3049,7 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 			}
 		};
 
-	private static CacheModel<KaleoNotification> _nullKaleoNotificationCacheModel =
+	private static final CacheModel<KaleoNotification> _nullKaleoNotificationCacheModel =
 		new CacheModel<KaleoNotification>() {
 			@Override
 			public KaleoNotification toEntityModel() {

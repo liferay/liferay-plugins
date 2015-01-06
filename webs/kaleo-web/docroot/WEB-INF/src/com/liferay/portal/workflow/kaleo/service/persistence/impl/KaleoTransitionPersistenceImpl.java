@@ -14,6 +14,8 @@
 
 package com.liferay.portal.workflow.kaleo.service.persistence.impl;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.cache.CacheRegistryUtil;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
@@ -62,6 +64,7 @@ import java.util.Set;
  * @see KaleoTransitionUtil
  * @generated
  */
+@ProviderType
 public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTransition>
 	implements KaleoTransitionPersistence {
 	/*
@@ -2859,8 +2862,8 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No KaleoTransition exists with the key {";
 	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = GetterUtil.getBoolean(PropsUtil.get(
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
-	private static Log _log = LogFactoryUtil.getLog(KaleoTransitionPersistenceImpl.class);
-	private static KaleoTransition _nullKaleoTransition = new KaleoTransitionImpl() {
+	private static final Log _log = LogFactoryUtil.getLog(KaleoTransitionPersistenceImpl.class);
+	private static final KaleoTransition _nullKaleoTransition = new KaleoTransitionImpl() {
 			@Override
 			public Object clone() {
 				return this;
@@ -2872,7 +2875,8 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 			}
 		};
 
-	private static CacheModel<KaleoTransition> _nullKaleoTransitionCacheModel = new CacheModel<KaleoTransition>() {
+	private static final CacheModel<KaleoTransition> _nullKaleoTransitionCacheModel =
+		new CacheModel<KaleoTransition>() {
 			@Override
 			public KaleoTransition toEntityModel() {
 				return _nullKaleoTransition;

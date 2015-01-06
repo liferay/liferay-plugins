@@ -14,6 +14,8 @@
 
 package com.liferay.portal.workflow.kaleo.model;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.CacheModel;
@@ -39,6 +41,7 @@ import java.util.Date;
  * @see com.liferay.portal.workflow.kaleo.model.impl.KaleoConditionModelImpl
  * @generated
  */
+@ProviderType
 public interface KaleoConditionModel extends BaseModel<KaleoCondition>,
 	GroupedModel {
 	/*
@@ -298,19 +301,20 @@ public interface KaleoConditionModel extends BaseModel<KaleoCondition>,
 	public Object clone();
 
 	@Override
-	public int compareTo(KaleoCondition kaleoCondition);
+	public int compareTo(
+		com.liferay.portal.workflow.kaleo.model.KaleoCondition kaleoCondition);
 
 	@Override
 	public int hashCode();
 
 	@Override
-	public CacheModel<KaleoCondition> toCacheModel();
+	public CacheModel<com.liferay.portal.workflow.kaleo.model.KaleoCondition> toCacheModel();
 
 	@Override
-	public KaleoCondition toEscapedModel();
+	public com.liferay.portal.workflow.kaleo.model.KaleoCondition toEscapedModel();
 
 	@Override
-	public KaleoCondition toUnescapedModel();
+	public com.liferay.portal.workflow.kaleo.model.KaleoCondition toUnescapedModel();
 
 	@Override
 	public String toString();

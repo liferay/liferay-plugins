@@ -14,6 +14,9 @@
 
 package com.liferay.portal.workflow.kaleo.model.impl;
 
+import aQute.bnd.annotation.ProviderType;
+
+import com.liferay.portal.kernel.util.HashUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.CacheModel;
@@ -33,8 +36,33 @@ import java.util.Date;
  * @see KaleoInstance
  * @generated
  */
+@ProviderType
 public class KaleoInstanceCacheModel implements CacheModel<KaleoInstance>,
 	Externalizable {
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof KaleoInstanceCacheModel)) {
+			return false;
+		}
+
+		KaleoInstanceCacheModel kaleoInstanceCacheModel = (KaleoInstanceCacheModel)obj;
+
+		if (kaleoInstanceId == kaleoInstanceCacheModel.kaleoInstanceId) {
+			return true;
+		}
+
+		return false;
+	}
+
+	@Override
+	public int hashCode() {
+		return HashUtil.hash(0, kaleoInstanceId);
+	}
+
 	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(33);

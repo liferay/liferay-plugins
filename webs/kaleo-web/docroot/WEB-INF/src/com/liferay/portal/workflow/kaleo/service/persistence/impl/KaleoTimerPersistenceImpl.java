@@ -14,6 +14,8 @@
 
 package com.liferay.portal.workflow.kaleo.service.persistence.impl;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.cache.CacheRegistryUtil;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
@@ -61,6 +63,7 @@ import java.util.Set;
  * @see KaleoTimerUtil
  * @generated
  */
+@ProviderType
 public class KaleoTimerPersistenceImpl extends BasePersistenceImpl<KaleoTimer>
 	implements KaleoTimerPersistence {
 	/*
@@ -1949,8 +1952,8 @@ public class KaleoTimerPersistenceImpl extends BasePersistenceImpl<KaleoTimer>
 	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No KaleoTimer exists with the key {";
 	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = GetterUtil.getBoolean(PropsUtil.get(
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
-	private static Log _log = LogFactoryUtil.getLog(KaleoTimerPersistenceImpl.class);
-	private static KaleoTimer _nullKaleoTimer = new KaleoTimerImpl() {
+	private static final Log _log = LogFactoryUtil.getLog(KaleoTimerPersistenceImpl.class);
+	private static final KaleoTimer _nullKaleoTimer = new KaleoTimerImpl() {
 			@Override
 			public Object clone() {
 				return this;
@@ -1962,7 +1965,7 @@ public class KaleoTimerPersistenceImpl extends BasePersistenceImpl<KaleoTimer>
 			}
 		};
 
-	private static CacheModel<KaleoTimer> _nullKaleoTimerCacheModel = new CacheModel<KaleoTimer>() {
+	private static final CacheModel<KaleoTimer> _nullKaleoTimerCacheModel = new CacheModel<KaleoTimer>() {
 			@Override
 			public KaleoTimer toEntityModel() {
 				return _nullKaleoTimer;
