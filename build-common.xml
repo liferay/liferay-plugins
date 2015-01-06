@@ -147,6 +147,15 @@ Error-Prone was automatically installed. Please rerun your task.
 		</else>
 	</if>
 
+	<if>
+		<not>
+			<equals arg1="${junit.debug}" arg2="true" />
+		</not>
+		<then>
+			<var name="junit.debug.jpda" value="" />
+		</then>
+	</if>
+
 	<macrodef name="baseline-jar-macro">
 		<attribute name="module.dir" />
 
