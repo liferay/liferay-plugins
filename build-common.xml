@@ -48,6 +48,15 @@
 	<property name="app.server.classes.portal.dir" value="${app.server.portal.dir}/WEB-INF/classes" />
 	<property location="${app.server.portal.dir}/WEB-INF/lib" name="app.server.lib.portal.dir" />
 
+	<if>
+		<not>
+			<equals arg1="${junit.debug}" arg2="true" />
+		</not>
+		<then>
+			<var name="junit.debug.jpda" value="" />
+		</then>
+	</if>
+
 	<import file="build-common-ivy.xml" />
 
 	<path id="plugin.classpath">
@@ -145,15 +154,6 @@ Error-Prone was automatically installed. Please rerun your task.
 				</then>
 			</if>
 		</else>
-	</if>
-
-	<if>
-		<not>
-			<equals arg1="${junit.debug}" arg2="true" />
-		</not>
-		<then>
-			<var name="junit.debug.jpda" value="" />
-		</then>
 	</if>
 
 	<macrodef name="baseline-jar-macro">
