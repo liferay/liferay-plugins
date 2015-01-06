@@ -90,10 +90,6 @@
 
 	<taskdef classpathref="classpath.org.codehaus.groovy" resource="org/codehaus/groovy/antlib.xml" />
 
-	<path id="classpath.net.sourceforge.pmd">
-		<fileset dir="${sdk.dir}/dependencies/net.sourceforge.pmd/lib" includes="*.jar" />
-	</path>
-
 	<condition property="correct.ant.version">
 		<antversion atleast="1.8.0" />
 	</condition>
@@ -2659,7 +2655,11 @@ for (String path : paths) {
 	</target>
 
 	<target name="run-pmd">
-		<taskdef name="pmd" classpathref="classpath.net.sourceforge.pmd" classname="net.sourceforge.pmd.ant.PMDTask" />
+		<path id="classpath.net.sourceforge.pmd">
+			<fileset dir="${sdk.dir}/dependencies/net.sourceforge.pmd/lib" includes="*.jar" />
+		</path>
+
+		<taskdef classpathref="classpath.net.sourceforge.pmd" classname="net.sourceforge.pmd.ant.PMDTask" name="pmd" />
 
 		<pmd shortFilenames="true" threads="${pmd.threads}">
 			<fileset dir="${project.dir}" excludes="${pmd.java.excludes}" includes="${pmd.java.includes}" />
