@@ -8,10 +8,10 @@
 			FROM
 				AssetEntrySet
 			INNER JOIN
-				AssetSharing_AssetSharingEntry ON
-					(AssetSharing_AssetSharingEntry.classPK = AssetEntrySet.assetEntrySetId)
+				AssetSharingEntry ON
+					(AssetSharingEntry.classPK = AssetEntrySet.assetEntrySetId)
 			WHERE
-				(AssetSharing_AssetSharingEntry.classNameId = ?) AND
+				(AssetSharingEntry.classNameId = ?) AND
 				[$SHARED_TO_CLASS_PKS_MAP]
 		]]>
 	</sql>
@@ -31,12 +31,12 @@
 				AssetTag ON
 					(AssetTag.tagId = AssetEntries_AssetTags.tagId)
 			INNER JOIN
-				AssetSharing_AssetSharingEntry ON
-					(AssetSharing_AssetSharingEntry.classPK = AssetEntrySet.assetEntrySetId)
+				AssetSharingEntry ON
+					(AssetSharingEntry.classPK = AssetEntrySet.assetEntrySetId)
 			WHERE
 				(AssetEntrySet.creatorClassNameId = ?) AND
 				(AssetTag.name = ?) AND
-				(AssetSharing_AssetSharingEntry.classNameId = ?) AND
+				(AssetSharingEntry.classNameId = ?) AND
 				(
 					([$SHARED_TO_CLASS_PKS_MAP]) OR
 					(AssetEntrySet.privateAssetEntrySet = [$FALSE$])
@@ -53,8 +53,8 @@
 				AssetEntry ON
 					(AssetEntry.classPK = AssetEntrySet.assetEntrySetId)
 			INNER JOIN
-				AssetSharing_AssetSharingEntry ON
-					(AssetSharing_AssetSharingEntry.classPK = AssetEntrySet.assetEntrySetId)
+				AssetSharingEntry ON
+					(AssetSharingEntry.classPK = AssetEntrySet.assetEntrySetId)
 			LEFT JOIN
 				AssetEntries_AssetTags ON
 					(AssetEntries_AssetTags.entryId = AssetEntry.entryId)
@@ -69,7 +69,7 @@
 					) [$AND_OR_CONNECTOR$]
 					(AssetTag.name = ?)
 				) AND
-				(AssetSharing_AssetSharingEntry.classNameId = ?) AND
+				(AssetSharingEntry.classNameId = ?) AND
 				(
 					([$SHARED_TO_CLASS_PKS_MAP]) OR
 					(AssetEntrySet.privateAssetEntrySet = [$FALSE$])
@@ -83,10 +83,10 @@
 			FROM
 				AssetEntrySet
 			INNER JOIN
-				AssetSharing_AssetSharingEntry ON
-					(AssetSharing_AssetSharingEntry.classPK = AssetEntrySet.assetEntrySetId)
+				AssetSharingEntry ON
+					(AssetSharingEntry.classPK = AssetEntrySet.assetEntrySetId)
 			WHERE
-				(AssetSharing_AssetSharingEntry.classNameId = ?) AND
+				(AssetSharingEntry.classNameId = ?) AND
 				[$SHARED_TO_CLASS_PKS_MAP]
 			ORDER BY
 				AssetEntrySet.modifiedTime DESC
@@ -108,12 +108,12 @@
 				AssetTag ON
 					(AssetTag.tagId = AssetEntries_AssetTags.tagId)
 			INNER JOIN
-				AssetSharing_AssetSharingEntry ON
-					(AssetSharing_AssetSharingEntry.classPK = AssetEntrySet.assetEntrySetId)
+				AssetSharingEntry ON
+					(AssetSharingEntry.classPK = AssetEntrySet.assetEntrySetId)
 			WHERE
 				(AssetEntrySet.creatorClassNameId = ?) AND
 				(AssetTag.name = ?) AND
-				(AssetSharing_AssetSharingEntry.classNameId = ?) AND
+				(AssetSharingEntry.classNameId = ?) AND
 				(
 					([$SHARED_TO_CLASS_PKS_MAP]) OR
 					(AssetEntrySet.privateAssetEntrySet = [$FALSE$])
@@ -132,8 +132,8 @@
 				AssetEntry ON
 					(AssetEntry.classPK = AssetEntrySet.assetEntrySetId)
 			INNER JOIN
-				AssetSharing_AssetSharingEntry ON
-					(AssetSharing_AssetSharingEntry.classPK = AssetEntrySet.assetEntrySetId)
+				AssetSharingEntry ON
+					(AssetSharingEntry.classPK = AssetEntrySet.assetEntrySetId)
 			LEFT JOIN
 				AssetEntries_AssetTags ON
 					(AssetEntries_AssetTags.entryId = AssetEntry.entryId)
@@ -148,7 +148,7 @@
 					) [$AND_OR_CONNECTOR$]
 					(AssetTag.name = ?)
 				) AND
-				(AssetSharing_AssetSharingEntry.classNameId = ?) AND
+				(AssetSharingEntry.classNameId = ?) AND
 				(
 					([$SHARED_TO_CLASS_PKS_MAP]) OR
 					(AssetEntrySet.privateAssetEntrySet = [$FALSE$])

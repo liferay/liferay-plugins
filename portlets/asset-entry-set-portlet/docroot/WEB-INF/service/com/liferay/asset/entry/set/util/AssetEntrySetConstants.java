@@ -29,7 +29,6 @@ public class AssetEntrySetConstants {
 
 	public static final String PAYLOAD_KEY_ASSET_TAG_NAMES = "assetTagNames";
 
-	public static final String PAYLOAD_KEY_SHARED_TO_CLASS_PKS_MAP =
-		"sharedToClassPKsMap";
+	public static final String PAYLOAD_KEY_SHARED_TO = "sharedTo";
 
 }

@@ -42,25 +42,25 @@ public class DLAssetEntrySetHandler extends BaseAssetEntrySetHandler {
 	}
 
 	@Override
-	public String interpret(JSONObject payload)
+	public String interpret(JSONObject payloadJSONObject)
 		throws PortalException, SystemException {
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
 		List<Long> assetEntryIds = new ArrayList<Long>();
 
-		long userId = payload.getLong("userId");
-		long repositoryId = payload.getLong("repositoryId");
-		long folderId = payload.getLong("folderId");
+		long userId = payloadJSONObject.getLong("userId");
+		long repositoryId = payloadJSONObject.getLong("repositoryId");
+		long folderId = payloadJSONObject.getLong("folderId");
 
 		ServiceContext serviceContext = new ServiceContext();
 
 		serviceContext.setAssetTagNames(
 			StringUtil.split(
-				payload.getString(
+				payloadJSONObject.getString(
 					AssetEntrySetConstants.PAYLOAD_KEY_ASSET_TAG_NAMES)));
 
-		JSONArray filesJSONArray = payload.getJSONArray("files");
+		JSONArray filesJSONArray = payloadJSONObject.getJSONArray("files");
 
 		for (int i = 0; i < filesJSONArray.length(); i++) {
 			JSONObject fileJSONObject = filesJSONArray.getJSONObject(i);
@@ -82,14 +82,14 @@ public class DLAssetEntrySetHandler extends BaseAssetEntrySetHandler {
 
 		jsonObject.put("assetEntryIds", StringUtil.merge(assetEntryIds));
 
-		jsonObject.put("message", payload.getString("message"));
-		jsonObject.put("type", payload.getString("type"));
-		jsonObject.put("url", payload.getString("url"));
+		jsonObject.put("message", payloadJSONObject.getString("message"));
+		jsonObject.put("type", payloadJSONObject.getString("type"));
+		jsonObject.put("url", payloadJSONObject.getString("url"));
 
 		jsonObject.put(
-			AssetEntrySetConstants.PAYLOAD_KEY_SHARED_TO_CLASS_PKS_MAP,
-			payload.getJSONObject(
-				AssetEntrySetConstants.PAYLOAD_KEY_SHARED_TO_CLASS_PKS_MAP));
+			AssetEntrySetConstants.PAYLOAD_KEY_SHARED_TO,
+			payloadJSONObject.getJSONArray(
+				AssetEntrySetConstants.PAYLOAD_KEY_SHARED_TO));
 
 		return JSONFactoryUtil.looseSerialize(jsonObject);
 	}

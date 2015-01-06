@@ -45,9 +45,9 @@ public class BaseAssetEntrySetHandler implements AssetEntrySetHandler {
 		jsonObject.put("url", payloadJSONObject.getString("url"));
 
 		jsonObject.put(
-			AssetEntrySetConstants.PAYLOAD_KEY_SHARED_TO_CLASS_PKS_MAP,
-			payload.getJSONObject(
-				AssetEntrySetConstants.PAYLOAD_KEY_SHARED_TO_CLASS_PKS_MAP));
+			AssetEntrySetConstants.PAYLOAD_KEY_SHARED_TO,
+			payloadJSONObject.getJSONArray(
+				AssetEntrySetConstants.PAYLOAD_KEY_SHARED_TO));
 
 		return JSONFactoryUtil.looseSerialize(jsonObject);
 	}

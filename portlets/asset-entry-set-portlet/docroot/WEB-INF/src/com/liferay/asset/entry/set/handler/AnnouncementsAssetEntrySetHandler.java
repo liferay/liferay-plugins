@@ -45,37 +45,39 @@ public class AnnouncementsAssetEntrySetHandler
 	}
 
 	@Override
-	public String interpret(JSONObject payload)
+	public String interpret(JSONObject payloadJSONObject)
 		throws PortalException, SystemException {
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
-		long userId = payload.getLong("userId");
-		long classNameId = payload.getLong("classNameId");
-		long classPK = payload.getLong("classPK");
-		String title = payload.getString("title");
-		String content = payload.getString("content");
-		String url = payload.getString("url");
-		String type = payload.getString("type");
+		long userId = payloadJSONObject.getLong("userId");
+		long classNameId = payloadJSONObject.getLong("classNameId");
+		long classPK = payloadJSONObject.getLong("classPK");
+		String title = payloadJSONObject.getString("title");
+		String content = payloadJSONObject.getString("content");
+		String url = payloadJSONObject.getString("url");
+		String type = payloadJSONObject.getString("type");
 
-		String displayDateString = payload.getString("displayDate");
+		String displayDateString = payloadJSONObject.getString("displayDate");
 
 		Date displayDate = GetterUtil.getDate(
 			displayDateString, DateUtil.getISOFormat(displayDateString));
 
 		Calendar displayCalendar = getCalendar(displayDate);
 
-		boolean displayImmediately = payload.getBoolean("displayImmediately");
+		boolean displayImmediately = payloadJSONObject.getBoolean(
+			"displayImmediately");
 
-		String expirationDateString = payload.getString("expirationDate");
+		String expirationDateString = payloadJSONObject.getString(
+			"expirationDate");
 
 		Date expirationDate = GetterUtil.getDate(
 			expirationDateString, DateUtil.getISOFormat(expirationDateString));
 
 		Calendar expirationCalendar = getCalendar(expirationDate);
 
-		int priority = payload.getInt("priority");
-		boolean alert = payload.getBoolean("alert");
+		int priority = payloadJSONObject.getInt("priority");
+		boolean alert = payloadJSONObject.getBoolean("alert");
 
 		AnnouncementsEntry announcementEntry =
 			AnnouncementsEntryLocalServiceUtil.addEntry(
@@ -94,19 +96,19 @@ public class AnnouncementsAssetEntrySetHandler
 		AssetEntry assetEntry = updateAssetEntry(
 			announcementEntry,
 			StringUtil.split(
-				payload.getString(
+				payloadJSONObject.getString(
 					AssetEntrySetConstants.PAYLOAD_KEY_ASSET_TAG_NAMES)));
 
 		jsonObject.put("assetEntryIds", assetEntry.getEntryId());
 
-		jsonObject.put("message", payload.getString("message"));
-		jsonObject.put("type", payload.getString("type"));
-		jsonObject.put("url", payload.getString("url"));
+		jsonObject.put("message", payloadJSONObject.getString("message"));
+		jsonObject.put("type", payloadJSONObject.getString("type"));
+		jsonObject.put("url", payloadJSONObject.getString("url"));
 
 		jsonObject.put(
-			AssetEntrySetConstants.PAYLOAD_KEY_SHARED_TO_CLASS_PKS_MAP,
-			payload.getJSONObject(
-				AssetEntrySetConstants.PAYLOAD_KEY_SHARED_TO_CLASS_PKS_MAP));
+			AssetEntrySetConstants.PAYLOAD_KEY_SHARED_TO,
+			payloadJSONObject.getJSONArray(
+				AssetEntrySetConstants.PAYLOAD_KEY_SHARED_TO));
 
 		return JSONFactoryUtil.looseSerialize(jsonObject);
 	}

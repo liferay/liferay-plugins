@@ -41,7 +41,6 @@ import com.liferay.portlet.asset.model.AssetEntry;
 import com.liferay.portlet.asset.service.AssetEntryLocalServiceUtil;
 import com.liferay.portlet.ratings.model.RatingsStats;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -71,8 +70,7 @@ public class AssetEntrySetLocalServiceImpl
 		throws PortalException, SystemException {
 
 		return addAssetEntrySet(
-			userId, parentAssetEntrySetId,
-			classNameLocalService.getClassNameId(User.class), userId,
+			userId, parentAssetEntrySetId, _USER_CLASS_NAME_ID, userId,
 			payloadJSONObject, privateAssetEntrySet);
 	}
 
@@ -120,7 +118,7 @@ public class AssetEntrySetLocalServiceImpl
 		Map<Long, long[]> sharedToClassPKsMap = getSharedToClassPKsMap(
 			payloadJSONObject);
 
-		sharedToClassPKsMap = shareToUser(sharedToClassPKsMap, userId);
+		sharedToUser(sharedToClassPKsMap, userId);
 
 		AssetSharingEntryLocalServiceUtil.addAssetSharingEntries(
 			_ASSET_ENTRY_SET_CLASS_NAME_ID, assetEntrySetId,
@@ -153,6 +151,18 @@ public class AssetEntrySetLocalServiceImpl
 
 	@Override
 	public List<AssetEntrySet> getAssetEntrySets(
+			long userId, int start, int end)
+		throws PortalException, SystemException {
+
+		Map<Long, long[]> sharedToClassPKsMap =
+			AssetSharingUtil.getSharedToClassPKsMap(userId);
+
+		return assetEntrySetFinder.findBySharedToClassPKsMap(
+			sharedToClassPKsMap, start, end);
+	}
+
+	@Override
+	public List<AssetEntrySet> getAssetEntrySets(
 			long parentAssetEntrySetId, long lastAccessTime, int start, int end)
 		throws PortalException, SystemException {
 
@@ -167,7 +177,7 @@ public class AssetEntrySetLocalServiceImpl
 
 	@Override
 	public List<AssetEntrySet> getAssetEntrySets(
-			long creatorClassNameId, long creatorClassPK, long userId,
+			long userId, long creatorClassNameId, long creatorClassPK,
 			String assetTagName, boolean andOperator, int start, int end)
 		throws PortalException, SystemException {
 
@@ -186,7 +196,7 @@ public class AssetEntrySetLocalServiceImpl
 
 	@Override
 	public List<AssetEntrySet> getAssetEntrySets(
-			long creatorClassNameId, long userId, String assetTagName,
+			long userId, long creatorClassNameId, String assetTagName,
 			int start, int end)
 		throws PortalException, SystemException {
 
@@ -202,23 +212,19 @@ public class AssetEntrySetLocalServiceImpl
 	}
 
 	@Override
-	public List<AssetEntrySet> getAssetEntrySets(
-			long userId, Map<Long, long[]> sharedToClassPKsMap, int start,
-			int end)
+	public int getAssetEntrySetsCount(long userId)
 		throws PortalException, SystemException {
 
-		if ((sharedToClassPKsMap == null) || sharedToClassPKsMap.isEmpty()) {
-			sharedToClassPKsMap = AssetSharingUtil.getSharedToClassPKsMap(
-				userId);
-		}
+		Map<Long, long[]> sharedToClassPKsMap =
+			AssetSharingUtil.getSharedToClassPKsMap(userId);
 
-		return assetEntrySetFinder.findBySharedToClassPKsMap(
-			sharedToClassPKsMap, start, end);
+		return assetEntrySetFinder.countBySharedToClassPKsMap(
+			sharedToClassPKsMap);
 	}
 
 	@Override
 	public int getAssetEntrySetsCount(
-			long creatorClassNameId, long creatorClassPK, long userId,
+			long userId, long creatorClassNameId, long creatorClassPK,
 			String assetTagName, boolean andOperator)
 		throws PortalException, SystemException {
 
@@ -232,7 +238,7 @@ public class AssetEntrySetLocalServiceImpl
 
 	@Override
 	public int getAssetEntrySetsCount(
-			long creatorClassNameId, long userId, String assetTagName)
+			long userId, long creatorClassNameId, String assetTagName)
 		throws PortalException, SystemException {
 
 		Map<Long, long[]> sharedToClassPKsMap =
@@ -240,20 +246,6 @@ public class AssetEntrySetLocalServiceImpl
 
 		return assetEntrySetFinder.countByCCNI_ATN(
 			creatorClassNameId, assetTagName, sharedToClassPKsMap);
-	}
-
-	@Override
-	public int getAssetEntrySetsCount(
-			long userId, Map<Long, long[]> sharedToClassPKsMap)
-		throws PortalException, SystemException {
-
-		if ((sharedToClassPKsMap == null) || sharedToClassPKsMap.isEmpty()) {
-			sharedToClassPKsMap = AssetSharingUtil.getSharedToClassPKsMap(
-				userId);
-		}
-
-		return assetEntrySetFinder.countBySharedToClassPKsMap(
-			sharedToClassPKsMap);
 	}
 
 	@Override
@@ -305,7 +297,6 @@ public class AssetEntrySetLocalServiceImpl
 
 		assetEntrySet.setPayload(
 			AssetEntrySetManagerUtil.interpret(payloadJSONObject));
-
 		assetEntrySet.setPrivateAssetEntrySet(privateAssetEntrySet);
 
 		assetEntrySetPersistence.update(assetEntrySet);
@@ -318,14 +309,13 @@ public class AssetEntrySetLocalServiceImpl
 				payloadJSONObject.getString(
 					AssetEntrySetConstants.PAYLOAD_KEY_ASSET_TAG_NAMES)));
 
-		Map<Long, long[]> sharedToClassPKsMap = getSharedToClassPKsMap(
-			payloadJSONObject);
-
 		AssetSharingEntryLocalServiceUtil.deleteAssetSharingEntries(
 			_ASSET_ENTRY_SET_CLASS_NAME_ID, assetEntrySetId);
 
-		sharedToClassPKsMap = shareToUser(
-			sharedToClassPKsMap, assetEntrySet.getUserId());
+		Map<Long, long[]> sharedToClassPKsMap = getSharedToClassPKsMap(
+			payloadJSONObject);
+
+		sharedToUser(sharedToClassPKsMap, assetEntrySet.getUserId());
 
 		AssetSharingEntryLocalServiceUtil.addAssetSharingEntries(
 			_ASSET_ENTRY_SET_CLASS_NAME_ID, assetEntrySetId,
@@ -360,47 +350,31 @@ public class AssetEntrySetLocalServiceImpl
 	protected Map<Long, long[]> getSharedToClassPKsMap(
 		JSONObject payloadJSONObject) {
 
-		JSONArray sharedToClassPKsMapJsonArray = payloadJSONObject.getJSONArray(
-			AssetEntrySetConstants.PAYLOAD_KEY_SHARED_TO_CLASS_PKS_MAP);
-
-		if (sharedToClassPKsMapJsonArray == null) {
-			return null;
-		}
-
-		Map<Long, List<Long>> tempMap = new LinkedHashMap<Long, List<Long>>();
-
-		for (int i = 0; i < sharedToClassPKsMapJsonArray.length(); i++) {
-			JSONObject sharedToClassNameClassPKJsonObject =
-				sharedToClassPKsMapJsonArray.getJSONObject(i);
-
-			long classNameId = sharedToClassNameClassPKJsonObject.getLong(
-				"classNameId");
-			long classPK = sharedToClassNameClassPKJsonObject.getLong(
-				"classPK");
-
-			if (tempMap.containsKey(classNameId)) {
-				List<Long> classPKs = tempMap.get(classNameId);
-
-				classPKs.add(classPK);
-
-				tempMap.put(classNameId, classPKs);
-			}
-			else {
-				List<Long> classPKs = new ArrayList<Long>();
-
-				classPKs.add(classPK);
-
-				tempMap.put(classNameId, classPKs);
-			}
-		}
-
 		Map<Long, long[]> sharedToClassPKsMap =
 			new LinkedHashMap<Long, long[]>();
 
-		for (Long classNameId : tempMap.keySet()) {
-			long[] classPKs = ArrayUtil.toLongArray(tempMap.get(classNameId));
+		JSONArray sharedToJSONArray = payloadJSONObject.getJSONArray(
+			AssetEntrySetConstants.PAYLOAD_KEY_SHARED_TO);
 
-			sharedToClassPKsMap.put(classNameId, classPKs);
+		if (sharedToJSONArray == null) {
+			return sharedToClassPKsMap;
+		}
+
+		for (int i = 0; i < sharedToJSONArray.length(); i++) {
+			JSONObject sharedToJSONObject = sharedToJSONArray.getJSONObject(i);
+
+			long classNameId = sharedToJSONObject.getLong("classNameId");
+			long classPK = sharedToJSONObject.getLong("classPK");
+
+			if (sharedToClassPKsMap.containsKey(classNameId)) {
+				sharedToClassPKsMap.put(
+					classNameId,
+					ArrayUtil.append(
+						sharedToClassPKsMap.get(classNameId), classPK));
+			}
+			else {
+				sharedToClassPKsMap.put(classNameId, new long[] {classPK});
+			}
 		}
 
 		return sharedToClassPKsMap;
@@ -415,9 +389,7 @@ public class AssetEntrySetLocalServiceImpl
 		String creatorPortraitURL = StringPool.BLANK;
 		String creatorURL = StringPool.BLANK;
 
-		if (assetEntrySet.getCreatorClassNameId() ==
-				classNameLocalService.getClassNameId(User.class)) {
-
+		if (assetEntrySet.getCreatorClassNameId() == _USER_CLASS_NAME_ID) {
 			User user = userPersistence.findByPrimaryKey(
 				assetEntrySet.getUserId());
 
@@ -469,27 +441,18 @@ public class AssetEntrySetLocalServiceImpl
 		}
 	}
 
-	protected Map<Long, long[]> shareToUser(
+	protected void sharedToUser(
 		Map<Long, long[]> sharedToClassPKsMap, long userId) {
 
-		if (sharedToClassPKsMap == null) {
-			sharedToClassPKsMap = new LinkedHashMap<Long, long[]>();
-		}
-
-		long userClassNameId = classNameLocalService.getClassNameId(User.class);
-
-		long[] sharedToUserIds = sharedToClassPKsMap.get(userClassNameId);
+		long[] sharedToUserIds = sharedToClassPKsMap.get(_USER_CLASS_NAME_ID);
 
 		if (sharedToUserIds == null) {
-			sharedToClassPKsMap.put(userClassNameId, new long[] {userId});
+			sharedToClassPKsMap.put(_USER_CLASS_NAME_ID, new long[] {userId});
 		}
 		else if (!ArrayUtil.contains(sharedToUserIds, userId)) {
-			ArrayUtil.append(sharedToUserIds, userId);
-
-			sharedToClassPKsMap.put(userClassNameId, sharedToUserIds);
+			sharedToClassPKsMap.put(
+				_USER_CLASS_NAME_ID, ArrayUtil.append(sharedToUserIds, userId));
 		}
-
-		return sharedToClassPKsMap;
 	}
 
 	protected void updateAssetEntry(
@@ -530,5 +493,8 @@ public class AssetEntrySetLocalServiceImpl
 
 	private static final long _ASSET_ENTRY_SET_CLASS_NAME_ID =
 		ClassNameLocalServiceUtil.getClassNameId(AssetEntrySet.class);
+
+	private static final long _USER_CLASS_NAME_ID =
+		ClassNameLocalServiceUtil.getClassNameId(User.class);
 
 }
