@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 
 <custom-sql>
-	<sql id="com.liferay.asset.entry.set.service.persistence.AssetEntrySetFinder.countByUserId">
+	<sql id="com.liferay.asset.entry.set.service.persistence.AssetEntrySetFinder.countBySharedToClassPKsMap">
 		<![CDATA[
 			SELECT
 				COUNT(DISTINCT AssetEntrySet.assetEntrySetId) AS COUNT_VALUE
@@ -76,7 +76,7 @@
 				)
 		]]>
 	</sql>
-	<sql id="com.liferay.asset.entry.set.service.persistence.AssetEntrySetFinder.findByUserId">
+	<sql id="com.liferay.asset.entry.set.service.persistence.AssetEntrySetFinder.findBySharedToClassPKsMap">
 		<![CDATA[
 			SELECT
 				DISTINCT {AssetEntrySet.*}

@@ -42,8 +42,8 @@ public class AssetEntrySetFinderImpl
 	extends BasePersistenceImpl<AssetEntrySet>
 	implements AssetEntrySetFinder {
 
-	public static final String COUNT_BY_USER_ID =
-		AssetEntrySetFinder.class.getName() + ".countByUserId";
+	public static final String COUNT_BY_SHARED_TO_CLASS_PKS_MAP =
+		AssetEntrySetFinder.class.getName() + ".countBySharedToClassPKsMap";
 
 	public static final String COUNT_BY_CCNI_ATN =
 		AssetEntrySetFinder.class.getName() + ".countByCCNI_ATN";
@@ -51,8 +51,8 @@ public class AssetEntrySetFinderImpl
 	public static final String COUNT_BY_CCNI_CCPK_ATN =
 		AssetEntrySetFinder.class.getName() + ".countByCCNI_CCPK_ATN";
 
-	public static final String FIND_BY_USER_ID =
-		AssetEntrySetFinder.class.getName() + ".findByUserId";
+	public static final String FIND_BY_SHARED_TO_CLASS_PKS_MAP =
+		AssetEntrySetFinder.class.getName() + ".findBySharedToClassPKsMap";
 
 	public static final String FIND_BY_CCNI_ATN =
 		AssetEntrySetFinder.class.getName() + ".findByCCNI_ATN";
@@ -69,7 +69,7 @@ public class AssetEntrySetFinderImpl
 		try {
 			session = openSession();
 
-			String sql = CustomSQLUtil.get(COUNT_BY_USER_ID);
+			String sql = CustomSQLUtil.get(COUNT_BY_SHARED_TO_CLASS_PKS_MAP);
 
 			sql = StringUtil.replace(
 				sql, "[$SHARED_TO_CLASS_PKS_MAP]",
@@ -208,7 +208,7 @@ public class AssetEntrySetFinderImpl
 		try {
 			session = openSession();
 
-			String sql = CustomSQLUtil.get(FIND_BY_USER_ID);
+			String sql = CustomSQLUtil.get(FIND_BY_SHARED_TO_CLASS_PKS_MAP);
 
 			sql = StringUtil.replace(
 				sql, "[$SHARED_TO_CLASS_PKS_MAP]",
