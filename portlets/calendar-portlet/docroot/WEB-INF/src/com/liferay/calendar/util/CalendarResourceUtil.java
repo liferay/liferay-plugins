@@ -114,6 +114,14 @@ public class CalendarResourceUtil {
 		return getGroupCalendarResource(groupId, serviceContext);
 	}
 
+	public static CalendarResource getGuestCalendarResource(long companyId)
+		throws PortalException {
+
+		return CalendarResourceLocalServiceUtil.fetchCalendarResource(
+			PortalUtil.getClassNameId(User.class),
+			UserLocalServiceUtil.getDefaultUserId(companyId));
+	}
+
 	public static OrderByComparator<CalendarResource> getOrderByComparator(
 		String orderByCol, String orderByType) {
 
