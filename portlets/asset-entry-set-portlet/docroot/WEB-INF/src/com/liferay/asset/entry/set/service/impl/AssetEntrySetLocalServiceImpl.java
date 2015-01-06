@@ -118,7 +118,7 @@ public class AssetEntrySetLocalServiceImpl
 		Map<Long, long[]> sharedToClassPKsMap = getSharedToClassPKsMap(
 			payloadJSONObject);
 
-		sharedToUser(sharedToClassPKsMap, userId);
+		addUserToSharedToClassPKsMap(sharedToClassPKsMap, userId);
 
 		AssetSharingEntryLocalServiceUtil.addAssetSharingEntries(
 			_ASSET_ENTRY_SET_CLASS_NAME_ID, assetEntrySetId,
@@ -315,7 +315,7 @@ public class AssetEntrySetLocalServiceImpl
 		Map<Long, long[]> sharedToClassPKsMap = getSharedToClassPKsMap(
 			payloadJSONObject);
 
-		sharedToUser(sharedToClassPKsMap, assetEntrySet.getUserId());
+		addUserToSharedToClassPKsMap(sharedToClassPKsMap, assetEntrySet.getUserId());
 
 		AssetSharingEntryLocalServiceUtil.addAssetSharingEntries(
 			_ASSET_ENTRY_SET_CLASS_NAME_ID, assetEntrySetId,
@@ -441,7 +441,7 @@ public class AssetEntrySetLocalServiceImpl
 		}
 	}
 
-	protected void sharedToUser(
+	protected void addUserToSharedToClassPKsMap(
 		Map<Long, long[]> sharedToClassPKsMap, long userId) {
 
 		long[] sharedToUserIds = sharedToClassPKsMap.get(_USER_CLASS_NAME_ID);
