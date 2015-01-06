@@ -2662,9 +2662,9 @@ for (String path : paths) {
 		<taskdef classpathref="classpath.net.sourceforge.pmd" classname="net.sourceforge.pmd.ant.PMDTask" name="pmd" />
 
 		<pmd shortFilenames="true" threads="${pmd.threads}">
-			<fileset dir="${basedir}" excludes="${pmd.java.excludes}" includes="${pmd.java.includes}" />
+			<fileset dir="${basedir}" excludes="${pmd.excludes}" includes="${pmd.includes}" />
 			<formatter toConsole="true" type="text" />
-			<ruleset>${pmd.java.ruleset}</ruleset>
+			<ruleset>${pmd.ruleset}</ruleset>
 			<sourceLanguage name="java" version="${ant.build.javac.source}" />
 		</pmd>
 	</target>
