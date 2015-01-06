@@ -462,7 +462,6 @@
 		<field indexed="true" name="content" stored="true" termPositions="true" termVectors="true" type="text" />
 		<field indexed="true" name="description" stored="true" termPositions="true" termVectors="true" type="text" />
 		<field indexed="true" name="createDate" stored="true" type="string" />
-		<field indexed="true" name="createDate_sortable" stored="true" type="long" />
 		<field indexed="true" name="dataRepositoryId" stored="true" type="string" />
 		<field indexed="true" name="ddmContent" stored="true" termPositions="true" termVectors="true" type="text" />
 		<field indexed="true" name="ddmStructureKey" stored="true" type="string" />
@@ -473,7 +472,6 @@
 		<field indexed="true" name="entryClassPK" stored="true" type="string" />
 		<field indexed="true" name="entryClassName" stored="true" type="string" />
 		<field indexed="true" name="expirationDate" stored="true" type="string" />
-		<field indexed="true" name="expirationDate_sortable" stored="true" type="long" />
 		<field indexed="true" name="extension" stored="true" type="string" />
 		<field indexed="true" name="fileEntryTypeId" stored="true" type="string" />
 		<field indexed="true" name="folderId" stored="true" type="string" />
@@ -496,7 +494,6 @@
 		<field indexed="true" name="path" stored="true" type="string" />
 		<field indexed="true" name="portletId" stored="true" type="string" />
 		<field indexed="true" name="publishDate" stored="true" type="string" />
-		<field indexed="true" name="publishDate_sortable" stored="true" type="long" />
 		<field indexed="true" name="readCount" stored="true" type="string" />
 		<field indexed="true" name="recordSetId" stored="true" type="string" />
 		<field indexed="true" name="removedDate" stored="true" type="string" />
@@ -526,6 +523,7 @@
 		<field indexed="true" name="version" stored="true" type="string" />
 		<field indexed="true" name="visible" stored="true" type="string" />
 		<field indexed="true" multiValued="false" name="_version_" stored="true" type="long" />
+		<dynamicField indexed="true" name="*Date_sortable" stored="true" type="long" />
 		<dynamicField indexed="true" multiValued="true" name="*_sortable" stored="true" type="string" />
 		<dynamicField indexed="true" multiValued="true" name="assetCategoryTitles*" stored="true" termPositions="true" termVectors="true" type="text" />
 		<dynamicField indexed="true" multiValued="true" name="expando__*" stored="true" type="text" />
