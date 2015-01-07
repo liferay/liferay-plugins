@@ -41,6 +41,8 @@ import com.liferay.portlet.asset.model.AssetEntry;
 import com.liferay.portlet.asset.service.AssetEntryLocalServiceUtil;
 import com.liferay.portlet.ratings.model.RatingsStats;
 
+import java.io.File;
+
 import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -55,29 +57,30 @@ public class AssetEntrySetLocalServiceImpl
 
 	@Override
 	public AssetEntrySet addAssetEntrySet(
-			long userId, JSONObject payloadJSONObject,
+			long userId, JSONObject payloadJSONObject, File file,
 			boolean privateAssetEntrySet)
 		throws PortalException, SystemException {
 
 		return addAssetEntrySet(
-			userId, 0, payloadJSONObject, privateAssetEntrySet);
+			userId, 0, payloadJSONObject, file, privateAssetEntrySet);
 	}
 
 	@Override
 	public AssetEntrySet addAssetEntrySet(
 			long userId, long parentAssetEntrySetId,
-			JSONObject payloadJSONObject, boolean privateAssetEntrySet)
+			JSONObject payloadJSONObject, File file,
+			boolean privateAssetEntrySet)
 		throws PortalException, SystemException {
 
 		return addAssetEntrySet(
 			userId, parentAssetEntrySetId, _USER_CLASS_NAME_ID, userId,
-			payloadJSONObject, privateAssetEntrySet);
+			payloadJSONObject, file, privateAssetEntrySet);
 	}
 
 	@Override
 	public AssetEntrySet addAssetEntrySet(
 			long userId, long parentAssetEntrySetId, long creatorClassNameId,
-			long creatorClassPK, JSONObject payloadJSONObject,
+			long creatorClassPK, JSONObject payloadJSONObject, File file,
 			boolean privateAssetEntrySet)
 		throws PortalException, SystemException {
 
@@ -100,7 +103,7 @@ public class AssetEntrySetLocalServiceImpl
 		assetEntrySet.setCreatorClassNameId(creatorClassNameId);
 		assetEntrySet.setCreatorClassPK(creatorClassPK);
 		assetEntrySet.setPayload(
-			AssetEntrySetManagerUtil.interpret(payloadJSONObject));
+			AssetEntrySetManagerUtil.interpret(payloadJSONObject, file));
 		assetEntrySet.setPrivateAssetEntrySet(privateAssetEntrySet);
 
 		assetEntrySetPersistence.update(assetEntrySet);
@@ -284,7 +287,7 @@ public class AssetEntrySetLocalServiceImpl
 
 	@Override
 	public AssetEntrySet updateAssetEntrySet(
-			long assetEntrySetId, JSONObject payloadJSONObject,
+			long assetEntrySetId, JSONObject payloadJSONObject, File file,
 			boolean privateAssetEntrySet)
 		throws PortalException, SystemException {
 
@@ -296,7 +299,7 @@ public class AssetEntrySetLocalServiceImpl
 		assetEntrySet.setModifiedTime(now.getTime());
 
 		assetEntrySet.setPayload(
-			AssetEntrySetManagerUtil.interpret(payloadJSONObject));
+			AssetEntrySetManagerUtil.interpret(payloadJSONObject, file));
 		assetEntrySet.setPrivateAssetEntrySet(privateAssetEntrySet);
 
 		assetEntrySetPersistence.update(assetEntrySet);

@@ -18,19 +18,18 @@ import com.liferay.asset.entry.set.util.AssetEntrySetConstants;
 import com.liferay.compat.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.repository.model.FileEntry;
-import com.liferay.portal.kernel.util.Base64;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portlet.asset.model.AssetEntry;
 import com.liferay.portlet.asset.service.AssetEntryLocalServiceUtil;
 import com.liferay.portlet.documentlibrary.model.DLFileEntry;
 import com.liferay.portlet.documentlibrary.service.DLAppLocalServiceUtil;
+import com.liferay.portlet.documentlibrary.util.DLUtil;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.io.File;
 
 /**
  * @author Matthew Kong
@@ -42,16 +41,10 @@ public class DLAssetEntrySetHandler extends BaseAssetEntrySetHandler {
 	}
 
 	@Override
-	public String interpret(JSONObject payloadJSONObject)
+	public String interpret(JSONObject payloadJSONObject, File file)
 		throws PortalException, SystemException {
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
-
-		List<Long> assetEntryIds = new ArrayList<Long>();
-
-		long userId = payloadJSONObject.getLong("userId");
-		long repositoryId = payloadJSONObject.getLong("repositoryId");
-		long folderId = payloadJSONObject.getLong("folderId");
 
 		ServiceContext serviceContext = new ServiceContext();
 
@@ -60,28 +53,25 @@ public class DLAssetEntrySetHandler extends BaseAssetEntrySetHandler {
 				payloadJSONObject.getString(
 					AssetEntrySetConstants.PAYLOAD_KEY_ASSET_TAG_NAMES)));
 
-		JSONArray filesJSONArray = payloadJSONObject.getJSONArray("files");
+		FileEntry fileEntry = DLAppLocalServiceUtil.addFileEntry(
+			payloadJSONObject.getLong("userId"),
+			payloadJSONObject.getLong("repositoryId"),
+			payloadJSONObject.getLong("folderId"),
+			payloadJSONObject.getString("fileName"), null,
+			payloadJSONObject.getString("title"),
+			payloadJSONObject.getString("description"),
+			payloadJSONObject.getString("changeLog"), file, serviceContext);
 
-		for (int i = 0; i < filesJSONArray.length(); i++) {
-			JSONObject fileJSONObject = filesJSONArray.getJSONObject(i);
+		AssetEntry assetEntry = AssetEntryLocalServiceUtil.getEntry(
+			DLFileEntry.class.getName(), fileEntry.getFileEntryId());
 
-			FileEntry fileEntry = DLAppLocalServiceUtil.addFileEntry(
-				userId, repositoryId, folderId,
-				fileJSONObject.getString("fileName"), null,
-				fileJSONObject.getString("title"),
-				fileJSONObject.getString("description"),
-				fileJSONObject.getString("changeLog"),
-				Base64.decode(fileJSONObject.getString("file")),
-				serviceContext);
+		jsonObject.put("assetEntryIds", assetEntry.getEntryId());
 
-			AssetEntry assetEntry = AssetEntryLocalServiceUtil.getEntry(
-				DLFileEntry.class.getName(), fileEntry.getFileEntryId());
-
-			assetEntryIds.add(assetEntry.getEntryId());
-		}
-
-		jsonObject.put("assetEntryIds", StringUtil.merge(assetEntryIds));
-
+		jsonObject.put(
+			"imageURL",
+			DLUtil.getPreviewURL(
+				fileEntry, fileEntry.getFileVersion(), null, StringPool.BLANK,
+				false, true));
 		jsonObject.put("message", payloadJSONObject.getString("message"));
 		jsonObject.put("type", payloadJSONObject.getString("type"));
 		jsonObject.put("url", payloadJSONObject.getString("url"));

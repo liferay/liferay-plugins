@@ -30,6 +30,8 @@ import com.liferay.portlet.announcements.service.AnnouncementsEntryLocalServiceU
 import com.liferay.portlet.asset.model.AssetEntry;
 import com.liferay.portlet.asset.service.AssetEntryLocalServiceUtil;
 
+import java.io.File;
+
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -45,7 +47,7 @@ public class AnnouncementsAssetEntrySetHandler
 	}
 
 	@Override
-	public String interpret(JSONObject payloadJSONObject)
+	public String interpret(JSONObject payloadJSONObject, File file)
 		throws PortalException, SystemException {
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();

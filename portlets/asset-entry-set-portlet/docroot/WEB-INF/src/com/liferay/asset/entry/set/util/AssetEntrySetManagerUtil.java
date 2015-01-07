@@ -21,6 +21,8 @@ import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 
+import java.io.File;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -90,7 +92,7 @@ public class AssetEntrySetManagerUtil {
 		return _assetEntrySetHandlers.get(portletId);
 	}
 
-	public static String interpret(JSONObject jsonObject)
+	public static String interpret(JSONObject jsonObject, File file)
 		throws PortalException, SystemException {
 
 		String type = jsonObject.getString("type");
@@ -104,7 +106,7 @@ public class AssetEntrySetManagerUtil {
 			return StringPool.BLANK;
 		}
 
-		return assetEntrySetHandler.interpret(jsonObject);
+		return assetEntrySetHandler.interpret(jsonObject, file);
 	}
 
 	private static Map<String, AssetEntrySetHandler> _assetEntrySetHandlers =
