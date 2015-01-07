@@ -94,12 +94,11 @@ public class CalendarPortletDataHandler extends BasePortletDataHandler {
 
 				@Override
 				public void addCriteria(DynamicQuery dynamicQuery) {
-
-					Property calendarResourceIdProperty =
-						PropertyFactoryUtil.forName("calendarResourceId");
+					Property property = PropertyFactoryUtil.forName(
+						"calendarResourceId");
 
 					dynamicQuery.add(
-						calendarResourceIdProperty.ne(
+						property.ne(
 							guestCalendarResource.getCalendarResourceId()));
 				}
 
