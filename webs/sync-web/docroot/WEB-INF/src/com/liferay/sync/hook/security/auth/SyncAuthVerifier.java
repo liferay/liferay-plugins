@@ -99,7 +99,7 @@ public class SyncAuthVerifier extends BaseAutoLogin implements AuthVerifier {
 			if (credentials != null) {
 				authVerifierResult.setPassword(credentials[1]);
 				authVerifierResult.setState(AuthVerifierResult.State.SUCCESS);
-				authVerifierResult.setUserId(Long.valueOf(credentials[0]));
+				authVerifierResult.setUserId(Long.parseLong(credentials[0]));
 			}
 
 			return authVerifierResult;
@@ -176,7 +176,7 @@ public class SyncAuthVerifier extends BaseAutoLogin implements AuthVerifier {
 					object, request, response);
 
 				if (credentials != null) {
-					token = createToken(Long.valueOf(credentials[0]));
+					token = createToken(Long.parseLong(credentials[0]));
 
 					if (token != null) {
 						response.addHeader(_TOKEN_HEADER, token);
