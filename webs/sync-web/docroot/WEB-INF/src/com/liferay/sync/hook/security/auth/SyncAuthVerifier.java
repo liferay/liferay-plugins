@@ -178,7 +178,7 @@ public class SyncAuthVerifier extends BaseAutoLogin implements AuthVerifier {
 					object, request, response);
 
 				if (credentials != null) {
-					token = createToken(Long.parseLong(credentials[0]));
+					token = createToken(GetterUtil.getLong(credentials[0]));
 
 					if (token != null) {
 						response.addHeader(_TOKEN_HEADER, token);
