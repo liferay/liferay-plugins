@@ -20,11 +20,11 @@
 int index = ParamUtil.getInteger(renderRequest, "index", GetterUtil.getInteger((String)request.getAttribute("configuration.jsp-index")));
 int formFieldsIndex = GetterUtil.getInteger((String)request.getAttribute("configuration.jsp-formFieldsIndex"));
 boolean fieldsEditingDisabled = GetterUtil.getBoolean((String)request.getAttribute("configuration.jsp-fieldsEditingDisabled"));
-String fieldLabelXml = LocalizationUtil.getLocalizationXmlFromPreferences(portletPreferences, renderRequest, "fieldLabel" + formFieldsIndex);
+String fieldLabelXml = GetterUtil.getString(LocalizationUtil.getLocalizationXmlFromPreferences(portletPreferences, renderRequest, "fieldLabel" + formFieldsIndex), StringPool.BLANK);
 String fieldLabel = LocalizationUtil.getLocalization(fieldLabelXml, themeDisplay.getLanguageId());
 String fieldType = PrefsParamUtil.getString(portletPreferences, renderRequest, "fieldType" + formFieldsIndex);
 boolean fieldOptional = PrefsParamUtil.getBoolean(portletPreferences, renderRequest, "fieldOptional" + formFieldsIndex);
-String fieldOptionsXml = LocalizationUtil.getLocalizationXmlFromPreferences(portletPreferences, renderRequest, "fieldOptions" + formFieldsIndex);
+String fieldOptionsXml = GetterUtil.getString(LocalizationUtil.getLocalizationXmlFromPreferences(portletPreferences, renderRequest, "fieldOptions" + formFieldsIndex), StringPool.BLANK);
 String fieldOptions = LocalizationUtil.getLocalization(fieldOptionsXml, themeDisplay.getLanguageId());
 String fieldValidationScript = PrefsParamUtil.getString(portletPreferences, request, "fieldValidationScript" + formFieldsIndex);
 String fieldValidationErrorMessage = PrefsParamUtil.getString(portletPreferences, request, "fieldValidationErrorMessage" + formFieldsIndex);
