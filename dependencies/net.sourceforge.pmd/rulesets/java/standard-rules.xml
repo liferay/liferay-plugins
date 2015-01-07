@@ -34,7 +34,7 @@ Boolean.valueOf(false);
 		</example>
 	</rule>
 	<rule
-		class="net.sourceforge.pmd.lang.java.rule.basic.OverrideBothEqualsAndHashcodeRule"
+		class="com.liferay.pmd.rules.java.OverrideBothEqualsAndHashcodeRule"
 		externalInfoUrl="http://pmd.sourceforge.net/snapshot/pmd-java/rules/java/basic.html#OverrideBothEqualsAndHashcode"
 		language="java"
 		message="Ensure you override both equals() and hashCode()"
