@@ -81,27 +81,26 @@ public class CalendarPortletDataHandler extends BasePortletDataHandler {
 			PortletDataContext portletDataContext)
 		throws PortalException {
 
-		CalendarResource guestCalendarResource =
-			CalendarResourceUtil.getGuestCalendarResource(
+		final CalendarResource guestCalendarResource =
+			CalendarResourceUtil.fetchGuestCalendarResource(
 				portletDataContext.getCompanyId());
-		final long guestCalendarResourceId =
-			guestCalendarResource.getCalendarResourceId();
 
-		final ActionableDynamicQuery.AddCriteriaMethod addCriteriaMethod =
-			actionableDynamicQuery.getAddCriteriaMethod();
+		if (guestCalendarResource == null) {
+			return;
+		}
 
 		actionableDynamicQuery.setAddCriteriaMethod(
 			new ActionableDynamicQuery.AddCriteriaMethod() {
 
 				@Override
 				public void addCriteria(DynamicQuery dynamicQuery) {
-					addCriteriaMethod.addCriteria(dynamicQuery);
 
 					Property calendarResourceIdProperty =
 						PropertyFactoryUtil.forName("calendarResourceId");
 
 					dynamicQuery.add(
-						calendarResourceIdProperty.ne(guestCalendarResourceId));
+						calendarResourceIdProperty.ne(
+							guestCalendarResource.getCalendarResourceId()));
 				}
 
 			});
@@ -142,6 +141,7 @@ public class CalendarPortletDataHandler extends BasePortletDataHandler {
 
 			addSkipGuestCalendarResourceCriterion(
 				calendarActionableDynamicQuery, portletDataContext);
+
 			calendarActionableDynamicQuery.performActions();
 
 			ActionableDynamicQuery calendarResourceActionableDynamicQuery =
@@ -151,6 +151,7 @@ public class CalendarPortletDataHandler extends BasePortletDataHandler {
 
 			addSkipGuestCalendarResourceCriterion(
 				calendarResourceActionableDynamicQuery, portletDataContext);
+
 			calendarResourceActionableDynamicQuery.performActions();
 		}
 
@@ -259,6 +260,7 @@ public class CalendarPortletDataHandler extends BasePortletDataHandler {
 
 		addSkipGuestCalendarResourceCriterion(
 			calendarActionableDynamicQuery, portletDataContext);
+
 		calendarActionableDynamicQuery.performCount();
 
 		ActionableDynamicQuery calendarBookingActionableDynamicQuery =
@@ -281,6 +283,7 @@ public class CalendarPortletDataHandler extends BasePortletDataHandler {
 
 		addSkipGuestCalendarResourceCriterion(
 			calendarResourceActionableDynamicQuery, portletDataContext);
+
 		calendarResourceActionableDynamicQuery.performCount();
 	}
 

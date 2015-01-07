@@ -44,6 +44,14 @@ import javax.portlet.PortletRequest;
  */
 public class CalendarResourceUtil {
 
+	public static CalendarResource fetchGuestCalendarResource(long companyId)
+		throws PortalException {
+
+		return CalendarResourceLocalServiceUtil.fetchCalendarResource(
+			PortalUtil.getClassNameId(User.class),
+			UserLocalServiceUtil.getDefaultUserId(companyId));
+	}
+
 	public static CalendarResource getCalendarResource(
 			PortletRequest portletRequest, long classNameId, long classPK)
 		throws PortalException {
@@ -112,14 +120,6 @@ public class CalendarResourceUtil {
 			portletRequest);
 
 		return getGroupCalendarResource(groupId, serviceContext);
-	}
-
-	public static CalendarResource getGuestCalendarResource(long companyId)
-		throws PortalException {
-
-		return CalendarResourceLocalServiceUtil.fetchCalendarResource(
-			PortalUtil.getClassNameId(User.class),
-			UserLocalServiceUtil.getDefaultUserId(companyId));
 	}
 
 	public static OrderByComparator<CalendarResource> getOrderByComparator(
