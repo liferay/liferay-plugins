@@ -373,7 +373,7 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 			queryResponse.getHighlighting();
 
 		for (SolrDocument solrDocument : solrDocumentList) {
-			Document document = processSolrDocument(solrDocument);
+			Document document = processSolrDocument(solrDocument, queryConfig);
 
 			documents.add(document);
 
@@ -397,7 +397,9 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 		return hits;
 	}
 
-	protected Document processSolrDocument(SolrDocument solrDocument) {
+	protected Document processSolrDocument(
+		SolrDocument solrDocument, QueryConfig queryConfig) {
+
 		Document document = new DocumentImpl();
 
 		Collection<String> fieldNames = solrDocument.getFieldNames();
@@ -413,6 +415,8 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 
 			document.add(field);
 		}
+
+		populateUID(document, queryConfig);
 
 		return document;
 	}
