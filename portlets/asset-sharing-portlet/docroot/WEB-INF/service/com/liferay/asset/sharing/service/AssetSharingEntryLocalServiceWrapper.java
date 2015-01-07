@@ -361,26 +361,6 @@ public class AssetSharingEntryLocalServiceWrapper
 			sharedToClassNameId, sharedToClassPK);
 	}
 
-	@Override
-	public java.util.List<java.lang.Object[]> search(long userId,
-		long[] classNameIds,
-		java.util.Map<java.lang.Long, long[]> sharedToClassPKsMap, int start,
-		int end)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return _assetSharingEntryLocalService.search(userId, classNameIds,
-			sharedToClassPKsMap, start, end);
-	}
-
-	@Override
-	public int searchCount(long userId, long[] classNameIds,
-		java.util.Map<java.lang.Long, long[]> sharedToClassPKsMap)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return _assetSharingEntryLocalService.searchCount(userId, classNameIds,
-			sharedToClassPKsMap);
-	}
-
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
 	 */

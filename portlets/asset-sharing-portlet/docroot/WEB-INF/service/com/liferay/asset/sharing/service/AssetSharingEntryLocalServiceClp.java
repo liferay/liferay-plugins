@@ -161,18 +161,6 @@ public class AssetSharingEntryLocalServiceClp
 		_methodName27 = "getSharedToAssetSharingEntriesCount";
 
 		_methodParameterTypes27 = new String[] { "long", "long", "long" };
-
-		_methodName28 = "search";
-
-		_methodParameterTypes28 = new String[] {
-				"long", "long[][]", "java.util.Map", "int", "int"
-			};
-
-		_methodName29 = "searchCount";
-
-		_methodParameterTypes29 = new String[] {
-				"long", "long[][]", "java.util.Map"
-			};
 	}
 
 	@Override
@@ -1035,94 +1023,6 @@ public class AssetSharingEntryLocalServiceClp
 		return ((Integer)returnObj).intValue();
 	}
 
-	@Override
-	public java.util.List<java.lang.Object[]> search(long userId,
-		long[] classNameIds,
-		java.util.Map<java.lang.Long, long[]> sharedToClassPKsMap, int start,
-		int end)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		Object returnObj = null;
-
-		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName28,
-					_methodParameterTypes28,
-					new Object[] {
-						userId,
-						
-					ClpSerializer.translateInput(classNameIds),
-						
-					ClpSerializer.translateInput(sharedToClassPKsMap),
-						
-					start,
-						
-					end
-					});
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
-				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-
-		return (java.util.List<java.lang.Object[]>)ClpSerializer.translateOutput(returnObj);
-	}
-
-	@Override
-	public int searchCount(long userId, long[] classNameIds,
-		java.util.Map<java.lang.Long, long[]> sharedToClassPKsMap)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		Object returnObj = null;
-
-		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName29,
-					_methodParameterTypes29,
-					new Object[] {
-						userId,
-						
-					ClpSerializer.translateInput(classNameIds),
-						
-					ClpSerializer.translateInput(sharedToClassPKsMap)
-					});
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
-				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-
-		return ((Integer)returnObj).intValue();
-	}
-
 	private InvokableLocalService _invokableLocalService;
 	private String _methodName0;
 	private String[] _methodParameterTypes0;
@@ -1178,8 +1078,4 @@ public class AssetSharingEntryLocalServiceClp
 	private String[] _methodParameterTypes26;
 	private String _methodName27;
 	private String[] _methodParameterTypes27;
-	private String _methodName28;
-	private String[] _methodParameterTypes28;
-	private String _methodName29;
-	private String[] _methodParameterTypes29;
 }

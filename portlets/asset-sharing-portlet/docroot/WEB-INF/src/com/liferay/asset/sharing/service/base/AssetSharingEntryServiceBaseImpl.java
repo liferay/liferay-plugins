@@ -16,7 +16,6 @@ package com.liferay.asset.sharing.service.base;
 
 import com.liferay.asset.sharing.model.AssetSharingEntry;
 import com.liferay.asset.sharing.service.AssetSharingEntryService;
-import com.liferay.asset.sharing.service.persistence.AssetSharingEntryFinder;
 import com.liferay.asset.sharing.service.persistence.AssetSharingEntryPersistence;
 
 import com.liferay.portal.kernel.bean.BeanReference;
@@ -105,25 +104,6 @@ public abstract class AssetSharingEntryServiceBaseImpl extends BaseServiceImpl
 	public void setAssetSharingEntryPersistence(
 		AssetSharingEntryPersistence assetSharingEntryPersistence) {
 		this.assetSharingEntryPersistence = assetSharingEntryPersistence;
-	}
-
-	/**
-	 * Returns the asset sharing entry finder.
-	 *
-	 * @return the asset sharing entry finder
-	 */
-	public AssetSharingEntryFinder getAssetSharingEntryFinder() {
-		return assetSharingEntryFinder;
-	}
-
-	/**
-	 * Sets the asset sharing entry finder.
-	 *
-	 * @param assetSharingEntryFinder the asset sharing entry finder
-	 */
-	public void setAssetSharingEntryFinder(
-		AssetSharingEntryFinder assetSharingEntryFinder) {
-		this.assetSharingEntryFinder = assetSharingEntryFinder;
 	}
 
 	/**
@@ -360,8 +340,6 @@ public abstract class AssetSharingEntryServiceBaseImpl extends BaseServiceImpl
 	protected com.liferay.asset.sharing.service.AssetSharingEntryService assetSharingEntryService;
 	@BeanReference(type = AssetSharingEntryPersistence.class)
 	protected AssetSharingEntryPersistence assetSharingEntryPersistence;
-	@BeanReference(type = AssetSharingEntryFinder.class)
-	protected AssetSharingEntryFinder assetSharingEntryFinder;
 	@BeanReference(type = com.liferay.counter.service.CounterLocalService.class)
 	protected com.liferay.counter.service.CounterLocalService counterLocalService;
 	@BeanReference(type = com.liferay.portal.service.ClassNameLocalService.class)
