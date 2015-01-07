@@ -38,6 +38,7 @@ AUI.add(
 		var XML_ATTRIBUTES_FIELD_ATTRS = {
 			dataType: 1,
 			indexType: 1,
+			localizable: 1,
 			multiple: 1,
 			name: 1,
 			options: 1,
@@ -132,6 +133,7 @@ AUI.add(
 							editMessage: Liferay.Language.get('edit'),
 							label: Liferay.Language.get('field-label'),
 							large: Liferay.Language.get('large'),
+							localizable: Liferay.Language.get('localizable'),
 							medium: Liferay.Language.get('medium'),
 							multiple: Liferay.Language.get('multiple'),
 							name: Liferay.Language.get('name'),
@@ -363,6 +365,7 @@ AUI.add(
 								dataType: field.get('dataType'),
 								fieldNamespace: field.get('fieldNamespace'),
 								indexType: field.get('indexType'),
+								localizable: field.get('localizable'),
 								multiple: field.get('multiple'),
 								name: field.get('name'),
 								readOnly: field.get('readOnly'),
