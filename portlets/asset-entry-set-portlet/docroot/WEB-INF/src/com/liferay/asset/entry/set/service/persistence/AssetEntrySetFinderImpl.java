@@ -105,7 +105,7 @@ public class AssetEntrySetFinderImpl
 
 	public int countByCCNI_ATN(
 			long creatorClassNameId, String assetTagName,
-			Map<Long, long[]> sharedToClassPKsMap, boolean andOperator)
+			Map<Long, long[]> sharedToClassPKsMap)
 		throws SystemException {
 
 		Session session = null;
@@ -114,8 +114,6 @@ public class AssetEntrySetFinderImpl
 			session = openSession();
 
 			String sql = CustomSQLUtil.get(COUNT_BY_CCNI_ATN);
-
-			sql = CustomSQLUtil.replaceAndOperator(sql, andOperator);
 
 			sql = StringUtil.replace(
 				sql, "[$SHARED_TO_CLASS_PKS_MAP]",
@@ -237,8 +235,7 @@ public class AssetEntrySetFinderImpl
 
 	public List<AssetEntrySet> findByCCNI_ATN(
 			long creatorClassNameId, String assetTagName,
-			Map<Long, long[]> sharedToClassPKsMap, boolean andOperator, int start,
-			int end)
+			Map<Long, long[]> sharedToClassPKsMap, int start, int end)
 		throws SystemException {
 
 		Session session = null;
@@ -247,8 +244,6 @@ public class AssetEntrySetFinderImpl
 			session = openSession();
 
 			String sql = CustomSQLUtil.get(FIND_BY_CCNI_ATN);
-
-			sql = CustomSQLUtil.replaceAndOperator(sql, andOperator);
 
 			sql = StringUtil.replace(
 				sql, "[$SHARED_TO_CLASS_PKS_MAP]",

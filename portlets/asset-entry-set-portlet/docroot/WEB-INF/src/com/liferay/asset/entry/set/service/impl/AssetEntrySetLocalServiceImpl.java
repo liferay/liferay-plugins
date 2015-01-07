@@ -197,15 +197,14 @@ public class AssetEntrySetLocalServiceImpl
 	@Override
 	public List<AssetEntrySet> getAssetEntrySets(
 			long userId, long creatorClassNameId, String assetTagName,
-			boolean andOperator, int start, int end)
+			int start, int end)
 		throws PortalException, SystemException {
 
 		Map<Long, long[]> sharedToClassPKsMap =
 			AssetSharingUtil.getSharedToClassPKsMap(userId);
 
 		List<AssetEntrySet> assetEntrySets = assetEntrySetFinder.findByCCNI_ATN(
-			creatorClassNameId, assetTagName, sharedToClassPKsMap, andOperator, start,
-			end);
+			creatorClassNameId, assetTagName, sharedToClassPKsMap, start, end);
 
 		setCreatorJSONObjects(assetEntrySets);
 
@@ -239,15 +238,14 @@ public class AssetEntrySetLocalServiceImpl
 
 	@Override
 	public int getAssetEntrySetsCount(
-			long userId, long creatorClassNameId, String assetTagName,
-			boolean andOperator)
+			long userId, long creatorClassNameId, String assetTagName)
 		throws PortalException, SystemException {
 
 		Map<Long, long[]> sharedToClassPKsMap =
 			AssetSharingUtil.getSharedToClassPKsMap(userId);
 
 		return assetEntrySetFinder.countByCCNI_ATN(
-			creatorClassNameId, assetTagName, sharedToClassPKsMap, andOperator);
+			creatorClassNameId, assetTagName, sharedToClassPKsMap);
 	}
 
 	@Override
