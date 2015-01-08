@@ -57,9 +57,8 @@ public class CalendarUtil {
 		if ((calendarBooking != null) && calendarBooking.isAllDay()) {
 			return TimeZone.getTimeZone(StringPool.UTC);
 		}
-		else {
-			return defaultTimeZone;
-		}
+
+		return defaultTimeZone;
 	}
 
 	public static JSONObject getCalendarRenderingRules(
