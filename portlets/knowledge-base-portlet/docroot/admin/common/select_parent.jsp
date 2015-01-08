@@ -153,7 +153,7 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 						data.put("priority", KBArticleConstants.DEFAULT_PRIORITY);
 						data.put("resourceClassNameId", kbFolder.getClassNameId());
 						data.put("resourcePrimKey", kbFolder.getKbFolderId());
-						data.put("title", HtmlUtil.escapeAttribute(kbFolder.getName()));
+						data.put("title", kbFolder.getName());
 						%>
 
 						<aui:button
@@ -238,7 +238,7 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 					data.put("priority", curKBArticle.getPriority());
 					data.put("resourceClassNameId", curKBArticle.getClassNameId());
 					data.put("resourcePrimKey", curKBArticle.getResourcePrimKey());
-					data.put("title", HtmlUtil.escapeAttribute(curKBArticle.getTitle()));
+					data.put("title", curKBArticle.getTitle());
 					%>
 
 					<aui:button
