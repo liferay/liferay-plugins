@@ -91,7 +91,8 @@ public class NotificationTemplateContextFactory {
 		TimeZone userTimezone = user.getTimeZone();
 
 		Format dateFormatDateTime = FastDateFormatFactoryUtil.getDateTime(
-			user.getLocale(), CalendarUtil.getCalendarBookingDisplayTimeZone(
+			user.getLocale(),
+			CalendarUtil.getCalendarBookingDisplayTimeZone(
 				calendarBooking, userTimezone));
 
 		String userTimezoneDisplayName = userTimezone.getDisplayName(
