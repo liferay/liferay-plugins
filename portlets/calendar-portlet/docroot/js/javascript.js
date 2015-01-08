@@ -1527,6 +1527,10 @@ AUI.add(
 
 		Liferay.Scheduler = Scheduler;
 
+		Liferay.SchedulerDayView = A.SchedulerDayView;
+
+		Liferay.SchedulerWeekView = A.SchedulerWeekView;
+
 		var SchedulerMonthView = A.Component.create(
 			{
 				EXTENDS: A.SchedulerMonthView,
@@ -1561,6 +1565,8 @@ AUI.add(
 		);
 
 		Liferay.SchedulerMonthView = SchedulerMonthView;
+
+		Liferay.SchedulerAgendaView = A.SchedulerAgendaView;
 
 		var SchedulerEventRecorder = A.Component.create(
 			{
