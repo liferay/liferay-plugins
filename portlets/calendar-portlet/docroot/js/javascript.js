@@ -26,6 +26,12 @@ AUI.add(
 			return Lang.toInt(value, 10, 0);
 		};
 
+		var COMPANY_ID = toInt(themeDisplay.getCompanyId());
+
+		var CONTROLS_NODE = 'controlsNode';
+
+		var ICON_ADD_EVENT_NODE = 'iconAddEventNode';
+
 		var STR_BLANK = '';
 
 		var STR_COMMA_SPACE = ', ';
@@ -34,17 +40,11 @@ AUI.add(
 
 		var STR_SPACE = ' ';
 
-		var CONTROLS_NODE = 'controlsNode';
-
-		var ICON_ADD_EVENT_NODE = 'iconAddEventNode';
-
 		var TPL_ICON_ADD_EVENT_NODE = '<div class="btn-group">' +
 										'<button type="button" class="btn btn-primary calendar-add-event-btn">' +
 											Liferay.Language.get('add-calendar-booking') +
 										'</div>' +
 									'</button>';
-
-		var COMPANY_ID = toInt(themeDisplay.getCompanyId());
 
 		var USER_ID = toInt(themeDisplay.getUserId());
 
