@@ -1614,6 +1614,41 @@ AUI.add(
 
 		Liferay.Scheduler = Scheduler;
 
+		var SchedulerMonthView = A.Component.create(
+			{
+				EXTENDS: A.SchedulerMonthView,
+
+				NAME: 'scheduler-month-view',
+
+				prototype: {
+					_uiSetDate: function(date) {
+						var instance = this;
+
+						var daysInMonth = DateMath.getDaysInMonth(date.getFullYear(), date.getMonth());
+						var firstWeekDay = DateMath.getDate(date.getFullYear(), date.getMonth(), 1).getDay();
+						var daysInFirstWeek = DateMath.WEEK_LENGTH - firstWeekDay;
+						var weeks = Math.ceil((daysInMonth - daysInFirstWeek) / DateMath.WEEK_LENGTH) + 1;
+
+						A.each(
+							instance.tableRows,
+							function(item, index) {
+								if (index < weeks) {
+									item.removeClass('hide');
+								}
+								else {
+									item.addClass('hide');
+								}
+							}
+						);
+
+						SchedulerMonthView.superclass._uiSetDate.apply(this, arguments);
+					}
+				}
+			}
+		);
+
+		Liferay.SchedulerMonthView = SchedulerMonthView;
+
 		var SchedulerEventRecorder = A.Component.create(
 			{
 				ATTRS: {

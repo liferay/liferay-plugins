@@ -67,9 +67,9 @@ String viewCalendarBookingURL = ParamUtil.getString(request, "viewCalendarBookin
 	</c:if>
 
 	<c:if test="<%= !hideMonthView %>">
-		window.<portlet:namespace />monthView = new A.SchedulerMonthView(
+		window.<portlet:namespace />monthView = new Liferay.SchedulerMonthView(
 			{
-				height: 700,
+				height: 'auto',
 				isoTime: <%= isoTimeFormat %>,
 				readOnly: <%= readOnly %>,
 				strings: {
