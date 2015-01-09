@@ -223,15 +223,14 @@ public class CalendarBookingStagedModelDataHandler
 					calendarBooking.getSecondReminderType(), serviceContext);
 		}
 
-		// We need to add the root discussion message here because unlike the
-		// other entities the calendar booking local service add method
-		// doesn't do it
+		// The root discussion message is not automatically imported when
+		// importing a calendar booking
 
-		List<Element> discussionMBMessageElements =
+		List<Element> mbMessageElements =
 			portletDataContext.getReferenceElements(
 				calendarBooking, MBMessage.class);
 
-		if (ListUtil.isNotEmpty(discussionMBMessageElements)) {
+		if (ListUtil.isNotEmpty(mbMessageElements)) {
 			MBMessageLocalServiceUtil.addDiscussionMessage(
 				userId, importedCalendarBooking.getUserName(),
 				importedCalendarBooking.getGroupId(),
