@@ -223,6 +223,10 @@ public class CalendarBookingStagedModelDataHandler
 					calendarBooking.getSecondReminderType(), serviceContext);
 		}
 
+		// We need to add the root discussion message here because unlike the
+		// other entities the calendar booking local service add method
+		// doesn't do it
+
 		List<Element> discussions = portletDataContext.getReferenceElements(
 			calendarBooking, MBMessage.class);
 
