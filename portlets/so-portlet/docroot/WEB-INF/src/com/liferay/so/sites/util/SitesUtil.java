@@ -44,7 +44,7 @@ public class SitesUtil {
 			FavoriteSiteLocalServiceUtil.getFavoriteSites(
 				userId, name, start, end);
 
-		List<Group> groups = new ArrayList<Group>(favoriteSites.size());
+		List<Group> groups = new ArrayList<>(favoriteSites.size());
 
 		for (Object[] favoriteSite : favoriteSites) {
 			long curUserId = (Long)favoriteSite[0];
@@ -79,7 +79,7 @@ public class SitesUtil {
 		catch (Exception e) {
 			_log.error(e, e);
 
-			return new ArrayList<Group>(0);
+			return new ArrayList<>(0);
 		}
 	}
 
@@ -105,8 +105,7 @@ public class SitesUtil {
 		keywords = CustomSQLUtil.keywords(keywords)[0];
 
 		if (usersSites) {
-			LinkedHashMap<String, Object> params =
-				new LinkedHashMap<String, Object>();
+			LinkedHashMap<String, Object> params = new LinkedHashMap<>();
 
 			params.put("active", Boolean.TRUE);
 			params.put("pageCount", Boolean.TRUE);
@@ -119,13 +118,12 @@ public class SitesUtil {
 			return groups;
 		}
 
-		LinkedHashMap<String, Object> params =
-			new LinkedHashMap<String, Object>();
+		LinkedHashMap<String, Object> params = new LinkedHashMap<>();
 
 		params.put("active", Boolean.TRUE);
 		params.put("pageCount", Boolean.TRUE);
 
-		List<Integer> types = new ArrayList<Integer>();
+		List<Integer> types = new ArrayList<>();
 
 		types.add(GroupConstants.TYPE_SITE_OPEN);
 		types.add(GroupConstants.TYPE_SITE_RESTRICTED);
@@ -146,8 +144,7 @@ public class SitesUtil {
 		keywords = CustomSQLUtil.keywords(keywords)[0];
 
 		if (usersSites) {
-			LinkedHashMap<String, Object> params =
-				new LinkedHashMap<String, Object>();
+			LinkedHashMap<String, Object> params = new LinkedHashMap<>();
 
 			params.put("active", Boolean.TRUE);
 			params.put("pageCount", Boolean.TRUE);
@@ -157,13 +154,12 @@ public class SitesUtil {
 				companyId, keywords, null, params, true);
 		}
 		else {
-			LinkedHashMap<String, Object> params =
-				new LinkedHashMap<String, Object>();
+			LinkedHashMap<String, Object> params = new LinkedHashMap<>();
 
 			params.put("active", Boolean.TRUE);
 			params.put("pageCount", Boolean.TRUE);
 
-			List<Integer> types = new ArrayList<Integer>();
+			List<Integer> types = new ArrayList<>();
 
 			types.add(GroupConstants.TYPE_SITE_OPEN);
 			types.add(GroupConstants.TYPE_SITE_RESTRICTED);

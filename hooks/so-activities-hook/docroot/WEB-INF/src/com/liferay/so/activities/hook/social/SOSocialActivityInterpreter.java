@@ -431,8 +431,7 @@ public abstract class SOSocialActivityInterpreter
 			SocialActivitySet activitySet, ServiceContext serviceContext)
 		throws Exception {
 
-		List<SocialActivity> viewableActivities =
-			new ArrayList<SocialActivity>();
+		List<SocialActivity> viewableActivities = new ArrayList<>();
 
 		List<SocialActivity> activities =
 			SocialActivityLocalServiceUtil.getActivitySetActivities(

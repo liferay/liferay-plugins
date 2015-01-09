@@ -24,7 +24,7 @@ public class FreeMarkerExecutor extends BaseExecutor {
 
 	@Override
 	protected Map<String, Executor> initNextExecutors() {
-		Map<String, Executor> executors = new HashMap<String, Executor>();
+		Map<String, Executor> executors = new HashMap<>();
 
 		executors.put("debug-password", new FreeMarkerDebugPasswordExecutor());
 		executors.put("debug-port", new FreeMarkerDebugPortExecutor());

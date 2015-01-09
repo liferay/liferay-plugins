@@ -131,7 +131,7 @@ public class ModerationPortlet extends MVCPortlet {
 		long[] wikiPageIds = ParamUtil.getLongValues(
 			actionRequest, "notSpamWikiPageIds");
 
-		List<String> wikiPageLinks = new ArrayList<String>();
+		List<String> wikiPageLinks = new ArrayList<>();
 
 		for (long wikiPageId : wikiPageIds) {
 			WikiPage wikiPage = WikiPageLocalServiceUtil.getPageByPageId(

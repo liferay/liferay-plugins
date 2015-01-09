@@ -107,7 +107,7 @@ public class JabberImpl implements Jabber {
 				return buddies;
 			}
 
-			List<Object[]> jabberBuddies = new ArrayList<Object[]>();
+			List<Object[]> jabberBuddies = new ArrayList<>();
 
 			jabberBuddies.addAll(buddies);
 
@@ -428,7 +428,7 @@ public class JabberImpl implements Jabber {
 
 		User user = UserLocalServiceUtil.getUserById(userId);
 
-		Map<String, String> attributes = new HashMap<String, String>();
+		Map<String, String> attributes = new HashMap<>();
 
 		attributes.put("email", user.getEmailAddress());
 		attributes.put("first", user.getFirstName());
@@ -479,8 +479,7 @@ public class JabberImpl implements Jabber {
 	private static Log _log = LogFactoryUtil.getLog(JabberImpl.class);
 
 	private ConnectionConfiguration _connectionConfiguration;
-	private Map<Long, Connection> _connections =
-		new HashMap<Long, Connection>();
-	private Set<Long> _onlineUserIds = new HashSet<Long>();
+	private Map<Long, Connection> _connections = new HashMap<>();
+	private Set<Long> _onlineUserIds = new HashSet<>();
 
 }

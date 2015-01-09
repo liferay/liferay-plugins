@@ -115,8 +115,7 @@ public class CalendarICalDataHandler implements CalendarDataHandler {
 	public String exportCalendarBooking(long calendarBookingId)
 		throws Exception {
 
-		List<CalendarBooking> calendarBookings =
-			new ArrayList<CalendarBooking>();
+		List<CalendarBooking> calendarBookings = new ArrayList<>();
 
 		CalendarBooking calendarBooking =
 			CalendarBookingLocalServiceUtil.getCalendarBooking(
@@ -155,7 +154,7 @@ public class CalendarICalDataHandler implements CalendarDataHandler {
 
 		User user = UserLocalServiceUtil.getUser(calendar.getUserId());
 
-		Map<Locale, String> titleMap = new HashMap<Locale, String>();
+		Map<Locale, String> titleMap = new HashMap<>();
 
 		Summary summary = vEvent.getSummary();
 
@@ -168,7 +167,7 @@ public class CalendarICalDataHandler implements CalendarDataHandler {
 
 		// Description
 
-		Map<Locale, String> descriptionMap = new HashMap<Locale, String>();
+		Map<Locale, String> descriptionMap = new HashMap<>();
 
 		Description description = vEvent.getDescription();
 
@@ -344,7 +343,7 @@ public class CalendarICalDataHandler implements CalendarDataHandler {
 
 		PropertyList propertyList = vEvent.getProperties(Property.ATTENDEE);
 
-		List<Long> childCalendarIds = new ArrayList<Long>();
+		List<Long> childCalendarIds = new ArrayList<>();
 
 		for (Iterator<Attendee> iterator = propertyList.iterator();
 				iterator.hasNext();) {

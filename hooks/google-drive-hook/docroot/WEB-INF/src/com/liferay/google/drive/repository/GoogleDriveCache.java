@@ -91,7 +91,7 @@ public class GoogleDriveCache implements Cloneable {
 
 	private Map<String, File> _getGoogleDriveFiles() {
 		if (_googleDriveFiles == null) {
-			_googleDriveFiles = new HashMap<String, File>();
+			_googleDriveFiles = new HashMap<>();
 		}
 
 		return _googleDriveFiles;

@@ -60,7 +60,7 @@ public abstract class ExtRepositoryObjectAdapter<T>
 	}
 
 	public List<Long> getAncestorFolderIds() throws PortalException {
-		List<Long> folderIds = new ArrayList<Long>();
+		List<Long> folderIds = new ArrayList<>();
 
 		Folder folder = getParentFolder();
 
@@ -74,7 +74,7 @@ public abstract class ExtRepositoryObjectAdapter<T>
 	}
 
 	public List<Folder> getAncestors() throws PortalException {
-		List<Folder> folders = new ArrayList<Folder>();
+		List<Folder> folders = new ArrayList<>();
 
 		Folder folder = getParentFolder();
 
@@ -147,8 +147,7 @@ public abstract class ExtRepositoryObjectAdapter<T>
 		_extRepositoryObject = extRepositoryObject;
 	}
 
-	private static Map<String, Boolean> _unsupportedActionIds =
-		new HashMap<String, Boolean>();
+	private static Map<String, Boolean> _unsupportedActionIds = new HashMap<>();
 
 	static {
 		_unsupportedActionIds.put(ActionKeys.SUBSCRIBE, Boolean.FALSE);

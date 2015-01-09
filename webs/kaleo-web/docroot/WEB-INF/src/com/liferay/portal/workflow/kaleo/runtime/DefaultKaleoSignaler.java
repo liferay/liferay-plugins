@@ -79,7 +79,7 @@ public class DefaultKaleoSignaler
 		NodeExecutor nodeExecutor = NodeExecutorFactory.getNodeExecutor(
 			currentKaleoNode.getType());
 
-		List<PathElement> remainingPathElements = new ArrayList<PathElement>();
+		List<PathElement> remainingPathElements = new ArrayList<>();
 
 		nodeExecutor.execute(
 			currentKaleoNode, executionContext, remainingPathElements);

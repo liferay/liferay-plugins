@@ -45,8 +45,7 @@ public class CalendarDataHandlerFactory {
 
 		PortalRuntimePermission.checkSetBeanProperty(getClass());
 
-		_calendarDataHandlers =
-			new HashMap<CalendarDataFormat, CalendarDataHandler>();
+		_calendarDataHandlers = new HashMap<>();
 
 		for (Map.Entry<String, CalendarDataHandler> entry :
 				calendarDataHandlers.entrySet()) {

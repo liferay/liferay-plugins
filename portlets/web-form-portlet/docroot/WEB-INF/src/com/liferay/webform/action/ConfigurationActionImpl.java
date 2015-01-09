@@ -313,7 +313,7 @@ public class ConfigurationActionImpl extends DefaultConfigurationAction {
 	protected boolean validateUniqueFieldNames(ActionRequest actionRequest) {
 		Locale defaultLocale = LocaleUtil.getDefault();
 
-		Set<String> localizedUniqueFieldNames = new HashSet<String>();
+		Set<String> localizedUniqueFieldNames = new HashSet<>();
 
 		int[] formFieldsIndexes = StringUtil.split(
 			ParamUtil.getString(actionRequest, "formFieldsIndexes"), 0);

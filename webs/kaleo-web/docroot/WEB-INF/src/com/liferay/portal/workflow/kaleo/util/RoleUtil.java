@@ -55,7 +55,7 @@ public class RoleUtil {
 				throw nsre;
 			}
 
-			Map<Locale, String> descriptionMap = new HashMap<Locale, String>();
+			Map<Locale, String> descriptionMap = new HashMap<>();
 
 			descriptionMap.put(
 				LocaleUtil.getDefault(),
@@ -73,7 +73,7 @@ public class RoleUtil {
 		List<Role> roles = RoleLocalServiceUtil.getUserRoles(
 			serviceContext.getUserId());
 
-		List<Long> roleIds = new ArrayList<Long>(roles.size());
+		List<Long> roleIds = new ArrayList<>(roles.size());
 
 		for (Role role : roles) {
 			roleIds.add(role.getRoleId());

@@ -264,7 +264,7 @@ public class KBTemplateLocalServiceImpl extends KBTemplateLocalServiceBaseImpl {
 			junction = RestrictionsFactoryUtil.disjunction();
 		}
 
-		Map<String, String> terms = new HashMap<String, String>();
+		Map<String, String> terms = new HashMap<>();
 
 		if (Validator.isNotNull(title)) {
 			terms.put("title", title);

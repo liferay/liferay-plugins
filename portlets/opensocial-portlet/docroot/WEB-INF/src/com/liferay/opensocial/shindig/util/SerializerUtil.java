@@ -138,7 +138,7 @@ public class SerializerUtil {
 		}
 
 		Map<String, Serializable> expandoBridgeAttributes =
-			new LinkedHashMap<String, Serializable>();
+			new LinkedHashMap<>();
 
 		copyProperties(bean, expandoBridgeAttributes, fields);
 

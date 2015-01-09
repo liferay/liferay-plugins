@@ -164,7 +164,7 @@ public class EditUserAction extends BaseStrutsPortletAction {
 			return;
 		}
 
-		Set<Long> projectsEntryIds = new HashSet<Long>();
+		Set<Long> projectsEntryIds = new HashSet<>();
 
 		int[] projectsEntriesIndexes = StringUtil.split(
 			projectsEntriesIndexesString, 0);

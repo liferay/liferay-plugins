@@ -95,7 +95,7 @@ public class KnowledgeBaseUtil {
 			RenderResponse renderResponse)
 		throws PortalException {
 
-		Map<String, Object> parameters = new HashMap<String, Object>();
+		Map<String, Object> parameters = new HashMap<>();
 
 		parameters.put(
 			"oldParentResourceClassNameId", oldParentResourceClassNameId);
@@ -113,7 +113,7 @@ public class KnowledgeBaseUtil {
 			RenderResponse renderResponse)
 		throws PortalException {
 
-		Map<String, Object> parameters = new HashMap<String, Object>();
+		Map<String, Object> parameters = new HashMap<>();
 
 		parameters.put("parentResourceClassNameId", parentResourceClassNameId);
 		parameters.put("parentResourcePrimKey", parentResourcePrimKey);
@@ -129,7 +129,7 @@ public class KnowledgeBaseUtil {
 		List<KBFolder> kbFolders = KBFolderServiceUtil.getKBFolders(
 			groupId, kbFolderId, QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 
-		kbFolders = new ArrayList<KBFolder>(kbFolders);
+		kbFolders = new ArrayList<>(kbFolders);
 
 		Iterator<KBFolder> itr = kbFolders.iterator();
 
@@ -485,7 +485,7 @@ public class KnowledgeBaseUtil {
 	public static List<KBArticle> sort(
 		long[] resourcePrimKeys, List<KBArticle> kbArticles) {
 
-		Map<Long, KBArticle> map = new HashMap<Long, KBArticle>();
+		Map<Long, KBArticle> map = new HashMap<>();
 
 		for (KBArticle kbArticle : kbArticles) {
 			map.put(kbArticle.getResourcePrimKey(), kbArticle);
@@ -503,7 +503,7 @@ public class KnowledgeBaseUtil {
 	}
 
 	public static String[] splitKeywords(String keywords) {
-		Set<String> keywordsSet = new LinkedHashSet<String>();
+		Set<String> keywordsSet = new LinkedHashSet<>();
 
 		StringBundler sb = new StringBundler();
 

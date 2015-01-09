@@ -135,7 +135,7 @@ public abstract class BaseAlloyIndexer extends BaseIndexer {
 			return;
 		}
 
-		Collection<Document> documents = new ArrayList<Document>(models.size());
+		Collection<Document> documents = new ArrayList<>(models.size());
 
 		for (Object model : models) {
 			Document document = getDocument(model);

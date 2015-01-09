@@ -93,7 +93,7 @@ public class GNicknameManagerImpl
 
 	@Override
 	public List<GNickname> getGNicknames() throws GoogleAppsException {
-		List<GNickname> gNicknames = new ArrayList<GNickname>();
+		List<GNickname> gNicknames = new ArrayList<>();
 
 		getGNicknames(gNicknames, nicknameURL);
 

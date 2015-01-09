@@ -138,7 +138,7 @@ public class PluginExecutor extends BaseExecutor {
 
 		pluginPackageJSONObject.put("started", started);
 
-		List<String> types = new ArrayList<String>();
+		List<String> types = new ArrayList<>();
 
 		if (pluginPackage != null) {
 			types = pluginPackage.getTypes();
@@ -232,7 +232,7 @@ public class PluginExecutor extends BaseExecutor {
 	protected List<File> getInstalledDirectories(final String context)
 		throws Exception {
 
-		List<File> installedDirs = new ArrayList<File>();
+		List<File> installedDirs = new ArrayList<>();
 
 		String installedDirName = DeployManagerUtil.getInstalledDir();
 

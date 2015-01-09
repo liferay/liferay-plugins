@@ -91,13 +91,13 @@ public class BaseAMITool {
 		Image image = null;
 
 		for (int i = 0; i < 6; i++) {
-			List<Filter> filters = new ArrayList<Filter>();
+			List<Filter> filters = new ArrayList<>();
 
 			Filter filter = new Filter();
 
 			filter.setName("name");
 
-			List<String> values = new ArrayList<String>();
+			List<String> values = new ArrayList<>();
 
 			values.add(imageName);
 

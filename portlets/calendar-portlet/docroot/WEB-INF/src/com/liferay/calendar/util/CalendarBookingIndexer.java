@@ -225,7 +225,7 @@ public class CalendarBookingIndexer extends BaseIndexer {
 	protected void reindexCalendarBookings(long companyId)
 		throws PortalException {
 
-		final Collection<Document> documents = new ArrayList<Document>();
+		final Collection<Document> documents = new ArrayList<>();
 
 		ActionableDynamicQuery actionableDynamicQuery =
 			new CalendarBookingActionableDynamicQuery() {

@@ -134,7 +134,7 @@ public class MentionsNotifier {
 
 		Matcher matcher = _pattern.matcher(content);
 
-		Set<String> mentionedUsersScreenNames = new HashSet<String>();
+		Set<String> mentionedUsersScreenNames = new HashSet<>();
 
 		while (matcher.find()) {
 			String mentionedUserScreenName = matcher.group(2);

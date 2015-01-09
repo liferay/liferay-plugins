@@ -85,8 +85,7 @@ public class NotificationTemplateContextFactory {
 
 		// Attributes
 
-		Map<String, Serializable> attributes =
-			new HashMap<String, Serializable>();
+		Map<String, Serializable> attributes = new HashMap<>();
 
 		TimeZone userTimezone = user.getTimeZone();
 

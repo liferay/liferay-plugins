@@ -161,8 +161,7 @@ public abstract class BaseNotificationSender implements NotificationSender {
 			ExecutionContext executionContext)
 		throws Exception {
 
-		Set<NotificationRecipient> notificationRecipients =
-			new HashSet<NotificationRecipient>();
+		Set<NotificationRecipient> notificationRecipients = new HashSet<>();
 
 		if (kaleoNotificationRecipients.isEmpty()) {
 			addAssignedRecipients(notificationRecipients, executionContext);
@@ -222,7 +221,7 @@ public abstract class BaseNotificationSender implements NotificationSender {
 				roleId, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 		}
 
-		List<User> users = new ArrayList<User>();
+		List<User> users = new ArrayList<>();
 
 		KaleoInstanceToken kaleoInstanceToken =
 			executionContext.getKaleoInstanceToken();

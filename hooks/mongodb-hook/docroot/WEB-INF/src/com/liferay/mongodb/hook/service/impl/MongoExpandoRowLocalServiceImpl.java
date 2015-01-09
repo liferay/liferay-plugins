@@ -171,7 +171,7 @@ public class MongoExpandoRowLocalServiceImpl
 			dbCursor.limit(end - start);
 		}
 
-		List<ExpandoRow> expandoRows = new ArrayList<ExpandoRow>();
+		List<ExpandoRow> expandoRows = new ArrayList<>();
 
 		for (DBObject expandoRowDBObject : dbCursor.toArray()) {
 			ExpandoRow expandoRow = toExpandoRow(

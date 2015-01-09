@@ -211,7 +211,7 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 			List<KaleoTransition> kaleoTransitions =
 				kaleoNode.getKaleoTransitions();
 
-			List<String> transitionNames = new ArrayList<String>(
+			List<String> transitionNames = new ArrayList<>(
 				kaleoTransitions.size());
 
 			for (KaleoTransition kaleoTransition : kaleoTransitions) {
@@ -772,7 +772,7 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 			List<KaleoTaskInstanceToken> kaleoTaskInstanceTokens)
 		throws PortalException {
 
-		List<WorkflowTask> workflowTasks = new ArrayList<WorkflowTask>(
+		List<WorkflowTask> workflowTasks = new ArrayList<>(
 			kaleoTaskInstanceTokens.size());
 
 		for (KaleoTaskInstanceToken kaleoTaskInstanceToken :

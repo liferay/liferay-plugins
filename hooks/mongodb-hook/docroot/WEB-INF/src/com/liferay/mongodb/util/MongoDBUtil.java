@@ -153,7 +153,7 @@ public class MongoDBUtil {
 	}
 
 	private List<ServerAddress> _getServerAddresses() throws Exception {
-		List<ServerAddress> serverAddresses = new ArrayList<ServerAddress>();
+		List<ServerAddress> serverAddresses = new ArrayList<>();
 
 		for (String hostname : PortletPropsValues.SERVER_HOSTNAMES) {
 			ServerAddress serverAddress = new ServerAddress(

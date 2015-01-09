@@ -146,7 +146,6 @@ public class WSRPConsumerManagerFactory {
 		new AutoResetThreadLocal<HttpSession>(
 			HttpSession.class + "._session", null);
 	private static Map<String, WSRPConsumerManager>
-		_wsrpConsumerManagers =
-			new ConcurrentHashMap<String, WSRPConsumerManager>();
+		_wsrpConsumerManagers = new ConcurrentHashMap<>();
 
 }

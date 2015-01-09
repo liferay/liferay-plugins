@@ -62,7 +62,7 @@ public class ScriptingLanguagesTaskAssignmentSelector
 		return getKaleoTaskAssignments(results);
 	}
 
-	private static Set<String> _outputNames = new HashSet<String>();
+	private static Set<String> _outputNames = new HashSet<>();
 
 	static {
 		_outputNames.add(ROLES_ASSIGNMENT);

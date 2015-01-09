@@ -89,7 +89,7 @@ public class MessageIndexer extends BaseIndexer {
 
 			Hits hits = SearchEngineUtil.search(searchContext, booleanQuery);
 
-			List<String> uids = new ArrayList<String>(hits.getLength());
+			List<String> uids = new ArrayList<>(hits.getLength());
 
 			for (int i = 0; i < hits.getLength(); i++) {
 				Document document = hits.doc(i);
@@ -118,7 +118,7 @@ public class MessageIndexer extends BaseIndexer {
 
 			Hits hits = SearchEngineUtil.search(searchContext, booleanQuery);
 
-			List<String> uids = new ArrayList<String>(hits.getLength());
+			List<String> uids = new ArrayList<>(hits.getLength());
 
 			for (int i = 0; i < hits.getLength(); i++) {
 				Document document = hits.doc(i);

@@ -134,7 +134,7 @@ public class GUserManagerImpl extends GBaseManagerImpl implements GUserManager {
 
 	@Override
 	public List<GUser> getGUsers() throws GoogleAppsException {
-		List<GUser> gUsers = new ArrayList<GUser>();
+		List<GUser> gUsers = new ArrayList<>();
 
 		getGUsers(gUsers, userURL);
 

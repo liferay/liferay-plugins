@@ -26,8 +26,8 @@ public class LoadBalancedSolrServerSelector implements SolrServerSelector {
 	public SolrServerWrapper select(
 		List<SolrServerWrapper> solrServerWrappers) {
 
-		TreeSet<SolrServerWrapper> sortedSolrServerWrappers =
-			new TreeSet<SolrServerWrapper>(new SolrServerWrapperComparator());
+		TreeSet<SolrServerWrapper> sortedSolrServerWrappers = new TreeSet<>(
+			new SolrServerWrapperComparator());
 
 		sortedSolrServerWrappers.addAll(solrServerWrappers);
 

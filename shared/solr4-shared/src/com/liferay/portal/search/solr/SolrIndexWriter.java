@@ -207,8 +207,8 @@ public class SolrIndexWriter extends BaseIndexWriter {
 	protected Collection<SolrInputDocument> getSolrInputDocuments(
 		Collection<Document> documents) {
 
-		List<SolrInputDocument> solrInputDocuments =
-			new ArrayList<SolrInputDocument>(documents.size());
+		List<SolrInputDocument> solrInputDocuments = new ArrayList<>(
+			documents.size());
 
 		for (Document document : documents) {
 			SolrInputDocument solrInputDocument =

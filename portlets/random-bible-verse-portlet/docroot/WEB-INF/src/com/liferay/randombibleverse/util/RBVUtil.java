@@ -74,8 +74,8 @@ public class RBVUtil {
 			_log.error(e, e);
 		}
 
-		_bibles = new LinkedHashMap<String, Bible>();
-		_verses = new ArrayList<String>();
+		_bibles = new LinkedHashMap<>();
+		_verses = new ArrayList<>();
 
 		Element rootElement = document.getRootElement();
 

@@ -351,8 +351,8 @@ public class WorkflowDefinitionManagerImpl
 	protected List<WorkflowDefinition> toWorkflowDefinitions(
 		List<KaleoDefinition> kaleoDefinitions) {
 
-		List<WorkflowDefinition> workflowDefinitions =
-			new ArrayList<WorkflowDefinition>(kaleoDefinitions.size());
+		List<WorkflowDefinition> workflowDefinitions = new ArrayList<>(
+			kaleoDefinitions.size());
 
 		for (KaleoDefinition kaleoDefinition : kaleoDefinitions) {
 			workflowDefinitions.add(

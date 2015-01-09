@@ -152,7 +152,7 @@ public class WebFormUtil {
 			return new String[0];
 		}
 
-		List<String> nodeValues = new ArrayList<String>();
+		List<String> nodeValues = new ArrayList<>();
 
 		if (delimiter.equals("\n") || delimiter.equals("\r")) {
 			try {

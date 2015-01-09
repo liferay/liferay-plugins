@@ -58,7 +58,7 @@ public class AppImpl extends AppBaseImpl {
 
 		List<Module> modules = ModuleLocalServiceUtil.getModules(getAppId());
 
-		List<String> contextNames = new ArrayList<String>(modules.size());
+		List<String> contextNames = new ArrayList<>(modules.size());
 
 		for (Module module : modules) {
 			if (Validator.isNull(module.getContextName())) {

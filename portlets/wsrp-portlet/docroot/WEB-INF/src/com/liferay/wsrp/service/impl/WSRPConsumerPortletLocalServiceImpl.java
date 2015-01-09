@@ -388,7 +388,7 @@ public class WSRPConsumerPortletLocalServiceImpl
 		MarkupType[] markupTypes = portletDescription.getMarkupTypes();
 
 		for (MarkupType markupType : markupTypes) {
-			Set<String> mimeTypePortletModes = new HashSet<String>();
+			Set<String> mimeTypePortletModes = new HashSet<>();
 
 			for (String portletMode : markupType.getModes()) {
 				portletMode = StringUtil.toLowerCase(portletMode);
@@ -403,7 +403,7 @@ public class WSRPConsumerPortletLocalServiceImpl
 			portlet.getPortletModes().put(
 				markupType.getMimeType(), mimeTypePortletModes);
 
-			Set<String> mimeTypeWindowStates = new HashSet<String>();
+			Set<String> mimeTypeWindowStates = new HashSet<>();
 
 			for (String windowState : markupType.getWindowStates()) {
 				windowState = StringUtil.toLowerCase(windowState);
@@ -679,10 +679,10 @@ public class WSRPConsumerPortletLocalServiceImpl
 		WSRPConsumerPortletLocalServiceImpl.class);
 
 	private static Map<String, Portlet> _portletsPool =
-		new ConcurrentHashMap<String, Portlet>();
+		new ConcurrentHashMap<>();
 
 	private Class<ConsumerPortlet> _consumerPortletClass;
 	private Map<Long, Tuple> _failedWSRPConsumerPortlets =
-		new ConcurrentHashMap<Long, Tuple>();
+		new ConcurrentHashMap<>();
 
 }

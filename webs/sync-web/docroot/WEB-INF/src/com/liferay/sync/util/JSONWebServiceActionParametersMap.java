@@ -88,7 +88,7 @@ public class JSONWebServiceActionParametersMap extends HashMap<String, Object> {
 
 			if (typeName != null) {
 				if (_parameterTypes == null) {
-					_parameterTypes = new HashMap<String, String>();
+					_parameterTypes = new HashMap<>();
 				}
 
 				_parameterTypes.put(key, typeName);
@@ -104,7 +104,7 @@ public class JSONWebServiceActionParametersMap extends HashMap<String, Object> {
 			key = key.substring(0, pos);
 
 			if (_parameterTypes == null) {
-				_parameterTypes = new HashMap<String, String>();
+				_parameterTypes = new HashMap<>();
 			}
 
 			_parameterTypes.put(key, typeName);
@@ -122,15 +122,14 @@ public class JSONWebServiceActionParametersMap extends HashMap<String, Object> {
 			String innerName = key.substring(pos + 1);
 
 			if (_innerParameters == null) {
-				_innerParameters =
-					new HashMap<String, List<NameValue<String, Object>>>();
+				_innerParameters = new HashMap<>();
 			}
 
 			List<NameValue<String, Object>> values = _innerParameters.get(
 				baseName);
 
 			if (values == null) {
-				values = new ArrayList<NameValue<String, Object>>();
+				values = new ArrayList<>();
 
 				_innerParameters.put(baseName, values);
 			}
@@ -145,7 +144,7 @@ public class JSONWebServiceActionParametersMap extends HashMap<String, Object> {
 
 	public void putDefaultParameter(String key, Object value) {
 		if (_defaultParameters == null) {
-			_defaultParameters = new ArrayList<DefaultParameter>();
+			_defaultParameters = new ArrayList<>();
 		}
 
 		_defaultParameters.add(new DefaultParameter(key, value));

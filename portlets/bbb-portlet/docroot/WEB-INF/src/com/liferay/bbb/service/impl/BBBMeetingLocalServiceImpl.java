@@ -297,7 +297,7 @@ public class BBBMeetingLocalServiceImpl extends BBBMeetingLocalServiceBaseImpl {
 			List<BBBParticipant> bbbParticipants, ServiceContext serviceContext)
 		throws PortalException {
 
-		Set<Long> bbbParticipantIds = new HashSet<Long>();
+		Set<Long> bbbParticipantIds = new HashSet<>();
 
 		for (BBBParticipant bbbParticipant : bbbParticipants) {
 			long bbbParticipantId = bbbParticipant.getBbbParticipantId();

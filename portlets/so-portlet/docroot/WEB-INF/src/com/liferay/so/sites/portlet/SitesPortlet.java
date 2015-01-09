@@ -599,7 +599,7 @@ public class SitesPortlet extends MVCPortlet {
 
 		long[] deleteLayoutIds = getLongArray(actionRequest, "deleteLayoutIds");
 
-		List<Layout> layouts = new ArrayList<Layout>(deleteLayoutIds.length);
+		List<Layout> layouts = new ArrayList<>(deleteLayoutIds.length);
 
 		for (long deleteLayoutId : deleteLayoutIds) {
 			Layout layout = LayoutLocalServiceUtil.getLayout(

@@ -193,7 +193,7 @@ public class AsgardAMIDeployer extends BaseAMITool {
 		}
 
 		if (!deployed) {
-			Map<String, String> parameters = new HashMap<String, String>();
+			Map<String, String> parameters = new HashMap<>();
 
 			parameters.put("name", autoScalingGroupName);
 
@@ -204,7 +204,7 @@ public class AsgardAMIDeployer extends BaseAMITool {
 				"Unable to deploy Auto Scaling Group " + autoScalingGroupName);
 		}
 
-		List<String> instanceIds = new ArrayList<String>();
+		List<String> instanceIds = new ArrayList<>();
 
 		List<JSONObject> instanceStateJSONObjects = getInstanceStateJSONObjects(
 			loadBalancerJSONObject, autoScalingGroupName);
@@ -232,7 +232,7 @@ public class AsgardAMIDeployer extends BaseAMITool {
 
 		String availabilityZone = properties.getProperty("availability.zone");
 
-		Map<String, String> parameters = new HashMap<String, String>();
+		Map<String, String> parameters = new HashMap<>();
 
 		parameters.put("checkHealth", "true");
 		parameters.put("imageId", getImageId(_imageName));
@@ -289,7 +289,7 @@ public class AsgardAMIDeployer extends BaseAMITool {
 				"autoScalingGroupName");
 			maxSize = autoScalingGroupJSONObject.getInt("maxSize");
 
-			List<String> instanceIds = new ArrayList<String>();
+			List<String> instanceIds = new ArrayList<>();
 
 			JSONArray instancesJSONArray =
 				autoScalingGroupJSONObject.getJSONArray("instances");
@@ -311,7 +311,7 @@ public class AsgardAMIDeployer extends BaseAMITool {
 
 				createTagsRequest.setResources(instanceIds);
 
-				List<Tag> tags = new ArrayList<Tag>();
+				List<Tag> tags = new ArrayList<>();
 
 				Tag tag = new Tag();
 
@@ -431,7 +431,7 @@ public class AsgardAMIDeployer extends BaseAMITool {
 					continue;
 				}
 
-				Map<String, String> parameters = new HashMap<String, String>();
+				Map<String, String> parameters = new HashMap<>();
 
 				parameters.put("name", curAutoScalingGroupName);
 
@@ -444,7 +444,7 @@ public class AsgardAMIDeployer extends BaseAMITool {
 	protected List<JSONObject> getInstanceStateJSONObjects(
 		JSONObject loadBalancerJSONObject, String autoScalingGroupName) {
 
-		List<JSONObject> instanceStateJSONObjects = new ArrayList<JSONObject>();
+		List<JSONObject> instanceStateJSONObjects = new ArrayList<>();
 
 		JSONArray instanceStatesJSONArray = loadBalancerJSONObject.getJSONArray(
 			"instanceStates");

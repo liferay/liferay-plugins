@@ -29,7 +29,7 @@ import javax.servlet.ServletContext;
 public class ClassLoaderUtil {
 
 	public static ClassLoader[] getClassLoaders(String[] servletContextNames) {
-		List<ClassLoader> classLoaders = new ArrayList<ClassLoader>(
+		List<ClassLoader> classLoaders = new ArrayList<>(
 			servletContextNames.length + 2);
 
 		classLoaders.add(_getContextClassLoader());

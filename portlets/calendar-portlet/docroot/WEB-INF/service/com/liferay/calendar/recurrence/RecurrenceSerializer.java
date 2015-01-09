@@ -79,8 +79,7 @@ public class RecurrenceSerializer {
 				recurrence.setUntilJCalendar(jCalendar);
 			}
 
-			List<PositionalWeekday> positionalWeekdays =
-				new ArrayList<PositionalWeekday>();
+			List<PositionalWeekday> positionalWeekdays = new ArrayList<>();
 
 			for (WeekdayNum weekdayNum : rRule.getByDay()) {
 				Weekday weekday = Weekday.parse(weekdayNum.wday.toString());
@@ -107,7 +106,7 @@ public class RecurrenceSerializer {
 	public static String serialize(Recurrence recurrence) {
 		RRule rRule = new RRule();
 
-		List<WeekdayNum> weekdayNums = new ArrayList<WeekdayNum>();
+		List<WeekdayNum> weekdayNums = new ArrayList<>();
 
 		for (PositionalWeekday positionalWeekday :
 				recurrence.getPositionalWeekdays()) {
@@ -209,7 +208,7 @@ public class RecurrenceSerializer {
 	private static Log _log = LogFactoryUtil.getLog(RecurrenceSerializer.class);
 
 	private static Map<Weekday, com.google.ical.values.Weekday> _weekdaysMap =
-		new HashMap<Weekday, com.google.ical.values.Weekday>();
+		new HashMap<>();
 
 	static {
 		_weekdaysMap.put(Weekday.SUNDAY, com.google.ical.values.Weekday.SU);

@@ -922,7 +922,7 @@ public class FileSystemImporter extends BaseImporter {
 
 		boolean hidden = layoutJSONObject.getBoolean("hidden");
 
-		Map<Locale, String> friendlyURLMap = new HashMap<Locale, String>();
+		Map<Locale, String> friendlyURLMap = new HashMap<>();
 
 		String friendlyURL = layoutJSONObject.getString("friendlyURL");
 
@@ -1239,7 +1239,7 @@ public class FileSystemImporter extends BaseImporter {
 		Set<Long> primaryKeys = _primaryKeys.get(className);
 
 		if (primaryKeys == null) {
-			primaryKeys = new HashSet<Long>();
+			primaryKeys = new HashSet<>();
 
 			_primaryKeys.put(className, primaryKeys);
 		}
@@ -1391,7 +1391,7 @@ public class FileSystemImporter extends BaseImporter {
 	protected Map<Locale, String> getMap(
 		JSONObject layoutJSONObject, String name) {
 
-		Map<Locale, String> map = new HashMap<Locale, String>();
+		Map<Locale, String> map = new HashMap<>();
 
 		JSONObject jsonObject = layoutJSONObject.getJSONObject(
 			name.concat("Map"));
@@ -1417,7 +1417,7 @@ public class FileSystemImporter extends BaseImporter {
 	}
 
 	protected Map<Locale, String> getMap(Locale locale, String value) {
-		Map<Locale, String> map = new HashMap<Locale, String>();
+		Map<Locale, String> map = new HashMap<>();
 
 		map.put(locale, value);
 
@@ -1539,7 +1539,7 @@ public class FileSystemImporter extends BaseImporter {
 			return new File[0];
 		}
 
-		List<File> filesList = new ArrayList<File>();
+		List<File> filesList = new ArrayList<>();
 
 		for (File file : files) {
 			if (file.isFile()) {
@@ -1789,16 +1789,13 @@ public class FileSystemImporter extends BaseImporter {
 
 	private static Log _log = LogFactoryUtil.getLog(FileSystemImporter.class);
 
-	private Map<String, JSONObject> _assetJSONObjectMap =
-		new HashMap<String, JSONObject>();
-	private Set<String> _ddmStructures = new HashSet<String>();
+	private Map<String, JSONObject> _assetJSONObjectMap = new HashMap<>();
+	private Set<String> _ddmStructures = new HashSet<>();
 	private String _defaultLayoutTemplateId;
-	private Map<String, FileEntry> _fileEntries =
-		new HashMap<String, FileEntry>();
+	private Map<String, FileEntry> _fileEntries = new HashMap<>();
 	private Pattern _fileEntryPattern = Pattern.compile(
 		"\\[\\$FILE=([^\\$]+)\\$\\]");
-	private Map<String, Set<Long>> _primaryKeys =
-		new HashMap<String, Set<Long>>();
+	private Map<String, Set<Long>> _primaryKeys = new HashMap<>();
 	private File _resourcesDir;
 
 }

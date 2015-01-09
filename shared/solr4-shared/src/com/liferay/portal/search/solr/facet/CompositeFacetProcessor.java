@@ -51,7 +51,6 @@ public class CompositeFacetProcessor<T> implements FacetProcessor<T> {
 	}
 
 	private FacetProcessor<T> _defaultFacetProcessor;
-	private Map<String, FacetProcessor<T>> _facetProcessors =
-		new HashMap<String, FacetProcessor<T>>();
+	private Map<String, FacetProcessor<T>> _facetProcessors = new HashMap<>();
 
 }

@@ -59,6 +59,6 @@ public class SolrServletContextListener
 	}
 
 	private static Set<LiveServerChecker> _liveServerCheckers =
-		new ConcurrentHashSet<LiveServerChecker>();
+		new ConcurrentHashSet<>();
 
 }

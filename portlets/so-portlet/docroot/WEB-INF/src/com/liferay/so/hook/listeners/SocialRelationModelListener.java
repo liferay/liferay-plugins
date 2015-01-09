@@ -106,7 +106,7 @@ public class SocialRelationModelListener
 			return null;
 		}
 
-		private Set<Long> _userIds = new HashSet<Long>();
+		private Set<Long> _userIds = new HashSet<>();
 
 	}
 

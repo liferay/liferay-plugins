@@ -133,7 +133,7 @@ public class AppLocalServiceImpl extends AppLocalServiceBaseImpl {
 			return _bundledApps;
 		}
 
-		Map<String, String> bundledApps = new HashMap<String, String>();
+		Map<String, String> bundledApps = new HashMap<>();
 
 		List<PluginPackage> pluginPackages =
 			DeployManagerUtil.getInstalledPluginPackages();
@@ -181,7 +181,7 @@ public class AppLocalServiceImpl extends AppLocalServiceBaseImpl {
 			return _installedApps;
 		}
 
-		List<App> installedApps = new ArrayList<App>();
+		List<App> installedApps = new ArrayList<>();
 
 		// Core app
 

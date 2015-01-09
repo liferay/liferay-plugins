@@ -40,15 +40,14 @@ public class CalendarBookingApprovalWorkflowImpl
 			PermissionChecker permissionChecker, long[] calendarBookingIds)
 		throws PortalException {
 
-		Map<Long, List<String>> actionNames =
-			new LinkedHashMap<Long, List<String>>();
+		Map<Long, List<String>> actionNames = new LinkedHashMap<>();
 
 		for (long calendarBookingId : calendarBookingIds) {
 			CalendarBooking calendarBooking =
 				CalendarBookingLocalServiceUtil.getCalendarBooking(
 					calendarBookingId);
 
-			List<String> transitions = new ArrayList<String>();
+			List<String> transitions = new ArrayList<>();
 
 			if (CalendarPermission.contains(
 					permissionChecker, calendarBooking.getCalendarId(),

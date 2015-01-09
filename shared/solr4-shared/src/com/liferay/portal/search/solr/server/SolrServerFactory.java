@@ -29,7 +29,7 @@ public class SolrServerFactory {
 
 	public List<SolrServerWrapper> getDeadServers() {
 		synchronized (this) {
-			return new ArrayList<SolrServerWrapper>(_deadServers.values());
+			return new ArrayList<>(_deadServers.values());
 		}
 	}
 
@@ -48,7 +48,7 @@ public class SolrServerFactory {
 
 	public List<SolrServerWrapper> getLiveServers() {
 		synchronized (this) {
-			return new ArrayList<SolrServerWrapper>(_liveServers.values());
+			return new ArrayList<>(_liveServers.values());
 		}
 	}
 
@@ -94,10 +94,8 @@ public class SolrServerFactory {
 		}
 	}
 
-	private Map<String, SolrServerWrapper> _deadServers =
-		new HashMap<String, SolrServerWrapper>();
-	private Map<String, SolrServerWrapper> _liveServers =
-		new HashMap<String, SolrServerWrapper>();
+	private Map<String, SolrServerWrapper> _deadServers = new HashMap<>();
+	private Map<String, SolrServerWrapper> _liveServers = new HashMap<>();
 	private SolrServerSelector _solrServerSelector;
 
 }

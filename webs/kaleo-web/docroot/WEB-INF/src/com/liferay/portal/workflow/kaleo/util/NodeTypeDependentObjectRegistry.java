@@ -43,7 +43,7 @@ public class NodeTypeDependentObjectRegistry<T> {
 	public void setNodeTypeDependentObjects(
 		Map<String, T> nodeTypeDependentObjects) {
 
-		_nodeTypeDependentObjects = new HashMap<NodeType, T>();
+		_nodeTypeDependentObjects = new HashMap<>();
 
 		for (Map.Entry<String, T> entry : nodeTypeDependentObjects.entrySet()) {
 			NodeType nodeType = NodeType.valueOf(entry.getKey());

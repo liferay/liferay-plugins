@@ -26,7 +26,7 @@ public class ServerExecutor extends BaseExecutor {
 
 	@Override
 	protected Map<String, Executor> initNextExecutors() {
-		Map<String, Executor> executors = new HashMap<String, Executor>();
+		Map<String, Executor> executors = new HashMap<>();
 
 		executors.put("debug-port", new DebugPortExecutor());
 		executors.put("freemarker", new FreeMarkerExecutor());

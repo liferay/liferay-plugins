@@ -45,7 +45,7 @@ public class SOAnnouncementsUtil {
 	public static List<Group> getGroups(ThemeDisplay themeDisplay)
 		throws Exception {
 
-		List<Group> filteredGroups = new ArrayList<Group>();
+		List<Group> filteredGroups = new ArrayList<>();
 
 		List<Group> groups = GroupLocalServiceUtil.getUserGroups(
 			themeDisplay.getUserId(), true);
@@ -69,8 +69,7 @@ public class SOAnnouncementsUtil {
 	public static List<Organization> getOrganizations(ThemeDisplay themeDisplay)
 		throws Exception {
 
-		List<Organization> filteredOrganizations =
-			new ArrayList<Organization>();
+		List<Organization> filteredOrganizations = new ArrayList<>();
 
 		List<Organization> organizations =
 			OrganizationLocalServiceUtil.getUserOrganizations(
@@ -92,7 +91,7 @@ public class SOAnnouncementsUtil {
 	public static List<Role> getRoles(ThemeDisplay themeDisplay)
 		throws Exception {
 
-		List<Role> filteredRoles = new ArrayList<Role>();
+		List<Role> filteredRoles = new ArrayList<>();
 
 		List<Role> roles = RoleLocalServiceUtil.getRoles(
 			themeDisplay.getCompanyId());
@@ -122,7 +121,7 @@ public class SOAnnouncementsUtil {
 	public static List<UserGroup> getUserGroups(ThemeDisplay themeDisplay)
 		throws Exception {
 
-		List<UserGroup> filteredUserGroups = new ArrayList<UserGroup>();
+		List<UserGroup> filteredUserGroups = new ArrayList<>();
 
 		List<UserGroup> userGroups = UserGroupLocalServiceUtil.getUserGroups(
 			themeDisplay.getCompanyId());

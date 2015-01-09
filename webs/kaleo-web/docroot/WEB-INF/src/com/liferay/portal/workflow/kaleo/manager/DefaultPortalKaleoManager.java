@@ -186,8 +186,7 @@ public class DefaultPortalKaleoManager
 				RoleLocalServiceUtil.getRole(companyId, name);
 			}
 			catch (NoSuchRoleException nsre) {
-				Map<Locale, String> descriptionMap =
-					new HashMap<Locale, String>();
+				Map<Locale, String> descriptionMap = new HashMap<>();
 
 				descriptionMap.put(LocaleUtil.getDefault(), entry.getValue());
 
@@ -276,11 +275,9 @@ public class DefaultPortalKaleoManager
 		DefaultPortalKaleoManager.class);
 
 	private String _defaultDefinitionName;
-	private Map<String, String> _defaultRoles = new HashMap<String, String>();
-	private Map<String, String> _definitionAssets =
-		new HashMap<String, String>();
-	private Map<String, String> _definitionFiles =
-		new HashMap<String, String>();
+	private Map<String, String> _defaultRoles = new HashMap<>();
+	private Map<String, String> _definitionAssets = new HashMap<>();
+	private Map<String, String> _definitionFiles = new HashMap<>();
 	private WorkflowDefinitionManager _workflowDefinitionManager;
 
 }

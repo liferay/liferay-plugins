@@ -94,7 +94,7 @@ public class KBArticleAssetEntriesUtil {
 		long[] tagIds = AssetTagLocalServiceUtil.getTagIds(
 			groupIds, StringUtil.split(ListUtil.toString(assetTags, "name")));
 
-		Set<Long> filteredTagIds = new LinkedHashSet<Long>();
+		Set<Long> filteredTagIds = new LinkedHashSet<>();
 
 		for (long tagId : tagIds) {
 			try {

@@ -73,6 +73,6 @@ public class ScriptActionExecutor implements ActionExecutor {
 			executionContext, resultsWorkflowContext);
 	}
 
-	private Set<String> _outputObjects = new HashSet<String>();
+	private Set<String> _outputObjects = new HashSet<>();
 
 }

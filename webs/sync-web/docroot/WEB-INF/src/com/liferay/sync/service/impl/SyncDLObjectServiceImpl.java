@@ -564,7 +564,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 
 			repositoryService.checkRepository(repositoryId);
 
-			List<SyncDLObject> syncDLObjects = new ArrayList<SyncDLObject>();
+			List<SyncDLObject> syncDLObjects = new ArrayList<>();
 
 			if (parentFolderId > 0) {
 				PermissionChecker permissionChecker = getPermissionChecker();
@@ -599,10 +599,9 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 		try {
 			User user = getUser();
 
-			List<Group> groups = new ArrayList<Group>();
+			List<Group> groups = new ArrayList<>();
 
-			LinkedHashMap<String, Object> groupParams =
-				new LinkedHashMap<String, Object>();
+			LinkedHashMap<String, Object> groupParams = new LinkedHashMap<>();
 
 			groupParams.put("active", true);
 			groupParams.put("usersGroups", user.getUserId());
@@ -853,7 +852,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 	public Map<String, Object> updateFileEntries(File zipFile)
 		throws PortalException {
 
-		Map<String, Object> responseMap = new HashMap<String, Object>();
+		Map<String, Object> responseMap = new HashMap<>();
 
 		ZipReader zipReader = ZipReaderFactoryUtil.getZipReader(zipFile);
 
@@ -959,8 +958,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 	protected Map<String, String> getPortletPreferencesMap()
 		throws PortalException {
 
-		Map<String, String> portletPreferencesMap =
-			new HashMap<String, String>();
+		Map<String, String> portletPreferencesMap = new HashMap<>();
 
 		User user = getUser();
 

@@ -33,7 +33,7 @@ public class StocksPreferencesValidator implements PreferencesValidator {
 	public void validate(PortletPreferences preferences)
 		throws ValidatorException {
 
-		List<String> badSymbols = new ArrayList<String>();
+		List<String> badSymbols = new ArrayList<>();
 
 		String[] symbols = preferences.getValues("symbols", new String[0]);
 

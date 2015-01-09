@@ -265,7 +265,7 @@ public class KBFolderLocalServiceImpl extends KBFolderLocalServiceBaseImpl {
 					parentKBFolder.getKbFolderId(), kbFolder.getGroupId()));
 		}
 
-		Set<Long> subfolderIds = new HashSet<Long>();
+		Set<Long> subfolderIds = new HashSet<>();
 
 		getSubfolderIds(kbFolder, subfolderIds);
 

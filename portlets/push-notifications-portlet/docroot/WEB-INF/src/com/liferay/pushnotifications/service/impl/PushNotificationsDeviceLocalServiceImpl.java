@@ -81,7 +81,7 @@ public class PushNotificationsDeviceLocalServiceImpl
 		for (Map.Entry<String, PushNotificationsSender> entry :
 				_pushNotificationsSenders.entrySet()) {
 
-			List<String> tokens = new ArrayList<String>();
+			List<String> tokens = new ArrayList<>();
 
 			List<PushNotificationsDevice> pushNotificationsDevices =
 				getPushNotificationsDevices(

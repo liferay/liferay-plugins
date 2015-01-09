@@ -59,6 +59,6 @@ public class GoogleAppsConnectionFactoryImpl
 	}
 
 	private static Map<Long, GoogleAppsConnection> _googleAppsConnections =
-		new ConcurrentHashMap<Long, GoogleAppsConnection>();
+		new ConcurrentHashMap<>();
 
 }

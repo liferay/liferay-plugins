@@ -180,8 +180,7 @@ public class WSRPProducerLocalServiceImpl
 		User user = userPersistence.findByPrimaryKey(userId);
 		name = getGroupName(name);
 
-		LinkedHashMap<String, Object> params =
-			new LinkedHashMap<String, Object>();
+		LinkedHashMap<String, Object> params = new LinkedHashMap<>();
 
 		int type = GroupConstants.TYPE_SITE_SYSTEM;
 

@@ -344,8 +344,7 @@ public class MicroblogsEntryFinderImpl
 			Iterator<Long> itr = (Iterator<Long>)QueryUtil.iterate(
 				q, getDialect(), start, end);
 
-			List<MicroblogsEntry> microblogsEntries =
-				new ArrayList<MicroblogsEntry>();
+			List<MicroblogsEntry> microblogsEntries = new ArrayList<>();
 
 			while (itr.hasNext()) {
 				microblogsEntries.add(

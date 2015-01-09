@@ -648,7 +648,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		long[] resourcePrimKeys, int status,
 		OrderByComparator<KBArticle> orderByComparator) {
 
-		List<KBArticle> kbArticles = new ArrayList<KBArticle>();
+		List<KBArticle> kbArticles = new ArrayList<>();
 
 		Long[][] params = new Long[][] {ArrayUtil.toArray(resourcePrimKeys)};
 
@@ -1359,7 +1359,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			junction = RestrictionsFactoryUtil.disjunction();
 		}
 
-		Map<String, String> terms = new HashMap<String, String>();
+		Map<String, String> terms = new HashMap<>();
 
 		if (Validator.isNotNull(title)) {
 			terms.put("title", title);
@@ -1471,7 +1471,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			kbArticles = ListUtil.copy(kbArticles);
 		}
 		else {
-			kbArticles = new ArrayList<KBArticle>();
+			kbArticles = new ArrayList<>();
 		}
 
 		Long[][] params = new Long[][] {new Long[] {resourcePrimKey}};
@@ -1509,7 +1509,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 	}
 
 	protected Map<String, String> getEmailKBArticleDiffs(KBArticle kbArticle) {
-		Map<String, String> emailKBArticleDiffs = new HashMap<String, String>();
+		Map<String, String> emailKBArticleDiffs = new HashMap<>();
 
 		for (String param : new String[] {"content", "title"}) {
 			String value = BeanPropertiesUtil.getString(kbArticle, param);

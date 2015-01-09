@@ -127,7 +127,7 @@ public class KBTemplateServiceImpl extends KBTemplateServiceBaseImpl {
 
 		int end = start + _INTERVAL;
 
-		List<KBTemplate> kbTemplates = new ArrayList<KBTemplate>();
+		List<KBTemplate> kbTemplates = new ArrayList<>();
 
 		int curStartValue = 0;
 

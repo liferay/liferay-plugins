@@ -52,6 +52,6 @@ public class TestSuite {
 	}
 
 	private List<Class<? extends TestCase>> _testCaseClasses =
-		new ArrayList<Class<? extends TestCase>>();
+		new ArrayList<>();
 
 }

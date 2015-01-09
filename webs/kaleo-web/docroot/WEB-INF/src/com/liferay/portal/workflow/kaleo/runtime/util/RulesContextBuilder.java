@@ -54,8 +54,7 @@ public class RulesContextBuilder {
 				kaleoInstance.getWorkflowContext());
 		}
 
-		List<Fact<?>> facts = new ArrayList<Fact<?>>(
-			workflowContext.size() + 4);
+		List<Fact<?>> facts = new ArrayList<>(workflowContext.size() + 4);
 
 		facts.add(
 			new Fact<KaleoInstanceToken>(

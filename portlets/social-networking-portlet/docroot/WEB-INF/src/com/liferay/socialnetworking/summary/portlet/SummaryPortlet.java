@@ -121,8 +121,7 @@ public class SummaryPortlet extends MVCPortlet {
 		Role siteAdminRole = RoleLocalServiceUtil.getRole(
 			themeDisplay.getCompanyId(), RoleConstants.SITE_ADMINISTRATOR);
 
-		LinkedHashMap<String, Object> userParams =
-			new LinkedHashMap<String, Object>();
+		LinkedHashMap<String, Object> userParams = new LinkedHashMap<>();
 
 		userParams.put(
 			"userGroupRole",
@@ -173,8 +172,7 @@ public class SummaryPortlet extends MVCPortlet {
 		Role role = RoleLocalServiceUtil.getRole(
 			themeDisplay.getCompanyId(), "Organization Administrator");
 
-		LinkedHashMap<String, Object> userParams =
-			new LinkedHashMap<String, Object>();
+		LinkedHashMap<String, Object> userParams = new LinkedHashMap<>();
 
 		userParams.put(
 			"userGroupRole", new Long[] {group.getGroupId(), role.getRoleId()});

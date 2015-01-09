@@ -38,7 +38,7 @@ public class ContactsExtensionsUtil {
 	}
 
 	private ContactsExtensionsUtil() {
-		_extensions = new ConcurrentHashMap<String, String>();
+		_extensions = new ConcurrentHashMap<>();
 	}
 
 	private Map<String, String> _getExtensions() {

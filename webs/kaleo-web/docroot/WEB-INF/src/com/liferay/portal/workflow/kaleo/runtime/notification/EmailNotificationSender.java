@@ -90,8 +90,8 @@ public class EmailNotificationSender
 			Set<NotificationRecipient> notificationRecipients)
 		throws AddressException, UnsupportedEncodingException {
 
-		List<InternetAddress> internetAddresses =
-			new ArrayList<InternetAddress>(notificationRecipients.size());
+		List<InternetAddress> internetAddresses = new ArrayList<>(
+			notificationRecipients.size());
 
 		for (NotificationRecipient notificationRecipient :
 				notificationRecipients) {

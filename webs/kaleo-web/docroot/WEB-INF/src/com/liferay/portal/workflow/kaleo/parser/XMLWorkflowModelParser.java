@@ -148,7 +148,7 @@ public class XMLWorkflowModelParser implements WorkflowModelParser {
 			return;
 		}
 
-		Set<Action> actions = new HashSet<Action>(actionElements.size());
+		Set<Action> actions = new HashSet<>(actionElements.size());
 
 		for (Element actionElement : actionElements) {
 			String name = actionElement.elementText("name");
@@ -192,7 +192,7 @@ public class XMLWorkflowModelParser implements WorkflowModelParser {
 			return Collections.emptySet();
 		}
 
-		Set<Assignment> assignments = new HashSet<Assignment>();
+		Set<Assignment> assignments = new HashSet<>();
 
 		Element resourceActionsElement = assignmentsElement.element(
 			"resource-actions");
@@ -391,7 +391,7 @@ public class XMLWorkflowModelParser implements WorkflowModelParser {
 			return;
 		}
 
-		Set<Notification> notifications = new HashSet<Notification>(
+		Set<Notification> notifications = new HashSet<>(
 			notificationElements.size());
 
 		for (Element notificationElement : notificationElements) {
@@ -565,7 +565,7 @@ public class XMLWorkflowModelParser implements WorkflowModelParser {
 			return;
 		}
 
-		Set<Timer> timers = new HashSet<Timer>(taskTimerElements.size());
+		Set<Timer> timers = new HashSet<>(taskTimerElements.size());
 
 		for (Element timerElement : taskTimerElements) {
 			Timer timer = parseTimerElement(timerElement, true);
@@ -643,7 +643,7 @@ public class XMLWorkflowModelParser implements WorkflowModelParser {
 			return;
 		}
 
-		Set<Timer> timers = new HashSet<Timer>(timerElements.size());
+		Set<Timer> timers = new HashSet<>(timerElements.size());
 
 		for (Element timerElement : timerElements) {
 			Timer timer = parseTimerElement(timerElement, false);

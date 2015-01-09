@@ -222,8 +222,7 @@ public class NotificationUtil {
 			calendar.getResourceBlockId(), Calendar.class.getName(),
 			ActionKeys.MANAGE_BOOKINGS);
 
-		List<NotificationRecipient> notificationRecipients =
-			new ArrayList<NotificationRecipient>();
+		List<NotificationRecipient> notificationRecipients = new ArrayList<>();
 
 		for (Role role : roles) {
 			String name = role.getName();

@@ -70,8 +70,7 @@ public class CalendarUtil {
 				null, startTime, endTime, true, statuses, QueryUtil.ALL_POS,
 				QueryUtil.ALL_POS, null);
 
-		Map<Integer, Map<Integer, List<Integer>>> rulesMap =
-			new HashMap<Integer, Map<Integer, List<Integer>>>();
+		Map<Integer, Map<Integer, List<Integer>>> rulesMap = new HashMap<>();
 
 		for (CalendarBooking calendarBooking : calendarBookings) {
 			TimeZone displayTimeZone = timeZone;
@@ -94,7 +93,7 @@ public class CalendarUtil {
 				Map<Integer, List<Integer>> rulesMonth = rulesMap.get(year);
 
 				if (rulesMonth == null) {
-					rulesMonth = new HashMap<Integer, List<Integer>>();
+					rulesMonth = new HashMap<>();
 
 					rulesMap.put(year, rulesMonth);
 				}
@@ -104,7 +103,7 @@ public class CalendarUtil {
 				List<Integer> rulesDay = rulesMonth.get(month);
 
 				if (rulesDay == null) {
-					rulesDay = new ArrayList<Integer>();
+					rulesDay = new ArrayList<>();
 
 					rulesMonth.put(month, rulesDay);
 				}
@@ -151,8 +150,7 @@ public class CalendarUtil {
 			List<CalendarBooking> calendarBookings)
 		throws PortalException {
 
-		Set<CalendarResource> calendarResources =
-			new HashSet<CalendarResource>();
+		Set<CalendarResource> calendarResources = new HashSet<>();
 
 		for (CalendarBooking calendarBooking : calendarBookings) {
 			CalendarResource calendarResource =
@@ -197,7 +195,7 @@ public class CalendarUtil {
 	}
 
 	public static String[] splitKeywords(String keywords) {
-		Set<String> keywordsSet = new LinkedHashSet<String>();
+		Set<String> keywordsSet = new LinkedHashSet<>();
 
 		StringBundler sb = new StringBundler();
 

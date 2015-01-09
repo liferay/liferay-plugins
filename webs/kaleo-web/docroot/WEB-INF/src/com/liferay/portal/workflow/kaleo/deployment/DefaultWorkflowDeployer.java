@@ -68,7 +68,7 @@ public class DefaultWorkflowDeployer implements WorkflowDeployer {
 
 		Collection<Node> nodes = definition.getNodes();
 
-		Map<String, KaleoNode> kaleoNodesMap = new HashMap<String, KaleoNode>();
+		Map<String, KaleoNode> kaleoNodesMap = new HashMap<>();
 
 		for (Node node : nodes) {
 			KaleoNode kaleoNode = KaleoNodeLocalServiceUtil.addKaleoNode(

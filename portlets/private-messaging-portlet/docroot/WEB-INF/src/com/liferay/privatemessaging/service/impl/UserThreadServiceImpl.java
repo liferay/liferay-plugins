@@ -62,7 +62,7 @@ public class UserThreadServiceImpl extends UserThreadServiceBaseImpl {
 				mbThreadId, WorkflowConstants.STATUS_ANY,
 				new MessageCreateDateComparator(ascending));
 
-		List<MBMessage> filteredMBMessages = new ArrayList<MBMessage>();
+		List<MBMessage> filteredMBMessages = new ArrayList<>();
 
 		for (MBMessage mbMessage : mbMessages) {
 			int compareTo = DateUtil.compareTo(

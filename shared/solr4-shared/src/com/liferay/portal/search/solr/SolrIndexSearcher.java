@@ -326,7 +326,7 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 			return;
 		}
 
-		Set<String> sortFieldNames = new HashSet<String>();
+		Set<String> sortFieldNames = new HashSet<>();
 
 		for (Sort sort : sorts) {
 			if (sort == null) {
@@ -364,9 +364,9 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 
 		Hits hits = new HitsImpl();
 
-		List<Document> documents = new ArrayList<Document>();
-		Set<String> queryTerms = new HashSet<String>();
-		List<Float> scores = new ArrayList<Float>();
+		List<Document> documents = new ArrayList<>();
+		Set<String> queryTerms = new HashSet<>();
+		List<Float> scores = new ArrayList<>();
 
 		QueryConfig queryConfig = query.getQueryConfig();
 		Map<String, Map<String, List<String>>> highlights =

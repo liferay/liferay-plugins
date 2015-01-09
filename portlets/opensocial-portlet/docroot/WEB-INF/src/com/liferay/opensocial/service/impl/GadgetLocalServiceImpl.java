@@ -257,14 +257,14 @@ public class GadgetLocalServiceImpl extends GadgetLocalServiceBaseImpl {
 	protected void addPortletExtraInfo(
 		Portlet portlet, PortletApp portletApp, String title) {
 
-		Set<String> mimeTypePortletModes = new HashSet<String>();
+		Set<String> mimeTypePortletModes = new HashSet<>();
 
 		mimeTypePortletModes.add(PortletMode.VIEW.toString());
 
 		portlet.getPortletModes().put(
 			ContentTypes.TEXT_HTML, mimeTypePortletModes);
 
-		Set<String> mimeTypeWindowStates = new HashSet<String>();
+		Set<String> mimeTypeWindowStates = new HashSet<>();
 
 		mimeTypeWindowStates.add(WindowState.MAXIMIZED.toString());
 		mimeTypeWindowStates.add(WindowState.MINIMIZED.toString());
@@ -359,6 +359,6 @@ public class GadgetLocalServiceImpl extends GadgetLocalServiceBaseImpl {
 	private static final String _GADGET_PORTLET_NAME = "2";
 
 	private static Map<String, Portlet> _portletsPool =
-		new ConcurrentHashMap<String, Portlet>();
+		new ConcurrentHashMap<>();
 
 }

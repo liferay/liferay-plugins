@@ -67,14 +67,12 @@ public class PrivateMessagingUtil {
 
 		User user = UserLocalServiceUtil.getUser(userId);
 
-		LinkedHashMap<String, Object> params =
-			new LinkedHashMap<String, Object>();
+		LinkedHashMap<String, Object> params = new LinkedHashMap<>();
 
 		if (type.equals("site")) {
 			params.put("inherit", Boolean.TRUE);
 
-			LinkedHashMap<String, Object> groupParams =
-				new LinkedHashMap<String, Object>();
+			LinkedHashMap<String, Object> groupParams = new LinkedHashMap<>();
 
 			groupParams.put("inherit", Boolean.FALSE);
 			groupParams.put("site", Boolean.TRUE);
@@ -110,7 +108,7 @@ public class PrivateMessagingUtil {
 		catch (NoSuchRoleException nsre) {
 		}
 
-		List<User> users = new ArrayList<User>();
+		List<User> users = new ArrayList<>();
 
 		if (_USERS_INDEXER_ENABLED && _USERS_SEARCH_WITH_INDEX) {
 			Sort sort = SortFactoryUtil.getSort(User.class, "firstName", "asc");
@@ -203,7 +201,7 @@ public class PrivateMessagingUtil {
 	public static List<User> getThreadUsers(long userId, long mbThreadId)
 		throws PortalException {
 
-		List<User> users = new ArrayList<User>();
+		List<User> users = new ArrayList<>();
 
 		// Users who have contributed to the thread
 

@@ -33,7 +33,7 @@ public class WeatherPreferencesValidator implements PreferencesValidator {
 	public void validate(PortletPreferences preferences)
 		throws ValidatorException {
 
-		List<String> badZips = new ArrayList<String>();
+		List<String> badZips = new ArrayList<>();
 
 		String[] zips = preferences.getValues("zips", new String[0]);
 

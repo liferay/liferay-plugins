@@ -50,11 +50,11 @@ public class UpgradeJournal extends UpgradeProcess {
 
 		// Article
 
-		Map<Locale, String> nameMap = new HashMap<Locale, String>();
+		Map<Locale, String> nameMap = new HashMap<>();
 
 		nameMap.put(locale, "Article");
 
-		Map<Locale, String> descriptionMap = new HashMap<Locale, String>();
+		Map<Locale, String> descriptionMap = new HashMap<>();
 
 		descriptionMap.put(
 			locale,
@@ -127,11 +127,11 @@ public class UpgradeJournal extends UpgradeProcess {
 
 		long classPK = _ddmStructureIds.get(groupId + "#" + "ARTICLE");
 
-		Map<Locale, String> nameMap = new HashMap<Locale, String>();
+		Map<Locale, String> nameMap = new HashMap<>();
 
 		nameMap.put(locale, "Regular Article Description");
 
-		Map<Locale, String> descriptionMap = new HashMap<Locale, String>();
+		Map<Locale, String> descriptionMap = new HashMap<>();
 
 		descriptionMap.put(
 			locale,
@@ -241,6 +241,6 @@ public class UpgradeJournal extends UpgradeProcess {
 		return new String(FileUtil.getBytes(is));
 	}
 
-	private Map<String, Long> _ddmStructureIds = new HashMap<String, Long>();
+	private Map<String, Long> _ddmStructureIds = new HashMap<>();
 
 }

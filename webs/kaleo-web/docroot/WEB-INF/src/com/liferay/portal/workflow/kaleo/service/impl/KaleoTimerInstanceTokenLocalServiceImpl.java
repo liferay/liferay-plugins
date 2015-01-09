@@ -126,7 +126,7 @@ public class KaleoTimerInstanceTokenLocalServiceImpl
 		}
 
 		List<KaleoTimerInstanceToken> kaleoTimerInstanceTokens =
-			new ArrayList<KaleoTimerInstanceToken>(kaleoTimers.size());
+			new ArrayList<>(kaleoTimers.size());
 
 		long kaleoTaskInstanceTokenId = 0;
 

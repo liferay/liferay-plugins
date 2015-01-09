@@ -92,7 +92,7 @@ public class DefaultBuddyFinderImpl implements BuddyFinder {
 			Collections.sort(buddies, buddyComparator);
 		}
 		else {
-			buddies = new ArrayList<Object[]>();
+			buddies = new ArrayList<>();
 		}
 
 		buddies = JabberUtil.getStatuses(companyId, userId, buddies);

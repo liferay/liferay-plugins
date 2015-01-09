@@ -536,8 +536,7 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 			Object... attributes)
 		throws Exception {
 
-		Map<String, Serializable> attributesMap =
-			new HashMap<String, Serializable>();
+		Map<String, Serializable> attributesMap = new HashMap<>();
 
 		if ((attributes.length == 0) || ((attributes.length % 2) != 0)) {
 			throw new Exception("Arguments length is not an even number");
@@ -728,7 +727,7 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 	}
 
 	protected void initMethods() {
-		methodsMap = new HashMap<String, Method>();
+		methodsMap = new HashMap<>();
 
 		Method[] methods = clazz.getMethods();
 
@@ -1190,7 +1189,7 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 			portlet.getPortletId() + SessionMessages.KEY_SUFFIX_REFRESH_PORTLET,
 			portlet.getPortletId());
 
-		Map<String, String> data = new HashMap<String, String>();
+		Map<String, String> data = new HashMap<>();
 
 		data.put("addSuccessMessage", StringPool.TRUE);
 

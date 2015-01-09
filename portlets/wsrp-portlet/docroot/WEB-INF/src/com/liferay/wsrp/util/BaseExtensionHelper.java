@@ -43,7 +43,7 @@ public abstract class BaseExtensionHelper implements ExtensionHelper {
 	}
 
 	public Extension[] getExtensions(String localPart, String value) {
-		List<MessageElement> messageElements = new ArrayList<MessageElement>();
+		List<MessageElement> messageElements = new ArrayList<>();
 
 		addMessageElement(messageElements, localPart, value);
 

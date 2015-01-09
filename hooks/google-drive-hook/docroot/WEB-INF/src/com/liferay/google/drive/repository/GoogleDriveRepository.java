@@ -311,7 +311,7 @@ public class GoogleDriveRepository
 			List<Revision> revisions = revisionList.getItems();
 
 			List<ExtRepositoryFileVersion> extRepositoryFileVersions =
-				new ArrayList<ExtRepositoryFileVersion>(revisions.size());
+				new ArrayList<>(revisions.size());
 
 			for (int i = 0; i < revisions.size(); i++) {
 				Revision revision = revisions.get(i);
@@ -477,7 +477,7 @@ public class GoogleDriveRepository
 
 			List<File> files = fileList.getItems();
 
-			List<T> extRepositoryObjects = new ArrayList<T>();
+			List<T> extRepositoryObjects = new ArrayList<>();
 
 			GoogleDriveCache googleDriveCache = GoogleDriveCache.getInstance();
 
@@ -568,7 +568,7 @@ public class GoogleDriveRepository
 			String extRepositoryFolderKey, boolean recurse)
 		throws PortalException {
 
-		List<String> subfolderKeys = new ArrayList<String>();
+		List<String> subfolderKeys = new ArrayList<>();
 
 		getSubfolderKeys(extRepositoryFolderKey, recurse, subfolderKeys);
 
@@ -663,7 +663,7 @@ public class GoogleDriveRepository
 			List<File> files = fileList.getItems();
 
 			List<ExtRepositorySearchResult<?>> extRepositorySearchResults =
-				new ArrayList<ExtRepositorySearchResult<?>>(files.size());
+				new ArrayList<>(files.size());
 
 			for (File file : files) {
 				if (_FOLDER_MIME_TYPE.equals(file.getMimeType())) {

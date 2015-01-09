@@ -131,7 +131,7 @@ public class UserModelListener extends BaseModelListener<User> {
 				(Long)associationClassPK);
 		}
 
-		return new ArrayList<Group>();
+		return new ArrayList<>();
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(UserModelListener.class);

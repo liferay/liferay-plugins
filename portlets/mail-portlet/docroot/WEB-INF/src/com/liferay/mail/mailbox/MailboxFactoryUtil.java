@@ -65,7 +65,7 @@ public class MailboxFactoryUtil {
 	public static List<MailboxFactory> getMailboxFactories() {
 		Set<String> protocols = _mailboxFactories.keySet();
 
-		List<MailboxFactory> mailboxFactories = new ArrayList<MailboxFactory>();
+		List<MailboxFactory> mailboxFactories = new ArrayList<>();
 
 		for (String protocol : protocols) {
 			mailboxFactories.add(_mailboxFactories.get(protocol));

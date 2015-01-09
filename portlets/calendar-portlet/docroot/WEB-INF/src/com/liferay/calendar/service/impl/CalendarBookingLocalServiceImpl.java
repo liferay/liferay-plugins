@@ -1029,7 +1029,7 @@ public class CalendarBookingLocalServiceImpl
 			calendarBookingPersistence.findByParentCalendarBookingId(
 				calendarBooking.getCalendarBookingId());
 
-		Set<Long> existingCalendarBookingIds = new HashSet<Long>(
+		Set<Long> existingCalendarBookingIds = new HashSet<>(
 			childCalendarIds.length);
 
 		for (CalendarBooking childCalendarBooking : childCalendarBookings) {
@@ -1117,8 +1117,7 @@ public class CalendarBookingLocalServiceImpl
 	protected void updateChildCalendarBookings(
 		CalendarBooking calendarBooking, Date modifiedDate, String recurrence) {
 
-		List<CalendarBooking> childCalendarBookings =
-			new ArrayList<CalendarBooking>();
+		List<CalendarBooking> childCalendarBookings = new ArrayList<>();
 
 		if (calendarBooking.isMasterBooking()) {
 			childCalendarBookings = getChildCalendarBookings(

@@ -90,7 +90,7 @@ public class WSRPHTTPSender extends HTTPSender {
 			return;
 		}
 
-		Map<String, String> cookiesMap = new HashMap<String, String>();
+		Map<String, String> cookiesMap = new HashMap<>();
 
 		Object cookiesObject = messageContext.getProperty(
 			HTTPConstants.HEADER_COOKIE);

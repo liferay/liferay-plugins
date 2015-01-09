@@ -83,7 +83,7 @@ public class NetvibesWidgetUtil {
 
 		JSONArray jsonArray = jsonObject.getJSONArray("items");
 
-		List<Object[]> results = new ArrayList<Object[]>();
+		List<Object[]> results = new ArrayList<>();
 		int total = 0;
 
 		if (jsonArray != null) {

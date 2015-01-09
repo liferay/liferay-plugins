@@ -101,11 +101,11 @@ public class CalendarResourceUtil {
 				group.getCompanyId());
 		}
 
-		Map<Locale, String> nameMap = new HashMap<Locale, String>();
+		Map<Locale, String> nameMap = new HashMap<>();
 
 		nameMap.put(LocaleUtil.getDefault(), group.getDescriptiveName());
 
-		Map<Locale, String> descriptionMap = new HashMap<Locale, String>();
+		Map<Locale, String> descriptionMap = new HashMap<>();
 
 		return CalendarResourceLocalServiceUtil.addCalendarResource(
 			userId, groupId, PortalUtil.getClassNameId(Group.class), groupId,
@@ -198,11 +198,11 @@ public class CalendarResourceUtil {
 				serviceContext.getCompanyId(), userId);
 		}
 
-		Map<Locale, String> nameMap = new HashMap<Locale, String>();
+		Map<Locale, String> nameMap = new HashMap<>();
 
 		nameMap.put(LocaleUtil.getDefault(), userName);
 
-		Map<Locale, String> descriptionMap = new HashMap<Locale, String>();
+		Map<Locale, String> descriptionMap = new HashMap<>();
 
 		return CalendarResourceLocalServiceUtil.addCalendarResource(
 			userId, userGroup.getGroupId(),

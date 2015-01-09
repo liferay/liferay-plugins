@@ -253,8 +253,7 @@ public class AdminPortlet extends BaseKBPortlet {
 
 		Enumeration<String> enu = actionRequest.getParameterNames();
 
-		Map<Long, Double> resourcePrimKeyToPriorityMap =
-			new HashMap<Long, Double>();
+		Map<Long, Double> resourcePrimKeyToPriorityMap = new HashMap<>();
 
 		while (enu.hasMoreElements()) {
 			String name = enu.nextElement();

@@ -48,7 +48,7 @@ public class KBNavigationDisplayContext {
 	}
 
 	public List<Long> getAncestorResourcePrimaryKeys() throws PortalException {
-		List<Long> ancestorResourcePrimaryKeys = new ArrayList<Long>();
+		List<Long> ancestorResourcePrimaryKeys = new ArrayList<>();
 
 		if (_kbArticle != null) {
 			KBArticle latestKBArticle =

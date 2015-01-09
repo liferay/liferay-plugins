@@ -165,7 +165,7 @@ public class BBBAPIUtil {
 			return Collections.emptyList();
 		}
 
-		List<String> meetingRecordings = new ArrayList<String>();
+		List<String> meetingRecordings = new ArrayList<>();
 
 		StringBundler sb = new StringBundler(3);
 
@@ -327,7 +327,7 @@ public class BBBAPIUtil {
 	}
 
 	protected static long getBbbServerId() throws PortalException {
-		TreeMap<Integer, Long> bbbServersMap = new TreeMap<Integer, Long>();
+		TreeMap<Integer, Long> bbbServersMap = new TreeMap<>();
 
 		BBBServerLocalServiceUtil.checkBBBServers();
 

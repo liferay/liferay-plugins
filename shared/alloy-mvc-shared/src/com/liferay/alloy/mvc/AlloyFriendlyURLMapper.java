@@ -41,7 +41,7 @@ public class AlloyFriendlyURLMapper extends DefaultFriendlyURLMapper {
 
 	@Override
 	public String buildPath(LiferayPortletURL liferayPortletURL) {
-		Map<String, String> routeParameters = new HashMap<String, String>();
+		Map<String, String> routeParameters = new HashMap<>();
 
 		buildRouteParameters(liferayPortletURL, routeParameters);
 
@@ -106,7 +106,7 @@ public class AlloyFriendlyURLMapper extends DefaultFriendlyURLMapper {
 				0, friendlyURLPath.length() - 1);
 		}
 
-		Map<String, String> routeParameters = new HashMap<String, String>();
+		Map<String, String> routeParameters = new HashMap<>();
 
 		if (!router.urlToParameters(friendlyURLPath, routeParameters)) {
 			if (_log.isWarnEnabled()) {

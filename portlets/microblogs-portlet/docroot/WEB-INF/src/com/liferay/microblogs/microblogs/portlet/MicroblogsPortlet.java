@@ -105,7 +105,7 @@ public class MicroblogsPortlet extends MVCPortlet {
 	}
 
 	protected String[] getAssetTagNames(String content) {
-		List<String> assetTagNames = new ArrayList<String>();
+		List<String> assetTagNames = new ArrayList<>();
 
 		assetTagNames.addAll(MicroblogsUtil.getHashtags(content));
 

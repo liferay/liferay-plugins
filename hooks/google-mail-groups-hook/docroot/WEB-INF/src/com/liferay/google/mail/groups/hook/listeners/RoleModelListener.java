@@ -121,8 +121,7 @@ public class RoleModelListener extends BaseModelListener<Role> {
 		}
 
 		if (associationClassName.equals(Group.class.getName())) {
-			LinkedHashMap<String, Object> userParams =
-				new LinkedHashMap<String, Object>();
+			LinkedHashMap<String, Object> userParams = new LinkedHashMap<>();
 
 			userParams.put("inherit", Boolean.TRUE);
 			userParams.put("usersGroups", associationClassPK);
@@ -148,7 +147,7 @@ public class RoleModelListener extends BaseModelListener<Role> {
 				(Long)associationClassPK);
 		}
 
-		return new ArrayList<User>();
+		return new ArrayList<>();
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(RoleModelListener.class);

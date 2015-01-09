@@ -98,7 +98,7 @@ public class KBArticleMarkdownConverter {
 			Map<String, FileEntry> fileEntriesMap)
 		throws PortalException {
 
-		Set<Integer> indexes = new TreeSet<Integer>();
+		Set<Integer> indexes = new TreeSet<>();
 
 		int index = 0;
 

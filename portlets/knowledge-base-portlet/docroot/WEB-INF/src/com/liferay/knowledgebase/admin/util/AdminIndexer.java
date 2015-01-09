@@ -204,7 +204,7 @@ public class AdminIndexer extends BaseIndexer {
 				kbArticle.getResourcePrimKey(),
 				WorkflowConstants.STATUS_APPROVED, null);
 
-		Collection<Document> documents = new ArrayList<Document>();
+		Collection<Document> documents = new ArrayList<>();
 
 		for (KBArticle curKBArticle : kbArticles) {
 			documents.add(getDocument(curKBArticle));

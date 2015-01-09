@@ -1063,7 +1063,7 @@ public class ConsumerPortlet extends GenericPortlet {
 
 		User user = themeDisplay.getUser();
 
-		List<MessageElement> clientAttributes = new ArrayList<MessageElement>();
+		List<MessageElement> clientAttributes = new ArrayList<>();
 
 		Enumeration<String> enu = request.getHeaderNames();
 
@@ -1167,7 +1167,7 @@ public class ConsumerPortlet extends GenericPortlet {
 		Map<String, String[]> publicParameterMap =
 			portletRequest.getPublicParameterMap();
 
-		List<NamedString> publicValues = new ArrayList<NamedString>();
+		List<NamedString> publicValues = new ArrayList<>();
 
 		for (Map.Entry<String, String[]> entry :
 				publicParameterMap.entrySet()) {
@@ -1345,7 +1345,7 @@ public class ConsumerPortlet extends GenericPortlet {
 	protected List<NamedString> processFormParameters(
 		PortletRequest portletRequest, PortletResponse portletResponse) {
 
-		List<NamedString> formParameters = new ArrayList<NamedString>();
+		List<NamedString> formParameters = new ArrayList<>();
 
 		Enumeration<String> enu = portletRequest.getParameterNames();
 
@@ -1372,7 +1372,7 @@ public class ConsumerPortlet extends GenericPortlet {
 		PortletRequest portletRequest, PortletResponse portletResponse,
 		MimeRequest mimeRequest) {
 
-		List<MessageElement> formParameters = new ArrayList<MessageElement>();
+		List<MessageElement> formParameters = new ArrayList<>();
 
 		Enumeration<String> enu = portletRequest.getParameterNames();
 
@@ -1517,8 +1517,8 @@ public class ConsumerPortlet extends GenericPortlet {
 			PortletRequest portletRequest, PortletResponse portletResponse)
 		throws Exception {
 
-		List<NamedString> formParameters = new ArrayList<NamedString>();
-		List<UploadContext> uploadContexts = new ArrayList<UploadContext>();
+		List<NamedString> formParameters = new ArrayList<>();
+		List<UploadContext> uploadContexts = new ArrayList<>();
 
 		UploadPortletRequest uploadPortletRequest =
 			PortalUtil.getUploadPortletRequest(portletRequest);
@@ -1790,7 +1790,7 @@ public class ConsumerPortlet extends GenericPortlet {
 			cookieKey, PortletSession.APPLICATION_SCOPE);
 
 		if (Validator.isNotNull(cookie)) {
-			Map<String, String> headers = new HashMap<String, String>();
+			Map<String, String> headers = new HashMap<>();
 
 			headers.put(HttpHeaders.COOKIE, cookie);
 
@@ -1944,7 +1944,7 @@ public class ConsumerPortlet extends GenericPortlet {
 			String extensionURL1 = rewriteMatcher.group(3);
 			String extensionURL2 = rewriteMatcher.group(4);
 
-			Map<String, String> parameterMap = new HashMap<String, String>();
+			Map<String, String> parameterMap = new HashMap<>();
 
 			if (Validator.isNotNull(namespace)) {
 				rewriteMatcher.appendReplacement(

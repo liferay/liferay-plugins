@@ -137,7 +137,7 @@ public class InstanceUtil {
 			long companyId, String name)
 		throws Exception {
 
-		Map<Locale, String> localeNamesMap = new HashMap<Locale, String>();
+		Map<Locale, String> localeNamesMap = new HashMap<>();
 
 		Locale defaultLocale = LocaleUtil.getDefault();
 
@@ -529,7 +529,7 @@ public class InstanceUtil {
 	protected static void setupRole(long companyId) throws Exception {
 		long defaultUserId = UserLocalServiceUtil.getDefaultUserId(companyId);
 
-		Map<Locale, String> descriptionMap = new HashMap<Locale, String>();
+		Map<Locale, String> descriptionMap = new HashMap<>();
 
 		descriptionMap.put(
 			LocaleUtil.getDefault(),

@@ -347,7 +347,7 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 		long groupId, long[] resourcePrimKeys, int status, int start, int end,
 		OrderByComparator<KBArticle> orderByComparator) {
 
-		List<KBArticle> kbArticles = new ArrayList<KBArticle>();
+		List<KBArticle> kbArticles = new ArrayList<>();
 
 		Long[][] params = new Long[][] {ArrayUtil.toArray(resourcePrimKeys)};
 
@@ -459,7 +459,7 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 
 		int end = start + _INTERVAL;
 
-		List<KBArticle> kbArticles = new ArrayList<KBArticle>();
+		List<KBArticle> kbArticles = new ArrayList<>();
 
 		int curStartValue = 0;
 
@@ -739,7 +739,7 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 
 		syndFeed.setDescription(description);
 
-		List<SyndEntry> syndEntries = new ArrayList<SyndEntry>();
+		List<SyndEntry> syndEntries = new ArrayList<>();
 
 		syndFeed.setEntries(syndEntries);
 
@@ -802,7 +802,7 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 
 		syndFeed.setFeedType(feedType);
 
-		List<SyndLink> syndLinks = new ArrayList<SyndLink>();
+		List<SyndLink> syndLinks = new ArrayList<>();
 
 		syndFeed.setLinks(syndLinks);
 

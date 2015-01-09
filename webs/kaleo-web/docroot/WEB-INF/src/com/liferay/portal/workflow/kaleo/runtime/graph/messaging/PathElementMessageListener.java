@@ -49,7 +49,7 @@ public class PathElementMessageListener extends BaseMessageListener {
 	protected void doReceive(Message message) throws Exception {
 		PathElement pathElement = (PathElement)message.getPayload();
 
-		List<PathElement> remainingPathElements = new ArrayList<PathElement>();
+		List<PathElement> remainingPathElements = new ArrayList<>();
 
 		_graphWalker.follow(
 			pathElement.getStartNode(), pathElement.getTargetNode(),

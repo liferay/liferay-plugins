@@ -141,10 +141,8 @@ public class LocalizationZHUtil {
 	private static LocalizationZHUtil _instance = new LocalizationZHUtil();
 
 	private Map<Character, Character>
-		_simplifiedCharactersToTraditionalCharactersMap =
-			new HashMap<Character, Character>();
+		_simplifiedCharactersToTraditionalCharactersMap = new HashMap<>();
 	private Map<Character, Character>
-		_traditionalCharactersToSimplifiedCharactersMap =
-			new HashMap<Character, Character>();
+		_traditionalCharactersToSimplifiedCharactersMap = new HashMap<>();
 
 }

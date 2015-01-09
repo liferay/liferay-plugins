@@ -39,7 +39,7 @@ public class TestPACLUtil {
 	public static final String TEST_FIELD = "TEST_FIELD";
 
 	public static Map<String, Boolean> testCurrentThread(long userId) {
-		Map<String, Boolean> results = new HashMap<String, Boolean>();
+		Map<String, Boolean> results = new HashMap<>();
 
 		try {
 			PortalServiceUtil.getBuildNumber();
@@ -82,7 +82,7 @@ public class TestPACLUtil {
 	public static Map<String, Boolean> testNewThread(final long userId)
 		throws Exception {
 
-		final Map<String, Boolean> results = new HashMap<String, Boolean>();
+		final Map<String, Boolean> results = new HashMap<>();
 
 		Thread thread = new Thread() {
 

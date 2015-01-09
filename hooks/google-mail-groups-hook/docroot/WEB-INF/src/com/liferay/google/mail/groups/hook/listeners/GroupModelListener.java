@@ -147,13 +147,13 @@ public class GroupModelListener extends BaseModelListener<Group> {
 				Organization.class.getName()) &&
 			!associationClassName.equals(UserGroup.class.getName())) {
 
-			return new ArrayList<User>();
+			return new ArrayList<>();
 		}
 
 		Group group = GroupLocalServiceUtil.getGroup((Long)classPK);
 
 		if (!GoogleMailGroupsUtil.isSync(group)) {
-			return new ArrayList<User>();
+			return new ArrayList<>();
 		}
 
 		if (associationClassName.equals(Organization.class.getName())) {
