@@ -227,10 +227,11 @@ public class CalendarBookingStagedModelDataHandler
 		// other entities the calendar booking local service add method
 		// doesn't do it
 
-		List<Element> discussions = portletDataContext.getReferenceElements(
-			calendarBooking, MBMessage.class);
+		List<Element> discussionMBMessageElements =
+			portletDataContext.getReferenceElements(
+				calendarBooking, MBMessage.class);
 
-		if (ListUtil.isNotEmpty(discussions)) {
+		if (ListUtil.isNotEmpty(discussionMBMessageElements)) {
 			MBMessageLocalServiceUtil.addDiscussionMessage(
 				userId, importedCalendarBooking.getUserName(),
 				importedCalendarBooking.getGroupId(),
