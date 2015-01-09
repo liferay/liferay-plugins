@@ -341,21 +341,14 @@ public class ExtRepositoryFileEntryAdapter
 			_getExtRepositoryFileVersionAdapters()
 		throws PortalException, SystemException {
 
-		if (_extRepositoryFileVersionAdapters == null) {
-			ExtRepositoryAdapter extRepositoryAdapter = getRepository();
+		ExtRepositoryAdapter extRepositoryAdapter = getRepository();
 
-			_extRepositoryFileVersionAdapters =
-				extRepositoryAdapter.getExtRepositoryFileVersionAdapters(this);
-		}
-
-		return _extRepositoryFileVersionAdapters;
+		return extRepositoryAdapter.getExtRepositoryFileVersionAdapters(this);
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(
 		ExtRepositoryFileEntryAdapter.class);
 
 	private ExtRepositoryFileEntry _extRepositoryFileEntry;
-	private List<ExtRepositoryFileVersionAdapter>
-		_extRepositoryFileVersionAdapters;
 
 }
