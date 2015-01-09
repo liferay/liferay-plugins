@@ -84,7 +84,7 @@ MailManager mailManager = MailManager.getInstance(request);
 		</c:when>
 		<c:otherwise>
 			<div class="table-container">
-				<table class="table table-condensed table-bordered table-hover">
+				<table class="table table-bordered table-condensed table-hover">
 					<thead>
 						<tr>
 							<th class="check"></th>
