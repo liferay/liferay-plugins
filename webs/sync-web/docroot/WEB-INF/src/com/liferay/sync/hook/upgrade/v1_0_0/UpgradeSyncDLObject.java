@@ -81,7 +81,7 @@ public class UpgradeSyncDLObject extends UpgradeProcess {
 
 				try {
 					SyncDLObject fileEntrySyncDLObject =
-						SyncUtil.toSyncDLObject(dlFileEntry, event);
+						SyncUtil.toSyncDLObject(dlFileEntry, event, true);
 
 					syncDLObjects.add(fileEntrySyncDLObject);
 
@@ -140,7 +140,7 @@ public class UpgradeSyncDLObject extends UpgradeProcess {
 				continue;
 			}
 
-			List<SyncDLObject> syncDLObjects = new ArrayList<>();
+			List<SyncDLObject> syncDLObjects = new ArrayList<SyncDLObject>();
 
 			populateAllSyncDLObjects(
 				group.getGroupId(), DLFolderConstants.DEFAULT_PARENT_FOLDER_ID,
