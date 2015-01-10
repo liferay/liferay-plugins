@@ -2126,7 +2126,7 @@ Please find a solution that does not require portal-impl.jar.
 			<test-cmd
 				junit.forkmode="once"
 				module.dir="@{module.dir}"
-				test.class="${test.class}"
+				test.class="**/${test.class}.class"
 				test.type="${test.type}"
 			/>
 		</sequential>
@@ -2177,7 +2177,7 @@ Please find a solution that does not require portal-impl.jar.
 								<formatter type="brief" usefile="false" />
 								<formatter type="xml" />
 								<batchtest todir="@{module.dir}/test-results/@{test.type}">
-									<fileset dir="@{module.dir}/test-classes/@{test.type}" includes="**/@{test.class}.class">
+									<fileset dir="@{module.dir}/test-classes/@{test.type}" includes="@{test.class}">
 										<filename regex="${junit.test.excludes}" negate="true" />
 									</fileset>
 								</batchtest>
@@ -2198,7 +2198,7 @@ Please find a solution that does not require portal-impl.jar.
 			<test-cmd
 				junit.forkmode="once"
 				module.dir="@{module.dir}"
-				test.class="*Test"
+				test.class="**/*Test.class"
 				test.type="integration"
 			/>
 		</sequential>
@@ -2211,7 +2211,7 @@ Please find a solution that does not require portal-impl.jar.
 			<test-cmd
 				junit.forkmode="perTest"
 				module.dir="@{module.dir}"
-				test.class="*Test"
+				test.class="**/*Test.class"
 				test.type="unit"
 			/>
 		</sequential>
