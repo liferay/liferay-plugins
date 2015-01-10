@@ -176,7 +176,7 @@ public interface AssetEntrySetPersistence extends BasePersistence<AssetEntrySet>
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns all the asset entry sets where createTime &gt; &#63; and parentAssetEntrySetId = &#63;.
+	* Returns all the asset entry sets where createTime = &#63; and parentAssetEntrySetId = &#63;.
 	*
 	* @param createTime the create time
 	* @param parentAssetEntrySetId the parent asset entry set ID
@@ -188,7 +188,7 @@ public interface AssetEntrySetPersistence extends BasePersistence<AssetEntrySet>
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns a range of all the asset entry sets where createTime &gt; &#63; and parentAssetEntrySetId = &#63;.
+	* Returns a range of all the asset entry sets where createTime = &#63; and parentAssetEntrySetId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.asset.entry.set.model.impl.AssetEntrySetModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
@@ -206,7 +206,7 @@ public interface AssetEntrySetPersistence extends BasePersistence<AssetEntrySet>
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns an ordered range of all the asset entry sets where createTime &gt; &#63; and parentAssetEntrySetId = &#63;.
+	* Returns an ordered range of all the asset entry sets where createTime = &#63; and parentAssetEntrySetId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.asset.entry.set.model.impl.AssetEntrySetModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
@@ -226,7 +226,7 @@ public interface AssetEntrySetPersistence extends BasePersistence<AssetEntrySet>
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns the first asset entry set in the ordered set where createTime &gt; &#63; and parentAssetEntrySetId = &#63;.
+	* Returns the first asset entry set in the ordered set where createTime = &#63; and parentAssetEntrySetId = &#63;.
 	*
 	* @param createTime the create time
 	* @param parentAssetEntrySetId the parent asset entry set ID
@@ -242,7 +242,7 @@ public interface AssetEntrySetPersistence extends BasePersistence<AssetEntrySet>
 			com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns the first asset entry set in the ordered set where createTime &gt; &#63; and parentAssetEntrySetId = &#63;.
+	* Returns the first asset entry set in the ordered set where createTime = &#63; and parentAssetEntrySetId = &#63;.
 	*
 	* @param createTime the create time
 	* @param parentAssetEntrySetId the parent asset entry set ID
@@ -256,7 +256,7 @@ public interface AssetEntrySetPersistence extends BasePersistence<AssetEntrySet>
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns the last asset entry set in the ordered set where createTime &gt; &#63; and parentAssetEntrySetId = &#63;.
+	* Returns the last asset entry set in the ordered set where createTime = &#63; and parentAssetEntrySetId = &#63;.
 	*
 	* @param createTime the create time
 	* @param parentAssetEntrySetId the parent asset entry set ID
@@ -272,7 +272,7 @@ public interface AssetEntrySetPersistence extends BasePersistence<AssetEntrySet>
 			com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns the last asset entry set in the ordered set where createTime &gt; &#63; and parentAssetEntrySetId = &#63;.
+	* Returns the last asset entry set in the ordered set where createTime = &#63; and parentAssetEntrySetId = &#63;.
 	*
 	* @param createTime the create time
 	* @param parentAssetEntrySetId the parent asset entry set ID
@@ -286,7 +286,7 @@ public interface AssetEntrySetPersistence extends BasePersistence<AssetEntrySet>
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns the asset entry sets before and after the current asset entry set in the ordered set where createTime &gt; &#63; and parentAssetEntrySetId = &#63;.
+	* Returns the asset entry sets before and after the current asset entry set in the ordered set where createTime = &#63; and parentAssetEntrySetId = &#63;.
 	*
 	* @param assetEntrySetId the primary key of the current asset entry set
 	* @param createTime the create time
@@ -303,7 +303,7 @@ public interface AssetEntrySetPersistence extends BasePersistence<AssetEntrySet>
 			com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Removes all the asset entry sets where createTime &gt; &#63; and parentAssetEntrySetId = &#63; from the database.
+	* Removes all the asset entry sets where createTime = &#63; and parentAssetEntrySetId = &#63; from the database.
 	*
 	* @param createTime the create time
 	* @param parentAssetEntrySetId the parent asset entry set ID
@@ -313,7 +313,7 @@ public interface AssetEntrySetPersistence extends BasePersistence<AssetEntrySet>
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns the number of asset entry sets where createTime &gt; &#63; and parentAssetEntrySetId = &#63;.
+	* Returns the number of asset entry sets where createTime = &#63; and parentAssetEntrySetId = &#63;.
 	*
 	* @param createTime the create time
 	* @param parentAssetEntrySetId the parent asset entry set ID

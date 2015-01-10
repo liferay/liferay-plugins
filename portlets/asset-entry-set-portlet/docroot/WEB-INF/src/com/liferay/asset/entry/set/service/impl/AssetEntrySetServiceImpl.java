@@ -23,6 +23,8 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 
+import java.io.File;
+
 import java.util.List;
 
 /**
@@ -33,7 +35,7 @@ public class AssetEntrySetServiceImpl extends AssetEntrySetServiceBaseImpl {
 
 	@Override
 	public AssetEntrySet addAssetEntrySet(
-			long parentAssetEntrySetId, String payload,
+			long parentAssetEntrySetId, String payload, File file,
 			boolean privateAssetEntrySet)
 		throws PortalException, SystemException {
 
@@ -41,29 +43,42 @@ public class AssetEntrySetServiceImpl extends AssetEntrySetServiceBaseImpl {
 			payload);
 
 		return assetEntrySetLocalService.addAssetEntrySet(
-			getUserId(), parentAssetEntrySetId, payloadJSONObject,
+			getUserId(), parentAssetEntrySetId, payloadJSONObject, file,
 			privateAssetEntrySet);
 	}
 
 	@Override
 	public AssetEntrySet addAssetEntrySet(
-			String payload, boolean privateAssetEntrySet)
+			String payload, File file, boolean privateAssetEntrySet)
 		throws PortalException, SystemException {
 
 		JSONObject payloadJSONObject = JSONFactoryUtil.createJSONObject(
 			payload);
 
 		return assetEntrySetLocalService.addAssetEntrySet(
-			getUserId(), payloadJSONObject, privateAssetEntrySet);
+			getUserId(), payloadJSONObject, file, privateAssetEntrySet);
 	}
 
 	@Override
-	public List<AssetEntrySet> getAssetEntrySets(
-			long parentAssetEntrySetId, long lastAccessTime, int start, int end)
+	public List<AssetEntrySet> getNewAssetEntrySets(
+			long createTime, long parentAssetEntrySetId, int start, int end)
 		throws PortalException, SystemException {
 
-		return assetEntrySetLocalService.getAssetEntrySets(
-			parentAssetEntrySetId, lastAccessTime, start, end);
+		return assetEntrySetLocalService.getNewAssetEntrySets(
+			getUserId(), createTime, parentAssetEntrySetId, start, end);
+	}
+
+	@Override
+	public List<AssetEntrySet> getOldAssetEntrySets(
+			long createTime, long parentAssetEntrySetId, int start, int end)
+		throws PortalException, SystemException {
+
+		return assetEntrySetLocalService.getOldAssetEntrySets(
+			getUserId(), createTime, parentAssetEntrySetId, start, end);
+	}
+
+	public JSONObject getPreviewJSONObject(String url) throws Exception {
+		return assetEntrySetLocalService.getPreviewJSONObject(url);
 	}
 
 	@Override

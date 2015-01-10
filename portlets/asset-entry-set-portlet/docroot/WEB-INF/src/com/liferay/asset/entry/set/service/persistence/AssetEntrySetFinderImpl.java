@@ -54,6 +54,9 @@ public class AssetEntrySetFinderImpl
 	public static final String FIND_BY_SHARED_TO_CLASS_PKS_MAP =
 		AssetEntrySetFinder.class.getName() + ".findBySharedToClassPKsMap";
 
+	public static final String FIND_BY_CT_PASEI =
+		AssetEntrySetFinder.class.getName() + ".findByCT_PASEI";
+
 	public static final String FIND_BY_CCNI_ATN =
 		AssetEntrySetFinder.class.getName() + ".findByCCNI_ATN";
 
@@ -220,6 +223,52 @@ public class AssetEntrySetFinderImpl
 
 			QueryPos qPos = QueryPos.getInstance(q);
 
+			qPos.add(_ASSET_ENTRY_SET_CLASS_NAME_ID);
+
+			return (List<AssetEntrySet>)QueryUtil.list(
+				q, getDialect(), start, end);
+		}
+		catch (Exception e) {
+			throw new SystemException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	public List<AssetEntrySet> findByCT_PASEI(
+			long createTime, boolean gtCreateTime, long parentAssetEntrySetId,
+			Map<Long, long[]> sharedToClassPKsMap, int start, int end)
+		throws SystemException {
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			String sql = CustomSQLUtil.get(FIND_BY_CT_PASEI);
+
+			if (gtCreateTime) {
+				sql = StringUtil.replace(
+					sql, "[$CREATE_TIME_COMPARATOR$]", ">");
+			}
+			else {
+				sql = StringUtil.replace(
+					sql, "[$CREATE_TIME_COMPARATOR$]", "<=");
+			}
+
+			sql = StringUtil.replace(
+				sql, "[$SHARED_TO_CLASS_PKS_MAP]",
+				getSharedToClassPKsMap(sharedToClassPKsMap));
+
+			SQLQuery q = session.createSQLQuery(sql);
+
+			q.addEntity("AssetEntrySet", AssetEntrySetImpl.class);
+
+			QueryPos qPos = QueryPos.getInstance(q);
+
+			qPos.add(createTime);
+			qPos.add(parentAssetEntrySetId);
 			qPos.add(_ASSET_ENTRY_SET_CLASS_NAME_ID);
 
 			return (List<AssetEntrySet>)QueryUtil.list(

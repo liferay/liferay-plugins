@@ -39,7 +39,7 @@
 			<finder-column name="parentAssetEntrySetId" />
 		</finder>
 		<finder name="CT_PASEI" return-type="Collection">
-			<finder-column name="createTime" comparator="&gt;" />
+			<finder-column name="createTime" />
 			<finder-column name="parentAssetEntrySetId" />
 		</finder>
 		<finder name="PAESI_CCNI" return-type="Collection">

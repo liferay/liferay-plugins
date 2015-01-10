@@ -27,10 +27,16 @@ import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.util.ArrayUtil;
+import com.liferay.portal.kernel.util.CharPool;
+import com.liferay.portal.kernel.util.ContentTypes;
+import com.liferay.portal.kernel.util.Http;
+import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.PropsUtil;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.User;
 import com.liferay.portal.model.UserConstants;
@@ -47,6 +53,10 @@ import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.select.Elements;
 
 /**
  * @author Calvin Keum
@@ -166,20 +176,6 @@ public class AssetEntrySetLocalServiceImpl
 
 	@Override
 	public List<AssetEntrySet> getAssetEntrySets(
-			long parentAssetEntrySetId, long lastAccessTime, int start, int end)
-		throws PortalException, SystemException {
-
-		List<AssetEntrySet> assetEntrySets =
-			assetEntrySetPersistence.findByCT_PASEI(
-				lastAccessTime, parentAssetEntrySetId, start, end);
-
-		setCreatorJSONObjects(assetEntrySets);
-
-		return assetEntrySets;
-	}
-
-	@Override
-	public List<AssetEntrySet> getAssetEntrySets(
 			long userId, long creatorClassNameId, long creatorClassPK,
 			String assetTagName, boolean andOperator, int start, int end)
 		throws PortalException, SystemException {
@@ -259,6 +255,68 @@ public class AssetEntrySetLocalServiceImpl
 
 		return assetEntrySetPersistence.findByParentAssetEntrySetId(
 			parentAssetEntrySetId, start, end, orderByComparator);
+	}
+
+	@Override
+	public List<AssetEntrySet> getNewAssetEntrySets(
+			long userId, long createTime, long parentAssetEntrySetId, int start,
+			int end)
+		throws PortalException, SystemException {
+
+		return getAssetEntrySets(
+			userId, createTime, true, parentAssetEntrySetId, start, end);
+	}
+
+	@Override
+	public List<AssetEntrySet> getOldAssetEntrySets(
+			long userId, long createTime, long parentAssetEntrySetId, int start,
+			int end)
+		throws PortalException, SystemException {
+
+		return getAssetEntrySets(
+			userId, createTime, false, parentAssetEntrySetId, start, end);
+	}
+
+	public JSONObject getPreviewJSONObject(String url) throws Exception {
+		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
+
+		Http.Options options = new Http.Options();
+
+		int pos = url.indexOf(CharPool.QUESTION);
+
+		if (pos != -1) {
+			options.setBody(
+				url.substring(pos + 1),
+				ContentTypes.APPLICATION_X_WWW_FORM_URLENCODED,
+				StringPool.UTF8);
+			options.setLocation(url.substring(0, pos));
+		}
+		else {
+			options.setLocation(url);
+		}
+
+		String html = HttpUtil.URLtoString(options);
+
+		Document document = Jsoup.parse(html);
+
+		jsonObject.put("description", getLinkDescription(document));
+
+		StringBundler sb = new StringBundler(4);
+
+		sb.append(HttpUtil.getProtocol(url));
+		sb.append(StringPool.COLON);
+		sb.append(StringPool.DOUBLE_SLASH);
+		sb.append(HttpUtil.getDomain(url));
+
+		jsonObject.put("imageURL", getLinkImageURL(document, sb.toString()));
+
+		String domain = HttpUtil.getDomain(options.getLocation());
+
+		jsonObject.put("shortURL", StringUtil.toUpperCase(domain));
+
+		jsonObject.put("title", getLinkTitle(document));
+
+		return jsonObject;
 	}
 
 	@Override
@@ -363,6 +421,84 @@ public class AssetEntrySetLocalServiceImpl
 			sharedToClassPKsMap.put(
 				_USER_CLASS_NAME_ID, ArrayUtil.append(sharedToUserIds, userId));
 		}
+	}
+
+	protected List<AssetEntrySet> getAssetEntrySets(
+			long userId, long createTime, boolean gtCreateTime,
+			long parentAssetEntrySetId, int start, int end)
+		throws PortalException, SystemException {
+
+		Map<Long, long[]> sharedToClassPKsMap =
+			AssetSharingUtil.getSharedToClassPKsMap(userId);
+
+		List<AssetEntrySet> assetEntrySets =
+			assetEntrySetFinder.findByCT_PASEI(
+				createTime, gtCreateTime, parentAssetEntrySetId,
+				sharedToClassPKsMap, start, end);
+
+		setCreatorJSONObjects(assetEntrySets);
+
+		return assetEntrySets;
+	}
+
+	protected String getLinkDescription(Document document) {
+		Elements descriptionElement = document.select(
+			"meta[property=og:description]");
+
+		if (descriptionElement.size() <= 0) {
+			descriptionElement = document.select("meta[name=description]");
+		}
+
+		String description = descriptionElement.attr("content");
+
+		return StringUtil.shorten(description, 200);
+	}
+
+	protected String getLinkImageURL(Document document, String baseURL) {
+		String imageURL = StringPool.BLANK;
+
+		Elements imageElement = document.select("meta[property=og:image]");
+
+		if (imageElement.size() <= 0) {
+			imageElement = document.select("img");
+
+			imageURL = imageElement.get(0).attr("src");
+		}
+		else {
+			imageURL = imageElement.attr("content");
+		}
+
+		if (!HttpUtil.hasDomain(imageURL)) {
+			imageURL = baseURL + imageURL;
+		}
+
+		return imageURL;
+	}
+
+	protected String getLinkTitle(Document document) {
+		Elements titleElement = document.select("meta[property=og:title]");
+
+		String title = titleElement.attr("content");
+
+		if (Validator.isNull(title)) {
+			titleElement = document.select("meta[name=title]");
+
+			title = titleElement.attr("content");
+		}
+
+		if (Validator.isNull(title)) {
+			titleElement = document.select("title");
+
+			title = titleElement.html();
+		}
+
+		if (Validator.isNull(title)) {
+			titleElement = document.select("meta[property=og:site_name]");
+
+			title = titleElement.attr("content");
+		}
+
+		return StringUtil.shorten(title, 200);
 	}
 
 	protected Map<Long, long[]> getSharedToClassPKsMap(

@@ -94,6 +94,29 @@
 				AssetEntrySet.modifiedTime DESC
 		]]>
 	</sql>
+	<sql id="com.liferay.asset.entry.set.service.persistence.AssetEntrySetFinder.findByCT_PASEI">
+		<![CDATA[
+			SELECT
+				DISTINCT {AssetEntrySet.*}
+			FROM
+				AssetEntrySet
+			INNER JOIN
+				AssetSharingEntry ON
+					(AssetSharingEntry.classPK = AssetEntrySet.assetEntrySetId)
+			WHERE
+				(
+					(AssetEntrySet.createTime [$CREATE_TIME_COMPARATOR$] ?) AND
+					(AssetEntrySet.parentAssetEntrySetId = ?)
+				) AND
+				(AssetSharingEntry.classNameId = ?) AND
+				(
+					([$SHARED_TO_CLASS_PKS_MAP]) OR
+					(AssetEntrySet.privateAssetEntrySet = [$FALSE$])
+				)
+			ORDER BY
+				AssetEntrySet.createTime DESC
+		]]>
+	</sql>
 	<sql id="com.liferay.asset.entry.set.service.persistence.AssetEntrySetFinder.findByCCNI_ATN">
 		<![CDATA[
 			SELECT

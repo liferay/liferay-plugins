@@ -65,28 +65,43 @@ public class AssetEntrySetServiceUtil {
 
 	public static com.liferay.asset.entry.set.model.AssetEntrySet addAssetEntrySet(
 		long parentAssetEntrySetId, java.lang.String payload,
-		boolean privateAssetEntrySet)
+		java.io.File file, boolean privateAssetEntrySet)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService()
-				   .addAssetEntrySet(parentAssetEntrySetId, payload,
+				   .addAssetEntrySet(parentAssetEntrySetId, payload, file,
 			privateAssetEntrySet);
 	}
 
 	public static com.liferay.asset.entry.set.model.AssetEntrySet addAssetEntrySet(
-		java.lang.String payload, boolean privateAssetEntrySet)
+		java.lang.String payload, java.io.File file,
+		boolean privateAssetEntrySet)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return getService().addAssetEntrySet(payload, privateAssetEntrySet);
+		return getService().addAssetEntrySet(payload, file, privateAssetEntrySet);
 	}
 
-	public static java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> getAssetEntrySets(
-		long parentAssetEntrySetId, long lastAccessTime, int start, int end)
+	public static java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> getNewAssetEntrySets(
+		long createTime, long parentAssetEntrySetId, int start, int end)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService()
-				   .getAssetEntrySets(parentAssetEntrySetId, lastAccessTime,
+				   .getNewAssetEntrySets(createTime, parentAssetEntrySetId,
 			start, end);
+	}
+
+	public static java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> getOldAssetEntrySets(
+		long createTime, long parentAssetEntrySetId, int start, int end)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService()
+				   .getOldAssetEntrySets(createTime, parentAssetEntrySetId,
+			start, end);
+	}
+
+	public static com.liferay.portal.kernel.json.JSONObject getPreviewJSONObject(
+		java.lang.String url) throws java.lang.Exception {
+		return getService().getPreviewJSONObject(url);
 	}
 
 	public static com.liferay.asset.entry.set.model.AssetEntrySet likeAssetEntrySet(

@@ -61,29 +61,45 @@ public class AssetEntrySetServiceWrapper implements AssetEntrySetService,
 	@Override
 	public com.liferay.asset.entry.set.model.AssetEntrySet addAssetEntrySet(
 		long parentAssetEntrySetId, java.lang.String payload,
-		boolean privateAssetEntrySet)
+		java.io.File file, boolean privateAssetEntrySet)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _assetEntrySetService.addAssetEntrySet(parentAssetEntrySetId,
-			payload, privateAssetEntrySet);
+			payload, file, privateAssetEntrySet);
 	}
 
 	@Override
 	public com.liferay.asset.entry.set.model.AssetEntrySet addAssetEntrySet(
-		java.lang.String payload, boolean privateAssetEntrySet)
+		java.lang.String payload, java.io.File file,
+		boolean privateAssetEntrySet)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return _assetEntrySetService.addAssetEntrySet(payload,
+		return _assetEntrySetService.addAssetEntrySet(payload, file,
 			privateAssetEntrySet);
 	}
 
 	@Override
-	public java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> getAssetEntrySets(
-		long parentAssetEntrySetId, long lastAccessTime, int start, int end)
+	public java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> getNewAssetEntrySets(
+		long createTime, long parentAssetEntrySetId, int start, int end)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return _assetEntrySetService.getAssetEntrySets(parentAssetEntrySetId,
-			lastAccessTime, start, end);
+		return _assetEntrySetService.getNewAssetEntrySets(createTime,
+			parentAssetEntrySetId, start, end);
+	}
+
+	@Override
+	public java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> getOldAssetEntrySets(
+		long createTime, long parentAssetEntrySetId, int start, int end)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _assetEntrySetService.getOldAssetEntrySets(createTime,
+			parentAssetEntrySetId, start, end);
+	}
+
+	@Override
+	public com.liferay.portal.kernel.json.JSONObject getPreviewJSONObject(
+		java.lang.String url) throws java.lang.Exception {
+		return _assetEntrySetService.getPreviewJSONObject(url);
 	}
 
 	@Override

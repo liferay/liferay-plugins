@@ -607,14 +607,21 @@ public class AssetEntrySetPersistenceImpl extends BasePersistenceImpl<AssetEntry
 			Integer.class.getName(), Integer.class.getName(),
 				OrderByComparator.class.getName()
 			});
-	public static final FinderPath FINDER_PATH_WITH_PAGINATION_COUNT_BY_CT_PASEI =
+	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_CT_PASEI =
 		new FinderPath(AssetEntrySetModelImpl.ENTITY_CACHE_ENABLED,
+			AssetEntrySetModelImpl.FINDER_CACHE_ENABLED,
+			AssetEntrySetImpl.class, FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
+			"findByCT_PASEI",
+			new String[] { Long.class.getName(), Long.class.getName() },
+			AssetEntrySetModelImpl.CREATETIME_COLUMN_BITMASK |
+			AssetEntrySetModelImpl.PARENTASSETENTRYSETID_COLUMN_BITMASK);
+	public static final FinderPath FINDER_PATH_COUNT_BY_CT_PASEI = new FinderPath(AssetEntrySetModelImpl.ENTITY_CACHE_ENABLED,
 			AssetEntrySetModelImpl.FINDER_CACHE_ENABLED, Long.class,
-			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "countByCT_PASEI",
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByCT_PASEI",
 			new String[] { Long.class.getName(), Long.class.getName() });
 
 	/**
-	 * Returns all the asset entry sets where createTime &gt; &#63; and parentAssetEntrySetId = &#63;.
+	 * Returns all the asset entry sets where createTime = &#63; and parentAssetEntrySetId = &#63;.
 	 *
 	 * @param createTime the create time
 	 * @param parentAssetEntrySetId the parent asset entry set ID
@@ -629,7 +636,7 @@ public class AssetEntrySetPersistenceImpl extends BasePersistenceImpl<AssetEntry
 	}
 
 	/**
-	 * Returns a range of all the asset entry sets where createTime &gt; &#63; and parentAssetEntrySetId = &#63;.
+	 * Returns a range of all the asset entry sets where createTime = &#63; and parentAssetEntrySetId = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.asset.entry.set.model.impl.AssetEntrySetModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
@@ -651,7 +658,7 @@ public class AssetEntrySetPersistenceImpl extends BasePersistenceImpl<AssetEntry
 	}
 
 	/**
-	 * Returns an ordered range of all the asset entry sets where createTime &gt; &#63; and parentAssetEntrySetId = &#63;.
+	 * Returns an ordered range of all the asset entry sets where createTime = &#63; and parentAssetEntrySetId = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.asset.entry.set.model.impl.AssetEntrySetModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
@@ -673,19 +680,27 @@ public class AssetEntrySetPersistenceImpl extends BasePersistenceImpl<AssetEntry
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
-		finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_CT_PASEI;
-		finderArgs = new Object[] {
-				createTime, parentAssetEntrySetId,
-				
-				start, end, orderByComparator
-			};
+		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
+				(orderByComparator == null)) {
+			pagination = false;
+			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_CT_PASEI;
+			finderArgs = new Object[] { createTime, parentAssetEntrySetId };
+		}
+		else {
+			finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_CT_PASEI;
+			finderArgs = new Object[] {
+					createTime, parentAssetEntrySetId,
+					
+					start, end, orderByComparator
+				};
+		}
 
 		List<AssetEntrySet> list = (List<AssetEntrySet>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
 
 		if ((list != null) && !list.isEmpty()) {
 			for (AssetEntrySet assetEntrySet : list) {
-				if ((createTime >= assetEntrySet.getCreateTime()) ||
+				if ((createTime != assetEntrySet.getCreateTime()) ||
 						(parentAssetEntrySetId != assetEntrySet.getParentAssetEntrySetId())) {
 					list = null;
 
@@ -766,7 +781,7 @@ public class AssetEntrySetPersistenceImpl extends BasePersistenceImpl<AssetEntry
 	}
 
 	/**
-	 * Returns the first asset entry set in the ordered set where createTime &gt; &#63; and parentAssetEntrySetId = &#63;.
+	 * Returns the first asset entry set in the ordered set where createTime = &#63; and parentAssetEntrySetId = &#63;.
 	 *
 	 * @param createTime the create time
 	 * @param parentAssetEntrySetId the parent asset entry set ID
@@ -802,7 +817,7 @@ public class AssetEntrySetPersistenceImpl extends BasePersistenceImpl<AssetEntry
 	}
 
 	/**
-	 * Returns the first asset entry set in the ordered set where createTime &gt; &#63; and parentAssetEntrySetId = &#63;.
+	 * Returns the first asset entry set in the ordered set where createTime = &#63; and parentAssetEntrySetId = &#63;.
 	 *
 	 * @param createTime the create time
 	 * @param parentAssetEntrySetId the parent asset entry set ID
@@ -825,7 +840,7 @@ public class AssetEntrySetPersistenceImpl extends BasePersistenceImpl<AssetEntry
 	}
 
 	/**
-	 * Returns the last asset entry set in the ordered set where createTime &gt; &#63; and parentAssetEntrySetId = &#63;.
+	 * Returns the last asset entry set in the ordered set where createTime = &#63; and parentAssetEntrySetId = &#63;.
 	 *
 	 * @param createTime the create time
 	 * @param parentAssetEntrySetId the parent asset entry set ID
@@ -861,7 +876,7 @@ public class AssetEntrySetPersistenceImpl extends BasePersistenceImpl<AssetEntry
 	}
 
 	/**
-	 * Returns the last asset entry set in the ordered set where createTime &gt; &#63; and parentAssetEntrySetId = &#63;.
+	 * Returns the last asset entry set in the ordered set where createTime = &#63; and parentAssetEntrySetId = &#63;.
 	 *
 	 * @param createTime the create time
 	 * @param parentAssetEntrySetId the parent asset entry set ID
@@ -890,7 +905,7 @@ public class AssetEntrySetPersistenceImpl extends BasePersistenceImpl<AssetEntry
 	}
 
 	/**
-	 * Returns the asset entry sets before and after the current asset entry set in the ordered set where createTime &gt; &#63; and parentAssetEntrySetId = &#63;.
+	 * Returns the asset entry sets before and after the current asset entry set in the ordered set where createTime = &#63; and parentAssetEntrySetId = &#63;.
 	 *
 	 * @param assetEntrySetId the primary key of the current asset entry set
 	 * @param createTime the create time
@@ -1043,7 +1058,7 @@ public class AssetEntrySetPersistenceImpl extends BasePersistenceImpl<AssetEntry
 	}
 
 	/**
-	 * Removes all the asset entry sets where createTime &gt; &#63; and parentAssetEntrySetId = &#63; from the database.
+	 * Removes all the asset entry sets where createTime = &#63; and parentAssetEntrySetId = &#63; from the database.
 	 *
 	 * @param createTime the create time
 	 * @param parentAssetEntrySetId the parent asset entry set ID
@@ -1060,7 +1075,7 @@ public class AssetEntrySetPersistenceImpl extends BasePersistenceImpl<AssetEntry
 	}
 
 	/**
-	 * Returns the number of asset entry sets where createTime &gt; &#63; and parentAssetEntrySetId = &#63;.
+	 * Returns the number of asset entry sets where createTime = &#63; and parentAssetEntrySetId = &#63;.
 	 *
 	 * @param createTime the create time
 	 * @param parentAssetEntrySetId the parent asset entry set ID
@@ -1070,7 +1085,7 @@ public class AssetEntrySetPersistenceImpl extends BasePersistenceImpl<AssetEntry
 	@Override
 	public int countByCT_PASEI(long createTime, long parentAssetEntrySetId)
 		throws SystemException {
-		FinderPath finderPath = FINDER_PATH_WITH_PAGINATION_COUNT_BY_CT_PASEI;
+		FinderPath finderPath = FINDER_PATH_COUNT_BY_CT_PASEI;
 
 		Object[] finderArgs = new Object[] { createTime, parentAssetEntrySetId };
 
@@ -1118,7 +1133,7 @@ public class AssetEntrySetPersistenceImpl extends BasePersistenceImpl<AssetEntry
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_CT_PASEI_CREATETIME_2 = "assetEntrySet.createTime > ? AND ";
+	private static final String _FINDER_COLUMN_CT_PASEI_CREATETIME_2 = "assetEntrySet.createTime = ? AND ";
 	private static final String _FINDER_COLUMN_CT_PASEI_PARENTASSETENTRYSETID_2 = "assetEntrySet.parentAssetEntrySetId = ?";
 	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_PAESI_CCNI =
 		new FinderPath(AssetEntrySetModelImpl.ENTITY_CACHE_ENABLED,
@@ -2256,6 +2271,27 @@ public class AssetEntrySetPersistenceImpl extends BasePersistenceImpl<AssetEntry
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_PARENTASSETENTRYSETID,
 					args);
 				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_PARENTASSETENTRYSETID,
+					args);
+			}
+
+			if ((assetEntrySetModelImpl.getColumnBitmask() &
+					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_CT_PASEI.getColumnBitmask()) != 0) {
+				Object[] args = new Object[] {
+						assetEntrySetModelImpl.getOriginalCreateTime(),
+						assetEntrySetModelImpl.getOriginalParentAssetEntrySetId()
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_CT_PASEI, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_CT_PASEI,
+					args);
+
+				args = new Object[] {
+						assetEntrySetModelImpl.getCreateTime(),
+						assetEntrySetModelImpl.getParentAssetEntrySetId()
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_CT_PASEI, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_CT_PASEI,
 					args);
 			}
 

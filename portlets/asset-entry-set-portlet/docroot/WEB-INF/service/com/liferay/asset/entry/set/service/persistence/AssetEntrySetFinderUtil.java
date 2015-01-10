@@ -53,6 +53,15 @@ public class AssetEntrySetFinderUtil {
 				   .findBySharedToClassPKsMap(sharedToClassPKsMap, start, end);
 	}
 
+	public static java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> findByCT_PASEI(
+		long createTime, boolean gtCreateTime, long parentAssetEntrySetId,
+		java.util.Map<java.lang.Long, long[]> sharedToClassPKsMap, int start,
+		int end) throws com.liferay.portal.kernel.exception.SystemException {
+		return getFinder()
+				   .findByCT_PASEI(createTime, gtCreateTime,
+			parentAssetEntrySetId, sharedToClassPKsMap, start, end);
+	}
+
 	public static java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> findByCCNI_ATN(
 		long creatorClassNameId, java.lang.String assetTagName,
 		java.util.Map<java.lang.Long, long[]> sharedToClassPKsMap, int start,
