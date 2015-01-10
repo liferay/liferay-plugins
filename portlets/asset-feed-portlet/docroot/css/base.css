@@ -1,0 +1,35 @@
+@import "compass";
+
+.asset-creator, .asset-feed {
+	.link-preview {
+		border: 1px solid #DDD;
+		overflow: hidden;
+		padding: 10px;
+
+		.image-container {
+			float: left;
+			margin-right: 10px;
+			max-height: 90px;
+			max-width: 90px;
+			overflow: hidden;
+		}
+
+		.title {
+			font-size: 1.2em;
+			margin-bottom: 10px;
+		}
+
+		.description {
+			margin-bottom: 10px;
+
+			a {
+				color: #555;
+			}
+		}
+
+		.short-url a {
+			color: #999;
+			font-size: 0.8em;
+		}
+	}
+}

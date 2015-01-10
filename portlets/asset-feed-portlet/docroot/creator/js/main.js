@@ -5,6 +5,10 @@ AUI.add(
 
 		var EVENT_KEYPRESS = 'keypress';
 
+		var REGEX_LINEBREAK = /(<br>)|(<div.*?>)|(<\/p>)/g;
+
+		var REGEX_MISC_TAGS = /(<\/div>)|(<span.*?>)|(<\/span>)|(<\/br>)|(<br><\/div>)|(<p>)/g;
+
 		var SELECTOR_CONTENT_EDITABLE = '.content-editable';
 
 		var SELECTOR_PLACEHOLDER = '.placeholder';
@@ -13,7 +17,7 @@ AUI.add(
 
 		var STR_CONTAINER = 'container';
 
-		var STR_HIDDEN_INPUT = 'hiddenInput';
+		var STR_DATA_ID = 'data-id';
 
 		var STR_INLINE = 'inline';
 
@@ -30,7 +34,7 @@ AUI.add(
 						}
 					},
 
-					hiddenInput: {
+					form: {
 						setter: function(val) {
 							var instance = this;
 
@@ -67,14 +71,12 @@ AUI.add(
 
 						instance._handleInlineInput();
 						instance._handlePlaceHolder();
-						instance._handleHiddenInput();
 					},
 
 					clearValue: function() {
 						var instance = this;
 
 						instance.get(STR_INPUT_NODE).html(STR_BLANK);
-						instance.get(STR_HIDDEN_INPUT).val(STR_BLANK);
 
 						var placeholder = instance.get(STR_CONTAINER).one(SELECTOR_PLACEHOLDER);
 
@@ -83,35 +85,53 @@ AUI.add(
 						}
 					},
 
-					getValue: function() {
+					handleFormSubmission: function() {
 						var instance = this;
 
-						var miscTags = /(<\/div>)|(<br>)/g;
-						var newLines = /<div.*?>/g;
+						var contentInput = instance.get(STR_CONTAINER);
 
-						var value = instance.get(STR_INPUT_NODE).html().replace(newLines, '\n');
-
-						value = value.replace(miscTags, STR_BLANK);
-
-						return value;
+						return {
+							atMentions: instance._handleAtMentions(contentInput),
+							hashtags: instance._handleHashtags(contentInput),
+							linkData: instance.byId('linkData').val(),
+							message: instance._handleTextContent(contentInput),
+							type: instance.byId('type').val()
+						};
 					},
 
-					_handleHiddenInput: function() {
-						var instance = this;
+					_handleAtMentions: function(contentInput) {
+						var atMentionNodes = contentInput.all('.at-mention');
 
-						var hiddenInput = instance.get(STR_HIDDEN_INPUT);
-						var inputNode = instance.get(STR_INPUT_NODE);
+						var atMentions = [];
 
-						if (hiddenInput) {
-							inputNode.on(
-								EVENT_INPUT,
-								function(event) {
-									var value = instance.getValue();
+						atMentionNodes.each(
+							function(item, index) {
+								atMentions.push(
+									{
+										className: 'userName',
+										classPk: item.attr(STR_DATA_ID)
+									}
+								);
+							}
+						);
 
-									hiddenInput.val(value);
-								}
-							);
-						}
+						return atMentions;
+					},
+
+					_handleHashtags: function(contentInput) {
+						var tagNodes = contentInput.all('.hashtag');
+
+						var tags = [];
+
+						tagNodes.each(
+							function(item, index) {
+								var id = item.attr(STR_DATA_ID);
+
+								tags.push(id);
+							}
+						);
+
+						return tags;
 					},
 
 					_handleInlineInput: function() {
@@ -144,6 +164,31 @@ AUI.add(
 								}
 							);
 						}
+					},
+
+					_handleTextContent: function(contentInput) {
+						var instance = this;
+
+						var inputNodes = contentInput.all('input');
+
+						var textContent = instance.get(STR_INPUT_NODE).html();
+
+						inputNodes.each(
+							function(item, index) {
+								var text = item.val();
+
+								var regExp = /<input.*?>/;
+
+								textContent = textContent.replace(regExp, text);
+							}
+						);
+
+						textContent = textContent.replace(REGEX_MISC_TAGS, STR_BLANK);
+						textContent = textContent.replace(REGEX_LINEBREAK, '\n');
+
+						instance.get(STR_INPUT_NODE).html(textContent);
+
+						return textContent;
 					}
 				}
 			}
@@ -160,11 +205,27 @@ AUI.add(
 AUI.add(
 	'liferay-asset-feed-autocomplete',
 	function(A) {
+		var REGEX_TRIGGER = /(?:\s[@,#]|^[@,#])([^\s]+)/;
+
+		var STR_AT = '@';
+
+		var STR_BLANK = '';
+
+		var STR_HASH = '#';
+
+		var STR_PEOPLE = 'people';
+
 		var STR_PHRASE_MATCH = 'phraseMatch';
 
-		var TPL_MENTION = '<span contenteditable="false"><a href="{url}">@{name}</a></span>';
+		var STR_SOURCE = 'source';
 
-		var TRIG_REG_EXP = /(?:\s[@]|^[@])([^\s]+)/;
+		var STR_SPACE = ' ';
+
+		var STR_TEXT_CONTENT = 'textContent';
+
+		var STR_TOPICS = 'topics';
+
+		var TPL_MENTION = '<input class="asset-feed-content-mention {className}" data-id="{id}" href="{url}" type="button" value="{trigger}{name}" />';
 
 		var AssetFeedAutoComplete = A.Component.create(
 			{
@@ -181,112 +242,233 @@ AUI.add(
 						instance._plugAC();
 					},
 
-					_createDataSource: function() {
+					_createACSelectNode: function(data) {
 						var instance = this;
 
-						var actionURL = Liferay.PortletURL.createActionURL();
+						var triggerName = 'at-mention';
 
-						var dataSource = new A.DataSource.IO(
+						if (instance._trigger === STR_HASH) {
+							triggerName = 'hashtag';
+
+							data.id = data.name;
+						}
+
+						return A.Lang.sub(
+							TPL_MENTION,
 							{
-								on: {
-									data: function(event) {
-									},
-									request: function(event) {
-									}
-								},
-								source: actionURL.toString()
+								className: triggerName,
+								id: data.id,
+								name: data.name,
+								trigger: instance._trigger,
+								url: data.url
 							}
 						);
-
-						return dataSource;
 					},
 
-					_handleACSelect: function(node) {
+					_createDataSource: function(type) {
 						var instance = this;
+
+						var resultFormatter;
+						var servicePath;
+
+						var requestParams = {
+							end: 20,
+							start: 0
+						};
+
+						if (type === STR_TOPICS) {
+							requestParams.groupId = themeDisplay.getCompanyGroupId();
+							requestParams.name = STR_BLANK;
+
+							resultFormatter = function(result) {
+								return result.tags;
+							};
+
+							servicePath = '/assettag/get-json-group-tags';
+						}
+						else if (type === STR_PEOPLE) {
+							requestParams.companyId = themeDisplay.getCompanyId();
+
+							resultFormatter = function(result) {
+								return A.Array.map(
+									result,
+									function(item) {
+										var name = item.firstName + STR_SPACE + item.lastName;
+
+										return {
+											className: item.className,
+											classPK: item.userId.toString(),
+											name: A.Lang.trim(name)
+										};
+									}
+								);
+							};
+
+							servicePath = '/user/get-company-users';
+						}
+
+						return function(query, callback) {
+							requestParams.name = query;
+
+							Liferay.Service(
+								servicePath,
+								requestParams,
+								function(result) {
+									callback(resultFormatter(result));
+								}
+							);
+						};
+					},
+
+					_handleACSelect: function() {
+						var instance = this;
+
+						var node = instance._inputNode;
 
 						node.ac.on(
 							'select',
 							function(response) {
+								var newValue = STR_BLANK;
+
 								var data = response.result.raw;
 
 								var queryData = instance._queryData;
 
-								var mentionNode = A.Lang.sub(
-									TPL_MENTION,
-									{
-										name: data,
-										url: data.url
-									}
-								);
-
 								var query = queryData.query.toString();
+
+								var queryLength = query.length;
+
+								var selection = queryData.selection;
+
+								if (queryData.charBeforeTrigger === STR_SPACE) {
+									newValue = STR_SPACE;
+
+									selection.anchorOffset = (selection.anchorOffset - queryLength);
+									selection.focusOffset = (selection.focusOffset - queryLength);
+								}
 
 								var regExp = new RegExp('(\\s|^)' + query);
 
-								var textContent = queryData.textContent.replace(regExp, '');
+								var textContent = queryData.textContent.replace(regExp, newValue);
 
-								queryData.textNode.set('textContent', textContent);
+								queryData.textNode.set(STR_TEXT_CONTENT, textContent);
 
-								queryData.selection.insertContent(mentionNode);
+								var mentionNode = instance._createACSelectNode(data);
 
-								node.ac.sendRequest(' ');
+								selection.insertContent(mentionNode);
+
+								node.ac.sendRequest(STR_SPACE);
+
+								if (instance._trigger === STR_AT) {
+									Liferay.fire('assetFeedAtMentionSelect', data);
+								}
 							}
 						);
+					},
+
+					_handleACSource: function(caretIndex, textContent) {
+						var instance = this;
+
+						var node = instance._inputNode;
+
+						var people = instance._createDataSource(STR_PEOPLE);
+						var topics = instance._createDataSource(STR_TOPICS);
+
+						var checkInput = textContent.charAt(caretIndex - 1);
+
+						var source;
+
+						if (checkInput === STR_AT) {
+							instance._trigger = STR_AT;
+
+							source = people;
+						}
+						else if (checkInput === STR_HASH) {
+							instance._trigger = STR_HASH;
+
+							source = topics;
+						}
+
+						if (checkInput === STR_AT || checkInput === STR_HASH) {
+							node.ac.set(STR_SOURCE, source);
+						}
 					},
 
 					_plugAC: function() {
 						var instance = this;
 
-						A.Array.each(
-							instance._inputNode,
-							function(item) {
-								item.plug(
-									A.Plugin.AutoComplete,
-									{
-										minQueryLength: 1,
-										resultFilters: STR_PHRASE_MATCH,
-										source: instance._createDataSource
-									}
-								);
-
-								instance._sendACRequest(item);
-								instance._handleACSelect(item);
+						instance._inputNode.plug(
+							A.Plugin.AutoComplete,
+							{
+								activateFirstItem: true,
+								minQueryLength: 1,
+								resultFilters: STR_PHRASE_MATCH,
+								resultTextLocator: 'name',
+								source: instance._createDataSource
 							}
 						);
+
+						instance._sendACRequest();
+						instance._handleACSelect();
 					},
 
-					_sendACRequest: function(node) {
+					_sendACRequest: function() {
 						var instance = this;
 
+						var node = instance._inputNode;
+
 						node.on(
-							'input',
-							function(event) {
-								var selection = new A.EditorSelection();
+							'keyup',
+							A.debounce(
+								function(event) {
+									var selection = new A.EditorSelection();
 
-								var caretIndex = selection.anchorOffset;
-								var textNode = selection.anchorTextNode;
+									var caretIndex = selection.anchorOffset;
+									var textNode = selection.anchorTextNode;
 
-								var textContent = textNode.get('textContent');
+									var textContent = textNode.get(STR_TEXT_CONTENT);
 
-								var triggerIndex = textContent.lastIndexOf('@');
+									var acList = instance.one('.yui3-aclist-list');
 
-								var query = textContent.substring(triggerIndex, caretIndex);
+									var acListVisible = false;
 
-								var triggerString = TRIG_REG_EXP.exec(query);
+									instance._handleACSource(caretIndex, textContent);
 
-								var charBeforeTrigger = textContent.charAt(triggerIndex - 1);
+									if (instance._trigger) {
+										var contentSubstring = textContent.substring(0, caretIndex);
 
-								if (triggerString && (triggerString.input === query) && ((triggerIndex === 0) || (charBeforeTrigger === ' '))) {
-									node.ac.sendRequest(query.substring(1));
-								}
+										var triggerIndex = contentSubstring.lastIndexOf(instance._trigger);
 
-								instance._queryData = {
-									query: query,
-									selection: selection,
-									textContent: textContent,
-									textNode: textNode
-								};
-							}
+										var query = textContent.substring(triggerIndex, caretIndex);
+
+										var triggerString = REGEX_TRIGGER.exec(query);
+
+										var charBeforeTrigger = textContent.charAt(triggerIndex - 1);
+
+										if (triggerString && (triggerString.input === query) && ((triggerIndex === 0) || (charBeforeTrigger === STR_SPACE))) {
+											acListVisible = true;
+
+											if (!(event.isKey('up') || event.isKey('down'))) {
+												node.ac.sendRequest(query.substring(1));
+											}
+										}
+										else if (acList.hasChildNodes()) {
+											acListVisible = false;
+										}
+
+										acList.toggle(acListVisible);
+
+										instance._queryData = {
+											charBeforeTrigger: charBeforeTrigger,
+											query: query,
+											selection: selection,
+											textContent: textContent,
+											textNode: textNode
+										};
+									}
+								},
+								100
+							)
 						);
 					}
 				}
@@ -297,7 +479,7 @@ AUI.add(
 	},
 	'',
 	{
-		requires: ['autocomplete', 'autocomplete-filters', 'datasource-io', 'editor', 'liferay-portlet-base']
+		requires: ['aui-debounce', 'autocomplete', 'autocomplete-filters', 'datasource-io', 'editor', 'liferay-portlet-base']
 	}
 );
 
@@ -321,6 +503,8 @@ AUI.add(
 		var STR_CONTAINER = 'container';
 
 		var STR_CONTENT_BOX = 'contentBox';
+
+		var STR_DOT = '.';
 
 		var STR_INPUT_NODE = 'inputNode';
 
@@ -441,13 +625,44 @@ AUI.add(
 						inputNode.plug(
 							A.Plugin.AutoComplete,
 							{
+								activateFirstItem: true,
 								matchKey: STR_NAME,
 								minQueryLength: 1,
 								resultFilters: STR_PHRASE_MATCH,
 								resultTextLocator: STR_NAME,
-								source: [{name: 'Joe Blogs', classPK: 'joe.blogs@liferay.com', className: 'person'}, {name: 'Bruno Admin', classPK: 'bruno.admin@liferay.com', className: 'person'}]
+								source: instance._createDataSource()
 							}
 						);
+					},
+
+					_createDataSource: function() {
+						return function(query, callback) {
+							Liferay.Service(
+								'/user/get-company-users',
+								{
+									companyId: themeDisplay.getCompanyId(),
+									end: 20,
+									name: query,
+									start: 0
+								},
+								function(result) {
+									callback(
+										A.Array.map(
+											result,
+											function(item) {
+												var name = item.firstName + ' ' + item.lastName;
+
+												return {
+													className: item.className,
+													classPK: item.userId.toString(),
+													name: A.Lang.trim(name)
+												};
+											}
+										)
+									);
+								}
+							);
+						};
 					},
 
 					_flashItem: function(key) {
@@ -492,7 +707,7 @@ AUI.add(
 						Liferay.on(
 							EVENT_AT_MENTION_SELECT,
 							function(event) {
-								instance._addItem(event.result.raw);
+								instance._addItem(event.details[0]);
 							}
 						);
 
@@ -512,7 +727,7 @@ AUI.add(
 						container.delegate(
 							EVENT_CLICK,
 							function(event) {
-								var item = event.currentTarget.ancestor('.' + CSS_FEED_LIST_ITEM);
+								var item = event.currentTarget.ancestor(STR_DOT + CSS_FEED_LIST_ITEM);
 
 								if (item) {
 									var key = item.getData(STR_KEY);
@@ -522,7 +737,7 @@ AUI.add(
 									item.remove();
 								}
 							},
-							'.' + CSS_REMOVE
+							STR_DOT + CSS_REMOVE
 						);
 					},
 

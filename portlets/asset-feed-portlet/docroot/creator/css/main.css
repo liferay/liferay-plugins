@@ -1,6 +1,14 @@
 @import "compass";
 
 .asset-creator {
+	.add-link {
+		margin-bottom: 7px;
+	}
+
+	.link-preview {
+		margin-bottom: 2em;
+	}
+
 	.asset-feed-list-content {
 		border: 1px solid #DDD;
 		cursor: text;
@@ -57,6 +65,15 @@
 
 			&:focus {
 				border-color: rgba(0, 172, 255, 0.8);
+			}
+
+			.asset-feed-content-mention {
+				background: #FFF;
+				border-width: 0;
+				color: #2AAAE6;
+				display: inline-block;
+				padding: 0;
+				white-space: nowrap;
 			}
 		}
 

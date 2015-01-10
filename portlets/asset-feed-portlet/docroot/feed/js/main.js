@@ -26,6 +26,7 @@ AUI.add(
 					'{textContent}' +
 				'</div>' +
 			'</div>' +
+			'{linkPreview}' +
 		'</div>';
 
 		var AssetFeed = A.Component.create(
@@ -86,12 +87,23 @@ AUI.add(
 
 						var payload = A.JSON.parse(entryData.payload);
 
+						var linkPreview = '';
+
+						var linkData = payload.linkData;
+
+						if (linkData) {
+							linkData = A.JSON.parse(linkData);
+
+							linkPreview = Liferay.AssetFeedShared.getLinkPreview(linkData);
+						}
+
 						return Lang.sub(
 							TPL_POST,
 							{
 								createTime: createTime,
 								creatorName: entryData.creator.creatorFullName,
 								creatorURL: entryData.creator.creatorURL,
+								linkPreview: linkPreview,
 								portraitURL: entryData.creator.creatorPortraitURL,
 								textContent: payload.message
 							}

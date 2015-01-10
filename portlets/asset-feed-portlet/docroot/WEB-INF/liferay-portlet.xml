@@ -5,13 +5,17 @@
 	<portlet>
 		<portlet-name>1</portlet-name>
 		<header-portlet-css>/creator/css/main.css</header-portlet-css>
+		<header-portlet-css>/css/base.css</header-portlet-css>
 		<footer-portlet-javascript>/creator/js/main.js</footer-portlet-javascript>
+		<footer-portlet-javascript>/js/base.js</footer-portlet-javascript>
 		<css-class-wrapper>asset-creator</css-class-wrapper>
 	</portlet>
 	<portlet>
 		<portlet-name>2</portlet-name>
+		<header-portlet-css>/css/base.css</header-portlet-css>
 		<header-portlet-css>/feed/css/main.css</header-portlet-css>
 		<footer-portlet-javascript>/feed/js/main.js</footer-portlet-javascript>
+		<footer-portlet-javascript>/js/base.js</footer-portlet-javascript>
 		<css-class-wrapper>asset-feed</css-class-wrapper>
 	</portlet>
 	<role-mapper>

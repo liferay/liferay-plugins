@@ -14,4 +14,75 @@
  */
 --%>
 
-<aui:input label="url" name="linkURL" type="text" />
+<aui:input inlineField="<%= true %>" label="url" name="linkURL" type="text" />
+
+<aui:button cssClass="add-link" name="addLink" value="add" />
+
+<aui:input name="linkData" type="hidden" />
+
+<div class="preview-container" id="<portlet:namespace />linkPreviewContainer">
+	<div class="hide link-preview"></div>
+</div>
+
+<aui:script use="aui-base">
+	var addLink = A.one('#<portlet:namespace />addLink');
+
+	if (addLink) {
+		addLink.on(
+			'click',
+			function() {
+				var linkURL = A.one('#<portlet:namespace />linkURL');
+
+				if (linkURL) {
+					var linkPreviewContainer = A.one('#<portlet:namespace />linkPreviewContainer');
+
+					var linkPreview = linkPreviewContainer.one('.link-preview');
+
+					var loadingMask;
+
+					if (linkPreview) {
+						linkPreview.setStyle('min-height', '40px');
+
+						linkPreview.show();
+
+						loadingMask = new A.LoadingMask(
+							{
+								target: linkPreview
+							}
+						);
+					}
+
+					if (loadingMask) {
+						loadingMask.show();
+					}
+
+					var url = linkURL.val();
+
+					Liferay.Service(
+						'/asset-entry-set-portlet.assetentryset/get-preview-from-url',
+						{
+							url: url
+						},
+						function(obj) {
+							obj.url = url;
+
+							var linkData = A.one('#<portlet:namespace />linkData');
+
+							linkData.val(A.JSON.stringify(obj));
+
+							if (linkPreviewContainer) {
+								var previewNode = Liferay.AssetFeedShared.getLinkPreview(obj);
+
+								linkPreviewContainer.html(previewNode);
+
+								if (loadingMask) {
+									loadingMask.hide();
+								}
+							}
+						}
+					);
+				}
+			}
+		);
+	}
+</aui:script>

@@ -66,10 +66,9 @@
 
 <aui:script use="aui-form-validator,aui-io,liferay-asset-feed-autocomplete,liferay-asset-feed-input-list,liferay-asset-feed-input,liferay-portlet-request">
 	var contentInputComponent = new Liferay.AssetFeedInput(
-
 		{
 			container: 'textAssetEdit',
-			hiddenInput: 'content',
+			form: 'fm',
 			namespace: '<portlet:namespace />'
 		}
 	).render();
@@ -90,19 +89,21 @@
 		function(event) {
 			event.halt();
 
-			var message = form.one('#<portlet:namespace />content');
-			var type = form.one('#<portlet:namespace />type');
+			var data = contentInputComponent.handleFormSubmission();
 
-			if (message && type) {
+			if (data) {
 				Liferay.Service(
 					'/asset-entry-set-portlet.assetentryset/add-asset-entry-set',
 					{
+						file: '',
 						payload: A.JSON.stringify(
 							{
-								message: message.val(),
-								type: type.val()
+								linkData: data.linkData,
+								message: data.message,
+								type: data.type
 							}
-						)
+						),
+						privateAssetEntrySet: false
 					},
 					function(result) {
 						if (A.Object.hasKey(result, 'assetEntrySetId')) {
@@ -110,6 +111,18 @@
 
 							contentInputComponent.clearValue();
 							toInputComponent.clearValue();
+
+							var linkPreviewContainer = A.one('#<portlet:namespace />linkPreviewContainer');
+
+							if (linkPreviewContainer) {
+								linkPreviewContainer.html('');
+							}
+
+							var linkURLInput = A.one('#<portlet:namespace />linkURL');
+
+							if (linkURLInput) {
+								linkURLInput.val('');
+							}
 						}
 					}
 				);
@@ -117,11 +130,11 @@
 		}
 	);
 
-	var contentInput = A.one('#<portlet:namespace />textAssetEdit .content-editable');
+	var contentInputNode = A.one('#<portlet:namespace />textAssetEdit .content-editable');
 
 	new Liferay.AssetFeedAutoComplete(
 		{
-			inputNode: [contentInput],
+			inputNode: contentInputNode,
 			namespace: '<portlet:namespace />'
 		}
 	);
