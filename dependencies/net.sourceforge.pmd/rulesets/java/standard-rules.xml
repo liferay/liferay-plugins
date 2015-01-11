@@ -151,7 +151,7 @@ public class Foo {
 
 	public void doSomething() {
 
-		// Unused
+		// Poor, unused local variable
 
 		int i = 5;
 	}
