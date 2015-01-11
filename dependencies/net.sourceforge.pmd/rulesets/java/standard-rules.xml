@@ -134,4 +134,30 @@ bigDecimal = bigDecimal.add(new BigDecimal(5));
 			]]>
 		</example>
 	</rule>
+	<rule
+		class="net.sourceforge.pmd.lang.java.rule.unusedcode.UnusedLocalVariableRule"
+		externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.3/pmd-java/rules/java/unusedcode.html#UnusedLocalVariable"
+		language="java"
+		message="Avoid unused local variables such as ''{0}''."
+		name="UnusedLocalVariable"
+		since="0.1">
+		<description>
+			[Origin rule set file rulesets/java/unusedcode.xml] Detects when a local variable is declared and/or assigned, but not used.
+		</description>
+		<priority>3</priority>
+		<example>
+			<![CDATA[
+public class Foo {
+
+	public void doSomething() {
+
+		// Unused
+
+		int i = 5;
+	}
+
+}
+			]]>
+		</example>
+	</rule>
 </ruleset>
