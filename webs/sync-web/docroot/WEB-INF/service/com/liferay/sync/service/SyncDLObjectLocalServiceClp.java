@@ -131,21 +131,25 @@ public class SyncDLObjectLocalServiceClp implements SyncDLObjectLocalService {
 
 		_methodParameterTypes18 = new String[] { "long" };
 
-		_methodName19 = "getSyncDLObjects";
+		_methodName19 = "getSyncDLObject";
 
-		_methodParameterTypes19 = new String[] { "int", "int" };
+		_methodParameterTypes19 = new String[] { "java.lang.String", "long" };
 
-		_methodName20 = "getSyncDLObjectsCount";
+		_methodName20 = "getSyncDLObjects";
 
-		_methodParameterTypes20 = new String[] {  };
+		_methodParameterTypes20 = new String[] { "int", "int" };
 
-		_methodName22 = "setBeanIdentifier";
+		_methodName21 = "getSyncDLObjectsCount";
 
-		_methodParameterTypes22 = new String[] { "java.lang.String" };
+		_methodParameterTypes21 = new String[] {  };
 
-		_methodName23 = "updateSyncDLObject";
+		_methodName23 = "setBeanIdentifier";
 
-		_methodParameterTypes23 = new String[] {
+		_methodParameterTypes23 = new String[] { "java.lang.String" };
+
+		_methodName24 = "updateSyncDLObject";
+
+		_methodParameterTypes24 = new String[] {
 				"com.liferay.sync.model.SyncDLObject"
 			};
 	}
@@ -708,13 +712,43 @@ public class SyncDLObjectLocalServiceClp implements SyncDLObjectLocalService {
 	}
 
 	@Override
+	public com.liferay.sync.model.SyncDLObject getSyncDLObject(
+		java.lang.String type, long typePK)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName19,
+					_methodParameterTypes19,
+					new Object[] { ClpSerializer.translateInput(type), typePK });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.liferay.sync.model.SyncDLObject)ClpSerializer.translateOutput(returnObj);
+	}
+
+	@Override
 	public java.util.List<com.liferay.sync.model.SyncDLObject> getSyncDLObjects(
 		int start, int end) {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName19,
-					_methodParameterTypes19, new Object[] { start, end });
+			returnObj = _invokableLocalService.invokeMethod(_methodName20,
+					_methodParameterTypes20, new Object[] { start, end });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -736,8 +770,8 @@ public class SyncDLObjectLocalServiceClp implements SyncDLObjectLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName20,
-					_methodParameterTypes20, new Object[] {  });
+			returnObj = _invokableLocalService.invokeMethod(_methodName21,
+					_methodParameterTypes21, new Object[] {  });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -764,8 +798,8 @@ public class SyncDLObjectLocalServiceClp implements SyncDLObjectLocalService {
 	@Override
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
 		try {
-			_invokableLocalService.invokeMethod(_methodName22,
-				_methodParameterTypes22,
+			_invokableLocalService.invokeMethod(_methodName23,
+				_methodParameterTypes23,
 				new Object[] { ClpSerializer.translateInput(beanIdentifier) });
 		}
 		catch (Throwable t) {
@@ -787,8 +821,8 @@ public class SyncDLObjectLocalServiceClp implements SyncDLObjectLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName23,
-					_methodParameterTypes23,
+			returnObj = _invokableLocalService.invokeMethod(_methodName24,
+					_methodParameterTypes24,
 					new Object[] { ClpSerializer.translateInput(syncDLObject) });
 		}
 		catch (Throwable t) {
@@ -849,8 +883,10 @@ public class SyncDLObjectLocalServiceClp implements SyncDLObjectLocalService {
 	private String[] _methodParameterTypes19;
 	private String _methodName20;
 	private String[] _methodParameterTypes20;
-	private String _methodName22;
-	private String[] _methodParameterTypes22;
+	private String _methodName21;
+	private String[] _methodParameterTypes21;
 	private String _methodName23;
 	private String[] _methodParameterTypes23;
+	private String _methodName24;
+	private String[] _methodParameterTypes24;
 }

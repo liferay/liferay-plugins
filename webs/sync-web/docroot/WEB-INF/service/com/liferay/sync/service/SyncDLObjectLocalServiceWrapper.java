@@ -249,6 +249,13 @@ public class SyncDLObjectLocalServiceWrapper implements SyncDLObjectLocalService
 		return _syncDLObjectLocalService.getSyncDLObject(syncDLObjectId);
 	}
 
+	@Override
+	public com.liferay.sync.model.SyncDLObject getSyncDLObject(
+		java.lang.String type, long typePK)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _syncDLObjectLocalService.getSyncDLObject(type, typePK);
+	}
+
 	/**
 	* Returns a range of all the sync d l objects.
 	*

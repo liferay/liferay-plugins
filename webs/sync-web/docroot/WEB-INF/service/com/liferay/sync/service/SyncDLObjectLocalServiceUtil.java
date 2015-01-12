@@ -237,6 +237,12 @@ public class SyncDLObjectLocalServiceUtil {
 		return getService().getSyncDLObject(syncDLObjectId);
 	}
 
+	public static com.liferay.sync.model.SyncDLObject getSyncDLObject(
+		java.lang.String type, long typePK)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().getSyncDLObject(type, typePK);
+	}
+
 	/**
 	* Returns a range of all the sync d l objects.
 	*

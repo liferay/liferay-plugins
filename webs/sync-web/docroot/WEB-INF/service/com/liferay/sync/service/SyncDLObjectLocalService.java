@@ -211,6 +211,11 @@ public interface SyncDLObjectLocalService extends BaseLocalService,
 		long syncDLObjectId)
 		throws com.liferay.portal.kernel.exception.PortalException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.liferay.sync.model.SyncDLObject getSyncDLObject(
+		java.lang.String type, long typePK)
+		throws com.liferay.portal.kernel.exception.PortalException;
+
 	/**
 	* Returns a range of all the sync d l objects.
 	*
