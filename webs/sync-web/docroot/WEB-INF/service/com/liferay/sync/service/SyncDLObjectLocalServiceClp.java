@@ -135,6 +135,10 @@ public class SyncDLObjectLocalServiceClp implements SyncDLObjectLocalService {
 		_methodName21 = "getLatestModifiedTime";
 
 		_methodParameterTypes21 = new String[] {  };
+
+		_methodName22 = "getSyncDLObject";
+
+		_methodParameterTypes22 = new String[] { "java.lang.String", "long" };
 	}
 
 	@Override
@@ -827,6 +831,41 @@ public class SyncDLObjectLocalServiceClp implements SyncDLObjectLocalService {
 		return ((Long)returnObj).longValue();
 	}
 
+	@Override
+	public com.liferay.sync.model.SyncDLObject getSyncDLObject(
+		java.lang.String type, long typePK)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName22,
+					_methodParameterTypes22,
+					new Object[] { ClpSerializer.translateInput(type), typePK });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.liferay.sync.model.SyncDLObject)ClpSerializer.translateOutput(returnObj);
+	}
+
 	private InvokableLocalService _invokableLocalService;
 	private String _methodName0;
 	private String[] _methodParameterTypes0;
@@ -870,4 +909,6 @@ public class SyncDLObjectLocalServiceClp implements SyncDLObjectLocalService {
 	private String[] _methodParameterTypes20;
 	private String _methodName21;
 	private String[] _methodParameterTypes21;
+	private String _methodName22;
+	private String[] _methodParameterTypes22;
 }

@@ -304,6 +304,13 @@ public class SyncDLObjectLocalServiceUtil {
 		return getService().getLatestModifiedTime();
 	}
 
+	public static com.liferay.sync.model.SyncDLObject getSyncDLObject(
+		java.lang.String type, long typePK)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService().getSyncDLObject(type, typePK);
+	}
+
 	public static void clearService() {
 		_service = null;
 	}

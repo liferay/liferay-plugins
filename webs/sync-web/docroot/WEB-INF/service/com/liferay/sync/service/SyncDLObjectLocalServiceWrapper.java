@@ -319,6 +319,14 @@ public class SyncDLObjectLocalServiceWrapper implements SyncDLObjectLocalService
 		return _syncDLObjectLocalService.getLatestModifiedTime();
 	}
 
+	@Override
+	public com.liferay.sync.model.SyncDLObject getSyncDLObject(
+		java.lang.String type, long typePK)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _syncDLObjectLocalService.getSyncDLObject(type, typePK);
+	}
+
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
 	 */
