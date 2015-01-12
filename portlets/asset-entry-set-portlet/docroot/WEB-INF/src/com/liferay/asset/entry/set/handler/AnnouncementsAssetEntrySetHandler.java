@@ -108,6 +108,10 @@ public class AnnouncementsAssetEntrySetHandler
 		jsonObject.put("url", payloadJSONObject.getString("url"));
 
 		jsonObject.put(
+			AssetEntrySetConstants.PAYLOAD_KEY_ASSET_TAG_NAMES,
+			payloadJSONObject.getString(
+				AssetEntrySetConstants.PAYLOAD_KEY_ASSET_TAG_NAMES));
+		jsonObject.put(
 			AssetEntrySetConstants.PAYLOAD_KEY_SHARED_TO,
 			payloadJSONObject.getJSONArray(
 				AssetEntrySetConstants.PAYLOAD_KEY_SHARED_TO));
