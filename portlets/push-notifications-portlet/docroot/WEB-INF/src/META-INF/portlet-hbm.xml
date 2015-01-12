@@ -3,7 +3,6 @@
 
 <hibernate-mapping default-lazy="false" auto-import="false">
 	<import class="com.liferay.pushnotifications.model.PushNotificationsDevice" />
-	<import class="com.liferay.pushnotifications.model.PushNotificationsEntry" />
 	<class name="com.liferay.pushnotifications.model.impl.PushNotificationsDeviceImpl" table="PushNotificationsDevice">
 		<cache usage="read-write" />
 		<id name="pushNotificationsDeviceId" type="long">
@@ -13,17 +12,5 @@
 		<property name="createDate" type="org.hibernate.type.TimestampType" />
 		<property name="platform" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="token" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-	</class>
-	<class name="com.liferay.pushnotifications.model.impl.PushNotificationsEntryImpl" table="PushNotificationsEntry">
-		<cache usage="read-write" />
-		<id name="pushNotificationsEntryId" type="long">
-			<generator class="assigned" />
-		</id>
-		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="createTime" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="parentPushNotificationsEntryId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="childrenPushNotificationsEntriesCount" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
-		<property name="payload" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="ratingsTotalScore" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 	</class>
 </hibernate-mapping>
