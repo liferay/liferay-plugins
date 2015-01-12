@@ -612,10 +612,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 
 			for (Group userSiteGroup : userSiteGroups) {
 				if (SyncUtil.isSyncEnabled(userSiteGroup)) {
-					if (userSiteGroup.isGuest()) {
-						userSiteGroup.setName(
-							userSiteGroup.getDescriptiveName());
-					}
+					userSiteGroup.setName(userSiteGroup.getDescriptiveName());
 
 					groups.add(userSiteGroup);
 				}
