@@ -239,6 +239,10 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 		this.pageContext = pageContext;
 	}
 
+	public void setUser(User user) {
+		this.user = user;
+	}
+
 	@Override
 	public void updateModel(BaseModel<?> baseModel, Object... properties)
 		throws Exception {
