@@ -38,17 +38,15 @@ public class ContactsCenterActivityInterpreter
 
 	@Override
 	protected String getLink(
-			SocialActivity activity, ServiceContext serviceContext)
-		throws Exception {
+		SocialActivity activity, ServiceContext serviceContext) {
 
 		return getUserName(activity.getReceiverUserId(), serviceContext);
 	}
 
 	@Override
 	protected Object[] getTitleArguments(
-			String groupName, SocialActivity activity, String link,
-			String title, ServiceContext serviceContext)
-		throws Exception {
+		String groupName, SocialActivity activity, String link, String title,
+		ServiceContext serviceContext) {
 
 		int activityType = activity.getType();
 
