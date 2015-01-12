@@ -74,7 +74,6 @@ public class DLAssetEntrySetHandler extends BaseAssetEntrySetHandler {
 				false, true));
 		jsonObject.put("message", payloadJSONObject.getString("message"));
 		jsonObject.put("type", payloadJSONObject.getString("type"));
-		jsonObject.put("url", payloadJSONObject.getString("url"));
 
 		jsonObject.put(
 			AssetEntrySetConstants.PAYLOAD_KEY_ASSET_TAG_NAMES,
