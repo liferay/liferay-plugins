@@ -59,7 +59,7 @@
 					var url = linkURL.val();
 
 					Liferay.Service(
-						'/asset-entry-set-portlet.assetentryset/get-preview-from-url',
+						'/asset-entry-set-portlet.assetentryset/get-preview-json-object',
 						{
 							url: url
 						},
