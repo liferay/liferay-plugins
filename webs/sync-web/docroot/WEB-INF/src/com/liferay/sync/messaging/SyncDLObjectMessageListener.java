@@ -63,7 +63,7 @@ public class SyncDLObjectMessageListener extends BaseMessageListener {
 				return;
 			}
 
-			syncDLObject = SyncUtil.toSyncDLObject(fileEntry, event);
+			syncDLObject = SyncUtil.toSyncDLObject(fileEntry, event, true);
 		}
 		else {
 			Folder folder = null;

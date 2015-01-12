@@ -335,14 +335,15 @@ public class SyncUtil {
 	}
 
 	public static SyncDLObject toSyncDLObject(
-			DLFileEntry dlFileEntry, String event)
+			DLFileEntry dlFileEntry, String event, boolean calculateChecksum)
 		throws PortalException, SystemException {
 
-		return toSyncDLObject(dlFileEntry, event, false);
+		return toSyncDLObject(dlFileEntry, event, calculateChecksum, false);
 	}
 
 	public static SyncDLObject toSyncDLObject(
-			DLFileEntry dlFileEntry, String event, boolean excludeWorkingCopy)
+			DLFileEntry dlFileEntry, String event, boolean calculateChecksum,
+			boolean excludeWorkingCopy)
 		throws PortalException, SystemException {
 
 		DLFileVersion dlFileVersion = null;
@@ -400,11 +401,13 @@ public class SyncUtil {
 		syncDLObject.setVersion(dlFileVersion.getVersion());
 		syncDLObject.setSize(dlFileVersion.getSize());
 
-		if (Validator.isNull(dlFileVersion.getChecksum())) {
-			syncDLObject.setChecksum(getChecksum(dlFileVersion));
-		}
-		else {
-			syncDLObject.setChecksum(dlFileVersion.getChecksum());
+		if (calculateChecksum) {
+			if (Validator.isNull(dlFileVersion.getChecksum())) {
+				syncDLObject.setChecksum(getChecksum(dlFileVersion));
+			}
+			else {
+				syncDLObject.setChecksum(dlFileVersion.getChecksum());
+			}
 		}
 
 		syncDLObject.setEvent(event);
@@ -449,10 +452,17 @@ public class SyncUtil {
 	public static SyncDLObject toSyncDLObject(FileEntry fileEntry, String event)
 		throws PortalException, SystemException {
 
+		return toSyncDLObject(fileEntry, event, false);
+	}
+
+	public static SyncDLObject toSyncDLObject(
+			FileEntry fileEntry, String event, boolean calculateChecksum)
+		throws PortalException, SystemException {
+
 		if (fileEntry.getModel() instanceof DLFileEntry) {
 			DLFileEntry dlFileEntry = (DLFileEntry)fileEntry.getModel();
 
-			return toSyncDLObject(dlFileEntry, event);
+			return toSyncDLObject(dlFileEntry, event, calculateChecksum);
 		}
 
 		throw new PortalException(
