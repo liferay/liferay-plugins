@@ -12,7 +12,6 @@
 
 	<dependencies defaultconf="default">
 		<dependency name="apns" org="com.notnoop.apns" rev="0.2.3" />
-		<dependency name="com.liferay.polls.api" org="com.liferay" rev="1.0.0-SNAPSHOT" />
 		<dependency name="gcm-server" org="com.ganyo" rev="1.0.2" />
 		<dependency name="jackson-annotations" org="com.fasterxml.jackson.core" rev="2.1.4" />
 		<dependency name="jackson-core" org="com.fasterxml.jackson.core" rev="2.1.4" />
