@@ -14,8 +14,8 @@ if [ $# -lt 2 ]; then
 	echo
 	echo A third value can be passed to specify the portlet framework to use. Valid
 	echo values are \"jsf\", \"icefaces\", \"liferay_faces_alloy\", \"mvc\", \"primefaces\",
-	echo \"richfaces\", or \"vaadin\". The default value is \"mvc\". The quotation marks are
-	echo not needed.
+	echo \"richfaces\", \"spring_mvc\", or \"vaadin\". The default value is \"mvc\". The
+	echo quotation marks are not needed.
 
 	exit 127
 fi
