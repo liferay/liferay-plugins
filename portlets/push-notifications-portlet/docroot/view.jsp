@@ -21,7 +21,7 @@
 
 	<aui:input label="url" name="url" />
 
-	<aui:button disabled="<%= !PushNotificationsPermission.contains(permissionChecker, ActionKeys.ADD_ENTRY) %>" type="submit" value="send" />
+	<aui:button type="submit" value="send" />
 
 	<aui:button type="reset" value="reset" />
 </aui:form>
