@@ -20,9 +20,6 @@
 taglib uri="http://liferay.com/tld/theme" prefix="liferay-theme" %><%@
 taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 
-<%@ page import="com.liferay.pushnotifications.service.permission.PushNotificationsPermission" %><%@
-page import="com.liferay.pushnotifications.util.ActionKeys" %>
-
 <portlet:defineObjects />
 
 <liferay-theme:defineObjects />
