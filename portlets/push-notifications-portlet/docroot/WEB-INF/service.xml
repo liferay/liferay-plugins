@@ -33,43 +33,4 @@
 			<finder-column name="platform" />
 		</finder>
 	</entity>
-	<entity name="PushNotificationsEntry" local-service="true" remote-service="true">
-
-		<!-- PK fields -->
-
-		<column name="pushNotificationsEntryId" type="long" primary="true" />
-
-		<!-- Audit fields -->
-
-		<column name="userId" type="long" />
-		<column name="createTime" type="long" />
-
-		<!-- Other fields -->
-
-		<column name="parentPushNotificationsEntryId" type="long" />
-		<column name="childrenPushNotificationsEntriesCount" type="int" />
-		<column name="payload" type="String" />
-		<column name="ratingsTotalScore" type="long" />
-
-		<!-- Order -->
-
-		<order by="asc">
-			<order-column name="createTime" />
-		</order>
-
-		<!-- Finder methods -->
-
-		<finder name="ParentPushNotificationsEntryId" return-type="Collection">
-			<finder-column name="parentPushNotificationsEntryId" />
-		</finder>
-		<finder name="C_P" return-type="Collection">
-			<finder-column name="createTime" comparator="&gt;" />
-			<finder-column name="parentPushNotificationsEntryId" />
-		</finder>
-
-		<!-- References -->
-
-		<reference package-path="com.liferay.portlet.ratings" entity="RatingsEntry" />
-		<reference package-path="com.liferay.portlet.ratings" entity="RatingsStats" />
-	</entity>
 </service-builder>
