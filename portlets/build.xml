@@ -44,6 +44,7 @@
 			<antelope:replace regex="-" replacement="" />
 			<antelope:trim />
 		</antelope:stringutil>
+		
 
 		<if>
 			<not>
@@ -229,6 +230,64 @@ portal-dependency-jars=vaadin.jar</echo>
 					<fileset
 						dir="${portlet.dir}/docroot"
 						includes="css/**,js/**,view.jsp"
+					/>
+				</delete>
+			</then>
+		</if>
+
+		<if>
+			<equals arg1="${portlet.framework}" arg2="spring_mvc" />
+			<then>
+				<move
+					file="${portlet.dir}/docroot/WEB-INF/src/PortletViewController.java"
+					tofile="${portlet.dir}/docroot/WEB-INF/src/${portlet.java.package.name}/${portlet.java.class.name}PortletViewController.java"
+				/>
+				
+				<move
+					file="${portlet.dir}/docroot/WEB-INF/jsp/init.jspf"
+					tofile="${portlet.dir}/docroot/WEB-INF/jsp/init.jspf"
+				/>
+
+				<move
+					file="${portlet.dir}/docroot/WEB-INF/jsp/view.jsp"
+					tofile="${portlet.dir}/docroot/WEB-INF/jsp/${portlet.name}/view.jsp"
+				/>
+
+				<move
+					file="${portlet.dir}/docroot/WEB-INF/spring-context/portlet-context.xml"
+					tofile="${portlet.dir}/docroot/WEB-INF/spring-context/portlet/${portlet.name}-portlet.xml"
+				/>
+
+				<echo file="${portlet.dir}/docroot/WEB-INF/liferay-plugin-package.properties" append="true">
+
+portal-dependency-jars=jstl-api.jar,jstl-impl.jar,spring-core.jar,spring-beans.jar,spring-context.jar,spring-aop.jar,spring-expression.jar,spring-web.jar,commons-logging.jar,aopalliance.jar</echo>
+
+				<replace file="${portlet.dir}/docroot/WEB-INF/portlet.xml">
+					<replacetoken><![CDATA[<portlet-class>com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet</portlet-class>]]></replacetoken>
+					<replacevalue><![CDATA[<portlet-class>org.springframework.web.portlet.DispatcherPortlet</portlet-class>]]></replacevalue>
+				</replace>
+
+				<replace file="${portlet.dir}/docroot/WEB-INF/portlet.xml">
+					<replacetoken><![CDATA[<name>view-template</name>]]></replacetoken>
+					<replacevalue><![CDATA[<name>contextConfigLocation</name>]]></replacevalue>
+				</replace>
+
+				<replace file="${portlet.dir}/docroot/WEB-INF/portlet.xml">
+					<replacetoken><![CDATA[<value>/view.jsp</value>]]></replacetoken>
+					<replacevalue><![CDATA[<value>/WEB-INF/spring-context/portlet/@portlet.name@-portlet.xml</value>]]></replacevalue>
+				</replace>
+
+
+				<replace file="${portlet.dir}/docroot/WEB-INF/liferay-portlet.xml">
+					<replacetoken><![CDATA[</icon>]]></replacetoken>
+					<replacevalue><![CDATA[</icon>
+		<requires-namespaced-parameters>false</requires-namespaced-parameters>]]></replacevalue>
+				</replace>
+
+				<delete includeemptydirs="true">
+					<fileset
+						dir="${portlet.dir}/docroot"
+						includes="view.jsp"
 					/>
 				</delete>
 			</then>
