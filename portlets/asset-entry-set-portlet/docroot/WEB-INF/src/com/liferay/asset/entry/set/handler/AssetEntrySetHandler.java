@@ -27,7 +27,7 @@ public interface AssetEntrySetHandler {
 
 	public String getPortletId();
 
-	public String interpret(JSONObject payloadJSONObject, File file)
+	public JSONObject interpret(JSONObject payloadJSONObject, File file)
 		throws PortalException, SystemException;
 
 }

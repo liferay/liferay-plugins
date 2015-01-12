@@ -113,7 +113,8 @@ public class AssetEntrySetLocalServiceImpl
 		assetEntrySet.setCreatorClassNameId(creatorClassNameId);
 		assetEntrySet.setCreatorClassPK(creatorClassPK);
 		assetEntrySet.setPayload(
-			AssetEntrySetManagerUtil.interpret(payloadJSONObject, file));
+			JSONFactoryUtil.looseSerialize(
+				AssetEntrySetManagerUtil.interpret(payloadJSONObject, file)));
 		assetEntrySet.setPrivateAssetEntrySet(privateAssetEntrySet);
 
 		assetEntrySetPersistence.update(assetEntrySet);
@@ -357,7 +358,8 @@ public class AssetEntrySetLocalServiceImpl
 		assetEntrySet.setModifiedTime(now.getTime());
 
 		assetEntrySet.setPayload(
-			AssetEntrySetManagerUtil.interpret(payloadJSONObject, file));
+			JSONFactoryUtil.looseSerialize(
+				AssetEntrySetManagerUtil.interpret(payloadJSONObject, file)));
 		assetEntrySet.setPrivateAssetEntrySet(privateAssetEntrySet);
 
 		assetEntrySetPersistence.update(assetEntrySet);

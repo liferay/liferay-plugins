@@ -37,7 +37,7 @@ public class BaseAssetEntrySetHandler implements AssetEntrySetHandler {
 	}
 
 	@Override
-	public String interpret(JSONObject payloadJSONObject, File file)
+	public JSONObject interpret(JSONObject payloadJSONObject, File file)
 		throws PortalException, SystemException {
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
@@ -55,7 +55,7 @@ public class BaseAssetEntrySetHandler implements AssetEntrySetHandler {
 			payloadJSONObject.getJSONArray(
 				AssetEntrySetConstants.PAYLOAD_KEY_SHARED_TO));
 
-		return JSONFactoryUtil.looseSerialize(jsonObject);
+		return jsonObject;
 	}
 
 	protected void setPortletId(String portletId) {

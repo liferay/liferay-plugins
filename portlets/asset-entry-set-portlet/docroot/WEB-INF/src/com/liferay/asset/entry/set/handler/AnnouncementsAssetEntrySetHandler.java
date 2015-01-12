@@ -19,7 +19,6 @@ import com.liferay.asset.entry.set.util.AssetEntrySetConstants;
 import com.liferay.compat.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.util.DateUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
@@ -47,10 +46,10 @@ public class AnnouncementsAssetEntrySetHandler
 	}
 
 	@Override
-	public String interpret(JSONObject payloadJSONObject, File file)
+	public JSONObject interpret(JSONObject payloadJSONObject, File file)
 		throws PortalException, SystemException {
 
-		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
+		JSONObject jsonObject = super.interpret(payloadJSONObject, file);
 
 		long userId = payloadJSONObject.getLong("userId");
 		long classNameId = payloadJSONObject.getLong("classNameId");
@@ -103,19 +102,7 @@ public class AnnouncementsAssetEntrySetHandler
 
 		jsonObject.put("assetEntryIds", assetEntry.getEntryId());
 
-		jsonObject.put("message", payloadJSONObject.getString("message"));
-		jsonObject.put("type", payloadJSONObject.getString("type"));
-
-		jsonObject.put(
-			AssetEntrySetConstants.PAYLOAD_KEY_ASSET_TAG_NAMES,
-			payloadJSONObject.getString(
-				AssetEntrySetConstants.PAYLOAD_KEY_ASSET_TAG_NAMES));
-		jsonObject.put(
-			AssetEntrySetConstants.PAYLOAD_KEY_SHARED_TO,
-			payloadJSONObject.getJSONArray(
-				AssetEntrySetConstants.PAYLOAD_KEY_SHARED_TO));
-
-		return JSONFactoryUtil.looseSerialize(jsonObject);
+		return jsonObject;
 	}
 
 	protected Calendar getCalendar(Date date) {
