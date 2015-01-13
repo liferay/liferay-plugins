@@ -44,6 +44,17 @@ long parentResourcePrimKey = ParamUtil.getLong(request, "parentResourcePrimKey",
 
 	<liferay-ui:error exception="<%= KBArticlePriorityException.class %>" message='<%= LanguageUtil.format(request, "please-enter-a-priority-that-is-greater-than-x", "0", false) %>' translateMessage="<%= false %>" />
 
+	<c:if test='<%= SessionMessages.contains(renderRequest, "aTotalOfXArticlesHaveBeenImported") %>'>
+		<div class="alert alert-success">
+			<liferay-ui:message key="your-request-completed-successfully" />
+
+			<liferay-ui:message
+				arguments='<%= SessionMessages.get(renderRequest, "aTotalOfXArticlesHaveBeenImported") %>'
+				key="a-total-of-x-articles-have-been-imported"
+			/>
+		</div>
+	</c:if>
+
 	<liferay-portlet:renderURL varImpl="iteratorURL">
 		<portlet:param name="mvcPath" value="/admin/view.jsp" />
 		<portlet:param name="parentResourceClassNameId" value="<%= String.valueOf(parentResourceClassNameId) %>" />
