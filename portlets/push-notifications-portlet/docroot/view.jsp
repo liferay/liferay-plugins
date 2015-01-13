@@ -54,12 +54,12 @@
 			Liferay.Service(
 				'/push-notifications-portlet.pushnotificationsdevice/send-push-notification',
 				{
-					toUserId: 0,
 					payload: A.JSON.stringify(
 						{
 							message: message
 						}
-					)
+					),
+					toUserId: 0
 				},
 				<portlet:namespace />onSendPushNotification
 			);
