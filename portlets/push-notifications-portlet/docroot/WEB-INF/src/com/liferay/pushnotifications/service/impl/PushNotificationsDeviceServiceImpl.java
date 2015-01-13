@@ -16,6 +16,8 @@ package com.liferay.pushnotifications.service.impl;
 
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.json.JSONFactoryUtil;
+import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.security.ac.AccessControlled;
@@ -65,6 +67,7 @@ public class PushNotificationsDeviceServiceImpl
 		return pushNotificationsDevice;
 	}
 
+	@AccessControlled(guestAccessEnabled = true)
 	@Override
 	public PushNotificationsDevice deletePushNotificationsDevice(String token)
 		throws PortalException, SystemException {
@@ -78,7 +81,7 @@ public class PushNotificationsDeviceServiceImpl
 			}
 		}
 		else {
-			long userId = getUserId();
+			long userId = getGuestOrUserId();
 
 			if (pushNotificationsDevice.getUserId() == userId) {
 				pushNotificationsDevice =
@@ -96,9 +99,13 @@ public class PushNotificationsDeviceServiceImpl
 	}
 
 	@Override
-	public boolean hasPermission(String actionId) throws PortalException {
-		return PushNotificationsPermission.contains(
-			getPermissionChecker(), actionId);
+	public void sendPushNotification(long toUserId, String payload)
+		throws PortalException, SystemException {
+
+		JSONObject jsonObject = JSONFactoryUtil.createJSONObject(payload);
+
+		pushNotificationsDeviceLocalService.sendPushNotification(
+			getUserId(), toUserId, jsonObject);
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(
