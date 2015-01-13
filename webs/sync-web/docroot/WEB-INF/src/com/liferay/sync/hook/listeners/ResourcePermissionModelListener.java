@@ -43,6 +43,8 @@ public class ResourcePermissionModelListener
 						SyncConstants.TYPE_FILE,
 						GetterUtil.getLong(resourcePermission.getPrimKey()));
 
+				syncDLObject.setModifiedTime(System.currentTimeMillis());
+
 				SyncDLObjectLocalServiceUtil.updateSyncDLObject(syncDLObject);
 			}
 			else if (modelName.equals(DLFolder.class.getName())) {
@@ -50,6 +52,8 @@ public class ResourcePermissionModelListener
 					SyncDLObjectLocalServiceUtil.getSyncDLObject(
 						SyncConstants.TYPE_FOLDER,
 						GetterUtil.getLong(resourcePermission.getPrimKey()));
+
+				syncDLObject.setModifiedTime(System.currentTimeMillis());
 
 				SyncDLObjectLocalServiceUtil.updateSyncDLObject(syncDLObject);
 			}
