@@ -19,6 +19,7 @@ package com.liferay.contacts.contactscenter.social;
 
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.UserLocalServiceUtil;
@@ -46,35 +47,34 @@ public class ContactsCenterRequestInterpreter
 			SocialRequest request, ThemeDisplay themeDisplay)
 		throws Exception {
 
-		String creatorUserName = getUserName(request.getUserId(), themeDisplay);
+		int requestType = request.getType();
+
+		if (requestType != SocialRelationConstants.TYPE_BI_CONNECTION) {
+			return new SocialRequestFeedEntry(
+				StringPool.BLANK, StringPool.BLANK);
+		}
+
+		StringBundler sb = new StringBundler(8);
+
+		sb.append("<a href=\"");
+		sb.append(themeDisplay.getPortalURL());
+		sb.append(themeDisplay.getPathFriendlyURLPublic());
+		sb.append(StringPool.SLASH);
 
 		User creatorUser = UserLocalServiceUtil.getUserById(
 			request.getUserId());
 
-		int requestType = request.getType();
+		sb.append(creatorUser.getScreenName());
 
-		// Title
+		sb.append("/profile\">");
+		sb.append(getUserName(request.getUserId(), themeDisplay));
+		sb.append("</a>");
 
-		String title = StringPool.BLANK;
+		String creatorUserNameURL = sb.toString();
 
-		if (requestType == SocialRelationConstants.TYPE_BI_CONNECTION) {
-			StringBuilder sb = new StringBuilder();
-
-			sb.append("<a href=\"");
-			sb.append(themeDisplay.getPortalURL());
-			sb.append(themeDisplay.getPathFriendlyURLPublic());
-			sb.append(StringPool.SLASH);
-			sb.append(creatorUser.getScreenName());
-			sb.append("/profile\">");
-			sb.append(creatorUserName);
-			sb.append("</a>");
-
-			String creatorUserNameURL = sb.toString();
-
-			title = themeDisplay.translate(
-				"request-social-networking-summary-add-friend",
-				new Object[] {creatorUserNameURL});
-		}
+		String title = themeDisplay.translate(
+			"request-social-networking-summary-add-friend",
+			new Object[] {creatorUserNameURL});
 
 		return new SocialRequestFeedEntry(title, StringPool.BLANK);
 	}
