@@ -39,7 +39,7 @@ public class PushNotificationsDeviceServiceImpl
 		throws PortalException {
 
 		PushNotificationsPermission.check(
-			getPermissionChecker(), ActionKeys.ADD_DEVICE);
+			getPermissionChecker(), ActionKeys.MANAGE_DEVICES);
 
 		PushNotificationsDevice pushNotificationsDevice =
 			pushNotificationsDevicePersistence.fetchByToken(token);
@@ -71,6 +71,9 @@ public class PushNotificationsDeviceServiceImpl
 	public PushNotificationsDevice deletePushNotificationsDevice(String token)
 		throws PortalException {
 
+		PushNotificationsPermission.check(
+			getPermissionChecker(), ActionKeys.MANAGE_DEVICES);
+
 		PushNotificationsDevice pushNotificationsDevice =
 			pushNotificationsDevicePersistence.fetchByToken(token);
 
@@ -100,6 +103,9 @@ public class PushNotificationsDeviceServiceImpl
 	@Override
 	public void sendPushNotification(long toUserId, String payload)
 		throws PortalException {
+
+		PushNotificationsPermission.check(
+			getPermissionChecker(), ActionKeys.SEND_PUSH_NOTIFICATION);
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject(payload);
 
