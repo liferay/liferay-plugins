@@ -16,25 +16,32 @@
 
 <%@ include file="/init.jsp" %>
 
-<aui:form name="fm">
-	<aui:input label="message" name="message" rows="6" type="textarea" />
+<liferay-ui:tabs
+	names="test"
+	refresh="<%= false %>"
+>
+	<liferay-ui:section>
+		<aui:form name="fm">
+			<aui:input label="message" name="message" rows="6" type="textarea" />
 
-	<aui:input label="url" name="url" />
+			<aui:input label="url" name="url" />
 
-	<aui:button type="submit" value="send" />
+			<aui:button type="submit" value="send" />
 
-	<aui:button type="reset" value="reset" />
-</aui:form>
+			<aui:button type="reset" value="reset" />
+		</aui:form>
 
-<br />
+		<br />
 
-<div class="alert alert-success hide" id="<portlet:namespace />success">
-	<p><liferay-ui:message key="the-alert-was-sent-successfully" /></p>
-</div>
+		<div class="alert alert-success hide" id="<portlet:namespace />success">
+			<p><liferay-ui:message key="the-alert-was-sent-successfully" /></p>
+		</div>
 
-<div class="alert alert-danger hide" id="<portlet:namespace />error">
-	<p></p>
-</div>
+		<div class="alert alert-danger hide" id="<portlet:namespace />error">
+			<p></p>
+		</div>
+	</liferay-ui:section>
+</liferay-ui:tabs>
 
 <aui:script use="aui-base">
 	var form = A.one('#<portlet:namespace />fm');
