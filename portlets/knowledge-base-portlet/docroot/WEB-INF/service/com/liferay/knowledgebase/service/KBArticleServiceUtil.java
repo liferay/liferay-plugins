@@ -78,14 +78,14 @@ public class KBArticleServiceUtil {
 			sourceURL, sections, selectedFileNames, serviceContext);
 	}
 
-	public static void addKBArticlesMarkdown(long groupId,
+	public static int addKBArticlesMarkdown(long groupId,
 		long parentKBFolderId, java.lang.String fileName,
 		java.io.InputStream inputStream,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		getService()
-			.addKBArticlesMarkdown(groupId, parentKBFolderId, fileName,
+		return getService()
+				   .addKBArticlesMarkdown(groupId, parentKBFolderId, fileName,
 			inputStream, serviceContext);
 	}
 

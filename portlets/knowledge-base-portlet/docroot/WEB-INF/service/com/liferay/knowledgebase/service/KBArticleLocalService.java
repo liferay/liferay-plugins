@@ -344,7 +344,7 @@ public interface KBArticleLocalService extends BaseLocalService,
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
-	public void addKBArticlesMarkdown(long userId, long groupId,
+	public int addKBArticlesMarkdown(long userId, long groupId,
 		long parentKbFolderId, java.lang.String fileName,
 		java.io.InputStream inputStream,
 		com.liferay.portal.service.ServiceContext serviceContext)

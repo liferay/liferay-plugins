@@ -609,14 +609,12 @@ public class KBArticleLocalServiceClpInvoker {
 
 		if (_methodName131.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes131, parameterTypes)) {
-			KBArticleLocalServiceUtil.addKBArticlesMarkdown(((Long)arguments[0]).longValue(),
+			return KBArticleLocalServiceUtil.addKBArticlesMarkdown(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				((Long)arguments[2]).longValue(),
 				(java.lang.String)arguments[3],
 				(java.io.InputStream)arguments[4],
 				(com.liferay.portal.service.ServiceContext)arguments[5]);
-
-			return null;
 		}
 
 		if (_methodName132.equals(name) &&
