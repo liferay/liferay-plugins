@@ -20,7 +20,9 @@
 long parentKBFolderId = ParamUtil.getLong(request, "parentKBFolderId");
 %>
 
-<portlet:actionURL name="importFile" var="importFileURL" />
+<portlet:actionURL name="importFile" var="importFileURL">
+	<portlet:param name="redirect" value="<%= redirect %>" />
+</portlet:actionURL>
 
 <aui:form action="<%= importFileURL %>" class="lfr-dynamic-form" enctype="multipart/form-data" method="post" name="fm">
 	<aui:input name="parentKBFolderId" type="hidden" value="<%= String.valueOf(parentKBFolderId) %>" />
