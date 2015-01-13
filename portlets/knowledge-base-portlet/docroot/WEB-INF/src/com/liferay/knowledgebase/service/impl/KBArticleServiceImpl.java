@@ -96,7 +96,7 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 	}
 
 	@Override
-	public void addKBArticlesMarkdown(
+	public int addKBArticlesMarkdown(
 			long groupId, long parentKBFolderId, String fileName,
 			InputStream inputStream, ServiceContext serviceContext)
 		throws PortalException {
@@ -104,7 +104,7 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 		AdminPermission.check(
 			getPermissionChecker(), groupId, ActionKeys.ADD_KB_ARTICLE);
 
-		kbArticleLocalService.addKBArticlesMarkdown(
+		return kbArticleLocalService.addKBArticlesMarkdown(
 			getUserId(), groupId, parentKBFolderId, fileName, inputStream,
 			serviceContext);
 	}
