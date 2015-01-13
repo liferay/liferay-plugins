@@ -45,9 +45,9 @@ public class PushNotificationsDeviceServiceClpInvoker {
 
 		_methodParameterTypes31 = new String[] { "java.lang.String" };
 
-		_methodName32 = "hasPermission";
+		_methodName32 = "sendPushNotification";
 
-		_methodParameterTypes32 = new String[] { "java.lang.String" };
+		_methodParameterTypes32 = new String[] { "long", "java.lang.String" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -77,7 +77,10 @@ public class PushNotificationsDeviceServiceClpInvoker {
 
 		if (_methodName32.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes32, parameterTypes)) {
-			return PushNotificationsDeviceServiceUtil.hasPermission((java.lang.String)arguments[0]);
+			PushNotificationsDeviceServiceUtil.sendPushNotification(((Long)arguments[0]).longValue(),
+				(java.lang.String)arguments[1]);
+
+			return null;
 		}
 
 		throw new UnsupportedOperationException();

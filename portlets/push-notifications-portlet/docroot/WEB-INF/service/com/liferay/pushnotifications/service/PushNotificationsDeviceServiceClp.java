@@ -42,9 +42,9 @@ public class PushNotificationsDeviceServiceClp
 
 		_methodParameterTypes2 = new String[] {  };
 
-		_methodName3 = "hasPermission";
+		_methodName4 = "sendPushNotification";
 
-		_methodParameterTypes3 = new String[] { "java.lang.String" };
+		_methodParameterTypes4 = new String[] { "long", "java.lang.String" };
 
 		_methodName5 = "setBeanIdentifier";
 
@@ -139,14 +139,19 @@ public class PushNotificationsDeviceServiceClp
 	}
 
 	@Override
-	public boolean hasPermission(java.lang.String actionId)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		Object returnObj = null;
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		throw new UnsupportedOperationException();
+	}
 
+	@Override
+	public void sendPushNotification(long toUserId, java.lang.String payload)
+		throws com.liferay.portal.kernel.exception.PortalException {
 		try {
-			returnObj = _invokableService.invokeMethod(_methodName3,
-					_methodParameterTypes3,
-					new Object[] { ClpSerializer.translateInput(actionId) });
+			_invokableService.invokeMethod(_methodName4,
+				_methodParameterTypes4,
+				new Object[] { toUserId, ClpSerializer.translateInput(payload) });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -163,15 +168,6 @@ public class PushNotificationsDeviceServiceClp
 					" is not a valid exception");
 			}
 		}
-
-		return ((Boolean)returnObj).booleanValue();
-	}
-
-	@Override
-	public java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable {
-		throw new UnsupportedOperationException();
 	}
 
 	@Override
@@ -201,8 +197,8 @@ public class PushNotificationsDeviceServiceClp
 	private String[] _methodParameterTypes1;
 	private String _methodName2;
 	private String[] _methodParameterTypes2;
-	private String _methodName3;
-	private String[] _methodParameterTypes3;
+	private String _methodName4;
+	private String[] _methodParameterTypes4;
 	private String _methodName5;
 	private String[] _methodParameterTypes5;
 }
