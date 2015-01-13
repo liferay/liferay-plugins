@@ -658,27 +658,29 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 	}
 
 	@Override
-	public void addKBArticlesMarkdown(long userId, long groupId,
+	public int addKBArticlesMarkdown(long userId, long groupId,
 		long parentKbFolderId, java.lang.String fileName,
 		java.io.InputStream inputStream,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
+		Object returnObj = null;
+
 		try {
-			_invokableLocalService.invokeMethod(_methodName6,
-				_methodParameterTypes6,
-				new Object[] {
-					userId,
-					
-				groupId,
-					
-				parentKbFolderId,
-					
-				ClpSerializer.translateInput(fileName),
-					
-				ClpSerializer.translateInput(inputStream),
-					
-				ClpSerializer.translateInput(serviceContext)
-				});
+			returnObj = _invokableLocalService.invokeMethod(_methodName6,
+					_methodParameterTypes6,
+					new Object[] {
+						userId,
+						
+					groupId,
+						
+					parentKbFolderId,
+						
+					ClpSerializer.translateInput(fileName),
+						
+					ClpSerializer.translateInput(inputStream),
+						
+					ClpSerializer.translateInput(serviceContext)
+					});
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -695,6 +697,8 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 					" is not a valid exception");
 			}
 		}
+
+		return ((Integer)returnObj).intValue();
 	}
 
 	@Override

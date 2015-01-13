@@ -100,14 +100,14 @@ public class KBArticleLocalServiceUtil {
 			guestPermissions);
 	}
 
-	public static void addKBArticlesMarkdown(long userId, long groupId,
+	public static int addKBArticlesMarkdown(long userId, long groupId,
 		long parentKbFolderId, java.lang.String fileName,
 		java.io.InputStream inputStream,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
-		getService()
-			.addKBArticlesMarkdown(userId, groupId, parentKbFolderId, fileName,
-			inputStream, serviceContext);
+		return getService()
+				   .addKBArticlesMarkdown(userId, groupId, parentKbFolderId,
+			fileName, inputStream, serviceContext);
 	}
 
 	public static void addTempAttachment(long groupId, long userId,

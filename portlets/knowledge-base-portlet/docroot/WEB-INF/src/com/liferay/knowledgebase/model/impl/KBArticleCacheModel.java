@@ -18,6 +18,7 @@ import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.knowledgebase.model.KBArticle;
 
+import com.liferay.portal.kernel.util.HashUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.CacheModel;
@@ -39,6 +40,30 @@ import java.util.Date;
 @ProviderType
 public class KBArticleCacheModel implements CacheModel<KBArticle>,
 	Externalizable {
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof KBArticleCacheModel)) {
+			return false;
+		}
+
+		KBArticleCacheModel kbArticleCacheModel = (KBArticleCacheModel)obj;
+
+		if (kbArticleId == kbArticleCacheModel.kbArticleId) {
+			return true;
+		}
+
+		return false;
+	}
+
+	@Override
+	public int hashCode() {
+		return HashUtil.hash(0, kbArticleId);
+	}
+
 	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(57);
