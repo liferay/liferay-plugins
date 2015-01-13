@@ -32,7 +32,7 @@
 		<br />
 
 		<div class="alert alert-success hide" id="<portlet:namespace />success">
-			<p><liferay-ui:message key="the-alert-was-sent-successfully" /></p>
+			<p><liferay-ui:message key="the-push-notification-was-sent-successfully" /></p>
 		</div>
 
 		<div class="alert alert-danger hide" id="<portlet:namespace />error">
