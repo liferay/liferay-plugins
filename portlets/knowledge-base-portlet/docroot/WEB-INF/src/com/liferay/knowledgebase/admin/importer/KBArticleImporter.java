@@ -56,7 +56,7 @@ import java.util.TreeMap;
  */
 public class KBArticleImporter {
 
-	public void processZipFile(
+	public int processZipFile(
 			long userId, long groupId, long parentKBFolderId,
 			InputStream inputStream, ServiceContext serviceContext)
 		throws KBArticleImportException, SystemException {
@@ -71,7 +71,7 @@ public class KBArticleImporter {
 
 			Map<String, String> metadata = getMetadata(zipReader);
 
-			processKBArticleFiles(
+			return processKBArticleFiles(
 				userId, groupId, parentKBFolderId, zipReader, metadata,
 				serviceContext);
 		}
@@ -228,11 +228,13 @@ public class KBArticleImporter {
 		}
 	}
 
-	protected void processKBArticleFiles(
+	protected int processKBArticleFiles(
 			long userId, long groupId, long parentKBFolderId,
 			ZipReader zipReader, Map<String, String> metadata,
 			ServiceContext serviceContext)
 		throws KBArticleImportException, SystemException {
+
+		int importedKBArticleCount = 0;
 
 		Map<String, List<String>> folderNameFileEntryNamesMap =
 			getFolderNameFileEntryNamesMap(zipReader);
@@ -277,6 +279,8 @@ public class KBArticleImporter {
 					KBArticleConstants.getClassName());
 				sectionResourcePrimaryKey =
 					sectionIntroKBArticle.getResourcePrimKey();
+
+				importedKBArticleCount++;
 			}
 
 			for (String sectionFileEntryName : sectionFileEntryNames) {
@@ -296,8 +300,12 @@ public class KBArticleImporter {
 					sectionResourceClassNameId, sectionResourcePrimaryKey,
 					sectionMarkdown, sectionFileEntryName, zipReader, metadata,
 					serviceContext);
+
+				importedKBArticleCount++;
 			}
 		}
+
+		return importedKBArticleCount;
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(KBArticleImporter.class);
