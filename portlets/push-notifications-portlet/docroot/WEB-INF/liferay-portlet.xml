@@ -4,6 +4,7 @@
 <liferay-portlet-app>
 	<portlet>
 		<portlet-name>1</portlet-name>
+		<control-panel-entry-category>configuration</control-panel-entry-category>
 		<header-portlet-css>/css/main.css</header-portlet-css>
 		<css-class-wrapper>push-notifications-portlet</css-class-wrapper>
 	</portlet>
