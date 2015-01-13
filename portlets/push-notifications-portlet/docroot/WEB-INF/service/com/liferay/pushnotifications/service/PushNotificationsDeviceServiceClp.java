@@ -43,9 +43,9 @@ public class PushNotificationsDeviceServiceClp
 
 		_methodParameterTypes4 = new String[] { "java.lang.String" };
 
-		_methodName5 = "hasPermission";
+		_methodName5 = "sendPushNotification";
 
-		_methodParameterTypes5 = new String[] { "java.lang.String" };
+		_methodParameterTypes5 = new String[] { "long", "java.lang.String" };
 	}
 
 	@Override
@@ -173,20 +173,23 @@ public class PushNotificationsDeviceServiceClp
 	}
 
 	@Override
-	public boolean hasPermission(java.lang.String actionId)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		Object returnObj = null;
-
+	public void sendPushNotification(long toUserId, java.lang.String payload)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
 		try {
-			returnObj = _invokableService.invokeMethod(_methodName5,
-					_methodParameterTypes5,
-					new Object[] { ClpSerializer.translateInput(actionId) });
+			_invokableService.invokeMethod(_methodName5,
+				_methodParameterTypes5,
+				new Object[] { toUserId, ClpSerializer.translateInput(payload) });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
 
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
 
 			if (t instanceof RuntimeException) {
@@ -197,8 +200,6 @@ public class PushNotificationsDeviceServiceClp
 					" is not a valid exception");
 			}
 		}
-
-		return ((Boolean)returnObj).booleanValue();
 	}
 
 	private InvokableService _invokableService;
