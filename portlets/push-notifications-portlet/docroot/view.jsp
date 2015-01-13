@@ -24,8 +24,6 @@
 		<aui:form name="fm">
 			<aui:input label="message" name="message" rows="6" type="textarea" />
 
-			<aui:input label="url" name="url" />
-
 			<aui:button type="submit" value="send" />
 
 			<aui:button type="reset" value="reset" />
@@ -52,26 +50,13 @@
 			event.halt();
 
 			var message = form.one('textarea[name="<portlet:namespace />message"]').val();
-			var type = 'text';
-			var url = form.one('input[name="<portlet:namespace />url"]').val().trim();
-
-			if (url.length !== 0) {
-				if (<portlet:namespace />isImage(url)) {
-					type = 'image';
-				}
-				else {
-					type = 'link';
-				}
-			}
 
 			Liferay.Service(
 				'/push-notifications-portlet.pushnotificationsentry/add-push-notifications-entry',
 				{
 					payload: A.JSON.stringify(
 						{
-							message: message,
-							type: type,
-							url: url
+							message: message
 						}
 					)
 				},
@@ -79,17 +64,6 @@
 			);
 		}
 	);
-
-	function <portlet:namespace />isImage(url) {
-		var regex = /(.*\.(?:gif|jpeg|jpg|png))/i;
-
-		if (regex.test(url)) {
-			return true;
-		}
-		else {
-			return false;
-		}
-	}
 
 	function <portlet:namespace />onSendPushNotification(result) {
 		var success = A.one('#<portlet:namespace />success');
