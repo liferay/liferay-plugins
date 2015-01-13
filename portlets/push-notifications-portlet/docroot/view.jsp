@@ -52,8 +52,9 @@
 			var message = form.one('textarea[name="<portlet:namespace />message"]').val();
 
 			Liferay.Service(
-				'/push-notifications-portlet.pushnotificationsentry/add-push-notifications-entry',
+				'/push-notifications-portlet.pushnotificationsdevice/send-push-notification',
 				{
+					toUserId: 0,
 					payload: A.JSON.stringify(
 						{
 							message: message
@@ -74,13 +75,13 @@
 
 		error.hide();
 
-		if (A.Object.hasKey(result, 'pushNotificationsEntryId')) {
-			success.show();
-		}
-		else {
+		if (A.Object.hasKey(result, 'exception')) {
 			error.one('p').text(result);
 
 			error.show();
+		}
+		else {
+			success.show();
 		}
 	}
 </aui:script>
