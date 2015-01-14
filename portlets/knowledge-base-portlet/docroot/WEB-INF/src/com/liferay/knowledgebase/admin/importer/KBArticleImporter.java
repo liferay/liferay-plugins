@@ -38,6 +38,7 @@ import com.liferay.portal.kernel.zip.ZipReaderFactoryUtil;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.PortalUtil;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -53,12 +54,15 @@ import java.util.TreeMap;
 /**
  * @author James Hinkey
  * @author Sergio González
+ * @author Jesse Rao
  */
 public class KBArticleImporter {
 
 	public int processZipFile(
 			long userId, long groupId, long parentKBFolderId,
-			InputStream inputStream, ServiceContext serviceContext)
+			boolean prioritizeUpdatedArticles,
+			boolean prioritizeByNumericalPrefix, InputStream inputStream,
+			ServiceContext serviceContext)
 		throws KBArticleImportException, SystemException {
 
 		if (inputStream == null) {
@@ -72,7 +76,8 @@ public class KBArticleImporter {
 			Map<String, String> metadata = getMetadata(zipReader);
 
 			return processKBArticleFiles(
-				userId, groupId, parentKBFolderId, zipReader, metadata,
+				userId, groupId, parentKBFolderId, prioritizeUpdatedArticles,
+				prioritizeByNumericalPrefix, zipReader, metadata,
 				serviceContext);
 		}
 		catch (IOException ioe) {
@@ -230,11 +235,20 @@ public class KBArticleImporter {
 
 	protected int processKBArticleFiles(
 			long userId, long groupId, long parentKBFolderId,
-			ZipReader zipReader, Map<String, String> metadata,
-			ServiceContext serviceContext)
+			boolean prioritizeUpdatedArticles,
+			boolean prioritizeByNumericalPrefix, ZipReader zipReader,
+			Map<String, String> metadata, ServiceContext serviceContext)
 		throws KBArticleImportException, SystemException {
 
 		int importedKBArticleCount = 0;
+
+		PrioritizationStrategy strategy =
+			PrioritizationStrategy.create(
+				groupId, parentKBFolderId, prioritizeUpdatedArticles,
+				prioritizeByNumericalPrefix);
+
+		Map<String, Double> importedUrlTitlesPrioritiesMap =
+			new HashMap<String, Double>();
 
 		Map<String, List<String>> folderNameFileEntryNamesMap =
 			getFolderNameFileEntryNamesMap(zipReader);
@@ -262,10 +276,13 @@ public class KBArticleImporter {
 
 			long parentResourceClassNameId = PortalUtil.getClassNameId(
 				KBFolderConstants.getClassName());
+
 			long parentResourcePrimaryKey = parentKBFolderId;
 
 			long sectionResourceClassNameId = parentResourceClassNameId;
 			long sectionResourcePrimaryKey = parentResourcePrimaryKey;
+
+			String importedParentKBArticleUrlTitle = StringPool.BLANK;
 
 			if (Validator.isNotNull(sectionIntroFileEntryName)) {
 				KBArticle sectionIntroKBArticle = addKBArticleMarkdown(
@@ -275,8 +292,21 @@ public class KBArticleImporter {
 					sectionIntroFileEntryName, zipReader, metadata,
 					serviceContext);
 
+				strategy.addImportedParentArticle(sectionIntroKBArticle);
+
+				if (prioritizeByNumericalPrefix) {
+					double folderNamePrefix = _getNumericalPrefix(folderName);
+
+					if (folderNamePrefix > 0) {
+						importedUrlTitlesPrioritiesMap.put(
+							sectionIntroKBArticle.getUrlTitle(),
+							folderNamePrefix);
+					}
+				}
+
 				sectionResourceClassNameId = PortalUtil.getClassNameId(
 					KBArticleConstants.getClassName());
+
 				sectionResourcePrimaryKey =
 					sectionIntroKBArticle.getResourcePrimKey();
 
@@ -291,21 +321,91 @@ public class KBArticleImporter {
 					if (_log.isWarnEnabled()) {
 						_log.warn(
 							"Missing Markdown in file entry " +
-								sectionFileEntryName);
+							sectionFileEntryName);
 					}
 				}
 
-				addKBArticleMarkdown(
+				KBArticle sectionKBArticle = addKBArticleMarkdown(
 					userId, groupId, parentKBFolderId,
 					sectionResourceClassNameId, sectionResourcePrimaryKey,
-					sectionMarkdown, sectionFileEntryName, zipReader, metadata,
-					serviceContext);
+					zipReader.getEntryAsString(sectionFileEntryName),
+					sectionFileEntryName, zipReader, metadata, serviceContext);
+
+				if (prioritizeByNumericalPrefix) {
+					double sectionFileEntryNamePrefix = _getNumericalPrefix(
+						sectionFileEntryName);
+
+					if (sectionFileEntryNamePrefix > 0) {
+						importedUrlTitlesPrioritiesMap.put(
+							sectionKBArticle.getUrlTitle(),
+							sectionFileEntryNamePrefix);
+					}
+				}
+
+				strategy.addImportedChildArticle(sectionKBArticle);
 
 				importedKBArticleCount++;
 			}
 		}
 
+		strategy.addImportedUrlTitlesPriorities(importedUrlTitlesPrioritiesMap);
+
+		strategy.prioritizeArticles(
+			groupId, parentKBFolderId, prioritizeUpdatedArticles,
+			prioritizeByNumericalPrefix);
+
 		return importedKBArticleCount;
+	}
+
+	private double _getNumericalPrefix(String path) {
+		String[] pathArray = path.split(File.separator);
+
+		int pathArrayLength = pathArray.length;
+
+		String name = StringPool.BLANK;
+
+		if (pathArrayLength > 0) {
+			name = pathArray[pathArrayLength - 1];
+		}
+		else {
+			return 1.0;
+		}
+
+		StringBundler numericalPrefixBundler = new StringBundler(8);
+
+		for (int i = 0; i < name.length(); i++) {
+			char c = name.charAt(i);
+
+			if (Character.isDigit(c)) {
+				numericalPrefixBundler.append(c);
+			}
+			else {
+				break;
+			}
+		}
+
+		String numericalPrefix = numericalPrefixBundler.toString();
+
+		if (numericalPrefix.length() > 0) {
+			try {
+				double prefix = Double.parseDouble(numericalPrefix);
+
+				if (prefix <= 0.0) {
+					return 1.0;
+				}
+				else {
+					return prefix;
+				}
+			}
+			catch (NumberFormatException nfe) {
+				_log.error(nfe.getLocalizedMessage());
+
+				return 1.0;
+			}
+		}
+		else {
+			return 1.0;
+		}
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(KBArticleImporter.class);

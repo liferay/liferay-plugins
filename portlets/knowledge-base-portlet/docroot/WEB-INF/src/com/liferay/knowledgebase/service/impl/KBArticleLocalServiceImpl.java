@@ -77,6 +77,7 @@ import com.liferay.portal.model.Subscription;
 import com.liferay.portal.model.User;
 import com.liferay.portal.portletfilerepository.PortletFileRepositoryUtil;
 import com.liferay.portal.service.ServiceContext;
+import com.liferay.portal.util.PortalUtil;
 import com.liferay.portal.util.SubscriptionSender;
 import com.liferay.portlet.asset.model.AssetEntry;
 import com.liferay.portlet.asset.model.AssetLink;
@@ -252,13 +253,16 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 	@Override
 	public int addKBArticlesMarkdown(
 			long userId, long groupId, long parentKbFolderId, String fileName,
-			InputStream inputStream, ServiceContext serviceContext)
+			boolean prioritizeUpdatedArticles,
+			boolean prioritizeByNumericalPrefix, InputStream inputStream,
+			ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
 		KBArticleImporter kbArticleImporter = new KBArticleImporter();
 
 		return kbArticleImporter.processZipFile(
-			userId, groupId, parentKbFolderId, inputStream, serviceContext);
+			userId, groupId, parentKbFolderId, prioritizeUpdatedArticles,
+			prioritizeByNumericalPrefix, inputStream, serviceContext);
 	}
 
 	@Override
@@ -901,7 +905,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		updatePermissionFields(
 			resourcePrimKey, parentResourceClassNameId, parentResourcePrimKey);
 
-		long kbFolderClassNameId = classNameLocalService.getClassNameId(
+		long kbFolderClassNameId = PortalUtil.getClassNameId(
 			KBFolderConstants.getClassName());
 
 		long kbFolderId = KBFolderConstants.DEFAULT_PARENT_FOLDER_ID;
@@ -1672,7 +1676,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			return resourcePrimKey;
 		}
 
-		long classNameId = classNameLocalService.getClassNameId(
+		long classNameId = PortalUtil.getClassNameId(
 			KBArticleConstants.getClassName());
 
 		if (parentResourceClassNameId == classNameId) {
@@ -1941,9 +1945,9 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			long resourceClassNameId, long resourcePrimKey)
 		throws PortalException {
 
-		long kbArticleClassNameId = classNameLocalService.getClassNameId(
+		long kbArticleClassNameId = PortalUtil.getClassNameId(
 			KBArticleConstants.getClassName());
-		long kbFolderClassNameId = classNameLocalService.getClassNameId(
+		long kbFolderClassNameId = PortalUtil.getClassNameId(
 			KBFolderConstants.getClassName());
 
 		if ((resourceClassNameId != kbArticleClassNameId) &&
