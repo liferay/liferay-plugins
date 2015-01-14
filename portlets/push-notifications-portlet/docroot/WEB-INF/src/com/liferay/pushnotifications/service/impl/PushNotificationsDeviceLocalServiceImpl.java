@@ -76,7 +76,7 @@ public class PushNotificationsDeviceLocalServiceImpl
 
 			PushNotificationsSender pushNotificationsSender = entry.getValue();
 
-			pushNotificationsSender.resetPushNotificationSenders();
+			pushNotificationsSender.reset();
 		}
 	}
 
