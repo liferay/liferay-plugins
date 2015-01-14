@@ -1166,10 +1166,14 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 			boolean majorVersion = MapUtil.getBoolean(
 				jsonWebServiceActionParametersMap, "majorVersion");
 
+			File tempFile = null;
+
 			InputStream inputStream = zipReader.getEntryAsInputStream(
 				zipFileId);
 
-			File tempFile = FileUtil.createTempFile(inputStream);
+			if (inputStream != null) {
+				tempFile = FileUtil.createTempFile(inputStream);
+			}
 
 			String checksum = MapUtil.getString(
 				jsonWebServiceActionParametersMap, "checksum");
