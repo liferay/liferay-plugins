@@ -214,9 +214,9 @@ public class PrioritizationStrategy {
 
 					/*
 					 * Remove articles with numerical prefixes, and their URL
-					 * titles, from lists of imported articles. Only articles
-					 * without numerical prefixes need to be alphanumerically
-					 * prioritized.
+					 * titles, from lists of imported and new articles. Only
+					 * articles without numerical prefixes need to be
+					 * alphanumerically prioritized.
 					 */
 
 					if (_importedParentArticles.contains(article)) {
@@ -226,30 +226,66 @@ public class PrioritizationStrategy {
 					if (_importedParentUrlTitles.contains(key)) {
 						_importedParentUrlTitles.remove(key);
 					}
+					
+					if (_newParentArticles.contains(article)) {
+						_newParentArticles.remove(article);
+					}
+
+					if (_newParentUrlTitles.contains(key)) {
+						_newParentUrlTitles.remove(key);
+					}
 
 					Set<String> childArticlesKeySet =
 						_importedChildArticlesMap.keySet();
 
 					for (String childArticlesKey : childArticlesKeySet) {
-						List<KBArticle> childArticles =
+						List<KBArticle> importedChildArticles =
 							_importedChildArticlesMap.get(childArticlesKey);
 
-						if (childArticles.contains(article)) {
-							childArticles.remove(article);
+						if (importedChildArticles.contains(article)) {
+							importedChildArticles.remove(article);
 						}
 
 						_importedChildArticlesMap.put(
-							childArticlesKey, childArticles);
+							childArticlesKey, importedChildArticles);
 
-						List<String> childArticlesUrlTitles =
+						List<String> importedChildArticlesUrlTitles =
 							_importedChildUrlTitlesMap.get(childArticlesKey);
 
-						if (childArticlesUrlTitles.contains(key)) {
-							childArticlesUrlTitles.remove(key);
+						if (importedChildArticlesUrlTitles.contains(key)) {
+							importedChildArticlesUrlTitles.remove(key);
 						}
 
 						_importedChildUrlTitlesMap.put(
-							childArticlesKey, childArticlesUrlTitles);
+							childArticlesKey, importedChildArticlesUrlTitles);
+						
+						List<KBArticle> newChildArticles =
+							_newChildArticlesMap.get(childArticlesKey);
+						
+						if (newChildArticles == null) {
+							continue;
+						}
+
+						if (newChildArticles.contains(article)) {
+							newChildArticles.remove(article);
+						}
+
+						_newChildArticlesMap.put(
+							childArticlesKey, newChildArticles);
+						
+						List<String> newChildArticlesUrlTitles =
+							_newChildUrlTitlesMap.get(childArticlesKey);
+						
+						if (newChildArticlesUrlTitles == null) {
+							continue;
+						}
+
+						if (newChildArticlesUrlTitles.contains(key)) {
+							newChildArticlesUrlTitles.remove(key);
+						}
+
+						_newChildUrlTitlesMap.put(
+							childArticlesKey, newChildArticlesUrlTitles);
 					}
 				}
 				catch (PortalException pe) {
