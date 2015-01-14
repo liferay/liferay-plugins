@@ -167,7 +167,7 @@ public class KBArticleImporter {
 				continue;
 			}
 
-			String folderName = StringPool.BLANK;
+			String folderName = StringPool.SLASH;
 
 			if (zipEntry.indexOf(CharPool.SLASH) != -1) {
 				folderName = zipEntry.substring(
