@@ -273,8 +273,8 @@ public class PushNotificationsDeviceLocalServiceWrapper
 	}
 
 	@Override
-	public void preferencesChanged() {
-		_pushNotificationsDeviceLocalService.preferencesChanged();
+	public void resetPushNotificationSenders() {
+		_pushNotificationsDeviceLocalService.resetPushNotificationSenders();
 	}
 
 	@Override

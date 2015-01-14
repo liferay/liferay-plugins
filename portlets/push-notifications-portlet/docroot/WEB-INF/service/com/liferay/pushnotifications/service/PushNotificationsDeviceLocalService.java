@@ -230,7 +230,7 @@ public interface PushNotificationsDeviceLocalService extends BaseLocalService,
 		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
 		throws java.lang.Throwable;
 
-	public void preferencesChanged();
+	public void resetPushNotificationSenders();
 
 	public void sendPushNotification(long fromUserId,
 		com.liferay.portal.kernel.json.JSONObject jsonObject)
