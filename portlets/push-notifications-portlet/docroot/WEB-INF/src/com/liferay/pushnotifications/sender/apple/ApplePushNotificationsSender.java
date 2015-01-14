@@ -39,60 +39,19 @@ import java.util.List;
  */
 public class ApplePushNotificationsSender implements PushNotificationsSender {
 
-	public ApplePushNotificationsSender() throws SystemException {
-		ApnsServiceBuilder appleServiceBuilder = APNS.newService();
-
-		String path = PrefsPropsUtil.getString(
-			PortletPropsKeys.APPLE_CERTIFICATE_PATH,
-			PortletPropsValues.APPLE_CERTIFICATE_PATH);
-
-		if (Validator.isNull(path)) {
-			if (_log.isWarnEnabled()) {
-				_log.warn(
-					"The property \"apple.certificate.path\" is not set in " +
-						"portlet.properties");
-			}
-
-			return;
-		}
-
-		String password = PrefsPropsUtil.getString(
-			PortletPropsKeys.APPLE_CERTIFICATE_PASSWORD,
-			PortletPropsValues.APPLE_CERTIFICATE_PASSWORD);
-
-		if (Validator.isNull(password)) {
-			if (_log.isWarnEnabled()) {
-				_log.warn(
-					"The property \"apple.certificate.password\" is not set " +
-						"in portlet.properties");
-			}
-
-			return;
-		}
-
-		appleServiceBuilder.withCert(path, password);
-
-		boolean sandbox = PrefsPropsUtil.getBoolean(
-			PortletPropsKeys.APPLE_SANDBOX, PortletPropsValues.APPLE_SANDBOX);
-
-		if (sandbox) {
-			appleServiceBuilder.withSandboxDestination();
-		}
-
-		_apnsService = appleServiceBuilder.build();
-	}
-
 	@Override
 	public void send(List<String> tokens, JSONObject jsonObject)
 		throws Exception {
 
-		if (_apnsService == null) {
+		ApnsService apnsService = getAPNSService();
+
+		if (apnsService == null) {
 			return;
 		}
 
 		String payload = buildPayload(jsonObject);
 
-		_apnsService.push(tokens, payload);
+		apnsService.push(tokens, payload);
 	}
 
 	protected String buildPayload(JSONObject jsonObject) {
@@ -119,6 +78,56 @@ public class ApplePushNotificationsSender implements PushNotificationsSender {
 		}
 
 		return builder.build();
+	}
+
+	protected ApnsService getAPNSService() throws SystemException {
+		if (_apnsService == null) {
+			ApnsServiceBuilder appleServiceBuilder = APNS.newService();
+
+			String path = PrefsPropsUtil.getString(
+				PortletPropsKeys.APPLE_CERTIFICATE_PATH,
+				PortletPropsValues.APPLE_CERTIFICATE_PATH);
+
+			if (Validator.isNull(path)) {
+				if (_log.isWarnEnabled()) {
+					_log.warn(
+						"The property \"apple.certificate.path\" is not set " +
+							"in portlet.properties"
+					);
+				}
+
+				return null;
+			}
+
+			String password = PrefsPropsUtil.getString(
+				PortletPropsKeys.APPLE_CERTIFICATE_PASSWORD,
+				PortletPropsValues.APPLE_CERTIFICATE_PASSWORD);
+
+			if (Validator.isNull(password)) {
+				if (_log.isWarnEnabled()) {
+					_log.warn(
+						"The property \"apple.certificate.password\" is not " +
+							"set in portlet.properties"
+					);
+				}
+
+				return null;
+			}
+
+			appleServiceBuilder.withCert(path, password);
+
+			boolean sandbox = PrefsPropsUtil.getBoolean(
+				PortletPropsKeys.APPLE_SANDBOX,
+				PortletPropsValues.APPLE_SANDBOX);
+
+			if (sandbox) {
+				appleServiceBuilder.withSandboxDestination();
+			}
+
+			_apnsService = appleServiceBuilder.build();
+		}
+
+		return _apnsService;
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(

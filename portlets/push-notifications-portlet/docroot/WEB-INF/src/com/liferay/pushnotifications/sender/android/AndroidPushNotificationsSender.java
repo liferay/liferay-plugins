@@ -37,29 +37,13 @@ import java.util.List;
  */
 public class AndroidPushNotificationsSender implements PushNotificationsSender {
 
-	public AndroidPushNotificationsSender() throws SystemException {
-		String key = PrefsPropsUtil.getString(
-			PortletPropsKeys.ANDROID_API_KEY,
-			PortletPropsValues.ANDROID_API_KEY);
-
-		if (Validator.isNull(key)) {
-			if (_log.isWarnEnabled()) {
-				_log.warn(
-					"The property \"android.api.key\" is not set in " +
-						"portlet.properties");
-			}
-
-			return;
-		}
-
-		_sender = new Sender(key);
-	}
-
 	@Override
 	public void send(List<String> tokens, JSONObject jsonObject)
 		throws Exception {
 
-		if (_sender == null) {
+		Sender sender = getSender();
+
+		if (sender == null) {
 			return;
 		}
 
@@ -69,7 +53,7 @@ public class AndroidPushNotificationsSender implements PushNotificationsSender {
 			PortletPropsKeys.ANDROID_RETRIES,
 			PortletPropsValues.ANDROID_RETRIES);
 
-		_sender.send(message, tokens, retries);
+		sender.send(message, tokens, retries);
 	}
 
 	protected Message buildMessage(JSONObject jsonObject) {
@@ -84,6 +68,28 @@ public class AndroidPushNotificationsSender implements PushNotificationsSender {
 		}
 
 		return builder.build();
+	}
+
+	protected Sender getSender() throws SystemException {
+		if (_sender == null) {
+			String key = PrefsPropsUtil.getString(
+				PortletPropsKeys.ANDROID_API_KEY,
+				PortletPropsValues.ANDROID_API_KEY);
+
+			if (Validator.isNull(key)) {
+				if (_log.isWarnEnabled()) {
+					_log.warn(
+						"The property \"android.api.key\" is not set in " +
+							"portlet.properties");
+				}
+
+				return null;
+			}
+
+			_sender = new Sender(key);
+		}
+
+		return _sender;
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(
