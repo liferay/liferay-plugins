@@ -37,7 +37,7 @@
 
 				<aui:input helpMessage="android-retries-help" label="android-retries" name="androidRetries" type="text" value="<%= androidRetries %>" wrapperCssClass="lfr-input-text-container">
 					<aui:validator name="digits" />
-					<aui:validator name="min">1</aui:validator>
+					<aui:validator name="min">0</aui:validator>
 				</aui:input>
 			</aui:fieldset>
 

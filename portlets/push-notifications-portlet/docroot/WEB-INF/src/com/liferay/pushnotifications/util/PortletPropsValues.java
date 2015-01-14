@@ -26,7 +26,7 @@ public class PortletPropsValues {
 		PortletProps.get(PortletPropsKeys.ANDROID_API_KEY));
 
 	public static final int ANDROID_RETRIES = GetterUtil.getInteger(
-		PortletProps.get(PortletPropsKeys.ANDROID_RETRIES), 1);
+		PortletProps.get(PortletPropsKeys.ANDROID_RETRIES), 0);
 
 	public static final String APPLE_CERTIFICATE_PASSWORD =
 		GetterUtil.getString(
