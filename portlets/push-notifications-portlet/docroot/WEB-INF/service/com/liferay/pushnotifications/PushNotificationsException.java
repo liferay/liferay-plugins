@@ -22,7 +22,6 @@ import com.liferay.portal.kernel.exception.PortalException;
 public class PushNotificationsException extends PortalException {
 
 	public PushNotificationsException() {
-		super();
 	}
 
 	public PushNotificationsException(String msg) {
