@@ -293,8 +293,8 @@ public class PushNotificationsDeviceLocalServiceUtil {
 		return getService().deletePushNotificationsDevice(token);
 	}
 
-	public static void preferencesChanged() {
-		getService().preferencesChanged();
+	public static void resetPushNotificationSenders() {
+		getService().resetPushNotificationSenders();
 	}
 
 	public static void sendPushNotification(long fromUserId,

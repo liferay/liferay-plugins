@@ -263,7 +263,7 @@ public interface PushNotificationsDeviceLocalService extends BaseLocalService,
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
-	public void preferencesChanged();
+	public void resetPushNotificationSenders();
 
 	public void sendPushNotification(long fromUserId,
 		com.liferay.portal.kernel.json.JSONObject jsonObject)

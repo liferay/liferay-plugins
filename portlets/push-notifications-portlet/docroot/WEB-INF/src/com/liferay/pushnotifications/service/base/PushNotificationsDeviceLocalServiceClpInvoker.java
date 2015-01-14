@@ -124,7 +124,7 @@ public class PushNotificationsDeviceLocalServiceClpInvoker {
 
 		_methodParameterTypes47 = new String[] { "java.lang.String" };
 
-		_methodName48 = "preferencesChanged";
+		_methodName48 = "resetPushNotificationSenders";
 
 		_methodParameterTypes48 = new String[] {  };
 
@@ -255,7 +255,7 @@ public class PushNotificationsDeviceLocalServiceClpInvoker {
 
 		if (_methodName48.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes48, parameterTypes)) {
-			PushNotificationsDeviceLocalServiceUtil.preferencesChanged();
+			PushNotificationsDeviceLocalServiceUtil.resetPushNotificationSenders();
 
 			return null;
 		}

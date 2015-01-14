@@ -126,7 +126,7 @@ public class PushNotificationsDeviceLocalServiceClp
 
 		_methodParameterTypes20 = new String[] { "java.lang.String" };
 
-		_methodName21 = "preferencesChanged";
+		_methodName21 = "resetPushNotificationSenders";
 
 		_methodParameterTypes21 = new String[] {  };
 
@@ -775,7 +775,7 @@ public class PushNotificationsDeviceLocalServiceClp
 	}
 
 	@Override
-	public void preferencesChanged() {
+	public void resetPushNotificationSenders() {
 		try {
 			_invokableLocalService.invokeMethod(_methodName21,
 				_methodParameterTypes21, new Object[] {  });
