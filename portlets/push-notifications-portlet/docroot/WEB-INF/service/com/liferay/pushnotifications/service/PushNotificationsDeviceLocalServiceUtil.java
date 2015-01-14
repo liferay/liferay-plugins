@@ -293,6 +293,10 @@ public class PushNotificationsDeviceLocalServiceUtil {
 		return getService().deletePushNotificationsDevice(token);
 	}
 
+	public static void preferencesChanged() {
+		getService().preferencesChanged();
+	}
+
 	public static void sendPushNotification(long fromUserId,
 		com.liferay.portal.kernel.json.JSONObject jsonObject)
 		throws com.liferay.portal.kernel.exception.PortalException,
