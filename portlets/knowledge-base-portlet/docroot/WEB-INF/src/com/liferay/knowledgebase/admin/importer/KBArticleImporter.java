@@ -282,8 +282,6 @@ public class KBArticleImporter {
 			long sectionResourceClassNameId = parentResourceClassNameId;
 			long sectionResourcePrimaryKey = parentResourcePrimaryKey;
 
-			String importedParentKBArticleUrlTitle = StringPool.BLANK;
-
 			if (Validator.isNotNull(sectionIntroFileEntryName)) {
 				KBArticle sectionIntroKBArticle = addKBArticleMarkdown(
 					userId, groupId, parentKBFolderId,
