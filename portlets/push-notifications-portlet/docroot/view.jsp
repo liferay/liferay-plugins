@@ -17,6 +17,8 @@
 <%@ include file="/init.jsp" %>
 
 <%
+	portletPreferences = PrefsPropsUtil.getPreferences();
+
 	String androidApiKey = PrefsPropsUtil.getString(portletPreferences, themeDisplay.getCompanyId(), PortletPropsKeys.ANDROID_API_KEY);
 	int androidRetries = PrefsPropsUtil.getInteger(portletPreferences, themeDisplay.getCompanyId(), PortletPropsKeys.ANDROID_RETRIES);
 	String appleCertificatePassword = PrefsPropsUtil.getString(portletPreferences, themeDisplay.getCompanyId(), PortletPropsKeys.APPLE_CERTIFICATE_PASSWORD);
@@ -24,14 +26,14 @@
 	boolean appleSandbox = PrefsPropsUtil.getBoolean(portletPreferences, themeDisplay.getCompanyId(), PortletPropsKeys.APPLE_SANDBOX);
 %>
 
-<liferay-portlet:actionURL var="configurationActionURL" />
+<liferay-portlet:actionURL name="updatePreferences" var="updatePreferencesURL" />
 
 <liferay-ui:tabs
 	names="configuration,test"
 	refresh="<%= false %>"
 >
 	<liferay-ui:section>
-		<aui:form action="<%= configurationActionURL %>" method="post" name="configurationFm">
+		<aui:form action="<%= updatePreferencesURL %>" method="post" name="configurationFm">
 			<aui:fieldset label="android">
 				<aui:input helpMessage="android-api-key-help" label="android-api-key" name="androidApiKey" type="text" value="<%= androidApiKey %>" wrapperCssClass="lfr-input-text-container" />
 
@@ -47,7 +49,7 @@
 				<aui:input helpMessage="apple-certificate-path-help" label="apple-certificate-path" name="appleCertificatePath" type="text" value="<%= appleCertificatePath %>" wrapperCssClass="lfr-input-text-container" />
 
 				<aui:fieldset>
-					<aui:input name="sandbox" type="checkbox" value="<%= appleSandbox %>" />
+					<aui:input helpMessage="apple-sandbox-help" label="apple-sandbox"  name="appleSandbox" type="checkbox" value="<%= appleSandbox %>" />
 				</aui:fieldset>
 			</aui:fieldset>
 
