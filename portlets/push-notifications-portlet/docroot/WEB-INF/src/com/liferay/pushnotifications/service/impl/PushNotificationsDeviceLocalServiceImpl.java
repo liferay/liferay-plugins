@@ -70,6 +70,17 @@ public class PushNotificationsDeviceLocalServiceImpl
 	}
 
 	@Override
+	public void preferencesChanged() {
+		for (Map.Entry<String, PushNotificationsSender> entry :
+				_pushNotificationsSenders.entrySet()) {
+
+			PushNotificationsSender pushNotificationsSender = entry.getValue();
+
+			pushNotificationsSender.preferencesChanged();
+		}
+	}
+
+	@Override
 	public void sendPushNotification(long fromUserId, JSONObject jsonObject)
 		throws PortalException {
 

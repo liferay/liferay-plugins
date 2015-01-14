@@ -36,6 +36,11 @@ import java.util.List;
 public class AndroidPushNotificationsSender implements PushNotificationsSender {
 
 	@Override
+	public void preferencesChanged() {
+		_sender = null;
+	}
+
+	@Override
 	public void send(List<String> tokens, JSONObject jsonObject)
 		throws Exception {
 

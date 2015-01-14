@@ -38,6 +38,11 @@ import java.util.List;
 public class ApplePushNotificationsSender implements PushNotificationsSender {
 
 	@Override
+	public void preferencesChanged() {
+		_apnsService = null;
+	}
+
+	@Override
 	public void send(List<String> tokens, JSONObject jsonObject)
 		throws Exception {
 
