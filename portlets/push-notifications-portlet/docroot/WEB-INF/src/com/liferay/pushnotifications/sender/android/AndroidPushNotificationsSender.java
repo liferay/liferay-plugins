@@ -18,12 +18,10 @@ import com.google.android.gcm.server.Message;
 import com.google.android.gcm.server.Message.Builder;
 import com.google.android.gcm.server.Sender;
 
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSONObject;
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.PrefsPropsUtil;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.pushnotifications.PushNotificationsException;
 import com.liferay.pushnotifications.sender.PushNotificationsSender;
 import com.liferay.pushnotifications.util.PortletPropsKeys;
 import com.liferay.pushnotifications.util.PortletPropsValues;
@@ -70,20 +68,16 @@ public class AndroidPushNotificationsSender implements PushNotificationsSender {
 		return builder.build();
 	}
 
-	protected Sender getSender() throws SystemException {
+	protected Sender getSender() throws Exception {
 		if (_sender == null) {
 			String key = PrefsPropsUtil.getString(
 				PortletPropsKeys.ANDROID_API_KEY,
 				PortletPropsValues.ANDROID_API_KEY);
 
 			if (Validator.isNull(key)) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(
-						"The property \"android.api.key\" is not set in " +
-							"portlet.properties");
-				}
-
-				return null;
+				throw new PushNotificationsException(
+					"The property \"android.api.key\" is not set in " +
+						"portlet.properties");
 			}
 
 			_sender = new Sender(key);
@@ -91,9 +85,6 @@ public class AndroidPushNotificationsSender implements PushNotificationsSender {
 
 		return _sender;
 	}
-
-	private static Log _log = LogFactoryUtil.getLog(
-		AndroidPushNotificationsSender.class);
 
 	private Sender _sender;
 

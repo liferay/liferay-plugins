@@ -14,12 +14,10 @@
 
 package com.liferay.pushnotifications.sender.apple;
 
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSONObject;
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.PrefsPropsUtil;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.pushnotifications.PushNotificationsException;
 import com.liferay.pushnotifications.sender.PushNotificationsSender;
 import com.liferay.pushnotifications.util.PortletPropsKeys;
 import com.liferay.pushnotifications.util.PortletPropsValues;
@@ -80,7 +78,7 @@ public class ApplePushNotificationsSender implements PushNotificationsSender {
 		return builder.build();
 	}
 
-	protected ApnsService getAPNSService() throws SystemException {
+	protected ApnsService getAPNSService() throws Exception {
 		if (_apnsService == null) {
 			ApnsServiceBuilder appleServiceBuilder = APNS.newService();
 
@@ -89,14 +87,9 @@ public class ApplePushNotificationsSender implements PushNotificationsSender {
 				PortletPropsValues.APPLE_CERTIFICATE_PATH);
 
 			if (Validator.isNull(path)) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(
-						"The property \"apple.certificate.path\" is not set " +
-							"in portlet.properties"
-					);
-				}
-
-				return null;
+				throw new PushNotificationsException(
+					"The property \"apple.certificate.path\" is not set in " +
+						"portlet.properties");
 			}
 
 			String password = PrefsPropsUtil.getString(
@@ -104,14 +97,9 @@ public class ApplePushNotificationsSender implements PushNotificationsSender {
 				PortletPropsValues.APPLE_CERTIFICATE_PASSWORD);
 
 			if (Validator.isNull(password)) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(
-						"The property \"apple.certificate.password\" is not " +
-							"set in portlet.properties"
-					);
-				}
-
-				return null;
+				throw new PushNotificationsException(
+					"The property \"apple.certificate.password\" is not set " +
+						"in portlet.properties");
 			}
 
 			appleServiceBuilder.withCert(path, password);
@@ -129,9 +117,6 @@ public class ApplePushNotificationsSender implements PushNotificationsSender {
 
 		return _apnsService;
 	}
-
-	private static Log _log = LogFactoryUtil.getLog(
-		ApplePushNotificationsSender.class);
 
 	private ApnsService _apnsService;
 
