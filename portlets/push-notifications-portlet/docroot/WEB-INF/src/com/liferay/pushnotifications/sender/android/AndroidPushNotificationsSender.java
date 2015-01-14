@@ -18,11 +18,14 @@ import com.google.android.gcm.server.Message;
 import com.google.android.gcm.server.Message.Builder;
 import com.google.android.gcm.server.Sender;
 
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.util.PrefsPropsUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.pushnotifications.sender.PushNotificationsSender;
+import com.liferay.pushnotifications.util.PortletPropsKeys;
 import com.liferay.pushnotifications.util.PortletPropsValues;
 
 import java.util.Iterator;
@@ -34,8 +37,10 @@ import java.util.List;
  */
 public class AndroidPushNotificationsSender implements PushNotificationsSender {
 
-	public AndroidPushNotificationsSender() {
-		String key = PortletPropsValues.ANDROID_API_KEY;
+	public AndroidPushNotificationsSender() throws SystemException {
+		String key = PrefsPropsUtil.getString(
+			PortletPropsKeys.ANDROID_API_KEY,
+			PortletPropsValues.ANDROID_API_KEY);
 
 		if (Validator.isNull(key)) {
 			if (_log.isWarnEnabled()) {
@@ -60,7 +65,11 @@ public class AndroidPushNotificationsSender implements PushNotificationsSender {
 
 		Message message = buildMessage(jsonObject);
 
-		_sender.send(message, tokens, PortletPropsValues.ANDROID_RETRIES);
+		int retries = PrefsPropsUtil.getInteger(
+			PortletPropsKeys.ANDROID_RETRIES,
+			PortletPropsValues.ANDROID_RETRIES);
+
+		_sender.send(message, tokens, retries);
 	}
 
 	protected Message buildMessage(JSONObject jsonObject) {

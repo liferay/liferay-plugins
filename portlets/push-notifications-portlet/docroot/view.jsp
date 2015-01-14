@@ -17,13 +17,11 @@
 <%@ include file="/init.jsp" %>
 
 <%
-	portletPreferences = PrefsPropsUtil.getPreferences();
-
-	String androidApiKey = PrefsPropsUtil.getString(portletPreferences, themeDisplay.getCompanyId(), PortletPropsKeys.ANDROID_API_KEY);
-	int androidRetries = PrefsPropsUtil.getInteger(portletPreferences, themeDisplay.getCompanyId(), PortletPropsKeys.ANDROID_RETRIES);
-	String appleCertificatePassword = PrefsPropsUtil.getString(portletPreferences, themeDisplay.getCompanyId(), PortletPropsKeys.APPLE_CERTIFICATE_PASSWORD);
-	String appleCertificatePath = PrefsPropsUtil.getString(portletPreferences, themeDisplay.getCompanyId(), PortletPropsKeys.APPLE_CERTIFICATE_PATH);
-	boolean appleSandbox = PrefsPropsUtil.getBoolean(portletPreferences, themeDisplay.getCompanyId(), PortletPropsKeys.APPLE_SANDBOX);
+	String androidApiKey = PrefsPropsUtil.getString(PortletPropsKeys.ANDROID_API_KEY, PortletPropsValues.ANDROID_API_KEY);
+	int androidRetries = PrefsPropsUtil.getInteger(PortletPropsKeys.ANDROID_RETRIES, PortletPropsValues.ANDROID_RETRIES);
+	String appleCertificatePassword = PrefsPropsUtil.getString(PortletPropsKeys.APPLE_CERTIFICATE_PASSWORD, PortletPropsValues.APPLE_CERTIFICATE_PASSWORD);
+	String appleCertificatePath = PrefsPropsUtil.getString(PortletPropsKeys.APPLE_CERTIFICATE_PATH, PortletPropsValues.APPLE_CERTIFICATE_PATH);
+	boolean appleSandbox = PrefsPropsUtil.getBoolean(PortletPropsKeys.APPLE_SANDBOX, PortletPropsValues.APPLE_SANDBOX);
 %>
 
 <liferay-portlet:actionURL name="updatePreferences" var="updatePreferencesURL" />
