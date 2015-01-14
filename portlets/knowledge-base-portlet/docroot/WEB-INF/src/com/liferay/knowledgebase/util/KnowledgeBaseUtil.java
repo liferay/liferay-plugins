@@ -76,6 +76,7 @@ import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.portlet.PortletPreferences;
 import javax.portlet.PortletRequest;
 import javax.portlet.PortletURL;
 import javax.portlet.RenderResponse;
@@ -395,6 +396,13 @@ public class KnowledgeBaseUtil {
 		};
 	}
 
+	public static String getPreferredKBFolderURLTitle(
+		PortalPreferences portalPreferences, String contentRootPrefix) {
+
+		return portalPreferences.getValue(
+			PortletKeys.KNOWLEDGE_BASE_DISPLAY, "preferredKBFolderURLTitle");
+	}
+
 	public static final int getPreviousStatus(int status) {
 		if (status == KBCommentConstants.STATUS_COMPLETED) {
 			return KBCommentConstants.STATUS_IN_PROGRESS;
@@ -480,6 +488,15 @@ public class KnowledgeBaseUtil {
 		Matcher matcher = _validFriendlyUrlPattern.matcher(urlTitle);
 
 		return matcher.matches();
+	}
+
+	public static void setPreferredKBFolderURLTitle(
+		PortalPreferences portalPreferences, String contentRootPrefix,
+		String value) {
+
+		portalPreferences.setValue(
+			PortletKeys.KNOWLEDGE_BASE_DISPLAY, "preferredKBFolderURLTitle",
+			value);
 	}
 
 	public static List<KBArticle> sort(
@@ -612,9 +629,13 @@ public class KnowledgeBaseUtil {
 		PortalPreferences portalPreferences =
 			PortletPreferencesFactoryUtil.getPortalPreferences(portletRequest);
 
-		String kbFolderURLTitle = portalPreferences.getValue(
-			PortletKeys.KNOWLEDGE_BASE_DISPLAY, "preferredKBFolderURLTitle",
-			null);
+		PortletPreferences preferences = portletRequest.getPreferences();
+
+		String contentRootPrefix = GetterUtil.getString(
+			preferences.getValue("contentRootPrefix", null));
+
+		String kbFolderURLTitle = getPreferredKBFolderURLTitle(
+			portalPreferences, contentRootPrefix);
 
 		long childKbFolderId = KBFolderConstants.DEFAULT_PARENT_FOLDER_ID;
 

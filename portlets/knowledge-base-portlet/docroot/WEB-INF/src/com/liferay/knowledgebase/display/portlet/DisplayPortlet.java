@@ -29,7 +29,6 @@ import com.liferay.knowledgebase.service.permission.KBArticlePermission;
 import com.liferay.knowledgebase.service.permission.KBFolderPermission;
 import com.liferay.knowledgebase.util.ActionKeys;
 import com.liferay.knowledgebase.util.KnowledgeBaseUtil;
-import com.liferay.knowledgebase.util.PortletKeys;
 import com.liferay.knowledgebase.util.WebKeys;
 import com.liferay.knowledgebase.util.comparator.KBArticlePriorityComparator;
 import com.liferay.portal.NoSuchSubscriptionException;
@@ -95,10 +94,15 @@ public class DisplayPortlet extends BaseKBPortlet {
 						PortletPreferencesFactoryUtil.getPortalPreferences(
 							renderRequest);
 
+					PortletPreferences preferences =
+						renderRequest.getPreferences();
+
+					String contentRootPrefix = GetterUtil.getString(
+						preferences.getValue("contentRootPrefix", null));
+
 					String preferredKBFolderURLTitle =
-						portalPreferences.getValue(
-							PortletKeys.KNOWLEDGE_BASE_DISPLAY,
-							"preferredKBFolderURLTitle");
+						KnowledgeBaseUtil.getPreferredKBFolderURLTitle(
+							portalPreferences, contentRootPrefix);
 
 					kbArticle = getKBFolderKBArticle(
 						themeDisplay.getScopeGroupId(), resourcePrimKey,
@@ -166,9 +170,13 @@ public class DisplayPortlet extends BaseKBPortlet {
 			PortletPreferencesFactoryUtil.getPortalPreferences(
 				PortalUtil.getLiferayPortletRequest(actionRequest));
 
-		portalPreferences.setValue(
-			PortletKeys.KNOWLEDGE_BASE_DISPLAY, "preferredKBFolderURLTitle",
-			kbFolder.getUrlTitle());
+		PortletPreferences preferences = actionRequest.getPreferences();
+
+		String contentRootPrefix = GetterUtil.getString(
+			preferences.getValue("contentRootPrefix", null));
+
+		KnowledgeBaseUtil.setPreferredKBFolderURLTitle(
+			portalPreferences, contentRootPrefix, kbFolder.getUrlTitle());
 
 		String urlTitle = ParamUtil.getString(actionRequest, "urlTitle");
 
