@@ -7,6 +7,11 @@
 /* ---------- Portlet ---------- */
 
 .knowledge-base-portlet-display {
+	.kb-article-body img {
+		height: auto;
+		max-width: 100%;
+	}
+
 	.kbarticle-navigation {
 		li {
 			line-height: inherit;
