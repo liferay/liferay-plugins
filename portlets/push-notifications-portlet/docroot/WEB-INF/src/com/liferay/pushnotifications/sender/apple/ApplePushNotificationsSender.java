@@ -46,7 +46,7 @@ public class ApplePushNotificationsSender implements PushNotificationsSender {
 	public void send(List<String> tokens, JSONObject jsonObject)
 		throws Exception {
 
-		ApnsService apnsService = getAPNSService();
+		ApnsService apnsService = getApnsService();
 
 		if (apnsService == null) {
 			return;
@@ -83,7 +83,7 @@ public class ApplePushNotificationsSender implements PushNotificationsSender {
 		return builder.build();
 	}
 
-	protected ApnsService getAPNSService() throws Exception {
+	protected ApnsService getApnsService() throws Exception {
 		if (_apnsService == null) {
 			ApnsServiceBuilder appleServiceBuilder = APNS.newService();
 
