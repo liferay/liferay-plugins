@@ -231,7 +231,7 @@ public class KBArticleImporter {
 			ServiceContext serviceContext)
 		throws KBArticleImportException {
 
-		int importedKBArticleCount = 0;
+		int importedKBArticlesCount = 0;
 
 		Map<String, List<String>> folderNameFileEntryNamesMap =
 			getFolderNameFileEntryNamesMap(zipReader);
@@ -277,7 +277,7 @@ public class KBArticleImporter {
 				sectionResourcePrimaryKey =
 					sectionIntroKBArticle.getResourcePrimKey();
 
-				importedKBArticleCount++;
+				importedKBArticlesCount++;
 			}
 
 			for (String sectionFileEntryName : sectionFileEntryNames) {
@@ -298,11 +298,11 @@ public class KBArticleImporter {
 					sectionMarkdown, sectionFileEntryName, zipReader, metadata,
 					serviceContext);
 
-				importedKBArticleCount++;
+				importedKBArticlesCount++;
 			}
 		}
 
-		return importedKBArticleCount;
+		return importedKBArticlesCount;
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(KBArticleImporter.class);

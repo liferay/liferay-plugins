@@ -150,13 +150,14 @@ public class AdminPortlet extends BaseKBPortlet {
 
 			serviceContext.setGuestPermissions(new String[] {ActionKeys.VIEW});
 
-			int kbArticleCount = KBArticleServiceUtil.addKBArticlesMarkdown(
-				themeDisplay.getScopeGroupId(), parentKBFolderId, fileName,
-				inputStream, serviceContext);
+			int importedKBArticlesCount =
+				KBArticleServiceUtil.addKBArticlesMarkdown(
+					themeDisplay.getScopeGroupId(), parentKBFolderId, fileName,
+					inputStream, serviceContext);
 
 			SessionMessages.add(
-				actionRequest, "aTotalOfXArticlesHaveBeenImported",
-				kbArticleCount);
+				actionRequest, "importedKBArticlesCount",
+				importedKBArticlesCount);
 		}
 		catch (KBArticleImportException kbaie) {
 			SessionErrors.add(actionRequest, kbaie.getClass(), kbaie);
