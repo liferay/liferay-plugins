@@ -16,6 +16,7 @@ package com.liferay.pushnotifications.portlet;
 
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.PrefsPropsUtil;
+import com.liferay.pushnotifications.service.PushNotificationsDeviceLocalServiceUtil;
 import com.liferay.pushnotifications.util.PortletPropsKeys;
 import com.liferay.util.bridges.mvc.MVCPortlet;
 
@@ -66,6 +67,8 @@ public class AdminPortlet extends MVCPortlet {
 			PortletPropsKeys.APPLE_SANDBOX, String.valueOf(appleSandbox));
 
 		portletPreferences.store();
+
+		PushNotificationsDeviceLocalServiceUtil.preferencesChanged();
 	}
 
 }
