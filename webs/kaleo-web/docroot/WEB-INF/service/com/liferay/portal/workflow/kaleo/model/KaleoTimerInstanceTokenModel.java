@@ -441,19 +441,20 @@ public interface KaleoTimerInstanceTokenModel extends BaseModel<KaleoTimerInstan
 	public Object clone();
 
 	@Override
-	public int compareTo(KaleoTimerInstanceToken kaleoTimerInstanceToken);
+	public int compareTo(
+		com.liferay.portal.workflow.kaleo.model.KaleoTimerInstanceToken kaleoTimerInstanceToken);
 
 	@Override
 	public int hashCode();
 
 	@Override
-	public CacheModel<KaleoTimerInstanceToken> toCacheModel();
+	public CacheModel<com.liferay.portal.workflow.kaleo.model.KaleoTimerInstanceToken> toCacheModel();
 
 	@Override
-	public KaleoTimerInstanceToken toEscapedModel();
+	public com.liferay.portal.workflow.kaleo.model.KaleoTimerInstanceToken toEscapedModel();
 
 	@Override
-	public KaleoTimerInstanceToken toUnescapedModel();
+	public com.liferay.portal.workflow.kaleo.model.KaleoTimerInstanceToken toUnescapedModel();
 
 	@Override
 	public String toString();

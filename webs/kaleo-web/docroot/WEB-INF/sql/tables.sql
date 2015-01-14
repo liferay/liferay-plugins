@@ -31,7 +31,7 @@ create table KaleoCondition (
 	kaleoNodeId LONG,
 	script TEXT null,
 	scriptLanguage VARCHAR(75) null,
-	scriptRequiredContexts VARCHAR(75) null
+	scriptRequiredContexts STRING null
 );
 
 create table KaleoDefinition (
@@ -206,7 +206,7 @@ create table KaleoTaskAssignment (
 	assigneeActionId VARCHAR(75) null,
 	assigneeScript TEXT null,
 	assigneeScriptLanguage VARCHAR(75) null,
-	assigneeScriptRequiredContexts VARCHAR(75) null
+	assigneeScriptRequiredContexts STRING null
 );
 
 create table KaleoTaskAssignmentInstance (

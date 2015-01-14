@@ -750,7 +750,9 @@ public class KaleoDefinitionClp extends BaseModelImpl<KaleoDefinition>
 			return StringPool.BLANK;
 		}
 
-		return LocalizationUtil.getDefaultLanguageId(xml);
+		Locale defaultLocale = LocaleUtil.getSiteDefault();
+
+		return LocalizationUtil.getDefaultLanguageId(xml, defaultLocale);
 	}
 
 	@Override
@@ -762,7 +764,7 @@ public class KaleoDefinitionClp extends BaseModelImpl<KaleoDefinition>
 	@SuppressWarnings("unused")
 	public void prepareLocalizedFieldsForImport(Locale defaultImportLocale)
 		throws LocaleException {
-		Locale defaultLocale = LocaleUtil.getDefault();
+		Locale defaultLocale = LocaleUtil.getSiteDefault();
 
 		String modelDefaultLanguageId = getDefaultLanguageId();
 
@@ -848,6 +850,10 @@ public class KaleoDefinitionClp extends BaseModelImpl<KaleoDefinition>
 		else {
 			return false;
 		}
+	}
+
+	public Class<?> getClpSerializerClass() {
+		return _clpSerializerClass;
 	}
 
 	@Override
@@ -979,4 +985,5 @@ public class KaleoDefinitionClp extends BaseModelImpl<KaleoDefinition>
 	private boolean _active;
 	private long _startKaleoNodeId;
 	private BaseModel<?> _kaleoDefinitionRemoteModel;
+	private Class<?> _clpSerializerClass = com.liferay.portal.workflow.kaleo.service.ClpSerializer.class;
 }

@@ -782,6 +782,10 @@ public class KaleoTimerClp extends BaseModelImpl<KaleoTimer>
 		}
 	}
 
+	public Class<?> getClpSerializerClass() {
+		return _clpSerializerClass;
+	}
+
 	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
@@ -931,4 +935,5 @@ public class KaleoTimerClp extends BaseModelImpl<KaleoTimer>
 	private double _recurrenceDuration;
 	private String _recurrenceScale;
 	private BaseModel<?> _kaleoTimerRemoteModel;
+	private Class<?> _clpSerializerClass = com.liferay.portal.workflow.kaleo.service.ClpSerializer.class;
 }

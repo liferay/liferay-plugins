@@ -432,19 +432,20 @@ public interface KaleoDefinitionModel extends BaseModel<KaleoDefinition>,
 	public Object clone();
 
 	@Override
-	public int compareTo(KaleoDefinition kaleoDefinition);
+	public int compareTo(
+		com.liferay.portal.workflow.kaleo.model.KaleoDefinition kaleoDefinition);
 
 	@Override
 	public int hashCode();
 
 	@Override
-	public CacheModel<KaleoDefinition> toCacheModel();
+	public CacheModel<com.liferay.portal.workflow.kaleo.model.KaleoDefinition> toCacheModel();
 
 	@Override
-	public KaleoDefinition toEscapedModel();
+	public com.liferay.portal.workflow.kaleo.model.KaleoDefinition toEscapedModel();
 
 	@Override
-	public KaleoDefinition toUnescapedModel();
+	public com.liferay.portal.workflow.kaleo.model.KaleoDefinition toUnescapedModel();
 
 	@Override
 	public String toString();

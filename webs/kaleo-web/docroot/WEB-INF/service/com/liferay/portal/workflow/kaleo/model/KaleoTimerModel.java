@@ -378,19 +378,20 @@ public interface KaleoTimerModel extends BaseModel<KaleoTimer>, GroupedModel {
 	public Object clone();
 
 	@Override
-	public int compareTo(KaleoTimer kaleoTimer);
+	public int compareTo(
+		com.liferay.portal.workflow.kaleo.model.KaleoTimer kaleoTimer);
 
 	@Override
 	public int hashCode();
 
 	@Override
-	public CacheModel<KaleoTimer> toCacheModel();
+	public CacheModel<com.liferay.portal.workflow.kaleo.model.KaleoTimer> toCacheModel();
 
 	@Override
-	public KaleoTimer toEscapedModel();
+	public com.liferay.portal.workflow.kaleo.model.KaleoTimer toEscapedModel();
 
 	@Override
-	public KaleoTimer toUnescapedModel();
+	public com.liferay.portal.workflow.kaleo.model.KaleoTimer toUnescapedModel();
 
 	@Override
 	public String toString();

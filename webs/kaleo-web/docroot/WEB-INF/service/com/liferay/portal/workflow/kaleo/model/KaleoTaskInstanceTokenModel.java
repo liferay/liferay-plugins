@@ -420,19 +420,20 @@ public interface KaleoTaskInstanceTokenModel extends BaseModel<KaleoTaskInstance
 	public Object clone();
 
 	@Override
-	public int compareTo(KaleoTaskInstanceToken kaleoTaskInstanceToken);
+	public int compareTo(
+		com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken kaleoTaskInstanceToken);
 
 	@Override
 	public int hashCode();
 
 	@Override
-	public CacheModel<KaleoTaskInstanceToken> toCacheModel();
+	public CacheModel<com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken> toCacheModel();
 
 	@Override
-	public KaleoTaskInstanceToken toEscapedModel();
+	public com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken toEscapedModel();
 
 	@Override
-	public KaleoTaskInstanceToken toUnescapedModel();
+	public com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken toUnescapedModel();
 
 	@Override
 	public String toString();

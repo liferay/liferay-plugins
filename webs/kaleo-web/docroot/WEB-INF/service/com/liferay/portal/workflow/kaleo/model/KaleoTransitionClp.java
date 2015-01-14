@@ -757,6 +757,10 @@ public class KaleoTransitionClp extends BaseModelImpl<KaleoTransition>
 		}
 	}
 
+	public Class<?> getClpSerializerClass() {
+		return _clpSerializerClass;
+	}
+
 	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
@@ -899,4 +903,5 @@ public class KaleoTransitionClp extends BaseModelImpl<KaleoTransition>
 	private String _targetKaleoNodeName;
 	private boolean _defaultTransition;
 	private BaseModel<?> _kaleoTransitionRemoteModel;
+	private Class<?> _clpSerializerClass = com.liferay.portal.workflow.kaleo.service.ClpSerializer.class;
 }
