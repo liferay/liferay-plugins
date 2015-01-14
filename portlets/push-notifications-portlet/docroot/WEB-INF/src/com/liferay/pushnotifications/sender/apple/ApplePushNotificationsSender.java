@@ -38,7 +38,7 @@ import java.util.List;
 public class ApplePushNotificationsSender implements PushNotificationsSender {
 
 	@Override
-	public void preferencesChanged() {
+	public void reset() {
 		_apnsService = null;
 	}
 

@@ -36,7 +36,7 @@ import java.util.List;
 public class AndroidPushNotificationsSender implements PushNotificationsSender {
 
 	@Override
-	public void preferencesChanged() {
+	public void reset() {
 		_sender = null;
 	}
 

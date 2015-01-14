@@ -23,7 +23,7 @@ import java.util.List;
  */
 public interface PushNotificationsSender {
 
-	public void preferencesChanged();
+	public void reset();
 
 	public void send(List<String> tokens, JSONObject jsonObject)
 		throws Exception;
