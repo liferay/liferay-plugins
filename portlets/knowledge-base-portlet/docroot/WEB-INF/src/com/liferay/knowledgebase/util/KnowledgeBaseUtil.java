@@ -39,6 +39,9 @@ import com.liferay.knowledgebase.util.comparator.KBTemplateUserNameComparator;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.io.unsync.UnsyncByteArrayInputStream;
+import com.liferay.portal.kernel.json.JSONException;
+import com.liferay.portal.kernel.json.JSONFactoryUtil;
+import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.search.Field;
 import com.liferay.portal.kernel.search.Sort;
 import com.liferay.portal.kernel.search.SortFactoryUtil;
@@ -397,10 +400,17 @@ public class KnowledgeBaseUtil {
 	}
 
 	public static String getPreferredKBFolderURLTitle(
-		PortalPreferences portalPreferences, String contentRootPrefix) {
+			PortalPreferences portalPreferences, String contentRootPrefix)
+		throws JSONException {
 
-		return portalPreferences.getValue(
-			PortletKeys.KNOWLEDGE_BASE_DISPLAY, "preferredKBFolderURLTitle");
+		String preferredKBFolderURLTitle = portalPreferences.getValue(
+			PortletKeys.KNOWLEDGE_BASE_DISPLAY, "preferredKBFolderURLTitle",
+			"{}");
+
+		JSONObject jsonObject = JSONFactoryUtil.createJSONObject(
+			preferredKBFolderURLTitle);
+
+		return jsonObject.getString(contentRootPrefix, StringPool.BLANK);
 	}
 
 	public static final int getPreviousStatus(int status) {
@@ -491,12 +501,22 @@ public class KnowledgeBaseUtil {
 	}
 
 	public static void setPreferredKBFolderURLTitle(
-		PortalPreferences portalPreferences, String contentRootPrefix,
-		String value) {
+			PortalPreferences portalPreferences, String contentRootPrefix,
+			String value)
+		throws JSONException {
+
+		String preferredKBFolderURLTitle = portalPreferences.getValue(
+			PortletKeys.KNOWLEDGE_BASE_DISPLAY, "preferredKBFolderURLTitle",
+			"{}");
+
+		JSONObject jsonObject = JSONFactoryUtil.createJSONObject(
+			preferredKBFolderURLTitle);
+
+		jsonObject.put(contentRootPrefix, value);
 
 		portalPreferences.setValue(
 			PortletKeys.KNOWLEDGE_BASE_DISPLAY, "preferredKBFolderURLTitle",
-			value);
+			jsonObject.toString());
 	}
 
 	public static List<KBArticle> sort(
