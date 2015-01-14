@@ -24,14 +24,14 @@ String appleCertificatePath = PrefsPropsUtil.getString(PortletPropsKeys.APPLE_CE
 boolean appleSandbox = PrefsPropsUtil.getBoolean(PortletPropsKeys.APPLE_SANDBOX, PortletPropsValues.APPLE_SANDBOX);
 %>
 
-<liferay-portlet:actionURL name="updatePreferences" var="updatePreferencesURL" />
+<liferay-portlet:actionURL name="updatePortletPreferences" var="updatePortletPreferencesURL" />
 
 <liferay-ui:tabs
 	names="configuration,test"
 	refresh="<%= false %>"
 >
 	<liferay-ui:section>
-		<aui:form action="<%= updatePreferencesURL %>" method="post" name="configurationFm">
+		<aui:form action="<%= updatePortletPreferencesURL %>" method="post" name="configurationFm">
 			<aui:fieldset label="android">
 				<aui:input helpMessage="android-api-key-help" label="android-api-key" name="androidApiKey" type="text" value="<%= androidApiKey %>" wrapperCssClass="lfr-input-text-container" />
 

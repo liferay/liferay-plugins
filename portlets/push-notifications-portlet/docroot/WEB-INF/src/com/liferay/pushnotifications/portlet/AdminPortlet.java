@@ -29,7 +29,7 @@ import javax.portlet.PortletPreferences;
  */
 public class AdminPortlet extends MVCPortlet {
 
-	public void updatePreferences(
+	public void updatePortletPreferences(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
