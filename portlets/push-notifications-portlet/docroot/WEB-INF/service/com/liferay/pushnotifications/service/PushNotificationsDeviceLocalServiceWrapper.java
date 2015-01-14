@@ -273,6 +273,11 @@ public class PushNotificationsDeviceLocalServiceWrapper
 	}
 
 	@Override
+	public void preferencesChanged() {
+		_pushNotificationsDeviceLocalService.preferencesChanged();
+	}
+
+	@Override
 	public void sendPushNotification(long fromUserId,
 		com.liferay.portal.kernel.json.JSONObject jsonObject)
 		throws com.liferay.portal.kernel.exception.PortalException {

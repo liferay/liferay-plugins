@@ -48,10 +48,12 @@ public interface PushNotificationsDeviceService extends BaseService,
 	 *
 	 * Never modify or reference this interface directly. Always use {@link PushNotificationsDeviceServiceUtil} to access the push notifications device remote service. Add custom service methods to {@link com.liferay.pushnotifications.service.impl.PushNotificationsDeviceServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
+	@com.liferay.portal.security.ac.AccessControlled(guestAccessEnabled = true)
 	public com.liferay.pushnotifications.model.PushNotificationsDevice addPushNotificationsDevice(
 		java.lang.String token, java.lang.String platform)
 		throws com.liferay.portal.kernel.exception.PortalException;
 
+	@com.liferay.portal.security.ac.AccessControlled(guestAccessEnabled = true)
 	public com.liferay.pushnotifications.model.PushNotificationsDevice deletePushNotificationsDevice(
 		java.lang.String token)
 		throws com.liferay.portal.kernel.exception.PortalException;
