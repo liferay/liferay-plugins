@@ -16,10 +16,47 @@
 
 <%@ include file="/init.jsp" %>
 
+<%
+	String androidApiKey = PrefsPropsUtil.getString(portletPreferences, themeDisplay.getCompanyId(), PortletPropsKeys.ANDROID_API_KEY);
+	int androidRetries = PrefsPropsUtil.getInteger(portletPreferences, themeDisplay.getCompanyId(), PortletPropsKeys.ANDROID_RETRIES);
+	String appleCertificatePassword = PrefsPropsUtil.getString(portletPreferences, themeDisplay.getCompanyId(), PortletPropsKeys.APPLE_CERTIFICATE_PASSWORD);
+	String appleCertificatePath = PrefsPropsUtil.getString(portletPreferences, themeDisplay.getCompanyId(), PortletPropsKeys.APPLE_CERTIFICATE_PATH);
+	boolean appleSandbox = PrefsPropsUtil.getBoolean(portletPreferences, themeDisplay.getCompanyId(), PortletPropsKeys.APPLE_SANDBOX);
+%>
+
+<liferay-portlet:actionURL var="configurationActionURL" />
+
 <liferay-ui:tabs
-	names="test"
+	names="configuration,test"
 	refresh="<%= false %>"
 >
+	<liferay-ui:section>
+		<aui:form action="<%= configurationActionURL %>" method="post" name="configurationFm">
+			<aui:fieldset label="android">
+				<aui:input helpMessage="android-api-key-help" label="android-api-key" name="androidApiKey" type="text" value="<%= androidApiKey %>" wrapperCssClass="lfr-input-text-container" />
+
+				<aui:input helpMessage="android-retries-help" label="android-retries" name="androidRetries" type="text" value="<%= androidRetries %>" wrapperCssClass="lfr-input-text-container">
+					<aui:validator name="digits" />
+					<aui:validator name="min">1</aui:validator>
+				</aui:input>
+			</aui:fieldset>
+
+			<aui:fieldset label="ios">
+				<aui:input helpMessage="apple-certificate-password-help" label="apple-certificate-password" name="appleCertificatePassword" type="text" value="<%= appleCertificatePassword %>" wrapperCssClass="lfr-input-text-container" />
+
+				<aui:input helpMessage="apple-certificate-path-help" label="apple-certificate-path" name="appleCertificatePath" type="text" value="<%= appleCertificatePath %>" wrapperCssClass="lfr-input-text-container" />
+
+				<aui:fieldset>
+					<aui:input name="sandbox" type="checkbox" value="<%= appleSandbox %>" />
+				</aui:fieldset>
+			</aui:fieldset>
+
+			<aui:button-row>
+				<aui:button type="submit" />
+			</aui:button-row>
+		</aui:form>
+	</liferay-ui:section>
+
 	<liferay-ui:section>
 		<aui:form name="fm">
 			<aui:input label="message" name="message" rows="6" type="textarea" />

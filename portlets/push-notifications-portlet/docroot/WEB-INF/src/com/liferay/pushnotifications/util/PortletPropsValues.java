@@ -26,7 +26,7 @@ public class PortletPropsValues {
 		PortletProps.get(PortletPropsKeys.ANDROID_API_KEY));
 
 	public static final int ANDROID_RETRIES = GetterUtil.getInteger(
-		PortletProps.get(PortletPropsKeys.ANDROID_RETRIES));
+		PortletProps.get(PortletPropsKeys.ANDROID_RETRIES), 1);
 
 	public static final String APPLE_CERTIFICATE_PASSWORD =
 		GetterUtil.getString(
@@ -36,6 +36,6 @@ public class PortletPropsValues {
 		PortletProps.get(PortletPropsKeys.APPLE_CERTIFICATE_PATH));
 
 	public static final boolean APPLE_SANDBOX = GetterUtil.getBoolean(
-		PortletProps.get(PortletPropsKeys.APPLE_SANDBOX));
+		PortletProps.get(PortletPropsKeys.APPLE_SANDBOX), true);
 
 }
