@@ -25,6 +25,7 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.util.ArrayUtil;
+import com.liferay.portal.kernel.util.CharPool;
 import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.StreamUtil;
 import com.liferay.portal.kernel.util.StringBundler;
@@ -166,8 +167,12 @@ public class KBArticleImporter {
 				continue;
 			}
 
-			String folderName = zipEntry.substring(
-				0, zipEntry.lastIndexOf(StringPool.SLASH));
+			String folderName = StringPool.BLANK;
+
+			if (zipEntry.indexOf(CharPool.SLASH) != -1) {
+				folderName = zipEntry.substring(
+					0, zipEntry.lastIndexOf(StringPool.SLASH));
+			}
 
 			List<String> fileEntryNames = folderNameFileEntryNamesMap.get(
 				folderName);
