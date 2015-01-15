@@ -166,8 +166,9 @@ public class PrioritizationStrategy {
 	}
 
 	public void prioritizeArticles(
-		long groupId, long parentKBFolderId, boolean prioritizeUpdatedArticles,
-		boolean prioritizeByNumericalPrefix)
+			long groupId, long parentKBFolderId,
+			boolean prioritizeUpdatedArticles,
+			boolean prioritizeByNumericalPrefix)
 		throws PortalException, SystemException {
 
 		if (prioritizeUpdatedArticles) {
@@ -253,8 +254,8 @@ public class PrioritizationStrategy {
 					_importedChildUrlTitlesMap.put(
 						childArticlesKey, importedChildArticlesUrlTitles);
 
-					List<KBArticle> newChildArticles =
-						_newChildArticlesMap.get(childArticlesKey);
+					List<KBArticle> newChildArticles = _newChildArticlesMap.get(
+						childArticlesKey);
 
 					if (newChildArticles == null) {
 						continue;
@@ -264,7 +265,8 @@ public class PrioritizationStrategy {
 						newChildArticles.remove(article);
 					}
 
-					_newChildArticlesMap.put(childArticlesKey, newChildArticles);
+					_newChildArticlesMap.put(
+						childArticlesKey, newChildArticles);
 
 					List<String> newChildArticlesUrlTitles =
 						_newChildUrlTitlesMap.get(childArticlesKey);
