@@ -14,6 +14,7 @@
 _sass_cache_*.css
 
 /.bnd
+/.gradle
 /.ivy
 
 /*/*/bin
