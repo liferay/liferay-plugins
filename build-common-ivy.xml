@@ -579,7 +579,7 @@
 			description="${ivy.pom.description}"
 			ivyfile="ivy.xml"
 			pomfile="${plugin.pom.file}"
-			templatefile="${sdk.dir}/tools/pom_tmpl/template.pom"
+			templatefile="${sdk.dir}/tools/templates/pom_tmpl/template.pom"
 		>
 			<mapping conf="default" scope="compile" />
 			<mapping conf="provided" scope="provided" />

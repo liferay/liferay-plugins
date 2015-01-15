@@ -31,7 +31,7 @@
 
 		<copy todir="${layouttpl.dir}">
 			<fileset
-				dir="${sdk.dir}/tools/layouttpl_tmpl"
+				dir="${sdk.dir}/tools/templates/layouttpl_tmpl"
 			/>
 		</copy>
 

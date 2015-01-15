@@ -31,7 +31,7 @@
 
 		<copy todir="${portlet.dir}">
 			<fileset
-				dir="${sdk.dir}/tools/portlet_tmpl"
+				dir="${sdk.dir}/tools/templates/portlet_tmpl"
 			/>
 		</copy>
 
@@ -66,7 +66,7 @@
 					<then>
 						<copy todir="${portlet.dir}">
 							<fileset
-								dir="${sdk.dir}/tools/portlet_jsf_tmpl"
+								dir="${sdk.dir}/tools/templates/portlet_jsf_tmpl"
 							/>
 						</copy>
 					</then>
@@ -74,7 +74,7 @@
 
 				<copy overwrite="true" todir="${portlet.dir}">
 					<fileset
-						dir="${sdk.dir}/tools/portlet_${portlet.framework}_tmpl"
+						dir="${sdk.dir}/tools/templates/portlet_${portlet.framework}_tmpl"
 					/>
 				</copy>
 			</then>
