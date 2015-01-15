@@ -35,6 +35,21 @@ public class AssetEntrySetServiceImpl extends AssetEntrySetServiceBaseImpl {
 
 	@Override
 	public AssetEntrySet addAssetEntrySet(
+			long parentAssetEntrySetId, long creatorClassNameId,
+			long creatorClassPK, String payload, File file,
+			boolean privateAssetEntrySet)
+		throws PortalException, SystemException {
+
+		JSONObject payloadJSONObject = JSONFactoryUtil.createJSONObject(
+			payload);
+
+		return assetEntrySetLocalService.addAssetEntrySet(
+			getUserId(), parentAssetEntrySetId, creatorClassNameId,
+			creatorClassPK, payloadJSONObject, file, privateAssetEntrySet);
+	}
+
+	@Override
+	public AssetEntrySet addAssetEntrySet(
 			long parentAssetEntrySetId, String payload, File file,
 			boolean privateAssetEntrySet)
 		throws PortalException, SystemException {
