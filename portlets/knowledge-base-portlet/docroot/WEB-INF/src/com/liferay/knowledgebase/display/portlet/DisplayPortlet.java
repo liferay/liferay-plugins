@@ -45,6 +45,7 @@ import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.PortalPreferences;
 import com.liferay.portlet.PortletPreferencesFactoryUtil;
+import com.liferay.portlet.PortletURLFactoryUtil;
 
 import java.io.IOException;
 
@@ -54,6 +55,8 @@ import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
 import javax.portlet.PortletException;
 import javax.portlet.PortletPreferences;
+import javax.portlet.PortletRequest;
+import javax.portlet.PortletURL;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
 
@@ -156,7 +159,7 @@ public class DisplayPortlet extends BaseKBPortlet {
 
 	public void updateRootKBFolderId(
 			ActionRequest actionRequest, ActionResponse actionResponse)
-		throws PortalException {
+		throws IOException, PortalException {
 
 		long kbFolderId = ParamUtil.getLong(actionRequest, "rootKBFolderId");
 
@@ -175,6 +178,10 @@ public class DisplayPortlet extends BaseKBPortlet {
 		String contentRootPrefix = GetterUtil.getString(
 			preferences.getValue("contentRootPrefix", null));
 
+		String previousPreferredKBFolderURLTitle =
+			KnowledgeBaseUtil.getPreferredKBFolderURLTitle(
+				portalPreferences, contentRootPrefix);
+
 		KnowledgeBaseUtil.setPreferredKBFolderURLTitle(
 			portalPreferences, contentRootPrefix, kbFolder.getUrlTitle());
 
@@ -189,7 +196,17 @@ public class DisplayPortlet extends BaseKBPortlet {
 				kbFolder.getGroupId(), kbFolder.getUrlTitle(), urlTitle);
 
 		if (kbArticle == null) {
-			return;
+			if (Validator.isNull(previousPreferredKBFolderURLTitle)) {
+				return;
+			}
+
+			kbArticle = _findClosestMatchingKBArticle(
+				kbFolder.getGroupId(), previousPreferredKBFolderURLTitle,
+				kbFolder.getUrlTitle(), urlTitle);
+
+			if (kbArticle == null) {
+				return;
+			}
 		}
 
 		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
@@ -202,9 +219,14 @@ public class DisplayPortlet extends BaseKBPortlet {
 			return;
 		}
 
-		actionResponse.setRenderParameter(
-			"kbFolderUrlTitle", kbFolder.getUrlTitle());
-		actionResponse.setRenderParameter("urlTitle", urlTitle);
+		PortletURL redirectURL = PortletURLFactoryUtil.create(
+			actionRequest, PortalUtil.getPortletId(actionRequest),
+			themeDisplay.getPlid(), PortletRequest.RENDER_PHASE);
+
+		redirectURL.setParameter("kbFolderUrlTitle", kbFolder.getUrlTitle());
+		redirectURL.setParameter("urlTitle", kbArticle.getUrlTitle());
+
+		actionResponse.sendRedirect(redirectURL.toString());
 	}
 
 	@Override
@@ -431,6 +453,29 @@ public class DisplayPortlet extends BaseKBPortlet {
 		}
 
 		return WorkflowConstants.STATUS_APPROVED;
+	}
+
+	private KBArticle _findClosestMatchingKBArticle(
+			long groupId, String oldKBFolderURLTitle,
+			String newKBFolderUrlTitle, String urlTitle)
+		throws PortalException {
+
+		KBArticle oldKBArticle =
+			KBArticleLocalServiceUtil.getKBArticleByUrlTitle(
+				groupId, oldKBFolderURLTitle, urlTitle);
+
+		KBArticle kbArticle = null;
+
+		while ((kbArticle == null) && (oldKBArticle != null)) {
+			kbArticle = KBArticleLocalServiceUtil.fetchKBArticleByUrlTitle(
+				groupId, newKBFolderUrlTitle, oldKBArticle.getUrlTitle());
+
+			if (kbArticle == null) {
+				oldKBArticle = oldKBArticle.getParentKBArticle();
+			}
+		}
+
+		return kbArticle;
 	}
 
 }
