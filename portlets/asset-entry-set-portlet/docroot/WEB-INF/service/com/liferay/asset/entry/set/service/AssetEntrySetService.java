@@ -66,6 +66,13 @@ public interface AssetEntrySetService extends BaseService, InvokableService {
 		throws java.lang.Throwable;
 
 	public com.liferay.asset.entry.set.model.AssetEntrySet addAssetEntrySet(
+		long parentAssetEntrySetId, long creatorClassNameId,
+		long creatorClassPK, java.lang.String payload, java.io.File file,
+		boolean privateAssetEntrySet)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
+
+	public com.liferay.asset.entry.set.model.AssetEntrySet addAssetEntrySet(
 		long parentAssetEntrySetId, java.lang.String payload,
 		java.io.File file, boolean privateAssetEntrySet)
 		throws com.liferay.portal.kernel.exception.PortalException,

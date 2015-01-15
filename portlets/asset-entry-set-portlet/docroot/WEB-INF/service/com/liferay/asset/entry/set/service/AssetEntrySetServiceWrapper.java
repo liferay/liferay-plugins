@@ -60,6 +60,18 @@ public class AssetEntrySetServiceWrapper implements AssetEntrySetService,
 
 	@Override
 	public com.liferay.asset.entry.set.model.AssetEntrySet addAssetEntrySet(
+		long parentAssetEntrySetId, long creatorClassNameId,
+		long creatorClassPK, java.lang.String payload, java.io.File file,
+		boolean privateAssetEntrySet)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _assetEntrySetService.addAssetEntrySet(parentAssetEntrySetId,
+			creatorClassNameId, creatorClassPK, payload, file,
+			privateAssetEntrySet);
+	}
+
+	@Override
+	public com.liferay.asset.entry.set.model.AssetEntrySet addAssetEntrySet(
 		long parentAssetEntrySetId, java.lang.String payload,
 		java.io.File file, boolean privateAssetEntrySet)
 		throws com.liferay.portal.kernel.exception.PortalException,
