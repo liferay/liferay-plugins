@@ -21,6 +21,7 @@ import com.liferay.knowledgebase.model.KBArticleConstants;
 import com.liferay.knowledgebase.model.KBFolderConstants;
 import com.liferay.knowledgebase.service.KBArticleLocalServiceUtil;
 import com.liferay.knowledgebase.util.PortletPropsValues;
+import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -63,7 +64,7 @@ public class KBArticleImporter {
 			boolean prioritizeUpdatedArticles,
 			boolean prioritizeByNumericalPrefix, InputStream inputStream,
 			ServiceContext serviceContext)
-		throws KBArticleImportException, SystemException {
+		throws KBArticleImportException, PortalException, SystemException {
 
 		if (inputStream == null) {
 			throw new KBArticleImportException("Input stream is null");
@@ -238,7 +239,7 @@ public class KBArticleImporter {
 			boolean prioritizeUpdatedArticles,
 			boolean prioritizeByNumericalPrefix, ZipReader zipReader,
 			Map<String, String> metadata, ServiceContext serviceContext)
-		throws KBArticleImportException, SystemException {
+		throws PortalException, SystemException {
 
 		int importedKBArticleCount = 0;
 
