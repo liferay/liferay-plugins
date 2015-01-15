@@ -205,6 +205,28 @@ Error-Prone was automatically installed. Please rerun your task.
 		</sequential>
 	</macrodef>
 
+	<macrodef name="exec-gradle">
+		<attribute name="task" />
+ 
+		<sequential>
+			<if>
+				<os family="unix" />
+				<then>
+					<property name="gradlew.suffix" value="" />
+
+					<chmod file="${sdk.dir}/tools/gradle/gradlew${gradlew.suffix}" perm="a+x" />
+				</then>
+				<else>
+					<property name="gradlew.suffix" value=".bat" />
+				</else>
+			</if>
+ 
+			<exec executable="${sdk.dir}/tools/gradle/gradlew${gradlew.suffix}" failonerror="true">
+				<arg value="@{task}" />
+			</exec>
+		</sequential>
+	</macrodef>
+
 	<macrodef name="loop-macrodef-or-target">
 		<attribute name="module.dirs" />
 		<attribute name="target.name" />
