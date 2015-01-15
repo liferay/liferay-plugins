@@ -168,7 +168,7 @@ ${nodejs.url[osx64]}.
 				<delete file="${nodejs.file}" />
 
 				<if>
-					<os family="mac" />
+					<os family="windows" />
 					<then>
 						<get
 							dest="npm.zip"
