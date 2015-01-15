@@ -461,6 +461,15 @@
 					<var name="plugin.ivy.resolve.transitive.dependencies" value="${ivy.resolve.transitive.dependencies}" />
 				</else>
 			</if>
+
+			<if>
+				<not>
+					<available file="@{module.dir}/build.gradle" />
+				</not>
+				<then>
+					<touch file="@{module.dir}/build.gradle" />
+				</then>
+			</if>
 		</sequential>
 	</macrodef>
 
