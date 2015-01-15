@@ -219,20 +219,28 @@ public class PrioritizationStrategy {
 					 * alphanumerically prioritized.
 					 */
 
-					if (_importedParentArticles.contains(article)) {
-						_importedParentArticles.remove(article);
+					if (_importedParentArticles != null) {
+						if (_importedParentArticles.contains(article)) {
+							_importedParentArticles.remove(article);
+						}
 					}
 
-					if (_importedParentUrlTitles.contains(key)) {
-						_importedParentUrlTitles.remove(key);
+					if (_importedParentUrlTitles != null) {
+						if (_importedParentUrlTitles.contains(key)) {
+							_importedParentUrlTitles.remove(key);
+						}
 					}
 					
-					if (_newParentArticles.contains(article)) {
-						_newParentArticles.remove(article);
+					if (_newParentArticles != null) {
+						if (_newParentArticles.contains(article)) {
+							_newParentArticles.remove(article);
+						}
 					}
 
-					if (_newParentUrlTitles.contains(key)) {
-						_newParentUrlTitles.remove(key);
+					if (_newParentUrlTitles != null) {
+						if (_newParentUrlTitles.contains(key)) {
+							_newParentUrlTitles.remove(key);
+						}
 					}
 
 					Set<String> childArticlesKeySet =
@@ -372,7 +380,7 @@ public class PrioritizationStrategy {
 
 			// prioritize imported child articles by URL title
 
-			Set<String> childKeySet = maxChildPriorityMap.keySet();
+			Set<String> childKeySet = _importedChildArticlesMap.keySet();
 
 			for (String childKey : childKeySet) {
 				List<KBArticle> childArticles = _importedChildArticlesMap.get(
@@ -477,7 +485,7 @@ public class PrioritizationStrategy {
 
 			// prioritize new child articles by URL title
 
-			Set<String> childKeySet = maxChildPriorityMap.keySet();
+			Set<String> childKeySet = _newChildArticlesMap.keySet();
 
 			for (String childKey : childKeySet) {
 				List<KBArticle> childArticles = _newChildArticlesMap.get(
@@ -582,6 +590,13 @@ public class PrioritizationStrategy {
 
 				_newChildArticlesMap.put(key, newChildArticles);
 			}
+			else {
+				for (KBArticle article : importedChildArticles) {
+					newChildArticles.add(article);
+				}
+
+				_newChildArticlesMap.put(key, newChildArticles);
+			}
 		}
 
 		_newChildUrlTitlesMap = new HashMap<String, List<String>>();
@@ -643,6 +658,13 @@ public class PrioritizationStrategy {
 					if (!importedChildUrlTitles.contains(urlTitle)) {
 						nonImportedChildArticles.add(article);
 					}
+				}
+
+				_nonImportedChildArticlesMap.put(key, nonImportedChildArticles);
+			}
+			else {
+				for (KBArticle article : existingChildArticles) {
+					nonImportedChildArticles.add(article);
 				}
 
 				_nonImportedChildArticlesMap.put(key, nonImportedChildArticles);
