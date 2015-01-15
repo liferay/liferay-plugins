@@ -31,7 +31,7 @@
 
 		<copy todir="${theme.dir}">
 			<fileset
-				dir="${sdk.dir}/tools/theme_tmpl"
+				dir="${sdk.dir}/tools/templates/theme_tmpl"
 			/>
 		</copy>
 

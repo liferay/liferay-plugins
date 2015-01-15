@@ -130,7 +130,7 @@ ${nodejs.url[osx64]}.
 
 		<if>
 			<not>
-				<available file="tools/node-v${nodejs.version}" />
+				<available file="tools/templates/node-v${nodejs.version}" />
 			</not>
 			<then>
 				<antelope:stringutil string="${nodejs.url}" property="nodejs.file.beginindex">
@@ -156,12 +156,12 @@ ${nodejs.url[osx64]}.
 					<then>
 						<untar
 							compression="gzip"
-							dest="tools/node-v${nodejs.version}"
+							dest="tools/templates/node-v${nodejs.version}"
 							src="${nodejs.file}"
 						/>
 					</then>
 					<else>
-						<move file="${nodejs.file}" todir="tools/node-v${nodejs.version}" />
+						<move file="${nodejs.file}" todir="tools/templates/node-v${nodejs.version}" />
 					</else>
 				</if>
 
@@ -176,7 +176,7 @@ ${nodejs.url[osx64]}.
 						/>
 
 						<unzip
-							dest="tools/node-v${nodejs.version}"
+							dest="tools/templates/node-v${nodejs.version}"
 							src="npm.zip"
 						/>
 
@@ -193,7 +193,7 @@ ${nodejs.url[osx64]}.
 
 		<copy todir="dist" overwrite="yes">
 			<fileset
-				dir="${sdk.dir}/tools/ear_tmpl"
+				dir="${sdk.dir}/tools/templates/ear_tmpl"
 			/>
 		</copy>
 

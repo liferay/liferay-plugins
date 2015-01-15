@@ -31,7 +31,7 @@
 
 		<copy todir="${web.dir}">
 			<fileset
-				dir="${sdk.dir}/tools/web_tmpl"
+				dir="${sdk.dir}/tools/templates/web_tmpl"
 			/>
 		</copy>
 
