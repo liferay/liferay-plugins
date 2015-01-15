@@ -39,18 +39,14 @@ public class PrioritizationStrategy {
 
 	public static PrioritizationStrategy create(
 		long groupId, long parentKBFolderId, boolean prioritizeUpdatedArticles,
-		boolean prioritizeByNumericalPrefix) {
+		boolean prioritizeByNumericalPrefix) throws SystemException {
 
 		List<KBArticle> existingParentArticles = null;
 
-		try {
-			existingParentArticles = KBArticleServiceUtil.getKBArticles(
+		existingParentArticles =
+			KBArticleServiceUtil.getKBArticles(
 				groupId, parentKBFolderId, WorkflowConstants.STATUS_ANY,
 				QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
-		}
-		catch (SystemException se) {
-			_log.error(se.getLocalizedMessage());
-		}
 
 		List<String> existingParentUrlTitles = new ArrayList<String>();
 
@@ -69,14 +65,10 @@ public class PrioritizationStrategy {
 
 			List<KBArticle> existingChildArticles = null;
 
-			try {
-				existingChildArticles = KBArticleServiceUtil.getKBArticles(
+			existingChildArticles =
+				KBArticleServiceUtil.getKBArticles(
 					groupId, resourcePrimKey, WorkflowConstants.STATUS_ANY,
 					QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
-			}
-			catch (SystemException se) {
-				_log.error(se.getLocalizedMessage());
-			}
 
 			List<String> existingChildUrlTitles = new ArrayList<String>();
 
@@ -116,18 +108,12 @@ public class PrioritizationStrategy {
 		return prioritizationStrategy;
 	}
 
-	public void addImportedChildArticle(KBArticle childArticle) {
+	public void addImportedChildArticle(KBArticle childArticle)
+		throws PortalException, SystemException {
+
 		KBArticle parentArticle = null;
 
-		try {
-			parentArticle = childArticle.getParentKBArticle();
-		}
-		catch (PortalException pe) {
-			_log.error(pe.getLocalizedMessage());
-		}
-		catch (SystemException se) {
-			_log.error(se.getLocalizedMessage());
-		}
+		parentArticle = childArticle.getParentKBArticle();
 
 		String parentUrlTitle = StringPool.BLANK;
 
@@ -181,7 +167,8 @@ public class PrioritizationStrategy {
 
 	public void prioritizeArticles(
 		long groupId, long parentKBFolderId, boolean prioritizeUpdatedArticles,
-		boolean prioritizeByNumericalPrefix) {
+		boolean prioritizeByNumericalPrefix)
+		throws PortalException, SystemException {
 
 		if (prioritizeUpdatedArticles) {
 			_initNonImportedArticles();
@@ -200,107 +187,98 @@ public class PrioritizationStrategy {
 			Double priority = null;
 
 			for (String key : keySet) {
-				try {
-					article =
-						KBArticleLocalServiceUtil.getKBArticleByUrlTitle(
-							groupId, parentKBFolderId, key);
+				article =
+					KBArticleLocalServiceUtil.getKBArticleByUrlTitle(
+						groupId, parentKBFolderId, key);
 
-					resourcePrimKey = article.getResourcePrimKey();
+				resourcePrimKey = article.getResourcePrimKey();
 
-					priority = _importedUrlTitlesPrioritiesMap.get(key);
+				priority = _importedUrlTitlesPrioritiesMap.get(key);
 
-					KBArticleLocalServiceUtil.updatePriority(
-						resourcePrimKey, priority);
+				KBArticleLocalServiceUtil.updatePriority(
+					resourcePrimKey, priority);
 
-					/*
-					 * Remove articles with numerical prefixes, and their URL
-					 * titles, from lists of imported and new articles. Only
-					 * articles without numerical prefixes need to be
-					 * alphanumerically prioritized.
-					 */
+				/*
+				 * Remove articles with numerical prefixes, and their URL
+				 * titles, from lists of imported and new articles. Only
+				 * articles without numerical prefixes need to be
+				 * alphanumerically prioritized.
+				 */
 
-					if (_importedParentArticles != null) {
-						if (_importedParentArticles.contains(article)) {
-							_importedParentArticles.remove(article);
-						}
-					}
-
-					if (_importedParentUrlTitles != null) {
-						if (_importedParentUrlTitles.contains(key)) {
-							_importedParentUrlTitles.remove(key);
-						}
-					}
-					
-					if (_newParentArticles != null) {
-						if (_newParentArticles.contains(article)) {
-							_newParentArticles.remove(article);
-						}
-					}
-
-					if (_newParentUrlTitles != null) {
-						if (_newParentUrlTitles.contains(key)) {
-							_newParentUrlTitles.remove(key);
-						}
-					}
-
-					Set<String> childArticlesKeySet =
-						_importedChildArticlesMap.keySet();
-
-					for (String childArticlesKey : childArticlesKeySet) {
-						List<KBArticle> importedChildArticles =
-							_importedChildArticlesMap.get(childArticlesKey);
-
-						if (importedChildArticles.contains(article)) {
-							importedChildArticles.remove(article);
-						}
-
-						_importedChildArticlesMap.put(
-							childArticlesKey, importedChildArticles);
-
-						List<String> importedChildArticlesUrlTitles =
-							_importedChildUrlTitlesMap.get(childArticlesKey);
-
-						if (importedChildArticlesUrlTitles.contains(key)) {
-							importedChildArticlesUrlTitles.remove(key);
-						}
-
-						_importedChildUrlTitlesMap.put(
-							childArticlesKey, importedChildArticlesUrlTitles);
-						
-						List<KBArticle> newChildArticles =
-							_newChildArticlesMap.get(childArticlesKey);
-						
-						if (newChildArticles == null) {
-							continue;
-						}
-
-						if (newChildArticles.contains(article)) {
-							newChildArticles.remove(article);
-						}
-
-						_newChildArticlesMap.put(
-							childArticlesKey, newChildArticles);
-						
-						List<String> newChildArticlesUrlTitles =
-							_newChildUrlTitlesMap.get(childArticlesKey);
-						
-						if (newChildArticlesUrlTitles == null) {
-							continue;
-						}
-
-						if (newChildArticlesUrlTitles.contains(key)) {
-							newChildArticlesUrlTitles.remove(key);
-						}
-
-						_newChildUrlTitlesMap.put(
-							childArticlesKey, newChildArticlesUrlTitles);
+				if (_importedParentArticles != null) {
+					if (_importedParentArticles.contains(article)) {
+						_importedParentArticles.remove(article);
 					}
 				}
-				catch (PortalException pe) {
-					_log.error(pe.getLocalizedMessage());
+
+				if (_importedParentUrlTitles != null) {
+					if (_importedParentUrlTitles.contains(key)) {
+						_importedParentUrlTitles.remove(key);
+					}
 				}
-				catch (SystemException se) {
-					_log.error(se.getLocalizedMessage());
+
+				if (_newParentArticles != null) {
+					if (_newParentArticles.contains(article)) {
+						_newParentArticles.remove(article);
+					}
+				}
+
+				if (_newParentUrlTitles != null) {
+					if (_newParentUrlTitles.contains(key)) {
+						_newParentUrlTitles.remove(key);
+					}
+				}
+
+				Set<String> childArticlesKeySet =
+					_importedChildArticlesMap.keySet();
+
+				for (String childArticlesKey : childArticlesKeySet) {
+					List<KBArticle> importedChildArticles =
+						_importedChildArticlesMap.get(childArticlesKey);
+
+					if (importedChildArticles.contains(article)) {
+						importedChildArticles.remove(article);
+					}
+
+					_importedChildArticlesMap.put(
+						childArticlesKey, importedChildArticles);
+
+					List<String> importedChildArticlesUrlTitles =
+						_importedChildUrlTitlesMap.get(childArticlesKey);
+
+					if (importedChildArticlesUrlTitles.contains(key)) {
+						importedChildArticlesUrlTitles.remove(key);
+					}
+
+					_importedChildUrlTitlesMap.put(
+						childArticlesKey, importedChildArticlesUrlTitles);
+
+					List<KBArticle> newChildArticles =
+						_newChildArticlesMap.get(childArticlesKey);
+
+					if (newChildArticles == null) {
+						continue;
+					}
+
+					if (newChildArticles.contains(article)) {
+						newChildArticles.remove(article);
+					}
+
+					_newChildArticlesMap.put(childArticlesKey, newChildArticles);
+
+					List<String> newChildArticlesUrlTitles =
+						_newChildUrlTitlesMap.get(childArticlesKey);
+
+					if (newChildArticlesUrlTitles == null) {
+						continue;
+					}
+
+					if (newChildArticlesUrlTitles.contains(key)) {
+						newChildArticlesUrlTitles.remove(key);
+					}
+
+					_newChildUrlTitlesMap.put(
+						childArticlesKey, newChildArticlesUrlTitles);
 				}
 			}
 		}
@@ -354,28 +332,15 @@ public class PrioritizationStrategy {
 			for (int i = 0; i < parentSize; i++) {
 				KBArticle parentArticle = null;
 
-				try {
-					parentArticle =
-						KBArticleLocalServiceUtil.getKBArticleByUrlTitle(
-							groupId, parentKBFolderId,
-							_importedParentUrlTitles.get(i));
-				}
-				catch (PortalException pe) {
-					_log.error(pe.getLocalizedMessage());
-				}
-				catch (SystemException se) {
-					_log.error(se.getLocalizedMessage());
-				}
+				parentArticle =
+					KBArticleLocalServiceUtil.getKBArticleByUrlTitle(
+						groupId, parentKBFolderId,
+						_importedParentUrlTitles.get(i));
 
 				long parentResourcePrimKey = parentArticle.getResourcePrimKey();
 
-				try {
-					KBArticleLocalServiceUtil.updatePriority(
-						parentResourcePrimKey, maxParentPriority + 1 + i);
-				}
-				catch (SystemException se) {
-					_log.error(se.getLocalizedMessage());
-				}
+				KBArticleLocalServiceUtil.updatePriority(
+					parentResourcePrimKey, maxParentPriority + 1 + i);
 			}
 
 			// prioritize imported child articles by URL title
@@ -404,14 +369,9 @@ public class PrioritizationStrategy {
 							maxChildArticlePriority = 0.0;
 						}
 
-						try {
-							KBArticleLocalServiceUtil.updatePriority(
-								childArticleResourcePrimKey,
-								maxChildArticlePriority + 1 + i);
-						}
-						catch (SystemException se) {
-							_log.error(se.getLocalizedMessage());
-						}
+						KBArticleLocalServiceUtil.updatePriority(
+							childArticleResourcePrimKey,
+							maxChildArticlePriority + 1 + i);
 					}
 				}
 			}
@@ -459,28 +419,14 @@ public class PrioritizationStrategy {
 			for (int i = 0; i < parentSize; i++) {
 				KBArticle parentArticle = null;
 
-				try {
-					parentArticle =
-						KBArticleLocalServiceUtil.getKBArticleByUrlTitle(
-							groupId, parentKBFolderId,
-							_newParentUrlTitles.get(i));
-				}
-				catch (PortalException pe) {
-					_log.error(pe.getLocalizedMessage());
-				}
-				catch (SystemException se) {
-					_log.error(se.getLocalizedMessage());
-				}
+				parentArticle =
+					KBArticleLocalServiceUtil.getKBArticleByUrlTitle(
+						groupId, parentKBFolderId, _newParentUrlTitles.get(i));
 
 				long parentResourcePrimKey = parentArticle.getResourcePrimKey();
 
-				try {
-					KBArticleLocalServiceUtil.updatePriority(
-						parentResourcePrimKey, maxParentPriority + 1 + i);
-				}
-				catch (SystemException se) {
-					_log.error(se.getLocalizedMessage());
-				}
+				KBArticleLocalServiceUtil.updatePriority(
+					parentResourcePrimKey, maxParentPriority + 1 + i);
 			}
 
 			// prioritize new child articles by URL title
@@ -509,14 +455,9 @@ public class PrioritizationStrategy {
 							maxChildArticlePriority = 0.0;
 						}
 
-						try {
-							KBArticleLocalServiceUtil.updatePriority(
-								childArticleResourcePrimKey,
-								maxChildArticlePriority + 1 + i);
-						}
-						catch (SystemException se) {
-							_log.error(se.getLocalizedMessage());
-						}
+						KBArticleLocalServiceUtil.updatePriority(
+							childArticleResourcePrimKey,
+							maxChildArticlePriority + 1 + i);
 					}
 				}
 			}
