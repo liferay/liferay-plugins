@@ -234,53 +234,61 @@ public class PrioritizationStrategy {
 					_importedChildArticlesMap.keySet();
 
 				for (String childArticlesKey : childArticlesKeySet) {
-					List<KBArticle> importedChildArticles =
-						_importedChildArticlesMap.get(childArticlesKey);
+					if (_importedChildArticlesMap != null) {
+						List<KBArticle> importedChildArticles =
+							_importedChildArticlesMap.get(childArticlesKey);
 
-					if (importedChildArticles.contains(article)) {
-						importedChildArticles.remove(article);
+						if (importedChildArticles.contains(article)) {
+							importedChildArticles.remove(article);
+						}
+
+						_importedChildArticlesMap.put(
+							childArticlesKey, importedChildArticles);
 					}
 
-					_importedChildArticlesMap.put(
-						childArticlesKey, importedChildArticles);
+					if (_importedChildUrlTitlesMap != null) {
+						List<String> importedChildArticlesUrlTitles =
+							_importedChildUrlTitlesMap.get(childArticlesKey);
 
-					List<String> importedChildArticlesUrlTitles =
-						_importedChildUrlTitlesMap.get(childArticlesKey);
+						if (importedChildArticlesUrlTitles.contains(key)) {
+							importedChildArticlesUrlTitles.remove(key);
+						}
 
-					if (importedChildArticlesUrlTitles.contains(key)) {
-						importedChildArticlesUrlTitles.remove(key);
+						_importedChildUrlTitlesMap.put(
+							childArticlesKey, importedChildArticlesUrlTitles);
 					}
 
-					_importedChildUrlTitlesMap.put(
-						childArticlesKey, importedChildArticlesUrlTitles);
+					if (_newChildArticlesMap != null) {
+						List<KBArticle> newChildArticles =
+							_newChildArticlesMap.get(childArticlesKey);
 
-					List<KBArticle> newChildArticles = _newChildArticlesMap.get(
-						childArticlesKey);
+						if (newChildArticles == null) {
+							continue;
+						}
 
-					if (newChildArticles == null) {
-						continue;
+						if (newChildArticles.contains(article)) {
+							newChildArticles.remove(article);
+						}
+
+						_newChildArticlesMap.put(
+							childArticlesKey, newChildArticles);
 					}
 
-					if (newChildArticles.contains(article)) {
-						newChildArticles.remove(article);
+					if (_newChildUrlTitlesMap != null) {
+						List<String> newChildArticlesUrlTitles =
+							_newChildUrlTitlesMap.get(childArticlesKey);
+
+						if (newChildArticlesUrlTitles == null) {
+							continue;
+						}
+
+						if (newChildArticlesUrlTitles.contains(key)) {
+							newChildArticlesUrlTitles.remove(key);
+						}
+
+						_newChildUrlTitlesMap.put(
+							childArticlesKey, newChildArticlesUrlTitles);
 					}
-
-					_newChildArticlesMap.put(
-						childArticlesKey, newChildArticles);
-
-					List<String> newChildArticlesUrlTitles =
-						_newChildUrlTitlesMap.get(childArticlesKey);
-
-					if (newChildArticlesUrlTitles == null) {
-						continue;
-					}
-
-					if (newChildArticlesUrlTitles.contains(key)) {
-						newChildArticlesUrlTitles.remove(key);
-					}
-
-					_newChildUrlTitlesMap.put(
-						childArticlesKey, newChildArticlesUrlTitles);
 				}
 			}
 		}
