@@ -905,7 +905,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		updatePermissionFields(
 			resourcePrimKey, parentResourceClassNameId, parentResourcePrimKey);
 
-		long kbFolderClassNameId = PortalUtil.getClassNameId(
+		long kbFolderClassNameId = classNameLocalService.getClassNameId(
 			KBFolderConstants.getClassName());
 
 		long kbFolderId = KBFolderConstants.DEFAULT_PARENT_FOLDER_ID;
@@ -1676,7 +1676,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			return resourcePrimKey;
 		}
 
-		long classNameId = PortalUtil.getClassNameId(
+		long classNameId = classNameLocalService.getClassNameId(
 			KBArticleConstants.getClassName());
 
 		if (parentResourceClassNameId == classNameId) {
@@ -1945,9 +1945,9 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			long resourceClassNameId, long resourcePrimKey)
 		throws PortalException {
 
-		long kbArticleClassNameId = PortalUtil.getClassNameId(
+		long kbArticleClassNameId = classNameLocalService.getClassNameId(
 			KBArticleConstants.getClassName());
-		long kbFolderClassNameId = PortalUtil.getClassNameId(
+		long kbFolderClassNameId = classNameLocalService.getClassNameId(
 			KBFolderConstants.getClassName());
 
 		if ((resourceClassNameId != kbArticleClassNameId) &&
