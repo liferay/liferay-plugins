@@ -163,10 +163,6 @@
 	.scheduler-view-agenda-info-container {
 		.scheduler-view-agenda-info {
 			line-height: 1.2;
-
-			.scheduler-view-agenda-info-biggie {
-				line-height: 30px;
-			}
 		}
 	}
 }
