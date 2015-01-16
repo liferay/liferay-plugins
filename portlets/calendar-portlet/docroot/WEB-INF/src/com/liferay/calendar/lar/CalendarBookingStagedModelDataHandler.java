@@ -209,7 +209,7 @@ public class CalendarBookingStagedModelDataHandler
 		// The root discussion message is not automatically imported when
 		// importing a calendar booking
 
-		List<MBMessage> mbMessageElements = getComments(
+		List<MBMessage> mbMessageElements = getMBMessageElements(
 			portletDataContext, calendarBooking.getCalendarBookingId());
 
 		if (ListUtil.isNotEmpty(mbMessageElements)) {
@@ -251,13 +251,15 @@ public class CalendarBookingStagedModelDataHandler
 		}
 	}
 
-	protected List<MBMessage> getComments(
+	protected List<MBMessage> getMBMessageElements(
 		PortletDataContext portletDataContext, long calendarBookingId) {
 
 		String className = CalendarBooking.class.getName();
 		String classPK = String.valueOf(calendarBookingId);
+
 		String primaryKeyString = className.concat(
 			StringPool.POUND).concat(classPK);
+
 		Map<String, List<MBMessage>> comments =
 			portletDataContext.getComments();
 
