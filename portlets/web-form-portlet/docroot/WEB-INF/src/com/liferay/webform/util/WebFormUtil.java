@@ -24,6 +24,7 @@ import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.expando.NoSuchTableException;
 import com.liferay.portlet.expando.model.ExpandoColumnConstants;
@@ -122,6 +123,23 @@ public class WebFormUtil {
 
 		return PortalUtil.getEmailFromName(
 			preferences, companyId, PortletPropsValues.EMAIL_FROM_NAME);
+	}
+
+	public static String getFileName(
+		ThemeDisplay themeDisplay, String portletId) {
+
+		StringBuffer sb = new StringBuffer(8);
+
+		sb.append(PortletPropsValues.DATA_ROOT_DIR);
+		sb.append(StringPool.FORWARD_SLASH);
+		sb.append(themeDisplay.getScopeGroupId());
+		sb.append(StringPool.FORWARD_SLASH);
+		sb.append(themeDisplay.getPlid());
+		sb.append(StringPool.FORWARD_SLASH);
+		sb.append(portletId);
+		sb.append(".csv");
+
+		return sb.toString();
 	}
 
 	public static String getNewDatabaseTableName(String portletId)
