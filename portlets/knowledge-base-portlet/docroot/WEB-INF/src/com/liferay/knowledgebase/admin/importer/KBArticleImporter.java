@@ -32,7 +32,6 @@ import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.StreamUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
-import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.kernel.zip.ZipReader;
@@ -246,9 +245,6 @@ public class KBArticleImporter {
 				groupId, parentKBFolderId, prioritizeUpdatedArticles,
 				prioritizeByNumericalPrefix);
 
-		Map<String, Double> importedUrlTitlesPrioritiesMap =
-			new HashMap<String, Double>();
-
 		Map<String, List<String>> folderNameFileEntryNamesMap =
 			getFolderNameFileEntryNamesMap(zipReader);
 
@@ -288,17 +284,8 @@ public class KBArticleImporter {
 					sectionIntroFileEntryName, zipReader, metadata,
 					serviceContext);
 
-				strategy.addImportedParentArticle(sectionIntroKBArticle);
-
-				if (prioritizeByNumericalPrefix) {
-					double folderNamePrefix = _getNumericalPrefix(folderName);
-
-					if (folderNamePrefix > 0) {
-						importedUrlTitlesPrioritiesMap.put(
-							sectionIntroKBArticle.getUrlTitle(),
-							folderNamePrefix);
-					}
-				}
+				strategy.addImportedParentArticle(
+					sectionIntroKBArticle, folderName);
 
 				sectionResourceClassNameId = PortalUtil.getClassNameId(
 					KBArticleConstants.getClassName());
@@ -326,46 +313,16 @@ public class KBArticleImporter {
 					sectionMarkdown, sectionFileEntryName, zipReader, metadata,
 					serviceContext);
 
-				if (prioritizeByNumericalPrefix) {
-					double sectionFileEntryNamePrefix = _getNumericalPrefix(
-						sectionFileEntryName);
-
-					if (sectionFileEntryNamePrefix > 0) {
-						importedUrlTitlesPrioritiesMap.put(
-							sectionKBArticle.getUrlTitle(),
-							sectionFileEntryNamePrefix);
-					}
-				}
-
-				strategy.addImportedChildArticle(sectionKBArticle);
+				strategy.addImportedChildArticle(
+					sectionKBArticle, sectionFileEntryName);
 
 				importedKBArticlesCount++;
 			}
 		}
 
-		strategy.addImportedUrlTitlesPriorities(importedUrlTitlesPrioritiesMap);
-
 		strategy.prioritizeArticles();
 
 		return importedKBArticlesCount;
-	}
-
-	private double _getNumericalPrefix(String path) {
-		int i = path.lastIndexOf(CharPool.SLASH);
-
-		if (i == -1) {
-			return KBArticleConstants.DEFAULT_PRIORITY;
-		}
-
-		String name = path.substring(i);
-
-		String numericalPrefix = StringUtil.extractLeadingDigits(name);
-
-		if (Validator.isNull(numericalPrefix)) {
-			return KBArticleConstants.DEFAULT_PRIORITY;
-		}
-
-		return Double.parseDouble(numericalPrefix);
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(KBArticleImporter.class);

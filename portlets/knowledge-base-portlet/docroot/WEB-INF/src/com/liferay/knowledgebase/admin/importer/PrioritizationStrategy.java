@@ -15,13 +15,17 @@
 package com.liferay.knowledgebase.admin.importer;
 
 import com.liferay.knowledgebase.model.KBArticle;
+import com.liferay.knowledgebase.model.KBArticleConstants;
 import com.liferay.knowledgebase.service.KBArticleLocalServiceUtil;
 import com.liferay.knowledgebase.service.KBArticleServiceUtil;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.util.CharPool;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 
 import java.util.ArrayList;
@@ -85,8 +89,17 @@ public class PrioritizationStrategy {
 		return prioritizationStrategy;
 	}
 
-	public void addImportedChildArticle(KBArticle childArticle)
+	public void addImportedChildArticle(KBArticle childArticle, String fileName)
 		throws PortalException, SystemException {
+
+		if (_prioritizeByNumericalPrefix) {
+			double sectionFileEntryNamePrefix = _getNumericalPrefix(fileName);
+
+			if (sectionFileEntryNamePrefix > 0) {
+				_importedUrlTitlesPrioritiesMap.put(
+					childArticle.getUrlTitle(), sectionFileEntryNamePrefix);
+			}
+		}
 
 		KBArticle parentArticle = childArticle.getParentKBArticle();
 
@@ -126,18 +139,23 @@ public class PrioritizationStrategy {
 		_importedChildUrlTitlesMap.put(parentUrlTitle, childUrlTitles);
 	}
 
-	public void addImportedParentArticle(KBArticle ParentArticle) {
+	public void addImportedParentArticle(
+		KBArticle ParentArticle, String fileName) {
+
 		_importedParentArticles.add(ParentArticle);
 
 		String importedParentUrlTitle = ParentArticle.getUrlTitle();
 
 		_importedParentUrlTitles.add(importedParentUrlTitle);
-	}
 
-	public void addImportedUrlTitlesPriorities(
-		Map<String, Double> importedUrlTitlesPrioritiesMap) {
+		if (_prioritizeByNumericalPrefix) {
+			double folderNamePrefix = _getNumericalPrefix(fileName);
 
-		_importedUrlTitlesPrioritiesMap = importedUrlTitlesPrioritiesMap;
+			if (folderNamePrefix > 0) {
+				_importedUrlTitlesPrioritiesMap.put(
+					ParentArticle.getUrlTitle(), folderNamePrefix);
+			}
+		}
 	}
 
 	public void prioritizeArticles() throws PortalException, SystemException {
@@ -462,6 +480,24 @@ public class PrioritizationStrategy {
 		_importedChildArticlesMap = new HashMap<String, List<KBArticle>>();
 		_importedChildUrlTitlesMap = new HashMap<String, List<String>>();
 		_importedUrlTitlesPrioritiesMap = new HashMap<String, Double>();
+	}
+
+	private double _getNumericalPrefix(String path) {
+		int i = path.lastIndexOf(CharPool.SLASH);
+
+		if (i == -1) {
+			return KBArticleConstants.DEFAULT_PRIORITY;
+		}
+
+		String name = path.substring(i);
+
+		String numericalPrefix = StringUtil.extractLeadingDigits(name);
+
+		if (Validator.isNull(numericalPrefix)) {
+			return KBArticleConstants.DEFAULT_PRIORITY;
+		}
+
+		return Double.parseDouble(numericalPrefix);
 	}
 
 	private void _initNewArticles() {
