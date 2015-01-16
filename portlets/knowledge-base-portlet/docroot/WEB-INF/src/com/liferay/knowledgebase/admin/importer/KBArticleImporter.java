@@ -277,7 +277,6 @@ public class KBArticleImporter {
 
 			long parentResourceClassNameId = PortalUtil.getClassNameId(
 				KBFolderConstants.getClassName());
-
 			long parentResourcePrimaryKey = parentKBFolderId;
 
 			long sectionResourceClassNameId = parentResourceClassNameId;
@@ -305,7 +304,6 @@ public class KBArticleImporter {
 
 				sectionResourceClassNameId = PortalUtil.getClassNameId(
 					KBArticleConstants.getClassName());
-
 				sectionResourcePrimaryKey =
 					sectionIntroKBArticle.getResourcePrimKey();
 
