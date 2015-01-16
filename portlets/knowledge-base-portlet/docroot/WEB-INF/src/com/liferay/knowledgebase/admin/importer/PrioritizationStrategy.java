@@ -140,20 +140,15 @@ public class PrioritizationStrategy {
 		_importedUrlTitlesPrioritiesMap = importedUrlTitlesPrioritiesMap;
 	}
 
-	public void prioritizeArticles(
-			long groupId, long parentKBFolderId,
-			boolean prioritizeUpdatedArticles,
-			boolean prioritizeByNumericalPrefix)
-		throws PortalException, SystemException {
-
-		if (prioritizeUpdatedArticles) {
+	public void prioritizeArticles() throws PortalException, SystemException {
+		if (_prioritizeUpdatedArticles) {
 			_initNonImportedArticles();
 		}
 		else {
 			_initNewArticles();
 		}
 
-		if (prioritizeByNumericalPrefix) {
+		if (_prioritizeByNumericalPrefix) {
 			Set<String> keySet = _importedUrlTitlesPrioritiesMap.keySet();
 
 			KBArticle article = null;
@@ -165,7 +160,7 @@ public class PrioritizationStrategy {
 			for (String key : keySet) {
 				article =
 					KBArticleLocalServiceUtil.getKBArticleByUrlTitle(
-						groupId, parentKBFolderId, key);
+						_groupId, _parentKBFolderId, key);
 
 				resourcePrimKey = article.getResourcePrimKey();
 
@@ -270,7 +265,7 @@ public class PrioritizationStrategy {
 
 		KBArticleComparator comparator = new KBArticleComparator();
 
-		if (prioritizeUpdatedArticles) {
+		if (_prioritizeUpdatedArticles) {
 
 			// prioritize all imported articles
 
@@ -317,7 +312,7 @@ public class PrioritizationStrategy {
 			for (int i = 0; i < parentSize; i++) {
 				KBArticle parentArticle =
 					KBArticleLocalServiceUtil.getKBArticleByUrlTitle(
-						groupId, parentKBFolderId,
+						_groupId, _parentKBFolderId,
 						_importedParentUrlTitles.get(i));
 
 				long parentResourcePrimKey = parentArticle.getResourcePrimKey();
@@ -402,7 +397,8 @@ public class PrioritizationStrategy {
 			for (int i = 0; i < parentSize; i++) {
 				KBArticle parentArticle =
 					KBArticleLocalServiceUtil.getKBArticleByUrlTitle(
-						groupId, parentKBFolderId, _newParentUrlTitles.get(i));
+						_groupId, _parentKBFolderId,
+						_newParentUrlTitles.get(i));
 
 				long parentResourcePrimKey = parentArticle.getResourcePrimKey();
 
@@ -453,6 +449,10 @@ public class PrioritizationStrategy {
 		Map<String, List<KBArticle>> existingChildArticlesMap,
 		Map<String, List<String>> existingChildUrlTitlesMap) {
 
+		_groupId = groupId;
+		_parentKBFolderId = parentKBFolderId;
+		_prioritizeUpdatedArticles = prioritizeUpdatedArticles;
+		_prioritizeByNumericalPrefix = prioritizeByNumericalPrefix;
 		_existingParentArticles = existingParentArticles;
 		_existingParentUrlTitles = existingParentUrlTitles;
 		_existingChildArticlesMap = existingChildArticlesMap;
@@ -585,6 +585,7 @@ public class PrioritizationStrategy {
 	private Map<String, List<String>> _existingChildUrlTitlesMap;
 	private List<KBArticle> _existingParentArticles;
 	private List<String> _existingParentUrlTitles;
+	private final long _groupId;
 	private Map<String, List<KBArticle>> _importedChildArticlesMap;
 	private Map<String, List<String>> _importedChildUrlTitlesMap;
 	private List<KBArticle> _importedParentArticles;
@@ -596,5 +597,8 @@ public class PrioritizationStrategy {
 	private List<String> _newParentUrlTitles;
 	private Map<String, List<KBArticle>> _nonImportedChildArticlesMap;
 	private List<KBArticle> _nonImportedParentArticles;
+	private final long _parentKBFolderId;
+	private boolean _prioritizeByNumericalPrefix;
+	private boolean _prioritizeUpdatedArticles;
 
 }
