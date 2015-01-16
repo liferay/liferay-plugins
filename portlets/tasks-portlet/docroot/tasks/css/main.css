@@ -19,7 +19,7 @@
 		height: 1em;
 		margin-top: 5px;
 
-		@include opacity(0.6);
+		opacity: 0.6;
 
 		table {
 			float: right;
@@ -305,6 +305,6 @@
 
 .tasks-portlet {
 	.control-wrapper, .filter-wrapper {
-		@include border-radius(4px);
+		border-radius: 4px;
 	}
 }

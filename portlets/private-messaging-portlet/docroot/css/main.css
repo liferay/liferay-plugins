@@ -235,7 +235,7 @@
 /* ---------- Extras ---------- */
 
 .private-messaging-portlet .controls {
-	@include border-radius(4px);
+	border-radius: 4px;
 }
 
 .ie7 .private-messaging-portlet {

@@ -273,7 +273,7 @@ input[type=button], input[type=reset], input[type=submit], #sign-in:hover, .aui-
 /* ---------- Extras ---------- */
 
 input[type=password], input[type=text], textarea, .aui-field-select select {
-	@include border-radius(5px);
+	border-radius: 5px;
 }
 
 input[type=password], input[type=text], textarea, #sign-in:active, .aui-field-select select {
@@ -281,7 +281,7 @@ input[type=password], input[type=text], textarea, #sign-in:active, .aui-field-se
 }
 
 button, input[type=button], input[type=reset], input[type=submit], #sign-in, .aui-button-disabled input[type], .aui-button-disabled input[type]:hover, .aui-button-disabled input[type]:focus, .aui-button-disabled button, .aui-button-disabled button:focus, .aui-button-disabled button:hover, .aui-dialog-hd, .aui-form-validator-message, .aui-panel-hd, .aui-state-default, .aui-tabview-list, .aui-tab, .aui-tab-content, .lfr-actions.lfr-extended, .lfr-header-row .aui-button-input, .lfr-header-row .aui-buttonitem-content, .lfr-header-row .lfr-actions.lfr-extended, .lfr-header-row .lfr-search-combobox {
-	@include border-radius(3px);
+	border-radius: 3px;
 }
 
 button, input[type=button], input[type=reset], input[type=submit], #sign-in, .aui-button-disabled input[type], .aui-button-disabled input[type]:focus, .aui-button-disabled input[type]:hover, .aui-button-disabled button, .aui-button-disabled button:hover, .aui-button-disabled button:focus, .aui-dialog-hd, .aui-panel-hd, .aui-state-default, .aui-tabview-list, .aui-tab, .aui-tab-content, .lfr-actions.lfr-extended, .lfr-header-row .aui-button-input, .lfr-header-row .aui-buttonitem-content, .lfr-header-row .lfr-actions.lfr-extended, .lfr-header-row .lfr-search-combobox {
@@ -299,11 +299,11 @@ input[type=button], input[type=reset], input[type=submit], .aui-state-hover, .lf
 }
 
 #loginPage .portlet, #loginPage .portlet-login .navigation {
-	@include border-radius(4px);
+	border-radius: 4px;
 }
 
 .aui-panel-hd button, .aui-panel-hd .aui-button, .aui-panel-hd .aui-state-default, .aui-tab-content, .aui-textboxlistentry-holder .aui-field-input-text, .aui-toolbar-item, .aui-toolbar .aui-toolbar-item {
-	@include border-radius(0);
+	border-radius: 0;
 }
 
 .aui-panel-hd button, .aui-panel-hd .aui-button, .aui-panel-hd .aui-state-default, .aui-tabview-list .aui-tab-active .aui-tab-content, .aui-tabview-list .aui-tab-active .aui-tab-content:hover, .aui-textboxlistentry-holder .aui-field-input-text {
@@ -311,23 +311,23 @@ input[type=button], input[type=reset], input[type=submit], .aui-state-hover, .lf
 }
 
 .aui-toolbar .aui-toolbar-first {
-	@include border-radius(3px 0 0 3px);
+	border-radius: 3px 0 0 3px;
 }
 
 .aui-toolbar .aui-toolbar-last {
-	@include border-radius(0 3px 3px 0);
+	border-radius: 0 3px 3px 0;
 }
 
 .aui-dialog .yui3-widget-hd, .aui-dialog-hd, .aui-panel-hd, .aui-tabview-list {
-	@include border-radius(3px 3px 0 0);
+	border-radius: 3px 3px 0 0;
 }
 
 .aui-tabview-list {
 	.aui-tab:first-child, .first, .first .aui-tab-content {
-		@include border-radius(3px 0 0 0);
+		border-radius: 3px 0 0 0;
 	}
 
 	.last, .last .aui-tab-content {
-		@include border-radius(0 3px 0 0);
+		border-radius: 0 3px 0 0;
 	}
 }

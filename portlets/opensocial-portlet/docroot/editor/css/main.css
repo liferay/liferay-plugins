@@ -58,17 +58,17 @@
 			.gadget-editor-tree-node-contextmenuicon-open {
 				display: inline;
 
-				@include opacity(0.5);
+				opacity: 0.5;
 			}
 
 			&:hover {
 				.gadget-editor-tree-node-contextmenuicon {
 					display: inline;
 
-					@include opacity(0.5);
+					opacity: 0.5;
 
 					&:hover {
-						@include opacity(1);
+						opacity: 1;
 					}
 				}
 			}
@@ -90,10 +90,10 @@
 				color: #555;
 				margin-left: 4px;
 
-				@include opacity(0.5);
+				opacity: 0.5;
 
 				&:hover {
-					@include opacity(1);
+					opacity: 1;
 
 					text-decoration: none;
 				}
@@ -121,10 +121,10 @@
 }
 
 .ie .opensocial-portlet-editor .tabview-list .tab-content .gadget-editor-tab-close {
-	@include opacity(0.2);
+	opacity: 0.2;
 
 	&:hover {
-		@include opacity(1);
+		opacity: 1;
 
 		zoom: 1;
 	}

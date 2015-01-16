@@ -153,7 +153,7 @@ body.so-classic {
 	}
 
 	.invite-members, .social-relations a {
-		@include border-radius(4px);
+		border-radius: 4px;
 
 		&:hover, &:focus {
 			text-decoration: none;

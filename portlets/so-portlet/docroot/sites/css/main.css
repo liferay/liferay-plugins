@@ -6,7 +6,7 @@ $defaultTextColor: #202020;
 @mixin menu-mix {
 	background-color: #FFF;
 
-	@include border-radius(4px);
+	border-radius: 4px;
 	@include box-shadow(0 1px 3px rgba(0, 0, 0, 0.78));
 }
 
@@ -132,7 +132,7 @@ $defaultTextColor: #202020;
 		}
 
 		&, li:hover {
-			@include border-radius(4px);
+			border-radius: 4px;
 		}
 	}
 
@@ -425,7 +425,7 @@ $defaultTextColor: #202020;
 			a, a:hover, li.has-menu:hover a {
 				background-color: transparent;
 
-				@include border-radius(0);
+				border-radius: 0;
 				@include box-shadow(none);
 
 				color: $defaultTextColor;
@@ -451,7 +451,7 @@ $defaultTextColor: #202020;
 				background: #FFF;
 				border: 1px solid #1C2125;
 
-				@include border-radius(20px);
+				border-radius: 20px;
 				@include box-shadow(0 1px 2px rgba(0, 0, 0, 0.4) inset);
 
 				color: #202020;
@@ -641,6 +641,6 @@ $defaultTextColor: #202020;
 
 .so-portlet-sites ul.site-list {
 	&, li:hover {
-		@include border-radius(4px);
+		border-radius: 4px;
 	}
 }

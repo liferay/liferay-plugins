@@ -131,7 +131,7 @@ div#navigation {
 			}
 
 			.btn {
-				@include border-radius(4px);
+				border-radius: 4px;
 
 				display: block;
 				float: right;
@@ -257,7 +257,7 @@ a {
 }
 
 .button {
-	@include border-radius(4px);
+	border-radius: 4px;
 
 	&:hover {
 		text-decoration: none;
@@ -504,7 +504,7 @@ input, textarea {
 }
 
 .invite-members, .social-relations a {
-	@include border-radius(4px);
+	border-radius: 4px;
 	@include button-default;
 
 	&:hover, &:focus {
@@ -603,7 +603,7 @@ input, textarea {
 }
 
 .controls-hidden {
-	@include border-radius(4px);
+	border-radius: 4px;
 
 	.delete-tab {
 		display: none;
@@ -1342,7 +1342,7 @@ input, textarea {
 				background-color: #FFF;
 				border: 1px solid $defaultBorderColor;
 
-				@include border-radius(4px);
+				border-radius: 4px;
 				@include box-shadow(-4px 0 15px -7px rgba(0, 0, 0, 0.6));
 
 				display: block;
@@ -1399,7 +1399,7 @@ input, textarea {
 			background: #FFF;
 			border: 2px solid #2D8308;
 
-			@include border-radius(4px 0 0 4px);
+			border-radius: 4px 0 0 4px;
 
 			border-right-width: 0;
 			margin-right: 1px;
@@ -1515,7 +1515,7 @@ input, textarea {
 	}
 
 	.thumbnail {
-		@include border-radius(0);
+		border-radius: 0;
 
 		border-width: 0;
 		height: 50px;
@@ -1576,7 +1576,7 @@ input, textarea {
 
 .private-messaging-portlet {
 	.controls {
-		@include border-radius(0);
+		border-radius: 0;
 
 		border-width: 0 0 1px;
 	}
@@ -1693,14 +1693,14 @@ input, textarea {
 			}
 
 			.aui-field-input {
-				@include border-radius(4px 0 0 4px);
+				border-radius: 4px 0 0 4px;
 
 				margin-right: -1px;
 				width: 9em;
 			}
 
 			.aui-button-submit input {
-				@include border-radius(0 4px 4px 0);
+				border-radius: 0 4px 4px 0;
 			}
 		}
 
@@ -1723,7 +1723,7 @@ input, textarea {
 	}
 
 	.page-actions a, .toc a.toc-trigger {
-		@include border-radius(4px);
+		border-radius: 4px;
 		@include button-default;
 
 		display: inline-block;
@@ -1852,7 +1852,7 @@ input, textarea {
 
 	.portlet-asset-publisher, .portlet-message-boards {
 		.message-container .thread-top .answer {
-			@include border-radius(4px);
+			border-radius: 4px;
 
 			border-width: 2px;
 			display: block;
@@ -1895,7 +1895,7 @@ input, textarea {
 	.modal {
 		bottom: 0;
 
-		@include border-radius(0);
+		border-radius: 0;
 
 		border-width: 0;
 		height: 100% !important;

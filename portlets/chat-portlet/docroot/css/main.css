@@ -19,7 +19,7 @@ html body {
 	z-index: 1000;
 
 	.status-message, .trigger-name {
-		@include text-shadow(1px 1px #FFF);
+		text-shadow: 1px 1px #FFF;
 	}
 }
 
@@ -141,7 +141,7 @@ html body {
 
 	&.loading.selected {
 		.chat-panel .panel-window .panel-content {
-			@include opacity(0.3);
+			opacity: 0.3;
 
 			li:hover {
 				background: none;
@@ -516,9 +516,9 @@ pre.chat-height-monitor {
 /* ---------- Extras ---------- */
 
 .chat-bar div ul li.selected .panel-trigger {
-	@include border-radius(0 4px);
+	border-radius: 0 4px;
 }
 
 .panel-window {
-	@include border-radius(4px 4px 0 4px);
+	border-radius: 4px 4px 0 4px;
 }

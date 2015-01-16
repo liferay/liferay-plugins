@@ -117,7 +117,7 @@ $red: #8F0920;
 @mixin input-field-default {
 	background: #FFF;
 
-	@include border-radius(4px);
+	border-radius: 4px;
 	@include default-border;
 
 	vertical-align: middle;
@@ -131,7 +131,7 @@ $red: #8F0920;
 @mixin menu-style {
 	background: #FFF;
 
-	@include border-radius(4px);
+	border-radius: 4px;
 
 	border-color: $defaultBorderColor;
 
@@ -160,7 +160,7 @@ $red: #8F0920;
 	background-color: #EEE;
 	background-image: none;
 
-	@include border-radius(4px);
+	border-radius: 4px;
 
 	color: #2571AD;
 	display: inline-block;

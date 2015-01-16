@@ -149,7 +149,7 @@ $defaultTextColor: #202020;
 		.user-notifications-count {
 			background-color: #FFF;
 
-			@include border-radius(50%);
+			border-radius: 50%;
 
 			border-width: 0;
 			box-sizing: border-box;
@@ -173,7 +173,7 @@ $defaultTextColor: #202020;
 
 		.container-fluid .dockbar-item, .nav .user-avatar .user-avatar-link {
 			.user-avatar-image {
-				@include border-radius(50%);
+				border-radius: 50%;
 				@include box-shadow(none);
 
 				height: 22px;
@@ -392,7 +392,7 @@ $defaultTextColor: #202020;
 							a {
 								background: transparent;
 
-								@include border-radius(0);
+								border-radius: 0;
 
 								font-size: 1em;
 								line-height: 2.4em;
@@ -474,7 +474,7 @@ $defaultTextColor: #202020;
 						.user-notification {
 							background-color: #DDD;
 
-							@include border-radius(0);
+							border-radius: 0;
 							@include hover-transition;
 
 							margin-bottom: 0;
@@ -511,7 +511,7 @@ $defaultTextColor: #202020;
 			background: transparent;
 			border-bottom-width: 0;
 
-			@include border-radius(0);
+			border-radius: 0;
 
 			margin-bottom: 0;
 

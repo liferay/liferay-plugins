@@ -62,7 +62,7 @@ $microblogs-border-color: #EAEAEA;
 		.microblogs-countdown {
 			background: #CFD8E1;
 
-			@include border-radius(3px);
+			border-radius: 3px;
 
 			color: #FFF;
 			opacity: 0.5;
@@ -93,7 +93,7 @@ $microblogs-border-color: #EAEAEA;
 		&, &:focus, &.inactive {
 			border: 1px solid #EAEAEA;
 
-			@include border-radius(3px);
+			border-radius: 3px;
 		}
 
 		.textarea {

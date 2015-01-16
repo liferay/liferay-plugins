@@ -707,11 +707,11 @@ $section-header-bg: #CCE6F7;
 
 .contacts-portlet {
 	.contacts-container .alert.alert-success {
-		@include border-radius(0);
+		border-radius: 0;
 	}
 
 	.profile-actions {
-		@include border-radius(4px);
+		border-radius: 4px;
 	}
 }
 
@@ -823,7 +823,7 @@ $section-header-bg: #CCE6F7;
 				background-color: #EEE;
 				background-color: rgba(0,0,0, 0.4);
 
-				@include border-radius(0 8px 8px 0);
+				border-radius: 0 8px 8px 0;
 
 				cursor: pointer;
 				display: inline-block;

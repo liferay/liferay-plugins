@@ -211,11 +211,11 @@
 }
 
 .calendar-portlet-event-loading {
-	@include opacity(0.5);
+	opacity: 0.5;
 }
 
 .calendar-portlet-event-maybe, .calendar-portlet-event-pending {
-	@include opacity(0.8);
+	opacity: 0.8;
 }
 
 .calendar-portlet-event-recorder {
@@ -341,7 +341,7 @@
 	}
 
 	.scheduler-event-disabled {
-		@include opacity(0.8);
+		opacity: 0.8;
 	}
 }
 
@@ -365,7 +365,7 @@
 }
 
 .scheduler-event-past {
-	@include opacity(0.4);
+	opacity: 0.4;
 }
 
 .scheduler-event-recorder-body select {
@@ -548,19 +548,19 @@
 }
 
 .scheduler-event-recorder-content, .calendar-portlet .yui3-calendar-day {
-	@include border-radius(2px);
+	border-radius: 2px;
 }
 
 .calendar-portlet-wrapper {
-	@include border-radius(5px);
+	border-radius: 5px;
 }
 
 .calendar-list-item .calendar-list-item-color, .calendar-list-item-arrow, .calendar-list-item-arrow .icon-caret-down {
-	@include border-radius(3px);
+	border-radius: 3px;
 }
 
 .simple-color-picker-item {
-	@include border-radius(1px);
+	border-radius: 1px;
 }
 
 .simple-menu-content {

@@ -353,7 +353,7 @@ $default-border-color: #E7E7E7;
 		.field-element {
 			border: 1px solid #C7D0DA;
 
-			@include border-radius(5px);
+			border-radius: 5px;
 			@include box-shadow(0 1px 3px #C9C9C9 inset);
 
 			display: block;
