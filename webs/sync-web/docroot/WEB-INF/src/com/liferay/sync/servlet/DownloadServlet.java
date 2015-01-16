@@ -23,6 +23,7 @@ import com.liferay.portal.kernel.repository.model.FileVersion;
 import com.liferay.portal.kernel.servlet.PortalSessionThreadLocal;
 import com.liferay.portal.kernel.servlet.ServletResponseUtil;
 import com.liferay.portal.kernel.util.CharPool;
+import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.MimeTypesUtil;
@@ -194,12 +195,19 @@ public class DownloadServlet extends HttpServlet {
 				fileEntry.getFileEntryId(), targetVersion);
 
 		if (!PortletPropsValues.SYNC_FILE_DIFF_CACHE_ENABLED) {
-			File deltaFile = getDeltaFile(
-				user.getUserId(), fileEntry.getFileEntryId(), sourceVersion,
-				targetVersion);
+			File deltaFile = null;
 
-			return new DownloadServletInputStream(
-				new FileInputStream(deltaFile), deltaFile.length());
+			try {
+				deltaFile = getDeltaFile(
+					user.getUserId(), fileEntry.getFileEntryId(), sourceVersion,
+					targetVersion);
+
+				return new DownloadServletInputStream(
+					new FileInputStream(deltaFile), deltaFile.length());
+			}
+			finally {
+				FileUtil.delete(deltaFile);
+			}
 		}
 
 		SyncDLFileVersionDiff syncDLFileVersionDiff =
@@ -213,15 +221,23 @@ public class DownloadServlet extends HttpServlet {
 				syncDLFileVersionDiff.getSyncDLFileVersionDiffId());
 		}
 		else {
-			File deltaFile = getDeltaFile(
-				user.getUserId(), fileEntry.getFileEntryId(), sourceVersion,
-				targetVersion);
+			File deltaFile = null;
 
-			syncDLFileVersionDiff =
-				SyncDLFileVersionDiffLocalServiceUtil.addSyncDLFileVersionDiff(
-					fileEntry.getFileEntryId(),
-					sourceFileVersion.getFileVersionId(),
-					targetFileVersion.getFileVersionId(), deltaFile);
+			try {
+				deltaFile = getDeltaFile(
+					user.getUserId(), fileEntry.getFileEntryId(), sourceVersion,
+					targetVersion);
+
+				syncDLFileVersionDiff =
+					SyncDLFileVersionDiffLocalServiceUtil.
+						addSyncDLFileVersionDiff(
+							fileEntry.getFileEntryId(),
+							sourceFileVersion.getFileVersionId(),
+							targetFileVersion.getFileVersionId(), deltaFile);
+			}
+			finally {
+				FileUtil.delete(deltaFile);
+			}
 		}
 
 		FileEntry dataFileEntry = PortletFileRepositoryUtil.getPortletFileEntry(
