@@ -1,4 +1,4 @@
-@import "compass";
+@import "bourbon";
 
 @import url(./so_core.css);
 @import url(./color_schemes/so_classic.css);

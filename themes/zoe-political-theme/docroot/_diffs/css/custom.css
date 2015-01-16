@@ -1,4 +1,4 @@
-@import "compass";
+@import "bourbon";
 
 @import url(color_schemes/democrat.css);
 @import url(color_schemes/republican.css);

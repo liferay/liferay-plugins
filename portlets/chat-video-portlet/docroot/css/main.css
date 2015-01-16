@@ -1,4 +1,4 @@
-@import "compass";
+@import "bourbon";
 
 $preferredPadding: 10px;
 $remoteVideoHeight: 165px;
