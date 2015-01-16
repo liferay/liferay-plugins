@@ -323,8 +323,8 @@ public class KBArticleImporter {
 				KBArticle sectionKBArticle = addKBArticleMarkdown(
 					userId, groupId, parentKBFolderId,
 					sectionResourceClassNameId, sectionResourcePrimaryKey,
-					zipReader.getEntryAsString(sectionFileEntryName),
-					sectionFileEntryName, zipReader, metadata, serviceContext);
+					sectionMarkdown, sectionFileEntryName, zipReader, metadata,
+					serviceContext);
 
 				if (prioritizeByNumericalPrefix) {
 					double sectionFileEntryNamePrefix = _getNumericalPrefix(
