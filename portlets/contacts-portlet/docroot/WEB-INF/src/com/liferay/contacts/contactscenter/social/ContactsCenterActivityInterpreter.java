@@ -69,7 +69,7 @@ public class ContactsCenterActivityInterpreter
 		int activityType = activity.getType();
 
 		if (activityType == SocialRelationConstants.TYPE_BI_CONNECTION) {
-			return "activity-contacts-portlet-summary-add-friend";
+			return "activity-social-networking-summary-add-connection";
 		}
 
 		return StringPool.BLANK;

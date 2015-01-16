@@ -73,7 +73,7 @@ public class ContactsCenterRequestInterpreter
 		String creatorUserNameURL = sb.toString();
 
 		String title = themeDisplay.translate(
-			"request-social-networking-summary-add-friend",
+			"request-social-networking-summary-add-connection",
 			new Object[] {creatorUserNameURL});
 
 		return new SocialRequestFeedEntry(title, StringPool.BLANK);
@@ -86,7 +86,7 @@ public class ContactsCenterRequestInterpreter
 		try {
 			SocialRelationLocalServiceUtil.addRelation(
 				request.getUserId(), request.getReceiverUserId(),
-				SocialRelationConstants.TYPE_BI_FRIEND);
+				SocialRelationConstants.TYPE_BI_CONNECTION);
 
 			SocialActivityLocalServiceUtil.addActivity(
 				request.getUserId(), 0, User.class.getName(),
