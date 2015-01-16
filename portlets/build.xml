@@ -243,10 +243,6 @@ portal-dependency-jars=vaadin.jar</echo>
 					tofile="${portlet.dir}/docroot/WEB-INF/src/${portlet.java.package.name}/${portlet.java.class.name}PortletViewController.java"
 				/>
 				
-				<move
-					file="${portlet.dir}/docroot/WEB-INF/jsp/init.jspf"
-					tofile="${portlet.dir}/docroot/WEB-INF/jsp/init.jspf"
-				/>
 
 				<move
 					file="${portlet.dir}/docroot/WEB-INF/jsp/view.jsp"
