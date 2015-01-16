@@ -41,9 +41,7 @@ public class PrioritizationStrategy {
 		long groupId, long parentKBFolderId, boolean prioritizeUpdatedArticles,
 		boolean prioritizeByNumericalPrefix) throws SystemException {
 
-		List<KBArticle> existingParentArticles = null;
-
-		existingParentArticles =
+		List<KBArticle> existingParentArticles =
 			KBArticleServiceUtil.getKBArticles(
 				groupId, parentKBFolderId, WorkflowConstants.STATUS_ANY,
 				QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
@@ -63,9 +61,7 @@ public class PrioritizationStrategy {
 		for (KBArticle existingParentArticle : existingParentArticles) {
 			long resourcePrimKey = existingParentArticle.getResourcePrimKey();
 
-			List<KBArticle> existingChildArticles = null;
-
-			existingChildArticles =
+			List<KBArticle> existingChildArticles =
 				KBArticleServiceUtil.getKBArticles(
 					groupId, resourcePrimKey, WorkflowConstants.STATUS_ANY,
 					QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
@@ -111,9 +107,7 @@ public class PrioritizationStrategy {
 	public void addImportedChildArticle(KBArticle childArticle)
 		throws PortalException, SystemException {
 
-		KBArticle parentArticle = null;
-
-		parentArticle = childArticle.getParentKBArticle();
+		KBArticle parentArticle = childArticle.getParentKBArticle();
 
 		String parentUrlTitle = StringPool.BLANK;
 
@@ -340,9 +334,7 @@ public class PrioritizationStrategy {
 			int parentSize = _importedParentUrlTitles.size();
 
 			for (int i = 0; i < parentSize; i++) {
-				KBArticle parentArticle = null;
-
-				parentArticle =
+				KBArticle parentArticle =
 					KBArticleLocalServiceUtil.getKBArticleByUrlTitle(
 						groupId, parentKBFolderId,
 						_importedParentUrlTitles.get(i));
@@ -427,9 +419,7 @@ public class PrioritizationStrategy {
 			int parentSize = _newParentUrlTitles.size();
 
 			for (int i = 0; i < parentSize; i++) {
-				KBArticle parentArticle = null;
-
-				parentArticle =
+				KBArticle parentArticle =
 					KBArticleLocalServiceUtil.getKBArticleByUrlTitle(
 						groupId, parentKBFolderId, _newParentUrlTitles.get(i));
 
