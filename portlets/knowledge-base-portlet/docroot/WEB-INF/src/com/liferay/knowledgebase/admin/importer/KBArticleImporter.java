@@ -347,9 +347,7 @@ public class KBArticleImporter {
 
 		strategy.addImportedUrlTitlesPriorities(importedUrlTitlesPrioritiesMap);
 
-		strategy.prioritizeArticles(
-			groupId, parentKBFolderId, prioritizeUpdatedArticles,
-			prioritizeByNumericalPrefix);
+		strategy.prioritizeArticles();
 
 		return importedKBArticleCount;
 	}
