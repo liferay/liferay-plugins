@@ -261,7 +261,7 @@ public class ConfigurationActionImpl extends DefaultConfigurationAction {
 			}
 		}
 
-		if (saveToFile && PortletPropsValues.FILE_ALLOW_CUSTOM_PATH) {
+		if (saveToFile && PortletPropsValues.DATA_FILE_PATH_CHANGEABLE) {
 			String fileName = getParameter(actionRequest, "fileName");
 
 			// Check if server can create a file as specified

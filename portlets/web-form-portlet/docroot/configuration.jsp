@@ -98,7 +98,7 @@ if (WebFormUtil.getTableRowsCount(company.getCompanyId(), databaseTableName) > 0
 				<aui:input name="preferences--saveToFile--" type="checkbox" value="<%= saveToFile %>" />
 
 				<c:choose>
-					<c:when test="<%= PortletPropsValues.FILE_ALLOW_CUSTOM_PATH %>">
+					<c:when test="<%= PortletPropsValues.DATA_FILE_PATH_CHANGEABLE %>">
 						<aui:input label="path-and-file-name" name="preferences--fileName--" value="<%= fileName %>" wrapperCssClass="lfr-input-text-container" />
 					</c:when>
 					<c:otherwise>

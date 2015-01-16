@@ -199,7 +199,7 @@ public class WebFormPortlet extends MVCPortlet {
 			}
 
 			if (saveToFile) {
-				if (!PortletPropsValues.FILE_ALLOW_CUSTOM_PATH) {
+				if (!PortletPropsValues.DATA_FILE_PATH_CHANGEABLE) {
 					fileName = WebFormUtil.getFileName(themeDisplay, portletId);
 				}
 
