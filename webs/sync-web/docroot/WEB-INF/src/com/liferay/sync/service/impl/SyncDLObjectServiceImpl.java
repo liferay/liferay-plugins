@@ -851,35 +851,44 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 
 		Map<String, Object> responseMap = new HashMap<>();
 
-		ZipReader zipReader = ZipReaderFactoryUtil.getZipReader(zipFile);
+		ZipReader zipReader = null;
 
-		String manifest = zipReader.getEntryAsString("/manifest.json");
+		try {
+			zipReader = ZipReaderFactoryUtil.getZipReader(zipFile);
 
-		JSONArray jsonArray = JSONFactoryUtil.createJSONArray(manifest);
+			String manifest = zipReader.getEntryAsString("/manifest.json");
 
-		for (int i = 0; i < jsonArray.length(); i++) {
-			JSONObject jsonObject = jsonArray.getJSONObject(i);
+			JSONArray jsonArray = JSONFactoryUtil.createJSONArray(manifest);
 
-			JSONWebServiceActionParametersMap
-				jsonWebServiceActionParametersMap =
-					JSONFactoryUtil.looseDeserialize(
-						jsonObject.toString(),
-						JSONWebServiceActionParametersMap.class);
+			for (int i = 0; i < jsonArray.length(); i++) {
+				JSONObject jsonObject = jsonArray.getJSONObject(i);
 
-			String zipFileId = MapUtil.getString(
-				jsonWebServiceActionParametersMap, "zipFileId");
+				JSONWebServiceActionParametersMap
+					jsonWebServiceActionParametersMap =
+						JSONFactoryUtil.looseDeserialize(
+							jsonObject.toString(),
+							JSONWebServiceActionParametersMap.class);
 
-			try {
-				responseMap.put(
-					zipFileId,
-					updateFileEntries(
-						zipReader, zipFileId,
-						jsonWebServiceActionParametersMap));
+				String zipFileId = MapUtil.getString(
+					jsonWebServiceActionParametersMap, "zipFileId");
+
+				try {
+					responseMap.put(
+						zipFileId,
+						updateFileEntries(
+							zipReader, zipFileId,
+							jsonWebServiceActionParametersMap));
+				}
+				catch (Exception e) {
+					String json = "{\"exception\": \"" + e.getMessage() + "\"}";
+
+					responseMap.put(zipFileId, json);
+				}
 			}
-			catch (Exception e) {
-				String json = "{\"exception\": \"" + e.getMessage() + "\"}";
-
-				responseMap.put(zipFileId, json);
+		}
+		finally {
+			if (zipReader != null) {
+				zipReader.close();
 			}
 		}
 
