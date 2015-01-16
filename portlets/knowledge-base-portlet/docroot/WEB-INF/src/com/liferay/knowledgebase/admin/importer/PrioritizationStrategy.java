@@ -20,8 +20,6 @@ import com.liferay.knowledgebase.service.KBArticleServiceUtil;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
@@ -48,10 +46,6 @@ public class PrioritizationStrategy {
 
 		List<String> existingParentUrlTitles = new ArrayList<String>();
 
-		for (KBArticle existingParentArticle : existingParentArticles) {
-			existingParentUrlTitles.add(existingParentArticle.getUrlTitle());
-		}
-
 		Map<String, List<KBArticle>> existingChildArticlesMap =
 				new HashMap<String, List<KBArticle>>();
 
@@ -59,6 +53,8 @@ public class PrioritizationStrategy {
 			new HashMap<String, List<String>>();
 
 		for (KBArticle existingParentArticle : existingParentArticles) {
+			existingParentUrlTitles.add(existingParentArticle.getUrlTitle());
+
 			long resourcePrimKey = existingParentArticle.getResourcePrimKey();
 
 			List<KBArticle> existingChildArticles =
