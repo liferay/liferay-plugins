@@ -570,14 +570,6 @@ public class PrioritizationStrategy {
 			}
 		}
 
-		_nonImportedParentUrlTitles = new ArrayList<String>();
-
-		for (KBArticle article : _nonImportedParentArticles) {
-			String urlTitle = article.getUrlTitle();
-
-			_nonImportedParentUrlTitles.add(urlTitle);
-		}
-
 		_nonImportedChildArticlesMap = new HashMap<String, List<KBArticle>>();
 
 		Set<String> keySet = _existingChildArticlesMap.keySet();
@@ -611,29 +603,7 @@ public class PrioritizationStrategy {
 				_nonImportedChildArticlesMap.put(key, nonImportedChildArticles);
 			}
 		}
-
-		_nonImportedChildUrlTitlesMap = new HashMap<String, List<String>>();
-
-		Set<String> nonImportedKeySet = _nonImportedChildArticlesMap.keySet();
-
-		for (String key : nonImportedKeySet) {
-			List<KBArticle> nonImportedChildArticles =
-				new ArrayList<KBArticle>();
-
-			List<String> urlTitles = new ArrayList<String>();
-
-			for (KBArticle article : nonImportedChildArticles) {
-				String urlTitle = article.getUrlTitle();
-
-				urlTitles.add(urlTitle);
-			}
-
-			_nonImportedChildUrlTitlesMap.put(key, urlTitles);
-		}
 	}
-
-	private static Log _log = LogFactoryUtil.getLog(
-		PrioritizationStrategy.class);
 
 	private Map<String, List<KBArticle>> _existingChildArticlesMap;
 	private Map<String, List<String>> _existingChildUrlTitlesMap;
@@ -649,8 +619,6 @@ public class PrioritizationStrategy {
 	private List<KBArticle> _newParentArticles;
 	private List<String> _newParentUrlTitles;
 	private Map<String, List<KBArticle>> _nonImportedChildArticlesMap;
-	private Map<String, List<String>> _nonImportedChildUrlTitlesMap;
 	private List<KBArticle> _nonImportedParentArticles;
-	private List<String> _nonImportedParentUrlTitles;
 
 }
