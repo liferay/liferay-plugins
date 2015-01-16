@@ -1,0 +1,63 @@
+String userDir = System.getProperty("user.dir");
+
+FileTree fileTree = fileTree(userDir) {
+	if ((pluginsIncludes != "") && (pluginsIncludes != "*")) {
+		pluginsIncludes = pluginsIncludes.replaceAll(" ", "");
+		pluginsIncludes = pluginsIncludes.replaceAll(",+", ",");
+
+		String[] pluginsIncludesArray = pluginsIncludes.split(",");
+
+		pluginsIncludesArray = pluginsIncludesArray.collect(
+			{
+				"**/" + it + "/build.gradle"
+			}
+		);
+ 
+		pluginsIncludesArray.each(
+			{
+				include(it)
+			}
+		);
+	}
+	else {
+		include("**/build.gradle")
+	}
+ 
+	if ((pluginsExcludes != "") && (pluginsExcludes != "*")) {
+		pluginsExcludes = pluginsExcludes.replaceAll(" ", "");
+		pluginsExcludes = pluginsExcludes.replaceAll(",+", ",");
+
+		String[] pluginsExcludesArray = pluginsExcludes.split(",");
+
+		pluginsExcludesArray = pluginsExcludesArray.collect(
+			{
+				"**/" + it + "/build.gradle"
+			}
+		);
+ 
+		pluginsExcludesArray.each(
+			{
+				exclude(it)
+			}
+		);
+	}
+	else {
+		exclude("**/build.gradle")
+	}
+}
+
+fileTree.each(
+	{
+		URI rootURI = rootDir.toURI();
+
+		URI pluginURI = it.toURI();
+
+		pluginURI = rootURI.relativize(pluginURI);
+
+		String pluginDir = pluginURI.toString();
+
+		pluginDir = pluginDir.replaceFirst("/build.gradle", "");
+
+		include(":" + pluginDir.replaceAll("[\\/]", ":"));
+	}
+);
