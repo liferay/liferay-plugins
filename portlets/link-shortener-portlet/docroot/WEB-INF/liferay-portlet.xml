@@ -3,10 +3,8 @@
 
 <liferay-portlet-app>
 	<portlet>
-		<portlet-name>auto-shortener</portlet-name>
-		<header-portlet-css>/css/main.css</header-portlet-css>
-		<footer-portlet-javascript>/js/main.js</footer-portlet-javascript>
-		<css-class-wrapper>auto-shortener-portlet</css-class-wrapper>
+		<portlet-name>1</portlet-name>
+		<css-class-wrapper>short-link-generator-portlet</css-class-wrapper>
 	</portlet>
 	<role-mapper>
 		<role-name>administrator</role-name>
