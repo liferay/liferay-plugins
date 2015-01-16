@@ -95,7 +95,7 @@
 			<elseif>
 				<os arch="amd64" family="unix" />
 				<then>
-					<propertycopy from="nodejs.url[linux32]" name="nodejs.url" />
+					<propertycopy from="nodejs.url[linux64]" name="nodejs.url" />
 				</then>
 			</elseif>
 			<elseif>
@@ -107,7 +107,7 @@
 			<elseif>
 				<os arch="amd64" family="windows" />
 				<then>
-					<propertycopy from="nodejs.url[windows32]" name="nodejs.url" />
+					<propertycopy from="nodejs.url[windows64]" name="nodejs.url" />
 				</then>
 			</elseif>
 		</if>
@@ -156,9 +156,21 @@ ${nodejs.url[osx64]}.
 					<then>
 						<untar
 							compression="gzip"
-							dest="tools/templates/node-v${nodejs.version}"
+							dest="tools"
 							src="${nodejs.file}"
 						/>
+
+						<antelope:stringutil string="${nodejs.file}" property="nodejs.file.extindex">
+							<antelope:lastindexof string=".tar.gz" />
+						</antelope:stringutil>
+
+						<antelope:stringutil string="${nodejs.file}" property="nodejs.dir.name">
+							<antelope:substring endindex="${nodejs.file.extindex}" />
+						</antelope:stringutil>
+
+						<delete dir="tools/node-v${nodejs.version}" />
+
+						<move file="tools/${nodejs.dir.name}" tofile="tools/node-v${nodejs.version}" />
 					</then>
 					<else>
 						<move file="${nodejs.file}" todir="tools/templates/node-v${nodejs.version}" />
