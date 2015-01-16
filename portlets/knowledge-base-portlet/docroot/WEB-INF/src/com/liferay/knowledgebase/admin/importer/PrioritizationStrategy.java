@@ -75,27 +75,12 @@ public class PrioritizationStrategy {
 				existingParentArticle.getUrlTitle(), existingChildUrlTitles);
 		}
 
-		List<KBArticle> importedParentArticles = new ArrayList<KBArticle>();
-
-		List<String> importedParentUrlTitles = new ArrayList<String>();
-
-		Map<String, List<KBArticle>> importedChildArticlesMap =
-			new HashMap<String, List<KBArticle>>();
-
-		Map<String, List<String>> importedChildUrlTitlesMap =
-			new HashMap<String, List<String>>();
-
-		Map<String, Double> importedUrlTitlesPrioritiesMap =
-			new HashMap<String, Double>();
-
 		PrioritizationStrategy prioritizationStrategy =
 			new PrioritizationStrategy(
 				groupId, parentKBFolderId, prioritizeUpdatedArticles,
 				prioritizeByNumericalPrefix, existingParentArticles,
 				existingParentUrlTitles, existingChildArticlesMap,
-				existingChildUrlTitlesMap, importedParentArticles,
-				importedParentUrlTitles, importedChildArticlesMap,
-				importedChildUrlTitlesMap, importedUrlTitlesPrioritiesMap);
+				existingChildUrlTitlesMap);
 
 		return prioritizationStrategy;
 	}
@@ -466,22 +451,17 @@ public class PrioritizationStrategy {
 		List<KBArticle> existingParentArticles,
 		List<String> existingParentUrlTitles,
 		Map<String, List<KBArticle>> existingChildArticlesMap,
-		Map<String, List<String>> existingChildUrlTitlesMap,
-		List<KBArticle> importedParentArticles,
-		List<String> importedParentUrlTitles,
-		Map<String, List<KBArticle>> importedChildArticlesMap,
-		Map<String, List<String>> importedChildUrlTitlesMap,
-		Map<String, Double> importedUrlTitlesPrioritiesMap) {
+		Map<String, List<String>> existingChildUrlTitlesMap) {
 
 		_existingParentArticles = existingParentArticles;
 		_existingParentUrlTitles = existingParentUrlTitles;
 		_existingChildArticlesMap = existingChildArticlesMap;
 		_existingChildUrlTitlesMap = existingChildUrlTitlesMap;
-		_importedParentArticles = importedParentArticles;
-		_importedParentUrlTitles = importedParentUrlTitles;
-		_importedChildArticlesMap = importedChildArticlesMap;
-		_importedChildUrlTitlesMap = importedChildUrlTitlesMap;
-		_importedUrlTitlesPrioritiesMap = importedUrlTitlesPrioritiesMap;
+		_importedParentArticles = new ArrayList<KBArticle>();
+		_importedParentUrlTitles = new ArrayList<String>();
+		_importedChildArticlesMap = new HashMap<String, List<KBArticle>>();
+		_importedChildUrlTitlesMap = new HashMap<String, List<String>>();
+		_importedUrlTitlesPrioritiesMap = new HashMap<String, Double>();
 	}
 
 	private void _initNewArticles() {
