@@ -2196,6 +2196,7 @@ Please find a solution that does not require portal-impl.jar.
 								<jvmarg value="-Dexternal-properties=${test.properties}" />
 								<jvmarg value="-Dfile.encoding=UTF-8" />
 								<jvmarg value="-Djava.net.preferIPv4Stack=true" />
+								<jvmarg value="-Dliferay.mode=test" />
 								<jvmarg value="-Dsdk.dir=${sdk.dir}" />
 								<jvmarg value="-Dtest.class.group.index=${test.class.group.index}" />
 								<jvmarg value="-Dtest.class.groups=${TEST_CLASS_GROUPS}" />
