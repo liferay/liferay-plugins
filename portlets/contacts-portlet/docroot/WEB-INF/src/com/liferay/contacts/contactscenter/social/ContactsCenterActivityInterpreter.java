@@ -48,9 +48,7 @@ public class ContactsCenterActivityInterpreter
 		String groupName, SocialActivity activity, String link, String title,
 		ServiceContext serviceContext) {
 
-		int activityType = activity.getType();
-
-		if (activityType != SocialRelationConstants.TYPE_BI_CONNECTION) {
+		if (activity.getType() != SocialRelationConstants.TYPE_BI_CONNECTION) {
 			return new Object[0];
 		}
 
@@ -66,9 +64,7 @@ public class ContactsCenterActivityInterpreter
 	protected String getTitlePattern(
 		String groupName, SocialActivity activity) {
 
-		int activityType = activity.getType();
-
-		if (activityType == SocialRelationConstants.TYPE_BI_CONNECTION) {
+		if (activity.getType() == SocialRelationConstants.TYPE_BI_CONNECTION) {
 			return "activity-social-networking-summary-add-connection";
 		}
 

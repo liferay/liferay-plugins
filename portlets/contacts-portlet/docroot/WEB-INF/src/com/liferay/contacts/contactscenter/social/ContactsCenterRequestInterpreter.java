@@ -47,9 +47,7 @@ public class ContactsCenterRequestInterpreter
 			SocialRequest request, ThemeDisplay themeDisplay)
 		throws Exception {
 
-		int requestType = request.getType();
-
-		if (requestType != SocialRelationConstants.TYPE_BI_CONNECTION) {
+		if (request.getType() != SocialRelationConstants.TYPE_BI_CONNECTION) {
 			return new SocialRequestFeedEntry(
 				StringPool.BLANK, StringPool.BLANK);
 		}
