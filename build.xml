@@ -130,7 +130,7 @@ ${nodejs.url[osx64]}.
 
 		<if>
 			<not>
-				<available file="tools/templates/node-v${nodejs.version}" />
+				<available file="tools/node-v${nodejs.version}" />
 			</not>
 			<then>
 				<antelope:stringutil string="${nodejs.url}" property="nodejs.file.beginindex">
@@ -160,17 +160,17 @@ ${nodejs.url[osx64]}.
 							src="${nodejs.file}"
 						/>
 
-						<antelope:stringutil string="${nodejs.file}" property="nodejs.file.extindex">
+						<antelope:stringutil string="${nodejs.file}" property="nodejs.dir.endindex">
 							<antelope:lastindexof string=".tar.gz" />
 						</antelope:stringutil>
 
-						<antelope:stringutil string="${nodejs.file}" property="nodejs.dir.name">
-							<antelope:substring endindex="${nodejs.file.extindex}" />
+						<antelope:stringutil string="${nodejs.file}" property="nodejs.dir">
+							<antelope:substring endindex="${nodejs.dir.endindex}" />
 						</antelope:stringutil>
 
 						<delete dir="tools/node-v${nodejs.version}" />
 
-						<move file="tools/${nodejs.dir.name}" tofile="tools/node-v${nodejs.version}" />
+						<move file="tools/${nodejs.dir}" tofile="tools/node-v${nodejs.version}" />
 					</then>
 					<else>
 						<move file="${nodejs.file}" todir="tools/templates/node-v${nodejs.version}" />
