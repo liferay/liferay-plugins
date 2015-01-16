@@ -205,7 +205,7 @@ Error-Prone was automatically installed. Please rerun your task.
 		</sequential>
 	</macrodef>
 
-	<macrodef name="exec-gradle">
+	<macrodef name="gradle-execute">
 		<attribute name="task" />
  
 		<sequential>
@@ -222,6 +222,8 @@ Error-Prone was automatically installed. Please rerun your task.
 			</if>
  
 			<exec executable="${sdk.dir}/tools/gradle/gradlew${gradlew.suffix}" failonerror="true">
+				<arg value="-PpluginsExcludes=${plugins.excludes}" />
+				<arg value="-PpluginsIncludes=${plugins.includes}" />
 				<arg value="@{task}" />
 			</exec>
 		</sequential>
@@ -2670,6 +2672,10 @@ for (String path : paths) {
 		</java>
 
 		<delete file="ServiceBuilder.temp" />
+	</target>
+
+	<target name="hello">
+		<gradle-execute task="hello" />
 	</target>
 
 	<target name="jar">
