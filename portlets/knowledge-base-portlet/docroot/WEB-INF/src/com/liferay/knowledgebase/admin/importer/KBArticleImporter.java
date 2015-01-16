@@ -32,6 +32,7 @@ import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.StreamUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.kernel.zip.ZipReader;
@@ -39,7 +40,6 @@ import com.liferay.portal.kernel.zip.ZipReaderFactoryUtil;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.PortalUtil;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -353,54 +353,21 @@ public class KBArticleImporter {
 	}
 
 	private double _getNumericalPrefix(String path) {
-		String[] pathArray = path.split(File.separator);
+		int i = path.lastIndexOf(CharPool.SLASH);
 
-		int pathArrayLength = pathArray.length;
-
-		String name = StringPool.BLANK;
-
-		if (pathArrayLength > 0) {
-			name = pathArray[pathArrayLength - 1];
-		}
-		else {
-			return 1.0;
+		if (i == -1) {
+			return KBArticleConstants.DEFAULT_PRIORITY;
 		}
 
-		StringBundler numericalPrefixBundler = new StringBundler(8);
+		String name = path.substring(i);
 
-		for (int i = 0; i < name.length(); i++) {
-			char c = name.charAt(i);
+		String numericalPrefix = StringUtil.extractLeadingDigits(name);
 
-			if (Character.isDigit(c)) {
-				numericalPrefixBundler.append(c);
-			}
-			else {
-				break;
-			}
+		if (Validator.isNull(numericalPrefix)) {
+			return KBArticleConstants.DEFAULT_PRIORITY;
 		}
 
-		String numericalPrefix = numericalPrefixBundler.toString();
-
-		if (numericalPrefix.length() > 0) {
-			try {
-				double prefix = Double.parseDouble(numericalPrefix);
-
-				if (prefix <= 0.0) {
-					return 1.0;
-				}
-				else {
-					return prefix;
-				}
-			}
-			catch (NumberFormatException nfe) {
-				_log.error(nfe.getLocalizedMessage());
-
-				return 1.0;
-			}
-		}
-		else {
-			return 1.0;
-		}
+		return Double.parseDouble(numericalPrefix);
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(KBArticleImporter.class);
