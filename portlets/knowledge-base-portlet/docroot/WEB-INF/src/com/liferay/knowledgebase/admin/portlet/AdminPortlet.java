@@ -140,10 +140,10 @@ public class AdminPortlet extends BaseKBPortlet {
 			throw new KBArticleImportException("File name is null");
 		}
 
-		Boolean prioritizeUpdatedArticles = ParamUtil.getBoolean(
+		boolean prioritizeUpdatedArticles = ParamUtil.getBoolean(
 			uploadPortletRequest, "prioritizeUpdatedArticles");
 
-		Boolean prioritizeByNumericalPrefix = ParamUtil.getBoolean(
+		boolean prioritizeByNumericalPrefix = ParamUtil.getBoolean(
 			uploadPortletRequest, "prioritizeByNumericalPrefix");
 
 		InputStream inputStream = null;
