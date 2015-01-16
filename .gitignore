@@ -44,3 +44,4 @@ _sass_cache_*.css
 /themes/*/docroot/WEB-INF/lib
 
 /tools/*/*/*/lib
+/tools/node*
