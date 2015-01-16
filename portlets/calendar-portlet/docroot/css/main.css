@@ -360,8 +360,12 @@
 	margin-top: -1em;
 }
 
-.scheduler-base-controls .calendar-add-event-btn {
+.scheduler-base-controls .btn-group .calendar-add-event-btn {
 	margin-right: 3px;
+
+	@include respond-to(phone) {
+		width: 100%;
+	}
 }
 
 .scheduler-event-past {
@@ -588,5 +592,31 @@
 @include respond-to(phone, tablet) {
 	.scheduler-view-table-header-day div {
 		overflow: hidden
+	}
+}
+
+@include respond-to(phone) {
+	.scheduler-base-content .scheduler-base-view-date,
+	.scheduler-base-content .scheduler-base-controls,
+	.scheduler-base-content .scheduler-base-controls .btn-group,
+	.scheduler-base-content .scheduler-base-hd .scheduler-base-views {
+	    text-align: center;
+	    width: 100%;
+	}
+
+	.scheduler-base-content .scheduler-base-hd .scheduler-base-views {
+		margin-top: 5px;
+	}
+
+	.scheduler-base-controls .btn-group .scheduler-base-today {
+	    width: 50%;
+	}
+
+	.scheduler-base-hd .btn-group button {
+	    width: 25%;
+	}
+
+	.scheduler-base-views button {
+	    float: none;
 	}
 }
