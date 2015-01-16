@@ -59,6 +59,7 @@ import org.apache.http.client.utils.URLEncodedUtils;
 import org.apache.http.config.Registry;
 import org.apache.http.config.RegistryBuilder;
 import org.apache.http.conn.ConnectTimeoutException;
+import org.apache.http.conn.HttpClientConnectionManager;
 import org.apache.http.conn.routing.HttpRoutePlanner;
 import org.apache.http.conn.socket.ConnectionSocketFactory;
 import org.apache.http.conn.socket.PlainConnectionSocketFactory;
@@ -88,8 +89,10 @@ public class JSONWebServiceClientImpl implements JSONWebServiceClient {
 	public void afterPropertiesSet() {
 		HttpClientBuilder httpClientBuilder = HttpClients.custom();
 
-		httpClientBuilder.setConnectionManager(
-			getPoolingHttpClientConnectionManager());
+		HttpClientConnectionManager httpClientConnectionManager =
+			getPoolingHttpClientConnectionManager();
+
+		httpClientBuilder.setConnectionManager(httpClientConnectionManager);
 
 		if ((_login != null) && (_password != null)) {
 			CredentialsProvider credentialsProvider =
@@ -115,6 +118,11 @@ public class JSONWebServiceClientImpl implements JSONWebServiceClient {
 
 			_closeableHttpClient = httpClientBuilder.build();
 
+			_idleConnectionMonitorThread = new IdleConnectionMonitorThread(
+				httpClientConnectionManager);
+
+			_idleConnectionMonitorThread.start();
+
 			if (_logger.isDebugEnabled()) {
 				_logger.debug(
 					"Configured client for " + _protocol + "://" + _hostName);
@@ -134,6 +142,8 @@ public class JSONWebServiceClientImpl implements JSONWebServiceClient {
 		}
 
 		_closeableHttpClient = null;
+
+		_idleConnectionMonitorThread.shutdown();
 	}
 
 	@Override
@@ -411,6 +421,7 @@ public class JSONWebServiceClientImpl implements JSONWebServiceClient {
 	private Map<String, String> _headers = Collections.emptyMap();
 	private String _hostName;
 	private int _hostPort = 80;
+	private IdleConnectionMonitorThread _idleConnectionMonitorThread;
 	private KeyStore _keyStore;
 	private String _login;
 	private String _password;
@@ -460,7 +471,46 @@ public class JSONWebServiceClientImpl implements JSONWebServiceClient {
 			return true;
 		}
 
-	};
+	}
+
+	private class IdleConnectionMonitorThread extends Thread {
+
+		public IdleConnectionMonitorThread(
+			HttpClientConnectionManager httpClientConnectionManager) {
+
+			_httpClientConnectionManager = httpClientConnectionManager;
+		}
+
+		@Override
+		public void run() {
+			try {
+				while (!_shutdown) {
+					synchronized (this) {
+						wait(5000);
+
+						_httpClientConnectionManager.closeExpiredConnections();
+
+						_httpClientConnectionManager.closeIdleConnections(
+							30, TimeUnit.SECONDS);
+					}
+				}
+			}
+			catch (InterruptedException ie) {
+			}
+		}
+
+		public void shutdown() {
+			_shutdown = true;
+
+			synchronized (this) {
+				notifyAll();
+			}
+		}
+
+		private final HttpClientConnectionManager _httpClientConnectionManager;
+		private volatile boolean _shutdown;
+
+	}
 
 	private class X509TrustManagerImpl implements X509TrustManager {
 
