@@ -161,8 +161,14 @@
 	}
 
 	.scheduler-view-agenda-info-container {
-		.scheduler-view-agenda-info {
-			line-height: 1.2;
+		font-size: 1em;
+
+		.scheduler-view-agenda-info .scheduler-view-agenda-info-biggie {
+			padding: 0 8px;
+		}
+
+		.scheduler-view-agenda-info  .scheduler-view-agenda-info-label {
+			padding: 10px 0 10px 8px;
 		}
 	}
 }
@@ -360,12 +366,26 @@
 	margin-top: -1em;
 }
 
-.scheduler-base-controls .btn-group .calendar-add-event-btn {
-	margin-right: 3px;
-
-	@include respond-to(phone) {
-		width: 100%;
+.scheduler-base-controls {
+	&, .scheduler-base-views {
+		width: 50%;
 	}
+
+	.btn-group .calendar-add-event-btn {
+		margin-right: 3px;
+
+		@include respond-to(phone) {
+			width: 100%;
+		}
+	}	
+}
+
+.scheduler-base-nav-date {
+	display: none !important;
+}
+
+.scheduler-base-view-date {
+	display: block !important;
 }
 
 .scheduler-event-past {
@@ -392,6 +412,10 @@
 
 .scheduler-event-recorder-popover .popover-title .close {
 	margin-top: 5px;
+}
+
+.scheduler-view-agenda {
+	margin-top: -13px;
 }
 
 .scheduler-view-day .scheduler-view-table .scheduler-view-table-data-col {
