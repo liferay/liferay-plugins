@@ -45,14 +45,27 @@ long parentResourcePrimKey = ParamUtil.getLong(request, "parentResourcePrimKey",
 	<liferay-ui:error exception="<%= KBArticlePriorityException.class %>" message='<%= LanguageUtil.format(request, "please-enter-a-priority-that-is-greater-than-x", "0", false) %>' translateMessage="<%= false %>" />
 
 	<c:if test='<%= SessionMessages.contains(renderRequest, "importedKBArticlesCount") %>'>
-		<div class="alert alert-success">
-			<liferay-ui:message key="your-request-completed-successfully" />
 
-			<liferay-ui:message
-				arguments='<%= SessionMessages.get(renderRequest, "importedKBArticlesCount") %>'
-				key="a-total-of-x-articles-have-been-imported"
-			/>
-		</div>
+		<%
+		int importedArticleCount = (Integer)SessionMessages.get(renderRequest, "importedKBArticlesCount");
+		%>
+
+		<c:choose>
+			<c:when test="<%= importedArticleCount > 0 %>">
+				<div class="alert alert-success">
+					<liferay-ui:message key="your-request-completed-successfully" />
+					<liferay-ui:message arguments="<%= importedArticleCount %>" key="a-total-of-x-articles-have-been-imported" />
+				</div>
+			</c:when>
+			<c:otherwise>
+				<div class="alert alert-warning">
+					<liferay-ui:message
+						arguments="<%= StringUtil.merge(PortletPropsValues.MARKDOWN_IMPORTER_ARTICLE_EXTENSIONS, StringPool.COMMA_AND_SPACE) %>"
+						key="nothing-was-imported-no-articles-were-found-with-one-of-the-supported-extensions-x"
+					/>
+				</div>
+			</c:otherwise>
+		</c:choose>
 	</c:if>
 
 	<liferay-portlet:renderURL varImpl="iteratorURL">
