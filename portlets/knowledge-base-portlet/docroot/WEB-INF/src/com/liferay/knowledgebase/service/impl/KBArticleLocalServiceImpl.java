@@ -100,7 +100,8 @@ import javax.portlet.PortletPreferences;
  * @author Brian Wing Shun Chan
  * @author Edward Han
  */
-public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
+public class
+	KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 
 	@Override
 	public KBArticle addKBArticle(
@@ -780,9 +781,9 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		}
 
 		KBArticle previousKBArticle = getPreviousKBArticle(
-			kbArticle, previousAndNextKBArticles);
+			kbArticle, previousAndNextKBArticles[0]);
 		KBArticle nextKBArticle = getNextKBArticle(
-			kbArticle, previousAndNextKBArticles);
+			kbArticle, previousAndNextKBArticles[2]);
 
 		return new KBArticle[] {previousKBArticle, kbArticle, nextKBArticle};
 	}
@@ -1541,13 +1542,11 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 	}
 
 	protected KBArticle getNextAncestorKBArticle(
-			long kbArticleId, KBArticle[] previousAndNextKBArticles)
+			long kbArticleId, KBArticle nextKBArticle)
 		throws PortalException {
 
 		KBArticle kbArticle = kbArticlePersistence.findByPrimaryKey(
 			kbArticleId);
-
-		KBArticle nextKBArticle = previousAndNextKBArticles[2];
 
 		if (nextKBArticle != null) {
 			return nextKBArticle;
@@ -1559,18 +1558,18 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			return null;
 		}
 
-		previousAndNextKBArticles =
+		KBArticle[] previousAndNextKBArticles =
 			kbArticlePersistence.findByG_P_L_PrevAndNext(
 				parentKBArticle.getKbArticleId(), kbArticle.getGroupId(),
 				parentKBArticle.getParentResourcePrimKey(), true,
 				new KBArticlePriorityComparator(true));
 
 		return getNextAncestorKBArticle(
-			parentKBArticle.getKbArticleId(), previousAndNextKBArticles);
+			parentKBArticle.getKbArticleId(), previousAndNextKBArticles[2]);
 	}
 
 	protected KBArticle getNextKBArticle(
-			KBArticle kbArticle, KBArticle[] previousAndNextKBArticles)
+			KBArticle kbArticle, KBArticle nextKBArticle)
 		throws PortalException {
 
 		KBArticle firstChildKBArticle = kbArticlePersistence.fetchByG_P_L_First(
@@ -1582,14 +1581,12 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		}
 
 		return getNextAncestorKBArticle(
-			kbArticle.getKbArticleId(), previousAndNextKBArticles);
+			kbArticle.getKbArticleId(), nextKBArticle);
 	}
 
 	protected KBArticle getPreviousKBArticle(
-			KBArticle kbArticle, KBArticle[] previousAndNextKBArticles)
+			KBArticle kbArticle, KBArticle previousKBArticle)
 		throws PortalException {
-
-		KBArticle previousKBArticle = previousAndNextKBArticles[0];
 
 		if (previousKBArticle != null) {
 			KBArticle lastSiblingChildKBArticle =
