@@ -59,6 +59,8 @@ import org.apache.http.client.utils.URLEncodedUtils;
 import org.apache.http.config.Registry;
 import org.apache.http.config.RegistryBuilder;
 import org.apache.http.conn.ConnectTimeoutException;
+import org.apache.http.conn.HttpClientConnectionManager;
+import org.apache.http.conn.routing.HttpRoutePlanner;
 import org.apache.http.conn.socket.ConnectionSocketFactory;
 import org.apache.http.conn.socket.PlainConnectionSocketFactory;
 import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
@@ -69,6 +71,7 @@ import org.apache.http.impl.client.BasicCredentialsProvider;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.impl.client.HttpClients;
+import org.apache.http.impl.conn.DefaultProxyRoutePlanner;
 import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.protocol.HttpContext;
@@ -86,8 +89,10 @@ public class JSONWebServiceClientImpl implements JSONWebServiceClient {
 	public void afterPropertiesSet() {
 		HttpClientBuilder httpClientBuilder = HttpClients.custom();
 
-		httpClientBuilder.setConnectionManager(
-			getPoolingHttpClientConnectionManager());
+		HttpClientConnectionManager httpClientConnectionManager =
+			getPoolingHttpClientConnectionManager();
+
+		httpClientBuilder.setConnectionManager(httpClientConnectionManager);
 
 		if ((_login != null) && (_password != null)) {
 			CredentialsProvider credentialsProvider =
@@ -109,7 +114,14 @@ public class JSONWebServiceClientImpl implements JSONWebServiceClient {
 		}
 
 		try {
+			setProxyHost(httpClientBuilder);
+
 			_closeableHttpClient = httpClientBuilder.build();
+
+			_idleConnectionMonitorThread = new IdleConnectionMonitorThread(
+				httpClientConnectionManager);
+
+			_idleConnectionMonitorThread.start();
 
 			if (_logger.isDebugEnabled()) {
 				_logger.debug(
@@ -153,6 +165,8 @@ public class JSONWebServiceClientImpl implements JSONWebServiceClient {
 		}
 
 		_closeableHttpClient = null;
+
+		_idleConnectionMonitorThread.shutdown();
 	}
 
 	@Override
@@ -285,6 +299,14 @@ public class JSONWebServiceClientImpl implements JSONWebServiceClient {
 		_protocol = protocol;
 	}
 
+	public void setProxyHostName(String proxyHostName) {
+		_proxyHostName = proxyHostName;
+	}
+
+	public void setProxyHostPort(int proxyHostPort) {
+		_proxyHostPort = proxyHostPort;
+	}
+
 	protected String execute(HttpRequestBase httpRequestBase)
 		throws JSONWebServiceTransportException {
 
@@ -355,6 +377,19 @@ public class JSONWebServiceClientImpl implements JSONWebServiceClient {
 			SSLConnectionSocketFactory.BROWSER_COMPATIBLE_HOSTNAME_VERIFIER);
 	}
 
+	protected void setProxyHost(HttpClientBuilder httpClientBuilder) {
+		if ((_proxyHostName == null) || _proxyHostName.equals("")) {
+			return;
+		}
+
+		HttpHost httpHost = new HttpHost(_proxyHostName, _proxyHostPort);
+
+		HttpRoutePlanner httpRoutePlanner = new DefaultProxyRoutePlanner(
+			httpHost);
+
+		httpClientBuilder.setRoutePlanner(httpRoutePlanner);
+	}
+
 	protected List<NameValuePair> toNameValuePairs(
 		Map<String, String> parameters) {
 
@@ -386,10 +421,13 @@ public class JSONWebServiceClientImpl implements JSONWebServiceClient {
 	private Map<String, String> _headers = Collections.emptyMap();
 	private String _hostName;
 	private int _hostPort = 80;
+	private IdleConnectionMonitorThread _idleConnectionMonitorThread;
 	private KeyStore _keyStore;
 	private String _login;
 	private String _password;
 	private String _protocol = "http";
+	private String _proxyHostName;
+	private int _proxyHostPort;
 
 	private class HttpRequestRetryHandlerImpl
 		implements HttpRequestRetryHandler {
@@ -433,7 +471,46 @@ public class JSONWebServiceClientImpl implements JSONWebServiceClient {
 			return true;
 		}
 
-	};
+	}
+
+	private class IdleConnectionMonitorThread extends Thread {
+
+		public IdleConnectionMonitorThread(
+			HttpClientConnectionManager httpClientConnectionManager) {
+
+			_httpClientConnectionManager = httpClientConnectionManager;
+		}
+
+		@Override
+		public void run() {
+			try {
+				while (!_shutdown) {
+					synchronized (this) {
+						wait(5000);
+
+						_httpClientConnectionManager.closeExpiredConnections();
+
+						_httpClientConnectionManager.closeIdleConnections(
+							30, TimeUnit.SECONDS);
+					}
+				}
+			}
+			catch (InterruptedException ie) {
+			}
+		}
+
+		public void shutdown() {
+			_shutdown = true;
+
+			synchronized (this) {
+				notifyAll();
+			}
+		}
+
+		private final HttpClientConnectionManager _httpClientConnectionManager;
+		private volatile boolean _shutdown;
+
+	}
 
 	private class X509TrustManagerImpl implements X509TrustManager {
 
