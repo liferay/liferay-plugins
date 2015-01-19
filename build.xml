@@ -170,6 +170,8 @@ ${nodejs.url[osx64]}.
 
 						<move file="tools/${nodejs.dir}" tofile="tools/node-v${nodejs.version}" />
 
+						<mkdir dir="tools/node-v${nodejs.version}/node_modules" />
+
 						<delete file="${nodejs.file}" />
 					</then>
 					<else>
@@ -195,6 +197,27 @@ ${nodejs.url[osx64]}.
 				</if>
 			</then>
 		</if>
+	</target>
+
+	<macrodef name="exec-node-command">
+		<attribute name="command"/>
+		<attribute name="commandArgs" default="" />
+
+		<sequential>
+			<property name="working.dir" value="${user.dir}" />
+			<exec dir="${working.dir}" executable="${basedir}/tools/node-v${nodejs.version}/bin/@{command}">
+				<arg line="@{commandArgs} ${node.args}"/>
+			</exec>
+		</sequential>
+	</macrodef>
+
+	<target name="exec-node" depends="download-nodejs">
+		<exec-node-command command="node" />
+	</target>
+
+	<target name="exec-npm" depends="download-nodejs">
+		<property name="working.dir" value="tools/node-v${nodejs.version}" />
+		<exec-node-command command="npm" />
 	</target>
 
 	<target name="ear">
