@@ -5,9 +5,8 @@ $defaultTextColor: #202020;
 
 @mixin menu-mix {
 	background-color: #FFF;
-
 	border-radius: 4px;
-	@include box-shadow(0 1px 3px rgba(0, 0, 0, 0.78));
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.78);
 }
 
 .so-portlet-sites {
@@ -424,10 +423,8 @@ $defaultTextColor: #202020;
 
 			a, a:hover, li.has-menu:hover a {
 				background-color: transparent;
-
 				border-radius: 0;
-				@include box-shadow(none);
-
+				box-shadow: none;
 				color: $defaultTextColor;
 				font-weight: normal;
 				text-shadow: none;
@@ -450,10 +447,8 @@ $defaultTextColor: #202020;
 			.search-input {
 				background: #FFF;
 				border: 1px solid #1C2125;
-
 				border-radius: 20px;
-				@include box-shadow(0 1px 2px rgba(0, 0, 0, 0.4) inset);
-
+				box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4) inset;
 				color: #202020;
 				cursor: pointer;
 				display: block;
@@ -591,9 +586,7 @@ $defaultTextColor: #202020;
 				.search-input {
 					background: #FFF;
 					border: 1px solid $defaultBorderColor;
-
-					@include box-shadow(0 1px 2px rgba(0, 0, 0, 0) inset);
-
+					box-shadow: 0 1px 2px rgba(0, 0, 0, 0) inset;
 					color: $defaultTextColor;
 					cursor: text;
 					text-shadow: none;

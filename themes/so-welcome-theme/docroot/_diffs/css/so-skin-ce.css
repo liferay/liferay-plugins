@@ -277,7 +277,7 @@ input[type=password], input[type=text], textarea, .aui-field-select select {
 }
 
 input[type=password], input[type=text], textarea, #sign-in:active, .aui-field-select select {
-	@include box-shadow(0 1px 3px #C9C9C9 inset);
+	box-shadow: 0 1px 3px #C9C9C9 inset;
 }
 
 button, input[type=button], input[type=reset], input[type=submit], #sign-in, .aui-button-disabled input[type], .aui-button-disabled input[type]:hover, .aui-button-disabled input[type]:focus, .aui-button-disabled button, .aui-button-disabled button:focus, .aui-button-disabled button:hover, .aui-dialog-hd, .aui-form-validator-message, .aui-panel-hd, .aui-state-default, .aui-tabview-list, .aui-tab, .aui-tab-content, .lfr-actions.lfr-extended, .lfr-header-row .aui-button-input, .lfr-header-row .aui-buttonitem-content, .lfr-header-row .lfr-actions.lfr-extended, .lfr-header-row .lfr-search-combobox {
@@ -285,17 +285,17 @@ button, input[type=button], input[type=reset], input[type=submit], #sign-in, .au
 }
 
 button, input[type=button], input[type=reset], input[type=submit], #sign-in, .aui-button-disabled input[type], .aui-button-disabled input[type]:focus, .aui-button-disabled input[type]:hover, .aui-button-disabled button, .aui-button-disabled button:hover, .aui-button-disabled button:focus, .aui-dialog-hd, .aui-panel-hd, .aui-state-default, .aui-tabview-list, .aui-tab, .aui-tab-content, .lfr-actions.lfr-extended, .lfr-header-row .aui-button-input, .lfr-header-row .aui-buttonitem-content, .lfr-header-row .lfr-actions.lfr-extended, .lfr-header-row .lfr-search-combobox {
-	@include box-shadow(0 1px 0 #F4F3F3 inset, 0 -1px 0 #D9D8D8 inset);
+	box-shadow: 0 1px 0 #F4F3F3 inset, 0 -1px 0 #D9D8D8 inset;
 }
 
 input[type=button], input[type=reset], input[type=submit], .aui-state-hover, .lfr-actions.lfr-extended:hover {
 	&:active {
-		@include box-shadow(0 1px 1px #C9C9C9 inset);
+		box-shadow: 0 1px 1px #C9C9C9 inset;
 	}
 }
 
 #loginPage .portlet {
-	@include box-shadow(0 0 9px -3px #000, 0 20px 29px -22px rgba(0, 0, 0, 0.6));
+	box-shadow: 0 0 9px -3px #000, 0 20px 29px -22px rgba(0, 0, 0, 0.6);
 }
 
 #loginPage .portlet, #loginPage .portlet-login .navigation {
@@ -307,7 +307,7 @@ input[type=button], input[type=reset], input[type=submit], .aui-state-hover, .lf
 }
 
 .aui-panel-hd button, .aui-panel-hd .aui-button, .aui-panel-hd .aui-state-default, .aui-tabview-list .aui-tab-active .aui-tab-content, .aui-tabview-list .aui-tab-active .aui-tab-content:hover, .aui-textboxlistentry-holder .aui-field-input-text {
-	@include box-shadow(none);
+	box-shadow: none;
 }
 
 .aui-toolbar .aui-toolbar-first {

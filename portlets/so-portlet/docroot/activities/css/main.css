@@ -352,10 +352,8 @@ $default-border-color: #E7E7E7;
 
 		.field-element {
 			border: 1px solid #C7D0DA;
-
 			border-radius: 5px;
-			@include box-shadow(0 1px 3px #C9C9C9 inset);
-
+			box-shadow: 0 1px 3px #C9C9C9 inset;
 			display: block;
 			margin: 2px;
 
@@ -370,9 +368,7 @@ $default-border-color: #E7E7E7;
 
 		.field-input-text {
 			border-width: 0;
-
-			@include box-shadow(none);
-
+			box-shadow: none;
 			padding: 5px 0;
 			text-indent: 5px;
 			width: 100%;
@@ -381,9 +377,7 @@ $default-border-color: #E7E7E7;
 
 	.toggler-content-collapsed .activity-footer-toolbar {
 		border-top: 1px solid #EFEFEF;
-
-		@include box-shadow(0 -1px 15px -5px rgba(0, 0, 0, 0.8));
-
+		box-shadow: 0 -1px 15px -5px rgba(0, 0, 0, 0.8);
 		margin-top: -2px;
 	}
 

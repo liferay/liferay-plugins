@@ -440,17 +440,19 @@ img.center {
 /* ---------- Extras ---------- */
 
 #wrapper {
-	@include box-shadow(#000 0 0 10px);
+	box-shadow: #000 0 0 10px;
 }
 
 .dockbar {
 	.navbar-inner {
-		@include box-shadow(none);
+		box-shadow: none;
 
 		.nav {
 			li.dropdown.open > .dropdown-toggle {
 				@include background-image(linear-gradient($dockbarOpenGradientStart, $dockbarOpenGradientEnd));
-				@include box-shadow(none);
+
+				box-shadow: none;
+
 				@include linear-gradient($dockbarOpenGradientStart, $dockbarOpenGradientEnd, vertical);
 			}
 		}
@@ -464,12 +466,12 @@ img.center {
 
 #banner #heading .site-name {
 	border-radius: 4px;
-	@include box-shadow(inset 0 0 5px rgba(0, 0, 0, 0.8), 1px 1px 1px $color);
+	box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.8), 1px 1px 1px $color;
 	text-shadow: 1px 1px rgba(0, 0, 0, 0.5);
 }
 
 .button {
-	@include box-shadow(#BEBEBE 0 2px 2px);
+	box-shadow: #BEBEBE 0 2px 2px;
 }
 
 .portlet-title {
@@ -486,6 +488,6 @@ img.center {
 	@include transition(opacity 0.2s ease);
 
 	&:hover {
-		@include box-shadow(0 1px 1px -1px #000);
+		box-shadow: 0 1px 1px -1px #000;
 	}
 }

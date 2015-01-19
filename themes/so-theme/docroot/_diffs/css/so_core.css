@@ -184,8 +184,8 @@ div#navigation {
 	.selected a {
 		border-bottom-width: 0;
 		border-top: 1px solid #0E50A9;
+		box-shadow: 0 1px 0 #7FBBF4 inset;
 
-		@include box-shadow(0 1px 0 #7FBBF4 inset);
 		@include button-primary-gradient;
 	}
 }
@@ -230,9 +230,7 @@ body {
 
 #main-content {
 	background: #FFF;
-
-	@include box-shadow(-4px 0 15px -7px rgba(0, 0, 0, 0.6));
-
+	box-shadow: -4px 0 15px -7px rgba(0, 0, 0, 0.6);
 	float: left;
 	min-height: 500px;
 	position: relative;
@@ -275,9 +273,7 @@ a {
 .aui-dialog-iframe-popup, .portal-popup {
 	#main-content {
 		background: transparent;
-
-		@include box-shadow(none);
-
+		box-shadow: none;
 		float: none;
 		min-height: auto;
 	}
@@ -345,9 +341,7 @@ a {
 .alert .close {
 	background: inherit;
 	border-width: 0;
-
-	@include box-shadow(none);
-
+	box-shadow: none;
 	padding: 0;
 }
 
@@ -1169,8 +1163,7 @@ input, textarea {
 			padding: 0 15px;
 
 			.app-view-navigation-entry .overlay.entry-action .btn {
-				@include box-shadow(none);
-
+				box-shadow: none;
 				padding: 15px 10px 5px;
 			}
 
@@ -1212,7 +1205,7 @@ input, textarea {
 				}
 
 				.nav > li.open > a {
-					@include box-shadow(inset 0 3px 8px rgba(0, 0, 0, 0.25));
+					box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.25);
 				}
 			}
 
@@ -1341,10 +1334,8 @@ input, textarea {
 			&:hover .user-details {
 				background-color: #FFF;
 				border: 1px solid $defaultBorderColor;
-
 				border-radius: 4px;
-				@include box-shadow(-4px 0 15px -7px rgba(0, 0, 0, 0.6));
-
+				box-shadow: -4px 0 15px -7px rgba(0, 0, 0, 0.6);
 				display: block;
 				margin-top: 0;
 				padding: 10px;

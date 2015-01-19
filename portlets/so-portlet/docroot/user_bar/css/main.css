@@ -174,8 +174,7 @@ $defaultTextColor: #202020;
 		.container-fluid .dockbar-item, .nav .user-avatar .user-avatar-link {
 			.user-avatar-image {
 				border-radius: 50%;
-				@include box-shadow(none);
-
+				box-shadow: none;
 				height: 22px;
 				top: 0;
 				vertical-align: middle;
@@ -241,9 +240,7 @@ $defaultTextColor: #202020;
 
 		.container-fluid {
 			background: none;
-
-			@include box-shadow(none);
-
+			box-shadow: none;
 			filter: none;
 			width: auto;
 

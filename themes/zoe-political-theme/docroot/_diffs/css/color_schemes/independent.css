@@ -73,6 +73,6 @@ body.independent {
 	/* ---------- Extras ---------- */
 
 	#content #main-content {
-		@include box-shadow(none);
+		box-shadow: none;
 	}
 }

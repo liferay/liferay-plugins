@@ -195,8 +195,7 @@
 
 				.user-thumbnail {
 					border-radius: 50%;
-					@include box-shadow(0 0 0 2px #5594E0);
-
+					box-shadow: 0 0 0 2px #5594E0;
 					display: block;
 					height: 30px;
 					margin: 5px 10px 0 0;
@@ -285,13 +284,9 @@
 
 		.actionable-user-notifications-count, .nonactionable-user-notifications-count {
 			background-color: #2AAAE6;
-
 			border-radius: 8px;
-
 			border-width: 0;
-
-			@include box-shadow(-1px 1px 1px #00518E);
-
+			box-shadow: -1px 1px 1px #00518E;
 			font-size: 10px;
 			font-weight: 200;
 			height: 16px;
@@ -306,8 +301,7 @@
 
 			&.alert {
 				border-width: 0;
-
-				@include box-shadow(-1px 1px 1px #C87501);
+				box-shadow: -1px 1px 1px #C87501;
 			}
 		}
 	}

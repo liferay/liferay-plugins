@@ -492,7 +492,7 @@ h1.appointment {
 #banner {
 	.site-title .site-name {
 		border-radius: 4px;
-		@include box-shadow(inset 0 0 5px rgba(0, 0, 0, 0.8), 1px 1px 1px white);
+		box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.8), 1px 1px 1px white;
 		text-shadow: 1px 1px rgba(0, 0, 0, 0.5);
 	}
 
@@ -509,12 +509,12 @@ h1.appointment {
 	@include transition(opacity 0.3s ease);
 
 	&:hover {
-		@include box-shadow(0 1px 1px -1px #000);
+		box-shadow: 0 1px 1px -1px #000;
 	}
 }
 
 .shadow {
-	@include box-shadow(#888 2px 2px 4px);
+	box-shadow: #888 2px 2px 4px;
 }
 
 input[type="reset"], input[type="reset"]:hover, .portlet-navigation .nav-menu h2 {

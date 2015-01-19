@@ -110,8 +110,7 @@ body.so-classic {
 			a {
 				background: #F4F4F4;
 				color: $red;
-
-				@include box-shadow(none);
+				box-shadow: none;
 			}
 		}
 	}
@@ -125,9 +124,7 @@ body.so-classic {
 		background: none;
 		border-bottom: 1px solid $defaultBorderColor;
 		border-left: 1px solid $defaultBorderColor;
-
-		@include box-shadow(none);
-
+		box-shadow: none;
 		margin-left: -1px;
 	}
 

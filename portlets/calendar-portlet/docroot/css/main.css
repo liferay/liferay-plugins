@@ -543,7 +543,9 @@
 
 .scheduler-event-recorder-content {
 	@include background-image(linear-gradient(top, #F7F7F7, #FFF));
-	@include box-shadow(inset 0 1px 2px #DDD);
+
+	box-shadow: inset 0 1px 2px #DDD;
+
 	@include transition(background 0.3s ease-in, border-color 0.3s ease-out);
 }
 
@@ -564,7 +566,7 @@
 }
 
 .simple-menu-content {
-	@include box-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .simple-menu-item {
