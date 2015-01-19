@@ -598,7 +598,7 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 			String extRepositoryFolderKey = getExtRepositoryObjectKey(folderId);
 
 			count += _extRepository.getExtRepositoryObjectsCount(
-				ExtRepositoryObjectType.OBJECT, extRepositoryFolderKey);
+				ExtRepositoryObjectType.FILE, extRepositoryFolderKey);
 		}
 
 		return count;
@@ -1107,7 +1107,7 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 	private <T extends ExtRepositoryObjectAdapter<?>> List<T> _filterByMimeType(
 		List<T> extRepositoryObjects, String[] mimeTypes) {
 
-		if (mimeTypes == null) {
+		if (ArrayUtil.isEmpty(mimeTypes)) {
 			return extRepositoryObjects;
 		}
 
