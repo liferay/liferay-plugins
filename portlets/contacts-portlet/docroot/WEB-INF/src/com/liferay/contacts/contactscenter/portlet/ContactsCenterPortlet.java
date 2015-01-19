@@ -1100,7 +1100,7 @@ public class ContactsCenterPortlet extends MVCPortlet {
 		User user = themeDisplay.getUser();
 
 		ServiceContext serviceContext = ServiceContextFactory.getInstance(
-				User.class.getName(), actionRequest);
+			User.class.getName(), actionRequest);
 
 		UserLocalServiceUtil.updateAsset(
 			user.getUserId(), user, serviceContext.getAssetCategoryIds(),
