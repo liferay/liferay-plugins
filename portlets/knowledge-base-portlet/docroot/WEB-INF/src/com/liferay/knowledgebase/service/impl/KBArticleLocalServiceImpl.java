@@ -776,22 +776,8 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		KBArticle kbArticle = kbArticlePersistence.findByPrimaryKey(
 			kbArticleId);
 
-		List<KBArticle> kbArticles = kbArticlePersistence.findByG_P_L(
-			kbArticle.getGroupId(), kbArticle.getParentResourcePrimKey(), true,
-			QueryUtil.ALL_POS, QueryUtil.ALL_POS,
-			new KBArticlePriorityComparator(true));
-
-		int pos = kbArticles.indexOf(kbArticle);
-
-		KBArticle[] previousAndNextKBArticles = { null, kbArticle, null };
-
-		if (pos > 0) {
-			previousAndNextKBArticles[0] = kbArticles.get(pos - 1);
-		}
-
-		if (pos < (kbArticles.size() - 1)) {
-			previousAndNextKBArticles[2] = kbArticles.get(pos + 1);
-		}
+		KBArticle[] previousAndNextKBArticles = _getPreviousAndNextKBArticles(
+			kbArticle);
 
 		KBArticle previousKBArticle = getPreviousKBArticle(
 			kbArticle, previousAndNextKBArticles[0]);
@@ -1579,11 +1565,8 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			return null;
 		}
 
-		KBArticle[] previousAndNextKBArticles =
-			kbArticlePersistence.findByG_P_L_PrevAndNext(
-				parentKBArticle.getKbArticleId(), kbArticle.getGroupId(),
-				parentKBArticle.getParentResourcePrimKey(), true,
-				new KBArticlePriorityComparator(true));
+		KBArticle[] previousAndNextKBArticles = _getPreviousAndNextKBArticles(
+			parentKBArticle);
 
 		return getNextAncestorKBArticle(
 			parentKBArticle.getKbArticleId(), previousAndNextKBArticles[2]);
@@ -1972,6 +1955,29 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			throw new DuplicateKBArticleUrlTitleException(
 				"Duplicate URL title " + urlTitle);
 		}
+	}
+
+	private KBArticle[] _getPreviousAndNextKBArticles(KBArticle kbArticle)
+		throws SystemException {
+
+		List<KBArticle> kbArticles = kbArticlePersistence.findByG_P_L(
+			kbArticle.getGroupId(), kbArticle.getParentResourcePrimKey(), true,
+			QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+			new KBArticlePriorityComparator(true));
+
+		int pos = kbArticles.indexOf(kbArticle);
+
+		KBArticle[] previousAndNextKBArticles = { null, kbArticle, null };
+
+		if (pos > 0) {
+			previousAndNextKBArticles[0] = kbArticles.get(pos - 1);
+		}
+
+		if (pos < (kbArticles.size() - 1)) {
+			previousAndNextKBArticles[2] = kbArticles.get(pos + 1);
+		}
+
+		return previousAndNextKBArticles;
 	}
 
 	private static final int[] _STATUSES = {
