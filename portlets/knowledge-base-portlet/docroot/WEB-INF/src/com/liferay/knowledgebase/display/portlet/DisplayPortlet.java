@@ -29,6 +29,7 @@ import com.liferay.knowledgebase.service.permission.KBArticlePermission;
 import com.liferay.knowledgebase.service.permission.KBFolderPermission;
 import com.liferay.knowledgebase.util.ActionKeys;
 import com.liferay.knowledgebase.util.KnowledgeBaseUtil;
+import com.liferay.knowledgebase.util.PortletKeys;
 import com.liferay.knowledgebase.util.WebKeys;
 import com.liferay.knowledgebase.util.comparator.KBArticlePriorityComparator;
 import com.liferay.portal.NoSuchSubscriptionException;
@@ -220,7 +221,7 @@ public class DisplayPortlet extends BaseKBPortlet {
 		}
 
 		PortletURL redirectURL = PortletURLFactoryUtil.create(
-			actionRequest, PortalUtil.getPortletId(actionRequest),
+			actionRequest, PortletKeys.KNOWLEDGE_BASE_DISPLAY,
 			themeDisplay.getPlid(), PortletRequest.RENDER_PHASE);
 
 		redirectURL.setParameter("kbFolderUrlTitle", kbFolder.getUrlTitle());
