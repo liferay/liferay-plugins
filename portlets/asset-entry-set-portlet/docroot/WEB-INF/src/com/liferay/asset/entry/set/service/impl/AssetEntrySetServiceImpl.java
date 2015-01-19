@@ -92,10 +92,6 @@ public class AssetEntrySetServiceImpl extends AssetEntrySetServiceBaseImpl {
 			getUserId(), createTime, parentAssetEntrySetId, start, end);
 	}
 
-	public JSONObject getPreviewJSONObject(String url) throws Exception {
-		return assetEntrySetLocalService.getPreviewJSONObject(url);
-	}
-
 	@Override
 	public AssetEntrySet likeAssetEntrySet(long assetEntrySetId)
 		throws PortalException, SystemException {
