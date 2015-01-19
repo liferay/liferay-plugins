@@ -762,11 +762,22 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		KBArticle kbArticle = kbArticlePersistence.findByPrimaryKey(
 			kbArticleId);
 
-		KBArticle[] previousAndNextKBArticles =
-			kbArticlePersistence.findByG_P_L_PrevAndNext(
-				kbArticleId, kbArticle.getGroupId(),
-				kbArticle.getParentResourcePrimKey(), true,
-				new KBArticlePriorityComparator(true));
+		List<KBArticle> kbArticles = kbArticlePersistence.findByG_P_L(
+			kbArticle.getGroupId(), kbArticle.getParentResourcePrimKey(), true,
+			QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+			new KBArticlePriorityComparator(true));
+
+		int pos = kbArticles.indexOf(kbArticle);
+
+		KBArticle[] previousAndNextKBArticles = { null, kbArticle, null };
+
+		if (pos > 0) {
+			previousAndNextKBArticles[0] = kbArticles.get(pos - 1);
+		}
+
+		if (pos < (kbArticles.size() - 1)) {
+			previousAndNextKBArticles[2] = kbArticles.get(pos + 1);
+		}
 
 		KBArticle previousKBArticle = getPreviousKBArticle(
 			kbArticle, previousAndNextKBArticles);
