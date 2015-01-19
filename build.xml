@@ -154,11 +154,9 @@ ${nodejs.url[osx64]}.
 				<if>
 					<contains string="${nodejs.file}" substring=".tar.gz" />
 					<then>
-						<untar
-							compression="gzip"
-							dest="tools"
-							src="${nodejs.file}"
-						/>
+						<exec executable="tar">
+							<arg line="-C tools -zxf ${nodejs.file}"/>
+						</exec>
 
 						<antelope:stringutil string="${nodejs.file}" property="nodejs.dir.endindex">
 							<antelope:lastindexof string=".tar.gz" />
@@ -171,13 +169,13 @@ ${nodejs.url[osx64]}.
 						<delete dir="tools/node-v${nodejs.version}" />
 
 						<move file="tools/${nodejs.dir}" tofile="tools/node-v${nodejs.version}" />
+
+						<delete file="${nodejs.file}" />
 					</then>
 					<else>
-						<move file="${nodejs.file}" todir="tools/templates/node-v${nodejs.version}" />
+						<move file="${nodejs.file}" todir="tools/node-v${nodejs.version}" />
 					</else>
 				</if>
-
-				<delete file="${nodejs.file}" />
 
 				<if>
 					<os family="windows" />
@@ -188,7 +186,7 @@ ${nodejs.url[osx64]}.
 						/>
 
 						<unzip
-							dest="tools/templates/node-v${nodejs.version}"
+							dest="tools/node-v${nodejs.version}"
 							src="npm.zip"
 						/>
 
