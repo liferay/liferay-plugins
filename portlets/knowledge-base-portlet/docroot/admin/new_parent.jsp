@@ -87,7 +87,7 @@ else {
 					document.<portlet:namespace />fm.<portlet:namespace />parentPriority.value = event.priority;
 					document.<portlet:namespace />fm.<portlet:namespace />parentResourceClassNameId.value = event.resourceclassnameid;
 					document.<portlet:namespace />fm.<portlet:namespace />parentResourcePrimKey.value = event.resourceprimkey;
-					document.<portlet:namespace />fm.<portlet:namespace />parentResource.value = A.Lang.String.unescapeEntities(event.title);
+					document.<portlet:namespace />fm.<portlet:namespace />parentTitle.value = A.Lang.String.unescapeEntities(event.title);
 				}
 			);
 		}
