@@ -85,7 +85,7 @@ else {
 		<liferay-util:include page="/admin/new_parent.jsp" servletContext="<%= application %>" />
 
 		<aui:button-row cssClass="kb-submit-buttons">
-			<aui:button type="submit" />
+			<aui:button type="submit" value="move" />
 
 			<aui:button href="<%= redirect %>" type="cancel" />
 		</aui:button-row>
