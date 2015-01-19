@@ -1566,12 +1566,12 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			long kbArticleId, KBArticle nextKBArticle)
 		throws PortalException, SystemException {
 
-		KBArticle kbArticle = kbArticlePersistence.findByPrimaryKey(
-			kbArticleId);
-
 		if (nextKBArticle != null) {
 			return nextKBArticle;
 		}
+
+		KBArticle kbArticle = kbArticlePersistence.findByPrimaryKey(
+			kbArticleId);
 
 		KBArticle parentKBArticle = kbArticle.getParentKBArticle();
 
