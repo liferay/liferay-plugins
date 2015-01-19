@@ -1609,22 +1609,20 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			KBArticle kbArticle, KBArticle previousKBArticle)
 		throws PortalException, SystemException {
 
-		if (previousKBArticle != null) {
-			KBArticle lastSiblingChildKBArticle =
-				kbArticlePersistence.fetchByG_P_L_Last(
-					kbArticle.getGroupId(),
-					previousKBArticle.getResourcePrimKey(), true,
-					new KBArticlePriorityComparator(true));
-
-			if (lastSiblingChildKBArticle != null) {
-				previousKBArticle = lastSiblingChildKBArticle;
-			}
-		}
-		else {
-			previousKBArticle = kbArticle.getParentKBArticle();
+		if (previousKBArticle == null) {
+			return kbArticle.getParentKBArticle();
 		}
 
-		return previousKBArticle;
+		KBArticle lastSiblingChildKBArticle =
+			kbArticlePersistence.fetchByG_P_L_Last(
+				kbArticle.getGroupId(), previousKBArticle.getResourcePrimKey(),
+				true, new KBArticlePriorityComparator(true));
+
+		if (lastSiblingChildKBArticle == null) {
+			return previousKBArticle;
+		}
+
+		return lastSiblingChildKBArticle;
 	}
 
 	protected double getPriority(long groupId, long parentResourcePrimKey)
