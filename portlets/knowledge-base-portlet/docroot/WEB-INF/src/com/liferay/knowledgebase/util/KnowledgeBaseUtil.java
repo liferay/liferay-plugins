@@ -649,10 +649,10 @@ public class KnowledgeBaseUtil {
 		PortalPreferences portalPreferences =
 			PortletPreferencesFactoryUtil.getPortalPreferences(portletRequest);
 
-		PortletPreferences preferences = portletRequest.getPreferences();
+		PortletPreferences portletPreferences = portletRequest.getPreferences();
 
 		String contentRootPrefix = GetterUtil.getString(
-			preferences.getValue("contentRootPrefix", null));
+			portletPreferences.getValue("contentRootPrefix", null));
 
 		String kbFolderURLTitle = getPreferredKBFolderURLTitle(
 			portalPreferences, contentRootPrefix);
