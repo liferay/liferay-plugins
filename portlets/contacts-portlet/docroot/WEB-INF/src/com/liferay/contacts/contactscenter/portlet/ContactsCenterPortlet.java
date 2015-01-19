@@ -1093,11 +1093,9 @@ public class ContactsCenterPortlet extends MVCPortlet {
 		ServiceContext serviceContext = ServiceContextFactory.getInstance(
 				User.class.getName(), actionRequest);
 
-		long[] assetCategoryIds = serviceContext.getAssetCategoryIds();
-		String[] assetTagNames = serviceContext.getAssetTagNames();
-
 		UserLocalServiceUtil.updateAsset(
-			user.getUserId(), user, assetCategoryIds, assetTagNames);
+			user.getUserId(), user, serviceContext.getAssetCategoryIds(),
+			serviceContext.getAssetTagNames());
 	}
 
 	protected void updatePhoneNumbers(ActionRequest actionRequest)
