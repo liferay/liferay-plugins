@@ -74,10 +74,10 @@ if (extension) {
 			<div id="<%= namespace %>errorMessage"></div>
 
 			<c:choose>
-				<c:when test='<%= curSectionId.equals("details") %>'>
+				<c:when test='<%= curSectionId.equals("categorization") %>'>
 					<liferay-util:include page='<%= "/contacts_center/user/" + _getSectionJsp(curSectionId) + ".jsp" %>' servletContext="<%= application %>" />
 				</c:when>
-				<c:when test='<%= curSectionId.equals("categorization") %>'>
+				<c:when test='<%= curSectionId.equals("details") %>'>
 					<liferay-util:include page='<%= "/contacts_center/user/" + _getSectionJsp(curSectionId) + ".jsp" %>' servletContext="<%= application %>" />
 				</c:when>
 				<c:otherwise>

@@ -21,16 +21,6 @@
 
 <%
 User selUser = (User)request.getAttribute("user.selUser");
-
-StringBuilder suggestionsContent = new StringBuilder();
-
-if(selUser.getComments() != null) {
-	suggestionsContent.append(selUser.getComments()); 
-}
-
-if(selUser.getJobTitle() != null) {
-	suggestionsContent.append(selUser.getJobTitle()); 
-}
 %>
 
 <aui:model-context bean="<%= selUser %>" model="<%= User.class %>" />
@@ -49,6 +39,19 @@ if(selUser.getJobTitle() != null) {
 
 <aui:script>
 	function <portlet:namespace />getSuggestionsContent() {
-		return '<%= suggestionsContent %>'
+
+		<%
+		StringBundler sb = new StringBundler();
+
+		if (selUser.getComments() != null) {
+			sb.append(selUser.getComments()); 
+		}
+
+		if (selUser.getJobTitle() != null) {
+			sb.append(selUser.getJobTitle()); 
+		}
+		%>
+
+		return '<%= sb %>'
 	}
 </aui:script>
