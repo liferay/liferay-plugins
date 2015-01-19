@@ -100,8 +100,7 @@ import javax.portlet.PortletPreferences;
  * @author Brian Wing Shun Chan
  * @author Edward Han
  */
-public class
-	KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
+public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 
 	@Override
 	public KBArticle addKBArticle(
@@ -1942,7 +1941,7 @@ public class
 
 		int pos = kbArticles.indexOf(kbArticle);
 
-		KBArticle[] previousAndNextKBArticles = { null, kbArticle, null };
+		KBArticle[] previousAndNextKBArticles = {null, kbArticle, null};
 
 		if (pos > 0) {
 			previousAndNextKBArticles[0] = kbArticles.get(pos - 1);
