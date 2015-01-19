@@ -156,8 +156,7 @@ public class AdminPortlet extends BaseKBPortlet {
 				inputStream, serviceContext);
 
 			SessionMessages.add(
-				actionRequest, "aTotalOfXArticlesHaveBeenImported",
-				kbArticleCount);
+				actionRequest, "importedKBArticlesCount", kbArticleCount);
 		}
 		catch (KBArticleImportException kbaie) {
 			SessionErrors.add(actionRequest, kbaie.getClass(), kbaie);

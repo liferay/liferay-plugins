@@ -44,10 +44,10 @@ long parentResourcePrimKey = ParamUtil.getLong(request, "parentResourcePrimKey",
 
 	<liferay-ui:error exception="<%= KBArticlePriorityException.class %>" message='<%= LanguageUtil.format(pageContext, "please-enter-a-priority-that-is-greater-than-x", "0", false) %>' translateMessage="<%= false %>" />
 
-	<c:if test='<%= SessionMessages.contains(renderRequest, "aTotalOfXArticlesHaveBeenImported") %>'>
+	<c:if test='<%= SessionMessages.contains(renderRequest, "importedKBArticlesCount") %>'>
 
 		<%
-		int importedArticleCount = (Integer)SessionMessages.get(renderRequest, "aTotalOfXArticlesHaveBeenImported");
+		int importedArticleCount = (Integer)SessionMessages.get(renderRequest, "importedKBArticlesCount");
 		%>
 
 		<c:choose>
