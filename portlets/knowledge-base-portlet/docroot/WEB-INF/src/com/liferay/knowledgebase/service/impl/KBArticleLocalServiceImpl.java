@@ -1967,7 +1967,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 
 		int pos = kbArticles.indexOf(kbArticle);
 
-		KBArticle[] previousAndNextKBArticles = { null, kbArticle, null };
+		KBArticle[] previousAndNextKBArticles = {null, kbArticle, null};
 
 		if (pos > 0) {
 			previousAndNextKBArticles[0] = kbArticles.get(pos - 1);
