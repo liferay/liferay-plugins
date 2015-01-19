@@ -78,6 +78,7 @@ import com.liferay.portal.model.UserNotificationDeliveryConstants;
 import com.liferay.portal.model.Website;
 import com.liferay.portal.service.RoleLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
+import com.liferay.portal.service.ServiceContextFactory;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.service.UserNotificationEventLocalServiceUtil;
 import com.liferay.portal.service.UserServiceUtil;
@@ -1098,10 +1099,11 @@ public class ContactsCenterPortlet extends MVCPortlet {
 
 		User user = themeDisplay.getUser();
 
-		long[] assetCategoryIds = StringUtil.split(
-			ParamUtil.getString(actionRequest, "assetCategoryNames"), 0L);
-		String[] assetTagNames = StringUtil.split(
-			ParamUtil.getString(actionRequest, "assetTagNames"));
+		ServiceContext serviceContext = ServiceContextFactory.getInstance(
+				User.class.getName(), actionRequest);
+
+		long[] assetCategoryIds = serviceContext.getAssetCategoryIds();
+		String[] assetTagNames = serviceContext.getAssetTagNames();
 
 		UserLocalServiceUtil.updateAsset(
 			user.getUserId(), user, assetCategoryIds, assetTagNames);
