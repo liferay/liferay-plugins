@@ -36,7 +36,7 @@ import org.jsoup.select.Elements;
  */
 public class URLMetadataScraperServlet extends HttpServlet {
 
-	public JSONObject getPreviewJSONObject(String url) throws Exception {
+	public JSONObject getURLMetadataJSONObject(String url) throws Exception {
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
 		Http.Options options = new Http.Options();
@@ -58,7 +58,7 @@ public class URLMetadataScraperServlet extends HttpServlet {
 
 		Document document = Jsoup.parse(html);
 
-		jsonObject.put("description", getLinkDescription(document));
+		jsonObject.put("description", getDescription(document));
 
 		StringBundler sb = new StringBundler(4);
 
@@ -67,18 +67,18 @@ public class URLMetadataScraperServlet extends HttpServlet {
 		sb.append(StringPool.DOUBLE_SLASH);
 		sb.append(HttpUtil.getDomain(url));
 
-		jsonObject.put("imageURL", getLinkImageURL(document, sb.toString()));
+		jsonObject.put("imageURL", getImageURL(document, sb.toString()));
 
 		String domain = HttpUtil.getDomain(options.getLocation());
 
 		jsonObject.put("shortURL", StringUtil.toUpperCase(domain));
 
-		jsonObject.put("title", getLinkTitle(document));
+		jsonObject.put("title", getTitle(document));
 
 		return jsonObject;
 	}
 
-	protected String getLinkDescription(Document document) {
+	protected String getDescription(Document document) {
 		Elements descriptionElement = document.select(
 			"meta[property=og:description]");
 
@@ -91,7 +91,7 @@ public class URLMetadataScraperServlet extends HttpServlet {
 		return StringUtil.shorten(description, 200);
 	}
 
-	protected String getLinkImageURL(Document document, String baseURL) {
+	protected String getImageURL(Document document, String baseURL) {
 		String imageURL = StringPool.BLANK;
 
 		Elements imageElement = document.select("meta[property=og:image]");
@@ -112,7 +112,7 @@ public class URLMetadataScraperServlet extends HttpServlet {
 		return imageURL;
 	}
 
-	protected String getLinkTitle(Document document) {
+	protected String getTitle(Document document) {
 		Elements titleElement = document.select("meta[property=og:title]");
 
 		String title = titleElement.attr("content");
