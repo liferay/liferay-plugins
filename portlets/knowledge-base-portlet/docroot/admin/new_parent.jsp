@@ -55,11 +55,9 @@ else {
 
 		<aui:input cssClass="input-mini" id="parentPriority" label="priority" name="priority" type="text" value="<%= BigDecimal.valueOf(priority).toPlainString() %>" />
 	</div>
-</aui:field-wrapper>
 
-<div class="kb-edit-link">
-	<aui:a href="javascript:;" id="selectKBObjectLink"><liferay-ui:message key="select-parent" /> &raquo;</aui:a>
-</div>
+	<aui:button name="selectKBObjectButton" value="select" />
+</aui:field-wrapper>
 
 <aui:script use="aui-base">
 	<liferay-portlet:renderURL var="selectKBObjectURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
@@ -71,7 +69,7 @@ else {
 		<portlet:param name="status" value="<%= String.valueOf(status) %>" />
 	</liferay-portlet:renderURL>
 
-	A.one('#<portlet:namespace />selectKBObjectLink').on(
+	A.one('#<portlet:namespace />selectKBObjectButton').on(
 		'click',
 		function(event) {
 			Liferay.Util.selectEntity(
