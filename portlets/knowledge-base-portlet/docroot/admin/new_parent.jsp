@@ -49,11 +49,13 @@ else {
 }
 %>
 
-<div class="input-append kb-new-parent">
-	<aui:input label="" name="parentResource" type="resource" value="<%= parentTitle %>" />
+<aui:field-wrapper label="new-parent">
+	<div id="<portlet:namespace />newParent">
+		<aui:input label="" name="parentTitle" readonly="<%= true %>" value="<%= parentTitle %>" />
 
-	<aui:input cssClass="input-mini kb-priority" id="parentPriority" inlineField="<%= true %>" label="" name="priority" type="text" value="<%= BigDecimal.valueOf(priority).toPlainString() %>" />
-</div>
+		<aui:input cssClass="input-mini" id="parentPriority" label="priority" name="priority" type="text" value="<%= BigDecimal.valueOf(priority).toPlainString() %>" />
+	</div>
+</aui:field-wrapper>
 
 <div class="kb-edit-link">
 	<aui:a href="javascript:;" id="selectKBObjectLink"><liferay-ui:message key="select-parent" /> &raquo;</aui:a>

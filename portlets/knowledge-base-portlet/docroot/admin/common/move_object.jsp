@@ -77,18 +77,12 @@ else {
 
 	<aui:fieldset>
 		<aui:field-wrapper label="current-parent">
-			<div class="input-append">
-				<liferay-ui:input-resource url="<%= parentTitle %>" />
+			<aui:input label="" name="currentParentTitle" readonly="<%= true %>" value="<%= parentTitle %>" />
 
-				<aui:input cssClass="input-mini" label="" name="priority" type="resource" value="<%= BigDecimal.valueOf(priority).toPlainString() %>" />
-			</div>
+			<aui:input cssClass="input-mini" label="priority" name="currentPriority" readonly="<%= true %>" value="<%= BigDecimal.valueOf(priority).toPlainString() %>" />
 		</aui:field-wrapper>
 
-		<aui:field-wrapper label="new-parent">
-			<div id="<portlet:namespace />newParent">
-				<liferay-util:include page="/admin/new_parent.jsp" servletContext="<%= application %>" />
-			</div>
-		</aui:field-wrapper>
+		<liferay-util:include page="/admin/new_parent.jsp" servletContext="<%= application %>" />
 
 		<aui:button-row cssClass="kb-submit-buttons">
 			<aui:button type="submit" />
