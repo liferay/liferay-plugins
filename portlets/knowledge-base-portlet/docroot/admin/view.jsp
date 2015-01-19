@@ -421,7 +421,9 @@ long parentResourcePrimKey = ParamUtil.getLong(request, "parentResourcePrimKey",
 		);
 	}
 
-	A.one('#<portlet:namespace />kbArticlesAdminSearchContainer').delegate(
+	var kbArticlesAdminSearchContainer = A.one('#<portlet:namespace />kbArticlesAdminSearchContainer');
+
+	kbArticlesAdminSearchContainer.delegate(
 		'click',
 		function() {
 			var hide = (Liferay.Util.listCheckedExcept(document.<portlet:namespace />fm, '<portlet:namespace /><%= RowChecker.ALL_ROW_IDS %>').length == 0);
@@ -433,5 +435,22 @@ long parentResourcePrimKey = ParamUtil.getLong(request, "parentResourcePrimKey",
 			}
 		},
 		'input[type=checkbox]'
+	);
+
+	kbArticlesAdminSearchContainer.delegate(
+		'key',
+		function() {
+			var parentTr = this.ancestor('tr');
+
+			var rowIdsNode = parentTr.one('input[type="checkbox"]');
+
+			rowIdsNode.set('checked', true);
+
+			document.<portlet:namespace />fm.method = 'post';
+
+			submitForm(document.<portlet:namespace />fm, '<liferay-portlet:actionURL name="updateKBArticlesPriorities"><portlet:param name="mvcPath" value="/admin/view.jsp" /><portlet:param name="redirect" value="<%= redirect %>" /></liferay-portlet:actionURL>');
+		},
+		'enter',
+		'input[type=text]'
 	);
 </aui:script>
