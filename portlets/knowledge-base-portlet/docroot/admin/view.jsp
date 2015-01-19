@@ -47,14 +47,15 @@ long parentResourcePrimKey = ParamUtil.getLong(request, "parentResourcePrimKey",
 	<c:if test='<%= SessionMessages.contains(renderRequest, "importedKBArticlesCount") %>'>
 
 		<%
-		int importedArticleCount = (Integer)SessionMessages.get(renderRequest, "importedKBArticlesCount");
+		int importedKBArticlesCount = GetterUtil.getInteger(SessionMessages.get(renderRequest, "importedKBArticlesCount"));
 		%>
 
 		<c:choose>
-			<c:when test="<%= importedArticleCount > 0 %>">
+			<c:when test="<%= importedKBArticlesCount > 0 %>">
 				<div class="alert alert-success">
 					<liferay-ui:message key="your-request-completed-successfully" />
-					<liferay-ui:message arguments="<%= importedArticleCount %>" key="a-total-of-x-articles-have-been-imported" />
+
+					<liferay-ui:message arguments="<%= importedKBArticlesCount %>" key="a-total-of-x-articles-have-been-imported" />
 				</div>
 			</c:when>
 			<c:otherwise>
