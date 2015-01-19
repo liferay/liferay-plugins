@@ -1545,12 +1545,12 @@ public class
 			long kbArticleId, KBArticle nextKBArticle)
 		throws PortalException {
 
-		KBArticle kbArticle = kbArticlePersistence.findByPrimaryKey(
-			kbArticleId);
-
 		if (nextKBArticle != null) {
 			return nextKBArticle;
 		}
+
+		KBArticle kbArticle = kbArticlePersistence.findByPrimaryKey(
+			kbArticleId);
 
 		KBArticle parentKBArticle = kbArticle.getParentKBArticle();
 
