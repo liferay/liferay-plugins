@@ -98,11 +98,11 @@ public class DisplayPortlet extends BaseKBPortlet {
 						PortletPreferencesFactoryUtil.getPortalPreferences(
 							renderRequest);
 
-					PortletPreferences preferences =
+					PortletPreferences portletPreferences =
 						renderRequest.getPreferences();
 
 					String contentRootPrefix = GetterUtil.getString(
-						preferences.getValue("contentRootPrefix", null));
+						portletPreferences.getValue("contentRootPrefix", null));
 
 					String preferredKBFolderURLTitle =
 						KnowledgeBaseUtil.getPreferredKBFolderURLTitle(
@@ -174,10 +174,10 @@ public class DisplayPortlet extends BaseKBPortlet {
 			PortletPreferencesFactoryUtil.getPortalPreferences(
 				PortalUtil.getLiferayPortletRequest(actionRequest));
 
-		PortletPreferences preferences = actionRequest.getPreferences();
+		PortletPreferences portletPreferences = actionRequest.getPreferences();
 
 		String contentRootPrefix = GetterUtil.getString(
-			preferences.getValue("contentRootPrefix", null));
+			portletPreferences.getValue("contentRootPrefix", null));
 
 		String previousPreferredKBFolderURLTitle =
 			KnowledgeBaseUtil.getPreferredKBFolderURLTitle(
