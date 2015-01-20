@@ -48,6 +48,7 @@ User selUser = (User)request.getAttribute("user.selUser");
 		}
 
 		if (selUser.getJobTitle() != null) {
+			sb.append(StringPool.SPACE);
 			sb.append(selUser.getJobTitle()); 
 		}
 		%>
