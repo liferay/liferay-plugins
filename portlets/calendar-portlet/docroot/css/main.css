@@ -647,4 +647,12 @@
 	.scheduler-base-views button {
 	    float: none;
 	}
+
+	.scheduler-view-day-header-day-weekday {
+		font-size: 0;
+
+		&:first-letter {
+			font-size: 14px;
+		}
+	}
 }
