@@ -129,24 +129,30 @@ ${nodejs.url[osx64]}.
 		</if>
 	</target>
 
-	<macrodef name="exec-node-command">
+	<macrodef name="node-execute">
 		<attribute name="command"/>
 		<attribute name="commandArgs" default="" />
 
 		<sequential>
 			<property name="working.dir" value="${user.dir}" />
+
 			<exec dir="${working.dir}" executable="${basedir}/tools/node-v${nodejs.version}/bin/@{command}">
 				<arg line="@{commandArgs} ${node.args}"/>
 			</exec>
 		</sequential>
 	</macrodef>
 
-	<target name="exec-node" depends="download-nodejs">
-		<exec-node-command command="node" />
+	<target name="node-execute" depends="download-nodejs">
+		<node-execute
+			command="node"
+		/>
 	</target>
 
-	<target name="exec-npm" depends="download-nodejs">
+	<target name="npm-execute" depends="download-nodejs">
 		<property name="working.dir" value="tools/node-v${nodejs.version}" />
-		<exec-node-command command="npm" />
+
+		<node-execute
+			command="npm"
+		/>
 	</target>
 </project>
