@@ -155,7 +155,7 @@ ${nodejs.url[osx64]}.
 					<contains string="${nodejs.file}" substring=".tar.gz" />
 					<then>
 						<exec executable="tar">
-							<arg line="-C tools -zxf ${nodejs.file}"/>
+							<arg line="xfz ${nodejs.file} -C tools"/>
 						</exec>
 
 						<antelope:stringutil string="${nodejs.file}" property="nodejs.dir.endindex">
