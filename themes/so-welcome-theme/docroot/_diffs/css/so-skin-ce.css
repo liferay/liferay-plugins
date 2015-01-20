@@ -138,7 +138,7 @@ input[type=button], input[type=reset], input[type=submit], #sign-in:hover, .aui-
 }
 
 .aui-form-validator-message {
-	background-color: rgba(51, 51, 51, .8);
+	background-color: rgba(51, 51, 51, 0.8);
 	left: -4px;
 	top: 23px;
 	width: 200px;

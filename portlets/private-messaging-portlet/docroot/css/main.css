@@ -102,7 +102,7 @@
 	}
 
 	.table {
-		border-top: 0;
+		border-top-width: 0;
 		margin-bottom: 0;
 
 		thead {

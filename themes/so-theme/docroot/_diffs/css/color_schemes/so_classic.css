@@ -108,8 +108,8 @@ body.so-classic {
 
 			a {
 				background: #F4F4F4;
-				color: $red;
 				box-shadow: none;
+				color: $red;
 			}
 		}
 	}

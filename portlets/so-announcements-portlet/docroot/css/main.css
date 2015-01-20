@@ -27,7 +27,7 @@
 	.user-portrait {
 		float: left;
 		left: 0;
-		margin-bottom: .4em;
+		margin-bottom: 0.4em;
 		max-height: 45px;
 		position: absolute;
 		top: 0;
@@ -50,7 +50,7 @@
 	}
 
 	.entry-header {
-		margin-bottom: .4em;
+		margin-bottom: 0.4em;
 
 		a {
 			font-weight: bold;
@@ -60,7 +60,7 @@
 	.entry-time {
 		color: #999;
 		float: right;
-		font-size: .9em;
+		font-size: 0.9em;
 		margin-left: 1em;
 	}
 
@@ -91,7 +91,7 @@
 			display: block;
 			font-weight: bold;
 			overflow: hidden;
-			padding: .4em .9em;
+			padding: 0.4em 0.9em;
 
 			.event-title {
 				float: left;
@@ -109,7 +109,7 @@
 	.entry-content-container {
 		max-height: 75px;
 		overflow: hidden;
-		padding: .5em .9em;
+		padding: 0.5em 0.9em;
 	}
 
 	.entry-content {
@@ -134,8 +134,8 @@
 			display: inline-block;
 			height: 16px;
 			line-height: 16px;
-			margin: .5em 0;
-			padding: 0 .6em 0 .8em;
+			margin: 0.5em 0;
+			padding: 0 0.6em 0 0.8em;
 			vertical-align: middle;
 
 			&:first-child {
@@ -145,7 +145,7 @@
 		}
 
 		a {
-			font-size: .9em;
+			font-size: 0.9em;
 		}
 	}
 
@@ -160,7 +160,7 @@
 		.header {
 			border: 1px solid #C8C9CA;
 			cursor: pointer;
-			padding: .2em .5em;
+			padding: 0.2em 0.5em;
 		}
 
 		.toggler-header-collapsed {
@@ -200,12 +200,12 @@
 
 		.left-nav {
 			float: left;
-			margin-left: .5em;
+			margin-left: 0.5em;
 		}
 
 		.right-nav {
 			float: right;
-			margin-right: .5em;
+			margin-right: 0.5em;
 		}
 	}
 }
@@ -280,7 +280,7 @@
 /* ---------- Extras ---------- */
 
 .so-announcements-portlet .announcement-collapsed .entry-footer-toolbar {
-	box-shadow: 0 -1px 15px -5px rgba(0, 0, 0, .8);
+	box-shadow: 0 -1px 15px -5px rgba(0, 0, 0, 0.8);
 }
 
 /* ---------- Responsive ---------- */
@@ -292,7 +292,7 @@
 		}
 
 		.entry-time {
-			margin: .2em 0 0;
+			margin: 0.2em 0 0;
 			width: 100%;
 		}
 

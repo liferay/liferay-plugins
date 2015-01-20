@@ -182,7 +182,7 @@
 		position: absolute;
 		right: 20px;
 		top: 0;
-		z-index:20;
+		z-index: 20;
 	}
 }
 
@@ -262,7 +262,7 @@
 }
 
 .upcoming-tasks-portlet .tasks-entries-container {
-	ul, li, {
+	ul, li {
 		list-style: none;
 		margin: 0;
 		padding: 0;
@@ -276,7 +276,7 @@
 
 .tasks-portlet .task-data-table .high, .tasks-portlet .tasks-title.high, .upcoming-tasks-portlet .tasks-entries-container .high a {
 	.icon-circle {
-		color: #FF0000;
+		color: #F00;
 		text-decoration: none;
 	}
 }

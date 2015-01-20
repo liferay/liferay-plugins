@@ -22,7 +22,6 @@ $dockbarOpenGradientStart: #A7C86C;
 }
 
 body {
-
 	&.lfr-dockbar-pinned {
 		padding-top: 31px;
 	}
@@ -434,7 +433,7 @@ h1.appointment {
 			font-size: 2.5em;
 			font-style: italic;
 			font-weight: lighter;
-			margin: 0.84em 0 .75em 0;
+			margin: 0.84em 0 0.75em 0;
 		}
 
 		ul li {

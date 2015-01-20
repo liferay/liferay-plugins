@@ -74,12 +74,12 @@
 	}
 
 	.panel-bd {
-		background: #FFFFFF;
+		background: #FFF;
 		overflow: auto;
 	}
 
 	.nav-tabs {
-		margin-bottom: 0px;
+		margin-bottom: 0;
 
 		.tab {
 			cursor: pointer;
@@ -109,8 +109,8 @@
 	background: #EEF0F2;
 
 	.btn {
-		width: 100%;
 		text-align: left;
+		width: 100%;
 	}
 }
 
@@ -129,6 +129,7 @@
 }
 
 /* ---------- Extras ---------- */
+
 .gadget-editor-contextmenu-toolbar {
-	box-shadow: 4px 4px 8px #888888;
+	box-shadow: 4px 4px 8px #888;
 }

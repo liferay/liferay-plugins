@@ -1,7 +1,7 @@
 @import "bourbon";
 
-$btnBackgroundDefault: rgb(228,228,228);
-$btnBorderDefault: rgba(0,0,0, 0.1);
+$btnBackgroundDefault: rgb(228, 228, 228);
+$btnBorderDefault: rgba(0, 0, 0, 0.1);
 $btnDefaultText: #0D0D0D;
 
 $defaultBorderColor: #C9C9C9;
@@ -14,7 +14,7 @@ $red: #8F0920;
 
 @mixin button-active {
 	background-position: 0 -1.5em;
-	box-shadow: 0 1px 8px rgba(0,0,0, 0.14) inset, 0 1px 3px rgba(0,0,0, 0.75) inset;
+	box-shadow: 0 1px 8px rgba(0, 0, 0, 0.14) inset, 0 1px 3px rgba(0, 0, 0, 0.75) inset;
 }
 
 @mixin button-default {
@@ -41,7 +41,7 @@ $red: #8F0920;
 
 @mixin button-hover {
 	background-position: 0 -0.8em;
-	box-shadow: 0 1px 0 rgba(255,255,255, 0.25) inset, 0 1px 0 rgba(0,0,0, 0.14) inset, 0 1px 4px rgba(0,0,0, 0.1) inset;
+	box-shadow: 0 1px 0 rgba(255, 255, 255, 0.25) inset, 0 1px 0 rgba(0, 0, 0, 0.14) inset, 0 1px 4px rgba(0, 0, 0, 0.1) inset;
 
 	@include normal-gradient;
 }
@@ -52,7 +52,7 @@ $red: #8F0920;
 
 @mixin button-primary-gradient {
 	background: #0E50A9 url(../images/custom/button_primary_bg.png) repeat-x;
-	border-color: #0e50a9;
+	border-color: #0E50A9;
 
 	@include background-image(linear-gradient(bottom, #0E50A9 0, #1D87EB 100%));
 
@@ -128,16 +128,16 @@ $red: #8F0920;
 
 @mixin menu-style {
 	background: #FFF;
-	border-radius: 4px;
 	border-color: $defaultBorderColor;
-	box-shadow: 0 1px 3px rgba(0,0,0, 0.78);
+	border-radius: 4px;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.78);
 	padding: 0.5em 0;
 }
 
 @mixin normal-gradient {
 	background: $btnBackgroundDefault url(../images/custom/normal_gradient_bg.png) 0 0 repeat-x;
 
-	@include background-image(linear-gradient(bottom, rgb(228,228,228) 0, rgb(247,247,247) 100%));
+	@include background-image(linear-gradient(bottom, rgb(228, 228, 228) 0, rgb(247, 247, 247) 100%));
 	@include transition-duration(0.2s);
 	@include transition-property(background-position);
 }

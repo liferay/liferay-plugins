@@ -380,9 +380,9 @@ $section-header-bg: #CCE6F7;
 		zoom: 1;
 
 		&:after {
-			content: "";
-			display: block;
 			clear: both;
+			content: '';
+			display: block;
 		}
 
 		h3 {
@@ -454,7 +454,7 @@ $section-header-bg: #CCE6F7;
 		}
 
 		.header-title {
-			margin: 0px;
+			margin: 0;
 		}
 
 		.contacts-count {
@@ -599,7 +599,7 @@ $section-header-bg: #CCE6F7;
 
 			.settings-actions {
 				display: inline-block;
-				margin: 0px;
+				margin: 0;
 				padding-left: 24px;
 			}
 
@@ -694,8 +694,8 @@ $section-header-bg: #CCE6F7;
 
 .portlet-configuration .contacts-portlet {
 	.lfr-user-profile-preferences, .toggler-content {
-		overflow: hidden;
 		margin: 0;
+		overflow: hidden;
 	}
 
 	.lfr-user-profile-preferences .column {
@@ -781,7 +781,7 @@ $section-header-bg: #CCE6F7;
 			left: 0;
 			position: relative;
 
-			@include transition-duration(.3s);
+			@include transition-duration(0.3s);
 			@include transition-property(left);
 
 			z-index: 1;
@@ -791,7 +791,7 @@ $section-header-bg: #CCE6F7;
 			background: #FFF;
 			margin-left: 0;
 
-			@include transition-duration(.3s);
+			@include transition-duration(0.3s);
 			@include transition-property(margin-left);
 
 			z-index: 1;
@@ -821,7 +821,7 @@ $section-header-bg: #CCE6F7;
 
 			.toggle-user {
 				background-color: #EEE;
-				background-color: rgba(0,0,0, 0.4);
+				background-color: rgba(0, 0, 0, 0.4);
 
 				border-radius: 0 8px 8px 0;
 

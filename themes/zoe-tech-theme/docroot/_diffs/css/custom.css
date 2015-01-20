@@ -459,7 +459,7 @@ hr {
 
 ul.arrow {
 	list-style: none;
-	list-style-image:url(../images/custom/bullet.png);
+	list-style-image: url(../images/custom/bullet.png);
 	margin: 15px;
 
 	li {
@@ -585,7 +585,7 @@ ul.arrow {
 #sign-in {
 	@include border-bottom-radius(3px);
 
-	box-shadow: 1px 2px 3px 0px #999;
+	box-shadow: 1px 2px 3px 0 #999;
 }
 
 #pageSearch #keywords {
@@ -611,7 +611,7 @@ ul.arrow {
 }
 
 .carousel-container, .column-text img, .pod .pod-image {
-	box-shadow: 0px 5px #333333;
+	box-shadow: 0 5px #333;
 }
 
 #quoteBox h3 {

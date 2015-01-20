@@ -259,7 +259,7 @@ img.center {
 .portlet-topper {
 	background: url(../images/custom/port_topper.png) 100% repeat-x;
 	height: 37px;
-	letter-spacing: .05em;
+	letter-spacing: 0.05em;
 
 	.portlet-topper-toolbar {
 		a, a:visited {
@@ -418,7 +418,7 @@ img.center {
 
 .ie #keywords {
 	background: transparent;
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#20000000,endColorstr=#20000000);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#20000000, endColorstr=#20000000);
 	zoom: 1;
 }
 

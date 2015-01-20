@@ -8,9 +8,9 @@
 
 		.preview-play {
 			display: inline-block;
+			margin-top: -82px;
 			position: relative;
 			top: 50%;
-			margin-top: -82px;
 		}
 	}
 
