@@ -1566,6 +1566,27 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			kbArticle.getKbArticleId(), nextKBArticle);
 	}
 
+	protected KBArticle[] getPreviousAndNextKBArticles(KBArticle kbArticle) {
+		List<KBArticle> kbArticles = kbArticlePersistence.findByG_P_L(
+			kbArticle.getGroupId(), kbArticle.getParentResourcePrimKey(), true,
+			QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+			new KBArticlePriorityComparator(true));
+
+		int index = kbArticles.indexOf(kbArticle);
+
+		KBArticle[] previousAndNextKBArticles = {null, kbArticle, null};
+
+		if (index > 0) {
+			previousAndNextKBArticles[0] = kbArticles.get(index - 1);
+		}
+
+		if (index < (kbArticles.size() - 1)) {
+			previousAndNextKBArticles[2] = kbArticles.get(index + 1);
+		}
+
+		return previousAndNextKBArticles;
+	}
+
 	protected KBArticle getPreviousKBArticle(
 			KBArticle kbArticle, KBArticle previousKBArticle)
 		throws PortalException {
@@ -1931,27 +1952,6 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			throw new DuplicateKBArticleUrlTitleException(
 				"Duplicate URL title " + urlTitle);
 		}
-	}
-
-	protected KBArticle[] getPreviousAndNextKBArticles(KBArticle kbArticle) {
-		List<KBArticle> kbArticles = kbArticlePersistence.findByG_P_L(
-			kbArticle.getGroupId(), kbArticle.getParentResourcePrimKey(), true,
-			QueryUtil.ALL_POS, QueryUtil.ALL_POS,
-			new KBArticlePriorityComparator(true));
-
-		int index = kbArticles.indexOf(kbArticle);
-
-		KBArticle[] previousAndNextKBArticles = {null, kbArticle, null};
-
-		if (index > 0) {
-			previousAndNextKBArticles[0] = kbArticles.get(index - 1);
-		}
-
-		if (index < (kbArticles.size() - 1)) {
-			previousAndNextKBArticles[2] = kbArticles.get(index + 1);
-		}
-
-		return previousAndNextKBArticles;
 	}
 
 	private static final int[] _STATUSES = {
