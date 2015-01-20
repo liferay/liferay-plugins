@@ -380,6 +380,10 @@
 	}	
 }
 
+.scheduler-base-icon-next span, .scheduler-base-icon-prev span {
+	font-size: 16px;
+}
+
 .scheduler-base-nav-date {
 	display: none !important;
 }
