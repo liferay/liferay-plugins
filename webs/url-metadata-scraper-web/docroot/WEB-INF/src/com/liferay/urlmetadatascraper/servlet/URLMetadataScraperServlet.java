@@ -16,6 +16,7 @@ package com.liferay.urlmetadatascraper.servlet;
 
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.servlet.ServletResponseUtil;
 import com.liferay.portal.kernel.util.CharPool;
 import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.Http;
@@ -25,7 +26,12 @@ import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 
+import java.io.IOException;
+
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -36,46 +42,17 @@ import org.jsoup.select.Elements;
  */
 public class URLMetadataScraperServlet extends HttpServlet {
 
-	public JSONObject getURLMetadataJSONObject(String url) throws Exception {
-		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
+	@Override
+	public void service(
+			HttpServletRequest request, HttpServletResponse response)
+		throws IOException, ServletException {
 
-		Http.Options options = new Http.Options();
+		String url = request.getParameter("url");
 
-		int pos = url.indexOf(CharPool.QUESTION);
+		JSONObject jsonObject = getURLMetadataJSONObject(url);
 
-		if (pos != -1) {
-			options.setBody(
-				url.substring(pos + 1),
-				ContentTypes.APPLICATION_X_WWW_FORM_URLENCODED,
-				StringPool.UTF8);
-			options.setLocation(url.substring(0, pos));
-		}
-		else {
-			options.setLocation(url);
-		}
-
-		String html = HttpUtil.URLtoString(options);
-
-		Document document = Jsoup.parse(html);
-
-		jsonObject.put("description", getDescription(document));
-
-		StringBundler sb = new StringBundler(4);
-
-		sb.append(HttpUtil.getProtocol(url));
-		sb.append(StringPool.COLON);
-		sb.append(StringPool.DOUBLE_SLASH);
-		sb.append(HttpUtil.getDomain(url));
-
-		jsonObject.put("imageURL", getImageURL(document, sb.toString()));
-
-		String domain = HttpUtil.getDomain(options.getLocation());
-
-		jsonObject.put("shortURL", StringUtil.toUpperCase(domain));
-
-		jsonObject.put("title", getTitle(document));
-
-		return jsonObject;
+		ServletResponseUtil.write(
+			response, JSONFactoryUtil.looseSerialize(jsonObject));
 	}
 
 	protected String getDescription(Document document) {
@@ -136,6 +113,50 @@ public class URLMetadataScraperServlet extends HttpServlet {
 		}
 
 		return StringUtil.shorten(title, 200);
+	}
+
+	protected JSONObject getURLMetadataJSONObject(String url)
+		throws IOException {
+
+		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
+
+		Http.Options options = new Http.Options();
+
+		int pos = url.indexOf(CharPool.QUESTION);
+
+		if (pos != -1) {
+			options.setBody(
+				url.substring(pos + 1),
+				ContentTypes.APPLICATION_X_WWW_FORM_URLENCODED,
+				StringPool.UTF8);
+			options.setLocation(url.substring(0, pos));
+		}
+		else {
+			options.setLocation(url);
+		}
+
+		String html = HttpUtil.URLtoString(options);
+
+		Document document = Jsoup.parse(html);
+
+		jsonObject.put("description", getDescription(document));
+
+		StringBundler sb = new StringBundler(4);
+
+		sb.append(HttpUtil.getProtocol(url));
+		sb.append(StringPool.COLON);
+		sb.append(StringPool.DOUBLE_SLASH);
+		sb.append(HttpUtil.getDomain(url));
+
+		jsonObject.put("imageURL", getImageURL(document, sb.toString()));
+
+		String domain = HttpUtil.getDomain(options.getLocation());
+
+		jsonObject.put("shortURL", StringUtil.toUpperCase(domain));
+
+		jsonObject.put("title", getTitle(document));
+
+		return jsonObject;
 	}
 
 }
