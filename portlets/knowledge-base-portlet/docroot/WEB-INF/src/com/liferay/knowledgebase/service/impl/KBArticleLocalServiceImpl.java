@@ -762,7 +762,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		KBArticle kbArticle = kbArticlePersistence.findByPrimaryKey(
 			kbArticleId);
 
-		KBArticle[] previousAndNextKBArticles = _getPreviousAndNextKBArticles(
+		KBArticle[] previousAndNextKBArticles = getPreviousAndNextKBArticles(
 			kbArticle);
 
 		KBArticle previousKBArticle = getPreviousKBArticle(
@@ -1543,7 +1543,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			return null;
 		}
 
-		KBArticle[] previousAndNextKBArticles = _getPreviousAndNextKBArticles(
+		KBArticle[] previousAndNextKBArticles = getPreviousAndNextKBArticles(
 			parentKBArticle);
 
 		return getNextAncestorKBArticle(
@@ -1933,22 +1933,22 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		}
 	}
 
-	private KBArticle[] _getPreviousAndNextKBArticles(KBArticle kbArticle) {
+	protected KBArticle[] getPreviousAndNextKBArticles(KBArticle kbArticle) {
 		List<KBArticle> kbArticles = kbArticlePersistence.findByG_P_L(
 			kbArticle.getGroupId(), kbArticle.getParentResourcePrimKey(), true,
 			QueryUtil.ALL_POS, QueryUtil.ALL_POS,
 			new KBArticlePriorityComparator(true));
 
-		int pos = kbArticles.indexOf(kbArticle);
+		int index = kbArticles.indexOf(kbArticle);
 
 		KBArticle[] previousAndNextKBArticles = {null, kbArticle, null};
 
-		if (pos > 0) {
-			previousAndNextKBArticles[0] = kbArticles.get(pos - 1);
+		if (index > 0) {
+			previousAndNextKBArticles[0] = kbArticles.get(index - 1);
 		}
 
-		if (pos < (kbArticles.size() - 1)) {
-			previousAndNextKBArticles[2] = kbArticles.get(pos + 1);
+		if (index < (kbArticles.size() - 1)) {
+			previousAndNextKBArticles[2] = kbArticles.get(index + 1);
 		}
 
 		return previousAndNextKBArticles;
