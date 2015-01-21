@@ -337,6 +337,58 @@
 		<delete dir="${service.base.dir}/service-classes" />
 	</target>
 
+	<macrodef name="build-wsdd">
+		<attribute name="wsdd.classpath.property" />
+		<attribute name="wsdd.input.file" />
+		<attribute name="wsdd.server.config.file" />
+		<attribute name="wsdd.service.namespace" />
+		<attribute name="wsdd.output.path" />
+
+		<sequential>
+			<if>
+				<os family="windows" />
+				<then>
+					<classpath-to-jar
+						classpathref="@{wsdd.classpath.property}"
+						jarfile="build-wsdd-classpath.jar"
+					/>
+				</then>
+			</if>
+
+			<java
+				classname="com.liferay.portal.tools.WSDDBuilder"
+				classpathref="@{wsdd.classpath.property}"
+				fork="true"
+				maxmemory="256m"
+				newenvironment="true"
+				outputproperty="build-wsdd.output"
+			>
+				<jvmarg value="-Dexternal-properties=com/liferay/portal/tools/dependencies/portal-tools.properties" />
+				<jvmarg value="-Dorg.apache.commons.logging.Log=org.apache.commons.logging.impl.Log4JLogger" />
+				<arg value="wsdd.input.file=@{wsdd.input.file}" />
+				<arg value="wsdd.server.config.file=@{wsdd.server.config.file}" />
+				<arg value="wsdd.service.namespace=@{wsdd.service.namespace}" />
+				<arg value="wsdd.output.path=@{wsdd.output.path}" />
+			</java>
+
+			<if>
+				<os family="windows" />
+				<then>
+					<delete file="build-wsdd-classpath.jar" />
+				</then>
+			</if>
+
+			<echo>${build-wsdd.output}</echo>
+
+			<if>
+				<contains string="${build-wsdd.output}" substring="IOException" />
+				<then>
+					<fail>WSDD Builder generated exceptions.</fail>
+				</then>
+			</if>
+		</sequential>
+	</macrodef>
+
 	<target name="build-wsdd">
 		<loop-macrodef-or-target
 			module.dirs="${basedir}"
@@ -350,47 +402,11 @@
 			<pathelement location="docroot/WEB-INF/classes" />
 		</path>
 
-		<if>
-			<os family="windows" />
-			<then>
-				<classpath-to-jar
-					classpathref="wsdd.classpath"
-					jarfile="build-wsdd-classpath.jar"
-				/>
-			</then>
-		</if>
-
-		<java
-			classname="com.liferay.portal.tools.WSDDBuilder"
-			classpathref="wsdd.classpath"
-			fork="true"
-			maxmemory="256m"
-			newenvironment="true"
-			outputproperty="build-wsdd.output"
-		>
-			<jvmarg value="-Dexternal-properties=com/liferay/portal/tools/dependencies/portal-tools.properties" />
-			<jvmarg value="-Dorg.apache.commons.logging.Log=org.apache.commons.logging.impl.Log4JLogger" />
-			<arg value="wsdd.input.file=docroot/WEB-INF/service.xml" />
-			<arg value="wsdd.server.config.file=docroot/WEB-INF/server-config.wsdd" />
-			<arg value="wsdd.service.namespace=Plugin" />
-			<arg value="wsdd.output.path=docroot/WEB-INF/src/" />
-		</java>
-
-		<if>
-			<os family="windows" />
-			<then>
-				<delete file="build-wsdd-classpath.jar" />
-			</then>
-		</if>
-
-		<echo>${build-wsdd.output}</echo>
-
-		<if>
-			<contains string="${build-wsdd.output}" substring="IOException" />
-			<then>
-				<fail>WSDD Builder generated exceptions.</fail>
-			</then>
-		</if>
+		<build-wsdd
+			wsdd.input.file="docroot/WEB-INF/service.xml"
+			wsdd.server.config.file="docroot/WEB-INF/server-config.wsdd"
+			wsdd.service.namespace="Plugin"
+			wsdd.output.path="docroot/WEB-INF/src/" />
 	</target>
 
 	<target name="build-wsdl">
@@ -814,7 +830,7 @@
 
 		<test-cmd
 			module.dir="${basedir}"
-			junit.forkmode="once" 
+			junit.forkmode="once"
 			test.class="${test.classes}"
 			test.type="integration"
 		/>
