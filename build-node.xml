@@ -140,9 +140,45 @@ ${nodejs.url[osx64]}.
 		</if>
 	</target>
 
+	<target name="transpile-js-files" depends="install-6to5">
+		<outofdate outputsourcespath="outdated-files">
+			<sourcefiles>
+				<fileset dir="${user.dir}/docroot">
+					<include name="**/*.js" />
+				</fileset>
+			</sourcefiles>
+			<mapper type="glob" dir="${user.dir}/docroot" from="*.js" to="${app.server.portal.dir}/*.js" />
+			<sequential>
+				<pathconvert pathsep=" " property="outdated-files-param" setonempty="false" refid="outdated-files" >
+					<map from="${user.dir}/docroot/" to="" />
+				</pathconvert>
+
+				<antcall target="node-execute">
+					<param name="working.dir" value="${user.dir}/docroot" />
+					<param name="node.args" value="${sdk.dir}/tools/node-v${nodejs.version}/node_modules/6to5/bin/6to5/index.js --modules amd --module-ids -d ${app.server.portal.dir} ${outdated-files-param}" />
+				</antcall>
+			</sequential>
+		</outofdate>
+	</target>
+
+	<target name="install-6to5" depends="download-node">
+		<if>
+			<not>
+				<available file="tools/node-v${nodejs.version}/node_modules/6to5" />
+			</not>
+			<then>
+				<antcall target="npm-execute">
+					<param name="node.args" value="install 6to5" />
+				</antcall>
+			</then>
+		</if>
+	</target>
+
 	<target name="node-execute" depends="download-node">
+		<property name="working.dir" value="${user.dir}" />
 		<node-execute
 			command="node"
+			working.dir="${working.dir}"
 		/>
 	</target>
 
