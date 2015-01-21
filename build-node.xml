@@ -15,7 +15,7 @@
 		</sequential>
 	</macrodef>
 
-	<target name="download-nodejs">
+	<target name="download-node">
 		<if>
 			<os arch="x86_32" family="mac" />
 			<then>
@@ -140,13 +140,13 @@ ${nodejs.url[osx64]}.
 		</if>
 	</target>
 
-	<target name="node-execute" depends="download-nodejs">
+	<target name="node-execute" depends="download-node">
 		<node-execute
 			command="node"
 		/>
 	</target>
 
-	<target name="npm-execute" depends="download-nodejs">
+	<target name="npm-execute" depends="download-node">
 		<node-execute
 			command="npm"
 			working.dir="tools/node-v${nodejs.version}"
