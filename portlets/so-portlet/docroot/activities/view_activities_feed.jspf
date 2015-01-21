@@ -25,8 +25,14 @@ int daysBetween = -1;
 for (SocialActivity activity : results) {
 	SocialActivityFeedEntry activityFeedEntry = SocialActivityInterpreterLocalServiceUtil.interpret(activity, themeDisplay);
 
+	start++;
+
 	if (activityFeedEntry == null) {
 		continue;
+	}
+
+	if (count >= _DELTA) {
+		break;
 	}
 
 	Portlet portlet = PortletLocalServiceUtil.getPortletById(company.getCompanyId(), activityFeedEntry.getPortletId());
@@ -92,5 +98,6 @@ for (SocialActivity activity : results) {
 	</div>
 
 <%
+	count++;
 }
 %>

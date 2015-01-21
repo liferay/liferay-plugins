@@ -58,7 +58,8 @@ portletURL.setParameter("tabs1", tabs1);
 	);
 
 	var loading = false;
-	var start = 0;
+
+	<portlet:namespace />start = 0;
 
 	var loadNewContent = function() {
 		loadingBar.removeClass('loaded');
@@ -82,7 +83,7 @@ portletURL.setParameter("tabs1", tabs1);
 
 				var uri = '<%= viewActivitySetsURL %>';
 
-				uri = Liferay.Util.addParams('<portlet:namespace />start=' + start, uri) || uri;
+				uri = Liferay.Util.addParams('<portlet:namespace />start=' + <portlet:namespace />start, uri) || uri;
 
 				A.io.request(
 					uri,
@@ -92,8 +93,6 @@ portletURL.setParameter("tabs1", tabs1);
 								var responseData = this.get('responseData');
 
 								socialActivities.append(responseData);
-
-								start = start + <%= _DELTA %>;
 
 								loadingBar.addClass('loaded');
 
