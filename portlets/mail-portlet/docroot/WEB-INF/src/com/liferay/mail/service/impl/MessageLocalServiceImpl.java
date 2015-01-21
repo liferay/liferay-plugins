@@ -76,7 +76,7 @@ public class MessageLocalServiceImpl extends MessageLocalServiceBaseImpl {
 		message.setFlags(flags);
 		message.setSize(getSize(messageId, body));
 		message.setRemoteMessageId(remoteMessageId);
-		message.setContentType(_removeBoundaryMarker(contentType));
+		message.setContentType(removeBoundaryMarker(contentType));
 
 		messagePersistence.update(message);
 
@@ -350,7 +350,7 @@ public class MessageLocalServiceImpl extends MessageLocalServiceBaseImpl {
 		return size;
 	}
 
-	private String _removeBoundaryMarker(String contentType) {
+	protected String removeBoundaryMarker(String contentType) {
 		int i = contentType.indexOf(CharPool.SEMICOLON);
 
 		if (i == -1) {
