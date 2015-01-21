@@ -4,6 +4,50 @@
 <project name="build-common-osgi-plugin">
 	<import file="build-common-plugin.xml" />
 
+	<path id="wsdd.classpath">
+		<path refid="lib.classpath" />
+		<path refid="portal.classpath" />
+		<fileset dir="lib" includes="*.jar" />
+		<pathelement location="classes" />
+	</path>
+
+	<target name="build-wsdd" depends="compile">
+		<loop-macrodef-or-target
+			module.dirs="${basedir}"
+			target.name="compile"
+		/>
+
+		<build-wsdd
+			wsdd.classpath.property="wsdd.classpath"
+			wsdd.input.file="service.xml"
+			wsdd.server.config.file="server-config.wsdd"
+			wsdd.service.namespace="Plugin"
+			wsdd.output.path="src/" />
+
+		<property file="bnd.bnd" prefix="bnd." />
+
+		<echo file="bnd-${plugin.name}-wsdd.bnd">Bundle-SymbolicName: ${bnd.Bundle-SymbolicName}.wsdd
+Bundle-Name: ${bnd.Bundle-Name} WSDD descriptors
+Bundle-Version: ${bnd.Bundle-Version}
+Fragment-Host: ${bnd.Bundle-SymbolicName}
+Include-Resource: WEB-INF/=server-config.wsdd,classes;filter:=*.wsdd
+		</echo>
+
+		<bndexpand propertyfile="${sdk.dir}/common.bnd" />
+
+		<baseline-jar
+			bndRootFile="${sdk.dir}/common.bnd"
+			file="${basedir}/bnd-${plugin.name}-wsdd.bnd"
+			outputPath="${sdk.dir}/dist/${plugin.name}-${plugin.full.version}-wsdd-fragment.${plugin.packaging}"
+			sourcePath="${basedir}">
+			<classpath>
+				<pathelement location="${plugin.classes.dir}" />
+			</classpath>
+		</baseline-jar>
+
+		<delete file="${basedir}/bnd-${plugin.name}-wsdd.bnd" failonerror="false" />
+	</target>
+
 	<target name="jar">
 		<jar-macro
 			module.dir="${basedir}"
