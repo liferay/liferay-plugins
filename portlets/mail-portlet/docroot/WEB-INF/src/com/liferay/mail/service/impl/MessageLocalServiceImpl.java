@@ -29,6 +29,7 @@ import com.liferay.portal.kernel.dao.orm.RestrictionsFactoryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.search.Indexer;
 import com.liferay.portal.kernel.search.IndexerRegistryUtil;
+import com.liferay.portal.kernel.util.CharPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.User;
@@ -75,7 +76,7 @@ public class MessageLocalServiceImpl extends MessageLocalServiceBaseImpl {
 		message.setFlags(flags);
 		message.setSize(getSize(messageId, body));
 		message.setRemoteMessageId(remoteMessageId);
-		message.setContentType(contentType);
+		message.setContentType(_removeBoundaryMarker(contentType));
 
 		messagePersistence.update(message);
 
@@ -347,6 +348,16 @@ public class MessageLocalServiceImpl extends MessageLocalServiceBaseImpl {
 		}
 
 		return size;
+	}
+
+	private String _removeBoundaryMarker(String contentType) {
+		int i = contentType.indexOf(CharPool.SEMICOLON);
+
+		if (i == -1) {
+			return contentType;
+		}
+
+		return contentType.substring(0, i);
 	}
 
 }
