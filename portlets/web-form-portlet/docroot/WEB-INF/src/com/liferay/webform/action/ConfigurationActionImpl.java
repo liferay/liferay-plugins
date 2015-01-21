@@ -25,6 +25,7 @@ import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portlet.expando.DuplicateColumnNameException;
+import com.liferay.webform.util.PortletPropsValues;
 import com.liferay.webform.util.WebFormUtil;
 
 import java.io.FileNotFoundException;
@@ -267,7 +268,7 @@ public class ConfigurationActionImpl extends DefaultConfigurationAction {
 			}
 		}
 
-		if (saveToFile) {
+		if (saveToFile && PortletPropsValues.DATA_FILE_PATH_CHANGEABLE) {
 			String fileName = getParameter(actionRequest, "fileName");
 
 			// Check if server can create a file as specified

@@ -99,7 +99,14 @@ if (WebFormUtil.getTableRowsCount(company.getCompanyId(), databaseTableName) > 0
 			<aui:fieldset cssClass="handle-data" label="file">
 				<aui:input name="preferences--saveToFile--" type="checkbox" value="<%= saveToFile %>" />
 
-				<aui:input cssClass="lfr-input-text-container" label="path-and-file-name" name="preferences--fileName--" value="<%= fileName %>" />
+				<c:choose>
+					<c:when test="<%= PortletPropsValues.DATA_FILE_PATH_CHANGEABLE %>">
+						<aui:input cssClass="lfr-input-text-container" label="path-and-file-name" name="preferences--fileName--" value="<%= fileName %>" />
+					</c:when>
+					<c:otherwise>
+						<liferay-ui:message arguments="<%= HtmlUtil.escape(WebFormUtil.getFileName(themeDisplay, portletResource)) %>" key="form-data-will-be-saved-to-x" />
+					</c:otherwise>
+				</c:choose>
 			</aui:fieldset>
 		</liferay-ui:panel>
 
