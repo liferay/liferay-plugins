@@ -23,24 +23,34 @@
 Group group = themeDisplay.getScopeGroup();
 
 List<SocialActivity> results = null;
+
+boolean empty = false;
+
+int count = 0;
 int total = 0;
 
 int start = ParamUtil.getInteger(request, "start");
 int end = start + _DELTA;
 
-if (group.isUser()) {
-	if (!layout.isPublicLayout()) {
-		if (tabs1.equals("connections")) {
-			results = SocialActivityLocalServiceUtil.getRelationActivities(group.getClassPK(), SocialRelationConstants.TYPE_BI_CONNECTION, start, end);
-			total = SocialActivityLocalServiceUtil.getRelationActivitiesCount(group.getClassPK(), SocialRelationConstants.TYPE_BI_CONNECTION);
-		}
-		else if (tabs1.equals("following")) {
-			results = SocialActivityLocalServiceUtil.getRelationActivities(group.getClassPK(), SocialRelationConstants.TYPE_UNI_FOLLOWER, start, end);
-			total = SocialActivityLocalServiceUtil.getRelationActivitiesCount(group.getClassPK(), SocialRelationConstants.TYPE_UNI_FOLLOWER);
-		}
-		else if (tabs1.equals("my-sites")) {
-			results = SocialActivityLocalServiceUtil.getUserGroupsActivities(group.getClassPK(), start, end);
-			total = SocialActivityLocalServiceUtil.getUserGroupsActivitiesCount(group.getClassPK());
+while ((count < _DELTA) && (!empty)) {
+	if (group.isUser()) {
+		if (!layout.isPublicLayout()) {
+			if (tabs1.equals("connections")) {
+				results = SocialActivityLocalServiceUtil.getRelationActivities(group.getClassPK(), SocialRelationConstants.TYPE_BI_CONNECTION, start, end);
+				total = SocialActivityLocalServiceUtil.getRelationActivitiesCount(group.getClassPK(), SocialRelationConstants.TYPE_BI_CONNECTION);
+			}
+			else if (tabs1.equals("following")) {
+				results = SocialActivityLocalServiceUtil.getRelationActivities(group.getClassPK(), SocialRelationConstants.TYPE_UNI_FOLLOWER, start, end);
+				total = SocialActivityLocalServiceUtil.getRelationActivitiesCount(group.getClassPK(), SocialRelationConstants.TYPE_UNI_FOLLOWER);
+			}
+			else if (tabs1.equals("my-sites")) {
+				results = SocialActivityLocalServiceUtil.getUserGroupsActivities(group.getClassPK(), start, end);
+				total = SocialActivityLocalServiceUtil.getUserGroupsActivitiesCount(group.getClassPK());
+			}
+			else {
+				results = SocialActivityLocalServiceUtil.getUserActivities(group.getClassPK(), start, end);
+				total = SocialActivityLocalServiceUtil.getUserActivitiesCount(group.getClassPK());
+			}
 		}
 		else {
 			results = SocialActivityLocalServiceUtil.getUserActivities(group.getClassPK(), start, end);
@@ -48,17 +58,22 @@ if (group.isUser()) {
 		}
 	}
 	else {
-		results = SocialActivityLocalServiceUtil.getUserActivities(group.getClassPK(), start, end);
-		total = SocialActivityLocalServiceUtil.getUserActivitiesCount(group.getClassPK());
+		results = SocialActivityLocalServiceUtil.getGroupActivities(group.getGroupId(), start, end);
+		total = SocialActivityLocalServiceUtil.getGroupActivitiesCount(group.getGroupId());
 	}
-}
-else {
-	results = SocialActivityLocalServiceUtil.getGroupActivities(group.getGroupId(), start, end);
-	total = SocialActivityLocalServiceUtil.getGroupActivitiesCount(group.getGroupId());
+	%>
+
+	<%@ include file="/activities/view_activities_feed.jspf" %>
+
+	<%
+	end = start + _DELTA;
+	empty = results.isEmpty();
 }
 %>
 
-<%@ include file="/activities/view_activities_feed.jspf" %>
+<aui:script>
+<portlet:namespace />start = <%= start %>;
+</aui:script>
 
 <c:if test="<%= (results.isEmpty()) %>">
 	<div class="no-activities">
