@@ -4,6 +4,17 @@
 <project name="build-nodejs" xmlns:antelope="antlib:ise.antelope.tasks">
 	<import file="build-common.xml" />
 
+	<macrodef name="node-execute">
+		<attribute name="command"/>
+		<attribute default="${user.dir}" name="working.dir" />
+
+		<sequential>
+			<exec dir="@{working.dir}" executable="${basedir}/tools/node-v${nodejs.version}/bin/@{command}">
+				<arg line="${node.args}"/>
+			</exec>
+		</sequential>
+	</macrodef>
+
 	<target name="download-nodejs">
 		<if>
 			<os arch="x86_32" family="mac" />
@@ -128,17 +139,6 @@ ${nodejs.url[osx64]}.
 			</then>
 		</if>
 	</target>
-
-	<macrodef name="node-execute">
-		<attribute name="command"/>
-		<attribute default="${user.dir}" name="working.dir" />
-
-		<sequential>
-			<exec dir="@{working.dir}" executable="${basedir}/tools/node-v${nodejs.version}/bin/@{command}">
-				<arg line="${node.args}"/>
-			</exec>
-		</sequential>
-	</macrodef>
 
 	<target name="node-execute" depends="download-nodejs">
 		<node-execute
