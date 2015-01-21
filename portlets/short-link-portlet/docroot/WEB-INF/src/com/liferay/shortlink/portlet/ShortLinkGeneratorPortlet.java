@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.linkshortener.portlet;
+package com.liferay.shortlink.portlet;
 
 import com.liferay.compat.util.bridges.mvc.MVCPortlet;
 import com.liferay.portal.kernel.log.Log;

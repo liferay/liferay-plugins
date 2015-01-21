@@ -12,9 +12,9 @@
  * details.
  */
 
-package com.liferay.linkshortener.service.impl;
+package com.liferay.shortlink.service.impl;
 
-import com.liferay.linkshortener.service.base.LinkLocalServiceBaseImpl;
+import com.liferay.shortlink.service.base.LinkLocalServiceBaseImpl;
 
 /**
  * @author Brian Wing Shun Chan

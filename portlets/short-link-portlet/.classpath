@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <classpath>
+	<classpathentry excluding="**/.svn/**|.svn/" kind="src" path="docroot/WEB-INF/service" />
 	<classpathentry excluding="**/.svn/**|.svn/" kind="src" path="docroot/WEB-INF/src" />
 	<classpathentry kind="src" path="/portal-6.1.x" />
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER" />

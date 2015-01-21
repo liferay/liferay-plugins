@@ -12,14 +12,12 @@
  * details.
  */
 
-package com.liferay.linkshortener.model.impl;
+package com.liferay.shortlink.service.impl;
+
+import com.liferay.shortlink.service.base.LinkServiceBaseImpl;
 
 /**
  * @author Brian Wing Shun Chan
  */
-public class LinkImpl extends LinkBaseImpl {
-
-	public LinkImpl() {
-	}
-
+public class LinkServiceImpl extends LinkServiceBaseImpl {
 }

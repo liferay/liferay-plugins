@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 6.1.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_6_1_0.dtd">
 
-<service-builder package-path="com.liferay.linkshortener">
-	<namespace>LinkShortener</namespace>
+<service-builder package-path="com.liferay.shortlink">
+	<namespace>ShortLink</namespace>
 	<entity name="Link" uuid="true" local-service="true" remote-service="true">
 
 		<!-- PK fields -->
