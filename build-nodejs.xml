@@ -131,12 +131,11 @@ ${nodejs.url[osx64]}.
 
 	<macrodef name="node-execute">
 		<attribute name="command"/>
-		<attribute name="commandArgs" default="" />
 		<attribute default="${user.dir}" name="working.dir" />
 
 		<sequential>
 			<exec dir="@{working.dir}" executable="${basedir}/tools/node-v${nodejs.version}/bin/@{command}">
-				<arg line="@{commandArgs} ${node.args}"/>
+				<arg line="${node.args}"/>
 			</exec>
 		</sequential>
 	</macrodef>
