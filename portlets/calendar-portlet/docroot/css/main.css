@@ -377,7 +377,7 @@
 		@include respond-to(phone) {
 			width: 100%;
 		}
-	}	
+	}
 }
 
 .scheduler-base-icon-next span, .scheduler-base-icon-prev span {
@@ -628,8 +628,8 @@
 	.scheduler-base-content .scheduler-base-controls,
 	.scheduler-base-content .scheduler-base-controls .btn-group,
 	.scheduler-base-content .scheduler-base-hd .scheduler-base-views {
-	    text-align: center;
-	    width: 100%;
+		text-align: center;
+		width: 100%;
 	}
 
 	.scheduler-base-content .scheduler-base-hd .scheduler-base-views {
@@ -637,15 +637,15 @@
 	}
 
 	.scheduler-base-controls .btn-group .scheduler-base-today {
-	    width: 50%;
+		width: 50%;
 	}
 
 	.scheduler-base-hd .btn-group button {
-	    width: 25%;
+		width: 25%;
 	}
 
 	.scheduler-base-views button {
-	    float: none;
+		float: none;
 	}
 
 	.scheduler-view-day-header-day-weekday {
