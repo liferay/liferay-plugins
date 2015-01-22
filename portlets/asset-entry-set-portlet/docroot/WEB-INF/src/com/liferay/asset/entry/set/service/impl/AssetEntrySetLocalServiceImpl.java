@@ -36,6 +36,7 @@ import com.liferay.portal.model.User;
 import com.liferay.portal.model.UserConstants;
 import com.liferay.portal.service.ClassNameLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
+import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.asset.model.AssetEntry;
 import com.liferay.portlet.asset.service.AssetEntryLocalServiceUtil;
@@ -165,6 +166,8 @@ public class AssetEntrySetLocalServiceImpl
 
 		setCreatorJSONObjects(assetEntrySets);
 
+		setSharedToJSONArrays(assetEntrySets);
+
 		return assetEntrySets;
 	}
 
@@ -184,6 +187,8 @@ public class AssetEntrySetLocalServiceImpl
 
 		setCreatorJSONObjects(assetEntrySets);
 
+		setSharedToJSONArrays(assetEntrySets);
+
 		return assetEntrySets;
 	}
 
@@ -200,6 +205,8 @@ public class AssetEntrySetLocalServiceImpl
 			creatorClassNameId, assetTagName, sharedToClassPKsMap, start, end);
 
 		setCreatorJSONObjects(assetEntrySets);
+
+		setSharedToJSONArrays(assetEntrySets);
 
 		return assetEntrySets;
 	}
@@ -253,6 +260,8 @@ public class AssetEntrySetLocalServiceImpl
 
 		setCreatorJSONObjects(assetEntrySets);
 
+		setSharedToJSONArrays(assetEntrySets);
+
 		return assetEntrySets;
 	}
 
@@ -267,6 +276,8 @@ public class AssetEntrySetLocalServiceImpl
 
 		setCreatorJSONObjects(assetEntrySets);
 
+		setSharedToJSONArrays(assetEntrySets);
+
 		return assetEntrySets;
 	}
 
@@ -280,6 +291,8 @@ public class AssetEntrySetLocalServiceImpl
 			userId, createTime, false, parentAssetEntrySetId, start, end);
 
 		setCreatorJSONObjects(assetEntrySets);
+
+		setSharedToJSONArrays(assetEntrySets);
 
 		return assetEntrySets;
 	}
@@ -402,6 +415,8 @@ public class AssetEntrySetLocalServiceImpl
 
 		setCreatorJSONObjects(assetEntrySets);
 
+		setSharedToJSONArrays(assetEntrySets);
+
 		return assetEntrySets;
 	}
 
@@ -496,6 +511,79 @@ public class AssetEntrySetLocalServiceImpl
 
 		for (AssetEntrySet assetEntrySet : assetEntrySets) {
 			setCreatorJSONObject(assetEntrySet);
+		}
+	}
+
+	protected void setSharedToJSONArray(AssetEntrySet assetEntrySet)
+		throws PortalException, SystemException {
+
+		JSONObject payloadJSONObject = JSONFactoryUtil.createJSONObject(
+			assetEntrySet.getPayload());
+
+		JSONArray sharedToClassNameIdClassPKJSONArray =
+			payloadJSONObject.getJSONArray(
+				AssetEntrySetConstants.PAYLOAD_KEY_SHARED_TO);
+
+		JSONArray sharedToFullNameURLJSONArray =
+			JSONFactoryUtil.createJSONArray();
+
+		for (int i = 0; i < sharedToClassNameIdClassPKJSONArray.length(); i++) {
+			JSONObject sharedToClassNameIdClassPKJSONObject =
+				sharedToClassNameIdClassPKJSONArray.getJSONObject(i);
+
+			long classNameId = sharedToClassNameIdClassPKJSONObject.getLong(
+				"classNameId");
+			long classPK = sharedToClassNameIdClassPKJSONObject.getLong(
+				"classPK");
+
+			String creatorFullName = StringPool.BLANK;
+			String creatorURL = StringPool.BLANK;
+
+			if (classNameId == _USER_CLASS_NAME_ID) {
+				User user = UserLocalServiceUtil.getUser(classPK);
+
+				creatorFullName = user.getFullName();
+
+				Group group = user.getGroup();
+
+				creatorURL = PropsUtil.get(
+					PropsKeys.LAYOUT_FRIENDLY_URL_PUBLIC_SERVLET_MAPPING);
+
+				creatorURL += group.getFriendlyURL();
+			}
+			else {
+				AssetEntry assetEntry = AssetEntryLocalServiceUtil.getEntry(
+					PortalUtil.getClassName(classNameId), classPK);
+
+				JSONObject jsonObject = JSONFactoryUtil.createJSONObject(
+					assetEntry.getDescription());
+
+				creatorFullName = jsonObject.getString(
+					AssetEntrySetConstants.ASSET_ENTRY_KEY_CREATOR_FULL_NAME);
+				creatorURL = jsonObject.getString(
+					AssetEntrySetConstants.ASSET_ENTRY_KEY_CREATOR_URL);
+			}
+
+			JSONObject sharedToFullNameURLJSONObject =
+				JSONFactoryUtil.createJSONObject();
+
+			sharedToFullNameURLJSONObject.put(
+				AssetEntrySetConstants.ASSET_ENTRY_KEY_CREATOR_FULL_NAME,
+				creatorFullName);
+			sharedToFullNameURLJSONObject.put(
+				AssetEntrySetConstants.ASSET_ENTRY_KEY_CREATOR_URL, creatorURL);
+
+			sharedToFullNameURLJSONArray.put(sharedToFullNameURLJSONObject);
+		}
+
+		assetEntrySet.setSharedTo(sharedToFullNameURLJSONArray);
+	}
+
+	protected void setSharedToJSONArrays(List<AssetEntrySet> assetEntrySets)
+		throws PortalException, SystemException {
+
+		for (AssetEntrySet assetEntrySet : assetEntrySets) {
+			setSharedToJSONArray(assetEntrySet);
 		}
 	}
 
