@@ -360,20 +360,19 @@ public class PrioritizationStrategy {
 				List<KBArticle> childKBArticles = _importedChildArticlesMap.get(
 					parentKBArticleUrlTitle);
 
+				Double maxChildKBArticlePriority =
+					maxChildKBArticlePriorityMap.get(parentKBArticleUrlTitle);
+
+				if (maxChildKBArticlePriority == null) {
+					maxChildKBArticlePriority = 0.0;
+				}
+
 				if (childKBArticles != null) {
 					ListUtil.sort(childKBArticles, comparator);
 
 					for (KBArticle childKBArticle : childKBArticles) {
 						long childKBArticleResourcePrimKey =
 							childKBArticle.getResourcePrimKey();
-
-						Double maxChildKBArticlePriority =
-							maxChildKBArticlePriorityMap.get(
-								parentKBArticleUrlTitle);
-
-						if (maxChildKBArticlePriority == null) {
-							maxChildKBArticlePriority = 0.0;
-						}
 
 						maxChildKBArticlePriority++;
 
@@ -447,20 +446,19 @@ public class PrioritizationStrategy {
 				List<KBArticle> childKBArticles = _newChildArticlesMap.get(
 					parentKBArticleUrlTitle);
 
+				Double maxChildKBArticlePriority =
+					maxChildKBArticlePriorityMap.get(parentKBArticleUrlTitle);
+
+				if (maxChildKBArticlePriority == null) {
+					maxChildKBArticlePriority = 0.0;
+				}
+
 				if (childKBArticles != null) {
 					ListUtil.sort(childKBArticles, comparator);
 
 					for (KBArticle childKBArticle : childKBArticles) {
 						long childKBArticleResourcePrimKey =
 							childKBArticle.getResourcePrimKey();
-
-						Double maxChildKBArticlePriority =
-							maxChildKBArticlePriorityMap.get(
-								parentKBArticleUrlTitle);
-
-						if (maxChildKBArticlePriority == null) {
-							maxChildKBArticlePriority = 0.0;
-						}
 
 						maxChildKBArticlePriority++;
 
