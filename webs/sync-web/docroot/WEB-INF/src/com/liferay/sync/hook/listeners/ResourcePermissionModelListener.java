@@ -39,9 +39,13 @@ public class ResourcePermissionModelListener
 		try {
 			if (modelName.equals(DLFileEntry.class.getName())) {
 				SyncDLObject syncDLObject =
-					SyncDLObjectLocalServiceUtil.getSyncDLObject(
+					SyncDLObjectLocalServiceUtil.fetchSyncDLObject(
 						SyncConstants.TYPE_FILE,
 						GetterUtil.getLong(resourcePermission.getPrimKey()));
+
+				if (syncDLObject == null) {
+					return;
+				}
 
 				syncDLObject.setModifiedTime(System.currentTimeMillis());
 
@@ -49,9 +53,13 @@ public class ResourcePermissionModelListener
 			}
 			else if (modelName.equals(DLFolder.class.getName())) {
 				SyncDLObject syncDLObject =
-					SyncDLObjectLocalServiceUtil.getSyncDLObject(
+					SyncDLObjectLocalServiceUtil.fetchSyncDLObject(
 						SyncConstants.TYPE_FOLDER,
 						GetterUtil.getLong(resourcePermission.getPrimKey()));
+
+				if (syncDLObject == null) {
+					return;
+				}
 
 				syncDLObject.setModifiedTime(System.currentTimeMillis());
 
