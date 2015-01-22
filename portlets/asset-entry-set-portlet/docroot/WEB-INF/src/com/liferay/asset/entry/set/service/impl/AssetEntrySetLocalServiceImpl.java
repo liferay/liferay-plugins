@@ -109,8 +109,6 @@ public class AssetEntrySetLocalServiceImpl
 
 		assetEntrySetPersistence.update(assetEntrySet);
 
-		setCreatorJSONObject(assetEntrySet);
-
 		updateChildAssetEntrySetsCount(parentAssetEntrySetId);
 
 		updateAssetEntry(
@@ -329,8 +327,6 @@ public class AssetEntrySetLocalServiceImpl
 		assetEntrySet.setPrivateAssetEntrySet(privateAssetEntrySet);
 
 		assetEntrySetPersistence.update(assetEntrySet);
-
-		setCreatorJSONObject(assetEntrySet);
 
 		updateAssetEntry(
 			assetEntrySet,
