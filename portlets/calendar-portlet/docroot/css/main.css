@@ -163,12 +163,14 @@
 	.scheduler-view-agenda-info-container {
 		font-size: 1em;
 
-		.scheduler-view-agenda-info .scheduler-view-agenda-info-biggie {
-			padding: 0 8px;
-		}
+		.scheduler-view-agenda-info {
+			.scheduler-view-agenda-info-biggie {
+				padding: 0 8px;
+			}
 
-		.scheduler-view-agenda-info  .scheduler-view-agenda-info-label {
-			padding: 10px 0 10px 8px;
+			.scheduler-view-agenda-info-label {
+				padding: 10px 0 10px 8px;
+			}
 		}
 	}
 }
