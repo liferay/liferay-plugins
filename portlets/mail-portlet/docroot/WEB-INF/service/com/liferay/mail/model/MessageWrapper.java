@@ -68,6 +68,7 @@ public class MessageWrapper implements Message, ModelWrapper<Message> {
 		attributes.put("flags", getFlags());
 		attributes.put("size", getSize());
 		attributes.put("remoteMessageId", getRemoteMessageId());
+		attributes.put("contentType", getContentType());
 
 		return attributes;
 	}
@@ -186,6 +187,12 @@ public class MessageWrapper implements Message, ModelWrapper<Message> {
 
 		if (remoteMessageId != null) {
 			setRemoteMessageId(remoteMessageId);
+		}
+
+		String contentType = (String)attributes.get("contentType");
+
+		if (contentType != null) {
+			setContentType(contentType);
 		}
 	}
 
@@ -611,6 +618,26 @@ public class MessageWrapper implements Message, ModelWrapper<Message> {
 		_message.setRemoteMessageId(remoteMessageId);
 	}
 
+	/**
+	* Returns the content type of this message.
+	*
+	* @return the content type of this message
+	*/
+	@Override
+	public java.lang.String getContentType() {
+		return _message.getContentType();
+	}
+
+	/**
+	* Sets the content type of this message.
+	*
+	* @param contentType the content type of this message
+	*/
+	@Override
+	public void setContentType(java.lang.String contentType) {
+		_message.setContentType(contentType);
+	}
+
 	@Override
 	public boolean isNew() {
 		return _message.isNew();
@@ -720,6 +747,12 @@ public class MessageWrapper implements Message, ModelWrapper<Message> {
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _message.getGroupId();
+	}
+
+	@Override
+	public boolean hasAttachments()
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _message.hasAttachments();
 	}
 
 	@Override

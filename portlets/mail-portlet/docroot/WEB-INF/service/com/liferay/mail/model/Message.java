@@ -35,5 +35,8 @@ public interface Message extends MessageModel, PersistedModel {
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
+	public boolean hasAttachments()
+		throws com.liferay.portal.kernel.exception.SystemException;
+
 	public boolean hasFlag(int flag);
 }

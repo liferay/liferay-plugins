@@ -80,9 +80,10 @@ public class MessageModelImpl extends BaseModelImpl<Message>
 			{ "body", Types.CLOB },
 			{ "flags", Types.VARCHAR },
 			{ "size_", Types.BIGINT },
-			{ "remoteMessageId", Types.BIGINT }
+			{ "remoteMessageId", Types.BIGINT },
+			{ "contentType", Types.VARCHAR }
 		};
-	public static final String TABLE_SQL_CREATE = "create table Mail_Message (messageId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,accountId LONG,folderId LONG,sender STRING null,to_ TEXT null,cc TEXT null,bcc TEXT null,sentDate DATE null,subject STRING null,preview VARCHAR(75) null,body TEXT null,flags VARCHAR(75) null,size_ LONG,remoteMessageId LONG)";
+	public static final String TABLE_SQL_CREATE = "create table Mail_Message (messageId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,accountId LONG,folderId LONG,sender STRING null,to_ TEXT null,cc TEXT null,bcc TEXT null,sentDate DATE null,subject STRING null,preview VARCHAR(75) null,body TEXT null,flags VARCHAR(75) null,size_ LONG,remoteMessageId LONG,contentType VARCHAR(75) null)";
 	public static final String TABLE_SQL_DROP = "drop table Mail_Message";
 	public static final String ORDER_BY_JPQL = " ORDER BY message.sentDate ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY Mail_Message.sentDate ASC";
@@ -161,6 +162,7 @@ public class MessageModelImpl extends BaseModelImpl<Message>
 		attributes.put("flags", getFlags());
 		attributes.put("size", getSize());
 		attributes.put("remoteMessageId", getRemoteMessageId());
+		attributes.put("contentType", getContentType());
 
 		return attributes;
 	}
@@ -279,6 +281,12 @@ public class MessageModelImpl extends BaseModelImpl<Message>
 
 		if (remoteMessageId != null) {
 			setRemoteMessageId(remoteMessageId);
+		}
+
+		String contentType = (String)attributes.get("contentType");
+
+		if (contentType != null) {
+			setContentType(contentType);
 		}
 	}
 
@@ -565,6 +573,21 @@ public class MessageModelImpl extends BaseModelImpl<Message>
 		return _originalRemoteMessageId;
 	}
 
+	@Override
+	public String getContentType() {
+		if (_contentType == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _contentType;
+		}
+	}
+
+	@Override
+	public void setContentType(String contentType) {
+		_contentType = contentType;
+	}
+
 	public long getColumnBitmask() {
 		return _columnBitmask;
 	}
@@ -615,6 +638,7 @@ public class MessageModelImpl extends BaseModelImpl<Message>
 		messageImpl.setFlags(getFlags());
 		messageImpl.setSize(getSize());
 		messageImpl.setRemoteMessageId(getRemoteMessageId());
+		messageImpl.setContentType(getContentType());
 
 		messageImpl.resetOriginalValues();
 
@@ -797,12 +821,20 @@ public class MessageModelImpl extends BaseModelImpl<Message>
 
 		messageCacheModel.remoteMessageId = getRemoteMessageId();
 
+		messageCacheModel.contentType = getContentType();
+
+		String contentType = messageCacheModel.contentType;
+
+		if ((contentType != null) && (contentType.length() == 0)) {
+			messageCacheModel.contentType = null;
+		}
+
 		return messageCacheModel;
 	}
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(39);
+		StringBundler sb = new StringBundler(41);
 
 		sb.append("{messageId=");
 		sb.append(getMessageId());
@@ -842,6 +874,8 @@ public class MessageModelImpl extends BaseModelImpl<Message>
 		sb.append(getSize());
 		sb.append(", remoteMessageId=");
 		sb.append(getRemoteMessageId());
+		sb.append(", contentType=");
+		sb.append(getContentType());
 		sb.append("}");
 
 		return sb.toString();
@@ -849,7 +883,7 @@ public class MessageModelImpl extends BaseModelImpl<Message>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(61);
+		StringBundler sb = new StringBundler(64);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.mail.model.Message");
@@ -931,6 +965,10 @@ public class MessageModelImpl extends BaseModelImpl<Message>
 			"<column><column-name>remoteMessageId</column-name><column-value><![CDATA[");
 		sb.append(getRemoteMessageId());
 		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>contentType</column-name><column-value><![CDATA[");
+		sb.append(getContentType());
+		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
 
@@ -967,6 +1005,7 @@ public class MessageModelImpl extends BaseModelImpl<Message>
 	private long _remoteMessageId;
 	private long _originalRemoteMessageId;
 	private boolean _setOriginalRemoteMessageId;
+	private String _contentType;
 	private long _columnBitmask;
 	private Message _escapedModel;
 }

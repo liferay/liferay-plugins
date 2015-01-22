@@ -119,6 +119,7 @@
 				<column name="SIZE_" />
 			</basic>
 			<basic name="remoteMessageId" />
+			<basic name="contentType" />
 			<transient name="modelAttributes" />
 			<transient name="primaryKey" />
 			<transient name="primaryKeyObj" />

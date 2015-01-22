@@ -1657,6 +1657,7 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 		messageImpl.setFlags(message.getFlags());
 		messageImpl.setSize(message.getSize());
 		messageImpl.setRemoteMessageId(message.getRemoteMessageId());
+		messageImpl.setContentType(message.getContentType());
 
 		return messageImpl;
 	}

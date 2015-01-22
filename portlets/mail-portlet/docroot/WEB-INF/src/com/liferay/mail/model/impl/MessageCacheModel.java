@@ -37,7 +37,7 @@ import java.util.Date;
 public class MessageCacheModel implements CacheModel<Message>, Externalizable {
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(39);
+		StringBundler sb = new StringBundler(41);
 
 		sb.append("{messageId=");
 		sb.append(messageId);
@@ -77,6 +77,8 @@ public class MessageCacheModel implements CacheModel<Message>, Externalizable {
 		sb.append(size);
 		sb.append(", remoteMessageId=");
 		sb.append(remoteMessageId);
+		sb.append(", contentType=");
+		sb.append(contentType);
 		sb.append("}");
 
 		return sb.toString();
@@ -180,6 +182,13 @@ public class MessageCacheModel implements CacheModel<Message>, Externalizable {
 		messageImpl.setSize(size);
 		messageImpl.setRemoteMessageId(remoteMessageId);
 
+		if (contentType == null) {
+			messageImpl.setContentType(StringPool.BLANK);
+		}
+		else {
+			messageImpl.setContentType(contentType);
+		}
+
 		messageImpl.resetOriginalValues();
 
 		return messageImpl;
@@ -206,6 +215,7 @@ public class MessageCacheModel implements CacheModel<Message>, Externalizable {
 		flags = objectInput.readUTF();
 		size = objectInput.readLong();
 		remoteMessageId = objectInput.readLong();
+		contentType = objectInput.readUTF();
 	}
 
 	@Override
@@ -287,6 +297,13 @@ public class MessageCacheModel implements CacheModel<Message>, Externalizable {
 
 		objectOutput.writeLong(size);
 		objectOutput.writeLong(remoteMessageId);
+
+		if (contentType == null) {
+			objectOutput.writeUTF(StringPool.BLANK);
+		}
+		else {
+			objectOutput.writeUTF(contentType);
+		}
 	}
 
 	public long messageId;
@@ -308,4 +325,5 @@ public class MessageCacheModel implements CacheModel<Message>, Externalizable {
 	public String flags;
 	public long size;
 	public long remoteMessageId;
+	public String contentType;
 }

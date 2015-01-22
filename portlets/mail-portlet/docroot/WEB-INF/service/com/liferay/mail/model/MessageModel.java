@@ -363,6 +363,21 @@ public interface MessageModel extends AuditedModel, BaseModel<Message> {
 	 */
 	public void setRemoteMessageId(long remoteMessageId);
 
+	/**
+	 * Returns the content type of this message.
+	 *
+	 * @return the content type of this message
+	 */
+	@AutoEscape
+	public String getContentType();
+
+	/**
+	 * Sets the content type of this message.
+	 *
+	 * @param contentType the content type of this message
+	 */
+	public void setContentType(String contentType);
+
 	@Override
 	public boolean isNew();
 
@@ -400,19 +415,19 @@ public interface MessageModel extends AuditedModel, BaseModel<Message> {
 	public Object clone();
 
 	@Override
-	public int compareTo(Message message);
+	public int compareTo(com.liferay.mail.model.Message message);
 
 	@Override
 	public int hashCode();
 
 	@Override
-	public CacheModel<Message> toCacheModel();
+	public CacheModel<com.liferay.mail.model.Message> toCacheModel();
 
 	@Override
-	public Message toEscapedModel();
+	public com.liferay.mail.model.Message toEscapedModel();
 
 	@Override
-	public Message toUnescapedModel();
+	public com.liferay.mail.model.Message toUnescapedModel();
 
 	@Override
 	public String toString();

@@ -268,19 +268,19 @@ public interface FolderModel extends AuditedModel, BaseModel<Folder> {
 	public Object clone();
 
 	@Override
-	public int compareTo(Folder folder);
+	public int compareTo(com.liferay.mail.model.Folder folder);
 
 	@Override
 	public int hashCode();
 
 	@Override
-	public CacheModel<Folder> toCacheModel();
+	public CacheModel<com.liferay.mail.model.Folder> toCacheModel();
 
 	@Override
-	public Folder toEscapedModel();
+	public com.liferay.mail.model.Folder toEscapedModel();
 
 	@Override
-	public Folder toUnescapedModel();
+	public com.liferay.mail.model.Folder toUnescapedModel();
 
 	@Override
 	public String toString();

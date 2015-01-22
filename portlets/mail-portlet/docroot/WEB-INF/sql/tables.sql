@@ -71,5 +71,6 @@ create table Mail_Message (
 	body TEXT null,
 	flags VARCHAR(75) null,
 	size_ LONG,
-	remoteMessageId LONG
+	remoteMessageId LONG,
+	contentType VARCHAR(75) null
 );

@@ -534,19 +534,19 @@ public interface AccountModel extends AuditedModel, BaseModel<Account> {
 	public Object clone();
 
 	@Override
-	public int compareTo(Account account);
+	public int compareTo(com.liferay.mail.model.Account account);
 
 	@Override
 	public int hashCode();
 
 	@Override
-	public CacheModel<Account> toCacheModel();
+	public CacheModel<com.liferay.mail.model.Account> toCacheModel();
 
 	@Override
-	public Account toEscapedModel();
+	public com.liferay.mail.model.Account toEscapedModel();
 
 	@Override
-	public Account toUnescapedModel();
+	public com.liferay.mail.model.Account toUnescapedModel();
 
 	@Override
 	public String toString();

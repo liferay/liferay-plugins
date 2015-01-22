@@ -49,6 +49,7 @@ public class MessageSoap implements Serializable {
 		soapModel.setFlags(model.getFlags());
 		soapModel.setSize(model.getSize());
 		soapModel.setRemoteMessageId(model.getRemoteMessageId());
+		soapModel.setContentType(model.getContentType());
 
 		return soapModel;
 	}
@@ -253,6 +254,14 @@ public class MessageSoap implements Serializable {
 		_remoteMessageId = remoteMessageId;
 	}
 
+	public String getContentType() {
+		return _contentType;
+	}
+
+	public void setContentType(String contentType) {
+		_contentType = contentType;
+	}
+
 	private long _messageId;
 	private long _companyId;
 	private long _userId;
@@ -272,4 +281,5 @@ public class MessageSoap implements Serializable {
 	private String _flags;
 	private long _size;
 	private long _remoteMessageId;
+	private String _contentType;
 }

@@ -511,6 +511,10 @@ public class FolderClp extends BaseModelImpl<Folder> implements Folder {
 		}
 	}
 
+	public Class<?> getClpSerializerClass() {
+		return _clpSerializerClass;
+	}
+
 	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
@@ -611,4 +615,5 @@ public class FolderClp extends BaseModelImpl<Folder> implements Folder {
 	private String _displayName;
 	private int _remoteMessageCount;
 	private BaseModel<?> _folderRemoteModel;
+	private Class<?> _clpSerializerClass = com.liferay.mail.service.ClpSerializer.class;
 }
