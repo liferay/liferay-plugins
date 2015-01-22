@@ -473,10 +473,9 @@ public class AssetEntrySetLocalServiceImpl
 
 			Group group = user.getGroup();
 
-			creatorURL = PropsUtil.get(
-				PropsKeys.LAYOUT_FRIENDLY_URL_PUBLIC_SERVLET_MAPPING);
-
-			creatorURL += group.getFriendlyURL();
+			creatorURL =
+				_LAYOUT_FRIENDLY_URL_PUBLIC_SERVLET_MAPPING +
+					group.getFriendlyURL();
 		}
 		else {
 			AssetEntry assetEntry = AssetEntryLocalServiceUtil.getEntry(
@@ -546,10 +545,9 @@ public class AssetEntrySetLocalServiceImpl
 
 				Group group = user.getGroup();
 
-				creatorURL = PropsUtil.get(
-					PropsKeys.LAYOUT_FRIENDLY_URL_PUBLIC_SERVLET_MAPPING);
-
-				creatorURL += group.getFriendlyURL();
+				creatorURL =
+					_LAYOUT_FRIENDLY_URL_PUBLIC_SERVLET_MAPPING +
+						group.getFriendlyURL();
 			}
 			else {
 				AssetEntry assetEntry = AssetEntryLocalServiceUtil.getEntry(
@@ -625,6 +623,9 @@ public class AssetEntrySetLocalServiceImpl
 
 	private static final long _ASSET_ENTRY_SET_CLASS_NAME_ID =
 		ClassNameLocalServiceUtil.getClassNameId(AssetEntrySet.class);
+
+	private static final String _LAYOUT_FRIENDLY_URL_PUBLIC_SERVLET_MAPPING =
+		PropsUtil.get(PropsKeys.LAYOUT_FRIENDLY_URL_PUBLIC_SERVLET_MAPPING);
 
 	private static final long _USER_CLASS_NAME_ID =
 		ClassNameLocalServiceUtil.getClassNameId(User.class);
