@@ -1320,6 +1320,9 @@ AUI.add(
 
 						Scheduler.superclass.renderUI.apply(this, arguments);
 
+						instance.navDateNode.replaceClass('hidden-xs', 'hidden');
+						instance.viewDateNode.removeClass('visible-xs');
+
 						var showAddEventBtn = instance.get('showAddEventBtn');
 
 						if (showAddEventBtn) {

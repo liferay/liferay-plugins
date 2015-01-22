@@ -386,14 +386,6 @@
 	font-size: 16px;
 }
 
-.scheduler-base-nav-date {
-	display: none !important;
-}
-
-.scheduler-base-view-date {
-	display: block !important;
-}
-
 .scheduler-event-past {
 	opacity: 0.4;
 }
