@@ -136,11 +136,11 @@ public class PrioritizationStrategy {
 	}
 
 	public void addImportedParentArticle(
-		KBArticle ParentArticle, String fileName) {
+		KBArticle parentArticle, String fileName) {
 
-		_importedParentArticles.add(ParentArticle);
+		_importedParentArticles.add(parentArticle);
 
-		String importedParentUrlTitle = ParentArticle.getUrlTitle();
+		String importedParentUrlTitle = parentArticle.getUrlTitle();
 
 		_importedParentUrlTitles.add(importedParentUrlTitle);
 
@@ -149,7 +149,7 @@ public class PrioritizationStrategy {
 
 			if (folderNamePrefix > 0) {
 				_importedUrlTitlesPrioritiesMap.put(
-					ParentArticle.getUrlTitle(), folderNamePrefix);
+					parentArticle.getUrlTitle(), folderNamePrefix);
 			}
 		}
 	}
