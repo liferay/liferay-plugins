@@ -863,7 +863,7 @@
 							elements.set('disabled', !checked);
 
 							if (checked) {
-								elements.first().selectText();
+								elements.first().select();
 							}
 						},
 
