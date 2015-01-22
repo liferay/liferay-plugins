@@ -582,7 +582,35 @@
 }
 
 @include respond-to(phone, tablet) {
+	.scheduler-base-hd .btn {
+		padding: 10px 12px;
+	}
+
 	.scheduler-view-table-header-day div {
 		overflow: hidden
+	}
+}
+
+@include respond-to(phone) {
+	.scheduler-base-content .scheduler-base-controls .btn-group {
+		margin: 5px 0 0 0;
+
+		button {
+			display: inline-block;
+			width: 100%;
+		}
+
+		.scheduler-base-icon-next, .scheduler-base-icon-prev {
+			width: 25%;
+		}
+
+		.scheduler-base-today {
+			width: 50%;
+		}
+	}
+
+	.scheduler-base-views select {
+		margin-top: 10px;
+		width: 100%;
 	}
 }
