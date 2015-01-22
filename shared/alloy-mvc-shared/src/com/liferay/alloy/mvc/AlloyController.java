@@ -16,6 +16,7 @@ package com.liferay.alloy.mvc;
 
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.Portlet;
+import com.liferay.portal.model.User;
 import com.liferay.portal.theme.ThemeDisplay;
 
 import javax.servlet.http.HttpServletRequest;
@@ -46,6 +47,8 @@ public interface AlloyController {
 		throws Exception;
 
 	public void setPageContext(PageContext pageContext);
+
+	public void setUser(User user);
 
 	public void updateModel(BaseModel<?> baseModel, Object... properties)
 		throws Exception;

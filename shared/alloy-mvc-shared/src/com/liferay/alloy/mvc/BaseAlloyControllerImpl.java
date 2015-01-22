@@ -247,6 +247,7 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 		this.pageContext = pageContext;
 	}
 
+	@Override
 	public void setUser(User user) {
 		this.user = user;
 	}
