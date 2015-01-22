@@ -160,8 +160,9 @@ public class FileSystemImporter extends BaseImporter {
 		try {
 			if (!updateModeEnabled || (ddmTemplate == null)) {
 				DDMTemplateLocalServiceUtil.addTemplate(
-					userId, groupId, classNameId, 0, getKey(fileName),
-					getMap(name), null,
+					userId, groupId, classNameId, 0,
+					PortalUtil.getClassNameId(JournalArticle.class),
+					getKey(fileName), getMap(name), null,
 					DDMTemplateConstants.TEMPLATE_TYPE_DISPLAY,
 					StringPool.BLANK, getDDMTemplateLanguage(name), script,
 					false, false, StringPool.BLANK, null, serviceContext);
@@ -520,9 +521,11 @@ public class FileSystemImporter extends BaseImporter {
 				DDMTemplateLocalServiceUtil.addTemplate(
 					userId, templateGroupId,
 					PortalUtil.getClassNameId(DDMStructure.class),
-					ddmStructureId, getKey(fileName), getMap(name), null, type,
-					mode, language, script, false, false, StringPool.BLANK,
-					null, serviceContext);
+					ddmStructureId,
+					PortalUtil.getClassNameId(JournalArticle.class),
+					getKey(fileName), getMap(name), null, type, mode, language,
+					script, false, false, StringPool.BLANK, null,
+					serviceContext);
 			}
 			else {
 				DDMTemplateLocalServiceUtil.updateTemplate(
@@ -610,8 +613,9 @@ public class FileSystemImporter extends BaseImporter {
 				ddmTemplate = DDMTemplateLocalServiceUtil.addTemplate(
 					userId, groupId,
 					PortalUtil.getClassNameId(DDMStructure.class),
-					ddmStructure.getStructureId(), getKey(fileName),
-					getMap(name), null,
+					ddmStructure.getStructureId(),
+					PortalUtil.getClassNameId(JournalArticle.class),
+					getKey(fileName), getMap(name), null,
 					DDMTemplateConstants.TEMPLATE_TYPE_DISPLAY, null,
 					getDDMTemplateLanguage(fileName), replaceFileEntryURL(xsl),
 					false, false, null, null, serviceContext);

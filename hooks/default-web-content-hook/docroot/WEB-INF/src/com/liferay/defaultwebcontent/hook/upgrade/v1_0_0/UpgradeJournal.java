@@ -146,7 +146,8 @@ public class UpgradeJournal extends UpgradeProcess {
 
 		DDMTemplateLocalServiceUtil.addTemplate(
 			userId, groupId, PortalUtil.getClassNameId(DDMStructure.class),
-			classPK, "ARTICLE-DESCRIPTION", nameMap, descriptionMap,
+			classPK, PortalUtil.getClassNameId(JournalArticle.class),
+			"ARTICLE-DESCRIPTION", nameMap, descriptionMap,
 			DDMTemplateConstants.TEMPLATE_TYPE_DISPLAY,
 			DDMTemplateConstants.TEMPLATE_MODE_CREATE,
 			TemplateConstants.LANG_TYPE_VM, script, true, false,
@@ -166,7 +167,8 @@ public class UpgradeJournal extends UpgradeProcess {
 
 		DDMTemplateLocalServiceUtil.addTemplate(
 			userId, groupId, PortalUtil.getClassNameId(DDMStructure.class),
-			classPK, "REGULAR-ARTICLE", nameMap, descriptionMap,
+			classPK, PortalUtil.getClassNameId(JournalArticle.class),
+			"REGULAR-ARTICLE", nameMap, descriptionMap,
 			DDMTemplateConstants.TEMPLATE_TYPE_DISPLAY,
 			DDMTemplateConstants.TEMPLATE_MODE_CREATE,
 			TemplateConstants.LANG_TYPE_VM, script, true, false,
@@ -188,7 +190,8 @@ public class UpgradeJournal extends UpgradeProcess {
 
 		DDMTemplateLocalServiceUtil.addTemplate(
 			userId, groupId, PortalUtil.getClassNameId(DDMStructure.class),
-			classPK, "MULTIPLE-ITEM-CAROUSEL", nameMap, descriptionMap,
+			classPK, PortalUtil.getClassNameId(JournalArticle.class),
+			"MULTIPLE-ITEM-CAROUSEL", nameMap, descriptionMap,
 			DDMTemplateConstants.TEMPLATE_TYPE_DISPLAY,
 			DDMTemplateConstants.TEMPLATE_MODE_CREATE,
 			TemplateConstants.LANG_TYPE_VM, script, true, false,
@@ -209,7 +212,8 @@ public class UpgradeJournal extends UpgradeProcess {
 
 		DDMTemplateLocalServiceUtil.addTemplate(
 			userId, groupId, PortalUtil.getClassNameId(DDMStructure.class),
-			classPK, "MULTIPLE-ITEM-FEATURE", nameMap, descriptionMap,
+			classPK, PortalUtil.getClassNameId(JournalArticle.class),
+			"MULTIPLE-ITEM-FEATURE", nameMap, descriptionMap,
 			DDMTemplateConstants.TEMPLATE_TYPE_DISPLAY,
 			DDMTemplateConstants.TEMPLATE_MODE_CREATE,
 			TemplateConstants.LANG_TYPE_VM, script, true, false,
