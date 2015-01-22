@@ -449,6 +449,10 @@ public class PrioritizationStrategy {
 			List<KBArticle> childKBArticles = childKBArticlesMap.get(
 				parentKBArticleUrlTitle);
 
+			if (childKBArticles == null) {
+				return;
+			}
+
 			Double maxChildKBArticlePriority = maxChildKBArticlePriorityMap.get(
 				parentKBArticleUrlTitle);
 
@@ -456,19 +460,14 @@ public class PrioritizationStrategy {
 				maxChildKBArticlePriority = 0.0;
 			}
 
-			if (childKBArticles != null) {
-				ListUtil.sort(childKBArticles, new KBArticleComparator());
+			ListUtil.sort(childKBArticles, new KBArticleComparator());
 
-				for (KBArticle childKBArticle : childKBArticles) {
-					long childKBArticleResourcePrimKey =
-						childKBArticle.getResourcePrimKey();
+			for (KBArticle childKBArticle : childKBArticles) {
+				maxChildKBArticlePriority++;
 
-					maxChildKBArticlePriority++;
-
-					KBArticleLocalServiceUtil.updatePriority(
-						childKBArticleResourcePrimKey,
-						maxChildKBArticlePriority);
-				}
+				KBArticleLocalServiceUtil.updatePriority(
+					childKBArticle.getResourcePrimKey(),
+					maxChildKBArticlePriority);
 			}
 		}
 	}
