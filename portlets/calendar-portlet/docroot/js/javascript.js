@@ -1472,7 +1472,7 @@ AUI.add(
 						var node = Scheduler.superclass._createViewTriggerNode.apply(this, arguments);
 
 						if (node.get('nodeName') === 'OPTION') {
-							node.text(node.text() + ' view');
+							node.text(Liferay.Language.get(view.get('name') + '-view'));
 						}
 
 						return node;
