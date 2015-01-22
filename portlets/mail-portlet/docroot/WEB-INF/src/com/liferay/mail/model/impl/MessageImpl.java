@@ -44,7 +44,7 @@ public class MessageImpl extends MessageBaseImpl {
 		return group.getGroupId();
 	}
 
-	public boolean hasAttachments() {
+	public boolean hasAttachments() throws SystemException {
 		String contentType = getContentType();
 
 		if ((contentType != null) && contentType.startsWith(_MULTIPART_MIXED)) {
