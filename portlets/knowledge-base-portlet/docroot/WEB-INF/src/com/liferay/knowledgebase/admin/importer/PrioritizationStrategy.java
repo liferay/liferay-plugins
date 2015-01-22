@@ -23,7 +23,6 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.CharPool;
 import com.liferay.portal.kernel.util.ListUtil;
-import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
@@ -103,14 +102,11 @@ public class PrioritizationStrategy {
 
 		KBArticle parentArticle = childArticle.getParentKBArticle();
 
-		String parentUrlTitle = StringPool.BLANK;
-
-		if (parentArticle != null) {
-			parentUrlTitle = parentArticle.getUrlTitle();
-		}
-		else {
+		if (parentArticle == null) {
 			return;
 		}
+
+		String parentUrlTitle = parentArticle.getUrlTitle();
 
 		List<KBArticle> childArticles = null;
 
