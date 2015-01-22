@@ -170,13 +170,11 @@ public class PrioritizationStrategy {
 					KBArticleLocalServiceUtil.getKBArticleByUrlTitle(
 						_groupId, _parentKBFolderId, importedKBArticleUrlTitle);
 
-				long resourcePrimKey = kbArticle.getResourcePrimKey();
-
 				double priority = _importedUrlTitlesPrioritiesMap.get(
 					importedKBArticleUrlTitle);
 
 				KBArticleLocalServiceUtil.updatePriority(
-					resourcePrimKey, priority);
+					kbArticle.getResourcePrimKey(), priority);
 
 				/*
 				 * Remove articles with numerical prefixes, and their URL
@@ -340,13 +338,11 @@ public class PrioritizationStrategy {
 						_groupId, _parentKBFolderId,
 						importedParentKBArticleUrlTitle);
 
-				long parentResourcePrimKey =
-					parentKBArticle.getResourcePrimKey();
-
 				maxParentKBArticlePriority++;
 
 				KBArticleLocalServiceUtil.updatePriority(
-					parentResourcePrimKey, maxParentKBArticlePriority);
+					parentKBArticle.getResourcePrimKey(),
+					maxParentKBArticlePriority);
 			}
 
 			// prioritize imported child articles by URL title
@@ -399,13 +395,11 @@ public class PrioritizationStrategy {
 					KBArticleLocalServiceUtil.getKBArticleByUrlTitle(
 						_groupId, _parentKBFolderId, parentKBArticleUrlTitle);
 
-				long parentResourcePrimKey =
-					parentKBArticle.getResourcePrimKey();
-
 				maxParentKBArticlePriority++;
 
 				KBArticleLocalServiceUtil.updatePriority(
-					parentResourcePrimKey, maxParentKBArticlePriority);
+					parentKBArticle.getResourcePrimKey(),
+					maxParentKBArticlePriority);
 			}
 
 			// prioritize new child articles by URL title
@@ -504,9 +498,7 @@ public class PrioritizationStrategy {
 		_newParentUrlTitles = new ArrayList<String>();
 
 		for (KBArticle article : _newParentArticles) {
-			String urlTitle = article.getUrlTitle();
-
-			_newParentUrlTitles.add(urlTitle);
+			_newParentUrlTitles.add(article.getUrlTitle());
 		}
 
 		_newChildArticlesMap = new HashMap<String, List<KBArticle>>();
