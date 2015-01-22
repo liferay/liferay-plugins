@@ -133,6 +133,11 @@ public class SyncDLObjectLocalServiceImpl
 	}
 
 	@Override
+	public SyncDLObject fetchSyncDLObject(String type, long typePK) {
+		return syncDLObjectPersistence.fetchByT_T(type, typePK);
+	}
+
+	@Override
 	public long getLatestModifiedTime() {
 		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
 			SyncDLObject.class, SyncDLObject.class.getClassLoader());
@@ -149,13 +154,6 @@ public class SyncDLObjectLocalServiceImpl
 		}
 
 		return modifiedTimes.get(0);
-	}
-
-	@Override
-	public SyncDLObject getSyncDLObject(String type, long typePK)
-		throws PortalException {
-
-		return syncDLObjectPersistence.findByT_T(type, typePK);
 	}
 
 	protected boolean isDefaultRepository(long folderId)
