@@ -165,20 +165,14 @@ public class PrioritizationStrategy {
 		if (_prioritizeByNumericalPrefix) {
 			Set<String> keySet = _importedUrlTitlesPrioritiesMap.keySet();
 
-			KBArticle article = null;
-
-			long resourcePrimKey = 0;
-
-			Double priority = null;
-
 			for (String key : keySet) {
-				article =
+				KBArticle article =
 					KBArticleLocalServiceUtil.getKBArticleByUrlTitle(
 						_groupId, _parentKBFolderId, key);
 
-				resourcePrimKey = article.getResourcePrimKey();
+				long resourcePrimKey = article.getResourcePrimKey();
 
-				priority = _importedUrlTitlesPrioritiesMap.get(key);
+				double priority = _importedUrlTitlesPrioritiesMap.get(key);
 
 				KBArticleLocalServiceUtil.updatePriority(
 					resourcePrimKey, priority);
