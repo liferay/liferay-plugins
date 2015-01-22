@@ -421,7 +421,8 @@ public class AssetEntrySetLocalServiceImpl
 	}
 
 	protected JSONObject getParticipant(
-			long classNameId, long classPK, boolean includePortraitURL)
+			JSONObject participantJSONObject, long classNameId, long classPK,
+			boolean includePortraitURL)
 		throws PortalException, SystemException {
 
 		String participantFullName = StringPool.BLANK;
@@ -464,8 +465,6 @@ public class AssetEntrySetLocalServiceImpl
 			participantURL = jsonObject.getString(
 				AssetEntrySetConstants.ASSET_ENTRY_KEY_PARTICIPANT_URL);
 		}
-
-		JSONObject participantJSONObject = JSONFactoryUtil.createJSONObject();
 
 		participantJSONObject.put(
 			AssetEntrySetConstants.ASSET_ENTRY_KEY_PARTICIPANT_FULL_NAME,
@@ -522,6 +521,7 @@ public class AssetEntrySetLocalServiceImpl
 
 		assetEntrySet.setCreator(
 			getParticipant(
+				JSONFactoryUtil.createJSONObject(),
 				assetEntrySet.getCreatorClassNameId(),
 				assetEntrySet.getCreatorClassPK(), true));
 	}
@@ -540,27 +540,25 @@ public class AssetEntrySetLocalServiceImpl
 		JSONObject payloadJSONObject = JSONFactoryUtil.createJSONObject(
 			assetEntrySet.getPayload());
 
-		JSONArray sharedToClassNameIdClassPKJSONArray =
+		JSONArray sharedToJSONArray =
 			payloadJSONObject.getJSONArray(
 				AssetEntrySetConstants.PAYLOAD_KEY_SHARED_TO);
 
-		JSONArray sharedToFullNameURLJSONArray =
-			JSONFactoryUtil.createJSONArray();
+		JSONArray returnedSharedToJSONArray = JSONFactoryUtil.createJSONArray();
 
-		for (int i = 0; i < sharedToClassNameIdClassPKJSONArray.length(); i++) {
-			JSONObject sharedToClassNameIdClassPKJSONObject =
-				sharedToClassNameIdClassPKJSONArray.getJSONObject(i);
+		for (int i = 0; i < sharedToJSONArray.length(); i++) {
+			JSONObject participantJSONObject = sharedToJSONArray.getJSONObject(
+				i);
 
-			long classNameId = sharedToClassNameIdClassPKJSONObject.getLong(
-				"classNameId");
-			long classPK = sharedToClassNameIdClassPKJSONObject.getLong(
-				"classPK");
+			long classNameId = participantJSONObject.getLong("classNameId");
+			long classPK = participantJSONObject.getLong("classPK");
 
-			sharedToFullNameURLJSONArray.put(
-				getParticipant(classNameId, classPK, false));
+			returnedSharedToJSONArray.put(
+				getParticipant(
+					participantJSONObject, classNameId, classPK, false));
 		}
 
-		assetEntrySet.setSharedTo(sharedToFullNameURLJSONArray);
+		assetEntrySet.setSharedTo(returnedSharedToJSONArray);
 	}
 
 	protected void setSharedToJSONArrays(List<AssetEntrySet> assetEntrySets)
