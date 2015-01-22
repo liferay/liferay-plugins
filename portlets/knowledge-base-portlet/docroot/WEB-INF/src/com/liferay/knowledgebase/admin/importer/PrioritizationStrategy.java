@@ -547,17 +547,7 @@ public class PrioritizationStrategy {
 		Set<String> newKeySet = _newChildArticlesMap.keySet();
 
 		for (String key : newKeySet) {
-			List<KBArticle> newChildArticles = new ArrayList<KBArticle>();
-
-			List<String> urlTitles = new ArrayList<String>();
-
-			for (KBArticle article : newChildArticles) {
-				String urlTitle = article.getUrlTitle();
-
-				urlTitles.add(urlTitle);
-			}
-
-			_newChildUrlTitlesMap.put(key, urlTitles);
+			_newChildUrlTitlesMap.put(key, new ArrayList<String>());
 		}
 	}
 
