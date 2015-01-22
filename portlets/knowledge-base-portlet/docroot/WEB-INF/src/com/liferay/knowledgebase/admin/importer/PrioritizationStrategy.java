@@ -289,8 +289,6 @@ public class PrioritizationStrategy {
 			}
 		}
 
-		KBArticleComparator comparator = new KBArticleComparator();
-
 		if (_prioritizeUpdatedArticles) {
 
 			// prioritize all imported articles
@@ -353,35 +351,8 @@ public class PrioritizationStrategy {
 
 			// prioritize imported child articles by URL title
 
-			Set<String> parentKBArticleUrlTitles =
-				_importedChildArticlesMap.keySet();
-
-			for (String parentKBArticleUrlTitle : parentKBArticleUrlTitles) {
-				List<KBArticle> childKBArticles = _importedChildArticlesMap.get(
-					parentKBArticleUrlTitle);
-
-				Double maxChildKBArticlePriority =
-					maxChildKBArticlePriorityMap.get(parentKBArticleUrlTitle);
-
-				if (maxChildKBArticlePriority == null) {
-					maxChildKBArticlePriority = 0.0;
-				}
-
-				if (childKBArticles != null) {
-					ListUtil.sort(childKBArticles, comparator);
-
-					for (KBArticle childKBArticle : childKBArticles) {
-						long childKBArticleResourcePrimKey =
-							childKBArticle.getResourcePrimKey();
-
-						maxChildKBArticlePriority++;
-
-						KBArticleLocalServiceUtil.updatePriority(
-							childKBArticleResourcePrimKey,
-							maxChildKBArticlePriority);
-					}
-				}
-			}
+			updateChildKBArticlesPriorities(
+				_importedChildArticlesMap, maxChildKBArticlePriorityMap);
 		}
 		else {
 
@@ -439,35 +410,8 @@ public class PrioritizationStrategy {
 
 			// prioritize new child articles by URL title
 
-			Set<String> parentKBArticleUrlTitles =
-				_newChildArticlesMap.keySet();
-
-			for (String parentKBArticleUrlTitle : parentKBArticleUrlTitles) {
-				List<KBArticle> childKBArticles = _newChildArticlesMap.get(
-					parentKBArticleUrlTitle);
-
-				Double maxChildKBArticlePriority =
-					maxChildKBArticlePriorityMap.get(parentKBArticleUrlTitle);
-
-				if (maxChildKBArticlePriority == null) {
-					maxChildKBArticlePriority = 0.0;
-				}
-
-				if (childKBArticles != null) {
-					ListUtil.sort(childKBArticles, comparator);
-
-					for (KBArticle childKBArticle : childKBArticles) {
-						long childKBArticleResourcePrimKey =
-							childKBArticle.getResourcePrimKey();
-
-						maxChildKBArticlePriority++;
-
-						KBArticleLocalServiceUtil.updatePriority(
-							childKBArticleResourcePrimKey,
-							maxChildKBArticlePriority);
-					}
-				}
-			}
+			updateChildKBArticlesPriorities(
+				_newChildArticlesMap, maxChildKBArticlePriorityMap);
 		}
 	}
 
@@ -492,6 +436,41 @@ public class PrioritizationStrategy {
 		_importedChildArticlesMap = new HashMap<String, List<KBArticle>>();
 		_importedChildUrlTitlesMap = new HashMap<String, List<String>>();
 		_importedUrlTitlesPrioritiesMap = new HashMap<String, Double>();
+	}
+
+	protected void updateChildKBArticlesPriorities(
+			Map<String, List<KBArticle>> childKBArticlesMap,
+			Map<String, Double> maxChildKBArticlePriorityMap)
+		throws SystemException {
+
+		Set<String> parentKBArticleUrlTitles = childKBArticlesMap.keySet();
+
+		for (String parentKBArticleUrlTitle : parentKBArticleUrlTitles) {
+			List<KBArticle> childKBArticles = childKBArticlesMap.get(
+				parentKBArticleUrlTitle);
+
+			Double maxChildKBArticlePriority = maxChildKBArticlePriorityMap.get(
+				parentKBArticleUrlTitle);
+
+			if (maxChildKBArticlePriority == null) {
+				maxChildKBArticlePriority = 0.0;
+			}
+
+			if (childKBArticles != null) {
+				ListUtil.sort(childKBArticles, new KBArticleComparator());
+
+				for (KBArticle childKBArticle : childKBArticles) {
+					long childKBArticleResourcePrimKey =
+						childKBArticle.getResourcePrimKey();
+
+					maxChildKBArticlePriority++;
+
+					KBArticleLocalServiceUtil.updatePriority(
+						childKBArticleResourcePrimKey,
+						maxChildKBArticlePriority);
+				}
+			}
+		}
 	}
 
 	private double _getNumericalPrefix(String path) {
