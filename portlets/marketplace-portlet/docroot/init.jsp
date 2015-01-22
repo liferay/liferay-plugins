@@ -53,4 +53,6 @@ else if (portletId.equals(PortletKeys.STORE) && (appId > 0)) {
 else {
 	referer = MarketplaceConstants.getPathStore();
 }
+
+referer = StringPool.SLASH + locale.getLanguage() + referer;
 %>
