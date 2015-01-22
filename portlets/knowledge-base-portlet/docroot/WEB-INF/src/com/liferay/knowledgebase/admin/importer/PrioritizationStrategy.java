@@ -363,11 +363,7 @@ public class PrioritizationStrategy {
 				if (childKBArticles != null) {
 					ListUtil.sort(childKBArticles, comparator);
 
-					int childSize = childKBArticles.size();
-
-					for (int i = 0; i < childSize; i++) {
-						KBArticle childKBArticle = childKBArticles.get(i);
-
+					for (KBArticle childKBArticle : childKBArticles) {
 						long childKBArticleResourcePrimKey =
 							childKBArticle.getResourcePrimKey();
 
@@ -379,9 +375,11 @@ public class PrioritizationStrategy {
 							maxChildKBArticlePriority = 0.0;
 						}
 
+						maxChildKBArticlePriority++;
+
 						KBArticleLocalServiceUtil.updatePriority(
 							childKBArticleResourcePrimKey,
-							maxChildKBArticlePriority + 1 + i);
+							maxChildKBArticlePriority);
 					}
 				}
 			}
@@ -424,18 +422,18 @@ public class PrioritizationStrategy {
 
 			ListUtil.sort(_newParentUrlTitles);
 
-			int parentSize = _newParentUrlTitles.size();
-
-			for (int i = 0; i < parentSize; i++) {
-				KBArticle parentArticle =
+			for (String parentKBArticleUrlTitle : _newParentUrlTitles) {
+				KBArticle parentKBArticle =
 					KBArticleLocalServiceUtil.getKBArticleByUrlTitle(
-						_groupId, _parentKBFolderId,
-						_newParentUrlTitles.get(i));
+						_groupId, _parentKBFolderId, parentKBArticleUrlTitle);
 
-				long parentResourcePrimKey = parentArticle.getResourcePrimKey();
+				long parentResourcePrimKey =
+					parentKBArticle.getResourcePrimKey();
+
+				maxParentPriority++;
 
 				KBArticleLocalServiceUtil.updatePriority(
-					parentResourcePrimKey, maxParentPriority + 1 + i);
+					parentResourcePrimKey, maxParentPriority);
 			}
 
 			// prioritize new child articles by URL title
@@ -449,13 +447,9 @@ public class PrioritizationStrategy {
 				if (childArticles != null) {
 					ListUtil.sort(childArticles, comparator);
 
-					int childSize = childArticles.size();
-
-					for (int i = 0; i < childSize; i++) {
-						KBArticle childArticle = childArticles.get(i);
-
+					for (KBArticle childKBArticle : childArticles) {
 						long childArticleResourcePrimKey =
-							childArticle.getResourcePrimKey();
+							childKBArticle.getResourcePrimKey();
 
 						Double maxChildArticlePriority =
 							maxChildPriorityMap.get(childKey);
@@ -464,9 +458,11 @@ public class PrioritizationStrategy {
 							maxChildArticlePriority = 0.0;
 						}
 
+						maxChildArticlePriority++;
+
 						KBArticleLocalServiceUtil.updatePriority(
 							childArticleResourcePrimKey,
-							maxChildArticlePriority + 1 + i);
+							maxChildArticlePriority);
 					}
 				}
 			}
