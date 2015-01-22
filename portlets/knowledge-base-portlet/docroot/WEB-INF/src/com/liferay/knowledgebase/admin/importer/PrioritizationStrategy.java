@@ -78,14 +78,11 @@ public class PrioritizationStrategy {
 				existingParentArticle.getUrlTitle(), existingChildUrlTitles);
 		}
 
-		PrioritizationStrategy prioritizationStrategy =
-			new PrioritizationStrategy(
-				groupId, parentKBFolderId, prioritizeUpdatedArticles,
-				prioritizeByNumericalPrefix, existingParentArticles,
-				existingParentUrlTitles, existingChildArticlesMap,
-				existingChildUrlTitlesMap);
-
-		return prioritizationStrategy;
+		return new PrioritizationStrategy(
+			groupId, parentKBFolderId, prioritizeUpdatedArticles,
+			prioritizeByNumericalPrefix, existingParentArticles,
+			existingParentUrlTitles, existingChildArticlesMap,
+			existingChildUrlTitlesMap);
 	}
 
 	public void addImportedChildArticle(KBArticle childArticle, String fileName)
