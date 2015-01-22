@@ -333,18 +333,17 @@ public class PrioritizationStrategy {
 
 			ListUtil.sort(_importedParentUrlTitles);
 
-			int parentSize = _importedParentUrlTitles.size();
-
-			for (int i = 0; i < parentSize; i++) {
+			for (String importedParentUrlTitle : _importedParentUrlTitles) {
 				KBArticle parentArticle =
 					KBArticleLocalServiceUtil.getKBArticleByUrlTitle(
-						_groupId, _parentKBFolderId,
-						_importedParentUrlTitles.get(i));
+						_groupId, _parentKBFolderId, importedParentUrlTitle);
 
 				long parentResourcePrimKey = parentArticle.getResourcePrimKey();
 
+				maxParentPriority++;
+
 				KBArticleLocalServiceUtil.updatePriority(
-					parentResourcePrimKey, maxParentPriority + 1 + i);
+					parentResourcePrimKey, maxParentPriority);
 			}
 
 			// prioritize imported child articles by URL title
