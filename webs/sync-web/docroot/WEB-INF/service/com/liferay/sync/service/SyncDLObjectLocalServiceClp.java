@@ -111,29 +111,29 @@ public class SyncDLObjectLocalServiceClp implements SyncDLObjectLocalService {
 
 		_methodParameterTypes13 = new String[] { "long" };
 
-		_methodName14 = "getActionableDynamicQuery";
+		_methodName14 = "fetchSyncDLObject";
 
-		_methodParameterTypes14 = new String[] {  };
+		_methodParameterTypes14 = new String[] { "java.lang.String", "long" };
 
-		_methodName15 = "getBeanIdentifier";
+		_methodName15 = "getActionableDynamicQuery";
 
 		_methodParameterTypes15 = new String[] {  };
 
-		_methodName16 = "getLatestModifiedTime";
+		_methodName16 = "getBeanIdentifier";
 
 		_methodParameterTypes16 = new String[] {  };
 
-		_methodName17 = "getPersistedModel";
+		_methodName17 = "getLatestModifiedTime";
 
-		_methodParameterTypes17 = new String[] { "java.io.Serializable" };
+		_methodParameterTypes17 = new String[] {  };
 
-		_methodName18 = "getSyncDLObject";
+		_methodName18 = "getPersistedModel";
 
-		_methodParameterTypes18 = new String[] { "long" };
+		_methodParameterTypes18 = new String[] { "java.io.Serializable" };
 
 		_methodName19 = "getSyncDLObject";
 
-		_methodParameterTypes19 = new String[] { "java.lang.String", "long" };
+		_methodParameterTypes19 = new String[] { "long" };
 
 		_methodName20 = "getSyncDLObjects";
 
@@ -584,12 +584,37 @@ public class SyncDLObjectLocalServiceClp implements SyncDLObjectLocalService {
 	}
 
 	@Override
-	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
+	public com.liferay.sync.model.SyncDLObject fetchSyncDLObject(
+		java.lang.String type, long typePK) {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName14,
-					_methodParameterTypes14, new Object[] {  });
+					_methodParameterTypes14,
+					new Object[] { ClpSerializer.translateInput(type), typePK });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.liferay.sync.model.SyncDLObject)ClpSerializer.translateOutput(returnObj);
+	}
+
+	@Override
+	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName15,
+					_methodParameterTypes15, new Object[] {  });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -611,8 +636,8 @@ public class SyncDLObjectLocalServiceClp implements SyncDLObjectLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName15,
-					_methodParameterTypes15, new Object[] {  });
+			returnObj = _invokableLocalService.invokeMethod(_methodName16,
+					_methodParameterTypes16, new Object[] {  });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -634,8 +659,8 @@ public class SyncDLObjectLocalServiceClp implements SyncDLObjectLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName16,
-					_methodParameterTypes16, new Object[] {  });
+			returnObj = _invokableLocalService.invokeMethod(_methodName17,
+					_methodParameterTypes17, new Object[] {  });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -659,8 +684,8 @@ public class SyncDLObjectLocalServiceClp implements SyncDLObjectLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName17,
-					_methodParameterTypes17,
+			returnObj = _invokableLocalService.invokeMethod(_methodName18,
+					_methodParameterTypes18,
 					new Object[] { ClpSerializer.translateInput(primaryKeyObj) });
 		}
 		catch (Throwable t) {
@@ -689,38 +714,8 @@ public class SyncDLObjectLocalServiceClp implements SyncDLObjectLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName18,
-					_methodParameterTypes18, new Object[] { syncDLObjectId });
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
-				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-
-		return (com.liferay.sync.model.SyncDLObject)ClpSerializer.translateOutput(returnObj);
-	}
-
-	@Override
-	public com.liferay.sync.model.SyncDLObject getSyncDLObject(
-		java.lang.String type, long typePK)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		Object returnObj = null;
-
-		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName19,
-					_methodParameterTypes19,
-					new Object[] { ClpSerializer.translateInput(type), typePK });
+					_methodParameterTypes19, new Object[] { syncDLObjectId });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);

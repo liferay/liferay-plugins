@@ -181,6 +181,10 @@ public interface SyncDLObjectLocalService extends BaseLocalService,
 		long syncDLObjectId);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.liferay.sync.model.SyncDLObject fetchSyncDLObject(
+		java.lang.String type, long typePK);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery();
 
 	/**
@@ -209,11 +213,6 @@ public interface SyncDLObjectLocalService extends BaseLocalService,
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.sync.model.SyncDLObject getSyncDLObject(
 		long syncDLObjectId)
-		throws com.liferay.portal.kernel.exception.PortalException;
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.sync.model.SyncDLObject getSyncDLObject(
-		java.lang.String type, long typePK)
 		throws com.liferay.portal.kernel.exception.PortalException;
 
 	/**
