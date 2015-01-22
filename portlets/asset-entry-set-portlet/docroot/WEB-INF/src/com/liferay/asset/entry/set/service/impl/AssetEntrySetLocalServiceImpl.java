@@ -161,8 +161,13 @@ public class AssetEntrySetLocalServiceImpl
 		Map<Long, long[]> sharedToClassPKsMap =
 			AssetSharingUtil.getSharedToClassPKsMap(userId);
 
-		return assetEntrySetFinder.findBySharedToClassPKsMap(
-			sharedToClassPKsMap, start, end);
+		List<AssetEntrySet> assetEntrySets =
+			assetEntrySetFinder.findBySharedToClassPKsMap(
+				sharedToClassPKsMap, start, end);
+
+		setCreatorJSONObjects(assetEntrySets);
+
+		return assetEntrySets;
 	}
 
 	@Override
@@ -242,10 +247,15 @@ public class AssetEntrySetLocalServiceImpl
 	public List<AssetEntrySet> getChildAssetEntrySets(
 			long parentAssetEntrySetId, int start, int end,
 			OrderByComparator orderByComparator)
-		throws SystemException {
+		throws PortalException, SystemException {
 
-		return assetEntrySetPersistence.findByParentAssetEntrySetId(
-			parentAssetEntrySetId, start, end, orderByComparator);
+		List<AssetEntrySet> assetEntrySets =
+			assetEntrySetPersistence.findByParentAssetEntrySetId(
+				parentAssetEntrySetId, start, end, orderByComparator);
+
+		setCreatorJSONObjects(assetEntrySets);
+
+		return assetEntrySets;
 	}
 
 	@Override
@@ -254,8 +264,12 @@ public class AssetEntrySetLocalServiceImpl
 			int end)
 		throws PortalException, SystemException {
 
-		return getAssetEntrySets(
+		List<AssetEntrySet> assetEntrySets = getAssetEntrySets(
 			userId, createTime, true, parentAssetEntrySetId, start, end);
+
+		setCreatorJSONObjects(assetEntrySets);
+
+		return assetEntrySets;
 	}
 
 	@Override
@@ -264,8 +278,12 @@ public class AssetEntrySetLocalServiceImpl
 			int end)
 		throws PortalException, SystemException {
 
-		return getAssetEntrySets(
+		List<AssetEntrySet> assetEntrySets = getAssetEntrySets(
 			userId, createTime, false, parentAssetEntrySetId, start, end);
+
+		setCreatorJSONObjects(assetEntrySets);
+
+		return assetEntrySets;
 	}
 
 	@Override
