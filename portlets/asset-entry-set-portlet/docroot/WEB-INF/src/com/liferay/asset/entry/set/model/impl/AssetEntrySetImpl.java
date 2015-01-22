@@ -15,6 +15,7 @@
 package com.liferay.asset.entry.set.model.impl;
 
 import com.liferay.portal.kernel.json.JSON;
+import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONObject;
 
 /**
@@ -31,11 +32,23 @@ public class AssetEntrySetImpl extends AssetEntrySetBaseImpl {
 		return _creatorJSONObject;
 	}
 
+	@JSON
+	@Override
+	public JSONArray getSharedTo() {
+		return _sharedToJSONArray;
+	}
+
 	@Override
 	public void setCreator(JSONObject creatorJSONObject) {
 		_creatorJSONObject = creatorJSONObject;
 	}
 
+	@Override
+	public void setSharedTo(JSONArray sharedToJSONArray) {
+		_sharedToJSONArray = sharedToJSONArray;
+	}
+
 	private JSONObject _creatorJSONObject;
+	private JSONArray _sharedToJSONArray;
 
 }
