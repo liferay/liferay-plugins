@@ -143,7 +143,9 @@ ${nodejs.url[osx64]}.
 	</target>
 
 	<target name="transpile-js-files" depends="install-6to5">
-		<outofdate outputsourcespath="outdated-files">
+		<property name="transpiler.force" value="false" />
+		
+		<outofdate outputsourcespath="outdated-files" force="${transpiler.force}">
 			<sourcefiles>
 				<fileset dir="${transpiler.input.dir}">
 					<include name="html/js/liferay/**.js" />
@@ -155,7 +157,9 @@ ${nodejs.url[osx64]}.
 				<pathconvert pathsep=" " property="outdated-files-param" setonempty="false" refid="outdated-files" >
 					<map from="${transpiler.input.dir}/" to="" />
 				</pathconvert>
-
+				
+				<property name="outdated-files-param" value="${transpiler.input.dir}/html/js/liferay ${transpiler.input.dir}/html/portlet"/>
+				
 				<node-execute
 					command="node"
 					commandArgs="${sdk.dir}/tools/node-v${nodejs.version}/node_modules/6to5/bin/6to5/index.js --modules amd --module-ids -d ${transpiler.output.dir} ${outdated-files-param}"
