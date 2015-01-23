@@ -120,6 +120,10 @@
 	.calendar-portlet-column-grid {
 		position: relative;
 
+		&.span12 {
+			margin-left: 0 !important;
+		}
+
 		.calendar-portlet-column-toggler {
 			bottom: 0;
 			margin-left: -10px;
