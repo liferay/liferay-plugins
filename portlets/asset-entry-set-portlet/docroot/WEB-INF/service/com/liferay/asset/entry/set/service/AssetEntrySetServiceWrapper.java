@@ -109,12 +109,6 @@ public class AssetEntrySetServiceWrapper implements AssetEntrySetService,
 	}
 
 	@Override
-	public com.liferay.portal.kernel.json.JSONObject getPreviewJSONObject(
-		java.lang.String url) throws java.lang.Exception {
-		return _assetEntrySetService.getPreviewJSONObject(url);
-	}
-
-	@Override
 	public com.liferay.asset.entry.set.model.AssetEntrySet likeAssetEntrySet(
 		long assetEntrySetId)
 		throws com.liferay.portal.kernel.exception.PortalException,

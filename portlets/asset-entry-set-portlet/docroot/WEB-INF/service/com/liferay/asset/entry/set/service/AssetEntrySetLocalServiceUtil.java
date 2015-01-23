@@ -393,11 +393,6 @@ public class AssetEntrySetLocalServiceUtil {
 			parentAssetEntrySetId, start, end);
 	}
 
-	public static com.liferay.portal.kernel.json.JSONObject getPreviewJSONObject(
-		java.lang.String url) throws java.lang.Exception {
-		return getService().getPreviewJSONObject(url);
-	}
-
 	public static com.liferay.asset.entry.set.model.AssetEntrySet likeAssetEntrySet(
 		long userId, long assetEntrySetId)
 		throws com.liferay.portal.kernel.exception.PortalException,

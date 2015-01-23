@@ -335,10 +335,6 @@ public interface AssetEntrySetLocalService extends BaseLocalService,
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.portal.kernel.json.JSONObject getPreviewJSONObject(
-		java.lang.String url) throws java.lang.Exception;
-
 	public com.liferay.asset.entry.set.model.AssetEntrySet likeAssetEntrySet(
 		long userId, long assetEntrySetId)
 		throws com.liferay.portal.kernel.exception.PortalException,

@@ -96,20 +96,6 @@ public class AssetEntrySetServiceSoap {
 		}
 	}
 
-	public static java.lang.String getPreviewJSONObject(java.lang.String url)
-		throws RemoteException {
-		try {
-			com.liferay.portal.kernel.json.JSONObject returnValue = AssetEntrySetServiceUtil.getPreviewJSONObject(url);
-
-			return returnValue.toString();
-		}
-		catch (Exception e) {
-			_log.error(e, e);
-
-			throw new RemoteException(e.getMessage());
-		}
-	}
-
 	public static com.liferay.asset.entry.set.model.AssetEntrySetSoap likeAssetEntrySet(
 		long assetEntrySetId) throws RemoteException {
 		try {

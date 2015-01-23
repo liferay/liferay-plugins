@@ -409,12 +409,6 @@ public class AssetEntrySetLocalServiceWrapper
 	}
 
 	@Override
-	public com.liferay.portal.kernel.json.JSONObject getPreviewJSONObject(
-		java.lang.String url) throws java.lang.Exception {
-		return _assetEntrySetLocalService.getPreviewJSONObject(url);
-	}
-
-	@Override
 	public com.liferay.asset.entry.set.model.AssetEntrySet likeAssetEntrySet(
 		long userId, long assetEntrySetId)
 		throws com.liferay.portal.kernel.exception.PortalException,

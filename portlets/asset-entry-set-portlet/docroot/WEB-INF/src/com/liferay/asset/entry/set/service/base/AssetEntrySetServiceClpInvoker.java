@@ -59,17 +59,13 @@ public class AssetEntrySetServiceClpInvoker {
 
 		_methodParameterTypes58 = new String[] { "long", "long", "int", "int" };
 
-		_methodName59 = "getPreviewJSONObject";
+		_methodName59 = "likeAssetEntrySet";
 
-		_methodParameterTypes59 = new String[] { "java.lang.String" };
+		_methodParameterTypes59 = new String[] { "long" };
 
-		_methodName60 = "likeAssetEntrySet";
+		_methodName60 = "unlikeAssetEntrySet";
 
 		_methodParameterTypes60 = new String[] { "long" };
-
-		_methodName61 = "unlikeAssetEntrySet";
-
-		_methodParameterTypes61 = new String[] { "long" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -127,16 +123,11 @@ public class AssetEntrySetServiceClpInvoker {
 
 		if (_methodName59.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes59, parameterTypes)) {
-			return AssetEntrySetServiceUtil.getPreviewJSONObject((java.lang.String)arguments[0]);
+			return AssetEntrySetServiceUtil.likeAssetEntrySet(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName60.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes60, parameterTypes)) {
-			return AssetEntrySetServiceUtil.likeAssetEntrySet(((Long)arguments[0]).longValue());
-		}
-
-		if (_methodName61.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes61, parameterTypes)) {
 			return AssetEntrySetServiceUtil.unlikeAssetEntrySet(((Long)arguments[0]).longValue());
 		}
 
@@ -161,6 +152,4 @@ public class AssetEntrySetServiceClpInvoker {
 	private String[] _methodParameterTypes59;
 	private String _methodName60;
 	private String[] _methodParameterTypes60;
-	private String _methodName61;
-	private String[] _methodParameterTypes61;
 }
