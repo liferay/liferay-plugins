@@ -161,8 +161,17 @@
 	}
 
 	.scheduler-view-agenda-info-container {
+		font-size: 1em;
+		line-height: 1;
+
 		.scheduler-view-agenda-info {
-			line-height: 1.2;
+			.scheduler-view-agenda-info-biggie {
+				padding: 0 8px;
+			}
+
+			.scheduler-view-agenda-info-label {
+				padding: 10px 0 10px 8px;
+			}
 		}
 	}
 }
@@ -364,8 +373,23 @@
 	margin-top: -1em;
 }
 
-.scheduler-base-controls .calendar-add-event-btn {
-	margin-right: 3px;
+.scheduler-base .scheduler-base-content .scheduler-base-hd {
+	.scheduler-base-controls {
+		width: 50%;
+
+		.calendar-add-event-btn {
+			margin-right: 3px;
+		}
+
+		.scheduler-base-nav-date {
+			display: none;
+		}	
+	}
+
+	.scheduler-base-views {
+		margin: 0;
+		width: 50%;
+	}
 }
 
 .scheduler-event-past {
@@ -392,6 +416,10 @@
 
 .scheduler-event-recorder-popover .popover-title .close {
 	margin-top: 5px;
+}
+
+.scheduler-view-agenda {
+	margin-top: -13px;
 }
 
 .scheduler-view-day .scheduler-view-table .scheduler-view-table-data-col {
@@ -582,8 +610,8 @@
 }
 
 @include respond-to(phone, tablet) {
-	.scheduler-base-hd .btn {
-		padding: 10px 12px;
+	.scheduler-base-content .scheduler-base-hd .btn {
+		padding: 9px 10px;
 	}
 
 	.scheduler-view-table-header-day div {
@@ -592,25 +620,35 @@
 }
 
 @include respond-to(phone) {
-	.scheduler-base-content .scheduler-base-controls .btn-group {
-		margin: 5px 0 0 0;
-
-		button {
-			display: inline-block;
+	.scheduler-base .scheduler-base-content .scheduler-base-hd {
+		.scheduler-base-controls {
 			width: 100%;
+
+			.btn-group {
+				margin: 5px 0 0 0;
+
+				button {
+					display: inline-block;
+					width: 100%;
+				}
+
+				.scheduler-base-icon-next, .scheduler-base-icon-prev {
+					width: 25%;
+				}
+
+				.scheduler-base-today {
+					width: 50%;
+				}
+			}
 		}
 
-		.scheduler-base-icon-next, .scheduler-base-icon-prev {
-			width: 25%;
-		}
+		.scheduler-base-views {
+			width: 100%;
 
-		.scheduler-base-today {
-			width: 50%;
+			select {
+				margin-top: 10px;
+				width: 100%;
+			}
 		}
-	}
-
-	.scheduler-base-views select {
-		margin-top: 10px;
-		width: 100%;
 	}
 }

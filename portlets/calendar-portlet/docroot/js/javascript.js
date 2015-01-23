@@ -1234,6 +1234,9 @@ AUI.add(
 
 						Scheduler.superclass.renderUI.apply(this, arguments);
 
+						instance.navDateNode.replaceClass('hidden-phone', 'hidden');
+						instance.viewDateNode.removeClass('visible-phone');
+
 						var showAddEventBtn = instance.get('showAddEventBtn');
 
 						if (showAddEventBtn) {
