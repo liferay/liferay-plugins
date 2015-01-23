@@ -145,7 +145,8 @@ ${nodejs.url[osx64]}.
 		<outofdate outputsourcespath="outdated-files">
 			<sourcefiles>
 				<fileset dir="${user.dir}/docroot">
-					<include name="**/*.js" />
+					<include name="html/js/liferay/**/*.js" />
+					<include name="html/portlet/**/*.js" />
 				</fileset>
 			</sourcefiles>
 			<mapper type="glob" dir="${user.dir}/docroot" from="*.js" to="${app.server.portal.dir}/*.js" />
