@@ -434,6 +434,8 @@
 	padding: 2px;
 }
 
+
+
 .scheduler-view-table-data-event {
 	padding: 0 3px 0 3px;
 }
@@ -649,6 +651,14 @@
 				margin-top: 10px;
 				width: 100%;
 			}
+		}
+	}
+
+	.scheduler-view-day-header-day-weekday {
+		font-size: 0;
+
+		&:first-letter {
+			font-size: 14px;
 		}
 	}
 }
