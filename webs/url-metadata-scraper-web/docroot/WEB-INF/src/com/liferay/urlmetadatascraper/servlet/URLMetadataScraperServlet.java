@@ -48,11 +48,11 @@ public class URLMetadataScraperServlet extends HttpServlet {
 
 		JSONObject jsonObject = getURLMetadataJSONObject(url);
 
-		PrintWriter pw = response.getWriter();
+		PrintWriter printWriter = response.getWriter();
 
-		pw.write(jsonObject.toString());
+		printWriter.write(jsonObject.toString());
 
-		pw.close();
+		printWriter.close();
 	}
 
 	protected String getDescription(Document document) {
@@ -120,7 +120,9 @@ public class URLMetadataScraperServlet extends HttpServlet {
 
 		JSONObject jsonObject = new JSONObject();
 
-		url = HttpUtil.getProtocol(url) + "://" + HttpUtil.getDomain(url);
+		url =
+			HttpUtil.getProtocol(url) + HttpUtil.PROTOCOL_DELIMITER +
+				HttpUtil.getDomain(url);
 
 		Document document = Jsoup.connect(url).get();
 
