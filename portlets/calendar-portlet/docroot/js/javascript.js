@@ -1380,6 +1380,18 @@ AUI.add(
 						}
 					},
 
+					_createViewTriggerNode: function(view, tpl) {
+						var instance = this;
+
+						var node = Scheduler.superclass._createViewTriggerNode.apply(this, arguments);
+
+						if (node.get('nodeName') === 'OPTION') {
+							node.text(Liferay.Language.get(view.get('name') + '-view'));
+						}
+
+						return node;
+					},
+
 					_getCalendarBookingDuration: function(schedulerEvent) {
 						var instance = this;
 
