@@ -10,6 +10,7 @@
 		<attribute default="${user.dir}" name="working.dir" />
 
 		<sequential>
+			<property name="node.args" value="" />
 			<exec dir="@{working.dir}" executable="${basedir}/tools/node-v${nodejs.version}/bin/@{command}">
 				<arg line="@{commandArgs} ${node.args}"/>
 			</exec>
