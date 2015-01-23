@@ -154,10 +154,11 @@ ${nodejs.url[osx64]}.
 					<map from="${user.dir}/docroot/" to="" />
 				</pathconvert>
 
-				<antcall target="node-execute">
-					<param name="working.dir" value="${user.dir}/docroot" />
-					<param name="node.args" value="${sdk.dir}/tools/node-v${nodejs.version}/node_modules/6to5/bin/6to5/index.js --modules amd --module-ids -d ${app.server.portal.dir} ${outdated-files-param}" />
-				</antcall>
+				<node-execute
+					command="node"
+					commandArgs="${sdk.dir}/tools/node-v${nodejs.version}/node_modules/6to5/bin/6to5/index.js --modules amd --module-ids -d ${app.server.portal.dir} ${outdated-files-param}"
+					working.dir="${user.dir}/docroot" />
+
 			</sequential>
 		</outofdate>
 	</target>
