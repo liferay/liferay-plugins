@@ -154,11 +154,20 @@ ${nodejs.url[osx64]}.
 			</sourcefiles>
 			<mapper type="glob" dir="${transpiler.input.dir}" from="*.js" to="${transpiler.output.dir}/*.js" />
 			<sequential>
+				<if>
+					<istrue value="${transpiler.force}" />
+					<then>
+						<path id="outdated-files">
+							<fileset dir="${transpiler.input.dir}">
+								<include name="html/js/liferay/**.js" />
+								<include name="html/portlet/**.js" />
+							</fileset>
+						</path>
+					</then>
+				</if>
 				<pathconvert pathsep=" " property="outdated-files-param" setonempty="false" refid="outdated-files" >
 					<map from="${transpiler.input.dir}/" to="" />
 				</pathconvert>
-				
-				<property name="outdated-files-param" value="${transpiler.input.dir}/html/js/liferay ${transpiler.input.dir}/html/portlet"/>
 				
 				<node-execute
 					command="node"
