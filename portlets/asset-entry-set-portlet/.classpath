@@ -19,7 +19,6 @@
 	<classpathentry kind="lib" path="/portal-6.2.x/util-java/util-java.jar" />
 	<classpathentry kind="lib" path="/portal-6.2.x/util-taglib/util-taglib.jar" />
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/asset-sharing-portlet-service.jar" />
-	<classpathentry kind="lib" path="docroot/WEB-INF/lib/jsoup.jar" />
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/portal-compat-shared.jar" />
 	<classpathentry kind="output" path="bin" />
 </classpath>
