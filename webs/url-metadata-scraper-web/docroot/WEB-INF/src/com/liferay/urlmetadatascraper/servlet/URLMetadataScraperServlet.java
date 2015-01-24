@@ -14,24 +14,21 @@
 
 package com.liferay.urlmetadatascraper.servlet;
 
-import com.liferay.urlmetadatascraper.util.HttpUtil;
-import com.liferay.urlmetadatascraper.util.StringUtil;
-import com.liferay.urlmetadatascraper.util.Validator;
+import com.liferay.urlmetadatascraper.util.URLMetadataScraperProcessor;
 
+import java.io.BufferedOutputStream;
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.InputStream;
+import java.io.OutputStream;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.select.Elements;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 /**
  * @author Evan Thibodeau
@@ -40,116 +37,96 @@ import org.jsoup.select.Elements;
 public class URLMetadataScraperServlet extends HttpServlet {
 
 	@Override
+	public void init() {
+		_urlMetadataScraperProcessor = new URLMetadataScraperProcessor();
+	}
+
+	@Override
 	public void service(
 			HttpServletRequest request, HttpServletResponse response)
 		throws IOException, ServletException {
 
 		String url = request.getParameter("url");
 
-		JSONObject jsonObject = getURLMetadataJSONObject(url);
+		try {
+			String output =
+				_urlMetadataScraperProcessor.getURLMetadataJSONObject(url);
 
-		PrintWriter printWriter = response.getWriter();
+			write(response, new ByteArrayInputStream(output.getBytes()));
+		}
+		catch (Exception e) {
+			_log.error(e, e);
 
-		printWriter.write(jsonObject.toString());
-
-		printWriter.close();
+			sendError(response, e.getMessage());
+		}
 	}
 
-	protected String getDescription(Document document) {
-		Elements descriptionElement = document.select(
-			"meta[property=og:description]");
-
-		if (descriptionElement.size() <= 0) {
-			descriptionElement = document.select("meta[name=description]");
-		}
-
-		String description = descriptionElement.attr("content");
-
-		return StringUtil.shorten(description, 200);
-	}
-
-	protected String getImageURL(Document document, String baseURL) {
-		String imageURL = "";
-
-		Elements imageElement = document.select("meta[property=og:image]");
-
-		if (imageElement.size() <= 0) {
-			imageElement = document.select("img");
-
-			imageURL = imageElement.get(0).attr("src");
-		}
-		else {
-			imageURL = imageElement.attr("content");
-		}
-
-		if (!HttpUtil.hasDomain(imageURL)) {
-			imageURL = baseURL + imageURL;
-		}
-
-		return imageURL;
-	}
-
-	protected String getTitle(Document document) {
-		Elements titleElement = document.select("meta[property=og:title]");
-
-		String title = titleElement.attr("content");
-
-		if (Validator.isNull(title)) {
-			titleElement = document.select("meta[name=title]");
-
-			title = titleElement.attr("content");
-		}
-
-		if (Validator.isNull(title)) {
-			titleElement = document.select("title");
-
-			title = titleElement.html();
-		}
-
-		if (Validator.isNull(title)) {
-			titleElement = document.select("meta[property=og:site_name]");
-
-			title = titleElement.attr("content");
-		}
-
-		return StringUtil.shorten(title, 200);
-	}
-
-	protected JSONObject getURLMetadataJSONObject(String url)
+	protected void sendError(HttpServletResponse response, String message)
 		throws IOException {
 
-		JSONObject jsonObject = new JSONObject();
+		write(response, new ByteArrayInputStream(message.getBytes()));
+	}
 
-		url =
-			HttpUtil.getProtocol(url) + HttpUtil.PROTOCOL_DELIMITER +
-				HttpUtil.getDomain(url);
+	protected void write(HttpServletResponse response, InputStream inputStream)
+		throws IOException {
 
-		Document document = Jsoup.connect(url).get();
+		OutputStream outputStream = null;
 
 		try {
-			jsonObject.put("description", getDescription(document));
+			response.setHeader("Cache-Control", "public");
 
-			jsonObject.put("imageURL", getImageURL(document, url));
+			if (!response.isCommitted()) {
+				outputStream = new BufferedOutputStream(
+					response.getOutputStream());
 
-			int pos = url.indexOf('?');
+				int c = inputStream.read();
 
-			String domain = "";
+				while (c != -1) {
+					outputStream.write(c);
 
-			if (pos != -1) {
-				domain = HttpUtil.getDomain(url.substring(0, pos));
+					c = inputStream.read();
+				}
 			}
-			else {
-				domain = HttpUtil.getDomain(url);
+		}
+		finally {
+			try {
+				if (outputStream != null) {
+					outputStream.flush();
+				}
+			}
+			catch (Exception e) {
+				if (_log.isWarnEnabled()) {
+					_log.warn(e);
+				}
 			}
 
-			jsonObject.put("shortURL", domain.toUpperCase());
+			try {
+				if (outputStream != null) {
+					outputStream.close();
+				}
+			}
+			catch (Exception e) {
+				if (_log.isWarnEnabled()) {
+					_log.warn(e);
+				}
+			}
 
-			jsonObject.put("title", getTitle(document));
+			try {
+				if (inputStream != null) {
+					inputStream.close();
+				}
+			}
+			catch (Exception e) {
+				if (_log.isWarnEnabled()) {
+					_log.warn(e);
+				}
+			}
 		}
-		catch (JSONException jse) {
-		}
-
-		return jsonObject;
 	}
+
+	private static Log _log = LogFactory.getLog(
+		URLMetadataScraperServlet.class);
+
+	private URLMetadataScraperProcessor _urlMetadataScraperProcessor;
 
 }
