@@ -31,7 +31,7 @@ import org.jsoup.select.Elements;
  */
 public class URLMetadataScraperProcessor {
 
-	public String getURLMetadataJSONObject(String url) throws IOException {
+	public String getURLMetadataJSON(String url) throws IOException {
 		JSONObject jsonObject = new JSONObject();
 
 		url =

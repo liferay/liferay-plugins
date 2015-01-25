@@ -49,10 +49,10 @@ public class URLMetadataScraperServlet extends HttpServlet {
 		String url = request.getParameter("url");
 
 		try {
-			String output =
-				_urlMetadataScraperProcessor.getURLMetadataJSONObject(url);
+			String json =
+				_urlMetadataScraperProcessor.getURLMetadataJSON(url);
 
-			write(response, new ByteArrayInputStream(output.getBytes()));
+			write(response, new ByteArrayInputStream(json.getBytes()));
 		}
 		catch (Exception e) {
 			_log.error(e, e);
