@@ -18,10 +18,14 @@ import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.asset.entry.set.model.AssetEntrySet;
 import com.liferay.asset.entry.set.service.base.AssetEntrySetServiceBaseImpl;
+import com.liferay.asset.entry.set.service.permission.AssetEntrySetPermissionUtil;
+import com.liferay.asset.entry.set.util.ActionKeys;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.model.User;
+import com.liferay.portal.service.ClassNameLocalServiceUtil;
 
 import java.io.File;
 
@@ -40,6 +44,10 @@ public class AssetEntrySetServiceImpl extends AssetEntrySetServiceBaseImpl {
 			boolean privateAssetEntrySet)
 		throws PortalException, SystemException {
 
+		AssetEntrySetPermissionUtil.check(
+			getPermissionChecker(), creatorClassNameId, creatorClassPK,
+			ActionKeys.ADD_ASSET_ENTRY_SET);
+
 		JSONObject payloadJSONObject = JSONFactoryUtil.createJSONObject(
 			payload);
 
@@ -54,6 +62,10 @@ public class AssetEntrySetServiceImpl extends AssetEntrySetServiceBaseImpl {
 			boolean privateAssetEntrySet)
 		throws PortalException, SystemException {
 
+		AssetEntrySetPermissionUtil.check(
+			getPermissionChecker(), _USER_CLASS_NAME_ID, getUserId(),
+			ActionKeys.ADD_ASSET_ENTRY_SET);
+
 		JSONObject payloadJSONObject = JSONFactoryUtil.createJSONObject(
 			payload);
 
@@ -66,6 +78,10 @@ public class AssetEntrySetServiceImpl extends AssetEntrySetServiceBaseImpl {
 	public AssetEntrySet addAssetEntrySet(
 			String payload, File file, boolean privateAssetEntrySet)
 		throws PortalException, SystemException {
+
+		AssetEntrySetPermissionUtil.check(
+			getPermissionChecker(), _USER_CLASS_NAME_ID, getUserId(),
+			ActionKeys.ADD_ASSET_ENTRY_SET);
 
 		JSONObject payloadJSONObject = JSONFactoryUtil.createJSONObject(
 			payload);
@@ -107,5 +123,8 @@ public class AssetEntrySetServiceImpl extends AssetEntrySetServiceBaseImpl {
 		return assetEntrySetLocalService.unlikeAssetEntrySet(
 			getUserId(), assetEntrySetId);
 	}
+
+	private static final long _USER_CLASS_NAME_ID =
+		ClassNameLocalServiceUtil.getClassNameId(User.class);
 
 }
