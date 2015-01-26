@@ -116,10 +116,10 @@ public class SectionPortlet extends BaseKBPortlet {
 			return null;
 		}
 
+		long groupId = PortalUtil.getScopeGroupId(renderRequest);
+
 		String kbFolderUrlTitle = ParamUtil.getString(
 			renderRequest, "kbFolderUrlTitle");
-
-		long groupId = PortalUtil.getScopeGroupId(renderRequest);
 
 		if (Validator.isNotNull(kbFolderUrlTitle)) {
 			return KBArticleLocalServiceUtil.getKBArticleByUrlTitle(
