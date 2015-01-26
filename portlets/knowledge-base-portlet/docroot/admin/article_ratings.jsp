@@ -21,7 +21,7 @@ KBArticle kbArticle = (KBArticle)request.getAttribute(WebKeys.KNOWLEDGE_BASE_KB_
 
 boolean showAdminSuggestionView = SuggestionPermission.contains(permissionChecker, scopeGroupId, kbArticle, ActionKeys.VIEW_SUGGESTIONS);
 
-KBArticleURLHelper kbArticleURLHelper = new KBArticleURLHelper(renderResponse, templatePath);
+KBArticleURLHelper kbArticleURLHelper = new KBArticleURLHelper(renderRequest, renderResponse, templatePath);
 %>
 
 <c:if test="<%= enableKBArticleRatings %>">

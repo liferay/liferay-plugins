@@ -27,7 +27,7 @@ int targetVersion = ParamUtil.getInteger(request, "targetVersion", kbArticle.get
 String orderByCol = ParamUtil.getString(request, "orderByCol", "version");
 String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 
-KBArticleURLHelper kbArticleURLHelper = new KBArticleURLHelper(renderResponse, templatePath);
+KBArticleURLHelper kbArticleURLHelper = new KBArticleURLHelper(renderRequest, renderResponse, templatePath);
 %>
 
 <liferay-portlet:renderURL varImpl="compareVersionsURL">

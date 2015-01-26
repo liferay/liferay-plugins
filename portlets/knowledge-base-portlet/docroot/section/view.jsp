@@ -17,7 +17,7 @@
 <%@ include file="/section/init.jsp" %>
 
 <%
-KBArticleURLHelper kbArticleURLHelper = new KBArticleURLHelper(renderResponse, templatePath);
+KBArticleURLHelper kbArticleURLHelper = new KBArticleURLHelper(renderRequest, renderResponse, templatePath);
 %>
 
 <c:choose>
