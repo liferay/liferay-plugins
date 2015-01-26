@@ -26,7 +26,6 @@ import com.liferay.knowledgebase.util.ActionKeys;
 import com.liferay.knowledgebase.util.WebKeys;
 import com.liferay.portal.NoSuchSubscriptionException;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
@@ -100,7 +99,7 @@ public class SectionPortlet extends BaseKBPortlet {
 	}
 
 	protected KBArticle getKBArticle(RenderRequest renderRequest, int status)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		long resourcePrimKey = ParamUtil.getLong(
 			renderRequest, "resourcePrimKey");

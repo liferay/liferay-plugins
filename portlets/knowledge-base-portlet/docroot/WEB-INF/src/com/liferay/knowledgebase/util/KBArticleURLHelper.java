@@ -19,7 +19,6 @@ import com.liferay.knowledgebase.model.KBFolder;
 import com.liferay.knowledgebase.model.KBFolderConstants;
 import com.liferay.knowledgebase.service.KBFolderServiceUtil;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.util.PortalUtil;
 
@@ -42,7 +41,7 @@ public class KBArticleURLHelper {
 	}
 
 	public PortletURL createViewURL(KBArticle kbArticle)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		PortletURL portletURL = _renderResponse.createRenderURL();
 
@@ -81,7 +80,7 @@ public class KBArticleURLHelper {
 	}
 
 	public PortletURL createViewWithCommentsURL(KBArticle kbArticle)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		PortletURL portletURL = createViewURL(kbArticle);
 
@@ -92,7 +91,7 @@ public class KBArticleURLHelper {
 
 	public PortletURL createViewWithRedirectURL(
 			KBArticle kbArticle, String redirect)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		PortletURL portletURL = createViewURL(kbArticle);
 
