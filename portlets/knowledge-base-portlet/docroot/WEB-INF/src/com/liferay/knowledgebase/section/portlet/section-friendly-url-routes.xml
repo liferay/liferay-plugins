@@ -24,6 +24,14 @@
 		<implicit-parameter name="mvcPath">/section/view_article.jsp</implicit-parameter>
 	</route>
 	<route>
+		<pattern>/{instanceId}/{urlTitle}</pattern>
+		<implicit-parameter name="mvcPath">/section/view_article.jsp</implicit-parameter>
+	</route>
+	<route>
+		<pattern>/{instanceId}/{kbFolderUrlTitle}/{urlTitle}</pattern>
+		<implicit-parameter name="mvcPath">/section/view_article.jsp</implicit-parameter>
+	</route>
+	<route>
 		<pattern>/{instanceId}/{resourcePrimKey:\d+}/{status:-?\d+}/history</pattern>
 		<implicit-parameter name="mvcPath">/section/history.jsp</implicit-parameter>
 		<implicit-parameter name="p_p_state">normal</implicit-parameter>
