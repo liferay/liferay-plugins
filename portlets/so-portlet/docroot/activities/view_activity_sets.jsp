@@ -73,7 +73,7 @@ while ((count < _DELTA) && ((results == null) || !results.isEmpty())) {
 %>
 
 <aui:script>
-<portlet:namespace />start = <%= start %>;
+	<portlet:namespace />start = <%= start %>;
 </aui:script>
 
 <c:if test="<%= (results.isEmpty()) %>">
