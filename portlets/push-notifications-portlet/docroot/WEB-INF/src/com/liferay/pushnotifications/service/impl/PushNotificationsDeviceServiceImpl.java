@@ -110,7 +110,7 @@ public class PushNotificationsDeviceServiceImpl
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject(payload);
 
 		pushNotificationsDeviceLocalService.sendPushNotification(
-			getUserId(), toUserId, jsonObject);
+			toUserId, jsonObject);
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(

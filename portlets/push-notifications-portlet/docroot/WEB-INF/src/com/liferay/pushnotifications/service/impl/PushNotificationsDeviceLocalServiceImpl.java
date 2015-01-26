@@ -81,15 +81,14 @@ public class PushNotificationsDeviceLocalServiceImpl
 	}
 
 	@Override
-	public void sendPushNotification(long fromUserId, JSONObject jsonObject)
+	public void sendPushNotification(JSONObject jsonObject)
 		throws PortalException {
 
-		sendPushNotification(fromUserId, 0, jsonObject);
+		sendPushNotification(0, jsonObject);
 	}
 
 	@Override
-	public void sendPushNotification(
-			long fromUserId, long toUserId, JSONObject jsonObject)
+	public void sendPushNotification(long toUserId, JSONObject jsonObject)
 		throws PortalException {
 
 		for (Map.Entry<String, PushNotificationsSender> entry :

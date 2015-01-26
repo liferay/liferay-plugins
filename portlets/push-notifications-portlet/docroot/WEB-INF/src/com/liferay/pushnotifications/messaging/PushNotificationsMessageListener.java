@@ -32,12 +32,6 @@ public class PushNotificationsMessageListener implements MessageListener {
 	public void receive(Message message) {
 		JSONObject jsonObject = (JSONObject)message.getPayload();
 
-		JSONObject fromUserJSONObject = jsonObject.getJSONObject(
-			PushNotificationsConstants.KEY_USER);
-
-		long fromUserId = fromUserJSONObject.getLong(
-			PushNotificationsConstants.KEY_USER_ID);
-
 		JSONObject toUserJSONObject = jsonObject.getJSONObject(
 			PushNotificationsConstants.KEY_TO_USER);
 
@@ -46,7 +40,7 @@ public class PushNotificationsMessageListener implements MessageListener {
 
 		try {
 			PushNotificationsDeviceLocalServiceUtil.sendPushNotification(
-				fromUserId, toUserId, jsonObject);
+				toUserId, jsonObject);
 		}
 		catch (Exception e) {
 			_log.error("Unable to send notification", e);
