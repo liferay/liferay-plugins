@@ -4,9 +4,11 @@
 <project name="build-common-osgi-plugin">
 	<import file="build-common-plugin.xml" />
 
-	<target name="jar">
+	<target name="jar" depends="transpile-js-files,generate-modules-config">
 		<jar-macro
 			module.dir="${basedir}"
 		/>
+
+		<delete dir=".js_cache" />
 	</target>
 </project>

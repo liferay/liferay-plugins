@@ -11,7 +11,7 @@
 
 		<sequential>
 			<property name="node.args" value="" />
-			<exec dir="@{working.dir}" executable="${basedir}/tools/node-v${nodejs.version}/bin/@{command}">
+			<exec dir="@{working.dir}" executable="${sdk.dir}/tools/node-v${nodejs.version}/bin/@{command}">
 				<arg line="@{commandArgs} ${node.args}"/>
 			</exec>
 		</sequential>
@@ -73,7 +73,7 @@ ${nodejs.url[osx64]}.
 
 		<if>
 			<not>
-				<available file="tools/node-v${nodejs.version}" />
+				<available file="${sdk.dir}/tools/node-v${nodejs.version}" />
 			</not>
 			<then>
 				<antelope:stringutil string="${nodejs.url}" property="nodejs.file.beginindex">
@@ -98,7 +98,7 @@ ${nodejs.url[osx64]}.
 					<contains string="${nodejs.file}" substring=".tar.gz" />
 					<then>
 						<exec executable="tar">
-							<arg line="xfz ${nodejs.file} -C tools"/>
+							<arg line="xfz ${nodejs.file} -C ${sdk.dir}/tools"/>
 						</exec>
 
 						<antelope:stringutil string="${nodejs.file}" property="nodejs.dir.endindex">
@@ -109,16 +109,16 @@ ${nodejs.url[osx64]}.
 							<antelope:substring endindex="${nodejs.dir.endindex}" />
 						</antelope:stringutil>
 
-						<delete dir="tools/node-v${nodejs.version}" />
+						<delete dir="${sdk.dir}/tools/node-v${nodejs.version}" />
 
-						<move file="tools/${nodejs.dir}" tofile="tools/node-v${nodejs.version}" />
+						<move file="${sdk.dir}/tools/${nodejs.dir}" tofile="${sdk.dir}/tools/node-v${nodejs.version}" />
 
-						<mkdir dir="tools/node-v${nodejs.version}/node_modules" />
+						<mkdir dir="${sdk.dir}/tools/node-v${nodejs.version}/node_modules" />
 
 						<delete file="${nodejs.file}" />
 					</then>
 					<else>
-						<move file="${nodejs.file}" todir="tools/node-v${nodejs.version}" />
+						<move file="${nodejs.file}" todir="${sdk.dir}/tools/node-v${nodejs.version}" />
 					</else>
 				</if>
 
@@ -131,7 +131,7 @@ ${nodejs.url[osx64]}.
 						/>
 
 						<unzip
-							dest="tools/node-v${nodejs.version}"
+							dest="${sdk.dir}/tools/node-v${nodejs.version}"
 							src="npm.zip"
 						/>
 
@@ -142,14 +142,13 @@ ${nodejs.url[osx64]}.
 		</if>
 	</target>
 
-	<target name="transpile-js-files" depends="install-6to5">
+	<target name="transpile-js-files" depends="install-babel,install-config-generator,install-loader">
 		<property name="transpiler.force" value="false" />
-		
+
 		<outofdate outputsourcespath="outdated-files" force="${transpiler.force}">
 			<sourcefiles>
 				<fileset dir="${transpiler.input.dir}">
-					<include name="html/js/liferay/**.js" />
-					<include name="html/portlet/**.js" />
+					<include name="**/*.js" />
 				</fileset>
 			</sourcefiles>
 			<mapper type="glob" dir="${transpiler.input.dir}" from="*.js" to="${transpiler.output.dir}/*.js" />
@@ -159,8 +158,7 @@ ${nodejs.url[osx64]}.
 					<then>
 						<path id="outdated-files">
 							<fileset dir="${transpiler.input.dir}">
-								<include name="html/js/liferay/**.js" />
-								<include name="html/portlet/**.js" />
+								<include name="**/*.js" />
 							</fileset>
 						</path>
 					</then>
@@ -168,24 +166,61 @@ ${nodejs.url[osx64]}.
 				<pathconvert pathsep=" " property="outdated-files-param" setonempty="false" refid="outdated-files" >
 					<map from="${transpiler.input.dir}/" to="" />
 				</pathconvert>
-				
+
 				<node-execute
 					command="node"
-					commandArgs="${sdk.dir}/tools/node-v${nodejs.version}/node_modules/6to5/bin/6to5/index.js --modules amd --module-ids -d ${transpiler.output.dir} ${outdated-files-param}"
+					commandArgs="${sdk.dir}/tools/node-v${nodejs.version}/node_modules/babel/bin/babel/index.js --modules amd -d ${transpiler.output.dir} ${outdated-files-param}"
 					working.dir="${transpiler.input.dir}" />
 
 			</sequential>
 		</outofdate>
 	</target>
 
-	<target name="install-6to5" depends="download-node">
+	<echo>
+		${sdk.dir}/tools/node-v${nodejs.version}/node_modules/lfr-module-config-generator/bin/index.js -l -e '${config.generator.file.extension}' -f ${config.generator.module.format} -i ${config.generator.path.ignore} -c '${config.generator.config.variable}' -o ${config.generator.output.file} -p ${config.generator.file.pattern} -m ${config.generator.module.config} -r ${config.generator.root.dir} ${config.generator.input.dir}"
+	</echo>
+
+	<target name="generate-modules-config" depends="install-config-generator">
+		<node-execute
+			command="node"
+			commandArgs="${sdk.dir}/tools/node-v${nodejs.version}/node_modules/lfr-module-config-generator/bin/index.js -l -e '${config.generator.file.extension}' -f ${config.generator.module.format} -i ${config.generator.path.ignore} -c '${config.generator.config.variable}' -o ${config.generator.output.file} -p ${config.generator.file.pattern} -m ${config.generator.module.config} -r ${config.generator.root.dir} ${config.generator.input.dir}"
+			working.dir="${sdk.dir}/tools/node-v${nodejs.version}" />
+	</target>
+
+	<target name="install-babel" depends="download-node">
 		<if>
 			<not>
-				<available file="tools/node-v${nodejs.version}/node_modules/6to5" />
+				<available file="${sdk.dir}/tools/node-v${nodejs.version}/node_modules/babel" />
 			</not>
 			<then>
 				<antcall target="npm-execute">
-					<param name="node.args" value="install 6to5" />
+					<param name="node.args" value="install babel" />
+				</antcall>
+			</then>
+		</if>
+	</target>
+
+	<target name="install-config-generator" depends="download-node">
+		<if>
+			<not>
+				<available file="${sdk.dir}/tools/node-v${nodejs.version}/node_modules/lfr-module-config-generator" />
+			</not>
+			<then>
+				<antcall target="npm-execute">
+					<param name="node.args" value="install lfr-module-config-generator" />
+				</antcall>
+			</then>
+		</if>
+	</target>
+
+	<target name="install-loader" depends="download-node">
+		<if>
+			<not>
+				<available file="${sdk.dir}/tools/node-v${nodejs.version}/node_modules/lfr-amd-loader" />
+			</not>
+			<then>
+				<antcall target="npm-execute">
+					<param name="node.args" value="install lfr-amd-loader" />
 				</antcall>
 			</then>
 		</if>
@@ -202,7 +237,7 @@ ${nodejs.url[osx64]}.
 	<target name="npm-execute" depends="download-node">
 		<node-execute
 			command="npm"
-			working.dir="tools/node-v${nodejs.version}"
+			working.dir="${sdk.dir}/tools/node-v${nodejs.version}"
 		/>
 	</target>
 </project>
