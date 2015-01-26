@@ -46,12 +46,7 @@ KBSuggestionListDisplayContext kbSuggestionListDisplayContext = (KBSuggestionLis
 			</c:if>
 
 			<div>
-
-				<%
-				String escapedContent = HtmlUtil.escape(kbComment.getContent());
-				%>
-
-				<%= HtmlUtil.replaceNewLine(escapedContent) %>
+				<%= HtmlUtil.replaceNewLine(HtmlUtil.escape(kbComment.getContent())) %>
 			</div>
 
 			<div class="kb-article-comment-helpful">
