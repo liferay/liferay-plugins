@@ -28,6 +28,8 @@ public class UpgradeCalendarBooking extends UpgradeProcess {
 	protected void doUpgrade() throws Exception {
 		try {
 			runSQL("alter_column_type CalendarBooking description TEXT null");
+			
+			runSQL("alter_column_type CalendarBooking outlookUid VARCHAR(255) null");
 		}
 		catch (SQLException sqle) {
 			upgradeTable(

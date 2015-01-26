@@ -173,6 +173,14 @@ public class CalendarBookingLocalServiceImpl
 		calendarBooking.setStatus(
 			CalendarBookingWorkflowConstants.STATUS_PENDING);
 		calendarBooking.setStatusDate(serviceContext.getModifiedDate(now));
+		
+		if (calendarBooking.getUuid().length() > 75) {
+			calendarBooking.setOutlookUid(calendarBooking.getUuid());
+			calendarBooking.setUuid(StringPool.BLANK);
+		}
+		else {
+			calendarBooking.setOutlookUid(StringPool.BLANK);
+		}
 
 		calendarBookingPersistence.update(calendarBooking);
 
@@ -409,6 +417,13 @@ public class CalendarBookingLocalServiceImpl
 	@Override
 	public CalendarBooking fetchCalendarBooking(String uuid, long groupId) {
 		return calendarBookingPersistence.fetchByUUID_G(uuid, groupId);
+	}
+	
+	@Override
+	public CalendarBooking fetchCalendarBooking(long calendarId, String outlookUid)
+		throws SystemException {
+
+		return calendarBookingPersistence.fetchByC_O(calendarId, outlookUid);
 	}
 
 	@Override
