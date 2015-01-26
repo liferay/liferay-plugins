@@ -15,6 +15,8 @@
 package com.liferay.asset.entry.set.hook.events;
 
 import com.liferay.asset.entry.set.handler.AssetEntrySetHandler;
+import com.liferay.asset.entry.set.service.permission.AssetEntrySetPermissionImpl;
+import com.liferay.asset.entry.set.service.permission.AssetEntrySetPermissionUtil;
 import com.liferay.asset.entry.set.util.AssetEntrySetManagerUtil;
 import com.liferay.asset.entry.set.util.PortletPropsKeys;
 import com.liferay.asset.entry.set.util.PortletPropsValues;
@@ -45,6 +47,7 @@ public class StartupAction extends SimpleAction {
 	protected void doRun() throws Exception {
 		initAssetEntrySetPortletIds();
 		initAssetEntrySetHandlers();
+		initPermissions();
 	}
 
 	protected void initAssetEntrySetHandlers() throws PortalException {
@@ -99,6 +102,11 @@ public class StartupAction extends SimpleAction {
 				}
 			}
 		}
+	}
+
+	protected void initPermissions() throws PortalException {
+		AssetEntrySetPermissionUtil.setAssetEntrySetPermission(
+			new AssetEntrySetPermissionImpl());
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(StartupAction.class);
