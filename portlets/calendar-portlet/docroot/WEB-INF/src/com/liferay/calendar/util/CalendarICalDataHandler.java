@@ -39,7 +39,6 @@ import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.UserLocalServiceUtil;
 
 import java.net.URI;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -397,6 +396,12 @@ public class CalendarICalDataHandler implements CalendarDataHandler {
 			calendarBooking =
 				CalendarBookingLocalServiceUtil.fetchCalendarBooking(
 					uuid, calendar.getGroupId());
+			
+			if (calendarBooking == null) {
+				calendarBooking =
+						CalendarBookingLocalServiceUtil.fetchCalendarBooking(
+								calendarId, uuid);
+			}
 		}
 
 		ServiceContext serviceContext = new ServiceContext();
@@ -589,9 +594,18 @@ public class CalendarICalDataHandler implements CalendarDataHandler {
 
 		PropertyList propertyList = vEvent.getProperties();
 
-		// UID
-
-		Uid uid = new Uid(calendarBooking.getUuid());
+		// UID or OutlookUid
+		
+		Uid uid;
+		
+		if (calendarBooking.getOutlookUid() == null
+				|| calendarBooking.getOutlookUid() == StringPool.BLANK
+				|| calendarBooking.getOutlookUid() == StringPool.NULL_CHAR) {
+			uid = new Uid(calendarBooking.getUuid());	
+		}
+		else {
+			uid = new Uid(calendarBooking.getOutlookUid());
+		}
 
 		propertyList.add(uid);
 
