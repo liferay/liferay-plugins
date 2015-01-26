@@ -24,15 +24,13 @@ Group group = themeDisplay.getScopeGroup();
 
 List<SocialActivity> results = null;
 
-boolean empty = false;
-
 int count = 0;
 int total = 0;
 
 int start = ParamUtil.getInteger(request, "start");
 int end = start + _DELTA;
 
-while ((count < _DELTA) && (!empty)) {
+while ((count < _DELTA) && ((results == null) || !results.isEmpty())) {
 	if (group.isUser()) {
 		if (!layout.isPublicLayout()) {
 			if (tabs1.equals("connections")) {
@@ -61,13 +59,12 @@ while ((count < _DELTA) && (!empty)) {
 		results = SocialActivityLocalServiceUtil.getGroupActivities(group.getGroupId(), start, end);
 		total = SocialActivityLocalServiceUtil.getGroupActivitiesCount(group.getGroupId());
 	}
-	%>
+%>
 
 	<%@ include file="/activities/view_activities_feed.jspf" %>
 
-	<%
+<%
 	end = start + _DELTA;
-	empty = results.isEmpty();
 }
 %>
 
