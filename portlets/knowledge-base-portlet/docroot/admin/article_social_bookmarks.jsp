@@ -18,27 +18,11 @@
 
 <%
 KBArticle kbArticle = (KBArticle)request.getAttribute(WebKeys.KNOWLEDGE_BASE_KB_ARTICLE);
+
+KBArticleURLHelper kbArticleURLHelper = new KBArticleURLHelper(renderResponse, templatePath);
+
+PortletURL viewKBArticleURL = kbArticleURLHelper.createViewURL(kbArticle);
 %>
-
-<liferay-portlet:renderURL var="viewKBArticleURL">
-	<c:choose>
-		<c:when test="<%= Validator.isNotNull(kbArticle.getUrlTitle()) %>">
-			<portlet:param name="urlTitle" value="<%= kbArticle.getUrlTitle() %>" />
-
-			<c:if test="<%= kbArticle.getKbFolderId() != KBFolderConstants.DEFAULT_PARENT_FOLDER_ID %>">
-
-				<%
-				KBFolder kbFolder = KBFolderServiceUtil.getKBFolder(kbArticle.getKbFolderId());
-				%>
-
-				<portlet:param name="kbFolderUrlTitle" value="<%= kbFolder.getUrlTitle() %>" />
-			</c:if>
-		</c:when>
-		<c:otherwise>
-			<portlet:param name="resourcePrimKey" value="<%= String.valueOf(kbArticle.getResourcePrimKey()) %>" />
-		</c:otherwise>
-	</c:choose>
-</liferay-portlet:renderURL>
 
 <liferay-ui:social-bookmarks
 	contentId="<%= String.valueOf(kbArticle.getResourcePrimKey()) %>"

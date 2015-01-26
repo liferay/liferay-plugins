@@ -26,6 +26,8 @@ int targetVersion = ParamUtil.getInteger(request, "targetVersion", kbArticle.get
 
 String orderByCol = ParamUtil.getString(request, "orderByCol", "version");
 String orderByType = ParamUtil.getString(request, "orderByType", "desc");
+
+KBArticleURLHelper kbArticleURLHelper = new KBArticleURLHelper(renderResponse, templatePath);
 %>
 
 <liferay-portlet:renderURL varImpl="compareVersionsURL">
@@ -177,17 +179,17 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 				</div>
 
 				<div class="kb-tools">
-					<liferay-portlet:renderURL var="viewKBArticleURL">
-						<portlet:param name="mvcPath" value='<%= templatePath + "view_article.jsp" %>' />
-						<portlet:param name="resourcePrimKey" value="<%= String.valueOf(kbArticle.getResourcePrimKey()) %>" />
-					</liferay-portlet:renderURL>
+
+					<%
+					PortletURL viewKBArticleURL = kbArticleURLHelper.createViewURL(kbArticle);
+					%>
 
 					<liferay-ui:icon
 						image="../common/page"
 						label="<%= true %>"
 						message="latest-version"
 						method="get"
-						url="<%= viewKBArticleURL %>"
+						url="<%= viewKBArticleURL.toString() %>"
 					/>
 				</div>
 			</div>
