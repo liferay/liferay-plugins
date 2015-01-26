@@ -102,39 +102,32 @@ public class SectionPortlet extends BaseKBPortlet {
 	protected KBArticle getKBArticle(RenderRequest renderRequest, int status)
 		throws PortalException, SystemException {
 
-		KBArticle kbArticle = null;
-
 		long resourcePrimKey = ParamUtil.getLong(
 			renderRequest, "resourcePrimKey");
 
 		if (resourcePrimKey > 0) {
-			kbArticle = KBArticleServiceUtil.getLatestKBArticle(
+			return KBArticleServiceUtil.getLatestKBArticle(
 				resourcePrimKey, status);
 		}
-		else {
-			String urlTitle = ParamUtil.getString(renderRequest, "urlTitle");
 
-			if (Validator.isNotNull(urlTitle)) {
-				String kbFolderUrlTitle = ParamUtil.getString(
-					renderRequest, "kbFolderUrlTitle");
+		String urlTitle = ParamUtil.getString(renderRequest, "urlTitle");
 
-				long groupId = PortalUtil.getScopeGroupId(renderRequest);
+		if (Validator.isNotNull(urlTitle)) {
+			String kbFolderUrlTitle = ParamUtil.getString(
+				renderRequest, "kbFolderUrlTitle");
 
-				if (Validator.isNotNull(kbFolderUrlTitle)) {
-					kbArticle =
-						KBArticleLocalServiceUtil.getKBArticleByUrlTitle(
-							groupId, kbFolderUrlTitle, urlTitle);
-				}
-				else {
-					kbArticle =
-						KBArticleLocalServiceUtil.getKBArticleByUrlTitle(
-							groupId, KBFolderConstants.DEFAULT_PARENT_FOLDER_ID,
-							urlTitle);
-				}
+			long groupId = PortalUtil.getScopeGroupId(renderRequest);
+
+			if (Validator.isNotNull(kbFolderUrlTitle)) {
+				return KBArticleLocalServiceUtil.getKBArticleByUrlTitle(
+					groupId, kbFolderUrlTitle, urlTitle);
 			}
+
+			return KBArticleLocalServiceUtil.getKBArticleByUrlTitle(
+				groupId, KBFolderConstants.DEFAULT_PARENT_FOLDER_ID, urlTitle);
 		}
 
-		return kbArticle;
+		return null;
 	}
 
 	protected int getStatus(RenderRequest renderRequest) throws Exception {
