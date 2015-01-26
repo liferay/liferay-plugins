@@ -17,7 +17,9 @@ package com.liferay.knowledgebase.section.portlet;
 import com.liferay.knowledgebase.NoSuchArticleException;
 import com.liferay.knowledgebase.NoSuchCommentException;
 import com.liferay.knowledgebase.model.KBArticle;
+import com.liferay.knowledgebase.model.KBFolderConstants;
 import com.liferay.knowledgebase.portlet.BaseKBPortlet;
+import com.liferay.knowledgebase.service.KBArticleLocalServiceUtil;
 import com.liferay.knowledgebase.service.KBArticleServiceUtil;
 import com.liferay.knowledgebase.service.permission.KBArticlePermission;
 import com.liferay.knowledgebase.util.ActionKeys;
@@ -26,10 +28,12 @@ import com.liferay.portal.NoSuchSubscriptionException;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.security.auth.PrincipalException;
 import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.portal.theme.ThemeDisplay;
+import com.liferay.portal.util.PortalUtil;
 
 import java.io.IOException;
 
@@ -61,6 +65,30 @@ public class SectionPortlet extends BaseKBPortlet {
 			if (resourcePrimKey > 0) {
 				kbArticle = KBArticleServiceUtil.getLatestKBArticle(
 					resourcePrimKey, status);
+			}
+			else {
+				String urlTitle = ParamUtil.getString(
+					renderRequest, "urlTitle");
+
+				if (Validator.isNotNull(urlTitle)) {
+					String kbFolderUrlTitle = ParamUtil.getString(
+						renderRequest, "kbFolderUrlTitle");
+
+					long groupId = PortalUtil.getScopeGroupId(renderRequest);
+
+					if (Validator.isNotNull(kbFolderUrlTitle)) {
+						kbArticle =
+							KBArticleLocalServiceUtil.getKBArticleByUrlTitle(
+								groupId, kbFolderUrlTitle, urlTitle);
+					}
+					else {
+						kbArticle =
+							KBArticleLocalServiceUtil.getKBArticleByUrlTitle(
+								groupId,
+								KBFolderConstants.DEFAULT_PARENT_FOLDER_ID,
+								urlTitle);
+					}
+				}
 			}
 
 			renderRequest.setAttribute(
