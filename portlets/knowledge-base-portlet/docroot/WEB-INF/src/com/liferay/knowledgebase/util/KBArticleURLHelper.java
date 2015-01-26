@@ -21,8 +21,10 @@ import com.liferay.knowledgebase.service.KBFolderServiceUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.util.PortalUtil;
 
 import javax.portlet.PortletURL;
+import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
 
 /**
@@ -31,8 +33,10 @@ import javax.portlet.RenderResponse;
 public class KBArticleURLHelper {
 
 	public KBArticleURLHelper(
-		RenderResponse renderResponse, String templatePath) {
+		RenderRequest renderRequest, RenderResponse renderResponse,
+		String templatePath) {
 
+		_renderRequest = renderRequest;
 		_renderResponse = renderResponse;
 		_templatePath = templatePath;
 	}
@@ -53,6 +57,13 @@ public class KBArticleURLHelper {
 				String.valueOf(kbArticle.getResourcePrimKey()));
 		}
 		else {
+			String portletId = PortalUtil.getPortletId(_renderRequest);
+
+			if (portletId.startsWith(PortletKeys.KNOWLEDGE_BASE_SECTION)) {
+				portletURL.setParameter(
+					"mvcPath", _templatePath + "view_article.jsp");
+			}
+
 			portletURL.setParameter("urlTitle", kbArticle.getUrlTitle());
 
 			if (kbArticle.getKbFolderId() !=
@@ -92,6 +103,7 @@ public class KBArticleURLHelper {
 		return portletURL;
 	}
 
+	private final RenderRequest _renderRequest;
 	private final RenderResponse _renderResponse;
 	private final String _templatePath;
 

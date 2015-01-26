@@ -23,7 +23,7 @@ KBComment kbComment = (KBComment)request.getAttribute("article_comment.jsp-kb_co
 
 KBSuggestionListDisplayContext kbSuggestionListDisplayContext = (KBSuggestionListDisplayContext)request.getAttribute(WebKeys.KNOWLEDGE_BASE_KB_SUGGESTION_LIST_DISPLAY_CONTEXT);
 
-KBArticleURLHelper kbArticleURLHelper = new KBArticleURLHelper(renderResponse, templatePath);
+KBArticleURLHelper kbArticleURLHelper = new KBArticleURLHelper(renderRequest, renderResponse, templatePath);
 %>
 
 <div class="kb-article-comment">

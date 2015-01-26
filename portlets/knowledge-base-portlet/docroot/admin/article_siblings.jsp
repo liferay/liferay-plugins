@@ -24,7 +24,7 @@ KBArticle[] previousAndNextKBArticles = KBArticleLocalServiceUtil.getPreviousAnd
 KBArticle previousKBArticle = previousAndNextKBArticles[0];
 KBArticle nextKBArticle = previousAndNextKBArticles[2];
 
-KBArticleURLHelper kbArticleURLHelper = new KBArticleURLHelper(renderResponse, templatePath);
+KBArticleURLHelper kbArticleURLHelper = new KBArticleURLHelper(renderRequest, renderResponse, templatePath);
 %>
 
 <div class="kb-article-siblings">
