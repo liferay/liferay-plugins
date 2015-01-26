@@ -62,6 +62,7 @@ page import="com.liferay.knowledgebase.service.permission.KBFolderPermission" %>
 page import="com.liferay.knowledgebase.service.permission.KBTemplatePermission" %><%@
 page import="com.liferay.knowledgebase.service.permission.SuggestionPermission" %><%@
 page import="com.liferay.knowledgebase.util.ActionKeys" %><%@
+page import="com.liferay.knowledgebase.util.KBArticleURLHelper" %><%@
 page import="com.liferay.knowledgebase.util.KBNavigationDisplayContext" %><%@
 page import="com.liferay.knowledgebase.util.KnowledgeBaseUtil" %><%@
 page import="com.liferay.knowledgebase.util.PortletKeys" %><%@
