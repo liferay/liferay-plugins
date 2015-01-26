@@ -21,7 +21,7 @@ KBArticleURLHelper kbArticleURLHelper = new KBArticleURLHelper(renderResponse, t
 %>
 
 <c:choose>
-	<c:when test="<%= Validator.isNotNull(PortletPropsValues.ADMIN_KB_ARTICLE_SECTIONS) %>">
+	<c:when test="<%= ArrayUtil.isNotEmpty(PortletPropsValues.ADMIN_KB_ARTICLE_SECTIONS) %>">
 		<liferay-portlet:renderURL varImpl="iteratorURL">
 			<portlet:param name="mvcPath" value="/section/view.jsp" />
 		</liferay-portlet:renderURL>
