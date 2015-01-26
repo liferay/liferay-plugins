@@ -112,22 +112,22 @@ public class SectionPortlet extends BaseKBPortlet {
 
 		String urlTitle = ParamUtil.getString(renderRequest, "urlTitle");
 
-		if (Validator.isNotNull(urlTitle)) {
-			String kbFolderUrlTitle = ParamUtil.getString(
-				renderRequest, "kbFolderUrlTitle");
-
-			long groupId = PortalUtil.getScopeGroupId(renderRequest);
-
-			if (Validator.isNotNull(kbFolderUrlTitle)) {
-				return KBArticleLocalServiceUtil.getKBArticleByUrlTitle(
-					groupId, kbFolderUrlTitle, urlTitle);
-			}
-
-			return KBArticleLocalServiceUtil.getKBArticleByUrlTitle(
-				groupId, KBFolderConstants.DEFAULT_PARENT_FOLDER_ID, urlTitle);
+		if (Validator.isNull(urlTitle)) {
+			return null;
 		}
 
-		return null;
+		String kbFolderUrlTitle = ParamUtil.getString(
+			renderRequest, "kbFolderUrlTitle");
+
+		long groupId = PortalUtil.getScopeGroupId(renderRequest);
+
+		if (Validator.isNotNull(kbFolderUrlTitle)) {
+			return KBArticleLocalServiceUtil.getKBArticleByUrlTitle(
+				groupId, kbFolderUrlTitle, urlTitle);
+		}
+
+		return KBArticleLocalServiceUtil.getKBArticleByUrlTitle(
+			groupId, KBFolderConstants.DEFAULT_PARENT_FOLDER_ID, urlTitle);
 	}
 
 	protected int getStatus(RenderRequest renderRequest) throws Exception {
