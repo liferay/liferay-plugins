@@ -133,13 +133,13 @@ public class PushNotificationsDeviceLocalServiceClp
 		_methodName22 = "sendPushNotification";
 
 		_methodParameterTypes22 = new String[] {
-				"long", "com.liferay.portal.kernel.json.JSONObject"
+				"com.liferay.portal.kernel.json.JSONObject"
 			};
 
 		_methodName23 = "sendPushNotification";
 
 		_methodParameterTypes23 = new String[] {
-				"long", "long", "com.liferay.portal.kernel.json.JSONObject"
+				"long", "com.liferay.portal.kernel.json.JSONObject"
 			};
 	}
 
@@ -794,18 +794,14 @@ public class PushNotificationsDeviceLocalServiceClp
 	}
 
 	@Override
-	public void sendPushNotification(long fromUserId,
+	public void sendPushNotification(
 		com.liferay.portal.kernel.json.JSONObject jsonObject)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		try {
 			_invokableLocalService.invokeMethod(_methodName22,
 				_methodParameterTypes22,
-				new Object[] {
-					fromUserId,
-					
-				ClpSerializer.translateInput(jsonObject)
-				});
+				new Object[] { ClpSerializer.translateInput(jsonObject) });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -829,20 +825,15 @@ public class PushNotificationsDeviceLocalServiceClp
 	}
 
 	@Override
-	public void sendPushNotification(long fromUserId, long toUserId,
+	public void sendPushNotification(long toUserId,
 		com.liferay.portal.kernel.json.JSONObject jsonObject)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		try {
 			_invokableLocalService.invokeMethod(_methodName23,
 				_methodParameterTypes23,
-				new Object[] {
-					fromUserId,
-					
-				toUserId,
-					
-				ClpSerializer.translateInput(jsonObject)
-				});
+				new Object[] { toUserId, ClpSerializer.translateInput(
+						jsonObject) });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
