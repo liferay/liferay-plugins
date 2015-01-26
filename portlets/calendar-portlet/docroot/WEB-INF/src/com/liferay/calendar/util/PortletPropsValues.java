@@ -25,6 +25,11 @@ import com.liferay.util.portlet.PortletProps;
  */
 public class PortletPropsValues {
 
+	public static final boolean CALENDAR_AUTO_APPROVE_GROUP_EVENT =
+		GetterUtil.getBoolean(
+			PortletProps.get(
+				PortletPropsKeys.CALENDAR_AUTO_APPROVE_GROUP_EVENT));
+
 	public static final int CALENDAR_COLOR_DEFAULT = Integer.decode(
 		PortletProps.get(PortletPropsKeys.CALENDAR_COLOR_DEFAULT));
 
