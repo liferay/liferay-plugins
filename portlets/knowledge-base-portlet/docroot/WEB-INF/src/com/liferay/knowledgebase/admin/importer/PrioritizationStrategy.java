@@ -260,121 +260,117 @@ public class PrioritizationStrategy {
 
 			// prioritize all imported articles
 
-			double maxParentKBArticlePriority = 0.0;
-
-			Map<String, Double> maxChildKBArticlePriorityMap =
+			Map<String, Double> maxKBArticlePriorityMap =
 				new HashMap<String, Double>();
-
-			for (KBArticle parentKBArticle : _nonImportedParentArticles) {
-				double parentKBArticlePriority = parentKBArticle.getPriority();
-
-				if (parentKBArticlePriority > maxParentKBArticlePriority) {
-					maxParentKBArticlePriority = parentKBArticlePriority;
-				}
-
-				String parentKBArticleUrlTitle = parentKBArticle.getUrlTitle();
-
-				List<KBArticle> childKBArticles =
-					_nonImportedChildArticlesMap.get(parentKBArticleUrlTitle);
-
-				if (childKBArticles == null) {
-					continue;
-				}
-
-				double maxChildKBArticlePriority = 0.0;
-
-				for (KBArticle childArticle : childKBArticles) {
-					double childKBArticlePriority = childArticle.getPriority();
-
-					if (childKBArticlePriority > maxChildKBArticlePriority) {
-						maxChildKBArticlePriority = childKBArticlePriority;
+			
+			Set<String> keySet = _nonImportedArticlesMap.keySet();
+			
+			for (String parentUrlTitle : keySet) {
+				double maxKBArticlePriority = 0.0;
+				
+				List<KBArticle> kbArticles =
+					_nonImportedArticlesMap.get(parentUrlTitle);
+				
+				for (KBArticle kbArticle : kbArticles) {
+					double kbArticlePriority = kbArticle.getPriority();
+					
+					if (kbArticlePriority > maxKBArticlePriority) {
+						maxKBArticlePriority = kbArticlePriority;
 					}
 				}
-
-				maxChildKBArticlePriorityMap.put(
-					parentKBArticleUrlTitle, maxChildKBArticlePriority);
+				
+				maxKBArticlePriorityMap.put(
+					parentUrlTitle, maxKBArticlePriority);
 			}
 
-			// prioritize imported parent articles by URL title
+			// prioritize imported articles by URL title
+			
+			keySet = _importedArticlesMap.keySet();
+			
+			for (String parentUrlTitle : keySet) {
+				List<KBArticle> kbArticles =
+					_importedArticlesMap.get(parentUrlTitle);
+				
+				ListUtil.sort(kbArticles);
+				
+				_importedArticlesMap.put(parentUrlTitle, kbArticles);
+				
+				for (KBArticle kbArticle : kbArticles) {
+					String urlTitle = kbArticle.getUrlTitle();
+					
+					KBArticle parentKBArticle =
+						KBArticleLocalServiceUtil.getKBArticleByUrlTitle(
+							_groupId, _parentKBFolderId, urlTitle);
 
-			ListUtil.sort(_importedParentUrlTitles);
+					double maxPriority =
+						maxKBArticlePriorityMap.get(parentUrlTitle);
+					
+					maxPriority++;
+					
+					maxKBArticlePriorityMap.put(parentUrlTitle, maxPriority);
 
-			for (String importedParentKBArticleUrlTitle :
-					_importedParentUrlTitles) {
-
-				KBArticle parentKBArticle =
-					KBArticleLocalServiceUtil.getKBArticleByUrlTitle(
-						_groupId, _parentKBFolderId,
-						importedParentKBArticleUrlTitle);
-
-				maxParentKBArticlePriority++;
-
-				KBArticleLocalServiceUtil.updatePriority(
-					parentKBArticle.getResourcePrimKey(),
-					maxParentKBArticlePriority);
+					KBArticleLocalServiceUtil.updatePriority(
+						parentKBArticle.getResourcePrimKey(), maxPriority);
+				}
 			}
-
-			// prioritize imported child articles by URL title
-
-			updateChildKBArticlesPriorities(
-				_importedChildArticlesMap, maxChildKBArticlePriorityMap);
 		}
 		else {
 
 			// prioritize only new articles
 
-			double maxParentKBArticlePriority = 0.0;
-
-			Map<String, Double> maxChildKBArticlePriorityMap =
+			Map<String, Double> maxKBArticlePriorityMap =
 				new HashMap<String, Double>();
+			
+			Set<String> keySet = _existingArticlesMap.keySet();
 
-			for (KBArticle parentKBArticle : _existingParentArticles) {
-				double parentKBArticlePriority = parentKBArticle.getPriority();
+			for (String parentUrlTitle : keySet) {
+				double maxKBArticlePriority = 0.0;
 
-				if (parentKBArticlePriority > maxParentKBArticlePriority) {
-					maxParentKBArticlePriority = parentKBArticlePriority;
-				}
+				List<KBArticle> kbArticles =
+					_existingArticlesMap.get(parentUrlTitle);
 
-				String parentKBArticleUrlTitle = parentKBArticle.getUrlTitle();
+				for (KBArticle kbArticle : kbArticles) {
+					double kbArticlePriority = kbArticle.getPriority();
 
-				List<KBArticle> childKBArticles = _existingChildArticlesMap.get(
-					parentKBArticleUrlTitle);
-
-				double maxChildKBArticlePriority = 0.0;
-
-				for (KBArticle childKBArticle : childKBArticles) {
-					double childKBArticlePriority =
-						childKBArticle.getPriority();
-
-					if (childKBArticlePriority > maxChildKBArticlePriority) {
-						maxChildKBArticlePriority = childKBArticlePriority;
+					if (kbArticlePriority > maxKBArticlePriority) {
+						maxKBArticlePriority = kbArticlePriority;
 					}
 				}
 
-				maxChildKBArticlePriorityMap.put(
-					parentKBArticleUrlTitle, maxChildKBArticlePriority);
+				maxKBArticlePriorityMap.put(
+					parentUrlTitle, maxKBArticlePriority);
 			}
 
-			// prioritize new parent articles by URL title
+			// prioritize new articles by URL title
+			
+			keySet = _newArticlesMap.keySet();
 
-			ListUtil.sort(_newParentUrlTitles);
+			for (String parentUrlTitle : keySet) {
+				List<KBArticle> kbArticles =
+					_newArticlesMap.get(parentUrlTitle);
 
-			for (String parentKBArticleUrlTitle : _newParentUrlTitles) {
-				KBArticle parentKBArticle =
-					KBArticleLocalServiceUtil.getKBArticleByUrlTitle(
-						_groupId, _parentKBFolderId, parentKBArticleUrlTitle);
+				ListUtil.sort(kbArticles);
 
-				maxParentKBArticlePriority++;
+				_newArticlesMap.put(parentUrlTitle, kbArticles);
 
-				KBArticleLocalServiceUtil.updatePriority(
-					parentKBArticle.getResourcePrimKey(),
-					maxParentKBArticlePriority);
+				for (KBArticle kbArticle : kbArticles) {
+					String urlTitle = kbArticle.getUrlTitle();
+
+					KBArticle parentKBArticle =
+						KBArticleLocalServiceUtil.getKBArticleByUrlTitle(
+							_groupId, _parentKBFolderId, urlTitle);
+
+					double maxPriority =
+						maxKBArticlePriorityMap.get(parentUrlTitle);
+
+					maxPriority++;
+
+					maxKBArticlePriorityMap.put(parentUrlTitle, maxPriority);
+
+					KBArticleLocalServiceUtil.updatePriority(
+						parentKBArticle.getResourcePrimKey(), maxPriority);
+				}
 			}
-
-			// prioritize new child articles by URL title
-
-			updateChildKBArticlesPriorities(
-				_newChildArticlesMap, maxChildKBArticlePriorityMap);
 		}
 	}
 
