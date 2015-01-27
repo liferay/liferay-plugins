@@ -513,117 +513,87 @@ public class PrioritizationStrategy {
 	}
 
 	private void _initNewArticles() {
-		_newParentArticles = new ArrayList<KBArticle>();
-
-		for (KBArticle kbArticle : _importedParentArticles) {
-			String urlTitle = kbArticle.getUrlTitle();
-
-			if (!_existingParentUrlTitles.contains(urlTitle)) {
-				_newParentArticles.add(kbArticle);
-			}
-		}
-
-		_newParentUrlTitles = new ArrayList<String>();
-
-		for (KBArticle kbArticle : _newParentArticles) {
-			_newParentUrlTitles.add(kbArticle.getUrlTitle());
-		}
-
-		_newChildArticlesMap = new HashMap<String, List<KBArticle>>();
-
-		Set<String> parentKBArticleUrlTitles =
-			_importedChildArticlesMap.keySet();
-
-		for (String parentKBArticleUrlTitle : parentKBArticleUrlTitles) {
-			List<KBArticle> newChildKBArticles = new ArrayList<KBArticle>();
-
-			List<KBArticle> importedChildKBArticles =
-				_importedChildArticlesMap.get(parentKBArticleUrlTitle);
-
-			if (_existingChildArticlesMap.containsKey(
-					parentKBArticleUrlTitle)) {
-
-				List<String> existingChildKBArticleUrlTitles =
-					_existingChildUrlTitlesMap.get(parentKBArticleUrlTitle);
-
-				for (KBArticle kbArticle : importedChildKBArticles) {
-					String urlTitle = kbArticle.getUrlTitle();
-
-					if (!existingChildKBArticleUrlTitles.contains(urlTitle)) {
-						newChildKBArticles.add(kbArticle);
-					}
+		_newArticlesMap = new HashMap<String, List<KBArticle>>();
+		
+		Set<String> keySet = _importedArticlesMap.keySet();
+		
+		for (String parentUrlTitle : keySet) {
+			List<KBArticle> importedArticles =
+				_importedArticlesMap.get(parentUrlTitle);
+			
+			List<String> existingUrlTitles =
+				_existingUrlTitlesMap.get(parentUrlTitle);
+			
+			List<KBArticle> newArticles = new ArrayList<KBArticle>();
+	
+			for (KBArticle kbArticle : importedArticles) {
+				String urlTitle = kbArticle.getUrlTitle();
+	
+				if (!existingUrlTitles.contains(urlTitle)) {
+					newArticles.add(kbArticle);
 				}
-
-				_newChildArticlesMap.put(
-					parentKBArticleUrlTitle, newChildKBArticles);
 			}
-			else {
-				for (KBArticle kbArticle : importedChildKBArticles) {
-					newChildKBArticles.add(kbArticle);
-				}
-
-				_newChildArticlesMap.put(
-					parentKBArticleUrlTitle, newChildKBArticles);
-			}
+			
+			_newArticlesMap.put(parentUrlTitle, newArticles);
 		}
-
-		_newChildUrlTitlesMap = new HashMap<String, List<String>>();
-
-		Set<String> newKeySet = _newChildArticlesMap.keySet();
-
-		for (String key : newKeySet) {
-			_newChildUrlTitlesMap.put(key, new ArrayList<String>());
+		
+		_newUrlTitlesMap = new HashMap<String, List<String>>();
+		
+		keySet = _newArticlesMap.keySet();
+		
+		for (String parentUrlTitle : keySet) {
+			List<KBArticle> kbArticles = _newArticlesMap.get(parentUrlTitle);
+			
+			List<String> kbUrlTitles = new ArrayList<String>();
+			
+			for (KBArticle kbArticle : kbArticles) {
+				kbUrlTitles.add(kbArticle.getUrlTitle());
+			}
+			
+			_newUrlTitlesMap.put(parentUrlTitle, kbUrlTitles);
 		}
 	}
 
 	private void _initNonImportedArticles() {
-		_nonImportedParentArticles = new ArrayList<KBArticle>();
+		_nonImportedArticlesMap = new HashMap<String, List<KBArticle>>();
+		
+		Set<String> keySet = _existingArticlesMap.keySet();
 
-		for (KBArticle kbArticle : _existingParentArticles) {
-			String urlTitle = kbArticle.getUrlTitle();
+		for (String parentUrlTitle : keySet) {
+			List<KBArticle> existingArticles =
+				_existingArticlesMap.get(parentUrlTitle);
+			
+			List<String> importedUrlTitles =
+				_importedUrlTitlesMap.get(parentUrlTitle);
 
-			if (!_importedParentUrlTitles.contains(urlTitle)) {
-				_nonImportedParentArticles.add(kbArticle);
+			List<KBArticle> nonImportedArticles = new ArrayList<KBArticle>();
+			
+			for (KBArticle kbArticle : existingArticles) {
+				String urlTitle = kbArticle.getUrlTitle();
+	
+				if (!importedUrlTitles.contains(urlTitle)) {
+					nonImportedArticles.add(kbArticle);
+				}
 			}
+			
+			_nonImportedArticlesMap.put(parentUrlTitle, nonImportedArticles);
 		}
+		
+		_nonImportedUrlTitlesMap = new HashMap<String, List<String>>();
+		
+		keySet = _nonImportedArticlesMap.keySet();
+		
+		for (String parentUrlTitle : keySet) {
+			List<KBArticle> kbArticles =
+				_nonImportedArticlesMap.get(parentUrlTitle);
 
-		_nonImportedChildArticlesMap = new HashMap<String, List<KBArticle>>();
-
-		Set<String> parentKBArticleUrlTitles =
-			_existingChildArticlesMap.keySet();
-
-		for (String parentKBArticleUrlTitle : parentKBArticleUrlTitles) {
-			List<KBArticle> nonImportedChildKBArticles =
-				new ArrayList<KBArticle>();
-
-			List<KBArticle> existingChildKBArticles =
-				_existingChildArticlesMap.get(parentKBArticleUrlTitle);
-
-			if (_importedChildArticlesMap.containsKey(
-					parentKBArticleUrlTitle)) {
-
-				List<String> importedChildKBArticleUrlTitles =
-					_importedChildUrlTitlesMap.get(parentKBArticleUrlTitle);
-
-				for (KBArticle kbArticle : existingChildKBArticles) {
-					String urlTitle = kbArticle.getUrlTitle();
-
-					if (!importedChildKBArticleUrlTitles.contains(urlTitle)) {
-						nonImportedChildKBArticles.add(kbArticle);
-					}
-				}
-
-				_nonImportedChildArticlesMap.put(
-					parentKBArticleUrlTitle, nonImportedChildKBArticles);
+			List<String> kbUrlTitles = new ArrayList<String>();
+			
+			for (KBArticle kbArticle : kbArticles) {
+				kbUrlTitles.add(kbArticle.getUrlTitle());
 			}
-			else {
-				for (KBArticle kbArticle : existingChildKBArticles) {
-					nonImportedChildKBArticles.add(kbArticle);
-				}
-
-				_nonImportedChildArticlesMap.put(
-					parentKBArticleUrlTitle, nonImportedChildKBArticles);
-			}
+			
+			_nonImportedUrlTitlesMap.put(parentUrlTitle, kbUrlTitles);
 		}
 	}
 	
