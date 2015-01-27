@@ -1,4 +1,4 @@
-create table Notifications_UserNotificationEvent (
+create table Ntfctns_UserNotificationEvent (
 	notificationEventId LONG not null primary key,
 	companyId LONG,
 	userId LONG,
