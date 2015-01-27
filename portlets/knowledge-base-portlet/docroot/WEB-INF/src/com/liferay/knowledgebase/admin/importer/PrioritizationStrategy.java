@@ -598,23 +598,17 @@ public class PrioritizationStrategy {
 			}
 		}
 	}
-
-	private Map<String, List<KBArticle>> _existingChildArticlesMap;
-	private Map<String, List<String>> _existingChildUrlTitlesMap;
-	private List<KBArticle> _existingParentArticles;
-	private List<String> _existingParentUrlTitles;
+	
+	private Map<String, List<KBArticle>> _existingArticlesMap;
+	private Map<String, List<String>> _existingUrlTitlesMap;
 	private final long _groupId;
-	private Map<String, List<KBArticle>> _importedChildArticlesMap;
-	private Map<String, List<String>> _importedChildUrlTitlesMap;
-	private List<KBArticle> _importedParentArticles;
-	private List<String> _importedParentUrlTitles;
+	private Map<String, List<KBArticle>> _importedArticlesMap;
+	private Map<String, List<String>> _importedUrlTitlesMap;
 	private Map<String, Double> _importedUrlTitlesPrioritiesMap;
-	private Map<String, List<KBArticle>> _newChildArticlesMap;
-	private Map<String, List<String>> _newChildUrlTitlesMap;
-	private List<KBArticle> _newParentArticles;
-	private List<String> _newParentUrlTitles;
-	private Map<String, List<KBArticle>> _nonImportedChildArticlesMap;
-	private List<KBArticle> _nonImportedParentArticles;
+	private Map<String, List<KBArticle>> _newArticlesMap;
+	private Map<String, List<String>> _newUrlTitlesMap;
+	private Map<String, List<KBArticle>> _nonImportedArticlesMap;
+	private Map<String, List<String>> _nonImportedUrlTitlesMap;
 	private final long _parentKBFolderId;
 	private boolean _prioritizeByNumericalPrefix;
 	private boolean _prioritizeUpdatedArticles;
