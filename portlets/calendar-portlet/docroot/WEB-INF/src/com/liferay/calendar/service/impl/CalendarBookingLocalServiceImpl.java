@@ -1105,11 +1105,19 @@ public class CalendarBookingLocalServiceImpl
 		}
 
 		try {
+			long senderId = serviceContext.getUserId();
+			User sender = null;
+
+			if (senderId != 0) {
+				sender = userLocalService.fetchUser(senderId);
+			}
+
 			NotificationType notificationType = NotificationType.parse(
 				PortletPropsValues.CALENDAR_NOTIFICATION_DEFAULT_TYPE);
 
 			NotificationUtil.notifyCalendarBookingRecipients(
-				calendarBooking, notificationType, notificationTemplateType);
+				calendarBooking, notificationType, notificationTemplateType,
+				sender);
 		}
 		catch (Exception e) {
 			if (_log.isWarnEnabled()) {

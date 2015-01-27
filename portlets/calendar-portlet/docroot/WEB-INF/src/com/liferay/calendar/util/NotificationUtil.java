@@ -127,7 +127,7 @@ public class NotificationUtil {
 
 	public static void notifyCalendarBookingRecipients(
 			CalendarBooking calendarBooking, NotificationType notificationType,
-			NotificationTemplateType notificationTemplateType)
+			NotificationTemplateType notificationTemplateType, User sender)
 		throws Exception {
 
 		NotificationSender notificationSender =
@@ -141,6 +141,10 @@ public class NotificationUtil {
 				notificationRecipients) {
 
 			User user = notificationRecipient.getUser();
+
+			if (user.equals(sender)) {
+				continue;
+			}
 
 			NotificationTemplateContext notificationTemplateContext =
 				NotificationTemplateContextFactory.getInstance(
