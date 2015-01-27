@@ -17,8 +17,8 @@ package com.liferay.wikinavigation.treemenu.action;
 import com.liferay.portal.kernel.portlet.DefaultConfigurationAction;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portlet.wiki.NoSuchNodeException;
-import com.liferay.portlet.wiki.service.WikiNodeServiceUtil;
+import com.liferay.wiki.exception.NoSuchNodeException;
+import com.liferay.wiki.service.WikiNodeServiceUtil;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;

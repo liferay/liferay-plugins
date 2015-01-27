@@ -16,9 +16,9 @@ package com.liferay.wikinavigation.util;
 
 import com.liferay.portal.kernel.util.Http;
 import com.liferay.portal.kernel.util.StringPool;
-import com.liferay.portlet.wiki.model.WikiNode;
-import com.liferay.portlet.wiki.model.WikiPage;
-import com.liferay.portlet.wiki.service.WikiPageServiceUtil;
+import com.liferay.wiki.model.WikiNode;
+import com.liferay.wiki.model.WikiPage;
+import com.liferay.wiki.service.WikiPageServiceUtil;
 
 import java.io.Serializable;
 
