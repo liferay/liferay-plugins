@@ -462,7 +462,7 @@ public class DisplayPortlet extends BaseKBPortlet {
 		throws PortalException {
 
 		KBArticle oldKBArticle =
-			KBArticleLocalServiceUtil.getKBArticleByUrlTitle(
+			KBArticleLocalServiceUtil.fetchKBArticleByUrlTitle(
 				groupId, oldKBFolderURLTitle, urlTitle);
 
 		KBArticle kbArticle = null;
