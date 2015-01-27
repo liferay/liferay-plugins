@@ -90,7 +90,7 @@ import com.liferay.portlet.journal.model.JournalArticleConstants;
 import com.liferay.portlet.journal.service.JournalArticleLocalServiceUtil;
 import com.liferay.portlet.journal.service.JournalArticleServiceUtil;
 import com.liferay.portlet.journal.util.JournalConverterUtil;
-import com.liferay.portlet.wiki.model.WikiPage;
+import com.liferay.wiki.model.WikiPage;
 
 import java.io.BufferedInputStream;
 import java.io.File;
