@@ -203,6 +203,11 @@ public class CalendarBookingLocalServiceImpl
 		calendarBookingApprovalWorkflow.startWorkflow(
 			userId, calendarBooking, serviceContext);
 
+		// Notifications
+
+		sendNotification(
+			calendarBooking, NotificationTemplateType.INVITE, serviceContext);
+
 		return calendarBooking;
 	}
 
@@ -798,6 +803,11 @@ public class CalendarBookingLocalServiceImpl
 
 		calendarBookingApprovalWorkflow.invokeTransition(
 			userId, calendarBooking, status, serviceContext);
+
+		// Notifications
+
+		sendNotification(
+			calendarBooking, NotificationTemplateType.UPDATE, serviceContext);
 
 		return calendarBooking;
 	}
