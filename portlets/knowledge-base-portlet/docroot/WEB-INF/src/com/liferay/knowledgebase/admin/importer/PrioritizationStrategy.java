@@ -23,6 +23,7 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.CharPool;
 import com.liferay.portal.kernel.util.ListUtil;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
@@ -419,16 +420,33 @@ public class PrioritizationStrategy {
 
 		_groupId = groupId;
 		_parentKBFolderId = parentKBFolderId;
+		
 		_prioritizeUpdatedArticles = prioritizeUpdatedArticles;
 		_prioritizeByNumericalPrefix = prioritizeByNumericalPrefix;
-		_existingParentArticles = existingParentArticles;
-		_existingParentUrlTitles = existingParentUrlTitles;
-		_existingChildArticlesMap = existingChildArticlesMap;
-		_existingChildUrlTitlesMap = existingChildUrlTitlesMap;
-		_importedParentArticles = new ArrayList<KBArticle>();
-		_importedParentUrlTitles = new ArrayList<String>();
-		_importedChildArticlesMap = new HashMap<String, List<KBArticle>>();
-		_importedChildUrlTitlesMap = new HashMap<String, List<String>>();
+		
+		_existingArticlesMap = new HashMap<String, List<KBArticle>>();
+		_existingArticlesMap.put(StringPool.BLANK, existingParentArticles);
+		
+		Set<String> keySet = existingChildArticlesMap.keySet();
+		for (String key : keySet) {
+			List<KBArticle> childArticles = existingChildArticlesMap.get(key);
+			
+			_existingArticlesMap.put(key, childArticles);
+		}
+		
+		_existingUrlTitlesMap = new HashMap<String, List<String>>();
+		_existingUrlTitlesMap.put(StringPool.BLANK, existingParentUrlTitles);
+		
+		keySet = existingChildUrlTitlesMap.keySet();
+		for (String key : keySet) {
+			List<String> childUrlTitles = existingChildUrlTitlesMap.get(key);
+			
+			_existingUrlTitlesMap.put(key, childUrlTitles);
+		}
+		
+		_importedArticlesMap = new HashMap<String, List<KBArticle>>();
+		_importedUrlTitlesMap = new HashMap<String, List<String>>();
+		
 		_importedUrlTitlesPrioritiesMap = new HashMap<String, Double>();
 	}
 
