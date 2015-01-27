@@ -332,13 +332,10 @@ KBArticleURLHelper kbArticleURLHelper = new KBArticleURLHelper(renderRequest, re
 					value="<%= kbArticle.getModifiedDate() %>"
 				/>
 
-				<liferay-ui:search-container-column-text
-					cssClass="kb-column-no-wrap"
+				<liferay-ui:search-container-column-status
 					href="<%= rowURL %>"
 					name="status"
-					orderable="<%= true %>"
-					value='<%= kbArticle.getStatus() + " (" + LanguageUtil.get(pageContext, WorkflowConstants.getStatusLabel(kbArticle.getStatus())) + ")" %>'
-				/>
+					/>
 
 				<liferay-ui:search-container-column-text
 					cssClass="kb-column-no-wrap"
