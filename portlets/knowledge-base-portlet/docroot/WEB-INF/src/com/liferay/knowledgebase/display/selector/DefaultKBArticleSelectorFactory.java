@@ -14,8 +14,18 @@
 
 package com.liferay.knowledgebase.display.selector;
 
+import com.liferay.knowledgebase.NoSuchKBArticleSelectorException;
+import com.liferay.knowledgebase.util.PortletPropsKeys;
+import com.liferay.portal.kernel.configuration.Filter;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.model.ClassName;
+import com.liferay.portal.service.ClassNameLocalServiceUtil;
+import com.liferay.util.portlet.PortletProps;
+
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * @author Adolfo Pérez
@@ -27,7 +37,57 @@ public class DefaultKBArticleSelectorFactory
 	public KBArticleSelector getKBArticleSelector(long classNameId)
 		throws PortalException, SystemException {
 
-		throw new UnsupportedOperationException();
+		ClassName className = ClassNameLocalServiceUtil.getClassName(
+			classNameId);
+
+		return _getKBArticleSelector(className.getClassName());
 	}
+
+	private KBArticleSelector _createKBArticleSelectorInstance(String className)
+		throws NoSuchKBArticleSelectorException {
+
+		try {
+			String kbArticleSelectorClassName = PortletProps.get(
+				PortletPropsKeys.KNOWLEDGE_BASE_DISPLAY_ARTICLE_SELECTOR,
+				new Filter(className));
+
+			if (Validator.isNull(kbArticleSelectorClassName)) {
+				throw new NoSuchKBArticleSelectorException(
+					"No KBArticleSelector found for key " + className);
+			}
+
+			Class<?> kbArticleSelectorClass = Class.forName(
+				kbArticleSelectorClassName);
+
+			return (KBArticleSelector)kbArticleSelectorClass.newInstance();
+		}
+		catch (ClassNotFoundException cnfe) {
+			throw new NoSuchKBArticleSelectorException(cnfe);
+		}
+		catch (InstantiationException ie) {
+			throw new NoSuchKBArticleSelectorException(ie);
+		}
+		catch (IllegalAccessException iae) {
+			throw new NoSuchKBArticleSelectorException(iae);
+		}
+	}
+
+	private KBArticleSelector _getKBArticleSelector(String className)
+		throws PortalException {
+
+		KBArticleSelector kbArticleSelector = _kbArticleSelectorMap.get(
+			className);
+
+		if (kbArticleSelector == null) {
+			kbArticleSelector = _createKBArticleSelectorInstance(className);
+
+			_kbArticleSelectorMap.put(className, kbArticleSelector);
+		}
+
+		return kbArticleSelector;
+	}
+
+	private final Map<String, KBArticleSelector> _kbArticleSelectorMap =
+		new ConcurrentHashMap<String, KBArticleSelector>();
 
 }
