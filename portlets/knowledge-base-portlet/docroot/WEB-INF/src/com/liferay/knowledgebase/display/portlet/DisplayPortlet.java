@@ -203,7 +203,7 @@ public class DisplayPortlet extends BaseKBPortlet {
 
 			kbArticle = _findClosestMatchingKBArticle(
 				kbFolder.getGroupId(), previousPreferredKBFolderURLTitle,
-				kbFolder.getUrlTitle(), urlTitle);
+				kbFolder.getKbFolderId(), urlTitle);
 
 			if (kbArticle == null) {
 				return;
@@ -457,8 +457,8 @@ public class DisplayPortlet extends BaseKBPortlet {
 	}
 
 	private KBArticle _findClosestMatchingKBArticle(
-			long groupId, String oldKBFolderURLTitle,
-			String newKBFolderUrlTitle, String urlTitle)
+			long groupId, String oldKBFolderURLTitle, long newKBFolderId,
+			String urlTitle)
 		throws PortalException {
 
 		KBArticle oldKBArticle =
@@ -469,10 +469,21 @@ public class DisplayPortlet extends BaseKBPortlet {
 
 		while ((kbArticle == null) && (oldKBArticle != null)) {
 			kbArticle = KBArticleLocalServiceUtil.fetchKBArticleByUrlTitle(
-				groupId, newKBFolderUrlTitle, oldKBArticle.getUrlTitle());
+				groupId, newKBFolderId, oldKBArticle.getUrlTitle());
 
 			if (kbArticle == null) {
 				oldKBArticle = oldKBArticle.getParentKBArticle();
+			}
+		}
+
+		if (kbArticle == null) {
+			List<KBArticle> kbArticles =
+				KBArticleLocalServiceUtil.getKBArticles(
+					groupId, newKBFolderId, WorkflowConstants.STATUS_APPROVED,
+					0, 1, new KBArticlePriorityComparator());
+
+			if (!kbArticles.isEmpty()) {
+				kbArticle = kbArticles.get(0);
 			}
 		}
 
