@@ -194,105 +194,63 @@ public class PrioritizationStrategy {
 				 * alphanumerically prioritized.
 				 */
 
-				if (_importedParentArticles != null) {
-					if (_importedParentArticles.contains(kbArticle)) {
-						_importedParentArticles.remove(kbArticle);
+				if (_importedArticlesMap != null) {
+					Set<String> keySet = _importedArticlesMap.keySet();
+					
+					for (String parentUrlTitle : keySet) {
+						List<KBArticle> kbArticles =
+							_importedArticlesMap.get(parentUrlTitle);
+						
+						if (kbArticles.contains(kbArticle)) {
+							kbArticles.remove(kbArticle);
+						}
+						
+						_importedArticlesMap.put(parentUrlTitle, kbArticles);
+					}
+					
+					keySet = _importedUrlTitlesMap.keySet();
+					
+					for (String parentUrlTitle : keySet) {
+						List<String> urlTitles =
+							_importedUrlTitlesMap.get(parentUrlTitle);
+						
+						String urlTitle = kbArticle.getUrlTitle();
+						
+						if (urlTitles.contains(urlTitle)) {
+							urlTitles.remove(urlTitle);
+						}
+						
+						_importedUrlTitlesMap.put(parentUrlTitle, urlTitles);
 					}
 				}
-
-				if (_importedParentUrlTitles != null) {
-					if (_importedParentUrlTitles.contains(
-							importedKBArticleUrlTitle)) {
-
-						_importedParentUrlTitles.remove(
-							importedKBArticleUrlTitle);
-					}
-				}
-
-				if (_newParentArticles != null) {
-					if (_newParentArticles.contains(kbArticle)) {
-						_newParentArticles.remove(kbArticle);
-					}
-				}
-
-				if (_newParentUrlTitles != null) {
-					if (_newParentUrlTitles.contains(
-							importedKBArticleUrlTitle)) {
-
-						_newParentUrlTitles.remove(importedKBArticleUrlTitle);
-					}
-				}
-
-				Set<String> parentKBArticleUrlTitles =
-					_importedChildArticlesMap.keySet();
-
-				for (String parentKBArticleUrlTitle :
-						parentKBArticleUrlTitles) {
-
-					if (_importedChildArticlesMap != null) {
-						List<KBArticle> importedChildKBArticles =
-							_importedChildArticlesMap.get(
-								parentKBArticleUrlTitle);
-
-						if (importedChildKBArticles.contains(kbArticle)) {
-							importedChildKBArticles.remove(kbArticle);
+				
+				if (_newArticlesMap != null) {
+					Set<String> keySet = _newArticlesMap.keySet();
+					
+					for (String parentUrlTitle : keySet) {
+						List<KBArticle> kbArticles =
+							_newArticlesMap.get(parentUrlTitle);
+						
+						if (kbArticles.contains(kbArticle)) {
+							kbArticles.remove(kbArticle);
 						}
-
-						_importedChildArticlesMap.put(
-							parentKBArticleUrlTitle, importedChildKBArticles);
+						
+						_newArticlesMap.put(parentUrlTitle, kbArticles);
 					}
-
-					if (_importedChildUrlTitlesMap != null) {
-						List<String> importedChildKBArticlesUrlTitles =
-							_importedChildUrlTitlesMap.get(
-								parentKBArticleUrlTitle);
-
-						if (importedChildKBArticlesUrlTitles.contains(
-								importedKBArticleUrlTitle)) {
-
-							importedChildKBArticlesUrlTitles.remove(
-								importedKBArticleUrlTitle);
+					
+					keySet = _newUrlTitlesMap.keySet();
+					
+					for (String parentUrlTitle : keySet) {
+						List<String> urlTitles =
+							_newUrlTitlesMap.get(parentUrlTitle);
+						
+						String urlTitle = kbArticle.getUrlTitle();
+						
+						if (urlTitles.contains(urlTitle)) {
+							urlTitles.remove(urlTitle);
 						}
-
-						_importedChildUrlTitlesMap.put(
-							parentKBArticleUrlTitle,
-							importedChildKBArticlesUrlTitles);
-					}
-
-					if (_newChildArticlesMap != null) {
-						List<KBArticle> newChildKBArticles =
-							_newChildArticlesMap.get(parentKBArticleUrlTitle);
-
-						if (newChildKBArticles == null) {
-							continue;
-						}
-
-						if (newChildKBArticles.contains(kbArticle)) {
-							newChildKBArticles.remove(kbArticle);
-						}
-
-						_newChildArticlesMap.put(
-							parentKBArticleUrlTitle, newChildKBArticles);
-					}
-
-					if (_newChildUrlTitlesMap != null) {
-						List<String> newChildKBArticleUrlTitles =
-							_newChildUrlTitlesMap.get(parentKBArticleUrlTitle);
-
-						if (newChildKBArticleUrlTitles == null) {
-							continue;
-						}
-
-						if (newChildKBArticleUrlTitles.contains(
-								importedKBArticleUrlTitle)) {
-
-							newChildKBArticleUrlTitles.remove(
-								importedKBArticleUrlTitle);
-						}
-
-						_newChildUrlTitlesMap.put(
-							parentKBArticleUrlTitle,
-							newChildKBArticleUrlTitles);
+						
+						_newUrlTitlesMap.put(parentUrlTitle, urlTitles);
 					}
 				}
 			}
