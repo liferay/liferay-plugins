@@ -18,18 +18,29 @@ import com.liferay.asset.entry.set.model.AssetEntrySet;
 import com.liferay.asset.entry.set.service.base.AssetEntrySetLocalServiceBaseImpl;
 import com.liferay.asset.entry.set.util.AssetEntrySetConstants;
 import com.liferay.asset.entry.set.util.AssetEntrySetManagerUtil;
+import com.liferay.asset.entry.set.util.PortletPropsKeys;
+import com.liferay.asset.entry.set.util.PortletPropsValues;
 import com.liferay.asset.sharing.service.AssetSharingEntryLocalServiceUtil;
 import com.liferay.asset.sharing.util.AssetSharingUtil;
+import com.liferay.compat.portal.kernel.util.ListUtil;
 import com.liferay.compat.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.configuration.Filter;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.image.ImageBag;
+import com.liferay.portal.kernel.image.ImageToolUtil;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.util.ArrayUtil;
+import com.liferay.portal.kernel.util.FileUtil;
+import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.util.MimeTypesUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.PropsUtil;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.User;
@@ -40,11 +51,22 @@ import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.asset.model.AssetEntry;
 import com.liferay.portlet.asset.service.AssetEntryLocalServiceUtil;
+import com.liferay.portlet.documentlibrary.model.DLFileEntry;
+import com.liferay.portlet.documentlibrary.service.DLAppLocalServiceUtil;
+import com.liferay.portlet.documentlibrary.service.DLFileEntryLocalServiceUtil;
+import com.liferay.portlet.documentlibrary.util.DLUtil;
 import com.liferay.portlet.ratings.model.RatingsStats;
+import com.liferay.util.portlet.PortletProps;
+
+import java.awt.image.RenderedImage;
 
 import java.io.File;
+import java.io.IOException;
 
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -58,30 +80,29 @@ public class AssetEntrySetLocalServiceImpl
 
 	@Override
 	public AssetEntrySet addAssetEntrySet(
-			long userId, JSONObject payloadJSONObject, File file,
+			long userId, JSONObject payloadJSONObject,
 			boolean privateAssetEntrySet)
 		throws PortalException, SystemException {
 
 		return addAssetEntrySet(
-			userId, 0, payloadJSONObject, file, privateAssetEntrySet);
+			userId, 0, payloadJSONObject, privateAssetEntrySet);
 	}
 
 	@Override
 	public AssetEntrySet addAssetEntrySet(
 			long userId, long parentAssetEntrySetId,
-			JSONObject payloadJSONObject, File file,
-			boolean privateAssetEntrySet)
+			JSONObject payloadJSONObject, boolean privateAssetEntrySet)
 		throws PortalException, SystemException {
 
 		return addAssetEntrySet(
 			userId, parentAssetEntrySetId, _USER_CLASS_NAME_ID, userId,
-			payloadJSONObject, file, privateAssetEntrySet);
+			payloadJSONObject, privateAssetEntrySet);
 	}
 
 	@Override
 	public AssetEntrySet addAssetEntrySet(
 			long userId, long parentAssetEntrySetId, long creatorClassNameId,
-			long creatorClassPK, JSONObject payloadJSONObject, File file,
+			long creatorClassPK, JSONObject payloadJSONObject,
 			boolean privateAssetEntrySet)
 		throws PortalException, SystemException {
 
@@ -103,9 +124,12 @@ public class AssetEntrySetLocalServiceImpl
 		assetEntrySet.setParentAssetEntrySetId(parentAssetEntrySetId);
 		assetEntrySet.setCreatorClassNameId(creatorClassNameId);
 		assetEntrySet.setCreatorClassPK(creatorClassPK);
+
+		payloadJSONObject.put("assetEntrySetId", assetEntrySetId);
+
 		assetEntrySet.setPayload(
 			JSONFactoryUtil.looseSerialize(
-				AssetEntrySetManagerUtil.interpret(payloadJSONObject, file)));
+				AssetEntrySetManagerUtil.interpret(payloadJSONObject)));
 		assetEntrySet.setPrivateAssetEntrySet(privateAssetEntrySet);
 
 		assetEntrySetPersistence.update(assetEntrySet);
@@ -131,6 +155,22 @@ public class AssetEntrySetLocalServiceImpl
 		setParticipants(assetEntrySet);
 
 		return assetEntrySet;
+	}
+
+	public JSONObject addFileAttachment(long userId, File file)
+		throws IOException, PortalException, SystemException {
+
+		JSONObject payloadJSONObject = JSONFactoryUtil.createJSONObject();
+
+		String extension = FileUtil.getExtension(file.getName());
+
+		String mimeType = MimeTypesUtil.getContentType(file, "A." + extension);
+
+		if (StringUtil.contains(mimeType, "image")) {
+			payloadJSONObject = addImageFileAttachment(userId, file);
+		}
+
+		return payloadJSONObject;
 	}
 
 	@Override
@@ -312,7 +352,7 @@ public class AssetEntrySetLocalServiceImpl
 
 	@Override
 	public AssetEntrySet updateAssetEntrySet(
-			long assetEntrySetId, JSONObject payloadJSONObject, File file,
+			long assetEntrySetId, JSONObject payloadJSONObject,
 			boolean privateAssetEntrySet)
 		throws PortalException, SystemException {
 
@@ -322,10 +362,9 @@ public class AssetEntrySetLocalServiceImpl
 		Date now = new Date();
 
 		assetEntrySet.setModifiedTime(now.getTime());
-
 		assetEntrySet.setPayload(
 			JSONFactoryUtil.looseSerialize(
-				AssetEntrySetManagerUtil.interpret(payloadJSONObject, file)));
+				AssetEntrySetManagerUtil.interpret(payloadJSONObject)));
 		assetEntrySet.setPrivateAssetEntrySet(privateAssetEntrySet);
 
 		assetEntrySetPersistence.update(assetEntrySet);
@@ -352,6 +391,137 @@ public class AssetEntrySetLocalServiceImpl
 		setParticipants(assetEntrySet);
 
 		return assetEntrySet;
+	}
+
+	protected FileEntry addFileEntry(
+			long userId, String fileName, String title, byte[] bytes)
+		throws PortalException, SystemException {
+
+		FileEntry fileEntry = DLAppLocalServiceUtil.addFileEntry(
+			userId, AssetEntrySetConstants.FILE_ENTRY_REPOSITORY_ID, 0L,
+			fileName, null, title, StringPool.BLANK, StringPool.BLANK, bytes,
+			new ServiceContext());
+
+		DLFileEntry dlFileEntry =
+			DLFileEntryLocalServiceUtil.getFileEntry(
+				fileEntry.getFileEntryId());
+
+		dlFileEntry.setClassNameId(
+			classNameLocalService.getClassNameId(AssetEntrySet.class));
+
+		dlFileEntry.setClassPK(0);
+
+		DLFileEntryLocalServiceUtil.updateDLFileEntry(dlFileEntry);
+
+		return fileEntry;
+	}
+
+	protected JSONObject addImageFileAttachment(long userId, File file)
+		throws IOException, PortalException, SystemException {
+
+		String title = StringUtil.extractFirst(
+			file.getName(), StringPool.PERIOD);
+
+		title = title + Calendar.getInstance().getTimeInMillis();
+
+		FileEntry rawFileEntry = addFileEntry(
+			userId, file.getName(), title, FileUtil.getBytes(file));
+
+		List<Long> fileEntryIds = new ArrayList<Long>();
+
+		fileEntryIds.add(rawFileEntry.getFileEntryId());
+
+		Map<String, Long> sizeFileEntryIdMap = new HashMap<String, Long>();
+
+		sizeFileEntryIdMap.put("raw", rawFileEntry.getFileEntryId());
+
+		JSONObject imageJSONObject = JSONFactoryUtil.createJSONObject();
+
+		imageJSONObject.put("name", rawFileEntry.getTitle());
+
+		imageJSONObject.put(
+			("ImageURL" + StringPool.UNDERLINE + "raw"),
+			DLUtil.getPreviewURL(
+				rawFileEntry, rawFileEntry.getFileVersion(), null,
+				StringPool.BLANK, false, true));
+
+		int[] imageDimensions = new int[2];
+
+		for (String imageType :
+				PortletPropsValues.ASSET_ENTRY_SET_IMAGE_TYPES) {
+
+			FileEntry fileEntry = addImageFileEntry(
+				userId, file, sizeFileEntryIdMap, imageDimensions, imageType);
+
+			fileEntryIds.add(fileEntry.getFileEntryId());
+
+			imageJSONObject.put(
+				("imageURL" + StringPool.UNDERLINE + imageType),
+				DLUtil.getPreviewURL(
+					fileEntry, fileEntry.getFileVersion(), null,
+					StringPool.BLANK, false, true));
+		}
+
+		imageJSONObject.put(
+			"fileEntryIds", ListUtil.toString(fileEntryIds, StringPool.BLANK));
+
+		return imageJSONObject;
+	}
+
+	protected FileEntry addImageFileEntry(
+			long userId, File file, Map<String, Long> sizeFileEntryIdMap,
+			int[] imageDimensions, String type)
+		throws IOException, PortalException, SystemException {
+
+		ImageBag imageBag = ImageToolUtil.read(file);
+
+		RenderedImage renderedImage = imageBag.getRenderedImage();
+
+		String imageMaxSize = PortletProps.get(
+			PortletPropsKeys.ASSET_ENTRY_SET_IMAGE_TYPE, new Filter(type));
+
+		String[] maxDimensions = imageMaxSize.split("x");
+
+		if ((imageDimensions[0] > 0) && (imageDimensions[1] > 0) &&
+			(imageDimensions[0] <= GetterUtil.getInteger(maxDimensions[0])) &&
+			(imageDimensions[1] <= GetterUtil.getInteger(maxDimensions[1]))) {
+
+			List<String> types = ListUtil.toList(
+				PortletPropsValues.ASSET_ENTRY_SET_IMAGE_TYPES);
+
+			int index = types.indexOf(type);
+
+			long fileEntryId = sizeFileEntryIdMap.get(types.get(index - 1));
+
+			sizeFileEntryIdMap.put(type, fileEntryId);
+
+			return DLAppLocalServiceUtil.getFileEntry(fileEntryId);
+		}
+		else {
+			renderedImage = ImageToolUtil.scale(
+				renderedImage, GetterUtil.getInteger(maxDimensions[0]),
+				GetterUtil.getInteger(maxDimensions[1]));
+
+			imageDimensions[0] = renderedImage.getWidth();
+			imageDimensions[1] = renderedImage.getHeight();
+		}
+
+		byte[] bytes = ImageToolUtil.getBytes(
+			renderedImage, imageBag.getType());
+
+		StringBundler sb = new StringBundler(4);
+
+		sb.append(StringUtil.extractFirst(file.getName(), StringPool.PERIOD));
+		sb.append(StringPool.UNDERLINE);
+		sb.append(type);
+		sb.append(Calendar.getInstance().getTimeInMillis());
+
+		FileEntry fileEntry = addFileEntry(
+			userId, file.getName(), sb.toString(), bytes);
+
+		sizeFileEntryIdMap.put(type, fileEntry.getFileEntryId());
+
+		return fileEntry;
 	}
 
 	protected void addUserToSharedToClassPKsMap(

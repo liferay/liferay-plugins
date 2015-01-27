@@ -21,6 +21,9 @@ import com.liferay.util.portlet.PortletProps;
  */
 public class PortletPropsValues {
 
+	public static final String[] ASSET_ENTRY_SET_IMAGE_TYPES =
+		PortletProps.getArray(PortletPropsKeys.ASSET_ENTRY_SET_IMAGE_TYPES);
+
 	public static final String[] ASSET_ENTRY_SET_PORTLET_IDS =
 		PortletProps.getArray(PortletPropsKeys.ASSET_ENTRY_SET_PORTLET_IDS);
 

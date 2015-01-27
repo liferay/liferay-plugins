@@ -28,6 +28,7 @@ import com.liferay.portal.model.User;
 import com.liferay.portal.service.ClassNameLocalServiceUtil;
 
 import java.io.File;
+import java.io.IOException;
 
 import java.util.List;
 
@@ -40,8 +41,7 @@ public class AssetEntrySetServiceImpl extends AssetEntrySetServiceBaseImpl {
 	@Override
 	public AssetEntrySet addAssetEntrySet(
 			long parentAssetEntrySetId, long creatorClassNameId,
-			long creatorClassPK, String payload, File file,
-			boolean privateAssetEntrySet)
+			long creatorClassPK, String payload, boolean privateAssetEntrySet)
 		throws PortalException, SystemException {
 
 		AssetEntrySetPermissionUtil.check(
@@ -53,12 +53,12 @@ public class AssetEntrySetServiceImpl extends AssetEntrySetServiceBaseImpl {
 
 		return assetEntrySetLocalService.addAssetEntrySet(
 			getUserId(), parentAssetEntrySetId, creatorClassNameId,
-			creatorClassPK, payloadJSONObject, file, privateAssetEntrySet);
+			creatorClassPK, payloadJSONObject, privateAssetEntrySet);
 	}
 
 	@Override
 	public AssetEntrySet addAssetEntrySet(
-			long parentAssetEntrySetId, String payload, File file,
+			long parentAssetEntrySetId, String payload,
 			boolean privateAssetEntrySet)
 		throws PortalException, SystemException {
 
@@ -70,13 +70,13 @@ public class AssetEntrySetServiceImpl extends AssetEntrySetServiceBaseImpl {
 			payload);
 
 		return assetEntrySetLocalService.addAssetEntrySet(
-			getUserId(), parentAssetEntrySetId, payloadJSONObject, file,
+			getUserId(), parentAssetEntrySetId, payloadJSONObject,
 			privateAssetEntrySet);
 	}
 
 	@Override
 	public AssetEntrySet addAssetEntrySet(
-			String payload, File file, boolean privateAssetEntrySet)
+			String payload, boolean privateAssetEntrySet)
 		throws PortalException, SystemException {
 
 		AssetEntrySetPermissionUtil.check(
@@ -87,7 +87,14 @@ public class AssetEntrySetServiceImpl extends AssetEntrySetServiceBaseImpl {
 			payload);
 
 		return assetEntrySetLocalService.addAssetEntrySet(
-			getUserId(), payloadJSONObject, file, privateAssetEntrySet);
+			getUserId(), payloadJSONObject, privateAssetEntrySet);
+	}
+
+	@Override
+	public JSONObject addFileAttachment(File file)
+		throws IOException, PortalException, SystemException {
+
+		return assetEntrySetLocalService.addFileAttachment(getUserId(), file);
 	}
 
 	@Override

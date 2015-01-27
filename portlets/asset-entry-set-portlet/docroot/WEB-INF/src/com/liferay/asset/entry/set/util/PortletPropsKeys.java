@@ -22,6 +22,12 @@ public interface PortletPropsKeys {
 	public static final String ASSET_ENTRY_SET_HANDLER =
 		"asset.entry.set.handler";
 
+	public static final String ASSET_ENTRY_SET_IMAGE_TYPE =
+		"asset.entry.set.image.type";
+
+	public static final String ASSET_ENTRY_SET_IMAGE_TYPES =
+		"asset.entry.set.image.types";
+
 	public static final String ASSET_ENTRY_SET_PORTLET_ID =
 		"asset.entry.set.portlet.id";
 
