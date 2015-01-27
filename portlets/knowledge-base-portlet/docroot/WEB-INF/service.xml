@@ -350,5 +350,6 @@
 		<exception>KBCommentContent</exception>
 		<exception>KBTemplateContent</exception>
 		<exception>KBTemplateTitle</exception>
+		<exception>NoSuchKBArticleSelector</exception>
 	</exceptions>
 </service-builder>
