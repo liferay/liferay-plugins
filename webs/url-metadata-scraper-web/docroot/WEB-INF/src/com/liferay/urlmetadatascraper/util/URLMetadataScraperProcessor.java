@@ -14,9 +14,6 @@
 
 package com.liferay.urlmetadatascraper.util;
 
-import java.io.IOException;
-
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import org.jsoup.Connection;
@@ -31,39 +28,56 @@ import org.jsoup.select.Elements;
  */
 public class URLMetadataScraperProcessor {
 
-	public String getURLMetadataJSON(String url) throws IOException {
+	public String getURLMetadataJSON(String url) throws Exception {
 		JSONObject jsonObject = new JSONObject();
 
-		url =
-			HttpUtil.getProtocol(url) + HttpUtil.PROTOCOL_DELIMITER +
-				HttpUtil.getDomain(url);
-
-		Connection connection = Jsoup.connect(url);
-
-		Document document = connection.get();
+		Document document = null;
 
 		try {
-			jsonObject.put("description", getDescription(document));
+			url =
+				HttpUtil.getProtocol(url) + HttpUtil.PROTOCOL_DELIMITER +
+					HttpUtil.removeProtocol(url);
 
-			jsonObject.put("imageURL", getImageURL(document, url));
+			Connection connection = Jsoup.connect(url);
 
-			String domain = "";
-
-			int pos = url.indexOf('?');
-
-			if (pos != -1) {
-				domain = HttpUtil.getDomain(url.substring(0, pos));
-			}
-			else {
-				domain = HttpUtil.getDomain(url);
-			}
-
-			jsonObject.put("shortURL", domain.toUpperCase());
-
-			jsonObject.put("title", getTitle(document));
+			document = connection.get();
 		}
-		catch (JSONException jse) {
+		catch (Exception e) {
+			jsonObject.put("success", false);
+
+			return jsonObject.toString();
 		}
+
+		String title = getTitle(document);
+
+		if (Validator.isNull(title)) {
+			jsonObject.put("success", false);
+
+			return jsonObject.toString();
+		}
+
+		jsonObject.put("title", title);
+
+		jsonObject.put("description", getDescription(document));
+
+		jsonObject.put("imageURL", getImageURL(document, url));
+
+		String domain = "";
+
+		int pos = url.indexOf('?');
+
+		if (pos != -1) {
+			domain = HttpUtil.getDomain(url.substring(0, pos));
+		}
+		else {
+			domain = HttpUtil.getDomain(url);
+		}
+
+		jsonObject.put("shortURL", domain.toUpperCase());
+
+		jsonObject.put("url", url);
+
+		jsonObject.put("success", true);
 
 		return jsonObject.toString();
 	}
