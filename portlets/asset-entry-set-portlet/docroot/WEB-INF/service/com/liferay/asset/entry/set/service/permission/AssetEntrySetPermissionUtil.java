@@ -15,6 +15,7 @@
 package com.liferay.asset.entry.set.service.permission;
 
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.security.pacl.permission.PortalRuntimePermission;
 import com.liferay.portal.security.permission.PermissionChecker;
 
 /**
@@ -27,7 +28,7 @@ public class AssetEntrySetPermissionUtil {
 			String actionId)
 		throws PortalException {
 
-		_assetEntrySetPermission.check(
+		getAssetEntrySetPermission().check(
 			permissionChecker, classNameId, classPK, actionId);
 	}
 
@@ -35,12 +36,21 @@ public class AssetEntrySetPermissionUtil {
 		PermissionChecker permissionChecker, long classNameId, long classPK,
 		String actionId) {
 
-		return _assetEntrySetPermission.contains(
+		return getAssetEntrySetPermission().contains(
 			permissionChecker, classNameId, classPK, actionId);
+	}
+
+	public static AssetEntrySetPermission getAssetEntrySetPermission() {
+		PortalRuntimePermission.checkGetBeanProperty(
+			AssetEntrySetPermissionUtil.class);
+
+		return _assetEntrySetPermission;
 	}
 
 	public void setAssetEntrySetPermission(
 		AssetEntrySetPermission assetEntrySetPermission) {
+
+		PortalRuntimePermission.checkSetBeanProperty(getClass());
 
 		_assetEntrySetPermission = assetEntrySetPermission;
 	}
