@@ -59,7 +59,6 @@ public class URLMetadataScraperProcessor {
 		jsonObject.put("title", title);
 
 		jsonObject.put("description", getDescription(document));
-
 		jsonObject.put("imageURL", getImageURL(document, url));
 
 		String domain = "";
@@ -75,9 +74,8 @@ public class URLMetadataScraperProcessor {
 
 		jsonObject.put("shortURL", domain.toUpperCase());
 
-		jsonObject.put("url", url);
-
 		jsonObject.put("success", true);
+		jsonObject.put("url", url);
 
 		return jsonObject.toString();
 	}
