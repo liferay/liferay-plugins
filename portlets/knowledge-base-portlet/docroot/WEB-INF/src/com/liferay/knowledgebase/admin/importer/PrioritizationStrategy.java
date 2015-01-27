@@ -108,8 +108,8 @@ public class PrioritizationStrategy {
 
 		List<KBArticle> childArticles = null;
 
-		if (_importedChildArticlesMap.containsKey(parentUrlTitle)) {
-			childArticles = _importedChildArticlesMap.get(parentUrlTitle);
+		if (_importedArticlesMap.containsKey(parentUrlTitle)) {
+			childArticles = _importedArticlesMap.get(parentUrlTitle);
 		}
 		else {
 			childArticles = new ArrayList<KBArticle>();
@@ -117,12 +117,12 @@ public class PrioritizationStrategy {
 
 		childArticles.add(childArticle);
 
-		_importedChildArticlesMap.put(parentUrlTitle, childArticles);
+		_importedArticlesMap.put(parentUrlTitle, childArticles);
 
 		List<String> childUrlTitles = null;
 
-		if (_importedChildUrlTitlesMap.containsKey(parentUrlTitle)) {
-			childUrlTitles = _importedChildUrlTitlesMap.get(parentUrlTitle);
+		if (_importedUrlTitlesMap.containsKey(parentUrlTitle)) {
+			childUrlTitles = _importedUrlTitlesMap.get(parentUrlTitle);
 		}
 		else {
 			childUrlTitles = new ArrayList<String>();
@@ -130,17 +130,27 @@ public class PrioritizationStrategy {
 
 		childUrlTitles.add(childArticle.getUrlTitle());
 
-		_importedChildUrlTitlesMap.put(parentUrlTitle, childUrlTitles);
+		_importedUrlTitlesMap.put(parentUrlTitle, childUrlTitles);
 	}
 
 	public void addImportedParentArticle(
 		KBArticle parentArticle, String fileName) {
+		
+		List<KBArticle> parentArticles =
+			_importedArticlesMap.get(StringPool.BLANK);
+		
+		parentArticles.add(parentArticle);
 
-		_importedParentArticles.add(parentArticle);
+		_importedArticlesMap.put(StringPool.BLANK, parentArticles);
+		
+		List<String> parentUrlTitles =
+			_importedUrlTitlesMap.get(StringPool.BLANK);
 
-		String importedParentUrlTitle = parentArticle.getUrlTitle();
+		String parentUrlTitle = parentArticle.getUrlTitle();
 
-		_importedParentUrlTitles.add(importedParentUrlTitle);
+		parentUrlTitles.add(parentUrlTitle);
+		
+		_importedUrlTitlesMap.put(StringPool.BLANK, parentUrlTitles);
 
 		if (_prioritizeByNumericalPrefix) {
 			double folderNamePrefix = _getNumericalPrefix(fileName);
