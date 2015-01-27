@@ -564,10 +564,13 @@ public class CalendarBookingLocalServiceImpl
 			return calendarBooking;
 		}
 
+		ServiceContext serviceContext = new ServiceContext();
+
+		serviceContext.setUserId(userId);
+
 		calendarBookingLocalService.updateStatus(
 			userId, calendarBooking,
-			CalendarBookingWorkflowConstants.STATUS_IN_TRASH,
-			new ServiceContext());
+			CalendarBookingWorkflowConstants.STATUS_IN_TRASH, serviceContext);
 
 		socialActivityCounterLocalService.disableActivityCounters(
 			CalendarBooking.class.getName(),
@@ -605,12 +608,15 @@ public class CalendarBookingLocalServiceImpl
 			return calendarBooking;
 		}
 
+		ServiceContext serviceContext = new ServiceContext();
+
+		serviceContext.setUserId(userId);
+
 		TrashEntry trashEntry = trashEntryLocalService.getEntry(
 			CalendarBooking.class.getName(), calendarBookingId);
 
 		calendarBookingLocalService.updateStatus(
-			userId, calendarBookingId, trashEntry.getStatus(),
-			new ServiceContext());
+			userId, calendarBookingId, trashEntry.getStatus(), serviceContext);
 
 		socialActivityCounterLocalService.enableActivityCounters(
 			CalendarBooking.class.getName(), calendarBookingId);
@@ -962,10 +968,6 @@ public class CalendarBookingLocalServiceImpl
 					userId, childCalendarBooking,
 					CalendarBookingWorkflowConstants.STATUS_IN_TRASH,
 					serviceContext);
-
-				sendNotification(
-					childCalendarBooking,
-					NotificationTemplateType.MOVED_TO_TRASH, serviceContext);
 			}
 		}
 		else if (oldStatus ==
@@ -982,10 +984,6 @@ public class CalendarBookingLocalServiceImpl
 				updateStatus(
 					userId, childCalendarBooking,
 					CalendarBookingWorkflowConstants.STATUS_PENDING,
-					serviceContext);
-
-				sendNotification(
-					childCalendarBooking, NotificationTemplateType.INVITE,
 					serviceContext);
 			}
 		}
@@ -1028,6 +1026,10 @@ public class CalendarBookingLocalServiceImpl
 					CalendarBookingWorkflowConstants.STATUS_PENDING, null,
 					null);
 			}
+
+			sendNotification(
+				calendarBooking, NotificationTemplateType.MOVED_TO_TRASH,
+				serviceContext);
 		}
 
 		return calendarBooking;
