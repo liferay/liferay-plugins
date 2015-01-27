@@ -45,7 +45,7 @@ public class UpgradeUserNotificationEvent extends UpgradeProcess {
 
 			StringBundler sb = new StringBundler(5);
 
-			sb.append("insert into Notifications_UserNotificationEvent (");
+			sb.append("insert into Ntfctns_UserNotificationEvent(");
 			sb.append("notificationEventId, companyId, userId,");
 			sb.append("userNotificationEventId, timestamp , delivered,");
 			sb.append("actionRequired, archived) values (?, ?, ?, ?, ?, ?");
