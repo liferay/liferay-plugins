@@ -1471,8 +1471,25 @@ AUI.add(
 
 						var node = Scheduler.superclass._createViewTriggerNode.apply(this, arguments);
 
+						var schedulerViewText = '';
+
+						var viewName = view.get('name');
+
+						if (viewName == 'agenda') {
+							schedulerViewText = Liferay.Language.get('agenda-view');
+						}
+						else if (viewName == 'day') {
+							schedulerViewText = Liferay.Language.get('day-view');
+						}
+						else if (viewName == 'month') {
+							schedulerViewText = Liferay.Language.get('month-view');
+						}
+						else if (viewName == 'week') {
+							schedulerViewText = Liferay.Language.get('week-view');
+						}
+
 						if (node.get('nodeName') === 'OPTION') {
-							node.text(Liferay.Language.get(view.get('name') + '-view'));
+							node.text(schedulerViewText);
 						}
 
 						return node;
