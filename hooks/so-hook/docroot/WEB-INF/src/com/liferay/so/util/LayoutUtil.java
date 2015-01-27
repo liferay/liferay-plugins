@@ -39,8 +39,10 @@ import com.liferay.portal.service.ResourcePermissionLocalServiceUtil;
 import com.liferay.portal.service.RoleLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.permission.PortletPermissionUtil;
+import com.liferay.portal.util.PortletKeys;
 import com.liferay.portlet.PortletPreferencesFactoryUtil;
 import com.liferay.util.portlet.PortletProps;
+import com.liferay.wiki.constants.WikiPortletKeys;
 
 import java.util.List;
 import java.util.Locale;
@@ -163,7 +165,7 @@ public class LayoutUtil {
 			}
 			else if (portletId.equals(PortletKeys.DOCUMENT_LIBRARY) ||
 					 portletId.equals(PortletKeys.BLOGS) ||
-					 portletId.equals(PortletKeys.WIKI) ||
+					 portletId.equals(WikiPortletKeys.WIKI) ||
 					 portletId.equals("1_WAR_calendarportlet") ||
 					 portletId.contains("_WAR_microblogsportlet") ||
 					 portletId.equals("1_WAR_privatemessagingportlet") ||
