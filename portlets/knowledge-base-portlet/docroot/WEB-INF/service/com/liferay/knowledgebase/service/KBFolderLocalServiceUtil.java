@@ -347,6 +347,13 @@ public class KBFolderLocalServiceUtil {
 			parentResourcePrimKey, name, description, serviceContext);
 	}
 
+	public static com.liferay.knowledgebase.model.KBFolder fetchFirstChildKBFolder(
+		long groupId, long kbFolderId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService().fetchFirstChildKBFolder(groupId, kbFolderId);
+	}
+
 	public static com.liferay.knowledgebase.model.KBFolder fetchKBFolderByUrlTitle(
 		long groupId, long parentKbFolderId, java.lang.String urlTitle)
 		throws com.liferay.portal.kernel.exception.PortalException,

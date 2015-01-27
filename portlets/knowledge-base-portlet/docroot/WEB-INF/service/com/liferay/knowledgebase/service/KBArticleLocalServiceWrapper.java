@@ -461,6 +461,14 @@ public class KBArticleLocalServiceWrapper implements KBArticleLocalService,
 	}
 
 	@Override
+	public com.liferay.knowledgebase.model.KBArticle fetchFirstChildKBArticle(
+		long groupId, long parentResourcePrimKey)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _kbArticleLocalService.fetchFirstChildKBArticle(groupId,
+			parentResourcePrimKey);
+	}
+
+	@Override
 	public com.liferay.knowledgebase.model.KBArticle fetchKBArticleByUrlTitle(
 		long groupId, long kbFolderId, java.lang.String urlTitle)
 		throws com.liferay.portal.kernel.exception.SystemException {

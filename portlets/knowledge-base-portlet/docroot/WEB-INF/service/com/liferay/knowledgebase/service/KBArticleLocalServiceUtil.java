@@ -436,6 +436,13 @@ public class KBArticleLocalServiceUtil {
 			.deleteTempAttachment(groupId, userId, fileName, tempFolderName);
 	}
 
+	public static com.liferay.knowledgebase.model.KBArticle fetchFirstChildKBArticle(
+		long groupId, long parentResourcePrimKey)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService()
+				   .fetchFirstChildKBArticle(groupId, parentResourcePrimKey);
+	}
+
 	public static com.liferay.knowledgebase.model.KBArticle fetchKBArticleByUrlTitle(
 		long groupId, long kbFolderId, java.lang.String urlTitle)
 		throws com.liferay.portal.kernel.exception.SystemException {

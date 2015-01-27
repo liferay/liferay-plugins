@@ -365,6 +365,14 @@ public class KBFolderLocalServiceWrapper implements KBFolderLocalService,
 	}
 
 	@Override
+	public com.liferay.knowledgebase.model.KBFolder fetchFirstChildKBFolder(
+		long groupId, long kbFolderId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _kbFolderLocalService.fetchFirstChildKBFolder(groupId, kbFolderId);
+	}
+
+	@Override
 	public com.liferay.knowledgebase.model.KBFolder fetchKBFolderByUrlTitle(
 		long groupId, long parentKbFolderId, java.lang.String urlTitle)
 		throws com.liferay.portal.kernel.exception.PortalException,
