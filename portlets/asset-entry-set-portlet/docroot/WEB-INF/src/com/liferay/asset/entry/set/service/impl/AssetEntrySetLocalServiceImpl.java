@@ -420,6 +420,69 @@ public class AssetEntrySetLocalServiceImpl
 		return assetEntrySets;
 	}
 
+	protected JSONObject getParticipant(
+		long classNameId, long classPK, boolean includePortraitURL)
+	throws PortalException, SystemException {
+
+		String participantFullName = StringPool.BLANK;
+		String participantPortraitURL = StringPool.BLANK;
+		String participantURL = StringPool.BLANK;
+
+		if (classNameId == _USER_CLASS_NAME_ID) {
+			User user = UserLocalServiceUtil.getUser(classPK);
+
+			participantFullName = user.getFullName();
+
+			if (includePortraitURL) {
+				participantPortraitURL = UserConstants.getPortraitURL(
+					PortalUtil.getPathImage(), user.isMale(),
+					user.getPortraitId());
+			}
+
+			Group group = user.getGroup();
+
+			participantURL =
+				_LAYOUT_FRIENDLY_URL_PUBLIC_SERVLET_MAPPING +
+					group.getFriendlyURL();
+		}
+		else {
+			AssetEntry assetEntry = AssetEntryLocalServiceUtil.getEntry(
+				PortalUtil.getClassName(classNameId), classPK);
+
+			JSONObject jsonObject = JSONFactoryUtil.createJSONObject(
+				assetEntry.getDescription());
+
+			participantFullName = jsonObject.getString(
+				AssetEntrySetConstants.ASSET_ENTRY_KEY_CREATOR_FULL_NAME);
+
+			if (includePortraitURL) {
+				participantPortraitURL = jsonObject.getString(
+					AssetEntrySetConstants.
+						ASSET_ENTRY_KEY_CREATOR_PORTRAIT_URL);
+			}
+
+			participantURL = jsonObject.getString(
+				AssetEntrySetConstants.ASSET_ENTRY_KEY_CREATOR_URL);
+		}
+
+		JSONObject creatorJSONObject = JSONFactoryUtil.createJSONObject();
+
+		creatorJSONObject.put(
+			AssetEntrySetConstants.ASSET_ENTRY_KEY_CREATOR_FULL_NAME,
+			participantFullName);
+
+		if (includePortraitURL) {
+			creatorJSONObject.put(
+				AssetEntrySetConstants.ASSET_ENTRY_KEY_CREATOR_PORTRAIT_URL,
+				participantPortraitURL);
+		}
+
+		creatorJSONObject.put(
+			AssetEntrySetConstants.ASSET_ENTRY_KEY_CREATOR_URL, participantURL);
+
+		return creatorJSONObject;
+	}
+
 	protected Map<Long, long[]> getSharedToClassPKsMap(
 		JSONObject payloadJSONObject) {
 
@@ -456,53 +519,10 @@ public class AssetEntrySetLocalServiceImpl
 	protected void setCreatorJSONObject(AssetEntrySet assetEntrySet)
 		throws PortalException, SystemException {
 
-		JSONObject creatorJSONObject = JSONFactoryUtil.createJSONObject();
-
-		String creatorFullName = StringPool.BLANK;
-		String creatorPortraitURL = StringPool.BLANK;
-		String creatorURL = StringPool.BLANK;
-
-		if (assetEntrySet.getCreatorClassNameId() == _USER_CLASS_NAME_ID) {
-			User user = userPersistence.findByPrimaryKey(
-				assetEntrySet.getUserId());
-
-			creatorFullName = user.getFullName();
-
-			creatorPortraitURL = UserConstants.getPortraitURL(
-				PortalUtil.getPathImage(), user.isMale(), user.getPortraitId());
-
-			Group group = user.getGroup();
-
-			creatorURL =
-				_LAYOUT_FRIENDLY_URL_PUBLIC_SERVLET_MAPPING +
-					group.getFriendlyURL();
-		}
-		else {
-			AssetEntry assetEntry = AssetEntryLocalServiceUtil.getEntry(
-				PortalUtil.getClassName(assetEntrySet.getCreatorClassNameId()),
-				assetEntrySet.getCreatorClassPK());
-
-			JSONObject jsonObject = JSONFactoryUtil.createJSONObject(
-				assetEntry.getDescription());
-
-			creatorFullName = jsonObject.getString(
-				AssetEntrySetConstants.ASSET_ENTRY_KEY_CREATOR_FULL_NAME);
-			creatorPortraitURL = jsonObject.getString(
-				AssetEntrySetConstants.ASSET_ENTRY_KEY_CREATOR_PORTRAIT_URL);
-			creatorURL = jsonObject.getString(
-				AssetEntrySetConstants.ASSET_ENTRY_KEY_CREATOR_URL);
-		}
-
-		creatorJSONObject.put(
-			AssetEntrySetConstants.ASSET_ENTRY_KEY_CREATOR_FULL_NAME,
-			creatorFullName);
-		creatorJSONObject.put(
-			AssetEntrySetConstants.ASSET_ENTRY_KEY_CREATOR_PORTRAIT_URL,
-			creatorPortraitURL);
-		creatorJSONObject.put(
-			AssetEntrySetConstants.ASSET_ENTRY_KEY_CREATOR_URL, creatorURL);
-
-		assetEntrySet.setCreator(creatorJSONObject);
+		assetEntrySet.setCreator(
+			getParticipant(
+				assetEntrySet.getCreatorClassNameId(),
+				assetEntrySet.getCreatorClassPK(), true));
 	}
 
 	protected void setCreatorJSONObjects(List<AssetEntrySet> assetEntrySets)
@@ -535,43 +555,8 @@ public class AssetEntrySetLocalServiceImpl
 			long classPK = sharedToClassNameIdClassPKJSONObject.getLong(
 				"classPK");
 
-			String creatorFullName = StringPool.BLANK;
-			String creatorURL = StringPool.BLANK;
-
-			if (classNameId == _USER_CLASS_NAME_ID) {
-				User user = UserLocalServiceUtil.getUser(classPK);
-
-				creatorFullName = user.getFullName();
-
-				Group group = user.getGroup();
-
-				creatorURL =
-					_LAYOUT_FRIENDLY_URL_PUBLIC_SERVLET_MAPPING +
-						group.getFriendlyURL();
-			}
-			else {
-				AssetEntry assetEntry = AssetEntryLocalServiceUtil.getEntry(
-					PortalUtil.getClassName(classNameId), classPK);
-
-				JSONObject jsonObject = JSONFactoryUtil.createJSONObject(
-					assetEntry.getDescription());
-
-				creatorFullName = jsonObject.getString(
-					AssetEntrySetConstants.ASSET_ENTRY_KEY_CREATOR_FULL_NAME);
-				creatorURL = jsonObject.getString(
-					AssetEntrySetConstants.ASSET_ENTRY_KEY_CREATOR_URL);
-			}
-
-			JSONObject sharedToFullNameURLJSONObject =
-				JSONFactoryUtil.createJSONObject();
-
-			sharedToFullNameURLJSONObject.put(
-				AssetEntrySetConstants.ASSET_ENTRY_KEY_CREATOR_FULL_NAME,
-				creatorFullName);
-			sharedToFullNameURLJSONObject.put(
-				AssetEntrySetConstants.ASSET_ENTRY_KEY_CREATOR_URL, creatorURL);
-
-			sharedToFullNameURLJSONArray.put(sharedToFullNameURLJSONObject);
+			sharedToFullNameURLJSONArray.put(
+				getParticipant(classNameId, classPK, false));
 		}
 
 		assetEntrySet.setSharedTo(sharedToFullNameURLJSONArray);
