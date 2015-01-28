@@ -1944,8 +1944,15 @@ html.aui {
 			}
 
 			.navbar-inner .nav-collapse.open .nav-add-controls {
-				bottom: auto;
-				top: auto;
+				background: $controlBgColor;
+				border-right: 1px solid $defaultBorderColor;
+				bottom: 0;
+				margin-left: 0;
+				top: 0;
+			}
+
+			.nav-navigation {
+				display: inherit;
 			}
 		}
 
