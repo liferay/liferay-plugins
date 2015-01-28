@@ -18,12 +18,9 @@ import com.liferay.knowledgebase.model.KBArticle;
 import com.liferay.knowledgebase.model.KBFolder;
 import com.liferay.knowledgebase.service.KBArticleLocalServiceUtil;
 import com.liferay.knowledgebase.service.KBFolderLocalServiceUtil;
-import com.liferay.knowledgebase.util.comparator.KBArticlePriorityComparator;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
-
-import java.util.List;
 
 /**
  * @author Adolfo Pérez
@@ -81,29 +78,15 @@ public class KBFolderKBArticleSelector implements KBArticleSelector {
 			long groupId, KBFolder ancestorKBFolder)
 		throws PortalException, SystemException {
 
-		List<KBFolder> kbFolders = KBFolderLocalServiceUtil.getKBFolders(
-			groupId, ancestorKBFolder.getKbFolderId(), 0, 1);
+		KBFolder kbFolder = KBFolderLocalServiceUtil.fetchFirstChildKBFolder(
+			groupId, ancestorKBFolder.getKbFolderId());
 
-		KBFolder kbFolder = null;
-
-		if (!kbFolders.isEmpty()) {
-			kbFolder = kbFolders.get(0);
-		}
-		else {
+		if (kbFolder == null) {
 			kbFolder = ancestorKBFolder;
 		}
 
-		List<KBArticle> kbArticles =
-			KBArticleLocalServiceUtil.getKBArticles(
-				groupId, kbFolder.getKbFolderId(),
-				WorkflowConstants.STATUS_APPROVED, 0, 1,
-				new KBArticlePriorityComparator());
-
-		if (kbArticles.isEmpty()) {
-			return null;
-		}
-
-		return kbArticles.get(0);
+		return KBArticleLocalServiceUtil.fetchFirstChildKBArticle(
+			groupId, kbFolder.getKbFolderId());
 	}
 
 	protected KBArticle findClosestMatchingKBArticle(
@@ -122,17 +105,8 @@ public class KBFolderKBArticleSelector implements KBArticleSelector {
 			return kbArticle;
 		}
 
-		List<KBArticle> kbArticles =
-			KBArticleLocalServiceUtil.getKBArticles(
-				groupId, kbFolder.getKbFolderId(),
-				WorkflowConstants.STATUS_APPROVED, 0, 1,
-				new KBArticlePriorityComparator());
-
-		if (kbArticles.isEmpty()) {
-			return null;
-		}
-
-		return kbArticles.get(0);
+		return KBArticleLocalServiceUtil.fetchFirstChildKBArticle(
+			groupId, kbFolder.getKbFolderId());
 	}
 
 	protected KBFolder getCandidateKBFolder(
@@ -147,11 +121,11 @@ public class KBFolderKBArticleSelector implements KBArticleSelector {
 			return kbFolder;
 		}
 
-		List<KBFolder> kbFolders = KBFolderLocalServiceUtil.getKBFolders(
-			groupId, ancestorKBFolder.getKbFolderId(), 0, 1);
+		kbFolder = KBFolderLocalServiceUtil.fetchFirstChildKBFolder(
+			groupId, ancestorKBFolder.getKbFolderId());
 
-		if (!kbFolders.isEmpty()) {
-			return kbFolders.get(0);
+		if (kbFolder != null) {
+			return kbFolder;
 		}
 
 		return ancestorKBFolder;
