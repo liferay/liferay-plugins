@@ -63,7 +63,7 @@ public class AssetEntrySetServiceImpl extends AssetEntrySetServiceBaseImpl {
 		throws PortalException, SystemException {
 
 		AssetEntrySetPermissionUtil.check(
-			getPermissionChecker(), _USER_CLASS_NAME_ID, getUserId(),
+			getPermissionChecker(), _CLASS_NAME_ID_USER, getUserId(),
 			ActionKeys.ADD_ASSET_ENTRY_SET);
 
 		JSONObject payloadJSONObject = JSONFactoryUtil.createJSONObject(
@@ -80,7 +80,7 @@ public class AssetEntrySetServiceImpl extends AssetEntrySetServiceBaseImpl {
 		throws PortalException, SystemException {
 
 		AssetEntrySetPermissionUtil.check(
-			getPermissionChecker(), _USER_CLASS_NAME_ID, getUserId(),
+			getPermissionChecker(), _CLASS_NAME_ID_USER, getUserId(),
 			ActionKeys.ADD_ASSET_ENTRY_SET);
 
 		JSONObject payloadJSONObject = JSONFactoryUtil.createJSONObject(
@@ -124,7 +124,7 @@ public class AssetEntrySetServiceImpl extends AssetEntrySetServiceBaseImpl {
 			getUserId(), assetEntrySetId);
 	}
 
-	private static final long _USER_CLASS_NAME_ID =
+	private static final long _CLASS_NAME_ID_USER =
 		ClassNameLocalServiceUtil.getClassNameId(User.class);
 
 }
