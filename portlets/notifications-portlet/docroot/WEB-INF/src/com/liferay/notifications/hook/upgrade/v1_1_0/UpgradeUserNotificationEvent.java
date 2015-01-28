@@ -58,8 +58,8 @@ public class UpgradeUserNotificationEvent extends UpgradeProcess {
 			ps.setLong(3, userId);
 			ps.setLong(4, userNotificationEventId);
 			ps.setLong(5, timestamp);
-			ps.setBoolean(6, actionRequired);
-			ps.setBoolean(7, delivered);
+			ps.setBoolean(6, delivered);
+			ps.setBoolean(7, actionRequired);
 			ps.setBoolean(8, archived);
 
 			ps.executeUpdate();
