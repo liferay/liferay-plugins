@@ -107,45 +107,45 @@
 		text-align: center;
 	}
 
-	@include respond-to(tablet) {
-		.calendar-portlet-column-parent {
+	.calendar-portlet-column-parent {
+		@include respond-to(tablet) {
 			.calendar-portlet-column-grid, .calendar-portlet-column-options {
 				float: none;
 				margin: 0;
 				width: 100%;
 			}
 		}
-	}
 
-	.calendar-portlet-column-grid {
-		position: relative;
+		.calendar-portlet-column-grid {
+			position: relative;
 
-		&.span12 {
-			margin-left: 0 !important;
-		}
-
-		.calendar-portlet-column-toggler {
-			bottom: 0;
-			margin-left: -10px;
-			position: absolute;
-			top: 0;
-			width: 10px;
-
-			&:hover {
-				background: #E9E9E9;
-				cursor: pointer;
+			&.span12 {
+				margin-left: 0;
 			}
 
-			.icon-caret-right, .icon-caret-left {
-				left: 50%;
-				margin: -14px 0 0 -1px;
+			.calendar-portlet-column-toggler {
+				bottom: 0;
+				margin-left: -10px;
 				position: absolute;
-				top: 50%;
-			}
-		}
+				top: 0;
+				width: 10px;
 
-		.scheduler-event {
-			z-index: 300;
+				&:hover {
+					background: #E9E9E9;
+					cursor: pointer;
+				}
+
+				.icon-caret-right, .icon-caret-left {
+					left: 50%;
+					margin: -14px 0 0 -1px;
+					position: absolute;
+					top: 50%;
+				}
+			}
+
+			.scheduler-event {
+				z-index: 300;
+			}
 		}
 	}
 
@@ -387,7 +387,7 @@
 
 		.scheduler-base-nav-date {
 			display: none;
-		}	
+		}
 	}
 
 	.scheduler-base-views {
@@ -437,8 +437,6 @@
 .scheduler-view-day-header-day a {
 	padding: 2px;
 }
-
-
 
 .scheduler-view-table-data-event {
 	padding: 0 3px 0 3px;
