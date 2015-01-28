@@ -274,10 +274,6 @@ public class AssetEntrySetLocalServiceImpl
 		List<AssetEntrySet> assetEntrySets = getAssetEntrySets(
 			userId, createTime, true, parentAssetEntrySetId, start, end);
 
-		setCreatorJSONObjects(assetEntrySets);
-
-		setSharedToJSONArrays(assetEntrySets);
-
 		return assetEntrySets;
 	}
 
@@ -289,10 +285,6 @@ public class AssetEntrySetLocalServiceImpl
 
 		List<AssetEntrySet> assetEntrySets = getAssetEntrySets(
 			userId, createTime, false, parentAssetEntrySetId, start, end);
-
-		setCreatorJSONObjects(assetEntrySets);
-
-		setSharedToJSONArrays(assetEntrySets);
 
 		return assetEntrySets;
 	}
