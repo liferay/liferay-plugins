@@ -41,10 +41,13 @@ public class KBArticleKBArticleSelector implements KBArticleSelector {
 		KBArticle kbArticle = KBArticleLocalServiceUtil.fetchLatestKBArticle(
 			resourcePrimKey, WorkflowConstants.STATUS_APPROVED);
 
-		if ((kbArticle == null) ||
-			!isDescendant(kbArticle, ancestorKBArticle)) {
-
+		if (kbArticle == null) {
 			return ancestorKBArticle;
+		}
+
+		if (!isDescendant(kbArticle, ancestorKBArticle)) {
+			return findClosestMatchingKBArticle(
+				groupId, ancestorKBArticle, kbArticle);
 		}
 
 		return kbArticle;
@@ -69,13 +72,38 @@ public class KBArticleKBArticleSelector implements KBArticleSelector {
 				groupId, ancestorKBArticle.getKbFolderId(), urlTitle,
 				WorkflowConstants.STATUS_APPROVED);
 
-		if ((kbArticle == null) ||
-			!isDescendant(kbArticle, ancestorKBArticle)) {
-
+		if (kbArticle == null) {
 			return ancestorKBArticle;
 		}
 
+		if (!isDescendant(kbArticle, ancestorKBArticle)) {
+			return findClosestMatchingKBArticle(
+				groupId, ancestorKBArticle, kbArticle);
+		}
+
 		return kbArticle;
+	}
+
+	protected KBArticle findClosestMatchingKBArticle(
+			long groupId, KBArticle ancestorKBArticle, KBArticle kbArticle)
+		throws PortalException, SystemException {
+
+		KBArticle candidateKBArticle = kbArticle;
+
+		while (candidateKBArticle != null) {
+			KBArticle matchingKBArticle =
+				KBArticleLocalServiceUtil.fetchKBArticleByUrlTitle(
+					groupId, ancestorKBArticle.getKbFolderId(),
+					candidateKBArticle.getUrlTitle());
+
+			if (matchingKBArticle != null) {
+				return matchingKBArticle;
+			}
+
+			candidateKBArticle = candidateKBArticle.getParentKBArticle();
+		}
+
+		return ancestorKBArticle;
 	}
 
 	protected boolean isDescendant(
