@@ -399,6 +399,16 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 	}
 
 	@Override
+	public KBArticle fetchFirstChildKBArticle(
+			long groupId, long parentResourcePrimKey)
+		throws SystemException {
+
+		return kbArticlePersistence.fetchByG_P_L_First(
+			groupId, parentResourcePrimKey, true,
+			new KBArticlePriorityComparator(true));
+	}
+
+	@Override
 	public KBArticle fetchKBArticleByUrlTitle(
 			long groupId, long kbFolderId, String urlTitle)
 		throws SystemException {
