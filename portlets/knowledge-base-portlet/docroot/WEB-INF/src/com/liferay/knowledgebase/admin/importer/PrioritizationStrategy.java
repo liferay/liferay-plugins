@@ -89,15 +89,6 @@ public class PrioritizationStrategy {
 	public void addImportedChildArticle(KBArticle childArticle, String fileName)
 		throws PortalException, SystemException {
 
-		if (_prioritizeByNumericalPrefix) {
-			double sectionFileEntryNamePrefix = _getNumericalPrefix(fileName);
-
-			if (sectionFileEntryNamePrefix > 0) {
-				_importedUrlTitlesPrioritiesMap.put(
-					childArticle.getUrlTitle(), sectionFileEntryNamePrefix);
-			}
-		}
-
 		KBArticle parentArticle = childArticle.getParentKBArticle();
 
 		if (parentArticle == null) {
@@ -131,6 +122,15 @@ public class PrioritizationStrategy {
 		childUrlTitles.add(childArticle.getUrlTitle());
 
 		_importedUrlTitlesMap.put(parentUrlTitle, childUrlTitles);
+		
+		if (_prioritizeByNumericalPrefix) {
+			double sectionFileEntryNamePrefix = _getNumericalPrefix(fileName);
+
+			if (sectionFileEntryNamePrefix > 0) {
+				_importedUrlTitlesPrioritiesMap.put(
+					childArticle.getUrlTitle(), sectionFileEntryNamePrefix);
+			}
+		}
 	}
 
 	public void addImportedParentArticle(
@@ -139,12 +139,20 @@ public class PrioritizationStrategy {
 		List<KBArticle> parentArticles =
 			_importedArticlesMap.get(StringPool.BLANK);
 		
+		if (parentArticles == null) {
+			parentArticles = new ArrayList<KBArticle>();
+		}
+		
 		parentArticles.add(parentArticle);
 
 		_importedArticlesMap.put(StringPool.BLANK, parentArticles);
 		
 		List<String> parentUrlTitles =
 			_importedUrlTitlesMap.get(StringPool.BLANK);
+		
+		if (parentUrlTitles == null) {
+			parentUrlTitles = new ArrayList<String>();
+		}
 
 		String parentUrlTitle = parentArticle.getUrlTitle();
 
@@ -288,29 +296,35 @@ public class PrioritizationStrategy {
 			keySet = _importedArticlesMap.keySet();
 			
 			for (String parentUrlTitle : keySet) {
-				List<KBArticle> kbArticles =
-					_importedArticlesMap.get(parentUrlTitle);
+				List<String> urlTitles =
+					_importedUrlTitlesMap.get(parentUrlTitle);
 				
-				ListUtil.sort(kbArticles);
+				ListUtil.sort(urlTitles);
 				
-				_importedArticlesMap.put(parentUrlTitle, kbArticles);
+				_importedUrlTitlesMap.put(parentUrlTitle, urlTitles);
 				
-				for (KBArticle kbArticle : kbArticles) {
-					String urlTitle = kbArticle.getUrlTitle();
-					
-					KBArticle parentKBArticle =
+				int size = urlTitles.size();
+				
+				for (int i = 0; i < size; i++) {
+					String urlTitle = urlTitles.get(i);
+
+					KBArticle kbArticle =
 						KBArticleLocalServiceUtil.getKBArticleByUrlTitle(
 							_groupId, _parentKBFolderId, urlTitle);
 
-					double maxPriority =
-						maxKBArticlePriorityMap.get(parentUrlTitle);
+					double maxPriority = 0.0;
+
+					if (maxKBArticlePriorityMap.containsKey(parentUrlTitle)) {
+						maxPriority =
+							maxKBArticlePriorityMap.get(parentUrlTitle);
+					}
 					
 					maxPriority++;
 					
 					maxKBArticlePriorityMap.put(parentUrlTitle, maxPriority);
 
 					KBArticleLocalServiceUtil.updatePriority(
-						parentKBArticle.getResourcePrimKey(), maxPriority);
+						kbArticle.getResourcePrimKey(), maxPriority);
 				}
 			}
 		}
@@ -346,29 +360,35 @@ public class PrioritizationStrategy {
 			keySet = _newArticlesMap.keySet();
 
 			for (String parentUrlTitle : keySet) {
-				List<KBArticle> kbArticles =
-					_newArticlesMap.get(parentUrlTitle);
+				List<String> urlTitles =
+					_newUrlTitlesMap.get(parentUrlTitle);
 
-				ListUtil.sort(kbArticles);
+				ListUtil.sort(urlTitles);
 
-				_newArticlesMap.put(parentUrlTitle, kbArticles);
+				_newUrlTitlesMap.put(parentUrlTitle, urlTitles);
 
-				for (KBArticle kbArticle : kbArticles) {
-					String urlTitle = kbArticle.getUrlTitle();
+				int size = urlTitles.size();
+				
+				for (int i = 0; i < size; i++) {
+					String urlTitle = urlTitles.get(i);
 
-					KBArticle parentKBArticle =
+					KBArticle kbArticle =
 						KBArticleLocalServiceUtil.getKBArticleByUrlTitle(
 							_groupId, _parentKBFolderId, urlTitle);
 
-					double maxPriority =
-						maxKBArticlePriorityMap.get(parentUrlTitle);
+					double maxPriority = 0.0;
+
+					if (maxKBArticlePriorityMap.containsKey(parentUrlTitle)) {
+						maxPriority =
+							maxKBArticlePriorityMap.get(parentUrlTitle);
+					}
 
 					maxPriority++;
 
 					maxKBArticlePriorityMap.put(parentUrlTitle, maxPriority);
 
 					KBArticleLocalServiceUtil.updatePriority(
-						parentKBArticle.getResourcePrimKey(), maxPriority);
+						kbArticle.getResourcePrimKey(), maxPriority);
 				}
 			}
 		}
@@ -414,40 +434,6 @@ public class PrioritizationStrategy {
 		_importedUrlTitlesPrioritiesMap = new HashMap<String, Double>();
 	}
 
-	protected void updateChildKBArticlesPriorities(
-			Map<String, List<KBArticle>> childKBArticlesMap,
-			Map<String, Double> maxChildKBArticlePriorityMap)
-		throws SystemException {
-
-		Set<String> parentKBArticleUrlTitles = childKBArticlesMap.keySet();
-
-		for (String parentKBArticleUrlTitle : parentKBArticleUrlTitles) {
-			List<KBArticle> childKBArticles = childKBArticlesMap.get(
-				parentKBArticleUrlTitle);
-
-			if (childKBArticles == null) {
-				return;
-			}
-
-			Double maxChildKBArticlePriority = maxChildKBArticlePriorityMap.get(
-				parentKBArticleUrlTitle);
-
-			if (maxChildKBArticlePriority == null) {
-				maxChildKBArticlePriority = 0.0;
-			}
-
-			ListUtil.sort(childKBArticles, new KBArticleComparator());
-
-			for (KBArticle childKBArticle : childKBArticles) {
-				maxChildKBArticlePriority++;
-
-				KBArticleLocalServiceUtil.updatePriority(
-					childKBArticle.getResourcePrimKey(),
-					maxChildKBArticlePriority);
-			}
-		}
-	}
-
 	private double _getNumericalPrefix(String path) {
 		int i = path.lastIndexOf(CharPool.SLASH);
 
@@ -455,7 +441,7 @@ public class PrioritizationStrategy {
 			return KBArticleConstants.DEFAULT_PRIORITY;
 		}
 
-		String name = path.substring(i);
+		String name = path.substring(i + 1);
 
 		String numericalPrefix = StringUtil.extractLeadingDigits(name);
 
@@ -477,6 +463,10 @@ public class PrioritizationStrategy {
 			
 			List<String> existingUrlTitles =
 				_existingUrlTitlesMap.get(parentUrlTitle);
+			
+			if (existingUrlTitles == null) {
+				existingUrlTitles = new ArrayList<String>();
+			}
 			
 			List<KBArticle> newArticles = new ArrayList<KBArticle>();
 	
@@ -519,6 +509,10 @@ public class PrioritizationStrategy {
 			
 			List<String> importedUrlTitles =
 				_importedUrlTitlesMap.get(parentUrlTitle);
+			
+			if (importedUrlTitles == null) {
+				importedUrlTitles = new ArrayList<String>();
+			}
 
 			List<KBArticle> nonImportedArticles = new ArrayList<KBArticle>();
 			
