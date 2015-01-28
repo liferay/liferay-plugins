@@ -41,16 +41,8 @@ public class KBArticleKBArticleSelector implements KBArticleSelector {
 		KBArticle kbArticle = KBArticleLocalServiceUtil.fetchLatestKBArticle(
 			resourcePrimKey, WorkflowConstants.STATUS_APPROVED);
 
-		if (kbArticle == null) {
-			return ancestorKBArticle;
-		}
-
-		if (!isDescendant(kbArticle, ancestorKBArticle)) {
-			return findClosestMatchingKBArticle(
-				groupId, ancestorKBArticle, kbArticle);
-		}
-
-		return kbArticle;
+		return getClosestMatchingDescendantKBArticle(
+			groupId, ancestorKBArticle, kbArticle);
 	}
 
 	@Override
@@ -72,16 +64,8 @@ public class KBArticleKBArticleSelector implements KBArticleSelector {
 				groupId, ancestorKBArticle.getKbFolderId(), urlTitle,
 				WorkflowConstants.STATUS_APPROVED);
 
-		if (kbArticle == null) {
-			return ancestorKBArticle;
-		}
-
-		if (!isDescendant(kbArticle, ancestorKBArticle)) {
-			return findClosestMatchingKBArticle(
-				groupId, ancestorKBArticle, kbArticle);
-		}
-
-		return kbArticle;
+		return getClosestMatchingDescendantKBArticle(
+			groupId, ancestorKBArticle, kbArticle);
 	}
 
 	protected KBArticle findClosestMatchingKBArticle(
@@ -104,6 +88,22 @@ public class KBArticleKBArticleSelector implements KBArticleSelector {
 		}
 
 		return ancestorKBArticle;
+	}
+
+	protected KBArticle getClosestMatchingDescendantKBArticle(
+			long groupId, KBArticle ancestorKBArticle, KBArticle kbArticle)
+		throws PortalException, SystemException {
+
+		if (kbArticle == null) {
+			return ancestorKBArticle;
+		}
+
+		if (!isDescendant(kbArticle, ancestorKBArticle)) {
+			return findClosestMatchingKBArticle(
+				groupId, ancestorKBArticle, kbArticle);
+		}
+
+		return kbArticle;
 	}
 
 	protected boolean isDescendant(
