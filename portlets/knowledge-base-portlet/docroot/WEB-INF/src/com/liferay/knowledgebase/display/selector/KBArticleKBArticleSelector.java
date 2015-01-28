@@ -27,7 +27,8 @@ public class KBArticleKBArticleSelector implements KBArticleSelector {
 
 	@Override
 	public KBArticle findByResourcePrimKey(
-			long groupId, long ancestorResourcePrimKey, long resourcePrimKey)
+			long groupId, String preferredKBFolderUrlTitle,
+			long ancestorResourcePrimKey, long resourcePrimKey)
 		throws PortalException, SystemException {
 
 		KBArticle ancestorKBArticle =
@@ -47,7 +48,8 @@ public class KBArticleKBArticleSelector implements KBArticleSelector {
 
 	@Override
 	public KBArticle findByUrlTitle(
-			long groupId, long ancestorResourcePrimKey, String kbFolderUrlTitle,
+			long groupId, String preferredKBFolderUrlTitle,
+			long ancestorResourcePrimKey, String kbFolderUrlTitle,
 			String urlTitle)
 		throws PortalException, SystemException {
 
