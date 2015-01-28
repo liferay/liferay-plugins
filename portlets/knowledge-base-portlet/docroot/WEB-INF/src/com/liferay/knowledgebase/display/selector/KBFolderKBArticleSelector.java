@@ -22,6 +22,7 @@ import com.liferay.knowledgebase.service.KBArticleLocalServiceUtil;
 import com.liferay.knowledgebase.service.KBFolderLocalServiceUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 
 /**
@@ -79,9 +80,16 @@ public class KBFolderKBArticleSelector implements KBArticleSelector {
 			}
 		}
 
+		KBFolder kbFolder = _ROOT_KB_FOLDER;
+
+		if (Validator.isNotNull(kbFolderUrlTitle)) {
+			kbFolder = KBFolderLocalServiceUtil.fetchKBFolderByUrlTitle(
+				groupId, ancestorKBFolder.getKbFolderId(), kbFolderUrlTitle);
+		}
+
 		KBArticle kbArticle =
 			KBArticleLocalServiceUtil.fetchKBArticleByUrlTitle(
-				groupId, kbFolderUrlTitle, urlTitle);
+				groupId, kbFolder.getKbFolderId(), urlTitle);
 
 		if ((kbArticle == null) || !isDescendant(kbArticle, ancestorKBFolder)) {
 			return findClosestMatchingKBArticle(
@@ -141,9 +149,12 @@ public class KBFolderKBArticleSelector implements KBArticleSelector {
 			KBFolder ancestorKBFolder, String kbFolderUrlTitle)
 		throws PortalException, SystemException {
 
-		KBFolder kbFolder =
-			KBFolderLocalServiceUtil.fetchKBFolderByUrlTitle(
+		KBFolder kbFolder = null;
+
+		if (Validator.isNotNull(kbFolderUrlTitle)) {
+			kbFolder = KBFolderLocalServiceUtil.fetchKBFolderByUrlTitle(
 				groupId, ancestorKBFolder.getKbFolderId(), kbFolderUrlTitle);
+		}
 
 		if (kbFolder == null) {
 			kbFolder = KBFolderLocalServiceUtil.fetchKBFolderByUrlTitle(
