@@ -98,12 +98,12 @@ public class KBArticleKBArticleSelector implements KBArticleSelector {
 			return ancestorKBArticle;
 		}
 
-		if (!isDescendant(kbArticle, ancestorKBArticle)) {
-			return findClosestMatchingKBArticle(
-				groupId, ancestorKBArticle, kbArticle);
+		if (isDescendant(kbArticle, ancestorKBArticle)) {
+			return kbArticle;
 		}
 
-		return kbArticle;
+		return findClosestMatchingKBArticle(
+			groupId, ancestorKBArticle, kbArticle);
 	}
 
 	protected boolean isDescendant(
