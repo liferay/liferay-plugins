@@ -49,16 +49,16 @@
 		<implicit-parameter name="method">POST</implicit-parameter>
 	</route>
 	<route>
-		<pattern>{method}/{controller}/{id:\d+}/{action}</pattern>
-	</route>
-	<route>
 		<pattern>{method}/{controller}/{id:\d+}/{action}.{format}</pattern>
 	</route>
 	<route>
-		<pattern>{method}/{controller}/{action}</pattern>
+		<pattern>{method}/{controller}/{id:\d+}/{action}</pattern>
 	</route>
 	<route>
 		<pattern>{method}/{controller}/{action}.{format}</pattern>
+	</route>
+	<route>
+		<pattern>{method}/{controller}/{action}</pattern>
 	</route>
 	<route>
 		<pattern>{method}/{controller}/{action}/{className}/{folderId:\d+}/{fileName:[^/]+}</pattern>
