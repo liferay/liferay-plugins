@@ -16,6 +16,8 @@ package com.liferay.knowledgebase.display.selector;
 
 import com.liferay.knowledgebase.model.KBArticle;
 import com.liferay.knowledgebase.model.KBFolder;
+import com.liferay.knowledgebase.model.KBFolderConstants;
+import com.liferay.knowledgebase.model.impl.KBFolderImpl;
 import com.liferay.knowledgebase.service.KBArticleLocalServiceUtil;
 import com.liferay.knowledgebase.service.KBFolderLocalServiceUtil;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -33,11 +35,17 @@ public class KBFolderKBArticleSelector implements KBArticleSelector {
 			long ancestorResourcePrimKey, long resourcePrimKey)
 		throws PortalException, SystemException {
 
-		KBFolder ancestorKBFolder = KBFolderLocalServiceUtil.fetchKBFolder(
-			ancestorResourcePrimKey);
+		KBFolder ancestorKBFolder = _ROOT_KB_FOLDER;
 
-		if (ancestorKBFolder == null) {
-			return null;
+		if (ancestorResourcePrimKey !=
+				KBFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
+
+			ancestorKBFolder = KBFolderLocalServiceUtil.fetchKBFolder(
+				ancestorResourcePrimKey);
+
+			if (ancestorKBFolder == null) {
+				return null;
+			}
 		}
 
 		KBArticle kbArticle = KBArticleLocalServiceUtil.fetchLatestKBArticle(
@@ -58,11 +66,17 @@ public class KBFolderKBArticleSelector implements KBArticleSelector {
 			String urlTitle)
 		throws PortalException, SystemException {
 
-		KBFolder ancestorKBFolder = KBFolderLocalServiceUtil.fetchKBFolder(
-			ancestorResourcePrimKey);
+		KBFolder ancestorKBFolder = _ROOT_KB_FOLDER;
 
-		if (ancestorKBFolder == null) {
-			return null;
+		if (ancestorResourcePrimKey !=
+				KBFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
+
+			ancestorKBFolder = KBFolderLocalServiceUtil.fetchKBFolder(
+				ancestorResourcePrimKey);
+
+			if (ancestorKBFolder == null) {
+				return null;
+			}
 		}
 
 		KBArticle kbArticle =
@@ -164,6 +178,15 @@ public class KBFolderKBArticleSelector implements KBArticleSelector {
 		}
 
 		return parentKBFolder != null;
+	}
+
+	private static final KBFolder _ROOT_KB_FOLDER;
+
+	static {
+		_ROOT_KB_FOLDER = new KBFolderImpl();
+
+		_ROOT_KB_FOLDER.setKbFolderId(
+			KBFolderConstants.DEFAULT_PARENT_FOLDER_ID);
 	}
 
 }
