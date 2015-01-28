@@ -350,13 +350,12 @@ public class AssetEntrySetLocalServiceImpl
 		return assetEntrySet;
 	}
 
-	@Override
-	public AssetEntrySet updateChildAssetEntrySetsCount(
+	protected void updateChildAssetEntrySetsCount(
 			long parentAssetEntrySetId)
 		throws PortalException, SystemException {
 
 		if (parentAssetEntrySetId == 0) {
-			return null;
+			return;
 		}
 
 		AssetEntrySet assetEntrySet = assetEntrySetPersistence.findByPrimaryKey(
@@ -369,8 +368,6 @@ public class AssetEntrySetLocalServiceImpl
 		assetEntrySet.setChildAssetEntrySetsCount(childAssetEntrySetsCount);
 
 		assetEntrySetPersistence.update(assetEntrySet);
-
-		return assetEntrySet;
 	}
 
 	protected void addUserToSharedTo(
