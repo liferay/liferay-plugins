@@ -42,12 +42,11 @@ the liferay-portal repository.
 In the [liferay-plugins](https://github.com/liferay/liferay-plugins) repository,
 plugins are laid out in a software development kit (SDK) -- the Liferay Plugins
 SDK. All Liferay plugin types, including portlets, themes, layout templates,
-hooks, and EXT plugins, can be created and maintained in the SDK. [The Plugins
-SDK](http://www.liferay.com/documentation/liferay-portal/6.1/development/-/ai/the-plugins-s-3)
-chapter of Liferay's [Development
-Guide](http://www.liferay.com/documentation/liferay-portal/6.1/development)
-explains how to create, build, and deploy your plugins. Follow the instructions
-in this section to build and deploy any of the existing SDK plugins quickly.
+hooks, and EXT plugins, can be created and maintained in the SDK.
+[Tutorials](https://dev.liferay.com/develop/tutorials) on the [Liferay Developer
+Network](https://dev.liferay.com) \(LDN\) explain how to create, build, and
+deploy Liferay plugins. But you can conveniently follow the instructions in this
+section to build and deploy any of the existing SDK plugins right now.
 
 For demonstration purposes, let's pretend your user name is *joe* and you have a
 Liferay instance bundled with Apache Tomcat running in your `/home/joe/`
@@ -86,21 +85,19 @@ it using Ant.
 	plugin is deployed immediately. It's just that easy!
 
 There are many other options for developing new Liferay plugins using the
-Plugins SDK. Consult the [Liferay Development
-Guide](http://www.liferay.com/documentation/liferay-portal/6.1/development) for
-indispensable explanations, examples, and reference material on the Liferay
-Plugins SDK and surrounding technologies.
+Plugins SDK. Consult the Liferay Developer Network's
+[Develop](https://dev.liferay.com/develop) section for indispensable
+explanations, examples, and reference material on the Liferay Plugins SDK and
+surrounding technologies.
 
 Also, check out Liferay IDE. The [Liferay IDE
 project](http://www.liferay.com/community/liferay-projects/liferay-ide) provides
 an Eclipse-based Liferay development environment to help you build and maintain
-Liferay projects easily.
-
-Finally, consider using Maven to build Liferay Plugins. For excellent overviews
-of Maven support for Liferay, check out [Mika Koivisto's
-presentation](http://www.slideshare.net/koivimik/developing-liferay-plugins-with-maven)
-and [Getting Started with Liferay Maven
-SDK](http://www.liferay.com/web/mika.koivisto/blog/-/blogs/12322618).
+Liferay projects easily. The [Learning
+Paths](https://dev.liferay.com/develop/learning-paths) and
+[Tutorials](https://dev.liferay.com/develop/tutorials) on the Liferay Developer
+Network show you how to leverage Liferay IDE as you develop on Liferay. LDN also
+covers developing Liferay plugins using Maven.
 
 ## Contributing
 
