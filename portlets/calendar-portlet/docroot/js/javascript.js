@@ -44,7 +44,7 @@ AUI.add(
 										'<button type="button" class="btn btn-primary calendar-add-event-btn">' +
 											Liferay.Language.get('add-calendar-booking') +
 										'</div>' +
-									 '</button>';
+									'</button>';
 
 		var USER_ID = toInt(themeDisplay.getUserId());
 
@@ -1694,7 +1694,7 @@ AUI.add(
 							[
 								{
 									cssClass: 'close',
-									label: "\u00D7",
+									label: '\u00D7',
 									on: {
 										click: A.bind(instance._handleCancelEvent, instance)
 									},
