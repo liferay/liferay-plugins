@@ -421,8 +421,8 @@ public class AssetEntrySetLocalServiceImpl
 	}
 
 	protected JSONObject getParticipant(
-		long classNameId, long classPK, boolean includePortraitURL)
-	throws PortalException, SystemException {
+			long classNameId, long classPK, boolean includePortraitURL)
+		throws PortalException, SystemException {
 
 		String participantFullName = StringPool.BLANK;
 		String participantPortraitURL = StringPool.BLANK;
@@ -453,34 +453,35 @@ public class AssetEntrySetLocalServiceImpl
 				assetEntry.getDescription());
 
 			participantFullName = jsonObject.getString(
-				AssetEntrySetConstants.ASSET_ENTRY_KEY_CREATOR_FULL_NAME);
+				AssetEntrySetConstants.ASSET_ENTRY_KEY_PARTICIPANT_FULL_NAME);
 
 			if (includePortraitURL) {
 				participantPortraitURL = jsonObject.getString(
 					AssetEntrySetConstants.
-						ASSET_ENTRY_KEY_CREATOR_PORTRAIT_URL);
+						ASSET_ENTRY_KEY_PARTICIPANT_PORTRAIT_URL);
 			}
 
 			participantURL = jsonObject.getString(
-				AssetEntrySetConstants.ASSET_ENTRY_KEY_CREATOR_URL);
+				AssetEntrySetConstants.ASSET_ENTRY_KEY_PARTICIPANT_URL);
 		}
 
-		JSONObject creatorJSONObject = JSONFactoryUtil.createJSONObject();
+		JSONObject participantJSONObject = JSONFactoryUtil.createJSONObject();
 
-		creatorJSONObject.put(
-			AssetEntrySetConstants.ASSET_ENTRY_KEY_CREATOR_FULL_NAME,
+		participantJSONObject.put(
+			AssetEntrySetConstants.ASSET_ENTRY_KEY_PARTICIPANT_FULL_NAME,
 			participantFullName);
 
 		if (includePortraitURL) {
-			creatorJSONObject.put(
-				AssetEntrySetConstants.ASSET_ENTRY_KEY_CREATOR_PORTRAIT_URL,
+			participantJSONObject.put(
+				AssetEntrySetConstants.ASSET_ENTRY_KEY_PARTICIPANT_PORTRAIT_URL,
 				participantPortraitURL);
 		}
 
-		creatorJSONObject.put(
-			AssetEntrySetConstants.ASSET_ENTRY_KEY_CREATOR_URL, participantURL);
+		participantJSONObject.put(
+			AssetEntrySetConstants.ASSET_ENTRY_KEY_PARTICIPANT_URL,
+			participantURL);
 
-		return creatorJSONObject;
+		return participantJSONObject;
 	}
 
 	protected Map<Long, long[]> getSharedToClassPKsMap(

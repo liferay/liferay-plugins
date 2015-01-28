@@ -19,13 +19,14 @@ package com.liferay.asset.entry.set.util;
  */
 public class AssetEntrySetConstants {
 
-	public static final String ASSET_ENTRY_KEY_CREATOR_FULL_NAME =
-		"creatorFullName";
+	public static final String ASSET_ENTRY_KEY_PARTICIPANT_FULL_NAME =
+		"participantFullName";
 
-	public static final String ASSET_ENTRY_KEY_CREATOR_PORTRAIT_URL =
-		"creatorPortraitURL";
+	public static final String ASSET_ENTRY_KEY_PARTICIPANT_PORTRAIT_URL =
+		"participantrPortraitURL";
 
-	public static final String ASSET_ENTRY_KEY_CREATOR_URL = "creatorURL";
+	public static final String ASSET_ENTRY_KEY_PARTICIPANT_URL =
+		"participantURL";
 
 	public static final String PAYLOAD_KEY_ASSET_TAG_NAMES = "assetTagNames";
 
