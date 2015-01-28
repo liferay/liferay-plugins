@@ -131,26 +131,22 @@ public class KBFolderKBArticleSelector implements KBArticleSelector {
 			KBFolderLocalServiceUtil.fetchKBFolderByUrlTitle(
 				groupId, ancestorKBFolder.getKbFolderId(), kbFolderUrlTitle);
 
-		if (kbFolder != null) {
-			return kbFolder;
+		if (kbFolder == null) {
+			kbFolder = KBFolderLocalServiceUtil.fetchKBFolderByUrlTitle(
+				groupId, ancestorKBFolder.getKbFolderId(),
+				preferredKBFolderUrlTitle);
 		}
 
-		kbFolder = KBFolderLocalServiceUtil.fetchKBFolderByUrlTitle(
-			groupId, ancestorKBFolder.getKbFolderId(),
-			preferredKBFolderUrlTitle);
-
-		if (kbFolder != null) {
-			return kbFolder;
+		if (kbFolder == null) {
+			kbFolder = KBFolderLocalServiceUtil.fetchFirstChildKBFolder(
+				groupId, ancestorKBFolder.getKbFolderId());
 		}
 
-		kbFolder = KBFolderLocalServiceUtil.fetchFirstChildKBFolder(
-			groupId, ancestorKBFolder.getKbFolderId());
-
-		if (kbFolder != null) {
-			return kbFolder;
+		if (kbFolder == null) {
+			return ancestorKBFolder;
 		}
 
-		return ancestorKBFolder;
+		return kbFolder;
 	}
 
 	protected boolean isDescendant(
