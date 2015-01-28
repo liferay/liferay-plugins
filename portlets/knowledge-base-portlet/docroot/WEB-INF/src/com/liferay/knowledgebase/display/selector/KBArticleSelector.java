@@ -24,11 +24,13 @@ import com.liferay.portal.kernel.exception.SystemException;
 public interface KBArticleSelector {
 
 	public KBArticle findByResourcePrimKey(
-			long groupId, long ancestorResourcePrimKey, long resourcePrimKey)
+			long groupId, String preferredKBFolderUrlTitle,
+			long ancestorResourcePrimKey, long resourcePrimKey)
 		throws PortalException, SystemException;
 
 	public KBArticle findByUrlTitle(
-			long groupId, long ancestorResourcePrimKey, String kbFolderUrlTitle,
+			long groupId, String preferredKBFolderUrlTitle,
+			long ancestorResourcePrimKey, String kbFolderUrlTitle,
 			String urlTitle)
 		throws PortalException, SystemException;
 
