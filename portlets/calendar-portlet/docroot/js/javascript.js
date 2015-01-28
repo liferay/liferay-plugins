@@ -442,7 +442,7 @@ AUI.add(
 				instance.invokeResourceURL(
 					'resourceCalendars',
 					{
-						calendarResourceId: calendarResourceId,
+						calendarResourceId: calendarResourceId
 					},
 					callback
 				);
@@ -451,7 +451,7 @@ AUI.add(
 			invokeResourceURL: function(resourceId, parameters, callback) {
 				var instance = this;
 
-				var url = Liferay.PortletURL.createResourceURL()
+				var url = Liferay.PortletURL.createResourceURL();
 
 				url.setPortletId('1_WAR_calendarportlet');
 				url.setResourceId(resourceId);
