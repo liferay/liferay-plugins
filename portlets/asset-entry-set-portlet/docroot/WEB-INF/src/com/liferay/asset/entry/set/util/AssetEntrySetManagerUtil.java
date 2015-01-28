@@ -15,8 +15,10 @@
 package com.liferay.asset.entry.set.util;
 
 import com.liferay.asset.entry.set.handler.AssetEntrySetHandler;
+import com.liferay.asset.entry.set.model.AssetEntrySet;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.util.Validator;
 
@@ -106,6 +108,26 @@ public class AssetEntrySetManagerUtil {
 		}
 
 		return assetEntrySetHandler.interpret(jsonObject, file);
+	}
+
+	public static void setInterpretedPayload(AssetEntrySet assetEntrySet)
+		throws PortalException, SystemException {
+
+		JSONObject payloadJSONObject = JSONFactoryUtil.createJSONObject(
+			assetEntrySet.getPayload());
+
+		String type = payloadJSONObject.getString("type");
+
+		String portletId = _assetEntrySetPortletIds.get(type);
+
+		AssetEntrySetHandler assetEntrySetHandler = _assetEntrySetHandlers.get(
+			portletId);
+
+		if (assetEntrySetHandler == null) {
+			return;
+		}
+
+		assetEntrySetHandler.setInterpretedPayload(assetEntrySet);
 	}
 
 	private static Map<String, AssetEntrySetHandler> _assetEntrySetHandlers =

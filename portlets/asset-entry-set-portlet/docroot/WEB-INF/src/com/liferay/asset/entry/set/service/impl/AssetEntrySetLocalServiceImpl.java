@@ -412,69 +412,6 @@ public class AssetEntrySetLocalServiceImpl
 		return assetEntrySets;
 	}
 
-	protected JSONObject getParticipant(
-			JSONObject participantJSONObject, long classNameId, long classPK,
-			boolean includePortraitURL)
-		throws PortalException, SystemException {
-
-		String participantFullName = StringPool.BLANK;
-		String participantPortraitURL = StringPool.BLANK;
-		String participantURL = StringPool.BLANK;
-
-		if (classNameId == _USER_CLASS_NAME_ID) {
-			User user = UserLocalServiceUtil.getUser(classPK);
-
-			participantFullName = user.getFullName();
-
-			if (includePortraitURL) {
-				participantPortraitURL = UserConstants.getPortraitURL(
-					PortalUtil.getPathImage(), user.isMale(),
-					user.getPortraitId());
-			}
-
-			Group group = user.getGroup();
-
-			participantURL =
-				_LAYOUT_FRIENDLY_URL_PUBLIC_SERVLET_MAPPING +
-					group.getFriendlyURL();
-		}
-		else {
-			AssetEntry assetEntry = AssetEntryLocalServiceUtil.getEntry(
-				PortalUtil.getClassName(classNameId), classPK);
-
-			JSONObject jsonObject = JSONFactoryUtil.createJSONObject(
-				assetEntry.getDescription());
-
-			participantFullName = jsonObject.getString(
-				AssetEntrySetConstants.ASSET_ENTRY_KEY_PARTICIPANT_FULL_NAME);
-
-			if (includePortraitURL) {
-				participantPortraitURL = jsonObject.getString(
-					AssetEntrySetConstants.
-						ASSET_ENTRY_KEY_PARTICIPANT_PORTRAIT_URL);
-			}
-
-			participantURL = jsonObject.getString(
-				AssetEntrySetConstants.ASSET_ENTRY_KEY_PARTICIPANT_URL);
-		}
-
-		participantJSONObject.put(
-			AssetEntrySetConstants.ASSET_ENTRY_KEY_PARTICIPANT_FULL_NAME,
-			participantFullName);
-
-		if (includePortraitURL) {
-			participantJSONObject.put(
-				AssetEntrySetConstants.ASSET_ENTRY_KEY_PARTICIPANT_PORTRAIT_URL,
-				participantPortraitURL);
-		}
-
-		participantJSONObject.put(
-			AssetEntrySetConstants.ASSET_ENTRY_KEY_PARTICIPANT_URL,
-			participantURL);
-
-		return participantJSONObject;
-	}
-
 	protected Map<Long, long[]> getSharedToClassPKsMap(
 		JSONObject payloadJSONObject) {
 
@@ -506,59 +443,6 @@ public class AssetEntrySetLocalServiceImpl
 		}
 
 		return sharedToClassPKsMap;
-	}
-
-	protected void setCreatorJSONObject(AssetEntrySet assetEntrySet)
-		throws PortalException, SystemException {
-
-		assetEntrySet.setCreator(
-			getParticipant(
-				JSONFactoryUtil.createJSONObject(),
-				assetEntrySet.getCreatorClassNameId(),
-				assetEntrySet.getCreatorClassPK(), true));
-	}
-
-	protected void setCreatorJSONObjects(List<AssetEntrySet> assetEntrySets)
-		throws PortalException, SystemException {
-
-		for (AssetEntrySet assetEntrySet : assetEntrySets) {
-			setCreatorJSONObject(assetEntrySet);
-		}
-	}
-
-	protected void setSharedToJSONArray(AssetEntrySet assetEntrySet)
-		throws PortalException, SystemException {
-
-		JSONObject payloadJSONObject = JSONFactoryUtil.createJSONObject(
-			assetEntrySet.getPayload());
-
-		JSONArray sharedToJSONArray =
-			payloadJSONObject.getJSONArray(
-				AssetEntrySetConstants.PAYLOAD_KEY_SHARED_TO);
-
-		JSONArray returnedSharedToJSONArray = JSONFactoryUtil.createJSONArray();
-
-		for (int i = 0; i < sharedToJSONArray.length(); i++) {
-			JSONObject participantJSONObject = sharedToJSONArray.getJSONObject(
-				i);
-
-			long classNameId = participantJSONObject.getLong("classNameId");
-			long classPK = participantJSONObject.getLong("classPK");
-
-			returnedSharedToJSONArray.put(
-				getParticipant(
-					participantJSONObject, classNameId, classPK, false));
-		}
-
-		assetEntrySet.setSharedTo(returnedSharedToJSONArray);
-	}
-
-	protected void setSharedToJSONArrays(List<AssetEntrySet> assetEntrySets)
-		throws PortalException, SystemException {
-
-		for (AssetEntrySet assetEntrySet : assetEntrySets) {
-			setSharedToJSONArray(assetEntrySet);
-		}
 	}
 
 	protected void updateAssetEntry(
