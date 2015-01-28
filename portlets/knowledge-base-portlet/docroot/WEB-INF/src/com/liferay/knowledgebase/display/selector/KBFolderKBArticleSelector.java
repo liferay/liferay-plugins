@@ -105,9 +105,13 @@ public class KBFolderKBArticleSelector implements KBArticleSelector {
 			String preferredKBFolderUrlTitle)
 		throws PortalException, SystemException {
 
-		KBFolder kbFolder = KBFolderLocalServiceUtil.fetchKBFolderByUrlTitle(
-			groupId, ancestorKBFolder.getKbFolderId(),
-			preferredKBFolderUrlTitle);
+		KBFolder kbFolder = null;
+
+		if (Validator.isNotNull(preferredKBFolderUrlTitle)) {
+			kbFolder = KBFolderLocalServiceUtil.fetchKBFolderByUrlTitle(
+				groupId, ancestorKBFolder.getKbFolderId(),
+				preferredKBFolderUrlTitle);
+		}
 
 		if (kbFolder == null) {
 			kbFolder = KBFolderLocalServiceUtil.fetchFirstChildKBFolder(
@@ -156,7 +160,9 @@ public class KBFolderKBArticleSelector implements KBArticleSelector {
 				groupId, ancestorKBFolder.getKbFolderId(), kbFolderUrlTitle);
 		}
 
-		if (kbFolder == null) {
+		if ((kbFolder == null) &&
+			Validator.isNotNull(preferredKBFolderUrlTitle)) {
+
 			kbFolder = KBFolderLocalServiceUtil.fetchKBFolderByUrlTitle(
 				groupId, ancestorKBFolder.getKbFolderId(),
 				preferredKBFolderUrlTitle);
