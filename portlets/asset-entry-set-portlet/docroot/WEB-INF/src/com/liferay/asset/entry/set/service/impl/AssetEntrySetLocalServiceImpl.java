@@ -350,26 +350,6 @@ public class AssetEntrySetLocalServiceImpl
 		return assetEntrySet;
 	}
 
-	protected void updateChildAssetEntrySetsCount(
-			long parentAssetEntrySetId)
-		throws PortalException, SystemException {
-
-		if (parentAssetEntrySetId == 0) {
-			return;
-		}
-
-		AssetEntrySet assetEntrySet = assetEntrySetPersistence.findByPrimaryKey(
-			parentAssetEntrySetId);
-
-		int childAssetEntrySetsCount =
-			assetEntrySetPersistence.countByParentAssetEntrySetId(
-				parentAssetEntrySetId);
-
-		assetEntrySet.setChildAssetEntrySetsCount(childAssetEntrySetsCount);
-
-		assetEntrySetPersistence.update(assetEntrySet);
-	}
-
 	protected void addUserToSharedTo(
 			AssetEntrySet assetEntrySet, Map<Long, long[]> sharedToClassPKsMap)
 		throws PortalException {
@@ -478,6 +458,25 @@ public class AssetEntrySetLocalServiceImpl
 			assetEntrySet.getUserId(), group.getGroupId(),
 			AssetEntrySet.class.getName(), assetEntrySet.getAssetEntrySetId(),
 			null, assetTagNames);
+	}
+
+	protected void updateChildAssetEntrySetsCount(long parentAssetEntrySetId)
+		throws PortalException, SystemException {
+
+		if (parentAssetEntrySetId == 0) {
+			return;
+		}
+
+		AssetEntrySet assetEntrySet = assetEntrySetPersistence.findByPrimaryKey(
+			parentAssetEntrySetId);
+
+		int childAssetEntrySetsCount =
+			assetEntrySetPersistence.countByParentAssetEntrySetId(
+				parentAssetEntrySetId);
+
+		assetEntrySet.setChildAssetEntrySetsCount(childAssetEntrySetsCount);
+
+		assetEntrySetPersistence.update(assetEntrySet);
 	}
 
 	protected AssetEntrySet updateRatingsStatsTotalScore(
