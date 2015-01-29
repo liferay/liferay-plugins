@@ -362,36 +362,36 @@ public class AssetEntrySetLocalServiceImpl
 
 		long userId = assetEntrySet.getUserId();
 
-		if (!ArrayUtil.contains(sharedToUserIds, userId)) {
-			sharedToClassPKsMap.put(
-				_USER_CLASS_NAME_ID, ArrayUtil.append(sharedToUserIds, userId));
-
-			JSONObject classNameIdClassPKJSONObject =
-				JSONFactoryUtil.createJSONObject();
-
-			classNameIdClassPKJSONObject.put(
-				"classNameId", _USER_CLASS_NAME_ID);
-			classNameIdClassPKJSONObject.put("classPK", userId);
-
-			JSONObject payloadJSONObject = JSONFactoryUtil.createJSONObject(
-				assetEntrySet.getPayload());
-
-			JSONArray sharedToJSONArray = payloadJSONObject.getJSONArray(
-				AssetEntrySetConstants.PAYLOAD_KEY_SHARED_TO);
-
-			if (sharedToJSONArray == null) {
-				sharedToJSONArray = JSONFactoryUtil.createJSONArray();
-			}
-
-			sharedToJSONArray.put(classNameIdClassPKJSONObject);
-
-			payloadJSONObject.put(
-				AssetEntrySetConstants.PAYLOAD_KEY_SHARED_TO,
-				sharedToJSONArray);
-
-			assetEntrySet.setPayload(
-				JSONFactoryUtil.looseSerialize(payloadJSONObject));
+		if (ArrayUtil.contains(sharedToUserIds, userId)) {
+			return;
 		}
+
+		sharedToClassPKsMap.put(
+			_USER_CLASS_NAME_ID, ArrayUtil.append(sharedToUserIds, userId));
+
+		JSONObject classNameIdClassPKJSONObject =
+			JSONFactoryUtil.createJSONObject();
+
+		classNameIdClassPKJSONObject.put("classNameId", _USER_CLASS_NAME_ID);
+		classNameIdClassPKJSONObject.put("classPK", userId);
+
+		JSONObject payloadJSONObject = JSONFactoryUtil.createJSONObject(
+			assetEntrySet.getPayload());
+
+		JSONArray sharedToJSONArray = payloadJSONObject.getJSONArray(
+			AssetEntrySetConstants.PAYLOAD_KEY_SHARED_TO);
+
+		if (sharedToJSONArray == null) {
+			sharedToJSONArray = JSONFactoryUtil.createJSONArray();
+		}
+
+		sharedToJSONArray.put(classNameIdClassPKJSONObject);
+
+		payloadJSONObject.put(
+			AssetEntrySetConstants.PAYLOAD_KEY_SHARED_TO, sharedToJSONArray);
+
+		assetEntrySet.setPayload(
+			JSONFactoryUtil.looseSerialize(payloadJSONObject));
 	}
 
 	protected List<AssetEntrySet> getAssetEntrySets(
@@ -412,16 +412,16 @@ public class AssetEntrySetLocalServiceImpl
 		return assetEntrySets;
 	}
 
-	protected JSONObject getCreator(
+	protected JSONObject getCreatorJSONObject(
 			long creatorClassNameId, long creatorClassPK)
 		throws PortalException, SystemException {
 
-		return getParticipant(
+		return getParticipantJSONObject(
 			JSONFactoryUtil.createJSONObject(), creatorClassNameId,
 			creatorClassPK, true);
 	}
 
-	protected JSONObject getParticipant(
+	protected JSONObject getParticipantJSONObject(
 			JSONObject participantJSONObject, long classNameId, long classPK,
 			boolean includePortraitURL)
 		throws PortalException, SystemException {
@@ -484,30 +484,6 @@ public class AssetEntrySetLocalServiceImpl
 		return participantJSONObject;
 	}
 
-	protected JSONArray getSharedTo(JSONObject payloadJSONObject)
-		throws PortalException, SystemException {
-
-		JSONArray sharedToJSONArray =
-			payloadJSONObject.getJSONArray(
-				AssetEntrySetConstants.PAYLOAD_KEY_SHARED_TO);
-
-		JSONArray returnedSharedToJSONArray = JSONFactoryUtil.createJSONArray();
-
-		for (int i = 0; i < sharedToJSONArray.length(); i++) {
-			JSONObject participantJSONObject = sharedToJSONArray.getJSONObject(
-				i);
-
-			long classNameId = participantJSONObject.getLong("classNameId");
-			long classPK = participantJSONObject.getLong("classPK");
-
-			returnedSharedToJSONArray.put(
-				getParticipant(
-					participantJSONObject, classNameId, classPK, false));
-		}
-
-		return returnedSharedToJSONArray;
-	}
-
 	protected Map<Long, long[]> getSharedToClassPKsMap(
 		JSONObject payloadJSONObject) {
 
@@ -539,6 +515,30 @@ public class AssetEntrySetLocalServiceImpl
 		}
 
 		return sharedToClassPKsMap;
+	}
+
+	protected JSONArray getSharedToJSONArray(JSONObject payloadJSONObject)
+		throws PortalException, SystemException {
+
+		JSONArray sharedToJSONArray =
+			payloadJSONObject.getJSONArray(
+				AssetEntrySetConstants.PAYLOAD_KEY_SHARED_TO);
+
+		JSONArray returnedSharedToJSONArray = JSONFactoryUtil.createJSONArray();
+
+		for (int i = 0; i < sharedToJSONArray.length(); i++) {
+			JSONObject participantJSONObject = sharedToJSONArray.getJSONObject(
+				i);
+
+			long classNameId = participantJSONObject.getLong("classNameId");
+			long classPK = participantJSONObject.getLong("classPK");
+
+			returnedSharedToJSONArray.put(
+				getParticipantJSONObject(
+					participantJSONObject, classNameId, classPK, false));
+		}
+
+		return returnedSharedToJSONArray;
 	}
 
 	protected void updateAssetEntry(
@@ -579,14 +579,14 @@ public class AssetEntrySetLocalServiceImpl
 		JSONObject payloadJSONObject = JSONFactoryUtil.createJSONObject(
 			assetEntrySet.getPayload());
 
-		JSONObject creatorJSONObject = getCreator(
+		JSONObject creatorJSONObject = getCreatorJSONObject(
 			assetEntrySet.getCreatorClassNameId(),
 			assetEntrySet.getCreatorClassPK());
 
 		payloadJSONObject.put(
 			AssetEntrySetConstants.PAYLOAD_KEY_CREATOR, creatorJSONObject);
 
-		JSONArray sharedToJSONArray = getSharedTo(payloadJSONObject);
+		JSONArray sharedToJSONArray = getSharedToJSONArray(payloadJSONObject);
 
 		payloadJSONObject.put(
 			AssetEntrySetConstants.PAYLOAD_KEY_SHARED_TO, sharedToJSONArray);
