@@ -28,18 +28,10 @@ import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
-import com.liferay.portal.kernel.util.PropsKeys;
-import com.liferay.portal.kernel.util.PropsUtil;
-import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.User;
-import com.liferay.portal.model.UserConstants;
 import com.liferay.portal.service.ClassNameLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
-import com.liferay.portal.service.UserLocalServiceUtil;
-import com.liferay.portal.util.PortalUtil;
-import com.liferay.portlet.asset.model.AssetEntry;
-import com.liferay.portlet.asset.service.AssetEntryLocalServiceUtil;
 import com.liferay.portlet.ratings.model.RatingsStats;
 
 import java.io.File;
@@ -123,6 +115,8 @@ public class AssetEntrySetLocalServiceImpl
 
 		addUserToSharedToClassPKsMap(sharedToClassPKsMap, userId);
 
+		AssetEntrySetManagerUtil.setInterpretedPayload(assetEntrySet);
+
 		AssetSharingEntryLocalServiceUtil.addAssetSharingEntries(
 			_ASSET_ENTRY_SET_CLASS_NAME_ID, assetEntrySetId,
 			sharedToClassPKsMap);
@@ -164,9 +158,9 @@ public class AssetEntrySetLocalServiceImpl
 			assetEntrySetFinder.findBySharedToClassPKsMap(
 				sharedToClassPKsMap, start, end);
 
-		setCreatorJSONObjects(assetEntrySets);
-
-		setSharedToJSONArrays(assetEntrySets);
+		for (AssetEntrySet assetEntrySet : assetEntrySets) {
+			AssetEntrySetManagerUtil.setInterpretedPayload(assetEntrySet);
+		}
 
 		return assetEntrySets;
 	}
@@ -185,9 +179,9 @@ public class AssetEntrySetLocalServiceImpl
 				creatorClassNameId, creatorClassPK, assetTagName,
 				sharedToClassPKsMap, andOperator, start, end);
 
-		setCreatorJSONObjects(assetEntrySets);
-
-		setSharedToJSONArrays(assetEntrySets);
+		for (AssetEntrySet assetEntrySet : assetEntrySets) {
+			AssetEntrySetManagerUtil.setInterpretedPayload(assetEntrySet);
+		}
 
 		return assetEntrySets;
 	}
@@ -204,9 +198,9 @@ public class AssetEntrySetLocalServiceImpl
 		List<AssetEntrySet> assetEntrySets = assetEntrySetFinder.findByCCNI_ATN(
 			creatorClassNameId, assetTagName, sharedToClassPKsMap, start, end);
 
-		setCreatorJSONObjects(assetEntrySets);
-
-		setSharedToJSONArrays(assetEntrySets);
+		for (AssetEntrySet assetEntrySet : assetEntrySets) {
+			AssetEntrySetManagerUtil.setInterpretedPayload(assetEntrySet);
+		}
 
 		return assetEntrySets;
 	}
@@ -258,9 +252,9 @@ public class AssetEntrySetLocalServiceImpl
 			assetEntrySetPersistence.findByParentAssetEntrySetId(
 				parentAssetEntrySetId, start, end, orderByComparator);
 
-		setCreatorJSONObjects(assetEntrySets);
-
-		setSharedToJSONArrays(assetEntrySets);
+		for (AssetEntrySet assetEntrySet : assetEntrySets) {
+			AssetEntrySetManagerUtil.setInterpretedPayload(assetEntrySet);
+		}
 
 		return assetEntrySets;
 	}
@@ -348,6 +342,8 @@ public class AssetEntrySetLocalServiceImpl
 		addUserToSharedToClassPKsMap(
 			sharedToClassPKsMap, assetEntrySet.getUserId());
 
+		AssetEntrySetManagerUtil.setInterpretedPayload(assetEntrySet);
+
 		AssetSharingEntryLocalServiceUtil.addAssetSharingEntries(
 			_ASSET_ENTRY_SET_CLASS_NAME_ID, assetEntrySetId,
 			sharedToClassPKsMap);
@@ -405,9 +401,9 @@ public class AssetEntrySetLocalServiceImpl
 				createTime, gtCreateTime, parentAssetEntrySetId,
 				sharedToClassPKsMap, start, end);
 
-		setCreatorJSONObjects(assetEntrySets);
-
-		setSharedToJSONArrays(assetEntrySets);
+		for (AssetEntrySet assetEntrySet : assetEntrySets) {
+			AssetEntrySetManagerUtil.setInterpretedPayload(assetEntrySet);
+		}
 
 		return assetEntrySets;
 	}
@@ -483,9 +479,6 @@ public class AssetEntrySetLocalServiceImpl
 
 	private static final long _ASSET_ENTRY_SET_CLASS_NAME_ID =
 		ClassNameLocalServiceUtil.getClassNameId(AssetEntrySet.class);
-
-	private static final String _LAYOUT_FRIENDLY_URL_PUBLIC_SERVLET_MAPPING =
-		PropsUtil.get(PropsKeys.LAYOUT_FRIENDLY_URL_PUBLIC_SERVLET_MAPPING);
 
 	private static final long _USER_CLASS_NAME_ID =
 		ClassNameLocalServiceUtil.getClassNameId(User.class);
