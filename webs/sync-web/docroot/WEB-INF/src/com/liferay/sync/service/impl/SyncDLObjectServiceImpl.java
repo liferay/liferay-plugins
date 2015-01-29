@@ -781,7 +781,9 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 				fileEntryId, sourceFileName, mimeType, title, description,
 				changeLog, majorVersion, patchedFile, checksum, serviceContext);
 
-			if (PortletPropsValues.SYNC_FILE_DIFF_CACHE_ENABLED) {
+			if (PortletPropsValues.SYNC_FILE_DIFF_CACHE_ENABLED &&
+				!sourceVersion.equals(syncDLObject.getVersion())) {
+
 				DLFileVersion sourceDLFileVersion =
 					dlFileVersionLocalService.getFileVersion(
 						fileEntryId, sourceVersion);
@@ -1001,7 +1003,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 		for (SyncDLObject curSyncDLObject : curSyncDLObjects) {
 			String type = curSyncDLObject.getType();
 
-			if (type.equals("file")) {
+			if (!type.equals(SyncConstants.TYPE_FOLDER)) {
 				continue;
 			}
 
