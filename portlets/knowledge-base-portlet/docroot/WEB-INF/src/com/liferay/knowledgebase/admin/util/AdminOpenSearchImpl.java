@@ -45,11 +45,6 @@ public class AdminOpenSearchImpl extends HitsOpenSearchImpl {
 	}
 
 	@Override
-	public String getPortletId() {
-		return AdminIndexer.PORTLET_ID;
-	}
-
-	@Override
 	public String getSearchPath() {
 		return SEARCH_PATH;
 	}

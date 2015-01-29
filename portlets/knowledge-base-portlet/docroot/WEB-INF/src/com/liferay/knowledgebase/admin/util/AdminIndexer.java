@@ -57,7 +57,7 @@ import javax.portlet.PortletURL;
  */
 public class AdminIndexer extends BaseIndexer {
 
-	public static final String[] CLASS_NAMES = {KBArticle.class.getName()};
+	public static final String CLASS_NAME = KBArticle.class.getName();
 
 	public static final String PORTLET_ID = PortletKeys.KNOWLEDGE_BASE_ADMIN;
 
@@ -71,13 +71,8 @@ public class AdminIndexer extends BaseIndexer {
 	}
 
 	@Override
-	public String[] getClassNames() {
-		return CLASS_NAMES;
-	}
-
-	@Override
-	public String getPortletId() {
-		return PORTLET_ID;
+	public String getClassName() {
+		return CLASS_NAME;
 	}
 
 	@Override
