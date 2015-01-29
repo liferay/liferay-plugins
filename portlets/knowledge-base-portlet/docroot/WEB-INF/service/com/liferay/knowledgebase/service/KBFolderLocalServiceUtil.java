@@ -186,6 +186,12 @@ public class KBFolderLocalServiceUtil {
 		return getService().dynamicQueryCount(dynamicQuery, projection);
 	}
 
+	public static com.liferay.knowledgebase.model.KBFolder fetchFirstChildKBFolder(
+		long groupId, long kbFolderId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().fetchFirstChildKBFolder(groupId, kbFolderId);
+	}
+
 	public static com.liferay.knowledgebase.model.KBFolder fetchKBFolder(
 		long kbFolderId) {
 		return getService().fetchKBFolder(kbFolderId);

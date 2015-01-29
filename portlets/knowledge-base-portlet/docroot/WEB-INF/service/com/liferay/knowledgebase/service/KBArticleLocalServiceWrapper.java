@@ -274,6 +274,13 @@ public class KBArticleLocalServiceWrapper implements KBArticleLocalService,
 	}
 
 	@Override
+	public com.liferay.knowledgebase.model.KBArticle fetchFirstChildKBArticle(
+		long groupId, long parentResourcePrimKey) {
+		return _kbArticleLocalService.fetchFirstChildKBArticle(groupId,
+			parentResourcePrimKey);
+	}
+
+	@Override
 	public com.liferay.knowledgebase.model.KBArticle fetchKBArticle(
 		long kbArticleId) {
 		return _kbArticleLocalService.fetchKBArticle(kbArticleId);

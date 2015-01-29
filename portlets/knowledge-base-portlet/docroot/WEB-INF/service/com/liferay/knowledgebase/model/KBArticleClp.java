@@ -996,15 +996,34 @@ public class KBArticleClp extends BaseModelImpl<KBArticle> implements KBArticle 
 	}
 
 	@Override
-	public java.util.List<java.lang.Long> getAncestorResourcePrimaryKeys() {
+	public long getAttachmentsFolderId() {
 		try {
-			String methodName = "getAncestorResourcePrimaryKeys";
+			String methodName = "getAttachmentsFolderId";
 
 			Class<?>[] parameterTypes = new Class<?>[] {  };
 
 			Object[] parameterValues = new Object[] {  };
 
-			java.util.List<java.lang.Long> returnObj = (java.util.List<java.lang.Long>)invokeOnRemoteModel(methodName,
+			Long returnObj = (Long)invokeOnRemoteModel(methodName,
+					parameterTypes, parameterValues);
+
+			return returnObj;
+		}
+		catch (Exception e) {
+			throw new UnsupportedOperationException(e);
+		}
+	}
+
+	@Override
+	public boolean isFirstVersion() {
+		try {
+			String methodName = "isFirstVersion";
+
+			Class<?>[] parameterTypes = new Class<?>[] {  };
+
+			Object[] parameterValues = new Object[] {  };
+
+			Boolean returnObj = (Boolean)invokeOnRemoteModel(methodName,
 					parameterTypes, parameterValues);
 
 			return returnObj;
@@ -1035,15 +1054,15 @@ public class KBArticleClp extends BaseModelImpl<KBArticle> implements KBArticle 
 	}
 
 	@Override
-	public boolean isFirstVersion() {
+	public long getClassPK() {
 		try {
-			String methodName = "isFirstVersion";
+			String methodName = "getClassPK";
 
 			Class<?>[] parameterTypes = new Class<?>[] {  };
 
 			Object[] parameterValues = new Object[] {  };
 
-			Boolean returnObj = (Boolean)invokeOnRemoteModel(methodName,
+			Long returnObj = (Long)invokeOnRemoteModel(methodName,
 					parameterTypes, parameterValues);
 
 			return returnObj;
@@ -1113,44 +1132,6 @@ public class KBArticleClp extends BaseModelImpl<KBArticle> implements KBArticle 
 	}
 
 	@Override
-	public long getAttachmentsFolderId() {
-		try {
-			String methodName = "getAttachmentsFolderId";
-
-			Class<?>[] parameterTypes = new Class<?>[] {  };
-
-			Object[] parameterValues = new Object[] {  };
-
-			Long returnObj = (Long)invokeOnRemoteModel(methodName,
-					parameterTypes, parameterValues);
-
-			return returnObj;
-		}
-		catch (Exception e) {
-			throw new UnsupportedOperationException(e);
-		}
-	}
-
-	@Override
-	public long getClassPK() {
-		try {
-			String methodName = "getClassPK";
-
-			Class<?>[] parameterTypes = new Class<?>[] {  };
-
-			Object[] parameterValues = new Object[] {  };
-
-			Long returnObj = (Long)invokeOnRemoteModel(methodName,
-					parameterTypes, parameterValues);
-
-			return returnObj;
-		}
-		catch (Exception e) {
-			throw new UnsupportedOperationException(e);
-		}
-	}
-
-	@Override
 	public boolean isRoot() {
 		try {
 			String methodName = "isRoot";
@@ -1160,6 +1141,25 @@ public class KBArticleClp extends BaseModelImpl<KBArticle> implements KBArticle 
 			Object[] parameterValues = new Object[] {  };
 
 			Boolean returnObj = (Boolean)invokeOnRemoteModel(methodName,
+					parameterTypes, parameterValues);
+
+			return returnObj;
+		}
+		catch (Exception e) {
+			throw new UnsupportedOperationException(e);
+		}
+	}
+
+	@Override
+	public java.util.List<java.lang.Long> getAncestorResourcePrimaryKeys() {
+		try {
+			String methodName = "getAncestorResourcePrimaryKeys";
+
+			Class<?>[] parameterTypes = new Class<?>[] {  };
+
+			Object[] parameterValues = new Object[] {  };
+
+			java.util.List<java.lang.Long> returnObj = (java.util.List<java.lang.Long>)invokeOnRemoteModel(methodName,
 					parameterTypes, parameterValues);
 
 			return returnObj;

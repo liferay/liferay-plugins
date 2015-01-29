@@ -265,6 +265,12 @@ public class KBArticleLocalServiceUtil {
 		return getService().dynamicQueryCount(dynamicQuery, projection);
 	}
 
+	public static com.liferay.knowledgebase.model.KBArticle fetchFirstChildKBArticle(
+		long groupId, long parentResourcePrimKey) {
+		return getService()
+				   .fetchFirstChildKBArticle(groupId, parentResourcePrimKey);
+	}
+
 	public static com.liferay.knowledgebase.model.KBArticle fetchKBArticle(
 		long kbArticleId) {
 		return getService().fetchKBArticle(kbArticleId);
