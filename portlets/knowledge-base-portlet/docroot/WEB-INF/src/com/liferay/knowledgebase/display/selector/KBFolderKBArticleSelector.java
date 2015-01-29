@@ -21,7 +21,6 @@ import com.liferay.knowledgebase.model.impl.KBFolderImpl;
 import com.liferay.knowledgebase.service.KBArticleLocalServiceUtil;
 import com.liferay.knowledgebase.service.KBFolderLocalServiceUtil;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 
@@ -34,7 +33,7 @@ public class KBFolderKBArticleSelector implements KBArticleSelector {
 	public KBArticle findByResourcePrimKey(
 			long groupId, String preferredKBFolderUrlTitle,
 			long ancestorResourcePrimKey, long resourcePrimKey)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		KBFolder ancestorKBFolder = _ROOT_KB_FOLDER;
 
@@ -65,7 +64,7 @@ public class KBFolderKBArticleSelector implements KBArticleSelector {
 			long groupId, String preferredKBFolderUrlTitle,
 			long ancestorResourcePrimKey, String kbFolderUrlTitle,
 			String urlTitle)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		KBFolder ancestorKBFolder = _ROOT_KB_FOLDER;
 
@@ -103,7 +102,7 @@ public class KBFolderKBArticleSelector implements KBArticleSelector {
 	protected KBArticle findClosestMatchingKBArticle(
 			long groupId, KBFolder ancestorKBFolder,
 			String preferredKBFolderUrlTitle)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		KBFolder kbFolder = null;
 
@@ -130,7 +129,7 @@ public class KBFolderKBArticleSelector implements KBArticleSelector {
 			long groupId, KBFolder ancestorKBFolder,
 			String preferredKBFolderUrlTitle, String kbFolderUrlTitle,
 			String urlTitle)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		KBFolder kbFolder = getCandidateKBFolder(
 			groupId, preferredKBFolderUrlTitle, ancestorKBFolder,
@@ -151,7 +150,7 @@ public class KBFolderKBArticleSelector implements KBArticleSelector {
 	protected KBFolder getCandidateKBFolder(
 			long groupId, String preferredKBFolderUrlTitle,
 			KBFolder ancestorKBFolder, String kbFolderUrlTitle)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		KBFolder kbFolder = null;
 
@@ -182,7 +181,7 @@ public class KBFolderKBArticleSelector implements KBArticleSelector {
 
 	protected boolean isDescendant(
 			KBArticle kbArticle, KBFolder ancestorKBFolder)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		KBFolder parentKBFolder = KBFolderLocalServiceUtil.fetchKBFolder(
 			kbArticle.getKbFolderId());

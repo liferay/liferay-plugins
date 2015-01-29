@@ -15,7 +15,6 @@
 package com.liferay.knowledgebase.display.selector;
 
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 
 /**
  * @author Adolfo Pérez
@@ -23,7 +22,7 @@ import com.liferay.portal.kernel.exception.SystemException;
 public class KBArticleSelectorFactoryUtil {
 
 	public static KBArticleSelector getKBArticleSelector(long classNameId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		return _kbArticleSelectorFactory.getKBArticleSelector(classNameId);
 	}

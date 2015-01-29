@@ -33,7 +33,6 @@ import com.liferay.knowledgebase.util.WebKeys;
 import com.liferay.knowledgebase.util.comparator.KBArticlePriorityComparator;
 import com.liferay.portal.NoSuchSubscriptionException;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.servlet.SessionMessages;
 import com.liferay.portal.kernel.util.GetterUtil;
@@ -49,6 +48,7 @@ import com.liferay.portlet.PortletPreferencesFactoryUtil;
 import com.liferay.portlet.PortletURLFactoryUtil;
 
 import java.io.IOException;
+
 import java.util.List;
 
 import javax.portlet.ActionRequest;
@@ -217,7 +217,7 @@ public class DisplayPortlet extends BaseKBPortlet {
 	}
 
 	protected KBArticle getKBArticle(RenderRequest renderRequest)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		PortletPreferences portletPreferences = renderRequest.getPreferences();
 
@@ -315,7 +315,7 @@ public class DisplayPortlet extends BaseKBPortlet {
 
 	private String getPreferredKBFolderUrlTitle(
 			RenderRequest renderRequest, PortletPreferences portletPreferences)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		PortalPreferences portalPreferences =
 			PortletPreferencesFactoryUtil.getPortalPreferences(renderRequest);

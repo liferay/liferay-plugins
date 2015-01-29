@@ -17,7 +17,6 @@ package com.liferay.knowledgebase.display.selector;
 import com.liferay.knowledgebase.model.KBArticle;
 import com.liferay.knowledgebase.service.KBArticleLocalServiceUtil;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 
 /**
@@ -29,7 +28,7 @@ public class KBArticleKBArticleSelector implements KBArticleSelector {
 	public KBArticle findByResourcePrimKey(
 			long groupId, String preferredKBFolderUrlTitle,
 			long ancestorResourcePrimKey, long resourcePrimKey)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		KBArticle ancestorKBArticle =
 			KBArticleLocalServiceUtil.fetchLatestKBArticle(
@@ -51,7 +50,7 @@ public class KBArticleKBArticleSelector implements KBArticleSelector {
 			long groupId, String preferredKBFolderUrlTitle,
 			long ancestorResourcePrimKey, String kbFolderUrlTitle,
 			String urlTitle)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		KBArticle ancestorKBArticle =
 			KBArticleLocalServiceUtil.fetchLatestKBArticle(
@@ -72,7 +71,7 @@ public class KBArticleKBArticleSelector implements KBArticleSelector {
 
 	protected KBArticle findClosestMatchingKBArticle(
 			long groupId, KBArticle ancestorKBArticle, KBArticle kbArticle)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		KBArticle candidateKBArticle = kbArticle;
 
@@ -94,7 +93,7 @@ public class KBArticleKBArticleSelector implements KBArticleSelector {
 
 	protected KBArticle getClosestMatchingDescendantKBArticle(
 			long groupId, KBArticle ancestorKBArticle, KBArticle kbArticle)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		if (kbArticle == null) {
 			return ancestorKBArticle;
@@ -110,7 +109,7 @@ public class KBArticleKBArticleSelector implements KBArticleSelector {
 
 	protected boolean isDescendant(
 			KBArticle kbArticle, KBArticle ancestorKBArticle)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		KBArticle parentKBArticle = kbArticle.getParentKBArticle();
 

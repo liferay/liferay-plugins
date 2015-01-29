@@ -18,7 +18,6 @@ import com.liferay.knowledgebase.NoSuchKBArticleSelectorException;
 import com.liferay.knowledgebase.util.PortletPropsKeys;
 import com.liferay.portal.kernel.configuration.Filter;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.ClassName;
 import com.liferay.portal.service.ClassNameLocalServiceUtil;
@@ -35,7 +34,7 @@ public class DefaultKBArticleSelectorFactory
 
 	@Override
 	public KBArticleSelector getKBArticleSelector(long classNameId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		ClassName className = ClassNameLocalServiceUtil.getClassName(
 			classNameId);
@@ -88,6 +87,6 @@ public class DefaultKBArticleSelectorFactory
 	}
 
 	private final Map<String, KBArticleSelector> _kbArticleSelectorMap =
-		new ConcurrentHashMap<String, KBArticleSelector>();
+		new ConcurrentHashMap<>();
 
 }
