@@ -47,8 +47,8 @@ public class KBArticleURLHelper {
 
 		String portletId = PortalUtil.getPortletId(_renderRequest);
 
-		if (portletId.startsWith(PortletKeys.KNOWLEDGE_BASE_SECTION) ||
-			portletId.startsWith(PortletKeys.KNOWLEDGE_BASE_ADMIN)) {
+		if (portletId.startsWith(PortletKeys.KNOWLEDGE_BASE_ADMIN) ||
+			portletId.startsWith(PortletKeys.KNOWLEDGE_BASE_SECTION)) {
 
 			portletURL.setParameter(
 				"mvcPath", _templatePath + "view_article.jsp");
