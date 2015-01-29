@@ -216,6 +216,40 @@ public class DisplayPortlet extends BaseKBPortlet {
 		}
 	}
 
+	protected KBArticle findClosestMatchingKBArticle(
+			long groupId, String oldKBFolderURLTitle, long newKBFolderId,
+			String urlTitle)
+		throws PortalException {
+
+		KBArticle oldKBArticle =
+			KBArticleLocalServiceUtil.fetchKBArticleByUrlTitle(
+				groupId, oldKBFolderURLTitle, urlTitle);
+
+		KBArticle kbArticle = null;
+
+		while ((kbArticle == null) && (oldKBArticle != null)) {
+			kbArticle = KBArticleLocalServiceUtil.fetchKBArticleByUrlTitle(
+				groupId, newKBFolderId, oldKBArticle.getUrlTitle());
+
+			if (kbArticle == null) {
+				oldKBArticle = oldKBArticle.getParentKBArticle();
+			}
+		}
+
+		if (kbArticle == null) {
+			List<KBArticle> kbArticles =
+				KBArticleLocalServiceUtil.getKBArticles(
+					groupId, newKBFolderId, WorkflowConstants.STATUS_APPROVED,
+					0, 1, new KBArticlePriorityComparator());
+
+			if (!kbArticles.isEmpty()) {
+				kbArticle = kbArticles.get(0);
+			}
+		}
+
+		return kbArticle;
+	}
+
 	protected KBArticle getKBArticle(RenderRequest renderRequest)
 		throws PortalException {
 
@@ -258,6 +292,20 @@ public class DisplayPortlet extends BaseKBPortlet {
 			preferredKBFolderURLTitle, parentResourcePrimKey, resourcePrimKey);
 	}
 
+	protected String getPreferredKBFolderUrlTitle(
+			RenderRequest renderRequest, PortletPreferences portletPreferences)
+		throws PortalException {
+
+		PortalPreferences portalPreferences =
+			PortletPreferencesFactoryUtil.getPortalPreferences(renderRequest);
+
+		String contentRootPrefix = GetterUtil.getString(
+			portletPreferences.getValue("contentRootPrefix", null));
+
+		return KnowledgeBaseUtil.getPreferredKBFolderURLTitle(
+			portalPreferences, contentRootPrefix);
+	}
+
 	protected int getStatus(RenderRequest renderRequest, KBArticle kbArticle)
 		throws Exception {
 
@@ -277,54 +325,6 @@ public class DisplayPortlet extends BaseKBPortlet {
 		}
 
 		return WorkflowConstants.STATUS_APPROVED;
-	}
-
-	protected KBArticle findClosestMatchingKBArticle(
-			long groupId, String oldKBFolderURLTitle, long newKBFolderId,
-			String urlTitle)
-		throws PortalException {
-
-		KBArticle oldKBArticle =
-			KBArticleLocalServiceUtil.fetchKBArticleByUrlTitle(
-				groupId, oldKBFolderURLTitle, urlTitle);
-
-		KBArticle kbArticle = null;
-
-		while ((kbArticle == null) && (oldKBArticle != null)) {
-			kbArticle = KBArticleLocalServiceUtil.fetchKBArticleByUrlTitle(
-				groupId, newKBFolderId, oldKBArticle.getUrlTitle());
-
-			if (kbArticle == null) {
-				oldKBArticle = oldKBArticle.getParentKBArticle();
-			}
-		}
-
-		if (kbArticle == null) {
-			List<KBArticle> kbArticles =
-				KBArticleLocalServiceUtil.getKBArticles(
-					groupId, newKBFolderId, WorkflowConstants.STATUS_APPROVED,
-					0, 1, new KBArticlePriorityComparator());
-
-			if (!kbArticles.isEmpty()) {
-				kbArticle = kbArticles.get(0);
-			}
-		}
-
-		return kbArticle;
-	}
-
-	protected String getPreferredKBFolderUrlTitle(
-			RenderRequest renderRequest, PortletPreferences portletPreferences)
-		throws PortalException {
-
-		PortalPreferences portalPreferences =
-			PortletPreferencesFactoryUtil.getPortalPreferences(renderRequest);
-
-		String contentRootPrefix = GetterUtil.getString(
-			portletPreferences.getValue("contentRootPrefix", null));
-
-		return KnowledgeBaseUtil.getPreferredKBFolderURLTitle(
-			portalPreferences, contentRootPrefix);
 	}
 
 }
