@@ -20,15 +20,15 @@
 		<implicit-parameter name="p_p_state">normal</implicit-parameter>
 	</route>
 	<route>
-		<pattern>/{instanceId}/{resourcePrimKey:\d+}/{p_p_state}</pattern>
-		<implicit-parameter name="mvcPath">/section/view_article.jsp</implicit-parameter>
-	</route>
-	<route>
 		<pattern>/{instanceId}/{urlTitle}</pattern>
 		<implicit-parameter name="mvcPath">/section/view_article.jsp</implicit-parameter>
 	</route>
 	<route>
 		<pattern>/{instanceId}/{kbFolderUrlTitle}/{urlTitle}</pattern>
+		<implicit-parameter name="mvcPath">/section/view_article.jsp</implicit-parameter>
+	</route>
+	<route>
+		<pattern>/{instanceId}/{resourcePrimKey:\d+}/{p_p_state}</pattern>
 		<implicit-parameter name="mvcPath">/section/view_article.jsp</implicit-parameter>
 	</route>
 	<route>
