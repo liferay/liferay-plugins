@@ -31,7 +31,7 @@ public interface AssetEntrySetHandler {
 	public JSONObject interpret(JSONObject payloadJSONObject, File file)
 		throws PortalException, SystemException;
 
-	public void setInterpretedPayload(AssetEntrySet assetEntrySet)
+	public void updateParticipants(AssetEntrySet assetEntrySet)
 		throws PortalException, SystemException;
 
 }

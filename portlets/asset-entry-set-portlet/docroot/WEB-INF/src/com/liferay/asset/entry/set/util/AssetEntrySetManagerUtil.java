@@ -110,7 +110,7 @@ public class AssetEntrySetManagerUtil {
 		return assetEntrySetHandler.interpret(jsonObject, file);
 	}
 
-	public static void setInterpretedPayload(AssetEntrySet assetEntrySet)
+	public static void updateParticipants(AssetEntrySet assetEntrySet)
 		throws PortalException, SystemException {
 
 		JSONObject payloadJSONObject = JSONFactoryUtil.createJSONObject(
@@ -127,7 +127,7 @@ public class AssetEntrySetManagerUtil {
 			return;
 		}
 
-		assetEntrySetHandler.setInterpretedPayload(assetEntrySet);
+		assetEntrySetHandler.updateParticipants(assetEntrySet);
 	}
 
 	private static Map<String, AssetEntrySetHandler> _assetEntrySetHandlers =

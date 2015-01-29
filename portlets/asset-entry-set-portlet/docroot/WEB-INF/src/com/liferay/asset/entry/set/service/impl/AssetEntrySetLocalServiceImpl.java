@@ -115,7 +115,7 @@ public class AssetEntrySetLocalServiceImpl
 				payloadJSONObject.getString(
 					AssetEntrySetConstants.PAYLOAD_KEY_ASSET_TAG_NAMES)));
 
-		AssetEntrySetManagerUtil.setInterpretedPayload(assetEntrySet);
+		AssetEntrySetManagerUtil.updateParticipants(assetEntrySet);
 
 		AssetSharingEntryLocalServiceUtil.addAssetSharingEntries(
 			_ASSET_ENTRY_SET_CLASS_NAME_ID, assetEntrySetId,
@@ -159,7 +159,7 @@ public class AssetEntrySetLocalServiceImpl
 				sharedToClassPKsMap, start, end);
 
 		for (AssetEntrySet assetEntrySet : assetEntrySets) {
-			AssetEntrySetManagerUtil.setInterpretedPayload(assetEntrySet);
+			AssetEntrySetManagerUtil.updateParticipants(assetEntrySet);
 		}
 
 		return assetEntrySets;
@@ -180,7 +180,7 @@ public class AssetEntrySetLocalServiceImpl
 				sharedToClassPKsMap, andOperator, start, end);
 
 		for (AssetEntrySet assetEntrySet : assetEntrySets) {
-			AssetEntrySetManagerUtil.setInterpretedPayload(assetEntrySet);
+			AssetEntrySetManagerUtil.updateParticipants(assetEntrySet);
 		}
 
 		return assetEntrySets;
@@ -199,7 +199,7 @@ public class AssetEntrySetLocalServiceImpl
 			creatorClassNameId, assetTagName, sharedToClassPKsMap, start, end);
 
 		for (AssetEntrySet assetEntrySet : assetEntrySets) {
-			AssetEntrySetManagerUtil.setInterpretedPayload(assetEntrySet);
+			AssetEntrySetManagerUtil.updateParticipants(assetEntrySet);
 		}
 
 		return assetEntrySets;
@@ -253,7 +253,7 @@ public class AssetEntrySetLocalServiceImpl
 				parentAssetEntrySetId, start, end, orderByComparator);
 
 		for (AssetEntrySet assetEntrySet : assetEntrySets) {
-			AssetEntrySetManagerUtil.setInterpretedPayload(assetEntrySet);
+			AssetEntrySetManagerUtil.updateParticipants(assetEntrySet);
 		}
 
 		return assetEntrySets;
@@ -341,7 +341,7 @@ public class AssetEntrySetLocalServiceImpl
 		AssetSharingEntryLocalServiceUtil.deleteAssetSharingEntries(
 			_ASSET_ENTRY_SET_CLASS_NAME_ID, assetEntrySetId);
 
-		AssetEntrySetManagerUtil.setInterpretedPayload(assetEntrySet);
+		AssetEntrySetManagerUtil.updateParticipants(assetEntrySet);
 
 		AssetSharingEntryLocalServiceUtil.addAssetSharingEntries(
 			_ASSET_ENTRY_SET_CLASS_NAME_ID, assetEntrySetId,
@@ -408,7 +408,7 @@ public class AssetEntrySetLocalServiceImpl
 				sharedToClassPKsMap, start, end);
 
 		for (AssetEntrySet assetEntrySet : assetEntrySets) {
-			AssetEntrySetManagerUtil.setInterpretedPayload(assetEntrySet);
+			AssetEntrySetManagerUtil.updateParticipants(assetEntrySet);
 		}
 
 		return assetEntrySets;
