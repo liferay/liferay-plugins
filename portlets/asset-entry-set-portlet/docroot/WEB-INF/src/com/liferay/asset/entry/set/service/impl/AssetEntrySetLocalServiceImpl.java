@@ -421,11 +421,9 @@ public class AssetEntrySetLocalServiceImpl
 
 			participantFullName = jsonObject.getString(
 				AssetEntrySetConstants.ASSET_ENTRY_KEY_PARTICIPANT_FULL_NAME);
-
 			participantPortraitURL = jsonObject.getString(
 				AssetEntrySetConstants.
 					ASSET_ENTRY_KEY_PARTICIPANT_PORTRAIT_URL);
-
 			participantURL = jsonObject.getString(
 				AssetEntrySetConstants.ASSET_ENTRY_KEY_PARTICIPANT_URL);
 		}
