@@ -108,11 +108,6 @@ public class AssetEntrySetLocalServiceImpl
 				AssetEntrySetManagerUtil.interpret(payloadJSONObject, file)));
 		assetEntrySet.setPrivateAssetEntrySet(privateAssetEntrySet);
 
-		Map<Long, long[]> sharedToClassPKsMap = getSharedToClassPKsMap(
-			payloadJSONObject);
-
-		addUserToSharedTo(assetEntrySet, sharedToClassPKsMap);
-
 		assetEntrySetPersistence.update(assetEntrySet);
 
 		updateChildAssetEntrySetsCount(parentAssetEntrySetId);
@@ -124,6 +119,12 @@ public class AssetEntrySetLocalServiceImpl
 					AssetEntrySetConstants.PAYLOAD_KEY_ASSET_TAG_NAMES)));
 
 		updateParticipants(assetEntrySet);
+
+		Map<Long, long[]> sharedToClassPKsMap = getSharedToClassPKsMap(
+			payloadJSONObject);
+
+		addUserToSharedToClassPKsMap(
+			sharedToClassPKsMap, assetEntrySet.getUserId());
 
 		AssetSharingEntryLocalServiceUtil.addAssetSharingEntries(
 			_ASSET_ENTRY_SET_CLASS_NAME_ID, assetEntrySetId,
@@ -325,11 +326,6 @@ public class AssetEntrySetLocalServiceImpl
 				AssetEntrySetManagerUtil.interpret(payloadJSONObject, file)));
 		assetEntrySet.setPrivateAssetEntrySet(privateAssetEntrySet);
 
-		Map<Long, long[]> sharedToClassPKsMap = getSharedToClassPKsMap(
-			payloadJSONObject);
-
-		addUserToSharedTo(assetEntrySet, sharedToClassPKsMap);
-
 		assetEntrySetPersistence.update(assetEntrySet);
 
 		updateAssetEntry(
@@ -343,6 +339,12 @@ public class AssetEntrySetLocalServiceImpl
 
 		updateParticipants(assetEntrySet);
 
+		Map<Long, long[]> sharedToClassPKsMap = getSharedToClassPKsMap(
+			payloadJSONObject);
+
+		addUserToSharedToClassPKsMap(
+			sharedToClassPKsMap, assetEntrySet.getUserId());
+
 		AssetSharingEntryLocalServiceUtil.addAssetSharingEntries(
 			_ASSET_ENTRY_SET_CLASS_NAME_ID, assetEntrySetId,
 			sharedToClassPKsMap);
@@ -350,48 +352,18 @@ public class AssetEntrySetLocalServiceImpl
 		return assetEntrySet;
 	}
 
-	protected void addUserToSharedTo(
-			AssetEntrySet assetEntrySet, Map<Long, long[]> sharedToClassPKsMap)
-		throws PortalException {
+	protected void addUserToSharedToClassPKsMap(
+		Map<Long, long[]> sharedToClassPKsMap, long userId) {
 
 		long[] sharedToUserIds = sharedToClassPKsMap.get(_USER_CLASS_NAME_ID);
 
 		if (sharedToUserIds == null) {
-			sharedToUserIds = new long[]{};
+			sharedToClassPKsMap.put(_USER_CLASS_NAME_ID, new long[] {userId});
 		}
-
-		long userId = assetEntrySet.getUserId();
-
-		if (ArrayUtil.contains(sharedToUserIds, userId)) {
-			return;
+		else if (!ArrayUtil.contains(sharedToUserIds, userId)) {
+			sharedToClassPKsMap.put(
+				_USER_CLASS_NAME_ID, ArrayUtil.append(sharedToUserIds, userId));
 		}
-
-		sharedToClassPKsMap.put(
-			_USER_CLASS_NAME_ID, ArrayUtil.append(sharedToUserIds, userId));
-
-		JSONObject classNameIdClassPKJSONObject =
-			JSONFactoryUtil.createJSONObject();
-
-		classNameIdClassPKJSONObject.put("classNameId", _USER_CLASS_NAME_ID);
-		classNameIdClassPKJSONObject.put("classPK", userId);
-
-		JSONObject payloadJSONObject = JSONFactoryUtil.createJSONObject(
-			assetEntrySet.getPayload());
-
-		JSONArray sharedToJSONArray = payloadJSONObject.getJSONArray(
-			AssetEntrySetConstants.PAYLOAD_KEY_SHARED_TO);
-
-		if (sharedToJSONArray == null) {
-			sharedToJSONArray = JSONFactoryUtil.createJSONArray();
-		}
-
-		sharedToJSONArray.put(classNameIdClassPKJSONObject);
-
-		payloadJSONObject.put(
-			AssetEntrySetConstants.PAYLOAD_KEY_SHARED_TO, sharedToJSONArray);
-
-		assetEntrySet.setPayload(
-			JSONFactoryUtil.looseSerialize(payloadJSONObject));
 	}
 
 	protected List<AssetEntrySet> getAssetEntrySets(
