@@ -131,13 +131,13 @@ public class SyncDLObjectLocalServiceClpInvoker {
 				"java.lang.String", "java.lang.String"
 			};
 
-		_methodName88 = "getLatestModifiedTime";
+		_methodName88 = "fetchSyncDLObject";
 
-		_methodParameterTypes88 = new String[] {  };
+		_methodParameterTypes88 = new String[] { "java.lang.String", "long" };
 
-		_methodName89 = "getSyncDLObject";
+		_methodName89 = "getLatestModifiedTime";
 
-		_methodParameterTypes89 = new String[] { "java.lang.String", "long" };
+		_methodParameterTypes89 = new String[] {  };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -271,13 +271,13 @@ public class SyncDLObjectLocalServiceClpInvoker {
 
 		if (_methodName88.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes88, parameterTypes)) {
-			return SyncDLObjectLocalServiceUtil.getLatestModifiedTime();
+			return SyncDLObjectLocalServiceUtil.fetchSyncDLObject((java.lang.String)arguments[0],
+				((Long)arguments[1]).longValue());
 		}
 
 		if (_methodName89.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes89, parameterTypes)) {
-			return SyncDLObjectLocalServiceUtil.getSyncDLObject((java.lang.String)arguments[0],
-				((Long)arguments[1]).longValue());
+			return SyncDLObjectLocalServiceUtil.getLatestModifiedTime();
 		}
 
 		throw new UnsupportedOperationException();

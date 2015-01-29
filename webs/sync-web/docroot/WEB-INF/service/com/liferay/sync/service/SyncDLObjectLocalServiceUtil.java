@@ -299,16 +299,14 @@ public class SyncDLObjectLocalServiceUtil {
 		getService().deleteSyncDLObjects(version, type);
 	}
 
+	public static com.liferay.sync.model.SyncDLObject fetchSyncDLObject(
+		java.lang.String type, long typePK) {
+		return getService().fetchSyncDLObject(type, typePK);
+	}
+
 	public static long getLatestModifiedTime()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().getLatestModifiedTime();
-	}
-
-	public static com.liferay.sync.model.SyncDLObject getSyncDLObject(
-		java.lang.String type, long typePK)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return getService().getSyncDLObject(type, typePK);
 	}
 
 	public static void clearService() {
