@@ -496,44 +496,6 @@ public class AssetEntrySetClp extends BaseModelImpl<AssetEntrySet>
 		}
 	}
 
-	@Override
-	public void setCreator(
-		com.liferay.portal.kernel.json.JSONObject creatorJSONObject) {
-		try {
-			String methodName = "setCreator";
-
-			Class<?>[] parameterTypes = new Class<?>[] {
-					com.liferay.portal.kernel.json.JSONObject.class
-				};
-
-			Object[] parameterValues = new Object[] { creatorJSONObject };
-
-			invokeOnRemoteModel(methodName, parameterTypes, parameterValues);
-		}
-		catch (Exception e) {
-			throw new UnsupportedOperationException(e);
-		}
-	}
-
-	@Override
-	public com.liferay.portal.kernel.json.JSONObject getCreator() {
-		try {
-			String methodName = "getCreator";
-
-			Class<?>[] parameterTypes = new Class<?>[] {  };
-
-			Object[] parameterValues = new Object[] {  };
-
-			com.liferay.portal.kernel.json.JSONObject returnObj = (com.liferay.portal.kernel.json.JSONObject)invokeOnRemoteModel(methodName,
-					parameterTypes, parameterValues);
-
-			return returnObj;
-		}
-		catch (Exception e) {
-			throw new UnsupportedOperationException(e);
-		}
-	}
-
 	public BaseModel<?> getAssetEntrySetRemoteModel() {
 		return _assetEntrySetRemoteModel;
 	}

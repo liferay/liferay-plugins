@@ -30,8 +30,6 @@
 	</mapped-superclass>
 	<entity class="com.liferay.asset.entry.set.model.impl.AssetEntrySetImpl" name="AssetEntrySet">
 		<table name="AssetEntrySet" />
-		<attributes>
-			<transient name="creator" />
-		</attributes>
+		<attributes />
 	</entity>
 </entity-mappings>

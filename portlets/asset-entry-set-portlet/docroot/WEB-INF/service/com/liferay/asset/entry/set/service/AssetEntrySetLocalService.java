@@ -319,7 +319,8 @@ public interface AssetEntrySetLocalService extends BaseLocalService,
 	public java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> getChildAssetEntrySets(
 		long parentAssetEntrySetId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> getNewAssetEntrySets(
@@ -354,11 +355,6 @@ public interface AssetEntrySetLocalService extends BaseLocalService,
 		long assetEntrySetId,
 		com.liferay.portal.kernel.json.JSONObject payloadJSONObject,
 		java.io.File file, boolean privateAssetEntrySet)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
-
-	public com.liferay.asset.entry.set.model.AssetEntrySet updateChildAssetEntrySetsCount(
-		long parentAssetEntrySetId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 }

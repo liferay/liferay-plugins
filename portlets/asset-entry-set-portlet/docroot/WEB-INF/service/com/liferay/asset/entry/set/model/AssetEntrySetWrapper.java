@@ -569,17 +569,6 @@ public class AssetEntrySetWrapper implements AssetEntrySet,
 	}
 
 	@Override
-	public com.liferay.portal.kernel.json.JSONObject getCreator() {
-		return _assetEntrySet.getCreator();
-	}
-
-	@Override
-	public void setCreator(
-		com.liferay.portal.kernel.json.JSONObject creatorJSONObject) {
-		_assetEntrySet.setCreator(creatorJSONObject);
-	}
-
-	@Override
 	public boolean equals(Object obj) {
 		if (this == obj) {
 			return true;

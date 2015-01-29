@@ -383,7 +383,8 @@ public class AssetEntrySetLocalServiceWrapper
 	public java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> getChildAssetEntrySets(
 		long parentAssetEntrySetId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
 		return _assetEntrySetLocalService.getChildAssetEntrySets(parentAssetEntrySetId,
 			start, end, orderByComparator);
 	}
@@ -444,14 +445,6 @@ public class AssetEntrySetLocalServiceWrapper
 			com.liferay.portal.kernel.exception.SystemException {
 		return _assetEntrySetLocalService.updateAssetEntrySet(assetEntrySetId,
 			payloadJSONObject, file, privateAssetEntrySet);
-	}
-
-	@Override
-	public com.liferay.asset.entry.set.model.AssetEntrySet updateChildAssetEntrySetsCount(
-		long parentAssetEntrySetId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return _assetEntrySetLocalService.updateChildAssetEntrySetsCount(parentAssetEntrySetId);
 	}
 
 	/**
