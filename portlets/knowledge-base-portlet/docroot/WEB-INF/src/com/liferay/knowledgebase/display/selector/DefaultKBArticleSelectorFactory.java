@@ -39,10 +39,10 @@ public class DefaultKBArticleSelectorFactory
 		ClassName className = ClassNameLocalServiceUtil.getClassName(
 			classNameId);
 
-		return _getKBArticleSelector(className.getClassName());
+		return getKBArticleSelector(className.getClassName());
 	}
 
-	private KBArticleSelector _createKBArticleSelectorInstance(String className)
+	protected KBArticleSelector createKBArticleSelector(String className)
 		throws NoSuchKBArticleSelectorException {
 
 		try {
@@ -71,14 +71,14 @@ public class DefaultKBArticleSelectorFactory
 		}
 	}
 
-	private KBArticleSelector _getKBArticleSelector(String className)
+	protected KBArticleSelector getKBArticleSelector(String className)
 		throws PortalException {
 
 		KBArticleSelector kbArticleSelector = _kbArticleSelectorMap.get(
 			className);
 
 		if (kbArticleSelector == null) {
-			kbArticleSelector = _createKBArticleSelectorInstance(className);
+			kbArticleSelector = createKBArticleSelector(className);
 
 			_kbArticleSelectorMap.put(className, kbArticleSelector);
 		}
