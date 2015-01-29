@@ -119,11 +119,14 @@ public abstract class SyncDLFileVersionDiffLocalServiceBaseImpl
 	 *
 	 * @param syncDLFileVersionDiff the sync d l file version diff
 	 * @return the sync d l file version diff that was removed
+	 * @throws PortalException
+	 * @throws SystemException
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
 	public SyncDLFileVersionDiff deleteSyncDLFileVersionDiff(
-		SyncDLFileVersionDiff syncDLFileVersionDiff) {
+		SyncDLFileVersionDiff syncDLFileVersionDiff)
+		throws PortalException, SystemException {
 		return syncDLFileVersionDiffPersistence.remove(syncDLFileVersionDiff);
 	}
 
