@@ -138,6 +138,7 @@ public class SyncDLObjectLocalServiceImpl
 	@Override
 	public SyncDLObject fetchSyncDLObject(String type, long typePK)
 		throws SystemException {
+
 		return syncDLObjectPersistence.fetchByT_T(type, typePK);
 	}
 
