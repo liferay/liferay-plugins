@@ -28,10 +28,18 @@ import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portal.kernel.util.PropsKeys;
+import com.liferay.portal.kernel.util.PropsUtil;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.User;
+import com.liferay.portal.model.UserConstants;
 import com.liferay.portal.service.ClassNameLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
+import com.liferay.portal.service.UserLocalServiceUtil;
+import com.liferay.portal.util.PortalUtil;
+import com.liferay.portlet.asset.model.AssetEntry;
+import com.liferay.portlet.asset.service.AssetEntryLocalServiceUtil;
 import com.liferay.portlet.ratings.model.RatingsStats;
 
 import java.io.File;
@@ -115,7 +123,7 @@ public class AssetEntrySetLocalServiceImpl
 				payloadJSONObject.getString(
 					AssetEntrySetConstants.PAYLOAD_KEY_ASSET_TAG_NAMES)));
 
-		AssetEntrySetManagerUtil.updateParticipants(assetEntrySet);
+		updateParticipants(assetEntrySet);
 
 		AssetSharingEntryLocalServiceUtil.addAssetSharingEntries(
 			_ASSET_ENTRY_SET_CLASS_NAME_ID, assetEntrySetId,
@@ -159,7 +167,7 @@ public class AssetEntrySetLocalServiceImpl
 				sharedToClassPKsMap, start, end);
 
 		for (AssetEntrySet assetEntrySet : assetEntrySets) {
-			AssetEntrySetManagerUtil.updateParticipants(assetEntrySet);
+			updateParticipants(assetEntrySet);
 		}
 
 		return assetEntrySets;
@@ -180,7 +188,7 @@ public class AssetEntrySetLocalServiceImpl
 				sharedToClassPKsMap, andOperator, start, end);
 
 		for (AssetEntrySet assetEntrySet : assetEntrySets) {
-			AssetEntrySetManagerUtil.updateParticipants(assetEntrySet);
+			updateParticipants(assetEntrySet);
 		}
 
 		return assetEntrySets;
@@ -199,7 +207,7 @@ public class AssetEntrySetLocalServiceImpl
 			creatorClassNameId, assetTagName, sharedToClassPKsMap, start, end);
 
 		for (AssetEntrySet assetEntrySet : assetEntrySets) {
-			AssetEntrySetManagerUtil.updateParticipants(assetEntrySet);
+			updateParticipants(assetEntrySet);
 		}
 
 		return assetEntrySets;
@@ -253,7 +261,7 @@ public class AssetEntrySetLocalServiceImpl
 				parentAssetEntrySetId, start, end, orderByComparator);
 
 		for (AssetEntrySet assetEntrySet : assetEntrySets) {
-			AssetEntrySetManagerUtil.updateParticipants(assetEntrySet);
+			updateParticipants(assetEntrySet);
 		}
 
 		return assetEntrySets;
@@ -341,7 +349,7 @@ public class AssetEntrySetLocalServiceImpl
 		AssetSharingEntryLocalServiceUtil.deleteAssetSharingEntries(
 			_ASSET_ENTRY_SET_CLASS_NAME_ID, assetEntrySetId);
 
-		AssetEntrySetManagerUtil.updateParticipants(assetEntrySet);
+		updateParticipants(assetEntrySet);
 
 		AssetSharingEntryLocalServiceUtil.addAssetSharingEntries(
 			_ASSET_ENTRY_SET_CLASS_NAME_ID, assetEntrySetId,
@@ -408,10 +416,106 @@ public class AssetEntrySetLocalServiceImpl
 				sharedToClassPKsMap, start, end);
 
 		for (AssetEntrySet assetEntrySet : assetEntrySets) {
-			AssetEntrySetManagerUtil.updateParticipants(assetEntrySet);
+			updateParticipants(assetEntrySet);
 		}
 
 		return assetEntrySets;
+	}
+
+	protected JSONObject getCreator(
+			long creatorClassNameId, long creatorClassPK)
+		throws PortalException, SystemException {
+
+		return getParticipant(
+			JSONFactoryUtil.createJSONObject(), creatorClassNameId,
+			creatorClassPK, true);
+	}
+
+	protected JSONObject getParticipant(
+			JSONObject participantJSONObject, long classNameId, long classPK,
+			boolean includePortraitURL)
+		throws PortalException, SystemException {
+
+		String participantFullName = StringPool.BLANK;
+		String participantPortraitURL = StringPool.BLANK;
+		String participantURL = StringPool.BLANK;
+
+		if (classNameId == _USER_CLASS_NAME_ID) {
+			User user = UserLocalServiceUtil.getUser(classPK);
+
+			participantFullName = user.getFullName();
+
+			if (includePortraitURL) {
+				participantPortraitURL = UserConstants.getPortraitURL(
+					PortalUtil.getPathImage(), user.isMale(),
+					user.getPortraitId());
+			}
+
+			Group group = user.getGroup();
+
+			participantURL =
+				_LAYOUT_FRIENDLY_URL_PUBLIC_SERVLET_MAPPING +
+					group.getFriendlyURL();
+		}
+		else {
+			AssetEntry assetEntry = AssetEntryLocalServiceUtil.getEntry(
+				PortalUtil.getClassName(classNameId), classPK);
+
+			JSONObject jsonObject = JSONFactoryUtil.createJSONObject(
+				assetEntry.getDescription());
+
+			participantFullName = jsonObject.getString(
+				AssetEntrySetConstants.ASSET_ENTRY_KEY_PARTICIPANT_FULL_NAME);
+
+			if (includePortraitURL) {
+				participantPortraitURL = jsonObject.getString(
+					AssetEntrySetConstants.
+						ASSET_ENTRY_KEY_PARTICIPANT_PORTRAIT_URL);
+			}
+
+			participantURL = jsonObject.getString(
+				AssetEntrySetConstants.ASSET_ENTRY_KEY_PARTICIPANT_URL);
+		}
+
+		participantJSONObject.put(
+			AssetEntrySetConstants.ASSET_ENTRY_KEY_PARTICIPANT_FULL_NAME,
+			participantFullName);
+
+		if (includePortraitURL) {
+			participantJSONObject.put(
+				AssetEntrySetConstants.ASSET_ENTRY_KEY_PARTICIPANT_PORTRAIT_URL,
+				participantPortraitURL);
+		}
+
+		participantJSONObject.put(
+			AssetEntrySetConstants.ASSET_ENTRY_KEY_PARTICIPANT_URL,
+			participantURL);
+
+		return participantJSONObject;
+	}
+
+	protected JSONArray getSharedTo(JSONObject payloadJSONObject)
+		throws PortalException, SystemException {
+
+		JSONArray sharedToJSONArray =
+			payloadJSONObject.getJSONArray(
+				AssetEntrySetConstants.PAYLOAD_KEY_SHARED_TO);
+
+		JSONArray returnedSharedToJSONArray = JSONFactoryUtil.createJSONArray();
+
+		for (int i = 0; i < sharedToJSONArray.length(); i++) {
+			JSONObject participantJSONObject = sharedToJSONArray.getJSONObject(
+				i);
+
+			long classNameId = participantJSONObject.getLong("classNameId");
+			long classPK = participantJSONObject.getLong("classPK");
+
+			returnedSharedToJSONArray.put(
+				getParticipant(
+					participantJSONObject, classNameId, classPK, false));
+		}
+
+		return returnedSharedToJSONArray;
 	}
 
 	protected Map<Long, long[]> getSharedToClassPKsMap(
@@ -479,6 +583,28 @@ public class AssetEntrySetLocalServiceImpl
 		assetEntrySetPersistence.update(assetEntrySet);
 	}
 
+	protected void updateParticipants(AssetEntrySet assetEntrySet)
+		throws PortalException, SystemException {
+
+		JSONObject payloadJSONObject = JSONFactoryUtil.createJSONObject(
+			assetEntrySet.getPayload());
+
+		JSONObject creatorJSONObject = getCreator(
+			assetEntrySet.getCreatorClassNameId(),
+			assetEntrySet.getCreatorClassPK());
+
+		payloadJSONObject.put(
+			AssetEntrySetConstants.PAYLOAD_KEY_CREATOR, creatorJSONObject);
+
+		JSONArray sharedToJSONArray = getSharedTo(payloadJSONObject);
+
+		payloadJSONObject.put(
+			AssetEntrySetConstants.PAYLOAD_KEY_SHARED_TO, sharedToJSONArray);
+
+		assetEntrySet.setPayload(
+			JSONFactoryUtil.looseSerialize(payloadJSONObject));
+	}
+
 	protected AssetEntrySet updateRatingsStatsTotalScore(
 			long userId, long assetEntrySetId, long score)
 		throws PortalException, SystemException {
@@ -504,6 +630,9 @@ public class AssetEntrySetLocalServiceImpl
 
 	private static final long _ASSET_ENTRY_SET_CLASS_NAME_ID =
 		ClassNameLocalServiceUtil.getClassNameId(AssetEntrySet.class);
+
+	private static final String _LAYOUT_FRIENDLY_URL_PUBLIC_SERVLET_MAPPING =
+		PropsUtil.get(PropsKeys.LAYOUT_FRIENDLY_URL_PUBLIC_SERVLET_MAPPING);
 
 	private static final long _USER_CLASS_NAME_ID =
 		ClassNameLocalServiceUtil.getClassNameId(User.class);
