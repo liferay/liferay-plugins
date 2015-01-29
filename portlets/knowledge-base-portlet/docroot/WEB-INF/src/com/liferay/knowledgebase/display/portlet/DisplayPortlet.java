@@ -149,7 +149,7 @@ public class DisplayPortlet extends BaseKBPortlet {
 				return;
 			}
 
-			kbArticle = _findClosestMatchingKBArticle(
+			kbArticle = findClosestMatchingKBArticle(
 				kbFolder.getGroupId(), previousPreferredKBFolderURLTitle,
 				kbFolder.getKbFolderId(), urlTitle);
 
@@ -279,7 +279,7 @@ public class DisplayPortlet extends BaseKBPortlet {
 		return WorkflowConstants.STATUS_APPROVED;
 	}
 
-	private KBArticle _findClosestMatchingKBArticle(
+	protected KBArticle findClosestMatchingKBArticle(
 			long groupId, String oldKBFolderURLTitle, long newKBFolderId,
 			String urlTitle)
 		throws PortalException {
@@ -313,7 +313,7 @@ public class DisplayPortlet extends BaseKBPortlet {
 		return kbArticle;
 	}
 
-	private String getPreferredKBFolderUrlTitle(
+	protected String getPreferredKBFolderUrlTitle(
 			RenderRequest renderRequest, PortletPreferences portletPreferences)
 		throws PortalException {
 
