@@ -21,6 +21,8 @@ import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.portlet.DynamicActionRequest;
+import com.liferay.portal.kernel.search.Indexer;
+import com.liferay.portal.kernel.search.IndexerRegistryUtil;
 import com.liferay.portal.kernel.servlet.ServletResponseUtil;
 import com.liferay.portal.kernel.struts.BaseStrutsPortletAction;
 import com.liferay.portal.kernel.struts.StrutsPortletAction;
@@ -57,7 +59,6 @@ import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
 import javax.portlet.ResourceRequest;
 import javax.portlet.ResourceResponse;
-
 import javax.servlet.http.HttpServletResponse;
 
 /**
@@ -234,6 +235,9 @@ public class EditUserAction extends BaseStrutsPortletAction {
 					projectsEntry.getProjectsEntryId());
 			}
 		}
+
+		Indexer indexer = IndexerRegistryUtil.nullSafeGetIndexer(User.class);
+		indexer.reindex(user);
 	}
 
 	protected void updateUser(
