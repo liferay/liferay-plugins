@@ -334,6 +334,7 @@ KBArticleURLHelper kbArticleURLHelper = new KBArticleURLHelper(renderRequest, re
 				<liferay-ui:search-container-column-status
 					href="<%= rowURL %>"
 					name="status"
+					orderable="<%= true %>"
 				/>
 
 				<liferay-ui:search-container-column-text
