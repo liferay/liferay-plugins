@@ -365,9 +365,7 @@ KBArticleURLHelper kbArticleURLHelper = new KBArticleURLHelper(renderRequest, re
 					KBArticle parentKBArticle = KBArticleServiceUtil.getLatestKBArticle(parentResourcePrimKey, WorkflowConstants.STATUS_ANY);
 
 					PortletURL viewKBArticleURL = kbArticleURLHelper.createViewURL(parentKBArticle);
-					%>
 
-					<%
 					StringBundler sb = new StringBundler(5);
 
 					sb.append("<a href=\"");
