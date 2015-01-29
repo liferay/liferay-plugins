@@ -35,7 +35,7 @@ public class KBFolderKBArticleSelector implements KBArticleSelector {
 			long ancestorResourcePrimKey, long resourcePrimKey)
 		throws PortalException {
 
-		KBFolder ancestorKBFolder = _ROOT_KB_FOLDER;
+		KBFolder ancestorKBFolder = _rootKBFolder;
 
 		if (ancestorResourcePrimKey !=
 				KBFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
@@ -66,7 +66,7 @@ public class KBFolderKBArticleSelector implements KBArticleSelector {
 			String urlTitle)
 		throws PortalException {
 
-		KBFolder ancestorKBFolder = _ROOT_KB_FOLDER;
+		KBFolder ancestorKBFolder = _rootKBFolder;
 
 		if (ancestorResourcePrimKey !=
 				KBFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
@@ -79,7 +79,7 @@ public class KBFolderKBArticleSelector implements KBArticleSelector {
 			}
 		}
 
-		KBFolder kbFolder = _ROOT_KB_FOLDER;
+		KBFolder kbFolder = _rootKBFolder;
 
 		if (Validator.isNotNull(kbFolderUrlTitle)) {
 			kbFolder = KBFolderLocalServiceUtil.fetchKBFolderByUrlTitle(
@@ -200,13 +200,12 @@ public class KBFolderKBArticleSelector implements KBArticleSelector {
 		return false;
 	}
 
-	private static final KBFolder _ROOT_KB_FOLDER;
+	private static final KBFolder _rootKBFolder;
 
 	static {
-		_ROOT_KB_FOLDER = new KBFolderImpl();
+		_rootKBFolder = new KBFolderImpl();
 
-		_ROOT_KB_FOLDER.setKbFolderId(
-			KBFolderConstants.DEFAULT_PARENT_FOLDER_ID);
+		_rootKBFolder.setKbFolderId(KBFolderConstants.DEFAULT_PARENT_FOLDER_ID);
 	}
 
 }
