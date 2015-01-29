@@ -120,7 +120,11 @@ public class KBArticleKBArticleSelector implements KBArticleSelector {
 			parentKBArticle = parentKBArticle.getParentKBArticle();
 		}
 
-		return parentKBArticle != null;
+		if (parentKBArticle != null) {
+			return true;
+		}
+
+		return false;
 	}
 
 }
