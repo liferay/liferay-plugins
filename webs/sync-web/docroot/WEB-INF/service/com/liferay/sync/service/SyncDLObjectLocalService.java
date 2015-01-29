@@ -272,7 +272,8 @@ public interface SyncDLObjectLocalService extends BaseLocalService,
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.sync.model.SyncDLObject fetchSyncDLObject(
-		java.lang.String type, long typePK);
+		java.lang.String type, long typePK)
+		throws com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public long getLatestModifiedTime()

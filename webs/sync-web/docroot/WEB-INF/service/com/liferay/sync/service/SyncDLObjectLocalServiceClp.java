@@ -805,7 +805,8 @@ public class SyncDLObjectLocalServiceClp implements SyncDLObjectLocalService {
 
 	@Override
 	public com.liferay.sync.model.SyncDLObject fetchSyncDLObject(
-		java.lang.String type, long typePK) {
+		java.lang.String type, long typePK)
+		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
@@ -815,6 +816,10 @@ public class SyncDLObjectLocalServiceClp implements SyncDLObjectLocalService {
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
 
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
