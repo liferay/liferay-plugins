@@ -43,9 +43,7 @@ import javax.portlet.PortletURL;
  */
 public class CalendarIndexer extends BaseIndexer {
 
-	public static final String[] CLASS_NAMES = {Calendar.class.getName()};
-
-	public static final String PORTLET_ID = PortletKeys.CALENDAR;
+	public static final String CLASS_NAME = Calendar.class.getName();
 
 	public CalendarIndexer() {
 		setDefaultSelectedFieldNames(
@@ -59,13 +57,8 @@ public class CalendarIndexer extends BaseIndexer {
 	}
 
 	@Override
-	public String[] getClassNames() {
-		return CLASS_NAMES;
-	}
-
-	@Override
-	public String getPortletId() {
-		return PORTLET_ID;
+	public String getClassName() {
+		return CLASS_NAME;
 	}
 
 	@Override
@@ -101,7 +94,7 @@ public class CalendarIndexer extends BaseIndexer {
 	protected Document doGetDocument(Object object) throws Exception {
 		Calendar calendar = (Calendar)object;
 
-		Document document = getBaseModelDocument(PORTLET_ID, calendar);
+		Document document = getBaseModelDocument(CLASS_NAME, calendar);
 
 		document.addLocalizedText(
 			Field.DESCRIPTION, calendar.getDescriptionMap());
@@ -164,11 +157,6 @@ public class CalendarIndexer extends BaseIndexer {
 		long companyId = GetterUtil.getLong(ids[0]);
 
 		reindexCalendars(companyId);
-	}
-
-	@Override
-	protected String getPortletId(SearchContext searchContext) {
-		return PORTLET_ID;
 	}
 
 	protected void reindexCalendars(long companyId) throws PortalException {

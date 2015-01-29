@@ -41,13 +41,8 @@ public abstract class BaseAlloyIndexer extends BaseIndexer {
 	}
 
 	@Override
-	public String[] getClassNames() {
-		return classNames;
-	}
-
-	@Override
-	public String getPortletId() {
-		return portletId;
+	public String getClassName() {
+		return className;
 	}
 
 	@Override
@@ -71,7 +66,7 @@ public abstract class BaseAlloyIndexer extends BaseIndexer {
 		Document document = new DocumentImpl();
 
 		document.addUID(
-			portletId, String.valueOf(baseModel.getPrimaryKeyObj()));
+			className, String.valueOf(baseModel.getPrimaryKeyObj()));
 
 		AuditedModel auditedModel = (AuditedModel)obj;
 
@@ -104,11 +99,6 @@ public abstract class BaseAlloyIndexer extends BaseIndexer {
 		long companyId = GetterUtil.getLong(ids[0]);
 
 		reindexModels(companyId);
-	}
-
-	@Override
-	protected String getPortletId(SearchContext searchContext) {
-		return portletId;
 	}
 
 	protected void reindexModels(long companyId) throws Exception {
@@ -154,19 +144,12 @@ public abstract class BaseAlloyIndexer extends BaseIndexer {
 	}
 
 	protected void setClassName(String className) {
-		if (this.classNames == null) {
-			classNames = new String[] {className};
-		}
-	}
-
-	protected void setPortletId(String portletId) {
-		if (this.portletId == null) {
-			this.portletId = portletId;
+		if (this.className == null) {
+			this.className = className;
 		}
 	}
 
 	protected AlloyServiceInvoker alloyServiceInvoker;
-	protected String[] classNames;
-	protected String portletId;
+	protected String className;
 
 }
