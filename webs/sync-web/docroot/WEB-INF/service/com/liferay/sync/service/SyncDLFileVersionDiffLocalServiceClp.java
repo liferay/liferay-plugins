@@ -126,13 +126,17 @@ public class SyncDLFileVersionDiffLocalServiceClp
 
 		_methodParameterTypes20 = new String[] {  };
 
-		_methodName21 = "fetchSyncDLFileVersionDiff";
+		_methodName21 = "deleteSyncDLFileVersionDiffs";
 
-		_methodParameterTypes21 = new String[] { "long", "long", "long" };
+		_methodParameterTypes21 = new String[] { "long" };
 
-		_methodName22 = "refreshExpirationDate";
+		_methodName22 = "fetchSyncDLFileVersionDiff";
 
-		_methodParameterTypes22 = new String[] { "long" };
+		_methodParameterTypes22 = new String[] { "long", "long", "long" };
+
+		_methodName23 = "refreshExpirationDate";
+
+		_methodParameterTypes23 = new String[] { "long" };
 	}
 
 	@Override
@@ -230,7 +234,8 @@ public class SyncDLFileVersionDiffLocalServiceClp
 	@Override
 	public com.liferay.sync.model.SyncDLFileVersionDiff deleteSyncDLFileVersionDiff(
 		com.liferay.sync.model.SyncDLFileVersionDiff syncDLFileVersionDiff)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
@@ -242,6 +247,10 @@ public class SyncDLFileVersionDiffLocalServiceClp
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
 
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
 				throw (com.liferay.portal.kernel.exception.SystemException)t;
@@ -769,14 +778,43 @@ public class SyncDLFileVersionDiffLocalServiceClp
 	}
 
 	@Override
+	public void deleteSyncDLFileVersionDiffs(long fileEntryId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		try {
+			_invokableLocalService.invokeMethod(_methodName21,
+				_methodParameterTypes21, new Object[] { fileEntryId });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+	}
+
+	@Override
 	public com.liferay.sync.model.SyncDLFileVersionDiff fetchSyncDLFileVersionDiff(
 		long fileEntryId, long sourceFileVersionId, long targetFileVersionId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName21,
-					_methodParameterTypes21,
+			returnObj = _invokableLocalService.invokeMethod(_methodName22,
+					_methodParameterTypes22,
 					new Object[] {
 						fileEntryId,
 						
@@ -809,8 +847,8 @@ public class SyncDLFileVersionDiffLocalServiceClp
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		try {
-			_invokableLocalService.invokeMethod(_methodName22,
-				_methodParameterTypes22,
+			_invokableLocalService.invokeMethod(_methodName23,
+				_methodParameterTypes23,
 				new Object[] { syncDLFileVersionDiffId });
 		}
 		catch (Throwable t) {
@@ -879,4 +917,6 @@ public class SyncDLFileVersionDiffLocalServiceClp
 	private String[] _methodParameterTypes21;
 	private String _methodName22;
 	private String[] _methodParameterTypes22;
+	private String _methodName23;
+	private String[] _methodParameterTypes23;
 }

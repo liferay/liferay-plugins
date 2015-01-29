@@ -78,12 +78,14 @@ public class SyncDLFileVersionDiffLocalServiceWrapper
 	*
 	* @param syncDLFileVersionDiff the sync d l file version diff
 	* @return the sync d l file version diff that was removed
+	* @throws PortalException
 	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public com.liferay.sync.model.SyncDLFileVersionDiff deleteSyncDLFileVersionDiff(
 		com.liferay.sync.model.SyncDLFileVersionDiff syncDLFileVersionDiff)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
 		return _syncDLFileVersionDiffLocalService.deleteSyncDLFileVersionDiff(syncDLFileVersionDiff);
 	}
 
@@ -305,6 +307,13 @@ public class SyncDLFileVersionDiffLocalServiceWrapper
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		_syncDLFileVersionDiffLocalService.deleteExpiredSyncDLFileVersionDiffs();
+	}
+
+	@Override
+	public void deleteSyncDLFileVersionDiffs(long fileEntryId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		_syncDLFileVersionDiffLocalService.deleteSyncDLFileVersionDiffs(fileEntryId);
 	}
 
 	@Override

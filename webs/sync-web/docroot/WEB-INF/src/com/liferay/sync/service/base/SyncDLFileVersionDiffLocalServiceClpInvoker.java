@@ -124,13 +124,23 @@ public class SyncDLFileVersionDiffLocalServiceClpInvoker {
 
 		_methodParameterTypes57 = new String[] {  };
 
-		_methodName58 = "fetchSyncDLFileVersionDiff";
+		_methodName58 = "deleteSyncDLFileVersionDiff";
 
-		_methodParameterTypes58 = new String[] { "long", "long", "long" };
+		_methodParameterTypes58 = new String[] {
+				"com.liferay.sync.model.SyncDLFileVersionDiff"
+			};
 
-		_methodName59 = "refreshExpirationDate";
+		_methodName59 = "deleteSyncDLFileVersionDiffs";
 
 		_methodParameterTypes59 = new String[] { "long" };
+
+		_methodName60 = "fetchSyncDLFileVersionDiff";
+
+		_methodParameterTypes60 = new String[] { "long", "long", "long" };
+
+		_methodName61 = "refreshExpirationDate";
+
+		_methodParameterTypes61 = new String[] { "long" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -250,13 +260,25 @@ public class SyncDLFileVersionDiffLocalServiceClpInvoker {
 
 		if (_methodName58.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes58, parameterTypes)) {
+			return SyncDLFileVersionDiffLocalServiceUtil.deleteSyncDLFileVersionDiff((com.liferay.sync.model.SyncDLFileVersionDiff)arguments[0]);
+		}
+
+		if (_methodName59.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes59, parameterTypes)) {
+			SyncDLFileVersionDiffLocalServiceUtil.deleteSyncDLFileVersionDiffs(((Long)arguments[0]).longValue());
+
+			return null;
+		}
+
+		if (_methodName60.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes60, parameterTypes)) {
 			return SyncDLFileVersionDiffLocalServiceUtil.fetchSyncDLFileVersionDiff(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				((Long)arguments[2]).longValue());
 		}
 
-		if (_methodName59.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes59, parameterTypes)) {
+		if (_methodName61.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes61, parameterTypes)) {
 			SyncDLFileVersionDiffLocalServiceUtil.refreshExpirationDate(((Long)arguments[0]).longValue());
 
 			return null;
@@ -309,4 +331,8 @@ public class SyncDLFileVersionDiffLocalServiceClpInvoker {
 	private String[] _methodParameterTypes58;
 	private String _methodName59;
 	private String[] _methodParameterTypes59;
+	private String _methodName60;
+	private String[] _methodParameterTypes60;
+	private String _methodName61;
+	private String[] _methodParameterTypes61;
 }
