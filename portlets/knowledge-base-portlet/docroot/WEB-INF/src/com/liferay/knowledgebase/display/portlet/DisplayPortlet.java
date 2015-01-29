@@ -49,6 +49,8 @@ import com.liferay.portlet.PortletURLFactoryUtil;
 
 import java.io.IOException;
 
+import java.util.List;
+
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
 import javax.portlet.PortletException;
