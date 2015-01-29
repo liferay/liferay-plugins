@@ -193,7 +193,11 @@ public class KBFolderKBArticleSelector implements KBArticleSelector {
 				parentKBFolder.getParentKBFolderId());
 		}
 
-		return parentKBFolder != null;
+		if (parentKBFolder != null) {
+			return true;
+		}
+
+		return false;
 	}
 
 	private static final KBFolder _ROOT_KB_FOLDER;

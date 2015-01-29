@@ -47,7 +47,7 @@ public class DefaultKBArticleSelectorFactory
 
 		try {
 			String kbArticleSelectorClassName = PortletProps.get(
-				PortletPropsKeys.KNOWLEDGE_BASE_DISPLAY_ARTICLE_SELECTOR,
+				PortletPropsKeys.KNOWLEDGE_BASE_DISPLAY_SELECTOR,
 				new Filter(className));
 
 			if (Validator.isNull(kbArticleSelectorClassName)) {
