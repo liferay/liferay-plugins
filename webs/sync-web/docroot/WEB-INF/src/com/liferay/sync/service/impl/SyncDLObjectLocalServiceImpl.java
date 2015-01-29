@@ -124,7 +124,17 @@ public class SyncDLObjectLocalServiceImpl
 		syncDLObject.setLockUserId(lockUserId);
 		syncDLObject.setLockUserName(lockUserName);
 
-		return syncDLObjectPersistence.update(syncDLObject);
+		syncDLObject = syncDLObjectPersistence.update(syncDLObject);
+
+		if ((event.equals(SyncConstants.EVENT_DELETE) ||
+			 event.equals(SyncConstants.EVENT_TRASH)) &&
+			!type.equals(SyncConstants.TYPE_FOLDER)) {
+
+			syncDLFileVersionDiffLocalService.deleteSyncDLFileVersionDiffs(
+				typePK);
+		}
+
+		return syncDLObject;
 	}
 
 	@Override
