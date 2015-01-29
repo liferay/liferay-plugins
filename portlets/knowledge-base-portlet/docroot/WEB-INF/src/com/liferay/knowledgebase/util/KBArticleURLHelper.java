@@ -45,9 +45,23 @@ public class KBArticleURLHelper {
 
 		PortletURL portletURL = _renderResponse.createRenderURL();
 
-		if (Validator.isNull(kbArticle.getUrlTitle())) {
+		String portletId = PortalUtil.getPortletId(_renderRequest);
+
+		if (portletId.startsWith(PortletKeys.KNOWLEDGE_BASE_SECTION) ||
+			portletId.startsWith(PortletKeys.KNOWLEDGE_BASE_ADMIN)) {
+
 			portletURL.setParameter(
 				"mvcPath", _templatePath + "view_article.jsp");
+		}
+
+		if (portletId.startsWith(PortletKeys.KNOWLEDGE_BASE_ADMIN)) {
+			portletURL.setParameter(
+				"redirect", PortalUtil.getCurrentURL(_renderRequest));
+		}
+
+		if (Validator.isNull(kbArticle.getUrlTitle()) ||
+			portletId.equals(PortletKeys.KNOWLEDGE_BASE_ADMIN)) {
+
 			portletURL.setParameter(
 				"resourceClassNameId",
 				String.valueOf(kbArticle.getClassNameId()));
@@ -56,13 +70,6 @@ public class KBArticleURLHelper {
 				String.valueOf(kbArticle.getResourcePrimKey()));
 		}
 		else {
-			String portletId = PortalUtil.getPortletId(_renderRequest);
-
-			if (portletId.startsWith(PortletKeys.KNOWLEDGE_BASE_SECTION)) {
-				portletURL.setParameter(
-					"mvcPath", _templatePath + "view_article.jsp");
-			}
-
 			portletURL.setParameter("urlTitle", kbArticle.getUrlTitle());
 
 			if (kbArticle.getKbFolderId() !=
