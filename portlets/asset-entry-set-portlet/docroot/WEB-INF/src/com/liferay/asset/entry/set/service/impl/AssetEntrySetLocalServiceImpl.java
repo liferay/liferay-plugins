@@ -166,9 +166,7 @@ public class AssetEntrySetLocalServiceImpl
 			assetEntrySetFinder.findBySharedToClassPKsMap(
 				sharedToClassPKsMap, start, end);
 
-		for (AssetEntrySet assetEntrySet : assetEntrySets) {
-			updateParticipants(assetEntrySet);
-		}
+		updateParticipants(assetEntrySets);
 
 		return assetEntrySets;
 	}
@@ -187,9 +185,7 @@ public class AssetEntrySetLocalServiceImpl
 				creatorClassNameId, creatorClassPK, assetTagName,
 				sharedToClassPKsMap, andOperator, start, end);
 
-		for (AssetEntrySet assetEntrySet : assetEntrySets) {
-			updateParticipants(assetEntrySet);
-		}
+		updateParticipants(assetEntrySets);
 
 		return assetEntrySets;
 	}
@@ -206,9 +202,7 @@ public class AssetEntrySetLocalServiceImpl
 		List<AssetEntrySet> assetEntrySets = assetEntrySetFinder.findByCCNI_ATN(
 			creatorClassNameId, assetTagName, sharedToClassPKsMap, start, end);
 
-		for (AssetEntrySet assetEntrySet : assetEntrySets) {
-			updateParticipants(assetEntrySet);
-		}
+		updateParticipants(assetEntrySets);
 
 		return assetEntrySets;
 	}
@@ -260,9 +254,7 @@ public class AssetEntrySetLocalServiceImpl
 			assetEntrySetPersistence.findByParentAssetEntrySetId(
 				parentAssetEntrySetId, start, end, orderByComparator);
 
-		for (AssetEntrySet assetEntrySet : assetEntrySets) {
-			updateParticipants(assetEntrySet);
-		}
+		updateParticipants(assetEntrySets);
 
 		return assetEntrySets;
 	}
@@ -415,9 +407,7 @@ public class AssetEntrySetLocalServiceImpl
 				createTime, gtCreateTime, parentAssetEntrySetId,
 				sharedToClassPKsMap, start, end);
 
-		for (AssetEntrySet assetEntrySet : assetEntrySets) {
-			updateParticipants(assetEntrySet);
-		}
+		updateParticipants(assetEntrySets);
 
 		return assetEntrySets;
 	}
@@ -603,6 +593,14 @@ public class AssetEntrySetLocalServiceImpl
 
 		assetEntrySet.setPayload(
 			JSONFactoryUtil.looseSerialize(payloadJSONObject));
+	}
+
+	protected void updateParticipants(List<AssetEntrySet> assetEntrySets)
+		throws PortalException, SystemException {
+
+		for (AssetEntrySet assetEntrySet : assetEntrySets) {
+			updateParticipants(assetEntrySet);
+		}
 	}
 
 	protected AssetEntrySet updateRatingsStatsTotalScore(
