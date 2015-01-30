@@ -12,30 +12,24 @@
  * details.
  */
 
-package com.liferay.calendar.hook.upgrade.v1_0_0;
+package com.liferay.calendar.hook.upgrade;
 
-import com.liferay.calendar.hook.upgrade.v1_0_0.util.CalendarBookingTable;
+import com.liferay.calendar.hook.upgrade.v1_0_1.UpgradeCalendarVEvent;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 
-import java.sql.SQLException;
-
 /**
- * @author Jenny Chen
+ * @author Bryan Engler
  */
-public class UpgradeCalendarBooking extends UpgradeProcess {
+public class UpgradeProcess_1_0_1 extends UpgradeProcess {
+
+@Override
+	public int getThreshold() {
+		return 101;
+	}
 
 	@Override
 	protected void doUpgrade() throws Exception {
-		try {
-			runSQL("alter_column_type CalendarBooking description TEXT null");
-		}
-		catch (SQLException sqle) {
-			upgradeTable(
-				CalendarBookingTable.TABLE_NAME,
-				CalendarBookingTable.TABLE_COLUMNS,
-				CalendarBookingTable.TABLE_SQL_CREATE,
-				CalendarBookingTable.TABLE_SQL_ADD_INDEXES);
-		}
+		upgrade(UpgradeCalendarVEvent.class);
 	}
 
 }

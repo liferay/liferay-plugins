@@ -32,6 +32,7 @@ import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Time;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.ModelHintsUtil;
 import com.liferay.portal.model.User;
@@ -39,6 +40,7 @@ import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.UserLocalServiceUtil;
 
 import java.net.URI;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -386,22 +388,16 @@ public class CalendarICalDataHandler implements CalendarDataHandler {
 
 		CalendarBooking calendarBooking = null;
 
-		String uuid = null;
+		String vEventUidValue = null;
 
 		Uid uid = vEvent.getUid();
 
 		if (uid != null) {
-			uuid = uid.getValue();
+			vEventUidValue = uid.getValue();
 
 			calendarBooking =
 				CalendarBookingLocalServiceUtil.fetchCalendarBooking(
-					uuid, calendar.getGroupId());
-			
-			if (calendarBooking == null) {
-				calendarBooking =
-						CalendarBookingLocalServiceUtil.fetchCalendarBooking(
-								calendarId, uuid);
-			}
+					calendarId, vEventUidValue);
 		}
 
 		ServiceContext serviceContext = new ServiceContext();
@@ -412,15 +408,13 @@ public class CalendarICalDataHandler implements CalendarDataHandler {
 		serviceContext.setScopeGroupId(calendar.getGroupId());
 
 		if (calendarBooking == null) {
-			serviceContext.setUuid(uuid);
-
 			CalendarBookingServiceUtil.addCalendarBooking(
 				calendarId, childCalendarIdsArray,
 				CalendarBookingConstants.PARENT_CALENDAR_BOOKING_ID_DEFAULT,
 				titleMap, descriptionMap, locationString, startDate.getTime(),
 				endDate.getTime(), allDay, recurrence, firstReminder,
 				firstReminderType, secondReminder, secondReminderType,
-				serviceContext);
+				vEventUidValue, serviceContext);
 		}
 		else {
 			CalendarBookingServiceUtil.updateCalendarBooking(
@@ -594,17 +588,15 @@ public class CalendarICalDataHandler implements CalendarDataHandler {
 
 		PropertyList propertyList = vEvent.getProperties();
 
-		// UID or OutlookUid
-		
-		Uid uid;
-		
-		if (calendarBooking.getOutlookUid() == null
-				|| calendarBooking.getOutlookUid() == StringPool.BLANK
-				|| calendarBooking.getOutlookUid() == StringPool.NULL_CHAR) {
-			uid = new Uid(calendarBooking.getUuid());	
+		// UID
+
+		Uid uid = null;
+
+		if (Validator.isNotNull(calendarBooking.getVEventUid())) {
+			uid = new Uid(calendarBooking.getVEventUid());
 		}
 		else {
-			uid = new Uid(calendarBooking.getOutlookUid());
+			uid = new Uid(calendarBooking.getUuid());
 		}
 
 		propertyList.add(uid);
