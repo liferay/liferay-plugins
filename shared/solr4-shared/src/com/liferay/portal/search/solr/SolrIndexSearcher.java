@@ -458,7 +458,10 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 
 		StringBundler sb = new StringBundler(6);
 
+		sb.append(StringPool.PLUS);
+		sb.append(StringPool.OPEN_PARENTHESIS);
 		sb.append(queryString);
+		sb.append(StringPool.CLOSE_PARENTHESIS);
 		sb.append(StringPool.SPACE);
 		sb.append(StringPool.PLUS);
 		sb.append(Field.COMPANY_ID);
