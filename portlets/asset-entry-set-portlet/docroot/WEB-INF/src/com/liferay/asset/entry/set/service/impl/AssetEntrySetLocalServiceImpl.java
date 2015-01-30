@@ -487,6 +487,10 @@ public class AssetEntrySetLocalServiceImpl
 			payloadJSONObject.getJSONArray(
 				AssetEntrySetConstants.PAYLOAD_KEY_SHARED_TO);
 
+		if (payloadSharedToJSONArray == null) {
+			return null;
+		}
+
 		for (int i = 0; i < payloadSharedToJSONArray.length(); i++) {
 			JSONObject participantJSONObject =
 				payloadSharedToJSONArray.getJSONObject(i);
