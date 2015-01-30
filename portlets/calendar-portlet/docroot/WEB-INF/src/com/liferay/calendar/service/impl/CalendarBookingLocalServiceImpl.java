@@ -244,7 +244,8 @@ public class CalendarBookingLocalServiceImpl
 	@Override
 	@SystemEvent(
 		action = SystemEventConstants.ACTION_SKIP,
-		type = SystemEventConstants.TYPE_DELETE)
+		type = SystemEventConstants.TYPE_DELETE
+	)
 	public CalendarBooking deleteCalendarBooking(
 			CalendarBooking calendarBooking)
 		throws PortalException {

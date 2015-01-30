@@ -1041,7 +1041,7 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 		alloySearchResult.setAlloyServiceInvoker(alloyServiceInvoker);
 
 		if (searchContainer == null) {
-			searchContainer = new SearchContainer<BaseModel<?>>(
+			searchContainer = new SearchContainer<>(
 				portletRequest, portletURL, null, null);
 		}
 
