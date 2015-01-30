@@ -20,11 +20,11 @@
 
 		<!-- Finder methods -->
 
-		<finder name="FileEntryId" return-type="Collection">
-			<finder-column name="fileEntryId" />
-		</finder>
 		<finder name="ExpirationDate" return-type="Collection">
 			<finder-column name="expirationDate" comparator="&lt;" />
+		</finder>
+		<finder name="FileEntryId" return-type="Collection">
+			<finder-column name="fileEntryId" />
 		</finder>
 		<finder name="F_S_T" return-type="SyncDLFileVersionDiff" unique="true">
 			<finder-column name="fileEntryId" />
