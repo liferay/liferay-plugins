@@ -97,7 +97,7 @@
 		<column name="statusByUserId" type="long" />
 		<column name="statusByUserName" type="String" />
 		<column name="statusDate" type="Date" />
-		<column name="outlookUid" type="String" />
+		<column name="vEventUid" type="String" />
 
 		<!-- Order -->
 
@@ -125,13 +125,13 @@
 			<finder-column name="calendarId" />
 			<finder-column name="status" arrayable-operator="OR" />
 		</finder>
+		<finder name="C_V" return-type="CalendarBooking">
+			<finder-column name="calendarId" />
+			<finder-column name="vEventUid" />
+		</finder>
 		<finder name="P_S" return-type="Collection">
 			<finder-column name="parentCalendarBookingId" />
 			<finder-column name="status" />
-		</finder>
-		<finder name="C_O" return-type="CalendarBooking">
-			<finder-column name="calendarId" />
-			<finder-column name="outlookUid" />
 		</finder>
 
 		<!-- References -->

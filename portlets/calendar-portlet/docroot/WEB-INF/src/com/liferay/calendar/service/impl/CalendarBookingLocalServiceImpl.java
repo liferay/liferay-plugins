@@ -98,6 +98,24 @@ public class CalendarBookingLocalServiceImpl
 			String secondReminderType, ServiceContext serviceContext)
 		throws PortalException {
 
+		return addCalendarBooking(
+			userId, calendarId, childCalendarIds, parentCalendarBookingId,
+			titleMap, descriptionMap, location, startTime, endTime, allDay,
+			recurrence, firstReminder, firstReminderType, secondReminder,
+			secondReminderType, null, serviceContext);
+	}
+
+	@Override
+	public CalendarBooking addCalendarBooking(
+			long userId, long calendarId, long[] childCalendarIds,
+			long parentCalendarBookingId, Map<Locale, String> titleMap,
+			Map<Locale, String> descriptionMap, String location, long startTime,
+			long endTime, boolean allDay, String recurrence, long firstReminder,
+			String firstReminderType, long secondReminder,
+			String secondReminderType, String vEventUid,
+			ServiceContext serviceContext)
+		throws PortalException {
+
 		// Calendar booking
 
 		User user = userPersistence.findByPrimaryKey(userId);
@@ -141,7 +159,13 @@ public class CalendarBookingLocalServiceImpl
 		CalendarBooking calendarBooking = calendarBookingPersistence.create(
 			calendarBookingId);
 
-		calendarBooking.setUuid(serviceContext.getUuid());
+		if (vEventUid != null) {
+			calendarBooking.setVEventUid(vEventUid);
+		}
+		else {
+			calendarBooking.setUuid(serviceContext.getUuid());
+		}
+
 		calendarBooking.setGroupId(calendar.getGroupId());
 		calendarBooking.setCompanyId(user.getCompanyId());
 		calendarBooking.setUserId(user.getUserId());
@@ -173,14 +197,6 @@ public class CalendarBookingLocalServiceImpl
 		calendarBooking.setStatus(
 			CalendarBookingWorkflowConstants.STATUS_PENDING);
 		calendarBooking.setStatusDate(serviceContext.getModifiedDate(now));
-		
-		if (calendarBooking.getUuid().length() > 75) {
-			calendarBooking.setOutlookUid(calendarBooking.getUuid());
-			calendarBooking.setUuid(StringPool.BLANK);
-		}
-		else {
-			calendarBooking.setOutlookUid(StringPool.BLANK);
-		}
 
 		calendarBookingPersistence.update(calendarBooking);
 
@@ -415,15 +431,15 @@ public class CalendarBookingLocalServiceImpl
 	}
 
 	@Override
+	public CalendarBooking fetchCalendarBooking(
+		long calendarId, String vEventUid) {
+
+		return calendarBookingPersistence.fetchByC_V(calendarId, vEventUid);
+	}
+
+	@Override
 	public CalendarBooking fetchCalendarBooking(String uuid, long groupId) {
 		return calendarBookingPersistence.fetchByUUID_G(uuid, groupId);
-	}
-	
-	@Override
-	public CalendarBooking fetchCalendarBooking(long calendarId, String outlookUid)
-		throws SystemException {
-
-		return calendarBookingPersistence.fetchByC_O(calendarId, outlookUid);
 	}
 
 	@Override

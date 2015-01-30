@@ -60,7 +60,7 @@
 		<field name="statusByUserId" type="long" />
 		<field name="statusByUserName" type="String" />
 		<field name="statusDate" type="Date" />
-		<field name="outlookUid" type="String">
+		<field name="vEventUid" type="String">
 			<hint name="max-length">255</hint>
 		</field>
 	</model>
