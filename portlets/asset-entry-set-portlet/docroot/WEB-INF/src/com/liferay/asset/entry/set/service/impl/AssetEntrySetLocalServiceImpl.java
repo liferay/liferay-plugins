@@ -488,7 +488,7 @@ public class AssetEntrySetLocalServiceImpl
 				AssetEntrySetConstants.PAYLOAD_KEY_SHARED_TO);
 
 		if (payloadSharedToJSONArray == null) {
-			return null;
+			return returnedSharedToJSONArray;
 		}
 
 		for (int i = 0; i < payloadSharedToJSONArray.length(); i++) {
