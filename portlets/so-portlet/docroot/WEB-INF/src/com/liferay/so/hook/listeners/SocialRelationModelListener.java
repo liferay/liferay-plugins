@@ -77,9 +77,8 @@ public class SocialRelationModelListener
 		SocialRelationModelListener.class);
 
 	private AutoResetThreadLocal<SocialRelationReindexerCallable>
-		_socialRelationReindexerCallable =
-			new AutoResetThreadLocal<SocialRelationReindexerCallable>(
-				SocialRelationModelListener.class.getName());
+		_socialRelationReindexerCallable = new AutoResetThreadLocal<>(
+			SocialRelationModelListener.class.getName());
 
 	private class SocialRelationReindexerCallable implements Callable<Void> {
 
