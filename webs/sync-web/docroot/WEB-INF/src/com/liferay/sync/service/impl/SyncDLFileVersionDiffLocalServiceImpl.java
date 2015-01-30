@@ -56,7 +56,7 @@ public class SyncDLFileVersionDiffLocalServiceImpl
 		syncDLFileVersionDiff.setSourceFileVersionId(sourceFileVersionId);
 		syncDLFileVersionDiff.setTargetFileVersionId(targetFileVersionId);
 
-		Company company = CompanyLocalServiceUtil.getCompanyByMx(
+		Company company = companyLocalService.getCompanyByMx(
 			PropsUtil.get(PropsKeys.COMPANY_DEFAULT_WEB_ID));
 
 		Group group = company.getGroup();
