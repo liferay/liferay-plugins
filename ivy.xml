@@ -47,12 +47,12 @@
 		<dependency name="xml-apis" org="xml-apis" rev="1.4.01" />
 		<dependency conf="test->default" name="junit" org="junit" rev="4.12" />
 		<dependency conf="test->default" name="mockito-all" org="org.mockito" rev="1.9.5" />
-		<dependency conf="test->default" name="powermock-api-mockito" org="org.powermock" rev="1.5" />
-		<dependency conf="test->default" name="powermock-api-support" org="org.powermock" rev="1.5" />
-		<dependency conf="test->default" name="powermock-core" org="org.powermock" rev="1.5" />
-		<dependency conf="test->default" name="powermock-module-junit4" org="org.powermock" rev="1.5" />
-		<dependency conf="test->default" name="powermock-module-junit4-common" org="org.powermock" rev="1.5" />
-		<dependency conf="test->default" name="powermock-reflect" org="org.powermock" rev="1.5" />
+		<dependency conf="test->default" name="powermock-api-mockito" org="org.powermock" rev="1.6.1" />
+		<dependency conf="test->default" name="powermock-api-support" org="org.powermock" rev="1.6.1" />
+		<dependency conf="test->default" name="powermock-core" org="org.powermock" rev="1.6.1" />
+		<dependency conf="test->default" name="powermock-module-junit4" org="org.powermock" rev="1.6.1" />
+		<dependency conf="test->default" name="powermock-module-junit4-common" org="org.powermock" rev="1.6.1" />
+		<dependency conf="test->default" name="powermock-reflect" org="org.powermock" rev="1.6.1" />
 		<dependency conf="test->default" name="spring-test" org="org.springframework" rev="3.0.7.RELEASE" />
 	</dependencies>
 </ivy-module>
