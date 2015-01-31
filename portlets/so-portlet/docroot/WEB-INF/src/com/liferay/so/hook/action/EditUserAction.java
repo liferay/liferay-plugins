@@ -238,6 +238,7 @@ public class EditUserAction extends BaseStrutsPortletAction {
 		}
 
 		Indexer indexer = IndexerRegistryUtil.nullSafeGetIndexer(User.class);
+
 		indexer.reindex(user);
 	}
 
