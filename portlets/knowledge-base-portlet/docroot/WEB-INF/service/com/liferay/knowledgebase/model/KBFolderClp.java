@@ -473,15 +473,15 @@ public class KBFolderClp extends BaseModelImpl<KBFolder> implements KBFolder {
 	}
 
 	@Override
-	public boolean isEmpty() {
+	public long getClassNameId() {
 		try {
-			String methodName = "isEmpty";
+			String methodName = "getClassNameId";
 
 			Class<?>[] parameterTypes = new Class<?>[] {  };
 
 			Object[] parameterValues = new Object[] {  };
 
-			Boolean returnObj = (Boolean)invokeOnRemoteModel(methodName,
+			Long returnObj = (Long)invokeOnRemoteModel(methodName,
 					parameterTypes, parameterValues);
 
 			return returnObj;
@@ -492,15 +492,15 @@ public class KBFolderClp extends BaseModelImpl<KBFolder> implements KBFolder {
 	}
 
 	@Override
-	public long getClassNameId() {
+	public boolean isEmpty() {
 		try {
-			String methodName = "getClassNameId";
+			String methodName = "isEmpty";
 
 			Class<?>[] parameterTypes = new Class<?>[] {  };
 
 			Object[] parameterValues = new Object[] {  };
 
-			Long returnObj = (Long)invokeOnRemoteModel(methodName,
+			Boolean returnObj = (Boolean)invokeOnRemoteModel(methodName,
 					parameterTypes, parameterValues);
 
 			return returnObj;

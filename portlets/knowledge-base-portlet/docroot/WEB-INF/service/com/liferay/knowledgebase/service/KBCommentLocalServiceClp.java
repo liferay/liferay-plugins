@@ -153,13 +153,13 @@ public class KBCommentLocalServiceClp implements KBCommentLocalService {
 		_methodName23 = "getKBComments";
 
 		_methodParameterTypes23 = new String[] {
-				"java.lang.String", "long", "int", "int", "int"
+				"java.lang.String", "long", "int[][]", "int", "int"
 			};
 
 		_methodName24 = "getKBComments";
 
 		_methodParameterTypes24 = new String[] {
-				"java.lang.String", "long", "int[][]", "int", "int"
+				"java.lang.String", "long", "int", "int", "int"
 			};
 
 		_methodName25 = "getKBComments";
@@ -198,13 +198,13 @@ public class KBCommentLocalServiceClp implements KBCommentLocalService {
 
 		_methodName32 = "getKBCommentsCount";
 
-		_methodParameterTypes32 = new String[] {
-				"java.lang.String", "long", "int[][]"
-			};
+		_methodParameterTypes32 = new String[] { "java.lang.String", "long", "int" };
 
 		_methodName33 = "getKBCommentsCount";
 
-		_methodParameterTypes33 = new String[] { "java.lang.String", "long", "int" };
+		_methodParameterTypes33 = new String[] {
+				"java.lang.String", "long", "int[][]"
+			};
 
 		_methodName34 = "getKBCommentsCount";
 
@@ -923,7 +923,8 @@ public class KBCommentLocalServiceClp implements KBCommentLocalService {
 
 	@Override
 	public java.util.List<com.liferay.knowledgebase.model.KBComment> getKBComments(
-		java.lang.String className, long classPK, int status, int start, int end) {
+		java.lang.String className, long classPK, int[] status, int start,
+		int end) {
 		Object returnObj = null;
 
 		try {
@@ -934,7 +935,7 @@ public class KBCommentLocalServiceClp implements KBCommentLocalService {
 						
 					classPK,
 						
-					status,
+					ClpSerializer.translateInput(status),
 						
 					start,
 						
@@ -958,8 +959,7 @@ public class KBCommentLocalServiceClp implements KBCommentLocalService {
 
 	@Override
 	public java.util.List<com.liferay.knowledgebase.model.KBComment> getKBComments(
-		java.lang.String className, long classPK, int[] status, int start,
-		int end) {
+		java.lang.String className, long classPK, int status, int start, int end) {
 		Object returnObj = null;
 
 		try {
@@ -970,7 +970,7 @@ public class KBCommentLocalServiceClp implements KBCommentLocalService {
 						
 					classPK,
 						
-					ClpSerializer.translateInput(status),
+					status,
 						
 					start,
 						
@@ -1194,7 +1194,7 @@ public class KBCommentLocalServiceClp implements KBCommentLocalService {
 
 	@Override
 	public int getKBCommentsCount(java.lang.String className, long classPK,
-		int[] status) {
+		int status) {
 		Object returnObj = null;
 
 		try {
@@ -1205,7 +1205,7 @@ public class KBCommentLocalServiceClp implements KBCommentLocalService {
 						
 					classPK,
 						
-					ClpSerializer.translateInput(status)
+					status
 					});
 		}
 		catch (Throwable t) {
@@ -1225,7 +1225,7 @@ public class KBCommentLocalServiceClp implements KBCommentLocalService {
 
 	@Override
 	public int getKBCommentsCount(java.lang.String className, long classPK,
-		int status) {
+		int[] status) {
 		Object returnObj = null;
 
 		try {
@@ -1236,7 +1236,7 @@ public class KBCommentLocalServiceClp implements KBCommentLocalService {
 						
 					classPK,
 						
-					status
+					ClpSerializer.translateInput(status)
 					});
 		}
 		catch (Throwable t) {
