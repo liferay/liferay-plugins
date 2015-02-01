@@ -22,7 +22,8 @@
 			wsdd.input.file="service.xml"
 			wsdd.server.config.file="server-config.wsdd"
 			wsdd.service.namespace="Plugin"
-			wsdd.output.path="src/" />
+			wsdd.output.path="src/"
+		/>
 
 		<property file="bnd.bnd" prefix="bnd." />
 
