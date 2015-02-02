@@ -34,6 +34,7 @@ import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.systemevent.SystemEvent;
+import com.liferay.portal.kernel.util.DateFormatFactoryUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
@@ -44,6 +45,8 @@ import com.liferay.portal.model.User;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.SubscriptionSender;
 import com.liferay.portlet.ratings.model.RatingsEntry;
+
+import java.text.DateFormat;
 
 import java.util.Date;
 import java.util.List;
@@ -403,9 +406,10 @@ public class KBCommentLocalServiceImpl extends KBCommentLocalServiceBaseImpl {
 		subscriptionSender.setContextAttribute(
 			"[$ARTICLE_CONTENT$]", kbArticleContent, false);
 		subscriptionSender.setContextAttribute(
-			"[$ARTICLE_TITLE$]", kbArticle.getTitle(), false);
-		subscriptionSender.setContextAttribute(
 			"[$COMMENT_CONTENT$]", kbComment.getContent(), false);
+		subscriptionSender.setContextAttribute(
+			"[$COMMENT_CREATE_DATE$]",
+			getFormattedKBCommentCreateDate(kbComment, serviceContext), false);
 		subscriptionSender.setContextUserPrefix("ARTICLE");
 		subscriptionSender.setFrom(fromAddress, fromName);
 		subscriptionSender.setHtmlFormat(true);
@@ -453,6 +457,15 @@ public class KBCommentLocalServiceImpl extends KBCommentLocalServiceBaseImpl {
 		if (Validator.isNull(content)) {
 			throw new KBCommentContentException();
 		}
+	}
+
+	private String getFormattedKBCommentCreateDate(
+		KBComment kbComment, ServiceContext serviceContext) {
+
+		DateFormat dateFormat = DateFormatFactoryUtil.getDate(
+			serviceContext.getLocale());
+
+		return dateFormat.format(kbComment.getCreateDate());
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(
