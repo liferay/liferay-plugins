@@ -157,7 +157,7 @@ public class AssetEntrySetLocalServiceImpl
 
 	@Override
 	public List<AssetEntrySet> getAssetEntrySets(
-			long userId, int start, int end)
+			long userId, int commentCount, int start, int end)
 		throws PortalException, SystemException {
 
 		Map<Long, long[]> sharedToClassPKsMap =
@@ -167,6 +167,8 @@ public class AssetEntrySetLocalServiceImpl
 			assetEntrySetFinder.findBySharedToClassPKsMap(
 				sharedToClassPKsMap, start, end);
 
+		updateComments(assetEntrySets, commentCount);
+
 		updateParticipants(assetEntrySets);
 
 		return assetEntrySets;
@@ -175,7 +177,8 @@ public class AssetEntrySetLocalServiceImpl
 	@Override
 	public List<AssetEntrySet> getAssetEntrySets(
 			long userId, long creatorClassNameId, long creatorClassPK,
-			String assetTagName, boolean andOperator, int start, int end)
+			String assetTagName, boolean andOperator, int commentCount,
+			int start, int end)
 		throws PortalException, SystemException {
 
 		Map<Long, long[]> sharedToClassPKsMap =
@@ -186,6 +189,8 @@ public class AssetEntrySetLocalServiceImpl
 				creatorClassNameId, creatorClassPK, assetTagName,
 				sharedToClassPKsMap, andOperator, start, end);
 
+		updateComments(assetEntrySets, commentCount);
+
 		updateParticipants(assetEntrySets);
 
 		return assetEntrySets;
@@ -194,7 +199,7 @@ public class AssetEntrySetLocalServiceImpl
 	@Override
 	public List<AssetEntrySet> getAssetEntrySets(
 			long userId, long creatorClassNameId, String assetTagName,
-			int start, int end)
+			int commentCount, int start, int end)
 		throws PortalException, SystemException {
 
 		Map<Long, long[]> sharedToClassPKsMap =
@@ -202,6 +207,8 @@ public class AssetEntrySetLocalServiceImpl
 
 		List<AssetEntrySet> assetEntrySets = assetEntrySetFinder.findByCCNI_ATN(
 			creatorClassNameId, assetTagName, sharedToClassPKsMap, start, end);
+
+		updateComments(assetEntrySets, commentCount);
 
 		updateParticipants(assetEntrySets);
 
@@ -262,22 +269,24 @@ public class AssetEntrySetLocalServiceImpl
 
 	@Override
 	public List<AssetEntrySet> getNewAssetEntrySets(
-			long userId, long createTime, long parentAssetEntrySetId, int start,
-			int end)
+			long userId, long createTime, long parentAssetEntrySetId,
+			int commentCount, int start, int end)
 		throws PortalException, SystemException {
 
 		return getAssetEntrySets(
-			userId, createTime, true, parentAssetEntrySetId, start, end);
+			userId, createTime, true, parentAssetEntrySetId, commentCount,
+			start, end);
 	}
 
 	@Override
 	public List<AssetEntrySet> getOldAssetEntrySets(
-			long userId, long createTime, long parentAssetEntrySetId, int start,
-			int end)
+			long userId, long createTime, long parentAssetEntrySetId,
+			int commentCount, int start, int end)
 		throws PortalException, SystemException {
 
 		return getAssetEntrySets(
-			userId, createTime, false, parentAssetEntrySetId, start, end);
+			userId, createTime, false, parentAssetEntrySetId, commentCount,
+			start, end);
 	}
 
 	@Override
@@ -307,7 +316,7 @@ public class AssetEntrySetLocalServiceImpl
 	@Override
 	public AssetEntrySet updateAssetEntrySet(
 			long assetEntrySetId, JSONObject payloadJSONObject, File file,
-			boolean privateAssetEntrySet)
+			boolean privateAssetEntrySet, int commentCount)
 		throws PortalException, SystemException {
 
 		AssetEntrySet assetEntrySet = assetEntrySetPersistence.findByPrimaryKey(
@@ -343,6 +352,8 @@ public class AssetEntrySetLocalServiceImpl
 			_ASSET_ENTRY_SET_CLASS_NAME_ID, assetEntrySetId,
 			sharedToClassPKsMap);
 
+		assetEntrySet.setComments(commentCount);
+
 		updateParticipants(assetEntrySet);
 
 		return assetEntrySet;
@@ -364,7 +375,7 @@ public class AssetEntrySetLocalServiceImpl
 
 	protected List<AssetEntrySet> getAssetEntrySets(
 			long userId, long createTime, boolean gtCreateTime,
-			long parentAssetEntrySetId, int start, int end)
+			long parentAssetEntrySetId, int commentCount, int start, int end)
 		throws PortalException, SystemException {
 
 		Map<Long, long[]> sharedToClassPKsMap =
@@ -374,6 +385,8 @@ public class AssetEntrySetLocalServiceImpl
 			assetEntrySetFinder.findByCT_PASEI(
 				createTime, gtCreateTime, parentAssetEntrySetId,
 				sharedToClassPKsMap, start, end);
+
+		updateComments(assetEntrySets, commentCount);
 
 		updateParticipants(assetEntrySets);
 
@@ -536,6 +549,15 @@ public class AssetEntrySetLocalServiceImpl
 		assetEntrySet.setChildAssetEntrySetsCount(childAssetEntrySetsCount);
 
 		assetEntrySetPersistence.update(assetEntrySet);
+	}
+
+	protected void updateComments(
+			List<AssetEntrySet> assetEntrySets, int commentCount)
+		throws PortalException, SystemException {
+
+		for (AssetEntrySet assetEntrySet : assetEntrySets) {
+			assetEntrySet.setComments(commentCount);
+		}
 	}
 
 	protected void updateParticipants(AssetEntrySet assetEntrySet)
