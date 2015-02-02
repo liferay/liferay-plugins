@@ -119,7 +119,7 @@ public class KBFolderLocalServiceImpl extends KBFolderLocalServiceBaseImpl {
 	}
 
 	@Override
-	public KBFolder fetchKBFolder(long kbFolderId) throws SystemException {
+	public KBFolder fetchKBFolder(long kbFolderId) {
 		return kbFolderPersistence.fetchByPrimaryKey(kbFolderId);
 	}
 

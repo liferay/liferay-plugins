@@ -55,9 +55,7 @@ public class KBFolderServiceImpl extends KBFolderServiceBaseImpl {
 	}
 
 	@Override
-	public KBFolder fetchKBFolder(long kbFolderId)
-		throws PortalException, SystemException {
-
+	public KBFolder fetchKBFolder(long kbFolderId) throws PortalException {
 		KBFolder kbFolder = kbFolderLocalService.fetchKBFolder(kbFolderId);
 
 		if (kbFolder == null) {
