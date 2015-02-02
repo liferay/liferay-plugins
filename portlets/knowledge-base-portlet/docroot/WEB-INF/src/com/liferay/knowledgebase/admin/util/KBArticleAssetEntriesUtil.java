@@ -125,7 +125,7 @@ public class KBArticleAssetEntriesUtil {
 		long classPK = assetRenderer.getClassPK();
 		String className = assetRendererFactory.getClassName();
 		String portletId = PortletProviderUtil.getPortletId(
-			className, PortletProvider.ACTION_VIEW);
+			className, PortletProvider.Action.VIEW);
 
 		PortletURL portletURL = null;
 
