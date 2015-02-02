@@ -119,6 +119,11 @@ public class KBFolderLocalServiceImpl extends KBFolderLocalServiceBaseImpl {
 	}
 
 	@Override
+	public KBFolder fetchKBFolder(long kbFolderId) throws SystemException {
+		return kbFolderPersistence.fetchByPrimaryKey(kbFolderId);
+	}
+
+	@Override
 	public KBFolder fetchKBFolderByUrlTitle(
 			long groupId, long parentKbFolderId, String urlTitle)
 		throws PortalException {
