@@ -167,33 +167,37 @@ public class KBFolderLocalServiceClpInvoker {
 
 		_methodParameterTypes76 = new String[] { "long", "long" };
 
-		_methodName77 = "fetchKBFolderByUrlTitle";
+		_methodName77 = "fetchKBFolder";
 
-		_methodParameterTypes77 = new String[] {
-				"long", "long", "java.lang.String"
-			};
+		_methodParameterTypes77 = new String[] { "long" };
 
-		_methodName78 = "getKBFolderByUrlTitle";
+		_methodName78 = "fetchKBFolderByUrlTitle";
 
 		_methodParameterTypes78 = new String[] {
 				"long", "long", "java.lang.String"
 			};
 
-		_methodName79 = "getKBFolders";
+		_methodName79 = "getKBFolderByUrlTitle";
 
-		_methodParameterTypes79 = new String[] { "long", "long", "int", "int" };
+		_methodParameterTypes79 = new String[] {
+				"long", "long", "java.lang.String"
+			};
 
-		_methodName80 = "getKBFoldersCount";
+		_methodName80 = "getKBFolders";
 
-		_methodParameterTypes80 = new String[] { "long", "long" };
+		_methodParameterTypes80 = new String[] { "long", "long", "int", "int" };
 
-		_methodName81 = "moveKBFolder";
+		_methodName81 = "getKBFoldersCount";
 
 		_methodParameterTypes81 = new String[] { "long", "long" };
 
-		_methodName82 = "updateKBFolder";
+		_methodName82 = "moveKBFolder";
 
-		_methodParameterTypes82 = new String[] {
+		_methodParameterTypes82 = new String[] { "long", "long" };
+
+		_methodName83 = "updateKBFolder";
+
+		_methodParameterTypes83 = new String[] {
 				"long", "long", "long", "java.lang.String", "java.lang.String"
 			};
 	}
@@ -364,40 +368,45 @@ public class KBFolderLocalServiceClpInvoker {
 
 		if (_methodName77.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes77, parameterTypes)) {
-			return KBFolderLocalServiceUtil.fetchKBFolderByUrlTitle(((Long)arguments[0]).longValue(),
-				((Long)arguments[1]).longValue(), (java.lang.String)arguments[2]);
+			return KBFolderLocalServiceUtil.fetchKBFolder(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName78.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes78, parameterTypes)) {
-			return KBFolderLocalServiceUtil.getKBFolderByUrlTitle(((Long)arguments[0]).longValue(),
+			return KBFolderLocalServiceUtil.fetchKBFolderByUrlTitle(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(), (java.lang.String)arguments[2]);
 		}
 
 		if (_methodName79.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes79, parameterTypes)) {
+			return KBFolderLocalServiceUtil.getKBFolderByUrlTitle(((Long)arguments[0]).longValue(),
+				((Long)arguments[1]).longValue(), (java.lang.String)arguments[2]);
+		}
+
+		if (_methodName80.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes80, parameterTypes)) {
 			return KBFolderLocalServiceUtil.getKBFolders(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				((Integer)arguments[2]).intValue(),
 				((Integer)arguments[3]).intValue());
 		}
 
-		if (_methodName80.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes80, parameterTypes)) {
+		if (_methodName81.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes81, parameterTypes)) {
 			return KBFolderLocalServiceUtil.getKBFoldersCount(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue());
 		}
 
-		if (_methodName81.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes81, parameterTypes)) {
+		if (_methodName82.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes82, parameterTypes)) {
 			KBFolderLocalServiceUtil.moveKBFolder(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue());
 
 			return null;
 		}
 
-		if (_methodName82.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes82, parameterTypes)) {
+		if (_methodName83.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes83, parameterTypes)) {
 			return KBFolderLocalServiceUtil.updateKBFolder(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				((Long)arguments[2]).longValue(),
@@ -475,4 +484,6 @@ public class KBFolderLocalServiceClpInvoker {
 	private String[] _methodParameterTypes81;
 	private String _methodName82;
 	private String[] _methodParameterTypes82;
+	private String _methodName83;
+	private String[] _methodParameterTypes83;
 }
