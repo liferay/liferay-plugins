@@ -361,6 +361,18 @@ else if (tabs2.equals("suggestion-resolved-email")) {
 							<liferay-ui:message key="the-article-url" />
 						</dd>
 						<dt>
+							[$COMMENT_CONTENT$]
+						</dt>
+						<dd>
+							<liferay-ui:message key="the-comment-content" />
+						</dd>
+						<dt>
+							[$COMMENT_CREATE_DATE$]
+						</dt>
+						<dd>
+							<liferay-ui:message key="the-comment-create-date" />
+						</dd>
+						<dt>
 							[$TO_ADDRESS$]
 						</dt>
 						<dd>
