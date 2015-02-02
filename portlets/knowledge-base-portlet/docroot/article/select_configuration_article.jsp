@@ -120,13 +120,7 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 	<c:if test="<%= selResourcePrimKey > 0 %>">
 
 		<%
-		KBArticle selKBArticle = null;
-
-		try {
-			selKBArticle = KBArticleLocalServiceUtil.getLatestKBArticle(selResourcePrimKey, WorkflowConstants.STATUS_APPROVED);
-		}
-		catch (NoSuchArticleException nsae) {
-		}
+		KBArticle selKBArticle = KBArticleLocalServiceUtil.fetchLatestKBArticle(selResourcePrimKey, WorkflowConstants.STATUS_APPROVED);
 		%>
 
 		<c:if test="<%= selKBArticle != null %>">

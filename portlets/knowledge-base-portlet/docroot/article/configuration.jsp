@@ -50,13 +50,7 @@ if (PortalUtil.isRSSFeedsEnabled()) {
 					<aui:field-wrapper label="article">
 
 						<%
-						KBArticle kbArticle = null;
-
-						try {
-							kbArticle = KBArticleLocalServiceUtil.getLatestKBArticle(resourcePrimKey, WorkflowConstants.STATUS_APPROVED);
-						}
-						catch (NoSuchArticleException nsae) {
-						}
+						KBArticle kbArticle = KBArticleLocalServiceUtil.fetchLatestKBArticle(resourcePrimKey, WorkflowConstants.STATUS_APPROVED);
 						%>
 
 						<liferay-ui:input-resource id="configurationKBArticle" url="<%= (kbArticle != null) ? kbArticle.getTitle() : StringPool.BLANK %>" />
