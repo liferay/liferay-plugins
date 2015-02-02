@@ -14,6 +14,13 @@
 
 package com.liferay.asset.entry.set.model.impl;
 
+import com.liferay.asset.entry.set.model.AssetEntrySet;
+import com.liferay.asset.entry.set.service.AssetEntrySetLocalServiceUtil;
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.exception.SystemException;
+
+import java.util.List;
+
 /**
  * @author Brian Wing Shun Chan
  */
@@ -21,5 +28,24 @@ public class AssetEntrySetImpl extends AssetEntrySetBaseImpl {
 
 	public AssetEntrySetImpl() {
 	}
+
+	@Override
+	public List<AssetEntrySet> getComments() {
+		return _comments;
+	}
+
+	@Override
+	public void setComments(int commentCount)
+		throws PortalException, SystemException {
+
+		if (commentCount <= 0) {
+			return;
+		}
+
+		_comments = AssetEntrySetLocalServiceUtil.getChildAssetEntrySets(
+				getAssetEntrySetId(), 0, commentCount, null);
+	}
+
+	private List<AssetEntrySet> _comments;
 
 }
