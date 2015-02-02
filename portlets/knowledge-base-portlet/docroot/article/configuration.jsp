@@ -49,13 +49,7 @@ if (PortalUtil.isRSSFeedsEnabled()) {
 				<div class="form-group kb-field-wrapper">
 
 					<%
-					KBArticle kbArticle = null;
-
-					try {
-						kbArticle = KBArticleLocalServiceUtil.getLatestKBArticle(resourcePrimKey, WorkflowConstants.STATUS_APPROVED);
-					}
-					catch (NoSuchArticleException nsae) {
-					}
+					KBArticle kbArticle = KBArticleLocalServiceUtil.fetchLatestKBArticle(resourcePrimKey, WorkflowConstants.STATUS_APPROVED);
 					%>
 
 					<aui:input label="article" name="configurationKBArticle" type="resource" value="<%= (kbArticle != null) ? kbArticle.getTitle() : StringPool.BLANK %>" />

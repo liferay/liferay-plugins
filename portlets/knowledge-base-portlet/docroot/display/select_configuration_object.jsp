@@ -33,10 +33,10 @@ String eventName = PortalUtil.getPortletNamespace(PortletKeys.PORTLET_CONFIGURAT
 		<aui:button-row cssClass="input-append">
 			<c:choose>
 				<c:when test="<%= resourceClassNameId == kbFolderClassNameId %>">
-					<liferay-ui:input-resource url='<%= BeanPropertiesUtil.getString(KBFolderServiceUtil.fetchKBFolder(resourcePrimKey), "name") %>' />
+					<liferay-ui:input-resource url='<%= BeanPropertiesUtil.getString(KBFolderLocalServiceUtil.fetchKBFolder(resourcePrimKey), "name") %>' />
 				</c:when>
 				<c:otherwise>
-					<liferay-ui:input-resource url='<%= BeanPropertiesUtil.getString(KBArticleServiceUtil.fetchLatestKBArticle(resourcePrimKey, WorkflowConstants.STATUS_APPROVED), "title") %>' />
+					<liferay-ui:input-resource url='<%= BeanPropertiesUtil.getString(KBArticleLocalServiceUtil.fetchLatestKBArticle(resourcePrimKey, WorkflowConstants.STATUS_APPROVED), "title") %>' />
 				</c:otherwise>
 			</c:choose>
 
