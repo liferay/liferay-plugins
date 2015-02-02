@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+
+<custom-sql>
+	<sql id="com.liferay.linkshortener.service.impl.LinkLocalServiceImpl.deleteLinks">
+		<![CDATA[
+			DELETE FROM
+				LinkShortener_Link
+			WHERE
+				(modifiedDate < ?)
+		]]>
+	</sql>
+</custom-sql>
