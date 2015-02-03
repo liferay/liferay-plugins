@@ -176,53 +176,7 @@ public class PrioritizationStrategy {
 					entry.getKey(), maxKBArticlePriority);
 			}
 
-			// prioritize imported articles by URL title
-
-			for (Map.Entry<String, List<KBArticle>> entry :
-					_importedArticlesMap.entrySet()) {
-
-				List<KBArticle> kbArticles = entry.getValue();
-
-				if (kbArticles == null) {
-					continue;
-				}
-
-				ListUtil.sort(kbArticles, new Comparator<KBArticle>() {
-
-					@Override
-					public int compare(
-						KBArticle kbArticle1, KBArticle kbArticle2) {
-
-						String urlTitle1 = kbArticle1.getUrlTitle();
-						String urlTitle2 = kbArticle2.getUrlTitle();
-
-						return urlTitle1.compareTo(urlTitle2);
-					}
-
-				});
-
-				String parentUrlTitle = entry.getKey();
-
-				int size = kbArticles.size();
-
-				for (int i = 0; i < size; i++) {
-					KBArticle kbArticle = kbArticles.get(i);
-
-					double maxPriority = 0.0;
-
-					if (maxKBArticlePriorityMap.containsKey(parentUrlTitle)) {
-						maxPriority = maxKBArticlePriorityMap.get(
-							parentUrlTitle);
-					}
-
-					maxPriority++;
-
-					maxKBArticlePriorityMap.put(parentUrlTitle, maxPriority);
-
-					KBArticleLocalServiceUtil.updatePriority(
-						kbArticle.getResourcePrimKey(), maxPriority);
-				}
-			}
+			prioritizeKBArticles(_importedArticlesMap, maxKBArticlePriorityMap);
 		}
 		else {
 
@@ -254,53 +208,7 @@ public class PrioritizationStrategy {
 					entry.getKey(), maxKBArticlePriority);
 			}
 
-			// prioritize new articles by URL title
-
-			for (Map.Entry<String, List<KBArticle>> entry :
-					_newArticlesMap.entrySet()) {
-
-				List<KBArticle> kbArticles = entry.getValue();
-
-				if (kbArticles == null) {
-					continue;
-				}
-
-				ListUtil.sort(kbArticles, new Comparator<KBArticle>() {
-
-					@Override
-					public int compare(
-						KBArticle kbArticle1, KBArticle kbArticle2) {
-
-						String urlTitle1 = kbArticle1.getUrlTitle();
-						String urlTitle2 = kbArticle2.getUrlTitle();
-
-						return urlTitle1.compareTo(urlTitle2);
-					}
-
-				});
-
-				String parentUrlTitle = entry.getKey();
-
-				int size = kbArticles.size();
-
-				for (int i = 0; i < size; i++) {
-					KBArticle kbArticle = kbArticles.get(i);
-
-					double maxPriority = 0.0;
-
-					if (maxKBArticlePriorityMap.containsKey(parentUrlTitle)) {
-						maxPriority = maxKBArticlePriorityMap.get(
-							parentUrlTitle);
-					}
-
-					maxPriority++;
-
-					maxKBArticlePriorityMap.put(parentUrlTitle, maxPriority);
-
-					KBArticleLocalServiceUtil.updatePriority(
-						kbArticle.getResourcePrimKey(), maxPriority);
-				}
-			}
+			prioritizeKBArticles(_newArticlesMap, maxKBArticlePriorityMap);
 		}
 	}
 
@@ -347,6 +255,55 @@ public class PrioritizationStrategy {
 		}
 
 		return parentKBArticle.getUrlTitle();
+	}
+
+	protected void prioritizeKBArticles(
+			Map<String, List<KBArticle>> kbArticlesMap,
+			Map<String, Double> maxKBArticlePriorityMap)
+		throws SystemException {
+
+		for (Map.Entry<String, List<KBArticle>> entry :
+				kbArticlesMap.entrySet()) {
+
+			List<KBArticle> kbArticles = entry.getValue();
+
+			if (kbArticles == null) {
+				continue;
+			}
+
+			ListUtil.sort(kbArticles, new Comparator<KBArticle>() {
+
+				@Override
+				public int compare(KBArticle kbArticle1, KBArticle kbArticle2) {
+					String urlTitle1 = kbArticle1.getUrlTitle();
+					String urlTitle2 = kbArticle2.getUrlTitle();
+
+					return urlTitle1.compareTo(urlTitle2);
+				}
+
+			});
+
+			String parentUrlTitle = entry.getKey();
+
+			int size = kbArticles.size();
+
+			for (int i = 0; i < size; i++) {
+				KBArticle kbArticle = kbArticles.get(i);
+
+				double maxPriority = 0.0;
+
+				if (maxKBArticlePriorityMap.containsKey(parentUrlTitle)) {
+					maxPriority = maxKBArticlePriorityMap.get(parentUrlTitle);
+				}
+
+				maxPriority++;
+
+				maxKBArticlePriorityMap.put(parentUrlTitle, maxPriority);
+
+				KBArticleLocalServiceUtil.updatePriority(
+					kbArticle.getResourcePrimKey(), maxPriority);
+			}
+		}
 	}
 
 	protected <S, T> void remove(Map<S, List<T>> map, T object) {
