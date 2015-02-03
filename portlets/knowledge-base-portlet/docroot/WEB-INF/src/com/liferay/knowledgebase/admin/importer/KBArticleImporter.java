@@ -256,7 +256,7 @@ public class KBArticleImporter {
 
 		int importedKBArticleCount = 0;
 
-		PrioritizationStrategy strategy =
+		PrioritizationStrategy prioritizationStrategy =
 			PrioritizationStrategy.create(
 				groupId, parentKBFolderId, prioritizeUpdatedArticles,
 				prioritizeByNumericalPrefix);
@@ -297,8 +297,8 @@ public class KBArticleImporter {
 					userId, groupId, parentKBFolderId,
 					sectionResourceClassNameId, sectionResourcePrimaryKey,
 					zipReader.getEntryAsString(sectionIntroFileEntryName),
-					sectionIntroFileEntryName, zipReader, metadata, strategy,
-					serviceContext);
+					sectionIntroFileEntryName, zipReader, metadata,
+					prioritizationStrategy, serviceContext);
 
 				sectionResourceClassNameId = PortalUtil.getClassNameId(
 					KBArticleConstants.getClassName());
@@ -324,13 +324,13 @@ public class KBArticleImporter {
 					userId, groupId, parentKBFolderId,
 					sectionResourceClassNameId, sectionResourcePrimaryKey,
 					sectionMarkdown, sectionFileEntryName, zipReader, metadata,
-					strategy, serviceContext);
+					prioritizationStrategy, serviceContext);
 
 				importedKBArticleCount++;
 			}
 		}
 
-		strategy.prioritizeArticles();
+		prioritizationStrategy.prioritizeArticles();
 
 		return importedKBArticleCount;
 	}
