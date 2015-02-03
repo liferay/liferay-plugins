@@ -310,7 +310,7 @@ public class AssetEntrySetLocalServiceImpl
 	@Override
 	public AssetEntrySet updateAssetEntrySet(
 			long assetEntrySetId, JSONObject payloadJSONObject, File file,
-			boolean privateAssetEntrySet, int commentCount)
+			boolean privateAssetEntrySet)
 		throws PortalException, SystemException {
 
 		AssetEntrySet assetEntrySet = assetEntrySetPersistence.findByPrimaryKey(
@@ -345,8 +345,6 @@ public class AssetEntrySetLocalServiceImpl
 		AssetSharingEntryLocalServiceUtil.addAssetSharingEntries(
 			_ASSET_ENTRY_SET_CLASS_NAME_ID, assetEntrySetId,
 			sharedToClassPKsMap);
-
-		assetEntrySet.setComments(commentCount);
 
 		updateParticipants(assetEntrySet);
 
