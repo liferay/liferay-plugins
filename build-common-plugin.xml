@@ -409,7 +409,7 @@ Include-Resource: WEB-INF/=server-config.wsdd,classes;filter:=*.wsdd
 				<baseline-jar
 					bndRootFile="${sdk.dir}/common.bnd"
 					file="${basedir}/${plugin.name}-wsdd.bnd"
-					outputPath="${sdk.dir}/dist/${plugin.name}-${plugin.full.version}-wsdd.${plugin.packaging}"
+					outputPath="${sdk.dir}/dist/${plugin.name}-wsdd-${plugin.full.version}.${plugin.packaging}"
 					sourcePath="${basedir}"
 				>
 					<classpath>

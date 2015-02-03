@@ -396,7 +396,7 @@ Error-Prone was automatically installed. Please rerun your task.
 					</if>
 
 					<delete file="${module.auto.deploy.dir}/${plugin.name}.${plugin.packaging}" />
-					<delete file="${sdk.dir}/dist/${plugin.name}-${plugin.full.version}-wsdd.${plugin.packaging}" />
+					<delete file="${sdk.dir}/dist/${plugin.name}-wsdd-${plugin.full.version}.${plugin.packaging}" />
 					<delete file="${module.auto.deploy.dir}/${plugin.name}-wsdd.${plugin.packaging}" />
 				</then>
 			</if>
@@ -1301,10 +1301,10 @@ Please find a solution that does not require portal-impl.jar.
 								tofile="${module.auto.deploy.dir}/${plugin.name}.${plugin.packaging}"
 							/>
 							<if>
-								<available file="${sdk.dir}/dist/${plugin.name}-${plugin.full.version}-wsdd.${plugin.packaging}" />
+								<available file="${sdk.dir}/dist/${plugin.name}-wsdd-${plugin.full.version}.${plugin.packaging}" />
 								<then>
 									<copy 
-										file="${sdk.dir}/dist/${plugin.name}-${plugin.full.version}-wsdd.${plugin.packaging}" 
+										file="${sdk.dir}/dist/${plugin.name}-wsdd-${plugin.full.version}.${plugin.packaging}" 
 										tofile="${module.auto.deploy.dir}/${plugin.name}-wsdd.${plugin.packaging}" 
 										failonerror="false"
 									/>
