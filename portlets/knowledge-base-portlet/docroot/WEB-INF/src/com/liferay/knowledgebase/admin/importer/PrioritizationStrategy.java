@@ -90,7 +90,7 @@ public class PrioritizationStrategy {
 
 	public void prioritizeKBArticles() throws PortalException, SystemException {
 		if (_prioritizeUpdatedKBArticles) {
-			_initializeNonImportedKBArticles();
+			initializeNonImportedKBArticles();
 		}
 
 		if (_prioritizeByNumericalPrefix) {
@@ -141,7 +141,7 @@ public class PrioritizationStrategy {
 		importedUrlTitles.add(kbArticle.getUrlTitle());
 
 		if (_prioritizeByNumericalPrefix) {
-			double sectionFileEntryNamePrefix = _getNumericalPrefix(fileName);
+			double sectionFileEntryNamePrefix = getNumericalPrefix(fileName);
 
 			if (sectionFileEntryNamePrefix > 0) {
 				_importedKBArticleUrlTitlesPrioritiesMap.put(
@@ -292,7 +292,7 @@ public class PrioritizationStrategy {
 		}
 	}
 
-	private double _getNumericalPrefix(String path) {
+	protected double getNumericalPrefix(String path) {
 		int i = path.lastIndexOf(CharPool.SLASH);
 
 		if (i == -1) {
@@ -310,7 +310,7 @@ public class PrioritizationStrategy {
 		return Double.parseDouble(numericalPrefix);
 	}
 
-	private void _initializeNonImportedKBArticles() {
+	protected void initializeNonImportedKBArticles() {
 		_nonImportedKBArticlesMap = new HashMap<String, List<KBArticle>>();
 
 		for (Map.Entry<String, List<KBArticle>> entry :
