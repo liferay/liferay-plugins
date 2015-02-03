@@ -34,8 +34,8 @@ long parentKBFolderId = ParamUtil.getLong(request, "parentKBFolderId");
 	</aui:fieldset>
 
 	<aui:field-wrapper label="prioritization-strategy">
-		<aui:input checked="true" helpMessage="prioritize-only-new-articles-help" label="prioritize-only-new-articles" name="prioritizeUpdatedArticles" type="radio" value="false" />
-		<aui:input checked="false" helpMessage="prioritize-new-and-updated-articles-help" label="prioritize-new-and-updated-articles" name="prioritizeUpdatedArticles" type="radio" value="true" />
+		<aui:input checked="true" helpMessage="prioritize-only-new-articles-help" label="prioritize-only-new-articles" name="prioritizeUpdatedKBArticles" type="radio" value="false" />
+		<aui:input checked="false" helpMessage="prioritize-new-and-updated-articles-help" label="prioritize-new-and-updated-articles" name="prioritizeUpdatedKBArticles" type="radio" value="true" />
 		<aui:input helpMessage="prioritize-by-numerical-prefix-help" label="prioritize-by-numerical-prefix" name="prioritizeByNumericalPrefix" type="checkbox" value="false" />
 	</aui:field-wrapper>
 

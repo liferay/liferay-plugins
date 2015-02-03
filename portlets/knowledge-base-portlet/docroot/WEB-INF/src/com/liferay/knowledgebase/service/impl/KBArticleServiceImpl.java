@@ -98,7 +98,7 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 	@Override
 	public int addKBArticlesMarkdown(
 			long groupId, long parentKBFolderId, String fileName,
-			boolean prioritizeUpdatedArticles,
+			boolean prioritizeUpdatedKBArticles,
 			boolean prioritizeByNumericalPrefix, InputStream inputStream,
 			ServiceContext serviceContext)
 		throws PortalException {
@@ -108,8 +108,8 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 
 		return kbArticleLocalService.addKBArticlesMarkdown(
 			getUserId(), groupId, parentKBFolderId, fileName,
-			prioritizeUpdatedArticles, prioritizeByNumericalPrefix, inputStream,
-			serviceContext);
+			prioritizeUpdatedKBArticles, prioritizeByNumericalPrefix,
+			inputStream, serviceContext);
 	}
 
 	@Override

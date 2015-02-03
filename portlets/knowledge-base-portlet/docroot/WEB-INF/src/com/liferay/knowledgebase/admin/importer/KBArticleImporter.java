@@ -60,7 +60,7 @@ public class KBArticleImporter {
 
 	public int processZipFile(
 			long userId, long groupId, long parentKBFolderId,
-			boolean prioritizeUpdatedArticles,
+			boolean prioritizeUpdatedKBArticles,
 			boolean prioritizeByNumericalPrefix, InputStream inputStream,
 			ServiceContext serviceContext)
 		throws KBArticleImportException, PortalException {
@@ -76,7 +76,7 @@ public class KBArticleImporter {
 			Map<String, String> metadata = getMetadata(zipReader);
 
 			return processKBArticleFiles(
-				userId, groupId, parentKBFolderId, prioritizeUpdatedArticles,
+				userId, groupId, parentKBFolderId, prioritizeUpdatedKBArticles,
 				prioritizeByNumericalPrefix, zipReader, metadata,
 				serviceContext);
 		}
@@ -247,7 +247,7 @@ public class KBArticleImporter {
 
 	protected int processKBArticleFiles(
 			long userId, long groupId, long parentKBFolderId,
-			boolean prioritizeUpdatedArticles,
+			boolean prioritizeUpdatedKBArticles,
 			boolean prioritizeByNumericalPrefix, ZipReader zipReader,
 			Map<String, String> metadata, ServiceContext serviceContext)
 		throws PortalException {
@@ -256,7 +256,7 @@ public class KBArticleImporter {
 
 		PrioritizationStrategy prioritizationStrategy =
 			PrioritizationStrategy.create(
-				groupId, parentKBFolderId, prioritizeUpdatedArticles,
+				groupId, parentKBFolderId, prioritizeUpdatedKBArticles,
 				prioritizeByNumericalPrefix);
 
 		Map<String, List<String>> folderNameFileEntryNamesMap =
