@@ -336,6 +336,7 @@ Error-Prone was automatically installed. Please rerun your task.
 			<delete file="${plugin.pom.file}" />
 			<delete file="${plugin.sources.file}" />
 			<delete file="${plugin.src.file}" />
+			<delete file="${plugin.wsdd.file}" />
 
 			<if>
 				<equals arg1="${clean.delete.ivy.md5}" arg2="true" />
@@ -396,8 +397,7 @@ Error-Prone was automatically installed. Please rerun your task.
 					</if>
 
 					<delete file="${module.auto.deploy.dir}/${plugin.name}.${plugin.packaging}" />
-					<delete file="${sdk.dir}/dist/${plugin.name}-wsdd-${plugin.full.version}.${plugin.packaging}" />
-					<delete file="${module.auto.deploy.dir}/${plugin.name}-wsdd.${plugin.packaging}" />
+					<delete file="${module.auto.deploy.dir}/${plugin.name}-wsdd.jar" />
 				</then>
 			</if>
 		</sequential>
@@ -1300,13 +1300,13 @@ Please find a solution that does not require portal-impl.jar.
 								file="${plugin.file}"
 								tofile="${module.auto.deploy.dir}/${plugin.name}.${plugin.packaging}"
 							/>
+
 							<if>
-								<available file="${sdk.dir}/dist/${plugin.name}-wsdd-${plugin.full.version}.${plugin.packaging}" />
+								<available file="${plugin.wsdd.file}" />
 								<then>
 									<copy 
-										file="${sdk.dir}/dist/${plugin.name}-wsdd-${plugin.full.version}.${plugin.packaging}" 
-										tofile="${module.auto.deploy.dir}/${plugin.name}-wsdd.${plugin.packaging}" 
-										failonerror="false"
+										file="${plugin.wsdd.file}" 
+										tofile="${module.auto.deploy.dir}/${plugin.name}-wsdd.jar" 
 									/>
 								</then>
 							</if>
