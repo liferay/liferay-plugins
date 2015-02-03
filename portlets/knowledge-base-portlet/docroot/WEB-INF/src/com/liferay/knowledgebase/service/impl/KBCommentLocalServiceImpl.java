@@ -103,7 +103,7 @@ public class KBCommentLocalServiceImpl extends KBCommentLocalServiceBaseImpl {
 
 		// Subscriptions
 
-		notifySubscribers(kbComment, serviceContext);
+		notifySubscribers(user.getUserId(), kbComment, serviceContext);
 
 		return kbComment;
 	}
@@ -317,7 +317,7 @@ public class KBCommentLocalServiceImpl extends KBCommentLocalServiceBaseImpl {
 
 		kbCommentPersistence.update(kbComment);
 
-		notifySubscribers(kbComment, serviceContext);
+		notifySubscribers(kbComment.getUserId(), kbComment, serviceContext);
 
 		return kbComment;
 	}
@@ -342,7 +342,8 @@ public class KBCommentLocalServiceImpl extends KBCommentLocalServiceBaseImpl {
 	}
 
 	protected void notifySubscribers(
-			KBComment kbComment, ServiceContext serviceContext)
+			long contextUserId, KBComment kbComment,
+			ServiceContext serviceContext)
 		throws PortalException {
 
 		PortletPreferences preferences =
@@ -394,6 +395,7 @@ public class KBCommentLocalServiceImpl extends KBCommentLocalServiceBaseImpl {
 		subscriptionSender.setContextAttribute(
 			"[$COMMENT_CREATE_DATE$]",
 			getFormattedKBCommentCreateDate(kbComment, serviceContext), false);
+		subscriptionSender.setContextUserId(contextUserId);
 		subscriptionSender.setContextUserPrefix("ARTICLE");
 		subscriptionSender.setFrom(fromAddress, fromName);
 		subscriptionSender.setHtmlFormat(true);

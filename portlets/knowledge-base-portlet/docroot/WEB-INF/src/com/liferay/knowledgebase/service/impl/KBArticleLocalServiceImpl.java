@@ -1281,7 +1281,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 
 		// Subscriptions
 
-		notifySubscribers(kbArticle, serviceContext);
+		notifySubscribers(userId, kbArticle, serviceContext);
 
 		return kbArticle;
 	}
@@ -1731,7 +1731,8 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 	}
 
 	protected void notifySubscribers(
-			KBArticle kbArticle, ServiceContext serviceContext)
+			long contextUserId, KBArticle kbArticle,
+			ServiceContext serviceContext)
 		throws PortalException {
 
 		if (Validator.isNull(serviceContext.getLayoutFullURL())) {
@@ -1813,6 +1814,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			"[$ARTICLE_TITLE$]", kbArticle.getTitle(), false);
 		subscriptionSender.setContextAttribute(
 			"[$ARTICLE_TITLE_DIFF$]", kbArticleDiffs.get("title"), false);
+		subscriptionSender.setContextUserId(contextUserId);
 		subscriptionSender.setContextUserPrefix("ARTICLE");
 		subscriptionSender.setFrom(fromAddress, fromName);
 		subscriptionSender.setHtmlFormat(true);
