@@ -417,16 +417,16 @@ public class PrioritizationStrategy {
 		}
 	}
 
-	private Map<String, List<KBArticle>> _existingArticlesMap;
+	private final Map<String, List<KBArticle>> _existingArticlesMap;
 	private final long _groupId;
-	private Map<String, List<KBArticle>> _importedArticlesMap;
-	private Map<String, List<String>> _importedUrlTitlesMap;
-	private Map<String, Double> _importedUrlTitlesPrioritiesMap;
-	private Map<String, List<KBArticle>> _newArticlesMap;
-	private Map<String, List<String>> _newUrlTitlesMap;
+	private final Map<String, List<KBArticle>> _importedArticlesMap;
+	private final Map<String, List<String>> _importedUrlTitlesMap;
+	private final Map<String, Double> _importedUrlTitlesPrioritiesMap;
+	private final Map<String, List<KBArticle>> _newArticlesMap;
+	private final Map<String, List<String>> _newUrlTitlesMap;
 	private Map<String, List<KBArticle>> _nonImportedArticlesMap;
 	private final long _parentKBFolderId;
-	private boolean _prioritizeByNumericalPrefix;
-	private boolean _prioritizeUpdatedArticles;
+	private final boolean _prioritizeByNumericalPrefix;
+	private final boolean _prioritizeUpdatedArticles;
 
 }
