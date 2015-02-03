@@ -43,7 +43,7 @@ public class AssetEntrySetImpl extends AssetEntrySetBaseImpl {
 		}
 
 		_comments = AssetEntrySetLocalServiceUtil.getChildAssetEntrySets(
-				getAssetEntrySetId(), 0, commentCount, null);
+			getAssetEntrySetId(), 0, commentCount, null);
 	}
 
 	private List<AssetEntrySet> _comments;

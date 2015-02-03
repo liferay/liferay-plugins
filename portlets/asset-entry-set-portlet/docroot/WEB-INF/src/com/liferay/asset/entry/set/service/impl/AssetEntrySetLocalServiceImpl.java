@@ -549,6 +549,7 @@ public class AssetEntrySetLocalServiceImpl
 
 		for (AssetEntrySet assetEntrySet : assetEntrySets) {
 			assetEntrySet.setComments(commentCount);
+
 			updateParticipants(assetEntrySet);
 		}
 	}
