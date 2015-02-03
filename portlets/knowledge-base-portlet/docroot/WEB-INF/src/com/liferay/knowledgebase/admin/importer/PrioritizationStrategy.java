@@ -72,31 +72,6 @@ public class PrioritizationStrategy {
 			prioritizeByNumericalPrefix, existingKBArticlesMap);
 	}
 
-	public void updateKBArticle(KBArticle kbArticle, String fileName)
-		throws PortalException, SystemException {
-
-		String parentKBArticleUrlTitle = getParentKBArticleUrlTitle(kbArticle);
-
-		List<KBArticle> kbArticles = getList(
-			_importedKBArticlesMap, parentKBArticleUrlTitle);
-
-		kbArticles.add(kbArticle);
-
-		List<String> importedUrlTitles = getList(
-			_importedKBArticleUrlTitlesMap, parentKBArticleUrlTitle);
-
-		importedUrlTitles.add(kbArticle.getUrlTitle());
-
-		if (_prioritizeByNumericalPrefix) {
-			double sectionFileEntryNamePrefix = _getNumericalPrefix(fileName);
-
-			if (sectionFileEntryNamePrefix > 0) {
-				_importedKBArticleUrlTitlesPrioritiesMap.put(
-					kbArticle.getUrlTitle(), sectionFileEntryNamePrefix);
-			}
-		}
-	}
-
 	public void addKBArticle(KBArticle kbArticle, String fileName)
 		throws PortalException, SystemException {
 
@@ -147,6 +122,31 @@ public class PrioritizationStrategy {
 				computeMaxKBArticlePriorityMap(_existingKBArticlesMap);
 
 			prioritizeKBArticles(_newKBArticlesMap, maxKBArticlePriorityMap);
+		}
+	}
+
+	public void updateKBArticle(KBArticle kbArticle, String fileName)
+		throws PortalException, SystemException {
+
+		String parentKBArticleUrlTitle = getParentKBArticleUrlTitle(kbArticle);
+
+		List<KBArticle> kbArticles = getList(
+			_importedKBArticlesMap, parentKBArticleUrlTitle);
+
+		kbArticles.add(kbArticle);
+
+		List<String> importedUrlTitles = getList(
+			_importedKBArticleUrlTitlesMap, parentKBArticleUrlTitle);
+
+		importedUrlTitles.add(kbArticle.getUrlTitle());
+
+		if (_prioritizeByNumericalPrefix) {
+			double sectionFileEntryNamePrefix = _getNumericalPrefix(fileName);
+
+			if (sectionFileEntryNamePrefix > 0) {
+				_importedKBArticleUrlTitlesPrioritiesMap.put(
+					kbArticle.getUrlTitle(), sectionFileEntryNamePrefix);
+			}
 		}
 	}
 
