@@ -24,7 +24,7 @@ import com.liferay.portal.kernel.search.Indexer;
  */
 public class CalendarSearcher extends BaseSearcher {
 
-	public static final String[] CLASS_NAMES = {Calendar.class.getName()};
+	public static final String CLASS_NAME = Calendar.class.getName();
 
 	public static Indexer getInstance() {
 		return new CalendarSearcher();
@@ -42,8 +42,8 @@ public class CalendarSearcher extends BaseSearcher {
 	}
 
 	@Override
-	public String[] getClassNames() {
-		return CLASS_NAMES;
+	public String getClassName() {
+		return CLASS_NAME;
 	}
 
 }
