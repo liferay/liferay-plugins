@@ -108,11 +108,6 @@ public class PrioritizationStrategy {
 				_newArticlesMap, parentKBArticleUrlTitle);
 
 			newKBArticles.add(kbArticle);
-
-			List<String> newKBArticleUrlTitles = getList(
-				_newUrlTitlesMap, parentKBArticleUrlTitle);
-
-			newKBArticleUrlTitles.add(kbArticle.getUrlTitle());
 		}
 	}
 
@@ -142,7 +137,6 @@ public class PrioritizationStrategy {
 				remove(_importedArticlesMap, kbArticle);
 				remove(_importedUrlTitlesMap, kbArticle.getUrlTitle());
 				remove(_newArticlesMap, kbArticle);
-				remove(_newUrlTitlesMap, kbArticle.getUrlTitle());
 			}
 		}
 
@@ -185,7 +179,6 @@ public class PrioritizationStrategy {
 		_importedUrlTitlesPrioritiesMap = new HashMap<String, Double>();
 
 		_newArticlesMap = new HashMap<String, List<KBArticle>>();
-		_newUrlTitlesMap = new HashMap<String, List<String>>();
 	}
 
 	protected Map<String, Double> computeMaxKBArticlePriorityMap(
@@ -350,7 +343,6 @@ public class PrioritizationStrategy {
 	private final Map<String, List<String>> _importedUrlTitlesMap;
 	private final Map<String, Double> _importedUrlTitlesPrioritiesMap;
 	private final Map<String, List<KBArticle>> _newArticlesMap;
-	private final Map<String, List<String>> _newUrlTitlesMap;
 	private Map<String, List<KBArticle>> _nonImportedArticlesMap;
 	private final long _parentKBFolderId;
 	private final boolean _prioritizeByNumericalPrefix;
