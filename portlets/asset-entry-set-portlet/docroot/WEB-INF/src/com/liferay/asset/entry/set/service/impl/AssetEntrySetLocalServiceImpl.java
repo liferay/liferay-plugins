@@ -167,9 +167,7 @@ public class AssetEntrySetLocalServiceImpl
 			assetEntrySetFinder.findBySharedToClassPKsMap(
 				sharedToClassPKsMap, start, end);
 
-		updateComments(assetEntrySets, commentCount);
-
-		updateParticipants(assetEntrySets);
+		updateCommentsAndParticipants(assetEntrySets, commentCount);
 
 		return assetEntrySets;
 	}
@@ -189,9 +187,7 @@ public class AssetEntrySetLocalServiceImpl
 				creatorClassNameId, creatorClassPK, assetTagName,
 				sharedToClassPKsMap, andOperator, start, end);
 
-		updateComments(assetEntrySets, commentCount);
-
-		updateParticipants(assetEntrySets);
+		updateCommentsAndParticipants(assetEntrySets, commentCount);
 
 		return assetEntrySets;
 	}
@@ -208,9 +204,7 @@ public class AssetEntrySetLocalServiceImpl
 		List<AssetEntrySet> assetEntrySets = assetEntrySetFinder.findByCCNI_ATN(
 			creatorClassNameId, assetTagName, sharedToClassPKsMap, start, end);
 
-		updateComments(assetEntrySets, commentCount);
-
-		updateParticipants(assetEntrySets);
+		updateCommentsAndParticipants(assetEntrySets, commentCount);
 
 		return assetEntrySets;
 	}
@@ -386,9 +380,7 @@ public class AssetEntrySetLocalServiceImpl
 				createTime, gtCreateTime, parentAssetEntrySetId,
 				sharedToClassPKsMap, start, end);
 
-		updateComments(assetEntrySets, commentCount);
-
-		updateParticipants(assetEntrySets);
+		updateCommentsAndParticipants(assetEntrySets, commentCount);
 
 		return assetEntrySets;
 	}
@@ -551,12 +543,13 @@ public class AssetEntrySetLocalServiceImpl
 		assetEntrySetPersistence.update(assetEntrySet);
 	}
 
-	protected void updateComments(
+	protected void updateCommentsAndParticipants(
 			List<AssetEntrySet> assetEntrySets, int commentCount)
 		throws PortalException, SystemException {
 
 		for (AssetEntrySet assetEntrySet : assetEntrySets) {
 			assetEntrySet.setComments(commentCount);
+			updateParticipants(assetEntrySet);
 		}
 	}
 
