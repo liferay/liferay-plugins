@@ -86,16 +86,16 @@ public class PrioritizationStrategy {
 			existingChildUrlTitlesMap);
 	}
 
-	public void addImportedChildArticle(KBArticle kbArticle, String fileName)
+	public void addKBArticle(KBArticle kbArticle, String fileName)
 		throws PortalException, SystemException {
 
 		KBArticle parentKBArticle = kbArticle.getParentKBArticle();
 
-		if (parentKBArticle == null) {
-			return;
-		}
+		String parentKBArticleUrlTitle = StringPool.BLANK;
 
-		String parentKBArticleUrlTitle = parentKBArticle.getUrlTitle();
+		if (parentKBArticle != null) {
+			parentKBArticleUrlTitle = parentKBArticle.getUrlTitle();
+		}
 
 		List<KBArticle> kbArticles = _importedArticlesMap.get(
 			parentKBArticleUrlTitle);
@@ -125,41 +125,6 @@ public class PrioritizationStrategy {
 			if (sectionFileEntryNamePrefix > 0) {
 				_importedUrlTitlesPrioritiesMap.put(
 					kbArticle.getUrlTitle(), sectionFileEntryNamePrefix);
-			}
-		}
-	}
-
-	public void addImportedParentArticle(KBArticle kbArticle, String fileName) {
-		String parentKBArticleUrlTitle = StringPool.BLANK;
-
-		List<KBArticle> kbArticles = _importedArticlesMap.get(
-			parentKBArticleUrlTitle);
-
-		if (kbArticles == null) {
-			kbArticles = new ArrayList<KBArticle>();
-		}
-
-		kbArticles.add(kbArticle);
-
-		_importedArticlesMap.put(parentKBArticleUrlTitle, kbArticles);
-
-		List<String> importedUrlTitles = _importedUrlTitlesMap.get(
-			parentKBArticleUrlTitle);
-
-		if (importedUrlTitles == null) {
-			importedUrlTitles = new ArrayList<String>();
-		}
-
-		importedUrlTitles.add(kbArticle.getUrlTitle());
-
-		_importedUrlTitlesMap.put(parentKBArticleUrlTitle, importedUrlTitles);
-
-		if (_prioritizeByNumericalPrefix) {
-			double folderNamePrefix = _getNumericalPrefix(fileName);
-
-			if (folderNamePrefix > 0) {
-				_importedUrlTitlesPrioritiesMap.put(
-					kbArticle.getUrlTitle(), folderNamePrefix);
 			}
 		}
 	}

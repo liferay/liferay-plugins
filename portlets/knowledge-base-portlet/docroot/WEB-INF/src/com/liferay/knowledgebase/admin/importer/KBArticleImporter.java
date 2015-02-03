@@ -284,8 +284,7 @@ public class KBArticleImporter {
 					sectionIntroFileEntryName, zipReader, metadata,
 					serviceContext);
 
-				strategy.addImportedParentArticle(
-					sectionIntroKBArticle, folderName);
+				strategy.addKBArticle(sectionIntroKBArticle, folderName);
 
 				sectionResourceClassNameId = PortalUtil.getClassNameId(
 					KBArticleConstants.getClassName());
@@ -313,8 +312,7 @@ public class KBArticleImporter {
 					sectionMarkdown, sectionFileEntryName, zipReader, metadata,
 					serviceContext);
 
-				strategy.addImportedChildArticle(
-					sectionKBArticle, sectionFileEntryName);
+				strategy.addKBArticle(sectionKBArticle, sectionFileEntryName);
 
 				importedKBArticlesCount++;
 			}
