@@ -138,73 +138,10 @@ public class PrioritizationStrategy {
 				 * alphanumerically prioritized.
 				 */
 
-				for (Map.Entry<String, List<KBArticle>> entry :
-						_importedArticlesMap.entrySet()) {
-
-					List<KBArticle> kbArticles = entry.getValue();
-
-					if (kbArticles == null) {
-						continue;
-					}
-
-					if (kbArticles.contains(kbArticle)) {
-						kbArticles.remove(kbArticle);
-					}
-
-					_importedArticlesMap.put(entry.getKey(), kbArticles);
-				}
-
-				for (Map.Entry<String, List<String>> entry :
-						_importedUrlTitlesMap.entrySet()) {
-
-					List<String> urlTitles = entry.getValue();
-
-					if (urlTitles == null) {
-						continue;
-					}
-
-					String urlTitle = kbArticle.getUrlTitle();
-
-					if (urlTitles.contains(urlTitle)) {
-						urlTitles.remove(urlTitle);
-					}
-
-					_importedUrlTitlesMap.put(entry.getKey(), urlTitles);
-				}
-
-				for (Map.Entry<String, List<KBArticle>> entry :
-						_newArticlesMap.entrySet()) {
-
-					List<KBArticle> kbArticles = entry.getValue();
-
-					if (kbArticles == null) {
-						continue;
-					}
-
-					if (kbArticles.contains(kbArticle)) {
-						kbArticles.remove(kbArticle);
-					}
-
-					_newArticlesMap.put(entry.getKey(), kbArticles);
-				}
-
-				for (Map.Entry<String, List<String>> entry :
-						_newUrlTitlesMap.entrySet()) {
-
-					List<String> urlTitles = entry.getValue();
-
-					if (urlTitles == null) {
-						continue;
-					}
-
-					String urlTitle = kbArticle.getUrlTitle();
-
-					if (urlTitles.contains(urlTitle)) {
-						urlTitles.remove(urlTitle);
-					}
-
-					_newUrlTitlesMap.put(entry.getKey(), urlTitles);
-				}
+				remove(_importedArticlesMap, kbArticle);
+				remove(_importedUrlTitlesMap, kbArticle.getUrlTitle());
+				remove(_newArticlesMap, kbArticle);
+				remove(_newUrlTitlesMap, kbArticle.getUrlTitle());
 			}
 		}
 
@@ -393,6 +330,18 @@ public class PrioritizationStrategy {
 		}
 
 		return parentKBArticle.getUrlTitle();
+	}
+
+	protected <S, T> void remove(Map<S, List<T>> map, T object) {
+		for (Map.Entry<S, List<T>> entry : map.entrySet()) {
+			List<T> list = entry.getValue();
+
+			if (list == null) {
+				continue;
+			}
+
+			list.remove(object);
+		}
 	}
 
 	private double _getNumericalPrefix(String path) {
