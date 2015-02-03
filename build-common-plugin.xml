@@ -398,15 +398,15 @@
 		<path id="wsdd.classpath">
 			<path refid="lib.classpath" />
 			<path refid="portal.classpath" />
-			<fileset dir="docroot/WEB-INF/lib" includes="*.jar" />
-			<pathelement location="docroot/WEB-INF/classes" />
+			<fileset dir="${plugin.lib.dir}" includes="*.jar" />
+			<pathelement location="${plugin.classes.dir}" />
 		</path>
 
 		<build-wsdd
-			wsdd.input.file="docroot/WEB-INF/service.xml"
-			wsdd.server.config.file="docroot/WEB-INF/server-config.wsdd"
+			wsdd.input.file="${plugin.source.dir}/../service.xml"
+			wsdd.server.config.file="${plugin.source.dir}/../server-config.wsdd"
 			wsdd.service.namespace="Plugin"
-			wsdd.output.path="docroot/WEB-INF/src/"
+			wsdd.output.path="${plugin.source.dir}"
 		/>
 	</target>
 

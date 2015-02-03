@@ -4,13 +4,6 @@
 <project name="build-common-osgi-plugin">
 	<import file="build-common-plugin.xml" />
 
-	<path id="wsdd.classpath">
-		<path refid="lib.classpath" />
-		<path refid="portal.classpath" />
-		<fileset dir="lib" includes="*.jar" />
-		<pathelement location="classes" />
-	</path>
-
 	<target name="build-wsdd" depends="compile">
 		<loop-macrodef-or-target
 			module.dirs="${basedir}"
