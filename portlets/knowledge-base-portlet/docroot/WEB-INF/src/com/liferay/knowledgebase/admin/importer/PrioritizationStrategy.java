@@ -113,7 +113,7 @@ public class PrioritizationStrategy {
 		}
 	}
 
-	public void prioritizeArticles() throws PortalException, SystemException {
+	public void prioritizeKBArticles() throws PortalException, SystemException {
 		if (_prioritizeUpdatedKBArticles) {
 			_initNonImportedArticles();
 		}

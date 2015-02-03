@@ -328,7 +328,7 @@ public class KBArticleImporter {
 			}
 		}
 
-		prioritizationStrategy.prioritizeArticles();
+		prioritizationStrategy.prioritizeKBArticles();
 
 		return importedKBArticlesCount;
 	}
