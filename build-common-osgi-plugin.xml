@@ -4,12 +4,7 @@
 <project name="build-common-osgi-plugin">
 	<import file="build-common-plugin.xml" />
 
-	<target name="build-wsdd" depends="compile">
-		<loop-macrodef-or-target
-			module.dirs="${basedir}"
-			target.name="compile"
-		/>
-
+	<target name="build-wsdd">
 		<build-wsdd
 			wsdd.classpath.property="wsdd.classpath"
 			wsdd.input.file="service.xml"
