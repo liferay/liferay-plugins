@@ -337,89 +337,6 @@
 		<delete dir="${service.base.dir}/service-classes" />
 	</target>
 
-	<macrodef name="build-wsdd">
-		<attribute name="wsdd.classpath.property" />
-		<attribute name="wsdd.input.file" />
-		<attribute name="wsdd.server.config.file" />
-		<attribute name="wsdd.service.namespace" />
-		<attribute name="wsdd.output.path" />
-
-		<sequential>
-			<if>
-				<os family="windows" />
-				<then>
-					<classpath-to-jar
-						classpathref="@{wsdd.classpath.property}"
-						jarfile="build-wsdd-classpath.jar"
-					/>
-				</then>
-			</if>
-
-			<java
-				classname="com.liferay.portal.tools.WSDDBuilder"
-				classpathref="@{wsdd.classpath.property}"
-				fork="true"
-				maxmemory="256m"
-				newenvironment="true"
-				outputproperty="build-wsdd.output"
-			>
-				<jvmarg value="-Dexternal-properties=com/liferay/portal/tools/dependencies/portal-tools.properties" />
-				<jvmarg value="-Dorg.apache.commons.logging.Log=org.apache.commons.logging.impl.Log4JLogger" />
-				<arg value="wsdd.input.file=@{wsdd.input.file}" />
-				<arg value="wsdd.server.config.file=@{wsdd.server.config.file}" />
-				<arg value="wsdd.service.namespace=@{wsdd.service.namespace}" />
-				<arg value="wsdd.output.path=@{wsdd.output.path}" />
-			</java>
-
-			<if>
-				<os family="windows" />
-				<then>
-					<delete file="build-wsdd-classpath.jar" />
-				</then>
-			</if>
-
-			<echo>${build-wsdd.output}</echo>
-
-			<if>
-				<contains string="${build-wsdd.output}" substring="IOException" />
-				<then>
-					<fail>WSDD Builder generated exceptions.</fail>
-				</then>
-			</if>
-
-			<if>
-				<resourcecontains
-					resource="${module.dir.unix}/build.xml"
-					substring="/build-common-osgi-plugin.xml&quot;"
-				/>
-				<then>
-					<property file="bnd.bnd" prefix="bnd." />
-
-					<echo file="bnd-${plugin.name}-wsdd.bnd">Bundle-SymbolicName: ${bnd.Bundle-SymbolicName}.wsdd
-Bundle-Name: ${bnd.Bundle-Name} WSDD descriptors
-Bundle-Version: ${bnd.Bundle-Version}
-Fragment-Host: ${bnd.Bundle-SymbolicName}
-Include-Resource: WEB-INF/=server-config.wsdd,classes;filter:=*.wsdd
-					</echo>
-
-					<bndexpand propertyfile="${sdk.dir}/common.bnd" />
-
-					<baseline-jar
-						bndRootFile="${sdk.dir}/common.bnd"
-						file="${basedir}/bnd-${plugin.name}-wsdd.bnd"
-						outputPath="${sdk.dir}/dist/${plugin.name}-${plugin.full.version}-wsdd-fragment.${plugin.packaging}"
-						sourcePath="${basedir}">
-						<classpath>
-							<pathelement location="${plugin.classes.dir}" />
-						</classpath>
-					</baseline-jar>
-
-					<delete file="${basedir}/bnd-${plugin.name}-wsdd.bnd" failonerror="false" />
-				</then>
-			</if>
-		</sequential>
-	</macrodef>
-
 	<target name="build-wsdd">
 		<loop-macrodef-or-target
 			module.dirs="${basedir}"
@@ -433,12 +350,78 @@ Include-Resource: WEB-INF/=server-config.wsdd,classes;filter:=*.wsdd
 			<pathelement location="${plugin.classes.dir}" />
 		</path>
 
-		<build-wsdd
-			wsdd.input.file="${plugin.source.dir}/../service.xml"
-			wsdd.server.config.file="${plugin.source.dir}/../server-config.wsdd"
-			wsdd.service.namespace="Plugin"
-			wsdd.output.path="${plugin.source.dir}"
-		/>
+		<if>
+			<os family="windows" />
+			<then>
+				<classpath-to-jar
+					classpathref="wsdd.classpath"
+					jarfile="build-wsdd-classpath.jar"
+				/>
+			</then>
+		</if>
+
+		<java
+			classname="com.liferay.portal.tools.WSDDBuilder"
+			classpathref="wsdd.classpath"
+			fork="true"
+			maxmemory="256m"
+			newenvironment="true"
+			outputproperty="build-wsdd.output"
+		>
+			<jvmarg value="-Dexternal-properties=com/liferay/portal/tools/dependencies/portal-tools.properties" />
+			<jvmarg value="-Dorg.apache.commons.logging.Log=org.apache.commons.logging.impl.Log4JLogger" />
+			<arg value="wsdd.input.file=${plugin.source.dir}/../service.xml" />
+			<arg value="wsdd.server.config.file=${plugin.source.dir}/../server-config.wsdd" />
+			<arg value="wsdd.service.namespace=Plugin" />
+			<arg value="wsdd.output.path=${plugin.source.dir}/" />
+		</java>
+
+		<if>
+			<os family="windows" />
+			<then>
+				<delete file="build-wsdd-classpath.jar" />
+			</then>
+		</if>
+
+		<echo>${build-wsdd.output}</echo>
+
+		<if>
+			<contains string="${build-wsdd.output}" substring="IOException" />
+			<then>
+				<fail>WSDD Builder generated exceptions.</fail>
+			</then>
+		</if>
+
+		<if>
+			<resourcecontains
+				resource="${module.dir.unix}/build.xml"
+				substring="/build-common-osgi-plugin.xml&quot;"
+			/>
+			<then>
+				<property file="bnd.bnd" prefix="bnd." />
+
+				<echo file="bnd-${plugin.name}-wsdd.bnd">Bundle-SymbolicName: ${bnd.Bundle-SymbolicName}.wsdd
+Bundle-Name: ${bnd.Bundle-Name} WSDD descriptors
+Bundle-Version: ${bnd.Bundle-Version}
+Fragment-Host: ${bnd.Bundle-SymbolicName}
+Include-Resource: WEB-INF/=server-config.wsdd,classes;filter:=*.wsdd
+				</echo>
+
+				<bndexpand propertyfile="${sdk.dir}/common.bnd" />
+
+				<baseline-jar
+					bndRootFile="${sdk.dir}/common.bnd"
+					file="${basedir}/bnd-${plugin.name}-wsdd.bnd"
+					outputPath="${sdk.dir}/dist/${plugin.name}-${plugin.full.version}-wsdd-fragment.${plugin.packaging}"
+					sourcePath="${basedir}">
+					<classpath>
+						<pathelement location="${plugin.classes.dir}" />
+					</classpath>
+				</baseline-jar>
+
+				<delete file="${basedir}/bnd-${plugin.name}-wsdd.bnd" failonerror="false" />
+			</then>
+		</if>
 	</target>
 
 	<target name="build-wsdl">
