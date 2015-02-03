@@ -72,7 +72,7 @@ public class PrioritizationStrategy {
 			prioritizeByNumericalPrefix, existingKBArticlesMap);
 	}
 
-	public void addKBArticle(KBArticle kbArticle, String fileName)
+	public void updateKBArticle(KBArticle kbArticle, String fileName)
 		throws PortalException, SystemException {
 
 		String parentKBArticleUrlTitle = getParentKBArticleUrlTitle(kbArticle);
@@ -97,10 +97,10 @@ public class PrioritizationStrategy {
 		}
 	}
 
-	public void addNewKBArticle(KBArticle kbArticle, String fileName)
+	public void addKBArticle(KBArticle kbArticle, String fileName)
 		throws PortalException, SystemException {
 
-		addKBArticle(kbArticle, fileName);
+		updateKBArticle(kbArticle, fileName);
 
 		if (!_prioritizeUpdatedKBArticles) {
 			String parentKBArticleUrlTitle = getParentKBArticleUrlTitle(
