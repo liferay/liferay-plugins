@@ -139,19 +139,19 @@ public class AssetEntrySetLocalServiceClp implements AssetEntrySetLocalService {
 
 		_methodName22 = "getAssetEntrySets";
 
-		_methodParameterTypes22 = new String[] { "long", "int", "int" };
+		_methodParameterTypes22 = new String[] { "long", "int", "int", "int" };
 
 		_methodName23 = "getAssetEntrySets";
 
 		_methodParameterTypes23 = new String[] {
 				"long", "long", "long", "java.lang.String", "boolean", "int",
-				"int"
+				"int", "int"
 			};
 
 		_methodName24 = "getAssetEntrySets";
 
 		_methodParameterTypes24 = new String[] {
-				"long", "long", "java.lang.String", "int", "int"
+				"long", "long", "java.lang.String", "int", "int", "int"
 			};
 
 		_methodName25 = "getAssetEntrySetsCount";
@@ -180,13 +180,13 @@ public class AssetEntrySetLocalServiceClp implements AssetEntrySetLocalService {
 		_methodName29 = "getNewAssetEntrySets";
 
 		_methodParameterTypes29 = new String[] {
-				"long", "long", "long", "int", "int"
+				"long", "long", "long", "int", "int", "int"
 			};
 
 		_methodName30 = "getOldAssetEntrySets";
 
 		_methodParameterTypes30 = new String[] {
-				"long", "long", "long", "int", "int"
+				"long", "long", "long", "int", "int", "int"
 			};
 
 		_methodName31 = "likeAssetEntrySet";
@@ -910,14 +910,15 @@ public class AssetEntrySetLocalServiceClp implements AssetEntrySetLocalService {
 
 	@Override
 	public java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> getAssetEntrySets(
-		long userId, int start, int end)
+		long userId, int childAssetEntrySetsLimit, int start, int end)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName22,
-					_methodParameterTypes22, new Object[] { userId, start, end });
+					_methodParameterTypes22,
+					new Object[] { userId, childAssetEntrySetsLimit, start, end });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -945,7 +946,8 @@ public class AssetEntrySetLocalServiceClp implements AssetEntrySetLocalService {
 	@Override
 	public java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> getAssetEntrySets(
 		long userId, long creatorClassNameId, long creatorClassPK,
-		java.lang.String assetTagName, boolean andOperator, int start, int end)
+		java.lang.String assetTagName, boolean andOperator,
+		int childAssetEntrySetsLimit, int start, int end)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -963,6 +965,8 @@ public class AssetEntrySetLocalServiceClp implements AssetEntrySetLocalService {
 					ClpSerializer.translateInput(assetTagName),
 						
 					andOperator,
+						
+					childAssetEntrySetsLimit,
 						
 					start,
 						
@@ -995,7 +999,7 @@ public class AssetEntrySetLocalServiceClp implements AssetEntrySetLocalService {
 	@Override
 	public java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> getAssetEntrySets(
 		long userId, long creatorClassNameId, java.lang.String assetTagName,
-		int start, int end)
+		int childAssetEntrySetsLimit, int start, int end)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -1009,6 +1013,8 @@ public class AssetEntrySetLocalServiceClp implements AssetEntrySetLocalService {
 					creatorClassNameId,
 						
 					ClpSerializer.translateInput(assetTagName),
+						
+					childAssetEntrySetsLimit,
 						
 					start,
 						
@@ -1203,8 +1209,8 @@ public class AssetEntrySetLocalServiceClp implements AssetEntrySetLocalService {
 
 	@Override
 	public java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> getNewAssetEntrySets(
-		long userId, long createTime, long parentAssetEntrySetId, int start,
-		int end)
+		long userId, long createTime, long parentAssetEntrySetId,
+		int childAssetEntrySetsLimit, int start, int end)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -1218,6 +1224,8 @@ public class AssetEntrySetLocalServiceClp implements AssetEntrySetLocalService {
 					createTime,
 						
 					parentAssetEntrySetId,
+						
+					childAssetEntrySetsLimit,
 						
 					start,
 						
@@ -1249,8 +1257,8 @@ public class AssetEntrySetLocalServiceClp implements AssetEntrySetLocalService {
 
 	@Override
 	public java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> getOldAssetEntrySets(
-		long userId, long createTime, long parentAssetEntrySetId, int start,
-		int end)
+		long userId, long createTime, long parentAssetEntrySetId,
+		int childAssetEntrySetsLimit, int start, int end)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -1264,6 +1272,8 @@ public class AssetEntrySetLocalServiceClp implements AssetEntrySetLocalService {
 					createTime,
 						
 					parentAssetEntrySetId,
+						
+					childAssetEntrySetsLimit,
 						
 					start,
 						

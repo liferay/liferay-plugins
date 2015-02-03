@@ -313,30 +313,34 @@ public class AssetEntrySetLocalServiceUtil {
 	}
 
 	public static java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> getAssetEntrySets(
-		long userId, int start, int end)
+		long userId, int childAssetEntrySetsLimit, int start, int end)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return getService().getAssetEntrySets(userId, start, end);
+		return getService()
+				   .getAssetEntrySets(userId, childAssetEntrySetsLimit, start,
+			end);
 	}
 
 	public static java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> getAssetEntrySets(
 		long userId, long creatorClassNameId, long creatorClassPK,
-		java.lang.String assetTagName, boolean andOperator, int start, int end)
+		java.lang.String assetTagName, boolean andOperator,
+		int childAssetEntrySetsLimit, int start, int end)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService()
 				   .getAssetEntrySets(userId, creatorClassNameId,
-			creatorClassPK, assetTagName, andOperator, start, end);
+			creatorClassPK, assetTagName, andOperator,
+			childAssetEntrySetsLimit, start, end);
 	}
 
 	public static java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> getAssetEntrySets(
 		long userId, long creatorClassNameId, java.lang.String assetTagName,
-		int start, int end)
+		int childAssetEntrySetsLimit, int start, int end)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService()
 				   .getAssetEntrySets(userId, creatorClassNameId, assetTagName,
-			start, end);
+			childAssetEntrySetsLimit, start, end);
 	}
 
 	public static int getAssetEntrySetsCount(long userId)
@@ -375,23 +379,23 @@ public class AssetEntrySetLocalServiceUtil {
 	}
 
 	public static java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> getNewAssetEntrySets(
-		long userId, long createTime, long parentAssetEntrySetId, int start,
-		int end)
+		long userId, long createTime, long parentAssetEntrySetId,
+		int childAssetEntrySetsLimit, int start, int end)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService()
 				   .getNewAssetEntrySets(userId, createTime,
-			parentAssetEntrySetId, start, end);
+			parentAssetEntrySetId, childAssetEntrySetsLimit, start, end);
 	}
 
 	public static java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> getOldAssetEntrySets(
-		long userId, long createTime, long parentAssetEntrySetId, int start,
-		int end)
+		long userId, long createTime, long parentAssetEntrySetId,
+		int childAssetEntrySetsLimit, int start, int end)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService()
 				   .getOldAssetEntrySets(userId, createTime,
-			parentAssetEntrySetId, start, end);
+			parentAssetEntrySetId, childAssetEntrySetsLimit, start, end);
 	}
 
 	public static com.liferay.asset.entry.set.model.AssetEntrySet likeAssetEntrySet(

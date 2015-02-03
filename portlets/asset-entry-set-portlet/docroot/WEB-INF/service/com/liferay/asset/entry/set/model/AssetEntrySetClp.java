@@ -496,6 +496,42 @@ public class AssetEntrySetClp extends BaseModelImpl<AssetEntrySet>
 		}
 	}
 
+	@Override
+	public java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> getChildAssetEntrySets() {
+		try {
+			String methodName = "getChildAssetEntrySets";
+
+			Class<?>[] parameterTypes = new Class<?>[] {  };
+
+			Object[] parameterValues = new Object[] {  };
+
+			java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> returnObj =
+				(java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet>)invokeOnRemoteModel(methodName,
+					parameterTypes, parameterValues);
+
+			return returnObj;
+		}
+		catch (Exception e) {
+			throw new UnsupportedOperationException(e);
+		}
+	}
+
+	@Override
+	public void setChildAssetEntrySets(int childAssetEntrySetsLimit) {
+		try {
+			String methodName = "setChildAssetEntrySets";
+
+			Class<?>[] parameterTypes = new Class<?>[] { int.class };
+
+			Object[] parameterValues = new Object[] { childAssetEntrySetsLimit };
+
+			invokeOnRemoteModel(methodName, parameterTypes, parameterValues);
+		}
+		catch (Exception e) {
+			throw new UnsupportedOperationException(e);
+		}
+	}
+
 	public BaseModel<?> getAssetEntrySetRemoteModel() {
 		return _assetEntrySetRemoteModel;
 	}

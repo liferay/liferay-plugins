@@ -63,12 +63,13 @@ import java.rmi.RemoteException;
  */
 public class AssetEntrySetServiceSoap {
 	public static com.liferay.asset.entry.set.model.AssetEntrySetSoap[] getNewAssetEntrySets(
-		long createTime, long parentAssetEntrySetId, int start, int end)
+		long createTime, long parentAssetEntrySetId,
+		int childAssetEntrySetsLimit, int start, int end)
 		throws RemoteException {
 		try {
 			java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> returnValue =
 				AssetEntrySetServiceUtil.getNewAssetEntrySets(createTime,
-					parentAssetEntrySetId, start, end);
+					parentAssetEntrySetId, childAssetEntrySetsLimit, start, end);
 
 			return com.liferay.asset.entry.set.model.AssetEntrySetSoap.toSoapModels(returnValue);
 		}
@@ -80,12 +81,13 @@ public class AssetEntrySetServiceSoap {
 	}
 
 	public static com.liferay.asset.entry.set.model.AssetEntrySetSoap[] getOldAssetEntrySets(
-		long createTime, long parentAssetEntrySetId, int start, int end)
+		long createTime, long parentAssetEntrySetId,
+		int childAssetEntrySetsLimit, int start, int end)
 		throws RemoteException {
 		try {
 			java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> returnValue =
 				AssetEntrySetServiceUtil.getOldAssetEntrySets(createTime,
-					parentAssetEntrySetId, start, end);
+					parentAssetEntrySetId, childAssetEntrySetsLimit, start, end);
 
 			return com.liferay.asset.entry.set.model.AssetEntrySetSoap.toSoapModels(returnValue);
 		}

@@ -53,11 +53,15 @@ public class AssetEntrySetServiceClp implements AssetEntrySetService {
 
 		_methodName6 = "getNewAssetEntrySets";
 
-		_methodParameterTypes6 = new String[] { "long", "long", "int", "int" };
+		_methodParameterTypes6 = new String[] {
+				"long", "long", "int", "int", "int"
+			};
 
 		_methodName7 = "getOldAssetEntrySets";
 
-		_methodParameterTypes7 = new String[] { "long", "long", "int", "int" };
+		_methodParameterTypes7 = new String[] {
+				"long", "long", "int", "int", "int"
+			};
 
 		_methodName8 = "likeAssetEntrySet";
 
@@ -255,7 +259,8 @@ public class AssetEntrySetServiceClp implements AssetEntrySetService {
 
 	@Override
 	public java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> getNewAssetEntrySets(
-		long createTime, long parentAssetEntrySetId, int start, int end)
+		long createTime, long parentAssetEntrySetId,
+		int childAssetEntrySetsLimit, int start, int end)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -263,7 +268,17 @@ public class AssetEntrySetServiceClp implements AssetEntrySetService {
 		try {
 			returnObj = _invokableService.invokeMethod(_methodName6,
 					_methodParameterTypes6,
-					new Object[] { createTime, parentAssetEntrySetId, start, end });
+					new Object[] {
+						createTime,
+						
+					parentAssetEntrySetId,
+						
+					childAssetEntrySetsLimit,
+						
+					start,
+						
+					end
+					});
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -290,7 +305,8 @@ public class AssetEntrySetServiceClp implements AssetEntrySetService {
 
 	@Override
 	public java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> getOldAssetEntrySets(
-		long createTime, long parentAssetEntrySetId, int start, int end)
+		long createTime, long parentAssetEntrySetId,
+		int childAssetEntrySetsLimit, int start, int end)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -298,7 +314,17 @@ public class AssetEntrySetServiceClp implements AssetEntrySetService {
 		try {
 			returnObj = _invokableService.invokeMethod(_methodName7,
 					_methodParameterTypes7,
-					new Object[] { createTime, parentAssetEntrySetId, start, end });
+					new Object[] {
+						createTime,
+						
+					parentAssetEntrySetId,
+						
+					childAssetEntrySetsLimit,
+						
+					start,
+						
+					end
+					});
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);

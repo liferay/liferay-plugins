@@ -148,19 +148,19 @@ public class AssetEntrySetLocalServiceClpInvoker {
 
 		_methodName75 = "getAssetEntrySets";
 
-		_methodParameterTypes75 = new String[] { "long", "int", "int" };
+		_methodParameterTypes75 = new String[] { "long", "int", "int", "int" };
 
 		_methodName76 = "getAssetEntrySets";
 
 		_methodParameterTypes76 = new String[] {
 				"long", "long", "long", "java.lang.String", "boolean", "int",
-				"int"
+				"int", "int"
 			};
 
 		_methodName77 = "getAssetEntrySets";
 
 		_methodParameterTypes77 = new String[] {
-				"long", "long", "java.lang.String", "int", "int"
+				"long", "long", "java.lang.String", "int", "int", "int"
 			};
 
 		_methodName78 = "getAssetEntrySetsCount";
@@ -189,13 +189,13 @@ public class AssetEntrySetLocalServiceClpInvoker {
 		_methodName82 = "getNewAssetEntrySets";
 
 		_methodParameterTypes82 = new String[] {
-				"long", "long", "long", "int", "int"
+				"long", "long", "long", "int", "int", "int"
 			};
 
 		_methodName83 = "getOldAssetEntrySets";
 
 		_methodParameterTypes83 = new String[] {
-				"long", "long", "long", "int", "int"
+				"long", "long", "long", "int", "int", "int"
 			};
 
 		_methodName84 = "likeAssetEntrySet";
@@ -361,7 +361,8 @@ public class AssetEntrySetLocalServiceClpInvoker {
 				Arrays.deepEquals(_methodParameterTypes75, parameterTypes)) {
 			return AssetEntrySetLocalServiceUtil.getAssetEntrySets(((Long)arguments[0]).longValue(),
 				((Integer)arguments[1]).intValue(),
-				((Integer)arguments[2]).intValue());
+				((Integer)arguments[2]).intValue(),
+				((Integer)arguments[3]).intValue());
 		}
 
 		if (_methodName76.equals(name) &&
@@ -372,7 +373,8 @@ public class AssetEntrySetLocalServiceClpInvoker {
 				(java.lang.String)arguments[3],
 				((Boolean)arguments[4]).booleanValue(),
 				((Integer)arguments[5]).intValue(),
-				((Integer)arguments[6]).intValue());
+				((Integer)arguments[6]).intValue(),
+				((Integer)arguments[7]).intValue());
 		}
 
 		if (_methodName77.equals(name) &&
@@ -381,7 +383,8 @@ public class AssetEntrySetLocalServiceClpInvoker {
 				((Long)arguments[1]).longValue(),
 				(java.lang.String)arguments[2],
 				((Integer)arguments[3]).intValue(),
-				((Integer)arguments[4]).intValue());
+				((Integer)arguments[4]).intValue(),
+				((Integer)arguments[5]).intValue());
 		}
 
 		if (_methodName78.equals(name) &&
@@ -418,7 +421,8 @@ public class AssetEntrySetLocalServiceClpInvoker {
 				((Long)arguments[1]).longValue(),
 				((Long)arguments[2]).longValue(),
 				((Integer)arguments[3]).intValue(),
-				((Integer)arguments[4]).intValue());
+				((Integer)arguments[4]).intValue(),
+				((Integer)arguments[5]).intValue());
 		}
 
 		if (_methodName83.equals(name) &&
@@ -427,7 +431,8 @@ public class AssetEntrySetLocalServiceClpInvoker {
 				((Long)arguments[1]).longValue(),
 				((Long)arguments[2]).longValue(),
 				((Integer)arguments[3]).intValue(),
-				((Integer)arguments[4]).intValue());
+				((Integer)arguments[4]).intValue(),
+				((Integer)arguments[5]).intValue());
 		}
 
 		if (_methodName84.equals(name) &&

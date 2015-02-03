@@ -569,6 +569,18 @@ public class AssetEntrySetWrapper implements AssetEntrySet,
 	}
 
 	@Override
+	public java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> getChildAssetEntrySets() {
+		return _assetEntrySet.getChildAssetEntrySets();
+	}
+
+	@Override
+	public void setChildAssetEntrySets(int childAssetEntrySetsLimit)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		_assetEntrySet.setChildAssetEntrySets(childAssetEntrySetsLimit);
+	}
+
+	@Override
 	public boolean equals(Object obj) {
 		if (this == obj) {
 			return true;
