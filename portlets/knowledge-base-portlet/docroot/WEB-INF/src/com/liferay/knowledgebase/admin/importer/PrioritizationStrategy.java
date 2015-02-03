@@ -127,13 +127,6 @@ public class PrioritizationStrategy {
 				KBArticleLocalServiceUtil.updatePriority(
 					kbArticle.getResourcePrimKey(), entry.getValue());
 
-				/*
-				 * Remove articles with numerical prefixes, and their URL
-				 * titles, from lists of imported and new articles. Only
-				 * articles without numerical prefixes need to be
-				 * alphanumerically prioritized.
-				 */
-
 				remove(_importedArticlesMap, kbArticle);
 				remove(_importedUrlTitlesMap, kbArticle.getUrlTitle());
 				remove(_newArticlesMap, kbArticle);
@@ -141,18 +134,12 @@ public class PrioritizationStrategy {
 		}
 
 		if (_prioritizeUpdatedArticles) {
-
-			// prioritize all imported articles
-
 			Map<String, Double> maxKBArticlePriorityMap =
 				computeMaxKBArticlePriorityMap(_nonImportedArticlesMap);
 
 			prioritizeKBArticles(_importedArticlesMap, maxKBArticlePriorityMap);
 		}
 		else {
-
-			// prioritize only new articles
-
 			Map<String, Double> maxKBArticlePriorityMap =
 				computeMaxKBArticlePriorityMap(_existingArticlesMap);
 
