@@ -29,6 +29,7 @@ import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -177,27 +178,35 @@ public class PrioritizationStrategy {
 
 			// prioritize imported articles by URL title
 
-			for (Map.Entry<String, List<String>> entry :
-					_importedUrlTitlesMap.entrySet()) {
+			for (Map.Entry<String, List<KBArticle>> entry :
+					_importedArticlesMap.entrySet()) {
 
-				List<String> urlTitles = entry.getValue();
+				List<KBArticle> kbArticles = entry.getValue();
 
-				if (urlTitles == null) {
+				if (kbArticles == null) {
 					continue;
 				}
 
-				ListUtil.sort(urlTitles);
+				ListUtil.sort(kbArticles, new Comparator<KBArticle>() {
+
+					@Override
+					public int compare(
+						KBArticle kbArticle1, KBArticle kbArticle2) {
+
+						String urlTitle1 = kbArticle1.getUrlTitle();
+						String urlTitle2 = kbArticle2.getUrlTitle();
+
+						return urlTitle1.compareTo(urlTitle2);
+					}
+
+				});
 
 				String parentUrlTitle = entry.getKey();
 
-				int size = urlTitles.size();
+				int size = kbArticles.size();
 
 				for (int i = 0; i < size; i++) {
-					String urlTitle = urlTitles.get(i);
-
-					KBArticle kbArticle =
-						KBArticleLocalServiceUtil.getKBArticleByUrlTitle(
-							_groupId, _parentKBFolderId, urlTitle);
+					KBArticle kbArticle = kbArticles.get(i);
 
 					double maxPriority = 0.0;
 
@@ -247,27 +256,35 @@ public class PrioritizationStrategy {
 
 			// prioritize new articles by URL title
 
-			for (Map.Entry<String, List<String>> entry :
-					_newUrlTitlesMap.entrySet()) {
+			for (Map.Entry<String, List<KBArticle>> entry :
+					_newArticlesMap.entrySet()) {
 
-				List<String> urlTitles = entry.getValue();
+				List<KBArticle> kbArticles = entry.getValue();
 
-				if (urlTitles == null) {
+				if (kbArticles == null) {
 					continue;
 				}
 
-				ListUtil.sort(urlTitles);
+				ListUtil.sort(kbArticles, new Comparator<KBArticle>() {
+
+					@Override
+					public int compare(
+						KBArticle kbArticle1, KBArticle kbArticle2) {
+
+						String urlTitle1 = kbArticle1.getUrlTitle();
+						String urlTitle2 = kbArticle2.getUrlTitle();
+
+						return urlTitle1.compareTo(urlTitle2);
+					}
+
+				});
 
 				String parentUrlTitle = entry.getKey();
 
-				int size = urlTitles.size();
+				int size = kbArticles.size();
 
 				for (int i = 0; i < size; i++) {
-					String urlTitle = urlTitles.get(i);
-
-					KBArticle kbArticle =
-						KBArticleLocalServiceUtil.getKBArticleByUrlTitle(
-							_groupId, _parentKBFolderId, urlTitle);
+					KBArticle kbArticle = kbArticles.get(i);
 
 					double maxPriority = 0.0;
 
