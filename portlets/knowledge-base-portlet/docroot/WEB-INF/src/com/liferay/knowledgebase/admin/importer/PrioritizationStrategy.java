@@ -407,27 +407,13 @@ public class PrioritizationStrategy {
 		_prioritizeUpdatedArticles = prioritizeUpdatedArticles;
 		_prioritizeByNumericalPrefix = prioritizeByNumericalPrefix;
 
-		_existingArticlesMap = new HashMap<String, List<KBArticle>>();
+		_existingArticlesMap = new HashMap<String, List<KBArticle>>(
+			existingChildArticlesMap);
 		_existingArticlesMap.put(StringPool.BLANK, existingParentArticles);
 
-		Set<String> keySet = existingChildArticlesMap.keySet();
-
-		for (String key : keySet) {
-			List<KBArticle> childArticles = existingChildArticlesMap.get(key);
-
-			_existingArticlesMap.put(key, childArticles);
-		}
-
-		_existingUrlTitlesMap = new HashMap<String, List<String>>();
+		_existingUrlTitlesMap = new HashMap<String, List<String>>(
+			existingChildUrlTitlesMap);
 		_existingUrlTitlesMap.put(StringPool.BLANK, existingParentUrlTitles);
-
-		keySet = existingChildUrlTitlesMap.keySet();
-
-		for (String key : keySet) {
-			List<String> childUrlTitles = existingChildUrlTitlesMap.get(key);
-
-			_existingUrlTitlesMap.put(key, childUrlTitles);
-		}
 
 		_importedArticlesMap = new HashMap<String, List<KBArticle>>();
 		_importedUrlTitlesMap = new HashMap<String, List<String>>();
