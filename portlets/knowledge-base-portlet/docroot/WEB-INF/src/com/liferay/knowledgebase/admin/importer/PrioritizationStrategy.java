@@ -43,15 +43,15 @@ public class PrioritizationStrategy {
 		long groupId, long parentKBFolderId, boolean prioritizeUpdatedArticles,
 		boolean prioritizeByNumericalPrefix) throws SystemException {
 
+		Map<String, List<KBArticle>> existingKBArticlesMap =
+			new HashMap<String, List<KBArticle>>();
+
 		List<KBArticle> existingParentArticles =
 			KBArticleServiceUtil.getKBArticles(
 				groupId, parentKBFolderId, WorkflowConstants.STATUS_ANY,
 				QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 
-		Map<String, List<KBArticle>> existingChildArticlesMap =
-				new HashMap<String, List<KBArticle>>();
-
-		existingChildArticlesMap.put(StringPool.BLANK, existingParentArticles);
+		existingKBArticlesMap.put(StringPool.BLANK, existingParentArticles);
 
 		for (KBArticle existingParentArticle : existingParentArticles) {
 			long resourcePrimKey = existingParentArticle.getResourcePrimKey();
@@ -61,13 +61,13 @@ public class PrioritizationStrategy {
 					groupId, resourcePrimKey, WorkflowConstants.STATUS_ANY,
 					QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 
-			existingChildArticlesMap.put(
+			existingKBArticlesMap.put(
 				existingParentArticle.getUrlTitle(), existingChildArticles);
 		}
 
 		return new PrioritizationStrategy(
 			groupId, parentKBFolderId, prioritizeUpdatedArticles,
-			prioritizeByNumericalPrefix, existingChildArticlesMap);
+			prioritizeByNumericalPrefix, existingKBArticlesMap);
 	}
 
 	public void addKBArticle(KBArticle kbArticle, String fileName)
