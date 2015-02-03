@@ -32,7 +32,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 /**
  * @author Jesse Rao
@@ -122,21 +121,15 @@ public class PrioritizationStrategy {
 		}
 
 		if (_prioritizeByNumericalPrefix) {
-			Set<String> importedKBArticleUrlTitles =
-				_importedUrlTitlesPrioritiesMap.keySet();
-
-			for (String importedKBArticleUrlTitle :
-					importedKBArticleUrlTitles) {
+			for (Map.Entry<String, Double> entry :
+					_importedUrlTitlesPrioritiesMap.entrySet()) {
 
 				KBArticle kbArticle =
 					KBArticleLocalServiceUtil.getKBArticleByUrlTitle(
-						_groupId, _parentKBFolderId, importedKBArticleUrlTitle);
-
-				double priority = _importedUrlTitlesPrioritiesMap.get(
-					importedKBArticleUrlTitle);
+						_groupId, _parentKBFolderId, entry.getKey());
 
 				KBArticleLocalServiceUtil.updatePriority(
-					kbArticle.getResourcePrimKey(), priority);
+					kbArticle.getResourcePrimKey(), entry.getValue());
 
 				/*
 				 * Remove articles with numerical prefixes, and their URL
@@ -145,24 +138,30 @@ public class PrioritizationStrategy {
 				 * alphanumerically prioritized.
 				 */
 
-				Set<String> keySet = _importedArticlesMap.keySet();
+				for (Map.Entry<String, List<KBArticle>> entry :
+						_importedArticlesMap.entrySet()) {
 
-				for (String parentUrlTitle : keySet) {
-					List<KBArticle> kbArticles = _importedArticlesMap.get(
-						parentUrlTitle);
+					List<KBArticle> kbArticles = entry.getValue();
+
+					if (kbArticles == null) {
+						continue;
+					}
 
 					if (kbArticles.contains(kbArticle)) {
 						kbArticles.remove(kbArticle);
 					}
 
-					_importedArticlesMap.put(parentUrlTitle, kbArticles);
+					_importedArticlesMap.put(entry.getKey(), kbArticles);
 				}
 
-				keySet = _importedUrlTitlesMap.keySet();
+				for (Map.Entry<String, List<String>> entry :
+						_importedUrlTitlesMap.entrySet()) {
 
-				for (String parentUrlTitle : keySet) {
-					List<String> urlTitles = _importedUrlTitlesMap.get(
-						parentUrlTitle);
+					List<String> urlTitles = entry.getValue();
+
+					if (urlTitles == null) {
+						continue;
+					}
 
 					String urlTitle = kbArticle.getUrlTitle();
 
@@ -170,27 +169,33 @@ public class PrioritizationStrategy {
 						urlTitles.remove(urlTitle);
 					}
 
-					_importedUrlTitlesMap.put(parentUrlTitle, urlTitles);
+					_importedUrlTitlesMap.put(entry.getKey(), urlTitles);
 				}
 
-				keySet = _newArticlesMap.keySet();
+				for (Map.Entry<String, List<KBArticle>> entry :
+						_newArticlesMap.entrySet()) {
 
-				for (String parentUrlTitle : keySet) {
-					List<KBArticle> kbArticles = _newArticlesMap.get(
-						parentUrlTitle);
+					List<KBArticle> kbArticles = entry.getValue();
+
+					if (kbArticles == null) {
+						continue;
+					}
 
 					if (kbArticles.contains(kbArticle)) {
 						kbArticles.remove(kbArticle);
 					}
 
-					_newArticlesMap.put(parentUrlTitle, kbArticles);
+					_newArticlesMap.put(entry.getKey(), kbArticles);
 				}
 
-				keySet = _newUrlTitlesMap.keySet();
+				for (Map.Entry<String, List<String>> entry :
+						_newUrlTitlesMap.entrySet()) {
 
-				for (String parentUrlTitle : keySet) {
-					List<String> urlTitles = _newUrlTitlesMap.get(
-						parentUrlTitle);
+					List<String> urlTitles = entry.getValue();
+
+					if (urlTitles == null) {
+						continue;
+					}
 
 					String urlTitle = kbArticle.getUrlTitle();
 
@@ -198,7 +203,7 @@ public class PrioritizationStrategy {
 						urlTitles.remove(urlTitle);
 					}
 
-					_newUrlTitlesMap.put(parentUrlTitle, urlTitles);
+					_newUrlTitlesMap.put(entry.getKey(), urlTitles);
 				}
 			}
 		}
@@ -210,13 +215,16 @@ public class PrioritizationStrategy {
 			Map<String, Double> maxKBArticlePriorityMap =
 				new HashMap<String, Double>();
 
-			Set<String> keySet = _nonImportedArticlesMap.keySet();
+			for (Map.Entry<String, List<KBArticle>> entry :
+					_nonImportedArticlesMap.entrySet()) {
 
-			for (String parentUrlTitle : keySet) {
 				double maxKBArticlePriority = 0.0;
 
-				List<KBArticle> kbArticles = _nonImportedArticlesMap.get(
-					parentUrlTitle);
+				List<KBArticle> kbArticles = entry.getValue();
+
+				if (kbArticles == null) {
+					continue;
+				}
 
 				for (KBArticle kbArticle : kbArticles) {
 					double kbArticlePriority = kbArticle.getPriority();
@@ -227,18 +235,23 @@ public class PrioritizationStrategy {
 				}
 
 				maxKBArticlePriorityMap.put(
-					parentUrlTitle, maxKBArticlePriority);
+					entry.getKey(), maxKBArticlePriority);
 			}
 
 			// prioritize imported articles by URL title
 
-			keySet = _importedArticlesMap.keySet();
+			for (Map.Entry<String, List<String>> entry :
+					_importedUrlTitlesMap.entrySet()) {
 
-			for (String parentUrlTitle : keySet) {
-				List<String> urlTitles = getList(
-					_importedUrlTitlesMap, parentUrlTitle);
+				List<String> urlTitles = entry.getValue();
+
+				if (urlTitles == null) {
+					continue;
+				}
 
 				ListUtil.sort(urlTitles);
+
+				String parentUrlTitle = entry.getKey();
 
 				int size = urlTitles.size();
 
@@ -272,13 +285,16 @@ public class PrioritizationStrategy {
 			Map<String, Double> maxKBArticlePriorityMap =
 				new HashMap<String, Double>();
 
-			Set<String> keySet = _existingArticlesMap.keySet();
+			for (Map.Entry<String, List<KBArticle>> entry :
+					_existingArticlesMap.entrySet()) {
 
-			for (String parentUrlTitle : keySet) {
 				double maxKBArticlePriority = 0.0;
 
-				List<KBArticle> kbArticles = _existingArticlesMap.get(
-					parentUrlTitle);
+				List<KBArticle> kbArticles = entry.getValue();
+
+				if (kbArticles == null) {
+					continue;
+				}
 
 				for (KBArticle kbArticle : kbArticles) {
 					double kbArticlePriority = kbArticle.getPriority();
@@ -289,18 +305,23 @@ public class PrioritizationStrategy {
 				}
 
 				maxKBArticlePriorityMap.put(
-					parentUrlTitle, maxKBArticlePriority);
+					entry.getKey(), maxKBArticlePriority);
 			}
 
 			// prioritize new articles by URL title
 
-			keySet = _newArticlesMap.keySet();
+			for (Map.Entry<String, List<String>> entry :
+					_newUrlTitlesMap.entrySet()) {
 
-			for (String parentUrlTitle : keySet) {
-				List<String> urlTitles = getList(
-					_newUrlTitlesMap, parentUrlTitle);
+				List<String> urlTitles = entry.getValue();
+
+				if (urlTitles == null) {
+					continue;
+				}
 
 				ListUtil.sort(urlTitles);
+
+				String parentUrlTitle = entry.getKey();
 
 				int size = urlTitles.size();
 
@@ -395,18 +416,15 @@ public class PrioritizationStrategy {
 	private void _initNonImportedArticles() {
 		_nonImportedArticlesMap = new HashMap<String, List<KBArticle>>();
 
-		Set<String> keySet = _existingArticlesMap.keySet();
-
-		for (String parentUrlTitle : keySet) {
-			List<KBArticle> existingArticles = getList(
-				_existingArticlesMap, parentUrlTitle);
+		for (Map.Entry<String, List<KBArticle>> entry :
+				_existingArticlesMap.entrySet()) {
 
 			List<String> importedUrlTitles = getList(
-				_importedUrlTitlesMap, parentUrlTitle);
+				_importedUrlTitlesMap, entry.getKey());
 
 			List<KBArticle> nonImportedArticles = new ArrayList<KBArticle>();
 
-			for (KBArticle kbArticle : existingArticles) {
+			for (KBArticle kbArticle : entry.getValue()) {
 				String urlTitle = kbArticle.getUrlTitle();
 
 				if (!importedUrlTitles.contains(urlTitle)) {
@@ -414,7 +432,7 @@ public class PrioritizationStrategy {
 				}
 			}
 
-			_nonImportedArticlesMap.put(parentUrlTitle, nonImportedArticles);
+			_nonImportedArticlesMap.put(entry.getKey(), nonImportedArticles);
 		}
 	}
 
