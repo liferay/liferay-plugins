@@ -396,8 +396,8 @@ Error-Prone was automatically installed. Please rerun your task.
 					</if>
 
 					<delete file="${module.auto.deploy.dir}/${plugin.name}.${plugin.packaging}" />
-					<delete file="${sdk.dir}/dist/${plugin.name}-${plugin.full.version}-wsdd-fragment.${plugin.packaging}" />
-					<delete file="${module.auto.deploy.dir}/${plugin.name}-wsdd-fragment.${plugin.packaging}" />
+					<delete file="${sdk.dir}/dist/${plugin.name}-${plugin.full.version}-wsdd.${plugin.packaging}" />
+					<delete file="${module.auto.deploy.dir}/${plugin.name}-wsdd.${plugin.packaging}" />
 				</then>
 			</if>
 		</sequential>
@@ -1301,12 +1301,13 @@ Please find a solution that does not require portal-impl.jar.
 								tofile="${module.auto.deploy.dir}/${plugin.name}.${plugin.packaging}"
 							/>
 							<if>
-								<available file="${sdk.dir}/dist/${plugin.name}-${plugin.full.version}-wsdd-fragment.${plugin.packaging}" />
+								<available file="${sdk.dir}/dist/${plugin.name}-${plugin.full.version}-wsdd.${plugin.packaging}" />
 								<then>
 									<copy 
-										file="${sdk.dir}/dist/${plugin.name}-${plugin.full.version}-wsdd-fragment.${plugin.packaging}" 
-										tofile="${module.auto.deploy.dir}/${plugin.name}-wsdd-fragment.${plugin.packaging}" 
-										failonerror="false" />
+										file="${sdk.dir}/dist/${plugin.name}-${plugin.full.version}-wsdd.${plugin.packaging}" 
+										tofile="${module.auto.deploy.dir}/${plugin.name}-wsdd.${plugin.packaging}" 
+										failonerror="false"
+									/>
 								</then>
 							</if>
 						</then>
