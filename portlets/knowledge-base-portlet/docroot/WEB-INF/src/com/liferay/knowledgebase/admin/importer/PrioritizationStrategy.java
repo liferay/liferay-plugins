@@ -186,34 +186,32 @@ public class PrioritizationStrategy {
 					}
 				}
 
-				if (_newArticlesMap != null) {
-					Set<String> keySet = _newArticlesMap.keySet();
+				Set<String> keySet = _newArticlesMap.keySet();
 
-					for (String parentUrlTitle : keySet) {
-						List<KBArticle> kbArticles = _newArticlesMap.get(
-							parentUrlTitle);
+				for (String parentUrlTitle : keySet) {
+					List<KBArticle> kbArticles = _newArticlesMap.get(
+						parentUrlTitle);
 
-						if (kbArticles.contains(kbArticle)) {
-							kbArticles.remove(kbArticle);
-						}
-
-						_newArticlesMap.put(parentUrlTitle, kbArticles);
+					if (kbArticles.contains(kbArticle)) {
+						kbArticles.remove(kbArticle);
 					}
 
-					keySet = _newUrlTitlesMap.keySet();
+					_newArticlesMap.put(parentUrlTitle, kbArticles);
+				}
 
-					for (String parentUrlTitle : keySet) {
-						List<String> urlTitles = _newUrlTitlesMap.get(
-							parentUrlTitle);
+				keySet = _newUrlTitlesMap.keySet();
 
-						String urlTitle = kbArticle.getUrlTitle();
+				for (String parentUrlTitle : keySet) {
+					List<String> urlTitles = _newUrlTitlesMap.get(
+						parentUrlTitle);
 
-						if (urlTitles.contains(urlTitle)) {
-							urlTitles.remove(urlTitle);
-						}
+					String urlTitle = kbArticle.getUrlTitle();
 
-						_newUrlTitlesMap.put(parentUrlTitle, urlTitles);
+					if (urlTitles.contains(urlTitle)) {
+						urlTitles.remove(urlTitle);
 					}
+
+					_newUrlTitlesMap.put(parentUrlTitle, urlTitles);
 				}
 			}
 		}
