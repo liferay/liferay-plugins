@@ -1667,10 +1667,21 @@ Please find a solution that does not require portal-impl.jar.
 				module.dir="@{module.dir}"
 			/>
 
-			<loop-macrodef-or-target
-				module.dirs="@{module.dir}"
-				target.name="compile"
-			/>
+			<if>
+				<matches pattern=".*-test" string="@{module.dir}" />
+				<then>
+					<loop-macrodef-or-target
+						module.dirs="@{module.dir}"
+						target.name="compile-test"
+					/>
+				</then>
+				<else>
+					<loop-macrodef-or-target
+						module.dirs="@{module.dir}"
+						target.name="compile"
+					/>
+				</else>
+			</if>
 
 			<mkdir dir="${sdk.dir}/dist" />
 
