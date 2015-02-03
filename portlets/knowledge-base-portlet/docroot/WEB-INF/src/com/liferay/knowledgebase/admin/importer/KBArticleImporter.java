@@ -89,7 +89,9 @@ public class KBArticleImporter {
 			long userId, long groupId, long parentKBFolderId,
 			long parentResourceClassNameId, long parentResourcePrimaryKey,
 			String markdown, String fileEntryName, ZipReader zipReader,
-			Map<String, String> metadata, ServiceContext serviceContext)
+			Map<String, String> metadata,
+			PrioritizationStrategy prioritizationStrategy,
+			ServiceContext serviceContext)
 		throws KBArticleImportException {
 
 		if (Validator.isNull(markdown)) {
@@ -105,6 +107,8 @@ public class KBArticleImporter {
 		KBArticle kbArticle =
 			KBArticleLocalServiceUtil.fetchKBArticleByUrlTitle(
 				groupId, parentKBFolderId, urlTitle);
+
+		boolean newKBArticle = kbArticle == null;
 
 		try {
 			if (kbArticle == null) {
@@ -139,12 +143,22 @@ public class KBArticleImporter {
 					userId, kbArticle, zipReader,
 					new HashMap<String, FileEntry>());
 
-			return KBArticleLocalServiceUtil.updateKBArticle(
+			kbArticle = KBArticleLocalServiceUtil.updateKBArticle(
 				userId, kbArticle.getResourcePrimKey(),
 				kbArticleMarkdownConverter.getTitle(), html,
 				kbArticle.getDescription(),
 				kbArticleMarkdownConverter.getSourceURL(), null, null, null,
 				serviceContext);
+
+			if (newKBArticle) {
+				prioritizationStrategy.addNewKBArticle(
+					kbArticle, fileEntryName);
+			}
+			else {
+				prioritizationStrategy.addKBArticle(kbArticle, fileEntryName);
+			}
+
+			return kbArticle;
 		}
 		catch (Exception e) {
 			StringBundler sb = new StringBundler(4);
@@ -281,10 +295,8 @@ public class KBArticleImporter {
 					userId, groupId, parentKBFolderId,
 					sectionResourceClassNameId, sectionResourcePrimaryKey,
 					zipReader.getEntryAsString(sectionIntroFileEntryName),
-					sectionIntroFileEntryName, zipReader, metadata,
+					sectionIntroFileEntryName, zipReader, metadata, strategy,
 					serviceContext);
-
-				strategy.addKBArticle(sectionIntroKBArticle, folderName);
 
 				sectionResourceClassNameId = PortalUtil.getClassNameId(
 					KBArticleConstants.getClassName());
@@ -306,13 +318,11 @@ public class KBArticleImporter {
 					}
 				}
 
-				KBArticle sectionKBArticle = addKBArticleMarkdown(
+				addKBArticleMarkdown(
 					userId, groupId, parentKBFolderId,
 					sectionResourceClassNameId, sectionResourcePrimaryKey,
 					sectionMarkdown, sectionFileEntryName, zipReader, metadata,
-					serviceContext);
-
-				strategy.addKBArticle(sectionKBArticle, sectionFileEntryName);
+					strategy, serviceContext);
 
 				importedKBArticlesCount++;
 			}
