@@ -386,6 +386,37 @@
 					<fail>WSDD Builder generated exceptions.</fail>
 				</then>
 			</if>
+
+			<if>
+				<resourcecontains
+					resource="${module.dir.unix}/build.xml"
+					substring="/build-common-osgi-plugin.xml&quot;"
+				/>
+				<then>
+					<property file="bnd.bnd" prefix="bnd." />
+
+					<echo file="bnd-${plugin.name}-wsdd.bnd">Bundle-SymbolicName: ${bnd.Bundle-SymbolicName}.wsdd
+Bundle-Name: ${bnd.Bundle-Name} WSDD descriptors
+Bundle-Version: ${bnd.Bundle-Version}
+Fragment-Host: ${bnd.Bundle-SymbolicName}
+Include-Resource: WEB-INF/=server-config.wsdd,classes;filter:=*.wsdd
+					</echo>
+
+					<bndexpand propertyfile="${sdk.dir}/common.bnd" />
+
+					<baseline-jar
+						bndRootFile="${sdk.dir}/common.bnd"
+						file="${basedir}/bnd-${plugin.name}-wsdd.bnd"
+						outputPath="${sdk.dir}/dist/${plugin.name}-${plugin.full.version}-wsdd-fragment.${plugin.packaging}"
+						sourcePath="${basedir}">
+						<classpath>
+							<pathelement location="${plugin.classes.dir}" />
+						</classpath>
+					</baseline-jar>
+
+					<delete file="${basedir}/bnd-${plugin.name}-wsdd.bnd" failonerror="false" />
+				</then>
+			</if>
 		</sequential>
 	</macrodef>
 
