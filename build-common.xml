@@ -1314,6 +1314,22 @@ Please find a solution that does not require portal-impl.jar.
 					</if>
 				</else>
 			</if>
+			<if>
+				<available file="@{module.dir}/src/META-INF/sql" />
+				<then>
+					<concat destfile="${basedir}/osgi-sql/osgi-tables.sql" append="true">
+						<fileset  dir="@{module.dir}/src/META-INF/sql" includes="tables.sql"/>
+					</concat>
+					
+					<echo message="${line.separator}${line.separator}" file="${basedir}/osgi-sql/osgi-tables.sql" append="true" />
+					
+					<concat destfile="${basedir}/osgi-sql/osgi-indexes.sql" append="true">
+						<fileset  dir="@{module.dir}/src/META-INF/sql" includes="indexes.sql"/>
+					</concat>
+					
+					<echo message="${line.separator}${line.separator}" file="${basedir}/osgi-sql/osgi-indexes.sql" append="true" />
+				</then>
+			</if>
 		</sequential>
 	</macrodef>
 
