@@ -63,7 +63,7 @@ public class KBArticleImporter {
 			boolean prioritizeUpdatedKBArticles,
 			boolean prioritizeByNumericalPrefix, InputStream inputStream,
 			ServiceContext serviceContext)
-		throws KBArticleImportException, PortalException {
+		throws PortalException {
 
 		if (inputStream == null) {
 			throw new KBArticleImportException("Input stream is null");
