@@ -346,7 +346,8 @@ public interface KBArticleLocalService extends BaseLocalService,
 
 	public int addKBArticlesMarkdown(long userId, long groupId,
 		long parentKbFolderId, java.lang.String fileName,
-		java.io.InputStream inputStream,
+		boolean prioritizeUpdatedKBArticles,
+		boolean prioritizeByNumericalPrefix, java.io.InputStream inputStream,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
