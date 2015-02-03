@@ -413,7 +413,8 @@ Include-Resource: WEB-INF/=server-config.wsdd,classes;filter:=*.wsdd
 					bndRootFile="${sdk.dir}/common.bnd"
 					file="${basedir}/bnd-${plugin.name}-wsdd.bnd"
 					outputPath="${sdk.dir}/dist/${plugin.name}-${plugin.full.version}-wsdd-fragment.${plugin.packaging}"
-					sourcePath="${basedir}">
+					sourcePath="${basedir}"
+				>
 					<classpath>
 						<pathelement location="${plugin.classes.dir}" />
 					</classpath>
