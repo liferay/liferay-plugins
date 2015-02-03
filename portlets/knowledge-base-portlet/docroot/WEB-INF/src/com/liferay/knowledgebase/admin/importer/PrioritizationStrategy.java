@@ -151,30 +151,7 @@ public class PrioritizationStrategy {
 			// prioritize all imported articles
 
 			Map<String, Double> maxKBArticlePriorityMap =
-				new HashMap<String, Double>();
-
-			for (Map.Entry<String, List<KBArticle>> entry :
-					_nonImportedArticlesMap.entrySet()) {
-
-				double maxKBArticlePriority = 0.0;
-
-				List<KBArticle> kbArticles = entry.getValue();
-
-				if (kbArticles == null) {
-					continue;
-				}
-
-				for (KBArticle kbArticle : kbArticles) {
-					double kbArticlePriority = kbArticle.getPriority();
-
-					if (kbArticlePriority > maxKBArticlePriority) {
-						maxKBArticlePriority = kbArticlePriority;
-					}
-				}
-
-				maxKBArticlePriorityMap.put(
-					entry.getKey(), maxKBArticlePriority);
-			}
+				computeMaxKBArticlePriorityMap(_nonImportedArticlesMap);
 
 			prioritizeKBArticles(_importedArticlesMap, maxKBArticlePriorityMap);
 		}
@@ -183,30 +160,7 @@ public class PrioritizationStrategy {
 			// prioritize only new articles
 
 			Map<String, Double> maxKBArticlePriorityMap =
-				new HashMap<String, Double>();
-
-			for (Map.Entry<String, List<KBArticle>> entry :
-					_existingArticlesMap.entrySet()) {
-
-				double maxKBArticlePriority = 0.0;
-
-				List<KBArticle> kbArticles = entry.getValue();
-
-				if (kbArticles == null) {
-					continue;
-				}
-
-				for (KBArticle kbArticle : kbArticles) {
-					double kbArticlePriority = kbArticle.getPriority();
-
-					if (kbArticlePriority > maxKBArticlePriority) {
-						maxKBArticlePriority = kbArticlePriority;
-					}
-				}
-
-				maxKBArticlePriorityMap.put(
-					entry.getKey(), maxKBArticlePriority);
-			}
+				computeMaxKBArticlePriorityMap(_existingArticlesMap);
 
 			prioritizeKBArticles(_newArticlesMap, maxKBArticlePriorityMap);
 		}
@@ -232,6 +186,37 @@ public class PrioritizationStrategy {
 
 		_newArticlesMap = new HashMap<String, List<KBArticle>>();
 		_newUrlTitlesMap = new HashMap<String, List<String>>();
+	}
+
+	protected Map<String, Double> computeMaxKBArticlePriorityMap(
+		Map<String, List<KBArticle>> kbArticlesMap) {
+
+		Map<String, Double> maxKBArticlePriorityMap =
+			new HashMap<String, Double>();
+
+		for (Map.Entry<String, List<KBArticle>> entry :
+				kbArticlesMap.entrySet()) {
+
+			double maxKBArticlePriority = 0.0;
+
+			List<KBArticle> kbArticles = entry.getValue();
+
+			if (kbArticles == null) {
+				continue;
+			}
+
+			for (KBArticle kbArticle : kbArticles) {
+				double kbArticlePriority = kbArticle.getPriority();
+
+				if (kbArticlePriority > maxKBArticlePriority) {
+					maxKBArticlePriority = kbArticlePriority;
+				}
+			}
+
+			maxKBArticlePriorityMap.put(entry.getKey(), maxKBArticlePriority);
+		}
+
+		return maxKBArticlePriorityMap;
 	}
 
 	protected <S, T> List<T> getList(Map<S, List<T>> map, S key) {
