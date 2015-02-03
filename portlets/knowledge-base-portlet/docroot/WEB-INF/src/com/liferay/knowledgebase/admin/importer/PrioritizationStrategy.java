@@ -73,13 +73,7 @@ public class PrioritizationStrategy {
 	public void addKBArticle(KBArticle kbArticle, String fileName)
 		throws PortalException, SystemException {
 
-		KBArticle parentKBArticle = kbArticle.getParentKBArticle();
-
-		String parentKBArticleUrlTitle = StringPool.BLANK;
-
-		if (parentKBArticle != null) {
-			parentKBArticleUrlTitle = parentKBArticle.getUrlTitle();
-		}
+		String parentKBArticleUrlTitle = getParentKBArticleUrlTitle(kbArticle);
 
 		List<KBArticle> kbArticles = getList(
 			_importedArticlesMap, parentKBArticleUrlTitle);
@@ -107,13 +101,8 @@ public class PrioritizationStrategy {
 		addKBArticle(kbArticle, fileName);
 
 		if (!_prioritizeUpdatedArticles) {
-			KBArticle parentKBArticle = kbArticle.getParentKBArticle();
-
-			String parentKBArticleUrlTitle = StringPool.BLANK;
-
-			if (parentKBArticle != null) {
-				parentKBArticleUrlTitle = parentKBArticle.getUrlTitle();
-			}
+			String parentKBArticleUrlTitle = getParentKBArticleUrlTitle(
+				kbArticle);
 
 			List<KBArticle> newKBArticles = getList(
 				_newArticlesMap, parentKBArticleUrlTitle);
@@ -371,6 +360,18 @@ public class PrioritizationStrategy {
 		}
 
 		return list;
+	}
+
+	protected String getParentKBArticleUrlTitle(KBArticle kbArticle)
+		throws PortalException, SystemException {
+
+		KBArticle parentKBArticle = kbArticle.getParentKBArticle();
+
+		if (parentKBArticle == null) {
+			return StringPool.BLANK;
+		}
+
+		return parentKBArticle.getUrlTitle();
 	}
 
 	private double _getNumericalPrefix(String path) {
