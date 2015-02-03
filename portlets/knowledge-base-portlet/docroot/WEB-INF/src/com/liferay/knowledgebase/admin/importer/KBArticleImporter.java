@@ -151,11 +151,11 @@ public class KBArticleImporter {
 				serviceContext);
 
 			if (newKBArticle) {
-				prioritizationStrategy.addKBArticle(
-					kbArticle, fileEntryName);
+				prioritizationStrategy.addKBArticle(kbArticle, fileEntryName);
 			}
 			else {
-				prioritizationStrategy.updateKBArticle(kbArticle, fileEntryName);
+				prioritizationStrategy.updateKBArticle(
+					kbArticle, fileEntryName);
 			}
 
 			return kbArticle;
