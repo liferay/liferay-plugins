@@ -393,10 +393,7 @@
 		</if>
 
 		<if>
-			<resourcecontains
-				resource="${module.dir.unix}/build.xml"
-				substring="/build-common-osgi-plugin.xml&quot;"
-			/>
+			<available file="bnd.bnd" />
 			<then>
 				<property file="bnd.bnd" prefix="bnd." />
 
