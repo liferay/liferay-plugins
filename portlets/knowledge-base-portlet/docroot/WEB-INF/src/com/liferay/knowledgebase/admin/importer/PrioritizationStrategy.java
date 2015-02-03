@@ -51,6 +51,8 @@ public class PrioritizationStrategy {
 		Map<String, List<KBArticle>> existingChildArticlesMap =
 				new HashMap<String, List<KBArticle>>();
 
+		existingChildArticlesMap.put(StringPool.BLANK, existingParentArticles);
+
 		for (KBArticle existingParentArticle : existingParentArticles) {
 			long resourcePrimKey = existingParentArticle.getResourcePrimKey();
 
@@ -65,8 +67,7 @@ public class PrioritizationStrategy {
 
 		return new PrioritizationStrategy(
 			groupId, parentKBFolderId, prioritizeUpdatedArticles,
-			prioritizeByNumericalPrefix, existingParentArticles,
-			existingChildArticlesMap);
+			prioritizeByNumericalPrefix, existingChildArticlesMap);
 	}
 
 	public void addKBArticle(KBArticle kbArticle, String fileName)
@@ -374,8 +375,7 @@ public class PrioritizationStrategy {
 	protected PrioritizationStrategy(
 		long groupId, long parentKBFolderId, boolean prioritizeUpdatedArticles,
 		boolean prioritizeByNumericalPrefix,
-		List<KBArticle> existingParentArticles,
-		Map<String, List<KBArticle>> existingChildArticlesMap) {
+		Map<String, List<KBArticle>> existingKBArticlesMap) {
 
 		_groupId = groupId;
 		_parentKBFolderId = parentKBFolderId;
@@ -383,9 +383,7 @@ public class PrioritizationStrategy {
 		_prioritizeUpdatedArticles = prioritizeUpdatedArticles;
 		_prioritizeByNumericalPrefix = prioritizeByNumericalPrefix;
 
-		_existingArticlesMap = new HashMap<String, List<KBArticle>>(
-			existingChildArticlesMap);
-		_existingArticlesMap.put(StringPool.BLANK, existingParentArticles);
+		_existingArticlesMap = existingKBArticlesMap;
 
 		_importedArticlesMap = new HashMap<String, List<KBArticle>>();
 		_importedUrlTitlesMap = new HashMap<String, List<String>>();
