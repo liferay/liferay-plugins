@@ -40,33 +40,35 @@ import java.util.Map;
 public class PrioritizationStrategy {
 
 	public static PrioritizationStrategy create(
-		long groupId, long parentKBFolderId, boolean prioritizeUpdatedArticles,
-		boolean prioritizeByNumericalPrefix) throws SystemException {
+			long groupId, long parentKBFolderId,
+			boolean prioritizeUpdatedKBArticles,
+			boolean prioritizeByNumericalPrefix)
+		throws SystemException {
 
 		Map<String, List<KBArticle>> existingKBArticlesMap =
 			new HashMap<String, List<KBArticle>>();
 
-		List<KBArticle> existingParentArticles =
+		List<KBArticle> existingParentKBArticles =
 			KBArticleServiceUtil.getKBArticles(
 				groupId, parentKBFolderId, WorkflowConstants.STATUS_ANY,
 				QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 
-		existingKBArticlesMap.put(StringPool.BLANK, existingParentArticles);
+		existingKBArticlesMap.put(StringPool.BLANK, existingParentKBArticles);
 
-		for (KBArticle existingParentArticle : existingParentArticles) {
-			long resourcePrimKey = existingParentArticle.getResourcePrimKey();
+		for (KBArticle existingParentKBArticle : existingParentKBArticles) {
+			long resourcePrimKey = existingParentKBArticle.getResourcePrimKey();
 
-			List<KBArticle> existingChildArticles =
+			List<KBArticle> existingChildKBArticles =
 				KBArticleServiceUtil.getKBArticles(
 					groupId, resourcePrimKey, WorkflowConstants.STATUS_ANY,
 					QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 
 			existingKBArticlesMap.put(
-				existingParentArticle.getUrlTitle(), existingChildArticles);
+				existingParentKBArticle.getUrlTitle(), existingChildKBArticles);
 		}
 
 		return new PrioritizationStrategy(
-			groupId, parentKBFolderId, prioritizeUpdatedArticles,
+			groupId, parentKBFolderId, prioritizeUpdatedKBArticles,
 			prioritizeByNumericalPrefix, existingKBArticlesMap);
 	}
 
@@ -76,12 +78,12 @@ public class PrioritizationStrategy {
 		String parentKBArticleUrlTitle = getParentKBArticleUrlTitle(kbArticle);
 
 		List<KBArticle> kbArticles = getList(
-			_importedArticlesMap, parentKBArticleUrlTitle);
+			_importedKBArticlesMap, parentKBArticleUrlTitle);
 
 		kbArticles.add(kbArticle);
 
 		List<String> importedUrlTitles = getList(
-			_importedUrlTitlesMap, parentKBArticleUrlTitle);
+			_importedKBArticleUrlTitlesMap, parentKBArticleUrlTitle);
 
 		importedUrlTitles.add(kbArticle.getUrlTitle());
 
@@ -89,7 +91,7 @@ public class PrioritizationStrategy {
 			double sectionFileEntryNamePrefix = _getNumericalPrefix(fileName);
 
 			if (sectionFileEntryNamePrefix > 0) {
-				_importedUrlTitlesPrioritiesMap.put(
+				_importedKBArticleUrlTitlesPrioritiesMap.put(
 					kbArticle.getUrlTitle(), sectionFileEntryNamePrefix);
 			}
 		}
@@ -100,25 +102,25 @@ public class PrioritizationStrategy {
 
 		addKBArticle(kbArticle, fileName);
 
-		if (!_prioritizeUpdatedArticles) {
+		if (!_prioritizeUpdatedKBArticles) {
 			String parentKBArticleUrlTitle = getParentKBArticleUrlTitle(
 				kbArticle);
 
 			List<KBArticle> newKBArticles = getList(
-				_newArticlesMap, parentKBArticleUrlTitle);
+				_newKBArticlesMap, parentKBArticleUrlTitle);
 
 			newKBArticles.add(kbArticle);
 		}
 	}
 
 	public void prioritizeArticles() throws PortalException, SystemException {
-		if (_prioritizeUpdatedArticles) {
+		if (_prioritizeUpdatedKBArticles) {
 			_initNonImportedArticles();
 		}
 
 		if (_prioritizeByNumericalPrefix) {
 			for (Map.Entry<String, Double> entry :
-					_importedUrlTitlesPrioritiesMap.entrySet()) {
+					_importedKBArticleUrlTitlesPrioritiesMap.entrySet()) {
 
 				KBArticle kbArticle =
 					KBArticleLocalServiceUtil.getKBArticleByUrlTitle(
@@ -127,45 +129,48 @@ public class PrioritizationStrategy {
 				KBArticleLocalServiceUtil.updatePriority(
 					kbArticle.getResourcePrimKey(), entry.getValue());
 
-				remove(_importedArticlesMap, kbArticle);
-				remove(_importedUrlTitlesMap, kbArticle.getUrlTitle());
-				remove(_newArticlesMap, kbArticle);
+				remove(_importedKBArticlesMap, kbArticle);
+				remove(_importedKBArticleUrlTitlesMap, kbArticle.getUrlTitle());
+				remove(_newKBArticlesMap, kbArticle);
 			}
 		}
 
-		if (_prioritizeUpdatedArticles) {
+		if (_prioritizeUpdatedKBArticles) {
 			Map<String, Double> maxKBArticlePriorityMap =
-				computeMaxKBArticlePriorityMap(_nonImportedArticlesMap);
+				computeMaxKBArticlePriorityMap(_nonImportedKBArticlesMap);
 
-			prioritizeKBArticles(_importedArticlesMap, maxKBArticlePriorityMap);
+			prioritizeKBArticles(
+				_importedKBArticlesMap, maxKBArticlePriorityMap);
 		}
 		else {
 			Map<String, Double> maxKBArticlePriorityMap =
-				computeMaxKBArticlePriorityMap(_existingArticlesMap);
+				computeMaxKBArticlePriorityMap(_existingKBArticlesMap);
 
-			prioritizeKBArticles(_newArticlesMap, maxKBArticlePriorityMap);
+			prioritizeKBArticles(_newKBArticlesMap, maxKBArticlePriorityMap);
 		}
 	}
 
 	protected PrioritizationStrategy(
-		long groupId, long parentKBFolderId, boolean prioritizeUpdatedArticles,
+		long groupId, long parentKBFolderId,
+		boolean prioritizeUpdatedKBArticles,
 		boolean prioritizeByNumericalPrefix,
 		Map<String, List<KBArticle>> existingKBArticlesMap) {
 
 		_groupId = groupId;
 		_parentKBFolderId = parentKBFolderId;
 
-		_prioritizeUpdatedArticles = prioritizeUpdatedArticles;
+		_prioritizeUpdatedKBArticles = prioritizeUpdatedKBArticles;
 		_prioritizeByNumericalPrefix = prioritizeByNumericalPrefix;
 
-		_existingArticlesMap = existingKBArticlesMap;
+		_existingKBArticlesMap = existingKBArticlesMap;
 
-		_importedArticlesMap = new HashMap<String, List<KBArticle>>();
-		_importedUrlTitlesMap = new HashMap<String, List<String>>();
+		_importedKBArticlesMap = new HashMap<String, List<KBArticle>>();
+		_importedKBArticleUrlTitlesMap = new HashMap<String, List<String>>();
 
-		_importedUrlTitlesPrioritiesMap = new HashMap<String, Double>();
+		_importedKBArticleUrlTitlesPrioritiesMap =
+			new HashMap<String, Double>();
 
-		_newArticlesMap = new HashMap<String, List<KBArticle>>();
+		_newKBArticlesMap = new HashMap<String, List<KBArticle>>();
 	}
 
 	protected Map<String, Double> computeMaxKBArticlePriorityMap(
@@ -248,7 +253,7 @@ public class PrioritizationStrategy {
 
 			});
 
-			String parentUrlTitle = entry.getKey();
+			String parentKBArticleUrlTitle = entry.getKey();
 
 			int size = kbArticles.size();
 
@@ -257,13 +262,17 @@ public class PrioritizationStrategy {
 
 				double maxPriority = 0.0;
 
-				if (maxKBArticlePriorityMap.containsKey(parentUrlTitle)) {
-					maxPriority = maxKBArticlePriorityMap.get(parentUrlTitle);
+				if (maxKBArticlePriorityMap.containsKey(
+						parentKBArticleUrlTitle)) {
+
+					maxPriority = maxKBArticlePriorityMap.get(
+						parentKBArticleUrlTitle);
 				}
 
 				maxPriority++;
 
-				maxKBArticlePriorityMap.put(parentUrlTitle, maxPriority);
+				maxKBArticlePriorityMap.put(
+					parentKBArticleUrlTitle, maxPriority);
 
 				KBArticleLocalServiceUtil.updatePriority(
 					kbArticle.getResourcePrimKey(), maxPriority);
@@ -302,37 +311,37 @@ public class PrioritizationStrategy {
 	}
 
 	private void _initNonImportedArticles() {
-		_nonImportedArticlesMap = new HashMap<String, List<KBArticle>>();
+		_nonImportedKBArticlesMap = new HashMap<String, List<KBArticle>>();
 
 		for (Map.Entry<String, List<KBArticle>> entry :
-				_existingArticlesMap.entrySet()) {
+				_existingKBArticlesMap.entrySet()) {
 
-			List<String> importedUrlTitles = getList(
-				_importedUrlTitlesMap, entry.getKey());
+			List<String> importedKBArticleUrlTitles = getList(
+				_importedKBArticleUrlTitlesMap, entry.getKey());
 
 			List<KBArticle> nonImportedArticles = new ArrayList<KBArticle>();
 
 			for (KBArticle kbArticle : entry.getValue()) {
 				String urlTitle = kbArticle.getUrlTitle();
 
-				if (!importedUrlTitles.contains(urlTitle)) {
+				if (!importedKBArticleUrlTitles.contains(urlTitle)) {
 					nonImportedArticles.add(kbArticle);
 				}
 			}
 
-			_nonImportedArticlesMap.put(entry.getKey(), nonImportedArticles);
+			_nonImportedKBArticlesMap.put(entry.getKey(), nonImportedArticles);
 		}
 	}
 
-	private final Map<String, List<KBArticle>> _existingArticlesMap;
+	private final Map<String, List<KBArticle>> _existingKBArticlesMap;
 	private final long _groupId;
-	private final Map<String, List<KBArticle>> _importedArticlesMap;
-	private final Map<String, List<String>> _importedUrlTitlesMap;
-	private final Map<String, Double> _importedUrlTitlesPrioritiesMap;
-	private final Map<String, List<KBArticle>> _newArticlesMap;
-	private Map<String, List<KBArticle>> _nonImportedArticlesMap;
+	private final Map<String, List<KBArticle>> _importedKBArticlesMap;
+	private final Map<String, List<String>> _importedKBArticleUrlTitlesMap;
+	private final Map<String, Double> _importedKBArticleUrlTitlesPrioritiesMap;
+	private final Map<String, List<KBArticle>> _newKBArticlesMap;
+	private Map<String, List<KBArticle>> _nonImportedKBArticlesMap;
 	private final long _parentKBFolderId;
 	private final boolean _prioritizeByNumericalPrefix;
-	private final boolean _prioritizeUpdatedArticles;
+	private final boolean _prioritizeUpdatedKBArticles;
 
 }
