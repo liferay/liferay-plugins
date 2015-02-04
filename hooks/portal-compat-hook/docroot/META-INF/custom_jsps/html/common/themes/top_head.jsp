@@ -164,7 +164,7 @@ StringBundler pageTopSB = OutputTag.getData(request, WebKeys.PAGE_TOP);
 
 <c:if test="<%= (layout != null) && Validator.isNotNull(layout.getCssText()) %>">
 	<style type="text/css">
-		<%= layout.getCssText() %>
+		<%= _escapeCssBlock(layout.getCssText()) %>
 	</style>
 </c:if>
 
