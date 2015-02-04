@@ -1950,6 +1950,20 @@ Please find a solution that does not require portal-impl.jar.
 		</sequential>
 	</macrodef>
 
+	<macrodef name="reset-gradle">
+		<attribute name="module.dir" />
+
+		<sequential>
+			<delete file="@{module.dir}/dependency-settings.gradle" />
+
+			<touch file="@{module.dir}/dependency-settings.gradle" />
+
+			<delete file="@{module.dir}/build.gradle" />
+
+			<touch file="@{module.dir}/build.gradle" />
+		</sequential>
+	</macrodef>
+
 	<macrodef name="setup-arquillian">
 		<attribute name="module.dir" />
 
@@ -2715,6 +2729,13 @@ for (String path : paths) {
 		</tstamp>
 
 		<echo message="${current.time}" />
+	</target>
+
+	<target name="reset-gradle">
+		<loop-macrodef-or-target
+			module.dirs="${plugins.includes.path}"
+			target.name="reset-gradle"
+		/>
 	</target>
 
 	<target name="run-pmd">
