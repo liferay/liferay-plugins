@@ -1,50 +1,114 @@
+def loadProperties = {
+	Properties properties, String fileName ->
+
+	File file = new File(fileName);
+
+	if (file.exists()) {
+		properties.load(new FileInputStream(file));
+	}
+};
+
+Properties antProperties = new Properties();
+
+loadProperties(antProperties, "build.properties");
+loadProperties(antProperties, "build." + System.properties["user.name"] + ".properties");
+loadProperties(antProperties, "build." + System.properties["COMPUTERNAME"] + ".properties");
+loadProperties(antProperties, "build." + System.properties["HOST"] + ".properties");
+loadProperties(antProperties, "build." + System.properties["HOSTNAME"] + ".properties");
+
+if (!hasProperty("lfrPluginsExcludes")) {
+	ext.lfrPluginsExcludes = antProperties["plugins.excludes"];
+}
+
+if (!hasProperty("lfrPluginsIncludes")) {
+	ext.lfrPluginsIncludes = antProperties["plugins.includes"];
+}
+
+gradle.ext.compileDeps = [];
+
+ext.includeTransitive = {
+	String[] projectPaths ->
+
+	include projectPaths;
+
+	for (String projectPath : projectPaths) {
+		String projectDirName = projectPath.replaceAll(":", "/");
+
+		projectDirName = projectPath.replaceFirst("^/", "");
+
+		File dependencySettingsFile = new File(rootDir.toString() + "/" + projectDirName, "dependency-settings.gradle");
+
+		if (!dependencySettingsFile.exists() || dependencySettingsFile.length() == 0) {
+			continue;
+		}
+
+		apply from: dependencySettingsFile;
+
+		String dependencySettingsContent = dependencySettingsFile.text;
+
+		dependencySettingsContent = dependencySettingsContent.replaceAll("includeTransitive", "");
+		dependencySettingsContent = dependencySettingsContent.replaceAll(" ", "");
+		dependencySettingsContent = dependencySettingsContent.replaceAll("\"", "");
+		dependencySettingsContent = dependencySettingsContent.replaceAll("\\s\$", "");
+
+		String[] dependencySettingsArray = dependencySettingsContent.split("\\n");
+
+		gradle.compileDeps << [
+			compile: dependencySettingsArray,
+			projectPath: projectPath
+		];
+	}
+};
+
 String userDir = System.getProperty("user.dir");
 
 FileTree fileTree = fileTree(userDir) {
-	if ((pluginsIncludes != "") && (pluginsIncludes != "*")) {
-		pluginsIncludes = pluginsIncludes.replaceAll(" ", "");
-		pluginsIncludes = pluginsIncludes.replaceAll(",+", ",");
+	if ((lfrPluginsIncludes != "") && (lfrPluginsIncludes != "*")) {
+		lfrPluginsIncludes = lfrPluginsIncludes.replaceAll(" ", "");
+		lfrPluginsIncludes = lfrPluginsIncludes.replaceAll(",+", ",");
 
-		String[] pluginsIncludesArray = pluginsIncludes.split(",");
+		def lfrPluginsIncludesArray = lfrPluginsIncludes.split(",");
 
-		pluginsIncludesArray = pluginsIncludesArray.collect(
+		lfrPluginsIncludesArray = lfrPluginsIncludesArray.collect(
 			{
 				"**/" + it + "/build.gradle"
 			}
 		);
  
-		pluginsIncludesArray.each(
+		lfrPluginsIncludesArray.each(
 			{
-				include(it)
+				include(it);
 			}
 		);
 	}
 	else {
-		include("**/build.gradle")
+		include("**/build.gradle");
 	}
  
-	if ((pluginsExcludes != "") && (pluginsExcludes != "*")) {
-		pluginsExcludes = pluginsExcludes.replaceAll(" ", "");
-		pluginsExcludes = pluginsExcludes.replaceAll(",+", ",");
+	if ((lfrPluginsExcludes != "") && (lfrPluginsExcludes != "*")) {
+		lfrPluginsExcludes = lfrPluginsExcludes.replaceAll(" ", "");
+		lfrPluginsExcludes = lfrPluginsExcludes.replaceAll(",+", ",");
 
-		String[] pluginsExcludesArray = pluginsExcludes.split(",");
+		String[] lfrPluginsExcludesArray = lfrPluginsExcludes.split(",");
 
-		pluginsExcludesArray = pluginsExcludesArray.collect(
+		lfrPluginsExcludesArray = lfrPluginsExcludesArray.collect(
 			{
 				"**/" + it + "/build.gradle"
 			}
 		);
  
-		pluginsExcludesArray.each(
+		lfrPluginsExcludesArray.each(
 			{
-				exclude(it)
+				exclude(it);
 			}
 		);
 	}
 	else {
-		exclude("**/build.gradle")
+		exclude("**/build.gradle");
 	}
-}
+
+	exclude("build.gradle");
+};
 
 fileTree.each(
 	{
@@ -58,6 +122,8 @@ fileTree.each(
 
 		pluginDir = pluginDir.replaceFirst("/build.gradle", "");
 
-		include(":" + pluginDir.replaceAll("[\\/]", ":"));
+		includeTransitive(":" + pluginDir.replaceAll("[\\/]", ":"));
 	}
 );
+
+include(":shared:portal-compat-shared");
