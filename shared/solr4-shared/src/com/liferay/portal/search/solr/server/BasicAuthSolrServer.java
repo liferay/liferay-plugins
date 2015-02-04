@@ -62,7 +62,7 @@ public class BasicAuthSolrServer extends BaseHttpSolrServer {
 
 		_httpClientFactory = basicAuthPoolingHttpClientFactory;
 
-		initServer(basicAuthPoolingHttpClientFactory.createInstance());
+		initHttpSolrServer(basicAuthPoolingHttpClientFactory.createInstance());
 	}
 
 	public void setAuthScope(AuthScope authScope) {
