@@ -10,11 +10,11 @@ def loadProperties = {
 
 Properties antProperties = new Properties();
 
-loadProperties(antProperties, "build.properties");
-loadProperties(antProperties, "build." + System.properties["user.name"] + ".properties");
-loadProperties(antProperties, "build." + System.properties["COMPUTERNAME"] + ".properties");
-loadProperties(antProperties, "build." + System.properties["HOST"] + ".properties");
-loadProperties(antProperties, "build." + System.properties["HOSTNAME"] + ".properties");
+loadProperties(antProperties, rootDir.toString() + "/build.properties");
+loadProperties(antProperties, rootDir.toString() + "/build." + System.properties["user.name"] + ".properties");
+loadProperties(antProperties, rootDir.toString() + "/build." + System.properties["COMPUTERNAME"] + ".properties");
+loadProperties(antProperties, rootDir.toString() + "/build." + System.properties["HOST"] + ".properties");
+loadProperties(antProperties, rootDir.toString() + "/build." + System.properties["HOSTNAME"] + ".properties");
 
 if (!hasProperty("lfrPluginsExcludes")) {
 	ext.lfrPluginsExcludes = antProperties["plugins.excludes"];
@@ -60,9 +60,9 @@ ext.includeTransitive = {
 	}
 };
 
-String userDir = System.getProperty("user.dir");
+String userDirName = System.getProperty("user.dir");
 
-FileTree fileTree = fileTree(userDir) {
+FileTree fileTree = fileTree(userDirName) {
 	if ((lfrPluginsIncludes != "") && (lfrPluginsIncludes != "*")) {
 		lfrPluginsIncludes = lfrPluginsIncludes.replaceAll(" ", "");
 		lfrPluginsIncludes = lfrPluginsIncludes.replaceAll(",+", ",");
@@ -107,7 +107,10 @@ FileTree fileTree = fileTree(userDir) {
 		exclude("**/build.gradle");
 	}
 
-	exclude("build.gradle");
+	if (userDirName.equals(rootDir.toString())) {
+		exclude("build.gradle");
+		exclude("tools/gradle/build.gradle");
+	}
 };
 
 fileTree.each(
