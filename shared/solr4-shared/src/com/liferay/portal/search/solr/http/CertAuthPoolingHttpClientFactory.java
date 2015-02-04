@@ -23,6 +23,8 @@ import org.apache.http.conn.scheme.SchemeRegistry;
 import org.apache.http.conn.ssl.SSLSocketFactory;
 import org.apache.http.impl.conn.PoolingClientConnectionManager;
 
+import com.liferay.portal.kernel.util.Http;
+
 /**
  * @author László Csontos
  * @author André de Oliveira
@@ -74,19 +76,15 @@ public class CertAuthPoolingHttpClientFactory implements HttpClientFactory {
 	protected SchemeRegistry createSchemeRegistry(
 		SSLSocketFactory sslSocketFactory) {
 
-		Scheme scheme = new Scheme(
-			_DEFAULT_SCHEME_NAME, _DEFAULT_SCHEME_PORT, sslSocketFactory);
-
 		SchemeRegistry schemeRegistry = new SchemeRegistry();
+
+		Scheme scheme = new Scheme(
+			Http.HTTPS, Http.HTTPS_PORT, sslSocketFactory);
 
 		schemeRegistry.register(scheme);
 
 		return schemeRegistry;
 	}
-
-	private static final String _DEFAULT_SCHEME_NAME = "https";
-
-	private static final int _DEFAULT_SCHEME_PORT = 443;
 
 	private BasePoolingHttpClientFactory _basePoolingHttpClientFactory;
 
