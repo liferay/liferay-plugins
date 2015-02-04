@@ -14,6 +14,8 @@
 
 package com.liferay.portal.search.solr.http;
 
+import com.liferay.portal.kernel.util.Http;
+
 import java.util.List;
 
 import org.apache.http.HttpRequestInterceptor;
@@ -22,8 +24,6 @@ import org.apache.http.conn.scheme.Scheme;
 import org.apache.http.conn.scheme.SchemeRegistry;
 import org.apache.http.conn.ssl.SSLSocketFactory;
 import org.apache.http.impl.conn.PoolingClientConnectionManager;
-
-import com.liferay.portal.kernel.util.Http;
 
 /**
  * @author László Csontos
