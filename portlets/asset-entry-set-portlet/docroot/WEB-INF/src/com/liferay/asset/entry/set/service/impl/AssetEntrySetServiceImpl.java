@@ -92,24 +92,24 @@ public class AssetEntrySetServiceImpl extends AssetEntrySetServiceBaseImpl {
 
 	@Override
 	public List<AssetEntrySet> getNewAssetEntrySets(
-			long createTime, long parentAssetEntrySetId, int commentCount,
-			int start, int end)
+			long createTime, long parentAssetEntrySetId,
+			int childAssetEntrySetsLimit, int start, int end)
 		throws PortalException, SystemException {
 
 		return assetEntrySetLocalService.getNewAssetEntrySets(
-			getUserId(), createTime, parentAssetEntrySetId, commentCount, start,
-			end);
+			getUserId(), createTime, parentAssetEntrySetId,
+			childAssetEntrySetsLimit, start, end);
 	}
 
 	@Override
 	public List<AssetEntrySet> getOldAssetEntrySets(
-			long createTime, long parentAssetEntrySetId, int commentCount,
-			int start, int end)
+			long createTime, long parentAssetEntrySetId,
+			int childAssetEntrySetsLimit, int start, int end)
 		throws PortalException, SystemException {
 
 		return assetEntrySetLocalService.getOldAssetEntrySets(
-			getUserId(), createTime, parentAssetEntrySetId, commentCount, start,
-			end);
+			getUserId(), createTime, parentAssetEntrySetId,
+			childAssetEntrySetsLimit, start, end);
 	}
 
 	@Override

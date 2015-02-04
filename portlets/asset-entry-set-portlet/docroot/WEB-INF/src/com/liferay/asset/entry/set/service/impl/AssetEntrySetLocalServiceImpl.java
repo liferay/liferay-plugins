@@ -157,7 +157,7 @@ public class AssetEntrySetLocalServiceImpl
 
 	@Override
 	public List<AssetEntrySet> getAssetEntrySets(
-			long userId, int commentCount, int start, int end)
+			long userId, int childAssetEntrySetsLimit, int start, int end)
 		throws PortalException, SystemException {
 
 		Map<Long, long[]> sharedToClassPKsMap =
@@ -167,7 +167,7 @@ public class AssetEntrySetLocalServiceImpl
 			assetEntrySetFinder.findBySharedToClassPKsMap(
 				sharedToClassPKsMap, start, end);
 
-		setDisplayFields(assetEntrySets, commentCount);
+		setDisplayFields(assetEntrySets, childAssetEntrySetsLimit);
 
 		return assetEntrySets;
 	}
@@ -175,8 +175,8 @@ public class AssetEntrySetLocalServiceImpl
 	@Override
 	public List<AssetEntrySet> getAssetEntrySets(
 			long userId, long creatorClassNameId, long creatorClassPK,
-			String assetTagName, boolean andOperator, int commentCount,
-			int start, int end)
+			String assetTagName, boolean andOperator,
+			int childAssetEntrySetsLimit, int start, int end)
 		throws PortalException, SystemException {
 
 		Map<Long, long[]> sharedToClassPKsMap =
@@ -187,7 +187,7 @@ public class AssetEntrySetLocalServiceImpl
 				creatorClassNameId, creatorClassPK, assetTagName,
 				sharedToClassPKsMap, andOperator, start, end);
 
-		setDisplayFields(assetEntrySets, commentCount);
+		setDisplayFields(assetEntrySets, childAssetEntrySetsLimit);
 
 		return assetEntrySets;
 	}
@@ -195,7 +195,7 @@ public class AssetEntrySetLocalServiceImpl
 	@Override
 	public List<AssetEntrySet> getAssetEntrySets(
 			long userId, long creatorClassNameId, String assetTagName,
-			int commentCount, int start, int end)
+			int childAssetEntrySetsLimit, int start, int end)
 		throws PortalException, SystemException {
 
 		Map<Long, long[]> sharedToClassPKsMap =
@@ -204,7 +204,7 @@ public class AssetEntrySetLocalServiceImpl
 		List<AssetEntrySet> assetEntrySets = assetEntrySetFinder.findByCCNI_ATN(
 			creatorClassNameId, assetTagName, sharedToClassPKsMap, start, end);
 
-		setDisplayFields(assetEntrySets, commentCount);
+		setDisplayFields(assetEntrySets, childAssetEntrySetsLimit);
 
 		return assetEntrySets;
 	}
@@ -264,23 +264,23 @@ public class AssetEntrySetLocalServiceImpl
 	@Override
 	public List<AssetEntrySet> getNewAssetEntrySets(
 			long userId, long createTime, long parentAssetEntrySetId,
-			int commentCount, int start, int end)
+			int childAssetEntrySetsLimit, int start, int end)
 		throws PortalException, SystemException {
 
 		return getAssetEntrySets(
-			userId, createTime, true, parentAssetEntrySetId, commentCount,
-			start, end);
+			userId, createTime, true, parentAssetEntrySetId,
+			childAssetEntrySetsLimit, start, end);
 	}
 
 	@Override
 	public List<AssetEntrySet> getOldAssetEntrySets(
 			long userId, long createTime, long parentAssetEntrySetId,
-			int commentCount, int start, int end)
+			int childAssetEntrySetsLimit, int start, int end)
 		throws PortalException, SystemException {
 
 		return getAssetEntrySets(
-			userId, createTime, false, parentAssetEntrySetId, commentCount,
-			start, end);
+			userId, createTime, false, parentAssetEntrySetId,
+			childAssetEntrySetsLimit, start, end);
 	}
 
 	@Override
@@ -367,7 +367,8 @@ public class AssetEntrySetLocalServiceImpl
 
 	protected List<AssetEntrySet> getAssetEntrySets(
 			long userId, long createTime, boolean gtCreateTime,
-			long parentAssetEntrySetId, int commentCount, int start, int end)
+			long parentAssetEntrySetId, int childAssetEntrySetsLimit, int start,
+			int end)
 		throws PortalException, SystemException {
 
 		Map<Long, long[]> sharedToClassPKsMap =
@@ -378,7 +379,7 @@ public class AssetEntrySetLocalServiceImpl
 				createTime, gtCreateTime, parentAssetEntrySetId,
 				sharedToClassPKsMap, start, end);
 
-		setDisplayFields(assetEntrySets, commentCount);
+		setDisplayFields(assetEntrySets, childAssetEntrySetsLimit);
 
 		return assetEntrySets;
 	}
@@ -510,11 +511,11 @@ public class AssetEntrySetLocalServiceImpl
 	}
 
 	protected void setDisplayFields(
-			List<AssetEntrySet> assetEntrySets, int commentCount)
+			List<AssetEntrySet> assetEntrySets, int childAssetEntrySetsLimit)
 		throws PortalException, SystemException {
 
 		for (AssetEntrySet assetEntrySet : assetEntrySets) {
-			assetEntrySet.setComments(commentCount);
+			assetEntrySet.setChildAssetEntrySets(childAssetEntrySetsLimit);
 
 			setParticipants(assetEntrySet);
 		}

@@ -30,22 +30,23 @@ public class AssetEntrySetImpl extends AssetEntrySetBaseImpl {
 	}
 
 	@Override
-	public List<AssetEntrySet> getComments() {
-		return _comments;
+	public List<AssetEntrySet> getChildAssetEntrySets() {
+		return _childAssetEntrySets;
 	}
 
 	@Override
-	public void setComments(int commentCount)
+	public void setChildAssetEntrySets(int childAssetEntrySetsLimit)
 		throws PortalException, SystemException {
 
-		if (commentCount <= 0) {
+		if (childAssetEntrySetsLimit <= 0) {
 			return;
 		}
 
-		_comments = AssetEntrySetLocalServiceUtil.getChildAssetEntrySets(
-			getAssetEntrySetId(), 0, commentCount, null);
+		_childAssetEntrySets =
+			AssetEntrySetLocalServiceUtil.getChildAssetEntrySets(
+				getAssetEntrySetId(), 0, childAssetEntrySetsLimit, null);
 	}
 
-	private List<AssetEntrySet> _comments;
+	private List<AssetEntrySet> _childAssetEntrySets;
 
 }
