@@ -90,7 +90,7 @@ if (layout != null) {
 			}
 		}
 	}
-	else if (layout.isTypePortlet()) {
+	else if (layout.isTypeEmbedded() || layout.isTypePortlet()) {
 		portlets = layoutTypePortlet.getAllPortlets();
 
 		if (themeDisplay.isStateMaximized() || themeDisplay.isStatePopUp()) {
