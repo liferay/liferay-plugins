@@ -191,9 +191,9 @@ public class BaseHttpSolrServer extends SolrServer {
 	private String _baseURL;
 	private Integer _connectionTimeout;
 	private Boolean _followRedirects;
+	private HttpSolrServer _httpSolrServer;
 	private Integer _maxRetries;
 	private ResponseParser _responseParser;
-	private HttpSolrServer _httpSolrServer;
 	private Integer _soTimeout;
 	private AtomicBoolean _stopped = new AtomicBoolean(false);
 	private String _url;
