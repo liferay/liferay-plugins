@@ -16,6 +16,7 @@ package com.liferay.portal.search.solr.server;
 
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.util.ClassUtil;
 import com.liferay.portal.search.solr.http.BasicAuthPoolingHttpClientFactory;
 import com.liferay.portal.search.solr.http.HttpClientFactory;
 
@@ -37,7 +38,7 @@ public class BasicAuthSolrServer extends BaseHttpSolrServer {
 	public void afterPropertiesSet() {
 		if (_log.isWarnEnabled()) {
 			_log.warn(
-				getClass().getName() + " has been deprecated. Please use " +
+				ClassUtil.getClassName(this) + " is deprecated in favor of " +
 				com.liferay.portal.search.solr.server.HttpSolrServer.class.
 					getName());
 		}
@@ -45,21 +46,23 @@ public class BasicAuthSolrServer extends BaseHttpSolrServer {
 		PoolingClientConnectionManager poolingClientConnectionManager =
 			new PoolingClientConnectionManager();
 
-		BasicAuthPoolingHttpClientFactory httpClientFactory =
+		BasicAuthPoolingHttpClientFactory basicAuthPoolingHttpClientFactory =
 			new BasicAuthPoolingHttpClientFactory(
 				poolingClientConnectionManager);
 
-		httpClientFactory.setAuthScope(_authScope);
-		httpClientFactory.setDefaultMaxConnectionsPerRoute(
+		basicAuthPoolingHttpClientFactory.setAuthScope(_authScope);
+		basicAuthPoolingHttpClientFactory.setDefaultMaxConnectionsPerRoute(
 			_defaultMaxConnectionsPerRoute);
-		httpClientFactory.setHttpRequestInterceptors(_httpRequestInterceptors);
-		httpClientFactory.setMaxTotalConnections(_maxTotalConnections);
-		httpClientFactory.setPassword(_password);
-		httpClientFactory.setUsername(_username);
+		basicAuthPoolingHttpClientFactory.setHttpRequestInterceptors(
+			_httpRequestInterceptors);
+		basicAuthPoolingHttpClientFactory.setMaxTotalConnections(
+			_maxTotalConnections);
+		basicAuthPoolingHttpClientFactory.setPassword(_password);
+		basicAuthPoolingHttpClientFactory.setUsername(_username);
 
-		_httpClientFactory = httpClientFactory;
+		_httpClientFactory = basicAuthPoolingHttpClientFactory;
 
-		initServer(httpClientFactory.createInstance());
+		initServer(basicAuthPoolingHttpClientFactory.createInstance());
 	}
 
 	public void setAuthScope(AuthScope authScope) {
@@ -71,10 +74,10 @@ public class BasicAuthSolrServer extends BaseHttpSolrServer {
 
 		_defaultMaxConnectionsPerRoute = defaultMaxConnectionsPerRoute;
 
-		HttpSolrServer server = getServer();
+		HttpSolrServer httpSolrServer = getHttpSolrServer();
 
-		if (server != null) {
-			server.setDefaultMaxConnectionsPerHost(
+		if (httpSolrServer != null) {
+			httpSolrServer.setDefaultMaxConnectionsPerHost(
 				defaultMaxConnectionsPerRoute);
 		}
 	}
@@ -88,10 +91,10 @@ public class BasicAuthSolrServer extends BaseHttpSolrServer {
 	public void setMaxTotalConnections(int maxTotalConnections) {
 		_maxTotalConnections = maxTotalConnections;
 
-		HttpSolrServer server = getServer();
+		HttpSolrServer httpSolrServer = getHttpSolrServer();
 
-		if (server != null) {
-			server.setMaxTotalConnections(maxTotalConnections);
+		if (httpSolrServer != null) {
+			httpSolrServer.setMaxTotalConnections(maxTotalConnections);
 		}
 	}
 

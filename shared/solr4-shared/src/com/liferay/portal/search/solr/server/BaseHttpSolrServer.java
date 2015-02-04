@@ -39,19 +39,19 @@ import org.apache.solr.common.util.NamedList;
 public class BaseHttpSolrServer extends SolrServer {
 
 	public String getBaseURL() {
-		return _server.getBaseURL();
+		return _httpSolrServer.getBaseURL();
 	}
 
 	public HttpClient getHttpClient() {
-		return _server.getHttpClient();
+		return _httpSolrServer.getHttpClient();
 	}
 
 	public ModifiableSolrParams getInvariantParams() {
-		return _server.getInvariantParams();
+		return _httpSolrServer.getInvariantParams();
 	}
 
 	public ResponseParser getParser() {
-		return _server.getParser();
+		return _httpSolrServer.getParser();
 	}
 
 	@Override
@@ -62,7 +62,7 @@ public class BaseHttpSolrServer extends SolrServer {
 			return null;
 		}
 
-		return _server.request(solrRequest);
+		return _httpSolrServer.request(solrRequest);
 	}
 
 	public NamedList<Object> request(
@@ -73,62 +73,62 @@ public class BaseHttpSolrServer extends SolrServer {
 			return null;
 		}
 
-		return _server.request(solrRequest, responseParser);
+		return _httpSolrServer.request(solrRequest, responseParser);
 	}
 
 	public void setAllowCompression(boolean allowCompression) {
 		_allowCompression = allowCompression;
 
-		if (_server != null) {
-			_server.setAllowCompression(_allowCompression);
+		if (_httpSolrServer != null) {
+			_httpSolrServer.setAllowCompression(_allowCompression);
 		}
 	}
 
 	public void setBaseURL(String baseURL) {
 		_baseURL = baseURL;
 
-		if (_server != null) {
-			_server.setBaseURL(baseURL);
+		if (_httpSolrServer != null) {
+			_httpSolrServer.setBaseURL(baseURL);
 		}
 	}
 
 	public void setConnectionTimeout(int connectionTimeout) {
 		_connectionTimeout = connectionTimeout;
 
-		if (_server != null) {
-			_server.setConnectionTimeout(connectionTimeout);
+		if (_httpSolrServer != null) {
+			_httpSolrServer.setConnectionTimeout(connectionTimeout);
 		}
 	}
 
 	public void setFollowRedirects(boolean followRedirects) {
 		_followRedirects = followRedirects;
 
-		if (_server != null) {
-			_server.setFollowRedirects(followRedirects);
+		if (_httpSolrServer != null) {
+			_httpSolrServer.setFollowRedirects(followRedirects);
 		}
 	}
 
 	public void setMaxRetries(int maxRetries) {
 		_maxRetries = maxRetries;
 
-		if (_server != null) {
-			_server.setMaxRetries(maxRetries);
+		if (_httpSolrServer != null) {
+			_httpSolrServer.setMaxRetries(maxRetries);
 		}
 	}
 
 	public void setParser(ResponseParser responseParser) {
 		_responseParser = responseParser;
 
-		if (_server != null) {
-			_server.setParser(responseParser);
+		if (_httpSolrServer != null) {
+			_httpSolrServer.setParser(responseParser);
 		}
 	}
 
 	public void setSoTimeout(int soTimeout) {
 		_soTimeout = soTimeout;
 
-		if (_server != null) {
-			_server.setSoTimeout(soTimeout);
+		if (_httpSolrServer != null) {
+			_httpSolrServer.setSoTimeout(soTimeout);
 		}
 	}
 
@@ -140,15 +140,15 @@ public class BaseHttpSolrServer extends SolrServer {
 	public void shutdown() {
 		_stopped.set(true);
 
-		_server.shutdown();
+		_httpSolrServer.shutdown();
 
 		if (_log.isInfoEnabled()) {
 			_log.info(toString() + " has been shut down.");
 		}
 	}
 
-	protected HttpSolrServer getServer() {
-		return _server;
+	protected HttpSolrServer getHttpSolrServer() {
+		return _httpSolrServer;
 	}
 
 	protected void initServer(HttpClient httpClient) {
@@ -182,7 +182,7 @@ public class BaseHttpSolrServer extends SolrServer {
 			server.setSoTimeout(_soTimeout);
 		}
 
-		_server = server;
+		_httpSolrServer = server;
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(BaseHttpSolrServer.class);
@@ -193,7 +193,7 @@ public class BaseHttpSolrServer extends SolrServer {
 	private Boolean _followRedirects;
 	private Integer _maxRetries;
 	private ResponseParser _responseParser;
-	private HttpSolrServer _server;
+	private HttpSolrServer _httpSolrServer;
 	private Integer _soTimeout;
 	private AtomicBoolean _stopped = new AtomicBoolean(false);
 	private String _url;
