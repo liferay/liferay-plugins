@@ -169,7 +169,6 @@ String iconMenuId = null;
 						<liferay-security:permissionsURL
 							modelResource="<%= modelResource %>"
 							modelResourceDescription="<%= HtmlUtil.escape(modelResourceDescription) %>"
-							redirect="<%= currentURL %>"
 							resourcePrimKey="<%= resourcePrimKey %>"
 							var="permissionsURL"
 							windowState="<%= LiferayWindowState.POP_UP.toString() %>"
@@ -255,7 +254,6 @@ String iconMenuId = null;
 						<liferay-security:permissionsURL
 							modelResource="<%= modelResource %>"
 							modelResourceDescription="<%= HtmlUtil.escape(modelResourceDescription) %>"
-							redirect="<%= currentURL %>"
 							resourcePrimKey="<%= resourcePrimKey %>"
 							var="permissionsURL"
 							windowState="<%= LiferayWindowState.POP_UP.toString() %>"
